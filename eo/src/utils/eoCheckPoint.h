@@ -35,6 +35,14 @@ template <class EOT> class eoSortedStatBase;
 class eoMonitor;
 class eoUpdater;
 
+/** eoCheckPoint is a container class.
+    It contains an eoContinue, and vertors of (pointers to) 
+             eoStats, eoUpdater and eoMonitor
+    it is an eoContinue, so its operator() will be called every generation - 
+             and will return the contained-eoContinue result
+    but before that it will call in turn every single 
+             {statistics, updaters, monitors} that it has been given.
+*/
 template <class EOT>
 class eoCheckPoint : public eoContinue<EOT>
 {
