@@ -29,7 +29,6 @@
 
 #include <algorithm>
 #include <eoPerf2Worth.h>
-#include <eoDominanceMap.h>
 
 /**
   Non dominated sorting, it *is a* vector of doubles, the integer part is the rank (to which front it belongs),
@@ -37,12 +36,9 @@
   the bits.
 */
 template <class EOT>
-class eoNDSorting : public eoPerf2Worth<EOT, double>
+class eoNDSorting : public eoPerf2WorthCached<EOT, double>
 {
   public :
-
-    eoNDSorting(eoDominanceMap<EOT>& _dominanceMap) :
-      eoPerf2Worth<EOT, double>(), dominanceMap(_dominanceMap) {}
 
     /** Pure virtual function that calculates the 'distance' for each element to the current front
         Implement to create your own nondominated sorting algorithm. The size of the returned vector
@@ -50,50 +46,78 @@ class eoNDSorting : public eoPerf2Worth<EOT, double>
     */
     virtual vector<double> niche_penalty(const vector<unsigned>& current_front, const eoPop<EOT>& _pop) = 0;
 
-    /// Do the work
-    void operator()(const eoPop<EOT>& _pop)
+    /** implements fast nondominated sorting
+    */
+    void calculate_worths(const eoPop<EOT>& _pop)
     {
-      dominanceMap(_pop);
-
-      vector<bool> excluded(_pop.size(), false);
-
       value().resize(_pop.size());
 
-      bool finished = false;
+      typedef typename EOT::Fitness::fitness_traits traits;
 
-      int dominance_level = 0;
-
-      while(!finished)
-      {
-        vector<double> ranks = dominanceMap.sum_dominators();
-
-        vector<unsigned> current_front;
-        current_front.reserve(_pop.size());
-
-        finished = true;
+      if (traits::nObjectives() == 1)
+      { // no need to do difficult sorting,
 
         for (unsigned i = 0; i < _pop.size(); ++i)
         {
-          if (excluded[i])
-          {
-            continue; // next please
-          }
+          value()[i] = _pop[i].fitness()[0];
+        }
 
-          if (ranks[i] < 1e-6)
-          {// it's part of the current front
-            excluded[i] = true;
-            current_front.push_back(i);
-            dominanceMap.remove(i); // remove from consideration
-          }
-          else
+        if (!traits::maximizing(0))
+        {
+          for (unsigned i = 0; i < value().size(); ++i)
           {
-            finished = false; // we need another go
+            value()[i] = exp(-value()[i]);
           }
         }
 
+        return;
+      }
+
+      vector<vector<unsigned> > S(_pop.size()); // which individuals does guy i dominate
+      vector<unsigned> n(_pop.size(), 0); // how many individuals dominate guy i
+
+
+      for (unsigned i = 0; i < _pop.size(); ++i)
+      {
+        for (unsigned j = 0; j < _pop.size(); ++j)
+        {
+          if (_pop[i].fitness().dominates(_pop[j].fitness()))
+          { // i dominates j
+            S[i].push_back(j); // add j to i's domination list
+
+            //n[j]++; // as i dominates j
+          }
+          else if (_pop[j].fitness().dominates(_pop[i].fitness()))
+          { // j dominates i, increment count for i, add i to the domination list of j
+            n[i]++;
+
+            //S[j].push_back(i);
+          }
+        }
+      }
+
+      vector<unsigned> current_front;
+      current_front.reserve(_pop.size());
+
+      // get the first front out
+      for (unsigned i = 0; i < _pop.size(); ++i)
+      {
+        if (n[i] == 0)
+        {
+          current_front.push_back(i);
+        }
+      }
+
+      vector<unsigned> next_front;
+      next_front.reserve(_pop.size());
+
+      unsigned front_index = 0; // which front are we processing
+      while (!current_front.empty())
+      {
         // Now we have the indices to the current front in current_front, do the niching
         vector<double> niche_count = niche_penalty(current_front, _pop);
 
+        // Check whether the derived class was nice
         if (niche_count.size() != current_front.size())
         {
           throw logic_error("eoNDSorting: niche and front should have the same size");
@@ -103,10 +127,28 @@ class eoNDSorting : public eoPerf2Worth<EOT, double>
 
         for (unsigned i = 0; i < current_front.size(); ++i)
         {
-          value()[current_front[i]] = dominance_level + niche_count[i] / (max_niche + 1);
+          value()[current_front[i]] = front_index + niche_count[i] / (max_niche + 1.); // divide by max_niche + 1 to ensure that this front does not overlap with the next
         }
 
-        dominance_level++; // go to the next front
+        // Calculate which individuals are in the next front;
+
+        for (unsigned i = 0; i < current_front.size(); ++i)
+        {
+          for (unsigned j = 0; j < S[current_front[i]].size(); ++j)
+          {
+            unsigned dominated_individual = S[current_front[i]][j];
+            n[dominated_individual]--; // As we remove individual i -- being part of the current front -- it no longer dominates j
+
+            if (n[dominated_individual] == 0) // it should be in the current front
+            {
+              next_front.push_back(dominated_individual);
+            }
+          }
+        }
+
+        front_index++; // go to the next front
+        swap(current_front, next_front); // make the next front current
+        next_front.clear(); // clear it for the next iteration
       }
 
       // now all that's left to do is to transform lower rank into higher worth
@@ -115,15 +157,10 @@ class eoNDSorting : public eoPerf2Worth<EOT, double>
       for (unsigned i = 0; i < value().size(); ++i)
       {
         value()[i] = max_fitness - value()[i];
+        assert(n[i] == 0);
       }
 
     }
-
-    const eoDominanceMap<EOT>& map() const;
-
-  private :
-
-  eoDominanceMap<EOT>& dominanceMap;
 };
 
 /**
@@ -133,7 +170,7 @@ template <class EOT>
 class eoNDSorting_I : public eoNDSorting<EOT>
 {
 public :
-  eoNDSorting_I(eoDominanceMap<EOT>& _map, double _nicheSize) : eoNDSorting<EOT>(_map), nicheSize(_nicheSize) {}
+  eoNDSorting_I(double _nicheSize) : eoNDSorting<EOT>(), nicheSize(_nicheSize) {}
 
   vector<double> niche_penalty(const vector<unsigned>& current_front, const eoPop<EOT>& _pop)
   {
@@ -182,7 +219,6 @@ template <class EOT>
 class eoNDSorting_II : public eoNDSorting<EOT>
 {
   public:
-  eoNDSorting_II(eoDominanceMap<EOT>& _map) : eoNDSorting<EOT>(_map) {}
 
   typedef std::pair<double, unsigned> double_index_pair;
 
@@ -222,9 +258,9 @@ class eoNDSorting_II : public eoNDSorting<EOT>
 
       double max_dist = *max_element(nc.begin(), nc.end());
 
-      // set boundary penalty at 0 (so it will get chosen over all the others
-      nc[performance[0].second] = 0;
-      nc[performance.back().second] = 0;
+      // set boundary at max_dist + 1 (so it will get chosen over all the others
+      nc[performance[0].second] = max_dist + 1;
+      nc[performance.back().second] = max_dist + 1;
 
       for (unsigned i = 0; i < nc.size(); ++i)
       {

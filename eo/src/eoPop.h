@@ -42,7 +42,7 @@ some other thing that a vector, but if somebody thinks of it, this concrete
 implementation will be moved to "generic" and an abstract Population 
 interface will be provided.
 
-It can be instantiated with anything, provided that it accepts a "size" and a 
+It can be instantiated with anything, provided that it accepts a "size" and a
 random generator in the ctor. This happens to all the eo1d chromosomes declared 
 so far. EOT must also have a copy ctor, since temporaries are created and copied
 to the population.

@@ -93,12 +93,12 @@ class eoDominanceMap : public eoUF<const eoPop<EoType>&, void>, public std::vect
 
       for (unsigned j = 0; j < i; ++j)
       {
-        if (_pop[i].fitness() > _pop[j].fitness())
+        if (_pop[i].fitness().dominates(_pop[j].fitness()))
         {
           operator[](i)[j] = true;
           operator[](j)[i] = false;
         }
-        else if (_pop[j].fitness() > _pop[i].fitness())
+        else if (_pop[j].fitness().dominates(_pop[i].fitness()))
         {
           operator[](i)[j] = false;
           operator[](j)[i] = true;

@@ -1,9 +1,9 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
    -----------------------------------------------------------------------------
-   eoRanking.h 
+   eoRanking.h
    (c) Maarten Keijzer, Marc Schoenauer, 2001
- 
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -30,12 +30,12 @@
 #include <eoPerf2Worth.h>
 
 /** An instance of eoPerfFromWorth
- *  COmputes the ranked fitness: fitnesses range in [m,M] 
+ *  COmputes the ranked fitness: fitnesses range in [m,M]
  *  with m=2-pressure/popSize and M=pressure/popSize.
  *  in between, the progression depends on exponent (linear if 1).
  */
 template <class EOT>
-class eoRanking : public eoPerf2Worth<EOT>
+class eoRanking : public eoPerf2Worth<EOT> // false: do not cache fitness
 {
 public:
   /* Ctor:
@@ -57,7 +57,7 @@ public:
       throw runtime_error("Not found in eoLinearRanking");
     }
 
-  /* COmputes the ranked fitness: fitnesses range in [m,M] 
+  /* COmputes the ranked fitness: fitnesses range in [m,M]
      with m=2-pressure/popSize and M=pressure/popSize.
      in between, the progression depends on exponent (linear if 1).
    */

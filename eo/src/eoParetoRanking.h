@@ -37,17 +37,27 @@
   on a single spot on the front.
 */
 template <class EOT>
-class eoParetoRanking : public eoPerf2Worth<EOT, double>
+class eoParetoRanking : public eoPerf2WorthCached<EOT, double>
 {
   public :
 
     eoParetoRanking(eoDominanceMap<EOT>& _dominanceMap) :
-      eoPerf2Worth<EOT, double>(), dominanceMap(_dominanceMap) {}
+      eoPerf2WorthCached<EOT, double>(), dominanceMap(_dominanceMap) {}
 
-    void operator()(const eoPop<EOT>& _pop)
+    void calculate_worths(const eoPop<EOT>& _pop)
     {
       dominanceMap(_pop);
-      value() = dominanceMap.sum_dominants();
+      value() = dominanceMap.sum_dominators(); // get rank: 0 means part of current front
+
+      // calculate maximum
+      double maxim = *max_element(value().begin(), value().end());
+
+      // higher is better, so invert the value
+      for (unsigned i = 0; i < value().size(); ++i)
+      {
+        value()[i] = maxim - value()[i];
+      }
+
     }
 
   private :

@@ -31,19 +31,20 @@
 #include <eoFunctor.h>
 //-----------------------------------------------------------------------------
 
-/** eoSelectOne selects only one element from a whole population. 
+/** eoSelectOne selects only one element from a whole population.
     Most selection techniques are simply repeated applications
     of eoSelectOne.
-    
+
       @see eoSelectMany, eoSelectRandom, eoDetTournament, eoStochTournament, eoProportional
 */
-template<class EOT>
+template<class EOT, class WorthT = typename EOT::Fitness>
 class eoSelectOne : public eoUF<const eoPop<EOT>&, const EOT&>
 {
     public :
-
-        /// virtual function to setup some population stats (for instance eoProportional can benefit greatly from this)
-        virtual void setup(const eoPop<EOT>&) {}
+      /// virtual function to setup some population stats (for instance eoProportional can benefit greatly from this)
+      virtual void setup(const eoPop<EOT>& _pop)
+      {}
 };
+
 
 #endif

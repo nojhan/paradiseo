@@ -56,12 +56,15 @@ class eoParetoFitness : public std::vector<double>
 {
 public :
 
+  typedef FitnessTraits fitness_traits;
+
   eoParetoFitness(void) : std::vector<double>(FitnessTraits::nObjectives(),0.0) {}
 
   /// Partial order based on Pareto-dominance
-  bool operator<(const eoParetoFitness<FitnessTraits>& _other) const
+  //bool operator<(const eoParetoFitness<FitnessTraits>& _other) const
+  bool dominates(const eoParetoFitness<FitnessTraits>& _other) const
   {
-    bool smaller = false;
+    bool dom = false;
 
     double tol = FitnessTraits::tol();
     const vector<double>& performance = *this;
@@ -75,17 +78,41 @@ public :
 
       if (fabs(aval - bval) > tol)
       {
-        if (aval > bval)
+        if (aval < bval)
         {
           return false; // cannot dominate
         }
         // else aval < bval
-        smaller = true; // goto next objective
+        dom = true; // for the moment: goto next objective
       }
       //else they're equal in this objective, goto next
     }
 
-    return smaller;
+    return dom;
+  }
+
+  /// compare *not* on dominance, but on the first, then the second, etc
+  bool operator<(const eoParetoFitness<FitnessTraits>& _other) const
+  {
+    double tol = FitnessTraits::tol();
+    const vector<double>& performance = *this;
+    const vector<double>& otherperformance = _other;
+    for (unsigned i = 0; i < FitnessTraits::nObjectives(); ++i)
+    {
+      bool maxim = FitnessTraits::maximizing(i);
+      double aval = maxim? performance[i] : -performance[i];
+      double bval = maxim? otherperformance[i] : -otherperformance[i];
+
+      if (fabs(aval-bval) > tol)
+      {
+        if (aval < bval)
+          return true;
+
+        return false;
+      }
+    }
+
+    return false;
   }
 
   bool operator>(const eoParetoFitness<FitnessTraits>& _other) const

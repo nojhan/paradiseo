@@ -35,12 +35,12 @@
  *  with given selective pressure
  *  Pselect(Best) == pressure/sizePop
  *  Pselect(average) == 1.0/sizePop
- *  truncate negative values to 0 - 
+ *  truncate negative values to 0 -
  *
  * to be used within an eoSelectFromWorth object
  */
 template <class EOT>
-class eoLinearFitScaling : public eoPerf2Worth<EOT>
+class eoLinearFitScaling : public eoPerf2Worth<EOT> // false: do not cache fitness
 {
 public:
   /* Ctor:
@@ -50,7 +50,7 @@ public:
   eoLinearFitScaling(double _p=2.0):
     pressure(_p) {}
 
-  /* COmputes the ranked fitness: fitnesses range in [m,M] 
+  /* COmputes the ranked fitness: fitnesses range in [m,M]
      with m=2-pressure/popSize and M=pressure/popSize.
      in between, the progression depends on exponent (linear if 1).
    */
