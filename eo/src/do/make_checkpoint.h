@@ -51,6 +51,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
   //////////////////
   // is nb Eval to be used as counter?
   eoValueParam<bool>& useEvalParam = _parser.createParam(true, "useEval", "Use nb of eval. as counter (vs nb of gen.)", '\0', "Output");
+  eoValueParam<bool>& useTimeParam = _parser.createParam(true, "useTime", "Display time (s) every generation", '\0', "Output");
 
     // Create anyway a generation-counter parameter
     eoValueParam<unsigned> *generationCounter = new eoValueParam<unsigned>(0, "Gen.");
@@ -159,6 +160,13 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 	monitor->add(*generationCounter);
 	if (useEvalParam.value()) // we want nb of evaluations
 	      monitor->add(_eval);
+	if (useTimeParam.value()) // we want time
+	  {
+	    eoTimeCounter * tCounter = new eoTimeCounter;
+	    _state.storeFunctor(tCounter);
+	    checkpoint->add(*tCounter);
+	    monitor->add(*tCounter);
+	  }
 	if (printBestParam.value())
 	    {
 		monitor->add(*bestStat);
