@@ -10,28 +10,41 @@ using namespace std;
 
 eoMonitor& eoStdoutMonitor::operator()(void)
 {
-    if (firsttime)
-    {
-        cout << "First Generation" << endl;
-
-        firsttime = false;
-
-    }
-    // ok, now the real saving. write out
-
     if (!cout)
     {
         string str = "eoStdoutMonitor: Could not write to cout";
         throw runtime_error(str);
     }
-
-    for(iterator it = vec.begin(); it != vec.end(); ++it)
+    if (firsttime)
     {
-        cout << (*it)->longName() << ": " << (*it)->getValue() << '\n';
+      if (verbose)
+        cout << "First Generation" << endl;
+      else
+	{
+	  for(iterator it = vec.begin(); it != vec.end(); ++it)
+	    {
+	      cout << (*it)->longName() << delim;
+	    }
+	  cout << endl;
+	}
+        firsttime = false;
     }
-
-    cout << "\n****** End of Generation ******\n" << endl; // endl: flush
-
+    // ok, now the real saving. write out
+    if (verbose)
+      {
+      for(iterator it = vec.begin(); it != vec.end(); ++it)
+	{
+	  cout << (*it)->longName() << ": " << (*it)->getValue() << '\n';
+	}
+      cout << "\n****** End of Generation ******\n" << endl;
+      }
+    else			// a one-liner
+      {
+	for(iterator it = vec.begin(); it != vec.end(); ++it)
+	  {
+	    cout << (*it)->getValue() << delim;
+	  }
+	cout << endl;
+      }
     return *this;
 }
-

@@ -38,12 +38,14 @@
 class eoStdoutMonitor : public eoMonitor
 {
 public :
-    eoStdoutMonitor(std::string _delim = "\t") : delim(_delim), firsttime(true) {}
+    eoStdoutMonitor(bool _verbose=true, std::string _delim = "\t") : 
+      verbose(_verbose), delim(_delim), firsttime(true) {}
     eoMonitor& operator()(void);
 
 private :
-    std::string delim;
-    bool firsttime;
+  bool verbose;
+  std::string delim;
+  bool firsttime;
 };
 
 #endif
