@@ -85,11 +85,6 @@ private:
   static vector<bool> bObj;
 };
 
-// need to allocate these -> should probably be done in some cpp file!
-unsigned eoVariableParetoTraits::nObj;
-vector<bool> eoVariableParetoTraits::bObj;
-
-
 /**
   eoParetoFitness class: vector of doubles with overloaded comparison operators. Comparison is done
   on pareto dominance. The template argument FitnessTraits defaults to eoParetoFitnessTraits, which
