@@ -61,17 +61,23 @@ public:
     
     // Build vector
     for ( unsigned j = 0; j < thisSize*perc; j ++ ) {
-		// Randomly select a tournamentSize set, and choose the best
-		eoPop<EOT> veoTournament;
-		eoUniform<unsigned> u( 0, thisSize);
-		for ( unsigned k = 0; k < repTournamentSize; k++ ) {
-			unsigned chosen = u();
-			EOT newEO =  _vEO[chosen];
-			veoTournament.push_back( newEO );
-		}
-		sort( veoTournament.begin(), veoTournament.end() );
-		// The first is chosen for the new population
-		_aVEO.push_back( veoTournament.front() ); 
+      // Randomly select a tournamentSize set, and choose the best
+      eoPop<EOT> veoTournament;
+      eoUniform<unsigned> u( 0, thisSize);
+      for ( unsigned k = 0; k < repTournamentSize; k++ ) {
+	unsigned chosen = u();
+	EOT newEO =  _vEO[chosen];
+	veoTournament.push_back( newEO );
+      }
+      
+      eoPop<EOT>::const_iterator best = max_element(veoTournament.begin(),
+						    veoTournament.end());
+      if (best == veoTournament.end()) {
+	throw runtime_error("error in void eoTournament::operator(eoPop<EOT>&, eoPop<EOT>&)");
+      }
+      
+      // The first is chosen for the new population
+      _aVEO.push_back( best ); 
     }
   };
   
