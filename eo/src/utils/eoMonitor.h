@@ -36,8 +36,8 @@ class eoParam;
 
 /**
     The abstract monitor class is a vector of parameter pointers. Use
-    either push_back a pointer or add a reference to a parameter. 
-    Derived classes will then implement the operator()(void) which 
+    either push_back a pointer or add a reference to a parameter.
+    Derived classes will then implement the operator()(void) which
     will stream or pipe the current values of the parameters to wherever you
     want it streamed or piped to.
 */
@@ -46,7 +46,12 @@ class eoMonitor : public eoF<eoMonitor&>
 public :
 
   virtual void lastCall() {}
-    virtual void add(const eoParam& _param) { vec.push_back(&_param); }
+
+  /**
+    Adds a parameter to the monitor. It is virtual so you can do some type checking
+    in derived classes if you must.
+  */
+  virtual void add(const eoParam& _param) { vec.push_back(&_param); }
 
 
 protected :

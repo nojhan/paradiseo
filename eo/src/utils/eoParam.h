@@ -73,7 +73,7 @@ public:
   * Pure virtual function to set the value
   */
   virtual void setValue(std::string _value)   = 0 ; 
- 
+
   /**
    * Returns the short name.
    */
@@ -111,7 +111,7 @@ private:
     std::string repLongName;
     std::string repDefault;
     std::string repDescription;
-  char   repShortHand;  
+  char   repShortHand;
   bool repRequired;
 };
 
@@ -187,7 +187,7 @@ void eoValueParam<bool>::setValue(std::string _value)
 /// Because MSVC does not support partial specialization, the pair is a double, not a T
 template <>
 std::string eoValueParam<std::pair<double, double> >::getValue(void) const
-{ 
+{
     // use own buffer as MSVC's buffer leaks!
     char buff[1024];
     std::ostrstream os(buff, 1024);
@@ -202,6 +202,43 @@ void eoValueParam<std::pair<double, double> >::setValue(std::string _value)
     std::istrstream is(_value.c_str());
     is >> repValue.first;
     is >> repValue.second;
+}
+
+/// Because MSVC does not support partial specialization, the vector is a vector of doubles, not a T
+template <>
+std::string eoValueParam<std::vector<std::vector<double> > >::getValue(void) const
+{
+    std::ostrstream os;
+    os << repValue.size() << ' ';
+    for (unsigned i = 0; i < repValue.size(); ++i)
+    {
+      os << repValue[i].size() << ' ';
+      std::copy(repValue[i].begin(), repValue[i].end(), std::ostream_iterator<double>(os, " "));
+    }
+
+    os << std::ends;
+    return os.str();
+}
+
+/// Because MSVC does not support partial specialization, the vector is a vector of doubles, not a T
+template <>
+void eoValueParam<std::vector<std::vector<double> > >::setValue(std::string _value)
+{
+    std::istrstream is(_value.c_str());
+    unsigned sz;
+    is >> sz;
+    repValue.resize(sz);
+
+    for (unsigned i = 0; i < repValue.size(); ++i)
+    {
+      unsigned sz2;
+      is >> sz2;
+      repValue[i].resize(sz2);
+      for (unsigned j = 0; j < sz2; ++j)
+      {
+        is >> repValue[i][j];
+      }
+    }
 }
 
 /// Because MSVC does not support partial specialization, the vector is a double, not a T

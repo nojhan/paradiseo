@@ -56,9 +56,9 @@ public :
   typedef vector<double> vDouble;
   typedef eoValueParam<vector<double> > vDoubleParam;
 
-  eoFileSnapshot(std::string _dirname, unsigned _frequency = 1, 
+  eoFileSnapshot(std::string _dirname, unsigned _frequency = 1,
 	     std::string _filename = "gen", std::string _delim = " "):
-    dirname(_dirname), frequency(_frequency), 
+    dirname(_dirname), frequency(_frequency),
     filename(_filename), delim(_delim), counter(0), boolChanged(true)
   {
     string s = "test -d " + dirname;
@@ -69,16 +69,16 @@ public :
     // now make sure there is a dir without any genXXX file in it
     if (res)                    // no dir present
       {
-	s = string("mkdir ")+dirname; 
+	s = string("mkdir ")+dirname;
       }
     else
       {
-	s = string("/bin/rm ")+dirname+ "/" + filename + "*"; 
+	s = string("/bin/rm ")+dirname+ "/" + filename + "*";
       }
     system(s.c_str());
     // all done
   }
-  
+
   /** accessor: has something changed (for gnuplot subclass)
    */
   virtual bool hasChanged() {return boolChanged;}
@@ -94,7 +94,7 @@ public :
     char buff[255];
     ostrstream oscount(buff, 254);
     oscount << counter;
-    oscount << std::ends; 
+    oscount << std::ends;
     currentFileName = dirname + "/" + filename + oscount.str();
   }
 
@@ -112,13 +112,13 @@ public :
     boolChanged = true;
     setCurrentFileName();
     ofstream os(currentFileName.c_str());
-    
+
     if (!os)
       {
         string str = "eoFileSnapshot: Could not open " + currentFileName;
         throw runtime_error(str);
       }
-    
+
     return operator()(os);
   }
 
@@ -126,7 +126,7 @@ public :
    */
   eoMonitor& operator()(std::ostream& _os)
   {
-    const eoValueParam<vector<double> >  * ptParam = 
+    const eoValueParam<vector<double> >  * ptParam =
       static_cast<const eoValueParam<vector<double> >* >(vec[0]);
 
     const vector<double>  v = ptParam->value();
@@ -160,6 +160,17 @@ public :
   { return dirname;}
   virtual const string baseFileName()	   // the title for eoGnuPlot
   { return filename;}
+
+  /// add checks whether it is a vector of doubles
+  void add(const eoParam& _param)
+  {
+    if (!dynamic_cast<const eoValueParam<vector<double> >*>(&_param))
+    {
+      throw logic_error("eoFileSnapshot: I can only monitor vectors of doubles, sorry");
+    }
+    eoMonitor::add(_param);
+  }
+
 private :
   std::string dirname;
   unsigned frequency;
