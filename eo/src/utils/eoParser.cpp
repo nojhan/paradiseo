@@ -213,7 +213,7 @@ void eoParser::printOn(ostream& os) const
     printSectionHeader(os, section);
     //print every param with its value
     for (; p != params.end(); ++p) 
-    {
+      {
         std::string newSection = p->first;
 
         if (newSection != section)
@@ -223,6 +223,9 @@ void eoParser::printOn(ostream& os) const
         }
     
         eoParam* param = p->second;
+
+	if (!isItThere(*param))  // comment out the ones not set by the user
+	  os << "# ";
 
         string str = "--" + param->longName() + "=" + param->getValue();
         
