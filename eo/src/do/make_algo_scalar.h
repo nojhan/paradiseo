@@ -80,23 +80,43 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParameterLoader& _parser, eoState& _state, e
   eoSelectOne<EOT>* select ;
   if (ppSelect.first == string("DetTour")) 
   {
-    unsigned size;
-    istrstream is(ppSelect.second[0].c_str());  // size of det tournament
-    is >> size;
-    select = new eoDetTournamentSelect<EOT>(size);
+    unsigned detSize;
+
+    if (!ppSelect.second.size())   // no parameter added
+      {
+	cerr << "WARNING, no parameter passed to DetTour, using 2" << endl;
+	detSize = 2;
+	// put back 2 in parameter for consistency (and status file)
+	ppSelect.second.push_back(string("2"));
+      }
+    else	  // parameter passed by user as DetTour(T)
+      detSize = atoi(ppSelect.second[0].c_str());
+    select = new eoDetTournamentSelect<EOT>(detSize);
   }
   else if (ppSelect.first == string("StochTour"))
     {
       double p;
-      istrstream is(ppSelect.second[0].c_str()); // proba of binary tournament
-      is >> p;
+      if (!ppSelect.second.size())   // no parameter added
+	{
+	  cerr << "WARNING, no parameter passed to StochTour, using 1" << endl;
+	  p = 1;
+	  // put back p in parameter for consistency (and status file)
+	  ppSelect.second.push_back(string("1"));
+	}
+      else	  // parameter passed by user as DetTour(T)
+	p = atof(ppSelect.second[0].c_str());
+      
       select = new eoStochTournamentSelect<EOT>(p);
     }
   else if (ppSelect.first == string("Sequential")) // one after the other
     {
       bool b;
       if (ppSelect.second.size() == 0)   // no argument -> default = ordered
-	b=true;
+	{
+	  b=true;
+	  // put back in parameter for consistency (and status file)
+	  ppSelect.second.push_back(string("ordered"));
+	}
       else
 	b = !(ppSelect.second[0] == string("unordered"));
       select = new eoSequentialSelect<EOT>(b);
@@ -136,10 +156,19 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParameterLoader& _parser, eoState& _state, e
     }
   else if (ppReplace.first == string("EPTour"))
     {
-      unsigned size;
-      istrstream is(ppReplace.second[0].c_str()); // size of EP tournament
-      is >> size;
-      replace = new eoEPReplacement<EOT>(size);
+      unsigned detSize;
+      
+      if (!ppReplace.second.size())   // no parameter added
+	{
+	  cerr << "WARNING, no parameter passed to EPTour, using 6" << endl;
+	  detSize = 6;
+	  // put back in parameter for consistency (and status file)
+	  ppReplace.second.push_back(string("6"));
+	}
+      else	  // parameter passed by user as EPTour(T)
+	detSize = atoi(ppSelect.second[0].c_str());
+
+      replace = new eoEPReplacement<EOT>(detSize);
     }
   else if (ppReplace.first == string("SSGAWorst"))
     {
@@ -147,16 +176,33 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParameterLoader& _parser, eoState& _state, e
     }
   else if (ppReplace.first == string("SSGADet"))
     {
-      unsigned size;
-      istrstream is(ppReplace.second[0].c_str()); // size of Det. tournament
-      is >> size;
-      replace = new eoSSGADetTournamentReplacement<EOT>(size);
+      unsigned detSize;
+      
+      if (!ppReplace.second.size())   // no parameter added
+	{
+	  cerr << "WARNING, no parameter passed to SSGADet, using 2" << endl;
+	  detSize = 2;
+	  // put back in parameter for consistency (and status file)
+	  ppReplace.second.push_back(string("2"));
+	}
+      else	  // parameter passed by user as SSGADet(T)
+	detSize = atoi(ppSelect.second[0].c_str());
+      
+      replace = new eoSSGADetTournamentReplacement<EOT>(detSize);
     }
   else if (ppReplace.first == string("SSGAStoch"))
     {
       double p;
-      istrstream is(ppReplace.second[0].c_str()); // proba of binary tournament
-      is >> p;
+      if (!ppReplace.second.size())   // no parameter added
+	{
+	  cerr << "WARNING, no parameter passed to SSGAStoch, using 1" << endl;
+	  p = 1;
+	  // put back in parameter for consistency (and status file)
+	  ppReplace.second.push_back(string("1"));
+	}
+      else	  // parameter passed by user as SSGADet(T)
+	p = atof(ppSelect.second[0].c_str());
+      
       replace = new eoSSGAStochTournamentReplacement<EOT>(p);
     }
   else
