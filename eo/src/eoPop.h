@@ -282,6 +282,13 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   virtual string className() const {return "eoPop";};
     //@}
 
+  virtual void invalidate()
+  {
+    for (unsigned i=0; i<size(); i++)
+      this->operator[](i).invalidate();
+  }
+
+
  protected:
 
 };
