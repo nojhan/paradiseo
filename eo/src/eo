@@ -48,15 +48,14 @@
 #include <eoInsertion.h>
 #include <eoInclusion.h>
 
-#include <eoGeneratio.h>
-
 //-----------------------------------------------------------------------------
 // to be continued ...
 //-----------------------------------------------------------------------------
-
-#include <eoFitness.h>  // what's the matter with you?
-#include <eoProblem.h>  // what's the matter with you?
-
+/*
+#include <eoFitness.h>
+#include <eoProblem.h>
+#include <eoGeneration.h>
+*/
 //-----------------------------------------------------------------------------
 
 #endif _eo_
