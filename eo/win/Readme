@@ -14,3 +14,7 @@ es.dsp     ...                src/es
 
 and one additional DSP file for each program in test dir.
 
+The libraries are created in src/win/lib directory.
+The objects and executable files are created in src/win/DEBUG
+directory.
+
