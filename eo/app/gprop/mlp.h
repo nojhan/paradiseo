@@ -274,7 +274,7 @@ namespace mlp {
       return (max_element(tmp.begin(), tmp.end()) - tmp.begin());
     }
 
-    void save(ostream &os) {
+    void save(ostream &os) const {
         // Save the number of inputs, number of outputs, and number of hidden layers
 	os << num_inputs() << "\n" << num_outputs() << "\n" << num_hidden_layers() << "\n";
         for(const_iterator l = begin(); l != end(); ++l)
@@ -362,7 +362,7 @@ namespace mlp {
 	while (is >> samp) { push_back(samp); }
     }
 
-    void save(ostream &os) {
+    void save(ostream &os) const {
 	os << front().input.size() << " " << front().output.size() << endl;
 	copy(begin(), end(), ostream_iterator<sample>(os,"\n"));
     }

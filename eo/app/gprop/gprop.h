@@ -45,10 +45,10 @@
 
 struct phenotype
 {
-  unsigned trn_ok, val_ok, tst_ok;
+  int trn_ok, val_ok, tst_ok;
   double mse_error;
 
-  static unsigned trn_max, val_max, tst_max;
+  static int trn_max, val_max, tst_max;
 
   friend bool operator<(const phenotype& a, const phenotype& b)
   {
@@ -87,13 +87,16 @@ struct phenotype
 };
 
 
-unsigned phenotype::trn_max = 0, phenotype::val_max = 0, phenotype::tst_max = 0;
+int phenotype::trn_max = 0, phenotype::val_max = 0, phenotype::tst_max = 0;
 
 //-----------------------------------------------------------------------------
 // genotype
 //-----------------------------------------------------------------------------
+#ifndef GPROP_GENOTYPE
+#define GPROP_GENOTYPE mlp::net
+#endif
 
-typedef mlp::net genotype;
+typedef GPROP_GENOTYPE genotype;
 
 //-----------------------------------------------------------------------------
 // Chrom
@@ -195,13 +198,13 @@ public:
 // eoChromEvaluator
 //-----------------------------------------------------------------------------
 
-unsigned correct(const mlp::net& net, const mlp::set& set)
+int correct(const mlp::net& net, const mlp::set& set)
 {
-  unsigned sum = 0;
+  int sum = 0;
   
   for (mlp::set::const_iterator s = set.begin(); s != set.end(); ++s)
     {
-      unsigned partial = 0;
+      int partial = 0;
       
       for (unsigned i = 0; i < s->output.size(); ++i)
         if (s->output[i] < 0.5 && net(s->input)[i] < 0.5 ||
