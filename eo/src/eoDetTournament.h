@@ -31,7 +31,7 @@
 #include <functional>  // 
 #include <numeric>     // accumulate
 #include "eoPopOps.h"          // eoPop eoSelect MINFLOAT
-#include "selectors.h"
+#include "utils/selectors.h"
 
 //-----------------------------------------------------------------------------
 /** eoDetTournament: a selection method that selects ONE individual by

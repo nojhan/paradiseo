@@ -30,7 +30,7 @@
 #include <math.h>
 
 #include <eoRnd.h> // for base class
-#include <eoRNG.h> // for base class
+#include <utils/eoRNG.h> // for base class
 
 //-----------------------------------------------------------------------------
 // Class eoNegExp

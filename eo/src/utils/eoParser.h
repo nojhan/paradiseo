@@ -56,11 +56,6 @@ public :
     virtual void processParam(eoParam& param, std::string section = "") = 0;
 };
 
-void eoWarning(std::string str)
-{
-    cout << str << '\n';
-}
-
 /**
     eoParser: command line parser and configuration file reader
     This class is persistent, so it can be stored and reloaded to restore

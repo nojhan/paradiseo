@@ -30,7 +30,7 @@
 
 #include <functional>  // 
 #include <numeric>     // accumulate
-#include "selectors.h"
+#include "utils/selectors.h"
 #include <eo>          // eoPop eoSelect MINFLOAT
 
 //-----------------------------------------------------------------------------

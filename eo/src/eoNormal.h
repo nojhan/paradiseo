@@ -29,7 +29,7 @@
 
 #include <math.h>
 #include <eoRnd.h> // for base class
-#include <eoRNG.h> // for random number generator
+#include <utils/eoRNG.h> // for random number generator
 
 //-----------------------------------------------------------------------------
 // Class eoNormal

@@ -38,6 +38,7 @@ nasty habit of #define min and max in stdlib.h (and windows.h)
 I'm trying to undo this horrible macro magic (microsoft yet macrohard)
 here. Sure hope it works
 */
+#pragma warning(disable:4786)
 
 #include <stdlib.h>
 

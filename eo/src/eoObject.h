@@ -27,11 +27,11 @@
 
 //-----------------------------------------------------------------------------
 
-#include <eoData.h>		// For limits definition
+#include <utils/eoData.h>		// For limits definition
 #include <iostream>		// istream, ostream
 #include <string>		// string
 
-#include "compatibility.h"
+#include "utils/compatibility.h"
 
 using namespace std;
 
@@ -57,11 +57,15 @@ class eoObject
   /// Virtual dtor. They are needed in virtual class hierarchies.
   virtual ~eoObject() {}
   
-  /** Return the class id. This should be redefined in each class; but 
-  it's got code as an example of implementation. Only "leaf" classes
-  can be non-virtual.
+  /** Return the class id. This should be redefined in each class. 
+  Only "leaf" classes can be non-virtual.
+
+  Maarten: removed the default implementation as this proved to 
+  be too error-prone: I found several classes that had a typo in 
+  className (like classname), which would print eoObject instead of
+  their own...
   */
-  virtual string className() const { return "eoObject"; }
+  virtual string className() const = 0; 
 
 };
 

@@ -1,3 +1,7 @@
+#ifdef _MSC_VER
+#pragma warning(disable:4786)
+#endif
+
 #include <algorithm>
 #include <fstream>
 #include <iomanip> 
@@ -5,6 +9,11 @@
 #include "eoParser.h"
 
 using namespace std;
+
+void eoWarning(std::string str)
+{
+    cout << str << '\n';
+}
 
 std::ostream& printSectionHeader(std::ostream& os, std::string section)
 {

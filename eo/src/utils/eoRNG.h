@@ -240,6 +240,7 @@ public :
      _is >> cacheValue;
    }
 
+ std::string className(void) const { return "Mersenne-Twister"; }
 
 private :
   uint32 restart(void);

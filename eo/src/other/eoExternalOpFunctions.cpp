@@ -33,7 +33,7 @@
 #include "eoRnd.h"
 
 template <class F, class External>
-class eoExternalInitFunc
+class eoExternalInitFunc 
 {
 
 public :

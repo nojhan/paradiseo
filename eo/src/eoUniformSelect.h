@@ -32,7 +32,7 @@
 #include <functional>  // 
 #include <numeric>     // accumulate
 #include <eoPopOps.h>          // eoPop eoSelect MINFLOAT
-#include <eoRNG.h>
+#include <utils/eoRNG.h>
 
 //-----------------------------------------------------------------------------
 /** eoUniformSelect: a selection method that selects ONE individual randomly

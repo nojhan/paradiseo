@@ -9,7 +9,7 @@
 
 #include <algorithm>    // swap_ranges
 #include <eoUniform.h>  // eoUniform
-#include <eoBin.h>      // eoBin
+#include <ga/eoBin.h>      // eoBin
 #include <eoOp.h>       // eoMonOp
 
 
