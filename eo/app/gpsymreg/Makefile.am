@@ -10,7 +10,6 @@ noinst_HEADERS		= fitness.h node.h parameters.h
 LIBEO			= $(top_builddir)/src/libeo.a
 LIBEOUTILS		= $(top_builddir)/src/utils/libeoutils.a
 
-AM_CXXFLAGS		= -I$(top_builddir)/src
+AM_CXXFLAGS		= -I$(top_srcdir)/src
 DEPS 			= $(LIBEOUTILS) $(LIBEO)
 LIBS 			= $(LIBEOUTILS) $(LIBEO)
-
