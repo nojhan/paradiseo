@@ -39,13 +39,13 @@ public:
   eoGenContinue( unsigned long _totalGens)
 	  : repTotalGenerations( _totalGens ), 
 	    thisGenerationPlaceHolder(0),
-	    thisGeneration(thisGenerationPlaceHolder){};
+	    thisGeneration(thisGenerationPlaceHolder), verbose(true) {};
   
   /// Ctor for enabling the save/load the no. of generations counted
   eoGenContinue( unsigned long _totalGens, unsigned long& _currentGen)
 	  : repTotalGenerations( _totalGens ), 
 	    thisGenerationPlaceHolder(0),
-	    thisGeneration(_currentGen){};
+	    thisGeneration(_currentGen), verbose(true){};
   
   /** Returns false when a certain number of generations is
 	 * reached */
@@ -54,7 +54,8 @@ public:
     //	  std::cout << " [" << thisGeneration << "] ";
     if (thisGeneration >= repTotalGenerations) 
       {
-	std::cout << "STOP in eoGenContinue: Reached maximum number of generations [" << thisGeneration << "/" << repTotalGenerations << "]\n";
+	  if (verbose)
+	    std::cout << "STOP in eoGenContinue: Reached maximum number of generations [" << thisGeneration << "/" << repTotalGenerations << "]\n";
 	return false;
       }
     return true;
@@ -72,12 +73,16 @@ public:
   {  
     return repTotalGenerations; 
   };
+    
   
   virtual std::string className(void) const { return "eoGenContinue"; }
 private:
   unsigned long repTotalGenerations;
   unsigned long thisGenerationPlaceHolder;
   unsigned long& thisGeneration;
+  
+public:
+  bool verbose; // allows to turn off annoying message to cout
 };
 
 #endif
