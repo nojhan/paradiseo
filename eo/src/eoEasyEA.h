@@ -172,7 +172,8 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
   /// Apply a few generation of evolution to the population.
   virtual void operator()(eoPop<EOT>& _pop)
   {
-    eoPop<EOT> offspring;
+    eoPop<EOT> offspring, empty_pop; 
+    popEval(empty_pop, _pop); // A first eval of pop.
     do
     {
       try
