@@ -35,6 +35,14 @@
 #include <eoEvalFunc.h>
 #include <eoAlgo.h>
 
+/** The Simple Genetic Algorithm, following Holland and Goldberg 
+ *  Needs a selector (class eoSelectOne) a crossover (eoQuadratic, 
+ *    i.e. a 2->2 operator) and a mutation with their respective rates, 
+ *    of course an evaluation function (eoEvalFunc) and a continuator 
+ *    (eoContinue) which gives the stopping criterion. Performs full
+ *    generational replacement.
+ */   
+
 template <class EOT>
 class eoSGA : public eoAlgo<EOT>
 {
@@ -45,6 +53,22 @@ public :
         eoQuadraticOp<EOT>& _cross, float _crate,
         eoSelectOne<EOT>& _select,
         eoEvalFunc<EOT>& _eval) 
+        : cont(_cont), 
+          mutate(_mutate), 
+          mutationRate(_mrate),
+          cross(_cross),
+          crossoverRate(_crate),
+          select(_select),
+          eval(_eval) {}
+
+  // added this second ctor as I didn't like the ordering of the parameters
+  // in the one above. Any objection :-) MS
+    eoSGA(
+        eoSelectOne<EOT>& _select,
+        eoQuadraticOp<EOT>& _cross, float _crate,
+        eoMonOp<EOT>& _mutate, float _mrate,
+        eoEvalFunc<EOT>& _eval,
+	eoContinue<EOT>& _cont)
         : cont(_cont), 
           mutate(_mutate), 
           mutationRate(_mrate),
