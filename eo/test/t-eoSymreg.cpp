@@ -212,7 +212,7 @@ int main()
     typedef eoPop<EoType> Pop;	
 
     const int MaxSize = 100;
-    const int nGenerations = 500;
+    const int nGenerations = 10; // only a test, so few generations
 
     // Initializor sequence, contains the allowable nodes
     vector<GpNode> init(init_sequence, init_sequence + 5);
@@ -223,7 +223,7 @@ int main()
     // Root Mean Squared Error Measure
     RMS<FitnessType, GpNode>              eval;
 
-    Pop pop(5000, initializer);
+    Pop pop(50, initializer);
 
     apply<EoType>(eval, pop);
 
