@@ -101,7 +101,9 @@ private :
           tmp_pop[i].fitness(_pop[i].fitness());
           tmp_pop[i].index = i;
         }
-         
+        
+	sort(tmp_pop.begin(), tmp_pop.end(), std::greater<DummyEO>());
+	
         for (i = 0; i < _pop.size(); ++i)
         {
           value()[tmp_pop[i].index] = _pop.size() - i; // set rank
