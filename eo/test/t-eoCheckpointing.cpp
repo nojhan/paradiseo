@@ -49,8 +49,8 @@ int the_main(int argc, char **argv)
     eoValueParam<double> rate(0.01, "mutationRatePerBit", "Initial value for mutation rate per bit"); 
     eoValueParam<double> factor(0.99, "mutationFactor", "Decrease factor for mutation rate");
     eoValueParam<uint32> seed(time(0), "seed", "Random number seed");
-    eoValueParam<string> load_name("", "Load","Load",'L');
-    eoValueParam<string> save_name("", "Save","Save",'S');
+    eoValueParam<std::string> load_name("", "Load","Load",'L');
+    eoValueParam<std::string> save_name("", "Save","Save",'S');
  
     // Register them
     parser.processParam(rate,       "Genetic Operators");
@@ -122,7 +122,7 @@ int the_main(int argc, char **argv)
 
     if (parser.userNeedsHelp())
     {
-        parser.printHelp(cout);
+        parser.printHelp(std::cout);
         return 0;
     }
 
@@ -153,7 +153,7 @@ int the_main(int argc, char **argv)
 
         while (time(0) == now) {} // wait a second to test timed saver
 
-        cout << "gen " << generationCounter.value() << endl;
+        std::cout << "gen " << generationCounter.value() << std::endl;
     }
 
     // run the algorithm
@@ -161,7 +161,7 @@ int the_main(int argc, char **argv)
     // Save when needed
     if (save_name.value() != "")
     {
-        string file_name = save_name.value();
+        std::string file_name = save_name.value();
         save_name.value() = ""; // so that it does not appear in the parser section of the state file
         state.save(file_name);
     }
@@ -175,9 +175,9 @@ int main(int argc, char **argv)
     {
         the_main(argc, argv);
     }
-    catch(exception& e)
+    catch(std::exception& e)
     {
-        cout << "Exception: " << e.what() << endl;
+        std::cout << "Exception: " << e.what() << std::endl;
     }
 
 }

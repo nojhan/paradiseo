@@ -33,13 +33,13 @@
     The fitnesses of a whole population, as a vector
 */
 template <class EOT, class FitT = typename EOT::Fitness>
-class eoFitnessStat : public eoSortedStat<EOT, vector<FitT> >
+class eoFitnessStat : public eoSortedStat<EOT, std::vector<FitT> >
 {
 public :
     eoFitnessStat(std::string _description = "AllFitnesses") :
-      eoSortedStat<EOT,  vector<FitT> >(vector<FitT>(0), _description) {}
+      eoSortedStat<EOT,std::vector<FitT> >(std::vector<FitT>(0), _description) {}
 
-    virtual void operator()(const vector<const EOT*>& _popPters)
+    virtual void operator()(const std::vector<const EOT*>& _popPters)
     {
       value().resize(_popPters.size());
       for (unsigned i=0; i<_popPters.size(); i++)
@@ -51,17 +51,25 @@ public :
 /** For multi-objective fitness, we need to translate a stat<vector<double> >
     into a vector<stat>, so each objective gets a seperate stat
 */
+#ifdef _MSC_VER
+// The follownig is needed to avoid some bug in Visual Studio 6.0
+typedef double PartFitDefault;
+template <class EOT, class PartFitT = PartFitDefault>
+class eoMOFitnessStat : public eoSortedStat<EOT, std::vector<PartFitT> >
+#else
 template <class EOT, class PartFitT = double>
-class eoMOFitnessStat : public eoSortedStat<EOT, vector<PartFitT> >
+class eoMOFitnessStat : public eoSortedStat<EOT, std::vector<PartFitT> >
+#endif
+
 {
 public :
   /** Ctor: say what component you want
    */
   eoMOFitnessStat(unsigned _objective, std::string _description = "MO-Fitness") :
-    eoSortedStat<EOT,  vector<PartFitT> >(vector<PartFitT>(0), _description),
+    eoSortedStat<EOT,  std::vector<PartFitT> >(std::vector<PartFitT>(0), _description),
     objective(_objective) {}
 
-    virtual void operator()(const vector<const EOT*>& _popPters)
+    virtual void operator()(const std::vector<const EOT*>& _popPters)
     {
       value().resize(_popPters.size());
 

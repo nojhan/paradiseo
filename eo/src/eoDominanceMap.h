@@ -31,7 +31,7 @@
 #include <eoPop.h>
 
 /**
-  eoDominanceMap, utility class to calculate and maintain a map (vector<vector<bool> >) of pareto dominance statistics.
+  eoDominanceMap, utility class to calculate and maintain a map (std::vector<std::vector<bool> >) of pareto dominance statistics.
 
   It is set up such that
 
@@ -115,12 +115,12 @@ class eoDominanceMap : public eoUF<const eoPop<EoType>&, void>, public std::vect
   /**
     For all elements, returns the no. of elements that dominate the element
     Thus: lower is better (and 0 is the front).
-    It returns a vector<double> cuz that
+    It returns a std::vector<double> cuz that
     makes subsequent manipulation that much easier
   */
-  vector<double> sum_dominators() const
+  std::vector<double> sum_dominators() const
   {
-    vector<double> result(size(), 0.0);
+    std::vector<double> result(size(), 0.0);
 
     for (unsigned i = 0; i < size(); ++i)
     {
@@ -137,12 +137,12 @@ class eoDominanceMap : public eoUF<const eoPop<EoType>&, void>, public std::vect
   /**
     For all elements, returns the number of elements that the element dominates
     Thus: higher is better
-    It returns a vector<double> cuz that
+    It returns a std::vector<double> cuz that
     makes subsequent manipulation that much easier
   */
-  vector<double> sum_dominants() const
+  std::vector<double> sum_dominants() const
   {
-    vector<double> result(size(), 0.0);
+    std::vector<double> result(size(), 0.0);
 
     for (unsigned i = 0; i < size(); ++i)
     {
@@ -159,7 +159,7 @@ class eoDominanceMap : public eoUF<const eoPop<EoType>&, void>, public std::vect
   private :
 
 
-  vector<typename EoType::Fitness> fitness;
+  std::vector<typename EoType::Fitness> fitness;
 };
 
 #endif

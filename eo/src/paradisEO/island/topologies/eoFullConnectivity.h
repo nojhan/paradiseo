@@ -39,15 +39,15 @@ public :
    */
 
   eoFullConnectivity (eoListener <EOT> & _listen,
-		      vector <string> & _sel_neigh
+		      std::vector <std::string> & _sel_neigh
 		      ) : eoConnectivity <EOT> (_listen, _sel_neigh) {    
   }
     
-  virtual vector <eoLocalListener <EOT> *> from () {
+  virtual std::vector <eoLocalListener <EOT> *> from () {
     
     listen.update () ;
     
-    vector <eoLocalListener <EOT> *> v ;
+    std::vector <eoLocalListener <EOT> *> v ;
     
     for (int i = 0 ; i < listen.size () ; i ++)
       if (i != listen.here ().number () && selected (listen [i].label ()))
@@ -56,11 +56,11 @@ public :
     return v ;
   }
     
-  virtual vector <eoLocalListener <EOT> *> to () {
+  virtual std::vector <eoLocalListener <EOT> *> to () {
     
     listen.update () ;
 
-    vector <eoLocalListener <EOT> *> v ;
+    std::vector <eoLocalListener <EOT> *> v ;
 
     for (int i = 0 ; i < listen.size () ; i ++)
       if (i != listen.here ().number () && selected (listen [i].label ()))

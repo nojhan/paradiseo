@@ -61,9 +61,9 @@ main()
       pop.push_back(chrom);
     }
   
-  cout << "population:" << endl;
+  std::cout << "population:" << std::endl;
   for (i = 0; i < pop.size(); ++i)
-    cout << pop[i] << " " << pop[i].fitness() << endl;
+    std::cout << pop[i] << " " << pop[i].fitness() << std::endl;
 
   eoBinBitFlip<Chrom> bitflip;
   eoBinCrossover<Chrom> xover;
@@ -77,9 +77,9 @@ main()
   // reevaluation of fitness 
   for_each(pop.begin(), pop.end(), BinaryValue());
 
-  cout << "new population:" << endl;
+  std::cout << "new population:" << std::endl;
   for (i = 0; i < pop.size(); ++i)
-    cout << pop[i] << " " << pop[i].fitness() << endl;
+    std::cout << pop[i] << " " << pop[i].fitness() << std::endl;
 
   return 0;
 }

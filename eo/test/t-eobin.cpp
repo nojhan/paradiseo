@@ -23,7 +23,7 @@
 */
 //-----------------------------------------------------------------------------
 
-#include <iostream>   // cout
+#include <iostream>   // std::cout
 #include <strstream>  // ostrstream, istrstream
 #include <eo>         // general EO
 #include <ga.h>	      // bitstring representation & operators
@@ -45,91 +45,91 @@ void main_function()
   Chrom chrom(SIZE), chrom2;
   chrom.fitness(binary_value(chrom)); chrom2.fitness(binary_value(chrom2));
 
-  cout << "chrom:  " << chrom << endl;
+  std::cout << "chrom:  " << chrom << std::endl;
   chrom[0] = chrom[SIZE - 1] = true; chrom.fitness(binary_value(chrom));
-  cout << "chrom:  " << chrom << endl;
+  std::cout << "chrom:  " << chrom << std::endl;
   chrom[0] = chrom[SIZE - 1] = false; chrom.fitness(binary_value(chrom));
-  cout << "chrom:  " << chrom << endl;
+  std::cout << "chrom:  " << chrom << std::endl;
   chrom[0] = chrom[SIZE - 1] = true; chrom.fitness(binary_value(chrom));
 
-  cout << "chrom.className() = " << chrom.className() << endl;
+  std::cout << "chrom.className() = " << chrom.className() << std::endl;
 
-  cout << "chrom:  " << chrom << endl
-       << "chrom2: " << chrom2 << endl;
+  std::cout << "chrom:  " << chrom << std::endl
+       << "chrom2: " << chrom2 << std::endl;
   
   char buff[1024];
-  ostrstream os(buff, 1024);
+  std::ostrstream os(buff, 1024);
   os << chrom;
-  istrstream is(os.str());
+  std::istrstream is(os.str());
   is >> chrom2; chrom.fitness(binary_value(chrom2));
   
-  cout << "\nTesting reading, writing\n";
-  cout << "chrom:  " << chrom << "\nchrom2: " << chrom2 << '\n';
+  std::cout << "\nTesting reading, writing\n";
+  std::cout << "chrom:  " << chrom << "\nchrom2: " << chrom2 << '\n';
   
-  fill(chrom.begin(), chrom.end(), false);
-  cout << "--------------------------------------------------"
-       << endl << "eoMonOp's aplied to .......... " << chrom << endl;
+  std::fill(chrom.begin(), chrom.end(), false);
+  std::cout << "--------------------------------------------------"
+       << std::endl << "eoMonOp's aplied to .......... " << chrom << std::endl;
 
   eoInitFixedLength<Chrom>
       random(chrom.size(), gen);
 
   random(chrom); chrom.fitness(binary_value(chrom));
-  cout << "after eoBinRandom ............ " << chrom << endl;
+  std::cout << "after eoBinRandom ............ " << chrom << std::endl;
 
   eoOneBitFlip<Chrom> bitflip;
   bitflip(chrom); chrom.fitness(binary_value(chrom));
-  cout << "after eoBitFlip .............. " << chrom << endl;
+  std::cout << "after eoBitFlip .............. " << chrom << std::endl;
   
   eoBitMutation<Chrom> mutation(0.5);
   mutation(chrom); chrom.fitness(binary_value(chrom));
-  cout << "after eoBinMutation(0.5) ..... " << chrom << endl;
+  std::cout << "after eoBinMutation(0.5) ..... " << chrom << std::endl;
 
   eoBitInversion<Chrom> inversion;
   inversion(chrom); chrom.fitness(binary_value(chrom));
-  cout << "after eoBinInversion ......... " << chrom << endl;
+  std::cout << "after eoBinInversion ......... " << chrom << std::endl;
 
   eoBitNext<Chrom> next;
   next(chrom); chrom.fitness(binary_value(chrom));
-  cout << "after eoBinNext .............. " << chrom << endl;
+  std::cout << "after eoBinNext .............. " << chrom << std::endl;
 
   eoBitPrev<Chrom> prev;
   prev(chrom); chrom.fitness(binary_value(chrom));
-  cout << "after eoBinPrev .............. " << chrom << endl;
+  std::cout << "after eoBinPrev .............. " << chrom << std::endl;
 
-  fill(chrom.begin(), chrom.end(), false); chrom.fitness(binary_value(chrom));
-  fill(chrom2.begin(), chrom2.end(), true); chrom2.fitness(binary_value(chrom2));
-  cout << "--------------------------------------------------"
-       << endl << "eoBinOp's aplied to ... " 
-       << chrom << " " << chrom2 << endl;
+  std::fill(chrom.begin(), chrom.end(), false); chrom.fitness(binary_value(chrom));
+  std::fill(chrom2.begin(), chrom2.end(), true); chrom2.fitness(binary_value(chrom2));
+  std::cout << "--------------------------------------------------"
+       << std::endl << "eoBinOp's aplied to ... " 
+       << chrom << " " << chrom2 << std::endl;
 
   eo1PtBitXover<Chrom> xover;
-  fill(chrom.begin(), chrom.end(), false);
-  fill(chrom2.begin(), chrom2.end(), true);
+  std::fill(chrom.begin(), chrom.end(), false);
+  std::fill(chrom2.begin(), chrom2.end(), true);
   xover(chrom, chrom2); 
   chrom.fitness(binary_value(chrom)); chrom2.fitness(binary_value(chrom2));
-  cout << "eoBinCrossover ........ " << chrom << " " << chrom2 << endl; 
+  std::cout << "eoBinCrossover ........ " << chrom << " " << chrom2 << std::endl; 
 
   for (i = 1; i < SIZE; i++)
     {
       eoNPtsBitXover<Chrom> nxover(i);
-      fill(chrom.begin(), chrom.end(), false);
-      fill(chrom2.begin(), chrom2.end(), true);
+      std::fill(chrom.begin(), chrom.end(), false);
+      std::fill(chrom2.begin(), chrom2.end(), true);
       nxover(chrom, chrom2);
       chrom.fitness(binary_value(chrom)); chrom2.fitness(binary_value(chrom2));
-      cout << "eoBinNxOver(" << i << ") ........ " 
-	   << chrom << " " << chrom2 << endl; 
+      std::cout << "eoBinNxOver(" << i << ") ........ " 
+	   << chrom << " " << chrom2 << std::endl; 
     }
 
   for (i = 1; i < SIZE / 2; i++)
     for (j = 1; j < SIZE / 2; j++)
       {
 	eoBitGxOver<Chrom> gxover(i, j);
-	fill(chrom.begin(), chrom.end(), false);
-	fill(chrom2.begin(), chrom2.end(), true);
+	std::fill(chrom.begin(), chrom.end(), false);
+	std::fill(chrom2.begin(), chrom2.end(), true);
 	gxover(chrom, chrom2);
 	chrom.fitness(binary_value(chrom)); chrom2.fitness(binary_value(chrom2));
-	cout  << "eoBinGxOver(" << i << ", " << j << ") ..... " 
-	      << chrom << " " << chrom2 << endl; 
+	std::cout  << "eoBinGxOver(" << i << ", " << j << ") ..... " 
+	      << chrom << " " << chrom2 << std::endl; 
       }
 
     // test SGA algorithm
@@ -163,9 +163,9 @@ void main_function()
 
     pop.sort();
 
-    cout << "Population " << pop << endl;
+    std::cout << "Population " << pop << std::endl;
 
-    cout << "\nBest: " << pop[0].fitness() << '\n';
+    std::cout << "\nBest: " << pop[0].fitness() << '\n';
 
   /*
 
@@ -174,16 +174,16 @@ void main_function()
     // Check multiOps
     eoMultiMonOp<Chrom> mOp( &next );
     mOp.adOp( &bitflip );
-    cout << "before multiMonOp............  " << chrom << endl;
+    std::cout << "before multiMonOp............  " << chrom << std::endl;
     mOp( chrom );
-    cout << "after multiMonOp .............. " << chrom << endl;
+    std::cout << "after multiMonOp .............. " << chrom << std::endl;
 
     eoBinGxOver<Chrom> gxover(2, 4);
     eoMultiBinOp<Chrom> mbOp( &gxover );
     mOp.adOp( &bitflip );
-    cout << "before multiBinOp............  " << chrom << " " << chrom2 << endl;
+    std::cout << "before multiBinOp............  " << chrom << " " << chrom2 << std::endl;
     mbOp( chrom, chrom2 );
-    cout << "after multiBinOp .............. " << chrom << " " << chrom2 <<endl;
+    std::cout << "after multiBinOp .............. " << chrom << " " << chrom2 <<std::endl;
   */
 }
 
@@ -207,9 +207,9 @@ int main()
     {
         main_function();
     }
-    catch(exception& e)
+    catch(std::exception& e)
     {
-        cout << "Exception: " << e.what() << '\n';
+        std::cout << "Exception: " << e.what() << '\n';
     }
 
 }

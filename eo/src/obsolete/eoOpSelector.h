@@ -31,7 +31,7 @@
 
 //-----------------------------------------------------------------------------
 
-#include <stdexcept>  // runtime_error 
+#include <stdexcept>  // std::runtime_error 
 
 #include <eoObject.h>
 #include <eoPrintable.h>
@@ -63,12 +63,12 @@ public:
   /** Gets a non-const reference to an operator, so that it can be changed, 
       modified or whatever 
       @param _id  a previously assigned ID
-      @throw runtime_exception if the ID does not exist*/
+      @throw runtime_std::exception if the ID does not exist*/
   virtual eoOp<EOT>& getOp( ID _id ) = 0;
   
   /** Remove an operator from the operator set
       @param _id a previously assigned ID
-      @throw runtime_exception if the ID does not exist
+      @throw runtime_std::exception if the ID does not exist
   */
   virtual void deleteOp( ID _id ) = 0;
   
@@ -79,9 +79,9 @@ public:
   //@{
   
   /** Return the class id. 
-      @return the class name as a string
+      @return the class name as a std::string
   */
-  virtual string className() const { return "eoOpSelector"; };
+  virtual std::string className() const { return "eoOpSelector"; };
   
   /**
    * Read object and print objects are left for subclasses to define.

@@ -26,7 +26,7 @@
 
 #include <eoCellularEasyEA.h>
 
-#include <math.h>
+#include <cmath>
 
 template <class EOT> class eoToricCellularEasyEA : public eoCellularEasyEA <EOT> {
   
@@ -71,7 +71,7 @@ public :
   virtual eoPop <EOT> neighbours (const eoPop <EOT> & pop, int rank) {
     
     int dim2 = pop.size () ;
-    int dim = (int) sqrt (dim2) ;
+    int dim = (int) std::sqrt ( (double) dim2) ;
     int j = rank ;
 
     eoPop <EOT> neigh ;

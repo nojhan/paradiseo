@@ -54,7 +54,7 @@ public:
     const EOT & best = _pop.best_element();
     eoPBILDistrib<EOT>& distrib = dynamic_cast<eoPBILDistrib<EOT>&>(_distrib);
 
-    vector<double> & p = distrib.value();
+    std::vector<double> & p = distrib.value();
 
     for (unsigned g=0; g<distrib.size(); g++)
       {

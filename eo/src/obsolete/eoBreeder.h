@@ -28,7 +28,7 @@
 
 //-----------------------------------------------------------------------------
 
-#include <vector>          // vector
+#include <vector>          // std::vector
 #include <utils/eoRNG.h>
 #include <eoOp.h>          // eoOp, eoMonOp, eoBinOp
 #include <eoPop.h>         // eoPop
@@ -103,7 +103,7 @@ template<class Chrom> class eoBreeder: public eoTransform<EOT>
     };
   
   /// The class name.
-  string className() const { return "eoBreeder"; }
+  std::string className() const { return "eoBreeder"; }
   
  private:
   eoOpSelector<Chrom>& opSel;

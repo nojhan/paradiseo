@@ -36,13 +36,11 @@ const unsigned MAXLINELENGTH=1024;
 
 //-----------------------------------------------------------------------------
 
-#include <iostream>  // istream, ostream
-#include <string>    // para string
+#include <iostream>  // std::istream, std::ostream
+#include <string>    // para std::string
 
 //-----------------------------------------------------------------------------
 #include "eoPrintable.h"
-
-using namespace std;
 
 //-----------------------------------------------------------------------------
 // eoPersistent
@@ -59,16 +57,16 @@ class eoPersistent: public eoPrintable
   
   /**
    * Read object.
-   * @param _is A istream.
-   * @throw runtime_exception If a valid object can't be read.
+   * @param _is A std::istream.
+   * @throw runtime_std::exception If a valid object can't be read.
    */
-  virtual void readFrom(istream& _is) = 0;
+  virtual void readFrom(std::istream& _is) = 0;
   
 };
 
 //-----------------------------------------------------------------------------
 ///Standard input for all objects in the EO hierarchy
-istream & operator >> ( istream& _is, eoPersistent& _o );
+std::istream & operator >> ( std::istream& _is, eoPersistent& _o );
 
 #endif
 

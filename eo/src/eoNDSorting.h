@@ -34,7 +34,7 @@
 #include <cassert>
 
 /**
-  Non dominated sorting, it *is a* vector of doubles, the integer part is the rank (to which front it belongs),
+  Non dominated sorting, it *is a* std::vector of doubles, the integer part is the rank (to which front it belongs),
   the fractional part the niching penalty or distance penalty or whatever penalty you want to squeeze into
   the bits.
 */
@@ -47,10 +47,10 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
       {}
 	  
     /** Pure virtual function that calculates the 'distance' for each element in the current front
-        Implement to create your own nondominated sorting algorithm. The size of the returned vector
+        Implement to create your own nondominated sorting algorithm. The size of the returned std::vector
         should be equal to the size of the current_front.
     */
-    virtual vector<double> niche_penalty(const vector<unsigned>& current_front, const eoPop<EOT>& _pop) = 0;
+    virtual std::vector<double> niche_penalty(const std::vector<unsigned>& current_front, const eoPop<EOT>& _pop) = 0;
 
     void calculate_worths(const eoPop<EOT>& _pop)
     {
@@ -92,7 +92,7 @@ private :
     void one_objective(const eoPop<EOT>& _pop)
     {
 	unsigned i;
-	vector<DummyEO> tmp_pop;
+	std::vector<DummyEO> tmp_pop;
         tmp_pop.resize(_pop.size());
 
         // copy pop to dummy population (only need the fitnesses)
@@ -101,10 +101,6 @@ private :
           tmp_pop[i].fitness(_pop[i].fitness());
           tmp_pop[i].index = i;
         }
-
-        // sort it in ascending
-        sort(tmp_pop.begin(), tmp_pop.end(), greater<DummyEO>() ); 
-
          
         for (i = 0; i < _pop.size(); ++i)
         {
@@ -138,7 +134,7 @@ private :
 	typedef typename EOT::Fitness::fitness_traits traits;
 	assert(traits::nObjectives() == 2);
 	
-	vector<unsigned> sort1(_pop.size()); // index into population sorted on first objective
+	std::vector<unsigned> sort1(_pop.size()); // index into population sorted on first objective
 	
 	for (i = 0; i < _pop.size(); ++i)
 	{
@@ -160,10 +156,10 @@ private :
 	max1 = max1 + 1.0; // add a bit to it so that it is a real upperbound
 	
 	unsigned prev_front = 0;
-	vector<double> d;
+	std::vector<double> d;
 	d.resize(_pop.size(), max1); // initialize with the value max1 everywhere
 	
-	vector<vector<unsigned> > fronts(_pop.size()); // to store indices into the front
+	std::vector<std::vector<unsigned> > fronts(_pop.size()); // to store indices into the front
 	
 	for (i = 0; i < _pop.size(); ++i)
 	{
@@ -191,7 +187,7 @@ private :
 		value2 = max1 - value2;
 	    
 	    // perform binary search using std::upper_bound, a log n operation for each member
-	    vector<double>::iterator it = 
+	    std::vector<double>::iterator it = 
 		std::upper_bound(d.begin(), d.begin() + last_front, value2);
 	  
 	    unsigned front = unsigned(it - d.begin());
@@ -212,15 +208,15 @@ private :
 	    if (fronts[i].size() == 0) continue; 
 
 	    // Now we have the indices to the current front in current_front, do the niching
-	    vector<double> niche_count = niche_penalty(fronts[i], _pop);
+	    std::vector<double> niche_count = niche_penalty(fronts[i], _pop);
 
 	    // Check whether the derived class was nice
 	    if (niche_count.size() != fronts[i].size())
 	    {
-	      throw logic_error("eoNDSorting: niche and front should have the same size");
+	      throw std::logic_error("eoNDSorting: niche and front should have the same size");
 	    }
 
-	    double max_niche = *max_element(niche_count.begin(), niche_count.end());
+	    double max_niche = *std::max_element(niche_count.begin(), niche_count.end());
 
 	    for (unsigned j = 0; j < fronts[i].size(); ++j)
 	    {
@@ -270,8 +266,8 @@ private :
 
       typedef typename EOT::Fitness::fitness_traits traits;
 
-      vector<vector<unsigned> > S(_pop.size()); // which individuals does guy i dominate
-      vector<unsigned> n(_pop.size(), 0); // how many individuals dominate guy i
+      std::vector<std::vector<unsigned> > S(_pop.size()); // which individuals does guy i dominate
+      std::vector<unsigned> n(_pop.size(), 0); // how many individuals dominate guy i
 
       unsigned j;
       for (i = 0; i < _pop.size(); ++i)
@@ -280,12 +276,12 @@ private :
         {
           if (_pop[i].fitness().dominates(_pop[j].fitness()))
           { // i dominates j
-            S[i].push_back(j); // add j to i's domination list
+            S[i].push_back(j); // add j to i's domination std::list
 
             //n[j]++; // as i dominates j
           }
           else if (_pop[j].fitness().dominates(_pop[i].fitness()))
-          { // j dominates i, increment count for i, add i to the domination list of j
+          { // j dominates i, increment count for i, add i to the domination std::list of j
             n[i]++;
 
             //S[j].push_back(i);
@@ -293,7 +289,7 @@ private :
         }
       }
 
-      vector<unsigned> current_front;
+      std::vector<unsigned> current_front;
       current_front.reserve(_pop.size());
 
       // get the first front out
@@ -305,22 +301,22 @@ private :
         }
       }
 
-      vector<unsigned> next_front;
+      std::vector<unsigned> next_front;
       next_front.reserve(_pop.size());
 
       unsigned front_index = 0; // which front are we processing
       while (!current_front.empty())
       {
         // Now we have the indices to the current front in current_front, do the niching
-        vector<double> niche_count = niche_penalty(current_front, _pop);
+        std::vector<double> niche_count = niche_penalty(current_front, _pop);
 
         // Check whether the derived class was nice
         if (niche_count.size() != current_front.size())
         {
-          throw logic_error("eoNDSorting: niche and front should have the same size");
+          throw std::logic_error("eoNDSorting: niche and front should have the same size");
         }
 
-        double max_niche = *max_element(niche_count.begin(), niche_count.end());
+        double max_niche = *std::max_element(niche_count.begin(), niche_count.end());
 
         for (i = 0; i < current_front.size(); ++i)
         {
@@ -377,9 +373,9 @@ class eoNDSorting_I : public eoNDSorting<EOT>
 public :
   eoNDSorting_I(double _nicheSize) : eoNDSorting<EOT>(), nicheSize(_nicheSize) {}
 
-  vector<double> niche_penalty(const vector<unsigned>& current_front, const eoPop<EOT>& _pop)
+  std::vector<double> niche_penalty(const std::vector<unsigned>& current_front, const eoPop<EOT>& _pop)
   {
-        vector<double> niche_count(current_front.size(), 0.);
+        std::vector<double> niche_count(current_front.size(), 0.);
 
         for (unsigned i = 0; i < current_front.size(); ++i)
         { // calculate whether the other points lie within the nice
@@ -415,7 +411,7 @@ public :
   Adapted from Deb, Agrawal, Pratab and Meyarivan: A Fast Elitist Non-Dominant Sorting Genetic Algorithm for MultiObjective Optimization: NSGA-II
   KanGAL Report No. 200001
 
-  Note that this class does not do the sorting per se, but the sorting of it worth_vector will give the right order
+  Note that this class does not do the sorting per se, but the sorting of it worth_std::vector will give the right order
 
   The crowding distance is calculated as the sum of the distances to the nearest neighbours. As we need to return the
   penalty value, we have to invert that and invert it again in the base class, but such is life, sigh
@@ -437,11 +433,11 @@ class eoNDSorting_II : public eoNDSorting<EOT>
   };
 
   /// _cf points into the elements that consist of the current front
-  vector<double> niche_penalty(const vector<unsigned>& _cf, const eoPop<EOT>& _pop)
+  std::vector<double> niche_penalty(const std::vector<unsigned>& _cf, const eoPop<EOT>& _pop)
   {
     typedef typename EOT::Fitness::fitness_traits traits;
     unsigned i;
-    vector<double> niche_count(_cf.size(), 0.);
+    std::vector<double> niche_count(_cf.size(), 0.);
 
     
     unsigned nObjectives = traits::nObjectives(); //_pop[_cf[0]].fitness().size();
@@ -449,7 +445,7 @@ class eoNDSorting_II : public eoNDSorting<EOT>
     for (unsigned o = 0; o < nObjectives; ++o)
     {
 
-      vector<pair<double, unsigned> > performance(_cf.size());
+      std::vector<std::pair<double, unsigned> > performance(_cf.size());
       for (i =0; i < _cf.size(); ++i)
       {
         performance[i].first = _pop[_cf[i]].fitness()[o];
@@ -458,14 +454,14 @@ class eoNDSorting_II : public eoNDSorting<EOT>
 
       sort(performance.begin(), performance.end(), compare_nodes()); // a lambda operator would've been nice here
 
-      vector<double> nc(niche_count.size(), 0.0);
+      std::vector<double> nc(niche_count.size(), 0.0);
 
       for (i = 1; i < _cf.size()-1; ++i)
       { // and yet another level of indirection
         nc[performance[i].second] = performance[i+1].first - performance[i-1].first;
       }
 
-      double max_dist = *max_element(nc.begin(), nc.end());
+      double max_dist = *std::max_element(nc.begin(), nc.end());
 
       // set boundary at max_dist + 1 (so it will get chosen over all the others
       nc[performance[0].second] = max_dist + 1;

@@ -51,7 +51,7 @@ public:
     : eoQuadOp<EoType>(), max_length(_max_length) {};
 
   /// the ckassname
-  virtual string className() const { return "eoSubtreeXOver"; };
+  virtual std::string className() const { return "eoSubtreeXOver"; };
 
   /// Dtor
   virtual ~eoSubtreeXOver () {};
@@ -99,7 +99,7 @@ public:
   {};
   
   /// the class name
-  virtual string className() const { return "eoBranchMutation"; };
+  virtual std::string className() const { return "eoBranchMutation"; };
 
   /// Dtor
   virtual ~eoBranchMutation() {};
@@ -152,14 +152,14 @@ public:
 
   /**
    * Constructor
-   * @param _initializor The vector of Nodes given to the eoGpDepthInitializer
+   * @param _initializor The std::vector of Nodes given to the eoGpDepthInitializer
    */
-  eoPointMutation( vector<Node>& _initializor)
+  eoPointMutation( std::vector<Node>& _initializor)
     : eoMonOp<EoType>(), initializor(_initializor)
   {};
   
   /// the class name
-  virtual string className() const { return "eoPointMutation"; };
+  virtual std::string className() const { return "eoPointMutation"; };
 
   /// Dtor
   virtual ~eoPointMutation() {};
@@ -191,7 +191,7 @@ public:
   }
 
 private :
-	vector<Node>& initializor;
+	std::vector<Node>& initializor;
 
 };
 
@@ -217,7 +217,7 @@ public:
   {};
   
   /// The class name
-  virtual string className() const { return "eoExpansionMutation"; };
+  virtual std::string className() const { return "eoExpansionMutation"; };
 
   /// Dtor
   virtual ~eoExpansionMutation() {};
@@ -284,7 +284,7 @@ public:
   {};
 
   /// The class name
-  virtual string className() const { return "eoCollapseSubtreeMutation"; };
+  virtual std::string className() const { return "eoCollapseSubtreeMutation"; };
 
   /// Dtor
   virtual ~eoCollapseSubtreeMutation() {};
@@ -347,7 +347,7 @@ public:
   {};
   
   /// The class name
-  virtual string className() const { return "eoHoistMutation"; };
+  virtual std::string className() const { return "eoHoistMutation"; };
 
   /// Dtor
   virtual ~eoHoistMutation() {};

@@ -43,7 +43,7 @@ public :
      Constructor
    */ 
 
-  eoSolAgent (string _label,
+  eoSolAgent (std::string _label,
 	      eoListener <EOT> & _listen,
 	      eoSolAlgo <EOT> & _algo
 	      ) :
@@ -68,7 +68,7 @@ public :
 	while (! listen [i].empty ()) {
 	  
 	  EOT & sol = listen [i].front () ;
-	  cout << "Agent [" << label << "] on " << listen.here ().host_name << " : Receiving one individual ..." << endl ;
+	  std::cout << "Agent [" << label << "] on " << listen.here ().host_name << " : Receiving one individual ..." << std::endl ;
 	  algo (sol) ;
 	  eoPop <EOT> pop ;
 	  pop.push_back (sol) ;
@@ -82,7 +82,7 @@ public :
   
 private :
   
-  string label ; // string identifier
+  std::string label ; // std::string identifier
   eoListener <EOT> & listen ; // EO's listener
   eoSolAlgo <EOT> & algo ; // Local supplied algo
 	   

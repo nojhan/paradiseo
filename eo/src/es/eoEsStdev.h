@@ -57,7 +57,7 @@ class eoEsStdev : public eoVector<Fit, double>
         os << ' ';
     }
 
-    void readFrom(istream& is)
+    void readFrom(std::istream& is)
     {
         eoVector<Fit,double>::readFrom(is);
         stdevs.resize(size());
@@ -68,7 +68,7 @@ class eoEsStdev : public eoVector<Fit, double>
     }
 
 
-    vector<double> stdevs;
+    std::vector<double> stdevs;
 };
 
 #endif

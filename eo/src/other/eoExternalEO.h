@@ -46,12 +46,12 @@ public :
     Init externalEo with the struct itself and set fitness to zero
   */
   eoExternalEO(const External& ext) : EO<Fit>(), External(ext) {}
-  eoExternalEO(istream& is) : EO<Fit>(), External(ext) { readFrom(is); }
+  eoExternalEO(std::istream& is) : EO<Fit>(), External(ext) { readFrom(is); }
 
   /**
    * Read object, the external struct needs to have an operator>> defined
    */
-  virtual void readFrom(istream& _is) 
+  virtual void readFrom(std::istream& _is) 
   { 
       EO<Fit>::readFrom(_is);
     _is >> static_cast<External&>(*this);
@@ -59,9 +59,9 @@ public :
   
   /**
    * Write object. Called printOn since it prints the object _on_ a stream.
-   * @param _os A ostream.
+   * @param _os A std::ostream.
    */
-  virtual void printOn(ostream& _os) const 
+  virtual void printOn(std::ostream& _os) const 
   {
       EO<Fit>::printOn(_os);
       _os << static_cast<const External&>(*this);

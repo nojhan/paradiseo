@@ -95,7 +95,7 @@ public:
   {
     unsigned sz = _parents.size();
     _parents.reserve(_parents.size() + _offspring.size());
-    copy(_offspring.begin(), _offspring.end(), back_inserter(_parents));
+    std::copy(_offspring.begin(), _offspring.end(), back_inserter(_parents));
 
     // calculate worths
     perf2worth(_parents);
@@ -131,7 +131,7 @@ eoPerf2Worth<EOT, double>& make_perf2worth(eoParser& parser, eoState& state)
 
   if (what > 2)
   {
-    cout << "Warning, need an integer < 3 for perf2worth" << endl;
+    std::cout << "Warning, need an integer < 3 for perf2worth" << std::endl;
     // should actually set parser flag, but I don't care
   }
 
@@ -210,7 +210,7 @@ void the_main(int argc, char* argv[])
 
   if (parser.userNeedsHelp())
   {
-    parser.printHelp(cout);
+    parser.printHelp(std::cout);
     return;
   }
 
@@ -225,9 +225,9 @@ int main(int argc, char* argv[])
   {
     the_main(argc, argv);
   }
-  catch (exception& e)
+  catch (std::exception& e)
   {
-    cout << "Exception thrown: " << e.what() << endl;
+    std::cout << "Exception thrown: " << e.what() << std::endl;
     throw e; // make sure it does not pass the test
   }
 }

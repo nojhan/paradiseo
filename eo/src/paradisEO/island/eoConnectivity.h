@@ -44,7 +44,7 @@ public :
   */
   
   eoConnectivity (eoListener <EOT> & _listen,
-		  vector <string> & _sel_neigh
+		  std::vector <std::string> & _sel_neigh
 		  ) :
     listen (_listen),
     sel_neigh (_sel_neigh) {    
@@ -56,22 +56,22 @@ public :
      immigrants from ...  
    */
 
-  virtual vector <eoLocalListener <EOT> *> from () = 0 ;
+  virtual std::vector <eoLocalListener <EOT> *> from () = 0 ;
   
   /**
      Computes the subset of neighbours to send
      emigrants to ...  
   */
   
-  virtual vector <eoLocalListener <EOT> *> to () = 0 ;
+  virtual std::vector <eoLocalListener <EOT> *> to () = 0 ;
   
 protected :
   
   eoListener <EOT> & listen ;
   
-  vector <string> sel_neigh ;
+  std::vector <std::string> sel_neigh ;
 
-  bool selected (string & id) {
+  bool selected (std::string & id) {
     
     for (int i = 0 ; i < sel_neigh.size () ; i ++)
       if (sel_neigh [i] == id)

@@ -47,7 +47,7 @@ class eoGnuplot
 {
  public:
     // Ctor
-  eoGnuplot(std::string _title, std::string _extra = string("")) : 
+  eoGnuplot(std::string _title, std::string _extra = std::string("")) : 
     firstTime(true)
   {
     // opens pipe with Gnuplot
@@ -65,7 +65,7 @@ class eoGnuplot
   }
 
   /// Class name.
-  virtual string className() const { return "eoGnuplot"; }
+  virtual std::string className() const { return "eoGnuplot"; }
 
   /** send a command to gnuplot directly
    */
@@ -105,8 +105,8 @@ inline void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
   /////////////////////////////////////////////////////////
 {
   char snum[255];
-  ostrstream os(snum, 254);
-  os << "300x200-0+" << numWindow*220 << ends;
+  std::ostrstream os(snum, 254);
+  os << "300x200-0+" << numWindow*220 << std::ends;
   numWindow++;
   char	*args[6];
   args[0] = strdup( "gnuplot" );
@@ -117,7 +117,7 @@ inline void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
   args[5] = 0;
   gpCom = PipeComOpenArgv( "gnuplot", args );
   if( ! gpCom )
-    throw runtime_error("Impossible to spawn gnuplot\n");
+    throw std::runtime_error("Impossible to spawn gnuplot\n");
   else {
     PipeComSend( gpCom, "set grid\n" );
     PipeComSend( gpCom, _extra.c_str() );
@@ -139,7 +139,7 @@ inline void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
  * Created......: Mon Mar 13 13:50:11 1995
  * Description..: Communication par pipe bidirectionnel avec un autre process
  *
- * Ident........: $Id: eoGnuplot.h,v 1.5 2002-08-23 15:40:59 evomarc Exp $
+ * Ident........: $Id: eoGnuplot.h,v 1.6 2003-02-27 19:21:18 okoenig Exp $
  * ----------------------------------------------------------------------
  */
 

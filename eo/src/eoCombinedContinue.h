@@ -31,7 +31,7 @@
     Combined continuators - logical AND:
   Continues until one of the embedded continuators says halt!
 
-20/11/00 MS: Changed the 2-continuator construct to a vector<eoContinue<EOT> >
+20/11/00 MS: Changed the 2-continuator construct to a std::vector<eoContinue<EOT> >
              to be consistent with other Combined constructs
              and allow to easily handle more than 2 continuators
 

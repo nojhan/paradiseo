@@ -41,7 +41,7 @@ using namespace std;
 /** Base class for alternative selectors, which use the generalized operator
     interface. eoGOpBreeders expects this class */
 template<class EOT>
-class eoGOpSelector: public eoOpSelector<EOT>, public vector<eoGeneralOp<EOT>*>
+class eoGOpSelector: public eoOpSelector<EOT>, public std::vector<eoGeneralOp<EOT>*>
 {
 public:
 
@@ -49,7 +49,7 @@ public:
 
   /// Dtor
   virtual ~eoGOpSelector() {
-    for ( list< eoGeneralOp<EOT>* >::iterator i= ownOpList.begin();
+    for ( std::list< eoGeneralOp<EOT>* >::iterator i= ownOpList.begin();
 	  i != ownOpList.end(); i++ ) {
       delete *i;
     }
@@ -65,7 +65,7 @@ public:
   // implementation can be found below
   
   /** Retrieve the operator using its integer handle
-      @param _id The id number. Should be a valid id, or an exception 
+      @param _id The id number. Should be a valid id, or an std::exception 
       will be thrown
       @return a reference of the operator corresponding to that id.
   */
@@ -88,22 +88,22 @@ public:
   virtual eoGeneralOp<EOT>& selectOp() = 0;
 
   ///
-  virtual string className() const { return "eoGOpSelector"; };
+  virtual std::string className() const { return "eoGOpSelector"; };
 
   ///
-  void printOn(ostream& _os) const {}
-  //  _os << className().c_str() << endl; 
+  void printOn(std::ostream& _os) const {}
+  //  _os << className().c_str() << std::endl; 
   //  for ( unsigned i=0; i!= rates.size(); i++ ) {
-  //    _os << *(operator[](i))  << "\t" << rates[i] << endl;
+  //    _os << *(operator[](i))  << "\t" << rates[i] << std::endl;
   //  }
   //}
 
 
-  const vector<float>& getRates(void) const { return rates; }
+  const std::vector<float>& getRates(void) const { return rates; }
 
 private :
-  vector<float> rates;
-  list< eoGeneralOp<EOT>* > ownOpList;
+  std::vector<float> rates;
+  std::list< eoGeneralOp<EOT>* > ownOpList;
 };
 
 /* Implementation of longish functions defined above */
@@ -121,7 +121,7 @@ inline eoOpSelector<EOT>::ID eoGOpSelector<EOT>::addOp( eoOp<EOT>& _op,
   else
     {
       // if it's not a general op, it's a "old" op; create a wrapped op from it
-      // and keep it on a list to delete them afterwards
+      // and keep it on a std::list to delete them afterwards
       // will use auto_ptr when they're readily available
       
      switch(_op.getType())
@@ -167,9 +167,9 @@ inline void  eoGOpSelector<EOT>::deleteOp( ID _id )
   operator[](_id) = 0; 
   rates[_id] = 0.0;
     
-  // check oplist and clear it there too.
+  // check opstd::list and clear it there too.
   
-  list< eoGeneralOp<EOT>* >::iterator it = find(ownOpList.begin(), ownOpList.end(), op);
+  std::list< eoGeneralOp<EOT>* >::iterator it = find(ownOpList.begin(), ownOpList.end(), op);
 
   if(it != ownOpList.end())
     {

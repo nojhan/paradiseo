@@ -48,12 +48,12 @@ int the_main(int argc, char **argv)
     eoValueParam<uint32> seed(time(0), "seed", "Random number seed");
     // test if user entered or if default value used
     if (parser.isItThere(seed))
-      cout << "YES\n";
+      std::cout << "YES\n";
     else
-      cout << "NO\n";
+      std::cout << "NO\n";
 
-    eoValueParam<string> load_name("", "Load","Load",'L');
-    eoValueParam<string> save_name("", "Save","Save",'S');
+    eoValueParam<std::string> load_name("", "Load","Load",'L');
+    eoValueParam<std::string> save_name("", "Save","Save",'S');
 
  
     // Register them
@@ -69,7 +69,7 @@ int the_main(int argc, char **argv)
 
     parser.processParam(boundParam, "Genetic Operators");
 
-    cout << "Bounds: " << boundParam.value() << endl;
+    std::cout << "Bounds: " << boundParam.value() << std::endl;
 
    eoState state;
    state.registerObject(parser);
@@ -89,7 +89,7 @@ int the_main(int argc, char **argv)
 
     if (parser.userNeedsHelp())
     {
-        parser.printHelp(cout);
+        parser.printHelp(std::cout);
         return 0;
     }
 
@@ -112,7 +112,7 @@ int the_main(int argc, char **argv)
     // Save when needed
     if (save_name.value() != "")
     {
-        string file_name = save_name.value();
+        std::string file_name = save_name.value();
         save_name.value() = ""; // so that it does not appear in the parser section of the state file
         state.save(file_name);
     }
@@ -120,7 +120,7 @@ int the_main(int argc, char **argv)
     for (int i = 0; i < 100; ++i)
         rng.rand();
 
-    cout << "a random number is " << rng.random(1024) << endl;;
+    std::cout << "a random number is " << rng.random(1024) << std::endl;;
 
     return 1;
 }
@@ -131,9 +131,9 @@ int main(int argc, char **argv)
     {
         the_main(argc, argv);
     }
-    catch(exception& e)
+    catch(std::exception& e)
     {
-        cout << "Exception: " << e.what() << endl;
+        std::cout << "Exception: " << e.what() << std::endl;
     }
 
 }

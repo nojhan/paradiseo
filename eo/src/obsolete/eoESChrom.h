@@ -27,17 +27,17 @@
 #define _eoESCHROM_H
 
 // STL libraries
-#include <vector>		// For vector<>
+#include <vector>		// For std::vector<>
 #include <stdexcept>
 #include <strstream>
-#include <iostream>		// for ostream
+#include <iostream>		// for std::ostream
 
 // EO includes
 #include <eoVector.h>
 
 /**@name Chromosomes for evolution strategies
-Each chromosome in an evolution strategies is composed of a vector of floating point
-values plus a vector of sigmas, that are added to them during mutation
+Each chromosome in an evolution strategies is composed of a std::vector of floating point
+values plus a std::vector of sigmas, that are added to them during mutation
 */ 
 //@{
 
@@ -97,13 +97,13 @@ bool operator == ( eoESGene _e1, eoESGene _e2 ) {
 }
 
 ///
-ostream & operator << ( ostream& _s, const eoESGene& _e ) {
+std::ostream & operator << ( std::ostream& _s, const eoESGene& _e ) {
 	_s << _e.val << ", " << _e.sigma << " | ";
 	return _s;
 }
 
 /// Dummy >>
-istream & operator >> ( istream& _s, const eoESGene& _e ) {
+std::istream & operator >> ( std::istream& _s, const eoESGene& _e ) {
 	_s >> _e.val;
 	_s >> _e.sigma;
 	return _s;
@@ -154,7 +154,7 @@ public:
 	/** Inherited from eoObject 
 		  @see eoObject
 	*/
-	string className() const {return "eoESChrom";};
+	std::string className() const {return "eoESChrom";};
     //@}
 
 };

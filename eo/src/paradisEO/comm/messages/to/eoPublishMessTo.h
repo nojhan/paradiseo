@@ -22,7 +22,7 @@
 */
 
 /**
-   To let know from distributed algos the string identifier
+   To let know from distributed algos the std::string identifier
    of the home process ...
 */
 
@@ -42,7 +42,7 @@ public :
      Constructor
    */
 
-  eoPublishMessTo (string & _label
+  eoPublishMessTo (std::string & _label
 		   ) :
     eoMessTo <EOT> ("eoPublishMessTo"),
     label (_label) {
@@ -57,7 +57,7 @@ public :
   
 private :
 
-  string label ; // String identifier to send ...
+  std::string label ; // String identifier to send ...
 
 } ;
 

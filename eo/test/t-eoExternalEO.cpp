@@ -20,7 +20,7 @@ struct UserDefStruct
     enum Enum { just, another, test } d;
 };
 
-ostream& operator<<(ostream& os, const UserDefStruct& str)
+std::ostream& operator<<(std::ostream& os, const UserDefStruct& str)
 {
     return os << str.a << ' ' << str.b << ' ' << str.c << ' ' << static_cast<int>(str.d) << ' ';
 }
@@ -40,7 +40,7 @@ istream& operator>>(istream& is, UserDefStruct& str)
 
 UserDefStruct RandomStruct()
 {
-    cout << "RandomStruct\n";
+    std::cout << "RandomStruct\n";
 
     UserDefStruct result;
 
@@ -57,7 +57,7 @@ UserDefStruct RandomStruct()
 
 bool UserDefMutate(UserDefStruct& a)
 {
-    cout << "UserDefMutate\n";
+    std::cout << "UserDefMutate\n";
     a = RandomStruct(); // just for testing
 
     if (rng.flip(0.1f))
@@ -69,7 +69,7 @@ bool UserDefMutate(UserDefStruct& a)
 
 bool UserDefBinCrossover(UserDefStruct& a, const UserDefStruct& b)
 {
-    cout << "UserDefBinCrossover\n";
+    std::cout << "UserDefBinCrossover\n";
 
     if (rng.flip(0.5))
         a.a = b.a;
@@ -84,7 +84,7 @@ bool UserDefBinCrossover(UserDefStruct& a, const UserDefStruct& b)
 
 bool UserDefQuadCrossover(UserDefStruct& a, UserDefStruct& b)
 {
-    cout << "UserDefQuadCrossover\n";
+    std::cout << "UserDefQuadCrossover\n";
     if (rng.flip(0.5))
         swap(a.a, b.a);
     if (rng.flip(0.5))
@@ -99,7 +99,7 @@ bool UserDefQuadCrossover(UserDefStruct& a, UserDefStruct& b)
 
 float UserDefEvalFunc(const UserDefStruct& a)
 {
-    cout << "UserDefEvalFunc\n";
+    std::cout << "UserDefEvalFunc\n";
     return a.b;
 }
 
@@ -121,11 +121,11 @@ int main()
     EoType eo2;
     init(eo2);
 
-    cout << "before mutation " << eo1 << '\n';
+    std::cout << "before mutation " << eo1 << '\n';
     mutate(eo1);
-    cout << "after mutation " << eo1 << '\n';
+    std::cout << "after mutation " << eo1 << '\n';
     cross1(eo1, eo2);
-    cout << "after crossover " << eo1 << '\n';
+    std::cout << "after crossover " << eo1 << '\n';
 
     cross2(eo1,eo2);
 

@@ -99,9 +99,9 @@ int main(int argc, char **argv)
     {
         main_function(argc, argv);
     }
-    catch(exception& e)
+    catch(std::exception& e)
     {
-        cout << "Exception: " << e.what() << '\n';
+        std::cout << "Exception: " << e.what() << '\n';
     }
  
     return 1;
@@ -174,6 +174,6 @@ void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoRealVectorBounds& _
     es(pop);
 
     pop.sort();
-    cout << "Final population\n" << pop << endl;
+    std::cout << "Final population\n" << pop << std::endl;
 
 }

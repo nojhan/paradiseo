@@ -50,17 +50,17 @@ public:
 	virtual ~eoOpFactory() {}
 	//@}
 
-	/** Another factory method: creates an object from an istream, reading from
-	it whatever is needed to create the object. Usually, the format for the istream will be\\
+	/** Another factory method: creates an object from an std::istream, reading from
+	it whatever is needed to create the object. Usually, the format for the std::istream will be\\
 	objectType parameter1 parameter2 ... parametern\\
-	If there are problems, an exception is raised; it should be caught at the
+	If there are problems, an std::exception is raised; it should be caught at the
 	upper level, because it might be something for that level
 	@param _is an stream from where a single line will be read
-	@throw runtime_exception if the object type is not known
+	@throw runtime_std::exception if the object type is not known
 	*/
-	virtual eoOp<EOT>* make(istream& _is) {
+	virtual eoOp<EOT>* make(std::istream& _is) {
 		eoOp<EOT> * opPtr = NULL;
-		string objectTypeStr;
+		std::string objectTypeStr;
 		_is >> objectTypeStr;
 		if  ( objectTypeStr == "eoDup") {
 		  opPtr = new eoDup<EOT>();

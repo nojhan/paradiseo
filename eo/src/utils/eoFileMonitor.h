@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mkeijzer@dhi.dk
-CVS Info: $Date: 2002-12-09 21:04:47 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoFileMonitor.h,v 1.10 2002-12-09 21:04:47 evomarc Exp $ $Author: evomarc $ 
+CVS Info: $Date: 2003-02-27 19:21:19 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoFileMonitor.h,v 1.11 2003-02-27 19:21:19 okoenig Exp $ $Author: okoenig $ 
 
  */
 //-----------------------------------------------------------------------------
@@ -51,11 +51,11 @@ public :
   {
     if (! _keep)
       {
-	ofstream os(filename.c_str());
+	std::ofstream os(filename.c_str());
 	if (!os)
 	  {
-	    string str = "eoFileMonitor: Could not open " + filename;
-	    throw runtime_error(str);
+	    std::string str = "eoFileMonitor: Could not open " + filename;
+	    throw std::runtime_error(str);
 	  }
       }
   }
@@ -65,7 +65,7 @@ public :
 
     void printHeader(void);
     virtual void printHeader(std::ostream& os);
-  virtual string getFileName()	   // for eoGnuPlot
+  virtual std::string getFileName()	   // for eoGnuPlot
   { return filename;}
 private :
     std::string filename;

@@ -61,7 +61,7 @@ public :
         os << ' ' << stdev << ' ';
     }
 
-    void readFrom(istream& is)
+    void readFrom(std::istream& is)
     {
         eoVector<Fit,double>::readFrom(is);
 

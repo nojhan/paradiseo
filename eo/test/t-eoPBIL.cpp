@@ -121,9 +121,9 @@ int main(int argc, char* argv[])
 
   dea(distrib); // run the dea
 
-  cout << "Final Distribution\n";
-  distrib.printOn(cout);
-  cout << endl;
+  std::cout << "Final Distribution\n";
+  distrib.printOn(std::cout);
+  std::cout << std::endl;
 
 #if !defined(NO_GNUPLOT)
   // wait - for graphical output
@@ -134,8 +134,8 @@ int main(int argc, char* argv[])
       }
 #endif
   }
-  catch(exception& e)
+  catch(std::exception& e)
   {
-    cout << e.what() << endl;
+    std::cout << e.what() << std::endl;
   }
 }

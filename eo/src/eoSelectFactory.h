@@ -49,13 +49,13 @@ public:
 	virtual ~eoSelectFactory() {}
 	//@}
 
-	/** Another factory methods: creates an object from an istream, reading from
-	it whatever is needed to create the object. Usually, the format for the istream will be\\
+	/** Another factory methods: creates an object from an std::istream, reading from
+	it whatever is needed to create the object. Usually, the format for the std::istream will be\\
 	objectType parameter1 parameter2 ... parametern\\
 	*/
-	virtual eoSelect<EOT>* make(istream& _is) {
+	virtual eoSelect<EOT>* make(std::istream& _is) {
 		eoSelect<EOT> * selectPtr;
-		string objectTypeStr;
+		std::string objectTypeStr;
 		_is >> objectTypeStr;
 		// All selectors have a rate, the proportion of the original population
 		float rate;
@@ -69,7 +69,7 @@ public:
 			if ( objectTypeStr == "eoRandomSelect" ) {
 				selectPtr = new eoRandomSelect<EOT>( rate );
 			} else {
-						throw runtime_error( "Incorrect selector type" );
+						throw std::runtime_error( "Incorrect selector type" );
 			}
 		}
 		return selectPtr;
@@ -77,8 +77,8 @@ public:
 
 	///@name eoObject methods
 	//@{
-	void printOn( ostream& _os ) const {};
-	void readFrom( istream& _is ){};
+	void printOn( std::ostream& _os ) const {};
+	void readFrom( std::istream& _is ){};
 
 	/** className is inherited */
 	//@}

@@ -33,7 +33,7 @@
 #include <utils/eoStat.h>
 
 /** eoCheckPoint is a container class.
-    It contains vectors of (pointers to) 
+    It contains std::vectors of (pointers to) 
              eoContinue    (modif. MS July 16. 2002)
              eoStats, eoUpdater and eoMonitor
     it is an eoContinue, so its operator() will be called every generation - 
@@ -76,7 +76,7 @@ bool eoCheckPoint<EOT>::operator()(const eoPop<EOT>& _pop)
 {
     unsigned i;
 
-    vector<const EOT*> sorted_pop;
+    std::vector<const EOT*> sorted_pop;
     if (!sorted.empty())
     {
       _pop.sort(sorted_pop);

@@ -18,7 +18,7 @@
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
-CVS Info: $Date: 2001-12-03 16:28:30 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/contrib/MGE/VirusOp.h,v 1.2 2001-12-03 16:28:30 evomarc Exp $ $Author: evomarc $
+CVS Info: $Date: 2003-02-27 19:26:43 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/contrib/MGE/VirusOp.h,v 1.3 2003-02-27 19:26:43 okoenig Exp $ $Author: okoenig $
 */
 
 #ifndef VirusOp_h
@@ -28,7 +28,7 @@ CVS Info: $Date: 2001-12-03 16:28:30 $ $Header: /home/nojhan/dev/eodev/eodev_cvs
 
 #include <iostream>    // ostream, istream
 #include <functional>  // bind2nd
-#include <string>      // string
+#include <string>      // std::string
 
 #include <utils/eoRNG.h>
 #include "../contrib/MGE/eoVirus.h"
@@ -40,7 +40,7 @@ template<class FitT>
 class VirusBitFlip: public eoMonOp<eoVirus<FitT> > {
  public:
   /// The class name.
-  virtual string className() const { return "VirusBitFlip"; };
+  virtual std::string className() const { return "VirusBitFlip"; };
 
   /**
    * Change one bit.
@@ -57,7 +57,7 @@ template<class FitT>
 class VirusMutation: public eoMonOp<eoVirus<FitT> > {
  public:
   /// The class name.
-  virtual string className() const { return "VirusMutation"; };
+  virtual std::string className() const { return "VirusMutation"; };
 
   /**
    * Change one bit.
@@ -65,7 +65,7 @@ class VirusMutation: public eoMonOp<eoVirus<FitT> > {
    */
   bool operator()(eoVirus<FitT>& _chrom) {
 	// Search for virus bits
-	vector<unsigned> bitsSet;
+        std::vector<unsigned> bitsSet;
 	for ( unsigned i = 0; i < _chrom.size(); i ++ ) {
 	  if ( _chrom.virusBit(i) ) {
 		bitsSet.push_back( i );
@@ -90,7 +90,7 @@ class VirusShiftMutation: public eoMonOp<eoVirus<FitT> > {
   VirusShiftMutation( ) {};
 
   /// The class name.
-  virtual string className() const { return "VirusShiftMutation"; };
+  virtual std::string className() const { return "VirusShiftMutation"; };
 
   /**
    * Change one bit.
@@ -125,7 +125,7 @@ template<class FitT>
 class VirusTransmission: public eoBinOp<eoVirus<FitT> > {
  public:
   /// The class name.
-  virtual string className() const { return "VirusTransmission"; };
+  virtual std::string className() const { return "VirusTransmission"; };
 
   /**
    * Change one bit.

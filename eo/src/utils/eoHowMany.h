@@ -88,7 +88,7 @@ public:
 	rate = 0.0;		   // just in case, but shoud be unused
 	combien = int(_rate);	   // negative values are allowed here
 	if (combien != _rate)
-	  cerr << "Warning: Number was rounded in eoHowMany";
+	  std::cerr << "Warning: Number was rounded in eoHowMany";
       }
   }
 
@@ -118,13 +118,13 @@ public:
     if (combien < 0)
       {
 	if (_size+combien<0)
-	  throw runtime_error("Negative result in eoHowMany");
+	  throw std::runtime_error("Negative result in eoHowMany");
 	return _size+combien;
       }
     return unsigned(combien);
   }
 
-  virtual void printOn(ostream& _os) const 
+  virtual void printOn(std::ostream& _os) const 
   {
     if (combien == 0)
       _os << 100*rate << "% " << std::ends;
@@ -134,9 +134,9 @@ public:
 
   }
 
-  virtual void readFrom(istream& _is) 
+  virtual void readFrom(std::istream& _is) 
    {
-    string value;
+    std::string value;
     _is >> value;
     readFrom(value);
     return;
@@ -165,7 +165,7 @@ public:
 
     // minimal check
     if ( rate < 0.0 )
-      throw runtime_error("Negative rate read in eoHowMany::readFrom");
+      throw std::runtime_error("Negative rate read in eoHowMany::readFrom");
   }
 
   /** The unary - operator: reverses the computation */

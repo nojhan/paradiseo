@@ -176,7 +176,7 @@ class eoCombinedOp : public eoGeneralOp<EOT>
                 counter++;
                 if (counter > 1000) 
                 {
-                    throw logic_error("eoCombinedOp: no termination after 1000 tries, did you forget to insert individuals in your eoGeneralOp?");
+                    throw std::logic_error("eoCombinedOp: no termination after 1000 tries, did you forget to insert individuals in your eoGeneralOp?");
                 }
             }
             while (next.size() < intermediate.size());

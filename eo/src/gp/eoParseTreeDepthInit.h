@@ -35,7 +35,6 @@
 #include <eoPop.h>
 
 using namespace gp_parse_tree;
-using namespace std;
 
 /** eoParseTreeDepthInit : the initializer class for eoParseTree
 \class eoParseTreeDepthInit eoParseTreeDepthInit.h gp/eoParseTreeDepthInit.h
@@ -51,7 +50,7 @@ class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
     protected:
 	// a binary predicate for sorting
 	// hopefully this will work with M$VC++ 6.0
-	struct lt_arity:public binary_function<Node,Node,bool>
+	struct lt_arity:public std::binary_function<Node,Node,bool>
 	{
 		bool operator()(const Node &_node1, const Node &_node2) { return (_node1.arity() < _node2.arity());};
 	};
@@ -63,13 +62,13 @@ class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
     /**
      * Constructor
      * @parm _max_depth The maximum depth of a tree
-     * @param _initializor A vector containing the possible nodes
+     * @param _initializor A std::vector containing the possible nodes
      * @param _grow False results in a full tree, True result is a randomly grown tree
      * @param _ramped_half_and_half True results in Ramped Half and Half Initialization
      */
 	eoParseTreeDepthInit(
         unsigned _max_depth,
-	const vector<Node>& _initializor,
+	const std::vector<Node>& _initializor,
         bool _grow = true,
 	bool _ramped_half_and_half = false)
             :
@@ -82,21 +81,21 @@ class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
     {
       if(initializor.empty())
       {
-        throw logic_error("eoParseTreeDepthInit: uhm, wouldn't you rather give a non-empty set of Nodes?");
+        throw std::logic_error("eoParseTreeDepthInit: uhm, wouldn't you rather give a non-empty set of Nodes?");
       }
-      // lets sort the initializor vector according to  arity (so we can be sure the terminals are in front)
+      // lets sort the initializor std::vector according to  arity (so we can be sure the terminals are in front)
       // we use stable_sort so that if element i was in front of element j and they have the same arity i remains in front of j
       stable_sort(initializor.begin(), initializor.end(), lt_arity());
     }
         /// My class name
-	virtual string className() const { return "eoParseTreeDepthInit"; };
+	virtual std::string className() const { return "eoParseTreeDepthInit"; };
 
     /**initialize a tree
      * @param _tree : the tree to be initialized
      */
     void operator()(EoType& _tree)
 	{
-        list<Node> sequence;
+        std::list<Node> sequence;
         generate(sequence, current_depth);
 
         parse_tree<Node> tmp(sequence.begin(), sequence.end());
@@ -117,11 +116,11 @@ class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
 	
 	}
    private :
-    void generate(list<Node>& sequence, int the_max, int last_terminal = -1)
+    void generate(std::list<Node>& sequence, int the_max, int last_terminal = -1)
     {
 	    if (last_terminal == -1)
 	    { // check where the last terminal in the sequence resides
-            typename vector<Node>::iterator it;
+            typename std::vector<Node>::iterator it;
 		    for (it = initializor.begin(); it != initializor.end(); ++it)
 		    {
 			    if (it->arity() > 0)
@@ -133,12 +132,12 @@ class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
 
 	    if (the_max == 1)
 	    { // generate terminals only
-		    typename vector<Node>::iterator it = initializor.begin() + rng.random(last_terminal);
+		    typename std::vector<Node>::iterator it = initializor.begin() + rng.random(last_terminal);
 		    sequence.push_front(*it);
 		    return;
 	    }
 	
-	    typename vector<Node>::iterator what_it;
+	    typename std::vector<Node>::iterator what_it;
 
 	    if (grow)
 	    {
@@ -171,12 +170,12 @@ class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
      * @param pop the population to be created
      * @param population_size the size of the population to be created
      * @param init_max_depth the initial maximum tree depth
-     * @param initializor A vector containing the possible nodes
+     * @param initializor A std::vector containing the possible nodes
      
      \ingroup ParseTree
      */
 template <class FType, class Node>
-void  eoInitRampedHalfAndHalf(eoPop< eoParseTree<FType,Node> > &pop, unsigned int population_size, unsigned int init_max_depth, vector<Node> &initializor)
+void  eoInitRampedHalfAndHalf(eoPop< eoParseTree<FType,Node> > &pop, unsigned int population_size, unsigned int init_max_depth, std::vector<Node> &initializor)
 {
 	typedef eoParseTree<FType,Node> EoType;
 	typedef eoPop< EoType > Pop;
@@ -185,10 +184,10 @@ void  eoInitRampedHalfAndHalf(eoPop< eoParseTree<FType,Node> > &pop, unsigned in
 	unsigned int part_pop_size = population_size / (2*M);
 	unsigned int m=0;
 
-	cerr << "EO WARNING: Ramped Half and Half Initialization is now supported by eoParseTreeDepthInit." << endl;
-	cerr << "            This function is now obsolete and might be removed in the future so you should"<< endl;
-	cerr << "            update your code to use: " << endl << endl;
-	cerr << "            eoParseTreeDepthInit( _max_depth, _initializer, bool _grow, bool _ramped_half_and_half)" << endl << endl;
+	std::cerr << "EO WARNING: Ramped Half and Half Initialization is now supported by eoParseTreeDepthInit." << std::endl;
+	std::cerr << "            This function is now obsolete and might be removed in the future so you should"<< std::endl;
+	std::cerr << "            update your code to use: " << std::endl << std::endl;
+	std::cerr << "            eoParseTreeDepthInit( _max_depth, _initializer, bool _grow, bool _ramped_half_and_half)" << std::endl << std::endl;
 	
 	pop.clear();
 	

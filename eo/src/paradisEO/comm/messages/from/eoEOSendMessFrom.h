@@ -57,7 +57,7 @@ public :
   void operator () () {
     
     loc_listen.push (pop) ;
-    //    cout << "Reception de " << pop.size () << "individus " << endl ;
+    //    std::cout << "Reception de " << pop.size () << "individus " << std::endl ;
   }
 
 private :

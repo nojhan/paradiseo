@@ -39,7 +39,7 @@ public:
   /// Ctor 
   eoEvalContinue( eoEvalFuncCounter<EOT> & _eval, unsigned long _totalEval)
 	  : eval(_eval), repTotalEvaluations( _totalEval ) {
-    cout << "Ctor de eoEvalFuncCounter avec total = " << repTotalEvaluations << endl;
+    std::cout << "Ctor de eoEvalFuncCounter avec total = " << repTotalEvaluations << std::endl;
 };
   
   /** Returns false when a certain number of evaluations has been done
@@ -47,7 +47,7 @@ public:
   virtual bool operator() ( const eoPop<EOT>& _vEO ) {
     if (eval.value() >= repTotalEvaluations) 
       {
-	cout << "STOP in eoEvalContinue: Reached maximum number of evaluations [" << repTotalEvaluations << "]\n";
+	std::cout << "STOP in eoEvalContinue: Reached maximum number of evaluations [" << repTotalEvaluations << "]\n";
 	return false;
       }
     return true;

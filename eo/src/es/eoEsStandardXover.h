@@ -55,7 +55,7 @@ public:
     crossObj(_crossObj), crossMut(_crossMut) {}
 
   /// The class name. Used to display statistics
-  virtual string className() const { return "eoEsStandardXover"; }
+  virtual std::string className() const { return "eoEsStandardXover"; }
 
   /**
    * modifies one parents in the populator

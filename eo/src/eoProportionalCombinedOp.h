@@ -65,7 +65,7 @@ public:
     rates.push_back(_rate);
   }
 
-  virtual string className() const { return "eoPropCombinedMonOp"; }
+  virtual std::string className() const { return "eoPropCombinedMonOp"; }
 
   virtual void add(eoMonOp<EOT> & _op, const double _rate, bool _verbose=false)
   {
@@ -73,11 +73,11 @@ public:
     rates.push_back(_rate);
     // compute the relative rates in percent - to warn the user!
     if (_verbose)
-      printOn(cout);
+      printOn(std::cout);
   }
 
   // outputs the operators and percentages
-  virtual void printOn(ostream & _os)
+  virtual void printOn(std::ostream & _os)
   {
     double total = 0;
     unsigned i;
@@ -116,7 +116,7 @@ public:
     rates.push_back(_rate);
   }
 
-virtual string className() const { return "eoPropCombinedBinOp"; }
+virtual std::string className() const { return "eoPropCombinedBinOp"; }
 
 virtual void add(eoBinOp<EOT> & _op, const double _rate, bool _verbose=false)
   {
@@ -129,9 +129,9 @@ virtual void add(eoBinOp<EOT> & _op, const double _rate, bool _verbose=false)
 	unsigned i;
 	for (i=0; i<ops.size(); i++)
 	  total += rates[i];
-	cout << "In " << className() << "\n" ;
+	std::cout << "In " << className() << "\n" ;
 	for (i=0; i<ops.size(); i++)
-	  cout << ops[i]->className() << " with rate " << 100*rates[i]/total << " %\n";
+	  std::cout << ops[i]->className() << " with rate " << 100*rates[i]/total << " %\n";
       }
   }
 
@@ -170,7 +170,7 @@ public:
     rates.push_back(_rate);
   }
 
-virtual string className() const { return "eoPropCombinedQuadOp"; }
+virtual std::string className() const { return "eoPropCombinedQuadOp"; }
 
   // addition of a true operator
 virtual void add(eoQuadOp<EOT> & _op, const double _rate, bool _verbose=false)
@@ -179,11 +179,11 @@ virtual void add(eoQuadOp<EOT> & _op, const double _rate, bool _verbose=false)
     rates.push_back(_rate);
     // compute the relative rates in percent - to warn the user!
     if (_verbose)
-      printOn(cout);
+      printOn(std::cout);
   }
 
   // outputs the operators and percentages
-  virtual void printOn(ostream & _os)
+  virtual void printOn(std::ostream & _os)
   {
     double total = 0;
     unsigned i;

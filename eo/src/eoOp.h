@@ -18,7 +18,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-    CVS Info: $Date: 2001-03-21 12:10:13 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoOp.h,v 1.27 2001-03-21 12:10:13 jmerelo Exp $ $Author: jmerelo $ 
+    CVS Info: $Date: 2003-02-27 19:25:56 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoOp.h,v 1.28 2003-02-27 19:25:56 okoenig Exp $ $Author: okoenig $ 
  */
 //-----------------------------------------------------------------------------
 
@@ -58,9 +58,9 @@ how to build them from a description in a file.
 /** Abstract data types for EO operators.
   Genetic operators act on chromosomes, changing them.
   The type to use them on is problem specific. If your genotype
-  is a vector<bool>, there are operators that work specifically
-  on vector<bool>, but you might also find that generic operators
-  working on vector<T> are what you need.
+  is a std::vector<bool>, there are operators that work specifically
+  on std::vector<bool>, but you might also find that generic operators
+  working on std::vector<T> are what you need.
 
 */
 template<class EOType>
@@ -103,7 +103,7 @@ public:
   /// Ctor
   eoMonOp()
     : eoOp<EOType>( eoOp<EOType>::unary ) {};
-  virtual string className() const {return "eoMonOp";};
+  virtual std::string className() const {return "eoMonOp";};
 };
 
 
@@ -119,7 +119,7 @@ public:
   /// Ctor
   eoBinOp()
       :eoOp<EOType>( eoOp<EOType>::binary ) {};
-  virtual string className() const {return "eoBinOp";};
+  virtual std::string className() const {return "eoBinOp";};
 };
 
 /** Quad genetic operator: subclasses eoOp, and defines basically the
@@ -133,7 +133,7 @@ public:
   /// Ctor
   eoQuadOp()
     :eoOp<EOType>( eoOp<EOType>::quadratic ) {};
-  virtual string className() const {return "eoQuadOp";};
+  virtual std::string className() const {return "eoQuadOp";};
 };
 
 /** Turning an eoQuadOp into an eoBinOp: simply don't touch the second arg!

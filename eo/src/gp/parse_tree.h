@@ -53,7 +53,7 @@
        RetVal Node::operator()(RetVal, subtree<... , It values)
 
        where It is whatever type you desire (most of the time
-	   this will be a vector containing the values of your
+	   this will be a std::vector containing the values of your
 	   variables);
 
 	3) parse_tree::apply(RetVal, It values, It2 moreValues)
@@ -129,22 +129,22 @@
   tree[2] points at the root node4
 
   Embedded iterators are implemented to iterate over nodes rather
-  than subtrees. So an easy way to copy your tree to a vector is:
+  than subtrees. So an easy way to copy your tree to a std::vector is:
 
-  vector<Node> vec(tree.size());
+  std::vector<Node> vec(tree.size());
   copy(tree.ebegin(), tree.eend(), vec.begin());
 
-  You can also copy it to an ostream_iterator with this 
+  You can also copy it to an std::ostream_iterator with this 
   technique, given that your Node implements an appropriate
-  operator<<. Reinitializing a tree with the vector is also 
+  operator<<. Reinitializing a tree with the std::vector is also 
   simple:
 
   tree.clear();
   copy(vec.begin(), vec.end(), back_inserter(tree));
 
-  or from an istream:
+  or from an std::istream:
 
-  copy(istream_iterator<T>(my_stream), istream_iterator<T>(), back_inserter(tree));
+  copy(std::istream_iterator<T>(my_stream), std::istream_iterator<T>(), back_inserter(tree));
 
   Note that the back_inserter must be used as there is no
   resize member in the parse_tree. back_inserter will use
@@ -972,7 +972,7 @@ void swap(gp_parse_tree::parse_tree<T>& a, gp_parse_tree::parse_tree<T>& b)
 }
 
 template<class T> inline
-void iter_swap(vector<gp_parse_tree::parse_tree<T> >::iterator a, vector<gp_parse_tree::parse_tree<T> > b)
+void iter_swap(std::vector<gp_parse_tree::parse_tree<T> >::iterator a, std::vector<gp_parse_tree::parse_tree<T> > b)
 {
     a->swap(*b);
 }*/

@@ -34,21 +34,21 @@
  * It encodes a univariate distribution on the space of bitstrings,
  * i.e. one probability for each bit to be one
  *
- * It is an eoValueParam<vector<double> > : 
- *    the vector<double> stores the probabilities that each bit is 1
+ * It is an eoValueParam<std::vector<double> > : 
+ *    the std::vector<double> stores the probabilities that each bit is 1
  *
  * It is still pure virtual, as the update method needs to be specified
 */
 
 template <class EOT>
 class eoPBILDistrib :  public eoDistribution<EOT>, 
-		       public eoValueParam<vector<double> >
+		       public eoValueParam<std::vector<double> >
 {
 public:
   /** Ctor with size of genomes, and update parameters */
   eoPBILDistrib(unsigned _genomeSize) :
     eoDistribution<EOT>(), 
-    eoValueParam<vector<double> >(vector<double>(_genomeSize, 0.5), "Distribution"),
+    eoValueParam<std::vector<double> >(std::vector<double>(_genomeSize, 0.5), "Distribution"),
     genomeSize(_genomeSize)
   {}
 
@@ -65,7 +65,7 @@ public:
   unsigned Size() {return genomeSize;}
 
   /** printing... */
-  virtual void printOn(ostream& os) const
+  virtual void printOn(std::ostream& os) const
   {
     os << value().size() << ' ';
     for (unsigned i=0; i<value().size(); i++)
@@ -73,7 +73,7 @@ public:
   } 
   
   /** reading...*/
-  virtual void readFrom(istream& is)
+  virtual void readFrom(std::istream& is)
   {
     unsigned sz;
     is >> sz;
@@ -91,7 +91,7 @@ public:
 
   unsigned int size() {return genomeSize;}
 
-  virtual string className() const {return "eoPBILDistrib";};
+  virtual std::string className() const {return "eoPBILDistrib";};
 
 private:
   unsigned genomeSize; // size of indis

@@ -46,7 +46,7 @@
 
     eoReal          just an eoVector<double>
     eoEsSimple      + one self-adapting single sigma for all variables
-    eoEsStdev       a whole vector of self-adapting sigmas
+    eoEsStdev       a whole std::vector of self-adapting sigmas
     eoEsFull        a full self-adapting correlation matrix
 
     @see eoReal eoEsSimple eoEsStdev eoEsFull eoInit
@@ -84,7 +84,7 @@ private :
     result.stdev = sigma;
   }
 
-  // Adaptive mutation through a vector of sigmas
+  // Adaptive mutation through a std::vector of sigmas
   void create_self_adapt(eoEsStdev<FitT>& result)
   {
     unsigned theSize = eoRealInitBounded<EOT>::size();

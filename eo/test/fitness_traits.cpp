@@ -290,7 +290,7 @@ void algo(eoPop<EOT>& _pop)
   eoPop<EOT> offspring;                          // how to get the scaling info into this guy??
   offspring.setPerf2Worth(_pop.getPerf2Worth()); // like this!
 
-  copy(_pop.begin(), _pop.end(), back_inserter(offspring));
+  std::copy(_pop.begin(), _pop.end(), back_inserter(offspring));
 
   offspring.sort(); // should call scale
 
@@ -307,9 +307,9 @@ void minimization_test()
   eo1.performance(1.0);
   eo2.performance(2.0);
 
-  cout << "With minimizing fitness" << endl;
-  cout << eo1.fitness() << " < " << eo2.fitness() << " returns " << (eo1 < eo2) << endl;
-  cout << eo2.fitness() << " < " << eo1.fitness() << " returns " << (eo2 < eo1) << endl;
+  std::cout << "With minimizing fitness" << std::endl;
+  std::cout << eo1.fitness() << " < " << eo2.fitness() << " returns " << (eo1 < eo2) << std::endl;
+  std::cout << eo2.fitness() << " < " << eo1.fitness() << " returns " << (eo2 < eo1) << std::endl;
 }
 
 void the_main()
@@ -325,10 +325,10 @@ void the_main()
   eo1.fitness(10); // could also use performance()
   eo3.fitness(5);
 
-  cout << eo1.fitness() << endl;
-  cout << eo3.fitness() << endl;
+  std::cout << eo1.fitness() << std::endl;
+  std::cout << eo3.fitness() << std::endl;
 
-  cout << "eo1 < eo3 = " << (eo1 < eo3) << endl;
+  std::cout << "eo1 < eo3 = " << (eo1 < eo3) << std::endl;
 
 
   scaled_eo eo2;
@@ -340,14 +340,14 @@ void the_main()
 
   try
   {
-    cout << eo2.fitness() << endl;
-    cout << "did not throw" << endl;
+    std::cout << eo2.fitness() << std::endl;
+    std::cout << "did not throw" << std::endl;
     assert(false); // should throw
   }
-  catch(exception& e)
+  catch(std::exception& e)
   {
-    cout << "Fitness threw exception, as it should" << endl;
-    cout << e.what() << endl;
+    std::cout << "Fitness threw exception, as it should" << std::endl;
+    std::cout << e.what() << std::endl;
   }
 
 /* Set the worth and all is well (this is normally done by some perf2worth functor */
@@ -355,10 +355,10 @@ void the_main()
   eo2.worth(3);
   eo4.worth(5);
 
-  cout << "with maximization " << endl;
-  cout << eo2.fitness() << endl;
-  cout << eo4.fitness() << endl;
-  cout << eo2.fitness() << " < " << eo4.fitness() << " returns " << (eo2 < eo4) << endl;
+  std::cout << "with maximization " << std::endl;
+  std::cout << eo2.fitness() << std::endl;
+  std::cout << eo4.fitness() << std::endl;
+  std::cout << eo2.fitness() << " < " << eo4.fitness() << " returns " << (eo2 < eo4) << std::endl;
 
 /* Test the minimization of fitness */
   minimization_test();
@@ -373,7 +373,7 @@ void the_main()
 
   algo(pop0);
 
-  cout << pop0[0].fitness() << endl;
+  std::cout << pop0[0].fitness() << std::endl;
 
   assert(pop0[0].fitness() == 1);
 
@@ -389,14 +389,14 @@ void the_main()
     // at this point getting the fitness should throw
   try
   {
-    cout << pop1[0].fitness() << endl;
-    cout << "did not throw" << endl;
+    std::cout << pop1[0].fitness() << std::endl;
+    std::cout << "did not throw" << std::endl;
     assert(false); // should throw
   }
-  catch(exception& e)
+  catch(std::exception& e)
   {
-    cout << "Fitness threw exception, as it should" << endl;
-    cout << e.what() << endl;
+    std::cout << "Fitness threw exception, as it should" << std::endl;
+    std::cout << e.what() << std::endl;
   }
 
   // at this point trying to scale should throw
@@ -405,9 +405,9 @@ void the_main()
     algo(pop1); // should complain that it cannot scale
     assert(false); // so it would never get here
   }
-  catch(exception& e)
+  catch(std::exception& e)
   { // but rather ends here
-    cout << e.what() << endl;
+    std::cout << e.what() << std::endl;
   }
 
   // ok, now set the scaling
@@ -415,7 +415,7 @@ void the_main()
 
   algo(pop1);
 
-  cout << "the fitness has been transformed from " << pop1[0].performance() << " to exp(-1) = " << pop1[0].fitness() << endl;
+  std::cout << "the fitness has been transformed from " << pop1[0].performance() << " to exp(-1) = " << pop1[0].fitness() << std::endl;
 }
 
 int main()
@@ -424,9 +424,9 @@ int main()
   {
     the_main();
   }
-  catch(exception& e)
+  catch(std::exception& e)
   {
-    cout << e.what() << endl;
+    std::cout << e.what() << std::endl;
   }
 }
 

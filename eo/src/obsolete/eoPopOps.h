@@ -68,7 +68,7 @@ class eoMonPopOp: public eoObject{
   /** Inherited from eoObject. Returns the class name.
       @see eoObject
   */
-  virtual string className() const {return "eoMonPopOp";};
+  virtual std::string className() const {return "eoMonPopOp";};
   //@}
   
 };
@@ -101,7 +101,7 @@ class eoBinPopOp: public eoObject{
   /** Inherited from eoObject. Returns the class name.
       @see eoObject
   */
-  virtual string className() const {return "eoBinPopOp";};
+  virtual std::string className() const {return "eoBinPopOp";};
   //@}
 
 };
@@ -135,7 +135,7 @@ class eoSelectOne: public eoObject{
   /** Inherited from eoObject. Returns the class name.
       @see eoObject
   */
-  virtual string className() const {return "eoSelectOne";};
+  virtual std::string className() const {return "eoSelectOne";};
   //@}
 
 };

@@ -58,7 +58,7 @@ eoPop<EOT>&  do_make_pop(eoParser & _parser, eoState& _state, eoInit<EOT> & _ini
   // create an empty pop and let the state handle the memory
   eoPop<EOT>& pop = _state.takeOwnership(eoPop<EOT>());
   
-  eoValueParam<string>& loadNameParam = _parser.createParam(string(""), "Load","A save file to restart from",'L', "Persistence" );
+  eoValueParam<std::string>& loadNameParam = _parser.createParam(std::string(""), "Load","A save file to restart from",'L', "Persistence" );
   eoValueParam<bool> & recomputeFitnessParam = _parser.createParam(false, "recomputeFitness", "Recompute the fitness after re-loading the pop.?", 'r',  "Persistence" );
     
   if (loadNameParam.value() != "") // something to load

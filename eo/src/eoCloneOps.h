@@ -18,7 +18,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-    CVS Info: $Date: 2001-04-12 16:46:55 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoCloneOps.h,v 1.1 2001-04-12 16:46:55 evomarc Exp $ $Author: evomarc $ 
+    CVS Info: $Date: 2003-02-27 19:26:09 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoCloneOps.h,v 1.2 2003-02-27 19:26:09 okoenig Exp $ $Author: okoenig $ 
  */
 //-----------------------------------------------------------------------------
 
@@ -46,7 +46,7 @@ class eoMonCloneOp: public eoMonOp<EOT>
 public:
   /// Ctor
   eoMonCloneOp() : eoMonOp<EOT>() {}
-  virtual string className() const {return "eoMonCloneOp";}
+  virtual std::string className() const {return "eoMonCloneOp";}
   virtual bool operator()(EOT&){return false;}
 };
 
@@ -59,7 +59,7 @@ class eoBinCloneOp: public eoBinOp<EOT>
 public:
   /// Ctor
   eoBinCloneOp() : eoBinOp<EOT>() {}
-  virtual string className() const {return "eoBinCloneOp";}
+  virtual std::string className() const {return "eoBinCloneOp";}
   virtual bool operator()(EOT&, const EOT&){return false;}
 };
 
@@ -71,7 +71,7 @@ class eoQuadCloneOp: public eoQuadOp<EOT>
 public:
   /// Ctor
   eoQuadCloneOp():eoQuadOp<EOT>() {}
-  virtual string className() const {return "eoQuadCloneOp";}
+  virtual std::string className() const {return "eoQuadCloneOp";}
 virtual bool operator()(EOT& , EOT& ) {return false;}
 };
 

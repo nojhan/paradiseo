@@ -61,9 +61,9 @@ main()
       pop.push_back(chrom);
     }
   
-  cout << "population:" << endl;
+  std::cout << "population:" << std::endl;
   for (i = 0; i < pop.size(); ++i)
-    cout << "\t" << pop[i] << " " << pop[i].fitness() << endl;
+    std::cout << "\t" << pop[i] << " " << pop[i].fitness() << std::endl;
 
   
   // selection
@@ -92,15 +92,15 @@ main()
       {
 	generation(pop);
       }
-    catch (exception& e)
+    catch (std::exception& e)
       {
-	cout << "exception: " << e.what() << endl;;
+	std::cout << "exception: " << e.what() << std::endl;;
 	exit(EXIT_FAILURE);
       }
     
-    cout << "pop[" << ++g << "]" << endl;
+    std::cout << "pop[" << ++g << "]" << std::endl;
     for (i = 0; i < pop.size(); ++i)
-      cout << "\t" <<  pop[i] << " " << pop[i].fitness() << endl;
+      std::cout << "\t" <<  pop[i] << " " << pop[i].fitness() << std::endl;
     
   } while (pop[0].fitness() < pow(2.0, CHROM_SIZE) - 1);
 
@@ -126,19 +126,19 @@ main()
       {
 	generation2(pop2);
       }
-    catch (exception& e)
+    catch (std::exception& e)
       {
-	cout << "exception: " << e.what() << endl;;
+	std::cout << "exception: " << e.what() << std::endl;;
 	exit(EXIT_FAILURE);
       }
     
-    cout << "pop[" << ++g << "]" << endl;
+    std::cout << "pop[" << ++g << "]" << std::endl;
     for (i = 0; i < pop2.size(); ++i)
-      cout << "\t" <<  pop2[i] << " " << pop[i].fitness() << endl;
+      std::cout << "\t" <<  pop2[i] << " " << pop[i].fitness() << std::endl;
     
   } while (pop2[0].fitness() < pow(2.0, CHROM_SIZE) - 1);
 
-  cout << "Number of evaluations " << eval2.getNumOfEvaluations() << endl;
+  std::cout << "Number of evaluations " << eval2.getNumOfEvaluations() << std::endl;
   return 0;
 }
 

@@ -78,7 +78,7 @@ public:
 
     for (i=0; i<pSize; i++) // truncate to 0
       {
-	value()[i] = max(alpha*_pop[i].fitness()+beta, 0.0);
+	value()[i] = std::max(alpha*_pop[i].fitness()+beta, 0.0);
       }
 
     }

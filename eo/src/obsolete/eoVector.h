@@ -2,7 +2,7 @@
 
    -----------------------------------------------------------------------------
    eoVector.h
-       Turns an STL vector into an EO
+       Turns an STL std::vector into an EO
    (c) GeNeura Team, 1998
  
     This library is free software; you can redistribute it and/or
@@ -28,19 +28,19 @@
 #define _eoVector_H
 
 // STL libraries
-#include <vector>		// For vector<int>
+#include <vector>		// For std::vector<int>
 #include <stdexcept>
 #include <strstream>
 
 #include <eo1d.h>
 #include <eoRnd.h>
 
-/** Adaptor that turns an STL vector into an EO
+/** Adaptor that turns an STL std::vector into an EO
  with the same gene type as the type with which
- the vector has been instantiated
+ the std::vector has been instantiated
 */
 template <class T, class fitnessT=float>
-class eoVector: public eo1d<T, fitnessT>, public vector<T> {
+class eoVector: public eo1d<T, fitnessT>, public std::vector<T> {
 public:
   typedef T Type ;
   
@@ -52,7 +52,7 @@ public:
       @param _val Common initial value
   */
   eoVector( unsigned _size = 0, T _val = 0)
-    : eo1d<T, fitnessT>(), vector<T>( _size, _val ){ };
+    : eo1d<T, fitnessT>(), std::vector<T>( _size, _val ){ };
   
   /** Ctor using a random number generator
       @param _size Lineal length of the object
@@ -60,22 +60,22 @@ public:
   */
   eoVector( unsigned _size, eoRnd<T>& _rnd );
 
-  /** Ctor from a istream. The T class should accept reading from a istream. It doesn't read fitness,
+  /** Ctor from a std::istream. The T class should accept reading from a std::istream. It doesn't read fitness,
 which is supposed to be dynamic and dependent on environment. 
       @param _is the input stream; should have all values in a single line, separated by whitespace
   */
-  eoVector( istream& _is);
+  eoVector( std::istream& _is);
   
 
   /// copy ctor
   eoVector( const eoVector & _eo )
-    : eo1d<T, fitnessT>( _eo ), vector<T>( _eo ){ };
+    : eo1d<T, fitnessT>( _eo ), std::vector<T>( _eo ){ };
   
   /// Assignment operator
   const eoVector& operator =( const eoVector & _eo ) {
     if ( this != &_eo ){
       eo1d<T, fitnessT>::operator=( _eo );
-      vector<T>::operator=( _eo );
+      std::vector<T>::operator=( _eo );
     }
     return *this;
   }
@@ -86,7 +86,7 @@ which is supposed to be dynamic and dependent on environment.
   //@}
   
   /** methods that implement the eo1d <em>protocol</em>
-      @exception out_of_range if _i is larger than EO큦 size
+      @std::exception out_of_range if _i is larger than EO큦 size
   */
   virtual T getGene( unsigned _i ) const {
     if ( _i >= length() ) 
@@ -95,7 +95,7 @@ which is supposed to be dynamic and dependent on environment.
   };
   
   /** methods that implement the eo1d <em>protocol</em>
-      @exception out_of_range if _i is larger than EO큦 size
+      @std::exception out_of_range if _i is larger than EO큦 size
   */
   virtual void setGene( unsigned _i, const T& _value ) {
     if ( _i >= size() )
@@ -104,11 +104,11 @@ which is supposed to be dynamic and dependent on environment.
   };
   
   /** methods that implement the eo1d <em>protocol</em>
-      @exception out_of_range if _i is larger than EO큦 size
+      @std::exception out_of_range if _i is larger than EO큦 size
   */
   virtual void insertGene( unsigned _i, T _val ) {
     if (_i <= size() ) {
-      vector<T>::iterator i = begin()+_i;
+      std::vector<T>::iterator i = begin()+_i;
       insert( i, _val );
     } else {
       throw out_of_range( "out_of_range when inserting a gene");
@@ -116,11 +116,11 @@ which is supposed to be dynamic and dependent on environment.
   };
 
   /** Eliminates the gene at position _i
-      @exception out_of_range if _i is larger than EO큦 size
+      @std::exception out_of_range if _i is larger than EO큦 size
   */
   virtual void deleteGene( unsigned _i ) { 
     if (_i < this->size() ) {
-      vector<T>::iterator i = this->begin()+_i;
+      std::vector<T>::iterator i = this->begin()+_i;
       this->erase( i );
     } else {
       throw out_of_range( "out_of_range when deleting a gene");
@@ -137,7 +137,7 @@ which is supposed to be dynamic and dependent on environment.
   /** Inherited from eoObject 
       @see eoObject
   */
-  string className() const {return "eoVector";};
+  std::string className() const {return "eoVector";};
   //@}
 	
 };
@@ -149,7 +149,7 @@ which is supposed to be dynamic and dependent on environment.
 //____________________________________________________________________________________
 template <class T, class fitnessT>
 eoVector<T,fitnessT>::eoVector( unsigned _size, eoRnd<T>& _rnd )
-  : eo1d<T, fitnessT>(), vector<T>( _size ){ 
+  : eo1d<T, fitnessT>(), std::vector<T>( _size ){ 
   for ( iterator i = begin(); i != end(); i ++ ) {
     *i = _rnd();
   }
@@ -157,8 +157,8 @@ eoVector<T,fitnessT>::eoVector( unsigned _size, eoRnd<T>& _rnd )
 
 //____________________________________________________________________________________
 template <class T, class fitnessT>
-eoVector<T,fitnessT>::eoVector( istream& _is)
-  : eo1d<T, fitnessT>(), vector<T>( ){ 
+eoVector<T,fitnessT>::eoVector( std::istream& _is)
+  : eo1d<T, fitnessT>(), std::vector<T>( ){ 
   while (_is ) {
     T tmp;
     _is >> tmp;

@@ -27,7 +27,7 @@
 
 //-----------------------------------------------------------------------------
 
-#include <stdexcept>       // runtime_error
+#include <stdexcept>       // std::runtime_error
 #include <eoObject.h>      // eoObject
 #include <eoPersistent.h>  // eoPersistent
 
@@ -59,7 +59,7 @@ public:
   /// Return fitness value.
   Fitness fitness() const {
     if (invalid())
-      throw runtime_error("invalid fitness");
+      throw std::runtime_error("invalid fitness");
     return repFitness;
   }
 
@@ -90,23 +90,23 @@ public:
   //@{
 
   /** Return the class id.
-   *  @return the class name as a string
+   *  @return the class name as a std::string
    */
-  virtual string className() const { return "EO"; }
+  virtual std::string className() const { return "EO"; }
 
   /**
    * Read object.\\
    * Calls base class, just in case that one had something to do.
    * The read and print methods should be compatible and have the same format.
    * In principle, format is "plain": they just print a number
-   * @param _is a istream.
-   * @throw runtime_exception If a valid object can't be read.
+   * @param _is a std::istream.
+   * @throw runtime_std::exception If a valid object can't be read.
    */
-  virtual void readFrom(istream& _is) {
+  virtual void readFrom(std::istream& _is) {
      
         // the new version of the reafFrom function.
         // It can distinguish between valid and invalid fitness values. 
-        string fitness_str;
+        std::string fitness_str;
         int pos = _is.tellg();
 	_is >> fitness_str;
 
@@ -124,9 +124,9 @@ public:
 
   /**
    * Write object. Called printOn since it prints the object _on_ a stream.
-   * @param _os A ostream.
+   * @param _os A std::ostream.
    */
-  virtual void printOn(ostream& _os) const {
+  virtual void printOn(std::ostream& _os) const {
 
 
     // the latest version of the code. Very similar to the old code

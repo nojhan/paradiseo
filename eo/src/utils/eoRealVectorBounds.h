@@ -27,7 +27,7 @@
 #ifndef _eoRealVectorBounds_h
 #define _eoRealVectorBounds_h
 
-#include <stdexcept>		   // exceptions!
+#include <stdexcept>		   // std::exceptions!
 #include <utils/eoRNG.h>
 #include <utils/eoRealBounds.h>
 
@@ -40,9 +40,9 @@
 /**
 Vector type for bounds (see eoRealBounds.h for scalar types)
 ------------
-Class eoRealVectorBounds implements the vectorized version: 
-it is basically a vector of eoRealBounds * and forwards all request
-to the elements of the vector.
+Class eoRealVectorBounds implements the std::vectorized version: 
+it is basically a std::vector of eoRealBounds * and forwards all request
+to the elements of the std::vector.
 
 This file also contains the global variables and eoDummyVectorNoBounds 
 that are used as defaults in ctors (i.e. when no
@@ -55,7 +55,7 @@ eoRealVectorBounds which derives from the preceding *and* eoPersistent
   and also has a mechanism for memory handling of the pointers 
   it has to allocate
 */
-class eoRealBaseVectorBounds : public vector<eoRealBounds *>
+class eoRealBaseVectorBounds : public std::vector<eoRealBounds *>
 { 
 public:
   // virtual desctructor (to avoid warning?)
@@ -63,18 +63,18 @@ public:
 
   /** Default Ctor. 
    */
-  eoRealBaseVectorBounds() : vector<eoRealBounds *>(0) {}
+  eoRealBaseVectorBounds() : std::vector<eoRealBounds *>(0) {}
 
   /** Ctor: same bounds for everybody, given as an eoRealBounds
   */
   eoRealBaseVectorBounds(unsigned _dim, eoRealBounds & _bounds) : 
-    vector<eoRealBounds *>(_dim, &_bounds)
+    std::vector<eoRealBounds *>(_dim, &_bounds)
   {}
   
   /** Ctor, particular case of dim-2
    */
   eoRealBaseVectorBounds(eoRealBounds & _xbounds, eoRealBounds & _ybounds) : 
-    vector<eoRealBounds *>(0)
+    std::vector<eoRealBounds *>(0)
   {
 	push_back( &_xbounds);
 	push_back( &_ybounds);
@@ -127,9 +127,9 @@ public:
     (*this)[_i]->foldsInBounds(_r);
   }
 
-  /** Folds all variables of a vector of real values into the bounds
+  /** Folds all variables of a std::vector of real values into the bounds
    */
-  virtual void foldsInBounds(vector<double> & _v)
+  virtual void foldsInBounds(std::vector<double> & _v)
   {
    for (unsigned i=0; i<size(); i++)
      {
@@ -144,9 +144,9 @@ public:
     (*this)[_i]->truncate(_r);
   }
 
-  /** truncates all variables of a vector of real values to the bounds
+  /** truncates all variables of a std::vector of real values to the bounds
    */
-  virtual void truncate(vector<double> & _v)
+  virtual void truncate(std::vector<double> & _v)
   {
    for (unsigned i=0; i<size(); i++)
      {
@@ -161,7 +161,7 @@ public:
 
   /** test: are ALL components within the bounds?
    */
-  virtual bool isInBounds(vector<double> _v)
+  virtual bool isInBounds(std::vector<double> _v)
   {
     for (unsigned i=0; i<size(); i++)
       if (! isInBounds(i, _v[i]))
@@ -169,14 +169,14 @@ public:
     return true;
   }
 
-  /** Accessors: will raise an exception if these do not exist
+  /** Accessors: will raise an std::exception if these do not exist
    */
   virtual double minimum(unsigned _i) {return (*this)[_i]->minimum();}
   virtual double maximum(unsigned _i) {return (*this)[_i]->maximum();}
   virtual double range(unsigned _i) {return (*this)[_i]->range();}
 
   /** Computes the average range
-   *  An exception will be raised if one of the component is unbounded
+   *  An std::exception will be raised if one of the component is unbounded
    */
   virtual double averageRange() 
   {
@@ -187,7 +187,7 @@ public:
   }
 
   /** Generates a random number in i_th range
-   *  An exception will be raised if one of the component is unbounded
+   *  An std::exception will be raised if one of the component is unbounded
    */
   virtual double uniform(unsigned _i, eoRng & _rng = eo::rng)
   { 
@@ -195,10 +195,10 @@ public:
     return r;
   }
 
-  /** fills a vector with uniformly chosen variables in bounds
-   *  An exception will be raised if one of the component is unbounded
+  /** fills a std::vector with uniformly chosen variables in bounds
+   *  An std::exception will be raised if one of the component is unbounded
    */
-  void uniform(vector<double> & _v, eoRng & _rng = eo::rng)
+  void uniform(std::vector<double> & _v, eoRng & _rng = eo::rng)
   {
     _v.resize(size());
     for (unsigned i=0; i<size(); i++)
@@ -209,9 +209,9 @@ public:
 
   /**
    * Write object. It's called printOn since it prints the object on a stream.
-   * @param _os A ostream.
+   * @param _os A std::ostream.
    */
-  virtual void printOn(ostream& _os) const
+  virtual void printOn(std::ostream& _os) const
   {
     for (unsigned i=0; i<size(); i++)
       {
@@ -259,9 +259,9 @@ public:
       push_back(ptBounds);
   }
 
-  /** Ctor: different bounds for different variables, vectors of double
+  /** Ctor: different bounds for different variables, std::vectors of double
    */
-  eoRealVectorBounds(vector<double> _min, vector<double> _max) : 
+  eoRealVectorBounds(std::vector<double> _min, std::vector<double> _max) : 
     factor(_min.size(), 1), ownedBounds(0)
   {
     if (_max.size() != _min.size())
@@ -276,10 +276,10 @@ public:
       }
   }
 
-  /** Ctor from a string
-   * and don't worry, the readFrom(string) starts by setting everything to 0!
+  /** Ctor from a std::string
+   * and don't worry, the readFrom(std::string) starts by setting everything to 0!
   */
-  eoRealVectorBounds(string _s) : eoRealBaseVectorBounds()
+  eoRealVectorBounds(std::string _s) : eoRealBaseVectorBounds()
   {
     readFrom(_s);
   }
@@ -287,7 +287,7 @@ public:
   /** Dtor: destroy all ownedBounds - BUG ???*/
   virtual ~eoRealVectorBounds()
   {
-//     cout << "Dtor, avec size = " << ownedBounds.size() << endl;
+//     std::cout << "Dtor, avec size = " << ownedBounds.size() << std::endl;
 //     for (unsigned i = 0; i < ownedBounds.size(); ++i)
 //     {
 //         delete ownedBounds[i];
@@ -298,19 +298,19 @@ public:
   // methods from eoPersistent
   /**
    * Read object from a stream
-   * only calls the readFrom(string) - for param reading
-   * @param _is A istream.
+   * only calls the readFrom(std::string) - for param reading
+   * @param _is A std::istream.
    */
-  virtual void readFrom(istream& _is) ;
+  virtual void readFrom(std::istream& _is) ;
 
   /**
-   * Read object from a string
-   * @param _is A istream.
+   * Read object from a std::string
+   * @param _is A std::istream.
    */
-  virtual void readFrom(string _s) ;
+  virtual void readFrom(std::string _s) ;
 
   /** overload printOn method to save space */
-  virtual void printOn(ostream& _os) const
+  virtual void printOn(std::ostream& _os) const
   {
     if (factor[0]>1)
       _os << factor[0] ;
@@ -336,10 +336,10 @@ public:
    *  because of ownedBounds */
   eoRealVectorBounds(const eoRealVectorBounds &);
 
-private:// WARNING: there is no reason for both vector below 
+private:// WARNING: there is no reason for both std::vector below 
         //to be synchronized in any manner
-  vector<unsigned int> factor;	   // list of nb of "grouped" bounds
-  vector<eoRealBounds *> ownedBounds; 
+  std::vector<unsigned int> factor;	   // std::list of nb of "grouped" bounds
+  std::vector<eoRealBounds *> ownedBounds; 
 // keep this one private
   eoRealVectorBounds& operator=(const eoRealVectorBounds&);
   };
@@ -347,7 +347,7 @@ private:// WARNING: there is no reason for both vector below
 //////////////////////////////////////////////////////////////
 /** the dummy unbounded eoRealVectorBounds: usefull if you don't need bounds!
  * everything is inlined.
- * Warning: we do need this class, and not only a vector<eoRealNoBounds *>
+ * Warning: we do need this class, and not only a std::vector<eoRealNoBounds *>
  */
 class eoRealVectorNoBounds: public eoRealVectorBounds
 { 
@@ -373,43 +373,43 @@ public:
   virtual bool isMaxBounded(unsigned)   {return false;}
 
   virtual void foldsInBounds(unsigned, double &) {return;}
-  virtual void foldsInBounds(vector<double> &) {return;}
+  virtual void foldsInBounds(std::vector<double> &) {return;}
 
   virtual void truncate(unsigned, double &) {return;}
-  virtual void truncate(vector<double> &) {return;}
+  virtual void truncate(std::vector<double> &) {return;}
 
   virtual bool isInBounds(unsigned, double) {return true;}
-  virtual bool isInBounds(vector<double>) {return true;}
+  virtual bool isInBounds(std::vector<double>) {return true;}
 
   // accessors  
   virtual double minimum(unsigned)
   {
-    throw logic_error("Trying to get minimum of eoRealVectorNoBounds");
+    throw std::logic_error("Trying to get minimum of eoRealVectorNoBounds");
   }
   virtual double maximum(unsigned)
   {
-    throw logic_error("Trying to get maximum of eoRealVectorNoBounds");
+    throw std::logic_error("Trying to get maximum of eoRealVectorNoBounds");
   }
   virtual double range(unsigned)
   {
-    throw logic_error("Trying to get range of eoRealVectorNoBounds");
+    throw std::logic_error("Trying to get range of eoRealVectorNoBounds");
   }
 
   virtual double averageRange() 
   {
-    throw logic_error("Trying to get average range of eoRealVectorNoBounds");
+    throw std::logic_error("Trying to get average range of eoRealVectorNoBounds");
   }
 
   // random generators
   virtual double uniform(unsigned, eoRng & _rng = eo::rng)
   {
-    throw logic_error("No uniform distribution on eoRealVectorNoBounds");
+    throw std::logic_error("No uniform distribution on eoRealVectorNoBounds");
   }
 
-  // fills a vector with uniformly chosen variables in bounds
-  void uniform(vector<double> &, eoRng & _rng = eo::rng)
+  // fills a std::vector with uniformly chosen variables in bounds
+  void uniform(std::vector<double> &, eoRng & _rng = eo::rng)
   {
-    throw logic_error("No uniform distribution on eoRealVectorNoBounds");
+    throw std::logic_error("No uniform distribution on eoRealVectorNoBounds");
   }
 
 };

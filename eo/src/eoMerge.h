@@ -70,7 +70,7 @@ public :
 	  throw std::logic_error("Negative number of offspring in eoElitism!");
 	combien = (unsigned int)_rate;
 	if (combien != _rate)
-	  cout << "Warning: Number of guys to merge in eoElitism was rounded";
+	  std::cout << "Warning: Number of guys to merge in eoElitism was rounded";
       }
   }
   
@@ -87,7 +87,7 @@ public :
     if (combienLocal > _pop.size())
       throw std::logic_error("Elite larger than population");
     
-    vector<const EOT*> result;
+    std::vector<const EOT*> result;
     _pop.nth_element(combienLocal, result);
     
     for (size_t i = 0; i < result.size(); ++i)

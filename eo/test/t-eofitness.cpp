@@ -5,7 +5,7 @@
 
 #include <time.h>    // time
 #include <stdlib.h>  // srand, rand
-#include <iostream>  // cout
+#include <iostream>  // std::cout
 
 #include <eoScalarFitness.h>
 
@@ -21,35 +21,35 @@ int test_fitness(Fitness a, Fitness b)
 //  Fitness a = aval; //static_cast<double>(rand()) / RAND_MAX; 
 //  Fitness b = bval; //static_cast<double>(rand()) / RAND_MAX;
 
-  cout.precision(2);
+  std::cout.precision(2);
   
   unsigned repeat = 2;
   while (repeat--)
     {
-      cout << "------------------------------------------------------" << endl;
-      cout << "testing <    ";
+      std::cout << "------------------------------------------------------" << std::endl;
+      std::cout << "testing <    ";
       if (a < b)
-	cout << a << " < " << b << "  is true" << endl;
+	std::cout << a << " < " << b << "  is true" << std::endl;
       else
-	cout << a << " < " << b << "  is false" <<endl;
+	std::cout << a << " < " << b << "  is false" <<std::endl;
       
-      cout << "testing >    ";
+      std::cout << "testing >    ";
       if (a > b)
-	cout << a << " > " << b << "  is true" << endl;
+	std::cout << a << " > " << b << "  is true" << std::endl;
       else
-	cout << a << " > " << b << "  is false" <<endl;
+	std::cout << a << " > " << b << "  is false" <<std::endl;
       
-      cout << "testing ==   ";
+      std::cout << "testing ==   ";
       if (a == b)
-	cout << a << " == " << b << " is true" << endl;
+	std::cout << a << " == " << b << " is true" << std::endl;
       else
-	cout << a << " == " << b << " is false" <<endl;
+	std::cout << a << " == " << b << " is false" <<std::endl;
       
-      cout << "testing !=   ";
+      std::cout << "testing !=   ";
       if (a != b)
-	cout << a << " != " << b << " is true" << endl;
+	std::cout << a << " != " << b << " is true" << std::endl;
       else
-	cout << a << " != " << b << " is false" <<endl;
+	std::cout << a << " != " << b << " is false" <<std::endl;
       
       a = b;
     }
@@ -58,29 +58,29 @@ int test_fitness(Fitness a, Fitness b)
 
 int main()
 {
-    cout << "Testing minimizing fitness with 1 and 2" << endl;
-    cout << "------------------------------------------------------" << endl;
+    std::cout << "Testing minimizing fitness with 1 and 2" << std::endl;
+    std::cout << "------------------------------------------------------" << std::endl;
 
     eoMinimizingFitness a = 1;
     eoMinimizingFitness b = 2;
 
     test_fitness(a, b);
 
-    cout << "Testing minimizing fitness with 2 and 1" << endl;
-    cout << "------------------------------------------------------" << endl;
+    std::cout << "Testing minimizing fitness with 2 and 1" << std::endl;
+    std::cout << "------------------------------------------------------" << std::endl;
 
     test_fitness(b, a);
 
-    cout << "Testing maximizing fitness with 1 and 2" << endl;
-    cout << "------------------------------------------------------" << endl;
+    std::cout << "Testing maximizing fitness with 1 and 2" << std::endl;
+    std::cout << "------------------------------------------------------" << std::endl;
     
     eoMaximizingFitness a1 = 1;
     eoMaximizingFitness b1 = 2;
 
     test_fitness(a1,b1);
     
-    cout << "Testing maximizing fitness with 2 and 1" << endl;
-    cout << "------------------------------------------------------" << endl;
+    std::cout << "Testing maximizing fitness with 2 and 1" << std::endl;
+    std::cout << "------------------------------------------------------" << std::endl;
     
     test_fitness(b1,a1);
 

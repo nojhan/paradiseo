@@ -46,8 +46,8 @@ template<class Chrom> class eoInsertion: public eoBinaryFunctor<eoPop<Chrom>&, c
   /// (Default) Constructor.
   eoInsertion(const float& _rate = 1.0): eoMerge<Chrom>( _rate ) {}
 
-  /// Ctor from istream
-  eoInsertion( istream& _is): eoBinPopOp<Chrom>( _is ) {};
+  /// Ctor from std::istream
+  eoInsertion( std::istream& _is): eoBinPopOp<Chrom>( _is ) {};
 
   /// Dtor
   virtual ~eoInsertion() {};
@@ -86,7 +86,7 @@ template<class Chrom> class eoInsertion: public eoBinaryFunctor<eoPop<Chrom>&, c
   /** Inherited from eoObject. Returns the class name.
       @see eoObject
   */
-  virtual string className() const {return "eoInsertion";};
+  virtual std::string className() const {return "eoInsertion";};
   //@}
 
 };

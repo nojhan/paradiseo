@@ -35,7 +35,7 @@
 // contains the include specific to real representations, i.e. in src/es dir
 //-----------------------------------------------------------------------------
  
-// the genotypes - from plain vector<double> to full correlated mutation
+// the genotypes - from plain std::vector<double> to full correlated mutation
 #include <es/eoReal.h>
 #include <es/eoEsSimple.h>
 #include <es/eoEsStdev.h>

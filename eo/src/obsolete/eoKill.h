@@ -54,7 +54,7 @@ public:
 	/** Inherited from eoObject 
 		  @see eoObject
 	*/
-	virtual string className() const {return "eoKill";};
+	virtual std::string className() const {return "eoKill";};
     //@}
 };
 

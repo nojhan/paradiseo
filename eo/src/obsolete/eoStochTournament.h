@@ -48,7 +48,7 @@ template <class EOT> class eoStochTournament: public eoSelectOne<EOT>
   {
     // consistency check
     if (Trate < 0.5) {
-      cerr << "Warning, Tournament rate should be > 0.5\nAdjusted to 0.55\n";
+      std::cerr << "Warning, Tournament rate should be > 0.5\nAdjusted to 0.55\n";
       Trate = 0.55;
     }
   }

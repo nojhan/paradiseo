@@ -96,14 +96,14 @@ class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
   virtual eoMonitor&  operator() (void) ;
 
   /// Class name.
-  virtual string className() const { return "eoGnuplot1DSnapshot"; }
+  virtual std::string className() const { return "eoGnuplot1DSnapshot"; }
 
   virtual void handleBounds(eoRealVectorBounds & _bounds)
   {
-    // use strstream and not stringstream until strstream is in all distributions
+    // use strstream and not std::stringstream until strstream is in all distributions
     char buf[1024];
     std::ostrstream os(buf, 1023);
-    //    ostrstream os;       
+    //    std::ostrstream os;       
     os << "set autoscale\nset yrange [" ;
     if (_bounds.isMinBounded(0))
       os << _bounds.minimum(0);
@@ -130,7 +130,7 @@ inline eoMonitor&   eoGnuplot1DSnapshot::operator() (void)
 
   // sends plot order to gnuplot
   char buff[1024];
-  ostrstream os(buff, 1024);
+  std::ostrstream os(buff, 1024);
   os << "set title 'Gen. " << getCounter() << "'; plot '"
      << getFileName() << "' notitle with points ps " << pointSize << "\n";
   os << '\0';

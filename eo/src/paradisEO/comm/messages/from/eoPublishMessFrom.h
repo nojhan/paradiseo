@@ -58,7 +58,7 @@ public :
 
 private :
 
-  string label ; // String identifier ...
+  std::string label ; // String identifier ...
 
 } ;
 

@@ -24,9 +24,9 @@
 
 //-----------------------------------------------------------------------------
 
-#include <iostream>    // ostream, istream
+#include <iostream>    // std::ostream, std::istream
 #include <functional>  // bind2nd
-#include <string>      // string
+#include <string>      // std::string
 
 #include <eoFixedLength.h>
 
@@ -39,7 +39,7 @@
 /** eoBin: implementation of binary chromosome.                               
 \class eoBin eoBin.h ga/eoBin.h
 \ingroup bitstring
-  * based on STL's bit_vector (vector<bool>).                                 
+  * based on STL's bit_std::vector (std::vector<bool>).                                 
 */
 template <class F> class eoBin: public eoFixedLength<F, bool>
 {
@@ -47,33 +47,33 @@ template <class F> class eoBin: public eoFixedLength<F, bool>
 
   /**
    * (Default) Constructor.
-   * @param size Size of the binary string.
+   * @param size Size of the binary std::string.
    */
   eoBin(unsigned size = 0, bool value = false): 
     eoVector<bool,F>(size, value) {}
       
   /// My class name.
-  string className() const 
+  std::string className() const 
     { 
       return "eoBin"; 
     }
   
   /**
    * To print me on a stream.
-   * @param os The ostream.
+   * @param os The std::ostream.
    */
-  void printOn(ostream& os) const
+  void printOn(std::ostream& os) const
     {
-      copy(begin(), end(), ostream_iterator<bool>(os));
+      copy(begin(), end(), std::ostream_iterator<bool>(os));
     }
   
   /**
    * To read me from a stream.
-   * @param is The istream.
+   * @param is The std::istream.
    */
-  void readFrom(istream& is)
+  void readFrom(std::istream& is)
     {
-      string bits;
+      std::string bits;
       is >> bits;
       if (is)
 	{

@@ -70,11 +70,11 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
   // First, decide whether the objective variables are bounded
   eoValueParam<eoParamParamType>& boundsParam = _parser.createParam(eoParamParamType("(0,1)"), "objectBounds", "Bounds for variables (unbounded if absent)", 'B', "Genetic Operators");
 
-  // get initisalizer size == vector size
+  // get initisalizer size == std::vector size
   //  eoRealInitBounded<EOT> * realInit = (eoRealInitBounded<EOT>*)(&_init);
   //  unsigned vecSize = realInit->theBounds().size();
 
-  // get vector size: safer???
+  // get std::vector size: safer???
   EOT eoTmp;
   _init(eoTmp);
   unsigned vecSize = eoTmp.size();
@@ -86,10 +86,10 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
       /////Warning: this code should probably be replaced by creating 
       /////    some eoValueParam<eoRealVectorBounds> with specific implementation
       ////     in eoParser.cpp. At the moemnt, it is there (cf also make_genotype
-      eoParamParamType & ppBounds = boundsParam.value(); // pair<string,vector<string> >
-      // transform into a vector<double>
-      vector<double> v;
-      vector<string>::iterator it;
+      eoParamParamType & ppBounds = boundsParam.value(); // std::pair<std::string,std::vector<std::string> >
+      // transform into a std::vector<double>
+      std::vector<double> v;
+      std::vector<std::string>::iterator it;
       for (it=ppBounds.second.begin(); it<ppBounds.second.end(); it++)
 	{
 	  istrstream is(it->c_str());
@@ -101,7 +101,7 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
       if (v.size() == 2) // a min and a max for all variables 
 	ptBounds = new eoRealVectorBounds(vecSize, v[0], v[1]);
       else				   // no time now
-	throw runtime_error("Sorry, only unique bounds for all variables implemented at the moment. Come back later");
+	throw std::runtime_error("Sorry, only unique bounds for all variables implemented at the moment. Come back later");
       // we need to give ownership of this pointer to somebody
       /////////// end of temporary code
     }
@@ -113,10 +113,10 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
   // while Maarten codes the full tree-structured general operator input
   // BTW we must leave that simple version available somehow, as it is the one
   // that 90% people use!
-  eoValueParam<string>& operatorParam =  _parser.createParam(string("SGA"), "operator", "Description of the operator (SGA only now)", 'o', "Genetic Operators");
+  eoValueParam<std::string>& operatorParam =  _parser.createParam(std::string("SGA"), "operator", "Description of the operator (SGA only now)", 'o', "Genetic Operators");
 
-  if (operatorParam.value() != string("SGA"))
-    throw runtime_error("Sorry, only SGA-like operator available right now\n");
+  if (operatorParam.value() != std::string("SGA"))
+    throw std::runtime_error("Sorry, only SGA-like operator available right now\n");
 
     // now we read Pcross and Pmut, 
     // the relative weights for all crossovers -> proportional choice
@@ -127,12 +127,12 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
   eoValueParam<double>& pCrossParam = _parser.createParam(0.6, "pCross", "Probability of Crossover", 'C', "Genetic Operators" );
   // minimum check
   if ( (pCrossParam.value() < 0) || (pCrossParam.value() > 1) )
-    throw runtime_error("Invalid pCross");
+    throw std::runtime_error("Invalid pCross");
 
   eoValueParam<double>& pMutParam = _parser.createParam(0.1, "pMut", "Probability of Mutation", 'M', "Genetic Operators" );
   // minimum check
   if ( (pMutParam.value() < 0) || (pMutParam.value() > 1) )
-    throw runtime_error("Invalid pMut");
+    throw std::runtime_error("Invalid pMut");
 
     // the crossovers
     /////////////////
@@ -140,18 +140,18 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
   eoValueParam<double>& segmentRateParam = _parser.createParam(double(1.0), "segmentRate", "Relative rate for segment crossover", 's', "Genetic Operators" );
   // minimum check
   if ( (segmentRateParam.value() < 0) )
-    throw runtime_error("Invalid segmentRate");
+    throw std::runtime_error("Invalid segmentRate");
 
   eoValueParam<double>& arithmeticRateParam = _parser.createParam(double(2.0), "arithmeticRate", "Relative rate for arithmetic crossover", 'A', "Genetic Operators" );
   // minimum check
   if ( (arithmeticRateParam.value() < 0) )
-    throw runtime_error("Invalid arithmeticRate");
+    throw std::runtime_error("Invalid arithmeticRate");
 
     // minimum check
   bool bCross = true;
   if (segmentRateParam.value()+arithmeticRateParam.value()==0)
     {
-      cerr << "Warning: no crossover" << endl;
+      std::cerr << "Warning: no crossover" << std::endl;
       bCross = false;
     }
     
@@ -181,37 +181,37 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
   eoValueParam<double> & epsilonParam = _parser.createParam(0.01, "epsilon", "Half-size of interval for Uniform Mutation", 'e', "Genetic Operators" );
   // minimum check
   if ( (epsilonParam.value() < 0) )
-    throw runtime_error("Invalid epsilon");
+    throw std::runtime_error("Invalid epsilon");
 
   eoValueParam<double> & uniformMutRateParam = _parser.createParam(1.0, "uniformMutRate", "Relative rate for uniform mutation", 'u', "Genetic Operators" );
   // minimum check
   if ( (uniformMutRateParam.value() < 0) )
-    throw runtime_error("Invalid uniformMutRate");
+    throw std::runtime_error("Invalid uniformMutRate");
       
   eoValueParam<double> & detMutRateParam = _parser.createParam(1.0, "detMutRate", "Relative rate for deterministic uniform mutation", 'd', "Genetic Operators" );
   // minimum check
   if ( (detMutRateParam.value() < 0) )
-    throw runtime_error("Invalid detMutRate");
+    throw std::runtime_error("Invalid detMutRate");
 
   eoValueParam<double> & normalMutRateParam = _parser.createParam(1.0, "normalMutRate", "Relative rate for Gaussian mutation", 'd', "Genetic Operators" );
   // minimum check
   if ( (normalMutRateParam.value() < 0) )
-    throw runtime_error("Invalid normalMutRate");
+    throw std::runtime_error("Invalid normalMutRate");
   // and the sigma
   eoValueParam<double> & sigmaParam = _parser.createParam(1.0, "sigma", "Sigma (fixed) for Gaussian mutation", 'S', "Genetic Operators" );
   // minimum check
   if ( (sigmaParam.value() < 0) )
-    throw runtime_error("Invalid sigma");
+    throw std::runtime_error("Invalid sigma");
 
     // minimum check
   bool bMut = true;
   if (uniformMutRateParam.value()+detMutRateParam.value()+normalMutRateParam.value()==0)
     {
-      cerr << "Warning: no mutation" << endl;
+      std::cerr << "Warning: no mutation" << std::endl;
       bMut = false;
     }
   if (!bCross && !bMut)
-    throw runtime_error("No operator called in SGA operator definition!!!");
+    throw std::runtime_error("No operator called in SGA operator definition!!!");
 
     // Create the CombinedMonOp
   eoPropCombinedMonOp<EOT> *ptCombinedMonOp = NULL;

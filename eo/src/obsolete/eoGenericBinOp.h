@@ -46,7 +46,7 @@ public:
   /// Ctor
   eoGenericBinOp()
     : eoOp<EOT>( eoOp<EOT>::binary ) {};
-  virtual string className() const {return "eoGenericBinOp";};
+  virtual std::string className() const {return "eoGenericBinOp";};
 };
 
 /** Converter from eoGenericBinOp to eoBinOp 
@@ -60,7 +60,7 @@ public:
   /// Ctor
   eoGeneric2TrueBinOp(eoGenericBinOp<EOT> & _binOp)
     : binOp( _binOp ) {};
-  virtual string className() const {return "eoGeneric2TrueBinOp";}
+  virtual std::string className() const {return "eoGeneric2TrueBinOp";}
 
   virtual void operator()(EOT & _eo1, const EOT & _eo2)
     {

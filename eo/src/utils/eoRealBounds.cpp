@@ -16,7 +16,7 @@ eoRealVectorNoBounds eoDummyVectorNoBounds(0);
 ///////////// helper read functions - could be somewhere else
 
 // removes leading delimiters - return false if nothing else left
-bool remove_leading(std::string & _s, const string _delim)
+bool remove_leading(std::string & _s, const std::string _delim)
 {
   size_t posDebToken = _s.find_first_not_of(_delim);
   if (posDebToken >= _s.size())
@@ -27,7 +27,7 @@ bool remove_leading(std::string & _s, const string _delim)
 
 double read_double(std::string _s)
 {
-  istrstream is(_s.c_str());
+  std::istrstream is(_s.c_str());
   double r;
   is >> r;
   return r;
@@ -35,7 +35,7 @@ double read_double(std::string _s)
 
 int read_int(std::string _s)
 {
-  istrstream is(_s.c_str());
+  std::istrstream is(_s.c_str());
   int i;
   is >> i;
   return i;
@@ -56,9 +56,9 @@ eoRealVectorBounds::eoRealVectorBounds(const eoRealVectorBounds & _b):
 
 // the readFrom method of eoRealVectorNoBounds:
 // only calls the readFrom(string) - for param reading
-void eoRealVectorBounds::readFrom(istream& _is) 
+void eoRealVectorBounds::readFrom(std::istream& _is) 
 {
-  string value;
+  std::string value;
   _is >> value;
   readFrom(value);
   return;
@@ -79,7 +79,7 @@ void eoRealVectorBounds::readFrom(std::string _value)
   resize(0);
   
   // now read
-  string delim(",; ");
+  std::string delim(",; ");
   while (_value.size()>0)
     {
       if (!remove_leading(_value, delim)) // only delimiters were left
@@ -91,38 +91,38 @@ void eoRealVectorBounds::readFrom(std::string _value)
 	  break;
 	}
       // ending char
-      string closeChar = (_value[posDeb] == '(' ? string(")") : string("]") );
+      std::string closeChar = (_value[posDeb] == '(' ? std::string(")") : std::string("]") );
 
-      size_t posFin = _value.find_first_of(string(closeChar));
+      size_t posFin = _value.find_first_of(std::string(closeChar));
       if (posFin >= _value.size())
-	throw runtime_error("Syntax error when reading bounds");
+	throw std::runtime_error("Syntax error when reading bounds");
 
   // y a-t-il un nbre devant
       unsigned count = 1;
       if (posDeb > 0)			// something before opening
 	{
-	  string sCount = _value.substr(0, posDeb);
+	  std::string sCount = _value.substr(0, posDeb);
 	  count = read_int(sCount);
 	  if (count <= 0)
-	    throw runtime_error("Syntax error when reading bounds");
+	    throw std::runtime_error("Syntax error when reading bounds");
 	}
 
       // the bounds
-      string sBounds = _value.substr(posDeb+1, posFin-posDeb-1);
+      std::string sBounds = _value.substr(posDeb+1, posFin-posDeb-1);
       // and remove from original string
       _value = _value.substr(posFin+1);
   
       remove_leading(sBounds, delim);
       size_t posDelim = sBounds.find_first_of(delim);
       if (posDelim >= sBounds.size())
-	throw runtime_error("Syntax error when reading bounds");
+	throw std::runtime_error("Syntax error when reading bounds");
 
       bool minBounded=false, maxBounded=false;
       double minBound=0, maxBound=0;
 
       // min bound
-      string sMinBounds = sBounds.substr(0,posDelim);
-      if (sMinBounds != string("-inf"))
+      std::string sMinBounds = sBounds.substr(0,posDelim);
+      if (sMinBounds != std::string("-inf"))
 	{
 	  minBounded = true;
 	  minBound = read_double(sMinBounds);
@@ -131,8 +131,8 @@ void eoRealVectorBounds::readFrom(std::string _value)
       // max bound
       size_t posEndDelim = sBounds.find_first_not_of(delim,posDelim);
 
-      string sMaxBounds = sBounds.substr(posEndDelim);
-      if (sMaxBounds != string("+inf"))
+      std::string sMaxBounds = sBounds.substr(posEndDelim);
+      if (sMaxBounds != std::string("+inf"))
 	{
 	  maxBounded = true;
 	  maxBound = read_double(sMaxBounds);

@@ -32,7 +32,7 @@
 /** An instance of eoPerfFromWorth
  *  COmputes the ranked fitness: fitnesses range in [m,M]
  *  with m=2-pressure/popSize and M=pressure/popSize.
- *  in between, the progression depends on exponent (linear if 1).
+ *  in between, the progression depstd::ends on exponent (linear if 1).
  */
 template <class EOT>
 class eoRanking : public eoPerf2Worth<EOT> // false: do not cache fitness
@@ -54,24 +54,24 @@ public:
 	  if (_eo == &(*it))
 	    return it-_pop.begin();
 	}
-      throw runtime_error("Not found in eoLinearRanking");
+      throw std::runtime_error("Not found in eoLinearRanking");
     }
 
   /* COmputes the ranked fitness: fitnesses range in [m,M]
      with m=2-pressure/popSize and M=pressure/popSize.
-     in between, the progression depends on exponent (linear if 1).
+     in between, the progression depstd::ends on exponent (linear if 1).
    */
   virtual void operator()(const eoPop<EOT>& _pop)
     {
-      vector<const EOT *> rank;
+      std::vector<const EOT *> rank;
       _pop.sort(rank);
       unsigned pSize =_pop.size();
       unsigned int pSizeMinusOne = pSize-1;
 
       if (pSize <= 1)
-	throw runtime_error("Cannot do ranking with population of size <= 1");
+	throw std::runtime_error("Cannot do ranking with population of size <= 1");
 
-      // value() refers to the vector of worthes (we're in an eoParamvalue)
+      // value() refers to the std::vector of worthes (we're in an eoParamvalue)
       value().resize(pSize);
 
       double beta = (2-pressure)/pSize;

@@ -50,7 +50,7 @@ template <class EOT> class eoEOSendMessFrom ;
 template <class EOT> class eoPublishMessFrom ;
 template <class EOT> class eoKillMessFrom ;
 
-template <class EOT> class eoLocalListener : public queue <eoPop <EOT> > {
+template <class EOT> class eoLocalListener : public std::queue <eoPop <EOT> > {
   
 public :
 
@@ -125,7 +125,7 @@ public :
      String identifier of this algo/agent ?
   */
   
-  string & label () {
+  std::string & label () {
     
     return name_id ;
   }
@@ -142,18 +142,18 @@ public :
 
   void destroy () {
    
-    cout << "Agent [" << name_id << "] stopped ..." << endl ;
+    std::cout << "Agent [" << name_id << "] stopped ..." << std::endl ;
     MPI :: Finalize () ;
     exit (0) ;
   }
 
-  char host_name [255] ; // Host string identifier
+  char host_name [255] ; // Host std::string identifier
   
 private :
 
   MPI :: Comm * comm ; // MPI Communicator
 
-  string name_id ; // String id.
+  std::string name_id ; // String id.
   int num_id ; // MPI id.
   bool req_EO ;
   

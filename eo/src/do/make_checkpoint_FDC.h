@@ -62,7 +62,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
     _state.storeFunctor(increment);
 
     // dir for DISK output
-    eoValueParam<string>& dirNameParam =  _parser.createParam(string("Res"), "resDir", "Directory to store DISK outputs", '\0', "Output - Disk");
+    eoValueParam<std::string>& dirNameParam =  _parser.createParam(std::string("Res"), "resDir", "Directory to store DISK outputs", '\0', "Output - Disk");
     // shoudl we empty it if exists
     eoValueParam<bool>& eraseParam = _parser.createParam(false, "eraseDir", "erase files in dirName if any", '\0', "Output - Disk");
     bool dirOK = false;		   // not tested yet
@@ -75,9 +75,9 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
      *
      * eoBestFitnessStat : best value in pop - type EOT::Fitness
      * eoAverageStat     : average value in pop - type EOT::Fitness
-     * eoSecondMomentStat: average + stdev - type pair<double, double>
-     * eoSortedPopStat   : whole population - type string (!!)
-     * eoScalarFitnessStat: the fitnesses - type vector<double>
+     * eoSecondMomentStat: average + stdev - type std::pair<double, double>
+     * eoSortedPopStat   : whole population - type std::string (!!)
+     * eoScalarFitnessStat: the fitnesses - type std::vector<double>
      * eoDFCSTat         : FDC wrt best in pop or absolute best - type double
      *                     requires an eoDistance. See eoFDCStat.h
      *                     also computes all elements for the FDC scatter plot
@@ -199,7 +199,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 
     if (fileBestParam.value())    // A file monitor for best & secondMoment
       {
-	string stmp = dirNameParam.value() + "/best.xg";
+	std::string stmp = dirNameParam.value() + "/best.xg";
 	eoFileMonitor *fileMonitor = new eoFileMonitor(stmp);
 	// save and give to checkpoint
 	_state.storeFunctor(fileMonitor);
@@ -213,7 +213,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 
     if (plotBestParam.value())    // an eoGnuplot1DMonitor for best & average
       {
-	string stmp = dirNameParam.value() + "_gnu_best.xg";
+	std::string stmp = dirNameParam.value() + "_gnu_best.xg";
 	eoGnuplot1DMonitor *gnuMonitor = new eoGnuplot1DMonitor(stmp,minimizing_fitness<EOT>());
 	// save and give to checkpoint
 	_state.storeFunctor(gnuMonitor);
@@ -250,7 +250,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 	// a gnuplot-based monitor for snapshots: needs a dir name
 	eoGnuplot1DSnapshot *fitSnapshot = new eoGnuplot1DSnapshot(dirNameParam.value());
 	_state.storeFunctor(fitSnapshot);
-	// add any stat that is a vector<double> to it
+	// add any stat that is a std::vector<double> to it
 	fitSnapshot->add(*fitStat);
 	// and of course add it to the checkpoint
 	checkpoint->add(*fitSnapshot);
@@ -271,7 +271,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 	dirOK = testDirRes(dirNameParam.value(), eraseParam.value()); // TRUE
 
       unsigned freq = (saveFrequencyParam.value()>0 ? saveFrequencyParam.value() : UINT_MAX );
-      string stmp = dirNameParam.value() + "/generations";
+      std::string stmp = dirNameParam.value() + "/generations";
       eoCountedStateSaver *stateSaver1 = new eoCountedStateSaver(freq, _state, stmp); 
       _state.storeFunctor(stateSaver1);
     checkpoint->add(*stateSaver1);
@@ -285,7 +285,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
       if (! dirOK )
 	dirOK = testDirRes(dirNameParam.value(), eraseParam.value()); // TRUE
 
-      string stmp = dirNameParam.value() + "/time";
+      std::string stmp = dirNameParam.value() + "/time";
       eoTimedStateSaver *stateSaver2 = new eoTimedStateSaver(saveTimeIntervalParam.value(), _state, stmp); 
       _state.storeFunctor(stateSaver2);
       checkpoint->add(*stateSaver2);

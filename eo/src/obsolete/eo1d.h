@@ -27,7 +27,7 @@
 #ifndef _EO1D_H
 #define _EO1D_H
 
-#include <iostream>				// for ostream
+#include <iostream>				// for std::ostream
 
 // EO Includes
 #include <EO.h>
@@ -59,7 +59,7 @@ least, a copy ctor, assignment operators,
   \deprecated 
   As eo1d provides a so-called 'fat' interface, it might be wiser to
   use eoFixedLength or eoVariableLength instead, that derive from
-  vector and list respectively and (important) redirect the less than
+  std::vector and std::list respectively and (important) redirect the less than
   comparison operator to EO rather than the STL variants.
  
    @see eoFixedLength eoVariableLength
@@ -80,15 +80,15 @@ public:
   /** Ctor using a random number generator and with an specified size
       @param _rndGen Random number generator
       @param _size lineal dimension of the eo1d
-      @param _ID An ID string, preferably unique
+      @param _ID An ID std::string, preferably unique
   */
-  eo1d( unsigned _size, eoRnd<T>& _rndGen, const string& _ID = "");
+  eo1d( unsigned _size, eoRnd<T>& _rndGen, const std::string& _ID = "");
 
- /** Ctor from a istream. It just passes the stream to EO, subclasses should
+ /** Ctor from a std::istream. It just passes the stream to EO, subclasses should
      have to implement this.
      @param _is the input stream
  */ 
-  eo1d( istream& _is): EO<fitnessT>(){ readFrom(is); }
+  eo1d( std::istream& _is): EO<fitnessT>(){ readFrom(is); }
 
   /// Copy ctor
   eo1d( const eo1d& _eo )
@@ -108,7 +108,7 @@ public:
       @param _i index of the gene, which is the minimal unit. Must be
       an unsigned less than #length()#  
       @return what's inside the gene, with the correct type
-	  @exception out_of_range if _i > size()
+	  @std::exception out_of_range if _i > size()
     */
   virtual T getGene( unsigned _i ) const = 0;
 
@@ -117,7 +117,7 @@ public:
    * for T must be defined .
    @param _i index
    @return what's inside the gene, with the correct type
-   @exception out_of_range if _i > size()
+   @std::exception out_of_range if _i > size()
   */
   virtual void setGene( unsigned _i, const T& _value ) = 0;
 
@@ -143,10 +143,10 @@ public:
   /**
    * Read object. Theoretically, the length is known in advance. All objects
    * Should call base class
-   * @param _s A istream.
-   * @throw runtime_exception If a valid object can't be read.
+   * @param _s A std::istream.
+   * @throw runtime_std::exception If a valid object can't be read.
    */
-  virtual void readFrom(istream& _s) {
+  virtual void readFrom(std::istream& _s) {
 
     for ( unsigned i = 0; i < length(); i ++ ) {
       T tmp;
@@ -160,8 +160,8 @@ public:
   /** Print itself: inherited from eoObject implementation. 
       Instance from base classes are processed in
       base classes, so you don´t have to worry about, for instance, fitness.
-  @param _s the ostream in which things are written*/
-  virtual void printOn( ostream& _s ) const{
+  @param _s the std::ostream in which things are written*/
+  virtual void printOn( std::ostream& _s ) const{
     for ( unsigned i = 0; i < length(); i ++ ) {
       _s << getGene( i ) << " ";
     }
@@ -170,7 +170,7 @@ public:
   /** Inherited from eoObject 
       @see eoObject
   */
-  string className() const {return "eo1d";};
+  std::string className() const {return "eo1d";};
 
   //@}
 
@@ -184,11 +184,11 @@ public:
 /* Ctor using a random number generator and with an specified size
    @param _rndGen Random number generator
    @param _size lineal dimension of the eo1d
-   @param _ID An ID string, preferably unique
+   @param _ID An ID std::string, preferably unique
 */
 template< class T, class fitnessT>
 eo1d<T,fitnessT>::eo1d<T,fitnessT>( unsigned _size, eoRnd<T>& _rndGen,
-				    const string& _ID )
+				    const std::string& _ID )
 	:EO<fitnessT> ( _ID ) {
   for ( unsigned i = 0; i < _size; i ++ ) {
     insertGene( i, _rndGen() );

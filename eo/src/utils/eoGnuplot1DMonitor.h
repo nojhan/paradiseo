@@ -67,7 +67,7 @@ class eoGnuplot1DMonitor: public eoFileMonitor, public eoGnuplot
   virtual void  FirstPlot();
 
   /// Class name.
-  virtual string className() const { return "eoGnuplot1DMonitor"; }
+  virtual std::string className() const { return "eoGnuplot1DMonitor"; }
 
 private:
 };
@@ -103,10 +103,10 @@ inline void  eoGnuplot1DMonitor::FirstPlot()
 {
   if (vec.size() < 2)
     {
-      throw runtime_error("Must have some stats to plot!\n");
+      throw std::runtime_error("Must have some stats to plot!\n");
     }
   char buff[1024];
-  ostrstream os(buff, 1024);
+  std::ostrstream os(buff, 1024);
   os << "plot";
   for (unsigned i=1; i<vec.size(); i++) {
     os << " '" << getFileName().c_str() <<

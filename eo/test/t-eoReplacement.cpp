@@ -20,7 +20,7 @@
 struct Dummy : public EO<double>
 {
     typedef double Type;
-  void printOn(ostream & _os) const
+  void printOn(std::ostream & _os) const
   {
       _os << " - ";
       EO<double>::printOn(_os);
@@ -73,14 +73,14 @@ int the_main(int argc, char **argv)
 
     if (parser.userNeedsHelp())
       {
-        parser.printHelp(cout);
+        parser.printHelp(std::cout);
         exit(1);
       }
 
     unsigned i;
 
-    cout << "Testing the replacements\nParents SIze = " << pSize 
-	 << " and offspring size = " << oSize << endl;
+    std::cout << "Testing the replacements\nParents SIze = " << pSize 
+	 << " and offspring size = " << oSize << std::endl;
 
     rng.reseed(42);
 
@@ -94,7 +94,7 @@ int the_main(int argc, char **argv)
     for (i=0; i<oSize; i++)
       orgOffspring[i].fitness(2*i);
 
-cout << "Initial parents (odd)\n" << orgParents << "\n And initial offsprings (even)\n" << orgOffspring << endl;
+std::cout << "Initial parents (odd)\n" << orgParents << "\n And initial offsprings (even)\n" << orgOffspring << std::endl;
 
     // now the ones we're going to play with
     eoDummyPop parents(0);
@@ -116,50 +116,50 @@ cout << "Initial parents (odd)\n" << orgParents << "\n And initial offsprings (e
     parents = orgParents;
     offspring = orgOffspring;
 
-    cout << "eoGenerationalReplacement\n";
-    cout << "=========================\n";
+    std::cout << "eoGenerationalReplacement\n";
+    std::cout << "=========================\n";
     genReplace(parents, offspring);
-cout << "Parents (originally odd)\n" << parents << "\n And offsprings (orogonally even\n" << offspring << endl;
+std::cout << "Parents (originally odd)\n" << parents << "\n And offsprings (orogonally even\n" << offspring << std::endl;
 
     // Plus
     parents = orgParents;
     offspring = orgOffspring;
 
-    cout << "eoPlusReplacement\n";
-    cout << "=================\n";
+    std::cout << "eoPlusReplacement\n";
+    std::cout << "=================\n";
     plusReplace(parents, offspring);
-cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << endl;
+std::cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << std::endl;
 
     // EP (proche d'un PLUS
     parents = orgParents;
     offspring = orgOffspring;
 
-    cout << "eoEPReplacement\n";
-    cout << "===============\n";
+    std::cout << "eoEPReplacement\n";
+    std::cout << "===============\n";
     epReplace(parents, offspring);
-cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << endl;
+std::cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << std::endl;
 
     // Comma
     parents = orgParents;
     offspring = orgOffspring;
 
     if (parents.size() > offspring.size() )
-	cout << "Skipping Comma Replacement, more parents than offspring\n";
+	std::cout << "Skipping Comma Replacement, more parents than offspring\n";
     else
       {
-	cout << "eoCommaReplacement\n";
-	cout << "==================\n";
+	std::cout << "eoCommaReplacement\n";
+	std::cout << "==================\n";
 	commaReplace(parents, offspring);
-	cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << endl;
+	std::cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << std::endl;
 
 	// Comma with weak elitism
 	parents = orgParents;
 	offspring = orgOffspring;
 
-	cout << "The same, with WEAK elitism\n";
-	cout << "===========================\n";
+	std::cout << "The same, with WEAK elitism\n";
+	std::cout << "===========================\n";
 	weakElitistReplace(parents, offspring);
-	cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << endl;
+	std::cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << std::endl;
       }
 
 	// preparing SSGA replace worse
@@ -167,31 +167,31 @@ cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originall
 	offspring = orgOffspring;
 
     if (parents.size() < offspring.size() )
-	cout << "Skipping all SSGA Replacements, more offspring than parents\n";
+	std::cout << "Skipping all SSGA Replacements, more offspring than parents\n";
     else
       {
-	cout << "SSGA replace worse\n";
-	cout << "==================\n";
+	std::cout << "SSGA replace worse\n";
+	std::cout << "==================\n";
 	ssgaWorseReplace(parents, offspring);
-	cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << endl;
+	std::cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << std::endl;
 
     // SSGA deterministic tournament
 	parents = orgParents;
 	offspring = orgOffspring;
 
-	cout << "SSGA deterministic tournament\n";
-	cout << "=============================\n";
+	std::cout << "SSGA deterministic tournament\n";
+	std::cout << "=============================\n";
 	ssgaDTReplace(parents, offspring);
-	cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << endl;
+	std::cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << std::endl;
 
     // SSGA stochastic tournament
 	parents = orgParents;
 	offspring = orgOffspring;
 
-	cout << "SSGA stochastic tournament\n";
-	cout << "==========================\n";
+	std::cout << "SSGA stochastic tournament\n";
+	std::cout << "==========================\n";
 	ssgaDTReplace(parents, offspring);
-	cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << endl;
+	std::cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << std::endl;
       }
 
     // the general replacement
@@ -200,10 +200,10 @@ cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originall
     parents = orgParents;
     offspring = orgOffspring;
 
-    cout << "General - strong elitism\n";
-    cout << "========================\n";
+    std::cout << "General - strong elitism\n";
+    std::cout << "========================\n";
     sAdReplace(parents, offspring);
-    cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << endl;
+    std::cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << std::endl;
 
 
     return 1;
@@ -215,9 +215,9 @@ int main(int argc, char **argv)
     {
         the_main(argc, argv);
     }
-    catch(exception& e)
+    catch(std::exception& e)
     {
-        cout << "Exception: " << e.what() << endl;
+        std::cout << "Exception: " << e.what() << std::endl;
     }
 
 }

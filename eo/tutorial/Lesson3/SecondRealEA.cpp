@@ -22,6 +22,9 @@
 // define your individuals
 typedef eoReal<eoMinimizingFitness> Indi;	
 
+// Use functions from namespace std
+using namespace std;
+
 // EVALFUNC
 //-----------------------------------------------------------------------------
 // a simple fitness function that computes the euclidian norm of a real vector

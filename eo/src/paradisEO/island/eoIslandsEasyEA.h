@@ -50,7 +50,7 @@ public :
      Constructor
   */
   
-  eoIslandsEasyEA (string _id,
+  eoIslandsEasyEA (std::string _id,
 		   eoListener <EOT> & _listen,
 		   eoConnectivity <EOT> & _conn,
 		   eoEasyEA <EOT> & _ea,
@@ -87,7 +87,7 @@ private :
 
   // Internal components
   
-  string id ; // String identifiant of this algorithm
+  std::string id ; // String identifiant of this algorithm
   eoListener <EOT> & listen ; // The neighbouring of concurrent algos
   eoConnectivity <EOT> & conn ; // Communication topology
   eoCheckPoint <EOT> chkp ;

@@ -51,14 +51,14 @@ public:
   }
   
   /// To print me on a stream.
-  /// @param os The ostream.
-  void printOn(ostream& os) const {
+  /// @param os The std::ostream.
+  void printOn(std::ostream& os) const {
     os << rate ;
   }
   
   /// To read me from a stream.
-  /// @param is The istream.
-  void readFrom(istream& is) {
+  /// @param is The std::istream.
+  void readFrom(std::istream& is) {
     is >> rate ;
   }
       
@@ -68,7 +68,7 @@ public:
   /** Inherited from eoObject 
       @see eoObject
   */
-  string className() const {return "eoMutation";};
+  std::string className() const {return "eoMutation";};
   //@}
 
 protected:

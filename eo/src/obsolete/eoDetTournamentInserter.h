@@ -61,7 +61,7 @@ public :
     return *this;
   }
   
-  string className(void) const { return "eoDetTournamentInserter"; }
+  std::string className(void) const { return "eoDetTournamentInserter"; }
   
 private :
   unsigned t_size;

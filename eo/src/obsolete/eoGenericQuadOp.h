@@ -51,7 +51,7 @@ public:
   /// Ctor
   eoGenericQuadOp()
     : eoOp<EOT>( eoOp<EOT>::quadratic ) {};
-  virtual string className() const {return "eoGenericQuadOp";};
+  virtual std::string className() const {return "eoGenericQuadOp";};
 };
 
 /** Converter from eoGenericQuadOp to eoQuadOp 
@@ -65,7 +65,7 @@ public:
   /// Ctor
   eoGeneric2TrueQuadOp(eoGenericQuadOp<EOT> & _quadOp)
     : quadOp( _quadOp ) {};
-  virtual string className() const {return "eoGeneric2TrueQuadOp";}
+  virtual std::string className() const {return "eoGeneric2TrueQuadOp";}
 
   virtual void operator()(EOT & _eo1, EOT & _eo2)
     {

@@ -194,7 +194,7 @@ private :
 template <class EOT, class FitnessType>
 void print_best(eoPop<EOT>& pop)
 {
-    cout << endl;
+    std::cout << std::endl;
     FitnessType best = pop[0].fitness();
     int index = 0;
 
@@ -207,13 +207,13 @@ void print_best(eoPop<EOT>& pop)
         }
     }
     
-    cout << "\t";
+    std::cout << "\t";
         
     string str;
     pop[index].apply(str);
     
-    cout << str.c_str();
-    cout << endl << "RMS Error = " << pop[index].fitness() << endl;
+    std::cout << str.c_str();
+    std::cout << std::endl << "RMS Error = " << pop[index].fitness() << std::endl;
 }
 
 int main()
@@ -274,7 +274,7 @@ int main()
     // GP generation
     eoEasyEA<EoType> gp(checkPoint, eval, select, transform, replace);
 
-    cout << "Initialization done" << endl;
+    std::cout << "Initialization done" << std::endl;
 
     print_best<EoType, FitnessType>(pop);
 
@@ -282,9 +282,9 @@ int main()
     {
       gp(pop);
     }
-    catch (exception& e)
+    catch (std::exception& e)
     {
-	    cout << "exception: " << e.what() << endl;;
+	    std::cout << "exception: " << e.what() << std::endl;;
 	    exit(EXIT_FAILURE);
     }
 

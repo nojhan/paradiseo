@@ -16,6 +16,9 @@
 #include <eo>
 #include <ga.h>
 
+// Use functions from namespace std
+using namespace std;
+
 // EVAL
 #include "binary_value.h"
 

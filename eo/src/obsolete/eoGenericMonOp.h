@@ -46,7 +46,7 @@ public:
   /// Ctor
   eoGenericMonOp()
     : eoOp<EOT>( eoOp<EOT>::unary ) {};
-  virtual string className() const {return "eoGenericMonOp";};
+  virtual std::string className() const {return "eoGenericMonOp";};
 };
 
 /** COnverter from eoGenericMonOp to eoMonOp 
@@ -60,7 +60,7 @@ public:
   /// Ctor
   eoGeneric2TrueMonOp(eoGenericMonOp<EOT> & _monOp)
     : monOp( _monOp ) {};
-  virtual string className() const {return "eoGeneric2trueMonOp";}
+  virtual std::string className() const {return "eoGeneric2trueMonOp";}
 
   virtual void operator()(EOT & _eo)
     {

@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
-CVS Info: $Date: 2001-04-03 10:08:07 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoMonitor.h,v 1.9 2001-04-03 10:08:07 jmerelo Exp $ $Author: jmerelo $ 
+CVS Info: $Date: 2003-02-27 19:21:18 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoMonitor.h,v 1.10 2003-02-27 19:21:18 okoenig Exp $ $Author: okoenig $ 
 
  */
 //-----------------------------------------------------------------------------
@@ -37,7 +37,7 @@ CVS Info: $Date: 2001-04-03 10:08:07 $ $Header: /home/nojhan/dev/eodev/eodev_cvs
 class eoParam;
 
 /**
-    The abstract monitor class is a vector of parameter pointers. Use
+    The abstract monitor class is a std::vector of parameter pointers. Use
     either push_back a pointer or add a reference to a parameter.
     Derived classes will then implement the operator()(void) which
     will stream or pipe the current values of the parameters to wherever you

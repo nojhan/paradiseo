@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
-    CVS Info: $Date: 2001-09-04 06:51:59 $ $Version$ $Author: evomarc $ 
+    CVS Info: $Date: 2003-02-27 19:25:48 $ $Version$ $Author: okoenig $ 
  */
 //-----------------------------------------------------------------------------
 
@@ -72,7 +72,7 @@ public :
     return true;
   }
 
-  virtual string className() const { return "eoVlAddMutation"; }
+  virtual std::string className() const { return "eoVlAddMutation"; }
 
 private:
   unsigned nMax;
@@ -84,7 +84,7 @@ template <class EOT>
 class eoGeneDelChooser : public eoUF<EOT &, unsigned int>
 {
 public:
-  virtual string className() const =0;
+  virtual std::string className() const =0;
 
 };
 
@@ -98,7 +98,7 @@ public:
     {
 	return eo::rng.random(_eo.size());
     }
-  virtual string className() const { return "eoUniformGeneChooser"; }
+  virtual std::string className() const { return "eoUniformGeneChooser"; }
 };
 
 /** Deletion of a gene
@@ -139,12 +139,12 @@ public :
     return true;
   }
 
-  virtual string className() const
+  virtual std::string className() const
   { 
     char s[1024];
-    ostrstream os(s, 1022);
-    os << "eoVlDelMutation(" << chooser.className() << ")" << ends; 
-    return string(s); 
+    std::ostrstream os(s, 1022);
+    os << "eoVlDelMutation(" << chooser.className() << ")" << std::ends; 
+    return std::string(s); 
   }
 
 private:

@@ -10,6 +10,8 @@
 #include <eo>                      // all usefull eo stuff
 #include "mastermind.h"            // Chrom eoChromInit eoChromMutation eoChromXover eoChromEvaluator
 
+using namespace std;
+
 //-----------------------------------------------------------------------------
 // global variables
 //-----------------------------------------------------------------------------

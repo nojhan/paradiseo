@@ -63,11 +63,11 @@ template<class EOT> class eoSteadyStateEA: public eoAlgo<EOT>
 	{
 	  step(pop);
 	}
-    catch (exception& e)
+    catch (std::exception& e)
 	{
-	  string s = e.what();
+	  std::string s = e.what();
 	  s.append( " in eoSteadyStateEA ");
-	  throw runtime_error( s );
+	  throw std::runtime_error( s );
 	}
     } while ( continuator( pop ) );
   

@@ -50,7 +50,7 @@ class eoParetoRanking : public eoPerf2WorthCached<EOT, double>
       value() = dominanceMap.sum_dominators(); // get rank: 0 means part of current front
 
       // calculate maximum
-      double maxim = *max_element(value().begin(), value().end());
+      double maxim = *std::max_element(value().begin(), value().end());
 
       // higher is better, so invert the value
       for (unsigned i = 0; i < value().size(); ++i)

@@ -40,11 +40,11 @@ template <class EOT> class eoMessTo {
 public :
   
   /**
-     Constructor. A string identifier, being defined in subclasses
+     Constructor. A std::string identifier, being defined in subclasses
      is given for any kind of messages.
   */
 
-  eoMessTo (string _label) :
+  eoMessTo (std::string _label) :
     
     label (_label),
     comm (MPI :: COMM_WORLD) {
@@ -64,7 +64,7 @@ protected :
     
   MPI :: Comm & comm ; // MPI Communicator
   
-  string label ; // String identifier of the message
+  std::string label ; // String identifier of the message
     
 } ;
 

@@ -51,10 +51,10 @@ public:
 	 * reached */
   virtual bool operator() ( const eoPop<EOT>& _vEO ) {
     thisGeneration++;
-    //	  cout << " [" << thisGeneration << "] ";
+    //	  std::cout << " [" << thisGeneration << "] ";
     if (thisGeneration >= repTotalGenerations) 
       {
-	cout << "STOP in eoGenContinue: Reached maximum number of generations [" << thisGeneration << "/" << repTotalGenerations << "]\n";
+	std::cout << "STOP in eoGenContinue: Reached maximum number of generations [" << thisGeneration << "/" << repTotalGenerations << "]\n";
 	return false;
       }
     return true;

@@ -78,11 +78,11 @@ template<class EOT> class eoRandomSelect: public eoBinPopOp<EOT>
 
    * Should call base class, just in case.
 
-   * @param _s A istream.
+   * @param _s A std::istream.
 
    */
 
-  virtual void readFrom(istream& _s) {
+  virtual void readFrom(std::istream& _s) {
 
 	_s >> repRate;
 
@@ -96,9 +96,9 @@ template<class EOT> class eoRandomSelect: public eoBinPopOp<EOT>
 
 	  base classes, so you don´t have to worry about, for instance, fitness.
 
-  @param _s the ostream in which things are written*/
+  @param _s the std::ostream in which things are written*/
 
-  virtual void printOn( ostream& _s ) const{
+  virtual void printOn( std::ostream& _s ) const{
 
 	_s << repRate;
 
@@ -112,7 +112,7 @@ template<class EOT> class eoRandomSelect: public eoBinPopOp<EOT>
 
   */
 
-  string className() const {return "eoRandomSelect";};
+  std::string className() const {return "eoRandomSelect";};
 
 
 

@@ -103,7 +103,7 @@ public:
   void defValue ( std::string str ) { repDefault = str; };
   
   /**
-   * Returns the value of the param as a string
+   * Returns the value of the param as a std::string
    */
   /**
    * Returns if required or not.
@@ -123,8 +123,8 @@ private:
     any scalar value type. It makes use of std::strstream to get and set values. This
     should be changed to std::stringstream when that class is available in g++.
 
-    Note also that there is a template specialization for pair<double, double> and
-    for vector<double>. These stream their contents delimited with whitespace.
+    Note also that there is a template specialization for std::pair<double, double> and
+    for std::vector<double>. These stream their contents delimited with whitespace.
 */
 
 template <class ValueType>
@@ -174,7 +174,7 @@ public :
 };
 
 /*
-  Specialization for string
+  Specialization for std::string
 */
 template <>
 std::string eoValueParam<std::string>::getValue(void) const
@@ -197,7 +197,7 @@ void eoValueParam<bool>::setValue(std::string _value)
 }
 
 
-/// Because MSVC does not support partial specialization, the pair is a double, not a T
+/// Because MSVC does not support partial specialization, the std::pair is a double, not a T
 template <>
 std::string eoValueParam<std::pair<double, double> >::getValue(void) const
 {
@@ -208,7 +208,7 @@ std::string eoValueParam<std::pair<double, double> >::getValue(void) const
     return os.str();
 }
 
-/// Because MSVC does not support partial specialization, the pair is a double, not a T
+/// Because MSVC does not support partial specialization, the std::pair is a double, not a T
 template <>
 void eoValueParam<std::pair<double, double> >::setValue(std::string _value)
 {
@@ -217,9 +217,9 @@ void eoValueParam<std::pair<double, double> >::setValue(std::string _value)
     is >> repValue.second;
 }
 
-// The vector<vector<double> >
+// The std::vector<std::vector<double> >
 //////////////////////////////////
-/// Because MSVC does not support partial specialization, the vector is a vector of doubles, not a T
+/// Because MSVC does not support partial specialization, the std::vector is a std::vector of doubles, not a T
 template <>
 std::string eoValueParam<std::vector<std::vector<double> > >::getValue(void) const
 {
@@ -235,7 +235,7 @@ std::string eoValueParam<std::vector<std::vector<double> > >::getValue(void) con
     return os.str();
 }
 
-/// Because MSVC does not support partial specialization, the vector is a vector of doubles, not a T
+/// Because MSVC does not support partial specialization, the std::vector is a std::vector of doubles, not a T
 template <>
 void eoValueParam<std::vector<std::vector<double> > >::setValue(std::string _value)
 {
@@ -256,9 +256,9 @@ void eoValueParam<std::vector<std::vector<double> > >::setValue(std::string _val
     }
 }
 
-// The vector<double>
+// The std::vector<double>
 //////////////////////////////////
-/// Because MSVC does not support partial specialization, the vector is a double, not a T
+/// Because MSVC does not support partial specialization, the std::vector is a double, not a T
 template <>
 std::string eoValueParam<std::vector<double> >::getValue(void) const
 {
@@ -269,7 +269,7 @@ std::string eoValueParam<std::vector<double> >::getValue(void) const
     return os.str();
 }
 
-/// Because MSVC does not support partial specialization, the vector is a double, not a T
+/// Because MSVC does not support partial specialization, the std::vector is a double, not a T
 template <>
 void eoValueParam<std::vector<double> >::setValue(std::string _value)
 {
@@ -280,9 +280,9 @@ void eoValueParam<std::vector<double> >::setValue(std::string _value)
     std::copy(std::istream_iterator<double>(is), std::istream_iterator<double>(), repValue.begin());
 }
 
-// The vector<eoMinimizingFitness>
+// The std::vector<eoMinimizingFitness>
 //////////////////////////////////
-/// Because MSVC does not support partial specialization, the vector is a eoMinimizingFitness, not a T
+/// Because MSVC does not support partial specialization, the std::vector is a eoMinimizingFitness, not a T
 template <>
 std::string eoValueParam<std::vector<eoMinimizingFitness> >::getValue(void) const
 {
@@ -293,7 +293,7 @@ std::string eoValueParam<std::vector<eoMinimizingFitness> >::getValue(void) cons
     return os.str();
 }
 
-/// Because MSVC does not support partial specialization, the vector is a eoMinimizingFitness, not a T
+/// Because MSVC does not support partial specialization, the std::vector is a eoMinimizingFitness, not a T
 // NOTE: g++ doesn support it either!!!
 template <>
 void eoValueParam<std::vector<eoMinimizingFitness> >::setValue(std::string _value)
@@ -305,19 +305,19 @@ void eoValueParam<std::vector<eoMinimizingFitness> >::setValue(std::string _valu
     std::copy(std::istream_iterator<eoMinimizingFitness>(is), std::istream_iterator<eoMinimizingFitness>(), repValue.begin());
 }
 
-// The vector<const EOT*>
+// The std::vector<const EOT*>
 //////////////////////////////////
 template <>
 std::string eoValueParam<std::vector<void*> >::getValue(void) const
 {
-  throw std::runtime_error("I cannot getValue for a vector<EOT*>");
+  throw std::runtime_error("I cannot getValue for a std::vector<EOT*>");
   return std::string("");
 }
 
 template <>
 void eoValueParam<std::vector<void*> >::setValue(std::string)
 {
-  throw std::runtime_error("I cannot setValue for a vector<EOT*>");
+  throw std::runtime_error("I cannot setValue for a std::vector<EOT*>");
   return;
 }
 
@@ -325,19 +325,19 @@ void eoValueParam<std::vector<void*> >::setValue(std::string)
 class eoContainerParam : public eoParam
 {
 public :
-    eoContainerParam (ContainerType& value, string _shortName, string _longName,
-	            string _default,
-	            string _description,
+    eoContainerParam (ContainerType& value, std::string _shortName, std::string _longName,
+	            std::string _default,
+	            std::string _description,
                 bool _required,
 	            bool _change )
     : value(_value), eoParam(_shortName, _longName, _description, _default, _required, _change)
     {}
 
 
-  //  void setValue(const string & _value)
+  //  void setValue(const std::string & _value)
    // {
-   //     std::istringstream is(_value);
-    //    copy(istream_iterator<Container::value_type>(is), istream_iterator<Container::value_type>(), back_inserter(value));
+   //     std::istd::stringstream is(_value);
+    //    copy(std::istream_iterator<Container::value_type>(is), std::istream_iterator<Container::value_type>(), back_inserter(value));
    // }
 
 private :
@@ -348,9 +348,9 @@ private :
  * Another helper class for parsing parameters like
  * Keyword(arg1, arg2, ...)
  *
- * It is basically a pair<string,vector<string> >
- *       first string is keyword
- *       the vector<string> contains all arguments (as strings)
+ * It is basically a std::pair<std::string,std::vector<std::string> >
+ *       first std::string is keyword
+ *       the std::vector<std::string> contains all arguments (as std::strings)
  * See make_algo.h
  */
 
@@ -403,7 +403,7 @@ public:
     // so here we do have arguments
     std::string t = _value.substr(pos+1);// the arguments
     _value.resize(pos);
-    first = _value;    // done for the keyword (NOTE: may be empty string!)
+    first = _value;    // done for the keyword (NOTE: may be empty std::string!)
 
     // now all arguments    
   std::string delim(" (),");

@@ -63,7 +63,7 @@ template <class EOT> class eoElitism : public eoCopyElite<EOT>
             if (howmany > _pop.size())
                 throw logical_error("Elite larger than population");
 
-            vector<const EOT*> result;
+            std::vector<const EOT*> result;
             _pop.nth_element(howmany, result);
 
             for (int i = 0; i < result.size(); ++i)

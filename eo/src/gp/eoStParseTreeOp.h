@@ -37,7 +37,7 @@
 
 // a help function
 template <class EOT>
-void get_possible_nodes(const EOT &_eo, vector<int> &possible_nodes, const int type)
+void get_possible_nodes(const EOT &_eo, std::vector<int> &possible_nodes, const int type)
 {
 	int n=0;
 	possible_nodes.clear();
@@ -65,7 +65,7 @@ public:
     : eoQuadOp<EoType>(), max_length(_max_length) {};
 
   /// the ckassname
-  virtual string className() const { return "eoStSubtreeXOver"; };
+  virtual std::string className() const { return "eoStSubtreeXOver"; };
 
   /// Dtor
   virtual ~eoStSubtreeXOver () {};
@@ -78,7 +78,7 @@ public:
   bool operator()(EoType & _eo1, EoType & _eo2 )
   {
 	  int i = 0;
-	  vector<int> nodes;
+	  std::vector<int> nodes;
 	  int n = 0;
 	  int type = 0;
 	  int j = 0;
@@ -142,7 +142,7 @@ public:
   {};
   
   /// the class name
-  virtual string className() const { return "eoStBranchMutation"; };
+  virtual std::string className() const { return "eoStBranchMutation"; };
 
   /// Dtor
   virtual ~eoStBranchMutation() {};
@@ -154,7 +154,7 @@ public:
   bool operator()(EoType& _eo1 )
   {
 	  int i = rng.random(_eo1.size());
-	  vector<int> nodes;
+	  std::vector<int> nodes;
 	  int type = _eo1[i]->type();
 	  int j=0;
 	  int n=0;
@@ -200,29 +200,29 @@ public:
 
   /**
    * Constructor
-   * @param _initializor The vector of Nodes given to the eoGpDepthInitializer
+   * @param _initializor The std::vector of Nodes given to the eoGpDepthInitializer
    */
-  eoStPointMutation( vector<Node>& _node)
+  eoStPointMutation( std::vector<Node>& _node)
     : eoMonOp<EoType>()
   {
   	unsigned int i=0;
         int arity=0;
         int type=0;
-        vector<Node> node_vector;
+        std::vector<Node> node_std::vector;
         for(i=0; i < _node.size(); i++)
         {
         	arity = _node[i].arity();
 		type = _node[i].type();
 		
-			node_vector = node[type][arity];
-			node_vector.push_back(_node[i]);
-			node[type][arity]= node_vector;
+			node_std::vector = node[type][arity];
+			node_std::vector.push_back(_node[i]);
+			node[type][arity]= node_std::vector;
 		
         };
   };
   
   /// the class name
-  virtual string className() const { return "eoStPointMutation"; };
+  virtual std::string className() const { return "eoStPointMutation"; };
 
   /// Dtor
   virtual ~eoStPointMutation() {};
@@ -246,7 +246,7 @@ public:
 
 private :
 	
-	map < int, map < int, vector<Node> > > node;
+	map < int, map < int, std::vector<Node> > > node;
 };
 
  
@@ -270,7 +270,7 @@ public:
   {};
   
   /// the class name
-  virtual string className() const { return "eoStHoistMutation"; };
+  virtual std::string className() const { return "eoStHoistMutation"; };
 
   /// Dtor
   virtual ~eoStHoistMutation() {};
@@ -282,7 +282,7 @@ public:
   bool operator()(EoType& _eo1 )
   {
 
-	  vector<int> nodes;
+	  std::vector<int> nodes;
 	  // get the type of the current tree
 	  int type = _eo1[ _eo1.size() - 1 ]->type();
 

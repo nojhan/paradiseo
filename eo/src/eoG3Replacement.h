@@ -70,8 +70,8 @@ public:
       // minimla check:
       if (_offspring.size() != toKeep)
 	{
-	  cerr << "Les tailles " << _offspring.size() << " " << toKeep << endl;
-	throw runtime_error("eoG3Replacement: wrong number of remaining offspring");
+	  std::cerr << "Les tailles " << _offspring.size() << " " << toKeep << std::endl;
+	throw std::runtime_error("eoG3Replacement: wrong number of remaining offspring");
 	}
       // and put back into _parents
       plus(_offspring, _parents);      

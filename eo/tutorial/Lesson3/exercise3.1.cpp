@@ -25,6 +25,8 @@
 // define your genotype and fitness types
 typedef eoBit<eoMinimizingFitness> Indi;
 
+using namespace std;
+
 // the main_function: nothing changed(!), except variable initialization
 void main_function(int argc, char **argv)
 {

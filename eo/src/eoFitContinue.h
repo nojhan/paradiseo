@@ -50,7 +50,7 @@ public:
     FitnessType bestCurrentFitness = _pop.nth_element_fitness(0);
     if (bestCurrentFitness >= maximum) 
       {
-	cout << "STOP in eoFitContinue: Best fitness has reached " << 
+	std::cout << "STOP in eoFitContinue: Best fitness has reached " << 
 	  bestCurrentFitness << "\n";
 	return false;
       }

@@ -63,24 +63,24 @@ main()
   }
   
   // print population
-  cout << "population:" << endl;
+  std::cout << "population:" << std::endl;
   for (i = 0; i < pop.size(); ++i)
-    cout << pop[i] << " " << pop[i].fitness() << endl;
+    std::cout << pop[i] << " " << pop[i].fitness() << std::endl;
 
   // Declare 1-selectors
   eoUniformSelect<Chrom> uSelect;
 
   Chrom aChrom;
   aChrom = uSelect( pop );
-  cout << "Uniform Select " << aChrom << " " << aChrom.fitness() << endl;
+  std::cout << "Uniform Select " << aChrom << " " << aChrom.fitness() << std::endl;
 
   eoStochTournament<Chrom> sSelect(0.7);
   aChrom = sSelect( pop );
-  cout << "Stochastic Tournament " << aChrom << " " << aChrom.fitness() << endl;
+  std::cout << "Stochastic Tournament " << aChrom << " " << aChrom.fitness() << std::endl;
 
   eoDetTournament<Chrom> dSelect(3);
   aChrom = dSelect( pop );
-  cout << "Deterministic Tournament " << aChrom << " " << aChrom.fitness() << endl;
+  std::cout << "Deterministic Tournament " << aChrom << " " << aChrom.fitness() << std::endl;
 
   return 0;
 }

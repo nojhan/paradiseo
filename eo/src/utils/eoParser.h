@@ -24,7 +24,7 @@
  */
 //-----------------------------------------------------------------------------
 /**
-CVS Info: $Date: 2002-09-18 15:36:41 $ $Version$ $Author: evomarc $
+CVS Info: $Date: 2003-02-27 19:21:17 $ $Version$ $Author: okoenig $
 */
 #ifndef eoParser_h
 #define eoParser_h
@@ -118,17 +118,17 @@ public:
    * @param _lFileParamName         Name of the parameter specifying the configuration file (--param-file)
    * @param _shortHand              Single charachter shorthand for specifying the configuration file
    */
-  eoParser ( unsigned _argc, char **_argv , string _programDescription = "", 
-	   string _lFileParamName = "param-file", char _shortHand = 'p');  
+  eoParser ( unsigned _argc, char **_argv , std::string _programDescription = "", 
+	   std::string _lFileParamName = "param-file", char _shortHand = 'p');  
   
   /**
     Processes the parameter and puts it in the appropriate section for readability
   */
   void processParam(eoParam& param, std::string section = "");
 
-  void readFrom(istream& is);
+  void readFrom(std::istream& is);
 
-  void printOn(ostream& os) const;
+  void printOn(std::ostream& os) const;
   
   /// className for readibility 
   std::string className(void) const { return "Parser"; }
@@ -139,9 +139,9 @@ public:
    * Prints an automatic help in the specified output using the information
    * provided by parameters
    */
-  void printHelp(ostream& os);
+  void printHelp(std::ostream& os);
 
-  string ProgramName() { return programName; }
+  std::string ProgramName() { return programName; }
  
   /** 
    * checks if _param has been actually entered by the user
@@ -194,7 +194,7 @@ private:
   
   void doRegisterParam(eoParam& param) const;
   
-  std::pair<bool, string> getValue(eoParam& _param) const;
+  std::pair<bool, std::string> getValue(eoParam& _param) const;
 
   void updateParameters() const;
   
@@ -203,13 +203,13 @@ private:
   // used to store all parameters that are processed
   MultiMapType params;
   
-  string programName; 
-  string programDescription;
+  std::string programName; 
+  std::string programDescription;
 
-  typedef map<char, string> ShortNameMapType;
+  typedef std::map<char, std::string> ShortNameMapType;
   ShortNameMapType shortNameMap;
   
-  typedef map<string, string> LongNameMapType;
+  typedef std::map<std::string, std::string> LongNameMapType;
   LongNameMapType longNameMap;
 
   eoValueParam<bool>   needHelp;

@@ -90,14 +90,14 @@ public:
 		_pop.nth_element(nbSurvive);
 		// copy best 
 		_luckyGuys.resize(nbSurvive);
-		copy(_pop.begin(), _pop.begin()+nbSurvive, _luckyGuys.begin());
+		std::copy(_pop.begin(), _pop.begin()+nbSurvive, _luckyGuys.begin());
 		// erase them from pop
 		_pop.erase(_pop.begin(), _pop.begin()+nbSurvive);
 	    }
 	unsigned nbRemaining = _pop.size();
 
 	// carefull, we can have a rate of 1 if we want to kill all remaining
-	unsigned nbDie = min(howmanyDie(pSize), pSize-nbSurvive);
+	unsigned nbDie = std::min(howmanyDie(pSize), pSize-nbSurvive);
 	if (nbDie > nbRemaining)
 	    throw std::logic_error("eoDeterministicSurviveAndDie: Too many to kill!\n");
 	    

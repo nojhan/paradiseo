@@ -56,7 +56,7 @@ class eoDistance {
   virtual double distance( const EOT& ) const = 0;
 
   /// Returns classname
-  virtual string className() const { return "eoDistance"; }
+  virtual std::string className() const { return "eoDistance"; }
 
 };
 

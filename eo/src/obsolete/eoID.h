@@ -27,8 +27,8 @@
 
 //-----------------------------------------------------------------------------
 
-#include <iostream>  // istream, ostream
-#include <string> // for string
+#include <iostream>  // std::istream, std::ostream
+#include <string> // for std::string
 
 using namespace std;
 
@@ -68,14 +68,14 @@ class eoID: public Object
   it's got code as an example of implementation. Only "leaf" classes
   can be non-virtual.
   */
-  virtual string className() const { return string("[eoID]")+Object::className(); };
+  virtual std::string className() const { return std::string("[eoID]")+Object::className(); };
 
   /**
    * Read object.
-   * @param _is A istream.
-   * @throw runtime_exception If a valid object can't be read.
+   * @param _is A std::istream.
+   * @throw runtime_std::exception If a valid object can't be read.
    */
-  virtual void readFrom(istream& _is) {
+  virtual void readFrom(std::istream& _is) {
 	  Object::readFrom( _is );
 	  _is >> thisID;
   }
@@ -83,9 +83,9 @@ class eoID: public Object
   
   /**
    * Write object. It's called printOn since it prints the object _on_ a stream.
-   * @param _os A ostream.
+   * @param _os A std::ostream.
    */
-  virtual void printOn(ostream& _os) const{
+  virtual void printOn(std::ostream& _os) const{
 	  Object::printOn( _os );
 	  _os << thisID;
   }

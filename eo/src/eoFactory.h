@@ -52,16 +52,16 @@ public:
 	virtual ~eoFactory() {}
 	//@}
 
-	/** Another factory methods: creates an object from an istream, reading from
-	it whatever is needed to create the object. Usually, the format for the istream will be\\
+	/** Another factory methods: creates an object from an std::istream, reading from
+	it whatever is needed to create the object. Usually, the format for the std::istream will be\\
 	objectType parameter1 parameter2 ... parametern\\
 	*/
-	virtual EOClass* make(istream& _is) = 0;
+	virtual EOClass* make(std::istream& _is) = 0;
 
 	///@name eoObject methods
 	//@{
 	/** Return the class id */
-	virtual string className() const { return "eoFactory"; }
+	virtual std::string className() const { return "eoFactory"; }
 
 	/** Read and print are left without implementation */
 	//@}

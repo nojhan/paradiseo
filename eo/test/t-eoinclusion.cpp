@@ -45,18 +45,18 @@ main()
 	      pop2.push_back(chrom);
 	    }
 	
-	  cout << "--------------------------------------------------" << endl
-	       << "breeders \tpop" << endl
-	       << "--------------------------------------------------" << endl;
+	  std::cout << "--------------------------------------------------" << std::endl
+	       << "breeders \tpop" << std::endl
+	       << "--------------------------------------------------" << std::endl;
 	  for (i = 0; i < max(pop.size(), pop2.size()); i++)
 	    {	  
 	      if (pop.size() > i) 
-		cout << pop[i] << " " << pop[i].fitness() << "   \t";
+		std::cout << pop[i] << " " << pop[i].fitness() << "   \t";
 	      else
-		cout << "\t\t";
+		std::cout << "\t\t";
 	      if (pop2.size() > i)
-		cout << pop2[i] << " " << pop2[i].fitness();
-	      cout << endl;
+		std::cout << pop2[i] << " " << pop2[i].fitness();
+	      std::cout << std::endl;
 	    }
 	
 	  eoInclusion<Chrom> inclusion(0.75);
@@ -71,22 +71,22 @@ main()
 	  pop5 = pop2;
 	  inclusion3(pop, pop5); 
 	  
-	  cout << endl
-	       << "0.75 \t\t1.0 \t\t1.5" << endl
-	       << "---- \t\t--- \t\t---" << endl;
+	  std::cout << std::endl
+	       << "0.75 \t\t1.0 \t\t1.5" << std::endl
+	       << "---- \t\t--- \t\t---" << std::endl;
 	  for (i = 0; i < pop5.size(); i++)
 	    {
 	      if (pop3.size() > i)
-		cout << pop3[i] << " " << pop3[i].fitness() << "   \t";
+		std::cout << pop3[i] << " " << pop3[i].fitness() << "   \t";
 	      else
-		cout << " \t\t";
+		std::cout << " \t\t";
 	      if (pop4.size() > i)
-		cout << pop4[i] << " " << pop4[i].fitness() << "   \t";
+		std::cout << pop4[i] << " " << pop4[i].fitness() << "   \t";
 	      else
-		cout << " \t\t";
+		std::cout << " \t\t";
 	      if (pop5.size() > i)
-		cout << pop5[i] << " " << pop5[i].fitness();
-	      cout << endl;
+		std::cout << pop5[i] << " " << pop5[i].fitness();
+	      std::cout << std::endl;
 	    }
 	}
     }

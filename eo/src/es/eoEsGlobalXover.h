@@ -53,7 +53,7 @@ public:
     crossObj(_crossObj), crossMut(_crossMut) {}
 
   /// The class name. Used to display statistics
-  virtual string className() const { return "eoEsGlobalXover"; }
+  virtual std::string className() const { return "eoEsGlobalXover"; }
 
   /// The TOTAL number of offspring (here = nb of parents modified in place)
   unsigned max_production(void) { return 1; }

@@ -74,7 +74,7 @@ class eoSGAGenOp : public eoGenOp<EOT>
   /** inherited from eoGenOp */
   virtual unsigned max_production(void) {return 2;}
 
-  virtual string className() const {return "eoSGAGenOp";}
+  virtual std::string className() const {return "eoSGAGenOp";}
 
 
  private:

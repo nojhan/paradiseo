@@ -70,25 +70,25 @@ public :
 
   eoParetoOneConstraintFitness(void) : std::vector<double>(FitnessTraits::nObjectives(),0.0)  {}
 
-  // Ctr from a vector<double> (size nObjectives+1)
+  // Ctr from a std::vector<double> (size nObjectives+1)
   eoParetoOneConstraintFitness(std::vector<double> & _v) : 
     std::vector<double>(_v) 
   {
 #ifndef NDEBUG
     if (_v.size() != fitness_traits::nObjectives()+1)
-      throw runtime_error("Size error in Ctor of eoParetoOneConstraintFitness from vector");
+      throw std::runtime_error("Size error in Ctor of eoParetoOneConstraintFitness from std::vector");
 #endif
     constraintValue = _v[fitness_traits::nObjectives()];
     resize(fitness_traits::nObjectives());
   }
   
-  // Ctr from a vector<double> and a value
+  // Ctr from a std::vector<double> and a value
   eoParetoOneConstraintFitness(std::vector<double> & _v, double _c) : 
     std::vector<double>(_v), constraintValue(_c) 
   {
 #ifndef NDEBUG
     if (_v.size() != fitness_traits::nObjectives())
-      throw runtime_error("Size error in Ctor of eoParetoOneConstraintFitness from vector and value");
+      throw std::runtime_error("Size error in Ctor of eoParetoOneConstraintFitness from std::vector and value");
 #endif
   }
   

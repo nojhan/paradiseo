@@ -47,64 +47,64 @@ eoReduce<EOT> & decode_reduce(eoParamParamType & _ppReduce, eoState & _state)
   eoReduce<EOT> * ptReduce;
 
   // ---------- Deterministic
-  if (_ppReduce.first == string("Deterministic"))
+  if (_ppReduce.first == std::string("Deterministic"))
   {
     ptReduce = new eoTruncate<EOT>;
   }
   // ---------- EP
-  else if (_ppReduce.first == string("EP"))
+  else if (_ppReduce.first == std::string("EP"))
   {
     if (!_ppReduce.second.size())   // no parameter added
     {
-      cerr << "WARNING, no parameter passed to EP, using 6" << endl;
+      std::cerr << "WARNING, no parameter passed to EP, using 6" << std::endl;
       detSize = 6;
       // put back 6 in parameter for consistency (and status file)
-      _ppReduce.second.push_back(string("6"));
+      _ppReduce.second.push_back(std::string("6"));
     }
     else	  // parameter passed by user as EP(T)
       detSize = atoi(_ppReduce.second[0].c_str());
     ptReduce = new eoEPReduce<EOT>(detSize);
   }
   // ---------- DetTour
-  else if (_ppReduce.first == string("DetTour"))
+  else if (_ppReduce.first == std::string("DetTour"))
   {
     if (!_ppReduce.second.size())   // no parameter added
       {
-	cerr << "WARNING, no parameter passed to DetTour, using 2" << endl;
+	std::cerr << "WARNING, no parameter passed to DetTour, using 2" << std::endl;
 	detSize = 2;
 	// put back 2 in parameter for consistency (and status file)
-	_ppReduce.second.push_back(string("2"));
+	_ppReduce.second.push_back(std::string("2"));
       }
     else	  // parameter passed by user as DetTour(T)
       detSize = atoi(_ppReduce.second[0].c_str());
     ptReduce = new eoDetTournamentTruncate<EOT>(detSize);
   }
-  else if (_ppReduce.first == string("StochTour"))
+  else if (_ppReduce.first == std::string("StochTour"))
     {
       double p;
       if (!_ppReduce.second.size())   // no parameter added
 	{
-	  cerr << "WARNING, no parameter passed to StochTour, using 1" << endl;
+	  std::cerr << "WARNING, no parameter passed to StochTour, using 1" << std::endl;
 	  p = 1;
 	  // put back p in parameter for consistency (and status file)
-	  _ppReduce.second.push_back(string("1"));
+	  _ppReduce.second.push_back(std::string("1"));
 	}
       else	  // parameter passed by user as DetTour(T)
 	{
 	  p = atof(_ppReduce.second[0].c_str());
 	  if ( (p<=0.5) || (p>1) )
-	    throw runtime_error("Stochastic tournament size should be in [0.5,1]");
+	    throw std::runtime_error("Stochastic tournament size should be in [0.5,1]");
 	}
       
       ptReduce = new eoStochTournamentTruncate<EOT>(p);
     }
-  else if (_ppReduce.first == string("Uniform"))
+  else if (_ppReduce.first == std::string("Uniform"))
     {
       ptReduce = new eoRandomReduce<EOT>;
     }
   else // no known reduction entered
     {
-      throw runtime_error("Unknown reducer: " + _ppReduce.first);
+      throw std::runtime_error("Unknown reducer: " + _ppReduce.first);
     }
   // all done, stores and return a reference
   _state.storeFunctor(ptReduce);
@@ -117,7 +117,7 @@ eoReduce<EOT> & decode_reduce(eoParamParamType & _ppReduce, eoState & _state)
  * 
  *  eoHowMany _elite              the number of elite parents (0 = no elitism)
  *       see below
- *  bool _strongElitism           if elite > 0, string elitism or weak elitism
+ *  bool _strongElitism           if elite > 0, std::string elitism or weak elitism
  *       strong = elite parents survive, whatever the offspring
  *       weak - elite patents compete AFTER replacement with best offspring
  *  eoHowMany _surviveParents     number of parents after parents recuction

@@ -34,7 +34,7 @@ template <class EOT> class eoLocalListener ;
    message to be then received ...
 */
 
-template <class EOT> class eoHeaderMessFrom : public string {
+template <class EOT> class eoHeaderMessFrom : public std::string {
   
 public :
   

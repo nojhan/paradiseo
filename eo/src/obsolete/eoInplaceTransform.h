@@ -27,7 +27,7 @@
 
 //-----------------------------------------------------------------------------
 
-#include <vector>          // vector
+#include <vector>          // std::vector
 #include <utils/eoRNG.h>
 #include <eoOp.h>          // eoOp, eoMonOp, eoBinOp
 #include <eoPop.h>         // eoPop

@@ -36,7 +36,7 @@ public :
    */ 
 
   eoDistPopEvalFunc (eoListener <EOT> & _listen,
-		     string & _label,
+		     std::string & _label,
 		     eoEvalFunc <EOT> & _eval
 		     ) :
     listen (_listen),
@@ -58,8 +58,8 @@ public :
       }
       
       if (num_eval == 0) {
-	cout << "No [" << label << "] available ..." << endl ;
-	cout << "Waiting for a few seconds ..." << endl ;
+	std::cout << "No [" << label << "] available ..." << std::endl ;
+	std::cout << "Waiting for a few seconds ..." << std::endl ;
 	sleep (2) ;
       }
     } while (num_eval == 0) ;
@@ -120,7 +120,7 @@ public :
 private :
   
   eoListener <EOT> & listen ;
-  string label ; // String identifier of evaluators 
+  std::string label ; // String identifier of evaluators 
   eoEvalFunc <EOT> & eval ;
 } ; 
 

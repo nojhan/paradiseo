@@ -15,6 +15,9 @@
 #include <eo>
 #include <es.h>
 
+// Use functions from namespace std
+using namespace std;
+
 // REPRESENTATION
 //-----------------------------------------------------------------------------
 // define your individuals

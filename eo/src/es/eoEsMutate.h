@@ -84,7 +84,7 @@ public:
   /** Inherited from eoObject
       @see eoObject
   */
-  virtual string className() const {return "eoESMutate";};
+  virtual std::string className() const {return "eoESMutate";};
 
   /**
     Mutate eoEsSimple
@@ -191,7 +191,7 @@ public:
     unsigned k, n1, n2;
     double d1,d2, S, C;
 
-    vector<double> VarStp(_eo.size());
+    std::vector<double> VarStp(_eo.size());
     for (i = 0; i < _eo.size(); i++)
       VarStp[i] = _eo.stdevs[i] * rng.normal();
 
@@ -230,7 +230,7 @@ public:
         unsigned size = bounds.size();
         TauLcl = _init.TauLcl();
         TauLcl /= sqrt(2*(double) size);
-	cout << "Init<eoEsSimple>: tau local " << TauLcl << endl;
+	std::cout << "Init<eoEsSimple>: tau local " << TauLcl << std::endl;
     }
 
     void init(eoEsStdev<FitT>, eoEsMutationInit& _init)
@@ -243,14 +243,14 @@ public:
         // renormalization
 	    TauLcl /= sqrt( 2.0 * sqrt( (double)size ) );
 	    TauGlb /= sqrt( 2.0 * ( (double) size ) );
-	    cout << "Init<eoStDev>: tau local " << TauLcl << " et global " << TauGlb << endl;
+	    std::cout << "Init<eoStDev>: tau local " << TauLcl << " et global " << TauGlb << std::endl;
     }
 
     void init(eoEsFull<FitT>, eoEsMutationInit& _init)
     {
         init(eoEsStdev<FitT>(), _init);
         TauBeta = _init.TauBeta();
-	    cout << "Init<eoEsFull>: tau local " << TauLcl << " et global " << TauGlb << endl;
+	    std::cout << "Init<eoEsFull>: tau local " << TauLcl << " et global " << TauGlb << std::endl;
     }
 
    // the data

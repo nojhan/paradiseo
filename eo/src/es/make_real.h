@@ -25,7 +25,7 @@
 //-----------------------------------------------------------------------------
 
 /** This file contains all ***INSTANCIATED*** declarations of all components 
- * of the library for ***vector<RealValues>*** evolution inside EO.
+ * of the library for ***std::vector<RealValues>*** evolution inside EO.
  * It should be included in the file that calls any of the corresponding fns
  *
  * The corresponding ***INSTANCIATED*** definitions are contained in 

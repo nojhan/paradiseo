@@ -47,7 +47,7 @@ class eoInit : public eoUF<EOT&, void>
 public:
 //   virtual void operator()(EOT& chrom)
 //   { 
-//     throw runtime_error("In the eoInit base class"); // just in case
+//     throw std::runtime_error("In the eoInit base class"); // just in case
 //   }
 };
 
@@ -115,7 +115,7 @@ typedef typename EOT::AtomType AtomType;
 // 			 generator(_generator)
 //   {
 //     if (_minSize >= _maxSize)
-//       throw logic_error("eoInitVariableLength: minSize larger or equal to maxSize");
+//       throw std::logic_error("eoInitVariableLength: minSize larger or equal to maxSize");
 //   }
 
   /** Ctor from an eoInit */
@@ -123,14 +123,14 @@ typedef typename EOT::AtomType AtomType;
     : offset(_minSize), extent(_maxSize - _minSize), init(_init)
   {
     if (_minSize >= _maxSize)
-      throw logic_error("eoInitVariableLength: minSize larger or equal to maxSize");
+      throw std::logic_error("eoInitVariableLength: minSize larger or equal to maxSize");
   }
 
 
   virtual void operator()(EOT& _chrom)
   {
     _chrom.resize(offset + rng.random(extent));
-    typename vector<AtomType>::iterator it;
+    typename std::vector<AtomType>::iterator it;
     for (it=_chrom.begin(); it<_chrom.end(); it++)
       init(*it);
     _chrom.invalidate();

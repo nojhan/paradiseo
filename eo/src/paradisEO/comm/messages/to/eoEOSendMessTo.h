@@ -54,7 +54,7 @@ public :
     
     eoMessTo <EOT> :: operator () (loc_listen) ;
     
-    ostrstream f ;
+    std::ostrstream f ;
     pop.printOn (f) ;
     comm.Send (f.str (), f.pcount (), MPI :: CHAR, loc_listen.number (), 0) ;
     loc_listen.need_immigration () = false ;

@@ -31,7 +31,7 @@ class eoMyEval : public eoEvalFunc<EOT>
 
   void operator()(EOT& _eo)
   {
-    _eo.fitness(*max_element(_eo.begin(), _eo.end()));
+    _eo.fitness(*std::max_element(_eo.begin(), _eo.end()));
   }
 };
 
@@ -41,7 +41,7 @@ class Xover : public eoBinOp<EOT>
   bool operator()(EOT& _eo, const EOT& _eo2)
   {
     unsigned point = rng.random(_eo.size());
-    copy(_eo2.begin() + point, _eo2.end(), _eo.begin() + point);
+    std::copy(_eo2.begin() + point, _eo2.end(), _eo.begin() + point);
     return true;
   }
 };

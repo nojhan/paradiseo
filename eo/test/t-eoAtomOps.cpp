@@ -56,11 +56,11 @@ main(int argc, char *argv[]) {
   eoAtomRandom<char> randomer( charNE );
   eoAtomMutation<  eoString<float> > mutator2 ( randomer, 0.5 );
 
-  cout << "Before aString " << aString << endl;
+  std::cout << "Before aString " << aString << std::endl;
   mutator( aString);
-  cout << " after mutator " << aString << endl;
+  std::cout << " after mutator " << aString << std::endl;
   mutator2( aString);
-  cout << " after mutator2 " << aString << endl;;
+  std::cout << " after mutator2 " << aString << std::endl;;
   return 0; // to avoid VC++ complaints
 }
 

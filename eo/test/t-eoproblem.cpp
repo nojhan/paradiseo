@@ -5,7 +5,7 @@
 
 #include <time.h>    // time
 #include <math.h>    // fabs
-#include <iostream>  // cout
+#include <iostream>  // std::cout
 #include <eo>        // eoVector, eoProblem
 
 //-----------------------------------------------------------------------------
@@ -14,9 +14,9 @@ typedef eoVector<float, float> Chrom;
 
 //-----------------------------------------------------------------------------
 
-ostream& operator<<(ostream& os, const Chrom& chrom)
+std::ostream& operator<<(std::ostream& os, const Chrom& chrom)
 {
-  copy(chrom.begin(), chrom.end(), ostream_iterator<int>(os));
+  copy(chrom.begin(), chrom.end(), std::ostream_iterator<int>(os));
   return os;
 }
 
@@ -46,8 +46,8 @@ int main()
   chrom[0] = ((float)rand()) / ((float)RAND_MAX);
   chrom.fitness(easy(chrom));
   
-  cout << "chrom = " << chrom << endl
-       << "chrom.fitness() = " << chrom.fitness() << endl;
+  std::cout << "chrom = " << chrom << std::endl
+       << "chrom.fitness() = " << chrom.fitness() << std::endl;
 
   return 0;
 }

@@ -90,15 +90,15 @@ typedef typename EOT::Fitness Fitness;
   {
     if (t_size < 2)
       { 
-	cout << "Warning: EP tournament size should be >= 2. Adjusted" << endl;
+	std::cout << "Warning: EP tournament size should be >= 2. Adjusted" << std::endl;
 	t_size = 2;
       }
   }
 
-  /// helper struct for comparing on pairs
+  /// helper struct for comparing on std::pairs
   // compares the scores
   // uses the fitness if scores are equals ????
-  typedef pair<float, typename eoPop<EOT>::iterator>  EPpair;
+  typedef std::pair<float, typename eoPop<EOT>::iterator>  EPpair;
   struct Cmp {
     bool operator()(const EPpair a, const EPpair b) const
     { 
@@ -117,7 +117,7 @@ typedef typename EOT::Fitness Fitness;
             return;
 	if (presentSize < _newsize)
 	  throw std::logic_error("eoTruncate: Cannot truncate to a larger size!\n");
-	vector<EPpair> scores(presentSize);
+	std::vector<EPpair> scores(presentSize);
 	for (unsigned i=0; i<presentSize; i++)
 	  {
 	    scores[i].second = _newgen.begin()+i;
@@ -133,14 +133,14 @@ typedef typename EOT::Fitness Fitness;
 	  }
 
 	// now we have the scores
-	typename vector<EPpair>::iterator it = scores.begin() + _newsize;
+	typename std::vector<EPpair>::iterator it = scores.begin() + _newsize;
         std::nth_element(scores.begin(), it, scores.end(), Cmp());
 	// sort(scores.begin(), scores.end(), Cmp());
 	unsigned j;
-// 	cout << "Les scores apres tri\n";
+// 	std::cout << "Les scores apres tri\n";
 // 	for (j=0; j<scores.size(); j++)
 // 	  {
-// 	    cout << scores[j].first << " " << *scores[j].second << endl;
+// 	    std::cout << scores[j].first << " " << *scores[j].second << std::endl;
 // 	  }
 	eoPop<EOT> tmPop;
 	for (j=0; j<_newsize; j++)
@@ -149,7 +149,7 @@ typedef typename EOT::Fitness Fitness;
 	  }
 	_newgen.swap(tmPop);
 	// erase does not work, but I'm sure there is a way in STL to mark
-	// and later delete all inside a vector ??????
+	// and later delete all inside a std::vector ??????
 	// this would avoid all copies here
 
 // 	it = scores.begin() + _newsize;
@@ -193,7 +193,7 @@ public:
   {
     if (t_size < 2)
       { 
-	cout << "Warning, Size for eoDetTournamentTruncate adjusted to 2\n";
+	std::cout << "Warning, Size for eoDetTournamentTruncate adjusted to 2\n";
 	t_size = 2;
       }
   }
@@ -241,12 +241,12 @@ public:
   {
     if (t_rate <= 0.5)
       { 
-	cout << "Warning, Rate for eoStochTournamentTruncate adjusted to 0.51\n";
+	std::cout << "Warning, Rate for eoStochTournamentTruncate adjusted to 0.51\n";
 	t_rate = 0.51;
       }
     if (t_rate > 1)
       {
-	cout << "Warning, Rate for eoStochTournamentTruncate adjusted to 1\n";
+	std::cout << "Warning, Rate for eoStochTournamentTruncate adjusted to 1\n";
 	t_rate = 1;
       }
   }

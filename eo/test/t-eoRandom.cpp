@@ -24,7 +24,7 @@
 */
 
 /**
-CVS Info: $Date: 2001-04-24 04:52:04 $  $Author: evomarc $ $Revision: 1.12 $
+CVS Info: $Date: 2003-02-27 19:20:24 $  $Author: okoenig $ $Revision: 1.13 $
 */
 
 //-----------------------------------------------------------------------------
@@ -47,16 +47,16 @@ int main() {
     eoUniformGenerator<unsigned long> utest( 10000000U, 10000U);
     throw; // if this succeeds something is wrong, make sure that that is noticed
   }
-  catch (logic_error& e)
+  catch (std::logic_error& e)
   {
-    cout << e.what() << endl;
+    std::cout << e.what() << std::endl;
   }
 
-  ofstream os("t-eoRandom.out");
+  std::ofstream os("t-eoRandom.out");
 
   for ( unsigned i = 0; i < 100; i ++)
   {
-    os << u1() << "\t" << u2() << "\t" << u3() << endl;
+    os << u1() << "\t" << u2() << "\t" << u3() << std::endl;
   }
 
   return 0; // to avoid VC++ complaints

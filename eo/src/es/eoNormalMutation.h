@@ -36,7 +36,7 @@
 #include <utils/eoRealBounds.h>
 //-----------------------------------------------------------------------------
 
-/** Simple normal mutation of a vector of real values.
+/** Simple normal mutation of a std::vector of real values.
  *  The stDev is fixed - but it is passed ans stored as a reference, 
  *  to enable dynamic mutations (see eoOenFithMutation below).
  *
@@ -69,7 +69,7 @@ template<class EOT> class eoNormalMutation: public eoMonOp<EOT>
     sigma(_sigma), bounds(_bounds), p_change(_p_change) {}
 
   /** The class name */
-  virtual string className() const { return "eoNormalMutation"; }
+  virtual std::string className() const { return "eoNormalMutation"; }
 
   /**
    * Do it!
@@ -129,11 +129,11 @@ public:
   {
     // minimal check
     if (updateFactor>=1)
-      throw runtime_error("Update factor must be < 1 in eoOneFifthMutation");
+      throw std::runtime_error("Update factor must be < 1 in eoOneFifthMutation");
   }
 
   /** The class name */
-  virtual string className() const { return "eoOneFifthMutation"; }
+  virtual std::string className() const { return "eoOneFifthMutation"; }
 
   /**
    * Do it!
@@ -192,9 +192,9 @@ private:
   eoEvalFunc<EOT> & eval;
   double threshold;		   // 1/5 !
   double updateFactor ;		   // the multiplicative factor
-  vector<unsigned> nbMut;	   // total number of mutations per gen 
-  vector<unsigned> nbSuccess;	   // number of successful mutations per gen
-  unsigned genIndex ;		   // current index in vectors (circular)
+  std::vector<unsigned> nbMut;	   // total number of mutations per gen 
+  std::vector<unsigned> nbSuccess;	   // number of successful mutations per gen
+  unsigned genIndex ;		   // current index in std::vectors (circular)
 };
 
 

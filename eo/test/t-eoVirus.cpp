@@ -23,7 +23,7 @@
 */
 //-----------------------------------------------------------------------------
 
-#include <iostream>   // cout
+#include <iostream>   // std::cout
 #include <strstream>  // ostrstream, istrstream
 #include <eo>         // general EO
 #include "../contrib/MGE/VirusOp.h"
@@ -47,30 +47,30 @@ int main()
 
   Chrom chrom(SIZE), chrom2(SIZE);
   chrom.fitness(binary_value(chrom)); chrom2.fitness(binary_value(chrom2));
-  cout << chrom << endl;
-  cout << chrom2 << endl;
+  std::cout << chrom << std::endl;
+  std::cout << chrom2 << std::endl;
 
   // Virus Mutation
   VirusBitFlip<float> vf;
   unsigned i;
   for ( i = 0; i < 10; i++ ) {
 	vf( chrom );
-	cout << chrom << endl;
+	std::cout << chrom << std::endl;
   }
 
   // Chrom Mutation
-  cout << "Chrom mutation--------" << endl;
+  std::cout << "Chrom mutation--------" << std::endl;
   VirusMutation<float> vm;
   for ( i = 0; i < 10; i++ ) {
 	vm( chrom );
-	cout << chrom << endl;
+	std::cout << chrom << std::endl;
   }
 
   // Chrom Transmision
-  cout << "Chrom transmission--------" << endl;
+  std::cout << "Chrom transmission--------" << std::endl;
   VirusTransmission<float> vt; 
   vt( chrom2, chrom );
-  cout << chrom2 << endl;
+  std::cout << chrom2 << std::endl;
 
   return 0;
 

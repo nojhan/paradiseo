@@ -48,7 +48,7 @@ public:
     total((pop.size() == 0) ? -1.0 : sum_fitness(pop))
   {
     if (minimizing_fitness<EOT>())
-      throw logic_error("eoProportional: minimizing fitness");
+      throw std::logic_error("eoProportional: minimizing fitness");
   }
 
   void setup(const eoPop<EOT>& _pop)

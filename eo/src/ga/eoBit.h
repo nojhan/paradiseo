@@ -35,9 +35,9 @@
 
 //-----------------------------------------------------------------------------
 
-#include <iostream>    // ostream, istream
+#include <iostream>    // std::ostream, std::istream
 #include <functional>  // bind2nd
-#include <string>      // string
+#include <string>      // std::string
 
 #include <eoVector.h>
 
@@ -50,7 +50,7 @@
 /** eoBit: implementation of bitstring chromosome.
 \class eoBit eoBit.h ga/eoBit.h
 \ingroup bitstring
-  * based on STL's vector<bool> specialization.
+  * based on STL's std::vector<bool> specialization.
 */
 template <class FitT> class eoBit: public eoVector<FitT, bool>
 {
@@ -58,45 +58,45 @@ template <class FitT> class eoBit: public eoVector<FitT, bool>
 
   /**
    * (Default) Constructor.
-   * @param size Size of the binary string.
+   * @param size Size of the binary std::string.
    */
   eoBit(unsigned size = 0, bool value = false):
     eoVector<FitT, bool>(size, value) {}
 
   /// My class name.
-  virtual string className() const
+  virtual std::string className() const
     {
       return "eoBit";
     }
 
   /**
    * To print me on a stream.
-   * @param os The ostream.
+   * @param os The std::ostream.
    */
-  virtual void printOn(ostream& os) const
+  virtual void printOn(std::ostream& os) const
     {
       EO<FitT>::printOn(os);
       os << ' ';
       os << size() << ' ';
-      copy(begin(), end(), ostream_iterator<bool>(os));
+      std::copy(begin(), end(), std::ostream_iterator<bool>(os));
     }
 
   /**
    * To read me from a stream.
-   * @param is The istream.
+   * @param is The std::istream.
    */
-  virtual void readFrom(istream& is)
+  virtual void readFrom(std::istream& is)
     {
       EO<FitT>::readFrom(is);
       unsigned s;
       is >> s;
-      string bits;
+      std::string bits;
       is >> bits;
       if (is)
 	{
 	  resize(bits.size());
-	  transform(bits.begin(), bits.end(), begin(),
-		    bind2nd(equal_to<char>(), '1'));
+	  std::transform(bits.begin(), bits.end(), begin(),
+		    std::bind2nd(std::equal_to<char>(), '1'));
 	}
     }
 };

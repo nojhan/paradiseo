@@ -34,14 +34,14 @@
 //-----------------------------------------------------------------------------
 
 /** selects one element from a population (is an eoSelectOne) 
-but the selection is based on a vector of Worth that is different 
+but the selection is based on a std::vector of Worth that is different 
 from the fitnesses (e.g. EO fitness is what Koza terms "raw fitness", 
 Worth is what the selection is based upon).
 
 see class eoPerf2Worth: an eoStat that transforms fitnesses into Worthes
 
 Note: Worthes will not always be doubles - see some multi-objective
-techniques where it is a pair of doubles ...
+techniques where it is a std::pair of doubles ...
 
 It has to have a < operator it you want to call an existing
 selector (see selector.h) - but of course you can write the whole
@@ -79,7 +79,7 @@ protected:
   {
     if (fitness[index] != _eo.fitness())
     {
-      throw runtime_error("eoSelectFromWorth: fitnesses are not in sync");
+      throw std::runtime_error("eoSelectFromWorth: fitnesses are not in sync");
     }
   }
 
@@ -95,7 +95,7 @@ template <class EOT, class WorthT = double>
 class eoDetTournamentWorthSelect : public eoSelectFromWorth<EOT, WorthT>
 {
 public:
-  typedef typename vector<WorthT>::iterator worthIterator;
+  typedef typename std::vector<WorthT>::iterator worthIterator;
 
   /* Default ctor from an eoPerf2Worth object +  tournament size
    */
@@ -134,7 +134,7 @@ template <class EOT, class WorthT = double>
 class eoStochTournamentWorthSelect : public eoSelectFromWorth<EOT, WorthT>
 {
 public:
-  typedef typename vector<WorthT>::iterator worthIterator;
+  typedef typename std::vector<WorthT>::iterator worthIterator;
 
   /* Default ctor from an eoPerf2Worth object +  tournament rate
    */
@@ -172,7 +172,7 @@ template <class EOT, class WorthT = double>
 class eoRouletteWorthSelect : public eoSelectFromWorth<EOT, WorthT>
 {
 public:
-  typedef typename vector<WorthT>::iterator worthIterator;
+  typedef typename std::vector<WorthT>::iterator worthIterator;
 
   /* Default ctor from an eoPerf2Worth object
    */

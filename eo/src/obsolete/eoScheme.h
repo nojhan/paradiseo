@@ -81,8 +81,8 @@ class eoScheme: public eoAlgo<EOT>{
   eoScheme(Parser & parser) {
     // read the popsize 
     parser.AddTitle("Description of evolution");
-    string Evol;
-    string SelectString;
+    std::string Evol;
+    std::string SelectString;
     // temporary
     float rate_offspring;
     
@@ -92,9 +92,9 @@ class eoScheme: public eoAlgo<EOT>{
       popsize = parser.getInt("-EP", "--population", "10", 
 			      "Population size" );
     }
-    catch (exception & e)
+    catch (std::exception & e)
       {
-	cout << e.what() << endl;
+	std::cout << e.what() << std::endl;
 	parser.printHelp();
 	exit(1);
       }
@@ -128,9 +128,9 @@ class eoScheme: public eoAlgo<EOT>{
 	ptreplace = new eoInclusion<EOT>();
 	// put here the choice of elitism
       } 
-      catch (exception & e)
+      catch (std::exception & e)
 	{
-	  cout << e.what() << endl;
+	  std::cout << e.what() << std::endl;
 	  parser.printHelp();
 	  exit(1);
 	}
@@ -156,9 +156,9 @@ class eoScheme: public eoAlgo<EOT>{
 	  ptselect_mate = new eoDetTournament<EOT>((int)_rate);
 	}
       }
-      catch (exception & e)
+      catch (std::exception & e)
 	{
-	  cout << e.what() << endl;
+	  std::cout << e.what() << std::endl;
 	  parser.printHelp();
 	  exit(1);
 	}
@@ -178,9 +178,9 @@ class eoScheme: public eoAlgo<EOT>{
 	ptselect_mate = new eoUniformSelect<EOT>();
 	ptreplace =  new eoESPlus<EOT>();
       } 
-      catch (exception & e)
+      catch (std::exception & e)
 	{
-	  cout << e.what() << endl;
+	  std::cout << e.what() << std::endl;
 	  parser.printHelp();
 	  exit(1);
 	}
@@ -197,9 +197,9 @@ class eoScheme: public eoAlgo<EOT>{
 	ptselect_mate =  new eoUniformSelect<EOT>();
 	ptreplace = new eoESComma<EOT>();
       } 
-      catch (exception & e)
+      catch (std::exception & e)
 	{
-	  cout << e.what() << endl;
+	  std::cout << e.what() << std::endl;
 	  parser.printHelp();
 	  exit(1);
 	}
@@ -218,9 +218,9 @@ class eoScheme: public eoAlgo<EOT>{
 				       "Size of stocahstic replacement tournament" );
 	ptreplace = new eoEPTournament<EOT>(tsize);
       } 
-      catch (exception & e)
+      catch (std::exception & e)
 	{
-	  cout << e.what() << endl;
+	  std::cout << e.what() << std::endl;
 	  parser.printHelp();
 	  exit(1);
 	}
@@ -249,7 +249,7 @@ class eoScheme: public eoAlgo<EOT>{
   /** Inherited from eoObject. Returns the class name.
       @see eoObject
   */
-  string className() const {return "eoScheme";};
+  std::string className() const {return "eoScheme";};
   //@}
  private:
   unsigned popsize;		/* but should it be here ??? */
@@ -275,7 +275,7 @@ class eoScheme: public eoAlgo<EOT>{
    in SSGA, nb_offspring = 1 (usually)
 
    elitism can be used anywhere - though stupid in ES, EP and SSGA who are 
-        elist by definition
+        estd::list by definition
 */
 
 #endif _EOSCHEME_H
@@ -319,7 +319,7 @@ class eoScheme: public eoAlgo<EOT>{
 	  mate = select_mate(pop, tmp);	// though useless ig mutation
 	else
 	  mate = tmp;	   // assumed: mate will not be used!
-	cout << op->className() << " for offspring " << i << endl;
+	std::cout << op->className() << " for offspring " << i << std::endl;
 	tmp = (*op)( tmp, mate, pop );  
 	op = seqselop.Op(&id);
       }

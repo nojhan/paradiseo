@@ -29,7 +29,7 @@
 //-----------------------------------------------------------------------------
 
 #include <iostream>  // istream, ostream
-#include <string> // para string
+#include <std::string> // para std::string
 
 using namespace std;
 
@@ -71,7 +71,7 @@ class eoAged: public Object
   it's got code as an example of implementation. Only "leaf" classes
   can be non-virtual.
   */
-  virtual string className() const { return string("eoAged")+Object::className(); };
+  virtual std::string className() const { return std::string("eoAged")+Object::className(); };
 
   /**
    * Read object.

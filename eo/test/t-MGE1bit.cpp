@@ -44,9 +44,9 @@ int main()
       pop.push_back(chrom);
   }
   
-  cout << "population:" << endl;
+  std::cout << "population:" << std::endl;
   for (i = 0; i < pop.size(); ++i)
-    cout << "\t" << pop[i] << " " << pop[i].fitness() << endl;
+    std::cout << "\t" << pop[i] << " " << pop[i].fitness() << std::endl;
   
   // selection
   eoStochTournamentSelect<Chrom> lottery(0.9 );
@@ -87,17 +87,17 @@ int main()
     {
       ea(pop);
     }
-  catch (exception& e)
+  catch (std::exception& e)
     {
-	cout << "exception: " << e.what() << endl;;
+	std::cout << "exception: " << e.what() << std::endl;;
 	exit(EXIT_FAILURE);
     }
   
-  cout << "pop" << endl;
+  std::cout << "pop" << std::endl;
   for (i = 0; i < pop.size(); ++i)
-    cout << "\t" <<  pop[i] << " " << pop[i].fitness() << endl;
+    std::cout << "\t" <<  pop[i] << " " << pop[i].fitness() << std::endl;
 
-  cout << "\n --> Number of Evaluations = " << eval.getValue() << endl;
+  std::cout << "\n --> Number of Evaluations = " << eval.getValue() << std::endl;
   return 0;
 }
 

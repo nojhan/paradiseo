@@ -93,7 +93,7 @@ class eoTruncatedSelectMany : public eoSelect<EOT>
     else
       {
     // at the moment, brute force (rush rush, no good)
-    // what we would need otherwise is a vector<EOT &> class
+    // what we would need otherwise is a std::vector<EOT &> class
     // and selectors that act on such a thing
 	eoPop<EOT> tmpPop = _source; // hum hum, could be a pain in the ass
 

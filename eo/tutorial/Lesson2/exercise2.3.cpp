@@ -31,6 +31,8 @@ typedef eoBit<double> Indi;	// A bitstring with fitness double
 // GENERAL
 //-----------------------------------------------------------------------------
 
+using namespace std;
+
 void main_function(int argc, char **argv)
 {
 // PARAMETRES

@@ -31,19 +31,19 @@
 #include <utils/eoStat.h>
 
 /**
-    The fitnesses of a whole population, as a vector
+    The fitnesses of a whole population, as a std::vector
 */
 template <class EOT, class FitT = typename EOT::Fitness>
-class eoScalarFitnessStat : public eoSortedStat<EOT, vector<double> >
+class eoScalarFitnessStat : public eoSortedStat<EOT, std::vector<double> >
 {
 public :
   eoScalarFitnessStat(std::string _description = "FitnessES", 
 		      eoRealVectorBounds & _bounds = eoDummyVectorNoBounds) : 
-     eoSortedStat<EOT,  vector<double> >(vector<double>(0), _description) , 
+     eoSortedStat<EOT,  std::vector<double> >(std::vector<double>(0), _description) , 
      range(*_bounds[0])
     {}
   
-  virtual void operator()(const vector<const EOT*>& _popPters)
+  virtual void operator()(const std::vector<const EOT*>& _popPters)
     {
       value().resize(_popPters.size());
       for (unsigned i=0; i<_popPters.size(); i++)

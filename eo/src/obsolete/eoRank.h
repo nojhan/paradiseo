@@ -40,9 +40,9 @@
 
 
 /**
- * Takes those on the selection list and creates a list of new individuals
+ * Takes those on the selection std::list and creates a std::list of new individuals
  * Destroys the genetic pool. There's no requisite on EOT, other than the 
- * genetic operators can be instantiated with it, so it fully depends on 
+ * genetic operators can be instantiated with it, so it fully depstd::ends on 
  * the genetic operators used. If generic genetic operators are used, then 
  * EOT must be an EO 
  */
@@ -61,14 +61,14 @@ class eoRank: public eoSelect<EOT>, public eoObject, public eoPrintable
   
   /** Takes the genetic pool, and returns next generation, destroying the
    * genetic pool container
-   * Non-const because it might order the operator vector*/
+   * Non-const because it might order the operator std::vector*/
   virtual void operator() (	const eoPop< EOT >& _ptVeo, 
 
 							eoPop< EOT >& _siblings  ) const { 
     
     unsigned inLen = _ptVeo.size(); // size of subPop
     if ( !inLen ) 
-      throw runtime_error( "zero population in eoRank");
+      throw std::runtime_error( "zero population in eoRank");
 
     for ( unsigned i = 0; i < repNewPopSize; i ++ ) {
       // Create a copy of a random input EO with copy ctor. The members of the
@@ -113,13 +113,13 @@ class eoRank: public eoSelect<EOT>, public eoObject, public eoPrintable
 
     /** Return the class id. 
 
-      @return the class name as a string
+      @return the class name as a std::string
 
       */
 
-    virtual string className() const { return "eoRank"; };
+    virtual std::string className() const { return "eoRank"; };
 
-    virtual void printOn( ostream& _s ) const
+    virtual void printOn( std::ostream& _s ) const
     {
   		_s << repNewPopSize;
     };

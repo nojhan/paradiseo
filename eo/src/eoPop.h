@@ -36,11 +36,11 @@
 #include <eoInit.h>
 #include <utils/rnd_generators.h>  // for shuffle method
 
-/** A vector of EO object, to be used in all algorithms 
+/** A std::vector of EO object, to be used in all algorithms 
  *      (selectors, operators, replacements, ...).
  *
  * We have no idea if a population can be
- * some other thing that a vector, but if somebody thinks of it, this concrete
+ * some other thing that a std::vector, but if somebody thinks of it, this concrete
  * implementation can be moved to "generic" and an abstract Population 
  * interface be provided.
  *
@@ -51,14 +51,14 @@
  */
 
 template<class EOT>
-class eoPop: public vector<EOT>, public eoObject, public eoPersistent 
+class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent 
 {
 
  public:
      typedef typename EOT::Fitness Fitness;
 	/** Default ctor. Creates empty pop
 	*/
-	eoPop()	  : vector<EOT>(), eoObject(), eoPersistent() {};
+	eoPop()	  : std::vector<EOT>(), eoObject(), eoPersistent() {};
 	
 	/** Ctor for the initialization of chromosomes
     
@@ -66,7 +66,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
 	@param _chromInit Initialization routine, produces EO's, needs to be an eoInit 
 	*/
     eoPop( unsigned _popSize, eoInit<EOT>& _chromInit )
-	  :vector<EOT>() 
+      :std::vector<EOT>() 
     {
         resize(_popSize);
 	  for ( unsigned i = 0; i < _popSize; i++ )
@@ -75,7 +75,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
 	  }
 	};
 
-	/** appends random guys at end of pop.
+	/** appstd::ends random guys at end of pop.
 	    Can be used to initialize it pop is empty 
     
 	@param _popSize total population size
@@ -86,7 +86,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       unsigned oldSize = size();
       if (_newPopSize < oldSize)
 	{
-	  throw runtime_error("New size smaller than old size in pop.append");
+	  throw std::runtime_error("New size smaller than old size in pop.append");
 	  return;
 	}
       if (_newPopSize == oldSize)
@@ -99,11 +99,11 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
     };
   
   
-  /** Ctor from an istream; reads the population from a stream,
+  /** Ctor from an std::istream; reads the population from a stream,
       each element should be in different lines
       @param _is the stream
   */
-  eoPop( istream& _is ):vector<EOT>() {
+  eoPop( std::istream& _is ) :std::vector<EOT>() {
     readFrom( _is );
   }
   
@@ -125,11 +125,11 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
    */
   void sort(void)
   {
-      std::sort(begin(), end(), greater<EOT>());
+      std::sort(begin(), end(), std::greater<EOT>());
   }
 
-  /** creates a vector<EOT*> pointing to the individuals in descending order */
-  void sort(vector<const EOT*>& result) const
+  /** creates a std::vector<EOT*> pointing to the individuals in descending order */
+  void sort(std::vector<const EOT*>& result) const
   {
       result.resize(size());
 
@@ -148,8 +148,8 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       std::random_shuffle(begin(), end(), gen);
   }
 
-  /** creates a vector<EOT*> pointing to the individuals in random order */
-  void shuffle(vector<const EOT*>& result) const
+  /** creates a std::vector<EOT*> pointing to the individuals in random order */
+  void shuffle(std::vector<const EOT*>& result) const
   {
       result.resize(size());
 
@@ -162,28 +162,28 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   /** returns an iterator to the best individual DOES NOT MOVE ANYBODY */
   typename eoPop<EOT>::iterator it_best_element() 
   {
-    typename eoPop<EOT>::iterator it = max_element(begin(), end());
+    typename eoPop<EOT>::iterator it = std::max_element(begin(), end());
     return it;
   }
 
   /** returns an iterator to the best individual DOES NOT MOVE ANYBODY */
   const EOT & best_element() const
   {
-    typename eoPop<EOT>::const_iterator it = max_element(begin(), end());
+    typename eoPop<EOT>::const_iterator it = std::max_element(begin(), end());
     return (*it);
   }
 
   /** returns a const reference to the worse individual DOES NOT MOVE ANYBODY */
   const EOT & worse_element() const
   {
-    typename eoPop<EOT>::const_iterator it = min_element(begin(), end());
+    typename eoPop<EOT>::const_iterator it = std::min_element(begin(), end());
     return (*it);
   }
 
   /** returns an iterator to the worse individual DOES NOT MOVE ANYBODY */
   typename eoPop<EOT>::iterator it_worse_element()
   {
-    typename eoPop<EOT>::iterator it = min_element(begin(), end());
+    typename eoPop<EOT>::iterator it = std::min_element(begin(), end());
     return it;
   }
 
@@ -194,7 +194,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   typename eoPop<EOT>::iterator nth_element(int nth)
   {
       typename eoPop<EOT>::iterator it = begin() + nth;
-      std::nth_element(begin(), it, end(), greater<EOT>());
+      std::nth_element(begin(), it, end(), std::greater<EOT>());
       return it;
   }
 
@@ -204,24 +204,24 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   Fitness nth_element_fitness(int which) const
   { // probably not the fastest way to do this, but what the heck
       
-      vector<Fitness> fitness(size());
+      std::vector<Fitness> fitness(size());
       std::transform(begin(), end(), fitness.begin(), GetFitness());
 
-      typename vector<Fitness>::iterator it = fitness.begin() + which;
-      std::nth_element(fitness.begin(), it, fitness.end(), greater<Fitness>());
+      typename std::vector<Fitness>::iterator it = fitness.begin() + which;
+      std::nth_element(fitness.begin(), it, fitness.end(), std::greater<Fitness>());
       return *it;
   }
 
   /** const nth_element function, returns pointers to sorted individuals 
    * up the the nth 
    */
-  void nth_element(int which, vector<const EOT*>& result) const
+  void nth_element(int which, std::vector<const EOT*>& result) const
   {
 
       result.resize(size());
       std::transform(begin(), end(), result.begin(), Ref());
   
-      typename vector<const EOT*>::iterator it  = result.begin() + which;
+      typename std::vector<const EOT*>::iterator it  = result.begin() + which;
 
       std::nth_element(result.begin(), it, result.end(), Cmp());
   }
@@ -229,30 +229,30 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   /** does STL swap with other pop */
   void swap(eoPop<EOT>& other)
   {
-      std::swap(static_cast<vector<EOT>& >(*this), static_cast<vector<EOT>& >(other));
+      std::swap(static_cast<std::vector<EOT>& >(*this), static_cast<std::vector<EOT>& >(other));
   }
   
   /**
    * Prints sorted pop but does NOT modify it!
    *
-   * @param _os A ostream. 
+   * @param _os A std::ostream. 
    */
-  virtual void sortedPrintOn(ostream& _os) const 
+  virtual void sortedPrintOn(std::ostream& _os) const 
   {
-    vector<const EOT*> result;
+    std::vector<const EOT*> result;
     sort(result);
     _os << size() << '\n';
     for (unsigned i = 0; i < size(); ++i)
       {
-	_os << *result[i] << endl;
+	_os << *result[i] << std::endl;
       }
   }
 
   /**
    * Write object. It's called printOn since it prints the object _on_ a stream.
-   * @param _os A ostream. 
+   * @param _os A std::ostream. 
    */
-  virtual void printOn(ostream& _os) const 
+  virtual void printOn(std::ostream& _os) const 
   {
         _os << size() << '\n';
         std::copy( begin(), end(), std::ostream_iterator<EOT>( _os, "\n") );
@@ -263,9 +263,9 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   /**
    * Read object. The EOT class must have a ctor from a stream;
    in this case, a strstream is used.
-   * @param _is A istream.   
+   * @param _is A std::istream.   
   */
-  virtual void readFrom(istream& _is) 
+  virtual void readFrom(std::istream& _is) 
   {
     size_t sz;
     _is >> sz;
@@ -280,7 +280,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   /** Inherited from eoObject. Returns the class name.
       @see eoObject
   */
-  virtual string className() const {return "eoPop";};
+  virtual std::string className() const {return "eoPop";};
     //@}
 
   virtual void invalidate()

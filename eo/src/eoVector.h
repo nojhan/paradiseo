@@ -22,7 +22,7 @@
              Marc.Schoenauer@polytechnique.fr
 	     mak@dhi.dk
 
-    CVS Info: $Date: 2002-10-18 11:39:05 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVector.h,v 1.13 2002-10-18 11:39:05 jeggermo Exp $ $Author: jeggermo $ 
+    CVS Info: $Date: 2003-02-27 19:25:47 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVector.h,v 1.14 2003-02-27 19:25:47 okoenig Exp $ $Author: okoenig $ 
 
  */
 //-----------------------------------------------------------------------------
@@ -36,9 +36,9 @@
 
 /**
 
-  Base class for fixed length chromosomes, just derives from EO and vector and
+  Base class for fixed length chromosomes, just derives from EO and std::vector and
   redirects the smaller than operator to EO (fitness based comparison). GeneType
-  must have the following methods: void ctor (needed for the vector<>), copy ctor,
+  must have the following methods: void ctor (needed for the std::vector<>), copy ctor,
   
   
 */
@@ -56,17 +56,17 @@ class eoVector : public EO<FitT>, public std::vector<GeneType>
 
     /// copy ctor abstracting from the FitT
     template <class OtherFitnessType>
-    eoVector(const eoVector<OtherFitnessType, GeneType>& _vec) : vector<GeneType>(_vec)
+    eoVector(const eoVector<OtherFitnessType, GeneType>& _vec) : std::vector<GeneType>(_vec)
     {}
 
-  // we can't have a Ctor from a vector, it would create ambiguity
+  // we can't have a Ctor from a std::vector, it would create ambiguity
   //  with the copy Ctor
   void value(const std::vector<GeneType>& _v)
   {
     if (_v.size() != size())	   // safety check
       {
-	if (size())		   // NOT an initial empty vector
-	  cout << "Warning: Changing size in eoVector assignation"<<endl;
+	if (size())		   // NOT an initial empty std::vector
+	  std::cout << "Warning: Changing size in eoVector assignation"<<std::endl;
 	resize(_v.size());
       }
 
@@ -74,14 +74,14 @@ class eoVector : public EO<FitT>, public std::vector<GeneType>
     invalidate();
   }
 
-    /// to avoid conflicts between EO::operator< and vector<GeneType>::operator<
+    /// to avoid conflicts between EO::operator< and std::vector<GeneType>::operator<
     bool operator<(const eoVector<FitT, GeneType>& _eo) const
     {
         return EO<FitT>::operator<(_eo);
     }
 
     /// printing...
-    virtual void printOn(ostream& os) const
+    virtual void printOn(std::ostream& os) const
     {
         EO<FitT>::printOn(os);
         os << ' ';
@@ -92,7 +92,7 @@ class eoVector : public EO<FitT>, public std::vector<GeneType>
     }
 
     /// reading...
-    virtual void readFrom(istream& is)
+    virtual void readFrom(std::istream& is)
     {
         EO<FitT>::readFrom(is);
 
@@ -111,7 +111,7 @@ class eoVector : public EO<FitT>, public std::vector<GeneType>
     }
 };
 
-/// to avoid conflicts between EO::operator< and vector<double>::operator<
+/// to avoid conflicts between EO::operator< and std::vector<double>::operator<
 template <class FitT, class GeneType>
 bool operator<(const eoVector<FitT, GeneType>& _eo1, const eoVector<FitT, GeneType>& _eo2)
 {

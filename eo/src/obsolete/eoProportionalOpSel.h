@@ -31,7 +31,7 @@
 
 //-----------------------------------------------------------------------------
 
-#include <stdexcept>  // runtime_error
+#include <stdexcept>  // std::runtime_error
 #include <functional>   // greater 
 #include <map>
 
@@ -42,8 +42,8 @@
 
 //-----------------------------------------------------------------------------
 /** This class selects operators according to probability. All operator percentages
-should add up to one; if not, an exception will be raised.\\
-Operators are represented as pairs (proportion,operator)
+should add up to one; if not, an std::exception will be raised.\\
+Operators are represented as std::pairs (proportion,operator)
 */
 template<class EOT>
 class eoProportionalOpSel: public eoOpSelector<EOT>, 
@@ -63,14 +63,14 @@ public:
   /** Gets a non-const reference to an operator, so that it can be changed, 
     modified or whatever 
     @param _id  a previously assigned ID
-    @throw runtime_error if the ID does not exist*/
+    @throw std::runtime_error if the ID does not exist*/
  
   virtual eoOp<EOT>& getOp( ID _id ) {
      MMF::iterator i=begin();
      ID j = 1;
      while ( (i++!=end()) &&  (j++ != _id) );
      if ( i == end() ) 
-       throw runtime_error( "No such id in eoProportionalOpSel::op\n" );
+       throw std::runtime_error( "No such id in eoProportionalOpSel::op\n" );
      return *(i->second);
 	 //return i->second;
   }
@@ -87,7 +87,7 @@ public:
 
   /** Remove an operator from the operator set
     @param _id a previously assigned ID
-    @throw runtime_error if the ID does not exist
+    @throw std::runtime_error if the ID does not exist
     */
   virtual void deleteOp( ID _id ) {
     unsigned j;
@@ -98,7 +98,7 @@ public:
       return;
     }
     if ( i == end() ) 
-      throw runtime_error( "No such id in eoProportionalOpSel::op\n" );
+      throw std::runtime_error( "No such id in eoProportionalOpSel::op\n" );
   };
 
   /// Returns a genetic operator according to the established criteria
@@ -111,7 +111,7 @@ public:
       acc +=i->first;
     }
     if ( acc != 1.0 )
-      throw runtime_error( "Operator rates added up different from 1.0" );
+      throw std::runtime_error( "Operator rates added up different from 1.0" );
 	
     // If here, operators ordered by rate and no problem
     float aRnd = rng.uniform();
@@ -121,7 +121,7 @@ public:
       acc += i->first;
     } while ( (acc <= aRnd ) && (i++!=end() ) );
 	if ( i == end() )
-		throw runtime_error( "Operator not found in eoProportionalOpSelector" );
+		throw std::runtime_error( "Operator not found in eoProportionalOpSelector" );
 	return i->second;
 	//return i->second;
   }
@@ -130,18 +130,18 @@ public:
     //@{
 
     /** Return the class id. 
-      @return the class name as a string
+      @return the class name as a std::string
       */
-    virtual string className() const { return "eoProportionalOpSel"; };
+    virtual std::string className() const { return "eoProportionalOpSel"; };
 
     /** Print itself: inherited from eoObject implementation. Declared virtual so that 
       it can be reimplemented anywhere. Instance from base classes are processed in
       base classes, so you don´t have to worry about, for instance, fitness.
-      @param _s the ostream in which things are written*/
-    virtual void printOn( ostream& _s ) const{
-		_s << className().c_str() << endl;
+      @param _s the std::ostream in which things are written*/
+    virtual void printOn( std::ostream& _s ) const{
+		_s << className().c_str() << std::endl;
 		for ( MMF::const_iterator i=begin(); i!=end(); i++ ) {
-			_s << i->first << "\t" << *(i->second )<< endl;
+			_s << i->first << "\t" << *(i->second )<< std::endl;
 		}
     }
 

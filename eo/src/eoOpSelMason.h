@@ -39,7 +39,7 @@ template<class eoClass>
 class eoOpSelMason: public eoFactory<eoOpSelector<eoClass> > {
 	
 public:
-	typedef vector<eoOp<eoClass>* > vOpP;
+	typedef std::vector<eoOp<eoClass>* > vOpP;
 	typedef map<eoOpSelector<eoClass>*, vOpP > MEV;
 
 	/// @name ctors and dtors
@@ -51,7 +51,7 @@ public:
 	virtual ~eoOpSelMason() {};
 	//@}
 
-	/** Factory methods: creates an object from an istream, reading from
+	/** Factory methods: creates an object from an std::istream, reading from
 	it whatever is needed to create the object. The format is
 	opSelClassName\\
 	rate 1 operator1\\
@@ -62,9 +62,9 @@ public:
 	since the built object can´t do it itself. The objects built must be destroyed
 	from outside, using the #destroy# method
 	*/
-	virtual eoOpSelector<eoClass>* make(istream& _is) {
+	virtual eoOpSelector<eoClass>* make(std::istream& _is) {
 
-		string opSelName;
+		std::string opSelName;
 		_is >> opSelName;
 		eoOpSelector<eoClass>* opSelectorP;
 		// Build the operator selector
@@ -72,7 +72,7 @@ public:
 			opSelectorP = new eoProportionalOpSel<eoClass>();
 		}
 
-		// Temp vector for storing pointers
+		// Temp std::vector for storing pointers
 		vOpP tmpPVec;
 		// read operator rate and name
 		while ( _is ) {
@@ -96,12 +96,12 @@ public:
 	///@name eoObject methods
 	//@{
 	/** Return the class id */
-	virtual string className() const { return "eoOpSelMason"; }
+	virtual std::string className() const { return "eoOpSelMason"; }
 
 	//@}
 	
 private:
-	map<eoOpSelector<eoClass>*,vector<eoOp<eoClass>* > > allocMap;
+	map<eoOpSelector<eoClass>*,std::vector<eoOp<eoClass>* > > allocMap;
 	eoOpFactory<eoClass>& operatorFactory;
 };
 

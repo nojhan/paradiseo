@@ -41,7 +41,7 @@ class eoTranspose: public eoMonOp<EOT>
 {
 public:
   
-  // Specialization for a vector
+  // Specialization for a std::vector
   void operator()(eoFixedLength<typename EOT::Fitness, typename EOT::AtomType>& _eo )
   {
     unsigned pos1 = rng.random(_eo.size()),
@@ -54,7 +54,7 @@ public:
         _eo.invalidate();
   }
 
-  // Specialization for a list
+  // Specialization for a std::list
   void operator()(eoVariableLength<typename EOT::Fitness, typename EOT::AtomType>& _eo )
   {
     unsigned pos1 = rng.random(_eo.size()),
@@ -85,7 +85,7 @@ public:
   /** Inherited from eoObject 
       @see eoObject
   */
-  virtual string className() const {return "eoTranspose";};
+  virtual std::string className() const {return "eoTranspose";};
   //@}
     
 };

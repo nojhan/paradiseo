@@ -50,7 +50,7 @@ template <class EOT> class eoDetTournamentSelect: public eoSelectOne<EOT>
   eoDetTournamentSelect(unsigned _tSize = 2 ):eoSelectOne<EOT>(), tSize(_tSize) {
     // consistency check
     if (tSize < 2) {
-      cout << "Warning, Tournament size should be >= 2\nAdjusted to 2\n";
+      std::cout << "Warning, Tournament size should be >= 2\nAdjusted to 2\n";
       tSize = 2;
     }
   }

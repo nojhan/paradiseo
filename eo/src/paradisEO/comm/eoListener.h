@@ -38,7 +38,7 @@
 
 // In the near future ... Enabling different kinds of EO to send/receive ..
 
-template <class EOT> class eoListener : public vector <eoLocalListener <EOT> > {
+template <class EOT> class eoListener : public std::vector <eoLocalListener <EOT> > {
   
 public :
 
@@ -91,11 +91,11 @@ public :
   }
   
   /**
-     To broadcast the string identifier of the local process to the
+     To broadcast the std::string identifier of the local process to the
      whole neighbouring ...
    */
 
-  void publish (string label) {
+  void publish (std::string label) {
     
     eoPublishMessTo <EOT> mess (label) ;
     for (int i = 0 ; i < size () ; i ++)
@@ -123,7 +123,7 @@ public :
     } while (! b) ;
   }
   
-  void destroy (string label) {
+  void destroy (std::string label) {
     
     eoKillMessTo <EOT> mess ;
     for (int i = 0 ; i < len ; i ++) {

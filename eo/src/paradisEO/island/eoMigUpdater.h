@@ -85,14 +85,14 @@ public :
     listen.update () ;
     //    listen.display () ;
     
-    vector <eoLocalListener <EOT> *> src = conn.from (), dest = conn.to () ;
+    std::vector <eoLocalListener <EOT> *> src = conn.from (), dest = conn.to () ;
     
     // Any coming immigrants ?
     for (int i = 0 ; i < src.size () ; i ++) {
       src [i] -> update () ;
       while (! src [i] -> empty ()) {
 	replace (* pop, src [i] -> front ()) ;
-	cout << "[" << listen.here ().host_name << "] Arrival of " << src [i] -> front ().size () << " individuals ..." << endl ;
+	std::cout << "[" << listen.here ().host_name << "] Arrival of " << src [i] -> front ().size () << " individuals ..." << std::endl ;
 	src [i] -> pop () ;
       }
     }

@@ -35,18 +35,18 @@ template <class EOT> class eoLocalListener ;
    message to be then sent ...
 */
 
-template <class EOT> class eoHeaderMessTo : public string {
+template <class EOT> class eoHeaderMessTo : public std::string {
   
 public :
   
   /**
      Constructor.
-     The string identifiant id given in parameter.
+     The std::string identifiant id given in parameter.
   */
   
-  eoHeaderMessTo (string label) :    
+  eoHeaderMessTo (std::string label) :    
     
-    string (label),
+    std::string (label),
     comm (MPI :: COMM_WORLD) {
     
   }

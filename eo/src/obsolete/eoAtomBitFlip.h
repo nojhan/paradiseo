@@ -48,7 +48,7 @@ public:
   /** Inherited from eoObject 
       @see eoObject
   */
-  string className() const {return "eoAtomBitFlip";};
+  std::string className() const {return "eoAtomBitFlip";};
   //@}
 
 };

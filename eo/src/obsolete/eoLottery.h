@@ -28,7 +28,7 @@
 
 //-----------------------------------------------------------------------------
 
-#include <stdexcept>          // logic_error
+#include <stdexcept>          // std::logic_error
 #include <utils/selectors.h>  // sum_fitness
 #include <eoFunctor.h>
 
@@ -53,7 +53,7 @@ template<class EOT> class eoLottery: public eoBinaryFunctor<void, const eoPop<EO
   {
       if (minimizing_fitness<EOT>())
       {
-	throw logic_error("eoLottery: minimizing fitness");
+	throw std::logic_error("eoLottery: minimizing fitness");
       }
   }
   

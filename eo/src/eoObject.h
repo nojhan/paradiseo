@@ -28,12 +28,10 @@
 //-----------------------------------------------------------------------------
 
 #include <utils/eoData.h>	// For limits definition
-#include <iostream>		// istream, ostream
-#include <string>		// string
+#include <iostream>		// std::istream, std::ostream
+#include <string>		// std::string
 
 #include <utils/compatibility.h>
-
-using namespace std;
 
 //-----------------------------------------------------------------------------
 // eoObject
@@ -69,7 +67,7 @@ class eoObject
   their own. Having it pure will force the implementor to provide a 
   name.
   */
-  virtual string className() const = 0; 
+  virtual std::string className() const = 0; 
 
 };
 

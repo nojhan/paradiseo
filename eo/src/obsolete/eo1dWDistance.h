@@ -27,7 +27,7 @@
 #ifndef _EO1DWDISTANCE_H
 #define _EO1DWDISTANCE_H
 
-#include <iostream>				// for ostream
+#include <iostream>				// for std::ostream
 
 // EO Includes
 #include <eo1d.h>
@@ -58,7 +58,7 @@ public:
       @param _i index of the gene, which is the minimal unit. Must be
       an unsigned less than #length()#  
       @return what's inside the gene, with the correct type
-	  @exception out_of_range if _i > size()
+	  @std::exception out_of_range if _i > size()
     */
   virtual T getGene( unsigned _i ) const {
     return innereo1d.getGene( _i );
@@ -69,7 +69,7 @@ public:
    * for T must be defined .
    @param _i index
    @return what's inside the gene, with the correct type
-   @exception out_of_range if _i > size()
+   @std::exception out_of_range if _i > size()
   */
   virtual void setGene( unsigned _i, const T& _value ) {
     innereo1d.setGene( _i, _value);
@@ -118,7 +118,7 @@ public:
   /** Inherited from eoObject 
       @see eoObject
   */
-  string className() const {return "eo1dWDistance";};
+  std::string className() const {return "eo1dWDistance";};
 
   //@}
 

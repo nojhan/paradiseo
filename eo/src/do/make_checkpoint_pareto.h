@@ -69,7 +69,7 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
     checkpoint.add(increment);
 
     // dir for DISK output
-    string & dirName =  _parser.getORcreateParam(string("Res"), "resDir", "Directory to store DISK outputs", '\0', "Output - Disk").value();
+    std::string & dirName =  _parser.getORcreateParam(std::string("Res"), "resDir", "Directory to store DISK outputs", '\0', "Output - Disk").value();
     // shoudl we empty it if exists
     eoValueParam<bool>& eraseParam = _parser.createParam(true, "eraseDir", "erase files in dirName if any", '\0', "Output - Disk");
     bool dirOK = false;		   // not tested yet
@@ -80,22 +80,22 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
     /**
      * existing stats for Pareto as of today, Jan. 31. 2002
      *
-     * eoSortedPopStat   : whole population - type string (!!)
+     * eoSortedPopStat   : whole population - type std::string (!!)
      */
 
-  eoValueParam<eoParamParamType>& fPlotParam = _parser.createParam(eoParamParamType("1(0,1)"), "frontFileFrequency", "File save frequency in objective spaces (pairs of comma-separated objectives in 1 single parentheses pair)", '\0', "Output - Disk");
+  eoValueParam<eoParamParamType>& fPlotParam = _parser.createParam(eoParamParamType("1(0,1)"), "frontFileFrequency", "File save frequency in objective spaces (std::pairs of comma-separated objectives in 1 single parentheses std::pair)", '\0', "Output - Disk");
 
 #if !defined(NO_GNUPLOT)
   bool boolGnuplot = _parser.createParam(false, "plotFront", "Objective plots (requires corresponding files - see frontFileFrequency", '\0', "Output - Graphical").value();
 #endif
 
-  eoParamParamType & fPlot = fPlotParam.value(); // pair<string,vector<string> >
+  eoParamParamType & fPlot = fPlotParam.value(); // std::pair<std::string,std::vector<std::string> >
   unsigned frequency = atoi(fPlot.first.c_str());
   if (frequency)		   // something to plot
     {
       unsigned nbPlot = fPlot.second.size(); 
       if ( nbPlot % 2 )		   // odd!
-	throw runtime_error("Odd number of front description in make_checkpoint_pareto");
+	throw std::runtime_error("Odd number of front description in make_checkpoint_pareto");
 
       // only create the necessary stats
       std::vector<bool> bStat(nObj, false); // track of who's already there
@@ -110,8 +110,8 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
 	  if (!bStat[obj1])		   // not already there: create it
 	    {
 	      char s[1024];
-	      ostrstream os(s, 1022);
-	      os << "Obj. " << obj1 << ends; 
+	      std::ostrstream os(s, 1022);
+	      os << "Obj. " << obj1 << std::ends; 
 	      fStat = new eoMOFitnessStat<EOT>(obj1, s);
 	      _state.storeFunctor(fStat);
 	      bStat[obj1]=true;
@@ -121,8 +121,8 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
 	  if (!bStat[obj2])		   // not already there: create it
 	    {
 	      char s2[1024];
-	      ostrstream os2(s2, 1022);
-	      os2 << "Obj. " << obj2 << ends; 
+	      std::ostrstream os2(s2, 1022);
+	      os2 << "Obj. " << obj2 << std::ends; 
 	      fStat = new eoMOFitnessStat<EOT>(obj2, s2);
 	      _state.storeFunctor(fStat);
 	      bStat[obj2]=true;
@@ -132,8 +132,8 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
 
 	  // then the fileSnapshots
 	  char s3[1024];
-	  ostrstream os3(s3, 1022);
-	  os3 << "Front." << obj1 << "." << obj2 << "." << ends; 
+	  std::ostrstream os3(s3, 1022);
+	  os3 << "Front." << obj1 << "." << obj2 << "." << std::ends; 
 	  eoFileSnapshot & snapshot = _state.storeFunctor(new 
 		 eoFileSnapshot(dirName, frequency, s3 ) );
       
@@ -160,7 +160,7 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
     eoSortedPopStat<EOT> * popStat;
     if ( printPop ) // we do want pop dump
       {
-	cout << "On cree printpop\n";
+	std::cout << "On cree printpop\n";
 	popStat = & _state.storeFunctor(new eoSortedPopStat<EOT>);
 	// add it to the checkpoint
 	checkpoint.add(*popStat);
@@ -205,9 +205,9 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
 
       unsigned freq = (saveFrequencyParam.value()>0 ? saveFrequencyParam.value() : UINT_MAX );
 #ifdef _MSVC
-      string stmp = dirName + "\generations";
+      std::string stmp = dirName + "\generations";
 #else
-      string stmp = dirName + "/generations";
+      std::string stmp = dirName + "/generations";
 #endif
       eoCountedStateSaver *stateSaver1 = new eoCountedStateSaver(freq, _state, stmp); 
       _state.storeFunctor(stateSaver1);
@@ -223,9 +223,9 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
 	dirOK = testDirRes(dirName, eraseParam.value()); // TRUE
 
 #ifdef _MSVC
-      string stmp = dirName + "\time";
+      std::string stmp = dirName + "\time";
 #else
-      string stmp = dirName + "/time";
+      std::string stmp = dirName + "/time";
 #endif
       eoTimedStateSaver *stateSaver2 = new eoTimedStateSaver(saveTimeIntervalParam.value(), _state, stmp); 
       _state.storeFunctor(stateSaver2);

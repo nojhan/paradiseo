@@ -30,7 +30,7 @@
 #include <vector>
 
 /**
-  Applies a unary function to a vector of things.
+  Applies a unary function to a std::vector of things.
 */
 template <class EOT>
 void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)

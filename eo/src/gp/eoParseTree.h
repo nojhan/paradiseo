@@ -37,7 +37,6 @@
 #include <eoInit.h>
 
 using namespace gp_parse_tree;
-using namespace std;
 
 /**
 \defgroup ParseTree
@@ -93,7 +92,7 @@ public :
 
     /**
      * To read me from a stream
-     * @param is The istream
+     * @param is The std::istream
      */
      
     eoParseTree(std::istream& is) : EO<FType>(), parse_tree<Node>() 
@@ -102,11 +101,11 @@ public :
     }
 
     /// My class name
-    string className(void) const { return "eoParseTree"; }
+    std::string className(void) const { return "eoParseTree"; }
 
     /**
      * To print me on a stream
-     * @param os The ostream
+     * @param os The std::ostream
      */
     void printOn(std::ostream& os) const
     {
@@ -120,7 +119,7 @@ public :
     
     /**
      * To read me from a stream
-     * @param is The istream
+     * @param is The std::istream
      */
     void readFrom(std::istream& is) 
     {
@@ -132,7 +131,7 @@ public :
         is >> sz;
 
 	
-	vector<Node> v(sz);
+	std::vector<Node> v(sz);
 
         unsigned i;
 
@@ -158,7 +157,7 @@ public :
         fitness(fit);
 	
 
-        std::copy(istream_iterator<Node>(is), istream_iterator<Node>(), back_inserter(*this));
+        std::copy(std::istream_iterator<Node>(is), std::istream_iterator<Node>(), back_inserter(*this));
 	*/
     }
 };

@@ -42,11 +42,11 @@ template <class F>
 void compare(F & _eo1, F & _eo2)
 {
   if (_eo1.dominates(_eo2))
-    cout << _eo1 << " dominates " << _eo2 << endl;
+    std::cout << _eo1 << " dominates " << _eo2 << std::endl;
   else if (_eo2.dominates(_eo1))
-    cout << _eo2 << " dominates " << _eo1 << endl;
+    std::cout << _eo2 << " dominates " << _eo1 << std::endl;
   else
-    cout << "None of " << _eo1 << " and " << _eo2 << "dominates the other" << endl;
+    std::cout << "None of " << _eo1 << " and " << _eo2 << "dominates the other" << std::endl;
   return;
 }
 
@@ -75,7 +75,7 @@ int main()
 
   if (!f0.dominates(f2))
   {
-    cout << f2 << " not dominated by " << f0;
+    std::cout << f2 << " not dominated by " << f0;
     throw;
   }
 
@@ -83,13 +83,13 @@ int main()
 
   if (f0.dominates(f1) || f1.dominates(f0))
   {
-    cout << f0 << " and " << f1 << " dominate";
+    std::cout << f0 << " and " << f1 << " dominate";
     throw;
   }
 
   if (! (f0 == f0))
   {
-    cout << "f0 == f0 failed" << endl;
+    std::cout << "f0 == f0 failed" << std::endl;
     throw;
   }
 
@@ -132,7 +132,7 @@ int main()
   // now the run-time set-able number of objectives
   ////////////////////////////////////////////
 
-  cout << "On y va" << endl;
+  std::cout << "On y va" << std::endl;
 
 
   // setup fitness WARNING do not try to allocate any EO before that (runtime error)
@@ -140,7 +140,7 @@ int main()
   b[0]=true; 
   b[1]=false;
   VarFitness::setUp(2, b);
-  cout << "\nMAXimizing on Obj 0 and MINimizing on Obj 1\n";
+  std::cout << "\nMAXimizing on Obj 0 and MINimizing on Obj 1\n";
 
   VarFitness mv0;
   VarFitness mv1;
@@ -166,11 +166,11 @@ int main()
   compare <VarFitness>(mv1,mv3);
   compare <VarFitness>(mv2,mv3);
 
-  cout << "\nChanging now the min <-> max\n";
+  std::cout << "\nChanging now the min <-> max\n";
   b[0]=false; 
   b[1]=true;
   VarFitness::setUp(2, b);
-  cout << "\nMINimizing on Obj 0 and MAXimizing on Obj 1\n";
+  std::cout << "\nMINimizing on Obj 0 and MAXimizing on Obj 1\n";
   compare <VarFitness>(mv0,mv1);
   compare <VarFitness>(mv0,mv2);
   compare <VarFitness>(mv0,mv3);
@@ -178,7 +178,7 @@ int main()
   compare <VarFitness>(mv1,mv3);
   compare <VarFitness>(mv2,mv3);
 
-  cout << "\nTesting WARNING\n";
+  std::cout << "\nTesting WARNING\n";
   b.resize(3);
   b[0]=false; 
   b[1]=true;
@@ -186,9 +186,9 @@ int main()
   VarFitness::setUp(3, b);
 
   }
-  catch(exception& e)
+  catch(std::exception& e)
   {
-    cout << e.what() << endl;
+    std::cout << e.what() << std::endl;
   }
 
 }

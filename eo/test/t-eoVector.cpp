@@ -25,7 +25,7 @@
 */
 //-----------------------------------------------------------------------------
 
-#include <iostream>   // cout
+#include <iostream>   // std::cout
 #include <strstream>  // ostrstream, istrstream
 
 #include <assert.h>
@@ -59,11 +59,11 @@ int main()
 
   init(chrom);
 
-  cout << chrom << endl;
+  std::cout << chrom << std::endl;
 
   Chrom2 chrom2(chrom);
 
-  cout << chrom2 << endl;
+  std::cout << chrom2 << std::endl;
 
 //  eoInitVariableLength<Chrom1> initvar(
 

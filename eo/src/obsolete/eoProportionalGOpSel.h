@@ -44,7 +44,7 @@ public :
     }
 
    ///
-  virtual string className() const { return "eoGOpSelector"; };
+  virtual std::string className() const { return "eoGOpSelector"; };
 
 };
 

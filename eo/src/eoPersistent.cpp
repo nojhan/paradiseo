@@ -9,7 +9,7 @@
 
 //-----------------------------------------------------------------------------
 
-istream & operator >> ( istream& _is, eoPersistent& _o ) {
+std::istream & operator >> ( std::istream& _is, eoPersistent& _o ) {
   _o.readFrom(_is);
   return _is;
 };

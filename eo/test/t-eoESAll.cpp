@@ -46,22 +46,22 @@ int main_function(int argc, char *argv[])
     // Run the appropriate algorithm
     if (simpleParam.value() == false)
     {
-      cout << "Using eoReal" << endl;
+      std::cout << "Using eoReal" << std::endl;
       runAlgorithm(eoReal<FitT>(), parser, state);
     }
     else if (stdevsParam.value() == false)
     {
-      cout << "Using eoEsSimple" << endl;
+      std::cout << "Using eoEsSimple" << std::endl;
       runAlgorithm(eoEsSimple<FitT>(), parser, state);
     }
     else if (corrParam.value() == false)
     {
-      cout << "Using eoEsStdev" << endl;
+      std::cout << "Using eoEsStdev" << std::endl;
       runAlgorithm(eoEsStdev<FitT>(), parser, state);
     }
     else 
     {
-      cout << "Using eoEsFull" << endl;
+      std::cout << "Using eoEsFull" << std::endl;
       runAlgorithm(eoEsFull<FitT>(), parser, state);
     }
 
@@ -84,9 +84,9 @@ int main(int argc, char **argv)
     {
         main_function(argc, argv);
     }
-    catch(exception& e)
+    catch(std::exception& e)
     {
-        cout << "Exception: " << e.what() << '\n';
+        std::cout << "Exception: " << e.what() << '\n';
     }
  
 }
@@ -136,13 +136,13 @@ void runAlgorithm(EOT, eoParser& _parser, eoState& _state)
 
   //// GO
   ///////
-  cout << "Initial Population\n";
-  pop.sortedPrintOn(cout);
-  cout << endl;
+  std::cout << "Initial Population\n";
+  pop.sortedPrintOn(std::cout);
+  std::cout << std::endl;
 
   run_ea(ga, pop); // run the ga
 
-  cout << "Final Population\n";
-  pop.sortedPrintOn(cout);
-  cout << endl;
+  std::cout << "Final Population\n";
+  pop.sortedPrintOn(std::cout);
+  std::cout << std::endl;
 }

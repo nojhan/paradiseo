@@ -22,6 +22,8 @@
 // define your individuals
 typedef eoBit<double> Indi;	// A bitstring with fitness double
 
+using namespace std;
+
 //-----------------------------------------------------------------------------
 /** a simple fitness function that computes the number of ones of a bitstring
     @param _indi A biststring individual

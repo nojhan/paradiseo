@@ -35,18 +35,18 @@ main()
       pop.push_back(chrom);
     }
   
-  cout << "original population:" << endl;
+  std::cout << "original population:" << std::endl;
   sort(pop.begin(), pop.end());
   for (i = 0; i < pop.size(); i++)
-    cout << pop[i] << "  " << pop[i].fitness() << endl;
+    std::cout << pop[i] << "  " << pop[i].fitness() << std::endl;
   
   eoLottery<Chrom> lottery;
   lottery(pop, pop2); 
 
-  cout << "selected by lottery population:" << endl;
+  std::cout << "selected by lottery population:" << std::endl;
   sort(pop2.begin(), pop2.end());
   for (i = 0; i < pop2.size(); i++)
-    cout << pop2[i] << "  " << pop2[i].fitness() << endl;
+    std::cout << pop2[i] << "  " << pop2[i].fitness() << std::endl;
 
   return 0;
 }

@@ -66,7 +66,7 @@ class PyFitness : public boost::python::object
 	extract<double> x(object::operator[](i)); 
     
 	if (!x.check())
-	    throw runtime_error("PyFitness: does not contain doubles");
+	    throw std::runtime_error("PyFitness: does not contain doubles");
 	return x();
     }
  
@@ -101,9 +101,9 @@ class PyFitness : public boost::python::object
 	return other.operator<(*this);
     }
     
-    //void printOn(ostream& os) const { const object& o = *this; os << o; }
-    //friend ostream& operator<<(ostream& os, const PyFitness& p) { p.printOn(os); return os;  }
-    //friend istream& operator>>(istream& is, PyFitness& p) { object o; is >> o; p = o; return is; }
+    //void printOn(std::ostream& os) const { const object& o = *this; os << o; }
+    //friend std::ostream& operator<<(std::ostream& os, const PyFitness& p) { p.printOn(os); return os;  }
+    //friend std::istream& operator>>(std::istream& is, PyFitness& p) { object o; is >> o; p = o; return is; }
 };
 
 struct PyEO : public EO< PyFitness  >
@@ -117,7 +117,7 @@ struct PyEO : public EO< PyFitness  >
     void setGenome(object g) { genome = g; }
     object genome;
     
-    std::string to_string() const
+    std::string to_std::string() const
     {
 	std::string result;
 	result += extract<const char*>(str(getFitness()));
@@ -131,7 +131,7 @@ struct PyEO : public EO< PyFitness  >
 
 };
 
-ostream& operator<<(ostream& os, const PyEO& _eo);
+std::ostream& operator<<(std::ostream& os, const PyEO& _eo);
 
 struct PyEO_pickle_suite : boost::python::pickle_suite
 {

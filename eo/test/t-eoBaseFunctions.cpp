@@ -21,6 +21,6 @@ int main()
     eo2 _2; 
     int i = _2();
 
-    cout << i << '\n';
+    std::cout << i << '\n';
     return i;
 }

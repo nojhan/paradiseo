@@ -39,7 +39,7 @@ Description.....: Implementation of a 2-dimensional chromosome.
 #ifndef _EO2D_H
 #define _EO2D_H
 
-#include <iostream>				// for ostream
+#include <iostream>				// for std::ostream
 #include <vector>
 
 // EO Includes
@@ -81,18 +81,18 @@ public:
       @param _rows Initial number of rows
       @param _columns Initial number of columns
       @param _rndGen Random "T-type" generator
-      @param _ID An ID string, preferably unique
+      @param _ID An ID std::string, preferably unique
   */
   eo2d( const unsigned _rows, 
 	const unsigned _columns,
 	eoRnd<T>& _rndGen, 
-	const string& _ID = "");
+	const std::string& _ID = "");
 
- /** Ctor from an istream. It just passes the stream to EO, subclasses should
+ /** Ctor from an std::istream. It just passes the stream to EO, subclasses should
      have to implement this.
      @param _is the input stream
  */ 
-  eo2d( istream& _is): EO<fitnessT>( _is ){};
+  eo2d( std::istream& _is): EO<fitnessT>( _is ){};
 
   /// Copy ctor
   eo2d( const eo2d& _eo )
@@ -112,8 +112,8 @@ public:
       @param _r Index for rows. Must be an unsigned less than #numOfRows()#  
       @param _c Index for columns. Must be an unsigned less than #numOfCols()#
       @return what's inside the gene, with the correct type
-      @exception out_of_range if _r >=numOfRows()
-      @exception out_of_range if _c >=numOfCols()
+      @std::exception out_of_range if _r >=numOfRows()
+      @std::exception out_of_range if _c >=numOfCols()
     */
   virtual T getGene( const unsigned _r,
 		     const unsigned _j ) const = 0;
@@ -124,8 +124,8 @@ public:
    @param _r Index for rows. Must be an unsigned less than #numOfRows()#  
    @param _c Index for columns. Must be an unsigned less than #numOfCols()#
    @return what's inside the gene, with the correct type
-   @exception out_of_range if _r >=numOfRows()
-   @exception out_of_range if _c >=numOfCols()
+   @std::exception out_of_range if _r >=numOfRows()
+   @std::exception out_of_range if _c >=numOfCols()
   */
   virtual void setGene( const unsigned _r, 
 			const unsigned _c, 
@@ -136,16 +136,16 @@ public:
    * Obviously, changes number of rows. 
    @param _r Position where the new row will be inserted.
    @param _val Vector containing the new values to be inserted.
-   @exception invalid_argument If _val has not numOfCols() components.
-   @exception out_of_range If _r is greater than numOfRows()
+   @std::exception invalid_argument If _val has not numOfCols() components.
+   @std::exception out_of_range If _r is greater than numOfRows()
   */
   virtual void insertRow( const unsigned _r, 
-			  const vector<T>& _val ) = 0;
+			  const std::vector<T>& _val ) = 0;
 
   /** Eliminates the row at position _r; all the other genes will
       be shifted up.
       @param _r Number of he row to be deleted.
-      @exception out_of_range if _r >=numOfRows()
+      @std::exception out_of_range if _r >=numOfRows()
   */
   virtual void deleteRow( const unsigned _r ) = 0;
 
@@ -154,15 +154,15 @@ public:
    * Obviously, changes number of cols. 
    @param _r Position where the new column will be inserted.
    @param _val Vector containing the new values to be inserted.
-   @exception invalid_argument if _val has not numOfRows() components.
+   @std::exception invalid_argument if _val has not numOfRows() components.
   */
   virtual void insertCol( const unsigned _c, 
-			  const vector<T>& _val ) = 0;
+			  const std::vector<T>& _val ) = 0;
 
   /** Eliminates the column at position _c; all the other columns will
       be shifted left.
       @param _c Number of he column to be deleted.
-      @exception out_of_range if _c >=numOfCols()
+      @std::exception out_of_range if _c >=numOfCols()
   */
   virtual void deleteCol( const unsigned _c ) = 0;
   
@@ -177,10 +177,10 @@ public:
   /**
    * Read object. Theoretically, the length is known in advance. All objects
    * Should call base class
-   * @param _s A istream.
-   * @throw runtime_exception If a valid object can't be read.
+   * @param _s A std::istream.
+   * @throw runtime_std::exception If a valid object can't be read.
    */
-  virtual void readFrom(istream& _s) {
+  virtual void readFrom(std::istream& _s) {
 
     for ( unsigned r = 0; r < numOfRows(); ++r ) {
       for ( unsigned c = 0; c < numOfCols(); ++c ) {
@@ -196,8 +196,8 @@ public:
   /** Print itself: inherited from eoObject implementation. 
       Instance from base classes are processed in
       base classes, so you don´t have to worry about, for instance, fitness.
-  @param _s the ostream in which things are written*/
-  virtual void printOn( ostream& _s ) const{
+  @param _s the std::ostream in which things are written*/
+  virtual void printOn( std::ostream& _s ) const{
     for ( unsigned r = 0; r < numOfRows(); ++r ) {
       for ( unsigned c = 0; c < numOfCols(); ++c ) {
 	_s << getGene( r,c ) << " ";
@@ -208,7 +208,7 @@ public:
   /** Inherited from eoObject 
       @see eoObject
   */
-  string className() const {return "eo2d";};
+  std::string className() const {return "eo2d";};
 
   //@}
 
@@ -223,13 +223,13 @@ public:
     @param _rows Initial number of rows
     @param _columns Initial number of columns
     @param _rndGen Random "T-type" generator
-    @param _ID An ID string, preferably unique
+    @param _ID An ID std::string, preferably unique
 */
 template< class T, class fitnessT>
 eo2d<T,fitnessT>::eo2d<T,fitnessT>( const unsigned _rows, 
 				    const unsigned _columns,
 				    eoRnd<T>& _rndGen, 
-				    const string& _ID = "")
+				    const std::string& _ID = "")
   :EO<fitnessT> ( _ID ) {
   for ( unsigned r = 0; r < _rows; ++r ) {
     for ( unsigned c = 0; c < _cols; ++c ) {

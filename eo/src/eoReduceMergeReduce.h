@@ -90,7 +90,7 @@ public:
       // then the offspring
       unsigned reducedOffspringSize = howManyReducedOffspring(offSize);
       if (!reducedOffspringSize)
-	throw runtime_error("No offspring left after reduction!");
+	throw std::runtime_error("No offspring left after reduction!");
       if (reducedOffspringSize != offSize) // need reduction
 	reduceOffspring(_offspring, reducedOffspringSize);
 
@@ -100,7 +100,7 @@ public:
 		_parents.begin()+reducedParentSize); 
 
       // reduce the resulting population
-      // size depends on elitism
+      // size depstd::ends on elitism
       if (elite && strongElitism)
 	{
 	  if (_parents.size() != finalPopSize-elite)
@@ -131,9 +131,9 @@ public:
 
 private:
   eoHowMany howManyElite;	   // if 0, no elitism at all
-  bool strongElitism;		   // if false -> weak elistism
+  bool strongElitism;		   // if false -> weak estd::listism
   eoHowMany howManyReducedParents; // if 0, no parent in final replacement
-  eoHowMany howManyReducedOffspring; // if 0, runtime_error
+  eoHowMany howManyReducedOffspring; // if 0, std::runtime_error
   // the reducers
   eoReduce<EOT> & reduceParents;
   eoReduce<EOT> & reduceOffspring;

@@ -110,7 +110,7 @@ class eoUniformXOver: public eoQuadraticOp< EOT >
 
     if (rate < 0 || rate > 1)
 
-      runtime_error("UxOver --> invalid rate");
+      std::runtime_error("UxOver --> invalid rate");
 
   }
 
@@ -152,7 +152,7 @@ class eoUniformXOver: public eoQuadraticOp< EOT >
 
   */
 
-  string className() const {return "eoUniformXOver";};
+  std::string className() const {return "eoUniformXOver";};
 
   //@}
 

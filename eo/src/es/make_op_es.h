@@ -70,17 +70,17 @@
 template <class EOT>
 eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<EOT>& _init)
 {
-  // get vector size
+  // get std::vector size
   unsigned vecSize = _init.size();
 
   // First, decide whether the objective variables are bounded
   eoValueParam<eoRealVectorBounds>& boundsParam = _parser.createParam(eoRealVectorBounds(vecSize,eoDummyRealNoBounds), "objectBounds", "Bounds for variables", 'B', "Variation Operators");
 
     // now we read Pcross and Pmut, 
-  eoValueParam<string>& operatorParam =  _parser.createParam(string("SGA"), "operator", "Description of the operator (SGA only now)", 'o', "Variation Operators");
+  eoValueParam<std::string>& operatorParam =  _parser.createParam(std::string("SGA"), "operator", "Description of the operator (SGA only now)", 'o', "Variation Operators");
 
-  if (operatorParam.value() != string("SGA"))
-    throw runtime_error("Sorry, only SGA-like operator available right now\n");
+  if (operatorParam.value() != std::string("SGA"))
+    throw std::runtime_error("Sorry, only SGA-like operator available right now\n");
 
     // now we read Pcross and Pmut, 
     // and create the eoGenOp that is exactly 
@@ -89,21 +89,21 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
   eoValueParam<double>& pCrossParam = _parser.createParam(1.0, "pCross", "Probability of Crossover", 'C', "Variation Operators" );
   // minimum check
   if ( (pCrossParam.value() < 0) || (pCrossParam.value() > 1) )
-    throw runtime_error("Invalid pCross");
+    throw std::runtime_error("Invalid pCross");
 
   eoValueParam<double>& pMutParam = _parser.createParam(1.0, "pMut", "Probability of Mutation", 'M', "Variation Operators" );
   // minimum check
   if ( (pMutParam.value() < 0) || (pMutParam.value() > 1) )
-    throw runtime_error("Invalid pMut");
+    throw std::runtime_error("Invalid pMut");
 
 
   // crossover
   /////////////
   // ES crossover
-  eoValueParam<string>& crossTypeParam = _parser.createParam(string("global"), "crossType", "Type of ES recombination (global or standard)", 'C', "Variation Operators");
+  eoValueParam<std::string>& crossTypeParam = _parser.createParam(std::string("global"), "crossType", "Type of ES recombination (global or standard)", 'C', "Variation Operators");
   
-  eoValueParam<string>& crossObjParam = _parser.createParam(string("discrete"), "crossObj", "Recombination of object variables (discrete, intermediate or none)", 'O', "Variation Operators");
-  eoValueParam<string>& crossStdevParam = _parser.createParam(string("intermediate"), "crossStdev", "Recombination of mutation strategy parameters (intermediate, discrete or none)", 'S', "Variation Operators");
+  eoValueParam<std::string>& crossObjParam = _parser.createParam(std::string("discrete"), "crossObj", "Recombination of object variables (discrete, intermediate or none)", 'O', "Variation Operators");
+  eoValueParam<std::string>& crossStdevParam = _parser.createParam(std::string("intermediate"), "crossStdev", "Recombination of mutation strategy parameters (intermediate, discrete or none)", 'S', "Variation Operators");
 
   // The pointers: first the atom Xover
   eoBinOp<double> *ptObjAtomCross = NULL;
@@ -112,33 +112,33 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
   eoGenOp<EOT> *ptCross;
 
   // check for the atom Xovers
-  if (crossObjParam.value() == string("discrete"))
+  if (crossObjParam.value() == std::string("discrete"))
     ptObjAtomCross = new eoDoubleExchange;
-  else if (crossObjParam.value() == string("intermediate"))
+  else if (crossObjParam.value() == std::string("intermediate"))
     ptObjAtomCross = new eoDoubleIntermediate;
-  else if (crossObjParam.value() == string("none"))
+  else if (crossObjParam.value() == std::string("none"))
     ptObjAtomCross = new eoBinCloneOp<double>;
-  else throw runtime_error("Invalid Object variable crossover type");
+  else throw std::runtime_error("Invalid Object variable crossover type");
 
-  if (crossStdevParam.value() == string("discrete"))
+  if (crossStdevParam.value() == std::string("discrete"))
     ptStdevAtomCross = new eoDoubleExchange;
-  else if (crossStdevParam.value() == string("intermediate"))
+  else if (crossStdevParam.value() == std::string("intermediate"))
     ptStdevAtomCross = new eoDoubleIntermediate;
-  else if (crossStdevParam.value() == string("none"))
+  else if (crossStdevParam.value() == std::string("none"))
     ptStdevAtomCross = new eoBinCloneOp<double>;
-  else throw runtime_error("Invalid mutation strategy parameter crossover type");
+  else throw std::runtime_error("Invalid mutation strategy parameter crossover type");
 
   // and build the indi Xover 
-  if (crossTypeParam.value() == string("global"))
+  if (crossTypeParam.value() == std::string("global"))
     ptCross = new eoEsGlobalXover<EOT>(*ptObjAtomCross, *ptStdevAtomCross);
-  else if (crossTypeParam.value() == string("standard"))
+  else if (crossTypeParam.value() == std::string("standard"))
     {	   // using a standard eoBinOp, but wrap it into an eoGenOp
       eoBinOp<EOT> & crossTmp = _state.storeFunctor(
 	     new eoEsStandardXover<EOT>(*ptObjAtomCross, *ptStdevAtomCross)
 	     );
       ptCross = new eoBinGenOp<EOT>(crossTmp);
     }
-  else throw runtime_error("Invalide Object variable crossover type");
+  else throw std::runtime_error("Invalide Object variable crossover type");
 
   // now that everything is OK, DON'T FORGET TO STORE MEMORY
   _state.storeFunctor(ptObjAtomCross);

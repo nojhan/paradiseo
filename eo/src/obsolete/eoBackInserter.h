@@ -5,7 +5,7 @@
     Abstract population insertion operator, which is used by the eoGeneralOps
     to insert the results in the (intermediate) population. This file also
     contains the definitions of a derived classes that implements a back inserter,
-    probably the only efficient inserter for populations of type vector.
+    probably the only efficient inserter for populations of type std::vector.
 
  (c) Maarten Keijzer (mkeijzer@mad.scientist.com) and GeNeura Team, 1999, 2000
  
@@ -49,7 +49,7 @@ class eoBackInserter : public eoPopInserter<EOT>
         return *this;
     }
 
-    string className(void) const { return "eoBackInserter"; }
+    std::string className(void) const { return "eoBackInserter"; }
 
 };
 

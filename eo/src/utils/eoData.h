@@ -27,11 +27,9 @@
 
 //-----------------------------------------------------------------------------
 
-#include <vector>           // vector
+#include <vector>           // std::vector
 #include <set>              // set
-#include <string>           // string
-
-using namespace std;
+#include <string>           // std::string
 
 
 #ifdef _MSC_VER 

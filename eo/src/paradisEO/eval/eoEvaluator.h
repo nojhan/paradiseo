@@ -44,7 +44,7 @@ public :
      Constructor
   */ 
   
-  eoEvaluator (string _label,
+  eoEvaluator (std::string _label,
 	       eoListener <EOT> & _listen,
 	       eoEvalFunc <EOT> & _eval
 	       ) :

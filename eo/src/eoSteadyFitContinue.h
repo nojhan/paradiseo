@@ -54,7 +54,7 @@ public:
    * reached withtout improvement */
   virtual bool operator() ( const eoPop<EOT>& _vEO ) {
     thisGeneration++;
-    //	  cout << " [" << thisGeneration << "] ";
+    //	  std::cout << " [" << thisGeneration << "] ";
     Fitness bestCurrentFitness = _vEO.nth_element_fitness(0);
 
     if (steadyState) {	   // already after MinGenenerations
@@ -63,7 +63,7 @@ public:
 	lastImprovement = thisGeneration;
       } else {
 	if (thisGeneration - lastImprovement > repSteadyGenerations) {
-	  cout << "STOP in eoSteadyFitContinue: Done " << repSteadyGenerations 
+	  std::cout << "STOP in eoSteadyFitContinue: Done " << repSteadyGenerations 
 	       << " generations without improvement\n";
 	  return false;
 	}
@@ -73,7 +73,7 @@ public:
 	steadyState = true;
 	bestSoFar = bestCurrentFitness;
 	lastImprovement = thisGeneration;
-	cout << "eoSteadyFitContinue: Done the minimum number of generations\n";
+	std::cout << "eoSteadyFitContinue: Done the minimum number of generations\n";
       }
     }
     return true;

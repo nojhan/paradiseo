@@ -29,15 +29,13 @@
 #include <string>		
 #include <stdexcept>
 
-using namespace std;
-
 //-----------------------------------------------------------------------------
 // eoString
 //-----------------------------------------------------------------------------
 
-/** Adaptor that turns an STL string into an EO */
+/** Adaptor that turns an STL std::string into an EO */
 template <class fitnessT >
-class eoString: public EO<fitnessT>, public string 
+class eoString: public EO<fitnessT>, public std::string 
 {
 public:
 
@@ -46,8 +44,8 @@ public:
 	/// Canonical part of the objects: several ctors, copy ctor, dtor and assignment operator
 	//@{
 	/// ctor
-	eoString( const string& _str ="" )
-		: string( _str ) {};
+	eoString( const std::string& _str ="" )
+		: std::string( _str ) {};
 
 	/** @name Methods from eoObject
 	readFrom and printOn are directly inherited from eo1d
@@ -56,7 +54,7 @@ public:
 	/** Inherited from eoObject 
 		  @see eoObject
 	*/
-	virtual string className() const {return "eoString";};
+	virtual std::string className() const {return "eoString";};
     //@}
 	
 

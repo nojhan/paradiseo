@@ -64,7 +64,7 @@ class eoGenOp : public eoOp<EOT>, public eoUF<eoPopulator<EOT> &, void>
   */
   virtual unsigned max_production(void) = 0;
 
-  virtual string className() const = 0;
+  virtual std::string className() const = 0;
     void operator()(eoPopulator<EOT>& _pop)
     {
     _pop.reserve(max_production());
@@ -94,7 +94,7 @@ class eoMonGenOp : public eoGenOp<EOT>
         (*_it).invalidate();  // look how simple
 
     }
-  virtual string className() const {return op.className();}
+  virtual std::string className() const {return op.className();}
    private :
     eoMonOp<EOT>& op;
 };
@@ -121,7 +121,7 @@ class eoBinGenOp : public eoGenOp<EOT>
       if (op(a, b))
         a.invalidate();
     }
-  virtual string className() const {return op.className();}
+  virtual std::string className() const {return op.className();}
 
    private :
     eoBinOp<EOT>& op;
@@ -142,7 +142,7 @@ class eoSelBinGenOp : public eoGenOp<EOT>
       if (op(*_pop, sel(_pop.source())))
         (*_pop).invalidate();
     }
-  virtual string className() const {return op.className();}
+  virtual std::string className() const {return op.className();}
 
    private :
     eoBinOp<EOT>& op;
@@ -173,7 +173,7 @@ class eoQuadGenOp : public eoGenOp<EOT>
       }
 
    }
-  virtual string className() const {return op.className();}
+  virtual std::string className() const {return op.className();}
 
    private :
     eoQuadOp<EOT>& op;

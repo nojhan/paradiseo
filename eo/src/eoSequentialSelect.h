@@ -53,8 +53,13 @@ template <class EOT> class eoSequentialSelect: public eoSelectOne<EOT>
   /** Ctor: sets the current pter to MAXINT so init will take place first time
       not very elegant, maybe ...
   */
-  eoSequentialSelect(bool _ordered = true):
-    ordered(_ordered), current(MAXINT) {}
+#ifdef _MSC_VER
+  eoSequentialSelect(bool _ordered = true)
+  	: ordered(_ordered), current(std::MAXINT) {}
+#else
+  eoSequentialSelect(bool _ordered = true)
+  	: ordered(_ordered), current(MAXINT) {}
+#endif
 
   void setup(const eoPop<EOT>& _pop)
   {
@@ -78,7 +83,7 @@ template <class EOT> class eoSequentialSelect: public eoSelectOne<EOT>
 private:
   bool ordered;
   unsigned current;
-  vector<const EOT*> eoPters;
+  std::vector<const EOT*> eoPters;
 };
 
 
@@ -99,7 +104,11 @@ template <class EOT> class eoEliteSequentialSelect: public eoSelectOne<EOT>
   /** Ctor: sets the current pter to MAXINT so init will take place first time
       not very elegant, maybe ...
   */
+  #ifdef _MSC_VER
+  eoEliteSequentialSelect(): current(std::MAXINT) {}
+  #else
   eoEliteSequentialSelect(): current(MAXINT) {}
+  #endif
 
   void setup(const eoPop<EOT>& _pop)
   {
@@ -109,7 +118,7 @@ template <class EOT> class eoEliteSequentialSelect: public eoSelectOne<EOT>
     unsigned int ibest = 0;
     const EOT * best = eoPters[0];
     if (_pop.size() == 1)
-      throw runtime_error("Trying eoEliteSequentialSelect with only one individual!");
+      throw std::runtime_error("Trying eoEliteSequentialSelect with only one individual!");
     for (unsigned i=1; i<_pop.size(); i++)
       if (*eoPters[i]>*best)
 	{
@@ -135,7 +144,7 @@ template <class EOT> class eoEliteSequentialSelect: public eoSelectOne<EOT>
   }
 private:
   unsigned current;
-  vector<const EOT*> eoPters;
+  std::vector<const EOT*> eoPters;
 };
 
 

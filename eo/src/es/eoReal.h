@@ -26,8 +26,8 @@
 
 //-----------------------------------------------------------------------------
 
-#include <iostream>    // ostream, istream
-#include <string>      // string
+#include <iostream>    // std::ostream, std::istream
+#include <string>      // std::string
 
 #include <eoVector.h>
 
@@ -40,13 +40,13 @@ template <class FitT> class eoReal: public eoVector<FitT, double>
 
   /**
    * (Default) Constructor.
-   * @param size Size of the vector
+   * @param size Size of the std::vector
    */
   eoReal(unsigned size = 0, double value = 0.0):
     eoVector<FitT, double>(size, value) {}
 
   /// My class name.
-  virtual string className() const
+  virtual std::string className() const
     {
       return "eoReal";
     }

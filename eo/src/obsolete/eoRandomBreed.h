@@ -27,13 +27,13 @@
 
 #include <eoSelector.h>
 
-/** Takes those on the selection list and creates a list of new individuals
+/** Takes those on the selection std::list and creates a std::list of new individuals
  * Destroys the genetic pool */
 template<class EOT>
 class EORandomBreed: public EOBreeder<EOT>{
 public:
 
-  typedef vector< EOOp<EOT > * > vecOpT;
+  typedef std::vector< EOOp<EOT > * > vecOpT;
 
   /// Ctor
   EORandomBreed():vecOp() {};
@@ -54,12 +54,12 @@ public:
     vecOp.push_back( _eop);
   };
 
-  /// Takes the operator pointed to from the operator list
+  /// Takes the operator pointed to from the operator std::list
   virtual void deleteOp( const EOOp<EOT>* _eop);
 
   /** Takes the genetic pool, and returns next generation, destroying the
    * genetic pool container
-   * Non-const because it might order the operator vector. In this case, 
+   * Non-const because it might order the operator std::vector. In this case, 
    * it mates all members of the population randomly */
   virtual void operator() ( EOPop< EOT >& _ptVeo );
 
@@ -133,7 +133,7 @@ template<class EOT>
 class EORandomBreedLog: public EORandomBreed<EOT>{
 public:
 
-  typedef vector< EOOp<EOT > * > vecOpT;
+  typedef std::vector< EOOp<EOT > * > vecOpT;
 
   /// Ctor
   EORandomBreedLog( EOFactory<EOT> & _eof ):EORandomBreed<EOT>(), factory( _eof ) {};
@@ -148,7 +148,7 @@ public:
 
   /** Takes the genetic pool, and returns next generation, destroying the
   * genetic pool container
-  * Non-const because it might order the operator vector. In this case, it mates
+  * Non-const because it might order the operator std::vector. In this case, it mates
   * all population randomly */
   virtual void operator() ( EOPop< EOT >& _ptVeo )  { 
 	  

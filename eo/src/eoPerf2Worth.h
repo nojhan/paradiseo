@@ -50,7 +50,7 @@ class eoPerf2Worth : public eoUF<const eoPop<EOT>&, void>, public eoValueParam<s
   Sort population according to worth, will keep the worths and fitness_cache in sync with the population.
   */
   virtual void sort_pop(eoPop<EOT>& _pop)
-  { // start with a vector of indices
+  { // start with a std::vector of indices
       std::vector<unsigned> indices(_pop.size());
 
     unsigned i;
@@ -59,7 +59,7 @@ class eoPerf2Worth : public eoUF<const eoPop<EOT>&, void>, public eoValueParam<s
       indices[i] = i;
     }
 
-    sort(indices.begin(), indices.end(), compare_worth(value()));
+    std::sort(indices.begin(), indices.end(), compare_worth(value()));
 
     eoPop<EOT>      tmp_pop;
     tmp_pop.resize(_pop.size());
@@ -71,8 +71,8 @@ class eoPerf2Worth : public eoUF<const eoPop<EOT>&, void>, public eoValueParam<s
       tmp_worths[i] = value()[indices[i]];
     }
 
-    swap(_pop, tmp_pop);
-    swap(value(), tmp_worths);
+    std::swap(_pop, tmp_pop);
+    std::swap(value(), tmp_worths);
   }
 
   /** helper class used to sort indices into populations/worths
@@ -155,7 +155,7 @@ class eoPerf2WorthCached : public eoPerf2Worth<EOT, WorthT>
   Sort population according to worth, will keep the worths and fitness_cache in sync with the population.
   */
   virtual void sort_pop(eoPop<EOT>& _pop)
-  { // start with a vector of indices
+  { // start with a std::vector of indices
       std::vector<unsigned> indices(_pop.size());
 
     unsigned i;
@@ -183,9 +183,9 @@ class eoPerf2WorthCached : public eoPerf2Worth<EOT, WorthT>
       tmp_cache[i] = fitness_cache[indices[i]];
     }
 
-    swap(_pop, tmp_pop);
-    swap(value(), tmp_worths);
-    swap(fitness_cache, tmp_cache);
+    std::swap(_pop, tmp_pop);
+    std::swap(value(), tmp_worths);
+    std::swap(fitness_cache, tmp_cache);
   }
 
   /** helper class used to sort indices into populations/worths

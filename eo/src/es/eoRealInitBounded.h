@@ -33,7 +33,7 @@
 #include <es/eoReal.h>
 #include <utils/eoRealVectorBounds.h>
 
-/** Simple initialization for any EOT that derives from vector<double> 
+/** Simple initialization for any EOT that derives from std::vector<double> 
  *    uniformly in some bounds 
  */
 template <class EOT>
@@ -44,7 +44,7 @@ class eoRealInitBounded : public eoInit<EOT>
   eoRealInitBounded(eoRealVectorBounds & _bounds):bounds(_bounds) 
   {
         if (!bounds.isBounded())
-      throw runtime_error("Needs bounded bounds to initialize a vector<double>");
+      throw std::runtime_error("Needs bounded bounds to initialize a std::vector<double>");
   }
 
   /** simply passes the argument to the uniform method of the bounds */

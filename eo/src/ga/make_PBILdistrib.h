@@ -56,7 +56,7 @@ eoPBILDistrib<EOT> &  do_make_PBILdistrib(eoParser & _parser, eoState& _state, E
     // chromosome size: 
     unsigned theSize;
     // but it might have been already read in the definition fo the performance
-    eoParam* ptParam = _parser.getParamWithLongName(string("chromSize")); 
+    eoParam* ptParam = _parser.getParamWithLongName(std::string("chromSize")); 
     
     if (!ptParam)			   // not already defined: read it here
       {
@@ -72,7 +72,7 @@ eoPBILDistrib<EOT> &  do_make_PBILdistrib(eoParser & _parser, eoState& _state, E
     _state.storeFunctor(ptDistrib);
 
     // now the initialization: read a previously saved distribution, or random
-  eoValueParam<string>& loadNameParam = _parser.createParam(string(""), "Load","A save file to restart from",'L', "Persistence" ); 
+  eoValueParam<std::string>& loadNameParam = _parser.createParam(std::string(""), "Load","A save file to restart from",'L', "Persistence" ); 
   if (loadNameParam.value() != "") // something to load
     {
       // create another state for reading

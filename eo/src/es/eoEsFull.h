@@ -60,7 +60,7 @@ class eoEsFull : public eoVector<Fit, double>
         os << ' ';
     }
 
-    void readFrom(istream& is)
+    void readFrom(std::istream& is)
     {
         eoVector<Fit,double>::readFrom(is);
 
@@ -76,8 +76,8 @@ class eoEsFull : public eoVector<Fit, double>
             is >> correlations[i];
     }
 
-    vector<double> stdevs;
-    vector<double> correlations;
+    std::vector<double> stdevs;
+    std::vector<double> correlations;
 };
 
 

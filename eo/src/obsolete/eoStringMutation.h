@@ -51,7 +51,7 @@ class eoStringMutation: public eoMutation<EOT> {
   /** Inherited from eoObject 
       @see eoObject
   */
-  string className() const {return "eoStringMutation";};
+  std::string className() const {return "eoStringMutation";};
   //@}
   
   

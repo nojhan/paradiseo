@@ -43,7 +43,7 @@ public :
      Constructor
    */ 
 
-  eoPopAgent (string _label,
+  eoPopAgent (std::string _label,
 	      eoListener <EOT> & _listen,
 	      eoPopAlgo <EOT> & _algo
 	      ) :
@@ -68,7 +68,7 @@ public :
 	while (! listen [i].empty ()) {
 	  
 	  eoPop <EOT> & pop = listen [i].front () ;
-	  cout << "Agent [" << label << "] on " << listen.here ().host_name << " : Receiving " << pop.size () << " individuals ..." << endl ;
+	  std::cout << "Agent [" << label << "] on " << listen.here ().host_name << " : Receiving " << pop.size () << " individuals ..." << std::endl ;
 	  algo (pop) ; 
 	  eoEOSendMessTo <EOT> mess (pop) ;
 	  mess (listen [i]) ; // Coming back ...
@@ -80,7 +80,7 @@ public :
   
 private :
   
-  string label ; // string identifier
+  std::string label ; // std::string identifier
   eoListener <EOT> & listen ; // EO's listener
   eoPopAlgo <EOT> & algo ; // Local supplied algo
 	   

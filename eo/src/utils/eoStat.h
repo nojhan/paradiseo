@@ -27,17 +27,18 @@
 #ifndef _eoStat_h
 #define _eoStat_h
 
+#include <numeric> // accumulate
+
 #include <eoFunctor.h>
 #include <utils/eoParam.h>
 #include <eoPop.h>
-#include <numeric> // accumulate
 #include <eoParetoFitness.h>
 
 /**
   Base class for all statistics that need to be calculated
   over the (unsorted) population 
   (I guess it is not really necessary? MS. 
-  Depends, there might be reasons to have a stat that is not an eoValueParam,
+  Depstd::ends, there might be reasons to have a stat that is not an eoValueParam,
   but maybe I'm just kidding myself, MK)
 */
 template <class EOT>
@@ -63,10 +64,10 @@ public :
   Base class for statistics calculated over a sorted snapshot of the population
 */
 template <class EOT>
-class eoSortedStatBase : public eoUF<const vector<const EOT*>&, void>
+class eoSortedStatBase : public eoUF<const std::vector<const EOT*>&, void>
 {
 public:
-  virtual void lastCall(const vector<const EOT*>&) {}
+  virtual void lastCall(const std::vector<const EOT*>&) {}
 };
 
 /**
@@ -111,9 +112,9 @@ public :
     virtual void operator()(const eoPop<EOT>& _pop)
     {
 #ifdef _MSC_VER
-        doit(_pop, EOT::Fitness()); // specializations for scalar and vector
+        doit(_pop, EOT::Fitness()); // specializations for scalar and std::vector
 #else
-        doit(_pop, typename EOT::Fitness()); // specializations for scalar and vector
+        doit(_pop, typename EOT::Fitness()); // specializations for scalar and std::vector
 #endif
     }
 private :
@@ -192,10 +193,10 @@ public :
 
     eoNthElementFitnessStat(int _which, std::string _description = "nth element fitness") : eoSortedStat<EOT, Fitness>(Fitness(), _description), which(_which) {}
 
-    virtual void operator()(const vector<const EOT*>& _pop)
+    virtual void operator()(const std::vector<const EOT*>& _pop)
     {
         if (which > _pop.size())
-            throw logic_error("fitness requested of element outside of pop");
+            throw std::logic_error("fitness requested of element outside of pop");
 
         doit(_pop, Fitness());
     }
@@ -226,11 +227,11 @@ private :
       value().resize(traits::nObjectives());
 
       // copy of pointers, what the heck
-      vector<const EOT*> tmp_pop = _pop;
+      std::vector<const EOT*> tmp_pop = _pop;
 
       for (unsigned o = 0; o < value().size(); ++o)
       {
-        typename vector<const EOT*>::iterator nth = tmp_pop.begin() + which;
+        typename std::vector<const EOT*>::iterator nth = tmp_pop.begin() + which;
         std::nth_element(tmp_pop.begin(), nth, tmp_pop.end(), CmpFitness(o, traits::maximizing(o)));
         value()[o] = (*nth)->fitness()[o];
       }
@@ -238,7 +239,7 @@ private :
 
     // for everything else
     template <class T>
-    void doit(const vector<const EOT*>& _pop, T)
+    void doit(const std::vector<const EOT*>& _pop, T)
     {
       value() = _pop[which]->fitness();
     }
@@ -319,7 +320,7 @@ private :
 
       for (unsigned o = 0; o < traits::nObjectives(); ++o)
       {
-        typename eoPop<EOT>::const_iterator it = max_element(_pop.begin(), _pop.end(), CmpFitness(o, traits::maximizing(o)));
+        typename eoPop<EOT>::const_iterator it = std::max_element(_pop.begin(), _pop.end(), CmpFitness(o, traits::maximizing(o)));
         value()[o] = it->fitness()[o];
       }
     }

@@ -18,7 +18,7 @@
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
-CVS Info: $Date: 2001-05-17 10:08:25 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/contrib/MGE/eoVirus.h,v 1.1 2001-05-17 10:08:25 jmerelo Exp $ $Author: jmerelo $
+CVS Info: $Date: 2003-02-27 19:26:44 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/contrib/MGE/eoVirus.h,v 1.2 2003-02-27 19:26:44 okoenig Exp $ $Author: okoenig $
 */
 
 #ifndef eoVirus_h
@@ -28,7 +28,7 @@ CVS Info: $Date: 2001-05-17 10:08:25 $ $Header: /home/nojhan/dev/eodev/eodev_cvs
 
 #include <iostream>    // ostream, istream
 #include <functional>  // bind2nd
-#include <string>      // string
+#include <string>      // std::string
 
 #include <ga/eoBit.h>
 
@@ -49,13 +49,13 @@ template <class FitT> class eoVirus: public eoBit<FitT>
 
   /**
    * (Default) Constructor.
-   * @param size Size of the binary string.
+   * @param size Size of the binary std::string.
    */
   eoVirus(unsigned _size = 0, bool _value = false, bool _virValue = false):
     eoBit<FitT>(_size, _value), virus( _size, _virValue) {}
 
   /// My class name.
-  virtual string className() const {
+  virtual std::string className() const {
       return "eoVirus";
   }
 
@@ -78,33 +78,33 @@ template <class FitT> class eoVirus: public eoBit<FitT>
    * To print me on a stream.
    * @param os The ostream.
    */
-  virtual void printOn(ostream& os) const {
+  virtual void printOn(std::ostream& os) const {
       EO<FitT>::printOn(os);
       os << ' ';
       os << size() << ' ';
-      copy(begin(), end(), ostream_iterator<bool>(os));
-	  cout << endl;
-	  copy(virus.begin(), virus.end(), ostream_iterator<bool>(os));
+      std::copy(begin(), end(), std::ostream_iterator<bool>(os));
+	  std::cout << std::endl;
+	  std::copy(virus.begin(), virus.end(), std::ostream_iterator<bool>(os));
   }
 
   /**
    * To read me from a stream.
    * @param is The istream.
    */
-  virtual void readFrom(istream& is){
+  virtual void readFrom(std::istream& is){
       eoBit<FitT>::readFrom(is);
       unsigned s;
       is >> s;
-      string bits;
+      std::string bits;
       is >> bits;
       if (is) {
 		virus.resize(bits.size());
-		transform(bits.begin(), bits.end(), virus.begin(),
-				  bind2nd(equal_to<char>(), '1'));
+		std::transform(bits.begin(), bits.end(), virus.begin(),
+				  std::bind2nd(std::equal_to<char>(), '1'));
 	  }
     }
  private:
-  vector<bool> virus;
+  std::vector<bool> virus;
 };
 
 //-----------------------------------------------------------------------------

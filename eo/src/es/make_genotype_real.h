@@ -37,7 +37,7 @@
 
 /*
  * This fuction does the initialization of what's needed for a particular 
- * genotype (here, vector<double> == eoReal).
+ * genotype (here, std::vector<double> == eoReal).
  * It could be here tempatied only on the fitness, as it can be used to evolve 
  * bitstrings with any fitness.
  * However, for consistency reasons, it was finally chosen, as in 
@@ -76,7 +76,7 @@ eoEsChromInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
 
     // minimum check
   if ( (sigmaParam.value() < 0) )
-    throw runtime_error("Invalid sigma");
+    throw std::runtime_error("Invalid sigma");
 
   eoEsChromInit<EOT> * init = 
     new eoEsChromInit<EOT>(boundsParam.value(), sigmaParam.value());

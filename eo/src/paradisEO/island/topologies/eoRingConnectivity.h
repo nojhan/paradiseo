@@ -27,7 +27,7 @@
 #include <paradisEO/island/eoConnectivity.h>
 
 /**
-   Each algorithm has a single pair of entering and outgoing
+   Each algorithm has a single std::pair of entering and outgoing
    neighbours, so that the unit constitutes a circular topology.
 */
 
@@ -40,15 +40,15 @@ public :
    */
 
   eoRingConnectivity (eoListener <EOT> & _listen,
-		      vector <string> & _sel_neigh
+		      std::vector <std::string> & _sel_neigh
 		      ) : eoConnectivity <EOT> (_listen, _sel_neigh) {    
   }
     
-  virtual vector <eoLocalListener <EOT> *> from () {
+  virtual std::vector <eoLocalListener <EOT> *> from () {
     
     listen.update () ;
     
-    vector <eoLocalListener <EOT> *> v ;
+    std::vector <eoLocalListener <EOT> *> v ;
     int i, k = listen.size () ;
     
     for (i = 0 ; i < k ; i ++) {
@@ -69,11 +69,11 @@ public :
      
    */
   
-  virtual vector <eoLocalListener <EOT> *> to () {
+  virtual std::vector <eoLocalListener <EOT> *> to () {
     
     listen.update () ;
 
-    vector <eoLocalListener <EOT> *> v ;
+    std::vector <eoLocalListener <EOT> *> v ;
     int i, k = listen.size () ;
     
     for (i = 0 ; i < k ; i ++)

@@ -41,7 +41,7 @@
 // (and paraphrasing a bit in places), the Mersenne Twister is ``designed
 // with consideration of the flaws of various existing generators,'' has
 // a period of 2^19937 - 1, gives a sequence that is 623-dimensionally
-// equidistributed, and ``has passed many stringent tests, including the
+// equidistributed, and ``has passed many std::stringent tests, including the
 // die-hard test of G. Marsaglia and the load test of P. Hellekalek and
 // S. Wegenkittl.''  It is efficient in memory usage (typically using 2506
 // to 5012 bytes of static data, depending on data type sizes, and the code
@@ -212,7 +212,7 @@ public :
  
  /**
     roulette_wheel(vec, total = 0) does a roulette wheel selection
-    on the input vector vec. If the total is not supplied, it is
+    on the input std::vector vec. If the total is not supplied, it is
     calculated. It returns an integer denoting the selected argument.
  */
  template <class T>
@@ -237,7 +237,7 @@ public :
    }
 
  ///
- void printOn(ostream& _os) const
+ void printOn(std::ostream& _os) const
    {
      for (int i = 0; i < N; ++i)
        {
@@ -248,7 +248,7 @@ public :
    }
 
  ///
- void readFrom(istream& _is)
+ void readFrom(std::istream& _is)
    {
      for (int i = 0; i < N; ++i)
        {

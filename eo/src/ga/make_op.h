@@ -72,10 +72,10 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init
   // general operator input
   // BTW we must leave that simple version available somehow, as it is the one
   // that 90% people use!
-    eoValueParam<string>& operatorParam =  _parser.createParam(string("SGA"), "operator", "Description of the operator (SGA only now)", 'o', "Variation Operators");
+    eoValueParam<std::string>& operatorParam =  _parser.createParam(std::string("SGA"), "operator", "Description of the operator (SGA only now)", 'o', "Variation Operators");
 
-    if (operatorParam.value() != string("SGA"))
-	throw runtime_error("Only SGA-like operator available right now\n");
+    if (operatorParam.value() != std::string("SGA"))
+	throw std::runtime_error("Only SGA-like operator available right now\n");
 
     // now we read Pcross and Pmut, 
     // the relative weights for all crossovers -> proportional choice
@@ -86,12 +86,12 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init
     eoValueParam<double>& pCrossParam = _parser.createParam(0.6, "pCross", "Probability of Crossover", 'C', "Variation Operators" );
     // minimum check
     if ( (pCrossParam.value() < 0) || (pCrossParam.value() > 1) )
-      throw runtime_error("Invalid pCross");
+      throw std::runtime_error("Invalid pCross");
 
     eoValueParam<double>& pMutParam = _parser.createParam(0.1, "pMut", "Probability of Mutation", 'M', "Variation Operators" );
     // minimum check
     if ( (pMutParam.value() < 0) || (pMutParam.value() > 1) )
-      throw runtime_error("Invalid pMut");
+      throw std::runtime_error("Invalid pMut");
 
     // the crossovers
     /////////////////
@@ -99,23 +99,23 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init
     eoValueParam<double>& onePointRateParam = _parser.createParam(double(1.0), "onePointRate", "Relative rate for one point crossover", '1', "Variation Operators" );
     // minimum check
     if ( (onePointRateParam.value() < 0) )
-      throw runtime_error("Invalid onePointRate");
+      throw std::runtime_error("Invalid onePointRate");
 
     eoValueParam<double>& twoPointsRateParam = _parser.createParam(double(1.0), "twoPointRate", "Relative rate for two point crossover", '2', "Variation Operators" );
     // minimum check
     if ( (twoPointsRateParam.value() < 0) )
-      throw runtime_error("Invalid twoPointsRate");
+      throw std::runtime_error("Invalid twoPointsRate");
 
     eoValueParam<double>& uRateParam = _parser.createParam(double(2.0), "uRate", "Relative rate for uniform crossover", 'U', "Variation Operators" );
     // minimum check
     if ( (uRateParam.value() < 0) )
-      throw runtime_error("Invalid uRate");
+      throw std::runtime_error("Invalid uRate");
 
     // minimum check
     bool bCross = true;
     if (onePointRateParam.value()+twoPointsRateParam.value()+uRateParam.value()==0)
       {
-	cerr << "Warning: no crossover" << endl;
+	std::cerr << "Warning: no crossover" << std::endl;
 	bCross = false;
       }
     
@@ -146,23 +146,23 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoInit<EOT>& _init
     eoValueParam<double> & pMutPerBitParam = _parser.createParam(0.01, "pMutPerBit", "Probability of flipping 1 bit in bit-flip mutation", 'b', "Variation Operators" );
     // minimum check
     if ( (pMutPerBitParam.value() < 0) || (pMutPerBitParam.value() > 0.5) )
-      throw runtime_error("Invalid pMutPerBit");
+      throw std::runtime_error("Invalid pMutPerBit");
 
     eoValueParam<double> & bitFlipRateParam = _parser.createParam(0.01, "bitFlipRate", "Relative rate for bit-flip mutation", 's', "Variation Operators" );
     // minimum check
     if ( (bitFlipRateParam.value() < 0) )
-      throw runtime_error("Invalid bitFlipRate");
+      throw std::runtime_error("Invalid bitFlipRate");
       
     eoValueParam<double> & oneBitRateParam = _parser.createParam(0.01, "oneBitRate", "Relative rate for deterministic bit-flip mutation", 'd', "Variation Operators" );
     // minimum check
     if ( (oneBitRateParam.value() < 0) )
-      throw runtime_error("Invalid oneBitRate");
+      throw std::runtime_error("Invalid oneBitRate");
 
     // minimum check
     bool bMut = true;
     if (bitFlipRateParam.value()+oneBitRateParam.value()==0)
       {
-	cerr << "Warning: no mutation" << endl;
+	std::cerr << "Warning: no mutation" << std::endl;
 	bMut = false;
       }
     

@@ -1,7 +1,7 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*- 
 
 //-----------------------------------------------------------------------------
-// eoRealAtomXover.h : helper classes for vector<real> crossover
+// eoRealAtomXover.h : helper classes for std::vector<real> crossover
 // (c) Marc Schoenauer 2001
 
     This library is free software; you can redistribute it and/or
@@ -47,7 +47,7 @@ public:
   eoDoubleExchange() {}
 
   /// The class name. Used to display statistics
-  virtual string className() const { return "eoDoubleExchange"; }
+  virtual std::string className() const { return "eoDoubleExchange"; }
 
   /**
      Exchanges or not the values
@@ -77,7 +77,7 @@ public:
   eoDoubleIntermediate() {}
 
   /// The class name. Used to display statistics
-  virtual string className() const { return "eoDoubleIntermediate"; }
+  virtual std::string className() const { return "eoDoubleIntermediate"; }
 
   /**
      Linear combination of both parents

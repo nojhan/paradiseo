@@ -96,7 +96,7 @@ class eoOneToOneBreeder: public eoBreed<EOT>
 	  // check: only one offspring?
 	  unsigned posEnd = popit.tellp();
 	  if (posEnd != pos)
-	    throw runtime_error("Operator can only generate a SINGLE offspring in eoOneToOneBreeder");
+	    throw std::runtime_error("Operator can only generate a SINGLE offspring in eoOneToOneBreeder");
 
 	  // do the tournament between parent and offspring
 	  eval(leOffspring);  // first need to evaluate the offspring
@@ -109,7 +109,7 @@ class eoOneToOneBreeder: public eoBreed<EOT>
     }
 
   /// The class name.
-  virtual string className() const { return "eoOneToOneBreeder"; }
+  virtual std::string className() const { return "eoOneToOneBreeder"; }
 
  private:
   eoGenOp<EOT>& op;

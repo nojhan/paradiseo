@@ -51,7 +51,7 @@ template <class T = double> class uniform_generator
       minim(_min), range(_max-_min), uniform(_rng) 
   {
     if (_min>_max)
-      throw logic_error("Min is greater than Max in uniform_generator"); 
+      throw std::logic_error("Min is greater than Max in uniform_generator"); 
   }
   
   T operator()(void) { return minim+static_cast<T>(uniform.uniform(range)); } 
@@ -94,7 +94,7 @@ template <class T = uint32> class random_generator
       minim(_min), range(_max-_min), random(_rng) 
   {
     if (_min>_max)
-      throw logic_error("Min is greater than Max in random_generator"); 
+      throw std::logic_error("Min is greater than Max in random_generator"); 
   }
   
   T operator()(void) { return (T) (minim + random.random(range)); }

@@ -25,8 +25,8 @@ template<class Chrom> class eoInclusion: public eoMerge<Chrom>
   /// (Default) Constructor.
   eoInclusion(const float& _rate = 1.0): eoMerge<Chrom>( _rate ) {}
 
-  /// Ctor from istream
-  eoInclusion( istream& _is): eoBinPopOp<Chrom>( _is ) {};
+  /// Ctor from std::istream
+  eoInclusion( std::istream& _is): eoBinPopOp<Chrom>( _is ) {};
 
   /// Dtor
   virtual ~eoInclusion() {};
@@ -55,7 +55,7 @@ template<class Chrom> class eoInclusion: public eoMerge<Chrom>
   /** Inherited from eoObject. Returns the class name.
       @see eoObject
   */
-  virtual string className() const {return "eoInclusion";};
+  virtual std::string className() const {return "eoInclusion";};
   //@}
 };
 

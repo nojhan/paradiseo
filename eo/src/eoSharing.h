@@ -55,10 +55,10 @@ class eoSharing : public eoPerf2Worth<EOT, double>
       unsigned i, j, 
 	pSize=_pop.size();
       if (pSize <= 1)
-	throw runtime_error("Apptempt to do sharing with population of size 1");
+	throw std::runtime_error("Apptempt to do sharing with population of size 1");
       value.resize(pSize);
-      vector<double> sim(pSize);	   // to hold the similarities
-      vector<double> distMatrix(pSize*(pSize-1)/2); // to hold the distances
+      std::vector<double> sim(pSize);	   // to hold the similarities
+      std::vector<double> distMatrix(pSize*(pSize-1)/2); // to hold the distances
 
       // compute the distances
       distMatrix(0,0)=0;
@@ -86,11 +86,11 @@ class eoSharing : public eoPerf2Worth<EOT, double>
     }
 
   // helper class to  hold distances
-  class dMatrix : public vector<double>
+  class dMatrix : public std::vector<double>
   {
   public:
     // Ctor : sets size
-    dMatrix(unsigned _s) : vector<double>(_s*(_s-1)), rSize(_s) {}
+    dMatrix(unsigned _s) : std::vector<double>(_s*(_s-1)), rSize(_s) {}
 
     /** simple accessor */
     double operator()(unsigned _i, unsigned _j) const
@@ -105,16 +105,16 @@ class eoSharing : public eoPerf2Worth<EOT, double>
     }
 
     /** just in case */
-    void printOn(ostream & _os)
+    void printOn(std::ostream & _os)
     {
       unsigned index=0;
       for (unsigned i=0; i<rSize; i++)
 	{
 	  for (unsigned j=0; j<rSize; j++)
 	    _os << this->operator[](index++) << " " ;
-	  _os << endl;
+	  _os << std::endl;
 	}
-      _os << endl;
+      _os << std::endl;
     }
 
     private:

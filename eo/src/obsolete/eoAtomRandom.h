@@ -52,7 +52,7 @@ public:
   /** Inherited from eoObject 
       @see eoObject
   */
-  string className() const {return "eoAtomRandom";};
+  std::string className() const {return "eoAtomRandom";};
   //@}
 
 private:

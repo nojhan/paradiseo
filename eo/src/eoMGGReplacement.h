@@ -58,7 +58,7 @@ public:
   {
     if (tSize < 2)
       { 
-	cout << "Warning, Size for eoDetTournamentTruncateSplit adjusted to 2\n";
+	std::cout << "Warning, Size for eoDetTournamentTruncateSplit adjusted to 2\n";
 	tSize = 2;
       }
   }
@@ -70,7 +70,7 @@ public:
       unsigned toKeep = temp.size(); // how many to keep from merged populations
       // minimal check
       if (toKeep < 2)
-	throw runtime_error("Not enough parents killed in eoMGGReplacement");
+	throw std::runtime_error("Not enough parents killed in eoMGGReplacement");
 
       // select best offspring
       eoPop<EOT>::iterator it = _offspring.it_best_element();

@@ -55,18 +55,18 @@ int main(int argc, char* argv[])
   // evaluate intial population AFTER help and status in case it takes time
   apply<EOT>(eval, pop);
   // print it out
-  cout << "Initial Population\n";
-  pop.sortedPrintOn(cout);
-  cout << endl;
+  std::cout << "Initial Population\n";
+  pop.sortedPrintOn(std::cout);
+  std::cout << std::endl;
 
   run_ea(ea, pop); // run the ea
 
-  cout << "Final Population\n";
-  pop.sortedPrintOn(cout);
-  cout << endl;
+  std::cout << "Final Population\n";
+  pop.sortedPrintOn(std::cout);
+  std::cout << std::endl;
   }
-  catch(exception& e)
+  catch(std::exception& e)
   {
-    cout << e.what() << endl;
+    std::cout << e.what() << std::endl;
   }
 }

@@ -30,7 +30,7 @@
 /**
 \defgroup EvolutionStrategies
 
-  Various classes for the initialization and mutation of real valued vectors.
+  Various classes for the initialization and mutation of real valued std::vectors.
 
   Supports simple mutations and various more adaptable mutations, including
   correlated mutations.

@@ -75,9 +75,9 @@ main()
       pop.push_back(chrom);
     }
   
-  cout << "population:" << endl;
+  std::cout << "population:" << std::endl;
   for (i = 0; i < pop.size(); ++i)
-    cout << pop[i] << " " << pop[i].fitness() << endl;
+    std::cout << pop[i] << " " << pop[i].fitness() << std::endl;
 
   eoBinBitFlip<Chrom> bitflip;
   eoBinCrossover<Chrom> xover;
@@ -123,7 +123,7 @@ main()
 
   state.registerObject(pop);
 
-  state.save(std::cout);
+  state.save(std::std::cout);
     
   return 0;
 }

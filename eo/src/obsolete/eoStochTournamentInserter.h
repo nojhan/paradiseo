@@ -66,7 +66,7 @@ public :
     return *this;
   }
 
-  string className(void) const { return "eoStochTournamentInserter"; }
+  std::string className(void) const { return "eoStochTournamentInserter"; }
 
 private :
   double t_rate;

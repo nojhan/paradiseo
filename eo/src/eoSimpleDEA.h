@@ -80,11 +80,11 @@ template<class EOT> class eoSimpleDEA: public eoDEA<EOT>
 	update(_distrib, pop);     // updates distrib from _pop
 	
       }
-      catch (exception& e)
+      catch (std::exception& e)
       {
-	    string s = e.what();
+	    std::string s = e.what();
 	    s.append( " in eoSimpleDEA");
-	    throw runtime_error( s );
+	    throw std::runtime_error( s );
       }
     } while ( continuator( pop ) );
   }

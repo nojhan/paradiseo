@@ -94,7 +94,7 @@ class eoGeneralBreeder: public eoBreed<EOT>
     }
 
   /// The class name.
-  virtual string className() const { return "eoGeneralBreeder"; }
+  virtual std::string className() const { return "eoGeneralBreeder"; }
 
  private:
   eoSelectOne<EOT>& select;

@@ -15,7 +15,7 @@
 struct Dummy : public EO<double>
 {
     typedef double Type;
-  void printOn(ostream & _os) const
+  void printOn(std::ostream & _os) const
   {
       _os << " - ";
       EO<double>::printOn(_os);
@@ -44,15 +44,15 @@ unsigned isInPop(EOT & _indi, eoPop<EOT> & _pop)
 }
 
 unsigned int pSize;		// global variable, bouh!
-string fitnessType;		// yes, a global variable :-)
+std::string fitnessType;		// yes, a global variable :-)
 eoDummyPop parentsOrg;
 
 template <class EOT>
-void testSelectMany(eoSelect<EOT> & _select, string _name)
+void testSelectMany(eoSelect<EOT> & _select, std::string _name)
 {
     unsigned i;
-  cout << "\n\n" << fitnessType + _name << endl;
-  cout << "===============\n"; 
+  std::cout << "\n\n" << fitnessType + _name << std::endl;
+  std::cout << "===============\n"; 
 
     eoDummyPop parents(parentsOrg);
     eoDummyPop offspring(0);
@@ -61,28 +61,28 @@ void testSelectMany(eoSelect<EOT> & _select, string _name)
     _select(parents, offspring);
 
     // compute stats
-    vector<unsigned> nb(parents.size(), 0);
+    std::vector<unsigned> nb(parents.size(), 0);
     for (i=0; i<offspring.size();  i++)
       {
 	unsigned trouve = isInPop<Dummy>(offspring[i], parents);
 	if (trouve == parents.size()) // pas trouve
-	  throw runtime_error("Pas trouve ds parents");
+	  throw std::runtime_error("Pas trouve ds parents");
 	nb[trouve]++;
        }
     // dump to file so you can plot using gnuplot - dir name is hardcoded!
-    string fName = "ResSelect/" + fitnessType + _name + ".select";
-    ofstream os(fName.c_str());
+    std::string fName = "ResSelect/" + fitnessType + _name + ".select";
+    std::ofstream os(fName.c_str());
     for (i=0; i<parents.size();  i++)
       {
-	cout << i << " -> " << ( (double)nb[i])/offspring.size() << endl;
-	os << i << " " << ( (double)nb[i])/offspring.size() << endl;
+	std::cout << i << " -> " << ( (double)nb[i])/offspring.size() << std::endl;
+	os << i << " " << ( (double)nb[i])/offspring.size() << std::endl;
       }
 
 }
 
 template <class EOT>
 void testSelectOne(eoSelectOne<EOT> & _select, eoHowMany & _offspringRate,
-		   eoHowMany & _fertileRate, string _name)
+		   eoHowMany & _fertileRate, std::string _name)
 {
   eoTruncatedSelectOne<EOT> truncSelect(_select, _fertileRate);
   eoSelectMany<EOT> percSelect(truncSelect, _offspringRate);
@@ -118,42 +118,42 @@ eoValueParam<unsigned> tournamentSizeParam = parser.createParam(unsigned(2), "to
   eoValueParam<double> rankingExponentParam = parser.createParam(1.0, "rankingExponent", "Exponent for the ranking selection",'e');
     double rankingExponent = rankingExponentParam.value();
 
-  eoValueParam<string> fitTypeParam = parser.createParam(string("linear"), "fitType", "Type of fitness (linear, exp, log, super",'f');
+  eoValueParam<std::string> fitTypeParam = parser.createParam(std::string("linear"), "fitType", "Type of fitness (linear, exp, log, super",'f');
     fitnessType = fitTypeParam.value();
 
     if (parser.userNeedsHelp())
       {
-        parser.printHelp(cout);
+        parser.printHelp(std::cout);
         exit(0);
       }
 
     // hard-coded directory name ...
     system("mkdir ResSelect");
-    cout << "Testing the Selections\nParents size = " << pSize 
+    std::cout << "Testing the Selections\nParents size = " << pSize 
 	 << ", offspring rate = " << oRate;
-    cout << " and putting rsulting files in dir ResSelect" << endl;
+    std::cout << " and putting rsulting files in dir ResSelect" << std::endl;
 
     // initialize parent population
     parentsOrg.resize(pSize);
-    if (fitnessType == string("linear"))
+    if (fitnessType == std::string("linear"))
       for (unsigned i=0; i<pSize; i++)
 	parentsOrg[i].fitness(i);
-    else if (fitnessType == string("exp"))
+    else if (fitnessType == std::string("exp"))
       for (unsigned i=0; i<pSize; i++)
 	parentsOrg[i].fitness(exp((double)i));
-    else if (fitnessType == string("log"))
+    else if (fitnessType == std::string("log"))
       for (unsigned i=0; i<pSize; i++)
 	parentsOrg[i].fitness(log(i+1.));
-    else if (fitnessType == string("super"))
+    else if (fitnessType == std::string("super"))
       {
 	for (unsigned i=0; i<pSize-1; i++)
 	  parentsOrg[i].fitness(i);
 	parentsOrg[pSize-1].fitness(10*pSize);
       }
     else 
-      throw runtime_error("Invalid fitness Type"+fitnessType);
+      throw std::runtime_error("Invalid fitness Type"+fitnessType);
 
-    cout << "Initial parents (odd)\n" << parentsOrg << endl;
+    std::cout << "Initial parents (odd)\n" << parentsOrg << std::endl;
 
   // random seed
     eoValueParam<uint32>& seedParam = parser.createParam(uint32(0), "seed", "Random number seed", 'S');
@@ -177,7 +177,7 @@ eoValueParam<unsigned> tournamentSizeParam = parser.createParam(unsigned(2), "to
     testSelectOne<Dummy>(newRankingSelect, oRate, fRate, fileName);
 
     // Exponential ranking using the perf2Worth construct
-    cout << "rankingExponent " << rankingExponent << endl;
+    std::cout << "rankingExponent " << rankingExponent << std::endl;
     eoRankingSelect<Dummy> expRankingSelect(rankingPressure,rankingExponent);
     sprintf(fileName,"ExpRank_%g_%g",rankingPressure, rankingExponent);
     testSelectOne<Dummy>(expRankingSelect, oRate, fRate, fileName);
@@ -215,9 +215,9 @@ int main(int argc, char **argv)
     {
         the_main(argc, argv);
     }
-    catch(exception& e)
+    catch(std::exception& e)
     {
-        cout << "Exception: " << e.what() << endl;
+        std::cout << "Exception: " << e.what() << std::endl;
         return 1;
     }
 }

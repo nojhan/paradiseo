@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
- CVS Info: $Date: 2001-09-08 05:59:17 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/ga/eoBitOp.h,v 1.14 2001-09-08 05:59:17 evomarc Exp $ $Author: evomarc $
+ CVS Info: $Date: 2003-02-27 19:24:47 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/ga/eoBitOp.h,v 1.15 2003-02-27 19:24:47 okoenig Exp $ $Author: okoenig $
  */
 //-----------------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ template<class Chrom> class eoOneBitFlip: public eoMonOp<Chrom>
 {
  public:
   /// The class name.
-  virtual string className() const { return "eoOneBitFlip"; }
+  virtual std::string className() const { return "eoOneBitFlip"; }
 
   /**
    * Change one bit.
@@ -75,7 +75,7 @@ template<class Chrom> class eoDetBitFlip: public eoMonOp<Chrom>
   eoDetBitFlip(const unsigned& _num_bit = 1): num_bit(_num_bit) {}
 
   /// The class name.
-  virtual string className() const { return "eoDetBitFlip"; }
+  virtual std::string className() const { return "eoDetBitFlip"; }
 
   /**
    * Change num_bit bits.
@@ -112,7 +112,7 @@ template<class Chrom> class eoBitMutation: public eoMonOp<Chrom>
     rate(_rate), normalize(_normalize) {}
 
   /// The class name.
-  virtual string className() const { return "eoBitMutation"; }
+  virtual std::string className() const { return "eoBitMutation"; }
 
   /**
    * Mutate a chromosome.
@@ -147,7 +147,7 @@ template<class Chrom> class eoBitInversion: public eoMonOp<Chrom>
 {
  public:
   /// The class name.
-  virtual string className() const { return "eoBitInversion"; }
+  virtual std::string className() const { return "eoBitInversion"; }
 
   /**
    * Inverts a range of bits in a binary chromosome.
@@ -158,9 +158,9 @@ template<class Chrom> class eoBitInversion: public eoMonOp<Chrom>
 
       unsigned u1 = eo::rng.random(chrom.size() + 1) , u2;
       do u2 = eo::rng.random(chrom.size() + 1); while (u1 == u2);
-      unsigned r1 = min(u1, u2), r2 = max(u1, u2);
+      unsigned r1 = std::min(u1, u2), r2 = std::max(u1, u2);
 
-      reverse(chrom.begin() + r1, chrom.begin() + r2);
+      std::reverse(chrom.begin() + r1, chrom.begin() + r2);
       return true;
     }
 };
@@ -175,10 +175,10 @@ template<class Chrom> class eoBitNext: public eoMonOp<Chrom>
 {
  public:
   /// The class name.
-  virtual string className() const { return "eoBitNext"; }
+  virtual std::string className() const { return "eoBitNext"; }
 
   /**
-   * Change the bit string x to be x+1.
+   * Change the bit std::string x to be x+1.
    * @param chrom The chromosome to be added one.
    */
   bool operator()(Chrom& chrom)
@@ -209,10 +209,10 @@ template<class Chrom> class eoBitPrev: public eoMonOp<Chrom>
 {
  public:
   /// The class name.
-  virtual string className() const { return "eoBitPrev"; }
+  virtual std::string className() const { return "eoBitPrev"; }
 
   /**
-   * Change the bit string x to be x-1.
+   * Change the bit std::string x to be x-1.
    * @param chrom The chromosome to be substracted one.
    */
   bool operator()(Chrom& chrom)
@@ -243,7 +243,7 @@ template<class Chrom> class eo1PtBitXover: public eoQuadOp<Chrom>
 {
  public:
   /// The class name.
-  virtual string className() const { return "eo1PtBitXover"; }
+  virtual std::string className() const { return "eo1PtBitXover"; }
 
   /**
    * 1-point crossover for binary chromosomes.
@@ -252,12 +252,12 @@ template<class Chrom> class eo1PtBitXover: public eoQuadOp<Chrom>
    */
   bool operator()(Chrom& chrom1, Chrom& chrom2)
     {
-      unsigned site = eo::rng.random(min(chrom1.size(), chrom2.size()));
+      unsigned site = eo::rng.random(std::min(chrom1.size(), chrom2.size()));
 
       if (!std::equal(chrom1.begin(), chrom1.begin()+site, chrom2.begin()))
       {
 
-        swap_ranges(chrom1.begin(), chrom1.begin() + site, chrom2.begin());
+        std::swap_ranges(chrom1.begin(), chrom1.begin() + site, chrom2.begin());
 
         return true;
       }
@@ -278,21 +278,21 @@ template<class Chrom> class eoUBitXover: public eoQuadOp<Chrom>
   eoUBitXover(const float& _preference = 0.5): preference(_preference)
     {
       if ( (_preference <= 0.0) || (_preference >= 1.0) )
-	runtime_error("UxOver --> invalid preference");
+	std::runtime_error("UxOver --> invalid preference");
     }
   /// The class name.
-  virtual string className() const { return "eoUBitXover"; }
+  virtual std::string className() const { return "eoUBitXover"; }
 
   /**
    * Uniform crossover for binary chromosomes.
    * @param chrom1 The first chromosome.
    * @param chrom2 The first chromosome.
-   *    @runtime_error if sizes don't match
+   *    @std::runtime_error if sizes don't match
    */
   bool operator()(Chrom& chrom1, Chrom& chrom2)
     {
       if ( chrom1.size() != chrom2.size())
-	    runtime_error("UxOver --> chromosomes sizes don't match" );
+	    std::runtime_error("UxOver --> chromosomes sizes don't match" );
       bool changed = false;
       for (unsigned int i=0; i<chrom1.size(); i++)
 	{
@@ -323,11 +323,11 @@ template<class Chrom> class eoNPtsBitXover: public eoQuadOp<Chrom>
   eoNPtsBitXover(const unsigned& _num_points = 2): num_points(_num_points)
     {
       if (num_points < 1)
-	runtime_error("NxOver --> invalid number of points");
+	std::runtime_error("NxOver --> invalid number of points");
     }
 
   /// The class name.
-  virtual string className() const { return "eoNPtsBitXover"; }
+  virtual std::string className() const { return "eoNPtsBitXover"; }
 
   /**
    * n-point crossover for binary chromosomes.
@@ -336,10 +336,10 @@ template<class Chrom> class eoNPtsBitXover: public eoQuadOp<Chrom>
    */
   bool operator()(Chrom& chrom1, Chrom& chrom2)
     {
-      unsigned max_size = min(chrom1.size(), chrom2.size());
-      unsigned max_points = min(max_size - 1, num_points);
+      unsigned max_size = std::min(chrom1.size(), chrom2.size());
+      unsigned max_points = std::min(max_size - 1, num_points);
 
-      vector<bool> points(max_size, false);
+      std::vector<bool> points(max_size, false);
 
       // select ranges of bits to swap
       do {
@@ -362,7 +362,7 @@ template<class Chrom> class eoNPtsBitXover: public eoQuadOp<Chrom>
 	    change = !change;
 
 	  if (change)
-	    swap(chrom1[bit], chrom2[bit]);
+	    std::swap(chrom1[bit], chrom2[bit]);
 	}
 
     return true;
@@ -374,8 +374,8 @@ template<class Chrom> class eoNPtsBitXover: public eoQuadOp<Chrom>
 
 
 
-/** eoBitGxOver --> Npts crossover when bistring considered
-                    as a string of binary-encoded genes (exchanges genes)
+/** eoBitGxOver --> Npts crossover when bistd::string considered
+                    as a std::string of binary-encoded genes (exchanges genes)
 Is anybody still using it apart from historians ??? :-)
 \class eoBitGxOver eoBitOp.h ga/eoBitOp.h
 \ingroup bitstring
@@ -389,13 +389,13 @@ template<class Chrom> class eoBitGxOver: public eoQuadOp<Chrom>
     gene_size(_gene_size), num_points(_num_points)
     {
       if (gene_size < 1)
-	runtime_error("GxOver --> invalid gene size");
+	std::runtime_error("GxOver --> invalid gene size");
       if (num_points < 1)
-	runtime_error("GxOver --> invalid number of points");
+	std::runtime_error("GxOver --> invalid number of points");
     }
 
   /// The class name
-  virtual string className() const { return "eoBitGxOver"; }
+  virtual std::string className() const { return "eoBitGxOver"; }
 
   /**
    * Gene crossover for binary chromosomes.
@@ -404,10 +404,10 @@ template<class Chrom> class eoBitGxOver: public eoQuadOp<Chrom>
    */
   bool operator()(Chrom& chrom1, Chrom& chrom2)
     {
-      unsigned max_genes = min(chrom1.size(), chrom2.size()) / gene_size;
-      unsigned cut_genes = min(max_genes, num_points);
+      unsigned max_genes = std::min(chrom1.size(), chrom2.size()) / gene_size;
+      unsigned cut_genes = std::min(max_genes, num_points);
 
-      vector<bool> points(max_genes, false);
+      std::vector<bool> points(max_genes, false);
       
       // selects genes to swap
       do {
@@ -424,7 +424,7 @@ template<class Chrom> class eoBitGxOver: public eoQuadOp<Chrom>
       // swaps genes
       for (unsigned i = 0; i < points.size(); i++)
 	if (points[i])
-	  swap_ranges(chrom1.begin() + i * gene_size, 
+	  std::swap_ranges(chrom1.begin() + i * gene_size, 
 		      chrom1.begin() + i * gene_size + gene_size, 
 		      chrom2.begin() + i * gene_size);
 

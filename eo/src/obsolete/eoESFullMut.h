@@ -95,7 +95,7 @@ public:
   /** Inherited from eoObject 
       @see eoObject
   */
-  virtual string className() const {return "eoESMutate";};
+  virtual std::string className() const {return "eoESMutate";};
   
   /**
     Mutate eoEsSimple
@@ -197,7 +197,7 @@ public:
      */
     unsigned i,k;
 
-    vector<double> VarStp(_eo.size());
+    std::vector<double> VarStp(_eo.size());
     for (i = 0; i < _eo.size(); i++) 
       VarStp[i] = _eo.stdevs[i] * rng.normal();
 

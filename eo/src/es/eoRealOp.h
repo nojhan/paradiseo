@@ -35,7 +35,7 @@
 
 //-----------------------------------------------------------------------------
 
-/** eoUniformMutation --> changes all values of the vector
+/** eoUniformMutation --> changes all values of the std::vector
                           by uniform choice with range epsilon
                           with probability p_change per variable
 \class eoUniformMutation eoRealOp.h Tutorial/eoRealOp.h
@@ -81,13 +81,13 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
    * @param _p_change the VECTOR of probabilities for each coordinates
    */
   eoUniformMutation(eoRealVectorBounds & _bounds,
-		    const vector<double>& _epsilon, 
-		    const vector<double>& _p_change):
+		    const std::vector<double>& _epsilon, 
+		    const std::vector<double>& _p_change):
     homogeneous(false), bounds(_bounds), epsilon(_epsilon), 
     p_change(_p_change) {}
 
   /// The class name.
-  virtual string className() const { return "eoUniformMutation"; }
+  virtual std::string className() const { return "eoUniformMutation"; }
 
   /**
    * Do it!
@@ -109,7 +109,7 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
 	{
 	  // sanity check ?
 	  if (_eo.size() != bounds.size())
-	    throw runtime_error("Invalid size of indi in eoUniformMutation");
+	    throw std::runtime_error("Invalid size of indi in eoUniformMutation");
 
 	  for (unsigned lieu=0; lieu<_eo.size(); lieu++)
 	    if (rng.flip(p_change[lieu]))
@@ -118,9 +118,9 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
 		double emin = _eo[lieu]-epsilon[lieu];
 		double emax = _eo[lieu]+epsilon[lieu];
 		if (bounds.isMinBounded(lieu))
-		  emin = max(bounds.minimum(lieu), emin);
+		  emin = std::max(bounds.minimum(lieu), emin);
 		if (bounds.isMaxBounded(lieu))
-		  emax = min(bounds.maximum(lieu), emax);
+		  emax = std::min(bounds.maximum(lieu), emax);
 		_eo[lieu] = emin + (emax-emin)*rng.uniform();
 		hasChanged = true;
 	      }
@@ -131,11 +131,11 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
 private:
   bool homogeneous;   // == no bounds passed in the ctor
   eoRealVectorBounds & bounds;
-  vector<double> epsilon;	   // the ranges for mutation
-  vector<double> p_change;	   // the proba that each variable is modified
+  std::vector<double> epsilon;	   // the ranges for mutation
+  std::vector<double> p_change;	   // the proba that each variable is modified
 };
 
-/** eoDetUniformMutation --> changes exactly k values of the vector
+/** eoDetUniformMutation --> changes exactly k values of the std::vector
                           by uniform choice with range epsilon
 \class eoDetUniformMutation eoRealOp.h Tutorial/eoRealOp.h
 \ingroup parameteric
@@ -173,13 +173,13 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
   }
 
   /**
-   * Constructor with bounds and full vector of epsilon
+   * Constructor with bounds and full std::vector of epsilon
    * @param _bounds an eoRealVectorBounds that contains the bounds
    * @param _epsilon the VECTOR of ranges for uniform mutation
    * @param number of coordinate to modify
    */
   eoDetUniformMutation(eoRealVectorBounds & _bounds, 
-		       const vector<double>& _epsilon, 
+		       const std::vector<double>& _epsilon, 
 		       const unsigned& _no = 1): 
     homogeneous(false), bounds(_bounds), epsilon(_epsilon), no(_no) 
   {
@@ -190,7 +190,7 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
   }
 
   /// The class name.
-  virtual string className() const { return "eoDetUniformMutation"; }
+  virtual std::string className() const { return "eoDetUniformMutation"; }
   
   /**
    * Do it!
@@ -209,7 +209,7 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
 	{
 	  // sanity check ?
 	  if (_eo.size() != bounds.size())
-	    throw runtime_error("Invalid size of indi in eoDetUniformMutation");
+	    throw std::runtime_error("Invalid size of indi in eoDetUniformMutation");
 	  for (unsigned i=0; i<no; i++)
 	    {
 	      unsigned lieu = rng.random(_eo.size());
@@ -219,9 +219,9 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
 	      double emin = _eo[lieu]-epsilon[lieu];
 	      double emax = _eo[lieu]+epsilon[lieu];
 	      if (bounds.isMinBounded(lieu))
-		emin = max(bounds.minimum(lieu), emin);
+		emin = std::max(bounds.minimum(lieu), emin);
 	      if (bounds.isMaxBounded(lieu))
-		emax = min(bounds.maximum(lieu), emax);
+		emax = std::min(bounds.maximum(lieu), emax);
 	      _eo[lieu] = emin + (emax-emin)*rng.uniform();
 	    }
 	}
@@ -231,7 +231,7 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
 private:
   bool homogeneous;   //  == no bounds passed in the ctor
   eoRealVectorBounds & bounds;
-  vector<double> epsilon;	   // the ranges of mutation
+  std::vector<double> epsilon;	   // the ranges of mutation
   unsigned no;
 };
 
@@ -272,7 +272,7 @@ template<class EOT> class eoSegmentCrossover: public eoQuadOp<EOT>
     bounds(_bounds), alpha(_alpha), range(1+2*_alpha) {}
 
   /// The class name.
-  virtual string className() const { return "eoSegmentCrossover"; }
+  virtual std::string className() const { return "eoSegmentCrossover"; }
 
   /**
    * segment crossover - modifies both parents
@@ -294,18 +294,18 @@ template<class EOT> class eoSegmentCrossover: public eoQuadOp<EOT>
 	      r1=_eo1[i];
 	      r2=_eo2[i];
 	      if (r1 != r2) {	   // otherwise you'll get NAN's
-		double rmin = min(r1, r2);
-		double rmax = max(r1, r2);
+		double rmin = std::min(r1, r2);
+		double rmax = std::max(r1, r2);
 		double length = rmax - rmin;
 		if (bounds.isMinBounded(i))
 		  {
-		    alphaMin = max(alphaMin, (bounds.minimum(i)-rmin)/length);
-		    alphaMax = min(alphaMax, (rmax-bounds.minimum(i))/length);
+		    alphaMin = std::max(alphaMin, (bounds.minimum(i)-rmin)/length);
+		    alphaMax = std::min(alphaMax, (rmax-bounds.minimum(i))/length);
 		  }
 		if (bounds.isMaxBounded(i))
 		  {
-		    alphaMax = min(alphaMax, (bounds.maximum(i)-rmin)/length);
-		    alphaMin = max(alphaMin, (rmax-bounds.maximum(i))/length);
+		    alphaMax = std::min(alphaMax, (bounds.maximum(i)-rmin)/length);
+		    alphaMin = std::max(alphaMin, (rmax-bounds.maximum(i))/length);
 		  }
 	      }
 	    }
@@ -350,7 +350,7 @@ template<class EOT> class eoHypercubeCrossover: public eoQuadOp<EOT>
     bounds(eoDummyVectorNoBounds), alpha(_alpha), range(1+2*_alpha)
   {
     if (_alpha < 0)
-      throw runtime_error("BLX coefficient should be positive");
+      throw std::runtime_error("BLX coefficient should be positive");
   }
 
   /**
@@ -366,11 +366,11 @@ template<class EOT> class eoHypercubeCrossover: public eoQuadOp<EOT>
     bounds(_bounds), alpha(_alpha), range(1+2*_alpha) 
   {
     if (_alpha < 0)
-      throw runtime_error("BLX coefficient should be positive");
+      throw std::runtime_error("BLX coefficient should be positive");
   }
 
   /// The class name.
-  virtual string className() const { return "eoHypercubeCrossover"; }
+  virtual std::string className() const { return "eoHypercubeCrossover"; }
 
   /**
    * hypercube crossover - modifies both parents
@@ -402,8 +402,8 @@ template<class EOT> class eoHypercubeCrossover: public eoQuadOp<EOT>
 	    r1=_eo1[i];
 	    r2=_eo2[i];
 	    if (r1 != r2) {	   // otherwise do nothing
-	      double rmin = min(r1, r2);
-	      double rmax = max(r1, r2);
+	      double rmin = std::min(r1, r2);
+	      double rmax = std::max(r1, r2);
 
 	      // compute min and max for object variables
 	      double objMin = -alpha * rmax + (1+alpha) * rmin;
@@ -412,11 +412,11 @@ template<class EOT> class eoHypercubeCrossover: public eoQuadOp<EOT>
 	      // first find the limits on the alpha's
 	      if (bounds.isMinBounded(i))
 		{
-		  objMin = max(objMin, bounds.minimum(i));
+		  objMin = std::max(objMin, bounds.minimum(i));
 		}
 	      if (bounds.isMaxBounded(i))
 		{
-		  objMax = min(objMax, bounds.maximum(i));
+		  objMax = std::min(objMax, bounds.maximum(i));
 		}
 	      // then draw variables
 	      double median = (objMin+objMax)/2.0; // uniform within bounds
@@ -464,22 +464,22 @@ template<class EOT> class eoRealUXover: public eoQuadOp<EOT>
   eoRealUXover(const float& _preference = 0.5): preference(_preference)
     { 
       if ( (_preference <= 0.0) || (_preference >= 1.0) )
-	runtime_error("UxOver --> invalid preference");
+	std::runtime_error("UxOver --> invalid preference");
     }
 
   /// The class name.
-  virtual string className() const { return "eoRealUXover"; }
+  virtual std::string className() const { return "eoRealUXover"; }
 
   /**
-   * Uniform crossover for real vectors
+   * Uniform crossover for real std::vectors
    * @param _eo1 The first parent
    * @param _eo2 The second parent
-   *    @runtime_error if sizes don't match
+   *    @std::runtime_error if sizes don't match
    */
   bool operator()(EOT& _eo1, EOT& _eo2)
     {
       if ( _eo1.size() != _eo2.size())
-	    runtime_error("UxOver --> chromosomes sizes don't match" );
+	    std::runtime_error("UxOver --> chromosomes sizes don't match" );
       bool changed = false;
       for (unsigned int i=0; i<_eo1.size(); i++)
 	{

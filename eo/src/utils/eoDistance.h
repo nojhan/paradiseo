@@ -38,7 +38,7 @@ class eoDistance : public eoBF<const EOT &, const EOT &, double>
 
 /** 
     This is a generic class for Euclidain distance computation:
-    assumes the 2 things are vectors of something that is double-castable
+    assumes the 2 things are std::vectors of something that is double-castable
 */
 
 template< class EOT >

@@ -42,7 +42,7 @@ public:
 	* reached */
 	virtual bool operator() ( const eoPop<EOT>& _vEO ) {
 	  thisGeneration++;
-	  //	  cout << " [" << thisGeneration << "] ";
+	  //	  std::cout << " [" << thisGeneration << "] ";
 	  return (thisGeneration < repTotalGenerations) ; // for the postincrement
 	}
 

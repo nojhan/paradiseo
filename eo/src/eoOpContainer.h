@@ -64,15 +64,15 @@ class eoOpContainer : public eoGenOp<EOT>
   {
     ops.push_back(&wrap_op<EOT>(_op, store));
     rates.push_back(_rate);
-    max_to_produce = max(max_to_produce,ops.back()->max_production());
+    max_to_produce = std::max(max_to_produce,ops.back()->max_production());
   }
 
-  virtual string className() const = 0;
+  virtual std::string className() const = 0;
 
   protected :
 
-  vector<double> rates;
-  vector<eoGenOp<EOT>*> ops;
+  std::vector<double> rates;
+  std::vector<eoGenOp<EOT>*> ops;
 
   private :
   eoFunctorStore store;
@@ -105,13 +105,13 @@ class eoSequentialOp : public eoOpContainer<EOT>
           {
 	    //            try
 	    //            {
-	      // apply it to all the guys in the todo list
+	      // apply it to all the guys in the todo std::list
               (*ops[i])(_pop);
 	      //            }
             // check for out of individuals and do nothing with that...
 	      //            catch(eoPopulator<EOT>::OutOfIndividuals&)
 	      //	      {
-	      //		cout << "Warning: not enough individuals to handle\n";
+	      //		std::cout << "Warning: not enough individuals to handle\n";
 	      //		return ;
 	      //	      }
           }
@@ -122,12 +122,12 @@ class eoSequentialOp : public eoOpContainer<EOT>
         while (!_pop.exhausted());
      }
   }
-  virtual string className() const {return "SequentialOp";}
+  virtual std::string className() const {return "SequentialOp";}
 
   private :
 
-  vector<size_t> to_apply;
-  vector<size_t> production;
+  std::vector<size_t> to_apply;
+  std::vector<size_t> production;
 };
 
 
@@ -149,7 +149,7 @@ class eoProportionalOp : public eoOpContainer<EOT>
       catch( typename eoPopulator<EOT>::OutOfIndividuals&)
       {}
     }
-  virtual string className() const {return "ProportionalOp";}
+  virtual std::string className() const {return "ProportionalOp";}
 };
 
 

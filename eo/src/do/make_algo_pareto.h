@@ -47,7 +47,7 @@ class eoNDPlusReplacement : public eoReplacement<EOT>
 public:
   eoNDPlusReplacement(eoPerf2Worth<EOT, WorthT>& _perf2worth) : perf2worth(_perf2worth) {}
 
-  struct WorthPair : public pair<WorthT, const EOT*>
+  struct WorthPair : public std::pair<WorthT, const EOT*>
   {
     bool operator<(const WorthPair& other) const { return other.first < first; }
   };
@@ -96,14 +96,14 @@ template <class EOT>
 eoAlgo<EOT> & do_make_algo_pareto(eoParser& _parser, eoState& _state, eoEvalFunc<EOT>& _eval, eoContinue<EOT>& _continue, eoGenOp<EOT>& _op)
 {
   // the selection
-  string & selStr = _parser.createParam(string("NSGA-II"), "selCrit", "Pareto Selection Criterion: NSGA, NSGA-II, ParetoRanking", 'S', "Evolution Engine").value();
+  std::string & selStr = _parser.createParam(std::string("NSGA-II"), "selCrit", "Pareto Selection Criterion: NSGA, NSGA-II, ParetoRanking", 'S', "Evolution Engine").value();
   double nicheSize = _parser.createParam(1.0, "nicheSize", "Size of niche for NSGA-I", '\0', "Evolution Engine").value();
   eoPerf2Worth<EOT, double> *p2w;
-  if ( (selStr == string("NSGA")) || (selStr == string("NSGA-I") ) )
+  if ( (selStr == std::string("NSGA")) || (selStr == std::string("NSGA-I") ) )
     p2w = new eoNDSorting_I<EOT>(nicheSize);
-  else   if (selStr == string("NSGA-II"))
+  else   if (selStr == std::string("NSGA-II"))
     p2w = new eoNDSorting_II<EOT>();
-  else   if (selStr == string("ParetoRanking"))
+  else   if (selStr == std::string("ParetoRanking"))
     {
       eoDominanceMap<EOT>&  dominance = _state.storeFunctor(new eoDominanceMap<EOT>);
     p2w = new eoParetoRanking<EOT>(dominance);
@@ -116,64 +116,64 @@ eoAlgo<EOT> & do_make_algo_pareto(eoParser& _parser, eoState& _state, eoEvalFunc
   // only the ranking is not re-implemented (yet?)
   eoValueParam<eoParamParamType>& selectionParam = _parser.createParam(eoParamParamType("DetTour(2)"), "selection", "Selection: Roulette, DetTour(T), StochTour(t) or Random", 'S', "Evolution Engine");
 
-  eoParamParamType & ppSelect = selectionParam.value(); // pair<string,vector<string> >
+  eoParamParamType & ppSelect = selectionParam.value(); // std::pair<std::string,std::vector<std::string> >
 
   eoSelectOne<EOT>* select ;
-  if (ppSelect.first == string("DetTour")) 
+  if (ppSelect.first == std::string("DetTour")) 
   {
     unsigned detSize;
 
     if (!ppSelect.second.size())   // no parameter added
       {
-	cerr << "WARNING, no parameter passed to DetTour, using 2" << endl;
+	std::cerr << "WARNING, no parameter passed to DetTour, using 2" << std::endl;
 	detSize = 2;
 	// put back 2 in parameter for consistency (and status file)
-	ppSelect.second.push_back(string("2"));
+	ppSelect.second.push_back(std::string("2"));
       }
     else	  // parameter passed by user as DetTour(T)
       detSize = atoi(ppSelect.second[0].c_str());
     select = new eoDetTournamentWorthSelect<EOT>(*p2w, detSize);
   }
-  else if (ppSelect.first == string("StochTour"))
+  else if (ppSelect.first == std::string("StochTour"))
     {
       double p;
       if (!ppSelect.second.size())   // no parameter added
 	{
-	  cerr << "WARNING, no parameter passed to StochTour, using 1" << endl;
+	  std::cerr << "WARNING, no parameter passed to StochTour, using 1" << std::endl;
 	  p = 1;
 	  // put back p in parameter for consistency (and status file)
-	  ppSelect.second.push_back(string("1"));
+	  ppSelect.second.push_back(std::string("1"));
 	}
       else	  // parameter passed by user as DetTour(T)
 	p = atof(ppSelect.second[0].c_str());
       
       select = new eoStochTournamentWorthSelect<EOT>(*p2w, p);
     }
-//   else if (ppSelect.first == string("Sequential")) // one after the other
+//   else if (ppSelect.first == std::string("Sequential")) // one after the other
 //     {
 //       bool b;
 //       if (ppSelect.second.size() == 0)   // no argument -> default = ordered
 // 	{
 // 	  b=true;
 // 	  // put back in parameter for consistency (and status file)
-// 	  ppSelect.second.push_back(string("ordered"));
+// 	  ppSelect.second.push_back(std::string("ordered"));
 // 	}
 //       else
-// 	b = !(ppSelect.second[0] == string("unordered"));
+// 	b = !(ppSelect.second[0] == std::string("unordered"));
 //       select = new eoSequentialWorthSelect<EOT>(b);
 //     }
-  else if (ppSelect.first == string("Roulette")) // no argument (yet)
+  else if (ppSelect.first == std::string("Roulette")) // no argument (yet)
     {
       select = new eoRouletteWorthSelect<EOT>(*p2w);
     }
-  else if (ppSelect.first == string("Random")) // no argument, no perf2Worth
+  else if (ppSelect.first == std::string("Random")) // no argument, no perf2Worth
     {
       select = new eoRandomSelect<EOT>;
     }
   else
     {
-      string stmp = string("Invalid selection: ") + ppSelect.first;
-      throw runtime_error(stmp.c_str());
+      std::string stmp = std::string("Invalid selection: ") + ppSelect.first;
+      throw std::runtime_error(stmp.c_str());
     }
 
   _state.storeFunctor(select);

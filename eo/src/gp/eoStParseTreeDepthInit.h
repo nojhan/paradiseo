@@ -34,7 +34,6 @@
 
 
 using namespace gp_parse_tree;
-using namespace std;
 
 #define TERMINAL 0
 
@@ -68,12 +67,12 @@ class eoStParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
     /**
      * Constructor
      * @parm _max_depth The maximum depth of a tree
-     * @param _initializor A vector containing the possible nodes
+     * @param _initializor A std::vector containing the possible nodes
      * @param _grow False results in a full tree, True result is a randomly grown tree
      */
 	eoStParseTreeDepthInit(
         unsigned _max_depth,
-		const vector<Node>& _node,
+		const std::vector<Node>& _node,
 		const int& _return_type,
         bool _grow = true)
             :
@@ -84,48 +83,48 @@ class eoStParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
     {
       if(_node.empty())
       {
-        throw logic_error("eoStParseTreeDepthInit: uhm, wouldn't you rather give a non-empty set of Nodes?");
+        throw std::logic_error("eoStParseTreeDepthInit: uhm, wouldn't you rather give a non-empty set of Nodes?");
       }
       
       
       unsigned int i=0;
       int arity=0;
       int type=0;
-      vector<Node> node_vector;
+      std::vector<Node> node_std::vector;
       for(i=0; i < _node.size(); i++)
       {
       	arity = _node[i].arity();
 	type = _node[i].type();
 	if(arity==0)
 	{
-		node_vector = node[type][TERMINAL];
-		node_vector.push_back(_node[i]);
-		node[type][TERMINAL]= node_vector;
+		node_std::vector = node[type][TERMINAL];
+		node_std::vector.push_back(_node[i]);
+		node[type][TERMINAL]= node_std::vector;
 	}	
 	else	
 	//if (arity != 0) // non-terminal
 	{
-		node_vector = node[type][NONTERMINAL];
-		node_vector.push_back(_node[i]);
-		node[type][NONTERMINAL] = node_vector;
+		node_std::vector = node[type][NONTERMINAL];
+		node_std::vector.push_back(_node[i]);
+		node[type][NONTERMINAL] = node_std::vector;
 	}
-	node_vector = node[type][ALL];
-	node_vector.push_back(_node[i]);
-	node[type][ALL] = node_vector;
+	node_std::vector = node[type][ALL];
+	node_std::vector.push_back(_node[i]);
+	node[type][ALL] = node_std::vector;
 		
       }
       
 
     }
         /// My class name
-	virtual string className() const { return "eoStParseTreeDepthInit"; };
+	virtual std::string className() const { return "eoStParseTreeDepthInit"; };
 
     /**initialize a tree
      * @param _tree : the tree to be initialized
      */
     void operator()(EoType& _tree)
 	{
-        	list<Node> sequence;
+        	std::list<Node> sequence;
 		bool good_tree = false;
 		do 
 		{
@@ -137,7 +136,7 @@ class eoStParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
         	_tree.swap(tmp);
 	}
    private :
-    bool generate(list<Node>& sequence, int the_max, int request_type)
+    bool generate(std::list<Node>& sequence, int the_max, int request_type)
     {
 	    
 	    int selected=0;
@@ -182,7 +181,7 @@ class eoStParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
 
      
 	unsigned max_depth; 
-	map < int, map < int, vector<Node> > > node;
+	map < int, map < int, std::vector<Node> > > node;
 
         int return_type;
 	bool grow;

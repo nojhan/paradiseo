@@ -38,7 +38,7 @@
     Prints snapshots of fitnesses to a (new) file every N generations 
 
 Assumes that the parameters that are passed to the monitor 
-(method add in eoMonitor.h) are eoValueParam<vector<double> > of same size.
+(method add in eoMonitor.h) are eoValueParam<std::vector<double> > of same size.
 
 A dir is created and one file per snapshot is created there - 
 so you can later generate a movie!
@@ -46,34 +46,34 @@ so you can later generate a movie!
 TODO: The counter is handled internally, but this should be changed 
 so that you can pass e.g. an evalcounter (minor)
 
-I failed to templatize everything so that it can handle eoParam<vector<T> >
+I failed to templatize everything so that it can handle eoParam<std::vector<T> >
 for any type T, simply calling their getValue method ...
 */
 
 class eoFileSnapshot : public eoMonitor
 {
 public :
-  typedef vector<double> vDouble;
-  typedef eoValueParam<vector<double> > vDoubleParam;
+  typedef std::vector<double> vDouble;
+  typedef eoValueParam<std::vector<double> > vDoubleParam;
 
   eoFileSnapshot(std::string _dirname, unsigned _frequency = 1,
 	     std::string _filename = "gen", std::string _delim = " "):
     dirname(_dirname), frequency(_frequency),
     filename(_filename), delim(_delim), counter(0), boolChanged(true)
   {
-    string s = "test -d " + dirname;
+    std::string s = "test -d " + dirname;
     int res = system(s.c_str());
     // test for (unlikely) errors
     if ( (res==-1) || (res==127) )
-      throw runtime_error("Problem executing test of dir in eoFileSnapshot");
+      throw std::runtime_error("Problem executing test of dir in eoFileSnapshot");
     // now make sure there is a dir without any genXXX file in it
     if (res)                    // no dir present
       {
-	s = string("mkdir ")+dirname;
+	s = std::string("mkdir ")+dirname;
       }
     else
       {
-	s = string("/bin/rm ")+dirname+ "/" + filename + "*";
+	s = std::string("/bin/rm ")+dirname+ "/" + filename + "*";
       }
     system(s.c_str());
     // all done
@@ -89,20 +89,20 @@ public :
 
   /** accessor to the current filename: needed by the gnuplot subclass
    */
-  string getFileName() {return currentFileName;}
+  std::string getFileName() {return currentFileName;}
 
   /** sets the current filename depending on the counter
    */
   void setCurrentFileName()
   {
     char buff[255];
-    ostrstream oscount(buff, 254);
+    std::ostrstream oscount(buff, 254);
     oscount << counter;
     oscount << std::ends;
     currentFileName = dirname + "/" + filename + oscount.str();
   }
 
-  /** The operator(void): opens the ostream and calls the write method
+  /** The operator(void): opens the std::ostream and calls the write method
    */
   eoMonitor& operator()(void)
   {
@@ -115,40 +115,40 @@ public :
     counter++;
     boolChanged = true;
     setCurrentFileName();
-    ofstream os(currentFileName.c_str());
+    std::ofstream os(currentFileName.c_str());
 
     if (!os)
       {
-        string str = "eoFileSnapshot: Could not open " + currentFileName;
-        throw runtime_error(str);
+        std::string str = "eoFileSnapshot: Could not open " + currentFileName;
+        throw std::runtime_error(str);
       }
 
     return operator()(os);
   }
 
-  /** The operator(): write on an ostream
+  /** The operator(): write on an std::ostream
    */
   eoMonitor& operator()(std::ostream& _os)
   {
-    const eoValueParam<vector<double> >  * ptParam =
-      static_cast<const eoValueParam<vector<double> >* >(vec[0]);
+    const eoValueParam<std::vector<double> >  * ptParam =
+      static_cast<const eoValueParam<std::vector<double> >* >(vec[0]);
 
-    const vector<double>  v = ptParam->value();
-    if (vec.size() == 1)	   // only one vector: -> add number in front
+    const std::vector<double>  v = ptParam->value();
+    if (vec.size() == 1)	   // only one std::vector: -> add number in front
       {
 	for (unsigned k=0; k<v.size(); k++)
 	  _os << k << " " << v[k] << "\n" ;
       }
-    else			   // need to get all other vectors
+    else			   // need to get all other std::vectors
       {
-	vector<vector<double> > vv(vec.size());
+	std::vector<std::vector<double> > vv(vec.size());
 	vv[0]=v;
 	for (unsigned i=1; i<vec.size(); i++)
 	  {
-	    ptParam = static_cast<const eoValueParam<vector<double> >* >(vec[1]);
+	    ptParam = static_cast<const eoValueParam<std::vector<double> >* >(vec[1]);
 	    vv[i] = ptParam->value();
 	    if (vv[i].size() != v.size())
-	      throw runtime_error("Dimension error in eoSnapshotMonitor");
+	      throw std::runtime_error("Dimension error in eoSnapshotMonitor");
 	  }
 	for (unsigned k=0; k<v.size(); k++)
 	  {
@@ -160,17 +160,17 @@ public :
     return *this;
    }
 
-  virtual const string getDirName()	   // for eoGnuPlot
+  virtual const std::string getDirName()	   // for eoGnuPlot
   { return dirname;}
-  virtual const string baseFileName()	   // the title for eoGnuPlot
+  virtual const std::string baseFileName()	   // the title for eoGnuPlot
   { return filename;}
 
-  /// add checks whether it is a vector of doubles
+  /// add checks whether it is a std::vector of doubles
   void add(const eoParam& _param)
   {
-    if (!dynamic_cast<const eoValueParam<vector<double> >*>(&_param))
+    if (!dynamic_cast<const eoValueParam<std::vector<double> >*>(&_param))
     {
-      throw logic_error(string("eoFileSnapshot: I can only monitor vectors of doubles, sorry. The offending parameter name = ") + _param.longName());
+      throw std::logic_error(std::string("eoFileSnapshot: I can only monitor std::vectors of doubles, sorry. The offending parameter name = ") + _param.longName());
     }
     eoMonitor::add(_param);
   }

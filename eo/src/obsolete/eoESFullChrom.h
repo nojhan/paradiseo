@@ -27,28 +27,28 @@
 #define _EOESFULLCHROM_H
 
 // STL libraries
-#include <vector>		// For vector<>
+#include <vector>		// For std::vector<>
 #include <stdexcept>
 #include <strstream>
-#include <iostream>		// for ostream
+#include <iostream>		// for std::ostream
 
 // EO includes
 #include <eoVector.h>
 #include <utils/eoRNG.h>
 /**@name Chromosomes for evolution strategies
-Each chromosome in an evolution strategies is composed of a vector of floating point
-values plus a vector of sigmas, that are added to them during mutation and a vector of correlations
+Each chromosome in an evolution strategies is composed of a std::vector of floating point
+values plus a std::vector of sigmas, that are added to them during mutation and a std::vector of correlations
 */ 
 //@{
 
 
 /**@name individuals for evolution strategies  -MS- 22/10/99
 Each individual in an evolution strategy is composed of 
-   a vector of floating point values 
-   a vector of std deviations
-   a vector of rotation angles (for correlated mutations)
+   a std::vector of floating point values 
+   a std::vector of std deviations
+   a std::vector of rotation angles (for correlated mutations)
 
-These individuals CANNOT BE IMPLEMENTED as vectors of anything 
+These individuals CANNOT BE IMPLEMENTED as std::vectors of anything 
       at least in the case of correlated mutations
 */ 
 //@{
@@ -95,11 +95,11 @@ class eoESFullChrom  : public eoVector<double, fitT> {
       StdDevInit = parser.getFloat("-II", "--SigmaInit", "0.3", 
 			       "Initial value for std. dev. (scaled by range)" );
       verbose = parser.getBool("-Iv", "--verbose",
-		"Verbose listing of ES individuals (mutation parameters");
+		"Verbose std::listing of ES individuals (mutation parameters");
     }
-    catch (exception & e)
+    catch (std::exception & e)
       {
-	cout << e.what() << endl;
+	std::cout << e.what() << std::endl;
 	parser.printHelp();
 	exit(1);
       }
@@ -109,10 +109,10 @@ class eoESFullChrom  : public eoVector<double, fitT> {
       throw invalid_argument( "No standard deviation: choose another representation please" );
     }
     if (num_sigma > num_genes) {
-      cout << "WARNING, Number of Standard Deviations > Number of Object Variables\nAdjusted!\n";
+      std::cout << "WARNING, Number of Standard Deviations > Number of Object Variables\nAdjusted!\n";
       num_sigma = num_genes;
       // modify the Param value - so .status is OK
-      ostrstream sloc;
+      std::ostrstream sloc;
       sloc << num_genes;
       parser.setParamValue("--NbSigma", sloc.str());
     }
@@ -122,8 +122,8 @@ class eoESFullChrom  : public eoVector<double, fitT> {
       StdDev.resize(num_sigma);
     if (correlated_mutations) {
       if (num_sigma < num_genes) {
-	cout << "WARNING less Std Dev. than number of variables + Correlated mutations\n";
-	cout << "Though possible, this is a strange setting" << endl;
+	std::cout << "WARNING less Std Dev. than number of variables + Correlated mutations\n";
+	std::cout << "Though possible, this is a strange setting" << std::endl;
       }
       // nb of rotation angles: N*(N-1)/2 (in general!)
       CorCff.resize ( (2*num_genes - num_sigma)*(num_sigma - 1) / 2 );
@@ -201,32 +201,32 @@ class eoESFullChrom  : public eoVector<double, fitT> {
   /** Print itself: inherited from eoObject implementation. 
       Instance from base classes are processed in
       base classes, so you don´t have to worry about, for instance, fitness.
-  @param _s the ostream in which things are written*/
-  virtual void printOn( ostream& _s ) const{
-      copy( begin(), end(), ostream_iterator<double>( _s, " ") );
+  @param _s the std::ostream in which things are written*/
+  virtual void printOn( std::ostream& _s ) const{
+      copy( begin(), end(), std::ostream_iterator<double>( _s, " ") );
       // The formatting instructinos shoudl be left to the caller
       //      _s << "\n";       
       if (verbose) {
 	  _s << "\n\tStd Dev. " ;
-	  copy( StdDev.begin(), StdDev.end(), ostream_iterator<double>( _s, " ") );
+	  copy( StdDev.begin(), StdDev.end(), std::ostream_iterator<double>( _s, " ") );
 	  if (CorCff.size()) {
 	      _s << "\n\t";
-	      copy( CorCff.begin(), CorCff.end(), ostream_iterator<double>( _s, " ") );
+	      copy( CorCff.begin(), CorCff.end(), std::ostream_iterator<double>( _s, " ") );
 	  }
       }
   };
 
-  /** This exception should be thrown when trying to insert or delete a gene
+  /** This std::exception should be thrown when trying to insert or delete a gene
   in a fixed length chromosome  
   */
-  class FixedLengthChromosome : public exception {
+  class FixedLengthChromosome : public std::exception {
 
   public:
     /**
        * Constructor
        */
     FixedLengthChromosome()
-	: exception() { };
+	: std::exception() { };
 
     ~FixedLengthChromosome() {};
   };
@@ -239,14 +239,14 @@ class eoESFullChrom  : public eoVector<double, fitT> {
   /** Inherited from eoObject 
       @see eoObject
   */
-  virtual string className() const {return "eoESFullChrom";};
+  virtual std::string className() const {return "eoESFullChrom";};
 
 private:
-    //	vector<double>	    ObjVar;	/* object variable vector */
+    //	std::vector<double>	    ObjVar;	/* object variable std::vector */
 // or shoudl the class be subclass of EOVector<double> ???
 
-	vector<double>	    StdDev;	/* standard deviation vector */
-	vector<double>	    CorCff;	/* correlation coefficient vector */
+	std::vector<double>	    StdDev;	/* standard deviation std::vector */
+	std::vector<double>	    CorCff;	/* correlation coefficient std::vector */
 
     bool verbose;		/* Print std deviations or not */
 

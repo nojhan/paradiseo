@@ -50,7 +50,7 @@ eoDistribUpdater<EOT> &  do_make_PBILupdate(eoParser & _parser, eoState& _state,
   // ast the moment, a single update rule is available 
   // but at some point we'll have to choose among different rules
 
-    string UType = _parser.createParam(string("PBIL"), "updateRule", "Type of update rule (only PBIL additive at the moment)", 'U', "Algorithm").value();
+    std::string UType = _parser.createParam(std::string("PBIL"), "updateRule", "Type of update rule (only PBIL additive at the moment)", 'U', "Algorithm").value();
 
   unsigned nbBest = _parser.createParam(unsigned(1), "nbBest", "Number of good guys to update from", 'B', "Algorithm").value();
     double LRBest = _parser.createParam(0.1, "LRBest", "Learning Rate (from best guys)", 'L', "Algorithm").value();
@@ -61,7 +61,7 @@ eoDistribUpdater<EOT> &  do_make_PBILupdate(eoParser & _parser, eoState& _state,
     // a pointer to choose among several possible types
   eoDistribUpdater<EOT> * ptUpdate; 
 
-  if (UType == string("PBIL"))
+  if (UType == std::string("PBIL"))
     {
     if ( (nbWorst == 0) && (nbBest == 1) )
       ptUpdate = new eoPBILOrg<EOT>(LRBest, tolerance);
@@ -69,7 +69,7 @@ eoDistribUpdater<EOT> &  do_make_PBILupdate(eoParser & _parser, eoState& _state,
       ptUpdate = new eoPBILAdditive<EOT>(LRBest, nbBest, tolerance, LRWorst, nbWorst);
     }
   else
-    throw runtime_error("Only PBIL additive update rule available at the moment");
+    throw std::runtime_error("Only PBIL additive update rule available at the moment");
 
   // done: don't forget to store the allocated pointers
   _state.storeFunctor(ptUpdate); 

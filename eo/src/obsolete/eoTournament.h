@@ -73,7 +73,7 @@ public:
     
     unsigned thisSize = _vEO.size();
     
-    // Build vector
+    // Build std::vector
     for ( unsigned j = 0; j < thisSize*perc; j ++ ) {
       // Randomly select a tournamentSize set, and choose the best
       eoPop<EOT> veoTournament;
@@ -84,10 +84,10 @@ public:
 	veoTournament.push_back( newEO );
       }
       
-      eoPop<EOT>::const_iterator best = max_element(veoTournament.begin(),
+      eoPop<EOT>::const_iterator best = std::max_element(veoTournament.begin(),
 						    veoTournament.end());
       if (best == veoTournament.end()) {
-	throw runtime_error("error in void eoTournament::operator(eoPop<EOT>&, eoPop<EOT>&)");
+	throw std::runtime_error("error in void eoTournament::operator(eoPop<EOT>&, eoPop<EOT>&)");
       }
       
       // The best individual is chosen for the new population
@@ -106,11 +106,11 @@ public:
 
    * Should call base class, just in case.
 
-   * @param _s A istream.
+   * @param _s A std::istream.
 
    */
 
-  virtual void readFrom(istream& _s) {
+  virtual void readFrom(std::istream& _s) {
 
 	_s >> perc >> repTournamentSize;
 
@@ -124,11 +124,11 @@ public:
 
 	  base classes, so you don´t have to worry about, for instance, fitness.
 
-  @param _s the ostream in which things are written*/
+  @param _s the std::ostream in which things are written*/
 
-  virtual void printOn( ostream& _s ) const{
+  virtual void printOn( std::ostream& _s ) const{
 
-	_s << perc << endl << repTournamentSize << endl;
+	_s << perc << std::endl << repTournamentSize << std::endl;
 
   }
 
@@ -140,7 +140,7 @@ public:
 
   */
 
-  string className() const {return "eoTournament";};
+  std::string className() const {return "eoTournament";};
 
 
 

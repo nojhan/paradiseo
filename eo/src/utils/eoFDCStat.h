@@ -84,11 +84,11 @@ public :
       value() = num/(sqrt(sumDist)*sqrt(sumFit));
     }
 
-  /** accessors to the private eoValueParam<vector<double> >
+  /** accessors to the private eoValueParam<std::vector<double> >
    */
-  const eoValueParam<vector<double> > & theDist()
+  const eoValueParam<std::vector<double> > & theDist()
   { return distToBest; }
-  const eoValueParam<vector<double> > & theFit()
+  const eoValueParam<std::vector<double> > & theFit()
   { return fitnesses; }
 
 
@@ -96,13 +96,13 @@ private:
   eoDistance<EOT> & dist;
   EOT theBest;
   bool boolOpt;			   // whether the best is known or not
-  eoValueParam<vector<double> > distToBest;
-  eoValueParam<vector<double> > fitnesses;
+  eoValueParam<std::vector<double> > distToBest;
+  eoValueParam<std::vector<double> > fitnesses;
 };
 
 /** Specific class for FDCStat monitoring:
  *  As I failed to have FDC stat as an eoStat, this is the trick
- *  to put the 2 eoParam<vector<double> > into a monitor
+ *  to put the 2 eoParam<std::vector<double> > into a monitor
  *  This class does nothing else.
  */
 template <class EOT>
@@ -110,7 +110,7 @@ class eoFDCFileSnapshot : public eoFileSnapshot	// is an eoMonitor
 {
 public:
   /** Ctor: in addition to the parameters of the ctor of an eoFileSnapshot
-            we need here an eoFDCStat. The 2 vectors (distances to optimum
+            we need here an eoFDCStat. The 2 std::vectors (distances to optimum
 	    and fitnesses) are added to the monitor so they can be processed
             later to a file - and eventually by gnuplot
   */
@@ -127,7 +127,7 @@ public:
   /** just to be sure the add method is not called further
    */
   virtual void add(const eoParam& _param)
-    { throw runtime_error("eoFDCFileSnapshot::add(). Trying to add stats to an eoFDCFileSnapshot"); }
+    { throw std::runtime_error("eoFDCFileSnapshot::add(). Trying to add stats to an eoFDCFileSnapshot"); }
 
 private:
   eoFDCStat<EOT> & FDCstat;

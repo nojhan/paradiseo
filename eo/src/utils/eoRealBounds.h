@@ -27,7 +27,7 @@
 #ifndef _eoRealBounds_h
 #define _eoRealBounds_h
 
-#include <stdexcept>		   // exceptions!
+#include <stdexcept>		   // std::exceptions!
 #include <utils/eoRNG.h>
 
 /**
@@ -56,8 +56,8 @@ it exceeds it
 
 So mutation can choose 
 - iterate trying until they fall in bounds, 
-- only try once and "repair" by using the foldsInBounds method
-- only try once and repair using the truncate method (will create a
+- only try once and "restd::pair" by using the foldsInBounds method
+- only try once and restd::pair using the truncate method (will create a
   huge bias toward the bound if the soluiton is not far from the bounds)
 
 There is also a uniform() method that generates a uniform value 
@@ -107,20 +107,20 @@ public:
   virtual void truncate(double &) = 0;
 
   /** get minimum value 
-   *  @exception if does not exist
+   *  @std::exception if does not exist
    */  
   virtual double minimum() = 0;
   /** get maximum value
-   *  @exception if does not exist
+   *  @std::exception if does not exist
    */  
   virtual double maximum() = 0;
   /** get range
-   *  @exception if unbounded
+   *  @std::exception if unbounded
    */  
   virtual double range() = 0;
 
   /** random generator of uniform numbers in bounds
-   * @exception if unbounded
+   * @std::exception if unbounded
    */
   virtual double uniform(eoRng & _rng = eo::rng) = 0;
 
@@ -145,39 +145,39 @@ public:
 
   virtual double minimum()
   {
-    throw logic_error("Trying to get minimum of unbounded eoRealBounds");
+    throw std::logic_error("Trying to get minimum of unbounded eoRealBounds");
   }
   virtual double maximum()
   {
-    throw logic_error("Trying to get maximum of unbounded eoRealBounds");
+    throw std::logic_error("Trying to get maximum of unbounded eoRealBounds");
   }
   virtual double range()
   {
-    throw logic_error("Trying to get range of unbounded eoRealBounds");
+    throw std::logic_error("Trying to get range of unbounded eoRealBounds");
   }
 
   virtual double uniform(eoRng & _rng = eo::rng)
   {
-    throw logic_error("Trying to generate uniform values in unbounded eoRealBounds");
+    throw std::logic_error("Trying to generate uniform values in unbounded eoRealBounds");
   }
 
   // methods from eoPersistent
   /**
    * Read object.
-   * @param _is A istream.
+   * @param _is A std::istream.
    * but reading should not be done here, because of bound problems
    * see eoRealVectorBounds
    */
-  virtual void readFrom(istream& _is) 
+  virtual void readFrom(std::istream& _is) 
   {
-    throw runtime_error("Should not use eoRealBounds::readFrom");
+    throw std::runtime_error("Should not use eoRealBounds::readFrom");
   }
 
   /**
    * Write object. It's called printOn since it prints the object on a stream.
-   * @param _os A ostream.
+   * @param _os A std::ostream.
    */
-  virtual void printOn(ostream& _os) const
+  virtual void printOn(std::ostream& _os) const
   {
     _os << "[-inf,+inf]";
   }
@@ -279,20 +279,20 @@ public :
   // methods from eoPersistent
   /**
    * Read object.
-   * @param _is A istream.
+   * @param _is A std::istream.
    * but reading should not be done here, because of bound problems
    * see eoRealVectorBounds
    */
-  virtual void readFrom(istream& _is) 
+  virtual void readFrom(std::istream& _is) 
   {
-    throw runtime_error("Should not use eoRealInterval::readFrom");
+    throw std::runtime_error("Should not use eoRealInterval::readFrom");
   }
 
   /**
    * Write object. It's called printOn since it prints the object on a stream.
-   * @param _os A ostream.
+   * @param _os A std::ostream.
    */
-  virtual void printOn(ostream& _os) const
+  virtual void printOn(std::ostream& _os) const
   {
     _os << "[" << repMinimum << "," << repMaximum << "]";
   }
@@ -328,17 +328,17 @@ public :
 
   virtual double maximum()
   {
-    throw logic_error("Trying to get maximum of eoRealBelowBound");
+    throw std::logic_error("Trying to get maximum of eoRealBelowBound");
   }
   virtual double range()
   {
-    throw logic_error("Trying to get range of eoRealBelowBound");
+    throw std::logic_error("Trying to get range of eoRealBelowBound");
   }
 
   // random generators
   virtual double uniform(eoRng & _rng = eo::rng)
   {
-    throw logic_error("Trying to generate uniform values in eoRealBelowBound");
+    throw std::logic_error("Trying to generate uniform values in eoRealBelowBound");
   }
 
   // description
@@ -375,20 +375,20 @@ public :
   // methods from eoPersistent
   /**
    * Read object.
-   * @param _is A istream.
+   * @param _is A std::istream.
    * but reading should not be done here, because of bound problems
    * see eoRealVectorBounds
    */
-  virtual void readFrom(istream& _is) 
+  virtual void readFrom(std::istream& _is) 
   {
-    throw runtime_error("Should not use eoRealBelowBound::readFrom");
+    throw std::runtime_error("Should not use eoRealBelowBound::readFrom");
   }
 
   /**
    * Write object. It's called printOn since it prints the object on a stream.
-   * @param _os A ostream.
+   * @param _os A std::ostream.
    */
-  virtual void printOn(ostream& _os) const
+  virtual void printOn(std::ostream& _os) const
   {
     _os << "[" << repMinimum << ",+inf]";
   }
@@ -423,17 +423,17 @@ public :
 
   virtual double minimum()
   {
-    throw logic_error("Trying to get minimum of eoRealAboveBound");
+    throw std::logic_error("Trying to get minimum of eoRealAboveBound");
   }
   virtual double range()
   {
-    throw logic_error("Trying to get range of eoRealAboveBound");
+    throw std::logic_error("Trying to get range of eoRealAboveBound");
   }
 
   // random generators
   virtual double uniform(eoRng & _rng = eo::rng)
   {
-    throw logic_error("Trying to generate uniform values in eoRealAboveBound");
+    throw std::logic_error("Trying to generate uniform values in eoRealAboveBound");
   }
 
   // description
@@ -470,20 +470,20 @@ public :
   // methods from eoPersistent
   /**
    * Read object.
-   * @param _is A istream.
+   * @param _is A std::istream.
    * but reading should not be done here, because of bound problems
    * see eoRealVectorBounds
    */
-  virtual void readFrom(istream& _is) 
+  virtual void readFrom(std::istream& _is) 
   {
-    throw runtime_error("Should not use eoRealAboveBound::readFrom");
+    throw std::runtime_error("Should not use eoRealAboveBound::readFrom");
   }
 
   /**
    * Write object. It's called printOn since it prints the object on a stream.
-   * @param _os A ostream.
+   * @param _os A std::ostream.
    */
-  virtual void printOn(ostream& _os) const
+  virtual void printOn(std::ostream& _os) const
   {
     _os << "[-inf," << repMaximum << "]";
   }

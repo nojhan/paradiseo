@@ -14,8 +14,8 @@ int main()
 {
   Chrom chrom1, chrom2;
 
-  cout << "chrom1 = " << chrom1 << endl
-       << "chrom2 = " << chrom2 << endl;
+  std::cout << "chrom1 = " << chrom1 << std::endl
+       << "chrom2 = " << chrom2 << std::endl;
 
   return 0;
 }

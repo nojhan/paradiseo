@@ -74,7 +74,7 @@ template <class T = double> class eoUniformGenerator : public eoRndGenerator<T>
       minim(_min), range(_max-_min), uniform(_rng)
   {
     if (_min>_max)
-      throw logic_error("Min is greater than Max in uniform_generator");
+      throw std::logic_error("Min is greater than Max in uniform_generator");
   }
 
   /**

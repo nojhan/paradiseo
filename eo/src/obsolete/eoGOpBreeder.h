@@ -48,7 +48,7 @@ class eoGOpBreeder: public eoUF<eoPop<EOT>&, void>
     }
   
   /// The class name.
-  string className() const { return "eoGOpBreeder"; }
+  std::string className() const { return "eoGOpBreeder"; }
   
  private:
   eoGOpSelector<EOT>&            opSel;

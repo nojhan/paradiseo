@@ -52,7 +52,7 @@ Olivier: this has been removed in .NET :) One step more standard...
 
 #ifdef min
 #undef min
-#undef max // as they come in pairs
+#undef max // as they come in std::pairs
 #endif
 
 // add min and max to std...

@@ -27,10 +27,8 @@
 
 //-----------------------------------------------------------------------------
 
-#include <iostream>  // istream, ostream
-#include <string> // para string
-
-using namespace std;
+#include <iostream>  // std::istream, std::ostream
+#include <string> // para std::string
 
 //-----------------------------------------------------------------------------
 // eoPrintable
@@ -50,14 +48,14 @@ class eoPrintable
   
   /**
    * Write object. It's called printOn since it prints the object on a stream.
-   * @param _os A ostream.
+   * @param _os A std::ostream.
    */
-  virtual void printOn(ostream& _os) const = 0;
+  virtual void printOn(std::ostream& _os) const = 0;
 };
 
 //-----------------------------------------------------------------------------
 ///Standard output for all objects in the EO hierarchy
-ostream & operator << ( ostream& _os, const eoPrintable& _o );
+std::ostream & operator << ( std::ostream& _os, const eoPrintable& _o );
 
 #endif
 

@@ -97,7 +97,7 @@ eoContinue<Indi> & do_make_continue_pareto(eoParser& _parser, eoState& _state, e
 
     // now check that there is at least one!
     if (!continuator)
-      throw runtime_error("You MUST provide a stopping criterion");
+      throw std::runtime_error("You MUST provide a stopping criterion");
   // OK, it's there: store in the eoState
   _state.storeFunctor(continuator);
 

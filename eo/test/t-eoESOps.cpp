@@ -54,9 +54,9 @@ main(int argc, char *argv[]) {
 			  FirstEO.StdDevLength(), FirstEO.size(), 
 			  FirstEO.CorCffLength() );
 
-  cout << "First EO " << FirstEO << endl;
+  std::cout << "First EO " << FirstEO << std::endl;
   MyMut(FirstEO);
-  cout << "First EO mutated" << FirstEO << endl;
+  std::cout << "First EO mutated" << FirstEO << std::endl;
 
   /*
   // Evolution and population parameters
@@ -88,10 +88,10 @@ main(int argc, char *argv[]) {
   unsigned i, iind;
 
 
-    cout << "Initial population: \n" << endl;
+    std::cout << "Initial population: \n" << std::endl;
     for (i = 0; i < pop.size(); ++i) {
       eval(pop[i]);
-      cout << pop[i].fitness() << "\t" << pop[i] << endl;
+      std::cout << pop[i].fitness() << "\t" << pop[i] << std::endl;
     }
 
   // the Operators
@@ -107,9 +107,9 @@ main(int argc, char *argv[]) {
 
   ea(pop);
   
-    cout << "Final population: \n" << endl;
+    std::cout << "Final population: \n" << std::endl;
   for (i = 0; i < pop.size(); ++i)
-    cout << pop[i].fitness() << "\t" << pop[i] << endl;
+    std::cout << pop[i].fitness() << "\t" << pop[i] << std::endl;
   return 0;
   */
 }

@@ -65,13 +65,13 @@ template<class Chrom> class eoGeneration: public eoAlgo<Chrom>
 	for ( i = breeders.begin(); i != breeders.end(); i++)
 	  evaluator(*i);
 	replace(breeders, pop);
-      }  catch ( exception& e ) {
-	throw runtime_error( e.what() );
+      }  catch ( std::exception& e ) {
+	throw std::runtime_error( e.what() );
       }
     }
   
   /// Class name.
-  string className() const { return "eoGeneration"; }
+  std::string className() const { return "eoGeneration"; }
   
  private:
   eoBinPopOp<Chrom>& select;

@@ -32,16 +32,16 @@
 
 struct Dummy : public EO<double>
 {
-    typedef double Type;
+  typedef double Type;
   Dummy(std::string _s="") : s(_s) {}
 
-  void printOn(ostream & _os) const
+  void printOn(std::ostream & _os) const
   {
     EO<double>::printOn(_os);
     _os << " - " << s ;
   }
 
-  string s;
+  std::string s;
 };
 
 typedef Dummy EOT;
@@ -59,9 +59,9 @@ class monop : public eoMonOp<EOT>
       _eo.fitness(_eo.fitness()+pSize);
       return false;
     }
-  string className() const {return sig;}
+  std::string className() const {return sig;}
     private:
-    string sig;
+    std::string sig;
 };
 
 class binop: public eoBinOp<EOT>
@@ -74,13 +74,13 @@ class binop: public eoBinOp<EOT>
       _eo1.fitness(_eo1.fitness()+f);
       return false;
     }
-  string className() const {return "binop";}
+  std::string className() const {return "binop";}
 };
 
 class quadop: public eoQuadOp<EOT>
 {
   public :
-  string className() const {return "quadop";}
+  std::string className() const {return "quadop";}
     bool operator()(EOT& a, EOT& b)
     {
       EOT oi = a;
@@ -98,7 +98,7 @@ class quadop: public eoQuadOp<EOT>
 class quadClone: public eoQuadOp<EOT>
 {
   public :
-  string className() const {return "quadclone";}
+  std::string className() const {return "quadclone";}
     bool operator()(EOT& , EOT& ) {return false;}
 };
 
@@ -120,7 +120,7 @@ class one2threeOp : public eoGenOp<EOT> // :-)
       eo.s  =  "v(" + eo.s + ", 0)"; // only now change the thing
       // oh right, and invalidate fitnesses
     }
-  virtual string className() const {return "one2threeOp";}
+  virtual std::string className() const {return "one2threeOp";}
 };
 
 
@@ -136,7 +136,7 @@ class two2oneOp : public eoGenOp<EOT> // :-)
       eo.s  =  "221(" + eo.s + ", " + eo2.s + ")";
       // oh right, and invalidate fitnesses
     }
-  virtual string className() const {return "two2oneOp";}
+  virtual std::string className() const {return "two2oneOp";}
 };
 
 class three2threeOp : public eoGenOp<EOT> // :-)
@@ -152,14 +152,14 @@ class three2threeOp : public eoGenOp<EOT> // :-)
       EOT a = eo1;
       EOT b = eo2;
       EOT c = eo3;
-      cout << "les selectionnes: a=" << a << " et b=" << b << " et c=" << c << endl;
+      std::cout << "les selectionnes: a=" << a << " et b=" << b << " et c=" << c << std::endl;
       eo1.s  =  "323-1(" + a.s + ", " + b.s + ", " + c.s + ")";
       eo2.s  =  "323-2(" + a.s + ", " + b.s + ", " + c.s + ")";
       eo3.s  =  "323-3(" + a.s + ", " + b.s + ", " + c.s + ")";
       // oh right, and invalidate fitnesses
-      cout << "les enfants: a=" << eo1 << " et b=" << eo2 << " et c=" << eo3 << endl;
+      std::cout << "les enfants: a=" << eo1 << " et b=" << eo2 << " et c=" << eo3 << std::endl;
     }
-  virtual string className() const {return "three2threeOp";}
+  virtual std::string className() const {return "three2threeOp";}
 };
 
 
@@ -172,13 +172,13 @@ void init(eoPop<Dummy> & _pop, unsigned _pSize)
     }
   else
     {
-      throw runtime_error("init pop with 0 size");
+      throw std::runtime_error("init pop with 0 size");
     }
   for (unsigned i=0; i<_pSize; i++)
     {
       char s[255];
-      ostrstream os(s, 254);
-      os << i << ends;
+      std::ostrstream os(s, 254);
+      os << i << std::ends;
       _pop[i] = Dummy(s);
       _pop[i].fitness(i);
     }
@@ -200,7 +200,7 @@ int the_main(int argc, char **argv)
    // i.e. in case you need parameters somewhere else, postpone these
     if (parser.userNeedsHelp())
       {
-        parser.printHelp(cout);
+        parser.printHelp(std::cout);
         exit(1);
       }
 
@@ -267,7 +267,7 @@ int the_main(int argc, char **argv)
   init(pop, pSize);
 // sort pop so seqPopulator is identical to SelectPopulator(SequentialSelect)
   pop.sort();
-  cout << "Population initiale\n" << pop << endl;
+  std::cout << "Population initiale\n" << pop << std::endl;
 
   // To simulate SGA: first a prop between quadOp and quadClone
   eoProportionalOp<EOT> pSGAOp;
@@ -286,25 +286,25 @@ int the_main(int argc, char **argv)
      while (offspring.size() < pop.size())
 	   {
 	     virtualSGA(popit);
-	     cout << "SeqPopulator boucle et incremente\n";
+	     std::cout << "SeqPopulator boucle et incremente\n";
        ++popit;
 	   }
     }
   catch(eoPopulator<EOT>::OutOfIndividuals&)
     {
-      cout << "Warning: not enough individuals to handle\n";
+      std::cout << "Warning: not enough individuals to handle\n";
     }
 
 
-  swap(pop, offspring);
+  std::swap(pop, offspring);
   offspring.clear();
 
   // ok, now print
-  cout << "Apres virtualSGA \n" << pop << endl;
+  std::cout << "Apres virtualSGA \n" << pop << std::endl;
   init(pop, pSize);
 
-  cout << "=========================================================\n";
-  cout << "Now the eoSelectPopulator version !" << endl;
+  std::cout << "=========================================================\n";
+  std::cout << "Now the eoSelectPopulator version !" << std::endl;
 
   eoSequentialSelect<EOT> seqSelect;
   //   select.init(); should be sorted out: is it the setup method???
@@ -313,18 +313,18 @@ int the_main(int argc, char **argv)
   while (offspring.size() < 2*pop.size())
   {
     virtualSGA(it_step3);
-	     cout << "SelectPopulator boucle et incremente\n";
+	     std::cout << "SelectPopulator boucle et incremente\n";
     ++it_step3;
   }
 
-  swap(pop, offspring);
+  std::swap(pop, offspring);
   offspring.clear();
 
     // ok, now print
-  cout << "Apres SGA-like eoSelectivePopulator\n" << pop << endl;
+  std::cout << "Apres SGA-like eoSelectivePopulator\n" << pop << std::endl;
 
-  cout << "=========================================================\n";
-  cout << "Now the pure addition !" << endl;
+  std::cout << "=========================================================\n";
+  std::cout << "Now the pure addition !" << std::endl;
 
   init(pop, pSize);
   eoSelectivePopulator<EOT> it_step4(pop, offspring, seqSelect);
@@ -334,11 +334,11 @@ int the_main(int argc, char **argv)
     ++it_step4;
   }
 
-  swap(pop, offspring);
+  std::swap(pop, offspring);
   offspring.clear();
 
     // ok, now print
-  cout << "Apres Quad+Mon ds un eoSelectivePopulator\n" << pop << endl;
+  std::cout << "Apres Quad+Mon ds un eoSelectivePopulator\n" << pop << std::endl;
 
   // On teste 1->3
   init(pop, pSize);
@@ -349,11 +349,11 @@ int the_main(int argc, char **argv)
     ++it_step5;
   }
 
-  swap(pop, offspring);
+  std::swap(pop, offspring);
   offspring.clear();
 
     // ok, now print
-  cout << "Apres 1->3 seul ds un eoSelectivePopulator\n" << pop << endl;
+  std::cout << "Apres 1->3 seul ds un eoSelectivePopulator\n" << pop << std::endl;
 
   // On teste 3->3
   init(pop, pSize);
@@ -364,11 +364,11 @@ int the_main(int argc, char **argv)
     ++it_step6;
   }
 
-  swap(pop, offspring);
+  std::swap(pop, offspring);
   offspring.clear();
 
     // ok, now print
-  cout << "Apres 3->3 seul ds un eoSelectivePopulator\n" << pop << endl;
+  std::cout << "Apres 3->3 seul ds un eoSelectivePopulator\n" << pop << std::endl;
 
 
   return 1;
@@ -380,9 +380,9 @@ int main(int argc, char **argv)
     {
         the_main(argc, argv);
     }
-    catch(exception& e)
+    catch(std::exception& e)
     {
-        cout << "Exception: " << e.what() << endl;
+        std::cout << "Exception: " << e.what() << std::endl;
     }
 
 }

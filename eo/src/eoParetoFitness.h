@@ -113,7 +113,7 @@ public :
 
   eoParetoFitness(void) : std::vector<double>(FitnessTraits::nObjectives(),0.0) {}
 
-  // Ctr from a vector<double>
+  // Ctr from a std::vector<double>
   eoParetoFitness(std::vector<double> & _v) : std::vector<double>(_v) {}
   
 

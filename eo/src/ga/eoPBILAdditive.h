@@ -56,7 +56,7 @@ public:
     LR(0.0), nbBest(_nbBest), nbWorst(_nbWorst)
   {
     if (nbBest+nbWorst == 0)
-      throw runtime_error("Must update either from best or from worst in eoPBILAdditive");
+      throw std::runtime_error("Must update either from best or from worst in eoPBILAdditive");
 
     if (_nbBest)
       {
@@ -79,10 +79,10 @@ public:
   {
     eoPBILDistrib<EOT>& distrib = dynamic_cast<eoPBILDistrib<EOT>&>(_distrib);
 
-    vector<double> & p = distrib.value();
+    std::vector<double> & p = distrib.value();
 
     unsigned i, popSize=_pop.size();
-    vector<const EOT*> result;
+    std::vector<const EOT*> result;
     _pop.sort(result);	  // is it necessary to sort the whole population? 
 			 // but I'm soooooooo lazy !!!
 

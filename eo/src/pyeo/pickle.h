@@ -30,18 +30,18 @@ template <class T>
 struct T_pickle_suite : boost::python::pickle_suite
 {
     static 
-    std::string print_to_string(const T& t)
+    std::string print_to_std::string(const T& t)
     {
 	std::ostrstream os;
 	t.printOn(os);
-	os << ends;
+	os << std::ends;
 	return os.str();
     }
     
     static
     boost::python::tuple getstate(const T& t)
     {
-	std::string s = print_to_string(t);
+	std::string s = print_to_std::string(t);
 	return boost::python::make_tuple( boost::python::str(s));
     }
 
@@ -54,14 +54,14 @@ struct T_pickle_suite : boost::python::pickle_suite
     }
 };
 
-/** Defines persistency through pickle support by using strings
+/** Defines persistency through pickle support by using std::strings
  * so while we're at it, we will .def("__str__") as well
  */
 template <class Persistent, class X1, class X2, class X3>
 boost::python::class_<Persistent, X1, X2, X3>& pickle(boost::python::class_<Persistent, X1, X2, X3>& c)
 {
     return c.def_pickle(T_pickle_suite<Persistent>())
-	.def("__str__", T_pickle_suite<Persistent>::print_to_string);
+	.def("__str__", T_pickle_suite<Persistent>::print_to_std::string);
 }
 
 #endif

@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
-    CVS Info: $Date: 2001-09-04 06:51:59 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVariableLengthCrossover.h,v 1.7 2001-09-04 06:51:59 evomarc Exp $ $Author: evomarc $ 
+    CVS Info: $Date: 2003-02-27 19:25:48 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVariableLengthCrossover.h,v 1.8 2003-02-27 19:25:48 okoenig Exp $ $Author: okoenig $ 
  */
 //-----------------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ class eoAtomExchange : public eoBF<unsigned, Atom &, bool>
 public:
   // a function to initlialize - to be called before every crossover
   virtual void randomize(unsigned int, unsigned int){}
-  virtual string className() const=0;
+  virtual std::string className() const=0;
 };
 
 /** Uniform crossover - well, not really for FixedLength */
@@ -70,11 +70,11 @@ public:
       return mask[_i];
     }
 
-  virtual string className() const {return "eoUniformAtomExchange";}
+  virtual std::string className() const {return "eoUniformAtomExchange";}
 
 private:
   double rate;
-  vector<bool> mask;
+  std::vector<bool> mask;
 };
 
 
@@ -124,7 +124,7 @@ public :
 	      && (index<10000) );
     if (index >= 10000)
       {
-	cout << "Warning: impossible to generate individual of the right size in 10000 trials\n";
+	std::cout << "Warning: impossible to generate individual of the right size in 10000 trials\n";
 	return false;
       }
   // here we know we have the right sizes: do the actual exchange
@@ -148,12 +148,12 @@ public :
     return true;	 // should we test that? Yes, but no time now
   }
 
-  virtual string className() const
+  virtual std::string className() const
   { 
     char s[1024];
-    ostrstream os(s, 1022);
-    os << "eoVlAtomExchangeQuadOp(" << atomExchange.className() << ")" << ends; 
-    return string(s); 
+    std::ostrstream os(s, 1022);
+    os << "eoVlAtomExchangeQuadOp(" << atomExchange.className() << ")" << std::ends; 
+    return std::string(s); 
   }
 
 private:
@@ -188,12 +188,12 @@ public :
     return changed;	 // should we test that? Yes, but no time now
   }
 
-  virtual string className() const
+  virtual std::string className() const
   { 
     char s[1024];
-    ostrstream os(s, 1022);
-    os << "eoInnerExchangeQuadOp(" << atomExchange.className() << ")" << ends; 
-    return string(s); 
+    std::ostrstream os(s, 1022);
+    os << "eoInnerExchangeQuadOp(" << atomExchange.className() << ")" << std::ends; 
+    return std::string(s); 
   }
 private:
   float rate;
@@ -250,7 +250,7 @@ public :
 	      && (index<10000) );
     if (index >= 10000)
       {
-	cout << "Warning: impossible to generate individual of the right size in 10000 trials\n";
+	std::cout << "Warning: impossible to generate individual of the right size in 10000 trials\n";
 	return false;
       }
 
@@ -318,7 +318,7 @@ public :
     // this while condition is not optimal, as it may take some time
     if (index >= 10000)
       {
-	cout << "Warning: impossible to generate individual of the right size in 10000 trials\n";
+	std::cout << "Warning: impossible to generate individual of the right size in 10000 trials\n";
 	return false;
       }
 

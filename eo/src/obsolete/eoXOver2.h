@@ -69,7 +69,7 @@ public:
 	/** Inherited from eoObject 
 		  @see eoObject
 	*/
-	string className() const {return "eoXOver2";};
+	std::string className() const {return "eoXOver2";};
     //@}
 
 private:
@@ -91,7 +91,7 @@ private:
 	    len= (len1 > len2)?len2:len1;
 
 	  if ( (_j > len) || (_i> len ) ) 
-	    throw runtime_error( "xOver2: applying xOver past boundaries");
+	    throw std::runtime_error( "xOver2: applying xOver past boundaries");
 	  
 	  for (  unsigned i = _i; i < _j; i++ ) {
 	    Type tmp = _eo.gene( i );

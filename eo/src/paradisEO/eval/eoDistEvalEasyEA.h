@@ -44,7 +44,7 @@ public :
   
   eoDistEvalEasyEA  (eoListener <EOT> & _listen,
 		     eoEasyEA <EOT> & _ea,
-		     string _label
+		     std::string _label
 		     ) :
     pop_eval (eoDistPopEvalFunc <EOT> (_listen, _label, _ea.eval)),
     eoEasyEA <EOT> (_ea.continuator,

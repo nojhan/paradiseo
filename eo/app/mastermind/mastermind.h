@@ -23,7 +23,7 @@ typedef float phenotype;
 // genotype
 //-----------------------------------------------------------------------------
 
-typedef vector<int> genotype;
+typedef std::vector<int> genotype;
 
 //-----------------------------------------------------------------------------
 // Chrom
@@ -67,12 +67,12 @@ phenotype eoChromEvaluator(const Chrom& chrom)
 
 const unsigned default_length = 8;
 const unsigned default_colors = 8;
-const string default_solution = "01234567";
+const std::string default_solution = "01234567";
 
 
 unsigned num_colors;
 
-void init_eoChromEvaluator(const unsigned& c, const unsigned& l, string s)
+void init_eoChromEvaluator(const unsigned& c, const unsigned& l, std::string s)
 {
   num_colors = c;
   
@@ -82,14 +82,14 @@ void init_eoChromEvaluator(const unsigned& c, const unsigned& l, string s)
       // check length
       if (l != default_length && s.size() != l)
 	{
-	  cerr << "solution length != length" << endl;
+	  std::cerr << "solution length != length" << std::endl;
 	  exit(EXIT_FAILURE);
 	}
       
       // check number of colors
       if (c != default_colors && c < *max_element(s.begin(), s.end()) - '0')
 	{
-	  cerr << "too high color number found!" << endl;
+	  std::cerr << "too high color number found!" << std::endl;
 	  exit(EXIT_FAILURE);
 	}
     } 
@@ -160,12 +160,12 @@ class eoChromMutation: public eoMonOp<Chrom>
       case 1:
 	{
 	  // transposition
-	  swap(chrom[position()], chrom[position()]);
+	  std::swap(chrom[position()], chrom[position()]);
 	  break;
 	}
       default:
 	{
-	  cerr << "unknown operator!" << endl;
+	  std::cerr << "unknown operator!" << std::endl;
 	  exit(EXIT_FAILURE);
 	  break;
 	}
