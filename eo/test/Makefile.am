@@ -178,11 +178,4 @@ t_eoExternalEO_LDADD = $(LDADDS)
 
 ###############################################################################
 
-t_eoESFull_SOURCES = t-eoESFull.cpp
-t_eoESFull_DEPENDENCIES = $(DEPS) 
-t_eoESFull_LDFLAGS = -lm 
-t_eoESFull_LDADD = $(LDADDS) 
-
-###############################################################################
-
 
