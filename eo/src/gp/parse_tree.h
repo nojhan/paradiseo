@@ -186,7 +186,7 @@ class subtree
     TODO: use the std::allocator interface
 */
 
-#if (defined(__GNUC__) || defined(_MSC_VER)) && !defined(_MT) // not multithreaded    
+#if (defined(__GNUC__) || defined(_MSC_VER)) && !(defined(_MT) || defined(MACOSX) || defined(__APPLE__)) // not multithreaded (or MACOSX - J. Eggermont)
     Node_alloc<T>         node_allocator;
     Tree_alloc<subtree>   tree_allocator;
 #else
