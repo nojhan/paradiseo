@@ -164,7 +164,7 @@ public:
       combien = int(rate);	   // and rate will not be used
 
     // minimal check
-    if ( rate <= 0.0 )
+    if ( rate < 0.0 )
       throw runtime_error("Negative rate read in eoHowMany::readFrom");
   }
 
