@@ -24,6 +24,7 @@
 //-----------------------------------------------------------------------------
 
 #include <algorithm>    // swap_ranges
+#include <utils/eoParser.h>
 #include <utils/eoRNG.h>
 #include <es/eoReal.h>
 #include <utils/eoRealBounds.h>
@@ -63,6 +64,22 @@ template<class EOT> class eoSBXCrossover: public eoQuadOp<EOT>
 
   ///////////////////////////////////////////////
 
+  //////////////////////////////////////////////
+
+  /**
+   * Constructor from a parser. Will read from the argument parser
+   * eoRealVectorBounds that contains the bounds
+   * eta, the SBX parameter
+   */
+
+     eoSBXCrossover(eoParser & _parser) : 
+    // First, decide whether the objective variables are bounded
+    // Warning, must be the same keywords than other possible objectBounds elsewhere
+       bounds (_parser.getORcreateParam(eoDummyVectorNoBounds, "objectBounds", "Bounds for variables", 'B', "Variation Operators").value()) ,
+    // then get eta value
+       eta (_parser.getORcreateParam(1.0, "eta", "SBX eta parameter", '\0', "Variation Operators").value()) ,
+       range(1) {}
+    
 
   /// The class name.
   virtual std::string className() const { return "eoSBXCrossover"; }
