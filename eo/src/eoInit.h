@@ -43,7 +43,11 @@
 
 template <class EOT>
 class eoInit : public eoUF<EOT&, void>
-{};
+{
+public:
+        virtual void operator()(EOT& chrom)
+  { cout << "In the eoInit base class" << endl; }
+};
 
 /**
     Initializer for fixed length representations with a single type
@@ -58,7 +62,7 @@ class eoInitFixedLength: public eoInit<EOT>
         eoInitFixedLength(unsigned _combien, eoRndGenerator<AtomType>& _generator)
             : combien(_combien), generator(_generator) {}
 
-        void operator()(EOT& chrom)
+        virtual void operator()(EOT& chrom)
         {
             chrom.resize(combien);
             std::generate(chrom.begin(), chrom.end(), generator);
@@ -85,7 +89,7 @@ class eoInitVariableLength: public eoInit<EOT>
                 throw logic_error("eoInitVariableLength: minSize larger or equal to maxSize");
         }
 
-        void operator()(EOT& chrom)
+        virtual void operator()(EOT& chrom)
         {
             chrom.resize(offset + rng.random(extent));
             generate(chrom.begin(), chrom.end(), generator);
