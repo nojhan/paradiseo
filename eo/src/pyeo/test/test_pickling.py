@@ -97,6 +97,37 @@ class TestPickling(unittest.TestCase):
 	    b = rng2.rand()
 	    self.failUnlessEqual(a,b)
 
+    def vParam(self,v):
+	
+	filename = tempfile.mktemp()
+	file = open(filename,'wb')
+	pickler = cPickle.Pickler(file)
+
+	pickler.dump(v)
+	del pickler
+	file.close()
+	file = open(filename)
+
+	unpickler = cPickle.Unpickler(file)
+
+	v2 = unpickler.load();
+
+	self.failUnlessEqual(v.value, v2.value)
+	
+    def testValueParam(self):
+	import Numeric
+	
+	self.vParam(eoValueParamInt(42,'int'))	
+	self.vParam(eoValueParamFloat(4.2,'float'))
+	
+	v = eoValueParamVec()
+	v.value = Numeric.arange(10)
+	self.vParam(v)	
+
+	v = eoValueParamPair()
+	v.value = (0.3,0.5)
+	self.vParam(v)
+
 
 if __name__=='__main__':
     unittest.main()

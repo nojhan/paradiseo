@@ -58,13 +58,27 @@ struct ValueParam_pickle_suite : boost::python::pickle_suite
     static
     boost::python::tuple getstate(const eoValueParam<T>& _param)
     {
-	return make_tuple(boost::python::str(_param.getValue()));
+	str v(_param.getValue());
+	str d(_param.description());
+	str def(_param.defValue());
+	str l(_param.longName());
+	object s(_param.shortName());
+	object r(_param.required());	
+	return make_tuple(v,d,def,l,s,r);
     }
     static
     void setstate(eoValueParam<T>& _param, boost::python::tuple pickled)
     {
-	std::string s = extract<std::string>(pickled[0]);
-	_param.setValue(s);
+	std::string v = extract<std::string>(pickled[0]);
+	std::string d = extract<std::string>(pickled[1]);
+	std::string def = extract<std::string>(pickled[2]);
+	std::string l = extract<std::string>(pickled[3]);
+	char s = extract<char>(pickled[4]);
+	bool r = extract<bool>(pickled[5]);
+
+	_param = eoValueParam<T>(T(), l, d, s, r);
+	_param.defValue(d);
+	_param.setValue(v);
     }
 };
 
@@ -175,6 +189,5 @@ void valueParam()
 	.def("setValueAsString", &ValueParam::setValue)
 	.add_property("object", &ValueParam::getObj, &ValueParam::setObj)
 	;
-    
 }
 
