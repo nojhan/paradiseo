@@ -178,6 +178,12 @@ int main()
   compare <VarFitness>(mv1,mv3);
   compare <VarFitness>(mv2,mv3);
 
+  cout << "\nTesting WARNING\n";
+  b.resize(3);
+  b[0]=false; 
+  b[1]=true;
+  b[2]=true;
+  VarFitness::setUp(3, b);
 
   }
   catch(exception& e)
