@@ -197,7 +197,7 @@ public :
    {
      if (total == 0)
        { // count 
-	 for (int i = 0; i < vec.size(); ++i)
+	 for (unsigned i = 0; i < vec.size(); ++i)
 	   total += vec[i];
        }
      
