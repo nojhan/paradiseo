@@ -24,7 +24,7 @@
  */
 //-----------------------------------------------------------------------------
 /**
-CVS Info: $Date: 2002-02-08 07:49:32 $ $Version$ $Author: evomarc $
+CVS Info: $Date: 2002-09-18 15:36:41 $ $Version$ $Author: evomarc $
 */
 #ifndef eoParser_h
 #define eoParser_h
@@ -184,6 +184,11 @@ public:
   return createParam (_defaultValue, _longName, _description, 
 		      _shortHand, _section, _required);
 }
+
+//   /** accessors to the stopOnUnknownParam value */
+  void setStopOnUnknownParam(bool _b) {stopOnUnknownParam.value()=_b;}
+  bool getStopOnUnknownParam() {return stopOnUnknownParam.value();}
+
 
 private:
   
