@@ -14,6 +14,6 @@ libes_a_SOURCES = make_algo_scalar_real.cpp make_checkpoint_real.cpp \
   make_op_es.cpp make_pop_es.cpp make_run_es.cpp
 
 CPPFLAGS = -Wall
-CXXFLAGS = -g
+CXXFLAGS = 
 libeoincdir = $(includedir)/eo/es
 libeoinc_HEADERS = eoEsChromInit.h eoEsFull.h eoEsMutate.h eoEsMutationInit.h eoEsSimple.h eoEsStdev.h  eoEsStdevXOver.h eoGenericRealOp.h eoNormalMutation.h eoReal.h eoRealOp.h eoEsGlobalXover.h eoEsLocalXover.h eoRealAtomXover.h

@@ -14,6 +14,6 @@ libga_a_SOURCES = make_algo_scalar_ga.cpp \
                   make_pop_ga.cpp \
                   make_run_ga.cpp
 CPPFLAGS = -Wall
-CXXFLAGS = -g
+CXXFLAGS = 
 libeoincdir = $(includedir)/eo/ga
 libeoinc_HEADERS = eoBit.h eoBitOp.h eoBitOpFactory.h make_ga.h
