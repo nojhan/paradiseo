@@ -56,12 +56,13 @@ public :
   typedef std::vector<double> vDouble;
   typedef eoValueParam<std::vector<double> > vDoubleParam;
 
-  eoFileSnapshot(std::string _dirname, unsigned _frequency = 1,
-	     std::string _filename = "gen", std::string _delim = " "):
+  eoFileSnapshot(std::string _dirname, unsigned _frequency = 1, std::string _filename = "gen",
+	      std::string _delim = " ", unsigned _counter = 0, bool _rmFiles = true):
     dirname(_dirname), frequency(_frequency),
-    filename(_filename), delim(_delim), counter(0), boolChanged(true)
+    filename(_filename), delim(_delim), counter(_counter), boolChanged(true)
   {
     std::string s = "test -d " + dirname;
+
     int res = system(s.c_str());
     // test for (unlikely) errors
     if ( (res==-1) || (res==127) )
@@ -71,10 +72,13 @@ public :
       {
 	s = std::string("mkdir ")+dirname;
       }
-    else
+    else if (!res && _rmFiles)
       {
 	s = std::string("/bin/rm ")+dirname+ "/" + filename + "*";
       }
+    else
+      s = " ";
+
     system(s.c_str());
     // all done
   }

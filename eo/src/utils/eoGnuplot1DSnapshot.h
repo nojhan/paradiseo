@@ -58,17 +58,17 @@ class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
  public:
     // Ctor
   eoGnuplot1DSnapshot(std::string _dirname, unsigned _frequency = 1,
-	     std::string _filename = "gen", std::string _delim = " ") :
-      eoFileSnapshot(_dirname, _frequency, _filename, _delim),
+	     std::string _filename = "gen", std::string _delim = " ", unsigned _counter = 0, bool _rmFiles = true) :
+      eoFileSnapshot(_dirname, _frequency, _filename, _delim, _counter, _rmFiles),
       eoGnuplot(_filename,"set data style points"),
       pointSize(5)
   {}
 
     // Ctor
-  eoGnuplot1DSnapshot(std::string _dirname, eoRealVectorBounds & _bounds,
-		      unsigned _frequency = 1,
-	     std::string _filename = "gen", std::string _delim = " ") :
-      eoFileSnapshot(_dirname, _frequency, _filename, _delim),
+  eoGnuplot1DSnapshot(std::string _dirname,  eoRealVectorBounds & _bounds,
+		       unsigned _frequency = 1, std::string _filename = "gen",
+		       std::string _delim = " ", unsigned _counter = 0, bool _rmFiles = true ) :
+      eoFileSnapshot(_dirname, _frequency, _filename, _delim, _counter, _rmFiles),
       eoGnuplot(_filename,"set data style points"),
       pointSize(5)
   {

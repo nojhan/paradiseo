@@ -119,13 +119,13 @@ private :
 class eoCountedStateSaver : public eoUpdater
 {
 public :
-    eoCountedStateSaver(unsigned _interval, const eoState& _state, std::string _prefix, bool _saveOnLastCall, std::string _extension = "sav") 
-      : state(_state), interval(_interval), counter(0), 
+    eoCountedStateSaver(unsigned _interval, const eoState& _state, std::string _prefix, bool _saveOnLastCall, std::string _extension = "sav", unsigned _counter = 0) 
+      : state(_state), interval(_interval), counter(_counter), 
       saveOnLastCall(_saveOnLastCall),
       prefix(_prefix), extension(_extension) {}
 
-    eoCountedStateSaver(unsigned _interval, const eoState& _state, std::string _prefix = "state", std::string _extension = "sav") 
-      : state(_state), interval(_interval), counter(0),
+    eoCountedStateSaver(unsigned _interval, const eoState& _state, std::string _prefix = "state", std::string _extension = "sav", unsigned _counter = 0) 
+      : state(_state), interval(_interval), counter(_counter),
 	saveOnLastCall(true),
 	prefix(_prefix), extension(_extension) {}
 
