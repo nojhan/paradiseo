@@ -59,6 +59,22 @@ using namespace std;
 #endif
 
 //-----------------------------------------------------------------------------
+// some defines to make things easier to get at first sight
+
+// tuning the amount of output using a boolean argument: 
+// true should always mean more output
+#define eo_verbose true
+#define eo_no_verbose false
+// to be used in selection / replacement procedures to indicate whether 
+// the argument (rate, a double) shoudl be treated as a rate (number=rate*popSize)
+// or as an absolute integer (number=rate regardless of popsize).
+// the default value shoudl ALWAYS be true (eo_as_a_rate).
+//
+// this construct is mandatory because in some cases you might not know the 
+// population size that will enter the replacement for instance - so you 
+// cannot simply have a pre-computed (double) rate of 1/popSize
+#define eo_is_a_rate true
+#define eo_is_an_integer false
 
 #endif EODATA_H
 

@@ -46,10 +46,14 @@ template <class EOT> class eoStochTournamentSelect: public eoSelectOne<EOT>
   ///
   eoStochTournamentSelect(float _Trate = 1.0 ) : eoSelectOne<EOT>(), Trate(_Trate) 
   {
-    // consistency check
+    // consistency checks
     if (Trate < 0.5) {
       cerr << "Warning, Tournament rate should be > 0.5\nAdjusted to 0.55\n";
       Trate = 0.55;
+    }
+    if (Trate > 1) {
+      cerr << "Warning, Tournament rate should be < 1\nAdjusted to 1\n";
+      Trate = 1;
     }
   }
   
