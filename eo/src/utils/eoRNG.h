@@ -110,12 +110,12 @@ class eoRng  : public eoObject, public eoPersistent
 public :
   /**
      ctor takes a random seed; if you want another seed, use reseed
-     @see reseed
+     @see reseed to see why the parameter to initialize is doubled
   */
 
   eoRng(uint32 s) : state(0), next(0), left(-1), cached(false), N(624), M(397), K(0x9908B0DFU)  {
     state = new uint32[N+1];
-    initialize(s);
+    initialize(2*s);
   }
 
  ~eoRng(void)
