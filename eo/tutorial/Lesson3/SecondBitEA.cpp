@@ -53,57 +53,74 @@ void read_param(eoParser & _parser,
 { 
     // For each parameter, define Parameters directly in the parser, 
     // and assign the value to the variable
-    eoValueParam<uint32>& seedParam = _parser.createParam<uint32>(time(0), "seed", "Random number seed", 'S');
+    eoValueParam<uint32> seedParam(time(0), "seed", "Random number seed", 'S');
+    _parser.processParam( seedParam );
     _seed = seedParam.value();
 
-    eoValueParam<unsigned int>& vecSizeParam = _parser.createParam<unsigned int>(8, "vecSize", "Genotype size",'V', "Representation");
+    eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size",'V', "Representation");
+    _parser.processParam( vecSizeParam );
     _vecSize = vecSizeParam.value();
 
-    eoValueParam<unsigned int>& popSizeParam = _parser.createParam<unsigned int>(10, "popSize", "Population size",'P', "Evolution");
+    eoValueParam<unsigned int> popSizeParam(10, "popSize", "Population size",'P', "Evolution");
+    _parser.processParam( popSizeParam );
     _popSize = popSizeParam.value();
 
-    eoValueParam<unsigned int>& tSizeParam = _parser.createParam<unsigned int>(10, "tSize", "Tournament size",'T', "Evolution");
+    eoValueParam<unsigned int> tSizeParam(10, "tSize", "Tournament size",'T', "Evolution");
+    _parser.processParam( tSizeParam );
     _tSize = tSizeParam.value();
 
-    eoValueParam<string>& load_nameParam = _parser.createParam<string>("", "Load","A save file to restart from",'L', "Persistence");
-    _load_name = load_nameParam.value();
+    eoValueParam<string> loadNameParam("", "Load","A save file to restart from",'L', "Persistence");
+    _parser.processParam( loadNameParam );
+    _load_name = loadNameParam.value();
  
-    eoValueParam<unsigned int>& maxGenParam = _parser.createParam<unsigned int>(100, "maxGen", "Maximum number of generations",'G', "Stopping criterion");
+    eoValueParam<unsigned int> maxGenParam(100, "maxGen", "Maximum number of generations",'G', "Stopping criterion");
+    _parser.processParam( maxGenParam );
     _maxGen = maxGenParam.value();
 
-    eoValueParam<unsigned int>& minGenParam = _parser.createParam<unsigned int>(100, "minGen", "Minimum number of generations",'g', "Stopping criterion");
+    eoValueParam<unsigned int> minGenParam(100, "minGen", "Minimum number of generations",'g', "Stopping criterion");
+    _parser.processParam( minGenParam );
     _minGen = minGenParam.value();
 
-    eoValueParam<unsigned int>& steadyGenParam = _parser.createParam<unsigned int>(100, "steadyGen", "Number of generations with no improvement",'s', "Stopping criterion");
+    eoValueParam<unsigned int> steadyGenParam(100, "steadyGen", "Number of generations with no improvement",'s', "Stopping criterion");
+    _parser.processParam( steadyGenParam );
     _steadyGen = steadyGenParam.value();
 
-    eoValueParam<double>& pCrossParam = _parser.createParam<double>(0.6, "pCross", "Probability of Crossover", 'C', "Genetic Operators"); 
+    eoValueParam<double> pCrossParam(0.6, "pCross", "Probability of Crossover", 'C', "Genetic Operators"); 
+    _parser.processParam( pCrossParam );
     _pCross = pCrossParam.value();
 
-    eoValueParam<double>& pMutParam = _parser.createParam<double>(0.1, "pMut", "Probability of Mutation", 'M', "Genetic Operators");
+    eoValueParam<double> pMutParam(0.1, "pMut", "Probability of Mutation", 'M', "Genetic Operators");
+    _parser.processParam( pMutParam );
     _pMut = pMutParam.value();
 
-    eoValueParam<double>& onePointRateParam = _parser.createParam<double>(1, "onePointRate", "Relative rate for one point crossover", '1', "Genetic Operators");
+    eoValueParam<double> onePointRateParam(1, "onePointRate", "Relative rate for one point crossover", '1', "Genetic Operators");
+    _parser.processParam( onePointRateParam );
     _onePointRate = onePointRateParam.value();
 
-    eoValueParam<double>& twoPointsRateParam = _parser.createParam<double>(1, "twoPointRate", "Relative rate for two point crossover", '2', "Genetic Operators");
+    eoValueParam<double> twoPointsRateParam(1, "twoPointRate", "Relative rate for two point crossover", '2', "Genetic Operators");
+    _parser.processParam( twoPointsRateParam );
     _twoPointsRate = twoPointsRateParam.value();
 
-    eoValueParam<double>& uRateParam = _parser.createParam<double>(2, "uRate", "Relative rate for uniform crossover", 'U', "Genetic Operators");
+    eoValueParam<double> uRateParam(2, "uRate", "Relative rate for uniform crossover", 'U', "Genetic Operators");
+    _parser.processParam( uRateParam );
     _uRate =  uRateParam.value();
 
-    eoValueParam<double>& pMutPerBitParam = _parser.createParam<double>(0.01, "pMutPerBit", "Probability of flipping 1 bit in bit-flip mutation", 'b', "Genetic Operators");
+    eoValueParam<double> pMutPerBitParam(0.01, "pMutPerBit", "Probability of flipping 1 bit in bit-flip mutation", 'b', "Genetic Operators");
+    _parser.processParam( pMutPerBitParam );
     _pMutPerBit = pMutPerBitParam.value();
 
-    eoValueParam<double>& bitFlipRateParam = _parser.createParam<double>(0.01, "bitFlipRate", "Relative rate for bit-flip mutation", 'B', "Genetic Operators");
+    eoValueParam<double> bitFlipRateParam(0.01, "bitFlipRate", "Relative rate for bit-flip mutation", 'B', "Genetic Operators");
+    _parser.processParam( bitFlipRateParam );
     _bitFlipRate =  bitFlipRateParam.value();
       
-    eoValueParam<double>& oneBitRateParam = _parser.createParam<double>(0.01, "oneBitRate", "Relative rate for deterministic bit-flip mutation", 'D', "Genetic Operators");
+    eoValueParam<double> oneBitRateParam(0.01, "oneBitRate", "Relative rate for deterministic bit-flip mutation", 'D', "Genetic Operators");
+    _parser.processParam( oneBitRateParam );
       _oneBitRate = oneBitRateParam.value();
 
     // the name of the "status" file where all actual parameter values will be saved
     string str_status = _parser.ProgramName() + ".status";
-    eoValueParam<string>& status_nameParam = _parser.createParam<string>(str_status.c_str(), "status","Status file",'S', "Persistence");
+    eoValueParam<string> statusParam(str_status.c_str(), "status","Status file",'S', "Persistence");
+    _parser.processParam( statusParam );
 
    // do the following AFTER ALL PARAMETERS HAVE BEEN PROCESSED
    // i.e. in case you need parameters somewhere else, postpone these
@@ -112,9 +129,9 @@ void read_param(eoParser & _parser,
         _parser.printHelp(cout);
         exit(1);
       }
-    if (status_nameParam.value() != "")
+    if (statusParam.value() != "")
       {
-	ofstream os(status_nameParam.value().c_str());
+	ofstream os(statusParam.value().c_str());
 	os << _parser;		// and you can use that file as parameter file
       }
 }
