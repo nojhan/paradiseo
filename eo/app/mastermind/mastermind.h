@@ -35,38 +35,8 @@ typedef eoFixedLength<phenotype, int> Chrom;
 // eoChromEvaluator
 //-----------------------------------------------------------------------------
 
-const unsigned default_size = 8;
-const string default_solution = "01234567";
-
+// const unsigned points_per_black = 3, points_per_white = 1;
 Chrom solution;
-unsigned num_colors;
-
-void init_eoChromEvaluator(const unsigned& c, const unsigned& l, string s)
-{
-  num_colors = c;
-
-  // generate a random solution
-  if (s == default_solution || s.size() != l)
-    {
-      uniform_generator<char> color('0', static_cast<char>('0' + num_colors));
-      s.resize(l);
-      generate(s.begin(), s.end(), color);
-    }
-
-  // check solution
-  for (unsigned i = 0; i < solution.size(); ++i)
-    if (solution[i] >= num_colors)
-      {
-	cerr << "too high color number found!" << endl;
-	exit(EXIT_FAILURE);
-      }
-  
-  solution.resize(s.size());
-  for (unsigned i = 0; i < solution.size(); ++i)
-    solution[i] = s[i] - '0';
-}
-
-const unsigned points_per_black = 3, points_per_white = 1;
 
 phenotype eoChromEvaluator(const Chrom& chrom)
 {
@@ -95,6 +65,61 @@ phenotype eoChromEvaluator(const Chrom& chrom)
   return black * chrom.size() + white;
 };
 
+const unsigned default_length = 8;
+const unsigned default_colors = 8;
+const string default_solution = "01234567";
+
+
+unsigned num_colors;
+
+void init_eoChromEvaluator(const unsigned& c, const unsigned& l, string s)
+{
+  num_colors = c;
+  
+  // check consistency between parameters
+  if (s != default_solution)
+    {
+      // check length
+      if (l != default_length && s.size() != l)
+	{
+	  cerr << "solution length != length" << endl;
+	  exit(EXIT_FAILURE);
+	}
+      
+      // check number of colors
+      if (c != default_colors && c < *max_element(s.begin(), s.end()) - '0')
+	{
+	  cerr << "too high color number found!" << endl;
+	  exit(EXIT_FAILURE);
+	}
+    } 
+  else
+    if (l != default_length || c != default_colors )
+      // generate a random solution
+      if(num_colors <= 10)
+	{
+	  uniform_generator<char> color('0', static_cast<char>('0' + c));
+	  s.resize(l);
+	  generate(s.begin(), s.end(), color);
+	}
+  
+  // put the solution parameter on the solution chromosome
+  if (num_colors <= 10)
+    {
+      solution.resize(s.size());
+      for (unsigned i = 0; i < solution.size(); ++i)
+	solution[i] = s[i] - '0';
+    }
+  else
+    {
+      solution.resize(l);
+      uniform_generator<int> color(0, num_colors);
+      generate(solution.begin(), solution.end(), color);
+    }
+  
+  solution.fitness(eoChromEvaluator(solution));
+}
+
 //-----------------------------------------------------------------------------
 // eoChromInit
 //-----------------------------------------------------------------------------
@@ -117,17 +142,37 @@ public:
 
 class eoChromMutation: public eoMonOp<Chrom>
 {
-  // two changes in one mutation :(
+  // many operators in one :(
   void operator()(Chrom& chrom)
   {
+    uniform_generator<unsigned> what(0, 2);
     uniform_generator<unsigned> position(0, chrom.size());
 
-    // random gene change
-    uniform_generator<int> color(0, num_colors);
-    chrom[position()] = color();
-    
-    // random gene swap
-    swap(chrom[position()], chrom[position()]);
+    switch(what())
+      {
+      case 0: 
+	{
+	  cout << "mutation" << endl;
+	  // gene change
+	  uniform_generator<int> color(0, num_colors);
+	  chrom[position()] = color();
+	  break;
+	}
+      case 1:
+	{
+	  cout << "transposition" << endl;
+	  // transposition
+	  swap(chrom[position()], chrom[position()]);
+	  break;
+	  
+	}
+      default:
+	{
+	  cerr << "unknown operator!" << endl;
+	  exit(EXIT_FAILURE);
+	  break;
+	}
+      }
 
     chrom.invalidate();
   }

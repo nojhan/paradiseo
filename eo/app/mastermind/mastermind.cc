@@ -34,8 +34,8 @@ eoValueParam<unsigned> pop_size(16, "pop_size", "population size", 'p');
 eoValueParam<unsigned> generations(100, "generations", "number of generation", 'g');
 eoValueParam<double> mut_rate(0.1, "mut_rate", "mutation rate", 'm');
 eoValueParam<double> xover_rate(0.5, "xover_rate", "default crossover rate", 'x');
-eoValueParam<unsigned> col_p(8, "number_of_colors", "number of colors", 'c');
-eoValueParam<unsigned> len_p(8, "solution_legth", "solution legth", 'l');
+eoValueParam<unsigned> col_p(default_colors, "colors", "number of colors", 'c');
+eoValueParam<unsigned> len_p(default_length, "legth", "solution legth", 'l');
 eoValueParam<string> sol_p(default_solution, "solution", "problem solution", 's');
 
 //-----------------------------------------------------------------------------
@@ -88,7 +88,6 @@ void arg(int argc, char** argv)
     }
 
   init_eoChromEvaluator(col_p.value(), len_p.value(), sol_p.value());
-  solution.fitness(eoChromEvaluator(solution));
 }
 
 //-----------------------------------------------------------------------------

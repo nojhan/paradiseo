@@ -10,7 +10,7 @@
 #include <utils/eoParser.h>        // eoParser
 #include <eoPop.h>                 // eoPop
 #include <eoEvalFuncPtr.h>         // eoEvalFunc
-#include <eoStochTournament.h>        // eoStochTournament
+#include <eoStochTournament.h>     // eoStochTournament
 #include <eoGenContinue.h>         // eoGenContinue
 #include <eoFitContinue.h>         // eoFitContinue
 #include <eoCombinedContinue.h>    // eoCombinedContinue
@@ -32,8 +32,8 @@ unsigned in, out, hidden;
 
 eoValueParam<unsigned> pop_size(10, "pop_size", "population size", 'p');
 eoValueParam<unsigned> generations(10, "generations", "number of generation", 'g');
-eoValueParam<double> mut_rate(0.1, "mut_rate", "mutation rate", 'm');
-eoValueParam<double> xover_rate(0.1, "xover_rate", "default crossover rate", 'x');
+eoValueParam<double> mut_rate(0.25, "mut_rate", "mutation rate", 'm');
+eoValueParam<double> xover_rate(0.25, "xover_rate", "default crossover rate", 'x');
 eoValueParam<string> file("", "file", "common start of patterns filenames *.trn *.val and *.tst", 'f');
 eoValueParam<unsigned> hiddenp(0, "hidden", "number of neurons in hidden layer", 'd');
 
@@ -165,11 +165,9 @@ void ga()
 		   evaluator, 
 		   checkpoint);
  
-  cout << pop << endl;
-  
   sga(pop);
 
-  cout << pop << endl;
+  cout << "best: " << *max_element(pop.begin(), pop.end()) << endl;
 }
 
 //-----------------------------------------------------------------------------
