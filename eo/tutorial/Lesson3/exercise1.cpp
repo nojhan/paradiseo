@@ -203,10 +203,11 @@ void main_function(int argc, char **argv)
 
 // OUTPUT    
   // sort pop for pretty printout
-  pop.sort();
+  //   pop.sort();
   // Print (sorted) intial population (raw printout)
-  cout << "Initial Population" << endl << pop << endl;
-
+  cout << "Initial Population" << endl << pop ;
+  cout << "and best is " << pop.best_element() << "\n\n";
+  cout << "and worse is " << pop.worse_element() << "\n\n";
 // ENGINE
   /////////////////////////////////////
   // selection and replacement
@@ -221,6 +222,7 @@ void main_function(int argc, char **argv)
   // And we now have the full slection/replacement - though with 
   // no replacement (== generational replacement) at the moment :-)
   eoNoReplacement<Indi> replace; 
+  //  eoWeakElitistReplacement<Indi> replace(replace_main); 
 
 // OPERATORS
   //////////////////////////////////////

@@ -218,8 +218,8 @@ void main_function(int argc, char **argv)
 
 // REPLACE
   // And we now have the full slection/replacement - though with 
-  // no replacement (== generational replacement) at the moment :-)
-  eoNoReplacement<Indi> replace; 
+  // the same generational replacement at the moment :-)
+  eoGenerationalReplacement<Indi> replace; 
 
 // OPERATORS
   //////////////////////////////////////
@@ -235,7 +235,7 @@ void main_function(int argc, char **argv)
   // Combine them with relative rates
   eoPropCombinedQuadOp<Indi> xover(xover1, onePointRate);
   xover.add(xoverU, URate);
-  xover.add(xover2, twoPointsRate, eo_verbose);
+  xover.add(xover2, twoPointsRate, true);
 
 // MUTATION
   // standard bit-flip mutation for bitstring
@@ -244,7 +244,7 @@ void main_function(int argc, char **argv)
   eoDetBitFlip<Indi> mutationOneBit; 
   // Combine them with relative rates
   eoPropCombinedMonOp<Indi> mutation(mutationBitFlip, bitFlipRate);
-  mutation.add(mutationOneBit, oneBitRate, eo_verbose);
+  mutation.add(mutationOneBit, oneBitRate, true);
 
   // The operators are  encapsulated into an eoTRansform object
   eoSGATransform<Indi> transform(xover, pCross, mutation, pMut);
@@ -294,7 +294,7 @@ void main_function(int argc, char **argv)
     checkpoint.add(SecondStat);
 
     // The Stdout monitor will print parameters to the screen ...
-    eoStdoutMonitor monitor(eo_no_verbose);
+    eoStdoutMonitor monitor(false);
      
     // when called by the checkpoint (i.e. at every generation)
     checkpoint.add(monitor);

@@ -34,7 +34,7 @@ void main_function(int argc, char **argv)
 // PARAMETRES
   const unsigned int SEED = 42;	// seed for random number generator
   const unsigned int T_SIZE = 3; // size for tournament selection
-  const unsigned int VEC_SIZE = 8; // Number of bits in genotypes
+  const unsigned int VEC_SIZE = 20; // Number of bits in genotypes
   const unsigned int POP_SIZE = 20; // Size of population
 
   const unsigned int MAX_GEN = 500; // Maximum number of generation before STOP
@@ -98,7 +98,7 @@ void main_function(int argc, char **argv)
   eoDetTournament<Indi> selectOne(T_SIZE);       // T_SIZE in [2,POP_SIZE]
   // solution solution solution solution solution solution solution 
   // modify the rate in the constructor
-  eoSelectPerc<Indi> select(selectOne,2.0);//  rate is second arg.
+  eoSelectMany<Indi> select(selectOne,2, eo_is_an_integer);//  rate is second arg.
 
 // REPLACE
   // solution solution solution solution solution solution solution 

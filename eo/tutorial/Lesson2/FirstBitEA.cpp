@@ -79,7 +79,7 @@ void main_function(int argc, char **argv)
   // Initialization of the population
   eoPop<Indi> pop(POP_SIZE, random);
 
-  // and evaluate it in one line
+  // and evaluate it in one loop
   apply<Indi>(eval, pop);	// STL syntax
 
 // OUTPUT
@@ -102,7 +102,7 @@ void main_function(int argc, char **argv)
 // REPLACE
   // And we now have the full slection/replacement - though with 
   // no replacement (== generational replacement) at the moment :-)
-  eoNoReplacement<Indi> replace; 
+  eoGenerationalReplacement<Indi> replace; 
 
 // OPERATORS
   //////////////////////////////////////
