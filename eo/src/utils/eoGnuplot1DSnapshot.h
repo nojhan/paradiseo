@@ -92,16 +92,10 @@ inline eoMonitor&   eoGnuplot1DSnapshot::operator() (void)
   eoFileSnapshot::operator()();
 
   // sends plot order to gnuplot
-  // assumes successive plots will have same nb of columns!!!
-
-
   char buff[1024];
   ostrstream os(buff, 1024);
-  os << "plot";
-
-    os << " '" << getFileName().c_str() <<
-      "' notitle with points ps " << pointSize ;
-  os << "\n";
+  os << "set title 'Gen. " << getCounter() << "'; plot '"
+     << getFileName() << "' notitle with points ps " << pointSize << "\n";
   os << '\0';
   PipeComSend( gpCom, buff );
 
