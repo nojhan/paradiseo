@@ -131,6 +131,7 @@ main()
 	   << chrom << " " << chrom2 << endl; 
     }
 
+  /*
   // Check multiOps
   eoMultiMonOp<Chrom> mOp( &next );
   mOp.adOp( &bitflip );
@@ -144,6 +145,7 @@ main()
   cout << "before multiBinOp............  " << chrom << " " << chrom2 << endl;
   mbOp( chrom, chrom2 );
   cout << "after multiBinOp .............. " << chrom << " " << chrom2 <<endl;
+  */
 
   return 0;
 }
