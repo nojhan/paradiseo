@@ -31,23 +31,20 @@
  * files that you just need to link with your own main and fitness code).
  *
  * The corresponding ***INSTANCIATED DECLARATIONS*** are contained 
- *       in make_genotype_ga.h
- * while the TEMPLATIZED code is define in make_genotype.h in the ga dir
- *
- * Unlike most EO .h files, it does not (and should not) contain any code, 
- * just declarations
+ *       in ga.h in src/ga dir 
+ * while the TEMPLATIZED code is define in make_genotype_ga.h
  */
 
 // the templatized code
-#include <ga/make_genotype.h>
+#include <ga/make_genotype_ga.h>
 
 /// The following function merely call the templatized do_* functions above
 
-eoInit<eoBit<double> > & make_genotype(eoParameterLoader& _parser, eoState& _state, double _d)
+eoInit<eoBit<double> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoBit<double> _eo)
 {
-  return do_make_genotype(_parser, _state, _d);
+  return do_make_genotype(_parser, _state, _eo);
 }
-eoInit<eoBit<eoMinimizingFitness> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoMinimizingFitness _d)
+eoInit<eoBit<eoMinimizingFitness> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoBit<eoMinimizingFitness> _eo)
 {
-  return do_make_genotype(_parser, _state, _d);
+  return do_make_genotype(_parser, _state, _eo);
 }

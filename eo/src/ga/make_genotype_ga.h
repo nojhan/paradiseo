@@ -38,8 +38,12 @@
 /*
  * This fuciont does the initialization of what's needed for a particular 
  * genotype (here, bitstrings).
- * It is templatized ***olny on the fitness*** so it can be used to evolve 
+ * It could be here tempatied only on the fitness, as it can be used to evolve 
  * bitstrings with any fitness.
+ * However, for consistency reasons, it was finally chosen, as in 
+ * the rest of EO, to templatize by the full EOT, as this eventually 
+ * allows to choose the type of genotype at run time (see in es dir)
+ *
  * It is instanciated in ga/ga.cpp - and incorporated in the ga/libga.a
  *
  * It returns an eoInit<eoBit<FitT> > tha can later be used to initialize 
@@ -47,10 +51,15 @@
  *
  * It uses a parser (to get user parameters) and a state (to store the memory)
  * the last argument is to disambiguate the call upon different instanciations.
+ *
+ * WARNING: that last argument will generally be the result of calling 
+ *          the default ctor of EOT, resulting in most cases in an EOT 
+ *          that is ***not properly initialized***
+
 */
 
-template <class FitT>
-eoInit<eoBit<FitT> > & do_make_genotype(eoParameterLoader& _parser, eoState& _state, FitT)
+template <class EOT>
+eoInit<EOT> & do_make_genotype(eoParameterLoader& _parser, eoState& _state, EOT)
 {
   // for bitstring, only thing needed is the size
     eoValueParam<unsigned>& chromSize = _parser.createParam(unsigned(10), "ChromSize", "The length of the bitstrings", 'n',"initialization");
@@ -59,8 +68,8 @@ eoInit<eoBit<FitT> > & do_make_genotype(eoParameterLoader& _parser, eoState& _st
   // based on boolean_generator class (see utils/rnd_generator.h)
   eoBooleanGenerator * gen = new eoBooleanGenerator;
   _state.storeFunctor(gen);
-  eoInitFixedLength<eoBit<FitT> >* init = new eoInitFixedLength<eoBit<FitT> >(chromSize.value(), *gen);
-  // satore in state
+  eoInitFixedLength<EOT>* init = new eoInitFixedLength<EOT>(chromSize.value(), *gen);
+  // store in state
   _state.storeFunctor(init);
   return *init;
 }

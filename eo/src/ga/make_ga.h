@@ -52,8 +52,8 @@
 //////////////////////////
 
 // the genotypes 
-eoInit<eoBit<double> > & make_genotype(eoParameterLoader& _parser, eoState& _state, double _d);
-  eoInit<eoBit<eoMinimizingFitness> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoMinimizingFitness _d);
+eoInit<eoBit<double> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoBit<double> _eo);
+  eoInit<eoBit<eoMinimizingFitness> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoBit<eoMinimizingFitness> _eo);
 
 // the operators
 eoGenOp<eoBit<double> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoInit<eoBit<double> >& _init);
