@@ -8,7 +8,7 @@
 //-----------------------------------------------------------------------------
 
 #include <stdlib.h>               // exit EXIT_FAILURE
-#include <eoFixedLength.h>        // eoFixedLength
+#include <eoVector.h>             // eoVectorLength
 #include <eoOp.h>                 // eoMonOp eoQuadraticOp
 #include <eoInit.h>               // eoInit
 #include <utils/rnd_generators.h> // uniform_generator
@@ -29,7 +29,7 @@ typedef vector<int> genotype;
 // Chrom
 //-----------------------------------------------------------------------------
 
-typedef eoFixedLength<phenotype, int> Chrom;
+typedef eoVector<phenotype, int> Chrom;
 
 //-----------------------------------------------------------------------------
 // eoChromEvaluator

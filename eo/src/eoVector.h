@@ -1,9 +1,9 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoVariableLength.h
+// eoVector.h
 // (c) GeNeura Team, 2000 - EEAAX 1999 - Maarten Keijzer 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -24,37 +24,43 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef _eoVariableLength_h
-#define _eoVariableLength_h
+#ifndef _eoVector_h
+#define _eoVector_h
 
 #include <vector>
-
+#include <EO.h>
 /**
-  Base class for variable length chromosomes. Derives from EO and vector, 
-  redirects the smaller than operator to EO (fitness based comparison),
-  and implements the virtual functions printOn() and readFrom() 
+
+  Base class for fixed length chromosomes, just derives from EO and vector and
+  redirects the smaller than operator to EO (fitness based comparison)
 */
 
 template <class FitT, class GeneType>
-class eoVariableLength : public EO<FitT>, public std::vector<GeneType>
+class eoVector : public EO<FitT>, public std::vector<GeneType>
 {
     public :
-    
-    typedef GeneType AtomType;
-    typedef std::vector<GeneType> ContainerType;
 
-  // default ctor
-    eoVariableLength(unsigned size = 0, GeneType value = GeneType()) : EO<FitT>(), std::vector<GeneType>(size, value)
+    typedef GeneType                AtomType;
+    typedef std::vector<GeneType>   ContainerType;
+
+    eoVector(unsigned size = 0, GeneType value = GeneType()) : EO<FitT>(), std::vector<GeneType>(size, value)
     {}
 
   // we can't have a Ctor from a vector, it would create ambiguity
   //  with the copy Ctor
   void value(std::vector<GeneType> _v)
   {
-    resize(_v.size());
+    if (_v.size() != size())
+      throw runtime_error("Wrong size in vector assignation in eoVector");
     copy(_v.begin(), _v.end(), begin());
     invalidate();
   }
+
+    /// to avoid conflicts between EO::operator< and vector<GeneType>::operator<
+    bool operator<(const eoVector<FitT, GeneType>& _eo) const
+    {
+        return EO<FitT>::operator<(_eo);
+    }
 
     /// printing...
     void printOn(ostream& os) const
@@ -85,18 +91,11 @@ class eoVariableLength : public EO<FitT>, public std::vector<GeneType>
             operator[](i) = atom;
         }
     }
-    
-    /// to avoid conflicts between EO::operator< and vector<double>::operator<
-    bool operator<(const eoVariableLength<FitT, GeneType>& _eo) const
-    {
-        return EO<FitT>::operator<(_eo);
-    }
-
 };
 
-/// to avoid conflicts between EO::operator< and vector<GeneType>::operator<
+/// to avoid conflicts between EO::operator< and vector<double>::operator<
 template <class FitT, class GeneType>
-bool operator<(const eoVariableLength<FitT, GeneType>& _eo1, const eoVariableLength<FitT, GeneType>& _eo2)
+bool operator<(const eoVector<FitT, GeneType>& _eo1, const eoVector<FitT, GeneType>& _eo2)
 {
     return _eo1.operator<(_eo2);
 }

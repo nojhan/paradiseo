@@ -29,12 +29,12 @@
 #include <iostream>    // ostream, istream
 #include <string>      // string
 
-#include <eoFixedLength.h>
+#include <eoVector.h>
 
 /** eoReal: implementation of simple real-valued chromosome.
-  * based on eoFixedLength class
+  * based on eoVector class
 */
-template <class FitT> class eoReal: public eoFixedLength<FitT, double>
+template <class FitT> class eoReal: public eoVector<FitT, double>
 {
  public:
 
@@ -42,15 +42,15 @@ template <class FitT> class eoReal: public eoFixedLength<FitT, double>
    * (Default) Constructor.
    * @param size Size of the vector
    */
-  eoReal(unsigned size = 0, double value = 0.0): 
-    eoFixedLength<FitT, double>(size, value) {}
-      
+  eoReal(unsigned size = 0, double value = 0.0):
+    eoVector<FitT, double>(size, value) {}
+
   /// My class name.
-  string className() const 
-    { 
-      return "eoReal"; 
+  string className() const
+    {
+      return "eoReal";
     }
-  
+
 };
 
 //-----------------------------------------------------------------------------

@@ -27,39 +27,39 @@
 #ifndef _eoEsStdev_h
 #define _eoEsStdev_h
 
-#include <eoFixedLength.h>
+#include <eoVector.h>
 
 /**
 \ingroup EvolutionStrategies
 
 Evolutionary strategie style representation, supporting co-evolving standard
-deviations. 
+deviations.
 */
 
 template <class Fit>
-class eoEsStdev : public eoFixedLength<Fit, double>
+class eoEsStdev : public eoVector<Fit, double>
 {
     public :
-  
+
     typedef double Type;
 
-    eoEsStdev(void) : eoFixedLength<Fit, double>() {}
+    eoEsStdev(void) : eoVector<Fit, double>() {}
 
     std::string className(void) const { return "eoEsStdev"; }
-    
+
     void printOn(std::ostream& os) const
     {
-        eoFixedLength<Fit,double>::printOn(os);
-        
+        eoVector<Fit,double>::printOn(os);
+
         os << ' ';
         std::copy(stdevs.begin(), stdevs.end(), std::ostream_iterator<double>(os, " "));
-    
+
         os << ' ';
     }
 
     void readFrom(istream& is)
     {
-        eoFixedLength<Fit,double>::readFrom(is);
+        eoVector<Fit,double>::readFrom(is);
         stdevs.resize(size());
 
         unsigned i;

@@ -39,7 +39,7 @@
 #include <functional>  // bind2nd
 #include <string>      // string
 
-#include <eoFixedLength.h>
+#include <eoVector.h>
 
 /**
 \defgroup bitstring
@@ -47,12 +47,12 @@
   Various functions for a bitstring representation
 */
 
-/** eoBit: implementation of bitstring chromosome.                               
+/** eoBit: implementation of bitstring chromosome.
 \class eoBit eoBit.h ga/eoBit.h
 \ingroup bitstring
-  * based on STL's vector<bool> specialization.                                 
+  * based on STL's vector<bool> specialization.
 */
-template <class FitT> class eoBit: public eoFixedLength<FitT, bool>
+template <class FitT> class eoBit: public eoVector<FitT, bool>
 {
  public:
 
@@ -60,8 +60,8 @@ template <class FitT> class eoBit: public eoFixedLength<FitT, bool>
    * (Default) Constructor.
    * @param size Size of the binary string.
    */
-  eoBit(unsigned size = 0, bool value = false): 
-    eoFixedLength<FitT, bool>(size, value) {}
+  eoBit(unsigned size = 0, bool value = false):
+    eoVector<FitT, bool>(size, value) {}
       
   /// My class name.
   string className() const 

@@ -24,23 +24,23 @@
 */
 
 /**
-CVS Info: $Date: 2001-02-13 22:39:56 $  $Author: jmerelo $ $Revision: 1.7 $
+CVS Info: $Date: 2001-02-17 10:51:31 $  $Author: maartenkeijzer $ $Revision: 1.8 $
 */
 
 //-----------------------------------------------------------------------------
 
 #include <iostream>   // cout
 #include <strstream>  // ostrstream, istrstream
-#include <utils/eoUniform.h>         // eoBin
+#include <utils/eoRndGenerators.h>         // eoBin
 //#include <eoNormal.h>
 //#include <eoNegExp.h>
 
 //-----------------------------------------------------------------------------
 
 main() {
-  eoUniform<float> u1(-2.5,3.5);
-  eoUniform<double> u2(0.003, 0.0005 );
-  eoUniform<unsigned long> u3( 10000000U, 10000U);
+  eoUniformGenerator<float> u1(-2.5,3.5);
+  eoUniformGenerator<double> u2(0.003, 0.0005 );
+  eoUniformGenerator<unsigned long> u3( 10000000U, 10000U);
   /*  eoNegExp<float> e1(3.5);
   eoNegExp<double> e2(0.003 );
   eoNegExp<long> e3( 10000U);

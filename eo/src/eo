@@ -58,8 +58,7 @@
 #include <apply.h>
 
 // eo's
-#include <eoVariableLength.h>
-#include <eoFixedLength.h>
+#include <eoVector.h>
 
 #include <other/eoString.h>
 

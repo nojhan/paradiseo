@@ -30,13 +30,13 @@
 #include <EO.h>
 #include <vector>
 
-#include <eoFixedLength.h>
+#include <eoVector.h>
 
 /**
 \ingroup EvolutionStrategies
 
   One of the more simple evolution strategies, sporting just a single
-stdeviation for the entire chromosome. For more advanced versions 
+stdeviation for the entire chromosome. For more advanced versions
 see also eoEsStdev eoEsFull
 
   @see eoEsStdev eoEsFull
@@ -44,26 +44,26 @@ see also eoEsStdev eoEsFull
 */
 
 template <class Fit>
-class eoEsSimple : public eoFixedLength<Fit, double>
+class eoEsSimple : public eoVector<Fit, double>
 {
 public :
 
     typedef double Type;
 
-    eoEsSimple(void) : eoFixedLength<Fit, double>() {}
+    eoEsSimple(void) : eoVector<Fit, double>() {}
 
     std::string className(void) const { return "eoEsSimple"; }
 
     void printOn(std::ostream& os) const
     {
-        eoFixedLength<Fit,double>::printOn(os);
+        eoVector<Fit,double>::printOn(os);
 
         os << ' ' << stdev << ' ';
     }
 
     void readFrom(istream& is)
     {
-        eoFixedLength<Fit,double>::readFrom(is);
+        eoVector<Fit,double>::readFrom(is);
 
         is >> stdev;
     }

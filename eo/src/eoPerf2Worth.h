@@ -37,12 +37,12 @@ It is an eoStat so
 
 @see eoSelectFromWorth
 */
-template <class EOT, class WorthT = double>
+template <class EOT, class WorthT = typename EOT::Fitness>
 class eoPerf2Worth : public eoStat<EOT, vector<WorthT> >
 {
   public:
   eoPerf2Worth():eoStat<EOT, vector<WorthT> >(vector<WorthT>(0),
-					      "Worthes") {}
+					      "Worths") {}
 };
 
 #endif

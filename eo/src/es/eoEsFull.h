@@ -27,7 +27,7 @@
 #ifndef _eoEsFull_h
 #define _eoEsFull_h
 
-#include <eoFixedLength.h>
+#include <eoVector.h>
 
 /**
 \ingroup EvolutionStrategies
@@ -37,32 +37,32 @@ rates and correlated mutations.
 */
 
 template <class Fit>
-class eoEsFull : public eoFixedLength<Fit, double>
+class eoEsFull : public eoVector<Fit, double>
 {
     public :
     typedef double Type;
-    
-    eoEsFull(void) : eoFixedLength<Fit, double>() {}
-    
+
+    eoEsFull(void) : eoVector<Fit, double>() {}
+
     std::string className(void) const { return "eoEsFull"; }
 
     void printOn(std::ostream& os) const
     {
-        eoFixedLength<Fit,double>::printOn(os);
+        eoVector<Fit,double>::printOn(os);
 
         os << ' ';
         std::copy(stdevs.begin(), stdevs.end(), std::ostream_iterator<double>(os, " "));
-    
+
         os << ' ';
 
         std::copy(correlations.begin(), correlations.end(), std::ostream_iterator<double>(os, " "));
-        
+
         os << ' ';
     }
 
     void readFrom(istream& is)
     {
-        eoFixedLength<Fit,double>::readFrom(is);
+        eoVector<Fit,double>::readFrom(is);
 
         stdevs.resize(size());
 
