@@ -16,8 +16,33 @@
 #include <utils/eoRNG.h>          // eoRng
 #include <utils/rnd_generators.h> // normal_geneurator
 #include <vecop.h>                // *
+#include <utility>
+#include <iterator>
 
 //-----------------------------------------------------------------------------
+
+namespace mlp
+{
+  typedef double            real;
+  typedef std::vector<real> vector;
+}
+
+namespace std {
+  ostream& operator<<(ostream& os, const mlp::vector& v)
+  {
+    ostream_iterator<mlp::real> oi(os, " ");
+    copy(v.begin(), v.end(), oi);
+    return os;
+  }
+                                                                                
+  istream& operator>>(istream& is, mlp::vector& v)
+  {
+    for (mlp::vector::iterator vi = v.begin() ; vi != v.end() ; vi++) {
+        is >> *vi;
+    }
+    return is;
+  }
+}
 
 namespace mlp
 {
@@ -25,8 +50,6 @@ namespace mlp
   // useful typedefs
   //---------------------------------------------------------------------------
   
-  typedef double            real;
-  typedef std::vector<real> vector;
   
   const real max_real = MAXFLOAT;
   const real min_real = MINFLOAT;
@@ -65,7 +88,7 @@ namespace mlp
       return sigmoid(bias + weight * input);
     }
 
-    unsigned length() { return weight.size() + 1; }
+    unsigned length() const { return weight.size() + 1; }
     
     void normalize()
     {
@@ -82,12 +105,23 @@ namespace mlp
 	*w = -5.0 + 10.0 / (1.0 + exp(*w / -5.0));
     }
   };
+}
 
-  ostream& operator<<(ostream& os, const neuron& n)
+namespace std {
+
+  ostream& operator<<(ostream& os, const mlp::neuron& n)
   {
     return os << n.bias << " " << n.weight;
   }
-  
+                                                                                
+  istream& operator>>(istream& is, mlp::neuron& n)
+  {
+    return is >> n.bias >> n.weight;
+  }
+
+}
+
+namespace mlp {
   
   //---------------------------------------------------------------------------
   // layer
@@ -116,7 +150,7 @@ namespace mlp
       return output;
     }
 
-    unsigned length() { return front().length() * size(); }
+    unsigned length() const { return front().length() * size(); }
 
     void normalize()
     {
@@ -131,6 +165,29 @@ namespace mlp
     }
   };
 
+}
+
+namespace std {
+
+  ostream& operator<<(ostream& os, const mlp::layer& l)
+  {
+    ostream_iterator<mlp::neuron> oi(os, " ");
+    copy(l.begin(), l.end(), oi);
+    return os;
+  }
+                                                                                
+  istream& operator>>(istream& is, mlp::layer& l)
+  {
+    for (mlp::layer::iterator li = l.begin() ; li != l.end() ; li++) {
+        is >> *li;
+    }
+    return is;
+  }
+
+}
+
+namespace mlp {
+  
 
   //---------------------------------------------------------------------------
   // net
@@ -143,6 +200,43 @@ namespace mlp
 	const unsigned& num_outputs = 0, 
 	const std::vector<unsigned>& hidden = std::vector<unsigned>())
     {
+      init(num_inputs,num_outputs,hidden);
+    }
+
+
+    net(istream &is) {
+	load(is);
+    }
+
+    void load(istream &is) {
+	unsigned num_inputs;
+	unsigned num_outputs;
+	unsigned num_hidden_layers;
+
+	is >> num_inputs >> num_outputs >> num_hidden_layers;
+
+	std::vector<unsigned> layer_sizes;
+	for (int i=0; i<num_hidden_layers;i++) {
+	   unsigned layer_size;
+	   is >> layer_size;
+	   layer_sizes.push_back(layer_size);
+	}
+        unsigned check_outputs;
+	is >> check_outputs;
+	assert (check_outputs ==  num_outputs);
+	init (num_inputs,num_outputs,layer_sizes);
+        // skip forward to pass up opening '<' char
+        char c=' ';
+        while (c!='<') { is >> c;}
+        for (iterator l =begin() ; l != end(); l++) {
+	    is >> *l;
+	}
+    }
+
+    void init( unsigned num_inputs, 
+	       unsigned num_outputs, 
+	       const std::vector<unsigned>& hidden ) {
+      clear();
       switch(hidden.size())
 	{
 	case 0:
@@ -179,6 +273,24 @@ namespace mlp
       vector tmp = (*this)(input);
       return (max_element(tmp.begin(), tmp.end()) - tmp.begin());
     }
+
+    void save(ostream &os) {
+        // Save the number of inputs, number of outputs, and number of hidden layers
+	os << num_inputs() << "\n" << num_outputs() << "\n" << num_hidden_layers() << "\n";
+        for(const_iterator l = begin(); l != end(); ++l)
+	   os << l->size() << " ";
+        os << "\n";
+	os << *this;
+        os << "\n";
+    }
+
+    unsigned num_inputs()  const { return front().front().length() - 1; }
+    unsigned num_outputs() const { return back().size(); }
+    unsigned num_hidden_layers() const { 
+	signed s = (signed) size() -1; 
+	return (s<0) ? 0 : s ;
+    }
+
 
     unsigned length() 
     {
@@ -238,9 +350,21 @@ namespace mlp
 	unsigned num_samples = 0): 
       std::vector<sample>(num_samples, sample(input_size, output_size)) {}
 
-    set(istream& is)
-    {
-      is >> (*this);
+    set(istream& is) : std::vector<sample>(0, sample(0, 0)) {
+	clear();
+	load(is);
+    }
+
+    void load(istream &is) {
+	unsigned input_size, output_size;
+        is >> input_size >> output_size;
+	sample samp(input_size, output_size);;
+	while (is >> samp) { push_back(samp); }
+    }
+
+    void save(ostream &os) {
+	os << front().input.size() << " " << front().output.size() << endl;
+	copy(begin(), end(), ostream_iterator<sample>(os,"\n"));
     }
   };
 
