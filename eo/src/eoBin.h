@@ -7,24 +7,18 @@
 
 //-----------------------------------------------------------------------------
 
-#include <iostream>     // ostream, istream
-#include <function.h>   // bind2nd
+#include <iostream>                                   // ostream, istream
+#include <functional>                                 // bind2nd
 
-#ifdef HAVE_BVECTOR_H
-#include <bvector.h>
-#error "incluyo bvector.h"
-#elseif
-#ifdef HAVE_VECTOR
-#include <vector>
-#define bit_vector vector<bool>
-#error "incluyo vector"
-#elseif
-#error "are you kidding?"
-#endif
-#endif
+#if defined( _MSC_VER ) || defined( __BCPLUSPLUS__ )  //
+#include <vector>                                     //
+typedef vector<bool> bit_vector;                      // bit_vector
+#else                                                 //
+#include <bvector.h>                                  //
+#endif                                                //
 
-#include <string>       // string
-#include <EO.h>         // EO
+#include <string>                                     // string
+#include <EO.h>                                       // EO
 
 //-----------------------------------------------------------------------------
 /// eoBin: implementation of binary chromosome.
