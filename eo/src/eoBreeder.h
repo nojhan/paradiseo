@@ -38,6 +38,8 @@ template<class Chrom> class eoBreeder: public eoTransform<Chrom>
    */
   void operator()(eoPop<Chrom>& pop)
     {
+      unsigned i;
+
       for (Operators::const_iterator op = operators.begin(); 
 	   op != operators.end(); 
 	   op++)
@@ -46,16 +48,15 @@ template<class Chrom> class eoBreeder: public eoTransform<Chrom>
 	  case unary:
 	    { 
 	      eoMonOp<Chrom>& monop = (eoMonOp<Chrom>&)*(op->second);	
-	      for (unsigned i = 0; i < pop.size(); i++)
+	      for (i = 0; i < pop.size(); i++)
 		if (uniform() < op->first)
 		  monop(pop[i]);  
 	      break;
 	    }
 	  case binary:
-	    { 
-	      vector<unsigned> pos(pop.size(), 1);
-	      pos[0] = 0;
-	      partial_sum(pos.begin(), pos.end(), pos.begin());
+	    {
+	      vector<unsigned> pos(pop.size());
+	      iota(pos.begin(), pos.end(), 0);
 	      random_shuffle(pos.begin(), pos.end());
 	      
 	      cout << "pos = ";
@@ -64,7 +65,7 @@ template<class Chrom> class eoBreeder: public eoTransform<Chrom>
 	      cout << endl;
 
 	      eoBinOp<Chrom>& binop = (eoBinOp<Chrom>&)*(op->second);
-	      for (unsigned i = 1; i < pop.size(); i += 2)
+	      for (i = 1; i < pop.size(); i += 2)
 		if (uniform() < op->first)
 		  binop(pop[pos[i - 1]], pop[pos[i]]);
 	      break;
