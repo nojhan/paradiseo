@@ -68,9 +68,9 @@ template <class T = double> class eoUniformGenerator : public eoRndGenerator<T>
   // added new ctor with 2 params, and modified the data to minim and range
   // (was maxim only). MS 3/11/2000
   public :
-    eoUniformGenerator(T _max = T(1.0), eoRng& _rng = rng) :
+    eoUniformGenerator(T _max = T(1.0), eoRng& _rng = eo::rng) :
       minim(T(0.0)), range(_max), uniform(_rng) {}
-    eoUniformGenerator(T _min, T _max, eoRng& _rng = rng) :
+    eoUniformGenerator(T _min, T _max, eoRng& _rng = eo::rng) :
       minim(_min), range(_max-_min), uniform(_rng)
   {
     if (_min>_max)
@@ -104,7 +104,7 @@ bool eoUniformGenerator<bool>::operator()(void)
 class eoBooleanGenerator : public eoRndGenerator<bool>
 {
   public :
-  eoBooleanGenerator(float _bias = 0.5, eoRng& _rng = rng) : bias(_bias), gen(_rng) {}
+  eoBooleanGenerator(float _bias = 0.5, eoRng& _rng = eo::rng) : bias(_bias), gen(_rng) {}
 
   bool operator()(void) { return gen.flip(bias); }
   private :
@@ -120,7 +120,7 @@ class eoBooleanGenerator : public eoRndGenerator<bool>
 template <class T = double> class eoNormalGenerator : public eoRndGenerator<T>
 {
   public :
-    eoNormalGenerator(T _stdev = T(1.0), eoRng& _rng = rng) : stdev(_stdev), normal(_rng) {}
+    eoNormalGenerator(T _stdev = T(1.0), eoRng& _rng = eo::rng) : stdev(_stdev), normal(_rng) {}
 
   T operator()(void) { return (T) normal.normal(stdev); }
 
@@ -137,7 +137,7 @@ template <class T = double> class eoNormalGenerator : public eoRndGenerator<T>
 template <class T = double> class eoNegExpGenerator : public eoRndGenerator<T>
 {
   public :
-    eoNegExpGenerator(T _mean = 1.0, eoRng& _rng = rng) : mean(_mean), negexp(_rng) {}
+    eoNegExpGenerator(T _mean = 1.0, eoRng& _rng = eo::rng) : mean(_mean), negexp(_rng) {}
 
   T operator()(void) { return (T) negexp.negexp(mean); }
 

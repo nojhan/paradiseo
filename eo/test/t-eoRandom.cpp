@@ -24,7 +24,7 @@
 */
 
 /**
-CVS Info: $Date: 2001-02-17 10:51:31 $  $Author: maartenkeijzer $ $Revision: 1.8 $
+CVS Info: $Date: 2001-02-18 04:34:57 $  $Author: evomarc $ $Revision: 1.9 $
 */
 
 //-----------------------------------------------------------------------------
@@ -38,17 +38,26 @@ CVS Info: $Date: 2001-02-17 10:51:31 $  $Author: maartenkeijzer $ $Revision: 1.8
 //-----------------------------------------------------------------------------
 
 main() {
+  try{
   eoUniformGenerator<float> u1(-2.5,3.5);
-  eoUniformGenerator<double> u2(0.003, 0.0005 );
-  eoUniformGenerator<unsigned long> u3( 10000000U, 10000U);
-  /*  eoNegExp<float> e1(3.5);
-  eoNegExp<double> e2(0.003 );
-  eoNegExp<long> e3( 10000U);
-  cout << "n1\t\tn2\t\tn3\t\te1\t\te2\t\te3" << endl; */
+  eoUniformGenerator<double> u2(0.0003, 0.0005 );
+  eoUniformGenerator<unsigned long> u3( 100000U, 10000000U);
+
+  eoNegExpGenerator<float> e1(3.5);
+  eoNegExpGenerator<double> e2(0.003 );
+  eoNegExpGenerator<long> e3( 10000U);
+  /*  cout << "n1\t\tn2\t\tn3\t\te1\t\te2\t\te3" << endl; */
   for ( unsigned i = 0; i < 100; i ++) {
-    cout << u1() << "\t" << u2() << "\t" << u3() << endl;
+    cout << "Uniform: " << u1() << "\t" << u2() << "\t" << u3() << endl;
+    cout << "NegExp: " << e1() << "\t" << e2() << "\t" << e3() << endl;
   }
+  } 
  
+  catch (exception& e)
+    {
+        cout << "exception: " << e.what() << endl;;
+        exit(EXIT_FAILURE);
+    }
   return 0; // to avoid VC++ complaints
 }
 
