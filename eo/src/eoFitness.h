@@ -11,24 +11,24 @@
 class eoFitness: public eoPersistent
 {
  public:
+  virtual operator float() const = 0;
+  
   virtual bool operator<(const eoFitness& other) const = 0;
-
-  bool operator>(const eoFitness& other) const
+  
+  virtual bool operator>(const eoFitness& other) const
     {
       return !(*this < other || *this == other);
     }
-
-  bool operator==(const eoFitness& other) const
+  
+  virtual bool operator==(const eoFitness& other) const
     {
       return !(other < *this || *this < other);
     }
 
-  bool operator!=(const eoFitness& other) const
+  virtual bool operator!=(const eoFitness& other) const
     {
       return other < *this || *this < other;
     }
-
-  virtual operator float() const = 0;
 };
 
 //-----------------------------------------------------------------------------

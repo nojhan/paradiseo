@@ -16,15 +16,25 @@
 template<class Chrom> class eoLottery: public eoSelect<Chrom>
 {
  public:
-  eoLottery(const float& rate = 1.0): eoLottery(rate) {}
-  
-  void operator()(const eoPop<Chrom>& pop, eoPop<Chrom>& breeders)
+  /// (Default) Constructor.
+  eoLottery(const float& _rate = 1.0): rate(_rate) {}
+
+  /// 
+  void operator()(const eoPop<Chrom>& pop, eoPop<Chrom>& breeders) const
     {
       // scores of chromosomes
       vector<float> score(pop.size());
       
       // calculates accumulated scores for chromosomes
+      
       transform(pop.begin(), pop.end(), score.begin(), fitness);
+
+      for (unsigned i = 0; i < pop.size(); i++)
+	score[i] = pop[i].fitness();
+	
+
+
+
       float sum = accumulate(score.begin(), score.end(), MINFLOAT);
       transform(score.begin(), score.end(), score.begin(), 
 		bind2nd(divides<float>(), sum));
@@ -32,7 +42,7 @@ template<class Chrom> class eoLottery: public eoSelect<Chrom>
       
       // generates random numbers
       vector<float> random(pop.size());
-      generate(random.begin(), random.end(), Uniform<float>(0,1));
+      generate(random.begin(), random.end(), eoUniform<float>(0,1));
       sort(random.begin(), random.end(), less<float>());
 
       // selection of chromosomes
@@ -49,10 +59,13 @@ template<class Chrom> class eoLottery: public eoSelect<Chrom>
 	  if (score_index < pop.size())
 	    score_index++;
 	  else
-	    fill_n(back_insert_iterator<Pop>(breeders), 
+	    fill_n(back_insert_iterator<eoPop<Chrom> >(breeders), 
 		   num_chroms - breeders.size(), pop.back());
       } while (breeders.size() < num_chroms);
     }
+
+ private:
+  float rate;  // selection rate
 };
 
 //-----------------------------------------------------------------------------

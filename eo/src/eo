@@ -42,9 +42,14 @@
 #include <eoFitness.h>  // what's the matter with you?
 #include <eoProblem.h>  // what's the matter with you?
 
+#include <eoLottery.h>
+
 //#include <eoGA.h>
 
 //-----------------------------------------------------------------------------
 
 #endif _eo_
 
+// Local Variables:
+// mode:C++
+// End:
