@@ -298,7 +298,7 @@ public :
 */
 
     template <class Pred>
-    void find_nodes(vector<subtree*>& result, Pred& p)
+    void find_nodes(std::vector<subtree*>& result, Pred& p)
     {
         if (p(*content))
         {
@@ -312,7 +312,7 @@ public :
     }
  
     template <class Pred>
-    void find_nodes(vector<const subtree*>& result, Pred& p) const
+    void find_nodes(std::vector<const subtree*>& result, Pred& p) const
     {
         if (p(*content))
         {
@@ -632,13 +632,13 @@ private :
 	//	{ _root.apply(v, varValues, moreValues, evenMoreValues); }
 
     template <class Pred>
-    void find_nodes(vector<subtree*>& result, Pred& p)
+    void find_nodes(std::vector<subtree*>& result, Pred& p)
     {
         _root.find_nodes(result, p);
     }
  
     template <class Pred>
-    void find_nodes(vector<const subtree*>& result, Pred& p) const
+    void find_nodes(std::vector<const subtree*>& result, Pred& p) const
     {
         _root.find_nodes(p);
     }
