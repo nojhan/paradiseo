@@ -46,7 +46,7 @@ noinst_HEADERS			= binary_value.h real_value.h RoyalRoad.h
 
 
 AM_CXXFLAGS			= -I$(top_srcdir)/src 
-DEPS	 			= $(LIBGA) $(LIBES) $(LIBEO) $(LIBEOUTILS)
+DEPS	 			= $(LIBGA) $(LIBES) $(LIBEOUTILS) $(LIBEO)
 LIBS	 			= $(DEPS)
 
 CLEANFILES 			= monitor.csv t-eoRandom.out
