@@ -57,7 +57,7 @@ template<class Chrom> class eoEasyEA: public eoAlgo<Chrom>
   
   /// Apply one generation of evolution to the population.
   virtual void operator()(eoPop<Chrom>& pop) {
-    do {
+    while ( terminator( pop ) ) {
       try
 	{
 	  step(pop);
@@ -68,7 +68,7 @@ template<class Chrom> class eoEasyEA: public eoAlgo<Chrom>
 	  s.append( " in eoEasyEA ");
 	  throw runtime_error( s );
 	}
-    } while ( terminator( pop ) );
+    } // while
   }
   
   /// Class name.
