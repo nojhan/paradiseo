@@ -69,7 +69,7 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
     checkpoint.add(increment);
 
     // dir for DISK output
-    string & dirName =  _parser.createParam(string("Res"), "resDir", "Directory to store DISK outputs", '\0', "Output - Disk").value();
+    string & dirName =  _parser.getORcreateParam(string("Res"), "resDir", "Directory to store DISK outputs", '\0', "Output - Disk").value();
     // shoudl we empty it if exists
     eoValueParam<bool>& eraseParam = _parser.createParam(true, "eraseDir", "erase files in dirName if any", '\0', "Output - Disk");
     bool dirOK = false;		   // not tested yet
