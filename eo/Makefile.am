@@ -4,7 +4,7 @@
 ##
 ###############################################################################
 
-SUBDIRS = src test win
+SUBDIRS = src test win contrib
 #Directory for documents
 DOCDIR = ~/public_html/eodocs
 #Directory for indices -- not useful for the user
