@@ -1,10 +1,6 @@
-###############################################################################
-#
 # Makefile.am for app/gpsymreg
-#
-###############################################################################
 
-bin_PROGRAMS 		= gpsymreg
+noinst_PROGRAMS 	= gpsymreg
 
 gpsymreg_SOURCES 	= main.cpp
 

@@ -119,16 +119,4 @@ pkginclude_HEADERS 	= eo \
 			eoVector.h \
 			es.h \
 			ga.h \
-			do/make_algo_easea.h \
-			do/make_algo_pareto.h \
-			do/make_algo_scalar.h \
-			do/make_checkpoint.h \
-			do/make_checkpoint_FDC.h \
-			do/make_checkpoint_assembled.h \
-			do/make_checkpoint_pareto.h \
-			do/make_continue.h \
-			do/make_continue_pareto.h \
-			do/make_general_replacement.h \
-			do/make_pop.h \
-			do/make_run.h \
 			$(PARADISEO_H)

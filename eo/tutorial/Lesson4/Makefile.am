@@ -1,5 +1,5 @@
 
-bin_PROGRAMS		= BitEA RealEA ESEA
+noinst_PROGRAMS		= BitEA RealEA ESEA
 
 
 BitEA_SOURCES		= BitEA.cpp

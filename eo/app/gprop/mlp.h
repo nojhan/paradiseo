@@ -5,10 +5,21 @@
 #ifndef mlp_h
 #define mlp_h
 
-//-----------------------------------------------------------------------------
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
-using namespace std;
-#include <values.h>               // MAXFLOAT MINFLOAT
+#ifdef HAVE_NUMERIC_LIMITS
+#include <numeric>
+#define MLP_MAXFLOAT std::numeric_limits<double>::max()
+#define MLP_MINFLOAT std::numeric_limits<double>::min()
+#elif defined HAVE_VALUES_H
+#include <values.h>
+#define MLP_MAXFLOAT MAXFLOAT
+#define MLP_MINFLOAT MINFLOAT
+#else
+#error numerical limits not available
+#endif
 #include <math.h>                 // exp
 #include <stdexcept>              // invalid_argument
 #include <iostream>               // istream ostream
@@ -20,7 +31,9 @@ using namespace std;
 #include <utility>
 #include <iterator>
 
-//-----------------------------------------------------------------------------
+
+using namespace std;
+
 
 namespace mlp
 {
@@ -52,8 +65,8 @@ namespace mlp
   //---------------------------------------------------------------------------
   
   
-  const real max_real = MAXFLOAT;
-  const real min_real = MINFLOAT;
+  const real max_real = MLP_MAXFLOAT;
+  const real min_real = MLP_MINFLOAT;
 
 
   //---------------------------------------------------------------------------
@@ -441,7 +454,11 @@ namespace mlp {
 
 } // namespace mlp
 
-//-----------------------------------------------------------------------------
+
+
+#undef MLP_MAXFLOAT
+#undef MLP_MINFLOAT
+
 
 #endif // mlp_h
 

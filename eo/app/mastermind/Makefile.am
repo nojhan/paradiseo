@@ -1,10 +1,6 @@
-###############################################################################
-#
 # Makefile.am for app/mastermind
-#
-###############################################################################
 
-bin_PROGRAMS 		= mastermind
+noinst_PROGRAMS 	= mastermind
 
 mastermind_SOURCES 	= mastermind.cpp
 

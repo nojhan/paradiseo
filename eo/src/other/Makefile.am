@@ -1,13 +1,11 @@
-###############################################################################
-##
 ## Makefile.am for eo/src/other
-##
-###############################################################################
 
-INCLUDES = -I$(top_builddir)/src
 
-#lib_LIBRARIES = libeoother.a
-#libeoother_a_SOURCES = 
+AM_CXXFLAGS 		= -I$(top_builddir)/src
 
-libeootherincdir = $(includedir)/eo/other
-libeootherinc_HEADERS = eoExternalEO.h  eoString.h  external_eo eoExternalOpFunctions.h
+otherincludedir 	= $(pkgincludedir)/other
+
+otherinclude_HEADERS 	= eoExternalEO.h \
+			eoString.h \
+			external_eo \
+			eoExternalOpFunctions.h

@@ -1,5 +1,5 @@
 
-bin_PROGRAMS		= OneMaxEA OneMaxLibEA
+noinst_PROGRAMS		= OneMaxEA OneMaxLibEA
 
 OneMaxEA_SOURCES	= OneMaxEA.cpp
 

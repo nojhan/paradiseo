@@ -1,24 +1,22 @@
-###############################################################################
-#
 # Makefile.am for app/gprop
-#
-###############################################################################
 
-DEPS = $(top_builddir)/src/libeo.a $(top_builddir)/src/utils/libeoutils.a
+noinst_PROGRAMS 	= gprop
 
-###############################################################################
 
-INCLUDES = -I$(top_builddir)/src
-LDADDS = $(top_builddir)/src/libeo.a $(top_builddir)/src/utils/libeoutils.a
-CXXFLAGS = -g
-###############################################################################
+gprop_SOURCES 		= gprop.cpp
 
-bin_PROGRAMS = gprop
-###############################################################################
+noinst_HEADERS		= gprop.h \
+			l2.h \
+			mlp.h \
+			mse.h \
+			qp.h \
+			vecop.h
 
-gprop_SOURCES = gprop.cpp
-gprop_DEPENDENCIES = $(DEPS)
-gprop_LDFLAGS = -lm
-gprop_LDADD = $(LDADDS)
 
-###############################################################################
+AM_CXXFLAGS		= -I$(top_srcdir)/src
+
+LIBEO			= $(top_builddir)/src/libeo.a
+LIBEOUTILS		= $(top_builddir)/src/utils/libeoutils.a
+
+DEPS 			= $(LIBEO) $(LIBEOUTILS)
+LIBS 			= $(LIBEO) $(LIBEOUTILS)

@@ -1,5 +1,5 @@
 
-bin_PROGRAMS		= SecondBitEA SecondRealEA exercise3.1
+noinst_PROGRAMS		= SecondBitEA SecondRealEA exercise3.1
 
 
 SecondBitEA_SOURCES	= SecondBitEA.cpp

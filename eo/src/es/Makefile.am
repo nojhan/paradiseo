@@ -17,7 +17,9 @@ libes_a_SOURCES 	= make_algo_scalar_es.cpp \
 			make_run_es.cpp \
 			make_run_real.cpp
 
-pkginclude_HEADERS 	= eoEsChromInit.h \
+esincludedir		= $(pkgincludedir)/es
+
+esinclude_HEADERS 	= eoEsChromInit.h \
 			eoEsFull.h \
 			eoEsGlobalXover.h \
 			eoEsMutate.h \

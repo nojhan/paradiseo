@@ -1,5 +1,5 @@
 
-bin_PROGRAMS		= FirstBitGA FirstRealGA exercise1.3
+noinst_PROGRAMS		= FirstBitGA FirstRealGA exercise1.3
 
 FirstBitGA_SOURCES	= FirstBitGA.cpp
 

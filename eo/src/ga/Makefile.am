@@ -16,9 +16,9 @@ libga_a_SOURCES 	= make_algo_scalar_ga.cpp \
 			make_pop_ga.cpp \
 			make_run_ga.cpp
 
-libeoincdir 		= $(includedir)/eo/ga
+gaincludedir 		= $(pkgincludedir)/ga
 
-libeoinc_HEADERS 	= eoBit.h \
+gainclude_HEADERS 	= eoBit.h \
 			eoBitOpFactory.h \
 			eoBitOp.h \
 			eoBoolFlip.h \

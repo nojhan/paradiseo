@@ -1,5 +1,5 @@
 
-bin_PROGRAMS		= FirstBitEA FirstRealEA exercise2.3
+noinst_PROGRAMS		= FirstBitEA FirstRealEA exercise2.3
 
 
 FirstBitEA_SOURCES	= FirstBitEA.cpp
