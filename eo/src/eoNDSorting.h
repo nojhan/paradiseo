@@ -41,9 +41,12 @@
 template <class EOT>
 class eoNDSorting : public eoPerf2WorthCached<EOT, double>
 {
-public:
-
+  public :
+      
     using eoNDSorting< EOT >::value;
+      eoNDSorting(bool nasty_flag_ = false) : nasty_declone_flag_that_only_is_implemented_for_two_objectives(nasty_flag_)
+      {}
+	  
 
     eoNDSorting()
         : nasty_declone_flag_that_only_is_implemented_for_two_objectives(false)
@@ -376,7 +379,7 @@ template <class EOT>
 class eoNDSorting_I : public eoNDSorting<EOT>
 {
 public :
-  eoNDSorting_I(double _nicheSize) : eoNDSorting<EOT>(), nicheSize(_nicheSize) {}
+  eoNDSorting_I(double _nicheSize, bool nasty_flag_ = false) : eoNDSorting<EOT>(nasty_flag_), nicheSize(_nicheSize) {}
 
   std::vector<double> niche_penalty(const std::vector<unsigned>& current_front, const eoPop<EOT>& _pop)
   {
@@ -429,9 +432,11 @@ public :
 template <class EOT>
 class eoNDSorting_II : public eoNDSorting<EOT>
 {
-public:
-
-    typedef std::pair<double, unsigned> double_index_pair;
+  public:
+    
+    eoNDSorting_II(bool nasty_flag_ = false) : eoNDSorting<EOT>(nasty_flag_) {}
+      
+  typedef std::pair<double, unsigned> double_index_pair;
 
   class compare_nodes
   {
