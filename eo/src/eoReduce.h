@@ -60,6 +60,22 @@ template <class EOT> class eoTruncate : public eoReduce<EOT>
     }
 };
 
+/** random truncation */
+template <class EOT> class eoRandomReduce : public eoReduce<EOT>
+{
+    void operator()(eoPop<EOT>& _newgen, unsigned _newsize)
+    {
+        if (_newgen.size() == _newsize)
+            return;
+	if (_newgen.size() < _newsize)
+	  throw std::logic_error("eoRandomReduce: Cannot truncate to a larger size!\n");
+
+	// shuffle the population, then trucate
+	_newgen.shuffle();
+	_newgen.resize(_newsize);
+    }
+};
+
 /** 
 EP truncation method (some global stochastic tournament +  sort)
 Softer selective pressure than pure truncate
