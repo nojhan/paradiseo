@@ -44,7 +44,7 @@ template <class EOT> class eoStochTournamentSelect: public eoSelectOne<EOT>
  public:
 
   ///
-  eoStochTournamentSelect(float _Trate = 1.0 ) : eoSelectOne<EOT>(), Trate(_Trate) 
+  eoStochTournamentSelect(double _Trate = 1.0 ) : eoSelectOne<EOT>(), Trate(_Trate) 
   {
     // consistency checks
     if (Trate < 0.5) {
@@ -64,7 +64,7 @@ template <class EOT> class eoStochTournamentSelect: public eoSelectOne<EOT>
   }
   
 private:
-  float Trate;
+  double Trate;
 };
 
 //-----------------------------------------------------------------------------
