@@ -1,3 +1,9 @@
 *.o
-core
+.deps
 Makefile
+t-eo
+t-eobin
+t-eolottery
+t-eoinclusion
+t-eoinsertion
+t-eoproblem
