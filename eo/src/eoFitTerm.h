@@ -57,7 +57,7 @@ public:
 	  return (dif>epsilon ) || (bestFitness > maximum);
 	}
 
-	std::string className(void) const { return eoFitTerm; }
+	std::string className(void) const { return "eoFitTerm"; }
 
 private:
 	float maximum, epsilon;
