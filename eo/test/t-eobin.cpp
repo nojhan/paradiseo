@@ -212,5 +212,4 @@ int main()
         cout << "Exception: " << e.what() << '\n';
     }
 
-    return 1;
 }

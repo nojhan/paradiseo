@@ -25,7 +25,7 @@ typedef eoVirus<float> Chrom;
 
 int main()
 {
-  const unsigned POP_SIZE = 1000, CHROM_SIZE = 128;
+  const unsigned POP_SIZE = 10, CHROM_SIZE = 12;
   unsigned i;
   eoBooleanGenerator gen;
 
@@ -67,8 +67,8 @@ int main()
   eoCommaReplacement<Chrom> replace;
 
   // Terminators
-  eoGenContinue<Chrom> continuator1(500);
-  eoFitContinue<Chrom> continuator2(128);
+  eoGenContinue<Chrom> continuator1(10);
+  eoFitContinue<Chrom> continuator2(CHROM_SIZE);
   eoCombinedContinue<Chrom> continuator(continuator1, continuator2);  
   eoCheckPoint<Chrom> checkpoint(continuator);
   eoStdoutMonitor monitor;

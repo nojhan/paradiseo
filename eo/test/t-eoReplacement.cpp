@@ -220,5 +220,4 @@ int main(int argc, char **argv)
         cout << "Exception: " << e.what() << endl;
     }
 
-    return 1;
 }

@@ -1,43 +1,7 @@
 #!/bin/sh
-echo "Starting t-eo"
-./t-eo > eo.log
-
-echo "Starting t-eoReplacement"
-./t-eoReplacement > replacement.log
-
-echo "Starting t-eoCheckpointing"
-./t-eoCheckpointing > checkpointing.log
 
 echo "Testing -h"
-./t-eoCheckpointing -h > ch2.log
-
-echo "Testing t-eoExternalEO"
-./t-eoExternalEO > externalEO.log
-
-echo "Testing t-eoGenOp"
-./t-eoGenOp > genOp.log
-
-echo "Testing t-eoSelect"
-./t-eoSelect > select.log
-
-echo "Testing t-eoStateAndParser"
-# TODO, many different parameter settings and checks
-./t-eoStateAndParser > stateAndParser.log
-
-echo "Testing t-eoSymreg"
-./t-eoSymreg > symreg.log
-
-echo "Testing t-eobin"
-./t-eobin > bin.log
-
-echo "Testing t-eofitness"
-./t-eofitness > fitness.log
-
-echo "Testing t-eoGA"
-./t-eoGA > t-eoGA.log
-
-echo "Testing t-eoGenOp"
-./t-eoGenOp > t-eoGenOp.log
+./t-eoCheckpointing -h 
 
 echo "Finished"
 

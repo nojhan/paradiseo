@@ -277,7 +277,6 @@ int main()
 
     print_best<EoType, FitnessType>(pop);
 
-    return 1;
 }
 
 

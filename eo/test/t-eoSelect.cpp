@@ -125,7 +125,7 @@ eoValueParam<unsigned int> tournamentSizeParam = parser.createParam<unsigned int
     if (parser.userNeedsHelp())
       {
         parser.printHelp(cout);
-        exit(1);
+        exit(0);
       }
 
     cout << "Testing the Selections\nParents size = " << pSize 
@@ -164,7 +164,7 @@ eoValueParam<unsigned int> tournamentSizeParam = parser.createParam<unsigned int
     eoStochTournamentSelect<Dummy> stochTourSelect(tRate);
     testSelectOne<Dummy>(stochTourSelect, oRate, "stochTourSelect");
 
-    exit(1);
+    exit(0);
 
     // Fitness scaling
 //     eoFitnessScalingSelect<Dummy> fitScaleSelect(rankingPressure);
@@ -186,7 +186,6 @@ int main(int argc, char **argv)
     catch(exception& e)
     {
         cout << "Exception: " << e.what() << endl;
+        return 1;
     }
-
-    return 1;
 }
