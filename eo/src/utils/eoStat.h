@@ -35,7 +35,10 @@
 
 /**
   Base class for all statistics that need to be calculated
-  over the (unsorted) population (I guess it is not really necessary? MS)
+  over the (unsorted) population 
+  (I guess it is not really necessary? MS. 
+  Depends, there might be reasons to have a stat that is not an eoValueParam,
+  but maybe I'm just kidding myself, MK)
 */
 template <class EOT>
 class eoStatBase : public eoUF<const eoPop<EOT>&, void>
@@ -97,7 +100,7 @@ public :
     eoAverageStat(std::string _description = "Average Fitness") : eoStat<EOT, typename EOT::Fitness>(fitness_type(), _description) {}
 #endif
 
-    static double sumFitness(double _sum, const EOT& _eot)
+    static fitness_type sumFitness(double _sum, const EOT& _eot)
     {
         _sum += _eot.fitness();
         return _sum;
@@ -135,7 +138,7 @@ private :
     template <class T>
     void doit(const eoPop<EOT>& _pop, T)
     {
-        double v = std::accumulate(_pop.begin(), _pop.end(), 0.0, eoAverageStat::sumFitness);
+        fitness_type v = std::accumulate(_pop.begin(), _pop.end(), fitness_type(0.0), eoAverageStat::sumFitness);
 
         value() = v / _pop.size();
     }
@@ -149,6 +152,8 @@ template <class EOT>
 class eoSecondMomentStats : public eoStat<EOT, std::pair<double, double> >
 {
 public :
+    typedef typename EOT::Fitness fitness_type;
+    
     typedef std::pair<double, double> SquarePair;
     eoSecondMomentStats(std::string _description = "Average & Stdev") : eoStat<EOT, SquarePair>(std::make_pair(0.0,0.0), _description) {}
 
@@ -245,6 +250,10 @@ private :
 /* Actually, you shouldn't need to sort the population to get the best fitness
    MS - 17/11/00
 
+   But then again, if another stat needs sorted fitness anyway, getting the best
+   out would be very fast.
+   MK - 09/01/03
+   
 template <class EOT>
 class eoBestFitnessStat : public eoStat<EOT, typename EOT::Fitness >
 {
