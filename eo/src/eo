@@ -38,6 +38,7 @@
 
 #include <eoPop.h>
 #include <eoPopOps.h>
+#include <eoBinOp.h>
 
 #include <eoLottery.h>
 
