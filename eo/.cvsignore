@@ -14,6 +14,10 @@ config.h.in
 config.log
 config.status
 configure
+depcomp
+install-sh
 libtool
+missing
+mkinstalldirs
 stamp-h
 stamp-h.in
