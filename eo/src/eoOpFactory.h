@@ -5,38 +5,43 @@
 // (c) GeNeura Team, 1998
 //-----------------------------------------------------------------------------
 
-#ifndef _EOMONOPFACTORY_H
-#define _EOMONOPFACTORY_H
+#ifndef _EOOPFACTORY_H
+#define _EOOPFACTORY_H
 
 #include <eoFactory.h>
 #include <eoDup.h>
 #include <eoKill.h>
 #include <eoTranspose.h>
+#include <eoXOver2.h>
 
 //-----------------------------------------------------------------------------
 
 /** EO Factory. An instance of the factory class to create monary operators.
 @see eoSelect*/
 template< class EOT>
-class eoMonOpFactory: public eoFactory< eoMonOp<EOT> >  {
+class eoOpFactory: public eoFactory< eoOp<EOT> >  {
 	
 public:
 	
 	/// @name ctors and dtors
 	//{@
 	/// constructor
-	eoMonOpFactory( ) {}
+	eoOpFactory( ) {}
 	
 	/// destructor
-	virtual ~eoMonOpFactory() {}
+	virtual ~eoOpFactory() {}
 	//@}
 
 	/** Another factory method: creates an object from an istream, reading from
 	it whatever is needed to create the object. Usually, the format for the istream will be\\
 	objectType parameter1 parameter2 ... parametern\\
+	If there are problems, an exception is raised; it should be caught at the
+	upper level, because it might be something for that level
+	@param _is an stream from where a single line will be read
+	@throw runtime_exception if the object type is not known
 	*/
-	virtual eoMonOp<EOT>* make(istream& _is) {
-		eoMonOp<EOT> * opPtr;
+	virtual eoOp<EOT>* make(istream& _is) {
+		eoOp<EOT> * opPtr;
 		string objectTypeStr;
 		_is >> objectTypeStr;
 		if  ( objectTypeStr == "eoDup") {
@@ -48,21 +53,17 @@ public:
 		if ( objectTypeStr == "eoTranspose" ) {
 		  opPtr = new eoTranspose<EOT>( );
 		} 
+		if ( objectTypeStr == "eoXOver2" ) {
+		  opPtr = new eoXOver2<EOT>( );
+		} 
 		if ( !opPtr ) {
 		  throw runtime_error( "Incorrect selector type" );
 		}
 		return opPtr;
 	}
 
-	///@name eoObject methods
-	//@{
-	void printOn( ostream& _os ) const {};
-	void readFrom( istream& _is ){};
 
-	/** className is inherited */
-	//@}
-	
 };
 
 
-#endif _EOFACTORY_H
+#endif _EOOPFACTORY_H
