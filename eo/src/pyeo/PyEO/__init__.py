@@ -62,15 +62,15 @@ def SeperatedVolumeMonitor(eoMonitor):
     def __call__(self):
 	pass
 
-class eoStat(eoStatBase, eoValueParamPy):
+class eoStat(eoStatBase, eoValueParam):
     def __init__(self):
 	eoStatBase.__init__(self)
-	eoValueParamPy.__init__(self)
+	eoValueParam.__init__(self)
     
-class eoSortedStat(eoSortedStatBase, eoValueParamPy):
+class eoSortedStat(eoSortedStatBase, eoValueParam):
     def __init__(self):
 	eoSortedStatBase.__init__(self)
-	eoValueParamPy.__init__(self)
+	eoValueParam.__init__(self)
 
 class eoAverageStat(eoStat):
     def __call__(self, pop):

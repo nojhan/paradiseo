@@ -52,6 +52,21 @@ public:
 	
 };
 
+template <typename T>
+struct ValueParam_pickle_suite : boost::python::pickle_suite
+{
+    static
+    boost::python::tuple getstate(const eoValueParam<T>& _param)
+    {
+	return make_tuple(boost::python::str(_param.getValue()));
+    }
+    static
+    void setstate(eoValueParam<T>& _param, boost::python::tuple pickled)
+    {
+	std::string s = extract<std::string>(pickled[0]);
+	_param.setValue(s);
+    }
+};
 
 template <class T, class U>
 U getv(const eoValueParam<T>& v)    { return v.value(); }
@@ -127,7 +142,8 @@ void define_valueParam(std::string prefix)
 	.def("setValueAsString", &eoValueParam<T>::setValue)
 	.def("getValue", getv<T, U>)
 	.def("setValue", setv<T, U>)
-	//.add_property("value", getv<T, U>, setv<T, U>)
+	.add_property("value", getv<T, U>, setv<T, U>)
+	.def_pickle(ValueParam_pickle_suite<T>())
 	;
 }
 
@@ -149,11 +165,11 @@ void valueParam()
     define_valueParam<std::vector<double>, numeric::array >("Vec");
     define_valueParam< std::pair<double, double>, tuple >("Pair");
 
-    class_<ValueParam, bases<eoParam> >("eoValueParamPy", init<>())
+    class_<ValueParam, bases<eoParam> >("eoValueParam", init<>())
 	//.def(init<object, std::string, std::string, char, bool>())
 	//.def(init<object, std::string, std::string, char>())
 	//.def(init<object, std::string, std::string>())
-	//.def(init<object, std::string>())
+	.def(init<object, std::string>())
 	.def("getValueAsString", &ValueParam::getValue)
 	.def("__str__", &ValueParam::getValue)
 	.def("setValueAsString", &ValueParam::setValue)
