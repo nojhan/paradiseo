@@ -188,7 +188,7 @@ void  eoInitRampedHalfAndHalf(eoPop< eoParseTree<FType,Node> > &pop, unsigned in
 	cerr << "EO WARNING: Ramped Half and Half Initialization is now supported by eoParseTreeDepthInit." << endl;
 	cerr << "            This function is now obsolete and might be removed in the future so you should"<< endl;
 	cerr << "            update your code to use: " << endl << endl;
-	cerr << "            eoParseTreeDepth(_max_depth,_initializer,_grow, bool _ramped_half_and_half)" << endl << endl;
+	cerr << "            eoParseTreeDepthInit( _max_depth, _initializer, bool _grow, bool _ramped_half_and_half)" << endl << endl;
 	
 	pop.clear();
 	
