@@ -133,6 +133,7 @@ class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
 	    if (the_max == 1)
 	    { // generate terminals only
 		    typename std::vector<Node>::iterator it = initializor.begin() + rng.random(last_terminal);
+		    it->randomize();
 		    sequence.push_front(*it);
 		    return;
 	    }
