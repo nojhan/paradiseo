@@ -24,24 +24,42 @@ documentation</a></font></font></b>
 <hr WIDTH="100%"><!-- -------------- End of header ------------------ --><!-- ----------------------------------------------- -->
 <center>
 <h1>
-<font color="#FF0000">Tutorial Lesson 4: fully operational EA</font></h1></center>
+<font color="#FF0000">Tutorial Lesson 4: ready-to-use fully operational EA</font></h1></center>
 In this lesson, you will still use the same Evolutionary Algorithm. But
 this time you will have <b><font color="#FF6600">full control of all components</font></b>
-from the <b><font color="#FF6600">command-line or a parameter file</font></b>.
-You can even use the algorithm decribed here without any other knowledge
-of EO, just by writing your fitness function as a plain C++ function. This
-is why this lesson starts with a <a href="#userguide">user's guide</a>,
-most of it being representation-independent, with some parts that are specific
-of respectively the <a href="#binary">binary</a> and the <a href="#real">real</a>
-algorithms.
-<br>However, the ultimate purpose of this tutorial is to be able to do
+from the <b><font color="#FF6600">command-line or a parameter file</font></b>.<br>
+You can even use the algorithm decribed here <b><font color="#FF6600">without any other knowledge
+of EO</font></b>, just by writing your fitness function as a plain C++ function. <br><br>
+
+<b><font color="#000099"><font size=+2>Contents</font></font></b><br>
+<ul>
+<li><b><font color="#FF0000">User's guide</font></b>
+    <ul>
+        <li> <a href="#userguide">Representation independent</a>,
+useful for <b><font color="#FF6600">all</font></b>  applications</li>
+        <li> <a href="#binary">BitEA, the binary version</a>, similar
+to previous lessons</li>
+        <li> <a href="#real">RealEA, the basic real-valued version</a>,
+not efficient - see by yourself!</li>
+        <li> <a href="#ES">RealEA, the self-adaptive Evolution Strategy</a>, best choice for continuous optimization in EO today (December 2004)</li>
+    </ul>
+</li>
+<li><b><font color="#FF0000">Programmer's guide</font></b>: 
+the ultimate purpose of this tutorial is to make you able to do
 your own experiments - and these these will likely fall outside the scope
-of these two programs. This is why you should also read the <a href="#programmerguide">programmer's
-guides</a>, as the structure and <a href="#memory">memory managements</a>
-are here radically different that in the 3 previous lessons - though relying
+of the two ready-to-use programs above. You wil hence need to learn more about
+    <ul>
+         <li> <a href="#programmerguide">Building libraries</a> (in spite of the 
+<a href="eoProgramming.html#templates">template problem</a>)</li>
+         <li> <a href="#memory">Memory management</a>: it is radically
+different that in the 3 previous lessons - though relying  
 of course on the same objects. Note that eoPersistent objects and eoParam
 objects are handled by different mechanisms.
-<br>&nbsp;
+         </li>
+    </ul>
+</li>
+</ul>
+
 <p>
 <hr WIDTH="100%">
 <br><a NAME="userguide"></a><b><font color="#000099"><font size=+2>User's
@@ -462,7 +480,16 @@ operators).</font>
 <hr ALIGN=LEFT SIZE=5 WIDTH="100%">
 <p><a NAME="real"></a><b><font size=+1><font color="#000099">User's guide:</font><font color="#FF0000">Real-valued
 specific parameters</font></font></b>
-<br>The following describes the specific parameters that are available
+<br>
+To run your own real-valued application, write your fitness function
+(see <b><tt><font color="#993300" size=+1>real_value.h</font></font></tt></b>), 
+recompile, and run from the command line <br>
+<center><b><tt><font color="#993300" size=+1>RealEA @RealEA.param</font></tt></b></center><br>
+in order to use sensible parameters! (see <a href="eoLesson3.html#paraminput">Lesson 3</a> 
+for details on the parameter file). 
+But remember that <a href="#ES">Self-adaptive ES</a> will work much better!
+<br><br>
+The following describes the specific parameters that are available
 in programs <b><tt><font color="#993300"><font size=+1>RealEA</font></font></tt></b>
 and <b><tt><font color="#993300"><font size=+1>ESEA</font></font></tt></b>
 to evolve genotypes that are <b><font color="#FF6600">vector&lt;double></font></b>.
@@ -634,8 +661,16 @@ The value of standard deviation for Gaussian mutation - fixed along evolution
 <p>
 <hr ALIGN=LEFT SIZE=5 WIDTH="100%">
 <p><a NAME="ES"></a><b><font size=+1><font color="#000099">User's guide:</font><font color="#FF0000">ES
-with self-adative mutation specific parameters</font></font></b>
-<br>The following describes the specific parameters for program <b><tt><font color="#993300"><font size=+1>ESEA</font></font></tt></b>,
+with self-adative mutation parameters</font></font></b>
+<br>
+To run your own SA-ES application, write your fitness function
+(see <b><tt><font color="#993300" size=+1>real_value.h</font></font></tt></b>), 
+recompile, and run from the command line <br>
+<center><b><tt><font color="#993300" size=+1>ESEA @ESEA.param</font></tt></b></center><br>
+in order to use sensible parameters! (see <a href="eoLesson3.html#paraminput">Lesson 3</a> 
+for details on the parameter file). 
+<br><br>
+The following describes the specific parameters for program <b><tt><font color="#993300"><font size=+1>ESEA</font></font></tt></b>,
 that implements the full Evolution-Strategy self-adaptive mutation mechanism
 - together with specific ES crossover operators. The initialization section
 is the same as the one for plain vector&lt;double> above, so only the opeartor
