@@ -21,10 +21,9 @@ LIBS	 			= $(DEPS)
 
 
 # PLEASE don't break the line (see create_batch.sh)
-
 check_PROGRAMS = t-eoParetoFitness t-eoPareto t-eofitness t-eoRandom t-eobin t-eoVirus t-MGE t-MGE1bit t-MGE-control t-eoStateAndParser t-eoCheckpointing t-eoSSGA t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoReal t-eoVector t-eoESAll t-eoPBIL t-eoFitnessAssembled t-eoFitnessAssembledEA t-eoRoulette t-eoSharing
 
-noinst_headers	= binary_value.h real_value.h
+noinst_headers	= binary_value.h real_value.h RoyalRoad.h
 
 
 # The run_tests script can be used to check various arguments 
@@ -38,11 +37,11 @@ TESTS=$(check_PROGRAMS) run_tests
 t_eoRandom_SOURCES 		= t-eoRandom.cpp
 t_eofitness_SOURCES 		= t-eofitness.cpp
 t_eoFitnessAssembledEA_SOURCES 	= t-eoFitnessAssembledEA.cpp
-t_eobin_SOURCES 		= t-eobin.cpp binary_value.h
-t_eoVirus_SOURCES 		= t-eoVirus.cpp binary_value.h
-t_MGE1bit_SOURCES 		= t-MGE1bit.cpp binary_value.h
-t_MGE_SOURCES 			= t-MGE.cpp binary_value.h
-t_MGE_control_SOURCES 		= t-MGE-control.cpp binary_value.h
+t_eobin_SOURCES 		= t-eobin.cpp
+t_eoVirus_SOURCES 		= t-eoVirus.cpp
+t_MGE1bit_SOURCES 		= t-MGE1bit.cpp
+t_MGE_SOURCES 			= t-MGE.cpp
+t_MGE_control_SOURCES 		= t-MGE-control.cpp
 t_eoStateAndParser_SOURCES 	= t-eoStateAndParser.cpp
 t_eoCheckpointing_SOURCES 	= t-eoCheckpointing.cpp
 t_eoReplacement_SOURCES 	= t-eoReplacement.cpp
@@ -52,10 +51,10 @@ t_eoSymreg_SOURCES 		= t-eoSymreg.cpp
 t_eo_SOURCES 			= t-eo.cpp
 t_eoGenOp_SOURCES 		= t-eoGenOp.cpp
 t_eoVector_SOURCES 		= t-eoVector.cpp
-t_eoGA_SOURCES 			= t-eoGA.cpp binary_value.h
-t_eoReal_SOURCES 		= t-eoReal.cpp real_value.h
-t_eoESAll_SOURCES 		= t-eoESAll.cpp real_value.h
-t_eoSSGA_SOURCES 		= t-eoSSGA.cpp binary_value.h
+t_eoGA_SOURCES 			= t-eoGA.cpp
+t_eoReal_SOURCES 		= t-eoReal.cpp
+t_eoESAll_SOURCES 		= t-eoESAll.cpp
+t_eoSSGA_SOURCES 		= t-eoSSGA.cpp
 t_eoPareto_SOURCES 		= t-eoPareto.cpp 
 t_eoParetoFitness_SOURCES 	= t-eoParetoFitness.cpp 
 t_eoPBIL_SOURCES 		= t-eoPBIL.cpp 
