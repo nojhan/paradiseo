@@ -31,11 +31,13 @@
 #include <string>
 #include <iostream>
 
-#ifdef __GNUC__ 
+#ifdef __GNUC__
+#if __GNUC__ < 3
 	// check for stdlibc++v3 which does have ios_base
 	#ifndef _CPP_BITS_IOSBASE_H 
 	typedef ios ios_base; // not currently defined in GCC
 	#endif
+#endif
 #endif
 
 #if defined(_MSC_VER) && (_MSC_VER < 1300)
