@@ -23,10 +23,11 @@ void eoTimedStateSaver::operator()(void)
         
 #ifdef HAVE_SSTREAM
 	ostringstream os;
+        os << prefix << (now - first_time) << '.' << extension;
 #else
 	ostrstream os;
-#endif
         os << prefix << (now - first_time) << '.' << extension << ends;
+#endif
         state.save(os.str());
     }
 }
@@ -35,10 +36,11 @@ void eoCountedStateSaver::doItNow(void)
 {
 #ifdef HAVE_SSTREAM
 	ostringstream os;
+  os << prefix << counter << '.' << extension;
 #else
 	ostrstream os;
-#endif
   os << prefix << counter << '.' << extension << ends;
+#endif
   state.save(os.str());
 }
 

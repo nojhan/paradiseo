@@ -188,10 +188,11 @@ string eoState::createObjectName(eoObject* obj)
     {
 #ifdef HAVE_SSTREAM
 	ostringstream os;
+        os << obj->className().c_str() << count++;
 #else
         ostrstream os;
-#endif
         os << obj->className().c_str() << count++ << ends;
+#endif
 
         name = os.str();
 
