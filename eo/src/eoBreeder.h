@@ -56,12 +56,13 @@ template<class Chrom> class eoBreeder: public eoTransform<Chrom>
 	  {
 	    eoNaryOp<Chrom>* Nop = static_cast<eoNaryOp<Chrom>* >(op);
 	    eoUniform<unsigned> u(0, pop.size() );
-	    eoPop<Chrom> tmpVec;
-	    tmpVec.push_back( pop[i] );
-	    for ( unsigned i = 0; i < u(); i ++ ) {
-	      tmpVec.push_back( pop[ u() ] );
+	    eoPop<Chrom> inVec, outVec;
+	    inVec.push_back( pop[i] );
+	    unsigned numberOfOperands = u();
+	    for ( unsigned i = 0; i < numberOfOperands; i ++ ) {
+	      inVec.push_back( pop[ u() ] );
 	    }
-	    (*Nop)( tmpVec );
+	    (*Nop)( inVec, outVec );
 	    break;
 	  }
 	}

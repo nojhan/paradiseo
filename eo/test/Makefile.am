@@ -13,7 +13,28 @@ LDADDS = $(top_builddir)/src/libeo.a
 
 ###############################################################################
 
-noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA t-eoNonUniform t-eoUniform t-eoRandom t-parser
+noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA t-eoNonUniform t-eoUniform t-eoRandom t-parser t-eoESFull t-eoESOps t-eoAtomOps
+
+###############################################################################
+
+t_eoAtomOps_SOURCES = t-eoAtomOps.cpp
+t_eoAtomOps_DEPENDENCIES = $(DEPS)
+t_eoAtomOps_LDFLAGS = -lm
+t_eoAtomOps_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoESOps_SOURCES = t-eoESOps.cpp
+t_eoESOps_DEPENDENCIES = $(DEPS)
+t_eoESOps_LDFLAGS = -lm
+t_eoESOps_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoESFull_SOURCES = t-eoESFull.cpp real_value.h
+t_eoESFull_DEPENDENCIES = $(DEPS)
+t_eoESFull_LDFLAGS = -lm
+t_eoESFull_LDADD = $(LDADDS)
 
 ###############################################################################
 

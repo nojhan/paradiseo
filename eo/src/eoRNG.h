@@ -81,6 +81,8 @@
 #ifndef EO_RANDOM_NUMBER_GENERATOR
 #define EO_RANDOM_NUMBER_GENERATOR
 
+#include <ctime>
+
 #include <eoPersistent.h>
 #include <eoObject.h>
 
@@ -107,9 +109,10 @@ class eoRng  : public eoObject, public eoPersistent
 {
 public :
   /**
-     ctor takes a seed not unintentionally defaulted at 42.		
+     ctor takes a random seed; if you want another seed, use reseed
+     @see reseed
   */
-  eoRng(uint32 s = 42U) : state(0), next(0), left(-1), cached(false)
+  eoRng(uint32 s = (uint32) time(0) ) : state(0), next(0), left(-1), cached(false)
   {
     state = new uint32[N+1];
     initialize(s);

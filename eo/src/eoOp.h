@@ -112,8 +112,7 @@ public:
   /// Dtor
   ~eoBinOp () {};
 
-  /** applies operator, to the object. If arity is more than 1,
-   * keeps a copy of the operand in a cache.
+  /** applies operator, to the object. Modifies both operands.
    */
   virtual void operator()( EOType& _eo1, EOType& _eo2 ) const = 0;
 
@@ -167,7 +166,8 @@ public:
 
 #include <eoPop.h>
 /** eoNaryOp is the N-ary operator: genetic operator that takes
- several EOs. It could be called an {\em orgy} operator
+ several EOs. It could be called an {\em orgy} operator. It's a general operator
+ that takes any number of inputs and spits out any number of outputs
 */
 template <class EOType>
 class eoNaryOp: public eoOp<EOType> {
@@ -186,17 +186,17 @@ public:
   
   /** applies randomly operator, to the object.
    */
-  virtual void operator()( eoPop<EOType> & _eop) const = 0;
+  virtual void operator()( const eoPop<EOType> & _in, eoPop<EOType> _out ) const = 0;
   
   /** @name Methods from eoObject
       readFrom and printOn are directly inherited from eoObject.
   */
   //@{
   /** Inherited from eoObject 
-	    @see eoObject
-	*/
+      @see eoObject
+  */
   string className() const {return "eoNaryOp";};
-    //@}
+  //@}
 
 };
 //@}

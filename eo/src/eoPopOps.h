@@ -59,7 +59,7 @@ class eoTransform: public eoObject{
   /** Inherited from eoObject. Returns the class name.
       @see eoObject
   */
-  string className() const {return "eoTransform";};
+  virtual string className() const {return "eoTransform";};
   //@}
   
 };
@@ -92,7 +92,7 @@ class eoSelect: public eoObject{
   /** Inherited from eoObject. Returns the class name.
       @see eoObject
   */
-  string className() const {return "eoSelect";};
+  virtual string className() const {return "eoSelect";};
   //@}
 
 };
@@ -124,7 +124,7 @@ class eoMerge: public eoObject{
   /** Inherited from eoObject. Returns the class name.
       @see eoObject
   */
-  string className() const {return "eoMerge";};
+  virtual string className() const {return "eoMerge";};
   //@}
   
   /// Return the rate to be selected from the original population

@@ -90,6 +90,7 @@ public:
     for ( i=begin(), j=1; i!=end(); i++,j++ ) {
       if( j == _id ) 
 	erase( i );
+      return;
     }
     if ( i == end() ) 
       throw runtime_error( "No such id in eoProportionalOpSel::op\n" );

@@ -76,38 +76,6 @@ void getParams( Parser & parser,
 
 }
 
-/// Uses the parser and returns param values
-void InitRandom( Parser & parser) {
-  unsigned long _seed;
-  try {
-    _seed = parser.getUnsignedLong("-S", "--seed", "0", "Seed for Random number generator" );
-  }
-  catch (UException & e)
-    {
-      cout << e.what() << endl;
-      parser.printHelp();
-      exit(1);
-    }
-  catch (exception & e)
-    {
-      cout << e.what() << endl;
-      exit(1);
-    }
-  if (_seed == 0) {		   // use clock to get a "random" seed
-   struct timeval tval;
-   struct timezone tzp;
-
-   gettimeofday (&tval, &tzp);  // time since midnight January 1, 1970.
-   _seed = tval.tv_usec ;      //  micro seconds
-   char s[32];
-   sprintf(s,"%ld", _seed);
-   parser.setParamValue("--seed", s);	   // so it will be printed out in the status file, and canbe later re-used to re-run EXACTLY the same run
-  }
-  rng.reseed(_seed);
-
-  return;
-}
-
 int main( int argc, char* argv[]) {
   
   unsigned in;

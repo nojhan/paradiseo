@@ -36,7 +36,7 @@ template< class EOT >
 struct eoEvalFuncPtr: public eoEvalFunc<EOT> {
 
   eoEvalFuncPtr( void (* _eval)( EOT& ) )
-    : eoEvalFunc(), evalFunc( _eval ) {};
+    : eoEvalFunc<EOT>(), evalFunc( _eval ) {};
     
     /// Effectively applies the evaluation function to an EO 
     virtual void operator() ( EOT & _eo ) const {

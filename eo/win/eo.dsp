@@ -63,8 +63,8 @@ LIB32=link.exe -lib
 # PROP Output_Dir "eo___Win32_Debug"
 # PROP Intermediate_Dir "eo___Win32_Debug"
 # PROP Target_Dir ""
-# ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
-# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ  /c
+# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ  /c
 # ADD BASE RSC /l 0xc0a /d "_DEBUG"
 # ADD RSC /l 0xc0a /d "_DEBUG"
 BSC32=bscmake.exe
@@ -95,46 +95,6 @@ SOURCE=..\src\eoPrintable.cpp
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
-# Begin Source File
-
-SOURCE=..\src\EO.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\eo1d.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\eoFitness.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\eoNegExp.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\eoNormal.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\eoObject.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\eoProblem.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\eoRnd.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\eoUniform.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\eoVector.h
-# End Source File
 # End Group
 # End Target
 # End Project

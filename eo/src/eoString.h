@@ -83,7 +83,7 @@ public:
 	/** methods that implement the eo1d <em>protocol</em>
 	    @exception out_of_range if _i is larger than EO´s size
 	*/
-	virtual char gene( unsigned _i ) const {
+	virtual char getGene( unsigned _i ) const {
 		if ( _i >= length() ) 
 			throw out_of_range( "out_of_range when reading gene");
 		return (*this)[_i];
@@ -92,10 +92,10 @@ public:
 	/** methods that implement the eo1d <em>protocol</em>
 	    @exception out_of_range if _i is larger than EO´s size
 	*/
-	virtual char& gene( unsigned _i )  {
+	virtual void setGene( unsigned _i, const char& _value )  {
 	  if ( _i >= size() )
 	    throw out_of_range( "out_of_range when writing a gene");
-	  return (*this)[_i];
+	  (*this)[_i] = _value;
 	};
 
 	/** Inserts a value after _i, displacing anything to the right
@@ -130,7 +130,7 @@ public:
 	/** Inherited from eoObject 
 		  @see eoObject
 	*/
-	string className() const {return "eoString";};
+	virtual string className() const {return "eoString";};
     //@}
 	
 

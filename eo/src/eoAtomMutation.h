@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoMutation.h
+// eoAtomMutation.h
 // (c) GeNeura Team, 1998
 /* 
     This library is free software; you can redistribute it and/or
@@ -21,44 +21,57 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
  */
 //-----------------------------------------------------------------------------
-#ifndef _EOMUTATION_H
-#define _EOMUTATION_H
+#ifndef _EOATOMMUTATION_H
+#define _EOATOMMUTATION_H
 
-#include <math.h>
+// STL includes
+#include <iterator>
+
 // EO includes
 #include <eoOp.h>
 #include <eoUniform.h>
+#include <eoRNG.h>
+#include <eoAtomMutator.h>
 
-/** Generic Mutation of an EO. 
-    This is a virtual class, just to establish the interface for the ctor. 
-    Mutation is usually type-specific
+/** Atomic mutation of an EO. Acts on containers, and applies a mutation
+    operator to each element of the container with some probability. EOT must
+    be a container of any tipe
 */
-
 template <class EOT>
-class eoMutation: public eoMonOp<EOT> {
+class eoAtomMutation: public eoMonOp<EOT> {
 public:
+
+#ifdef _MSC_VER
+  typedef EOT::Type Type;
+#else
+  typedef typename EOT::Type Type;
+#endif
+
+  /// 
+  eoAtomMutation(const eoAtomMutator<Type>& _atomMut, const double _rate=0.0) 
+    : eoMonOp< EOT >(), rate(_rate), atomMutator( _atomMut ) {};
   
   ///
-  eoMutation(const double _rate=0.0) : eoMonOp< EOT >(), rate(_rate) {};
-  
-  ///
-  virtual ~eoMutation() {};
+  virtual ~eoAtomMutation() {};
   
   ///
   virtual void operator()( EOT& _eo ) const {
     typename EOT::iterator i;
     for ( i = _eo.begin(); i != _eo.end(); i ++ )
-      applyAt( _eo, *i );
+      if ( rng.flip( rate ) ) {
+	atomMutator( *i );
+      }
   }
   
-  /// To print me on a stream.
-  /// @param os The ostream.
+  /** To print me on a stream.
+      @param os The ostream.
+  */
   void printOn(ostream& os) const {
     os << rate ;
   }
   
-  /// To read me from a stream.
-  /// @param is The istream.
+  /** To read me from a stream.
+      @param is The istream */
   void readFrom(istream& is) {
     is >> rate ;
   }
@@ -72,18 +85,10 @@ public:
   string className() const {return "eoMutation";};
   //@}
 
-protected:
-  double rate;  
-  
 private:  
-#ifdef _MSC_VER
-  typedef EOT::Type Type;
-#else
-  typedef typename EOT::Type Type;
-#endif
-  
-  /// applies operator to one gene in the EO. It is empty, so each descent class must define it.
-  virtual void applyAt( EOT& _eo, unsigned _i ) const = 0 ;
+
+  double rate;  
+  const eoAtomMutator<Type>& atomMutator;
 };
 
 

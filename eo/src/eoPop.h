@@ -138,7 +138,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent {
   /** Inherited from eoObject. Returns the class name.
       @see eoObject
   */
-  string className() const {return "eoPop";};
+  virtual string className() const {return "eoPop";};
     //@}
 
  protected:

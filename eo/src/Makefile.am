@@ -8,5 +8,16 @@ lib_LIBRARIES = libeo.a
 libeo_a_SOURCES =  eoPrintable.cpp eoPersistent.cpp
 
 libeoincdir = $(includedir)/eo
-libeoinc_HEADERS = eo EO.h eoDup.h eoMultiMonOp.h eoPop.h eoUniform.h eoESChrom.h eoNegExp.h eoProblem.h eoVector.h eoFitness.h eoNormal.h eoRnd.h eoXOver2.h eo1d.h eoID.h eoObject.h eoString.h eoAged.h eoKill.h eoOp.h eoTranspose.h eoBin.h eoPrintable.h eoPersistent.h eoLottery.h eoMutation.h eoPopOps.h eoUniform.h eoInsertion.h eoInclusion.h eoBitOp.h eoBitOpFactory.h eo2d.h eo2dVector.h eoData.h eoProportionalOpSel.h eoOpSelector.h eoBreeder.h eoEvalFunc.h eoEvalFuncPtr.h eoEvaluator.h eoTerm.h eoGenTerm.h eoFitTerm.h eoGeneration.h eoAlgo.h eoEasyEA.h eoNonUniform.h eoRNG.h eoParser.h
+libeoinc_HEADERS = EO.h eo eo1d.h eo2d.h eo2dVector.h eoAged.h  eoAlgo.h\
+	eoAtomBitFlip.h  eoAtomCreep.h eoAtomMutation.h eoAtomMutator.h \
+	eoAtomRandom.h eoBin.h eoBitOp.h eoBitOpFactory.h eoBreeder.h\
+	eoData.h eoDup.h eoESChrom.h eoESFullChrom.h eoESFullMut.h eoEasyEA.h\
+	eoEvalFunc.h eoEvalFuncPtr.h eoEvaluator.h eoFitTerm.h eoFitness.h\
+	eoGenTerm.h  eoGeneration.h eoID.h eoInclusion.h eoInsertion.h\
+	eoKill.h eoLottery.h eoMultiMonOp.h eoMutation.h eoNegExp.h\
+	eoNonUniform.h eoNormal.h eoObject.h  eoOp.h  eoOpSelector.h\
+	eoParser.h  eoPersistent.h  eoPop.h eoPopOps.h  eoPrintable.h\
+	eoProblem.h eoProportionalOpSel.h eoRNG.h eoRnd.h  eoString.h\
+	eoTerm.h eoTranspose.h eoUniform.h eoVector.h eoXOver2.h 
+
 
