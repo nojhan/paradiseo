@@ -119,8 +119,8 @@ inline void  eoGnuplot1DMonitor::FirstPlot()
     if (i<vec.size()-1)
       os << ", ";
   }
-  os << "\n";
-  os << '\0';
+  os << '\n';
+  os << std::ends;
 #ifdef HAVE_SSTREAM
   PipeComSend( gpCom, os.str().c_str());
 #else
