@@ -45,6 +45,74 @@
  *     but this sometimes takes a long time!!!
  */
 
+template<class EOT> class eoNormalVecMutation: public eoMonOp<EOT>
+{
+ public:
+  /**
+   * (Default) Constructor.
+   * The bounds are initialized with the global object that says: no bounds.
+   *
+   * @param _sigma the range for uniform nutation
+   * @param _p_change the probability to change a given coordinate
+   */
+  eoNormalVecMutation(double _sigma, const double& _p_change = 1.0):
+    sigma(_sigma), bounds(eoDummyVectorNoBounds), p_change(_p_change) {}
+
+  /**
+   * Constructor with bounds
+   * @param _bounds an eoRealVectorBounds that contains the bounds
+   * @param _sigma the range for uniform nutation
+   * @param _p_change the probability to change a given coordinate
+   *
+   * for each component, the sigma is scaled to the range of the bound, if bounded
+   */
+  eoNormalVecMutation(eoRealVectorBounds & _bounds,
+		    double _sigma, const double& _p_change = 1.0):
+    sigma(_bounds.size(), _sigma), bounds(_bounds), p_change(_p_change) 
+  {
+    // scale to the range - if any
+    for (unsigned i=0; i<bounds.size(); i++)
+      if (bounds.isBounded(i))
+	  sigma[i] *= _sigma*bounds.range(i);
+  }
+
+  /** The class name */
+  virtual std::string className() const { return "eoNormalVecMutation"; }
+
+  /**
+   * Do it!
+   * @param _eo The cromosome undergoing the mutation
+   */
+  bool operator()(EOT& _eo)
+    {
+      bool hasChanged=false;
+      for (unsigned lieu=0; lieu<_eo.size(); lieu++)
+	{
+	  if (rng.flip(p_change))
+	    {
+	      _eo[lieu] += sigma[lieu]*rng.normal();
+	      bounds.foldsInBounds(lieu, _eo[lieu]);
+	      hasChanged = true;
+	    }
+	}
+      return hasChanged;
+    }
+
+private:
+  std::vector<double> sigma;
+  eoRealVectorBounds & bounds;
+  double p_change;
+};
+
+/** Simple normal mutation of a std::vector of real values.
+ *  The stDev is fixed - but it is passed ans stored as a reference, 
+ *  to enable dynamic mutations (see eoOenFithMutation below).
+ *
+ * As for the bounds, the values are here folded back into the bounds.
+ * The other possiblity would be to iterate until we fall inside the bounds -
+ *     but this sometimes takes a long time!!!
+ */
+
 template<class EOT> class eoNormalMutation: public eoMonOp<EOT>
 {
  public:
