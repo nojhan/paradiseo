@@ -85,6 +85,7 @@ public:
   /// Ctor
   eoMonOp()
     : eoOp<EOType>( eoOp<EOType>::unary ) {};
+  virtual string className() const {return "eoMonOp";};
 };
 
 
@@ -98,6 +99,7 @@ public:
   /// Ctor
   eoBinOp()
       :eoOp<EOType>( eoOp<EOType>::binary ) {};
+  virtual string className() const {return "eoBinOp";};
 };
 
 /** Quadratic genetic operator: subclasses eoOp, and defines basically the 
@@ -110,6 +112,7 @@ public:
   /// Ctor
   eoQuadraticOp()
     :eoOp<EOType>( eoOp<EOType>::quadratic ) {};
+  virtual string className() const {return "eoQuadOp";};
 };
 
 
