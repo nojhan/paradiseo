@@ -548,7 +548,7 @@ public:
   }
 
   /** Need a Cpy Ctor because we are allocating memory */
-  eoGeneralIntBounds(const eoGeneralIntBounds & _b)
+  eoGeneralIntBounds(const eoGeneralIntBounds & _b) : eoIntBounds(_b)
   {
     // replicate the embedded bound (I'm pretty sure there is another
     // way to do that !!!

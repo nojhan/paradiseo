@@ -513,7 +513,7 @@ public:
   }
 
   /** Need a Cpy Ctor because we are allocating memory */
-  eoGeneralRealBounds(const eoGeneralRealBounds & _b)
+  eoGeneralRealBounds(const eoGeneralRealBounds & _b):eoRealBounds(_b)
   {
     // replicate the embedded bound (I'm pretty sure there is another
     // way to do that !!!
