@@ -105,6 +105,10 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParameterLoader& _parser, eoState& _state, e
     {
       select = new eoProportionalSelect<EOT>;
     }
+  else if (ppSelect.first == string("Random")) // no argument
+    {
+      select = new eoRandomSelect<EOT>;
+    }
   else
     {
       string stmp = string("Invalid selection: ") + ppSelect.first;
