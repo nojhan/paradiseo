@@ -2,7 +2,7 @@
 #include <iostream>   // cout
 #include <strstream>  // ostrstream, istrstream
 
-#include <paradiseo>
+#include <paradiseo.h>
 #include <ga.h>
 
 typedef eoBit<double> Indi;	// A bitstring with fitness double
