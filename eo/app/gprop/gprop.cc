@@ -18,7 +18,7 @@
 // global variables
 //-----------------------------------------------------------------------------
 
-
+unsigned in, out, hidden;
 
 //-----------------------------------------------------------------------------
 // parameters
@@ -29,6 +29,7 @@ eoValueParam<unsigned> generations(10, "generations", "default generation number
 eoValueParam<double> mut_rate(0.1, "mut_rate", "default mutation rate", 'm');
 eoValueParam<double> xover_rate(0.1, "xover_rate", "default crossover rate", 'x');
 eoValueParam<string> file("", "file", "common part of patterns filenames *.trn *.val and *.tst", 'f');
+eoValueParam<unsigned> hiddenp(8, "hidden", "default number of neurons in hidden layer", 'h');
 
 //-----------------------------------------------------------------------------
 // auxiliar functions
@@ -71,6 +72,7 @@ void arg(int argc, char** argv)
   parser.processParam(mut_rate,    "genetic operators");
   parser.processParam(xover_rate,  "genetic operators");
   parser.processParam(file,        "files");
+  parser.processParam(hiddenp,     "genetic operators");
 
   if (parser.userNeedsHelp())
     {
@@ -85,6 +87,10 @@ void arg(int argc, char** argv)
   phenotype::trn_max = trn_set.size();
   phenotype::val_max = val_set.size();
   phenotype::tst_max = tst_set.size();
+
+  in = trn_set.front().input.size();
+  out = trn_set.front().output.size();
+  hidden = hiddenp.value();
 }
 
 //-----------------------------------------------------------------------------

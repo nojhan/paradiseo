@@ -64,10 +64,15 @@ typedef mlp::net genotype;
 // Chrom
 //-----------------------------------------------------------------------------
 
+extern unsigned in, out, hidden;
+
 class Chrom: public EO<phenotype>, public genotype
 {
 public:
-  Chrom(): genotype(25, 2) {}
+  Chrom(): genotype(in, out, vector<unsigned>(1, hidden)) 
+  {
+    cout << "in = " << in << " out = " << out << " hidden = " << hidden << endl;
+  }
 
   string className() const { return "Chrom"; }
 
