@@ -37,7 +37,7 @@ main()
   eoBinRandom<Chrom> random;
   eoPop<Chrom> pop; 
   
-  for (i = 0; i < POP_SIZE; i++)
+  for (i = 0; i < POP_SIZE; ++i)
     {
       Chrom chrom(CHROM_SIZE);
       random(chrom);
@@ -46,7 +46,7 @@ main()
     }
   
   cout << "population:" << endl;
-  for (i = 0; i < pop.size(); i++)
+  for (i = 0; i < pop.size(); ++i)
     cout << pop[i] << " " << pop[i].fitness() << endl;
 
   eoBinBitFlip<Chrom> bitflip;
@@ -58,8 +58,10 @@ main()
 
   breeder(pop);
 
+  for_each(pop.begin(), pop.end(), binary_value);
+
   cout << "new population:" << endl;
-  for (i = 0; i < pop.size(); i++)
+  for (i = 0; i < pop.size(); ++i)
     cout << pop[i] << " " << pop[i].fitness() << endl;
 
   return 0;
