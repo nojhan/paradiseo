@@ -9,10 +9,10 @@
 
 #include <eo>
 
-/******************************************************************************
- * eoInclusion: A replacement algorithm.
- * Creates a new population by selecting the best individuals from the 
- * breeders and original populations
+/*****************************************************************************
+ * eoInclusion: A replacement algorithm.                                     *
+ * Creates a new population by selecting the best individuals from the       *
+ * breeders and original populations                                         *
  *****************************************************************************/
 
 template<class Chrom> class eoInclusion: public eoMerge<Chrom>
