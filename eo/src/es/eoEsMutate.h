@@ -37,7 +37,7 @@
 #include <es/eoEsSimple.h>
 #include <es/eoEsStdev.h>
 #include <es/eoEsFull.h>
-#include <es/eoEsObjectiveBounds.h>
+#include <es/eoRealBounds.h>
 
 #include <eoOp.h>
 
@@ -73,7 +73,7 @@ public:
         @param _init    proxy class for initializating the three parameters eoEsMutate needs
         @param _bounds  the bounds for the objective variables
     */
-    eoEsMutate(eoEsMutationInit& _init, eoEsObjectiveBounds& _bounds) : bounds(_bounds)
+    eoEsMutate(eoEsMutationInit& _init, eoRealVectorBounds& _bounds) : bounds(_bounds)
     {
         init(EOT(), _init); // initialize on actual type used
     }
@@ -102,9 +102,8 @@ public:
       {
           _eo[i] += _eo.stdev * rng.normal();
       }
+      bounds.foldsInBounds(_eo);
 
-      keepInBounds(_eo);
-  
       _eo.invalidate();
   }
   
@@ -136,8 +135,8 @@ public:
 	    _eo[i] += stdev * rng.normal();
       }
 
-    keepInBounds(_eo);
-  
+      bounds.foldsInBounds(_eo);
+
     _eo.invalidate();
   }
 
@@ -219,34 +218,23 @@ public:
     for (i = 0; i < _eo.size(); i++) 
       _eo[i] += VarStp[i];
 
-    keepInBounds(_eo);
+    bounds.foldsInBounds(_eo);
   
       _eo.invalidate();
-  }
-
-  void keepInBounds(eoFixedLength<FitT, double>& _eo) const
-  {
-      for (unsigned i = 0; i < _eo.size(); ++i)
-      {
-          if (_eo[i] < bounds.minimum(i))
-              _eo[i] = bounds.minimum(i);
-          else if (_eo[i] > bounds.maximum(i))
-              _eo[i] = bounds.maximum(i);
-      }
   }
 
   private :
 
     void init(eoEsSimple<FitT>, eoEsMutationInit& _init)
     {
-        unsigned size = bounds.chromSize();
+        unsigned size = bounds.size();
         TauLcl = _init.TauLcl();
         TauLcl /= sqrt((double) size);
     }
 
     void init(eoEsStdev<FitT>, eoEsMutationInit& _init)
     {
-        unsigned size = bounds.chromSize();
+        unsigned size = bounds.size();
 
         TauLcl = _init.TauLcl();
         TauGlb = _init.TauGlb();
@@ -268,7 +256,7 @@ public:
   double TauGlb;	/* Global factor for mutation of std deviations */
   double TauBeta;	/* Factor for mutation of correlation parameters  */
 
-  eoEsObjectiveBounds& bounds;
+  eoRealVectorBounds& bounds;
 
   static const double stdev_eps;
 };
