@@ -222,7 +222,7 @@ template<class EOT> class eoGenericSegmentCrossover: public eoGenericQuadOp<EOT>
       double r1, r2, fact;
       double alphaMin = -alpha;
       double alphaMax = 1+alpha;  
-      if (alpha == 0.0)		   // no check to perform
+      if ( (alpha == 0.0) || bounds.hasNoBoundAtAll() ) // no check to perform
 	fact = -alpha + rng.uniform(range); // in [-alpha,1+alpha)
       else			   // look for the bounds for fact
 	{
@@ -319,7 +319,7 @@ template<class EOT> class eoGenericArithmeticCrossover:
     {
       unsigned i;
       double r1, r2, fact;
-      if (alpha == 0.0)		   // no check to perform
+      if ( (alpha == 0.0) || bounds.hasNoBoundAtAll() ) // no check to perform
 	  for (i=0; i<_eo1.size(); i++)
 	      {
 		r1=_eo1[i];
@@ -328,7 +328,7 @@ template<class EOT> class eoGenericArithmeticCrossover:
 	    _eo1[i] = fact * r1 + (1-fact) * r2;
 	    _eo2[i] = (1-fact) * r1 + fact * r2;
 	  }
-      else			   // check the bounds
+      else			   // must check the bounds
 	for (i=0; i<_eo1.size(); i++)
 	  {
 	    r1=_eo1[i];

@@ -73,33 +73,71 @@ to the elements of the vector.
 class eoRealBounds
 { 
 public:
+  virtual ~eoRealBounds(){}
+
+  /** Self-Test: true if ***both*** a min and a max
+   */
   virtual bool isBounded(void) = 0;
+
+  /** Self-Test: true if no min ***and*** no max
+   *        hence no further need to test/truncate/fold anything
+   */
+  virtual bool hasNoBoundAtAll(void) = 0;
+
+  /** Self-Test: bounded from below???
+   */
   virtual bool isMinBounded(void) = 0;
+
+  /** Self-Test: bounded from above???
+   */
   virtual bool isMaxBounded(void) = 0;
-  virtual void foldsInBounds(double &) = 0;
+
+  /** Test on a value: is it in bounds?
+   */
   virtual bool isInBounds(double) = 0;
 
-  // accessors  
+  /** Put value back into bounds - by folding back and forth
+   */
+  virtual void foldsInBounds(double &) = 0;
+
+  /** Put value back into bounds - by truncating to a boundary value
+   */
+  virtual void truncate(double &) = 0;
+
+  /** get minimum value 
+   *  @exception if does not exist
+   */  
   virtual double minimum() = 0;
+  /** get maximum value
+   *  @exception if does not exist
+   */  
   virtual double maximum() = 0;
+  /** get range
+   *  @exception if unbounded
+   */  
   virtual double range() = 0;
 
-  // random generators
+  /** random generator of uniform numbers in bounds
+   * @exception if unbounded
+   */
   virtual double uniform(eoRng & _rng = eo::rng) = 0;
 };
 
+/** A default class for unbounded variables
+ */
 class eoRealNoBounds : public eoRealBounds
 {
 public:
   virtual ~eoRealNoBounds(){}
 
   virtual bool isBounded(void) {return false;}
+  virtual bool hasNoBoundAtAll(void) {return true;}
   virtual bool isMinBounded(void) {return false;}
   virtual bool isMaxBounded(void) {return false;}
   virtual void foldsInBounds(double &) {return;}
+  virtual void truncate(double &) {return;}
   virtual bool isInBounds(double) {return true;}
 
-  // accessors  
   virtual double minimum()
   {
     throw logic_error("Trying to get minimum of unbounded eoRealBounds");
@@ -113,17 +151,19 @@ public:
     throw logic_error("Trying to get range of unbounded eoRealBounds");
   }
 
-  // random generators
   virtual double uniform(eoRng & _rng = eo::rng)
   {
     throw logic_error("Trying to generate uniform values in unbounded eoRealBounds");
   }
 };
 
-/* fully bounded == interval */
+//////////////////////////////////////////////////////////////
+// fully bounded == interval
+/////////////////////////////////////////////////////////////
 class eoRealInterval : public eoRealBounds
 {
 public :
+  virtual ~eoRealInterval(){}
   
   /** 
       Simple bounds = minimum and maximum (allowed)
@@ -142,10 +182,11 @@ public :
 
   // description
   virtual bool isBounded(void) {return true;}
+  virtual bool hasNoBoundAtAll(void) {return false;}
   virtual bool isMinBounded(void) {return true;}
   virtual bool isMaxBounded(void) {return true;}
 
-  double uniform(eoRng & _rng = eo::rng)
+  virtual double uniform(eoRng & _rng = eo::rng)
   {
     return repMinimum + _rng.uniform(repRange);
   }  
@@ -161,7 +202,7 @@ public :
   }
 
   // folds a value into bounds
-  void foldsInBounds(double &  _r)
+  virtual void foldsInBounds(double &  _r)
   {
     long iloc;
     double dlargloc = 2 * range() ;
@@ -189,17 +230,171 @@ public :
       }
   }    
 
+  // truncates to the bounds
+  virtual void truncate(double & _r)
+  {
+    if (_r < repMinimum)
+      _r = repMinimum;
+    else if (_r > repMaximum)
+      _r = repMaximum;
+    return;
+  }
+
 private :
   double repMinimum;
   double repMaximum;
   double repRange;			   // to minimize operations ???
 };
 
+//////////////////////////////////////////////////////////////
+// bounded from below
+/////////////////////////////////////////////////////////////
+class eoRealBelowBound : public eoRealBounds
+{
+public :
+  virtual ~eoRealBelowBound(){}  
+  /** 
+      Simple bounds = minimum
+  */
+  eoRealBelowBound(double _min=0) : 
+    repMinimum(_min)
+  {}
+
+  // accessors  
+  virtual double minimum() { return repMinimum; }
+
+  virtual double maximum()
+  {
+    throw logic_error("Trying to get maximum of eoRealBelowBound");
+  }
+  virtual double range()
+  {
+    throw logic_error("Trying to get range of eoRealBelowBound");
+  }
+
+  // random generators
+  virtual double uniform(eoRng & _rng = eo::rng)
+  {
+    throw logic_error("Trying to generate uniform values in eoRealBelowBound");
+  }
+
+  // description
+  virtual bool isBounded(void) {return false;}
+  virtual bool hasNoBoundAtAll(void) {return false;}
+  virtual bool isMinBounded(void) {return true;}
+  virtual bool isMaxBounded(void) {return false;}
+
+  // says if a given double is within the bounds
+  virtual bool isInBounds(double _r)
+  {
+    if (_r < repMinimum)
+      return false;
+    return true;
+  }
+
+  // folds a value into bounds
+  virtual void foldsInBounds(double &  _r)
+  {
+    // easy as a pie: symmetry w.r.t. minimum
+    if (_r < repMinimum)	   // nothing to do otherwise
+      _r = 2*repMinimum - _r;
+    return ;
+  }    
+
+  // truncates to the bounds
+  virtual void truncate(double & _r)
+  {
+    if (_r < repMinimum)
+      _r = repMinimum;
+    return;
+  }
+private :
+  double repMinimum;
+};
+
+//////////////////////////////////////////////////////////////
+// bounded from above
+/////////////////////////////////////////////////////////////
+class eoRealAboveBound : public eoRealBounds
+{
+public :
+  virtual ~eoRealAboveBound(){}
+  
+  /** 
+      Simple bounds = minimum
+  */
+  eoRealAboveBound(double _max=0) : 
+    repMaximum(_max)
+  {}
+
+  // accessors  
+  virtual double maximum() { return repMaximum; }
+
+  virtual double minimum()
+  {
+    throw logic_error("Trying to get minimum of eoRealAboveBound");
+  }
+  virtual double range()
+  {
+    throw logic_error("Trying to get range of eoRealAboveBound");
+  }
+
+  // random generators
+  virtual double uniform(eoRng & _rng = eo::rng)
+  {
+    throw logic_error("Trying to generate uniform values in eoRealAboveBound");
+  }
+
+  // description
+  virtual bool isBounded(void) {return false;}
+  virtual bool hasNoBoundAtAll(void) {return false;}
+  virtual bool isMinBounded(void) {return false;}
+  virtual bool isMaxBounded(void) {return true;}
+
+  // says if a given double is within the bounds
+  virtual bool isInBounds(double _r)
+  {
+    if (_r > repMaximum)
+      return false;
+    return true;
+  }
+
+  // folds a value into bounds
+  virtual void foldsInBounds(double &  _r)
+  {
+    // easy as a pie: symmetry w.r.t. maximum
+    if (_r > repMaximum)	   // nothing to do otherwise
+      _r = 2*repMaximum - _r;
+    return ;
+  }    
+
+  // truncates to the bounds
+  virtual void truncate(double & _r)
+  {
+    if (_r > repMaximum)
+      _r = repMaximum;
+    return;
+  }
+
+private :
+  double repMaximum;
+};
+
+/////////////////////////////////////////////////////////////////////
+// Vectorized versions
+/////////////////////////////////////////////////////////////////////
 
 /** 
 Class eoRealVectorBounds implements the vectorized version: 
 it is basically a vector of eoRealBounds * and forwards all request
 to the elements of the vector.
+Probably it would have been cleaner if there had been an empty base class
+from which eoRealVectorBounds AND eoRealVectorNoBounds would have derived.
+This is because I started to write eoRealVectorNoBounds as a 
+   vector<eoRealBounds *>  whose compoenents would have been eoRealNoBounds
+   but then realize that you don't necessarily have the dimension 
+   when construction this vector - hence I added the eoRealVectorNoBounds ...
+Anyone with extra time in his agenda is welcome to change that :-)
 */
 class eoRealVectorBounds : public vector<eoRealBounds *>
 { 
@@ -207,14 +402,13 @@ public:
   // virtual desctructor (to avoid warining?)
   virtual ~eoRealVectorBounds(){}
 
-  // Default Ctor
+  /** Default Ctor
+   */
   eoRealVectorBounds() : 
     vector<eoRealBounds *>(0) {}
 
-  /** 
-      Simple bounds = minimum and maximum (allowed)
+  /** Simple bounds = minimum and maximum (allowed)
   */
-  // Ctor: same bonds for everybody, explicit
   eoRealVectorBounds(unsigned _dim, double _min, double _max) : 
     vector<eoRealBounds *>(_dim, new eoRealInterval(_min, _max))
   {
@@ -222,7 +416,8 @@ public:
       throw std::logic_error("Void range in eoRealVectorBounds");
   }
 
-  // Ctor: same bonds for everybody, given as a eoRealBounds
+  /** Ctor: same bonds for everybody, given as an eoRealBounds
+  */
   eoRealVectorBounds(unsigned _dim, eoRealBounds & _bounds) : 
     vector<eoRealBounds *>(_dim, &_bounds)
   {}
@@ -265,36 +460,69 @@ public:
     return true;
   }
 
-  // these do not make any sense as vectors!
+  /** Self-test: true iff i_th component has no bounds at all
+   */
+  virtual bool hasNoBoundAtAll(unsigned _i) 
+  { 
+    return (*this)[_i]->hasNoBoundAtAll();
+  }
+ 
+  /** Self-test: true iff all components have no bound at all
+   */
+  virtual bool hasNoBoundAtAll(void) 
+  {
+    for (unsigned i=0; i<size(); i++)
+      if (! (*this)[i]->hasNoBoundAtAll())
+	return false;
+    return true;
+  }
+
   virtual bool isMinBounded(unsigned _i) 
   { return (*this)[_i]->isMinBounded();} ;
 
   virtual bool isMaxBounded(unsigned _i) 
   { return (*this)[_i]->isMaxBounded();} ;
 
-  /** Modifies a real value so that it stays in the bounds - i_th component
+  /** Folds a real value back into the bounds - i_th component
    */
   virtual void foldsInBounds(unsigned _i, double & _r)
   {
     (*this)[_i]->foldsInBounds(_r);
   }
 
-  /** Modifies a vector of real value so that it stays in the bounds
+  /** Folds all variables of a vector of real values into the bounds
    */
   virtual void foldsInBounds(vector<double> & _v)
   {
    for (unsigned i=0; i<size(); i++)
      {
-       foldsInBounds(i, _v[i]);
+       (*this)[i]->foldsInBounds(_v[i]);
      }    
   }
 
-  /** test: is i_th component within the bounds
+  /** Truncates a real value to the bounds - i_th component
+   */
+  virtual void truncate(unsigned _i, double & _r)
+  {
+    (*this)[_i]->truncate(_r);
+  }
+
+  /** truncates all variables of a vector of real values to the bounds
+   */
+  virtual void truncate(vector<double> & _v)
+  {
+   for (unsigned i=0; i<size(); i++)
+     {
+       (*this)[i]->truncate(_v[i]);
+     }    
+  }
+
+  /** test: is i_th component within the bounds?
    */
   virtual bool isInBounds(unsigned _i, double _r)
   { return (*this)[_i]->isInBounds(_r); }
 
-  /** test: are ALL components within the bounds
+  /** test: are ALL components within the bounds?
    */
   virtual bool isInBounds(vector<double> _v)
   {
@@ -304,11 +532,15 @@ public:
     return true;
   }
 
-  // accessors  
+  /** Accessors: will raise an exception if these do not exist
+   */
   virtual double minimum(unsigned _i) {return (*this)[_i]->minimum();}
   virtual double maximum(unsigned _i) {return (*this)[_i]->maximum();}
   virtual double range(unsigned _i) {return (*this)[_i]->range();}
 
+  /** Computes the average range
+   *  An exception will be raised if one of the component is unbounded
+   */
   virtual double averageRange() 
   {
     double r=0.0;
@@ -318,6 +550,7 @@ public:
   }
 
   /** Generates a random number in i_th range
+   *  An exception will be raised if one of the component is unbounded
    */
   virtual double uniform(unsigned _i, eoRng & _rng = eo::rng)
   { 
@@ -326,6 +559,7 @@ public:
   }
 
   /** fills a vector with uniformly chosen variables in bounds
+   *  An exception will be raised if one of the component is unbounded
    */
   void uniform(vector<double> & _v, eoRng & _rng = eo::rng)
   {
@@ -338,6 +572,8 @@ public:
 };
 
 /** the dummy unbounded eoRealVectorBounds: usefull if you don't need bounds!
+ * everything is inlined.
+ * Warning: we do need this class, and not only a vector<eoRealNoBounds *>
  */
 class eoRealVectorNoBounds: public eoRealVectorBounds
 { 
@@ -354,11 +590,18 @@ public:
   
   virtual bool isBounded(unsigned)  {return false;}
   virtual bool isBounded(void)   {return false;}
+
+  virtual bool hasNoBoundAtAll(unsigned)  {return true;}
+  virtual bool hasNoBoundAtAll(void)  {return true;}
+
   virtual bool isMinBounded(unsigned)   {return false;}
   virtual bool isMaxBounded(unsigned)   {return false;}
 
   virtual void foldsInBounds(unsigned, double &) {return;}
   virtual void foldsInBounds(vector<double> &) {return;}
+
+  virtual void truncate(unsigned, double &) {return;}
+  virtual void truncate(vector<double> &) {return;}
 
   virtual bool isInBounds(unsigned, double) {return true;}
   virtual bool isInBounds(vector<double>) {return true;}
@@ -366,32 +609,32 @@ public:
   // accessors  
   virtual double minimum(unsigned)
   {
-    throw logic_error("Trying to get minimum of unbounded eoRealBounds");
+    throw logic_error("Trying to get minimum of eoRealVectorNoBounds");
   }
   virtual double maximum(unsigned)
   {
-    throw logic_error("Trying to get maximum of unbounded eoRealBounds");
+    throw logic_error("Trying to get maximum of eoRealVectorNoBounds");
   }
   virtual double range(unsigned)
   {
-    throw logic_error("Trying to get range of unbounded eoRealBounds");
+    throw logic_error("Trying to get range of eoRealVectorNoBounds");
   }
 
   virtual double averageRange() 
   {
-    throw logic_error("Trying to get average range of unbounded eoRealBounds");
+    throw logic_error("Trying to get average range of eoRealVectorNoBounds");
   }
 
   // random generators
   virtual double uniform(unsigned, eoRng & _rng = eo::rng)
   {
-    throw logic_error("No uniform distribution on unbounded eoRealBounds");
+    throw logic_error("No uniform distribution on eoRealVectorNoBounds");
   }
 
   // fills a vector with uniformly chosen variables in bounds
   void uniform(vector<double> &, eoRng & _rng = eo::rng)
   {
-    throw logic_error("No uniform distribution on unbounded eoRealBounds");
+    throw logic_error("No uniform distribution on eoRealVectorNoBounds");
   }
 
 };
