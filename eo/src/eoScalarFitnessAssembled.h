@@ -142,7 +142,12 @@ public:
 
   //! Overload push_back()
   void push_back(const ScalarType& _val, const std::string& _descr ){
-    std::vector<ScalarType>::push_back( _val );	
+#ifdef _MSC_VER
+    typedef std::vector<ScalarType> myvector;
+    myvector::push_back( _val );
+#else
+    std::vector<ScalarType>::push_back( _val );
+#endif
     FitnessTraits::setDescription( size()-1, _descr );
   }
 
