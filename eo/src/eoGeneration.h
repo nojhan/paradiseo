@@ -28,6 +28,7 @@
 //-----------------------------------------------------------------------------
 
 #include <eoAlgo.h>     // eoPop
+#include <eoEvalFunc.h> 
 #include <eoPopOps.h>  // eoSelect, eoTranform, eoMerge
 
 //-----------------------------------------------------------------------------
@@ -43,8 +44,14 @@ template<class Chrom> class eoGeneration: public eoAlgo<Chrom>
 	       eoMerge<Chrom>&     _replace,
 	       eoEvalFunc<Chrom>& _evaluator):
     select(_select), transform(_transform), 
-    replace(_replace), evaluator( _evaluator) {}
-  
+    replace(_replace), evaluator( _evaluator) {};
+
+  /// Copy Constructor.
+  eoGeneration(eoGeneration<Chrom>& _gen):
+    select(_gen.select), transform(_gen.transform), 
+    replace(_gen.replace), evaluator( _gen.evaluator ) {};
+
+
   /// Apply one generation of evolution to the population.
   virtual void operator()(eoPop<Chrom>& pop) {
       eoPop<Chrom> breeders;      

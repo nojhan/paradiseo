@@ -1,8 +1,8 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoEvalFunc.h
-// (c) GeNeura Team, 1998
+// eoTerm.h
+// (c) GeNeura Team, 1999
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -22,29 +22,29 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef eoEvalFunc_H
-#define eoEvalFunc_H
+#ifndef _EOTERM_H
+#define _EOTERM_H
 
-/** Evaluate: takes one EO and sets its "fitness" property
- * returning this fitness also. That is why EOT is passed by
- * non-const reference: it must be altered within evaluate.\\
+#include <eoPop.h>
 
- The requirements on the types with which this class is to be
- instantiated with are null, or else, they depend on the particular
- class it's going to be applied to; EO does not impose any requirement 
- on it. If you subclass this abstract class, and use it to evaluate an 
- EO, the requirements on this EO will depend on the evaluator.
+/** Termination condition for the genetic algorithm
+ * Takes the population as input, returns true for continue,
+ * false for termination
  */
-template<class EOT> struct eoEvalFunc {
+template< class EOT>
+class eoTerm {
+public:
 
-#ifdef _MSC_VER
-	typedef EOT::Fitness EOFitT;
-#else
-	typedef typename EOT::Fitness EOFitT;
-#endif
+	/// Ctors/dtors
+	virtual ~eoTerm() {};
 
-  /// Effectively applies the evaluation function to an EO or urEO
-  virtual void operator() ( EOT & _eo ) const = 0;
+	/** Returns false if the training has to stop, true if it
+	 continues \\
+	 It is non-const since it might change the internal state
+	 of the object, for instance, updating a counter
+	*/
+	virtual bool operator() ( const eoPop< EOT >& _pop ) = 0 ;
+	
 };
 
 #endif

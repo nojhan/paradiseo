@@ -87,7 +87,7 @@ LDADDS = $(top_builddir)/src/libeo.a
 
 ###############################################################################
 
-noinst_PROGRAMS = t-eogeneration t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery
+noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA
 
 ###############################################################################
 
@@ -95,6 +95,13 @@ t_eogeneration_SOURCES = t-eogeneration.cpp
 t_eogeneration_DEPENDENCIES = $(DEPS)
 t_eogeneration_LDFLAGS = -lm
 t_eogeneration_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoEasyEA_SOURCES = t-eoEasyEA.cpp
+t_eoEasyEA_DEPENDENCIES = $(DEPS)
+t_eoEasyEA_LDFLAGS = -lm
+t_eoEasyEA_LDADD = $(LDADDS)
 
 ###############################################################################
 
@@ -146,6 +153,13 @@ t_eolottery_SOURCES = t-eolottery.cpp
 t_eolottery_DEPENDENCIES = $(DEPS)
 t_eolottery_LDFLAGS = -lm
 t_eolottery_LDADD = $(LDADDS) 
+
+###############################################################################
+
+t_eo2dVector_SOURCES = t-eo2dVector.cc
+t_eo2dVector_DEPENDENCIES = $(DEPS) 
+t_eo2dVector_LDFLAGS = -lm 
+t_eo2dVector_LDADD = $(LDADDS) 
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES = 
 PROGRAMS =  $(noinst_PROGRAMS)
@@ -155,7 +169,6 @@ DEFS = @DEFS@ -I. -I$(srcdir)
 CPPFLAGS = @CPPFLAGS@
 LDFLAGS = @LDFLAGS@
 LIBS = @LIBS@
-t_eogeneration_OBJECTS =  t-eogeneration.o
 t_eobreeder_OBJECTS =  t-eobreeder.o
 t_eoinclusion_OBJECTS =  t-eoinclusion.o
 t_eoinsertion_OBJECTS =  t-eoinsertion.o
@@ -169,6 +182,9 @@ t_eoproblem_DEPENDENCIES =
 t_eobin_OBJECTS =  t-eobin.o
 t_eobin_LDFLAGS = 
 t_eolottery_OBJECTS =  t-eolottery.o
+t_eo2dVector_OBJECTS =  t-eo2dVector.o
+t_eogeneration_OBJECTS =  t-eogeneration.o
+t_eoEasyEA_OBJECTS =  t-eoEasyEA.o
 CXXFLAGS = @CXXFLAGS@
 CXXCOMPILE = $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -181,15 +197,16 @@ DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
 
 TAR = gtar
 GZIP_ENV = --best
-DEP_FILES =  .deps/t-eo.P .deps/t-eobin.P .deps/t-eobreeder.P \
-.deps/t-eofitness.P .deps/t-eogeneration.P .deps/t-eoinclusion.P \
-.deps/t-eoinsertion.P .deps/t-eolottery.P .deps/t-eoproblem.P
-SOURCES = $(t_eogeneration_SOURCES) $(t_eobreeder_SOURCES) $(t_eoinclusion_SOURCES) $(t_eoinsertion_SOURCES) $(t_eo_SOURCES) $(t_eofitness_SOURCES) $(t_eoproblem_SOURCES) $(t_eobin_SOURCES) $(t_eolottery_SOURCES)
-OBJECTS = $(t_eogeneration_OBJECTS) $(t_eobreeder_OBJECTS) $(t_eoinclusion_OBJECTS) $(t_eoinsertion_OBJECTS) $(t_eo_OBJECTS) $(t_eofitness_OBJECTS) $(t_eoproblem_OBJECTS) $(t_eobin_OBJECTS) $(t_eolottery_OBJECTS)
+DEP_FILES =  .deps/t-eo.P .deps/t-eo2dVector.P .deps/t-eoEasyEA.P \
+.deps/t-eobin.P .deps/t-eobreeder.P .deps/t-eofitness.P \
+.deps/t-eogeneration.P .deps/t-eoinclusion.P .deps/t-eoinsertion.P \
+.deps/t-eolottery.P .deps/t-eoproblem.P
+SOURCES = $(t_eobreeder_SOURCES) $(t_eoinclusion_SOURCES) $(t_eoinsertion_SOURCES) $(t_eo_SOURCES) $(t_eofitness_SOURCES) $(t_eoproblem_SOURCES) $(t_eobin_SOURCES) $(t_eolottery_SOURCES) $(t_eo2dVector_SOURCES) $(t_eogeneration_SOURCES) $(t_eoEasyEA_SOURCES)
+OBJECTS = $(t_eobreeder_OBJECTS) $(t_eoinclusion_OBJECTS) $(t_eoinsertion_OBJECTS) $(t_eo_OBJECTS) $(t_eofitness_OBJECTS) $(t_eoproblem_OBJECTS) $(t_eobin_OBJECTS) $(t_eolottery_OBJECTS) $(t_eo2dVector_OBJECTS) $(t_eogeneration_OBJECTS) $(t_eoEasyEA_OBJECTS)
 
 all: all-redirect
 .SUFFIXES:
-.SUFFIXES: .S .c .cpp .lo .o .s
+.SUFFIXES: .S .c .cc .cpp .lo .o .s
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
 	cd $(top_srcdir) && $(AUTOMAKE) --gnu test/Makefile
 
@@ -239,10 +256,6 @@ distclean-libtool:
 
 maintainer-clean-libtool:
 
-t-eogeneration: $(t_eogeneration_OBJECTS) $(t_eogeneration_DEPENDENCIES)
-	@rm -f t-eogeneration
-	$(CXXLINK) $(t_eogeneration_LDFLAGS) $(t_eogeneration_OBJECTS) $(t_eogeneration_LDADD) $(LIBS)
-
 t-eobreeder: $(t_eobreeder_OBJECTS) $(t_eobreeder_DEPENDENCIES)
 	@rm -f t-eobreeder
 	$(CXXLINK) $(t_eobreeder_LDFLAGS) $(t_eobreeder_OBJECTS) $(t_eobreeder_LDADD) $(LIBS)
@@ -274,6 +287,22 @@ t-eobin: $(t_eobin_OBJECTS) $(t_eobin_DEPENDENCIES)
 t-eolottery: $(t_eolottery_OBJECTS) $(t_eolottery_DEPENDENCIES)
 	@rm -f t-eolottery
 	$(CXXLINK) $(t_eolottery_LDFLAGS) $(t_eolottery_OBJECTS) $(t_eolottery_LDADD) $(LIBS)
+
+t-eo2dVector: $(t_eo2dVector_OBJECTS) $(t_eo2dVector_DEPENDENCIES)
+	@rm -f t-eo2dVector
+	$(CXXLINK) $(t_eo2dVector_LDFLAGS) $(t_eo2dVector_OBJECTS) $(t_eo2dVector_LDADD) $(LIBS)
+
+t-eogeneration: $(t_eogeneration_OBJECTS) $(t_eogeneration_DEPENDENCIES)
+	@rm -f t-eogeneration
+	$(CXXLINK) $(t_eogeneration_LDFLAGS) $(t_eogeneration_OBJECTS) $(t_eogeneration_LDADD) $(LIBS)
+
+t-eoEasyEA: $(t_eoEasyEA_OBJECTS) $(t_eoEasyEA_DEPENDENCIES)
+	@rm -f t-eoEasyEA
+	$(CXXLINK) $(t_eoEasyEA_LDFLAGS) $(t_eoEasyEA_OBJECTS) $(t_eoEasyEA_LDADD) $(LIBS)
+.cc.o:
+	$(CXXCOMPILE) -c $<
+.cc.lo:
+	$(LTCXXCOMPILE) -c $<
 .cpp.o:
 	$(CXXCOMPILE) -c $<
 .cpp.lo:
@@ -354,6 +383,25 @@ maintainer-clean-depend:
 %.lo: %.c
 	@echo '$(LTCOMPILE) -c $<'; \
 	$(LTCOMPILE) -Wp,-MD,.deps/$(*F).pp -c $<
+	@-sed -e 's/^\([^:]*\)\.o[ 	]*:/\1.lo \1.o :/' \
+	  < .deps/$(*F).pp > .deps/$(*F).P; \
+	tr ' ' '\012' < .deps/$(*F).pp \
+	  | sed -e 's/^\\$$//' -e '/^$$/ d' -e '/:$$/ d' -e 's/$$/ :/' \
+	    >> .deps/$(*F).P; \
+	rm -f .deps/$(*F).pp
+
+%.o: %.cc
+	@echo '$(CXXCOMPILE) -c $<'; \
+	$(CXXCOMPILE) -Wp,-MD,.deps/$(*F).pp -c $<
+	@-cp .deps/$(*F).pp .deps/$(*F).P; \
+	tr ' ' '\012' < .deps/$(*F).pp \
+	  | sed -e 's/^\\$$//' -e '/^$$/ d' -e '/:$$/ d' -e 's/$$/ :/' \
+	    >> .deps/$(*F).P; \
+	rm .deps/$(*F).pp
+
+%.lo: %.cc
+	@echo '$(LTCXXCOMPILE) -c $<'; \
+	$(LTCXXCOMPILE) -Wp,-MD,.deps/$(*F).pp -c $<
 	@-sed -e 's/^\([^:]*\)\.o[ 	]*:/\1.lo \1.o :/' \
 	  < .deps/$(*F).pp > .deps/$(*F).P; \
 	tr ' ' '\012' < .deps/$(*F).pp \

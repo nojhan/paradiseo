@@ -1,8 +1,8 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoEvalFunc.h
-// (c) GeNeura Team, 1998
+// eoGenTerm.h
+// (c) GeNeura Team, 1999
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -22,29 +22,43 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef eoEvalFunc_H
-#define eoEvalFunc_H
+#ifndef _EOFITTERM_H
+#define _EOFITTERM_H
 
-/** Evaluate: takes one EO and sets its "fitness" property
- * returning this fitness also. That is why EOT is passed by
- * non-const reference: it must be altered within evaluate.\\
+#include <eoTerm.h>
 
- The requirements on the types with which this class is to be
- instantiated with are null, or else, they depend on the particular
- class it's going to be applied to; EO does not impose any requirement 
- on it. If you subclass this abstract class, and use it to evaluate an 
- EO, the requirements on this EO will depend on the evaluator.
- */
-template<class EOT> struct eoEvalFunc {
 
-#ifdef _MSC_VER
-	typedef EOT::Fitness EOFitT;
-#else
-	typedef typename EOT::Fitness EOFitT;
-#endif
+/** Fitness termination: terminates after a the difference between the
+fitness of the best individual and a maximum fitness to achieve is less
+than certain number called epsilon., i.e., |maximum-fitness|<epsilon
+*/
+template< class EOT>
+class eoFitTerm: public eoTerm<EOT> {
+public:
 
-  /// Effectively applies the evaluation function to an EO or urEO
-  virtual void operator() ( EOT & _eo ) const = 0;
+	/// Ctors/dtors
+	eoFitTerm( const float _maximum, const float _epsilon )
+		: eoTerm<EOT> (), maximum( _maximum ), epsilon(_epsilon){};
+
+	/// Copy ctor
+	eoFitTerm( const eoFitTerm&  _t )
+		: eoTerm<EOT> ( _t ), maximum( _t.maximum ), 
+	  epsilon(_t.epsilon){};
+
+	///
+	virtual ~eoFitTerm() {};
+
+	/** Returns false when a certain number of generations is
+	* reached */
+	virtual bool operator() ( const eoPop<EOT>& _vEO ) {
+	  float bestFitness=_vEO[0].fitness();
+	  float dif=bestFitness-maximum;
+	  dif=(dif<0)?-dif:dif;
+	  return (dif>epsilon ) || (bestFitness > maximum);
+	}
+
+private:
+	float maximum, epsilon;
 };
 
 #endif
