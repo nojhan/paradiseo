@@ -183,8 +183,8 @@ class eoDominanceMap : public eoUF<const eoPop<EoType>&, void>, public std::vect
     {
       for (unsigned j = 0; j < size(); ++j)
       {
-        if (operator[](i)[j])
-          result[i]++;
+        if (operator[](i)[j]) // i dominates j
+          result[j]++;
       }
     }
 
@@ -205,7 +205,7 @@ class eoDominanceMap : public eoUF<const eoPop<EoType>&, void>, public std::vect
     {
       for (unsigned j = 0; j < size(); ++j)
       {
-        if (operator[](j)[i])
+        if (operator[](i)[j]) // i dominates j
           result[i]++;
       }
     }

@@ -27,10 +27,11 @@
 
 //-----------------------------------------------------------------------------
 
-#include <stdexcept>       // runtime_error 
+#include <stdexcept>       // runtime_error
 #include <eoObject.h>      // eoObject
 #include <eoPersistent.h>  // eoPersistent
 
+/// Functions for reading and writing non-scalar fitnesses, should probably go to seperate file
 template <class T>
 ostream& print_fitness(ostream& _os, const std::vector<T>& vec)
 {
@@ -39,18 +40,21 @@ ostream& print_fitness(ostream& _os, const std::vector<T>& vec)
   return _os;
 }
 
+/// Functions for reading and writing non-scalar fitnesses, should probably go to seperate file
 template <class T, class U>
 ostream& print_fitness(ostream& _os, const std::pair<T, U>& pair)
 {
   return _os << pair.first << ' ' << pair.second;
 }
 
+/// Functions for reading and writing non-scalar fitnesses, should probably go to seperate file
 template <class T>
 ostream& print_fitness(ostream& _os, const T& t)
 { // general, try operator<<
   return _os << t;
 }
 
+/// Functions for reading and writing non-scalar fitnesses, should probably go to seperate file
 template <class T>
 istream& read_fitness(istream& _is, vector<T>& vec)
 {
@@ -65,6 +69,7 @@ istream& read_fitness(istream& _is, vector<T>& vec)
   return _is;
 }
 
+/// Functions for reading and writing non-scalar fitnesses, should probably go to seperate file
 template <class T, class U>
 istream& read_fitness(istream& _is, pair<T, U>& pair)
 {
@@ -72,6 +77,8 @@ istream& read_fitness(istream& _is, pair<T, U>& pair)
   _is >> pair.second;
   return _is;
 }
+
+/// Functions for reading and writing non-scalar fitnesses, should probably go to seperate file
 template <class T>
 istream& read_fitness(istream& _is, T& t)
 {
