@@ -1,18 +1,10 @@
-###############################################################################
-##
 ## Makefile.am for eo/doc
-##
-###############################################################################
 
 
-EXTRA_DIST 		= eo.cfg foot.html \
-			$(srcdir)/html/* \
-			$(srcdir)/latex/* \
-			$(srcdir)/man/*
-
+EXTRA_DIST 		= eo.cfg foot.html
 
 doc:
-			cd $(srcdir) && $(DOXYGEN) eo.cfg && touch eo.cfg
+			cd $(srcdir) && $(DOXYGEN) eo.cfg
 
 clean-local:
-			cd $(srcdir) && rm -rf html latex man && touch eo.cfg
+			cd $(srcdir) && rm -rf html latex man

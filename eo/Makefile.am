@@ -19,7 +19,10 @@ IDXDIR 		= ~/index
 
 
 dist-hook:
-		$(MAKE) doc
+		$(MAKE) documentation
+		cp -p -r $(srcdir)/doc/html $(srcdir)/doc/latex $(srcdir)/doc/man $(distdir)/doc/
 
-doc:    	$(srcdir)/doc/eo.cfg
+documentation:
 		cd doc && $(MAKE) doc && cd ..
+
+doc: 		documentation
