@@ -484,7 +484,7 @@ template<class EOT> class eoRealUXover: public eoQuadOp<EOT>
       for (unsigned int i=0; i<_eo1.size(); i++)
 	{
 	  if (rng.flip(preference))
-	    if (_eo1[i] == _eo2[i])
+	    if (_eo1[i] != _eo2[i])
 	      {
 		double tmp = _eo1[i];
 	      _eo1[i]=_eo2[i];
