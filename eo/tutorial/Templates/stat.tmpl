@@ -50,7 +50,7 @@ public :
     // START Code for computing the statistics - in tmpStat
       // tmpStat = blablabla
     // END   Code for computing the statistics
-      value() = tmpStat;      // store the stat in the eoParam value() field
+      eoStat<EOT,double>::value() = tmpStat;      // store the stat in the eoParam value() field
     }
 
   virtual std::string className(void) const { return "eoMyStructStat"; }
