@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mkeijzer@dhi.dk
-CVS Info: $Date: 2001-04-03 10:08:07 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoFileMonitor.h,v 1.9 2001-04-03 10:08:07 jmerelo Exp $ $Author: jmerelo $ 
+CVS Info: $Date: 2002-12-09 21:04:47 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoFileMonitor.h,v 1.10 2002-12-09 21:04:47 evomarc Exp $ $Author: evomarc $ 
 
  */
 //-----------------------------------------------------------------------------
@@ -47,7 +47,7 @@ class eoFileMonitor : public eoMonitor
 public :
     eoFileMonitor(std::string _filename, std::string _delim = " ", 
 		  bool _keep = false) : 
-      filename(_filename), delim(_delim), keep(keep)
+      filename(_filename), delim(_delim), keep(_keep)
   {
     if (! _keep)
       {
