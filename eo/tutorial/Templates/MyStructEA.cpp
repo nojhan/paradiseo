@@ -92,14 +92,14 @@ eoContinue<Indi>& make_continue(eoParser& _parser, eoState& _state, eoEvalFuncCo
 
 // outputs (stats, population dumps, ...)
 #include <do/make_checkpoint.h>
-eoCheckPoint<Indi>& make_checkpoint(eoParameterLoader& _parser, eoState& _state, eoEvalFuncCounter<Indi>& _eval, eoContinue<Indi>& _continue) 
+eoCheckPoint<Indi>& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<Indi>& _eval, eoContinue<Indi>& _continue) 
 {
   return do_make_checkpoint(_parser, _state, _eval, _continue);
 }
 
 // evolution engine (selection and replacement)
 #include <do/make_algo_scalar.h>
-eoAlgo<Indi>&  make_algo_scalar(eoParameterLoader& _parser, eoState& _state, eoEvalFunc<Indi>& _eval, eoContinue<Indi>& _continue, eoGenOp<Indi>& _op)
+eoAlgo<Indi>&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<Indi>& _eval, eoContinue<Indi>& _continue, eoGenOp<Indi>& _op)
 {
   return do_make_algo_scalar(_parser, _state, _eval, _continue, _op);
 }
