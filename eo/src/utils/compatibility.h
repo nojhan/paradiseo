@@ -38,12 +38,13 @@
 	#endif
 #endif
 
-#ifdef _MSC_VER
+#if defined(_MSC_VER) && (_MSC_VER < 1300)
 /* 
 Maarten: added this code here because Mirkosoft has the
 nasty habit of #define min and max in stdlib.h (and windows.h)
 I'm trying to undo this horrible macro magic (microsoft yet macrohard)
 here. Sure hope it works
+Olivier: this has been removed in .NET :) One step more standard...
 */
 #pragma warning(disable:4786)
 
