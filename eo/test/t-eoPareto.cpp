@@ -171,6 +171,12 @@ void the_main(int argc, char* argv[])
   // the algo
   eoEasyEA<eoDouble> ea(cp, eval, breeder, replace);
 
+  if (parser.userNeedsHelp())
+  {
+    parser.printHelp(cout);
+    return;
+  }
+
   apply<eoDouble>(eval, pop);
   ea(pop);
 }
