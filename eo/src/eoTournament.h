@@ -76,8 +76,8 @@ public:
 	throw runtime_error("error in void eoTournament::operator(eoPop<EOT>&, eoPop<EOT>&)");
       }
       
-      // The first is chosen for the new population
-      _aVEO.push_back( best ); 
+      // The best individual is chosen for the new population
+      _aVEO.push_back( *best ); 
     }
   };
   
