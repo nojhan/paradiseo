@@ -35,17 +35,29 @@
 
 /**
    The class uniform_generator can be used in the STL generate function
-   to easily generate random floats and doubles between [0, _max). _max
-   defaults to 1.0
+   to easily generate random floats and doubles 
+   either in [0, _max) if only 1 value (_max) is given 
+                       (or none, as _max defaults to 1.0)
+   or in [_min,_max) if 2 values are given (_min, _max)
 */
 template <class T = double> class uniform_generator
 {
+  // added new ctor with 2 params, and modified the data to minim and range 
+  // (was maxim only). MS 3/11/2000
   public :
-    uniform_generator(T _max = T(1.0), eoRng& _rng = rng) : maxim(_max), uniform(_rng) {}
+    uniform_generator(T _max = T(1.0), eoRng& _rng = rng) : 
+      minim(T(0.0)), range(_max), uniform(_rng) {}
+    uniform_generator(T _min, T _max, eoRng& _rng = rng) : 
+      minim(_min), range(_max-_min), uniform(_rng) 
+  {
+    if (_min>_max)
+      throw logic_error("Min is greater than Max in uniform_generator"); 
+  }
   
-  T operator()(void) { return (T) uniform.uniform(maxim); } 
-  private :
-    T maxim;
+  T operator()(void) { return (T) minim+uniform.uniform(range); } 
+private :
+  T minim;
+  T range;
   eoRng& uniform;
 };
 
@@ -66,17 +78,29 @@ class boolean_generator
 
 /**
    The class random_generator can be used in the STL generate function
-   to easily generate random ints between [0, _max).
+   to easily generate random ints 
+   either between [0, _max) if only one value (_max) is given to the ctor
+   or in [_min,_max) if 2 values are given (_min, _max)
 */
 template <class T = uint32> class random_generator
 {
   public :
-    random_generator(T _max, eoRng& _rng = rng) : maxim(_max), random(_rng) {}
+  // added new ctor with 2 params, and modified the data to minim and range 
+  // (was maxim only). MS 3/11/2000
+    random_generator(T _max, eoRng& _rng = rng) : 
+      minim(T(0.0)), range(_max), random(_rng) {}
+    random_generator(T _min, T _max, eoRng& _rng = rng) : 
+      minim(_min), range(_max-_min), random(_rng) 
+  {
+    if (_min>_max)
+      throw logic_error("Min is greater than Max in random_generator"); 
+  }
   
-  T operator()(void) { return (T) random.random(maxim); }
+  T operator()(void) { return (T) (minim + random.random(range)); }
   
-  private :
-    T maxim;
+private :
+  T minim;
+  T range;
   eoRng& random;
 };
 
