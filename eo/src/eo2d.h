@@ -4,7 +4,7 @@
 -----------------------------------------------------------------------------
 File............: eo2d.h
 Author..........: Geneura Team (this file: Victor Rivas, vrivas@ujaen.es)
-Date............: 21-Sep-1999, at Fac. of Sciences, Univ. de Granada
+Date............: 21-Sep-1999, at Fac. of Sciences, Univ. of Granada (Spain)
 Description.....: Implementation of a 2-dimensional chromosome.
 
   ================  Modif. 1  ================
@@ -105,7 +105,7 @@ public:
   }
 
   /// Needed virtual dtor
-  virtual ~eo1d(){};
+  virtual ~eo2d(){};
 
   /** Reads and returns a copy of the gene in position _r,_c.\
       This implies that T must have a copy ctor .
@@ -136,7 +136,8 @@ public:
    * Obviously, changes number of rows. 
    @param _r Position where the new row will be inserted.
    @param _val Vector containing the new values to be inserted.
-   @exception invalid_parameter if _val has not numOfCols() components.
+   @exception invalid_argument If _val has not numOfCols() components.
+   @exception out_of_range If _r is greater than numOfRows()
   */
   virtual void insertRow( const unsigned _r, 
 			  const vector<T>& _val ) = 0;
@@ -153,7 +154,7 @@ public:
    * Obviously, changes number of cols. 
    @param _r Position where the new column will be inserted.
    @param _val Vector containing the new values to be inserted.
-   @exception invalid_parameter if _val has not numOfRows() components.
+   @exception invalid_argument if _val has not numOfRows() components.
   */
   virtual void insertCol( const unsigned _c, 
 			  const vector<T>& _val ) = 0;
@@ -163,7 +164,7 @@ public:
       @param _c Number of he column to be deleted.
       @exception out_of_range if _c >=numOfCols()
   */
-  virtual void deleteCol( const unsigned _r ) = 0;
+  virtual void deleteCol( const unsigned _c ) = 0;
   
   /// Returns the number of rows in the eo2d
   virtual unsigned numOfRows() const = 0;
@@ -225,7 +226,7 @@ public:
     @param _ID An ID string, preferably unique
 */
 template< class T, class fitnessT>
-eo2d<T,fitnessT>::eo1d<T,fitnessT>( const unsigned _rows, 
+eo2d<T,fitnessT>::eo2d<T,fitnessT>( const unsigned _rows, 
 				    const unsigned _columns,
 				    eoRnd<T>& _rndGen, 
 				    const string& _ID = "")
