@@ -37,7 +37,7 @@ eoParameterLoader::~eoParameterLoader()
 
 
 eoParser::eoParser ( int _argc, char **_argv , string _programDescription, string _lFileParamName, char _shortHand) : 
-    programName( _argv[0]),  
+    programName( _argv[0]),
     programDescription( _programDescription), 
     needHelp(false, "help", "Prints this message", 'h')
 {
@@ -144,7 +144,7 @@ void eoParser::readFrom(istream& is)
   string str;
   while (is >> str)
   {
-    
+
       if (str[0] == '#')
       { // skip the rest of the line
           string tempStr;
@@ -179,10 +179,22 @@ void eoParser::readFrom(istream& is)
           }
           else // it should be a char
           {
-	      string value = "1";
-	      if (str.size() > 2)
-		value = string(str.begin() + 3, str.end());
-              shortNameMap[str[1]] = value;
+	          string value = "1"; // flags do not need a special
+
+            if (str.size() >= 2)
+            {
+              if (str[2] == '=')
+              {
+                if (str.size() >= 3)
+                  value = string(str.begin() + 3, str.end());
+              }
+              else
+              {
+                value = string(str.begin() + 2, str.end());
+              }
+            }
+
+            shortNameMap[str[1]] = value;
           }
       }
   }
@@ -271,7 +283,7 @@ void eoParser::printHelp(ostream& os)
 
         if (p->second->shortName())
 	        os << "-" << p->second->shortName() << ", ";
-	    
+
         os << "--" <<p->second->longName() <<":\t"
 	     << p->second->description() ;
 	
