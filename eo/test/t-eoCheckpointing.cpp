@@ -75,28 +75,46 @@ int the_main(int argc, char **argv)
 
     eoDummyPop pop;
     
-    eoGenTerm<EoType> genTerm(5); // 5 generations
+    eoGenTerm<EoType> genTerm(5); // run for 5 generations
 
-    eoCheckPoint<EoType> checkpoint(genTerm);
+    eoCheckPoint<EoType> checkpoint(genTerm); 
+    // The algorithm will now quit after five generations
 
+    // Create a counter parameter
     eoValueParam<unsigned> generationCounter(0, "Generation");
+    
+    // Create an incrementor (wich is an eoUpdater). Note that the 
+    // Parameter's value is passed by reference, so every time the incrementer increments,
+    // the data in generationCounter will change.
     eoIncrementor<unsigned> increment(generationCounter.value());
 
+    // Add it to the checkpoint, this will result in the counter being incremented every generation
     checkpoint.add(increment);
 
+    // The file monitor will print parameters to a comma seperated file
     eoFileMonitor monitor("monitor.csv");
+    
+    // the checkpoint mechanism can handle multiple monitors
     checkpoint.add(monitor);
 
+    // the monitor can monitor parameters such as the generationCounter
     monitor.add(generationCounter);
 
+    // Second moment stats: average and stdev
     eoSecondMomentStats<EoType> stats;
 
+    // Add it to the checkpoint to get it called at the appropriate time
     checkpoint.add(stats);
+
+    // Add it to the monitor to get it written to the file
     monitor.add(stats);
 
-    eoCountedStateSaver stateSaver1(3, state, "generation"); // save every third generation
-    eoTimedStateSaver   stateSaver2(2, state, "time"); // save every 2 seconds
+    // save state every third generation
+    eoCountedStateSaver stateSaver1(3, state, "generation"); 
+    // save state every 2 seconds 
+    eoTimedStateSaver   stateSaver2(2, state, "time"); 
 
+    // And add the two savers to the checkpoint
     checkpoint.add(stateSaver1);
     checkpoint.add(stateSaver2);
 
@@ -149,11 +167,6 @@ int the_main(int argc, char **argv)
         save_name.value() = ""; // so that it does not appear in the parser section of the state file
         state.save(file_name);
     }
-
-    for (int i = 0; i < 100; ++i)
-        rng.rand();
-
-    cout << "a random number is " << rng.random(1024) << endl;;
 
     return 1;
 }

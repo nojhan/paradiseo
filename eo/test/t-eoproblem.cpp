@@ -36,7 +36,7 @@ const unsigned Easy::size = 1;
 
 //-----------------------------------------------------------------------------
 
-main()
+int main()
 {
   Easy easy;
   Chrom chrom(Easy::size);
@@ -48,6 +48,8 @@ main()
   
   cout << "chrom = " << chrom << endl
        << "chrom.fitness() = " << chrom.fitness() << endl;
+
+  return 0;
 }
 
 //-----------------------------------------------------------------------------

@@ -18,7 +18,7 @@ noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness \
 	t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA\
 	t-eoNonUniform t-eoUniform t-eoRandom t-eoStateAndParser \
 	t-eoAtomOps t-selectOne t-eoGOpSel \
-	t-eoVector t-eoCheckpointing
+	t-eoVector t-eoCheckpointing t-eoExternalEO
 
 ###############################################################################
 
@@ -170,3 +170,12 @@ t_eoCheckpointing_LDFLAGS = -lm
 t_eoCheckpointing_LDADD = $(LDADDS) 
 
 ###############################################################################
+
+t_eoExternalEO_SOURCES = t-eoCheckpointing.cpp
+t_eoExternalEO_DEPENDENCIES = $(DEPS) 
+t_eoExternalEO_LDFLAGS = -lm 
+t_eoExternalEO_LDADD = $(LDADDS) 
+
+###############################################################################
+
+
