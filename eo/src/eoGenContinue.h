@@ -52,7 +52,12 @@ public:
 	virtual bool operator() ( const eoPop<EOT>& _vEO ) {
 	  thisGeneration++;
 	  //	  cout << " [" << thisGeneration << "] ";
-	  return (thisGeneration < repTotalGenerations) ; // for the postincrement
+    if (thisGeneration >= repTotalGenerations) 
+      {
+	cout << "STOP in eoGenContinue: Reached maximum number of generations\n";
+	return false;
+      }
+    return true;
 	}
 
 	/** Sets the number of generations to reach 

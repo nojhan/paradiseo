@@ -47,8 +47,15 @@ public:
 	* reached. Assumes pop is not sorted! */
 	virtual bool operator() ( const eoPop<EOT>& _pop ) 
     {
-	  return (_pop.nth_element_fitness(0) < maximum);
-	}
+    FitnessType bestCurrentFitness = _pop.nth_element_fitness(0);
+    if (bestCurrentFitness >= maximum) 
+      {
+	cout << "STOP in eoFitContinue: Best fitness has reached " << 
+	  bestCurrentFitness << "\n";
+	return false;
+      }
+    return true;
+    }
 
 private:
 	FitnessType maximum;
