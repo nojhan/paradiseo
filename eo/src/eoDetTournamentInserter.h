@@ -29,8 +29,8 @@
 #define eoDetTournamentInserter_h
 
 
-#include "eoSteadyStateInserter.h"
-#include "selectors.h"
+#include <eoSteadyStateInserter.h>
+#include <utils/selectors.h>
 
 /**
  * eoDetTournamentInserter: Uses an inverse deterministic tournament to figure
@@ -50,13 +50,14 @@ class eoDetTournamentInserter : public eoSteadyStateInserter<EOT>
         }
     }
         
-    void insert(const EOT& _eot)
+    eoInserter<EOT>& operator()(const EOT& _eot)
     {
         EOT& eo = inverse_deterministic_tournament<EOT>(pop(), t_size);
         eo = _eot; // overwrite loser of tournament
 
         eo.invalidate(); // This line should probably be removed when all genetic operators do this themselves
         eval(eo); // Evaluate after insert
+        return *this;
     }
 
     string className(void) const { return "eoDetTournamentInserter"; }

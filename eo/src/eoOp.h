@@ -27,6 +27,11 @@
 #include <eoObject.h>
 #include <eoPrintable.h>
 
+/**
+\defgroup operators
+Genetic Operators are used for various purposes
+*/
+
 /** @name Genetic operators
 
 What is a genetic algorithm without genetic operators? There is a genetic operator hierarchy, with eoOp as father and eoMonOp (monary or unary operator) and eoBinOp and eoQuadraticOp (binary operators) as siblings). Nobody should subclass eoOp, you should subclass eoGeneralOp, eoBinOp, eoQuadraticOp or eoMonOp, those are the ones actually used here. \\#eoOp#s are only printable objects, so if you want to build them from a file, it has to be done in another class, namely factories. Each hierarchy of #eoOp#s should have its own factory, which know how to build them from a description in a file.

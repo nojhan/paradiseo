@@ -66,6 +66,29 @@ class eoUniform: public eoRnd<T>
   double diff;
 };
 
+template<>
+class eoUniform<bool>: public eoRnd<bool>
+{
+ public:
+  /**
+   * Default constructor.
+   * @param _min  The minimum value in the interval.
+   * @param _max  The maximum value in the interval.
+   */
+  eoUniform(bool _min = false, bool _max = true)
+    : eoRnd<bool>() {}
+
+  /** Returns an uniform random number over the interval [min, max)
+      Uses global rng object */
+  virtual bool operator()() { 
+    return rng.flip(0.5);  
+  }
+  
+ private:
+  T min;
+  double diff;
+};
+
 //-----------------------------------------------------------------------------
 
 #endif

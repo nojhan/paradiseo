@@ -54,7 +54,7 @@ class eoScalarFitness
 
     operator ScalarType(void) const { return value; }
 
-    // Comparison, using less by default
+    /// Comparison, using less by default
     bool operator<(const eoScalarFitness& other) const 
     { return Compare()(value, other.value); }
 

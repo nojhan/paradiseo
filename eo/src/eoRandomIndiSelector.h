@@ -29,6 +29,7 @@
 #include "eoIndiSelector.h"
 
 /**
+\ingroup selectors
  * eoRandomSelector: just selects a random child
 */
 template <class EOT>

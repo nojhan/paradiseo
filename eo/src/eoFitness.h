@@ -25,7 +25,9 @@
 #define EOFITNESS_H
 
 //-----------------------------------------------------------------------------
-
+/**
+\deprecated This class will dissapear in time, use eoScalarFitness instead
+*/
 class eoFitness: public eoPersistent
 {
  public:

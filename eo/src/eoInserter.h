@@ -36,14 +36,17 @@
     new individuals into the (intermediate) population. 
 */
 template <class EOT>
-class eoInserter : public eoObject
+class eoInserter 
 {
     public :
         virtual ~eoInserter() {}
 
         struct eoInserterException{};
 
-        virtual void insert(const EOT&) = 0; // can throw an eoInserterException
+        /**
+            insert argument somewhere (quite likely a population)
+        */
+        virtual eoInserter<EOT>& operator()(const EOT&) = 0; // can throw an eoInserterException
 };
 
 /**
@@ -58,7 +61,7 @@ class eoPopInserter : public eoInserter<EOT>
     eoPopInserter(void) : eoInserter<EOT>(), thePop(0) {}
 
     /// Binds the population to this class. This is an initialization routine used by breeders
-    eoInserter<EOT>& operator()(eoPop<EOT>& _pop)
+    eoInserter<EOT>& bind(eoPop<EOT>& _pop)
     {
         thePop = &_pop;
         return *this;

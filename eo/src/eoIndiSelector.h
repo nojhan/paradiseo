@@ -42,19 +42,29 @@ public :
 
     virtual ~eoIndiSelector(void) {}
 
+    /**
+        return the number of individuals that can be selected by an nary operator (through operator[] below)
+    */
     virtual size_t size(void) const = 0;
-    virtual const EOT& operator[](size_t) const = 0;
 
-    virtual const EOT&                  select(void) = 0;
+    /**
+        return the specified individual, the size_t argument should be between 0 and eoIndiSelector::size()
+    */
+    virtual const EOT& operator[](size_t i) const = 0;
+
+    /**
+        Select an individual, maybe from an underlying population (see eoPopIndiSelector)
+    */
+    virtual const EOT&   operator()(void) = 0;
     
+    /// default implementation just calls operator() a couple of times
+    /// this can be overridden in favour of a more efficient implementation
     virtual vector<const EOT*>    select(size_t _how_many)
-    { // default implementation just calls select a couple of times
-      // this can be overridden in favour of a more efficient implementation
-        vector<const EOT*> result(_how_many);
+    {   vector<const EOT*> result(_how_many);
 
         for (unsigned i = 0; i < _how_many; ++i)
         {
-            result[i] = &select();
+            result[i] = &operator()();
         }
 
         return result;
@@ -79,9 +89,10 @@ class eoPopIndiSelector : public eoIndiSelector<EOT>
         
         struct eoUnitializedException{};
 
-        /** Initialization function
+        /** Initialization function, binds the population to the selector, can also
+            be used to specify an optional end and the first individual to return in operator()
         */
-        eoPopIndiSelector& operator()(const eoPop<EOT>& _pop, int _end = -1, int _myGuy = -1)
+        eoPopIndiSelector& bind(const eoPop<EOT>& _pop, int _end = -1, int _myGuy = -1)
         {
             pop = &_pop;
             last = _end;
@@ -102,8 +113,8 @@ class eoPopIndiSelector : public eoIndiSelector<EOT>
         eoPop<EOT>::const_iterator end(void)   const { valid(); return pop->end(); }
 
 
-        /// select does the work. Note that it is not virtual. It calls do_select that needs to be implemented by the derived classes
-        const EOT& select(void)
+        /// operator() does the work. Note that it is not virtual. It calls do_select that needs to be implemented by the derived classes
+        const EOT& operator()(void)
         {
             valid();
             if (firstChoice < 0 || firstChoice >= (int) size())
@@ -116,6 +127,10 @@ class eoPopIndiSelector : public eoIndiSelector<EOT>
             return result;
         }
 
+        /**
+            do_select, abstract member re-implemented by derived classes
+            This function will get called by operator() when it ran out of choices
+        */
         virtual const EOT& do_select(void) = 0;
 
     private :

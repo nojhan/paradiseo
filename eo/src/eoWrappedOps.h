@@ -50,9 +50,9 @@ public :
   /// Instantiates the abstract method
   void operator()( eoIndiSelector<EOT>& _in, 
 			   eoInserter<EOT>& _out) const {
-    EOT result = _in.select();
+    EOT result = _in();
     op( result );
-    _out.insert(result);
+    _out(result);
   }
   
   ///
@@ -78,10 +78,10 @@ public :
   /// Instantiates the abstract method. EOT should have copy ctor.
   void operator()(eoIndiSelector<EOT>& _in, 
 			   eoInserter<EOT>& _out) const {
-    EOT out1 = _in.select();
-    const EOT& out2 = _in.select();
+    EOT out1 = _in();
+    const EOT& out2 = _in();
     op(out1, out2);
-    _out.insert(out1);
+    _out(out1);
   }
   
   ///
@@ -105,11 +105,10 @@ public :
   /// Instantiates the abstract method. EOT should have copy ctor.
   void operator()(eoIndiSelector<EOT>& _in, 
 			   eoInserter<EOT>& _out) const {
-    EOT out1 = _in.select();
-    EOT out2 = _in.select();
+    EOT out1 = _in();
+    EOT out2 = _in();
     op(out1, out2);
-    _out.insert(out1);
-    _out.insert(out2);
+    _out(out1)(out2);
   }
   
   ///
@@ -154,11 +153,11 @@ public :
       size_t          size()      const     { return in.size(); }
       const EOT&    operator[](size_t _n) const { return in[_n]; }
           
-      const EOT& select(void) 
+      const EOT& operator()(void) 
       {
           if (results.empty())
           {
-              return in.select();
+              return in();
           }
           // else we use the previously inserted individual,
           // an iterator to it is stored in 'results', but the memory
@@ -169,10 +168,11 @@ public :
           return *it;
       }
 
-      void insert(const EOT& _eot)
+      eoInserter<EOT>& operator()(const EOT& _eot)
       {
           intermediate.push_front(_eot);
           results.push_front(intermediate.begin());
+          return *this;
       }
 
       void fill(eoInserter<EOT>& _out)
@@ -181,7 +181,7 @@ public :
 
           for (Iterator it = results.begin(); it != results.end(); ++it)
           {
-              _out.insert(**it);
+              _out(**it);
           }
 
           results.clear();

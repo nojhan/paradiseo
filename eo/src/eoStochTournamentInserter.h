@@ -29,11 +29,12 @@
 #define eoStochTournamentInserter_h
 
 
-#include "eoSteadyStateInserter.h"
-#include "selectors.h"
+#include <eoSteadyStateInserter.h>
+#include <utils/selectors.h>
 
 /**
- * eoDetTournamentInserter: Uses an inverse stochastic tournament to figure
+\ingroup inserters
+ * eoStochTournamentInserter: Uses an inverse stochastic tournament to figure
  * out who gets overridden by the new individual. It resets the fitness of the
  * individual.
 */
@@ -55,13 +56,14 @@ class eoStochTournamentInserter : public eoSteadyStateInserter<EOT>
         }
     }
         
-    void insert(const EOT& _eot)
+    eoInserter<EOT>& operator()(const EOT& _eot)
     {
         EOT& eo = inverse_stochastic_tournament<EOT>(pop(), t_rate);
         eo = _eot; // overwrite loser of tournament
         
         eo.invalidate();
         eval(eo); // Evaluate after insert
+        return *this;
     }
 
     string className(void) const { return "eoStochTournamentInserter"; }

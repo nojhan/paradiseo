@@ -55,8 +55,13 @@ public:
     }
   }
   
-  /// Add any kind of operator to the operator mix, with an argument
-  virtual ID addOp( eoOp<EOT>& _op, float _arg ); 
+  /* 
+    Add any kind of operator to the operator mix, 
+    @param _op      operator, one of eoMonOp, eoBinOp, eoQuadraticOp or eoGeneralOp
+    @param _rate    the rate at which it should be applied, it should be a probability
+                    
+  */
+  virtual ID addOp( eoOp<EOT>& _op, float _rate ); 
   // implementation can be found below
   
   /** Retrieve the operator using its integer handle
@@ -79,7 +84,7 @@ public:
 	  return &selectOp();
   }
 
-  ///
+  /// Select an operator from the operators present here
   virtual eoGeneralOp<EOT>& selectOp() = 0;
 
   ///

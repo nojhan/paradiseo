@@ -29,9 +29,10 @@
 #ifndef eoBackInserter_h
 #define eoBackInserter_h
 
-#include "eoInserter.h"
+#include <eoInserter.h>
 
 /**
+\ingroup inserters
  * eoBackInserter: Interface class that enables an operator to insert
     new individuals at the back of the new population.
 */
@@ -42,9 +43,10 @@ class eoBackInserter : public eoPopInserter<EOT>
 
     eoBackInserter(void) : eoPopInserter<EOT>() {}
         
-    void insert(const EOT& _eot)
+    eoInserter<EOT>& operator()(const EOT& _eot)
     {
         pop().push_back(_eot);
+        return *this;
     }
 
     string className(void) const { return "eoBackInserter"; }

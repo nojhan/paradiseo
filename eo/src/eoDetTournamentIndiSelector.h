@@ -26,11 +26,12 @@
 #define eoDetTournamentIndiSelector_h
 
 #include "eoIndiSelector.h"
-#include "selectors.h"
+#include "utils/selectors.h"
 
 
 /**
- * eoDetTournamentIndiSelector: selects children through a deterministic_tournament
+\ingroup selectors
+  * eoDetTournamentIndiSelector: selects children through a deterministic_tournament
 */
 template <class EOT>
 class eoDetTournamentIndiSelector : public eoPopIndiSelector<EOT>

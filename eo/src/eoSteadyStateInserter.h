@@ -29,7 +29,8 @@
 #define eoSteadyStateInserter_h
 
 
-#include "eoEvalFunc.h"
+#include <eoEvalFunc.h>
+#include <eoInserter.h>
 
 /**
  * eoSteadyStateInserter: Interface class that enables an operator to update
