@@ -45,20 +45,20 @@
 //-----------------------------------------------------------------------------
 /**
  * This class manages exceptions. It´s barely an extension of the standard except
-ion, 
+ ion, 
  * but it can be initialized with an STL string. Called UException (utils-except
-ion)+
+ ion)+
  * to avoid conflicts with other classes.
  */
 class UException: public exception {
- public:
+public:
   ///
   UException( const string& _msg ): msg( _msg ) { };
 
   ///
   virtual const char* what() const { return msg.c_str(); };
 
- private:
+private:
   string msg;
 };
 
@@ -93,8 +93,8 @@ public:
 	 bool _required=false )
     : repShortName(_shortName), repLongName(_longName), 
     repDescription(_description ), repEnv(""), repDefault(_default),
-      repValue(_default), repValType( _valType), 
-      repRequired( _required), repChanged(false) {
+    repValue(_default), repValType( _valType), 
+    repRequired( _required), repChanged(false) {
     
     const char *c = repLongName.c_str();
     for(unsigned i=0; i<repLongName.length() ; i++,c++) {
@@ -223,8 +223,8 @@ public:
     Param param (_sFileParamName, _lFileParamName, _default, Param::STRING, "Name of the input file", 0);
 
     // FIRST: look for the corresponding environment variable
-      if( getenv( param.environment().c_str() ) ) 
-	param.value(getenv(param.environment().c_str()) ); 
+    if( getenv( param.environment().c_str() ) ) 
+      param.value(getenv(param.environment().c_str()) ); 
 
     // LAST (highest priority) parse the command line arguments 
     for (int i=1 ; i<parse_argc ; i++)
@@ -286,8 +286,8 @@ public:
    * @param         see above
    */
   string getString (const string& _shortName, const string& _longName, 
-		 const string& _default = "", 
-		 const string& _description="", bool _required=false) {
+		    const string& _default = "", 
+		    const string& _description="", bool _required=false) {
     Param param ( _shortName, _longName, _default, Param::STRING, _description, _required );
     parse( param );
     params.push_back( param );
@@ -319,8 +319,8 @@ public:
    * @param         see above
    */
   vector<string> getArray  (const string& _shortName, const string& _longName, 
-		 const string& _default = "", 
-		 const string& _description="", bool _required=false) {
+			    const string& _default = "", 
+			    const string& _description="", bool _required=false) {
     Param param ( _shortName, _longName, _default, Param::ARRAY, _description, _required );
     parse( param );
     params.push_back( param );
@@ -344,8 +344,8 @@ public:
    */
 
   int getInt  (const string& _shortName, const string& _longName, 
-		 const string& _default = "", 
-		 const string& _description="", bool _required=false) {
+	       const string& _default = "", 
+	       const string& _description="", bool _required=false) {
     Param param ( _shortName, _longName, _default, Param::INT, _description, _required );
     parse( param );
     params.push_back( param );
@@ -370,8 +370,8 @@ public:
    */
 
   int getUnsignedLong  (const string& _shortName, const string& _longName, 
-		 const string& _default = "", 
-		 const string& _description="", bool _required=false) {
+			const string& _default = "", 
+			const string& _description="", bool _required=false) {
     Param param ( _shortName, _longName, _default, Param::UL, _description, _required );
     parse( param );
     params.push_back( param );
@@ -396,8 +396,8 @@ public:
    */
 
   float getFloat  (const string& _shortName, const string& _longName, 
-		 const string& _default = "", 
-		 const string& _description="", bool _required=false) {
+		   const string& _default = "", 
+		   const string& _description="", bool _required=false) {
     Param param ( _shortName, _longName, _default, Param::FLOAT, _description, _required );
     parse( param );
     params.push_back( param );
@@ -453,130 +453,130 @@ public:
     string tmpStr, ReadStr, FirstWord;
 
     // FIRST: look if the associated environment variables have any value, to use them.
-      if( getenv( param.environment().c_str() ) ) {
-	//cout <<"\t\t ENV param:  ,"<<p->shortName()<<",  ,"<<getenv(p->environment().c_str())<<endl;
-	param.value(getenv(param.environment().c_str()) );
-      }
+    if( getenv( param.environment().c_str() ) ) {
+      //cout <<"\t\t ENV param:  ,"<<p->shortName()<<",  ,"<<getenv(p->environment().c_str())<<endl;
+      param.value(getenv(param.environment().c_str()) );
+    }
 
     
     // SECOND: search the file parameter, if present
-	  if ( InputFileName != "" ) {
-		  ifstream is(InputFileName.c_str());
-		  while (is) {
-			  is >> tmpStr;
-			  if (  ( !strcmp(tmpStr.c_str(), param.shortName().c_str()) ) ||
-				  ( !strcasecmp(tmpStr.c_str(), param.longName().c_str()) )
-				  ) {		   // found the keyword
+    if ( InputFileName != "" ) {
+      ifstream is(InputFileName.c_str());
+      while (is) {
+	is >> tmpStr;
+	if (  ( !strcmp(tmpStr.c_str(), param.shortName().c_str()) ) ||
+	      ( !strcasecmp(tmpStr.c_str(), param.longName().c_str()) )
+	      ) {		   // found the keyword
 				  
-				  Param::valueType tmp = param.valType();
-				  switch ( tmp ) {
-				  case Param::TITLE:
-					  cerr << "Error, we should not be there" << endl;
-					  exit(1);
-					  break;
-				  case Param::BOOL : 
-					  param.value("true" );
-					  break;
+	  Param::valueType tmp = param.valType();
+	  switch ( tmp ) {
+	  case Param::TITLE:
+	    cerr << "Error, we should not be there" << endl;
+	    exit(1);
+	    break;
+	  case Param::BOOL : 
+	    param.value("true" );
+	    break;
 					  
-				  case Param::INT:  
-				  case Param::UL:  
-				  case Param::FLOAT: 
-					  is >> tmpStr;
-					  param.value(tmpStr);
-					  break;
+	  case Param::INT:  
+	  case Param::UL:  
+	  case Param::FLOAT: 
+	    is >> tmpStr;
+	    param.value(tmpStr);
+	    break;
 					  
-				  case Param::STRING:
-					  tmpStr = parse_string(is);
-					  param.value(tmpStr);
-					  break;
+	  case Param::STRING:
+	    tmpStr = parse_string(is);
+	    param.value(tmpStr);
+	    break;
 					  
-				  case Param::ARRAY:
-					  ReadStr = parse_string(is);
-					  if ( ReadStr != "<" ) {  // no "<" ">" --> a single string in the array
-						  param.value(ReadStr);
-						  break;
-					  }
-					  // read next word - and keep it in case of <> mismatch
-					  FirstWord = parse_string(is);
-					  // test for empty array
-					  if (FirstWord == ">") {
-						  param.value("");
-						  break;
-					  }
-					  // else, read all words until ">"
-					  tmpStr = FirstWord;
-					  ReadStr = parse_string(is);
-					  while ( is && (ReadStr != ">") ) {
-						  tmpStr = tmpStr + " " + ReadStr;
-						  ReadStr = parse_string(is);
-					  } 
+	  case Param::ARRAY:
+	    ReadStr = parse_string(is);
+	    if ( ReadStr != "<" ) {  // no "<" ">" --> a single string in the array
+	      param.value(ReadStr);
+	      break;
+	    }
+	    // read next word - and keep it in case of <> mismatch
+	    FirstWord = parse_string(is);
+	    // test for empty array
+	    if (FirstWord == ">") {
+	      param.value("");
+	      break;
+	    }
+	    // else, read all words until ">"
+	    tmpStr = FirstWord;
+	    ReadStr = parse_string(is);
+	    while ( is && (ReadStr != ">") ) {
+	      tmpStr = tmpStr + " " + ReadStr;
+	      ReadStr = parse_string(is);
+	    } 
 					  
-					  if (!is) {	   // there was a "<" without the corresponding ">"
-						  throw Parser::BadArrayParam( param.longName(), FirstWord );
-						  param.value(FirstWord); // assume unique string
-					  }
-					  else
-						  param.value(tmpStr);
-					  break;
-				  }
-			  }
-		  }
+	    if (!is) {	   // there was a "<" without the corresponding ">"
+	      throw Parser::BadArrayParam( param.longName(), FirstWord );
+	      param.value(FirstWord); // assume unique string
+	    }
+	    else
+	      param.value(tmpStr);
+	    break;
 	  }
+	}
+      }
+    }
 		  
 		  
-		  // LAST (highest priority) parse the command line arguments
-		  for (i=1 ; i<parse_argc ; i++)
-			  if( ( ! strcasecmp(param.longName().c_str(), parse_argv[i]) ) ||
-				  ( ! strcmp(param.shortName().c_str(), parse_argv[i]) )
-				  ) {			   // found the parameter name
-				  if (param.valType() == Param::BOOL) {
-					  //cout <<"BOOL: "<<parse_argv[i]<<" <-- true"<<endl;
-					  param.value("true");
-				  }else{
-					  if (param.valType() != Param::ARRAY) {  //only if it is not an array
-						  //cout <<"TYPE: "<<parse_argv[i]<<" <-- "<<parse_argv[i+1]<<endl;
-						  param.value(parse_argv[i+1]);
-					  }else{                           //if it is an ARRAY
-						  i++;
-						  ReadStr = parse_argv[i++];
-						  //cout <<"ARRAY: <--  ";
+    // LAST (highest priority) parse the command line arguments
+    for (i=1 ; i<parse_argc ; i++)
+      if( ( ! strcasecmp(param.longName().c_str(), parse_argv[i]) ) ||
+	  ( ! strcmp(param.shortName().c_str(), parse_argv[i]) )
+	  ) {			   // found the parameter name
+	if (param.valType() == Param::BOOL) {
+	  //cout <<"BOOL: "<<parse_argv[i]<<" <-- true"<<endl;
+	  param.value("true");
+	}else{
+	  if (param.valType() != Param::ARRAY) {  //only if it is not an array
+	    //cout <<"TYPE: "<<parse_argv[i]<<" <-- "<<parse_argv[i+1]<<endl;
+	    param.value(parse_argv[i+1]);
+	  }else{                           //if it is an ARRAY
+	    i++;
+	    ReadStr = parse_argv[i++];
+	    //cout <<"ARRAY: <--  ";
 						  
-						  if ( ReadStr != "<" ) {  // no "<" ">" --> a single string in the array
-							  param.value(ReadStr);
-						  }else{
-							  // read next word - and keep it in case of <> mismatch
-							  FirstWord = parse_argv[i++];
+	    if ( ReadStr != "<" ) {  // no "<" ">" --> a single string in the array
+	      param.value(ReadStr);
+	    }else{
+	      // read next word - and keep it in case of <> mismatch
+	      FirstWord = parse_argv[i++];
 							  
-							  // test for empty array
-							  if (FirstWord == ">") {
-								  param.value("");
-							  }else{
-								  // else, read all words until ">"
-								  tmpStr = FirstWord;
-								  ReadStr = parse_argv[i++];
-								  while ( (i<parse_argc) && (ReadStr != ">") ) {
-									  tmpStr = tmpStr + " " + ReadStr;
-									  ReadStr = parse_argv[i++];
-								  } 
-								  //cout <<"tmpStr ;"<<tmpStr<<";   ("<<i<<","<<parse_argc<<") "<<endl;
+	      // test for empty array
+	      if (FirstWord == ">") {
+		param.value("");
+	      }else{
+		// else, read all words until ">"
+		tmpStr = FirstWord;
+		ReadStr = parse_argv[i++];
+		while ( (i<parse_argc) && (ReadStr != ">") ) {
+		  tmpStr = tmpStr + " " + ReadStr;
+		  ReadStr = parse_argv[i++];
+		} 
+		//cout <<"tmpStr ;"<<tmpStr<<";   ("<<i<<","<<parse_argc<<") "<<endl;
 								  
-								  if ( (i>=parse_argc) && (ReadStr != ">") ) {	   // there was a "<" without the corresponding ">"
-									  throw Parser::BadArrayParam( param.longName(), FirstWord );
-									  param.value(FirstWord); // assume unique string
-								  }else{
-									  param.value(tmpStr);
-								  }
-							  }
-						  }
-					  }
-				  }
-				  break;
-			  }
+		if ( (i>=parse_argc) && (ReadStr != ">") ) {	   // there was a "<" without the corresponding ">"
+		  throw Parser::BadArrayParam( param.longName(), FirstWord );
+		  param.value(FirstWord); // assume unique string
+		}else{
+		  param.value(tmpStr);
+		}
+	      }
+	    }
+	  }
+	}
+	break;
+      }
 			  
-			  //MS after trying all possibilities, and if the value has not changed 
-			  // though the parameter was required, protest!
-			  if (param.required() && !param.changed())
-				  throw Parser::MissingReqParam(param.shortName());
+    //MS after trying all possibilities, and if the value has not changed 
+    // though the parameter was required, protest!
+    if (param.required() && !param.changed())
+      throw Parser::MissingReqParam(param.shortName());
 			  
   };
   
@@ -686,7 +686,7 @@ public:
    */
   void printHelp() {
     vector<Param>::iterator p;
-//    unsigned i;
+    //    unsigned i;
     
     // print program name and description
     cout << this->programName <<": "<<programDescription<<endl<<endl;
@@ -696,16 +696,16 @@ public:
     // only short usage!
     cout << "Options of the form \"-ShortName value\" or \"--LongName value\"" << endl; 
 
-//     for ( i=0,p=params.begin(); p!=params.end(); i++,p++ ) 
-//       if( p->valType() != Param::TITLE ) {
-// 	if( p->valType() != Param::BOOL ){
-// 	  cout << ( (!p->required())?"[":"");
-// 	  cout <<p->shortName()<<" value"<<i;
-// 	  cout << ( (!p->required())?"]":"")<<" ";
-// 	}else{
-// 	  cout << "["<<p->shortName()<<"] ";
-// 	}
-//       } // for p
+    //     for ( i=0,p=params.begin(); p!=params.end(); i++,p++ ) 
+    //       if( p->valType() != Param::TITLE ) {
+    // 	if( p->valType() != Param::BOOL ){
+    // 	  cout << ( (!p->required())?"[":"");
+    // 	  cout <<p->shortName()<<" value"<<i;
+    // 	  cout << ( (!p->required())?"]":"")<<" ";
+    // 	}else{
+    // 	  cout << "["<<p->shortName()<<"] ";
+    // 	}
+    //       } // for p
     cout << "Where:"<<endl;
     
     for ( p=params.begin(); p!=params.end(); p++ ) {
@@ -814,34 +814,7 @@ private:
   
 };
 
-/// Reproducible random seed
-// Maybe there is a better place for this subroutine (a separate .cpp?)
-#include <eoRNG.h>
 
-//----------------------------------
-void InitRandom( Parser & parser) {
-//----------------------------------
-  unsigned long _seed;
-  try {
-    _seed = parser.getUnsignedLong("-S", "--seed", "0", "Seed for Random number generator" );
-  }
-  catch (UException & e)
-    {
-      cout << e.what() << endl;
-      parser.printHelp();
-      exit(1);
-    }
-
-  if (_seed == 0) {		   // use clock to get a "random" seed
-   _seed = (unsigned long)( time( 0 ) );
-   ostrstream s;
-   s << _seed;
-   parser.setParamValue("--seed", s.str());	   // so it will be printed out in the status file, and canbe later re-used to re-run EXACTLY the same run
-  }
-  rng.reseed(_seed);
-
-  return;
-}
 
 
 #endif
