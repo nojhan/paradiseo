@@ -1,0 +1,256 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdksmp i686) [Netscape]">
+   <title>EO Programming guide</title>
+</head>
+<body text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000" background="beige009.jpg">
+<a href="eoTutorial.html">Tutorial main page </a>-
+<a href="eoTopDown.html">Top-Down
+page</a> - <a href="eoBottomUp.html">Bottom-up page</a> - <a href="eoProgramming.html">Programming
+hints</a> - <font face="Arial,Helvetica"><a href="doc/html/index.html">EO
+documentation</a></font>
+<br>
+<hr WIDTH="100%"><!-- -------------- End of header ------------------ --><!-- ----------------------------------------------- -->
+<center>
+<h1>
+<font color="#FF0000">EO Programming guide</font></h1></center>
+<!-- ----------------------------------------------- --><a href="#templates">Templates</a>,
+<a href="#functors">Functors</a>,
+<a href="#STL">STL
+Library</a>, random numbers, <a href="#notations">EO programming style</a>!
+<br>
+<hr WIDTH="100%">
+<br><a NAME="templates"></a><b><font color="#000099"><font size=+1>Templates</font></font></b>
+<br>Most EO code si written using templates. This allows to write generic
+code, i.e. involving a class which doesn't have to be known when writing
+the code -- but only when compiling it. In some sense this is similar to
+naming variables in algebra: you can write a lot of equations involving
+some variable $x$ without knowing even it if will be an integer or a float
+(or a matrix or ...). The main basic type that is templatized in EO is
+the fitness: an EO object is some object which has a fitness of some type
+F that can be anything. The definition for that is (see<font face="Arial,Helvetica"><a href="doc/EO.h-source.html">EO.h</a></font>)
+<p><b><tt><font color="#999900"><font size=+1>template&lt;F> class EO</font></font></tt></b>
+<p>The idea is that, later in your code, you can declare for instance as
+in <a href="FirstBitGA.html#representation">FirstBitGA.cpp</a>
+<p><b><tt><font color="#999900"><font size=+1>typedef eoBin&lt;double>
+Genotype;</font></font></tt></b>
+<p>meaning that in that file, you will manipulate as <b><tt><font color="#999900"><font size=+1>Genotype</font></font></tt></b>
+objects that are EO objects <font color="#000000">whose</font><b><font color="#FF6600">fitness</font></b><font color="#000000">
+is a </font><font color="#FF6600"><b>double</b>.</font>
+<p>Whereas the advantages are obvious (writing generic reusable code instead
+of having to rewrite the same pieces of code for different types), there
+are some drawbacks: namely, it makes some of the compiler error messages
+hard to understand; and it forbids the compilation of most parts of EO
+into an object library file, as the actual types are not known in advance.
+<p>
+<hr WIDTH="100%">
+<br><a NAME="functors"></a><b><font color="#000099"><font size=+1>Functors</font></font></b>
+<p>Though EO is a library, it contains almost no functions!
+<br>EO only contains functors, that are objects which have a method called
+<b><tt><font color="#FF6600"><font size=+1>operator()</font></font></tt></b>.
+Such objects are used&nbsp; as if they were a function, but the big differences
+are that
+<ul>
+<li>
+functors are functions with private data</li>
+
+<li>
+you can have different funtors objects of the same class, i.e. you can
+use the same functionality with different parameters</li>
+
+<li>
+you can heave a hierarchy of functors objects, which means that you have
+a hierarchy of functions with defaults behaviors and specialized sub-functions</li>
+
+<li>
+...</li>
+</ul>
+Functors are so intimately linked to EO that a base class (<a href="doc/html/class_eofunctorbase.html">eoFunctorBase</a>)
+has been designed to hold all functors. This base class is itself divided
+into three derived class. These classes tell you immediately what kind
+of arguments the <font color="#993300">operator()</font> method requires
+and what kind of result it produces. See <a href="#notations">EO conventions</a>,
+and
+the <a href="doc/class_eofunctorbase.html">inheritance diagram of class
+eoFunctorBase</a>.
+<p><b><font color="#000099">Example</font></b>
+<p>A good example is given by the <tt><font color="#990000"><font size=+1>eoEvalFuncPtr</font></font></tt>
+class
+<p><tt><font color="#993300">class MyClass</font></tt>
+<br><tt><font color="#993300">{ ...</font></tt>
+<br><tt><font color="#993300">&nbsp;&nbsp;&nbsp; void operator()(ArgType
+arg)</font></tt>
+<br><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</font></tt>
+<br><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// do what you have to do</font></tt>
+<br><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font></tt>
+<br><tt><font color="#993300">}; // end of class declaration</font></tt>
+<p>is used&nbsp; later in the code in something&nbsp; like
+<br>&nbsp;
+<p><tt><font color="#993300">ArgType myArgument;</font></tt>
+<br><tt><font color="#993300">MyClass myObject;&nbsp;&nbsp;&nbsp; // myObject
+is an object of class MyClass ...</font></tt>
+<br><tt><font color="#993300">myObject(myArgument);&nbsp; // calls method
+operator() of object myObject with argument myArgument ...</font></tt>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<h2>
+Why not plain C functions?</h2>
+Consider for instance variation operators. Of course, we could declare
+them as function acting on some objects.
+<p><tt>Blabla</tt>
+<p>
+<hr WIDTH="100%">
+<br><a NAME="STL"></a><b><font color="#000099"><font size=+1>A very brief
+introduction to STL</font></font></b>
+<p>All EO heavily relies on <b><font color="#FF6600">STL, the Standard
+Template Library</font></b>.
+<br>But <font color="#FF6600">you don't have to know more than a few words
+of STL</font> to use EO (like with "hello", "please" and "goodbye" you
+can survive in a foreign country :-) and even to contribute to new EO features.
+<p>You will only find here the basics of STL that you will need to understand
+most of EO code - and to guess what the parts you don't understand are
+actually doing. Don't worry, <b><font color="#FF6600">I </font></b>don't
+understand everything :-)
+<p>STL provides the user with <b><font color="#FF6600">container</font></b>
+and <b><font color="#FF6600">algorithms</font></b>. And you can apply (almost)
+all algorithms on (almost) all containers.
+<p><b><font color="#000099">Containers</font></b>
+<br>Containers are high level data types used to hold simpler data - the
+most widely used example of a container is the <b><font color="#FF6600">vector</font></b>
+construct.
+<br>The use of STL containers relieve the user from memory management.
+<ul>
+<li>
+<b><tt><font color="#000099"><font size=+1>vector </font></font></tt></b><font color="#000000">The
+most widely used container is a one-dimensional array of items.</font></li>
+
+<br><font color="#000000">Data manipulation: suppose </font><font color="#FF6600">v
+is an STL </font><tt><font color="#993300"><font size=+1>vector&lt;AtomType></font></font></tt><font color="#000000">.
+Then</font>
+<br><tt><font color="#993300"><font size=+1>v[i]</font></font></tt><font color="#000000">
+is the ith element of v, as in standard C arrays</font>
+<br><tt><font color="#993300"><font size=+1>v.size()</font></font></tt><font color="#000000">
+is the number of elements of v</font>
+<br><tt><font color="#993300"><font size=+1>v.push_back(atom)</font></font></tt><font color="#000000">
+appends the </font><tt><font color="#993300"><font size=+1>atom</font></font></tt><font color="#000000">
+at end of </font><tt><font color="#993300"><font size=+1>v</font></font></tt><font color="#000000">,
+provided of course that </font><tt><font color="#993300"><font size=+1>atom</font></font></tt><font color="#000000">
+is of type </font><tt><font color="#993300"><font size=+1>AtomType</font></font></tt>
+<br><font color="#000000">blabla</font>
+<li>
+<b><tt><font color="#000099"><font size=+1>pair</font></font></tt></b></li>
+
+<br><font color="#000000">This simple container allows you to hold two
+data types together. It is very handy for temporary data handling. Assuming
+p is a </font><tt><font color="#993300"><font size=+1>pair&lt;AtomType1,
+AtomType2></font></font></tt><font color="#000000">,</font>
+<br><tt><font color="#993300"><font size=+1>p.first()</font></font></tt><font color="#000000">
+and </font><tt><font color="#993300"><font size=+1>p.second()</font></font></tt><font color="#000000">&nbsp;
+refer to the encapsulated data, of respective types </font><tt><font color="#993300"><font size=+1>AtomType1</font></font></tt><font color="#000000">and
+</font><tt><font color="#993300"><font size=+1>AtomType2.</font></font></tt>
+<li>
+<b><tt><font color="#000099"><font size=+1>Blabla</font></font></tt></b></li>
+</ul>
+There are many other types of containers that are not used in EO and that
+we will not present here.
+<p><b><font color="#000099">STL Algorithms</font></b>
+<br>Algorithms are functions acting on containers - the most widely used
+example of a STL algorithm is the <b><font color="#FF6600">sort</font></b>
+function.
+<br>Blabla
+<p><b><font color="#000099">Drawbacks</font></b>
+<br>The main drawback I see in using STL is that it makes it almost
+<b><font color="#FF6600">impossible
+to use a debugger </font></b>normally: whereas acess to data is made simple
+to the progammer, data structures are actually so complex, and debuggers
+so willing to display everything that you get lines of template instanciation
+when asking your debugger what is inside some container! For instance I
+could never visualize some
+<tt><font color="#FF6600"><font size=+1>v[i]</font></font></tt>
+with <tt><font color="#FF6600"><font size=+1>gbd</font></font></tt>, v
+being an STL vector!
+<br>But there nonehteless are so many advantages !!!
+<p>
+<hr WIDTH="100%">
+<br><a NAME="random"></a><b><font color="#000099"><font size=+1>Random
+numbers</font></font></b>
+<br>Evolutionary Algorithms make intensive use of random numbers. Random
+numbers are simulated in computers by using <font color="#FF6600">pseudo-random</font>
+number generators (RNGs for short), i.e. functions that return series of
+numbers who look random (w.r.t. some statistical criteria).
+<p>To make sure the random number generator is as good as possible, and
+to ensure reproducibility of the results across diffrerent platforms, EO
+has its own RNG, the ``<font color="#FF6600">Mersenne Twister</font>''
+random number generator MT19937 (thanks to <font color="#FF0000">Takuji
+Nishimura</font>, see <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eorng.html">eoRNG.h</a></font></font>
+comments).
+<p>Though you can define and use as many RNGs as you wish in EO, the library
+also provides you with a global RNG termed rng: using only that single
+RNG in all calls to random numbers allows one to be able to <b><font color="#FF6600">reproduce
+a given run</font></b>:
+<ul>
+<li>
+as strange it seems for a random algorithm, it is mandatory for debugging
+purposes</li>
+
+<li>
+random numbers are computed starting from a seed - starting from the same
+seed will lead to the same series of pseudo-random numbers, and hence to
+the same results of the algorithms. All examples in this tutorial will
+use the RNG seeding procedure, see e.g. in <a href="FirstBitGA.html#random">Lesson1</a>.</li>
+
+<li>
+to simulate "true" random runs, you can just seed the RNG with a machine-clock
+realted number, e.g. calling time(0), as done for isntance in <a href="SecondBitEA.html#random">Lesson3</a>
+(and after).</li>
+</ul>
+As RNGs only produce (by definition) numbers that are uniformly distributed
+integers between 0 and some maximal number, EO provides you with random
+numbers follwing <b><font color="#FF6600">different probability distribution</font></b>
+(e.g. floating point following <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eorng.html#a8">normal
+distribution</a></font></font>).
+<p>EO also provides <a href="../../doc/html/rnd_generators.h-source.html">random_generators</a>
+that can be used in STL call to generate series of random numbers, as in
+<a href="eoInit.html">eoPop
+initializers</a>.
+<p>
+<hr WIDTH="100%">
+<br><a NAME="notations"></a><b><font color="#000099"><font size=+1>EO conventions
+and naming style</font></font></b>
+<br>A few naming conventions should help you to navigate more easily through
+EO:
+<ul>
+<li>
+The name of local varoiables shoudl start with a lower case letter</li>
+
+<li>
+The name of the parameters to a function shoudl start with an underscore
+(_)</li>
+
+<br>The initialization parameters of constructors, for instance,&nbsp;
+shoudl be named from the names of the variables they are used to initialize.
+<li>
+The names of classes should start with eo + an Uppercase letter</li>
+
+<li>
+Blabla</li>
+</ul>
+
+<hr WIDTH="100%">
+<br><a href="eoTutorial.html">Tutorial main page </a>- <a href="eoTopDown.html">Top-Down
+page</a> - <a href="eoBottomUp.html">Bottom-up page</a> - <a href="eoProgramming.html">Programming
+hints</a> - <font face="Arial,Helvetica"><a href="doc/html/index.html">EO
+documentation</a></font>
+<br>
+<hr>
+<address>
+<a href="mailto:Marc.Schoenauer@polytechnique.fr">Marc Schoenauer</a></address>
+
+<br><!-- Created: Mon Oct 30 19:04:58 CET 2000 --><!-- hhmts start -->Last
+modified: Mon Nov 6 07:01:57 CET 2000<!-- hhmts end -->
+</body>
+</html>
