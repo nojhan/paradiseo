@@ -52,7 +52,7 @@ public :
       // this can be overridden in favour of a more efficient implementation
         vector<const EOT*> result(_how_many);
 
-        for (int i = 0; i < _how_many; ++i)
+        for (unsigned i = 0; i < _how_many; ++i)
         {
             result[i] = &select();
         }
@@ -86,7 +86,7 @@ class eoPopIndiSelector : public eoIndiSelector<EOT>
             pop = &_pop;
             last = _end;
 
-            if (last < 0 || last > pop->size())
+            if (last < 0 || last > (int) pop->size())
             {
                 last = pop->size();
             }
@@ -106,7 +106,7 @@ class eoPopIndiSelector : public eoIndiSelector<EOT>
         const EOT& select(void)
         {
             valid();
-            if (firstChoice < 0 || firstChoice >= size())
+            if (firstChoice < 0 || firstChoice >= (int) size())
             {
                 return do_select(); // let the child figure out what to do  
             }
