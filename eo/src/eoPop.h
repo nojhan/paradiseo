@@ -161,7 +161,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   /** returns an iterator to the best individual DOES NOT MOVE ANYBODY */
   eoPop<EOT>::iterator it_best_element() 
   {
-    typename eoPop<EOT>::const_iterator it = max_element(begin(), end());
+    typename eoPop<EOT>::iterator it = max_element(begin(), end());
     return it;
   }
 
