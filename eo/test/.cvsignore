@@ -20,3 +20,5 @@ t-eoCheckpointing
 t-eoVector
 t-eoAtomOps
 t-selectOne
+t-eoStateAndParser
+t-eoGOpSel
