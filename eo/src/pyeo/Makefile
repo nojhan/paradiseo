@@ -16,7 +16,13 @@
 # but this version 1.29 seems to work for me.
 #
 # My version of boost was found in /usr/include, modify INC to your system
-
+# 
+# For you happy Debian unstable users, just install
+#
+# apt-get install libstlport4.5
+# apt-get install libboost-python-dev
+# apt-get install libboost-python1.29.0
+#
 
 CXX = g++ #-3.2
 CXXFLAGS = -g #-DNDEBUG
