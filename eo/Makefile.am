@@ -4,7 +4,7 @@
 ##
 ###############################################################################
 
-SUBDIRS = src test win app tutorial 
+SUBDIRS = src test app tutorial 
 #Directory for documents
 DOCDIR = ~/public_html/eodocs
 #Directory for indices -- not useful for the user
