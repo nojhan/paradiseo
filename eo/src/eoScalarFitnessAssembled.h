@@ -84,7 +84,7 @@ private:
       with this quantity as if it were a ScalarType.
     - Global fitness value is stored as first element in the vector
 */
-template <class ScalarType, class Compare, class FitnessTraits = eoScalarFitnessAssembledTraits >
+template <class ScalarType, class Compare, class FitnessTraits >
 class eoScalarFitnessAssembled : public std::vector<ScalarType> {
 
 public:
@@ -176,13 +176,13 @@ public:
   }
 
   // implementation of the other operators
-  bool operator>( const eoScalarFitnessAssembled<ScalarType, Compare>& y ) const  { return y < *this; }
+  bool operator>( const eoScalarFitnessAssembled<ScalarType, Compare, FitnessTraits>& y ) const  { return y < *this; }
 
   // implementation of the other operators
-  bool operator<=( const eoScalarFitnessAssembled<ScalarType, Compare>& y ) const { return !(*this > y); }
+  bool operator<=( const eoScalarFitnessAssembled<ScalarType, Compare, FitnessTraits>& y ) const { return !(*this > y); }
 
   // implementation of the other operators
-  bool operator>=(const eoScalarFitnessAssembled<ScalarType, Compare>& y ) const { return !(*this < y); }
+  bool operator>=(const eoScalarFitnessAssembled<ScalarType, Compare, FitnessTraits>& y ) const { return !(*this < y); }
 
 };
 
@@ -192,19 +192,19 @@ and minimizing fitness compares with greater. This because we want ordinary
 fitness values (doubles) to be equivalent with Maximizing Fitness, and
 comparing with less is the default behaviour.
 */
-typedef eoScalarFitnessAssembled<double, std::less<double> >    eoAssembledMaximizingFitness;
-typedef eoScalarFitnessAssembled<double, std::greater<double> > eoAssembledMinimizingFitness;
+typedef eoScalarFitnessAssembled<double, std::less<double>, eoScalarFitnessAssembledTraits >    eoAssembledMaximizingFitness;
+typedef eoScalarFitnessAssembled<double, std::greater<double>, eoScalarFitnessAssembledTraits > eoAssembledMinimizingFitness;
 
-template <class F, class Cmp>
-std::ostream& operator<<(std::ostream& os, const eoScalarFitnessAssembled<F, Cmp>& f)
+template <class F, class Cmp, class FitnessTraits>
+std::ostream& operator<<(std::ostream& os, const eoScalarFitnessAssembled<F, Cmp, FitnessTraits>& f)
 {
   for (unsigned i=0; i < f.size(); ++i)
     os << f[i] << " ";
     return os;
 }
 
-template <class F, class Cmp>
-std::istream& operator>>(std::istream& is, eoScalarFitnessAssembled<F, Cmp>& f)
+template <class F, class Cmp, class FitnessTraits>
+std::istream& operator>>(std::istream& is, eoScalarFitnessAssembled<F, Cmp, FitnessTraits>& f)
 {
   for (unsigned i=0; i < f.size(); ++i){
     F value;
