@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void eoFileMonitor::operator()(void)
+eoMonitor& eoFileMonitor::operator()(void)
 {
     if (firsttime)
     {
@@ -53,6 +53,6 @@ void eoFileMonitor::operator()(void)
         os << ',' << (*it)->getValue();
     }
 
-    // and we're there
+    return *this;
 }
 

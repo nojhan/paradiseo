@@ -61,7 +61,18 @@ void eoState::registerObject(eoPersistent& registrant)
 void eoState::load(const string& _filename)
 {
     ifstream is (_filename.c_str());
+
+    if (!is)
+    {
+        string str = "Could not open file " + _filename;
+        throw runtime_error(str);
+    }
     
+    load(is);
+}
+
+void eoState::load(std::istream& is)
+{
     string str;
     string name;
 
@@ -69,7 +80,7 @@ void eoState::load(const string& _filename)
     
     if (is.fail())
     {
-        string str = "Could not open file " + _filename;
+        string str = "Error while reading stream";
         throw runtime_error(str);
     }
     
@@ -119,12 +130,17 @@ void eoState::save(const string& filename) const
 { // saves in order of insertion
     ofstream os(filename.c_str());
 
-    if (os.fail())
+    if (!os)
     {
         string msg = "Could not open file: " + filename + " for writing!";
         throw runtime_error(msg);
     }
 
+    save(os);
+}
+
+void eoState::save(std::ostream& os) const
+{ // saves in order of insertion
     for (vector<ObjectMap::iterator>::const_iterator it = creationOrder.begin(); it != creationOrder.end(); ++it)
     {
         os << "\\section{" << (*it)->first << "}\n";

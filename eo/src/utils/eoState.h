@@ -67,11 +67,25 @@ public :
     void load(const std::string& _filename);
     
     /**
+    * Reads the file specified
+    *
+    *   @param is    the stream to load from
+    */
+    void load(std::istream& is);
+    
+    /**
     * Saves the state in file specified
     *
     *   @param _filename    the name of the file to save into
     */
     void save(const std::string& _filename) const;
+    
+    /**
+    * Saves the state in file specified
+    *
+    *   @param os       the stream to save into
+    */
+    void save(std::ostream& os) const;
 
 private :
     std::string createObjectName(eoObject* obj);

@@ -36,6 +36,9 @@ class eoStatBase
 public :
     virtual ~eoStatBase(){}
 
+    /**
+        calculate some statistic on the population
+    */
     virtual void operator()(const eoPop<EOT>& _pop) = 0;
 };
 
@@ -44,8 +47,6 @@ class eoStat : public eoValueParam<T>, public eoStatBase<EOT>
 {
 public :
     eoStat(T _value, std::string _description) : eoValueParam<T>(_value, _description) {}
-
-    virtual void operator()(const eoPop<EOT>& _pop) = 0;
 };
 
 #include <numeric>

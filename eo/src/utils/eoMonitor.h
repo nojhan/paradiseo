@@ -45,7 +45,8 @@ public :
 
     virtual ~eoMonitor() {}
 
-    virtual void operator()(void) = 0;
+    /** Just do it! */
+    virtual eoMonitor& operator()(void) = 0;
 
     void add(const eoParam& _param) { push_back(&_param); }
 };

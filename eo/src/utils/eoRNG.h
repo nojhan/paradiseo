@@ -86,7 +86,7 @@
 #include "../eoObject.h"
 
 // TODO: check for various compilers if this is exactly 32 bits
-// Unfortunately MSVC's preprocessor does not comprehends sizeof()
+// Unfortunately MSVC's preprocessor does not comprehend sizeof()
 // so neat preprocessing tricks will not work
 
 typedef unsigned long uint32; // Compiler and platform dependent!
@@ -95,7 +95,8 @@ typedef unsigned long uint32; // Compiler and platform dependent!
 // eoRng
 //-----------------------------------------------------------------------------
 /**
-eoRng is a persitent class that uses the ``Mersenne Twister'' random number generator MT19937
+\class eoRng eoRNG.h utils/eoRNG.h
+eoRng is a persistent class that uses the ``Mersenne Twister'' random number generator MT19937
 for generating random numbers. The various member functions implement useful functions
 for evolutionary algorithms. Included are: rand(), random(), flip() and normal().
 

@@ -42,6 +42,10 @@
 
 #include "eoRNG.h"
 
+/**
+\defgroup selectors
+*/
+
 template <class EOT>
 bool minimizing_fitness()
 {
