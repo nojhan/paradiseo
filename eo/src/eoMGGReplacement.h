@@ -65,8 +65,6 @@ public:
     
     void operator()(eoPop<EOT> & _parents, eoPop<EOT> & _offspring)
     {
-       cout << "Entering MGGReplacement" << endl;
-
       eoPop<EOT> temp;
       split(_parents, temp);
       unsigned toKeep = temp.size(); // how many to keep from merged populations
@@ -83,21 +81,17 @@ public:
 
       // merge temp into offspring
       plus(temp, _offspring);
-       cout << "MGGReplacement - after merge" << endl;
       
       // repeatedly add selected offspring to parents
       for (unsigned i=0; i<toKeep-1; i++)
 	{
-	  cout << "Loop " << i << " " << toKeep << endl;
 	  // select
 	  it = deterministic_tournament(_offspring.begin(), _offspring.end(), tSize);
-	  cout << "Loop after tournament "  << *it << endl;
 	  // add to parents
 	  _parents.push_back(*it);
 	  // remove from offspring
 	  _offspring.erase(it);
 	}
-       cout << "Leaving MGGReplacement" << endl;
     }
 
 private:
