@@ -81,7 +81,6 @@ void eoRealVectorBounds::readFrom(std::string _value)
 	break;
       // look for opening char
       size_t posDeb = _value.find_first_of("[(");
-      cout << posDeb << endl;
       if (posDeb >= _value.size())	// nothing left to read (though probably a syntax error there)
 	{
 	  break;
