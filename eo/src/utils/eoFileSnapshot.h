@@ -139,7 +139,6 @@ public :
       {
 	vector<vector<double> > vv(vec.size());
 	vv[0]=v;
-	cout << "taille des vecteurs " << v.size() << endl;
 	for (unsigned i=1; i<vec.size(); i++)
 	  {
 	    ptParam = static_cast<const eoValueParam<vector<double> >* >(vec[1]);
