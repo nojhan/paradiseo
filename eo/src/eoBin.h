@@ -8,7 +8,21 @@
 //-----------------------------------------------------------------------------
 
 #include <iostream>     // ostream, istream
-#include <bvector.h>    // bit_vector
+#include <function.h>   // bind2nd
+
+#ifdef HAVE_BVECTOR_H
+#include <bvector.h>
+#error "incluyo bvector.h"
+#elseif
+#ifdef HAVE_VECTOR
+#include <vector>
+#define bit_vector vector<bool>
+#error "incluyo vector"
+#elseif
+#error "are you kidding?"
+#endif
+#endif
+
 #include <string>       // string
 #include <EO.h>         // EO
 

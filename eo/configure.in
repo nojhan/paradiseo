@@ -6,7 +6,7 @@ AM_CONFIG_HEADER(config.h:config.in)
 
 AC_PROG_CXX
 
-AC_CHECK_HEADERS(bvector.h)
+AC_CHECK_HEADERS(vector bvector.h)
 AC_EGREP_HEADER(bit_vector, bvector.h, AC_DEFINE(HAVE_BIT_VECTOR))
 
 AM_PROG_LIBTOOL
