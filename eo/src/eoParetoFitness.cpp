@@ -33,6 +33,6 @@
 
 // need to allocate the static variables of class eoVariableParetoTraits
 unsigned eoVariableParetoTraits::nObj;
-vector<bool> eoVariableParetoTraits::bObj;
+std::vector<bool> eoVariableParetoTraits::bObj;
 
 

@@ -56,6 +56,13 @@ public :
 
     typedef parse_tree<Node>::subtree Subtree;
 
+   /* For Compatibility with the intel C++ compiler for Linux 5.x */
+   typedef Node reference;
+   typedef const reference const_reference;
+    
+    
+
+	
     /**
      * Default Constructor
      */

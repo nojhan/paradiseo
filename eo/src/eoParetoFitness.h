@@ -29,6 +29,8 @@
 #include <math.h>
 #include <vector>
 #include <stdexcept>
+#include <iostream>
+
 
 /**
  * eoFitnessTraits: a traits class to specify 
@@ -55,20 +57,20 @@ class eoVariableParetoTraits : public eoParetoFitnessTraits
 {
 public :
   /** setting the static stuff */
-  static void setUp(unsigned _n, vector<bool> & _b)
+  static void setUp(unsigned _n, std::vector<bool> & _b)
   {
     // possible problems
     if ( nObj && (nObj != _n) )	   // was already set to a different value
       {
-	cout << "WARNING\n";
-	cout << "WARNING : you are changing the number of objectives\n";
-	cout << "WARNING : Make sure all existing objects are destroyed\n";
-	cout << "WARNING\n";
+	std::cout << "WARNING\n";
+	std::cout << "WARNING : you are changing the number of objectives\n";
+	std::cout << "WARNING : Make sure all existing objects are destroyed\n";
+	std::cout << "WARNING\n";
       }
     nObj=_n; 
     bObj=_b;
     if (nObj != bObj.size())
-      throw runtime_error("Number of objectives and min/max size don't match in VariableParetoTraits::setup");
+      throw std::runtime_error("Number of objectives and min/max size don't match in VariableParetoTraits::setup");
   }
 
   /** the accessors */
@@ -76,7 +78,7 @@ public :
   { 
 #ifndef NDEBUG
     if (!nObj)
-      throw runtime_error("Number of objectives not assigned in VariableParetoTraits");
+      throw std::runtime_error("Number of objectives not assigned in VariableParetoTraits");
 #endif
     return nObj; 
   }
@@ -84,17 +86,17 @@ public :
   {
 #ifndef NDEBUG
     if (_i >= bObj.size())
-      throw runtime_error("Wrong index in VariableParetoTraits");
+      throw std::runtime_error("Wrong index in VariableParetoTraits");
 #endif
     return bObj[_i]; 
   }
 private:
   static unsigned nObj;
-  static vector<bool> bObj;
+  static std::vector<bool> bObj;
 };
 
 /**
-  eoParetoFitness class: vector of doubles with overloaded comparison operators. Comparison is done
+  eoParetoFitness class: std::vector of doubles with overloaded comparison operators. Comparison is done
   on pareto dominance. The template argument FitnessTraits defaults to eoParetoFitnessTraits, which
   can be replaces at will by any other class that implements the static functions defined therein.
 
@@ -114,7 +116,7 @@ public :
   /** access to the traits characteristics (so you don't have to write 
    * a lot of typedef's around
    */
-  static void setUp(unsigned _n, vector<bool> & _b) {FitnessTraits::setUp(_n, _b);}
+  static void setUp(unsigned _n, std::vector<bool> & _b) {FitnessTraits::setUp(_n, _b);}
   static bool maximizing(unsigned _i) { return FitnessTraits::maximizing(_i);}
 
   /// Partial order based on Pareto-dominance
@@ -124,8 +126,8 @@ public :
     bool dom = false;
 
     double tol = FitnessTraits::tol();
-    const vector<double>& performance = *this;
-    const vector<double>& otherperformance = _other;
+    const std::vector<double>& performance = *this;
+    const std::vector<double>& otherperformance = _other;
 
     for (unsigned i = 0; i < FitnessTraits::nObjectives(); ++i)
     {
@@ -152,8 +154,8 @@ public :
   bool operator<(const eoParetoFitness<FitnessTraits>& _other) const
   {
     double tol = FitnessTraits::tol();
-    const vector<double>& performance = *this;
-    const vector<double>& otherperformance = _other;
+    const std::vector<double>& performance = *this;
+    const std::vector<double>& otherperformance = _other;
     for (unsigned i = 0; i < FitnessTraits::nObjectives(); ++i)
     {
       bool maxim = FitnessTraits::maximizing(i);
