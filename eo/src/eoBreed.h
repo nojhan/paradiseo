@@ -40,7 +40,7 @@ function.
   @see eoSelect, eoTransform, eoSelectTransform
 */
 template<class EOT>
-class eoBreed : public eoBinaryFunctor<void, const eoPop<EOT>&, eoPop<EOT>&> 
+class eoBreed : public eoBF<const eoPop<EOT>&, eoPop<EOT>&, void>
 {};
 
 /**

@@ -37,7 +37,7 @@ the population, the second argument is an eoPopRange, a simple struct
 that holds a begin and end iterator to the population
 */
 template<class EOT>
-class eoSelect : public eoBinaryFunctor<void, const eoPop<EOT>&, eoPop<EOT>&> 
+class eoSelect : public eoBF<const eoPop<EOT>&, eoPop<EOT>&, void>
 {};
 
 #endif

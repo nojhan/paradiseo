@@ -45,7 +45,7 @@
  * next generation.
 */
 
-template<class Chrom> class eoMerge: public eoBinaryFunctor<void, const eoPop<Chrom>&, eoPop<Chrom>&>
+template<class Chrom> class eoMerge: public eoBF<const eoPop<Chrom>&, eoPop<Chrom>&, void>
 {};
 
 /**

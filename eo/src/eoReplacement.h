@@ -41,7 +41,7 @@ so there is an implementation called eoMergeReduce that can be found below
   @see eoMerge, eoReduce, eoMergeReduce
 */
 template<class EOT>
-class eoReplacement : public eoBinaryFunctor<void, const eoPop<EOT>&, eoPop<EOT>&> 
+class eoReplacement : public eoBF<const eoPop<EOT>&, eoPop<EOT>&, void>
 {};
 
 /**

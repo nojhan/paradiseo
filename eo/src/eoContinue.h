@@ -33,7 +33,7 @@
  * false for termination 
  */
 template< class EOT>
-class eoContinue : public eoUnaryFunctor<bool, const eoPop<EOT>&> {};
+class eoContinue : public eoUF<const eoPop<EOT>&, bool> {};
 
 #endif
 

@@ -35,7 +35,7 @@ eoTransform transforms a population by applying genetic operators on
 it.
 */
 template<class EOT>
-class eoTransform : public eoUnaryFunctor<void, eoPop<EOT>&> 
+class eoTransform : public eoUF<eoPop<EOT>&, void>
 {};
 
 #endif

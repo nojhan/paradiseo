@@ -38,7 +38,7 @@
       @see eoSelectMany, eoSelectRandom, eoDetTournament, eoStochTournament, eoProportional
 */
 template<class EOT>
-class eoSelectOne : public eoUnaryFunctor<const EOT&, const eoPop<EOT>&>
+class eoSelectOne : public eoUF<const eoPop<EOT>&, const EOT&>
 {
     public :
 

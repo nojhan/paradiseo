@@ -34,7 +34,7 @@
     eoUpdater is a generic procudere for updating whatever you want.
     Yet again an empty name
 */
-class eoUpdater : public eoProcedure<void>
+class eoUpdater : public eoF<void>
 {};
 
 /**

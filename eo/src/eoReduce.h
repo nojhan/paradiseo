@@ -38,7 +38,7 @@
  * eoReduce: .reduce the new generation to the specified size
 */
 
-template<class Chrom> class eoReduce: public eoBinaryFunctor<void, eoPop<Chrom>&, unsigned>
+template<class Chrom> class eoReduce: public eoBF<eoPop<Chrom>&, unsigned, void>
 {};
 
 template <class EOT> class eoTruncate : public eoReduce<EOT>

@@ -36,7 +36,7 @@
     population-transforming algorithms.
 */
 template< class EOT >
-class eoAlgo : public eoUnaryFunctor<void, eoPop<EOT>&> 
+class eoAlgo : public eoUF<eoPop<EOT>&, void>
 {};
 
 	

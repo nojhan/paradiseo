@@ -41,7 +41,7 @@
 */
 
 template <class EOT>
-class eoIndiSelector : public eoProcedure<const EOT&>
+class eoIndiSelector : public eoF<const EOT&>
 {
 public :
 

@@ -41,7 +41,7 @@ class eoParam;
     will stream or pipe the current values of the parameters to wherever you
     want it streamed or piped to.
 */
-class eoMonitor : public eoProcedure<eoMonitor&>
+class eoMonitor : public eoF<eoMonitor&>
 {
 public :
 

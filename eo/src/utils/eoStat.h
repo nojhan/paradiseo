@@ -36,7 +36,7 @@
   over the (unsorted) population
 */
 template <class EOT>
-class eoStatBase : public eoUnaryFunctor<void, const eoPop<EOT>&>
+class eoStatBase : public eoUF<const eoPop<EOT>&, void>
 {};
 
 template <class EOT, class T>
@@ -50,7 +50,7 @@ public :
   Base class for statistics calculated over a sorted snapshot of the population
 */
 template <class EOT>
-class eoSortedStatBase : public eoUnaryFunctor<void, const vector<const EOT*>&>
+class eoSortedStatBase : public eoUF<const vector<const EOT*>&, void>
 {
 };
 

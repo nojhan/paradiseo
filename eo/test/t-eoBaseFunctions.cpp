@@ -5,12 +5,12 @@
 
 using namespace std;
 
-struct eo1 : public eoProcedure<void>
+struct eo1 : public eoF<void>
 {
     void operator()(void) {}
 };
 
-struct eo2 : public eoProcedure<int>
+struct eo2 : public eoF<int>
 {
     int operator()(void) { return 1; }
 };

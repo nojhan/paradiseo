@@ -38,7 +38,7 @@
 */
 
 template <class EOT>
-class eoInit : public eoUnaryFunctor<void, EOT&> 
+class eoInit : public eoUF<EOT&, void>
 {};
 
 /**

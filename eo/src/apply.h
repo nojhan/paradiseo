@@ -29,8 +29,11 @@
 #include <eoFunctor.h>
 #include <vector>
 
+/**
+  Applies a unary function to a vector of things.
+*/
 template <class EOT>
-void apply(eoUnaryFunctor<void, EOT&>& _proc, std::vector<EOT>& _pop)
+void apply(eoUF<EOT&, void>& _proc, std::vector<EOT>& _pop)
 {
     for (unsigned i = 0; i < _pop.size(); ++i)
     {

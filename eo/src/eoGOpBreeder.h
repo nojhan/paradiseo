@@ -18,8 +18,13 @@
 #include <eoIndiSelector.h>
 #include <eoBackInserter.h>
 
+/**
+  Base class for breeders using generalized operators, I'm not sure if we
+  will maintain the generalized operators in their current form, so
+  it might change.
+*/
 template<class EOT> 
-class eoGOpBreeder: public eoUnaryFunctor<void, eoPop<EOT>&>
+class eoGOpBreeder: public eoUF<eoPop<EOT>&, void>
 {
  public:
   /// Default constructor.

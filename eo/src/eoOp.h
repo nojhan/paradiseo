@@ -79,7 +79,7 @@ private:
 
 /** eoMonOp is the monary operator: genetic operator that takes only one EO */
 template <class EOType>
-class eoMonOp: public eoOp<EOType>, public eoUnaryFunctor<void, EOType&>
+class eoMonOp: public eoOp<EOType>, public eoUF<EOType&, void>
 {
 public:
   /// Ctor
@@ -92,7 +92,7 @@ public:
  *  operator() with two operands, only the first one can be modified
  */
 template<class EOType>
-class eoBinOp: public eoOp<EOType>, public eoBinaryFunctor<void, EOType&, const EOType&> 
+class eoBinOp: public eoOp<EOType>, public eoBF<EOType&, const EOType&, void>
 {
 public:
   /// Ctor
@@ -105,7 +105,7 @@ public:
 */
 
 template<class EOType>
-class eoQuadraticOp: public eoOp<EOType>, public eoBinaryFunctor<void, EOType&, EOType&> {
+class eoQuadraticOp: public eoOp<EOType>, public eoBF<EOType&, EOType&, void> {
 public:
   /// Ctor
   eoQuadraticOp()
@@ -129,7 +129,7 @@ class eoInserter;
  * eGeneralOp: General genetic operator; for objects used to transform sets
  * of EOs. Nary ("orgy") operators should be derived from this class
 
-  Derived from eoBinaryFunctor  
+  Derived from eoB(inary)F(unction)
       Applies the genetic operator
       to a individuals dispensed by an eoIndividualSelector, 
       and puts the results in the eoIndividualInserter.
@@ -139,7 +139,7 @@ class eoInserter;
 
 template<class EOT>
 
-class eoGeneralOp: public eoOp<EOT>, public eoBinaryFunctor<void, eoIndiSelector<EOT>&, eoInserter<EOT>&>
+class eoGeneralOp: public eoOp<EOT>, public eoBF<eoIndiSelector<EOT>&, eoInserter<EOT>&, void>
 {
 public:
   /// Ctor that honors its superclass

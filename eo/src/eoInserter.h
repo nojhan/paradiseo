@@ -38,7 +38,7 @@
     new individuals into the (intermediate) population for example. 
 */
 template <class EOT>
-class eoInserter  : public eoUnaryFunctor<eoInserter<EOT>&, const EOT&>
+class eoInserter  : public eoUF<const EOT&, eoInserter<EOT>&>
 {
     public :
         virtual ~eoInserter() {}

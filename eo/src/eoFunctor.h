@@ -26,6 +26,8 @@
 #ifndef _eoFunctor_h
 #define _eoFunctor_h
 
+#include <functional>
+
 /// Base class for functors to get a nice hierarchy diagram
 class eoFunctorBase 
 {
@@ -41,19 +43,19 @@ public :
 };
 
 /** 
-    Basic Procedure. Derive from this class when defining 
+    Basic Function. Derive from this class when defining
     any procedure. It defines a result_type that can be used
     to determine the return type
     Argument and result types can be any type including void for
     result_type
 **/
 template <class R>
-class eoProcedure : public eoFunctorBase
+class eoF : public eoFunctorBase
 {
 public :
     
     /// virtual dtor here so there is no need to define it in derived classes
-    virtual ~eoProcedure() {}
+    virtual ~eoF() {}
 
     typedef R result_type;
     
@@ -68,28 +70,25 @@ public :
     @see eoCounter, make_counter
 */
 template<class R>
-eoFunctorBase::procedure_tag functor_category(const eoProcedure<R>&)
+eoFunctorBase::procedure_tag functor_category(const eoF<R>&)
 {
     return eoFunctorBase::procedure_tag();
 }
 
 /** 
     Basic Unary Functor. Derive from this class when defining 
-    any unary function. First template argument is result_type, second
-    is first_argument_type.
+    any unary function. First template argument is the first_argument_type,
+    second result_type.
     Argument and result types can be any type including void for
     result_type
 **/
-template <class R, class A1>
-class eoUnaryFunctor : public eoFunctorBase
+template <class A1, class R>
+class eoUF : public eoFunctorBase, public std::unary_function<A1, R>
 {
 public :
 
     /// virtual dtor here so there is no need to define it in derived classes
-    virtual ~eoUnaryFunctor() {}
-
-    typedef R result_type;
-    typedef A1 first_argument_type;
+    virtual ~eoUF() {}
 
     /// The pure virtual function that needs to be implemented by the subclass
     virtual R operator()(A1) = 0;
@@ -101,7 +100,7 @@ public :
     @see eoCounter, make_counter
 */
 template<class R, class A1>
-eoFunctorBase::unary_function_tag functor_category(const eoUnaryFunctor<R, A1>&)
+eoFunctorBase::unary_function_tag functor_category(const eoUF<A1, R>&)
 {
     return eoFunctorBase::unary_function_tag();
 }
@@ -114,16 +113,16 @@ eoFunctorBase::unary_function_tag functor_category(const eoUnaryFunctor<R, A1>&)
     Argument and result types can be any type including void for
     result_type
 **/
-template <class R, class A1, class A2>
-class eoBinaryFunctor : public eoFunctorBase
+template <class A1, class A2, class R>
+class eoBF : public eoFunctorBase, public std::binary_function<A1, A2, R>
 {
 public :
         /// virtual dtor here so there is no need to define it in derived classes
-    virtual ~eoBinaryFunctor() {}
+    virtual ~eoBF() {}
     
-    typedef R result_type;
-    typedef A1 first_argument_type;
-    typedef A2 second_argument_type;
+    //typedef R result_type;
+    //typedef A1 first_argument_type;
+    //typedef A2 second_argument_type;
 
     /// The pure virtual function that needs to be implemented by the subclass
     virtual R operator()(A1, A2) = 0;
@@ -135,7 +134,7 @@ public :
     @see eoCounter, make_counter
 */
 template<class R, class A1, class A2>
-eoFunctorBase::binary_function_tag functor_category(const eoBinaryFunctor<R, A1, A2>&)
+eoFunctorBase::binary_function_tag functor_category(const eoBF<A1, A2, R>&)
 {
     return eoFunctorBase::binary_function_tag();
 }

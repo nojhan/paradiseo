@@ -38,7 +38,7 @@
  EO, the requirements on this EO will depend on the evaluator.
  */
 
-template<class EOT> class eoEvalFunc : public eoUnaryFunctor<void, EOT&>
+template<class EOT> class eoEvalFunc : public eoUF<EOT&, void>
 {
     public :
 	typedef typename EOT::Fitness EOFitT;

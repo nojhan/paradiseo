@@ -10,3 +10,12 @@ instead of
 $> ./configure
 
 before making the libraries.
+
+Documentation can be found in:
+   eo/doc/html
+
+And \latex sources for a reference manual in:
+   eo/doc/latex
+
+There are currently no examples except the programs in the test directory. 
+Only the files mentioned in Makefile.am will actually compile. 
