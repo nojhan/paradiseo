@@ -125,7 +125,7 @@ eoParam* eoParser::getParamWithLongName(std::string _name)
   typedef MultiMapType::const_iterator It;
   for (It p = params.begin(); p != params.end(); ++p)
     {
-      if (p->second->longName() == _name)
+      if (p->second->longName() == prefix+_name)
 	return p->second;
     }
   return 0;
@@ -161,6 +161,13 @@ eoValueParam<ValueType>& eoParser::getORcreateParam (
 
 void eoParser::processParam(eoParam& param, std::string section)
 {
+    // this param enters the parser: add the prefix to the long name
+    if (prefix != "")
+      {
+	param.setLongName(prefix+param.longName());
+	section = prefix + section;  // and to section
+      }
+
     doRegisterParam(param); // plainly register it
     params.insert(make_pair(section, &param));
 }

@@ -24,7 +24,7 @@
  */
 //-----------------------------------------------------------------------------
 /**
-CVS Info: $Date: 2003-02-27 19:21:17 $ $Version$ $Author: okoenig $
+CVS Info: $Date: 2004-04-05 15:28:12 $ $Version$ $Author: evomarc $
 */
 #ifndef eoParser_h
 #define eoParser_h
@@ -189,6 +189,12 @@ public:
   void setStopOnUnknownParam(bool _b) {stopOnUnknownParam.value()=_b;}
   bool getStopOnUnknownParam() {return stopOnUnknownParam.value();}
 
+  /** Prefix handling */
+  void setPrefix(const std:: string & _prefix) {prefix = _prefix;}
+
+  void resetPrefix() {prefix = "";}
+
+  std::string getPrefix() {return prefix;}
 
 private:
   
@@ -216,6 +222,9 @@ private:
   eoValueParam<bool>   stopOnUnknownParam;
 
   mutable std::vector<std::string> messages;
+
+  std::string prefix;   // used for all created params - in processParam
+
 };
 
 
