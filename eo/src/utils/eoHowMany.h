@@ -132,9 +132,9 @@ public:
   virtual void printOn(std::ostream& _os) const 
   {
     if (combien == 0)
-      _os << 100*rate << "% " << std::ends;
+      _os << 100*rate << "% ";
     else
-      _os << combien << " " << std::ends;
+      _os << combien << " ";
     return;
 
   }

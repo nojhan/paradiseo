@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
-    CVS Info: $Date: 2003-02-27 19:25:48 $ $Version$ $Author: okoenig $ 
+    CVS Info: $Date: 2003-03-21 02:38:57 $ $Version$ $Author: maartenkeijzer $ 
  */
 //-----------------------------------------------------------------------------
 
@@ -140,11 +140,17 @@ public :
   }
 
   virtual std::string className() const
-  { 
+  {
+#ifdef HAVE_SSTREAM
+    std::ostringstream os;
+    os << "eoVlDelMutation("<<chooser.className() << ")";
+    return os.str();
+#else
     char s[1024];
     std::ostrstream os(s, 1022);
     os << "eoVlDelMutation(" << chooser.className() << ")" << std::ends; 
     return std::string(s); 
+#endif
   }
 
 private:

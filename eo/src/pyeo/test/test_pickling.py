@@ -69,28 +69,7 @@ class TestPickling(unittest.TestCase):
 	for i in range(10):
 	    rng().rand()
 	
-	filename = tempfile.mktemp()
-	file = open(filename, 'wb')
-	pickler = cPickle.Pickler(file)
-	
-	s = rng().to_string()
-
-	pickler.dump(s);
-	del pickler
-	file.close()
-	
-	file = open(filename)
-	
-	unpickler = cPickle.Unpickler(file)
-
-	s = unpickler.load()
-
-	rng2 = eoRng(1)
-	rng2.from_string(s)
-
-	del unpickler
-	file.close()
-	os.remove(filename)
+	rng2 = self.do_pickle(rng())
 	
 	for i in range(100):
 	    a = rng().rand()
@@ -99,19 +78,7 @@ class TestPickling(unittest.TestCase):
 
     def vParam(self,v):
 	
-	filename = tempfile.mktemp()
-	file = open(filename,'wb')
-	pickler = cPickle.Pickler(file)
-
-	pickler.dump(v)
-	del pickler
-	file.close()
-	file = open(filename)
-
-	unpickler = cPickle.Unpickler(file)
-
-	v2 = unpickler.load();
-
+	v2 = self.do_pickle(v);
 	self.failUnlessEqual(v.value, v2.value)
 	
     def testValueParam(self):

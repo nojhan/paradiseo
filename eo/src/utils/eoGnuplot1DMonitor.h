@@ -120,10 +120,10 @@ inline void  eoGnuplot1DMonitor::FirstPlot()
       os << ", ";
   }
   os << '\n';
-  os << std::ends;
 #ifdef HAVE_SSTREAM
   PipeComSend( gpCom, os.str().c_str());
 #else
+  os << std::ends;
   PipeComSend( gpCom, buff );
 #endif
 }

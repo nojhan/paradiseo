@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
-    CVS Info: $Date: 2003-02-27 19:25:48 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVariableLengthCrossover.h,v 1.8 2003-02-27 19:25:48 okoenig Exp $ $Author: okoenig $ 
+    CVS Info: $Date: 2003-03-21 02:38:57 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVariableLengthCrossover.h,v 1.9 2003-03-21 02:38:57 maartenkeijzer Exp $ $Author: maartenkeijzer $ 
  */
 //-----------------------------------------------------------------------------
 
@@ -150,10 +150,17 @@ public :
 
   virtual std::string className() const
   { 
+#ifdef HAVE_SSTREAM
+      std::ostringstream os;
+    os << "eoVlAtomExchangeQuadOp(" << atomExchange.className() << ")"; 
+    return os.str()
+#else
+
     char s[1024];
     std::ostrstream os(s, 1022);
     os << "eoVlAtomExchangeQuadOp(" << atomExchange.className() << ")" << std::ends; 
     return std::string(s); 
+#endif
   }
 
 private:

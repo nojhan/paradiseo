@@ -164,12 +164,13 @@ public :
     {
 #ifdef HAVE_SSTREAM
 	std::ostringstream os;
+        os << repValue;
 #else
         char buf[1024];
         std::ostrstream os(buf, 1023);
-#endif
         os << repValue;
         os << std::ends;
+#endif
         return os.str();
     }
 
@@ -221,11 +222,12 @@ std::string eoValueParam<std::pair<double, double> >::getValue(void) const
     // use own buffer as MSVC's buffer leaks!
 #ifdef HAVE_SSTREAM
     std::ostringstream os;
+    os << repValue.first << ' ' << repValue.second;
 #else
     char buff[1024];
     std::ostrstream os(buff, 1024);
-#endif
     os << repValue.first << ' ' << repValue.second << std::ends;
+#endif
     return os.str();
 }
 
@@ -260,7 +262,9 @@ std::string eoValueParam<std::vector<std::vector<double> > >::getValue(void) con
       std::copy(repValue[i].begin(), repValue[i].end(), std::ostream_iterator<double>(os, " "));
     }
 
+#ifndef HAVE_SSTREAM
     os << std::ends;
+#endif
     return os.str();
 }
 
@@ -302,7 +306,9 @@ std::string eoValueParam<std::vector<double> >::getValue(void) const
 #endif
     os << repValue.size() << ' ';
     std::copy(repValue.begin(), repValue.end(), std::ostream_iterator<double>(os, " "));
+#ifndef HAVE_SSTREAM
     os << std::ends;
+#endif
     return os.str();
 }
 
@@ -334,7 +340,9 @@ std::string eoValueParam<std::vector<eoMinimizingFitness> >::getValue(void) cons
 #endif
     os << repValue.size() << ' ';
     std::copy(repValue.begin(), repValue.end(), std::ostream_iterator<eoMinimizingFitness>(os, " "));
-    os << std::ends;
+#ifndef HAVE_SSTREAM
+    os<< std::ends;
+#endif
     return os.str();
 }
 

@@ -97,12 +97,13 @@ public :
   {
 #ifdef HAVE_SSTREAM
     std::ostringstream oscount;
+    oscount << counter;
 #else
     char buff[255];
     std::ostrstream oscount(buff, 254);
-#endif
     oscount << counter;
     oscount << std::ends;
+#endif
 
     currentFileName = dirname + "/" + filename + oscount.str();
   }

@@ -70,7 +70,7 @@ void operator()(const eoPop<EOT>& _pop)
   for (unsigned i = 0; i < howmany; ++i)
   {
       std::ostringstream os; 
-      os << _pop[i] << std::endl << std::ends;
+      os << _pop[i] << std::endl;
  
       // paranoid:
       value() += os.str();
@@ -130,8 +130,8 @@ public :
     unsigned howMany=combien?combien:_pop.size();
     for (unsigned i = 0; i < howMany; ++i)
       {
-	std::ostringstream os; // leave space for emergency terminate
-	os << *_pop[i] << std::endl << std::ends;
+	std::ostringstream os; 
+	os << *_pop[i] << std::endl;
  
 	// paranoid:
 	value() += os.str();

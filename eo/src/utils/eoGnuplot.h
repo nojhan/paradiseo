@@ -106,12 +106,13 @@ inline void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
 {
 #ifdef HAVE_SSTREAM
     std::ostringstream os;
+  os << "300x200-0+" << numWindow*220;
 #else
     char snum[255];
   std::ostrstream os(snum, 254);
+  os << "300x200-0+" << numWindow*220 << std::ends;
 #endif
   
-  os << "300x200-0+" << numWindow*220 << std::ends;
   numWindow++;
   char	*args[6];
   args[0] = strdup( "gnuplot" );
@@ -148,7 +149,7 @@ inline void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
  * Created......: Mon Mar 13 13:50:11 1995
  * Description..: Communication par pipe bidirectionnel avec un autre process
  *
- * Ident........: $Id: eoGnuplot.h,v 1.7 2003-02-28 16:49:14 maartenkeijzer Exp $
+ * Ident........: $Id: eoGnuplot.h,v 1.8 2003-03-21 02:39:09 maartenkeijzer Exp $
  * ----------------------------------------------------------------------
  */
 

@@ -53,6 +53,7 @@ std::string rng_to_string(const eoRng& _rng)
     return os.str();
 }
 
+
 void rng_from_string(eoRng& _rng, std::string s)
 {
 #ifdef HAVE_SSTREAM
@@ -62,6 +63,21 @@ void rng_from_string(eoRng& _rng, std::string s)
 #endif
     _rng.readFrom(is);
 }
+
+struct RNG_pickle_suite : boost::python::pickle_suite
+{
+    static
+    boost::python::tuple getstate(const eoRng& _rng)
+    {
+	return boost::python::make_tuple(str(rng_to_string(_rng)));
+    }
+    static
+    void setstate(eoRng& _rng, boost::python::tuple pickled)
+    {
+	std::string state = extract<std::string>(pickled[0]);
+	rng_from_string(_rng, state);
+    }
+};
 
 int spin(eoRng& _rng, numeric::array values, double total)
 {
@@ -97,6 +113,7 @@ void random_numbers()
 	.def("to_string", rng_to_string)
 	.def("from_string", rng_from_string)
 	.def("roulette_wheel", spin)
+	.def_pickle(RNG_pickle_suite())
 	;
     
     def("rng", get_rng, return_value_policy<reference_existing_object>());
