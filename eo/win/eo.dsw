@@ -3,7 +3,7 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
-Project: "all_lib"=.\all_lib\all_lib.dsp - Package Owner=<4>
+Project: "all_lib"=.\all_lib.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -27,7 +27,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "all_tests"=.\all_tests\all_tests.dsp - Package Owner=<4>
+Project: "all_tests"=.\all_tests.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -174,10 +174,6 @@ Package=<5>
 Package=<4>
 {{{
 }}}
-
-###############################################################################
-
-Project: "t_eoesall"=.\t_eoesall.dsp - Package Owner=<4>
 
 ###############################################################################
 
@@ -398,6 +394,18 @@ Package=<4>
 ###############################################################################
 
 Project: "t_mge1bit"=.\t_mge1bit.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "tut_1_bit"=.\tut_1_bit.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
