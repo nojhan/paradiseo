@@ -203,10 +203,13 @@ class RegFitness: public eoEvalFunc< eoParseTree<FType, TreeNode> >
 					fit += pow(target - output, 2);
 				}
 				// check if the fitness is valid
+				// some versions of gcc (e.g. 2.95.2 on solaris) don't have isinf(x) defined
+				#ifdef isinf
 				if (isinf(fit) == 0)
 					fitness[NORMAL] = fit;
 				else
 					fitness[NORMAL] = MAXFLOAT;	
+				#endif
 				
 				fitness[SMALLESTSIZE] =  _eo.size() / (1.0*parameter.MaxSize);
 				_eo.fitness(fitness);
