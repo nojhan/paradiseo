@@ -28,6 +28,7 @@
 #include <config.h>
 #endif
 
+#include <mpi.h>
 #include <iostream>
 #include <string>
 #ifdef HAVE_SSTREAM
@@ -35,49 +36,47 @@
 #else
 #include <strstream.h>
 #endif
-#include <mpi.h>
+
 #include <paradisEO/comm/messages/eoMessFrom.h>
 
-using namespace std;
+
 
 /**
    A message embeding a set of immigrants ...
 */
-
-template <class EOT> class eoEOSendMessFrom : public eoMessFrom <EOT> {
+template <class EOT> class eoEOSendMessFrom : public eoMessFrom <EOT>
+{
+public:
   
-public :
+    /**
+       Constructor
+    */
+    eoEOSendMessFrom (eoLocalListener <EOT> & _loc_listen)
+        : eoMessFrom <EOT> (_loc_listen) {
+        MPI :: Status stat ;
+        comm.Probe (loc_listen.number (), 0, stat) ;
+        int len = stat.Get_count (MPI :: CHAR) ;
+        char buff [len] ;
+        comm.Recv(buff, len, MPI::CHAR, loc_listen.number (), 0) ;
+#ifdef HAVE_SSTREAM
+        std::istringstream f(buff);
+#else
+        istrstream f(buff);
+#endif
+        _pop.readFrom(f);
+    }
+
+
   
-  /**
-     Constructor
-  */
+    void operator() () {
+        loc_listen.push (_pop) ;
+        //    std::cout << "Reception de " << pop.size () << "individus " << std::endl ;
+    }
 
-  eoEOSendMessFrom (eoLocalListener <EOT> & _loc_listen) :
-    eoMessFrom <EOT> (_loc_listen) {
-    
-    MPI :: Status stat ;
-    comm.Probe (loc_listen.number (), 0, stat) ;
-    int len = stat.Get_count (MPI :: CHAR) ;
-    char buff [len] ;
-    comm.Recv (buff, len, MPI :: CHAR, loc_listen.number (), 0) ;
-    istrstream f (buff) ;
-    pop.readFrom (f) ;
 
-  }
-  
-  void operator () () {
-    
-    loc_listen.push (pop) ;
-    //    std::cout << "Reception de " << pop.size () << "individus " << std::endl ;
-  }
+protected:
 
-private :
-
-  eoPop <EOT> pop ; // New immigrants !
-
-} ;
+    eoPop <EOT> _pop ; // New immigrants !
+};
 
 #endif
-
-
-

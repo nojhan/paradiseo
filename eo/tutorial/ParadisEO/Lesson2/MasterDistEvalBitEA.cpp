@@ -1,6 +1,13 @@
-#include <stdexcept>
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <iostream>
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
 #include <strstream>
+#endif
 
 #include <paradiseo.h>
 #include <ga.h>

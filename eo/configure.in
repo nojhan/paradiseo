@@ -69,4 +69,6 @@ AC_OUTPUT(Makefile \
           tutorial/Lesson5/Makefile \
           tutorial/ParadisEO/Makefile \
           tutorial/ParadisEO/Lesson1/Makefile \
+          tutorial/ParadisEO/Lesson2/Makefile \
+          tutorial/ParadisEO/Lesson3/Makefile \
           win/Makefile)

@@ -1,6 +1,14 @@
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include <iostream>
 #include <stdexcept>  // runtime_error 
-#include <iostream>   // cout
-#include <strstream>  // ostrstream, istrstream
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
+#include <strstream>
+#endif
 
 #include <paradiseo.h>
 #include <ga.h>

@@ -1,6 +1,14 @@
-#include <stdexcept>
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <iostream>
+#include <stdexcept>  // runtime_error 
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
 #include <strstream>
+#endif
 
 #include <eo>
 #include <ga.h>

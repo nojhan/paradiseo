@@ -21,49 +21,59 @@
    Contact: cahon@lifl.fr
 */
 
-/**
-   A message embeding immigrants to send to ...
-*/
 
 #ifndef eoEOSendMessTo_h
 #define eoEOSendMessTo_h
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <mpi.h>
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
 #include <strstream.h>
+#endif
 #include <eoPop.h>
 #include <paradisEO/comm/messages/eoMessTo.h>
 
+
+/** A message embeding immigrants to send to ... */
 template <class EOT> class eoEOSendMessTo : public eoMessTo <EOT> {
   
 public :
   
-  /**
-     Constructor ...
-   */
+    /**
+       Constructor ...
+    */
   
-  eoEOSendMessTo (eoPop <EOT> & _pop ) 
-    : eoMessTo <EOT> ("eoEOSendMessTo"), 
-      pop (_pop)
-  {}
+    eoEOSendMessTo (eoPop <EOT> & _pop ) 
+        : eoMessTo <EOT> ("eoEOSendMessTo"), 
+          pop (_pop)
+        {}
   
-  /**
-     To send the given population ...
-   */
+    /**
+       To send the given population ...
+    */
+    void operator () (eoLocalListener <EOT> & loc_listen) {    
+        eoMessTo <EOT> :: operator () (loc_listen) ;
+#ifdef HAVE_SSTREAM
+        std::ostringstream f;
+        pop.printOn(f);
+        comm.Send(f.str().c_str(), f.str().size(), MPI::CHAR, loc_listen.number(), 0);
+#else
+        std::ostrstream f;
+        pop.printOn (f);
+        comm.Send (f.str(), f.pcount(), MPI::CHAR, loc_listen.number(), 0);
+#endif
+        loc_listen.need_immigration () = false;
+    }
+  
 
-  void operator () (eoLocalListener <EOT> & loc_listen) {
-    
-    eoMessTo <EOT> :: operator () (loc_listen) ;
-    
-    std::ostrstream f ;
-    pop.printOn (f) ;
-    comm.Send (f.str (), f.pcount (), MPI :: CHAR, loc_listen.number (), 0) ;
-    loc_listen.need_immigration () = false ;
-  }
+protected:
   
-private :
-  
-  eoPop <EOT> & pop ; // The set of EO to send.
-  
+    eoPop <EOT> & pop ; // The set of EO to send.
 } ;
 
 #endif

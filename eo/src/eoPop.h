@@ -25,9 +25,10 @@
 #ifndef _EOPOP_H
 #define _EOPOP_H
 
-#include <vector>
 #include <algorithm>
+#include <iostream>
 #include <iterator> // needed for GCC 3.2
+#include <vector>
 
 // EO includes
 #include <eoOp.h> // for eoInit

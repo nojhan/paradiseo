@@ -24,11 +24,12 @@
 #ifndef eoListener_h
 #define eoListener_h
 
+#include <mpi.h>
 #include <vector>
+
 #include <paradisEO/comm/eoLocalListener.h>
 #include <paradisEO/comm/messages/to/eoPublishMessTo.h>
 #include <paradisEO/comm/messages/to/eoKillMessTo.h>
-#include <mpi.h>
 
 /**
    Necessary for any use of a distributed model.

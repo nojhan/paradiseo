@@ -24,16 +24,17 @@
 #ifndef eoLocalListener_h
 #define eoLocalListener_h
 
+#include <mpi.h>
 #include <queue>
 #include <string>
+#include <unistd.h>
+
 #include <paradisEO/comm/messages/from/eoHeaderMessFrom.h>
 #include <paradisEO/comm/messages/from/eoEOReceiveMessFrom.h>
 #include <paradisEO/comm/messages/from/eoEOSendMessFrom.h>
 #include <paradisEO/comm/messages/from/eoPublishMessFrom.h>
 #include <paradisEO/comm/messages/from/eoKillMessFrom.h>
 #include <eoPop.h>
-#include <mpi.h>
-#include <unistd.h>
 
 /**
    A local listener to pack any coming message or, on contrary, to
