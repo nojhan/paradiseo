@@ -94,14 +94,14 @@ public:
   // Basic constructors and assignments
   eoScalarFitnessAssembled() 
     : baseVector( FitnessTraits::size() ),
-      feasible(true), failed(false)
+      feasible(true), failed(false), msg("")
   {}
 
   eoScalarFitnessAssembled( size_type _n, 
 			    const ScalarType& _val,
 			    const std::string& _descr="Unnamed variable" )
     : baseVector(_n, _val),
-      feasible(true), failed(false)
+      feasible(true), failed(false), msg("")
   { 
     if ( _n > FitnessTraits::size() )
     FitnessTraits::resize(_n, _descr);
@@ -110,20 +110,22 @@ public:
   eoScalarFitnessAssembled( const eoScalarFitnessAssembled& other) 
     : baseVector( other ),
       feasible(other.feasible),
-      failed(other.failed)
+      failed(other.failed),
+      msg(other.msg)
   {}
 
   eoScalarFitnessAssembled& operator=( const eoScalarFitnessAssembled& other) {
     baseVector::operator=( other );
     feasible = other.feasible;
     failed = other.failed;
+    msg = other.msg;
     return *this;
   }
   
   // Constructors and assignments to work with scalar type
   eoScalarFitnessAssembled( const ScalarType& v ) 
     : baseVector( 1, v ),
-      feasible(true), failed(false)
+      feasible(true), failed(false), msg("")
   {}
   
   eoScalarFitnessAssembled& operator=( const ScalarType& v ) {
@@ -174,13 +176,20 @@ public:
   bool feasible;
   
   //! Failed boolean
-  
   /**
    * Can be specified anywhere in fitness evaluation
    * as an indicator if the evaluation of the individual failed
    */
   bool failed;
   
+  //! Message
+  /** 
+   * Can be specified anywhere in fitness evaluation.
+   * Typically used to store some sort of error messages, if evaluation of individual failed.
+   */
+  std::string msg;
+   
+
   // Scalar type access
   operator ScalarType(void) const { 
     if ( empty() )
