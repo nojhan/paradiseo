@@ -28,10 +28,9 @@
 
 //-----------------------------------------------------------------------------
 
-#include <time.h>
-#include <stdlib.h> 
-
 #include <eoRnd.h>
+#include <eoRNG.h>
+
 //-----------------------------------------------------------------------------
 // Class eoUniform
 //-----------------------------------------------------------------------------
@@ -47,22 +46,23 @@ class eoUniform: public eoRnd<T>
    * @param _max  The maximum value in the interval.
    */
   eoUniform(T _min = 0, T _max = 1)
-    : eoRnd<T>(), minim(_min), diff(_max - _min) {}
+    : eoRnd<T>(), min(_min), diff(_max - _min) {}
 
   /**
    * copy constructor.
    * @param _rnd the other rnd
    */
   eoUniform( const eoUniform& _rnd)
-    : eoRnd<T>( _rnd), minim(_rnd.minim), diff(_rnd.diff) {}
+    : eoRnd<T>( _rnd), min(_rnd.minim), diff(_rnd.diff) {}
   
-  /// Returns an uniform dandom number over the interval [min, max).
+  /** Returns an uniform random number over the interval [min, max)
+      Uses global rng object */
   virtual T operator()() { 
-	  return minim+ T( (diff * rand() )/ RAND_MAX); 
+    return min + T( rng.uniform( diff ) );  
   }
   
  private:
-  T minim;
+  T min;
   double diff;
 };
 

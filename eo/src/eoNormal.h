@@ -27,9 +27,9 @@
 
 //-----------------------------------------------------------------------------
 
-#include <stdlib.h>
 #include <math.h>
 #include <eoRnd.h> // for base class
+#include <eoRNG.h> // for random number generator
 
 //-----------------------------------------------------------------------------
 // Class eoNormal
@@ -66,12 +66,12 @@ class eoNormal: public eoRnd<T>
 
     double p, v;
     do {
-      p = ((double)rand() / RAND_MAX)*2-1;
-      q = ((double)rand() / RAND_MAX)*2-1;
+      p = ((double)rng.rand() / rng.rand_max())*2-1;
+      q = ((double)rng.rand() / rng.rand_max())*2-1;
       v = p*p + q*q;
     } while(v > 1.0 || v <0.25);
 
-    sqRatio = sqrt(-2*log((double)rand() / RAND_MAX) / v);
+    sqRatio = sqrt(-2*log((double)rand() / rng.rand_max()) / v);
     phase = true;
     return T( (sqRatio * p * sd) + mean );
   };

@@ -62,11 +62,17 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 host_alias = @host_alias@
 host_triplet = @host@
+AS = @AS@
 CC = @CC@
 CXX = @CXX@
+DLLTOOL = @DLLTOOL@
+LD = @LD@
 LIBTOOL = @LIBTOOL@
+LN_S = @LN_S@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+NM = @NM@
+OBJDUMP = @OBJDUMP@
 PACKAGE = @PACKAGE@
 RANLIB = @RANLIB@
 VERSION = @VERSION@
@@ -80,13 +86,28 @@ LDADDS = $(top_builddir)/src/libeo.a
 
 ###############################################################################
 
-noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA t-eoNonUniform
+noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA t-eoNonUniform t-eoUniform t-eoRandom
+
 ###############################################################################
 
 t_eoNonUniform_SOURCES = t-eoNonUniform.cpp
 t_eoNonUniform_DEPENDENCIES = $(DEPS)
 t_eoNonUniform_LDFLAGS = -lm
 t_eoNonUniform_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoUniform_SOURCES = t-eoUniform.cpp
+t_eoUniform_DEPENDENCIES = $(DEPS)
+t_eoUniform_LDFLAGS = -lm
+t_eoUniform_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoRandom_SOURCES = t-eoRandom.cpp
+t_eoRandom_DEPENDENCIES = $(DEPS)
+t_eoRandom_LDFLAGS = -lm
+t_eoRandom_LDADD = $(LDADDS)
 
 ###############################################################################
 
@@ -185,6 +206,8 @@ t_eo2dVector_OBJECTS =  t-eo2dVector.o
 t_eogeneration_OBJECTS =  t-eogeneration.o
 t_eoEasyEA_OBJECTS =  t-eoEasyEA.o
 t_eoNonUniform_OBJECTS =  t-eoNonUniform.o
+t_eoUniform_OBJECTS =  t-eoUniform.o
+t_eoRandom_OBJECTS =  t-eoRandom.o
 CXXFLAGS = @CXXFLAGS@
 CXXCOMPILE = $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -203,11 +226,12 @@ DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
 TAR = gtar
 GZIP_ENV = --best
 DEP_FILES =  .deps/t-eo.P .deps/t-eo2dVector.P .deps/t-eoEasyEA.P \
-.deps/t-eoNonUniform.P .deps/t-eobin.P .deps/t-eobreeder.P \
-.deps/t-eofitness.P .deps/t-eogeneration.P .deps/t-eoinclusion.P \
-.deps/t-eoinsertion.P .deps/t-eolottery.P .deps/t-eoproblem.P
-SOURCES = $(t_eobreeder_SOURCES) $(t_eoinclusion_SOURCES) $(t_eoinsertion_SOURCES) $(t_eo_SOURCES) $(t_eofitness_SOURCES) $(t_eoproblem_SOURCES) $(t_eobin_SOURCES) $(t_eolottery_SOURCES) $(t_eo2dVector_SOURCES) $(t_eogeneration_SOURCES) $(t_eoEasyEA_SOURCES) $(t_eoNonUniform_SOURCES)
-OBJECTS = $(t_eobreeder_OBJECTS) $(t_eoinclusion_OBJECTS) $(t_eoinsertion_OBJECTS) $(t_eo_OBJECTS) $(t_eofitness_OBJECTS) $(t_eoproblem_OBJECTS) $(t_eobin_OBJECTS) $(t_eolottery_OBJECTS) $(t_eo2dVector_OBJECTS) $(t_eogeneration_OBJECTS) $(t_eoEasyEA_OBJECTS) $(t_eoNonUniform_OBJECTS)
+.deps/t-eoNonUniform.P .deps/t-eoRandom.P .deps/t-eoUniform.P \
+.deps/t-eobin.P .deps/t-eobreeder.P .deps/t-eofitness.P \
+.deps/t-eogeneration.P .deps/t-eoinclusion.P .deps/t-eoinsertion.P \
+.deps/t-eolottery.P .deps/t-eoproblem.P
+SOURCES = $(t_eobreeder_SOURCES) $(t_eoinclusion_SOURCES) $(t_eoinsertion_SOURCES) $(t_eo_SOURCES) $(t_eofitness_SOURCES) $(t_eoproblem_SOURCES) $(t_eobin_SOURCES) $(t_eolottery_SOURCES) $(t_eo2dVector_SOURCES) $(t_eogeneration_SOURCES) $(t_eoEasyEA_SOURCES) $(t_eoNonUniform_SOURCES) $(t_eoUniform_SOURCES) $(t_eoRandom_SOURCES)
+OBJECTS = $(t_eobreeder_OBJECTS) $(t_eoinclusion_OBJECTS) $(t_eoinsertion_OBJECTS) $(t_eo_OBJECTS) $(t_eofitness_OBJECTS) $(t_eoproblem_OBJECTS) $(t_eobin_OBJECTS) $(t_eolottery_OBJECTS) $(t_eo2dVector_OBJECTS) $(t_eogeneration_OBJECTS) $(t_eoEasyEA_OBJECTS) $(t_eoNonUniform_OBJECTS) $(t_eoUniform_OBJECTS) $(t_eoRandom_OBJECTS)
 
 all: all-redirect
 .SUFFIXES:
@@ -308,6 +332,14 @@ t-eoEasyEA: $(t_eoEasyEA_OBJECTS) $(t_eoEasyEA_DEPENDENCIES)
 t-eoNonUniform: $(t_eoNonUniform_OBJECTS) $(t_eoNonUniform_DEPENDENCIES)
 	@rm -f t-eoNonUniform
 	$(CXXLINK) $(t_eoNonUniform_LDFLAGS) $(t_eoNonUniform_OBJECTS) $(t_eoNonUniform_LDADD) $(LIBS)
+
+t-eoUniform: $(t_eoUniform_OBJECTS) $(t_eoUniform_DEPENDENCIES)
+	@rm -f t-eoUniform
+	$(CXXLINK) $(t_eoUniform_LDFLAGS) $(t_eoUniform_OBJECTS) $(t_eoUniform_LDADD) $(LIBS)
+
+t-eoRandom: $(t_eoRandom_OBJECTS) $(t_eoRandom_DEPENDENCIES)
+	@rm -f t-eoRandom
+	$(CXXLINK) $(t_eoRandom_LDFLAGS) $(t_eoRandom_OBJECTS) $(t_eoRandom_LDADD) $(LIBS)
 .cc.o:
 	$(CXXCOMPILE) -c $<
 .cc.lo:

@@ -27,12 +27,10 @@
 
 //-----------------------------------------------------------------------------
 
-#include <time.h>
-#include <stdlib.h> 
-
 #include <math.h>
 
 #include <eoRnd.h> // for base class
+#include <eoRNG.h> // for base class
 
 //-----------------------------------------------------------------------------
 // Class eoNegExp
@@ -56,7 +54,8 @@ class eoNegExp: public eoRnd<T>
   eoNegExp( const eoNegExp& _rnd): eoRnd<T>( _rnd), mean(_rnd.mean) {};
   
   /// Returns an uniform dandom number over the interval [min, max).
-  virtual T operator()() { return - mean*log((double)rand() / RAND_MAX); }
+  virtual T operator()() { 
+    return T( -mean*log((double)rng.rand() / rng.rand_max())); }
   
  private:
   T mean;

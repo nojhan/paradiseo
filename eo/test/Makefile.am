@@ -13,13 +13,28 @@ LDADDS = $(top_builddir)/src/libeo.a
 
 ###############################################################################
 
-noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA t-eoNonUniform
+noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA t-eoNonUniform t-eoUniform t-eoRandom
+
 ###############################################################################
 
 t_eoNonUniform_SOURCES = t-eoNonUniform.cpp
 t_eoNonUniform_DEPENDENCIES = $(DEPS)
 t_eoNonUniform_LDFLAGS = -lm
 t_eoNonUniform_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoUniform_SOURCES = t-eoUniform.cpp
+t_eoUniform_DEPENDENCIES = $(DEPS)
+t_eoUniform_LDFLAGS = -lm
+t_eoUniform_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoRandom_SOURCES = t-eoRandom.cpp
+t_eoRandom_DEPENDENCIES = $(DEPS)
+t_eoRandom_LDFLAGS = -lm
+t_eoRandom_LDADD = $(LDADDS)
 
 ###############################################################################
 
