@@ -10,7 +10,7 @@ libeo_a_SOURCES =  eoPrintable.cpp eoPersistent.cpp
 libeoincdir = $(includedir)/eo
 libeoinc_HEADERS = EO.h eo eo1d.h eo1dWDistance.h eo2d.h \
 	eo2dVector.h eoAged.h  eoAlgo.h\
-	eoAltBreeder.h eoAltProportionalOpSel.h\
+	eoAltBreeder.h \
 	eoAtomBitFlip.h  eoAtomCreep.h eoAtomMutation.h eoAtomMutator.h \
 	eoAtomRandom.h eoBin.h eoBitOp.h eoBitOpFactory.h eoBreeder.h\
 	eoData.h eoDetTournament.h eoDistance.h eoDup.h eoESChrom.h \
