@@ -13,7 +13,7 @@ AC_CANONICAL_TARGET
 
 dnl automake initialization
 AM_INIT_AUTOMAKE([gnu dist-bzip2])
-AM_CONFIG_HEADER([config.h])
+AM_CONFIG_HEADER(config.h)
 
 dnl user-switches
 AC_APPLICATIONS

@@ -10,7 +10,33 @@ LIBES				= $(top_builddir)/src/es/libes.a
 LIBGA				= $(top_builddir)/src/ga/libga.a
 
 # PLEASE don't break the line (see create_batch.sh)
-check_PROGRAMS = t-eoParetoFitness t-eoPareto t-eofitness t-eoRandom t-eobin t-eoVirus t-MGE t-MGE1bit t-MGE-control t-eoStateAndParser t-eoCheckpointing t-eoSSGA t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoReal t-eoVector t-eoESAll t-eoPBIL t-eoFitnessAssembled t-eoFitnessAssembledEA t-eoRoulette t-eoSharing
+check_PROGRAMS 			= t-eoParetoFitness \
+				t-eoPareto \
+				t-eofitness \
+				t-eoRandom \
+				t-eobin \
+				t-eoVirus \
+				t-MGE \
+				t-MGE1bit \
+				t-MGE-control \
+				t-eoStateAndParser \
+				t-eoCheckpointing \
+				t-eoSSGA \
+				t-eoExternalEO \
+				t-eoSymreg \
+				t-eo \
+				t-eoReplacement \
+				t-eoSelect \
+				t-eoGenOp \
+				t-eoGA \
+				t-eoReal \
+				t-eoVector \
+				t-eoESAll \
+				t-eoPBIL \
+				t-eoFitnessAssembled \
+				t-eoFitnessAssembledEA \
+				t-eoRoulette \
+				t-eoSharing
 
 
 TESTS				= $(check_PROGRAMS) \
@@ -19,7 +45,7 @@ TESTS				= $(check_PROGRAMS) \
 noinst_HEADERS			= binary_value.h real_value.h RoyalRoad.h
 
 
-AM_CXXFLAGS			= -g -Wall -I$(top_srcdir)/src 
+AM_CXXFLAGS			= -I$(top_srcdir)/src 
 DEPS	 			= $(LIBGA) $(LIBES) $(LIBEO) $(LIBEOUTILS)
 LIBS	 			= $(DEPS)
 
@@ -27,7 +53,7 @@ CLEANFILES 			= monitor.csv t-eoRandom.out
 EXTRA_DIST			= run_tests
 
 # extra flags for specific targets
-t_eoVirus_CXXFLAGS		= -I$(top_srcdir)/contrib
+t_eoVirus_CXXFLAGS		= $(AM_CXXFLAGS) -I$(top_srcdir)/contrib
 
 # Specify source-files,
 # otherwise automake/make looks for C sources

@@ -80,18 +80,18 @@ int main()
   checkpoint.add(stats);
 
   // GA generation
-  eoEasyEA<Chrom> ea(checkpoint, eval,  breeder, replace );
+  eoEasyEA<Chrom> ea(checkpoint, eval,  breeder, replace);
 
   // evolution
   try
-    {
+  {
       ea(pop);
-    }
+  }
   catch (std::exception& e)
-    {
-	std::cout << "exception: " << e.what() << std::endl;;
-	exit(EXIT_FAILURE);
-    }
+  {
+      std::cout << "exception: " << e.what() << std::endl;;
+      exit(EXIT_FAILURE);
+  }
   
   std::cout << "pop" << std::endl;
   for (i = 0; i < pop.size(); ++i)
