@@ -176,7 +176,7 @@ private :
 			//declone
 			fronts.back().push_back(index);
 		    else // assign it the rank of the previous
-		    	ronts[prev_front].push_back(index);
+		    	fronts[prev_front].push_back(index);
 		    continue;
 		}
 	    }
