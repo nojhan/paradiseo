@@ -32,7 +32,7 @@
  * false for termination
  */
 template< class EOT>
-class eoTerm {
+class eoTerm : public eoObject {
 public:
 
 	/// Ctors/dtors
@@ -41,10 +41,13 @@ public:
 	/** Returns false if the training has to stop, true if it
 	 continues \\
 	 It is non-const since it might change the internal state
-	 of the object, for instance, updating a counter
+	    of the object, for instance, updating local data.
 	*/
 	virtual bool operator() ( const eoPop< EOT >& _pop ) = 0 ;
 	
+  /// Class name.
+  virtual string className() const { return "eoTerm"; }
+
 };
 
 #endif
