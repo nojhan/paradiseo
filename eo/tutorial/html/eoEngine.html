@@ -2,7 +2,7 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdk i686) [Netscape]">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.7-10 i686) [Netscape]">
    <title>Genetic Engine</title>
 </head>
 <body text="#000000" link="#0000EF" vlink="#51188E" alink="#FF0000" background="beige009.jpg">
@@ -241,6 +241,8 @@ and you can probably guess what each of them actually does :-)</li>
 
 <br>&nbsp;
 <p>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
 <p>Available <font color="#FF6600">instances of eoMergeReduce</font> replacement
 include
 <ul>
@@ -310,7 +312,9 @@ size. Available instances of <b><tt><font color="#009900">eoSurviveAndDieReplace
 are limited todayto the <b><tt><font color="#009900">eoDeterministicSaDReplacement</font></tt></b>,
 the&nbsp; that uses a deterministic MergeReduce.</li>
 
-<p><br><b><font color="#FF0000">Note</font></b>: The basic use (and initial
+<br>&nbsp;
+<p>&nbsp;
+<p><b><font color="#FF0000">Note</font></b>: The basic use (and initial
 motivation) for <b><tt><font color="#009900">eoSurviveAndDie</font></tt></b>
 takes 2 arguments, an eoMergeReduce and a number of surviving parents.
 It starts by copying the best parents to the new populations, then merges
@@ -457,7 +461,7 @@ is implemented in the <b><tt><font color="#009900">eoDetTournamentSelect</font><
 class, a sub-class of eoSelectOne, as well as in the <b><tt><font color="#009900">eoDetTournamentTruncate</font></tt></b>
 class that repeatidly removes from the population the "winner" of the inverse
 tournament.&nbsp; These objects use the C++ function determinitic_tournament
-in&nbsp; <a href="../../doc/html/selectors_h-source.html">selectors.h</a>.</li>
+in&nbsp; <a href="../../doc/html/selectors_8h-source.html">selectors.h</a>.</li>
 
 <li>
 <a NAME="stochTournament"></a><b><tt><font color="#009900">Stochastic Tournament</font></tt></b>
@@ -467,7 +471,7 @@ parameter R should be in [0.5,1]. It is implemented in the <b><tt><font color="#
 class, a sub-class of eoSelectOne, as well as in the <b><tt><font color="#009900">eoStochTournamentTruncate</font></tt></b>
 class that repeatidly removes from the population the "winner" of the inverse
 tournament.&nbsp; These objects use the C++ function determinitic_tournament
-in&nbsp; <a href="../../doc/html/selectors_h-source.html">selectors.h</a>.</li>
+in&nbsp; <a href="../../doc/html/selectors_8h-source.html">selectors.h</a>.</li>
 
 <br><b><font color="#FF0000">Note</font></b>: A stochastic tournament with
 rate 1.0 is strictly identical to a deterministic tournament of size 2.

@@ -157,19 +157,15 @@ any useful argument</font></tt>
 the candidates to crossover</font></tt>
 <br><b><tt><font color="#993300">if (myBinOp(eo1, eo2))</font></tt></b>
 <br><tt><font color="#993300"><b>&nbsp;&nbsp; { ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
 </b>// eo1 has been modified, <b>not</b> eo2</font></tt>
 <br><b><tt><font color="#993300">&nbsp;&nbsp; }</font></tt></b>
 <br><tt><font color="#993300"><b>else ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
 </b>// none has been modified</font></tt>
 <br><b><tt><font color="#993300">if (myQuadOp(eo1, eo2))</font></tt></b>
 <br><tt><font color="#993300"><b>&nbsp;&nbsp; { ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
 </b>// both eo1 and eo2 have been modified</font></tt>
 <br><b><tt><font color="#993300">&nbsp;&nbsp; }</font></tt></b>
 <br><tt><font color="#993300"><b>else ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
 </b>// none has been modified</font></tt>
 <p>However, you will hardly have to actually apply operators to individuals,
 as operators are used within other classes, and are applied systematically
@@ -228,8 +224,7 @@ above:
 <br><tt><font color="#993300"><b>&nbsp;&nbsp; { ...&nbsp;&nbsp;&nbsp; </b>//
 eo has been modified</font></tt>
 <br><b><tt><font color="#993300">&nbsp;&nbsp; }</font></tt></b>
-<br><tt><font color="#993300"><b>else&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-</b>//
+<br><tt><font color="#993300"><b>else&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>//
 eo has not been modified</font></tt>
 <p>However, you will hardly have to actually apply operators to individuals,
 as operators are used within other classes, and are applied systematically
@@ -311,8 +306,7 @@ _pop)</font></tt></b>
 <br><tt><font color="#993300"><b>&nbsp;&nbsp; EOT&amp; parent1 = *_pop;
 </b>//
 select the first parent</font></tt>
-<br><tt><font color="#993300"><b>&nbsp;&nbsp; ++_plop;&nbsp;&nbsp; 
-</b>//
+<br><tt><font color="#993300"><b>&nbsp;&nbsp; ++_plop;&nbsp;&nbsp; </b>//
 advance once for each selected parents</font></tt>
 <br><b><tt><font color="#993300">&nbsp;&nbsp; ...</font></tt></b>
 <br><tt><font color="#993300"><b>&nbsp;&nbsp; EOT&amp; parentN = *_pop;
@@ -357,7 +351,9 @@ were parents</font>, it needs to insert them into the list using the <b><tt><fon
 method of the class <b><font color="#999900">eoPopulator</font></b> as
 in the following:</li>
 
-<p><br><b><tt><font color="#993300">void apply()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
+<br>&nbsp;
+<p>&nbsp;
+<p><b><tt><font color="#993300">void apply()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
 _pop)</font></tt></b>
 <br><b><tt><font color="#993300">{</font></tt></b>
 <br><tt><font color="#993300"><b>&nbsp; </b>// get the necessary number
@@ -395,8 +391,10 @@ outside the curent list, so the total number of (intermediate) offspring
 is always equal to the initial population size. By chance, the <b><font color="#999900">eoPopulator</font></b>has
 a handle on the initial population that was used to start the process,
 and you can access it from inside the GenOp method. For instance</li>
-<b><tt><font color="#993300"></font></tt></b>
-<p><br><b><tt><font color="#993300">void apply()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
+
+<br>&nbsp;
+<p>&nbsp;
+<p><b><tt><font color="#993300">void apply()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
 _pop)</font></tt></b>
 <br><b><tt><font color="#993300">{</font></tt></b>
 <br><tt><font color="#993300"><b>&nbsp; </b>// get as many parents as you
@@ -427,8 +425,10 @@ If you don't care about the size of the offspring population (that is,
 if that size os controlled elsewhere, e.g. in some external loop), you
 can use the inbedded select method of the class <b><font color="#999900">eoPopulator</font></b>.
 For instance</li>
-<b><tt><font color="#993300"></font></tt></b>
-<p><br><b><tt><font color="#993300">void apply()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
+
+<br>&nbsp;
+<p>&nbsp;
+<p><b><tt><font color="#993300">void apply()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
 _pop)</font></tt></b>
 <br><b><tt><font color="#993300">{</font></tt></b>
 <br><tt><font color="#993300"><b>&nbsp; </b>// get as many parents as you
@@ -569,7 +569,7 @@ to apply the variation operators to the population, and thus get exactly
 the number of offspring you want.
 <p><b><font color="#FF0000">Example</font></b>: An <b><font color="#CC33CC">eoSelectivePopulator</font></b>
 is the main ingredient of the <b><tt><font color="#FF6666">eoGeneralBreeder
-</font></tt></b><a href="../../doc/html/eogeneralbreeder_h-source.html#l00061">operator()
+</font></tt></b><a href="../../doc/html/eo_general_breeder_8h-source.html#l00061">operator()
 method</a> - a class that creates a population of offspring from the parents
 applying an eoGenOp (usually an eoOpContainer) to all selected parents
 in turn.
@@ -687,9 +687,9 @@ Gen</font></b>:
 rate: double whose <b>meaning depends on YYY</b></font></tt>
 <p>where YYY can be one of Proportional and Sequential. Note that before
 being added to the container, all simple operators are wrapped into the
-corresponding eoGenOp (see e.g. how an <b><font color="#CC33CC">eoMonOp</font></b><a href="../../doc/html/eogenop_h-source.html#l00079">is
+corresponding eoGenOp (see e.g. how an <b><font color="#CC33CC">eoMonOp</font></b><a href="../../doc/html/eo_gen_op_8h-source.html#l00084">is
 wrapped</a> into an <b><font color="#CC33CC">eoMonGenOp</font></b>- or
-how <a href="../../doc/html/eogenop_h-source.html#l00169">any operator
+how <a href="../../doc/html/eo_gen_op_8h-source.html#l00169">any operator
 is handled</a> by calling the appropriate wrapper). In particular, the
 wrapper ensures that <b><font color="#FF6600">individuals who have been
 modified are invalidated</font></b>.
