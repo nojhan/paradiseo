@@ -30,6 +30,7 @@
 
 // EO includes
 #include <eoRnd.h>
+#include <eoInit.h>
 #include <eoPersistent.h>
 
 /** Subpopulation: it is used to move parts of population
@@ -87,6 +88,19 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent {
 	    unsigned size = 1 + _sizeRnd();
 	    EOT tmpEOT( size, _geneRnd);
 	    push_back( tmpEOT );
+	  }
+	};
+
+     /** Ctor for user-defined chromosomes, 
+	@param _popSize total population size
+	@param _chromRnd Initialization routine, produces EO's
+	*/
+	eoPop( unsigned _popSize, eoInit<EOT> & _chromRnd )
+	  :vector<EOT>() 
+    {
+	  for ( unsigned i = 0; i < _popSize; i++ )
+      {
+	    push_back( _chromRnd() );
 	  }
 	};
 
