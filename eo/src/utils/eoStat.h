@@ -109,7 +109,7 @@ class eoNthElementFitnessStat : public eoStat<EOT, typename EOT::Fitness >
 public :
     typedef typename EOT::Fitness Fitness;
 
-    eoNthElementFitnessStat(int _which, std::string _description = "nth element fitness") : which(_which), eoStat<EOT, Fitness>(Fitness(), _description) {}
+    eoNthElementFitnessStat(int _which, std::string _description = "nth element fitness") : eoStat<EOT, Fitness>(Fitness(), _description), which(_which) {}
 
     virtual void operator()(const eoPop<EOT>& _pop)
     {

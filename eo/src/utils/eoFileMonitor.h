@@ -47,8 +47,8 @@ public :
     virtual void printHeader(std::ostream& os);
 
 private :
-    std::string delim;
     std::string filename;
+    std::string delim;
 };
 
 #endif

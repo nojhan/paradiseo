@@ -43,7 +43,7 @@ class eoProcedureCounter : public Procedure, public eoValueParam<unsigned long>
     public:
 
         eoProcedureCounter(Procedure& _proc, std::string _name = "proc_counter") 
-            : proc(_proc), eoValueParam<unsigned long>(0, _name) {}
+            : eoValueParam<unsigned long>(0, _name), proc(_proc) {}
 
         /** Calls the embedded function and increments the counter
         
@@ -96,7 +96,7 @@ class eoUnaryFunctorCounter : public UnaryFunctor, public eoValueParam<unsigned 
 {
     public:
         eoUnaryFunctorCounter(UnaryFunctor& _func, std::string _name = "uf_counter") 
-            : func(_func), eoValueParam<unsigned long>(0, _name) {}
+            : eoValueParam<unsigned long>(0, _name), func(_func) {}
         
         /** Calls the embedded function and increments the counter
         
@@ -143,7 +143,7 @@ class eoBinaryFunctorCounter : public BinaryFunctor, public eoValueParam<unsigne
 {
     public:
         eoBinaryFunctorCounter(BinaryFunctor& _func, std::string _name = "proc_counter") 
-            : func(_func), eoValueParam<unsigned long>(0, _name) {}
+            : eoValueParam<unsigned long>(0, _name), func(_func) {}
 
         /** Calls the embedded function and increments the counter
         
