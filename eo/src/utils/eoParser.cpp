@@ -66,7 +66,7 @@ eoParser::eoParser ( unsigned _argc, char **_argv , string _programDescription, 
     programName( _argv[0]),
     programDescription( _programDescription), 
     needHelp(false, "help", "Prints this message", 'h'),
-    stopOnUnknownParam(true, "stopOnUnknownParam", "Stop if unkonwn param entered", '\0')
+    stopOnUnknownParam(true, "stopOnUnknownParam", "Stop if unkown param entered", '\0')
 {
     // need to process the param file first 
     // if we want command-line to have highest priority
