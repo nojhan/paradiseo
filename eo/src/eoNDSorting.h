@@ -40,7 +40,10 @@ template <class EOT>
 class eoNDSorting : public eoPerf2WorthCached<EOT, double>
 {
   public :
-
+      
+      eoNDSorting() : nasty_declone_flag_that_only_is_implemented_for_two_objectives(false)
+      {}
+	  
     /** Pure virtual function that calculates the 'distance' for each element in the current front
         Implement to create your own nondominated sorting algorithm. The size of the returned vector
         should be equal to the size of the current_front.
@@ -113,8 +116,7 @@ private :
      * complexity O(n log n) where n is the population size
      *
      * This is the same complexity as for a single objective
-     * or truncation selection or sorting. A paper about this
-     * algorithm is quite likely forthcoming.
+     * or truncation selection or sorting. 
      *
      * It will perform a sort on the two objectives seperately,
      * and from the information on the ranks of the individuals on
@@ -168,8 +170,13 @@ private :
 	    {
 		unsigned prev = sort1[i-1];
 		if ( _pop[index].fitness() == _pop[prev].fitness())
-		{ // it's a clone
-		    fronts[prev_front].push_back(index);
+		{ // it's a clone, give it the worst rank!
+		    
+		    if (nasty_declone_flag_that_only_is_implemented_for_two_objectives)
+			//declone
+			fronts.back().push_back(index);
+		    else // assign it the rank of the previous
+		    	ronts[prev_front].push_back(index);
 		    continue;
 		}
 	    }
@@ -354,6 +361,7 @@ private :
       }
 
     }
+    public : bool nasty_declone_flag_that_only_is_implemented_for_two_objectives;
 };
 
 /**
