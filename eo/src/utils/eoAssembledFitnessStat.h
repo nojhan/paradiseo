@@ -42,20 +42,15 @@
    for which fitness term (index) the average should be evaluated.
    Only values of object where the failed boolean = false is set are counted.
 */
-#ifdef _MSC_VER
 template <class EOT> 
-class eoAssembledFitnessAverageStat : public eoStat<EOT, EOT::Fitness>
-#else
-template <class EOT> 
-class eoAssembledFitnessAverageStat : public eoStat<EOT, typename EOT::Fitness>
-#endif
+class eoAssembledFitnessAverageStat : public eoStat<EOT, double>
 {
 public :
   
   typedef typename EOT::Fitness Fitness;
   
   eoAssembledFitnessAverageStat(unsigned _whichTerm=0, std::string _description = "Average Fitness") 
-    : eoStat<EOT, Fitness>(Fitness(), _description), whichFitnessTerm(_whichTerm) {}
+    : eoStat<EOT, double>(Fitness(), _description), whichFitnessTerm(_whichTerm) {}
   
   virtual void operator()(const eoPop<EOT>& _pop){
     
@@ -66,14 +61,12 @@ public :
     unsigned count = 0;
     for (typename eoPop<EOT>::const_iterator it = _pop.begin(); it != _pop.end(); ++it){
       if ( it->fitness().failed == false ){
-	result+= it->fitness()[whichFitnessTerm];
-	++count;
+        result+= it->fitness()[whichFitnessTerm];
+        ++count;
       }
     }
 
-    value().clear();
-    value() = result / _pop.size();
-    
+    value() = result / (double) count;
   }
     
 private:
@@ -86,26 +79,20 @@ private:
    of type eoScalarAssembledFitness. Specify in the constructor, 
    for which fitness term (index) the value should be evaluated.
 */
-#ifdef _MSC_VER
 template <class EOT> 
-class eoAssembledFitnessBestStat : public eoStat<EOT, EOT::Fitness>
-#else
-template <class EOT> 
-class eoAssembledFitnessBestStat : public eoStat<EOT, typename EOT::Fitness>
-#endif
+class eoAssembledFitnessBestStat : public eoStat<EOT, double>
 {
 public :
   typedef typename EOT::Fitness Fitness;
   
   eoAssembledFitnessBestStat(unsigned _whichTerm=0, std::string _description = "Best Fitness") 
-    : eoStat<EOT, Fitness>(Fitness(), _description), whichFitnessTerm(_whichTerm) {}
+    : eoStat<EOT, double>(Fitness(), _description), whichFitnessTerm(_whichTerm) {}
   
   virtual void operator()(const eoPop<EOT>& _pop){
     
     if ( whichFitnessTerm >= _pop[0].fitness().size() )
       throw std::logic_error("Fitness term requested out of range");
 
-    value().clear();
     value() = _pop.best_element().fitness()[whichFitnessTerm];      
   }
   
