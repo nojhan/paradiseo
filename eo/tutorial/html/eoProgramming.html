@@ -2,23 +2,22 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdk i686) [Netscape]">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.7-10 i686) [Netscape]">
    <title>EO Programming guide</title>
 </head>
 <body text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000" background="beige009.jpg">
 <b><font color="#CC0000">General: </font></b><a href="eoTutorial.html">Tutorial
 main page </a>-
-<a href="eoTopDown.html">Algorithm-Based</a>
-- <a href="eoBottomUp.html">Component-Based</a>
-- <a href="eoProgramming.html">Programming
-hints</a> - <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
+<a href="eoTopDown.html">Algorithm-Based</a> - <a href="eoBottomUp.html">Component-Based</a>
+- <a href="eoProgramming.html">Programming hints</a> - <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
 documentation</a></font>
 <br>
 <hr WIDTH="100%"><b><font color="#CC0000">Local: </font></b><a href="#templates">Templates</a>
 -
 <a href="#functors">Functors</a> -
 <a href="#STL">STL Library</a> - <a href="#random">Random
-numbers</a> - <a href="#notations">EO programming style</a>
+numbers</a> - <a href="#notations">EO programming style</a>&nbsp; - <a href="#memory">Memory
+management</a>
 <br>
 <hr WIDTH="100%">
 <center>
@@ -77,11 +76,14 @@ into three derived class. These classes tell you immediately what kind
 of arguments the <b><tt><font color="#993300">operator()</font></tt></b>
 method requires and what kind of result it produces. See <a href="#notations">EO
 conventions</a>, and the <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_functor_base.html">inheritance
-diagram of class eoFunctorBase</a>.</font></font></b>
+diagram of class eoFunctorBase</a>.&nbsp;</font></font></b> Also note that
+if you create new functors, you should also derive from one of these classes,
+as it is mandatory if you later use the EO <a href="#memory">memory management
+mechanism</a>.
 <br>For a more complete introduction to functors, with detailed discussion,
-go to the <a href="http://www.sgi.com/tech/stl/functors.html">STL
-documentation</a> - as STL also heavily relies on functors, and the eoFunctorBase
-paradigm is borrowed from there.
+go to the <a href="http://www.sgi.com/tech/stl/functors.html">STL documentation</a>
+- as STL also heavily relies on functors, and the eoFunctorBase paradigm
+is borrowed from there.
 <p><b><font color="#FF0000">Functors:</font><font color="#000099"> Example:</font></b>
 <p>The following is a basic example of how to program and use a functor
 object: First code the class:
@@ -372,7 +374,13 @@ myfunction(unsigned </font><font color="#FF6600">_popSize</font><font color="#99
 The initialization parameters of constructors should be named from the
 names of the variables they are used to initialize, e.g.</li>
 
-<p><br><b><tt><font color="#993300">class eoMyClass</font></tt></b>
+<br>&nbsp;
+<p>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<p><b><tt><font color="#993300">class eoMyClass</font></tt></b>
 <br><b><tt><font color="#993300">{</font></tt></b>
 <br><b><tt><font color="#993300">public:</font></tt></b>
 <br><b><tt><font color="#993300">&nbsp; eoMyClass(unsigned _popSize):</font><font color="#FF6600">popSize(_popSize)</font><font color="#993300">{...}</font></tt></b>
@@ -396,18 +404,91 @@ or&nbsp; <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/c
 Blabla</li>
 </ul>
 
+<hr WIDTH="100%">
+<br><a NAME="memory"></a><b><font color="#000099"><font size=+1>EO memory
+management</font></font></b>
+<p>Most of EO constructs are based on the <b><font color="#FF6600">encapsulation</font></b>
+of objects into other objects, and the embedded objects are passed through
+the constructor of the embedding object.
+<br>For instance, the construction of an algorithm requires a breeder (plus
+many other things of course), the construction of a breeder usually requires
+a selector, and in turn the construction of a selector requires some parameters.
+This gives something resembling the following
+<p><b><tt><font color="#993300">eoTournamentSelection&lt;EOT>&nbsp; select(tSize);</font></tt></b>
+<br><b><tt><font color="#993300">eoBreeder&lt;EOT> breed(select);</font></tt></b>
+<br><b><tt><font color="#993300">eoEasyAlgo&lt;EOT> algo( ..., breed, ...);</font></tt></b>
+<p>Such a practice is no problem when doing <b><font color="#FF6600">everything
+in a (large!) main function</font></b>: all objects are local to that function,
+but when the end of the function is also the end of the program. For instance,
+all programs in <a href="eoLesson1.html">Lesson1</a>, <a href="eoLesson2.html">Lesson2</a>
+and <a href="eoLesson3.html">Lesson3</a> of this tutorial are built that
+way.
+<p>It is however a big problem when you want to outsource some code in
+other functions: indeed, the above sequence create objects that <b><font color="#FF6600">dissapear</font></b>
+when exiting the function, and thus cannot be used outside their defining
+function.
+<p>The solution is of course to use <b><font color="#FF6600">pointers</font></b>,
+which gives something like
+<p><b><tt><font color="#993300">eoTournamentSelection&lt;EOT>&nbsp; *ptSelect
+= new eoTournamentSelection&lt;EOT>(tSize);</font></tt></b>
+<br><b><tt><font color="#993300">eoBreeder&lt;EOT> *ptBreed = new eoBreeder&lt;EOT>(select);</font></tt></b>
+<br><b><tt><font color="#993300">eoEasyAlgo&lt;EOT> *ptAlgo = new eoEasyAlgo&lt;EOT>(
+..., breed, ...);</font></tt></b>
+<p>and you can then use the dynamically allocated objects anywhere. But
+the trouble with such a construct is that after exiting the function where
+such objects are defined, <b><font color="#FF6600">you will never be able
+to free</font></b> this allocated memory, should you not need the objects
+any nore. Whereas this is not in general a big problem (except of being
+a very bad practice that will make you a very naughty programmer :-), it
+will prevent any re-entrance of the resulting code, and for instance you
+will not be able to use an evolutionary algorithm within another loop of
+some outside code.
+<p>The solution in EO us to use an <b><tt><font color="#993300"><font size=+1><a href="../../doc/html/classeo_functor_store.html">eoFunctorStore</a></font></font></tt></b>
+object to store such nowhere-belonging pointers: whenever you allocate
+such a thing, store it into an eoState : deleting that state will delete
+all the stored pointers - one eoState is thus the only object you have
+to care of.
+<p>The above pointera llocation sequence thus become
+<p><b><tt><font color="#993300">eoTournamentSelection&lt;EOT>&nbsp; *ptSelect
+= new eoTournamentSelection&lt;EOT>(tSize);</font></tt></b>
+<br><b><tt><font color="#993300">state.storeFunctor(ptSelect);</font></tt></b>
+<br><b><tt><font color="#993300">eoBreeder&lt;EOT> *ptBreed = new eoBreeder&lt;EOT>(select);</font></tt></b>
+<br><b><tt><font color="#993300">state.storeFunctor(ptBreed);</font></tt></b>
+<br><b><tt><font color="#993300">eoEasyAlgo&lt;EOT> *ptAlgo = new eoEasyAlgo&lt;EOT>(
+..., breed, ...);</font></tt></b>
+<br><b><tt><font color="#993300">state.storeFunctor(ptAlgo);</font></tt></b>
+<p>or, even more quickly (though less readably)
+<p><b><tt><font color="#993300">eoTournamentSelection&lt;EOT>&nbsp; *ptSelect
+=</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+state.storeFunctor(new eoTournamentSelection&lt;EOT>(tSize));</font></tt></b>
+<br><b><tt><font color="#993300">eoBreeder&lt;EOT> *ptBreed =</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+state.storeFunctor(new eoBreeder&lt;EOT>(select));</font></tt></b>
+<br><b><tt><font color="#993300">eoEasyAlgo&lt;EOT> *ptAlgo =</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+state.storeFunctor(new eoEasyAlgo&lt;EOT>( ..., breed, ...));</font></tt></b>
+<p>In both the above code, state is an <b><tt><font color="#993300"><font size=+1>eoFunctorStore</font></font></tt></b>
+that is of course <b><font color="#FF6600">passed from outside the function</font></b>
+- and it's called state because in most cases it will actually be an eoState.
+As its name says, an <b><tt><font color="#993300"><font size=+1>eoFunctorStore</font></font></tt></b>
+can store any object that is an (derives from) <b><tt><font size=+1><a href="../../doc/html/classeo_functor_base.html">eoFunctorBase</a></font></tt></b>
+- hence all objects in EO that are used as functors should derive from
+either <a href="#functors">eoF, eoUF or eBF</a>.
+<p>Examples of such constructs are shown in the make_xxx files described
+in <a href="eoLesson4.html">Lesson4</a>.
+<br>
 <hr WIDTH="100%"><b><font color="#CC0000">Local: </font></b><a href="#templates">Templates</a>
 -
 <a href="#functors">Functors</a> -
 <a href="#STL">STL Library</a> - <a href="#random">Random
-numbers</a> - <a href="#notations">EO programming style</a>
+numbers</a> - <a href="#notations">EO programming style</a>&nbsp; - <a href="#memory">Memory
+management</a>
 <br>
 <hr WIDTH="100%">
 <br><b><font color="#CC0000">General: </font></b><a href="eoTutorial.html">Tutorial
-main page </a>- <a href="eoTopDown.html">Algorithm-Based</a>
-- <a href="eoBottomUp.html">Component-Based</a>
-- <a href="eoProgramming.html">Programming
-hints</a> - <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
+main page </a>- <a href="eoTopDown.html">Algorithm-Based</a> - <a href="eoBottomUp.html">Component-Based</a>
+- <a href="eoProgramming.html">Programming hints</a> - <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
 documentation</a></font>
 <br>
 <hr>

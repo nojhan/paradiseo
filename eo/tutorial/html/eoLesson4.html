@@ -2,12 +2,12 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdk i686) [Netscape]">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.7-10 i686) [Netscape]">
    <title>Tutorial: Lesson 4</title>
 </head>
 <body text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000" background="beige009.jpg">
-<a href="eoLesson2.html">Lesson 3</a> -
-<a href="eoLesson4.html">Lesson
+<a href="eoLesson3.html">Lesson 3</a> -
+<a href="eoLesson5.html">Lesson
 5</a> -
 <a href="eoTutorial.html">Main page</a> -
 <a href="eoTopDown.html">Algorithm-Based</a>
@@ -485,8 +485,8 @@ Bounds for uniform initialization of the real variables. The syntax for
 this parameter given in the </font><b><tt><font color="#CC33CC"><font size=+1>objectBounds</font></font></tt></b><font color="#000000">
 parameter description below. This argument is mandatory, furthermore the
 given bounds </font><b><font color="#FF6600">must be bounded</font></b><font color="#000000">.
-</font><font color="#FF0000">The default is [-1,1]</font><font color="#000000">
-for all variables.</font>
+</font><font color="#FF0000">The
+default is [-1,1]</font><font color="#000000"> for all variables.</font>
 <br>Note that this parameter is independent of the <b><tt><font color="#CC33CC"><font size=+1>objectBounds</font></font></tt></b>
 parameter below.
 <p><b><tt><font color="#CC33CC"><font size=+1># --sigmaInit=0.3 # -s :
@@ -726,10 +726,88 @@ correlated mutation. </font><font color="#FF0000">Default is 0.0873</font><font 
 <p>
 <hr WIDTH="100%">
 <br><a NAME="programmerguide"></a><b><font color="#000099"><font size=+2>Programmer's
-guide
-<hr WIDTH="100%"></font></font></b><font color="#000000"><a href="eoLesson2.html">Lesson
+guide</font></font></b>
+<p>At the moment, you will have to browse in the source (colored!) code
+(<a href="BitEA.html">Bit</a> - Real) almost by yourself, sorry.
+<p>Note that the main file is now very slim, as it only contains calls
+to some <b><tt><font color="#993300"><font size=+1>make_xxx</font></font></tt></b>
+functions - these functions contain the actual code, very similar to the
+code of Lesson3, except for the memory management, performed through an
+<b><tt><font color="#993300"><font size=+1><a href="../../doc/html/classeo_state.html">eoState</a></font></font></tt></b>
+object (notice that all <b><tt><font color="#993300"><font size=+1>make_xxx</font></font></tt></b>
+calls have an eoState as second parameter).
+<p><b><font color="#000099"><font size=+2>Programmer's guide: </font></font><font color="#FF0000">The
+make_xxx files</font></b>
+<p><b><font color="#FF0000">Interface</font></b>: all <b><tt><font color="#993300"><font size=+1>make_xxx</font></font></tt></b>
+files have as first two parameters an <b><tt><font color="#993300"><font size=+1><a href="../../doc/html/classeo_parser.html">eoParser</a></font></font></tt></b>
+and an <b><tt><font color="#993300"><font size=+1><a href="../../doc/html/classeo_state.html">eoState</a></font></font></tt></b>.
+The <b><tt><font color="#3366FF"><font size=+1>eoParser</font></font></tt></b>
+is be used within all functions to parse the command-line and/or a parameter
+file in order to read any relevant user-parameter, while the <b><tt><font color="#3366FF"><font size=+1>eoState</font></font></tt></b>
+is used here to store all pointers to be allocated inside the function
+(see <a href="eoProgramming.html#memory">Programming hints</a> for more
+detailed explanations).
+<p>There are 2 types of <b><tt><font color="#993300"><font size=+1>make_xxx</font></font></tt></b>
+files: the ones that do depend on representation, defining the <b><font color="#FF9900">genotype
+</font></b>and
+<b><font color="#CC33CC">initialization</font></b> (<b><tt><font color="#CC33CC"><font size=+1>make_genotype_xxx</font></font></tt></b>,
+with xxx being the type of genotype) and variation operators (<b><tt><font color="#CC33CC"><font size=+1>make_op_xxx</font></font></tt></b>),
+and the one that are truly representation-independent (<b><tt><font color="#993300"><font size=+1>make_pop,
+make_continue, make _checkpoint, make_algo </font></font></tt></b><font color="#000000">and</font><b><tt><font color="#993300"><font size=+1>
+make_run</font></font></tt></b>).
+<br>The former are located in the directory corresponding to the actual
+genotype (<b><tt><font color="#FF9900"><font size=+1>src/ga</font></font></tt></b>
+for eoBit, <b><tt><font color="#FF9900"><font size=+1>src/es</font></font></tt></b>
+for eoReal and all eoESxxx genotypes). The latter are in the directory
+<b><tt><font color="#993300"><font size=+1>src/do.</font></font></tt></b>
+<p>If you take a close look at the code of <b><tt><font color="#993300"><font size=+1><a href="../../src/do/make_continue.h">make_continue</a></font></font></tt></b>
+for instance, you will first notice that ... the function declared there
+is called <b><tt><font color="#993300"><font size=+1>do_make_continue</font></font></tt></b>
+and is not <a href="BitEA.html#continue">the one you are calling</a> in
+the main file, though it has the same parameters as arguments.
+<br>The explanation lies within the file <b><tt><font color="#FF9900"><font size=+1>make_continue_xxx.cpp</font></font></tt></b>
+(with xxx = ga or real/es)which, as its color (and name)&nbsp; should have
+told you about, are representation-dependent: in fact the <b><tt><font color="#FF9900"><font size=+1>make_continue_xxx.cpp</font></font></tt></b>
+files only instanciates the general &lt;EOT> template into one of the possible
+template for eoBit or eoReal/eoES - and this trick allows to <b><font color="#FF6600">compile
+them separately</font></b>!
+<p>The other thing that you should notice is that the code there is very
+similar to the code that was in Lesson 3,&nbsp; regarding parameter reading
+and type of object that are allocated - except for memory management. This
+goes for all <b><tt><font color="#993300"><font size=+1>make_xxx</font></font></tt></b>
+files - so the only thing you need to understand how it goes is to look
+at the <a href="#memory">memory management section</a>.
+<p><b><font color="#FF0000">Pros</font></b>: you don't have to handle a
+huge main function - and many of the make_xxx files can be directly used
+in different applications (this is called <b><font color="#FF6600">modularity</font></b>
+:-)))
+<br>More interesting, you can even <b><font color="#FF6600">compile</font></b>
+the <b><tt><font color="#993300"><font size=+1>make_xxx</font></font></tt></b>
+files <b><font color="#FF6600">separately</font></b> for a given target
+template, and link them e.g. with your fitness function when it is ready
+(remember that up to now you needed to compile everything altogether by
+including the code into your mail fine). Indeed, if you do a global make,
+you will notice that there are additional libraries compiled in <b><tt><font color="#FF9900"><font size=+1>src/ga</font></font></tt></b>
+and <b><tt><font color="#FF9900"><font size=+1>src/es</font></font></tt></b>
+...
+<p><b><font color="#FF0000">Cons</font></b>: It makes the code a little
+more complex to understand, first because of the indirection needed for
+pre-compilation with a given template, and second because of the memory
+management that this imposes.
+<p><a NAME="memory"></a><b><font color="#000099"><font size=+2>Programmer's
+guide: </font></font><font color="#FF0000">Memory management</font></b>
+<br>As already said, all functions have an <b><tt><font color="#3366FF"><font size=+1>eoState</font></font></tt></b>
+as second argument - and that object is used to store the functor objects
+that were simply declared as variables of the main function up to now :
+see <a href="eoProgramming.html#memory">Programming hints</a> for more
+detailed explanations and take a look at the code of <b><tt><font color="#993300"><font size=+1><a href="../../src/do/make_continue.h">make_continue</a></font></font></tt></b>
+for instance, you will see the implementation of the memory management
+in action.
+<br>&nbsp;
+<p>
+<hr WIDTH="100%"><font color="#000000"><a href="eoLesson3.html">Lesson
 3</a> -
-<a href="eoLesson4.html">Lesson 5</a> -
+<a href="eoLesson5.html">Lesson 5</a> -
 <a href="eoTutorial.html">Main
 page</a> -
 <a href="eoTopDown.html">Algorithm-Based</a> - <a href="eoBottomUp.html">Component-Based</a>
