@@ -67,6 +67,17 @@ class eoGnuplot
   /// Class name.
   virtual string className() const { return "eoGnuplot"; }
 
+  /** send a command to gnuplot directly
+   */
+  void gnuplotCommand(std::string _command)
+  {
+    if( gpCom ) {
+      PipeComSend( gpCom, _command.c_str() );
+      PipeComSend( gpCom, "\n" );
+    }
+  }
+
+
 protected: 
   void initGnuPlot(std::string _title, std::string _extra);
   // the private data
@@ -99,9 +110,7 @@ void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
     throw runtime_error("Impossible to spawn gnuplot\n");
   else {
     PipeComSend( gpCom, "set grid\n" );
-    char s[1024];		   // because .c_str() is a const
-    strcpy(s, _extra.c_str());
-    PipeComSend( gpCom, strdup(_extra.c_str()) );
+    PipeComSend( gpCom, _extra.c_str() );
     PipeComSend( gpCom, "\n" );
   }
 }
@@ -120,7 +129,7 @@ void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
  * Created......: Mon Mar 13 13:50:11 1995
  * Description..: Communication par pipe bidirectionnel avec un autre process
  * 
- * Ident........: $Id: eoGnuplot.h,v 1.1 2001-01-31 18:38:39 evomarc Exp $
+ * Ident........: $Id: eoGnuplot.h,v 1.2 2001-02-01 05:17:16 evomarc Exp $
  * ----------------------------------------------------------------------
  */
 
@@ -211,7 +220,7 @@ PCom * PipeComOpenArgv( char *prog, char *argv[] )
 }
 
 
-int PipeComSend( PCom *to, char *line )
+int PipeComSend( PCom *to, const char *line )
 {
     int	nb = 0;
     if( ! Check(to ) )
@@ -222,7 +231,7 @@ int PipeComSend( PCom *to, char *line )
 }
 
 
-int PipeComSendn( PCom *to, char *data, int n )
+int PipeComSendn( PCom *to, const char *data, int n )
 {
     int	nb = 0;
     if( ! Check(to) ) 
