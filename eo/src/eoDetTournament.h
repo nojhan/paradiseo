@@ -30,7 +30,7 @@
 
 #include <functional>  // 
 #include <numeric>     // accumulate
-#include <eoPopOps.h>          // eoPop eoSelect MINFLOAT
+#include "eoPopOps.h"          // eoPop eoSelect MINFLOAT
 #include "selectors.h"
 
 //-----------------------------------------------------------------------------
@@ -53,7 +53,7 @@ template <class EOT> class eoDetTournament: public eoSelectOne<EOT>
   
   virtual const EOT& operator()(const eoPop<EOT>& pop) 
   {
-    return deterministic_tournament(pop, Tsize)();
+    return deterministic_tournament(pop, Tsize);
   }
 
   /** Inherited from eoObject 
