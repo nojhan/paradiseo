@@ -76,13 +76,20 @@ however thay have been entered (try </font><b><tt><font color="#FF6666"><font si
 status file). The parameters that are commented out (a # character comments
 out the rest of the line) in the file are those that were not specified
 by the user.</font>
+<br><font color="#000000">On the status file, the parameters are organized
+in sections. Note, however, that this format is not mandatory in the param
+file, as </font><font color="#FF6600">only the keywords</font><font color="#000000">
+are processed.</font>
 <p><b><font color="#000099"><font size=+1>User's guide:</font></font><font color="#FF0000">Representation-independent
 parameters</font></b>
-<br><font color="#000000">The parameters are organized in sections. In
-what follows, the fixed font colored text is directly taken from the status
-file and is commented between the lines.</font>
-<br>
-<hr ALIGN=LEFT SIZE=3 WIDTH="30%">
+<br><font color="#000000">In what follows, the fixed font colored text
+is directly taken from the status file and is commented between the lines.
+The presentation follows the status file format - only two sections are
+representation-dependent (see the corresponding <a href="#binary">binary</a>
+or <a href="#real">real</a> sections). All other sections are presented
+now:</font>
+<p>
+<hr SIZE=5 WIDTH="30%">
 <br><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#993300">######
 General ######</font></tt></font></b>
 <br><b><tt><font color="#993300"><font size=+1># --help=0 # -h : Prints
@@ -98,151 +105,20 @@ of seconds since Jan. 1 1980, is used ... and stored in the status file,
 of course, so you can repeat the same run by simply assigning that value
 again. There is </font><font color="#FF0000">no default value ("true" random
 seed)</font><font color="#000000">.</font>
-<br>
-<hr ALIGN=LEFT SIZE=3 WIDTH="30%">
-<br><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#3333FF">######
-Output ######</font></tt></font></b>
-<br><font color="#000000">This section contains parameters related to output
-(to screen, to files, graphical, ...).</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --useEval=1 # Use nb of
-eval. as counter (vs nb of gen.)</font></font></tt></b>
-<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
-whether or not you want the nb of evluations to be displayed and used as
-counter in statistics outputs and plots. </font><font color="#FF0000">Default
-is true</font><font color="#000000">.</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --printBestStat=1 # Print
-Best/avg/stdev every gen.</font></font></tt></b>
-<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
-toggles screen output of indicated statistics. </font><font color="#FF0000">Default
-is true</font><font color="#000000">.</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --plotBestStat=0 # Plot
-Best/avg Stat</font></font></tt></b>
-<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
-toggles gnuplot output of best and average plots (Linux only at the moment).
-</font><font color="#FF0000">Default
-is false.</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --BestFileName=best.xg
-# Name of file for Best/avg/stdev</font></font></tt></b>
-<br><font color="#FF0000">String parameter:</font><font color="#000000">
-if present, the statistics are stored in that file (</font><font color="#FF0000">no
-default</font><font color="#000000">)</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --printPop=0 # Print sorted
-pop. every gen.</font></font></tt></b>
-<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
-adds a dump of the whole population to the screen every generation. Is
-likely to generate </font><b><font color="#FF6600">huge</font></b><font color="#000000">
-output! </font><font color="#FF0000">Default is false.</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --printFDC=1 # Print FDC
-coeff. every gen.</font></font></tt></b>
-<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
-adds Fitness Distance Correlation to output every generation. </font><font color="#FF0000">Default
-is false.</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --plotFDCStat=0 # Plot
-FDC scatter plot</font></font></tt></b>
-<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
-toggles the Fitness Distance Correlation plot (Fitness vs distance to best).
-</font><font color="#FF0000">Default
-is false.</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --plotHisto=0 # Plot histogram
-of fitnesses</font></font></tt></b>
-<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
-if on, gnuplot is used to plot the sorted population (fitness vs rank).
-Gives a graphical idea of the diversity. </font><font color="#FF0000">Default
-is false.</font>
-<br>
-<hr ALIGN=LEFT SIZE=3 WIDTH="30%">
-<br><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#3333FF">######
-Persistence ######</font></tt></font></b>
-<br><font color="#000000">This section contains parameters handling job
-dump and restart mechanism</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --Load= # -L : A save file
-to restart from</font></font></tt></b>
-<br><font color="#FF0000">String parameter:</font><font color="#000000">
-if present, the initial population (and the RNG) is read from indicated
-file. That file </font><b><font color="#FF0000">must</font></b><font color="#000000">
-come from a previous save (or must be in same format!), i.e. must contain
-a popualtion, the RNG and all parameters. If no other parameter is modified,
-using a previously saved population and RNG will give exactly the same
-results than having run that previous run longer. And a way to be sure
-to re-use the same parameters is to ... use that very save file as parameter
-file, as it contains all actual parameters in the right format.</font>
-<br><font color="#000000">Note that if not enough individuals are read,
-the remaining are randomly initialized. </font><font color="#FF0000">No
-default value</font><font color="#000000">.</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --recomputeFitness=0 #
--r : Recompute the fitness after re-loading the pop.?</font></font></tt></b>
-<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
-in case some individuals are read from a file, their fitness is read too.
-If this one is true, it is nevertheless recomputed. </font><font color="#FF0000">Default
-is false</font><font color="#000000"> i.e. use fitnes that's in the file.</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --saveFrequency=0 # Save
-every F generation (0 = only final state, absent = never)</font></font></tt></b>
-<br><font color="#FF0000">Integer parameter:</font><font color="#000000">
-interval between two dump to disk of the whole population (+RNG + parameters)
-to disk, in a file named genNN.sav, where NN is the generation number.
-If this prameter is present (even with 0 or negative value), the final
-population will always be saved, whatever the reason for stopping. Hence
-the only way to avoid all saves is to omit the parameter (there is </font><font color="#FF0000">no
-default value</font><font color="#000000">).</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --saveTimeInterval=0 #
-Save every T seconds (0 or absent = never)</font></font></tt></b>
-<br><font color="#FF0000">Integer parameter:</font><font color="#000000">
-time interval between two population (+RNG + parameters) dumps to disks.
-Files are names timeNN.sav. See pervious parameter description for ore
-details. </font><font color="#FF0000">No default value.</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --status=t-eoGA.status
-# Status file</font></font></tt></b>
-<br><font color="#FF0000">String parameter:</font><font color="#000000">
-name of the status file (that contains all parameters in the input format).
-There is no way to avoid creating that file except recompiling ... or giving
-the name /dev/null (Unix). Default value is </font><font color="#FF0000">ProgramName.status</font>
-<br>
-<hr ALIGN=LEFT SIZE=3 WIDTH="30%">
-<br><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#3333FF">######
-Stopping criterion ######</font></tt></font></b>
-<br><font color="#000000">This section allows to decide when the algorithm
-will stop.</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --maxGen=100 # -G : Maximum
-number of generations (0 = none)</font></font></tt></b>
-<br><font color="#000000">Integer parameter: maximum number of generations.
-A value of 0 disables that stopping criterion. </font><font color="#FF0000">Default
-is 100.</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --steadyGen=100 # -s :
-Number of generations with no improvement</font></font></tt></b>
-<br><font color="#FF0000">Integer parameter:</font><font color="#000000">
-stops whenever that number of generations is passed without any improvement
-of the best fitness in the population, provided the following minimum number
-of generations has been done. </font><font color="#FF0000">No default value.</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --minGen=0 # -g : Minimum
-number of generations</font></font></tt></b>
-<br><font color="#000000">Integer parameter: the above steadyGen parameter
-starts its job only after that minimum nuber of generations is passed.
-</font><font color="#FF0000">No
-default value.</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --maxEval=0 # -E : Maximum
-number of evaluations (0 = none)</font></font></tt></b>
-<br><font color="#000000">Integer parameter: maximum number of generations.
-</font><font color="#FF0000">No
-default value.</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --targetFitness=0 # -T
-: Stop when fitness reaches</font></font></tt></b>
-<br><font color="#000000">Real-valued parameter: the algorithm stops whenever
-the best fitness reaches that target. </font><font color="#FF0000">No default
-value.</font>
-<p><b><tt><font color="#3333FF"><font size=+1># --CtrlC=0 # -C : Terminate
-current generation upon Ctrl C</font></font></tt></b>
-<br><font color="#000000">Boolean parameter: if true, Ctrl C only stops
-after the current generation as completed (eventually dumping population
-to a file if some saver is active). THis very useful feature is only available
-in Unix at the moment. </font><font color="#FF0000">Default is false.</font>
-<br>
-<hr ALIGN=LEFT SIZE=3 WIDTH="30%">
-<br><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#009900">######
+<p>
+<hr SIZE=5 WIDTH="30%">
+<p><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#009900">######
 engine ######</font></tt></font></b>
 <br><font color="#000000">In this section, one chooses all components of
 the <a href="eoEngine.html">Evolution Engine</a> (selection, replacemenet
 and the like).</font>
-<p><b><tt><font color="#009900"><font size=+1># --selection=DetTour(2)
+<p><b><tt><font color="#009900"><font size=+1># --popSize=20 # -P : Population
+Size</font></font></tt></b>
+<br><font color="#FF0000">Integer parameter:</font><font color="#000000">
+the size of the population (constant along evolution). And yes, this is
+a representation independent parameter, as the population is created either
+from a file or using an eoInit object - and only that object is representation-dependent.</font>
+<br><b><tt><font color="#009900"><font size=+1># --selection=DetTour(2)
 # -S : Selection: Roulette, DetTour(T), StochTour(t) or Sequential(ordered/unordered)</font></font></tt></b>
 <br><font color="#FF0000">String parameter:</font><font color="#000000">
 Name of <a href="eoEngine.html#selection">selection procedure.</a> Availabable
@@ -304,9 +180,533 @@ if true, weak elitism is added to the replacement procedure (i.e. if the
 best fitness among the offspring is less than the best fitness, the best
 parent replaces the worst offspring). </font><font color="#FF0000">Default
 is false.</font>
-<p><b><font color="#000099"><font size=+1>User's guide:</font></font><font color="#FF0000">
-Bistring specific parameters</font></b>
+<p>
+<hr SIZE=5 WIDTH="30%">
+<p><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#3333FF">######
+Output ######</font></tt></font></b>
+<br><font color="#000000">This first section on Output contains parameters
+related to screen text output.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --useEval=1 # Use nb of
+eval. as counter (vs nb of gen.)</font></font></tt></b>
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+whether or not you want the nb of evluations to be displayed and used as
+counter in statistics outputs and plots. </font><font color="#FF0000">Default
+is true</font><font color="#000000">.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --printBestStat=1 # Print
+Best/avg/stdev every gen.</font></font></tt></b>
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+toggles screen output of indicated statistics. </font><font color="#FF0000">Default
+is true</font><font color="#000000">.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --printPop=0 # Print sorted
+pop. every gen.</font></font></tt></b>
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+adds a dump of the whole population to the screen every generation. Is
+likely to generate </font><b><font color="#FF6600">huge</font></b><font color="#000000">
+output! </font><font color="#FF0000">Default is false.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --printFDC=1 # Print FDC
+coeff. every gen.</font></font></tt></b>
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+adds Fitness Distance Correlation to output every generation. </font><font color="#FF0000">Default
+is false.</font>
+<p>
+<hr SIZE=5 WIDTH="30%">
+<p><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#3333FF">######
+Output - Disk ######</font></tt></font></b>
+<br><font color="#000000">This second section on Output contains parameters
+related to DISK output.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --resDir=Res # Directory
+to store DISK outputs</font></font></tt></b>
+<br><font color="#FF0000">String parameter: </font><font color="#000000">All
+</font><font color="#FF6600">DISK
+output</font><font color="#000000"> will be stored in a separate directory
+-this is its name. If the directory does not exist, it is created. Note
+that </font><font color="#FF6600">all graphical displays</font><font color="#000000">
+will use that directory for their temporary files. Also </font><font color="#FF6600">all
+job dump</font><font color="#000000"> (see section </font><b><font color="#3333FF">Persistence</font></b><font color="#000000">
+below) store their files there too.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --eraseDir=0 # erase files
+in dirName if any</font></font></tt></b>
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+in order not to mix up files from different runs, it is mandatory to ensure
+that the directory where all files will be stored is empty. However, if
+this parameter is not set and the directory already exists, an exception
+is thrown and the program stops. It it is set, </font><b><font color="#FF6600">all
+files in the result directory are erased</font></b><font color="#000000">.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --fileBestStat=0 # Output
+Best/avg/stdev to a file</font></font></tt></b>
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+if present, the best, average and standard deviation statistics are stored
+in file </font><b><tt><font color="#993300"><font size=+1>resDir/best.xg</font></font></tt></b><font color="#000000">.
+Each line contains the generation number, eventualy the evaluation count
+(depending on parameter </font><b><tt><font color="#3333FF"><font size=+1>useEval</font></font></tt></b><font color="#000000">
+then the statistics. </font><font color="#FF0000">Default is false.</font>
 <br>&nbsp;
+<p>
+<hr SIZE=5 WIDTH="30%">
+<p><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#3333FF">######
+Output - Graphical ######</font></tt></font></b>
+<br><font color="#000000">This last section on Output contains parameters
+related to graphical output (only available in Unix through gnuplot at
+the moment).</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --plotBestStat=0 # Plot
+Best/avg Stat</font></font></tt></b>
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+toggles gnuplot output of best and average plots (Linux only at the moment).
+</font><font color="#FF0000">Default
+is false.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --plotFDCStat=0 # Plot
+FDC scatter plot</font></font></tt></b>
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+toggles the Fitness Distance Correlation plot (Fitness vs distance to best).
+</font><font color="#FF0000">Default
+is false.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --plotHisto=0 # Plot histogram
+of fitnesses</font></font></tt></b>
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+if on, gnuplot is used to plot the sorted population (fitness vs rank).
+Gives a graphical idea of the diversity. </font><font color="#FF0000">Default
+is false.</font>
+<p>
+<hr SIZE=5 WIDTH="30%">
+<p><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#3333FF">######
+Persistence ######</font></tt></font></b>
+<br><font color="#000000">This section contains parameters handling job
+dump and restart mechanism.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --Load= # -L : A save file
+to restart from</font></font></tt></b>
+<br><font color="#FF0000">String parameter:</font><font color="#000000">
+if present, the initial population (and the RNG) is read from indicated
+file. That file </font><b><font color="#FF0000">must</font></b><font color="#000000">
+come from a previous save (or must be in same format!), i.e. must contain
+a popualtion, the RNG and all parameters. If no other parameter is modified,
+using a previously saved population and RNG will give exactly the same
+results than having run that previous run longer. And a way to be sure
+to re-use the same parameters is to ... use that very save file as parameter
+file, as it contains all actual parameters in the right format.</font>
+<br><font color="#000000">Note that if not enough individuals are read,
+the remaining are randomly initialized. </font><font color="#FF0000">No
+default value</font><font color="#000000">.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --recomputeFitness=0 #
+-r : Recompute the fitness after re-loading the pop.?</font></font></tt></b>
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+in case some individuals are read from a file, their fitness is read too.
+If this one is true, it is nevertheless recomputed. </font><font color="#FF0000">Default
+is false</font><font color="#000000"> i.e. use fitnes that's in the file.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --saveFrequency=0 # Save
+every F generation (0 = only final state, absent = never)</font></font></tt></b>
+<br><font color="#FF0000">Integer parameter:</font><font color="#000000">
+interval between two dump to disk of the whole population (+RNG + parameters),
+in a file named genNN.sav in the </font><b><tt><font color="#993300"><font size=+1>dirRes</font></font></tt></b><font color="#000000">
+directory, where NN is the generation number. If this prameter is present
+(even with 0 or negative value), the final population will always be saved,
+whatever the reason for stopping. Hence the only way to avoid all saves
+is to omit the parameter (there is </font><font color="#FF0000">no default
+value</font><font color="#000000">).</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --saveTimeInterval=0 #
+Save every T seconds (0 or absent = never)</font></font></tt></b>
+<br><font color="#FF0000">Integer parameter:</font><font color="#000000">
+time interval between two population (+RNG + parameters) dumps to disks.
+Files are names timeNN.sav. See pervious parameter description for ore
+details. </font><font color="#FF0000">No default value.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --status=t-eoGA.status
+# Status file</font></font></tt></b>
+<br><font color="#FF0000">String parameter:</font><font color="#000000">
+name of the status file (that contains all parameters in the input format).
+There is no way to avoid creating that file except recompiling ... or giving
+the name /dev/null (Unix). Default value is </font><font color="#FF0000">ProgramName.status</font>
+<p>
+<hr SIZE=5 WIDTH="30%">
+<p><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#3333FF">######
+Stopping criterion ######</font></tt></font></b>
+<br><font color="#000000">This section allows to decide when the algorithm
+will stop.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --maxGen=100 # -G : Maximum
+number of generations (0 = none)</font></font></tt></b>
+<br><font color="#000000">Integer parameter: maximum number of generations.
+A value of 0 disables that stopping criterion. </font><font color="#FF0000">Default
+is 100.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --steadyGen=100 # -s :
+Number of generations with no improvement</font></font></tt></b>
+<br><font color="#FF0000">Integer parameter:</font><font color="#000000">
+stops whenever that number of generations is passed without any improvement
+of the best fitness in the population, provided the following minimum number
+of generations has been done. </font><font color="#FF0000">No default value.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --minGen=0 # -g : Minimum
+number of generations</font></font></tt></b>
+<br><font color="#000000">Integer parameter: the above steadyGen parameter
+starts its job only after that minimum nuber of generations is passed.
+</font><font color="#FF0000">No
+default value.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --maxEval=0 # -E : Maximum
+number of evaluations (0 = none)</font></font></tt></b>
+<br><font color="#FF0000">Integer parameter:</font><font color="#000000">
+maximum number of generations.
+</font><font color="#FF0000">No default
+value.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --targetFitness=0 # -T
+: Stop when fitness reaches</font></font></tt></b>
+<br><font color="#FF0000">Real-valued parameter:</font><font color="#000000">
+the algorithm stops whenever the best fitness reaches that target. </font><font color="#FF0000">No
+default value.</font>
+<p><b><tt><font color="#3333FF"><font size=+1># --CtrlC=0 # -C : Terminate
+current generation upon Ctrl C</font></font></tt></b>
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+if true, Ctrl C only stops after the current generation as completed (eventually
+dumping population to a file if some saver is active). THis very useful
+feature is only available in Unix at the moment. </font><font color="#FF0000">Default
+is false.</font>
+<br>
+<hr ALIGN=LEFT SIZE=5 WIDTH="100%">
+<p><a NAME="binary"></a><b><font color="#000099"><font size=+1>User's guide:</font></font><font color="#FF0000">
+Bistring specific parameters</font></b>
+<br>The following describes the specific parameters that are available
+in program BitEA to evolve genotypes that are <b><font color="#FF6600">bitstrings</font></b>.
+<br>The two representation-dependent sections are concerned repectively
+with genotype initilization and variation operators.
+<p>
+<hr SIZE=5 WIDTH="30%">
+<p><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#CC33CC">######&nbsp;&nbsp;&nbsp;
+Genotype Initialization&nbsp;&nbsp;&nbsp; ######</font></tt></font></b>
+<br><font color="#000000">This section should allow input if all necessary
+parameters for genitype initialization</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --ChromSize=10 # -n : The
+length of the bitstrings</font></font></tt></b>
+<br><font color="#FF0000">Integer parameter:</font><font color="#000000">
+The bitstring initilization only requires the length of the chromosome.</font>
+<p>
+<hr SIZE=5 WIDTH="30%">
+<p><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#CC33CC">######&nbsp;&nbsp;&nbsp;
+Variation Operators&nbsp;&nbsp;&nbsp; ######</font></tt></font></b>
+<br><font color="#000000">This section allows to tune the way the variation
+operators will be applied to the individuals (in the strict limit of SGA
+model at the moment, see below).</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --operator=SGA # -o : Description
+of the operator (SGA only now)</font></font></tt></b>
+<br><font color="#FF0000">String parameter:</font><font color="#000000">
+Describes the way the operators are applied. At the moment, </font><b><font color="#FF6600">only
+SGA</font></b><font color="#000000"> is available. SGA </font><b><font color="#FF6600">sequentially</font></b><font color="#000000">
+applies a (quadratic) crossover operator with probability </font><b><tt><font color="#CC33CC"><font size=+1>pCross</font></font></tt></b><font color="#000000">
+and a mutation operator with probability&nbsp; </font><b><tt><font color="#CC33CC"><font size=+1>pMut</font></font></tt></b><font color="#000000">.
+Both these operators can in turn be </font><b><font color="#FF6600">proportional
+combinations</font></b><font color="#000000"> of simple operators of the
+same arity.</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --pCross=0.6 # -C : Probability
+of Crossover</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+The probability that a given couple of selected genitors is applied the
+crossover operator. In SGA operator model, each couple of selected genitors
+is applied the crossover operator with that probability (and remains unchanged
+with probability </font><b><tt><font color="#CC33CC"><font size=+1>1-pCross</font></font></tt></b><font color="#000000">.
+Whenever a couple undergoes crossover, a choice is made upon available
+crossover operators </font><b><font color="#FF6600">proportionaly to their
+relative rates</font></b><font color="#000000"> (see below). </font><font color="#FF0000">Default
+is 0.6</font><font color="#000000">.</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --pMut=0.1 # -M : Probability
+of Mutation</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+The probability that a given individual (resulting from a crossover or
+a non-crossover operation, see above) is applied the mutation operator.
+Whenever an individual undergoes mutation, a choice is made upon available
+mutation operators </font><b><font color="#FF6600">proportionaly to their
+relative rates</font></b><font color="#000000"> (see below). </font><font color="#FF0000">Default
+is 0.1</font><font color="#000000">.</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --onePointRate=1 # -1 :
+Relative rate for one point crossover</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+Rate of aplication of the 1-point crossover </font><b><font color="#FF6600">relatively</font></b><font color="#000000">
+to 2-point and uniform below (see </font><b><tt><font color="#CC33CC"><font size=+1>pCross</font></font></tt></b><font color="#000000">
+parameter). </font><font color="#FF0000">Default is 1</font><font color="#000000">.</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --twoPointRate=1 # -2 :
+Relative rate for two point crossover</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+Rate of aplication of the 2-point crossover </font><b><font color="#FF6600">relatively</font></b><font color="#000000">
+to 1-point above and uniform below (see </font><b><tt><font color="#CC33CC"><font size=+1>pCross</font></font></tt></b><font color="#000000">
+parameter). </font><font color="#FF0000">Default is 1</font><font color="#000000">.</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --uRate=2 # -U : Relative
+rate for uniform crossover</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+Rate of aplication of the 1-point crossover </font><b><font color="#FF6600">relatively</font></b><font color="#000000">
+to 1- and 2-point above (see </font><b><tt><font color="#CC33CC"><font size=+1>pCross</font></font></tt></b><font color="#000000">
+parameter). </font><font color="#FF0000">Default is 2</font><font color="#000000">.</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --pMutPerBit=0.01 # -b
+: Probability of flipping 1 bit in bit-flip mutation</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+When </font><b><tt><font color="#CC33CC"><font size=+1>bit-flip mutation</font></font></tt></b><font color="#000000">
+is applied, each bit is flipped independently with probability&nbsp; </font><b><tt><font color="#CC33CC"><font size=+1>pMutPerBit</font></font></tt></b><font color="#000000">.</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --bitFlipRate=0.01 # -s
+: Relative rate for bit-flip mutation</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+Rate of aplication of the bit-flip mutation </font><b><font color="#FF6600">relatively</font></b><font color="#000000">
+to one-Bit mutation below (see </font><b><tt><font color="#CC33CC"><font size=+1>pMut</font></font></tt></b><font color="#000000">
+above). </font><font color="#FF0000">Default is 0.01</font><font color="#000000">
+(if all relative rates are equal, the choice is uniform among available
+operators).</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --oneBitRate=0.01 # -d
+: Relative rate for deterministic bit-flip mutation</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+Rate of aplication of the one-bit mutation </font><b><font color="#FF6600">relatively</font></b><font color="#000000">
+to bit-flip mutation below (see </font><b><tt><font color="#CC33CC"><font size=+1>pMut</font></font></tt></b><font color="#000000">
+above). One-bit mutation flips one and only one bit, uniformly chosen in
+the individual. </font><font color="#FF0000">Default is 0.01</font><font color="#000000">
+(if all relative rates are equal, the choice is uniform among available
+operators).</font>
+<br>&nbsp;
+<p>
+<hr ALIGN=LEFT SIZE=5 WIDTH="100%">
+<p><a NAME="real"></a><b><font color="#000099"><font size=+1>User's guide:</font></font><font color="#FF0000">
+Real-valued specific parameters</font></b>
+<br>The following describes the specific parameters that are available
+in programs <b><tt><font color="#993300"><font size=+1>RealEA</font></font></tt></b>
+and <b><tt><font color="#993300"><font size=+1>ESEA</font></font></tt></b>
+to evolve genotypes that are <b><font color="#FF6600">vector&lt;double></font></b>.
+<br><b><tt><font color="#993300"><font size=+1>RealEA</font></font></tt></b>&nbsp;
+implements what can be called a "real-coded GA", where everything is identical
+to the bitstring case above (except initialization and operators that are
+specific to vector&lt;double> of course) and <b><tt><font color="#993300"><font size=+1>ESEA</font></font></tt></b>
+implements the full Evolution-Strategy self-adaptive mutation mechanism
+- together with specific ES crossover operators. The initialization section
+for both programs are identical, but the operator sections are totally
+different. See <a href="#ES">next paragraph</a> for a description of ES
+specific parameters.
+<p>
+<hr SIZE=5 WIDTH="30%">
+<p><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#CC33CC">######&nbsp;&nbsp;&nbsp;
+Genotype Initialization&nbsp;&nbsp;&nbsp; ######</font></tt></font></b>
+<br><font color="#000000">This section should allow input if all necessary
+parameters for genitype initialization</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --vecSize=10 # -n : The
+number of variables</font></font></tt></b>
+<br><font color="#FF0000">Integer parameter:</font><font color="#000000">
+The initilization requires the length of the vector&lt;double>.</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --initBounds=(0,1) # -B
+: Bounds for uniform initialization</font></font></tt></b>
+<br><font color="#FF0000">Special string parameter:</font><font color="#000000">
+Bounds for uniform initialization of the real variables. At the moment
+only the same bounds for all variables can be chosen, and the format is
+(min,max) without any white space.&nbsp; This argument is mandatory, and
+</font><font color="#FF0000">default is (0,1)</font><font color="#000000">.</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --sigmaInit=0.3 # -s :
+Initial value for Sigma(s)</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+The initial value for all standard-deviation mutation strategy parameters.
+Useless when no self-adaptive mutation mechanism is used.</font><font color="#000000"></font>
+<p>
+<hr SIZE=5 WIDTH="30%">
+<p><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#CC33CC">######&nbsp;&nbsp;&nbsp;
+Variation Operators&nbsp;&nbsp;&nbsp; ######</font></tt></font></b>
+<br><font color="#000000">This section allows to tune the way the variation
+operators will be applied to the individuals (in the strict limit of SGA
+model at the moment, see below).</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --objectBounds=(0,1) #
+-B : Bounds for variables (unbounded if absent)</font></font></tt></b>
+<br><font color="#FF0000">Special string parameter:</font><font color="#000000">
+Bounds for the variables to be met by all variation operators (see format
+in </font><b><tt><font color="#CC33CC"><font size=+1>initBounds</font></font></tt></b><font color="#000000">
+above). If this parameter is </font><b><font color="#FF6600">absent, unbounded
+variables</font></b><font color="#000000"> are assumed (but they still
+need some </font><b><tt><font color="#CC33CC"><font size=+1>initBounds</font></font></tt></b><font color="#000000">
+for initialization). For the arithmetic crossovers below, and when parameter
+alpha is greater than 0, those bounds result in restricting the values
+of possible combination factors. For the uniform mutation, the interval
+of uniform choice of the variables is restricted by those bounds. Finally,
+in the case of Gaussian mutation, the probability distribution is folded
+back into the boundeds as many times as necesssary. </font><font color="#FF0000">No
+default (i.e. unbounded variables).</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#CC33CC"><font size=+1># --operator=SGA # -o : Description
+of the operator (SGA only now)</font></font></tt></b>
+<br><font color="#FF0000">String parameter:</font><font color="#000000">
+Describes the way the operators are applied. At the moment, </font><b><font color="#FF6600">only
+SGA</font></b><font color="#000000"> is available. SGA </font><b><font color="#FF6600">sequentially</font></b><font color="#000000">
+applies a (quadratic) crossover operator with probability </font><b><tt><font color="#CC33CC"><font size=+1>pCross</font></font></tt></b><font color="#000000">
+and a mutation operator with probability&nbsp; </font><b><tt><font color="#CC33CC"><font size=+1>pMut</font></font></tt></b><font color="#000000">.
+Both these operators can in turn be </font><b><font color="#FF6600">proportional
+combinations</font></b><font color="#000000"> of simple operators of the
+same arity.</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --pCross=0.6 # -C : Probability
+of Crossover</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+The probability that a given couple of selected genitors is applied the
+crossover operator. In SGA operator model, each couple of selected genitors
+is applied the crossover operator with that probability (and remains unchanged
+with probability </font><b><tt><font color="#CC33CC"><font size=+1>1-pCross</font></font></tt></b><font color="#000000">.
+Whenever a couple undergoes crossover, a choice is made upon available
+crossover operators </font><b><font color="#FF6600">proportionaly to their
+relative rates</font></b><font color="#000000"> (see below). </font><font color="#FF0000">Default
+is 0.6</font><font color="#000000">.</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --pMut=0.1 # -M : Probability
+of Mutation</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+The probability that a given individual (resulting from a crossover or
+a non-crossover operation, see above) is applied the mutation operator.
+Whenever an individual undergoes mutation, a choice is made upon available
+mutation operators </font><b><font color="#FF6600">proportionaly to their
+relative rates</font></b><font color="#000000"> (see below). </font><font color="#FF0000">Default
+is 0.1</font><font color="#000000">.</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --alpha=0 # -a : bound
+for combination factor in real crossover</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+Bound for the choices of linear combination factors in both crossover belows
+(similar to BLX-alpha notation). </font><font color="#FF0000">Default is
+0</font><font color="#000000"> (i.e. combination factor are chosen in [0,1]).</font><font color="#000000"></font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --segmentRate=1 # -s :
+Relative rate for segment crossover</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+Rate of application of the segment crossover </font><b><font color="#FF6600">relatively</font></b><font color="#000000">
+to hypercube and uniform crossovers (see </font><b><tt><font color="#CC33CC"><font size=+1>pCross</font></font></tt></b><font color="#000000">
+parameter). Segment crossover generates offspring uniformly on the segment
+joining both parents, i.e. constructs two linear combinations of the parents
+with a random number uniformly drawn in [</font><b><tt><font color="#CC33CC"><font size=+1>alpha</font></font></tt></b><font color="#000000">,1+</font><b><tt><font color="#CC33CC"><font size=+1>alpha</font></font></tt></b><font color="#000000">].
+</font><font color="#FF0000">Default is 1</font><font color="#000000">.</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#CC33CC"><font size=+1># --hypercubeRate=1 # -A
+: Relative rate for hypercube crossover</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+Rate of application of the hypercube crossover </font><b><font color="#FF6600">relatively</font></b><font color="#000000">
+to segment and uniform crossovers (see </font><b><tt><font color="#CC33CC"><font size=+1>pCross</font></font></tt></b><font color="#000000">
+parameter). Hypercube crossover generates offspring uniformly on the hypercube
+whose diagonal is the segment joining both parents, i.e. by doing linear
+combinations of each variable independently (a random number in [</font><b><tt><font color="#CC33CC"><font size=+1>alpha</font></font></tt></b><font color="#000000">,1+</font><b><tt><font color="#CC33CC"><font size=+1>alpha</font></font></tt></b><font color="#000000">]
+is drawn anew for each variable). </font><font color="#FF0000">Default
+is 1</font><font color="#000000">.</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#CC33CC"><font size=+1># --uxoverRate=1 # -A : Relative
+rate for uniform crossover</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+Rate of application of the segment crossover </font><b><font color="#FF6600">relatively</font></b><font color="#000000">
+to hypercube and segment crossovers (see </font><b><tt><font color="#CC33CC"><font size=+1>pCross</font></font></tt></b><font color="#000000">
+parameter). Uniform crossover simply exchanges values of variables, i.e.
+uniformly picks up two other summits of the hypercube defined by the parents.
+</font><font color="#FF0000">Default is 1</font><font color="#000000">.</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#CC33CC"><font size=+1># --epsilon=0.01 # -e : Half-size
+of interval for Uniform Mutation</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+The uniform and deterministic-uniform mutations will choose values of variable
+X uniformly in </font><b><tt><font size=+1><font color="#993300">[X-</font><font color="#CC33CC">epsilon</font><font color="#993300">,
+X+</font><font color="#CC33CC">epsilon</font><font color="#993300">]</font></font></tt></b><font color="#000000">.
+</font><font color="#FF0000">Default is 0.01</font><font color="#000000">.</font><font color="#000000"></font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --uniformMutRate=1 # -u
+: Relative rate for uniform mutation</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+Rate of aplication of the uniform mutation </font><b><font color="#FF6600">relatively</font></b><font color="#000000">
+to determinitic uniform and the normal mutations (see </font><b><tt><font color="#CC33CC"><font size=+1>pMut</font></font></tt></b><font color="#000000">
+above). Uniform mutation modifies all variables by choosing new values
+uniformly on an interval centered on the old value of width </font><b><tt><font size=+1><font color="#993300">2*</font><font color="#CC33CC">epsilon</font></font></tt></b><font color="#000000">
+(see above). </font><font color="#FF0000">Default is1</font><font color="#000000">.</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#CC33CC"><font size=+1># --detMutRate=1 # -d : Relative
+rate for deterministic uniform mutation</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+Rate of aplication of the determinisitc-uniform mutation </font><b><font color="#FF6600">relatively</font></b><font color="#000000">
+to uniform and normal mutations (see </font><b><tt><font color="#CC33CC"><font size=+1>pMut</font></font></tt></b><font color="#000000">
+above). Deterministic-uniform mutation modifies one single variable uniformly
+based on epsilon </font><b><tt><font color="#CC33CC"><font size=+1>epsilon</font></font></tt></b><font color="#000000">.
+</font><font color="#FF0000">Default is1</font><font color="#000000">.</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#CC33CC"><font size=+1># --normalMutRate=1 # -d
+: Relative rate for Gaussian mutation</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+Rate of aplication of the normal mutation </font><b><font color="#FF6600">relatively</font></b><font color="#000000">
+to two uniform mutations above (see </font><b><tt><font color="#CC33CC"><font size=+1>pMut</font></font></tt></b><font color="#000000">
+above). </font><font color="#FF0000">Default is1</font><font color="#000000">.</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#CC33CC"><font size=+1># --sigma=0.3 # -s : Sigma
+(fixed) for Gaussian mutation</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+The value of standard deviation for Gaussian mutation - fixed along evolution
+(see the Evolution Strategy program below for self-adaptive mutations).</font>
+<p>
+<hr ALIGN=LEFT SIZE=5 WIDTH="100%">
+<p><a NAME="ES"></a><b><font color="#000099"><font size=+1>User's guide:</font></font><font color="#FF0000">
+ES-real-valued specific parameters</font></b>
+<br>The following describes the specific parameters for program <b><tt><font color="#993300"><font size=+1>ESEA</font></font></tt></b>,
+that implements the full Evolution-Strategy self-adaptive mutation mechanism
+- together with specific ES crossover operators. The initialization section
+is the same as the one for plain vector&lt;double> above, so only the opeartor
+sections will be described here. A new section is now concerned with deciding
+what kind of self-adaptive mutation strategy will be applied - it has been
+separated from the other variation operators because it has consequences
+on the choice of the genotype.
+<br><b><font color="#FF6600">Warning</font></b>: if you choose not to use
+any self-adaptive mechanism (i.e. setting all parameters of this section
+to false) you end up with ... an algorithm that is identical to <b><tt><font color="#993300"><font size=+1>RealEA</font></font></tt></b>
+above (try it and take alook at the status file).
+<p>
+<hr SIZE=5 WIDTH="30%">
+<p><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#CC33CC">######&nbsp;&nbsp;&nbsp;&nbsp;
+ES mutation&nbsp;&nbsp;&nbsp; ######</font></tt></font></b>
+<br><font color="#000000">This section allows to decide which type of self-adaptive
+mutation will be used. There are three available types: isotropic mutation,
+using one standard deviation for each individual, that will be applied
+to all variables; anisotropic mutation, where each individual carries as
+many standard deviations as it has variables; and correlated mutation where
+each individuals has its own full correlation matrix.</font><font color="#000000"></font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --Isotropic=1 # -i : Isotropic
+self-adaptive mutation</font></font></tt></b>
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+If true, at least one self-adaptive parameter will be used for each individual.
+</font><font color="#FF0000">Default is true</font><font color="#000000">.</font><font color="#000000"></font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --Stdev=0 # -s : One self-adaptive
+stDev per variable</font></font></tt></b>
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+If true, at least one self-adaptive parameter per variable will be used
+for each individual. </font><font color="#FF0000">Default is false</font><font color="#000000">.</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#CC33CC"><font size=+1># --Correl=0 # -c : Use correlated
+mutations</font></font></tt></b>
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+If true, full correalted self-adaptive mutation will be used for each individual.
+</font><font color="#FF0000">Default is false</font><font color="#000000">.</font><tt><font color="#CC33CC"><font size=+1></font></font></tt>
+<p><b><font color="#FF6600">Note</font></b><font color="#000000">: The
+default values result in an isotropic self-adaptive mutation to be chosen.</font><font color="#000000"></font>
+<p>
+<hr SIZE=5 WIDTH="30%">
+<p><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#CC33CC">######&nbsp;&nbsp;&nbsp;
+Variation Operators&nbsp;&nbsp;&nbsp; ######</font></tt></font></b>
+<br><font color="#000000">Only the parameters that are specific to ESEA
+are presented here - the </font><b><tt><font color="#CC33CC"><font size=+1>objectBounds,</font></font></tt></b><font color="#000000">
+</font><b><tt><font color="#CC33CC"><font size=+1>operator,</font></font></tt></b><font color="#000000">
+</font><b><tt><font color="#CC33CC"><font size=+1>pCross</font></font></tt></b><font color="#000000">
+and </font><b><tt><font color="#CC33CC"><font size=+1>pMut</font></font></tt></b><font color="#000000">
+are exactly the same as for </font><b><tt><font color="#993300"><font size=+1>RealEA</font></font></tt></b><font color="#000000">
+above.</font><font color="#000000"></font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --crossType=global # -C
+: Type of ES recombination (global or standard)</font></font></tt></b>
+<br><font color="#FF0000">String parameter:</font><font color="#000000">&nbsp;
+Es crossover can involve only two parents - and it is then identical to
+the </font><b><tt><font color="#CC33CC"><font size=+1>standard</font></font></tt></b><font color="#000000">
+hypercube crossover describe for the </font><b><tt><font color="#993300"><font size=+1>RealEA</font></font></tt></b><font color="#000000">
+parameters above. But new parents can also be chosen anew for each variable
+before doing the crossover for that variable - and this is called </font><b><tt><font color="#CC33CC"><font size=+1>global</font></font></tt></b><font color="#000000">
+recombination.</font><font color="#000000"></font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --crossObj=discrete # -O
+: Recombination of object variables (discrete or intermediate)</font></font></tt></b>
+<br><font color="#FF0000">String parameter:</font><font color="#000000">&nbsp;
+There are two possible crossovers in plain ES. The </font><b><tt><font color="#CC33CC"><font size=+1>discrete</font></font></tt></b><font color="#000000">
+crossover simpy exchanges variables among the parents. It is similar to
+the plain uniform crossover for real variables. The&nbsp; crossover performs
+a linear combination of parents;variables - it si similar to the hypercube
+crossover described for&nbsp; with alpah parameter set to 0. This parameter
+allso to choose the type of crossover that will be applied to the </font><b><font color="#FF6600">object
+variables</font></b><font color="#000000"> (i.e. the origianl variables
+of the problem). </font><font color="#FF0000">Default is discrete.</font><font color="#000000"></font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --crossStdev=intermediate
+# -S : Recombination of mutation strategy parameters (intermediate or discrete)</font></font></tt></b>
+<br><font color="#FF0000">String parameter:</font><font color="#000000">&nbsp;
+This parameter allows to choose the type of crossover (see above) that
+will be applied to the </font><b><font color="#FF6600">mutation strategy
+parameters</font></b><font color="#000000"> that are part of the genotype.
+</font><font color="#FF0000">Default is intermediate.</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#CC33CC"><font size=+1># --TauLoc=1 # -l : Local
+Tau (before normalization)</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+The local factor for the mutation of the mutation strategy parameters (the
+only one used when a single standard deviation is used). </font><font color="#FF0000">Default
+is 1</font><font color="#000000">.</font><font color="#000000"></font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --TauGlob=1 # -g : Global
+Tau (before normalization)</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+The global factor for the mutation of the mutation strategy parameters
+(only useful when more than one standard deviation are used). </font><font color="#FF0000">Default
+is 1</font><font color="#000000">.</font><font color="#000000"></font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --Beta=0.0873 # -b : Beta</font></font></tt></b>
+<br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
+The factor for the mutation of the rotation angles in the case of the full
+correlated mutation. </font><font color="#FF0000">Default is 0.0873</font><font color="#000000">
+(following Schwefel).</font><font color="#000000"></font>
 <p>
 <hr WIDTH="100%">
 <br><a NAME="programmerguide"></a><b><font color="#000099"><font size=+2>Programmer's

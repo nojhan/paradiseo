@@ -288,9 +288,6 @@ extern eoRng rng;
 
 using eo::rng;
 
-/** the random_seed utility in eoRNG.cpp */
-extern uint32 random_seed();
-
 // Implementation of some eoRng members.... Don't mind the mess, it does work.
 
 

@@ -107,7 +107,7 @@ void main_function(int argc, char **argv)
   //////////////////////////////////////
 // CROSSOVER
   // offspring(i) is a linear combination of parent(i)
-  eoArithmeticCrossover<Indi> xover;
+  eoSegmentCrossover<Indi> xover;
 // MUTATION
   // offspring(i) uniformly chosen in [parent(i)-epsilon, parent(i)+epsilon]
   eoUniformMutation<Indi>  mutation(EPSILON); 

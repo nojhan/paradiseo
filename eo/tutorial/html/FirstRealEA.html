@@ -98,14 +98,14 @@ SIGMA = 0.3;&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // std dev.
 for normal mutation</font></tt>
 <br><tt><font color="#3366FF"><b>&nbsp;</b>// some parameters for chosing
 among different operators</font></tt>
-<br><tt><font color="#3366FF"><b>&nbsp;const double segmentRate = 0.5;&nbsp;&nbsp;&nbsp;
-</b>// relative weight for 1-pt Xover</font></tt>
-<br><tt><font color="#3366FF"><b>&nbsp;const double arithmeticRate = 0.5;
-</b>// relative weight for 2-pt Xover</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const double hypercubeRate = 0.5;&nbsp;&nbsp;&nbsp;
+</b>// relative weight for hypercube Xover</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const double segmentRate = 0.5;
+</b>// relative weight for segment Xover</font></tt>
 <br><tt><font color="#3366FF"><b>&nbsp;const double uniformMutRate = 0.5;
-</b>// relative weight for bit-flip mutation</font></tt>
+</b>// relative weight for uniform mutation</font></tt>
 <br><tt><font color="#3366FF"><b>&nbsp;const double detMutRate = 0.5;&nbsp;&nbsp;&nbsp;&nbsp;
-</b>// relative weight for one-bit mutation</font></tt>
+</b>// relative weight for det-uniform mutation</font></tt>
 <br><tt><font color="#3366FF">&nbsp;<b>const double normalMutRate = 0.5;</b>&nbsp;
 // relative weight for normal mutation</font></tt></td>
 </tr>
@@ -214,12 +214,12 @@ made by the parents</font></tt>
 <br><b><tt><font color="#993399">&nbsp;eoSegmentCrossover&lt;Indi> xoverS;</font></tt></b>
 <br><tt><font color="#993399"><b>&nbsp;</b>// uniform choice in hypercube
 built by the parents</font></tt>
-<br><b><tt><font color="#993399">&nbsp;eoArithmeticCrossover&lt;Indi> xoverA;</font></tt></b>
+<br><b><tt><font color="#993399">&nbsp;eoHypercubeCrossover&lt;Indi> xoverA;</font></tt></b>
 <br><tt><font color="#993399"><b>&nbsp;</b>// Combine them with relative
 weights</font></tt>
 <br><b><tt><font color="#993399">&nbsp;eoPropCombinedQuadOp&lt;Indi> xover(xoverS,
 segmentRate);</font></tt></b>
-<br><b><tt><font color="#993399">&nbsp;xover.add(xoverA, arithmeticRate,
+<br><b><tt><font color="#993399">&nbsp;xover.add(xoverA, hypercubeRate,
 true);</font></tt></b></td>
 </tr>
 </table>

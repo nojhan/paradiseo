@@ -48,10 +48,10 @@ void main_function(int argc, char **argv)
   const double EPSILON = 0.01;	// range for real uniform mutation
   double SIGMA = 0.3;       	// std dev. for normal mutation
   // some parameters for chosing among different operators
-  const double segmentRate = 0.5;     // relative weight for 1-pt Xover
-  const double arithmeticRate = 0.5;  // relative weight for 2-pt Xover
-  const double uniformMutRate = 0.5;  // relative weight for bit-flip mutation
-  const double detMutRate = 0.5;      // relative weight for one-bit mutation
+  const double hypercubeRate = 0.5;     // relative weight for hypercube Xover
+  const double segmentRate = 0.5;  // relative weight for segment Xover
+  const double uniformMutRate = 0.5;  // relative weight for uniform mutation
+  const double detMutRate = 0.5;      // relative weight for det-uniform mutation
   const double normalMutRate = 0.5;   // relative weight for normal mutation
 
 // GENERAL
@@ -113,10 +113,10 @@ void main_function(int argc, char **argv)
   // uniform chooce on segment made by the parents
   eoSegmentCrossover<Indi> xoverS;
   // uniform choice in hypercube built by the parents
-  eoArithmeticCrossover<Indi> xoverA;
+  eoHypercubeCrossover<Indi> xoverA;
   // Combine them with relative weights
   eoPropCombinedQuadOp<Indi> xover(xoverS, segmentRate);
-  xover.add(xoverA, arithmeticRate, true);
+  xover.add(xoverA, hypercubeRate, true);
 
 // MUTATION
   // offspring(i) uniformly chosen in [parent(i)-epsilon, parent(i)+epsilon]

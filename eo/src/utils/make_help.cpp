@@ -25,6 +25,7 @@
 //-----------------------------------------------------------------------------
 #include <utils/eoParser.h>
 #include <fstream.h>
+#include <stdexcept>
 
 /** Generation of the status file, and output of the help message if needed
  *
@@ -59,4 +60,41 @@ void make_help(eoParser & _parser)
 	     << " as parameter file" << endl;
         exit(1);
       }
+}
+
+/** test a dir. 
+ *  Creates it if does not exist
+ *  If exists, throws an exception or erase everything there, 
+ *     depending on last parameter
+ *
+ * Always return true (for code easy writing on the other side :-)
+ */
+bool testDirRes(std::string _dirName, bool _erase)
+{
+  string s = "test -d " + _dirName;
+  int res = system(s.c_str());
+  // test for (unlikely) errors
+  if ( (res==-1) || (res==127) )
+    {
+      s = "Problem executing test of dir " + _dirName;
+      throw runtime_error(s);
+    }
+  // now make sure there is a dir without any file in it - or quit
+  if (res)                    // no dir present
+    {
+      s = string("mkdir ")+ _dirName;
+      system(s.c_str());
+      return true;
+    }
+  //  else
+  if (_erase)			   // OK to erase
+    {
+      s = string("/bin/rm ")+ _dirName + "/*";
+      system(s.c_str());
+      return true;
+    }
+  //else
+  s = "Dir " + _dirName + " is not empty";
+  throw runtime_error(s);
+  return true;
 }

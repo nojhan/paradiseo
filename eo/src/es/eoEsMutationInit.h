@@ -90,10 +90,10 @@ class eoEsMutationInit
     virtual std::string section(void) 
     { return repSection; }
 
-    virtual std::string TauLclName(void) const       { return "TauLcL"; }
+    virtual std::string TauLclName(void) const       { return "TauLoc"; }
     virtual char   TauLclShort(void) const           { return 'l'; }
     
-    virtual std::string TauGlbName(void) const      { return "TauGlb"; }
+    virtual std::string TauGlbName(void) const      { return "TauGlob"; }
     virtual char   TauGlbShort(void) const          { return 'g'; }
 
     virtual std::string TauBetaName(void) const        { return "Beta"; }

@@ -27,6 +27,7 @@
 #ifndef _make_pop_h
 #define _make_pop_h
 
+#include <sys/time.h>		   // for time(0) for random seeding
 #include <eoPop.h>
 #include <eoInit.h>
 #include <utils/eoRNG.h>
@@ -50,7 +51,7 @@ eoPop<EOT>&  do_make_pop(eoParser & _parser, eoState& _state, eoInit<EOT> & _ini
   // random seed
     eoValueParam<uint32>& seedParam = _parser.createParam(uint32(0), "seed", "Random number seed", 'S');
     if (seedParam.value() == 0)
-	seedParam.value() = random_seed();
+	seedParam.value() = time(0);
     eoValueParam<unsigned>& popSize = _parser.createParam(unsigned(20), "popSize", "Population Size", 'P', "Evolution Engine");
 
   // Either load or initialize

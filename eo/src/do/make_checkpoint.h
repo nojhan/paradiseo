@@ -33,6 +33,9 @@
 #include <eoEvalFuncCounter.h>
 #include <utils/checkpointing>
 
+// at the moment, in utils/make_help.cpp
+// this should become some eoUtils.cpp with corresponding eoUtils.h
+bool testDirRes(std::string _dirName, bool _erase);
 /////////////////// The checkpoint and other I/O //////////////
 
 
@@ -58,6 +61,12 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
     // and store it in the state
     _state.storeFunctor(increment);
 
+    // dir for DISK output
+    eoValueParam<string>& dirNameParam =  _parser.createParam(string("Res"), "resDir", "Directory to store DISK outputs", '\0', "Output - Disk");
+    // shoudl we empty it if exists
+    eoValueParam<bool>& eraseParam = _parser.createParam(false, "eraseDir", "erase files in dirName if any", '\0', "Output - Disk");
+    bool dirOK = false;		   // not tested yet
+
     /////////////////////////////////////////
     // now some statistics on the population:
     /////////////////////////////////////////
@@ -78,11 +87,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
     //---------------------------
     eoValueParam<bool>& printBestParam = _parser.createParam(true, "printBestStat", "Print Best/avg/stdev every gen.", '\0', "Output");
     eoValueParam<bool>& plotBestParam = _parser.createParam(false, "plotBestStat", "Plot Best/avg Stat", '\0', "Output - Graphical");
-
-    // dir for DISK output
-    eoValueParam<string>& dirNameParam =  _parser.createParam(string("Res"), "resDir", "Directory to store DISK outputs", '\0', "Output - Disk");
     eoValueParam<bool>& fileBestParam = _parser.createParam(false, "fileBestStat", "Output bes/avg/std to file", '\0', "Output - Disk");
-
 
     eoBestFitnessStat<EOT> *bestStat = NULL;
     if ( printBestParam.value() || plotBestParam.value() || fileBestParam.value() ) 
@@ -152,6 +157,9 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
 	checkpoint->add(*fdcStat);
       }
 
+    // do we wnat some histogram of fitnesses snpashots?
+    eoValueParam<bool> plotHistogramParam = _parser.createParam(false, "plotHisto", "Plot histogram of fitnesses", '\0', "Output - Graphical");
+
     ///////////////
     // The monitors
     ///////////////
@@ -182,6 +190,12 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
 	if ( printPopParam.value())
 	  monitor->add(*popStat);
       }
+
+    // first handle the dir test - if we need at least one file
+    if ( ( fileBestParam.value() || plotBestParam.value() || 
+	   plotFDCParam.value() || plotHistogramParam.value() )
+	 && !dirOK )		   // just in case we add something before
+      dirOK = testDirRes(dirNameParam.value(), eraseParam.value()); // TRUE
 
     if (fileBestParam.value())    // A file monitor for best & secondMoment
       {
@@ -227,7 +241,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
 	checkpoint->add(*fdcGnuplot);
       }
 
-    eoValueParam<bool> plotHistogramParam = _parser.createParam(false, "plotHisto", "Plot histogram of fitnesses", '\0', "Output - Graphical");
+    // historgram?
     if (plotHistogramParam.value()) // want to see how the fitness is spread?
       {
 	eoScalarFitnessStat<EOT> *fitStat = new eoScalarFitnessStat<EOT>;
@@ -252,6 +266,10 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
 
     if (_parser.isItThere(saveFrequencyParam))
     {
+      // first make sure dirName is OK
+      if (! dirOK )
+	dirOK = testDirRes(dirNameParam.value(), eraseParam.value()); // TRUE
+
       unsigned freq = (saveFrequencyParam.value()>0 ? saveFrequencyParam.value() : UINT_MAX );
       string stmp = dirNameParam.value() + "/generations";
       eoCountedStateSaver *stateSaver1 = new eoCountedStateSaver(freq, _state, stmp); 
@@ -263,6 +281,10 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
     eoValueParam<unsigned>& saveTimeIntervalParam = _parser.createParam(unsigned(0), "saveTimeInterval", "Save every T seconds (0 or absent = never)", '\0',"Persistence" );
     if (_parser.isItThere(saveTimeIntervalParam) && saveTimeIntervalParam.value()>0)
     {
+      // first make sure dirName is OK
+      if (! dirOK )
+	dirOK = testDirRes(dirNameParam.value(), eraseParam.value()); // TRUE
+
       string stmp = dirNameParam.value() + "/time";
       eoTimedStateSaver *stateSaver2 = new eoTimedStateSaver(saveTimeIntervalParam.value(), _state, stmp); 
       _state.storeFunctor(stateSaver2);

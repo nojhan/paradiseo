@@ -329,13 +329,13 @@ protected:
   double range;			   // == 1+2*alpha
 };
 
-/** eoArithmeticCrossover --> uniform choice in hypercube
+/** eoHypercubeCrossover --> uniform choice in hypercube
                  == arithmetical with different values for each coordinate
 \class eoArithmeticCrossover eoRealOp.h Tutorial/eoRealOp.h
 \ingroup parameteric
 */
 
-template<class EOT> class eoArithmeticCrossover: public eoQuadOp<EOT>
+template<class EOT> class eoHypercubeCrossover: public eoQuadOp<EOT>
 {
  public:
   /**
@@ -347,7 +347,7 @@ template<class EOT> class eoArithmeticCrossover: public eoQuadOp<EOT>
    *               0 == contractive application
    *               Must be positive
    */
-  eoArithmeticCrossover(const double& _alpha = 0.0):
+  eoHypercubeCrossover(const double& _alpha = 0.0):
     bounds(eoDummyVectorNoBounds), alpha(_alpha), range(1+2*_alpha)
   {
     if (_alpha < 0)
@@ -362,7 +362,7 @@ template<class EOT> class eoArithmeticCrossover: public eoQuadOp<EOT>
    *               0 == contractive application
    *               Must be positive
    */
-  eoArithmeticCrossover(eoRealVectorBounds & _bounds, 
+  eoHypercubeCrossover(eoRealVectorBounds & _bounds, 
 			const double& _alpha = 0.0): 
     bounds(_bounds), alpha(_alpha), range(1+2*_alpha) 
   {
@@ -371,10 +371,10 @@ template<class EOT> class eoArithmeticCrossover: public eoQuadOp<EOT>
   }
 
   /// The class name.
-  virtual string className() const { return "eoArithmeticCrossover"; }
+  virtual string className() const { return "eoHypercubeCrossover"; }
 
   /**
-   * arithmetical crossover - modifies both parents
+   * hypercube crossover - modifies both parents
    * @param _eo1 The first parent
    * @param _eo2 The first parent
    */
@@ -434,21 +434,21 @@ protected:
 \ingroup parameteric
 */
 
-template<class EOT> class eoRealUxOver: public eoQuadOp<EOT>
+template<class EOT> class eoRealUXover: public eoQuadOp<EOT>
 {
  public:
   /**
    * (Default) Constructor.
    * @param _preference bias in the choice (usually, no bias == 0.5)
    */
-  eoRealUxOver(const float& _preference = 0.5): preference(_preference)
+  eoRealUXover(const float& _preference = 0.5): preference(_preference)
     { 
       if ( (_preference <= 0.0) || (_preference >= 1.0) )
 	runtime_error("UxOver --> invalid preference");
     }
 
   /// The class name.
-  virtual string className() const { return "eoRealUxOver"; }
+  virtual string className() const { return "eoRealUXover"; }
 
   /**
    * Uniform crossover for real vectors

@@ -131,19 +131,30 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoRealIni
     // the crossovers
     /////////////////
     // the parameters
+  eoValueParam<double>& alphaParam = _parser.createParam(double(0.0), "alpha", "Bound for factor of linear recombinations", 'a', "Variation Operators" );
+  // minimum check
+  if ( (alphaParam.value() < 0) )
+    throw runtime_error("Invalid BLX coefficient alpha");
+
+
   eoValueParam<double>& segmentRateParam = _parser.createParam(double(1.0), "segmentRate", "Relative rate for segment crossover", 's', "Variation Operators" );
   // minimum check
   if ( (segmentRateParam.value() < 0) )
     throw runtime_error("Invalid segmentRate");
 
-  eoValueParam<double>& arithmeticRateParam = _parser.createParam(double(2.0), "arithmeticRate", "Relative rate for arithmetic crossover", 'A', "Variation Operators" );
+  eoValueParam<double>& hypercubeRateParam = _parser.createParam(double(1.0), "hypercubeRate", "Relative rate for hypercube crossover", 'A', "Variation Operators" );
   // minimum check
-  if ( (arithmeticRateParam.value() < 0) )
-    throw runtime_error("Invalid arithmeticRate");
+  if ( (hypercubeRateParam.value() < 0) )
+    throw runtime_error("Invalid hypercubeRate");
+
+  eoValueParam<double>& uxoverRateParam = _parser.createParam(double(1.0), "uxoverRate", "Relative rate for uniform crossover", 'A', "Variation Operators" );
+  // minimum check
+  if ( (uxoverRateParam.value() < 0) )
+    throw runtime_error("Invalid uxoverRate");
 
     // minimum check
   bool bCross = true;
-  if (segmentRateParam.value()+arithmeticRateParam.value()==0)
+  if (segmentRateParam.value()+hypercubeRateParam.value()+uxoverRateParam.value()==0)
     {
       cerr << "Warning: no crossover" << endl;
       bCross = false;
@@ -156,14 +167,19 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoRealIni
   if (bCross) 
     {
       // segment crossover for bitstring - pass it the bounds
-      ptQuad = new eoSegmentCrossover<EOT>(*ptBounds);
+      ptQuad = new eoSegmentCrossover<EOT>(*ptBounds, alphaParam.value());
       _state.storeFunctor(ptQuad);
       ptCombinedQuadOp = new eoPropCombinedQuadOp<EOT>(*ptQuad, segmentRateParam.value());
 	
-	// arithmetic crossover
-      ptQuad = new eoArithmeticCrossover<EOT>(*ptBounds);
+	// hypercube crossover
+      ptQuad = new eoHypercubeCrossover<EOT>(*ptBounds, alphaParam.value());
       _state.storeFunctor(ptQuad);
-      ptCombinedQuadOp->add(*ptQuad, arithmeticRateParam.value());
+      ptCombinedQuadOp->add(*ptQuad, hypercubeRateParam.value());
+	
+	// uniform crossover
+      ptQuad = new eoRealUXover<EOT>();
+      _state.storeFunctor(ptQuad);
+      ptCombinedQuadOp->add(*ptQuad, uxoverRateParam.value());
 	
       // don't forget to store the CombinedQuadOp
       _state.storeFunctor(ptCombinedQuadOp);

@@ -172,8 +172,8 @@ on many problems.</font>
 <br><font color="#000000">Two </font><b><font color="#FF6600">crossover
 operators</font></b><font color="#000000"> are available: the </font><font color="#CC33CC">eoSegmentCrossover</font><font color="#000000">
 chooses one point uniformly on the segment joining the parents, while the
-</font><font color="#CC33CC">eoArithmeticCrossover</font><font color="#000000">
-performs a segment crossover on each coordinate independently, which amount
+</font><font color="#CC33CC">eoHypercubeCrossover</font><font color="#000000">
+performs a linear combination on each coordinate independently, which amount
 to choosing the offspring uniformly in the hypercube whose diagonal is
 the segment joining the parents.</font>
 <br><font color="#000000">As for </font><b><font color="#FF6600">mutation
@@ -267,7 +267,7 @@ is something else to modify...</font></li>
 <br><font color="#000000">Use different initializers: for instance, on
 the real-valued sphere function minimization, try to initialize half of
 the population in [-2,-1] and the other half in [1,2], with and without
-the segment and arithmetic crossovers (and for large values of VEC_SIZE,
+the segment and hypercube crossovers (and for large values of VEC_SIZE,
 the size of the vectors). Amazing, isn't it! Explain that result.</font>
 <p><a NAME="Exercise3"></a><b><font size=+2><font color="#000099">Exercise
 3:&nbsp; </font><font color="#FF0000">full selection/replacement</font></font></b>
