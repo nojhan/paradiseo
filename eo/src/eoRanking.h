@@ -81,7 +81,7 @@ public:
 	  for (unsigned i=0; i<pSize; i++)
 	    {
 	      int which = lookfor(rank[i], _pop);
-	      value()[which] = alpha*(pSizeMinusOne-i)+beta;
+	      value()[which] = alpha*(pSize-i)+beta; // worst -> 1/[P(P-1)/2]
 	    }
 	}
       else				   // exponent != 1
@@ -91,7 +91,7 @@ public:
 	    {
 	      int which = lookfor(rank[i], _pop);
 	      // value in in [0,1]
-	      double tmp = ((double)(pSizeMinusOne-i))/pSizeMinusOne; 
+	      double tmp = ((double)(pSize-i))/pSize; 
 	      // to the exponent, and back to [m,M]
 	      value()[which] = gamma*pow(tmp, exponent)+beta;
 	    }
