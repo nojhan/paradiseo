@@ -142,61 +142,68 @@ void eoParser::updateParameters() const
 void eoParser::readFrom(istream& is)
 {
   string str;
+  // we must avoid processing \section{xxx} if xxx is NOT "Parser"
+  bool processing = true;
   while (is >> str)
-  {
+    {
+      if (str.find(string("\\section{"))==0) // found section begin
+	processing = (str.find(string("Parser"))<str.size());
 
-      if (str[0] == '#')
-      { // skip the rest of the line
-          string tempStr;
-          getline(is, tempStr);
-      }
-      if (str[0] == '-')
-      {
-          if (str.size() < 2)
-          {
-              eoWarning("Missing parameter");
-              needHelp.value() = true;
-              return;
-          }
+      if (processing)		// right \section (or no \section at all)
+	{
+	  if (str[0] == '#')
+	    { // skip the rest of the line
+	      string tempStr;
+	      getline(is, tempStr);
+	    }
+	  if (str[0] == '-')
+	    {
+	      if (str.size() < 2)
+		{
+		  eoWarning("Missing parameter");
+		  needHelp.value() = true;
+		  return;
+		}
 
-          if (str[1] == '-') // two consecutive dashes
-          {
-              string::iterator equalLocation = find(str.begin() + 2, str.end(), '=');
-              string value;
+	      if (str[1] == '-') // two consecutive dashes
+		{
+		  string::iterator equalLocation = find(str.begin() + 2, str.end(), '=');
+		  string value;
               
-              if (equalLocation == str.end())
-              { // TODO: it should be the next string
-                value = "";
-              }
-              else
-              {
-                 value = string(equalLocation + 1, str.end());
-              }
+		  if (equalLocation == str.end())
+		    { // TODO: it should be the next string
+		      value = "";
+		    }
+		  else
+		    {
+		      value = string(equalLocation + 1, str.end());
+		    }
 
-              string name(str.begin() + 2, equalLocation);
-              longNameMap[name] = value;
+		  string name(str.begin() + 2, equalLocation);
+		  longNameMap[name] = value;
 
-          }
-          else // it should be a char
-          {
+		}
+	      else // it should be a char
+		{
 	          string value = "1"; // flags do not need a special
 
-            if (str.size() >= 2)
-            {
-              if (str[2] == '=')
-              {
-                if (str.size() >= 3)
-                  value = string(str.begin() + 3, str.end());
-              }
-              else
-              {
-                value = string(str.begin() + 2, str.end());
-              }
-            }
+		  if (str.size() >= 2)
+		    {
+		      if (str[2] == '=')
+			{
+			  if (str.size() >= 3)
+			    value = string(str.begin() + 3, str.end());
+			}
+		      else
+			{
+			  value = string(str.begin() + 2, str.end());
+			}
+		    }
 
-            shortNameMap[str[1]] = value;
-          }
-      }
+		  shortNameMap[str[1]] = value;
+		}
+	    }
+	}
   }
 
   updateParameters();
