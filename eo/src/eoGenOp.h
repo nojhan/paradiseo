@@ -98,7 +98,7 @@ class eoMonGenOp : public eoGenOp<EOT>
     eoMonOp<EOT>& op;
 };
 
-/** Wrapper for binop: here we use erase method of eoPopulator
+/** Wrapper for binop: here we use select method of eoPopulator
  *  but we could also have an embedded selector to select the second parent
  */
 template <class EOT>
