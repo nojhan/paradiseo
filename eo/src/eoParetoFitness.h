@@ -113,6 +113,10 @@ public :
 
   eoParetoFitness(void) : std::vector<double>(FitnessTraits::nObjectives(),0.0) {}
 
+  // Ctr from a vector<double>
+  eoParetoFitness(std::vector<double> & _v) : std::vector<double>(_v) {}
+  
+
   /** access to the traits characteristics (so you don't have to write 
    * a lot of typedef's around
    */
