@@ -276,6 +276,14 @@ public:
       }
   }
 
+  /** Ctor from a string
+   * and don't worry, the readFrom(string) starts by setting everything to 0!
+  */
+  eoRealVectorBounds(string _s) : eoRealBaseVectorBounds()
+  {
+    readFrom(_s);
+  }
+
   /** Dtor: destroy all ownedBounds - BUG ???*/
   virtual ~eoRealVectorBounds()
   {
