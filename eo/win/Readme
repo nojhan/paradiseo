@@ -1,0 +1,16 @@
+This directory contains the project files for MSVC++ 
+They have been successfully tested with MSVC++ 6.0 
+on Windows NT.
+
+There is one main DSW project file: eo.dsw 
+It contains the description of the project with all compiler options. 
+
+There are several DSP files:
+
+eo.dsp     for the library in src
+utils.dsp  ...                src/utils 
+ga.dsp     ...                src/ga
+es.dsp     ...                src/es
+
+and one additional DSP file for each program in test dir.
+
