@@ -1,6 +1,7 @@
 //-----------------------------------------------------------------------------
 // gprop
 //-----------------------------------------------------------------------------
+using namespace std;
 
 #include <stdlib.h>                // EXIT_SUCCESS EXIT_FAILURE
 #include <stdexcept>               // exception 
