@@ -1,6 +1,6 @@
 #! /bin/tcsh -f
 
-if ($#argv < 3) then
+if ($#argv < 2) then
     echo Usage $0 SourceName TargetName [Additional lib]
     echo Example: $0 t-eoGA t_eoga ga
     echo "    will create t_eoga.dsp that in turn is the Win project file"
