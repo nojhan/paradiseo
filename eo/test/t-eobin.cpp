@@ -41,13 +41,14 @@ void main_function()
   unsigned i, j;
 
   Chrom chrom(SIZE), chrom2;
+  chrom.fitness(binary_value(chrom)); chrom2.fitness(binary_value(chrom2));
   
   cout << "chrom:  " << chrom << endl;
-  chrom[0] = chrom[SIZE - 1] = true;
+  chrom[0] = chrom[SIZE - 1] = true; chrom.fitness(binary_value(chrom));
   cout << "chrom:  " << chrom << endl;
-  chrom[0] = chrom[SIZE - 1] = false;
+  chrom[0] = chrom[SIZE - 1] = false; chrom.fitness(binary_value(chrom));
   cout << "chrom:  " << chrom << endl;
-  chrom[0] = chrom[SIZE - 1] = true;
+  chrom[0] = chrom[SIZE - 1] = true; chrom.fitness(binary_value(chrom));
 
   cout << "chrom.className() = " << chrom.className() << endl;
   
@@ -58,7 +59,7 @@ void main_function()
   ostrstream os(buff, 1024);
   os << chrom;
   istrstream is(os.str());
-  is >> chrom2;
+  is >> chrom2; chrom.fitness(binary_value(chrom2));
   
   cout << "\nTesting reading, writing\n";
   cout << "chrom:  " << chrom << "\nchrom2: " << chrom2 << '\n';
@@ -70,31 +71,31 @@ void main_function()
   eoInitFixedLength<Chrom, boolean_generator> 
       random(chrom.size(), boolean_generator());
   
-  random(chrom);
+  random(chrom); chrom.fitness(binary_value(chrom));
   cout << "after eoBinRandom ............ " << chrom << endl;
 
   eoBinBitFlip<Chrom> bitflip;
-  bitflip(chrom);
+  bitflip(chrom); chrom.fitness(binary_value(chrom));
   cout << "after eoBitFlip .............. " << chrom << endl;
   
   eoBinMutation<Chrom> mutation(0.5);
-  mutation(chrom);
+  mutation(chrom); chrom.fitness(binary_value(chrom));
   cout << "after eoBinMutation(0.5) ..... " << chrom << endl;
 
   eoBinInversion<Chrom> inversion;
-  inversion(chrom);
+  inversion(chrom); chrom.fitness(binary_value(chrom));
   cout << "after eoBinInversion ......... " << chrom << endl;
 
   eoBinNext<Chrom> next;
-  next(chrom);
+  next(chrom); chrom.fitness(binary_value(chrom));
   cout << "after eoBinNext .............. " << chrom << endl;
 
   eoBinPrev<Chrom> prev;
-  prev(chrom);
+  prev(chrom); chrom.fitness(binary_value(chrom));
   cout << "after eoBinPrev .............. " << chrom << endl;
 
-  fill(chrom.begin(), chrom.end(), false);
-  fill(chrom2.begin(), chrom2.end(), true);
+  fill(chrom.begin(), chrom.end(), false); chrom.fitness(binary_value(chrom));
+  fill(chrom2.begin(), chrom2.end(), true); chrom2.fitness(binary_value(chrom2));
   cout << "--------------------------------------------------"
        << endl << "eoBinOp's aplied to ... " 
        << chrom << " " << chrom2 << endl;
@@ -102,7 +103,8 @@ void main_function()
   eoBinCrossover<Chrom> xover;
   fill(chrom.begin(), chrom.end(), false);
   fill(chrom2.begin(), chrom2.end(), true);
-  xover(chrom, chrom2);
+  xover(chrom, chrom2); 
+  chrom.fitness(binary_value(chrom)); chrom2.fitness(binary_value(chrom2));
   cout << "eoBinCrossover ........ " << chrom << " " << chrom2 << endl; 
 
   for (i = 1; i < SIZE; i++)
@@ -111,6 +113,7 @@ void main_function()
       fill(chrom.begin(), chrom.end(), false);
       fill(chrom2.begin(), chrom2.end(), true);
       nxover(chrom, chrom2);
+      chrom.fitness(binary_value(chrom)); chrom2.fitness(binary_value(chrom2));
       cout << "eoBinNxOver(" << i << ") ........ " 
 	   << chrom << " " << chrom2 << endl; 
     }
@@ -122,6 +125,7 @@ void main_function()
 	fill(chrom.begin(), chrom.end(), false);
 	fill(chrom2.begin(), chrom2.end(), true);
 	gxover(chrom, chrom2);
+	chrom.fitness(binary_value(chrom)); chrom2.fitness(binary_value(chrom2));
 	cout  << "eoBinGxOver(" << i << ", " << j << ") ..... " 
 	      << chrom << " " << chrom2 << endl; 
       }
@@ -146,10 +150,9 @@ void main_function()
     eoProportional<Chrom> select;
     eoEvalFuncPtr<Chrom>  eval(binary_value);
     
-    eoSGA<Chrom> sga(checkpoint, bitflip, 0.1f, xover, 0.8f, select, eval);
-
-    eoInitFixedLength<Chrom, boolean_generator> 
-      init(16, boolean_generator());
+    eoSGA<Chrom> sga(select, xover, 0.8f, bitflip, 0.1f, eval, checkpoint);
+ 
+    eoInitFixedLength<Chrom, boolean_generator> init(16, boolean_generator());
     eoPop<Chrom> pop(100, init);
     
     apply<Chrom>(eval, pop);
