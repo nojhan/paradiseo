@@ -33,14 +33,15 @@ naming variables in algebra: you can write a lot of equations involving
 some variable $x$ without knowing even it if will be an integer or a float
 (or a matrix or ...). The main basic type that is templatized in EO is
 the fitness: an EO object is some object which has a fitness of some type
-F that can be anything. The definition for that is (see <font face="Arial,Helvetica"><a href="../../doc/html/EO.h-source.html">EO.h</a></font>)
-<p><b><tt><font color="#999900">template&lt;F> class EO</font></tt></b>
+F that can be anything. The definition for that is (see <font face="Arial,Helvetica"><a href="../../doc/html/_e_o_8h-source.html">EO.h</a></font>)
+<p><b><tt><font color="#999900">template&lt;class F> class EO</font></tt></b>
 <p>The idea is that, later in your code, you can define a class as follows
-(see for instance&nbsp; <a href="../../doc/eoBin.h-source.html">eoBin.h</a>
-<p><b><tt><font color="#999900">template&lt;F> class eoBin : public EO&lt;F></font></tt></b>
-<br><b><tt><font color="#999900">{ ... code for eoBin&nbsp; };</font></tt></b>
+(see for instance&nbsp; <a href="../../doc/html/eo_bit_8h-source.html">eoBit.h</a>).
+<p><b><tt><font color="#999900">template&lt;class F> class eoBit : public
+EO&lt;F></font></tt></b>
+<br><b><tt><font color="#999900">{ ... code for eoBit&nbsp; };</font></tt></b>
 <p>and then use it in your application as
-<p><b><tt><font color="#999900">eoBin&lt;double> myeoBin;</font></tt></b>
+<p><b><tt><font color="#999900">eoBit&lt;double> myeoBit;</font></tt></b>
 <p>declares an object of type eoBin which has as fitness a double.
 <p>Whereas the advantages are obvious (writing generic reusable code instead
 of having to rewrite the same pieces of code for different types), there
@@ -376,10 +377,6 @@ names of the variables they are used to initialize, e.g.</li>
 
 <br>&nbsp;
 <p>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
 <p><b><tt><font color="#993300">class eoMyClass</font></tt></b>
 <br><b><tt><font color="#993300">{</font></tt></b>
 <br><b><tt><font color="#993300">public:</font></tt></b>
@@ -448,7 +445,7 @@ object to store such nowhere-belonging pointers: whenever you allocate
 such a thing, store it into an eoState : deleting that state will delete
 all the stored pointers - one eoState is thus the only object you have
 to care of.
-<p>The above pointera llocation sequence thus become
+<p>The above pointer allocation sequence thus become
 <p><b><tt><font color="#993300">eoTournamentSelection&lt;EOT>&nbsp; *ptSelect
 = new eoTournamentSelection&lt;EOT>(tSize);</font></tt></b>
 <br><b><tt><font color="#993300">state.storeFunctor(ptSelect);</font></tt></b>
@@ -492,10 +489,6 @@ main page </a>- <a href="eoTopDown.html">Algorithm-Based</a> - <a href="eoBottom
 documentation</a></font>
 <br>
 <hr>
-<address>
-<a href="mailto:Marc.Schoenauer@polytechnique.fr">Marc Schoenauer</a></address>
-
-<br><!-- Created: Mon Oct 30 19:04:58 CET 2000 --><!-- hhmts start -->Last
-modified: Mon Nov 6 07:01:57 CET 2000<!-- hhmts end -->
+<br><a href="mailto:Marc.Schoenauer@polytechnique.fr">Marc Schoenauer</a>
 </body>
 </html>
