@@ -3,7 +3,9 @@
 Makefile
 t-eo
 t-eobin
-t-eolottery
+t-eobreeder
+t-eofitness
 t-eoinclusion
 t-eoinsertion
+t-eolottery
 t-eoproblem
