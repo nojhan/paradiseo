@@ -84,7 +84,7 @@ void the_main()
   Eval eval;
   Mutate mutate;
 
-  unsigned num_gen  = 500;
+  unsigned num_gen  = 10;
   unsigned pop_size = 100;
   eoPop<eoDouble> pop(pop_size, init);
 
