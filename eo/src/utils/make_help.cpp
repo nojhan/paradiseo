@@ -76,7 +76,7 @@ void make_help(eoParser & _parser)
  *
  * Always return true (for code easy writing on the other side :-)
  */
-bool testDirRes(std::string _dirName, bool _erase)
+bool testDirRes(std::string _dirName, bool _erase=true)
 {
   string s = "test -d " + _dirName;
   int res = system(s.c_str());
