@@ -30,6 +30,7 @@
 #include <stdexcept>
 #include <string>
 #include <map>
+#include <vector>
 
 class eoObject;
 class eoPersistent;
@@ -79,6 +80,8 @@ private :
     typedef std::map<std::string, eoPersistent*> ObjectMap;
     
     ObjectMap objectMap;
+
+    std::vector<ObjectMap::iterator> creationOrder;
 };
 
 #endif //eoState_h

@@ -46,7 +46,16 @@ void eoState::registerObject(eoPersistent& registrant)
 {
     string name = createObjectName(dynamic_cast<eoObject*>(&registrant));
  
-    objectMap[name] = &registrant; 
+    pair<ObjectMap::iterator,bool> res = objectMap.insert(make_pair(name, &registrant)); 
+
+    if (res.second == true)
+    {
+        creationOrder.push_back(res.first);
+    }
+    else
+    {
+        throw logic_error("Interval error: object already present in the state");
+    }
 }
 
 void eoState::load(const string& _filename)
@@ -107,13 +116,19 @@ void eoState::load(const string& _filename)
 }
 
 void eoState::save(const string& filename)
-{
+{ // saves in order of insertion
     ofstream os(filename.c_str());
 
-    for (ObjectMap::iterator it = objectMap.begin(); it != objectMap.end(); ++it)
+    if (os.fail())
     {
-        os << "\\section{" << it->first << "}\n";
-        it->second->printOn(os);
+        string msg = "Could not open file: " + filename + " for writing!";
+        throw runtime_error(msg);
+    }
+
+    for (vector<ObjectMap::iterator>::iterator it = creationOrder.begin(); it != creationOrder.end(); ++it)
+    {
+        os << "\\section{" << (*it)->first << "}\n";
+        (*it)->second->printOn(os);
         os << '\n';
     }
 }

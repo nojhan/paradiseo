@@ -45,7 +45,7 @@ class eoParameterLoader
 public :
     
     /** Need a virtual destructor */
-    virtual ~eoParameterLoader() {}
+    virtual ~eoParameterLoader();
 
     /**
       *  processParam is used to register a parameter and set its value if it is known
@@ -54,6 +54,39 @@ public :
       *   @param section    the section where this parameter belongs
     */
     virtual void processParam(eoParam& param, std::string section = "") = 0;
+
+  /**
+   * Construct a Param and sets its value. The loader will own the memory thus created
+   *
+   * @param _defaultValue       The default value
+   * @param _longName           Long name of the argument
+   * @param _description        Description of the parameter. What is useful for.
+   * @param _shortName          Short name of the argument (Optional)
+   * @param _section            Name of the section where the parameter belongs
+   * @param _required           If it is a necessary parameter or not
+   */
+    template <class ValueType>
+    eoValueParam<ValueType>& createParam
+               (ValueType _defaultValue, 
+                std::string _longName, 
+                std::string _description,
+                char _shortHand = 0,
+                std::string _section = "",
+                bool _required = false)
+    {
+        eoValueParam<ValueType>* p = new eoValueParam<ValueType>(_defaultValue, _longName, _description, _shortHand, _required);
+
+        ownedParams.push_back(p);
+    
+        processParam(*p, _section);
+
+        return *p;
+    }
+
+private :
+
+    std::vector<eoParam*> ownedParams;
+
 };
 
 /**
@@ -73,7 +106,8 @@ public:
    *
    * myEo --param-file=param.rc     will then load using the parameter file param.rc
    *
-   * @param _argc, _ argv           command line arguments
+   * @param _argc                   command line arguments count
+   * @param _argv                   command line parameters
    * @param  _programDescription    Description of the work the program does
    * @param _lFileParamName         Name of the parameter specifying the configuration file (--param-file)
    * @param _shortHand              Single charachter shorthand for specifying the configuration file
@@ -127,5 +161,6 @@ private:
   eoValueParam<string> parameterFile;
   eoValueParam<bool>   needHelp;
 };
+
 
 #endif

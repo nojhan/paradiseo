@@ -7,7 +7,9 @@
 #include <fstream>
 #include <iomanip> 
 
-#include "eoParser.h"
+#include <utils/compatibility.h>
+
+#include <utils/eoParser.h>
 
 using namespace std;
 
@@ -18,9 +20,21 @@ void eoWarning(std::string str)
 
 std::ostream& printSectionHeader(std::ostream& os, std::string section)
 {
+    if (section == "")
+        section = "General";
+
   os << '\n' << setw(10) << "######    " << setw(20) << section << setw(10) << "    ######\n";
   return os;
 }
+
+eoParameterLoader::~eoParameterLoader()
+{
+    for (int i = 0; i < ownedParams.size(); ++i)
+    {
+        delete ownedParams[i];
+    }
+}
+
 
 eoParser::eoParser ( int _argc, char **_argv , string _programDescription, string _lFileParamName, char _shortHand) : 
     programName( _argv[0]),  
@@ -184,9 +198,13 @@ void eoParser::printOn(ostream& os) const
 
         string str = "--" + param->longName() + "=" + param->getValue();
         
-        //os.setf(ios_base::left, ios_base::adjustfield);
+        os.setf(ios_base::left, ios_base::adjustfield);
         os << setw(40) << str;
-        os << " # " << '-' << param->shortName() << " : " << param->description();
+
+        os << setw(0) << " # ";
+        if (param->shortName())
+            os << '-' << param->shortName() << " : ";
+        os << param->description();
     
         if (param->required())
         {
@@ -205,7 +223,7 @@ void eoParser::printHelp(ostream& os)
     // print the usage when calling the program from the command line
     os << "Usage: "<< programName<<" [Options]\n";
     // only short usage!
-    os << "Options of the form \"-ShortName value\" or \"--LongName value\"" << endl; 
+    os << "Options of the form \"-f[Value]\" or \"--Name[=value]\"" << endl; 
 
     os << "Where:"<<endl;
 

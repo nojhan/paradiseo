@@ -31,6 +31,10 @@
 #include <string>
 #include <iostream>
 
+#ifdef __GNUC__ 
+typedef ios ios_base; // not currently defined in GCC
+#endif
+
 #ifdef _MSC_VER
 /* 
 Maarten: added this code here because Mirkosoft has the
