@@ -25,7 +25,7 @@
 #ifndef _EOKILL_h
 #define _EOKILL_h
 
-#include <eoUniform.h>
+#include <utils/eoRNG.h>
 
 #include <eoOp.h>
 
@@ -41,9 +41,9 @@ public:
 	virtual ~eoKill() {};
 
 	///
-	virtual void operator()( EOT& _eo ) const {
-	  eoUniform<unsigned> uniform( 0, _eo.length() );
-	  unsigned pos = uniform( );
+	virtual void operator()( EOT& _eo ) const 
+    {
+	  unsigned pos = rng.random(_eo.length()); 
 	  _eo.deleteGene( pos );
 	}
 

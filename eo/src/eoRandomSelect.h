@@ -1,7 +1,10 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
+
+
 //-----------------------------------------------------------------------------
 // eoRandomSelect.h
+
 // (c) GeNeura Team, 1998
 /* 
     This library is free software; you can redistribute it and/or
@@ -29,15 +32,17 @@
 
 #include <algorithm>
 #include <numeric>    // for accumulate
+
 #include <functional>
 
 #include <eoPopOps.h>
-#include <eoUniform.h>
+#include <utils/eoRNG.h>
 
 //-----------------------------------------------------------------------------
 
 /** 
  * eoRandomSelect: an selection operator, which selects randomly a percentage
+
  of the initial population.
  */
 template<class EOT> class eoRandomSelect: public eoBinPopOp<EOT>
@@ -53,40 +58,67 @@ template<class EOT> class eoRandomSelect: public eoBinPopOp<EOT>
   /// Takes a percentage of the population randomly, and transfers it to siblings
   virtual void operator() ( eoPop<EOT>& _parents, eoPop<EOT>& _siblings )  {
     // generates random numbers
-    eoUniform<unsigned> uniform(0, _parents.size()-1);
     unsigned num_chroms = (unsigned)(repRate * _parents.size());
 
     // selection of chromosomes
     do {
-      _siblings.push_back(_parents[uniform()]);
+      _siblings.push_back(_parents[rng.random(_parents.size())]);
     } while (_siblings.size() < num_chroms);
   }
 
+
+
     /// @name Methods from eoObject
+
   //@{
+
   /**
+
    * Read object. Reads the percentage
+
    * Should call base class, just in case.
+
    * @param _s A istream.
+
    */
+
   virtual void readFrom(istream& _s) {
+
 	_s >> repRate;
+
   }
+
+
 
   /** Print itself: inherited from eoObject implementation. Declared virtual so that 
+
       it can be reimplemented anywhere. Instance from base classes are processed in
+
 	  base classes, so you don´t have to worry about, for instance, fitness.
+
   @param _s the ostream in which things are written*/
+
   virtual void printOn( ostream& _s ) const{
+
 	_s << repRate;
+
   }
 
+
+
   /** Inherited from eoObject 
+
       @see eoObject
+
   */
+
   string className() const {return "eoRandomSelect";};
 
+
+
   //@}
+
+
 
 
  private:

@@ -29,7 +29,7 @@
 //-----------------------------------------------------------------------------
 
 #include <vector>          // vector
-#include <eoUniform.h>     // eoUniform
+#include <utils/eoRNG.h>
 #include <eoOp.h>          // eoOp, eoMonOp, eoBinOp
 #include <eoPop.h>         // eoPop
 #include <eoPopOps.h>      // eoTransform
@@ -74,16 +74,14 @@ template<class Chrom> class eoBreeder: public eoMonPopOp<Chrom>
 	case eoOp<Chrom>::binary:
 	  {
 	    eoBinOp<Chrom>* binop = static_cast<eoBinOp<Chrom>* >(op);
-	    eoUniform<unsigned> u(0, pop.size() );
-	    (*binop)(pop[i], pop[ u() ] );
+	    (*binop)(pop[i], pop[ rng.random(pop.size()) ] );
 	    break;
 	  }
 	case eoOp<Chrom>::quadratic:
 	  {
 	    eoQuadraticOp<Chrom>* Qop = static_cast<eoQuadraticOp<Chrom>* >(op);
 	    
-        eoUniform<unsigned> u(0, pop.size() );
-	    (*Qop)(pop[i], pop[ u() ] );
+	    (*Qop)(pop[i], pop[ rng.random(pop.size()) ] );
 	    break;
       }
     case eoOp<Chrom>::general :

@@ -29,7 +29,6 @@
 
 // EO includes
 #include <eoOp.h>
-#include <eoUniform.h>
 #include <utils/eoRNG.h>
 #include <eoAtomMutator.h>
 

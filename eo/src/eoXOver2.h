@@ -35,7 +35,7 @@
 
 // EO includes
 #include <eoOp.h>
-#include <eoUniform.h>
+#include <utils/eoRNG.h>
 
 /** 2-point crossover: takes the genes in the central section of two EOs
 and interchanges it
@@ -55,8 +55,8 @@ public:
 				 EOT& _eo2 ) const {
 	  unsigned len1 = _eo1.length(), len2 = _eo2.length(), 
 	    len= (len1 > len2)?len2:len1;
-	  eoUniform<unsigned> uniform( 0, len );
-	  unsigned pos1 = uniform(), pos2 = uniform() ;
+
+      unsigned pos1 = rng.random(len), pos2 = rng.random(len) ;
 	  
 	  applyAt( _eo1, _eo2, pos1, pos2 );
 	  

@@ -36,7 +36,7 @@
 #include <map>
 
 // Includes from EO
-#include <eoUniform.h>
+#include <utils/eoRNG.h>
 #include <eoOpSelector.h>
 #include <eoOp.h>
 
@@ -114,8 +114,7 @@ public:
       throw runtime_error( "Operator rates added up different from 1.0" );
 	
     // If here, operators ordered by rate and no problem
-    eoUniform<float> u(0,1.0);
-    float aRnd = u();
+    float aRnd = rng.uniform();
     i=begin();
     acc = 0;
     do {

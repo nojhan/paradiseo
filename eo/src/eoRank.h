@@ -1,8 +1,13 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
+
+
 //-----------------------------------------------------------------------------
+
 // eoRank.h
+
 // (c) GeNeura Team 1999
+
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -22,11 +27,17 @@
  */
 //-----------------------------------------------------------------------------
 
+
+
 #ifndef _eoRank_H
+
 #define _eoRank_H
 
+
 #include <eoOpSelector.h>
+
 #include <eoPopOps.h>
+
 
 /**
  * Takes those on the selection list and creates a list of new individuals
@@ -42,12 +53,14 @@ class eoRank: public eoSelect<EOT>{
   
   /// Ctor
   eoRank( unsigned _newPopSize, eoOpSelector<EOT>& _opSelector)
+
 	  :eoSelect<EOT>(), opSelector( _opSelector ), repNewPopSize( _newPopSize ) {};
   
   /** Copy ctor
    * Needs a copy ctor for the EO operators */
   eoRank( const eoRank&  _rankBreeder)
     :eoSelect<EOT>( _rankBreeder), 
+
 	opSelector( _rankBreeder.opSelector ), repNewPopSize( _rankBreeder.repNewPopSize ) {};
   
   /// Dtor
@@ -57,6 +70,7 @@ class eoRank: public eoSelect<EOT>{
    * genetic pool container
    * Non-const because it might order the operator vector*/
   virtual void operator() (	const eoPop< EOT >& _ptVeo, 
+
 							eoPop< EOT >& _siblings  ) const { 
     
     unsigned inLen = _ptVeo.size(); // size of subPop
@@ -65,23 +79,28 @@ class eoRank: public eoSelect<EOT>{
 
     for ( unsigned i = 0; i < repNewPopSize; i ++ ) {
       // Create a copy of a random input EO with copy ctor. The members of the
+
 		// population will be selected by rank, with a certain probability of
+
 		// being selected several times if the new population is bigger than the
+
 		// old
 		EOT newEO =  _ptVeo[ i%inLen ];
     
 		// Choose operator
-		eoUniform<unsigned> u( 0, inLen );
-		const eoOp<EOT >& thisOp = opSelector.Op();
+		
+        const eoOp<EOT >& thisOp = opSelector.Op();
 		if ( thisOp.readArity() == unary ) {
 			const eoMonOp<EOT>& mopPt = dynamic_cast< const eoMonOp<EOT>& > ( thisOp );
 			mopPt( newEO );
 		} else {
 			const eoBinOp<EOT>& bopPt = dynamic_cast< const eoBinOp<EOT>& > ( thisOp );
-			EOT mate =  _ptVeo[ u() ];
+
+			EOT mate =  _ptVeo[ rng.random(inLen) ];
 			bopPt( newEO, mate );
 		}      
 		
+
 		_siblings.push_back( newEO );
     }
   };
@@ -92,26 +111,47 @@ class eoRank: public eoSelect<EOT>{
     repNewPopSize = _select;
   }
 
+
   
+
       /// Methods inherited from eoObject
+
     //@{
 
+
+
     /** Return the class id. 
+
       @return the class name as a string
+
       */
+
     virtual string className() const { return "eoRank"; };
 
+
+
     /** Print itself: inherited from eoObject implementation. Declared virtual so that 
+
       it can be reimplemented anywhere. Instance from base classes are processed in
+
       base classes, so you don´t have to worry about, for instance, fitness.
+
       @param _s the ostream in which things are written*/
+
     virtual void printOn( ostream& _s ) const{
+
       _s << opSelector;
+
 		_s << repNewPopSize;
+
     };
 
 
+
+
+
     //@}
+
 
 private:
   eoOpSelector<EOT> & opSelector;

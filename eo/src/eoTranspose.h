@@ -25,7 +25,7 @@
 #ifndef _EOTRANSPOSE_h
 #define _EOTRANSPOSE_h
 
-#include <eoUniform.h>
+#include <utils/eoRNG.h>
 
 #include <eoOp.h>
 
@@ -45,9 +45,8 @@ public:
   
   ///
   virtual void operator()( EOT& _eo ) const {
-    eoUniform<unsigned> uniform(0, _eo.length() );
     unsigned pos1 = uniform(),
-      pos2 = uniform();
+      pos2 = rng.random(_eo.length());
     applyAt( _eo, pos1, pos2 );
   }
   

@@ -8,7 +8,7 @@
 //-----------------------------------------------------------------------------
 
 #include <algorithm>    // swap_ranges
-#include <eoUniform.h>  // eoUniform
+#include <utils/eoRNG.h>
 #include <ga/eoBin.h>      // eoBin
 #include <eoOp.h>       // eoMonOp
 
@@ -43,9 +43,8 @@ template<class Chrom> class eoBinRandom: public eoMonOp<Chrom>
    */
   void operator()(Chrom& chrom) const
     {
-      eoUniform<float> uniform(0.0, 1.0);
       for (unsigned i = 0; i < chrom.size(); i++)
-	chrom[i] = (uniform() < 0.5) ? false : true;
+	chrom[i] = rng.flip(0.5) ? false : true;
     }
 };
 
@@ -67,8 +66,7 @@ template<class Chrom> class eoBinBitFlip: public eoMonOp<Chrom>
    */
   void operator()(Chrom& chrom) const
     {
-      eoUniform<int> uniform(0, chrom.size());
-      unsigned i = uniform();
+      unsigned i = rng.random(chrom.size());
       chrom[i] = (chrom[i]) ? false : true;
     }
 };
@@ -86,7 +84,7 @@ template<class Chrom> class eoBinMutation: public eoMonOp<Chrom>
    * (Default) Constructor.
    * @param _rate Rate of mutation.
    */
-  eoBinMutation(const double& _rate = 0.01): rate(_rate), uniform(0.0, 1.0) {}
+  eoBinMutation(const double& _rate = 0.01): rate(_rate) {}
 
   /// The class name.
   string className() const { return "eoBinMutation"; }
@@ -98,13 +96,12 @@ template<class Chrom> class eoBinMutation: public eoMonOp<Chrom>
   void operator()(Chrom& chrom) const
     {
       for (unsigned i = 0; i < chrom.size(); i++)
-	if (uniform() < rate)
+	if (rng.flip(rate))
 	  chrom[i] = !chrom[i];
     }
   
  private:
   double rate;
-  mutable eoUniform<float> uniform;
 };
 
 
@@ -125,10 +122,9 @@ template<class Chrom> class eoBinInversion: public eoMonOp<Chrom>
    */
   void operator()(Chrom& chrom) const
     {
-      eoUniform<unsigned> uniform(0, chrom.size() + 1);
       
-      unsigned u1 = uniform(), u2;
-      do u2 = uniform(); while (u1 == u2);
+      unsigned u1 = rng.random(chrom.size() + 1) , u2;
+      do u2 = rng.random(chrom.size() + 1); while (u1 == u2);
       unsigned r1 = min(u1, u2), r2 = max(u1, u2);
       
       reverse(chrom.begin() + r1, chrom.begin() + r2);
@@ -218,8 +214,7 @@ template<class Chrom> class eoBinCrossover: public eoQuadraticOp<Chrom>
    */
   void operator()(Chrom& chrom1, Chrom& chrom2) const
     {
-      eoUniform<unsigned> uniform(1, min(chrom1.size(), chrom2.size()));
-      swap_ranges(chrom1.begin(), chrom1.begin() + uniform(), chrom2.begin());
+      swap_ranges(chrom1.begin(), chrom1.begin() + rng.random(min(chrom1.size(), chrom2.size())), chrom2.begin());
     }
 };
   
@@ -253,11 +248,10 @@ template<class Chrom> class eoBinNxOver: public eoQuadraticOp<Chrom>
       unsigned max_points = min(max_size - 1, num_points);
       
       vector<bool> points(max_size, false);
-      eoUniform<unsigned> uniform(1, max_size);
       
       // select ranges of bits to swap
       do {
-	unsigned bit = uniform();
+	unsigned bit = rng.random(max_size) + 1; 
 	if (points[bit])
 	  continue;
 	else
@@ -317,11 +311,10 @@ template<class Chrom> class eoBinGxOver: public eoQuadraticOp<Chrom>
       unsigned cut_genes = min(max_genes, num_points);
       
       vector<bool> points(max_genes, false);
-      eoUniform<unsigned> uniform(0, max_genes);
       
       // selects genes to swap
       do {
-	unsigned bit = uniform();
+	unsigned bit = rng.random(max_genes); 
 	if (points[bit])
 	  continue;
 	else

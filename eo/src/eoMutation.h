@@ -27,7 +27,6 @@
 #include <math.h>
 // EO includes
 #include <eoOp.h>
-#include <eoUniform.h>
 
 /** Generic Mutation of an EO. 
     This is a virtual class, just to establish the interface for the ctor. 
