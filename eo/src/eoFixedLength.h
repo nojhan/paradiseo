@@ -30,7 +30,6 @@
 #include <vector>
 
 /**
-\ingroup EvolutionStrategies
 
   Base class for fixed length chromosomes, just derives from EO and vector and
   redirects the smaller than operator to EO (fitness based comparison)

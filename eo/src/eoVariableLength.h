@@ -30,8 +30,6 @@
 #include <list>
 
 /**
-\ingroup EvolutionStrategies
-
   Base class for variable length chromosomes, just derives from EO and list and
   redirects the smaller than operator to EO (fitness based comparison)
 */

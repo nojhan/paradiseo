@@ -43,6 +43,14 @@ This is the base class for the whole hierarchy; an eoObject defines
 basically an interface for the whole hierarchy: each object should
 know its name (#className#). Previously, this object defined a print and read
 interface, but it´s been moved to eoPrintable and eoPersistent.
+
+It is recommended that you only derive from eoObject in concrete classes.
+Some parts of EO do not implement this yet, but that will change in the future.
+eoObject, together with eoPersistent and eoPrintable provide a simple persistence
+framework that is only needed when the classes have state that changes at runtime.
+
+  @see eoPersistent eoPrintable
+
  */
 class eoObject
 {
@@ -56,7 +64,8 @@ class eoObject
   Maarten: removed the default implementation as this proved to 
   be too error-prone: I found several classes that had a typo in 
   className (like classname), which would print eoObject instead of
-  their own...
+  their own. Having it pure will force the implementor to provide a 
+  name.
   */
   virtual string className() const = 0; 
 
