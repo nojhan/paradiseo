@@ -20,7 +20,10 @@
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
-             mak@dhi.dk
+	     mak@dhi.dk
+
+    CVS Info: $Date: 2001-03-21 12:10:13 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVector.h,v 1.9 2001-03-21 12:10:13 jmerelo Exp $ $Author: jmerelo $ 
+
  */
 //-----------------------------------------------------------------------------
 
@@ -32,9 +35,11 @@
 /**
 
   Base class for fixed length chromosomes, just derives from EO and vector and
-  redirects the smaller than operator to EO (fitness based comparison)
+  redirects the smaller than operator to EO (fitness based comparison). GeneType
+  must have the following methods: void ctor (needed for the vector<>), copy ctor,
+  
+  
 */
-
 template <class FitT, class GeneType>
 class eoVector : public EO<FitT>, public std::vector<GeneType>
 {

@@ -20,6 +20,7 @@
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              mak@dhi.dk
+    CVS Info: $Date: 2001-03-21 12:10:13 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoFunctor.h,v 1.5 2001-03-21 12:10:13 jmerelo Exp $ $Author: jmerelo $ 
  */
 //-----------------------------------------------------------------------------
 

@@ -18,6 +18,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
+    CVS Info: $Date: 2001-03-21 12:10:13 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoOp.h,v 1.27 2001-03-21 12:10:13 jmerelo Exp $ $Author: jmerelo $ 
  */
 //-----------------------------------------------------------------------------
 
@@ -63,7 +64,6 @@ how to build them from a description in a file.
 
 */
 template<class EOType>
-
 class eoOp
 {
 public:

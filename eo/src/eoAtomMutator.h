@@ -19,6 +19,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
+    CVS Info: $Date: 2001-03-21 12:10:13 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/Attic/eoAtomMutator.h,v 1.4 2001-03-21 12:10:13 jmerelo Exp $ $Author: jmerelo $ 
  */
 //-----------------------------------------------------------------------------
 #ifndef _EOATOMMUTATOR_H
@@ -33,7 +34,7 @@
 */
 
 template <class T>
-class eoAtomMutator: public eoUnaryFunctor<void, T&> {};
+class eoAtomMutator: public eoUF<T&, bool> {};
 
 
 #endif
