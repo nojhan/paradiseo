@@ -1,6 +1,6 @@
 /*
    eoBin.h
-   (c) GeNeura Team 1998
+   (c) GeNeura Team 1998, Marc Schoenauer 2000
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -17,6 +17,13 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
+             Marc.Schoenauer@polytechnique.fr
+*/
+
+/* MS, Nov. 23, 2000 
+   Added the calls to base class I/O routines that print the fitness
+   Left printing/reading of the size of the bitstring, 
+       for backward compatibility, and as it is a general practice in EO
 */
 
 #ifndef eoBin_h
@@ -64,7 +71,9 @@ template <class F> class eoBin: public eoFixedLength<F, bool>
    */
   void printOn(ostream& os) const
     {
-      os << size() << ' ';
+      EO<F>::printOn(os);
+      os << ' ';
+      os << size() << ' '; 
       copy(begin(), end(), ostream_iterator<bool>(os));
     }
   
@@ -74,6 +83,9 @@ template <class F> class eoBin: public eoFixedLength<F, bool>
    */
   void readFrom(istream& is)
     {
+      EO<F>::readFrom(is);
+      unsigned s;
+      is >> s;
       string bits;
       is >> bits;
       if (is)
