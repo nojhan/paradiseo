@@ -48,6 +48,7 @@
 
 #include <utils/eoRndGenerators.h>
 #include <eoInit.h>
+#include <utils/eoUniformInit.h>
 
 // the variation operators
 #include <eoOp.h>
