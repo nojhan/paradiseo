@@ -1,0 +1,6 @@
+#!/bin/sh 
+
+echo "Starting Replacement Test"
+./t-eoReplacement > replacement.log
+echo "Finished"
+
