@@ -79,7 +79,7 @@ public:
    * @param _os A ostream.
    */
   virtual void printOn(ostream& _os) const {
-    _os << className().c_str(); 
+    _os << className(); 
     //	  _os << arity;
   };
   
@@ -115,7 +115,7 @@ public:
 
   /** applies operator, to the object. Modifies only the first operand.
    */
-  virtual void operator()( EOType& _eo1, const EOType& _eo2 ) const = 0;
+  virtual void operator()( EOType& _eo1, EOType& _eo2 ) const = 0;
 
   /** @name Methods from eoObject
 	readFrom and printOn are directly inherited from eoObject
@@ -233,4 +233,3 @@ public:
 
 
 #endif
-
