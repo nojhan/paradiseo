@@ -59,20 +59,20 @@
 */
 
 template <class EOT>
-eoEsChromInit<EOT> & do_make_genotype(eoParameterLoader& _parser, eoState& _state, EOT)
+eoEsChromInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
 {
   // the fitness type
   typedef typename EOT::Fitness FitT;
   
-  // for eoReal, only thing needed is the size
-    eoValueParam<unsigned>& vecSize = _parser.createParam(unsigned(10), "vecSize", "The number of variables ", 'n',"Genotype Initialization");
+  // for eoReal, only thing needed is the size - but might have been created elswhere ...
+    eoValueParam<unsigned>& vecSize = _parser.getORcreateParam(unsigned(10), "vecSize", "The number of variables ", 'n',"Genotype Initialization");
 
     // to build an eoReal Initializer, we need bounds: [-1,1] by default
-  eoValueParam<eoRealVectorBounds>& boundsParam = _parser.createParam(eoRealVectorBounds(vecSize.value(),-1,1), "initBounds", "Bounds for initialization (MUST be bounded)", 'B', "Genotype Initialization");
+  eoValueParam<eoRealVectorBounds>& boundsParam = _parser.getORcreateParam(eoRealVectorBounds(vecSize.value(),-1,1), "initBounds", "Bounds for initialization (MUST be bounded)", 'B', "Genotype Initialization");
 
   // now some initial value for sigmas - even if useless?
   // shoudl be used in Normal mutation
-    eoValueParam<double>& sigmaParam = _parser.createParam(0.3, "sigmaInit", "Initial value for Sigma(s)", 's',"Genotype Initialization");
+    eoValueParam<double>& sigmaParam = _parser.getORcreateParam(0.3, "sigmaInit", "Initial value for Sigma(s)", 's',"Genotype Initialization");
 
     // minimum check
   if ( (sigmaParam.value() < 0) )
