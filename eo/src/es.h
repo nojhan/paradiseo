@@ -47,6 +47,9 @@
 // general operators
 #include <es/eoRealOp.h>
 #include <es/eoNormalMutation.h>
+#include <es/eoRealAtomXover.h>	// for generic operators
+#include <es/eoEsGlobalXover.h> // Global ES Xover
+#include <es/eoEsLocalXover.h> // Local ES Xover
 
 // the ES-mutations
 #include <es/eoEsMutationInit.h>
