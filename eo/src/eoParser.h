@@ -41,7 +41,7 @@
 #include <ctime>
 
 // include for exceptions
-include <stdecept> // logic_error
+#include <stdexcept> // logic_error
 
 //-----------------------------------------------------------------------------
 // Class Param

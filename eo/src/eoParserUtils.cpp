@@ -12,7 +12,7 @@ void InitRandom( Parser & parser) {
     _seed = parser.getUnsignedLong("-S", "--seed", "0", 
 				   "Seed for Random number generator" );
   }
-  catch (UException & e)
+  catch (logic_error & e)
     {
       cout << e.what() << endl;
       parser.printHelp();
