@@ -26,8 +26,9 @@
 #include <iostream>   // cout
 #include <strstream>  // ostrstream, istrstream
 #include <eo>         // general EO
-#include <MGE/eoVirus.h>  // bitstring representation & operators
-#include <MGE/VirusOp.h>
+#include "../contrib/MGE/VirusOp.h"
+#include "../contrib/MGE/eoVirus.h"
+#include "../contrib/MGE/eoInitVirus.h"
 #include <utils/eoRndGenerators.h>
 
 #include "binary_value.h"

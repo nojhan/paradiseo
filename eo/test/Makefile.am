@@ -8,7 +8,7 @@ DEPS = $(top_builddir)/src/utils/libeoutils.a $(top_builddir)/src/libeo.a
 
 ###############################################################################
 
-INCLUDES = -I$(top_builddir)/src -I$(top_builddir)/contrib
+INCLUDES = -I$(top_builddir)/src 
 LDADDS = $(top_builddir)/src/utils/libeoutils.a $(top_builddir)/src/libeo.a
 CXXFLAGS = -g -Wall 
 ###############################################################################

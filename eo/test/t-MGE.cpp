@@ -13,9 +13,9 @@
 #include "RoyalRoad.h"
 
 // Viri
-#include <MGE/VirusOp.h>
-#include <MGE/eoVirus.h>
-#include <MGE/eoInitVirus.h>
+#include "../contrib/MGE/VirusOp.h"
+#include "../contrib/MGE/eoVirus.h"
+#include "../contrib/MGE/eoInitVirus.h"
 
 //-----------------------------------------------------------------------------
 
