@@ -20,4 +20,7 @@ all:
 clean:
 	for i in $(SUBDIRS); do pushd $$i && $(MAKE) clean; popd; done
 
+doc:
+	pushd doc; $(MAKE) doc; popd
+
 ###############################################################################
