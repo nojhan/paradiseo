@@ -33,20 +33,20 @@ int main()
   eoPop<Chrom> pop; 
 
   // Evaluation
- RoyalRoad<Chrom> rr( 4 ); 
-  
+  RoyalRoad<Chrom> rr( 4 ); 
+  eoEvalFuncCounter<Chrom> eval( rr );
+
   eoInitVirus<float> random(CHROM_SIZE, gen); 
   for (i = 0; i < POP_SIZE; ++i) {
       Chrom chrom;
       random(chrom);
-      rr(chrom);
+      eval(chrom);
       pop.push_back(chrom);
   }
   
   cout << "population:" << endl;
   for (i = 0; i < pop.size(); ++i)
     cout << "\t" << pop[i] << " " << pop[i].fitness() << endl;
-
   
   // selection
   eoStochTournamentSelect<Chrom> lottery(0.9 );
@@ -58,9 +58,9 @@ int main()
   eoUBitXover<Chrom> xover;
   eoProportionalOp<Chrom> propSel;
   eoGeneralBreeder<Chrom> breeder( lottery, propSel );
-  propSel.add(vm, 0.4);
-  propSel.add(vf, 0.4);
-  propSel.add(vt, 0.1);
+  propSel.add(vm, 0.8);
+  propSel.add(vf, 0.05);
+  propSel.add(vt, 0.05);
   propSel.add(xover, 0.1);
   
   // Replace a single one
@@ -80,7 +80,7 @@ int main()
   checkpoint.add(stats);
 
   // GA generation
-  eoEasyEA<Chrom> ea(checkpoint, rr,  breeder, replace );
+  eoEasyEA<Chrom> ea(checkpoint, eval,  breeder, replace );
 
   // evolution
   try
@@ -96,7 +96,8 @@ int main()
   cout << "pop" << endl;
   for (i = 0; i < pop.size(); ++i)
     cout << "\t" <<  pop[i] << " " << pop[i].fitness() << endl;
-  
+
+  cout << "\n --> Number of Evaluations = " << eval.getValue() << endl;
   return 0;
 }
 

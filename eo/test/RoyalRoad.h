@@ -19,7 +19,7 @@
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
-CVS Info: $Date: 2001-05-11 10:44:01 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/test/RoyalRoad.h,v 1.1 2001-05-11 10:44:01 jmerelo Exp $ $Author: jmerelo $
+CVS Info: $Date: 2001-05-17 07:29:50 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/test/RoyalRoad.h,v 1.2 2001-05-17 07:29:50 jmerelo Exp $ $Author: jmerelo $
 */
 
 #ifndef RoyalRoad_h
@@ -37,7 +37,7 @@ class RoyalRoad: public eoEvalFunc<EOT> {
 
   // Applies the function
   virtual void operator() ( EOT & _eo )  {
-	FitT fitness;
+	FitT fitness = 0;
     if (_eo.invalid()) {
 	  for ( unsigned i = 0; i < _eo.size()/div; i ++ ) {
 		bool block = true;
