@@ -12,4 +12,4 @@ AM_PROG_LIBTOOL
 AM_MAINTAINER_MODE
 
 dnl add Makefiles that must be modified by the configuration here
-AC_OUTPUT(Makefile src/Makefile src/es/Makefile src/ga/Makefile src/gp/Makefile src/obsolete/Makefile src/other/Makefile src/utils/Makefile test/Makefile win/Makefile doc/Makefile)
+AC_OUTPUT(Makefile src/Makefile src/es/Makefile src/ga/Makefile src/gp/Makefile src/obsolete/Makefile src/other/Makefile src/utils/Makefile test/Makefile win/Makefile doc/Makefile contrib/Makefile)
