@@ -16,7 +16,7 @@ using namespace std;
 #include <eo>
 
 // representation specific
-#include <es/evolution_strategies>
+#include <es.h>
 
 #include "real_value.h"		// the sphere fitness
 
@@ -25,7 +25,7 @@ using namespace std;
 typedef eoMinimizingFitness  FitT;
 
 template <class EOT>
-void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoEsObjectiveBounds& _bounds, eoValueParam<string> _load_name);
+void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoRealVectorBounds& _bounds, eoValueParam<string> _load_name);
   
 int main(int argc, char *argv[]) 
 {
@@ -39,8 +39,8 @@ int main(int argc, char *argv[])
   eoValueParam<bool>&   stdevs      = parser.createParam(false, "Stdev", "Use adaptive mutation rates", 's');
   eoValueParam<bool>&   corr        = parser.createParam(false, "Correl", "Use correlated mutations", 'c');
   eoValueParam<unsigned>& chromSize = parser.createParam(unsigned(50), "ChromSize", "Number of chromosomes", 'n');
-  eoValueParam<double>& minimum     = parser.createParam(-1.e5, "Min", "Minimum for Objective Variables", 'l');
-  eoValueParam<double>& maximum     = parser.createParam(1.e5, "Max", "Maximum for Objective Variables", 'h');
+  eoValueParam<double>& minimum     = parser.createParam(-1.0, "Min", "Minimum for Objective Variables", 'l');
+  eoValueParam<double>& maximum     = parser.createParam(1.0, "Max", "Maximum for Objective Variables", 'h');
 
   eoState state;
     state.registerObject(parser);
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 
     state.registerObject(rng);
 
-    eoEsObjectiveBounds bounds(chromSize.value(), minimum.value(), maximum.value());
+    eoRealVectorBounds bounds(chromSize.value(), minimum.value(), maximum.value());
     
     // Run the appropriate algorithm
     if (stdevs.value() == false && corr.value() == false)
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 }
 
 template <class EOT>
-void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoEsObjectiveBounds& _bounds, eoValueParam<string> _load_name)
+void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoRealVectorBounds& _bounds, eoValueParam<string> _load_name)
 {
     // evaluation
     eoEvalFuncPtr<EOT, double, const vector<double>&> eval(  real_value );
@@ -128,7 +128,7 @@ void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoEsObjectiveBounds& 
 
     monitor.add(average);
 
-    eoGenContinue<EOT> cnt(20);
+    eoGenContinue<EOT> cnt(100);
     eoCheckPoint<EOT> checkpoint(cnt);
     checkpoint.add(monitor);
     checkpoint.add(average);
@@ -140,4 +140,8 @@ void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoEsObjectiveBounds& 
     eoEvolutionStrategy<EOT> es(checkpoint, eval, opSel, lambda_rate.value(), eoEvolutionStrategy<EOT>::comma_strategy());
 
     es(pop);
+
+    pop.sort();
+    cout << "Final population\n" << pop << endl;
+
 }
