@@ -151,7 +151,7 @@ public :
     flip() tosses a biased coin such that flip(x/100.0) will 
     returns true x% of the time
  */
- bool flip(float bias)
+ bool flip(float bias=0.5)
    {
      return uniform() < bias;
    }
