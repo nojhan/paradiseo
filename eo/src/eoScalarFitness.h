@@ -37,7 +37,6 @@
  * Suitable constructors and assignments and casts are defined to work 
  * with this quantity as if it were a ScalarType.
 */
-
 template <class ScalarType, class Compare = less<ScalarType> > 
 class eoScalarFitness 
 {
