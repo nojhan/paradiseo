@@ -33,11 +33,11 @@
     The fitnesses of a whole population, as a vector
 */
 template <class EOT, class FitT = typename EOT::Fitness>
-class eoScalarFitnessStat : public eoSortedStat<EOT, vector<FitT> >
+class eoScalarFitnessStat : public eoSortedStat<EOT, vector<double> >
 {
 public :
-    eoScalarFitnessStat(std::string _description = "FitnessES") : 
-      eoSortedStat<EOT,  vector<FitT> >(vector<FitT>(0), _description) {}
+    eoScalarFitnessStat(std::string _description = "FitnessES") :
+      eoSortedStat<EOT,  vector<double> >(vector<double>(0), _description) {}
 
     virtual void operator()(const vector<const EOT*>& _popPters)
     {

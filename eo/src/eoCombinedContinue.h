@@ -31,8 +31,8 @@
     Combined continuators - logical AND:
   Continues until one of the embedded continuators says halt!
 
-20/11/00 MS: Changed the 2-continuator construct to a vector<eoContinue<EOT> > 
-             to be consistent with other Combined constructs 
+20/11/00 MS: Changed the 2-continuator construct to a vector<eoContinue<EOT> >
+             to be consistent with other Combined constructs
              and allow to easily handle more than 2 continuators
 */
 
@@ -43,29 +43,29 @@ public:
   /// Define Fitness
   typedef typename EOT::Fitness FitnessType;
 
-  /// Ctor
+  /// Ctor, make sure that at least on continuator is present
   eoCombinedContinue( eoContinue<EOT>& _cont)
     : eoContinue<EOT> ()
-  { 
-    continuators.push_back(&_cont); 
+  {
+    continuators.push_back(&_cont);
   }
 
   /// Ctor - for historical reasons ... should disspear some day
   eoCombinedContinue( eoContinue<EOT>& _cont1, eoContinue<EOT>& _cont2)
     : eoContinue<EOT> ()
-  { 
-    continuators.push_back(&_cont1); 
-    continuators.push_back(&_cont2); 
+  {
+    continuators.push_back(&_cont1);
+    continuators.push_back(&_cont2);
   }
 
-  void add(eoContinue<EOT> & _cont)        
-  { 
-    continuators.push_back(&_cont); 
+  void add(eoContinue<EOT> & _cont)
+  {
+    continuators.push_back(&_cont);
   }
 
   /** Returns false when one of the embedded continuators say so (logical and)
    */
-  virtual bool operator() ( const eoPop<EOT>& _pop ) 
+  virtual bool operator() ( const eoPop<EOT>& _pop )
   {
     for (unsigned i = 0; i < continuators.size(); ++i)
       if ( !(*continuators[i])(_pop) ) return false;

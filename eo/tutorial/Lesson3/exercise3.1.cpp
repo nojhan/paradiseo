@@ -64,7 +64,7 @@ void main_function(int argc, char **argv)
     eoValueParam<string> loadNameParam("", "Load","A save file to restart from",'L');
     parser.processParam( loadNameParam, "Persistence" );
     string loadName = loadNameParam.value();
- 
+
     eoValueParam<unsigned int> maxGenParam(500, "maxGen", "Maximum number of generations",'G');
     parser.processParam( maxGenParam, "Stopping criterion" );
     unsigned maxGen = maxGenParam.value();
@@ -196,7 +196,7 @@ void main_function(int argc, char **argv)
   // generational replacement at the moment :-)
   eoGenerationalReplacement<Indi> replace; 
   // want to add (weak) elitism? easy!
-  // rename the eoGenerationalReplacement replace_main, 
+  // rename the eoGenerationalReplacement replace_main,
   // then encapsulate it in the elitist replacement
   //  eoWeakElitistReplacement<Indi> replace(replace_main); 
 
@@ -285,7 +285,7 @@ void main_function(int argc, char **argv)
     // when called by the checkpoint (i.e. at every generation)
     checkpoint.add(monitor);
 
-    // the monitor will output a series of parameters: add them 
+    // the monitor will output a series of parameters: add them
     monitor.add(generationCounter);
     monitor.add(eval);		// because now eval is an eoEvalFuncCounter!
     monitor.add(bestStat);
@@ -302,7 +302,7 @@ void main_function(int argc, char **argv)
     eoFileMonitor fileMonitor("stats.xg", " ");
     // and an eoGnuplot1DMonitor will 1-print to a file, and 2- plot on screen
     eoGnuplot1DMonitor gnuMonitor("best_average.xg",minimizing_fitness<Indi>());
-     
+
     // the checkpoint mechanism can handle multiple monitors
     checkpoint.add(fileMonitor);
     checkpoint.add(gnuMonitor);
@@ -318,10 +318,10 @@ void main_function(int argc, char **argv)
 
     // send a scaling command to gnuplot
     gnuMonitor.gnuplotCommand("set yrange [0:500]");
-    /*
+
     // a specific plot monitor for FDC
     // first into a file (it adds everything ti itself
-    eoFDCFileSnapshot<Indi> fdcFileSnapshot(fdcStat);  
+    eoFDCFileSnapshot<Indi> fdcFileSnapshot(fdcStat);
     // then to a Gnuplot monitor
     eoGnuplot1DSnapshot fdcGnuplot(fdcFileSnapshot);
     // and of coruse add them to the checkPoint
@@ -331,14 +331,14 @@ void main_function(int argc, char **argv)
     // want to see how the fitness is spread?
     eoScalarFitnessStat<Indi> fitStat;
     checkpoint.add(fitStat);
-    // a gnuplot-based monitor for snapshots: needs a dir name 
+    // a gnuplot-based monitor for snapshots: needs a dir name
     // where to store the files
     eoGnuplot1DSnapshot fitSnapshot("Fitnesses");
     // add any stat that is a vector<double> to it
     fitSnapshot.add(fitStat);
     // and of course add it to the checkpoint
     checkpoint.add(fitSnapshot);
-    */
+    
     // Last type of item the eoCheckpoint can handle: state savers:
     eoState outState;
     // Register the algorithm into the state (so it has something to save!!)

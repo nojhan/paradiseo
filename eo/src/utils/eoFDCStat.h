@@ -32,7 +32,7 @@
 #include <utils/eoFileSnapshot.h>
 
 /**
-    The FDC computation - stores the values into eoValueParam<EOT,double> 
+    The FDC computation - stores the values into eoValueParam<EOT,double>
 so they can be snapshot by some eoGnuplotSnapshot ...
 */
 template <class EOT>
@@ -46,9 +46,9 @@ public :
 
   /** Ctor with the optimum
    */
-  eoFDCStat(eoDistance<EOT> & _dist, EOT & _theBest, 
+  eoFDCStat(eoDistance<EOT> & _dist, EOT & _theBest,
 	    std::string _description = "FDC") :
-    eoStat<EOT,double>(0, _description), dist(_dist), 
+    eoStat<EOT,double>(0, _description), dist(_dist),
     theBest(_theBest), boolOpt(true) {}
 
   /** Compute the FDC - either from best in pop, or from absolute best
@@ -56,7 +56,7 @@ public :
    */
     virtual void operator()(const eoPop<EOT>& _pop)
     {
-      if (!boolOpt)		   // take the local best 
+      if (!boolOpt)		   // take the local best
 	theBest = _pop.best_element();
       unsigned int pSize = _pop.size();
       distToBest.value().resize(pSize);
@@ -109,24 +109,24 @@ class eoFDCFileSnapshot : public eoFileSnapshot	// is an eoMonitor
 {
 public:
   /** Ctor: in addition to the parameters of the ctor of an eoFileSnapshot
-            we need here an eoFDCStat. The 2 vectors (distances to optimum 
+            we need here an eoFDCStat. The 2 vectors (distances to optimum
 	    and fitnesses) are added to the monitor so they can be processed
             later to a file - and eventually by gnuplot
   */
-  eoFDCFileSnapshot(eoFDCStat<EOT> & _FDCstat, 
-		    std::string _dirname = "tmpFDC", unsigned _frequency = 1, 
+  eoFDCFileSnapshot(eoFDCStat<EOT> & _FDCstat,
+		    std::string _dirname = "tmpFDC", unsigned _frequency = 1,
 		    std::string _filename = "FDC", std::string _delim = " "):
-    eoFileSnapshot(_dirname, _frequency, _filename, _delim), 
-    FDCstat(_FDCstat) 
+    eoFileSnapshot(_dirname, _frequency, _filename, _delim),
+    FDCstat(_FDCstat)
   {
-    eoMonitor::add(FDCstat.theDist());
-    eoMonitor::add(FDCstat.theFit());
+    eoFileSnapshot::add(FDCstat.theDist());
+    eoFileSnapshot::add(FDCstat.theFit());
   }
 
   /** just to be sure the add method is not called further
    */
-  virtual void add(const eoParam& _param) 
-    { throw runtime_error("Trying to add stats to an eoFDCFileSnapshot"); }
+  virtual void add(const eoParam& _param)
+    { throw runtime_error("eoFDCFileSnapshot::add(). Trying to add stats to an eoFDCFileSnapshot"); }
 
 private:
   eoFDCStat<EOT> & FDCstat;

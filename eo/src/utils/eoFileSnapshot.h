@@ -166,7 +166,7 @@ public :
   {
     if (!dynamic_cast<const eoValueParam<vector<double> >*>(&_param))
     {
-      throw logic_error("eoFileSnapshot: I can only monitor vectors of doubles, sorry");
+      throw logic_error(string("eoFileSnapshot: I can only monitor vectors of doubles, sorry. The offending parameter name = ") + _param.longName());
     }
     eoMonitor::add(_param);
   }

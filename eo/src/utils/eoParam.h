@@ -138,16 +138,16 @@ public :
    * @param _shortName          Short name of the argument (Optional)
    * @param _required           If it is a necessary parameter or not
    */
-    eoValueParam (ValueType _defaultValue, 
-                std::string _longName, 
-                std::string _description = "No description", 
+    eoValueParam (ValueType _defaultValue,
+                std::string _longName,
+                std::string _description = "No description",
                 char _shortHand = 0,
                 bool _required = false)
     : eoParam(_longName, "", _description, _shortHand, _required), repValue(_defaultValue)
     {
         eoParam::defValue(getValue());
     }
-    
+
     ValueType& value()              { return repValue; }
     ValueType  value() const        { return repValue; }
 
@@ -157,9 +157,9 @@ public :
         std::ostrstream os(buf, 1023);
         os << repValue;
         os << std::ends;
-        return os.str(); 
+        return os.str();
     }
-    
+
     void setValue(std::string _value)
     {
         std::istrstream is(_value.c_str());
@@ -169,6 +169,16 @@ public :
 private :
     ValueType repValue;
 };
+
+/*
+  Specialization for string
+*/
+template <>
+std::string eoValueParam<std::string>::getValue(void) const
+{
+  return repValue;
+}
+
 
 template <>
 void eoValueParam<bool>::setValue(std::string _value)
@@ -290,9 +300,9 @@ void eoValueParam<std::vector<eoMinimizingFitness> >::setValue(std::string _valu
 class eoContainerParam : public eoParam
 {
 public :
-    eoContainerParam (ContainerType& value, string _shortName, string _longName, 
-	            string _default, 
-	            string _description, 
+    eoContainerParam (ContainerType& value, string _shortName, string _longName,
+	            string _default,
+	            string _description,
                 bool _required,
 	            bool _change )
     : value(_value), eoParam(_shortName, _longName, _description, _default, _required, _change)
