@@ -1,0 +1,12 @@
+
+Welcome to EO,
+
+if you extracted a fresh snapshot from the cvs-repository, remember to do:
+
+$> ./autogen.sh --enable-maintainer-mode
+
+instead of
+
+$> ./configure
+
+before making the libraries.
