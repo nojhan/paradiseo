@@ -15,7 +15,7 @@ CXXFLAGS = -g -Wall
 
 check_PROGRAMS = t-eoParetoFitness t-eoPareto t-eofitness t-eoRandom t-eobin t-eoVirus\
 	 t-MGE t-MGE1bit t-MGE-control t-eoStateAndParser t-eoCheckpointing t-eoSSGA  \
-	t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoReal t-eoVector t-eoESAll
+	t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoReal t-eoVector t-eoESAll t-eoPBIL
 
 
 TESTS=$(check_PROGRAMS) run_tests
@@ -151,6 +151,7 @@ t_eoESAll_SOURCES = t-eoESAll.cpp real_value.h
 t_eoESAll_DEPENDENCIES = $(DEPS) $(top_builddir)/src/es/libes.a
 t_eoESAll_LDFLAGS = -lm
 t_eoESAll_LDADD = $(top_builddir)/src/es/libes.a $(LDADDS)
+
 ###############################################################################
 
 t_eoSSGA_SOURCES = t-eoSSGA.cpp binary_value.h
@@ -164,10 +165,19 @@ t_eoPareto_SOURCES = t-eoPareto.cpp
 t_eoPareto_DEPENDENCIES = $(DEPS) $(top_builddir)/src/ga/libga.a
 t_eoPareto_LDFLAGS = -lm
 t_eoPareto_LDADD = $(LDADDS)
+
 ###############################################################################
 
 t_eoParetoFitness_SOURCES = t-eoParetoFitness.cpp 
 t_eoParetoFitness_DEPENDENCIES = $(DEPS) $(top_builddir)/src/ga/libga.a
 t_eoParetoFitness_LDFLAGS = -lm
 t_eoParetoFitness_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoPBIL_SOURCES = t-eoPBIL.cpp 
+t_eoPBIL_DEPENDENCIES = $(DEPS) $(top_builddir)/src/ga/libga.a
+t_eoPBIL_LDFLAGS = -lm
+t_eoPBIL_LDADD = $(top_builddir)/src/ga/libga.a $(LDADDS)
+
 ###############################################################################
