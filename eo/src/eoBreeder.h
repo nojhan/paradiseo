@@ -101,7 +101,7 @@ template<class Chrom> class eoBreeder: public eoMonPopOp<Chrom>
     };
   
   /// The class name.
-  string classname() const { return "eoBreeder"; }
+  string className() const { return "eoBreeder"; }
   
  private:
   eoOpSelector<Chrom>& opSel;

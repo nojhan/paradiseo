@@ -45,7 +45,7 @@ class eoGOpBreeder: public eoMonPopOp<EOT>
 	}
   
   /// The class name.
-  string classname() const { return "eoGOpBreeder"; }
+  string className() const { return "eoGOpBreeder"; }
   
  private:
   eoGOpSelector<EOT>&            opSel;
