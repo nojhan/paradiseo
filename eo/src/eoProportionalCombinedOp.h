@@ -53,7 +53,7 @@ class eoPropCombinedMonOp: public eoMonOp<EOT>
 {
 public:
   /// Ctor
-  eoPropCombinedMonOp(eoMonOp<EOT> & _first, double _rate)
+  eoPropCombinedMonOp(eoMonOp<EOT> & _first, const double _rate)
   { 
     ops.push_back(&_first); 
     rates.push_back(_rate);
@@ -61,7 +61,7 @@ public:
 
 virtual string className() const { return "eoPropCombinedMonOp"; }
 
-void add(eoMonOp<EOT> & _op, double _rate, bool _verbose=false)
+virtual void add(eoMonOp<EOT> & _op, const double _rate, bool _verbose=false)
   { 
     ops.push_back(&_op); 
     rates.push_back(_rate);
@@ -78,15 +78,16 @@ void add(eoMonOp<EOT> & _op, double _rate, bool _verbose=false)
       }
   }
 
-  void operator()(EOT & _indi)
+  virtual void operator()(EOT & _indi)
   {
     unsigned what = rng.roulette_wheel(rates); // choose one op
     (*ops[what])(_indi);		   // apply it
   }
-private:
+protected:
 std::vector<eoMonOp<EOT>*> ops;
 std::vector<double> rates;
 };
+
 
 
 /** COmbined Binary genetic operator: 
@@ -97,7 +98,7 @@ class eoPropCombinedBinOp: public eoBinOp<EOT>
 {
 public:
   /// Ctor
-  eoPropCombinedBinOp(eoBinOp<EOT> & _first, double _rate)
+  eoPropCombinedBinOp(eoBinOp<EOT> & _first, const double _rate)
   { 
     ops.push_back(&_first); 
     rates.push_back(_rate);
@@ -105,7 +106,7 @@ public:
 
 virtual string className() const { return "eoPropCombinedBinOp"; }
 
-void add(eoBinOp<EOT> & _op, double _rate, bool _verbose=false)
+virtual void add(eoBinOp<EOT> & _op, const double _rate, bool _verbose=false)
   { 
     ops.push_back(&_op); 
     rates.push_back(_rate);
@@ -122,7 +123,7 @@ void add(eoBinOp<EOT> & _op, double _rate, bool _verbose=false)
       }
   }
 
-  void operator()(EOT & _indi1, const EOT & _indi2)
+  virtual void operator()(EOT & _indi1, const EOT & _indi2)
   {
     unsigned what = rng.roulette_wheel(rates); // choose one op index
     (*ops[what])(_indi1, _indi2);		   // apply it
@@ -144,7 +145,7 @@ class eoPropCombinedQuadOp: public eoQuadraticOp<EOT>
 {
 public:
   /// Ctor
-  eoPropCombinedQuadOp(eoQuadraticOp<EOT> & _first, double _rate)
+  eoPropCombinedQuadOp(eoQuadraticOp<EOT> & _first, const double _rate)
   { 
     ops.push_back(&_first); 
     rates.push_back(_rate);
@@ -152,7 +153,7 @@ public:
 
 virtual string className() const { return "eoPropCombinedQuadOp"; }
 
-void add(eoQuadraticOp<EOT> & _op, double _rate, bool _verbose=false)
+virtual void add(eoQuadraticOp<EOT> & _op, const double _rate, bool _verbose=false)
   { 
     ops.push_back(&_op); 
     rates.push_back(_rate);
@@ -169,7 +170,7 @@ void add(eoQuadraticOp<EOT> & _op, double _rate, bool _verbose=false)
       }
   }
 
-  void operator()(EOT & _indi1, EOT & _indi2)
+  virtual void operator()(EOT & _indi1, EOT & _indi2)
   {
     unsigned what = rng.roulette_wheel(rates); // choose one op index
     (*ops[what])(_indi1, _indi2);		   // apply it
