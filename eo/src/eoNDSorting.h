@@ -48,6 +48,11 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
 
     /** implements fast nondominated sorting
     */
+    class DummyEO : public EO<typename EOT::Fitness>
+    {
+      public: unsigned index;
+    };
+
     void calculate_worths(const eoPop<EOT>& _pop)
     {
       value().resize(_pop.size());
@@ -57,17 +62,23 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
       if (traits::nObjectives() == 1)
       { // no need to do difficult sorting,
 
+        eoPop<DummyEO> tmp_pop;
+        tmp_pop.resize(_pop.size());
+
+        // copy pop to dummy population (only need the fitnesses)
         for (unsigned i = 0; i < _pop.size(); ++i)
         {
-          value()[i] = _pop[i].fitness()[0];
+          tmp_pop[i].fitness(_pop[i].fitness());
+          tmp_pop[i].index = i;
         }
 
-        if (!traits::maximizing(0))
+        // sort it
+        tmp_pop.sort();
+
+        //
+        for (unsigned i = 0; i < _pop.size(); ++i)
         {
-          for (unsigned i = 0; i < value().size(); ++i)
-          {
-            value()[i] = exp(-value()[i]);
-          }
+          value()[tmp_pop[i].index] = _pop.size() - i; // set rank
         }
 
         return;
@@ -159,7 +170,6 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
         value()[i] = max_fitness - value()[i];
         assert(n[i] == 0);
       }
-
     }
 };
 
