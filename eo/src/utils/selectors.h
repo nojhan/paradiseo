@@ -56,9 +56,15 @@ bool minimizing_fitness()
        likely not working with scalar fitness values. In that case we're sorry
        but you cannot use lottery or roulette_wheel selection...
     */
+
+#ifdef _MSC_VER
+    eo1.fitness( EOT::Fitness(0.0) ); 
+    eo2.fitness( EOT::Fitness(1.0) ); 
+#else
     eo1.fitness( typename EOT::Fitness(0.0) ); // tried to cast it to an EOT::Fitness, but for some reason GNU barfs on this 
     eo2.fitness( typename EOT::Fitness(1.0) ); 
-
+#endif
+    
     return eo2 < eo1; // check whether we have a minimizing fitness
 };
 
