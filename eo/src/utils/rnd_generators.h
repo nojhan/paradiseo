@@ -32,6 +32,7 @@
 #define eoRND_GENERATORS_H
 
 #include "eoRNG.h"
+#include <stdexcept>
 
 /**
    The class uniform_generator can be used in the STL generate function
