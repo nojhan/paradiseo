@@ -115,9 +115,15 @@ public:
    * @param _os A ostream.
    */
   virtual void printOn(ostream& _os) const {
-    if (invalid())
-      _os << "INVALID ";
-    else
+
+    //if (invalid())
+    //  _os << "INVALID ";
+    //else
+    
+    // From now on, no special case for invalid fitnesses :-) 
+    // A random value would so be printed.
+    // Even a non-evaluated EO is also serializable ...
+
       _os << repFitness << ' '; // trailing space to make reading in that much easier
   }
 
