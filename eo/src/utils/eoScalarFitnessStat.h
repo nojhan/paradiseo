@@ -27,6 +27,7 @@
 #ifndef _eoScalarFitnessStat_h
 #define _eoScalarFitnessStat_h
 
+#include <utils/eoRealVectorBounds.h>
 #include <utils/eoStat.h>
 
 /**
@@ -36,15 +37,24 @@ template <class EOT, class FitT = typename EOT::Fitness>
 class eoScalarFitnessStat : public eoSortedStat<EOT, vector<double> >
 {
 public :
-    eoScalarFitnessStat(std::string _description = "FitnessES") :
-      eoSortedStat<EOT,  vector<double> >(vector<double>(0), _description) {}
-
-    virtual void operator()(const vector<const EOT*>& _popPters)
+  eoScalarFitnessStat(std::string _description = "FitnessES", 
+		      eoRealVectorBounds & _bounds = eoDummyVectorNoBounds) : 
+     eoSortedStat<EOT,  vector<double> >(vector<double>(0), _description) , 
+     range(*_bounds[0])
+    {}
+  
+  virtual void operator()(const vector<const EOT*>& _popPters)
     {
       value().resize(_popPters.size());
       for (unsigned i=0; i<_popPters.size(); i++)
-        value()[i] = _popPters[i]->fitness();
+	{
+	  value()[i] = _popPters[i]->fitness();
+	  range.truncate(value()[i]);
+	}
     }
+
+private :
+  eoRealBounds & range;
 };
 
 #endif

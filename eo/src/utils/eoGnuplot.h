@@ -77,6 +77,16 @@ class eoGnuplot
     }
   }
 
+  /** send a command to gnuplot directly
+   */
+  void gnuplotCommand(char * _command)
+  {
+    if( gpCom ) {
+      PipeComSend( gpCom, _command );
+      PipeComSend( gpCom, "\n" );
+    }
+  }
+
 
 protected:
   void initGnuPlot(std::string _title, std::string _extra);
@@ -129,7 +139,7 @@ inline void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
  * Created......: Mon Mar 13 13:50:11 1995
  * Description..: Communication par pipe bidirectionnel avec un autre process
  *
- * Ident........: $Id: eoGnuplot.h,v 1.4 2001-09-08 05:59:17 evomarc Exp $
+ * Ident........: $Id: eoGnuplot.h,v 1.5 2002-08-23 15:40:59 evomarc Exp $
  * ----------------------------------------------------------------------
  */
 

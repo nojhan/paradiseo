@@ -28,6 +28,7 @@
 #define _eoGnuplot1DSnapshot_H
 
 #include <string>
+#include <sstream>
 
 #include <utils/eoFileSnapshot.h>
 #include <utils/eoGnuplot.h>
@@ -43,6 +44,7 @@ This class plots through gnuplot the eoStat given as argument
 //-----------------------------------------------------------------------------
 
 #include <fstream>
+#include "eoRealVectorBounds.h"
 #include <utils/pipecom.h>
 
 
@@ -63,11 +65,30 @@ class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
   {}
 
     // Ctor
+  eoGnuplot1DSnapshot(std::string _dirname, eoRealVectorBounds & _bounds,
+		      unsigned _frequency = 1,
+	     std::string _filename = "gen", std::string _delim = " ") :
+      eoFileSnapshot(_dirname, _frequency, _filename, _delim),
+      eoGnuplot(_filename,"set data style points"),
+      pointSize(5)
+  {
+    handleBounds(_bounds);
+  }
+    // Ctor
   eoGnuplot1DSnapshot(eoFileSnapshot & _fSnapshot) :
       eoFileSnapshot(_fSnapshot),
       eoGnuplot(_fSnapshot.baseFileName(),"set data style points"),
       pointSize(5)
   {}
+
+    // Ctor with range
+  eoGnuplot1DSnapshot(eoFileSnapshot & _fSnapshot, eoRealVectorBounds & _bounds) :
+      eoFileSnapshot(_fSnapshot),
+      eoGnuplot(_fSnapshot.baseFileName(),"set data style points"),
+      pointSize(5)
+  {
+    handleBounds(_bounds);
+  }
 
   // Dtor
   virtual ~eoGnuplot1DSnapshot(){}
@@ -76,6 +97,19 @@ class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
 
   /// Class name.
   virtual string className() const { return "eoGnuplot1DSnapshot"; }
+
+  virtual void handleBounds(eoRealVectorBounds & _bounds)
+  {
+    ostringstream os;
+    os << "set autoscale\nset yrange [" ;
+    if (_bounds.isMinBounded(0))
+      os << _bounds.minimum(0);
+    os << ":" ;
+    if (_bounds.isMaxBounded(0))
+       os << _bounds.maximum(0);
+    os << "]\n";
+    gnuplotCommand(os.str());
+  }
 
   unsigned pointSize;
 private:
