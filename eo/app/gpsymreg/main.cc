@@ -45,6 +45,8 @@ typedef eoPop<EoType> Pop;
 
 int main(int argc, char *argv[])
 {
+// SC debug
+#ifdef NEVERDEF // patch to make run the installation of EO 
 
 	// the vector containing the possible nodes
 	vector<Node> initSequence;
@@ -159,8 +161,10 @@ int main(int argc, char *argv[])
 	    exit(EXIT_FAILURE);
     	}
 
-
+#endif // NEVERDEF 
     	return 1;
+
 };
+
 
 
