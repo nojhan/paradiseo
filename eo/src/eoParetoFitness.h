@@ -57,6 +57,14 @@ public :
   /** setting the static stuff */
   static void setUp(unsigned _n, vector<bool> & _b)
   {
+    // possible problems
+    if ( nObj && (nObj != _n) )	   // was already set to a different value
+      {
+	cout << "WARNING\n";
+	cout << "WARNING : you are changing the number of objectives\n";
+	cout << "WARNING : Make sure all existing objects are destroyed\n";
+	cout << "WARNING\n";
+      }
     nObj=_n; 
     bObj=_b;
     if (nObj != bObj.size())
