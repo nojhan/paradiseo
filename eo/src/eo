@@ -89,6 +89,7 @@
 #include <eoProportional.h>
 #include <eoStochTournament.h>
 
+#include <eoProportionalCombinedOp.h>
 #include <eoProportionalOpSel.h>
 #include <eoProportionalGOpSel.h>
 #include <eoSequentialGOpSel.h>
