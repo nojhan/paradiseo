@@ -79,15 +79,24 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
 	  }
 	};
 
-	/** SAME Initialization task than init. ctor, but is NOT a constructor
+	/** appends random guys at end of pop.
+	    Can be used to initialize it pop is empty 
     
 	@param _popSize total population size
 	@param _chromInit Initialization routine, produces EO's, needs to be an eoInit 
 	*/
-    void append( unsigned _popSize, eoInit<EOT>& _chromInit )
+    void append( unsigned _newPopSize, eoInit<EOT>& _chromInit )
     {
-      resize(size()+_popSize);	   // adjust the size
-      for ( unsigned i = 0; i < _popSize; i++ )
+      unsigned oldSize = size();
+      if (_newPopSize < oldSize)
+	{
+	  throw runtime_error("New size smaller than old size in pop.append");
+	  return;
+	}
+      if (_newPopSize == oldSize)
+	return;
+      resize(_newPopSize);	   // adjust the size
+      for ( unsigned i = oldSize; i < _popSize; i++ )
 	{
 	  _chromInit(operator[](i));
 	}

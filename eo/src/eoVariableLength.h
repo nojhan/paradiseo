@@ -27,21 +27,34 @@
 #ifndef _eoVariableLength_h
 #define _eoVariableLength_h
 
-#include <list>
+#include <vector>
 
 /**
-  Base class for variable length chromosomes. Derives from EO and list, 
+  Base class for variable length chromosomes. Derives from EO and vector, 
   redirects the smaller than operator to EO (fitness based comparison),
   and implements the virtual functions printOn() and readFrom() 
 */
 
 template <class FitT, class GeneType>
-class eoVariableLength : public EO<FitT>, public std::list<GeneType>
+class eoVariableLength : public EO<FitT>, public std::vector<GeneType>
 {
     public :
     
     typedef GeneType AtomType;
-    typedef std::list<GeneType> ContainerType;
+    typedef std::vector<GeneType> ContainerType;
+
+  // default ctor
+    eoVariableLength(unsigned size = 0, GeneType value = GeneType()) : EO<FitT>(), std::vector<GeneType>(size, value)
+    {}
+
+  // we can't have a Ctor from a vector, it would create ambiguity
+  //  with the copy Ctor
+  void value(std::vector<GeneType> _v)
+  {
+    resize(_v.size());
+    copy(_v.begin(), _v.end(), begin());
+    invalidate();
+  }
 
     /// printing...
     void printOn(ostream& os) const
@@ -51,7 +64,7 @@ class eoVariableLength : public EO<FitT>, public std::list<GeneType>
 
         os << size() << ' ';
 
-        std::copy(begin(), end(), ostream_iterator<double>(os));
+        std::copy(begin(), end(), ostream_iterator<AtomType>(os, " "));
     }
 
     /// reading...
@@ -62,14 +75,14 @@ class eoVariableLength : public EO<FitT>, public std::list<GeneType>
         unsigned sz;
         is >> sz;
 
-        resize(0);
+        resize(sz);
         unsigned i;
-        unsigned gene;
 
         for (i = 0; i < sz; ++i)
         {
-            is >> gene; 
-            push_back(gene);
+            AtomType atom;
+            is >> atom;
+            operator[](i) = atom;
         }
     }
     
@@ -81,7 +94,7 @@ class eoVariableLength : public EO<FitT>, public std::list<GeneType>
 
 };
 
-/// to avoid conflicts between EO::operator< and vector<double>::operator<
+/// to avoid conflicts between EO::operator< and vector<GeneType>::operator<
 template <class FitT, class GeneType>
 bool operator<(const eoVariableLength<FitT, GeneType>& _eo1, const eoVariableLength<FitT, GeneType>& _eo2)
 {

@@ -46,7 +46,17 @@ class eoFixedLength : public EO<FitT>, public std::vector<GeneType>
     eoFixedLength(unsigned size = 0, GeneType value = GeneType()) : EO<FitT>(), std::vector<GeneType>(size, value)
     {}
 
-    /// to avoid conflicts between EO::operator< and vector<double>::operator<
+  // we can't have a Ctor from a vector, it would create ambiguity
+  //  with the copy Ctor
+  void value(std::vector<GeneType> _v)
+  {
+    if (_v.size() != size())
+      throw runtime_error("Wrong size in vector assignation in eoFixedLength");
+    copy(_v.begin(), _v.end(), begin());
+    invalidate();
+  }
+
+    /// to avoid conflicts between EO::operator< and vector<GeneType>::operator<
     bool operator<(const eoFixedLength<FitT, GeneType>& _eo) const
     {
         return EO<FitT>::operator<(_eo);

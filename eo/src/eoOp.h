@@ -105,6 +105,7 @@ public:
 /** Quadratic genetic operator: subclasses eoOp, and defines basically the 
     operator() with two operands, both can be modified.
 */
+#define eoQuadraticOp eoQuadOp
 
 template<class EOType>
 class eoQuadraticOp: public eoOp<EOType>, public eoBF<EOType&, EOType&, void> {
@@ -115,6 +116,29 @@ public:
   virtual string className() const {return "eoQuadOp";};
 };
 
+// Turning an eoBinOp into an eoQuadOp is generic:
+template <class EOT>
+class eoQuad2BinOp: public eoBinOp<EOT>
+{
+public:
+  // Ctor, from an eoQuadOp
+  eoQuad2BinOp(eoQuadOp<EOT> & _quadOp) : quadOp(_quadOp) {}
+
+  // Operator() simply calls embedded quadOp operator() with dummy second arg
+  void operator()(EOT & _eo1, const EOT & _eo2)
+  {
+    EOT eoTmp = _eo2;		   // a copy that can be modified
+    // if the embedded eoQuadOp is not symmetrical, 
+    // the result might be biased - hence the flip ...
+    if (eo::rng.flip(0.5))
+      quadOp(_eo1, eoTmp);	   // both are modified - that's all
+    else
+      quadOp(eoTmp, _eo1);	   // both are modified - that's all
+  }
+
+private:
+  eoQuadOp<EOT> & quadOp;
+};
 
 // some forward declarations
 
