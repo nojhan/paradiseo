@@ -60,7 +60,8 @@ public :
     void add(eoMonitor& _mon)        { monitors.push_back(&_mon); }
     void add(eoUpdater& _upd)        { updaters.push_back(&_upd); }
 
-    std::string className(void) const { return "eoCheckPoint"; }
+    virtual std::string className(void) const { return "eoCheckPoint"; }
+    std::string allClassNames() const ;
 
 private :
 
@@ -120,6 +121,43 @@ bool eoCheckPoint<EOT>::operator()(const eoPop<EOT>& _pop)
 	  monitors[i]->lastCall();
       }
     return bContinue;
+}
+
+/** returns a string with all className() 
+ *  of data separated with "\n" (for debugging)
+ */
+template <class EOT>
+std::string eoCheckPoint<EOT>::allClassNames() const
+{
+    unsigned i;
+    std::string s = "\n" + className() + "\n";
+
+    s += "Sorted Stats\n";
+    for (i = 0; i < sorted.size(); ++i)
+        s += sorted[i]->className() + "\n";
+    s += "\n";
+
+    s += "Stats\n";
+    for (i = 0; i < stats.size(); ++i)
+        s += stats[i]->className() + "\n";
+    s += "\n";
+
+    s += "Updaters\n";
+    for (i = 0; i < updaters.size(); ++i)
+        s += updaters[i]->className() + "\n";
+    s += "\n";
+
+    s += "Monitors\n";
+    for (i = 0; i < monitors.size(); ++i)
+        s += monitors[i]->className() + "\n";
+    s += "\n";
+
+    s += "Continuators\n";
+    for (i = 0; i < continuators.size(); ++i)
+        s += continuators[i]->className() + "\n";
+    s += "\n";
+
+    return s;
 }
 
 #endif
