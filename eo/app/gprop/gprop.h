@@ -30,11 +30,9 @@ struct phenotype
 
   static unsigned trn_max, val_max, tst_max;
 
-  // operator double(void) const { return val_ok; }
-  
   friend bool operator<(const phenotype& a, const phenotype& b)
   {
-    return a.val_ok < b.val_ok; // || (!(a.val_ok < b.val_ok) && a.mse_error < b.mse_error);
+    return a.val_ok < b.val_ok || !(b.val_ok < a.val_ok) && b.mse_error < a.mse_error;
   }
   
   friend ostream& operator<<(ostream& os, const phenotype& p)
@@ -119,6 +117,7 @@ public:
   {
     mse::net tmp(chrom);
     tmp.train(trn_set, 10, 0, 0.001);
+    chrom.invalidate();
   }
   
 private:
@@ -140,6 +139,8 @@ public:
     mse::net tmp1(chrom1), tmp2(chrom2);
     tmp1.train(trn_set, 100, 0, 0.001);
     tmp2.train(trn_set, 100, 0, 0.001);
+    chrom1.invalidate();
+    chrom2.invalidate();
   }
 };
 

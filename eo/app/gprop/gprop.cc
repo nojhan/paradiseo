@@ -11,7 +11,7 @@
 #include <eoPop.h>          // eoPop
 #include <eoGenContinue.h>  // eoGenContinue
 #include <eoProportional.h> // eoProportional
-#include <eoStochTournament.h>
+#include <eoStochTournament.h> // eoStochTournament
 #include <eoSGA.h>          // eoSGA
 #include "gprop.h"          // Chrom eoChromInit eoChromMutation eoChromXover eoChromEvaluator
 
@@ -92,10 +92,6 @@ void arg(int argc, char** argv)
   in = trn_set.front().input.size();
   out = trn_set.front().output.size();
   hidden = hiddenp.value();
-
-  cout << trn_set << endl;
-
-  cout << in << " " << out << " " << hidden << endl;
 }
 
 //-----------------------------------------------------------------------------
