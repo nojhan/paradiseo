@@ -34,7 +34,7 @@
 
 // EO includes
 #include <eoVector.h>
-#include <eoRNG.h>
+#include <utils/eoRNG.h>
 /**@name Chromosomes for evolution strategies
 Each chromosome in an evolution strategies is composed of a vector of floating point
 values plus a vector of sigmas, that are added to them during mutation and a vector of correlations
@@ -84,7 +84,7 @@ class eoESFullChrom  : public eoVector<double, fitT> {
   /* And now the useful constructor: from a parser (should be in the
      factory, if such a thing exists one day for eoESFullChrom 
    */
-  eoESFullChrom(Parser & parser) : StdDev(0), CorCff(0) {
+  eoESFullChrom(eoParser & parser) : StdDev(0), CorCff(0) {
     parser.AddTitle("Description of ES individuals");
     int num_genes, num_sigma;
     bool correlated_mutations;

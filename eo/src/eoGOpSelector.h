@@ -34,7 +34,7 @@
 #include <list>
 #include "eoOpSelector.h"
 #include "eoWrappedOps.h" // for eoCombinedOp
-#include "eoRNG.h"
+#include <utils/eoRNG.h>
 
 using namespace std;
 

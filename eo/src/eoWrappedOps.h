@@ -32,7 +32,7 @@
 //-----------------------------------------------------------------------------
 
 #include <eoOp.h>          // eoOp, eoMonOp, eoBinOp
-#include "eoRNG.h"
+#include <utils/eoRNG.h>
 
 using namespace std;
 

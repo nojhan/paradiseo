@@ -28,9 +28,9 @@
 // to avoid long name warnings
 #pragma warning(disable:4786)
 
-#include "eoBin.h"  // eoBin, eoPop, eoBreeder
+#include <ga/eoBin.h>  // eoBin, eoPop, eoBreeder
 #include <eoPop.h>
-#include <eoBitOp.h>
+#include <ga/eoBitOp.h>
 #include <eoProportionalGOpSel.h>
 //#include <eoAltBreeder.h>
 

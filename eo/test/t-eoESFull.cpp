@@ -32,7 +32,7 @@ main(int argc, char *argv[]) {
 //  bool comma;
 
   // Create the command-line parser
-  Parser parser( argc, argv, "Basic EA for vector<float> with adaptive mutations");
+  eoParser parser( argc, argv, "Basic EA for vector<float> with adaptive mutations");
 
   // Define Parameters and load them
   eoValueParam<uint32>& seed        = parser.createParam(time(0), "seed", "Random number seed");

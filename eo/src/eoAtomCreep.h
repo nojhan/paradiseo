@@ -25,7 +25,7 @@
 #ifndef _EOATOMCREEP_H
 #define _EOATOMCREEP_H
 
-#include <eoRNG.h>
+#include <utils/eoRNG.h>
 #include <eoAtomMutator.h>
 
 /** With uniform probability, decrements or increments by one the value.

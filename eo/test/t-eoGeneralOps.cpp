@@ -43,7 +43,7 @@ using namespace std;
 #include <eoAtomMutation.h>
 
 // Several EOs
-#include <eoString.h>
+#include <other/eoString.h>
 
 // generalOp we are testing
 #include <eoGeneralOp.h>

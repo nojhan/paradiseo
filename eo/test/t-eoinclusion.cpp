@@ -2,7 +2,7 @@
 // t-eoinclusion.cpp
 //-----------------------------------------------------------------------------
 
-#include <eoBin.h>
+#include <ga/eoBin.h>
 #include <eoPop.h>
 #include <eoInclusion.h>
 

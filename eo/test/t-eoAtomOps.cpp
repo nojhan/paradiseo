@@ -42,7 +42,7 @@ using namespace std;
 #include <eoAtomMutation.h>
 
 // Several EOs
-#include <eoString.h>
+#include <other/eoString.h>
 
 // RNGs
 #include <eoNegExp.h>

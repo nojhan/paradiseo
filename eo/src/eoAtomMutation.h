@@ -30,7 +30,7 @@
 // EO includes
 #include <eoOp.h>
 #include <eoUniform.h>
-#include <eoRNG.h>
+#include <utils/eoRNG.h>
 #include <eoAtomMutator.h>
 
 /** Atomic mutation of an EO. Acts on containers, and applies a mutation

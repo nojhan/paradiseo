@@ -7,11 +7,11 @@
  (c) geneura team, 1999
 -----------------------------------------------------------------------------*/
 
-#include <eoParser.h>
-#include <eoRNG.h>
+#include <utils/eoParser.h>
+#include <utils/eoRNG.h>
 #include <sys/time.h>
 
-void GetOutputParam(Parser & parser, 
+void GetOutputParam(eoParser & parser, 
 		    string & _string) {
 
   try {

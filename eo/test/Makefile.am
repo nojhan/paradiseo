@@ -9,7 +9,7 @@ EXTRA_DIST = LICENSE
 
 ###############################################################################
 
-INCLUDES = -I$(top_builddir)/src -I$(top_builddir)/src/es -I$(top_builddir)/src/ga -I$(top_builddir)/src/gp -I$(top_builddir)/src/obsolete -I$(top_builddir)/src/utils
+INCLUDES = -I$(top_builddir)/src
 LDADDS = $(top_builddir)/src/libeo.a $(top_builddir)/src/obsolete/libeoobsolete.a $(top_builddir)/src/utils/libeoutils.a
 
 ###############################################################################
@@ -18,7 +18,7 @@ noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness \
 	t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA\
 	t-eoNonUniform t-eoUniform t-eoRandom t-parser t-eoESFull t-eoESOps\
 	t-eoAtomOps t-selectOne t-eoaltbreeder t-eoGeneralOps t-eoGOpSel \
-	t-eoVector
+	t-eoVector t-eoCheckpointing
 
 ###############################################################################
 
@@ -175,5 +175,12 @@ t_parser_SOURCES = t-parser.cpp
 t_parser_DEPENDENCIES = $(DEPS) 
 t_parser_LDFLAGS = -lm 
 t_parser_LDADD = $(LDADDS) 
+
+###############################################################################
+
+t_eoCheckpointing_SOURCES = t-eoCheckpointing.cpp
+t_eoCheckpointing_DEPENDENCIES = $(DEPS) 
+t_eoCheckpointing_LDFLAGS = -lm 
+t_eoCheckpointing_LDADD = $(LDADDS) 
 
 ###############################################################################

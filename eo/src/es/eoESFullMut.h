@@ -29,11 +29,11 @@
 #ifndef _EOESMUT_H
 #define _EOESMUT_H
 
-#include <eoParser.h>
-#include <eoRNG.h>
+#include <utils/eoParser.h>
+#include <utils/eoRNG.h>
 #include <cmath>		// for exp
 
-#include <eoESFullChrom.h>
+#include <es/eoESFullChrom.h>
 #include <eoOp.h>
 
 #ifndef M_PI

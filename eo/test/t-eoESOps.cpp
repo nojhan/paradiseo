@@ -11,16 +11,16 @@
 using namespace std;
 
 // general
-#include <eoParser.h>            // though contained in all others!
+#include <utils/eoParser.h>            // though contained in all others!
 // evolution specific
 #include <eoEvalFuncPtr.h>
 //#include <eoSequentialOpHolder.h>
 //#include <eoFullEA.h>
 // representation specific
 
-#include <eoESFullChrom.h>            // though contained in following
+#include <es/eoESFullChrom.h>            // though contained in following
 //#include <eoESReco.h>
-#include <eoESFullMut.h>
+#include <es/eoESFullMut.h>
 //#include <eoESRandomize.h>
 // this fitness
 #include "real_value.h"		// the sphere fitness
