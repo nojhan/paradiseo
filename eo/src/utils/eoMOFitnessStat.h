@@ -64,10 +64,14 @@ public :
     virtual void operator()(const vector<const EOT*>& _popPters)
     {
       value().resize(_popPters.size());
+
       for (unsigned i=0; i<_popPters.size(); i++)
+      {
         value()[i] = _popPters[i]->fitness()[objective];
+      }
     }
 private:
   unsigned int objective;		   // The objective we're storing
+
 };
 #endif

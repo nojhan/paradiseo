@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoStat.h
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -30,6 +30,8 @@
 #include <eoFunctor.h>
 #include <utils/eoParam.h>
 #include <eoPop.h>
+#include <numeric> // accumulate
+#include <eoParetoFitness.h>
 
 /**
   Base class for all statistics that need to be calculated
@@ -43,7 +45,7 @@ public:
 };
 
 /**
-  The actual class that will be used as base for all statistics 
+  The actual class that will be used as base for all statistics
   that need to be calculated over the (unsorted) population
   It is an eoStatBase AND an eoValueParam so it can be used in Monitors.
 */
@@ -65,7 +67,7 @@ public:
 };
 
 /**
-  The actual class that will be used as base for all statistics 
+  The actual class that will be used as base for all statistics
   that need to be calculated over the sorted population
   It's an eoSortedStatBase AND an eoValueParam so it can be used in Monitors.
 */
@@ -76,16 +78,16 @@ public :
   eoSortedStat(ParamType _value, std::string _desc) : eoValueParam<ParamType>(_value, _desc) {}
 };
 
-#include <numeric>
-
 /**
-    Average fitness of a population, fitness needs to be scalar.
+    Average fitness of a population, fitness can be a double, eoMinimizingFitness, eoMaximizingFitness or eoParetoFitness.
+    In the case of pareto optimization it will calculate the average of each objective.
 */
 template <class EOT>
-class eoAverageStat : public eoStat<EOT, double>
+class eoAverageStat : public eoStat<EOT, typename EOT::Fitness>
 {
 public :
-    eoAverageStat(std::string _description = "Average Fitness") : eoStat<EOT, double>(0.0, _description) {}
+    typedef typename EOT::Fitness fitness_type;
+    eoAverageStat(std::string _description = "Average Fitness") : eoStat<EOT, typename EOT::Fitness>(fitness_type(), _description) {}
 
     static double sumFitness(double _sum, const EOT& _eot)
     {
@@ -97,10 +99,35 @@ public :
 
     virtual void operator()(const eoPop<EOT>& _pop)
     {
+        doit(_pop, typename EOT::Fitness()); // specializations for scalar and vector
+    }
+private :
+
+    template <class T>
+    void doit(const eoPop<EOT>& _pop, eoParetoFitness<T>)
+    {
+      value().clear();
+      value().resize(_pop[0].fitness().size(), 0.0);
+
+      for (unsigned o = 0; o < value().size(); ++o)
+      {
+        for (unsigned i = 0; i < _pop.size(); ++i)
+        {
+          value()[o] += _pop[i].fitness()[o];
+        }
+
+        value()[o] /= _pop.size();
+      }
+    }
+
+    template <class T>
+    void doit(const eoPop<EOT>& _pop, T)
+    {
         double v = std::accumulate(_pop.begin(), _pop.end(), 0.0, eoAverageStat::sumFitness);
 
         value() = v / _pop.size();
     }
+
 };
 
 /**
@@ -125,7 +152,7 @@ public :
     virtual void operator()(const eoPop<EOT>& _pop)
     {
         SquarePair result = std::accumulate(_pop.begin(), _pop.end(), std::make_pair(0.0, 0.0), eoSecondMomentStats::sumOfSquares);
-    
+
         double n = _pop.size();
         value().first = result.first / n; // average
         value().second = sqrt( (result.second - n * value().first * value().first) / (n - 1.0)); // stdev
@@ -148,15 +175,58 @@ public :
         if (which > _pop.size())
             throw logic_error("fitness requested of element outside of pop");
 
-        value() = _pop[which]->fitness();
+        doit(_pop, Fitness());
     }
 
 private :
+
+    struct CmpFitness
+    {
+      CmpFitness(unsigned _which, bool _maxim) : which(_which), maxim(_maxim) {}
+
+      bool operator()(const EOT* a, const EOT* b)
+      {
+        if (maxim)
+          return a->fitness()[which] > b->fitness()[which];
+
+        return a->fitness()[which] < b->fitness()[which];
+      }
+
+      unsigned which;
+      bool maxim;
+    };
+
+    template <class T>
+    void doit(const eoPop<EOT>& _pop, eoParetoFitness<T>)
+    {
+      typedef typename EOT::Fitness::fitness_traits traits;
+
+      value().resize(traits::nObjectives());
+
+      // copy of pointers, what the heck
+      vector<const EOT*> tmp_pop = _pop;
+
+      for (unsigned o = 0; o < value().size(); ++o)
+      {
+        vector<const EOT*>::iterator nth = tmp_pop.begin() + which;
+        std::nth_element(tmp_pop.begin(), nth, tmp_pop.end(), CmpFitness(o, traits::maximizing(o)));
+        value()[o] = (*nth)->fitness()[o];
+      }
+    }
+
+    // for everything else
+    template <class T>
+    void doit(const vector<const EOT*>& _pop, T)
+    {
+      value() = _pop[which]->fitness();
+    }
+
+
     unsigned which;
 };
 
 /* Actually, you shouldn't need to sort the population to get the best fitness
-   MS - 17/11/00 
+   MS - 17/11/00
 
 template <class EOT>
 class eoBestFitnessStat : public eoStat<EOT, typename EOT::Fitness >
@@ -164,7 +234,7 @@ class eoBestFitnessStat : public eoStat<EOT, typename EOT::Fitness >
 public :
     typedef typename EOT::Fitness Fitness;
 
-    eoBestFitnessStat(std::string _description = "Best Fitness") : 
+    eoBestFitnessStat(std::string _description = "Best Fitness") :
       eoStat<EOT, Fitness>(Fitness(), _description) {}
 
     virtual void operator()(const eoPop<EOT>& _pop)
@@ -179,12 +249,57 @@ public :
     Best fitness in the population
 */
 template <class EOT>
-class eoBestFitnessStat : public eoNthElementFitnessStat<EOT>
+class eoBestFitnessStat : public eoStat<EOT, typename EOT::Fitness>
 {
 public :
     typedef typename EOT::Fitness Fitness;
- 
-    eoBestFitnessStat(std::string _description = "Best ") : eoNthElementFitnessStat<EOT>(0, _description) {}
+
+    eoBestFitnessStat(std::string _description = "Best ") : eoStat<EOT, typename EOT::Fitness>(typename EOT::Fitness(), _description) {}
+
+    void operator()(const eoPop<EOT>& _pop)
+    {
+      doit(_pop, typename EOT::Fitness());
+    }
+
+private :
+
+    struct CmpFitness
+    {
+      CmpFitness(unsigned _which, bool _maxim) : which(_which), maxim(_maxim) {}
+
+      bool operator()(const EOT& a, const EOT& b)
+      {
+        if (maxim)
+          return a.fitness()[which] < b.fitness()[which];
+
+        return a.fitness()[which] > b.fitness()[which];
+      }
+
+      unsigned which;
+      bool maxim;
+    };
+
+
+    template <class T>
+    void doit(const eoPop<EOT>& _pop, eoParetoFitness<T>)
+    {
+      typedef typename EOT::Fitness::fitness_traits traits;
+      value().resize(traits::nObjectives());
+
+      for (unsigned o = 0; o < traits::nObjectives(); ++o)
+      {
+        eoPop<EOT>::const_iterator it = max_element(_pop.begin(), _pop.end(), CmpFitness(o, traits::maximizing(o)));
+        value()[o] = it->fitness()[o];
+      }
+    }
+
+    // default
+    template<class T>
+    void doit(const eoPop<EOT>& _pop, T)
+    { // find the largest elements
+      value() = _pop.best_element().fitness();
+    }
+
 };
 
 template <class EOT>
