@@ -40,6 +40,7 @@ thanks to the friend class eoPopulator
 @version 0.0
 */
 
+//@{
 
 /** The base class for General Operators
 Subclass this operator is you want to define an operator that falls
@@ -220,3 +221,4 @@ class eoQuadGenOp : public eoGenOp<EOT>
 
 #endif
 
+//@}

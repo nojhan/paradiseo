@@ -30,7 +30,7 @@
 #include <eoOp.h>
 #include <utils/eoRNG.h>
 /**
-\defgroup PropCombined operators
+\defgroup PropCombinedOperators
 Combination of same-type Genetic Operators - Proportional choice
 */
 

@@ -18,7 +18,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-    CVS Info: $Date: 2003-02-27 19:25:56 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoOp.h,v 1.28 2003-02-27 19:25:56 okoenig Exp $ $Author: okoenig $ 
+    CVS Info: $Date: 2004-08-10 17:19:46 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoOp.h,v 1.29 2004-08-10 17:19:46 jmerelo Exp $ $Author: jmerelo $ 
  */
 //-----------------------------------------------------------------------------
 
@@ -54,6 +54,7 @@ how to build them from a description in a file.
 @see eoGenOp.h eoOpFactory
 */
 
+//@{
 
 /** Abstract data types for EO operators.
   Genetic operators act on chromosomes, changing them.
@@ -166,3 +167,4 @@ private:
 
 #endif
 
+//@}

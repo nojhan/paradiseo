@@ -67,7 +67,12 @@ MS 12/12/2000
          eoGenerationalReplacement,        as it says ...
 	 eoWeakElitistReplacement          a wrapper to add elitism
 
- */
+*/
+
+
+//@{
+
+///
 template<class EOT>
 class eoReplacement : public eoBF<eoPop<EOT>&, eoPop<EOT>&, void>
 {};
@@ -117,5 +122,7 @@ public :
 private:
   eoReplacement<EOT> & replace;
 };
+
+//@}
 
 #endif

@@ -38,8 +38,13 @@
 #include <eoMergeReduce.h>
 #include <eoReplacement.h>
 
-/** eoEasyEA:
-    An easy-to-use evolutionary algorithm; you can use any chromosome,
+
+
+template <class EOT> class eoIslandsEasyEA ;
+
+template <class EOT> class eoDistEvalEasyEA ;
+
+/** An easy-to-use evolutionary algorithm; you can use any chromosome,
     and any selection transformation, merging and evaluation
     algorithms; you can even change in runtime parameters of those
     sub-algorithms 
@@ -55,14 +60,8 @@ Change (MS, July 3. 2001):
 Note: it looks ugly only because we wanted to authorize many different
   constructors. Please only look at the operator() and there shall be light
 */
-
-template <class EOT> class eoIslandsEasyEA ;
-
-template <class EOT> class eoDistEvalEasyEA ;
-
-template<class EOT> class eoEasyEA: public eoAlgo<EOT>
-{
- public:
+template<class EOT> class eoEasyEA: public eoAlgo<EOT> {
+public:
 
   /** Ctor taking a breed and merge */
      eoEasyEA(

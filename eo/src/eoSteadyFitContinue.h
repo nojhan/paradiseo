@@ -84,9 +84,14 @@ public:
   virtual void totalGenerations( unsigned long _mg, unsigned long _sg ) { 
     repMinGenerations = _mg; 
     repSteadyGenerations = _sg;
-    thisGeneration = 0;
-    steadyState = false;
+    reset();
   };
+
+  /// Resets the state after it's been reached 
+  virtual void reset () {
+    steadyState=false;
+    thisGeneration = 0;
+  }
 
   /** accessors*/
   virtual unsigned long minGenerations( ) 
