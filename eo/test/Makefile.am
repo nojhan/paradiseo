@@ -30,7 +30,7 @@ t_eogeneration_LDADD = $(LDADDS)
 
 ###############################################################################
 
-t_eoEasyEA_SOURCES = t-eoEasyEA.cpp
+t_eoEasyEA_SOURCES = t-eoEasyEA.cpp binary_value.h
 t_eoEasyEA_DEPENDENCIES = $(DEPS)
 t_eoEasyEA_LDFLAGS = -lm
 t_eoEasyEA_LDADD = $(LDADDS)
