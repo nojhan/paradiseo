@@ -33,6 +33,7 @@
 #include <eoOp.h> // for eoInit
 #include <eoPersistent.h>
 #include <eoInit.h>
+#include <utils/rnd_generators.h>  // for shuffle method
 
 /** Subpopulation: it is used to move parts of population
  from one algorithm to another and one population to another. It is safer

@@ -27,7 +27,7 @@
 #include <eoObject.h>
 #include <eoPrintable.h>
 #include <eoFunctor.h>
-
+#include <utils/eoRNG.h>
 /**
 \defgroup operators
 Genetic Operators are used for various purposes
