@@ -201,29 +201,4 @@ public:
 };
 //@}
 
-
-/**
-   eoNonUniformOperator: base class for non uniform operators
-*/
-
-class eoNonUniformOperator
-{
-public:
-  eoNonUniformOperator(const unsigned _max_time = 1): 
-    time_value(0), max_time_value(max(_max_time, 1u)) {}
-
-  void reset() { time_value = 0; }
-  
-  unsigned time() const { return time_value; }
-  
-  unsigned max_time() const { return max_time_value; }
-  void max_time(const unsigned _max_time) { max_time_value = _max_time; }
-  
-  void operator++() { ++time_value; }
-  void operator++(int) { ++time_value; }
-
-private:
-  unsigned time_value, max_time_value;
-};
-
 #endif
