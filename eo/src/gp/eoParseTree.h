@@ -72,6 +72,11 @@ std::istream& operator>>(std::istream& is, eoParseTree<FType, Node>& eot)
     return is;
 }
 
+template <class Node>
+bool lt_arity(const Node &node1, const Node &node2) 
+{
+     	return (node1.arity() < node2.arity());
+}
 
 template <class FType, class Node>
 class eoGpDepthInitializer : public eoInit< eoParseTree<FType, Node> >
@@ -94,6 +99,9 @@ class eoGpDepthInitializer : public eoInit< eoParseTree<FType, Node> >
       {
         throw logic_error("eoGpDepthInitializer: uhm, wouldn't you rather give a non-empty set of Nodes?");
       }
+      // lets sort the initializor vector according to  arity (so we can be sure the terminals are in front)
+      // we use stable_sort so that if element i was in front of element j and they have the same arity i remains in front of j
+      stable_sort(initializor.begin(), initializor.end(), lt_arity<Node>);
     }
 
 	virtual string className() const { return "eoDepthInitializer"; };
@@ -150,7 +158,7 @@ class eoGpDepthInitializer : public eoInit< eoParseTree<FType, Node> >
 
 
 private :
-
+     
 	unsigned max_depth; 
     std::vector<Node> initializor;
 	bool grow;
