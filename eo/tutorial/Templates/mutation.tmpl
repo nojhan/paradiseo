@@ -1,3 +1,8 @@
+/** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+
+The above line is usefulin Emacs-like editors
+ */
+
 /*
 Template for simple mutation operators
 ======================================
@@ -9,6 +14,10 @@ Template for simple mutation operators
 
 #include <eoOp.h>
 
+/** 
+  Always write a comment in this format before class definition
+  if you want the class to be documented by Doxygen
+*/
 template<class Indi> 
 class eoMyDerivedMonOp: public eoMonOp<Indi>
 {
@@ -35,7 +44,7 @@ public:
     // return false;
   }
 
-protected:
+private:
   paramType anyParameter
 };
 

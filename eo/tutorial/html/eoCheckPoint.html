@@ -27,7 +27,7 @@ is Checkpointing about?</font></font></b>
 <p><b><font color="#FF0000">EO classes described in this page</font></b>:
 <ul>
 <li>
-<b><font color="#FF0000">Base classes</font></b>: eoCheckPoint, eoContinue,
+<b><font color="#FF0000">Base classes</font></b>: eoCheckPoint, <a href="#continuator">eoContinue</a>,
 eoStat, eoSortedStat, eoMonitor, eoUpdater</li>
 
 <li>
@@ -40,23 +40,31 @@ eoStat, eoSortedStat, eoMonitor, eoUpdater</li>
 <br>&nbsp;
 <p>
 <hr WIDTH="100%"><a NAME="continuator"></a><b><font color="#000099"><font size=+1>Continuators:</font></font></b>
-<br>&nbsp;
 <p>Continuators are functors that compute stopping critera. They receive
 a population and return a boolean value which is set to false only when
 some stopping vriterion is met. All algorithms in EO have a loop that goes
-<b><font color="#993300">while(continuator(pop)
-{ ... }<tt> </tt></font></b>which means that the algorithm stops only when
-the continuator returns <b><font color="#993300">false</font></b>.
-<p><b><font color="#FF0000">Interface</font></b>:
-<br>&nbsp;
+<b><font color="#993300">do{...}while(continuator(pop)</font></b>which
+means that the algorithm stops only when the continuator returns <b><font color="#993300">false</font></b>.
+<p><b><font color="#FF0000">Interface</font></b>:&nbsp; The abstract class
+for computing stopping conditions is <b><font color="#3366FF">eoContinue</font></b>,
+and the interface for its operator() is
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b><tt><font color="#993300"><font size=+1>bool operator()(const eoPop&lt;EOT>&amp;
+)</font></font></tt></b>
+<p>which you could have guessed from the <a href="../../doc/html/class_eocontinue.html">inheritance
+diagram</a> for class <b><font color="#3366FF">eoContinue</font></b>, as
+you see there that <b><font color="#3366FF">eoContinue</font></b> derives
+from class <b><tt><font color="#993300"><font size=+1>eoUF&lt;const eoPop&lt;EOT>&amp;,
+bool></font></font></tt></b>.
 <p><b><font color="#FF0000">Using a continuator</font></b>:
 <br>You can find an first example of using a continuator in the code for
-<a href="FirstBitGA.html#stop">FirstBitEA</a> in <a href="eoLesson2.html#tour">Lesson2</a>.
+<a href="FirstBitGA.html#stop">FirstBitEA</a>
+ior more sophisticated continue conditions in&nbsp; <a href="eoLesson2.html#combinedContinue">Lesson2</a>.
 <br>If you want to find out how it is used inside an algorithm, go and
 see for instance in eoSGA, the simplest EA within EO.
 <p><a NAME="writing_continuator"></a><b><font color="#FF0000">Writing a
 continuator:</font></b>
-<br>There are only two things to modify in the <a href="../Templates/continuator.tmpl">template
+<br>There are only two things to modify in the <a href="../Templates/continue.tmpl">template
 class definitions</a> provided (apart from the name of the class you are
 creating!)
 <ul>
@@ -66,11 +74,21 @@ any useful parameter (see the private data at end of class definition).</li>
 
 <li>
 The <font color="#FF6600">operator()</font> method, which performs the
-actual test on the population.</li>
+computation of the actual test using the population plus any other parameter
+passed at construct time. Don't forget to <b><font color="#FF6600">returnfalse</font></b>
+when the stopping criterion <b><font color="#FF6600">is met!</font></b></li>
 </ul>
-Don't forget to <b><font color="#FF6600">return</font></b> <b><font color="#FF6600">false</font></b>
-when the stopping criterion <b><font color="#FF6600">is met!</font></b>
-<p>
+<a NAME="existingContinue"></a><b><font color="#FF0000">Existing continuators:
+</font></b>Of course you can find out all existing (non-virtual!) subclasses
+of eoContinue by looking at its&nbsp; <a href="../../doc/html/class_eocontinue.html">inheritance
+diagram</a>. But you might find it more convenient to have them listed
+here:
+<ul>
+<li>
+</li>
+</ul>
+<b><font color="#FF0000"></font></b>
+<p><br>
 <hr WIDTH="100%"><a NAME="combined_continue"></a><b><font color="#000099"><font size=+1>Combining
 continuators:</font></font></b>
 <p>

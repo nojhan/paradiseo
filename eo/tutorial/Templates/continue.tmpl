@@ -1,0 +1,46 @@
+/** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+
+The above line is usefulin Emacs-like editors
+ */
+
+/*
+Template for continuator in EO, i.e. stopping conditions for EO algorithms
+==========================================================================
+*/
+
+#ifndef _eoMyContinue_h
+#define _eoMyContinue_h
+
+#include <eoMyContinue.h>
+
+/** 
+  Always write a comment in this format before class definition
+  if you want the class to be documented by Doxygen
+*/
+template< class EOT>
+class eoMyContinue: public eoContinue<EOT> {
+public:
+	/// Ctor
+  eoMyContinue( paramType  _anyParameter) : 
+    anyParameter(_anyParameter) {}
+
+
+  /** Returns false when you want to stop
+   */
+  virtual bool operator() ( const eoPop<EOT>& _pop ) 
+    {
+      bool stopCondition = ... ; // compute the stopping condition
+      if (stopCondition) // the algo will stop upon return FALSE
+	{
+	  cout << "STOP in eoMyContinue: blablabla \n";
+	  return false;
+	}
+      return true;		   // == do not stop
+    }
+
+private:
+  paramType anyParameter
+};
+
+#endif
+

@@ -1,3 +1,8 @@
+/** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+
+The above line is usefulin Emacs-like editors
+ */
+
 /*
 Template for general operators
 ===============================
@@ -13,6 +18,10 @@ Second version, get parents  using an external eoSelectOne
 
 #include <eoGenOp.h>
 
+/** 
+  Always write a comment in this format before class definition
+  if you want the class to be documented by Doxygen
+*/
 template<class Indi> 
 class eoLessOffspringExternalSelectorGenOp: public eoGenOp<Indi>
 {
@@ -61,7 +70,7 @@ public:
     }
 
 
-protected:
+private:
 	eoSelectOne<EOT> & sel;
   paramType anyParameter
 };
