@@ -1,7 +1,7 @@
 #pragma warning(disable:4786)
 
-#include "eoParseTree.h"
-#include "eoEvalFunc.h"
+#include <gp/eoParseTree.h>
+#include <eoEvalFunc.h>
 
 using namespace gp_parse_tree;
 using namespace std;
@@ -20,34 +20,43 @@ public :
 
 	// arity function, need this function!
 	int arity(void) const      { return op == X? 0 : 2; }
-	
+
+    void randomize(void) {}
+    
 	// evaluation function, single case, using first argument to give value of variable
 	template <class Children>
-	double operator()(double var, Children args) const
+	void operator()(double& result, Children args, double var) const
 	{
+        double r1, r2;
+
+        if (arity() == 2)
+        {
+            args[0].apply(r1, var);
+            args[1].apply(r2, var);
+        }
+
 		switch (op)
 		{
-		case Plus : return args[0].apply(var) + args[1].apply(var);
-		case Min  : return args[0].apply(var) - args[1].apply(var);
-		case Mult : return args[0].apply(var) * args[1].apply(var);
+		case Plus : result = r1 + r2; break;
+		case Min  : result = r1 - r2; break;
+		case Mult : result = r1 * r2; break;
 		case PDiv : 
 			{
-				double arg1 = args[1].apply(var);
-				if (arg1 == 0.0)
-					return 1.0; // protection a la Koza, realistic implementations should maybe throw an exception
-
-				return args[0].apply(var) / arg1;
+				if (r2 == 0.0)
+					result = 1.0; // protection a la Koza, realistic implementations should maybe throw an exception
+                else
+				    result = r1 / r2;
+                break;
 			}
 
-		case X    : return var; 
+		case X    : result = var; break;
 		}
 
-        return var; // to avoid compiler error
 	}
 
     /// 'Pretty' print to ostream function
     template <class Children>
-        string operator()(string dummy, Children args)
+        void operator()(string& result, Children args) const
     {
         static const string lb = "(";
         static const string rb = ")";
@@ -56,13 +65,16 @@ public :
         
 	    if (arity() == 0)
 		{
-            return string("x");
+            result = "x";
+            return;
         }
         // else
-        string result = lb + args[0].apply(dummy);
+        string r1;
+        args[0].apply(r1);
+        result = lb + r1;
         result += opStr; 
-        result += args[1].apply(dummy) + rb;
-        return result;
+        args[1].apply(r1);
+        result += r1 + rb;
     }
 
     Operator getOp(void) const { return op; }    
@@ -100,15 +112,15 @@ std::istream& operator>>(std::istream& is, SymregNode& eot)
 //-----------------------------------------------------------------------------
 /** Implementation of a function evaluation object. */
 
-float targetFunction(float x)
+double targetFunction(double x)
 { 
-	return x * x * x * x - x * x * x + x * x * x - x * x + x - 1; 
+	return x * x * x * x - x * x * x + x * x * x - x * x + x - 10; 
 }
 
 // parameters controlling the sampling of points
-const float xbegin = -10.0f;
-const float xend   = 10.0f;
-const float xstep  = 1.3f; 
+const double xbegin = -10.0f;
+const double xend   = 10.0f;
+const double xstep  = 1.3f; 
 
 template <class FType, class Node> struct RMS: public eoEvalFunc< eoParseTree<FType, Node> > 
 {
@@ -128,7 +140,7 @@ public :
 
 		int i = 0;
 
-    	for (double x = xbegin; x < xend && i < n; ++i)
+    	for (double x = xbegin; x < xend && i < n; ++i, x+=xstep)
 		{
 			target[i] = targetFunction(x);
 			inputs[i] = x;
@@ -137,7 +149,7 @@ public :
 
     ~RMS() {}
     
-	void operator()( EoType & _eo ) const 
+	void operator()( EoType & _eo )  
 	{
 		vector<double> outputs;
 		outputs.resize(inputs.size());
@@ -146,7 +158,7 @@ public :
         
 		for (int i = 0; i < inputs.size(); ++i)
         {
-		    outputs[i] = _eo.apply(inputs[i]);
+		    _eo.apply(outputs[i], inputs[i]);
 	        fitness += (outputs[i] - target[i]) * (outputs[i] - target[i]);
         }
 		
@@ -162,25 +174,6 @@ public :
 private :
 	vector<double> inputs;
 	vector<double> target;
-};
-
-#include "eoTerm.h"
-
-template <class EOT>
-class eoGenerationTerm : public eoTerm<EOT>
-{
-    public :
-        eoGenerationTerm(size_t _ngen) : eoTerm<EOT>(), ngen(_ngen) {}
-
-        bool operator()(const eoPop<EOT>&)
-        {
-            cout << '.'; // pacifier
-            cout.flush();
-
-            return --ngen > 0;
-        }
-    private :
-        unsigned ngen;
 };
 
 template <class EOT, class FitnessType>
@@ -201,7 +194,8 @@ void print_best(eoPop<EOT>& pop)
     
     cout << "\t";
         
-    string str = pop[index].apply(string());
+    string str;
+    pop[index].apply(str);
     
     cout << str.c_str();
     cout << endl << "RMS Error = " << pop[index].fitness() << endl;
@@ -210,16 +204,15 @@ void print_best(eoPop<EOT>& pop)
 
 #include <eo>
 #include "eoGOpBreeder.h"
-#include "eoSequentialGOpSelector.h"
-#include "eoProportionalGOpSelector.h"
-#include "eoDetTournamentIndiSelector.h"
+#include "eoSequentialGOpSel.h"
+#include "eoProportionalGOpSel.h"
 #include "eoDetTournamentInserter.h"
 #include "eoSteadyStateEA.h"
 #include "eoScalarFitness.h"
 
 void main()
 {
-    typedef eoScalarFitness<double, greater<double> > FitnessType;
+    typedef eoMinimizingFitness FitnessType;
     typedef SymregNode GpNode;
 
     typedef eoParseTree<FitnessType, GpNode> EoType;
@@ -237,7 +230,9 @@ void main()
     // Root Mean Squared Error Measure
     RMS<FitnessType, GpNode>              eval;
 
-    Pop pop(500, MaxSize, initializer, eval);
+    Pop pop(500, initializer);
+
+    apply<EoType>(eval, pop);
 
     eoSubtreeXOver<FitnessType, GpNode>   xover(MaxSize);
     eoBranchMutation<FitnessType, GpNode> mutation(initializer, MaxSize);
@@ -247,15 +242,28 @@ void main()
     seqSel.addOp(mutation, 0.25);
     seqSel.addOp(xover, 0.75);
   
-    eoDetTournamentIndiSelector<EoType> selector(5);
+    eoDetTournament<EoType> selector(5);
   
     eoDetTournamentInserter<EoType> inserter(eval, 5);
   
     // Terminators
-    eoGenerationTerm<EoType> term(nGenerations);
+    eoGenContinue<EoType> term(nGenerations);
+
+    eoCheckPoint<EoType> checkPoint(term);
+
+    eoAverageStat<EoType>     avg;
+    eoBestFitnessStat<EoType> best;
+    eoStdoutMonitor monitor;
+
+    checkPoint.add(monitor);
+    checkPoint.add(avg);
+    checkPoint.add(best);
+
+    monitor.add(avg);
+    monitor.add(best);
 
     // GP generation
-    eoSteadyStateEA<EoType> gp(seqSel, selector, inserter, term);
+    eoSteadyStateEA<EoType> gp(seqSel, selector, inserter, checkPoint);
 
     cout << "Initialization done" << endl;
 

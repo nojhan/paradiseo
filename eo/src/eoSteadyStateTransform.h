@@ -65,7 +65,7 @@ template<class EOT> class eoSteadyStateTransform: public eoTransform<EOT>
           nSteps = pop.size(); // make a 'generation equivalent'
       }
 
-      for (unsigned i = 0; i < steps; ++i)
+      for (unsigned i = 0; i < nSteps; ++i)
       {
          selector.bind(pop);
          inserter.bind(pop);
@@ -77,7 +77,7 @@ template<class EOT> class eoSteadyStateTransform: public eoTransform<EOT>
   
  private:
   eoGOpSelector<EOT>&         opSelector;
-  eoSelectOneIndiSelector<EOT>&  selector;
+  eoSelectOneIndiSelector<EOT>  selector;
   eoSteadyStateInserter<EOT>& inserter;
   unsigned steps;
 };

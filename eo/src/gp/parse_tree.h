@@ -16,15 +16,6 @@
  * modified is included with the above copyright notice.
 
 
- * Special disclaimer and political statement: 
-
- * In contrast with the rest of the EO package where you might have found this code, this software 
- * does NOT fall under the GNU Lesser Public License or the GNU Public License, nor is anyone allowed
- * by the copyright holder (that's me) to put it under either license.
- * Doing this would limit my and your freedom to use this software in any way
- * you or I see fit, including but not limited to closed-source software. 
-
-
 
   Usage information.
 
@@ -173,7 +164,7 @@ namespace gp_parse_tree
 
 #include "node_pool.h"
 
-
+/// This ones defined because gcc does not always implement namespaces
 template <class T>
 inline void do_the_swap(T& a, T& b) 
 {
@@ -371,19 +362,18 @@ public :
 
 	void swap(subtree& y)
 	{
-		do_the_swap(content, y.content);
-		do_the_swap(args, y.args);
-		do_the_swap(parent, y.parent);
+        do_the_swap(content, y.content);
+        do_the_swap(args, y.args);
+        
+        adopt();
+        y.adopt();
 
-		do_the_swap(_cumulative_size, y._cumulative_size);
-		do_the_swap(_depth, y._depth);
-		do_the_swap(_size, y._size);
+        do_the_swap(parent, y.parent);
+
+        do_the_swap(_cumulative_size, y._cumulative_size);
+        do_the_swap(_depth, y._depth);
+        do_the_swap(_size, y._size);
 		updateAfterInsert();
-	}
-
-	friend void swap(subtree& x, subtree& y)
-	{
-		x.swap(y);
 	}
 
 protected :
@@ -973,7 +963,7 @@ ptrdiff_t*  distance_type(gp_parse_tree::parse_tree<T>::iterator)
 	return 0;
 }
 
-// Put customized swaps also in std...
+/* Put customized swaps also in std...
 
 template<class T> inline
 void swap(gp_parse_tree::parse_tree<T>& a, gp_parse_tree::parse_tree<T>& b)
@@ -985,7 +975,7 @@ template<class T> inline
 void iter_swap(vector<gp_parse_tree::parse_tree<T> >::iterator a, vector<gp_parse_tree::parse_tree<T> > b)
 {
     a->swap(*b);
-}
+}*/
 
 
 } // namespace std

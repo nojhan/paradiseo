@@ -148,7 +148,7 @@ public :
         if (arity == 0)
             return 0;
 
-        T* t new T [arity];
+        T* t = new T [arity];
 
         for (int i = 0; i < arity; ++i)
         {

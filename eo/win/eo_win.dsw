@@ -75,6 +75,21 @@ Package=<4>
 
 ###############################################################################
 
+Project: "t_eoSymreg"=.\t_eoSymreg.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name eo
+    End Project Dependency
+}}}
+
+###############################################################################
+
 Project: "t_eobin"=.\t_eobin.dsp - Package Owner=<4>
 
 Package=<5>

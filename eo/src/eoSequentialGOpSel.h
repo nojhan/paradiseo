@@ -40,12 +40,10 @@ template <class EOT>
 class eoSequentialGOpSel : public eoGOpSelector<EOT>
 {
 public :
-  
-  eoSequentialGOpSel(void) : combined(*this, getRates()) {}
-  
+    
   virtual eoGeneralOp<EOT>& selectOp()
   {    
-    return combined;
+    return combined.bind(*this, getRates());
   }		
   
 private :

@@ -13,7 +13,7 @@ LDADDS = $(top_builddir)/src/libeo.a $(top_builddir)/src/utils/libeoutils.a
 
 ###############################################################################
 
-noinst_PROGRAMS = t-eofitness t-eobin t-eoStateAndParser t-eoCheckpointing t-eoExternalEO t-eoESFull
+noinst_PROGRAMS = t-eofitness t-eobin t-eoStateAndParser t-eoCheckpointing t-eoExternalEO t-eoESFull t-eoSymreg
 
 ###############################################################################
 
@@ -54,6 +54,15 @@ t_eoExternalEO_SOURCES = t-eoExternalEO.cpp
 t_eoExternalEO_DEPENDENCIES = $(DEPS) 
 t_eoExternalEO_LDFLAGS = -lm 
 t_eoExternalEO_LDADD = $(LDADDS) 
+
+###############################################################################
+
+###############################################################################
+
+t_eoSymreg_SOURCES = t-eoSymreg.cpp
+t_eoSymreg_DEPENDENCIES = $(DEPS) 
+t_eoSymreg_LDFLAGS = -lm 
+t_eoSymreg_LDADD = $(LDADDS) 
 
 ###############################################################################
 

@@ -24,7 +24,7 @@ class eoGOpBreeder: public eoUnaryFunctor<void, eoPop<EOT>&>
  public:
   /// Default constructor.
   eoGOpBreeder( eoGOpSelector<EOT>& _opSel,
-                    eoPopIndiSelector<EOT>& _selector) 
+                    eoSelectOneIndiSelector<EOT>& _selector) 
                     : opSel( _opSel ), selector(_selector) 
         {}
   
@@ -47,7 +47,7 @@ class eoGOpBreeder: public eoUnaryFunctor<void, eoPop<EOT>&>
   
  private:
   eoGOpSelector<EOT>&            opSel;
-  eoPopIndiSelector<EOT>&     selector;
+  eoSelectOneIndiSelector<EOT>&     selector;
   
   // the inserter can be local as there's no point in changing it from the outside
   eoBackInserter<EOT>     inserter;

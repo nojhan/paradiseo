@@ -4,7 +4,7 @@
 ##
 ###############################################################################
 
-SUBDIRS = es ga utils other
+SUBDIRS = es ga gp utils other
 
 lib_LIBRARIES = libeo.a
 libeo_a_SOURCES = eoPrintable.cpp eoPersistent.cpp eoFunctorStore.cpp 

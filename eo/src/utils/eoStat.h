@@ -59,7 +59,7 @@ template <class EOT>
 class eoAverageStat : public eoStat<EOT, double>
 {
 public :
-    eoAverageStat(std::string _description = "AverageFitness") : eoStat<EOT, double>(0.0, _description) {}
+    eoAverageStat(std::string _description = "Average Fitness") : eoStat<EOT, double>(0.0, _description) {}
 
     static double sumFitness(double _sum, const EOT& _eot)
     {
@@ -100,6 +100,20 @@ public :
         double n = _pop.size();
         value().first = result.first / n; // average
         value().second = sqrt( (result.second - n * value().first * value().first) / (n - 1.0)); // stdev
+    }
+};
+
+template <class EOT>
+class eoBestFitnessStat : public eoStat<EOT, typename EOT::Fitness >
+{
+public :
+    typedef typename EOT::Fitness Fitness;
+
+    eoBestFitnessStat(std::string _description = "Best Fitness") : eoStat<EOT, Fitness>(Fitness(), _description) {}
+
+    virtual void operator()(const eoPop<EOT>& _pop)
+    {
+        value() = _pop.nth_element_fitness(0);
     }
 };
 

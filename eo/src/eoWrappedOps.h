@@ -117,8 +117,12 @@ template <class EOT>
 class eoCombinedOp : public eoGeneralOp<EOT>
 {
     public :
-    eoCombinedOp(const std::vector<eoGeneralOp<EOT>*>& _ops, const std::vector<float>& rates)
-        : ops(_ops), rates(_rates) {}
+    eoCombinedOp& bind(const std::vector<eoGeneralOp<EOT>*>& _ops, const std::vector<float>& _rates)
+    { 
+        ops = &_ops;
+        rates = &_rates;
+        return *this;
+    }
 
     class eoDelayedSelector : public eoIndiSelector<EOT>
     {
@@ -147,7 +151,7 @@ class eoCombinedOp : public eoGeneralOp<EOT>
     };
 
   /** Applies all ops in the combined op
-        It works in the following way
+        It first applies the 
   */
   void operator()( eoIndiSelector<EOT>& _in, 
 			   eoInserter<EOT>& _out ) 
@@ -156,7 +160,7 @@ class eoCombinedOp : public eoGeneralOp<EOT>
         eoPop<EOT> next;
         unsigned i;
 
-        for (i = 0; i < ops.size(); ++i)
+        for (i = 0; i < ops->size(); ++i)
         {
             eoDelayedSelector delay(_in, intermediate);
             inserter.bind(next);
@@ -166,13 +170,13 @@ class eoCombinedOp : public eoGeneralOp<EOT>
             // apply operators until we have as many outputs as inputs
             do
             {
-                if (flip(rates[i])) // should this flip be here?
-                    (*ops[i])(delayedSelector, inserter);
+                if (rng.flip(rates->operator[](i))) // should this flip be here?
+                    (*ops->operator[](i))(delay, inserter);
 
                 counter++;
                 if (counter > 1000) 
                 {
-                    throw logical_error("eoCombinedOp: no termination after 1000 tries, did you forget to insert individuals in your eoGeneralOp?");
+                    throw logic_error("eoCombinedOp: no termination after 1000 tries, did you forget to insert individuals in your eoGeneralOp?");
                 }
             }
             while (next.size() < intermediate.size());
@@ -187,8 +191,8 @@ class eoCombinedOp : public eoGeneralOp<EOT>
   }
 
     private :
-        const std::vector<eoGeneralOp<EOT>*>& ops;
-        const std::vector<float> rates;
+        const std::vector<eoGeneralOp<EOT>*>* ops;
+        const std::vector<float>* rates;
         eoBackInserter<EOT> inserter;
 };
 

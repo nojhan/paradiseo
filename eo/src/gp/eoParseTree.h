@@ -17,19 +17,12 @@ template <class FType, class Node>
 class eoParseTree : public EO<FType>, public parse_tree<Node>
 {
 public :
+
+    typedef parse_tree<Node>::subtree Subtree;
+
+    eoParseTree(void) {}
+    eoParseTree(const parse_tree<Node>& tree) : parse_tree<Node>(tree) {}
     
-    typedef typename parse_tree<Node>::subtree Type;
-
-    eoParseTree(void) : EO<FType>(), parse_tree<Node>() {}
-    eoParseTree(unsigned _size, eoRnd<Type>& _rnd) 
-        : EO<FType>(), parse_tree<Node>(_rnd()) 
-    {
-        pruneTree(_size);
-    }
-    eoParseTree(eoRnd<Type>& _rnd) 
-        : EO<FType>(), parse_tree<Node>(_rnd()) 
-    {}
-
     virtual void pruneTree(unsigned _size)
     {
         if (_size < 1)
@@ -37,7 +30,7 @@ public :
 
         if (size() > _size)
         {
-            Type* sub = &operator[](size() - 2); // prune tree
+            Subtree* sub = &operator[](size() - 2); // prune tree
 
             while (sub->size() > _size)
             {
@@ -101,7 +94,7 @@ class eoGpDepthInitializer : public eoInit< eoParseTree<FType, Node> >
 		const vector<Node>& _initializor,
         bool _grow = true) 
             :
-            eoRnd<EoType::Type>(),
+            eoInit<EoType>(),
 			max_depth(_max_depth),
 			initializor(_initializor),
 			grow(_grow) 
@@ -115,7 +108,8 @@ class eoGpDepthInitializer : public eoInit< eoParseTree<FType, Node> >
         
         generate(sequence, max_depth);
         
-        _tree = parse_tree<Node>(sequence.begin(), sequence.end());
+        parse_tree<Node> tmp(sequence.begin(), sequence.end());
+        _tree.swap(tmp);
 	}
 
     void generate(list<Node>& sequence, int the_max, int last_terminal = -1)
@@ -180,10 +174,10 @@ public:
   /// Dtor
   virtual ~eoSubtreeXOver () {};
 
-  void operator()(eoIndiSelector<EoType>& _source, eoInserter<EoType>& _sink ) const
+  void operator()(eoIndiSelector<EoType>& _select, eoInserter<EoType>& _insert )
   {
-      EoType eo1 = _source.select();
-      const EoType& eo2 = _source.select();
+      EoType eo1 = _select();
+      const EoType& eo2 = _select();
 
 	  int i = rng.random(eo1.size());
 	  int j = rng.random(eo2.size());
@@ -193,7 +187,7 @@ public:
 	  eo1.pruneTree(max_length);
 	  
 	  eo1.invalidate();
-      _sink.insert(eo1);
+      _insert(eo1);
   }
 
   unsigned max_length;
@@ -206,7 +200,7 @@ public:
 
   typedef eoParseTree<FType, Node> EoType;
 
-  eoBranchMutation(eoRnd<EoType::Type>& _init, unsigned _max_length)
+  eoBranchMutation(eoInit<EoType>& _init, unsigned _max_length)
     : eoGeneralOp<EoType>(), max_length(_max_length), initializer(_init) 
   {};
 
@@ -215,25 +209,28 @@ public:
   /// Dtor
   virtual ~eoBranchMutation() {};
 
-  void operator()(eoIndiSelector<EoType>& _source, eoInserter<EoType>& _sink ) const
+  void operator()(eoIndiSelector<EoType>& _select, eoInserter<EoType>& _insert ) 
   {
-      EoType eo1 = _source.select();
+      EoType eo1 = _select();
 	  int i = rng.random(eo1.size());
       
-      EoType eo2(eo1[i].size(), initializer); // create random other to cross with
+      EoType eo2;
+      initializer(eo2);
 
-	  eo1[i] = eo2.back(); // insert subtree
+	  int j = rng.random(eo2.size());
+
+	  eo1[i] = eo2[j]; // insert subtree
 	  	  
 	  eo1.pruneTree(max_length);
-
+	  	  
 	  eo1.invalidate();
-      _sink.insert(eo1);
+      _insert(eo1);
   }
 
 private :
 
   unsigned max_length;
-  eoRnd<EoType::Type>& initializer; 
+  eoInit<EoType>& initializer; 
 };
 
 
