@@ -167,7 +167,7 @@ int main(int argc, char* argv[])
   //// GO
   ///////
   // evaluate intial population AFTER help and status in case it takes time
-  apply(eval, pop);
+  apply<Indi>(eval, pop);
   // if you want to print it out
 //   cout << "Initial Population\n";
 //   pop.sortedPrintOn(cout);
@@ -184,4 +184,5 @@ int main(int argc, char* argv[])
   {
     cout << e.what() << endl;
   }
+  return 0;
 }
