@@ -75,7 +75,7 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
     eoValueParam<string>& operatorParam =  _parser.createParam(string("SGA"), "operator", "Description of the operator (SGA only now)", 'o', "Variation Operators");
 
     if (operatorParam.value() != string("SGA"))
-	throw runtime_error("Only SGA-like operator available roght now\n");
+	throw runtime_error("Only SGA-like operator available right now\n");
 
     // now we read Pcross and Pmut, 
     // the relative weights for all crossovers -> proportional choice

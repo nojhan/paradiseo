@@ -24,18 +24,16 @@
  */
 //-----------------------------------------------------------------------------
 
-/** This file contains all ***INSTANCIATED DEFINITIONS*** of operators
+/** This file contains all ***INSTANCIATED DEFINITIONS*** of population init
  * of the library for ***BISTRING*** evolution inside EO.
  * It should be included in the file that calls any of the corresponding fns
  * Compiling this file allows one to generate part of the library (i.e. object
  * files that you just need to link with your own main and fitness code).
  *
  * The corresponding ***INSTANCIATED DECLARATIONS*** are contained 
- *       in ga.h
+ *       in ga/make_ga.h
  * while the TEMPLATIZED code is define in make_pop.h in the src/do dir
  *
- * Unlike most EO .h files, it does not (and should not) contain any code, 
- * just declarations
  */
 
 // The templatized code
