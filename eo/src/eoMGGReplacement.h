@@ -73,7 +73,7 @@ public:
 	throw std::runtime_error("Not enough parents killed in eoMGGReplacement");
 
       // select best offspring
-      eoPop<EOT>::iterator it = _offspring.it_best_element();
+      typename eoPop<EOT>::iterator it = _offspring.it_best_element();
       // add to parents
       _parents.push_back(*it);
       // remove from offspring

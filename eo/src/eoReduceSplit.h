@@ -107,7 +107,7 @@ public:
     _eliminated.reserve(_eliminated.size()+eliminated); //in case not empty?
     for (unsigned i=0; i<eliminated; i++)
       {
-	eoPop<EOT>::iterator it = _newgen.it_worse_element();
+	typename eoPop<EOT>::iterator it = _newgen.it_worse_element();
 	if (returnEliminated)
 	  _eliminated.push_back(*it);
 	_newgen.erase(it);	    
@@ -184,7 +184,7 @@ public:
     for (unsigned i=0; i<eliminated; i++)
       {
 	unsigned loser=random(_newgen.size());
-	eoPop<EOT>::iterator it = _newgen.begin()+loser;
+	typename eoPop<EOT>::iterator it = _newgen.begin()+loser;
 	if (returnEliminated)
 	  _eliminated.push_back(*it);
 	_newgen.erase(it);	    
@@ -235,7 +235,7 @@ public:
     _eliminated.reserve(_eliminated.size()+eliminated); //in case not empty?
     for (unsigned i=0; i<eliminated; i++)
       {
-	eoPop<EOT>::iterator it = inverse_deterministic_tournament(_newgen.begin(), _newgen.end(), t_size);
+	typename eoPop<EOT>::iterator it = inverse_deterministic_tournament(_newgen.begin(), _newgen.end(), t_size);
 	if (returnEliminated)
 	  _eliminated.push_back(*it);
 	_newgen.erase(it);
@@ -288,7 +288,7 @@ public:
     _eliminated.reserve(_eliminated.size()+eliminated); //in case not empty?
     for (unsigned i=0; i<_eliminated.size(); i++)
       {
-	eoPop<EOT>::iterator it = inverse_stochastic_tournament(_newgen.begin(), _newgen.end(), t_rate);
+	typename eoPop<EOT>::iterator it = inverse_stochastic_tournament(_newgen.begin(), _newgen.end(), t_rate);
 	if (returnEliminated)
 	  _eliminated.push_back(*it);
 	_newgen.erase(it);
