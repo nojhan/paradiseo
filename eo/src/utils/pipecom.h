@@ -5,7 +5,7 @@
  * Created......: Thu Mar  9 17:21:15 1995
  * Description..: Pipe communication with a process
  * 
- * Ident........: $Id: pipecom.h,v 1.2 2001-02-09 05:09:26 evomarc Exp $
+ * Ident........: $Id: pipecom.h,v 1.3 2001-10-08 09:13:16 evomarc Exp $
  * ----------------------------------------------------------------------
  */
 
@@ -45,4 +45,4 @@ int PipeComWaitFor( PCom *from, char *what );
 } /* ferme extern "C" */
 #endif
 
-#endif	/* 		PIPECOM_H */
+#endif

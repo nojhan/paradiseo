@@ -69,5 +69,5 @@ template <class EOT> class eoDetTournamentSelect: public eoSelectOne<EOT>
 
 //-----------------------------------------------------------------------------
 
-#endif // eoDetTournamentSelect_h
+#endif
 

@@ -55,4 +55,4 @@ template <class FitT> class eoReal: public eoVector<FitT, double>
 
 //-----------------------------------------------------------------------------
 
-#endif //eoReal_h
+#endif

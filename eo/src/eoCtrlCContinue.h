@@ -70,4 +70,5 @@ public:
 
 #endif
 
-#endif // of MSVC comment-out
+#endif
+ // of MSVC comment-out
