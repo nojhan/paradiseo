@@ -17,7 +17,7 @@ const unsigned MAXLINELENGTH=1024;
 //-----------------------------------------------------------------------------
 
 #include <iostream>  // istream, ostream
-#include <string> // para string
+#include <string>    // para string
 
 //-----------------------------------------------------------------------------
 #include <eoPrintable.h>

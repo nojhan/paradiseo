@@ -5,6 +5,6 @@
 //-----------------------------------------------------------------------------
 
 istream & operator >> ( istream& _is, eoPersistent& _o ) {
-	_o.readFrom(_is);
-	return _is;
+  _o.readFrom(_is);
+  return _is;
 };
