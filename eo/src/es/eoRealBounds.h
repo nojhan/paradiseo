@@ -46,22 +46,25 @@ Basic class is eoRealBounds, a pure virtual.
 The following pure virtual methods are to be used in mutations:
 - void foldsInBounds(double &) that folds any value that falls out of 
   the bounds back into the bounds, by bouncing on the limit (if any)
-- bool isInBounds(double &) that simply says whether or not the argument 
+- bool isInBounds(double) that simply says whether or not the argument 
   is in the bounds
+- void truncate(double &) that set the argument to the bound value it
+it exceeds it
 
-So mutation can choose whetehr they want to iterate trying until 
-they fall in bounds, or only try once and "repair" by using 
-the foldsInBounds method
+So mutation can choose 
+- iterate trying until they fall in bounds, 
+- only try once and "repair" by using the foldsInBounds method
+- only try once and repair using the truncate method (will create a
+  huge bias toward the bound if the soluiton is not far from the bounds)
 
 There is also a uniform() method that generates a uniform value 
 (if possible, i.e. if bounded) in the interval.
 
 Derived class are 
-eoRealInterval, that holds a minimum and maximum value, 
- eoRealNoBounds, that implements the "unbounded bounds"
-
-TODO: the eoRealMinBound and eoRealMaxBound that implement 
-      the half-bounded intervals.
+eoRealInterval that holds a minimum and maximum value, 
+eoRealNoBounds the "unbounded bounds" (-infinity, +infinity)
+eoRealBelowBound the half-bounded interval [min, +infinity)
+eoRealAboveBound the   half-bounded interval (-infinity, max]
 
 Vector type: 
 ------------
@@ -69,6 +72,12 @@ Class eoRealVectorBounds implements the vectorized version:
 it is basically a vector of eoRealBounds * and forwards all request
 to the elements of the vector.
 
+This file also contains te 2 global variables eoDummyRealNoBounds and
+eoDummyVectorNoBounds that are used as defaults in ctors (i.e. when no
+bounds are given, it is assumed unbounded values)
+
+TODO: have an eoRealBounds.cpp with the longuish parts of the code
+(and the 2 global variables).
 */
 class eoRealBounds
 { 
@@ -157,9 +166,9 @@ public:
   }
 };
 
-//////////////////////////////////////////////////////////////
-// fully bounded == interval
-/////////////////////////////////////////////////////////////
+/**
+ * fully bounded eoRealBound == interval
+ */
 class eoRealInterval : public eoRealBounds
 {
 public :
@@ -246,9 +255,9 @@ private :
   double repRange;			   // to minimize operations ???
 };
 
-//////////////////////////////////////////////////////////////
-// bounded from below
-/////////////////////////////////////////////////////////////
+/**
+ * an eoRealBound bounded from below only
+ */
 class eoRealBelowBound : public eoRealBounds
 {
 public :
@@ -312,9 +321,9 @@ private :
   double repMinimum;
 };
 
-//////////////////////////////////////////////////////////////
-// bounded from above
-/////////////////////////////////////////////////////////////
+/**
+An eoRealBound bounded from above only
+*/
 class eoRealAboveBound : public eoRealBounds
 {
 public :
@@ -381,7 +390,7 @@ private :
 };
 
 /////////////////////////////////////////////////////////////////////
-// Vectorized versions
+// The Vectorized versions
 /////////////////////////////////////////////////////////////////////
 
 /** 
