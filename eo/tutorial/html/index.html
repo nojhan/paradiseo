@@ -2,26 +2,28 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.61 [en] (X11; I; Linux 2.2.13-7mdk i686) [Netscape]">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdk i686) [Netscape]">
    <title>Tutorial EO</title>
 </head>
 <body text="#000000" link="#0000EF" vlink="#51188E" alink="#FF0000" background="beige009.jpg">
-<a href="eoTopDown.html">Algorithm-Based</a> - <a href="eoBottomUp.html">Component-Based
-page</a> - <a href="eoProgramming.html">Programming hints</a> - <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
+<a href="eoTopDown.html">Algorithm-Based</a> - <a href="eoBottomUp.html">Component-Based</a>
+- <a href="eoProgramming.html">Programming hints</a> - <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
 documentation</a></font></font></b>
 <hr WIDTH="100%">
 <center>
 <h1>
 <font color="#FF0000">EO Tutorial</font></h1></center>
-Welcome to EO - the Evolving Objects library. What is this tutorial good
-for?
-<br>Well,&nbsp; the short term idea here is to help you <font color="#FF6600">build
+
+<center><b><font color="#FF0000">Welcome to EO - the Evolving Objects library.</font></b></center>
+
+<p>The short term idea of this tutorial is to help you <font color="#FF6600">build
 your own Evolutionary Algorithms</font> using EO - while the long term
 idea is that you will be able to contribute to EO, and ultimately write
 <font color="#FF6600">our</font>
 EAs :-)
 <h3>
-<b><font color="#000099"><font size=+2>About this tutorial</font></font></b></h3>
+
+<hr WIDTH="100%"><b><font color="#000099"><font size=+2>About this tutorial</font></font></b></h3>
 This tutorial can be used in 2 different ways: algorithm-based and component-based.
 <ul>
 <li>
@@ -30,18 +32,22 @@ simple, ready-to-run algorithm,</font> and gradually modify it, making
 it both more powerful and more complex.</li>
 
 <li>
-<a href="eoBottomUp.html">Component-Based</a> means you start by examining the
-<font color="#FF6600">components
-of an EA one by one</font>, down to the level of complexity you feel comfortable
-with, and then build the whole algorithm using those components you need
-(or the one you are mastering). Such approach might be viewed as going
-through a simplified user guide, too.</li>
+<a href="eoBottomUp.html">Component-Based</a> means you start by examining
+the
+<font color="#FF6600">components of an EA one by one</font>, down to
+the level of complexity you feel comfortable with, and then build the whole
+algorithm using those components you need (or the one you are mastering).
+Such approach might be viewed as going through a simplified user guide,
+too.</li>
 </ul>
 However, it is <b><font color="#FF6600">strongly recommended</font></b>
-that you take some time on the first lesson of the Algorithm-Based approach to
-get familiar with the basic concepts that are used throughout EO. Anyway,
-as of today, November 29, the Component-Based is not written yet :-)
-<p><b><font color="#000099"><font size=+2>Related documents</font></font></b>
+that you take some time on the first lesson of the Algorithm-Based approach
+to get familiar with the basic concepts that are used throughout EO. Anyway,
+as of today, December 19, the Component-Based is only very sparsely written
+:-)
+<p>
+<hr WIDTH="100%"><b><font color="#000099"><font size=+2>Links and Related
+documents</font></font></b>
 <ul>
 <li>
 There are of course a few (very few) <a href="eoProgramming.html">programming
@@ -49,21 +55,22 @@ hints</a> that you should know.</li>
 
 <li>
 THe <a href="../../doc/html/index.html">EO documentation </a>- automatically
-generated from the comments in the code - is very helpful, to get an idea
-of the inheritance diagrams of EO classes, and to quickly reach some specific
-part of the code.</li>
+generated from the comments in the code - is very helpful to get an idea
+of the <b><font color="#FF6600">inheritance diagrams</font></b> of EO classes,
+and to quickly reach some specific part of the code.</li>
 
 <br>The top page of each class documentation is for instance the inheritance
 diagram of the class, and you'll learn a lot by simply looking at it.
 <li>
 And, last but not least, we assume you know approximately that an Evolutionary
 Algorithm looks like this, but otherwise you can try this <a href="eoIntroEA.html">very
-brief introduction</a>).</li>
+brief introduction</a> (not written yet, Jan. 2001, sorry).</li>
 </ul>
 
-<p><br><b><font color="#000099"><font size=+2>Colors and navigation:</font></font></b>
+<p><br>
+<hr WIDTH="100%"><b><font color="#000099"><font size=+2>Colors and navigation:</font></font></b>
 <p>You will see this diagram in quite many places, as for instance at the
-top of all examples - usually it will be clicable and will help you navigate
+top of all examples - usually it will be clickable and will help you navigate
 among the different parts of an EO program. See the <a href="eoIntroEA.html">brief
 introduction to Evolutionary Computation</a> for a detailed explanation.
 <center>
@@ -72,8 +79,8 @@ introduction to Evolutionary Computation</a> for a detailed explanation.
 <p>But in the text itself, <b><font color="#FF6600">colors are important</font></b>,
 as they will be used throughout this tutorial to clearly mark which part
 of the algorithm we are discussing. So please keep in mind that, whereas
-<font color="#FF6600">orange
-is for emphasis</font>,
+<b><font color="#FF6600">orange
+is for emphasis</font></b>,
 <ul>
 <li>
 <b><font color="#999900">Yellowish</font></b> is for <b><font color="#999900">representation</font></b>,
@@ -108,28 +115,40 @@ any of the above, i.e. random number generator, or basic C++/STL syntax
 .</li>
 
 <li>
-Note that <font color="#FF6666">pink</font> will be used to desctibe the
-syntax of compile orders (i.e. at the oepratoring system level, see e.g.
+Note that <font color="#FF6666">pink</font> will be used to describe the
+syntax of compile orders (i.e. at the operating system level, see e.g.
 <a href="#install">below</a>).</li>
 
 <li>
-<font face="Arial,Helvetica">Last, but not least, all links into EO documentation
-will use the Helvetica typeface, like this line you are now reading.</font></li>
+<b><font face="Arial,Helvetica"><font size=+1>Last, but not least, all
+links into EO documentation will use the Helvetica typeface, like this
+line you are now reading.</font></font></b></li>
 </ul>
 
+<hr WIDTH="100%"><b><font color="#000099"><font size=+1>This tutorial is
+not</font></font></b>
 <ul>
 <li>
-an interface that would allow you to build your Evolutionary Programs by
-a few clics; such a thing does exist, is called <a href="http://www-rocq.inria.fr/EASEA/">EASEA</a>,
+A course on Evolutionary Computation. You can find such things on the Internet,
+maybe you can start <a href="http://www.wi.leidenuniv.nl/~gusz/Flying_Circus/">here.</a></li>
+
+<li>
+An interface that would allow you to build your Evolutionary Programs by
+a few clicks; such a thing does exist, is called <a href="http://www-rocq.inria.fr/EASEA/">EASEA</a>,
 and is complementary to this tutorial as it helps the user to build some
 simple EO programs from simple description. But there are things that EASEA
-cannot do, and you will have to do it yourself and will need to imcrease
-your knowledge about EO for that.</li>
+cannot do, and you will have to do it yourself and will need to increase
+your knowledge about EO for that - hence this tutorial.</li>
+
+<li>
+A coffee machine - though you might want to spend some time here when you're
+tired of everything else, to improve your knowledge of EO slowly and gradually
+rather than when you have something urgent to code :-)</li>
 </ul>
-<a NAME="install"></a>
-<h3>
-<font color="#000099">Before you start</font></h3>
-You should of course have downloaded and installed the whole <a href="http://www.sourceforge.net/projects/eodev">EO
+
+<hr WIDTH="100%"><a NAME="install"></a><b><font color="#000099"><font size=+1>Before
+you start</font></font></b>
+<p>You should of course have downloaded and installed the whole <a href="http://www.sourceforge.net/projects/eodev">EO
 library</a> (how did you get this file if not???).
 <br>So we'll assume that you are now in the Tutorial directory, and that
 your prompt looks something like
