@@ -55,18 +55,18 @@ class eoInitFixedLength: public eoInit<EOT>
 
     typedef typename EOT::AtomType AtomType;
 
-        eoInitFixedLength(unsigned _howmany, eoRndGenerator<AtomType>& _generator)
-            : howmany(_howmany), generator(_generator) {}
+        eoInitFixedLength(unsigned _combien, eoRndGenerator<AtomType>& _generator)
+            : combien(_combien), generator(_generator) {}
 
         void operator()(EOT& chrom)
         {
-            chrom.resize(howmany);
+            chrom.resize(combien);
             std::generate(chrom.begin(), chrom.end(), generator);
             chrom.invalidate();
         }
 
     private :
-        unsigned howmany;
+        unsigned combien;
         /// generic wrapper for eoFunctor (s), to make them have the function-pointer style copy semantics
         eoSTLF<AtomType> generator;
 };
@@ -87,8 +87,7 @@ class eoInitVariableLength: public eoInit<EOT>
 
         void operator()(EOT& chrom)
         {
-            unsigned howmany = offset + rng.random(extent);
-            chrom.resize(howmany);
+            chrom.resize(offset + rng.random(extent));
             generate(chrom.begin(), chrom.end(), generator);
             chrom.invalidate();
         }

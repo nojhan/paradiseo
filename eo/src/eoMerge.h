@@ -56,7 +56,7 @@ template <class EOT> class eoElitism : public eoMerge<EOT>
 {
 public :
   eoElitism(double  _rate, bool _interpret_as_rate = true):
-    rate(0), howmany(0)
+    rate(0), combien(0)
   {
     if (_interpret_as_rate)
       {
@@ -68,27 +68,27 @@ public :
       {
 	if (_rate<0)
 	  throw std::logic_error("Negative number of offspring in eoElitism!");
-	howmany = (unsigned int)_rate;
-	if (howmany != _rate)
+	combien = (unsigned int)_rate;
+	if (combien != _rate)
 	  cout << "Warning: Number of guys to merge in eoElitism was rounded";
       }
   }
   
   void operator()(const eoPop<EOT>& _pop, eoPop<EOT>& _offspring)
   {
-    if ((howmany == 0) && (rate == 0.0))
+    if ((combien == 0) && (rate == 0.0))
       return;
-    unsigned howmanyLocal;
-    if (howmany == 0)	   // rate is specified
-      howmanyLocal = (unsigned int) (rate * _pop.size());
+    unsigned combienLocal;
+    if (combien == 0)	   // rate is specified
+      combienLocal = (unsigned int) (rate * _pop.size());
     else
-      howmanyLocal = howmany;
+      combienLocal = combien;
     
-    if (howmanyLocal > _pop.size())
+    if (combienLocal > _pop.size())
       throw std::logic_error("Elite larger than population");
     
     vector<const EOT*> result;
-    _pop.nth_element(howmanyLocal, result);
+    _pop.nth_element(combienLocal, result);
     
     for (size_t i = 0; i < result.size(); ++i)
       {
@@ -98,7 +98,7 @@ public :
   
 private :
   double rate;
-  unsigned howmany;
+  unsigned combien;
 };
 
 /**

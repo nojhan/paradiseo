@@ -40,7 +40,7 @@ class eoHowMany
 {
 public:
   eoHowMany(double  _rate, bool _interpret_as_rate = true):
-    rate(0), howmany(0)
+    rate(0), combien(0)
   {
     if (_interpret_as_rate)
       {
@@ -50,27 +50,27 @@ public:
       {
 	if (_rate<0)
 	  throw std::logic_error("Negative number in eoHowMany!");
-	howmany = (unsigned int)_rate;
-	if (howmany != _rate)
+	combien = (unsigned int)_rate;
+	if (combien != _rate)
 	  cout << "Warning: Number was rounded in eoHowMany";
       }
   }
 
   unsigned int operator()(unsigned int _size)
   {
-    if (howmany == 0)
+    if (combien == 0)
       {
 	if (rate == 0.0)
 	  return 0;
 	else
 	  return (unsigned int) (rate * _size);
       }
-    return howmany;
+    return combien;
   }
   
 private :
   double rate;
-  unsigned howmany;
+  unsigned combien;
 };
 
 
