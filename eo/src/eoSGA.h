@@ -48,19 +48,6 @@ template <class EOT>
 class eoSGA : public eoAlgo<EOT>
 {
 public :
-  eoSGA(
-        eoContinue<EOT>& _cont, 
-        eoMonOp<EOT>& _mutate, float _mrate,
-        eoQuadraticOp<EOT>& _cross, float _crate,
-        eoSelectOne<EOT>& _select,
-        eoEvalFunc<EOT>& _eval) 
-    : cont(_cont), 
-          mutate(_mutate), 
-          mutationRate(_mrate),
-          cross(_cross),
-          crossoverRate(_crate),
-          select(_select),
-          eval(_eval) {}
 
   // added this second ctor as I didn't like the ordering of the parameters
   // in the one above. Any objection :-) MS
