@@ -3,6 +3,23 @@
 //-----------------------------------------------------------------------------
 // eoVector.h
 // (c) GeNeura Team, 1998
+/* 
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+    Contact: todos@geneura.ugr.es, http://geneura.ugr.es
+ */
 //-----------------------------------------------------------------------------
 
 
@@ -24,7 +41,7 @@
 template <class T, class fitnessT>
 class eoVector: public eo1d<T, fitnessT>, public vector<T> {
 public:
-  typedef Type T;
+  typedef T Type ;
   
   /// Canonical part of the objects: several ctors, copy ctor, dtor and assignment operator
   //@{
@@ -70,7 +87,7 @@ which is supposed to be dynamic and dependent on environment.
   /** methods that implement the eo1d <em>protocol</em>
       @exception out_of_range if _i is larger than EO´s size
   */
-  virtual T gene( unsigned _i ) const {
+  virtual T getGene( unsigned _i ) const {
     if ( _i >= length() ) 
       throw out_of_range( "out_of_range when reading gene");
     return (*this)[_i];
@@ -79,10 +96,10 @@ which is supposed to be dynamic and dependent on environment.
   /** methods that implement the eo1d <em>protocol</em>
       @exception out_of_range if _i is larger than EO´s size
   */
-  virtual T& gene( unsigned _i )  {
+  virtual void setGene( unsigned _i, const T& _value ) {
     if ( _i >= size() )
       throw out_of_range( "out_of_range when writing a gene");
-    return operator[](_i);
+    (*this)[_i] = _value;
   };
   
   /** methods that implement the eo1d <em>protocol</em>

@@ -32,8 +32,8 @@ main()
   for (unsigned POP_SIZE = 4; POP_SIZE <=6; POP_SIZE++)
     {
       eoPop<Chrom> pop; 
-      
-      for (unsigned i = 0; i < POP_SIZE; i++)
+      unsigned i;
+      for ( i = 0; i < POP_SIZE; i++)
 	    {
 	      Chrom chrom(CHROM_SIZE);
 	      random(chrom);

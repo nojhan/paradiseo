@@ -87,7 +87,7 @@ LDADDS = $(top_builddir)/src/libeo.a
 
 ###############################################################################
 
-noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery t_eornd t_eovector t_eoaged t_eoid t_eostring t_ops t_popops t_pop t_es t_opsel t_opfactory t_opMut t_eobitfact
+noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery
 
 ###############################################################################
 
@@ -139,82 +139,6 @@ t_eolottery_SOURCES = t-eolottery.cpp
 t_eolottery_DEPENDENCIES = $(DEPS)
 t_eovector_LDFLAGS = -lm
 t_eolottery_LDADD = $(LDADDS) 
-
-###############################################################################
-
-t_eornd_SOURCES = t_eornd.cpp
-t_eornd_LDFLAGS = -lm
-
-###############################################################################
-
-t_eovector_SOURCES = t_eovector.cpp
-t_eovector_LDADD = $(LDADDS)
-
-###############################################################################
-
-t_eoaged_SOURCES = t_eoaged.cpp
-t_eoaged_DEPENDENCIES = $(DEPS)
-t_eoaged_LDADD = $(LDADDS)
-
-###############################################################################
-
-t_eoid_SOURCES = t_eoid.cpp
-t_eoid_DEPENDENCIES = $(DEPS)
-t_eoid_LDADD = $(LDADDS)
-
-###############################################################################
-
-t_eostring_SOURCES = t_eostring.cpp
-t_eostring_DEPENDENCIES = $(DEPS)
-t_eostring_LDADD = $(LDADDS)
-
-###############################################################################
-
-t_es_SOURCES = t_es.cpp
-t_es_DEPENDENCIES = $(DEPS)
-t_es_LDADD = $(LDADDS)
-
-###############################################################################
-
-t_ops_SOURCES = t_ops.cpp
-t_ops_DEPENDENCIES = $(DEPS)
-t_ops_LDADD = $(LDADDS)
-
-###############################################################################
-
-t_pop_SOURCES = t_pop.cpp
-t_pop_DEPENDENCIES = $(DEPS)
-t_pop_LDADD = $(LDADDS)
-
-###############################################################################
-
-t_popops_SOURCES = t_popops.cpp
-t_popops_DEPENDENCIES = $(DEPS)
-t_popops_LDADD = $(LDADDS)
-
-###############################################################################
-
-t_opsel_SOURCES = t_opsel.cpp
-t_opsel_DEPENDENCIES = $(DEPS)
-t_opsel_LDADD = $(LDADDS)
-
-###############################################################################
-
-t_opfactory_SOURCES = t_opfactory.cpp
-t_opfactory_DEPENDENCIES = $(DEPS)
-t_opfactory_LDADD = $(LDADDS)
-
-###############################################################################
-
-t_opMut_SOURCES = t_opMut.cpp
-t_opMut_DEPENDENCIES = $(DEPS)
-t_opMut_LDADD = $(LDADDS)
-
-###############################################################################
-
-t_eobitfact_SOURCES = t_eobitfact.cpp
-t_eobitfact_DEPENDENCIES = $(DEPS)
-t_eobitfact_LDADD = $(LDADDS)
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES = 
 PROGRAMS =  $(noinst_PROGRAMS)
@@ -238,33 +162,6 @@ t_eobin_OBJECTS =  t-eobin.o
 t_eobin_LDFLAGS = 
 t_eolottery_OBJECTS =  t-eolottery.o
 t_eolottery_LDFLAGS = 
-t_eornd_OBJECTS =  t_eornd.o
-t_eornd_LDADD = $(LDADD)
-t_eornd_DEPENDENCIES = 
-t_eovector_OBJECTS =  t_eovector.o
-t_eovector_DEPENDENCIES =  $(top_builddir)/src/libeo.a
-t_eoaged_OBJECTS =  t_eoaged.o
-t_eoaged_LDFLAGS = 
-t_eoid_OBJECTS =  t_eoid.o
-t_eoid_LDFLAGS = 
-t_eostring_OBJECTS =  t_eostring.o
-t_eostring_LDFLAGS = 
-t_ops_OBJECTS =  t_ops.o
-t_ops_LDFLAGS = 
-t_popops_OBJECTS =  t_popops.o
-t_popops_LDFLAGS = 
-t_pop_OBJECTS =  t_pop.o
-t_pop_LDFLAGS = 
-t_es_OBJECTS =  t_es.o
-t_es_LDFLAGS = 
-t_opsel_OBJECTS =  t_opsel.o
-t_opsel_LDFLAGS = 
-t_opfactory_OBJECTS =  t_opfactory.o
-t_opfactory_LDFLAGS = 
-t_opMut_OBJECTS =  t_opMut.o
-t_opMut_LDFLAGS = 
-t_eobitfact_OBJECTS =  t_eobitfact.o
-t_eobitfact_LDFLAGS = 
 CXXFLAGS = @CXXFLAGS@
 CXXCOMPILE = $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -279,12 +176,9 @@ TAR = gtar
 GZIP_ENV = --best
 DEP_FILES =  .deps/t-eo.P .deps/t-eobin.P .deps/t-eobreeder.P \
 .deps/t-eofitness.P .deps/t-eoinclusion.P .deps/t-eoinsertion.P \
-.deps/t-eolottery.P .deps/t-eoproblem.P .deps/t_eoaged.P \
-.deps/t_eobitfact.P .deps/t_eoid.P .deps/t_eornd.P .deps/t_eostring.P \
-.deps/t_eovector.P .deps/t_es.P .deps/t_opMut.P .deps/t_opfactory.P \
-.deps/t_ops.P .deps/t_opsel.P .deps/t_pop.P .deps/t_popops.P
-SOURCES = $(t_eobreeder_SOURCES) $(t_eoinclusion_SOURCES) $(t_eoinsertion_SOURCES) $(t_eo_SOURCES) $(t_eofitness_SOURCES) $(t_eoproblem_SOURCES) $(t_eobin_SOURCES) $(t_eolottery_SOURCES) $(t_eornd_SOURCES) $(t_eovector_SOURCES) $(t_eoaged_SOURCES) $(t_eoid_SOURCES) $(t_eostring_SOURCES) $(t_ops_SOURCES) $(t_popops_SOURCES) $(t_pop_SOURCES) $(t_es_SOURCES) $(t_opsel_SOURCES) $(t_opfactory_SOURCES) $(t_opMut_SOURCES) $(t_eobitfact_SOURCES)
-OBJECTS = $(t_eobreeder_OBJECTS) $(t_eoinclusion_OBJECTS) $(t_eoinsertion_OBJECTS) $(t_eo_OBJECTS) $(t_eofitness_OBJECTS) $(t_eoproblem_OBJECTS) $(t_eobin_OBJECTS) $(t_eolottery_OBJECTS) $(t_eornd_OBJECTS) $(t_eovector_OBJECTS) $(t_eoaged_OBJECTS) $(t_eoid_OBJECTS) $(t_eostring_OBJECTS) $(t_ops_OBJECTS) $(t_popops_OBJECTS) $(t_pop_OBJECTS) $(t_es_OBJECTS) $(t_opsel_OBJECTS) $(t_opfactory_OBJECTS) $(t_opMut_OBJECTS) $(t_eobitfact_OBJECTS)
+.deps/t-eolottery.P .deps/t-eoproblem.P
+SOURCES = $(t_eobreeder_SOURCES) $(t_eoinclusion_SOURCES) $(t_eoinsertion_SOURCES) $(t_eo_SOURCES) $(t_eofitness_SOURCES) $(t_eoproblem_SOURCES) $(t_eobin_SOURCES) $(t_eolottery_SOURCES)
+OBJECTS = $(t_eobreeder_OBJECTS) $(t_eoinclusion_OBJECTS) $(t_eoinsertion_OBJECTS) $(t_eo_OBJECTS) $(t_eofitness_OBJECTS) $(t_eoproblem_OBJECTS) $(t_eobin_OBJECTS) $(t_eolottery_OBJECTS)
 
 all: all-redirect
 .SUFFIXES:
@@ -369,58 +263,6 @@ t-eobin: $(t_eobin_OBJECTS) $(t_eobin_DEPENDENCIES)
 t-eolottery: $(t_eolottery_OBJECTS) $(t_eolottery_DEPENDENCIES)
 	@rm -f t-eolottery
 	$(CXXLINK) $(t_eolottery_LDFLAGS) $(t_eolottery_OBJECTS) $(t_eolottery_LDADD) $(LIBS)
-
-t_eornd: $(t_eornd_OBJECTS) $(t_eornd_DEPENDENCIES)
-	@rm -f t_eornd
-	$(CXXLINK) $(t_eornd_LDFLAGS) $(t_eornd_OBJECTS) $(t_eornd_LDADD) $(LIBS)
-
-t_eovector: $(t_eovector_OBJECTS) $(t_eovector_DEPENDENCIES)
-	@rm -f t_eovector
-	$(CXXLINK) $(t_eovector_LDFLAGS) $(t_eovector_OBJECTS) $(t_eovector_LDADD) $(LIBS)
-
-t_eoaged: $(t_eoaged_OBJECTS) $(t_eoaged_DEPENDENCIES)
-	@rm -f t_eoaged
-	$(CXXLINK) $(t_eoaged_LDFLAGS) $(t_eoaged_OBJECTS) $(t_eoaged_LDADD) $(LIBS)
-
-t_eoid: $(t_eoid_OBJECTS) $(t_eoid_DEPENDENCIES)
-	@rm -f t_eoid
-	$(CXXLINK) $(t_eoid_LDFLAGS) $(t_eoid_OBJECTS) $(t_eoid_LDADD) $(LIBS)
-
-t_eostring: $(t_eostring_OBJECTS) $(t_eostring_DEPENDENCIES)
-	@rm -f t_eostring
-	$(CXXLINK) $(t_eostring_LDFLAGS) $(t_eostring_OBJECTS) $(t_eostring_LDADD) $(LIBS)
-
-t_ops: $(t_ops_OBJECTS) $(t_ops_DEPENDENCIES)
-	@rm -f t_ops
-	$(CXXLINK) $(t_ops_LDFLAGS) $(t_ops_OBJECTS) $(t_ops_LDADD) $(LIBS)
-
-t_popops: $(t_popops_OBJECTS) $(t_popops_DEPENDENCIES)
-	@rm -f t_popops
-	$(CXXLINK) $(t_popops_LDFLAGS) $(t_popops_OBJECTS) $(t_popops_LDADD) $(LIBS)
-
-t_pop: $(t_pop_OBJECTS) $(t_pop_DEPENDENCIES)
-	@rm -f t_pop
-	$(CXXLINK) $(t_pop_LDFLAGS) $(t_pop_OBJECTS) $(t_pop_LDADD) $(LIBS)
-
-t_es: $(t_es_OBJECTS) $(t_es_DEPENDENCIES)
-	@rm -f t_es
-	$(CXXLINK) $(t_es_LDFLAGS) $(t_es_OBJECTS) $(t_es_LDADD) $(LIBS)
-
-t_opsel: $(t_opsel_OBJECTS) $(t_opsel_DEPENDENCIES)
-	@rm -f t_opsel
-	$(CXXLINK) $(t_opsel_LDFLAGS) $(t_opsel_OBJECTS) $(t_opsel_LDADD) $(LIBS)
-
-t_opfactory: $(t_opfactory_OBJECTS) $(t_opfactory_DEPENDENCIES)
-	@rm -f t_opfactory
-	$(CXXLINK) $(t_opfactory_LDFLAGS) $(t_opfactory_OBJECTS) $(t_opfactory_LDADD) $(LIBS)
-
-t_opMut: $(t_opMut_OBJECTS) $(t_opMut_DEPENDENCIES)
-	@rm -f t_opMut
-	$(CXXLINK) $(t_opMut_LDFLAGS) $(t_opMut_OBJECTS) $(t_opMut_LDADD) $(LIBS)
-
-t_eobitfact: $(t_eobitfact_OBJECTS) $(t_eobitfact_DEPENDENCIES)
-	@rm -f t_eobitfact
-	$(CXXLINK) $(t_eobitfact_LDFLAGS) $(t_eobitfact_OBJECTS) $(t_eobitfact_LDADD) $(LIBS)
 .cpp.o:
 	$(CXXCOMPILE) -c $<
 .cpp.lo:

@@ -2,9 +2,14 @@
 // t-eobreeder.cpp
 //-----------------------------------------------------------------------------
 
-#include <stdlib.h>  // srand
-#include <time.h>    // time
-#include <eo>        // eoBin, eoPop, eoBreeder
+// to avoid long name warnings
+#pragma warning(disable:4786)
+
+#include <eoBin.h>  // eoBin, eoPop, eoBreeder
+#include <eoPop.h>
+#include <eoBitOp.h>
+#include <eoProportionalOpSel.h>
+#include <eoBreeder.h>
 
 //-----------------------------------------------------------------------------
 
@@ -25,14 +30,12 @@ void binary_value(Chrom& chrom)
 
 main()
 {
-  srand(time(NULL));
-
   const unsigned POP_SIZE = 8, CHROM_SIZE = 4;
   unsigned i;
 
   eoUniform<Chrom::Type> uniform(false, true);
   eoBinRandom<Chrom> random;
-  eoPop<Chrom> pop, pop2; 
+  eoPop<Chrom> pop; 
   
   for (i = 0; i < POP_SIZE; i++)
     {
@@ -42,22 +45,22 @@ main()
       pop.push_back(chrom);
     }
   
+  cout << "population:" << endl;
+  for (i = 0; i < pop.size(); i++)
+    cout << pop[i] << " " << pop[i].fitness() << endl;
+
   eoBinBitFlip<Chrom> bitflip;
   eoBinCrossover<Chrom> xover;
-  eoBreeder<Chrom> breeder;
-  breeder.add(bitflip, 1.0);
-  breeder.add(xover, 1.0);
+  eoProportionalOpSel<Chrom> propSel;
+  eoBreeder<Chrom> breeder( propSel );
+  propSel.addOp(bitflip, 0.25);
+  propSel.addOp(xover, 0.75);
 
-  pop2 = pop;
-  breeder(pop2);
-   
-  for (i = 0; i < pop2.size(); i++)
-    binary_value(pop2[i]);
+  breeder(pop);
 
-  cout << "population: \tnew population" << endl;
+  cout << "new population:" << endl;
   for (i = 0; i < pop.size(); i++)
-    cout << pop[i] << " " << pop[i].fitness() << "     \t"
-	 << pop2[i] << " " << pop2[i].fitness() << endl;
+    cout << pop[i] << " " << pop[i].fitness() << endl;
 
   return 0;
 }

@@ -25,13 +25,14 @@ ostream& operator<<(ostream& os, const Chrom& chrom)
 class Easy//: public eoProblem<Chrom>
 {
 public:
-  const size = 1;
+  static const unsigned size;
   
   float operator()(const Chrom& chrom)
     {
       return 1.0 / (fabs(chrom[0]) + 1.0);
     }
 };
+const unsigned Easy::size = 1;
 
 //-----------------------------------------------------------------------------
 

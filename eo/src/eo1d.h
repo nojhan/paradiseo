@@ -3,6 +3,23 @@
 //-----------------------------------------------------------------------------
 // eo1d.h 
 // (c) GeNeura Team, 1998
+/* 
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+    Contact: todos@geneura.ugr.es, http://geneura.ugr.es
+ */
 //-----------------------------------------------------------------------------
 
 #ifndef _EO1D_H
@@ -16,7 +33,7 @@
 
 using namespace std;
 
-/** @name EO1d class 
+/** @name eo1d class 
 * Randomly accesible  evolvable object with one dimension, with
 variable length.  
 * Use this if you want to evolve "linear" things, like bitstrings, or
@@ -52,8 +69,9 @@ public:
   */
   eo1d( unsigned _size, eoRnd<T>& _rndGen, const string& _ID = "");
 
- /** Ctor from a istream. It just passes the stream to EO.
-     @param _is the input stream; eo1d just cares about the fitness
+ /** Ctor from a istream. It just passes the stream to EO, subclasses should
+     have to implement this.
+     @param _is the input stream
  */ 
   eo1d( istream& _is): EO<fitnessT>( _is ){};
 
@@ -77,7 +95,7 @@ public:
       @return what's inside the gene, with the correct type
 	  @exception out_of_range if _i > size()
     */
-  virtual T gene( unsigned _i ) const = 0;
+  virtual T getGene( unsigned _i ) const = 0;
 
   /** Overwrites the gene placed in position _i with a
    * new value. This means that the assignment operator
@@ -86,7 +104,7 @@ public:
    @return what's inside the gene, with the correct type
    @exception out_of_range if _i > size()
   */
-  virtual T& gene( unsigned _i ) = 0;
+  virtual void setGene( unsigned _i, const T& _value ) = 0;
 
   /** Inserts a gene, moving the rest to the right. If
    * _i = length(), it should insert it at the end.
@@ -116,19 +134,21 @@ public:
   virtual void readFrom(istream& _s) {
 
     for ( unsigned i = 0; i < length(); i ++ ) {
-      _s >> gene( i );
+      T tmp;
+      _s >> tmp;
+      setGene( i, tmp );
     }
     // there is no way of distinguishing fitness from the object, so
     // it's skipped
   }
 
-  /** Print itself: inherited from eoObject implementation. Declared virtual so that 
-      it can be reimplemented anywhere. Instance from base classes are processed in
-	  base classes, so you don´t have to worry about, for instance, fitness.
+  /** Print itself: inherited from eoObject implementation. 
+      Instance from base classes are processed in
+      base classes, so you don´t have to worry about, for instance, fitness.
   @param _s the ostream in which things are written*/
   virtual void printOn( ostream& _s ) const{
     for ( unsigned i = 0; i < length(); i ++ ) {
-      _s << gene( i ) << " ";
+      _s << getGene( i ) << " ";
     }
   }
 

@@ -19,7 +19,7 @@ template<class Chrom> class eoInsertion: public eoMerge<Chrom>
 {
  public:
   /// (Default) Constructor.
-  eoInsertion(const float& _rate = 1.0): eoMerge(_rate) {}
+  eoInsertion(const float& _rate = 1.0): eoMerge<Chrom>(_rate) {}
 
   /**
    * Creates a new population based on breeders and original populations.

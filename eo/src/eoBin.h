@@ -25,20 +25,20 @@ template <class F> class eoBin: public eoVector<bool, F>
    * (Default) Constructor.
    * @param size Size of the binary string.
    */
-  eoBin(const unsigned& size = 0, const bool& value = false): 
+  eoBin(unsigned size = 0, bool value = false): 
     eoVector<bool,F>(size, value) {}
   
   /**
    * Constructor.
    * @param size Size of the binary string.
    */
-  eoBin(const unsigned& size, const eoRnd<bool>& rnd): eoVector<bool,F>(size) 
+  eoBin(unsigned size, const eoRnd<bool>& rnd): eoVector<bool,F>(size) 
     {
       generate(begin(), end(), rnd);
     }
   
-  /// Constructor from istream.
-  /// @param is The istream to read from.
+  /** Constructor from istream.
+      @param is The istream to read from.*/
   eoBin(istream& _is):eoVector<bool,F>(_is){};
   
   /// My class name.
