@@ -91,6 +91,10 @@ SOURCE=..\src\utils\eoFileMonitor.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\eoFunctorStore.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\utils\eoParser.cpp
 # End Source File
 # Begin Source File

@@ -43,8 +43,8 @@ eoParser::eoParser ( int _argc, char **_argv , string _programDescription, strin
 {
     // need to process the param file first 
     // if we want command-line to have highest priority
-
-    for (int i = 1; i < _argc; ++i)
+	unsigned i;
+    for (i = 1; i < _argc; ++i)
       {
 	if (_argv[i][0] == '@')
 	  { // read response file
@@ -69,7 +69,7 @@ eoParser::eoParser ( int _argc, char **_argv , string _programDescription, strin
     // now read arguments on command-line
     strstream stream;
     
-    for (int i = 1; i < _argc; ++i)
+    for (i = 1; i < _argc; ++i)
     {
         stream << _argv[i] << '\n';
     }

@@ -135,5 +135,9 @@ SOURCE=..\test\real_value.h
 
 # PROP Default_Filter "ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 # End Group
+# Begin Source File
+
+SOURCE=.\eolib___Win32_Debug\eolib.lib
+# End Source File
 # End Target
 # End Project

@@ -4,10 +4,11 @@
 #include <utils/eoMonitor.h>
 #include <utils/eoFileMonitor.h>
 #include <utils/eoStdoutMonitor.h>
+#ifndef _MSC_VER
 #include <utils/eoGnuplot1DMonitor.h>
+#include <utils/eoGnuplot1DSnapshot.h>
+#endif
 #include <utils/eoCheckPoint.h>
 #include <utils/eoStat.h>
 #include <utils/eoScalarFitnessStat.h>
-#include <utils/eoGnuplot1DMonitor.h>
-#include <utils/eoGnuplot1DSnapshot.h>
 #include <utils/eoFDCStat.h>
