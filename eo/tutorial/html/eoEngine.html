@@ -2,55 +2,27 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdk i686) [Netscape]">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdksmp i686) [Netscape]">
    <title>Genetic Engine</title>
 </head>
 <body text="#000000" link="#0000EF" vlink="#51188E" alink="#FF0000" background="beige009.jpg">
-<a href="eoTopDown.html">Algorithm-Based</a> - <a href="eoBottomUp.html">Component-Based</a>
-- <a href="eoProgramming.html">Programming hints</a> - <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
-documentation</a></font></font></b>
+<b><font color="#CC0000">General: </font></b><a href="eoTopDown.html">Algorithm-Based</a>
+- <a href="eoBottomUp.html">Component-Based</a> - <a href="eoProgramming.html">Programming
+hints</a> - <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
+documentation
+<hr WIDTH="100%"></a></font></font><font color="#CC0000">Local: </font></b><a href="#introduction">Introduction</a>&nbsp;
+- <a href="#selection">Selection</a> - <a href="#replacement">Replacement</a>
+- <a href="#popular">Popular evolution engines</a> - <a href="#tournament">Tournaments</a>
+- <a href="#merge">Merge</a> - <a href="#reduce">Reduce</a> - <a href="#howmany">HowMany</a>
+- <a href="#SAD">SurviveAndDie</a>
 <hr WIDTH="100%">
 <center>
 <h1>
 <b><font color="#CC0000">Evolution Engine</font></b></h1></center>
 
-<p><br><b><font color="#000099"><font size=+2>Contents</font></font></b>
-<ul>
-<li>
-<a href="#introduction">Introduction</a></li>
-
-<li>
-<a href="#selection">Selection</a> choice of parents that will be allowed
-to <b><font color="#FF6600">reproduce</font></b></li>
-
-<li>
-<a href="#replacement">Replacement</a> choice of individuals that will
-<b><font color="#FF6600">survive</font></b></li>
-
-<li>
-Popular <a href="#popular">evolution engines</a> all historical evolution
-engines are implemented in EO</li>
-
-<li>
-Helper classes:</li>
-
-<li>
-<a href="#tournament">tournaments</a>, are intensively used within selection
-and replacement procedures</li>
-
-<li>
-<a href="#howmany">rate-or-number</a> is used to decide whether to return
-a relative (to the current population size) or absolute number, when something
-should return more than one individual.</li>
-
-<li>
-<a href="#SAD">Survive-and-die</a>, a functor class with two populations
-arguments: saves some from the first in the second, and kill some others
-from the first. Used in replacements only.</li>
-</ul>
-
 <hr WIDTH="100%">
-<br><a NAME="introduction"></a><b><font color="#000099"><font size=+2>Introduction</font></font></b>
+<br><a NAME="introduction"></a><b><font color="#000099"><font size=+2>Evolution
+Engines</font></font></b>
 <p>The term <b><font color="#FF6600">evolution engine</font></b> denotes
 the different parts of an Evolutionary Algorithm that simulate the Darwinism:
 <center>
@@ -124,6 +96,20 @@ and you can probably guess what each of them actually does :-)</li>
 
 <br>&nbsp;
 <p>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
 <p>Available <font color="#FF6600">instances of eoMergeReduce</font> replacement
 include
 <ul>
@@ -371,8 +357,8 @@ as parameter in the constructor (default is 0.75).</li>
 
 <p><br>
 <hr WIDTH="100%">
-<br><a NAME="howmany"></a><b><font color="#000099"><font size=+2>Relative
-or absolute number of individuals</font></font></b>
+<br><a NAME="howmany"></a><b><font color="#000099"><font size=+2>eoHowMany:
+Choosing a number of individuals</font></font></b>
 <p>Many classes in selection/replacement procedures will handle a number
 of individuals that may either be fixed or be a fraction of some argument-population
 size.
@@ -401,7 +387,8 @@ derives from
 <p>Its constructor takes 2 argumenrts:
 <center>
 <p><b><tt><font color="#993300">eoHowMany(double _rate, bool _interpret_as_rate
-= true)</font></tt></b></center>
+=
+true)</font></tt></b></center>
 so by default the double is indeed interpreted as a rate.
 <p>It is used in <font color="#009900">eoSelectMany</font> (which supersedes
 <font color="#009900">eoSelectPerc</font>
@@ -413,15 +400,22 @@ methods.
 <br><a NAME="SAD"></a><b><font color="#000099"><font size=+2>Survive and
 Die</font></font></b>
 <p>
-<hr WIDTH="100%"><a href="eoTopDown.html">Algorithm-Based</a> - <a href="eoBottomUp.html">Component-Based</a>
-- <a href="eoProgramming.html">Programming hints</a> -<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
-documentation</a></font></font></b>
+<hr WIDTH="100%"><b><font color="#CC0000">Local: </font></b><a href="#introduction">Introduction</a>&nbsp;
+- <a href="#selection">Selection</a> - <a href="#replacement">Replacement</a>
+- <a href="#popular">Popular evolution engines</a> - <a href="#tournament">Tournaments</a>
+- <a href="#merge">Merge</a> - <a href="#reduce">Reduce</a> - <a href="#howmany">HowMany</a>
+- <a href="#SAD">SurviveAndDie</a>
 <br>
-<hr>
+<hr WIDTH="100%">
+<br><b><font color="#CC0000">General: </font></b><a href="eoTopDown.html">Algorithm-Based</a>
+- <a href="eoBottomUp.html">Component-Based</a> - <a href="eoProgramming.html">Programming
+hints</a> - <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
+documentation</a></font></font></b>
+<hr WIDTH="100%">
 <address>
 <a href="mailto:Marc.Schoenauer@polytechnique.fr">Marc Schoenauer</a></address>
 
 <br><!-- Created: Mon Oct 30 07:27:13 CET 2000 --><!-- hhmts start -->Last
-modified: Tue. Dec. 5 2000&nbsp;<!-- hhmts end -->
+modified: Tue. Dec. 19 2000&nbsp;<!-- hhmts end -->
 </body>
 </html>

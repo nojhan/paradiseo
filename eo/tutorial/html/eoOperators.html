@@ -2,12 +2,12 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdk i686) [Netscape]">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdksmp i686) [Netscape]">
    <title>Variation Operators</title>
 </head>
 <body text="#000000" link="#0000EF" vlink="#51188E" alink="#FF0000" background="beige009.jpg">
-<b><font color="#FF0000">General</font></b>: <a href="eoTopDown.html">Algorithm-Based
-page</a> - <a href="eoBottomUp.html">Component-Based</a> - <a href="eoProgramming.html">Programming
+<b><font color="#FF0000">General</font></b>: <a href="eoTopDown.html">Algorithm-Based</a>
+- <a href="eoBottomUp.html">Component-Based</a> - <a href="eoProgramming.html">Programming
 hints</a> - <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
 documentation</a></font></font></b>
 <br>
@@ -105,8 +105,7 @@ the <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_
 class.</li>
 </ul>
 
-<hr WIDTH="100%">
-<a NAME="crossover"></a><b><font size=+1><font color="#000099">Simple
+<hr WIDTH="100%"><a NAME="crossover"></a><b><font size=+1><font color="#000099">Simple
 operators: </font><font color="#FF0000">Crossover</font></font></b>
 <p>The characteristic of crossover operators is that they involve two parents.
 However, there are crossover operators that generate two parents, and some
@@ -236,8 +235,7 @@ EO might not know it should compute the fitness again and will keep the
 old value.</li>
 </ul>
 
-<hr WIDTH="100%">
-<a NAME="proportional_simple"></a><b><font size=+1><font color="#000099">Combining
+<hr WIDTH="100%"><a NAME="proportional_simple"></a><b><font size=+1><font color="#000099">Combining
 simple operators: </font><font color="#FF0000">proportional combinations</font></font></b>
 <p>The best thing to do is to go to the <a href="eoLesson2.html#combined_operators">Lesson2</a>
 of the tutorial, where everything is explained. You will find out how you
@@ -289,18 +287,18 @@ _pop)</font></tt></b>
 <br><b><tt><font color="#993300">{</font></tt></b>
 <br><tt><font color="#993300"><b>&nbsp; EOT &amp; eo1 = *_pop; </b>// get
 (select if necessary) the guy</font></tt>
-<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 </b>// advance</font></tt>
 <br><tt><font color="#993300"><b>&nbsp; EOT &amp; eo2 = *_pop; </b>// get
 (select if necessary) the guy</font></tt>
-<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 </b>// advance</font></tt>
 <br><b><tt><font color="#993300">...</font></tt></b>
 <br><tt><font color="#993300"><b>&nbsp; EOT &amp; eoN = *_pop; </b>// get
 (select if necessary) the guy</font></tt>
-<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 </b>// advance</font></tt>
 <p><tt><font color="#993300">// do whatever the operator is supposed to
@@ -320,14 +318,12 @@ were parents</font>, it needs to insert them into the list using the <b><tt><fon
 method of the class <b><font color="#999900">eoPopulator</font></b> as
 in the following:</li>
 
-<br>&nbsp;
-<p>&nbsp;
-<p><b><tt><font color="#993300">void operator()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
+<p><br><b><tt><font color="#993300">void operator()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
 _pop)</font></tt></b>
 <br><b><tt><font color="#993300">{</font></tt></b>
 <br><tt><font color="#993300"><b>&nbsp; EOT &amp; eo1 = *_pop; </b>// get
 (select if necessary) the guy</font></tt>
-<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 </b>// advance</font></tt>
 <br><tt><font color="#993300">&nbsp; // Now create second offspring - eo1
@@ -351,36 +347,45 @@ If you think "generational", the first idea is to get the parents from
 outside the curent list, so the total number of (intermediate) offspring
 is always equal to the initial population size. By chance, the <b><font color="#999900">eoPopulator</font></b>has
 a handle on the initial population that was used to start the process,
-and you can access it from inside the GenOp method. For instance
+and you can access it from inside the GenOp method. For instance</li>
+
+<br>&nbsp;
+<p>&nbsp;
 <p><b><tt><font color="#993300">void operator()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
 _pop)</font></tt></b>
 <br><b><tt><font color="#993300">{</font></tt></b>
 <br><tt><font color="#993300"><b>&nbsp; EOT &amp; eo1 = *_pop; </b>// get
 (select if necessary) the guy</font></tt>
-<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>// advance</font></tt>
+<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</b>// advance</font></tt>
 <br><b><tt><font color="#993300">&nbsp; const EOT &amp; eo2 = </font><font color="#009900">select</font><font color="#993300">(_pop.source());</font></tt></b>
 <p>where select is any selector you like. Note the const: you are not allowed
 to modify an element of the original population (but you could of course
 have copied it!). Now to find out where that selector comes from, you'll
-have to wait until next section. If you can't wait, go directly there.</li>
-
+have to wait until next section. If you can't wait, go directly there.
 <li>
 If you don't care about the size of the offspring population, you can use
 the delete method of the class <b><font color="#999900">eoPopulator</font></b>.
-For instance
+For instance</li>
+
 <br><b><tt><font color="#993300">void operator()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
 _pop)</font></tt></b>
 <br><b><tt><font color="#993300">{</font></tt></b>
 <br><tt><font color="#993300"><b>&nbsp; EOT &amp; eo1 = *_pop; </b>// get
 (select if necessary) the guy</font></tt>
-<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>// advance</font></tt>
+<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</b>// advance</font></tt>
 <br><tt><font color="#993300"><b>&nbsp; EOT &amp; eo2 = *_pop; </b>// get
 (select if necessary) the guy</font></tt>
-<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>// advance</font></tt>
+<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</b>// advance</font></tt>
 <br><tt><font color="#993300">&nbsp; // do whatever needs to be done, modifying
 eo1 but not eo2</font></tt>
 <br><tt><font color="#993300"><b>&nbsp; _pop.delete();&nbsp;&nbsp; </b>//
-removes (untouched) eo2 from the list</font></tt></li></ul>
+removes (untouched) eo2 from the list</font></tt></ul>
 </ul>
 <b><font color="#FF6600">Warning</font></b>: if you use operators that
 have different number of parents than offspring, you are deviating from
@@ -636,10 +641,10 @@ _pop)</font></tt></b>
 <br><b><tt><font color="#993300">{</font></tt></b>
 <br><tt><font color="#993300"><b>&nbsp; EOT &amp; eo1 = *_pop; </b>// get
 (select if necessary) the first guy</font></tt>
-<br><b><tt><font color="#993300">&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><b><tt><font color="#993300">&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 </font></tt></b><tt><font color="#993300">// advance</font></tt>
-<br><b><tt><font color="#993300">&nbsp; EOT &amp; eo2 = </font><font color="#009900">findBlonde</font><font color="#993300">(_pop.source());&nbsp;
+<br><b><tt><font color="#993300">&nbsp; EOT &amp; eo2 = </font><font color="#009900">findBlonde</font><font color="#993300">(_pop.source());
 
 </font></tt></b><tt><font color="#993300">// select mate</font></tt>
 <br><tt><font color="#993300">// do whatever the operator is supposed to
@@ -656,8 +661,8 @@ in its constructor for instance, which should give something like:
 - <a href="#proportional_simple">Combinations</a> - <a href="#general">General
 Operators</a> - <a href="#populators">Populators</a> - <a href="#general_combination">General
 combinations</a>- <a href="#advanced_general">Advanced operators
-<hr WIDTH="100%"></a><b><font color="#FF0000">General</font></b>: <a href="eoTopDown.html">Algorithm-Based
-page</a> - <a href="eoBottomUp.html">Component-Based</a> - <a href="eoProgramming.html">Programming
+<hr WIDTH="100%"></a><b><font color="#FF0000">General</font></b>: <a href="eoTopDown.html">Algorithm-Based</a>
+- <a href="eoBottomUp.html">Component-Based</a> - <a href="eoProgramming.html">Programming
 hints</a> -<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
 documentation</a></font></font></b>
 <br>
