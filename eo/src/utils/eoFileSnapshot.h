@@ -83,6 +83,10 @@ public :
    */
   virtual bool hasChanged() {return boolChanged;}
 
+  /** accessor to the counter: needed by the gnuplot subclass
+   */
+  unsigned getCounter() {return counter;}
+
   /** accessor to the current filename: needed by the gnuplot subclass
    */
   string getFileName() {return currentFileName;}
