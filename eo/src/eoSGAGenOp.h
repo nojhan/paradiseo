@@ -87,55 +87,5 @@ class eoSGAGenOp : public eoGenOp<EOT>
   eoSequentialOp<EOT> op;
 };
 
-/** ***************************************************************************
- * eoASGAGenOp (for Almost Simple GE) mimicks proportional application of 
- * one crossover and one mutation, together with a clone operator, each one
- * with relative weights.
- * This is the other almost-standard application of variation operators 
- * (see eoSGAGenOp for the completely standard).
- *****************************************************************************/
-template<class EOT> 
-class eoASGAGenOp : public eoGenOp<EOT>
-{
- public:
-    
-  /** Ctor from crossover (with proba) and mutation (with proba)
-   * Builds the sequential op that first applies a proportional choice
-   * between the crossover and nothing (cloning), then the mutation
-   */
-  eoASGAGenOp(eoQuadOp<EOT>& _cross, double _pCross, 
-		 eoMonOp<EOT>& _mut, double _pMut, double _pCopy)
-    : cross(_cross),
-      pCross(_pCross),
-      mut(_mut), 
-      pMut(_pMut),
-      pCopy(_pCopy)
-  {
-    op.add(cross, pCross); // crossover, with proba pcross
-    op.add(quadClone, pCopy); // nothing, with proba pCopy
-    op.add(mut, pMut);     // mutation, with proba pmut
-  }
-  
-  /** do the job: delegate to op */
-  virtual void apply(eoPopulator<EOT>& _pop)
-  {
-    op.apply(_pop);
-  }
-
-  /** inherited from eoGenOp */
-  virtual unsigned max_production(void) {return 2;}
-
-  virtual string className() const {return "eoASGAGenOp";}
-
-
- private:
-  eoQuadOp<EOT> &cross;   // eoInvalidateXXX take the boolean output
-  double pCross;
-  eoMonOp<EOT> & mut;      // of the XXX op and invalidate the EOT
-  double pMut;
-  eoMonCloneOp<EOT> monClone;
-  eoProportionalOp<EOT> op;
-};
-
 
 #endif
