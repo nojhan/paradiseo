@@ -7,7 +7,7 @@
 #include <iostream>                // cerr cout
 #include <fstream>                 // ifstream
 #include <string>                  // string
-#include <eo>                      // all usefull eo stuff\
+#include <eo>                      // all usefull eo stuff
 
 #include "mastermind.h"            // Chrom eoChromInit eoChromMutation eoChromXover eoChromEvaluator
 
