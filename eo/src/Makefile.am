@@ -5,6 +5,7 @@
 ###############################################################################
 
 SUBDIRS = es ga gp utils other
+CPPFLAGS = -O2
 
 lib_LIBRARIES = libeo.a
 libeo_a_SOURCES = eoPrintable.cpp eoPersistent.cpp eoFunctorStore.cpp 
