@@ -33,22 +33,28 @@
 #include <utils/eoStat.h>
 
 /** eoCheckPoint is a container class.
-    It contains an eoContinue, and vertors of (pointers to) 
+    It contains vectors of (pointers to) 
+             eoContinue    (modif. MS July 16. 2002)
              eoStats, eoUpdater and eoMonitor
     it is an eoContinue, so its operator() will be called every generation - 
-             and will return the contained-eoContinue result
+             and will return the contained-combined-eoContinue result
     but before that it will call in turn every single 
-             {statistics, updaters, monitors} that it has been given.
+             {statistics, updaters, monitors} that it has been given,
+    and after that, if stopping, all lastCall methods of the above.
 */
 template <class EOT>
 class eoCheckPoint : public eoContinue<EOT>
 {
 public :
 
-    eoCheckPoint(eoContinue<EOT>& _cont) : cont(_cont) {}
+    eoCheckPoint(eoContinue<EOT>& _cont) 
+  {
+    continuators.push_back(&_cont);
+  }
 
     bool operator()(const eoPop<EOT>& _pop);
 
+    void add(eoContinue<EOT>& _cont) { continuators.push_back(&_cont); }
     void add(eoSortedStatBase<EOT>& _stat) { sorted.push_back(&_stat); }
     void add(eoStatBase<EOT>& _stat) { stats.push_back(&_stat); }
     void add(eoMonitor& _mon)        { monitors.push_back(&_mon); }
@@ -58,7 +64,7 @@ public :
 
 private :
 
-    eoContinue<EOT>& cont;
+  std::vector<eoContinue<EOT>*>    continuators;
     std::vector<eoSortedStatBase<EOT>*>    sorted;
     std::vector<eoStatBase<EOT>*>    stats;
     std::vector<eoMonitor*> monitors;
@@ -90,7 +96,10 @@ bool eoCheckPoint<EOT>::operator()(const eoPop<EOT>& _pop)
     for (i = 0; i < monitors.size(); ++i)
         (*monitors[i])();
 
-    bool bContinue = cont(_pop);
+    bool bContinue = true;
+    for (unsigned i = 0; i < continuators.size(); ++i)
+      if ( !(*continuators[i])(_pop) ) 
+	bContinue = false;
 
     if (! bContinue)	   // we're going to stop: lastCall, gentlemen
       {
