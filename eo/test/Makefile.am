@@ -4,13 +4,13 @@
 ##
 ###############################################################################
 
-DEPS = $(top_builddir)/src/libeo.a
+DEPS = $(top_builddir)/src/libeo.a $(top_builddir)/src/obsolete/libeoobsolete.a $(top_builddir)/src/utils/libeoutils.a
 EXTRA_DIST = LICENSE
 
 ###############################################################################
 
-INCLUDES = -I$(top_builddir)/src -I$(top_builddir)/src/ga -I$(top_builddir)/src/utils
-LDADDS = $(top_builddir)/src/libeo.a
+INCLUDES = -I$(top_builddir)/src -I$(top_builddir)/src/es -I$(top_builddir)/src/ga -I$(top_builddir)/src/gp -I$(top_builddir)/src/obsolete -I$(top_builddir)/src/utils
+LDADDS = $(top_builddir)/src/libeo.a $(top_builddir)/src/obsolete/libeoobsolete.a $(top_builddir)/src/utils/libeoutils.a
 
 ###############################################################################
 
