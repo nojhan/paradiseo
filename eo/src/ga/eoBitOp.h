@@ -15,6 +15,9 @@
 
 /** @name BitWise Genetic operators
 
+\class eoBinRandom eoBitOp.h ga/eoBitOp.h
+\ingroup bitstring
+
 Even as these operators might seem general, they are particular versions of genetic
 operators useful only for binary operators. As any set of genetic operators, it must
 have a factory that knows how to build them from a description
@@ -47,7 +50,10 @@ template<class Chrom> class eoBinRandom: public eoMonOp<Chrom>
 };
 
 
-/** eoBinBitFlip --> chages a bit */
+/** eoBinBitFlip --> changes a bit 
+\class eoBinBitFlip eoBitOp.h ga/eoBitOp.h
+\ingroup bitstring
+*/
 
 template<class Chrom> class eoBinBitFlip: public eoMonOp<Chrom>
 {
@@ -68,7 +74,10 @@ template<class Chrom> class eoBinBitFlip: public eoMonOp<Chrom>
 };
 
 
-/** eoBinMutation --> classical mutation */
+/** eoBinMutation --> classical mutation 
+\class eoBinMutation eoBitOp.h ga/eoBitOp.h
+\ingroup bitstring
+*/
 
 template<class Chrom> class eoBinMutation: public eoMonOp<Chrom>
 {
@@ -99,7 +108,10 @@ template<class Chrom> class eoBinMutation: public eoMonOp<Chrom>
 };
 
 
-/** eoBinInversion: inverts the bits of the chromosome between an interval */
+/** eoBinInversion: inverts the bits of the chromosome between an interval 
+\class eoBinInversion eoBitOp.h ga/eoBitOp.h
+\ingroup bitstring
+*/
 
 template<class Chrom> class eoBinInversion: public eoMonOp<Chrom>
 {
@@ -124,7 +136,10 @@ template<class Chrom> class eoBinInversion: public eoMonOp<Chrom>
 };
 
 
-/** eoBinNext --> next binary value */
+/** eoBinNext --> next binary value 
+\class eoBinNext eoBitOp.h ga/eoBitOp.h
+\ingroup bitstring
+*/
 
 template<class Chrom> class eoBinNext: public eoMonOp<Chrom>
 {
@@ -153,7 +168,10 @@ template<class Chrom> class eoBinNext: public eoMonOp<Chrom>
 };
 
 
-/** eoBinPrev --> previos binary value */
+/** eoBinPrev --> previous binary value 
+\class eoBinPrev eoBitOp.h ga/eoBitOp.h
+\ingroup bitstring
+*/
 
 template<class Chrom> class eoBinPrev: public eoMonOp<Chrom>
 {
@@ -182,7 +200,10 @@ template<class Chrom> class eoBinPrev: public eoMonOp<Chrom>
 };
   
 
-/** eoBinCrossover --> classic 2-point crossover */
+/** eoBinCrossover --> classic 2-point crossover 
+\class eoBinCrossover eoBitOp.h ga/eoBitOp.h
+\ingroup bitstring
+*/
 
 template<class Chrom> class eoBinCrossover: public eoQuadraticOp<Chrom>
 {
@@ -203,7 +224,10 @@ template<class Chrom> class eoBinCrossover: public eoQuadraticOp<Chrom>
 };
   
 
-/** eoBinNxOver --> n-point crossover */
+/** eoBinNxOver --> n-point crossover 
+\class eoBinNxOver eoBitOp.h ga/eoBitOp.h
+\ingroup bitstring
+*/
 
 template<class Chrom> class eoBinNxOver: public eoQuadraticOp<Chrom>
 {
@@ -261,7 +285,10 @@ template<class Chrom> class eoBinNxOver: public eoQuadraticOp<Chrom>
 };
 
 
-/** eoBinGxOver --> gene crossover */
+/** eoBinGxOver --> gene crossover 
+\class eoBinGxOver eoBitOp.h ga/eoBitOp.h
+\ingroup bitstring
+*/
 
 template<class Chrom> class eoBinGxOver: public eoQuadraticOp<Chrom>
 {

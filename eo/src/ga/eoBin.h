@@ -29,8 +29,16 @@
 #include <string>      // string
 #include <eoVector.h>  // EO
 
+/**
+\defgroup bitstring
+
+  Various functions for a bitstring representation
+*/
+
 /** eoBin: implementation of binary chromosome.                               
- * based on STL's bit_vector (vector<bool>).                                 
+\class eoBin eoBin.h ga/eoBin.h
+\ingroup bitstring
+  * based on STL's bit_vector (vector<bool>).                                 
 */
 template <class F> class eoBin: public eoVector<bool, F>
 {
