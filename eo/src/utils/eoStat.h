@@ -341,10 +341,13 @@ public :
       : eoStat<EOT, Fitness>(Fitness(), _description) {}
     eoBestFitnessStat(unsigned _whichTerm, std::string _description = "Best ") 
       : eoStat<EOT, Fitness>(Fitness(), _description), whichFitnessTerm(_whichTerm) {}
-
-    void operator()(const eoPop<EOT>& _pop)
-    {
-      doit(_pop, Fitness());
+  
+    void operator()(const eoPop<EOT>& _pop){
+#ifdef _MSC_VER
+        doit(_pop, EOT::Fitness() ); // specializations for scalar and std::vector
+#else
+        doit(_pop, typename EOT::Fitness()); // specializations for scalar and std::vector
+#endif
     }
 
 private :

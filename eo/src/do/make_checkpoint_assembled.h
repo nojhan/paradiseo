@@ -103,11 +103,11 @@ eoCheckPoint<EOT>& do_make_checkpoint_assembled(eoParser& _parser, eoState& _sta
 
   // best vals
   std::vector<eoBestFitnessStat<EOT>* > bestvals( nTerms );
-  for (unsigned i=0; i < nTerms; ++i){
-    std::string descr = fitness_descriptions[i] + " of best ind.";
-    bestvals[i] = new eoBestFitnessStat<EOT>(i, descr);
-    _state.storeFunctor( bestvals[i] );
-    checkpoint->add( *bestvals[i] );
+  for (unsigned j=0; j < nTerms; ++j){
+    std::string descr = fitness_descriptions[j] + " of best ind.";
+    bestvals[j] = new eoBestFitnessStat<EOT>(j, descr);
+    _state.storeFunctor( bestvals[j] );
+    checkpoint->add( *bestvals[j] );
   }
   
   // STDOUT
@@ -123,8 +123,8 @@ eoCheckPoint<EOT>& do_make_checkpoint_assembled(eoParser& _parser, eoState& _sta
   monitor->add( *bestvals[0] );
 
   // Add all average vals
-  for (unsigned i=0; i < nTerms; ++i)
-    monitor->add( *avgvals[i] );
+  for (unsigned l=0; l < nTerms; ++l)
+    monitor->add( *avgvals[l] );
   
   // GNUPLOT
   // -------
@@ -145,14 +145,14 @@ eoCheckPoint<EOT>& do_make_checkpoint_assembled(eoParser& _parser, eoState& _sta
     checkpoint->add(*fitSnapshot);
 
     std::vector<eoGnuplot1DMonitor*> gnumonitors(nTerms, NULL );    
-    for (unsigned i=0; i < nTerms; ++i){
-      stmp = dirName + "/gnuplot_" + fitness_descriptions[i] + ".xg";
-      gnumonitors[i] = new eoGnuplot1DMonitor(stmp,true);
-      _state.storeFunctor(gnumonitors[i]);
-      checkpoint->add(*gnumonitors[i]);
-      gnumonitors[i]->add(*generationCounter);
-      gnumonitors[i]->add(*bestvals[i]);
-      gnumonitors[i]->add(*avgvals[i]);
+    for (unsigned k=0; k < nTerms; ++k){
+      stmp = dirName + "/gnuplot_" + fitness_descriptions[k] + ".xg";
+      gnumonitors[k] = new eoGnuplot1DMonitor(stmp,true);
+      _state.storeFunctor(gnumonitors[k]);
+      checkpoint->add(*gnumonitors[k]);
+      gnumonitors[k]->add(*generationCounter);
+      gnumonitors[k]->add(*bestvals[k]);
+      gnumonitors[k]->add(*avgvals[k]);
     }
 
   }
