@@ -109,8 +109,10 @@ public:
   void defValue ( std::string str ) { repDefault = str; };
   
   /**
-   * Returns the value of the param as a std::string
+   * ALlows to change the name (see the prefix in eoParser.h)
    */
+  void setLongName(std::string _longName) { repLongName = _longName;}
+
   /**
    * Returns if required or not.
    */
