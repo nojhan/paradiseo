@@ -204,7 +204,7 @@ int correct(const mlp::net& net, const mlp::set& set)
   
   for (mlp::set::const_iterator s = set.begin(); s != set.end(); ++s)
     {
-      int partial = 0;
+      unsigned partial = 0;
       
       for (unsigned i = 0; i < s->output.size(); ++i)
         if (s->output[i] < 0.5 && net(s->input)[i] < 0.5 ||

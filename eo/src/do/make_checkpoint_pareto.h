@@ -27,13 +27,22 @@
 #ifndef _make_checkpoint_pareto_h
 #define _make_checkpoint_pareto_h
 
-#include <stdlib.h>
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
-#include "eoParetoFitness.h"
-#include "utils/selectors.h"
+#include <stdlib.h>
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
+#include <strstream>
+#endif
+
 #include "EO.h"
+#include "eoParetoFitness.h"
 #include "eoEvalFuncCounter.h"
 #include "utils/checkpointing"
+#include "utils/selectors.h"
 
 // at the moment, in utils/make_help.cpp
 // this should become some eoUtils.cpp with corresponding eoUtils.h
@@ -83,10 +92,17 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
      * eoSortedPopStat   : whole population - type std::string (!!)
      */
 
-  eoValueParam<eoParamParamType>& fPlotParam = _parser.createParam(eoParamParamType("1(0,1)"), "frontFileFrequency", "File save frequency in objective spaces (std::pairs of comma-separated objectives in 1 single parentheses std::pair)", '\0', "Output - Disk");
+  eoValueParam<eoParamParamType>& fPlotParam = _parser.createParam(
+      eoParamParamType("1(0,1)"), "frontFileFrequency",
+      "File save frequency in objective spaces (std::pairs of comma-separated objectives " \
+      "in 1 single parentheses std::pair)",
+      '\0', "Output - Disk");
 
 #if !defined(NO_GNUPLOT)
-  bool boolGnuplot = _parser.createParam(false, "plotFront", "Objective plots (requires corresponding files - see frontFileFrequency", '\0', "Output - Graphical").value();
+  bool boolGnuplot = _parser.createParam(false, "plotFront",
+                                         "Objective plots (requires corresponding files " \
+                                         "- see frontFileFrequency",
+                                         '\0', "Output - Graphical").value();
 #endif
 
   eoParamParamType & fPlot = fPlotParam.value(); // std::pair<std::string,std::vector<std::string> >
@@ -107,36 +123,52 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
 	  unsigned obj1 = atoi(fPlot.second[i].c_str());
 	  unsigned obj2 = atoi(fPlot.second[i+1].c_str());
 	  eoMOFitnessStat<EOT>* fStat;
-	  if (!bStat[obj1])		   // not already there: create it
-	    {
+	  if (!bStat[obj1]) {		   // not already there: create it
+#ifdef HAVE_SSTREAM
+	      std::ostringstream os;
+	      os << "Obj. " << obj1 << std::ends; 
+	      fStat = new eoMOFitnessStat<EOT>(obj1, os.str().c_str());
+#else
 	      char s[1024];
 	      std::ostrstream os(s, 1022);
 	      os << "Obj. " << obj1 << std::ends; 
 	      fStat = new eoMOFitnessStat<EOT>(obj1, s);
+#endif
 	      _state.storeFunctor(fStat);
 	      bStat[obj1]=true;
 	      theStats[obj1]=fStat;
 	      checkpoint.add(*fStat);
-	    }
-	  if (!bStat[obj2])		   // not already there: create it
-	    {
-	      char s2[1024];
-	      std::ostrstream os2(s2, 1022);
-	      os2 << "Obj. " << obj2 << std::ends; 
-	      fStat = new eoMOFitnessStat<EOT>(obj2, s2);
+          }
+	  if (!bStat[obj2]) {		   // not already there: create it
+#ifdef HAVE_SSTREAM
+	      std::ostringstream os;
+	      os << "Obj. " << obj2 << std::ends; 
+	      fStat = new eoMOFitnessStat<EOT>(obj2, os.str().c_str());
+#else
+	      char s[1024];
+	      std::ostrstream os2(s, 1022);
+	      os << "Obj. " << obj2 << std::ends; 
+	      fStat = new eoMOFitnessStat<EOT>(obj, s);
+#endif
 	      _state.storeFunctor(fStat);
 	      bStat[obj2]=true;
 	      theStats[obj2]=fStat;
 	      checkpoint.add(*fStat);
-	    }
+          }
 
 	  // then the fileSnapshots
+#ifdef HAVE_SSTREAM
+          std::ostringstream os;
+	  os << "Front." << obj1 << "." << obj2 << "." << std::ends; 
+	  eoFileSnapshot& snapshot = _state.storeFunctor(
+              new eoFileSnapshot(dirName, frequency, os.str().c_str()));
+#else
 	  char s3[1024];
 	  std::ostrstream os3(s3, 1022);
 	  os3 << "Front." << obj1 << "." << obj2 << "." << std::ends; 
-	  eoFileSnapshot & snapshot = _state.storeFunctor(new 
-		 eoFileSnapshot(dirName, frequency, s3 ) );
-      
+	  eoFileSnapshot & snapshot = _state.storeFunctor(
+              new eoFileSnapshot(dirName, frequency, s3 ) );
+#endif
 	  checkpoint.add(snapshot);
       
 	  snapshot.add(*theStats[obj1]);

@@ -24,9 +24,11 @@
  */
 //-----------------------------------------------------------------------------
 
+#include <cassert>
 #include <iostream>
+
 #include "eoParetoFitness.h"
-#include <assert.h>
+
 using namespace std;
 
 /** test program for Pareto Fitness */
@@ -192,4 +194,3 @@ int main()
   }
 
 }
-
