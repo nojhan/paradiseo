@@ -1,0 +1,50 @@
+//-----------------------------------------------------------------------------
+// eo
+// (c) GeNeura Team 1998
+//-----------------------------------------------------------------------------
+
+#ifndef _eo_
+#define _eo_
+
+//-----------------------------------------------------------------------------
+
+#include <eoObject.h>
+#include <eoPrintable.h>
+#include <eoPersistent.h>
+#include <EO.h>
+
+#include <eoID.h>
+#include <eoAged.h>
+
+#include <eoVector.h>
+#include <eo1d.h>
+#include <eoString.h>
+#include <eoESChrom.h>
+#include <eoBin.h>
+
+#include <eoRnd.h>
+#include <eoUniform.h>
+#include <eoNormal.h>
+#include <eoNegExp.h>
+
+#include <eoOp.h>
+#include <eoMultiMonOp.h>
+
+#include <eoDup.h>
+#include <eoKill.h>
+#include <eoTranspose.h>
+#include <eoXOver2.h>
+#include <eoMutation.h>
+
+#include <eoPop.h>
+#include <eoPopOps.h>
+
+#include <eoFitness.h>  // what's the matter with you?
+#include <eoProblem.h>  // what's the matter with you?
+
+//#include <eoGA.h>
+
+//-----------------------------------------------------------------------------
+
+#endif _eo_
+

@@ -1,0 +1,90 @@
+// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+
+//-----------------------------------------------------------------------------
+// eoAge.h
+// (c) GeNeura Team, 1998
+//-----------------------------------------------------------------------------
+
+#ifndef EOAGED_H
+#define EOAGED_H
+
+//-----------------------------------------------------------------------------
+
+#include <iostream>  // istream, ostream
+#include <string> // para string
+
+using namespace std;
+
+//-----------------------------------------------------------------------------
+// eoAge
+//-----------------------------------------------------------------------------
+
+/** eoAge is a template class that adds an age to an object.\\
+Requisites for template instantiation are that the object must admit a default ctor 
+and a copy ctor. The Object must be an eoObject, thus, it must have its methods: className,
+printOn, readFrom.
+@see eoObject
+*/
+template <class Object>
+class eoAged: public Object
+{
+ public:
+	/// Main ctor from an already built Object.
+	eoAged( const Object& _o): Object( _o ), age(0) {};
+
+  /// Copy constructor.
+  eoAged( const eoAged& _a): Object( _a ), age( _a.age ) {};
+
+  /// Virtual dtor. They are needed in virtual class hierarchies
+  virtual ~eoAged() {};
+  
+
+  ///returns the age of the object
+  unsigned long Age() const {return age;}
+
+  /// Increments age
+  const eoAged& operator ++ () { age++; return *this;}
+
+  	/** @name Methods from eoObject
+	readFrom and printOn are directly inherited from eo1d
+	*/
+//@{
+  /** Return the class id. This should be redefined in each class; but 
+  it's got code as an example of implementation. Only "leaf" classes
+  can be non-virtual.
+  */
+  virtual string className() const { return string("eoAged")+Object::className(); };
+
+  /**
+   * Read object.
+   * @param _is A istream.
+   * @throw runtime_exception If a valid object can't be read.
+   */
+  virtual void readFrom(istream& _is) {
+	  Object::readFrom( _is );
+	  _is >> age;
+  }
+
+  
+  /**
+   * Write object. It's called printOn since it prints the object _on_ a stream.
+   * @param _os A ostream.
+   */
+  virtual void printOn(ostream& _os) const{
+	  Object::printOn( _os );
+	  _os << age;
+  }
+//@}
+  
+ private:
+
+	 /** Default Constructor. \\
+	 It´s private so that it is not used anywhere; the right way of using this object
+	 is to create an Object and passing it to an aged by means of the copy ctor; that way
+	 it´s turned into an Aged object*/
+	 eoAged(): Object(), age(0) {};
+
+	 unsigned long age;
+};
+
+#endif EOAGE_H
