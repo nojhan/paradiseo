@@ -1,0 +1,237 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.73 [en] (X11; I; Linux 2.2.15-4mdk i686) [Netscape]">
+   <title>Tutorial: Lesson 3</title>
+</head>
+<body text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000" background="beige009.jpg">
+<a href="eoLesson2.html">Lesson 3</a> -
+<a href="eoLesson4.html">Lesson
+5</a> -
+<a href="eoTutorial.html">Main page</a> -
+<a href="eoTopDown.html">Algorithm-Based</a>
+- <a href="eoBottomUp.html">Component-Based</a> - <a href="eoProgramming.html">Hints</a>
+- <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
+documentation</a></font></font></b>
+<br>
+<hr WIDTH="100%"><!-- -------------- End of header ------------------ --><!-- ----------------------------------------------- -->
+<center>
+<h1>
+<font color="#FF0000">Tutorial Lesson 4: fully operational EA</font></h1></center>
+In this lesson, you will still use the same Evolutionary Algorithm. But
+this time you will have <b><font color="#FF6600">full control of all components</font></b>
+from the c<b><font color="#FF6600">ommand-line or a parameter file</font></b>.
+You can even use the algorithm decribed here without any other knowledge
+of EO, just by writing your fitness function as a plain C++ function. This
+is why this lesson starts with a <a href="#programmerguide">user's guide</a>,
+most of it being representation-independent, with some parts that are specific
+of respectively the <a href="#binary">binary</a> and the <a href="#real">real</a>
+algorithms.
+<br>However, the ultimate purpose of this tutorial is to be able to do
+your own experiments - and these these will likely fall outside the scope
+of these two programs. This is why you should also read the programmer's
+guides, as the structure and memory managements are here radically different
+that in the 3 previous lessons - though relying of course on the same objects.
+<br>&nbsp;
+<p>
+<hr WIDTH="100%">
+<br><a NAME="userguide"></a><b><font color="#000099"><font size=+2>User's
+guide</font></font></b>
+<br><font color="#000000">As already said, the behavior of the algorithms
+will be exactly the same as the previous one as far as optimization is
+concerned. Only now you will be able to tune every component of the algorithms
+- except the type of genotype - using run-time parameters.</font>
+<br><font color="#000000">Also, as in previous lessons, most of the code
+is representation-independent, i.e. is the same for both the binary genotypes
+and the real-valued genotypes. This small user's guide reflects that, but
+you can go directly to the <a href="#binary">binary</a> or the <a href="#real">real</a>
+parts if you wish. Parameters input The way to input parameters has already
+be described in <a href="eoLEsson3.html#paraminput">Lesson 3</a>. To get
+a list of parameters, type the command with option --help (or -h): with
+both testBit and testReal this will result in</font>
+<ul>
+<li>
+<font color="#000000">Printing the list of keywords on the standard output</font></li>
+
+<li>
+<font color="#000000">Creating (or overwriting) a file name testBit.status
+or testReal.status that contains the list of all recognized parameters
+and has the format of an input parameter file.</font></li>
+</ul>
+<b><font color="#000099"><font size=+1>User's guide:</font></font></b><font color="#000000">
+</font><b><font color="#FF0000">The status file</font></b>
+<br><font color="#000000">This file will always contain the list of the
+parameters that have been actually used by the last run of the program,
+however thay have been entered (try </font><b><tt><font color="#FF6666"><font size=+1>testBit
+-G1</font></font></tt></b><font color="#000000"> and take a look a the
+status file). The parameters that are commented out (a # character comments
+out the rest of the line) in the file were not specified by the user.</font><font color="#000000"></font>
+<p><b><font color="#000099"><font size=+1>User's guide:</font></font></b><font color="#000000">
+</font><b><font color="#FF0000">Representation-independent parameters</font></b><font color="#000000"></font>
+<br><font color="#000000">The parameters are organized in sections.</font>
+<br><font color="#000000">The first section only contains the random seed.</font><font color="#000000"></font>
+<p><b><tt><font color="#993300"><font size=+1>###### General ######</font></font></tt></b>
+<br><b><tt><font color="#993300"><font size=+1># --help=0 # -h : Prints
+this message</font></font></tt></b>
+<br><font color="#000000">Whether or not help was requested is handled
+through a boolean parameter</font>
+<br><b><tt><font color="#993300"><font size=+1># --seed=988700289 # -S
+: Random number seed</font></font></tt></b>
+<br><font color="#000000">The seed for the <a href="eoProgramming.html#random">Random
+Number Generator</a></font>
+<p><b><tt><font color="#3333FF"><font size=+1>###### Output ######</font></font></tt></b>
+<br><font color="#000000">This section contains parameters related to output
+(to screen, to files, graphical, ...).</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --useEval=1 # Use nb of
+eval. as counter (vs nb of gen.)</font></font></tt></b>
+<br><font color="#000000">Boolean parameter, whether or not you want the
+nb of evluations to be displayed and used as counter in plots</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --printBestStat=1 # Print
+Best/avg/stdev every gen.</font></font></tt></b>
+<br><font color="#000000">Boolean parameter, toggles screen output of indicated
+statistics</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --plotBestStat=0 # Plot
+Best/avg Stat</font></font></tt></b>
+<br><font color="#000000">Boolean parameter, toggles gnuplot output of
+best and average plots (Linux only at the moment)</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --BestFileName=best.xg
+# Name of file for Best/avg/stdev</font></font></tt></b>
+<br><font color="#000000">String parameter, if present, the statistics
+are stored in that file (no default)</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --printPop=0 # Print sorted
+pop. every gen.</font></font></tt></b>
+<br><font color="#000000">Boolean parameter, adds a dump of the whole population
+to the screen every generation</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --printFDC=1 # Print FDC
+coeff. every gen.</font></font></tt></b>
+<br><font color="#000000">Boolean parameter, adds Fitness Distance Correlation
+to output every generation</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --plotFDCStat=0 # Plot
+FDC scatter plot</font></font></tt></b>
+<br><font color="#000000">Boolean parameter, toggles the Fitness Distance
+Correlation plot (Fitness vs distance to best)</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --plotHisto=0 # Plot histogram
+of fitnesses</font></font></tt></b>
+<br><font color="#000000">Boolean parameter: if on, gnuplot is used to
+plot the sorted population (fitness vs rank). Gives a graphical idea of
+the diversity.</font><font color="#000000"></font>
+<p><b><tt><font color="#3333FF"><font size=+1>###### Persistence ######</font></font></tt></b>
+<br><font color="#000000">This section contains parameters handling job
+restart</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --Load= # -L : A save
+file to restart from</font></font></tt></b>
+<br><font color="#000000">String parameter: if present, the initial population
+(and the RNG status) is read from indicated file. That file </font><b><font color="#FF0000">must</font></b><font color="#000000">
+come from a previous save (or must be in same format!), i.e. must contain
+a popualtion, the RNG and all parameters. If no other parameter is modified,
+using a previously saved population and RNG will give exactly the same
+results than having run that previous run longer. And a way to be sure
+to re-use the same parameters is to ... use that very save file as parameter
+file, as it contains all actual parameters in the right format.</font>
+<br><font color="#000000">Note that if not enough individuals are read,
+the remaining are randomly initialized. No default value.</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --recomputeFitness=0 #
+-r : Recompute the fitness after re-loading the pop.?</font></font></tt></b>
+<br><font color="#000000">Boolean parameter: in case some individuals are
+read from a file, their fitness is read too. If this one is true, it is
+nevertheless recomputed.</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --saveFrequency=0 # Save
+every F generation (0 = only final state, absent = never)</font></font></tt></b>
+<br><font color="#000000">Integer parameter: interval between two dump
+to disk of the whole population (+RNG + parameters) to disk, in a file
+named genNN.sav, where NN&nbsp;is the generation number. If this prameter
+is present (even with 0 or negative value), the final population will always
+be saved, whatever the reason for stopping. Hence the only way to avoid
+all saves is to omit the parameter (there is no default value).</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --saveTimeInterval=0 #
+Save every T seconds (0 or absent = never)</font></font></tt></b>
+<br><font color="#000000">Integer parameter: time interval between two
+population (+RNG + parameters) dumps to disks. Files are names timeNN.sav.
+See pervious parameter description for ore details. No default value.</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --status=t-eoGA.status
+# Status file</font></font></tt></b>
+<br><font color="#000000">String parameter: name of the status file (that
+contains all parameters in the input format). There is no way to avoid
+creating that file except recompiling ... or giving the name /dev/null
+(Unix).</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1>###### Stopping criterion
+######</font></font></tt></b>
+<br><font color="#000000">This section allows to decide when the algorithm
+will stop.</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --maxGen=100 # -G : Maximum
+number of generations (0 = none)</font></font></tt></b>
+<br><font color="#000000">Integer parameter: maximum number of generations.
+Default is 0 which is equivalent to infinity.</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --steadyGen=100 # -s :
+Number of generations with no improvement</font></font></tt></b>
+<br><font color="#000000">Integer parameter: stops whenever that number
+of generations is passed without any improvement of the best fitness in
+the population, provided the following minimum number of generations has
+been done. No default value.</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --minGen=0 # -g : Minimum
+number of generations</font></font></tt></b>
+<br><font color="#000000">Integer parameter: the above steadyGen parameter
+starts its job only after that minimum nuber of generations is passed.
+No default value.</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --maxEval=0 # -E : Maximum
+number of evaluations (0 = none)</font></font></tt></b>
+<br><font color="#000000">Integer parameter: maximum number of generations.
+No default value.</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --targetFitness=0 # -T
+: Stop when fitness reaches</font></font></tt></b>
+<br><font color="#000000">Real-valued parameter: the algorithm stops whenever
+the best fitness reaches that target. No default value.</font>
+<br><b><tt><font color="#3333FF"><font size=+1># --CtrlC=0 # -C : Terminate
+current generation upon Ctrl C</font></font></tt></b>
+<br><font color="#000000">Boolean parameter: if true, Ctrl C only stops
+after the current generation as completed (eventually dumping population
+to a file if some saver is active).</font>
+<p><b><tt><font color="#009900"><font size=+1>###### engine ######</font></font></tt></b>
+<br><font color="#000000">In this section, one chooses all components of
+the Evolution Engine (selection, replacemenet and the like).</font>
+<br><b><tt><font color="#009900"><font size=+1># --selection=DetTour(2)
+# -S : Selection: Roulette, DetTour(T), StochTour(t) or Sequential(ordered/unordered)</font></font></tt></b>
+<br><font color="#000000">String parameter: Name of selection procedure.
+Availabable are the </font><b><font color="#FF6600">roulette wheel</font></b><font color="#000000">
+(name </font><b><tt><font color="#009900"><font size=+1>Roulette</font></font></tt></b><font color="#000000">,
+fitness scaling coming soon), </font><b><font color="#FF6600">deterministic
+tournament</font></b><font color="#000000"> (name </font><b><tt><font color="#009900"><font size=+1>DetTour</font></font></tt></b><font color="#000000">
+with size - integer > 2 - in parentheses right after the name, use double
+quotes on the command line),&nbsp; stochastic tournament (name </font><b><tt><font color="#009900"><font size=+1>StochTour</font></font></tt></b><font color="#000000">
+with probability - float in [0.5, 1] - in parentheses), sequential (name
+</font><b><tt><font color="#009900"><font size=+1>Sequential</font></font></tt></b><font color="#000000">,
+all individuals in turn), either from best to worst (option </font><b><tt><font color="#009900"><font size=+1>ordered</font></font></tt></b><font color="#000000">
+in parentheses), or in random ordered (option </font><b><tt><font color="#009900"><font size=+1>unordered</font></font></tt></b><font color="#000000">)
+or finally repeated independent uniform choices&nbsp; (name </font><b><tt><font color="#009900"><font size=+1>Random</font></font></tt></b><font color="#000000">).</font>
+<br><b><tt><font color="#009900"><font size=+1># --offspringRate=100% #
+-O : Nb of offspring (percentage or absolute)</font></font></tt></b><b><tt><font color="#009900"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#009900"><font size=+1># --replacement=Comma # -R
+: Replacement: Comma, Plus or EPTour(T)</font></font></tt></b>
+<br><font color="#000000">String parameter: Name of replacement procedure.
+Availabable are</font>
+<br><b><tt><font color="#009900"><font size=+1># --weakElitism=0 # -w :
+Old best parent replaces new worst offspring *if necessary*</font></font></tt></b>
+<br><font color="#009900"></font>&nbsp;
+<p>
+<hr WIDTH="100%">
+<br><a NAME="programmerguide"></a><b><font color="#000099"><font size=+2>Programmer's
+guide
+<hr WIDTH="100%"></font></font></b><font color="#000000"><a href="eoLesson2.html">Lesson
+3</a> -
+<a href="eoLesson4.html">Lesson 5</a> -
+<a href="eoTutorial.html">Main
+page</a> -
+<a href="eoTopDown.html">Algorithm-Based</a> - <a href="eoBottomUp.html">Component-Based</a>
+- <a href="eoProgramming.html">Hints</a> -<b> <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
+documentation</a></font></font></b></font>
+<br>
+<hr>
+<address>
+<font color="#000000"><a href="mailto:Marc.Schoenauer@polytechnique.fr">Marc
+Schoenauer</a></font></address>
+
+<br><!-- Created: Tue May 1 14:49:12 CET 2001 --><!-- hhmts start --><font color="#000000">Last
+modified: None of your business!</font><!-- hhmts end -->
+</body>
+</html>
