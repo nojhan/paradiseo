@@ -2,7 +2,7 @@
 #include <eo>
 
 //#include <utils/eoMOFitnessStat.h>
-//#include <utils/eoFileSnapshot.h>
+#include <eoNDSorting.h>
 
 using namespace std;
 typedef vector<double> fitness_type;
@@ -10,9 +10,6 @@ typedef vector<double> fitness_type;
 struct eoDouble : public EO<fitness_type>
 {
   double value;
-
-  void printOn(ostream& os) const { os << fitness()[0] << ' ' << fitness()[1] << ' ' << value; }
-  void readFrom(istream& is) { is >> value; }
 };
 
 class Mutate : public eoMonOp<eoDouble>
@@ -30,8 +27,8 @@ class Eval : public eoEvalFunc<eoDouble>
   {
     double v = _eo.value;
     fitness_type f(2);
-    f[0] = v * v;
-    f[1] = (v - 1.) * (v - 1.);
+    f[1] = v * v;
+    f[0] = (v - 1.) * (v - 1.);
 
     _eo.fitness(f);
   }
@@ -64,7 +61,8 @@ void the_main()
   eoDominanceMap<eoDouble>  dominance(maximizes);
 
   // Pareto ranking needs a dominance map
-  eoParetoRanking<eoDouble> perf2worth(dominance);
+  //eoParetoRanking<eoDouble> perf2worth(dominance);
+  eoNDSorting<eoDouble> perf2worth(dominance, 0.0);
 
   // Three selectors
   eoDetTournamentWorthSelect<eoDouble> select1(perf2worth, 3);
@@ -94,6 +92,7 @@ void the_main()
   cp.add(fitness1);
 
   eoGnuplot1DSnapshot snapshot("pareto");
+  snapshot.pointSize =3;
 
   cp.add(snapshot);
 
