@@ -17,7 +17,7 @@ void GetOutputParam(Parser & parser,
   try {
     parser.AddTitle("Separate parameter: the output file name");
     _string = parser.getString("-O", "--OutputFile", "", "The output file name" );
-  } catch (UException & e) {
+  } catch (logic_error & e) {
     cout << e.what() << endl;
     parser.printHelp();
     exit(1);
@@ -34,7 +34,7 @@ void sub(Parser & parser) {
   try {
     parser.AddTitle("Private parameters of subroutine sub");
     i =  parser.getInt("-j", "--sint", "5", "private integer of subroutine" );
-  } catch (UException & e) {
+  } catch (logic_error & e) {
     cout << e.what() << endl;
     parser.printHelp();
     exit(1);
@@ -62,7 +62,7 @@ void getParams( Parser & parser,
     _array = parser.getArray("-a", "--array", "a b", "an array enclosed within < >" );
     _boolean = parser.getBool("-b","--bool", "a bool value" );
   }
-  catch (UException & e)
+  catch (logic_error & e)
     {
       cout << e.what() << endl;
       parser.printHelp();

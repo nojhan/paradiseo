@@ -59,8 +59,8 @@ public:
   /** Gets a non-const reference to an operator, so that it can be changed, 
     modified or whatever 
     @param _id  a previously assigned ID
-    @throw runtime_error if the ID does not exist*/
-  virtual const eoOp<EOT>& getOp( ID _id ) {
+    @throw runtime_error if the ID does not exist*/ 
+  virtual eoOp<EOT>& getOp( ID _id ) {
      MMF::iterator i=begin();
      ID j = 1;
      while ( (i++!=end()) &&  (j++ != _id) );
