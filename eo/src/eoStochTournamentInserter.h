@@ -41,35 +41,36 @@
 template <class EOT>
 class eoStochTournamentInserter : public eoSteadyStateInserter<EOT> 
 {
-    public :
+public :
+  
+  eoStochTournamentInserter(eoEvalFunc<EOT>& _eval, double _t_rate): 
+    eoSteadyStateInserter<EOT>(_eval), t_rate(_t_rate)
+  {
+    if (t_rate < 0.5)
+      { // warning, error?
+	t_rate = 0.55;
+      }
 
-    eoStochTournamentInserter(eoEvalFunc<EOT>& _eval, double _t_rate) : t_rate(_t_rate), eoSteadyStateInserter<EOT>(_eval) 
-    {
-        if (t_rate < 0.5)
-        { // warning, error?
-            t_rate = 0.55;
-        }
-
-        if (t_rate >= 1.0)
-        {
-            t_rate = 0.99; // 1.0 would mean deterministic tournament
-        }
-    }
+    if (t_rate >= 1.0)
+      {
+	t_rate = 0.99; // 1.0 would mean deterministic tournament
+      }
+  }
         
-    eoInserter<EOT>& operator()(const EOT& _eot)
-    {
-        EOT& eo = inverse_stochastic_tournament<EOT>(pop(), t_rate);
-        eo = _eot; // overwrite loser of tournament
+  eoInserter<EOT>& operator()(const EOT& _eot)
+  {
+    EOT& eo = inverse_stochastic_tournament<EOT>(pop(), t_rate);
+    eo = _eot; // overwrite loser of tournament
         
-        eo.invalidate();
-        eval(eo); // Evaluate after insert
-        return *this;
-    }
+    eo.invalidate();
+    eval(eo); // Evaluate after insert
+    return *this;
+  }
 
-    string className(void) const { return "eoStochTournamentInserter"; }
+  string className(void) const { return "eoStochTournamentInserter"; }
 
-    private :
-        double t_rate;
+private :
+  double t_rate;
 };
 
 #endif

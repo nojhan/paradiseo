@@ -110,7 +110,7 @@ int main()
     eoExternalBinOp<FitnessType, External> cross1(UserDefBinCrossover);
     eoExternalQuadraticOp<FitnessType, External> cross2(UserDefQuadCrossover);
 
-    eoExternalEvalFunc<FitnessType, External>   eval(UserDefEvalFunc);
+    // eoExternalEvalFunc<FitnessType, External>   eval(UserDefEvalFunc);
 
     EoType eo1 = init();
     EoType eo2 = init();

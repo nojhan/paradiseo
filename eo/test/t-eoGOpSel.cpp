@@ -25,8 +25,10 @@
 
 //-----------------------------------------------------------------------------// 
 
+#ifndef __GNUG__
 // to avoid long name warnings
 #pragma warning(disable:4786)
+#endif // __GNUG__
 
 #include <iostream>
 

@@ -35,14 +35,14 @@ class eoGOpBreeder: public eoMonPopOp<EOT>
    * @param pop The population to be transformed.
    */
   void operator()(eoPop<EOT>& _pop) 
-  {  
-	  int size = _pop.size();
-
+    {  
+      unsigned size = _pop.size();
+      
       for (unsigned i = 0; i < size; i++) 
-      { // and the one liner
-		opSel.selectOp()(selector.bind(_pop,size).bias(i), inserter.bind(_pop));
-      }
+	{ // and the one liner
+	  opSel.selectOp()(selector.bind(_pop,size).bias(i), inserter.bind(_pop));
 	}
+    }
   
   /// The class name.
   string className() const { return "eoGOpBreeder"; }

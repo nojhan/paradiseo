@@ -47,7 +47,6 @@ int the_main(int argc, char **argv)
     eoParser parser(argc, argv);
       
     // Define Parameters
-    eoValueParam<unsigned>& chrom_size = parser.createParam(unsigned(2), "chrom-size", "Chromosome size");
     eoValueParam<double> rate(0.01, "mutationRatePerBit", "Initial value for mutation rate per bit"); 
     eoValueParam<double> factor(0.99, "mutationFactor", "Decrease factor for mutation rate");
     eoValueParam<uint32> seed(time(0), "seed", "Random number seed");

@@ -40,31 +40,32 @@
 template <class EOT>
 class eoDetTournamentInserter : public eoSteadyStateInserter<EOT> 
 {
-    public :
-
-    eoDetTournamentInserter(eoEvalFunc<EOT>& _eval, unsigned _t_size) : t_size(_t_size), eoSteadyStateInserter<EOT>(_eval)
-    {
-        if (t_size < 2)
-        { // warning, error?
-            t_size = 2;
-        }
-    }
-        
-    eoInserter<EOT>& operator()(const EOT& _eot)
-    {
-        EOT& eo = inverse_deterministic_tournament<EOT>(pop(), t_size);
-        eo = _eot; // overwrite loser of tournament
-
-        eo.invalidate(); // This line should probably be removed when all genetic operators do this themselves
-        eval(eo); // Evaluate after insert
-        return *this;
-    }
-
-    string className(void) const { return "eoDetTournamentInserter"; }
-
-    private :
-
-        unsigned t_size;
+public :
+  
+  eoDetTournamentInserter(eoEvalFunc<EOT>& _eval, unsigned _t_size): 
+    eoSteadyStateInserter<EOT>(_eval), 
+    t_size(_t_size)
+  {
+    if (t_size < 2)
+      { // warning, error?
+	t_size = 2;
+      }
+  }
+  
+  eoInserter<EOT>& operator()(const EOT& _eot)
+  {
+    EOT& eo = inverse_deterministic_tournament<EOT>(pop(), t_size);
+    eo = _eot; // overwrite loser of tournament
+    
+    eo.invalidate(); // This line should probably be removed when all genetic operators do this themselves
+    eval(eo); // Evaluate after insert
+    return *this;
+  }
+  
+  string className(void) const { return "eoDetTournamentInserter"; }
+  
+private :
+  unsigned t_size;
 };
 
 #endif

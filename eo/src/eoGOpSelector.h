@@ -56,9 +56,9 @@ public:
   }
   
   /* 
-    Add any kind of operator to the operator mix, 
-    @param _op      operator, one of eoMonOp, eoBinOp, eoQuadraticOp or eoGeneralOp
-    @param _rate    the rate at which it should be applied, it should be a probability
+     Add any kind of operator to the operator mix, 
+     @param _op      operator, one of eoMonOp, eoBinOp, eoQuadraticOp or eoGeneralOp
+     @param _rate    the rate at which it should be applied, it should be a probability
                     
   */
   virtual ID addOp( eoOp<EOT>& _op, float _rate ); 
@@ -66,12 +66,12 @@ public:
   
   /** Retrieve the operator using its integer handle
       @param _id The id number. Should be a valid id, or an exception 
-                 will be thrown
+      will be thrown
       @return a reference of the operator corresponding to that id.
   */
   virtual eoOp<EOT>& getOp( ID _id )
   {
-	  return *operator[](_id);
+    return *operator[](_id);
   }
   
   ///
@@ -81,7 +81,7 @@ public:
   ///
   virtual eoOp<EOT>* Op()
   {
-	  return &selectOp();
+    return &selectOp();
   }
 
   /// Select an operator from the operators present here
@@ -109,70 +109,70 @@ private :
 /* Implementation of longish functions defined above */
 
 template <class EOT>
-inline eoOpSelector<EOT>::ID eoGOpSelector<EOT>::addOp( eoOp<EOT>& _op, float _arg )
+inline eoOpSelector<EOT>::ID eoGOpSelector<EOT>::addOp( eoOp<EOT>& _op, 
+							float _arg )
 {
-
-    eoGeneralOp<EOT>* op; 
-
-    if (_op.getType() == eoOp<EOT>::general) 
+  eoGeneralOp<EOT>* op; 
+  
+  if (_op.getType() == eoOp<EOT>::general) 
     {
-        op = static_cast<eoGeneralOp<EOT>*>(&_op);
+      op = static_cast<eoGeneralOp<EOT>*>(&_op);
     }
-    else
+  else
     {
-    // if it's not a general op, it's a "old" op; create a wrapped op from it
-    // and keep it on a list to delete them afterwards
-    // will use auto_ptr when they're readily available
+      // if it's not a general op, it's a "old" op; create a wrapped op from it
+      // and keep it on a list to delete them afterwards
+      // will use auto_ptr when they're readily available
+      
+      switch(_op.getType())
+	{
+	case eoOp<EOT>::unary :
+	  op=  new eoWrappedMonOp<EOT>(static_cast<eoMonOp<EOT>&>(_op));
+	  break;
+	case eoOp<EOT>::binary :
+	  op =  new eoWrappedBinOp<EOT>(static_cast<eoBinOp<EOT>&>(_op));
+	  break;
+	case eoOp<EOT>::quadratic :
+	  op =  new eoWrappedQuadraticOp<EOT>(static_cast<eoQuadraticOp<EOT>&>(_op));
+	  break;
+	}
+      ownOpList.push_back( op );
+    }
+  
+  // Now 'op' is a general operator, either because '_op' was one or 
+  // because we wrapped it in an appropriate wrapper in the code above.
 
-	switch(_op.getType())
-	  {
-    case eoOp<EOT>::unary :
-	    op=  new eoWrappedMonOp<EOT>(static_cast<eoMonOp<EOT>&>(_op));
-	    break;
-    case eoOp<EOT>::binary :
-	    op =  new eoWrappedBinOp<EOT>(static_cast<eoBinOp<EOT>&>(_op));
-        break;
-    case eoOp<EOT>::quadratic :
-         op =  new eoWrappedQuadraticOp<EOT>(static_cast<eoQuadraticOp<EOT>&>(_op));
-        break;
-	  }
-	ownOpList.push_back( op );
-      }
-
-    // Now 'op' is a general operator, either because '_op' was one or 
-    // because we wrapped it in an appropriate wrapper in the code above.
-
-    iterator result = find(begin(), end(), (eoGeneralOp<EOT>*) 0); // search for nullpointer
+  iterator result = find(begin(), end(), (eoGeneralOp<EOT>*) 0); // search for nullpointer
 	  
-    if (result == end())
-      {
-	push_back(op);
-	rates.push_back(_arg);
-	return size();
-      }
-    // else
+  if (result == end())
+    {
+      push_back(op);
+      rates.push_back(_arg);
+      return size();
+    }
+  // else
     
-    *result = op;
-    ID id = result - begin();
-    rates[id] = _arg;
-    return id;
+  *result = op;
+  ID id = result - begin();
+  rates[id] = _arg;
+  return id;
 }
 
 template <class EOT>
 inline void  eoGOpSelector<EOT>::deleteOp( ID _id )
 {
-    eoGeneralOp<EOT>* op = operator[](_id);
+  eoGeneralOp<EOT>* op = operator[](_id);
 
-    operator[](_id) = 0; 
-    rates[_id] = 0.0;
+  operator[](_id) = 0; 
+  rates[_id] = 0.0;
     
-    // check oplist and clear it there too.
+  // check oplist and clear it there too.
   
-    list< eoGeneralOp<EOT>* >::iterator it = find(ownOpList.begin(), ownOpList.end(), op);
+  list< eoGeneralOp<EOT>* >::iterator it = find(ownOpList.begin(), ownOpList.end(), op);
 
-    if(it != ownOpList.end())
+  if(it != ownOpList.end())
     {
-        ownOpList.erase(it);
+      ownOpList.erase(it);
     }
 }
   

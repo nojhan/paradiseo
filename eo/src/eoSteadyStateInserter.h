@@ -40,12 +40,13 @@
 template <class EOT>
 class eoSteadyStateInserter : public eoPopInserter<EOT> 
 {
-    public :
-        eoSteadyStateInserter(eoEvalFunc<EOT>& _eval) : eval(_eval) , eoPopInserter<EOT>() {}
-
-    protected :
-
-        eoEvalFunc<EOT>& eval;
+public :
+  eoSteadyStateInserter(eoEvalFunc<EOT>& _eval): 
+    eoPopInserter<EOT>(), 
+    eval(_eval) {}
+  
+protected :
+  eoEvalFunc<EOT>& eval;
 };
 
 
