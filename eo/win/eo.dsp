@@ -101,6 +101,10 @@ SOURCE=..\src\eoPersistent.cpp
 
 SOURCE=..\src\eoPrintable.cpp
 # End Source File
+# Begin Source File
+
+SOURCE=..\src\eoScalarFitnessAssembled.cpp
+# End Source File
 # End Group
 # Begin Group "Header Files"
 
