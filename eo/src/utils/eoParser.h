@@ -24,7 +24,7 @@
  */
 //-----------------------------------------------------------------------------
 /**
-CVS Info: $Date: 2001-04-10 15:08:09 $ $Version$ $Author: evomarc $
+CVS Info: $Date: 2001-11-05 16:38:51 $ $Version$ $Author: evomarc $
 */
 #ifndef eoParser_h
 #define eoParser_h
@@ -148,6 +148,16 @@ public:
    */
   virtual bool isItThere(eoParam& _param) const 
   { return getValue(_param).first; }
+
+/** 
+ * get a handle on a param from its longName
+ * 
+ * if not found, returns 0 (null pointer :-)
+ *
+ * Not very clean (requires hard-coding of the long name twice!)
+ * but very useful in many occasions...
+ */
+  eoParam* getParamWithLongName(std::string _name);
 
 private:
   

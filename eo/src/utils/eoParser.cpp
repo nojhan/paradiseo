@@ -79,6 +79,26 @@ eoParser::eoParser ( unsigned _argc, char **_argv , string _programDescription, 
     processParam(needHelp);
 }
 
+/** 
+ * get a handle on a param from its longName
+ * 
+ * if not found, returns 0 (null pointer :-)
+ *
+ * Not very clean (requires hard-coding of the long name twice!)
+ * but very useful in many occasions...
+ */
+eoParam* eoParser::getParamWithLongName(std::string _name)
+{
+  typedef std::multimap<std::string, eoParam*> MultiMapType;
+  typedef MultiMapType::const_iterator It;
+  for (It p = params.begin(); p != params.end(); ++p)
+    {
+      if (p->second->longName() == _name)
+	return p->second;
+    }
+  return 0;
+}
+
 void eoParser::processParam(eoParam& param, std::string section)
 {
     doRegisterParam(param); // plainly register it
