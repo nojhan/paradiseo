@@ -171,7 +171,7 @@ t_eoCheckpointing_LDADD = $(LDADDS)
 
 ###############################################################################
 
-t_eoGOpSel_SOURCES = t_eoGOpSel.cpp
+t_eoGOpSel_SOURCES = t-eoGOpSel.cpp
 t_eoGOpSel_DEPENDENCIES = $(DEPS) 
 t_eoGOpSel_LDFLAGS = -lm 
 t_eoGOpSel_LDADD = $(LDADDS) 
