@@ -101,7 +101,7 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
 	  {
 	    if (rng.flip(p_change[0]))
 	      {
-		_eo[0] += 2*epsilon[0]*rng.uniform()-epsilon[0];
+		_eo[lieu] += 2*epsilon[0]*rng.uniform()-epsilon[0];
 		hasChanged = true;
 	      }
 	  }
