@@ -39,28 +39,28 @@ public :
 int the_main(int argc, char **argv)
 { 
   eoParser parser(argc, argv);
-  eoValueParam<unsigned int>& parentSizeParam = parser.createParam<unsigned int>(10, "parentSize", "Parnet size",'P');
+  eoValueParam<unsigned int> parentSizeParam = parser.createParam<unsigned int>(10, "parentSize", "Parent size",'P');
     unsigned int pSize = parentSizeParam.value();
 
-  eoValueParam<unsigned int>& offsrpringSizeParam = parser.createParam<unsigned int>(10, "offsrpringSize", "Offsrpring size",'O');
+  eoValueParam<unsigned int> offsrpringSizeParam = parser.createParam<unsigned int>(10, "offsrpringSize", "Offsrpring size",'O');
     unsigned int oSize = offsrpringSizeParam.value();
 
-  eoValueParam<unsigned int>& tournamentSizeParam = parser.createParam<unsigned int>(2, "tournamentSize", "Deterministic tournament size",'T');
+  eoValueParam<unsigned int> tournamentSizeParam = parser.createParam<unsigned int>(2, "tournamentSize", "Deterministic tournament size",'T');
     unsigned int tSize = tournamentSizeParam.value();
 
-  eoValueParam<double>& tournamentRateParam = parser.createParam<double>(0.75, "tournamentRate", "Stochastic tournament rate",'R');
+  eoValueParam<double> tournamentRateParam = parser.createParam<double>(0.75, "tournamentRate", "Stochastic tournament rate",'R');
     double tRate = tournamentRateParam.value();
 
-  eoValueParam<double>& sParentsElitismRateParam = parser.createParam<double>(0.1, "sParentsElitismRateParam", "Strong elitism rate for parents",'E');
+  eoValueParam<double> sParentsElitismRateParam = parser.createParam<double>(0.1, "sParentsElitismRateParam", "Strong elitism rate for parents",'E');
     double sParentsElitismRate = sParentsElitismRateParam.value();
 
-  eoValueParam<double>& sParentsEugenismRateParam = parser.createParam<double>(0, "sParentsEugenismRateParam", "Strong Eugenism rate",'e');
+  eoValueParam<double> sParentsEugenismRateParam = parser.createParam<double>(0, "sParentsEugenismRateParam", "Strong Eugenism rate",'e');
     double sParentsEugenismRate = sParentsEugenismRateParam.value();
 
-  eoValueParam<double>& sOffspringElitismRateParam = parser.createParam<double>(0, "sOffspringElitismRateParam", "Strong elitism rate for parents",'E');
+  eoValueParam<double> sOffspringElitismRateParam = parser.createParam<double>(0, "sOffspringElitismRateParam", "Strong elitism rate for parents",'E');
     double sOffspringElitismRate = sOffspringElitismRateParam.value();
 
-  eoValueParam<double>& sOffspringEugenismRateParam = parser.createParam<double>(0, "sOffspringEugenismRateParam", "Strong Eugenism rate",'e');
+  eoValueParam<double> sOffspringEugenismRateParam = parser.createParam<double>(0, "sOffspringEugenismRateParam", "Strong Eugenism rate",'e');
     double sOffspringEugenismRate = sOffspringEugenismRateParam.value();
 
     if (parser.userNeedsHelp())
