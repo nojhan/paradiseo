@@ -165,7 +165,7 @@ void the_main(int argc, char* argv[])
   eoParser parser(argc, argv);
   eoState state;
 
-  unsigned num_gen  = parser.createParam(unsigned(10), "num_gen", "number of generations to run", 'g').value();
+  unsigned num_gen  = parser.createParam(unsigned(50), "num_gen", "number of generations to run", 'g').value();
   unsigned pop_size = parser.createParam(unsigned(100), "pop_size", "population size", 'p').value();
   eoPop<eoDouble> pop(pop_size, init);
 
