@@ -3,7 +3,7 @@
 .cpp.o: ; c++ -DPACKAGE=\"eo\" -DVERSION=\"0.9.1\" -I. -I../../src -Wall -g -c $*.cpp
 
 
-ALL = BitEA RealEA
+ALL = BitEA RealEA ESEA
 
 lesson3 : $(ALL)
 
