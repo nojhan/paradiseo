@@ -17,7 +17,6 @@ typedef eoBin<float> Chrom;
 main()
 {
   const unsigned CHROM_SIZE = 4;
-  unsigned i;
 
   eoUniform<Chrom::Type> uniform(false, true);
   eoBinRandom<Chrom> random;

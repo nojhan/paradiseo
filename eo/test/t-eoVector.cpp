@@ -39,7 +39,7 @@ typedef eoVector<float> Chrom;
 main()
 {
   const unsigned SIZE = 4;
-  unsigned i, j;
+
   eoUniform<Chrom::Type> uniform(-1,1);
 
   Chrom chrom1(SIZE,uniform), chrom2( SIZE, uniform);

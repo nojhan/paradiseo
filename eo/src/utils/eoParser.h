@@ -29,7 +29,6 @@
 
 #include <map>
 #include <string>
-#include <map>
 
 #include "eoParam.h"
 #include "eoObject.h"
