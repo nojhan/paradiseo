@@ -102,6 +102,23 @@ Package=<4>
     Project_Dep_Name t_mge1bit
     End Project Dependency
 }}}
+###############################################################################
+
+Project: "all_tut"=.\all_tut.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name tut_1_bit
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name tut_1_real
+    End Project Dependency
+}}}
 
 ###############################################################################
 
@@ -441,3 +458,16 @@ Package=<3>
 
 ###############################################################################
 
+
+Project: "tut_1_real"=.\tut_1_real.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+ÿ

@@ -100,3 +100,4 @@ SOURCE="..\test\t-eoReplacement.cpp"
 # End Group
 # End Target
 # End Project
+ÿ

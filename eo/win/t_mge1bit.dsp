@@ -100,3 +100,4 @@ SOURCE="..\test\t-MGE1bit.cpp"
 # End Group
 # End Target
 # End Project
+ÿ

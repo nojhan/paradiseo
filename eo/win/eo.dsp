@@ -97,10 +97,6 @@ PostBuild_Cmds=copy  Debug\eod.lib  lib\
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE=..\src\eoCtrlCContinue.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=..\src\eoFunctorStore.cpp
 # End Source File
 # Begin Source File
@@ -112,12 +108,7 @@ SOURCE=..\src\eoPersistent.cpp
 SOURCE=..\src\eoPrintable.cpp
 # End Source File
 
-
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
-# Begin Source File
-
-SOURCE=..\src\eoCtrlCContinue.h
-# End Source File
 # Begin Source File
 
 SOURCE=..\src\eoFunctorStore.H
@@ -133,3 +124,4 @@ SOURCE=..\src\eoPrintable.h
 # End Group
 # End Target
 # End Project
+ÿ
