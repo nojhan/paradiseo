@@ -66,13 +66,14 @@ public :
     /**
      * Default Constructor
      */
-    eoParseTree(void) {}
+    eoParseTree(void) : EO<FType>() {}
     /** 
      * Copy Constructor
      * @param tree The tree to copy
      */
-    eoParseTree(const parse_tree<Node>& tree) : parse_tree<Node>(tree) {}
+    eoParseTree(const parse_tree<Node>& tree) : EO<FType>(), parse_tree<Node>(tree) {}
     
+    eoParseTree(const eoParseTree<FType, Node>& tree) : EO<FType>(), parse_tree<Node>(tree) {}
     /**
      * To prune me to a certain size
      * @param _size My maximum size
@@ -107,8 +108,15 @@ public :
      */
     void printOn(std::ostream& os) const
     {
+    	cerr << "in eoParseTree<...>::printOn(...) " << endl;
+	
+	EO<FType>::printOn(os);
+	/*
+	 * old code which caused problems for paradisEO
+	 * now we use EO<FType>::readFrom(is)
+	 *
         os << fitness() << ' ';
-
+	*/
         std::copy(ebegin(), eend(), ostream_iterator<Node>(os));
     }
     
@@ -118,11 +126,18 @@ public :
      */
     void readFrom(std::istream& is) 
     {
-        FType fit;
-
+        EO<FType>::readFrom(is);
+	
+	
+	/*
+	 * old code which caused problems for paradisEO
+	 * now we use EO<FType>::readFrom(is)
+	 *
+	FType fit;
         is >> fit;
 
         fitness(fit);
+	*/
 
         std::copy(istream_iterator<Node>(is), istream_iterator<Node>(), back_inserter(*this));
     }
@@ -132,6 +147,7 @@ public :
 template <class FType, class Node>
 std::ostream& operator<<(std::ostream& os, const eoParseTree<FType, Node>& eot)
 {
+    cerr << "in operator<<(ostream, eoParseTree<...>)" << endl;
     eot.printOn(os);
     return os;
 }
