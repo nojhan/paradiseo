@@ -26,7 +26,7 @@
 #define eoGeneration_h
 
 //-----------------------------------------------------------------------------
-
+#include <strstream>
 #include <eoAlgo.h>     // eoPop
 #include <eoEvalFunc.h> 
 #include <eoPopOps.h>  // eoSelect, eoTranform, eoMerge
@@ -56,15 +56,19 @@ template<class Chrom> class eoGeneration: public eoAlgo<Chrom>
 
   /// Apply one generation of evolution to the population.
   virtual void operator()(eoPop<Chrom>& pop) {
-      eoPop<Chrom> breeders;      
-      select(pop, breeders);
-      transform(breeders);
-      eoPop<Chrom>::iterator i;
-      // Can't use foreach here since foreach takes the 
-      // parameter by reference
-      for ( i = breeders.begin(); i != breeders.end(); i++)
-	evaluator(*i);
-      replace(breeders, pop);
+      eoPop<Chrom> breeders;
+      try {
+	select(pop, breeders);
+	transform(breeders);
+	eoPop<Chrom>::iterator i;
+	// Can't use foreach here since foreach takes the 
+	// parameter by reference
+	for ( i = breeders.begin(); i != breeders.end(); i++)
+	  evaluator(*i);
+	replace(breeders, pop);
+      }  catch ( exception& e ) {
+	throw runtime_error( e.what() );
+      }
     }
   
   /// Class name.
