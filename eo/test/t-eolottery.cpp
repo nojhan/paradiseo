@@ -37,6 +37,7 @@ main()
     }
   
   cout << "original population:" << endl;
+  sort(pop.begin(), pop.end());
   for (i = 0; i < pop.size(); i++)
     cout << pop[i] << "  " << pop[i].fitness() << endl;
   
@@ -44,6 +45,7 @@ main()
   lottery(pop, pop2); 
 
   cout << "selected by lottery population:" << endl;
+  sort(pop2.begin(), pop2.end());
   for (i = 0; i < pop2.size(); i++)
     cout << pop2[i] << "  " << pop2[i].fitness() << endl;
 
