@@ -34,6 +34,8 @@
 20/11/00 MS: Changed the 2-continuator construct to a vector<eoContinue<EOT> >
              to be consistent with other Combined constructs
              and allow to easily handle more than 2 continuators
+
+02/2003 Ramón Casero Cañas - added the removeLast() method 
 */
 
 template< class EOT>
@@ -62,6 +64,14 @@ public:
   {
     continuators.push_back(&_cont);
   }
+
+  ///////////// RAMON'S CODE ///////////////
+  void removeLast(void)
+  {
+    continuators.pop_back();
+  }
+  ///////////// RAMON'S CODE (end) ///////////////
+
 
   /** Returns false when one of the embedded continuators say so (logical and)
    */
