@@ -19,7 +19,7 @@
    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
    Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-             Marc.Schoenauer@polytechnique.fr
+             Marc.Schoenauer@inria.fr
              mkeijzer@dhi.dk
  */
 //-----------------------------------------------------------------------------
@@ -28,7 +28,7 @@
 #define _eoGnuplot1DSnapshot_H
 
 #include <string>
-#include <sstream>
+// #include <sstream>
 
 #include <utils/eoFileSnapshot.h>
 #include <utils/eoGnuplot.h>
@@ -100,7 +100,10 @@ class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
 
   virtual void handleBounds(eoRealVectorBounds & _bounds)
   {
-    ostringstream os;
+    // use strstream and not stringstream until strstream is in all distributions
+    char buf[1024];
+    std::ostrstream os(buf, 1023);
+    //    ostrstream os;       
     os << "set autoscale\nset yrange [" ;
     if (_bounds.isMinBounded(0))
       os << _bounds.minimum(0);
