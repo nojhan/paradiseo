@@ -539,13 +539,13 @@ class eoGeneralIntBounds : public eoIntBounds
 {
 public:
   /** Ctor: from a string, chooses the type of bound */
-  eoGeneralIntBounds(std::string _s)
+  eoGeneralIntBounds(std::string _s = "[-infinity,+infinity]")
   {
     repBound = getBoundsFromString(_s);
   }
 
   /** Need a Cpy Ctor because we are allocating memory */
-  eoGeneralIntBounds(eoGeneralIntBounds & _b)
+  eoGeneralIntBounds(const eoGeneralIntBounds & _b)
   {
     // replicate the embedded bound (I'm pretty sure there is another
     // way to do that !!!

@@ -504,13 +504,13 @@ class eoGeneralRealBounds : public eoRealBounds
 {
 public:
   /** Ctor: from a string, chooses the type of bound */
-  eoGeneralRealBounds(std::string _s)
+  eoGeneralRealBounds(std::string _s = "[-infinity,+infinity]")
   {
     repBound = getBoundsFromString(_s);
   }
 
   /** Need a Cpy Ctor because we are allocating memory */
-  eoGeneralRealBounds(eoGeneralRealBounds & _b)
+  eoGeneralRealBounds(const eoGeneralRealBounds & _b)
   {
     // replicate the embedded bound (I'm pretty sure there is another
     // way to do that !!!
