@@ -90,11 +90,12 @@ private :
 
     void one_objective(const eoPop<EOT>& _pop)
     {
+		unsigned i;
 	eoPop<DummyEO> tmp_pop;
         tmp_pop.resize(_pop.size());
 
         // copy pop to dummy population (only need the fitnesses)
-        for (unsigned i = 0; i < _pop.size(); ++i)
+        for (i = 0; i < _pop.size(); ++i)
         {
           tmp_pop[i].fitness(_pop[i].fitness());
           tmp_pop[i].index = i;
@@ -104,7 +105,7 @@ private :
         tmp_pop.sort();
 
         //
-        for (unsigned i = 0; i < _pop.size(); ++i)
+        for (i = 0; i < _pop.size(); ++i)
         {
           value()[tmp_pop[i].index] = _pop.size() - i; // set rank
         }
@@ -132,12 +133,13 @@ private :
    
     void two_objectives(const eoPop<EOT>& _pop)
     {
+		unsigned i;
 	typedef typename EOT::Fitness::fitness_traits traits;
 	assert(traits::nObjectives() == 2);
 	
 	vector<unsigned> sort1(_pop.size()); // index into population sorted on first objective
 	
-	for (unsigned i = 0; i < _pop.size(); ++i)
+	for (i = 0; i < _pop.size(); ++i)
 	{
 	    sort1[i] = i;
 	}
@@ -149,7 +151,7 @@ private :
 	unsigned last_front = 0;
 	
 	double max1 = -1e+20;
-	for (unsigned i = 0; i < _pop.size(); ++i)
+	for (i = 0; i < _pop.size(); ++i)
 	{
 	    max1 = max(max1, _pop[i].fitness()[1]);
 	}
@@ -162,7 +164,7 @@ private :
 	
 	vector<vector<unsigned> > fronts(_pop.size()); // to store indices into the front
 	
-	for (unsigned i = 0; i < _pop.size(); ++i)
+	for (i = 0; i < _pop.size(); ++i)
 	{
 	    unsigned index = sort1[i];
 	    
@@ -204,7 +206,7 @@ private :
 	
 	// ok, and finally the niche penalty
 
-	for (unsigned i = 0; i < fronts.size(); ++i)
+	for (i = 0; i < fronts.size(); ++i)
 	{
 	    if (fronts[i].size() == 0) continue; 
 

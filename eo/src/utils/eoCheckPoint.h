@@ -97,7 +97,7 @@ bool eoCheckPoint<EOT>::operator()(const eoPop<EOT>& _pop)
         (*monitors[i])();
 
     bool bContinue = true;
-    for (unsigned i = 0; i < continuators.size(); ++i)
+    for (i = 0; i < continuators.size(); ++i)
       if ( !(*continuators[i])(_pop) ) 
 	bContinue = false;
 
