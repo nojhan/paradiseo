@@ -104,6 +104,8 @@
 #include <eoRandomSelect.h>
 #include <eoDetTournamentSelect.h>
 #include <eoProportionalSelect.h>
+#include <eoFitnessScalingSelect.h>
+#include <eoRankingSelect.h>
 #include <eoStochTournamentSelect.h>
 // the batch selection - from an eoSelectOne
 #include <eoSelectPerc.h>
