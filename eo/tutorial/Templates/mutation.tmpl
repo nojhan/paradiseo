@@ -1,11 +1,16 @@
-Template for simple operators
-=============================
+/*
+Template for simple mutation operators
+======================================
+*/
 
-===========================================================================
-eoMon : mutation operators
-======
+#ifndef eoMyDerivedMonOp_H
+#define eoMyDerivedMonOp_H
 
-template<class Indi> class eoMyDerivedMonOp: public eoMonOp<Indi>
+
+#include <eoOp.h>
+
+template<class Indi> 
+class eoMyDerivedMonOp: public eoMonOp<Indi>
 {
 public:
   /**
@@ -18,7 +23,7 @@ public:
   string className() const { return "eoMyDerivedMonOp"; }
 
   /**
-   * eoMon crossover - modifies the parent
+   * modifies the parent
    * @param Indi The parent
    */
   bool operator()(Indi& Indi) 
@@ -34,3 +39,4 @@ protected:
   paramType anyParameter
 };
 
+#endif

@@ -1,0 +1,45 @@
+/*
+Template for simple quadratic crossover operators
+=================================================
+
+Quadratic crossover operators modify the both parents
+*/
+
+#ifndef eoMyDerivedQuadOp_H
+#define eoMyDerivedQuadOp_H
+
+#include <eoOp.h>
+
+template<class Indi> 
+class eoMyDerivedQuadOp: public eoQuadOp<Indi>
+{
+public:
+  /**
+   * (Default) Constructor.
+   */
+  eoMyDerivedQuadOp(paramType _anyParameter) : 
+    anyParameter(_anyParameter) {}
+
+  /// The class name. Used to display statistics
+  string className() const { return "eoMyDerivedQuadOp"; }
+
+  /**
+   * eoQuad crossover - modifies both parents
+   * @param Indi1 The first parent
+   * @param Indi2 The second parent
+   */
+  bool operator()(Indi& Indi1, Indi& Indi2) 
+  {
+    // do whatever needs to be done
+
+    // if at least one individual has been modified - no way to distinguish
+    return true;
+    // otherwise
+    // return false;
+  }
+
+protected:
+  paramType anyParameter
+};
+
+#endif

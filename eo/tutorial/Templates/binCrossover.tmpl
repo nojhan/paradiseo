@@ -1,0 +1,45 @@
+/*
+Template for simple binary crossover operators
+==============================================
+
+Binary crossover operators modify the first parent only, 
+based on the second 
+*/
+
+#ifndef eoMyDerivedBinOp_H
+#define eoMyDerivedBinOp_H
+
+#include <eoOp.h>
+
+template<class Indi> 
+class eoMyDerivedBinOp: public eoBinOp<Indi>
+{
+public:
+  /**
+   * (Default) Constructor.
+   */
+  eoMyDerivedBinOp(paramType _anyParameter) : 
+    anyParameter(_anyParameter) {}
+
+  /// The class name. Used to display statistics
+  string className() const { return "eoMyDerivedBinOp"; }
+
+  /**
+   * eoBin crossover - modifies first parent only
+   * @param Indi1 The first parent
+   * @param Indi2 The second parent - const
+   */
+  bool operator()(Indi& Indi1, const Indi& Indi2) 
+  {
+    // do whatever needs to be done
+    // if Indi1 has been modified
+    return true;
+    // otherwise
+    // return false;
+  }
+
+protected:
+  paramType anyParameter
+};
+
+#endif
