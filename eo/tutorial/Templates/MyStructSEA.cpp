@@ -257,9 +257,9 @@ try
 #endif
 
   // now check how you want to output the stat:
-  bool printMyStructStat = parser.createParam(true, "coutMyStructStat", "Affiche ma stat à l'écran", '\0', "Mon Probleme").value();
-  bool fileMyStructStat = parser.createParam(false, "fileMyStructStat", "Stocke ma stat Dans un fichier", '\0', "Mon Probleme").value();
-  bool plotMyStructStat = parser.createParam(false, "plotMyStructStat", "Affiche graphiquement ma stat pendant l'évolution", '\0', "Mon Probleme").value();
+  bool printMyStructStat = parser.createParam(false, "coutMyStructStat", "Prints my stat to screen, one line per generation", '\0', "My application").value();
+  bool fileMyStructStat = parser.createParam(false, "fileMyStructStat", "Saves my stat to file (in resDir", '\0', "My application").value();
+  bool plotMyStructStat = parser.createParam(false, "plotMyStructStat", "On-line plots my stat using gnuplot", '\0', "My application").value();
 
   // should we write it on StdOut ?
   if (printMyStructStat)
@@ -283,6 +283,8 @@ try
   // should we write it to a file ?
   if (fileMyStructStat)
     {
+      // the file name is hard-coded - of course you can read 
+      // a string parameter in the parser if you prefer
       myFileMonitor = new eoFileMonitor(dirName + "myStat.xg");
       // don't forget to store the memory in the state
       state.storeFunctor(myFileMonitor);
