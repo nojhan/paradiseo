@@ -152,6 +152,8 @@ class eoSeqPopulator : public eoPopulator<EOT>
 {
 public:
 
+    using eoPopulator< EOT >::src;
+
     eoSeqPopulator(const eoPop<EOT>& _pop, eoPop<EOT>& _dest) :
         eoPopulator<EOT>(_pop, _dest), current(0) {}
 
@@ -161,7 +163,7 @@ public:
             throw OutOfIndividuals();
         }
 
-        const EOT& res = eoPopulator< EOT >::src[current++];
+        const EOT& res = src[current++];
         return res;
     }
 
