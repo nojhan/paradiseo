@@ -28,8 +28,8 @@
 //-----------------------------------------------------------------------------
 
 #include <stdexcept>       // runtime_error 
-#include "eoObject.h"      // 
-#include "eoPersistent.h"  // 
+#include <eoObject.h>      // eoObject
+#include <eoPersistent.h>  // eoPersistent
 
 //-----------------------------------------------------------------------------
 /** EO is a base class for evolvable objects, that is, the subjects of 
