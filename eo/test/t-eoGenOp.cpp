@@ -132,10 +132,8 @@ class two2oneOp : public eoGenOp<EOT> // :-)
     void apply(eoPopulator<EOT>& _plop)
     {
       EOT& eo = *_plop; // select the guy
-      ++_plop; // advance
-      EOT& eo2 = *_plop;
+      const EOT& eo2 = _plop.select();
       eo.s  =  "221(" + eo.s + ", " + eo2.s + ")";
-      _plop.erase();
       // oh right, and invalidate fitnesses
     }
   virtual string className() {return "two2oneOp";}

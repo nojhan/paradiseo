@@ -9,13 +9,13 @@ DEPS = $(top_builddir)/src/utils/libeoutils.a $(top_builddir)/src/libeo.a
 ###############################################################################
 
 INCLUDES = -I$(top_builddir)/src
-LDADDS = $(top_builddir)/src/utils/libeoutils.a $(top_builddir)/src/libeo.a 
-CXXFLAGS = -g
+LDADDS = $(top_builddir)/src/utils/libeoutils.a $(top_builddir)/src/libeo.a
+CXXFLAGS = -g -Wall -pg
 ###############################################################################
 
-check_PROGRAMS = t-eofitness t-eoRandom t-eobin t-eoStateAndParser t-eoCheckpointing \
+check_PROGRAMS = t-eofitness t-eoRandom t-eobin t-eoStateAndParser t-eoCheckpointing t-eoSSGA  \
 	t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoVector
-TESTS=run_tests t-eoVector t-eoRandom
+TESTS=run_tests t-eoVector t-eoRandom t-eoSSGA
 # removing temporarily t-eoESFull
 #noinst_PROGRAMS = t-eofitness t-eobin t-eoStateAndParser t-eoCheckpointing t-eoExternalEO t-eoESFull t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA
 
@@ -112,5 +112,12 @@ t_eoGA_SOURCES = t-eoGA.cpp binary_value.h
 t_eoGA_DEPENDENCIES = $(DEPS) $(top_builddir)/src/ga/libga.a
 t_eoGA_LDFLAGS = -lm
 t_eoGA_LDADD = $(top_builddir)/src/ga/libga.a $(LDADDS)
+
+###############################################################################
+
+t_eoSSGA_SOURCES = t-eoSSGA.cpp binary_value.h
+t_eoSSGA_DEPENDENCIES = $(DEPS) $(top_builddir)/src/ga/libga.a
+t_eoSSGA_LDFLAGS = -lm
+t_eoSSGA_LDADD = $(LDADDS)
 
 ###############################################################################
