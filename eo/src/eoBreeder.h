@@ -35,8 +35,8 @@
 #include <eoPopOps.h>      // eoTransform
 #include <eoOpSelector.h>  // eoOpSelector
 
-#include "eoRandomIndiSelector.h"
-#include "eoBackInserter.h"
+#include <eoRandomIndiSelector.h>
+#include <eoBackInserter.h>
 
 using namespace std;
 
@@ -93,7 +93,7 @@ template<class Chrom> class eoBreeder: public eoMonPopOp<Chrom>
         eoRandomIndiSelector<Chrom> selector;
         eoBackInserter<Chrom>   inserter;
 
-        (*Gop)(selector.init(pop, orgsize, i), inserter.bind(pop));
+        (*Gop)(selector.bind(pop, orgsize, i), inserter.bind(pop));
 	    break;
 	  }
 	}

@@ -26,7 +26,7 @@
 #ifndef eoRandomIndiSelector_h
 #define eoRandomIndiSelector_h
 
-#include "eoIndiSelector.h"
+#include <eoIndiSelector.h>
 
 /**
 \ingroup selectors
