@@ -235,6 +235,22 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   }
   
   /**
+   * Prints sorted pop but does NOT modify it!
+   *
+   * @param _os A ostream. 
+   */
+  virtual void sortedPrintOn(ostream& _os) const 
+  {
+    vector<const EOT*> result;
+    sort(result);
+    _os << size() << '\n';
+    for (unsigned i = 0; i < size(); ++i)
+      {
+	_os << *result[i] << endl;
+      }
+  }
+
+  /**
    * Write object. It's called printOn since it prints the object _on_ a stream.
    * @param _os A ostream. 
    */
@@ -242,7 +258,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   {
         _os << size() << '\n';
         copy( begin(), end(), ostream_iterator<EOT>( _os, "\n") );
-  };
+  }
 
   /** @name Methods from eoObject	*/
   //@{

@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
  
 //-----------------------------------------------------------------------------
-// eoCtrlCContinue.h
+// eoCtrlCContinue.cpp
 // (c) EEAAX 1996 - GeNeura Team, 1998 - Maarten Keijzer 2000 
 /*
     This library is free software; you can redistribute it and/or
@@ -23,50 +23,23 @@
              mak@dhi.dk
 */
 //-----------------------------------------------------------------------------
-// the same thing can probably be done in MS environement, but I hoave no way
-// to test it so at the moment it is commented out when in MSVC
-#ifndef _MSC_VER
+#include <signal.h>
+#include <stream.h>
 
-#ifndef eoCtrlCContinue_h
-#define eoCtrlCContinue_h
+// --- Global variables - but don't know what else to do - MS ---
+static bool     arret_demande = false;
+static bool     existCtrlCContinue = false;
 
-#include <eoContinue.h>
-
-extern bool     arret_demande, existCtrlCContinue;
-
-extern void signal_handler( int sig );
-
-
-/**
-    Ctrl C handling: this eoContinue tells whether the user pressed Ctrl C
-*/
-template< class EOT>
-class eoCtrlCContinue: public eoContinue<EOT>
+//
+// The signal handler - installed in the eoCtrlCContinue Ctor
+//
+void signal_handler( int sig )
+// ---------------------------
 {
-public:
- 
-  /// Ctor : installs the signal handler
-  eoCtrlCContinue()
-  {
-    // First checks that no other eoCtrlCContinue does exist
-    if (existCtrlCContinue)
-      throw runtime_error("A signal handler for Ctrl C is already defined!\n");
-    signal( SIGINT, signal_handler );
-    signal( SIGQUIT, signal_handler );
-    existCtrlCContinue = true;
-  }
- 
-  /** Returns false when Ctrl C has been typed in
-         * reached */
-  virtual bool operator() ( const eoPop<EOT>& _vEO ) 
-  {
-    if (arret_demande)
-      return false;
-    return true;
-  }
-};
+    // --- On veut la paix, jusqu'a la fin ---
+    signal( SIGINT, SIG_IGN );
+    signal( SIGQUIT, SIG_IGN );
+    cerr << "Ctrl C entered ... closing down" << endl ;
+    arret_demande = true;
+}
 
-
-#endif
-
-#endif // of MSVC comment-out
