@@ -47,14 +47,13 @@ using namespace std;
 
 typedef enum {Variable, UFunction, BFunction, BOperator, Const} Type;
 
+typedef double (*BinaryFunction)(const double,const double); 
+typedef double (*UnaryFunction)(const double);
 
 struct Operation
 {
 	public:
 		
-	
-		typedef double (*BinaryFunction)(const double,const double); 
-		typedef double (*UnaryFunction)(const double);
 		typedef unsigned int VariableID;
 		typedef string Label;
 
