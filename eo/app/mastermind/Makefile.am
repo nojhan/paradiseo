@@ -17,7 +17,7 @@ bin_PROGRAMS = mastermind
 
 ###############################################################################
 
-mastermind_SOURCES = mastermind.cc
+mastermind_SOURCES = mastermind.cpp
 mastermind_DEPENDENCIES = $(DEPS)
 mastermind_LDFLAGS = -lm
 mastermind_LDADD = $(LDADDS)
