@@ -74,7 +74,9 @@ public:
 	virtual unsigned totalGenerations( ) {  
 	  return repTotalGenerations; 
 	};
-	
+
+    std::string className(void) const { return "eoGenTerm"; }
+    
 private:
 	unsigned repTotalGenerations, thisGeneration;
 };
