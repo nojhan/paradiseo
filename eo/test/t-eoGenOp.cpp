@@ -112,8 +112,8 @@ class one2threeOp : public eoGenOp<EOT> // :-)
     void apply(eoPopulator<EOT>& _plop)
     {
       EOT& eo = *_plop; // select the guy
-      ++_plop; // advance
 
+      ++_plop; // advance
       _plop.insert("v(" + eo.s + ", 1)");
       ++_plop;
       _plop.insert("v(" + eo.s + ", 2)");
@@ -126,7 +126,7 @@ class one2threeOp : public eoGenOp<EOT> // :-)
 
 class two2oneOp : public eoGenOp<EOT> // :-)
 {
-  public:
+  public: 
     unsigned max_production(void) { return 1; }
 
     void apply(eoPopulator<EOT>& _plop)
@@ -137,6 +137,29 @@ class two2oneOp : public eoGenOp<EOT> // :-)
       // oh right, and invalidate fitnesses
     }
   virtual string className() {return "two2oneOp";}
+};
+
+class three2threeOp : public eoGenOp<EOT> // :-)
+{
+  public: 
+    unsigned max_production(void) { return 3; }
+
+    void apply(eoPopulator<EOT>& _plop)
+    {
+      EOT& eo1 = *_plop; // select 1st guy
+      EOT& eo2 = *++_plop; // select 2nd guy
+      EOT& eo3 = *++_plop; // select 3rd guy
+      EOT a = eo1;
+      EOT b = eo2;
+      EOT c = eo3;
+      cout << "les selectionnes: a=" << a << " et b=" << b << " et c=" << c << endl;
+      eo1.s  =  "323-1(" + a.s + ", " + b.s + ", " + c.s + ")";
+      eo2.s  =  "323-2(" + a.s + ", " + b.s + ", " + c.s + ")";
+      eo3.s  =  "323-3(" + a.s + ", " + b.s + ", " + c.s + ")";
+      // oh right, and invalidate fitnesses
+      cout << "les enfants: a=" << eo1 << " et b=" << eo2 << " et c=" << eo3 << endl;
+    }
+  virtual string className() {return "three2threeOp";}
 };
 
 
@@ -191,6 +214,7 @@ int the_main(int argc, char **argv)
   // our own operator
   one2threeOp o2t;
   two2oneOp t2o;
+  three2threeOp t2t;
 
 
   // a selector
@@ -212,12 +236,16 @@ int the_main(int argc, char **argv)
   // with one2three op
   eoSequentialOp<EOT> sOp2;
   sOp2.add(o2t, 1);
-  sOp2.add(quad, 1);
+  //  sOp2.add(quad, 1);
 
+  // with three2three op
   eoSequentialOp<EOT> sOp3;
-  //  sOp3.add(t2o, 1);
-  sOp3.add(bin, 1);
-  sOp3.add(quad, 1);
+  sOp3.add(t2t, 1);
+
+//   eoSequentialOp<EOT> sOp3;
+//   sOp3.add(t2o, 1);
+//   sOp3.add(bin, 1);
+//   sOp3.add(quad, 1);
   // try adding quads and bins to see what results you'll get
 
   // now a sequential selection that is a simple "addition"
@@ -243,7 +271,7 @@ int the_main(int argc, char **argv)
 
   // To simulate SGA: first a prop between quadOp and quadClone
   eoProportionalOp<EOT> pSGAOp;
-  pSGAOp.add(bin, 0.8);
+  pSGAOp.add(quad, 0.8);
   pSGAOp.add(quadclone, 0.2);
   // sequential selection between pSGAOp and mon
   eoSequentialOp<EOT> virtualSGA;
@@ -258,6 +286,7 @@ int the_main(int argc, char **argv)
      while (offspring.size() < pop.size())
 	   {
 	     virtualSGA(popit);
+	     cout << "SeqPopulator boucle et incremente\n";
        ++popit;
 	   }
     }
@@ -284,6 +313,7 @@ int the_main(int argc, char **argv)
   while (offspring.size() < 2*pop.size())
   {
     virtualSGA(it_step3);
+	     cout << "SelectPopulator boucle et incremente\n";
     ++it_step3;
   }
 
@@ -309,6 +339,36 @@ int the_main(int argc, char **argv)
 
     // ok, now print
   cout << "Apres Quad+Mon ds un eoSelectivePopulator\n" << pop << endl;
+
+  // On teste 1->3
+  init(pop, pSize);
+  eoSelectivePopulator<EOT> it_step5(pop, offspring, seqSelect);
+  while (offspring.size() < 2*pop.size())
+  {
+    sOp2(it_step5);
+    ++it_step5;
+  }
+
+  swap(pop, offspring);
+  offspring.clear();
+
+    // ok, now print
+  cout << "Apres 1->3 seul ds un eoSelectivePopulator\n" << pop << endl;
+
+  // On teste 3->3
+  init(pop, pSize);
+  eoSelectivePopulator<EOT> it_step6(pop, offspring, seqSelect);
+  while (offspring.size() < 2*pop.size())
+  {
+    sOp3(it_step6);
+    ++it_step6;
+  }
+
+  swap(pop, offspring);
+  offspring.clear();
+
+    // ok, now print
+  cout << "Apres 3->3 seul ds un eoSelectivePopulator\n" << pop << endl;
 
 
   return 1;

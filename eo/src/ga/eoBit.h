@@ -64,7 +64,7 @@ template <class FitT> class eoBit: public eoVector<FitT, bool>
     eoVector<FitT, bool>(size, value) {}
 
   /// My class name.
-  string className() const
+  virtual string className() const
     {
       return "eoBit";
     }
@@ -73,7 +73,7 @@ template <class FitT> class eoBit: public eoVector<FitT, bool>
    * To print me on a stream.
    * @param os The ostream.
    */
-  void printOn(ostream& os) const
+  virtual void printOn(ostream& os) const
     {
       EO<FitT>::printOn(os);
       os << ' ';
@@ -85,7 +85,7 @@ template <class FitT> class eoBit: public eoVector<FitT, bool>
    * To read me from a stream.
    * @param is The istream.
    */
-  void readFrom(istream& is)
+  virtual void readFrom(istream& is)
     {
       EO<FitT>::readFrom(is);
       unsigned s;

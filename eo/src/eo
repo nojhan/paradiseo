@@ -80,7 +80,9 @@
 #include <eoGenContinue.h>
 #include <eoSteadyFitContinue.h>
 #include <eoFitContinue.h>
-
+#ifndef _MSC_VER
+#include <eoCtrlCContinue.h>  // CtrlC handling (using 2 global variables!)
+#endif
 // Selection
 // the eoSelectOne's
 #include <eoRandomSelect.h>	// also contains the eoSequentialSelect

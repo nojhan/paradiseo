@@ -238,7 +238,11 @@ void main_function(int argc, char **argv)
   eoCombinedContinue<Indi> continuator(genCont);
   continuator.add(steadyCont);
   //  continuator.add(fitCont);
-  
+  // Ctrl C signal handling: don't know if that works in MSC ...
+#ifndef _MSC_VER
+  eoCtrlCContinue<Indi> ctrlC;
+  continuator.add(ctrlC);
+#endif  
   
 // CHECKPOINT
   // but now you want to make many different things every generation 

@@ -69,7 +69,7 @@ template<class Chrom> class eoOneBitFlip: public eoMonOp<Chrom>
 {
  public:
   /// The class name.
-  string className() const { return "eoOneBitFlip"; }
+  virtual string className() const { return "eoOneBitFlip"; }
 
   /**
    * Change one bit.
@@ -99,7 +99,7 @@ template<class Chrom> class eoDetBitFlip: public eoMonOp<Chrom>
   eoDetBitFlip(const unsigned& _num_bit = 1): num_bit(_num_bit) {}
 
   /// The class name.
-  string className() const { return "eoDetBitFlip"; }
+  virtual string className() const { return "eoDetBitFlip"; }
 
   /**
    * Change num_bit bits.
@@ -135,7 +135,7 @@ template<class Chrom> class eoBitMutation: public eoMonOp<Chrom>
   eoBitMutation(const double& _rate = 0.01): rate(_rate) {}
 
   /// The class name.
-  string className() const { return "eoBitMutation"; }
+  virtual string className() const { return "eoBitMutation"; }
 
   /**
    * Mutate a chromosome.
@@ -168,7 +168,7 @@ template<class Chrom> class eoBitInversion: public eoMonOp<Chrom>
 {
  public:
   /// The class name.
-  string className() const { return "eoBitInversion"; }
+  virtual string className() const { return "eoBitInversion"; }
 
   /**
    * Inverts a range of bits in a binary chromosome.
@@ -196,7 +196,7 @@ template<class Chrom> class eoBitNext: public eoMonOp<Chrom>
 {
  public:
   /// The class name.
-  string className() const { return "eoBitNext"; }
+  virtual string className() const { return "eoBitNext"; }
 
   /**
    * Change the bit string x to be x+1.
@@ -230,7 +230,7 @@ template<class Chrom> class eoBitPrev: public eoMonOp<Chrom>
 {
  public:
   /// The class name.
-  string className() const { return "eoBitPrev"; }
+  virtual string className() const { return "eoBitPrev"; }
 
   /**
    * Change the bit string x to be x-1.
@@ -264,7 +264,7 @@ template<class Chrom> class eo1PtBitXover: public eoQuadOp<Chrom>
 {
  public:
   /// The class name.
-  string className() const { return "eo1PtBitXover"; }
+  virtual string className() const { return "eo1PtBitXover"; }
 
   /**
    * 1-point crossover for binary chromosomes.
@@ -302,7 +302,7 @@ template<class Chrom> class eoUBitXover: public eoQuadOp<Chrom>
 	runtime_error("UxOver --> invalid preference");
     }
   /// The class name.
-  string className() const { return "eoUBitXover"; }
+  virtual string className() const { return "eoUBitXover"; }
 
   /**
    * Uniform crossover for binary chromosomes.
@@ -348,7 +348,7 @@ template<class Chrom> class eoNPtsBitXover: public eoQuadOp<Chrom>
     }
 
   /// The class name.
-  string className() const { return "eoNPtsBitXover"; }
+  virtual string className() const { return "eoNPtsBitXover"; }
 
   /**
    * n-point crossover for binary chromosomes.
@@ -416,7 +416,7 @@ template<class Chrom> class eoBitGxOver: public eoQuadOp<Chrom>
     }
 
   /// The class name
-  string className() const { return "eoBitGxOver"; }
+  virtual string className() const { return "eoBitGxOver"; }
 
   /**
    * Gene crossover for binary chromosomes.
