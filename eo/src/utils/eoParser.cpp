@@ -179,7 +179,7 @@ void eoParser::readFrom(istream& is)
           }
           else // it should be a char
           {
-              string value(str.begin() + 2, str.end());
+              string value(str.begin() + 3, str.end());
               shortNameMap[str[1]] = value;
           }
       }
