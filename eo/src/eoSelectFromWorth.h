@@ -34,7 +34,7 @@
 //-----------------------------------------------------------------------------
 
 /** selects one element from a population (is an eoSelectOne) 
-but the selectin is based on a vector of Worth that is different 
+but the selection is based on a vector of Worth that is different 
 from the fitnesses (e.g. EO fitness is what Koza terms "raw fitness", 
 Worth is what the selection is based upon).
 
@@ -192,7 +192,7 @@ public:
       total += (*it);
   }
 
-  /* Perform deterministic tournament on worthes
+  /* Perform roulette wheel on worthes
      by calling the appropriate fn
      see selectors.h
   */
