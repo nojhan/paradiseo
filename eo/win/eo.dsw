@@ -45,6 +45,9 @@ Package=<4>
     Project_Dep_Name t_eocheckpointing
     End Project Dependency
     Begin Project Dependency
+    Project_Dep_Name t_eoesall
+    End Project Dependency
+    Begin Project Dependency
     Project_Dep_Name t_eoexternaleo
     End Project Dependency
     Begin Project Dependency
@@ -183,6 +186,17 @@ Package=<4>
 ###############################################################################
 
 Project: "t_eocheckpointing"=.\t_eocheckpointing.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+###############################################################################
+
+Project: "t_eoesall"=.\t_eoesall.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
