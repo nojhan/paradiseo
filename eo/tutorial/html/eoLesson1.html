@@ -33,19 +33,22 @@ follow the <a href="#tour">guided tour</a>.</li>
 Later you will be asked to
 <ul>
 <li>
-write your own <font color="#990000">fitness function</font>,</li>
+<a href="#exercise1">write</a> your own <font color="#990000">fitness function</font>,</li>
 
 <li>
-use different kinds of <font color="#009900">selection procedures</font>
-in the framework of a generational GA <font color="#009900">evolution engine</font>,</li>
-
-<li>
-check that EO let you separate the <font color="#999900">representation</font>
+<a href="#exercise2">check</a> that EO let you separate the <font color="#999900">representation</font>
 from the <font color="#009900">evolution engine</font>.</li>
+
+<li>
+<a href="#exercise3">use different kinds</a> of <font color="#009900">selection
+procedures</font> in the framework of a generational GA <font color="#009900">evolution
+engine</font>,</li>
 </ul>
 
 <h3>
-<a NAME="run"></a><font color="#000099">I want to run an Evolutionary Algorithm
+
+<hr WIDTH="100%"><a NAME="run"></a><font color="#000099">I want to run
+an Evolutionary Algorithm
 <b>now</b></font></h3>
 You can choose to run a standard <a href="FirstBitGA.html">bitstring Genetic
 Algorithm</a> (as defined in Goldberg's book) or a standard <a href="FirstRealGA.html">real-valued
@@ -74,12 +77,16 @@ one individual per line, its fitness first, then the number of items (bits
 or real numbers) of the genotype, and the genotype itself. The final population
 hopefully contains the solution in the discrete case, and is close to it
 in the continuous case.
-<p><a NAME="browse"></a>You need now to take a look at either programs
-by browsing alone through the&nbsp; sources for <a href="FirstBitGA.html">FirstBitGA</a>
-and <a href="FirstRealGA.html">FirstRealGA</a>, or follow the guided tour
-below, or go directly to the <a href="#exercise1">exercises</a>.
+<br>
+<hr WIDTH="100%"><a NAME="browse"></a><b><font color="#000099"><font size=+1>Browsing
+the code:</font></font></b>
+<p>Now you need to take a look at the program codes, either by browsing
+alone through the&nbsp; sources for <a href="FirstBitGA.html">FirstBitGA</a>
+and <a href="FirstRealGA.html">FirstRealGA</a>, or by following the guided
+tour below. You might prefer to go directly to the <a href="#exercise1">exercises</a>.
 <h3>
-<a NAME="tour"></a><font color="#000099">Browsing the code:</font></h3>
+
+<hr WIDTH="100%"><a NAME="tour"></a><font color="#000099">Guided tour:</font></h3>
 
 <ul>
 <li>
@@ -299,8 +306,9 @@ discussing up to now!</font></li>
 </ul>
 
 <h3>
-<a NAME="exercise1"></a><font color="#000099">Exercise 1: maximize your
-own function</font></h3>
+
+<hr WIDTH="100%"><a NAME="exercise1"></a><font color="#000099">Exercise
+1: maximize your own function</font></h3>
 This is very easy - if your search space is that of bitstring or of unbounded
 real numbers.
 <ul>
@@ -328,7 +336,9 @@ at system prompt.</li>
 </ul>
 
 <h3>
-<font color="#000099">Exercise 2: check the differences between both programs</font></h3>
+
+<hr WIDTH="100%"><a NAME="exercise2"></a><font color="#000099">Exercise
+2: check the differences between both programs</font></h3>
 Go and take a look at the code for these programs <font color="#000000">(<a href="FirstBitGA.html">Bit</a>
 - <a href="FirstRealGA.html">Real</a>)</font>. Use the symbolic representation
 of an Evolutionary Algorithm (you should understand that figure now, otherwise
@@ -337,9 +347,10 @@ part of the EA is coded. Try to spot the differences between both codes:
 there are not so many!
 <br>After you've tried that alone, take a look at the <a href="Firstmerge.html">solution</a>
 :-)
-<br>&nbsp;
 <h3>
-<font color="#000099">Exercise 3: change the selection procedure</font></h3>
+
+<hr WIDTH="100%"><a NAME="exercise3"></a><font color="#000099">Exercise
+3: change the selection procedure</font></h3>
 This is rather straightforward ... if you know what other types of selection
 are available!
 <br>At the moment, let's only consider only the following simple ones:
@@ -368,7 +379,8 @@ select;</font></tt></b></ul>
 Note that all these classes of eoObjects are derived from the abstract
 class
 <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoselectone.html">eoSelectOne.</a></font></font></b>
-<p><b><font color="#000099"><font size=+2>Lessons:</font></font></b>
+<p>
+<hr WIDTH="100%"><b><font color="#000099"><font size=+2>Lessons learned:</font></font></b>
 <ul>
 <li>
 in EO, all actions are performed by <a href="eoProgramming.html#functors">functor
