@@ -229,7 +229,7 @@ class eoScheme: public eoAlgo<EOT>{
     
     // everyting is read: now the consistency checks and other preliminary steps
     nb_offspring = (nb_offspring ? nb_offspring : 
-		    (int) rint (rate_offspring * popsize) );
+		    (int) (rate_offspring * popsize) );
     if (!nb_offspring)
       nb_offspring = 1;		/* al least one offspring */
     

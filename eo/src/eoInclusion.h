@@ -38,7 +38,7 @@ template<class Chrom> class eoInclusion: public eoMerge<Chrom>
    */
   void operator()(eoPop<Chrom>& breeders, eoPop<Chrom>& pop)
     {
-      unsigned target = min(static_cast<unsigned>(rint(pop.size() * rate())), 
+      unsigned target = min(static_cast<unsigned>(pop.size() * rate()), 
 			    pop.size() + breeders.size());
       
       copy(breeders.begin(), breeders.end(), 

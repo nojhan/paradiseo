@@ -54,7 +54,7 @@ template<class Chrom> class eoMerge: public eoBinPopOp<Chrom>
    */
   void operator()( eoPop<Chrom>& _breeders, eoPop<Chrom>& _pop)
     {
-      unsigned target = static_cast<unsigned>(rint(_pop.size() * rate()));
+      unsigned target = static_cast<unsigned>(_pop.size() * rate());
       
       _pop.swap(_breeders);
       
