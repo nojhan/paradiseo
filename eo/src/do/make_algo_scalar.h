@@ -24,8 +24,8 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef _make_run_h
-#define _make_run_h
+#ifndef _make_algo_scalar_h
+#define _make_algo_scalar_h
 
 #include <utils/eoData.h>     // for eo_is_a_rate
 // everything tha's needed for the algorithms - SCALAR fitness
@@ -70,7 +70,7 @@
 */
 
 template <class EOT>
-eoAlgo<EOT> & do_make_algo_scalar(eoParameterLoader& _parser, eoState& _state, eoEvalFunc<EOT>& _eval, eoContinue<EOT>& _ccontinue, eoGenOp<EOT>& _op)
+eoAlgo<EOT> & do_make_algo_scalar(eoParameterLoader& _parser, eoState& _state, eoEvalFunc<EOT>& _eval, eoContinue<EOT>& _continue, eoGenOp<EOT>& _op)
 {
   // the selection
   eoValueParam<eoParamParamType>& selectionParam = _parser.createParam(eoParamParamType("DetTour(2)"), "selection", "Selection: Roulette, DetTour(T), StochTour(t) or Sequential(ordered/unordered)", 'S', "Evolution Engine");
@@ -182,7 +182,7 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParameterLoader& _parser, eoState& _state, e
   _state.storeFunctor(breed);
 
   // now the eoEasyEA
-  eoAlgo<EOT> *algo = new eoEasyEA<EOT>(_ccontinue, _eval, *breed, *replace);
+  eoAlgo<EOT> *algo = new eoEasyEA<EOT>(_continue, _eval, *breed, *replace);
   _state.storeFunctor(algo);
   // that's it!
   return *algo;

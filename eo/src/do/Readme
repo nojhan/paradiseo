@@ -1,5 +1,5 @@
 This directory contains templatized code that is supposed to be
-instanciated and compiled in an actual library for every type of EOType
+instanciated and compiled in an actual library for every type of EOT
 
 The user can then modify and recompile only the part he/she wishes to
 change (as in any library!).
@@ -19,15 +19,18 @@ is defined
 make_algo_scalar.h     The selection/replacement for scalar fitnesses
 make_checkpoint.h      The output facilities
 make_continue.h        The stpping criteria
-make_help.cpp          Help on demand (+ status file)
 make_pop.h             Init of the population (from an EOT initializer)
 make_run.h             Run the algorithm
 
+See also (NOW MOVED TO util DIR, as it was useful everywhere)
+make_help.cpp          Help on demand (+ status file) 
+
 Note:
+-----
 two additional make_XXX.h files need to be defined for each representation
 
 make_genotype.h        Builds an initializer for the corresponding EOType
 make_op.h              Builds a general Operator to be used in the algo
 
 MS, April 23, 2001
-
+    July 23, 2001

@@ -78,6 +78,9 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
      * eoSecondMomentStat: average + stdev - type pair<double, double>
      * eoSortedPopStat   : whole population - type string (!!)
      * eoScalarFitnessStat: the fitnesses - type vector<double>
+     * eoDFCSTat         : FDC wrt best in pop or absolute best - type double
+     *                     requires an eoDistance. See eoFDCStat.h
+     *                     also computes all elements for the FDC scatter plot
      */
 
     // Best fitness in population
@@ -128,13 +131,31 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
     eoValueParam<bool>& printPopParam = _parser.createParam(false, "printPop", "Print sorted pop. every gen.", '\0', "Output");
     if ( printPopParam.value() ) // we do want pop dump
       {
-	  popStat = new eoSortedPopStat<EOT>;
+	  popStat = new eoSortedPopStat<EOT>("Dump of whole population");
 	// store it
 	_state.storeFunctor(popStat);
 	// add it to the checkpoint
 	checkpoint->add(*popStat);
       }
 
+
+    // the Fitness Distance Correlation
+    //---------------------------------
+    eoValueParam<bool>& printFDCParam = _parser.createParam(true, "printFDC", "Print FDC coeff. every gen.", '\0', "Output");
+    eoValueParam<bool>& plotFDCParam = _parser.createParam(false, "plotFDCStat", "Plot FDC scatter plot", '\0', "Output - Graphical");
+
+    eoFDCStat<EOT> *fdcStat = NULL;
+    if ( printFDCParam.value() || plotFDCParam.value() ) // we need FDCStat
+      {
+	// need first an object to compute the distances - here Hamming dist.
+	eoQuadDistance<EOT> *dist = new eoQuadDistance<EOT>;
+	_state.storeFunctor(dist);
+	fdcStat = new eoFDCStat<EOT>(*dist);
+	// storeFunctor it
+	_state.storeFunctor(fdcStat);
+	// add it to the checkpoint
+	checkpoint->add(*fdcStat);
+      }
 
     // do we wnat some histogram of fitnesses snpashots?
     eoValueParam<bool> plotHistogramParam = _parser.createParam(false, "plotHisto", "Plot histogram of fitnesses", '\0', "Output - Graphical");
@@ -143,7 +164,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
     // The monitors
     ///////////////
     // do we want an eoStdoutMonitor?
-    bool needStdoutMonitor = printBestParam.value() 
+    bool needStdoutMonitor = printBestParam.value() || printFDCParam.value() 
 	|| printPopParam.value() ;
 
     // The Stdout monitor will print parameters to the screen ...  
@@ -164,13 +185,15 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
 		monitor->add(*bestStat);
 		monitor->add(*secondStat);
 	    }
+	if (printFDCParam.value())
+	  monitor->add(*fdcStat);
 	if ( printPopParam.value())
 	  monitor->add(*popStat);
       }
 
     // first handle the dir test - if we need at least one file
     if ( ( fileBestParam.value() || plotBestParam.value() || 
-	   plotHistogramParam.value() )
+	   plotFDCParam.value() || plotHistogramParam.value() )
 	 && !dirOK )		   // just in case we add something before
       dirOK = testDirRes(dirNameParam.value(), eraseParam.value()); // TRUE
 
@@ -202,6 +225,20 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
 	  gnuMonitor->add(*generationCounter);
 	gnuMonitor->add(*bestStat);
 	gnuMonitor->add(*averageStat);
+      }
+
+    if (plotFDCParam.value())    // a specific plot monitor for FDC
+      {
+	// first into a file (it adds everything ti itself
+	eoFDCFileSnapshot<EOT> *fdcFileSnapshot = new eoFDCFileSnapshot<EOT>(*fdcStat, dirNameParam.value());
+	_state.storeFunctor(fdcFileSnapshot);
+	// then to a Gnuplot monitor
+	eoGnuplot1DSnapshot *fdcGnuplot = new eoGnuplot1DSnapshot(*fdcFileSnapshot);
+	_state.storeFunctor(fdcGnuplot);
+	
+	// and of course add them to the checkPoint
+	checkpoint->add(*fdcFileSnapshot);
+	checkpoint->add(*fdcGnuplot);
       }
 
     // historgram?
