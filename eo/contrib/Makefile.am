@@ -6,8 +6,8 @@
 
 SUBDIRS = 
 
-lib_LIBRARIES = 
-libeo_a_SOURCES =
+#lib_LIBRARIES = 
+#libeo_a_SOURCES =
 
 libeoincdir = $(includedir)/eo
 libeoinc_HEADERS=eoAged.h eoDraw.h
