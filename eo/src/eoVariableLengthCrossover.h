@@ -26,8 +26,6 @@
 #ifndef _eoVariableLengthCrossover_h
 #define _eoVariableLengthCrossover_h
 
-#include <config.h>
-
 #include <eoFunctor.h>
 #include <eoOp.h>
 
@@ -204,11 +202,9 @@ public :
 
   virtual std::string className() const
   { 
-    char s[1024];
-    std::ostrstream os(s, 1022);
-    os << "eoInnerExchangeQuadOp(" << atomExchange.className() << ")" << std::ends; 
-    return std::string(s); 
+    return "eoInnerExchangeQuadOp(" + op.className() + ")";
   }
+
 private:
   float rate;
   eoQuadOp<AtomType> & op;

@@ -65,12 +65,9 @@ public :
   }
 
   /** inherited className() */
-  virtual string className() const 
+  virtual std::string className() const 
   { 
-    char s[1024];
-    ostrstream os(s, 1022);
-    os << "eoFlOrAllMutation(" << atomMutation.className() << ")"; 
-    return string(s); 
+    return "eoFlOrAllMutation(" + atomMutation.className() + ")";
   }
 
 private:
@@ -107,12 +104,9 @@ public :
   }
 
   /** inherited className() */
-  virtual string className() const
+  virtual std::string className() const
   { 
-    char s[1024];
-    ostrstream os(s, 1022);
-    os << "eoFlOrKMutation(" << atomMutation.className() << ")" << ends; 
-    return string(s); 
+    return "eoFlOrKMutation(" + atomMutation.className() + ")";
   }
 
 private:
