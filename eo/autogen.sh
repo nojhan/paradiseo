@@ -51,3 +51,4 @@ done
 
 echo
 echo "Now type 'make' to compile $PROG."
+echo "And if you have Doxygen installed, type 'make doc' to generate EO documentation."
