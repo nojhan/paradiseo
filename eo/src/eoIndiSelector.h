@@ -73,7 +73,7 @@ template <class EOT>
 class eoPopIndiSelector : public eoIndiSelector<EOT>
 {
     public :
-        eoPopIndiSelector(void) : pop(0), firstChoice(-1), last(0), eoIndiSelector<EOT>() {}
+        eoPopIndiSelector(void) : eoIndiSelector<EOT>(), pop(0), last(0), firstChoice(-1) {}
         
         virtual ~eoPopIndiSelector(void) {}
         

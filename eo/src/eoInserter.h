@@ -55,7 +55,7 @@ class eoPopInserter : public eoInserter<EOT>
 {
     public :
     
-    eoPopInserter(void) : thePop(0), eoInserter<EOT>() {}
+    eoPopInserter(void) : eoInserter<EOT>(), thePop(0) {}
 
     /// Binds the population to this class. This is an initialization routine used by breeders
     eoInserter<EOT>& operator()(eoPop<EOT>& _pop)
