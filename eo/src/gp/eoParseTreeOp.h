@@ -1,8 +1,9 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
  
 //-----------------------------------------------------------------------------
-// eoGpMutate.h : GP mutation
-// (c) Jeroen Eggermont 2001 for mutation operators
+// eoParseTreeOp.h : crossover and mutation operator for  the eoParseTree class
+// (c) Maarten Keijzer 2000  for eoSubtreeXOver, eoBranchMutation
+// (c) Jeroen Eggermont 2001 for other mutation operators
 
 /*
     This library is free software; you can redistribute it and/or
@@ -20,27 +21,114 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
+    	     mak@dhi.dk 
              jeggermo@liacs.nl
  */
 //-----------------------------------------------------------------------------
 
-#ifndef eoGpMutate_h
-#define eoGpMutate_h
-
-//-----------------------------------------------------------------------------
-
-#include <gp/eoParseTree.h>
-#include <list>
-#include <string>
-
+#ifndef eoParseTreeOp_h
+#define eoParseTreeOp_h
 
 #include <EO.h>
 #include <eoOp.h>
-#include <gp/eoParseTree.h>
-#include <eoInit.h>
 
-using namespace gp_parse_tree;
-using namespace std;
+#include <gp/eoParseTree.h>
+
+/** eoSubtreeXOver --> subtree xover 
+\class eoSubtreeXOver eoParseTreeOp.h gp/eoParseTreeOp.h 
+\ingroup ParseTree
+*/
+template<class FType, class Node>
+class eoSubtreeXOver: public eoQuadOp< eoParseTree<FType, Node> > {
+public:
+
+  typedef eoParseTree<FType,Node> EoType;
+  /**
+   * Constructor
+   * @param _max_length the maximum size of an individual
+   */
+  eoSubtreeXOver( unsigned _max_length)
+    : eoQuadOp<EoType>(), max_length(_max_length) {};
+
+  /// the ckassname
+  virtual string className() const { return "eoSubtreeXOver"; };
+
+  /// Dtor
+  virtual ~eoSubtreeXOver () {};
+
+  /**
+   * Perform crossover on two individuals
+   * param _eo1 The first parent individual
+   * param _eo2 The second parent individual
+   */
+  bool operator()(EoType & _eo1, EoType & _eo2 )
+  {
+	  int i = rng.random(_eo1.size());
+	  int j = rng.random(_eo2.size());
+
+	  parse_tree<Node>::subtree tmp = _eo1[i];
+	  _eo1[i] = _eo2[j]; // insert subtree
+	  _eo2[j] = tmp;
+
+	  _eo1.pruneTree(max_length);
+	  _eo2.pruneTree(max_length);
+	  
+    return true;
+  }
+ private:
+  unsigned max_length;
+};
+
+/** eoBranchMutation --> replace a subtree with a randomly created subtree 
+\class eoBranchMutation eoParseTreeOp.h gp/eoParseTreeOp.h
+\ingroup ParseTree
+ */
+template<class FType, class Node>
+class eoBranchMutation: public eoMonOp< eoParseTree<FType, Node> >
+{
+public:
+
+  typedef eoParseTree<FType,Node> EoType;
+  /**
+   * Constructor
+   * @param _init An instantiation of eoGpDepthInitializer
+   * @param _max_length the maximum size of an individual
+   */
+  eoBranchMutation(eoInit<EoType>& _init, unsigned _max_length)
+    : eoMonOp<EoType>(), max_length(_max_length), initializer(_init)
+  {};
+  
+  /// the class name
+  virtual string className() const { return "eoBranchMutation"; };
+
+  /// Dtor
+  virtual ~eoBranchMutation() {};
+  
+  /**
+   * Mutate an individual
+   * @param _eo1 The individual that is to be changed
+   */
+  bool operator()(EoType& _eo1 )
+  {
+	  int i = rng.random(_eo1.size());
+
+      EoType eo2;
+      initializer(eo2);
+
+	  int j = rng.random(eo2.size());
+
+	  _eo1[i] = eo2[j]; // insert subtree
+
+	  _eo1.pruneTree(max_length);
+
+    return true;
+  }
+
+private :
+
+  unsigned max_length;
+  eoInit<EoType>& initializer;
+};
 
 // Additional Mutation operators from 
 // TITLE:"Genetic Programming~An Introduction"
@@ -51,7 +139,8 @@ using namespace std;
 // For the eoParseTree class
 
 /** eoPointMutation --> replace a Node with a Node of the same arity 
-\class eoPointMutation eoGpMutate.h gp/eoGpMutate.h	
+\class eoPointMutation eoParseTreeOp.h gp/eoParseTreeOp.h	
+\ingroup ParseTree
 */
 
 template<class FType, class Node>
@@ -59,7 +148,7 @@ class eoPointMutation: public eoMonOp< eoParseTree<FType, Node> >
 {
 public:
 
-  typedef eoParseTree<FType, Node> EoType;
+  typedef eoParseTree<FType,Node> EoType;
 
   /**
    * Constructor
@@ -107,7 +196,8 @@ private :
 };
 
 /** eoExpansionMutation --> replace a terminal with a randomly created subtree 
-\class eoExpansionMutation eoGpMutate.h gp/eoGpMutate.h
+\class eoExpansionMutation eoParseTreeOp.h gp/eoParseTreeOp.h
+\ingroup ParseTree
  */
 
 template<class FType, class Node>
@@ -174,7 +264,8 @@ private :
 };
 
 /** eoCollapseSubtree -->  replace a subtree with a randomly chosen terminal
-\class eoCollapseSubtreeMutation eoGpMutate.h gp/eoGpMutate.h
+\class eoCollapseSubtreeMutation eoParseTreeOp.h gp/eoParseTreeOp.h
+\ingroup ParseTree
  */
 
 template<class FType, class Node>
@@ -182,7 +273,7 @@ class eoCollapseSubtreeMutation: public eoMonOp< eoParseTree<FType, Node> >
 {
 public:
 
-  typedef eoParseTree<FType, Node> EoType;
+  typedef eoParseTree<FType,Node> EoType;
   /**
    * Constructor
    * @param _init An instantiation of eoGpDepthInitializer
@@ -236,11 +327,9 @@ private :
 };
 
 
-
-
-
-/** eoHoist -->  replace the individual with one of its subtree's 
-\class eoHoist eoGpMutate.h gp/eoGpMutate.h
+/** eoHoistMutation -->  replace the individual with one of its subtree's 
+\class eoHoistMutation eoParseTreeOp.h gp/eoParseTreeOp.h
+\ingroup ParseTree
  */
  
 template<class FType, class Node>
@@ -248,9 +337,10 @@ class eoHoistMutation: public eoMonOp< eoParseTree<FType, Node> >
 {
 public:
 
-  typedef eoParseTree<FType, Node> EoType;
+  typedef eoParseTree<FType,Node> EoType;
   /**
    * Constructor
+   * @param none
    */
   eoHoistMutation()
     : eoMonOp<EoType>()

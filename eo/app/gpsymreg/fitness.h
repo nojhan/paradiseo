@@ -43,7 +43,7 @@ using namespace std;
 class MinimizingFitnessTraits : public eoParetoFitnessTraits
 {
   public :
-  static bool maximizing(int which) { return false;} // we want to minimize both fitnesses}
+  static bool maximizing(int which) { return false;} // we want to minimize both fitnesses
   static unsigned nObjectives()          { return 2;} // the number of fitnesses }
 };
 
@@ -148,7 +148,7 @@ void init(vector<TreeNode> &initSequence)
 		}	
 			
 		// next we add the unary functions
-		/*	
+			
 		initSequence.push_back( NEGATE );
 		initSequence.push_back( SIN );
 		initSequence.push_back( COS );
@@ -162,14 +162,14 @@ void init(vector<TreeNode> &initSequence)
 		initSequence.push_back( MULTIPLIES );
 		initSequence.push_back( DIVIDE );
 		initSequence.push_back( POW );
-		*/
+		
 		// and the binary operators
 		initSequence.push_back( OpPLUS);
 		initSequence.push_back( OpMINUS );
-		/*
+		
 		initSequence.push_back( OpMULTIPLIES );
 		initSequence.push_back( OpDIVIDE );
-		*/
+		
 		initSequence.push_back( OpPOW );
 		
 			

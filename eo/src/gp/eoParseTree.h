@@ -1,5 +1,31 @@
-#ifndef EO_PARSE_TREE_H
-#define EO_PARSE_TREE_H
+// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+ 
+//-----------------------------------------------------------------------------
+// eoParseTree.h : eoParseTree class (for Tree-based Genetic Programming)
+// (c) Maarten Keijzer 2000  
+/*
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+ 
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+ 
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ 
+    Contact: todos@geneura.ugr.es, http://geneura.ugr.es
+    	     mak@dhi.dk 
+            
+ */
+//-----------------------------------------------------------------------------
+
+#ifndef eoParseTree_h
+#define eoParseTree_h
 
 #include <list>
 
@@ -11,6 +37,18 @@
 using namespace gp_parse_tree;
 using namespace std;
 
+/**
+\defgroup ParseTree
+
+  Various functions for a tree-based Genetic Programming
+*/
+
+/** eoParseTree : implementation of parse-tree for genetic programming
+\class eoParseTree eoParseTree.h gp/eoParseTree.h
+\ingroup ParseTree
+*/
+
+
 template <class FType, class Node>
 class eoParseTree : public EO<FType>, public parse_tree<Node>
 {
@@ -18,9 +56,20 @@ public :
 
     typedef parse_tree<Node>::subtree Subtree;
 
+    /**
+     * Default Constructor
+     */
     eoParseTree(void) {}
+    /** 
+     * Copy Constructor
+     * @param tree The tree to copy
+     */
     eoParseTree(const parse_tree<Node>& tree) : parse_tree<Node>(tree) {}
     
+    /**
+     * To prune me to a certain size
+     * @param _size My maximum size
+     */
     virtual void pruneTree(unsigned _size)
     {
         if (_size < 1)
@@ -32,20 +81,34 @@ public :
         }
     }
 
+    /**
+     * To read me from a stream
+     * @param is The istream
+     */
+     
     eoParseTree(std::istream& is) : EO<FType>(), parse_tree<Node>() 
     {
         readFrom(is);
     }
 
+    /// My class name
     string className(void) const { return "eoParseTree"; }
 
+    /**
+     * To print me on a stream
+     * @param os The ostream
+     */
     void printOn(std::ostream& os) const
     {
         os << fitness() << ' ';
 
         std::copy(ebegin(), eend(), ostream_iterator<Node>(os));
     }
-
+    
+    /**
+     * To read me from a stream
+     * @param is The istream
+     */
     void readFrom(std::istream& is) 
     {
         FType fit;
@@ -58,6 +121,7 @@ public :
     }
 };
 
+// friend function to print eoParseTree
 template <class FType, class Node>
 std::ostream& operator<<(std::ostream& os, const eoParseTree<FType, Node>& eot)
 {
@@ -65,6 +129,7 @@ std::ostream& operator<<(std::ostream& os, const eoParseTree<FType, Node>& eot)
     return os;
 }
 
+// friend function to read eoParseTree
 template <class FType, class Node>
 std::istream& operator>>(std::istream& is, eoParseTree<FType, Node>& eot)
 {
@@ -72,167 +137,8 @@ std::istream& operator>>(std::istream& is, eoParseTree<FType, Node>& eot)
     return is;
 }
 
-template <class Node>
-bool lt_arity(const Node &node1, const Node &node2) 
-{
-     	return (node1.arity() < node2.arity());
-}
-
-template <class FType, class Node>
-class eoGpDepthInitializer : public eoInit< eoParseTree<FType, Node> >
-{
-    public :
-
-    typedef eoParseTree<FType, Node> EoType;
-
-	eoGpDepthInitializer(
-        unsigned _max_depth,
-		const vector<Node>& _initializor,
-        bool _grow = true)
-            :
-            eoInit<EoType>(),
-			max_depth(_max_depth),
-			initializor(_initializor),
-			grow(_grow)
-    {
-      if(initializor.empty())
-      {
-        throw logic_error("eoGpDepthInitializer: uhm, wouldn't you rather give a non-empty set of Nodes?");
-      }
-      // lets sort the initializor vector according to  arity (so we can be sure the terminals are in front)
-      // we use stable_sort so that if element i was in front of element j and they have the same arity i remains in front of j
-      stable_sort(initializor.begin(), initializor.end(), lt_arity<Node>);
-    }
-
-	virtual string className() const { return "eoDepthInitializer"; };
-
-    void operator()(EoType& _tree)
-	{
-        list<Node> sequence;
-
-        generate(sequence, max_depth);
-
-        parse_tree<Node> tmp(sequence.begin(), sequence.end());
-        _tree.swap(tmp);
-	}
-
-    void generate(list<Node>& sequence, int the_max, int last_terminal = -1)
-    {
-	    if (last_terminal == -1)
-	    { // check where the last terminal in the sequence resides
-            vector<Node>::iterator it;
-		    for (it = initializor.begin(); it != initializor.end(); ++it)
-		    {
-			    if (it->arity() > 0)
-				    break;
-		    }
-		
-		    last_terminal = it - initializor.begin();
-	    }
-
-	    if (the_max == 1)
-	    { // generate terminals only
-		    vector<Node>::iterator it = initializor.begin() + rng.random(last_terminal);
-		    sequence.push_front(*it);
-		    return;
-	    }
-	
-	    vector<Node>::iterator what_it;
-
-	    if (grow)
-	    {
-		    what_it = initializor.begin() + rng.random(initializor.size());
-	    }
-	    else // full
-	    {
-		    what_it = initializor.begin() + last_terminal + rng.random(initializor.size() - last_terminal);
-	    }
-
-        what_it->randomize();
-
-	    sequence.push_front(*what_it);
-
-	    for (int i = 0; i < what_it->arity(); ++i)
-		    generate(sequence, the_max - 1, last_terminal);
-    }
-
-
-private :
-     
-	unsigned max_depth; 
-    std::vector<Node> initializor;
-	bool grow;
-};
-
-template<class FType, class Node>
-class eoSubtreeXOver: public eoQuadOp< eoParseTree<FType, Node> > {
-public:
-
-  typedef eoParseTree<FType, Node> EoType;
-
-  eoSubtreeXOver( unsigned _max_length)
-    : eoQuadOp<EoType>(), max_length(_max_length) {};
-
-  virtual string className() const { return "eoSubtreeXOver"; };
-
-  /// Dtor
-  virtual ~eoSubtreeXOver () {};
-
-  bool operator()(EoType & _eo1, EoType & _eo2 )
-  {
-	  int i = rng.random(_eo1.size());
-	  int j = rng.random(_eo2.size());
-
-	  parse_tree<Node>::subtree tmp = _eo1[i];
-	  _eo1[i] = _eo2[j]; // insert subtree
-	  _eo2[j] = tmp;
-
-	  _eo1.pruneTree(max_length);
-	  _eo2.pruneTree(max_length);
-	  
-    return true;
-  }
-
-  unsigned max_length;
-};
-
-template<class FType, class Node>
-class eoBranchMutation: public eoMonOp< eoParseTree<FType, Node> >
-{
-public:
-
-  typedef eoParseTree<FType, Node> EoType;
-
-  eoBranchMutation(eoInit<EoType>& _init, unsigned _max_length)
-    : eoMonOp<EoType>(), max_length(_max_length), initializer(_init)
-  {};
-
-  virtual string className() const { return "eoBranchMutation"; };
-
-  /// Dtor
-  virtual ~eoBranchMutation() {};
-
-  bool operator()(EoType& _eo1 )
-  {
-	  int i = rng.random(_eo1.size());
-
-      EoType eo2;
-      initializer(eo2);
-
-	  int j = rng.random(eo2.size());
-
-	  _eo1[i] = eo2[j]; // insert subtree
-
-	  _eo1.pruneTree(max_length);
-
-    return true;
-  }
-
-private :
-
-  unsigned max_length;
-  eoInit<EoType>& initializer;
-};
-
+// for backward compatibility
+#include <gp/eoParseTreeOp.h>
+#include <gp/eoParseTreeDepthInit.h>
 
 #endif

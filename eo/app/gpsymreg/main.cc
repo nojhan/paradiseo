@@ -23,7 +23,6 @@
 
 #include <iostream>
 #include <gp/eoParseTree.h>
-#include <gp/eoGpMutate.h>
 #include <eo>
 
 using namespace gp_parse_tree;
@@ -84,7 +83,9 @@ int main(int argc, char *argv[])
 
     
     	// define X-OVER
-        eoSubtreeXOver<FitnessType, Node>   xover(parameter.MaxSize);
+        
+	eoSubtreeXOver<FitnessType, Node>   xover(parameter.MaxSize);
+	
 	// define MUTATION
       eoBranchMutation<FitnessType, Node> mutation(initializer, parameter.MaxSize);
 //      eoExpansionMutation<FitnessType, Node> mutation(initializer, parameter.MaxSize);
