@@ -47,9 +47,9 @@ This class plots through gnuplot the eoStat given as argument
 
 
 
-/** eoGnuplot1DMonitor plots stats through gnuplot
- *  assumes that the same file is appened every so and so, 
- *  and replots it everytime
+/** eoGnuplot1DSnapshot plots stats through gnuplot
+ *  assumes that the same file is re-written every so and so, 
+ *  and plots it from scratch everytime it's called
  */
 class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
 {
@@ -88,7 +88,7 @@ private:
 inline eoMonitor&   eoGnuplot1DSnapshot::operator() (void)
   /////////////////////////////////////////////////////////
 {
-  // update file using the eoFileMonitor
+  // update file using the eoFileMonitor method
   eoFileSnapshot::operator()();
 
   // sends plot order to gnuplot
