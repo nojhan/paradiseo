@@ -92,8 +92,7 @@ class eoBinPopOp: public eoObject{
       @param _parents the initial generation. Will be kept constant
       @param _siblings the created offspring. Will be usually an empty population
   */
-  virtual void operator () (const eoPop<EOT>& _parents, 
-			          eoPop<EOT>& _siblings ) = 0;
+  virtual void operator () (eoPop<EOT>& _parents, eoPop<EOT>& _siblings ) = 0;
 
   /** @name Methods from eoObject	*/
   //@{

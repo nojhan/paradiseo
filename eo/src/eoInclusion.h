@@ -55,7 +55,7 @@ template<class Chrom> class eoInclusion: public eoMerge<Chrom>
   /** Inherited from eoObject. Returns the class name.
       @see eoObject
   */
-  virtual string className() const {return "eoMerge";};
+  virtual string className() const {return "eoInclusion";};
   //@}
 };
 
