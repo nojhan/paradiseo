@@ -124,8 +124,8 @@ public:
   /**
    * (Default) Constructor.
    */
-  eoMyDerivedShrink2GenOp(paramType _anyParameter) : 
-    anyParameter(_anyParameter) {}
+  eoMyDerivedShrink2GenOp(eoSelectOne<EOT> & _sel, paramType _anyParameter) : 
+    sel(_sel), anyParameter(_anyParameter) {}
 
   /// The class name. Used to display statistics
   string className() const { return "eoMyDerivedShrink2GenOp"; }
@@ -167,5 +167,6 @@ public:
 
 
 protected:
+	eoSelectoIne<EOT> & sel;
   paramType anyParameter
 };
