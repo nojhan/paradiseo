@@ -166,7 +166,7 @@ class Node
 		}
 		
 		template<class Children>
-		void Node::operator()(string& result, Children args) const
+		void operator()(string& result, Children args) const
 		{
 			
 			string subtree0;
