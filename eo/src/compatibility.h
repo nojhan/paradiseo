@@ -31,11 +31,6 @@
 #include <string>
 #include <iostream>
 
-#ifdef _1__GNUC__
-// Specifics for GNUC
-#define NO_GOOD_ISTREAM_ITERATORS
-#endif
-
 #ifdef _MSC_VER
 /* 
 Maarten: added this code here because Mirkosoft has the
@@ -54,7 +49,7 @@ here. Sure hope it works
 // add min and max to std...
 namespace std
 {
-    template <class T> T min(const T& a, const T& b)
+    template <class T> const T& min(const T& a, const T& b)
     {
         if(a < b)
             return a;
@@ -62,7 +57,7 @@ namespace std
         return b;
     }
     
-    template <class T> T max(const T& a, const T& b)
+    template <class T> const T& max(const T& a, const T& b)
     {
         if(a > b)
             return a;

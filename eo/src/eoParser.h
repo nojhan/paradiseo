@@ -28,6 +28,10 @@
 #define _PARSER_H
 
 #include <string.h> // for strcasecmp ... maybe there's a c++ way of doing it?
+                    // Yep there is, but needs either a simple functor for the equal function
+                    // or a hand-rolled string template class (this isn't that horrible as 
+                    // it sounds, it just means a new string_traits class with two changed
+                    // function definitions. (Maarten)
 #ifdef _MSC_VER
 #define strcasecmp(a,b) _strnicmp(a,b,strlen(a))
 #endif

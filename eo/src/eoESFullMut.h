@@ -36,6 +36,10 @@
 #include <eoESFullChrom.h>
 #include <eoOp.h>
 
+#ifndef M_PI
+#define M_PI 3.1415926535897932384626433832795
+#endif
+
 const double ES_SIGEPS = 1.0e-40;       	/* ES lower bound for sigma values */
 // should not be a parameter ...
 
@@ -44,7 +48,13 @@ const double ES_SIGEPS = 1.0e-40;       	/* ES lower bound for sigma values */
 template <class fitT>
 class eoESMutate: public eoMonOp< eoESFullChrom<fitT> > {
 public:
-    ///
+    eoESMutate(double n) 
+    {
+      TauLcl = 1/sqrt(2*sqrt(n));
+      TauGlb= 1 / sqrt(2 * n);
+      TauBeta = 0.0873;
+    }///
+
     eoESMutate( double _TauLcl, double _TauGlb, double _TauBeta )
 	: eoMonOp< eoESFullChrom<fitT> >( ), TauLcl(_TauLcl), TauGlb(_TauGlb),
 	  TauBeta(_TauBeta) {};

@@ -39,7 +39,7 @@
 */
 
 template <class ScalarType, class Compare = less<ScalarType> > 
-class eoScalarFitness
+class eoScalarFitness 
 {
     public :
 
@@ -56,15 +56,14 @@ class eoScalarFitness
 
     // Comparison, using less by default
     bool operator<(const eoScalarFitness& other) const 
-    { return Compare()(this->value, other.value); }
+    { return Compare()(value, other.value); }
 
     private :
         ScalarType value;
 };
 
 template <class F, class Cmp>
-std::ostream& operator<<(std::ostream& os, const eoScalarFitness<F, Cmp>&
-f)
+std::ostream& operator<<(std::ostream& os, const eoScalarFitness<F, Cmp>& f)
 {
     os << (F) f;
     return os;

@@ -79,7 +79,7 @@ class eoESFullChrom  : public eoVector<double, fitT> {
 
 	
   /* another constructor, for compatibility reasons */
-  eoESFullChrom(istream& _s) {cout << "Not Yet implemented\n";exit(1);};
+    eoESFullChrom(istream& _s) { cout << "Not Yet implemented\n";exit(1);};
 
   /* And now the useful constructor: from a parser (should be in the
      factory, if such a thing exists one day for eoESFullChrom 
