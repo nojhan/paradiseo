@@ -22,7 +22,7 @@
              Marc.Schoenauer@polytechnique.fr
 	     mak@dhi.dk
 
-    CVS Info: $Date: 2001-09-04 06:45:14 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVector.h,v 1.11 2001-09-04 06:45:14 evomarc Exp $ $Author: evomarc $ 
+    CVS Info: $Date: 2002-04-08 08:42:01 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVector.h,v 1.12 2002-04-08 08:42:01 evomarc Exp $ $Author: evomarc $ 
 
  */
 //-----------------------------------------------------------------------------
@@ -68,7 +68,7 @@ class eoVector : public EO<FitT>, public std::vector<GeneType>
 	resize(_v.size());
       }
 
-    copy(_v.begin(), _v.end(), begin());
+    std::copy(_v.begin(), _v.end(), begin());
     invalidate();
   }
 
@@ -86,7 +86,7 @@ class eoVector : public EO<FitT>, public std::vector<GeneType>
 
         os << size() << ' ';
 
-        std::copy(begin(), end(), ostream_iterator<AtomType>(os, " "));
+        std::copy(begin(), end(), std::ostream_iterator<AtomType>(os, " "));
     }
 
     /// reading...

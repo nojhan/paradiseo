@@ -257,7 +257,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   virtual void printOn(ostream& _os) const 
   {
         _os << size() << '\n';
-        copy( begin(), end(), ostream_iterator<EOT>( _os, "\n") );
+        std::copy( begin(), end(), std::ostream_iterator<EOT>( _os, "\n") );
   }
 
   /** @name Methods from eoObject	*/
