@@ -88,36 +88,31 @@ template <class ScalarType, class Compare, class FitnessTraits = eoScalarFitness
 class eoScalarFitnessAssembled : public std::vector<ScalarType> {
 
 public:
-  
-  typedef typename std::vector<ScalarType>::size_type size_type;
+  typedef typename std::vector<ScalarType> baseVector;
+  typedef typename baseVector::size_type size_type;
 
   // Basic constructors and assignments
   eoScalarFitnessAssembled() 
-    : std::vector<ScalarType>( FitnessTraits::size() ) {}
+    : baseVector( FitnessTraits::size() ) {}
 
   eoScalarFitnessAssembled( size_type _n, 
 			    const ScalarType& _val,
 			    const std::string& _descr="Unnamed variable" )
-    : std::vector<ScalarType>(_n, _val) 
+    : baseVector(_n, _val) 
   { 
     if ( _n > FitnessTraits::size() )
     FitnessTraits::resize(_n, _descr);
   }
   
-  eoScalarFitnessAssembled( const eoScalarFitnessAssembled& other) : std::vector<ScalarType>( other ) {}
+  eoScalarFitnessAssembled( const eoScalarFitnessAssembled& other) : baseVector( other ) {}
 
   eoScalarFitnessAssembled& operator=( const eoScalarFitnessAssembled& other) {
-#ifdef _MSC_VER
-    typedef std::vector<ScalarType> myvector;
-    myvector::operator=( other );
-#else
-    std::vector<ScalarType>::operator=( other );
-#endif
+    baseVector::operator=( other );
     return *this;
   }
   
   // Constructors and assignments to work with scalar type
-  eoScalarFitnessAssembled( const ScalarType& v ) : std::vector<ScalarType>( 1, v ) {}
+  eoScalarFitnessAssembled( const ScalarType& v ) : baseVector( 1, v ) {}
   eoScalarFitnessAssembled& operator=( const ScalarType& v ) {
     
     if ( empty() )
@@ -130,30 +125,20 @@ public:
   
   //! Overload push_back()
   void push_back(const ScalarType& _val ){
-#ifdef _MSC_VER
-    typedef std::vector<ScalarType> myvector;
-    myvector::push_back( _val );
-#else
-    std::vector<ScalarType>::push_back( _val );
-#endif
+    baseVector::push_back( _val );
     if ( size() > FitnessTraits::size() ) 
       FitnessTraits::setDescription( size()-1, "Unnamed variable");
   }
 
   //! Overload push_back()
   void push_back(const ScalarType& _val, const std::string& _descr ){
-#ifdef _MSC_VER
-    typedef std::vector<ScalarType> myvector;
-    myvector::push_back( _val );
-#else
-    std::vector<ScalarType>::push_back( _val );
-#endif
+    baseVector::push_back( _val );
     FitnessTraits::setDescription( size()-1, _descr );
   }
 
   //! Overload resize()
   void resize( size_type _n, const ScalarType& _val = ScalarType(), const std::string& _descr = "Unnamed variable" ){
-    std::vector<ScalarType>::resize(_n, _val);
+    baseVector::resize(_n, _val);
     FitnessTraits::resize(_n, _descr);
   }
   
