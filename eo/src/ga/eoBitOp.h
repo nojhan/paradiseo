@@ -21,32 +21,8 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
+ CVS Info: $Date: 2001-05-10 12:16:00 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/ga/eoBitOp.h,v 1.13 2001-05-10 12:16:00 jmerelo Exp $ $Author: jmerelo $
  */
-//-----------------------------------------------------------------------------
-// MS 17/10/2000
-// Added the uniform crossover - which, for some reasons, had dissapeared!
-// Added the eoDetBitFlip, which flips exactly num_bit bits
-// Aslo added the above standard header
-
-// I also want to start the discussion about the "gene" crossover.
-// I think the word "gene" is not appropriate: if real numbers are coded in 
-// binary format, then a "gene" is a bit, and that's it
-// if you want to exchange real number per se, then use real coding
-//
-// Because all crossover operators here except that Gene crossover 
-// ARE generic, i.e. appky to any vertor of something.
-
-// Note that for mutations, if instead of       
-//             chrom[i] = (chrom[i]) ? false : true;
-// we were calling something like
-//             specific_mutate(chrom[i])
-// all mutation would also be generic ... except those eoBitNext and eoBitPrev
-
-// If anybody reads this and want to change that (I'm also testing to see
-// if someone ever reads the headers :-), drop me a mail
-// Marc (Marc.Schoenauer@polytechnique.fr)
-//-----------------------------------------------------------------------------
-// eoBitOp.h
 //-----------------------------------------------------------------------------
 
 #ifndef eoBitOp_h

@@ -13,7 +13,7 @@ LDADDS = $(top_builddir)/src/utils/libeoutils.a $(top_builddir)/src/libeo.a
 CXXFLAGS = -g -Wall 
 ###############################################################################
 
-check_PROGRAMS = t-eoParetoFitness t-eoPareto t-eofitness t-eoRandom t-eobin t-eoStateAndParser t-eoCheckpointing t-eoSSGA  \
+check_PROGRAMS = t-eoParetoFitness t-eoPareto t-eofitness t-eoRandom t-eobin t-eoVirus t-MGE t-MGE-control t-eoStateAndParser t-eoCheckpointing t-eoSSGA  \
 	t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoReal t-eoVector t-eoESAll
 TESTS=run_tests t-eoVector t-eoRandom t-eoSSGA t-eoPareto t-eoParetoFitness
 # removing temporarily t-eoESFull
@@ -36,6 +36,24 @@ t_eofitness_LDADD = $(LDADDS)
 t_eobin_SOURCES = t-eobin.cpp binary_value.h
 t_eobin_DEPENDENCIES = $(DEPS)
 t_eobin_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoVirus_SOURCES = t-eoVirus.cpp binary_value.h
+t_eoVirus_DEPENDENCIES = $(DEPS)
+t_eoVirus_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_MGE_SOURCES = t-MGE.cpp binary_value.h
+t_MGE_DEPENDENCIES = $(DEPS)
+t_MGE_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_MGE_control_SOURCES = t-MGE-control.cpp binary_value.h
+t_MGE_control_DEPENDENCIES = $(DEPS)
+t_MGE_control_LDADD = $(LDADDS)
 
 ###############################################################################
 
