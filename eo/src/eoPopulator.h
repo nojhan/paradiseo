@@ -45,7 +45,7 @@ public :
   struct OutOfIndividuals {};
 
   /** a populator behaves like an iterator. Hence the operator*
-   *      it returns the current individual -- eventually getting 
+   *      it returns the current individual -- eventually getting
    *      a new one through the operator++ if at the end
    */
   EOT& operator*(void)
@@ -83,15 +83,6 @@ public :
     current = eoPop<EOT>::insert(current, _eo);
   }
 
-  /** useful for operators that generate less offspring than parents
-   *  though there is another way - using a selector *within*  
-   *  the operator to get the extra parents from outside 
-   */
-  void erase()
-  {
-    current = eoPop<EOT>::erase(current);
-  }
-
   /** just to make memory mangement more efficient
    */
   void reserve(int how_many)
@@ -115,11 +106,12 @@ public :
   /** no more individuals  */
   bool exhausted(void)          { return current == end(); }
 
+  virtual const EOT& select() = 0;
+
 protected :
-  /** the pure virtual selection method - will be instanciated in 
+  /** the pure virtual selection method - will be instanciated in
    *   eoSeqPopulator and eoPropPopulator
    */
-  virtual const EOT& select() = 0;
   eoPop<EOT>::iterator current;
   const eoPop<EOT>& src;
 };
@@ -133,7 +125,7 @@ class eoSeqPopulator : public eoPopulator<EOT>
 {
 public :
 
-  eoSeqPopulator(const eoPop<EOT>& _pop) : 
+  eoSeqPopulator(const eoPop<EOT>& _pop) :
     eoPopulator<EOT>(_pop), src_it(_pop.begin()) {}
 
   const EOT& select(void)
@@ -149,7 +141,7 @@ public :
 
 private :
   vector<EOT>::const_iterator src_it;
-}; 
+};
 
 
 /** SelectivePopulator an eoPoplator that uses an eoSelectOne to select guys.
@@ -169,7 +161,7 @@ public :
 
 private :
   eoSelectOne<EOT>& sel;
-}; 
+};
 
 #endif
 

@@ -58,7 +58,11 @@ class eoGenOp : public eoOp<EOT>, public eoUF<eoPopulator<EOT> &, void>
   /// Ctor that honors its superclass
   eoGenOp(): eoOp<EOT>( eoOp<EOT>::general ) {}
 
+  /** Max production is used to reserve space for all elements that are used by the operator,
+      not setting it properly can result in a crash
+  */
   virtual unsigned max_production(void) = 0;
+
   virtual string className() = 0;
     void operator()(eoPopulator<EOT>& _pop)
     {
@@ -103,18 +107,18 @@ class eoBinGenOp : public eoGenOp<EOT>
    public:
     eoBinGenOp(eoBinOp<EOT>& _op) : op(_op) {}
 
-    unsigned max_production(void) { return 1; }
+    unsigned max_production(void) { return 2; } //2 as it will request two individuals
 
   /** do the work: get 2 individuals from the population, modifies
-      only one (it's a eoBinOp) and erases the non-midified one
+      only one (it's a eoBinOp) 
       */
     void apply(eoPopulator<EOT>& _pop)
     {
       EOT& a = *_pop;
-      EOT& b = *++_pop;
+      const EOT& b = _pop.select();
+
       if (op(a, b))
         a.invalidate();
-      _pop.erase();  // erase the b from the next population
     }
   string className() {return op.className();}
 
@@ -206,6 +210,9 @@ class eoQuadGenOp : public eoGenOp<EOT>
         case eoOp<EOT>::quadratic : return _store.storeFunctor(new eoQuadGenOp<EOT>(static_cast<eoQuadOp<EOT>&>(_op)));
         case eoOp<EOT>::general   : return static_cast<eoGenOp<EOT>&>(_op);
       }
+
+      assert(false);
+      return static_cast<eoGenOp<EOT>&>(_op);
     }
 
 #endif

@@ -1,9 +1,9 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
    -----------------------------------------------------------------------------
-   eoBreed.h 
+   eoBreed.h
    (c) Maarten Keijzer, GeNeura Team, 2000
- 
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -29,9 +29,11 @@
 //-----------------------------------------------------------------------------
 #include <eoPop.h>
 #include <eoFunctor.h>
+#include <eoSelect.h>
+#include <eoTransform.h>
 //-----------------------------------------------------------------------------
 
-/** 
+/**
 eoBreed: breeding is thought of a combination of selecting and transforming
 a population. For efficiency reasons you might want to build your own
 eoBreed derived class rather than relying on a seperate select and transform
@@ -44,7 +46,7 @@ class eoBreed : public eoBF<const eoPop<EOT>&, eoPop<EOT>&, void>
 {};
 
 /**
-eoSelectTransform: special breeder that is just an application of an embedded select, 
+eoSelectTransform: special breeder that is just an application of an embedded select,
 followed by an embedded transform
 */
 template <class EOT>

@@ -66,6 +66,8 @@
 #include <eoInit.h>
 
 #include <eoOp.h>
+#include <eoGenOp.h>
+#include <eoOpContainer.h>
 
 #include <eoPop.h>
 
@@ -91,11 +93,13 @@
 #include <eoSelectPerc.h>
 #include <eoSelectNumber.h>
 #include <eoSelectMany.h>
-// other batch selections 
-// DetSelect probably shoudl be turned into an eoSelectOne 
+// other batch selections
+// DetSelect probably shoudl be turned into an eoSelectOne
 // (using setup and an index)
 #include <eoDetSelect.h>
 
+// Breeders
+#include <eoGeneralBreeder.h>
 
 // Replacement
 // #include <eoReplacement.h>
@@ -118,6 +122,7 @@
 #include <utils/checkpointing>
 
 // aliens
+#include <other/external_eo>
 #include <eoCounter.h>
 
 //-----------------------------------------------------------------------------

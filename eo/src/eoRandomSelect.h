@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoRandomSelect.h
 // (c) GeNeura Team, 1998 - EEAAX 1999, Maarten Keijzer 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -41,23 +41,23 @@
 /** eoRandomSelect: a selection method that selects ONE individual randomly */
 //-----------------------------------------------------------------------------
 
-template <class EOT> class eoRandomSelect: public eoSelectOne<EOT> 
+template <class EOT> class eoRandomSelect: public eoSelectOne<EOT>
 {
  public:
-  
+
   /// not a big deal!!!
-  virtual const EOT& operator()(const eoPop<EOT>& _pop) 
+  virtual const EOT& operator()(const eoPop<EOT>& _pop)
   {
-    return _pop[eo::rng.random(pop.size())] ;
+    return _pop[eo::rng.random(_pop.size())] ;
   }
 };
 
 //-----------------------------------------------------------------------------
-/** eoBestSelect: a selection method that always return the best 
+/** eoBestSelect: a selection method that always return the best
  *                (mainly for testing purposes) */
 //-----------------------------------------------------------------------------
 
-template <class EOT> class eoBestSelect: public eoSelectOne<EOT> 
+template <class EOT> class eoBestSelect: public eoSelectOne<EOT>
 {
  public:
   

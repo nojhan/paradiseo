@@ -33,12 +33,16 @@
  *****************************************************************************/
 
 #include <eoOp.h>
+#include <eoGenOp.h>
 #include <eoPopulator.h>
+#include <eoSelectOne.h>
+#include <eoBreed.h>
+#include <utils/eoHowMany.h>
 
 /**
   Base class for breeders using generalized operators.
 */
-template<class EOT> 
+template<class EOT>
 class eoGeneralBreeder: public eoBreed<EOT>
 {
  public:
@@ -49,10 +53,13 @@ class eoGeneralBreeder: public eoBreed<EOT>
    * @param _rate               pour howMany, le nbre d'enfants a generer
    * @param _interpret_as_rate  <a href="../../tutorial/html/eoEngine.html#howmany">explanation</a>
    */
-  eoGeneralBreeder( eoSelectOne<EOT>& _select, eoGenOp<EOT>& _op, 
-	       double  _rate=1.0, bool _interpret_as_rate = true) : 
-    select( _select ), op(_op),  howMany(_rate, _interpret_as_rate) {}
-  
+  eoGeneralBreeder(
+          eoSelectOne<EOT>& _select,
+          eoGenOp<EOT>& _op,
+	        double  _rate=1.0,
+          bool _interpret_as_rate = true) :
+      select( _select ), op(_op),  howMany(_rate, _interpret_as_rate) {}
+
   /** The breeder: simply calls the genOp on a selective populator!
    *
    * @param _parents the initial population
@@ -69,15 +76,16 @@ class eoGeneralBreeder: public eoBreed<EOT>
       while (it.size() < target)
 	{
 	  op(it);
+    ++it;
 	}
-      
+
       swap(_offspring, it);
       _offspring.resize(target);   // you might have generated a few more
     }
-  
+
   /// The class name.
   string className() const { return "eoGeneralBreeder"; }
-  
+
  private:
   eoSelectOne<EOT>& select;
   eoGenOp<EOT>& op;

@@ -7,7 +7,7 @@
         and 'genetic' operators
 
  (c) Maarten Keijzer (mkeijzer@mad.scientist.com) and GeNeura Team, 1999, 2000
- 
+
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -52,7 +52,7 @@ public :
 
     void operator()(ExternalEO& _eo)
     {
-        _eo = (*init)();
+        _eo.External::operator=( (*init)() );
         _eo.invalidate();
     }
 
