@@ -10,15 +10,13 @@
 
 using namespace std;
 
-// general
-#include <eoParser.h>            // though contained in all others!
+#include <utils/eoParser.h>
+
 // evolution specific
 #include <eoEvalFuncPtr.h>
-//#include <eoSequentialOpHolder.h>
-//#include <eoFullEA.h>
-// representation specific
 
-#include <eoESFullChrom.h>            // though contained in following
+// representation specific
+#include <es/eoESFullChrom.h>            // though contained in following
 //#include <eoESReco.h>
 //#include <eoESMut.h>
 //#include <eoESRandomize.h>
@@ -36,18 +34,25 @@ main(int argc, char *argv[]) {
   // Create the command-line parser
   Parser parser( argc, argv, "Basic EA for vector<float> with adaptive mutations");
 
-  //reproducible random seed - thanks, Maarten
-  InitRandom(parser);
+  // Define Parameters and load them
+  eoValueParam<uint32>& seed        = parser.createParam(time(0), "seed", "Random number seed");
+  eoValueParam<string>& load_name   = parser.createParam("", "Load","Load a state file",'L');
+  eoValueParam<string>& save_name   = parser.createParam("", "Save","Saves a state file",'S');
+ 
+  eoState state;
+  state.registerObject(parser);
+ 
+   if (load_name.value() != "")
+   { // load the parser. This is only neccessary when the user wants to 
+     // be able to change the parameters in the state file by hand.
+       state.load(load_name.value()); // load the parser
+   }
 
-  // a first Ind, reading its parameters from the parser
-  // will be used later to inialize the whole population
-  Ind FirstEO(parser);
-
+ 
   // Evaluation
-  // here we should call some  parser-based constructor, 
-  // as many evaluation function need parameters
-  // and also have some preliminary stuffs to do
   eoEvalFuncPtr<Ind> eval(  real_value );
+
+
 
   /*
   // Evolution and population parameters
@@ -104,4 +109,5 @@ main(int argc, char *argv[]) {
 	*/
 	return 0;  
 }
+
 

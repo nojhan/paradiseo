@@ -1,7 +1,9 @@
 //-----------------------------------------------------------------------------
 
 // to avoid long name warnings
+#ifdef _MSC_VER
 #pragma warning(disable:4786)
+#endif
 
 #include <stdexcept>  // runtime_error 
 
@@ -19,6 +21,15 @@
 
 //-----------------------------------------------------------------------------
 
+// include package checkpointing
+#include <utils/checkpointing>
+#include <eoGenTerm.h>
+
+struct Dummy : public EO<double>
+{
+    typedef double Type;
+};
+
 
 //-----------------------------------------------------------------------------
 
@@ -30,7 +41,7 @@ int the_main(int argc, char **argv)
     eoParser parser(argc, argv);
       
     // Define Parameters
-    eoValueParam<unsigned> chrom_size(2, "chrom-size", "Chromosome size");
+    eoValueParam<unsigned>& chrom_size = parser.createParam(unsigned(2), "chrom-size", "Chromosome size");
     eoValueParam<double> rate(0.01, "mutationRatePerBit", "Initial value for mutation rate per bit"); 
     eoValueParam<double> factor(0.99, "mutationFactor", "Decrease factor for mutation rate");
     eoValueParam<uint32> seed(time(0), "seed", "Random number seed");
@@ -38,12 +49,11 @@ int the_main(int argc, char **argv)
     eoValueParam<string> save_name("", "Save","Save",'S');
  
     // Register them
-    parser.processParam(chrom_size, "Representation");
-    parser.processParam(rate, "Genetic Operators");
-    parser.processParam(factor, "Genetic Operators");
-    parser.processParam(load_name, "Persistence");
-    parser.processParam(save_name, "Persistence");
-    parser.processParam(seed,      "Rng seeding");
+    parser.processParam(rate,       "Genetic Operators");
+    parser.processParam(factor,     "Genetic Operators");
+    parser.processParam(load_name,  "Persistence");
+    parser.processParam(save_name,  "Persistence");
+    parser.processParam(seed,       "Rng seeding");
 
    eoState state;
    state.registerObject(parser);
