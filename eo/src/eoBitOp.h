@@ -10,16 +10,23 @@
 #include <eoBin.h>  // eoBin
 #include <eoOp.h>   // eoMonOp
 
-#ifdef _MSC_VER
-#define min _MIN
-#define max _MAX
-#endif
 
+/** @name BitWise Genetic operators
 
-//-----------------------------------------------------------------------------
-// eoBinRandom --> mofify a chromosome in a random way
-//-----------------------------------------------------------------------------
+Even as these operators might seem general, they are particular versions of genetic
+operators useful only for binary operators. As any set of genetic operators, it must
+have a factory that knows how to build them from a description
+@author GeNeura Team
+@version 0.1
+@see eoBin
+@see eoBitOpFactory
+*/
 
+//@{
+
+/**
+ eoBinRandom --> mofify a chromosome in a random way
+*/
 template<class Chrom> class eoBinRandom: public eoMonOp<Chrom>
 {
  public:
@@ -345,5 +352,5 @@ template<class Chrom> class eoBinUxOver: public eoBinOp<Chrom>
 };
 
 //-----------------------------------------------------------------------------
-
+//@}
 #endif eoBitOp_h

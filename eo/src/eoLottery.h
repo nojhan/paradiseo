@@ -9,7 +9,6 @@
 
 #include <functional>
 
-#include <values.h>  // MINFLOAT
 #include <numeric>  // accumulate
 #include <eo>       // eoPop eoSelect
 

@@ -16,9 +16,13 @@
 
 What is a genetic algorithm without genetic operators? There is a genetic operator hierarchy, with 
 eoOp as father and eoMonOp (monary or unary operator) and eoBinOp (binary operator) as siblings. Nobody
-should subclass eoOp, you should subclass eoBinOp or eoMonOp, those are the ones actually used here.
+should subclass eoOp, you should subclass eoBinOp or eoMonOp, those are the ones actually used here.\\
+#eoOp#s are only printable objects, so if you want to build them from a file, it has to
+be done in another class, namely factories. Each hierarchy of #eoOp#s should have its own
+factory, which know how to build them from a description in a file. 
 @author GeNeura Team
-@version 0.0
+@version 0.1
+@see eoOpFactory
 */
 //@{
 
@@ -57,7 +61,7 @@ public:
    */
   virtual void printOn(ostream& _os) const {
 	  _os << className(); 
-	  _os << arity;
+//	  _os << arity;
   };
 
 	/** Inherited from eoObject 

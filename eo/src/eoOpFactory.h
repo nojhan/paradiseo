@@ -60,7 +60,7 @@ public:
 		  throw objectTypeStr;
 		}
 		return opPtr;
-	}
+	};
 
 
 };

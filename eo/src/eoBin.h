@@ -17,6 +17,7 @@
  * based on STL's bit_vector (vector<bool>).                                 *
  *****************************************************************************/
 
+
 template <class F> class eoBin: public eoVector<bool, F>
 {
  public:
@@ -37,14 +38,9 @@ template <class F> class eoBin: public eoVector<bool, F>
       generate(begin(), end(), rnd);
     }
   
-  /**
-   * Constructor from istream.
-   * @param is The istream to read from.
-   */
-  eoBin(istrstream& is)
-    { 
-      readFrom(is); 
-    }
+  /// Constructor from istream.
+  /// @param is The istream to read from.
+  eoBin(istream& _is):eoVector<bool,F>(_is){};
   
   /// My class name.
   string className() const 

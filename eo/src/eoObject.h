@@ -10,8 +10,9 @@
 
 //-----------------------------------------------------------------------------
 
-#include <iostream>  // istream, ostream
-#include <string> // para string
+#include <eoData.h>		// For limits definition
+#include <iostream>		// istream, ostream
+#include <string>		// para string
 
 using namespace std;
 

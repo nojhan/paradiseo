@@ -9,7 +9,10 @@
 #define _EOOPSELMASON_H
 
 //-----------------------------------------------------------------------------
-#include <eoOpSelector.h>
+#include <eoProportionalOpSel.h>
+#include <eoOpFactory.h>	// for eoFactory and eoOpFactory
+
+#include <map>
 
 //-----------------------------------------------------------------------------
 
@@ -19,14 +22,16 @@ template<class eoClass>
 class eoOpSelMason: public eoFactory<eoOpSelector<eoClass> > {
 	
 public:
-	
+	typedef vector<eoOp<eoClass>* > vOpP;
+	typedef map<eoOpSelector<eoClass>*, vOpP > MEV;
+
 	/// @name ctors and dtors
 	//{@
 	/// constructor
-	eoOpSelMason( ) {}
+	eoOpSelMason( eoOpFactory<eoClass>& _opFact): operatorFactory( _opFact ) {};
 	
 	/// destructor
-	virtual ~eoOpSelMason() {}
+	virtual ~eoOpSelMason() {};
 	//@}
 
 	/** Factory methods: creates an object from an istream, reading from
@@ -41,33 +46,47 @@ public:
 	from outside, using the #destroy# method
 	*/
 	virtual eoOpSelector<eoClass>* make(istream& _is) {
+
 		string opSelName;
 		_is >> opSelName;
-		eoMonOpFactory<eoClass> selMaker;
+		eoOpSelector<eoClass>* opSelectorP;
+		// Build the operator selector
+		if ( opSelName == "eoProportionalOpSel" ) {
+			opSelectorP = new eoProportionalOpSel<eoClass>();
+		}
+
+		// Temp vector for storing pointers
+		vOpP tmpPVec;
 		// read operator rate and name
 		while ( _is ) {
 			float rate;
 			_is >> rate;
-	
+			if ( _is ) {
+				eoOp<eoClass>* op = operatorFactory.make( _is );	// This reads the rest of the line
+				// Add the operators to the selector, don´t pay attention to the IDs
+				opSelectorP->addOp( *op, rate );
+				// Keep it in the store, to destroy later
+				tmpPVec.push_back( op );
+			} // if
+		} // while
 
-			// Create an stream
-			strstream s0;
-			eoMonOp<IEO>* op0 = selMaker.make( s0 );
-		}
-	
-	}
+		// Put it in the map
+		allocMap.insert( MEV::value_type( opSelectorP, tmpPVec ) );
+		
+		return opSelectorP;
+	};
 
 	///@name eoObject methods
 	//@{
 	/** Return the class id */
-	virtual string className() const { return "eoFactory"; }
+	virtual string className() const { return "eoOpSelMason"; }
 
-	/** Read and print are left without implementation */
 	//@}
 	
 private:
 	map<eoOpSelector<eoClass>*,vector<eoOp<eoClass>* > > allocMap;
+	eoOpFactory<eoClass>& operatorFactory;
 };
 
 
-#endif _EOFACTORY_H
+#endif _EOOPSELMASON_H
