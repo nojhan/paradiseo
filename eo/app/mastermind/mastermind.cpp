@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 
 #include <stdlib.h>                // EXIT_SUCCESS EXIT_FAILURE
-#include <stdexcept>               // exception 
+#include <stdexcept>               // exception
 #include <iostream>                // cerr cout
 #include <fstream>                 // ifstream
 #include <string>                  // string
@@ -51,8 +51,8 @@ int main(int argc, char** argv)
     }
   catch (exception& e)
     {
-      cerr << argv[0] << ": " << e.what() << endl;
-      exit(EXIT_FAILURE);
+        cerr << argv[0] << ": " << e.what() << endl;
+        exit(EXIT_FAILURE);
     }
 
   return 0;
@@ -65,7 +65,7 @@ int main(int argc, char** argv)
 void arg(int argc, char** argv)
 {
   eoParser parser(argc, argv);
-  
+
   parser.processParam(pop_size,    "genetic operators");
   parser.processParam(generations, "genetic operators");
   parser.processParam(mut_rate,    "genetic operators");
@@ -90,49 +90,49 @@ void ga()
   // create population
   eoInitChrom init;
   eoPop<Chrom> pop(pop_size.value(), init);
-  
+
   // evaluate population
   eoEvalFuncPtr<Chrom> evaluator(eoChromEvaluator);
   apply<Chrom>(evaluator, pop);
-  
+
   // selector
   eoProportionalSelect<Chrom> select(pop);
 
   // genetic operators
   eoChromMutation mutation;
   eoChromXover xover;
-  
+
   // stop condition
   eoGenContinue<Chrom> continuator1(generations.value());
-  eoFitContinue<Chrom> continuator2(solution.fitness());  
+  eoFitContinue<Chrom> continuator2(solution.fitness());
   eoCombinedContinue<Chrom> continuator(continuator1, continuator2);
 
   // checkpoint
   eoCheckPoint<Chrom> checkpoint(continuator);
-    
+
   // monitor
   eoStdoutMonitor monitor;
   checkpoint.add(monitor);
-  
+
   // statistics
   eoBestFitnessStat<Chrom> stats;
   checkpoint.add(stats);
   monitor.add(stats);
-    
+
   // genetic algorithm
   eoSGA<Chrom> sga(select,
-		   xover, xover_rate.value(), 
-		   mutation, mut_rate.value(), 
-		   evaluator, 
+		   xover, xover_rate.value(),
+		   mutation, mut_rate.value(),
+		   evaluator,
 		   checkpoint);
   sga(pop);
-  
+
   cout << "solution = " << solution << endl
        << "best     = " << *max_element(pop.begin(), pop.end()) << endl;
 }
 
 //-----------------------------------------------------------------------------
 
-// Local Variables: 
+// Local Variables:
 // mode:C++
 // End:

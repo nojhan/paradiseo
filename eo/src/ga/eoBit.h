@@ -20,9 +20,9 @@
              Marc.Schoenauer@polytechnique.fr
 */
 
-/* MS, Nov. 23, 2000 
+/* MS, Nov. 23, 2000
    Added the calls to base class I/O routines that print the fitness
-   Left printing/reading of the size of the bitstring, 
+   Left printing/reading of the size of the bitstring,
        for backward compatibility, and as it is a general practice in EO
 
    MS, Feb. 7, 2001
@@ -54,7 +54,11 @@
 */
 template <class FitT> class eoBit: public eoVector<FitT, bool>
 {
- public:
+public:
+
+    using eoVector< FitT, bool >::begin;
+    using eoVector< FitT, bool >::end;
+    using eoVector< FitT, bool >::size;
 
   /**
    * (Default) Constructor.
@@ -104,3 +108,9 @@ template <class FitT> class eoBit: public eoVector<FitT, bool>
 //-----------------------------------------------------------------------------
 
 #endif //eoBit_h
+
+
+// Local Variables:
+// mode: C++
+// c-file-style: "Stroustrup"
+// End:

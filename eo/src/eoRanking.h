@@ -38,6 +38,9 @@ template <class EOT>
 class eoRanking : public eoPerf2Worth<EOT> // false: do not cache fitness
 {
 public:
+
+    using eoRanking< EOT >::value;
+
   /* Ctor:
    @param _p selective pressure (in (1,2]
    @param _e exponent (1 == linear)
@@ -91,7 +94,7 @@ public:
 	    {
 	      int which = lookfor(rank[i], _pop);
 	      // value in in [0,1]
-	      double tmp = ((double)(pSize-i))/pSize; 
+	      double tmp = ((double)(pSize-i))/pSize;
 	      // to the exponent, and back to [m,M]
 	      value()[which] = gamma*pow(tmp, exponent)+beta;
 	    }

@@ -87,55 +87,57 @@ class eoOpContainer : public eoGenOp<EOT>
 template <class EOT>
 class eoSequentialOp : public eoOpContainer<EOT>
 {
-  public :
-  typedef unsigned position_type;
+public:
+
+    using eoOpContainer< EOT >::ops;
+    using eoOpContainer< EOT >::rates;
+
+    typedef unsigned position_type;
 
 
-  void apply(eoPopulator<EOT>& _pop)
-  {
-    position_type pos = _pop.tellp();
+    void apply(eoPopulator<EOT>& _pop) {
+        position_type pos = _pop.tellp();
+        for (size_t i = 0; i < rates.size(); ++i) {
+            _pop.seekp(pos);
+            do {
+                if (eo::rng.flip(rates[i])) {
+                    //            try
+                    //            {
+                    // apply it to all the guys in the todo std::list
+                    (*ops[i])(_pop);
+                    //            }
+                    // check for out of individuals and do nothing with that...
+                    //            catch(eoPopulator<EOT>::OutOfIndividuals&)
+                    //	      {
+                    //		std::cout << "Warning: not enough individuals to handle\n";
+                    //		return ;
+                    //	      }
+                }
 
-     for (size_t i = 0; i < rates.size(); ++i)
-     {
-        _pop.seekp(pos);
-
-        do
-        {
-          if (eo::rng.flip(rates[i]))
-          {
-	    //            try
-	    //            {
-	      // apply it to all the guys in the todo std::list
-              (*ops[i])(_pop);
-	      //            }
-            // check for out of individuals and do nothing with that...
-	      //            catch(eoPopulator<EOT>::OutOfIndividuals&)
-	      //	      {
-	      //		std::cout << "Warning: not enough individuals to handle\n";
-	      //		return ;
-	      //	      }
-          }
-
-          if (!_pop.exhausted())
-            ++_pop;
+                if (!_pop.exhausted())
+                    ++_pop;
+            }
+            while (!_pop.exhausted());
         }
-        while (!_pop.exhausted());
-     }
-  }
-  virtual std::string className() const {return "SequentialOp";}
+    }
+    virtual std::string className() const {return "SequentialOp";}
 
-  private :
+private:
 
-  std::vector<size_t> to_apply;
-  std::vector<size_t> production;
+    std::vector<size_t> to_apply;
+    std::vector<size_t> production;
 };
+
 
 
 /** The proportional versions: easy! */
 template <class EOT>
 class eoProportionalOp : public eoOpContainer<EOT>
 {
-    public :
+public:
+
+    using eoOpContainer< EOT >::ops;
+    using eoOpContainer< EOT >::rates;
 
     void apply(eoPopulator<EOT>& _pop)
     {

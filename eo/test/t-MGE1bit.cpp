@@ -29,25 +29,25 @@ int main()
   unsigned i;
   eoBooleanGenerator gen;
 
-  // the populations: 
-  eoPop<Chrom> pop; 
+  // the populations:
+  eoPop<Chrom> pop;
 
   // Evaluation
-  RoyalRoad<Chrom> rr( 8 ); 
+  RoyalRoad<Chrom> rr( 8 );
   eoEvalFuncCounter<Chrom> eval( rr );
 
-  eoInitVirus1bit<float> random(CHROM_SIZE, gen); 
+  eoInitVirus1bit<float> random(CHROM_SIZE, gen);
   for (i = 0; i < POP_SIZE; ++i) {
       Chrom chrom;
       random(chrom);
       eval(chrom);
       pop.push_back(chrom);
   }
-  
+
   std::cout << "population:" << std::endl;
   for (i = 0; i < pop.size(); ++i)
     std::cout << "\t" << pop[i] << " " << pop[i].fitness() << std::endl;
-  
+
   // selection
   eoStochTournamentSelect<Chrom> lottery(0.9 );
 
@@ -62,14 +62,14 @@ int main()
   propSel.add(vf, 0.05);
   propSel.add(vt, 0.05);
   propSel.add(xover, 0.1);
-  
+
   // Replace a single one
   eoCommaReplacement<Chrom> replace;
 
   // Terminators
   eoGenContinue<Chrom> continuator1(10);
   eoFitContinue<Chrom> continuator2(CHROM_SIZE);
-  eoCombinedContinue<Chrom> continuator(continuator1, continuator2);  
+  eoCombinedContinue<Chrom> continuator(continuator1, continuator2);
   eoCheckPoint<Chrom> checkpoint(continuator);
   eoStdoutMonitor monitor;
   checkpoint.add(monitor);
@@ -83,22 +83,26 @@ int main()
   eoEasyEA<Chrom> ea(checkpoint, eval,  breeder, replace);
 
   // evolution
-  try
-  {
+  try {
       ea(pop);
-  }
-  catch (std::exception& e)
-  {
-      std::cout << "exception: " << e.what() << std::endl;;
+  } catch (std::exception& e) {
+      std::cerr << "exception: " << e.what() << std::endl;;
       exit(EXIT_FAILURE);
   }
-  
+
   std::cout << "pop" << std::endl;
   for (i = 0; i < pop.size(); ++i)
-    std::cout << "\t" <<  pop[i] << " " << pop[i].fitness() << std::endl;
+      std::cout << "\t" <<  pop[i] << " " << pop[i].fitness() << std::endl;
 
   std::cout << "\n --> Number of Evaluations = " << eval.getValue() << std::endl;
-  return 0;
+  return EXIT_SUCCESS;
 }
 
 //-----------------------------------------------------------------------------
+
+
+
+// Local Variables:
+// mode: C++
+// c-file-style: "Stroustrup"
+// End:

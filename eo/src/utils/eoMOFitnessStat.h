@@ -36,6 +36,9 @@ template <class EOT, class FitT = typename EOT::Fitness>
 class eoFitnessStat : public eoSortedStat<EOT, std::vector<FitT> >
 {
 public :
+
+    using eoFitnessStat< EOT, FitT >::value;
+
     eoFitnessStat(std::string _description = "AllFitnesses") :
       eoSortedStat<EOT,std::vector<FitT> >(std::vector<FitT>(0), _description) {}
 
@@ -62,7 +65,10 @@ class eoMOFitnessStat : public eoSortedStat<EOT, std::vector<PartFitT> >
 #endif
 
 {
-public :
+public:
+
+    using eoMOFitnessStat< EOT, PartFitT >::value;
+
   /** Ctor: say what component you want
    */
   eoMOFitnessStat(unsigned _objective, std::string _description = "MO-Fitness") :

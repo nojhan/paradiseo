@@ -22,7 +22,7 @@
              Marc.Schoenauer@polytechnique.fr
 	     mak@dhi.dk
 
-    CVS Info: $Date: 2003-03-18 16:57:17 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVector.h,v 1.15 2003-03-18 16:57:17 maartenkeijzer Exp $ $Author: maartenkeijzer $ 
+    CVS Info: $Date: 2004-12-23 15:29:06 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVector.h,v 1.16 2004-12-23 15:29:06 kuepper Exp $ $Author: kuepper $
 
  */
 //-----------------------------------------------------------------------------
@@ -39,20 +39,32 @@
   Base class for fixed length chromosomes, just derives from EO and std::vector and
   redirects the smaller than operator to EO (fitness based comparison). GeneType
   must have the following methods: void ctor (needed for the std::vector<>), copy ctor,
-  
-  
+
+
 */
 template <class FitT, class GeneType>
 class eoVector : public EO<FitT>, public std::vector<GeneType>
 {
-    public :
+public:
+
+    using EO<FitT>::invalidate;
+    using std::vector<GeneType>::operator[];
+    using std::vector<GeneType>::begin;
+    using std::vector<GeneType>::end;
+    using std::vector<GeneType>::resize;
+    using std::vector<GeneType>::size;
 
     typedef GeneType                AtomType;
     typedef std::vector<GeneType>   ContainerType;
 
+    /** default constructor
 
-    eoVector(unsigned size = 0, GeneType value = GeneType()) : EO<FitT>(), std::vector<GeneType>(size, value)
-    {}
+    @param size Length of vector (default is 0)
+    @param value Initial value of all elements (default is default value of type GeneType)
+    */
+    eoVector(unsigned size = 0, GeneType value = GeneType())
+        : EO<FitT>(), std::vector<GeneType>(size, value)
+        {}
 
     /// copy ctor abstracting from the FitT
     template <class OtherFitnessType>

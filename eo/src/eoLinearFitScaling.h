@@ -1,9 +1,9 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
    -----------------------------------------------------------------------------
-   eoLinearFitScaling.h 
+   eoLinearFitScaling.h
    (c) GeNeura Team, 1998, Maarten Keijzer, Marc Schoenauer, 2001
- 
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -43,47 +43,48 @@ template <class EOT>
 class eoLinearFitScaling : public eoPerf2Worth<EOT> // false: do not cache fitness
 {
 public:
-  /* Ctor:
-   @param _p selective pressure (in (1,2]
-   @param _e exponent (1 == linear)
-  */
-  eoLinearFitScaling(double _p=2.0):
-    pressure(_p) {}
 
-  /* COmputes the ranked fitness: fitnesses range in [m,M]
-     with m=2-pressure/popSize and M=pressure/popSize.
-     in between, the progression depends on exponent (linear if 1).
-   */
-  virtual void operator()(const eoPop<EOT>& _pop)
-    {
-      unsigned pSize =_pop.size();
-      // value() refers to the vector of worthes (we're in an eoParamvalue)
-      value().resize(pSize);
+    using eoLinearFitScaling< EOT >::value;
 
-    // best and worse fitnesses
-    double bestFitness = static_cast<double> (_pop.best_element().fitness());
-    //    double worstFitness = static_cast<double> (_pop.worse_element().fitness());
+    /* Ctor:
+       @param _p selective pressure (in (1,2])
+       @param _e exponent (1 == linear)
+    */
+    eoLinearFitScaling(double _p=2.0)
+        : pressure(_p) {}
 
-    // average fitness
-    double sum=0.0;
-    unsigned i;
-    for (i=0; i<pSize; i++)
-      sum += static_cast<double>(_pop[i].fitness());
-    double averageFitness = sum/pSize;
+    /* COmputes the ranked fitness: fitnesses range in [m,M]
+       with m=2-pressure/popSize and M=pressure/popSize.
+       in between, the progression depends on exponent (linear if 1).
+    */
+    virtual void operator()(const eoPop<EOT>& _pop) {
+        unsigned pSize =_pop.size();
+        // value() refers to the vector of worthes (we're in an eoParamvalue)
+        value().resize(pSize);
 
-    // the coefficients for linear scaling
-    double denom = pSize*(bestFitness - averageFitness);
-    double alpha = (pressure-1)/denom;
-    double beta = (bestFitness - pressure*averageFitness)/denom;
+        // best and worse fitnesses
+        double bestFitness = static_cast<double> (_pop.best_element().fitness());
+        //    double worstFitness = static_cast<double> (_pop.worse_element().fitness());
 
-    for (i=0; i<pSize; i++) // truncate to 0
-      {
-	value()[i] = std::max(alpha*_pop[i].fitness()+beta, 0.0);
-      }
+        // average fitness
+        double sum=0.0;
+        unsigned i;
+        for (i=0; i<pSize; i++)
+            sum += static_cast<double>(_pop[i].fitness());
+        double averageFitness = sum/pSize;
 
+        // the coefficients for linear scaling
+        double denom = pSize*(bestFitness - averageFitness);
+        double alpha = (pressure-1)/denom;
+        double beta = (bestFitness - pressure*averageFitness)/denom;
+
+        for (i=0; i<pSize; i++) { // truncate to 0
+            value()[i] = std::max(alpha*_pop[i].fitness()+beta, 0.0);
+        }
     }
- private:
-  double pressure;	// selective pressure
+
+private:
+    double pressure;	// selective pressure
 };
 
 

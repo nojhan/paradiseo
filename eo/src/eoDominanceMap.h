@@ -46,16 +46,14 @@
 template <class EoType>
 class eoDominanceMap : public eoUF<const eoPop<EoType>&, void>, public std::vector<std::vector<bool> >
 {
-  public :
+public:
 
-  /**
-    Clears the map
-  */
-  void clear()
-  {
-    std::vector<std::vector<bool> >::clear();
-    fitnesses.clear();
-  }
+    /** Clears the map */
+    void clear() {
+        std::vector<std::vector<bool> >::clear();
+#warning Is this correct? Was: "fitnesses.clear()"
+        fitness.clear();
+    }
 
   /**
     Update or create the dominance map

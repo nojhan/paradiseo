@@ -1,9 +1,9 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
    -----------------------------------------------------------------------------
-   eoSurviveAndDie.h 
+   eoSurviveAndDie.h
    (c) Maarten Keijzer, Marc Schoenauer, GeNeura Team, 2000
- 
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -37,8 +37,8 @@
 //-----------------------------------------------------------------------------
 
 /**
-eoSurviveAndDie: takes a population (first argument), 
-kills the ones that are to die, 
+eoSurviveAndDie: takes a population (first argument),
+kills the ones that are to die,
 puts the ones that are to survive into the second argument
 removes them from the first pop argument
 
@@ -54,31 +54,34 @@ class eoSurviveAndDie : public eoBF<eoPop<EOT> &, eoPop<EOT> &, void>
 {
 public:
     eoSurviveAndDie(double _survive, double _die, bool _interpret_as_rate = true):
-	howmanySurvive(_survive, _interpret_as_rate), 
+	howmanySurvive(_survive, _interpret_as_rate),
 	howmanyDie(_die, _interpret_as_rate)
     {}
 
 protected:
     eoHowMany howmanySurvive;
     eoHowMany howmanyDie;
-    
+
 };
 
-/**
-an instance (theonly one as of today, Dec. 20, 2000) of an eoSurviveAndDie, 
-that does everything deterministically
+/** An instance (theonly one as of today, Dec. 20, 2000) of an
+    eoSurviveAndDie, that does everything deterministically
 
-used in eoDeterministicSaDReplacement
+    Used in eoDeterministicSaDReplacement.
 */
-
 template <class EOT>
 class eoDeterministicSurviveAndDie : public eoSurviveAndDie<EOT>
 {
 public:
-    eoDeterministicSurviveAndDie(double _survive, double _die, 
-				 bool _interpret_as_rate = true):
-	eoSurviveAndDie<EOT>(_survive, _die, _interpret_as_rate)
+
+    using eoSurviveAndDie< EOT >::howmanyDie;
+    using eoSurviveAndDie< EOT >::howmanySurvive;
+
+    /** constructor */
+    eoDeterministicSurviveAndDie(double _survive, double _die, bool _interpret_as_rate = true)
+        : eoSurviveAndDie< EOT >(_survive, _die, _interpret_as_rate)
     {}
+
 
     void operator()(eoPop<EOT> & _pop, eoPop<EOT> & _luckyGuys)
     {
@@ -88,7 +91,7 @@ public:
 	if (nbSurvive)
 	    {
 		_pop.nth_element(nbSurvive);
-		// copy best 
+		// copy best
 		_luckyGuys.resize(nbSurvive);
 		std::copy(_pop.begin(), _pop.begin()+nbSurvive, _luckyGuys.begin());
 		// erase them from pop
@@ -100,7 +103,7 @@ public:
 	unsigned nbDie = std::min(howmanyDie(pSize), pSize-nbSurvive);
 	if (nbDie > nbRemaining)
 	    throw std::logic_error("eoDeterministicSurviveAndDie: Too many to kill!\n");
-	    
+
 	if (!nbDie)
 	  {
 	    return;
@@ -118,33 +121,33 @@ eoDeterministicSaDReplacement: replacement strategy that is just, in sequence
   saves best and kill worse from parents
 + saves best and kill worse from offspring
 + merge remaining (neither save nor killed) parents and offspring
-+ reduce that merged population 
++ reduce that merged population
 = returns reduced pop + best parents + best offspring
 
-An obvious use is as strong elitist strategy, 
-   i.e. preserving best parents, and reducing 
+An obvious use is as strong elitist strategy,
+   i.e. preserving best parents, and reducing
          (either offspring or parents+offspring)
 */
 template <class EOT>
 class eoDeterministicSaDReplacement : public eoReplacement<EOT>
 {
 public:
-  /**  Constructor with reduce */  
-  eoDeterministicSaDReplacement(eoReduce<EOT>& _reduceGlobal, 
-		 double _surviveParents, double _dieParents=0, 
+  /**  Constructor with reduce */
+  eoDeterministicSaDReplacement(eoReduce<EOT>& _reduceGlobal,
+		 double _surviveParents, double _dieParents=0,
 		 double _surviveOffspring=0, double _dieOffspring=0,
 		 bool _interpret_as_rate = true ) :
-	reduceGlobal(_reduceGlobal), 
+	reduceGlobal(_reduceGlobal),
 	sAdParents(_surviveParents, _dieParents, _interpret_as_rate),
 	sAdOffspring(_surviveOffspring, _dieOffspring, _interpret_as_rate)
     {}
 
-  /**  Constructor with default truncate used as reduce */  
+  /**  Constructor with default truncate used as reduce */
     eoDeterministicSaDReplacement(
-		 double _surviveParents, double _dieParents=0, 
+		 double _surviveParents, double _dieParents=0,
 		 double _surviveOffspring=0, double _dieOffspring=0,
 		 bool _interpret_as_rate = true ) :
-	reduceGlobal(truncate), 
+	reduceGlobal(truncate),
 	sAdParents(_surviveParents, _dieParents, _interpret_as_rate),
 	sAdOffspring(_surviveOffspring, _dieOffspring, _interpret_as_rate)
     {}

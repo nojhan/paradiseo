@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoPBILAdditive.h
 // (c) Marc Schoenauer, Maarten Keijzer, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -30,10 +30,10 @@
 #include <ga/eoPBILDistrib.h>
 
 /**
- * Distribution Class for PBIL algorithm 
+ * Distribution Class for PBIL algorithm
  *      (Population-Based Incremental Learning, Baluja and Caruana 96)
  *
- * This class implements an extended update rule: 
+ * This class implements an extended update rule:
  * in the original paper, the authors used
  *
  *  p(i)(t+1) = (1-LR)*p(i)(t) + LR*best(i)
@@ -46,12 +46,12 @@ template <class EOT>
 class eoPBILAdditive :  public eoDistribUpdater<EOT>
 {
 public:
-  /** Ctor with parameters 
+  /** Ctor with parameters
    *  using the default values is equivalent to using eoPBILOrg
    */
-  eoPBILAdditive(double _LRBest, unsigned _nbBest = 1, 
+  eoPBILAdditive(double _LRBest, unsigned _nbBest = 1,
 		double _tolerance=0.0,
-		double _LRWorst = 0.0, unsigned _nbWorst = 0 ) : 
+		double _LRWorst = 0.0, unsigned _nbWorst = 0 ) :
     maxBound(1.0-_tolerance), minBound(_tolerance),
     LR(0.0), nbBest(_nbBest), nbWorst(_nbWorst)
   {
@@ -75,7 +75,7 @@ public:
   }
 
   /** Update the distribution from the current population */
-  virtual void operator()(eoDistribution<EOT> & _distrib, eoPop<EOT>& _pop) 
+  virtual void operator()(eoDistribution<EOT> & _distrib, eoPop<EOT>& _pop)
   {
     eoPBILDistrib<EOT>& distrib = dynamic_cast<eoPBILDistrib<EOT>&>(_distrib);
 
@@ -83,7 +83,7 @@ public:
 
     unsigned i, popSize=_pop.size();
     std::vector<const EOT*> result;
-    _pop.sort(result);	  // is it necessary to sort the whole population? 
+    _pop.sort(result);	  // is it necessary to sort the whole population?
 			 // but I'm soooooooo lazy !!!
 
     for (unsigned g=0; g<distrib.size(); g++)
@@ -104,8 +104,8 @@ public:
 		p[g] +=  lrw;
 	    }
 	// stay in [0,1] (possibly strictly due to tolerance)
-	p[g] = min(maxBound, p[g]);
-	p[g] = max(minBound, p[g]);
+	p[g] = std::min(maxBound, p[g]);
+	p[g] = std::max(minBound, p[g]);
       }
   }
 

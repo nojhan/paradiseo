@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoEsStdev.h
 // (c) GeNeura Team, 2000 - EEAAX 1999 - Maarten Keijzer 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -39,7 +39,9 @@ deviations.
 template <class Fit>
 class eoEsStdev : public eoVector<Fit, double>
 {
-    public :
+public:
+
+    using eoEsStdev< Fit >::size;
 
     typedef double Type;
 

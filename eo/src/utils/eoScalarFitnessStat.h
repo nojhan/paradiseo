@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoScalarFitnessStat.h
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -36,13 +36,16 @@
 template <class EOT, class FitT = typename EOT::Fitness>
 class eoScalarFitnessStat : public eoSortedStat<EOT, std::vector<double> >
 {
-public :
-  eoScalarFitnessStat(std::string _description = "FitnessES", 
-		      eoRealVectorBounds & _bounds = eoDummyVectorNoBounds) : 
-     eoSortedStat<EOT,  std::vector<double> >(std::vector<double>(0), _description) , 
+public:
+
+    using eoScalarFitnessStat< EOT, FitT >::value;
+
+    eoScalarFitnessStat(std::string _description = "FitnessES",
+		      eoRealVectorBounds & _bounds = eoDummyVectorNoBounds) :
+     eoSortedStat<EOT,  std::vector<double> >(std::vector<double>(0), _description) ,
      range(*_bounds[0])
     {}
-  
+
   virtual void operator()(const std::vector<const EOT*>& _popPters)
     {
       value().resize(_popPters.size());

@@ -1,9 +1,9 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoPopulator.h 
+// eoPopulator.h
 // (c) Maarten Keijzer and Marc Schoenauer, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -120,15 +120,15 @@ public :
    */
   virtual const EOT& select() = 0;
 
-protected :
-  eoPop<EOT>& dest;
-  typename eoPop<EOT>::iterator current;
-  const eoPop<EOT>& src;
+protected:
+    eoPop<EOT>& dest;
+    typename eoPop<EOT>::iterator current;
+    const eoPop<EOT>& src;
 
-private :
-  void get_next()
-  {
-    if (current == dest.end())
+private:
+
+  void get_next() {
+    if(current == dest.end())
       { // get new individual from derived class select()
         dest.push_back(select());
         current = dest.end();
@@ -143,31 +143,34 @@ private :
 };
 
 
-/** SeqPopulator: an eoPopulator that sequentially goes through the population
-is supposed to be used after a batch select of a whole bunch or genitors
- */
+/** SeqPopulator: an eoPopulator that sequentially goes through the
+    population is supposed to be used after a batch select of a whole
+    bunch or genitors
+*/
 template <class EOT>
 class eoSeqPopulator : public eoPopulator<EOT>
 {
-public :
+public:
 
-  eoSeqPopulator(const eoPop<EOT>& _pop, eoPop<EOT>& _dest) :
-    eoPopulator<EOT>(_pop, _dest), current(0) {}
+    eoSeqPopulator(const eoPop<EOT>& _pop, eoPop<EOT>& _dest) :
+        eoPopulator<EOT>(_pop, _dest), current(0) {}
 
-  /** the select method simply returns next individual in the src pop */
-  const EOT& select(void)
-  {
-    if (current >= src.size())
-      {
-	throw OutOfIndividuals();
-      }
+    /** the select method simply returns next individual in the src pop */
+    const EOT& select(void) {
+        if(current >= eoPopulator< EOT >::src.size()) {
+            throw OutOfIndividuals();
+        }
 
-    const EOT& res = src[current++];
-    return res;
-  }
+        const EOT& res = eoPopulator< EOT >::src[current++];
+        return res;
+    }
 
-private :
-  unsigned current;
+
+private:
+
+    struct OutOfIndividuals {};
+
+    unsigned current;
 };
 
 
@@ -178,20 +181,22 @@ template <class EOT>
 class eoSelectivePopulator : public eoPopulator<EOT>
 {
 public :
-  eoSelectivePopulator(const eoPop<EOT>& _pop, eoPop<EOT>& _dest, eoSelectOne<EOT>& _sel)
-    : eoPopulator<EOT>(_pop, _dest), sel(_sel)
-    {
-      sel.setup(_pop);
+
+    using eoPopulator< EOT >::src;
+
+    eoSelectivePopulator(const eoPop<EOT>& _pop, eoPop<EOT>& _dest, eoSelectOne<EOT>& _sel)
+        : eoPopulator<EOT>(_pop, _dest), sel(_sel)
+        { sel.setup(_pop); };
+
+    /** the select method actually selects one guy from the src pop */
+    const EOT& select() {
+        return sel(src);
     }
 
-  /** the select method actually selects one guy from the src pop */
-  const EOT& select()
-  {
-    return sel(src);
-  }
 
-private :
-  eoSelectOne<EOT>& sel;
+private:
+
+    eoSelectOne<EOT>& sel;
 };
 
 #endif

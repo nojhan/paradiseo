@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoEsFull.h
 // (c) GeNeura Team, 2000 - EEAAX 1999 - Maarten Keijzer 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -39,7 +39,11 @@ rates and correlated mutations.
 template <class Fit>
 class eoEsFull : public eoVector<Fit, double>
 {
-    public :
+public:
+
+    using eoEsFull< Fit >::size;
+
+
     typedef double Type;
 
     eoEsFull(void) : eoVector<Fit, double>() {}

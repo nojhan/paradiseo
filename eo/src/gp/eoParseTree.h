@@ -1,26 +1,26 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
- 
+
 //-----------------------------------------------------------------------------
 // eoParseTree.h : eoParseTree class (for Tree-based Genetic Programming)
-// (c) Maarten Keijzer 2000  
+// (c) Maarten Keijzer 2000
 /*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
     version 2 of the License, or (at your option) any later version.
- 
+
     This library is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
     Lesser General Public License for more details.
- 
+
     You should have received a copy of the GNU Lesser General Public
     License along with this library; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- 
+
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-    	     mak@dhi.dk 
-            
+    	     mak@dhi.dk
+
  */
 //-----------------------------------------------------------------------------
 
@@ -57,27 +57,31 @@ using namespace gp_parse_tree;
 template <class FType, class Node>
 class eoParseTree : public EO<FType>, public parse_tree<Node>
 {
-public :
+public:
+
+    using eoParseTree<FType, Node >::back;
+    using eoParseTree<FType, Node >::ebegin;
+    using eoParseTree<FType, Node >::eend;
+    using eoParseTree<FType, Node >::size;
+
 
     typedef typename parse_tree<Node>::subtree Subtree;
 
-   /* For Compatibility with the intel C++ compiler for Linux 5.x */
-   typedef Node reference;
-   typedef const reference const_reference;
-    
-    
+    /* For Compatibility with the intel C++ compiler for Linux 5.x */
+    typedef Node reference;
+    typedef const reference const_reference;
 
-	
     /**
      * Default Constructor
      */
     eoParseTree(void)  {}
-    /** 
+
+    /**
      * Copy Constructor
      * @param tree The tree to copy
      */
     eoParseTree(const parse_tree<Node>& tree)  : parse_tree<Node>(tree) {}
-    
+
 //    eoParseTree(const eoParseTree<FType, Node>& tree) :  parse_tree<Node>(tree) {}
     /**
      * To prune me to a certain size
@@ -90,7 +94,7 @@ public :
 
         while (size() > _size)
         {
-            back() = operator[](size()-2); 
+            back() = operator[](size()-2);
         }
     }
 
@@ -98,8 +102,8 @@ public :
      * To read me from a stream
      * @param is The std::istream
      */
-     
-    eoParseTree(std::istream& is) : EO<FType>(), parse_tree<Node>() 
+
+    eoParseTree(std::istream& is) : EO<FType>(), parse_tree<Node>()
     {
         readFrom(is);
     }
@@ -120,21 +124,21 @@ public :
 
         std::copy(ebegin(), eend(), std::ostream_iterator<Node>(os, " "));
     }
-    
+
     /**
      * To read me from a stream
      * @param is The std::istream
      */
-    void readFrom(std::istream& is) 
+    void readFrom(std::istream& is)
     {
-        
-    
+
+
     	EO<FType>::readFrom(is);
 
         unsigned sz;
         is >> sz;
 
-	
+
 	std::vector<Node> v(sz);
 
         unsigned i;
@@ -147,19 +151,19 @@ public :
         }
 	parse_tree<Node> tmp(v.begin(), v.end());
 	swap(tmp);
-	
+
 	/*
 	 * old code which caused problems for paradisEO
 	 *
 	 * this can be removed once it has proved itself
 	EO<FType>::readFrom(is);
-	
-	// even older code	 
+
+	// even older code
 	FType fit;
         is >> fit;
 
         fitness(fit);
-	
+
 
         std::copy(std::istream_iterator<Node>(is), std::istream_iterator<Node>(), back_inserter(*this));
 	*/

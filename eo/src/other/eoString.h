@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoString.h
 // (c) GeNeura Team, 1998
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -26,7 +26,8 @@
 #define _eoString_H
 
 // STL libraries
-#include <string>		
+#include <iostream>
+#include <string>
 #include <stdexcept>
 
 
@@ -38,13 +39,14 @@
 
 /** Adaptor that turns an STL std::string into an EO */
 template <class fitnessT >
-class eoString: public EO<fitnessT>, public std::string 
+class eoString: public EO<fitnessT>, public std::string
 {
 public:
 
-  typedef char Type;
-  typedef char AtomType;
-  typedef std::string   ContainerType;
+    typedef char Type;
+    typedef char AtomType;
+    typedef std::string   ContainerType;
+
 
   /// Canonical part of the objects: several ctors, copy ctor, dtor and assignment operator
   //@{
@@ -58,7 +60,7 @@ public:
     EO<fitnessT>::printOn(os);
     os << ' ';
 
-    os << size() << ' ' << substr() << endl;
+    os << size() << ' ' << substr() << std::endl;
 
   }
 
@@ -66,12 +68,12 @@ public:
       readFrom and printOn are directly inherited from eo1d
   */
   //@{
-  /** Inherited from eoObject 
+  /** Inherited from eoObject
       @see eoObject
   */
   virtual std::string className() const {return "eoString";};
   //@}
-	
+
 
 };
 

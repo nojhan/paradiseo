@@ -35,20 +35,24 @@
 #include <vector>
 #include <string>
 
-/** Base class to transform raw fitnesses into fitness for selection
+/** @brief Base class to transform raw fitnesses into fitness for selection
 
 @see eoSelectFromWorth
 */
 template <class EOT, class WorthT = double>
 class eoPerf2Worth : public eoUF<const eoPop<EOT>&, void>, public eoValueParam<std::vector<WorthT> >
 {
-  public:
-  eoPerf2Worth(std::string _description = "Worths"):eoValueParam<std::vector<WorthT> >(std::vector<WorthT>(0),
-					      _description) {}
+public:
 
-                  /**
-  Sort population according to worth, will keep the worths and fitness_cache in sync with the population.
-  */
+    using eoPerf2Worth<EOT, WorthT>::value;
+
+    /** @brief default constructor */
+    eoPerf2Worth(std::string _description = "Worths")
+        : eoValueParam<std::vector<WorthT> >(std::vector<WorthT>(0), _description)
+        {}
+
+    /** Sort population according to worth, will keep the worths and
+        fitness_cache in sync with the population. */
   virtual void sort_pop(eoPop<EOT>& _pop)
   { // start with a std::vector of indices
       std::vector<unsigned> indices(_pop.size());
@@ -75,28 +79,28 @@ class eoPerf2Worth : public eoUF<const eoPop<EOT>&, void>, public eoValueParam<s
     std::swap(value(), tmp_worths);
   }
 
-  /** helper class used to sort indices into populations/worths
-  */
-  class compare_worth
-  {
-  public :
-    compare_worth(const std::vector<WorthT>& _worths) : worths(_worths) {}
-
-    bool operator()(unsigned a, unsigned b) const
+    /** helper class used to sort indices into populations/worths */
+    class compare_worth
     {
-      return worths[b] < worths[a]; // sort in descending (!) order
-    }
+    public:
 
-  private :
+        compare_worth(const std::vector<WorthT>& _worths) : worths(_worths) {}
 
-    const std::vector<WorthT>& worths;
-  };
+        bool operator()(unsigned a, unsigned b) const {
+            return worths[b] < worths[a]; // sort in descending (!) order
+        }
 
-  virtual void resize(eoPop<EOT>& _pop, unsigned sz)
-  {
-    _pop.resize(sz);
-    value().resize(sz);
-  }
+    private:
+
+        const std::vector<WorthT>& worths;
+    };
+
+
+
+    virtual void resize(eoPop<EOT>& _pop, unsigned sz) {
+        _pop.resize(sz);
+        value().resize(sz);
+    };
 
 };
 
@@ -106,8 +110,11 @@ Perf2Worth with fitness cache
 template <class EOT, class WorthT = typename EOT::Fitness>
 class eoPerf2WorthCached : public eoPerf2Worth<EOT, WorthT>
 {
-  public:
-  eoPerf2WorthCached(std::string _description = "Worths") : eoPerf2Worth<EOT, WorthT>(_description) {}
+public:
+
+    using eoPerf2Worth<EOT, WorthT>::value;
+
+    eoPerf2WorthCached(std::string _description = "Worths") : eoPerf2Worth<EOT, WorthT>(_description) {}
 
 
   /**
@@ -164,7 +171,7 @@ class eoPerf2WorthCached : public eoPerf2Worth<EOT, WorthT>
       indices[i] = i;
     }
 
-    std::sort(indices.begin(), indices.end(), eoPerf2Worth<EOT,WorthT>::compare_worth(value()));
+    std::sort(indices.begin(), indices.end(), compare_worth(value()));
 
     eoPop<EOT>      tmp_pop;
     tmp_pop.resize(_pop.size());
@@ -216,22 +223,25 @@ class eoPerf2WorthCached : public eoPerf2Worth<EOT, WorthT>
   std::vector <typename EOT::Fitness> fitness_cache;
 };
 
-/**
-  A dummy perf2worth, just in case you need it
-*/
+
+
+/** A dummy perf2worth, just in case you need it */
 template <class EOT>
 class eoNoPerf2Worth : public eoPerf2Worth<EOT, typename EOT::Fitness>
 {
-  public:
+public:
+
+    using eoValueParam< EOT >::value;
 
     // default behaviour, just copy fitnesses
-    void operator()(const eoPop<EOT>& _pop)
-    {
-      unsigned i;
-      value.resize(_pop.size());
-      for (i = 0; i < _pop.size(); ++i)
-        value()[i]=_pop[i];
+    void operator()(const eoPop<EOT>& _pop) {
+        unsigned i;
+        value().resize(_pop.size());
+        for (i = 0; i < _pop.size(); ++i)
+            value()[i]=_pop[i];
     }
 };
+
+
 
 #endif

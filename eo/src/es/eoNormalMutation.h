@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoNormalMutation.h
 // (c) EEAAX 2001 - Maarten Keijzer 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -37,7 +37,7 @@
 //-----------------------------------------------------------------------------
 
 /** Simple normal mutation of a std::vector of real values.
- *  The stDev is fixed - but it is passed ans stored as a reference, 
+ *  The stDev is fixed - but it is passed ans stored as a reference,
  *  to enable dynamic mutations (see eoOenFithMutation below).
  *
  * As for the bounds, the values are here folded back into the bounds.
@@ -68,7 +68,7 @@ template<class EOT> class eoNormalVecMutation: public eoMonOp<EOT>
    */
   eoNormalVecMutation(eoRealVectorBounds & _bounds,
 		    double _sigma, const double& _p_change = 1.0):
-    sigma(_bounds.size(), _sigma), bounds(_bounds), p_change(_p_change) 
+    sigma(_bounds.size(), _sigma), bounds(_bounds), p_change(_p_change)
   {
     // scale to the range - if any
     for (unsigned i=0; i<bounds.size(); i++)
@@ -105,7 +105,7 @@ private:
 };
 
 /** Simple normal mutation of a std::vector of real values.
- *  The stDev is fixed - but it is passed ans stored as a reference, 
+ *  The stDev is fixed - but it is passed ans stored as a reference,
  *  to enable dynamic mutations (see eoOenFithMutation below).
  *
  * As for the bounds, the values are here folded back into the bounds.
@@ -113,9 +113,10 @@ private:
  *     but this sometimes takes a long time!!!
  */
 
-template<class EOT> class eoNormalMutation: public eoMonOp<EOT>
+template<class EOT> class eoNormalMutation
+    : public eoMonOp<EOT>
 {
- public:
+public:
   /**
    * (Default) Constructor.
    * The bounds are initialized with the global object that says: no bounds.
@@ -173,11 +174,14 @@ private:
  *  increase sigma if more than threshold (1/5 !)
  */
 
-template<class EOT> class eoOneFifthMutation : 
+template<class EOT> class eoOneFifthMutation :
   public eoNormalMutation<EOT>, public eoUpdatable
 {
 public:
-  typedef typename EOT::Fitness Fitness; 
+
+    using eoNormalMutation< EOT >::Sigma;
+
+    typedef typename EOT::Fitness Fitness;
 
   /**
    * (Default) Constructor.
@@ -186,14 +190,14 @@ public:
    * @param _sigmaInit the initial value for uniform mutation
    * @param _windowSize the size of the window for statistics
    * @param _threshold the threshold (the 1/5 - 0.2)
-   * @param _updateFactor multiplicative update factor for sigma 
+   * @param _updateFactor multiplicative update factor for sigma
    */
-  eoOneFifthMutation(eoEvalFunc<EOT> & _eval, double & _sigmaInit, 
+  eoOneFifthMutation(eoEvalFunc<EOT> & _eval, double & _sigmaInit,
 		     unsigned _windowSize = 10, double _updateFactor=0.83,
-		     double _threshold=0.2): 
-    eoNormalMutation<EOT>(_sigmaInit), eval(_eval), 
-    threshold(_threshold), updateFactor(_updateFactor), 
-    nbMut(_windowSize, 0), nbSuccess(_windowSize, 0), genIndex(0) 
+		     double _threshold=0.2):
+    eoNormalMutation<EOT>(_sigmaInit), eval(_eval),
+    threshold(_threshold), updateFactor(_updateFactor),
+    nbMut(_windowSize, 0), nbSuccess(_windowSize, 0), genIndex(0)
   {
     // minimal check
     if (updateFactor>=1)
@@ -209,7 +213,7 @@ public:
    *
    * @param _eo The chromosome undergoing the mutation
    */
-  bool operator()(EOT & _eo) 
+  bool operator()(EOT & _eo)
     {
       if (_eo.invalid())	   // due to some crossover???
 	eval(_eo);
@@ -227,8 +231,8 @@ public:
 	}
       return false;		   // because eval has reset the validity flag
     }
-  
-  /** the method that will be called every generation 
+
+  /** the method that will be called every generation
    *  if the object is added to the checkpoint
    */
   void update()
@@ -255,12 +259,12 @@ public:
     nbMut[genIndex] = nbSuccess[genIndex] = 0;
 
   }
-  
+
 private:
   eoEvalFunc<EOT> & eval;
   double threshold;		   // 1/5 !
   double updateFactor ;		   // the multiplicative factor
-  std::vector<unsigned> nbMut;	   // total number of mutations per gen 
+  std::vector<unsigned> nbMut;	   // total number of mutations per gen
   std::vector<unsigned> nbSuccess;	   // number of successful mutations per gen
   unsigned genIndex ;		   // current index in std::vectors (circular)
 };

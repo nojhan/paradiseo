@@ -29,7 +29,7 @@
 #include <eoPerf2Worth.h>
 #include <utils/eoDistance.h>
 
-/** Sharing is a perf2worth class that implements 
+/** Sharing is a perf2worth class that implements
  *  Goldberg and Richardson's basic sharing
 */
 
@@ -70,7 +70,7 @@
   };
 
 
-/** Sharing is a perf2worth class that implements 
+/** Sharing is a perf2worth class that implements
  *  Goldberg and Richardson's basic sharing
  *  see eoSharingSelect for how to use it
  * and test/t-eoSharing.cpp for a sample use of both
@@ -78,10 +78,14 @@
 template <class EOT>
 class eoSharing : public eoPerf2Worth<EOT>
 {
-  public:
+public:
+
+    using eoSharing< EOT >::value;
+
+
   /* Ctor requires a distance - cannot have a default distance! */
-  eoSharing(double _nicheSize, eoDistance<EOT> & _dist) : eoPerf2Worth<EOT>("Sharing"), 
-					     nicheSize(_nicheSize), 
+  eoSharing(double _nicheSize, eoDistance<EOT> & _dist) : eoPerf2Worth<EOT>("Sharing"),
+					     nicheSize(_nicheSize),
 					     dist(_dist)
   {}
 
@@ -89,7 +93,7 @@ class eoSharing : public eoPerf2Worth<EOT>
   */
     void operator()(const eoPop<EOT>& _pop)
     {
-      unsigned i, j, 
+      unsigned i, j,
 	pSize=_pop.size();
       if (pSize <= 1)
 	throw std::runtime_error("Apptempt to do sharing with population of size 1");
@@ -105,7 +109,7 @@ class eoSharing : public eoPerf2Worth<EOT>
 	  for (j=0; j<i; j++)
 	    {
 	      double d =  dist(_pop[i], _pop[j]);
-	      distMatrix(i,j) = 
+	      distMatrix(i,j) =
 		distMatrix(j,i) = ( d>nicheSize ? 0 : 1-(d/nicheSize) );
 	    }
 	}
@@ -123,7 +127,7 @@ class eoSharing : public eoPerf2Worth<EOT>
         value()[i]=_pop[i].fitness()/sim[i];
     }
     // private data of class eoSharing
-private: 
+private:
   double nicheSize;
   eoDistance<EOT> & dist;	     // specific distance
 };

@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoFDCStat.h
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -38,9 +38,11 @@ so they can be snapshot by some eoGnuplotSnapshot ...
 template <class EOT>
 class eoFDCStat : public eoStat<EOT, double>
 {
-public :
-  /** Ctor without the optimum
-   */
+public:
+
+    using eoFDCStat < EOT>::value;
+
+    /** Ctor without the optimum */
   eoFDCStat(eoDistance<EOT> & _dist, std::string _description = "FDC") :
       eoStat<EOT,double>(0, _description), dist(_dist), boolOpt(false) {}
 

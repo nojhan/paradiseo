@@ -39,10 +39,13 @@
 template <class EOT>
 class eoParetoRanking : public eoPerf2WorthCached<EOT, double>
 {
-  public :
+public:
 
-    eoParetoRanking(eoDominanceMap<EOT>& _dominanceMap) :
-      eoPerf2WorthCached<EOT, double>(), dominanceMap(_dominanceMap) {}
+    using eoParetoRanking< EOT>::value;
+
+    eoParetoRanking(eoDominanceMap<EOT>& _dominanceMap)
+        : eoPerf2WorthCached<EOT, double>(), dominanceMap(_dominanceMap)
+        {}
 
     void calculate_worths(const eoPop<EOT>& _pop)
     {

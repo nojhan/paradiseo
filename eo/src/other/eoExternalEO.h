@@ -2,10 +2,10 @@
 
   -----------------------------------------------------------------------------
   eoExternalEO.h
-        Definition of an object that allows an external struct to be inserted in EO  
+        Definition of an object that allows an external struct to be inserted in EO
 
  (c) Maarten Keijzer (mkeijzer@mad.scientist.com) and GeNeura Team, 1999, 2000
- 
+
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -28,7 +28,7 @@
 
 #include <EO.h> // EO
 
-/** 
+/**
  * Definition of an object that allows an external struct
  * to be inserted in EO. This struct or class can be of any
  * form, the only thing this class does is attach a fitness
@@ -40,28 +40,33 @@ class eoExternalEO : public EO<Fit>, virtual public External
 {
 public :
 
-  eoExternalEO(void) : EO<Fit>(), External() {}
+    eoExternalEO(void)
+        : EO<Fit>(), External()
+        {}
 
-  /**
-    Init externalEo with the struct itself and set fitness to zero
-  */
-  eoExternalEO(const External& ext) : EO<Fit>(), External(ext) {}
-  eoExternalEO(std::istream& is) : EO<Fit>(), External(ext) { readFrom(is); }
+    /** Init externalEo with the struct itself and set fitness to zero */
+    eoExternalEO(const External& ext)
+        : EO<Fit>(), External(ext)
+        {}
+
+    eoExternalEO(std::istream& is, const External& ext)
+        : EO<Fit>(), External(ext)
+        { readFrom(is); }
 
   /**
    * Read object, the external struct needs to have an operator>> defined
    */
-  virtual void readFrom(std::istream& _is) 
-  { 
+  virtual void readFrom(std::istream& _is)
+  {
       EO<Fit>::readFrom(_is);
     _is >> static_cast<External&>(*this);
   }
-  
+
   /**
    * Write object. Called printOn since it prints the object _on_ a stream.
    * @param _os A std::ostream.
    */
-  virtual void printOn(std::ostream& _os) const 
+  virtual void printOn(std::ostream& _os) const
   {
       EO<Fit>::printOn(_os);
       _os << static_cast<const External&>(*this);

@@ -41,11 +41,14 @@
 template <class EOT>
 class eoNDSorting : public eoPerf2WorthCached<EOT, double>
 {
-  public :
-      
-      eoNDSorting() : nasty_declone_flag_that_only_is_implemented_for_two_objectives(false)
-      {}
-	  
+public:
+
+    using eoNDSorting< EOT >::value;
+
+    eoNDSorting()
+        : nasty_declone_flag_that_only_is_implemented_for_two_objectives(false)
+        {}
+
     /** Pure virtual function that calculates the 'distance' for each element in the current front
         Implement to create your own nondominated sorting algorithm. The size of the returned std::vector
         should be equal to the size of the current_front.
@@ -56,7 +59,7 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
     {
 	// resize the worths beforehand
 	value().resize(_pop.size());
-	
+
 	typedef typename EOT::Fitness::fitness_traits traits;
 
 	switch (traits::nObjectives())
@@ -77,7 +80,7 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
 		}
 	}
     }
-    
+
 private :
 
     /** used in fast nondominated sorting
@@ -101,23 +104,23 @@ private :
           tmp_pop[i].fitness(_pop[i].fitness());
           tmp_pop[i].index = i;
         }
-        
+
 	std::sort(tmp_pop.begin(), tmp_pop.end(), std::greater<DummyEO>());
-	
+
         for (i = 0; i < _pop.size(); ++i)
         {
           value()[tmp_pop[i].index] = _pop.size() - i; // set rank
         }
-	
+
 	// no point in calculcating niche penalty, as every distinct fitness value has a distinct rank
     }
-   
+
     /**
      * Optimization for two objectives. Makes the algorithm run in
      * complexity O(n log n) where n is the population size
      *
      * This is the same complexity as for a single objective
-     * or truncation selection or sorting. 
+     * or truncation selection or sorting.
      *
      * It will perform a sort on the two objectives seperately,
      * and from the information on the ranks of the individuals on
@@ -129,15 +132,15 @@ private :
      * After that it is a simple exercise to calculate the distance
      * penalty
      */
-   
+
     void two_objectives(const eoPop<EOT>& _pop)
     {
 		unsigned i;
 	typedef typename EOT::Fitness::fitness_traits traits;
 	assert(traits::nObjectives() == 2);
-	
+
 	std::vector<unsigned> sort1(_pop.size()); // index into population sorted on first objective
-	
+
 	for (i = 0; i < _pop.size(); ++i)
 	{
 	    sort1[i] = i;
@@ -146,34 +149,34 @@ private :
 	std::sort(sort1.begin(), sort1.end(), Sorter(_pop));
 
 	// Ok, now the meat of the algorithm
-	
+
 	unsigned last_front = 0;
-	
+
 	double max1 = -1e+20;
 	for (i = 0; i < _pop.size(); ++i)
 	{
 	    max1 = std::max(max1, _pop[i].fitness()[1]);
 	}
-	
+
 	max1 = max1 + 1.0; // add a bit to it so that it is a real upperbound
-	
+
 	unsigned prev_front = 0;
 	std::vector<double> d;
 	d.resize(_pop.size(), max1); // initialize with the value max1 everywhere
-	
+
 	std::vector<std::vector<unsigned> > fronts(_pop.size()); // to store indices into the front
-	
+
 	for (i = 0; i < _pop.size(); ++i)
 	{
 	    unsigned index = sort1[i];
-	    
-	    // check for clones and delete them 
+
+	    // check for clones and delete them
 	    if (0 && i > 0)
 	    {
 		unsigned prev = sort1[i-1];
 		if ( _pop[index].fitness() == _pop[prev].fitness())
 		{ // it's a clone, give it the worst rank!
-		    
+
 		    if (nasty_declone_flag_that_only_is_implemented_for_two_objectives)
 			//declone
 			fronts.back().push_back(index);
@@ -182,32 +185,32 @@ private :
 		    continue;
 		}
 	    }
-	    
-	    double value2 = _pop[index].fitness()[1]; 
+
+	    double value2 = _pop[index].fitness()[1];
 
 	    if (traits::maximizing(1))
 		value2 = max1 - value2;
-	    
+
 	    // perform binary search using std::upper_bound, a log n operation for each member
-	    std::vector<double>::iterator it = 
+	    std::vector<double>::iterator it =
 		std::upper_bound(d.begin(), d.begin() + last_front, value2);
-	  
+
 	    unsigned front = unsigned(it - d.begin());
 	    if (front == last_front) ++last_front;
-	    
+
 	    assert(it != d.end());
-	    
+
 	    *it = value2; //update d
 	    fronts[front].push_back(index); // add it to the front
-	
+
 	    prev_front = front;
 	}
-	
+
 	// ok, and finally the niche penalty
 
 	for (i = 0; i < fronts.size(); ++i)
 	{
-	    if (fronts[i].size() == 0) continue; 
+	    if (fronts[i].size() == 0) continue;
 
 	    // Now we have the indices to the current front in current_front, do the niching
 	    std::vector<double> niche_count = niche_penalty(fronts[i], _pop);
@@ -224,31 +227,31 @@ private :
 	    {
 	      value()[fronts[i][j]] = i + niche_count[j] / (max_niche + 1.); // divide by max_niche + 1 to ensure that this front does not overlap with the next
 	    }
-	    
+
 	}
-	
+
 	// invert ranks to obtain a 'bigger is better' score
 	rank_to_worth();
     }
-   
+
     class Sorter
-    { 
+    {
 	public:
 	    Sorter(const eoPop<EOT>& _pop) : pop(_pop) {}
 
 	    bool operator()(unsigned i, unsigned j) const
 	    {
 		typedef typename EOT::Fitness::fitness_traits traits;
-		
+
 		double diff = pop[i].fitness()[0] - pop[j].fitness()[0];
-		
+
 		if (fabs(diff) < traits::tol())
 		{
 		    diff = pop[i].fitness()[1] - pop[j].fitness()[1];
 
 		    if (fabs(diff) < traits::tol())
 			return false;
-		    
+
 		    if (traits::maximizing(1))
 			return diff > 0.;
 		    return diff < 0.;
@@ -261,7 +264,7 @@ private :
 
 	    const eoPop<EOT>& pop;
     };
-    
+
     void m_objectives(const eoPop<EOT>& _pop)
     {
       unsigned i;
@@ -348,7 +351,7 @@ private :
 
       rank_to_worth();
     }
-      
+
     void rank_to_worth()
     {
       // now all that's left to do is to transform lower rank into higher worth
@@ -356,7 +359,7 @@ private :
 
       // but make sure it's an integer upper bound, so that all ranks inside the highest integer are the front
       max_fitness = ceil(max_fitness);
-      
+
       for (unsigned i = 0; i < value().size(); ++i)
       {
         value()[i] = max_fitness - value()[i];
@@ -409,21 +412,26 @@ public :
   double nicheSize;
 };
 
-/**
-  Adapted from Deb, Agrawal, Pratab and Meyarivan: A Fast Elitist Non-Dominant Sorting Genetic Algorithm for MultiObjective Optimization: NSGA-II
-  KanGAL Report No. 200001
+/** @brief Fast Elitist Non-Dominant Sorting Genetic Algorithm
 
-  Note that this class does not do the sorting per se, but the sorting of it worth_std::vector will give the right order
+  Adapted from Deb, Agrawal, Pratab and Meyarivan: A Fast Elitist
+  Non-Dominant Sorting Genetic Algorithm for MultiObjective
+  Optimization: NSGA-II KanGAL Report No. 200001
 
-  The crowding distance is calculated as the sum of the distances to the nearest neighbours. As we need to return the
-  penalty value, we have to invert that and invert it again in the base class, but such is life, sigh
+  Note that this class does not do the sorting per se, but the sorting
+  of it worth_std::vector will give the right order
+
+  The crowding distance is calculated as the sum of the distances to
+  the nearest neighbours. As we need to return the penalty value, we
+  have to invert that and invert it again in the base class, but such
+  is life, sigh
 */
 template <class EOT>
 class eoNDSorting_II : public eoNDSorting<EOT>
 {
-  public:
+public:
 
-  typedef std::pair<double, unsigned> double_index_pair;
+    typedef std::pair<double, unsigned> double_index_pair;
 
   class compare_nodes
   {
@@ -441,7 +449,7 @@ class eoNDSorting_II : public eoNDSorting<EOT>
     unsigned i;
     std::vector<double> niche_count(_cf.size(), 0.);
 
-    
+
     unsigned nObjectives = traits::nObjectives(); //_pop[_cf[0]].fitness().size();
 
     for (unsigned o = 0; o < nObjectives; ++o)

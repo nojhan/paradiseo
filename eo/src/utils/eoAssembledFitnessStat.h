@@ -38,25 +38,29 @@
 
 /**
    Average fitness values of a population, where the fitness is
-   of type eoScalarAssembledFitness. Specify in the constructor, 
+   of type eoScalarAssembledFitness. Specify in the constructor,
    for which fitness term (index) the average should be evaluated.
    Only values of object where the failed boolean = false is set are counted.
 */
-template <class EOT> 
+template <class EOT>
 class eoAssembledFitnessAverageStat : public eoStat<EOT, double>
 {
 public :
-  
-  typedef typename EOT::Fitness Fitness;
-  
-  eoAssembledFitnessAverageStat(unsigned _whichTerm=0, std::string _description = "Average Fitness") 
-    : eoStat<EOT, double>(Fitness(), _description), whichFitnessTerm(_whichTerm) {}
-  
-  virtual void operator()(const eoPop<EOT>& _pop){
-    
-    if ( whichFitnessTerm >= _pop[0].fitness().size() )
-      throw std::logic_error("Fitness term requested out of range");
-    
+
+    using eoAssembledFitnessAverageStat< EOT >::value;
+
+    typedef typename EOT::Fitness Fitness;
+
+
+    eoAssembledFitnessAverageStat(unsigned _whichTerm=0, std::string _description = "Average Fitness")
+        : eoStat<EOT, double>(Fitness(), _description), whichFitnessTerm(_whichTerm)
+        {}
+
+
+    virtual void operator()(const eoPop<EOT>& _pop) {
+        if( whichFitnessTerm >= _pop[0].fitness().size() )
+            throw std::logic_error("Fitness term requested out of range");
+
     double result =0.0;
     unsigned count = 0;
     for (typename eoPop<EOT>::const_iterator it = _pop.begin(); it != _pop.end(); ++it){
@@ -68,7 +72,7 @@ public :
 
     value() = result / (double) count;
   }
-    
+
 private:
   // Store an index of the fitness term to be evaluated in eoScalarFitnessAssembled
   unsigned whichFitnessTerm;
@@ -76,29 +80,33 @@ private:
 
 /**
    Fitness values of best individuum in a population, where the fitness is
-   of type eoScalarAssembledFitness. Specify in the constructor, 
+   of type eoScalarAssembledFitness. Specify in the constructor,
    for which fitness term (index) the value should be evaluated.
 */
-template <class EOT> 
+template <class EOT>
 class eoAssembledFitnessBestStat : public eoStat<EOT, double>
 {
-public :
-  typedef typename EOT::Fitness Fitness;
-  
-  eoAssembledFitnessBestStat(unsigned _whichTerm=0, std::string _description = "Best Fitness") 
-    : eoStat<EOT, double>(Fitness(), _description), whichFitnessTerm(_whichTerm) {}
-  
-  virtual void operator()(const eoPop<EOT>& _pop){
-    
-    if ( whichFitnessTerm >= _pop[0].fitness().size() )
-      throw std::logic_error("Fitness term requested out of range");
+public:
 
-    value() = _pop.best_element().fitness()[whichFitnessTerm];      
-  }
-  
+    using eoAssembledFitnessBestStat< EOT >::value;
+
+    typedef typename EOT::Fitness Fitness;
+
+    eoAssembledFitnessBestStat(unsigned _whichTerm=0, std::string _description = "Best Fitness")
+        : eoStat<EOT, double>(Fitness(), _description), whichFitnessTerm(_whichTerm)
+        {}
+
+    virtual void operator()(const eoPop<EOT>& _pop) {
+        if( whichFitnessTerm >= _pop[0].fitness().size() )
+            throw std::logic_error("Fitness term requested out of range");
+
+        value() = _pop.best_element().fitness()[whichFitnessTerm];
+    }
+
 private:
-  // Store an index of the fitness term to be evaluated in eoScalarFitnessAssembled
-  unsigned whichFitnessTerm;
+
+    // Store an index of the fitness term to be evaluated in eoScalarFitnessAssembled
+    unsigned whichFitnessTerm;
 };
 
 #endif

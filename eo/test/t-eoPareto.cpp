@@ -79,17 +79,27 @@ class Init : public eoInit<eoDouble>
   }
 };
 
-// Trying out an elitist non-dominated sorted replacement scheme
+/** @brief An elitist non-dominated sorted replacement scheme.
+
+Trying out an elitist non-dominated sorted replacement scheme.
+*/
 template <class EOT, class WorthT = double>
 class eoNDPlusReplacement : public eoReplacement<EOT>
 {
 public:
-  eoNDPlusReplacement(eoPerf2Worth<EOT, WorthT>& _perf2worth) : perf2worth(_perf2worth) {}
 
-  struct WorthPair : public pair<WorthT, const EOT*>
-  {
-    bool operator<(const WorthPair& other) const { return other.first < first; }
-  };
+    // using eoNDPlusReplacement< EOT, WorthT >::first;
+
+    eoNDPlusReplacement(eoPerf2Worth<EOT, WorthT>& _perf2worth)
+        : perf2worth(_perf2worth)
+        {}
+
+    struct WorthPair : public pair<WorthT, const EOT*>
+    {
+        bool operator<(const WorthPair& other) const
+            { return other.first < this->first; }
+    };
+
 
   void operator()(eoPop<EOT>& _parents, eoPop<EOT>& _offspring)
   {
@@ -106,7 +116,7 @@ public:
   }
 
 private :
-  eoPerf2Worth<EOT, WorthT>& perf2worth;
+    eoPerf2Worth<EOT, WorthT>& perf2worth;
 };
 
 template <class EOT>
@@ -232,3 +242,9 @@ int main(int argc, char* argv[])
   }
 }
 
+
+
+// Local Variables:
+// mode: C++
+// c-file-style: "Stroustrup"
+// End:

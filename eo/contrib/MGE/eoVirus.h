@@ -18,7 +18,7 @@
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
-CVS Info: $Date: 2003-02-27 19:26:44 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/contrib/MGE/eoVirus.h,v 1.2 2003-02-27 19:26:44 okoenig Exp $ $Author: okoenig $
+CVS Info: $Date: 2004-12-23 15:29:07 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/contrib/MGE/eoVirus.h,v 1.3 2004-12-23 15:29:07 kuepper Exp $ $Author: kuepper $
 */
 
 #ifndef eoVirus_h
@@ -43,9 +43,15 @@ CVS Info: $Date: 2003-02-27 19:26:44 $ $Header: /home/nojhan/dev/eodev/eodev_cvs
 \ingroup bitstring
   * based on STL's vector<bool> specialization.
 */
-template <class FitT> class eoVirus: public eoBit<FitT>
+template <class FitT>
+class eoVirus: public eoBit<FitT>
 {
- public:
+public:
+
+    using eoBit<FitT>::begin;
+    using eoBit<FitT>::end;
+    using eoBit<FitT>::size;
+
 
   /**
    * (Default) Constructor.
@@ -110,3 +116,9 @@ template <class FitT> class eoVirus: public eoBit<FitT>
 //-----------------------------------------------------------------------------
 
 #endif //eoBit_h
+
+
+// Local Variables:
+// mode: C++
+// c-file-style: "Stroustrup"
+// End:

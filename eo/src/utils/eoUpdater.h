@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoUpdater.h
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -48,7 +48,7 @@ public:
 */
 template <class T>
 class eoIncrementor : public eoUpdater
-{public :   
+{public :
   /** Default Ctor - requires a reference to the thing to increment */
     eoIncrementor(T& _counter, T _stepsize = 1) : counter(_counter), stepsize(_stepsize) {}
 
@@ -70,23 +70,26 @@ private:
 template <class T>
 class eoIncrementorParam : public eoUpdater, public eoValueParam<T>
 {
-public :   
+public:
+
+    using eoIncrementorParam< T >::value;
+
   /** Default Ctor : a name and optionally an increment*/
-  eoIncrementorParam( std::string _name, T _stepsize = 1) : 
+  eoIncrementorParam( std::string _name, T _stepsize = 1) :
     eoValueParam<T>(T(0), _name), stepsize(_stepsize) {}
-  
-  /** Ctor with a name and non-zero initial value 
+
+  /** Ctor with a name and non-zero initial value
    *  and mandatory stepSize to remove ambiguity
    */
-  eoIncrementorParam( std::string _name, T _countValue, T _stepsize) : 
+  eoIncrementorParam( std::string _name, T _countValue, T _stepsize) :
     eoValueParam<T>(_countValue, _name), stepsize(_stepsize) {}
 
   /** Simply increments */
   virtual void operator()()
   {
-    value() += stepsize;
+      value() += stepsize;
   }
-  
+
   virtual std::string className(void) const { return "eoIncrementorParam"; }
 
 private:
@@ -101,7 +104,7 @@ private:
 class eoTimedStateSaver : public eoUpdater
 {
 public :
-    eoTimedStateSaver(time_t _interval, const eoState& _state, std::string _prefix = "state", std::string _extension = "sav") : state(_state), 
+    eoTimedStateSaver(time_t _interval, const eoState& _state, std::string _prefix = "state", std::string _extension = "sav") : state(_state),
         interval(_interval), last_time(time(0)), first_time(time(0)),
     prefix(_prefix), extension(_extension) {}
 
@@ -124,12 +127,12 @@ private :
 class eoCountedStateSaver : public eoUpdater
 {
 public :
-    eoCountedStateSaver(unsigned _interval, const eoState& _state, std::string _prefix, bool _saveOnLastCall, std::string _extension = "sav", unsigned _counter = 0) 
-      : state(_state), interval(_interval), counter(_counter), 
+    eoCountedStateSaver(unsigned _interval, const eoState& _state, std::string _prefix, bool _saveOnLastCall, std::string _extension = "sav", unsigned _counter = 0)
+      : state(_state), interval(_interval), counter(_counter),
       saveOnLastCall(_saveOnLastCall),
       prefix(_prefix), extension(_extension) {}
 
-    eoCountedStateSaver(unsigned _interval, const eoState& _state, std::string _prefix = "state", std::string _extension = "sav", unsigned _counter = 0) 
+    eoCountedStateSaver(unsigned _interval, const eoState& _state, std::string _prefix = "state", std::string _extension = "sav", unsigned _counter = 0)
       : state(_state), interval(_interval), counter(_counter),
 	saveOnLastCall(true),
 	prefix(_prefix), extension(_extension) {}
@@ -145,7 +148,7 @@ private :
     const unsigned interval;
     unsigned counter;
     bool saveOnLastCall;
-    
+
     const std::string prefix;
     const std::string extension;
 };
