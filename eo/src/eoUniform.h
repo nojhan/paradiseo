@@ -85,7 +85,7 @@ class eoUniform<bool>: public eoRnd<bool>
   }
   
  private:
-  T min;
+  bool min;
   double diff;
 };
 
