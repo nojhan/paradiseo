@@ -13,7 +13,9 @@ libeoutils_a_SOURCES 	= eoParser.cpp \
 
 AM_CXXFLAGS 		= -I$(top_srcdir)/src
 
-pkginclude_HEADERS 	= checkpointing \
+utilsincludedir		= $(pkgincludedir)/utils
+
+utilsinclude_HEADERS 	= checkpointing \
 			compatibility.h \
 			eoAssembledFitnessStat.h \
 			eoCheckPoint.h \
