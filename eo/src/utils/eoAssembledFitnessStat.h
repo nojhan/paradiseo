@@ -40,6 +40,7 @@
    Average fitness values of a population, where the fitness is
    of type eoScalarAssembledFitness. Specify in the constructor, 
    for which fitness term (index) the average should be evaluated.
+   Only values of object where the failed boolean = false is set are counted.
 */
 #ifdef _MSC_VER
 template <class EOT> 
@@ -61,10 +62,15 @@ public :
     if ( whichFitnessTerm >= _pop[0].fitness().size() )
       throw std::logic_error("Fitness term requested out of range");
     
-    double result =0.0;      
-    for (typename eoPop<EOT>::const_iterator it = _pop.begin(); it != _pop.end(); ++it)
-      result+= it->fitness()[whichFitnessTerm];
-    
+    double result =0.0;
+    unsigned count = 0;
+    for (typename eoPop<EOT>::const_iterator it = _pop.begin(); it != _pop.end(); ++it){
+      if ( it->fitness().failed == false ){
+	result+= it->fitness()[whichFitnessTerm];
+	++count;
+      }
+    }
+
     value().clear();
     value() = result / _pop.size();
     
