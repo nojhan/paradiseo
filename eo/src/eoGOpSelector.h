@@ -69,7 +69,7 @@ public:
                  will be thrown
       @return a reference of the operator corresponding to that id.
   */
-  virtual const eoOp<EOT>& getOp( ID _id )
+  virtual eoOp<EOT>& getOp( ID _id )
   {
 	  return *operator[](_id);
   }
