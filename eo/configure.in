@@ -1,7 +1,7 @@
 AC_INIT(src/eo)
 
 dnl Change the version number here
-AM_INIT_AUTOMAKE(eo)
+AM_INIT_AUTOMAKE(eo, 0.0.0)
 
 AC_PROG_CXX 
 
@@ -12,4 +12,4 @@ AM_PROG_LIBTOOL
 AM_MAINTAINER_MODE
 
 dnl add Makefiles that must be modified by the configuration here
-AC_OUTPUT(Makefile src/Makefile src/es/Makefile src/ga/Makefile src/gp/Makefile src/obsolete/Makefile src/other/Makefile src/utils/Makefile test/Makefile win/Makefile doc/Makefile)
+AC_OUTPUT(Makefile src/Makefile src/es/Makefile src/ga/Makefile src/gp/Makefile src/obsolete/Makefile src/other/Makefile src/utils/Makefile test/Makefile win/Makefile doc/Makefile apps/nn/Makefile)

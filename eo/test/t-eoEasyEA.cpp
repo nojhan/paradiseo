@@ -22,7 +22,6 @@ main()
   const unsigned POP_SIZE = 8, CHROM_SIZE = 16;
   unsigned i;
 
-  eoUniform<Chrom::Type> uniform(false, true);
   eoBinRandom<Chrom> random;
   eoPop<Chrom> pop; 
   

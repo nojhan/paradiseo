@@ -53,7 +53,7 @@ class eoUniform: public eoRnd<T>
    * @param _rnd the other rnd
    */
   eoUniform( const eoUniform& _rnd)
-    : eoRnd<T>( _rnd), min(_rnd.minim), diff(_rnd.diff) {}
+    : eoRnd<T>( _rnd), min(_rnd.min), diff(_rnd.diff) {}
   
   /** Returns an uniform random number over the interval [min, max)
       Uses global rng object */
