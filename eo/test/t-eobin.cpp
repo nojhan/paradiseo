@@ -132,19 +132,19 @@ main()
     }
 
   /*
-  // Check multiOps
-  eoMultiMonOp<Chrom> mOp( &next );
-  mOp.adOp( &bitflip );
-  cout << "before multiMonOp............  " << chrom << endl;
-  mOp( chrom );
-  cout << "after multiMonOp .............. " << chrom << endl;
+    // Check multiOps
+    eoMultiMonOp<Chrom> mOp( &next );
+    mOp.adOp( &bitflip );
+    cout << "before multiMonOp............  " << chrom << endl;
+    mOp( chrom );
+    cout << "after multiMonOp .............. " << chrom << endl;
 
-  eoBinGxOver<Chrom> gxover(2, 4);
-  eoMultiBinOp<Chrom> mbOp( &gxover );
-  mOp.adOp( &bitflip );
-  cout << "before multiBinOp............  " << chrom << " " << chrom2 << endl;
-  mbOp( chrom, chrom2 );
-  cout << "after multiBinOp .............. " << chrom << " " << chrom2 <<endl;
+    eoBinGxOver<Chrom> gxover(2, 4);
+    eoMultiBinOp<Chrom> mbOp( &gxover );
+    mOp.adOp( &bitflip );
+    cout << "before multiBinOp............  " << chrom << " " << chrom2 << endl;
+    mbOp( chrom, chrom2 );
+    cout << "after multiBinOp .............. " << chrom << " " << chrom2 <<endl;
   */
 
   return 0;
