@@ -11,7 +11,7 @@ http://eodev.sourceforge.net/
 
 In case of any problem, please e-mail us at
 
-
+eodev@egroups.com
 
 ==================================================================
                       BUILDING EO
@@ -29,6 +29,18 @@ The basic installatio procedure goes the following:
 
 and that's it. You should probably go to the tutorial and start
 learning about EO features and programming.
+
+WARNING: Compiling all test programs can take some time.
+         But you don't have to: 
+
+- you can simply type
+
+            make lib
+
+and then go in your application (or in the tutorial) dir and run make
+
+            cd tutorial
+            make
 
 In case of problems, you can read the INSTALL file - but remember this
 is a standard installation file from GNU and that it contains nothing
@@ -50,9 +62,7 @@ structure:
    |   |
    |   +- es             real-valued-genotypes source files  
    |   |
-   |   | 
    |   +- gp             Genetic Programming source files
-   |   |
    |   |
    |   +- obsolete       files from old versions - for upward compatibility
    |
