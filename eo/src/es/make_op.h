@@ -68,7 +68,7 @@ template <class EOT>
 eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EOT>& _init)
 {
   // First, decide whether the objective variables are bounded
-  eoValueParam<eoParamParamType>& boundsParam = _parser.createParam(eoParamParamType("(0,1)"), "objectBounds", "Bounds for variables", 'B', "Genetic Operators");
+  eoValueParam<eoParamParamType>& boundsParam = _parser.createParam(eoParamParamType("(0,1)"), "objectBounds", "Bounds for variables (unbounded if absent)", 'B', "Genetic Operators");
 
   // get initisalizer size == vector size
   //  eoRealInitBounded<EOT> * realInit = (eoRealInitBounded<EOT>*)(&_init);

@@ -46,16 +46,16 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
 {
  public:
   /**
-   * (Default) Constructor.
-   * The bounds are initialized with the global object that says: no bounds.
+   * Constructor without bounds == unbounded variables :-)
+   * not very clean, but who's doing unbounded optimization anyway?
+   * and it's there mostly for backward compatibility
    *
    * @param _epsilon the range for uniform nutation
    * @param _p_change the probability to change a given coordinate
    */
-  eoUniformMutation(const unsigned _size, const double& _epsilon, 
-		    const double& _p_change = 1.0):
-    bounds(eoDummyVectorNoBounds), epsilon(_size, _epsilon), 
-    p_change(_size, _p_change) {}
+  eoUniformMutation(const double& _epsilon, const double& _p_change = 1.0):
+    homogeneous(true), bounds(eoDummyVectorNoBounds), epsilon(1, _epsilon), 
+    p_change(1, _p_change) {}
 
   /**
    * Constructor with bounds
@@ -65,7 +65,7 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
    */
   eoUniformMutation(eoRealVectorBounds & _bounds,
 		    const double& _epsilon, const double& _p_change = 1.0):
-    bounds(_bounds), epsilon(_bounds.size(), _epsilon), 
+    homogeneous(false), bounds(_bounds), epsilon(_bounds.size(), _epsilon), 
     p_change(_bounds.size(), _p_change) 
   {
     // scale to the range - if any
@@ -83,7 +83,8 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
   eoUniformMutation(eoRealVectorBounds & _bounds,
 		    const vector<double>& _epsilon, 
 		    const vector<double>& _p_change):
-    bounds(_bounds), epsilon(_epsilon), p_change(_p_change) {}
+    homogeneous(false), bounds(_bounds), epsilon(_epsilon), 
+    p_change(_p_change) {}
 
   /// The class name.
   string className() const { return "eoUniformMutation"; }
@@ -94,33 +95,45 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
    */
   bool operator()(EOT& _eo)
     {
-      // sanity check ?
-      if (_eo.size() != bounds.size())
-	throw runtime_error("Invalid size of indi in eoUniformMutation");
-
       bool hasChanged=false;
-      for (unsigned lieu=0; lieu<_eo.size(); lieu++)
+      if (homogeneous)		   // implies no bounds object
+	for (unsigned lieu=0; lieu<_eo.size(); lieu++)
+	  {
+	    if (rng.flip(p_change[0]))
+	      {
+		_eo[0] += 2*epsilon[0]*rng.uniform()-epsilon[0];
+		hasChanged = true;
+	      }
+	  }
+      else
 	{
-	  if (rng.flip(p_change[lieu]))
-	    {
-	      // check the bounds
-	      double emin = _eo[lieu]-epsilon[lieu];
-	      double emax = _eo[lieu]+epsilon[lieu];
-	      if (bounds.isMinBounded(lieu))
-		emin = max(bounds.minimum(lieu), emin);
-	      if (bounds.isMaxBounded(lieu))
-		emax = min(bounds.maximum(lieu), emax);
-	      _eo[lieu] = emin + (emax-emin)*rng.uniform();
-	      hasChanged = true;
-	    }
+	  // sanity check ?
+	  if (_eo.size() != bounds.size())
+	    throw runtime_error("Invalid size of indi in eoUniformMutation");
+
+	  bool hasChanged=false;
+	  for (unsigned lieu=0; lieu<_eo.size(); lieu++)
+	    if (rng.flip(p_change[lieu]))
+	      {
+		// check the bounds
+		double emin = _eo[lieu]-epsilon[lieu];
+		double emax = _eo[lieu]+epsilon[lieu];
+		if (bounds.isMinBounded(lieu))
+		  emin = max(bounds.minimum(lieu), emin);
+		if (bounds.isMaxBounded(lieu))
+		  emax = min(bounds.maximum(lieu), emax);
+		_eo[lieu] = emin + (emax-emin)*rng.uniform();
+		hasChanged = true;
+	      }
 	}
       return hasChanged;
     }
 
 private:
+  bool homogeneous;   // == no bounds passed in the ctor
   eoRealVectorBounds & bounds;
-  vector<double> epsilon;
-  vector<double> p_change;
+  vector<double> epsilon;	   // the ranges for mutation
+  vector<double> p_change;	   // the proba that each variable is modified
 };
 
 /** eoDetUniformMutation --> changes exactly k values of the vector
@@ -133,13 +146,15 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
 {
  public:
   /**
-   * (Default) Constructor.
+   * (Default) Constructor for homogeneous genotype
+   * it's there mostly for backward compatibility
+   *
    * @param _epsilon the range for uniform nutation
    * @param number of coordinate to modify
    */
-  eoDetUniformMutation(const unsigned _size, const double& _epsilon, 
-		       const unsigned& _no = 1):
-    bounds(eoDummyVectorNoBounds), epsilon(_size, _epsilon), no(_no) {}
+  eoDetUniformMutation(const double& _epsilon, const unsigned& _no = 1):
+    homogeneous(true), bounds(eoDummyVectorNoBounds), 
+    epsilon(1, _epsilon), no(_no) {}
 
   /**
    * Constructor with bounds
@@ -149,7 +164,8 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
    */
   eoDetUniformMutation(eoRealVectorBounds & _bounds, 
 		       const double& _epsilon, const unsigned& _no = 1): 
-    bounds(_bounds), epsilon(_bounds.size(), _epsilon), no(_no) 
+    homogeneous(false), bounds(_bounds), 
+    epsilon(_bounds.size(), _epsilon), no(_no) 
   {
     // scale to the range - if any
     for (unsigned i=0; i<bounds.size(); i++)
@@ -166,7 +182,7 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
   eoDetUniformMutation(eoRealVectorBounds & _bounds, 
 		       const vector<double>& _epsilon, 
 		       const unsigned& _no = 1): 
-    bounds(_bounds), epsilon(_epsilon), no(_no) 
+    homogeneous(false), bounds(_bounds), epsilon(_epsilon), no(_no) 
   {
     // scale to the range - if any
     for (unsigned i=0; i<bounds.size(); i++)
@@ -183,13 +199,22 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
    */
   bool operator()(EOT& _eo)
     {
-      // sanity check ?
-      if (_eo.size() != bounds.size())
-	throw runtime_error("Invalid size of indi in eoDetUniformMutation");
-      for (unsigned i=0; i<no; i++)
+      if (homogeneous)
+	for (unsigned i=0; i<no; i++)
+	  {
+	    unsigned lieu = rng.random(_eo.size());
+	    // actually, we should test that we don't re-modify same variable!
+	    _eo[lieu] = 2*epsilon[0]*rng.uniform()-epsilon[0];
+	  }
+      else
+	{
+	  // sanity check ?
+	  if (_eo.size() != bounds.size())
+	    throw runtime_error("Invalid size of indi in eoDetUniformMutation");
+	  for (unsigned i=0; i<no; i++)
 	    {
 	      unsigned lieu = rng.random(_eo.size());
-	  // actually, we should test that we don't re-modify same variable!
+	      // actually, we should test that we don't re-modify same variable!
 
 	      // check the bounds
 	      double emin = _eo[lieu]-epsilon[lieu];
@@ -200,13 +225,14 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
 		emax = min(bounds.maximum(lieu), emax);
 	      _eo[lieu] = emin + (emax-emin)*rng.uniform();
 	    }
-
+	}
       return true;
     }
 
 private:
+  bool homogeneous;   //  == no bounds passed in the ctor
   eoRealVectorBounds & bounds;
-  vector<double> epsilon;
+  vector<double> epsilon;	   // the ranges of mutation
   unsigned no;
 };
 
