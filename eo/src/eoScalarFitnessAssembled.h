@@ -130,9 +130,7 @@ public:
       push_back( v );
     else
       front() = v;
-    
-    feasible=true;
-
+  
     return *this;
   }
   
