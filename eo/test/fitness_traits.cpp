@@ -101,7 +101,11 @@ struct fitness_traits< pair<Performance, Worth> >
 
 /* end fitness_traits.h */
 
-/* EO.h */
+/* EO.h 
+
+The Fitness template argument is there for backward compatibility reasons
+
+*/
 
 template <class Fitness, class Traits = fitness_traits<Fitness> >
 class EO
