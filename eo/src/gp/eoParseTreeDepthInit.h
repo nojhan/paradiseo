@@ -36,13 +36,6 @@
 using namespace gp_parse_tree;
 using namespace std;
 
-// we need this for sorting the initializor vector
-template <class Node>
-bool lt_arity(const Node &node1, const Node &node2) 
-{
-     	return (node1.arity() < node2.arity());
-}
- 
 /** eoParseTreeDepthInit : the initializer class for eoParseTree
 \class eoParseTreeDepthInit eoParseTreeDepthInit.h gp/eoParseTreeDepthInit.h
 \ingroup ParseTree
@@ -54,6 +47,14 @@ bool lt_arity(const Node &node1, const Node &node2)
 template <class FType, class Node>
 class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
 {
+    protected:
+	// a binary predicate for sorting
+	// hopefully this will work with M$VC++ 6.0
+	struct lt_arity:public binary_function<Node,Node,bool>
+	{
+		bool operator()(const Node &_node1, const Node &_node2) { return (_node1.arity() < _node2.arity());};
+	};
+
     public :
 
     typedef eoParseTree<FType, Node> EoType;
@@ -80,7 +81,7 @@ class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
       }
       // lets sort the initializor vector according to  arity (so we can be sure the terminals are in front)
       // we use stable_sort so that if element i was in front of element j and they have the same arity i remains in front of j
-      stable_sort(initializor.begin(), initializor.end(), lt_arity<Node>);
+      stable_sort(initializor.begin(), initializor.end(), lt_arity());
     }
         /// My class name
 	virtual string className() const { return "eoParseTreeDepthInit"; };
