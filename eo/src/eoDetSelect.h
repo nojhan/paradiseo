@@ -65,14 +65,14 @@ class eoDetSelect : public eoSelect<EOT>
       {
 	for (unsigned i=0; i<entireCopy; i++)
 	  {
-	    copy(_source.begin(), _source.end(), it);
+	      std::copy(_source.begin(), _source.end(), it);
 	    it += pSize;
 	  }
       }
     // the last ones
     if (remain) 
       {
-	copy(_source.begin(), _source.begin()+remain, it);
+	  std::copy(_source.begin(), _source.begin()+remain, it);
       }
   }
   
