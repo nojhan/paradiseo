@@ -1,3 +1,29 @@
+// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+
+//-----------------------------------------------------------------------------
+// eoParser.cpp
+// (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
+/* 
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+    Contact: todos@geneura.ugr.es, http://geneura.ugr.es
+             Marc.Schoenauer@inria.fr
+             mkeijzer@dhi.dk
+ */
+//-----------------------------------------------------------------------------
+
 #ifdef _MSC_VER
 #pragma warning(disable:4786)
 #endif
@@ -39,7 +65,8 @@ eoParameterLoader::~eoParameterLoader()
 eoParser::eoParser ( unsigned _argc, char **_argv , string _programDescription, string _lFileParamName, char _shortHand) : 
     programName( _argv[0]),
     programDescription( _programDescription), 
-    needHelp(false, "help", "Prints this message", 'h')
+    needHelp(false, "help", "Prints this message", 'h'),
+    stopOnUnknownParam(true, "stopOnUnknownParam", "Stop if unkonwn param entered", '\0')
 {
     // need to process the param file first 
     // if we want command-line to have highest priority
@@ -77,6 +104,7 @@ eoParser::eoParser ( unsigned _argc, char **_argv , string _programDescription, 
     readFrom(stream);
 
     processParam(needHelp);
+    processParam(stopOnUnknownParam);
 }
 
 /** 
@@ -98,6 +126,34 @@ eoParam* eoParser::getParamWithLongName(std::string _name)
     }
   return 0;
 }
+
+/** it seems finally that the easiest use of the above method is
+    through the following, whose interface is similar to that of the
+    widely-used createParam
+      For some (probably very stupid) reason, I failed to put it in
+      the .cpp. Any hint???
+*/
+/*
+template <class ValueType>
+eoValueParam<ValueType>& eoParser::getORcreateParam (
+		 ValueType _defaultValue, 
+		 std::string _longName, 
+		 std::string _description,
+		 char _shortHand,
+		 std::string _section,
+		 bool _required)
+{
+  eoParam* ptParam = getParamWithLongName(_longName);
+  if (ptParam) {			// found
+    eoValueParam<ValueType>* ptTypedParam = 
+      dynamic_cast<eoValueParam<ValueType>*>(ptParam);
+    return *ptTypedParam;
+  }
+  // not found -> create it
+  return createParam (_defaultValue, _longName, _description, 
+		      _shortHand, _section, _required);
+}
+*/
 
 void eoParser::processParam(eoParam& param, std::string section)
 {
@@ -328,55 +384,57 @@ void eoParser::printHelp(ostream& os)
 
 bool eoParser::userNeedsHelp(void) 
 {
-    /* 
-      check whether there are long or short names entered 
-      without a corresponding parameter
-    */
-
-    for (LongNameMapType::const_iterator lIt = longNameMap.begin(); lIt != longNameMap.end(); ++lIt)
+  /* 
+     check whether there are long or short names entered 
+     without a corresponding parameter
+  */
+  // first, check if we want to check that !
+  if (stopOnUnknownParam.value())
     {
-        string entry = lIt->first;
+      for (LongNameMapType::const_iterator lIt = longNameMap.begin(); lIt != longNameMap.end(); ++lIt)
+	{
+	  string entry = lIt->first;
 
-        MultiMapType::const_iterator it;
+	  MultiMapType::const_iterator it;
 
-        for (it = params.begin(); it != params.end(); ++it)
-        {
-            if (entry == it->second->longName())
-            {
-                break;
-            }
-        }
+	  for (it = params.begin(); it != params.end(); ++it)
+	    {
+	      if (entry == it->second->longName())
+		{
+		  break;
+		}
+	    }
 
-        if (it == params.end())
-        {
-            string msg = "Unknown parameter: --" + entry + " entered, type -h or --help to see available parameters";
-            messages.push_back(msg);
-        }
+	  if (it == params.end())
+	    {
+	      string msg = "Unknown parameter: --" + entry + " entered, type -h or --help to see available parameters";
+	      messages.push_back(msg);
+	    }
+	}
+
+      for (ShortNameMapType::const_iterator sIt = shortNameMap.begin(); sIt != shortNameMap.end(); ++sIt)
+	{
+	  char entry = sIt->first;
+
+	  MultiMapType::const_iterator it;
+
+	  for (it = params.begin(); it != params.end(); ++it)
+	    {
+	      if (entry == it->second->shortName())
+		{
+		  break;
+		}
+	    }
+
+	  if (it == params.end())
+	    {
+	      string entryString(1, entry);
+	      string msg = "Unknown parameter: -" + entryString + " entered, type -h or --help to see available parameters";
+	      messages.push_back(msg);
+	    }
+	}
     }
-
-    for (ShortNameMapType::const_iterator sIt = shortNameMap.begin(); sIt != shortNameMap.end(); ++sIt)
-    {
-        char entry = sIt->first;
-
-        MultiMapType::const_iterator it;
-
-        for (it = params.begin(); it != params.end(); ++it)
-        {
-            if (entry == it->second->shortName())
-            {
-                break;
-            }
-        }
-
-        if (it == params.end())
-        {
-            string entryString(1, entry);
-            string msg = "Unknown parameter: -" + entryString + " entered, type -h or --help to see available parameters";
-            messages.push_back(msg);
-        }
-    }
-
-    return needHelp.value() || !messages.empty(); 
+  return needHelp.value() || !messages.empty(); 
 }
 
 ///////////////// I put these here at the moment

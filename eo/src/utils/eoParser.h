@@ -24,7 +24,7 @@
  */
 //-----------------------------------------------------------------------------
 /**
-CVS Info: $Date: 2001-11-05 16:38:51 $ $Version$ $Author: evomarc $
+CVS Info: $Date: 2002-02-08 07:49:32 $ $Version$ $Author: evomarc $
 */
 #ifndef eoParser_h
 #define eoParser_h
@@ -159,6 +159,32 @@ public:
  */
   eoParam* getParamWithLongName(std::string _name);
 
+  /** it seems finally that the easiest use of the above method is
+      through the following, whose interface is similar to that of the
+      widely-used createParam
+      For some (probably very stupid) reason, I failed to put it in
+      the .cpp. Any hint???
+  */
+    template <class ValueType>
+    eoValueParam<ValueType>& getORcreateParam
+               (ValueType _defaultValue, 
+                std::string _longName, 
+                std::string _description,
+                char _shortHand = 0,
+                std::string _section = "",
+                bool _required = false)
+{
+  eoParam* ptParam = getParamWithLongName(_longName);
+  if (ptParam) {			// found
+    eoValueParam<ValueType>* ptTypedParam = 
+      dynamic_cast<eoValueParam<ValueType>*>(ptParam);
+    return *ptTypedParam;
+  }
+  // not found -> create it
+  return createParam (_defaultValue, _longName, _description, 
+		      _shortHand, _section, _required);
+}
+
 private:
   
   void doRegisterParam(eoParam& param) const;
@@ -182,6 +208,7 @@ private:
   LongNameMapType longNameMap;
 
   eoValueParam<bool>   needHelp;
+  eoValueParam<bool>   stopOnUnknownParam;
 
   mutable std::vector<std::string> messages;
 };
