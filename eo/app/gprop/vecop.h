@@ -210,4 +210,5 @@ template<class T> T euclidean_distance(const vector<T>& v1,
 
 //-----------------------------------------------------------------------------
 
-#endif VECOP_H
+#endif
+
