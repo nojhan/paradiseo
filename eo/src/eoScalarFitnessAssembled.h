@@ -93,26 +93,37 @@ public:
 
   // Basic constructors and assignments
   eoScalarFitnessAssembled() 
-    : baseVector( FitnessTraits::size() ) {}
+    : baseVector( FitnessTraits::size() ),
+    feasible(true)
+  {}
 
   eoScalarFitnessAssembled( size_type _n, 
 			    const ScalarType& _val,
 			    const std::string& _descr="Unnamed variable" )
-    : baseVector(_n, _val) 
+    : baseVector(_n, _val),
+      feasible(true)
   { 
     if ( _n > FitnessTraits::size() )
     FitnessTraits::resize(_n, _descr);
   }
   
-  eoScalarFitnessAssembled( const eoScalarFitnessAssembled& other) : baseVector( other ) {}
+  eoScalarFitnessAssembled( const eoScalarFitnessAssembled& other) 
+    : baseVector( other ),
+      feasible(other.feasible)
+  {}
 
   eoScalarFitnessAssembled& operator=( const eoScalarFitnessAssembled& other) {
     baseVector::operator=( other );
+    feasible = other.feasible;
     return *this;
   }
   
   // Constructors and assignments to work with scalar type
-  eoScalarFitnessAssembled( const ScalarType& v ) : baseVector( 1, v ) {}
+  eoScalarFitnessAssembled( const ScalarType& v ) 
+    : baseVector( 1, v ),
+      feasible(true)
+  {}
+  
   eoScalarFitnessAssembled& operator=( const ScalarType& v ) {
     
     if ( empty() )
@@ -120,6 +131,8 @@ public:
     else
       front() = v;
     
+    feasible=true;
+
     return *this;
   }
   
@@ -152,6 +165,13 @@ public:
 
   //! Get vector with descriptions
   std::vector<std::string> getDescriptionVector() { return FitnessTraits::getDescriptionVector(); }
+  
+  //! Feasibility boolean
+  /**
+   * Can be specified anywhere in fitness evaluation 
+   * as an indicator if the individual is in some feasible range.
+   */
+  bool feasible;
 
   // Scalar type access
   operator ScalarType(void) const { 
