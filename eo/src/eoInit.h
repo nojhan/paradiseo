@@ -46,7 +46,8 @@ class eoInit : public eoUF<EOT&, void>
 {
 public:
 
-  /** SHould be pure virtual, but then we should go over the whole
+  /** className: Mandatory because of eoCombinedInit. 
+     SHould be pure virtual, but then we should go over the whole
    * code to write the method for all derived classes ... MS 16/7/04 */
   virtual std::string className(void) const { return "eoInit"; }
 };
