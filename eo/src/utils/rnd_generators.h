@@ -112,6 +112,23 @@ bool random_generator<bool>::operator()(void)
     return random.flip(0.5);
 }
 
+/**
+   Another class random_generator that can be used in the STL random_shuffle 
+   function (see eoPop::shuffle): its operator() takes an unsigned argument m 
+   and  must return an unsigned uniformly distributed in [0,m}
+*/
+template <class T = uint32> class UF_random_generator
+{
+  public :
+    UF_random_generator(eoRng& _rng = rng) : 
+      random(_rng) {}
+  
+  T operator()(T _t) { return (T) (random.random(_t)); }
+  
+private :
+  eoRng& random;
+};
+
 
 /**
    The class normal_generator can be used in the STL generate function
