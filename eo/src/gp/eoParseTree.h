@@ -108,7 +108,6 @@ public :
      */
     void printOn(std::ostream& os) const
     {
-    	cerr << "in eoParseTree<...>::printOn(...) " << endl;
 	
 	EO<FType>::printOn(os);
 	/*
@@ -147,7 +146,6 @@ public :
 template <class FType, class Node>
 std::ostream& operator<<(std::ostream& os, const eoParseTree<FType, Node>& eot)
 {
-    cerr << "in operator<<(ostream, eoParseTree<...>)" << endl;
     eot.printOn(os);
     return os;
 }
