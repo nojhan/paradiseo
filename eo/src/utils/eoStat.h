@@ -32,6 +32,7 @@
 #include <eoFunctor.h>
 #include <utils/eoParam.h>
 #include <eoPop.h>
+#include <eoScalarFitnessAssembled.h>
 #include <eoParetoFitness.h>
 
 /**
@@ -83,10 +84,14 @@ public :
 };
 
 /**
-    Average fitness of a population, fitness can be a double, eoMinimizingFitness, eoMaximizingFitness or eoParetoFitness.
-    In the case of pareto optimization it will calculate the average of each objective.
+   Average fitness of a population. Fitness can be: 
+   - double
+   - eoMinimizingFitness or eoMaximizingFitness 
+   - eoScalarFitnessAssembled: 
+     Specify in the constructor, for which fitness term (index) the average should be evaluated.
+   - eoParetoFitness:
+     The average of each objective is evaluated.
 */
-
 #ifdef _MSC_VER
 template <class EOT> class eoAverageStat : public eoStat<EOT, EOT::Fitness>
 #else
@@ -96,9 +101,15 @@ template <class EOT> class eoAverageStat : public eoStat<EOT, typename EOT::Fitn
 public :
     typedef typename EOT::Fitness fitness_type;
 #ifdef _MSC_VER 
-    eoAverageStat(std::string _description = "Average Fitness") : eoStat<EOT, EOT::Fitness>(fitness_type(), _description) {}
+    eoAverageStat(std::string _description = "Average Fitness") 
+      : eoStat<EOT, EOT::Fitness>(fitness_type(), _description), whichFitnessTerm() {}
+    eoAverageStat(unsigned _whichTerm, std::string _description = "Average Fitness") 
+      : eoStat<EOT, EOT::Fitness>(fitness_type(), _description), whichFitnessTerm(_whichTerm) {}
 #else
-    eoAverageStat(std::string _description = "Average Fitness") : eoStat<EOT, typename EOT::Fitness>(fitness_type(), _description) {}
+    eoAverageStat(std::string _description = "Average Fitness") 
+      : eoStat<EOT, typename EOT::Fitness>(fitness_type(), _description), whichFitnessTerm() {}
+    eoAverageStat(unsigned _whichTerm, std::string _description = "Average Fitness") 
+      : eoStat<EOT, typename EOT::Fitness>(fitness_type(), _description), whichFitnessTerm(_whichTerm) {}
 #endif
 
     static fitness_type sumFitness(double _sum, const EOT& _eot)
@@ -118,7 +129,8 @@ public :
 #endif
     }
 private :
-
+    
+    // Specialization for pareto fitness 
     template <class T>
     void doit(const eoPop<EOT>& _pop, eoParetoFitness<T>)
     {
@@ -135,7 +147,23 @@ private :
         value()[o] /= _pop.size();
       }
     }
-
+    
+    // Specialization for eoScalarFitnessAssembled
+    template <class ScalarType, class Compare>
+    void doit(const eoPop<EOT>& _pop, eoScalarFitnessAssembled<ScalarType, Compare>)
+    {
+      
+      if ( whichFitnessTerm >= _pop[0].fitness().size() )
+      	throw std::logic_error("Fitness term requested out of range");
+      
+      double result =0.0;      
+      for (typename eoPop<EOT>::const_iterator it = _pop.begin(); it != _pop.end(); ++it)
+	result+= it->fitness()[whichFitnessTerm];
+      value().clear();
+      value() = result / _pop.size();
+    }
+    
+    // Default behavior
     template <class T>
     void doit(const eoPop<EOT>& _pop, T)
     {
@@ -144,6 +172,8 @@ private :
         value() = v / _pop.size();
     }
 
+    // Store an index of the fitness term to be evaluated in eoScalarFitnessAssembled
+    unsigned whichFitnessTerm;
 };
 
 /**
@@ -191,34 +221,38 @@ class eoNthElementFitnessStat : public eoSortedStat<EOT, typename EOT::Fitness >
 public :
     typedef typename EOT::Fitness Fitness;
 
-    eoNthElementFitnessStat(int _which, std::string _description = "nth element fitness") : eoSortedStat<EOT, Fitness>(Fitness(), _description), which(_which) {}
+    eoNthElementFitnessStat(unsigned _whichElement, std::string _description = "nth element fitness") 
+      : eoSortedStat<EOT, Fitness>(Fitness(), _description), whichElement(_whichElement) {}
+    eoNthElementFitnessStat(unsigned _whichElement, unsigned _whichTerm, std::string _description = "nth element fitness") 
+      : eoSortedStat<EOT, Fitness>(Fitness(), _description), whichElement(_whichElement), whichFitnessTerm(_whichTerm) {}
 
     virtual void operator()(const std::vector<const EOT*>& _pop)
     {
-        if (which > _pop.size())
+        if (whichElement > _pop.size())
             throw std::logic_error("fitness requested of element outside of pop");
 
         doit(_pop, Fitness());
     }
 
 private :
-
+    
     struct CmpFitness
     {
-      CmpFitness(unsigned _which, bool _maxim) : which(_which), maxim(_maxim) {}
+      CmpFitness(unsigned _whichElement, bool _maxim) : whichElement(_whichElement), maxim(_maxim) {}
 
       bool operator()(const EOT* a, const EOT* b)
       {
         if (maxim)
-          return a->fitness()[which] > b->fitness()[which];
+          return a->fitness()[whichElement] > b->fitness()[whichElement];
 
-        return a->fitness()[which] < b->fitness()[which];
+        return a->fitness()[whichElement] < b->fitness()[whichElement];
       }
 
-      unsigned which;
+      unsigned whichElement;
       bool maxim;
     };
 
+    // Specialization for eoParetoFitness
     template <class T>
     void doit(const eoPop<EOT>& _pop, eoParetoFitness<T>)
     {
@@ -231,21 +265,31 @@ private :
 
       for (unsigned o = 0; o < value().size(); ++o)
       {
-        typename std::vector<const EOT*>::iterator nth = tmp_pop.begin() + which;
+        typename std::vector<const EOT*>::iterator nth = tmp_pop.begin() + whichElement;
         std::nth_element(tmp_pop.begin(), nth, tmp_pop.end(), CmpFitness(o, traits::maximizing(o)));
         value()[o] = (*nth)->fitness()[o];
       }
+    }
+    
+    // Specialization for eoScalarFitnessAssembled
+    template <class ScalarType, class Compare>
+    void doit(const eoPop<EOT>& _pop, eoScalarFitnessAssembled<ScalarType, Compare>)
+    {
+      if ( whichFitnessTerm >= _pop[0].fitness().size() )
+	throw std::logic_error("Fitness term requested out of range");
+      value().clear();
+      value() = _pop[whichElement]->fitness()[whichFitnessTerm];
     }
 
     // for everything else
     template <class T>
     void doit(const std::vector<const EOT*>& _pop, T)
     {
-      value() = _pop[which]->fitness();
+      value() = _pop[whichElement]->fitness();
     }
 
-
-    unsigned which;
+    unsigned whichElement;
+    unsigned whichFitnessTerm;
 };
 
 /* Actually, you shouldn't need to sort the population to get the best fitness
@@ -273,8 +317,15 @@ public :
 */
 
 /**
-    Best fitness in the population
+   Best fitness of a population. Fitness can be: 
+   - double
+   - eoMinimizingFitness or eoMaximizingFitness 
+   - eoScalarFitnessAssembled: 
+     Best individual is found according to its fitness, 
+     specify in the constructor which fitness term of this individual should then be stored.
+   - eoParetoFitness:
 */
+
 #ifdef _MSC_VER
 template <class EOT>
 class eoBestFitnessStat : public eoStat<EOT, EOT::Fitness>
@@ -286,7 +337,10 @@ class eoBestFitnessStat : public eoStat<EOT, typename EOT::Fitness>
 public :
     typedef typename EOT::Fitness Fitness;
 
-    eoBestFitnessStat(std::string _description = "Best ") : eoStat<EOT, Fitness>(Fitness(), _description) {}
+    eoBestFitnessStat(std::string _description = "Best ") 
+      : eoStat<EOT, Fitness>(Fitness(), _description) {}
+    eoBestFitnessStat(unsigned _whichTerm, std::string _description = "Best ") 
+      : eoStat<EOT, Fitness>(Fitness(), _description), whichFitnessTerm(_whichTerm) {}
 
     void operator()(const eoPop<EOT>& _pop)
     {
@@ -311,7 +365,7 @@ private :
       bool maxim;
     };
 
-
+    // Specialization for pareto fitness
     template <class T>
     void doit(const eoPop<EOT>& _pop, eoParetoFitness<T>)
     {
@@ -324,7 +378,17 @@ private :
         value()[o] = it->fitness()[o];
       }
     }
+    
+    // Specialization for eoScalarFitnessAssembled
+    template <class ScalarType, class Compare>
+    void doit(const eoPop<EOT>& _pop, eoScalarFitnessAssembled<ScalarType, Compare>){
 
+      if ( whichFitnessTerm >= _pop[0].fitness().size() )
+	throw std::logic_error("Fitness term requested out of range");
+      value().clear();
+      value() = _pop.best_element().fitness()[whichFitnessTerm];      
+    }
+  
     // default
     template<class T>
     void doit(const eoPop<EOT>& _pop, T)
@@ -332,6 +396,7 @@ private :
       value() = _pop.best_element().fitness();
     }
 
+    unsigned whichFitnessTerm;
 };
 
 template <class EOT>

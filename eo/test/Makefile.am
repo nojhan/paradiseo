@@ -4,6 +4,8 @@
 ##
 ###############################################################################
 
+CLEANFILES = *~ *.sav *.status
+
 DEPS = $(top_builddir)/src/utils/libeoutils.a $(top_builddir)/src/libeo.a
 
 ###############################################################################
@@ -15,7 +17,7 @@ CXXFLAGS = -g -Wall
 
 # PLEASE don't break the line (see create_batch.sh)
 
-check_PROGRAMS = t-eoParetoFitness t-eoPareto t-eofitness t-eoRandom t-eobin t-eoVirus t-MGE t-MGE1bit t-MGE-control t-eoStateAndParser t-eoCheckpointing t-eoSSGA t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoReal t-eoVector t-eoESAll t-eoPBIL
+check_PROGRAMS = t-eoParetoFitness t-eoPareto t-eofitness t-eoRandom t-eobin t-eoVirus t-MGE t-MGE1bit t-MGE-control t-eoStateAndParser t-eoCheckpointing t-eoSSGA t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoReal t-eoVector t-eoESAll t-eoPBIL t-eoFitnessAssembled t-eoFitnessAssembledEA
 
 #The run_tests script can be used to check various arguments 
 TESTS=$(check_PROGRAMS) run_tests
@@ -173,5 +175,19 @@ t_eoPBIL_SOURCES = t-eoPBIL.cpp
 t_eoPBIL_DEPENDENCIES = $(DEPS) $(top_builddir)/src/ga/libga.a
 t_eoPBIL_LDFLAGS = -lm
 t_eoPBIL_LDADD = $(top_builddir)/src/ga/libga.a $(LDADDS)
+
+###############################################################################
+
+t_eoFitnessAssembled_SOURCES = t-eoFitnessAssembled.cpp 
+t_eoFitnessAssembled_DEPENDENCIES = $(DEPS) $(top_builddir)/src/ga/libga.a
+t_eoFitnessAssembled_LDFLAGS = -lm
+t_eoFitnessAssembled_LDADD = $(top_builddir)/src/ga/libga.a $(LDADDS)
+
+###############################################################################
+
+t_eoFitnessAssembledEA_SOURCES = t-eoFitnessAssembledEA.cpp
+t_eoFitnessAssembledEA_DEPENDENCIES = $(DEPS) $(top_builddir)/src/es/libes.a
+t_eoFitnessAssembledEA_LDFLAGS = -lm
+t_eoFitnessAssembledEA_LDADD = $(top_builddir)/src/es/libes.a $(LDADDS)
 
 ###############################################################################
