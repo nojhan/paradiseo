@@ -94,6 +94,8 @@ bool testDirRes(std::string _dirName, bool _erase)
       return true;
     }
   //else
+  // WARNING: bug if dir exists and is empty; this says it is not!
+  // shoudl use scandir instead - no time now :-(((    MS Aug. 01
   s = "Dir " + _dirName + " is not empty";
   throw runtime_error(s);
   return true;
