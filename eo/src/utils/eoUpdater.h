@@ -29,6 +29,7 @@
 
 #include <eoFunctor.h>
 #include <utils/eoState.h>
+#include <utils/eoParam.h>
 
 /**
     eoUpdater is a generic procudere for updating whatever you want.
@@ -46,8 +47,10 @@ public:
 template <class T>
 class eoIncrementor : public eoUpdater
 {public :   
+  /** Default Ctor - requires a reference to the thing to increment */
     eoIncrementor(T& _counter, T _stepsize = 1) : counter(_counter), stepsize(_stepsize) {}
 
+  /** Simply increments */
     virtual void operator()()
     {
         counter += stepsize;
@@ -56,6 +59,33 @@ class eoIncrementor : public eoUpdater
 private:
     T& counter;
     T stepsize;
+};
+
+/** an eoUpdater that is an eoValueParam (and thus OWNS its counter)
+ *  Mandatory for generation counter in make_checkpoint
+*/
+template <class T>
+class eoIncrementorParam : public eoUpdater, public eoValueParam<T>
+{
+public :   
+  /** Default Ctor : a name and optionally an increment*/
+  eoIncrementorParam(string _name, T _stepsize = 1) : 
+    eoValueParam<T>(T(0), _name), stepsize(_stepsize) {}
+  
+  /** Ctor with a name and non-zero initial value 
+   *  and mandatory stepSize to remove ambiguity
+   */
+  eoIncrementorParam(string _name, T _countValue, T _stepsize) : 
+    eoValueParam<T>(_countValue, _name), stepsize(_stepsize) {}
+
+  /** Simply increments */
+  virtual void operator()()
+  {
+    value() += stepsize;
+  }
+  
+private:
+  T stepsize;
 };
 
 #include <time.h>

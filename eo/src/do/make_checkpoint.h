@@ -45,7 +45,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
   // first, create a checkpoint from the eoContinue
   eoCheckPoint<EOT> *checkpoint = new eoCheckPoint<EOT>(_continue);
   _state.storeFunctor(checkpoint);
-
+  
   ///////////////////
   // Counters
   //////////////////
@@ -53,14 +53,17 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
   eoValueParam<bool>& useEvalParam = _parser.createParam(true, "useEval", "Use nb of eval. as counter (vs nb of gen.)", '\0', "Output");
   eoValueParam<bool>& useTimeParam = _parser.createParam(true, "useTime", "Display time (s) every generation", '\0', "Output");
 
-    // Create anyway a generation-counter parameter
-    eoValueParam<unsigned> *generationCounter = new eoValueParam<unsigned>(0, "Gen.");
-    // Create an incrementor (sub-class of eoUpdater).
-    eoIncrementor<unsigned>* increment = new eoIncrementor<unsigned>(generationCounter->value());
-    // Add it to the checkpoint, 
-    checkpoint->add(*increment);
-    // and store it in the state
-    _state.storeFunctor(increment);
+  // if we want the time, we need an eoTimeCounter
+  eoTimeCounter * tCounter = NULL;
+  
+  // Create anyway a generation-counter 
+  // Recent change (03/2002): it is now an eoIncrementorParam, both 
+  // a parameter AND updater so you can store it into the eoState
+  eoIncrementorParam<unsigned> *generationCounter = new eoIncrementorParam<unsigned>("Gen.");
+  // store it in the state
+  _state.storeFunctor(generationCounter);
+  // And add it to the checkpoint, 
+  checkpoint->add(*generationCounter);
 
     // dir for DISK output
     eoValueParam<string>& dirNameParam =  _parser.createParam(string("Res"), "resDir", "Directory to store DISK outputs", '\0', "Output - Disk");
@@ -162,7 +165,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 	      monitor->add(_eval);
 	if (useTimeParam.value()) // we want time
 	  {
-	    eoTimeCounter * tCounter = new eoTimeCounter;
+	    tCounter = new eoTimeCounter;
 	    _state.storeFunctor(tCounter);
 	    checkpoint->add(*tCounter);
 	    monitor->add(*tCounter);
@@ -196,6 +199,11 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 	// and feed with some statistics
 	fileMonitor->add(*generationCounter);
 	fileMonitor->add(_eval);
+	if (tCounter)		   // we want the time as well
+	  {
+	    cout << "On met timecounter\n";
+	    fileMonitor->add(*tCounter);
+	  }
 	fileMonitor->add(*bestStat); 
 	fileMonitor->add(*secondStat);
       }
@@ -209,9 +217,11 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 	_state.storeFunctor(gnuMonitor);
 	checkpoint->add(*gnuMonitor);
 	// and feed with some statistics
-	if (useEvalParam.value())
+	if (useEvalParam.value())  // do we want eval as X coordinate
 	  gnuMonitor->add(_eval);
-	else
+	else if (tCounter)	   // or time?
+	  gnuMonitor->add(*tCounter);
+	else			   // default: generation
 	  gnuMonitor->add(*generationCounter);
 	gnuMonitor->add(*bestStat);
 	gnuMonitor->add(*averageStat);
