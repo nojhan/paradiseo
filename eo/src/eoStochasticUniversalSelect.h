@@ -31,6 +31,8 @@
 
 #include <utils/eoRNG.h>
 #include <eoSelectOne.h>
+#include <utils/selectors.h>
+#include <eoPop.h>
 
 //-----------------------------------------------------------------------------
 /** eoStochasticUniversalSelect: select an individual proportional to her stored fitness
@@ -79,6 +81,11 @@ public:
 	      fortune -= cumulative.back();
 	      i = 0;
 	  }
+      }
+      // shuffle
+      for (int i = indices.size() - 1; i > 0; --i) {
+	  int j = rng.random(i+1);
+	  swap(indices[i], indices[j]);
       }
   }
     
