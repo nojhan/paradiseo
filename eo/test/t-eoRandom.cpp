@@ -24,7 +24,7 @@
 */
 
 /**
-CVS Info: $Date: 2001-02-13 22:38:23 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/test/t-eoRandom.cpp,v 1.6 2001-02-13 22:38:23 jmerelo Exp $ $Author: jmerelo $ $Revision: 1.6 $
+CVS Info: $Date: 2001-02-13 22:39:56 $  $Author: jmerelo $ $Revision: 1.7 $
 */
 
 //-----------------------------------------------------------------------------
