@@ -73,7 +73,7 @@ public:
      have to implement this.
      @param _is the input stream
  */ 
-  eo1d( istream& _is): EO<fitnessT>( _is ){};
+  eo1d( istream& _is): EO<fitnessT>(){ readFrom(is); }
 
   /// Copy ctor
   eo1d( const eo1d& _eo )
