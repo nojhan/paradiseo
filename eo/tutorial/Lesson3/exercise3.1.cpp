@@ -299,23 +299,26 @@ void main_function(int argc, char **argv)
     // test de eoPopStat and/or eoSortedPopStat. 
     // Dumps the whole pop every 10 gen.
     //    eoSortedPopStat<Indi> popStat(10, "Dump of whole population");
-    eoPopStat<Indi> popStat(10, "Dump of whole population");
-    checkpoint.add(popStat);
-    monitor.add(popStat);
+//     eoPopStat<Indi> popStat(10, "Dump of whole population");
+//     checkpoint.add(popStat);
+//     monitor.add(popStat);
 
     // A file monitor: will print parameters to ... a File, yes, you got it!
     eoFileMonitor fileMonitor("stats.xg", " ");
-    // and an eoGnuplot1DMonitor will 1-print to a file, and 2- plot on screen
-    eoGnuplot1DMonitor gnuMonitor("best_average.xg",minimizing_fitness<Indi>());
 
-    // the checkpoint mechanism can handle multiple monitors
+    // the checkpoint mechanism can handle monitors
     checkpoint.add(fileMonitor);
-    checkpoint.add(gnuMonitor);
 
     // the fileMonitor can monitor parameters, too, but you must tell it!
     fileMonitor.add(generationCounter);
     fileMonitor.add(bestStat);
     fileMonitor.add(SecondStat);
+
+#ifndef _MSC_VER
+    // and an eoGnuplot1DMonitor will 1-print to a file, and 2- plot on screen
+    eoGnuplot1DMonitor gnuMonitor("best_average.xg",minimizing_fitness<Indi>());
+    // the checkpoint mechanism can handle multiple monitors
+    checkpoint.add(gnuMonitor);
     // the gnuMonitor can monitor parameters, too, but you must tell it!
     gnuMonitor.add(eval);
     gnuMonitor.add(bestStat);
@@ -343,7 +346,7 @@ void main_function(int argc, char **argv)
     fitSnapshot.add(fitStat);
     // and of course add it to the checkpoint
     checkpoint.add(fitSnapshot);
-    
+#endif
     // Last type of item the eoCheckpoint can handle: state savers:
     eoState outState;
     // Register the algorithm into the state (so it has something to save!!)
