@@ -156,7 +156,7 @@ public :
 		
         double fitness = 0.0;
         
-		for (int i = 0; i < inputs.size(); ++i)
+	for (unsigned i = 0; i < inputs.size(); ++i)
         {
 		    _eo.apply(outputs[i], inputs[i]);
 	        fitness += (outputs[i] - target[i]) * (outputs[i] - target[i]);
@@ -183,7 +183,7 @@ void print_best(eoPop<EOT>& pop)
     FitnessType best = pop[0].fitness();
     int index = 0;
 
-    for (int i = 1; i < pop.size(); ++i)
+    for (unsigned i = 1; i < pop.size(); ++i)
     {
         if (best < pop[i].fitness())
         {
@@ -210,7 +210,7 @@ void print_best(eoPop<EOT>& pop)
 #include "eoSteadyStateEA.h"
 #include "eoScalarFitness.h"
 
-void main()
+int main()
 {
     typedef eoMinimizingFitness FitnessType;
     typedef SymregNode GpNode;
@@ -280,6 +280,8 @@ void main()
     }
 
     print_best<EoType, FitnessType>(pop);
+
+    return 1;
 }
 
 
