@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
- CVS Info: $Date: 2003-05-16 14:28:52 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/ga/eoBitOp.h,v 1.16 2003-05-16 14:28:52 jeggermo Exp $ $Author: jeggermo $
+ CVS Info: $Date: 2003-06-06 10:29:13 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/ga/eoBitOp.h,v 1.17 2003-06-06 10:29:13 maartenkeijzer Exp $ $Author: maartenkeijzer $
  */
 //-----------------------------------------------------------------------------
 
@@ -296,7 +296,7 @@ template<class Chrom> class eoUBitXover: public eoQuadOp<Chrom>
       bool changed = false;
       for (unsigned int i=0; i<chrom1.size(); i++)
 	{
-	  if (eo::rng.flip(preference))
+	  if (chrom1[i] != chrom2[i] && eo::rng.flip(preference))
 	    {
 	      bool tmp = chrom1[i];
 	      chrom1[i]=chrom2[i];
