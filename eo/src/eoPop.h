@@ -67,7 +67,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
 	/** Ctor for the initialization of chromosomes
     
 	@param _popSize total population size
-	@param _chromRnd Initialization routine, produces EO's, needs to be an eoInit 
+	@param _chromInit Initialization routine, produces EO's, needs to be an eoInit 
 	*/
     eoPop( unsigned _popSize, eoInit<EOT>& _chromInit )
 	  :vector<EOT>() 
@@ -79,7 +79,21 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
 	  }
 	};
 
-
+	/** SAME Initialization task than init. ctor, but is NOT a constructor
+    
+	@param _popSize total population size
+	@param _chromInit Initialization routine, produces EO's, needs to be an eoInit 
+	*/
+    void append( unsigned _popSize, eoInit<EOT>& _chromInit )
+    {
+      resize(size()+_popSize);	   // adjust the size
+      for ( unsigned i = 0; i < _popSize; i++ )
+	{
+	  _chromInit(operator[](i));
+	}
+    };
+  
+  
 	/** Ctor from an istream; reads the population from a stream,
 	    each element should be in different lines
 	    @param _is the stream
