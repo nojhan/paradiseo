@@ -1,11 +1,12 @@
-###############################################################################
-##
-## Makefile.am for eo/src
-##
-###############################################################################
+# Makefile.am for eo/src
 
-SUBDIRS 		= es ga gp utils other do
-
+if USE_PARADISEO
+SUBDIRS 		= es ga gp do utils other paradisEO
+PARADISEO_H		= paradiseo.h
+else
+SUBDIRS 		= es ga gp do utils other
+PARADISEO_H		=
+endif
 
 lib_LIBRARIES 		= libeo.a
 
@@ -16,9 +17,118 @@ libeo_a_SOURCES 	= eoFunctorStore.cpp \
 			eoParetoFitness.cpp \
 			eoScalarFitnessAssembled.cpp  
 
-pkginclude_HEADERS 	= $(srcdir)/eo $(srcdir)/*.h $(srcdir)/do/*.h 
-
 
 AM_CXXFLAGS		= -I$(top_srcdir)/src
 
-EXTRA_DIST		= eo *.h do/*.h
+pkginclude_HEADERS 	= eo \
+			EO.h \
+			apply.h \
+			eoAlgo.h \
+			eoBreed.h \
+			eoCellularEasyEA.h \
+			eoCloneOps.h \
+			eoCombinedContinue.h \
+			eoCombinedInit.h \
+			eoContinue.h \
+			eoCounter.h \
+			eoCtrlCContinue.h \
+			eoDetSelect.h \
+			eoDetTournamentSelect.h \
+			eoDistribUpdater.h \
+			eoDistribution.h \
+			eoDominanceMap.h \
+			eoEDA.h \
+			eoEasyEA.h \
+			eoEvalContinue.h \
+			eoEvalFunc.h \
+			eoEvalFuncCounter.h \
+			eoEvalFuncPtr.h \
+			eoFactory.h \
+			eoFitContinue.h \
+			eoFitnessScalingSelect.h \
+			eoFlOrBinOp.h \
+			eoFlOrMonOp.h \
+			eoFlOrQuadOp.h \
+			eoFunctor.h \
+			eoFunctorStore.h \
+			eoG3Replacement.h \
+			eoGenContinue.h \
+			eoGenOp.h \
+			eoGeneralBreeder.h \
+			eoInit.h \
+			eoInvalidateOps.h \
+			eoLinearFitScaling.h \
+			eoMGGReplacement.h \
+			eoMerge.h \
+			eoMergeReduce.h \
+			eoNDSorting.h \
+			eoObject.h \
+			eoOneToOneBreeder.h \
+			eoOp.h \
+			eoOpContainer.h \
+			eoOpSelMason.h \
+			eoParetoConstraintFitness.h \
+			eoParetoFitness.h \
+			eoParetoRanking.h \
+			eoPerf2Worth.h \
+			eoPersistent.h \
+			eoPop.h \
+			eoPopAlgo.h \
+			eoPopEvalFunc.h \
+			eoPopulator.h \
+			eoPrintable.h \
+			eoProportionalCombinedOp.h \
+			eoProportionalSelect.h \
+			eoRandomSelect.h \
+			eoRanking.h \
+			eoRankingSelect.h \
+			eoReduce.h \
+			eoReduceMerge.h \
+			eoReduceMergeReduce.h \
+			eoReduceSplit.h \
+			eoReplacement.h \
+			eoSGA.h \
+			eoSGAGenOp.h \
+			eoSGATransform.h \
+			eoSTLFunctor.h \
+			eoScalarFitness.h \
+			eoScalarFitnessAssembled.cpp \
+			eoScalarFitnessAssembled.h \
+			eoSelect.h \
+			eoSelectFactory.h \
+			eoSelectFromWorth.h \
+			eoSelectMany.h \
+			eoSelectNumber.h \
+			eoSelectOne.h \
+			eoSelectPerc.h \
+			eoSequentialSelect.h \
+			eoSharing.h \
+			eoSharingSelect.h \
+			eoSimpleEDA.h \
+			eoSteadyFitContinue.h \
+			eoStochTournamentSelect.h \
+			eoStochasticUniversalSelect.h \
+			eoSurviveAndDie.h \
+			eoToricCellularEasyEA.h \
+			eoTransform.h \
+			eoTruncSelect.h \
+			eoTruncatedSelectMany.h \
+			eoTruncatedSelectOne.h \
+			eoVariableLengthCrossover.h \
+			eoVariableLengthMutation.h \
+			eoVector.h \
+			es.h \
+			ga.h \
+			do/make_algo_easea.h \
+			do/make_algo_pareto.h \
+			do/make_algo_scalar.h \
+			do/make_checkpoint.h \
+			do/make_checkpoint_FDC.h \
+			do/make_checkpoint_assembled.h \
+			do/make_checkpoint_pareto.h \
+			do/make_continue.h \
+			do/make_continue_pareto.h \
+			do/make_general_replacement.h \
+			do/make_pop.h \
+			do/make_run.h \
+			$(PARADISEO_H)

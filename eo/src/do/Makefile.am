@@ -1,3 +1,1 @@
-EXTRA_DIST = *.h Readme
-
-CLEANFILES = *~
+EXTRA_DIST		= Readme

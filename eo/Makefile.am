@@ -1,16 +1,15 @@
-###############################################################################
-##
 ## Makefile.am for eo
-##
-###############################################################################
 
-SUBDIRS 	= src test doc contrib win
 if USE_APPLICATIONS
-SUBDIRS		+= app
+SUBDIRS_APP		= app
 endif
+
 if USE_TUTORIAL
-SUBDIRS		+= tutorial
+SUBDIRS_TUT		= tutorial
 endif
+
+SUBDIRS		= src test doc contrib win $(SUBDIRS_APP) $(SUBDIRS_TUT)
+
 
 # Directory for documents
 DOCDIR 		= ~/public_html/eodocs
