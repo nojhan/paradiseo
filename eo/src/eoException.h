@@ -32,11 +32,11 @@
 
 #include "eoObject.h"
 
-struct eoException
+struct eoException 
 {
     eoException() {}
     eoException(const eoObject& caller) : who_caught_it(caller.className()) {}
-
+  virtual ~eoException(){}	   // otherwise compiler complains
     std::string who(void) const { return who_caught_it; }
     virtual std::string what(void) const{ return "";}
 
@@ -48,6 +48,7 @@ struct eoFitnessException : public eoException
 {
     eoFitnessException() : eoException()  {}
     eoFitnessException(const eoObject& caller) : eoException(caller) {}
+  virtual ~eoFitnessException(){}	   // otherwise compiler complains
 };
 
 struct eoNegativeFitnessException : public eoFitnessException
@@ -55,6 +56,7 @@ struct eoNegativeFitnessException : public eoFitnessException
     eoNegativeFitnessException() : eoFitnessException()  {}
     eoNegativeFitnessException(const eoObject& caller) : eoFitnessException(caller) {}
 
+  virtual ~eoNegativeFitnessException(){}  // otherwise compiler complains
     std::string what(void) const { return "negative fitness encountered"; }
 };
 
@@ -62,6 +64,7 @@ struct eoMinimizingFitnessException : public eoFitnessException
 {
     eoMinimizingFitnessException() : eoFitnessException()  {}
     eoMinimizingFitnessException(const eoObject& caller) : eoFitnessException(caller) {}
+  virtual ~eoMinimizingFitnessException(){}  // otherwise compiler complains
     
     std::string what(void) const { return "smaller fitness is better fitness, which is quite inappropriate here"; }
 };
