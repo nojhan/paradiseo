@@ -20,7 +20,7 @@
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              mak@dhi.dk
-    CVS Info: $Date: 2003-01-05 16:31:47 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoFunctor.h,v 1.6 2003-01-05 16:31:47 maartenkeijzer Exp $ $Author: maartenkeijzer $ 
+    CVS Info: $Date: 2004-12-01 09:22:48 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoFunctor.h,v 1.7 2004-12-01 09:22:48 evomarc Exp $ $Author: evomarc $ 
  */
 //-----------------------------------------------------------------------------
 
@@ -46,6 +46,7 @@
 class eoFunctorBase
 {
 public :
+    /// virtual dtor here so there is no need to define it in derived classes
     virtual ~eoFunctorBase() {}
 
     /// tag to identify a procedure in compile time function selection @see functor_category
@@ -71,11 +72,13 @@ public :
     /// virtual dtor here so there is no need to define it in derived classes
     virtual ~eoF() {}
 
+  /// the return type - probably useless ....
     typedef R result_type;
 
     /// The pure virtual function that needs to be implemented by the subclass
     virtual R operator()() = 0;
 
+    /// tag to identify a procedure in compile time function selection @see functor_category
     static eoFunctorBase::procedure_tag functor_category()
     {
 	return eoFunctorBase::procedure_tag();
@@ -112,6 +115,7 @@ public :
     /// The pure virtual function that needs to be implemented by the subclass
     virtual R operator()(A1) = 0;
 
+    /// tag to identify a procedure in compile time function selection @see functor_category
     static eoFunctorBase::unary_function_tag functor_category()
     {
 	return eoFunctorBase::unary_function_tag();
@@ -151,6 +155,7 @@ public :
     /// The pure virtual function that needs to be implemented by the subclass
     virtual R operator()(A1, A2) = 0;
 
+    /// tag to identify a procedure in compile time function selection @see functor_category
     static eoFunctorBase::binary_function_tag functor_category()
     {
 	return eoFunctorBase::binary_function_tag();
