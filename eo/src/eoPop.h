@@ -110,7 +110,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       struct Ref { const EOT* operator()(const EOT& eot) { return &eot;}};
   /// helper struct for comparing on pointers
       struct Cmp {
-          bool operator()(const EO<Fitness>* a, const EO<Fitness>* b) const
+          bool operator()(const EOT* a, const EOT* b) const
             { return b->operator<(*a); }
       };
 
@@ -120,7 +120,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
    */
   void sort(void)
   {
-      std::sort(begin(), end(), greater<EO<Fitness> >());
+      std::sort(begin(), end(), greater<EOT>());
   }
 
   void sort(vector<const EOT*>& result) const
@@ -139,7 +139,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   eoPop<EOT>::iterator nth_element(int nth)
   {
       typename eoPop<EOT>::iterator it = begin() + nth;
-      std::nth_element(begin(), it, end(), greater<EO<Fitness> >());
+      std::nth_element(begin(), it, end(), greater<EOT>());
       return it;
   }
 
