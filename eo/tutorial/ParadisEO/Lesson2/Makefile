@@ -1,4 +1,4 @@
-MPICC = ./mpiCC
+MPICC = mpiCC
 
 ALL = MasterDistEvalBitEA SlaveDistEvalBitEA 
 

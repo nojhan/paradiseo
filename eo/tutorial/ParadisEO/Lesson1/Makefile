@@ -1,4 +1,4 @@
-MPICC = ./mpiCC
+MPICC = mpiCC
 
 ALL = IslandBitEA IslandBitEA2 IslandBitEA1
 
