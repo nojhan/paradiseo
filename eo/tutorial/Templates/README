@@ -1,3 +1,15 @@
+Quick NOTE: This version of README is obsolete (May 25, 2004)
+In particular, a simpler version of the algorithm can be generated
+using the script 
+                   createSimple
+
+with the same syntax. It is also more powerful, allowing for instance
+to create you own statistics on the population, saving it in a file
+and/or plotting on on-line during the run (see eoStat.tmpl).
+More details some day, when I have some time ...
+
+============= Old README (most is still accurate, though) ==========
+
 This directory contains sample files that should make it easy to
 create an EO algorithm to evolve any type of structure 
 (EO comes with two examples, bitstrings and vector of real variables,
@@ -9,7 +21,7 @@ objective fitness - or be patient :-)
 
 This file will help you to build the same algorithm than the ones 
 in the Lesson4 of the tutorial, but with YOUR genotype instead of
-bitstrings or vector<double>
+bitstrings or vector<double>. More details in Lesson5 of the tutorial.
 
 It is assumed in the following that you have read the first part of
 the tutorial (Lessons 1 to 4).
@@ -89,7 +101,7 @@ want to become active), and run
 
                % eoAppliEA @eoAppliEA.param
 
-(see the Lesson 4 of the tutorial for more details now).
+(see the Lesson 5 of the tutorial for more details now).
 
 HINTS
 -----

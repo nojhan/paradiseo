@@ -37,7 +37,7 @@ endif
 
 if (-f $TargetDir/Makefile) then
     echo A Makefile already exists there.
-    echo I'm creating Makefile.$1. You'll have to merge them both, 
+    echo "I'm creating Makefile.$1. You'll have to merge them both," 
     echo OR to call make -f Makefile.$1
     set MakeName = Makefile.$1
 else
@@ -48,6 +48,7 @@ echo Creating source files for application $1 in $TargetDir/
 
 sed s/MyStruct/$1/g eoMyStruct.tmpl > $TargetDir/eo$1.h
 sed s/MyStruct/$1/g init.tmpl > $TargetDir/eo$1Init.h
+sed s/MyStruct/$1/g stat.tmpl > $TargetDir/eo$1Stat.h
 sed s/MyStruct/$1/g evalFunc.tmpl > $TargetDir/eo$1EvalFunc.h
 sed s/MyStruct/$1/g mutation.tmpl > $TargetDir/eo$1Mutation.h
 sed s/MyStruct/$1/g quadCrossover.tmpl > $TargetDir/eo$1QuadCrossover.h

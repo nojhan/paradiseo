@@ -53,6 +53,9 @@ using namespace std;
 #include "eoMyStructQuadCrossover.h"
 #include "eoMyStructMutation.h"
 
+/* and (possibly) your personal statistics */
+#include "eoMyStructStat.h"
+
 // GENOTYPE   eoMyStruct ***MUST*** be templatized over the fitness
 
 //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
@@ -92,9 +95,9 @@ eoCheckPoint<Indi>& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFu
 
 // evolution engine (selection and replacement)
 #include <do/make_algo_scalar.h>
-eoAlgo<Indi>&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<Indi>& _eval, eoContinue<Indi>& _continue, eoGenOp<Indi>& _op)
+eoAlgo<Indi>&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<Indi>& _eval, eoContinue<Indi>& _continue, eoGenOp<Indi>& _op, eoDistance<Indi> *_dist = NULL)
 {
-  return do_make_algo_scalar(_parser, _state, _eval, _continue, _op);
+  return do_make_algo_scalar(_parser, _state, _eval, _continue, _op, _dist);
 }
 
 // simple call to the algo. stays there for consistency reasons 
@@ -133,6 +136,15 @@ try
     // - call it from here:
     //        eoMyStructInit<Indi> init(parser);
     
+    // if you want to do sharing, you'll need a distance.
+    // see file utils/eoDistance.h
+    //
+    // IF you representation has an operator[]() double-castable, 
+    // then you can use for instance the quadratic distance (L2 norm)
+    //    eoQuadDistance<Indi> dist;
+    // or the Hamming distance (L1 norm)
+    // eoHammingDistance<Indi> dist;
+
     
     // Build the variation operator (any seq/prop construct)
     // here, a simple example with only 1 crossover (2->2, a QuadOp) and
@@ -165,7 +177,7 @@ try
     /////////////// Same thing for MUTATION
 
   // a (first) mutation   (possibly use the parser in its Ctor)
-  eoMyStructMutation<Indi> mut /* (eoParser parser) */;
+  eoMyStructMutation<Indi> mut /* (parser) */;
 
     // IF MORE THAN ONE:
 
@@ -205,10 +217,12 @@ try
     eoSGAGenOp<Indi> op(cross, pCross, mut, pMut);
 
 
-    //// Now the representation-independent things 
+    //// Now some representation-independent things 
     //
-    // YOU SHOULD NOT NEED TO MODIFY ANYTHING BEYOND THIS POINT
+    // You do not need to modify anything beyond this point
     // unless you want to add specific statistics to the checkpoint
+    // in which case you should uncomment the corresponding block
+    // and possibly modify the parameters in the stat object creation
     //////////////////////////////////////////////
 
   // initialize the population
@@ -219,8 +233,90 @@ try
   eoContinue<Indi> & term = make_continue(parser, state, eval);
   // output
   eoCheckPoint<Indi> & checkpoint = make_checkpoint(parser, state, eval, term);
+
+
+  // UNCOMMENT the following commented block if you want to add you stats
+
+  // if uncommented, it is assumed that you will want to print some stat.
+  // if not, then the following objects will be created uselessly - but what the heck!
+
+  eoMyStructStat<Indi>   myStat;       // or maybe myStat(parser); 
+  checkpoint.add(myStat);
+  // This one is probably redundant with the one in make_checkpoint, but w.t.h.
+  eoIncrementorParam<unsigned> generationCounter("Gen.");
+  checkpoint.add(generationCounter);
+  // need to get the name of the redDir param (if any)
+  std::string dirName =  parser.getORcreateParam(std::string("Res"), "resDir", "Directory to store DISK outputs", '\0', "Output - Disk").value() + "/";
+
+
+  // those need to be pointers because of the if's
+  eoStdoutMonitor *myStdOutMonitor;
+  eoFileMonitor   *myFileMonitor;
+#if !defined(NO_GNUPLOT)
+  eoGnuplot1DMonitor *myGnuMonitor;
+#endif
+
+  // now check how you want to output the stat:
+  bool printMyStructStat = parser.createParam(true, "coutMyStructStat", "Affiche ma stat à l'écran", '\0', "Mon Probleme").value();
+  bool fileMyStructStat = parser.createParam(false, "fileMyStructStat", "Stocke ma stat Dans un fichier", '\0', "Mon Probleme").value();
+  bool plotMyStructStat = parser.createParam(false, "plotMyStructStat", "Affiche graphiquement ma stat pendant l'évolution", '\0', "Mon Probleme").value();
+
+  // should we write it on StdOut ?
+  if (printMyStructStat)
+    {
+      myStdOutMonitor = new eoStdoutMonitor(false);
+      // don't forget to store the memory in the state
+      state.storeFunctor(myStdOutMonitor);
+      // and of course to add the monitor to the checkpoint
+      checkpoint.add(*myStdOutMonitor);
+      // and the different fields to the monitor
+      myStdOutMonitor->add(generationCounter);
+      myStdOutMonitor->add(eval);
+      myStdOutMonitor->add(myStat);
+    }
+
+  // first check the directory (and creates it if not exists already):
+  if (fileMyStructStat || plotMyStructStat)
+      if (! testDirRes(dirName, true) )
+	throw runtime_error("Problem with resDir");
+
+  // should we write it to a file ?
+  if (fileMyStructStat)
+    {
+      myFileMonitor = new eoFileMonitor(dirName + "myStat.xg");
+      // don't forget to store the memory in the state
+      state.storeFunctor(myFileMonitor);
+      // and of course to add the monitor to the checkpoint
+      checkpoint.add(*myFileMonitor);
+      // and the different fields to the monitor
+      myFileMonitor->add(generationCounter);
+      myFileMonitor->add(eval);
+      myFileMonitor->add(myStat);
+    }
+
+#if !defined(NO_GNUPLOT)
+  // should we PLOT it on StdOut ? (one dot per generation, incremental plot)
+  if (plotMyStructStat)
+    {
+      myGnuMonitor = new eoGnuplot1DMonitor(dirName+"plot_myStat.xg",minimizing_fitness<Indi>());
+      // NOTE: you cand send commands to gnuplot at any time with the method
+      // myGnuMonitor->gnuplotCommand(string)
+      // par exemple, gnuplotCommand("set logscale y") 
+
+      // don't forget to store the memory in the state
+      state.storeFunctor(myGnuMonitor);
+      // and of course to add the monitor to the checkpoint
+      checkpoint.add(*myGnuMonitor);
+      // and the different fields to the monitor (X = eval, Y = myStat)
+      myGnuMonitor->add(eval);
+      myGnuMonitor->add(myStat);
+    }
+#endif
+
   // algorithm (need the operator!)
   eoAlgo<Indi>& ga = make_algo_scalar(parser, state, eval, checkpoint, op);
+  // and the distance if you want to do sharing
+  // eoAlgo<Indi>& ga = make_algo_scalar(parser, state, eval, checkpoint, op, &dist);
 
   ///// End of construction of the algorithm
 
