@@ -127,9 +127,10 @@ public:
       }
     if (combien < 0)
       {
-	if (_size+combien<0)
+	unsigned int combloc = -combien;
+	if (_size<combloc)
 	  throw std::runtime_error("Negative result in eoHowMany");
-	return _size+combien;
+	return _size-combloc;
       }
     return unsigned(combien);
   }
