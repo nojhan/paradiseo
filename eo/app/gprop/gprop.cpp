@@ -16,6 +16,7 @@ using namespace std;
 //-----------------------------------------------------------------------------
 
 unsigned in, out, hidden;
+mlp::set train, validate, test;
 
 //-----------------------------------------------------------------------------
 // parameters
@@ -77,16 +78,17 @@ void arg(int argc, char** argv)
       exit(EXIT_SUCCESS);
     }
 
-  load_file(trn_set, "trn");
-  load_file(val_set, "val");
-  load_file(tst_set, "tst");
+  load_file(train, "trn");
+  load_file(validate, "val");
+  load_file(test, "tst");
     
-  phenotype::trn_max = trn_set.size();
-  phenotype::val_max = val_set.size();
-  phenotype::tst_max = tst_set.size();
+  phenotype::trn_max = train.size();
+  phenotype::val_max = validate.size();
+  phenotype::tst_max = test.size();
 
-  in = trn_set.front().input.size();
-  out = trn_set.front().output.size();
+  in = train.front().input.size();
+  out = train.front().output.size();
+  gprop_use_datasets(&train, &validate, &test);
   hidden = hiddenp.value();
 }
 
@@ -133,7 +135,7 @@ void ga()
   
   // stop condition
   eoGenContinue<Chrom> continuator1(generations.value());
-  phenotype p; p.val_ok = val_set.size() - 1; p.mse_error = 0;
+  phenotype p; p.val_ok = validate.size() - 1; p.mse_error = 0;
   eoFitContinue<Chrom> continuator2(p);
   eoCombinedContinue<Chrom> continuator(continuator1, continuator2);
 

@@ -54,6 +54,23 @@ struct phenotype
   {
     return a.val_ok < b.val_ok || !(b.val_ok < a.val_ok) && b.mse_error < a.mse_error;
   }
+
+  friend bool operator==(const phenotype& a, const phenotype& b)
+  {
+    return a.val_ok == b.val_ok && b.mse_error == a.mse_error;
+  }
+
+  friend bool operator>=(const phenotype& a, const phenotype& b)
+  {
+    return !(a < b);
+  }
+
+  friend bool operator>(const phenotype& a, const phenotype& b)
+  {
+    return (!(a == b)) && (!(a < b));
+  }
+  
+  
   
   friend ostream& operator<<(ostream& os, const phenotype& p)
   {
@@ -68,6 +85,7 @@ struct phenotype
     return is; // complete me
   }
 };
+
 
 unsigned phenotype::trn_max = 0, phenotype::val_max = 0, phenotype::tst_max = 0;
 
@@ -121,7 +139,21 @@ public:
 // global variables
 //-----------------------------------------------------------------------------
 
-mlp::set trn_set, val_set, tst_set;
+mlp::set *trn_set = 0, *val_set = 0, *tst_set = 0;
+
+void gprop_use_datasets(mlp::set *trn, mlp::set *val, mlp::set *tst) {
+   trn_set = trn;
+   val_set = val;
+   tst_set = tst;
+}
+
+void ensure_datasets_initialized() {
+    if (!trn_set) {
+	cerr << "trn_set is not initialized.  Must call gprop_use_datasets before training\n";
+	cerr.flush();
+	abort();
+    }
+}
 
 //-----------------------------------------------------------------------------
 // eoChromMutation
@@ -133,7 +165,7 @@ public:
   bool operator()(Chrom& chrom)
   {
     mse::net tmp(chrom);
-    tmp.train(trn_set, 10, 0, 0.001);
+    tmp.train(*trn_set, 10, 0, 0.001);
     return true;
   }
 };
@@ -151,8 +183,9 @@ public:
     chrom2.desaturate();
 
     mse::net tmp1(chrom1), tmp2(chrom2);
-    tmp1.train(trn_set, 100, 0, 0.001);
-    tmp2.train(trn_set, 100, 0, 0.001);
+    ensure_datasets_initialized();
+    tmp1.train(*trn_set, 100, 0, 0.001);
+    tmp2.train(*trn_set, 100, 0, 0.001);
 
     return true;
   }
@@ -162,11 +195,11 @@ public:
 // eoChromEvaluator
 //-----------------------------------------------------------------------------
 
-unsigned correct(const mlp::net& net, const qp::set& set)
+unsigned correct(const mlp::net& net, const mlp::set& set)
 {
   unsigned sum = 0;
   
-  for (qp::set::const_iterator s = set.begin(); s != set.end(); ++s)
+  for (mlp::set::const_iterator s = set.begin(); s != set.end(); ++s)
     {
       unsigned partial = 0;
       
@@ -185,10 +218,11 @@ unsigned correct(const mlp::net& net, const qp::set& set)
 phenotype eoChromEvaluator(const Chrom& chrom)
 {
   phenotype p;
-  p.trn_ok = correct(chrom, trn_set);
-  p.val_ok = correct(chrom, val_set);
-  p.tst_ok = correct(chrom, tst_set);
-  p.mse_error = mse::error(chrom, val_set);
+  ensure_datasets_initialized();
+  p.trn_ok = correct(chrom, *trn_set);
+  p.val_ok = correct(chrom, *val_set);
+  p.tst_ok = correct(chrom, *tst_set);
+  p.mse_error = mse::error(chrom, *val_set);
 
   return p;
 };
