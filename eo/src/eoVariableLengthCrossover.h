@@ -39,7 +39,7 @@ Basically, they exchange genes - we need some matching information to apply
 atom crossover
 */
 
-//* A helper class for choosing which genes to exchange
+/** A helper class for choosing which genes to exchange */
 template <class Atom>
 class eoAtomExchange : public eoBF<unsigned, Atom &, bool>
 {
@@ -48,7 +48,7 @@ public:
   virtual void randomize(unsigned int, unsigned int){}
 };
 
-//* Uniform crossover - well, not really for FixedLength
+/** Uniform crossover - well, not really for FixedLength */
 template <class Atom>
 class eoUniformAtomExchange: public eoAtomExchange<Atom>
 {

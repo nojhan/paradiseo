@@ -102,11 +102,12 @@ public:
   virtual string className() const {return "eoBinOp";};
 };
 
+// planning the change of name eoQuadraticOp --> eoQuadOp
+#define eoQuadraticOp eoQuadOp
+
 /** Quadratic genetic operator: subclasses eoOp, and defines basically the 
     operator() with two operands, both can be modified.
 */
-#define eoQuadraticOp eoQuadOp
-
 template<class EOType>
 class eoQuadraticOp: public eoOp<EOType>, public eoBF<EOType&, EOType&, void> {
 public:
@@ -116,15 +117,19 @@ public:
   virtual string className() const {return "eoQuadOp";};
 };
 
-// Turning an eoBinOp into an eoQuadOp is generic:
+/** Turning an eoQuadOp into an eoBinOp: simply don't touch the second arg!
+ */
 template <class EOT>
 class eoQuad2BinOp: public eoBinOp<EOT>
 {
 public:
-  // Ctor, from an eoQuadOp
+  /** Ctor
+   * @param _quadOp the eoQuadOp to be transformed
+   */
   eoQuad2BinOp(eoQuadOp<EOT> & _quadOp) : quadOp(_quadOp) {}
 
-  // Operator() simply calls embedded quadOp operator() with dummy second arg
+  /** Operator() simply calls embedded quadOp operator() with dummy second arg
+   */
   void operator()(EOT & _eo1, const EOT & _eo2)
   {
     EOT eoTmp = _eo2;		   // a copy that can be modified

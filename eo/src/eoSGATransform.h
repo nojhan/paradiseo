@@ -37,7 +37,7 @@
 #include <utils/eoRNG.h>
 #include <eoTransform.h>
 
-/*****************************************************************************
+/** ***************************************************************************
  * eoSGATransform: transforms a population using genetic operators.
  * It does it exactly as class eoSGA, i.e. only accepts 
  *    quadratic crossover and unary mutation
@@ -90,7 +90,7 @@ template<class EOT> class eoSGATransform : public eoTransform<EOT>
   double mutationProba;
 };
 
-/*****************************************************************************
+/** ***************************************************************************
  * eoDynSGATransform: transforms a population using genetic operators.
  * It is the Dynamic version of the above eoSGATransform
  *    i.e. the operators probabilities can be passed as an eoValueParam, 

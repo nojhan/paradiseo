@@ -47,10 +47,7 @@ MS January 25. 2001
 /** eoUniformMutation --> changes all values of the vector 
                           by uniform choice with range epsilon  
                           with probability p_change per variable
-\class eoUniformMutation eoRealOp.h Tutorial/eoRealOp.h
-\ingroup parameteric
 */
-
 template<class EOT> class eoGenericUniformMutation: public eoGenericMonOp<EOT>
 {
  public:
@@ -113,8 +110,6 @@ private:
 
 /** eoDetUniformMutation --> changes exactly k values of the vector 
                           by uniform choice with range epsilon  
-\class eoDetUniformMutation eoRealOp.h Tutorial/eoRealOp.h
-\ingroup parameteric
 */
 
 template<class EOT> class eoGenericDetUniformMutation: 
@@ -173,14 +168,10 @@ private:
 };
 
 
-// two arithmetical crossovers
 
 /** eoSegmentCrossover --> uniform choice in segment 
-                 == arithmetical with same value along all coordinates
-\class eoSegmentCrossover eoRealOp.h Tutorial/eoRealOp.h
-\ingroup parameteric
+       == arithmetical with same value along all coordinates
 */
-
 template<class EOT> class eoGenericSegmentCrossover: public eoGenericQuadOp<EOT>
 {
  public:
@@ -266,11 +257,8 @@ protected:
 };
   
 /** eoArithmeticCrossover --> uniform choice in hypercube  
-                 == arithmetical with different values for each coordinate
-\class eoArithmeticCrossover eoRealOp.h Tutorial/eoRealOp.h
-\ingroup parameteric
+      == arithmetical with different values for each coordinate
 */
-
 template<class EOT> class eoGenericArithmeticCrossover: 
   public eoGenericQuadOp<EOT>
 {
@@ -366,10 +354,7 @@ protected:
   
 
 /** eoRealUxOver --> Uniform crossover, also termed intermediate crossover
-\class eoRealUxOver eoRealOp.h Tutorial/eoRealOp.h
-\ingroup parameteric
 */
-
 template<class EOT> class eoGenericRealUxOver: public eoGenericQuadOp<EOT>
 {
  public:
