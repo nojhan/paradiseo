@@ -4,7 +4,7 @@
 ##
 ###############################################################################
 
-SUBDIRS = src test win doc app
+SUBDIRS = src test win doc tutorial app
 #Directory for documents
 DOCDIR = ~/public_html/eodocs
 #Directory for indices -- not useful for the user
@@ -22,6 +22,9 @@ test:
 
 doc:
 	pushd doc; $(MAKE) doc; popd
+
+tutorial:
+	pushd tutorial; $(MAKE) all; popd
 
 app:
 	pushd app; $(MAKE) all; popd
