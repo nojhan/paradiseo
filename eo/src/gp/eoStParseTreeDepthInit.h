@@ -50,7 +50,7 @@ using namespace std;
   \li int type(void) which returns the return type of the node
   \li int type(int child) which returns the required type for child 0, 1 or 2
   
-  Tree pruning strongly typed trees is not possible at the moment.
+  Pruning strongly typed trees is not possible at the moment.
 */
 
 /** eoStParseTreeDepthInit : the initializer class for strongly typed tree-based genetic programming

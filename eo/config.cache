@@ -20,10 +20,10 @@ ac_cv_header_stdc=${ac_cv_header_stdc=yes}
 ac_cv_lib_eo_main=${ac_cv_lib_eo_main=no}
 ac_cv_lib_eoutils_main=${ac_cv_lib_eoutils_main=no}
 ac_cv_lib_m_main=${ac_cv_lib_m_main=yes}
-ac_cv_path_install=${ac_cv_path_install=$'/usr/bin/install -c'}
-ac_cv_prog_CPP=${ac_cv_prog_CPP=$'cc -E'}
+ac_cv_path_install=${ac_cv_path_install='/usr/bin/install -c'}
+ac_cv_prog_CPP=${ac_cv_prog_CPP='cc -E'}
 ac_cv_prog_CXX=${ac_cv_prog_CXX=c++}
-ac_cv_prog_LN_S=${ac_cv_prog_LN_S=$'ln -s'}
+ac_cv_prog_LN_S=${ac_cv_prog_LN_S='ln -s'}
 ac_cv_prog_RANLIB=${ac_cv_prog_RANLIB=ranlib}
 ac_cv_prog_cxx_cross=${ac_cv_prog_cxx_cross=no}
 ac_cv_prog_cxx_g=${ac_cv_prog_cxx_g=yes}
