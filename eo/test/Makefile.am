@@ -57,10 +57,10 @@ t_eoAtomOps_LDADD = $(LDADDS)
 
 ###############################################################################
 
-#t_eoESFull_SOURCES = t-eoESFull.cpp real_value.h
-#t_eoESFull_DEPENDENCIES = $(DEPS)
-#t_eoESFull_LDFLAGS = -lm
-#t_eoESFull_LDADD = $(LDADDS)
+t_eoESFull_SOURCES = t-eoESFull.cpp real_value.h
+t_eoESFull_DEPENDENCIES = $(DEPS)
+t_eoESFull_LDFLAGS = -lm
+t_eoESFull_LDADD = $(LDADDS)
 
 ###############################################################################
 
