@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoEsChromInit.h
 // (c) Maarten Keijzer 2000, GeNeura Team, 1998 - EEAAX 1999
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -38,7 +38,7 @@
 
 /**
 \ingroup EvolutionStrategies
-    
+
     Random Es-chromosome initializer (therefore derived from eoInit)
 
     This class can initialize four types of real-valued genotypes
@@ -55,8 +55,12 @@
 template <class EOT>
 class eoEsChromInit : public eoRealInitBounded<EOT>
 {
-public :
-  typedef typename EOT::Fitness FitT;
+public:
+
+    using eoEsChromInit< EOT >::size;
+    using eoEsChromInit< EOT >::theBounds;
+
+    typedef typename EOT::Fitness FitT;
 
   /** Ctor: @param
    * eoRealVectorBounds& _bounds : bounds for uniform initialization
@@ -64,7 +68,7 @@ public :
    * bool _to_scale : wether sigma should be multiplied by the range of each variable
    *                  added December 2004 - MS (together with the whole comment :-)
    */
-  eoEsChromInit(eoRealVectorBounds& _bounds, double _sigma = 0.3, bool _to_scale=false) : 
+  eoEsChromInit(eoRealVectorBounds& _bounds, double _sigma = 0.3, bool _to_scale=false) :
     eoRealInitBounded<EOT>(_bounds)
   {
     // a bit of pre-computations, to ave time later (even if some are useless)
