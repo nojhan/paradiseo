@@ -1,0 +1,68 @@
+Template for simple operators
+=============================
+
+===========================================================================
+eoQuad : crossover operators that take 2 parents and modify both
+======
+
+template<class Indi> class eoMyDerivedQuadOp: public eoQuadOp<Indi>
+{
+public:
+  /**
+   * (Default) Constructor.
+   */
+  eoMyDerivedQuadOp(paramType _anyParameter) : 
+    anyParameter(_anyParameter) {}
+
+  /// The class name. Used to display statistics
+  string className() const { return "eoMyDerivedQuadOp"; }
+
+  /**
+   * eoQuad crossover - modifies both parents
+   * @param Indi1 The first parent
+   * @param Indi2 The first parent
+   */
+  void operator()(Indi& Indi1, Indi& Indi2) 
+  {
+    // do whatever needs to be done
+
+// DON'T FORGET if an individual is modified, to invalidate its fitness!!!
+    Indi1.invalidate();
+    Indi2.invalidate();
+  }
+
+protected:
+  paramType anyParameter
+};
+
+===========================================================================
+eoBin : crossover operators that take 2 parents and modify the first one
+=====
+
+template<class Indi> class eoMyDerivedBinOp: public eoBinOp<Indi>
+{
+public:
+  /**
+   * (Default) Constructor.
+   */
+  eoMyDerivedBinOp(paramType _anyParameter) : 
+    anyParameter(_anyParameter) {}
+
+  /// The class name. Used to display statistics
+  string className() const { return "eoMyDerivedBinOp"; }
+
+  /**
+   * eoQuad crossover - modifies first parent only
+   * @param Indi1 The first parent
+   * @param Indi2 The first parent - const
+   */
+  void operator()(Indi& Indi1, const Indi& Indi2) 
+  {
+    // do whatever needs to be done
+    // DON'T FORGET if an individual is modified, to invalidate its fitness!!!
+    Indi1.invalidate();
+  }
+
+protected:
+  paramType anyParameter
+};

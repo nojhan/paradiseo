@@ -1,0 +1,35 @@
+Template for simple operators
+=============================
+
+===========================================================================
+eoMon : mutation operators
+======
+
+template<class Indi> class eoMyDerivedMonOp: public eoMonOp<Indi>
+{
+public:
+  /**
+   * (Default) Constructor.
+   */
+  eoMyDerivedMonOp(paramType _anyParameter) : 
+    anyParameter(_anyParameter) {}
+
+  /// The class name. Used to display statistics
+  string className() const { return "eoMyDerivedMonOp"; }
+
+  /**
+   * eoMon crossover - modifies the parent
+   * @param Indi The parent
+   */
+  void operator()(Indi& Indi) 
+  {
+    // do whatever needs to be done
+
+// DON'T FORGET if an individual is modified, to invalidate its fitness!!!
+    Indi.invalidate();
+  }
+
+protected:
+  paramType anyParameter
+};
+
