@@ -63,6 +63,11 @@
  *
  * It is an eoPersistent because we need to be able to use eoParamValue<eoHowMany>
  */
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
+#include <strstream>
+#endif
 
 class eoHowMany : public eoPersistent
 {
