@@ -28,6 +28,7 @@
 #define eoPopEvalFunc_H
 
 #include <eoEvalFunc.h>
+#include <apply.h>
 
 /** eoPopEvalFunc: This abstract class is for GLOBAL evaluators 
  *    of a population after variation.
