@@ -211,7 +211,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 #if !defined(NO_GNUPLOT)
     if (plotBestParam.value())    // an eoGnuplot1DMonitor for best & average
       {
-	string stmp = dirNameParam.value() + "_gnu_best.xg";
+	string stmp = dirNameParam.value() + "/gnu_best.xg";
 	eoGnuplot1DMonitor *gnuMonitor = new eoGnuplot1DMonitor(stmp,minimizing_fitness<EOT>());
 	// save and give to checkpoint
 	_state.storeFunctor(gnuMonitor);
