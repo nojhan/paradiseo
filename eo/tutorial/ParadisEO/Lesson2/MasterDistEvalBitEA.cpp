@@ -9,6 +9,8 @@ typedef eoBit<double> Indi ;	// A bitstring with fitness double
 
 #include "binary_value.h"
 
+using namespace std;
+
 void main_function(int argc, char **argv) {
 
   // Some parameters
