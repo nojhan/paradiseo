@@ -24,6 +24,11 @@
  */
 //-----------------------------------------------------------------------------
 
+#ifdef _MSC_VER
+// to avoid long name warnings
+#pragma warning(disable:4786)
+#endif 
+
 /** This file contains ***INSTANCIATED DEFINITIONS*** of pop. init. fns
  * of the library for  evolution of ***eoReal*** indis inside EO.
  * It should be included in the file that calls any of the corresponding fns

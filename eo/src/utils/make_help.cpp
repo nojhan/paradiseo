@@ -23,6 +23,11 @@
              mkeijzer@dhi.dk
  */
 //-----------------------------------------------------------------------------
+#ifdef _MSC_VER
+// to avoid long name warnings
+#pragma warning(disable:4786)
+#endif 
+
 #include <utils/eoParser.h>
 #include <fstream.h>
 #include <stdexcept>

@@ -24,6 +24,11 @@
  */
 //-----------------------------------------------------------------------------
 
+#ifdef _MSC_VER
+// to avoid long name warnings
+#pragma warning(disable:4786)
+#endif 
+
 /** This file contains ***INSTANCIATED DEFINITIONS*** of checkpoint fns
  * of the library for evolution of ***eoReal*** inside EO.
  * It should be included in the file that calls any of the corresponding fns

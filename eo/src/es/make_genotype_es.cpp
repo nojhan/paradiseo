@@ -24,6 +24,11 @@
  */
 //-----------------------------------------------------------------------------
 
+#ifdef _MSC_VER
+// to avoid long name warnings
+#pragma warning(disable:4786)
+#endif 
+
 /** This file contains ***INSTANCIATED DEFINITIONS*** of eoReal Init fns
  * It should be included in the file that calls any of the corresponding fns
  * Compiling this file allows one to generate part of the library (i.e. object

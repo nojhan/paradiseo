@@ -24,6 +24,11 @@
  */
 //-----------------------------------------------------------------------------
 
+#ifdef _MSC_VER
+// to avoid long name warnings
+#pragma warning(disable:4786)
+#endif 
+
 /** This file contains all ***INSTANCIATED DEFINITIONS*** of operators
  * of the library for ***BISTRING*** evolution inside EO.
  * It should be included in the file that calls any of the corresponding fns
