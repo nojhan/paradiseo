@@ -22,7 +22,7 @@
              Marc.Schoenauer@polytechnique.fr
 	     mak@dhi.dk
 
-    CVS Info: $Date: 2002-04-08 08:42:01 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVector.h,v 1.12 2002-04-08 08:42:01 evomarc Exp $ $Author: evomarc $ 
+    CVS Info: $Date: 2002-10-18 11:39:05 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVector.h,v 1.13 2002-10-18 11:39:05 jeggermo Exp $ $Author: jeggermo $ 
 
  */
 //-----------------------------------------------------------------------------
@@ -31,7 +31,9 @@
 #define _eoVector_h
 
 #include <vector>
+#include <iterator> // needed for GCC 3.2
 #include <EO.h>
+
 /**
 
   Base class for fixed length chromosomes, just derives from EO and vector and

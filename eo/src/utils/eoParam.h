@@ -32,6 +32,7 @@
 #include <string>
 #include <strstream>
 #include <vector>
+#include <iterator>		// for GCC 3.2
 #include <stdexcept> 
 #include <eoScalarFitness.h>   // for specializations
 /**

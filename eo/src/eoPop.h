@@ -28,6 +28,7 @@
 #include <vector>
 #include <strstream>
 #include <algorithm>
+#include <iterator> // needed for GCC 3.2
 
 // EO includes
 #include <eoOp.h> // for eoInit
