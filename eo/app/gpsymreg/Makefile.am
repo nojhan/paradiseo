@@ -17,7 +17,7 @@ bin_PROGRAMS = gpsymreg
 
 ###############################################################################
 
-gpsymreg_SOURCES = main.cc
+gpsymreg_SOURCES = main.cpp
 gpsymreg_DEPENDENCIES = $(DEPS)
 gpsymreg_LDFLAGS = -lm
 gpsymreg_LDADD = $(LDADDS)
