@@ -47,16 +47,14 @@ template<class Chrom> class eoBreeder: public eoTransform<Chrom>
 	  }
 	case binary:
 	  {
-	    eoBinOp<Chrom>* binop = 
-	      static_cast<eoBinOp<Chrom>* >(op);
+	    eoBinOp<Chrom>* binop = static_cast<eoBinOp<Chrom>* >(op);
 	    eoUniform<unsigned> u(0, pop.size() );
 	    (*binop)(pop[i], pop[ u() ] );
 	    break;
 	  }
 	case Nary:
 	  {
-	    eoNaryOp<Chrom>* Nop = 
-	      static_cast<eoNaryOp<Chrom>* >(op);
+	    eoNaryOp<Chrom>* Nop = static_cast<eoNaryOp<Chrom>* >(op);
 	    eoUniform<unsigned> u(0, pop.size() );
 	    eoPop<Chrom> tmpVec;
 	    tmpVec.push_back( pop[i] );

@@ -38,27 +38,27 @@ template<class Chrom> class eoLottery: public eoSelect<Chrom>
       partial_sum(score.begin(), score.end(), score.begin());
       
       // generates random numbers
-      vector<float> random(pop.size());
+      vector<float> random(rint(rate * pop.size()));
       generate(random.begin(), random.end(), eoUniform<float>(0,1));
       sort(random.begin(), random.end(), less<float>());
       
       // selection of chromosomes
       unsigned score_index = 0;   // position in score vector
       unsigned random_index = 0;  // position in random vector
-      unsigned num_chroms = (unsigned)(rate * pop.size());
-      do {
-	if(random[random_index] < score[score_index]) 
-	  {
-	    breeders.push_back(pop[score_index]);
-	    random_index++;
-	  }
-	else
-	  if (score_index < pop.size())
-	    score_index++;
+      while (breeders.size() < random.size()) 
+	{
+	  if(random[random_index] < score[score_index]) 
+	    {
+	      breeders.push_back(pop[score_index]);
+	      random_index++;
+	    }
 	  else
-	    fill_n(back_insert_iterator<eoPop<Chrom> >(breeders), 
-		   num_chroms - breeders.size(), pop.back());
-      } while (breeders.size() < num_chroms);
+	    if (score_index < pop.size())
+	      score_index++;
+	    else
+	      fill_n(back_insert_iterator<eoPop<Chrom> >(breeders), 
+		     random.size() - breeders.size(), pop.back());
+	}
     }
   
  private:

@@ -137,7 +137,7 @@ t_eobin_LDADD = $(LDADDS)
 
 t_eolottery_SOURCES = t-eolottery.cpp
 t_eolottery_DEPENDENCIES = $(DEPS)
-t_eovector_LDFLAGS = -lm
+t_eolottery_LDFLAGS = -lm
 t_eolottery_LDADD = $(LDADDS) 
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES = 
@@ -161,7 +161,6 @@ t_eoproblem_DEPENDENCIES =
 t_eobin_OBJECTS =  t-eobin.o
 t_eobin_LDFLAGS = 
 t_eolottery_OBJECTS =  t-eolottery.o
-t_eolottery_LDFLAGS = 
 CXXFLAGS = @CXXFLAGS@
 CXXCOMPILE = $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)

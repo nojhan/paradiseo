@@ -63,7 +63,7 @@ t_eobin_LDADD = $(LDADDS)
 
 t_eolottery_SOURCES = t-eolottery.cpp
 t_eolottery_DEPENDENCIES = $(DEPS)
-t_eovector_LDFLAGS = -lm
+t_eolottery_LDFLAGS = -lm
 t_eolottery_LDADD = $(LDADDS) 
 
 ###############################################################################
