@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoSGA.h
 // (c) GeNeura Team, 2000 - EEAAX 1999 - Maarten Keijzer 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -37,11 +37,12 @@
 #include <apply.h>
 
 /** The Simple Genetic Algorithm, following Holland and Goldberg
- *  Needs a selector (class eoSelectOne) a crossover (eoQuad,
- *    i.e. a 2->2 operator) and a mutation with their respective rates,
- *    of course an evaluation function (eoEvalFunc) and a continuator
- *    (eoContinue) which gives the stopping criterion. Performs full
- *    generational replacement.
+ *
+ * Needs a selector (class eoSelectOne) a crossover (eoQuad, i.e. a
+ * 2->2 operator) and a mutation with their respective rates, of
+ * course an evaluation function (eoEvalFunc) and a continuator
+ * (eoContinue) which gives the stopping criterion. Performs full
+ * generational replacement.
  */
 
 template <class EOT>

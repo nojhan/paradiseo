@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoAlgo.h
 // (c) GeNeura Team, 1998
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -28,7 +28,7 @@
 #include <eoPop.h>                   // for population
 #include <eoFunctor.h>
 
-/** 
+/**
     This is a generic class for population-transforming algorithms. There
     is only one operator defined, which takes a population and does stuff to
     it. It needn't be a complete algorithm, can be also a step of an
@@ -39,5 +39,5 @@ template< class EOT >
 class eoAlgo : public eoUF<eoPop<EOT>&, void>
 {};
 
-	
+
 #endif
