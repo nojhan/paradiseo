@@ -32,7 +32,7 @@
 #include <ga/eoPBILDistrib.h>
 #include <ga/eoPBILOrg.h>
 #include <ga/eoPBILAdditive.h>
-#include <eoSimpleDEA.h>
+#include <eoSimpleEDA.h>
 
 using namespace std;
 
@@ -106,10 +106,10 @@ int main(int argc, char* argv[])
       }
 #endif
 
-  // the algorithm: DEA
+  // the algorithm: EDA
     // don't know where else to put the population size!
   unsigned popSize = parser.createParam(unsigned(100), "popSize", "Population Size", 'P', "Algorithm").value();
-  eoSimpleDEA<Indi> dea(update, eval, popSize, checkpoint);
+  eoSimpleEDA<Indi> eda(update, eval, popSize, checkpoint);
 
   ///// End of construction of the algorith
   /////////////////////////////////////////
@@ -119,7 +119,7 @@ int main(int argc, char* argv[])
   //// GO
   ///////
 
-  dea(distrib); // run the dea
+  eda(distrib); // run the eda
 
   std::cout << "Final Distribution\n";
   distrib.printOn(std::cout);
