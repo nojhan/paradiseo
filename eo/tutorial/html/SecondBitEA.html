@@ -92,14 +92,16 @@ or in a parameter file (same syntax, order independent,&nbsp;</font></tt>
 or in the environment (TODO)</font></tt>
 <p><tt><font color="#3366FF">// First define a parser from the command-line
 arguments</font></tt>
-<br><b><tt><font color="#3366FF">eoParser parser(argc, argv);</font></tt></b>
+<br><a NAME="parser_declare"></a><b><tt><font color="#3366FF">eoParser
+parser(argc, argv);</font></tt></b>
 <p><tt><font color="#3366FF">// For each parameter, define Parameter, read
 it through the parser,</font></tt>
 <br><tt><font color="#3366FF">// and assign the value to the variable</font></tt>
 <br><a NAME="random"></a>
 <br><b><tt><font color="#990000">eoValueParam&lt;uint32> seedParam(time(0),
 "seed", "Random number seed", 'S');</font></tt></b>
-<br><b><tt><font color="#990000">parser.processParam( seedParam );</font></tt></b>
+<br><a NAME="seed_process"></a><b><tt><font color="#990000">parser.processParam(
+seedParam );</font></tt></b>
 <br><a NAME="seed_assign"></a><b><tt><font color="#990000">unsigned seed
 = seedParam.value();</font></tt></b>
 <p><a NAME="_seed_declare"></a><tt><font color="#999900">// decription
@@ -308,15 +310,15 @@ of initializatio of the population</font></tt></td>
 <table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#99FFCC" NOSAVE >
 <tr>
 <td><tt><font color="#009900"><b>&nbsp;</b>// The robust tournament selection</font></tt>
-<br><tt><font color="#009900"><b>&nbsp;eoDetTournament&lt;Indi> selectOne(tSize);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><tt><font color="#009900"><b>&nbsp;eoDetTournament&lt;Indi> selectOne(tSize);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 </b>// tSize in [2,POPSIZE]</font></tt>
 <br><tt><font color="#009900"><b>&nbsp;</b>// is now encapsulated in a
 eoSelectPerc (entage)</font></tt>
 <br><b><tt><font color="#009900">&nbsp;eoSelectPerc&lt;Indi> select(selectOne);</font></tt></b>
 <br><tt><font color="#009900">&nbsp;// or eoSelectPerc&lt;Indi> select(selectOne,
 rate);&nbsp;</font></tt>
-<br><tt><font color="#009900">&nbsp;// but by default rate==1</font></tt>
-<br><tt><font color="#009900"></font></tt>&nbsp;</td>
+<br><tt><font color="#009900">&nbsp;// but by default rate==1</font></tt></td>
 </tr>
 </table>
 <a NAME="replace"></a>

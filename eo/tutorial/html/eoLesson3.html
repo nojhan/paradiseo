@@ -2,7 +2,7 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdksmp i686) [Netscape]">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdk i686) [Netscape]">
    <title>Tutorial: Lesson 3</title>
 </head>
 <body text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000" background="beige009.jpg">
@@ -12,7 +12,8 @@
 <a href="eoTutorial.html">Main page</a> -
 <a href="eoTopDown.html">Algorithm-Based</a>
 - <a href="eoBottomUp.html">Component-Based</a> - <a href="eoProgramming.html">Hints</a>
-- <b><font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO documentation</a></font></b>
+- <b><font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
+documentation</a></font></b>
 <br>
 <hr WIDTH="100%"><!-- -------------- End of header ------------------ --><!-- ----------------------------------------------- -->
 <center>
@@ -129,13 +130,15 @@ for volunteers to create a Graphical User Interface :-)</font>
 <li>
 <font color="#000000">The </font><b><tt><font color="#3366FF">eoValueParam</font></tt></b><font color="#000000">
 class, </font><font color="#FF6600">templatized by the type of the variable</font><font color="#000000">
-you want to handle (i.e. i</font><b><tt><font color="#660000">integer, double,
-yourPrivateClass</font></tt></b><font color="#000000">, ...). In this lesson,
-we will not go into details: e.g. we will not tell you that the
+you want to handle (i.e. i</font><b><tt><font color="#660000">integer,
+double, yourPrivateClass</font></tt></b><font color="#000000">, ...). In
+this lesson, we will not go into details: e.g. we will not tell you that
+the
 <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eovalueparam.html">eoValueParam</a></font></font></b>
 is actually a templatized sub-class of abstract class eoParam (oops, I
 said it!), nor will we deal with parameters outside their use from an eoParser.
-See the parameter section of the Component-Based tutorial, or wait until <a href="eoLesson4.html">lesson
+See the parameter section of the Component-Based tutorial, or wait until
+<a href="eoLesson4.html">lesson
 4</a>).</font></li>
 
 <li>
@@ -170,7 +173,8 @@ and optionally by a <font color="#FF6600">short (1 character) keyword</font>.</l
 the general syntax to modify parameter value at run-time is (either from
 the command-line or in a text file)</li>
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 <b><tt><font color="#660000">--longKeyword=value</font></tt></b>&nbsp;&nbsp;&nbsp;&nbsp;
 or&nbsp;&nbsp;&nbsp;&nbsp; <b><tt><font color="#660000">-c=value</font></tt></b>&nbsp;&nbsp;&nbsp;
 if 'c' is the short keyword
@@ -180,18 +184,21 @@ so, after compiling the executable for Lesson 3 (<b><tt><font color="#FF6666">ma
 lesson3</font></tt></b> at system prompt in Unix), you can try to type
 in</li>
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 <b><tt><font color="#FF6666">SecondBitEA</font></tt></b>
 <br>and see the algorithm run as before (OneMax optimized on 8-bits bitstrings).
 But you can now type in
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 <b><tt><font color="#FF6666">SecondBitEA --vecSize=100</font></tt></b>
 <br>and see the output of the optimization of OneMax on 100-bit bitstrings.
 <br>&nbsp;
 <li>
 Take a look at all available parameters by typing in</li>
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 <b><tt><font color="#FF6666">SecondBitEA --help</font></tt></b>
 <br>or by going into the code: all parameter inputs have been grouped in
 the
@@ -203,8 +210,7 @@ it contains the list of all actual parameters used, and can directly be
 used as parameter input file: change the file name (e.g. to <b><tt><font color="#660000">SecondBitEA.param</font></tt></b>),
 edit it, change whichever parameter you want, and type in</li>
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <b><tt><font color="#FF6666">SecondBitEA @SecondBitEA.param</font></tt></b>
 <br>and you will see all values that you defined into the file taken into
 account.
@@ -216,34 +222,31 @@ new value directly on the command-line.</li>
 </ul>
 <b><font color="#FF0000">Programming parameter input:</font></b>
 <br>the code of SeconBitEA provides examples of parameters reading. Lets
-take the example of the random number generator <b><tt><font color="#660000">seed</font></tt></b>.
+take the example of the random number generator <b><tt><font color="#660000">seed</font></tt></b>.&nbsp;
+Of course, you first need to <a href="SecondBitEA.html#parser_declare">declare
+an eoParser object</a> (it needs the standard argc and argv in its constructor).
 <ul>
 <li>
-You first need to <a href="SecondBitEA.html#seed_declare">declare</a> it
-in the <b><tt><font color="#660000">main_function</font></tt></b>. As parameter
-reading will be done in the <b><tt><font color="#660000">read_param</font></tt></b>
-function, you need to pass it the variable seed. Note that read_param receives
-it <a href="SecondBitEA.html#seed_passing">by reference</a>, as it is going
-to modify its value!</li>
+You must first <a href="SecondBitEA.html#random">declare a parameter</a>
+of type <b><tt><font color="#660000">uint32</font></tt></b> (32-bits integer).
+The arguments are: default value, long keyword, comment (that will appear
+in the help message and in the output "status" file if any) and optional
+character keyword.</li>
 
 <li>
-In read_param, you need first to <a href="SecondBitEA.html#parser_declare">declare
-an eoParser object</a> (it needs the standard argc and argv in its constructor).</li>
+Then you must <a href="SecondBitEA.html#seed_process">pass it to the parser</a>
+using the processParam method. The optional argument is a section name,
+that will be used to make the output of the parser look clean and ordered.</li>
 
-<br>Then, <a href="SecondBitEA.html#_seed_declare">declare a parameter</a>
-of type <b><tt><font color="#660000">uint32</font></tt></b> (32-bits integer),
-and read it&nbsp; directly from the parser, using method <b><tt><font color="#660000">create_param</font></tt></b>.
-The arguments are obvious: default value, long keyword, comment (that will
-appear in the help message and in the output "status" file if any).
 <li>
 Finally, you need to <a href="SecondBitEA.html#seed_assign">assign the
-value</a> to the variable _seed (hence modifying the original seed variable).</li>
+value</a> to the variable seed</li>
 </ul>
 
 <hr WIDTH="100%">
 <br><a NAME="state"></a><b><font color="#000099"><font size=+2>eoState:
-saving and loading</font></font></b>
-<br><font color="#000000">You might have noticed in the&nbsp; </font><b><tt><font color="#660000">read_param</font></tt></b><font color="#000000">
+saving and loading</font></font></b><font color="#000000">You might have
+noticed in the&nbsp; </font><b><tt><font color="#660000">read_param</font></tt></b><font color="#000000">
 described above a </font><font color="#FF6600">new parameter</font><font color="#000000">
 named </font><b><tt><font color="#660000"><a href="SecondBitEA.html#_load_name">load_name.</a></font></tt></b><font color="#000000">
 Now if you go to the <a href="SecondBitEA.html#init">init section</a> of
@@ -347,12 +350,12 @@ the corresponding eoStat objects, and <a href="SecondBitEA.html#stat_pass">add</
 them to the <b><tt><font color="#3366FF">eoCheckpoint</font></tt></b> you
 use in the algorithm.
 <p><b><font color="#FF0000">Note</font></b>: actually, there are 2 distinct
-classes that compute and give access to statistics: <b><tt><font color="#3366FF">eoStat</font></tt></b>
-and <b><tt><font color="#3366FF">eoSortedStat</font></tt></b>. As its name
-indicate, the latter is used whenever computing the statistics require
-a sorted population: not only this avoids to sort the population many times,
-but also it avoids changing the order of the population at all as eoSortedStat
-work on a temporary vector of fitnesses . But <font color="#FF6600">as
+classes that compute and give access to statistics: <b><tt><font color="#3366FF">eoStat</font></tt></b>and
+<b><tt><font color="#3366FF">eoSortedStat</font></tt></b>.
+As its name indicate, the latter is used whenever computing the statistics
+require a sorted population: not only this avoids to sort the population
+many times, but also it avoids changing the order of the population at
+all as eoSortedStat work on a temporary vector of fitnesses . But <font color="#FF6600">as
 far as their usage is concerned, its makes no difference</font>.
 <br>
 <hr WIDTH="100%">
@@ -372,13 +375,12 @@ parameters in <font color="#FF6600">text format on the screen</font>. The
 false, parsimonious output displays one line for all parameters.</li>
 
 <li>
-<b><tt><font color="#3366FF">eoFileMonitor</font></tt></b> writes its
-parameters in <font color="#FF6600">text format in a file</font>. A file
-name is required in the constructor, and an optional separator character
-can be added (default is ' '). Note that the file is by default overwritten 
-by next call to the same program, unless you pass "true" as third (optional) 
-boolean parameter, which will result in appending to the file if it 
-ever exists.</li>
+<b><tt><font color="#3366FF">eoFileMonitor</font></tt></b> writes its parameters
+in <font color="#FF6600">text format in a file</font>. A file name is required
+in the constructor, and an optional separator character can be added (default
+is ' '). Note that the file is by default overwritten by next call to the
+same program, unless you pass "true" as third (optional) boolean parameter,
+which will result in appending to the file if it ever exists.</li>
 
 <li>
 <b><tt><font color="#3366FF">eoGnuplot1DMonitor</font></tt></b> displays
@@ -521,7 +523,8 @@ construct.
 <a href="eoTutorial.html">Main page</a> -
 <a href="eoTopDown.html">Algorithm-Based</a>
 - <a href="eoBottomUp.html">Component-Based</a> - <a href="eoProgramming.html">Hints</a>
--<b> <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO documentation</a></font></b>
+-<b> <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
+documentation</a></font></b>
 <br>
 <hr>
 <address>
