@@ -61,9 +61,9 @@ template<class Chrom> class eoBinBitFlip: public eoMonOp<Chrom>
    */
   void operator()(Chrom& chrom) const
     {
-      eoUniform<float> uniform(0.0, 1.0);
-      for (unsigned i = 0; i < chrom.size(); i++)
-	chrom[i] = (uniform() < 0.5) ? false : true;
+      eoUniform<int> uniform(0, chrom.size());
+      unsigned i = uniform();
+      chrom[i] = (chrom[i]) ? false : true;
     }
 };
 
