@@ -27,7 +27,7 @@ typedef eoMinimizingFitness  FitT;
 template <class EOT>
 void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoEsObjectiveBounds& _bounds);
   
-main(int argc, char *argv[]) 
+int main(int argc, char *argv[]) 
 {
   // Create the command-line parser
   eoParser parser( argc, argv, "Basic EA for vector<float> with adaptive mutations");
