@@ -109,4 +109,65 @@ private :
   eoEvalFunc<EOT>& eval;
 };
 
+///////////////////////////////////////////////////////////////////////////////
+// class eoSGATransform
+///////////////////////////////////////////////////////////////////////////////
+#include <vector>          // vector
+#include <utils/eoRNG.h>
+#include <eoTransform.h>
+
+/*****************************************************************************
+ * eoSGATransform: transforms a population using genetic operators.
+ * It does it exactly as class eoSGA, i.e. only accepts 
+ *    quadratic crossover and unary mutation
+ * It is here mainly for tutorial reasons
+ *****************************************************************************/
+template<class EOT> class eoSGATransform : public eoTransform<EOT>
+{
+ public:
+    
+  /// Default constructor.
+  eoSGATransform(eoQuadraticOp<EOT>& _cross, float _crate, 
+		 eoMonOp<EOT>& _mutate, float _mrate)
+    : cross(_cross),
+      crossoverRate(_crate),
+      mutate(_mutate), 
+      mutationRate(_mrate) {}
+
+
+  /**
+   * Transforms a population.
+   * @param pop The population to be transformed.
+   */
+  void operator()(eoPop<EOT>& _pop) 
+  {
+    unsigned i;
+	        
+    for (i=0; i<_pop.size()/2; i++) 
+      {
+	if ( rng.flip(crossoverRate) ) 
+	  {
+	    // this crossover generates 2 offspring from two parents
+	    cross(_pop[2*i], _pop[2*i+1]);
+	  }
+      }
+
+    for (i=0; i < _pop.size(); i++) 
+      {
+	if (rng.flip(mutationRate) ) 
+	  {
+	    mutate(_pop[i]);
+	  }
+	          
+      }
+  };
+    
+ private:
+  eoQuadraticOp<EOT>& cross;
+  float crossoverRate;
+  eoMonOp<EOT>& mutate;
+  float mutationRate;
+};
+
+
 #endif
