@@ -67,7 +67,6 @@
 // Continuators - all include eoContinue.h
 #include <eoCombinedContinue.h>
 #include <eoGenContinue.h>
-#include <eoSteadyGenContinue.h>
 #include <eoSteadyFitContinue.h>
 #include <eoEvalContinue.h>
 #include <eoFitContinue.h>
