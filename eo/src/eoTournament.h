@@ -38,12 +38,12 @@
 @author JJ Merelo, 1998
 */
 template<class EOT>
-class eoTournament:public eoSelect<EOT>{
+class eoTournament:public eoBinPopOp<EOT>{
 public:
 
   /// Proportion of guys that are going to be eliminated
-  eoTournament( float _perc, unsigned _tSize): eoSelect<EOT>(), 
-	  perc( _perc), repTournamentSize(_tSize){};
+  eoTournament( float _perc, unsigned _tSize): 
+    eoBinPopOp<EOT>(), perc( _perc), repTournamentSize(_tSize){};
 
   /// Virtual dtor
   ~eoTournament(){};
@@ -55,7 +55,7 @@ public:
    * Selects from the initial pop using tournament selection, and copies it
    * to the other population.
    */
-  virtual void operator() ( const eoPop<EOT>& _vEO, eoPop<EOT>& _aVEO) const {
+  virtual void operator() ( eoPop<EOT>& _vEO, eoPop<EOT>& _aVEO)  {
     
     unsigned thisSize = _vEO.size();
     

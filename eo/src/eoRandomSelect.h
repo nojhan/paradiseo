@@ -40,20 +40,21 @@
  * eoRandomSelect: an selection operator, which selects randomly a percentage
  of the initial population.
  */
-template<class EOT> class eoRandomSelect: public eoSelect<EOT>
+template<class EOT> class eoRandomSelect: public eoBinPopOp<EOT>
 {
  public:
   ///
-  eoRandomSelect(const float& _percent = 0.4): eoSelect<EOT>(), rate(_percent) {};
+  eoRandomSelect(const float& _percent = 0.4): 
+    eoBinPopOp<EOT>(), repRate(_percent) {};
   
   ///
   virtual ~eoRandomSelect() {};
   
   /// Takes a percentage of the population randomly, and transfers it to siblings
-  virtual void operator() ( const eoPop<EOT>& _parents, eoPop<EOT>& _siblings ) const {
+  virtual void operator() ( eoPop<EOT>& _parents, eoPop<EOT>& _siblings )  {
     // generates random numbers
     eoUniform<unsigned> uniform(0, _parents.size()-1);
-    unsigned num_chroms = (unsigned)(rate * _parents.size());
+    unsigned num_chroms = (unsigned)(repRate * _parents.size());
 
     // selection of chromosomes
     do {
@@ -69,7 +70,7 @@ template<class EOT> class eoRandomSelect: public eoSelect<EOT>
    * @param _s A istream.
    */
   virtual void readFrom(istream& _s) {
-	_s >> rate;
+	_s >> repRate;
   }
 
   /** Print itself: inherited from eoObject implementation. Declared virtual so that 
@@ -77,7 +78,7 @@ template<class EOT> class eoRandomSelect: public eoSelect<EOT>
 	  base classes, so you don´t have to worry about, for instance, fitness.
   @param _s the ostream in which things are written*/
   virtual void printOn( ostream& _s ) const{
-	_s << rate;
+	_s << repRate;
   }
 
   /** Inherited from eoObject 
@@ -89,7 +90,7 @@ template<class EOT> class eoRandomSelect: public eoSelect<EOT>
 
 
  private:
-  float rate;
+  float repRate;
 };
 
 //-----------------------------------------------------------------------------
