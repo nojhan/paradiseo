@@ -62,6 +62,7 @@ public :
   bool operator<(const eoParetoFitness<FitnessTraits>& _other) const
   {
     bool smaller = false;
+
     double tol = FitnessTraits::tol();
     const vector<double>& performance = *this;
     const vector<double>& otherperformance = _other;
@@ -70,7 +71,7 @@ public :
     {
       bool maxim = FitnessTraits::maximizing(i);
       double aval = maxim? performance[i] : -performance[i];
-      double bval = maxim? otherperformance[i] : otherperformance[i];
+      double bval = maxim? otherperformance[i] : -otherperformance[i];
 
       if (fabs(aval - bval) > tol)
       {

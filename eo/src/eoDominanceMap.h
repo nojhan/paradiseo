@@ -47,11 +47,6 @@ template <class EoType>
 class eoDominanceMap : public eoUF<const eoPop<EoType>&, void>, public std::vector<std::vector<bool> >
 {
   public :
-  /**
-    Ctor that needs to know what objectives are supposed to be maximized and which are to be minimized.
-    optional argument, a tolerance. This designates within which tolerance objective values are considered to be equal
-  */
-  eoDominanceMap(const std::vector<bool>& _maximizes, double _tol = 1e-6) : maximizes(_maximizes), tol(_tol) {}
 
   /**
     Clears the map
@@ -62,62 +57,13 @@ class eoDominanceMap : public eoUF<const eoPop<EoType>&, void>, public std::vect
     fitnesses.clear();
   }
 
-  bool maximize(unsigned objective) const { return maximizes[objective]; }
-
   /**
     Update or create the dominance map
   */
   void operator()(const eoPop<EoType>& _pop)
   {
-    if (fitness.size() != _pop.size())
-    { // fresh start
-      setup(_pop);
-      return;
-    }
-    // else just update the guys that have changed
-
-    update(_pop);
-  }
-
-  /// update the map with the population
-  void update(const eoPop<EoType>& _pop)
-  {
-    for (unsigned i = 0; i < _pop.size(); ++i)
-    {
-      if (fitness[i] == _pop[i].fitness())
-      {
-        continue;
-      }
-      // it's a new guy, update rows and columns
-      fitness[i] = _pop[i].fitness();
-
-      for (unsigned j = 0; j < _pop.size(); ++j)
-      {
-        if (i == j)
-          continue;
-
-        switch (dominates(_pop[i].fitness(), _pop[j].fitness()))
-        {
-          case a_dominates_b :
-          {
-            operator[](i)[j] = true;
-            operator[](j)[i] = false;
-            break;
-          }
-          case b_dominates_a :
-          {
-            operator[](i)[j] = false;
-            operator[](j)[i] = true;
-            break;
-          }
-          default :
-          {
-            operator[](i)[j] = false;
-            operator[](j)[i] = false;
-          }
-        }
-      }
-    }
+    setup(_pop);
+    return;
   }
 
   /**
@@ -147,25 +93,20 @@ class eoDominanceMap : public eoUF<const eoPop<EoType>&, void>, public std::vect
 
       for (unsigned j = 0; j < i; ++j)
       {
-        switch(dominates(fitness[i], fitness[j]))
+        if (_pop[i].fitness() > _pop[j].fitness())
         {
-          case a_dominates_b :
-          {
-            operator[](i)[j] = true;
-            operator[](j)[i] = false;
-            break;
-          }
-          case b_dominates_a :
-          {
-            operator[](i)[j] = false;
-            operator[](j)[i] = true;
-            break;
-          }
-          default :
-          {
-            operator[](i)[j] = false;
-            operator[](j)[i] = false;
-          }
+          operator[](i)[j] = true;
+          operator[](j)[i] = false;
+        }
+        else if (_pop[j].fitness() > _pop[i].fitness())
+        {
+          operator[](i)[j] = false;
+          operator[](j)[i] = true;
+        }
+        else
+        {
+          operator[](i)[j] = false;
+          operator[](j)[i] = false;
         }
       }
     }
@@ -215,63 +156,9 @@ class eoDominanceMap : public eoUF<const eoPop<EoType>&, void>, public std::vect
     return result;
   }
 
-  /**
-    make a distinction between no domination (a better than b on one objective and worse on another)
-    and equality: a == b
-  */
-  enum dom_res {a_dominates_b, b_dominates_a, no_domination, a_equals_b};
-
-  /**
-    a dominates b if it is better in one objective and not worse in any of the others
-  */
-  dom_res dominates(typename EoType::Fitness a, typename EoType::Fitness b)
-  {
-    dom_res result = a_equals_b;
-
-    for (unsigned i = 0; i < a.size(); ++i)
-    {
-      double aval = a[i];
-      double bval = b[i];
-
-      if (!maximizes[i])
-      {
-        aval = -aval;
-        bval = -bval;
-      }
-
-      // check if unequal, in the case they're 'equal' just go to the next
-      if (fabs(aval - bval) > tol)
-      {
-        if (aval > bval)
-        {
-          if (result == b_dominates_a)
-          {
-            return no_domination; // when on another objective b dominated a, they do not dominate each other
-          }
-          // else continue comparing
-
-          result = a_dominates_b;
-        }
-        else // bval > aval
-        {
-          if (result == a_dominates_b)
-          {
-            return no_domination; // done
-          }
-
-          result = b_dominates_a;
-        }
-      }
-    }
-
-    return result;
-  }
-
   private :
 
 
-  vector<bool> maximizes;
-  double tol;
   vector<typename EoType::Fitness> fitness;
 };
 

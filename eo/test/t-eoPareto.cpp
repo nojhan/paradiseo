@@ -7,6 +7,7 @@
 
 using namespace std;
 
+// Look: overloading the maximization without overhead (thing can be inlined)
 class MinimizingFitnessTraits : public eoParetoFitnessTraits
 {
   public :
@@ -88,10 +89,7 @@ void the_main()
   unsigned pop_size = 100;
   eoPop<eoDouble> pop(pop_size, init);
 
-  vector<bool> maximizes(2, false); // minimize both objectives
-
-  // The dominance map needs to know how to compare
-  eoDominanceMap<eoDouble>  dominance(maximizes);
+  eoDominanceMap<eoDouble>  dominance;
 
   // Pareto ranking needs a dominance map
   //eoParetoRanking<eoDouble> perf2worth(dominance);

@@ -17,5 +17,7 @@ dist :
 
 distdir :
 
+check :
+
 clean:
 	for i in $(SUBDIRS); do pushd $$i && $(MAKE) clean; popd; done
