@@ -53,8 +53,10 @@ class eoPopStat : public eoStat<EOT, string>
 public :
   /** default Ctor, void string by default, as it appears 
       on the description line once at beginning of evolution. and
-      is meaningless there */
-   eoPopStat(string _desc ="") : eoStat<EOT, string>("", _desc) {}
+      is meaningless there. _howMany defaults to 0, that is, the whole
+	  population*/
+   eoPopStat(unsigned _howMany = 0, string _desc ="") 
+	 : eoStat<EOT, string>("", _desc), combien( _howMany) {}
  
 /** Fills the value() of the eoParam with the dump of the population.
 Adds a \n before so it does not get mixed up with the rest of the stats
@@ -64,7 +66,8 @@ void operator()(const eoPop<EOT>& _pop)
 {
   char buffer[1023]; // about one K of space per member
   value() = "\n====== Pop dump =====\n";
-  for (unsigned i = 0; i < _pop.size(); ++i)
+  unsigned howMany=combien?combien:_pop.size();
+  for (unsigned i = 0; i < howMany; ++i)
   {
       std::ostrstream os(buffer, 1022); // leave space for emergency terminate
       os << _pop[i] << endl << ends;
@@ -74,6 +77,8 @@ void operator()(const eoPop<EOT>& _pop)
       value() += buffer;
   }
 }
+private:
+  unsigned combien;
 };
 
 /** Thanks to MS/VC++, eoParam mechanism is unable to handle vectors of stats.

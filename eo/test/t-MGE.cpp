@@ -10,7 +10,7 @@
 #include <eo>
 #include <ga/eoBitOp.h>
 
-#include "binary_value.h"
+#include "RoyalRoad.h"
 
 // Viri
 #include <MGE/VirusOp.h>
@@ -25,21 +25,21 @@ typedef eoVirus<float> Chrom;
 
 int main()
 {
-  const unsigned POP_SIZE = 100, CHROM_SIZE = 16;
+  const unsigned POP_SIZE = 1000, CHROM_SIZE = 128;
   unsigned i;
   eoBooleanGenerator gen;
 
   // the populations: 
   eoPop<Chrom> pop; 
 
-   // Evaluation
-  eoEvalFuncPtr<Chrom> eval(  binary_value );
+  // Evaluation
+ RoyalRoad<Chrom> rr( 4 ); 
   
   eoInitVirus<float> random(CHROM_SIZE, gen); 
   for (i = 0; i < POP_SIZE; ++i) {
       Chrom chrom;
       random(chrom);
-      eval(chrom);
+      rr(chrom);
       pop.push_back(chrom);
   }
   
@@ -49,7 +49,7 @@ int main()
 
   
   // selection
-  eoDetTournamentSelect<Chrom> lottery( 3) ;
+  eoStochTournamentSelect<Chrom> lottery(0.9 );
 
   // breeder
   VirusMutation<float> vm;
@@ -58,27 +58,29 @@ int main()
   eoUBitXover<Chrom> xover;
   eoProportionalOp<Chrom> propSel;
   eoGeneralBreeder<Chrom> breeder( lottery, propSel );
-  propSel.add(vm, 0.25);
-  propSel.add(vf, 0.25);
-  propSel.add(vt, 0.25);
-  propSel.add(xover, 0.25);
+  propSel.add(vm, 0.4);
+  propSel.add(vf, 0.4);
+  propSel.add(vt, 0.1);
+  propSel.add(xover, 0.1);
   
   // Replace a single one
-  eoPlusReplacement<Chrom> replace;
+  eoCommaReplacement<Chrom> replace;
 
   // Terminators
-  eoGenContinue<Chrom> continuator1(50);
-  eoFitContinue<Chrom> continuator2(65535.f);
+  eoGenContinue<Chrom> continuator1(500);
+  eoFitContinue<Chrom> continuator2(128);
   eoCombinedContinue<Chrom> continuator(continuator1, continuator2);  
   eoCheckPoint<Chrom> checkpoint(continuator);
   eoStdoutMonitor monitor;
   checkpoint.add(monitor);
   eoSecondMomentStats<Chrom> stats;
+  eoPopStat<Chrom> dumper( 10 );
   monitor.add(stats);
+  checkpoint.add(dumper);
   checkpoint.add(stats);
 
   // GA generation
-  eoEasyEA<Chrom> ea(checkpoint, eval,  breeder, replace );
+  eoEasyEA<Chrom> ea(checkpoint, rr,  breeder, replace );
 
   // evolution
   try
