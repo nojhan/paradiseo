@@ -2,6 +2,7 @@
 #pragma warning(disable:4786)
 #endif
 
+#include <stdexcept>
 #include <algorithm>
 #include <fstream>
 #include <iomanip> 
@@ -57,7 +58,7 @@ void eoParser::doRegisterParam(eoParam& param) const
 {
     if (param.required() && !isItThere(param))
     {
-        throw runtime_error("required parameter missing");
+        throw std::runtime_error("required parameter missing");
     }
 
     pair<bool, string> value = getValue(param);
@@ -182,8 +183,9 @@ void eoParser::printOn(ostream& os) const
         eoParam* param = p->second;
 
         string str = "--" + param->longName() + "=" + param->getValue();
-
-        os << left << setw(40) << str;
+        
+        //os.setf(ios_base::left, ios_base::adjustfield);
+        os << setw(40) << str;
         os << " # " << '-' << param->shortName() << " : " << param->description();
     
         if (param->required())

@@ -52,17 +52,17 @@ void eoState::registerObject(eoPersistent& registrant)
 void eoState::load(const string& _filename)
 {
     ifstream is (_filename.c_str());
-
-    if (is.fail())
-    {
-        string str = "Could not open file " + _filename;
-        throw runtime_error(str);
-    }
     
     string str;
     string name;
 
     getline(is, str);
+    
+    if (is.fail())
+    {
+        string str = "Could not open file " + _filename;
+        throw runtime_error(str);
+    }
     
     while(is)
     { // parse section header
