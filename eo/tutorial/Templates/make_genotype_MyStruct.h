@@ -55,7 +55,7 @@
 */
 
 template <class EOT>
-eoInit<EOT> & do_make_genotype(eoParameterLoader& _parser, eoState& _state, EOT)
+eoInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
 {
   // read any useful parameter here from the parser 
   // the param itself will belong to the parser (as far as memory is concerned)
