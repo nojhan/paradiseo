@@ -10,7 +10,13 @@ ac_cv_cxx_have_sstream,
  AC_TRY_COMPILE([#include <sstream>
 #ifdef HAVE_NAMESPACES
 using namespace std;
-#endif],[stringstream message; message << "Hello"; return 0;],
+#endif
+#if __GNUC__ == 2 
+#if __GNUC_MINOR__ == 96
+#error("force_error_for_2_96")
+#endif
+#endif],[stringstream message; message << "Hello"; return 0;
+],
  ac_cv_cxx_have_sstream=yes, ac_cv_cxx_have_sstream=no)
  AC_LANG_RESTORE
 ])
