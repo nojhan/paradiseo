@@ -45,6 +45,7 @@
 #include <utils/eoCheckPoint.h>
 #include <eoGenOp.h>
 #include <eoPop.h>
+#include <utils/eoDistance.h>
 
 #include <ga/eoBit.h>
 
@@ -77,9 +78,9 @@ eoCheckPoint<eoBit<eoMinimizingFitness> >& make_checkpoint(eoParser& _parser, eo
 
 
 // the algo
-eoAlgo<eoBit<double> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoBit<double> >& _eval, eoContinue<eoBit<double> >& _ccontinue, eoGenOp<eoBit<double> >& _op);
+eoAlgo<eoBit<double> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoBit<double> >& _eval, eoContinue<eoBit<double> >& _ccontinue, eoGenOp<eoBit<double> >& _op, eoDistance<eoBit<double> >* _dist = NULL);
 
-eoAlgo<eoBit<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoBit<eoMinimizingFitness> >& _eval, eoContinue<eoBit<eoMinimizingFitness> >& _ccontinue, eoGenOp<eoBit<eoMinimizingFitness> >& _op);
+eoAlgo<eoBit<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoBit<eoMinimizingFitness> >& _eval, eoContinue<eoBit<eoMinimizingFitness> >& _ccontinue, eoGenOp<eoBit<eoMinimizingFitness> >& _op, eoDistance<eoBit<eoMinimizingFitness> >* _dist = NULL);
 
 // run
 void run_ea(eoAlgo<eoBit<double> >& _ga, eoPop<eoBit<double> >& _pop);

@@ -27,7 +27,6 @@
 #define _eoDistance_H
 
 #include <eoFunctor.h>
-
 /** 
     This is a generic class for distance functors:
     takes 2 things ane returns a double
@@ -36,27 +35,63 @@ template< class EOT >
 class eoDistance : public eoBF<const EOT &, const EOT &, double>
 {};
 
+
 /** 
-    This is a generic class for Euclidain distance computation:
+    This is a generic class for Euclidain distance (L2 norm) computation: 
     assumes the 2 things are std::vectors of something that is double-castable
 */
-
 template< class EOT >
 class eoQuadDistance : public eoDistance<EOT>
 {
 public:
   double operator()(const EOT & _v1, const EOT & _v2)
   {
-    double sum=0.0;
+     double sum=0.0;
     for (unsigned i=0; i<_v1.size(); i++)
       {
 	double r = static_cast<double> (_v1[i]) - static_cast<double> (_v2[i]);
 	sum += r*r;
       }
+    return sqrt(sum);
+  }
+};
+
+/** 
+    This is a generic class for L1 distance computation: 
+    assumes the 2 things are std::vectors of something 
+    that is double-castable
+    For bitstrings, this is the Hamming distance
+*/
+template< class EOT >
+class eoHammingDistance : public eoDistance<EOT>
+{
+public:
+  double operator()(const EOT & _v1, const EOT & _v2)
+  {
+     double sum=0.0;
+    for (unsigned i=0; i<_v1.size(); i++)
+      {
+	double r = static_cast<double> (_v1[i]) - static_cast<double> (_v2[i]);
+	sum += fabs(r);
+      }
     return sum;
   }
 };
 
+/* this distance measures the difference in fitness 
+ * I am not sure it can be of any use, though ... 
+ * except for some testing
+ */
+template< class EOT >
+class eoFitnessDistance : public eoDistance<EOT>
+{
+public:
+  double operator()(const EOT & _v1, const EOT & _v2)
+  {
+    double d = _v1.fitness() - _v2.fitness();
+    return sqrt(d*d);
+  }
+};
 
 
 	

@@ -26,7 +26,7 @@
 #ifndef _eoSelectFromWorth_h
 #define _eoSelectFromWorth_h
 
-
+#include <iostream.h>
 //-----------------------------------------------------------------------------
 #include <eoSelectOne.h>
 #include <eoPerf2Worth.h>
@@ -197,6 +197,12 @@ public:
   */
   virtual const EOT& operator()(const eoPop<EOT>& _pop)
   {
+//     cout << "On affiche les worths\n";
+//     for (unsigned i=0; 
+// 	 i<perf2Worth.value().size(); 
+// 	 i++)
+//       cout << perf2Worth.value().operator[](i) << "\n";
+//     cout << endl;
     worthIterator it = roulette_wheel(
 			perf2Worth.value().begin(),
 			perf2Worth.value().end(),

@@ -32,65 +32,14 @@
 /** Sharing is a perf2worth class that implements 
  *  Goldberg and Richardson's basic sharing
 */
-// template <class EOT, class Dist = eoQuadDistance<EOT> >
-template <class EOT>
-class eoSharing : public eoPerf2Worth<EOT, double>
-{
-  public:
-  /** Ctor with only nicheSize: will use the default eoQuadDistance */
-  eoSharing(double _nicheSize) : eoPerf2Worth("Sharing"), 
-				 nicheSize(_nicheSize), 
-				 dist(repDist)
-  {}
 
-  eoSharing(double _nicheSize, Dist _dist) : eoPerf2Worth("Sharing"), 
-					     nicheSize(_nicheSize), 
-					     dist(_dist)
-  {}
-
-  /** Computes shared fitnesses
-  */
-    void operator()(const eoPop<EOT>& _pop)
-    {
-      unsigned i, j, 
-	pSize=_pop.size();
-      if (pSize <= 1)
-	throw std::runtime_error("Apptempt to do sharing with population of size 1");
-      value.resize(pSize);
-      std::vector<double> sim(pSize);	   // to hold the similarities
-      std::vector<double> distMatrix(pSize*(pSize-1)/2); // to hold the distances
-
-      // compute the distances
-      distMatrix(0,0)=0;
-      for (i=1; i<pSize; i++)
-	{
-	  distMatrix(i,i)=0;
-	  for (j=0; j<i; j++)
-	    {
-	      distMatrix(i,j) = distMatrix(j,i) = dist(_pop[i], _pop[j]);
-	    }
-	}
-
-      // compute the similarities
-      for (i=0; i<pSize; i++)
-	{
-	  double sum=0.0;
-	  for (j=0; j<pSize; j++)
-	    sum += distMatrix(i,j);
-	  sim[i] = sum;
-
-	}
-      // now set the worthes values
-      for (i = 0; i < _pop.size(); ++i)
-        value()[i]=_pop[i].fitness()/sim[i];
-    }
-
+// First a helper class
   // helper class to  hold distances
   class dMatrix : public std::vector<double>
   {
   public:
     // Ctor : sets size
-    dMatrix(unsigned _s) : std::vector<double>(_s*(_s-1)), rSize(_s) {}
+    dMatrix(unsigned _s) : std::vector<double>(_s*_s), rSize(_s) {}
 
     /** simple accessor */
     double operator()(unsigned _i, unsigned _j) const
@@ -121,11 +70,76 @@ class eoSharing : public eoPerf2Worth<EOT, double>
       unsigned rSize;		   // row size (== number of columns!)
   };
 
+
+// template <class EOT, class Dist = eoQuadDistance<EOT> >
+template <class EOT>
+class eoSharing : public eoPerf2Worth<EOT>
+{
+  public:
+  /* Ctor requires a distance - cannot have a default distance! */
+  eoSharing(double _nicheSize, eoDistance<EOT> & _dist) : eoPerf2Worth<EOT>("Sharing"), 
+					     nicheSize(_nicheSize), 
+					     dist(_dist)
+  {}
+
+  /** Computes shared fitnesses
+  */
+    void operator()(const eoPop<EOT>& _pop)
+    {
+      unsigned i, j, 
+	pSize=_pop.size();
+      if (pSize <= 1)
+	throw std::runtime_error("Apptempt to do sharing with population of size 1");
+      value().resize(pSize);
+      std::vector<double> sim(pSize);	   // to hold the similarities
+      dMatrix distMatrix(pSize*(pSize-1)/2); // to hold the distances
+
+      // compute the similarities (wrong name for distMatrix, I know)
+      distMatrix(0,0)=1;
+      for (i=1; i<pSize; i++)
+	{
+	  distMatrix(i,i)=1;
+	  for (j=0; j<i; j++)
+	    {
+	      double d =  dist(_pop[i], _pop[j]);
+	      distMatrix(i,j) = 
+		distMatrix(j,i) = ( d>nicheSize ? 0 : 1-(d/nicheSize) );
+	    }
+	}
+
+//       cout << "Matrice des similarités\n";
+//       for (i=0; i<pSize; i++)
+// 	{
+// 	  for (j=0; j<pSize; j++)
+// 	    {
+// 	      cout << distMatrix(i,j) << " ";
+// 	    }
+// 	  cout << "\n";
+// 	}
+//       cout << endl;
+
+//      cout << "Les similarités cumulées\n";
+      // compute the cumulated similarities
+      for (i=0; i<pSize; i++)
+	{
+	  double sum=0.0;
+	  for (j=0; j<pSize; j++)
+	    sum += distMatrix(i,j);
+	  sim[i] = sum;
+//	  cout << sim[i] << " ";
+	}
+//      cout << endl;
+
+      // now set the worthes values
+      for (i = 0; i < _pop.size(); ++i)
+        value()[i]=_pop[i].fitness()/sim[i];
+    }
     // private data of class eoSharing
 private: 
   double nicheSize;
-  eoQuadDistance<EOT> repDist;	   // default distance 
-  eoDistance & dist;	     // allows to pass a specific distance
+  eoDistance<EOT> & dist;	     // specific distance
 };
+
+
 
 #endif

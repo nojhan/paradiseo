@@ -10,7 +10,7 @@
 using namespace std;
 
 int main(int argc, char* argv[])
-{
+{     
 
   try
   {
@@ -30,12 +30,16 @@ int main(int argc, char* argv[])
 
 // EVAL
   // The evaluation fn - encapsulated into an eval counter for output 
-  eoEvalFuncPtr<EOT, float> mainEval( binary_value<EOT> );
+  eoEvalFuncPtr<EOT, double> mainEval( binary_value<EOT> );
   eoEvalFuncCounter<EOT> eval(mainEval);
 
 // REPRESENTATION
   // the genotype - through a genotype initializer
   eoInit<EOT>& init = make_genotype(parser, state, EOT());
+
+  // if you want to do sharing, you'll need a distance.
+  // here Hamming distance 
+  eoHammingDistance<EOT> dist;
 
 // OPERATORS
   // Build the variation operator (any seq/prop construct)
@@ -56,7 +60,7 @@ int main(int argc, char* argv[])
   eoCheckPoint<EOT> & checkpoint = make_checkpoint(parser, state, eval, term);
 // GENERATION
   // algorithm (need the operator!)
-  eoAlgo<EOT>& ga = make_algo_scalar(parser, state, eval, checkpoint, op);
+  eoAlgo<EOT>& ga = make_algo_scalar(parser, state, eval, checkpoint, op, &dist);
 
   ///// End of construction of the algorith
   /////////////////////////////////////////

@@ -39,6 +39,7 @@
 #include <eoFitnessScalingSelect.h>
 #include <eoRankingSelect.h>
 #include <eoStochTournamentSelect.h>
+#include <eoSharingSelect.h>
 
 // Breeders
 #include <eoGeneralBreeder.h>
@@ -48,6 +49,9 @@
 #include <eoMergeReduce.h>
 #include <eoReduceMerge.h>
 #include <eoSurviveAndDie.h>
+
+// distance
+#include <utils/eoDistance.h>
 
 // Algorithm (only this one needed)
 #include <eoEasyEA.h>
@@ -70,11 +74,18 @@
  * is actually templatized here
 */
 
+
 template <class EOT>
-eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<EOT>& _eval, eoContinue<EOT>& _continue, eoGenOp<EOT>& _op)
+eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<EOT>& _eval, eoContinue<EOT>& _continue, eoGenOp<EOT>& _op, eoDistance<EOT> * _dist = NULL)
 {
-  // the selection
-  eoValueParam<eoParamParamType>& selectionParam = _parser.createParam(eoParamParamType("DetTour(2)"), "selection", "Selection: Roulette, Ranking(p,e), DetTour(T), StochTour(t) or Sequential(ordered/unordered)", 'S', "Evolution Engine");
+  // the selection : help and comment depend on whether or not a distance is passed
+  std::string comment;
+  if (_dist == NULL)
+    comment = "Selection: DetTour(T), StochTour(t), Roulette, Ranking(p,e) or Sequential(ordered/unordered)";
+      else
+	comment = "Selection: DetTour(T), StochTour(t), Roulette, Ranking(p,e), Sharing(sigma_share) or Sequential(ordered/unordered)";
+
+  eoValueParam<eoParamParamType>& selectionParam = _parser.createParam(eoParamParamType("DetTour(2)"), "selection", comment, 'S', "Evolution Engine");
 
   eoParamParamType & ppSelect = selectionParam.value(); // std::pair<std::string,std::vector<std::string> >
 
@@ -93,6 +104,23 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc
     else	  // parameter passed by user as DetTour(T)
       detSize = atoi(ppSelect.second[0].c_str());
     select = new eoDetTournamentSelect<EOT>(detSize);
+  }
+  else if (ppSelect.first == std::string("Sharing")) 
+  {
+    double nicheSize;
+
+    if (!ppSelect.second.size())   // no parameter added
+      {
+	std::cerr << "WARNING, no parameter passed to Sharing, using 0.5" << std::endl;
+	nicheSize = 0.5;
+	// put back 2 in parameter for consistency (and status file)
+	ppSelect.second.push_back(std::string("0.5"));
+      }
+    else	  // parameter passed by user as DetTour(T)
+      nicheSize = atof(ppSelect.second[0].c_str());
+    if (_dist == NULL)		   // no distance
+          throw std::runtime_error("You didn't specify a distance when calling make_algo_scalar and using sharing");
+    select = new eoSharingSelect<EOT>(nicheSize, *_dist);
   }
   else if (ppSelect.first == std::string("StochTour"))
     {

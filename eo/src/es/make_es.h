@@ -52,6 +52,7 @@
 #include <utils/eoCheckPoint.h>
 #include <eoGenOp.h>
 #include <eoPop.h>
+#include <utils/eoDistance.h>
 
 #include <es/eoEsSimple.h>	   // one Sigma per individual
 #include <es/eoEsStdev.h>	   // one sigmal per object variable
@@ -119,14 +120,14 @@ eoCheckPoint<eoEsFull<eoMinimizingFitness> >& make_checkpoint(eoParser& _parser,
 
 
 // the algo
-eoAlgo<eoEsSimple<double> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsSimple<double> >& _eval, eoContinue<eoEsSimple<double> >& _ccontinue, eoGenOp<eoEsSimple<double> >& _op);
-eoAlgo<eoEsSimple<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsSimple<eoMinimizingFitness> >& _eval, eoContinue<eoEsSimple<eoMinimizingFitness> >& _ccontinue, eoGenOp<eoEsSimple<eoMinimizingFitness> >& _op);
+eoAlgo<eoEsSimple<double> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsSimple<double> >& _eval, eoContinue<eoEsSimple<double> >& _ccontinue, eoGenOp<eoEsSimple<double> >& _op, eoDistance<eoEsSimple<double> >* _dist = NULL);
+eoAlgo<eoEsSimple<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsSimple<eoMinimizingFitness> >& _eval, eoContinue<eoEsSimple<eoMinimizingFitness> >& _ccontinue, eoGenOp<eoEsSimple<eoMinimizingFitness> >& _op, eoDistance<eoEsSimple<eoMinimizingFitness> >* _dist = NULL);
 
-eoAlgo<eoEsStdev<double> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsStdev<double> >& _eval, eoContinue<eoEsStdev<double> >& _ccontinue, eoGenOp<eoEsStdev<double> >& _op);
-eoAlgo<eoEsStdev<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsStdev<eoMinimizingFitness> >& _eval, eoContinue<eoEsStdev<eoMinimizingFitness> >& _ccontinue, eoGenOp<eoEsStdev<eoMinimizingFitness> >& _op);
+eoAlgo<eoEsStdev<double> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsStdev<double> >& _eval, eoContinue<eoEsStdev<double> >& _ccontinue, eoGenOp<eoEsStdev<double> >& _op, eoDistance<eoEsStdev<double> >* _dist = NULL);
+eoAlgo<eoEsStdev<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsStdev<eoMinimizingFitness> >& _eval, eoContinue<eoEsStdev<eoMinimizingFitness> >& _ccontinue, eoGenOp<eoEsStdev<eoMinimizingFitness> >& _op, eoDistance<eoEsStdev<eoMinimizingFitness> >* _dist = NULL);
 
-eoAlgo<eoEsFull<double> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsFull<double> >& _eval, eoContinue<eoEsFull<double> >& _ccontinue, eoGenOp<eoEsFull<double> >& _op);
-eoAlgo<eoEsFull<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsFull<eoMinimizingFitness> >& _eval, eoContinue<eoEsFull<eoMinimizingFitness> >& _ccontinue, eoGenOp<eoEsFull<eoMinimizingFitness> >& _op);
+eoAlgo<eoEsFull<double> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsFull<double> >& _eval, eoContinue<eoEsFull<double> >& _ccontinue, eoGenOp<eoEsFull<double> >& _op, eoDistance<eoEsFull<double> >* _dist = NULL);
+eoAlgo<eoEsFull<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsFull<eoMinimizingFitness> >& _eval, eoContinue<eoEsFull<eoMinimizingFitness> >& _ccontinue, eoGenOp<eoEsFull<eoMinimizingFitness> >& _op, eoDistance<eoEsFull<eoMinimizingFitness> >* _dist = NULL);
 
 // run
 void run_ea(eoAlgo<eoEsSimple<double> >& _ga, eoPop<eoEsSimple<double> >& _pop);

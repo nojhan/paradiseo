@@ -52,6 +52,7 @@
 #include <utils/eoCheckPoint.h>
 #include <eoGenOp.h>
 #include <eoPop.h>
+#include <utils/eoDistance.h>
 
 #include <es/eoRealInitBounded.h>
 #include <es/eoReal.h>
@@ -85,9 +86,9 @@ eoCheckPoint<eoReal<eoMinimizingFitness> >& make_checkpoint(eoParser& _parser, e
 
 
 // the algo
-eoAlgo<eoReal<double> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoReal<double> >& _eval, eoContinue<eoReal<double> >& _ccontinue, eoGenOp<eoReal<double> >& _op);
+eoAlgo<eoReal<double> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoReal<double> >& _eval, eoContinue<eoReal<double> >& _ccontinue, eoGenOp<eoReal<double> >& _op, eoDistance<eoReal<double> >* _dist = NULL);
 
-eoAlgo<eoReal<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoReal<eoMinimizingFitness> >& _eval, eoContinue<eoReal<eoMinimizingFitness> >& _ccontinue, eoGenOp<eoReal<eoMinimizingFitness> >& _op);
+eoAlgo<eoReal<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoReal<eoMinimizingFitness> >& _eval, eoContinue<eoReal<eoMinimizingFitness> >& _ccontinue, eoGenOp<eoReal<eoMinimizingFitness> >& _op, eoDistance<eoReal<eoMinimizingFitness> >* _dist = NULL);
 
 // run
 void run_ea(eoAlgo<eoReal<double> >& _ga, eoPop<eoReal<double> >& _pop);

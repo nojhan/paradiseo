@@ -7,9 +7,9 @@
     @param _chrom A binary chromosome 
 */
 
-template <class Chrom> float binary_value(const Chrom& _chrom)
+template <class Chrom> double binary_value(const Chrom& _chrom)
 {
-  float sum = 0;
+  double sum = 0;
   for (unsigned i = 0; i < _chrom.size(); i++)
     if (_chrom[i])
 	sum += _chrom[i];

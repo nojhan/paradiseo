@@ -17,7 +17,7 @@ CXXFLAGS = -g -Wall
 
 # PLEASE don't break the line (see create_batch.sh)
 
-check_PROGRAMS = t-eoParetoFitness t-eoPareto t-eofitness t-eoRandom t-eobin t-eoVirus t-MGE t-MGE1bit t-MGE-control t-eoStateAndParser t-eoCheckpointing t-eoSSGA t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoReal t-eoVector t-eoESAll t-eoPBIL t-eoFitnessAssembled t-eoFitnessAssembledEA t-eoRoulette
+check_PROGRAMS = t-eoParetoFitness t-eoPareto t-eofitness t-eoRandom t-eobin t-eoVirus t-MGE t-MGE1bit t-MGE-control t-eoStateAndParser t-eoCheckpointing t-eoSSGA t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoReal t-eoVector t-eoESAll t-eoPBIL t-eoFitnessAssembled t-eoFitnessAssembledEA t-eoRoulette t-eoSharing
 
 #The run_tests script can be used to check various arguments 
 TESTS=$(check_PROGRAMS) run_tests
@@ -196,5 +196,12 @@ t_eoRoulette_SOURCES = t-eoRoulette.cpp
 t_eoRoulette_DEPENDENCIES = $(DEPS) 
 t_eoRoulette_LDFLAGS = -lm
 t_eoRoulette_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoSharing_SOURCES = t-eoSharing.cpp
+t_eoSharing_DEPENDENCIES = $(DEPS) 
+t_eoSharing_LDFLAGS = -lm
+t_eoSharing_LDADD = $(LDADDS)
 
 ###############################################################################
