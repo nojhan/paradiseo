@@ -430,9 +430,9 @@ function.
 which gives something like
 <p><b><tt><font color="#993300">eoTournamentSelection&lt;EOT>&nbsp; *ptSelect
 = new eoTournamentSelection&lt;EOT>(tSize);</font></tt></b>
-<br><b><tt><font color="#993300">eoBreeder&lt;EOT> *ptBreed = new eoBreeder&lt;EOT>(select);</font></tt></b>
+<br><b><tt><font color="#993300">eoBreeder&lt;EOT> *ptBreed = new eoBreeder&lt;EOT>(*ptSselect);</font></tt></b>
 <br><b><tt><font color="#993300">eoEasyAlgo&lt;EOT> *ptAlgo = new eoEasyAlgo&lt;EOT>(
-..., breed, ...);</font></tt></b>
+..., *ptBreed, ...);</font></tt></b>
 <p>and you can then use the dynamically allocated objects anywhere. But
 the trouble with such a construct is that after exiting the function where
 such objects are defined, <b><font color="#FF6600">you will never be able
@@ -451,10 +451,10 @@ to care of.
 <p><b><tt><font color="#993300">eoTournamentSelection&lt;EOT>&nbsp; *ptSelect
 = new eoTournamentSelection&lt;EOT>(tSize);</font></tt></b>
 <br><b><tt><font color="#993300">state.storeFunctor(ptSelect);</font></tt></b>
-<br><b><tt><font color="#993300">eoBreeder&lt;EOT> *ptBreed = new eoBreeder&lt;EOT>(select);</font></tt></b>
+<br><b><tt><font color="#993300">eoBreeder&lt;EOT> *ptBreed = new eoBreeder&lt;EOT>(*ptSelect);</font></tt></b>
 <br><b><tt><font color="#993300">state.storeFunctor(ptBreed);</font></tt></b>
 <br><b><tt><font color="#993300">eoEasyAlgo&lt;EOT> *ptAlgo = new eoEasyAlgo&lt;EOT>(
-..., breed, ...);</font></tt></b>
+..., *ptBreed, ...);</font></tt></b>
 <br><b><tt><font color="#993300">state.storeFunctor(ptAlgo);</font></tt></b>
 <p>or, even more quickly (though less readably)
 <p><b><tt><font color="#993300">eoTournamentSelection&lt;EOT>&nbsp; *ptSelect
@@ -463,10 +463,10 @@ to care of.
 state.storeFunctor(new eoTournamentSelection&lt;EOT>(tSize));</font></tt></b>
 <br><b><tt><font color="#993300">eoBreeder&lt;EOT> *ptBreed =</font></tt></b>
 <br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-state.storeFunctor(new eoBreeder&lt;EOT>(select));</font></tt></b>
+state.storeFunctor(new eoBreeder&lt;EOT>(*ptSelect));</font></tt></b>
 <br><b><tt><font color="#993300">eoEasyAlgo&lt;EOT> *ptAlgo =</font></tt></b>
 <br><b><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-state.storeFunctor(new eoEasyAlgo&lt;EOT>( ..., breed, ...));</font></tt></b>
+state.storeFunctor(new eoEasyAlgo&lt;EOT>( ..., *ptBreed, ...));</font></tt></b>
 <p>In both the above code, state is an <b><tt><font color="#993300"><font size=+1>eoFunctorStore</font></font></tt></b>
 that is of course <b><font color="#FF6600">passed from outside the function</font></b>
 - and it's called state because in most cases it will actually be an eoState.
