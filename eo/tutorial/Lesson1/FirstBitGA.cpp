@@ -94,7 +94,7 @@ void main_function(int argc, char **argv)
   ////////////////////////////////////
 // SELECT
   // The robust tournament selection
-  eoDetTournament<Indi> select(T_SIZE);  // T_SIZE in [2,POP_SIZE]
+  eoDetTournamentSelect<Indi> select(T_SIZE);  // T_SIZE in [2,POP_SIZE]
 
 // REPLACE
   // The simple GA evolution engine uses generational replacement

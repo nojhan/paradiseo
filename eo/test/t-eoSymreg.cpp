@@ -235,7 +235,7 @@ int main()
     seqSel.addOp(mutation, 0.25);
     seqSel.addOp(xover, 0.75);
   
-    eoDetTournament<EoType> selector(5);
+    eoDetTournamentSelect<EoType> selector(5);
   
     eoDetTournamentInserter<EoType> inserter(eval, 5);
   

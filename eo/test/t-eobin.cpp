@@ -147,7 +147,7 @@ void main_function()
     monitor.add(stats);
     checkpoint.add(stats);
 
-    eoProportional<Chrom> select;
+    eoProportionalSelect<Chrom> select;
     eoEvalFuncPtr<Chrom>  eval(binary_value);
     
     eoSGA<Chrom> sga(select, xover, 0.8f, bitflip, 0.1f, eval, checkpoint);

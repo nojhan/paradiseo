@@ -358,27 +358,30 @@ are available!
 <li>
 You already know the <font color="#FF6600">tournament selection</font></li>
 
-<br><font color="#FF0000">Syntax:&nbsp; </font><tt><font color="#009900"><b>eoDetTournament&lt;Indi>
+<br><font color="#FF0000">Syntax:&nbsp; </font><tt><font color="#009900"><b>eoDetTournamentSelect&lt;Indi>
 select(T_SIZE);&nbsp;&nbsp; </b>// T_SIZE in [2,POP_SIZE)</font></tt>
 <li>
 Try the well-known <font color="#FF6600">roulette wheel</font></li>
 
-<br>&nbsp;<font color="#FF0000">Syntax:&nbsp;</font>&nbsp;&nbsp; <b><tt><font color="#009900">eoProportional&lt;Indi>
+<br>&nbsp;<font color="#FF0000">Syntax:&nbsp;</font>&nbsp;&nbsp; <b><tt><font color="#009900">eoProportionalSelect&lt;Indi>
 select;</font></tt></b>
 <li>
 Or the <font color="#FF6600">stochastic binary tournament</font></li>
 
-<br><font color="#FF0000">Syntax:&nbsp; </font><tt><font color="#009900"><b>eoStochTournament&lt;Indi>
-select(RATE);&nbsp;</b>&nbsp;&nbsp;&nbsp; // RATE in ]0.5,1]</font></tt>
+<br><font color="#FF0000">Syntax:&nbsp; </font><b><tt><font color="#009900">eoStochTournamentSelect&lt;Indi>
+select(RATE);&nbsp;</font></tt></b><tt><font color="#009900">&nbsp;&nbsp;&nbsp;
+// RATE in ]0.5,1]</font></tt>
 <li>
 and of course the <font color="#FF6600">random</font> selection should
 give bad results!</li>
 
-<br><font color="#FF0000">Syntax:&nbsp; </font><b><tt><font color="#009900">eoSelectRandom&lt;Indi>
+<br><font color="#FF0000">Syntax:&nbsp; </font><b><tt><font color="#009900">eoRandomSelect&lt;Indi>
 select;</font></tt></b></ul>
 Note that all these classes of eoObjects are derived from the abstract
 class
 <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoselectone.html">eoSelectOne.</a></font></font></b>
+To find out exactly how each procedure selects the individuals, read the
+corresponding <a href="eoEngine.html#selection">component-based page</a>.
 <p>
 <hr WIDTH="100%"><b><font color="#000099"><font size=+2>Lessons learned:</font></font></b>
 <ul>

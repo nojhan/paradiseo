@@ -69,7 +69,7 @@ template <class EOT> class eoEPReduce : public eoReduce<EOT>
 public:
 typedef typename EOT::Fitness Fitness; 
 
-  eoEPReduce(unsigned _t_size):
+  eoEPReduce(unsigned _t_size  ):
     t_size(_t_size)
   {
     if (t_size < 2)
@@ -79,17 +79,24 @@ typedef typename EOT::Fitness Fitness;
   }
 
   /// helper struct for comparing on pairs
+  // compares the scores
+  // uses the fitness if scores are equals ????
   typedef pair<float, eoPop<EOT>::iterator>  EPpair;
-      struct Cmp {
-          bool operator()(const EPpair a, const EPpair b) const
-            { return b.first < a.first; }
-      };
-
-
-    void operator()(eoPop<EOT>& _newgen, unsigned _newsize)
-    {
-      unsigned int presentSize = _newgen.size();
-        if (presentSize == _newsize)
+  struct Cmp {
+    bool operator()(const EPpair a, const EPpair b) const
+    { 
+      if (b.first == a.first)
+	return  (*b.second < *a.second);
+      return b.first < a.first; 
+    }
+  };
+  
+  
+  void operator()(eoPop<EOT>& _newgen, unsigned _newsize)
+  {
+    unsigned int presentSize = _newgen.size();
+    
+    if (presentSize == _newsize)
             return;
 	if (presentSize < _newsize)
 	  throw std::logic_error("eoTruncate: Cannot truncate to a larger size!\n");
@@ -107,12 +114,30 @@ typedef typename EOT::Fitness Fitness;
 		  scores[i].first += 0.5;
 	      }
 	  }
+
 	// now we have the scores
 	typename vector<EPpair>::iterator it = scores.begin() + _newsize;
-	std::nth_element(scores.begin(), it, scores.end(), Cmp());
-	it = scores.begin() + _newsize;	// just in case ???
-	while (it < scores.end())
-	  _newgen.erase(it->second);
+        std::nth_element(scores.begin(), it, scores.end(), Cmp());
+	// sort(scores.begin(), scores.end(), Cmp());
+	unsigned j;
+// 	cout << "Les scores apres tri\n";
+// 	for (j=0; j<scores.size(); j++)
+// 	  {
+// 	    cout << scores[j].first << " " << *scores[j].second << endl;
+// 	  }
+	eoPop<EOT> tmPop;
+	for (j=0; j<_newsize; j++)
+	  {
+	    tmPop.push_back(*scores[j].second);
+	  }
+	_newgen.swap(tmPop);
+	// erase does not work, but I'm sure there is a way in STL to mark
+	// and later delete all inside a vector ??????
+	// this would avoid all copies here
+
+// 	it = scores.begin() + _newsize;
+// 	while (it < scores.end())
+// 	  _newgen.erase(it->second);
     }
 private:
   unsigned t_size;

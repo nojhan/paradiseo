@@ -7,17 +7,7 @@
 #include <iostream>                // cerr cout
 #include <fstream>                 // ifstream
 #include <string>                  // string
-#include <utils/eoParser.h>        // eoParser
-#include <eoPop.h>                 // eoPop
-#include <eoEvalFuncPtr.h>         // eoEvalFunc
-#include <eoStochTournament.h>     // eoStochTournament
-#include <eoGenContinue.h>         // eoGenContinue
-#include <eoFitContinue.h>         // eoFitContinue
-#include <eoCombinedContinue.h>    // eoCombinedContinue
-#include <utils/eoCheckPoint.h>    // eoCheckPoint
-#include <utils/eoStat.h>          // eoBestFitnessStat
-#include <utils/eoStdoutMonitor.h> // eoStdoutMonitor
-#include <eoSGA.h>                 // eoSGA
+#include <eo>                      // all usefull eo stuff
 #include "gprop.h"                 // Chrom eoChromInit eoChromMutation eoChromXover eoChromEvaluator
 
 //-----------------------------------------------------------------------------
@@ -134,7 +124,7 @@ void ga()
   apply<Chrom>(evaluator, pop);
   
   // selector
-  eoStochTournament<Chrom> select;
+  eoStochTournamentSelect<Chrom> select;
 
   // genetic operators
   eoChromMutation mutation;

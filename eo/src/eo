@@ -92,21 +92,24 @@
 #include <eoEvalFuncPtr.h>
 
 // Continuators
-#include <eoContinue.h>
+// #include <eoContinue.h>    // already included in the following
 #include <eoCombinedContinue.h>
 #include <eoGenContinue.h>
 #include <eoSteadyFitContinue.h>
 #include <eoFitContinue.h>
 
 // Selection 
-#include <eoSelectOne.h>
-#include <eoSelectRandom.h>
-#include <eoDetTournament.h>
-#include <eoProportional.h>
-#include <eoStochTournament.h>
+// the eoSelectOne
+#include <eoRandomSelect.h>
+#include <eoDetTournamentSelect.h>
+#include <eoProportionalSelect.h>
+#include <eoStochTournamentSelect.h>
+// the batch selection - from an eoSelectOne
 #include <eoSelectPerc.h>
 #include <eoSelectNumber.h>
 #include <eoSelectMany.h>
+// other batch selections
+#include <eoDetSelect.h>
 
 
 // Replacement
@@ -128,6 +131,8 @@
 //#include <eoGeneration.h>
 
 //#include <eoProportionalOpSel.h>
+
+#include <eoSGATransform.h>
 
 // Algorithms
 #include <eoEasyEA.h>

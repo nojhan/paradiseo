@@ -12,8 +12,8 @@
 <a href="eoTutorial.html">Main page</a> -
 <a href="eoTopDown.html">Algorithm-Based</a>
 - <a href="eoBottomUp.html">Component-Based</a> - <a href="eoProgramming.html">Hints</a>
-- <b><font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
-documentation</a></font></b>
+- <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
+documentation</a></font></font></b>
 <br>
 <hr WIDTH="100%"><!-- -------------- End of header ------------------ --><!-- ----------------------------------------------- -->
 <center>
@@ -102,14 +102,10 @@ operators</a> and the <a href="SecondBitEA.html#engine">evolution engine</a>&nbs
 sections are similar to the ones in Lesson2</font></li>
 
 <li>
-<font color="#000000">The </font><b><font color="#3366FF">parameter section</font></b><font color="#000000">&nbsp;
-is completely different from the previous one. All variables corresponding
-to </font><font color="#3366FF">program parameters</font><font color="#000000">
-are now </font><a href="SecondBitEA.html#seed_declare">declared</a><font color="#000000">
-in the </font><b><tt><font color="#990000"><font size=+1>main_function</font></font></tt></b><font color="#000000">
-(as before), but their values are set in a <a href="SecondBitEA.html#parametres">new
-function</a>, called </font><b><tt><font color="#660000">read_param.</font></tt></b><font color="#000000">
-See the <a href="#parser">eoParser</a> description for more details.</font></li>
+<font color="#000000">The <a href="SecondBitEA.html#parametres">parameter
+section</a>&nbsp; is completely different from the previous one. All variables
+corresponding to </font><font color="#3366FF">program parameters</font><font color="#000000">
+are now read at run-time using an object of class <a href="#parser">eoParser</a>.</font></li>
 
 <li>
 <font color="#000000">The <a href="SecondBitEA.html#stop">stopping criterion
@@ -145,7 +141,9 @@ See the parameter section of the Component-Based tutorial, or wait until
 <font color="#000000">The </font><b><tt><font color="#3366FF">eoParser</font></tt></b><font color="#000000">
 class, whose only purpose is the input of parameters.</font></li>
 </ul>
-<b><font color="#FF0000">Modifying parameter values at run-time:</font></b>
+
+<hr WIDTH="50%"><b><font color="#000099">eoParser:</font><font color="#FF0000">
+Modifying parameter values at run-time:</font></b>
 <br><font color="#000000">Using an eoParser object, the parameter values
 are read, by order of priority</font>
 <ol>
@@ -173,7 +171,7 @@ and optionally by a <font color="#FF6600">short (1 character) keyword</font>.</l
 the general syntax to modify parameter value at run-time is (either from
 the command-line or in a text file)</li>
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <b><tt><font color="#660000">--longKeyword=value</font></tt></b>&nbsp;&nbsp;&nbsp;&nbsp;
 or&nbsp;&nbsp;&nbsp;&nbsp; <b><tt><font color="#660000">-c=value</font></tt></b>&nbsp;&nbsp;&nbsp;
@@ -184,12 +182,12 @@ so, after compiling the executable for Lesson 3 (<b><tt><font color="#FF6666">ma
 lesson3</font></tt></b> at system prompt in Unix), you can try to type
 in</li>
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <b><tt><font color="#FF6666">SecondBitEA</font></tt></b>
 <br>and see the algorithm run as before (OneMax optimized on 8-bits bitstrings).
 But you can now type in
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <b><tt><font color="#FF6666">SecondBitEA --vecSize=100</font></tt></b>
 <br>and see the output of the optimization of OneMax on 100-bit bitstrings.
@@ -197,7 +195,7 @@ But you can now type in
 <li>
 Take a look at all available parameters by typing in</li>
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <b><tt><font color="#FF6666">SecondBitEA --help</font></tt></b>
 <br>or by going into the code: all parameter inputs have been grouped in
@@ -210,7 +208,7 @@ it contains the list of all actual parameters used, and can directly be
 used as parameter input file: change the file name (e.g. to <b><tt><font color="#660000">SecondBitEA.param</font></tt></b>),
 edit it, change whichever parameter you want, and type in</li>
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <b><tt><font color="#FF6666">SecondBitEA @SecondBitEA.param</font></tt></b>
 <br>and you will see all values that you defined into the file taken into
 account.
@@ -220,9 +218,12 @@ The <font color="#FF6600">priority</font> remains to the <font color="#FF6600">c
 so you can still override the values in the parameter file by giving a
 new value directly on the command-line.</li>
 </ul>
-<b><font color="#FF0000">Programming parameter input:</font></b>
-<br>the code of SeconBitEA provides examples of parameters reading. Lets
-take the example of the random number generator <b><tt><font color="#660000">seed</font></tt></b>.&nbsp;
+
+<hr WIDTH="50%"><b><font color="#000099">eoParser:</font><font color="#FF0000">
+Programming parameter input:</font></b>
+<br>The code of SeconBitEA provides examples of parameters reading. Lets
+take the example of the <a href="eoProgramming.html#random">random number
+generator </a><b><tt><font color="#660000">seed</font></tt></b>.&nbsp;
 Of course, you first need to <a href="SecondBitEA.html#parser_declare">declare
 an eoParser object</a> (it needs the standard argc and argv in its constructor).
 <ul>
@@ -240,7 +241,11 @@ that will be used to make the output of the parser look clean and ordered.</li>
 
 <li>
 Finally, you need to <a href="SecondBitEA.html#seed_assign">assign the
-value</a> to the variable seed</li>
+value</a> to the variable <b><tt><font color="#660000">seed</font></tt></b>.
+Note that the <b><tt><font color="#990000">value()</font></tt></b> method
+of eoParam returns a reference, so you can eventually modify its value
+somewhere else later (though of course this is not any useful for variable
+<b><tt><font color="#660000">seed</font></tt></b>!).</li>
 </ul>
 
 <hr WIDTH="100%">
@@ -296,16 +301,16 @@ an object whose </font><b><tt><font color="#660000">operator()</font></tt></b><f
 does what you want to the eoState that you will use as continuator in the
 algorithm.</font>
 <br>
-<hr WIDTH="100%"><a NAME="stop"></a><b><font color="#000099">eoCheckpoint:
-Stopping</font></b>
+<hr WIDTH="50%"><a NAME="stop"></a><b><font color="#000099">eoCheckpoint:
+</font><font color="#FF0000">Stopping</font></b>
 <br><font color="#000000">The </font><b><tt><font color="#3366FF">eoContinue</font></tt></b><font color="#000000">
 part of an </font><b><tt><font color="#3366FF">eoCheckpoint</font></tt></b><font color="#000000">
 is a single object, <a href="SecondBitEA.html#checkpoint">passed to the
 constructor</a>. If you want more that one stopping criterion, use an <a href="SecondBitEA.html#stop">eoCombinedContinue</a>
 object as described in <a href="eoLesson2.html#combinedContinue">Lesson2</a>.</font>
 <br>
-<hr WIDTH="100%">
-<br><a NAME="stats"></a><b><font color="#000099">eoCheckpoint: Computing
+<hr WIDTH="50%">
+<br><a NAME="stats"></a><b><font color="#000099">eoCheckpoint: </font><font color="#FF0000">Computing
 statistics</font></b>
 <br><font color="#000000">Statistics are computed using </font><b><tt><font color="#3366FF">eoStat</font></tt></b><font color="#000000">
 objects, i.e. functor objects whose </font><b><tt><font color="#660000">operator()</font></tt></b><font color="#000000">
@@ -322,9 +327,10 @@ objects. And this allows </font><b><tt><font color="#3366FF">eoStat</font></tt><
 to be used within </font><b><tt><font color="#3366FF">eoMonitor</font></tt></b><font color="#000000">
 object, and hence </font><b><font color="#FF6600">displayed</font></b><font color="#000000">
 to the user!</font>
-<p><b><font color="#FF0000">Available statistics</font></b>: Some widely
-used statistics are already available (and of course you can build you
-own!).
+<p><b><font color="#000099">Statistics: </font><font color="#FF0000">Available
+instances</font></b>
+<br>Some widely used statistics are already available (and of course you
+can build you own!).
 <ul>
 <li>
 <b><tt><font color="#3366FF">eoBestFitnessStat</font></tt></b> returns
@@ -344,28 +350,33 @@ diversity in the population: assuming that there is a distance function
 defined among individuals, it returns the average inter-individuals distance.
 See also Exercise 2.</li>
 </ul>
-<b><font color="#FF0000">Programming</font></b>: To compute some statistics
-within your algorithm, simply <a href="SecondBitEA.html#stat_declare">declare</a>
+<b><font color="#000099">Statistics: </font><font color="#FF0000">Adding
+to the checkpoint</font></b>
+<br>To compute more statistics when your algorithm is running, simply <a href="SecondBitEA.html#stat_declare">declare</a>
 the corresponding eoStat objects, and <a href="SecondBitEA.html#stat_pass">add</a>
 them to the <b><tt><font color="#3366FF">eoCheckpoint</font></tt></b> you
-use in the algorithm.
+use in the algorithm. But it hardly makes any sense if you don't <b><font color="#3366FF">monitor</font></b>
+those statistics (i.e. either displaying them on the screen, or storing
+them into a file): see next section!
 <p><b><font color="#FF0000">Note</font></b>: actually, there are 2 distinct
 classes that compute and give access to statistics: <b><tt><font color="#3366FF">eoStat</font></tt></b>and
 <b><tt><font color="#3366FF">eoSortedStat</font></tt></b>.
 As its name indicate, the latter is used whenever computing the statistics
 require a sorted population: not only this avoids to sort the population
 many times, but also it avoids changing the order of the population at
-all as eoSortedStat work on a temporary vector of fitnesses . But <font color="#FF6600">as
+all as <b><tt><font color="#3366FF">eoSortedStat</font></tt></b> objects
+work on a temporary vector of fitnesses . But <font color="#FF6600">as
 far as their usage is concerned, its makes no difference</font>.
 <br>
-<hr WIDTH="100%">
-<br><a NAME="monitor"></a><b><font color="#000099">eoCheckpoint: Displaying
+<hr WIDTH="50%">
+<br><a NAME="monitor"></a><b><font color="#000099">eoCheckpoint: </font><font color="#FF0000">Monitoring
 eoParameters</font></b>
 <br><font color="#000000">The </font><b><tt><font color="#3366FF">eoMonitor</font></tt></b><font color="#000000">
-objects are used to display a set of </font><b><tt><font color="#3366FF">eoValueParam</font></tt></b><font color="#000000">
+objects are used to display or store to a file a set of </font><b><tt><font color="#3366FF">eoValueParam</font></tt></b><font color="#000000">
 objects.</font>
-<p><b><font color="#FF0000">Available monitors</font></b>: A few monitors
-are available in the EO distribution:
+<p><b><font color="#000099">Monitors</font></b>: <b><font color="#FF0000">Available
+instances</font></b>
+<br>A few monitors are available in the EO distribution:
 <ul>
 <li>
 <b><tt><font color="#3366FF">eoStdoutMonitor</font></tt></b> displays its
@@ -394,15 +405,16 @@ at the end of the run, while it is otherwise kept (though it will be overwritten
 by next call to the same program).</li>
 </ul>
 
-<p><br><b><font color="#FF0000">Programming:</font></b> To display something
-while the algorithm is running, you need to <a href="SecondBitEA.html#monitor_declare">declare</a>
+<p><br><b><font color="#000099">Monitors</font></b>: <b><font color="#FF0000">Adding
+to the checkpoint</font></b>
+<br>To display something while the algorithm is running, you need to <a href="SecondBitEA.html#monitor_declare">declare</a>
 an <b><tt><font color="#3366FF">eoMonitor</font></tt></b> object, <a href="SecondBitEA.html#monitor_add">add</a>
 some objects (that must be <b><tt><font color="#3366FF">eoValueParam</font></tt></b>
 objects) to that monitor, and of course <a href="SecondBitEA.html#monitor_pass">add</a>
 the monitor to the <b><tt><font color="#3366FF">eoCheckpoint</font></tt></b>
 you use in the algorithm.
 <br>
-<hr WIDTH="100%">
+<hr WIDTH="50%">
 <br><a NAME="update"></a><b><font color="#000099">eoCheckpoint: Updating
 things</font></b>
 <br><font color="#000000">The last type of objects that&nbsp; </font><b><tt><font color="#3366FF">eoCheckpoint</font></tt></b><font color="#000000">
@@ -411,8 +423,8 @@ objects. You should simply encapsulate in an </font><b><tt><font color="#3366FF"
 anything you wish to do which does not fit into one of the above category.
 Note that their </font><b><tt><font color="#660000">operator() method</font></tt></b><font color="#000000">
 does not receive any argument.</font>
-<p><b><font color="#FF0000">Available monitors</font></b>: A few updaters
-are available in the EO distribution:
+<p><b><font color="#000099">Updater: </font><font color="#FF0000">Available
+instances</font></b>: A few updaters are available in the EO distribution:
 <ul>
 <li>
 <b><tt><font color="#3366FF">eoIncrementor</font></tt></b> A simple updater
@@ -430,7 +442,8 @@ be used to <font color="#FF6600">save</font> some existing <b><tt><font color="#
 generation count (e.g. every 4 generations) or based on the clock (e.g.
 every 5 seconds).</li>
 </ul>
-<b><font color="#FF0000">Programming:</font></b>
+<b><font color="#000099">Updater: </font><font color="#FF0000">Adding to
+the checkpoint</font></b>
 <br>A very simple example of using an <b><tt><font color="#3366FF">eoUpdater</font></tt></b>
 is given in the code for SecondBitEA: First <a href="SecondBitEA.html#param_declare">declare</a>
 an <b><tt><font color="#3366FF">eoValueParam</font></tt></b> object, then
@@ -468,8 +481,8 @@ otherwise the standard deviations won't make any sense here.</font></li>
 <li>
 <font color="#000000">Then run</font></li>
 
-<br><b><tt><font color="#660000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-exercise1 --vecSize=1000 --maxGen=1000</font></font></tt></b>
+<br><b><tt><font color="#660000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+exercise1 --vecSize=1000 --maxGen=1000</font></tt></b>
 <br><font color="#000000">to get a chance to see something happening before
 the program ends!</font></ul>
 
@@ -479,9 +492,9 @@ stat computation and test it. Thanks to send us the code!</font>
 <br>
 <hr WIDTH="100%">
 <br><b><font color="#000099"><font size=+2>Exercise 3:</font></font></b>
-<br><font color="#000000">Write the code for an </font><b><tt><font color="#3366FF"><font size=+1>eoGnuplot1DwithErrorbarsMonitor</font></font></tt></b><font color="#000000">
-that would take into account the standard deviations and display them as
-error-bars.</font>
+<br><font color="#000000">Write the code for an </font><b><tt><font color="#3366FF">eoGnuplotSecondStatMonitor</font></tt></b><font color="#000000">
+that would display the </font><b><tt><font color="#3366FF">eoSecondMomentStat</font></tt></b><font color="#000000">
+(i.e. take into account the standard deviations and display them as error-bars.</font>
 <br><font color="#000000">Again, send us the code afterwards, thanks :-)</font>
 <br>
 <hr WIDTH="100%">
@@ -489,32 +502,30 @@ error-bars.</font>
 <ul>
 <li>
 Value of program parameters can be set <b><font color="#FF6600">at run-time</font></b>
-using the <b><tt><font color="#3366FF"><font size=+1>eoParser</font></font></tt></b>
-class.</li>
+using the <b><tt><font color="#3366FF">eoParser</font></tt></b> class.</li>
 
 <li>
 <b><font color="#FF6600">Snapshots</font></b> of the algorithms can easily
 be <font color="#FF6600">saved</font> (and <font color="#FF6600">restored</font>)
-thanks to the <b><tt><font color="#3366FF"><font size=+1>eoState</font></font></tt></b>
-class.</li>
+thanks to the <b><tt><font color="#3366FF">eoState</font></tt></b> class.</li>
 
 <li>
-The <b><tt><font color="#3366FF"><font size=+1>eoCheckpoint</font></font></tt></b>
-mechanism let you <b><font color="#FF6600">do things every generation</font></b>
+The <b><tt><font color="#3366FF">eoCheckpoint</font></tt></b> mechanism
+let you <b><font color="#FF6600">do things every generation</font></b>
 without modifying existing algorithms, by simply writing the necessary
-code and encapsulating it into an object that <b><tt><font color="#3366FF"><font size=+1>eoCheckpoint</font></font></tt></b>
+code and encapsulating it into an object that <b><tt><font color="#3366FF">eoCheckpoint</font></tt></b>
 is aware of, that are at the moment the following:</li>
 
 <li>
 computing <b><font color="#FF6600">statistics</font></b>, <b><font color="#FF6600">displaying
 </font></b>parameters
 (e.g. statistics),&nbsp; <b><font color="#FF6600">saving</font></b> the
-<b><tt><font color="#3366FF"><font size=+1>(eo)State</font></font></tt></b>
+<b><tt><font color="#3366FF">(eo)State</font></tt></b>
 of the program.</li>
 </ul>
 In next lesson you will find out that many <a href="intro.html#adaptive">adaptive
 techniques</a> (the state-of-the-art in Evolutionary Computation) can easily
-be programmed through the <b><tt><font color="#3366FF"><font size=+1>eoUpdater</font></font></tt></b>
+be programmed through the <b><tt><font color="#3366FF">eoUpdater</font></tt></b>
 construct.
 <br>
 <hr WIDTH="100%"><a href="eoLesson2.html">Lesson 2</a> -
@@ -523,14 +534,14 @@ construct.
 <a href="eoTutorial.html">Main page</a> -
 <a href="eoTopDown.html">Algorithm-Based</a>
 - <a href="eoBottomUp.html">Component-Based</a> - <a href="eoProgramming.html">Hints</a>
--<b> <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
-documentation</a></font></b>
+-<b> <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
+documentation</a></font></font></b>
 <br>
 <hr>
 <address>
 <a href="mailto:Marc.Schoenauer@polytechnique.fr">Marc Schoenauer</a></address>
 
 <br><!-- Created: Fri Nov  3 18:49:12 CET 2000 --><!-- hhmts start -->Last
-modified: Mon Nov 27 8:49:12 CET 2000<!-- hhmts end -->
+modified: None of your business!<!-- hhmts end -->
 </body>
-</html>
+</html> 

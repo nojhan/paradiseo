@@ -69,6 +69,10 @@ object that is a sub-class of the corresponding STL vector class.</font></li>
 
 <br>&nbsp;
 <p>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
 <p><b><font color="#FF0000">Note:</font></b> <font color="#000000">Also,
 a non-templatized fitness can be </font><b><font color="#FF6600">compiled
 separately</font></b><font color="#000000"> (not done here) into an object
@@ -86,6 +90,8 @@ requires.</font></li>
 
 <br>&nbsp;
 <p>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
 <br>&nbsp;
 <br>&nbsp;
 <p><b><font color="#FF0000">Note:</font></b> <font color="#000000">In the
@@ -113,6 +119,10 @@ call to <a href="../../doc/html/class_eopop.html#a2">pop.append()</a> function
 
 <br>&nbsp;
 <p>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
 <p><b><font color="#FF0000">Note</font><font color="#CC33CC">: </font></b><font color="#000000">Don't
 forget to </font><b><font color="#CC0000">evaluate the population</font></b><font color="#000000">:
 the eoPop has no idea of the eval function, so it has to be done from outside!!!</font>
@@ -263,7 +273,7 @@ the population in [-2,-1] and the other half in [1,2], with and without
 the segment and arithmetic crossovers (and for large values of VEC_SIZE,
 the size of the vectors). Amazing, isn't it! Explain that result.</font>
 <p><a NAME="Exercise3"></a><b><font size=+2><font color="#000099">Exercise
-3:&nbsp; </font><font color="#FF0000">replacement</font></font></b>
+3:&nbsp; </font><font color="#FF0000">full selection/replacement</font></font></b>
 <br><font color="#000000">You can now twiddle the number of offspring that
 will be generated from the parents. But of course you need to adjust the
 replacement to keep a constant population size.</font>
@@ -281,6 +291,14 @@ into an eoSelectPerc object. For instance, try</font></li>
 eoSelectPerc&lt;Indi> select(selectOne,2.0)</font></tt></b>
 <br><font color="#000000">to generate twice as many offspring as there
 are parents.</font>
+<br><font color="#000000">You can also use the other encapsulator that
+takes as second argument an absolute number (e.g. if you want to generate
+2 offspring whatever the population size):</font>
+<br><b><tt><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+eoSelectNumber&lt;Indi> select(selectOne,2)</font></tt></b>
+<br><font color="#000000">Or you can use the <a href="eoEngine.html#howmany">HowMany</a>
+paradigm and the </font><b><tt><font color="#009900">eoSelectMany </font></tt></b><font color="#000000">to
+do either one depending on some command-line input (advanced).</font>
 <li>
 <font color="#000000">To </font><font color="#FF6600">keep a constant population
 size</font><font color="#000000">, you can use either the </font><b><tt><font color="#009900">eoCommaReplacement</font></tt></b><font color="#000000">
@@ -297,21 +315,14 @@ or
 Strategies</a>.
 <li>
 <font color="#FF0000">Question</font><font color="#000000">: what do you
-get if you have use a rate of 1/POP_SIZE for the selection, and an </font><b><tt><font color="#009900">eoPlusReplacement</font></tt></b><font color="#000000">
+get if you select 1 offspring only, and an </font><b><tt><font color="#009900">eoPlusReplacement</font></tt></b><font color="#000000">
 strategy? Yes, you get almost the replace_worst Steady-State GA, though
-rather inefficient, as you sort the population at every generation, which
-could be avoided - and will be in a later lesson).</font></li>
+rather inefficient, as you sort the population at every generation.</font></li>
 
 <li>
-<font color="#FF0000">Homework</font><font color="#000000">: Write the
-</font><b><tt><font color="#009900">eoCommaPlusReplacement</font></tt></b><font color="#000000">
-that would start by taking the best of the offspring, and if some are still
-missing to keep the population size constant, take the best of the parents.
-Write the </font><b><tt><font color="#009900">eoConservativeReplacement</font></tt></b><font color="#000000">
-that starts by taking a percentage of the parents (the best ones) and then
-adds the best from the offspring. In both cases, </font><font color="#FF6600">send
-use the code </font><font color="#000000">as we haven't done that yet (and
-hence there is no solution available at the moment - Nov. 29 :-)</font></li>
+<font color="#FF0000">Hint</font><font color="#000000">: there are a few
+Steady-State replacement strategies already there in EO. See the <a href="eoEngine.html#SSGA">Replacement
+page</a>.</font></li>
 </ul>
 <font color="#FF0000">Remember</font><font color="#000000">: all solutions
 are in the same sub-directory of the Tutorial dir than the examples (i.e.

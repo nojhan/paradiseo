@@ -42,21 +42,163 @@ helper classes that are used within selection and replacement procedures
 are presented.
 <p>
 <hr WIDTH="100%"><a NAME="selection"></a><b><font color="#000099"><font size=+2>Selection</font></font></b>
-<br>&nbsp;
-<br>&nbsp;
+<p>The very beginning of the generation loop is the selection phase, where
+some individuals from the population are chosen to become the parents,
+to be later modified by the variation operators and become the offspring.
+This is the first step of the <font color="#009900">artificial Darwinism</font>,
+where the <i><font color="#FF6600">fittest individuals are allowed to reproduce</font></i>.
+<br>Conceptually, there are two distinct ways to choose the lucky ones:
+one by one from the very same population (i.e. with replacement), which
+means that at the extreme the same individual can be chosen every time;
+or as a whole, in some sort of batch procedure. Of course, repeated selection
+of one individual results in a batch selection!
+<p>There are hence two basic EO classes for selection: <font color="#009900">eoSelectOne</font>
+and <font color="#009900">eoSelect</font>, with different interfaces.
+<br>
+<hr WIDTH="50%">
+<br><b><font color="#000099">eoSelectOne: </font><font color="#FF0000">The
+interface</font></b>
+<p>The abstract class for selection of a single individual from a population
+is <font color="#009900">eoSelectOne</font>, and the interface for its
+<tt><font color="#993300">operator()</font></tt>
+is
+<center>
+<p><b><tt><font color="#993300">const EOT &amp; operator()(const eoPop&lt;EOT>&amp;
+_parents)</font></tt></b></center>
+
+<p>which you could have guessed from the inheritance tree for class <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoselectone.html">eoSelectOne</a></font></font></b>.,
+as you see there that <font color="#009900">eoSelectOne</font> derives
+from <tt><font color="#993300">class eoUF&lt;const eoPop&lt;EOT>&amp;,
+const EOT&amp;></font></tt>.
+<br>This means that it takes <font color="#FF6600">1 population</font>
+(without the right to modify it - see the <b><tt><font color="#993300">const</font></tt></b>
+keyword in argument) and returns a const reference to an individual (again,
+the <b><tt><font color="#993300">const</font></tt></b> keyword ensures
+that nothing will happen to the individual in the population - remember
+it returns a reference).
+<br>
+<hr WIDTH="50%">
+<br><b><font color="#000099">eoSelectOne: </font><font color="#FF0000">Instances</font></b>
+<ul>
+<li>
+<b><tt><font color="#009900">eoDetTournamentSelect</font></tt></b> uses
+the <a href="#detTournament">(deterministic) tournament</a> to choose one
+individual. Its constructor has one parameter, the tournament size (integer
+>= 2).</li>
+
+<li>
+<b><tt><font color="#009900">eoStochTournamentSelect</font></tt></b> uses
+the <a href="#stochTournament">binary stochastic tournament</a> to choose
+one individual. Its constructor has one parameter, the tournament rate
+(real in [0.5,1]).</li>
+
+<li>
+&nbsp;<b><tt><font color="#009900">eoProportionalSelect</font></tt></b>
+is the original <font color="#FF6600">roulette wheel</font> selection:
+each parent is selected with a probability proportional to its fitness.</li>
+
+<li>
+<b><tt><font color="#009900">eoRandomSelect</font></tt></b> is the <font color="#FF6600">random</font>
+selection and should give bad results! At the moment, it selects one individual
+uniformly, but it would be easy to use any probability distribution.</li>
+</ul>
+
+<hr WIDTH="50%">
+<br><b><font color="#000099">eoSelect: </font><font color="#FF0000">The
+interface</font></b>
+<p>The abstract class for batch selection of a&nbsp; whole set of individuals
+from a population is <font color="#009900">eoSelect</font>, and the interface
+for its
+<tt><font color="#993300">operator()</font></tt> is
+<center>
+<p><b><tt><font color="#993300">void operator()(const eoPop&lt;EOT>&amp;
+_source, eoPop&lt;EOT>&amp; _dest)</font></tt></b></center>
+
+<p>which you could have guessed from the inheritance tree for class <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoselect.html">eoSelect</a></font></font></b>.,
+as you see there that <font color="#009900">eoSelect</font> derives from
+<tt><font color="#993300">class
+eoBF&lt;const eoPop&lt;EOT>&amp;, eoPop&lt;EOT>&amp;, void></font></tt>.
+<br>This means that it takes <font color="#FF6600">2 populations</font>,
+and fills the second one with individuals from the first one without modifying
+it (see the <b><tt><font color="#993300">const</font></tt></b> keyword).
+This raises two questions:
+<ul>
+<li>
+How does it know how many individuals to select?</li>
+
+<li>
+How to use repeated selection of one individual (see above the <font color="#009900">eoSelectOne</font>
+class)?</li>
+</ul>
+
+<hr WIDTH="50%">
+<br><b><font color="#000099">eoSelect: </font><font color="#FF0000">HowMany</font></b>
+<p>There are two ways an&nbsp; can derive the number of individuals it
+has to select: either it is a fixed number, or it is some percentage of
+the source population size (any positive real number). In both case, this
+must be passed to the constructor. In most instances, however, the constructor
+will accept a real number (double) and a boolean indicating whether this
+real number should be used as an absolute integer or as a rate, thanks
+to the <a href="#howmany">eoHowMany</a> class.
+<p><b><font color="#FF0000">Note</font></b>: an <font color="#009900">eoSelect</font>
+can select more individuals than there are in the original population.
+It is the job of the <font color="#009900">replacement</font> to ensure
+that the population size does not grow along the generations.
 <p>
+<hr WIDTH="50%"><b><font color="#000099">eoSelectMany: </font><font color="#FF0000">Encapsulating
+eoSelectOne</font></b>
+<p>It is clear that repeated selection of a single individual is a way
+to do batch selection. This is why it is possible to encapsulate an object
+of class <font color="#009900">eoSelectOne</font> into an object of class
+<font color="#009900">eoSelect</font>
+using the class <font color="#009900">eoSelectMany</font>. Class <font color="#009900">eoSelectMany</font>
+is derived from class <font color="#009900">eoSelect</font> and takes in
+its constructor an <font color="#009900">eoSelectOne</font> (plus the number
+of individuals it should select, according to the <a href="#howmany">eoHowMany</a>
+paradigm).
+<p><b><font color="#FF0000">Note</font></b>: some procedures for selecting
+a single individual require some pre-processing of the whole population
+that takes place before any selection, and will be repeated identically
+for every individual. The encapsulation of an&nbsp; into an&nbsp; allows
+to call such technical processing only once through the use of method setup
+of class . This method does nothing by default, but is mandatory
+<br>
+<hr WIDTH="50%">
+<br><b><font color="#000099">eoSelect: </font><font color="#FF0000">Other
+instances</font></b>
+<ul>
+<li>
+<b><tt><font color="#009900">eoDetSelect</font></tt></b> selects individuals
+<b><font color="#FF6600">deterministically</font></b>,
+i.e. starting from the best ones down to the worse ones. If the total number
+to select is less than the size of the source populations, the best individuals
+are selected once. If more individuals are needed after reaching the bottom
+of the population, then the selection starts again at top. It the total
+number required is N times that of the source size, all individuals are
+selected exactly N times.</li>
+</ul>
+No other instances of <font color="#009900">eoSelect</font> that are not
+encapsualtions of <font color="#009900">eoSelectOne</font> procedures are
+avaiable as of today (Jan. 4 2001).
+<br>
 <hr WIDTH="100%">
 <br><a NAME="replacement"></a><b><font color="#000099"><font size=+2>Replacement</font></font></b>
-<p>The replacement phase takes place <font color="#FF6600">after the birth
-of all offspring</font> through variation operators. The idea is to close
-the generation loop, i.e. to end up with a population of individuals that
-will be the initial population of next generation. That population will
-be <font color="#FF6600">built upon the old parents and the new-born offspring</font>.
-In all algorithms that come up with EO, the <font color="#FF6600">population
-size</font> is supposed to be <font color="#FF6600">constant</font> from
-one generation to the next one - though nothing stops you from writing
-an algorithm with varying population size.
-<p><b><font color="#000099">Replacement: </font><font color="#FF0000">The
+<p>The replacement phase takes plac<font color="#000000">e after the birth
+of all offspring through </font>variation operators. This is the second
+step of the <font color="#009900">artificial Darwinism</font>, where the
+<i><font color="#FF6600">fittest
+individuals are allowed to survive</font></i>.
+<br>It can also be viewed on the algorithmic side as closing the generation
+loop, i.e. building the population that will be the initial population
+of next generation. That population will be <font color="#FF6600">built
+upon the old parents and the new-born offspring</font>. In all algorithms
+that come up with EO, the <font color="#FF6600">population size</font>
+is supposed to be <font color="#FF6600">constant</font> from one generation
+to the next one - though nothing stops you from writing an algorithm with
+varying population size.
+<br>
+<hr WIDTH="50%">
+<br><b><font color="#000099">Replacement: </font><font color="#FF0000">The
 interface</font></b>
 <p>The abstract class for replacement procedures is the functor class
 <font color="#009900">eoReplacement</font>,
@@ -75,7 +217,9 @@ void></font></tt>.
 and is free to modify both, but the resulting population should be placed
 in the first argument (usually called_parents) to close the loop and go
 to next generation.
-<p><b><font color="#000099">Replacement: </font><font color="#FF0000">Instances</font></b>
+<br>
+<hr WIDTH="50%">
+<br><b><font color="#000099">Replacement: </font><font color="#FF0000">Instances</font></b>
 <ul>
 <li>
 <b><tt><font color="#009900">eoGenerationalReplacement </font></tt></b>This
@@ -86,22 +230,27 @@ that offspring and parents are of the same size (but does not check!).</li>
 
 <br>&nbsp;
 <li>
-<b><tt><font color="#009900">eoMergeReduce</font></tt></b> This is one
-the basic types of replacement in EO. It has two major steps, <font color="#FF6600">merging</font>
-both populations of parents and offspring, and <font color="#FF6600">reducing</font>
-this big population to the right size. It <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomegereduce.html">contains
+<a NAME="SSGA"></a><b><tt><font color="#009900">eoMergeReduce</font></tt></b>
+This is one the basic types of replacement in EO. It has two major steps,
+<font color="#FF6600">merging</font> both populations of parents and offspring,
+and <font color="#FF6600">reducing</font> this big population to the right
+size. It <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomegereduce.html">contains
 two objects</a></font></font> of respective types <b><font color="#009900"><a href="#merge">eoMerge</a></font></b>
 and <b><font color="#009900"><a href="#reduce">eoReduce</a></font></b>
 and you can probably guess what each of them actually does :-)</li>
 
-<p><br>Available <font color="#FF6600">instances of eoMergeReduce</font>
-replacement include
+<br>&nbsp;
+<p>&nbsp;
+<p>Available <font color="#FF6600">instances of eoMergeReduce</font> replacement
+include
 <ul>
 <li>
 <b><tt><font color="#009900">eoCommaReplacement</font></tt></b>, one of
 the two standard strategies in <font color="#000000">Evolution Strategies</font>,
-<b><font color="#FF6600">selects the best offspring</font></b>. It is an
-<b><tt><font color="#993300">eoMergeReduce(eoNoElitism, eoTruncate)</font></tt></b>.</li>
+<b><font color="#FF6600">selects
+the best offspring</font></b>. It is an
+<b><tt><font color="#993300">eoMergeReduce(eoNoElitism,
+eoTruncate)</font></tt></b>.</li>
 
 <li>
 <b><tt><font color="#009900">eoPlusReplacement</font></tt></b>, the other
@@ -112,9 +261,8 @@ eoTruncate)</font></tt></b>.</li>
 
 <li>
 <b><tt><font color="#009900">eoEPReplacement</font></tt></b>, used in th<font color="#000000">e
-Evolutionary
-Programming historical </font>algorithm, does an EP stochastic tournament
-among parents + offspring. It is an <b><tt><font color="#993300">eoMergeReduce(eoPlus,
+Evolutionary Programming historical </font>algorithm, does an EP stochastic
+tournament among parents + offspring. It is an <b><tt><font color="#993300">eoMergeReduce(eoPlus,
 eoEPReduce)</font></tt></b> and its constructor requires as argument T,
 the size of the tournament (unsigned int).</li>
 </ul>
@@ -152,7 +300,9 @@ Additional parameter (in the constructor) is the tournament rate, a <b><tt><font
 <li>
 <b><tt><font color="#009900">eoSurviveAndDie</font></tt></b> is</li>
 </ul>
-<b><font color="#000099">Replacement: </font><font color="#FF0000">Adding
+
+<hr WIDTH="50%">
+<br><b><font color="#000099">Replacement: </font><font color="#FF0000">Adding
 (weak) elitism</font></b>
 <p>You can add what is called <font color="#FF6600">weak elitism</font>
 to any replacement by encapsulating it into an <b><tt><font color="#009900">eoWeakElitismReplacement</font></tt></b>
@@ -170,11 +320,13 @@ can be any replacement object):
 <br>and use now replace as your replacement procedure within your algorithm.
 <p><font color="#FF0000">Note</font>: of course, adding weak elitism to
 an elitist replacement makes no sense - but will not harm either :-)
-<p><b><font color="#000099">Replacement: </font><font color="#FF0000">Test
+<br>
+<hr WIDTH="50%">
+<br><b><font color="#000099">Replacement: </font><font color="#FF0000">Test
 file</font></b>
 <p>The file <b><tt><font color="#993300">t-eoReplacement</font></tt></b>
 in the <b><font color="#FF6600">test directory</font></b> implements all
-above replacmenet procedures within a very simple and easy-to-monitor Dummy
+above replacement procedures within a very simple and easy-to-monitor Dummy
 EO class.
 <p>
 <hr WIDTH="100%">
@@ -239,10 +391,10 @@ parameter R should be in [0.5,1]. It is implemented in the <b><tt><font color="#
 class, a sub-class of eoSelectOne, as well as in the <b><tt><font color="#009900">eoStochTournamentTruncate</font></tt></b>
 class that repeatidly removes from the population the "winner" of the inverse
 tournament.&nbsp; These objects use the C++ function determinitic_tournament
-in&nbsp; <a href="../../doc/html/selectors_h-source.html">selectors.h</a>.<br>
-<b><font color="#FF0000">Note</font></b>: A stochastic tournament with
-rate 1.0 is strictly identical to a deterministic tournament of size 2.</li>
+in&nbsp; <a href="../../doc/html/selectors_h-source.html">selectors.h</a>.</li>
 
+<br><b><font color="#FF0000">Note</font></b>: A stochastic tournament with
+rate 1.0 is strictly identical to a deterministic tournament of size 2.
 <li>
 <a NAME="EPTournament"></a><b><tt><font color="#009900">EP Tournament</font></tt></b>
 of size T is a global tournament: it works by assigning a score to all
@@ -252,12 +404,13 @@ Everytime I wins, its score in incremented by 1 (and by 0.5 for every draw).
 The individuals are then selected deterministically based on their scores
 from that procedure. The <b><tt><font color="#009900">EP Tournament</font></tt></b>
 is implemented in the&nbsp; <b><tt><font color="#009900">eoEPReduce</font></tt></b>
-truncation method used in some replacement procedures.&nbsp;<br>
-<b><font color="#FF0000">Note</font></b>: whereas both the determinitic
+truncation method used in the <b><tt><font color="#009900">eoEPReplacement</font></tt></b>
+procedure.</li>
+
+<br><b><font color="#FF0000">Note</font></b>: whereas both the determinitic
 and the stochastic tournament select one individual, the EP tournament
 is designed for batch selection. Of course it could be used to select a
-single individual, but at a rather high computational cost.</li>
-</ul>
+single individual, but at a rather high computational cost.</ul>
 
 <p><br>
 <hr WIDTH="100%">
@@ -266,7 +419,9 @@ populations</font></font></b>
 <p>In replacement procedures, one frequently needs to merge two populations
 (computed form old parents and new-born offspring). Classes derived from
 the abstract class eoMerge are written for that purpose.
-<p><b><font color="#000099">eoMerge</font></b>: <b><font color="#FF0000">interface</font></b>
+<br>
+<hr WIDTH="50%">
+<br><b><font color="#000099">eoMerge</font></b>: <b><font color="#FF0000">interface</font></b>
 <br>The abstract class for merging procedures is the functor class
 <font color="#009900">eoMerge</font>,
 and the interface for its <tt><font color="#993300">operator()</font></tt>
@@ -282,7 +437,9 @@ void></font></tt>.
 <br>This means that it takes <font color="#FF6600">2 populations</font>
 and modifies the seond one by adding some individuals from the first one
 (which is supposed to remain <b><tt><font color="#993300">const</font></tt></b>ant).
-<p><b><font color="#000099">eoMerge</font></b>: <b><font color="#FF0000">instances</font></b>
+<br>
+<hr WIDTH="50%">
+<br><b><font color="#000099">eoMerge</font></b>: <b><font color="#FF0000">instances</font></b>
 <br>Available <font color="#FF6600">instances of eoMerge</font> objects
 are <b><tt><font color="#009900">eoPlus</font></tt></b>, that simply adds
 the parents to the offspring, or <b><tt><font color="#009900">eoElitism</font></tt></b>,
@@ -296,7 +453,9 @@ populations</font></font></b>
 <p>The other useful component of replacement procedures, <font color="#009900">eoReduce</font>,
 <font color="#FF6600">kills
 some individuals</font> from a given population.
-<p><b><font color="#000099">eoReduce</font></b>: <b><font color="#FF0000">interface</font></b>
+<br>
+<hr WIDTH="50%">
+<br><b><font color="#000099">eoReduce</font></b>: <b><font color="#FF0000">interface</font></b>
 <br>The abstract class for reducing procedures is the functor class
 <font color="#009900">eoReduce</font>,
 and the interface for its <tt><font color="#993300">operator()</font></tt>
@@ -311,7 +470,9 @@ as you see there that <font color="#009900">eoReduce</font> derives from
 int, void></font></tt>.
 <br>An <font color="#009900">eoReduce</font> shoud take a<font color="#FF6600">
 population</font> and shrink it to the required size.
-<p><b><font color="#000099">eoReduce</font></b>: <b><font color="#FF0000">instances</font></b>
+<br>
+<hr WIDTH="50%">
+<br><b><font color="#000099">eoReduce</font></b>: <b><font color="#FF0000">instances</font></b>
 <br>Available <font color="#FF6600">instances of eoReduce</font> are
 <ul>
 <li>
@@ -347,7 +508,6 @@ the population. It requires the rate of the tournament (<b><tt><font color="#993
 as parameter in the constructor (default is 0.75).</li>
 </ul>
 
-<p><br>
 <hr WIDTH="100%">
 <br><a NAME="howmany"></a><b><font color="#000099"><font size=+2>eoHowMany:
 Choosing a number of individuals</font></font></b>
@@ -366,7 +526,9 @@ It receives a <b><tt><font color="#993300">double</font></tt></b>, and
 a <b><tt><font color="#993300">boolean</font></tt></b> indicating whether
 that double is to be treated <b><font color="#FF6600">as a rate</font></b>
 or as <b><font color="#FF6600">an absolute (unisgned) interger.</font></b>
-<p><b><font color="#000099">eoHowMany</font></b>: <b><font color="#FF0000">interface</font></b>
+<br>
+<hr WIDTH="50%">
+<br><b><font color="#000099">eoHowMany</font></b>: <b><font color="#FF0000">interface</font></b>
 <br>The class interface for its <tt><font color="#993300">operator()</font></tt>
 is
 <center>

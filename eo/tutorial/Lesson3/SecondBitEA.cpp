@@ -184,11 +184,9 @@ void main_function(int argc, char **argv)
   ////////////////////////////////////
 // SELECT
   // The robust tournament selection
-  eoDetTournament<Indi> selectOne(tSize);       // tSize in [2,POPSIZE]
+  eoDetTournamentSelect<Indi> selectOne(tSize);       // tSize in [2,POPSIZE]
   // is now encapsulated in a eoSelectPerc (stands for Percentage)
   eoSelectPerc<Indi> select(selectOne); 
-  // or eoSelectPerc<Indi> select(selectOne, rate); 
-  // but by default rate==1
 
 // REPLACE
   // And we now have the full slection/replacement - though with 

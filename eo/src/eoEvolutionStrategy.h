@@ -73,7 +73,7 @@ class eoEvolutionStrategy: public eoAlgo<EOT>
      eoPlus<EOT>    plus;
      eoNoElitism<EOT> noElitism;
      eoTruncate<EOT> truncate;
-     eoSelectRandom<EOT> randomSelect;
+     eoRandomSelect<EOT> randomSelect;
      eoSelectPerc<EOT> selectPerc;
      eoInplaceTransform2<EOT> transform;
 

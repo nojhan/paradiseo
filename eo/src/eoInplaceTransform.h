@@ -123,7 +123,7 @@ template<class Chrom> class eoInplaceTransform1 : public eoTransform<Chrom>
     
  private:
   eoOpSelector<Chrom>& opSel;
-  eoSelectRandom<Chrom> defaultSelect;
+  eoRandomSelect<Chrom> defaultSelect;
   eoSelectOne<Chrom>&  select;
   
 };
@@ -181,7 +181,7 @@ template<class Chrom> class eoInplaceTransform2 : public eoTransform<Chrom>
     
  private:
   eoGOpSelector<Chrom>& opSel;
-  eoSelectRandom<Chrom> defaultSelect;
+  eoRandomSelect<Chrom> defaultSelect;
   eoSelectOne<Chrom>&  select;
   
 };

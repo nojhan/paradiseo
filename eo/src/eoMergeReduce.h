@@ -94,5 +94,22 @@ class eoCommaReplacement : public eoMergeReduce<EOT>
         eoTruncate<EOT> truncate;
 };
 
+/**
+EP type of replacement strategy: first add parents to population, 
+   then truncate using EP tournament
+*/
+template <class EOT>
+class eoEPReplacement : public eoMergeReduce<EOT>
+{
+public :
+  eoEPReplacement(int _tSize) : eoMergeReduce<EOT>(plus, truncate), truncate(_tSize)
+    //  {truncate.setSize(_tSize);}
+  {}
+private :
+  eoPlus<EOT> plus;
+  eoEPReduce<EOT> truncate;
+};
+
+
 
 #endif

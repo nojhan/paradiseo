@@ -95,7 +95,7 @@ void main_function(int argc, char **argv)
   ////////////////////////////////////
 // SELECT
   // The robust tournament selection
-  eoDetTournament<Indi> selectOne(T_SIZE);       // T_SIZE in [2,POP_SIZE]
+  eoDetTournamentSelect<Indi> selectOne(T_SIZE);       // T_SIZE in [2,POP_SIZE]
   // is now encapsulated in a eoSelectPerc (entage)
   eoSelectPerc<Indi> select(selectOne);// by default rate==1
 

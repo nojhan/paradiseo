@@ -103,6 +103,7 @@ cout << "Initial parents (odd)\n" << orgParents << "\n And initial offsprings (e
 // the replacement procedures under test
     eoGenerationalReplacement<Dummy> genReplace;
     eoPlusReplacement<Dummy> plusReplace;
+    eoEPReplacement<Dummy> epReplace(tSize);
     eoCommaReplacement<Dummy> commaReplace;
     eoWeakElitistReplacement<Dummy> weakElitistReplace(commaReplace);
     // the SSGA replacements
@@ -127,6 +128,15 @@ cout << "Parents (originally odd)\n" << parents << "\n And offsprings (orogonall
     cout << "eoPlusReplacement\n";
     cout << "=================\n";
     plusReplace(parents, offspring);
+cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << endl;
+
+    // EP (proche d'un PLUS
+    parents = orgParents;
+    offspring = orgOffspring;
+
+    cout << "eoEPReplacement\n";
+    cout << "===============\n";
+    epReplace(parents, offspring);
 cout << "Parents (originally odd)\n" << parents << "\n And offsprings (originally even)\n" << offspring << endl;
 
     // Comma

@@ -91,7 +91,7 @@ template<class EOT> class eoSGATransform : public eoTransform<EOT>
 };
 
 /*****************************************************************************
- * eoSDynGATransform: transforms a population using genetic operators.
+ * eoDynSGATransform: transforms a population using genetic operators.
  * It is the Dynamic version of the above eoSGATransform
  *    i.e. the operators probabilities can be passed as an eoValueParam, 
  *    and hence can be modified from outside
@@ -109,15 +109,15 @@ template<class EOT> class eoDynSGATransform : public eoTransform<EOT>
       mutate(_mutate), 
       mutationProbaHolder(_mProba), mutationProba(mutationProbaHolder) {}
 
-  /// This constructor receives references 
+  /// This constructor receives pointers
   //  these will usually be some eoValueParam<double>.value()
-  // the ...Holder will bever be used in this object
-  eoDynSGATransform(eoQuadraticOp<EOT>& _cross, double& _cProbaRef, 
-		 eoMonOp<EOT>& _mutate, double& _mProbaRef)
+  //  hence the ...Holder data will bever be used in this case
+  eoDynSGATransform(eoQuadraticOp<EOT>& _cross, double* _cProbaRef, 
+		 eoMonOp<EOT>& _mutate, double* _mProbaRef)
     : cross(_cross),
-      crossoverProbaHolder(0), crossoverProba(_cProbaRef),
+      crossoverProbaHolder(0), crossoverProba(*_cProbaRef),
       mutate(_mutate), 
-      mutationProbaHolder(0), mutationProba(_mProbaRef) {}
+      mutationProbaHolder(0), mutationProba(*_mProbaRef) {}
 
 
   /**
@@ -146,8 +146,11 @@ template<class EOT> class eoDynSGATransform : public eoTransform<EOT>
 	          
       }
   };
-    
- private:
+  // accessors - mainly for EASEA
+  double & PCrossHandle() { return crossoverProba;}    
+  double & PMutHandle() { return mutationProba;}    
+
+private:
   // difference with eoSGATransform: the operator probabilities 
   // they can be passed by reference or by value.
   // hence we need here to use a reference, and to eventually store a value
