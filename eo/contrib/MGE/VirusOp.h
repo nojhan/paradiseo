@@ -18,7 +18,7 @@
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
-CVS Info: $Date: 2001-05-10 12:16:00 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/MGE/Attic/VirusOp.h,v 1.1 2001-05-10 12:16:00 jmerelo Exp $ $Author: jmerelo $
+CVS Info: $Date: 2001-05-17 10:08:25 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/contrib/MGE/VirusOp.h,v 1.1 2001-05-17 10:08:25 jmerelo Exp $ $Author: jmerelo $
 */
 
 #ifndef VirusOp_h
@@ -33,9 +33,7 @@ CVS Info: $Date: 2001-05-10 12:16:00 $ $Header: /home/nojhan/dev/eodev/eodev_cvs
 #include <utils/eoRNG.h>
 #include <MGE/eoVirus.h>
 
-/** eoBitFlip --> changes 1 bit
-\class eoBitBitFlip eoBitOp.h ga/eoBitOp.h
-\ingroup bitstring
+/** VirusBitFlip --> changes 1 bit
 */
 
 template<class FitT>
@@ -82,6 +80,46 @@ class VirusMutation: public eoMonOp<eoVirus<FitT> > {
 	return true;
   }
 };
+
+/// Works for 1-bit virus; shifts the one to the right or left
+template<class FitT>
+class VirusShiftMutation: public eoMonOp<eoVirus<FitT> > {
+ public:
+
+  /// Ctor
+  VirusShiftMutation( ) {};
+
+  /// The class name.
+  virtual string className() const { return "VirusShiftMutation"; };
+
+  /**
+   * Change one bit.
+   * @param chrom The cromosome which one bit is going to be changed.
+   */
+  bool operator()(eoVirus<FitT>& _chrom) {
+	// Search for virus bits
+	eoBooleanGenerator gen;
+	for ( unsigned i = 0; i < _chrom.size(); i ++ ) {
+	  if ( _chrom.virusBit(i) ) {
+		if ( gen() ) {
+		  if ( i + 1 < _chrom.size() ) {
+			_chrom.virusBitSet(i+1,true);
+			_chrom.virusBitSet(i, false);
+		  }
+		} else {
+		  if ( i - 1 > 0 ) {
+			_chrom.virusBitSet(i-1,true);
+			_chrom.virusBitSet(i, false);
+		  }
+		}
+	  }
+	}
+	return true;
+  }
+
+ private:
+};
+
 
 template<class FitT>
 class VirusTransmission: public eoBinOp<eoVirus<FitT> > {

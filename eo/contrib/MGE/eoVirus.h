@@ -18,7 +18,7 @@
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
-CVS Info: $Date: 2001-05-10 12:16:00 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/MGE/Attic/eoVirus.h,v 1.1 2001-05-10 12:16:00 jmerelo Exp $ $Author: jmerelo $
+CVS Info: $Date: 2001-05-17 10:08:25 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/contrib/MGE/eoVirus.h,v 1.1 2001-05-17 10:08:25 jmerelo Exp $ $Author: jmerelo $
 */
 
 #ifndef eoVirus_h

@@ -41,7 +41,7 @@ template <class FitT>
 class eoInitVirus: public eoInit< eoVirus<FitT> > {
 public:
 
-  eoInitVirus(unsigned _combien, eoRndGenerator<bool>& _generator)
+  eoInitVirus(unsigned _combien, eoRndGenerator<bool>& _generator )
 	: combien(_combien), generator(_generator) {}
   
   virtual void operator()( eoVirus<FitT>& chrom)
@@ -61,4 +61,26 @@ private :
   eoSTLF<bool> generator;
 };
 
+/// Inits the virus with one bit to the left set to one
+template <class FitT>
+class eoInitVirus1bit: public eoInit< eoVirus<FitT> > {
+public:
+
+  eoInitVirus1bit(unsigned _combien, eoRndGenerator<bool>& _generator )
+	: combien(_combien), generator(_generator) {}
+  
+  virtual void operator()( eoVirus<FitT>& chrom)
+  {
+	chrom.resize(combien);
+	chrom.virResize(combien);
+	std::generate(chrom.begin(), chrom.end(), generator);
+	chrom.virusBitSet(0, true );
+	chrom.invalidate();
+  }
+  
+private :
+  unsigned combien;
+  /// generic wrapper for eoFunctor (s), to make them have the function-pointer style copy semantics
+  eoSTLF<bool> generator;
+};
 #endif

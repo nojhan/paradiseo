@@ -33,7 +33,7 @@ int main()
   eoPop<Chrom> pop; 
 
   // Evaluation
-  RoyalRoad<Chrom> rr( 4 ); 
+  RoyalRoad<Chrom> rr( 8 ); 
   eoEvalFuncCounter<Chrom> eval( rr );
 
   eoInitVirus<float> random(CHROM_SIZE, gen); 
@@ -58,10 +58,10 @@ int main()
   eoUBitXover<Chrom> xover;
   eoProportionalOp<Chrom> propSel;
   eoGeneralBreeder<Chrom> breeder( lottery, propSel );
-  propSel.add(vm, 0.8);
+  propSel.add(vm, 0.1);
   propSel.add(vf, 0.05);
   propSel.add(vt, 0.05);
-  propSel.add(xover, 0.1);
+  propSel.add(xover, 0.8);
   
   // Replace a single one
   eoCommaReplacement<Chrom> replace;
