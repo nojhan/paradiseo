@@ -171,7 +171,7 @@ t_eoCheckpointing_LDADD = $(LDADDS)
 
 ###############################################################################
 
-t_eoExternalEO_SOURCES = t-eoCheckpointing.cpp
+t_eoExternalEO_SOURCES = t-eoExternalEO.cpp
 t_eoExternalEO_DEPENDENCIES = $(DEPS) 
 t_eoExternalEO_LDFLAGS = -lm 
 t_eoExternalEO_LDADD = $(LDADDS) 
