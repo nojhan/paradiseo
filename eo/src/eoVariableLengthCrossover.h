@@ -18,10 +18,8 @@
     License along with this library; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-    Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-             Marc.Schoenauer@polytechnique.fr
-             mak@dhi.dk
-    CVS Info: $Date: 2003-03-21 02:38:57 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVariableLengthCrossover.h,v 1.9 2003-03-21 02:38:57 maartenkeijzer Exp $ $Author: maartenkeijzer $ 
+    Contact: Marc.Schoenauer@polytechnique.fr
+             mkeijzer@cs.vu.nl
  */
 //-----------------------------------------------------------------------------
 
@@ -43,20 +41,23 @@ template <class Atom>
 class eoAtomExchange : public eoBF<unsigned, Atom &, bool>
 {
 public:
-  // a function to initlialize - to be called before every crossover
+  /** a function to initlialize - to be called before every crossover */
   virtual void randomize(unsigned int, unsigned int){}
+  /** the inherited className() */
   virtual std::string className() const=0;
 };
 
-/** Uniform crossover - well, not really for FixedLength */
+/** Uniform crossover - well, not really, efficient for FixedLength */
 template <class Atom>
 class eoUniformAtomExchange: public eoAtomExchange<Atom>
 {
 public:
     eoUniformAtomExchange(double _rate=0.5):rate(_rate){}
 
-  // randomize: fill the mask: the exchange will be simulated first
-  // to see if sizes are OK, so it must be repeatable
+  /** randomize: fill the mask: the exchange will be simulated first
+   * to see if sizes are OK, so it must be repeatable : 
+   * the mask has to be a private data, cannot be computed on the fly
+   */
   void randomize(unsigned _size1, unsigned _size2)
   {
     mask.resize(_size1 + _size2);
@@ -64,12 +65,13 @@ public:
 	mask[i]=eo::rng.flip(rate);
   }
 
-  // the operator() simply returns the mask booleans in turn
+  /** the operator() simply returns the mask booleans in turn */
     bool operator()(unsigned _i, Atom & )
     {
       return mask[_i];
     }
 
+  /** inherited className() */
   virtual std::string className() const {return "eoUniformAtomExchange";}
 
 private:
@@ -77,10 +79,12 @@ private:
   std::vector<bool> mask;
 };
 
+/////////////////////////////////////////////////////////////////////
+//////    Now the operators themsleves
+/////////////////////////////////////////////////////////////////////
 
 /** Exchange Crossover using an AtomExchange
  */
-
 template <class EOT>
 class eoVlAtomExchangeQuadOp : public eoQuadOp<EOT>
 {
@@ -88,7 +92,7 @@ public :
 
   typedef typename EOT::AtomType AtomType;
 
-  // default ctor: requires bounds on number of genes + a rate
+  /** default ctor: requires bounds on number of genes + a rate */
   eoVlAtomExchangeQuadOp(unsigned _Min, unsigned _Max,
 			 eoAtomExchange<AtomType>& _atomExchange):
     Min(_Min), Max(_Max), atomExchange(_atomExchange) {}
@@ -148,6 +152,7 @@ public :
     return true;	 // should we test that? Yes, but no time now
   }
 
+  /** the inherited className */
   virtual std::string className() const
   { 
 #ifdef HAVE_SSTREAM
@@ -155,7 +160,6 @@ public :
     os << "eoVlAtomExchangeQuadOp(" << atomExchange.className() << ")"; 
     return os.str()
 #else
-
     char s[1024];
     std::ostrstream os(s, 1022);
     os << "eoVlAtomExchangeQuadOp(" << atomExchange.className() << ")" << std::ends; 
@@ -168,9 +172,9 @@ private:
   eoAtomExchange<AtomType> & atomExchange;
 };
 
-/** Crossover using an AtomCrossover (probably irrelevant in Variable Length)
+/** Crossover using an AtomCrossover. Probably irrelevant in Variable Length - 
+    see eoFlOrBinOp.h and eoFlOrQuadOp.h for the similar Fixed Length operators
  */
-
 template <class EOT>
 class eoInnerExchangeQuadOp : public eoQuadOp<EOT>
 {
@@ -178,10 +182,11 @@ public :
 
   typedef typename EOT::AtomType AtomType;
 
-  // default ctor: requires bounds on number of genes + a rate
+  /** default ctor: requires bounds on number of genes + a rate */
   eoInnerExchangeQuadOp( eoQuadOp<AtomType>& _op, float _rate = 0.5):
     op(_op), rate( _rate ) {}
 
+  /** performs the Atom crossover */
   bool operator()(EOT & _eo1, EOT & _eo2)
   {
     unsigned size1 = _eo1.size(), size2 = _eo2.size(), minsize = ( size1 > size2)?size2:size1;
@@ -210,7 +215,7 @@ private:
 
 
 
-/** Direct Uniform Exchange of genes (obsolete, already :-)
+/** Direct Uniform Exchange of genes (obsolete, already :-) stays there for historical reasons
 
 A very primitive version, that does no verification at all!!!
 NEEDS to be improved - but no time now :-(((

@@ -2,7 +2,7 @@
 
 //-----------------------------------------------------------------------------
 // eoVariableLengthMutation.h
-// (c) GeNeura Team, 2000 - EEAAX 1999 - Maarten Keijzer 2000
+// (c) Marc Schoenauer 1999 - Maarten Keijzer 2000
 /*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -18,10 +18,8 @@
     License along with this library; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-    Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-             Marc.Schoenauer@polytechnique.fr
-             mak@dhi.dk
-    CVS Info: $Date: 2003-03-21 02:38:57 $ $Version$ $Author: maartenkeijzer $ 
+    Contact: Marc.Schoenauer@polytechnique.fr
+             mkeijzer@cs.vu.nl
  */
 //-----------------------------------------------------------------------------
 
@@ -61,6 +59,7 @@ public :
   eoVlAddMutation(unsigned _nMax, eoInit<AtomType> & _atomInit) :
     nMax(_nMax), atomInit(_atomInit) {}
 
+  /** operator: actually adds an Atom */
   bool operator()(EOT & _eo)
   {
     if (_eo.size() >= nMax)
@@ -72,12 +71,14 @@ public :
     return true;
   }
 
+  /** inherited className */
   virtual std::string className() const { return "eoVlAddMutation"; }
 
 private:
   unsigned nMax;
   eoInit<AtomType> & atomInit;
 };
+
 
 /** A helper class for choosing which site to delete */
 template <class EOT>
@@ -120,7 +121,7 @@ public :
   eoVlDelMutation(unsigned _nMin, eoGeneDelChooser<EOT> & _chooser) :
     nMin(_nMin), uChooser(), chooser(_chooser) {}
 
-  /** ctor with uniform gene chooser
+  /** ctor with uniform gene chooser - the default
 
    * @param nMin      min number of atoms to leave in the individual
    */
