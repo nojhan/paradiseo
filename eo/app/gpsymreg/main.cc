@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
         RegFitness<FitnessType, Node >  eval(generationCounter, initSequence, parameter);
 
 	// Depth Initializor, defaults to grow method.  
-        eoGpDepthInitializer<FitnessType, Node> initializer(parameter.InitMaxDepth, initSequence);
+        eoParseTreeDepthInit<FitnessType, Node> initializer(parameter.InitMaxDepth, initSequence);
 	
 	// create the initial population
         Pop pop(parameter.population_size, initializer);

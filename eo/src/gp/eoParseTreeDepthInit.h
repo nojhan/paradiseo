@@ -43,13 +43,16 @@ bool lt_arity(const Node &node1, const Node &node2)
      	return (node1.arity() < node2.arity());
 }
  
-/** eoGpDepthInitializer : the initializer class for eoParseTree
-\class eoGpDepthInitializer eoParseTreeDepthInit.h gp/eoParseTreeDepthInit.h
+/** eoParseTreeDepthInit : the initializer class for eoParseTree
+\class eoParseTreeDepthInit eoParseTreeDepthInit.h gp/eoParseTreeDepthInit.h
 \ingroup ParseTree
 */
 
+// eoGpDepthInitializer is defined for backward compatibility
+#define eoGpDepthInitializer eoParseTreeDepthInit
+
 template <class FType, class Node>
-class eoGpDepthInitializer : public eoInit< eoParseTree<FType, Node> >
+class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
 {
     public :
 
@@ -61,7 +64,7 @@ class eoGpDepthInitializer : public eoInit< eoParseTree<FType, Node> >
      * @param _initializor A vector containing the possible nodes
      * @param _grow False results in a full tree, True result is a randomly grown tree
      */
-	eoGpDepthInitializer(
+	eoParseTreeDepthInit(
         unsigned _max_depth,
 		const vector<Node>& _initializor,
         bool _grow = true)
@@ -73,14 +76,14 @@ class eoGpDepthInitializer : public eoInit< eoParseTree<FType, Node> >
     {
       if(initializor.empty())
       {
-        throw logic_error("eoGpDepthInitializer: uhm, wouldn't you rather give a non-empty set of Nodes?");
+        throw logic_error("eoParseTreeDepthInit: uhm, wouldn't you rather give a non-empty set of Nodes?");
       }
       // lets sort the initializor vector according to  arity (so we can be sure the terminals are in front)
       // we use stable_sort so that if element i was in front of element j and they have the same arity i remains in front of j
       stable_sort(initializor.begin(), initializor.end(), lt_arity<Node>);
     }
         /// My class name
-	virtual string className() const { return "eoDepthInitializer"; };
+	virtual string className() const { return "eoParseTreeDepthInit"; };
 
     /**initialize a tree
      * @param _tree : the tree to be initialized
@@ -168,11 +171,11 @@ void  eoInitRampedHalfAndHalf(eoPop< eoParseTree<FType,Node> > &pop, unsigned in
 	// initialize with Depth's (D) -> 2
 	for(m=init_max_depth; m >= 2; m--)
 	{
-		eoGpDepthInitializer<FType, Node> grow_initializer(m, initializor, true);
+		eoParseTreeDepthInit<FType, Node> grow_initializer(m, initializor, true);
 		Pop grow(part_pop_size, grow_initializer);
 		pop.insert(pop.begin(), grow.begin(), grow.end());
 		
-		eoGpDepthInitializer<FType, Node> full_initializer(m, initializor, false);
+		eoParseTreeDepthInit<FType, Node> full_initializer(m, initializor, false);
 		Pop full(part_pop_size, full_initializer);
 		pop.insert(pop.begin(), full.begin(), full.end());
 	}	
@@ -180,7 +183,7 @@ void  eoInitRampedHalfAndHalf(eoPop< eoParseTree<FType,Node> > &pop, unsigned in
 	bool g = true;
 	while (pop.size() < population_size)
 	{
-		eoGpDepthInitializer<FType, Node> initializer(init_max_depth, initializor, g);
+		eoParseTreeDepthInit<FType, Node> initializer(init_max_depth, initializor, g);
 		Pop p(1, initializer);
 		pop.insert(pop.begin(), p.begin(), p.end());
 		g= !g;

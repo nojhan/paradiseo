@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
  
 //-----------------------------------------------------------------------------
-// eoStDepthInit.h : initializor strongly type GP
+// eoStParseTreeDepthInit.h : initializor strongly type GP
 // (c) Jeroen Eggermont 2001
 /*
     This library is free software; you can redistribute it and/or
@@ -53,13 +53,13 @@ using namespace std;
   Tree pruning strongly typed trees is not possible at the moment.
 */
 
-/** eoStDepthInit : the initializer class for strongly typed tree-based genetic programming
-\class eoStDepthInit eoStDepthInit.h gp/eoStDepthInit.h
+/** eoStParseTreeDepthInit : the initializer class for strongly typed tree-based genetic programming
+\class eoStParseTreeDepthInit eoStParseTreeDepthInit.h gp/eoStParseTreeDepthInit.h
 \ingroup StParseTree
 */
 
 template <class FType, class Node>
-class eoStDepthInit : public eoInit< eoParseTree<FType, Node> >
+class eoStParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
 {
     public :
 
@@ -71,7 +71,7 @@ class eoStDepthInit : public eoInit< eoParseTree<FType, Node> >
      * @param _initializor A vector containing the possible nodes
      * @param _grow False results in a full tree, True result is a randomly grown tree
      */
-	eoStDepthInit(
+	eoStParseTreeDepthInit(
         unsigned _max_depth,
 		const vector<Node>& _node,
 		const int& _return_type,
@@ -84,7 +84,7 @@ class eoStDepthInit : public eoInit< eoParseTree<FType, Node> >
     {
       if(_node.empty())
       {
-        throw logic_error("eoGpDepthInitializer: uhm, wouldn't you rather give a non-empty set of Nodes?");
+        throw logic_error("eoStParseTreeDepthInit: uhm, wouldn't you rather give a non-empty set of Nodes?");
       }
       
       
@@ -118,7 +118,7 @@ class eoStDepthInit : public eoInit< eoParseTree<FType, Node> >
 
     }
         /// My class name
-	virtual string className() const { return "eoStDepthInit"; };
+	virtual string className() const { return "eoStParseTreeDepthInit"; };
 
     /**initialize a tree
      * @param _tree : the tree to be initialized
