@@ -27,7 +27,7 @@
 #ifndef _eoTimeCounter_h
 #define _eoTimeCounter_h
 
-#include <sys/times.h>
+#include <time.h>
 #include <utils/eoStat.h>
 
 
@@ -45,7 +45,7 @@ public:
   virtual void operator()()
   {
     // ask for system time
-    times(&tmsStruct);
+    utime = clock();
 //     if (firstTime)	/* first generation */
 //       {
 // 	firstTime=false;
@@ -53,13 +53,13 @@ public:
 //       }
     // store elapsed user time
 //     value(tmsStruct.tms_utime - firstUtime);
-    value()=double(tmsStruct.tms_utime)/100;
+    value()=double(utime)/CLOCKS_PER_SEC;
   }
   
 private:
 //   bool firstTime;
 //   clock_t firstUtime;
-  struct tms tmsStruct;	// stores time
+  clock_t utime;
 };
 
 #endif

@@ -27,6 +27,7 @@
 #ifndef _eoUpdater_h
 #define _eoUpdater_h
 
+#include <string>
 #include <eoFunctor.h>
 #include <utils/eoState.h>
 #include <utils/eoParam.h>
@@ -69,13 +70,13 @@ class eoIncrementorParam : public eoUpdater, public eoValueParam<T>
 {
 public :   
   /** Default Ctor : a name and optionally an increment*/
-  eoIncrementorParam(string _name, T _stepsize = 1) : 
+  eoIncrementorParam( std::string _name, T _stepsize = 1) : 
     eoValueParam<T>(T(0), _name), stepsize(_stepsize) {}
   
   /** Ctor with a name and non-zero initial value 
    *  and mandatory stepSize to remove ambiguity
    */
-  eoIncrementorParam(string _name, T _countValue, T _stepsize) : 
+  eoIncrementorParam( std::string _name, T _countValue, T _stepsize) : 
     eoValueParam<T>(_countValue, _name), stepsize(_stepsize) {}
 
   /** Simply increments */

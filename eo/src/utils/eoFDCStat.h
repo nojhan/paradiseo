@@ -56,13 +56,14 @@ public :
    */
     virtual void operator()(const eoPop<EOT>& _pop)
     {
+      unsigned i;
       if (!boolOpt)		   // take the local best
 	theBest = _pop.best_element();
       unsigned int pSize = _pop.size();
       distToBest.value().resize(pSize);
       fitnesses.value().resize(pSize);
       double sumFit = 0.0, sumDist = 0.0;
-      for (unsigned i=0; i<pSize; i++)
+      for (i=0; i<pSize; i++)
 	{
 	  sumDist += (distToBest.value()[i] = dist(_pop[i], theBest));
 	  sumFit += (fitnesses.value()[i] = _pop[i].fitness());
@@ -72,7 +73,7 @@ public :
       double avgFit = sumFit/pSize;
       sumDist = sumFit = 0.0;
       double num = 0.0;
-      for (unsigned i=0; i<pSize; i++)
+      for (i=0; i<pSize; i++)
 	{
 	  double devDist = distToBest.value()[i] - avgDist ;
 	  double devFit = fitnesses.value()[i] - avgFit ;
