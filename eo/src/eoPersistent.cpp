@@ -12,3 +12,4 @@ istream & operator >> ( istream& _is, eoPersistent& _o ) {
 #include "eoRNG.h"
 
 eoRng rng;
+

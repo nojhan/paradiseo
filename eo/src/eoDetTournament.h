@@ -68,3 +68,4 @@ template <class EOT> class eoDetTournament: public eoSelectOne<EOT>
 //-----------------------------------------------------------------------------
 
 #endif eoDetTournament_h
+

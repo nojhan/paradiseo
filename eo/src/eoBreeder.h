@@ -111,3 +111,4 @@ template<class Chrom> class eoBreeder: public eoMonPopOp<Chrom>
 //-----------------------------------------------------------------------------
 
 #endif eoBreeder_h
+

@@ -3,7 +3,7 @@
 -----------------------------------------------------------------------------
     eoException.h
       Exceptions that are possibly thrown at initialization and such should be
-      defined here
+      defined here.
 
     (c) GeNeura Team, 2000
  

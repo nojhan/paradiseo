@@ -86,3 +86,4 @@ template<class EOT> class eoSteadyStateGeneration: public eoAlgo<EOT>
 //-----------------------------------------------------------------------------
 
 #endif eoGeneration_h
+

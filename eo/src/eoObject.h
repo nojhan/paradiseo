@@ -66,3 +66,4 @@ class eoObject
 };
 
 #endif EOOBJECT_H
+

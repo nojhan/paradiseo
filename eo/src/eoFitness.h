@@ -52,3 +52,4 @@ class eoFitness: public eoPersistent
 //-----------------------------------------------------------------------------
 
 #endif EOFITNESS_H
+

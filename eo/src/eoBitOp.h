@@ -322,3 +322,4 @@ template<class Chrom> class eoBinGxOver: public eoQuadraticOp<Chrom>
 //-----------------------------------------------------------------------------
 //@}
 #endif eoBitOp_h
+

@@ -59,3 +59,4 @@ class eoSequentialGOpSel : public eoGOpSelector<EOT>
 };
 
 #endif
+

@@ -60,3 +60,4 @@ class eoPrintable
 ostream & operator << ( ostream& _os, const eoPrintable& _o );
 
 #endif EOPRINTABLE_H
+

@@ -62,3 +62,4 @@ template <class EOT> class eoUniformSelect: public eoSelectOne<EOT>
 };
 
 #endif eoUniformSelect_h
+

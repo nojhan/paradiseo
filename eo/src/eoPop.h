@@ -158,3 +158,4 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent {
 
 };
 #endif
+

@@ -107,3 +107,4 @@ template< class Object>
 unsigned long eoID< Object >::globalID = 0;
 
 #endif EOID_H
+

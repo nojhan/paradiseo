@@ -95,3 +95,4 @@ template<class EOT> class eoLottery: public eoBinPopOp<EOT>
 //-----------------------------------------------------------------------------
 
 #endif eoLottery_h
+

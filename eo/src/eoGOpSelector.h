@@ -171,3 +171,4 @@ inline void  eoGOpSelector<EOT>::deleteOp( ID _id )
 }
   
 #endif eoGOpSelector_h
+

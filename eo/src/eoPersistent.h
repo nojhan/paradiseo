@@ -1,6 +1,9 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
+
+
 //-----------------------------------------------------------------------------
+
 // eoPersistent.h
 // (c) GeNeura Team, 1999
 /* 
@@ -68,3 +71,4 @@ class eoPersistent: public eoPrintable
 istream & operator >> ( istream& _is, eoPersistent& _o );
 
 #endif EOOBJECT_H
+

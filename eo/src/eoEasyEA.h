@@ -82,3 +82,4 @@ template<class Chrom> class eoEasyEA: public eoAlgo<Chrom>
 //-----------------------------------------------------------------------------
 
 #endif eoEasyEA_h
+
