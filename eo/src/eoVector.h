@@ -22,7 +22,7 @@
              Marc.Schoenauer@polytechnique.fr
 	     mak@dhi.dk
 
-    CVS Info: $Date: 2001-04-03 10:08:06 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVector.h,v 1.10 2001-04-03 10:08:06 jmerelo Exp $ $Author: jmerelo $ 
+    CVS Info: $Date: 2001-09-04 06:45:14 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVector.h,v 1.11 2001-09-04 06:45:14 evomarc Exp $ $Author: evomarc $ 
 
  */
 //-----------------------------------------------------------------------------
@@ -61,8 +61,13 @@ class eoVector : public EO<FitT>, public std::vector<GeneType>
   //  with the copy Ctor
   void value(const std::vector<GeneType>& _v)
   {
-    if (_v.size() != size())
-      throw runtime_error("Wrong size in vector assignation in eoVector");
+    if (_v.size() != size())	   // safety check
+      {
+	if (size())		   // NOT an initial empty vector
+	  cout << "Warning: Changing size in eoVector assignation"<<endl;
+	resize(_v.size());
+      }
+
     copy(_v.begin(), _v.end(), begin());
     invalidate();
   }
