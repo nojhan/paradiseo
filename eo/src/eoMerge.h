@@ -68,7 +68,7 @@ template <class EOT> class eoElitism : public eoMerge<EOT>
             vector<const EOT*> result;
             _pop.nth_element(howmany, result);
 
-            for (int i = 0; i < result.size(); ++i)
+            for (size_t i = 0; i < result.size(); ++i)
             {
                 offspring.push_back(*result[i]);
             }
