@@ -51,8 +51,8 @@ QUEDA: Operador de asignación, lectura desde istream, escritura a ostream
 #include <eoRnd.h>
 
 /** Adaptor that turns an STL vector of vectror into an EO
- with the same gene type as the type with which
- the vector of vector has been instantiated.
+    with the same gene type as the type with which
+    the vector of vector has been instantiated.
 */
 template <class T, class fitnessT>
 class eo2dVector: public eo2d<T, fitnessT>, public vector< vector<T> > {
@@ -82,40 +82,40 @@ public:
   eo2dVector( const unsigned _rows, 
 	      const unsigned _cols, 
 	      eoRnd<T>& _rnd );
-
+  
   /** Ctor from a istream. The T class should accept reading from a istream. It doesn't read fitness,
-which is supposed to be dynamic and dependent on environment. 
+      which is supposed to be dynamic and dependent on environment. 
       @param _is the input stream; should have all values in a single line, separated by whitespace
   */
   //eo2dVector( istream& _is);
   
-
+  
   /// copy ctor
   eo2dVector( const eo2dVector & _eo )
     : eo2d<T, fitnessT>( _eo ), vector< vector<T> >( _eo ){ };
   
   /// Assignment operator
   /*
-  const eo2dVector& operator =( const eo2dVector & _eo ) {
+    const eo2dVector& operator =( const eo2dVector & _eo ) {
     if ( this != &_eo ){
-      eo2d<T, fitnessT>::operator=( _eo );
-      vector< <vector<T> >::operator=( _eo );
+    eo2d<T, fitnessT>::operator=( _eo );
+    vector< <vector<T> >::operator=( _eo );
     }
     return *this;
-  }
+    }
   */
   /// dtor
   virtual ~eo2dVector() {};
   
   //@}
-   /** Reads and returns a copy of the gene in position _r,_c.\
+  /** Reads and returns a copy of the gene in position _r,_c.\
       This implies that T must have a copy ctor .
       @param _r Index for rows. Must be an unsigned less than #numOfRows()#  
       @param _c Index for columns. Must be an unsigned less than #numOfCols()#
       @return what's inside the gene, with the correct type
       @exception out_of_range if _r >=numOfRows()
       @exception out_of_range if _c >=numOfCols()
-    */
+  */
   virtual T getGene( const unsigned _r,
 		     const unsigned _c ) const {
     if ( _r >= numOfRows() ) {
@@ -132,7 +132,7 @@ which is supposed to be dynamic and dependent on environment.
     }
     return (*this)[_r][_c];
   };
-    /** Overwrites the gene placed in position _r,_c with a
+  /** Overwrites the gene placed in position _r,_c with a
    * new value. This means that the assignment operator
    * for T must be defined .
    @param _r Index for rows. Must be an unsigned less than #numOfRows()#  
@@ -158,9 +158,9 @@ which is supposed to be dynamic and dependent on environment.
     }
     (*this)[_r][_c]=_value;
   };
-
-
-
+  
+  
+  
   /** Inserts a row, moving the rest to the bottom. 
    * If _r = numOfRows(), it insert it at the end.
    * Obviously, changes number of rows. 
@@ -190,7 +190,7 @@ which is supposed to be dynamic and dependent on environment.
     vector< vector<T> >::iterator ite = begin()+_r;
     insert( ite, _val );
   };
-
+  
   /** Eliminates the row at position _r; all the other genes will
       be shifted up.
       @param _r Number of he row to be deleted.
@@ -209,7 +209,7 @@ which is supposed to be dynamic and dependent on environment.
     vector< vector<T> >::iterator ite = this->begin()+_r;
     this->erase( ite );
   };
-
+  
   /** Inserts a column, moving the rest to the right. 
    * If _c = numOfCols(), it insert it at the end.
    * Obviously, changes number of cols. 
@@ -234,7 +234,7 @@ which is supposed to be dynamic and dependent on environment.
 	  << "It should be ==" << numOfRows() << '\0' << endl;
       throw invalid_argument( msg.str() );
     }
-
+    
     // Insert column.
     for( unsigned r=0; r<numOfRows(); ++r ) {
       vector<vector<T> >::iterator it1 = begin()+r;
@@ -242,7 +242,7 @@ which is supposed to be dynamic and dependent on environment.
       (*it1).insert( it2, _val[r] );
     };
   }
-
+  
   /** Eliminates the column at position _c; all the other columns will
       be shifted left.
       @param _c Number of he column to be deleted.
@@ -264,7 +264,7 @@ which is supposed to be dynamic and dependent on environment.
       (*it1).erase( it2 );
     }
   };
-
+  
   /// Returns the number of rows in the eo2d
   virtual unsigned numOfRows() const {
     return size();
@@ -275,7 +275,7 @@ which is supposed to be dynamic and dependent on environment.
     return begin()->size();
   };
   
-
+  
   /** @name Methods from eoObject
       readFrom and printOn are directly inherited from eo1d
   */
@@ -285,7 +285,7 @@ which is supposed to be dynamic and dependent on environment.
   */
   string className() const {return "eo2dVector";};
   //@}
-	
+  
 };
 
 
@@ -331,3 +331,4 @@ ostream& operator<<( ostream& _os, const eo2dVector<T,fitnessT>& _eo) {
 };
 
 #endif
+

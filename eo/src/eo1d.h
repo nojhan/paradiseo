@@ -34,14 +34,13 @@
 using namespace std;
 
 /** @name eo1d class 
-* Randomly accesible  evolvable object with one dimension, with
-variable length.  
-* Use this if you want to evolve "linear" things, like bitstrings, or
-floating-point arrays. If you don't, subclass directly from EO
-* @see EO
-* @author GeNeura
-* @version 0.2
-*/
+ * Randomly accesible  evolvable object with one dimension, with variable
+ * length. Use this if you want to evolve "linear" things, like bitstrings, 
+ * or floating-point arrays. If you don't, subclass directly from EO
+ * @see EO
+ * @author GeNeura
+ * @version 0.2
+ */
 
 //@{
 

@@ -40,28 +40,8 @@
 #include <strstream>
 #include <ctime>
 
-//-----------------------------------------------------------------------------
-// Class UExceptions - probably useless ???
-//-----------------------------------------------------------------------------
-/**
- * This class manages exceptions. It´s barely an extension of the standard except
- ion, 
- * but it can be initialized with an STL string. Called UException (utils-except
- ion)+
- * to avoid conflicts with other classes.
- */
-class UException: public exception {
-public:
-  ///
-  UException( const string& _msg ): msg( _msg ) { };
-
-  ///
-  virtual const char* what() const { return msg.c_str(); };
-
-private:
-  string msg;
-};
-
+// include for exceptions
+include <stdecept> // logic_error
 
 //-----------------------------------------------------------------------------
 // Class Param
@@ -747,20 +727,20 @@ public:
   /**
    * This class managges unknown argument exceptions.
    */
-  class UnknownArg : public UException {
+  class UnknownArg : public logic_error {
   public:
     
     /**
      * Constructor
      * @param _arg string to be shown when the exception occurs
      */
-    UnknownArg( const string& _arg): UException( "Invalid argument: "+_arg ) { };
+    UnknownArg( const string& _arg): logic_error( "Invalid argument: "+_arg ) { };
   };
   
   /**
    * This class managges bad param types.
    */
-  class BadType : public UException {
+  class BadType : public logic_error {
   public:
     
     /**
@@ -769,39 +749,39 @@ public:
      * @param _value The value of the param
      */
     BadType(const string& _param, const string& _value, const string& _correctType)
-      : UException("The value '" + _value + "' assigned to the argument " + _param + " isn't a correct "+_correctType) { };
+      : logic_error("The value '" + _value + "' assigned to the argument " + _param + " isn't a correct "+_correctType) { };
   };
   
   /**
    * This class managges exceptions produced when there isn't a value for a parameter.
    */
-  class MissingVal : public UException {
+  class MissingVal : public logic_error {
   public:
     
     /**
      * Constructor
      * @param _param The param
      */
-    MissingVal(const string& _param) : UException("Missing value for parameter " + _param) {};
+    MissingVal(const string& _param) : logic_error("Missing value for parameter " + _param) {};
   };
   
   /**
    * This class managges exceptions produced when the user forgot a required parameter.
    */
-  class MissingReqParam : public UException {
+  class MissingReqParam : public logic_error {
   public:
     
     /**
      * Constructor
      * @param _shortName The param's short name
      */
-    MissingReqParam(const string& _shortName) : UException("Missing required parameter " + _shortName) {};
+    MissingReqParam(const string& _shortName) : logic_error("Missing required parameter " + _shortName) {};
   };
   
   /**
    * This class managges exceptions du to < without a > in array value
    */
-  class BadArrayParam : public UException {
+  class BadArrayParam : public logic_error {
   public:
     
     /**
@@ -810,7 +790,7 @@ public:
      * @param _first_word The first word read after the "<"
      */
     BadArrayParam(const string& _param, const string &_first_word) : 
-      UException("Array parameter " + _param + ": No matching > ("  + _first_word 
+      logic_error("Array parameter " + _param + ": No matching > ("  + _first_word 
 		 + "... )") {};
   };
 
