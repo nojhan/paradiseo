@@ -149,6 +149,7 @@ inline eoMonitor&   eoGnuplot1DSnapshot::operator() (void)
 #ifdef HAVE_SSTREAM
   PipeComSend( gpCom, os.str().c_str());
 #else
+  os << std::ends;
   PipeComSend( gpCom, buff );
 #endif
   return (*this);
