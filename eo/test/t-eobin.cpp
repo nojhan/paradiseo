@@ -24,7 +24,13 @@
 //-----------------------------------------------------------------------------
 
 #include <iostream>   // std::cout
+
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
 #include <strstream>  // ostrstream, istrstream
+#endif
+
 #include <eo>         // general EO
 #include <ga.h>	      // bitstring representation & operators
 #include <utils/eoRndGenerators.h>
@@ -56,11 +62,19 @@ void main_function()
 
   std::cout << "chrom:  " << chrom << std::endl
        << "chrom2: " << chrom2 << std::endl;
-  
+
+#ifdef HAVE_SSTREAM
+  std::ostringstream os;
+#else
   char buff[1024];
   std::ostrstream os(buff, 1024);
+#endif
   os << chrom;
+#ifdef HAVE_SSTREAM
+  std::istringstream is(os.str());
+#else
   std::istrstream is(os.str());
+#endif
   is >> chrom2; chrom.fitness(binary_value(chrom2));
   
   std::cout << "\nTesting reading, writing\n";

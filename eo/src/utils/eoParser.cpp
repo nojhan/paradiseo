@@ -94,8 +94,12 @@ eoParser::eoParser ( unsigned _argc, char **_argv , string _programDescription, 
       }
 
     // now read arguments on command-line
+#ifdef HAVE_SSTREAM
+    stringstream stream;
+#else
     strstream stream;
-    
+#endif
+
     for (i = 1; i < _argc; ++i)
     {
         stream << _argv[i] << '\n';

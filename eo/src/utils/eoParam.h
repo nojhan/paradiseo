@@ -30,7 +30,13 @@
 //-----------------------------------------------------------------------------
 #include <math.h>		   // for floor
 #include <string>
+
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
 #include <strstream>
+#endif
+
 #include <vector>
 #include <iterator>		// for GCC 3.2
 #include <stdexcept> 
@@ -156,8 +162,12 @@ public :
 
     std::string getValue(void) const
     {
+#ifdef HAVE_SSTREAM
+	std::ostringstream os;
+#else
         char buf[1024];
         std::ostrstream os(buf, 1023);
+#endif
         os << repValue;
         os << std::ends;
         return os.str();
@@ -165,7 +175,11 @@ public :
 
     void setValue(std::string _value)
     {
+#ifdef HAVE_SSTREAM
+	std::istringstream is(_value);
+#else
         std::istrstream is(_value.c_str());
+#endif
         is >> repValue;
     }
 
@@ -191,8 +205,11 @@ void eoValueParam<bool>::setValue(std::string _value)
         repValue = true;
         return;
     }
-
+#ifdef HAVE_SSTREAM
+    std::istringstream is(_value);
+#else
     std::istrstream is(_value.c_str());
+#endif
     is >> repValue;
 }
 
@@ -202,8 +219,12 @@ template <>
 std::string eoValueParam<std::pair<double, double> >::getValue(void) const
 {
     // use own buffer as MSVC's buffer leaks!
+#ifdef HAVE_SSTREAM
+    std::ostringstream os;
+#else
     char buff[1024];
     std::ostrstream os(buff, 1024);
+#endif
     os << repValue.first << ' ' << repValue.second << std::ends;
     return os.str();
 }
@@ -212,7 +233,11 @@ std::string eoValueParam<std::pair<double, double> >::getValue(void) const
 template <>
 void eoValueParam<std::pair<double, double> >::setValue(std::string _value)
 {
+#ifdef HAVE_SSTREAM
+    std::istringstream is(_value);
+#else
     std::istrstream is(_value.c_str());
+#endif
     is >> repValue.first;
     is >> repValue.second;
 }
@@ -223,7 +248,11 @@ void eoValueParam<std::pair<double, double> >::setValue(std::string _value)
 template <>
 std::string eoValueParam<std::vector<std::vector<double> > >::getValue(void) const
 {
+#ifdef HAVE_SSTREAM
+    std::ostringstream os;
+#else
     std::ostrstream os;
+#endif
     os << repValue.size() << ' ';
     for (unsigned i = 0; i < repValue.size(); ++i)
     {
@@ -239,7 +268,11 @@ std::string eoValueParam<std::vector<std::vector<double> > >::getValue(void) con
 template <>
 void eoValueParam<std::vector<std::vector<double> > >::setValue(std::string _value)
 {
+#ifdef HAVE_SSTREAM
+    std::istringstream is(_value);
+#else
     std::istrstream is(_value.c_str());
+#endif
     unsigned i,j,sz;
     is >> sz;
     repValue.resize(sz);
@@ -262,7 +295,11 @@ void eoValueParam<std::vector<std::vector<double> > >::setValue(std::string _val
 template <>
 std::string eoValueParam<std::vector<double> >::getValue(void) const
 {
+#ifdef HAVE_SSTREAM
+    std::ostringstream os;
+#else
     std::ostrstream os;
+#endif
     os << repValue.size() << ' ';
     std::copy(repValue.begin(), repValue.end(), std::ostream_iterator<double>(os, " "));
     os << std::ends;
@@ -273,7 +310,11 @@ std::string eoValueParam<std::vector<double> >::getValue(void) const
 template <>
 void eoValueParam<std::vector<double> >::setValue(std::string _value)
 {
+#ifdef HAVE_SSTREAM
+    std::istringstream is(_value);
+#else
     std::istrstream is(_value.c_str());
+#endif
     unsigned sz;
     is >> sz;
     repValue.resize(sz);
@@ -286,7 +327,11 @@ void eoValueParam<std::vector<double> >::setValue(std::string _value)
 template <>
 std::string eoValueParam<std::vector<eoMinimizingFitness> >::getValue(void) const
 {
+#ifdef HAVE_SSTREAM
+    std::ostringstream os;
+#else
     std::ostrstream os;
+#endif
     os << repValue.size() << ' ';
     std::copy(repValue.begin(), repValue.end(), std::ostream_iterator<eoMinimizingFitness>(os, " "));
     os << std::ends;
@@ -298,7 +343,11 @@ std::string eoValueParam<std::vector<eoMinimizingFitness> >::getValue(void) cons
 template <>
 void eoValueParam<std::vector<eoMinimizingFitness> >::setValue(std::string _value)
 {
+#ifdef HAVE_SSTREAM
+    std::istringstream is(_value);
+#else
     std::istrstream is(_value.c_str());
+#endif
     unsigned sz;
     is >> sz;
     repValue.resize(sz);

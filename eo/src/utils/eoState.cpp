@@ -5,7 +5,12 @@
 
 #include <algorithm>
 #include <fstream>
+
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
 #include <strstream>
+#endif
 
 #include "eoState.h"
 #include "eoObject.h"
@@ -126,9 +131,11 @@ void eoState::load(std::istream& is)
                     removeComment(str, getCommentString());
                     fullstring += str + "\n";
                 }
-
+#ifdef HAVE_SSTREAM
+		istringstream the_stream(fullstring);
+#else
                 istrstream the_stream(fullstring.c_str(), fullstring.size());
-
+#endif
                 object->readFrom(the_stream);
             }
         }
@@ -163,7 +170,11 @@ string eoState::createObjectName(eoObject* obj)
 {
     if (obj == 0)
     {
+#ifdef HAVE_SSTREAM
+	ostringstream os;
+#else
         ostrstream os;
+#endif
         os << objectMap.size();
         return os.str();
     }
@@ -175,7 +186,11 @@ string eoState::createObjectName(eoObject* obj)
     unsigned count = 1;
     while (it != objectMap.end())
     {
+#ifdef HAVE_SSTREAM
+	ostringstream os;
+#else
         ostrstream os;
+#endif
         os << obj->className().c_str() << count++ << ends;
 
         name = os.str();

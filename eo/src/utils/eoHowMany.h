@@ -152,7 +152,12 @@ public:
 	interpret_as_rate = true;
 	_value.resize(pos);	   // get rid of %
       }
+    
+#ifdef HAVE_SSTREAM
+    std::istringstream is(_value);
+#else
     std::istrstream is(_value.c_str());
+#endif
     is >> rate;
     // now store
     if (interpret_as_rate)

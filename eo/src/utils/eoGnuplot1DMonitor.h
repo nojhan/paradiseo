@@ -105,8 +105,13 @@ inline void  eoGnuplot1DMonitor::FirstPlot()
     {
       throw std::runtime_error("Must have some stats to plot!\n");
     }
+#ifdef HAVE_SSTREAM
+  std::ostringstream os;
+#else
   char buff[1024];
   std::ostrstream os(buff, 1024);
+#endif
+
   os << "plot";
   for (unsigned i=1; i<vec.size(); i++) {
     os << " '" << getFileName().c_str() <<
@@ -116,7 +121,11 @@ inline void  eoGnuplot1DMonitor::FirstPlot()
   }
   os << "\n";
   os << '\0';
+#ifdef HAVE_SSTREAM
+  PipeComSend( gpCom, os.str().c_str());
+#else
   PipeComSend( gpCom, buff );
+#endif
 }
 
 #endif

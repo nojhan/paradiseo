@@ -4,7 +4,13 @@
 #endif 
 
 #include <ctime>
+
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
 #include <strstream>
+#endif
+
 #include "eoRealBounds.h"
 #include "eoRealVectorBounds.h"
 
@@ -27,7 +33,11 @@ bool remove_leading(std::string & _s, const std::string _delim)
 
 double read_double(std::string _s)
 {
+#ifdef HAVE_SSTREAM
+    std::istringstream is(_s);
+#else
   std::istrstream is(_s.c_str());
+#endif
   double r;
   is >> r;
   return r;
@@ -35,7 +45,11 @@ double read_double(std::string _s)
 
 int read_int(std::string _s)
 {
+#ifdef HAVE_SSTREAM
+    std::istringstream is(_s);
+#else
   std::istrstream is(_s.c_str());
+#endif
   int i;
   is >> i;
   return i;

@@ -4,7 +4,7 @@
 ##
 ###############################################################################
 
-SUBDIRS = es ga gp utils other
+SUBDIRS = es ga gp utils other do
 CPPFLAGS = -O2
 
 lib_LIBRARIES = libeo.a

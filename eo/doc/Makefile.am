@@ -8,8 +8,6 @@
 
 EXTRA_DIST = eo.cfg foot.html html/* latex/*
 
-all:	doc
-
 doc:	eo.cfg
 	doxygen eo.cfg
 

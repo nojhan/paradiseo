@@ -62,12 +62,27 @@ public :
 Adds a \n before so it does not get mixed up with the rest of the stats
 that are written by the monitor it is probably used from.
 */
+#ifdef HAVE_SSTREAM
 void operator()(const eoPop<EOT>& _pop)
 {
-  char buffer[1023]; // about one K of space per member
-  value() = "\n# ====== Pop dump =====\n";
-  unsigned howMany=combien?combien:_pop.size();
-  for (unsigned i = 0; i < howMany; ++i)
+  value() = "\n# ====== pop dump =====\n";
+  unsigned howmany=combien?combien:_pop.size();
+  for (unsigned i = 0; i < howmany; ++i)
+  {
+      std::ostringstream os; 
+      os << _pop[i] << std::endl << std::ends;
+ 
+      // paranoid:
+      value() += os.str();
+  }
+}
+#else
+void operator()(const eoPop<EOT>& _pop)
+{
+  char buffer[1023]; // about one k of space per member
+  value() = "\n# ====== pop dump =====\n";
+  unsigned howmany=combien?combien:_pop.size();
+  for (unsigned i = 0; i < howmany; ++i)
   {
       std::ostrstream os(buffer, 1022); // leave space for emergency terminate
       os << _pop[i] << std::endl << std::ends;
@@ -77,6 +92,8 @@ void operator()(const eoPop<EOT>& _pop)
       value() += buffer;
   }
 }
+#endif
+
 private:
   unsigned combien;
 };
@@ -106,6 +123,21 @@ public :
       Adds a \n before so it does not get mixed up with the rest of the stats
       that are written by the monitor it is probably used from.
   */
+#ifdef HAVE_SSTREAM
+  void operator()(const std::vector<const EOT*>& _pop)
+  {
+    value() = "";		   // empty 
+    unsigned howMany=combien?combien:_pop.size();
+    for (unsigned i = 0; i < howMany; ++i)
+      {
+	std::ostringstream os; // leave space for emergency terminate
+	os << *_pop[i] << std::endl << std::ends;
+ 
+	// paranoid:
+	value() += os.str();
+      }
+  }
+#else
   void operator()(const std::vector<const EOT*>& _pop)
   {
     char buffer[1023]; // about one K of space per member
@@ -121,6 +153,7 @@ public :
 	value() += buffer;
       }
   }
+#endif
 private:
   unsigned combien;
 };

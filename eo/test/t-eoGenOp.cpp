@@ -176,10 +176,15 @@ void init(eoPop<Dummy> & _pop, unsigned _pSize)
     }
   for (unsigned i=0; i<_pSize; i++)
     {
-      char s[255];
+#ifdef HAVE_SSTREAM
+	std::ostringstream os;
+#else
+	char s[255];
       std::ostrstream os(s, 254);
+#endif
+      
       os << i << std::ends;
-      _pop[i] = Dummy(s);
+      _pop[i] = Dummy(os.str());
       _pop[i].fitness(i);
     }
 }

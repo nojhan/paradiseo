@@ -10,7 +10,7 @@ DOCDIR = ~/public_html/eodocs
 #Directory for indices -- not useful for the user
 IDXDIR = ~/index
 
-EXTRA_DIST=LICENSE
+EXTRA_DIST=LICENSE 
 
 ###############################################################################
 

@@ -29,7 +29,7 @@
 #endif 
 
 #include <signal.h>
-#include <stream.h>
+#include <iostream>
 
 // --- Global variables - but don't know what else to do - MS ---
 bool     arret_demande = false;
@@ -44,7 +44,7 @@ void signal_handler( int sig )
     // --- On veut la paix, jusqu'a la fin ---
     signal( SIGINT, SIG_IGN );
     signal( SIGQUIT, SIG_IGN );
-    cerr << "Ctrl C entered ... closing down" << endl ;
+    std::cerr << "Ctrl C entered ... closing down" << std::endl ;
     arret_demande = true;
 }
 

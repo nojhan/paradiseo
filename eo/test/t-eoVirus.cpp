@@ -24,7 +24,6 @@
 //-----------------------------------------------------------------------------
 
 #include <iostream>   // std::cout
-#include <strstream>  // ostrstream, istrstream
 #include <eo>         // general EO
 #include "../contrib/MGE/VirusOp.h"
 #include "../contrib/MGE/eoVirus.h"

@@ -26,7 +26,6 @@
 #define _EOPOP_H
 
 #include <vector>
-#include <strstream>
 #include <algorithm>
 #include <iterator> // needed for GCC 3.2
 
@@ -262,7 +261,6 @@ class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent
   //@{
   /**
    * Read object. The EOT class must have a ctor from a stream;
-   in this case, a strstream is used.
    * @param _is A std::istream.   
   */
   virtual void readFrom(std::istream& _is) 

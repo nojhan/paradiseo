@@ -100,9 +100,13 @@ class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
 
   virtual void handleBounds(eoRealVectorBounds & _bounds)
   {
+#ifdef HAVE_SSTREAM
+      std::ostringstream os;
+#else
     // use strstream and not std::stringstream until strstream is in all distributions
     char buf[1024];
     std::ostrstream os(buf, 1023);
+#endif
     //    std::ostrstream os;       
     os << "set autoscale\nset yrange [" ;
     if (_bounds.isMinBounded(0))
@@ -129,13 +133,24 @@ inline eoMonitor&   eoGnuplot1DSnapshot::operator() (void)
   eoFileSnapshot::operator()();
 
   // sends plot order to gnuplot
+#ifdef HAVE_SSTREAM
+  //std::string buff; // need local memory
+  std::ostringstream os;
+#else
   char buff[1024];
   std::ostrstream os(buff, 1024);
+#endif
+  
   os << "set title 'Gen. " << getCounter() << "'; plot '"
-     << getFileName() << "' notitle with points ps " << pointSize << "\n";
-  os << '\0';
+    // mk: had to use getFilename().c_str(), because it seems the string(stream) lib is screwed in gcc3.2
+      << getFileName().c_str() << "' notitle with points ps " << pointSize;
+  os << std::endl;
+  
+#ifdef HAVE_SSTREAM
+  PipeComSend( gpCom, os.str().c_str());
+#else
   PipeComSend( gpCom, buff );
-
+#endif
   return (*this);
 }
 

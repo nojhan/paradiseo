@@ -95,10 +95,15 @@ public :
    */
   void setCurrentFileName()
   {
+#ifdef HAVE_SSTREAM
+    std::ostringstream oscount;
+#else
     char buff[255];
     std::ostrstream oscount(buff, 254);
+#endif
     oscount << counter;
     oscount << std::ends;
+
     currentFileName = dirname + "/" + filename + oscount.str();
   }
 
