@@ -52,7 +52,7 @@ public :
     theBest(_theBest), boolOpt(true) {}
 
   /** Compute the FDC - either from best in pop, or from absolute best
-   *  if it was past in the constructor
+   *  if it was passed in the constructor
    */
     virtual void operator()(const eoPop<EOT>& _pop)
     {
