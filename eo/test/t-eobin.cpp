@@ -156,12 +156,14 @@ void main_function()
 
     eoInitFixedLength<Chrom> init(16, gen);
     eoPop<Chrom> pop(100, init);
-    
+
     apply<Chrom>(eval, pop);
-    
+
     sga(pop);
 
     pop.sort();
+
+    cout << "Population " << pop << endl;
 
     cout << "\nBest: " << pop[0].fitness() << '\n';
 
