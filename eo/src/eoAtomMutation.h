@@ -35,7 +35,7 @@
 
 /** Atomic mutation of an EO. Acts on containers, and applies a mutation
     operator to each element of the container with some probability. EOT must
-    be a container of any tipe
+    be a container of any type
 */
 template <class EOT>
 class eoAtomMutation: public eoMonOp<EOT> {
