@@ -27,7 +27,7 @@
 #ifndef _eoEsStdev_h
 #define _eoEsStdev_h
 
-#include <es/eoEsBase.h>
+#include <eoFixedLength.h>
 
 /**
 \ingroup EvolutionStrategies
@@ -37,11 +37,11 @@ deviations.
 */
 
 template <class Fit>
-class eoEsStdev : public eoEsBase<Fit>
+class eoEsStdev : public eoFixedLength<Fit, double>
 {
     public :
     
-    eoEsStdev(void) : eoEsBase<Fit>() {}
+    eoEsStdev(void) : eoFixedLength<Fit, double>() {}
 
     std::string className(void) const { return "eoEsStdev"; }
     

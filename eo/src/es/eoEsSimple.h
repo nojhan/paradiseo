@@ -30,7 +30,7 @@
 #include <EO.h>
 #include <vector>
 
-#include <es/eoEsBase.h>
+#include <eoFixedLength.h>
 
 /**
 \ingroup EvolutionStrategies
@@ -44,11 +44,11 @@ see also eoEsStdev eoEsFull
 */
 
 template <class Fit>
-class eoEsSimple : public eoEsBase<Fit>
+class eoEsSimple : public eoFixedLength<Fit, double>
 {
 public :
 
-    eoEsSimple(void) : eoEsBase<Fit>() {}
+    eoEsSimple(void) : eoFixedLength<Fit, double>() {}
 
     std::string className(void) const { return "eoEsSimple"; }
 

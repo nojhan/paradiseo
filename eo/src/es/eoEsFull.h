@@ -27,7 +27,7 @@
 #ifndef _eoEsFull_h
 #define _eoEsFull_h
 
-#include <es/eoEsBase.h>
+#include <eoFixedLength.h>
 
 /**
 \ingroup EvolutionStrategies
@@ -37,11 +37,11 @@ rates and correlated mutations.
 */
 
 template <class Fit>
-class eoEsFull : public eoEsBase<Fit>
+class eoEsFull : public eoFixedLength<Fit, double>
 {
     public :
     
-    eoEsFull(void) : eoEsBase<Fit>() {}
+    eoEsFull(void) : eoFixedLength<Fit, double>() {}
     
     std::string className(void) const { return "eoEsFull"; }
 

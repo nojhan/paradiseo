@@ -218,7 +218,7 @@ public:
     keepInBounds(_eo);
   }
 
-  void keepInBounds(eoEsBase<FitT>& _eo) const
+  void keepInBounds(eoFixedLength<FitT, double>& _eo) const
   {
       for (unsigned i = 0; i < _eo.size(); ++i)
       {

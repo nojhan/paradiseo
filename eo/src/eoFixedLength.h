@@ -24,25 +24,25 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef _eoEsBase_h
-#define _eoEsBase_h
+#ifndef _eoFixedLength_h
+#define _eoFixedLength_h
 
 /**
 \ingroup EvolutionStrategies
 
-  Base class for evolution strategies, just derives from EO and vector and
-  redirects the operator< to EO (fitness based comparison)
+  Base class for fixed length chromosomes, just derives from EO and vector and
+  redirects the smaller than operator to EO (fitness based comparison)
 */
 
-template <class FitT>
-class eoEsBase : public EO<FitT>, public std::vector<double>
+template <class FitT, class GeneType>
+class eoFixedLength : public EO<FitT>, public std::vector<GeneType>
 {
     public :
     
     typedef double Type;
 
     /// to avoid conflicts between EO::operator< and vector<double>::operator<
-    bool operator<(const eoEsBase<FitT>& _eo) const
+    bool operator<(const eoFixedLength<FitT, GeneType>& _eo) const
     {
         return EO<FitT>::operator<(_eo);
     }
@@ -50,8 +50,8 @@ class eoEsBase : public EO<FitT>, public std::vector<double>
 };
 
 /// to avoid conflicts between EO::operator< and vector<double>::operator<
-template <class FitT>
-bool operator<(const eoEsBase<FitT>& _eo1, const eoEsBase<FitT>& _eo2)
+template <class FitT, class GeneType>
+bool operator<(const eoFixedLength<FitT, GeneType>& _eo1, const eoFixedLength<FitT, GeneType>& _eo2)
 {
     return _eo1.operator<(_eo2);
 }
