@@ -1,0 +1,560 @@
+# Makefile.in generated automatically by automake 1.3 from Makefile.am
+
+# Copyright (C) 1994, 1995, 1996, 1997, 1998 Free Software Foundation, Inc.
+# This Makefile.in is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+###############################################################################
+###############################################################################
+
+
+SHELL = /bin/sh
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+VPATH = @srcdir@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
+bindir = @bindir@
+sbindir = @sbindir@
+libexecdir = @libexecdir@
+datadir = @datadir@
+sysconfdir = @sysconfdir@
+sharedstatedir = @sharedstatedir@
+localstatedir = @localstatedir@
+libdir = @libdir@
+infodir = @infodir@
+mandir = @mandir@
+includedir = @includedir@
+oldincludedir = /usr/include
+
+DISTDIR =
+
+pkgdatadir = $(datadir)/@PACKAGE@
+pkglibdir = $(libdir)/@PACKAGE@
+pkgincludedir = $(includedir)/@PACKAGE@
+
+top_builddir = ..
+
+ACLOCAL = @ACLOCAL@
+AUTOCONF = @AUTOCONF@
+AUTOMAKE = @AUTOMAKE@
+AUTOHEADER = @AUTOHEADER@
+
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+transform = @program_transform_name@
+
+NORMAL_INSTALL = :
+PRE_INSTALL = :
+POST_INSTALL = :
+NORMAL_UNINSTALL = :
+PRE_UNINSTALL = :
+POST_UNINSTALL = :
+host_alias = @host_alias@
+host_triplet = @host@
+CC = @CC@
+CXX = @CXX@
+LD = @LD@
+LIBTOOL = @LIBTOOL@
+LN_S = @LN_S@
+MAINT = @MAINT@
+MAKEINFO = @MAKEINFO@
+NM = @NM@
+PACKAGE = @PACKAGE@
+RANLIB = @RANLIB@
+VERSION = @VERSION@
+
+DEPS = $(top_builddir)/src/libeo.a
+
+###############################################################################
+
+INCLUDES = -I$(top_builddir)/src
+LDADDS = $(top_builddir)/src/libeo.a
+
+###############################################################################
+
+noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery t_eornd t_eovector t_eoaged t_eoid t_eostring t_ops t_popops t_pop t_es t_opsel t_opfactory t_opMut t_eobitfact
+
+###############################################################################
+
+t_eobreeder_SOURCES = t-eobreeder.cpp
+t_eobreeder_DEPENDENCIES = $(DEPS)
+t_eobreeder_LDFLAGS = -lm
+t_eobreeder_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoinclusion_SOURCES = t-eoinclusion.cpp
+t_eoinclusion_DEPENDENCIES = $(DEPS)
+t_eoinclusion_LDFLAGS = -lm
+t_eoinclusion_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoinsertion_SOURCES = t-eoinsertion.cpp
+t_eoinsertion_DEPENDENCIES = $(DEPS)
+t_eoinsertion_LDFLAGS = -lm
+t_eoinsertion_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eo_SOURCES = t-eo.cpp
+t_eo_DEPENDENCIES = $(DEPS)
+t_eo_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eofitness_SOURCES = t-eofitness.cpp
+t_eofitness_DEPENDENCIES = $(DEPS)
+t_eofitness_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoproblem_SOURCES = t-eoproblem.cpp
+t_eoproblem_LDFLAGS = -lm
+
+###############################################################################
+
+t_eobin_SOURCES = t-eobin.cpp
+t_eobin_DEPENDENCIES = $(DEPS)
+t_eobin_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eolottery_SOURCES = t-eolottery.cpp
+t_eolottery_DEPENDENCIES = $(DEPS)
+t_eovector_LDFLAGS = -lm
+t_eolottery_LDADD = $(LDADDS) 
+
+###############################################################################
+
+t_eornd_SOURCES = t_eornd.cpp
+t_eornd_LDFLAGS = -lm
+
+###############################################################################
+
+t_eovector_SOURCES = t_eovector.cpp
+t_eovector_LDFLAGS = -lm
+t_eovector_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoaged_SOURCES = t_eoaged.cpp
+t_eoaged_DEPENDENCIES = $(DEPS)
+t_eoaged_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoid_SOURCES = t_eoid.cpp
+t_eoid_DEPENDENCIES = $(DEPS)
+t_eoid_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eostring_SOURCES = t_eostring.cpp
+t_eostring_DEPENDENCIES = $(DEPS)
+t_eostring_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eostring_SOURCES = t_eostring.cpp
+t_eostring_DEPENDENCIES = $(DEPS)
+t_eostring_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_es_SOURCES = t_es.cpp
+t_es_DEPENDENCIES = $(DEPS)
+t_es_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_ops_SOURCES = t_ops.cpp
+t_ops_DEPENDENCIES = $(DEPS)
+t_ops_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_pop_SOURCES = t_pop.cpp
+t_pop_DEPENDENCIES = $(DEPS)
+t_pop_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_popops_SOURCES = t_popops.cpp
+t_popops_DEPENDENCIES = $(DEPS)
+t_popops_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_opsel_SOURCES = t_opsel.cpp
+t_opsel_DEPENDENCIES = $(DEPS)
+t_opsel_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_opfactory_SOURCES = t_opfactory.cpp
+t_opfactory_DEPENDENCIES = $(DEPS)
+t_opfactory_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_opMut_SOURCES = t_opMut.cpp
+t_opMut_DEPENDENCIES = $(DEPS)
+t_opMut_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eobitfact_SOURCES = t_eobitfact.cpp
+t_eobitfact_DEPENDENCIES = $(DEPS)
+t_eobitfact_LDADD = $(LDADDS)
+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+CONFIG_CLEAN_FILES = 
+PROGRAMS =  $(noinst_PROGRAMS)
+
+
+DEFS = @DEFS@ -I. -I$(srcdir) 
+CPPFLAGS = @CPPFLAGS@
+LDFLAGS = @LDFLAGS@
+LIBS = @LIBS@
+t_eobreeder_OBJECTS =  t-eobreeder.o
+t_eoinclusion_OBJECTS =  t-eoinclusion.o
+t_eoinsertion_OBJECTS =  t-eoinsertion.o
+t_eo_OBJECTS =  t-eo.o
+t_eo_LDFLAGS = 
+t_eofitness_OBJECTS =  t-eofitness.o
+t_eofitness_LDFLAGS = 
+t_eoproblem_OBJECTS =  t-eoproblem.o
+t_eoproblem_LDADD = $(LDADD)
+t_eoproblem_DEPENDENCIES = 
+t_eobin_OBJECTS =  t-eobin.o
+t_eobin_LDFLAGS = 
+t_eolottery_OBJECTS =  t-eolottery.o
+t_eolottery_LDFLAGS = 
+t_eornd_OBJECTS =  t_eornd.o
+t_eornd_LDADD = $(LDADD)
+t_eornd_DEPENDENCIES = 
+t_eovector_OBJECTS =  t_eovector.o
+t_eovector_DEPENDENCIES =  $(top_builddir)/src/libeo.a
+t_eoaged_OBJECTS =  t_eoaged.o
+t_eoaged_LDFLAGS = 
+t_eoid_OBJECTS =  t_eoid.o
+t_eoid_LDFLAGS = 
+t_eostring_OBJECTS =  t_eostring.o
+t_eostring_LDFLAGS = 
+t_ops_OBJECTS =  t_ops.o
+t_ops_LDFLAGS = 
+t_popops_OBJECTS =  t_popops.o
+t_popops_LDFLAGS = 
+t_pop_OBJECTS =  t_pop.o
+t_pop_LDFLAGS = 
+t_es_OBJECTS =  t_es.o
+t_es_LDFLAGS = 
+t_opsel_OBJECTS =  t_opsel.o
+t_opsel_LDFLAGS = 
+t_opfactory_OBJECTS =  t_opfactory.o
+t_opfactory_LDFLAGS = 
+t_opMut_OBJECTS =  t_opMut.o
+t_opMut_LDFLAGS = 
+t_eobitfact_OBJECTS =  t_eobitfact.o
+t_eobitfact_LDFLAGS = 
+CXXFLAGS = @CXXFLAGS@
+CXXCOMPILE = $(CXX) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CXXFLAGS)
+LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CXXFLAGS)
+CXXLINK = $(LIBTOOL) --mode=link $(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@
+DIST_COMMON =  Makefile.am Makefile.in
+
+
+DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
+
+TAR = tar
+GZIP = --best
+SOURCES = $(t_eobreeder_SOURCES) $(t_eoinclusion_SOURCES) $(t_eoinsertion_SOURCES) $(t_eo_SOURCES) $(t_eofitness_SOURCES) $(t_eoproblem_SOURCES) $(t_eobin_SOURCES) $(t_eolottery_SOURCES) $(t_eornd_SOURCES) $(t_eovector_SOURCES) $(t_eoaged_SOURCES) $(t_eoid_SOURCES) $(t_eostring_SOURCES) $(t_ops_SOURCES) $(t_popops_SOURCES) $(t_pop_SOURCES) $(t_es_SOURCES) $(t_opsel_SOURCES) $(t_opfactory_SOURCES) $(t_opMut_SOURCES) $(t_eobitfact_SOURCES)
+OBJECTS = $(t_eobreeder_OBJECTS) $(t_eoinclusion_OBJECTS) $(t_eoinsertion_OBJECTS) $(t_eo_OBJECTS) $(t_eofitness_OBJECTS) $(t_eoproblem_OBJECTS) $(t_eobin_OBJECTS) $(t_eolottery_OBJECTS) $(t_eornd_OBJECTS) $(t_eovector_OBJECTS) $(t_eoaged_OBJECTS) $(t_eoid_OBJECTS) $(t_eostring_OBJECTS) $(t_ops_OBJECTS) $(t_popops_OBJECTS) $(t_pop_OBJECTS) $(t_es_OBJECTS) $(t_opsel_OBJECTS) $(t_opfactory_OBJECTS) $(t_opMut_OBJECTS) $(t_eobitfact_OBJECTS)
+
+all: Makefile $(PROGRAMS)
+
+.SUFFIXES:
+.SUFFIXES: .S .c .cpp .lo .o .s
+$(srcdir)/Makefile.in: @MAINT@ Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4)
+	cd $(top_srcdir) && $(AUTOMAKE) --gnu --include-deps test/Makefile
+
+Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status
+	cd $(top_builddir) \
+	  && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= $(SHELL) ./config.status
+
+
+mostlyclean-noinstPROGRAMS:
+
+clean-noinstPROGRAMS:
+	-test -z "$(noinst_PROGRAMS)" || rm -f $(noinst_PROGRAMS)
+
+distclean-noinstPROGRAMS:
+
+maintainer-clean-noinstPROGRAMS:
+
+.c.o:
+	$(COMPILE) -c $<
+
+.s.o:
+	$(COMPILE) -c $<
+
+.S.o:
+	$(COMPILE) -c $<
+
+mostlyclean-compile:
+	-rm -f *.o core *.core
+
+clean-compile:
+
+distclean-compile:
+	-rm -f *.tab.c
+
+maintainer-clean-compile:
+
+.c.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+.s.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+.S.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+mostlyclean-libtool:
+	-rm -f *.lo
+
+clean-libtool:
+	-rm -rf .libs _libs
+
+distclean-libtool:
+
+maintainer-clean-libtool:
+
+t-eobreeder: $(t_eobreeder_OBJECTS) $(t_eobreeder_DEPENDENCIES)
+	@rm -f t-eobreeder
+	$(CXXLINK) $(t_eobreeder_LDFLAGS) $(t_eobreeder_OBJECTS) $(t_eobreeder_LDADD) $(LIBS)
+
+t-eoinclusion: $(t_eoinclusion_OBJECTS) $(t_eoinclusion_DEPENDENCIES)
+	@rm -f t-eoinclusion
+	$(CXXLINK) $(t_eoinclusion_LDFLAGS) $(t_eoinclusion_OBJECTS) $(t_eoinclusion_LDADD) $(LIBS)
+
+t-eoinsertion: $(t_eoinsertion_OBJECTS) $(t_eoinsertion_DEPENDENCIES)
+	@rm -f t-eoinsertion
+	$(CXXLINK) $(t_eoinsertion_LDFLAGS) $(t_eoinsertion_OBJECTS) $(t_eoinsertion_LDADD) $(LIBS)
+
+t-eo: $(t_eo_OBJECTS) $(t_eo_DEPENDENCIES)
+	@rm -f t-eo
+	$(CXXLINK) $(t_eo_LDFLAGS) $(t_eo_OBJECTS) $(t_eo_LDADD) $(LIBS)
+
+t-eofitness: $(t_eofitness_OBJECTS) $(t_eofitness_DEPENDENCIES)
+	@rm -f t-eofitness
+	$(CXXLINK) $(t_eofitness_LDFLAGS) $(t_eofitness_OBJECTS) $(t_eofitness_LDADD) $(LIBS)
+
+t-eoproblem: $(t_eoproblem_OBJECTS) $(t_eoproblem_DEPENDENCIES)
+	@rm -f t-eoproblem
+	$(CXXLINK) $(t_eoproblem_LDFLAGS) $(t_eoproblem_OBJECTS) $(t_eoproblem_LDADD) $(LIBS)
+
+t-eobin: $(t_eobin_OBJECTS) $(t_eobin_DEPENDENCIES)
+	@rm -f t-eobin
+	$(CXXLINK) $(t_eobin_LDFLAGS) $(t_eobin_OBJECTS) $(t_eobin_LDADD) $(LIBS)
+
+t-eolottery: $(t_eolottery_OBJECTS) $(t_eolottery_DEPENDENCIES)
+	@rm -f t-eolottery
+	$(CXXLINK) $(t_eolottery_LDFLAGS) $(t_eolottery_OBJECTS) $(t_eolottery_LDADD) $(LIBS)
+
+t_eornd: $(t_eornd_OBJECTS) $(t_eornd_DEPENDENCIES)
+	@rm -f t_eornd
+	$(CXXLINK) $(t_eornd_LDFLAGS) $(t_eornd_OBJECTS) $(t_eornd_LDADD) $(LIBS)
+
+t_eovector: $(t_eovector_OBJECTS) $(t_eovector_DEPENDENCIES)
+	@rm -f t_eovector
+	$(CXXLINK) $(t_eovector_LDFLAGS) $(t_eovector_OBJECTS) $(t_eovector_LDADD) $(LIBS)
+
+t_eoaged: $(t_eoaged_OBJECTS) $(t_eoaged_DEPENDENCIES)
+	@rm -f t_eoaged
+	$(CXXLINK) $(t_eoaged_LDFLAGS) $(t_eoaged_OBJECTS) $(t_eoaged_LDADD) $(LIBS)
+
+t_eoid: $(t_eoid_OBJECTS) $(t_eoid_DEPENDENCIES)
+	@rm -f t_eoid
+	$(CXXLINK) $(t_eoid_LDFLAGS) $(t_eoid_OBJECTS) $(t_eoid_LDADD) $(LIBS)
+
+t_eostring: $(t_eostring_OBJECTS) $(t_eostring_DEPENDENCIES)
+	@rm -f t_eostring
+	$(CXXLINK) $(t_eostring_LDFLAGS) $(t_eostring_OBJECTS) $(t_eostring_LDADD) $(LIBS)
+
+t_ops: $(t_ops_OBJECTS) $(t_ops_DEPENDENCIES)
+	@rm -f t_ops
+	$(CXXLINK) $(t_ops_LDFLAGS) $(t_ops_OBJECTS) $(t_ops_LDADD) $(LIBS)
+
+t_popops: $(t_popops_OBJECTS) $(t_popops_DEPENDENCIES)
+	@rm -f t_popops
+	$(CXXLINK) $(t_popops_LDFLAGS) $(t_popops_OBJECTS) $(t_popops_LDADD) $(LIBS)
+
+t_pop: $(t_pop_OBJECTS) $(t_pop_DEPENDENCIES)
+	@rm -f t_pop
+	$(CXXLINK) $(t_pop_LDFLAGS) $(t_pop_OBJECTS) $(t_pop_LDADD) $(LIBS)
+
+t_es: $(t_es_OBJECTS) $(t_es_DEPENDENCIES)
+	@rm -f t_es
+	$(CXXLINK) $(t_es_LDFLAGS) $(t_es_OBJECTS) $(t_es_LDADD) $(LIBS)
+
+t_opsel: $(t_opsel_OBJECTS) $(t_opsel_DEPENDENCIES)
+	@rm -f t_opsel
+	$(CXXLINK) $(t_opsel_LDFLAGS) $(t_opsel_OBJECTS) $(t_opsel_LDADD) $(LIBS)
+
+t_opfactory: $(t_opfactory_OBJECTS) $(t_opfactory_DEPENDENCIES)
+	@rm -f t_opfactory
+	$(CXXLINK) $(t_opfactory_LDFLAGS) $(t_opfactory_OBJECTS) $(t_opfactory_LDADD) $(LIBS)
+
+t_opMut: $(t_opMut_OBJECTS) $(t_opMut_DEPENDENCIES)
+	@rm -f t_opMut
+	$(CXXLINK) $(t_opMut_LDFLAGS) $(t_opMut_OBJECTS) $(t_opMut_LDADD) $(LIBS)
+
+t_eobitfact: $(t_eobitfact_OBJECTS) $(t_eobitfact_DEPENDENCIES)
+	@rm -f t_eobitfact
+	$(CXXLINK) $(t_eobitfact_LDFLAGS) $(t_eobitfact_OBJECTS) $(t_eobitfact_LDADD) $(LIBS)
+.cpp.o:
+	$(CXXCOMPILE) -c $<
+.cpp.lo:
+	$(LTCXXCOMPILE) -c $<
+
+tags: TAGS
+
+ID: $(HEADERS) $(SOURCES) $(LISP)
+	here=`pwd` && cd $(srcdir) \
+	  && mkid -f$$here/ID $(SOURCES) $(HEADERS) $(LISP)
+
+TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	test -z "$(ETAGS_ARGS)$$unique$(LISP)$$tags" \
+	  || (cd $(srcdir) && etags $(ETAGS_ARGS) $$tags  $$unique $(LISP) -o $$here/TAGS)
+
+mostlyclean-tags:
+
+clean-tags:
+
+distclean-tags:
+	-rm -f TAGS ID
+
+maintainer-clean-tags:
+
+distdir = $(top_builddir)/$(PACKAGE)-$(VERSION)/$(subdir)
+
+subdir = test
+
+distdir: $(DISTFILES)
+	@for file in $(DISTFILES); do \
+	  d=$(srcdir); \
+	  test -f $(distdir)/$$file \
+	  || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
+	  || cp -p $$d/$$file $(distdir)/$$file; \
+	done
+t-eobreeder.o: t-eobreeder.cpp ../src/eo ../src/eoData.h \
+	../src/eoObject.h ../src/eoPrintable.h ../src/eoPersistent.h \
+	../src/EO.h ../src/eoID.h ../src/eoAged.h ../src/eoVector.h \
+	../src/eo1d.h ../src/eoRnd.h ../src/eoString.h \
+	../src/eoESChrom.h ../src/eoBin.h ../src/eoUniform.h \
+	../src/eoNormal.h ../src/eoNegExp.h ../src/eoOp.h \
+	../src/eoMultiMonOp.h ../src/eoDup.h ../src/eoKill.h \
+	../src/eoTranspose.h ../src/eoXOver2.h ../src/eoMutation.h \
+	../src/eoPop.h ../src/eoPopOps.h ../src/eoBitOp.h \
+	../src/eoLottery.h ../src/eoBreeder.h ../src/eoInsertion.h \
+	../src/eoInclusion.h ../src/eoFitness.h ../src/eoProblem.h
+t-eoinsertion.o: t-eoinsertion.cpp ../src/eo ../src/eoData.h \
+	../src/eoObject.h ../src/eoPrintable.h ../src/eoPersistent.h \
+	../src/EO.h ../src/eoID.h ../src/eoAged.h ../src/eoVector.h \
+	../src/eo1d.h ../src/eoRnd.h ../src/eoString.h \
+	../src/eoESChrom.h ../src/eoBin.h ../src/eoUniform.h \
+	../src/eoNormal.h ../src/eoNegExp.h ../src/eoOp.h \
+	../src/eoMultiMonOp.h ../src/eoDup.h ../src/eoKill.h \
+	../src/eoTranspose.h ../src/eoXOver2.h ../src/eoMutation.h \
+	../src/eoPop.h ../src/eoPopOps.h ../src/eoBitOp.h \
+	../src/eoLottery.h ../src/eoBreeder.h ../src/eoInsertion.h \
+	../src/eoInclusion.h ../src/eoFitness.h ../src/eoProblem.h
+
+info:
+dvi:
+check: all
+	$(MAKE)
+installcheck:
+install-exec: 
+	@$(NORMAL_INSTALL)
+
+install-data: 
+	@$(NORMAL_INSTALL)
+
+install: install-exec install-data all
+	@:
+
+uninstall: 
+
+install-strip:
+	$(MAKE) INSTALL_PROGRAM='$(INSTALL_PROGRAM) -s' INSTALL_SCRIPT='$(INSTALL_PROGRAM)' install
+installdirs:
+
+
+mostlyclean-generic:
+	-test -z "$(MOSTLYCLEANFILES)" || rm -f $(MOSTLYCLEANFILES)
+
+clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
+
+distclean-generic:
+	-rm -f Makefile $(DISTCLEANFILES)
+	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
+	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
+
+maintainer-clean-generic:
+	-test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
+mostlyclean:  mostlyclean-noinstPROGRAMS mostlyclean-compile \
+		mostlyclean-libtool mostlyclean-tags \
+		mostlyclean-generic
+
+clean:  clean-noinstPROGRAMS clean-compile clean-libtool clean-tags \
+		clean-generic mostlyclean
+
+distclean:  distclean-noinstPROGRAMS distclean-compile distclean-libtool \
+		distclean-tags distclean-generic clean
+	-rm -f config.status
+	-rm -f libtool
+
+maintainer-clean:  maintainer-clean-noinstPROGRAMS \
+		maintainer-clean-compile maintainer-clean-libtool \
+		maintainer-clean-tags maintainer-clean-generic \
+		distclean
+	@echo "This command is intended for maintainers to use;"
+	@echo "it deletes files that may require special tools to rebuild."
+
+.PHONY: mostlyclean-noinstPROGRAMS distclean-noinstPROGRAMS \
+clean-noinstPROGRAMS maintainer-clean-noinstPROGRAMS \
+mostlyclean-compile distclean-compile clean-compile \
+maintainer-clean-compile mostlyclean-libtool distclean-libtool \
+clean-libtool maintainer-clean-libtool tags mostlyclean-tags \
+distclean-tags clean-tags maintainer-clean-tags distdir info dvi \
+installcheck install-exec install-data install uninstall all \
+installdirs mostlyclean-generic distclean-generic clean-generic \
+maintainer-clean-generic clean mostlyclean distclean maintainer-clean
+
+
+###############################################################################
+
+# Tell versions [3.59,3.63) of GNU make to not export all variables.
+# Otherwise a system limit (for SysV at least) may be exceeded.
+.NOEXPORT:
