@@ -25,6 +25,12 @@ int main(int argc, char* argv[])
 
   eoPop<EoType>& pop   = init_ga(parser, state, double());
 
+  if (parser.userNeedsHelp())
+  {
+    parser.printHelp(cout);
+    return 0;
+  }
+
   apply(eval, pop);
 
   run_ga(ga, pop); // run the ga
