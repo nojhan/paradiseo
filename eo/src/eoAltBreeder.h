@@ -15,7 +15,7 @@
 #include <eoPopOps.h>      // eoTransform
 #include <eoOpSelector.h>  // eoOpSelector
 #include <list>
-#include "eoRng.h"
+#include <eoRnd.h>
 
 using namespace std;
 
