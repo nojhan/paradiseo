@@ -35,25 +35,19 @@
 #include <eoInit.h>
 #include <utils/rnd_generators.h>  // for shuffle method
 
-/** Subpopulation: it is used to move parts of population
- from one algorithm to another and one population to another. It is safer
-to declare it as a separate object. I have no idea if a population can be
-some other thing that a vector, but if somebody thinks of it, this concrete
-implementation will be moved to "generic" and an abstract Population 
-interface will be provided.
-
-It can be instantiated with anything, provided that it accepts a "size" and a
-random generator in the ctor. This happens to all the eo1d chromosomes declared 
-so far. EOT must also have a copy ctor, since temporaries are created and copied
-to the population.
-
-It can also be instantiated with a "size" and an eoInit derived object. 
-This object must supply a full chromosome (or something the ctor of the EO
-will accept).
-
-@author Geneura Team
-@version 0.0
-*/
+/** A vector of EO object, to be used in all algorithms 
+ *      (selectors, operators, replacements, ...).
+ *
+ * We have no idea if a population can be
+ * some other thing that a vector, but if somebody thinks of it, this concrete
+ * implementation can be moved to "generic" and an abstract Population 
+ * interface be provided.
+ *
+ * The template can be instantiated with anything that accepts a "size" 
+ * and eoInit derived object. in the ctor. 
+ * EOT must also have a copy ctor, since temporaries are created and then
+ * passed to the eoInit object
+ */
 
 template<class EOT>
 class eoPop: public vector<EOT>, public eoObject, public eoPersistent 
@@ -104,19 +98,19 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
     };
   
   
-	/** Ctor from an istream; reads the population from a stream,
-	    each element should be in different lines
-	    @param _is the stream
-	*/
-	eoPop( istream& _is ):vector<EOT>() {
-	  readFrom( _is );
-	}
-	
-	///
-	~eoPop() {};
+  /** Ctor from an istream; reads the population from a stream,
+      each element should be in different lines
+      @param _is the stream
+  */
+  eoPop( istream& _is ):vector<EOT>() {
+    readFrom( _is );
+  }
+  
+  /** Empty Dtor */
+	virtual ~eoPop() {};
 
 
-	/// helper struct for getting a pointer
+  /// helper struct for getting a pointer
       struct Ref { const EOT* operator()(const EOT& eot) { return &eot;}};
   /// helper struct for comparing on pointers
       struct Cmp {
@@ -133,7 +127,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       std::sort(begin(), end(), greater<EOT>());
   }
 
-  // creates a vector<EOT*> pointing to the individuals in descending order
+  /** creates a vector<EOT*> pointing to the individuals in descending order */
   void sort(vector<const EOT*>& result) const
   {
       result.resize(size());
@@ -153,7 +147,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       std::random_shuffle(begin(), end(), gen);
   }
 
-  // creates a vector<EOT*> pointing to the individuals in random order
+  /** creates a vector<EOT*> pointing to the individuals in random order */
   void shuffle(vector<const EOT*>& result) const
   {
       result.resize(size());
@@ -164,28 +158,28 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       std::random_shuffle(result.begin(), result.end(), gen);
   }
 
-  // returns an iterator to the best individual DOES NOT MOVE ANYBODY
+  /** returns an iterator to the best individual DOES NOT MOVE ANYBODY */
   eoPop<EOT>::iterator it_best_element() 
   {
     typename eoPop<EOT>::const_iterator it = max_element(begin(), end());
     return it;
   }
 
-  // returns an iterator to the best individual DOES NOT MOVE ANYBODY
+  /** returns an iterator to the best individual DOES NOT MOVE ANYBODY */
   const EOT & best_element() const
   {
     typename eoPop<EOT>::const_iterator it = max_element(begin(), end());
     return (*it);
   }
 
-  // returns a const reference to the worse individual DOES NOT MOVE ANYBODY
+  /** returns a const reference to the worse individual DOES NOT MOVE ANYBODY */
   const EOT & worse_element() const
   {
     typename eoPop<EOT>::const_iterator it = min_element(begin(), end());
     return (*it);
   }
 
-// returns an iterator to the worse individual DOES NOT MOVE ANYBODY
+  /** returns an iterator to the worse individual DOES NOT MOVE ANYBODY */
   eoPop<EOT>::iterator it_worse_element()
   {
     typename eoPop<EOT>::iterator it = min_element(begin(), end());
@@ -205,6 +199,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
 
   struct GetFitness { Fitness operator()(const EOT& _eo) const { return _eo.fitness(); } };
   
+  /** returns the fitness of the nth element */
   Fitness nth_element_fitness(int which) const
   { // probably not the fastest way to do this, but what the heck
       
@@ -216,7 +211,9 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       return *it;
   }
 
-  /// const nth_element function, returns pointers to sorted individuals
+  /** const nth_element function, returns pointers to sorted individuals 
+   * up the the nth 
+   */
   void nth_element(int which, vector<const EOT*>& result) const
   {
 
@@ -228,7 +225,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       std::nth_element(result.begin(), it, result.end(), Cmp());
   }
 
-  // does STL swap with other pop
+  /** does STL swap with other pop */
   void swap(eoPop<EOT>& other)
   {
       std::swap(static_cast<vector<EOT>& >(*this), static_cast<vector<EOT>& >(other));
