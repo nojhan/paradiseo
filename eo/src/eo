@@ -127,6 +127,8 @@
 
 // Utils
 #include <utils/checkpointing>
+#include <utils/eoRealVectorBounds.h> // includes eoRealBounds.h
+#include <utils/eoIntBounds.h>        // no eoIntVectorBounds
 
 // aliens
 #include <other/external_eo>
