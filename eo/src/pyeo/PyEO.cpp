@@ -82,7 +82,7 @@ struct pyPop_pickle_suite : boost::python::pickle_suite
     static void setstate( eoPop<PyEO>& _pop, boost::python::tuple pickled)
     {
 	int sz = extract<int>(pickled[0]);
-	boost::python::list entries = pickled[1];
+	boost::python::list entries = list(pickled[1]);
 	_pop.resize(sz);
 	for (unsigned i = 0; i != _pop.size(); ++i)
 	    PyEO_pickle_suite::setstate(_pop[i], tuple(entries[i]) );
