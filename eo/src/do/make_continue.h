@@ -70,7 +70,7 @@ eoContinue<Indi> & do_make_continue(eoParser& _parser, eoState& _state, eoEvalFu
 
   // First the eoGenContinue - need a default value so you can run blind
   // but we also need to be able to avoid it <--> 0
-  eoValueParam<unsigned>& maxGenParam = _parser.createParam(unsigned(100), "maxGen", "Maximum number of generations () = none)",'G',"Stopping criterion");
+  eoValueParam<unsigned>& maxGenParam = _parser.getORcreateParam(unsigned(100), "maxGen", "Maximum number of generations () = none)",'G',"Stopping criterion");
 
     if (maxGenParam.value()) // positive: -> define and store
       {

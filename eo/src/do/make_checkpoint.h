@@ -201,7 +201,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 	fileMonitor->add(_eval);
 	if (tCounter)		   // we want the time as well
 	  {
-	    cout << "On met timecounter\n";
+	    //	    cout << "On met timecounter\n";
 	    fileMonitor->add(*tCounter);
 	  }
 	fileMonitor->add(*bestStat); 
