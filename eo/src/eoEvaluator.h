@@ -54,6 +54,8 @@ public:
 	 * @param _vEO is a vector of pointers to eo, that will be evaluated
 	 */
 
+  virtual void operator() ( EOT& _eot ) const = 0;
+
 	///@name eoObject methods
 	//@{
 	/** Return the class id */

@@ -176,26 +176,26 @@ public:
   /// Ctor
   eoNaryOp( )
     :eoOp<EOType>( Nary ) {};
-
+  
   /// Copy Ctor
   eoNaryOp( const eoNaryOp& _emop )
     : eoOp<EOType>( _emop ){};
-
+  
   /// Dtor
   ~eoNaryOp() {};
-
+  
   /** applies randomly operator, to the object.
    */
-	virtual void operator()( eoPop<EOType> & _eop) const = 0;
-
+  virtual void operator()( eoPop<EOType> & _eop) const = 0;
+  
   /** @name Methods from eoObject
-	readFrom and printOn are directly inherited from eoObject.
+      readFrom and printOn are directly inherited from eoObject.
+  */
+  //@{
+  /** Inherited from eoObject 
+	    @see eoObject
 	*/
-	//@{
-	/** Inherited from eoObject 
-		  @see eoObject
-	*/
-	string className() const {return "eoNaryOp";};
+  string className() const {return "eoNaryOp";};
     //@}
 
 };
