@@ -71,12 +71,12 @@ a hierarchy of functions with defaults behaviors and specialized sub-functions</
 <li>
 ...</li>
 </ul>
-Functors are so intimately linked to EO that a base class (<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eofunctorbase.html">eoFunctorBase</a></font></font></b>)
+Functors are so intimately linked to EO that a base class (<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_functor_base.html">eoFunctorBase</a></font></font></b>)
 has been designed to hold all functors. This base class is itself divided
 into three derived class. These classes tell you immediately what kind
 of arguments the <b><tt><font color="#993300">operator()</font></tt></b>
 method requires and what kind of result it produces. See <a href="#notations">EO
-conventions</a>, and the <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eofunctorbase.html">inheritance
+conventions</a>, and the <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_functor_base.html">inheritance
 diagram of class eoFunctorBase</a>.</font></font></b>
 <br>For a more complete introduction to functors, with detailed discussion,
 go to the <a href="http://www.sgi.com/tech/stl/functors.html">STL
@@ -118,7 +118,7 @@ method.</font>
 is for arity-zero functors, i.e.&nbsp; their </font><b><tt><font color="#993300">operator()</font></tt></b><font color="#000000">
 method does not require any argument. It has a single template parameter,
 the return type of the </font><b><tt><font color="#993300">operator()</font></tt></b><font color="#000000">
-method. For instance,&nbsp;</font> <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomonitor.html">eoMonitor</a></font></font></b>&nbsp;<font color="#000000">
+method. For instance,&nbsp;</font> <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_monitor.html">eoMonitor</a></font></font></b>&nbsp;<font color="#000000">
 are </font><b><tt><font color="#FF6600">eoF</font></tt></b><font color="#000000">'s
 that return an </font><b><tt><font color="#993300">eoMonitor &amp;</font></tt></b><font color="#000000">.</font></li>
 
@@ -127,7 +127,7 @@ that return an </font><b><tt><font color="#993300">eoMonitor &amp;</font></tt></
 is for unary functors, i.e.&nbsp; their </font><b><tt><font color="#993300">operator()</font></tt></b><font color="#000000">
 method requires one argument. It has two template parameters, the type
 of the argument and the return type of the </font><b><tt><font color="#993300">operator()</font></tt></b><font color="#000000">
-method. For instance,&nbsp;</font> <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomonop.html">eoMonOp</a></font></font></b>'s<font color="#000000">
+method. For instance,&nbsp;</font> <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_mon_op.html">eoMonOp</a></font></font></b>'s<font color="#000000">
 are </font><b><tt><font color="#FF6600">eoUF</font></tt></b><font color="#000000">'s
 that take as argument an </font><b><tt><font color="#993300">EOT &amp;</font></tt></b><font color="#000000">
 and return </font><b><tt><font color="#993300">void</font></tt></b><font color="#000000">
@@ -138,14 +138,14 @@ and return </font><b><tt><font color="#993300">void</font></tt></b><font color="
 is for binary functors, i.e.&nbsp; their </font><b><tt><font color="#993300">operator()</font></tt></b><font color="#000000">
 method requires two arguments. It has three template parameters, the types
 of the arguments and the return type of the </font><b><tt><font color="#993300">operator()</font></tt></b><font color="#000000">
-method. For instance,&nbsp;</font> <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eobinop.html">eoBinOp</a></font></font></b>'s<font color="#000000">
+method. For instance,&nbsp;</font> <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_bin_op.html">eoBinOp</a></font></font></b>'s<font color="#000000">
 are </font><b><tt><font color="#FF6600">eoBF</font></tt></b><font color="#000000">'s
 that take as arguments a </font><b><tt><font color="#993300">const EOT
 &amp;</font></tt></b><font color="#000000"> and an </font><b><tt><font color="#993300">EOT
 &amp;</font></tt></b><font color="#000000">, and return </font><b><tt><font color="#993300">void</font></tt></b><font color="#000000">
 .</font></li>
 </ul>
-<font color="#000000">Now go back to the </font><b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eofunctorbase.html">inheritance
+<font color="#000000">Now go back to the </font><b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_functor_base.html">inheritance
 diagram of class eoFunctorBase</a></font></font></b><font color="#000000">,
 and guess the interface for all functors!</font>
 <p><b><font color="#FF0000">Note</font></b><font color="#000000">: for
@@ -153,7 +153,7 @@ obvious simplicity reasons, we very often omit the reference to the </font><b><t
 e.g. when we say above:</font>
 <ul>
 <li>
-<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomonop.html">eoMonOp</a></font></font></b>'s<font color="#000000">
+<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_mon_op.html">eoMonOp</a></font></font></b>'s<font color="#000000">
 are </font><b><tt><font color="#FF6600">eoUF</font></tt></b><font color="#000000">'s
 that take as argument an </font><b><tt><font color="#993300">EOT &amp;</font></tt></b><font color="#000000">
 and return </font><b><tt><font color="#993300">void</font></tt></b></li>
@@ -161,7 +161,7 @@ and return </font><b><tt><font color="#993300">void</font></tt></b></li>
 <font color="#000000">it actually means</font>
 <ul>
 <li>
-<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomonop.html">eoMonOp</a></font></font></b>'s<font color="#000000">
+<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_mon_op.html">eoMonOp</a></font></font></b>'s<font color="#000000">
 are </font><b><tt><font color="#FF6600">eoUF</font></tt></b><font color="#000000">'s,
 their </font><b><tt><font color="#993300">operator()</font></tt></b><font color="#000000">
 method takes as argument an </font><b><tt><font color="#993300">EOT &amp;</font></tt></b><font color="#000000">
@@ -334,8 +334,8 @@ related number, e.g. calling time(0), as done for instance in <a href="SecondBit
 As RNGs produce, by definition, integers that are uniformly distributed
 between 0 and some maximal number, EO provides you with random numbers
 following <b><font color="#FF6600">different probability distribution</font></b>
-(e.g. floating point following <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eorng.html#a8">normal
-distribution</a></font></font>). See the <a href="../../doc/html/class_eorng.html">complete
+(e.g. floating point following <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_rng.html#a8">normal
+distribution</a></font></font>). See the <a href="../../doc/html/classeo_rng.html">complete
 list of RNG primitives</a>.
 <p>EO also provides <a href="../../doc/html/rnd_generators_h-source.html">random_generators</a>
 that can be used in STL call to generate series of random numbers, as in
@@ -388,8 +388,8 @@ above).</li>
 The name of the EO template should be EOT. This allows quick understanding
 of the inheritance diagrams for <a href="#functors">functors</a>. and immediate
 perception of the arguments and return types of the functors oeprator()
-method (as in <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomonop.html">eoMonOp</a></font></font></b>
-or&nbsp; <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eobinop.html">eoBinOp</a></font></font></b>).</li>
+method (as in <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_mon_op.html">eoMonOp</a></font></font></b>
+or&nbsp; <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_bin_op.html">eoBinOp</a></font></font></b>).</li>
 
 <br>&nbsp;
 <li>

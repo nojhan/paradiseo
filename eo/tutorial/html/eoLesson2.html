@@ -110,7 +110,7 @@ on a <a href="FirstBitEA.html#init">boolean generator</a> or a <a href="FirstRea
 generator</a> -see <a href="../../doc/html/class_random_generator.html">random_generators.h</a>)
 that is then used in the constructor of the population to build the individuals.
 You can also use different initializers and call them in turn through the
-call to <a href="../../doc/html/class_eopop.html#a2">pop.append()</a> function
+call to <a href="../../doc/html/classeo_pop.html#a2">pop.append()</a> function
 (see <a href="#exercise2">Exercise 2</a>).</font></li>
 
 <br>&nbsp;
@@ -133,10 +133,10 @@ choosing among them according to
 rates.</font></b><font color="#CC33CC"> </font><font color="#000000">The
 class </font><font color="#CC33CC"><b>eoPropCombinedxxxOp</b>,
 </font><font color="#000000">where
-xxx is either Mon (for mutations, of class <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomonop.html">eoMonOp</a></font></font></b></font><font color="#CC33CC">)</font><font color="#000000">
-or Quad (for crossovers, of class <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoquadraticop.html">eoQuadOp</a></font></font></b>),
+xxx is either Mon (for mutations, of class <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_mon_op.html">eoMonOp</a></font></font></b></font><font color="#CC33CC">)</font><font color="#000000">
+or Quad (for crossovers, of class <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_quad_op.html">eoQuadOp</a></font></font></b>),
 is derived from the corresponding eoxxxOp class. When applying the eoPropCombinedxxxOp,
-one of the eoxxxOp it contains is chosen by a <a href="../../doc/html/class_eorng.html#a12">roulette
+one of the eoxxxOp it contains is chosen by a <a href="../../doc/html/classeo_rng.html#a12">roulette
 wheel,</a> according to their respective rates, and is applied to the arguments.
 For more details on these classes, go to the <a href="eoOperators.html#crossover">algorithm-based
 corresponding pages</a>, or to their respective documentation pages.</font></li>
@@ -240,7 +240,7 @@ to select one individual from a population, its <b><tt><font color="#660000">ope
 returning a single individual) into an object of the <font color="#FF6600">eoSelectPerc</font>
 (perc stands for percentage) which allows to select a ... percentage of
 a population (his <b><tt><font color="#660000">operator()</font></tt></b>&nbsp;
-returns a population). This was done internally in the&nbsp; <a href="../../doc/html/class_eosga.html#a0">constructor
+returns a population). This was done internally in the&nbsp; <a href="../../doc/html/classeo_s_g_a.html#a0">constructor
 of eoSGA</a>&nbsp; - see lesson1.</ul>
 
 <hr WIDTH="100%"><a NAME="Exercise1"></a><b><font size=+2><font color="#000099">Exercise

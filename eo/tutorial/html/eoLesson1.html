@@ -111,7 +111,7 @@ the representation-dependent file <b><tt><font color="#993300"><font size=+1>ga.
 containing the bitstring representation and operators. More details about
 <a href="eoRepresentation.html#bitstring">what is available for bitstrings
 here</a>.<br>
-You then say that you will be handling <b><font face="Arial,Helvetica"><a href="../../doc/html/class_eobin.html">Bitstring
+You then say that you will be handling <b><font face="Arial,Helvetica"><a href="../../doc/html/classeo_bit.html">Bitstring
 genotypes</a></font></b>, whose fitness is a double. This makes Indi derive
 from the <a href="eoProgramming.html#STL">STL class</a> <font color="#993300">vector&lt;bool></font></li>
 
@@ -121,7 +121,7 @@ the representation-dependent file <b><tt><font color="#993300"><font size=+1>es.
 containing the bitstring representation and operators. More details about
 <a href="eoRepresentation.html#real">what is available for real-values
 here</a>.<br>
-You then say that you will be handling <b><font face="Arial,Helvetica"><a href="../../doc/html/class_eoreal.html">Real-valued
+You then say that you will be handling <b><font face="Arial,Helvetica"><a href="../../doc/html/classeo_real.html">Real-valued
 genotypes</a></font></b>, whose fitness is a double. This makes Indi derive
 from the <a href="eoProgramming.html#STL">STL class</a> <font color="#993300">vector&lt;double></font></li>
 
@@ -191,12 +191,12 @@ vector <b><tt><font color="#993300">v.</font></tt></b></li>
 <ul>
 <li>
 <a href="FirstBitGA.html#init">Bit</a> <b><tt><font color="#990000">rng.flip()</font></tt></b>
-return a <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eorng.html">random
+return a <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_rng.html">random
 boolean</a></font></font></li>
 
 <li>
 <a href="FirstRealGA.html#init">Real</a> <b><tt><font color="#990000">rng.uniform()</font></tt></b>
-returns a <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eorng.html">real
+returns a <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_rng.html">real
 value uniformly drawn in [0,1].</a></font></font></li>
 
 <br>&nbsp;</ul>
@@ -209,7 +209,7 @@ individuals are first, and display it. Note that an eoPop has a </font><b><tt><f
 method, which means that a simple </font><b><tt><font color="#990000">os
 &lt;&lt; pop </font></tt></b><font color="#000000">streams the </font><b><tt><font color="#990000">pop</font></tt></b><font color="#000000">
 onto the ostream </font><b><tt><font color="#990000">os</font></tt></b><font color="#000000">.
-This is true for </font><font color="#FF6600">all objects of of class </font><font color="#000000"><b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoprintable.html">eoPrintable</a></font></font></b>
+This is true for </font><font color="#FF6600">all objects of of class </font><font color="#000000"><b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_printable.html">eoPrintable</a></font></font></b>
 (most EO objects) through the method </font><b><tt><font color="#990000">printOn</font></tt></b><font color="#000000">
 (which is then called by the </font><b><tt><font color="#990000">&lt;&lt;</font></tt></b><font color="#000000">
 operator).</font></li>
@@ -230,8 +230,8 @@ has been chosen as a robust selection, and the generational replacement
 in the simple algorithm considered here, individuals undergo </font><font color="#CC33CC">crossover</font><font color="#000000">
 and </font><font color="#CC33CC">mutation</font><font color="#000000">.
 In EO, these operators are (<a href="eoProgramming.html#functors">functor</a>)
-objects of class</font> <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoquadraticop.html">eoQuadOp</a></font></font></b>
-(binary operator that modifies both its arguments) and <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomonop.html">eoMonOp</a></font></font></b>
+objects of class</font> <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_quad_op.html">eoQuadOp</a></font></font></b>
+(binary operator that modifies both its arguments) and <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_mon_op.html">eoMonOp</a></font></font></b>
 (unary operator).&nbsp; These operators are applied in turn to all selected
 parents, according to user-defined probabilities.&nbsp; These probabilities
 are defined with all other <a href="#parametres">parameters</a>, and will
@@ -242,8 +242,8 @@ corresponding pages</a>, or to their respective documentation pages.</font></li>
 <br>&nbsp;
 <ul>
 <li>
-<a href="FirstBitGA.html#operators">Bit</a> The crossover <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eobincrossover.html">eo1PtBitXover</a></font></font></b>
-is the standard <font color="#CC33CC">1-point crossover</font>, and <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eobinmutation.html">eoBitMutation</a></font></font></b>
+<a href="FirstBitGA.html#operators">Bit</a> The crossover <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo1_pt_bit_crossover.html">eo1PtBitXover</a></font></font></b>
+is the standard <font color="#CC33CC">1-point crossover</font>, and <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_bit_mutation.html">eoBitMutation</a></font></font></b>
 is the standard <font color="#FF6600">bit-flip mutation</font> that randomly
 flips all bits with a given probability <b><tt>P_MUT_PER_BIT.</tt></b></li>
 
@@ -259,10 +259,10 @@ bit, which is specific of the bit-flip mutation.&nbsp; Hence, to run the
 same algorithm as Goldberg's SGA, the mutation probability (at individual
 level) is 1, and the probability of flipping each bit is <b><tt>P_MUT_PER_BIT.</tt></b>
 <li>
-<a href="FirstRealGA.html#operators">Real</a> The crossover <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eosegmentcrossover.html">eoSegmentCrossover</a></font></font></b>
+<a href="FirstRealGA.html#operators">Real</a> The crossover <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_segment_crossover.html">eoSegmentCrossover</a></font></font></b>
 is the standard <font color="#CC33CC">segment crossover</font> for real-valued
 vectors, that chooses a point randomly on the segment between both parents
-(also termed <font color="#CC33CC">BLX-0</font>). <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eouniformmutation.html">eoUniformMutation</a></font></font></b>
+(also termed <font color="#CC33CC">BLX-0</font>). <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_uniform_mutation.html">eoUniformMutation</a></font></font></b>
 is the <font color="#CC33CC">uniform mutation</font> for real-valued vectors
 that chooses a new value for each variable uniformly on an interval centered
 on the parent value. The width of the interval is an <font color="#FF6600">internal
@@ -275,7 +275,7 @@ parameter</font> of the object, here called <b><tt>EPSILON</tt></b>.</li>
 Specify a </font><font color="#3366FF">maximum number of generations</font><font color="#000000">
 to run (<a href="FirstBitGA.html#stop">Bit</a> - <a href="FirstRealGA.html#stop">Real</a>):
 the simplest of all stopping criteria at the moment, using an object of
-a sub-class of class </font><b><font face="Arial,Helvetica"><font color="#3366FF"><font size=+1><a href="../../doc/html/class_eocontinue.html">eoContinue</a></font></font></font></b><font color="#000000">.</font></li>
+a sub-class of class </font><b><font face="Arial,Helvetica"><font color="#3366FF"><font size=+1><a href="../../doc/html/classeo_continue.html">eoContinue</a></font></font></font></b><font color="#000000">.</font></li>
 
 <br>&nbsp;
 <li>
@@ -388,7 +388,7 @@ give bad results!</li>
 select;</font></tt></b></ul>
 Note that all these classes of eoObjects are derived from the abstract
 class
-<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoselectone.html">eoSelectOne.</a></font></font></b>
+<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_select_one.html">eoSelectOne.</a></font></font></b>
 To find out exactly how each procedure selects the individuals, read the
 corresponding <a href="eoEngine.html#selection">component-based page</a>.
 <p>

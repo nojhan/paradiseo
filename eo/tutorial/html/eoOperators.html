@@ -87,29 +87,29 @@ the genotype argument has been modified or not.
 <ul>
 <li>
 <b><font color="#FF0000">Base classes</font></b>: all variation operators
-in EO derive from the base (pure abstract) class <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoop.html">eoOp</a></font></font></b>
+in EO derive from the base (pure abstract) class <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_op.html">eoOp</a></font></font></b>
 (as usual, click to see the inheritance diagram).&nbsp; Four (also abstract)
-classes derive from <b><font color="#CC33CC">eoOp</font></b>, namely <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomonop.html">eoMonOp</a></font></font></b>
-(for <a href="#mutation">mutations</a>), <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eobinop.html">eoBinOp</a></font></font></b>
-and <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoquadop.html">eoQuadOp</a></font></font></b>
-(for <a href="#crossover">crossover</a>) and <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eogenop.html">eoGenOp</a></font></font></b>
+classes derive from <b><font color="#CC33CC">eoOp</font></b>, namely <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_mon_op.html">eoMonOp</a></font></font></b>
+(for <a href="#mutation">mutations</a>), <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_bin_op.html">eoBinOp</a></font></font></b>
+and <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_quad_op.html">eoQuadOp</a></font></font></b>
+(for <a href="#crossover">crossover</a>) and <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_gen_op.html">eoGenOp</a></font></font></b>
 for <a href="#general">all other operators</a>.</li>
 
 <li>
 <b><font color="#FF0000">Combined classes</font></b>: those classes combine
 variation operators, and are variation operators by themselves: the simple
-variation operators can be combined into the corresponding <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoproportionalcombinedmonop.html">eoProportionalCombinedMonOp</a></font></font></b>,
-<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoproportionalcombinedbinop.html">eoProportionalCombinedBinOp</a></font></font></b>
-and <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoproportionalcombinedquadop.html">eoProportionalCombinedQuadOp</a></font></font></b>.
+variation operators can be combined into the corresponding <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_prop_combined_mon_op.html">eoProportionalCombinedMonOp</a></font></font></b>,
+<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_prop_combined_bin_op.html">eoProportionalCombinedBinOp</a></font></font></b>
+and <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_pro_combined_quad_op.html">eoProportionalCombinedQuadOp</a></font></font></b>.
 The general operators <b><font color="#CC33CC">eoGenOp</font></b> can be
-combined into some <b><font face="Arial,Helvetica"><font color="#000000"><font size=+1><a href="../../doc/html/class_eoopcontainer.html">eoOpContainer</a></font></font></font></b>,
-abstract class with two implementations, <b><font face="Arial,Helvetica"><font color="#000000"><font size=+1><a href="../../doc/html/class_eoproportionalopcontainer.html">eoProportionalOp</a></font></font></font></b>
-and <b><font face="Arial,Helvetica"><font color="#000000"><font size=+1><a href="../../doc/html/class_eosequentialopcontainer.html">eoSequentialOp</a></font></font></font></b></li>
+combined into some <b><font face="Arial,Helvetica"><font color="#000000"><font size=+1><a href="../../doc/html/classeo_op_container.html">eoOpContainer</a></font></font></font></b>,
+abstract class with two implementations, <b><font face="Arial,Helvetica"><font color="#000000"><font size=+1><a href="../../doc/html/classeo_proportional_op.html">eoProportionalOp</a></font></font></font></b>
+and <b><font face="Arial,Helvetica"><font color="#000000"><font size=+1><a href="../../doc/html/classeo_sequential_op.html">eoSequentialOp</a></font></font></font></b></li>
 
 <li>
 <b><font color="#FF0000">Related classes</font></b>: General operators
 of class <b><font color="#CC33CC">eoGenOp</font></b> can only be used through
-the <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eopopulator.html">eoPopulator</a></font></font></b>
+the <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_populator.html">eoPopulator</a></font></font></b>
 class.</li>
 </ul>
 
@@ -122,8 +122,8 @@ former type (2 --> 2) is termed quadratic crossover operator, and is implemanted
 in the <b><font color="#CC33CC">eoQuadOp</font></b> class; the latter type
 (2 --> 1) is termed binary operator and is implemanted in class <b><font color="#CC33CC">eoBinOp</font></b>.
 Both classes are, as usual, templatized by the type of individual they
-can handle (see documentation for <b><font face="Arial,Helvetica"><font size=+1><a href="doc/html/class_eobinop.html">eoBinOp</a></font></font></b>
-and <b><font face="Arial,Helvetica"><font size=+1><a href="doc/html/class_eoquadop.html">eoQuadOp</a></font></font></b>).
+can handle (see documentation for <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_bin_op.html">eoBinOp</a></font></font></b>
+and <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_quad_op.html">eoQuadOp</a></font></font></b>).
 <p><b><font color="#FF0000">Note:</font></b> Whereas it is straightforward
 to create a binary crossover operator from a quadratic one (by discarding
 the changes on the second parent), the reverse might prove impossible (imagine
@@ -207,7 +207,7 @@ operators: </font></font><font color="#FF0000"><font size=+2>Mutation</font></fo
 <br>Mutation operators modify one single individual. The corresponding
 EO class is called <b><font color="#CC33CC">eoMonOp</font></b>. and it
 si as usual templatized by the type of individual it can handle (see documentation
-for <b><font face="Arial,Helvetica"><font size=+1><a href="doc/html/class_eomonop.html">eoMonOp</a></font></font></b>).
+for <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_mon_op.html">eoMonOp</a></font></font></b>).
 <p><b><font color="#FF0000">Interfaces</font></b>:
 <br>The general approach in EO about simple variation operators is to perform
 <b><font color="#FF6600">in-place
@@ -280,7 +280,7 @@ ways to get the parents they will involve, e.g. they can use a different
 selector for each of the parents they need to select.
 <p>The corresponding EO class is called <b><font color="#CC33CC">eoGenOp</font></b>.
 and it is as usual templatized by the type of individual it can handle
-(see documentation for <b><font face="Arial,Helvetica"><font size=+1><a href="doc/html/class_eomonop.html">eoGenOp</a></font></font></b>
+(see documentation for <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/classeo_mon_op.html">eoGenOp</a></font></font></b>
 :-)
 <p><a NAME="interface"></a><b><font color="#FF0000">Interface</font></b>:
 <br>All the work a general operator is done within the <b><tt><font color="#993300">apply()</font></tt></b>
@@ -504,7 +504,7 @@ mainly behaves like an <b><font color="#FF6600">iterator</font></b> over
 a population (hence the name, <b><font color="#FF6600">Popul</font></b>ation-Iter<b><font color="#FF6600">ator</font></b>).
 <p><a NAME="populator_interface"></a>The <b><font color="#FF6600">basic
 interface</font></b> of an <b><font color="#999900">eoPopulator</font></b>
-(see also <a href="../../doc/html/class_eogenop.html">the documentation</a>,
+(see also <a href="../../doc/html/classeo_gen_op.html">the documentation</a>,
 of course) is the following:
 <ul>
 <li>
