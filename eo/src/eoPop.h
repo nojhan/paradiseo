@@ -29,9 +29,9 @@
 #include <strstream>
 
 // EO includes
-#include <eoRnd.h>
-#include <eoInit.h>
+#include <eoOp.h> // for eoInit
 #include <eoPersistent.h>
+#include <eoInit.h>
 
 /** Subpopulation: it is used to move parts of population
  from one algorithm to another and one population to another. It is safer
@@ -39,68 +39,42 @@ to declare it as a separate object. I have no idea if a population can be
 some other thing that a vector, but if somebody thinks of it, this concrete
 implementation will be moved to "generic" and an abstract Population 
 interface will be provided.
+
 It can be instantiated with anything, provided that it accepts a "size" and a 
 random generator in the ctor. This happens to all the eo1d chromosomes declared 
 so far. EOT must also have a copy ctor, since temporaries are created and copied
 to the population.
+
+It can also be instantiated with a "size" and an eoInit derived object. 
+This object must supply a full chromosome (or something the ctor of the EO
+will accept).
+
 @author Geneura Team
 @version 0.0
 */
 
 template<class EOT>
-class eoPop: public vector<EOT>, public eoObject, public eoPersistent {
-
-/// Type is the type of each gene in the chromosome
-#ifdef _MSC_VER
-	typedef EOT::Type Type;
-#else
-	typedef typename EOT::Type Type;
-#endif
+class eoPop: public vector<EOT>, public eoObject, public eoPersistent 
+{
 
  public:
-	/** Protected ctor. This is intended to avoid creation of void populations, except 
-	    from sibling classes
+     typedef typename EOT::Fitness Fitness;
+	/** Default ctor. Creates empty pop
 	*/
-	eoPop()	  :vector<EOT>() {};
+	eoPop()	  : vector<EOT>(), eoObject(), eoPersistent() {};
 	
-	
-	 /** Ctor for fixed-size chromosomes, with variable content
+	/** Ctor for the initialization of chromosomes
+    
 	@param _popSize total population size
-	@param _eoSize chromosome size. EOT should accept a fixed-size ctor
-	@param _geneRdn random number generator for each of the genes
+	@param _chromRnd Initialization routine, produces EO's, needs to be an eoInit 
 	*/
-	eoPop( unsigned _popSize, unsigned _eoSize, eoRnd<Type> & _geneRnd )
-	  :vector<EOT>() {
-	  for ( unsigned i = 0; i < _popSize; i ++ ){
-	    EOT tmpEOT( _eoSize, _geneRnd);
-	    push_back( tmpEOT );
-	  }
-	};
-	
-	/** Ctor for variable-size chromosomes, with variable content
-	    @param _popSize total population size
-	    @param _sizeRnd RNG for the chromosome size. This will be added 1, just in case.
-	    @param _geneRdn random number generator for each of the genes
-	*/
-	eoPop( unsigned _popSize, eoRnd<unsigned> & _sizeRnd, eoRnd<Type> & _geneRnd )
-	  :vector<EOT>() {
-	  for ( unsigned i = 0; i < _popSize; i ++ ){
-	    unsigned size = 1 + _sizeRnd();
-	    EOT tmpEOT( size, _geneRnd);
-	    push_back( tmpEOT );
-	  }
-	};
-
-     /** Ctor for user-defined chromosomes, 
-	@param _popSize total population size
-	@param _chromRnd Initialization routine, produces EO's
-	*/
-	eoPop( unsigned _popSize, eoInit<EOT> & _chromRnd )
+    eoPop( unsigned _popSize, eoInit<EOT>& _chromInit )
 	  :vector<EOT>() 
     {
+        resize(_popSize);
 	  for ( unsigned i = 0; i < _popSize; i++ )
       {
-	    push_back( _chromRnd() );
+	        _chromInit(operator[](i));
 	  }
 	};
 
@@ -133,6 +107,60 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent {
 		push_back( thisEOT );      
     }
   }
+
+    /**
+    sort the population. Use this member to sort in order
+    of descending Fitness, so the first individual is the best!
+   */
+  void sort(void)
+  {
+      std::sort(begin(), end(), greater<EO<Fitness> >());
+  }
+
+  /**
+  slightly faster algorithm than sort to find all individuals that are better
+  than the nth individual
+  */
+  eoPop<EOT>::iterator nth_element(int nth)
+  {
+      iterator it = begin() + nth;
+      std::nth_element(begin(), it, end(), greater<EO<Fitness> >());
+      return it;
+  }
+
+  struct GetFitness { Fitness operator()(const EOT& _eo) const { return _eo.fitness(); } };
+  
+  Fitness nth_element_fitness(int which) const
+  {
+      vector<Fitness> fitness(size());
+      std::transform(begin(), end(), fitness.begin(), GetFitness());
+
+      vector<Fitness>::iterator it = fitness.begin();
+      std::nth_element(fitness.begin(), it, fitness.end(), greater<Fitness>());
+      return *it;
+  }
+
+      struct Ref { const EOT* operator()(const EOT& eot) { return &eot;}};
+      struct Cmp { 
+          bool operator()(const EO<Fitness>* a, const EO<Fitness>* b) const 
+            { return b->operator<(*a); } 
+      };
+  /// const nth_element function, returns pointers to sorted individuals
+  void nth_element(int which, vector<const EOT*>& result) const
+  {
+
+      result.resize(size());
+      std::transform(begin(), end(), result.begin(), Ref());
+  
+      vector<const EOT*>::iterator it  = result.begin() + which;
+
+      std::nth_element(result.begin(), it, result.end(), Cmp());
+  }
+
+  void swap(eoPop<EOT>& other)
+  {
+      std::swap(static_cast<vector<EOT>& >(*this), static_cast<vector<EOT>& >(other));
+  }
   
   /**
    * Write object. It's called printOn since it prints the object _on_ a stream.
@@ -151,5 +179,79 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent {
  protected:
 
 };
+
+/**
+    Keeps and calculates information about a population such
+    as the sum of fitnesses and whether the population is sorted.
+    It can be used to cache information about a population between
+    calls of functors, see for instance how this makes eoProportional
+    just this tat more efficient 
+
+    @see eoSelectOne, eoSelect, eoProportional
+
+template <class EOT>
+class eoPopStats 
+{
+public :
+    typedef typename EOT::Fitness FitnessType;
+
+    /// Initialize by stating nothing is known
+    eoPopStats() : 
+        sum_fitness_calculated(false), 
+        pop_sorted_calculated(false) 
+    {}
+
+    /// Call this function after the pop might have/is changed
+    void reset()
+    {
+        sum_fitness_calculated = false;
+        pop_sorted_calculated = false;
+    }
+
+    /// Calculate sum_fitness or return cached value
+    FitnessType get_sum_fitness(const eoPop<EOT>& _pop)
+    {
+        if (sum_fitness_calculated)
+            return sum_fitness;
+
+        sum_fitness = 0.0;
+
+        for (int i = 0; i < _pop.size(); ++i)
+        {
+            sum_fitness += _pop[i].fitness();
+        }
+
+        sum_fitness_calculated = true;
+        return sum_fitness;
+    }
+
+    /// Check if the pop is sorted or return cached_value
+    bool is_pop_sorted(const eoPop<EOT>& _pop)
+    {
+        if (pop_sorted_calculated)
+            return pop_sorted;
+        
+        int i;
+        for (i = 1; i < _pop.size(); ++i)
+        {
+            if (!(_pop[i-1] < _pop[i]))
+            { // not in sort order
+                break;
+            }
+        }
+
+        pop_sorted = (i == _pop.size());
+        pop_sorted_calculated = true;
+        return pop_sorted;
+    }
+
+    bool        sum_fitness_calculated;
+    FitnessType sum_fitness;
+
+    bool        pop_sorted_calculated;
+    bool        pop_sorted;
+};
+*/
+
 #endif
 

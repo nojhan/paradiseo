@@ -111,6 +111,10 @@ SOURCE=..\src\utils\eoState.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\utils\eoStdoutMonitor.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\utils\eoUpdater.cpp
 # End Source File
 # End Group

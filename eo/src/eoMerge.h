@@ -2,7 +2,7 @@
 
 //-----------------------------------------------------------------------------
 // eoMerge.h
-//   Base class for population-merging classes
+//   Base class for elitist-merging classes
 // (c) GeNeura Team, 1998
 /* 
    This library is free software; you can redistribute it and/or
@@ -28,88 +28,85 @@
 
 //-----------------------------------------------------------------------------
 
-#include <iostream>
+#include <stdexcept>
 
 // EO includes
 #include <eoPop.h>     // eoPop
-#include <eoPopOps.h>  // eoMerge
+#include <eoFunctor.h>  // eoMerge
 
 /**
- * eoMerge: Base class for replacement algorithms
- */
+ * eoMerge: Base class for elitist replacement algorithms. 
+ * Merges the old population (first argument), with the new generation
+ *
+ * Its signature is exactly
+ * that of the selection base eoSelect, but its purpose is to merge the 
+ * two populations into one (the second argument).
+ * Note that the algorithms assume that the second argument denotes the 
+ * next generation.
+*/
 
-template<class Chrom> class eoMerge: public eoBinPopOp<Chrom>
+template<class Chrom> class eoMerge: public eoBinaryFunctor<void, const eoPop<Chrom>&, eoPop<Chrom>&>
+{};
+
+/**
+Straightforward elitism class, specify the number of individuals to copy
+into new geneneration
+*/
+template <class EOT> class eoElitism : public eoMerge<EOT>
 {
- public:
-  /// (Default) Constructor.
-  eoMerge(const float& _rate = 1.0): eoBinPopOp<Chrom>(), repRate( _rate ) {}
+    public :
+        eoElitism(unsigned _howmany) : howmany(_howmany) {}
 
-  /// Ctor from istream
-  eoMerge( istream& _is): eoBinPopOp<Chrom>() { readFrom( _is ); };
- 
-  /**
-   * Creates a new population based on breeders and original populations.
-   * @param breeders The population of breeders. Should be sorted to work correctly
-   * @param pop The original population.
-   */
-  void operator()( eoPop<Chrom>& _breeders, eoPop<Chrom>& _pop)
-    {
-      unsigned target = static_cast<unsigned>(_pop.size() * rate());
-      
-      _pop.swap(_breeders);
-      
-      if (target < _pop.size())
-	{
-	  partial_sort(_pop.begin(), _pop.begin() + target, _pop.end(), 
-		       greater<Chrom>());
-	  _pop.erase(_pop.begin() + target, _pop.end());
-	}
-      else
-	{
-	  target = min(target - _pop.size(), _breeders.size());
-	  partial_sort(_breeders.begin(), _breeders.begin() + target, 
-		       _breeders.end(), greater<Chrom>());
-	  copy(_breeders.begin(), _breeders.begin() + target,
-	       back_insert_iterator<eoPop<Chrom> >(_pop));
-	}
-    };
+        void operator()(const eoPop<EOT>& _pop, eoPop<EOT>& offspring)
+        {
+            if (howmany == 0)
+                return;
 
-  /** @name Methods from eoObject	*/
-  //@{
-  /**
-   * Read object. The EOT class must have a ctor from a stream;
-   in this case, a strstream is used.
-   * @param _is A istream.
-   
-   */
-  virtual void readFrom(istream& _is) {
-    _is >> repRate;
-  }
-  
-  /**
-   * Write object. Prints relevant parameters to standard output
-   * @param _os A ostream. In this case, prints the population to
-   standard output. The EOT class must hav standard output with cout,
-   but since it should be an eoObject anyways, it's no big deal.
-   */
-  virtual void printOn(ostream& _os) const {
-    _os << repRate;
-  };
+            if (howmany > _pop.size())
+                throw std::logic_error("Elite larger than population");
 
-  /** Inherited from eoObject. Returns the class name.
-      @see eoObject
-  */
-  virtual string className() const {return "eoMerge";};
-  //@}
+            vector<const EOT*> result;
+            _pop.nth_element(howmany, result);
 
- protected:
-  float rate() { return repRate;};
+            for (int i = 0; i < result.size(); ++i)
+            {
+                offspring.push_back(*result[i]);
+            }
+        }
 
- private:
-  float repRate;
+    private :
+        unsigned howmany;
+};
 
+/**
+No elite
+*/
+template <class EOT> class eoNoElitism : public eoElitism<EOT>
+{
+    public :
+        eoNoElitism() : eoElitism<EOT>(0) {}
+};
+
+/**
+Very elitist class, copies entire population into next gen
+*/
+template <class EOT> class eoPlus : public eoMerge<EOT>
+{
+    public :
+        void operator()(const eoPop<EOT>& _pop, eoPop<EOT>& offspring)
+        {
+            offspring.reserve(offspring.size() + _pop.size());
+
+            for (int i = 0; i < _pop.size(); ++i)
+            {
+                offspring.push_back(_pop[i]);
+            }
+        }
+
+    private :
+        unsigned howmany;
 };
 
 //-----------------------------------------------------------------------------
 
-#endif eoInsertion_h
+#endif 

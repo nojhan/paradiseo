@@ -20,6 +20,11 @@
  */
 //-----------------------------------------------------------------------------
 
+#ifndef __GNUG__
+// to avoid long name warnings
+#pragma warning(disable:4786)
+#endif // __GNUG__
+
 #ifndef _eo_
 #define _eo_
 
@@ -29,68 +34,88 @@
 #include <eoObject.h>
 #include <eoPrintable.h>
 #include <eoPersistent.h>
-#include <eoFitness.h>
+#include <eoScalarFitness.h>
 #include <EO.h>
 
-#include <eoID.h>
+#include <utils/rnd_generators.h>
+#include <eoFunctor.h>
+#include <apply.h>
 
-#include <eoVector.h>
-#include <eo1d.h>
+// eo's
+#include <eoVariableLength.h>
+#include <eoFixedLength.h>
+
+//#include <eoID.h>
+
+//#include <eoVector.h>
+//#include <eo1d.h>
 #include <other/eoString.h>
 #include <ga/eoBin.h>
 
-#include <eoRnd.h>
-#include <eoUniform.h>
-#include <eoNormal.h>
-#include <eoNegExp.h>
+#include <eoInit.h>
+//#include <eoUniform.h>
+//#include <eoNormal.h>
+//#include <eoNegExp.h>
 
 #include <eoOp.h>
 
-#include <eoDup.h>
-#include <eoKill.h>
-#include <eoTranspose.h>
-#include <eoXOver2.h>
-#include <eoUniformXOver.h>
-#include <eoMutation.h>
+//#include <eoDup.h>
+//#include <eoKill.h>
+//#include <eoTranspose.h>
+//#include <eoXOver2.h>
+//#include <eoUniformXOver.h>
+//#include <eoMutation.h>
 
 #include <eoPop.h>
-#include <eoPopOps.h>
-#include <eoMerge.h>
 #include <ga/eoBitOp.h>
 
 // Evaluation functions
 #include <eoEvalFunc.h>
 #include <eoEvalFuncPtr.h>
 
-// Terminators
-#include <eoTerm.h>
-#include <eoGenTerm.h>
-#include <eoFitTerm.h>
+// Continuators
+#include <eoContinue.h>
+#include <eoCombinedContinue.h>
+#include <eoGenContinue.h>
+#include <eoFitContinue.h>
 
 // Selection and reproduction stuff
-#include <eoUniformSelect.h>
+#include <eoSelectOne.h>
+#include <eoSelectRandom.h>
 #include <eoDetTournament.h>
+#include <eoProportional.h>
 #include <eoStochTournament.h>
-#include <eoLottery.h>
-#include <eoBreeder.h>
-#include <eoInsertion.h>
-#include <eoInclusion.h>
-#include <eoGeneration.h>
 
 #include <eoProportionalOpSel.h>
+#include <eoProportionalGOpSel.h>
+#include <eoSequentialGOpSel.h>
+
+//#include <eoLottery.h>
+//#include <eoBreeder.h>
+//#include <eoInsertion.h>
+//#include <eoInclusion.h>
+//#include <eoGeneration.h>
+
+//#include <eoProportionalOpSel.h>
 
 // Algorithms
 #include <eoEasyEA.h>
+#include <eoSGA.h>
+#include <eoSteadyStateEA.h>
+#include <eoEvolutionStrategy.h>
+
+// Utils
+#include <utils/checkpointing>
 
 // aliens
-#include <eoNonUniform.h>
+//#include <eoNonUniform.h>
 
 //-----------------------------------------------------------------------------
 // to be continued ...
 //-----------------------------------------------------------------------------
 /*
-#include <eoFitness.h>
-#include <eoProblem.h>
+//#include <eoFitness.h>
+//#include <eoProblem.h>
 */
 //-----------------------------------------------------------------------------
 

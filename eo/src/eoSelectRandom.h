@@ -1,8 +1,8 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoUniformSelect.h
-// (c) GeNeura Team, 1998 - EEAAX 1999
+// eoSelectRandom.h
+// (c) GeNeura Team, 1998 - EEAAX 1999, Maarten Keijzer 2000
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -20,46 +20,33 @@
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
+             mak@dhi.dk
  */
 //-----------------------------------------------------------------------------
 
-#ifndef eoUniformSelect_h
-#define eoUniformSelect_h
-// WARNING: 2 classes in this one - eoUniformSelect and eoCopySelect
+#ifndef eoSelectRandom_h
+#define eoSelectRandom_h
 
 //-----------------------------------------------------------------------------
 
-#include <functional>  // 
-#include <numeric>     // accumulate
-#include <eoPopOps.h>          // eoPop eoSelect MINFLOAT
 #include <utils/eoRNG.h>
+#include <eoSelectOne.h>
 
 //-----------------------------------------------------------------------------
-/** eoUniformSelect: a selection method that selects ONE individual randomly
+/** eoSelectRandom: a selection method that selects ONE individual randomly
  -MS- 22/10/99 */
 //-----------------------------------------------------------------------------
 
-template <class EOT> class eoUniformSelect: public eoSelectOne<EOT>
+template <class EOT> class eoSelectRandom: public eoSelectOne<EOT> 
 {
  public:
-  /// (Default) Constructor.
-  eoUniformSelect():eoSelectOne<EOT>() {}
   
   /// not a big deal!!!
-  virtual const EOT& operator()(const eoPop<EOT>& pop) {
+  virtual const EOT& operator()(const eoPop<EOT>& pop) 
+  {
     return pop[rng.random(pop.size())] ;
   }
-  
-  /// Methods inherited from eoObject
-  //@{
-  
-  /** Return the class id. 
-   *  @return the class name as a string
-   */
-  virtual string className() const { return "eoUniformSelect"; };
-
- private:
 };
 
-#endif eoUniformSelect_h
+#endif eoSelectRandom_h
 

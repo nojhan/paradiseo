@@ -63,7 +63,6 @@ public :
     eo = _eot; // overwrite loser of tournament
         
     eo.invalidate();
-    eval(eo); // Evaluate after insert
     return *this;
   }
 

@@ -30,6 +30,7 @@
 
 #include <stdexcept>          // logic_error
 #include <utils/selectors.h>  // sum_fitness
+#include <eoFunctor.h>
 
 // #include <functional>  // 
 // #include <numeric>     // accumulate
@@ -44,7 +45,7 @@
 */
 //-----------------------------------------------------------------------------
 
-template<class EOT> class eoLottery: public eoBinPopOp<EOT>
+template<class EOT> class eoLottery: public eoBinaryFunctor<void, const eoPop<EOT>&, eoPop<EOT>& >
 {
  public:
   /// (Default) Constructor.
@@ -61,7 +62,7 @@ template<class EOT> class eoLottery: public eoBinPopOp<EOT>
    *  BUT what happens if breeders is already too big?
    * Too big for what?
    */
-  void operator()( eoPop<EOT>& pop, eoPop<EOT>& breeders) 
+  void operator()(const eoPop<EOT>& pop, eoPop<EOT>& breeders) 
     {
       size_t target = static_cast<size_t>(rate_ * pop.size());
 

@@ -57,7 +57,6 @@ public :
     EOT& eo = inverse_deterministic_tournament<EOT>(pop(), t_size);
     eo = _eot; // overwrite loser of tournament
     
-    eo.invalidate(); // This line should probably be removed when all genetic operators do this themselves
     eval(eo); // Evaluate after insert
     return *this;
   }

@@ -1,9 +1,8 @@
-// eoDup.h
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoKill.h
-// (c) GeNeura Team, 1998
+// eoFitContinue.h
+// (c) Maarten Keijzer, GeNeura Team, 1999, 2000
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -23,41 +22,36 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef _EODUP_h
-#define _EODUP_h
+#ifndef _eoFitContinue_h
+#define _eoFitContinue_h
 
-#include <utils/eoRNG.h>
+#include <eoContinue.h>
 
-#include <eoOp.h>
+/** 
+Fitness continuation: 
 
-/// Dup or duplicate: duplicates a gene in a chromosome
-template <class EOT>
-class eoDup: public eoMonOp<EOT>  {
+  Continues until the maximum fitness level is reached.
+*/
+template< class EOT>
+class eoFitContinue: public eoContinue<EOT> {
 public:
-	///
-	eoDup( )
-		: eoMonOp< EOT >( ){};
 
-	/// needed virtual dtor
-	virtual ~eoDup() {};
+    /// Define Fitness
+    typedef typename EOT::Fitness FitnessType;
 
-	///
-	virtual void operator()( EOT& _eo ) const 
+	/// Ctor
+    eoFitContinue( const FitnessType _maximum)
+		: eoContinue<EOT> (), maximum( _maximum ) {};
+
+	/** Returns false when a fitness criterium is
+	* reached. Assumes pop is not sorted! */
+	virtual bool operator() ( const eoPop<EOT>& _pop ) 
     {
-		unsigned pos = rng.random(_eo.length());
-		_eo.insertGene( pos, _eo.gene(pos) );
+	  return (_pop.nth_element_fitness(0) < maximum);
 	}
 
-
-	/** @name Methods from eoObject
-	readFrom and printOn are directly inherited from eoOp
-	*/
-	//@{
-	/** Inherited from eoObject 
-		  @see eoObject
-	*/
-	virtual string className() const {return "eoDup";};
-    //@}
+private:
+	FitnessType maximum;
 };
 
 #endif

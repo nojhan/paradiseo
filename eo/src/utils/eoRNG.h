@@ -176,7 +176,15 @@ public :
    {
      return mean + normal(stdev);
    }
- 
+
+ /**
+    Generates random numbers using a negative exponential distribution
+ */
+ double negexp(double mean)
+ {
+     return ( -mean*log((double)rand() / rand_max()));
+ }
+
  /**
     rand() returns a random number in the range [0, rand_max)
  */
@@ -272,55 +280,6 @@ private :
 	The one and only global eoRng object
 */
 extern eoRng rng;
-
-/**
-   The class uniform_generator can be used in the STL generate function
-   to easily generate random floats and doubles between [0, _max). _max
-   defaults to 1.0
-*/
-template <class T = double> class uniform_generator
-{
-  public :
-    uniform_generator(T _max = T(1.0), eoRng& _rng = rng) : maxim(_max), uniform(_rng) {}
-  
-  virtual T operator()(void) { return (T) uniform.uniform(maxim); } 
-  private :
-    T maxim;
-  eoRng& uniform;
-};
-
-/**
-   The class random_generator can be used in the STL generate function
-   to easily generate random ints between [0, _max).
-*/
-template <class T = uint32> class random_generator
-{
-  public :
-    random_generator(int _max, eoRng& _rng = rng) : maxim(_max), random(_rng) {}
-  
-  virtual T operator()(void) { return (T) random.random(max); }
-  
-  private :
-    T maxim;
-  eoRng& random;
-};
-
-/**
-   The class normal_generator can be used in the STL generate function
-   to easily generate gaussian distributed floats and doubles. The user
-   can supply a standard deviation which defaults to 1.
-*/
-template <class T = double> class normal_generator
-{
-  public :
-    normal_generator(T _stdev = T(1.0), eoRng& _rng = rng) : stdev(_stdev), normal(_rng) {}
-  
-  virtual T operator()(void) { return (T) normal.normal(stdev); }
-  
-  private :
-    T stdev;
-  eoRng& normal;
-};
 
 // Implementation of some eoRng members.... Don't mind the mess, it does work.
 

@@ -30,7 +30,6 @@
 
 #include <functional>  // 
 #include <numeric>     // accumulate
-#include <eoPopOps.h>          // eoPop eoSelect MINFLOAT
 #include <utils/eoRNG.h>
 
 //-----------------------------------------------------------------------------
@@ -44,7 +43,8 @@ template <class EOT> class eoStochTournament: public eoSelectOne<EOT>
  public:
 
   ///
-  eoStochTournament(float _Trate = 1.0 ):eoSelectOne<EOT>(), Trate(_Trate) {
+  eoStochTournament(float _Trate = 1.0 ) : eoSelectOne<EOT>(), Trate(_Trate) 
+  {
     // consistency check
     if (Trate < 0.5) {
       cerr << "Warning, Tournament rate should be > 0.5\nAdjusted to 0.55\n";
@@ -52,8 +52,7 @@ template <class EOT> class eoStochTournament: public eoSelectOne<EOT>
     }
   }
   
-  /** DANGER: if you want to be able to minimize as well as maximizem
-      DON'T cast the fitness to a float, use the EOT comparator! */
+  /** Perform the stochastic tournament  */
   virtual const EOT& operator()(const eoPop<EOT>& pop) 
   {
       return stochastic_tournament(pop, Trate);

@@ -9,20 +9,11 @@
 #include <iostream>
 #include <iterator>
 #include <stdexcept>
+#include <time.h>
 
 using namespace std;
 
-#include <utils/eoParser.h>
-#include <utils/eoState.h>
-
-#include <utils/eoStat.h>
-#include <utils/eoFileMonitor.h>
-
-// population
-#include <eoPop.h>
-
-// evaluation specific
-#include <eoEvalFuncPtr.h>
+#include <eo>
 
 // representation specific
 #include <es/evolution_strategies>
@@ -31,7 +22,7 @@ using namespace std;
 
 // Now the main 
 /////////////// 
-typedef double  FitT;
+typedef eoMinimizingFitness  FitT;
 
 template <class EOT>
 void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoEsObjectiveBounds& _bounds);
@@ -45,9 +36,9 @@ main(int argc, char *argv[])
   eoValueParam<uint32>& seed        = parser.createParam(static_cast<uint32>(time(0)), "seed", "Random number seed");
   eoValueParam<string>& load_name   = parser.createParam(string(), "Load","Load a state file",'L');
   eoValueParam<string>& save_name   = parser.createParam(string(), "Save","Saves a state file",'S');
-  eoValueParam<bool>&   stdevs      = parser.createParam(true, "Stdev", "Use adaptive mutation rates", 's');
-  eoValueParam<bool>&   corr        = parser.createParam(true, "Correl", "Use correlated mutations", 'c');
-  eoValueParam<unsigned>& chromSize = parser.createParam(unsigned(1), "ChromSize", "Number of chromosomes", 'n');
+  eoValueParam<bool>&   stdevs      = parser.createParam(false, "Stdev", "Use adaptive mutation rates", 's');
+  eoValueParam<bool>&   corr        = parser.createParam(false, "Correl", "Use correlated mutations", 'c');
+  eoValueParam<unsigned>& chromSize = parser.createParam(unsigned(50), "ChromSize", "Number of chromosomes", 'n');
   eoValueParam<double>& minimum     = parser.createParam(-1.e5, "Min", "Minimum for Objective Variables", 'l');
   eoValueParam<double>& maximum     = parser.createParam(1.e5, "Max", "Maximum for Objective Variables", 'h');
 
@@ -57,7 +48,9 @@ main(int argc, char *argv[])
 
    if (!load_name.value().empty())
    { // load the parser. This is only neccessary when the user wants to 
-     // be able to change the parameters in the state file by hand.
+     // be able to change the parameters in the state file by hand
+     // Note that only parameters inserted in the parser at this point
+     // will be loaded!.
        state.load(load_name.value()); // load the parser
    }
 
@@ -94,15 +87,15 @@ template <class EOT>
 void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoEsObjectiveBounds& _bounds)
 {
     // evaluation
-    eoEvalFuncPtr<eoFixedLength<FitT, double> > eval(  real_value );
+    eoEvalFuncPtr<EOT, double, const vector<double>&> eval(  real_value );
 
     // population parameters, unfortunately these can not be altered in the state file
     eoValueParam<unsigned> mu = _parser.createParam(unsigned(50), "mu","Size of the population");
-    eoValueParam<unsigned>lambda = _parser.createParam(unsigned(250), "lambda", "No. of children to produce");
+    eoValueParam<float>lambda_rate = _parser.createParam(float(7.0), "lambda_rate", "Factor of children to produce");
 
-    if (mu.value() > lambda.value())
+    if (lambda_rate.value() < 1.0f)
     {
-        throw logic_error("Mu must be smaller than lambda in a comma strategy");
+        throw logic_error("lambda_rate must be larger than 1 in a comma strategy");
     }
 
     // Initialization
@@ -112,7 +105,7 @@ void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoEsObjectiveBounds& 
     _state.registerObject(pop);
 
     // evaluate initial population
-    eval.range(pop.begin(), pop.end());
+    apply<EOT>(eval, pop);
     
     // Ok, time to set up the algorithm
     // Proxy for the mutation parameters
@@ -122,29 +115,20 @@ void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoEsObjectiveBounds& 
 
     // monitoring, statistics etc.
     eoAverageStat<EOT> average;
-    eoFileMonitor monitor("test.csv");
+    eoStdoutMonitor monitor;
 
     monitor.add(average);
 
-    // Okok, I'm lazy, here's the algorithm defined inline
+    eoGenContinue<EOT> cnt(2000);
+    eoCheckPoint<EOT> checkpoint(cnt);
+    checkpoint.add(monitor);
+    checkpoint.add(average);
 
-    for (unsigned i = 0; i < 20; ++i)
-    {
-        pop.resize(pop.size() + lambda.value());
 
-        for (unsigned j = mu.value(); j < pop.size(); ++j)
-        {
-            pop[j] = pop[rng.random(mu.value())];
-            mutate(pop[j]);
-            eval(pop[j]);
-        }
+    eoProportionalGOpSel<EOT> opSel;
+    opSel.addOp(mutate, 1.0);
 
-        // comma strategy
-        std::sort(pop.begin() + mu.value(), pop.end());
-        copy(pop.begin() + mu.value(), pop.begin() + 2 * mu.value(), pop.begin());
-        pop.resize(mu.value());
-    
-        average(pop);
-        monitor();
-    }
+    eoEvolutionStrategy<EOT> es(checkpoint, eval, opSel, lambda_rate.value(), eoEvolutionStrategy<EOT>::comma_strategy());
+
+    es(pop);
 }

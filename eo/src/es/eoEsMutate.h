@@ -30,7 +30,7 @@
 #define _EOESMUTATE_H
 
 #include <utils/eoRNG.h>
-#include <eoRnd.h>
+#include <eoInit.h>
 #include <cmath>		// for exp
 
 #include <es/eoEsMutationInit.h>
@@ -89,7 +89,7 @@ public:
   /**
     Mutate eoEsSimple
   */
-  virtual void operator()( eoEsSimple<FitT>& _eo) const
+  virtual void operator()( eoEsSimple<FitT>& _eo) 
   {
       _eo.stdev *= exp(TauLcl * rng.normal());	
 
@@ -104,6 +104,8 @@ public:
       }
 
       keepInBounds(_eo);
+  
+      _eo.invalidate();
   }
   
   /// mutations - standard and correlated
@@ -119,7 +121,7 @@ public:
    *	mittels der Evolutionsstrategie, pp. 165 ff.
    */
 
-  virtual void operator()( eoEsStdev<FitT>& _eo ) const 
+  virtual void operator()( eoEsStdev<FitT>& _eo )  
   {
     double global = exp(TauGlb * rng.normal());
     for (unsigned i = 0; i < _eo.size(); i++) 
@@ -135,6 +137,8 @@ public:
       }
 
     keepInBounds(_eo);
+  
+    _eo.invalidate();
   }
 
   /*
@@ -148,7 +152,7 @@ public:
   
   // Code from Thomas Baeck 
   
-  virtual void operator()( eoEsFull<FitT> & _eo ) const 
+  virtual void operator()( eoEsFull<FitT> & _eo )  
   {
 
     /*
@@ -216,6 +220,8 @@ public:
       _eo[i] += VarStp[i];
 
     keepInBounds(_eo);
+  
+      _eo.invalidate();
   }
 
   void keepInBounds(eoFixedLength<FitT, double>& _eo) const

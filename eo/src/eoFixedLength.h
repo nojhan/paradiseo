@@ -28,7 +28,7 @@
 #define _eoFixedLength_h
 
 #include <vector>
-
+#include <EO.h>
 /**
 
   Base class for fixed length chromosomes, just derives from EO and vector and
@@ -40,7 +40,11 @@ class eoFixedLength : public EO<FitT>, public std::vector<GeneType>
 {
     public :
     
-    typedef GeneType Type;
+    typedef GeneType                AtomType;
+    typedef std::vector<GeneType>   ContainerType;
+
+    eoFixedLength(unsigned size = 0, GeneType value = GeneType()) : EO<FitT>(), std::vector<GeneType>(size, value)
+    {}
 
     /// to avoid conflicts between EO::operator< and vector<double>::operator<
     bool operator<(const eoFixedLength<FitT, GeneType>& _eo) const
@@ -71,7 +75,11 @@ class eoFixedLength : public EO<FitT>, public std::vector<GeneType>
         unsigned i;
 
         for (i = 0; i < sz; ++i)
-            is >> operator[](i);
+        {
+            AtomType atom;
+            is >> atom;
+            operator[](i) = atom;
+        }
     }
 };
 

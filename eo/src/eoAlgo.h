@@ -26,30 +26,18 @@
 #define _EOALGO_H
 
 #include <eoPop.h>                   // for population
+#include <eoFunctor.h>
 
-/** This is a generic class for population-transforming algorithms. There
+/** 
+    This is a generic class for population-transforming algorithms. There
     is only one operator defined, which takes a population and does stuff to
     it. It needn't be a complete algorithm, can be also a step of an
     algorithm. This class just gives a common interface to linear
     population-transforming algorithms.
- @author GeNeura Team
- @version 0.0
 */
 template< class EOT >
-class eoAlgo {
-public:
+class eoAlgo : public eoUnaryFunctor<void, eoPop<EOT>&> 
+{};
 
-  /// Dtor
-  virtual ~eoAlgo() {};
-  
-  /** Run the algorithm on a population. This operation is not constant, 
-      because somebody would want to change stuff in the algorithm each
-      time it's applied. 
-   * @param _pop is the population that the algorithm is acting on
-   */
-  virtual void operator() ( eoPop<EOT>& _pop ) = 0;
-  
-};
 	
-
 #endif

@@ -27,8 +27,8 @@
 
 //-----------------------------------------------------------------------------
 
-#include "eoSteadyStateGeneration.h"     // eoPop
-#include <eoTerm.h>
+#include <eoAlgo.h>
+#include <eoSteadyStateTransform.h>     
 
 /** EOSteadyStateEA:
     An easy-to-use evolutionary algorithm, just supply
@@ -42,19 +42,19 @@ template<class EOT> class eoSteadyStateEA: public eoAlgo<EOT>
   /// Constructor.
   eoSteadyStateEA(
       eoGOpSelector<EOT>& _opSelector, 
-      eoPopIndiSelector<EOT>& _selector,
+      eoSelectOne<EOT>& _selector,
       eoSteadyStateInserter<EOT>& _inserter, 
-      eoTerm<EOT>&     _terminator,
+      eoContinue<EOT>&     _continuator,
       unsigned _steps = 0 )   
-      : step(_opSelector, _selector, _inserter), 
-      terminator( _terminator)
+      : step(_opSelector, _selector, _inserter, _steps), 
+        continuator( _continuator)
         {};
 
   /// Constructor from an already created generation
-  eoSteadyStateEA(eoSteadyStateGeneration<EOT>& _gen,
-	   eoTerm<EOT>&     _terminator):
+  eoSteadyStateEA(eoSteadyStateTransform<EOT>& _gen,
+	   eoContinue<EOT>&     _continuator):
     step(_gen), 
-    terminator( _terminator){};
+    continuator( _continuator){};
   
   /// Apply one generation of evolution to the population.
   virtual void operator()(eoPop<EOT>& pop) {
@@ -69,16 +69,13 @@ template<class EOT> class eoSteadyStateEA: public eoAlgo<EOT>
 	  s.append( " in eoSteadyStateEA ");
 	  throw runtime_error( s );
 	}
-    } while ( terminator( pop ) );
+    } while ( continuator( pop ) );
   
   }
-  
-  /// Class name.
-  string className() const { return "eoSteadyStateEA"; }
-  
+    
  private:
-  eoSteadyStateGeneration<EOT>  step;
-  eoTerm<EOT>& terminator;
+  eoSteadyStateTransform<EOT>  step;
+  eoContinue<EOT>& continuator;
 };
 
 //-----------------------------------------------------------------------------

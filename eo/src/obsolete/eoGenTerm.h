@@ -25,35 +25,18 @@
 #ifndef _EOGENTERM_H
 #define _EOGENTERM_H
 
-#include <eoTerm.h>
+#include <eoContinue.h>
 
-/** Generational termination: terminates after a number of generations
+/** Generational continuator: continues until a number of generations is reached
 */
 template< class EOT>
-class eoGenTerm: public eoTerm<EOT> {
+class eoGenContinue: public eoContinue<EOT> {
 public:
 
 	/// Ctors/dtors
-	eoGenTerm( unsigned _totalGens)
-	  : eoTerm<EOT> (), repTotalGenerations( _totalGens ), 
+	eoGenContinue( unsigned _totalGens)
+	  : repTotalGenerations( _totalGens ), 
 	  thisGeneration(0){};
-
-	/// Copy Ctor
-	eoGenTerm( const eoGenTerm& _t)
-	  : eoTerm<EOT> ( _t ), repTotalGenerations( _t.repTotalGenerations ), 
-	  thisGeneration(0){};
-
-	/// Assignment Operator
-	const eoGenTerm& operator = ( const eoGenTerm& _t) {
-	  if ( &_t != this ) {
-	    repTotalGenerations =  _t.repTotalGenerations; 
-	    thisGeneration = 0;
-	  }
-	  return *this;
-	}
-
-	/// Dtor
-	virtual ~eoGenTerm() {};
 
 	/** Returns false when a certain number of generations is
 	* reached */

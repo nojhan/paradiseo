@@ -48,7 +48,7 @@ Each individual in an evolution strategy is composed of
    a vector of std deviations
    a vector of rotation angles (for correlated mutations)
 
-THese individuals CANNOT BE IMPLEMENTED as vectors of anything 
+These individuals CANNOT BE IMPLEMENTED as vectors of anything 
       at least in the case of correlated mutations
 */ 
 //@{
@@ -69,18 +69,11 @@ class eoESFullChrom  : public eoVector<double, fitT> {
     verbose( _verbose ),
     ObjMin( _ObjMin ),
     ObjMax(_ObjMax ),
-    StdDevInit( _StdDevInit ) {}
+    StdDevInit( _StdDevInit ) 
+    { // check consistency
+    }
   
-    /// copy constructor
-    eoESFullChrom( const eoESFullChrom& _eo ):
-    eoVector<double, fitT> ( _eo ), // ObjVar ( _eo.ObjVar ), 
-    StdDev ( _eo.StdDev ), CorCff( _eo.CorCff ), verbose( _eo.verbose ),
-    ObjMin( _eo.ObjMin ), ObjMax(_eo.ObjMax ), StdDevInit( _eo.StdDevInit ) {}
-
 	
-  /* another constructor, for compatibility reasons */
-    eoESFullChrom(istream& _s) { cout << "Not Yet implemented\n";exit(1);};
-
   /* And now the useful constructor: from a parser (should be in the
      factory, if such a thing exists one day for eoESFullChrom 
    */
@@ -265,6 +258,9 @@ private:
     double StdDevInit;		/* Initial value of Standard Deviations */
 
 };
+
+
+
 
 #endif
 

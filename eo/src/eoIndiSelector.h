@@ -30,11 +30,18 @@
 #ifndef eoIndiSelector_h
 #define eoIndiSelector_h
 
+#include <eoFunctor.h>
+
 /**
- * eoIndividualSelector: This class defines the interface 
+ * eoIndividualSelector: This class defines the interface. This
+ * interface is used by the eoGeneralOp to get new individuals
+ * from a pop, a subpop or a remote pop
+ * for convenience when implementing an nary operator a size() and operator[]
+ * need to be implemented.
 */
+
 template <class EOT>
-class eoIndiSelector
+class eoIndiSelector : public eoProcedure<const EOT&>
 {
 public :
 
@@ -51,48 +58,37 @@ public :
         return the specified individual, the size_t argument should be between 0 and eoIndiSelector::size()
     */
     virtual const EOT& operator[](size_t i) const = 0;
-
-    /**
-        Select an individual, maybe from an underlying population (see eoPopIndiSelector)
-    */
-    virtual const EOT&   operator()(void) = 0;
-    
-    /// default implementation just calls operator() a couple of times
-    /// this can be overridden in favour of a more efficient implementation
-    virtual vector<const EOT*>    select(size_t _how_many)
-    {   vector<const EOT*> result(_how_many);
-
-        for (unsigned i = 0; i < _how_many; ++i)
-        {
-            result[i] = &operator()();
-        }
-
-        return result;
-    }
 };
 
+
+#include <eoSelectOne.h>
+
 /**
- * eoPopIndiSelector: Intermediate class for dispensing populations
+ * eoSelectOneAdaptor: Adaptor class for dispensing individuals.
+
+    It produces the eoIndiSelector interface and an eoSelectOne implementation
+    This class can then be used for general operators
+
     various useful things can be done with this class:
         you can specify how many of the population can ever be dispensed to the
         operators, but you can also specify a preference to the first guy being
         dispensed. This is useful if you want to perform the operator on a specific
         individual.
+
+  @see eoSelectOne, eoIndiSelector
 */
 template <class EOT>
-class eoPopIndiSelector : public eoIndiSelector<EOT>
+class eoSelectOneIndiSelector : public eoIndiSelector<EOT>
 {
     public :
-        eoPopIndiSelector(void) : eoIndiSelector<EOT>(), pop(0), last(0), firstChoice(-1), secondChoice(-1) {}
-        
-        virtual ~eoPopIndiSelector(void) {}
-        
+        eoSelectOneIndiSelector(eoSelectOne<EOT>& _select) : pop(0), last(0), firstChoice(-1), secondChoice(-1), select(_select) {}
+                
         struct eoUnitializedException{};
 
         /** Initialization function, binds the population to the selector, can also
             be used to specify an optional end 
         */
-        eoPopIndiSelector& bind(const eoPop<EOT>& _pop, int _end = -1)
+        eoSelectOneIndiSelector& bind(const eoPop<EOT>& _pop, int _end = -1)
         {
             pop = &_pop;
             last = _end;
@@ -101,6 +97,8 @@ class eoPopIndiSelector : public eoIndiSelector<EOT>
             {
                 last = pop->size();
             }
+            
+            select.setup(*pop);
 
             return *this;
         }
@@ -108,7 +106,7 @@ class eoPopIndiSelector : public eoIndiSelector<EOT>
         /** Bias function to bias the selection function to select specific individuals
             first before applying a selection algorithm defined in derived classes
         */
-        eoPopIndiSelector& bias(int _first, int _second = -1)
+        eoSelectOneIndiSelector& bias(int _first, int _second = -1)
         {
             firstChoice  = _first;
             secondChoice = _second;
@@ -122,17 +120,16 @@ class eoPopIndiSelector : public eoIndiSelector<EOT>
         eoPop<EOT>::const_iterator begin(void) const { valid(); return pop->begin(); }
         eoPop<EOT>::const_iterator end(void)   const { valid(); return pop->end(); }
 
-
         /// operator() does the work. Note that it is not virtual. It calls do_select that needs to be implemented by the derived classes
         const EOT& operator()(void)
         {
             valid();
-            if (firstChoice < 0 || firstChoice >= (int) size())
+            if (firstChoice < 0 || firstChoice >= last)
             {
                 // see if we have a second choice
-                if (secondChoice < 0 || secondChoice >= (int) size())
+                if (secondChoice < 0 || secondChoice >= last)
                 {
-                    return do_select(); // let the child figure out what to do  
+                    return select(*pop); // let the embedded selector figure out what to do
                 }
                     
                 const EOT& result = pop->operator[](secondChoice);
@@ -144,12 +141,6 @@ class eoPopIndiSelector : public eoIndiSelector<EOT>
             firstChoice = -1;
             return result;
         }
-
-        /**
-            do_select, abstract member re-implemented by derived classes
-            This function will get called by operator() when it ran out of choices
-        */
-        virtual const EOT& do_select(void) = 0;
 
     private :
 
@@ -163,6 +154,7 @@ class eoPopIndiSelector : public eoIndiSelector<EOT>
         int   last;
         int   firstChoice;
         int   secondChoice;
+        eoSelectOne<EOT>& select;
 };
 
 #endif

@@ -1,3 +1,31 @@
+/**
+
+ *	Pool allocator for the subtree and parse tree classes (homebrew and not compliant to ANSI allocator requirements)
+ *  (c) copyright Maarten Keijzer 1999, 2000 
+
+ * Permission to copy, use,  modify, sell and distribute this software is granted provided 
+ * this copyright notice appears in all copies. This software is provided "as is" without
+ * express or implied warranty, and with no claim as to its suitability for
+ * any purpose.
+ 
+ * Permission to modify the code and to distribute modified code is granted,
+ * provided the above notices are retained, and a notice that the code was
+ * modified is included with the above copyright notice.
+
+
+ * Special disclaimer and political statement: 
+
+ * In contrast with the rest of the EO package where you might have found this code, this software 
+ * does NOT fall under the GNU Lesser Public License or the GNU Public License, nor is anyone allowed
+ * by the copyright holder (that's me) to put it under either license.
+ * Doing this would limit my and your freedom to use this software in any way
+ * you or I see fit, including but not limited to closed-source software. I personally do not adher to 
+ * virus-like qualities of the GPL and therefore take the liberty to open this code as wide as I can.
+ * Furthermore, as this work was carried out in an academic environment and thus paid by the public 
+ * I do not see the need for the same public (which includes commercial companies) 
+ * to be limited in any way to use this software.
+
+*/
 
 #ifndef node_pool_h
 #define node_pool_h

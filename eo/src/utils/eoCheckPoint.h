@@ -27,30 +27,30 @@
 #ifndef _eoCheckPoint_h
 #define _eoCheckPoint_h
 
-#include <eoTerm.h>
+#include <eoContinue.h>
 
 template <class EOT> class eoStatBase;
 class eoMonitor;
 class eoUpdater;
 
 template <class EOT>
-class eoCheckPoint : public eoTerm<EOT>
+class eoCheckPoint : public eoContinue<EOT>
 {
 public :
 
-    eoCheckPoint(eoTerm<EOT>& _term) : term(_term) {}
+    eoCheckPoint(eoContinue<EOT>& _cont) : cont(_cont) {}
 
     bool operator()(const eoPop<EOT>& _pop);
 
     void add(eoStatBase<EOT>& _stat) { stats.push_back(&_stat); }
-    void add(eoMonitor& _mon) { monitors.push_back(&_mon); }
-    void add(eoUpdater& _upd) { updaters.push_back(&_upd); }
+    void add(eoMonitor& _mon)        { monitors.push_back(&_mon); }
+    void add(eoUpdater& _upd)        { updaters.push_back(&_upd); }
 
     std::string className(void) const { return "eoCheckPoint"; }
 
 private :
 
-    eoTerm<EOT>& term;
+    eoContinue<EOT>& cont;
     std::vector<eoStatBase<EOT>*>    stats;
     std::vector<eoMonitor*> monitors;
     std::vector<eoUpdater*> updaters;
@@ -69,7 +69,7 @@ bool eoCheckPoint<EOT>::operator()(const eoPop<EOT>& _pop)
     for (i = 0; i < monitors.size(); ++i)
         (*monitors[i])();
 
-    return term(_pop);
+    return cont(_pop);
 }
 
 #endif

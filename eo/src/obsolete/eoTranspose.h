@@ -2,7 +2,7 @@
 
 //-----------------------------------------------------------------------------
 // eoTranspose.h
-// (c) GeNeura Team, 1998
+// (c) GeNeura Team, 1998 Maarten Keijzer 2000
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -25,66 +25,69 @@
 #ifndef _EOTRANSPOSE_h
 #define _EOTRANSPOSE_h
 
+#include <vector>
+#include <list>
+
 #include <utils/eoRNG.h>
-
 #include <eoOp.h>
-
-/** Transposition operator: interchanges the position of two genes
-of an EO. These positions must be defined by an only index, that is,
-EOT must subclass eo1d
+#include <eoFixedLength.h>
+#include <eoVariableLength.h>
+/** 
+Transposition operator: interchanges the position of two genes
+of an EO. 
 */
 template <class EOT >
-class eoTranspose: public eoMonOp<EOT>  {
+class eoTranspose: public eoMonOp<EOT>  
+{
 public:
-  ///
-  eoTranspose()
-    : eoMonOp< EOT >( ){};
   
-  /// needed virtual dtor
-  virtual ~eoTranspose() {};
+  // Specialization for a vector
+  void operator()(eoFixedLength<typename EOT::Fitness, typename EOT::AtomType>& _eo )
+  {
+    unsigned pos1 = rng.random(_eo.size()),
+    pos2 = rng.random(_eo.size());
   
-  ///
-  virtual void operator()( EOT& _eo ) const {
-    unsigned pos1 = uniform(),
-      pos2 = rng.random(_eo.length());
-    applyAt( _eo, pos1, pos2 );
+    if (pos1 != pos2)
+        swap(_eo[pos1], _eo[pos2]);
+
+    if (_eo[pos1] != _eo[pos2])
+        _eo.invalidate();
+  }
+
+  // Specialization for a list
+  void operator()(eoVariableLength<typename EOT::Fitness, typename EOT::AtomType>& _eo )
+  {
+    unsigned pos1 = rng.random(_eo.size()),
+    pos2 = rng.random(_eo.size());
+  
+    if (pos1 == pos2)
+        return;
+
+    if (pos1 > pos2)
+        swap(pos1,pos2);
+
+    pos2 -= pos1;
+    
+    typename EOT::iterator it1 = _eo.begin();
+
+    while (pos1--) {it1++;}
+
+    typename EOT::iterator it2 = it1;
+    
+    while (pos2--) {it2++;}
+
+    swap(*it1, *it2);
+
+    if (*it1 != *it2)
+        _eo.invalidate();
   }
   
-  /** @name Methods from eoObject
-      readFrom and printOn are directly inherited from eoOp
-  */
-  //@{
   /** Inherited from eoObject 
       @see eoObject
   */
   virtual string className() const {return "eoTranspose";};
   //@}
-  
-private: 
-  
-#ifdef _MSC_VER
-  typedef EOT::Type Type;
-#else
-  typedef typename EOT::Type Type;
-#endif
-  
-  /** applies operator to one gene in the EO
-      @param _eo victim of transposition
-      @param i, j positions of the genes that are going to be changed
-      @throw runtime_exception if the positions to write are incorrect
-  */
-  virtual void applyAt( EOT& _eo, unsigned _i, unsigned _j) const {
-    try {
-      Type tmp = _eo.gene( _i );
-      _eo.gene( _i ) =  _eo.gene( _j );
-      _eo.gene( _j ) = tmp;
-    } catch ( exception& _e ) {
-      string msg = _e.what();
-      msg += "Caught exception at eoTranspose";
-      throw  runtime_error( msg.c_str() );
-    }
-  }
-  
+    
 };
 
 #endif

@@ -39,9 +39,11 @@ using namespace std;
 // eoObject
 //-----------------------------------------------------------------------------
 /**
-This is the base class for the whole hierarchy; an eoObject defines
-basically an interface for the whole hierarchy: each object should
-know its name (#className#). Previously, this object defined a print and read
+eoObject used to be the base class for the whole hierarchy, but this has 
+changed. eoObject is used to define a name (#className#) 
+that is used when loading or saving the state. 
+
+Previously, this object also defined a print and read
 interface, but it´s been moved to eoPrintable and eoPersistent.
 
 It is recommended that you only derive from eoObject in concrete classes.
@@ -49,7 +51,7 @@ Some parts of EO do not implement this yet, but that will change in the future.
 eoObject, together with eoPersistent and eoPrintable provide a simple persistence
 framework that is only needed when the classes have state that changes at runtime.
 
-  @see eoPersistent eoPrintable
+  @see eoPersistent eoPrintable, eoState
 
  */
 class eoObject

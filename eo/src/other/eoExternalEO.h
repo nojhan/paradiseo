@@ -40,8 +40,6 @@ class eoExternalEO : public EO<Fit>, virtual public External
 {
 public :
 
-  typedef External Type;
-
   eoExternalEO(void) : EO<Fit>(), External() {}
 
   /**

@@ -18,12 +18,11 @@
 #include <ga/eoBin.h>
 #include <utils/eoParser.h>
 #include <utils/eoState.h>
-
+#include <eoGenContinue.h>
 //-----------------------------------------------------------------------------
 
 // include package checkpointing
 #include <utils/checkpointing>
-#include <eoGenTerm.h>
 
 struct Dummy : public EO<double>
 {
@@ -74,7 +73,7 @@ int the_main(int argc, char **argv)
 
     eoDummyPop pop;
     
-    eoGenTerm<EoType> genTerm(5); // run for 5 generations
+    eoGenContinue<EoType> genTerm(5); // run for 5 generations
 
     eoCheckPoint<EoType> checkpoint(genTerm); 
     // The algorithm will now quit after five generations

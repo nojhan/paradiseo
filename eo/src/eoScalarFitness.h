@@ -26,18 +26,23 @@
 #ifndef eoScalarFitness_h
 #define eoScalarFitness_h
 
+#include <functional>
+#include <iostream>
+
 /**
  * eoScalarFitness<ScalarType, Compare = less<ScalarType> >:
  * Wraps a scalar fitness values such as a double or int, with the option of 
- * maximizing (using less<ScalarType>) or miniziming (using greater<ScalarType>)
- * this quantity in EO. 
+ * maximizing (using less<ScalarType>) or minimizing (using greater<ScalarType>)
+ *  
+ * 
+ *
  *
  * It overrides operator<() to use the Compare template argument
  *
  * Suitable constructors and assignments and casts are defined to work 
  * with this quantity as if it were a ScalarType.
 */
-template <class ScalarType, class Compare = less<ScalarType> > 
+template <class ScalarType, class Compare > 
 class eoScalarFitness 
 {
     public :
@@ -57,9 +62,23 @@ class eoScalarFitness
     bool operator<(const eoScalarFitness& other) const 
     { return Compare()(value, other.value); }
 
+    // implementation of the other operators
+    bool operator>( const eoScalarFitness<ScalarType, Compare>& y ) const  { return y < *this; }
+    // implementation of the other operators
+    bool operator<=( const eoScalarFitness<ScalarType, Compare>& y ) const { return !(*this > y); }
+    // implementation of the other operators
+    bool operator>=(const eoScalarFitness<ScalarType, Compare>& y ) const { return !(*this < y); }
+
+
     private :
         ScalarType value;
 };
+
+/**
+Typedefs for fitness comparison, 
+*/  
+typedef eoScalarFitness<double, std::greater<double> >    eoMaximizingFitness;
+typedef eoScalarFitness<double, std::less<double> > eoMinimizingFitness;
 
 template <class F, class Cmp>
 std::ostream& operator<<(std::ostream& os, const eoScalarFitness<F, Cmp>& f)
@@ -69,7 +88,7 @@ std::ostream& operator<<(std::ostream& os, const eoScalarFitness<F, Cmp>& f)
 }
 
 template <class F, class Cmp>
-std::istream& operator>>(istream& is, eoScalarFitness<F, Cmp>& f)
+std::istream& operator>>(std::istream& is, eoScalarFitness<F, Cmp>& f)
 {
     F value;
     is >> value;

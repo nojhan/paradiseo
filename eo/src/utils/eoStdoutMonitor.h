@@ -1,13 +1,9 @@
-/* -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-  -----------------------------------------------------------------------------
-  eoExternalOpFunc.h
-        Defines eoExternalInitOpFunc, eoExternalMonOpFunc, eoExternalBinOpFunc, eoExternalQuadOpFunc
-        that are used to wrap a function pointer to externally defined initialization
-        and 'genetic' operators
-
- (c) Maarten Keijzer (mkeijzer@mad.scientist.com) and GeNeura Team, 1999, 2000
- 
+//-----------------------------------------------------------------------------
+// eoFileMonitor.h
+// (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
+/* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -23,21 +19,31 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
+             Marc.Schoenauer@polytechnique.fr
+             mkeijzer@dhi.dk
  */
+//-----------------------------------------------------------------------------
 
-#ifndef eoExternalOpFunc_h
-#define eoExternalOpFunc_h
+#ifndef _eoStdoutMonitor_h
+#define _eoStdoutMonitor_h
 
-#include <eoExternalEO.h>
-#include <eoOp.h>
-#include <utils/eoRNG.h>
+#include <string>
 
-template <class F, class External>
-class eoExternalInitFunc 
+#include <utils/eoMonitor.h>
+#include <eoObject.h>
+
+/**
+    Prints statistics to stdout
+*/
+class eoStdoutMonitor : public eoMonitor
 {
-
 public :
+    eoStdoutMonitor(std::string _delim = "\t") : delim(_delim), firsttime(true) {}
+    eoMonitor& operator()(void);
 
+private :
+    std::string delim;
+    bool firsttime;
 };
 
 #endif

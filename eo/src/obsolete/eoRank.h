@@ -48,21 +48,14 @@
  */
 
 template<class EOT>
-class eoRank: public eoSelect<EOT>{
+class eoRank: public eoSelect<EOT>, public eoObject, public eoPrintable
+{
  public:
   
   /// Ctor
   eoRank( unsigned _newPopSize, eoOpSelector<EOT>& _opSelector)
-
 	  :eoSelect<EOT>(), opSelector( _opSelector ), repNewPopSize( _newPopSize ) {};
-  
-  /** Copy ctor
-   * Needs a copy ctor for the EO operators */
-  eoRank( const eoRank&  _rankBreeder)
-    :eoSelect<EOT>( _rankBreeder), 
-
-	opSelector( _rankBreeder.opSelector ), repNewPopSize( _rankBreeder.repNewPopSize ) {};
-  
+    
   /// Dtor
   virtual ~eoRank() {};
   
@@ -79,12 +72,10 @@ class eoRank: public eoSelect<EOT>{
 
     for ( unsigned i = 0; i < repNewPopSize; i ++ ) {
       // Create a copy of a random input EO with copy ctor. The members of the
-
 		// population will be selected by rank, with a certain probability of
-
 		// being selected several times if the new population is bigger than the
-
 		// old
+
 		EOT newEO =  _ptVeo[ i%inLen ];
     
 		// Choose operator
@@ -128,22 +119,9 @@ class eoRank: public eoSelect<EOT>{
 
     virtual string className() const { return "eoRank"; };
 
-
-
-    /** Print itself: inherited from eoObject implementation. Declared virtual so that 
-
-      it can be reimplemented anywhere. Instance from base classes are processed in
-
-      base classes, so you don´t have to worry about, for instance, fitness.
-
-      @param _s the ostream in which things are written*/
-
-    virtual void printOn( ostream& _s ) const{
-
-      _s << opSelector;
-
-		_s << repNewPopSize;
-
+    virtual void printOn( ostream& _s ) const
+    {
+  		_s << repNewPopSize;
     };
 
 

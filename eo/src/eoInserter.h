@@ -30,23 +30,20 @@
 #ifndef eoInserter_h
 #define eoInserter_h
 
-#include "eoPop.h"
-/**
+#include <eoFunctor.h>
+#include <eoPop.h>
+
+ /**
  * eoInserter: Interface class that enables an operator to insert
-    new individuals into the (intermediate) population. 
+    new individuals into the (intermediate) population for example. 
 */
 template <class EOT>
-class eoInserter 
+class eoInserter  : public eoUnaryFunctor<eoInserter<EOT>&, const EOT&>
 {
     public :
         virtual ~eoInserter() {}
 
         struct eoInserterException{};
-
-        /**
-            insert argument somewhere (quite likely a population)
-        */
-        virtual eoInserter<EOT>& operator()(const EOT&) = 0; // can throw an eoInserterException
 };
 
 /**

@@ -27,21 +27,15 @@
 #ifndef _eoUpdater_h
 #define _eoUpdater_h
 
+#include <eoFunctor.h>
+#include <utils/eoState.h>
+
 /**
     eoUpdater is a generic procudere for updating whatever you want.
-    It is about as abstract as you can get.
+    Yet again an empty name
 */
-class eoUpdater
-{
-public :
-    /// virtual classes have virtual dtors
-    virtual ~eoUpdater(void) {}
-    
-    /**
-        does the work, what it is is quite undefined
-    */
-    virtual void operator()(void) = 0;
-};
+class eoUpdater : public eoProcedure<void>
+{};
 
 /**
 */

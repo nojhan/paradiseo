@@ -27,13 +27,15 @@
 #include <strstream>  // ostrstream, istrstream
 #include <eo>         // eoBin
 
+#include "binary_value.h"
+
 //-----------------------------------------------------------------------------
 
 typedef eoBin<float> Chrom;
 
 //-----------------------------------------------------------------------------
 
-main()
+void main_function()
 {
   const unsigned SIZE = 8;
   unsigned i, j;
@@ -52,19 +54,22 @@ main()
   cout << "chrom:  " << chrom << endl
        << "chrom2: " << chrom2 << endl;
   
-  ostrstream os;
+  char buff[1024];
+  ostrstream os(buff, 1024);
   os << chrom;
   istrstream is(os.str());
   is >> chrom2;
   
-  cout << "chrom:  " << chrom << endl
-       << "chrom2: " << chrom2 << endl;
+  cout << "\nTesting reading, writing\n";
+  cout << "chrom:  " << chrom << "\nchrom2: " << chrom2 << '\n';
   
   fill(chrom.begin(), chrom.end(), false);
   cout << "--------------------------------------------------"
        << endl << "eoMonOp's aplied to .......... " << chrom << endl;
   
-  eoBinRandom<Chrom> random;
+  eoInitFixedLength<Chrom, boolean_generator> 
+      random(chrom.size(), boolean_generator());
+  
   random(chrom);
   cout << "after eoBinRandom ............ " << chrom << endl;
 
@@ -120,16 +125,41 @@ main()
 	cout  << "eoBinGxOver(" << i << ", " << j << ") ..... " 
 	      << chrom << " " << chrom2 << endl; 
       }
-  
-  for (double r = 0.1; r < 1.0; r += 0.1)
-    {
-      eoUniformXOver<Chrom> uxover(r);
-      fill(chrom.begin(), chrom.end(), false);
-      fill(chrom2.begin(), chrom2.end(), true);
-      uxover(chrom, chrom2);
-      cout << "eoBinUxOver(" << r << ") ...... " 
-	   << chrom << " " << chrom2 << endl; 
-    }
+
+    // test SGA algorithm
+    eoGenContinue<Chrom> continuator1(50);
+    eoFitContinue<Chrom> continuator2(65535.f);
+
+    eoCombinedContinue<Chrom> continuator(continuator1, continuator2);
+
+    eoCheckPoint<Chrom> checkpoint(continuator);
+
+    eoStdoutMonitor monitor;
+
+    checkpoint.add(monitor);
+
+    eoSecondMomentStats<Chrom> stats;
+
+    monitor.add(stats);
+    checkpoint.add(stats);
+
+    eoProportional<Chrom> select;
+    eoEvalFuncPtr<Chrom>  eval(binary_value);
+    
+    eoSGA<Chrom> sga(checkpoint, bitflip, 0.1f, xover, 0.8f, select, eval);
+
+    eoInitFixedLength<Chrom, boolean_generator> 
+      init(16, boolean_generator());
+    eoPop<Chrom> pop(100, init);
+    
+    apply<Chrom>(eval, pop);
+    //for_each(pop.begin(), pop.end(), eval);
+    
+    sga(pop);
+
+    pop.sort();
+
+    cout << "\nBest: " << pop[0].fitness() << '\n';
 
   /*
 
@@ -149,8 +179,31 @@ main()
     mbOp( chrom, chrom2 );
     cout << "after multiBinOp .............. " << chrom << " " << chrom2 <<endl;
   */
-
-  return 0;
 }
 
 //-----------------------------------------------------------------------------
+#ifdef _MSC_VER
+#include <crtdbg.h> 
+#endif
+
+int main()
+{
+#ifdef _MSC_VER
+  //  rng.reseed(42);
+    int flag = _CrtSetDbgFlag(_CRTDBG_LEAK_CHECK_DF);
+     flag |= _CRTDBG_LEAK_CHECK_DF;
+    _CrtSetDbgFlag(flag);
+//   _CrtSetBreakAlloc(100);
+#endif
+
+    try
+    {
+        main_function();
+    }
+    catch(exception& e)
+    {
+        cout << "Exception: " << e.what() << '\n';
+    }
+
+    return 1;
+}

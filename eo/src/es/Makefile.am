@@ -5,4 +5,7 @@
 ###############################################################################
 
 libeoincdir = $(includedir)/eo/es
-libeoinc_HEADERS = eoESFullChrom.h eoESChrom.h eoESFullMut.h evolution_strategies eoEsObjectiveBounds.h eoEsSimple.h eoEsStdev.h eoEsFull.h eoEsChromInit.h eoEsMutationInit.h eoEsMutate.h
+libeoinc_HEADERS = evolution_strategies eoEsChromInit.h eoEsFull.h eoEsMutate.h eoEsMutationInit.h eoEsObjectiveBounds.h eoEsSimple.h eoEsStdev.h 
+
+
+

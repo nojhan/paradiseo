@@ -34,19 +34,19 @@
 
 /**
  * eoSteadyStateInserter: Interface class that enables an operator to update
- * a population with a new individual... it contains an eoEvalFunc object to 
+ * a population with a new individual... it contains an eoEvalFunc derived object to 
  * make sure that every individual is evaluated before it is inserted
 */
 template <class EOT>
 class eoSteadyStateInserter : public eoPopInserter<EOT> 
 {
 public :
-  eoSteadyStateInserter(eoEvalFunc<EOT>& _eval): 
+    eoSteadyStateInserter(eoEvalFunc<EOT>& _eval): 
     eoPopInserter<EOT>(), 
     eval(_eval) {}
   
 protected :
-  eoEvalFunc<EOT>& eval;
+    eoEvalFunc<EOT>& eval;
 };
 
 

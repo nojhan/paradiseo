@@ -27,17 +27,91 @@
 #ifndef _eoInit_H
 #define _eoInit_H
 
+#include <eoOp.h>
+
 /**
-	Base class for Initialization of chromosomes, used in a population 
-	contructor
+	Base (name) class for Initialization of chromosomes, used in a population 
+	contructor. It is derived from eoMonOp, so it can be used
+    inside the algorithm as well.
 
 	@see eoPop
 */
+
 template <class EOT>
-class eoInit
+class eoInit : public eoUnaryFunctor<void, EOT&> 
+{};
+
+/**
+    Initializor for fixed length representations with a single type
+*/
+template <class EOT, class Gen>
+class eoInitFixedLength: public eoInit<EOT>
 {
-public :
-	virtual EOT operator()(void) = 0;
+    public:
+        eoInitFixedLength(unsigned _howmany, Gen _generator = Gen()) 
+            : howmany(_howmany), generator(_generator) {}
+
+        void operator()(EOT& chrom)
+        {
+            chrom.resize(howmany);
+            generate(chrom.begin(), chrom.end(), generator);
+            chrom.invalidate();
+        }
+
+    private :
+        unsigned howmany;
+        Gen generator;
+};
+
+/**
+    Initializor for variable length representations with a single type
+*/
+template <class EOT, class Gen>
+class eoInitVariableLength: public eoInit<EOT>
+{
+    public:
+        eoInitVariableLength(unsigned _minSize, unsigned _maxSize, Gen _generator = Gen()) 
+            : offset(_minSize), extent(_maxSize - _minSize), generator(_generator) 
+        {
+            if (_minSize >= _maxSize)
+                throw logical_error("eoInitVariableLength: minSize larger or equal to maxSize");
+        }
+
+        void operator()(EOT& chrom)
+        {
+            unsigned howmany = offset + rng.random(extent);
+            chrom.resize(howmany);
+            generate(chrom.begin(), chrom.end(), generator);
+            chrom.invalidate();
+        }
+
+    private :
+        unsigned offset;
+        unsigned extent;
+        Gen generator;
+};
+
+
+/**
+    eoInitAdaptor changes the place in the hierarchy
+    from eoInit to eoMonOp. This is mainly a type conversion,
+    nothing else
+    .
+    @see eoInit, eoMonOp
+*/
+template <class EOT>
+class eoInitAdaptor : public eoMonOp<EOT>
+{
+    public :
+        eoInitAdaptor(eoInit<EOT>& _init) : init(_init) {}
+    
+        void operator()(EOT& _eot)
+        {
+            init(_eot);
+        }
+    private :
+    
+        eoInit<EOT>& init;
 };
 
 #endif

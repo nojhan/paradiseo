@@ -27,7 +27,8 @@
 #include <iostream>    // ostream, istream
 #include <functional>  // bind2nd
 #include <string>      // string
-#include <eoVector.h>  // EO
+
+#include <eoFixedLength.h>
 
 /**
 \defgroup bitstring
@@ -38,9 +39,9 @@
 /** eoBin: implementation of binary chromosome.                               
 \class eoBin eoBin.h ga/eoBin.h
 \ingroup bitstring
-  * based on STL's bit_vector (vector<bool>).                                 
+  * based on STL's vector<bool> specialization.                                 
 */
-template <class F> class eoBin: public eoVector<bool, F>
+template <class F> class eoBin: public eoFixedLength<F, bool>
 {
  public:
 
@@ -49,21 +50,8 @@ template <class F> class eoBin: public eoVector<bool, F>
    * @param size Size of the binary string.
    */
   eoBin(unsigned size = 0, bool value = false): 
-    eoVector<bool,F>(size, value) {}
-  
-  /**
-   * Constructor.
-   * @param size Size of the binary string.
-   */
-  eoBin(unsigned size, const eoRnd<bool>& rnd): eoVector<bool,F>(size) 
-    {
-      generate(begin(), end(), rnd);
-    }
-  
-  /** Constructor from istream.
-      @param is The istream to read from.*/
-  eoBin(istream& _is):eoVector<bool,F>(_is){};
-  
+    eoFixedLength<F, bool>(size, value) {}
+      
   /// My class name.
   string className() const 
     { 
@@ -76,6 +64,7 @@ template <class F> class eoBin: public eoVector<bool, F>
    */
   void printOn(ostream& os) const
     {
+      os << size() << ' ';
       copy(begin(), end(), ostream_iterator<bool>(os));
     }
   
@@ -98,4 +87,4 @@ template <class F> class eoBin: public eoVector<bool, F>
 
 //-----------------------------------------------------------------------------
 
-#endif eoBin_h
+#endif //eoBin_h

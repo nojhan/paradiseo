@@ -124,7 +124,7 @@ inline eoOpSelector<EOT>::ID eoGOpSelector<EOT>::addOp( eoOp<EOT>& _op,
       // and keep it on a list to delete them afterwards
       // will use auto_ptr when they're readily available
       
-      switch(_op.getType())
+     switch(_op.getType())
 	{
 	case eoOp<EOT>::unary :
 	  op=  new eoWrappedMonOp<EOT>(static_cast<eoMonOp<EOT>&>(_op));

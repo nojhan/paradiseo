@@ -40,7 +40,7 @@
  * from the original population.
  *****************************************************************************/
 
-template<class Chrom> class eoInsertion: public eoMerge<Chrom>
+template<class Chrom> class eoInsertion: public eoBinaryFunctor<eoPop<Chrom>&, const eoPop<Chrom>&>
 {
  public:
   /// (Default) Constructor.
@@ -57,7 +57,7 @@ template<class Chrom> class eoInsertion: public eoMerge<Chrom>
    * @param breeders The population of breeders. Should be sorted to work correctly
    * @param pop The original population.
    */
-  void operator()( eoPop<Chrom>& _breeders, eoPop<Chrom>& _pop)
+  void operator()( eoPop<Chrom>& _breeders, const eoPop<Chrom>& _pop)
     {
       unsigned target = static_cast<unsigned>((_pop.size() * rate()));
       

@@ -96,10 +96,6 @@ SOURCE="..\test\t-eoESFull.cpp"
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=..\src\es\eoEsBase.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\src\es\eoEsChromInit.h
 # End Source File
 # Begin Source File
@@ -125,6 +121,14 @@ SOURCE=..\src\es\eoEsSimple.h
 # Begin Source File
 
 SOURCE=..\src\es\eoEsStdev.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\eoFixedLength.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\test\real_value.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"

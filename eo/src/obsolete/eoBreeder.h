@@ -32,8 +32,9 @@
 #include <utils/eoRNG.h>
 #include <eoOp.h>          // eoOp, eoMonOp, eoBinOp
 #include <eoPop.h>         // eoPop
-#include <eoPopOps.h>      // eoTransform
 #include <eoOpSelector.h>  // eoOpSelector
+
+#include <eoFunctor.h>
 
 #include <eoRandomIndiSelector.h>
 #include <eoBackInserter.h>
@@ -45,7 +46,8 @@ using namespace std;
  * For every operator there is a rated to be applyed.                        *
  *****************************************************************************/
 
-template<class Chrom> class eoBreeder: public eoMonPopOp<Chrom>
+template<class Chrom> class eoBreeder: public eoTransform<EOT>
+//eoUnaryFunctor<void, eoPop<Chrom>&>
 {
  public:
   /// Default constructor.
@@ -62,9 +64,11 @@ template<class Chrom> class eoBreeder: public eoMonPopOp<Chrom>
     {
       size_t orgsize = pop.size();
 
-      for (unsigned i = 0; i < pop.size(); i++) {
-	eoOp<Chrom>* op = opSel.Op();
-	switch (op->getType()) {
+      for (unsigned i = 0; i < pop.size(); i++) 
+      {
+	     eoOp<Chrom>* op = opSel.Op();
+	switch (op->getType()) 
+    {
     case eoOp<Chrom>::unary:
 	  {
 	    eoMonOp<Chrom>* monop = static_cast<eoMonOp<Chrom>* >(op);

@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoSteadyStateGeneration.h
+// eoOp.h
 // (c) GeNeura Team, 1998
 /* 
     This library is free software; you can redistribute it and/or
@@ -22,68 +22,64 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef eoSteadyStateGeneration_h
-#define eoSteadyStateGeneration_h
+#ifndef eoGeneration_h
+#define eoGeneration_h
 
 //-----------------------------------------------------------------------------
-
 #include <eoAlgo.h>     // eoPop
 #include <eoEvalFunc.h> 
 #include <eoPopOps.h>  // eoSelect, eoTranform, eoMerge
 
-#include "eoGOpSelector.h"
-#include "eoIndiSelector.h"
-#include "eoSteadyStateInserter.h"
-
 //-----------------------------------------------------------------------------
 
-/** eoSteadyStateGeneration
- * Single step of a steady state evolutionary algorithm. 
- * Proceeds by updating one individual at a time, by first selecting parents, 
- * creating one or more children and subsequently overwrite (a) bad individual(s)
-*/
-template<class EOT> class eoSteadyStateGeneration: public eoAlgo<EOT>
+/** eoGeneration
+ * Single step of a evolutionary algorithm. Applies selection, then genetic
+ * operators, replaces using a replacement policy, and finally evaluates the
+ * new ones */
+template<class Chrom> class eoGeneration: public eoAlgo<Chrom>
 {
  public:
   /// Constructor.
-  eoSteadyStateGeneration(
-      eoGOpSelector<EOT>& _opSelector, 
-      eoPopIndiSelector<EOT>& _selector,
-      eoSteadyStateInserter<EOT>& _inserter, 
-      unsigned _steps = 0) :
-            opSelector(_opSelector), 
-            selector(_selector), 
-            inserter(_inserter) , 
-            steps(_steps) {};
+  eoGeneration(eoSelect<Chrom>&    _select, 
+	       eoBreeder<Chrom>&  _breeder, 
+	       eoBinPopOp<Chrom>&     _replace,
+	       eoEvalFunc<Chrom>& _evaluator):
+    select(_select), transform(_transform), 
+    replace(_replace), evaluator( _evaluator) {};
+
+  /// Copy Constructor.
+  eoGeneration(eoGeneration<Chrom>& _gen):
+    select(_gen.select), transform(_gen.transform), 
+    replace(_gen.replace), evaluator( _gen.evaluator ) {};
 
 
   /// Apply one generation of evolution to the population.
-  virtual void operator()(eoPop<EOT>& pop) 
-  {
-      unsigned nSteps = steps;
-      if (nSteps == 0)
-      {
-          nSteps = pop.size(); // make a 'generation equivalent'
+  virtual void operator()(eoPop<Chrom>& pop) {
+      eoPop<Chrom> breeders;
+      try {
+	select(pop, breeders);
+	transform(breeders);
+	eoPop<Chrom>::iterator i;
+	// Can't use foreach here since foreach takes the 
+	// parameter by reference
+	for ( i = breeders.begin(); i != breeders.end(); i++)
+	  evaluator(*i);
+	replace(breeders, pop);
+      }  catch ( exception& e ) {
+	throw runtime_error( e.what() );
       }
-
-      for (unsigned i = 0; i < nSteps; ++i)
-      {
-         opSelector.selectOp()(selector(pop), inserter(pop));
-      }
-
-  }
+    }
   
   /// Class name.
-  string className() const { return "eoSteadyStateGeneration"; }
+  string className() const { return "eoGeneration"; }
   
  private:
-  eoGOpSelector<EOT>&         opSelector;
-  eoPopIndiSelector<EOT>&  selector;
-  eoSteadyStateInserter<EOT>& inserter;
-  unsigned steps;
+  eoBinPopOp<Chrom>& select;
+  eoMonPopOp<Chrom>& transform;
+  eoBinPopOp<Chrom>& replace;
+  eoEvalFunc<Chrom>& evaluator;
 };
 
 //-----------------------------------------------------------------------------
 
 #endif eoGeneration_h
-

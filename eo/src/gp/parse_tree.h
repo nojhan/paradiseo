@@ -4,24 +4,26 @@
 /**
 
  *	Parse_tree and subtree classes 
- *		(c) Maarten Keijzer 1999, 2000 
+ *  (c) copyright Maarten Keijzer 1999, 2000 
 
- * These classes may be used for educational and 
- * other non-commercial purposes only. Even if I
- * wanted to, I am not at liberty to place this file 
- * under the GNU Lesser Public Library License, as this
- * would limit my and my institution's freedom to use
- * this file in closed-source software. 
+ * Permission to copy, use,  modify, sell and distribute this software is granted provided 
+ * this copyright notice appears in all copies. This software is provided "as is" without
+ * express or implied warranty, and with no claim as to its suitability for
+ * any purpose.
  
- * This material is provided "as is", with absolutely no warranty expressed
- * or implied. Any use is at your own risk.
- *
- * Permission to use or copy this software for non-commercial purpose is hereby granted 
- * without fee, provided the above notices are retained on all copies.
  * Permission to modify the code and to distribute modified code is granted,
- * provided the above notices are retained, and a notice that the code was
+ * provided the above notices as well as this one are retained, and a notice that the code was
  * modified is included with the above copyright notice.
- *
+
+
+ * Special disclaimer and political statement: 
+
+ * In contrast with the rest of the EO package where you might have found this code, this software 
+ * does NOT fall under the GNU Lesser Public License or the GNU Public License, nor is anyone allowed
+ * by the copyright holder (that's me) to put it under either license.
+ * Doing this would limit my and your freedom to use this software in any way
+ * you or I see fit, including but not limited to closed-source software. 
+
 
 
   Usage information.

@@ -1,7 +1,7 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
     -----------------------------------------------------------------------------
-    eoSequentialGOpSelector.h
+    eoSequentialGOpSel.h
       Sequential Generalized Operator Selector.
 
     (c) Maarten Keijzer (mkeijzer@mad.scientist.com), GeNeura Team 1998, 1999, 2000
@@ -23,35 +23,28 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
 */
 
-#ifndef eoSequentialGOpSelector_h
-#define eoSequentialGOpSelector_h
+#ifndef eoSequentialGOpSel_h
+#define eoSequentialGOpSel_h
 
 //-----------------------------------------------------------------------------
 
-#include "eoGOpSelector.h"
-/** eoSequentialGOpSel: do proportional selection, but return a sequence of
-    operations to be applied one after the other. 
+#include <eoGOpSelector.h>
+/** eoSequentialGOpSel: return a sequence of
+    operations to be applied one after the other. The order of the 
+    operators is significant. If for instance you first add a 
+    quadratic operator and then a mutation operator, 
+
+  @see eoGeneralOp, eoCombinedOp
 */
 template <class EOT> 
 class eoSequentialGOpSel : public eoGOpSelector<EOT>
 {
 public :
   
-  virtual ~eoSequentialGOpSel(void) {}
+  eoSequentialGOpSel(void) : combined(*this, getRates()) {}
   
   virtual eoGeneralOp<EOT>& selectOp()
-  {
-    combined.clear();
-    
-    for (unsigned i = 0; i < size(); ++i)
-      {
-	if (operator[](i) == 0)
-	  continue;
-	
-	if (rng.flip(getRates()[i]))
-	  combined.addOp(operator[](i));
-      }
-    
+  {    
     return combined;
   }		
   

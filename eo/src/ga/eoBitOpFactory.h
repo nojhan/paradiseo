@@ -36,7 +36,8 @@ on bitstring chromosomes. Only those chromosomes can instantiate the operators
 that are created here
 @see eoSelect*/
 template< class EOT>
-class eoBitOpFactory: public eoOpFactory<EOT>  {
+class eoBitOpFactory: public eoOpFactory<EOT>  
+{
 	
 public:
 	
@@ -59,7 +60,8 @@ public:
 	@param _is an stream from where a single line will be read
 	@throw runtime_exception if the object type is not known
 	*/
-	virtual eoOp<EOT>* make(istream& _is) {
+	virtual eoOp<EOT>* make(istream& _is) 
+    {
 		eoOp<EOT> * opPtr = NULL;
 		try {
 			opPtr = eoOpFactory<EOT>::make( _is );

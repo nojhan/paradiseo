@@ -12,13 +12,14 @@
  * For every operator there is a rated to be applyed.                        *
  *****************************************************************************/
 
-#include "eoPopOps.h"
-#include "eoGOpSelector.h"
-#include "eoIndiSelector.h"
-#include "eoBackInserter.h"
+#include <eoFunctor.h>
+#include <eoPop.h>
+#include <eoGOpSelector.h>
+#include <eoIndiSelector.h>
+#include <eoBackInserter.h>
 
 template<class EOT> 
-class eoGOpBreeder: public eoMonPopOp<EOT>
+class eoGOpBreeder: public eoUnaryFunctor<void, eoPop<EOT>&>
 {
  public:
   /// Default constructor.
@@ -27,9 +28,6 @@ class eoGOpBreeder: public eoMonPopOp<EOT>
                     : opSel( _opSel ), selector(_selector) 
         {}
   
-  /// Destructor.
-  virtual ~eoGOpBreeder() {}
-
   /**
    * Enlarges the population.
    * @param pop The population to be transformed.

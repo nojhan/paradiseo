@@ -55,7 +55,7 @@ UserDefStruct RandomStruct()
 // reading and writing
 
 
-void UserDefMutate(UserDefStruct& a)
+bool UserDefMutate(UserDefStruct& a)
 {
     cout << "UserDefMutate\n";
     a = RandomStruct(); // just for testing
@@ -64,9 +64,10 @@ void UserDefMutate(UserDefStruct& a)
         a.d = UserDefStruct::test;
     else
         a.d = UserDefStruct::another;
+    return true;
 }
 
-void UserDefBinCrossover(UserDefStruct& a, const UserDefStruct& b)
+bool UserDefBinCrossover(UserDefStruct& a, const UserDefStruct& b)
 {
     cout << "UserDefBinCrossover\n";
 
@@ -78,9 +79,10 @@ void UserDefBinCrossover(UserDefStruct& a, const UserDefStruct& b)
         a.c = b.c;
     if (rng.flip(0.5))
         a.d = b.d;
+    return true;
 }
 
-void UserDefQuadCrossover(UserDefStruct& a, UserDefStruct& b)
+bool UserDefQuadCrossover(UserDefStruct& a, UserDefStruct& b)
 {
     cout << "UserDefQuadCrossover\n";
     if (rng.flip(0.5))
@@ -91,6 +93,8 @@ void UserDefQuadCrossover(UserDefStruct& a, UserDefStruct& b)
         swap(a.c, b.c);
     if (rng.flip(0.5))
         swap(a.d, b.d);
+
+    return true;
 }
 
 float UserDefEvalFunc(const UserDefStruct& a)
@@ -112,8 +116,10 @@ int main()
 
     // eoExternalEvalFunc<FitnessType, External>   eval(UserDefEvalFunc);
 
-    EoType eo1 = init();
-    EoType eo2 = init();
+    EoType eo1;
+    init(eo1);
+    EoType eo2;
+    init(eo2);
 
     cout << "before mutation " << eo1 << '\n';
     mutate(eo1);

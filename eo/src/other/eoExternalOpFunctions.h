@@ -30,7 +30,7 @@
 
 #include <other/eoExternalEO.h>
 #include <eoOp.h>
-#include <eoRnd.h>
+#include <eoInit.h>
 #include <eoEvalFunc.h>
 
 /**
@@ -41,18 +41,20 @@
 
   Where External is the user defined struct or class
 */
-template <class F, class External>
-class eoExternalInit : public eoRnd<eoExternalEO<F, External> >
+template <class F, class External, class ExternalEO = eoExternalEO<F, External> >
+class eoExternalInit : public eoInit<ExternalEO>
 {
 
 public :
-
-    typedef eoExternalEO<F, External> ExternalEO;
     
     eoExternalInit(External (*_init)(void)) : init(_init) {}
 
 
-    ExternalEO operator()(void) { return (*init)(); }
+    void operator()(ExternalEO& _eo) 
+    { 
+        _eo = (*init)(); 
+        _eo.invalidate();
+    }
 
 private :
 
@@ -67,18 +69,17 @@ private :
 
   Where External is the user defined struct or class and Fit the fitness type
 */
-template <class F, class External>
-class eoExternalEvalFunc : public eoEvalFunc<eoExternalEO<F, External> >
+template <class F, class External, class ExternalEO = eoExternalEO<F, External> >
+class eoExternalEvalFunc : public eoEvalFunc<ExternalEO>
 {
     public :
 
-    typedef eoExternalEO<F, External> ExternalEO;
-
     eoExternalEvalFunc(F (*_eval)(const External&)) : eval(_eval) {}
 
-    void operator()(ExternalEO& eo) const
+    void operator()(ExternalEO& eo) 
     {
-        eo.fitness( (*eval)(eo) );
+        if (eo.invalid())
+            eo.fitness( (*eval)(eo) );
     }
 
     private :
@@ -90,88 +91,86 @@ class eoExternalEvalFunc : public eoEvalFunc<eoExternalEO<F, External> >
     Mutation of external struct, ctor expects a function of the following
     signature:
 
-    void func(External&);
+    bool func(External&);
 
-  Where External is the user defined struct or class
+    
+  Where External is the user defined struct or class. 
+  The function should return true when it changed something, false otherwise
 */
 
-template <class F, class External>
-class eoExternalMonOp : public eoMonOp<eoExternalEO<F, External> >
+template <class F, class External, class ExternalEO = eoExternalEO<F, External> >
+class eoExternalMonOp : public eoMonOp<ExternalEO>
 {
     public :
 
-    typedef eoExternalEO<F, External> ExternalEO;
+    eoExternalMonOp(bool (*_mutate)(External&)) : mutate(_mutate) {}
 
-    eoExternalMonOp(void (*_mutate)(External&)) : mutate(_mutate) {}
-
-    void operator()(ExternalEO& eo) const
+    void operator()(ExternalEO& eo) 
     {
-        (*mutate)(eo);
-        eo.invalidate();
+        if ((*mutate)(eo))
+            eo.invalidate();
     }
 
     private :
 
-    void (*mutate)(External&);
+    bool (*mutate)(External&);
 };
 
 /**
     Crossover of external struct, ctor expects a function of the following
     signature:
 
-    void func(External&, const External&);
+    bool func(External&, const External&);
 
   Where External is the user defined struct or class
+  The function should return true when it changed something, false otherwise
 */
-template <class F, class External>
-class eoExternalBinOp : public eoBinOp<eoExternalEO<F, External> >
+template <class F, class External, class ExternalEO = eoExternalEO<F, External> >
+class eoExternalBinOp : public eoBinOp<ExternalEO>
 {
     public :
 
-    typedef eoExternalEO<F, External> ExternalEO;
+    eoExternalBinOp(bool (*_binop)(External&, const External&)) : binop(_binop) {}
 
-    eoExternalBinOp(void (*_binop)(External&, const External&)) : binop(_binop) {}
-
-    void operator()(ExternalEO& eo1, const ExternalEO& eo2) const
+    void operator()(ExternalEO& eo1, const ExternalEO& eo2) 
     {
-        (*binop)(eo1, eo2);
-        eo1.invalidate();
+        if ((*binop)(eo1, eo2))
+            eo1.invalidate();
     }
 
     private :
 
-    void (*binop)(External&, const External&);
+    bool (*binop)(External&, const External&);
 };
 
 /**
     Crossover of external struct, ctor expects a function of the following
     signature:
 
-    void func(External&, External&);
+    bool func(External&, External&);
 
   Where External is the user defined struct or class
+  The function should return true when it changed something, false otherwise
 */
-template <class F, class External>
-class eoExternalQuadraticOp : public eoQuadraticOp<eoExternalEO<F, External> >
+template <class F, class External, class ExternalEO = eoExternalEO<F, External> >
+class eoExternalQuadraticOp : public eoQuadraticOp<ExternalEO>
 {
     public :
 
-    typedef eoExternalEO<F, External> ExternalEO;
+    eoExternalQuadraticOp(bool (*_quadop)(External&, External&)) : quadop(_quadop) {}
 
-    eoExternalQuadraticOp(void (*_quadop)(External&, External&)) : quadop(_quadop) {}
-
-    void operator()(ExternalEO& eo1, ExternalEO& eo2) const
+    void operator()(ExternalEO& eo1, ExternalEO& eo2) 
     {
-        (*quadop)(eo1, eo2);
-        eo1.invalidate();
-        eo2.invalidate();
+        if ((*quadop)(eo1, eo2))
+        {
+            eo1.invalidate();
+            eo2.invalidate();
+        }
     }
 
     private :
 
-    void (*quadop)(External&, External&);
+    bool (*quadop)(External&, External&);
 };
-
-
 
 #endif

@@ -187,8 +187,10 @@ void eoValueParam<bool>::setValue(std::string _value)
 /// Because MSVC does not support partial specialization, the pair is a double, not a T
 template <>
 std::string eoValueParam<std::pair<double, double> >::getValue(void) const
-{
-    std::ostrstream os;
+{ 
+    // use own buffer as MSVC's buffer leaks!
+    char buff[1024];
+    std::ostrstream os(buff, 1024);
     os << repValue.first << ' ' << repValue.second << std::ends;
     return os.str();
 }

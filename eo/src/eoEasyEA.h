@@ -27,59 +27,139 @@
 
 //-----------------------------------------------------------------------------
 
-#include <eoGeneration.h>     // eoPop
-#include <eoTerm.h>
+#include <eoAlgo.h>
+#include <eoContinue.h>
+#include <eoSelect.h>
+#include <eoTransform.h>
+#include <eoBreed.h>
+#include <eoMerge.h>
+#include <eoReduce.h>
+#include <eoReplacement.h>
 
-/** EOEasyEA:
+/** eoEasyEA:
     An easy-to-use evolutionary algorithm; you can use any chromosome,
     and any selection transformation, merging and evaluation
     algorithms; you can even change in runtime parameters of those
     sub-algorithms 
 */
 
-template<class Chrom> class eoEasyEA: public eoAlgo<Chrom>
+template<class EOT> class eoEasyEA: public eoAlgo<EOT>
 {
  public:
-  /// Constructor.
-  eoEasyEA(eoBinPopOp<Chrom>&    _select, 
-	   eoMonPopOp<Chrom>& _transform, 
-	   eoBinPopOp<Chrom>&     _replace,
-	   eoEvalFunc<Chrom>& _evaluator,
-	   eoTerm<Chrom>&     _terminator)
-    :step(_select, _transform, _replace, _evaluator), 
-    terminator( _terminator){};
 
-  /// Constructor from an already created generation
-  eoEasyEA(eoGeneration<Chrom>& _gen,
-	   eoTerm<Chrom>&     _terminator):
-    step(_gen), 
-    terminator( _terminator){};
-  
-  /// Apply one generation of evolution to the population.
-  virtual void operator()(eoPop<Chrom>& pop) {
-    while ( terminator( pop ) ) {
+  /// Ctor taking a breed and merge.
+     eoEasyEA(
+         eoContinue<EOT>& _continuator,
+         eoEvalFunc<EOT>& _eval,
+         eoBreed<EOT>& _breed,
+         eoReplacement<EOT>& _replace     
+     ) : continuator(_continuator), 
+         eval(_eval),
+         selectTransform(0),
+         breed(_breed),
+         mergeReduce(0),
+         replace(_replace)
+         {}
+
+  /// Ctor eoBreed, eoMerge and eoReduce.
+    eoEasyEA(
+         eoContinue<EOT>& _continuator,
+         eoEvalFunc<EOT>& _eval,
+         eoBreed<EOT>& _breed,
+         eoMerge<EOT>& _merge,
+         eoReduce<EOT>& _reduce
+     ) : continuator(_continuator), 
+         eval(_eval),
+         selectTransform(0),
+         breed(_breed),
+         mergeReduce(new eoMergeReduce<EOT>(_merge, _reduce)),
+         replace(mergeReduce)
+         {}
+
+  /// Ctor eoSelect, eoTransform, and eoReplacement
+    eoEasyEA(
+         eoContinue<EOT>& _continuator,
+         eoEvalFunc<EOT>& _eval,
+         eoSelect<EOT>& _select,
+         eoTransform<EOT>& _transform,
+         eoReplacement<EOT>& _replace     
+     ) : continuator(_continuator), 
+         eval(_eval),
+         selectTransform(new eoSelectTransform<EOT>(_select, _transform)),
+         breed(selectTransform),
+         mergeReduce(0),
+         replace(_replace)
+         {}
+
+    /// Ctor eoSelect, eoTransform, eoMerge and eoReduce.
+     eoEasyEA(
+         eoContinue<EOT>& _continuator,
+         eoEvalFunc<EOT>& _eval,
+         eoSelect<EOT>& _select,
+         eoTransform<EOT>& _transform,
+         eoMerge<EOT>&     _merge,
+         eoReduce<EOT>&    _reduce
+     ) : continuator(_continuator), 
+         eval(_eval),
+         selectTransform(new eoSelectTransform<EOT>(_select, _transform)),
+         breed(*selectTransform),
+         mergeReduce(new eoMergeReduce<EOT>(_merge, _reduce)),
+         replace(*mergeReduce)
+         {}
+
+
+
+         
+     ~eoEasyEA() { delete selectTransform; delete mergeReduce; }
+
+  /// Apply a few generation of evolution to the population.
+  virtual void operator()(eoPop<EOT>& _pop) 
+  {
+    eoPop<EOT> offspring;
+    
+    while ( continuator( _pop ) ) 
+    {
       try
-	{
-	  step(pop);
-	}
+      {
+         breed(_pop, offspring);
+         
+         apply<EOT>(eval, offspring);
+         
+         replace(_pop, offspring);
+
+         if (offspring.size() < _pop.size())
+             throw runtime_error("Population shrinking!");
+         else if (offspring.size() > _pop.size())
+             throw runtime_error("Population growing!");
+
+         _pop.swap(offspring);
+
+      }
       catch (exception& e)
-	{
-	  string s = e.what();
-	  s.append( " in eoEasyEA ");
-	  throw runtime_error( s );
-	}
+      {
+	    string s = e.what();
+	    s.append( " in eoSelectTransformReduce ");
+	    throw runtime_error( s );
+      }
     } // while
   }
   
-  /// Class name.
-  string className() const { return "eoEasyEA"; }
-  
  private:
-  eoGeneration<Chrom>  step;
-  eoTerm<Chrom>& terminator;
+
+     /// dissallow copying cuz of pointer stuff
+     eoEasyEA(const eoEasyEA&);
+     /// dissallow copying cuz of pointer stuff
+     const eoEasyEA& operator=(const eoEasyEA&);
+
+  eoContinue<EOT>&          continuator;
+  eoEvalFunc<EOT>&          eval;
+  eoSelectTransform<EOT>*   selectTransform;
+  eoBreed<EOT>&             breed;
+  eoMergeReduce<EOT>*       mergeReduce;
+  eoReplacement<EOT>&       replace;
 };
 
 //-----------------------------------------------------------------------------
 
-#endif eoEasyEA_h
+#endif eoSelectTransformReduce_h
 

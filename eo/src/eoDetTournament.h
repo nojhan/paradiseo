@@ -30,8 +30,10 @@
 
 #include <functional>  // 
 #include <numeric>     // accumulate
-#include "eoPopOps.h"          // eoPop eoSelect MINFLOAT
-#include "utils/selectors.h"
+
+#include <eoFunctor.h>
+#include <eoPop.h>
+#include <utils/selectors.h>
 
 //-----------------------------------------------------------------------------
 /** eoDetTournament: a selection method that selects ONE individual by
@@ -51,15 +53,11 @@ template <class EOT> class eoDetTournament: public eoSelectOne<EOT>
     }
   }
   
+  /// Perform deterministic tournament
   virtual const EOT& operator()(const eoPop<EOT>& pop) 
   {
     return deterministic_tournament(pop, Tsize);
   }
-
-  /** Inherited from eoObject 
-      @see eoObject
-  */
-  string className() const {return "eoDetTournament";};
   
  private:
   unsigned Tsize;

@@ -42,25 +42,22 @@ class eoWrappedMonOp : public eoGeneralOp<EOT>
 {
 public :
   ///
-  eoWrappedMonOp(const eoMonOp<EOT>& _op) : eoGeneralOp<EOT>(), op(_op) {};
+  eoWrappedMonOp(eoMonOp<EOT>& _op) : eoGeneralOp<EOT>(), op(_op) {};
 
   ///
   virtual ~eoWrappedMonOp() {}
 
   /// Instantiates the abstract method
   void operator()( eoIndiSelector<EOT>& _in, 
-			   eoInserter<EOT>& _out) const {
+			   eoInserter<EOT>& _out) 
+  {
     EOT result = _in();
     op( result );
     _out(result);
   }
   
-  ///
-  virtual string className() const {return "eoWrappedMonOp";};
-
-
 private :
-  const eoMonOp<EOT>& op;
+  eoMonOp<EOT>& op;
 };
 
 
@@ -70,25 +67,23 @@ class eoWrappedBinOp : public eoGeneralOp<EOT>
 {
 public :
   ///
-  eoWrappedBinOp(const eoBinOp<EOT>& _op) : eoGeneralOp<EOT>(), op(_op) {}
+  eoWrappedBinOp(eoBinOp<EOT>& _op) : eoGeneralOp<EOT>(), op(_op) {}
 
   ///
   virtual ~eoWrappedBinOp() {}
 
   /// Instantiates the abstract method. EOT should have copy ctor.
   void operator()(eoIndiSelector<EOT>& _in, 
-			   eoInserter<EOT>& _out) const {
+			   eoInserter<EOT>& _out) 
+  {
     EOT out1 = _in();
     const EOT& out2 = _in();
     op(out1, out2);
     _out(out1);
   }
-  
-  ///
-  virtual string className() const {return "eoWrappedBinOp";};
 
 private :
-	const eoBinOp<EOT>& op;
+	eoBinOp<EOT>& op;
 };
 
 /// Wraps Quadratic operators
@@ -97,125 +92,105 @@ class eoWrappedQuadraticOp : public eoGeneralOp<EOT>
 {
 public :
   ///
-  eoWrappedQuadraticOp(const eoQuadraticOp<EOT>& _op) : eoGeneralOp<EOT>(), op(_op) {}
+  eoWrappedQuadraticOp(eoQuadraticOp<EOT>& _op) : eoGeneralOp<EOT>(), op(_op) {}
 
   ///
   virtual ~eoWrappedQuadraticOp() {}
 
   /// Instantiates the abstract method. EOT should have copy ctor.
   void operator()(eoIndiSelector<EOT>& _in, 
-			   eoInserter<EOT>& _out) const {
+			   eoInserter<EOT>& _out) 
+  {
     EOT out1 = _in();
     EOT out2 = _in();
     op(out1, out2);
     _out(out1)(out2);
   }
   
-  ///
-  virtual string className() const {return "eoWrappedQuadraticOp";};
-
 private :
-	const eoQuadraticOp<EOT>& op;
+	eoQuadraticOp<EOT>& op;
 };
 
-/// Combines several ops
-template <class EOT>
+#include <eoBackInserter.h>
+
+template <class EOT> 
 class eoCombinedOp : public eoGeneralOp<EOT>
 {
-public :
-  
-  ///
-  eoCombinedOp() : eoGeneralOp<EOT>() {}
+    public :
+    eoCombinedOp(const std::vector<eoGeneralOp<EOT>*>& _ops, const std::vector<float>& rates)
+        : ops(_ops), rates(_rates) {}
 
-  ///
-  virtual ~eoCombinedOp() {}
- 
-  /// Adds a new operator to the combined Op
-  void addOp(eoGeneralOp<EOT>* _op) 
-  {
-    ops.push_back(_op);
-  }
-
-
-  /// Erases all operators added so far
-  void clear(void) {
-    ops.resize(0);
-  }
-
-  /// Helper class to make sure that stuff that is inserted will be used again with the next operator
-  class eoIndiSelectorInserter : public eoIndiSelector<EOT>, public eoInserter<EOT>
-  {
-  public :
-      eoIndiSelectorInserter(eoIndiSelector<EOT>& _in) 
-          : eoIndiSelector<EOT>(), eoInserter<EOT>(), in(_in) 
-            {}
-
-      size_t          size()      const     { return in.size(); }
-      const EOT&    operator[](size_t _n) const { return in[_n]; }
-          
-      const EOT& operator()(void) 
-      {
-          if (results.empty())
-          {
-              return in();
-          }
-          // else we use the previously inserted individual,
-          // an iterator to it is stored in 'results', but the memory
-          // is kept by 'intermediate'.
-
-          list<EOT>::iterator it = *results.begin();
-          results.pop_front();
-          return *it;
-      }
-
-      eoInserter<EOT>& operator()(const EOT& _eot)
-      {
-          intermediate.push_front(_eot);
-          results.push_front(intermediate.begin());
-          return *this;
-      }
-
-      void fill(eoInserter<EOT>& _out)
-      {
-          typedef list<list<EOT>::iterator>::iterator Iterator;
-
-          for (Iterator it = results.begin(); it != results.end(); ++it)
-          {
-              _out(**it);
-          }
-
-          results.clear();
-          intermediate.clear(); // reclaim memory
-      }
-
-  private :
-
-      eoIndiSelector<EOT>& in;
-      
-      // using lists as we need to push and pop a lot
-      // 'results' are iterators to the contents of 'intermediate'
-      // to prevent copying to and from intermediate...
-      list<list<EOT>::iterator> results;        
-      list<EOT> intermediate;
-  };
-
-  /// Applies all ops in the combined op
-  void operator()( eoIndiSelector<EOT>& _in, 
-			   eoInserter<EOT>& _out ) const {
-    
-    eoIndiSelectorInserter in_out(_in);
-
-    for (size_t i = 0; i < ops.size(); ++i)
+    class eoDelayedSelector : public eoIndiSelector<EOT>
     {
-        (*ops[i])(in_out, in_out);
-    }
+    public :
+        eoDelayedSelector(eoIndiSelector<EOT>& _select, const eoPop<EOT>& _pop) : select(_select), pop(_pop), it(pop.begin()) {}
+    
+        unsigned size()                 const { return select.size();}
+        const EOT& operator[](size_t i) const { return select[i]; }
 
-    in_out.fill(_out);
+        /// will first dispense all previously selected individuals before returning new ones
+        const EOT& operator()(void)
+        {
+            if (it == pop.end())
+            {
+                return select();
+            }
+            // else
+            return *it++;
+        }
+
+        eoPop<EOT>::const_iterator get_it(void) const { return it; }
+    private :
+        eoIndiSelector<EOT>& select;
+        const eoPop<EOT>& pop;
+        eoPop<EOT>::const_iterator it;
+    };
+
+  /** Applies all ops in the combined op
+        It works in the following way
+  */
+  void operator()( eoIndiSelector<EOT>& _in, 
+			   eoInserter<EOT>& _out ) 
+  {
+        eoPop<EOT> intermediate;
+        eoPop<EOT> next;
+        unsigned i;
+
+        for (i = 0; i < ops.size(); ++i)
+        {
+            eoDelayedSelector delay(_in, intermediate);
+            inserter.bind(next);
+
+            unsigned counter = 0;
+
+            // apply operators until we have as many outputs as inputs
+            do
+            {
+                if (flip(rates[i])) // should this flip be here?
+                    (*ops[i])(delayedSelector, inserter);
+
+                counter++;
+                if (counter > 1000) 
+                {
+                    throw logical_error("eoCombinedOp: no termination after 1000 tries, did you forget to insert individuals in your eoGeneralOp?");
+                }
+            }
+            while (next.size() < intermediate.size());
+
+            intermediate.swap(next);
+            next.resize(0);
+        }
+        
+        // after last swap, results can be found in intermediate
+        for (i = 0; i < intermediate.size(); ++i)
+            _out(intermediate[i]);
   }
-		
-private :
-  vector<eoGeneralOp<EOT>* > ops;
+
+    private :
+        const std::vector<eoGeneralOp<EOT>*>& ops;
+        const std::vector<float> rates;
+        eoBackInserter<EOT> inserter;
 };
 
-#endif eoGeneral_h
+#endif 
 

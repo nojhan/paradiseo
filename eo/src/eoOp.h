@@ -26,6 +26,7 @@
 
 #include <eoObject.h>
 #include <eoPrintable.h>
+#include <eoFunctor.h>
 
 /**
 \defgroup operators
@@ -47,13 +48,13 @@ What is a genetic algorithm without genetic operators? There is a genetic operat
  * instantiate them should be an eoObject, but in any case, they are 
  * type-specific; each kind of evolvable object can have its own operators
  */
-
 template<class EOType>
 
-class eoOp: public eoObject, public eoPrintable {
+class eoOp
+{
 public:
   //@{
-  enum OpType { unary = 0, binary = 1, quadratic = 2, general = 3};
+  enum OpType { init = 0, unary = 1, binary = 2, quadratic = 3, general = 4};
   ///
 
   /// Ctor
@@ -70,145 +71,46 @@ public:
   /// getType: number of operands it takes and individuals it produces
   OpType getType() const {return opType;};
 
-  /** @name Methods from eoObject	*/
-  
-  //@{
-    
-  /**
-   * Write object. It's called printOn since it prints the object _on_ a stream.
-   * @param _os A ostream.
-   */
-  virtual void printOn(ostream& _os) const {
-    _os << className(); 
-    //	  _os << arity;
-  };
-
-  /** Inherited from eoObject 
-      @see eoObject
-  */
-
-  virtual string className() const {return "eoOp";};
-  //@}
-
 private:
 
   /// OpType is the type of the operator: how many operands it takes and how many it produces
-
   OpType opType;
 };
 
-
-
-/** Binary genetic operator: subclasses eoOp, and defines basically the 
- *  operator() with two operands
- */
-
-template<class EOType>
-
-class eoBinOp: public eoOp<EOType> {
+/** eoMonOp is the monary operator: genetic operator that takes only one EO */
+template <class EOType>
+class eoMonOp: public eoOp<EOType>, public eoUnaryFunctor<void, EOType&>
+{
 public:
   /// Ctor
-  eoBinOp()
-    :eoOp<EOType>( binary ) {};
-
-  /// Copy Ctor
-  eoBinOp( const eoBinOp& _ebop )
-    : eoOp<EOType>( _ebop ){};
-
-  /// Dtor
-  ~eoBinOp () {};
-
-  /** applies operator, to the object. Modifies only the first operand.
-   */
-  virtual void operator()( EOType& _eo1, const EOType& _eo2 ) const = 0;
-
-  /** @name Methods from eoObject
-      readFrom and printOn are directly inherited from eoObject
-  */
-  //@{
-  /** Inherited from eoObject 
-      @see eoObject
-  */
-  virtual string className() const {return "eoBinOp";};
-
-  //@}
+  eoMonOp()
+    : eoOp<EOType>( eoOp<EOType>::unary ) {};
 };
 
 
+/** Binary genetic operator: subclasses eoOp, and defines basically the 
+ *  operator() with two operands, only the first one can be modified
+ */
+template<class EOType>
+class eoBinOp: public eoOp<EOType>, public eoBinaryFunctor<void, EOType&, const EOType&> 
+{
+public:
+  /// Ctor
+  eoBinOp()
+      :eoOp<EOType>( eoOp<EOType>::binary ) {};
+};
 
 /** Quadratic genetic operator: subclasses eoOp, and defines basically the 
-    operator() with two operands
+    operator() with two operands, both can be modified.
 */
 
 template<class EOType>
-
-class eoQuadraticOp: public eoOp<EOType> {
+class eoQuadraticOp: public eoOp<EOType>, public eoBinaryFunctor<void, EOType&, EOType&> {
 public:
   /// Ctor
   eoQuadraticOp()
     :eoOp<EOType>( eoOp<EOType>::quadratic ) {};
-
-  /// Copy Ctor
-  eoQuadraticOp( const eoQuadraticOp& _ebop )
-    : eoOp<EOType>( _ebop ){};
-
-  /// Dtor
-  ~eoQuadraticOp() {};
-
-  /** applies operator, to the object. Modifies both operands.
-   */
-  virtual void operator()( EOType& _eo1, EOType& _eo2 ) const = 0;
-
-  /** @name Methods from eoObject
-      readFrom and printOn are directly inherited from eoObject
-  */
-  
-  //@{
-  /** Inherited from eoObject 
-      @see eoObject
-	
-  */
-  virtual string className() const {return "eoBinOp";};
-  
-  //@}
 };
-
-
-
-/** eoMonOp is the monary operator: genetic operator that takes only one EO */
-
-template <class EOType>
-
-class eoMonOp: public eoOp<EOType> {
-public:
-  /// Ctor
-  eoMonOp( )
-    : eoOp<EOType>( eoOp<EOType>::unary ) {};
-
-  /// Copy Ctor
-  eoMonOp( const eoMonOp& _emop )
-    : eoOp<EOType>( _emop ){};
-
-  /// Dtor
-  ~eoMonOp() {};
-
-  /** applies randomly operator, to the object. If arity is more than 1,
-   * keeps a copy of the operand in a cache.
-   */
-  virtual void operator()( EOType& _eo1) const = 0;
-
-  /** @name Methods from eoObject
-      readFrom and printOn are directly inherited from eoObject
-  */
-
-  //@{
-  /** Inherited from eoObject 
-      @see eoObject
-  */
-  virtual string className() const {return "eoMonOp";};
-  //@}  
-};
-
 
 
 // some forward declarations
@@ -226,30 +128,22 @@ class eoInserter;
 /**
  * eGeneralOp: General genetic operator; for objects used to transform sets
  * of EOs. Nary ("orgy") operators should be derived from this class
- */
 
-template<class EOT>
-
-class eoGeneralOp: public eoOp<EOT>
-{
-public:
-  /// Ctor that honors its superclass
-  eoGeneralOp(): eoOp<EOT>( eoOp<EOT>::general ) {}  
-
-  /// Virtual dtor
-  virtual ~eoGeneralOp () {}
-
-  /** Method that really does the stuff. Applies the genetic operator
+  Derived from eoBinaryFunctor  
+      Applies the genetic operator
       to a individuals dispensed by an eoIndividualSelector, 
       and puts the results in the eoIndividualInserter.
       Any number of inputs can be requested and any number of outputs
       can be produced. 
-  */
+ */
 
-  virtual void operator()( eoIndiSelector<EOT>& _in, 
-			   eoInserter<EOT>& _out) const = 0;
+template<class EOT>
 
-  virtual string className() const {return "eoGeneralOp";}
+class eoGeneralOp: public eoOp<EOT>, public eoBinaryFunctor<void, eoIndiSelector<EOT>&, eoInserter<EOT>&>
+{
+public:
+  /// Ctor that honors its superclass
+  eoGeneralOp(): eoOp<EOT>( eoOp<EOT>::general ) {}  
 };
 
 #endif

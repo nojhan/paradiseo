@@ -25,6 +25,8 @@
 #ifndef eoEvalFunc_H
 #define eoEvalFunc_H
 
+#include <eoFunctor.h>
+
 /** Evaluate: takes one EO and sets its "fitness" property
  * returning this fitness also. That is why EOT is passed by
  * non-const reference: it must be altered within evaluate.\\
@@ -35,25 +37,11 @@
  on it. If you subclass this abstract class, and use it to evaluate an 
  EO, the requirements on this EO will depend on the evaluator.
  */
-template<class EOT> struct eoEvalFunc {
 
-#ifdef _MSC_VER
-	typedef EOT::Fitness EOFitT;
-#else
+template<class EOT> class eoEvalFunc : public eoUnaryFunctor<void, EOT&>
+{
+    public :
 	typedef typename EOT::Fitness EOFitT;
-#endif
-
-  /// Effectively applies the evaluation function to an EO 
-  virtual void operator() ( EOT & _eo ) const = 0;
-
-  template <class It>
-  void range(It begin, It end) const
-  {
-      for (;begin != end; ++begin)
-      {
-          operator()(*begin);
-      }
-  }
 };
 
 #endif

@@ -43,10 +43,25 @@ template <class T = double> class uniform_generator
   public :
     uniform_generator(T _max = T(1.0), eoRng& _rng = rng) : maxim(_max), uniform(_rng) {}
   
-  virtual T operator()(void) { return (T) uniform.uniform(maxim); } 
+  T operator()(void) { return (T) uniform.uniform(maxim); } 
   private :
     T maxim;
   eoRng& uniform;
+};
+
+/**
+   The class boolean_generator can be used in the STL generate function
+   to easily generate random booleans with a specified bias
+*/
+class boolean_generator
+{
+  public :
+    boolean_generator(float _bias = 0.5, eoRng& _rng = rng) : bias(_bias), gen(_rng) {}
+  
+  bool operator()(void) { return gen.flip(0.5); } 
+  private :
+  float bias;
+  eoRng& gen;
 };
 
 /**
@@ -56,14 +71,22 @@ template <class T = double> class uniform_generator
 template <class T = uint32> class random_generator
 {
   public :
-    random_generator(int _max, eoRng& _rng = rng) : maxim(_max), random(_rng) {}
+    random_generator(T _max, eoRng& _rng = rng) : maxim(_max), random(_rng) {}
   
-  virtual T operator()(void) { return (T) random.random(max); }
+  T operator()(void) { return (T) random.random(max); }
   
   private :
     T maxim;
   eoRng& random;
 };
+
+/// Specialization for bool
+template <>
+bool random_generator<bool>::operator()(void)
+{
+    return random.flip(0.5);
+}
+
 
 /**
    The class normal_generator can be used in the STL generate function
@@ -75,11 +98,28 @@ template <class T = double> class normal_generator
   public :
     normal_generator(T _stdev = T(1.0), eoRng& _rng = rng) : stdev(_stdev), normal(_rng) {}
   
-  virtual T operator()(void) { return (T) normal.normal(stdev); }
+  T operator()(void) { return (T) normal.normal(stdev); }
   
   private :
     T stdev;
   eoRng& normal;
+};
+
+/**
+   The class negexp_generator can be used in the STL generate function
+   to easily generate negative exponential distributed floats and doubles. The user
+   can supply a mean.
+*/
+template <class T = double> class negexp_generator
+{
+  public :
+    negexp_generator(T _mean = 1.0, eoRng& _rng = rng) : mean(_mean), negexp(_rng) {}
+  
+  T operator()(void) { return (T) negexp.negexp(mean); }
+  
+  private :
+    T mean;
+  eoRng& negexp;
 };
 
 #endif

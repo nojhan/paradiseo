@@ -3,12 +3,12 @@
 
 #include <list>
 
-#include "EO.h"
-#include "eoOp.h"
-#include "eoInserter.h"
-#include "eoIndiSelector.h"
-#include "parse_tree.h"
-#include "eoRnd.h"
+#include <EO.h>
+#include <eoOp.h>
+#include <eoInserter.h>
+#include <eoIndiSelector.h>
+#include <gp/parse_tree.h>
+#include <eoInit.h>
 
 using namespace gp_parse_tree;
 using namespace std;
@@ -90,7 +90,7 @@ std::istream& operator>>(std::istream& is, eoParseTree<FType, Node>& eot)
 
 
 template <class FType, class Node>
-class eoGpDepthInitializer : public eoRnd< eoParseTree<FType, Node>::Type >
+class eoGpDepthInitializer : public eoInit< eoParseTree<FType, Node> >
 {
     public :
 
@@ -109,15 +109,13 @@ class eoGpDepthInitializer : public eoRnd< eoParseTree<FType, Node>::Type >
 
 	virtual string className() const { return "eoDepthInitializer"; };
 
-    EoType::Type operator()(void)
+    void operator()(EoType& _tree)
 	{
         list<Node> sequence;
         
         generate(sequence, max_depth);
         
-        parse_tree<Node> tree(sequence.begin(), sequence.end());
-
-        return tree.root();
+        _tree = parse_tree<Node>(sequence.begin(), sequence.end());
 	}
 
     void generate(list<Node>& sequence, int the_max, int last_terminal = -1)

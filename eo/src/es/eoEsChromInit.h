@@ -33,7 +33,7 @@
 #include <es/eoEsFull.h>
 #include <utils/eoRNG.h>
 
-#include <eoInit.h>
+#include <eoInit.h> 
 
 #ifndef M_PI
 #define M_PI 3.1415926535897932384626433832795
@@ -42,7 +42,7 @@
 /**
 \ingroup EvolutionStrategies
     
-    Random Es-chromosome initializer (therefore derived from eoRnd)
+    Random Es-chromosome initializer (therefore derived from eoInit)
 
     This class can initialize three types of Es's:
 
@@ -62,10 +62,9 @@ public :
     eoEsChromInit(eoEsObjectiveBounds& _bounds) : bounds(_bounds)
     {}
 
-    EOT operator()()
+    void operator()(EOT& _eo)
     {
-        EOT eo;
-        return create(eo);
+        create(_eo);
     }
 
 private :

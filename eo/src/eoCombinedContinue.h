@@ -1,8 +1,8 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoAtomMutator.h
-// (c) GeNeura Team, 1998
+// eoCombinedContinue.h
+// (c) Maarten Keijzer, GeNeura Team, 1999, 2000
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -21,42 +21,39 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
  */
 //-----------------------------------------------------------------------------
-#ifndef _EOATOMMUTATOR_H
-#define _EOATOMMUTATOR_H
 
-/** Abstract base class for functors that modify a single element in an EO 
-    that is composed of several atomic components. An atom would, for instance, flip
-    a bit, or change a real number, or things like that.
+#ifndef _eoCombinedContinue_h
+#define _eoCombinedContinue_h
+
+#include <eoContinue.h>
+
+/** 
+Fitness continuation: 
+
+  Continues until one of the embedded continuators says halt!
 */
-template <class T>
-class eoAtomMutator: public eoPrintable {
+template< class EOT>
+class eoCombinedContinue: public eoContinue<EOT> {
 public:
 
-  /// 
-  eoAtomMutator() {};
-  
-  ///
-  virtual ~eoAtomMutator() {};
-  
-  ///
-  virtual void operator()( T& _val ) const = 0;
-  
-  /** @name Methods from eoObject
-  */  
-  //@{
-  /** Inherited from eoObject 
-      @see eoObject
-  */
-  ///
-  virtual string className() const {return "eoAtomMutator";};
+    /// Define Fitness
+    typedef typename EOT::Fitness FitnessType;
 
-  ///
-  void printOn(ostream& _os) const { _os << className() << endl; };
+	/// Ctor
+    eoCombinedContinue( eoContinue<EOT>& _arg1, eoContinue<EOT>& _arg2)
+		: eoContinue<EOT> (), arg1(_arg1), arg2(_arg2) {};
 
-  //@}
+	/** Returns false when one of the embedded continuators say so (logical and)
+	*/
+	virtual bool operator() ( const eoPop<EOT>& _pop ) 
+    {
+        return arg1(_pop) && arg2(_pop);
+	}
 
+private:
+    eoContinue<EOT>& arg1;
+    eoContinue<EOT>& arg2;
 };
-
 
 #endif
 

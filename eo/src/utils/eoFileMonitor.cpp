@@ -23,13 +23,13 @@ eoMonitor& eoFileMonitor::operator()(void)
             throw runtime_error(str);
         }
 
-        iterator it = begin();
+        iterator it = vec.begin();
 
         os << (*it)->longName();
 
         ++it;
 
-        for (; it != end(); ++it)
+        for (; it != vec.end(); ++it)
         {
             os << ',' << (*it)->longName();
         }
@@ -44,11 +44,11 @@ eoMonitor& eoFileMonitor::operator()(void)
         throw runtime_error(str);
     }
 
-    iterator it = begin();
+    iterator it = vec.begin();
     
     os << '\n' << (*it)->getValue();
 
-    for(++it; it != end(); ++it)
+    for(++it; it != vec.end(); ++it)
     {
         os << ',' << (*it)->getValue();
     }

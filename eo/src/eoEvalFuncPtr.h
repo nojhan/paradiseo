@@ -35,7 +35,7 @@
  * function class. That way, old style C or C++ functions can be adapted to EO
  * function classes.
  */
-template< class EOT >
+template< class EOT, class FitT = typename EOT::Fitness, class FunctionArg = const EOT& >
 struct eoEvalFuncPtr: public eoEvalFunc<EOT> {
 
   /** Applies the function to the chromosome and sets the fitness of the
@@ -44,16 +44,18 @@ struct eoEvalFuncPtr: public eoEvalFunc<EOT> {
                    argument and returns the fitness
       @return the evaluated fitness for that object.
   */
-  eoEvalFuncPtr( EOFitT (* _eval)( const EOT& ) )
+  eoEvalFuncPtr( FitT (* _eval)( FunctionArg ) )
     : eoEvalFunc<EOT>(), evalFunc( _eval ) {};
   
   /// Effectively applies the evaluation function to an EO 
-  virtual void operator() ( EOT & _eo ) const {
-    _eo.fitness((*evalFunc)( _eo ));
+  virtual void operator() ( EOT & _eo ) 
+  {
+    if (_eo.invalid())
+        _eo.fitness((*evalFunc)( _eo ));
   };
     
   private:
-    EOFitT (* evalFunc )( const EOT& );
+    FitT (* evalFunc )( FunctionArg );
 };
 
 #endif

@@ -1,8 +1,9 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoStringMutation.h
-// (c) GeNeura Team, 1999
+// eoAtomBitFlip.h
+//   Increments or decrements by one a single element
+// (c) GeNeura Team, 1998
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -21,58 +22,37 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
  */
 //-----------------------------------------------------------------------------
+#ifndef _EOATOMBITFLIP_H
+#define _EOATOMBITFLIP_H
 
-#ifndef _EOSTRINGMUTATION_H
-#define _EOSRTINGMUTATION_H
-
-#include <math.h>
-// EO includes
-#include <eoOp.h>
-#include <eoUniform.h>
-#include <eoMutation.h>
-
-/** Mutation of an eoString.
-    The eoString's genes are changed by adding or substracting 1 to 
+/** Flips a single bit
 */
+template <class T>
+class eoAtomBitFlip: public eoAtomMutator<bool> {
+public:
 
-template <class EOT>
-class eoStringMutation: public eoMutation<EOT> {
- public:
+  /// 
+  eoAtomBitFlip() {};
   
   ///
-  eoStringMutation(const double _rate=0.0) : eoMutation< EOT >(_rate) {};
+  virtual ~eoAtomBitFlip() {};
   
   ///
-  virtual ~eoStringMutation() {};
+  virtual void operator()( T& _val ) const {
+    _val = !val;
+  }
   
   /** @name Methods from eoObject
-  */
+  */  
   //@{
   /** Inherited from eoObject 
       @see eoObject
   */
-  string className() const {return "eoStringMutation";};
+  string className() const {return "eoAtomBitFlip";};
   //@}
-  
-  
- private:
-  
-#ifdef _MSC_VER
-  typedef EOT::Type Type;
-#else
-  typedef typename EOT::Type Type;
-#endif
-  
-  /// applies operator to one gene in the EO. It increments or decrements the value of that gene by one.
-  virtual void applyAt( EOT& _eo, unsigned _i ) const {
-    eoUniform<double> uniform( 0, 1 );
-    if( rate < uniform() ) {
-      _eo.gene(_i) += ( uniform()>=0.5 )? (1) : (-1) ;
-    }
-  }
 
 };
 
-//-----------------------------------------------------------------------------
 
 #endif
+

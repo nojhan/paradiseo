@@ -1,8 +1,8 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoGenTerm.h
-// (c) GeNeura Team, 1999
+// eoContinue.h
+// (c) Maarten Keijzer, Geneura Team, 1999, 2000
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -22,46 +22,18 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef _EOFITTERM_H
-#define _EOFITTERM_H
+#ifndef _eoContinue_h
+#define _eoContinue_h
 
-#include <eoTerm.h>
+#include <eoFunctor.h>
+#include <eoPop.h>
 
-
-/** Fitness termination: terminates after a the difference between the
-fitness of the best individual and a maximum fitness to achieve is less
-than certain number called epsilon., i.e., |maximum-fitness|<epsilon
-*/
+/** Termination condition for the genetic algorithm
+ * Takes the population as input, returns true for continue,
+ * false for termination 
+ */
 template< class EOT>
-class eoFitTerm: public eoTerm<EOT> {
-public:
-
-	/// Ctors/dtors
-	eoFitTerm( const float _maximum, const float _epsilon )
-		: eoTerm<EOT> (), maximum( _maximum ), epsilon(_epsilon){};
-
-	/// Copy ctor
-	eoFitTerm( const eoFitTerm&  _t )
-		: eoTerm<EOT> ( _t ), maximum( _t.maximum ), 
-	  epsilon(_t.epsilon){};
-
-	///
-	virtual ~eoFitTerm() {};
-
-	/** Returns false when a fitness criterium is
-	* reached */
-	virtual bool operator() ( const eoPop<EOT>& _vEO ) {
-	  float bestFitness=_vEO[0].fitness();
-	  float dif=bestFitness-maximum;
-	  dif=(dif<0)?-dif:dif;
-	  return (dif>epsilon ) || (bestFitness > maximum);
-	}
-
-	std::string className(void) const { return "eoFitTerm"; }
-
-private:
-	float maximum, epsilon;
-};
+class eoContinue : public eoUnaryFunctor<bool, const eoPop<EOT>&> {};
 
 #endif
 

@@ -23,7 +23,6 @@
 
 // include package checkpointing
 #include <utils/checkpointing>
-#include <eoGenTerm.h>
 
 struct Dummy : public EO<double>
 {

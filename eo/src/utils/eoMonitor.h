@@ -20,7 +20,7 @@
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
-             mkeijzer@dhi.dk
+             mak@dhi.dk
  */
 //-----------------------------------------------------------------------------
 
@@ -29,6 +29,8 @@
 
 
 #include <vector>
+
+#include <eoFunctor.h>
 
 class eoParam;
 
@@ -39,16 +41,16 @@ class eoParam;
     will stream or pipe the current values of the parameters to wherever you
     want it streamed or piped to.
 */
-class eoMonitor : public std::vector<const eoParam*>
+class eoMonitor : public eoProcedure<eoMonitor&>
 {
 public :
 
-    virtual ~eoMonitor() {}
+    void add(const eoParam& _param) { vec.push_back(&_param); }
 
-    /** Just do it! */
-    virtual eoMonitor& operator()(void) = 0;
 
-    void add(const eoParam& _param) { push_back(&_param); }
+protected :
+    typedef std::vector<const eoParam*>::iterator iterator;
+    std::vector<const eoParam*> vec;
 };
 
 #endif

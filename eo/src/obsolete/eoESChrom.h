@@ -41,11 +41,49 @@ values plus a vector of sigmas, that are added to them during mutation
 */ 
 //@{
 
-/** Each gene in an Evolution Strategies is composed of a value plus an standard
+/**
+\class eoESValue
+
+*/
+template <class T>
+struct eoESValue
+{
+    T value;
+    
+    /**
+        The gene has a mutate member because this particular gaussian mutation 
+        is paradigmatic for an evolution strategy. 
+    */
+    void mutate(double sigma, T minimum, T maximum)
+    {
+        value += rng.normal(0.0, sigma);
+
+        if (minimum > value)
+            value = minimum;
+        if (value > maximum)
+            value = maximum;
+    }
+};
+
+/** 
+\class eoESGene eoESGene.h es/eoESGene.h
+Each gene in an Evolution Strategies is composed of a value plus an standard
 deviation, sigma, used for mutation*/
-struct eoESGene {
-	double val, sigma;
-	eoESGene( double _val = 0, double _sigma = 0 ): val( _val ), sigma( _sigma ) {};
+template <class T>
+struct eoESGene : public eoESValue<T>
+{
+    double sigma;
+
+	eoESGene( double _val = 0, double _sigma = 1.0 ): eoESValue( _val ), sigma( _sigma ) {};
+
+    /**
+        The gene has a mutate member because the sigma member implies
+        that the updating routine should use a normal distribution
+    */
+    void mutate(T minimum, T maximum)
+    {
+        mutate(sigma, minimum, maximum);
+    }
 };
 
 /// Tricky operator to avoid errors in some VC++ systems, namely VC 5.0 SP3

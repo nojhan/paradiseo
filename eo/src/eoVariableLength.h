@@ -30,8 +30,9 @@
 #include <list>
 
 /**
-  Base class for variable length chromosomes, just derives from EO and list and
-  redirects the smaller than operator to EO (fitness based comparison)
+  Base class for variable length chromosomes. Derives from EO and list, 
+  redirects the smaller than operator to EO (fitness based comparison),
+  and implements the virtual functions printOn() and readFrom() 
 */
 
 template <class FitT, class GeneType>
@@ -39,8 +40,39 @@ class eoVariableLength : public EO<FitT>, public std::list<GeneType>
 {
     public :
     
-    typedef typename GeneType Type;
+    typedef GeneType AtomType;
+    typedef std::list<GeneType> ContainerType;
 
+    /// printing...
+    void printOn(ostream& os) const
+    {
+        EO<FitT>::printOn(os);
+        os << ' ';
+
+        os << size() << ' ';
+
+        std::copy(begin(), end(), ostream_iterator<double>(os));
+    }
+
+    /// reading...
+    void readFrom(istream& is)
+    {
+        EO<FitT>::readFrom(is);
+
+        unsigned sz;
+        is >> sz;
+
+        resize(0);
+        unsigned i;
+        unsigned gene;
+
+        for (i = 0; i < sz; ++i)
+        {
+            is >> gene; 
+            push_back(gene);
+        }
+    }
+    
     /// to avoid conflicts between EO::operator< and vector<double>::operator<
     bool operator<(const eoVariableLength<FitT, GeneType>& _eo) const
     {

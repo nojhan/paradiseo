@@ -27,11 +27,12 @@
 #ifndef _eoStat_h
 #define _eoStat_h
 
+#include <eoFunctor.h>
 #include <utils/eoParam.h>
 #include <eoPop.h>
 
 template <class EOT>
-class eoStatBase 
+class eoStatBase : public eoUnaryFunctor<void, const eoPop<EOT>&>
 {
 public :
     virtual ~eoStatBase(){}
@@ -98,7 +99,7 @@ public :
     
         double n = _pop.size();
         value().first = result.first / n; // average
-        value().second = sqrt( (result.second - value().first) / (n - 1.0)); // stdev
+        value().second = sqrt( (result.second - n * value().first * value().first) / (n - 1.0)); // stdev
     }
 };
 
