@@ -430,7 +430,8 @@ public:
     const char *c = paramValue.c_str();
     string tmpStr = c+1;// skip the "
     if (tmpStr[tmpStr.length()-1] == '\"') { // one word only
-      tmpStr[tmpStr.length()-1] = '\0';
+      //tmpStr[tmpStr.length()-1] = '\0';
+      tmpStr.erase( &tmpStr[tmpStr.length()-1] );
       return tmpStr;
     }
 
@@ -439,7 +440,8 @@ public:
       _is >> paramValue;
       // test last character of paramValue for "
       if (paramValue[paramValue.length()-1] == '\"') {
-	paramValue[paramValue.length()-1] = '\0';
+	paramValue.erase( &paramValue[paramValue.length()-1] );
+	//paramValue[paramValue.length()-1] = '\0';
 	stop = true;
       }
       tmpStr = tmpStr + " " + paramValue ;
