@@ -10,7 +10,7 @@ DEPS = $(top_builddir)/src/utils/libeoutils.a $(top_builddir)/src/libeo.a
 
 INCLUDES = -I$(top_builddir)/src 
 LDADDS = $(top_builddir)/src/utils/libeoutils.a $(top_builddir)/src/libeo.a
-CXXFLAGS = -g -Wall -ftemplate-depth-30
+CXXFLAGS = -g -Wall
 ###############################################################################
 
 # PLEASE don't break the line (see create_batch.sh)
