@@ -104,10 +104,11 @@ class eoInitAdaptor : public eoMonOp<EOT>
 {
     public :
         eoInitAdaptor(eoInit<EOT>& _init) : init(_init) {}
-    
-        void operator()(EOT& _eot)
+
+        bool operator()(EOT& _eot)
         {
             init(_eot);
+            return true;
         }
     private :
     

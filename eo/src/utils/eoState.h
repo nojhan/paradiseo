@@ -38,11 +38,20 @@ class eoObject;
 class eoPersistent;
 
 /**
-* eoState can be used to register derivants of eoPersistent. It will
-* then in turn implement the persistence framework through members load
-* and save, that will call readFrom and printOn for the registrated objects.
+ eoState can be used to register derivants of eoPersistent. It will
+ then in turn implement the persistence framework through members load
+ and save, that will call readFrom and printOn for the registrated objects.
+
+ It is derived from eoFunctorStore, so that it also serves as a place where
+ all those nifty eo functors can be stored. This is useful in the case you
+ want to use one of the make_* functions. These functions generally take as their
+ last argument an eoFunctorStore (or a state) which is used to hold all dynamically
+ generated data. Note however, that unlike with eoPersistent derived classes, eoFunctorBase
+ derived classes are not saved or loaded. To govern the creation of functors,
+ command-line parameters (which can be stored) are needed.
+
 */
-class eoState
+class eoState : public eoFunctorStore
 {
 public :
 
@@ -66,12 +75,6 @@ public :
         // If the compiler budges here, T is not a subclass of eoPersistent
         ownedObjects.push_back(new T(persistent));
         return static_cast<T&>(*ownedObjects.back());
-    }
-
-    void storeFunctor(eoFunctorBase* _functor)
-    {
-      // add it to the functorStore, fo
-      functorStore.add(_functor);
     }
 
     /**
@@ -122,9 +125,6 @@ private :
 
     std::vector<ObjectMap::iterator> creationOrder;
     std::vector<eoPersistent*> ownedObjects;
-
-    // And a functor store to boot
-    eoFunctorStore functorStore;
 
     // private copy and assignment as eoState is supposed to be unique
     eoState(const eoState&);

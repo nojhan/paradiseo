@@ -29,13 +29,12 @@
 
 #include <eoFunctor.h>
 #include <eoVariableLength.h>
-#include <eoGenericBinOp.h>
-#include <eoGenericQuadOp.h>
+#include <eoOp.h>
 
 /**
-  Base classes for generic crossovers on variable length chromosomes. 
+  Base classes for generic crossovers on variable length chromosomes.
 
-Basically, they exchange genes - we need some matching information to apply 
+Basically, they exchange genes - we need some matching information to apply
 atom crossover
 */
 
@@ -79,17 +78,17 @@ private:
  */
 
 template <class EOT>
-class eoVlAtomExchangeQuadOp : public eoGenericQuadOp<EOT>
+class eoVlAtomExchangeQuadOp : public eoQuadOp<EOT>
 {
 public :
-	
+
   typedef typename EOT::AtomType AtomType;
-  
+
   // default ctor: requires bounds on number of genes + a rate
-  eoVlAtomExchangeQuadOp(unsigned _Min, unsigned _Max, 
-			 eoAtomExchange<AtomType>& _atomExchange): 
+  eoVlAtomExchangeQuadOp(unsigned _Min, unsigned _Max,
+			 eoAtomExchange<AtomType>& _atomExchange):
     Min(_Min), Max(_Max), atomExchange(_atomExchange) {}
-  
+
   bool operator()(EOT & _eo1, EOT & _eo2)
   {
     EOT tmp1, tmp2;		   // empty individuals
@@ -116,8 +115,8 @@ public :
 	    i1++;
 	}
       index++;
-    } while ( ( (i1<Min) || (i2<Min) || 
-		(i1>Max) || (i2>Max) ) 
+    } while ( ( (i1<Min) || (i2<Min) ||
+		(i1>Max) || (i2>Max) )
 	      && (index<10000) );
     if (index >= 10000)
       {
@@ -157,21 +156,21 @@ private:
 A very primitive version, that does no verification at all!!!
 NEEDS to be improved - but no time now :-(((
 Especially, if both guys have maximal size, it will take a lot of time
-to generate 2 offspring that both are not oversized!!! 
+to generate 2 offspring that both are not oversized!!!
 Also, we should first check for identical atoms, and copy them to the
 offspring, and only after that exchange the other ones (Radcliffe's RRR).
  */
 template <class EOT>
-class eoVlUniformQuadOp : public eoGenericQuadOp<EOT>
+class eoVlUniformQuadOp : public eoQuadOp<EOT>
 {
 public :
-	
+
   typedef typename EOT::AtomType AtomType;
-  
+
   // default ctor: requires bounds on number of genes + a rate
-  eoVlUniformQuadOp(unsigned _Min, unsigned _Max, double _rate=0.5) : 
+  eoVlUniformQuadOp(unsigned _Min, unsigned _Max, double _rate=0.5) :
     Min(_Min), Max(_Max), rate(_rate) {}
-  
+
   bool operator()(EOT & _eo1, EOT & _eo2)
   {
     unsigned i;
@@ -194,7 +193,7 @@ public :
 	    tmp2.push_back(_eo2[i]);
 	}
       index++;
-    } while ( ( (tmp1.size()<Min) || (tmp2.size()<Min) || 
+    } while ( ( (tmp1.size()<Min) || (tmp2.size()<Min) ||
 	      (tmp1.size()>Max) || (tmp2.size()>Max) )
 	      && (index<10000) );
     if (index >= 10000)
@@ -218,21 +217,21 @@ private:
 A very primitive version, that does no verification at all!!!
 NEEDS to be improved - but no time now :-(((
 Especially, if both guys have maximal size, it will take some time
-to generate even 1 offspring that is not oversized!!! 
+to generate even 1 offspring that is not oversized!!!
 Also, we should first check for identical atoms, and copy them to the
 offspring, and only after that exchange the other ones (Radcliffe's RRR).
  */
 template <class EOT>
-class eoVlUniformBinOp : public eoGenericBinOp<EOT>
+class eoVlUniformBinOp : public eoBinOp<EOT>
 {
 public :
 
   typedef typename EOT::AtomType AtomType;
-  
+
   // default ctor: requires bounds on number of genes + a rate
-  eoVlUniformBinOp(unsigned _Min, unsigned _Max, double _rate=0.5) : 
+  eoVlUniformBinOp(unsigned _Min, unsigned _Max, double _rate=0.5) :
     Min(_Min), Max(_Max), rate(_rate) {}
-  
+
   bool operator()(EOT & _eo1, const EOT & _eo2)
   {
     unsigned i;
@@ -248,7 +247,7 @@ public :
 	      tmpIsTwo = false;
 	    }
 	  else
-	    tmpIsOne=false;	    
+	    tmpIsOne=false;
 	// we should look for _eo1[i] inside _eo2 and erase it there if found!
 	}
       for (i=0; i<_eo2.size(); i++)

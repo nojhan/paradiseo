@@ -27,7 +27,7 @@
 #ifndef _eoSGA_h
 #define _eoSGA_h
 
-#include <eoOp.h>
+#include <eoInvalidateOps.h>
 #include <eoContinue.h>
 #include <eoPop.h>
 #include <eoSelectOne.h>
@@ -36,13 +36,13 @@
 #include <eoAlgo.h>
 #include <apply.h>
 
-/** The Simple Genetic Algorithm, following Holland and Goldberg 
- *  Needs a selector (class eoSelectOne) a crossover (eoQuad, 
- *    i.e. a 2->2 operator) and a mutation with their respective rates, 
- *    of course an evaluation function (eoEvalFunc) and a continuator 
+/** The Simple Genetic Algorithm, following Holland and Goldberg
+ *  Needs a selector (class eoSelectOne) a crossover (eoQuad,
+ *    i.e. a 2->2 operator) and a mutation with their respective rates,
+ *    of course an evaluation function (eoEvalFunc) and a continuator
  *    (eoContinue) which gives the stopping criterion. Performs full
  *    generational replacement.
- */   
+ */
 
 template <class EOT>
 class eoSGA : public eoAlgo<EOT>
@@ -57,8 +57,8 @@ public :
         eoMonOp<EOT>& _mutate, float _mrate,
         eoEvalFunc<EOT>& _eval,
 	eoContinue<EOT>& _cont)
-    : cont(_cont), 
-          mutate(_mutate), 
+    : cont(_cont),
+          mutate(_mutate),
           mutationRate(_mrate),
           cross(_cross),
           crossoverRate(_crate),
@@ -68,42 +68,44 @@ public :
   void operator()(eoPop<EOT>& _pop)
   {
     eoPop<EOT> offspring;
-        
+
     do
       {
 	select(_pop, offspring);
 
 	unsigned i;
-	        
-	for (i=0; i<_pop.size()/2; i++) 
+
+	for (i=0; i<_pop.size()/2; i++)
 	  {
-	    if ( rng.flip(crossoverRate) ) 
+	    if ( rng.flip(crossoverRate) )
 	      {
 		// this crossover generates 2 offspring from two parents
 		cross(offspring[2*i], offspring[2*i+1]);
 	      }
 	  }
-	    
-	for (i=0; i < _pop.size(); i++) 
+
+	for (i=0; i < _pop.size(); i++)
 	  {
-	    if (rng.flip(mutationRate) ) 
+	    if (rng.flip(mutationRate) )
 	      {
 		mutate(offspring[i]);
 	      }
 	  }
-	    
+
 	_pop.swap(offspring);
 	apply<EOT>(eval, _pop);
-	    
+
       } while (cont(_pop));
   }
-  
+
 private :
 
   eoContinue<EOT>& cont;
-  eoMonOp<EOT>& mutate;
+  /// eoInvalidateMonOp invalidates the embedded operator
+  eoInvalidateMonOp<EOT> mutate;
   float mutationRate;
-  eoQuadOp<EOT>& cross;
+  // eoInvalidateQuadOp invalidates the embedded operator
+  eoInvalidateQuadOp<EOT> cross;
   float crossoverRate;
   eoSelectPerc<EOT> select;
   eoEvalFunc<EOT>& eval;

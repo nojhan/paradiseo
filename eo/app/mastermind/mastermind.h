@@ -116,7 +116,7 @@ void init_eoChromEvaluator(const unsigned& c, const unsigned& l, string s)
       uniform_generator<int> color(0, num_colors);
       generate(solution.begin(), solution.end(), color);
     }
-  
+
   solution.fitness(eoChromEvaluator(solution));
 }
 
@@ -143,14 +143,14 @@ public:
 class eoChromMutation: public eoMonOp<Chrom>
 {
   // many operators in one :(
-  void operator()(Chrom& chrom)
+  bool operator()(Chrom& chrom)
   {
     uniform_generator<unsigned> what(0, 2);
     uniform_generator<unsigned> position(0, chrom.size());
 
     switch(what())
       {
-      case 0: 
+      case 0:
 	{
 	  // mutation
 	  uniform_generator<int> color(0, num_colors);
@@ -171,7 +171,7 @@ class eoChromMutation: public eoMonOp<Chrom>
 	}
       }
 
-    chrom.invalidate();
+    return true;
   }
 };
 
@@ -182,12 +182,11 @@ class eoChromMutation: public eoMonOp<Chrom>
 class eoChromXover: public eoQuadOp<Chrom>
 {
 public:
-  void operator()(Chrom& chrom1, Chrom& chrom2)
+  bool operator()(Chrom& chrom1, Chrom& chrom2)
   {
     uniform_generator<unsigned> position(0, chrom1.size());
     swap_ranges(chrom1.begin(), chrom1.begin() + position(), chrom2.begin());
-    chrom1.invalidate();
-    chrom2.invalidate();
+    return true;
   }
 };
 
@@ -195,6 +194,6 @@ public:
 
 #endif // mastermind_h
 
-// Local Variables: 
-// mode:C++ 
+// Local Variables:
+// mode:C++
 // End:

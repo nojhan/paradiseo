@@ -196,7 +196,7 @@ template <class Procedure>
 eoProcedureCounter<Procedure>& make_counter(eoFunctorBase::procedure_tag, Procedure& _proc, eoFunctorStore& store, std::string _name = "proc_counter")
 {
     eoProcedureCounter<Procedure>* result = new eoProcedureCounter<Procedure>(_proc, _name);
-    store.add(result);
+    store.storeFunctor(result);
     return *result;
 }
 
@@ -204,7 +204,7 @@ template <class UnaryFunctor>
 eoUnaryFunctorCounter<UnaryFunctor>& make_counter(eoFunctorBase::unary_function_tag, UnaryFunctor& _proc, eoFunctorStore& store, std::string _name = "uf_counter")
 {
     eoUnaryFunctorCounter<UnaryFunctor>* result = new eoUnaryFunctorCounter<UnaryFunctor>(_proc, _name);
-    store.add(result);
+    store.storeFunctor(result);
     return *result;
 }
 
@@ -212,7 +212,7 @@ template <class BinaryFunctor>
 eoBinaryFunctorCounter<BinaryFunctor>& make_counter(eoFunctorBase::binary_function_tag, BinaryFunctor& _proc, eoFunctorStore& store, std::string _name = "uf_counter")
 {
     eoBinaryFunctorCounter<BinaryFunctor>* result = new eoBinaryFunctorCounter<BinaryFunctor>(_proc, _name);
-    store.add(result);
+    store.storeFunctor(result);
     return *result;
 }
 

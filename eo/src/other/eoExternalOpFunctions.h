@@ -46,13 +46,13 @@ class eoExternalInit : public eoInit<ExternalEO>
 {
 
 public :
-    
+
     eoExternalInit(External (*_init)(void)) : init(_init) {}
 
 
-    void operator()(ExternalEO& _eo) 
-    { 
-        _eo = (*init)(); 
+    void operator()(ExternalEO& _eo)
+    {
+        _eo = (*init)();
         _eo.invalidate();
     }
 
@@ -76,7 +76,7 @@ class eoExternalEvalFunc : public eoEvalFunc<ExternalEO>
 
     eoExternalEvalFunc(F (*_eval)(const External&)) : eval(_eval) {}
 
-    void operator()(ExternalEO& eo) 
+    void operator()(ExternalEO& eo)
     {
         if (eo.invalid())
             eo.fitness( (*eval)(eo) );
@@ -93,8 +93,8 @@ class eoExternalEvalFunc : public eoEvalFunc<ExternalEO>
 
     bool func(External&);
 
-    
-  Where External is the user defined struct or class. 
+
+  Where External is the user defined struct or class.
   The function should return true when it changed something, false otherwise
 */
 
@@ -105,10 +105,9 @@ class eoExternalMonOp : public eoMonOp<ExternalEO>
 
     eoExternalMonOp(bool (*_mutate)(External&)) : mutate(_mutate) {}
 
-    void operator()(ExternalEO& eo) 
+    bool operator()(ExternalEO& eo)
     {
-        if ((*mutate)(eo))
-            eo.invalidate();
+        return (*mutate)(eo);
     }
 
     private :
@@ -132,10 +131,9 @@ class eoExternalBinOp : public eoBinOp<ExternalEO>
 
     eoExternalBinOp(bool (*_binop)(External&, const External&)) : binop(_binop) {}
 
-    void operator()(ExternalEO& eo1, const ExternalEO& eo2) 
+    bool operator()(ExternalEO& eo1, const ExternalEO& eo2)
     {
-        if ((*binop)(eo1, eo2))
-            eo1.invalidate();
+        return (*binop)(eo1, eo2);
     }
 
     private :
@@ -159,13 +157,9 @@ class eoExternalQuadOp : public eoQuadOp<ExternalEO>
 
     eoExternalQuadOp(bool (*_quadop)(External&, External&)) : quadop(_quadop) {}
 
-    void operator()(ExternalEO& eo1, ExternalEO& eo2) 
+    bool operator()(ExternalEO& eo1, ExternalEO& eo2)
     {
-        if ((*quadop)(eo1, eo2))
-        {
-            eo1.invalidate();
-            eo2.invalidate();
-        }
+        return (*quadop)(eo1, eo2);
     }
 
     private :

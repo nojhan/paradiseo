@@ -60,7 +60,7 @@
 #include <ga/eoBit.h>
 
 
-/** eoBitFlip --> changes 1 bit  
+/** eoBitFlip --> changes 1 bit
 \class eoBitBitFlip eoBitOp.h ga/eoBitOp.h
 \ingroup bitstring
 */
@@ -70,20 +70,20 @@ template<class Chrom> class eoOneBitFlip: public eoMonOp<Chrom>
  public:
   /// The class name.
   string className() const { return "eoOneBitFlip"; }
-  
+
   /**
    * Change one bit.
    * @param chrom The cromosome which one bit is going to be changed.
    */
-  void operator()(Chrom& chrom) 
+  bool operator()(Chrom& chrom)
     {
       unsigned i = eo::rng.random(chrom.size());
       chrom[i] = (chrom[i]) ? false : true;
-      chrom.invalidate();
+      return true;
     }
 };
 
-/** eoDetBitFlip --> changes exactly k bits  
+/** eoDetBitFlip --> changes exactly k bits
 \class eoDetBitFlip eoBitOp.h ga/eoBitOp.h
 \ingroup bitstring
 */
@@ -100,12 +100,12 @@ template<class Chrom> class eoDetBitFlip: public eoMonOp<Chrom>
 
   /// The class name.
   string className() const { return "eoDetBitFlip"; }
-  
+
   /**
    * Change num_bit bits.
    * @param chrom The cromosome which one bit is going to be changed.
    */
-  void operator()(Chrom& chrom) 
+  bool operator()(Chrom& chrom)
     {
       // does not check for duplicate: if someone volunteers ....
       for (unsigned k=0; k<num_bit; k++)
@@ -113,14 +113,14 @@ template<class Chrom> class eoDetBitFlip: public eoMonOp<Chrom>
 	  unsigned i = eo::rng.random(chrom.size());
 	  chrom[i] = (chrom[i]) ? false : true;
 	}
-      chrom.invalidate();
+      return true;
     }
  private:
   unsigned num_bit;
 };
 
 
-/** eoBitMutation --> classical mutation 
+/** eoBitMutation --> classical mutation
 \class eoBitMutation eoBitOp.h ga/eoBitOp.h
 \ingroup bitstring
 */
@@ -141,7 +141,7 @@ template<class Chrom> class eoBitMutation: public eoMonOp<Chrom>
    * Mutate a chromosome.
    * @param chrom The chromosome to be mutated.
    */
-  void operator()(Chrom& chrom) 
+  bool operator()(Chrom& chrom)
     {
       bool changed_something = false;
       for (unsigned i = 0; i < chrom.size(); i++)
@@ -151,16 +151,15 @@ template<class Chrom> class eoBitMutation: public eoMonOp<Chrom>
             changed_something = true;
         }
 
-        if (changed_something)
-            chrom.invalidate();
+        return changed_something;
     }
-  
+
  private:
   double rate;
 };
 
 
-/** eoBitInversion: inverts the bits of the chromosome between an interval 
+/** eoBitInversion: inverts the bits of the chromosome between an interval
 \class eoBitInversion eoBitOp.h ga/eoBitOp.h
 \ingroup bitstring
 */
@@ -175,20 +174,20 @@ template<class Chrom> class eoBitInversion: public eoMonOp<Chrom>
    * Inverts a range of bits in a binary chromosome.
    * @param chrom The chromosome whos bits are going to be inverted (a range).
    */
-  void operator()(Chrom& chrom) 
+  bool operator()(Chrom& chrom)
     {
-      
+
       unsigned u1 = eo::rng.random(chrom.size() + 1) , u2;
       do u2 = eo::rng.random(chrom.size() + 1); while (u1 == u2);
       unsigned r1 = min(u1, u2), r2 = max(u1, u2);
-      
+
       reverse(chrom.begin() + r1, chrom.begin() + r2);
-      chrom.invalidate();
+      return true;
     }
 };
 
 
-/** eoBitNext --> next value when bitstring considered as binary value 
+/** eoBitNext --> next value when bitstring considered as binary value
 \class eoBitNext eoBitOp.h ga/eoBitOp.h
 \ingroup bitstring
 */
@@ -198,12 +197,12 @@ template<class Chrom> class eoBitNext: public eoMonOp<Chrom>
  public:
   /// The class name.
   string className() const { return "eoBitNext"; }
-  
+
   /**
    * Change the bit string x to be x+1.
    * @param chrom The chromosome to be added one.
    */
-  void operator()(Chrom& chrom) 
+  bool operator()(Chrom& chrom)
     {
       for (int i = chrom.size() - 1; i >= 0; i--)
 	if (chrom[i])
@@ -217,12 +216,12 @@ template<class Chrom> class eoBitNext: public eoMonOp<Chrom>
 	    break;
 	  }
 
-    chrom.invalidate();
+    return true;
     }
 };
 
 
-/** eoBitPrev --> previous value when bitstring treated as binary value 
+/** eoBitPrev --> previous value when bitstring treated as binary value
 \class eoBitPrev eoBitOp.h ga/eoBitOp.h
 \ingroup bitstring
 */
@@ -232,12 +231,12 @@ template<class Chrom> class eoBitPrev: public eoMonOp<Chrom>
  public:
   /// The class name.
   string className() const { return "eoBitPrev"; }
-  
+
   /**
    * Change the bit string x to be x-1.
    * @param chrom The chromosome to be substracted one.
    */
-  void operator()(Chrom& chrom) 
+  bool operator()(Chrom& chrom)
     {
       for (int i = chrom.size() - 1; i >= 0; i--)
 	if (chrom[i])
@@ -249,14 +248,14 @@ template<class Chrom> class eoBitPrev: public eoMonOp<Chrom>
 	  {
 	    chrom[i] = 1;
 	    continue;
-	  } 
+	  }
 
-    chrom.invalidate();
+    return true;
     }
 };
-  
 
-/** eo1PtBitXover --> classic 1-point crossover 
+
+/** eo1PtBitXover --> classic 1-point crossover
 \class eo1PtBitCrossover eoBitOp.h ga/eoBitOp.h
 \ingroup bitstring
 */
@@ -272,7 +271,7 @@ template<class Chrom> class eo1PtBitXover: public eoQuadOp<Chrom>
    * @param chrom1 The first chromosome.
    * @param chrom2 The first chromosome.
    */
-  void operator()(Chrom& chrom1, Chrom& chrom2) 
+  bool operator()(Chrom& chrom1, Chrom& chrom2)
     {
       unsigned site = eo::rng.random(min(chrom1.size(), chrom2.size()));
 
@@ -280,15 +279,15 @@ template<class Chrom> class eo1PtBitXover: public eoQuadOp<Chrom>
       {
 
         swap_ranges(chrom1.begin(), chrom1.begin() + site, chrom2.begin());
-  
-        chrom1.invalidate();
-        chrom2.invalidate();
+
+        return true;
       }
+      return false;
   }
 };
-  
 
-/** eoUBitXover --> classic Uniform crossover 
+
+/** eoUBitXover --> classic Uniform crossover
 \class eoUBitXover eoBitOp.h ga/eoBitOp.h
 \ingroup bitstring
 */
@@ -298,7 +297,7 @@ template<class Chrom> class eoUBitXover: public eoQuadOp<Chrom>
  public:
   /// (Default) Constructor.
   eoUBitXover(const float& _preference = 0.5): preference(_preference)
-    { 
+    {
       if ( (_preference <= 0.0) || (_preference >= 1.0) )
 	runtime_error("UxOver --> invalid preference");
     }
@@ -311,10 +310,10 @@ template<class Chrom> class eoUBitXover: public eoQuadOp<Chrom>
    * @param chrom2 The first chromosome.
    *    @runtime_error if sizes don't match
    */
-  void operator()(Chrom& chrom1, Chrom& chrom2) 
+  bool operator()(Chrom& chrom1, Chrom& chrom2)
     {
-      if ( chrom1.size() != chrom2.size()) 
-	    runtime_error("UxOver --> chromosomes sizes don't match" ); 
+      if ( chrom1.size() != chrom2.size())
+	    runtime_error("UxOver --> chromosomes sizes don't match" );
       bool changed = false;
       for (unsigned int i=0; i<chrom1.size(); i++)
 	{
@@ -326,18 +325,14 @@ template<class Chrom> class eoUBitXover: public eoQuadOp<Chrom>
 	      changed = true;
 	    }
 	}
-      if (changed)
-	  {
-	    chrom1.invalidate();
-	    chrom2.invalidate();
-	  }
-    }
+    return changed;
+  }
     private:
       float preference;
 };
-  
 
-/** eoNPtsBitXover --> n-point crossover 
+
+/** eoNPtsBitXover --> n-point crossover
 \class eoNPtsBitXover eoBitOp.h ga/eoBitOp.h
 \ingroup bitstring
 */
@@ -347,29 +342,29 @@ template<class Chrom> class eoNPtsBitXover: public eoQuadOp<Chrom>
  public:
   /// (Default) Constructor.
   eoNPtsBitXover(const unsigned& _num_points = 2): num_points(_num_points)
-    { 
+    {
       if (num_points < 1)
 	runtime_error("NxOver --> invalid number of points");
     }
-  
+
   /// The class name.
   string className() const { return "eoNPtsBitXover"; }
-  
+
   /**
    * n-point crossover for binary chromosomes.
    * @param chrom1 The first chromosome.
    * @param chrom2 The first chromosome.
    */
-  void operator()(Chrom& chrom1, Chrom& chrom2) 
+  bool operator()(Chrom& chrom1, Chrom& chrom2)
     {
       unsigned max_size = min(chrom1.size(), chrom2.size());
       unsigned max_points = min(max_size - 1, num_points);
-      
+
       vector<bool> points(max_size, false);
-      
+
       // select ranges of bits to swap
       do {
-	unsigned bit = eo::rng.random(max_size) + 1; 
+	unsigned bit = eo::rng.random(max_size) + 1;
 	if (points[bit])
 	  continue;
 	else
@@ -378,30 +373,29 @@ template<class Chrom> class eoNPtsBitXover: public eoQuadOp<Chrom>
 	    max_points--;
 	  }
       } while (max_points);
-      
-      
+
+
       // swap bits between chromosomes
       bool change = false;
       for (unsigned bit = 1; bit < points.size(); bit++)
 	{
 	  if (points[bit])
 	    change = !change;
-	  
+
 	  if (change)
 	    swap(chrom1[bit], chrom2[bit]);
 	}
 
-      chrom1.invalidate();
-      chrom2.invalidate();
+    return true;
     }
-    
+
  private:
   unsigned num_points;
 };
 
 
 
-/** eoBitGxOver --> Npts crossover when bistring considered 
+/** eoBitGxOver --> Npts crossover when bistring considered
                     as a string of binary-encoded genes (exchanges genes)
 Is anybody still using it apart from historians ??? :-)
 \class eoBitGxOver eoBitOp.h ga/eoBitOp.h
@@ -412,28 +406,28 @@ template<class Chrom> class eoBitGxOver: public eoQuadOp<Chrom>
 {
  public:
   /// Constructor.
-  eoBitGxOver(const unsigned _gene_size, const unsigned _num_points = 2): 
+  eoBitGxOver(const unsigned _gene_size, const unsigned _num_points = 2):
     gene_size(_gene_size), num_points(_num_points)
-    {  
+    {
       if (gene_size < 1)
 	runtime_error("GxOver --> invalid gene size");
       if (num_points < 1)
 	runtime_error("GxOver --> invalid number of points");
     }
-  
+
   /// The class name
   string className() const { return "eoBitGxOver"; }
-  
+
   /**
    * Gene crossover for binary chromosomes.
    * @param chrom1 The first chromosome.
    * @param chrom2 The first chromosome.
    */
-  void operator()(Chrom& chrom1, Chrom& chrom2) 
+  bool operator()(Chrom& chrom1, Chrom& chrom2)
     {
       unsigned max_genes = min(chrom1.size(), chrom2.size()) / gene_size;
       unsigned cut_genes = min(max_genes, num_points);
-      
+
       vector<bool> points(max_genes, false);
       
       // selects genes to swap
@@ -454,11 +448,10 @@ template<class Chrom> class eoBitGxOver: public eoQuadOp<Chrom>
 	  swap_ranges(chrom1.begin() + i * gene_size, 
 		      chrom1.begin() + i * gene_size + gene_size, 
 		      chrom2.begin() + i * gene_size);
-  
-    chrom1.invalidate();
-    chrom2.invalidate();
+
+    return true;
   }
-  
+
  private:
   unsigned gene_size;
   unsigned num_points;

@@ -35,8 +35,8 @@
 
 //-----------------------------------------------------------------------------
 
-/** eoUniformMutation --> changes all values of the vector 
-                          by uniform choice with range epsilon  
+/** eoUniformMutation --> changes all values of the vector
+                          by uniform choice with range epsilon
                           with probability p_change per variable
 \class eoUniformMutation eoRealOp.h Tutorial/eoRealOp.h
 \ingroup parameteric
@@ -52,7 +52,7 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
    * @param _epsilon the range for uniform nutation
    * @param _p_change the probability to change a given coordinate
    */
-  eoUniformMutation(const double& _epsilon, const double& _p_change = 1.0): 
+  eoUniformMutation(const double& _epsilon, const double& _p_change = 1.0):
     bounds(eoDummyVectorNoBounds), epsilon(_epsilon), p_change(_p_change) {}
 
   /**
@@ -61,23 +61,23 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
    * @param _epsilon the range for uniform nutation
    * @param _p_change the probability to change a given coordinate
    */
-  eoUniformMutation(eoRealVectorBounds & _bounds, 
-		    const double& _epsilon, const double& _p_change = 1.0): 
+  eoUniformMutation(eoRealVectorBounds & _bounds,
+		    const double& _epsilon, const double& _p_change = 1.0):
     bounds(_bounds), epsilon(_epsilon), p_change(_p_change) {}
 
   /// The class name.
   string className() const { return "eoUniformMutation"; }
-  
+
   /**
    * Do it!
    * @param _eo The cromosome undergoing the mutation
    */
-  void operator()(EOT& _eo) 
+  bool operator()(EOT& _eo)
     {
       bool hasChanged=false;
-      for (unsigned lieu=0; lieu<_eo.size(); lieu++) 
+      for (unsigned lieu=0; lieu<_eo.size(); lieu++)
 	{
-	  if (rng.flip(p_change)) 
+	  if (rng.flip(p_change))
 	    {
 	      // check the bounds
 	      double emin = _eo[lieu]-epsilon;
@@ -90,18 +90,17 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
 	      hasChanged = true;
 	    }
 	}
-      if (hasChanged)
-	_eo.invalidate();
+      return hasChanged;
     }
-  
+
 private:
   eoRealVectorBounds & bounds;
   double epsilon;
   double p_change;
 };
 
-/** eoDetUniformMutation --> changes exactly k values of the vector 
-                          by uniform choice with range epsilon  
+/** eoDetUniformMutation --> changes exactly k values of the vector
+                          by uniform choice with range epsilon
 \class eoDetUniformMutation eoRealOp.h Tutorial/eoRealOp.h
 \ingroup parameteric
 */
@@ -114,7 +113,7 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
    * @param _epsilon the range for uniform nutation
    * @param number of coordinate to modify
    */
-  eoDetUniformMutation(const double& _epsilon, const unsigned& _no = 1): 
+  eoDetUniformMutation(const double& _epsilon, const unsigned& _no = 1):
     bounds(eoDummyVectorNoBounds), epsilon(_epsilon), no(_no) {}
 
   /**
@@ -134,12 +133,11 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
    * Do it!
    * @param _eo The cromosome undergoing the mutation
    */
-  void operator()(EOT& _eo) 
+  bool operator()(EOT& _eo)
     {
-      _eo.invalidate();
       for (unsigned i=0; i<no; i++)
-	{
-	  unsigned lieu = rng.random(_eo.size());
+	    {
+	      unsigned lieu = rng.random(_eo.size());
 	  // actually, we should test that we don't re-modify same variable!
 
 	      // check the bounds
@@ -150,7 +148,9 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
 	      if (bounds.isMaxBounded(lieu))
 		emax = min(bounds.maximum(lieu), emax);
 	      _eo[lieu] = emin + (emax-emin)*rng.uniform();
-	}
+	    }
+
+      return true;
     }
 
 private:
@@ -162,7 +162,7 @@ private:
 
 // two arithmetical crossovers
 
-/** eoSegmentCrossover --> uniform choice in segment 
+/** eoSegmentCrossover --> uniform choice in segment
                  == arithmetical with same value along all coordinates
 \class eoSegmentCrossover eoRealOp.h Tutorial/eoRealOp.h
 \ingroup parameteric
@@ -175,12 +175,12 @@ template<class EOT> class eoSegmentCrossover: public eoQuadOp<EOT>
    * (Default) Constructor.
    * The bounds are initialized with the global object that says: no bounds.
    *
-   * @param _alphaMin the amount of exploration OUTSIDE the parents 
+   * @param _alphaMin the amount of exploration OUTSIDE the parents
    *               as in BLX-alpha notation (Eshelman and Schaffer)
    *               0 == contractive application
    *               Must be positive
    */
-  eoSegmentCrossover(const double& _alpha = 0.0) : 
+  eoSegmentCrossover(const double& _alpha = 0.0) :
     bounds(eoDummyVectorNoBounds), alpha(_alpha), range(1+2*_alpha) {}
 
   /**
@@ -203,12 +203,12 @@ template<class EOT> class eoSegmentCrossover: public eoQuadOp<EOT>
    * @param _eo1 The first parent
    * @param _eo2 The first parent
    */
-  void operator()(EOT& _eo1, EOT& _eo2) 
+  bool operator()(EOT& _eo1, EOT& _eo2)
     {
       unsigned i;
       double r1, r2, fact;
       double alphaMin = -alpha;
-      double alphaMax = 1+alpha;  
+      double alphaMax = 1+alpha;
       if (alpha == 0.0)		   // no check to perform
 	fact = -alpha + rng.uniform(range); // in [-alpha,1+alpha)
       else			   // look for the bounds for fact
@@ -225,7 +225,7 @@ template<class EOT> class eoSegmentCrossover: public eoQuadOp<EOT>
 		  {
 		    alphaMin = max(alphaMin, (bounds.minimum(i)-rmin)/length);
 		    alphaMin = max(alphaMin, (rmax-bounds.maximum(i))/length);
-		  }		  
+		  }
 		if (bounds.isMaxBounded(i))
 		  {
 		    alphaMax = min(alphaMax, (bounds.maximum(i)-rmin)/length);
@@ -243,8 +243,7 @@ template<class EOT> class eoSegmentCrossover: public eoQuadOp<EOT>
 	  _eo1[i] = fact * r1 + (1-fact) * r2;
 	  _eo2[i] = (1-fact) * r1 + fact * r2;
 	}
-      _eo1.invalidate();	   // shoudl test if fact was 0 or 1 :-)))
-      _eo2.invalidate();
+      return true;	   // shoudl test if fact was 0 or 1 :-)))
     }
 
 protected:
@@ -252,8 +251,8 @@ protected:
   double alpha;
   double range;			   // == 1+2*alpha
 };
-  
-/** eoArithmeticCrossover --> uniform choice in hypercube  
+
+/** eoArithmeticCrossover --> uniform choice in hypercube
                  == arithmetical with different values for each coordinate
 \class eoArithmeticCrossover eoRealOp.h Tutorial/eoRealOp.h
 \ingroup parameteric
@@ -266,13 +265,13 @@ template<class EOT> class eoArithmeticCrossover: public eoQuadOp<EOT>
    * (Default) Constructor.
    * The bounds are initialized with the global object that says: no bounds.
    *
-   * @param _alphaMin the amount of exploration OUTSIDE the parents 
+   * @param _alphaMin the amount of exploration OUTSIDE the parents
    *               as in BLX-alpha notation (Eshelman and Schaffer)
    *               0 == contractive application
    *               Must be positive
    */
-  eoArithmeticCrossover(const double& _alpha = 0.0): 
-    bounds(eoDummyVectorNoBounds), alpha(_alpha), range(1+2*_alpha) 
+  eoArithmeticCrossover(const double& _alpha = 0.0):
+    bounds(eoDummyVectorNoBounds), alpha(_alpha), range(1+2*_alpha)
   {
     if (_alpha < 0)
       throw runtime_error("BLX coefficient should be positive");
@@ -302,7 +301,7 @@ template<class EOT> class eoArithmeticCrossover: public eoQuadOp<EOT>
    * @param _eo1 The first parent
    * @param _eo2 The first parent
    */
-  void operator()(EOT& _eo1, EOT& _eo2) 
+  bool operator()(EOT& _eo1, EOT& _eo2)
     {
       unsigned i;
       double r1, r2, fact;
@@ -331,7 +330,7 @@ template<class EOT> class eoArithmeticCrossover: public eoQuadOp<EOT>
 		{
 		  alphaMin = max(alphaMin, (bounds.minimum(i)-rmin)/length);
 		  alphaMin = max(alphaMin, (rmax-bounds.maximum(i))/length);
-		}		  
+		}
 	      if (bounds.isMaxBounded(i))
 		{
 		  alphaMax = min(alphaMax, (bounds.maximum(i)-rmin)/length);
@@ -342,16 +341,16 @@ template<class EOT> class eoArithmeticCrossover: public eoQuadOp<EOT>
 	      _eo2[i] = (1-fact) * rmin + fact * rmax;
 	    }
 	  }
-      _eo1.invalidate();
-      _eo2.invalidate();
-    }
+
+    return true;
+   }
 
 protected:
   eoRealVectorBounds & bounds;
   double alpha;
   double range;			   // == 1+2*alphaMin
 };
-  
+
 
 /** eoRealUxOver --> Uniform crossover, also termed intermediate crossover
 \class eoRealUxOver eoRealOp.h Tutorial/eoRealOp.h
@@ -380,10 +379,10 @@ template<class EOT> class eoRealUxOver: public eoQuadOp<EOT>
    * @param _eo2 The second parent
    *    @runtime_error if sizes don't match
    */
-  void operator()(EOT& _eo1, EOT& _eo2) 
+  bool operator()(EOT& _eo1, EOT& _eo2)
     {
-      if ( _eo1.size() != _eo2.size()) 
-	    runtime_error("UxOver --> chromosomes sizes don't match" ); 
+      if ( _eo1.size() != _eo2.size())
+	    runtime_error("UxOver --> chromosomes sizes don't match" );
       bool changed = false;
       for (unsigned int i=0; i<_eo1.size(); i++)
 	{
@@ -396,11 +395,7 @@ template<class EOT> class eoRealUxOver: public eoQuadOp<EOT>
 	      changed = true;
 	    }
 	}
-      if (changed)
-	  {
-	    _eo1.invalidate();
-	    _eo2.invalidate();
-	  }
+      return changed;
     }
     private:
       float preference;

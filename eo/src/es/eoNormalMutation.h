@@ -41,7 +41,7 @@
  *  to enable dynamic mutations (see eoOenFithMutation below).
  *
  * As for the bounds, the values are here folded back into the bounds.
- * The other possiblity would be to iterate until we fall inside the bounds - 
+ * The other possiblity would be to iterate until we fall inside the bounds -
  *     but this sometimes takes a long time!!!
  */
 
@@ -55,7 +55,7 @@ template<class EOT> class eoNormalMutation: public eoMonOp<EOT>
    * @param _sigma the range for uniform nutation
    * @param _p_change the probability to change a given coordinate
    */
-  eoNormalMutation(double & _sigma, const double& _p_change = 1.0): 
+  eoNormalMutation(double & _sigma, const double& _p_change = 1.0):
     sigma(_sigma), bounds(eoDummyVectorNoBounds), p_change(_p_change) {}
 
   /**
@@ -64,33 +64,32 @@ template<class EOT> class eoNormalMutation: public eoMonOp<EOT>
    * @param _sigma the range for uniform nutation
    * @param _p_change the probability to change a given coordinate
    */
-  eoNormalMutation(eoRealVectorBounds & _bounds, 
-		    double & _sigma, const double& _p_change = 1.0): 
+  eoNormalMutation(eoRealVectorBounds & _bounds,
+		    double & _sigma, const double& _p_change = 1.0):
     sigma(_sigma), bounds(_bounds), p_change(_p_change) {}
 
   /// The class name.
   string className() const { return "eoNormalMutation"; }
-  
+
   /**
    * Do it!
    * @param _eo The cromosome undergoing the mutation
    */
-  void operator()(EOT& _eo) 
+  bool operator()(EOT& _eo)
     {
       bool hasChanged=false;
-      for (unsigned lieu=0; lieu<_eo.size(); lieu++) 
+      for (unsigned lieu=0; lieu<_eo.size(); lieu++)
 	{
-	  if (rng.flip(p_change)) 
+	  if (rng.flip(p_change))
 	    {
 	      _eo[lieu] += sigma*rng.normal();
 	      bounds.foldsInBounds(lieu, _eo[lieu]);
 	      hasChanged = true;
 	    }
 	}
-      if (hasChanged)
-	_eo.invalidate();
+      return hasChanged;
     }
-  
+
 protected:
   double & sigma;
 private:
@@ -98,9 +97,9 @@ private:
   double p_change;
 };
 
-/** the dynamic version: just say it is updatable - 
+/** the dynamic version: just say it is updatable -
  *  and write the update() method!
- *  here the 1 fifth rule: count the proportion of successful mutations, and 
+ *  here the 1 fifth rule: count the proportion of successful mutations, and
  *  increase sigma if more than threshold (1/5 !)
  */
 

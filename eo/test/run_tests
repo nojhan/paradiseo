@@ -36,6 +36,9 @@ echo "Testing t-eofitness"
 echo "Testing t-eoGA"
 ./t-eoGA > t-eoGA.log
 
+echo "Testing t-eoGenOp"
+./t-eoGenOp > t-eoGenOp.log
+
 echo "Finished"
 
 #TODO test if an error occured

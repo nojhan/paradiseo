@@ -23,7 +23,7 @@
  */
 //-----------------------------------------------------------------------------
 
-/**  test program for the general operator - millenium version! 
+/**  test program for the general operator - millenium version!
  * uses dummy individuals
  */
 #include <eo>
@@ -53,10 +53,11 @@ class monop : public eoMonOp<EOT>
 {
   public :
   monop(char * _sig){sig=_sig;}
-    void operator()(EOT& _eo)
+    bool operator()(EOT& _eo)
     {
       _eo.s = sig + "(" + _eo.s + ")";
       _eo.fitness(_eo.fitness()+pSize);
+      return false;
     }
   string className() {return sig;}
     private:
@@ -66,11 +67,12 @@ class monop : public eoMonOp<EOT>
 class binop: public eoBinOp<EOT>
 {
   public :
-    void operator()(EOT& _eo1, const EOT& _eo2)
+    bool operator()(EOT& _eo1, const EOT& _eo2)
     {
       _eo1.s = "bin(" + _eo1.s + "," + _eo2.s + ")";
       double f= (_eo1.fitness()+_eo2.fitness()) * pSize;
       _eo1.fitness(_eo1.fitness()+f);
+      return false;
     }
   string className() {return "binop";}
 };
@@ -79,7 +81,7 @@ class quadop: public eoQuadOp<EOT>
 {
   public :
   string className() {return "quadop";}
-    void operator()(EOT& a, EOT& b)
+    bool operator()(EOT& a, EOT& b)
     {
       EOT oi = a;
       EOT oj = b;
@@ -89,6 +91,7 @@ class quadop: public eoQuadOp<EOT>
       double f= (a.fitness()+b.fitness()+2*pSize) * pSize;
       a.fitness(a.fitness()+f);
       b.fitness(b.fitness()+f);
+      return false;
     }
 };
 // an eoQuadOp that does nothing
@@ -96,7 +99,7 @@ class quadClone: public eoQuadOp<EOT>
 {
   public :
   string className() {return "quadclone";}
-    void operator()(EOT& , EOT& ) {}
+    bool operator()(EOT& , EOT& ) {return false;}
 };
 
 // User defined General Operator... adapted from Marc's example

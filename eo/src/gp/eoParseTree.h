@@ -148,7 +148,7 @@ private :
 
 	unsigned max_depth; 
     std::vector<Node> initializor;
-	bool grow; 
+	bool grow;
 };
 
 template<class FType, class Node>
@@ -165,7 +165,7 @@ public:
   /// Dtor
   virtual ~eoSubtreeXOver () {};
 
-  void operator()(EoType & _eo1, EoType & _eo2 )
+  bool operator()(EoType & _eo1, EoType & _eo2 )
   {
 	  int i = rng.random(_eo1.size());
 	  int j = rng.random(_eo2.size());
@@ -173,26 +173,25 @@ public:
 	  parse_tree<Node>::subtree tmp = _eo2[j];
 	  _eo1[i] = _eo2[j]; // insert subtree
 	  _eo2[j]=tmp;
-	  	  
+
 	  _eo1.pruneTree(max_length);
 	  _eo2.pruneTree(max_length);
-	  
-	  _eo1.invalidate();
-	  _eo2.invalidate();
+
+    return true;
   }
 
   unsigned max_length;
 };
 
 template<class FType, class Node>
-class eoBranchMutation: public eoMonOp< eoParseTree<FType, Node> > 
+class eoBranchMutation: public eoMonOp< eoParseTree<FType, Node> >
 {
 public:
 
   typedef eoParseTree<FType, Node> EoType;
 
   eoBranchMutation(eoInit<EoType>& _init, unsigned _max_length)
-    : eoMonOp<EoType>(), max_length(_max_length), initializer(_init) 
+    : eoMonOp<EoType>(), max_length(_max_length), initializer(_init)
   {};
 
   virtual string className() const { return "eoBranchMutation"; };
@@ -200,26 +199,26 @@ public:
   /// Dtor
   virtual ~eoBranchMutation() {};
 
-  void operator()(EoType& _eo1 ) 
+  bool operator()(EoType& _eo1 )
   {
 	  int i = rng.random(_eo1.size());
-      
+
       EoType eo2;
       initializer(eo2);
 
 	  int j = rng.random(eo2.size());
 
 	  _eo1[i] = eo2[j]; // insert subtree
-	  	  
+
 	  _eo1.pruneTree(max_length);
-	  	  
-	  _eo1.invalidate();
+
+    return true;
   }
 
 private :
 
   unsigned max_length;
-  eoInit<EoType>& initializer; 
+  eoInit<EoType>& initializer;
 };
 
 

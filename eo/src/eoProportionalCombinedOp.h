@@ -28,19 +28,16 @@
 #include <eoPrintable.h>
 #include <eoFunctor.h>
 #include <eoOp.h>
-#include <eoGenericMonOp.h>
-#include <eoGenericBinOp.h>
-#include <eoGenericQuadOp.h>
 #include <utils/eoRNG.h>
 /**
 \defgroup PropCombined operators
-Combination of same-type Genetic Operators - Proportional choice 
+Combination of same-type Genetic Operators - Proportional choice
 */
 
 /** @name PropCombined Genetic operators
 
-This files contains the classes eoPropCombinedXXXOp (XXX in {Mon, Bin, Quad}) 
-that allow to use more than a single operator of a specific class 
+This files contains the classes eoPropCombinedXXXOp (XXX in {Mon, Bin, Quad})
+that allow to use more than a single operator of a specific class
 into an algorithm, chosing by a roulette wheel based on user-defined rates
 
 @author Marc Schoenauer
@@ -52,7 +49,7 @@ into an algorithm, chosing by a roulette wheel based on user-defined rates
 //// combined MonOp
 //////////////////////////////////////////////////////
 
-/** eoMonOp is the monary operator: genetic operator that takes only one EO 
+/** eoMonOp is the monary operator: genetic operator that takes only one EO
 
  * now accepts generic operators
 */
@@ -63,35 +60,16 @@ class eoPropCombinedMonOp: public eoMonOp<EOT>
 public:
   /// Ctor from a "true" operator
   eoPropCombinedMonOp(eoMonOp<EOT> & _first, const double _rate)
-  { 
-    ops.push_back(&_first); 
-    rates.push_back(_rate);
-  }
-
-  /// Ctor from a generic operator
-  eoPropCombinedMonOp(eoGenericMonOp<EOT> & _first, const double _rate)
-  { 
-    eoGeneric2TrueMonOp<EOT> *trueFirst = 
-      new eoGeneric2TrueMonOp<EOT>(_first);
-    ops.push_back(trueFirst); 
+  {
+    ops.push_back(&_first);
     rates.push_back(_rate);
   }
 
   virtual string className() const { return "eoPropCombinedMonOp"; }
 
   virtual void add(eoMonOp<EOT> & _op, const double _rate, bool _verbose=false)
-  { 
-    ops.push_back(&_op); 
-    rates.push_back(_rate);
-    // compute the relative rates in percent - to warn the user!
-    if (_verbose)
-      printOn(cout);
-  }
-
-  virtual void add(eoGenericMonOp<EOT> & _op, const double _rate, bool _verbose=false)
-  { 
-    eoGeneric2TrueMonOp<EOT> *trueOp = new eoGeneric2TrueMonOp<EOT>(_op);
-    ops.push_back(trueOp); 
+  {
+    ops.push_back(&_op);
     rates.push_back(_rate);
     // compute the relative rates in percent - to warn the user!
     if (_verbose)
@@ -110,10 +88,10 @@ public:
       _os << ops[i]->className() << " with rate " << 100*rates[i]/total << " %\n";
   }
 
-  virtual void operator()(EOT & _indi)
+  virtual bool operator()(EOT & _indi)
   {
     unsigned what = rng.roulette_wheel(rates); // choose one op
-    (*ops[what])(_indi);		   // apply it
+    return (*ops[what])(_indi);		   // apply it
   }
 protected:
 std::vector<eoMonOp<EOT>*> ops;
@@ -124,7 +102,7 @@ std::vector<double> rates;
 //// combined BinOp
 //////////////////////////////////////////////////////
 
-/** COmbined Binary genetic operator: 
+/** COmbined Binary genetic operator:
  *  operator() has two operands, only the first one can be modified
  */
 template <class EOT>
@@ -133,16 +111,16 @@ class eoPropCombinedBinOp: public eoBinOp<EOT>
 public:
   /// Ctor
   eoPropCombinedBinOp(eoBinOp<EOT> & _first, const double _rate)
-  { 
-    ops.push_back(&_first); 
+  {
+    ops.push_back(&_first);
     rates.push_back(_rate);
   }
 
 virtual string className() const { return "eoPropCombinedBinOp"; }
 
 virtual void add(eoBinOp<EOT> & _op, const double _rate, bool _verbose=false)
-  { 
-    ops.push_back(&_op); 
+  {
+    ops.push_back(&_op);
     rates.push_back(_rate);
     // compute the relative rates in percent - to warn the user!
     if (_verbose)
@@ -160,7 +138,7 @@ virtual void add(eoBinOp<EOT> & _op, const double _rate, bool _verbose=false)
   virtual void operator()(EOT & _indi1, const EOT & _indi2)
   {
     unsigned what = rng.roulette_wheel(rates); // choose one op index
-    (*ops[what])(_indi1, _indi2);		   // apply it
+    return (*ops[what])(_indi1, _indi2);		   // apply it
   }
 private:
 std::vector<eoBinOp<EOT>*> ops;
@@ -172,13 +150,13 @@ std::vector<double> rates;
 //// combined QuadOp
 //////////////////////////////////////////////////////
 
-/** Quad genetic operator: subclasses eoOp, and defines basically the 
+/** Quad genetic operator: subclasses eoOp, and defines basically the
     operator() with two operands, both can be modified.
 */
-/** Combined quad genetic operator: 
+/** Combined quad genetic operator:
  *  operator() has two operands, both can be modified
 
- * generic operators are now allowed: there are imbedded into 
+ * generic operators are now allowed: there are imbedded into
  * the corresponding "true" operator
  */
 template <class EOT>
@@ -187,17 +165,8 @@ class eoPropCombinedQuadOp: public eoQuadOp<EOT>
 public:
   /// Ctor from a true operator
   eoPropCombinedQuadOp(eoQuadOp<EOT> & _first, const double _rate)
-  { 
-    ops.push_back(&_first); 
-    rates.push_back(_rate);
-  }
-
-  /// Ctor from a generic operator
-  eoPropCombinedQuadOp(eoGenericQuadOp<EOT> & _first, const double _rate)
-  { 
-    eoGeneric2TrueQuadOp<EOT> *trueFirst = 
-      new eoGeneric2TrueQuadOp<EOT>(_first);
-    ops.push_back(trueFirst); 
+  {
+    ops.push_back(&_first);
     rates.push_back(_rate);
   }
 
@@ -205,19 +174,8 @@ virtual string className() const { return "eoPropCombinedQuadOp"; }
 
   // addition of a true operator
 virtual void add(eoQuadOp<EOT> & _op, const double _rate, bool _verbose=false)
-  { 
-    ops.push_back(&_op); 
-    rates.push_back(_rate);
-    // compute the relative rates in percent - to warn the user!
-    if (_verbose)
-      printOn(cout);
-  }
-
-  // addition of a generic operator
-virtual void add(eoGenericQuadOp<EOT> & _op, const double _rate, bool _verbose=false)
-  { 
-    eoGeneric2TrueQuadOp<EOT> *trueOp = new eoGeneric2TrueQuadOp<EOT>(_op);
-    ops.push_back(trueOp); 
+  {
+    ops.push_back(&_op);
     rates.push_back(_rate);
     // compute the relative rates in percent - to warn the user!
     if (_verbose)
@@ -236,10 +194,10 @@ virtual void add(eoGenericQuadOp<EOT> & _op, const double _rate, bool _verbose=f
       _os << ops[i]->className() << " with rate " << 100*rates[i]/total << " %\n";
   }
 
-  virtual void operator()(EOT & _indi1, EOT & _indi2)
+  virtual bool operator()(EOT & _indi1, EOT & _indi2)
   {
     unsigned what = rng.roulette_wheel(rates); // choose one op index
-    (*ops[what])(_indi1, _indi2);		   // apply it
+    return (*ops[what])(_indi1, _indi2);		   // apply it
   }
 private:
 std::vector<eoQuadOp<EOT>*> ops;
@@ -247,6 +205,6 @@ std::vector<double> rates;
 };
 
 
-// for General Ops, it's another story - see eoGOpSelector
-#endif 
+// for General Ops, it's another story - 
+#endif
 

@@ -34,9 +34,9 @@ class eoFunctorBase;
 /**
 eoFunctorStore is a class that stores functors that are allocated on the
 heap. This class can be used in factories to store allocated memory for
-dynamically created functors. 
+dynamically created functors.
 */
-class eoFunctorStore 
+class eoFunctorStore
 {
     public :
 
@@ -45,13 +45,19 @@ class eoFunctorStore
         ~eoFunctorStore();
 
         /// Add an eoFunctorBase to the store
-        void add(eoFunctorBase* r) { vec.push_back(r); }
+        template <class Functor>
+        Functor& storeFunctor(Functor* r)
+        {
+          // If the compiler complains about the following line, check if you really are giving it a pointer to an eoFunctorBase derived object
+          vec.push_back(r);
+          return *r;
+        }
 
     private :
 
         /// no copying allowed
         eoFunctorStore(const eoFunctorStore&);
-        
+
         /// no copying allowed
         eoFunctorStore operator=(const eoFunctorStore&);
         std::vector<eoFunctorBase*> vec;

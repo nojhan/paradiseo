@@ -29,23 +29,23 @@
 #include <eoFunctor.h>
 #include <utils/eoRNG.h>
 /**
-\defgroup operators
+\defgroup Operators
 Genetic Operators are used for various purposes
 */
 
 /** @name Genetic operators
 
-What is a genetic algorithm without genetic operators? 
-There is a genetic operator hierarchy, with eoOp as father and 
-eoMonOp (monary or unary operator), eoBinOp and eoQuadOp (binary operators) 
+What is a genetic algorithm without genetic operators?
+There is a genetic operator hierarchy, with eoOp as father and
+eoMonOp (monary or unary operator), eoBinOp and eoQuadOp (binary operators)
 and eoGenOp (any number of inputs and outputs, see eoGenOp.h)
-as subclasses. 
-Nobody should subclass eoOp, you should subclass eoGenOp, eoBinOp, eoQuadOp 
-or eoMonOp, those are the ones actually used here. 
+as subclasses.
+Nobody should subclass eoOp, you should subclass eoGenOp, eoBinOp, eoQuadOp
+or eoMonOp, those are the ones actually used here.
 
-#eoOp#s are only printable objects, so if you want to build them 
-from a file, it has to be done in another class, namely factories. 
-Each hierarchy of #eoOp#s should have its own factory, which know 
+#eoOp#s are only printable objects, so if you want to build them
+from a file, it has to be done in another class, namely factories.
+Each hierarchy of #eoOp#s should have its own factory, which know
 how to build them from a description in a file.
 
 @author GeNeura Team, Marten Keijzer and Marc Schoenauer
@@ -55,10 +55,13 @@ how to build them from a description in a file.
 
 
 /** Abstract data types for EO operators.
- * Genetic operators act on chromosomes, changing them. The type to 
- * instantiate them should be an eoObject, but in any case, they are 
- * type-specific; each kind of evolvable object can have its own operators
- */
+  Genetic operators act on chromosomes, changing them.
+  The type to use them on is problem specific. If your genotype
+  is a vector<bool>, there are operators that work specifically
+  on vector<bool>, but you might also find that generic operators
+  working on vector<T> are what you need.
+
+*/
 template<class EOType>
 
 class eoOp
@@ -88,9 +91,13 @@ private:
   OpType opType;
 };
 
-/** eoMonOp is the monary operator: genetic operator that takes only one EO */
+/**
+eoMonOp is the monary operator: genetic operator that takes only one EO.
+When defining your own, make sure that you return a boolean value
+indicating that you have changed the content.
+*/
 template <class EOType>
-class eoMonOp: public eoOp<EOType>, public eoUF<EOType&, void>
+class eoMonOp: public eoOp<EOType>, public eoUF<EOType&, bool>
 {
 public:
   /// Ctor
@@ -100,11 +107,13 @@ public:
 };
 
 
-/** Binary genetic operator: subclasses eoOp, and defines basically the 
+/** Binary genetic operator: subclasses eoOp, and defines basically the
  *  operator() with two operands, only the first one can be modified
+When defining your own, make sure that you return a boolean value
+indicating that you have changed the content.
  */
 template<class EOType>
-class eoBinOp: public eoOp<EOType>, public eoBF<EOType&, const EOType&, void>
+class eoBinOp: public eoOp<EOType>, public eoBF<EOType&, const EOType&, bool>
 {
 public:
   /// Ctor
@@ -113,11 +122,13 @@ public:
   virtual string className() const {return "eoBinOp";};
 };
 
-/** Quad genetic operator: subclasses eoOp, and defines basically the 
+/** Quad genetic operator: subclasses eoOp, and defines basically the
     operator() with two operands, both can be modified.
+When defining your own, make sure that you return a boolean value
+indicating that you have changed the content.
 */
 template<class EOType>
-class eoQuadOp: public eoOp<EOType>, public eoBF<EOType&, EOType&, void> {
+class eoQuadOp: public eoOp<EOType>, public eoBF<EOType&, EOType&, bool> {
 public:
   /// Ctor
   eoQuadOp()
@@ -138,15 +149,15 @@ public:
 
   /** Operator() simply calls embedded quadOp operator() with dummy second arg
    */
-  void operator()(EOT & _eo1, const EOT & _eo2)
+  bool operator()(EOT & _eo1, const EOT & _eo2)
   {
     EOT eoTmp = _eo2;		   // a copy that can be modified
-    // if the embedded eoQuadOp is not symmetrical, 
+    // if the embedded eoQuadOp is not symmetrical,
     // the result might be biased - hence the flip ...
     if (eo::rng.flip(0.5))
-      quadOp(_eo1, eoTmp);	   // both are modified - that's all
+      return quadOp(_eo1, eoTmp);	   // both are modified - that's all
     else
-      quadOp(eoTmp, _eo1);	   // both are modified - that's all
+      return quadOp(eoTmp, _eo1);	   // both are modified - that's all
   }
 
 private:

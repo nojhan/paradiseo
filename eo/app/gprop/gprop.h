@@ -109,11 +109,11 @@ mlp::set trn_set, val_set, tst_set;
 class eoChromMutation: public eoMonOp<Chrom>
 {
 public:
-  void operator()(Chrom& chrom)
+  bool operator()(Chrom& chrom)
   {
     mse::net tmp(chrom);
     tmp.train(trn_set, 10, 0, 0.001);
-    chrom.invalidate();
+    return true;
   }
 };
 
@@ -124,7 +124,7 @@ public:
 class eoChromXover: public eoQuadOp<Chrom>
 {
 public:
-  void operator()(Chrom& chrom1, Chrom& chrom2)
+  bool operator()(Chrom& chrom1, Chrom& chrom2)
   {
     chrom1.normalize();
     chrom2.desaturate();
@@ -132,8 +132,8 @@ public:
     mse::net tmp1(chrom1), tmp2(chrom2);
     tmp1.train(trn_set, 100, 0, 0.001);
     tmp2.train(trn_set, 100, 0, 0.001);
-    chrom1.invalidate();
-    chrom2.invalidate();
+
+    return true;
   }
 };
 

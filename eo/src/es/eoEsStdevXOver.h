@@ -33,10 +33,10 @@
 /**
 \ingroup EvolutionStrategies
 
-Crossover for Evolutionary strategie style representation, 
-    supporting co-evolving standard deviations. 
+Crossover for Evolutionary strategie style representation,
+    supporting co-evolving standard deviations.
 
-Simply calls a crossover for the object variables, 
+Simply calls a crossover for the object variables,
     and a crossover for teh StdDev
 */
 
@@ -44,26 +44,30 @@ template <class EOT>
 class eoEsStdevXOver : public eoQuadOp<EOT>
 {
 public :
-  eoEsStdevXOver(eoGenericQuadOp<vector<double> > & _objectXOver, 
-		 eoGenericQuadOp<vector<double> > & _stdDevXOver) :
+  eoEsStdevXOver(eoQuadOp<vector<double> > & _objectXOver,
+		 eoQuadOp<vector<double> > & _stdDevXOver) :
     objectXOver(_objectXOver), stdDevXOver(_stdDevXOver) {}
 
   std::string className(void) const { return "eoEsStdevXOver"; }
 
-  void operator()(EOT & _eo1, EOT & _eo2)
+  bool operator()(EOT & _eo1, EOT & _eo2)
   {
     bool objectChanged = objectXOver(_eo1, _eo2); // as vector<double>
     bool stdDevChanged = stdDevXOver(_eo1.stdevs, _eo2.stdevs);
+
+    /// Marc, I didn't change it, but if only the stdev has changed,
+    /// doesn't that mean that the fitness is stil valid. Maarten
     if ( objectChanged || stdDevChanged )
       {
-	_eo1.invalidate();
-	_eo2.invalidate();
+        return true;
       }
+
+    return false;
   }
 
 private:
-  eoGenericQuadOp<vector<double> > & objectXOver;
-  eoGenericQuadOp<vector<double> > & stdDevXOver;
+  eoQuadOp<vector<double> > & objectXOver;
+  eoQuadOp<vector<double> > & stdDevXOver;
 };
 
 /* A question: it seems it really makes no difference to have 

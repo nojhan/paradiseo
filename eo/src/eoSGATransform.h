@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoSGA.h
 // (c) Marc.Schoenauer 2000 - Maarten Keijzer 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -27,7 +27,7 @@
 #ifndef _eoSGATransform_h
 #define _eoSGATransform_h
 
-#include <eoOp.h>
+#include <eoInvalidateOps.h>
 #include <eoPop.h>
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -148,16 +148,16 @@ template<class EOT> class eoDynSGATransform : public eoTransform<EOT>
   };
   // accessors - mainly for EASEA
   double & PCrossHandle() { return crossoverProba;}    
-  double & PMutHandle() { return mutationProba;}    
+  double & PMutHandle() { return mutationProba;}
 
 private:
   // difference with eoSGATransform: the operator probabilities 
   // they can be passed by reference or by value.
   // hence we need here to use a reference, and to eventually store a value
-  eoQuadOp<EOT>& cross;
+  eoInvalidateQuadOp<EOT> cross;
   double crossoverProbaHolder;	// the value, used only if ctor gets a value
   double& crossoverProba;       // the reference, to be used in operator()
-  eoMonOp<EOT>& mutate;
+  eoInvalidateMonOp<EOT> mutate;
   double mutationProbaHolder;	// the value, used only if ctor gets a value
   double& mutationProba;        // the reference, to be used in operator()
 };

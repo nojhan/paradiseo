@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoVariableLengthMutation.h
 // (c) GeNeura Team, 2000 - EEAAX 1999 - Maarten Keijzer 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -29,10 +29,10 @@
 
 #include <eoFunctor.h>
 #include <eoVariableLength.h>
-#include <eoGenericMonOp.h>
+#include <eoOp.h>
 
 /**
-  Base classes for generic mutations on variable length chromosomes. 
+  Base classes for generic mutations on variable length chromosomes.
 
 THey all require a generic mutation for their simple genes
 */
@@ -40,16 +40,16 @@ THey all require a generic mutation for their simple genes
 /** THis ones applies its atomic mutation to all the genes
  */
 template <class EOT>
-class eoVlAllMutation : public eoGenericMonOp<EOT>
+class eoVlAllMutation : public eoMonOp<EOT>
 {
 public :
-	
+
   typedef typename EOT::AtomType AtomType;
-  
+
   // default ctor: requires an Atom mutation
-  eoVlAllMutation(eoGenericMonOp<AtomType> & _atomMutation) : 
+  eoVlAllMutation(eoMonOp<AtomType> & _atomMutation) :
     atomMutation(_atomMutation) {}
-  
+
   bool operator()(EOT & _eo)
   {
     bool modified=false;
@@ -61,23 +61,23 @@ public :
     return modified;
   }
 private:
-  eoGenericMonOp<AtomType> & atomMutation;
+  eoMonOp<AtomType> & atomMutation;
 };
 
-/** This ones applies its atomic mutation to a fixed 
+/** This ones applies its atomic mutation to a fixed
     number of genes (1 by default)
  */
 template <class EOT>
-class eoVlKMutation : public eoGenericMonOp<EOT>
+class eoVlKMutation : public eoMonOp<EOT>
 {
 public :
-	
+
   typedef typename EOT::AtomType AtomType;
-  
+
   // default ctor: requires an Atom mutation
-  eoVlKMutation(eoGenericMonOp<AtomType> & _atomMutation, unsigned _nb=1) : 
+  eoVlKMutation(eoMonOp<AtomType> & _atomMutation, unsigned _nb=1) :
     nb(_nb), atomMutation(_atomMutation) {}
-  
+
   bool operator()(EOT & _eo)
   {
     bool modified=false;
@@ -91,7 +91,7 @@ public :
   }
 private:
   unsigned nb;
-  eoGenericMonOp<AtomType> & atomMutation;
+  eoMonOp<AtomType> & atomMutation;
 };
 
 /** Addition of a gene
@@ -99,20 +99,20 @@ private:
     order-dependent and order-independent
  */
 template <class EOT>
-class eoVlAddMutation : public eoGenericMonOp<EOT>
+class eoVlAddMutation : public eoMonOp<EOT>
 {
 public :
-	
+
   typedef typename EOT::AtomType AtomType;
-  
-  /** default ctor 
+
+  /** default ctor
 
    * @param nMax      max number of atoms
    * @param _atomInit an Atom initializer
    */
-  eoVlAddMutation(unsigned _nMax, eoInit<AtomType> & _atomInit) : 
+  eoVlAddMutation(unsigned _nMax, eoInit<AtomType> & _atomInit) :
     nMax(_nMax), atomInit(_atomInit) {}
-  
+
   bool operator()(EOT & _eo)
   {
     if (_eo.size() >= nMax)
@@ -150,27 +150,27 @@ public:
     can of course be applied to both order-dependent and order-independent
  */
 template <class EOT>
-class eoVlDelMutation : public eoGenericMonOp<EOT>
+class eoVlDelMutation : public eoMonOp<EOT>
 {
 public :
-	
+
   typedef typename EOT::AtomType AtomType;
-  
+
   /** ctor with an external gene chooser
 
    * @param nMin      min number of atoms t oleave in the individual
    * @param _geneChooser an eoGeneCHooser to choose which one to delete
    */
-  eoVlDelMutation(unsigned _nMin, eoGeneDelChooser<EOT> & _chooser) : 
+  eoVlDelMutation(unsigned _nMin, eoGeneDelChooser<EOT> & _chooser) :
     nMin(_nMin), uChooser(), chooser(_chooser) {}
-  
+
   /** ctor with unifirm gebe chooser
 
    * @param nMin      min number of atoms t oleave in the individual
    */
-  eoVlDelMutation(unsigned _nMin) : 
+  eoVlDelMutation(unsigned _nMin) :
     nMin(_nMin), uChooser(), chooser(uChooser) {}
-  
+
   bool operator()(EOT & _eo)
   {
     if (_eo.size() <= nMin)
