@@ -6,7 +6,7 @@
 
 INCLUDES = -I$(top_builddir)/src
 
-lib_LIBRARIES = libeoother.a
+#lib_LIBRARIES = libeoother.a
 #libeoother_a_SOURCES = 
 
 libeootherincdir = $(includedir)/eo/other
