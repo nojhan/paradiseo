@@ -4,7 +4,7 @@
 ##
 ###############################################################################
 
-INCLUDES = -I$(top_builddir)/src
+INCLUDES = -I$(top_builddir)/src -I$(top_srcdir)/src
 lib_LIBRARIES = libes.a
 libes_a_SOURCES = make_algo_scalar_es.cpp \
     make_algo_scalar_real.cpp \

@@ -4,6 +4,8 @@ AC_INIT(src/eo)
 dnl Change the version number here
 AM_INIT_AUTOMAKE(eo, 0.9.3)
 
+AM_CONFIG_HEADER([config.h])
+
 dnl Checks for maintainer mode
 AM_MAINTAINER_MODE
 
@@ -15,13 +17,9 @@ AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 
 dnl Checks for libraries.
-dnl Replace `main' with a function in -leo:
 AC_CHECK_LIB(eo, main)
-dnl Replace `main' with a function in -leoutils:
 AC_CHECK_LIB(eoutils, main)
-dnl Replace `main' with a function in -lm:
-AC_CHECK_LIB(m, main)
-
+AC_CHECK_LIB(m, cos)
 
 dnl Checks for header files.
 AC_HEADER_STDC
@@ -36,5 +34,24 @@ AC_TYPE_SIZE_T
 dnl Checks for library functions.
 AC_CHECK_FUNCS(select)
 
-AC_OUTPUT(doc/Makefile src/Makefile src/utils/Makefile src/other/Makefile win/Makefile src/gp/Makefile src/es/Makefile src/ga/Makefile test/Makefile contrib/Makefile Makefile app/Makefile app/mastermind/Makefile app/gpsymreg/Makefile src/do/Makefile)
-#app/gprop/Makefile is in the sinbin 
+AC_OUTPUT(Makefile \
+          src/Makefile \
+          src/do/Makefile \
+          src/es/Makefile \
+          src/gp/Makefile \
+          src/ga/Makefile \
+          src/other/Makefile \
+          src/utils/Makefile \
+          contrib/Makefile \
+          doc/Makefile \
+          win/Makefile \
+          test/Makefile \
+          tutorial/Makefile \
+          tutorial/Lesson1/Makefile \
+          tutorial/Lesson2/Makefile \
+          tutorial/Lesson3/Makefile \
+          tutorial/Lesson4/Makefile \
+          tutorial/Lesson5/Makefile \
+          app/Makefile \
+          app/mastermind/Makefile \
+          app/gpsymreg/Makefile)

@@ -29,32 +29,26 @@ if test "$DIE" -eq 1; then
     exit 1
 fi
 
-if test -z "$*"; then
-    echo "I am going to run ./configure with no arguments - if you wish"
-    echo "to pass any to it, please specify them on the $0 command line."
-fi
+set aclocalinclude="$ACLOCAL_FLAGS"
+aclocal $aclocalinclude
+unset $aclocalinclude
+autoheader
+automake
+autoconf
 
-for dir in .
-do
-    echo processing $dir
-    (
-	cd $dir; \
-	aclocalinclude="$ACLOCAL_FLAGS"; \
-	aclocal $aclocalinclude; \
-	autoheader; \
-	automake; \
-	autoconf
-    )
-done
-
-./configure "$@"
+# if test -z "$*"; then
+#     echo "I am going to run ./configure with no arguments - if you wish"
+#     echo "to pass any to it, please specify them on the $0 command line."
+# fi
+#
+# ./configure "$@"
 
 # we want doc to be recompiled - and it keeps saying it's up to date!!!
 touch doc/eo.cfg
 
 echo
 echo "Now type 'make' to compile $PROG."
-echo "And if you have Doxygen installed, type 'make doc' to generate $PROG documentation."
+echo "If you have Doxygen installed, type 'make doc' to generate $PROG documentation."
 echo
 #echo "WARNING: Compiling all test programs can take some time."
 #echo "But you don't have to: you can simply type"

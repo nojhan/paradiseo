@@ -27,6 +27,8 @@
 #ifndef eoParam_h
 #define eoParam_h
 
+#include <config.h>
+
 //-----------------------------------------------------------------------------
 #include <math.h>		   // for floor
 #include <string>

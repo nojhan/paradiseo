@@ -28,8 +28,12 @@
 #ifndef _eoGnuplot1DSnapshot_H
 #define _eoGnuplot1DSnapshot_H
 
+#include <config.h>
+
 #include <string>
-// #include <sstream>
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#endif
 
 #include <utils/eoFileSnapshot.h>
 #include <utils/eoGnuplot.h>

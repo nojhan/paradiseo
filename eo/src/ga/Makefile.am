@@ -4,7 +4,7 @@
 ##
 ###############################################################################
 
-INCLUDES = -I$(top_builddir)/src
+INCLUDES = -I$(top_builddir)/src  -I$(top_srcdir)/src
 lib_LIBRARIES = libga.a
 libga_a_SOURCES = make_algo_scalar_ga.cpp \
     make_checkpoint_ga.cpp \

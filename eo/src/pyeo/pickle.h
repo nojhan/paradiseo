@@ -21,6 +21,8 @@
 #ifndef PICKLE_H
 #define PICKLE_h
 
+#include <config.h>
+
 #include <boost/python.hpp>
 #ifdef HAVE_SSTREAM
 #include <sstream>

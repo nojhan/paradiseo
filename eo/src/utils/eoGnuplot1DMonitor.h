@@ -28,6 +28,8 @@
 #ifndef _eoGnuplot1DMonitor_H
 #define _eoGnuplot1DMonitor_H
 
+#include <config.h>
+
 #include <string>
 
 #include <utils/eoMonitor.h>

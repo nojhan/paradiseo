@@ -26,6 +26,8 @@
 #ifndef _eoVariableLengthCrossover_h
 #define _eoVariableLengthCrossover_h
 
+#include <config.h>
+
 #include <eoFunctor.h>
 #include <eoOp.h>
 

@@ -35,6 +35,8 @@ that can be used to dump to the screen
 #ifndef _eoPopStat_h
 #define _eoPopStat_h
 
+#include <config.h>
+
 #include <utils/eoStat.h>
 
 

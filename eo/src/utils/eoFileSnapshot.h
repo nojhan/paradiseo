@@ -27,6 +27,8 @@
 #ifndef _eoFileSnapshot_h
 #define _eoFileSnapshot_h
 
+#include <config.h>
+
 #include <string>
 #include <fstream>
 #include <utils/eoParam.h>

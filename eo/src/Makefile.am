@@ -4,12 +4,22 @@
 ##
 ###############################################################################
 
+INCLUDES = -I$(top_srcdir)/src
+
 SUBDIRS = es ga gp utils other do
+
 CPPFLAGS = -O2
 
 lib_LIBRARIES = libeo.a
-libeo_a_SOURCES = eoFunctorStore.cpp eoPersistent.cpp eoPrintable.cpp eoCtrlCContinue.cpp eoParetoFitness.cpp eoScalarFitnessAssembled.cpp  
+
+libeo_a_SOURCES = eoFunctorStore.cpp \
+		eoPersistent.cpp \
+		eoPrintable.cpp \
+		eoCtrlCContinue.cpp \
+		eoParetoFitness.cpp \
+		eoScalarFitnessAssembled.cpp  
 
 libeoincdir = $(includedir)/eo
-libeoinc_HEADERS = *.h eo do/*.h 
+
+libeoinc_HEADERS = $(srcdir)/*.h $(srcdir)/eo $(srcdir)/do/*.h 
 
