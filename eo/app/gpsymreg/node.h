@@ -160,12 +160,6 @@ class Node
 				
 			}
 			
-			// if the result is infinite (positive or negative) or not_a_number (nan) then result becomes 0
-			// however some versions of gcc (e.g. 2.95.2 on solaris) don't have the finite(x) defined
-			#ifdef finite
-			if (!finite(result))
-				result=0;
-			#endif	
 		}
 		
 		template<class Children>

@@ -77,9 +77,13 @@ double _multiplies(double arg1, double arg2)
 	return arg1 * arg2;
 }
 
+// the function for a protected divide looks a little bit different
 double _divides(double arg1, double arg2)
 {
-	return arg1 / arg2;
+	if (arg2 ==0)
+		return 0;
+	else	
+		return arg1 / arg2;
 }
 
 double _negate(double arg1)
@@ -103,12 +107,8 @@ void init(vector<TreeNode> &initSequence)
 		Operation OpPLUS ( _plus, string("+"));
 		Operation OpMINUS( _minus,string("-"));
 		Operation OpMULTIPLIES(_multiplies,string("*"));
-		// We can use the normal divide function because there is a check for finite numbers in the node class
-		// so PDIV (protected divided) is enforced there so: (x/0 -> nan -> 0)
+		// We can use a protected divide function.
 		Operation OpDIVIDE( _divides, string("/") );
-		// we can also use the standard 'pow' function from cmath or math because of the check for nan is
-		// in the node class so: (-3^3.1) -> nan -> 0)
-		Operation OpPOW( pow, string("^") );
 		
 		
 		// Now the functions as binary functions
@@ -116,23 +116,15 @@ void init(vector<TreeNode> &initSequence)
 		Operation MINUS( string("minus"), _minus);
 		Operation MULTIPLIES( string("multiply"), _multiplies);
 		Operation DIVIDE( string("divide"), _divides);
-		Operation POW(string("pow"), pow);
 		
 		
 		// and some unary  functions
 		Operation NEGATE( _negate,string("-"));
 		Operation SIN ( sin, string("sin"));
 		Operation COS ( cos, string("cos"));
-		// all functions are "protected" inside the Node class so can also use tan(x)
-		// resulting values of -inf, inf or NaN (not-a-number) are converted to 0
-		Operation TAN ( tan, string("tan"));
-		Operation EXP ( exp, string("e^"));
-		Operation LOG ( log, string("ln"));
-		
 			
 		// Now we are ready to add the possible nodes to our initSequence (which is used by the eoDepthInitializer)
-			
-		// always add the leaves (nodes with arity 0) first (or the program will crash)
+		
 		// so lets start with our variable
 		initSequence.push_back(varX);
 			
@@ -152,16 +144,12 @@ void init(vector<TreeNode> &initSequence)
 		initSequence.push_back( NEGATE );
 		initSequence.push_back( SIN );
 		initSequence.push_back( COS );
-		initSequence.push_back( TAN );
-		initSequence.push_back( EXP );
-		initSequence.push_back( LOG );
 		
 		// and the binary functions
 		initSequence.push_back( PLUS);
 		initSequence.push_back( MINUS );
 		initSequence.push_back( MULTIPLIES );
 		initSequence.push_back( DIVIDE );
-		initSequence.push_back( POW );
 		
 		// and the binary operators
 		initSequence.push_back( OpPLUS);
@@ -169,8 +157,6 @@ void init(vector<TreeNode> &initSequence)
 		
 		initSequence.push_back( OpMULTIPLIES );
 		initSequence.push_back( OpDIVIDE );
-		
-		initSequence.push_back( OpPOW );
 		
 			
 };
@@ -202,11 +188,8 @@ class RegFitness: public eoEvalFunc< eoParseTree<FType, TreeNode> >
 					
 					fit += pow(target - output, 2);
 				}
-				// some versions of gcc (e.g. 2.95.2 on solaris) don't have isinf(x) defined
-				if (isinf(fit) == 0)
-					fitness[NORMAL] = fit;
-				else
-					fitness[NORMAL] = MAXFLOAT;	
+				
+				fitness[NORMAL] = fit;
 				
 				fitness[SMALLESTSIZE] =  _eo.size() / (1.0*parameter.MaxSize);
 				_eo.fitness(fitness);
