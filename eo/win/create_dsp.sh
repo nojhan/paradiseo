@@ -17,3 +17,19 @@ endif
 
 sed -f toto.sed test_dsp.tmpl > $2.dsp
 /bin/rm toto.sed
+
+echo "Adding $2.dsp in the main eo.dsw project file"
+
+echo "" >> eo.dsw
+echo Project: \"$2\"=.\\\\$2.dsp - Package Owner=\<4\> >> eo.dsw
+echo "" >> eo.dsw
+echo Package=\<5\> >> eo.dsw
+echo '{{{' >> eo.dsw
+echo '}}}' >> eo.dsw
+echo "" >> eo.dsw
+echo Package=\<4\> >> eo.dsw
+echo '{{{' >> eo.dsw
+echo '}}}' >> eo.dsw
+echo "" >> eo.dsw
+echo '###############################################################################' >> eo.dsw
+
