@@ -245,7 +245,7 @@ void eoParser::printHelp(ostream& os)
     // print the usage when calling the program from the command line
     os << "Usage: "<< programName<<" [Options]\n";
     // only short usage!
-    os << "Options of the form \"-f[Value]\" or \"--Name[=value]\"" << endl; 
+    os << "Options of the form \"-f[=Value]\" or \"--Name[=value]\"" << endl; 
 
     os << "Where:"<<endl;
 
