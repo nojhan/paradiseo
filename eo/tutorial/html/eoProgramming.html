@@ -6,12 +6,12 @@
    <title>EO Programming guide</title>
 </head>
 <body text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000" background="beige009.jpg">
-<b><font color="#CC0000">General: </font></b><a href="http://www.eeaax.polytechnique.fr/EO/eo/tutorial/html/eoTutorial.html">Tutorial
+<b><font color="#CC0000">General: </font></b><a href="eoTutorial.html">Tutorial
 main page </a>-
-<a href="http://www.eeaax.polytechnique.fr/EO/eo/tutorial/html/eoTopDown.html">Algorithm-Based</a>
-- <a href="http://www.eeaax.polytechnique.fr/EO/eo/tutorial/html/eoBottomUp.html">Component-Based</a>
-- <a href="http://www.eeaax.polytechnique.fr/EO/eo/tutorial/html/eoProgramming.html">Programming
-hints</a> - <font face="Arial,Helvetica"><a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/html/index.html">EO
+<a href="eoTopDown.html">Algorithm-Based</a>
+- <a href="eoBottomUp.html">Component-Based</a>
+- <a href="eoProgramming.html">Programming
+hints</a> - <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
 documentation</a></font>
 <br>
 <hr WIDTH="100%"><b><font color="#CC0000">Local: </font></b><a href="#templates">Templates</a>
@@ -34,10 +34,10 @@ naming variables in algebra: you can write a lot of equations involving
 some variable $x$ without knowing even it if will be an integer or a float
 (or a matrix or ...). The main basic type that is templatized in EO is
 the fitness: an EO object is some object which has a fitness of some type
-F that can be anything. The definition for that is (see <font face="Arial,Helvetica"><a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/html/EO.h-source.html">EO.h</a></font>)
+F that can be anything. The definition for that is (see <font face="Arial,Helvetica"><a href="../../doc/html/EO.h-source.html">EO.h</a></font>)
 <p><b><tt><font color="#999900">template&lt;F> class EO</font></tt></b>
 <p>The idea is that, later in your code, you can define a class as follows
-(see for instance&nbsp; <a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/eoBin.h-source.html">eoBin.h</a>
+(see for instance&nbsp; <a href="../../doc/eoBin.h-source.html">eoBin.h</a>
 <p><b><tt><font color="#999900">template&lt;F> class eoBin : public EO&lt;F></font></tt></b>
 <br><b><tt><font color="#999900">{ ... code for eoBin&nbsp; };</font></tt></b>
 <p>and then use it in your application as
@@ -71,15 +71,15 @@ a hierarchy of functions with defaults behaviors and specialized sub-functions</
 <li>
 ...</li>
 </ul>
-Functors are so intimately linked to EO that a base class (<b><font face="Arial,Helvetica"><font size=+1><a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/html/class_eofunctorbase.html">eoFunctorBase</a></font></font></b>)
+Functors are so intimately linked to EO that a base class (<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eofunctorbase.html">eoFunctorBase</a></font></font></b>)
 has been designed to hold all functors. This base class is itself divided
 into three derived class. These classes tell you immediately what kind
 of arguments the <b><tt><font color="#993300">operator()</font></tt></b>
 method requires and what kind of result it produces. See <a href="#notations">EO
-conventions</a>, and the <b><font face="Arial,Helvetica"><font size=+1><a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/html/class_eofunctorbase.html">inheritance
+conventions</a>, and the <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eofunctorbase.html">inheritance
 diagram of class eoFunctorBase</a>.</font></font></b>
 <br>For a more complete introduction to functors, with detailed discussion,
-go to the <a href="http://www.sgi.com/Technology/STL/functors.html">STL
+go to the <a href="http://www.sgi.com/tech/stl/functors.html">STL
 documentation</a> - as STL also heavily relies on functors, and the eoFunctorBase
 paradigm is borrowed from there.
 <p><b><font color="#FF0000">Functors:</font><font color="#000099"> Example:</font></b>
@@ -118,7 +118,7 @@ method.</font>
 is for arity-zero functors, i.e.&nbsp; their </font><b><tt><font color="#993300">operator()</font></tt></b><font color="#000000">
 method does not require any argument. It has a single template parameter,
 the return type of the </font><b><tt><font color="#993300">operator()</font></tt></b><font color="#000000">
-method. For instance,&nbsp;</font> <b><font face="Arial,Helvetica"><font size=+1><a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/html/class_eomonitor.html">eoMonitor</a></font></font></b>&nbsp;<font color="#000000">
+method. For instance,&nbsp;</font> <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomonitor.html">eoMonitor</a></font></font></b>&nbsp;<font color="#000000">
 are </font><b><tt><font color="#FF6600">eoF</font></tt></b><font color="#000000">'s
 that return an </font><b><tt><font color="#993300">eoMonitor &amp;</font></tt></b><font color="#000000">.</font></li>
 
@@ -127,7 +127,7 @@ that return an </font><b><tt><font color="#993300">eoMonitor &amp;</font></tt></
 is for unary functors, i.e.&nbsp; their </font><b><tt><font color="#993300">operator()</font></tt></b><font color="#000000">
 method requires one argument. It has two template parameters, the type
 of the argument and the return type of the </font><b><tt><font color="#993300">operator()</font></tt></b><font color="#000000">
-method. For instance,&nbsp;</font> <b><font face="Arial,Helvetica"><font size=+1><a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/html/class_eomonop.html">eoMonOp</a></font></font></b>'s<font color="#000000">
+method. For instance,&nbsp;</font> <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomonop.html">eoMonOp</a></font></font></b>'s<font color="#000000">
 are </font><b><tt><font color="#FF6600">eoUF</font></tt></b><font color="#000000">'s
 that take as argument an </font><b><tt><font color="#993300">EOT &amp;</font></tt></b><font color="#000000">
 and return </font><b><tt><font color="#993300">void</font></tt></b><font color="#000000">
@@ -138,14 +138,14 @@ and return </font><b><tt><font color="#993300">void</font></tt></b><font color="
 is for binary functors, i.e.&nbsp; their </font><b><tt><font color="#993300">operator()</font></tt></b><font color="#000000">
 method requires two arguments. It has three template parameters, the types
 of the arguments and the return type of the </font><b><tt><font color="#993300">operator()</font></tt></b><font color="#000000">
-method. For instance,&nbsp;</font> <b><font face="Arial,Helvetica"><font size=+1><a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/html/class_eobinop.html">eoBinOp</a></font></font></b>'s<font color="#000000">
+method. For instance,&nbsp;</font> <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eobinop.html">eoBinOp</a></font></font></b>'s<font color="#000000">
 are </font><b><tt><font color="#FF6600">eoBF</font></tt></b><font color="#000000">'s
 that take as arguments a </font><b><tt><font color="#993300">const EOT
 &amp;</font></tt></b><font color="#000000"> and an </font><b><tt><font color="#993300">EOT
 &amp;</font></tt></b><font color="#000000">, and return </font><b><tt><font color="#993300">void</font></tt></b><font color="#000000">
 .</font></li>
 </ul>
-<font color="#000000">Now go back to the </font><b><font face="Arial,Helvetica"><font size=+1><a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/html/class_eofunctorbase.html">inheritance
+<font color="#000000">Now go back to the </font><b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eofunctorbase.html">inheritance
 diagram of class eoFunctorBase</a></font></font></b><font color="#000000">,
 and guess the interface for all functors!</font>
 <p><b><font color="#FF0000">Note</font></b><font color="#000000">: for
@@ -153,7 +153,7 @@ obvious simplicity reasons, we very often omit the reference to the </font><b><t
 e.g. when we say above:</font>
 <ul>
 <li>
-<b><font face="Arial,Helvetica"><font size=+1><a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/html/class_eomonop.html">eoMonOp</a></font></font></b>'s<font color="#000000">
+<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomonop.html">eoMonOp</a></font></font></b>'s<font color="#000000">
 are </font><b><tt><font color="#FF6600">eoUF</font></tt></b><font color="#000000">'s
 that take as argument an </font><b><tt><font color="#993300">EOT &amp;</font></tt></b><font color="#000000">
 and return </font><b><tt><font color="#993300">void</font></tt></b></li>
@@ -161,7 +161,7 @@ and return </font><b><tt><font color="#993300">void</font></tt></b></li>
 <font color="#000000">it actually means</font>
 <ul>
 <li>
-<b><font face="Arial,Helvetica"><font size=+1><a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/html/class_eomonop.html">eoMonOp</a></font></font></b>'s<font color="#000000">
+<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomonop.html">eoMonOp</a></font></font></b>'s<font color="#000000">
 are </font><b><tt><font color="#FF6600">eoUF</font></tt></b><font color="#000000">'s,
 their </font><b><tt><font color="#993300">operator()</font></tt></b><font color="#000000">
 method takes as argument an </font><b><tt><font color="#993300">EOT &amp;</font></tt></b><font color="#000000">
@@ -178,9 +178,9 @@ Template Library</font></b>.
 of STL</font> to use EO (like with "hello", "please" and "goodbye" you
 can survive in a foreign country :-) and even to contribute to new EO features.
 Moreover, while browsing through EO code, you will gradually learn how
-to use STL, especially if you check at the <a href="http://www.sgi.com/Technology/STL/">SGI
+to use STL, especially if you check at the <a href="http://www.sgi.com/tech/stl/">SGI
 STL Web site</a> from time to time, where you can not only download STL,
-but also browse in the Programmer's guide&nbsp; for isntance from the <a href="http://www.sgi.com/Technology/STL/table_of_contents.html">Table
+but also browse in the Programmer's guide&nbsp; for isntance from the <a href="http://www.sgi.com/tech/stl/table_of_contents.html">Table
 of Content</a>.
 <p>Anyway, you will only find here, in EO tutorial, the basics of STL that
 you will need to understand most of EO code - and to guess what the parts
@@ -309,7 +309,7 @@ numbers who look random (w.r.t. some statistical criteria).
 to ensure reproducibility of the results across different platforms, EO
 has its own RNG, the ``<font color="#FF6600">Mersenne Twister</font>''
 random number generator MT19937 (thanks to <font color="#FF0000">Takuji
-Nishimura</font>, see <font face="Arial,Helvetica"><font size=+1><a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/html/eorng_h-source.html">eoRNG.h</a></font></font>
+Nishimura</font>, see <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/eorng_h-source.html">eoRNG.h</a></font></font>
 comments).
 <p>Though you can define and use as many RNGs as you wish in EO, the library
 also provides you with a global RNG termed <b><tt><font color="#993300">eo::rng</font></tt></b>.
@@ -324,22 +324,22 @@ purposes</li>
 random numbers are computed starting from a seed - starting from the same
 seed will lead to the same series of pseudo-random numbers, and hence to
 the same results of the algorithms. All examples in this tutorial will
-use the RNG seeding procedure, see e.g. in <a href="http://www.eeaax.polytechnique.fr/EO/eo/tutorial/html/FirstBitGA.html#random">Lesson1</a>.</li>
+use the RNG seeding procedure, see e.g. in <a href="FirstBitGA.html#random">Lesson1</a>.</li>
 
 <li>
 to simulate "true" random runs, you can just seed the RNG with a machine-clock
-related number, e.g. calling time(0), as done for instance in <a href="http://www.eeaax.polytechnique.fr/EO/eo/tutorial/html/SecondBitEA.html#random">Lesson3</a>
+related number, e.g. calling time(0), as done for instance in <a href="SecondBitEA.html#random">Lesson3</a>
 (and after).</li>
 </ul>
 As RNGs produce, by definition, integers that are uniformly distributed
 between 0 and some maximal number, EO provides you with random numbers
 following <b><font color="#FF6600">different probability distribution</font></b>
-(e.g. floating point following <font face="Arial,Helvetica"><font size=+1><a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/html/class_eorng.html#a8">normal
-distribution</a></font></font>). See the <a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/html/class_eorng.html">complete
+(e.g. floating point following <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eorng.html#a8">normal
+distribution</a></font></font>). See the <a href="../../doc/html/class_eorng.html">complete
 list of RNG primitives</a>.
-<p>EO also provides <a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/html/rnd_generators_h-source.html">random_generators</a>
+<p>EO also provides <a href="../../doc/html/rnd_generators_h-source.html">random_generators</a>
 that can be used in STL call to generate series of random numbers, as in
-<a href="http://www.eeaax.polytechnique.fr/EO/eo/tutorial/html/eoInit.html">eoPop
+<a href="eoInit.html">eoPop
 initializers</a>.
 <p><b><font color="#FF0000">Note</font></b>: the <b><tt><font color="#993300">eo::</font></tt></b>
 prefix indicates that it is in a separate C++ namespace, to avoid collision
@@ -388,8 +388,8 @@ above).</li>
 The name of the EO template should be EOT. This allows quick understanding
 of the inheritance diagrams for <a href="#functors">functors</a>. and immediate
 perception of the arguments and return types of the functors oeprator()
-method (as in <b><font face="Arial,Helvetica"><font size=+1><a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/html/class_eomonop.html">eoMonOp</a></font></font></b>
-or&nbsp; <b><font face="Arial,Helvetica"><font size=+1><a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/html/class_eobinop.html">eoBinOp</a></font></font></b>).</li>
+method (as in <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomonop.html">eoMonOp</a></font></font></b>
+or&nbsp; <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eobinop.html">eoBinOp</a></font></font></b>).</li>
 
 <br>&nbsp;
 <li>
@@ -403,11 +403,11 @@ Blabla</li>
 numbers</a> - <a href="#notations">EO programming style</a>
 <br>
 <hr WIDTH="100%">
-<br><b><font color="#CC0000">General: </font></b><a href="http://www.eeaax.polytechnique.fr/EO/eo/tutorial/html/eoTutorial.html">Tutorial
-main page </a>- <a href="http://www.eeaax.polytechnique.fr/EO/eo/tutorial/html/eoTopDown.html">Algorithm-Based</a>
-- <a href="http://www.eeaax.polytechnique.fr/EO/eo/tutorial/html/eoBottomUp.html">Component-Based</a>
-- <a href="http://www.eeaax.polytechnique.fr/EO/eo/tutorial/html/eoProgramming.html">Programming
-hints</a> - <font face="Arial,Helvetica"><a href="http://www.eeaax.polytechnique.fr/EO/eo/doc/html/index.html">EO
+<br><b><font color="#CC0000">General: </font></b><a href="eoTutorial.html">Tutorial
+main page </a>- <a href="eoTopDown.html">Algorithm-Based</a>
+- <a href="eoBottomUp.html">Component-Based</a>
+- <a href="eoProgramming.html">Programming
+hints</a> - <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
 documentation</a></font>
 <br>
 <hr>
