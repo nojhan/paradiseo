@@ -35,33 +35,33 @@
 template <class Fit, class External>
 class eoExternalEO : public EO, virtual public External
 {
-    public :
+public :
 
-        typedef External Type;
+  typedef External Type;
 
-        eoExternalEO(void) : EO(), Base() {}
-        eoExternalEO(istream& is) : EO(), Base() { readFrom(is); }
+  eoExternalEO(void) : EO(), Base() {}
+  eoExternalEO(istream& is) : EO(), Base() { readFrom(is); }
 
-       /**
-       * Read object.\\
-       * @param _is a istream.
-       * @throw runtime_exception If a valid object can't be read.
-       */
-      virtual void readFrom(istream& _is) 
-      { 
-          EO::readFrom(is);
-          throw runtime_excpetion("Reading not defined yet");
-      }
+  /**
+   * Read object.\\
+   * @param _is a istream.
+   * @throw runtime_exception If a valid object can't be read.
+   */
+  virtual void readFrom(istream& _is) 
+  { 
+    EO::readFrom(is);
+    throw runtime_exception("Reading not defined yet");
+  }
   
-      /**
-       * Write object. Called printOn since it prints the object _on_ a stream.
-       * @param _os A ostream.
-       */
-      virtual void printOn(ostream& _os) const 
-      {
-          EO::printOn(is);
-          throw runtime_excpetion("Writing not defined yet");
-      }
+  /**
+   * Write object. Called printOn since it prints the object _on_ a stream.
+   * @param _os A ostream.
+   */
+  virtual void printOn(ostream& _os) const 
+  {
+    EO::printOn(is);
+    throw runtime_excpetion("Writing not defined yet");
+  }
 
 };
 

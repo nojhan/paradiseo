@@ -27,7 +27,7 @@
 
 //-----------------------------------------------------------------------------
 
-#include <utils/eoData.h>		// For limits definition
+#include "utils/eoData.h"	// For limits definition
 #include <iostream>		// istream, ostream
 #include <string>		// string
 

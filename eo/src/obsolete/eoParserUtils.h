@@ -14,8 +14,8 @@ Modifications.:
 #ifndef EO_PARSER_UTILS
 #define EO_PARSER_UTILS
 
-#include <utils/eoRNG.h>
-#include <eoParser.h>
+#include "../utils/eoRNG.h"
+#include "eoParser.h"
 /// Reproducible random seed
 
 //----------------------------------

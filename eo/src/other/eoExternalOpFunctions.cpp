@@ -28,9 +28,9 @@
 #ifndef eoExternalOpFunc_h
 #define eoExternalOpFunc_h
 
-#include "eoExternalEO.h"
-#include "eoOps.h"
-#include "eoRnd.h"
+#include <eoExternalEO.h>
+#include <eoOp.h>
+#include <utils/eoRNG.h>
 
 template <class F, class External>
 class eoExternalInitFunc 
@@ -39,3 +39,5 @@ class eoExternalInitFunc
 public :
 
 };
+
+#endif

@@ -82,8 +82,8 @@
 #define EO_RANDOM_NUMBER_GENERATOR
 
 
-#include <eoPersistent.h>
-#include <eoObject.h>
+#include "../eoPersistent.h"
+#include "../eoObject.h"
 
 // TODO: check for various compilers if this is exactly 32 bits
 // Unfortunately MSVC's preprocessor does not comprehends sizeof()

@@ -40,7 +40,7 @@ const unsigned MAXLINELENGTH=1024;
 #include <string>    // para string
 
 //-----------------------------------------------------------------------------
-#include <eoPrintable.h>
+#include "eoPrintable.h"
 
 using namespace std;
 

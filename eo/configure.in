@@ -5,7 +5,7 @@ AM_INIT_AUTOMAKE(eo)
 
 AC_PROG_CXX 
 
-CXXFLAGS = -Wall -g
+#CXXFLAGS = -Wall -g
 
 AM_PROG_LIBTOOL 
 
