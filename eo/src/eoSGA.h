@@ -78,18 +78,23 @@ public :
 	for (i=0; i<_pop.size()/2; i++)
 	  {
 	    if ( rng.flip(crossoverRate) )
-	      {
-		// this crossover generates 2 offspring from two parents
-		cross(offspring[2*i], offspring[2*i+1]);
-	      }
+	    {
+		    // this crossover generates 2 offspring from two parents
+		    if (cross(offspring[2*i], offspring[2*i+1]))
+        {
+          offspring[2*i].invalidate();
+          offspring[2*i+1].invalidate();
+        }
+      }
 	  }
 
 	for (i=0; i < _pop.size(); i++)
 	  {
 	    if (rng.flip(mutationRate) )
-	      {
-		mutate(offspring[i]);
-	      }
+	    {
+		     if (mutate(offspring[i]))
+          offspring[i].invalidate();
+	    }
 	  }
 
 	_pop.swap(offspring);
