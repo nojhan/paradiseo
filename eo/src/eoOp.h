@@ -54,7 +54,7 @@ class eoOp
 {
 public:
   //@{
-  enum OpType { init = 0, unary = 1, binary = 2, quadratic = 3, general = 4};
+  enum OpType { unary = 0, binary = 1, quadratic = 2, general = 3};
   ///
 
   /// Ctor
