@@ -27,11 +27,11 @@
 
 //-----------------------------------------------------------------------------
 
-#include "utils/eoData.h"	// For limits definition
+#include <utils/eoData.h>	// For limits definition
 #include <iostream>		// istream, ostream
 #include <string>		// string
 
-#include "utils/compatibility.h"
+#include <utils/compatibility.h>
 
 using namespace std;
 
@@ -47,13 +47,6 @@ interface, but it´s been moved to eoPrintable and eoPersistent.
 class eoObject
 {
  public:
-  
-  /// Default Constructor.
-  eoObject() {}
-
-  /// Copy constructor.
-  eoObject( const eoObject& ) {}
-
   /// Virtual dtor. They are needed in virtual class hierarchies.
   virtual ~eoObject() {}
   
