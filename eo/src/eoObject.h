@@ -12,7 +12,7 @@
 
 #include <eoData.h>		// For limits definition
 #include <iostream>		// istream, ostream
-#include <string>		// para string
+#include <string>		// string
 
 using namespace std;
 

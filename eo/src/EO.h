@@ -11,7 +11,6 @@
 //-----------------------------------------------------------------------------
 
 #include <stdexcept>  // runtime_error 
-
 #include <eoObject.h>
 #include <eoPersistent.h>
 

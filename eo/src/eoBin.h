@@ -17,7 +17,6 @@
  * based on STL's bit_vector (vector<bool>).                                 *
  *****************************************************************************/
 
-
 template <class F> class eoBin: public eoVector<bool, F>
 {
  public:
