@@ -60,6 +60,18 @@ class eoGeneralBreeder: public eoBreed<EOT>
           bool _interpret_as_rate = true) :
       select( _select ), op(_op),  howMany(_rate, _interpret_as_rate) {}
 
+  /** Ctor:
+   *
+   * @param _select a selectoOne, to be used for all selections
+   * @param _op a general operator (will generally be an eoOpContainer)
+   * @param _howMany an eoHowMany <a href="../../tutorial/html/eoEngine.html#howmany">explanation</a>
+   */
+  eoGeneralBreeder(
+          eoSelectOne<EOT>& _select,
+          eoGenOp<EOT>& _op,
+	  eoHowMany _howMany ) :
+      select( _select ), op(_op),  howMany(_howMany) {}
+
   /** The breeder: simply calls the genOp on a selective populator!
    *
    * @param _parents the initial population
@@ -75,7 +87,7 @@ class eoGeneralBreeder: public eoBreed<EOT>
       while (_offspring.size() < target)
 	    {
 	      op(it);
-        ++it;
+	      ++it;
 	    }
 
       _offspring.resize(target);   // you might have generated a few more

@@ -117,10 +117,7 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParameterLoader& _parser, eoState& _state, e
   _state.storeFunctor(select);
 
   // the number of offspring 
-    eoValueParam<eoRateParamType>& offspringRateParam =  _parser.createParam(eoRateParamType("100%"), "nbOffspring", "Nb of offspring (percentage or absolute)", 'O', "Evolution Engine");
-    // an eoRateParamType is simply a pair<double,bool>
-  double offRate=offspringRateParam.value().first;
-  bool offInterpret_as_rate = offspringRateParam.value().second;
+    eoValueParam<eoHowMany>& offspringRateParam =  _parser.createParam(eoHowMany(1.0), "nbOffspring", "Nb of offspring (percentage or absolute)", 'O', "Evolution Engine");
 
   // the replacement
   eoValueParam<eoParamParamType>& replacementParam = _parser.createParam(eoParamParamType("Comma"), "replacement", "Replacement: Comma, Plus or EPTour(T), SSGAWorst, SSGADet(T), SSGAStoch(t)", 'R', "Evolution Engine");
@@ -180,8 +177,9 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParameterLoader& _parser, eoState& _state, e
 
   // the general breeder
   eoGeneralBreeder<EOT> *breed = 
-    new eoGeneralBreeder<EOT>(*select, _op, offRate, offInterpret_as_rate);
-  _state.storeFunctor(breed);							   
+    new eoGeneralBreeder<EOT>(*select, _op, offspringRateParam.value());
+  _state.storeFunctor(breed);
+
   // now the eoEasyEA
   eoAlgo<EOT> *algo = new eoEasyEA<EOT>(_ccontinue, _eval, *breed, *replace);
   _state.storeFunctor(algo);

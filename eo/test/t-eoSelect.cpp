@@ -93,9 +93,9 @@ void testSelectMany(eoSelect<EOT> & _select, string _name)
 }
 
 template <class EOT>
-void testSelectOne(eoSelectOne<EOT> & _select, double _rate, string _name)
+void testSelectOne(eoSelectOne<EOT> & _select, eoHowMany & _hm, string _name)
 {
-  eoSelectMany<EOT> percSelect(_select, _rate);
+  eoSelectMany<EOT> percSelect(_select, _hm);
   testSelectMany<EOT>(percSelect, _name);
 }
 
@@ -108,8 +108,10 @@ int the_main(int argc, char **argv)
   eoValueParam<unsigned int> parentSizeParam = parser.createParam<unsigned int>(10, "parentSize", "Parent size",'P');
     pSize = parentSizeParam.value(); // global variable
 
-  eoValueParam<double> offsrpringRateParam = parser.createParam<double>(1.0, "offsrpringRate", "Offsrpring rate",'O');
-    double oRate = offsrpringRateParam.value();
+//   eoValueParam<double> offsrpringRateParam = parser.createParam<double>(1.0, "offsrpringRate", "Offsrpring rate",'O');
+//     double oRate = offsrpringRateParam.value();
+  eoValueParam<eoHowMany> offsrpringRateParam = parser.createParam(eoHowMany(1.0), "offsrpringRate", "Offsrpring rate (% or absolute)",'O');
+    eoHowMany oRate = offsrpringRateParam.value();
 
 eoValueParam<unsigned int> tournamentSizeParam = parser.createParam<unsigned int>(2, "tournamentSize", "Deterministic tournament size",'T');
     unsigned int tSize = tournamentSizeParam.value();

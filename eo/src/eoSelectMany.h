@@ -50,6 +50,10 @@ class eoSelectMany : public eoSelect<EOT>
 		    double  _rate, bool _interpret_as_rate = true) 
          : select(_select), howMany(_rate, _interpret_as_rate) {}
 
+     // Ctor with eoHowMany
+     eoSelectMany(eoSelectOne<EOT>& _select, eoHowMany _howMany) 
+         : select(_select), howMany(_howMany) {}
+
      /**
      The implementation repeatidly selects an individual
 

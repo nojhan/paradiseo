@@ -26,20 +26,22 @@
 #ifndef eoHowMany_h
 #define eoHowMany_h
 
-// to be used in selection / replacement procedures to indicate whether 
-// the argument (rate, a double) shoudl be treated as a rate (number=rate*popSize)
-// or as an absolute integer (number=rate regardless of popsize).
-// the default value shoudl ALWAYS be true (eo_as_a_rate).
-//
-// this construct is mandatory because in some cases you might not know the 
-// population size that will enter the replacement for instance - so you 
-// cannot simply have a pre-computed (double) rate of 1/popSize if you want 1 guy
+/**
+ * to be used in selection / replacement procedures to indicate whether 
+ * the argument (rate, a double) shoudl be treated as a rate (number=rate*popSize)
+ * or as an absolute integer (number=rate regardless of popsize).
+ * the default value shoudl ALWAYS be true (eo_as_a_rate).
+ *
+ * this construct is mandatory because in some cases you might not know the 
+ * population size that will enter the replacement for instance - so you 
+ * cannot simply have a pre-computed (double) rate of 1/popSize if you want 1 guy
+ */
 
-
-class eoHowMany
+class eoHowMany : public eoPersistent
 {
 public:
-  eoHowMany(double  _rate, bool _interpret_as_rate = true):
+  /** Original Ctor from direct rate + bool */
+  eoHowMany(double  _rate = 0.0, bool _interpret_as_rate = true):
     rate(0), combien(0)
   {
     if (_interpret_as_rate)
@@ -56,16 +58,60 @@ public:
       }
   }
 
+  /// Virtual dtor. They are needed in virtual class hierarchies.
+  virtual ~eoHowMany() {}
+
   unsigned int operator()(unsigned int _size)
   {
     if (combien == 0)
       {
-	if (rate == 0.0)
-	  return 0;
-	else
-	  return (unsigned int) (rate * _size);
+	return (unsigned int) (rate * _size);
       }
     return combien;
+  }
+
+  virtual void printOn(ostream& _os) const 
+  {
+    if (combien == 0)
+      _os << 100*rate << "% " << std::ends;
+    else
+      _os << combien << " " << std::ends;
+    return;
+
+  }
+
+  virtual void readFrom(istream& _is) 
+  {
+    string value;
+    _is >> value;
+    readFrom(value);
+    return;
+  }
+
+  void readFrom(std::string _value)
+  {
+    // check for %
+    bool interpret_as_rate = false;   // == no %
+    size_t pos =  _value.find('%');
+    if (pos < _value.size())  //  found a %
+      {
+	interpret_as_rate = true;
+	_value.resize(pos);	   // get rid of %
+      }
+    std::istrstream is(_value.c_str());
+    is >> rate;
+    // now store
+    if (interpret_as_rate)
+      {
+	combien = 0;
+	rate /= 100.0;
+      }
+    else
+      combien = unsigned(rate);	   // and rate will not be used
+
+    // minimal check
+    if ( (combien <= 0) && (rate <= 0.0) )
+      throw runtime_error("Invalid parameters read in eoHowMany::readFrom");
   }
   
 private :

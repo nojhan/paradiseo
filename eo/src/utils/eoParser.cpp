@@ -353,18 +353,6 @@ bool eoParser::userNeedsHelp(void)
 }
 
 ///////////////// I put these here at the moment
-ostream & operator<<(ostream & _os, const eoRateParamType & _rate)
-{ 
-  _rate.printOn(_os);
-  return _os;
-}
-
-istream & operator>>(istream & _is,  eoRateParamType & _rate)
-{ 
-  _rate.readFrom(_is);
-  return _is;
-}
-
 ostream & operator<<(ostream & _os, const eoParamParamType & _rate)
 { 
   _rate.printOn(_os);
