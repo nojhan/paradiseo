@@ -95,10 +95,13 @@ void main_function(int argc, char **argv)
   ////////////////////////////////////
 // SELECT
   // The robust tournament selection
-  eoDetTournament<Indi> selectOne(T_SIZE);       // T_SIZE in [2,POP_SIZE]
+  eoDetTournamentSelect<Indi> selectOne(T_SIZE);       // T_SIZE in [2,POP_SIZE]
   // solution solution solution solution solution solution solution 
-  // modify the rate in the constructor
-  eoSelectMany<Indi> select(selectOne,2, eo_is_an_integer);//  rate is second arg.
+  // modify the nb offspring / rate in the constructor. 2 ways:
+  // second arg treated as integer
+  eoSelectMany<Indi> select(selectOne,2, eo_is_an_integer);
+  // second arg treated as a rate (default behavior)
+  //  eoSelectMany<Indi> select(selectOne,0.1);
 
 // REPLACE
   // solution solution solution solution solution solution solution 

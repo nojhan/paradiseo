@@ -91,18 +91,18 @@ void main_function(int argc, char **argv)
   //                             comment out the eoDetTournament lines
 
   // The well-known roulette 
-  // eoProportional<Indi> select;
+  // eoProportionalSelect<Indi> select;
 
   // could also use stochastic binary tournament selection
   //
   //  const double RATE = 0.75;
-  //  eoStochTournament<Indi> select(RATE);     // RATE in ]0.5,1]
+  //  eoStochTournamentSelect<Indi> select(RATE);     // RATE in ]0.5,1]
   // The robust tournament selection
   const unsigned int T_SIZE = 3; // size for tournament selection
-  eoDetTournament<Indi> select(T_SIZE);       // T_SIZE in [2,POP_SIZE]
+  eoDetTournamentSelect<Indi> select(T_SIZE);       // T_SIZE in [2,POP_SIZE]
 
   // and of course the random selection
-  // eoSelectRandom<Indi> select;
+  // eoRandomSelect<Indi> select;
 
   // The simple GA evolution engine uses generational replacement
   // so no replacement procedure is needed
