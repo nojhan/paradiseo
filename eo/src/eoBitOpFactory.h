@@ -45,7 +45,7 @@ public:
 		eoOp<EOT> * opPtr = NULL;
 		try {
 			opPtr = eoOpFactory<EOT>::make( _is );
-		} catch ( string& objectTypeStr ) {
+		} catch ( const string& objectTypeStr ) {
 			if  ( objectTypeStr == "eoBinRandom") {
 				opPtr = new eoBinRandom<EOT>();
 			} 

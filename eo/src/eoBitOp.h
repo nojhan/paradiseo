@@ -10,12 +10,11 @@
 #include <eoBin.h>  // eoBin
 #include <eoOp.h>   // eoMonOp
 
-#ifndef min
+#ifdef _MSC_VER
 #define min _MIN
-#endif
-#ifndef max
 #define max _MAX
 #endif
+
 
 //-----------------------------------------------------------------------------
 // eoBinRandom --> mofify a chromosome in a random way
