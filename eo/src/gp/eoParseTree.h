@@ -28,16 +28,9 @@ public :
         if (_size < 1)
             return;
 
-        if (size() > _size)
+        while (size() > _size)
         {
-            Subtree* sub = &operator[](size() - 2); // prune tree
-
-            while (sub->size() > _size)
-            {
-                sub = &sub->operator[](0);
-            }
-
-            back() = *sub;
+            back() = operator[](size()-2); 
         }
     }
 
