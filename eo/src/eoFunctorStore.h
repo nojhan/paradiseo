@@ -40,8 +40,10 @@ class eoFunctorStore
 {
     public :
 
+  /// Default Ctor
         eoFunctorStore() {}
 
+  // virtual destructor so we don't need to define it in derived classes
         virtual ~eoFunctorStore();
 
         /// Add an eoFunctorBase to the store
