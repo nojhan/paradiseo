@@ -37,7 +37,7 @@
 #include <es/eoEsSimple.h>
 #include <es/eoEsStdev.h>
 #include <es/eoEsFull.h>
-#include <es/eoRealBounds.h>
+#include <utils/eoRealBounds.h>
 
 #include <eoOp.h>
 

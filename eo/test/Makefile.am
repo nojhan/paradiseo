@@ -14,10 +14,10 @@ CXXFLAGS = -g -Wall
 ###############################################################################
 
 check_PROGRAMS = t-eoParetoFitness t-eoPareto t-eofitness t-eoRandom t-eobin t-eoStateAndParser t-eoCheckpointing t-eoSSGA  \
-	t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoVector
+	t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoReal t-eoVector
 TESTS=run_tests t-eoVector t-eoRandom t-eoSSGA t-eoPareto t-eoParetoFitness
 # removing temporarily t-eoESFull
-#noinst_PROGRAMS = t-eofitness t-eobin t-eoStateAndParser t-eoCheckpointing t-eoExternalEO t-eoESFull t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA
+# noinst_PROGRAMS = t-eofitness t-eobin t-eoStateAndParser t-eoCheckpointing t-eoExternalEO t-eoESFull t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoReal
 
 ###############################################################################
 
@@ -112,6 +112,13 @@ t_eoGA_SOURCES = t-eoGA.cpp binary_value.h
 t_eoGA_DEPENDENCIES = $(DEPS) $(top_builddir)/src/ga/libga.a
 t_eoGA_LDFLAGS = -lm
 t_eoGA_LDADD = $(top_builddir)/src/ga/libga.a $(LDADDS)
+
+###############################################################################
+
+t_eoReal_SOURCES = t-eoReal.cpp real_value.h
+t_eoReal_DEPENDENCIES = $(DEPS) $(top_builddir)/src/es/libes.a
+t_eoReal_LDFLAGS = -lm
+t_eoReal_LDADD = $(top_builddir)/src/es/libes.a $(LDADDS)
 
 ###############################################################################
 

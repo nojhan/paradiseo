@@ -470,7 +470,7 @@ public:
     // so here we do have arguments
     string t = _value.substr(pos+1);// the arguments
     _value.resize(pos);
-    first = _value;		   // done for the keyword
+    first = _value;    // done for the keyword (NOTE: may be empty string!)
 
     // now all arguments    
   string delim(" (),");

@@ -31,7 +31,7 @@
 #include <algorithm>    // swap_ranges
 #include <utils/eoRNG.h>
 #include <es/eoReal.h>
-#include <es/eoRealBounds.h>
+#include <utils/eoRealBounds.h>
 
 //-----------------------------------------------------------------------------
 

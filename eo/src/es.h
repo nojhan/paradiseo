@@ -48,9 +48,6 @@
 #include <es/eoRealOp.h>
 #include <es/eoNormalMutation.h>
 
-// and their generic counterparts
-#include <es/eoGenericRealOp.h>
-
 // the ES-mutations
 #include <es/eoEsMutationInit.h>
 #include <es/eoEsMutate.h>

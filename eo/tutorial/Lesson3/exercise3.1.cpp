@@ -315,7 +315,7 @@ void main_function(int argc, char **argv)
     fileMonitor.add(generationCounter);
     fileMonitor.add(bestStat);
     fileMonitor.add(SecondStat);
-    // the fileMonitor can monitor parameters, too, but you must tell it!
+    // the gnuMonitor can monitor parameters, too, but you must tell it!
     gnuMonitor.add(eval);
     gnuMonitor.add(bestStat);
     gnuMonitor.add(averageStat);

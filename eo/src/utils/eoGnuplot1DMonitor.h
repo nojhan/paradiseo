@@ -103,7 +103,7 @@ inline void  eoGnuplot1DMonitor::FirstPlot()
 {
   if (vec.size() < 2)
     {
-      throw runtime_error("eoGnuplot1DMonitor needs at least 2 stats (X and Y)!\n");
+      throw runtime_error("Must have some stats to plot!\n");
     }
   char buff[1024];
   ostrstream os(buff, 1024);

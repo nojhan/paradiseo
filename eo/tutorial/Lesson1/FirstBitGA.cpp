@@ -15,7 +15,7 @@
 #include <eo>
 #include <ga.h>
 
-// REPRESENTATION
+// REPRESENTATION 
 //-----------------------------------------------------------------------------
 // define your individuals
 typedef eoBit<double> Indi;     // A bitstring with fitness double

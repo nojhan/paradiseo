@@ -27,6 +27,9 @@
 #ifndef _eoRealBounds_h
 #define _eoRealBounds_h
 
+#include <stdexcept>		   // exceptions!
+#include <utils/eoRNG.h>
+
 /**
 \defgroup EvolutionStrategies
 
@@ -408,7 +411,7 @@ Anyone with extra time in his agenda is welcome to change that :-)
 class eoRealVectorBounds : public vector<eoRealBounds *>
 { 
 public:
-  // virtual desctructor (to avoid warining?)
+  // virtual desctructor (to avoid warning?)
   virtual ~eoRealVectorBounds(){}
 
   /** Default Ctor
@@ -649,6 +652,6 @@ public:
 };
 
 // one object for all
-eoRealNoBounds eoDummyRealNoBounds;
-eoRealVectorNoBounds eoDummyVectorNoBounds;
+extern eoRealNoBounds eoDummyRealNoBounds;
+extern eoRealVectorNoBounds eoDummyVectorNoBounds;
 #endif

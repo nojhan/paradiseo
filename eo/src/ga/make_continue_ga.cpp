@@ -31,8 +31,8 @@
  * files that you just need to link with your own main and fitness code).
  *
  * The corresponding ***INSTANCIATED DECLARATIONS*** are contained 
- *       in make_continue_ga.h
- * while the TEMPLATIZED code is define in make_contninue.h in the do dir
+ *       in ga.h
+ * while the TEMPLATIZED code is define in make_contninue.h in the src/do dir
  *
  * Unlike most EO .h files, it does not (and should not) contain any code, 
  * just declarations

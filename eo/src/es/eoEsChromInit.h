@@ -27,7 +27,7 @@
 #ifndef _eoEsChromInit_H
 #define _eoEsChromInit_H
 
-#include <es/eoRealBounds.h>
+#include <utils/eoRealBounds.h>
 #include <es/eoEsSimple.h>
 #include <es/eoEsStdev.h>
 #include <es/eoEsFull.h>

@@ -28,7 +28,7 @@
 #define _eoEsStdevXOver_h
 
 #include <es/eoEsStdev.h>
-#include <es/eoGenericRealOp.h>
+#include <es/eoRealOp.h>
 
 /**
 \ingroup EvolutionStrategies

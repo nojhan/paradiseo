@@ -33,7 +33,7 @@
 #include <utils/eoUpdatable.h>
 #include <eoEvalFunc.h>
 #include <es/eoReal.h>
-#include <es/eoRealBounds.h>
+#include <utils/eoRealBounds.h>
 //-----------------------------------------------------------------------------
 
 /** Simple normal mutation of a vector of real values.
