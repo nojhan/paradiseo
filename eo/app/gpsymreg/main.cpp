@@ -21,6 +21,10 @@
 #pragma warning(disable:4786)
 #endif
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <iostream>
 #include <gp/eoParseTree.h>
 #include <eo>

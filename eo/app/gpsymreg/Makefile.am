@@ -4,22 +4,14 @@
 #
 ###############################################################################
 
-DEPS = $(top_builddir)/src/libeo.a $(top_builddir)/src/utils/libeoutils.a
+LIBEO		= $(top_builddir)/src/libeo.a
+LIBEOUTILS	= $(top_builddir)/src/utils/libeoutils.a
 
-###############################################################################
-
-INCLUDES = -I$(top_builddir)/src
-LDADDS = $(top_builddir)/src/libeo.a $(top_builddir)/src/utils/libeoutils.a
-
-###############################################################################
 
 bin_PROGRAMS = gpsymreg
 
-###############################################################################
+AM_CXXFLAGS	= -I$(top_builddir)/src
+DEPS 		= $(LIBEOUTILS) $(LIBEO)
+LIBS 		=  $(top_builddir)/src/utils/libeoutils.a
 
 gpsymreg_SOURCES = main.cpp
-gpsymreg_DEPENDENCIES = $(DEPS)
-gpsymreg_LDFLAGS = -lm
-gpsymreg_LDADD = $(LDADDS)
-
-###############################################################################

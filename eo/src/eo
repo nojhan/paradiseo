@@ -28,10 +28,10 @@
 #ifndef _eo_
 #define _eo_
 
-//-----------------------------------------------------------------------------
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
+
 // general purpose
 #include <utils/eoData.h>
 #include <eoObject.h>

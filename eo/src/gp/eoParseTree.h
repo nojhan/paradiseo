@@ -27,6 +27,10 @@
 #ifndef eoParseTree_h
 #define eoParseTree_h
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <iterator>
 
 #include <list>

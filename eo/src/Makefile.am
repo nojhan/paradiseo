@@ -11,7 +11,7 @@ AM_CXXFLAGS	= -I$(top_srcdir)/src
 lib_LIBRARIES = libeo.a
 
 libeo_a_SOURCES = eoFunctorStore.cpp \
-		eoPersistent.cpp \
+		eoPersistent.cpp
 		eoPrintable.cpp \
 		eoCtrlCContinue.cpp \
 		eoParetoFitness.cpp \
