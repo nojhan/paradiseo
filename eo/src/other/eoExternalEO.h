@@ -2,8 +2,8 @@
 
   -----------------------------------------------------------------------------
   eoExternalEO.h
-        * Definition of an object that allows an external struct
-        * to be inserted in EO  
+        Definition of an object that allows an external struct to be inserted in EO  
+
  (c) Maarten Keijzer (mkeijzer@mad.scientist.com) and GeNeura Team, 1999, 2000
  
     This library is free software; you can redistribute it and/or
@@ -30,27 +30,33 @@
 
 /** 
  * Definition of an object that allows an external struct
- * to be inserted in EO  
+ * to be inserted in EO. This struct or class can be of any
+ * form, the only thing this class does is attach a fitness
+ * value to it and makes it the appropriate type (derives it from EO).
 */
+
 template <class Fit, class External>
-class eoExternalEO : public EO, virtual public External
+class eoExternalEO : public EO<Fit>, virtual public External
 {
 public :
 
   typedef External Type;
 
-  eoExternalEO(void) : EO(), Base() {}
-  eoExternalEO(istream& is) : EO(), Base() { readFrom(is); }
+  eoExternalEO(void) : EO<Fit>(), External() {}
 
   /**
-   * Read object.\\
-   * @param _is a istream.
-   * @throw runtime_exception If a valid object can't be read.
+    Init externalEo with the struct itself and set fitness to zero
+  */
+  eoExternalEO(const External& ext) : EO<Fit>(), External(ext) {}
+  eoExternalEO(istream& is) : EO<Fit>(), Base<ext>() { readFrom(is); }
+
+  /**
+   * Read object, the external struct needs to have an operator>> defined
    */
   virtual void readFrom(istream& _is) 
   { 
-    EO::readFrom(is);
-    throw runtime_exception("Reading not defined yet");
+      EO<Fit>::readFrom(_is);
+    _is >> static_cast<External&>(*this);
   }
   
   /**
@@ -59,10 +65,25 @@ public :
    */
   virtual void printOn(ostream& _os) const 
   {
-    EO::printOn(is);
-    throw runtime_excpetion("Writing not defined yet");
+      EO<Fit>::printOn(_os);
+      _os << static_cast<const External&>(*this);
   }
 
 };
+
+/// To remove ambiguities between EO<F> and External, streaming operators are defined yet again
+template <class F, class External>
+std::ostream& operator<<(std::ostream& os, const eoExternalEO<F, External>& eo)
+{
+    eo.printOn(os);
+    return os;
+}
+
+template <class F, class External>
+std::istream& operator>>(std::istream& is, eoExternalEO<F, External>& eo)
+{
+    eo.readFrom(is);
+    return is;
+}
 
 #endif
