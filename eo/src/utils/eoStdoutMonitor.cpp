@@ -30,7 +30,7 @@ eoMonitor& eoStdoutMonitor::operator()(void)
         cout << (*it)->longName() << ": " << (*it)->getValue() << '\n';
     }
 
-    cout << "\n****** End of Generation ******\n\n"; 
+    cout << "\n****** End of Generation ******\n" << endl; // endl: flush
 
     return *this;
 }
