@@ -108,7 +108,7 @@ public:
    */
   virtual void readFrom(istream& _is) { 
     _is >> repFitness;
-    if (is)
+    if (_is)
       invalidFitness = false;
     else
       throw runtime_error("EO(istream&): can't read valid eo from istream");
