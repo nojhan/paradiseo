@@ -38,11 +38,11 @@
  * allows one to modify the population size without touching anything else.
  *
  * There are 4 possible way to compute the return value from the argument:
- *    - an absolute POSITIVE integer --> return rate (regardless of popsize)
- *    - a POSITIVE rate ->  return rate*popSize
- *    - an absolute NEGATIVE integer  --> return popsize-rate
- *    - a NEGATIVE rate ->  return (1-rate)*popSize
- * Note that a negative rate should be unnecessary because a rate is
+ *    - an absolute POSITIVE integer  --> return it (regardless of popsize)
+ *    - a POSITIVE rate               -->  return rate*popSize
+ *    - an absolute NEGATIVE integer  --> return popsize-rate (if positive)
+ *    - a NEGATIVE rate in [-1,0]     --> store and use 1-|rate| (positive)
+ * Note that a negative rate should be have been necessary because a rate is
  * relative, but it is there for consistency reasons - and because it
  * is needed in <a href="classeo_g3_replacement_h-source.html">eoG3Replacement</a>
  *
@@ -77,9 +77,11 @@ public:
     if (_interpret_as_rate)
       {
 	if (_rate<0)
-	  rate = 1.0-rate;
-	if (rate > 1.0)
-	  throw std::logic_error("rate>1 in eoHowMany!");
+	  {
+	    rate = 1.0+_rate;
+	    if (rate < 0)	   // was < -1
+	      throw std::logic_error("rate<-1 in eoHowMany!");
+	  }
       }
     else
       {
