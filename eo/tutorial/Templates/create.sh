@@ -54,6 +54,8 @@ sed s/MyStruct/$1/g quadCrossover.tmpl > $TargetDir/eo$1QuadCrossover.h
 sed s/MyStruct/$1/g MyStructEA.cpp > $TargetDir/$1EA.cpp
 sed s/MyStruct/$1/g make_genotype_MyStruct.h > $TargetDir/make_genotype_$1.h
 sed s/MyStruct/$1/g make_op_MyStruct.h > $TargetDir/make_op_$1.h
+sed s/MyStruct/$1/g make_MyStruct.cpp > $TargetDir/make_$1.cpp
+sed s/MyStruct/$1/g MyStructLibEA.cpp > $TargetDir/$1LibEA.cpp
 sed s/MyStruct/$1/g Makefile.tmpl > $TargetDir/$MakeName
 
 echo Done!
