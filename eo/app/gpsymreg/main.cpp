@@ -70,8 +70,8 @@ int main(int argc, char *argv[])
 	// the parameters are passed on as well
         RegFitness eval(generationCounter, initSequence, parameter);
 
-	// Depth Initializor, defaults to grow method.  
-        eoParseTreeDepthInit<FitnessType, Node> initializer(parameter.InitMaxDepth, initSequence);
+	// Depth Initializor, set for Ramped Half and Half Initialization
+        eoParseTreeDepthInit<FitnessType, Node> initializer(parameter.InitMaxDepth, initSequence, true, true);
 	
 	// create the initial population
         Pop pop(parameter.population_size, initializer);

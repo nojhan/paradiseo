@@ -2,7 +2,7 @@
  
 //-----------------------------------------------------------------------------
 // eoParseTreeDepthInit.h : initializor for eoParseTree class
-// (c) Maarten Keijzer 2000  
+// (c) Maarten Keijzer 2000  Jeroen Eggermont 2002
 /*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -20,6 +20,7 @@
  
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
     	     mak@dhi.dk 
+	     jeggermo@liacs.nl
             
  */
 //-----------------------------------------------------------------------------
@@ -64,16 +65,20 @@ class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
      * @parm _max_depth The maximum depth of a tree
      * @param _initializor A vector containing the possible nodes
      * @param _grow False results in a full tree, True result is a randomly grown tree
+     * @param _ramped_half_and_half True results in Ramped Half and Half Initialization
      */
 	eoParseTreeDepthInit(
         unsigned _max_depth,
-		const vector<Node>& _initializor,
-        bool _grow = true)
+	const vector<Node>& _initializor,
+        bool _grow = true,
+	bool _ramped_half_and_half = false)
             :
             eoInit<EoType>(),
 			max_depth(_max_depth),
 			initializor(_initializor),
-			grow(_grow)
+			grow(_grow),
+			ramped_half_and_half(_ramped_half_and_half),
+			current_depth(_max_depth)
     {
       if(initializor.empty())
       {
@@ -92,11 +97,24 @@ class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
     void operator()(EoType& _tree)
 	{
         list<Node> sequence;
-
-        generate(sequence, max_depth);
+        generate(sequence, current_depth);
 
         parse_tree<Node> tmp(sequence.begin(), sequence.end());
         _tree.swap(tmp);
+	
+	if(ramped_half_and_half)
+	{
+		if(grow)
+		{
+			if (current_depth > 2)
+				current_depth--;
+			else
+				current_depth = max_depth;	
+		}
+		// change the grow method from 'grow' to 'full' or from 'full' to 'grow'
+		grow = !grow;
+	};
+	
 	}
    private :
     void generate(list<Node>& sequence, int the_max, int last_terminal = -1)
@@ -141,10 +159,11 @@ class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
 
 
 
-     
 	unsigned max_depth; 
-    std::vector<Node> initializor;
+    	std::vector<Node> initializor;
 	bool grow;
+	bool ramped_half_and_half;
+	unsigned current_depth;
 };
 
 /**
@@ -165,7 +184,11 @@ void  eoInitRampedHalfAndHalf(eoPop< eoParseTree<FType,Node> > &pop, unsigned in
 	unsigned int M = init_max_depth - 1;
 	unsigned int part_pop_size = population_size / (2*M);
 	unsigned int m=0;
-	
+
+	cerr << "EO WARNING: Ramped Half and Half Initialization is now supported by eoParseTreeDepthInit." << endl;
+	cerr << "            This function is now obsolete and might be removed in the future so you should"<< endl;
+	cerr << "            update your code to use: " << endl << endl;
+	cerr << "            eoParseTreeDepth(_max_depth,_initializer,_grow, bool _ramped_half_and_half)" << endl << endl;
 	
 	pop.clear();
 	
