@@ -41,7 +41,7 @@
 \ingroup parameteric
 */
 
-template<class Chrom> class eoUniformMutation: public eoMonOp<Chrom>
+template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
 {
  public:
   /**
@@ -57,21 +57,21 @@ template<class Chrom> class eoUniformMutation: public eoMonOp<Chrom>
   
   /**
    * Do it!
-   * @param chrom The cromosome undergoing the mutation
+   * @param _eo The cromosome undergoing the mutation
    */
-  void operator()(Chrom& chrom) 
+  void operator()(EOT& _eo) 
     {
       bool hasChanged=false;
-      for (unsigned lieu=0; lieu<chrom.size(); lieu++) 
+      for (unsigned lieu=0; lieu<_eo.size(); lieu++) 
 	{
 	  if (rng.flip(p_change)) 
 	    {
-	      chrom[lieu] += 2*epsilon*rng.uniform()-epsilon;
+	      _eo[lieu] += 2*epsilon*rng.uniform()-epsilon;
 	      hasChanged = true;
 	    }
 	}
       if (hasChanged)
-	chrom.invalidate();
+	_eo.invalidate();
     }
   
 private:
@@ -85,7 +85,7 @@ private:
 \ingroup parameteric
 */
 
-template<class Chrom> class eoDetUniformMutation: public eoMonOp<Chrom>
+template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
 {
  public:
   /**
@@ -101,61 +101,22 @@ template<class Chrom> class eoDetUniformMutation: public eoMonOp<Chrom>
   
   /**
    * Do it!
-   * @param chrom The cromosome undergoing the mutation
+   * @param _eo The cromosome undergoing the mutation
    */
-  void operator()(Chrom& chrom) 
+  void operator()(EOT& _eo) 
     {
-      chrom.invalidate();
+      _eo.invalidate();
       for (unsigned i=0; i<no; i++)
 	{
-	  unsigned lieu = rng.random(chrom.size());
+	  unsigned lieu = rng.random(_eo.size());
 	  // actually, we should test that we don't re-modify same variable!
-	  chrom[lieu] += 2*epsilon*rng.uniform()-epsilon;
+	  _eo[lieu] += 2*epsilon*rng.uniform()-epsilon;
 	}
     }
 
 private:
   double epsilon;
   unsigned no;
-};
-
-
-template<class Chrom> class eoNormalMutation: public eoMonOp<Chrom>
-{
- public:
-  /**
-   * (Default) Constructor.
-   * @param _epsilon the range for uniform nutation
-   * @param _p_change the probability to change a given coordinate
-   */
-  eoNormalMutation(const double& _epsilon, const double& _p_change = 1.0): 
-    epsilon(_epsilon), p_change(_p_change) {}
-
-  /// The class name.
-  string className() const { return "eoNormalMutation"; }
-  
-  /**
-   * Do it!
-   * @param chrom The cromosome undergoing the mutation
-   */
-  void operator()(Chrom& chrom) 
-    {
-      bool hasChanged=false;
-      for (unsigned lieu=0; lieu<chrom.size(); lieu++) 
-	{
-	  if (rng.flip(p_change)) 
-	    {
-	      chrom[lieu] += epsilon*rng.normal();
-	      hasChanged = true;
-	    }
-	}
-      if (hasChanged)
-	chrom.invalidate();
-    }
-  
-private:
-  double epsilon;
-  double p_change;
 };
 
 
@@ -167,7 +128,7 @@ private:
 \ingroup parameteric
 */
 
-template<class Chrom> class eoSegmentCrossover: public eoQuadraticOp<Chrom>
+template<class EOT> class eoSegmentCrossover: public eoQuadraticOp<EOT>
 {
  public:
   /**
@@ -184,23 +145,23 @@ template<class Chrom> class eoSegmentCrossover: public eoQuadraticOp<Chrom>
 
   /**
    * segment crossover - modifies both parents
-   * @param chrom1 The first parent
-   * @param chrom2 The first parent
+   * @param _eo1 The first parent
+   * @param _eo2 The first parent
    */
-  void operator()(Chrom& chrom1, Chrom& chrom2) 
+  void operator()(EOT& _eo1, EOT& _eo2) 
     {
       unsigned i;
       double r1, r2, fact;
       fact = rng.uniform(range);	   // in [0,range)
-      for (i=0; i<chrom1.size(); i++)
+      for (i=0; i<_eo1.size(); i++)
 	{
-	  r1=chrom1[i];
-	  r2=chrom2[i];
-	  chrom1[i] = fact * r1 + (1-fact) * r2;
-	  chrom2[i] = (1-fact) * r1 + fact * r2;
+	  r1=_eo1[i];
+	  r2=_eo2[i];
+	  _eo1[i] = fact * r1 + (1-fact) * r2;
+	  _eo2[i] = (1-fact) * r1 + fact * r2;
 	}
-      chrom1.invalidate();	   // shoudl test if fact was 0 or 1 :-)))
-      chrom2.invalidate();
+      _eo1.invalidate();	   // shoudl test if fact was 0 or 1 :-)))
+      _eo2.invalidate();
     }
 
 protected:
@@ -214,7 +175,7 @@ protected:
 \ingroup parameteric
 */
 
-template<class Chrom> class eoArithmeticCrossover: public eoQuadraticOp<Chrom>
+template<class EOT> class eoArithmeticCrossover: public eoQuadraticOp<EOT>
 {
  public:
   /**
@@ -231,20 +192,20 @@ template<class Chrom> class eoArithmeticCrossover: public eoQuadraticOp<Chrom>
 
   /**
    * arithmetical crossover - modifies both parents
-   * @param chrom1 The first parent
-   * @param chrom2 The first parent
+   * @param _eo1 The first parent
+   * @param _eo2 The first parent
    */
-  void operator()(Chrom& chrom1, Chrom& chrom2) 
+  void operator()(EOT& _eo1, EOT& _eo2) 
     {
       unsigned i;
       double r1, r2, fact;
-      for (i=0; i<chrom1.size(); i++)
+      for (i=0; i<_eo1.size(); i++)
 	{
-	  r1=chrom1[i];
-	  r2=chrom2[i];
+	  r1=_eo1[i];
+	  r2=_eo2[i];
 	  fact = rng.uniform(range);	   // in [0,range)
-	  chrom1[i] = fact * r1 + (1-fact) * r2;
-	  chrom2[i] = (1-fact) * r1 + fact * r2;
+	  _eo1[i] = fact * r1 + (1-fact) * r2;
+	  _eo2[i] = (1-fact) * r1 + fact * r2;
 	}
     }
 
@@ -259,7 +220,7 @@ protected:
 \ingroup parameteric
 */
 
-template<class Chrom> class eoRealUxOver: public eoQuadraticOp<Chrom>
+template<class EOT> class eoRealUxOver: public eoQuadraticOp<EOT>
 {
  public:
   /**
@@ -277,30 +238,30 @@ template<class Chrom> class eoRealUxOver: public eoQuadraticOp<Chrom>
 
   /**
    * Uniform crossover for real vectors
-   * @param chrom1 The first parent
-   * @param chrom2 The second parent
+   * @param _eo1 The first parent
+   * @param _eo2 The second parent
    *    @runtime_error if sizes don't match
    */
-  void operator()(Chrom& chrom1, Chrom& chrom2) 
+  void operator()(EOT& _eo1, EOT& _eo2) 
     {
-      if ( chrom1.size() != chrom2.size()) 
+      if ( _eo1.size() != _eo2.size()) 
 	    runtime_error("UxOver --> chromosomes sizes don't match" ); 
       bool changed = false;
-      for (unsigned int i=0; i<chrom1.size(); i++)
+      for (unsigned int i=0; i<_eo1.size(); i++)
 	{
 	  if (rng.flip(preference))
-	    if (chrom1[i] == chrom2[i])
+	    if (_eo1[i] == _eo2[i])
 	      {
-		double tmp = chrom1[i];
-	      chrom1[i]=chrom2[i];
-	      chrom2[i] = tmp;
+		double tmp = _eo1[i];
+	      _eo1[i]=_eo2[i];
+	      _eo2[i] = tmp;
 	      changed = true;
 	    }
 	}
       if (changed)
 	  {
-	    chrom1.invalidate();
-	    chrom2.invalidate();
+	    _eo1.invalidate();
+	    _eo2.invalidate();
 	  }
     }
     private:
