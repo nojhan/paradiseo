@@ -224,15 +224,14 @@ public :
 	   total += vec[i];
        }
      
-     float change = uniform() * total;
-
+     double fortune = uniform() * total;
      int i = 0;
 
-     while (change > 0)
+     while (fortune > 0)
        {
-	 change -= vec[i++];
+	 fortune -= vec[i++];
        }
-
+    
      return --i;
    }
 
