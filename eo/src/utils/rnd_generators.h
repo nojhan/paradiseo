@@ -54,7 +54,8 @@ template <class T = double> class uniform_generator
       throw logic_error("Min is greater than Max in uniform_generator"); 
   }
   
-  T operator()(void) { return (T) minim+uniform.uniform(range); } 
+  T operator()(void) { return minim+static_cast<T>(uniform.uniform(range)); } 
+
 private :
   T minim;
   T range;
