@@ -121,8 +121,6 @@
 #include <eoProportionalGOpSel.h>
 #include <eoSequentialGOpSel.h>
 
-#include <eoSGATransform.h>
-
 //#include <eoLottery.h>
 //#include <eoBreeder.h>
 //#include <eoInsertion.h>
