@@ -48,7 +48,7 @@ public :
     Init externalEo with the struct itself and set fitness to zero
   */
   eoExternalEO(const External& ext) : EO<Fit>(), External(ext) {}
-  eoExternalEO(istream& is) : EO<Fit>(), Base<ext>() { readFrom(is); }
+  eoExternalEO(istream& is) : EO<Fit>(), External(ext) { readFrom(is); }
 
   /**
    * Read object, the external struct needs to have an operator>> defined
@@ -79,6 +79,7 @@ std::ostream& operator<<(std::ostream& os, const eoExternalEO<F, External>& eo)
     return os;
 }
 
+/// To remove ambiguities between EO<F> and External, streaming operators are defined yet again
 template <class F, class External>
 std::istream& operator>>(std::istream& is, eoExternalEO<F, External>& eo)
 {
