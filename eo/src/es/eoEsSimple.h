@@ -48,29 +48,22 @@ class eoEsSimple : public eoFixedLength<Fit, double>
 {
 public :
 
+    typedef double Type;
+
     eoEsSimple(void) : eoFixedLength<Fit, double>() {}
 
     std::string className(void) const { return "eoEsSimple"; }
 
-    void printOn(ostream& os) const
+    void printOn(std::ostream& os) const
     {
-        os << size() << ' ';
+        eoFixedLength<Fit,double>::printOn(os);
 
-        std::copy(begin(), end(), ostream_iterator<double>(os));
-        
         os << ' ' << stdev << ' ';
     }
 
     void readFrom(istream& is)
     {
-        unsigned sz;
-        is >> sz;
-
-        resize(sz);
-        unsigned i;
-
-        for (i = 0; i < sz; ++i)
-            is >> operator[](i);
+        eoFixedLength<Fit,double>::readFrom(is);
 
         is >> stdev;
     }

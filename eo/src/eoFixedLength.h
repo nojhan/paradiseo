@@ -40,7 +40,7 @@ class eoFixedLength : public EO<FitT>, public std::vector<GeneType>
 {
     public :
     
-    typedef typename GeneType Type;
+    typedef GeneType Type;
 
     /// to avoid conflicts between EO::operator< and vector<double>::operator<
     bool operator<(const eoFixedLength<FitT, GeneType>& _eo) const
@@ -48,6 +48,31 @@ class eoFixedLength : public EO<FitT>, public std::vector<GeneType>
         return EO<FitT>::operator<(_eo);
     }
 
+    /// printing...
+    void printOn(ostream& os) const
+    {
+        EO<FitT>::printOn(os);
+        os << ' ';
+
+        os << size() << ' ';
+
+        std::copy(begin(), end(), ostream_iterator<double>(os));
+    }
+
+    /// reading...
+    void readFrom(istream& is)
+    {
+        EO<FitT>::readFrom(is);
+
+        unsigned sz;
+        is >> sz;
+
+        resize(sz);
+        unsigned i;
+
+        for (i = 0; i < sz; ++i)
+            is >> operator[](i);
+    }
 };
 
 /// to avoid conflicts between EO::operator< and vector<double>::operator<

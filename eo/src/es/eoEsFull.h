@@ -40,6 +40,7 @@ template <class Fit>
 class eoEsFull : public eoFixedLength<Fit, double>
 {
     public :
+    typedef double Type;
     
     eoEsFull(void) : eoFixedLength<Fit, double>() {}
     
@@ -47,10 +48,8 @@ class eoEsFull : public eoFixedLength<Fit, double>
 
     void printOn(std::ostream& os) const
     {
-        os << size() << ' ';
+        eoFixedLength<Fit,double>::printOn(os);
 
-        std::copy(begin(), end(), std::ostream_iterator<double>(os));
-        
         os << ' ';
         std::copy(stdevs.begin(), stdevs.end(), std::ostream_iterator<double>(os));
     
@@ -63,21 +62,15 @@ class eoEsFull : public eoFixedLength<Fit, double>
 
     void readFrom(istream& is)
     {
-        unsigned sz;
-        is >> sz;
+        eoFixedLength<Fit,double>::readFrom(is);
 
-        resize(sz);
+        stdevs.resize(size());
+
         unsigned i;
-
-        for (i = 0; i < sz; ++i)
-            is >> operator[](i);
-
-        stdevs.resize(sz);
-
-        for (i = 0; i < sz; ++i)
+        for (i = 0; i < size(); ++i)
             is >> stdevs[i];
 
-        correlations.resize(sz*(sz - 1) / 2);
+        correlations.resize(size()*(size() - 1) / 2);
 
         for (i = 0; i < correlations.size(); ++i)
             is >> correlations[i];

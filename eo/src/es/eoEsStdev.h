@@ -40,16 +40,16 @@ template <class Fit>
 class eoEsStdev : public eoFixedLength<Fit, double>
 {
     public :
-    
+  
+    typedef double Type;
+
     eoEsStdev(void) : eoFixedLength<Fit, double>() {}
 
     std::string className(void) const { return "eoEsStdev"; }
     
     void printOn(std::ostream& os) const
     {
-        os << size() << ' ';
-
-        std::copy(begin(), end(), std::ostream_iterator<double>(os));
+        eoFixedLength<Fit,double>::printOn(os);
         
         os << ' ';
         std::copy(stdevs.begin(), stdevs.end(), std::ostream_iterator<double>(os));
@@ -59,18 +59,11 @@ class eoEsStdev : public eoFixedLength<Fit, double>
 
     void readFrom(istream& is)
     {
-        unsigned sz;
-        is >> sz;
+        eoFixedLength<Fit,double>::readFrom(is);
+        stdevs.resize(size());
 
-        resize(sz);
         unsigned i;
-
-        for (i = 0; i < sz; ++i)
-            is >> operator[](i);
-
-        stdevs.resize(sz);
-
-        for (i = 0; i < sz; ++i)
+        for (i = 0; i < size(); ++i)
             is >> stdevs[i];
     }
 
