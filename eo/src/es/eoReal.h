@@ -34,7 +34,7 @@
 /** eoReal: implementation of simple real-valued chromosome.
   * based on eoFixedLength class
 */
-template <class F> class eoReal: public eoFixedLength<F, double>
+template <class FitT> class eoReal: public eoFixedLength<FitT, double>
 {
  public:
 
@@ -43,7 +43,7 @@ template <class F> class eoReal: public eoFixedLength<F, double>
    * @param size Size of the vector
    */
   eoReal(unsigned size = 0, double value = 0.0): 
-    eoFixedLength<F, double>(size, value) {}
+    eoFixedLength<FitT, double>(size, value) {}
       
   /// My class name.
   string className() const 

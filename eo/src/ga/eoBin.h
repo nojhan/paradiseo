@@ -48,7 +48,7 @@
 \ingroup bitstring
   * based on STL's vector<bool> specialization.                                 
 */
-template <class F> class eoBin: public eoFixedLength<F, bool>
+template <class FitT> class eoBin: public eoFixedLength<FitT, bool>
 {
  public:
 
@@ -57,7 +57,7 @@ template <class F> class eoBin: public eoFixedLength<F, bool>
    * @param size Size of the binary string.
    */
   eoBin(unsigned size = 0, bool value = false): 
-    eoFixedLength<F, bool>(size, value) {}
+    eoFixedLength<FitT, bool>(size, value) {}
       
   /// My class name.
   string className() const 
@@ -71,7 +71,7 @@ template <class F> class eoBin: public eoFixedLength<F, bool>
    */
   void printOn(ostream& os) const
     {
-      EO<F>::printOn(os);
+      EO<FitT>::printOn(os);
       os << ' ';
       os << size() << ' '; 
       copy(begin(), end(), ostream_iterator<bool>(os));
@@ -83,7 +83,7 @@ template <class F> class eoBin: public eoFixedLength<F, bool>
    */
   void readFrom(istream& is)
     {
-      EO<F>::readFrom(is);
+      EO<FitT>::readFrom(is);
       unsigned s;
       is >> s;
       string bits;
