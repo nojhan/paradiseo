@@ -134,13 +134,31 @@ private :
     unsigned which;
 };
 
+/* Actually, you don't need to sort the population to get the best fitness
+   MS - 17/11/00 
 
+template <class EOT>
+class eoBestFitnessStat : public eoStat<EOT, typename EOT::Fitness >
+{
+public :
+    typedef typename EOT::Fitness Fitness;
+
+    eoBestFitnessStat(std::string _description = "Best Fitness") : 
+      eoStat<EOT, Fitness>(Fitness(), _description) {}
+
+    virtual void operator()(const eoPop<EOT>& _pop)
+    {
+        value() = _pop.nth_element_fitness(0);
+    }
+
+};
+*/
 template <class EOT>
 class eoBestFitnessStat : public eoNthElementFitnessStat<EOT>
 {
 public :
     typedef typename EOT::Fitness Fitness;
-
+ 
     eoBestFitnessStat(std::string _description = "Best Fitness") : eoNthElementFitnessStat<EOT>(0, _description) {}
 };
 
