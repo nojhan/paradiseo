@@ -33,9 +33,6 @@
  * The corresponding ***INSTANCIATED DECLARATIONS*** are contained 
  *       in src/es/real.h
  * while the TEMPLATIZED code is define in make_run.h in the src/do dir
- *
- * Unlike most EO .h files, it does not (and should not) contain any code, 
- * just declarations
  */
 
 // The templatized code

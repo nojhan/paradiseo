@@ -2,7 +2,7 @@
 
 //-----------------------------------------------------------------------------
 // eoRealOp.h
-// (c) EEAAX 2000 - Maarten Keijzer 2000
+// (c) Maarten Keijzer 2000 - Marc Schoenauer 2001
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -52,17 +52,37 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
    * @param _epsilon the range for uniform nutation
    * @param _p_change the probability to change a given coordinate
    */
-  eoUniformMutation(const double& _epsilon, const double& _p_change = 1.0):
-    bounds(eoDummyVectorNoBounds), epsilon(_epsilon), p_change(_p_change) {}
+  eoUniformMutation(const unsigned _size, const double& _epsilon, 
+		    const double& _p_change = 1.0):
+    bounds(eoDummyVectorNoBounds), epsilon(_size, _epsilon), 
+    p_change(_size, _p_change) {}
 
   /**
    * Constructor with bounds
    * @param _bounds an eoRealVectorBounds that contains the bounds
-   * @param _epsilon the range for uniform nutation
-   * @param _p_change the probability to change a given coordinate
+   * @param _epsilon the range for uniform mutation - a double to be scaled
+   * @param _p_change the one probability to change all coordinates
    */
   eoUniformMutation(eoRealVectorBounds & _bounds,
 		    const double& _epsilon, const double& _p_change = 1.0):
+    bounds(_bounds), epsilon(_bounds.size(), _epsilon), 
+    p_change(_bounds.size(), _p_change) 
+  {
+    // scale to the range - if any
+    for (unsigned i=0; i<bounds.size(); i++)
+      if (bounds.isBounded(i))
+	  epsilon[i] *= _epsilon*bounds.range(i);
+  }
+
+  /**
+   * Constructor with bounds
+   * @param _bounds an eoRealVectorBounds that contains the bounds
+   * @param _epsilon the VECTOR of ranges for uniform mutation
+   * @param _p_change the VECTOR of probabilities for each coordinates
+   */
+  eoUniformMutation(eoRealVectorBounds & _bounds,
+		    const vector<double>& _epsilon, 
+		    const vector<double>& _p_change):
     bounds(_bounds), epsilon(_epsilon), p_change(_p_change) {}
 
   /// The class name.
@@ -70,18 +90,22 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
 
   /**
    * Do it!
-   * @param _eo The cromosome undergoing the mutation
+   * @param _eo The indi undergoing the mutation
    */
   bool operator()(EOT& _eo)
     {
+      // sanity check ?
+      if (_eo.size() != bounds.size())
+	throw runtime_error("Invalid size of indi in eoUniformMutation");
+
       bool hasChanged=false;
       for (unsigned lieu=0; lieu<_eo.size(); lieu++)
 	{
-	  if (rng.flip(p_change))
+	  if (rng.flip(p_change[lieu]))
 	    {
 	      // check the bounds
-	      double emin = _eo[lieu]-epsilon;
-	      double emax = _eo[lieu]+epsilon;
+	      double emin = _eo[lieu]-epsilon[lieu];
+	      double emax = _eo[lieu]+epsilon[lieu];
 	      if (bounds.isMinBounded(lieu))
 		emin = max(bounds.minimum(lieu), emin);
 	      if (bounds.isMaxBounded(lieu))
@@ -95,8 +119,8 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
 
 private:
   eoRealVectorBounds & bounds;
-  double epsilon;
-  double p_change;
+  vector<double> epsilon;
+  vector<double> p_change;
 };
 
 /** eoDetUniformMutation --> changes exactly k values of the vector
@@ -113,36 +137,63 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
    * @param _epsilon the range for uniform nutation
    * @param number of coordinate to modify
    */
-  eoDetUniformMutation(const double& _epsilon, const unsigned& _no = 1):
-    bounds(eoDummyVectorNoBounds), epsilon(_epsilon), no(_no) {}
+  eoDetUniformMutation(const unsigned _size, const double& _epsilon, 
+		       const unsigned& _no = 1):
+    bounds(eoDummyVectorNoBounds), epsilon(_size, _epsilon), no(_no) {}
 
   /**
    * Constructor with bounds
    * @param _bounds an eoRealVectorBounds that contains the bounds
-   * @param _epsilon the range for uniform nutation
+   * @param _epsilon the range for uniform nutation (to be scaled if necessary)
    * @param number of coordinate to modify
    */
   eoDetUniformMutation(eoRealVectorBounds & _bounds, 
 		       const double& _epsilon, const unsigned& _no = 1): 
-    bounds(_bounds), epsilon(_epsilon), no(_no) {}
+    bounds(_bounds), epsilon(_bounds.size(), _epsilon), no(_no) 
+  {
+    // scale to the range - if any
+    for (unsigned i=0; i<bounds.size(); i++)
+      if (bounds.isBounded(i))
+	  epsilon[i] *= _epsilon*bounds.range(i);
+  }
+
+  /**
+   * Constructor with bounds and full vector of epsilon
+   * @param _bounds an eoRealVectorBounds that contains the bounds
+   * @param _epsilon the VECTOR of ranges for uniform mutation
+   * @param number of coordinate to modify
+   */
+  eoDetUniformMutation(eoRealVectorBounds & _bounds, 
+		       const vector<double>& _epsilon, 
+		       const unsigned& _no = 1): 
+    bounds(_bounds), epsilon(_epsilon), no(_no) 
+  {
+    // scale to the range - if any
+    for (unsigned i=0; i<bounds.size(); i++)
+      if (bounds.isBounded(i))
+	  epsilon[i] *= _epsilon*bounds.range(i);
+  }
 
   /// The class name.
   string className() const { return "eoDetUniformMutation"; }
   
   /**
    * Do it!
-   * @param _eo The cromosome undergoing the mutation
+   * @param _eo The indi undergoing the mutation
    */
   bool operator()(EOT& _eo)
     {
+      // sanity check ?
+      if (_eo.size() != bounds.size())
+	throw runtime_error("Invalid size of indi in eoDetUniformMutation");
       for (unsigned i=0; i<no; i++)
 	    {
 	      unsigned lieu = rng.random(_eo.size());
 	  // actually, we should test that we don't re-modify same variable!
 
 	      // check the bounds
-	      double emin = _eo[lieu]-epsilon;
-	      double emax = _eo[lieu]+epsilon;
+	      double emin = _eo[lieu]-epsilon[lieu];
+	      double emax = _eo[lieu]+epsilon[lieu];
 	      if (bounds.isMinBounded(lieu))
 		emin = max(bounds.minimum(lieu), emin);
 	      if (bounds.isMaxBounded(lieu))
@@ -155,7 +206,7 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
 
 private:
   eoRealVectorBounds & bounds;
-  double epsilon;
+  vector<double> epsilon;
   unsigned no;
 };
 
@@ -405,4 +456,3 @@ template<class EOT> class eoRealUxOver: public eoQuadOp<EOT>
 //-----------------------------------------------------------------------------
 //@}
 #endif eoRealOp_h
-

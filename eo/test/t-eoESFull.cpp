@@ -27,7 +27,7 @@ typedef eoMinimizingFitness  FitT;
 template <class EOT>
 void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoRealVectorBounds& _bounds, eoValueParam<string> _load_name);
   
-int main(int argc, char *argv[]) 
+int main_function(int argc, char *argv[]) 
 {
   // Create the command-line parser
   eoParser parser( argc, argv, "Basic EA for vector<float> with adaptive mutations");
@@ -83,6 +83,30 @@ int main(int argc, char *argv[])
 	return 0;  
 }
 
+// A main that catches the exceptions
+ 
+int main(int argc, char **argv)
+{
+#ifdef _MSC_VER
+  //  rng.reseed(42);
+    int flag = _CrtSetDbgFlag(_CRTDBG_LEAK_CHECK_DF);
+     flag |= _CRTDBG_LEAK_CHECK_DF;
+    _CrtSetDbgFlag(flag);
+//   _CrtSetBreakAlloc(100);
+#endif
+ 
+    try
+    {
+        main_function(argc, argv);
+    }
+    catch(exception& e)
+    {
+        cout << "Exception: " << e.what() << '\n';
+    }
+ 
+    return 1;
+}
+
 template <class EOT>
 void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoRealVectorBounds& _bounds, eoValueParam<string> _load_name)
 {
@@ -90,8 +114,8 @@ void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoRealVectorBounds& _
     eoEvalFuncPtr<EOT, double, const vector<double>&> eval(  real_value );
 
     // population parameters, unfortunately these can not be altered in the state file
-    eoValueParam<unsigned> mu = _parser.createParam(unsigned(50), "mu","Size of the population");
-    eoValueParam<float>lambda_rate = _parser.createParam(float(7.0), "lambda_rate", "Factor of children to produce");
+    eoValueParam<unsigned> mu = _parser.createParam(unsigned(7), "mu","Size of the population");
+    eoValueParam<double>lambda_rate = _parser.createParam(double(7.0), "lambda_rate", "Factor of children to produce");
 
     if (lambda_rate.value() < 1.0f)
     {
@@ -133,11 +157,19 @@ void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoRealVectorBounds& _
     checkpoint.add(monitor);
     checkpoint.add(average);
 
+    // only mutation (== with rate 1.0)
+    eoMonGenOp<EOT> op(mutate);	
+    
+    // the selection: sequential selection
+    eoSequentialSelect<EOT> select;
+    // the general breeder (lambda is a rate -> true)
+    eoGeneralBreeder<EOT> breed(select, op, lambda_rate.value(), true);
 
-    eoProportionalGOpSel<EOT> opSel;
-    opSel.addOp(mutate, 1.0);
+    // the replacement - hard-coded Comma replacement
+    eoCommaReplacement<EOT> replace;
 
-    eoEvolutionStrategy<EOT> es(checkpoint, eval, opSel, lambda_rate.value(), eoEvolutionStrategy<EOT>::comma_strategy());
+    // now the eoEasyEA
+    eoEasyEA<EOT> es(checkpoint, eval, breed, replace);
 
     es(pop);
 

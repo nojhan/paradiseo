@@ -2,17 +2,17 @@
 //-----------------------------------------------------------------------------
 
 
-/** Just a simple function that takes an eoEsBase<float> and sets the fitnes 
+/** Just a simple function that takes an eoEsBase<double> and sets the fitnes 
     to sphere 
-    @param _ind A floatingpoint vector 
+    @param _ind  vector<double>
 */
 
 double real_value(const std::vector<double>& _ind)
 {
-  double sum = 0;      /* compute in double format, even if return a float */
+  double sum = 0;
   for (unsigned i = 0; i < _ind.size(); i++)
       sum += _ind[i] * _ind[i];
-  return sum;
+  return sqrt(sum);
 }
 
 

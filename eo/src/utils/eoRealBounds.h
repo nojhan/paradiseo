@@ -169,6 +169,9 @@ public:
   }
 };
 
+// one object for all - see eoRealBounds.cpp
+extern eoRealNoBounds eoDummyRealNoBounds;
+
 /**
  * fully bounded eoRealBound == interval
  */
@@ -414,10 +417,9 @@ public:
   // virtual desctructor (to avoid warning?)
   virtual ~eoRealVectorBounds(){}
 
-  /** Default Ctor
+  /** Default Ctor. I don't like it, as it leaves NULL pointers around
    */
-  eoRealVectorBounds() : 
-    vector<eoRealBounds *>(0) {}
+  eoRealVectorBounds(unsigned _dim=0) : vector<eoRealBounds *>(_dim) {}
 
   /** Simple bounds = minimum and maximum (allowed)
   */
@@ -590,14 +592,19 @@ public:
 class eoRealVectorNoBounds: public eoRealVectorBounds
 { 
 public:
-  // virtual desctructor (to avoid warining?)
+  // virtual desctructor (to avoid warning?)
   virtual ~eoRealVectorNoBounds(){}
 
   /** 
-      Simple bounds = minimum and maximum (allowed)
-  */
-  // Ctor: nothing to do!
-  eoRealVectorNoBounds(unsigned _dim=0) {}
+   * Ctor: nothing to do, but beware of dimension: call base class ctor
+   */
+  eoRealVectorNoBounds(unsigned _dim=0) : eoRealVectorBounds(_dim)
+  {
+    // avoid NULL pointers, even though they shoudl (at the moment) never be used!
+    if (_dim)
+      for (unsigned i=0; i<_dim; i++)
+	operator[](i)=&eoDummyRealNoBounds;
+  }
 
   
   virtual bool isBounded(unsigned)  {return false;}
@@ -651,7 +658,6 @@ public:
 
 };
 
-// one object for all
-extern eoRealNoBounds eoDummyRealNoBounds;
+// one object for all - see eoRealBounds.cpp
 extern eoRealVectorNoBounds eoDummyVectorNoBounds;
 #endif

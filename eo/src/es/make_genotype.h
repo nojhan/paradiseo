@@ -53,10 +53,10 @@ template <class FitT>
 eoInit<eoReal<FitT> > & do_make_genotype(eoParameterLoader& _parser, eoState& _state, FitT)
 {
   // for eoReal, only thing needed is the size
-    eoValueParam<unsigned>& vecSize = _parser.createParam(unsigned(10), "VecSize", "The number of variables ", 'n',"initialization");
+    eoValueParam<unsigned>& vecSize = _parser.createParam(unsigned(10), "vecSize", "The number of variables ", 'n',"initialization");
 
     // to build an eoReal Initializer, we need bounds
-    eoValueParam<eoParamParamType>& boundsParam = _parser.createParam(eoParamParamType("(0,1)"), "InitBounds", "Bounds for uniform initialization", 'B', "initialization");
+    eoValueParam<eoParamParamType>& boundsParam = _parser.createParam(eoParamParamType("(0,1)"), "initBounds", "Bounds for uniform initialization", 'B', "initialization");
 
   eoParamParamType & ppBounds = boundsParam.value(); // pair<string,vector<string> >
   // transform into a vector<double>
