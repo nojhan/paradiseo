@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mkeijzer@dhi.dk
-CVS Info: $Date: 2003-11-19 13:29:15 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoFileMonitor.h,v 1.12 2003-11-19 13:29:15 okoenig Exp $ $Author: okoenig $ 
+CVS Info: $Date: 2004-09-21 19:49:48 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoFileMonitor.h,v 1.13 2004-09-21 19:49:48 maartenkeijzer Exp $ $Author: maartenkeijzer $ 
 
  */
 //-----------------------------------------------------------------------------
@@ -58,9 +58,9 @@ public :
     }
   }
   
-  eoMonitor& operator()(void);
+  virtual eoMonitor& operator()(void);
 
-  eoMonitor& operator()(std::ostream& os);
+  virtual eoMonitor& operator()(std::ostream& os);
 
   void printHeader(void);
   virtual void printHeader(std::ostream& os);
