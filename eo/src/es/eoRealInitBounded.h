@@ -33,21 +33,30 @@
 #include <es/eoReal.h>
 #include <utils/eoRealBounds.h>
 
-template <class FitT>
-class eoRealInitBounded : public eoInit<eoReal<FitT> >
+/** Simple initialization for any EOT that derives from vector<double> 
+ *    uniformly in some bounds 
+ */
+template <class EOT>
+class eoRealInitBounded : public eoInit<EOT>
 {
  public:
   /** Ctor - from eoRealVectorBounds */
-  eoRealInitBounded(eoRealVectorBounds & _bounds):bounds(_bounds) {}
+  eoRealInitBounded(eoRealVectorBounds & _bounds):bounds(_bounds) 
+  {
+        if (!bounds.isBounded())
+      throw runtime_error("Needs bounded bounds to initialize a vector<double>");
+  }
 
   /** simply passes the argument to the uniform method of the bounds */
-  virtual void operator()(eoReal<FitT>& _eo)
+  virtual void operator()(EOT & _eo)
     {
-      bounds.uniform(_eo);	   // fills _eo with uniform values in bounds
+      bounds.uniform(_eo);  // resizes, and fills uniformly in bounds
+      _eo.invalidate();		   // was MISSING!!!!
     }
 
   /** accessor to the bounds */
-  const eoRealVectorBounds & theBounds() {return bounds;}
+  virtual eoRealVectorBounds & theBounds() {return bounds;}
+  virtual unsigned size(){return bounds.size();}
 
  private:
   eoRealVectorBounds & bounds;
@@ -55,5 +64,5 @@ class eoRealInitBounded : public eoInit<eoReal<FitT> >
 
 //-----------------------------------------------------------------------------
 //@}
-#endif eoRealOp_h
+#endif 
 

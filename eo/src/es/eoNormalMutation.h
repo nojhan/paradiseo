@@ -69,7 +69,7 @@ template<class EOT> class eoNormalMutation: public eoMonOp<EOT>
     sigma(_sigma), bounds(_bounds), p_change(_p_change) {}
 
   /// The class name.
-  string className() const { return "eoNormalMutation"; }
+  virtual string className() const { return "eoNormalMutation"; }
 
   /**
    * Do it!

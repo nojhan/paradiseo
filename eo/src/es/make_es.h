@@ -57,18 +57,31 @@
 #include <es/eoEsStdev.h>	   // one sigmal per object variable
 #include <es/eoEsFull.h>	   // full correlation matrix per indi
 
+// include all similar declaration for eoReal - i.e. real-valued genotyes
+// without self-adaptation
+#include <es/make_real.h>
+
 //Representation dependent - rewrite everything anew for each representation
 //////////////////////////
-
-/*
 // the genotypes 
-eoInit<eoEsSimple<double> > & make_genotype(eoParameterLoader& _parser, eoState& _state, double _d);
-  eoInit<eoEsSimple<eoMinimizingFitness> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoMinimizingFitness _d);
+eoRealInitBounded<eoEsSimple<double> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoEsSimple<double> _eo);
+eoRealInitBounded<eoEsSimple<eoMinimizingFitness> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoEsSimple<eoMinimizingFitness> _eo);
+
+eoRealInitBounded<eoEsStdev<double> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoEsStdev<double> _eo);
+eoRealInitBounded<eoEsStdev<eoMinimizingFitness> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoEsStdev<eoMinimizingFitness> _eo);
+
+eoRealInitBounded<eoEsFull<double> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoEsFull<double> _eo);
+eoRealInitBounded<eoEsFull<eoMinimizingFitness> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoEsFull<eoMinimizingFitness> _eo);
+
+
 
 // the operators
-eoGenOp<eoEsStdev<double> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoInit<eoEsStdev<double> >& _init);
-eoGenOp<eoEsStdev<eoMinimizingFitness> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoInit<eoEsStdev<eoMinimizingFitness> >& _init);
-*/
+eoGenOp<eoEsSimple<double> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoRealInitBounded<eoEsSimple<double> >& _init);
+eoGenOp<eoEsSimple<eoMinimizingFitness> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoRealInitBounded<eoEsSimple<eoMinimizingFitness> >& _init);
+eoGenOp<eoEsStdev<double> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoRealInitBounded<eoEsStdev<double> >& _init);
+eoGenOp<eoEsStdev<eoMinimizingFitness> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoRealInitBounded<eoEsStdev<eoMinimizingFitness> >& _init);
+eoGenOp<eoEsFull<double> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoRealInitBounded<eoEsFull<double> >& _init);
+eoGenOp<eoEsFull<eoMinimizingFitness> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoRealInitBounded<eoEsFull<eoMinimizingFitness> >& _init);
 
 //Representation INdependent
 ////////////////////////////

@@ -52,7 +52,7 @@ public :
 
     eoEsSimple(void) : eoVector<Fit, double>() {}
 
-    std::string className(void) const { return "eoEsSimple"; }
+    virtual std::string className(void) const { return "eoEsSimple"; }
 
     void printOn(std::ostream& os) const
     {

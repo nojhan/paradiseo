@@ -28,7 +28,7 @@
 #define _make_genotype_h
 
 #include <es/eoReal.h>
-#include <eoRealInitBounded.h>
+#include <eoEsChromInit.h>
   // also need the parser and param includes
 #include <utils/eoParser.h>
 #include <utils/eoState.h>
@@ -58,7 +58,7 @@
 */
 
 template <class EOT>
-eoInit<EOT> & do_make_genotype(eoParameterLoader& _parser, eoState& _state, EOT)
+eoEsChromInit<EOT> & do_make_genotype(eoParameterLoader& _parser, eoState& _state, EOT)
 {
   // the fitness type
   typedef typename EOT::Fitness FitT;
@@ -88,8 +88,16 @@ eoInit<EOT> & do_make_genotype(eoParameterLoader& _parser, eoState& _state, EOT)
     throw runtime_error("Sorry, only unique bounds for all variables implemented at the moment. Come back later");
   // we need to give ownership of this pointer to somebody
 
-  eoRealInitBounded<FitT> * init = 
-    new eoRealInitBounded<FitT>(*ptBounds);
+  // now some initial value for sigmas - even if useless?
+  // shoudl be used in Normal mutation
+    eoValueParam<double>& sigmaParam = _parser.createParam(0.3, "sigmaInit", "Initial value for Sigma(s)", 's',"initialization");
+
+    // minimum check
+  if ( (sigmaParam.value() < 0) )
+    throw runtime_error("Invalid sigma");
+
+  eoEsChromInit<EOT> * init = 
+    new eoEsChromInit<EOT>(*ptBounds, sigmaParam.value());
   // satore in state
   _state.storeFunctor(init);
   return *init;

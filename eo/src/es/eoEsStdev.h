@@ -45,7 +45,7 @@ class eoEsStdev : public eoVector<Fit, double>
 
     eoEsStdev(void) : eoVector<Fit, double>() {}
 
-    std::string className(void) const { return "eoEsStdev"; }
+    virtual std::string className(void) const { return "eoEsStdev"; }
 
     void printOn(std::ostream& os) const
     {

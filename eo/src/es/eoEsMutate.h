@@ -122,11 +122,11 @@ public:
 
   virtual bool operator()( eoEsStdev<FitT>& _eo )
   {
-    double global = exp(TauGlb * rng.normal());
+    double global = TauGlb * rng.normal();
     for (unsigned i = 0; i < _eo.size(); i++)
       {
 	    double stdev = _eo.stdevs[i];
-	    stdev *= global * exp(TauLcl * rng.normal());
+	    stdev *= exp( global + TauLcl * rng.normal() );
 
 	    if (stdev < stdev_eps)
 	        stdev = stdev_eps;
@@ -135,7 +135,7 @@ public:
 	    _eo[i] += stdev * rng.normal();
       }
 
-      bounds.foldsInBounds(_eo);
+    bounds.foldsInBounds(_eo);
 
       return true;
   }
@@ -158,12 +158,12 @@ public:
      *	First: mutate standard deviations (as above).
      */
 
-    double global = exp(TauGlb * rng.normal());
+    double global = TauGlb * rng.normal();
     unsigned i;
     for (i = 0; i < _eo.size(); i++)
     {
 	    double stdev = _eo.stdevs[i];
-	    stdev *= global * exp(TauLcl * rng.normal());
+	    stdev *= exp( global + TauLcl*rng.normal() );
 
 	    if (stdev < stdev_eps)
 	        stdev = stdev_eps;
@@ -229,7 +229,8 @@ public:
     {
         unsigned size = bounds.size();
         TauLcl = _init.TauLcl();
-        TauLcl /= sqrt((double) size);
+        TauLcl /= sqrt(2*(double) size);
+	cout << "Init<eoEsSimple>: tau local " << TauLcl << endl;
     }
 
     void init(eoEsStdev<FitT>, eoEsMutationInit& _init)
@@ -242,12 +243,14 @@ public:
         // renormalization
 	    TauLcl /= sqrt( 2.0 * sqrt( (double)size ) );
 	    TauGlb /= sqrt( 2.0 * ( (double) size ) );
+	    cout << "Init<eoStDev>: tau local " << TauLcl << " et global " << TauGlb << endl;
     }
 
     void init(eoEsFull<FitT>, eoEsMutationInit& _init)
     {
         init(eoEsStdev<FitT>(), _init);
         TauBeta = _init.TauBeta();
+	    cout << "Init<eoEsFull>: tau local " << TauLcl << " et global " << TauGlb << endl;
     }
 
    // the data
@@ -263,15 +266,6 @@ public:
 
 template <class EOT>
 const double eoEsMutate<EOT>::stdev_eps = 1.0e-40;
-
-/*
- *	Correlated mutations in ESs, according to the following
- *	sources:
- *	H.-P. Schwefel: Internal Report of KFA Juelich, KFA-STE-IB-3/80
- *	p. 43, 1980
- *	G. Rudolph: Globale Optimierung mit parallelen Evolutions-
- *	strategien, Diploma Thesis, University of Dortmund, 1990
- */
 
 #endif
 

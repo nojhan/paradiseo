@@ -87,7 +87,7 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
     p_change(_p_change) {}
 
   /// The class name.
-  string className() const { return "eoUniformMutation"; }
+  virtual string className() const { return "eoUniformMutation"; }
 
   /**
    * Do it!
@@ -191,7 +191,7 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
   }
 
   /// The class name.
-  string className() const { return "eoDetUniformMutation"; }
+  virtual string className() const { return "eoDetUniformMutation"; }
   
   /**
    * Do it!
@@ -273,7 +273,7 @@ template<class EOT> class eoSegmentCrossover: public eoQuadOp<EOT>
     bounds(_bounds), alpha(_alpha), range(1+2*_alpha) {}
 
   /// The class name.
-  string className() const { return "eoSegmentCrossover"; }
+  virtual string className() const { return "eoSegmentCrossover"; }
 
   /**
    * segment crossover - modifies both parents
@@ -371,7 +371,7 @@ template<class EOT> class eoArithmeticCrossover: public eoQuadOp<EOT>
   }
 
   /// The class name.
-  string className() const { return "eoArithmeticCrossover"; }
+  virtual string className() const { return "eoArithmeticCrossover"; }
 
   /**
    * arithmetical crossover - modifies both parents
@@ -448,7 +448,7 @@ template<class EOT> class eoRealUxOver: public eoQuadOp<EOT>
     }
 
   /// The class name.
-  string className() const { return "eoRealUxOver"; }
+  virtual string className() const { return "eoRealUxOver"; }
 
   /**
    * Uniform crossover for real vectors

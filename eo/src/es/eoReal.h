@@ -46,7 +46,7 @@ template <class FitT> class eoReal: public eoVector<FitT, double>
     eoVector<FitT, double>(size, value) {}
 
   /// My class name.
-  string className() const
+  virtual string className() const
     {
       return "eoReal";
     }

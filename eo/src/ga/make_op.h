@@ -72,7 +72,7 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
   // general operator input
   // BTW we must leave that simple version available somehow, as it is the one
   // that 90% people use!
-    eoValueParam<string>& operatorParam =  _parser.createParam(string("SGA"), "operator", "Description of the operator (SGA only now)", 'o', "Genetic Operators");
+    eoValueParam<string>& operatorParam =  _parser.createParam(string("SGA"), "operator", "Description of the operator (SGA only now)", 'o', "Variation Operators");
 
     if (operatorParam.value() != string("SGA"))
 	throw runtime_error("Only SGA-like operator available roght now\n");
@@ -83,12 +83,12 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
     // and create the eoGenOp that is exactly 
     // crossover with pcross + mutation with pmut
 
-    eoValueParam<double>& pCrossParam = _parser.createParam(0.6, "pCross", "Probability of Crossover", 'C', "Genetic Operators" );
+    eoValueParam<double>& pCrossParam = _parser.createParam(0.6, "pCross", "Probability of Crossover", 'C', "Variation Operators" );
     // minimum check
     if ( (pCrossParam.value() < 0) || (pCrossParam.value() > 1) )
       throw runtime_error("Invalid pCross");
 
-    eoValueParam<double>& pMutParam = _parser.createParam(0.1, "pMut", "Probability of Mutation", 'M', "Genetic Operators" );
+    eoValueParam<double>& pMutParam = _parser.createParam(0.1, "pMut", "Probability of Mutation", 'M', "Variation Operators" );
     // minimum check
     if ( (pMutParam.value() < 0) || (pMutParam.value() > 1) )
       throw runtime_error("Invalid pMut");
@@ -96,17 +96,17 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
     // the crossovers
     /////////////////
     // the parameters
-    eoValueParam<double>& onePointRateParam = _parser.createParam(double(1.0), "onePointRate", "Relative rate for one point crossover", '1', "Genetic Operators" );
+    eoValueParam<double>& onePointRateParam = _parser.createParam(double(1.0), "onePointRate", "Relative rate for one point crossover", '1', "Variation Operators" );
     // minimum check
     if ( (onePointRateParam.value() < 0) )
       throw runtime_error("Invalid onePointRate");
 
-    eoValueParam<double>& twoPointsRateParam = _parser.createParam(double(1.0), "twoPointRate", "Relative rate for two point crossover", '2', "Genetic Operators" );
+    eoValueParam<double>& twoPointsRateParam = _parser.createParam(double(1.0), "twoPointRate", "Relative rate for two point crossover", '2', "Variation Operators" );
     // minimum check
     if ( (twoPointsRateParam.value() < 0) )
       throw runtime_error("Invalid twoPointsRate");
 
-    eoValueParam<double>& uRateParam = _parser.createParam(double(2.0), "uRate", "Relative rate for uniform crossover", 'U', "Genetic Operators" );
+    eoValueParam<double>& uRateParam = _parser.createParam(double(2.0), "uRate", "Relative rate for uniform crossover", 'U', "Variation Operators" );
     // minimum check
     if ( (uRateParam.value() < 0) )
       throw runtime_error("Invalid uRate");
@@ -143,17 +143,17 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoInit<EO
     // the mutations
     /////////////////
     // the parameters
-    eoValueParam<double> & pMutPerBitParam = _parser.createParam(0.01, "pMutPerBit", "Probability of flipping 1 bit in bit-flip mutation", 'b', "Genetic Operators" );
+    eoValueParam<double> & pMutPerBitParam = _parser.createParam(0.01, "pMutPerBit", "Probability of flipping 1 bit in bit-flip mutation", 'b', "Variation Operators" );
     // minimum check
     if ( (pMutPerBitParam.value() < 0) || (pMutPerBitParam.value() > 0.5) )
       throw runtime_error("Invalid pMutPerBit");
 
-    eoValueParam<double> & bitFlipRateParam = _parser.createParam(0.01, "bitFlipRate", "Relative rate for bit-flip mutation", 's', "Genetic Operators" );
+    eoValueParam<double> & bitFlipRateParam = _parser.createParam(0.01, "bitFlipRate", "Relative rate for bit-flip mutation", 's', "Variation Operators" );
     // minimum check
     if ( (bitFlipRateParam.value() < 0) )
       throw runtime_error("Invalid bitFlipRate");
       
-    eoValueParam<double> & oneBitRateParam = _parser.createParam(0.01, "oneBitRate", "Relative rate for deterministic bit-flip mutation", 'd', "Genetic Operators" );
+    eoValueParam<double> & oneBitRateParam = _parser.createParam(0.01, "oneBitRate", "Relative rate for deterministic bit-flip mutation", 'd', "Variation Operators" );
     // minimum check
     if ( (oneBitRateParam.value() < 0) )
       throw runtime_error("Invalid oneBitRate");

@@ -48,7 +48,7 @@ public :
 		 eoQuadOp<vector<double> > & _stdDevXOver) :
     objectXOver(_objectXOver), stdDevXOver(_stdDevXOver) {}
 
-  std::string className(void) const { return "eoEsStdevXOver"; }
+  virtual std::string className(void) const { return "eoEsStdevXOver"; }
 
   bool operator()(EOT & _eo1, EOT & _eo2)
   {

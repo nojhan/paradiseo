@@ -82,7 +82,7 @@ class eoGeneralBreeder: public eoBreed<EOT>
     }
 
   /// The class name.
-  string className() const { return "eoGeneralBreeder"; }
+  virtual string className() const { return "eoGeneralBreeder"; }
 
  private:
   eoSelectOne<EOT>& select;

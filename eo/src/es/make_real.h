@@ -53,18 +53,19 @@
 #include <eoGenOp.h>
 #include <eoPop.h>
 
+#include <es/eoRealInitBounded.h>
 #include <es/eoReal.h>
 
 //Representation dependent - rewrite everything anew for each representation
 //////////////////////////
 
 // the genotypes 
-eoInit<eoReal<double> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoReal<double> _eo);
-  eoInit<eoReal<eoMinimizingFitness> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoReal<eoMinimizingFitness> _eo);
+eoRealInitBounded<eoReal<double> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoReal<double> _eo);
+eoRealInitBounded<eoReal<eoMinimizingFitness> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoReal<eoMinimizingFitness> _eo);
 
 // the operators
-eoGenOp<eoReal<double> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoInit<eoReal<double> >& _init);
-eoGenOp<eoReal<eoMinimizingFitness> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoInit<eoReal<eoMinimizingFitness> >& _init);
+eoGenOp<eoReal<double> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoRealInitBounded<eoReal<double> >& _init);
+eoGenOp<eoReal<eoMinimizingFitness> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoRealInitBounded<eoReal<eoMinimizingFitness> >& _init);
 
 //Representation INdependent
 ////////////////////////////

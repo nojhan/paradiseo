@@ -59,7 +59,7 @@ class monop : public eoMonOp<EOT>
       _eo.fitness(_eo.fitness()+pSize);
       return false;
     }
-  string className() {return sig;}
+  string className() const {return sig;}
     private:
     string sig;
 };
@@ -74,13 +74,13 @@ class binop: public eoBinOp<EOT>
       _eo1.fitness(_eo1.fitness()+f);
       return false;
     }
-  string className() {return "binop";}
+  string className() const {return "binop";}
 };
 
 class quadop: public eoQuadOp<EOT>
 {
   public :
-  string className() {return "quadop";}
+  string className() const {return "quadop";}
     bool operator()(EOT& a, EOT& b)
     {
       EOT oi = a;
@@ -98,7 +98,7 @@ class quadop: public eoQuadOp<EOT>
 class quadClone: public eoQuadOp<EOT>
 {
   public :
-  string className() {return "quadclone";}
+  string className() const {return "quadclone";}
     bool operator()(EOT& , EOT& ) {return false;}
 };
 
@@ -120,7 +120,7 @@ class one2threeOp : public eoGenOp<EOT> // :-)
       eo.s  =  "v(" + eo.s + ", 0)"; // only now change the thing
       // oh right, and invalidate fitnesses
     }
-  virtual string className() {return "one2threeOp";}
+  virtual string className() const {return "one2threeOp";}
 };
 
 
@@ -136,7 +136,7 @@ class two2oneOp : public eoGenOp<EOT> // :-)
       eo.s  =  "221(" + eo.s + ", " + eo2.s + ")";
       // oh right, and invalidate fitnesses
     }
-  virtual string className() {return "two2oneOp";}
+  virtual string className() const {return "two2oneOp";}
 };
 
 class three2threeOp : public eoGenOp<EOT> // :-)
@@ -159,7 +159,7 @@ class three2threeOp : public eoGenOp<EOT> // :-)
       // oh right, and invalidate fitnesses
       cout << "les enfants: a=" << eo1 << " et b=" << eo2 << " et c=" << eo3 << endl;
     }
-  virtual string className() {return "three2threeOp";}
+  virtual string className() const {return "three2threeOp";}
 };
 
 

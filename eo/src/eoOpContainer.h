@@ -67,7 +67,7 @@ class eoOpContainer : public eoGenOp<EOT>
     max_to_produce = max(max_to_produce,ops.back()->max_production());
   }
 
-  virtual string className() = 0;
+  virtual string className() const = 0;
 
   protected :
 
@@ -122,7 +122,7 @@ class eoSequentialOp : public eoOpContainer<EOT>
         while (!_pop.exhausted());
      }
   }
-  virtual string className() {return "SequentialOp";}
+  virtual string className() const {return "SequentialOp";}
 
   private :
 
@@ -148,7 +148,7 @@ class eoProportionalOp : public eoOpContainer<EOT>
       catch(eoPopulator<EOT>::OutOfIndividuals&)
       {}
     }
-  virtual string className() {return "ProportionalOp";}
+  virtual string className() const {return "ProportionalOp";}
 };
 
 

@@ -27,13 +27,10 @@
 #ifndef _eoEsChromInit_H
 #define _eoEsChromInit_H
 
-#include <utils/eoRealBounds.h>
+#include <es/eoRealInitBounded.h>
 #include <es/eoEsSimple.h>
 #include <es/eoEsStdev.h>
 #include <es/eoEsFull.h>
-#include <utils/eoRNG.h>
-
-#include <eoInit.h> 
 
 #ifndef M_PI
 #define M_PI 3.1415926535897932384626433832795
@@ -44,90 +41,85 @@
     
     Random Es-chromosome initializer (therefore derived from eoInit)
 
-    This class can initialize three types of Es's:
+    This class can initialize four types of real-valued genotypes
+    thanks to tempate specialization of private method create
 
-    eoEsSimple 
-    eoEsStdev  
-    eoEsFull   
+    eoReal          just an eoVector<double>
+    eoEsSimple      + one self-adapting single sigma for all variables
+    eoEsStdev       a whole vector of self-adapting sigmas
+    eoEsFull        a full self-adapting correlation matrix
 
-    @see eoEsSimple eoEsStdev eoEsFull eoInit
+    @see eoReal eoEsSimple eoEsStdev eoEsFull eoInit
 */
 
 template <class EOT>
-class eoEsChromInit : public eoInit<EOT>
+class eoEsChromInit : public eoRealInitBounded<EOT>
 {
 public :
-    typedef typename EOT::Fitness FitT;
+  typedef typename EOT::Fitness FitT;
 
-    eoEsChromInit(eoRealVectorBounds& _bounds) : bounds(_bounds)
-    {}
+  eoEsChromInit(eoRealVectorBounds& _bounds, double _sigma = 0.3) : 
+    eoRealInitBounded<EOT>(_bounds), sigma(_sigma)  {}
 
-    void operator()(EOT& _eo)
-    {
-        create(_eo);
-    }
+  void operator()(EOT& _eo)
+  {
+    eoRealInitBounded<EOT>::operator()(_eo);
+    create_self_adapt(_eo);
+    _eo.invalidate();		   // was MISSING!!!!
+  }
+
+  // accessor to sigma
+  double sigmaInit() {return sigma;}
 
 private :
 
-    eoEsSimple<FitT>& create(eoEsSimple<FitT>& result)
-    {
-      result.resize(bounds.size());
+  // No adaptive mutation at all
+  void create_self_adapt(eoReal<FitT>& result)// security check :-)
+  {
+    throw runtime_error("We should not be in create_self_adapt(eoReal)!");
+  }
 
-      bounds.uniform(result);
+  // Adaptive mutation through a unique sigma
+  void create_self_adapt(eoEsSimple<FitT>& result)
+  {
+    // sigma is scaled by the average range (if that means anything!)
+    result.stdev = sigma;
+  }
 
-      result.stdev = 0.3*bounds.averageRange();    // 0.3 should be read as a parameter 
+  // Adaptive mutation through a vector of sigmas
+  void create_self_adapt(eoEsStdev<FitT>& result)
+  {
+    unsigned theSize = eoRealInitBounded<EOT>::size();
+    result.stdevs.resize(theSize);
+    for (unsigned i = 0; i < theSize; ++i)
+      {
+	// should we scale sigmas to the corresponding object variable range?
+	result.stdevs[i] = sigma;
+      }
+  }
 
-        return result;
-    }
+  // Adaptive mutation through a whole correlation matrix
+  void create_self_adapt(eoEsFull<FitT>& result)
+  {
+    unsigned theSize = eoRealInitBounded<EOT>::size();
 
-    eoEsStdev<FitT> create(eoEsStdev<FitT>& result)
-    {
-        unsigned chromSize = bounds.size();
-        result.resize(chromSize);
-        result.stdevs.resize(chromSize);
-
-	bounds.uniform(result);
-        for (unsigned i = 0; i < chromSize; ++i)
-        {
-	  // uniformly in [0.2,0.4) 
-	  // scaled by the range of the object variable)
-          // Just a guess (anyone a better idea?)
-	  result.stdevs[i] = bounds.range(i) * (0.2 + 0.2*eo::rng.uniform());
-        }
-    
-        return result;
-    }
-
-    eoEsFull<FitT>  create(eoEsFull<FitT>& result)
-    {
-        unsigned chromSize = bounds.size();
-        result.resize(chromSize);
-        result.stdevs.resize(chromSize);
-
-        unsigned i;
-
-        for (i = 0; i < chromSize; ++i)
-        {
-            double length = bounds.maximum(i) - bounds.minimum(i);
-            result[i] = bounds.minimum(i) + rng.uniform(length);
+    result.stdevs.resize(theSize);
+    for (unsigned i = 0; i < theSize; ++i)
+      {
+	// should we scale sigmas to the corresponding object variable range?
+	result.stdevs[i] = sigma;
+      }
         
-            // Just a guess at the stdevs (anyone a better idea?)
-            result.stdevs[i] = rng.uniform(length);
-        }
-        
-        // nb of rotation angles: N*(N-1)/2 (in general!)
-        result.correlations.resize(chromSize*(chromSize - 1) / 2);
-        
-        for (i = 0; i < result.correlations.size(); ++i)
-        {
-            // And another random guess for random initialization 
-            result.correlations[i] = rng.uniform(2 * M_PI) - M_PI;
-        }
+    // nb of rotation angles: N*(N-1)/2 (in general!)
+    result.correlations.resize(theSize*(theSize - 1) / 2);
+    for (unsigned i = 0; i < result.correlations.size(); ++i)
+      {
+	// uniform in [-PI, PI)
+	result.correlations[i] = rng.uniform(2 * M_PI) - M_PI;
+      }
+  }
 
-        return result;
-    }
-
-    eoRealVectorBounds& bounds;
+  double sigma;			   // initial value for sigmas
 };
 
 #endif

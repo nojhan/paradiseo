@@ -47,13 +47,19 @@ class eoEsMutationInit
 {
   public :
 
-    eoEsMutationInit(eoParameterLoader& _parser) : parser(_parser), TauLclParam(0), TauGlbParam(0), TauBetaParam(0) {}
+    eoEsMutationInit(eoParameterLoader& _parser, 
+		     std::string _section="ES mutation parameters" ) : 
+      parser(_parser), repSection(_section), 
+      TauLclParam(0), TauGlbParam(0), TauBetaParam(0) {}
+
+  // because we have virtual function - size
+  virtual ~eoEsMutationInit(){}
 
     double TauLcl(void)
     {
         if (TauLclParam == 0)
         {
-            TauLclParam = &parser.createParam(1.0, TauLclName(), "Local Tau", TauLclShort(), section());
+            TauLclParam = &parser.createParam(1.0, TauLclName(), "Local Tau (before normalization)", TauLclShort(), section());
         }
 
         return TauLclParam->value();
@@ -63,7 +69,7 @@ class eoEsMutationInit
     {
         if (TauGlbParam == 0)
         {
-            TauGlbParam = &parser.createParam(1.0, TauGlbName(), "Global Tau", TauGlbShort(), section());
+            TauGlbParam = &parser.createParam(1.0, TauGlbName(), "Global Tau (before normalization)", TauGlbShort(), section());
         }
 
         return TauGlbParam->value();
@@ -82,7 +88,7 @@ class eoEsMutationInit
   protected :
     
     virtual std::string section(void) 
-    { return "Parameters of ES mutation (before renormalization)"; }
+    { return repSection; }
 
     virtual std::string TauLclName(void) const       { return "TauLcL"; }
     virtual char   TauLclShort(void) const           { return 'l'; }
@@ -95,11 +101,11 @@ class eoEsMutationInit
 
   private :
 
-      eoParameterLoader& parser;
-
-      eoValueParam<double>* TauLclParam;
-      eoValueParam<double>* TauGlbParam;
-      eoValueParam<double>* TauBetaParam;
+  eoParameterLoader& parser;
+  std::string repSection;
+  eoValueParam<double>* TauLclParam;
+  eoValueParam<double>* TauGlbParam;
+  eoValueParam<double>* TauBetaParam;
 };
 
 #endif
