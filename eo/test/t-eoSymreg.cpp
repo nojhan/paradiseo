@@ -99,11 +99,11 @@ static SymregNode init_sequence[5] = {SymregNode::X, SymregNode::Plus, SymregNod
 // but dies accept the lt_arity<Node> in eoParseTreeDepthInit
 // !!!
 // #ifdef _MSC_VER 
-template <>
-bool lt_arity(const SymregNode &node1, const SymregNode &node2) 
-{
-     	return (node1.arity() < node2.arity());
-}
+// template <>
+// bool lt_arity(const SymregNode &node1, const SymregNode &node2) 
+// {
+//      	return (node1.arity() < node2.arity());
+// }
 // #endif
 
 //-----------------------------------------------------------
