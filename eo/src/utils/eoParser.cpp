@@ -41,6 +41,32 @@ eoParser::eoParser ( int _argc, char **_argv , string _programDescription, strin
     programDescription( _programDescription), 
     needHelp(false, "help", "Prints this message", 'h')
 {
+    // need to process the param file first 
+    // if we want command-line to have highest priority
+
+    for (int i = 1; i < _argc; ++i)
+      {
+	if (_argv[i][0] == '@')
+	  { // read response file
+	    char *pts = _argv[i]+1; // yes a char*, sorry :-)
+        
+	    ifstream ifs (pts);
+
+	    ifs.peek(); // check if it exists
+	    
+	    if (!ifs)
+	      {
+		string msg = (string)("Could not open response file: ") + pts;
+		throw runtime_error(msg);
+	      }
+	    
+	    // read  - will be overwritten by command-line
+	    readFrom(ifs);
+	    break; // stop reading command line args for '@'
+	  }
+      }
+
+    // now read arguments on command-line
     strstream stream;
     
     for (int i = 1; i < _argc; ++i)
@@ -156,24 +182,6 @@ void eoParser::readFrom(istream& is)
               string value(str.begin() + 2, str.end());
               shortNameMap[str[1]] = value;
           }
-      }
-      if (str[0] == '@')
-      { // read response file
-         string filename(str.begin() + 1, str.end());
-        
-        ifstream ifs (filename.c_str());
-
-        ifs.peek(); // check if it exists
-
-        if (!ifs)
-        {
-            string msg = "Could not open response file: " + filename;
-            throw runtime_error(msg);
-        }
-
-        // read and overwrite
-        readFrom(ifs);
-        break; // stop reading command line
       }
   }
 
