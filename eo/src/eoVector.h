@@ -22,7 +22,7 @@
              Marc.Schoenauer@polytechnique.fr
 	     mak@dhi.dk
 
-    CVS Info: $Date: 2003-02-27 19:25:47 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVector.h,v 1.14 2003-02-27 19:25:47 okoenig Exp $ $Author: okoenig $ 
+    CVS Info: $Date: 2003-03-18 16:57:17 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVector.h,v 1.15 2003-03-18 16:57:17 maartenkeijzer Exp $ $Author: maartenkeijzer $ 
 
  */
 //-----------------------------------------------------------------------------
@@ -116,6 +116,11 @@ template <class FitT, class GeneType>
 bool operator<(const eoVector<FitT, GeneType>& _eo1, const eoVector<FitT, GeneType>& _eo2)
 {
     return _eo1.operator<(_eo2);
+}
+template <class FitT, class GeneType>
+bool operator>(const eoVector<FitT, GeneType>& _eo1, const eoVector<FitT, GeneType>& _eo2)
+{
+    return _eo1.operator>(_eo2);
 }
 
 #endif
