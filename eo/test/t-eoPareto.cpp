@@ -77,38 +77,75 @@ class Init : public eoInit<eoDouble>
   }
 };
 
-// Test pareto dominance and perf2worth, and while you're at it, test the eoGnuPlot monitor as well
 
-void the_main()
+template <class EOT>
+eoPerf2Worth<EOT, double>& make_perf2worth(eoParser& parser, eoState& state)
+{
+  eoDominanceMap<eoDouble>&  dominance = state.storeFunctor(new eoDominanceMap<EOT>);
+
+  unsigned what = parser.createParam(unsigned(0), "perf2worth", "worth mapping indicator : \n\t \
+                  0: non_dominated sorting \n\t\
+                  1: non_dominated sorting 2 \n\t\
+                  2: simple ranking \n\t", 'w').value();
+
+  switch (what)
+  {
+    case 1 : return state.storeFunctor(new eoNDSorting_II<EOT>(dominance));
+    case 2 : return state.storeFunctor(new eoParetoRanking<EOT>(dominance));
+  }
+  //default
+
+  if (what > 2)
+  {
+    cout << "Warning, need an integer < 3 for perf2worth" << endl;
+    // should actually set parser flag, but I don't care
+  }
+
+  return state.storeFunctor(new eoNDSorting_I<EOT>(dominance, 0.5));
+}
+
+template <class EOT>
+eoSelectFromWorth<EOT, double>& make_selector(eoParser& parser, eoState& state, eoPerf2Worth<EOT, double>& perf2worth)
+{
+  unsigned tournamentsize = 2;
+  double stochtour = 0.95;
+
+  switch (parser.createParam(unsigned(0), "selector", "Which selector (too lazy to explain: use the source)", 's').value())
+  {
+    case 1 : return state.storeFunctor(new eoStochTournamentWorthSelect<eoDouble>(perf2worth, stochtour));
+    case 2 : return state.storeFunctor(new eoRouletteWorthSelect<eoDouble>(perf2worth));
+  }
+  // default
+
+  return state.storeFunctor(new eoDetTournamentWorthSelect<eoDouble>(perf2worth, tournamentsize));
+}
+
+// Test pareto dominance and perf2worth, and while you're at it, test the eoGnuPlot monitor as well
+void the_main(int argc, char* argv[])
 {
   Init init;
   Eval eval;
   Mutate mutate;
 
-  unsigned num_gen  = 10;
-  unsigned pop_size = 100;
+  eoParser parser(argc, argv);
+  eoState state;
+
+  unsigned num_gen  = parser.createParam(unsigned(10), "num_gen", "number of generations to run", 'g').value();
+  unsigned pop_size = parser.createParam(unsigned(100), "pop_size", "population size", 'p').value();
   eoPop<eoDouble> pop(pop_size, init);
 
-  eoDominanceMap<eoDouble>  dominance;
+  // Look, a factory function
+  eoPerf2Worth<eoDouble, double>& perf2worth = make_perf2worth<eoDouble>(parser, state);
 
-  // Pareto ranking needs a dominance map
-  //eoParetoRanking<eoDouble> perf2worth(dominance);
-  //eoNDSorting_I<eoDouble> perf2worth(dominance, 0.5);
-  eoNDSorting_II<eoDouble> perf2worth(dominance);
-
-  // Three selectors
-  eoDetTournamentWorthSelect<eoDouble> select1(perf2worth, 3);
-  eoStochTournamentWorthSelect<eoDouble> select2(perf2worth, 0.95);
-  eoRouletteWorthSelect<eoDouble> select3(perf2worth);
+  // Look: another factory function, now for selection
+  eoSelectFromWorth<eoDouble>& select = make_selector<eoDouble>(parser, state, perf2worth);
 
   // One general operator
   eoProportionalOp<eoDouble> opsel;
   opsel.add(mutate, 1.0);
 
-  // Three breeders
-  eoGeneralBreeder<eoDouble> breeder1(select1, opsel);
-  eoGeneralBreeder<eoDouble> breeder2(select2, opsel);
-  eoGeneralBreeder<eoDouble> breeder3(select3, opsel);
+  // the breeder
+  eoGeneralBreeder<eoDouble> breeder(select, opsel);
 
   // replacement
   eoCommaReplacement<eoDouble> replace;
@@ -131,33 +168,19 @@ void the_main()
   snapshot.add(fitness0);
   snapshot.add(fitness1);
 
-  // Three algos
-  eoEasyEA<eoDouble> ea1(cp, eval, breeder1, replace);
-  eoEasyEA<eoDouble> ea2(cp, eval, breeder2, replace);
-  eoEasyEA<eoDouble> ea3(cp, eval, breeder3, replace);
+  // the algo
+  eoEasyEA<eoDouble> ea(cp, eval, breeder, replace);
 
   apply<eoDouble>(eval, pop);
-  ea1(pop);
-
-  apply<eoDouble>(init, pop);
-  apply<eoDouble>(eval, pop);
-  generation = 0;
-
-  ea2(pop);
-  apply<eoDouble>(init, pop);
-  apply<eoDouble>(eval, pop);
-  generation = 0;
-
-  ea3(pop);
-
+  ea(pop);
 }
 
 
-int main()
+int main(int argc, char* argv[])
 {
   try
   {
-    the_main();
+    the_main(argc, argv);
   }
   catch (exception& e)
   {
