@@ -43,7 +43,7 @@
         #include <limits.h>
 #endif
 
-#if !defined(_WIN32) && !defined(__CYGWIN__) && !(defined(__APPLE__) || defined(MACOSX))
+#if !defined(_WIN32) && !defined(__CYGWIN__) && !(defined(__APPLE__) || defined(MACOSX)) && !defined(__FreeBSD__) 
 	#include <values.h>
 #endif
 
