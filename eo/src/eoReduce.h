@@ -214,8 +214,15 @@ public:
     // Now OK to erase some losers
     for (unsigned i=0; i<oldSize - _newsize; i++)
       {
-	EOT & eo = inverse_deterministic_tournament<EOT>(_newgen, t_size);
-	_newgen.erase(&eo);
+	//OLDCODE EOT & eo = inverse_deterministic_tournament<EOT>(_newgen, t_size);
+	//OLDCODE _newgen.erase(&eo);
+	
+	// Jeroen Eggermont stdc++v3  patch
+	// in the new code from stdc++v3 an iterator from a container<T> is no longer an pointer to T
+	// Because eo already contained a fuction using eoPop<EOT>::iterator's we will use the following
+	
+	_newgen.erase( inverse_stochastic_tournament(_newgen.begin(), _newgen.end(), t_size) );
+	
       }
   }
 private:
@@ -259,8 +266,16 @@ public:
     // Now OK to erase some losers
     for (unsigned i=0; i<oldSize - _newsize; i++)
       {
-	EOT & eo = inverse_stochastic_tournament<EOT>(_newgen, t_rate);
-	_newgen.erase(&eo);
+	//OLDCODE EOT & eo = inverse_stochastic_tournament<EOT>(_newgen, t_rate);
+	//OLDCODE _newgen.erase(&eo);
+	
+	// Jeroen Eggermont stdc++v3  patch
+	// in the new code from stdc++v3 an iterator from a container<T> is no longer an pointer to T
+	// Because eo already contained a fuction using eoPop<EOT>::iterator's we will use the following
+	
+	_newgen.erase( inverse_stochastic_tournament(_newgen.begin(), _newgen.end(), t_rate) );
+	
+	
       }
   }
 

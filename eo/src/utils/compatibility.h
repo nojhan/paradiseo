@@ -32,7 +32,10 @@
 #include <iostream>
 
 #ifdef __GNUC__ 
-typedef ios ios_base; // not currently defined in GCC
+	// check for stdlibc++v3 which does have ios_base
+	#ifndef _CPP_BITS_IOSBASE_H 
+	typedef ios ios_base; // not currently defined in GCC
+	#endif
 #endif
 
 #ifdef _MSC_VER

@@ -309,14 +309,14 @@ void eoValueParam<std::vector<eoMinimizingFitness> >::setValue(std::string _valu
 template <>
 std::string eoValueParam<std::vector<void*> >::getValue(void) const
 {
-  throw runtime_error("I cannot getValue for a vector<EOT*>");
-  return string("");
+  throw std::runtime_error("I cannot getValue for a vector<EOT*>");
+  return std::string("");
 }
 
 template <>
 void eoValueParam<std::vector<void*> >::setValue(std::string)
 {
-  throw runtime_error("I cannot setValue for a vector<EOT*>");
+  throw std::runtime_error("I cannot setValue for a vector<EOT*>");
   return;
 }
 
@@ -353,7 +353,7 @@ private :
  * See make_algo.h
  */
 
-class eoParamParamType : public std::pair<string,std::vector<string> >
+class eoParamParamType : public std::pair<std::string,std::vector<std::string> >
 {
 public:
   eoParamParamType(std::string _value)
@@ -361,7 +361,7 @@ public:
     readFrom(_value);
   }
 
-  ostream & printOn(ostream & _os) const
+  std::ostream & printOn(std::ostream & _os) const
   {
     _os << first;
     unsigned narg = second.size();
@@ -382,9 +382,9 @@ public:
     return _os;
   }
 
-  istream & readFrom(istream & _is)
+  std::istream & readFrom(std::istream & _is)
   {
-    string value;
+    std::string value;
     _is >> value;
     readFrom(value);
     return _is;
@@ -400,16 +400,16 @@ public:
 	return;
       }
     // so here we do have arguments
-    string t = _value.substr(pos+1);// the arguments
+    std::string t = _value.substr(pos+1);// the arguments
     _value.resize(pos);
     first = _value;    // done for the keyword (NOTE: may be empty string!)
 
     // now all arguments    
-  string delim(" (),");
+  std::string delim(" (),");
   while ( (pos=t.find_first_not_of(delim)) < t.size())
     {
       size_t posEnd = t.find_first_of(delim, pos);
-      string u(t,pos);
+      std::string u(t,pos);
       u.resize(posEnd-pos);
       second.push_back(u);
       t = t.substr(posEnd);
@@ -418,7 +418,7 @@ public:
 };
 
 // at the moment, the following are defined in eoParser.cpp
-ostream & operator<<(ostream & _os, const eoParamParamType & _rate);
-istream & operator>>(istream & _is,  eoParamParamType & _rate);
+std::ostream & operator<<(std::ostream & _os, const eoParamParamType & _rate);
+std::istream & operator>>(std::istream & _is,  eoParamParamType & _rate);
 
 #endif
