@@ -29,6 +29,12 @@
 #include <eoPop.h>
 #include <eoSelectOne.h>
 
+/** eoPopulator is a helper class for general operators eoGenOp
+    It is an eoPop but also behaves like an eoPop::iterator
+    as far as operator* and operator++ are concerned
+
+    See eoGenOp and eoOpContainer
+*/
 template <class EOT>
 class eoPopulator : public eoPop<EOT>
 {
