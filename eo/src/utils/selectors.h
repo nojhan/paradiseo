@@ -132,7 +132,11 @@ double sum_fitness(const eoPop<EOT>& _pop, std::pair<double, double>& _minmax)
 template <class It>
 It roulette_wheel(It _begin, It _end, double total, eoRng& _gen = rng)
 {
+
     float roulette = _gen.uniform(total);
+
+    if (roulette == 0.0)	   // covers the case where total==0.0
+      return _min + _gen.random(_end - _min); // uniform choice
  
     It i = _begin;
  
@@ -149,6 +153,9 @@ const EOT& roulette_wheel(const eoPop<EOT>& _pop, double total, eoRng& _gen = rn
 {
     float roulette = _gen.uniform(total);
  
+    if (roulette == 0.0)	   // covers the case where total==0.0
+      return _pop[_gen.random(_pop.size())]; // uniform choice
+ 
     eoPop<EOT>::const_iterator i = _pop.begin();
  
     while (roulette > 0.0)
@@ -163,6 +170,9 @@ template <class EOT>
 EOT& roulette_wheel(eoPop<EOT>& _pop, double total, eoRng& _gen = rng)
 {
     float roulette = _gen.uniform(total);
+ 
+    if (roulette == 0.0)	   // covers the case where total==0.0
+      return _pop[_gen.random(_pop.size())]; // uniform choice
  
     eoPop<EOT>::iterator i = _pop.begin();
  
