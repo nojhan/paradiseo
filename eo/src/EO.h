@@ -103,11 +103,26 @@ public:
    * @throw runtime_exception If a valid object can't be read.
    */
   virtual void readFrom(istream& _is) {
-    _is >> repFitness;
-    if (_is)
-      invalidFitness = false;
-    else
-      throw runtime_error("EO(istream&): can't read valid eo from istream");
+     
+        // the new version of the reafFrom function.
+        // It can distinguish between valid and invalid fitness values. 
+        string fitness_str;
+        int pos = _is.tellg();
+	_is >> fitness_str;
+
+	if (fitness_str == "INVALID")
+	{
+		invalidFitness = true;
+	}
+	else
+	{
+		invalidFitness = false;
+		_is.seekg(pos); // rewind
+		_is >> repFitness;
+	}
+
+      
+      
   }
 
   /**
@@ -116,22 +131,16 @@ public:
    */
   virtual void printOn(ostream& _os) const {
 
-    //if (invalid())
-    //  _os << "INVALID ";
-    //else
-    
-    // From now on, no special case for invalid fitnesses :-) 
-    // A random value would so be printed.
-    // Even a non-evaluated EO is also serializable ...
 
-
-    // From now on instead of printing an invalid fitness value
-    // a default value is printed (for paradisEO)
-    
-	if (invalid())
-		_os << Fitness() << ' ';
-	else	
-	      _os << repFitness << ' '; // trailing space to make reading in that much easier
+    // the latest version of the code. Very similar to the old code
+    if (invalid()) {
+  	_os << "INVALID ";
+    }
+    else
+    {
+ 	_os << repFitness << ' ';
+    }
+	      
   }
 
   //@}
