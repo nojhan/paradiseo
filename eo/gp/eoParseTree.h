@@ -26,8 +26,11 @@ public :
     {
         pruneTree(_size);
     }
+    eoParseTree(eoRnd<Type>& _rnd) 
+        : EO<FType>(), parse_tree<Node>(_rnd()) 
+    {}
 
-    void pruneTree(unsigned _size)
+    virtual void pruneTree(unsigned _size)
     {
         if (_size < 1)
             return;
@@ -86,7 +89,6 @@ std::istream& operator>>(std::istream& is, eoParseTree<FType, Node>& eot)
 }
 
 
-
 template <class FType, class Node>
 class eoGpDepthInitializer : public eoRnd< eoParseTree<FType, Node>::Type >
 {
@@ -125,7 +127,7 @@ class eoGpDepthInitializer : public eoRnd< eoParseTree<FType, Node>::Type >
             vector<Node>::iterator it;
 		    for (it = initializor.begin(); it != initializor.end(); ++it)
 		    {
-			    if (it->arity() > 1)
+			    if (it->arity() > 0)
 				    break;
 		    }
 		
@@ -149,6 +151,8 @@ class eoGpDepthInitializer : public eoRnd< eoParseTree<FType, Node>::Type >
 	    {
 		    what_it = initializor.begin() + last_terminal + rng.random(initializor.size() - last_terminal);
 	    }
+
+        what_it->randomize();
 
 	    sequence.push_front(*what_it);
 

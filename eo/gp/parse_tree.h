@@ -4,7 +4,7 @@
 /**
 
  *	Parse_tree and subtree classes 
- *		(c) Maarten Keijzer 1999 
+ *		(c) Maarten Keijzer 1999, 2000 
 
  * These classes may be used for educational and 
  * other non-commercial purposes only. Even if I
@@ -39,31 +39,39 @@
 
   A parse_tree is evaluated through one of it's apply() members:
   
-	1) parse_tree::apply(void)			
+	1) parse_tree::apply(RetVal)			
 	
 	   is the simplest evaluation, it will call 
 	
-	   RetVal Node::operator()(subtree<Node, RetVal>::const_iterator)
+	   RetVal Node::operator()(RetVal, subtree<Node, RetVal>::const_iterator)
 	
-	2) parse_tree::apply(It values)		
+       (Unfortunately the first RetVal argument is mandatory (although you 
+       might not need it. This is because MSVC does not support member template
+       functions properly. If it cannot deduce the template arguments (as is 
+       the case in templatizing over return value) you are not allowed to 
+       specify them. calling tree.apply<double>() would result in a syntax
+       error. That is why you have to call tree.apply(double()) instead.)
+
+
+	2) parse_tree::apply(RetVal v, It values)		
 
        will call:
 
-       RetVal Node::operator()(subtree<... , It values)
+       RetVal Node::operator()(RetVal, subtree<... , It values)
 
        where It is whatever type you desire (most of the time
 	   this will be a vector containing the values of your
 	   variables);
 
-	3) parse_tree::apply(It values, It2 moreValues)
+	3) parse_tree::apply(RetVal, It values, It2 moreValues)
 
        will call:
 
-       RetVal Node::operator()(subtree<... , It values, It2 moreValues)
+       RetVal Node::operator()(RetVal, subtree<... , It values, It2 moreValues)
 		
 	   although I do not see the immediate use of this, however...
 
-	4) parse_tree::apply(It values, It2 args, It3 adfs)
+	4) parse_tree::apply(RetVal, It values, It2 args, It3 adfs)
 
 		that calls:
 
@@ -77,7 +85,7 @@
 	possible. Implement the simplest eval as:
 
 	template <class It>
-		RetVal operator()(It begin) const
+		RetVal operator()(RetVal dummy, It begin) const
 
   ******	Internal Structure    ******
 
@@ -141,6 +149,10 @@
   tree.clear();
   copy(vec.begin(), vec.end(), back_inserter(tree));
 
+  or from an istream:
+
+  copy(istream_iterator<T>(my_stream), istream_iterator<T>(), back_inserter(tree));
+
   Note that the back_inserter must be used as there is no
   resize member in the parse_tree. back_inserter will use
   the push_back member from the parse_tree
@@ -172,11 +184,16 @@ template <class T> class parse_tree
 {
   public :
 
+
 class subtree
 {
 
-// a bit nasty way to use a pool allocator (which would otherwise use slooow new and delete)
-#if (defined(__GNUC__) || defined(_MSC_VER)) && !defined(_MT)    
+/* 
+    a bit nasty way to use a pool allocator (which would otherwise use slooow new and delete)
+    TODO: use the std::allocator interface
+*/
+
+#if (defined(__GNUC__) || defined(_MSC_VER)) && !defined(_MT) // not multithreaded    
     Node_alloc<T>         node_allocator;
     Tree_alloc<subtree>   tree_allocator;
 #else
@@ -188,20 +205,28 @@ public :
 
     typedef subtree* iterator;
     typedef const subtree* const_iterator;
-	//typedef std::vector<subtree >::const_reverse_iterator const_reverse_iterator;
 	
 	/* Constructors, assignments */
 
     subtree(void) : content(node_allocator.allocate()), args(0), parent(0), _cumulative_size(0), _depth(0), _size(1) 
 			{}
-    subtree(const subtree& s) : content(node_allocator.allocate()), args(0), parent(0), _cumulative_size(0), _depth(0), _size(1) 
-			{ copy(s); } 
+    subtree(const subtree& s) 
+        : content(node_allocator.allocate()), 
+          args(0), 
+          parent(0), 
+          _cumulative_size(1), 
+          _depth(1), 
+          _size(1) 
+    {
+        copy(s);
+    } 
+
     subtree(const T& t) : content(node_allocator.allocate()), args(0), parent(0), _cumulative_size(0), _depth(0), _size(1)
 			{ copy(t); } 
 
     template <class It>
         subtree(It b, It e) : content(node_allocator.allocate()), args(0), parent(0), _cumulative_size(0), _depth(0), _size(1) 
-    { // initialize in prefix way for efficiency reasons
+    { // initialize in prefix order for efficiency reasons
         init(b, --e);
     }
 
@@ -215,10 +240,12 @@ public :
             return copy(anotherS);
         }
 
-		return copy(s); 
+		copy(s); 
+        updateAfterInsert();
+        return *this;
 	}
 
-    subtree& operator=(const T& t)       { return copy(t); }
+    subtree& operator=(const T& t)       { copy(t); updateAfterInsert(); return *this; }
 
 	/* Access to the nodes */
 
@@ -253,20 +280,58 @@ public :
 
 	/* Evaluation with an increasing amount of user defined arguments */
 	template <class RetVal>
-	RetVal   apply(RetVal v) const				 { return (*content)(v, begin()); }
+	void apply(RetVal& v) const				 { (*content)(v, begin()); }
 	
 	template <class RetVal, class It>
-		RetVal   apply(RetVal v, It values) const		 { return (*content)(v, begin(), values); }
+	void apply(RetVal& v, It values) const		 
+    { 
+        (*content)(v, begin(), values); 
+    }
 
-	template <class RetVal, class It, class It2>
-		RetVal   apply(RetVal v, It values, It2 moreValues) const		 
-		{ return (*content)(v, begin(), values, moreValues); }
+    template <class RetVal, class It>
+    void apply_mem_func(RetVal& v, It misc, void (T::* f)(RetVal&, subtree::iterator, It))
+    {
+        (content->*f)(v, begin(), misc);
+    }
+
+
+/*	template <class RetVal, class It, class It2>
+	void apply(RetVal& v, It values, It2 moreValues) const		 
+		{ (*content)(v, begin(), values, moreValues); }
 
 	template <class RetVal, class It, class It2, class It3>
-		RetVal   apply(RetVal v, It values, It2 moreValues, It3 evenMoreValues) const		 
-		{ return (*content)(v, begin(), values, moreValues, evenMoreValues); }
+	void apply(RetVal& v, It values, It2 moreValues, It3 evenMoreValues) const		 
+		{ (*content)(v, begin(), values, moreValues, evenMoreValues); }
+*/
 
+    template <class Pred>
+    void find_nodes(vector<subtree*>& result, Pred& p)
+    {
+        if (p(*content))
+        {
+            result.push_back(this);
+        }
 
+        for (int i = 0; i < arity(); ++i)
+        {
+            args[i].find_nodes(result, p);
+        }
+    }
+ 
+    template <class Pred>
+    void find_nodes(vector<const subtree*>& result, Pred& p) const
+    {
+        if (p(*content))
+        {
+            result.push_back(this);
+        }
+
+        for (int i = 0; i < arity(); ++i)
+        {
+            args[i].find_nodes(result, p);
+        }
+    }
+ 
 	/* Iterators */
 
     iterator begin(void)              { return args; }
@@ -336,6 +401,8 @@ protected :
         _cumulative_size += _size;
         _depth++;
 
+        content->updateAfterInsert();
+
         if (parent)
             parent->updateAfterInsert();
     }
@@ -382,46 +449,40 @@ private :
 
         return parent->get_root();
     }
-
     subtree& copy(const subtree& s)
     {
-		int oldArity = arity();
-
-		disown();
+		int old_arity = arity();
         
-		int ar = s.arity();
+		int new_arity = s.arity();
 		
-		if (ar != oldArity)
+		if (new_arity != old_arity)
 		{
-			tree_allocator.deallocate(args, oldArity);
+			tree_allocator.deallocate(args, old_arity);
 
-            args = tree_allocator.allocate(ar);
-
-			//if (ar > 0)
-			//	args = new subtree [ar];
-			//else 
-			//	args = 0;
+            args = tree_allocator.allocate(new_arity);
 		}
 
-		switch(ar)
+		switch(new_arity)
 		{
-		case 3 : args[2].copy(s.args[2]); // no break!
-		case 2 : args[1].copy(s.args[1]);
-		case 1 : args[0].copy(s.args[0]); break;
+		case 3 : args[2].copy(s.args[2]); args[2].parent = this; // no break!
+		case 2 : args[1].copy(s.args[1]); args[1].parent = this; 
+		case 1 : args[0].copy(s.args[0]); args[0].parent = this;
 		case 0 : break;
 		default :
 			{
-				for (int i = 0; i < ar; ++i)
+				for (int i = 0; i < new_arity; ++i)
 				{
 					args[i].copy(s.args[i]);
+                    args[i].parent = this;
 				}
 			}
 		}
 		
 		*content = *s.content; 
-        
-        adopt();
-        updateAfterInsert();
+        _size = s._size;
+        _depth = s._depth;
+        _cumulative_size = s._cumulative_size;
+
         return *this;
     }
 
@@ -559,20 +620,38 @@ private :
 	/* Evaluation (application), with an increasing number of user defined arguments */
 
 	template <class RetVal>
-	RetVal apply(RetVal v) const 
-		{ return _root.apply(v); }
+	void apply(RetVal& v) const 
+		{ _root.apply(v); }
 
 	template <class RetVal, class It>
-		RetVal apply(RetVal v, It varValues) const 
-		{ return _root.apply(v, varValues); }
+		void apply(RetVal& v, It varValues) const 
+		{ _root.apply(v, varValues); }
     
-	template <class RetVal, class It, class It2>
-		RetVal apply(RetVal v, It varValues, It2 moreValues) const 
-		{ return _root.apply(v, varValues, moreValues); }
+    template <class RetVal, class It>
+        void apply_mem_func(RetVal& v, It misc, void (T::* f)(RetVal&, subtree::iterator, It))
+    {
+        _root.apply_mem_func(v, misc, f);
+    }
+
+	//template <class RetVal, class It, class It2>
+	//	void apply(RetVal& v, It varValues, It2 moreValues) const 
+	//	{ _root.apply(v, varValues, moreValues); }
     
-	template <class RetVal, class It, class It2, class It3>
-		RetVal apply(RetVal v, It varValues, It2 moreValues, It3 evenMoreValues) const 
-		{ return _root.apply(v, varValues, moreValues, evenMoreValues); }
+	//template <class RetVal, class It, class It2, class It3>
+	//	void apply(RetVal& v, It varValues, It2 moreValues, It3 evenMoreValues) const 
+	//	{ _root.apply(v, varValues, moreValues, evenMoreValues); }
+
+    template <class Pred>
+    void find_nodes(vector<subtree*>& result, Pred& p)
+    {
+        _root.find_nodes(result, p);
+    }
+ 
+    template <class Pred>
+    void find_nodes(vector<const subtree*>& result, Pred& p) const
+    {
+        _root.find_nodes(p);
+    }
     
 	/* Customized Swap */
 	void swap(parse_tree<T>& other)

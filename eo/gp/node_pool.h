@@ -75,13 +75,18 @@ template<class T>
 class Node_alloc
 {
 public :
-    Node_alloc() {};
-
+    
     T* allocate(void) 
     {
         T* t = static_cast<T*>(mem.allocate());
         t = new  (t) T;
-        //t->T(); // call constructor;
+        return t;
+    }
+    
+    T* construct(const T& org) 
+    {
+        T* t = static_cast<T*>(mem.allocate());
+        t = new  (t) T(org);
         return t;
     }
 
@@ -95,6 +100,7 @@ private :
     static MemPool mem;
 };
 
+
 template <class T> 
 class Standard_alloc
 {
@@ -107,6 +113,19 @@ public :
             return 0;
 
         return new T [arity];
+    }
+    
+    T* construct(size_t arity, T* org)
+    {
+        if (arity == 0)
+            return 0;
+
+        T* t new T [arity];
+
+        for (int i = 0; i < arity; ++i)
+        {
+            t = T(org[i]);
+        }
     }
 
     void deallocate(T* t, size_t arity = 1)
@@ -128,6 +147,11 @@ public :
     T* allocate(void)
     {
         return new T;// [arity];
+    }
+
+    T* construct(const T& org)
+    {
+        return new T(org);
     }
 
     void deallocate(T* t)
@@ -181,6 +205,50 @@ public :
         return t;
      }
 
+    T* construct(size_t arity, T* org)
+    {
+        T* t;
+
+        switch(arity)
+        {
+
+        case 0 : return 0;
+        case 1 :
+            {
+                t = static_cast<T*>(mem1.allocate());
+                new (t) T(*org);
+                break;
+            }
+        case 2 :
+            {
+                t = static_cast<T*>(mem2.allocate());
+                new (t) T(*org);
+                new (&t[1]) T(org[1]);
+                break;
+            }
+        case 3 :
+            {
+                t = static_cast<T*>(mem3.allocate());
+                new (t) T(*org);
+                new (&t[1]) T(org[1]);
+                new (&t[1]) T(org[2]);
+                break;
+            }
+        default :
+            {
+                t = new T[arity]; // does call default ctor
+                for (int i = 0; i < arity; ++i)
+                {
+                    t[i] = T(org[i]); // constructs now
+                }
+            }
+        }
+
+        return t;
+     }
+
+
+
     void deallocate(T* t, size_t arity)
     {
         switch(arity)
@@ -221,6 +289,7 @@ private :
 
 // static (non thread_safe) memory pools
 template <class T> MemPool Node_alloc<T>::mem  = sizeof(T);
+
 template <class T> MemPool Tree_alloc<T>::mem1 = sizeof(T);
 template <class T> MemPool Tree_alloc<T>::mem2 = sizeof(T) * 2;
 template <class T> MemPool Tree_alloc<T>::mem3 = sizeof(T) * 3;
