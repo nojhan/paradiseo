@@ -32,6 +32,7 @@
 #include <string>
 #include <strstream>
 #include <vector>
+#include <stdexcept> 
 #include <eoScalarFitness.h>   // for specializations
 /**
     eoParam: Base class for monitoring and parsing parameters
@@ -215,6 +216,8 @@ void eoValueParam<std::pair<double, double> >::setValue(std::string _value)
     is >> repValue.second;
 }
 
+// The vector<vector<double> >
+//////////////////////////////////
 /// Because MSVC does not support partial specialization, the vector is a vector of doubles, not a T
 template <>
 std::string eoValueParam<std::vector<std::vector<double> > >::getValue(void) const
@@ -252,6 +255,8 @@ void eoValueParam<std::vector<std::vector<double> > >::setValue(std::string _val
     }
 }
 
+// The vector<double>
+//////////////////////////////////
 /// Because MSVC does not support partial specialization, the vector is a double, not a T
 template <>
 std::string eoValueParam<std::vector<double> >::getValue(void) const
@@ -274,6 +279,8 @@ void eoValueParam<std::vector<double> >::setValue(std::string _value)
     std::copy(std::istream_iterator<double>(is), std::istream_iterator<double>(), repValue.begin());
 }
 
+// The vector<eoMinimizingFitness>
+//////////////////////////////////
 /// Because MSVC does not support partial specialization, the vector is a eoMinimizingFitness, not a T
 template <>
 std::string eoValueParam<std::vector<eoMinimizingFitness> >::getValue(void) const
@@ -295,6 +302,22 @@ void eoValueParam<std::vector<eoMinimizingFitness> >::setValue(std::string _valu
     is >> sz;
     repValue.resize(sz);
     std::copy(std::istream_iterator<eoMinimizingFitness>(is), std::istream_iterator<eoMinimizingFitness>(), repValue.begin());
+}
+
+// The vector<const EOT*>
+//////////////////////////////////
+template <>
+std::string eoValueParam<std::vector<void*> >::getValue(void) const
+{
+  throw runtime_error("I cannot getValue for a vector<EOT*>");
+  return string("");
+}
+
+template <>
+void eoValueParam<std::vector<void*> >::setValue(std::string)
+{
+  throw runtime_error("I cannot setValue for a vector<EOT*>");
+  return;
 }
 
 /*template <class ContainerType>

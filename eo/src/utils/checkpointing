@@ -14,3 +14,6 @@
 #include <utils/eoFDCStat.h>
 #include <utils/eoMOFitnessStat.h>
 #include <utils/eoPopStat.h>
+
+// and make_help - any better suggestion to include it?
+void make_help(eoParser & _parser);
