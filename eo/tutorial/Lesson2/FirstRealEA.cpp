@@ -6,10 +6,18 @@
 // (see FirstBitGA.cpp) but now with  Breeder - and Combined Ops
 //
 //-----------------------------------------------------------------------------
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 // standard includes
 #include <stdexcept>  // runtime_error 
 #include <iostream>   // cout
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
 #include <strstream>  // ostrstream, istrstream
+#endif
 
 // the general include for eo
 #include <eo>

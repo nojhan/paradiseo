@@ -8,10 +8,19 @@
 // and to twidle the output to your preferences (as in SecondBitEA.cpp)
 //
 //-----------------------------------------------------------------------------
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 // standard includes
-#include <stdexcept>  // runtime_error 
+#include <fstream>
 #include <iostream>   // cout
+#include <stdexcept>  // runtime_error 
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
 #include <strstream>  // ostrstream, istrstream
+#endif
 
 // the general include for eo
 #include <eo>
