@@ -120,7 +120,7 @@ public:
 	      _parents.sort();
 	      EOT & eoLimit = _parents[elite-1];
 	      unsigned index=0;
-	      while (temp[index++] > eoLimit)
+	      while ( (temp[index++] > eoLimit) && (index < temp.size()) )
 		toSave++;
 	      if (toSave)
 		for (unsigned i=0; i<toSave; i++)
