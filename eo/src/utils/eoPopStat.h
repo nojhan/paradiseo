@@ -82,6 +82,7 @@ void operator()(const eoPop<EOT>& _pop)
   char buffer[1023]; // about one k of space per member
   value() = "\n# ====== pop dump =====\n";
   unsigned howmany=combien?combien:_pop.size();
+  value() += "\n";    // otherwise, possible mix-up with other stats
   for (unsigned i = 0; i < howmany; ++i)
   {
       std::ostrstream os(buffer, 1022); // leave space for emergency terminate
