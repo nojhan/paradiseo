@@ -30,7 +30,7 @@ t_eofitness_LDADD = $(LDADDS)
 
 ###############################################################################
 
-t_eobin_SOURCES = t-eobin.cpp
+t_eobin_SOURCES = t-eobin.cpp binary_value.h
 t_eobin_DEPENDENCIES = $(DEPS)
 t_eobin_LDADD = $(LDADDS)
 
