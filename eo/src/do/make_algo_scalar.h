@@ -73,7 +73,7 @@ template <class EOT>
 eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<EOT>& _eval, eoContinue<EOT>& _continue, eoGenOp<EOT>& _op)
 {
   // the selection
-  eoValueParam<eoParamParamType>& selectionParam = _parser.createParam(eoParamParamType("DetTour(2)"), "selection", "Selection: Roulette, DetTour(T), StochTour(t) or Sequential(ordered/unordered)", 'S', "Evolution Engine");
+  eoValueParam<eoParamParamType>& selectionParam = _parser.createParam(eoParamParamType("DetTour(2)"), "selection", "Selection: Roulette, Ranking(p,e), DetTour(T), StochTour(t) or Sequential(ordered/unordered)", 'S', "Evolution Engine");
 
   eoParamParamType & ppSelect = selectionParam.value(); // pair<string,vector<string> >
 
@@ -107,6 +107,50 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc
 	p = atof(ppSelect.second[0].c_str());
       
       select = new eoStochTournamentSelect<EOT>(p);
+    }
+  else if (ppSelect.first == string("Ranking"))
+    {
+      double p,e;
+      if (ppSelect.second.size()==2)   // 2 parameters: pressure and exponent
+	{
+	  p = atof(ppSelect.second[0].c_str());
+	  e = atof(ppSelect.second[1].c_str());
+	}
+      else if (ppSelect.second.size()==1)   // 1 parameter: pressure 
+	{
+	  cerr << "WARNING, no exponent to Ranking, using 1" << endl;
+	  e = 1;
+	  ppSelect.second.push_back(string("1"));
+	  p = atof(ppSelect.second[0].c_str());
+	}
+      else // no parameters ... or garbage
+	{
+	  cerr << "WARNING, no parameter to Ranking, using (2,1)" << endl;
+	  p=2;
+	  e=1;
+	  // put back in parameter for consistency (and status file)
+	  ppSelect.second.resize(2); // just in case
+	  ppSelect.second[0] = (string("2"));
+	  ppSelect.second[1] = (string("1"));
+	}
+      // check for authorized values
+      // pressure in (0,1]
+      if ( (p<=1) || (p>2) )
+	{
+	  cerr << "WARNING, selective pressure must be in (0,1] in Ranking, using 2\n";
+	  p=2;
+	  ppSelect.second[0] = (string("2"));
+	}
+      // exponent >0
+      if (e<=0)
+	{
+	  cerr << "WARNING, exponent must be positive in Ranking, using 1\n";
+	  e=1;
+	  ppSelect.second[1] = (string("1"));
+	}
+      // now we're OK
+      eoPerf2Worth<EOT> & p2w = _state.storeFunctor( new eoRanking<EOT>(p,e) );
+      select = new eoRouletteWorthSelect<EOT>(p2w);
     }
   else if (ppSelect.first == string("Sequential")) // one after the other
     {
