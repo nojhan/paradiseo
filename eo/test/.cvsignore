@@ -1,6 +1,7 @@
 *.o
 .deps
 Makefile
+Makefile.in
 t-eo
 t-eobin
 t-eobreeder
@@ -13,3 +14,8 @@ t-eogeneration
 t-eoNonUniform
 t-eo2dVector
 t-eoEasyEA
+t-eoUniform
+t-eoRandom
+t-eoCheckpointing
+t-eoVector
+t-eoAtomOps
