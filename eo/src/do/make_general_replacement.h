@@ -99,9 +99,13 @@ eoReduce<EOT> & decode_reduce(eoParamParamType & _ppReduce, eoState & _state)
       ptReduce = new eoStochTournamentTruncate<EOT>(p);
     }
   else if (_ppReduce.first == string("Uniform"))
-  {
-    ptReduce = new eoRandomReduce<EOT>;
-  }
+    {
+      ptReduce = new eoRandomReduce<EOT>;
+    }
+  else // no known reduction entered
+    {
+      throw runtime_error("Unknown reducer: " + _ppReduce.first);
+    }
   // all done, stores and return a reference
   _state.storeFunctor(ptReduce);
   return (*ptReduce);
