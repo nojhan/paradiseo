@@ -11,29 +11,56 @@ int main(int argc, char* argv[])
 
   try
   {
-  typedef eoBit<double> EoType;
+  typedef eoBit<double> EOT;
 
-  eoParser parser(argc, argv);
+  eoParser parser(argc, argv);  // for user-parameter reading
 
-  eoState state;         // keeps all things allocated, including eoEasyEA and eoPop!
+  eoState state;    // keeps all things allocated
 
-  eoEvalFuncPtr<EoType, float> eval( binary_value<EoType> );
-  eoGenContinue<EoType>  term(20);
-  eoCheckPoint<EoType>   checkpoint(term);
+  ///// FIRST, problem or representation dependent stuff
+  //////////////////////////////////////////////////////
 
-  eoAlgo<EoType>& ga = make_ga(parser, eval, checkpoint, state);
+  // The evaluation fn - encapsulated into an eval counter for output 
+  eoEvalFuncPtr<EOT, float> mainEval( binary_value<EOT> );
+  eoEvalFuncCounter<EOT> eval(mainEval);
 
-  eoPop<EoType>& pop   = init_ga(parser, state, double());
+  // the genotype - through a genotype initializer
+  eoInit<EOT>& init = make_genotype(parser, state, double());
 
-  if (parser.userNeedsHelp())
-  {
-    parser.printHelp(cout);
-    return 0;
-  }
+  // Build the variation operator (any seq/prop construct)
+  eoGenOp<EOT>& op = make_op(parser, state, init);
 
+  //// Now the representation-independent things
+  //////////////////////////////////////////////
+
+  // initialize the population - and evaluate
+  // yes, this is representation indepedent once you have an eoInit
+  eoPop<EOT>& pop   = make_pop(parser, state, init);
   apply(eval, pop);
 
-  run_ga(ga, pop); // run the ga
+  // stopping criteria
+  eoContinue<EOT> & term = make_continue(parser, state, eval);
+  // output
+  eoCheckPoint<EOT> & checkpoint = make_checkpoint(parser, state, eval, term);
+  // algorithm (need the operator!)
+  eoAlgo<EOT>& ga = make_algo_scalar(parser, state, eval, checkpoint, op);
+
+  ///// End of construction of the algorith
+  /////////////////////////////////////////
+  // to be called AFTER all parameters have been read!!!
+  make_help(parser);
+
+  //// GO
+  ///////
+  cout << "Initial Population\n";
+  pop.sortedPrintOn(cout);
+  cout << endl;
+
+  run_ea(ga, pop); // run the ga
+
+  cout << "Final Population\n";
+  pop.sortedPrintOn(cout);
+  cout << endl;
   }
   catch(exception& e)
   {

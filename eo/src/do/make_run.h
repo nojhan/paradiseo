@@ -1,8 +1,8 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoEvalFunc.h
-// (c) GeNeura Team, 1998
+// make_run.h
+// (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2001
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -19,29 +19,27 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
+             Marc.Schoenauer@polytechnique.fr
+             mkeijzer@dhi.dk
  */
 //-----------------------------------------------------------------------------
 
-#ifndef eoEvalFunc_H
-#define eoEvalFunc_H
+#ifndef _make_run_h
+#define _make_run_h
 
-#include <eoFunctor.h>
+// Algorithm (only this one needed)
+#include <eoAlgo.h>
 
-/** Evaluate: takes one EO and sets its "fitness" property
- * returning this fitness also. That is why EOT is passed by
- * non-const reference: it must be altered within evaluate.\\
+/*
+ * A trivial function - only here to allow instanciation with a give EOType
+ *      and separate compilation - see in ga dir, make_run_ga
+ *
+*/
 
- The requirements on the types with which this class is to be
- instantiated with are null, or else, they depend on the particular
- class it's going to be applied to; EO does not impose any requirement 
- on it. If you subclass this abstract class, and use it to evaluate an 
- EO, the requirements on this EO will depend on the evaluator.
- */
-
-template<class EOT> class eoEvalFunc : public eoUF<EOT&, void>
+template <class EOT>
+void do_run(eoAlgo<EOT>& _algo, eoPop<EOT>& _pop)
 {
-    public :
-	typedef typename EOT::Fitness EOFitT;
-};
+  _algo(_pop);
+}
 
 #endif

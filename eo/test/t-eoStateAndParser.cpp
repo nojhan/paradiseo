@@ -43,6 +43,12 @@ int the_main(int argc, char **argv)
     eoValueParam<double> rate(0.01, "mutationRatePerBit", "Initial value for mutation rate per bit"); 
     eoValueParam<double> factor(0.99, "mutationFactor", "Decrease factor for mutation rate");
     eoValueParam<uint32> seed(time(0), "seed", "Random number seed");
+    // test if user entered or if default value used
+    if (parser.isItThere(seed))
+      cout << "YES\n";
+    else
+      cout << "NO\n";
+
     eoValueParam<string> load_name("", "Load","Load",'L');
     eoValueParam<string> save_name("", "Save","Save",'S');
  

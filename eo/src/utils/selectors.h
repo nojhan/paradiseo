@@ -41,7 +41,7 @@
 #include <stdexcept>
 
 #include "eoRNG.h"
-
+#include <eoPop.h>
 /**
 \defgroup selectors
 */

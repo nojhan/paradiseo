@@ -67,7 +67,9 @@
 // Continuators - all include eoContinue.h
 #include <eoCombinedContinue.h>
 #include <eoGenContinue.h>
+#include <eoSteadyGenContinue.h>
 #include <eoSteadyFitContinue.h>
+#include <eoEvalContinue.h>
 #include <eoFitContinue.h>
 #ifndef _MSC_VER
 #include <eoCtrlCContinue.h>  // CtrlC handling (using 2 global variables!)

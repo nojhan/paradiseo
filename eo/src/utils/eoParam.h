@@ -28,6 +28,7 @@
 #define eoParam_h
 
 //-----------------------------------------------------------------------------
+#include <math.h>		   // for floor
 #include <string>
 #include <strstream>
 #include <vector>
@@ -296,6 +297,97 @@ void eoValueParam<std::vector<eoMinimizingFitness> >::setValue(std::string _valu
     std::copy(std::istream_iterator<eoMinimizingFitness>(is), std::istream_iterator<eoMinimizingFitness>(), repValue.begin());
 }
 
+/*   ABANDONNED - See class eoRateType below
+     ///////////////////////////////////////
+  Specialization for "rate_or_absolute-number"
+
+typedef std::pair<double,bool> eoRateType;
+template <>
+std::string eoValueParam<eoRateType>::getValue(void) const
+{
+    std::ostrstream os;
+    if (repValue.second)
+      os << 100*repValue.first << "% " << std::ends;
+    else
+      os << repValue.first << " " << std::ends;
+    return os.str();
+}
+
+template <>
+void eoValueParam<eoRateType>::setValue(std::string _value)
+{
+  double rate;
+  // check for %
+  bool interpret_as_rate = false;   // == no %
+  size_t pos =  _value.find('%');
+  if (pos < _value.size())  //  found a %
+    {
+      interpret_as_rate = true;
+      _value.resize(pos);	   // get rid of %
+    }
+    std::istrstream is(_value.c_str());
+    is >> rate;
+    repValue.first = (interpret_as_rate ? rate/100 : floor(rate));
+    repValue.second = interpret_as_rate;
+}
+*/
+/** 
+ * A helper class for the parsing of parameters that can be either a rate
+ * or an absolute value (integer)
+ * See eoHowMany.h 
+ */
+class eoRateParamType : public std::pair<double,bool>
+{
+public:
+  eoRateParamType(std::pair<double,bool> _p) : std::pair<double,bool>(_p) {}
+  eoRateParamType(std::string _value)
+  {
+    readFrom(_value);
+  }
+
+  ostream & printOn(ostream & _os) const
+  {
+    if (second)
+      _os << 100*first << "% " << std::ends;
+    else
+      _os << first << " " << std::ends;
+    return _os;
+  }
+
+  istream & readFrom(istream & _is)
+  {
+    string value;
+    _is >> value;
+    readFrom(value);
+    return _is;
+  }
+
+  void readFrom(std::string _value)
+  {
+    double rate;
+    // check for %
+    bool interpret_as_rate = false;   // == no %
+    size_t pos =  _value.find('%');
+    if (pos < _value.size())  //  found a %
+      {
+	interpret_as_rate = true;
+	_value.resize(pos);	   // get rid of %
+      }
+    std::istrstream is(_value.c_str());
+    is >> rate;
+    first = (interpret_as_rate ? rate/100 : floor(rate));
+    second = interpret_as_rate;
+  }
+
+
+};
+
+// at the moment, the following are defined in eoParser.cpp
+ostream & operator<<(ostream & _os, const eoRateParamType & _rate);
+istream & operator>>(istream & _is,  eoRateParamType & _rate);
+
+
+
 /*template <class ContainerType>
 class eoContainerParam : public eoParam
 {
@@ -319,5 +411,82 @@ private :
     ContainerType& value;
 };*/
 
+/** 
+ * Another helper class for parsing parameters like
+ * Keyword(arg1, arg2, ...)
+ *
+ * It is basically a pair<string,vector<string> >
+ *       first string is keyword
+ *       the vector<string> contains all arguments (as strings)
+ * See make_algo.h
+ */
+
+class eoParamParamType : public std::pair<string,std::vector<string> >
+{
+public:
+  eoParamParamType(std::string _value)
+  {
+    readFrom(_value);
+  }
+
+  ostream & printOn(ostream & _os) const
+  {
+    _os << first;
+    unsigned narg = second.size();
+    if (!narg)
+      return _os;
+
+    // Here, we do have args
+    _os << "(";
+    if (narg == 1)	   // 1 arg only
+      {
+	_os << second[0] << ")" ;
+	return _os;
+      }
+    // and here more than 1 arg
+    for (unsigned i=0; i<narg-1; i++)
+      _os << second[i] << "," ;
+    _os << second[narg-1] << ")";
+    return _os;
+  }
+
+  istream & readFrom(istream & _is)
+  {
+    string value;
+    _is >> value;
+    readFrom(value);
+    return _is;
+  }
+
+  void readFrom(std::string &  _value)
+  {
+    second.resize(0);		   // just in case
+    size_t pos = _value.find('(');
+    if (pos >= _value.size())	   // no arguments
+      {
+	first = _value;
+	return;
+      }
+    // so here we do have arguments
+    string t = _value.substr(pos+1);// the arguments
+    _value.resize(pos);
+    first = _value;		   // done for the keyword
+
+    // now all arguments    
+  string delim(" (),");
+  while ( (pos=t.find_first_not_of(delim)) < t.size())
+    {
+      size_t posEnd = t.find_first_of(delim, pos);
+      string u(t,pos);
+      u.resize(posEnd-pos);
+      second.push_back(u);
+      t = t.substr(posEnd);
+    }
+  }
+};
+
+// at the moment, the following are defined in eoParser.cpp
+ostream & operator<<(ostream & _os, const eoParamParamType & _rate);
+istream & operator>>(istream & _is,  eoParamParamType & _rate);
 
 #endif

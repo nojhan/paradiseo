@@ -89,7 +89,8 @@ typedef typename EOT::Fitness Fitness;
     t_size(_t_size)
   {
     if (t_size < 2)
-      { // warning, error?
+      { 
+	cout << "Warning: EP tournament size should be >= 2. Adjusted" << endl;
 	t_size = 2;
       }
   }

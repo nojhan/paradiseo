@@ -24,7 +24,7 @@
 */
 
 /**
-CVS Info: $Date: 2001-03-14 10:14:27 $  $Author: maartenkeijzer $ $Revision: 1.11 $
+CVS Info: $Date: 2001-04-24 04:52:04 $  $Author: evomarc $ $Revision: 1.12 $
 */
 
 //-----------------------------------------------------------------------------
@@ -37,7 +37,7 @@ CVS Info: $Date: 2001-03-14 10:14:27 $  $Author: maartenkeijzer $ $Revision: 1.1
 
 //-----------------------------------------------------------------------------
 
-main() {
+int main() {
   eoUniformGenerator<float> u1(-2.5,3.5);
   eoUniformGenerator<double> u2(0.003, 0.05 );
   eoUniformGenerator<unsigned long> u3( 10000U, 10000000U);

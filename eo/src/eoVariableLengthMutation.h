@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
-    CVS Info: $Date: 2001-03-21 13:09:47 $ $Version$ $Author: jmerelo $ 
+    CVS Info: $Date: 2001-04-24 04:52:04 $ $Version$ $Author: evomarc $ 
  */
 //-----------------------------------------------------------------------------
 
@@ -187,19 +187,23 @@ public :
 
   /** ctor with an external gene chooser
 
-   * @param nMin      min number of atoms t oleave in the individual
+   * @param nMin      min number of atoms to leave in the individual
    * @param _geneChooser an eoGeneCHooser to choose which one to delete
    */
   eoVlDelMutation(unsigned _nMin, eoGeneDelChooser<EOT> & _chooser) :
     nMin(_nMin), uChooser(), chooser(_chooser) {}
 
-  /** ctor with unifirm gebe chooser
+  /** ctor with uniform gene chooser
 
-   * @param nMin      min number of atoms t oleave in the individual
+   * @param nMin      min number of atoms to leave in the individual
    */
   eoVlDelMutation(unsigned _nMin) :
     nMin(_nMin), uChooser(), chooser(uChooser) {}
 
+  /** Do the job (delete one gene)
+
+   * @param _eo  the EO to mutate
+   */
   bool operator()(EOT & _eo)
   {
     if (_eo.size() <= nMin)

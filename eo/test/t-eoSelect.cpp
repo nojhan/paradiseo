@@ -65,7 +65,8 @@ void testSelectMany(eoSelect<EOT> & _select, string _name)
     // initialize parents
     for (unsigned i=0; i<pSize; i++)
       //      parents[i].fitness(log(i+1));
-      parents[i].fitness(exp(i));
+      //      parents[i].fitness(exp(i));
+      parents[i].fitness(i);
     cout << "Initial parents (odd)\n" << parents << endl;
 
     // do the selection
@@ -132,16 +133,16 @@ eoValueParam<unsigned int> tournamentSizeParam = parser.createParam<unsigned int
 
 
 // the selection procedures under test
-//     eoDetSelect<Dummy> detSelect(oRate);
-//     testSelectMany(detSelect, "detSelect");
+    //    eoDetSelect<Dummy> detSelect(oRate);
+    //    testSelectMany(detSelect, "detSelect");
 
     // Roulette
-//     eoProportionalSelect<Dummy> propSelect;
-//     testSelectOne<Dummy>(propSelect, oRate, "propSelect");
+     eoProportionalSelect<Dummy> propSelect;
+     testSelectOne<Dummy>(propSelect, oRate, "propSelect");
 
     // Ranking
-//     eoRankingSelect<Dummy> rankSelect(rankingPressure);
-//     testSelectOne<Dummy>(rankSelect, oRate, "rankSelect");
+     eoRankingSelect<Dummy> rankSelect(rankingPressure);
+     testSelectOne<Dummy>(rankSelect, oRate, "rankSelect");
 
     // New ranking using the perf2Worth construct
       cout << "Avant appel a LinearRanking()" << endl;
@@ -160,6 +161,8 @@ eoValueParam<unsigned int> tournamentSizeParam = parser.createParam<unsigned int
     // Stoch tournament
     eoStochTournamentSelect<Dummy> stochTourSelect(tRate);
     testSelectOne<Dummy>(stochTourSelect, oRate, "stochTourSelect");
+
+    exit(1);
 
     // Fitness scaling
 //     eoFitnessScalingSelect<Dummy> fitScaleSelect(rankingPressure);

@@ -42,14 +42,14 @@ typedef eoVector<eoMinimizingFitness, int> Chrom2;
 
 //-----------------------------------------------------------------------------
 
-main()
+int main()
 {
   const unsigned SIZE = 4;
 
   // check if the appropriate ctor gets called
   Chrom1 chrom(SIZE, 5);
 
-  for (int i = 0; i < chrom.size(); ++i)
+  for (unsigned i = 0; i < chrom.size(); ++i)
   {
     assert(chrom[i] == 5);
   }
