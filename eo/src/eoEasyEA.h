@@ -28,6 +28,7 @@
 //-----------------------------------------------------------------------------
 
 #include <apply.h>
+#include <eoAlgo.h>
 #include <eoPopAlgo.h>
 #include <eoPopEvalFunc.h>
 #include <eoContinue.h>
@@ -59,7 +60,7 @@ template <class EOT> class eoIslandsEasyEA ;
 
 template <class EOT> class eoDistEvalEasyEA ;
 
-template<class EOT> class eoEasyEA: public eoPopAlgo<EOT>
+template<class EOT> class eoEasyEA: public eoAlgo<EOT>
 {
  public:
 
