@@ -182,7 +182,7 @@ template<class Chrom> class eoBinPrev: public eoMonOp<Chrom>
 };
   
 
-/** eoBinCrossover --> classic crossover */
+/** eoBinCrossover --> classic 2-point crossover */
 
 template<class Chrom> class eoBinCrossover: public eoQuadraticOp<Chrom>
 {

@@ -28,10 +28,13 @@
 
 //-----------------------------------------------------------------------------
 
-#include <functional>  // 
-#include <numeric>     // accumulate
-#include "utils/selectors.h"
-#include <eo>          // eoPop eoSelect MINFLOAT
+#include <stdexcept>          // logic_error
+#include <utils/selectors.h>  // sum_fitness
+
+// #include <functional>  // 
+// #include <numeric>     // accumulate
+// #include <eo>          // eoPop eoSelect MINFLOAT
+
 
 //-----------------------------------------------------------------------------
 /** eoLottery: a selection method. Puts into the output a group of individuals 
@@ -45,12 +48,11 @@ template<class EOT> class eoLottery: public eoBinPopOp<EOT>
 {
  public:
   /// (Default) Constructor.
-  eoLottery(const float& _rate = 1.0): eoBinPopOp<EOT>(), rate(_rate) 
+  eoLottery(const float& _rate = 1.0): eoBinPopOp<EOT>(), rate_(_rate) 
   {
       if (minimizing_fitness<EOT>())
       {
-          eoMinimizingFitnessException up(*this);
-          throw up; // :-)
+	throw logic_error("eoLottery: minimizing fitness");
       }
   }
   
@@ -61,23 +63,27 @@ template<class EOT> class eoLottery: public eoBinPopOp<EOT>
    */
   void operator()( eoPop<EOT>& pop, eoPop<EOT>& breeders) 
     {
-      int target = (int)(rate * pop.size());
+      int target = static_cast<int>(rate_ * pop.size());
 
+      /* Gustavo: uncomment this if it must be here
       // test of consistency
       if (breeders.size() >= target) {
 	  throw("Problem in eoLottery: already too many offspring");
-      }
-
+	  }
+      
       double total;
       
       try
       {
-          total = sum_fitness(pop);
+          total = sum_fitness (pop);
       }
       catch (eoNegativeFitnessException&)
       { // say where it occured...
           throw eoNegativeFitnessException(*this);
       }
+      */
+      
+      double total = sum_fitness (pop);
 
       // selection of chromosomes
       while (breeders.size() < target) 
@@ -86,10 +92,10 @@ template<class EOT> class eoLottery: public eoBinPopOp<EOT>
       }
     }
 
-  double Rate(void) const { return rate; }
+  double rate(void) const { return rate_; }
   
  private:
-  double rate;  // selection rate
+  double rate_;  // selection rate
 };
 
 //-----------------------------------------------------------------------------

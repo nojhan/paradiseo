@@ -78,7 +78,7 @@ double sum_fitness(It begin, It end)
     {
         double v = static_cast<double>(begin->fitness());
         if (v < 0.0)
-            throw std::logical_error("Negative Fitness Encountered");
+            throw std::logic_error("sum_fitness: negative fitness value encountered");
         sum += v;
     }
 

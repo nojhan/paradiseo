@@ -26,7 +26,7 @@
 #ifndef eoExternalEO_h
 #define eoExternalEO_h
 
-#include "EO.h"
+#include <EO.h>
 
 /** 
  * Definition of an object that allows an external struct
@@ -65,3 +65,4 @@ class eoExternalEO : public EO, virtual public External
 
 };
 
+#endif

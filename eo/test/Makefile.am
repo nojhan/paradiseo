@@ -9,7 +9,7 @@ EXTRA_DIST = LICENSE
 
 ###############################################################################
 
-INCLUDES = -I$(top_builddir)/src
+INCLUDES = -I$(top_builddir)/src -I$(top_builddir)/src/ga -I$(top_builddir)/src/utils
 LDADDS = $(top_builddir)/src/libeo.a
 
 ###############################################################################

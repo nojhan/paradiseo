@@ -27,7 +27,7 @@ void InitRandom( Parser & parser) {
     s << _seed;
     parser.setParamValue("--seed", s.str());	   // so it will be printed out in the status file, and canbe later re-used to re-run EXACTLY the same run
   }
-#error This does not work: load and save the entire state of the rng object.
+  //#error This does not work: load and save the entire state of the rng object.
   rng.reseed(_seed);
 
   return;
