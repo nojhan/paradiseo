@@ -1,8 +1,8 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoOp.h
-// (c) GeNeura Team, 1998
+// eoStochTournament.h
+// (c) GeNeura Team, 1998 - EEAAX 1999
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -19,62 +19,60 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
+             Marc.Schoenauer@polytechnique.fr
  */
 //-----------------------------------------------------------------------------
 
-#ifndef eoGeneration_h
-#define eoGeneration_h
+#ifndef eoStochTournament_h
+#define eoStochTournament_h
 
 //-----------------------------------------------------------------------------
 
-#include <eoAlgo.h>     // eoPop
-#include <eoEvalFunc.h> 
-#include <eoPopOps.h>  // eoSelect, eoTranform, eoMerge
+#include <functional>  // 
+#include <numeric>     // accumulate
+#include <eoPopOps.h>          // eoPop eoSelect MINFLOAT
+#include <eoRNG.h>
 
 //-----------------------------------------------------------------------------
-// eoGeneration
+/** eoStochTournament: a selection method that selects ONE individual by
+ binary stochastic tournament 
+ -MS- 24/10/99 */
 //-----------------------------------------------------------------------------
 
-template<class Chrom> class eoGeneration: public eoAlgo<Chrom>
+template <class EOT> class eoStochTournament: public eoSelectOne<EOT>
 {
  public:
-  /// Constructor.
-  eoGeneration(eoBinPopOp<Chrom>&    _select, 
-	       eoMonPopOp<Chrom>& _transform, 
-	       eoBinPopOp<Chrom>&     _replace,
-	       eoEvalFunc<Chrom>& _evaluator):
-    select(_select), transform(_transform), 
-    replace(_replace), evaluator( _evaluator) {};
 
-  /// Copy Constructor.
-  eoGeneration(eoGeneration<Chrom>& _gen):
-    select(_gen.select), transform(_gen.transform), 
-    replace(_gen.replace), evaluator( _gen.evaluator ) {};
-
-
-  /// Apply one generation of evolution to the population.
-  virtual void operator()(eoPop<Chrom>& pop) {
-      eoPop<Chrom> breeders;      
-      select(pop, breeders);
-      transform(breeders);
-      eoPop<Chrom>::iterator i;
-      // Can't use foreach here since foreach takes the 
-      // parameter by reference
-      for ( i = breeders.begin(); i != breeders.end(); i++)
-	evaluator(*i);
-      replace(breeders, pop);
+  ///
+  eoStochTournament(float _Trate = 1.0 ):eoSelectOne(), Trate(_Trate) {
+    // consistency check
+    if (Trate < 0.5) {
+      cerr << "Warning, Tournament rate should be > 0.5\nAdjusted to 0.55\n";
+      Trate = 0.55;
     }
+  }
   
-  /// Class name.
-  string className() const { return "eoGeneration"; }
+  /** DANGER: if you want to be able to minimize as well as maximizem
+      DON'T cast the fitness to a float, use the EOT comparator! */
+  virtual const EOT& operator()(const eoPop<EOT>& pop) {
+    unsigned i1 = rng.random(pop.size()),
+      i2 = rng.random(pop.size());
+
+    bool ok = ( rng.flip(Trate) );
+    if (pop[i1] < pop[ i2 ] ) {
+      if (ok) return pop[ i2 ];
+      else    return pop[ i1 ];
+    }
+    else {
+      if (ok) return pop[ i1 ];
+      else    return pop[ i2 ];
+    }
+  }
   
- private:
-  eoBinPopOp<Chrom>&    select;
-  eoMonPopOp<Chrom>& transform;
-  eoBinPopOp<Chrom>&     replace;
-  eoEvalFunc<Chrom>& evaluator;
+private:
+  float Trate;
 };
 
 //-----------------------------------------------------------------------------
 
-#endif eoGeneration_h
+#endif eoDetTournament_h

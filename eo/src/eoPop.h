@@ -28,9 +28,7 @@
 #include <vector>
 #include <strstream>
 
-using namespace std;
-// from file
-
+// EO includes
 #include <eoRnd.h>
 #include <eoPersistent.h>
 
@@ -62,8 +60,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent {
 	/** Protected ctor. This is intended to avoid creation of void populations, except 
 	    from sibling classes
 	*/
-	eoPop()
-	  :vector<EOT>() {};
+	eoPop()	  :vector<EOT>() {};
 	
 	
 	 /** Ctor for fixed-size chromosomes, with variable content

@@ -119,9 +119,9 @@ class eoESFullChrom  : public eoVector<double, fitT> {
       cout << "WARNING, Number of Standard Deviations > Number of Object Variables\nAdjusted!\n";
       num_sigma = num_genes;
       // modify the Param value - so .status is OK
-      char sloc[20];
-      sprintf(sloc, "%d", num_genes);
-      parser.setParamValue("--NbSigma", sloc);
+      ostrstream sloc;
+      sloc << num_genes;
+      parser.setParamValue("--NbSigma", sloc.str());
     }
     // adjust the sizes!!!
     resize(num_genes);

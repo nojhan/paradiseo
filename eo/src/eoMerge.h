@@ -1,8 +1,8 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoInsertion.h
-//   Inserts new members into the population
+// eoMerge.h
+//   Base class for population-merging classes
 // (c) GeNeura Team, 1998
 /* 
    This library is free software; you can redistribute it and/or
@@ -23,8 +23,8 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef eoInsertion_h
-#define eoInsertion_h
+#ifndef eoMerge_h
+#define eoMerge_h
 
 //-----------------------------------------------------------------------------
 
@@ -32,26 +32,21 @@
 
 // EO includes
 #include <eoPop.h>     // eoPop
-#include <eoMerge.h>  // eoMerge
+#include <eoPopOps.h>  // eoMerge
 
-/******************************************************************************
- * eoInsertion: A replacement algorithm.
- * Creates a new population with all the breeders and the best individuals 
- * from the original population.
- *****************************************************************************/
+/**
+ * eoMerge: Base class for replacement algorithms
+ */
 
-template<class Chrom> class eoInsertion: public eoMerge<Chrom>
+template<class Chrom> class eoMerge: public eoBinPopOp<Chrom>
 {
  public:
   /// (Default) Constructor.
-  eoInsertion(const float& _rate = 1.0): eoMerge<Chrom>( _rate ) {}
+  eoMerge(const float& _rate = 1.0): eoBinPopOp<Chrom>(), repRate( _rate ) {}
 
   /// Ctor from istream
-  eoInsertion( istream& _is): eoBinPopOp<Chrom>( _is ) {};
-
-  /// Dtor
-  virtual ~eoInsertion() {};
-
+  eoMerge( istream& _is): eoBinPopOp<Chrom>() { readFrom( _is ); };
+ 
   /**
    * Creates a new population based on breeders and original populations.
    * @param breeders The population of breeders. Should be sorted to work correctly
@@ -81,13 +76,37 @@ template<class Chrom> class eoInsertion: public eoMerge<Chrom>
 
   /** @name Methods from eoObject	*/
   //@{
-  /** readFrom and printOn inherited from eoMerge */
+  /**
+   * Read object. The EOT class must have a ctor from a stream;
+   in this case, a strstream is used.
+   * @param _is A istream.
+   
+   */
+  virtual void readFrom(istream& _is) {
+    _is >> repRate;
+  }
+  
+  /**
+   * Write object. Prints relevant parameters to standard output
+   * @param _os A ostream. In this case, prints the population to
+   standard output. The EOT class must hav standard output with cout,
+   but since it should be an eoObject anyways, it's no big deal.
+   */
+  virtual void printOn(ostream& _os) const {
+    _os << repRate;
+  };
 
   /** Inherited from eoObject. Returns the class name.
       @see eoObject
   */
-  virtual string className() const {return "eoInsertion";};
+  virtual string className() const {return "eoMerge";};
   //@}
+
+ protected:
+  float rate() { return repRate;};
+
+ private:
+  float repRate;
 
 };
 

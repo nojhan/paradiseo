@@ -7,8 +7,11 @@
 
 //-----------------------------------------------------------------------------
 
-#include <eoPop.h>    // eoPop 
-#include <eoPopOps.h> // eoMerge
+#include <iostream>
+
+// EO includes
+#include <eoPop.h>    
+#include <eoMerge.h>
 
 /*****************************************************************************
  * eoInclusion: A replacement algorithm.                                     *
@@ -20,7 +23,13 @@ template<class Chrom> class eoInclusion: public eoMerge<Chrom>
 {
  public:
   /// (Default) Constructor.
-  eoInclusion(const float& _rate = 1.0): eoMerge<Chrom>(_rate) {}
+  eoInclusion(const float& _rate = 1.0): eoMerge<Chrom>( _rate ) {}
+
+  /// Ctor from istream
+  eoInclusion( istream& _is): eoBinPopOp<Chrom>( _is ) {};
+
+  /// Dtor
+  virtual ~eoInclusion() {};
 
   /**
    * Creates a new population based on breeders and original populations.
@@ -38,6 +47,16 @@ template<class Chrom> class eoInclusion: public eoMerge<Chrom>
 		   greater<Chrom>());
       pop.erase(pop.begin() + target, pop.end());
     }
+
+  /** @name Methods from eoObject	*/
+  //@{
+  /** readFrom and printOn inherited from eoMerge */
+  
+  /** Inherited from eoObject. Returns the class name.
+      @see eoObject
+  */
+  virtual string className() const {return "eoMerge";};
+  //@}
 };
 
 //-----------------------------------------------------------------------------

@@ -41,9 +41,9 @@ template<class Chrom> class eoEasyEA: public eoAlgo<Chrom>
 {
  public:
   /// Constructor.
-  eoEasyEA(eoSelect<Chrom>&    _select, 
-	   eoTransform<Chrom>& _transform, 
-	   eoMerge<Chrom>&     _replace,
+  eoEasyEA(eoBinPopOp<Chrom>&    _select, 
+	   eoMonPopOp<Chrom>& _transform, 
+	   eoBinPopOp<Chrom>&     _replace,
 	   eoEvalFunc<Chrom>& _evaluator,
 	   eoTerm<Chrom>&     _terminator)
     :step(_select, _transform, _replace, _evaluator), 

@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoAtomCreep.h
+// eoAtomBitFlip.h
 //   Increments or decrements by one a single element
 // (c) GeNeura Team, 1998
 /* 
@@ -22,8 +22,8 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
  */
 //-----------------------------------------------------------------------------
-#ifndef _EOATOMCREEP_H
-#define _EOATOMCREEP_H
+#ifndef _EOATOMBITFLIP_H
+#define _EOATOMBITFLIP_H
 
 /** Flips a single bit
 */

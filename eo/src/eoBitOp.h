@@ -318,39 +318,6 @@ template<class Chrom> class eoBinGxOver: public eoBinOp<Chrom>
 };
 
 
-/** eoBinUxOver --> uniform crossover */
-
-template<class Chrom> class eoBinUxOver: public eoBinOp<Chrom>
-{
-public:
-  /// (Default) Constructor.
-  eoBinUxOver(const float _rate = 0.5): rate(_rate)
-    { 
-      if (rate < 0 || rate > 1)
-	runtime_error("UxOver --> invalid rate");
-    }
-  
-  /// The class name.
-  string className() const { return "eoBinUxOver"; }
-  
-  /**
-   * Uniform crossover for binary chromosomes.
-   * @param chrom1 The first chromosome.
-   * @param chrom2 The first chromosome.
-   */
-  void operator()(Chrom& chrom1, Chrom& chrom2) const
-    {
-      unsigned min_size = min(chrom1.size(), chrom2.size());
-      eoUniform<float> uniform(0, 1);
-      
-      for (unsigned bit = 0; bit < min_size; bit++)
-	if (uniform() < rate)
-	  swap(chrom1[bit], chrom2[bit]);
-    }
-  
- public:
-  float rate;
-};
 
 //-----------------------------------------------------------------------------
 //@}

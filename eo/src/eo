@@ -48,21 +48,23 @@
 
 #include <eoOp.h>
 #include <eoMultiMonOp.h>
+#include <eoMultiBinOp.h>
 
 #include <eoDup.h>
 #include <eoKill.h>
 #include <eoTranspose.h>
 #include <eoXOver2.h>
+#include <eoUniformXOver.h>
 #include <eoMutation.h>
 
 #include <eoPop.h>
 #include <eoPopOps.h>
+#include <eoMerge.h>
 #include <eoBitOp.h>
 
 // Evaluation functions
 #include <eoEvalFunc.h>
 #include <eoEvalFuncPtr.h>
-#include <eoEvaluator.h>
 
 // Terminators
 #include <eoTerm.h>
@@ -70,6 +72,9 @@
 #include <eoFitTerm.h>
 
 // Selection and reproduction stuff
+#include <eoUniformSelect.h>
+#include <eoDetTournament.h>
+#include <eoStochTournament.h>
 #include <eoLottery.h>
 #include <eoBreeder.h>
 #include <eoInsertion.h>

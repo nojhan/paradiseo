@@ -52,7 +52,7 @@ public:
 
 	///
 	virtual void operator()( EOT& _eo1, 
-							EOT& _eo2 ) const {
+				 EOT& _eo2 ) const {
 	  unsigned len1 = _eo1.length(), len2 = _eo2.length(), 
 	    len= (len1 > len2)?len2:len1;
 	  eoUniform<unsigned> uniform( 0, len );
