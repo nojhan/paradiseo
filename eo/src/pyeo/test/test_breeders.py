@@ -1,16 +1,12 @@
 from maxone import *
 import unittest
 	
-evaluate = EvalFunc()
-init = Init(20)
-mutate = Mutate()
-xover = Crossover()
-
-class TestSGA(unittest.TestCase):
+class TestBreeders(unittest.TestCase):
     
     def runtest(self, breed):
 	
-	pop = eoPop(50, init)
+	pop = eoPop(50, Init(20))
+	evaluate = EvalFunc()
 	for indy in pop: evaluate(indy)
 	
 	newpop = eoPop();
@@ -24,12 +20,10 @@ class TestSGA(unittest.TestCase):
     def testGeneralBreeder(self):
 	
 	seq = eoSequentialOp();
-	seq.add(xover, 0.7)
-	seq.add(mutate, 0.9)
+	seq.add(Crossover(), 0.7)
+	seq.add(Mutate(), 0.1)
 
-	sel = eoDetTournamentSelect(3)
-
-	breed = eoGeneralBreeder(sel, seq)
+	breed = eoGeneralBreeder(eoDetTournamentSelect(3), seq)
 
 	self.runtest(breed)
 

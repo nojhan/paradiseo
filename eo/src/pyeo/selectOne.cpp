@@ -27,6 +27,7 @@
 
 #include "PyEO.h"
 #include "pickle.h"
+#include "def_abstract_functor.h"
 
 class eoSelectOneWrapper : public eoSelectOne<PyEO>
 {
@@ -85,7 +86,7 @@ void selectOne()
     add_select<eoDetTournamentSelect<PyEO> >("eoDetTournamentSelect", init<>(), init<unsigned>() );
     add_select<eoStochTournamentSelect<PyEO> >("eoStochTournamentSelect", init<>(), init<double>() );
     add_select<eoTruncatedSelectOne<PyEO>  >("eoTruncatedSelectOne", 
-	    init<eoSelectOne<PyEO>&, double>(), init<eoSelectOne<PyEO>&, eoHowMany >() );
+	    init<eoSelectOne<PyEO>&, double>()[WC1], init<eoSelectOne<PyEO>&, eoHowMany >()[WC1] );
     
     // eoProportionalSelect is not feasible to implement at this point as fitness is not recognizable as a float
     // use eoDetTournament instead: with a t-size of 2 it is equivalent to eoProportional with linear scaling

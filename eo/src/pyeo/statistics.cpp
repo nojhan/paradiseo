@@ -37,7 +37,7 @@ const PyEO& popview_getitem(const std::vector<const PyEO*>& pop, int it)
 	    
     return *pop[item]; 
 }
-	    
+
 void statistics()
 {
     class_<eoStatBase<PyEO>, StatBaseWrapper, boost::noncopyable>
@@ -56,6 +56,4 @@ void statistics()
 	.def("lastCall", &eoSortedStatBase<PyEO>::lastCall)
 	.def("__call__", &SortedStatBaseWrapper::operator())
 	;
-
-    
 }

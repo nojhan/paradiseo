@@ -41,7 +41,6 @@ class PyFitness : public boost::python::object
     
     template <class T>
     PyFitness(const T& o) : object(o) {}
-   
     
     static unsigned nObjectives() { return objective_info.size(); }
     static double tol() { return 1e-6; }
@@ -117,7 +116,7 @@ struct PyEO : public EO< PyFitness  >
     object getGenome() const { return genome; }
     void setGenome(object g) { genome = g; }
     object genome;
-
+    
     std::string to_string() const
     {
 	std::string result;

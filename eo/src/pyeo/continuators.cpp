@@ -50,14 +50,14 @@ void continuators()
 	.def("__call__", &eoGenContinue<PyEO>::operator())
 	;
   
-    class_<eoCombinedContinue<PyEO>, bases<eoContinue<PyEO> > >("eoCombinedContinue", init<eoContinue<PyEO>&>())
-	.def( init<eoContinue<PyEO>&, eoContinue<PyEO>& >() )
-	.def("add", &eoCombinedContinue<PyEO>::add)
+    class_<eoCombinedContinue<PyEO>, bases<eoContinue<PyEO> > >("eoCombinedContinue", init<eoContinue<PyEO>&>()[WC1])
+	.def( init<eoContinue<PyEO>&, eoContinue<PyEO>& >()[WC2] )
+	.def("add", &eoCombinedContinue<PyEO>::add, WC1)
 	.def("__call__", &eoCombinedContinue<PyEO>::operator())
 	;
    
     class_<eoEvalContinue<PyEO>, bases<eoContinue<PyEO> > >("eoEvalContinue", 
-	    init<eoEvalFuncCounter<PyEO>&, unsigned long>())
+	    init<eoEvalFuncCounter<PyEO>&, unsigned long>()[WC1])
 	.def("__call__", &eoEvalContinue<PyEO>::operator())
 	;
 
@@ -76,11 +76,13 @@ void addSortedStat(eoCheckPoint<PyEO>& c, eoSortedStatBase<PyEO>& s) { c.add(s);
 void add_checkpoint()
 {
     class_<eoCheckPoint<PyEO>, bases< eoContinue<PyEO> > >("eoCheckPoint",
-	    init<eoContinue<PyEO>&>())
-	.def("add", addContinue)
+	    
+	    init<eoContinue<PyEO>&> ()[with_custodian_and_ward<1,2>()]
+	    ) 
+	.def("add", addContinue, with_custodian_and_ward<1,2>() )
 	.def("add", addMonitor, with_custodian_and_ward<1,2>() )
-	.def("add", addStat)
-	.def("add", addSortedStat)
+	.def("add", addStat, with_custodian_and_ward<1,2>())
+	.def("add", addSortedStat, with_custodian_and_ward<1,2>()) 
 	.def("__call__", &eoCheckPoint<PyEO>::operator())
 	;
 }

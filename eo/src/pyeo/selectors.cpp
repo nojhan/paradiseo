@@ -30,8 +30,8 @@
 #include "def_abstract_functor.h"
 
 #define DEF(x) class_<x<PyEO>, bases<eoSelect<PyEO > > >(#x).def("__call__", &eoSelect<PyEO>::operator())
-#define DEF2(x, i1) class_<x<PyEO>, bases<eoSelect<PyEO > > >(#x, init<i1>() ).def("__call__", &eoSelect<PyEO>::operator())
-#define DEF3(x, i1, i2) class_<x<PyEO>, bases<eoSelect<PyEO > > >(#x, init<i1, i2 >() ).def("__call__", &eoSelect<PyEO>::operator())
+#define DEF2(x, i1) class_<x<PyEO>, bases<eoSelect<PyEO > > >(#x, init<i1>()[WC1] ).def("__call__", &eoSelect<PyEO>::operator())
+#define DEF3(x, i1, i2) class_<x<PyEO>, bases<eoSelect<PyEO > > >(#x, init<i1, i2 >()[WC1] ).def("__call__", &eoSelect<PyEO>::operator())
 
 void selectors()
 {
@@ -39,21 +39,21 @@ void selectors()
 
     DEF(eoDetSelect).def( init<double>() ).def( init<double, bool>() );
     DEF3(eoSelectMany, eoSelectOne<PyEO>&, double)
-	.def( init< eoSelectOne<PyEO>&, double, bool>() )
-	.def( init< eoSelectOne<PyEO>&, eoHowMany>() );
+	.def( init< eoSelectOne<PyEO>&, double, bool>()[WC1] )
+	.def( init< eoSelectOne<PyEO>&, eoHowMany>()[WC1] );
 
     DEF2(eoSelectNumber, eoSelectOne<PyEO>&)
-	.def( init< eoSelectOne<PyEO>&, unsigned>());
+	.def( init< eoSelectOne<PyEO>&, unsigned>()[WC1]);
 
     DEF2(eoSelectPerc, eoSelectOne<PyEO>&)
-	.def( init<eoSelectOne<PyEO>&, float>() );
+	.def( init<eoSelectOne<PyEO>&, float>()[WC1] );
 
     DEF3(eoTruncSelect, eoSelectOne<PyEO>&, eoHowMany);
 
     class_<eoTruncatedSelectMany<PyEO>, bases<eoSelect<PyEO> > >("eoTruncatedSelectMany",
-	    init<eoSelectOne<PyEO>&, double, double> ())
-	.def(init<eoSelectOne<PyEO>&, double, double, bool> ())
-	.def(init<eoSelectOne<PyEO>&, double, double, bool, bool> ())
-	.def(init<eoSelectOne<PyEO>&, eoHowMany, eoHowMany> ());
+	    init<eoSelectOne<PyEO>&, double, double>()[WC1])
+	.def(init<eoSelectOne<PyEO>&, double, double, bool> ()[WC1])
+	.def(init<eoSelectOne<PyEO>&, double, double, bool, bool> ()[WC1])
+	.def(init<eoSelectOne<PyEO>&, eoHowMany, eoHowMany> ()[WC1]);
 	
 }

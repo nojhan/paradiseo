@@ -22,6 +22,7 @@
 #include <boost/python.hpp>
 
 #include <strstream>
+#include <boost/python/detail/api_placeholder.hpp>
 
 using namespace boost::python;
 
@@ -47,6 +48,26 @@ void rng_from_string(eoRng& _rng, std::string s)
     _rng.readFrom(is);
 }
 
+int spin(eoRng& _rng, numeric::array values, double total)
+{
+   if (total == 0.0)
+   {
+	unsigned sz = len(values);
+	for (unsigned i = 0; i < sz; ++i)
+	{
+	    total += extract<double>(values[i]); //extract?
+	}
+   }
+
+   double chance = _rng.uniform() * total;
+    
+   int i = 0;
+   while (chance >= 0.0)
+       chance -= extract<double>(values[i++]);
+
+   return --i;
+}
+
 void random_numbers()
 {
     class_<eoRng, boost::noncopyable>("eoRng", init<uint32>())
@@ -60,6 +81,7 @@ void random_numbers()
 	.def("negexp", &eoRng::negexp)
 	.def("to_string", rng_to_string)
 	.def("from_string", rng_from_string)
+	.def("roulette_wheel", spin)
 	;
     
     def("rng", get_rng, return_value_policy<reference_existing_object>());

@@ -36,7 +36,18 @@ void algos()
 	    eoQuadOp<PyEO>&, float,
 	    eoMonOp<PyEO>&, float,
 	    eoEvalFunc<PyEO>&, 
-	    eoContinue<PyEO>&>())
+	    eoContinue<PyEO>&>()
+	    [
+	    with_custodian_and_ward<1,2,
+		with_custodian_and_ward<1,3,
+		    with_custodian_and_ward<1,5,
+			with_custodian_and_ward<1,7,
+			    with_custodian_and_ward<1,8>
+			>
+		    >
+		>
+	    >()
+	    ])
 	.def("__call__", &eoSGA<PyEO>::operator())
 	;
    

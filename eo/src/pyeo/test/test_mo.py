@@ -95,7 +95,8 @@ class NSGA_II(eoAlgo):
 	    
 	    i += 1
 	    if i%100 == 0:
-		pass #do_plot(pop)
+		pass 
+		do_plot(pop)
 	    
 	worths = self.perf2worth.getValue()
 	
@@ -163,9 +164,8 @@ class TestNSGA_II(unittest.TestCase):
 
     def testNSGA_II(self):
 	
-	init = MyInit();
 	evaluate = AnEval();
-	pop = eoPop(25, init)
+	pop = eoPop(25, MyInit())
 	for indy in pop: evaluate(indy)
 	
 	nsga = NSGA_II(50)

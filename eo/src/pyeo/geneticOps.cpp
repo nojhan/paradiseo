@@ -25,6 +25,7 @@
 #include <eoOpContainer.h>
 
 #include "PyEO.h"
+#include "def_abstract_functor.h"
 
 class GenOpWrapper : public eoGenOp<PyEO>
 {
@@ -138,12 +139,12 @@ void geneticOps()
 	;
     
     class_<eoSequentialOp<PyEO>, bases<eoGenOp<PyEO> >, boost::noncopyable>("eoSequentialOp", init<>())
-	.def("add", &eoSequentialOp<PyEO>::add)
+	.def("add", &eoSequentialOp<PyEO>::add, WC1)
 	.def("apply", &eoSequentialOp<PyEO>::apply)
 	;
    
     class_<eoProportionalOp<PyEO>, bases<eoGenOp<PyEO> >, boost::noncopyable>("eoProportionalOp", init<>())
-	.def("add", &eoProportionalOp<PyEO>::add)
+	.def("add", &eoProportionalOp<PyEO>::add, WC1)
 	.def("apply", &eoProportionalOp<PyEO>::apply)
 	;
     

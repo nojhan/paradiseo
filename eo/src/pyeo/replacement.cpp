@@ -29,7 +29,9 @@
 
 #define DEF(x) class_<x<PyEO>, bases<eoReplacement<PyEO > > >(#x).def("__call__", &eoReplacement<PyEO>::operator())
 #define DEF2(x, i1) class_<x<PyEO>, bases<eoReplacement<PyEO > > >(#x, init<i1>() ).def("__call__", &eoReplacement<PyEO>::operator())
-#define DEF3(x, i1, i2) class_<x<PyEO>, bases<eoReplacement<PyEO > > >(#x, init<i1, i2 >() ).def("__call__", &eoReplacement<PyEO>::operator())
+#define DEF3(x, i1, i2) class_<x<PyEO>, bases<eoReplacement<PyEO > > >(#x, \
+	init<i1, i2 >() [WC2])\
+    .def("__call__", &eoReplacement<PyEO>::operator())
 
 void replacement()
 {
@@ -37,8 +39,11 @@ void replacement()
 
     // eoReplacement.h
     DEF(eoGenerationalReplacement); 
-    DEF2(eoWeakElitistReplacement, eoReplacement<PyEO>& );
-   
+    
+    class_<eoWeakElitistReplacement<PyEO>, bases<eoReplacement<PyEO> > > 
+	("eoWeakElitistReplacement",
+	 init< eoReplacement<PyEO>& >()[WC1]);
+    
     // eoMergeReduce.h
     DEF3(eoMergeReduce, eoMerge<PyEO>&, eoReduce<PyEO>& );
     DEF(eoPlusReplacement);
@@ -52,10 +57,10 @@ void replacement()
     DEF2(eoSSGAStochTournamentReplacement, double);
 
     // eoReduceMergeReduce.h
-    class_<eoReduceMergeReduce<PyEO>, bases<eoReplacement<PyEO> > >("eoReplacement",
-	    init<eoHowMany, bool, eoHowMany, eoReduce<PyEO>&, 
-		 eoHowMany, eoReduce<PyEO>&, eoReduce<PyEO>&>())
-	.def("__call__", &eoReplacement<PyEO>::operator());
+    //class_<eoReduceMergeReduce<PyEO>, bases<eoReplacement<PyEO> > >("eoReplacement",
+//	    init<eoHowMany, bool, eoHowMany, eoReduce<PyEO>&, 
+//		 eoHowMany, eoReduce<PyEO>&, eoReduce<PyEO>&>())
+//	.def("__call__", &eoReplacement<PyEO>::operator());
 	    
     //eoMGGReplacement
     DEF(eoMGGReplacement)

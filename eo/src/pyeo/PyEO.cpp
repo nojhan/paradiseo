@@ -173,7 +173,7 @@ BOOST_PYTHON_MODULE(PyEO)
 	;
 
     class_<eoPop<PyEO> >("eoPop", init<>() )
-	.def( init< unsigned, eoInit<PyEO>& >() )
+	.def( init< unsigned, eoInit<PyEO>& >()[with_custodian_and_ward<1,3>()] )
 	.def("append", &eoPop<PyEO>::append)
 	.def("__str__", to_string<eoPop<PyEO> >)
 	.def("__len__", &eoPop<PyEO>::size)

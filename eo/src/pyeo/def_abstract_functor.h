@@ -23,6 +23,10 @@
 
 #include <eoFunctor.h>
 
+// DEFINES for call 
+#define WC1 boost::python::with_custodian_and_ward<1,2>()
+#define WC2 boost::python::with_custodian_and_ward<1,2, with_custodian_and_ward<1,3> >()
+
 namespace eoutils {
 
 using namespace boost::python;
