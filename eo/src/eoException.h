@@ -32,7 +32,7 @@
 
 #include "eoObject.h"
 
-struct eoException 
+struct eoException
 {
     eoException() {}
     eoException(const eoObject& caller) : who_caught_it(caller.className()) {}
