@@ -35,7 +35,7 @@
 
 //-----------------------------------------------------------------------------
 /** eoProportional: select an individual proportional to her stored fitness
-value 
+    value 
 
 */
 //-----------------------------------------------------------------------------
@@ -43,30 +43,28 @@ value
 template <class EOT> class eoProportional: public eoSelectOne<EOT> 
 {
 public:
-  
-    /// Sanity check
-    eoProportional(void) : total(-1.0)
-    {
-        if (minimizing_fitness<EOT>())
-        {
-	        throw logic_error("eoProportional: minimizing fitness");
-        }
-    }
+  /// Sanity check
+  eoProportional(const eoPop<EOT>& pop = eoPop<EOT>()): 
+    total((pop.size() == 0) ? -1.0 : sum_fitness(pop))
+  {
+    if (minimizing_fitness<EOT>())
+      throw logic_error("eoProportional: minimizing fitness");
+  }
 
-    void setup(const eoPop<EOT>& _pop)
-    {
-        total = sum_fitness(_pop);
-    }
+  void setup(const eoPop<EOT>& _pop)
+  {
+    total = sum_fitness(_pop);
+  }
     
-    /** do the selection, call roulette_wheel. 
-    */
-    const EOT& operator()(const eoPop<EOT>& _pop) 
-    {
-        return roulette_wheel(_pop, total) ;
-    }
+  /** do the selection, call roulette_wheel. 
+   */
+  const EOT& operator()(const eoPop<EOT>& _pop) 
+  {
+    return roulette_wheel(_pop, total) ;
+  }
 
 private :
-    typename EOT::Fitness total;
+  typename EOT::Fitness total;
 };
 
 #endif 

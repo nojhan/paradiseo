@@ -8,6 +8,7 @@
 //-----------------------------------------------------------------------------
 
 #include <iostream>               // istream ostream
+#include <iomanip>                // setprecision
 #include <string>                 // string
 #include <EO.h>                   // EO
 #include <eoOp.h>                 // eoMonOp eoQuadraticOp
@@ -29,15 +30,14 @@ struct phenotype
 
   static unsigned trn_max, val_max, tst_max;
 
-  phenotype(const double& _mse_error = 0): mse_error(_mse_error) {}
-
-  operator double(void) const { return mse_error; }
-
+  operator double(void) const { return val_ok; }
+  
   friend bool operator<(const phenotype& a, const phenotype& b)
   {
-    return a.mse_error < b.mse_error;
+    return a.val_ok < b.val_ok || 
+      (!(a.val_ok < b.val_ok) && a.mse_error < b.mse_error);
   }
-
+  
   friend ostream& operator<<(ostream& os, const phenotype& p)
   {
     return os << p.trn_ok << "/" << p.trn_max << " "
@@ -69,17 +69,15 @@ extern unsigned in, out, hidden;
 class Chrom: public EO<phenotype>, public genotype
 {
 public:
-  Chrom(): genotype(in, out, vector<unsigned>(1, hidden)) 
-  {
-    cout << "in = " << in << " out = " << out << " hidden = " << hidden << endl;
-  }
+  Chrom(): genotype(in, out, vector<unsigned>(1, hidden)) {}
 
   string className() const { return "Chrom"; }
 
   void printOn (ostream& os) const 
   { 
-    // os << static_cast<genotype>(*this) << " " << fitness(); 
-    os << fitness();
+    os << setprecision(3) << static_cast<genotype>(*this) << "  \t" 
+       << fitness(); 
+    // os << fitness();
   }
   
   void readFrom (istream& is) 
@@ -137,6 +135,12 @@ class eoChromXover: public eoQuadraticOp<Chrom>
 public:
   void operator()(Chrom& chrom1, Chrom& chrom2)
   {
+    chrom1.normalize();
+    chrom2.desaturate();
+
+    mse::net tmp1(chrom1), tmp2(chrom2);
+    tmp1.train(trn_set, 100, 0, 0.001);
+    tmp2.train(trn_set, 100, 0, 0.001);
   }
 };
 
@@ -164,12 +168,8 @@ unsigned correct(const mlp::net& net, const qp::set& set)
   return sum;
 }
 
-
-
 phenotype eoChromEvaluator(const Chrom& chrom)
 {
-  //  extern mlp::set trn_set, val_set, tst_set;
-
   phenotype p;
   p.trn_ok = correct(chrom, trn_set);
   p.val_ok = correct(chrom, val_set);

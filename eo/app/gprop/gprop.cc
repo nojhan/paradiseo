@@ -11,6 +11,7 @@
 #include <eoPop.h>          // eoPop
 #include <eoGenContinue.h>  // eoGenContinue
 #include <eoProportional.h> // eoProportional
+#include <eoStochTournament.h>
 #include <eoSGA.h>          // eoSGA
 #include "gprop.h"          // Chrom eoChromInit eoChromMutation eoChromXover eoChromEvaluator
 
@@ -24,12 +25,12 @@ unsigned in, out, hidden;
 // parameters
 //-----------------------------------------------------------------------------
 
-eoValueParam<unsigned> pop_size(10, "pop_size", "default population size", 'p');
-eoValueParam<unsigned> generations(10, "generations", "default generation number", 'g');
-eoValueParam<double> mut_rate(0.1, "mut_rate", "default mutation rate", 'm');
+eoValueParam<unsigned> pop_size(10, "pop_size", "population size", 'p');
+eoValueParam<unsigned> generations(10, "generations", "number of generation", 'g');
+eoValueParam<double> mut_rate(0.1, "mut_rate", "mutation rate", 'm');
 eoValueParam<double> xover_rate(0.1, "xover_rate", "default crossover rate", 'x');
-eoValueParam<string> file("", "file", "common part of patterns filenames *.trn *.val and *.tst", 'f');
-eoValueParam<unsigned> hiddenp(8, "hidden", "default number of neurons in hidden layer", 'h');
+eoValueParam<string> file("", "file", "common start of patterns filenames *.trn *.val and *.tst", 'f');
+eoValueParam<unsigned> hiddenp(0, "hidden", "number of neurons in hidden layer", 'd');
 
 //-----------------------------------------------------------------------------
 // auxiliar functions
@@ -108,8 +109,6 @@ void load_file(mlp::set& set, const string& ext)
   
   ifs >> set;
 
-  cout << "set.size() = " << set.size() << endl;
-  
   if (set.size() == 0)
     {
       cerr << filename << " data file is empty!";
@@ -122,22 +121,30 @@ void load_file(mlp::set& set, const string& ext)
 void ga()
 {
   eoGenContinue<Chrom> continuator(generations.value());
- 
-  eoProportional<Chrom> select;
+
+  // create population
+  eoInitChrom init;
+  eoPop<Chrom> pop(pop_size.value(), init);
+
+  // evaluate population
+  eoEvalFuncPtr<Chrom> evaluator(eoChromEvaluator);
+  apply<Chrom>(evaluator, pop);
+
+  // selector
+  // eoProportional<Chrom> select(pop);
+  eoStochTournament<Chrom> select;
+
+  // genetic operators
   eoChromMutation mutation(generations);
   eoChromXover xover;
-  eoEvalFuncPtr<Chrom> evaluator(eoChromEvaluator);
-
+  
+  // genetic algorithm
   eoSGA<Chrom> sga(select,
 		   xover, xover_rate.value(), 
 		   mutation, mut_rate.value(), 
 		   evaluator, 
 		   continuator);
-
-  eoInitChrom init;
-  eoPop<Chrom> pop(pop_size.value(), init);
-  apply<Chrom>(evaluator, pop);
-
+ 
   cout << pop << endl;
   
   sga(pop);
