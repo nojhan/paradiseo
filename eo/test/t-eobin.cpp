@@ -121,7 +121,7 @@ main()
 	      << chrom << " " << chrom2 << endl; 
       }
   
-  for (float r = 0.1; r < 1.0; r += 0.1)
+  for (double r = 0.1; r < 1.0; r += 0.1)
     {
       eoUniformXOver<Chrom> uxover(r);
       fill(chrom.begin(), chrom.end(), false);
@@ -132,6 +132,9 @@ main()
     }
 
   /*
+
+    Commented this out, waiting for a definite decision what to do with the mOp's
+
     // Check multiOps
     eoMultiMonOp<Chrom> mOp( &next );
     mOp.adOp( &bitflip );
