@@ -13,14 +13,16 @@ LDADDS = $(top_builddir)/src/libeo.a $(top_builddir)/src/utils/libeoutils.a
 
 ###############################################################################
 
-noinst_PROGRAMS = t-eofitness t-eobin t-eoStateAndParser t-eoCheckpointing t-eoExternalEO t-eoESFull t-eoSymreg t-eo t-eoReplacement t-eoSelect
+noinst_PROGRAMS = t-eofitness t-eobin t-eoStateAndParser t-eoCheckpointing t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp
+# removing temporarily t-eoESFull
+# noinst_PROGRAMS = t-eofitness t-eobin t-eoStateAndParser t-eoCheckpointing t-eoExternalEO t-eoESFull t-eoSymreg t-eo t-eoReplacement t-eoSelect
 
 ###############################################################################
 
-t_eoESFull_SOURCES = t-eoESFull.cpp real_value.h
-t_eoESFull_DEPENDENCIES = $(DEPS)
-t_eoESFull_LDFLAGS = -lm
-t_eoESFull_LDADD = $(LDADDS)
+# t_eoESFull_SOURCES = t-eoESFull.cpp real_value.h
+# t_eoESFull_DEPENDENCIES = $(DEPS)
+# t_eoESFull_LDFLAGS = -lm
+# t_eoESFull_LDADD = $(LDADDS)
 
 ###############################################################################
 
@@ -82,5 +84,12 @@ t_eo_SOURCES = t-eo.cpp
 t_eo_DEPENDENCIES = $(DEPS) 
 t_eo_LDFLAGS = -lm 
 t_eo_LDADD = $(LDADDS) 
+
+###############################################################################
+
+t_eoGenOp_SOURCES = t-eoGenOp.cpp
+t_eoGenOp_DEPENDENCIES = $(DEPS) 
+t_eoGenOp_LDFLAGS = -lm 
+t_eoGenOp_LDADD = $(LDADDS) 
 
 ###############################################################################

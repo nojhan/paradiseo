@@ -211,8 +211,8 @@ int main()
     typedef eoParseTree<FitnessType, GpNode> EoType;
     typedef eoPop<EoType> Pop;	
 
-    const int MaxSize = 75;
-    const int nGenerations = 50;
+    const int MaxSize = 100;
+    const int nGenerations = 500;
 
     // Initializor sequence, contains the allowable nodes
     vector<GpNode> init(init_sequence, init_sequence + 5);
@@ -223,21 +223,24 @@ int main()
     // Root Mean Squared Error Measure
     RMS<FitnessType, GpNode>              eval;
 
-    Pop pop(500, initializer);
+    Pop pop(5000, initializer);
 
     apply<EoType>(eval, pop);
 
     eoSubtreeXOver<FitnessType, GpNode>   xover(MaxSize);
     eoBranchMutation<FitnessType, GpNode> mutation(initializer, MaxSize);
 
-    eoSequentialGOpSel<EoType>   seqSel;
+    // The operators are  encapsulated into an eoTRansform object, 
+    // that performs sequentially crossover and mutation
+    eoSGATransform<EoType> transform(xover, 0.75, mutation, 0.25);
 
-    seqSel.addOp(mutation, 0.25);
-    seqSel.addOp(xover, 0.75);
+    // The robust tournament selection
+    eoDetTournamentSelect<EoType> selectOne(2);   // tSize in [2,POPSIZE]
+    // is now encapsulated in a eoSelectMany: 2 at a time -> SteadyState
+    eoSelectMany<EoType> select(selectOne,2, eo_is_an_integer);    
   
-    eoDetTournamentSelect<EoType> selector(5);
-  
-    eoDetTournamentInserter<EoType> inserter(eval, 5);
+    // and the Steady-State replacement
+    eoSSGAWorseReplacement<EoType> replace;
   
     // Terminators
     eoGenContinue<EoType> term(nGenerations);
@@ -256,7 +259,7 @@ int main()
     monitor.add(best);
 
     // GP generation
-    eoSteadyStateEA<EoType> gp(seqSel, selector, inserter, checkPoint);
+    eoEasyEA<EoType> gp(checkPoint, eval, select, transform, replace);
 
     cout << "Initialization done" << endl;
 

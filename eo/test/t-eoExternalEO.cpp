@@ -112,7 +112,7 @@ int main()
     eoExternalInit<FitnessType, External> init(RandomStruct);
     eoExternalMonOp<FitnessType, External> mutate(UserDefMutate);
     eoExternalBinOp<FitnessType, External> cross1(UserDefBinCrossover);
-    eoExternalQuadraticOp<FitnessType, External> cross2(UserDefQuadCrossover);
+    eoExternalQuadOp<FitnessType, External> cross2(UserDefQuadCrossover);
 
     // eoExternalEvalFunc<FitnessType, External>   eval(UserDefEvalFunc);
 
