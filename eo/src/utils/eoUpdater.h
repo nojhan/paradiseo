@@ -38,6 +38,7 @@ class eoUpdater : public eoF<void>
 {};
 
 /**
+   an eoUpdater that simply increments a counter
 */
 template <class T>
 class eoIncrementor : public eoUpdater
@@ -57,6 +58,7 @@ private:
 #include <time.h>
 
 /**
+   an eoUpdater that saves a state every given time interval
 */
 class eoTimedStateSaver : public eoUpdater
 {
@@ -78,6 +80,7 @@ private :
 };
 
 /**
+   an eoUpdater that saves a state every given generations
 */
 class eoCountedStateSaver : public eoUpdater
 {
@@ -96,5 +99,6 @@ private :
     const std::string prefix;
     const std::string extension;
 };
+
 
 #endif
