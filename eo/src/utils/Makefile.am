@@ -9,6 +9,7 @@ libeoutils_a_SOURCES 	= eoParser.cpp \
 			eoFileMonitor.cpp \
 			eoStdoutMonitor.cpp \
 			eoRealBounds.cpp \
+			eoIntBounds.cpp \
 			make_help.cpp
 
 AM_CXXFLAGS 		= -I$(top_srcdir)/src
@@ -35,6 +36,7 @@ utilsinclude_HEADERS 	= checkpointing \
 			eoPopStat.h \
 			eoRNG.h \
 			eoRealBounds.h \
+			eoIntBounds.h \
 			eoRealVectorBounds.h \
 			eoRndGenerators.h \
 			eoScalarFitnessStat.h \
