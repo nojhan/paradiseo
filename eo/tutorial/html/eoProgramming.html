@@ -57,7 +57,7 @@ are that
 functors are functions with private data</li>
 
 <li>
-you can have different funtors objects of the same class, i.e. you can
+you can have different functors objects of the same class, i.e. you can
 use the same functionality with different parameters</li>
 
 <li>
@@ -165,15 +165,15 @@ function.
 <p><b><font color="#000099">Drawbacks</font></b>
 <br>The main drawback I see in using STL is that it makes it almost
 <b><font color="#FF6600">impossible
-to use a debugger </font></b>normally: whereas acess to data is made simple
-to the progammer, data structures are actually so complex, and debuggers
-so willing to display everything that you get lines of template instanciation
+to use a debugger </font></b>normally: whereas access to data is made simple
+to the programmer, data structures are actually so complex, and debuggers
+so willing to display everything that you get lines of template instantiation
 when asking your debugger what is inside some container! For instance I
 could never visualize some
 <tt><font color="#FF6600"><font size=+1>v[i]</font></font></tt>
 with <tt><font color="#FF6600"><font size=+1>gbd</font></font></tt>, v
 being an STL vector!
-<br>But there nonehteless are so many advantages !!!
+<br>But there nonetheless are so many advantages !!!
 <p>
 <hr WIDTH="100%">
 <br><a NAME="random"></a><b><font color="#000099"><font size=+1>Random
@@ -183,7 +183,7 @@ numbers are simulated in computers by using <font color="#FF6600">pseudo-random<
 number generators (RNGs for short), i.e. functions that return series of
 numbers who look random (w.r.t. some statistical criteria).
 <p>To make sure the random number generator is as good as possible, and
-to ensure reproducibility of the results across diffrerent platforms, EO
+to ensure reproducibility of the results across different platforms, EO
 has its own RNG, the ``<font color="#FF6600">Mersenne Twister</font>''
 random number generator MT19937 (thanks to <font color="#FF0000">Takuji
 Nishimura</font>, see <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eorng.html">eoRNG.h</a></font></font>
@@ -205,12 +205,12 @@ use the RNG seeding procedure, see e.g. in <a href="FirstBitGA.html#random">Less
 
 <li>
 to simulate "true" random runs, you can just seed the RNG with a machine-clock
-realted number, e.g. calling time(0), as done for isntance in <a href="SecondBitEA.html#random">Lesson3</a>
+related number, e.g. calling time(0), as done for instance in <a href="SecondBitEA.html#random">Lesson3</a>
 (and after).</li>
 </ul>
 As RNGs only produce (by definition) numbers that are uniformly distributed
 integers between 0 and some maximal number, EO provides you with random
-numbers follwing <b><font color="#FF6600">different probability distribution</font></b>
+numbers following <b><font color="#FF6600">different probability distribution</font></b>
 (e.g. floating point following <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eorng.html#a8">normal
 distribution</a></font></font>).
 <p>EO also provides <a href="../../doc/html/rnd_generators.h-source.html">random_generators</a>
@@ -225,14 +225,14 @@ and naming style</font></font></b>
 EO:
 <ul>
 <li>
-The name of local varoiables shoudl start with a lower case letter</li>
+The name of local variables should start with a lower case letter</li>
 
 <li>
-The name of the parameters to a function shoudl start with an underscore
+The name of the parameters to a function should start with an underscore
 (_)</li>
 
 <br>The initialization parameters of constructors, for instance,&nbsp;
-shoudl be named from the names of the variables they are used to initialize.
+should be named from the names of the variables they are used to initialize.
 <li>
 The names of classes should start with eo + an Uppercase letter</li>
 

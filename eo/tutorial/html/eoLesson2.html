@@ -70,7 +70,7 @@ object that is a sub-class of the corresponding STL vector class.</font></li>
 <p><b><font color="#FF0000">Note:</font></b> <font color="#000000">Also,
 a non-templatized fitness can be </font><b><font color="#FF6600">compiled
 separately</font></b><font color="#000000"> (not done here) into an object
-file once and forall (<a href="eoProgramming.html#templates">remember</a>
+file once and for all (<a href="eoProgramming.html#templates">remember</a>
 that templates forbid that).</font>
 <br>&nbsp;
 <li>
@@ -134,12 +134,12 @@ sum up to 1, all rates are scaled anyway.
 <p><b><font color="#FF0000">Note:</font></b> The operators have to be encapsulated
 into an <b><tt><font color="#CC33CC">eoTransform</font></tt></b> object
 (<a href="FirstBitEA.html#transform">Bit</a> - <a href="FirstRealEA.html#transform">Real</a>)
-to be passed to the <b><tt><font color="#FF6666">eoEasyEA </font></tt></b>algorihtm.
+to be passed to the <b><tt><font color="#FF6666">eoEasyEA </font></tt></b>algorithm.
 The <b><tt><font color="#CC33CC">eoSGATransform</font></tt></b> is a simple
 <b><tt><font color="#CC33CC">eoTransform</font></tt></b>
 that does exactly the same thing than <b><tt><font color="#FF6666">eoSGA</font></tt></b>:
 each pair from the selected parents undergoes the <font color="#CC33CC">crossover
-operator with given probablity</font>, and all individuals (after crossover
+operator with given probability</font>, and all individuals (after crossover
 eventually) undergo <font color="#CC33CC">mutation with given probability</font>.
 The arguments to the <b><tt><font color="#CC33CC">eoSGATransform</font></tt></b>
 are an <b><tt><font color="#CC33CC">eoQuadOp</font></tt></b> with its probability
@@ -182,7 +182,7 @@ a population (his <b><tt><font color="#660000">operator()</font></tt></b>&nbsp;
 returns a population). This was done internally in the&nbsp; <a href="doc/html/class_eosga.html#a0">constructor
 of eoSGA</a>&nbsp; - see lesson1.</ul>
 
-<hr WIDTH="100%"><a NAME="Exercise1"></a><b><font size=+2><font color="#000099">Exercice
+<hr WIDTH="100%"><a NAME="Exercise1"></a><b><font size=+2><font color="#000099">Exercise
 1: </font><font color="#FF0000">minimizing</font></font></b>
 <br><font color="#000000">Modify the algorithm so that it minimizes the
 fitness.</font>
@@ -201,16 +201,16 @@ the file <b><tt><a href="real_value.html">real_value.h</a></tt></b> so
 that it returns the sum of squares instead of its inverse. And again there
 is something else to modify...</font></li>
 </ul>
-<a NAME="exercise2"></a><b><font size=+2><font color="#000099">Exercice
+<a NAME="exercise2"></a><b><font size=+2><font color="#000099">Exercise
 2: </font><font color="#FF0000">initialization</font></font></b>
 <br><font color="#000000">Use different initializers: for instance, on
 the real-valued sphere function minimization, try to initialize half of
 the population in [-2,-1] and the other half in [1,2], with and without
 the segment and arithmetic crossovers (and for large values of VEC_SIZE,
 the size of the vectors). Amazing, isn't it! Explain that result.</font>
-<p><a NAME="Exercise3"></a><b><font size=+2><font color="#000099">Exercice
+<p><a NAME="Exercise3"></a><b><font size=+2><font color="#000099">Exercise
 3:&nbsp; </font><font color="#FF0000">replacement</font></font></b>
-<br><font color="#000000">You can now twidle the number of offspring that
+<br><font color="#000000">You can now twiddle the number of offspring that
 will be generated from the parents. But of course you need to adjust the
 replacement to keep a constant population size.</font>
 <ul>

@@ -86,13 +86,13 @@ below, or go directly to the <a href="#exercise1">exercises</a>.
 <b><font color="#993300">General includes:</font></b><font color="#000000">Like
 all C-like code, the file starts with include directives (<a href="FirstBitGA.html#start">Bit</a>
 - <a href="FirstRealGA.html#start">Real</a>). Apart from standard includes,
-the spedific file to include is </font><b><font color="#FF6600">eo</font></b><font color="#000000">:
+the specific file to include is </font><b><font color="#FF6600">eo</font></b><font color="#000000">:
 this is a file that contains the list of the most important EO files.</font></li>
 
 <br>&nbsp;
 <li>
 <b><font color="#999900">Representation</font></b><font color="#000000">:
-you then have to delclare the type of individuals you will be handling.
+you then have to declare the type of individuals you will be handling.
 All evolution-related objects you will need are templatized w.r.t. the
 type of individuals.</font></li>
 
@@ -147,7 +147,7 @@ Random Number Generator</font><font color="#000000"> is called </font><b><tt><fo
 and should be used everywhere you need a realization of a random variable
 of known law. Moreover, this RNG requires a </font><b><tt><font color="#660000"><font size=+1>seed</font></font></tt></b><font color="#000000">,
 which is set here (<a href="FirstBitGA.html#random">Bit</a> - <a href="FirstRealGA.html#random">Real</a>):
-everytime you run the algorithm with the </font><font color="#FF6600">same
+every time you run the algorithm with the </font><font color="#FF6600">same
 seed</font><font color="#000000">, you will get the </font><font color="#FF6600">same
 result</font><font color="#000000">. Hence, to test the robustness of your
 algorithm, you should run it with different seeds. This is rather time
@@ -245,7 +245,7 @@ is the standard <font color="#CC33CC">arithmetic crossover</font> for real-value
 vectors, that chooses a point randomly on the segment between both parents
 (also termed <font color="#CC33CC">BLX-0</font>). <b><font face="Arial,Helvetica"><font size=+1><a href="doc/html/class_eouniformmutation.html">eoUniformMutation</a></font></font></b>
 is the <font color="#CC33CC">uniform mutation</font> for real-valued vectors
-that choses a new value for each variable uniformly on an interval centered
+that chooses a new value for each variable uniformly on an interval centered
 on the parent value. The width of the interval is an <font color="#FF6600">internal
 parameter</font> of the object, here called <b><tt>EPSILON</tt></b>.</li>
 

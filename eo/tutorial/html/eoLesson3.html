@@ -28,7 +28,7 @@ file</li>
 
 <li>
 <a href="#state">save</a> the population to disk, together with every part
-of the algrithm you could think of - so you can decide to <font color="#FF6600">reload</font>
+of the algorithm you could think of - so you can decide to <font color="#FF6600">reload</font>
 everything later to continue the same run, eventually with different parameters.</li>
 
 <li>
@@ -79,7 +79,7 @@ after the encapsulation of our </font><font color="#CC0000">binary_function</fon
 into an </font><b><tt><font color="#CC0000"><font size=+1>eoEvalFunc</font></font></tt></b><font color="#000000">
 object, which again encapsulate the </font><b><tt><font color="#CC0000"><font size=+1>eoEvalFunc</font></font></tt></b><font color="#000000">
 into an </font><b><tt><font color="#CC0000"><font size=+1>eoEvalFuncCounter</font></font></tt></b><font color="#000000">.
-As its name says, thisobject will, in addition to computing the fitness,
+As its name says, this object will, in addition to computing the fitness,
 count the </font><b><font color="#FF6600">actual</font></b><font color="#000000">
 number of evaluations: the fitness of non-modified individuals is of course
 not recomputed - and this is taken care of by this object. Moreover, it
@@ -129,11 +129,11 @@ for volunteers to create a Graphical User Interface :-)</font>
 <li>
 <font color="#000000">The </font><b><tt><font color="#3366FF">eoValueParam</font></tt></b><font color="#000000">
 class, </font><font color="#FF6600">templatized by the type of the variable</font><font color="#000000">
-you want to handle (i.e. i</font><b><tt><font color="#660000">nteger, double,
+you want to handle (i.e. i</font><b><tt><font color="#660000">integer, double,
 yourPrivateClass</font></tt></b><font color="#000000">, ...). In this lesson,
 we will not go into details: e.g. we will not tell you that the
 <b><font face="Arial,Helvetica"><font size=+1><a href="doc/html/class_eovalueparam.html">eoValueParam</a></font></font></b>
-is actually a templatized sub-class of abstract class eoParam (oups, I
+is actually a templatized sub-class of abstract class eoParam (oops, I
 said it!), nor will we deal with parameters outside their use from an eoParser.
 See the parameter section of the Bottom-up tutorial, or wait until <a href="eoLesson4.html">lesson
 4</a>).</font></li>
@@ -153,7 +153,7 @@ are read, by order of priority</font>
 <font color="#000000">from a text file</font></li>
 
 <li>
-<font color="#000000">from the environement</font></li>
+<font color="#000000">from the environment</font></li>
 
 <li>
 <font color="#000000">from default values</font></li>
@@ -186,7 +186,7 @@ in</li>
 But you can now type in
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <b><tt><font color="#FF6666">SecondBitEA --vecSize=100</font></tt></b>
-<br>and see the output of the optimization of OneMax on 100-bit bitstings.
+<br>and see the output of the optimization of OneMax on 100-bit bitstrings.
 <br>&nbsp;
 <li>
 Take a look at all available parameters by typing in</li>
@@ -271,7 +271,7 @@ mechanism offers you better ways to do that - and it's so easy ....</font>
 <p>
 <hr WIDTH="100%"><a NAME="checkpoint"></a><b><font color="#000099"><font size=+2>eoCheckpoint:
 every generation I'd like to ...</font></font></b>
-<br><font color="#000000">The checkpointing mechanism is a very powerfull
+<br><font color="#000000">The checkpointing mechanism is a very powerful
 construct to perform some </font><b><font color="#FF6600">systematic actions</font></b><font color="#000000">
 every generation - like </font><font color="#FF6600">saving things</font><font color="#000000">
 (using eoState objects described above), computing </font><font color="#FF6600">statistics</font><font color="#000000">
@@ -330,14 +330,14 @@ whatever this is).</li>
 
 <li>
 <b><tt><font color="#3366FF">eoAverageStat</font></tt></b> and <b><tt><font color="#3366FF">eoSecondMomentStat</font></tt></b>
-respectiveley return the average (type double, assumes that <b><tt><font color="#660000">FitnessType</font></tt></b>
+respectively return the average (type double, assumes that <b><tt><font color="#660000">FitnessType</font></tt></b>
 is castable to a double) and a pair made of the average and the standard
 deviation (type <b><tt><font color="#660000">pair&lt;double></font></tt></b>)
 of the fitnesses in the populations.</li>
 
 <li>
 <b><tt><font color="#3366FF">eoDiversityStat</font></tt></b> returns the
-diversity in the population: asssuming that there is a distance function
+diversity in the population: assuming that there is a distance function
 defined among individuals, it returns the average inter-individuals distance.
 See also Exercise 2.</li>
 </ul>
@@ -346,8 +346,8 @@ within your algorithm, simply <a href="SecondBitEA.html#stat_declare">declare</a
 the corresponding eoStat objects, and <a href="SecondBitEA.html#stat_pass">add</a>
 them to the <b><tt><font color="#3366FF">eoCheckpoint</font></tt></b> you
 use in the algorithm.
-<p><b><font color="#FF0000">Note</font></b>: actually, there are 2 disctinct
-classes that compute and gove access to statistics: <b><tt><font color="#3366FF">eoStat</font></tt></b>
+<p><b><font color="#FF0000">Note</font></b>: actually, there are 2 distinct
+classes that compute and give access to statistics: <b><tt><font color="#3366FF">eoStat</font></tt></b>
 and <b><tt><font color="#3366FF">eoSortedStat</font></tt></b>. As its name
 indicate, the latter is used whenever computing the statistics require
 a sorted population: not only this avoids to sort the population many times,
@@ -368,8 +368,8 @@ are available in th eEO distribution:
 <b><tt><font color="#3366FF">eoStdoutMonitor</font></tt></b> displays its
 parameters in <font color="#FF6600">text format on the screen</font>. The
 (optional) boolean value in the constructor modifies the output: when true
-(the default), vebose output is used, with one line per parameter. When
-false, parcimonious output displays one line for all parameters.</li>
+(the default), verbose output is used, with one line per parameter. When
+false, parsimonious output displays one line for all parameters.</li>
 
 <li>
 <b><tt><font color="#3366FF">eoStdoutMonitor</font></tt></b> writes its
@@ -414,7 +414,7 @@ are available in the EO distribution:
 <b><tt><font color="#3366FF">eoIncrementor</font></tt></b> A simple updater
 which maintains a <font color="#FF6600">counter</font> (an <b><tt><font color="#3366FF">eoValueParam</font></tt></b>
 that needs to be created beforehand, and passed in the constructor). It
-is incremented everytime the <b><tt><font color="#660000">operator()</font></tt></b>
+is incremented every time the <b><tt><font color="#660000">operator()</font></tt></b>
 method is called (every generation at the moment). You can of course also
 give an increment in the constructor (1 by default).</li>
 
@@ -442,7 +442,7 @@ the state to some state-saver - and don't forget to <a href="SecondBitEA.html#st
 the statesavers to the current <b><tt><font color="#3366FF">eoCheckpoint</font></tt></b>.
 <br>
 <hr WIDTH="100%">
-<br><b><font color="#000099"><font size=+2>Exercice 1:</font></font></b>
+<br><b><font color="#000099"><font size=+2>Exercise 1:</font></font></b>
 <ul>
 <li>
 <font color="#000000">The code of </font><b><tt><font color="#660000"><font size=+1>SecondBitEA</font></font></tt></b><font color="#000000">
@@ -459,25 +459,25 @@ otherwise the standard deviations won't make any sense here.</font></li>
 
 <li>
 <font color="#000000">Please try to understand why the average is always
-0 before taking alook at the solution (file <a href="NoWay.html">exercise1.cpp</a>).</font></li>
+0 before taking a look at the solution (file <a href="NoWay.html">exercise1.cpp</a>).</font></li>
 
 <li>
 <font color="#000000">Then run</font></li>
 
 <br><b><tt><font color="#660000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 exercise1 --vecSize=1000 --maxGen=1000</font></font></tt></b>
-<br><font color="#000000">to get a chance to see something hapenning before
+<br><font color="#000000">to get a chance to see something happening before
 the program ends!</font></ul>
 
-<hr WIDTH="100%"><b><font color="#000099"><font size=+2>Exercice 2:</font></font></b>
+<hr WIDTH="100%"><b><font color="#000099"><font size=+2>Exercise 2:</font></font></b>
 <br><font color="#000000">Write the </font><b><tt><font color="#3366FF">eoDiversityStat</font></tt></b><font color="#000000">
 stat computation and test it. Thanks to send us the code!</font>
 <br>
 <hr WIDTH="100%">
-<br><b><font color="#000099"><font size=+2>Exercice 3:</font></font></b>
+<br><b><font color="#000099"><font size=+2>Exercise 3:</font></font></b>
 <br><font color="#000000">Write the code for an </font><b><tt><font color="#3366FF"><font size=+1>eoGnuplot1DwithErrorbarsMonitor</font></font></tt></b><font color="#000000">
 that would take into account the standard deviations and display them as
-errorbars.</font>
+error-bars.</font>
 <br><font color="#000000">Again, send us the code afterwards, thanks :-)</font>
 <br>
 <hr WIDTH="100%">
