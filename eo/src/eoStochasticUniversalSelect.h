@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoStochasticUniversalSelect.h
 // (c) Maarten Keijzer 2003
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -41,11 +41,11 @@
 */
 //-----------------------------------------------------------------------------
 
-template <class EOT> class eoStochasticUniversalSelect: public eoSelectOne<EOT> 
+template <class EOT> class eoStochasticUniversalSelect: public eoSelectOne<EOT>
 {
 public:
   /// Sanity check
-  eoStochasticUniversalSelect(const eoPop<EOT>& pop = eoPop<EOT>()) 
+  eoStochasticUniversalSelect(const eoPop<EOT>& pop = eoPop<EOT>())
   {
     if (minimizing_fitness<EOT>())
       throw std::logic_error("eoStochasticUniversalSelect: minimizing fitness");
@@ -54,27 +54,27 @@ public:
   void setup(const eoPop<EOT>& _pop)
   {
       if (_pop.size() == 0) return;
-      
+
       std::vector<typename EOT::Fitness> cumulative(_pop.size());
-      
+
       cumulative[0] = _pop[0].fitness();
-      for (unsigned i = 1; i < _pop.size(); ++i) 
+      for (unsigned i = 1; i < _pop.size(); ++i)
       {
 	  cumulative[i] = _pop[i].fitness() + cumulative[i-1];
       }
-      
+
       indices.reserve(_pop.size());
       indices.resize(0);
 
       double fortune = rng.uniform() * cumulative.back();
       double step = cumulative.back() / double(_pop.size());
-      
+
       unsigned i = std::upper_bound(cumulative.begin(), cumulative.end(), fortune) - cumulative.begin();
-      
+
       while (indices.size() < _pop.size()) {
-	    
+
 	  while (cumulative[i] < fortune) {i++;} // linear search is good enough as we average one step each time
-	  
+
 	  indices.push_back(i);
 	  fortune += step;
 	  if (fortune >= cumulative.back()) { // start at the beginning
@@ -85,16 +85,16 @@ public:
       // shuffle
       for (int i = indices.size() - 1; i > 0; --i) {
 	  int j = rng.random(i+1);
-	  swap(indices[i], indices[j]);
+	  std::swap(indices[i], indices[j]);
       }
   }
-    
-  /** do the selection,  
+
+  /** do the selection,
    */
-  const EOT& operator()(const eoPop<EOT>& _pop) 
+  const EOT& operator()(const eoPop<EOT>& _pop)
   {
       if (indices.empty()) setup(_pop);
-    
+
       unsigned index = indices.back();
       indices.pop_back();
       return _pop[index];

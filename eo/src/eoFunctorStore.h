@@ -38,13 +38,13 @@ dynamically created functors.
 */
 class eoFunctorStore
 {
-    public :
+public:
 
-  /// Default Ctor
-        eoFunctorStore() {}
+    /// Default Ctor
+    eoFunctorStore() {}
 
-  // virtual destructor so we don't need to define it in derived classes
-        virtual ~eoFunctorStore();
+    // virtual destructor so we don't need to define it in derived classes
+    virtual ~eoFunctorStore();
 
         /// Add an eoFunctorBase to the store
         template <class Functor>

@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoPBILOrg.h
 // (c) Marc Schoenauer, Maarten Keijzer, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -30,7 +30,7 @@
 #include <ga/eoPBILDistrib.h>
 
 /**
- * Distribution Class for PBIL algorithm 
+ * Distribution Class for PBIL algorithm
  *      (Population-Based Incremental Learning, Baluja and Caruana 95)
  *
  * This class implements the update rule from the original paper:
@@ -43,13 +43,13 @@ class eoPBILOrg :  public eoDistribUpdater<EOT>
 {
 public:
   /** Ctor with size of genomes, and update parameters */
-  eoPBILOrg(double _LR, double _tolerance=0.0 ) : 
+  eoPBILOrg(double _LR, double _tolerance=0.0 ) :
     LR(_LR), maxBound(1.0-_tolerance), minBound(_tolerance)
   {}
 
 
   /** Update the distribution from the current population */
-  virtual void operator()(eoDistribution<EOT> & _distrib, eoPop<EOT>& _pop) 
+  virtual void operator()(eoDistribution<EOT> & _distrib, eoPop<EOT>& _pop)
   {
     const EOT & best = _pop.best_element();
     eoPBILDistrib<EOT>& distrib = dynamic_cast<eoPBILDistrib<EOT>&>(_distrib);
@@ -62,11 +62,11 @@ public:
 	p[g] *= (1-LR);
 	if ( best[g] )
 	  p[g] +=  LR;
-	// else nothing 
+	// else nothing
 
 	// stay away from 0 and 1
-	p[g] = min(maxBound, p[g]);
-	p[g] = max(minBound, p[g]);
+	p[g] = std::min(maxBound, p[g]);
+	p[g] = std::max(minBound, p[g]);
       }
   }
 
