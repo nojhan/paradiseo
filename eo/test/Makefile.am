@@ -18,12 +18,9 @@ check_PROGRAMS = t-eoParetoFitness t-eoPareto t-eofitness t-eoRandom t-eobin t-e
 	t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoReal t-eoVector t-eoESAll t-eoPBIL
 
 
+#The run_tests script can be used to check various arguments 
 TESTS=$(check_PROGRAMS) run_tests
 
-#TESTS=run_tests t-eoVector t-eoRandom t-eoSSGA t-eoPareto t-eoParetoFitness t-eoReal t-eo \
-#	t-eoReplacement t-eoExternalEO t-eoGenOp t-eoSelect t-eoStateAndParser t-eoSymreg \
-#	t-eobin t-eofitness  
-# removing temporarily t-eoESFull
 # noinst_PROGRAMS = t-eofitness t-eobin t-eoStateAndParser t-eoCheckpointing t-eoExternalEO t-eoESFull t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoReal
 
 ###############################################################################
