@@ -1,6 +1,22 @@
-.cpp: ; c++  -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I../../src -Wall -g  -o $@  $*.cpp ../../src/utils/libeoutils.a ../../src/libeo.a
+### This Makefile is part of the tutorial of the EO library
+# Unlike other Makefiles in EO, it is not using the automake/autoconf 
+# so that it stays easy to understant (you are in the tutorial, remember!)
+# MS, Oct. 2002
 
-.cpp.o: ; c++ -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I../../src -Wall -g -c $*.cpp
+# if you use this Makefile as a starting point for another application
+# you might need to modify the following
+DIR_EO = ../../src
+
+.SUFFIXES: .cpp
+
+# Warning: $(CXX) in Linux (RedHat and Mandrake at least) is g++
+# However, if you are using this Makefile within xemacs, 
+# and have problems with the interpretation of the output (and its colors)
+# then you should use c++ instead (make CXX=c++ will do)
+
+.cpp: ; $(CXX)  -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I../../src -Wall -g -pg  -o $@  $*.cpp ../../src/libeo.a ../../src/utils/libeoutils.a
+
+.cpp.o: ; $(CXX) -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I../../src -Wall -g -c -pg $*.cpp
 
 firstEA = FirstRealEA FirstBitEA
 
