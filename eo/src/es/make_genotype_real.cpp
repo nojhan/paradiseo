@@ -30,23 +30,33 @@
  * files that you just need to link with your own main and fitness code).
  *
  * The corresponding ***INSTANCIATED DECLARATIONS*** are contained 
- *       in src/es/es.h
- * while the TEMPLATIZED code is define in make_genotype_real.h in the src/es dir
+ *       in src/es/make_real.h
+ * while the TEMPLATIZED code is define in make_genotype_real.h
  *
- * Unlike most EO .h files, it does not (and should not) contain any code, 
- * just declarations
- */
+ * It is instanciated in src/es/make_genotype_real.cpp - 
+ * and incorporated in the ga/libga.a
+ *
+ * It returns an eoInit<EOT> that can later be used to initialize 
+ * the population (see make_pop.h).
+ *
+ * It uses a parser (to get user parameters) and a state (to store the memory)
+ * the last argument is to disambiguate the call upon different instanciations.
+ *
+ * WARNING: that last argument will generally be the result of calling 
+ *          the default ctor of EOT, resulting in most cases in an EOT 
+ *          that is ***not properly initialized***
+*/
 
 // the templatized code
-#include <es/make_genotype.h>
+#include <es/make_genotype_real.h>
 
 /// The following function merely call the templatized do_* functions 
 
-eoInit<eoReal<double> > & make_genotype(eoParameterLoader& _parser, eoState& _state, double _d)
+eoInit<eoReal<double> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoReal<double> _eo)
 {
-  return do_make_genotype(_parser, _state, _d);
+  return do_make_genotype(_parser, _state, _eo);
 }
-eoInit<eoReal<eoMinimizingFitness> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoMinimizingFitness _d)
+eoInit<eoReal<eoMinimizingFitness> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoReal<eoMinimizingFitness> _eo)
 {
-  return do_make_genotype(_parser, _state, _d);
+  return do_make_genotype(_parser, _state, _eo);
 }

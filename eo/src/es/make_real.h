@@ -59,8 +59,8 @@
 //////////////////////////
 
 // the genotypes 
-eoInit<eoReal<double> > & make_genotype(eoParameterLoader& _parser, eoState& _state, double _d);
-  eoInit<eoReal<eoMinimizingFitness> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoMinimizingFitness _d);
+eoInit<eoReal<double> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoReal<double> _eo);
+  eoInit<eoReal<eoMinimizingFitness> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoReal<eoMinimizingFitness> _eo);
 
 // the operators
 eoGenOp<eoReal<double> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoInit<eoReal<double> >& _init);
@@ -93,7 +93,8 @@ void run_ea(eoAlgo<eoReal<double> >& _ga, eoPop<eoReal<double> >& _pop);
 void run_ea(eoAlgo<eoReal<eoMinimizingFitness> >& _ga, eoPop<eoReal<eoMinimizingFitness> >& _pop);
 
 // end of parameter input (+ .status + help)
-// that one is not templatized, but is here for completeness
+// that one is not templatized
+// Because of that, the source is in src/utils dir
 void make_help(eoParser & _parser);
 
 #endif

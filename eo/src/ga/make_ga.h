@@ -86,7 +86,8 @@ void run_ea(eoAlgo<eoBit<double> >& _ga, eoPop<eoBit<double> >& _pop);
 void run_ea(eoAlgo<eoBit<eoMinimizingFitness> >& _ga, eoPop<eoBit<eoMinimizingFitness> >& _pop);
 
 // end of parameter input (+ .status + help)
-// that one is not templatized, but is here for the sake of completeness
+// that one is not templatized
+// Because of that, the source is in src/utils dir
 void make_help(eoParser & _parser);
 
 #endif

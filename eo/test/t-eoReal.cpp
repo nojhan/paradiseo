@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include <es/real.h>
+#include <es/make_real.h>
 #include "real_value.h"
 #include <apply.h>
 
@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
   eoEvalFuncCounter<EOT> eval(mainEval);
 
   // the genotype - through a genotype initializer
-  eoInit<EOT>& init = make_genotype(parser, state, eoMinimizingFitness());
+  eoInit<EOT>& init = make_genotype(parser, state, EOT());
 
   // Build the variation operator (any seq/prop construct)
   eoGenOp<EOT>& op = make_op(parser, state, init);

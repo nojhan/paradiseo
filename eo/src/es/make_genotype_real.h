@@ -35,23 +35,34 @@
 
 
 /*
- * This function does the initialization of what's needed for a particular 
- * genotype (here, eoReal).
- * It is templatized ***only on the fitness*** so it can be used to evolve 
- * eoReal with any fitness.
- * It is instanciated in es/make_genotype_real.cpp - 
- * and incorporated in the es/libes.a
+ * This fuction does the initialization of what's needed for a particular 
+ * genotype (here, vector<double> == eoReal).
+ * It could be here tempatied only on the fitness, as it can be used to evolve 
+ * bitstrings with any fitness.
+ * However, for consistency reasons, it was finally chosen, as in 
+ * the rest of EO, to templatize by the full EOT, as this eventually 
+ * allows to choose the type of genotype at run time (see in es dir)
  *
- * It returns an eoInit<eoReal<FitT> > tha can later be used to initialize 
+ * It is instanciated in src/es/make_genotyupe_real.cpp 
+ * and incorporated in the src/es/libes.a
+ *
+ * It returns an eoInit<EOT> tha can later be used to initialize 
  * the population (see make_pop.h).
  *
  * It uses a parser (to get user parameters) and a state (to store the memory)
  * the last argument is to disambiguate the call upon different instanciations.
+ *
+ * WARNING: that last argument will generally be the result of calling 
+ *          the default ctor of EOT, resulting in most cases in an EOT 
+ *          that is ***not properly initialized***
 */
 
-template <class FitT>
-eoInit<eoReal<FitT> > & do_make_genotype(eoParameterLoader& _parser, eoState& _state, FitT)
+template <class EOT>
+eoInit<EOT> & do_make_genotype(eoParameterLoader& _parser, eoState& _state, EOT)
 {
+  // the fitness type
+  typedef typename EOT::Fitness FitT;
+  
   // for eoReal, only thing needed is the size
     eoValueParam<unsigned>& vecSize = _parser.createParam(unsigned(10), "vecSize", "The number of variables ", 'n',"initialization");
 

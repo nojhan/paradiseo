@@ -7,7 +7,7 @@
 INCLUDES = -I$(top_builddir)/src
 CPPFLAGS = -O2 -Wall
 lib_LIBRARIES = libeoutils.a
-libeoutils_a_SOURCES = eoParser.cpp eoRNG.cpp eoState.cpp eoUpdater.cpp eoFileMonitor.cpp eoStdoutMonitor.cpp eoRealBounds.cpp
+libeoutils_a_SOURCES = eoParser.cpp eoRNG.cpp eoState.cpp eoUpdater.cpp eoFileMonitor.cpp eoStdoutMonitor.cpp eoRealBounds.cpp make_help.cpp
 
 libeoincdir = $(includedir)/eo/utils
 libeoinc_HEADERS = checkpointing *.h

@@ -36,7 +36,7 @@
 
 /////////////////// the bitstring ////////////////
 /*
- * This fuciont does the initialization of what's needed for a particular 
+ * This fuction does the initialization of what's needed for a particular 
  * genotype (here, bitstrings).
  * It could be here tempatied only on the fitness, as it can be used to evolve 
  * bitstrings with any fitness.
@@ -55,7 +55,6 @@
  * WARNING: that last argument will generally be the result of calling 
  *          the default ctor of EOT, resulting in most cases in an EOT 
  *          that is ***not properly initialized***
-
 */
 
 template <class EOT>
