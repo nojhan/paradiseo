@@ -65,7 +65,7 @@ eoGenOp<eoBit<eoMinimizingFitness> >&  make_op(eoParser& _parser, eoState& _stat
 
 // init pop
 eoPop<eoBit<double> >&  make_pop(eoParser& _parser, eoState& _state, eoInit<eoBit<double> >&);
-eoPop<eoBit<eoMinimizingFitness> >&  make_ga(eoParser& _parser, eoState& _state, eoInit<eoBit<eoMinimizingFitness> >&);
+eoPop<eoBit<eoMinimizingFitness> >&  make_pop(eoParser& _parser, eoState& _state, eoInit<eoBit<eoMinimizingFitness> >&);
 
 // the continue's
 eoContinue<eoBit<double> >& make_continue(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoBit<double> > & _eval);
