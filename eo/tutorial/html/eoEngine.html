@@ -239,8 +239,10 @@ two objects</a></font></font> of respective types <b><font color="#009900"><a hr
 and <b><font color="#009900"><a href="#reduce">eoReduce</a></font></b>
 and you can probably guess what each of them actually does :-)</li>
 
-<p><br>Available <font color="#FF6600">instances of eoMergeReduce</font>
-replacement include
+<br>&nbsp;
+<p>&nbsp;
+<p>Available <font color="#FF6600">instances of eoMergeReduce</font> replacement
+include
 <ul>
 <li>
 <b><tt><font color="#009900">eoCommaReplacement</font></tt></b>, one of
@@ -274,7 +276,7 @@ number of offspring.</li>
 <br>Though not mandatory, it is implicitely assumed that few offspring
 have been generated. Hence, all derived replacement procedures of class
 <b><tt><font color="#009900">eoReduceMerge</font></tt></b>
-are termed <b><tt><font color="#009900">eoSGAxxx</font></tt></b>, as they
+are termed <b><tt><font color="#009900">eoSSGAxxx</font></tt></b>, as they
 are the ones to use in SteadyState Genetic Algorithm engine. This gives
 the following <font color="#FF6600">instances of eoReduceMerge</font>:
 <ul>
@@ -287,17 +289,33 @@ additional argument needed);</li>
 <b><tt><font color="#009900">eoSSGADetTournamentReplacement</font></tt></b>
 in which parents to be killed are chosen by a (reverse) determinitic tournament.
 Additional parameter (in the constructor) is the tournament size, an <b><tt><font color="#993300">unsigned
-int</font></tt></b>).</li>
+int</font></tt></b>.</li>
 
 <li>
 <b><tt><font color="#009900">eoSSGAStochTournamentReplacement</font></tt></b>
 in which parents to be killed are chosen by a (reverse) stochastic tournament.
-Additional parameter (in the constructor) is the tournament rate, a <b><tt><font color="#993300">double</font></tt></b>).</li>
+Additional parameter (in the constructor) is the tournament rate, a <b><tt><font color="#993300">double</font></tt></b>.</li>
 </ul>
 
 <li>
-<b><tt><font color="#009900">eoSurviveAndDie</font></tt></b> is</li>
-</ul>
+<a NAME="SADreplacement"></a><b><tt><font color="#009900">eoSurviveAndDie</font></tt></b>
+replacement strategies are a generalization of both the above that allows
+strong elitist and eugenism in both the parent population and the offspring
+population. The <b><tt><font color="#009900"><a href="#SAD">eoSurviveAndDie</a></font></tt></b>
+building block takes one population, kills the worse and moves the best
+to some safe place.&nbsp; The corresponding replacements apply an <b><tt><font color="#009900">eoSurviveAndDie</font></tt></b>
+to the parents, another one to the offspring, and finally merges the remaining
+parents and offspring before reducing the resulting population to the right
+size. Available instances of <b><tt><font color="#009900">eoSurviveAndDieReplacement</font></tt></b>
+are limited todayto the <b><tt><font color="#009900">eoDeterministicSaDReplacement</font></tt></b>,
+the&nbsp; that uses a deterministic MergeReduce.</li>
+
+<p><br><b><font color="#FF0000">Note</font></b>: The basic use (and initial
+motivation) for <b><tt><font color="#009900">eoSurviveAndDie</font></tt></b>
+takes 2 arguments, an eoMergeReduce and a number of surviving parents.
+It starts by copying the best parents to the new populations, then merges
+the remaining parents with the offspring before reducing to the number
+of remaining seats in the new population.</ul>
 
 <hr WIDTH="50%">
 <br><a NAME="weakelitism"></a><b><font color="#000099">Replacement: </font><font color="#FF0000">Adding
@@ -340,74 +358,71 @@ the number of individuals in the initial population.
 <ul>
 <li>
 <a NAME="GGA"></a><b><font color="#000099">Generational Genetic Algorihtm</font></b><font color="#000000">:
-popularized by Holland (75) and Goldberg (89), it uses&nbsp;<br>
-</font><font color="#FF0000">Number of offspring:&nbsp;</font><font color="#000000">
-P<br>
-</font><font color="#FF0000">Selection:</font><font color="#000000"> Proportional
+popularized by Holland (75) and Goldberg (89), it uses</font></li>
+
+<br><font color="#FF0000">Number of offspring:&nbsp;</font><font color="#000000">
+P</font>
+<br><font color="#FF0000">Selection:</font><font color="#000000"> Proportional
 (the historical roulette wheel) </font><b><font color="#FF6600">when maximizing
 a positive scalar fitness</font></b><font color="#000000">, ranking or
-tournament (stochatic or deterministic) in all cases.<br>
-</font><font color="#FF0000">Replacement:</font><font color="#000000">
-Generational.<br>
-</font><font color="#FF0000">Remark:</font><font color="#000000"> You could
+tournament (stochatic or deterministic) in all cases.</font>
+<br><font color="#FF0000">Replacement:</font><font color="#000000"> Generational.</font>
+<br><font color="#FF0000">Remark:</font><font color="#000000"> You could
 use also the Comma replacement, with exactly the same result as there are
 as many offspring as we need indiviudals in the next population. And using
 the eoSSGAWorseReplacement would also give the same result, but would be
-very inefficient!<br>
-You can also add <a href="#weakelitism">weak elitism</a> to preserve the
-best individual.</font></li>
-
+very inefficient!</font>
+<br><font color="#000000">You can also add <a href="#weakelitism">weak
+elitism</a> to preserve the best individual.</font>
 <li>
 <a NAME="SSGA"></a><b><font color="#000099">Steady-State Genetic Algorithm</font></b><font color="#000000">:
-widely used in GA/GP community<br>
-</font><font color="#FF0000">Number of offspring:&nbsp;</font><font color="#000000">
-small (historically, 1)<br>
-</font><font color="#FF0000">Selection:</font><font color="#000000"> tournament
-(you can use ranking or proportional, but it will be rather inefficient).<br>
-</font><font color="#FF0000">Replacement:</font><font color="#000000">
-An eoSSGAxxxReplacement.&nbsp;<br>
-</font><font color="#FF0000">Remark:</font><font color="#000000"> You can
-also use the eoPlusReplacement, but you divert from the original SSGA</font></li>
+widely used in GA/GP community</font></li>
 
+<br><font color="#FF0000">Number of offspring:&nbsp;</font><font color="#000000">
+small (historically, 1)</font>
+<br><font color="#FF0000">Selection:</font><font color="#000000"> tournament
+(you can use ranking or proportional, but it will be rather inefficient).</font>
+<br><font color="#FF0000">Replacement:</font><font color="#000000"> An
+eoSSGAxxxReplacement.</font>
+<br><font color="#FF0000">Remark:</font><font color="#000000"> You can
+also use the eoPlusReplacement, but you divert from the original SSGA</font>
 <li>
 <a NAME="ESPlus"></a><b><font color="#000099">(MU+Lambda)-Evolution Strategy</font></b><font color="#000000">:
-The elitist ES strategy (Rechenberg 71 and Schwefel 81)<br>
-</font><font color="#FF0000">Number of offspring:&nbsp;</font><font color="#000000">
-Any<br>
-</font><font color="#FF0000">Selection:</font><font color="#000000"> eoDetSelect
-(batch deterministic).<br>
-</font><font color="#FF0000">Replacement:</font><font color="#000000">
-eoPlusReplacement<br>
-</font><font color="#FF0000">Remark:</font><font color="#000000"> You could
-also use eoEPReplacement, to smoothen the selective pressure during replacement,
-thus getting close to EP&nbsp;evolution engine</font></li>
+The elitist ES strategy (Rechenberg 71 and Schwefel 81)</font></li>
 
+<br><font color="#FF0000">Number of offspring:&nbsp;</font><font color="#000000">
+Any</font>
+<br><font color="#FF0000">Selection:</font><font color="#000000"> eoDetSelect
+(batch deterministic).</font>
+<br><font color="#FF0000">Replacement:</font><font color="#000000"> eoPlusReplacement</font>
+<br><font color="#FF0000">Remark:</font><font color="#000000"> You could
+also use eoEPReplacement, to smoothen the selective pressure during replacement,
+thus getting close to EP evolution engine</font>
 <li>
 <a NAME="ESComma"></a><b><font color="#000099">(MU,Lambda)-Evolution Strategy</font></b><font color="#000000">:
-The non-elitist ES strategy<br>
-</font><font color="#FF0000">Number of offspring:&nbsp;</font><font color="#000000">
-> P<br>
-</font><font color="#FF0000">Selection:</font><font color="#000000"> eoDetSelect
-(batch deterministic).<br>
-</font><font color="#FF0000">Replacement:</font><font color="#000000">
-eoCommaReplacement<br>
-</font><font color="#FF0000">Remark:</font><font color="#000000"> You can
-also add <a href="#weakelitism">weak elitism</a> to preserve the best individual
-- though you'd probably use the plus strategy if you want (strong) elitism.</font></li>
+The non-elitist ES strategy</font></li>
 
+<br><font color="#FF0000">Number of offspring:&nbsp;</font><font color="#000000">
+> P</font>
+<br><font color="#FF0000">Selection:</font><font color="#000000"> eoDetSelect
+(batch deterministic).</font>
+<br><font color="#FF0000">Replacement:</font><font color="#000000"> eoCommaReplacement</font>
+<br><font color="#FF0000">Remark:</font><font color="#000000"> You can
+also add <a href="#weakelitism">weak elitism</a> to preserve the best individual
+- though you'd probably use the plus strategy if you want (strong) elitism.</font>
 <li>
 <a NAME="EP"></a><b><font color="#000099">Evolutionary Programming</font></b><font color="#000000">:
-The historical method of L. Fogel (65)<br>
-</font><font color="#FF0000">Number of offspring:&nbsp;</font><font color="#000000">
-P<br>
-</font><font color="#FF0000">Selection:</font><font color="#000000"> eoDetSelect
-(batch deterministic). Every individual reproduces exactly once.<br>
-</font><font color="#FF0000">Replacement:</font><font color="#000000">
-eoEPReplacement, though one historical replacement was the determnistic
-replacement - i.e. in EO the eoPlusReplacement).<br>
-</font><font color="#FF0000">Remark:</font><font color="#000000"> Close
-to an (P+P)-ES</font></li>
+The historical method of L. Fogel (65)</font></li>
 
+<br><font color="#FF0000">Number of offspring:&nbsp;</font><font color="#000000">
+P</font>
+<br><font color="#FF0000">Selection:</font><font color="#000000"> eoDetSelect
+(batch deterministic). Every individual reproduces exactly once.</font>
+<br><font color="#FF0000">Replacement:</font><font color="#000000"> eoEPReplacement,
+though one historical replacement was the determnistic replacement - i.e.
+in EO the eoPlusReplacement).</font>
+<br><font color="#FF0000">Remark:</font><font color="#000000"> Close to
+an (P+P)-ES</font>
 <li>
 <a NAME="General"></a><font color="#FF0000">You name it :-)</font><font color="#000000">:
 you can of course choose whatever combination you like - respecting a few
@@ -613,6 +628,32 @@ methods.
 <hr WIDTH="100%">
 <br><a NAME="SAD"></a><b><font color="#000099"><font size=+2>Survive and
 Die</font></font></b>
+<br>This class is highly politically incorrect: it implements strong elitism
+and eugenism :-)
+<br>It starts by killing the worse individuals from the source argument,
+then appends the best ones to the destination argument and removes them
+from the source argument. It is used in <b><tt><a href="#SADreplacement">eoSurviveAndDieReplacement</a></tt></b>,
+where the same dest is used successively for the parents and the offspring.
+<p><b><font color="#000099">eoSurviveAndDie</font></b>: <b><font color="#FF0000">interface</font></b>
+<br>The class interface for its <tt><font color="#993300">operator()</font></tt>
+is
+<center>
+<p><b><tt><font color="#993300">void operator()(eoPop&lt;EOT>&amp; _source,
+eoPop&lt;EOT>&amp; _dest)</font></tt></b></center>
+
+<p>which you could have guessed from the inheritance tree for class <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eosurviveanddie.html">eoSurviveAndDie</a></font></font></b>,
+as you see there that <b><tt><font color="#993300">eoSurviveAndDie</font></tt></b>
+derives from <tt><font color="#993300">class eoBF&lt;eoPop&lt;EOT>&amp;,
+eoPop&lt;EOT>&amp;, void></font></tt>.
+<p>Its constructor takes 3 argumenrts:
+<center>
+<p><b><tt><font color="#993300">eoHowMany(double _survive, double _die,
+bool _interpret_as_rate = true)</font></tt></b></center>
+
+<p>to indicate how many (or what proportion, according to <b><tt><font color="#993300">_interpret_as_rate</font></tt></b>)
+of the source should be copied to the dest population, and how many (or
+what proportion, according to <b><tt><font color="#993300">_interpret_as_rate</font></tt></b>)&nbsp;
+should be erased from the source.
 <p>
 <hr WIDTH="100%"><b><font color="#CC0000">Local: </font></b><a href="#introduction">Introduction</a>&nbsp;
 - <a href="#selection">Selection</a> - <a href="#replacement">Replacement</a>
@@ -630,6 +671,6 @@ documentation</a></font></font></b>
 <a href="mailto:Marc.Schoenauer@polytechnique.fr">Marc Schoenauer</a></address>
 
 <br><!-- Created: Mon Oct 30 07:27:13 CET 2000 --><!-- hhmts start -->Last
-modified: Tue. Dec. 19 2000&nbsp;<!-- hhmts end -->
+modified: Tue. Jan. 9 2001&nbsp;<!-- hhmts end -->
 </body>
 </html>
