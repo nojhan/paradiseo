@@ -48,9 +48,12 @@ class eoInvalidateMonOp : public eoMonOp<EOT>
     bool operator()(EOT& _eo)
     {
       if (op(_eo))
+      {
         _eo.invalidate();
+        return true;
+      }
 
-      return false; // we did change the thing, but it is already invalidated
+      return false; 
     }
 
   private:
@@ -76,9 +79,12 @@ class eoInvalidateBinOp : public eoBinOp<EOT>
     bool operator()(EOT& _eo, const EOT& _eo2)
     {
       if (op(_eo, _eo2))
+      {
         _eo.invalidate();
+        return true;
+      }
 
-      return false; // we did change the thing, but it is already invalidated
+      return false;
     }
 
   private:
@@ -107,8 +113,9 @@ class eoInvalidateQuadOp : public eoQuadOp<EOT>
       {
         _eo1.invalidate();
         _eo2.invalidate();
+        return true;
       }
-      return false; // we did change the thing, but it is already invalidated
+      return false;
     }
 
   private:
