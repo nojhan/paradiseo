@@ -94,6 +94,7 @@ public:
   virtual unsigned long steadyGenerations( ) 
   {  return repSteadyGenerations; 	};
     
+  virtual std::string className(void) const { return "eoSteadyFitContinue"; }
 private:
   unsigned long repMinGenerations;
   unsigned long  repSteadyGenerations;

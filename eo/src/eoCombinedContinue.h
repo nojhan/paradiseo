@@ -82,6 +82,8 @@ public:
     return true;
   }
 
+  virtual std::string className(void) const { return "eoCombinedContinue"; }
+
 private:
   std::vector<eoContinue<EOT>*>    continuators;
 };

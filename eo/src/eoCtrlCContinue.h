@@ -65,6 +65,8 @@ public:
       return false;
     return true;
   }
+
+  virtual std::string className(void) const { return "eoCtrlCContinue"; }
 };
 
 

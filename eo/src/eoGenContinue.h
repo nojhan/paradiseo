@@ -73,6 +73,7 @@ public:
     return repTotalGenerations; 
   };
   
+  virtual std::string className(void) const { return "eoGenContinue"; }
 private:
   unsigned long repTotalGenerations;
   unsigned long thisGenerationPlaceHolder;

@@ -33,7 +33,11 @@
  * false for termination 
  */
 template< class EOT>
-class eoContinue : public eoUF<const eoPop<EOT>&, bool> {};
+class eoContinue : public eoUF<const eoPop<EOT>&, bool> 
+{
+public:
+  virtual std::string className(void) const { return "eoContinue"; }
+};
 
 #endif
 

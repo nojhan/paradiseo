@@ -57,6 +57,7 @@ public:
     return true;
     }
 
+  virtual std::string className(void) const { return "eoFitContinue"; }
 private:
 	FitnessType maximum;
 };

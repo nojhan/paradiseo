@@ -59,6 +59,7 @@ public:
     return repTotalEvaluations; 
   };
   
+  virtual std::string className(void) const { return "eoEvalContinue"; }
 private:
   eoEvalFuncCounter<EOT> & eval;
   unsigned long repTotalEvaluations;
