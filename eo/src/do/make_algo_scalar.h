@@ -39,11 +39,8 @@
 #include <eoFitnessScalingSelect.h>
 #include <eoRankingSelect.h>
 #include <eoStochTournamentSelect.h>
-<<<<<<< make_algo_scalar.h
-#include <utils/eoDistance.h>
-=======
 #include <eoSharingSelect.h>
->>>>>>> 1.13
+#include <utils/eoDistance.h>
 
 // Breeders
 #include <eoGeneralBreeder.h>
