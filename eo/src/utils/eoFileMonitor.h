@@ -38,13 +38,17 @@
 class eoFileMonitor : public eoMonitor
 {
 public :
-    eoFileMonitor(std::string _filename, std::string _delim = ",") : filename(_filename), delim(_delim), firsttime(true) {}
+    eoFileMonitor(std::string _filename, std::string _delim = ",") : filename(_filename), delim(_delim) {}
     eoMonitor& operator()(void);
 
+    eoMonitor& operator()(std::ostream& os);
+
+    void printHeader(void);
+    virtual void printHeader(std::ostream& os);
+
 private :
-    std::string filename;
     std::string delim;
-    bool firsttime;
+    std::string filename;
 };
 
 #endif

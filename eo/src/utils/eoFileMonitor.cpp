@@ -8,34 +8,37 @@
 
 using namespace std;
 
+void eoFileMonitor::printHeader(std::ostream& os)
+{
+    iterator it = vec.begin();
+
+    os << (*it)->longName();
+
+    ++it;
+
+    for (; it != vec.end(); ++it)
+    {
+        os << ',' << (*it)->longName();
+    }
+    os << '\n';
+}
+
+void eoFileMonitor::printHeader()
+{
+    // create file
+    ofstream os(filename.c_str()); 
+
+    if (!os)
+    {
+        string str = "eoFileMonitor: Could not open " + filename;
+        throw runtime_error(str);
+    }
+    
+    printHeader(os);
+}
+
 eoMonitor& eoFileMonitor::operator()(void)
 {
-    if (firsttime)
-    {
-        firsttime = false;
-
-        // create file
-        ofstream os(filename.c_str()); 
-
-        if (!os)
-        {
-            string str = "eoFileMonitor: Could not open " + filename;
-            throw runtime_error(str);
-        }
-
-        iterator it = vec.begin();
-
-        os << (*it)->longName();
-
-        ++it;
-
-        for (; it != vec.end(); ++it)
-        {
-            os << ',' << (*it)->longName();
-        }
-    }
-    // ok, now the real saving. append to file
-
     ofstream os(filename.c_str(), ios_base::app);
 
     if (!os)
@@ -44,15 +47,21 @@ eoMonitor& eoFileMonitor::operator()(void)
         throw runtime_error(str);
     }
 
-    iterator it = vec.begin();
-    
-    os << '\n' << (*it)->getValue();
+    return operator()(os);
+}
 
+eoMonitor& eoFileMonitor::operator()(std::ostream& os)
+{
+    iterator it = vec.begin();
+
+    os << (*it)->getValue();
+    
     for(++it; it != vec.end(); ++it)
     {
         os << ',' << (*it)->getValue();
     }
 
+    os << '\n';
     return *this;
 }
 

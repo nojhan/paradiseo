@@ -113,11 +113,12 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   struct GetFitness { Fitness operator()(const EOT& _eo) const { return _eo.fitness(); } };
   
   Fitness nth_element_fitness(int which) const
-  {
+  { // probably not the fastest way to do this, but what the heck
+
       vector<Fitness> fitness(size());
       std::transform(begin(), end(), fitness.begin(), GetFitness());
 
-      vector<Fitness>::iterator it = fitness.begin();
+      vector<Fitness>::iterator it = fitness.begin() + which;
       std::nth_element(fitness.begin(), it, fitness.end(), greater<Fitness>());
       return *it;
   }

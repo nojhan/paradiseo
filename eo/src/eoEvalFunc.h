@@ -44,4 +44,30 @@ template<class EOT> class eoEvalFunc : public eoUnaryFunctor<void, EOT&>
 	typedef typename EOT::Fitness EOFitT;
 };
 
+/** 
+Counts the number of evaluations actually performed, thus checks first
+if it has to evaluate.. etc.
+*/
+
+#include <utils/eoParam.h>
+template<class EOT> class eoEvalFuncCounter : public eoEvalFunc<EOT>, public eoValueParam<unsigned long>
+{
+    public :
+        eoEvalFuncCounter(eoEvalFunc<EOT>& _func, std::string _name = "eval_counter") 
+            : func(_func), eoValueParam<unsigned long>(0, _name) {}
+
+        void operator()(EOT& _eo)
+        {
+            if (_eo.invalid())
+            {
+                value()++;
+                func(_eo);
+            }
+        }
+
+    private :
+        eoEvalFunc<EOT>& func;
+};
+
+
 #endif

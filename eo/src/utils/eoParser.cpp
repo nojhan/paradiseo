@@ -39,7 +39,6 @@ eoParameterLoader::~eoParameterLoader()
 eoParser::eoParser ( int _argc, char **_argv , string _programDescription, string _lFileParamName, char _shortHand) : 
     programName( _argv[0]),  
     programDescription( _programDescription), 
-    parameterFile("", _lFileParamName, "Load using a configuration file", _shortHand),
     needHelp(false, "help", "Prints this message", 'h')
 {
     strstream stream;
@@ -51,15 +50,7 @@ eoParser::eoParser ( int _argc, char **_argv , string _programDescription, strin
 
     readFrom(stream);
 
-    processParam(parameterFile);
     processParam(needHelp);
-
-    if (parameterFile.getValue() != parameterFile.defValue())
-    {
-        ifstream is (parameterFile.getValue().c_str());
-
-        readFrom(is);
-    }
 }
 
 void eoParser::processParam(eoParam& param, std::string section)
@@ -72,7 +63,8 @@ void eoParser::doRegisterParam(eoParam& param) const
 {
     if (param.required() && !isItThere(param))
     {
-        throw std::runtime_error("required parameter missing");
+        string msg = "required parameter: " + param.longName() + " missing";
+        messages.push_back(msg);
     }
 
     pair<bool, string> value = getValue(param);
@@ -165,6 +157,24 @@ void eoParser::readFrom(istream& is)
               shortNameMap[str[1]] = value;
           }
       }
+      if (str[0] == '@')
+      { // read response file
+         string filename(str.begin() + 1, str.end());
+        
+        ifstream ifs (filename.c_str());
+
+        ifs.peek(); // check if it exists
+
+        if (!ifs)
+        {
+            string msg = "Could not open response file: " + filename;
+            throw runtime_error(msg);
+        }
+
+        // read and overwrite
+        readFrom(ifs);
+        break; // stop reading command line
+      }
   }
 
   updateParameters();
@@ -213,7 +223,14 @@ void eoParser::printOn(ostream& os) const
 }
 
 void eoParser::printHelp(ostream& os) 
-{   
+{
+    if (needHelp.value() == false && !messages.empty())
+    {
+        std::copy(messages.begin(), messages.end(), ostream_iterator<string>(os, "\n"));
+        messages.clear();
+        return;
+    }
+
     // print program name and description
     os << this->programName <<": "<< programDescription << "\n\n";
 
@@ -253,6 +270,7 @@ void eoParser::printHelp(ostream& os)
       os <<". By default: "<<p->second->defValue() << '\n';
     } // for p
 
+    os << "\n@param_file \t defines a file where the parameters are stored\n";
     os << '\n';
 
 }

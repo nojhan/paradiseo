@@ -81,6 +81,20 @@ class eoEvolutionStrategy: public eoAlgo<EOT>
      eoEasyEA<EOT> easyEA;
 };
 
+template <class EOT>
+eoEvolutionStrategy<EOT> make_es(eoContinue<EOT>& _continuator,
+         eoEvalFunc<EOT>& _eval, 
+         eoGOpSelector<EOT>&  _opSel,
+         float _lambdaRate,
+         bool _comma)
+
+{
+    if (_comma)
+        return eoEvolutionStrategy<EOT>(_continuator, _eval, _opSel, _lambdaRate, eoEvolutionStrategy<EOT>::comma_strategy());
+    //else
+    return eoEvolutionStrategy<EOT>(_continuator, _eval, _opSel, _lambdaRate, eoEvolutionStrategy<EOT>::plus_strategy());
+}
+
 //-----------------------------------------------------------------------------
 
 #endif eoSelectTransformReduce_h

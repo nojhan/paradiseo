@@ -104,18 +104,75 @@ public :
 };
 
 template <class EOT>
-class eoBestFitnessStat : public eoStat<EOT, typename EOT::Fitness >
+class eoNthElementFitnessStat : public eoStat<EOT, typename EOT::Fitness >
 {
 public :
     typedef typename EOT::Fitness Fitness;
 
-    eoBestFitnessStat(std::string _description = "Best Fitness") : eoStat<EOT, Fitness>(Fitness(), _description) {}
+    eoNthElementFitnessStat(int _which, std::string _description = "nth element fitness") : which(_which), eoStat<EOT, Fitness>(Fitness(), _description) {}
 
     virtual void operator()(const eoPop<EOT>& _pop)
     {
-        value() = _pop.nth_element_fitness(0);
+        if (which > _pop.size())
+            throw logic_error("fitness requested of element outside of pop");
+
+        value() = _pop.nth_element_fitness(which);
+    }
+
+private :
+    unsigned which;
+};
+
+
+template <class EOT>
+class eoBestFitnessStat : public eoNthElementFitnessStat<EOT>
+{
+public :
+    typedef typename EOT::Fitness Fitness;
+
+    eoBestFitnessStat(std::string _description = "Best Fitness") : eoNthElementFitnessStat<EOT>(0, _description) {}
+};
+
+template <class EOT>
+class eoDistanceStat : public eoStat<EOT, double>
+{
+public :
+    eoDistanceStat(std::string _name = "distance") : eoStat<EOT, double>(0.0, _name) {}
+
+    template <class T>
+    double distance(T a, T b)
+    {
+        T res = a-b;
+        return res < 0? -res : res;
+    }
+
+    double distance(bool a, bool b)
+    {
+        return (a==b)? 0 : 1;
+    }
+
+    void operator()(const eoPop<EOT>& _pop)
+    {
+        double& v = value();
+        v = 0.0;
+
+        for (unsigned i = 0; i < _pop.size(); ++i)
+        {
+            for (unsigned j = 0; j < _pop.size(); ++j)
+            {
+                for (unsigned k = 0; k < _pop[i].size(); ++k)
+                {
+                    v += distance(_pop[i][k], _pop[j][k]);
+                }
+            }
+        }
+
+        double sz = _pop.size();
+        v /= sz * sz * _pop[0].size();
     }
 };
+
+
 
 /*
 template <class EOT>

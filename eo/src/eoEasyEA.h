@@ -55,9 +55,9 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
          eoReplacement<EOT>& _replace     
      ) : continuator(_continuator), 
          eval(_eval),
-         selectTransform(0),
+         selectTransform(dummySelect, dummyTransform),
          breed(_breed),
-         mergeReduce(0),
+         mergeReduce(dummyMerge, dummyReduce),
          replace(_replace)
          {}
 
@@ -70,9 +70,9 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
          eoReduce<EOT>& _reduce
      ) : continuator(_continuator), 
          eval(_eval),
-         selectTransform(0),
+         selectTransform(dummySelect, dummyTransform),
          breed(_breed),
-         mergeReduce(new eoMergeReduce<EOT>(_merge, _reduce)),
+         mergeReduce(_merge, _reduce),
          replace(mergeReduce)
          {}
 
@@ -85,9 +85,9 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
          eoReplacement<EOT>& _replace     
      ) : continuator(_continuator), 
          eval(_eval),
-         selectTransform(new eoSelectTransform<EOT>(_select, _transform)),
+         selectTransform(_select, _transform),
          breed(selectTransform),
-         mergeReduce(0),
+         mergeReduce(dummyMerge, dummyReduce),
          replace(_replace)
          {}
 
@@ -101,17 +101,15 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
          eoReduce<EOT>&    _reduce
      ) : continuator(_continuator), 
          eval(_eval),
-         selectTransform(new eoSelectTransform<EOT>(_select, _transform)),
-         breed(*selectTransform),
-         mergeReduce(new eoMergeReduce<EOT>(_merge, _reduce)),
-         replace(*mergeReduce)
+         selectTransform(_select, _transform),
+         breed(selectTransform),
+         mergeReduce(_merge, _reduce),
+         replace(mergeReduce)
          {}
 
 
 
-         
-     ~eoEasyEA() { delete selectTransform; delete mergeReduce; }
-
+        
   /// Apply a few generation of evolution to the population.
   virtual void operator()(eoPop<EOT>& _pop) 
   {
@@ -146,16 +144,27 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
   
  private:
 
-     /// dissallow copying cuz of pointer stuff
-     eoEasyEA(const eoEasyEA&);
-     /// dissallow copying cuz of pointer stuff
-     const eoEasyEA& operator=(const eoEasyEA&);
+  // If selectTransform needs not be used, dummySelect and dummyTransform are used
+  // to instantiate it.
+     class eoDummySelect : public eoSelect<EOT>
+     { public : void operator()(const eoPop<EOT>&, eoPop<EOT>&) {} } dummySelect;
+
+     class eoDummyTransform : public eoTransform<EOT>
+     { public : void operator()(eoPop<EOT>&) {} } dummyTransform;
+
 
   eoContinue<EOT>&          continuator;
   eoEvalFunc<EOT>&          eval;
-  eoSelectTransform<EOT>*   selectTransform;
+  
+  eoSelectTransform<EOT>    selectTransform;
   eoBreed<EOT>&             breed;
-  eoMergeReduce<EOT>*       mergeReduce;
+  
+  // If mergeReduce needs not be used, dummyMerge and dummyReduce are used
+  // to instantiate it.
+  eoNoElitism<EOT>          dummyMerge;
+  eoTruncate<EOT>           dummyReduce;
+
+  eoMergeReduce<EOT>        mergeReduce;
   eoReplacement<EOT>&       replace;
 };
 

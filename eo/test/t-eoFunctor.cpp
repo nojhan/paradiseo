@@ -18,7 +18,6 @@ public :
 };
 
 #include <iostream>
-#include <eoTranspose.h>
 #include <eoFixedLength.h>
 #include <eoVariableLength.h>
 
@@ -45,9 +44,6 @@ int main(void)
 
     eo.push_back(1);
     eo.push_back(2);
-
-    eoTranspose<EoType> transpose;
-    transpose(eo);
 
     return 1;
 }

@@ -109,6 +109,8 @@
 
 // aliens
 //#include <eoNonUniform.h>
+#include <eoCounter.h>
+#include <utils/eoParser.h>
 
 //-----------------------------------------------------------------------------
 // to be continued ...

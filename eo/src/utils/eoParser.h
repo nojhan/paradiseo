@@ -127,7 +127,7 @@ public:
   std::string className(void) const { return "Parser"; }
 
   /// true if the user made an error or asked for help
-  bool userNeedsHelp(void) const { return needHelp.value(); }
+  bool userNeedsHelp(void) const { return needHelp.value() || !messages.empty(); }
 
   /**
    * Prints an automatic help in the specified output using the information
@@ -157,8 +157,9 @@ private:
   map<char, string>   shortNameMap;
   map<string, string> longNameMap;
 
-  eoValueParam<string> parameterFile;
   eoValueParam<bool>   needHelp;
+
+  mutable std::vector<std::string> messages;
 };
 
 

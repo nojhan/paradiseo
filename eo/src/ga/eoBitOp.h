@@ -192,7 +192,7 @@ template<class Chrom> class eoBinCrossover: public eoQuadraticOp<Chrom>
     {
       unsigned site = rng.random(min(chrom1.size(), chrom2.size()));
 
-      if (std::equal(chrom1.begin(), chrom1.begin()+site, chrom2.begin()))
+      if (!std::equal(chrom1.begin(), chrom1.begin()+site, chrom2.begin()))
       {
 
         swap_ranges(chrom1.begin(), chrom1.begin() + site, chrom2.begin());
@@ -265,6 +265,7 @@ template<class Chrom> class eoBinNxOver: public eoQuadraticOp<Chrom>
  private:
   unsigned num_points;
 };
+
 
 
 /** eoBinGxOver --> gene crossover 

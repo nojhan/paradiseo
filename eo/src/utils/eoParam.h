@@ -153,7 +153,8 @@ public :
 
     std::string getValue(void) const
     {
-        std::ostrstream os;
+        char buf[1024];
+        std::ostrstream os(buf, 1023);
         os << repValue;
         os << std::ends;
         return os.str(); 
