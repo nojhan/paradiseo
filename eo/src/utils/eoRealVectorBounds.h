@@ -241,7 +241,7 @@ public:
   /** Ctor, particular case of dim-2
    */
   eoRealVectorBounds(eoRealBounds & _xbounds, eoRealBounds & _ybounds) : 
-    eoRealBaseVectorBounds(_xbounds, _ybounds), factor(1,2), ownedBounds(0)
+    eoRealBaseVectorBounds(_xbounds, _ybounds), factor(2,1), ownedBounds(0)
   {}
   
   /** Simple bounds = minimum and maximum (allowed)
@@ -301,7 +301,7 @@ public:
    */
   virtual void readFrom(string _s) ;
 
-  /** overload printOut method to save space */
+  /** overload printOn method to save space */
   virtual void printOn(ostream& _os) const
   {
     if (factor[0]>1)
