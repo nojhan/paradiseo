@@ -56,7 +56,7 @@ template <class EOT> class eoStochTournament: public eoSelectOne<EOT>
       DON'T cast the fitness to a float, use the EOT comparator! */
   virtual const EOT& operator()(const eoPop<EOT>& pop) 
   {
-      return stochastic_tournament(pop, Trate)();
+      return stochastic_tournament(pop, Trate);
   }
   
 private:
