@@ -22,13 +22,14 @@ public:
    * @param Indi1 The first parent
    * @param Indi2 The first parent
    */
-  void operator()(Indi& Indi1, Indi& Indi2) 
+  bool operator()(Indi& Indi1, Indi& Indi2) 
   {
     // do whatever needs to be done
 
-// DON'T FORGET if an individual is modified, to invalidate its fitness!!!
-    Indi1.invalidate();
-    Indi2.invalidate();
+    // if at least one individual has been modified
+    return true;
+    // otherwise
+    // return false;
   }
 
 protected:
@@ -56,11 +57,13 @@ public:
    * @param Indi1 The first parent
    * @param Indi2 The first parent - const
    */
-  void operator()(Indi& Indi1, const Indi& Indi2) 
+  bool operator()(Indi& Indi1, const Indi& Indi2) 
   {
     // do whatever needs to be done
-    // DON'T FORGET if an individual is modified, to invalidate its fitness!!!
-    Indi1.invalidate();
+    // if Indi1 has been modified
+    return true;
+    // otherwise
+    // return false;
   }
 
 protected:

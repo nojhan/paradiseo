@@ -21,12 +21,13 @@ public:
    * eoMon crossover - modifies the parent
    * @param Indi The parent
    */
-  void operator()(Indi& Indi) 
+  bool operator()(Indi& Indi) 
   {
     // do whatever needs to be done
-
-// DON'T FORGET if an individual is modified, to invalidate its fitness!!!
-    Indi.invalidate();
+    // if Indi has been modified
+    return true;
+    // otherwise
+    // return false;
   }
 
 protected:
