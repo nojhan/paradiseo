@@ -309,12 +309,14 @@ of initializatio of the population</font></tt></td>
 <tr>
 <td><tt><font color="#009900"><b>&nbsp;</b>// The robust tournament selection</font></tt>
 <br><tt><font color="#009900"><b>&nbsp;eoDetTournament&lt;Indi> selectOne(tSize);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
 </b>// tSize in [2,POPSIZE]</font></tt>
 <br><tt><font color="#009900"><b>&nbsp;</b>// is now encapsulated in a
 eoSelectPerc (entage)</font></tt>
-<br><tt><font color="#009900"><b>&nbsp;eoSelectPerc&lt;Indi> select(selectOne);</b>//
-by default rate==1</font></tt></td>
+<br><b><tt><font color="#009900">&nbsp;eoSelectPerc&lt;Indi> select(selectOne);</font></tt></b>
+<br><tt><font color="#009900">&nbsp;// or eoSelectPerc&lt;Indi> select(selectOne,
+rate);&nbsp;</font></tt>
+<br><tt><font color="#009900">&nbsp;// but by default rate==1</font></tt>
+<br><tt><font color="#009900"></font></tt>&nbsp;</td>
 </tr>
 </table>
 <a NAME="replace"></a>
@@ -479,9 +481,8 @@ outState.registerObject(parser);</font></tt></b>
 <br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; outState.registerObject(rng);</font></tt></b>
 <br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp; </b>// and feed
 the state to state savers</font></tt>
-<br><a NAME="statesaver_declare"></a><tt><font color="#3366FF"><b> 
-</b>//
-save state every 100th&nbsp; generation</font></tt>
+<br><a NAME="statesaver_declare"></a><tt><font color="#3366FF">// save
+state every 100th&nbsp; generation</font></tt>
 <br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; eoCountedStateSaver
 stateSaver1(100, outState, "generation");&nbsp;</font></tt></b>
 <br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp; </b>// save state
@@ -503,8 +504,8 @@ it for the (control and) output</font></tt></td>
 <br><tt><font color="#FF6666"><b>&nbsp;</b>// the algorithm</font></tt>
 <br><tt><font color="#FF6666"><b>&nbsp;</b>////////////////////////////////////////</font></tt>
 <br><tt><font color="#FF6666"><b>&nbsp;</b>// Easy EA requires&nbsp;</font></tt>
-<br><tt><font color="#FF6666"><b>&nbsp;</b>// selection, transformation,
-eval, replacement, and stopping criterion</font></tt>
+<br><tt><font color="#FF6666">&nbsp;// stopping criterion, eval, selection,
+transformation, replacement</font></tt>
 <br><b><tt><font color="#FF6666">&nbsp;eoEasyEA&lt;Indi> gga(checkpoint,
 eval, select, transform, replace);</font></tt></b>
 <br><tt><font color="#FF6666"><b>&nbsp;</b>// Apply algo to pop - that's

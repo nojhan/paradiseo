@@ -23,8 +23,6 @@
 // define your genotype and fitness types
 typedef eoBin<double> Indi;
 
-// PARAMETRES
-
 // the main_function: nothing changed(!), except variable initialization
 void main_function(int argc, char **argv)
 {
@@ -187,8 +185,10 @@ void main_function(int argc, char **argv)
 // SELECT
   // The robust tournament selection
   eoDetTournament<Indi> selectOne(tSize);       // tSize in [2,POPSIZE]
-  // is now encapsulated in a eoSelectPerc (entage)
-  eoSelectPerc<Indi> select(selectOne);// by default rate==1
+  // is now encapsulated in a eoSelectPerc (stands for Percentage)
+  eoSelectPerc<Indi> select(selectOne); 
+  // or eoSelectPerc<Indi> select(selectOne, rate); 
+  // but by default rate==1
 
 // REPLACE
   // And we now have the full slection/replacement - though with 
@@ -314,7 +314,7 @@ void main_function(int argc, char **argv)
   ////////////////////////////////////////
 
   // Easy EA requires 
-  // selection, transformation, eval, replacement, and stopping criterion
+  // stopping criterion, eval, selection, transformation, replacement
   eoEasyEA<Indi> gga(checkpoint, eval, select, transform, replace);
 
   // Apply algo to pop - that's it!
