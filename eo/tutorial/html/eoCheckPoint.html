@@ -2,7 +2,7 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.76 [en] (X11; U; Linux 2.2.17-21mdksmp i686) [Netscape]">
+   <meta name="GENERATOR" content="Mozilla/4.73 [en] (X11; I; Linux 2.2.15-4mdk i686) [Netscape]">
    <title>Variation Operators</title>
 </head>
 <body text="#000000" link="#0000EF" vlink="#51188E" alink="#FF0000" background="beige009.jpg">
@@ -23,7 +23,12 @@ continuators</a> - <a href="#checkpoint">Checkpoints</a> - <a href="#statistic">
 <b><font color="#CC0000">CheckPointing</font></b></h1></center>
 <a NAME="introduction"></a><b><font color="#000099"><font size=+2>What
 is Checkpointing about?</font></font></b>
-<br>Evolutionary Algorithms are ticked
+<br>Evolutionary Algorithms are almost all timely ticked, the basic time
+unit being what is called a generation. EO checkpointing mechanism allow
+you to program things that you want to be done at the end of every generation.
+This includes deciding to stop, outputing some statistics on the current
+state of the algorithm,&nbsp; updating some dynamical variables of your
+algorithm, saving the population to disk, ...
 <p><b><font color="#FF0000">EO classes described in this page</font></b>:
 <ul>
 <li>
@@ -34,7 +39,8 @@ eoStat, eoSortedStat, eoMonitor, eoUpdater</li>
 <b><font color="#FF0000">Derived classes</font></b>: eoCombinedContinue,</li>
 
 <li>
-<b><font color="#FF0000">Related classes</font></b>: eoGnuPlot</li>
+<b><font color="#FF0000">Related classes</font></b>: eoGnuPlot1DMonitor,
+eoGnuPlot1DSnapshotMonitor,</li>
 </ul>
 
 <br>&nbsp;
@@ -48,7 +54,8 @@ means that the algorithm stops only when the continuator returns <b><font color=
 <p><b><font color="#FF0000">Interface</font></b>:&nbsp; The abstract class
 for computing stopping conditions is <b><font color="#3366FF">eoContinue</font></b>,
 and the interface for its operator() is
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 <b><tt><font color="#993300"><font size=+1>bool operator()(const eoPop&lt;EOT>&amp;
 )</font></font></tt></b>
 <p>which you could have guessed from the <a href="../../doc/html/class_eocontinue.html">inheritance
@@ -79,15 +86,16 @@ passed at construct time. Don't forget to <b><font color="#FF6600">returnfalse</
 when the stopping criterion <b><font color="#FF6600">is met!</font></b></li>
 </ul>
 <a NAME="existingContinue"></a><b><font color="#FF0000">Existing continuators:
-</font></b>Of course you can find out all existing (non-virtual!) subclasses
-of eoContinue by looking at its&nbsp; <a href="../../doc/html/class_eocontinue.html">inheritance
+</font></b>Of
+course you can find out all existing (non-virtual!) subclasses of eoContinue
+by looking at its&nbsp; <a href="../../doc/html/class_eocontinue.html">inheritance
 diagram</a>. But you might find it more convenient to have them listed
 here:
 <ul>
 <li>
 </li>
 </ul>
-<b><font color="#FF0000"></font></b>
+
 <p><br>
 <hr WIDTH="100%"><a NAME="combined_continue"></a><b><font color="#000099"><font size=+1>Combining
 continuators:</font></font></b>
@@ -101,8 +109,8 @@ boolean result as an eoContinue.
 <p><a NAME="writing_checkpoint"></a><b><font color="#FF0000">Writing a
 checkpoint:</font></b>
 <br>This is something you should never have to do. However, should you
-fell you have to do it, please do - and send us both the reasons that lead
-you to that (wqhat is it you couldn't do with existing eoCheckPoint), and
+feel you have to do it, please do - and send us both the reasons that lead
+you to that (what is it you couldn't do with existing eoCheckPoint), and
 the resulting code, of course.
 <br>
 <hr WIDTH="100%"><a NAME="statistic"></a><b><font color="#000099"><font size=+1>Statistics:</font></font></b>

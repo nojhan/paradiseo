@@ -2,7 +2,7 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.73 [en] (X11; I; Linux 2.2.15-4mdk i686) [Netscape]">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdk i686) [Netscape]">
    <title>Tutorial: Lesson 3</title>
 </head>
 <body text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000" background="beige009.jpg">
@@ -24,32 +24,40 @@ this time you will have <b><font color="#FF6600">full control of all components<
 from the c<b><font color="#FF6600">ommand-line or a parameter file</font></b>.
 You can even use the algorithm decribed here without any other knowledge
 of EO, just by writing your fitness function as a plain C++ function. This
-is why this lesson starts with a <a href="#programmerguide">user's guide</a>,
+is why this lesson starts with a <a href="#userguide">user's guide</a>,
 most of it being representation-independent, with some parts that are specific
 of respectively the <a href="#binary">binary</a> and the <a href="#real">real</a>
 algorithms.
 <br>However, the ultimate purpose of this tutorial is to be able to do
 your own experiments - and these these will likely fall outside the scope
-of these two programs. This is why you should also read the programmer's
-guides, as the structure and memory managements are here radically different
-that in the 3 previous lessons - though relying of course on the same objects.
+of these two programs. This is why you should also read the <a href="#programmerguide">programmer's
+guides</a>, as the structure and memory managements are here radically
+different that in the 3 previous lessons - though relying of course on
+the same objects.
 <br>&nbsp;
 <p>
 <hr WIDTH="100%">
 <br><a NAME="userguide"></a><b><font color="#000099"><font size=+2>User's
-guide</font></font></b>
-<br><font color="#000000">As already said, the behavior of the algorithms
+guide</font></font></b><font color="#000000"></font>
+<p><font color="#000000">As already said, the behavior of the algorithms
 will be exactly the same as the previous one as far as optimization is
 concerned. Only now you will be able to tune every component of the algorithms
-- except the type of genotype - using run-time parameters.</font>
+(except the type of genotype) using run-time parameters.</font>
 <br><font color="#000000">Also, as in previous lessons, most of the code
 is representation-independent, i.e. is the same for both the binary genotypes
 and the real-valued genotypes. This small user's guide reflects that, but
 you can go directly to the <a href="#binary">binary</a> or the <a href="#real">real</a>
-parts if you wish. Parameters input The way to input parameters has already
-be described in <a href="eoLEsson3.html#paraminput">Lesson 3</a>. To get
-a list of parameters, type the command with option --help (or -h): with
-both testBit and testReal this will result in</font>
+parts if you wish.</font>
+<p><b><font color="#FF0000">Warning</font></b><font color="#000000">: this
+is a user guide, not a programming guide. In particular, the </font><font color="#FF6600">keywords</font><font color="#000000">
+of the parameters are </font><b><font color="#FF6600">not</font></b><font color="#000000">
+the </font><font color="#FF6600">names</font><font color="#000000"> of
+the underlying classes (though they should be similar in most cases).</font>
+<p><b><font color="#000099"><font size=+1>User's guide:</font></font><font color="#FF0000">
+Parameter input</font></b><font color="#000000"> The way to input parameters
+has already be described in <a href="eoLEsson3.html#paraminput">Lesson
+3</a>. To get a list of parameters, type the command with option --help
+(or -h): with both testBit and testReal this will result in</font>
 <ul>
 <li>
 <font color="#000000">Printing the list of keywords on the standard output</font></li>
@@ -59,70 +67,97 @@ both testBit and testReal this will result in</font>
 or testReal.status that contains the list of all recognized parameters
 and has the format of an input parameter file.</font></li>
 </ul>
-<b><font color="#000099"><font size=+1>User's guide:</font></font></b><font color="#000000">
-</font><b><font color="#FF0000">The status file</font></b>
+<b><font color="#000099"><font size=+1>User's guide:</font></font><font color="#FF0000">The
+status file</font></b>
 <br><font color="#000000">This file will always contain the list of the
 parameters that have been actually used by the last run of the program,
 however thay have been entered (try </font><b><tt><font color="#FF6666"><font size=+1>testBit
 -G1</font></font></tt></b><font color="#000000"> and take a look a the
 status file). The parameters that are commented out (a # character comments
-out the rest of the line) in the file were not specified by the user.</font><font color="#000000"></font>
-<p><b><font color="#000099"><font size=+1>User's guide:</font></font></b><font color="#000000">
-</font><b><font color="#FF0000">Representation-independent parameters</font></b><font color="#000000"></font>
-<br><font color="#000000">The parameters are organized in sections.</font>
-<br><font color="#000000">The first section only contains the random seed.</font><font color="#000000"></font>
-<p><b><tt><font color="#993300"><font size=+1>###### General ######</font></font></tt></b>
+out the rest of the line) in the file are those that were not specified
+by the user.</font>
+<p><b><font color="#000099"><font size=+1>User's guide:</font></font><font color="#FF0000">Representation-independent
+parameters</font></b>
+<br><font color="#000000">The parameters are organized in sections. In
+what follows, the fixed font colored text is directly taken from the status
+file and is commented between the lines.</font>
+<br>
+<hr ALIGN=LEFT SIZE=3 WIDTH="30%">
+<br><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#993300">######
+General ######</font></tt></font></b>
 <br><b><tt><font color="#993300"><font size=+1># --help=0 # -h : Prints
 this message</font></font></tt></b>
-<br><font color="#000000">Whether or not help was requested is handled
-through a boolean parameter</font>
-<br><b><tt><font color="#993300"><font size=+1># --seed=988700289 # -S
-: Random number seed</font></font></tt></b>
-<br><font color="#000000">The seed for the <a href="eoProgramming.html#random">Random
-Number Generator</a></font>
-<p><b><tt><font color="#3333FF"><font size=+1>###### Output ######</font></font></tt></b>
+<br><font color="#FF0000">Boolean parameter </font><font color="#000000">of
+absolutely no interest: tells whether or not help was requested.</font><b><tt><font color="#993300"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#993300"><font size=+1># --seed=988700289 # -S :
+Random number seed</font></font></tt></b>
+<br><font color="#FF0000">Unsigned long parameter:</font><font color="#000000">
+the seed for the <a href="eoProgramming.html#random">Random Number Generator</a>
+If the parameter is absent, then time(0) is used, which indicates the number
+of seconds since Jan. 1 1980, is used ... and stored in the status file,
+of course, so you can repeat the same run by simply assigning that value
+again. There is </font><font color="#FF0000">no default value ("true" random
+seed)</font><font color="#000000">.</font>
+<br>
+<hr ALIGN=LEFT SIZE=3 WIDTH="30%">
+<br><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#3333FF">######
+Output ######</font></tt></font></b>
 <br><font color="#000000">This section contains parameters related to output
-(to screen, to files, graphical, ...).</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --useEval=1 # Use nb of
+(to screen, to files, graphical, ...).</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --useEval=1 # Use nb of
 eval. as counter (vs nb of gen.)</font></font></tt></b>
-<br><font color="#000000">Boolean parameter, whether or not you want the
-nb of evluations to be displayed and used as counter in plots</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --printBestStat=1 # Print
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+whether or not you want the nb of evluations to be displayed and used as
+counter in statistics outputs and plots. </font><font color="#FF0000">Default
+is true</font><font color="#000000">.</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --printBestStat=1 # Print
 Best/avg/stdev every gen.</font></font></tt></b>
-<br><font color="#000000">Boolean parameter, toggles screen output of indicated
-statistics</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --plotBestStat=0 # Plot
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+toggles screen output of indicated statistics. </font><font color="#FF0000">Default
+is true</font><font color="#000000">.</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --plotBestStat=0 # Plot
 Best/avg Stat</font></font></tt></b>
-<br><font color="#000000">Boolean parameter, toggles gnuplot output of
-best and average plots (Linux only at the moment)</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --BestFileName=best.xg
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+toggles gnuplot output of best and average plots (Linux only at the moment).
+</font><font color="#FF0000">Default is false.</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --BestFileName=best.xg
 # Name of file for Best/avg/stdev</font></font></tt></b>
-<br><font color="#000000">String parameter, if present, the statistics
-are stored in that file (no default)</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --printPop=0 # Print sorted
+<br><font color="#FF0000">String parameter:</font><font color="#000000">
+if present, the statistics are stored in that file (</font><font color="#FF0000">no
+default</font><font color="#000000">)</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --printPop=0 # Print sorted
 pop. every gen.</font></font></tt></b>
-<br><font color="#000000">Boolean parameter, adds a dump of the whole population
-to the screen every generation</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --printFDC=1 # Print FDC
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+adds a dump of the whole population to the screen every generation. Is
+likely to generate </font><b><font color="#FF6600">huge</font></b><font color="#000000">
+output! </font><font color="#FF0000">Default is false.</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --printFDC=1 # Print FDC
 coeff. every gen.</font></font></tt></b>
-<br><font color="#000000">Boolean parameter, adds Fitness Distance Correlation
-to output every generation</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --plotFDCStat=0 # Plot
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+adds Fitness Distance Correlation to output every generation. </font><font color="#FF0000">Default
+is false.</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --plotFDCStat=0 # Plot
 FDC scatter plot</font></font></tt></b>
-<br><font color="#000000">Boolean parameter, toggles the Fitness Distance
-Correlation plot (Fitness vs distance to best)</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --plotHisto=0 # Plot histogram
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+toggles the Fitness Distance Correlation plot (Fitness vs distance to best).
+</font><font color="#FF0000">Default is false.</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --plotHisto=0 # Plot histogram
 of fitnesses</font></font></tt></b>
-<br><font color="#000000">Boolean parameter: if on, gnuplot is used to
-plot the sorted population (fitness vs rank). Gives a graphical idea of
-the diversity.</font><font color="#000000"></font>
-<p><b><tt><font color="#3333FF"><font size=+1>###### Persistence ######</font></font></tt></b>
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+if on, gnuplot is used to plot the sorted population (fitness vs rank).
+Gives a graphical idea of the diversity. </font><font color="#FF0000">Default
+is false.</font>
+<br>
+<hr ALIGN=LEFT SIZE=3 WIDTH="30%">
+<br><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#3333FF">######
+Persistence ######</font></tt></font></b>
 <br><font color="#000000">This section contains parameters handling job
-restart</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --Load= # -L : A save
-file to restart from</font></font></tt></b>
-<br><font color="#000000">String parameter: if present, the initial population
-(and the RNG status) is read from indicated file. That file </font><b><font color="#FF0000">must</font></b><font color="#000000">
+dump and restart mechanism</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --Load= # -L : A save file
+to restart from</font></font></tt></b>
+<br><font color="#FF0000">String parameter:</font><font color="#000000">
+if present, the initial population (and the RNG) is read from indicated
+file. That file </font><b><font color="#FF0000">must</font></b><font color="#000000">
 come from a previous save (or must be in same format!), i.e. must contain
 a popualtion, the RNG and all parameters. If no other parameter is modified,
 using a previously saved population and RNG will give exactly the same
@@ -130,89 +165,143 @@ results than having run that previous run longer. And a way to be sure
 to re-use the same parameters is to ... use that very save file as parameter
 file, as it contains all actual parameters in the right format.</font>
 <br><font color="#000000">Note that if not enough individuals are read,
-the remaining are randomly initialized. No default value.</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --recomputeFitness=0 #
+the remaining are randomly initialized. </font><font color="#FF0000">No
+default value</font><font color="#000000">.</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --recomputeFitness=0 #
 -r : Recompute the fitness after re-loading the pop.?</font></font></tt></b>
-<br><font color="#000000">Boolean parameter: in case some individuals are
-read from a file, their fitness is read too. If this one is true, it is
-nevertheless recomputed.</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --saveFrequency=0 # Save
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+in case some individuals are read from a file, their fitness is read too.
+If this one is true, it is nevertheless recomputed. </font><font color="#FF0000">Default
+is false</font><font color="#000000"> i.e. use fitnes that's in the file.</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --saveFrequency=0 # Save
 every F generation (0 = only final state, absent = never)</font></font></tt></b>
-<br><font color="#000000">Integer parameter: interval between two dump
-to disk of the whole population (+RNG + parameters) to disk, in a file
-named genNN.sav, where NN&nbsp;is the generation number. If this prameter
-is present (even with 0 or negative value), the final population will always
-be saved, whatever the reason for stopping. Hence the only way to avoid
-all saves is to omit the parameter (there is no default value).</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --saveTimeInterval=0 #
+<br><font color="#FF0000">Integer parameter:</font><font color="#000000">
+interval between two dump to disk of the whole population (+RNG + parameters)
+to disk, in a file named genNN.sav, where NN is the generation number.
+If this prameter is present (even with 0 or negative value), the final
+population will always be saved, whatever the reason for stopping. Hence
+the only way to avoid all saves is to omit the parameter (there is </font><font color="#FF0000">no
+default value</font><font color="#000000">).</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --saveTimeInterval=0 #
 Save every T seconds (0 or absent = never)</font></font></tt></b>
-<br><font color="#000000">Integer parameter: time interval between two
-population (+RNG + parameters) dumps to disks. Files are names timeNN.sav.
-See pervious parameter description for ore details. No default value.</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --status=t-eoGA.status
+<br><font color="#FF0000">Integer parameter:</font><font color="#000000">
+time interval between two population (+RNG + parameters) dumps to disks.
+Files are names timeNN.sav. See pervious parameter description for ore
+details. </font><font color="#FF0000">No default value.</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --status=t-eoGA.status
 # Status file</font></font></tt></b>
-<br><font color="#000000">String parameter: name of the status file (that
-contains all parameters in the input format). There is no way to avoid
-creating that file except recompiling ... or giving the name /dev/null
-(Unix).</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
-<p><b><tt><font color="#3333FF"><font size=+1>###### Stopping criterion
-######</font></font></tt></b>
+<br><font color="#FF0000">String parameter:</font><font color="#000000">
+name of the status file (that contains all parameters in the input format).
+There is no way to avoid creating that file except recompiling ... or giving
+the name /dev/null (Unix). Default value is </font><font color="#FF0000">ProgramName.status</font>
+<br>
+<hr ALIGN=LEFT SIZE=3 WIDTH="30%">
+<br><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#3333FF">######
+Stopping criterion ######</font></tt></font></b>
 <br><font color="#000000">This section allows to decide when the algorithm
-will stop.</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --maxGen=100 # -G : Maximum
+will stop.</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --maxGen=100 # -G : Maximum
 number of generations (0 = none)</font></font></tt></b>
 <br><font color="#000000">Integer parameter: maximum number of generations.
-Default is 0 which is equivalent to infinity.</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --steadyGen=100 # -s :
+A value of 0 disables that stopping criterion. </font><font color="#FF0000">Default
+is 100.</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --steadyGen=100 # -s :
 Number of generations with no improvement</font></font></tt></b>
-<br><font color="#000000">Integer parameter: stops whenever that number
-of generations is passed without any improvement of the best fitness in
-the population, provided the following minimum number of generations has
-been done. No default value.</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --minGen=0 # -g : Minimum
+<br><font color="#FF0000">Integer parameter:</font><font color="#000000">
+stops whenever that number of generations is passed without any improvement
+of the best fitness in the population, provided the following minimum number
+of generations has been done. </font><font color="#FF0000">No default value.</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --minGen=0 # -g : Minimum
 number of generations</font></font></tt></b>
 <br><font color="#000000">Integer parameter: the above steadyGen parameter
 starts its job only after that minimum nuber of generations is passed.
-No default value.</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --maxEval=0 # -E : Maximum
+</font><font color="#FF0000">No default value.</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --maxEval=0 # -E : Maximum
 number of evaluations (0 = none)</font></font></tt></b>
 <br><font color="#000000">Integer parameter: maximum number of generations.
-No default value.</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --targetFitness=0 # -T
+</font><font color="#FF0000">No default value.</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --targetFitness=0 # -T
 : Stop when fitness reaches</font></font></tt></b>
 <br><font color="#000000">Real-valued parameter: the algorithm stops whenever
-the best fitness reaches that target. No default value.</font>
-<br><b><tt><font color="#3333FF"><font size=+1># --CtrlC=0 # -C : Terminate
+the best fitness reaches that target. </font><font color="#FF0000">No default
+value.</font><b><tt><font color="#3333FF"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#3333FF"><font size=+1># --CtrlC=0 # -C : Terminate
 current generation upon Ctrl C</font></font></tt></b>
 <br><font color="#000000">Boolean parameter: if true, Ctrl C only stops
 after the current generation as completed (eventually dumping population
-to a file if some saver is active).</font>
-<p><b><tt><font color="#009900"><font size=+1>###### engine ######</font></font></tt></b>
+to a file if some saver is active). THis very useful feature is only available
+in Unix at the moment. </font><font color="#FF0000">Default is false.</font>
+<br>
+<hr ALIGN=LEFT SIZE=3 WIDTH="30%">
+<br><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#009900">######
+engine ######</font></tt></font></b>
 <br><font color="#000000">In this section, one chooses all components of
-the Evolution Engine (selection, replacemenet and the like).</font>
-<br><b><tt><font color="#009900"><font size=+1># --selection=DetTour(2)
+the <a href="eoEngine.html">Evolution Engine</a> (selection, replacemenet
+and the like).</font><font color="#000000"></font>
+<p><b><tt><font color="#009900"><font size=+1># --selection=DetTour(2)
 # -S : Selection: Roulette, DetTour(T), StochTour(t) or Sequential(ordered/unordered)</font></font></tt></b>
-<br><font color="#000000">String parameter: Name of selection procedure.
-Availabable are the </font><b><font color="#FF6600">roulette wheel</font></b><font color="#000000">
+<br><font color="#FF0000">String parameter:</font><font color="#000000">
+Name of <a href="eoEngine.html#selection">selection procedure.</a> Availabable
+are the </font><b><font color="#FF6600">roulette wheel</font></b><font color="#000000">
 (name </font><b><tt><font color="#009900"><font size=+1>Roulette</font></font></tt></b><font color="#000000">,
-fitness scaling coming soon), </font><b><font color="#FF6600">deterministic
+fitness scaling coming soon); </font><b><font color="#FF6600">deterministic
 tournament</font></b><font color="#000000"> (name </font><b><tt><font color="#009900"><font size=+1>DetTour</font></font></tt></b><font color="#000000">
 with size - integer > 2 - in parentheses right after the name, use double
-quotes on the command line),&nbsp; stochastic tournament (name </font><b><tt><font color="#009900"><font size=+1>StochTour</font></font></tt></b><font color="#000000">
-with probability - float in [0.5, 1] - in parentheses), sequential (name
+quotes on the command line);&nbsp; </font><b><font color="#FF6600">stochastic
+tournament</font></b><font color="#000000"> (name </font><b><tt><font color="#009900"><font size=+1>StochTour</font></font></tt></b><font color="#000000">
+with probability - float in [0.5, 1] - in parentheses); </font><b><font color="#FF6600">sequential</font></b><font color="#000000">
+(name
 </font><b><tt><font color="#009900"><font size=+1>Sequential</font></font></tt></b><font color="#000000">,
 all individuals in turn), either from best to worst (option </font><b><tt><font color="#009900"><font size=+1>ordered</font></font></tt></b><font color="#000000">
-in parentheses), or in random ordered (option </font><b><tt><font color="#009900"><font size=+1>unordered</font></font></tt></b><font color="#000000">)
-or finally repeated independent uniform choices&nbsp; (name </font><b><tt><font color="#009900"><font size=+1>Random</font></font></tt></b><font color="#000000">).</font>
-<br><b><tt><font color="#009900"><font size=+1># --offspringRate=100% #
--O : Nb of offspring (percentage or absolute)</font></font></tt></b><b><tt><font color="#009900"><font size=+1></font></font></tt></b>
+in parentheses), or in random ordered (option </font><b><tt><font color="#009900"><font size=+1>unordered</font></font></tt></b><font color="#000000">);
+and finally repeated </font><b><font color="#FF6600">independent uniform
+choices</font></b><font color="#000000">&nbsp; (name </font><b><tt><font color="#009900"><font size=+1>Random</font></font></tt></b><font color="#000000">).
+Default is </font><font color="#FF0000">DetTour(2)</font><font color="#000000">.</font><font color="#000000"></font>
+<p><b><tt><font color="#009900"><font size=+1># --nbOffspring=100% # -O
+: Nb of offspring (percentage or absolute)</font></font></tt></b>
+<br><font color="#FF0000">Integer or real-valued parameter:</font><font color="#000000">
+this parameter indicates the </font><b><font color="#FF6600">amount of
+offspring</font></b><font color="#000000"> that will be generated from
+the genitors every generation. However, this amount can be specified either
+</font><font color="#FF6600">relative</font><font color="#000000"> to the
+population size, and it should then end with percent character (%), or
+as an </font><font color="#FF6600">absolute</font><font color="#000000">
+integer number (without the percent char).</font>
+<br><font color="#000000">Indeed, you can either want, say 7 times more
+offspring than parents (a rather common situation in Evolution Strategies),
+in which case you give value 700% to </font><b><tt><font color="#009900"><font size=+1>nbOffspring</font></font></tt></b><font color="#000000">
+parameter; or you might want a single offspring whatever the population
+size, like in Steady-State evolution engines, in which case you simply
+enter value 1. </font><font color="#FF0000">Default is 100%</font><font color="#000000">.</font><font color="#000000"></font>
 <p><b><tt><font color="#009900"><font size=+1># --replacement=Comma # -R
-: Replacement: Comma, Plus or EPTour(T)</font></font></tt></b>
-<br><font color="#000000">String parameter: Name of replacement procedure.
-Availabable are</font>
-<br><b><tt><font color="#009900"><font size=+1># --weakElitism=0 # -w :
+: Replacement: Comma, Plus, EPTour(T), SSGAWorst, SSGADet(T), SSGAStoch(t)</font></font></tt></b>
+<br><font color="#FF0000">String parameter:</font><font color="#000000">
+Name of replacement procedure. Availabable are the </font><b><font color="#FF6600">ES
+plus and comma</font></b><font color="#000000"> deterministic replacement
+strategies (named respectively </font><b><tt><font color="#009900"><font size=+1>Plus</font></font></tt></b><font color="#000000">
+and&nbsp; </font><b><tt><font color="#009900"><font size=+1>Comma</font></font></tt></b><font color="#000000">);
+</font><b><font color="#FF6600">EP stochastic tournament</font></b><font color="#000000">
+(name </font><b><tt><font color="#009900"><font size=+1>EPTour</font></font></tt></b><font color="#000000">
+with tournament size in parentheses); and the </font><b><font color="#FF6600">steady-state
+</font></b><font color="#000000">replacement procedures, at the moment
+only based on fitnesses, replacement being either </font><font color="#FF6600">deterministic</font><font color="#000000">
+(new born replace worst parent, name </font><b><tt><font color="#009900"><font size=+1>SSGAWorst</font></font></tt></b><font color="#000000">),&nbsp;
+or based on a tournament&nbsp; (name </font><b><tt><font color="#009900"><font size=+1>SSGADet</font></font></tt></b><font color="#000000">
+for deterministic tournament, size in parentheses, and </font><b><tt><font color="#009900"><font size=+1>SSGAStoch</font></font></tt></b><font color="#000000">&nbsp;
+for stochastic tournament, probability in parentheses). </font><font color="#FF0000">Default
+is Comma</font><font color="#000000"> (which btw is also SGA </font><font color="#FF0000">generational
+replacement</font><font color="#000000"> whenever there are as many offspring
+as parents).</font><font color="#000000"></font>
+<p><b><tt><font color="#009900"><font size=+1># --weakElitism=0 # -w :
 Old best parent replaces new worst offspring *if necessary*</font></font></tt></b>
-<br><font color="#009900"></font>&nbsp;
+<br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
+if true, weak elitism is added to the replacement procedure (i.e. if the
+best fitness among the offspring is less than the best fitness, the best
+parent replaces the worst offspring). </font><font color="#FF0000">Default
+is false.</font>
+<p><b><font color="#000099"><font size=+1>User's guide:</font></font><font color="#FF0000">
+Bistring specific parameters</font></b>
+<br>&nbsp;
 <p>
 <hr WIDTH="100%">
 <br><a NAME="programmerguide"></a><b><font color="#000099"><font size=+2>Programmer's
