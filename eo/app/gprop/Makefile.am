@@ -16,7 +16,7 @@ CXXFLAGS = -g
 bin_PROGRAMS = gprop
 ###############################################################################
 
-gprop_SOURCES = gprop.cc
+gprop_SOURCES = gprop.cpp
 gprop_DEPENDENCIES = $(DEPS)
 gprop_LDFLAGS = -lm
 gprop_LDADD = $(LDADDS)
