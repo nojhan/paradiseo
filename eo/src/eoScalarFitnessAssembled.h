@@ -107,7 +107,12 @@ public:
   eoScalarFitnessAssembled( const eoScalarFitnessAssembled& other) : std::vector<ScalarType>( other ) {}
 
   eoScalarFitnessAssembled& operator=( const eoScalarFitnessAssembled& other) {
+#ifdef _MSC_VER
+    typedef std::vector<ScalarType> myvector;
+    myvector::operator=( other );
+#else
     std::vector<ScalarType>::operator=( other );
+#endif
     return *this;
   }
   
@@ -125,7 +130,12 @@ public:
   
   //! Overload push_back()
   void push_back(const ScalarType& _val ){
+#ifdef _MSC_VER
+    typedef std::vector<ScalarType> myvector;
+    myvector::push_back( _val );
+#else
     std::vector<ScalarType>::push_back( _val );
+#endif
     if ( size() > FitnessTraits::size() ) 
       FitnessTraits::setDescription( size()-1, "Unnamed variable");
   }
