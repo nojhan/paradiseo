@@ -99,10 +99,10 @@ private :
   // Adaptive mutation through a whole correlation matrix
   void create_self_adapt(eoEsFull<FitT>& result)
   {
-    unsigned theSize = eoRealInitBounded<EOT>::size();
+    unsigned i, theSize = eoRealInitBounded<EOT>::size();
 
     result.stdevs.resize(theSize);
-    for (unsigned i = 0; i < theSize; ++i)
+    for (i = 0; i < theSize; ++i)
       {
 	// should we scale sigmas to the corresponding object variable range?
 	result.stdevs[i] = sigma;
@@ -110,7 +110,7 @@ private :
         
     // nb of rotation angles: N*(N-1)/2 (in general!)
     result.correlations.resize(theSize*(theSize - 1) / 2);
-    for (unsigned i = 0; i < result.correlations.size(); ++i)
+    for (i = 0; i < result.correlations.size(); ++i)
       {
 	// uniform in [-PI, PI)
 	result.correlations[i] = rng.uniform(2 * M_PI) - M_PI;

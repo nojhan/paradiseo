@@ -116,7 +116,7 @@ void runAlgorithm(EOT, eoParser& _parser, eoState& _state)
   // initialize the population - and evaluate
   // yes, this is representation indepedent once you have an eoInit
   eoPop<EOT>& pop   = make_pop(_parser, _state, init);
-  apply(eval, pop);
+  apply<EOT>(eval, pop);
 
   // stopping criteria
   eoContinue<EOT> & term = make_continue(_parser, _state, eval);

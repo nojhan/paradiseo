@@ -82,8 +82,12 @@ public :
     Average fitness of a population, fitness can be a double, eoMinimizingFitness, eoMaximizingFitness or eoParetoFitness.
     In the case of pareto optimization it will calculate the average of each objective.
 */
-template <class EOT>
-class eoAverageStat : public eoStat<EOT, typename EOT::Fitness>
+
+#ifdef _MSC_VER
+template <class EOT> class eoAverageStat : public eoStat<EOT, EOT::Fitness>
+#else
+template <class EOT> class eoAverageStat : public eoStat<EOT, typename EOT::Fitness>
+#endif
 {
 public :
     typedef typename EOT::Fitness fitness_type;
@@ -99,7 +103,11 @@ public :
 
     virtual void operator()(const eoPop<EOT>& _pop)
     {
+#ifdef _MSC_VER
+        doit(_pop, EOT::Fitness()); // specializations for scalar and vector
+#else
         doit(_pop, typename EOT::Fitness()); // specializations for scalar and vector
+#endif
     }
 private :
 
@@ -248,17 +256,22 @@ public :
 /**
     Best fitness in the population
 */
+#ifdef _MSC_VER
+template <class EOT>
+class eoBestFitnessStat : public eoStat<EOT, EOT::Fitness>
+#else
 template <class EOT>
 class eoBestFitnessStat : public eoStat<EOT, typename EOT::Fitness>
+#endif
 {
 public :
     typedef typename EOT::Fitness Fitness;
 
-    eoBestFitnessStat(std::string _description = "Best ") : eoStat<EOT, typename EOT::Fitness>(typename EOT::Fitness(), _description) {}
+    eoBestFitnessStat(std::string _description = "Best ") : eoStat<EOT, Fitness>(Fitness(), _description) {}
 
     void operator()(const eoPop<EOT>& _pop)
     {
-      doit(_pop, typename EOT::Fitness());
+      doit(_pop, Fitness());
     }
 
 private :

@@ -27,7 +27,7 @@
 #ifndef _make_pop_h
 #define _make_pop_h
 
-#include <sys/time.h>		   // for time(0) for random seeding
+#include <ctime>  // for time(0) for random seeding
 #include <eoPop.h>
 #include <eoInit.h>
 #include <utils/eoRNG.h>

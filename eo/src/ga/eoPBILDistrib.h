@@ -61,9 +61,6 @@ public:
     _eo.invalidate();		   // DO NOT FORGET!!!
   }
 
-  /** update method - still PURE VIRTUAL */
-  //  virtual void update(eoPop<EOT>&) = 0; // update from a population
-
   /** Accessor to the genome size */
   unsigned Size() {return genomeSize;}
 

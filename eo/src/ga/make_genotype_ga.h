@@ -63,11 +63,11 @@ eoInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
   // for bitstring, only thing needed is the size
   unsigned theSize;
   // but it might have been already read in the definition fo the performance
-  eoParam* ptParam = _parser.getParamWithLongName(string("ChromSize")); 
+  eoParam* ptParam = _parser.getParamWithLongName(string("chromSize")); 
 
   if (!ptParam)			   // not already defined: read it here
     {
-      theSize = _parser.createParam(unsigned(10), "ChromSize", "The length of the bitstrings", 'n',"Problem").value();
+      theSize = _parser.createParam(unsigned(10), "chromSize", "The length of the bitstrings", 'n',"Problem").value();
     }
   else				   // it was read before, get its value
     {

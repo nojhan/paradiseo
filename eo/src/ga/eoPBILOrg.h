@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoPBILDistrib.h
+// eoPBILOrg.h
 // (c) Marc Schoenauer, Maarten Keijzer, 2001
 /* 
     This library is free software; you can redistribute it and/or
@@ -31,7 +31,7 @@
 
 /**
  * Distribution Class for PBIL algorithm 
- *      (Population-Based Incremental Learning, Baluja and Caruana 96)
+ *      (Population-Based Incremental Learning, Baluja and Caruana 95)
  *
  * This class implements the update rule from the original paper:
  *

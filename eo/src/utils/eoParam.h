@@ -239,16 +239,16 @@ template <>
 void eoValueParam<std::vector<std::vector<double> > >::setValue(std::string _value)
 {
     std::istrstream is(_value.c_str());
-    unsigned sz;
+    unsigned i,j,sz;
     is >> sz;
     repValue.resize(sz);
 
-    for (unsigned i = 0; i < repValue.size(); ++i)
+    for (i = 0; i < repValue.size(); ++i)
     {
       unsigned sz2;
       is >> sz2;
       repValue[i].resize(sz2);
-      for (unsigned j = 0; j < sz2; ++j)
+      for (j = 0; j < sz2; ++j)
       {
         is >> repValue[i][j];
       }

@@ -42,6 +42,9 @@
 template <class EOT>
 class eoDistribUpdater :  
   public eoBF<eoDistribution<EOT> &, eoPop<EOT> &, void>
-{};
+{
+public:
+  virtual void operator()(eoDistribution<EOT> &, eoPop<EOT> &)=0;
+};
 
 #endif

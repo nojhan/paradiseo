@@ -37,7 +37,11 @@
 
       @see eoSelectMany, eoSelectRandom, eoDetTournament, eoStochTournament, eoProportional
 */
+#ifdef _MSC_VER
+template<class EOT, class WorthT = EOT::Fitness>
+#else
 template<class EOT, class WorthT = typename EOT::Fitness>
+#endif
 class eoSelectOne : public eoUF<const eoPop<EOT>&, const EOT&>
 {
     public :

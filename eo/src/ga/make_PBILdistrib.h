@@ -53,10 +53,22 @@ eoPBILDistrib<EOT> &  do_make_PBILdistrib(eoParser & _parser, eoState& _state, E
     if (seedParam.value() == 0)
 	seedParam.value() = time(0);
 
-    // the representation dependent stuff
-    unsigned chromSize = _parser.createParam(unsigned(10), "chromSize", "The length of the bitstrings", 'n',"Algorithm").value();
-
-    eoPBILDistrib<EOT> * ptDistrib = new eoPBILDistrib<EOT>(chromSize);
+    // chromosome size: 
+    unsigned theSize;
+    // but it might have been already read in the definition fo the performance
+    eoParam* ptParam = _parser.getParamWithLongName(string("chromSize")); 
+    
+    if (!ptParam)			   // not already defined: read it here
+      {
+	theSize = _parser.createParam(unsigned(10), "chromSize", "The length of the bitstrings", 'n',"Problem").value();
+      }
+    else				   // it was read before, get its value
+      {
+	eoValueParam<unsigned>* ptChromSize = dynamic_cast<eoValueParam<unsigned>*>(ptParam);
+	theSize = ptChromSize->value();
+      }
+    
+    eoPBILDistrib<EOT> * ptDistrib = new eoPBILDistrib<EOT>(theSize);
     _state.storeFunctor(ptDistrib);
 
     // now the initialization: read a previously saved distribution, or random
