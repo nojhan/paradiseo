@@ -134,7 +134,7 @@ eoContinue<Indi> & do_make_continue(eoParser& _parser, eoState& _state, eoEvalFu
     // the CtrlC interception (Linux only I'm afraid)
     eoCtrlCContinue<Indi> *ctrlCCont;
     eoValueParam<bool>& ctrlCParam = _parser.createParam(false, "CtrlC", "Terminate current generation upon Ctrl C",'C', "Stopping criterion");
-    if (_parser.isItThere(ctrlCParam))
+    if (ctrlCParam.value())
       {
 	ctrlCCont = new eoCtrlCContinue<Indi>;
 	// store
