@@ -36,13 +36,14 @@
 // needs a selector - here random
 #include <eoRandomSelect.h>
 
-/** Local (i.e. std eoBinOp) crossover operator for ES genotypes.
+/** Standard (i.e. eoBinOp) crossover operator for ES genotypes.
  *  Uses some Atom crossovers to handle both the object variables
  *  and the mutation strategy parameters
- * It is an eoGenOp and not an eoBinOp for consistency with the global version
+ *  It is an  eoBinOp and has to be wrapped into an eoGenOp before being used
+ *  like the global version
  */
 template<class EOT> 
-class eoEsLocalXover: public eoGenOp<EOT>
+class eoEsStandardXover: public eoBinOp<EOT>
 {
 public:
   typedef typename EOT::Fitness FitT;
@@ -50,36 +51,25 @@ public:
   /**
    * (Default) Constructor.
    */
-  eoEsLocalXover(eoBinOp<double> & _crossObj, eoBinOp<double> & _crossMut) :
+  eoEsStandardXover(eoBinOp<double> & _crossObj, eoBinOp<double> & _crossMut) :
     crossObj(_crossObj), crossMut(_crossMut) {}
 
   /// The class name. Used to display statistics
-  virtual string className() const { return "eoEsLocalXover"; }
-
-  /// The TOTAL number of offspring (here = nb of parents modified in place)
-  unsigned max_production(void) { return 1; }
+  virtual string className() const { return "eoEsStandardXover"; }
 
   /**
    * modifies one parents in the populator
    *     using a second parent
-   *
-   * @param _pop a POPULATOR (not a simple population)
    */
-  void apply(eoPopulator<EOT>& _plop)
-  {
-    // First, select as many parents as you will have offspring
-    EOT& parent1 = *_plop; // select the first parent
-    const EOT& parent2 = sel(_plop.source()); // and the second, randomly
-    
+  bool operator()(EOT& _eo1, const EOT& _eo2)
+    {
     // first, the object variables
-    for (unsigned i=0; i<parent1.size(); i++)
+    for (unsigned i=0; i<_eo1.size(); i++)
       {
-	crossObj(parent1[i], parent2[i]); // apply eoBinOp
+	crossObj(_eo1[i], _eo2[i]); // apply eoBinOp
       }
     // then the self-adaptation parameters
-    cross_self_adapt(parent1, parent2);
-    // dont' forget to invalidate
-    parent1.invalidate();
+    cross_self_adapt(_eo1, _eo2);
   }
   
 private:
