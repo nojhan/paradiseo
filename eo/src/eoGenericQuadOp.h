@@ -50,7 +50,7 @@ class eoGenericQuadOp: public eoOp<EOT>, public eoBF<EOT &, EOT &, bool>
 public:
   /// Ctor
   eoGenericQuadOp()
-    : eoOp<EOT>( eoOp<EOT>::binary ) {};
+    : eoOp<EOT>( eoOp<EOT>::quadratic ) {};
   virtual string className() const {return "eoGenericQuadOp";};
 };
 

@@ -204,11 +204,15 @@ public:
   // virtual desctructor (to avoid warining?)
   virtual ~eoRealVectorBounds(){}
 
+  // Default Ctor
+  eoRealVectorBounds() : 
+    vector<eoRealBounds *>(0) {}
+
   /** 
       Simple bounds = minimum and maximum (allowed)
   */
   // Ctor: same bonds for everybody, explicit
-  eoRealVectorBounds(unsigned _dim, double _min=0, double _max=1) : 
+  eoRealVectorBounds(unsigned _dim, double _min, double _max) : 
     vector<eoRealBounds *>(_dim, new eoRealInterval(_min, _max))
   {
     if (_max-_min<=0)
@@ -328,7 +332,7 @@ public:
       Simple bounds = minimum and maximum (allowed)
   */
   // Ctor: nothing to do!
-  eoRealVectorNoBounds(unsigned _dim=0) : eoRealVectorBounds(_dim) {}
+  eoRealVectorNoBounds(unsigned _dim=0) {}
 
   
   virtual bool isBounded(unsigned)  {return false;}

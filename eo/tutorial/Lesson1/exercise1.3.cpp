@@ -17,6 +17,8 @@
 #include <eo>
 
 //-----------------------------------------------------------------------------
+// Include the corresponding file
+#include <ga.h>	         // bitstring representation & operators
 // define your individuals
 typedef eoBin<double> Indi;	// A bitstring with fitness double
 

@@ -16,6 +16,8 @@
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
+// Include the corresponding file
+#include <ga.h>	         // bitstring representation & operators
 // define your individuals
 typedef eoBin<double> Indi;     // A bitstring with fitness double
 
@@ -86,6 +88,11 @@ void main_function(int argc, char **argv)
   pop.sort();
   // Print (sorted) intial population (raw printout)
   cout << "Initial Population" << endl;
+  cout << pop;
+  // shuffle  - this is a test
+  pop.shuffle();
+  // Print (sorted) intial population (raw printout)
+  cout << "Shuffled Population" << endl;
   cout << pop;
 
 // ENGINE

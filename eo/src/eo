@@ -61,46 +61,26 @@
 #include <eoVariableLength.h>
 #include <eoFixedLength.h>
 
-//#include <eoID.h>
-
-//#include <eoVector.h>
-//#include <eo1d.h>
 #include <other/eoString.h>
-#include <ga/eoBin.h>
-#include <es/eoReal.h>
 
 #include <eoInit.h>
-//#include <eoUniform.h>
-//#include <eoNormal.h>
-//#include <eoNegExp.h>
 
 #include <eoOp.h>
 
-//#include <eoDup.h>
-//#include <eoKill.h>
-//#include <eoTranspose.h>
-//#include <eoXOver2.h>
-//#include <eoUniformXOver.h>
-//#include <eoMutation.h>
-
 #include <eoPop.h>
-#include <ga/eoBitOp.h>
-#include <es/eoRealOp.h>
-#include <es/eoNormalMutation.h>
 
 // Evaluation functions
 #include <eoEvalFunc.h>
 #include <eoEvalFuncPtr.h>
 
-// Continuators
-// #include <eoContinue.h>    // already included in the following
+// Continuators - all include eoContinue.h
 #include <eoCombinedContinue.h>
 #include <eoGenContinue.h>
 #include <eoSteadyFitContinue.h>
 #include <eoFitContinue.h>
 
 // Selection 
-// the eoSelectOne
+// the eoSelectOne's
 #include <eoRandomSelect.h>
 #include <eoDetTournamentSelect.h>
 #include <eoProportionalSelect.h>
@@ -111,7 +91,9 @@
 #include <eoSelectPerc.h>
 #include <eoSelectNumber.h>
 #include <eoSelectMany.h>
-// other batch selections
+// other batch selections 
+// DetSelect probably shoudl be turned into an eoSelectOne 
+// (using setup and an index)
 #include <eoDetSelect.h>
 
 
@@ -127,14 +109,7 @@
 #include <eoProportionalGOpSel.h>
 #include <eoSequentialGOpSel.h>
 
-//#include <eoLottery.h>
-//#include <eoBreeder.h>
-//#include <eoInsertion.h>
-//#include <eoInclusion.h>
-//#include <eoGeneration.h>
-
-//#include <eoProportionalOpSel.h>
-
+// a simple transformer
 #include <eoSGATransform.h>
 
 // Algorithms
@@ -151,16 +126,12 @@
 #include <utils/checkpointing>
 
 // aliens
-//#include <eoNonUniform.h>
 #include <eoCounter.h>
 
 //-----------------------------------------------------------------------------
 // to be continued ...
 //-----------------------------------------------------------------------------
-/*
-//#include <eoFitness.h>
-//#include <eoProblem.h>
-*/
+
 //-----------------------------------------------------------------------------
 
 #endif _eo_

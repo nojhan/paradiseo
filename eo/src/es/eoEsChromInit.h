@@ -27,7 +27,7 @@
 #ifndef _eoEsChromInit_H
 #define _eoEsChromInit_H
 
-#include <es/eoEsObjectiveBounds.h>
+#include <es/eoRealBounds.h>
 #include <es/eoEsSimple.h>
 #include <es/eoEsStdev.h>
 #include <es/eoEsFull.h>
@@ -59,7 +59,7 @@ class eoEsChromInit : public eoInit<EOT>
 public :
     typedef typename EOT::Fitness FitT;
 
-    eoEsChromInit(eoEsObjectiveBounds& _bounds) : bounds(_bounds)
+    eoEsChromInit(eoRealVectorBounds& _bounds) : bounds(_bounds)
     {}
 
     void operator()(EOT& _eo)
@@ -71,29 +71,28 @@ private :
 
     eoEsSimple<FitT>& create(eoEsSimple<FitT>& result)
     {
-        result.resize(bounds.chromSize());
+      result.resize(bounds.size());
 
-        for (unsigned i = 0; i < result.size(); ++i)
-        {
-            result[i] = bounds.minimum(i) + rng.uniform(bounds.maximum(i) - bounds.minimum(i));
-        }
+      bounds.uniform(result);
+
+      result.stdev = 0.3*bounds.averageRange();    // 0.3 should be read as a parameter 
 
         return result;
     }
 
     eoEsStdev<FitT> create(eoEsStdev<FitT>& result)
     {
-        unsigned chromSize = bounds.chromSize();
+        unsigned chromSize = bounds.size();
         result.resize(chromSize);
         result.stdevs.resize(chromSize);
 
+	bounds.uniform(result);
         for (unsigned i = 0; i < chromSize; ++i)
         {
-            double length = bounds.maximum(i) - bounds.minimum(i);
-            result[i] = bounds.minimum(i) + rng.uniform(length);
-        
-            // Just a guess at the stdevs (anyone a better idea?)
-            result.stdevs[i] = rng.uniform(length);
+	  // uniformly in [0.2,0.4) 
+	  // scaled by the range of the object variable)
+          // Just a guess (anyone a better idea?)
+	  result.stdevs[i] = bounds.range(i) * (0.2 + 0.2*eo::rng.uniform());
         }
     
         return result;
@@ -101,7 +100,7 @@ private :
 
     eoEsFull<FitT>  create(eoEsFull<FitT>& result)
     {
-        unsigned chromSize = bounds.chromSize();
+        unsigned chromSize = bounds.size();
         result.resize(chromSize);
         result.stdevs.resize(chromSize);
 
@@ -128,7 +127,7 @@ private :
         return result;
     }
 
-    eoEsObjectiveBounds& bounds;
+    eoRealVectorBounds& bounds;
 };
 
 #endif

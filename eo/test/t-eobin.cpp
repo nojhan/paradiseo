@@ -25,8 +25,8 @@
 
 #include <iostream>   // cout
 #include <strstream>  // ostrstream, istrstream
-#include <eo>         // eoBin
-
+#include <eo>         // general EO
+#include <ga.h>	      // bitstring representation & operators
 #include "binary_value.h"
 
 //-----------------------------------------------------------------------------

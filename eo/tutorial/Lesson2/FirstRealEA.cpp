@@ -16,6 +16,8 @@
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
+// Include the corresponding file
+#include <es.h>	         // real-valued representation & operators
 // define your individuals
 typedef eoReal<double> Indi;	
 

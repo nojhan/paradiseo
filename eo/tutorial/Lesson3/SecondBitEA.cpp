@@ -20,6 +20,8 @@
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
+// Include the corresponding file
+#include <ga.h>	         // bitstring representation & operators
 // define your genotype and fitness types
 typedef eoBin<double> Indi;
 
