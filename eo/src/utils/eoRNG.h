@@ -151,7 +151,7 @@ public :
  */
  double uniform(double m = 1.0)
    { // random number between [0, m]
-     return m * double(rand()) / double(rand_max());
+     return m * double(rand()) / double(1.0+rand_max());
    }
  
  /**
