@@ -32,6 +32,9 @@
 #include <utils/eoMonitor.h>
 #include <eoObject.h>
 
+/**
+    Prints statistics to file
+*/
 class eoFileMonitor : public eoMonitor
 {
 public :

@@ -66,7 +66,7 @@ main(int argc, char *argv[])
     eoEsObjectiveBounds bounds(chromSize.value(), minimum.value(), maximum.value());
     
     // Run the appropriate algorithm
-    if (stdevs.value() == false && corr.value == false)
+    if (stdevs.value() == false && corr.value() == false)
     {
         runAlgorithm(eoEsSimple<FitT>() ,parser, bounds);
     }

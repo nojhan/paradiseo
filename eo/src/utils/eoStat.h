@@ -60,7 +60,7 @@ class eoAverageStat : public eoStat<EOT, double>
 public :
     eoAverageStat(std::string _description = "AverageFitness") : eoStat<EOT, double>(0.0, _description) {}
 
-    static double sumFitness(double _sum, const EOT& eot)
+    static double sumFitness(double _sum, const EOT& _eot)
     {
         _sum += _eot.fitness();
         return _sum;
@@ -72,7 +72,7 @@ public :
     {
         double v = std::accumulate(_pop.begin(), _pop.end(), 0.0, eoAverageStat::sumFitness);
 
-        value() = v / pop.size();
+        value() = v / _pop.size();
     }
 };
 
