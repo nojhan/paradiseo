@@ -60,14 +60,14 @@ typedef eoMyStruct<MyFitT> Indi;      // ***MUST*** derive from EO
 
 // create an initializer
 #include "make_genotype_MyStruct.h"
-eoInit<Indi> & make_genotype(eoParameterLoader& _parser, eoState&_state, Indi _eo)
+eoInit<Indi> & make_genotype(eoParser& _parser, eoState&_state, Indi _eo)
 {
   return do_make_genotype(_parser, _state, _eo);
 } 
 
 // and the variation operaotrs
 #include "make_op_MyStruct.h"
-eoGenOp<Indi>&  make_op(eoParameterLoader& _parser, eoState& _state, eoInit<Indi>& _init)
+eoGenOp<Indi>&  make_op(eoParser& _parser, eoState& _state, eoInit<Indi>& _init)
 {
   return do_make_op(_parser, _state, _init);
 }
