@@ -108,15 +108,12 @@ public :
      */
     void printOn(std::ostream& os) const
     {
-	
 	EO<FType>::printOn(os);
-	/*
-	 * old code which caused problems for paradisEO
-	 * now we use EO<FType>::readFrom(is)
-	 *
-        os << fitness() << ' ';
-	*/
-        std::copy(ebegin(), eend(), ostream_iterator<Node>(os));
+        os << ' ';
+
+        os << size() << ' ';
+
+        std::copy(ebegin(), eend(), std::ostream_iterator<Node>(os, " "));
     }
     
     /**
@@ -125,20 +122,42 @@ public :
      */
     void readFrom(std::istream& is) 
     {
-        EO<FType>::readFrom(is);
+        
+    
+    	EO<FType>::readFrom(is);
+
+        unsigned sz;
+        is >> sz;
+
 	
+	vector<Node> v(sz);
+
+        unsigned i;
+
+        for (i = 0; i < sz; ++i)
+        {
+            Node node;
+            is >> node;
+            v[i] = node;
+        }
+	parse_tree<Node> tmp(v.begin(), v.end());
+	swap(tmp);
 	
 	/*
 	 * old code which caused problems for paradisEO
-	 * now we use EO<FType>::readFrom(is)
 	 *
+	 * this can be removed once it has proved itself
+	EO<FType>::readFrom(is);
+	
+	// even older code	 
 	FType fit;
         is >> fit;
 
         fitness(fit);
-	*/
+	
 
         std::copy(istream_iterator<Node>(is), istream_iterator<Node>(), back_inserter(*this));
+	*/
     }
 };
 
