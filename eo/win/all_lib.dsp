@@ -50,11 +50,16 @@ BSC32=bscmake.exe
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo /out:"Release/eo_lib.lib"
-# Begin Special Build Tool
+# Begin Custom Build - Installing $(InputPath) in lib directory
+TargetPath=.\Release\eo_lib.lib
+InputPath=.\Release\eo_lib.lib
 SOURCE="$(InputPath)"
-PostBuild_Desc=Install
-PostBuild_Cmds=copy     Release\eo_lib.lib     lib\ 
-# End Special Build Tool
+
+"lib\$(TargetPath)" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	if not exist "lib" md "lib" 
+	copy "$(TargetPath)" "lib" 
+	
+# End Custom Build
 
 !ELSEIF  "$(CFG)" == "all_lib - Win32 Debug"
 
@@ -78,11 +83,16 @@ BSC32=bscmake.exe
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo /out:"Debug/eo_libd.lib"
-# Begin Special Build Tool
+# Begin Custom Build - Installing $(InputPath) in lib directory
+TargetPath=.\Debug\eo_libd.lib
+InputPath=.\Debug\eo_libd.lib
 SOURCE="$(InputPath)"
-PostBuild_Desc=Install
-PostBuild_Cmds=copy     Debug\eo_libd.lib     lib\ 
-# End Special Build Tool
+
+"lib\$(TargetPath)" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	if not exist "lib" md "lib" 
+	copy "$(TargetPath)" "lib" 
+	
+# End Custom Build
 
 !ENDIF 
 
