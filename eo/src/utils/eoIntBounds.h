@@ -535,6 +535,9 @@ private :
 
 //////////////////////// tentative for a general BOUND class that is constructed from a string
 
+/** A class that encapsulate all possible eoIntBounds.
+ *  Mandatory in order to read through the parser
+ */
 class eoGeneralIntBounds : public eoIntBounds
 {
 public:
