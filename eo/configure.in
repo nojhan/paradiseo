@@ -1,11 +1,13 @@
 AC_INIT(src/eo)
 
-AM_INIT_AUTOMAKE(eo, 0.0.5)
+AM_INIT_AUTOMAKE(eo, 0.0.8)
 
 AC_PROG_CXX
+
+CXXFLAGS=-g
 
 AM_PROG_LIBTOOL
 
 AM_MAINTAINER_MODE
 
-AC_OUTPUT(Makefile src/Makefile test/Makefile)
+AC_OUTPUT(Makefile src/Makefile test/Makefile win/Makefile)

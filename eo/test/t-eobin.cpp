@@ -1,5 +1,27 @@
+// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+
 //-----------------------------------------------------------------------------
 // t-eobin.cpp
+//   This program test the the binary cromosomes and several genetic operators
+// (c) GeNeura Team, 1999 
+/* 
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+    Contact: todos@geneura.ugr.es, http://geneura.ugr.es
+            
+*/
 //-----------------------------------------------------------------------------
 
 #include <iostream>   // cout
@@ -102,13 +124,27 @@ main()
   
   for (float r = 0.1; r < 1.0; r += 0.1)
     {
-      eoBinUxOver<Chrom> uxover(r);
+      eoUniformXOver<Chrom> uxover(r);
       fill(chrom.begin(), chrom.end(), false);
       fill(chrom2.begin(), chrom2.end(), true);
       uxover(chrom, chrom2);
       cout << "eoBinUxOver(" << r << ") ...... " 
 	   << chrom << " " << chrom2 << endl; 
     }
+
+  // Check multiOps
+  eoMultiMonOp<Chrom> mOp( &next );
+  mOp.adOp( &bitflip );
+  cout << "before multiMonOp............  " << chrom << endl;
+  mOp( chrom );
+  cout << "after multiMonOp .............. " << chrom << endl;
+
+  eoBinGxOver<Chrom> gxover(2, 4);
+  eoMultiBinOp<Chrom> mbOp( &gxover );
+  mOp.adOp( &bitflip );
+  cout << "before multiBinOp............  " << chrom << " " << chrom2 << endl;
+  mbOp( chrom, chrom2 );
+  cout << "after multiBinOp .............. " << chrom << " " << chrom2 <<endl;
 
   return 0;
 }

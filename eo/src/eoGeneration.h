@@ -32,9 +32,11 @@
 #include <eoPopOps.h>  // eoSelect, eoTranform, eoMerge
 
 //-----------------------------------------------------------------------------
-// eoGeneration
-//-----------------------------------------------------------------------------
 
+/** eoGeneration
+ * Single step of a evolutionary algorithm. Applies selection, then genetic
+ * operators, replaces using a replacement policy, and finally evaluates the
+ * new ones */
 template<class Chrom> class eoGeneration: public eoAlgo<Chrom>
 {
  public:

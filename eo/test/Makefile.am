@@ -5,6 +5,7 @@
 ###############################################################################
 
 DEPS = $(top_builddir)/src/libeo.a
+EXTRA_DIST = LICENSE
 
 ###############################################################################
 
@@ -13,7 +14,17 @@ LDADDS = $(top_builddir)/src/libeo.a
 
 ###############################################################################
 
-noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA t-eoNonUniform t-eoUniform t-eoRandom t-parser t-eoESFull t-eoESOps t-eoAtomOps
+noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness \
+	t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA\
+	t-eoNonUniform t-eoUniform t-eoRandom t-parser t-eoESFull t-eoESOps\
+	t-eoAtomOps t-selectOne
+
+###############################################################################
+
+t_selectOne_SOURCES = t-selectOne.cpp
+t_selectOne_DEPENDENCIES = $(DEPS)
+t_selectOne_LDFLAGS = -lm
+t_selectOne_LDADD = $(LDADDS)
 
 ###############################################################################
 
@@ -73,7 +84,7 @@ t_eoEasyEA_LDADD = $(LDADDS)
 
 ###############################################################################
 
-t_eobreeder_SOURCES = t-eobreeder.cpp
+t_eobreeder_SOURCES = t-eobreeder.cpp binary_value.h
 t_eobreeder_DEPENDENCIES = $(DEPS)
 t_eobreeder_LDFLAGS = -lm
 t_eobreeder_LDADD = $(LDADDS)

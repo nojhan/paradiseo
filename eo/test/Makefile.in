@@ -1,4 +1,4 @@
-# Makefile.in generated automatically by automake 1.4a from Makefile.am
+# Makefile.in generated automatically by automake 1.4 from Makefile.am
 
 # Copyright (C) 1994, 1995-8, 1999 Free Software Foundation, Inc.
 # This Makefile.in is free software; the Free Software Foundation
@@ -49,10 +49,9 @@ AUTOMAKE = @AUTOMAKE@
 AUTOHEADER = @AUTOHEADER@
 
 INSTALL = @INSTALL@
-INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@ $(AM_INSTALL_PROGRAM_FLAGS)
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
-INSTALL_STRIP_FLAG =
 transform = @program_transform_name@
 
 NORMAL_INSTALL = :
@@ -79,6 +78,7 @@ RANLIB = @RANLIB@
 VERSION = @VERSION@
 
 DEPS = $(top_builddir)/src/libeo.a
+EXTRA_DIST = LICENSE
 
 ###############################################################################
 
@@ -87,7 +87,15 @@ LDADDS = $(top_builddir)/src/libeo.a
 
 ###############################################################################
 
-noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA t-eoNonUniform t-eoUniform t-eoRandom t-parser t-eoESFull t-eoESOps t-eoAtomOps
+noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness 	t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA 	t-eoNonUniform t-eoUniform t-eoRandom t-parser t-eoESFull t-eoESOps 	t-eoAtomOps t-selectOne
+
+
+###############################################################################
+
+t_selectOne_SOURCES = t-selectOne.cpp
+t_selectOne_DEPENDENCIES = $(DEPS)
+t_selectOne_LDFLAGS = -lm
+t_selectOne_LDADD = $(LDADDS)
 
 ###############################################################################
 
@@ -147,7 +155,7 @@ t_eoEasyEA_LDADD = $(LDADDS)
 
 ###############################################################################
 
-t_eobreeder_SOURCES = t-eobreeder.cpp
+t_eobreeder_SOURCES = t-eobreeder.cpp binary_value.h
 t_eobreeder_DEPENDENCIES = $(DEPS)
 t_eobreeder_LDFLAGS = -lm
 t_eobreeder_LDADD = $(LDADDS)
@@ -241,6 +249,7 @@ t_parser_OBJECTS =  t-parser.o
 t_eoESFull_OBJECTS =  t-eoESFull.o
 t_eoESOps_OBJECTS =  t-eoESOps.o
 t_eoAtomOps_OBJECTS =  t-eoAtomOps.o
+t_selectOne_OBJECTS =  t-selectOne.o
 CXXFLAGS = @CXXFLAGS@
 CXXCOMPILE = $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -258,8 +267,8 @@ DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
 
 TAR = gtar
 GZIP_ENV = --best
-SOURCES = $(t_eobreeder_SOURCES) $(t_eoinclusion_SOURCES) $(t_eoinsertion_SOURCES) $(t_eo_SOURCES) $(t_eofitness_SOURCES) $(t_eoproblem_SOURCES) $(t_eobin_SOURCES) $(t_eolottery_SOURCES) $(t_eo2dVector_SOURCES) $(t_eogeneration_SOURCES) $(t_eoEasyEA_SOURCES) $(t_eoNonUniform_SOURCES) $(t_eoUniform_SOURCES) $(t_eoRandom_SOURCES) $(t_parser_SOURCES) $(t_eoESFull_SOURCES) $(t_eoESOps_SOURCES) $(t_eoAtomOps_SOURCES)
-OBJECTS = $(t_eobreeder_OBJECTS) $(t_eoinclusion_OBJECTS) $(t_eoinsertion_OBJECTS) $(t_eo_OBJECTS) $(t_eofitness_OBJECTS) $(t_eoproblem_OBJECTS) $(t_eobin_OBJECTS) $(t_eolottery_OBJECTS) $(t_eo2dVector_OBJECTS) $(t_eogeneration_OBJECTS) $(t_eoEasyEA_OBJECTS) $(t_eoNonUniform_OBJECTS) $(t_eoUniform_OBJECTS) $(t_eoRandom_OBJECTS) $(t_parser_OBJECTS) $(t_eoESFull_OBJECTS) $(t_eoESOps_OBJECTS) $(t_eoAtomOps_OBJECTS)
+SOURCES = $(t_eobreeder_SOURCES) $(t_eoinclusion_SOURCES) $(t_eoinsertion_SOURCES) $(t_eo_SOURCES) $(t_eofitness_SOURCES) $(t_eoproblem_SOURCES) $(t_eobin_SOURCES) $(t_eolottery_SOURCES) $(t_eo2dVector_SOURCES) $(t_eogeneration_SOURCES) $(t_eoEasyEA_SOURCES) $(t_eoNonUniform_SOURCES) $(t_eoUniform_SOURCES) $(t_eoRandom_SOURCES) $(t_parser_SOURCES) $(t_eoESFull_SOURCES) $(t_eoESOps_SOURCES) $(t_eoAtomOps_SOURCES) $(t_selectOne_SOURCES)
+OBJECTS = $(t_eobreeder_OBJECTS) $(t_eoinclusion_OBJECTS) $(t_eoinsertion_OBJECTS) $(t_eo_OBJECTS) $(t_eofitness_OBJECTS) $(t_eoproblem_OBJECTS) $(t_eobin_OBJECTS) $(t_eolottery_OBJECTS) $(t_eo2dVector_OBJECTS) $(t_eogeneration_OBJECTS) $(t_eoEasyEA_OBJECTS) $(t_eoNonUniform_OBJECTS) $(t_eoUniform_OBJECTS) $(t_eoRandom_OBJECTS) $(t_parser_OBJECTS) $(t_eoESFull_OBJECTS) $(t_eoESOps_OBJECTS) $(t_eoAtomOps_OBJECTS) $(t_selectOne_OBJECTS)
 
 all: all-redirect
 .SUFFIXES:
@@ -390,6 +399,10 @@ t-eoESOps: $(t_eoESOps_OBJECTS) $(t_eoESOps_DEPENDENCIES)
 t-eoAtomOps: $(t_eoAtomOps_OBJECTS) $(t_eoAtomOps_DEPENDENCIES)
 	@rm -f t-eoAtomOps
 	$(CXXLINK) $(t_eoAtomOps_LDFLAGS) $(t_eoAtomOps_OBJECTS) $(t_eoAtomOps_LDADD) $(LIBS)
+
+t-selectOne: $(t_selectOne_OBJECTS) $(t_selectOne_DEPENDENCIES)
+	@rm -f t-selectOne
+	$(CXXLINK) $(t_selectOne_LDFLAGS) $(t_selectOne_OBJECTS) $(t_selectOne_LDADD) $(LIBS)
 .cc.o:
 	$(CXXCOMPILE) -c $<
 .cc.lo:
@@ -436,7 +449,7 @@ distdir: $(DISTFILES)
 	@for file in $(DISTFILES); do \
 	  d=$(srcdir); \
 	  if test -d $$d/$$file; then \
-	    cp -pr $$d/$$file $(distdir)/$$file; \
+	    cp -pr $$/$$file $(distdir)/$$file; \
 	  else \
 	    test -f $(distdir)/$$file \
 	    || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
@@ -465,7 +478,7 @@ uninstall: uninstall-am
 all-am: Makefile $(PROGRAMS)
 all-redirect: all-am
 install-strip:
-	$(MAKE) $(AM_MAKEFLAGS) INSTALL_STRIP_FLAG=-s install
+	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
 installdirs:
 
 

@@ -2,22 +2,15 @@
 // t-eoinclusion.cpp
 //-----------------------------------------------------------------------------
 
-#include <eo>  // eoBin, eoPop, eoInclusion
+#include <eoBin.h>
+#include <eoPop.h>
+#include <eoInclusion.h>
 
 //-----------------------------------------------------------------------------
 
 typedef eoBin<float> Chrom;
 
-//-----------------------------------------------------------------------------
-
-void binary_value(Chrom& chrom)
-{
-  float sum = 0;
-  for (unsigned i = 0; i < chrom.size(); i++)
-    if (chrom[i])
-      sum += pow(2, chrom.size() - i - 1);
-  chrom.fitness(sum);
-}
+#include "binary_value.h"
 
 //-----------------------------------------------------------------------------
 
