@@ -45,8 +45,32 @@ template <class EOT>
 class eoInit : public eoUF<EOT&, void>
 {
 public:
-        virtual void operator()(EOT& chrom)
-  { cout << "In the eoInit base class" << endl; }
+  virtual void operator()(EOT& chrom)
+  { 
+    throw runtime_error("In the eoInit base class"); // just in case
+  }
+};
+
+/** turning an eoInit into a generator 
+ * probably we should only use genrators - and suppress eoInit ???
+ * MS - July 2001
+ */
+template <class EOT>
+class eoInitGenerator :  public eoF<EOT>
+{
+public:
+
+  /** Ctor from a plain eoInit */
+  eoInitGenerator(eoInit<EOT> & _init):init(_init) {}
+
+  virtual EOT operator()()
+    {
+      EOT p;
+      init(p);
+      return (p);
+    }
+private:
+  eoInit<EOT> & init;
 };
 
 /**
@@ -76,32 +100,50 @@ class eoInitFixedLength: public eoInit<EOT>
 };
 
 /**
-    Initializor for variable length representations with a single type
+    Initializer for variable length representations with a single type
 */
-template <class EOT, class Gen>
+template <class EOT>
 class eoInitVariableLength: public eoInit<EOT>
 {
-    public:
-        eoInitVariableLength(unsigned _minSize, unsigned _maxSize, Gen _generator = Gen())
-            : offset(_minSize), extent(_maxSize - _minSize), generator(_generator)
-        {
-            if (_minSize >= _maxSize)
-                throw logic_error("eoInitVariableLength: minSize larger or equal to maxSize");
-        }
+public:
+typedef typename EOT::AtomType AtomType; 
 
-        virtual void operator()(EOT& chrom)
-        {
-            chrom.resize(offset + rng.random(extent));
-            generate(chrom.begin(), chrom.end(), generator);
-            chrom.invalidate();
-        }
+//   /** Ctor from a generator */
+//   eoInitVariableLength(unsigned _minSize, unsigned _maxSize, eoF<typename EOT::AtomType> & _generator = Gen())
+//     : offset(_minSize), extent(_maxSize - _minSize), 
+// 			 repGenerator( eoInitGenerator<typename EOT::AtomType>(*(new eoInit<EOT>)) ), 
+// 			 generator(_generator)
+//   {
+//     if (_minSize >= _maxSize)
+//       throw logic_error("eoInitVariableLength: minSize larger or equal to maxSize");
+//   }
 
-    private :
-        unsigned offset;
-        unsigned extent;
-        Gen generator;
+  /** Ctor from an eoInit */
+  eoInitVariableLength(unsigned _minSize, unsigned _maxSize, eoInit<AtomType> & _init)
+    : offset(_minSize), extent(_maxSize - _minSize), init(_init)
+  {
+    if (_minSize >= _maxSize)
+      throw logic_error("eoInitVariableLength: minSize larger or equal to maxSize");
+  }
+
+
+  virtual void operator()(EOT& _chrom)
+  {
+    _chrom.resize(offset + rng.random(extent));
+    vector<AtomType>::iterator it;
+    for (it=_chrom.begin(); it<_chrom.end(); it++)
+      init(*it);
+    _chrom.invalidate();
+  }
+
+  // accessor to the atom initializer (needed by operator constructs sometimes)
+  const eoInit<AtomType> & atomInit() {return init;}
+
+private :
+  unsigned offset;
+  unsigned extent;
+  eoInit<AtomType> & init;
 };
-
 
 /**
     eoInitAdaptor changes the place in the hierarchy
