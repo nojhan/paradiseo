@@ -1,12 +1,6 @@
 # Makefile.am for eo/src
 
-if USE_PARADISEO
-SUBDIRS 		= es ga gp do utils other paradisEO
-PARADISEO_H		= paradiseo.h
-else
 SUBDIRS 		= es ga gp do utils other
-PARADISEO_H		=
-endif
 
 lib_LIBRARIES 		= libeo.a
 
@@ -118,5 +112,5 @@ pkginclude_HEADERS 	= eo \
 			eoVariableLengthMutation.h \
 			eoVector.h \
 			es.h \
-			ga.h \
-			$(PARADISEO_H)
+			ga.h
+

@@ -17,7 +17,6 @@ AM_CONFIG_HEADER(config.h)
 
 dnl user-switches
 AC_APPLICATIONS
-AC_PARADISEO
 AC_TUTORIAL
 
 dnl Checks for programs.
@@ -63,14 +62,6 @@ AC_OUTPUT(Makefile \
           src/gp/Makefile \
           src/ga/Makefile \
           src/other/Makefile \
-          src/paradisEO/Makefile \
-          src/paradisEO/comm/Makefile \
-          src/paradisEO/comm/messages/Makefile \
-          src/paradisEO/comm/messages/from/Makefile \
-          src/paradisEO/comm/messages/to/Makefile \
-          src/paradisEO/eval/Makefile \
-          src/paradisEO/island/Makefile \
-          src/paradisEO/island/topologies/Makefile \
           src/utils/Makefile \
           test/Makefile \
           tutorial/Makefile \
@@ -79,8 +70,4 @@ AC_OUTPUT(Makefile \
           tutorial/Lesson3/Makefile \
           tutorial/Lesson4/Makefile \
           tutorial/Lesson5/Makefile \
-          tutorial/ParadisEO/Makefile \
-          tutorial/ParadisEO/Lesson1/Makefile \
-          tutorial/ParadisEO/Lesson2/Makefile \
-          tutorial/ParadisEO/Lesson3/Makefile \
           win/Makefile)
