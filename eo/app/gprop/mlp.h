@@ -105,7 +105,23 @@ namespace mlp
       for (vector::iterator w = weight.begin(); w != weight.end(); ++w)
 	*w = -5.0 + 10.0 / (1.0 + exp(*w / -5.0));
     }
-  };
+
+    void perturb_num(double &num, double magnitude) {
+       double scale = max(num, 0.05) * magnitude;
+       double perturbation = scale * (drand48() - 0.5);
+       num += perturbation;
+    }
+
+    void perturb(double magnitude = 0.3, double probability = 1.0)
+    {
+	
+      for (vector::iterator w = weight.begin(); w != weight.end(); ++w)
+	  if ( probability >= 1.0 || drand48() < probability)
+	      perturb_num(*w, magnitude);
+      if ( probability >= 1.0 || drand48() < probability)
+	perturb_num(bias, magnitude);
+    }
+ };
 }
 
 namespace std {
@@ -164,6 +180,13 @@ namespace mlp {
       for(iterator n = begin(); n != end(); ++n)
 	n->desaturate();
     }
+
+    void perturb(double magnitude = 0.3, double probability = 1.0)
+    {
+      for(iterator n = begin(); n != end(); ++n)
+	n->perturb();
+    }
+
   };
 
 }
@@ -305,6 +328,12 @@ namespace mlp {
     {
       for(iterator l = begin(); l != end(); ++l)
 	l->desaturate();
+    }
+
+    void perturb(double magnitude = 0.3, double probability = 1.0)
+    {
+      for(iterator l = begin(); l != end(); ++l)
+	l->perturb();
     }
   };
 
