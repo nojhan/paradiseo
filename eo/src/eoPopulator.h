@@ -36,11 +36,15 @@
     See eoGenOp and eoOpContainer
 */
 template <class EOT>
-class eoPopulator : public eoPop<EOT>
+class eoPopulator
 {
 public :
 
-  eoPopulator(const eoPop<EOT>& _src) : current(begin()), src(_src) {}
+  eoPopulator(const eoPop<EOT>& _src, eoPop<EOT>& _dest) : dest(_dest), current(dest.end()), src(_src)
+  {
+    dest.reserve(src.size()); // we don't know this, but wth.
+    current = dest.end();
+  }
 
   struct OutOfIndividuals {};
 
@@ -50,24 +54,20 @@ public :
    */
   EOT& operator*(void)
   {
-    if (current == end())
-      operator++();
+    if (current == dest.end())
+      get_next(); // get a new individual
 
     return *current;
   }
 
   /** only prefix increment defined
-   *  if needed, adds a new individual using the embedded selector
-   *     and set the current pointer to the newly inserted individual
-   *  otherwise simply increment the current pointer
+     Does not add a new element when at the end, use operator* for that
+     If not on the end, increment the pointer to the next individual
    */
   eoPopulator& operator++()
   {
-    if (current == end())
-      { // get new individual from derived class select()
-        push_back(select());
-        current = end();
-        --current;
+    if (current == dest.end())
+      { // keep the pointer there
         return *this;
       }
     // else
@@ -80,40 +80,66 @@ public :
    */
   void insert(const EOT& _eo)
   { /* not really efficient, but its nice to have */
-    current = eoPop<EOT>::insert(current, _eo);
+    current = dest.insert(current, _eo);
   }
 
   /** just to make memory mangement more efficient
    */
   void reserve(int how_many)
   {
-    size_t sz = current - begin();
-    eoPop<EOT>::reserve(size() + how_many);
-    current = begin() + sz;
+    size_t sz = current - dest.begin();
+    if (dest.capacity() < dest.size() + how_many)
+    {
+      dest.reserve(dest.size() + how_many);
+    }
+
+    current = dest.begin() + sz;
   }
 
   /** can be useful for operators with embedded selectors
-   *  e.g. your barin and my beauty -type
+   *  e.g. your brain and my beauty -type
    */
   const eoPop<EOT>& source(void) { return src; }
+
+  /** Get the offspring population.
+      Can be useful when you want to do some online niching kind of thing
+  */
+  eoPop<EOT>& offspring(void)    { return dest; }
 
   typedef unsigned position_type;
 
   /** this is a direct access container: tell position */
-  position_type tellp()         { return current - begin(); }
+  position_type tellp()         { return current - dest.begin(); }
   /** this is a direct access container: go to position */
-  void seekp(position_type pos) { current = begin() + pos; }
+  void seekp(position_type pos) { current = dest.begin() + pos; }
   /** no more individuals  */
-  bool exhausted(void)          { return current == end(); }
+  bool exhausted(void)          { return current == dest.end(); }
 
-  virtual const EOT& select() = 0;
-
-protected :
   /** the pure virtual selection method - will be instanciated in
    *   eoSeqPopulator and eoPropPopulator
    */
+  virtual const EOT& select() = 0;
+
+protected :
+  eoPop<EOT>& dest;
   eoPop<EOT>::iterator current;
   const eoPop<EOT>& src;
+
+private :
+  void get_next()
+  {
+    if (current == dest.end())
+      { // get new individual from derived class select()
+        dest.push_back(select());
+        current = dest.end();
+        --current;
+        return;
+      }
+    // else
+    ++current;
+    return;
+  }
+
 };
 
 
@@ -125,22 +151,22 @@ class eoSeqPopulator : public eoPopulator<EOT>
 {
 public :
 
-  eoSeqPopulator(const eoPop<EOT>& _pop) :
-    eoPopulator<EOT>(_pop), src_it(_pop.begin()) {}
+  eoSeqPopulator(const eoPop<EOT>& _pop, eoPop<EOT>& _dest) :
+    eoPopulator<EOT>(_pop, _dest), current(0) {}
 
   const EOT& select(void)
   {
-    if (src_it == src.end())
+    if (current >= src.size())
       {
 	throw OutOfIndividuals();
       }
 
-    const EOT& res = *src_it++;
+    const EOT& res = src[current++];
     return res;
   }
 
 private :
-  vector<EOT>::const_iterator src_it;
+  unsigned current;
 };
 
 
@@ -151,8 +177,11 @@ template <class EOT>
 class eoSelectivePopulator : public eoPopulator<EOT>
 {
 public :
-  eoSelectivePopulator(const eoPop<EOT>& _pop, eoSelectOne<EOT>& _sel)
-    : eoPopulator<EOT>(_pop), sel(_sel) {}
+  eoSelectivePopulator(const eoPop<EOT>& _pop, eoPop<EOT>& _dest, eoSelectOne<EOT>& _sel)
+    : eoPopulator<EOT>(_pop, _dest), sel(_sel)
+    {
+      sel.setup(_pop);
+    }
 
   const EOT& select()
   {

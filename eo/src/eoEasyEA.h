@@ -98,7 +98,7 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
          eoTransform<EOT>& _transform,
          eoMerge<EOT>&     _merge,
          eoReduce<EOT>&    _reduce
-     ) : continuator(_continuator), 
+     ) : continuator(_continuator),
          eval(_eval),
          selectTransform(_select, _transform),
          breed(selectTransform),
@@ -108,19 +108,21 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
 
 
 
-        
+
   /// Apply a few generation of evolution to the population.
-  virtual void operator()(eoPop<EOT>& _pop) 
+  virtual void operator()(eoPop<EOT>& _pop)
   {
     eoPop<EOT> offspring;
-    
-    while ( continuator( _pop ) ) 
+
+    do
     {
       try
       {
-	unsigned pSize = _pop.size();
+	       unsigned pSize = _pop.size();
+         offspring.clear(); // new offspring
+
          breed(_pop, offspring);
-         
+
          apply<EOT>(eval, offspring);
 
          replace(_pop, offspring); // after replace, the new pop. is in _pop
@@ -137,9 +139,9 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
 	    s.append( " in eoEasyEA");
 	    throw runtime_error( s );
       }
-    } // while
+    } while ( continuator( _pop ) );
   }
-  
+
  private:
 
   // If selectTransform needs not be used, dummySelect and dummyTransform are used

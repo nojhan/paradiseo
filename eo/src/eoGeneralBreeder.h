@@ -69,17 +69,15 @@ class eoGeneralBreeder: public eoBreed<EOT>
     {
       unsigned target = howMany(_parents.size());
 
-      eoSelectivePopulator<EOT> it(_parents, select);
+      _offspring.clear();
+      eoSelectivePopulator<EOT> it(_parents, _offspring, select);
 
-      select.setup(_parents);
+      while (_offspring.size() < target)
+	    {
+	      op(it);
+        ++it;
+	    }
 
-      while (it.size() < target)
-	{
-	  op(it);
-    ++it;
-	}
-
-      swap(_offspring, it);
       _offspring.resize(target);   // you might have generated a few more
     }
 
