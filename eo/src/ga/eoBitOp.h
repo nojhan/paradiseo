@@ -132,7 +132,8 @@ template<class Chrom> class eoBitMutation: public eoMonOp<Chrom>
    * (Default) Constructor.
    * @param _rate Rate of mutation.
    */
-  eoBitMutation(const double& _rate = 0.01): rate(_rate) {}
+  eoBitMutation(const double& _rate = 0.01, bool _normalize=false): 
+    rate(_rate), normalize(_normalize) {}
 
   /// The class name.
   virtual string className() const { return "eoBitMutation"; }
@@ -143,9 +144,10 @@ template<class Chrom> class eoBitMutation: public eoMonOp<Chrom>
    */
   bool operator()(Chrom& chrom)
     {
+      double actualRate = (normalize ? rate/chrom.size() : rate);
       bool changed_something = false;
       for (unsigned i = 0; i < chrom.size(); i++)
-	    if (eo::rng.flip(rate))
+	    if (eo::rng.flip(actualRate))
         {
 	        chrom[i] = !chrom[i];
             changed_something = true;
@@ -156,6 +158,7 @@ template<class Chrom> class eoBitMutation: public eoMonOp<Chrom>
 
  private:
   double rate;
+  bool normalize;		   // divide rate by chromSize
 };
 
 
