@@ -1,6 +1,8 @@
 #include <eo>
 
+// tests a Steady State GA
 
+// Needed to define this breeder, maybe make it a breeder
 template <class EOT>
 class eoBreedOne : public eoBreed<EOT>
 {
@@ -9,9 +11,9 @@ public :
 
   void operator()(const eoPop<EOT>& _src, eoPop<EOT>& _dest)
   {
-    eoSelectivePopulator<EOT> pop(_src, select);
+    _dest.clear();
+    eoSelectivePopulator<EOT> pop(_src, _dest, select);
     op(pop);
-    _dest = pop;
   }
 
 private :
@@ -72,15 +74,17 @@ int main()
   opsel.add(xover, 0.8);
   opsel.add(mutate, 0.2);
 
-/*
+
   eoDetTournamentSelect<EoType> selector(3);
   eoBreedOne<EoType> breed(selector, opsel);
-  eoSSGAWorseReplacement<EoType> replace;
-*/
 
-  eoRandomSelect<EoType> selector;
-  eoGeneralBreeder<EoType> breed(selector, opsel);
-  eoPlusReplacement<EoType> replace;
+  // Replace a single one
+  eoSSGAWorseReplacement<EoType> replace;
+
+
+//  eoRandomSelect<EoType> selector;
+//  eoGeneralBreeder<EoType> breed(selector, opsel);
+//  eoPlusReplacement<EoType> replace;
 
 
   eoMyEval<EoType> eval;
@@ -92,6 +96,7 @@ int main()
 
   eoPop<EoType> pop(pop_size, init);
 
+  // evaluate
   apply<EoType>(eval, pop);
 
   eoBestFitnessStat<EoType>  best("Best_Fitness");
@@ -100,11 +105,13 @@ int main()
 
   cp.add(best);
   cp.add(avg);
-  cp.add(mon);
+
+//  cp.add(mon);
 
   mon.add(best);
   mon.add(avg);
 
+  // and run
   algo(pop);
 
 }

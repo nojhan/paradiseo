@@ -10,10 +10,10 @@ DEPS = $(top_builddir)/src/utils/libeoutils.a $(top_builddir)/src/libeo.a
 
 INCLUDES = -I$(top_builddir)/src
 LDADDS = $(top_builddir)/src/utils/libeoutils.a $(top_builddir)/src/libeo.a
-CXXFLAGS = -g -Wall -pg
+CXXFLAGS = -g -Wall 
 ###############################################################################
 
-check_PROGRAMS = t-eofitness t-eoRandom t-eobin t-eoStateAndParser t-eoCheckpointing t-eoSSGA  \
+check_PROGRAMS = t-eoPareto t-eofitness t-eoRandom t-eobin t-eoStateAndParser t-eoCheckpointing t-eoSSGA  \
 	t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoVector
 TESTS=run_tests t-eoVector t-eoRandom t-eoSSGA
 # removing temporarily t-eoESFull
@@ -121,3 +121,10 @@ t_eoSSGA_LDFLAGS = -lm
 t_eoSSGA_LDADD = $(LDADDS)
 
 ###############################################################################
+
+t_eoPareto_SOURCES = t-eoPareto.cpp 
+t_eoPareto_DEPENDENCIES = $(DEPS) $(top_builddir)/src/ga/libga.a
+t_eoPareto_LDFLAGS = -lm
+t_eoPareto_LDADD = $(LDADDS)
+###############################################################################
+

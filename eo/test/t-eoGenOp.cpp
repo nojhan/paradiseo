@@ -225,7 +225,7 @@ int the_main(int argc, char **argv)
   sOpQuadPlusMon.add(quad, 1);
   sOpQuadPlusMon.add(mon, 1);
 
-  // this corresponds 
+  // this corresponds
   eoProportionalOp<EOT> pOpSAGLike;
   pOpSAGLike.add(sOpQuadPlusMon, 0.24);
   pOpSAGLike.add(quad, 0.56);
@@ -234,10 +234,11 @@ int the_main(int argc, char **argv)
 
   // init
   eoPop<EOT> pop;
+  eoPop<EOT> offspring;
 
   init(pop, pSize);
 // sort pop so seqPopulator is identical to SelectPopulator(SequentialSelect)
-  pop.sort();      
+  pop.sort();
   cout << "Population initiale\n" << pop << endl;
 
   // To simulate SGA: first a prop between quadOp and quadClone
@@ -249,23 +250,25 @@ int the_main(int argc, char **argv)
   virtualSGA.add(pSGAOp, 1.0);
   virtualSGA.add(mon, 0.3);
 
-  eoSeqPopulator<EOT> popit(pop);  // no selection, a copy of pop
+  eoSeqPopulator<EOT> popit(pop, offspring);  // no selection, a copy of pop
 
   // until we filled a new population
   try
     {
-      while (popit.size() < pop.size())
-	{
-	  virtualSGA(popit);
-	}
+     while (offspring.size() < pop.size())
+	   {
+	     virtualSGA(popit);
+       ++popit;
+	   }
     }
   catch(eoPopulator<EOT>::OutOfIndividuals&)
     {
       cout << "Warning: not enough individuals to handle\n";
     }
-  
- 
-  swap(pop, popit);
+
+
+  swap(pop, offspring);
+  offspring.clear();
 
   // ok, now print
   cout << "Apres virtualSGA \n" << pop << endl;
@@ -276,14 +279,16 @@ int the_main(int argc, char **argv)
 
   eoSequentialSelect<EOT> seqSelect;
   //   select.init(); should be sorted out: is it the setup method???
-  eoSelectivePopulator<EOT> it_step3(pop, seqSelect);
+  eoSelectivePopulator<EOT> it_step3(pop, offspring, seqSelect);
 
-  while (it_step3.size() < 2*pop.size())
+  while (offspring.size() < 2*pop.size())
   {
     virtualSGA(it_step3);
+    ++it_step3;
   }
 
-  swap(pop, it_step3);
+  swap(pop, offspring);
+  offspring.clear();
 
     // ok, now print
   cout << "Apres SGA-like eoSelectivePopulator\n" << pop << endl;
@@ -292,14 +297,16 @@ int the_main(int argc, char **argv)
   cout << "Now the pure addition !" << endl;
 
   init(pop, pSize);
-  eoSelectivePopulator<EOT> it_step4(pop, seqSelect);
-  while (it_step4.size() < 2*pop.size())
+  eoSelectivePopulator<EOT> it_step4(pop, offspring, seqSelect);
+  while (offspring.size() < 2*pop.size())
   {
     sOpQuadPlusMon(it_step4);
+    ++it_step4;
   }
 
-  swap(pop, it_step4);
- 
+  swap(pop, offspring);
+  offspring.clear();
+
     // ok, now print
   cout << "Apres Quad+Mon ds un eoSelectivePopulator\n" << pop << endl;
 
