@@ -56,8 +56,8 @@ echo
 echo "Now type 'make' to compile $PROG."
 echo "And if you have Doxygen installed, type 'make doc' to generate $PROG documentation."
 echo
-echo "WARNING: Compiling all test programs can take some time."
-echo "But you don't have to: you can simply type"
-echo "                    'make lib'"
-echo "and then go in your application dir (or in the tutorial dir)"
-echo "and there type 'make'"
+#echo "WARNING: Compiling all test programs can take some time."
+#echo "But you don't have to: you can simply type"
+#echo "                    'make lib'"
+#echo "and then go in your application dir (or in the tutorial dir)"
+#echo "and there type 'make'"

@@ -55,18 +55,20 @@ class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
 {
  public:
     // Ctor
-  eoGnuplot1DSnapshot(std::string _dirname, unsigned _frequency = 1, 
-	     std::string _filename = "gen", std::string _delim = " ") : 
-      eoFileSnapshot(_dirname, _frequency, _filename, _delim), 
-      eoGnuplot(_filename,"set data style points")
+  eoGnuplot1DSnapshot(std::string _dirname, unsigned _frequency = 1,
+	     std::string _filename = "gen", std::string _delim = " ") :
+      eoFileSnapshot(_dirname, _frequency, _filename, _delim),
+      eoGnuplot(_filename,"set data style points"),
+      pointSize(5)
   {}
 
     // Ctor
-  eoGnuplot1DSnapshot(eoFileSnapshot & _fSnapshot) : 
-      eoFileSnapshot(_fSnapshot), 
-      eoGnuplot(_fSnapshot.baseFileName(),"set data style points")
+  eoGnuplot1DSnapshot(eoFileSnapshot & _fSnapshot) :
+      eoFileSnapshot(_fSnapshot),
+      eoGnuplot(_fSnapshot.baseFileName(),"set data style points"),
+      pointSize(5)
   {}
-  
+
   // Dtor
   virtual ~eoGnuplot1DSnapshot(){}
 
@@ -75,10 +77,12 @@ class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
   /// Class name.
   virtual string className() const { return "eoGnuplot1DSnapshot"; }
 
-private: 
+  unsigned pointSize;
+private:
+
 };
 
-// the following should be placed in a separate eoGnuplot1DMonitor.cpp 
+// the following should be placed in a separate eoGnuplot1DMonitor.cpp
 
 ////////////////////////////////////////////////////////////
 inline eoMonitor&   eoGnuplot1DSnapshot::operator() (void)
@@ -96,12 +100,12 @@ inline eoMonitor&   eoGnuplot1DSnapshot::operator() (void)
   os << "plot";
 
     os << " '" << getFileName().c_str() <<
-      "' notitle with points ps 5" ;
+      "' notitle with points ps " << pointSize ;
   os << "\n";
   os << '\0';
   PipeComSend( gpCom, buff );
 
   return (*this);
 }
-    
+
 #endif _eoGnuplot1DSnapshot_H

@@ -13,9 +13,9 @@ LDADDS = $(top_builddir)/src/utils/libeoutils.a $(top_builddir)/src/libeo.a
 CXXFLAGS = -g -Wall 
 ###############################################################################
 
-check_PROGRAMS = t-eoPareto t-eofitness t-eoRandom t-eobin t-eoStateAndParser t-eoCheckpointing t-eoSSGA  \
+check_PROGRAMS = t-eoParetoFitness t-eoPareto t-eofitness t-eoRandom t-eobin t-eoStateAndParser t-eoCheckpointing t-eoSSGA  \
 	t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoVector
-TESTS=run_tests t-eoVector t-eoRandom t-eoSSGA t-eoPareto
+TESTS=run_tests t-eoVector t-eoRandom t-eoSSGA t-eoPareto t-eoParetoFitness
 # removing temporarily t-eoESFull
 #noinst_PROGRAMS = t-eofitness t-eobin t-eoStateAndParser t-eoCheckpointing t-eoExternalEO t-eoESFull t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA
 
@@ -128,3 +128,8 @@ t_eoPareto_LDFLAGS = -lm
 t_eoPareto_LDADD = $(LDADDS)
 ###############################################################################
 
+t_eoParetoFitness_SOURCES = t-eoParetoFitness.cpp 
+t_eoParetoFitness_DEPENDENCIES = $(DEPS) $(top_builddir)/src/ga/libga.a
+t_eoParetoFitness_LDFLAGS = -lm
+t_eoParetoFitness_LDADD = $(LDADDS)
+###############################################################################

@@ -4,7 +4,7 @@
 ##
 ###############################################################################
 
-SUBDIRS = src test win tutorial app
+SUBDIRS = src test win app tutorial 
 #Directory for documents
 DOCDIR = ~/public_html/eodocs
 #Directory for indices -- not useful for the user
@@ -16,10 +16,6 @@ EXTRA_DIST=LICENSE
 
 lib:	
 	pushd src; $(MAKE) all; popd
-
-# The test directory should be run explicitely, to check if nothing is broken
-test:	test/run_tests test/Makefile
-	pushd test; touch run_tests; $(MAKE) all; ./run_tests; popd 
 
 # so that make doc always compiles the doc ...
 doc:    doc/eo.cfg

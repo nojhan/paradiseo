@@ -62,6 +62,8 @@ class eoDominanceMap : public eoUF<const eoPop<EoType>&, void>, public std::vect
     fitnesses.clear();
   }
 
+  bool maximize(unsigned objective) const { return maximizes[objective]; }
+
   /**
     Update or create the dominance map
   */

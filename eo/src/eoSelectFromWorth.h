@@ -74,8 +74,7 @@ protected:
   eoPerf2Worth<EOT, WorthType> & perf2Worth;
 
 #ifndef NDEBUG
-  vector<typename EOT::Fitness> fitness; // for debugging purposes, to check that the perf2worth and pop are in sync
-
+  std::vector<typename EOT::Fitness> fitness;
   void check_sync(unsigned index, const EOT& _eo)
   {
     if (fitness[index] != _eo.fitness())

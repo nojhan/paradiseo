@@ -3,20 +3,42 @@
 
 //#include <utils/eoMOFitnessStat.h>
 #include <eoNDSorting.h>
+#include <eoParetoFitness.h>
 
 using namespace std;
-typedef vector<double> fitness_type;
+
+class MinimizingFitnessTraits : public eoParetoFitnessTraits
+{
+  public :
+  static bool maximizing(int) { return false; }
+};
+
+typedef eoParetoFitness<MinimizingFitnessTraits> fitness_type;
+
+const unsigned chromsize=3;
+const double minval = -5;
+const double maxval = 5;
 
 struct eoDouble : public EO<fitness_type>
 {
-  double value;
+  double value[chromsize];
 };
 
 class Mutate : public eoMonOp<eoDouble>
 {
   bool operator()(eoDouble& _eo)
   {
-    _eo.value += rng.normal() * 0.1 * _eo.value;
+    for (unsigned i = 0; i < chromsize; ++i)
+    {
+      if (rng.flip(1./10.))
+        _eo.value[i] += rng.normal() * 0.05 * _eo.value[i];
+
+      if (_eo.value[i] < minval)
+        _eo.value[i] = minval;
+      else if (_eo.value[i] > maxval)
+        _eo.value[i] = maxval;
+    }
+
     return true;
   }
 };
@@ -25,10 +47,18 @@ class Eval : public eoEvalFunc<eoDouble>
 {
   void operator()(eoDouble& _eo)
   {
-    double v = _eo.value;
-    fitness_type f(2);
-    f[1] = v * v;
-    f[0] = (v - 1.) * (v - 1.);
+    vector<double> x(_eo.value, _eo.value + chromsize);
+    fitness_type f;
+
+    for (unsigned i = 0; i < chromsize; ++i)
+    {
+      if (i < chromsize-1)
+      {
+        f[0] += -10.0 * exp(-0.2 * sqrt(x[i]*x[i] + x[i+1]*x[i+1]));
+      }
+
+      f[1] += pow(fabs(x[i]), 0.8) + 5 * pow(sin(x[i]),3.);
+    }
 
     _eo.fitness(f);
   }
@@ -38,7 +68,10 @@ class Init : public eoInit<eoDouble>
 {
   void operator()(eoDouble& _eo)
   {
-    _eo.value = rng.normal() * 10.;
+    _eo.value[0] = rng.uniform();
+
+    for (unsigned i = 1; i < chromsize; ++i)
+      _eo.value[i] = rng.uniform() * 10. - 5;
     _eo.invalidate();
   }
 };
@@ -51,8 +84,8 @@ void the_main()
   Eval eval;
   Mutate mutate;
 
-  unsigned num_gen  = 10;
-  unsigned pop_size = 50;
+  unsigned num_gen  = 500;
+  unsigned pop_size = 100;
   eoPop<eoDouble> pop(pop_size, init);
 
   vector<bool> maximizes(2, false); // minimize both objectives
@@ -62,7 +95,8 @@ void the_main()
 
   // Pareto ranking needs a dominance map
   //eoParetoRanking<eoDouble> perf2worth(dominance);
-  eoNDSorting<eoDouble> perf2worth(dominance, 0.0);
+  //eoNDSorting_I<eoDouble> perf2worth(dominance, 0.5);
+  eoNDSorting_II<eoDouble> perf2worth(dominance);
 
   // Three selectors
   eoDetTournamentWorthSelect<eoDouble> select1(perf2worth, 3);
@@ -78,7 +112,7 @@ void the_main()
   eoGeneralBreeder<eoDouble> breeder2(select2, opsel);
   eoGeneralBreeder<eoDouble> breeder3(select3, opsel);
 
-  // Comma replacement
+  // replacement
   eoCommaReplacement<eoDouble> replace;
 
   unsigned long generation = 0;
