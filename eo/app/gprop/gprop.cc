@@ -92,6 +92,10 @@ void arg(int argc, char** argv)
   in = trn_set.front().input.size();
   out = trn_set.front().output.size();
   hidden = hiddenp.value();
+
+  cout << trn_set << endl;
+
+  cout << in << " " << out << " " << hidden << endl;
 }
 
 //-----------------------------------------------------------------------------

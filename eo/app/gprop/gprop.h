@@ -30,12 +30,11 @@ struct phenotype
 
   static unsigned trn_max, val_max, tst_max;
 
-  operator double(void) const { return val_ok; }
+  // operator double(void) const { return val_ok; }
   
   friend bool operator<(const phenotype& a, const phenotype& b)
   {
-    return a.val_ok < b.val_ok || 
-      (!(a.val_ok < b.val_ok) && a.mse_error < b.mse_error);
+    return a.val_ok < b.val_ok; // || (!(a.val_ok < b.val_ok) && a.mse_error < b.mse_error);
   }
   
   friend ostream& operator<<(ostream& os, const phenotype& p)
@@ -48,7 +47,7 @@ struct phenotype
   
   friend istream& operator>>(istream& is, phenotype& p)
   {
-    return is;
+    return is; // complete me
   }
 };
 
@@ -69,7 +68,7 @@ extern unsigned in, out, hidden;
 class Chrom: public EO<phenotype>, public genotype
 {
 public:
-  Chrom(): genotype(in, out, vector<unsigned>(1, hidden)) {}
+  Chrom(): genotype(in, out, vector<unsigned>(hidden < 1 ? 0 : 1, hidden)) {}
 
   string className() const { return "Chrom"; }
 
@@ -82,7 +81,7 @@ public:
   
   void readFrom (istream& is) 
   {
-    invalidate();
+    invalidate(); // complete me
   }
 };
 
