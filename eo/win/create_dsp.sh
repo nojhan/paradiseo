@@ -1,7 +1,7 @@
 #! /bin/tcsh -f
 
 if ($#argv < 2) then
-    echo Usage $0 SourceName TargetName [Additional lib]
+    echo Usage $0 SourceName TargetName
     echo Example: $0 t-eoGA t_eoga ga
     echo "    will create t_eoga.dsp that in turn is the Win project file"
     echo "    that will create the executable t_eoga using source"
@@ -11,15 +11,6 @@ endif
 echo "Creating $2.dsp"
 echo s/DIRNAME/$2/g  > toto.sed
 echo s/SOURCENAME/$1/g >> toto.sed
-# additional libraries: ADDLIBR = name of "Release" library
-#                       ADDLIBD = name of "Debug" library
-if ($#argv == 3) then
-    echo s/ADDLIBR/$3.lib/g >> toto.sed
-    echo s/ADDLIBD/$3d.lib/g >> toto.sed
-else   # remove the ADDLIBs !!!!
-    echo s/ADDLIBR//g >> toto.sed
-    echo s/ADDLIBD//g >> toto.sed
-endif
 
 sed -f toto.sed test_dsp.tmpl > $2.dsp
 /bin/rm toto.sed
@@ -39,3 +30,8 @@ echo '}}}' >> eo.dsw
 echo "" >> eo.dsw
 echo '###############################################################################' >> eo.dsw
 
+echo "AND DON'T FORGET to add the 3 lines in eo.dsw"
+echo "   (too lazy to do it automatically)"
+echo "    Begin Project Dependency"
+echo "   " Project_Dep_Name $2
+echo "    End Project Dependency"

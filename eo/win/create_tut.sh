@@ -32,6 +32,7 @@ echo "" >> eo.dsw
 echo '###############################################################################' >> eo.dsw
 
 echo "AND DON'T FORGET to add the 3 lines in eo.dsw"
+echo "  (too lazy to do it automatically)"
 echo "    Begin Project Dependency"
 echo "   " Project_Dep_Name tut_{$1}_{$2}
 echo "    End Project Dependency"
