@@ -3,11 +3,15 @@
 # START eventually modify the name of EO dir
 DIR_EO = ../../src
 # END eventually modify the name of EO dir
+
+# eo libs
 LIB_EO = $(DIR_EO)/utils/libeoutils.a $(DIR_EO)/libeo.a
 
-.cpp: ; c++  -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I$(DIR_EO) -Wall -g  -o $@  $*.cpp $(LIB_EO)
+# implicit compile rules
+.SUFFIXES: .cpp
+.cpp: ; $(CXX)  -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I$(DIR_EO) -Wall -g  -o $@  $*.cpp $(LIB_EO)
 
-.cpp.o: ; c++ -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I$(DIR_EO) -Wall -g -c $*.cpp
+.cpp.o: ; $(CXX) -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I$(DIR_EO) -Wall -g -c $*.cpp
 
 # local sources
 COMMON_SOURCES =    eoMyStruct.h \
@@ -22,16 +26,15 @@ NO_LIB_SOURCES = MyStructEA.cpp
 
 LIB_SOURCES = MyStructLibEA.cpp make_MyStruct.cpp
 
-
 SOURCES = $(COMMON_SOURCES) MyStructEA.cpp MyStructLibEA.cpp make_MyStruct.cpp
 
 ALL = MyStructEA MyStructLibEA
 
 MyStructEA : MyStructEA.cpp
-	c++ -I. -I$(DIR_EO) -g -o $@ MyStructEA.cpp $(LIB_EO) -lm 
+	$(CXX) -I. -I$(DIR_EO) -g -o $@ MyStructEA.cpp $(LIB_EO) -lm 
 
 MyStructLibEA : MyStructLibEA.o make_MyStruct.o
-	c++ -g -o $@ MyStructLibEA.o make_MyStruct.o $(LIB_EO) -lm
+	$(CXX) -g -o $@ MyStructLibEA.o make_MyStruct.o $(LIB_EO) -lm
 
 tar : ; tar czvf MyStruct.tgz *.h *.cpp Makefile
 

@@ -14,9 +14,9 @@ DIR_EO = ../../src
 # and have problems with the interpretation of the output (and its colors)
 # then you should use c++ instead (make CXX=c++ will do)
 
-.cpp: ; $(CXX)  -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I../../src -Wall -g -pg  -o $@  $*.cpp ../../src/libeo.a ../../src/utils/libeoutils.a
+.cpp: ; $(CXX)  -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I$(DIR_EO) -Wall -g -o $@  $*.cpp $(DIR_EO)/utils/libeoutils.a $(DIR_EO)/libeo.a 
 
-.cpp.o: ; $(CXX) -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I../../src -Wall -g -c -pg $*.cpp
+.cpp.o: ; $(CXX) -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I$(DIR_EO) -Wall -g -c $*.cpp
 
 ALL = BitEA RealEA ESEA
 
@@ -24,11 +24,12 @@ lesson3 : $(ALL)
 
 all : $(ALL)
 
-BitEA : BitEA.o ; c++  -DPACKAGE=\"eo\" -DVERSION=\"0.9.2\" -Wall -g  -o $@  $< ../../src/ga/libga.a ../../src/utils/libeoutils.a ../../src/libeo.a
+BitEA : BitEA.o ; 
+	$(CXX)  -DPACKAGE=\"eo\" -DVERSION=\"0.9.2\" -Wall -g  -o $@  $<  $(DIR_EO)/ga/libga.a $(DIR_EO)/utils/libeoutils.a $(DIR_EO)/libeo.a 
 
-RealEA : RealEA.o ; c++  -DPACKAGE=\"eo\" -DVERSION=\"0.9.2\" -Wall -g  -o $@  $< ../../src/es/libes.a ../../src/utils/libeoutils.a ../../src/libeo.a
+RealEA : RealEA.o ; $(CXX)  -DPACKAGE=\"eo\" -DVERSION=\"0.9.2\" -Wall -g  -o $@  $< $(DIR_EO)/es/libes.a $(DIR_EO)/utils/libeoutils.a $(DIR_EO)/libeo.a
 
-ESEA : ESEA.o ; c++  -DPACKAGE=\"eo\" -DVERSION=\"0.9.2\" -Wall -g  -o $@  $< ../../src/es/libes.a ../../src/utils/libeoutils.a ../../src/libeo.a
+ESEA : ESEA.o ; $(CXX)  -DPACKAGE=\"eo\" -DVERSION=\"0.9.2\" -Wall -g  -o $@  $< $(DIR_EO)/es/libes.a $(DIR_EO)/utils/libeoutils.a $(DIR_EO)/libeo.a
 
 clean : 
 	@/bin/rm $(ALL) *.o *.sav *.xg *.status *~

@@ -14,9 +14,9 @@ DIR_EO = ../../src
 # and have problems with the interpretation of the output (and its colors)
 # then you should use c++ instead (make CXX=c++ will do)
 
-.cpp: ; $(CXX)  -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I../../src -Wall -g -pg  -o $@  $*.cpp ../../src/libeo.a ../../src/utils/libeoutils.a
+.cpp: ; $(CXX)  -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I$(DIR_EO) -Wall -g -pg  -o $@  $*.cpp $(DIR_EO)/utils/libeoutils.a $(DIR_EO)/libeo.a 
 
-.cpp.o: ; $(CXX) -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I../../src -Wall -g -c -pg $*.cpp
+.cpp.o: ; $(CXX) -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I$(DIR_EO) -Wall -g -c -pg $*.cpp
 
 secondEA = SecondBitEA SecondRealEA
 
