@@ -2,7 +2,7 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdksmp i686) [Netscape]">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdk i686) [Netscape]">
    <title>Genetic Engine</title>
 </head>
 <body text="#000000" link="#0000EF" vlink="#51188E" alink="#FF0000" background="beige009.jpg">
@@ -94,44 +94,29 @@ two objects</a></font></font> of respective types <b><font color="#009900"><a hr
 and <b><font color="#009900"><a href="#reduce">eoReduce</a></font></b>
 and you can probably guess what each of them actually does :-)</li>
 
-<br>&nbsp;
-<p>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<p>Available <font color="#FF6600">instances of eoMergeReduce</font> replacement
-include
+<p><br>Available <font color="#FF6600">instances of eoMergeReduce</font>
+replacement include
 <ul>
 <li>
 <b><tt><font color="#009900">eoCommaReplacement</font></tt></b>, one of
-the two standard strategies in <font color="#FF6600">Evolution Strategies</font>,
-selects the best offspring. It is an <b><tt><font color="#993300">eoMergeReduce(eoNoElitism,
-eoTruncate)</font></tt></b>.</li>
+the two standard strategies in <font color="#000000">Evolution Strategies</font>,
+<b><font color="#FF6600">selects the best offspring</font></b>. It is an
+<b><tt><font color="#993300">eoMergeReduce(eoNoElitism, eoTruncate)</font></tt></b>.</li>
 
 <li>
 <b><tt><font color="#009900">eoPlusReplacement</font></tt></b>, the other
-standard <font color="#FF6600">Evolution Startegies</font> replacement,
-where the best from offspring+parents become the next generation. It is
-an <b><tt><font color="#993300">eoMergeReduce(eoPlus, eoTruncate)</font></tt></b>.</li>
+standar<font color="#000000">d Evolution Startegies repla</font>cement,
+where <b><font color="#FF6600">the best from offspring+parents</font></b>
+become the next generation. It is an <b><tt><font color="#993300">eoMergeReduce(eoPlus,
+eoTruncate)</font></tt></b>.</li>
 
 <li>
-<b><tt><font color="#009900">eoEPReplacement</font></tt></b>, used in the
-<font color="#FF6600">Evolutionary
-Programming</font> historical algorithm, doing a stochastic tournament
+<b><tt><font color="#009900">eoEPReplacement</font></tt></b>, used in th<font color="#000000">e
+Evolutionary
+Programming historical </font>algorithm, does an EP stochastic tournament
 among parents + offspring. It is an <b><tt><font color="#993300">eoMergeReduce(eoPlus,
-eoEPReduce)</font></tt></b> and its constructor requires as argument the
-size of the tournament (unsigned int).</li>
+eoEPReduce)</font></tt></b> and its constructor requires as argument T,
+the size of the tournament (unsigned int).</li>
 </ul>
 
 <li>
@@ -189,7 +174,7 @@ an elitist replacement makes no sense - but will not harm either :-)
 file</font></b>
 <p>The file <b><tt><font color="#993300">t-eoReplacement</font></tt></b>
 in the <b><font color="#FF6600">test directory</font></b> implements all
-above replacmenet procedures withni a very simple and easy-to-monitor Dummy
+above replacmenet procedures within a very simple and easy-to-monitor Dummy
 EO class.
 <p>
 <hr WIDTH="100%">
@@ -237,34 +222,41 @@ selection can be used to select a single individual, both uses are probably
 a waste of CPU time.
 <ul>
 <li>
-<b><tt><font color="#009900">Deterministic Tournament</font></tt></b> of
-size T selects returns the best of T uniformly chosen individuals in the
-population. It is implemented in the <b><tt><font color="#009900">eoDetTournamentSelect</font></tt></b>
+<a NAME="detTournament"></a><b><tt><font color="#009900">Deterministic
+Tournament</font></tt></b> of size T returns the best of T uniformly chosen
+individuals in the population. Its size T should be an integer >= 2. It
+is implemented in the <b><tt><font color="#009900">eoDetTournamentSelect</font></tt></b>
 class, a sub-class of eoSelectOne, as well as in the <b><tt><font color="#009900">eoDetTournamentTruncate</font></tt></b>
 class that repeatidly removes from the population the "winner" of the inverse
 tournament.&nbsp; These objects use the C++ function determinitic_tournament
 in&nbsp; <a href="../../doc/html/selectors_h-source.html">selectors.h</a>.</li>
 
 <li>
-<b><tt><font color="#009900">Stochastic Tournament</font></tt></b> of rate
-R first choses two individuals from the population, and selects the best
-one with probability R and the worse one with probability (1-R). It is
-implemented in the <b><tt><font color="#009900">eoStochTournamentSelect</font></tt></b>
+<a NAME="stochTournament"></a><b><tt><font color="#009900">Stochastic Tournament</font></tt></b>
+of rate R first choses two individuals from the population, and selects
+the best one with probability R (the worse one with probability 1-R). Real
+parameter R should be in [0.5,1]. It is implemented in the <b><tt><font color="#009900">eoStochTournamentSelect</font></tt></b>
 class, a sub-class of eoSelectOne, as well as in the <b><tt><font color="#009900">eoStochTournamentTruncate</font></tt></b>
 class that repeatidly removes from the population the "winner" of the inverse
 tournament.&nbsp; These objects use the C++ function determinitic_tournament
-in&nbsp; <a href="../../doc/html/selectors_h-source.html">selectors.h</a>.</li>
+in&nbsp; <a href="../../doc/html/selectors_h-source.html">selectors.h</a>.<br>
+<b><font color="#FF0000">Note</font></b>: A stochastic tournament with
+rate 1.0 is strictly identical to a deterministic tournament of size 2.</li>
 
 <li>
-<b><tt><font color="#009900">EP Tournament</font></tt></b> of size T is
-a global tournament: it works by assigning a score to all individuals in
-the population the following way: starting with a score of 0, each individual
-I is "opposed" T times to a uniformly chosen individual. Everytime I wins,
-its score in incremented by 1 (and by 0.5 for every draw). The individuals
-are then selected deterministically based on their scores from that procedure.
-The <b><tt><font color="#009900">EP Tournament</font></tt></b> is implemented
-in the&nbsp; <b><tt><font color="#009900">eoEPReduce</font></tt></b> truncation
-method used in some replacement procedures.</li>
+<a NAME="EPTournament"></a><b><tt><font color="#009900">EP Tournament</font></tt></b>
+of size T is a global tournament: it works by assigning a score to all
+individuals in the population the following way: starting with a score
+of 0, each individual I is "opposed" T times to a uniformly chosen individual.
+Everytime I wins, its score in incremented by 1 (and by 0.5 for every draw).
+The individuals are then selected deterministically based on their scores
+from that procedure. The <b><tt><font color="#009900">EP Tournament</font></tt></b>
+is implemented in the&nbsp; <b><tt><font color="#009900">eoEPReduce</font></tt></b>
+truncation method used in some replacement procedures.&nbsp;<br>
+<b><font color="#FF0000">Note</font></b>: whereas both the determinitic
+and the stochastic tournament select one individual, the EP tournament
+is designed for batch selection. Of course it could be used to select a
+single individual, but at a rather high computational cost.</li>
 </ul>
 
 <p><br>
@@ -387,8 +379,7 @@ derives from
 <p>Its constructor takes 2 argumenrts:
 <center>
 <p><b><tt><font color="#993300">eoHowMany(double _rate, bool _interpret_as_rate
-=
-true)</font></tt></b></center>
+= true)</font></tt></b></center>
 so by default the double is indeed interpreted as a rate.
 <p>It is used in <font color="#009900">eoSelectMany</font> (which supersedes
 <font color="#009900">eoSelectPerc</font>
