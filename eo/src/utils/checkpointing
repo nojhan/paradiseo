@@ -13,3 +13,4 @@
 #include <utils/eoScalarFitnessStat.h>
 #include <utils/eoFDCStat.h>
 #include <utils/eoMOFitnessStat.h>
+#include <utils/eoPopStat.h>

@@ -292,6 +292,11 @@ void main_function(int argc, char **argv)
     monitor.add(SecondStat);
     monitor.add(fdcStat);
 
+    // test de eoPopStat
+    eoPopString<Indi> popStat("Dump of whole population");
+    checkpoint.add(popStat);
+    monitor.add(popStat);
+
     // A file monitor: will print parameters to ... a File, yes, you got it!
     eoFileMonitor fileMonitor("stats.xg", " ");
     // and an eoGnuplot1DMonitor will 1-print to a file, and 2- plot on screen
@@ -312,7 +317,7 @@ void main_function(int argc, char **argv)
 
     // send a scaling command to gnuplot
     gnuMonitor.gnuplotCommand("set yrange [0:500]");
-
+    /*
     // a specific plot monitor for FDC
     // first into a file (it adds everything ti itself
     eoFDCFileSnapshot<Indi> fdcFileSnapshot(fdcStat);  
@@ -332,7 +337,7 @@ void main_function(int argc, char **argv)
     fitSnapshot.add(fitStat);
     // and of course add it to the checkpoint
     checkpoint.add(fitSnapshot);
-
+    */
     // Last type of item the eoCheckpoint can handle: state savers:
     eoState outState;
     // Register the algorithm into the state (so it has something to save!!)
