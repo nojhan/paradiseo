@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // make_genotype.h
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -27,6 +27,10 @@
 #ifndef _make_genotype_h
 #define _make_genotype_h
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #ifdef HAVE_SSTREAM
 #include <sstream>
 #else
@@ -42,25 +46,25 @@
 
 
 /*
- * This fuction does the initialization of what's needed for a particular 
+ * This fuction does the initialization of what's needed for a particular
  * genotype (here, std::vector<double> == eoReal).
- * It could be here tempatied only on the fitness, as it can be used to evolve 
+ * It could be here tempatied only on the fitness, as it can be used to evolve
  * bitstrings with any fitness.
- * However, for consistency reasons, it was finally chosen, as in 
- * the rest of EO, to templatize by the full EOT, as this eventually 
+ * However, for consistency reasons, it was finally chosen, as in
+ * the rest of EO, to templatize by the full EOT, as this eventually
  * allows to choose the type of genotype at run time (see in es dir)
  *
- * It is instanciated in src/es/make_genotyupe_real.cpp 
+ * It is instanciated in src/es/make_genotyupe_real.cpp
  * and incorporated in the src/es/libes.a
  *
- * It returns an eoInit<EOT> tha can later be used to initialize 
+ * It returns an eoInit<EOT> tha can later be used to initialize
  * the population (see make_pop.h).
  *
  * It uses a parser (to get user parameters) and a state (to store the memory)
  * the last argument is to disambiguate the call upon different instanciations.
  *
- * WARNING: that last argument will generally be the result of calling 
- *          the default ctor of EOT, resulting in most cases in an EOT 
+ * WARNING: that last argument will generally be the result of calling
+ *          the default ctor of EOT, resulting in most cases in an EOT
  *          that is ***not properly initialized***
 */
 
@@ -69,7 +73,7 @@ eoEsChromInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
 {
   // the fitness type
   typedef typename EOT::Fitness FitT;
-  
+
   // for eoReal, only thing needed is the size - but might have been created elswhere ...
     eoValueParam<unsigned>& vecSize = _parser.getORcreateParam(unsigned(10), "vecSize", "The number of variables ", 'n',"Genotype Initialization");
 
@@ -78,8 +82,8 @@ eoEsChromInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
 
   // now some initial value for sigmas - even if useless?
   // shoudl be used in Normal mutation
-    std::string & sigmaString = _parser.getORcreateParam(std::string("0.3"), "sigmaInit", 
-		   "Initial value for Sigmas (with a '%' -> scaled by the range of each variable)", 
+    std::string & sigmaString = _parser.getORcreateParam(std::string("0.3"), "sigmaInit",
+		   "Initial value for Sigmas (with a '%' -> scaled by the range of each variable)",
 				   's',"Genotype Initialization").value();
 
     // check for %
@@ -90,7 +94,7 @@ eoEsChromInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
 	to_scale = true;
 	sigmaString.resize(pos);	   // get rid of %
       }
-    
+
 #ifdef HAVE_SSTREAM
     std::istringstream is(sigmaString);
 #else
@@ -103,7 +107,7 @@ eoEsChromInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
   if ( (sigma < 0) )
     throw std::runtime_error("Negative sigma in make_genotype");
 
-  eoEsChromInit<EOT> * init = 
+  eoEsChromInit<EOT> * init =
     new eoEsChromInit<EOT>(boundsParam.value(), sigma, to_scale);
   // satore in state
   _state.storeFunctor(init);

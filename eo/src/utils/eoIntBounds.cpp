@@ -1,7 +1,11 @@
 #ifdef _MSC_VER
 // to avoid long name warnings
 #pragma warning(disable:4786)
-#endif 
+#endif
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
 #include <ctime>
 
@@ -14,7 +18,7 @@
 #include "eoIntBounds.h"
 
 
-// the global dummy bounds 
+// the global dummy bounds
 // (used for unbounded variables when bounds are required)
 eoIntNoBounds eoDummyIntNoBounds;
 
@@ -24,7 +28,7 @@ extern double read_double(std::string _s);
 extern long int read_int(std::string _s);
 
 
-/** the constructor for eoGeneralIntBound - from a string 
+/** the constructor for eoGeneralIntBound - from a string
  */
 eoIntBounds* eoGeneralIntBounds::getBoundsFromString(std::string _value)
 {
@@ -36,7 +40,7 @@ eoIntBounds* eoGeneralIntBounds::getBoundsFromString(std::string _value)
 
   // look for opening char
   size_t posDeb = _value.find_first_of(beginOrClose);	// allow ]a,b]
-  if (posDeb >= _value.size())	// nothing left to read 
+  if (posDeb >= _value.size())	// nothing left to read
     throw std::runtime_error("Syntax error in eoGeneralIntBounds Ctor");
 
   // ending char: next {}() after posDeb
@@ -48,7 +52,7 @@ eoIntBounds* eoGeneralIntBounds::getBoundsFromString(std::string _value)
   std::string sBounds = _value.substr(posDeb+1, posFin-posDeb-1);
   // and remove from original string
   _value = _value.substr(posFin+1);
-  
+
   remove_leading(sBounds, delim);
   size_t posDelim = sBounds.find_first_of(delim);
   if (posDelim >= sBounds.size())
@@ -88,7 +92,7 @@ eoIntBounds* eoGeneralIntBounds::getBoundsFromString(std::string _value)
 	  if (maxBound <= minBound)
 	    throw std::runtime_error("Syntax error in eoGeneralIntBounds Ctor");
 	  locBound = new eoIntInterval(minBound, maxBound);
-	}	  
+	}
       else if (!minBounded && !maxBounded)	// no bound at all
 	locBound = new eoIntNoBounds;
       else if (!minBounded && maxBounded)
