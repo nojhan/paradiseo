@@ -8,7 +8,6 @@
 #ifndef _EOPOPOPS_H
 #define _EOPOPOPS_H
 
-
 using namespace std;
 
 /**
@@ -99,7 +98,7 @@ class eoMerge: public eoObject{
    *  @param breeders Tranformed individuals.
    *  @param pop The original population at the begining, the result at the end
    */
-  virtual operator () (	const eoPop<EOT>& breeders, eoPop<EOT>& pop ) = 0;
+  virtual void operator () (	const eoPop<EOT>& breeders, eoPop<EOT>& pop ) = 0;
   
   /** @name Methods from eoObject	*/
   //@{
@@ -113,6 +112,10 @@ class eoMerge: public eoObject{
   
   /// Return the rate to be selected from the original population
   float rate() const { return rep_rate; }
+
+  /// Set the rate to be obtained after replacement.
+  /// @param _rate The rate.
+  void rate(const float& _rate) { rep_rate = _rate; }
   
 private:
   float rep_rate;

@@ -39,12 +39,19 @@
 #include <eoPop.h>
 #include <eoPopOps.h>
 
-#include <eoFitness.h>  // what's the matter with you?
-#include <eoProblem.h>  // what's the matter with you?
-
 #include <eoLottery.h>
 
-//#include <eoGA.h>
+#include <eoInsertion.h>
+
+
+
+//-----------------------------------------------------------------------------
+// to be continued ...
+//-----------------------------------------------------------------------------
+
+#include <eoFitness.h>  // what's the matter with you?
+#include <eoProblem.h>  // what's the matter with you?
+// #include <eoGA.h>
 
 //-----------------------------------------------------------------------------
 
