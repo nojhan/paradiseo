@@ -124,9 +124,24 @@ public :
    }
 
  /**
-    Re-initializes the Random Number Generator.
+  * Re-initializes the Random Number Generator.
+  * WARNING: after Jeroen Eggermont <jeggermo@liacs.nl> noticed that
+  *    initialize does not differentiate between odd and even numbers,
+  *    the argument to reseed is now doubled before being passed on.
+  *
+  *    Manually divide the seed by 2 if you want to re-run old runs
+  * 
+  * MS. 5 Oct. 2001
  */
  void reseed(uint32 s)
+   {
+     initialize(2*s);
+   }
+
+ /**
+    Re-initializes the Random Number Generator - old version
+ */
+ void oldReseed(uint32 s)
    {
      initialize(s);
    }
