@@ -10,22 +10,15 @@
 #include <iostream>                                   // ostream, istream
 #include <functional>                                 // bind2nd
 
-#if defined( _MSC_VER ) || defined( __BCPLUSPLUS__ )  //
-#include <vector>                                     //
-typedef vector<bool> bit_vector;                      // bit_vector
-#else                                                 //
-#include <bvector.h>                                  //
-#endif                                                //
-
 #include <string>                                     // string
-#include <EO.h>                                       // EO
+#include <eoVector.h>                                       // EO
 
 //-----------------------------------------------------------------------------
-/// eoBin: implementation of binary chromosome.
-/// based on STL's bit_vector (vector<bool>)
+/** eoBin: implementation of binary chromosome.
+ based on STL's bit_vector (vector<bool>)*/
 //-----------------------------------------------------------------------------
 
-template <class F> class eoBin: public EO<F>, public bit_vector
+template <class F> class eoBin: public eoVector<bool,F>
 {
  public:
   typedef bool Type;
@@ -33,11 +26,11 @@ template <class F> class eoBin: public EO<F>, public bit_vector
   /// (Default) Constructor.
   /// @param size Size of the binary string.
   eoBin(const unsigned& size = 0, const bool& value = false): 
-    bit_vector(size, value) {}
+    eoVector<bool,F>(size, value) {}
 
   /// (Default) Constructor.
   /// @param size Size of the binary string.
-  eoBin(const unsigned& size, const eoRnd<Type>& rnd): bit_vector(size) 
+  eoBin(const unsigned& size, const eoRnd<Type>& rnd): eoVector<bool,F>(size) 
     {
       generate(begin(), end(), rnd);
     }

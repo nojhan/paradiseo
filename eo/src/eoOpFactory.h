@@ -41,7 +41,7 @@ public:
 	@throw runtime_exception if the object type is not known
 	*/
 	virtual eoOp<EOT>* make(istream& _is) {
-		eoOp<EOT> * opPtr;
+		eoOp<EOT> * opPtr = NULL;
 		string objectTypeStr;
 		_is >> objectTypeStr;
 		if  ( objectTypeStr == "eoDup") {
@@ -57,7 +57,7 @@ public:
 		  opPtr = new eoXOver2<EOT>( );
 		} 
 		if ( !opPtr ) {
-		  throw runtime_error( "Incorrect selector type" );
+		  throw objectTypeStr;
 		}
 		return opPtr;
 	}

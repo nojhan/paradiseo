@@ -1,14 +1,21 @@
 //-----------------------------------------------------------------------------
-// eoBinOp.h
+// eoBitOp.h
 //-----------------------------------------------------------------------------
 
-#ifndef eoBinOp_h
-#define eoBinOp_h
+#ifndef eoBitOp_h
+#define eoBitOp_h
 
 //-----------------------------------------------------------------------------
 
 #include <eoBin.h>  // eoBin
 #include <eoOp.h>   // eoMonOp
+
+#ifndef min
+#define min _MIN
+#endif
+#ifndef max
+#define max _MAX
+#endif
 
 //-----------------------------------------------------------------------------
 // eoBinRandom --> mofify a chromosome in a random way
@@ -340,4 +347,4 @@ template<class Chrom> class eoBinUxOver: public eoBinOp<Chrom>
 
 //-----------------------------------------------------------------------------
 
-#endif eoBinOp_h
+#endif eoBitOp_h
