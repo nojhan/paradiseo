@@ -1,4 +1,4 @@
-#include <es/eoEsBase.h>
+#include <eoFixedLength.h>
 //-----------------------------------------------------------------------------
 
 
@@ -7,7 +7,7 @@
     @param _ind A floatingpoint vector 
 */
 
-double real_value(const eoEsBase<double>& _ind)
+double real_value(const eoFixedLength<double, double>& _ind)
 {
   double sum = 0;      /* compute in double format, even if return a float */
   for (unsigned i = 0; i < _ind.size(); i++)

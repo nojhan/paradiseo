@@ -94,7 +94,7 @@ template <class EOT>
 void runAlgorithm(EOT, eoParser& _parser, eoEsObjectiveBounds& _bounds)
 {
     // evaluation
-    eoEvalFuncPtr<eoEsBase<FitT> > eval(  real_value );
+    eoEvalFuncPtr<eoFixedLength<FitT, double> > eval(  real_value );
 
     // population parameters, unfortunately these can not be altered in the state file
     eoValueParam<unsigned> mu = _parser.createParam(unsigned(50), "mu","Size of the population");
