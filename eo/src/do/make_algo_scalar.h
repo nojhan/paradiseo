@@ -94,15 +94,12 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParameterLoader& _parser, eoState& _state, e
     }
   else if (ppSelect.first == string("Sequential")) // one after the other
     {
+      bool b;
       if (ppSelect.second.size() == 0)   // no argument -> default = ordered
-	select = new eoSequentialSelect<EOT>;
+	b=true;
       else
-	{
-	  bool b;
-	  istrstream is(ppSelect.second[0].c_str());
-	  is >> b;
-	  select = new eoStochTournamentSelect<EOT>(b);
-	}
+	b = !(ppSelect.second[0] == string("unordered"));
+      select = new eoSequentialSelect<EOT>(b);
     }
   else if (ppSelect.first == string("Roulette")) // no argument (yet)
     {
