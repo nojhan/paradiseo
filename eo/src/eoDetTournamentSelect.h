@@ -44,23 +44,27 @@
 template <class EOT> class eoDetTournamentSelect: public eoSelectOne<EOT>
 {
  public:
-  /// (Default) Constructor.
-  eoDetTournamentSelect(unsigned _Tsize = 2 ):eoSelectOne<EOT>(), Tsize(_Tsize) {
+  /* (Default) Constructor - 
+     @param _tSize tournament size
+  */
+  eoDetTournamentSelect(unsigned _tSize = 2 ):eoSelectOne<EOT>(), tSize(_tSize) {
     // consistency check
-    if (Tsize < 2) {
+    if (tSize < 2) {
       cout << "Warning, Tournament size should be >= 2\nAdjusted\n";
-      Tsize = 2;
+      tSize = 2;
     }
   }
   
-  /// Perform deterministic tournament
-  virtual const EOT& operator()(const eoPop<EOT>& pop) 
+  /* Perform deterministic tournament calling the appropriate fn 
+     see selectors.h
+  */
+  virtual const EOT& operator()(const eoPop<EOT>& _pop) 
   {
-    return deterministic_tournament(pop, Tsize);
+    return deterministic_tournament(_pop, tSize);
   }
   
  private:
-  unsigned Tsize;
+  unsigned tSize;
 };
 
 //-----------------------------------------------------------------------------
