@@ -93,19 +93,19 @@ eoCheckPoint<EOT>& do_make_checkpoint_assembled(eoParser& _parser, eoState& _sta
   // ---------------------------
 
   // average vals
-  std::vector<eoAverageStat<EOT>* > avgvals( nTerms );
+  std::vector<eoAssembledFitnessAverageStat<EOT>* > avgvals( nTerms );
   for (unsigned i=0; i < nTerms; ++i){
     std::string descr = "Avg. of " + fitness_descriptions[i];
-    avgvals[i] = new eoAverageStat<EOT>(i, descr);
+    avgvals[i] = new eoAssembledFitnessAverageStat<EOT>(i, descr);
     _state.storeFunctor( avgvals[i] );
     checkpoint->add( *avgvals[i] );
   }
 
   // best vals
-  std::vector<eoBestFitnessStat<EOT>* > bestvals( nTerms );
+  std::vector<eoAssembledFitnessBestStat<EOT>* > bestvals( nTerms );
   for (unsigned j=0; j < nTerms; ++j){
     std::string descr = fitness_descriptions[j] + " of best ind.";
-    bestvals[j] = new eoBestFitnessStat<EOT>(j, descr);
+    bestvals[j] = new eoAssembledFitnessBestStat<EOT>(j, descr);
     _state.storeFunctor( bestvals[j] );
     checkpoint->add( *bestvals[j] );
   }
