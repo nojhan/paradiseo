@@ -22,14 +22,19 @@ main()
   const unsigned POP_SIZE = 8, CHROM_SIZE = 16;
   unsigned i;
 
+// a chromosome randomizer
   eoBinRandom<Chrom> random;
+// the populations: 
   eoPop<Chrom> pop; 
-  
+
+   // Evaluation
+  eoEvalFuncPtr<Chrom> eval(  binary_value );
+ 
   for (i = 0; i < POP_SIZE; ++i)
     {
       Chrom chrom(CHROM_SIZE);
       random(chrom);
-      binary_value(chrom);
+      eval(chrom);
       pop.push_back(chrom);
     }
   
@@ -51,9 +56,6 @@ main()
   
   // replacement
   eoInclusion<Chrom> inclusion;
-
-  // Evaluation
-  eoEvalFuncPtr<Chrom> eval(  binary_value );
 
   // Terminators
   eoFitTerm<Chrom> term( pow(2.0, CHROM_SIZE), 1 );
