@@ -7,6 +7,7 @@
 
 //-----------------------------------------------------------------------------
 
+using namespace std;
 #include <values.h>               // MAXFLOAT MINFLOAT
 #include <math.h>                 // exp
 #include <stdexcept>              // invalid_argument
@@ -258,15 +259,7 @@ namespace mlp {
 	l->reset();
     }
 
-    vector operator()(const vector& input) const
-    {
-      vector tmp = input;
-      
-      for(const_iterator l = begin(); l != end(); ++l)
-	tmp = (*l)(tmp);
-      
-      return tmp;
-    }   
+    virtual vector operator()(const vector& input) const ;
 
     unsigned winner(const vector& input) const
     {
@@ -314,6 +307,18 @@ namespace mlp {
 	l->desaturate();
     }
   };
+
+#ifndef NO_MLP_VIRTUALS
+    vector net::operator()(const vector& input) const
+    {
+      vector tmp = input;
+      
+      for(const_iterator l = begin(); l != end(); ++l)
+	tmp = (*l)(tmp);
+      
+      return tmp;
+    }   
+#endif
 
 
   //---------------------------------------------------------------------------
