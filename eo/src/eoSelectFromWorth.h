@@ -26,7 +26,7 @@
 #ifndef _eoSelectFromWorth_h
 #define _eoSelectFromWorth_h
 
-#include <iostream.h>
+#include <iostream>
 //-----------------------------------------------------------------------------
 #include <eoSelectOne.h>
 #include <eoPerf2Worth.h>
