@@ -18,7 +18,7 @@ void eoFileMonitor::printHeader(std::ostream& os)
 
     for (; it != vec.end(); ++it)
     {
-        os << ',' << (*it)->longName();
+        os << delim.c_str() << (*it)->longName();
     }
     os << '\n';
 }
@@ -58,7 +58,7 @@ eoMonitor& eoFileMonitor::operator()(std::ostream& os)
     
     for(++it; it != vec.end(); ++it)
     {
-        os << ',' << (*it)->getValue();
+        os << delim.c_str() << (*it)->getValue();
     }
 
     os << '\n';
