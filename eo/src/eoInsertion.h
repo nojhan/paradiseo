@@ -29,7 +29,6 @@ template<class Chrom> class eoInsertion: public eoMerge<Chrom>
   void operator()(const eoPop<Chrom>& breeders, eoPop<Chrom>& pop)
     {
       int new_size = static_cast<int>(pop.size() * rate());
-      cout << "new_size = " << new_size << endl;
       
       if (new_size == breeders.size())
 	{
