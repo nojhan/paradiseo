@@ -37,12 +37,22 @@
 //-----------------------------------------------------------------------------
 
 /** 
-eoReplacement: High level strategy for creating a new generation 
-from parents and offspring. 
+eoReplacement: the base class for all replacement functors.
 
+NOTE: 2 eoPop as arguments
+the resulting population should be in the first argument (replace
+parents by offspring)! The second argument can contain any rubbish 
+
+---
 The eoMergeReduce, combination of eoMerge and eoReduce, can be found 
 in file eoMergeReduce.h
 
+The eoReduceMergeReduce that reduces the parents and the offspring,
+merges the 2 reduced populations, and eventually reduces that final
+population, can be found in eoReduceMergeReduce.h
+
+LOG
+---
 Removed the const before first argument: though it makes too many classes 
 with the same interface, it allows to minimize the number of actual copies 
 by choosing the right destination
@@ -51,18 +61,12 @@ replacement gets a class of its own that only does the swap (instead of the
 eoNoReplacement that did nothing, relying on the algo to swap popualtions).
 MS 12/12/2000
 
-NOTE: the resulting population should always be in the first argument 
-(replace parents by offspring)! The second argument can contain any rubbish
-
   @see eoMerge, eoReduce, eoMergeReduce, eoReduceMerge 
 
 @classes eoReplacement,                    base (pure abstract) class
          eoGenerationalReplacement,        as it says ...
 	 eoWeakElitistReplacement          a wrapper to add elitism
-*/
 
-/** 
-eoReplacement: the base class for all replacementp functors
  */
 template<class EOT>
 class eoReplacement : public eoBF<eoPop<EOT>&, eoPop<EOT>&, void>
