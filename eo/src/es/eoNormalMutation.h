@@ -65,10 +65,10 @@ template<class EOT> class eoNormalMutation: public eoMonOp<EOT>
    * @param _p_change the probability to change a given coordinate
    */
   eoNormalMutation(eoRealVectorBounds & _bounds,
-		    double & _sigma, const double& _p_change = 1.0):
+		    double _sigma, const double& _p_change = 1.0):
     sigma(_sigma), bounds(_bounds), p_change(_p_change) {}
 
-  /// The class name.
+  /** The class name */
   virtual string className() const { return "eoNormalMutation"; }
 
   /**
@@ -90,9 +90,11 @@ template<class EOT> class eoNormalMutation: public eoMonOp<EOT>
       return hasChanged;
     }
 
-protected:
-  double & sigma;
+  /** Accessor to ref to sigma - for update and monitor */
+  double & Sigma() {return sigma;}
+
 private:
+  double & sigma;
   eoRealVectorBounds & bounds;
   double p_change;
 };
@@ -112,38 +114,55 @@ public:
   /**
    * (Default) Constructor.
    *
-   * @param eval the evaluation fuinction, needed to recompute the fitmess
-   * @param _sigmaInit the initial value for uniform nutation
+   * @param eval the evaluation function, needed to recompute the fitmess
+   * @param _sigmaInit the initial value for uniform mutation
    * @param _windowSize the size of the window for statistics
    * @param _threshold the threshold (the 1/5 - 0.2)
    * @param _updateFactor multiplicative update factor for sigma 
    */
   eoOneFifthMutation(eoEvalFunc<EOT> & _eval, double & _sigmaInit, 
-		     unsigned _windowSize = 10, 
-		     double _threshold=0.2, double _updateFactor=0.83): 
+		     unsigned _windowSize = 10, double _updateFactor=0.83,
+		     double _threshold=0.2): 
     eoNormalMutation<EOT>(_sigmaInit), eval(_eval), 
     threshold(_threshold), updateFactor(_updateFactor), 
-    nbMut(_windowSize, 0), nbSuccess(_windowSize, 0), genIndex(0) {}
+    nbMut(_windowSize, 0), nbSuccess(_windowSize, 0), genIndex(0) 
+  {
+    // minimal check
+    if (updateFactor>=1)
+      throw runtime_error("Update factor must be < 1 in eoOneFifthMutation");
+  }
+
+  /** The class name */
+  virtual string className() const { return "eoOneFifthMutation"; }
 
   /**
    * Do it!
-   * @param _eo The cromosome undergoing the mutation
-   * calls the standard mutation, then checks for success
+   * calls the standard mutation, then checks for success and updates stats
+   *
+   * @param _eo The chromosome undergoing the mutation
    */
-  void operator()(EOT & _eo) 
+  bool operator()(EOT & _eo) 
     {
+      if (_eo.invalid())	   // due to some crossover???
+	eval(_eo);
       Fitness oldFitness = _eo.fitness(); // save old fitness
 
-      eoNormalMutation<EOT>::operator()(_eo); // normal mutation
-      nbMut++;		   // assumes normal mutation always modifies _eo
+      // call standard operator - then count the successes
+      if (eoNormalMutation<EOT>::operator()(_eo)) // _eo has been modified
+	{
+	  _eo.invalidate();	   // don't forget!!!
+	  nbMut[genIndex]++;
+	  eval(_eo);		   // compute fitness of offspring
 
-      eval(_eo);		   // compute fitness of offspring
-
-      if (_eo.fitness() > oldFitness)
-	nbSuccess++;		    // update counter
+	  if (_eo.fitness() > oldFitness)
+	    nbSuccess[genIndex]++;	    // update counter
+	}
+      return false;		   // because eval has reset the validity flag
     }
   
-  // this will be called every generation
+  /** the method that will be called every generation 
+   *  if the object is added to the checkpoint
+   */
   void update()
   {
     unsigned totalMut = 0;
@@ -156,23 +175,26 @@ public:
       }
 
     // update sigma accordingly
-    double prop = (double) totalSuccess / totalMut;
-    if (prop > threshold)
-      sigma /= updateFactor;	   // increase sigma
+    double prop = double(totalSuccess) / totalMut;
+    if (prop > threshold) {
+      Sigma() /= updateFactor;	   // increase sigma
+    }
     else
-      sigma *= updateFactor;	   // decrease sigma
-
-    // go to next generation
+      {
+	Sigma() *= updateFactor;	   // decrease sigma
+      }
     genIndex = (genIndex+1) % nbMut.size() ;
     nbMut[genIndex] = nbSuccess[genIndex] = 0;
+
   }
+  
 private:
   eoEvalFunc<EOT> & eval;
   double threshold;		   // 1/5 !
   double updateFactor ;		   // the multiplicative factor
-  vector<unsigned> nbMut;	   // total number of mutations per gen
+  vector<unsigned> nbMut;	   // total number of mutations per gen 
   vector<unsigned> nbSuccess;	   // number of successful mutations per gen
-  unsigned genIndex ;		   // current gen
+  unsigned genIndex ;		   // current index in vectors (circular)
 };
 
 
