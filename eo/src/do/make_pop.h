@@ -78,6 +78,13 @@ eoPop<EOT>&  do_make_pop(eoParser & _parser, eoState& _state, eoInit<EOT> & _ini
 	  for (unsigned i=0; i<pop.size(); i++)
 	    pop[i].invalidate();
 	}
+      if (pop.size() < popSize.value())
+	std::cerr << "WARNING, only " << pop.size() << " individuals read in file " << loadNameParam.value() << "\nThe remaining " << popSize.value() - pop.size() << " will be randomly drawn" << std::endl;
+      if (pop.size() > popSize.value())
+	{
+	  std::cerr << "WARNING, Load file contained too many individuals. Only the best will be retained" << std::endl;
+	  pop.resize(popSize.value());
+	}
     }
   else				// nothing loaded from a file
     {
