@@ -30,7 +30,7 @@
 #include <eoSelectFromWorth.h>
 #include <eoPerf2Worth.h>
 
-/* An instance of eoPerf2Worth
+/** An instance of eoPerf2Worth
  *  COmputes the linearly scaled fitnesses
  *  with given selective pressure
  *  Pselect(Best) == pressure/sizePop

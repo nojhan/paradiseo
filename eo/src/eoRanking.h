@@ -29,7 +29,7 @@
 
 #include <eoPerf2Worth.h>
 
-/* An instance of eoPerfFromWorth
+/** An instance of eoPerfFromWorth
  *  COmputes the ranked fitness: fitnesses range in [m,M] 
  *  with m=2-pressure/popSize and M=pressure/popSize.
  *  in between, the progression depends on exponent (linear if 1).
