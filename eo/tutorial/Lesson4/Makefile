@@ -20,8 +20,6 @@ DIR_EO = ../../src
 
 ALL = BitEA RealEA ESEA
 
-lesson3 : $(ALL)
-
 all : $(ALL)
 
 BitEA : BitEA.o ; 
