@@ -59,6 +59,10 @@
 #include <eoPopOps.h>
 #include <eoBitOp.h>
 
+#include <eoEvalFunc.h>
+#include <eoEvalFuncPtr.h>
+#include <eoEvaluator.h>
+
 #include <eoLottery.h>
 #include <eoBreeder.h>
 #include <eoInsertion.h>

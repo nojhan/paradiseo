@@ -7,20 +7,11 @@
 
 #include <eo>
 
+#include "binary_value.h"
+
 //-----------------------------------------------------------------------------
 
 typedef eoBin<float> Chrom;
-
-//-----------------------------------------------------------------------------
-
-void binary_value(Chrom& chrom)
-{
-  float sum = 0;
-  for (unsigned i = 0; i < chrom.size(); i++)
-    if (chrom[i])
-      sum += pow(2, chrom.size() - i - 1);
-  chrom.fitness(sum);
-}
 
 //-----------------------------------------------------------------------------
 
@@ -59,16 +50,19 @@ main()
   
   // replacement
   eoInclusion<Chrom> inclusion;
-  
+
+  // Evaluation
+  eoEvalFuncPtr<Chrom> eval(  binary_value );
+
   // GA generation
-  eoGeneration<Chrom> generation(lottery, breeder, inclusion);
+  eoGeneration<Chrom> generation(lottery, breeder, inclusion, eval);
 
   // evolution
   unsigned g = 0;
   do {
     try
       {
-	generation(pop, binary_value);
+	generation(pop);
       }
     catch (exception& e)
       {

@@ -41,11 +41,11 @@ struct eoEvalFunc {
 #ifdef _MSC_VER
 	typedef EOT::Fitness EOFitT;
 #else
-	typedef typename Fitness::EOFitT EOFitT;
+	typedef typename EOT::Fitness EOFitT;
 #endif
 
   /// Effectively applies the evaluation function to an EO or urEO
-  virtual EOFitT evaluate( EOT & _eo ) const = 0;
+  virtual void operator() ( EOT & _eo ) const = 0;
 };
 
 #endif
