@@ -53,11 +53,6 @@ public:
   */
   EO(): repFitness(0), invalidFitness(true) {}
   
-  /** Ctor from stream.
-      Fitness must have defined the lecture from an istream.
-  */
-  EO( istream& _is ) { readFrom(_is); }
-
   /// Virtual dtor
   virtual ~EO() {};
   
