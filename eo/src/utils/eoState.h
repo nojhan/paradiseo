@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoState.h
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -32,6 +32,8 @@
 #include <map>
 #include <vector>
 
+#include <eoFunctorStore.h>
+
 class eoObject;
 class eoPersistent;
 
@@ -40,7 +42,7 @@ class eoPersistent;
 * then in turn implement the persistence framework through members load
 * and save, that will call readFrom and printOn for the registrated objects.
 */
-class eoState 
+class eoState
 {
 public :
 
@@ -54,7 +56,7 @@ public :
     void registerObject(eoPersistent& registrant);
 
     /**
-    * Copies the object (MUST be derived from eoPersistent) 
+    * Copies the object (MUST be derived from eoPersistent)
     * and returns a reference to the owned object.
     * Note: it does not register the object, this must be done afterwards!
     */
@@ -65,7 +67,13 @@ public :
         ownedObjects.push_back(new T(persistent));
         return static_cast<T&>(*ownedObjects.back());
     }
-    
+
+    void storeFunctor(eoFunctorBase* _functor)
+    {
+      // add it to the functorStore, fo
+      functorStore.add(_functor);
+    }
+
     /**
     * Loading error thrown when nothing seems to work.
     */
@@ -82,21 +90,21 @@ public :
     *   @param _filename    the name of the file to load from
     */
     void load(const std::string& _filename);
-    
+
     /**
     * Reads the file specified
     *
     *   @param is    the stream to load from
     */
     void load(std::istream& is);
-    
+
     /**
     * Saves the state in file specified
     *
     *   @param _filename    the name of the file to save into
     */
     void save(const std::string& _filename) const;
-    
+
     /**
     * Saves the state in file specified
     *
@@ -109,12 +117,14 @@ private :
 
     // first is Persistent, second is the raw data associated with it.
     typedef std::map<std::string, eoPersistent*> ObjectMap;
-    
+
     ObjectMap objectMap;
 
     std::vector<ObjectMap::iterator> creationOrder;
-
     std::vector<eoPersistent*> ownedObjects;
+
+    // And a functor store to boot
+    eoFunctorStore functorStore;
 
     // private copy and assignment as eoState is supposed to be unique
     eoState(const eoState&);

@@ -48,34 +48,34 @@ This class plots through gnuplot the eoStat given as argument
 
 
 /** eoGnuplot1DMonitor plots stats through gnuplot
- *  assumes that the same file is appened every so and so, 
+ *  assumes that the same file is appened every so and so,
  *  and replots it everytime
  */
 class eoGnuplot1DMonitor: public eoFileMonitor, public eoGnuplot
 {
  public:
     // Ctor
-  eoGnuplot1DMonitor(std::string _filename, bool _top=false) : 
-      eoFileMonitor(_filename, " "), 
+  eoGnuplot1DMonitor(std::string _filename, bool _top=false) :
+      eoFileMonitor(_filename, " "),
       eoGnuplot(_filename,(_top?"":"set key bottom"))
   {}
-  
+
   // Dtor
   virtual ~eoGnuplot1DMonitor(){}
 
   virtual eoMonitor&  operator() (void) ;
-  virtual void  FirstPlot();  
+  virtual void  FirstPlot();
 
   /// Class name.
   virtual string className() const { return "eoGnuplot1DMonitor"; }
 
-private: 
+private:
 };
 
-// the following should be placed in a separate eoGnuplot1DMonitor.cpp 
-
+// the following should be placed in a separate eoGnuplot1DMonitor.cpp
+// then the inline specifier should dissappear
 ////////////////////////////////////////////////////////////
-eoMonitor&   eoGnuplot1DMonitor::operator() (void)
+inline eoMonitor&   eoGnuplot1DMonitor::operator() (void)
   /////////////////////////////////////////////////////////
 {
   // update file using the eoFileMonitor
@@ -98,10 +98,10 @@ eoMonitor&   eoGnuplot1DMonitor::operator() (void)
 }
 
 ////////////////////////////////////////////////////////////
-void  eoGnuplot1DMonitor::FirstPlot() 
+inline void  eoGnuplot1DMonitor::FirstPlot()
   ////////////////////////////////////////////////////////
 {
-  if (vec.size() < 2) 
+  if (vec.size() < 2)
     {
       throw runtime_error("Must have some stats to plot!\n");
     }
@@ -118,5 +118,5 @@ void  eoGnuplot1DMonitor::FirstPlot()
   os << '\0';
   PipeComSend( gpCom, buff );
 }
-    
+
 #endif _eoGnuplot1DMonitor_H

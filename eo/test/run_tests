@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/bin/sh
 echo "Starting t-eo"
 ./t-eo > eo.log
 
@@ -32,6 +32,9 @@ echo "Testing t-eobin"
 
 echo "Testing t-eofitness"
 ./t-eofitness > fitness.log
+
+echo "Testing t-eoGA"
+./t-eoGA > t-eoGA.log
 
 echo "Finished"
 

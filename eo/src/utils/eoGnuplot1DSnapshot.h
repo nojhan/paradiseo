@@ -81,7 +81,7 @@ private:
 // the following should be placed in a separate eoGnuplot1DMonitor.cpp 
 
 ////////////////////////////////////////////////////////////
-eoMonitor&   eoGnuplot1DSnapshot::operator() (void)
+inline eoMonitor&   eoGnuplot1DSnapshot::operator() (void)
   /////////////////////////////////////////////////////////
 {
   // update file using the eoFileMonitor

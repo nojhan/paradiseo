@@ -78,7 +78,7 @@ class eoGnuplot
   }
 
 
-protected: 
+protected:
   void initGnuPlot(std::string _title, std::string _extra);
   // the private data
   bool firstTime;       // the stats might be unknown in Ctor
@@ -86,12 +86,12 @@ protected:
 private:
 };
 
-// the following should be placed in a separate eoGnuplot.cpp 
+// the following should be placed in a separate eoGnuplot.cpp
 
   static unsigned numWindow=0;
 
 ////////////////////////////////////////////////////////////
-void eoGnuplot::initGnuPlot(std::string _title, std::string _extra) 
+inline void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
   /////////////////////////////////////////////////////////
 {
   char snum[255];
@@ -103,7 +103,7 @@ void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
   args[1] = strdup( "-geometry" );
   args[2] = strdup( os.str() );
   args[3] = strdup( "-title" );
-  args[4] = strdup( _title.c_str() ); 
+  args[4] = strdup( _title.c_str() );
   args[5] = 0;
   gpCom = PipeComOpenArgv( "gnuplot", args );
   if( ! gpCom )
@@ -115,21 +115,21 @@ void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
   }
 }
 
-    
+
 // the following should be placed in a separate file pipecom.c
 // together with the corresponding pipecom.h
-// but first their MSC equivalent must be written and tested 
+// but first their MSC equivalent must be written and tested
 // or some #idef instructions put with clear message at compile time
 // that this is for Unix only ???
 
 /* ----------------------------------------------------------------------
- * Where........: CMAP - Polytechnique 
+ * Where........: CMAP - Polytechnique
  * File.........: pipecom.c
  * Author.......: Bertrand Lamy (Equipe genetique)
  * Created......: Mon Mar 13 13:50:11 1995
  * Description..: Communication par pipe bidirectionnel avec un autre process
- * 
- * Ident........: $Id: eoGnuplot.h,v 1.2 2001-02-01 05:17:16 evomarc Exp $
+ *
+ * Ident........: $Id: eoGnuplot.h,v 1.3 2001-02-12 13:58:51 maartenkeijzer Exp $
  * ----------------------------------------------------------------------
  */
 
@@ -142,7 +142,7 @@ void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
 // #include "pipecom.h"
 
 
-int Check( PCom *com )
+inline int Check( PCom *com )
 {
     if( ! com ) {
 	fprintf( stderr, "PipeCom: Null pointer.\n" );
@@ -158,16 +158,16 @@ int Check( PCom *com )
 }
 
 
-PCom * PipeComOpen( char *prog )
+inline PCom * PipeComOpen( char *prog )
 {
     char	*args[2];
     args[0] = prog;
     args[1] = NULL;
-    return PipeComOpenArgv( prog, args ); 
+    return PipeComOpenArgv( prog, args );
 }
 
 
-PCom * PipeComOpenArgv( char *prog, char *argv[] )
+inline PCom * PipeComOpenArgv( char *prog, char *argv[] )
 {
     int		toFils[2];
     int		toPere[2];
@@ -188,7 +188,7 @@ PCom * PipeComOpenArgv( char *prog, char *argv[] )
 	perror("PipeComOpen: fork failed" );
 	return ret;
 	break;
-    
+
     case 0:
 	/* --- Here's the son --- */
 	/* --- replace old stdin --- */
@@ -197,7 +197,7 @@ PCom * PipeComOpenArgv( char *prog, char *argv[] )
 	    exit( -1 );
 	    /* --- AVOIR: kill my father --- */
 	}
-	if( dup2( toPere[1], fileno(stdout) ) < 0 ) { 
+	if( dup2( toPere[1], fileno(stdout) ) < 0 ) {
 	    perror( "PipeComOpen(son): could not connect" );
 	    exit( -1 );
 	}
@@ -211,7 +211,7 @@ PCom * PipeComOpenArgv( char *prog, char *argv[] )
 	ret = (PCom *) malloc( sizeof(PCom) );
 	if( ! ret )
 	    return NULL;
-	
+
 	ret->fWrit = (FILE *)fdopen( toFils[1], "w" );
 	ret->fRead = (FILE *)fdopen( toPere[0], "r" );
 	ret->pid = sonPid;
@@ -220,7 +220,7 @@ PCom * PipeComOpenArgv( char *prog, char *argv[] )
 }
 
 
-int PipeComSend( PCom *to, const char *line )
+inline int PipeComSend( PCom *to, const char *line )
 {
     int	nb = 0;
     if( ! Check(to ) )
@@ -231,10 +231,10 @@ int PipeComSend( PCom *to, const char *line )
 }
 
 
-int PipeComSendn( PCom *to, const char *data, int n )
+inline int PipeComSendn( PCom *to, const char *data, int n )
 {
     int	nb = 0;
-    if( ! Check(to) ) 
+    if( ! Check(to) )
 	return nb;
 
     nb = fwrite( data, 1, n, to->fWrit );
@@ -243,9 +243,9 @@ int PipeComSendn( PCom *to, const char *data, int n )
 }
 
 
-int PipeComReceive( PCom *from, char *data, int max )
+inline int PipeComReceive( PCom *from, char *data, int max )
 {
-    if( ! Check(from) ) 
+    if( ! Check(from) )
 	return 0;
     if( ! data ) {
       fprintf( stderr, "PipeComReceive: Invalid data pointer\n" );
@@ -259,7 +259,7 @@ int PipeComReceive( PCom *from, char *data, int max )
 
 
 
-int PipeComClose( PCom *to )
+inline int PipeComClose( PCom *to )
 {
     if( ! Check(to) )
 	return 0;
@@ -271,7 +271,7 @@ int PipeComClose( PCom *to )
 
 
 
-int PipeComWaitFor( PCom *from, char *what )
+inline int PipeComWaitFor( PCom *from, char *what )
 {
     char	buffer[256];
     do {
