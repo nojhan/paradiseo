@@ -710,10 +710,16 @@ public:
     
     for ( p=params.begin(); p!=params.end(); p++ ) {
       if( p->valType() != Param::TITLE ) {
+	// Victor: 04-Jan-2000
+	// Modified because the - and -- prefixes are not needed.
+	/*
 	cout << "-" << p->shortName()
 	     <<", --"<<p->longName()<<":\t"
 	     <<p->description()<<endl;
-
+	*/
+	cout << p->shortName()
+	     <<", " << p->longName()<<":\t"
+	     <<p->description()<<endl;
 	cout << "\t(";
 	switch ( p->valType() ) {
 	case Param::INT: cout <<"Integer"; break;
