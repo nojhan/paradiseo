@@ -21,7 +21,12 @@
 #include <utils/eoRNG.h>
 #include <boost/python.hpp>
 
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
 #include <strstream>
+#endif
+
 #include <boost/python/detail/api_placeholder.hpp>
 
 using namespace boost::python;
@@ -36,7 +41,11 @@ double normal(eoRng& rng) { return rng.normal(); }
 
 std::string rng_to_string(const eoRng& _rng)
 {
+#ifdef HAVE_SSTREAM
+    std::ostringstream os;
+#else
     std::ostrstream os;
+#endif
     _rng.printOn(os);
     os << std::ends;
     return os.str();
@@ -44,7 +53,11 @@ std::string rng_to_string(const eoRng& _rng)
 
 void rng_from_string(eoRng& _rng, std::string s)
 {
+#ifdef HAVE_SSTREAM
+    std::istringstream is(s);
+#else
     std::istrstream is(s.c_str(), s.size());
+#endif
     _rng.readFrom(is);
 }
 

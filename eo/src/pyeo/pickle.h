@@ -22,7 +22,11 @@
 #define PICKLE_h
 
 #include <boost/python.hpp>
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
 #include <strstream>
+#endif
 /** Implements pickle support for eoPersistent derivatives */
 
 
@@ -30,9 +34,13 @@ template <class T>
 struct T_pickle_suite : boost::python::pickle_suite
 {
     static 
-    std::string print_to_std::string(const T& t)
+    std::string print_to_string(const T& t)
     {
+#ifdef HAVE_SSTREAM
+	std::ostringstream os;
+#else
 	std::ostrstream os;
+#endif
 	t.printOn(os);
 	os << std::ends;
 	return os.str();
@@ -41,7 +49,7 @@ struct T_pickle_suite : boost::python::pickle_suite
     static
     boost::python::tuple getstate(const T& t)
     {
-	std::string s = print_to_std::string(t);
+	std::string s = print_to_string(t);
 	return boost::python::make_tuple( boost::python::str(s));
     }
 
@@ -49,7 +57,11 @@ struct T_pickle_suite : boost::python::pickle_suite
     void setstate(T& t, boost::python::tuple pickled)
     {
 	std::string s = extract<std::string>(pickled[0]);
+#ifdef HAVE_SSTREAM
+	std::istringstream is(s);
+#else
 	std::istrstream is(s.c_str(), s.size());
+#endif
 	t.readFrom(is);
     }
 };
@@ -61,7 +73,7 @@ template <class Persistent, class X1, class X2, class X3>
 boost::python::class_<Persistent, X1, X2, X3>& pickle(boost::python::class_<Persistent, X1, X2, X3>& c)
 {
     return c.def_pickle(T_pickle_suite<Persistent>())
-	.def("__str__", T_pickle_suite<Persistent>::print_to_std::string);
+	.def("__str__", T_pickle_suite<Persistent>::print_to_string);
 }
 
 #endif

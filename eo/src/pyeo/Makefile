@@ -25,7 +25,7 @@
 #
 
 CXX = g++ #-3.2
-CXXFLAGS = #-g #-DNDEBUG
+CXXFLAGS = -DHAVE_SSTREAM#-g #-DNDEBUG
 CPPFLAGS = -Wall -O2 #-g #-O2
 LDFLAGS = 
 COMPILE = $(CXX) $(CXXFLAGS) $(CPPFLAGS) -c
@@ -41,7 +41,7 @@ OBJECTS=eoFunctorStore.o PyEO.o abstract1.o algos.o \
 all: PyEO/PyEO.so
 
 clean:
-	rm *.so *.o test/*.pyc
+	rm PyEO/*.so *.o test/*.pyc
 
 PyEO/PyEO.so: $(OBJECTS)
 	$(LINK) -o PyEO/PyEO.so $(OBJECTS) -lboost_python -lpython2.2 -shared -lstlport

@@ -21,7 +21,13 @@
 
 #include <eoPop.h>
 #include "PyEO.h"
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
+#include <strstream>
+#endif
 
+using namespace std;
 
 // static member, needs to be instantiated somewhere
 std::vector<int> PyFitness::objective_info;
@@ -76,7 +82,7 @@ struct pyPop_pickle_suite : boost::python::pickle_suite
 	for (unsigned i = 0; i != _pop.size(); ++i)
 	    entries.append( PyEO_pickle_suite::getstate(_pop[i]) );
 
-	return make_tuple(object(_pop.size()), entries);
+	return boost::python::make_tuple(object(_pop.size()), entries);
     }
 
     static void setstate( eoPop<PyEO>& _pop, boost::python::tuple pickled)
@@ -85,7 +91,9 @@ struct pyPop_pickle_suite : boost::python::pickle_suite
 	boost::python::list entries = list(pickled[1]);
 	_pop.resize(sz);
 	for (unsigned i = 0; i != _pop.size(); ++i)
-	    PyEO_pickle_suite::setstate(_pop[i], tuple(entries[i]) );
+	{
+	    PyEO_pickle_suite::setstate(_pop[i], boost::python::tuple(entries[i]) );
+	}
     }
 };
 
@@ -93,11 +101,17 @@ struct pyPop_pickle_suite : boost::python::pickle_suite
 template <class T>
 boost::python::str to_string(T& _p)
 {
+#ifdef HAVE_SSTREAM
+    std::ostringstream os;
+    _p.printOn(os);
+    return str(os.str().c_str());
+#else
     std::ostrstream os;
     _p.printOn(os);
     os << ends;
     std::string s(os.str());
     return str(s.c_str());
+#endif
 }
 
 void pop_sort(eoPop<PyEO>& pop) { pop.sort(); }

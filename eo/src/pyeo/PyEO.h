@@ -101,9 +101,9 @@ class PyFitness : public boost::python::object
 	return other.operator<(*this);
     }
     
-    //void printOn(std::ostream& os) const { const object& o = *this; os << o; }
-    //friend std::ostream& operator<<(std::ostream& os, const PyFitness& p) { p.printOn(os); return os;  }
-    //friend std::istream& operator>>(std::istream& is, PyFitness& p) { object o; is >> o; p = o; return is; }
+    void printOn(std::ostream& os) const { const object& o = *this; boost::python::api::operator<<(os,o); }
+    friend std::ostream& operator<<(std::ostream& os, const PyFitness& p) { p.printOn(os); return os;  }
+    friend std::istream& operator>>(std::istream& is, PyFitness& p) { object o; is >> o; p = o; return is; }
 };
 
 struct PyEO : public EO< PyFitness  >
@@ -117,7 +117,7 @@ struct PyEO : public EO< PyFitness  >
     void setGenome(object g) { genome = g; }
     object genome;
     
-    std::string to_std::string() const
+    std::string to_string() const
     {
 	std::string result;
 	result += extract<const char*>(str(getFitness()));
