@@ -27,6 +27,7 @@
 #ifndef eoNDSorting_h
 #define eoNDSorting_h
 
+#include <EO.h>
 #include <algorithm>
 #include <eoPop.h>
 #include <eoPerf2Worth.h>
