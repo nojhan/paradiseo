@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
   //////////////////////////////////////////////////////
 
   // The evaluation fn - encapsulated into an eval counter for output 
-  eoEvalFuncPtr<Indi, float> mainEval( binary_value<Indi>);
+  eoEvalFuncPtr<Indi, double> mainEval( binary_value<Indi>);
   eoEvalFuncCounter<Indi> eval(mainEval);
 
   // COnstruction of the distribution

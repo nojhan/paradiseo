@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include <ga/make_ga.h>
+#include <eoEvalFuncPtr.h>
 #include "binary_value.h"
 #include <apply.h>
 
@@ -21,7 +22,7 @@ int main(int argc, char* argv[])
   //////////////////////////////////////////////////////
 
   // The evaluation fn - encapsulated into an eval counter for output 
-  eoEvalFuncPtr<EOT, float> mainEval( binary_value<EOT> );
+  eoEvalFuncPtr<EOT, double> mainEval( binary_value<EOT> );
   eoEvalFuncCounter<EOT> eval(mainEval);
 
   // the genotype - through a genotype initializer
