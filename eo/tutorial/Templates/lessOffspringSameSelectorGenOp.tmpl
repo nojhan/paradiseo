@@ -10,7 +10,7 @@ i.e. that takes any number of parents and generates any number of offspring
 
 a GenOp that creates less offspring than there are parents
 
-First version, get parents from populator using the ibbedded select() method
+First version, get parents from populator using the imbedded select() method
 */
 
 #ifndef eoLessOffspringSameSelectorGenOp_H
@@ -19,11 +19,14 @@ First version, get parents from populator using the ibbedded select() method
 #include <eoGenOp.h>
 
 /** 
-  Always write a comment in this format before class definition
-  if you want the class to be documented by Doxygen
-*/
-template<class Indi> 
-class eoLessOffspringSameSelectorGenOp: public eoGenOp<Indi>
+ *  Always write a comment in this format before class definition
+ *  if you want the class to be documented by Doxygen
+ *
+ * ATTENTION, class EOT *must* derive from EO, as method invalidate() 
+ * must be called if the genotypes of the indis is modified
+ */
+template<class EOT> 
+class eoLessOffspringSameSelectorGenOp: public eoGenOp<EOT>
 {
 public:
   /**

@@ -7,48 +7,63 @@ The above line is usefulin Emacs-like editors
 Template for simple quadratic crossover operators
 =================================================
 
-Quadratic crossover operators modify the both parents
+Quadratic crossover operators modify the both genotypes
 */
 
-#ifndef eoMyDerivedQuadOp_H
-#define eoMyDerivedQuadOp_H
+#ifndef eoMyStructQuadCrossover_H
+#define eoMyStructQuadCrossover_H
 
 #include <eoOp.h>
 
 /** 
-  Always write a comment in this format before class definition
-  if you want the class to be documented by Doxygen
-*/
-template<class Indi> 
-class eoMyDerivedQuadOp: public eoQuadOp<Indi>
+ *  Always write a comment in this format before class definition
+ *  if you want the class to be documented by Doxygen
+ *
+ * THere is NO ASSUMPTION on the class GenoypeT.
+ * In particular, it does not need to derive from EO
+ */
+template<class GenotypeT> 
+class eoMyStructQuadCrossover: public eoQuadOp<GenotypeT>
 {
 public:
   /**
-   * (Default) Constructor.
+   * Ctor - no requirement
    */
-  eoMyDerivedQuadOp(paramType _anyParameter) : 
-    anyParameter(_anyParameter) {}
+// START eventually add or modify the anyVariable argument
+  eoMyStructQuadCrossover()
+  //  eoMyStructQuadCrossover( varType  _anyVariable) : anyVariable(_anyVariable) 
+// END eventually add or modify the anyVariable argument
+  {
+    // START Code of Ctor of an eoMyStructEvalFunc object
+    // END   Code of Ctor of an eoMyStructEvalFunc object
+  }
 
   /// The class name. Used to display statistics
-  string className() const { return "eoMyDerivedQuadOp"; }
+  string className() const { return "eoMyStructQuadCrossover"; }
 
   /**
    * eoQuad crossover - modifies both parents
-   * @param Indi1 The first parent
-   * @param Indi2 The second parent
+   * @param _genotype1 The first parent
+   * @param _genotype2 The second parent
    */
-  bool operator()(Indi& Indi1, Indi& Indi2) 
+  bool operator()(GenotypeT& _genotype1, GenotypeT & _genotype2) 
   {
-    // do whatever needs to be done
+    // START code for crossover of _genotype1 and _genotype2 objects
 
-    // if at least one individual has been modified - no way to distinguish
-    return true;
-    // otherwise
-    // return false;
+       /** Requirement
+	* if at least one genotype has been modified - no way to distinguish
+	*     return true;
+	* otherwise
+	*     return false;
+	*/
+
+    // END code for crossover of _genotype1 and _genotype2 objects
   }
 
 private:
-  paramType anyParameter
+// START Private data of an eoMyStructQuadCrossover object
+  //  varType anyVariable;		   // for example ...
+// END   Private data of an eoMyStructQuadCrossover object
 };
 
 #endif

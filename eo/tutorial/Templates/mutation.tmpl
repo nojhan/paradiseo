@@ -1,6 +1,6 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-The above line is usefulin Emacs-like editors
+The above line is useful in Emacs-like editors
  */
 
 /*
@@ -8,44 +8,60 @@ Template for simple mutation operators
 ======================================
 */
 
-#ifndef eoMyDerivedMonOp_H
-#define eoMyDerivedMonOp_H
+#ifndef eoMyStructMutation_H
+#define eoMyStructMutation_H
 
 
 #include <eoOp.h>
 
 /** 
-  Always write a comment in this format before class definition
-  if you want the class to be documented by Doxygen
-*/
-template<class Indi> 
-class eoMyDerivedMonOp: public eoMonOp<Indi>
+ *  Always write a comment in this format before class definition
+ *  if you want the class to be documented by Doxygen
+ *
+ * THere is NO ASSUMPTION on the class GenoypeT.
+ * In particular, it does not need to derive from EO
+ */
+template<class GenotypeT> 
+class eoMyStructMutation: public eoMonOp<GenotypeT>
 {
 public:
   /**
-   * (Default) Constructor.
+   * Ctor - no requirement
    */
-  eoMyDerivedMonOp(paramType _anyParameter) : 
-    anyParameter(_anyParameter) {}
+// START eventually add or modify the anyVariable argument
+  eoMyStructMutation()
+  //  eoMyStructMutation( varType  _anyVariable) : anyVariable(_anyVariable) 
+// END eventually add or modify the anyVariable argument
+  {
+    // START Code of Ctor of an eoMyStructEvalFunc object
+    // END   Code of Ctor of an eoMyStructEvalFunc object
+  }
 
   /// The class name. Used to display statistics
-  string className() const { return "eoMyDerivedMonOp"; }
+  string className() const { return "eoMyStructMutation"; }
 
   /**
    * modifies the parent
-   * @param Indi The parent
+   * @param _genotype The parent genotype (will be modified)
    */
-  bool operator()(Indi& Indi) 
+  bool operator()(GenotypeT & _genotype) 
   {
-    // do whatever needs to be done
-    // if Indi has been modified
-    return true;
-    // otherwise
-    // return false;
+    // START code for mutation of the _genotype object
+
+       /** Requirement
+	* if _genotype has been modified
+	*     return true;
+	* otherwise
+	*     return false;
+	*/
+
+    // END code for mutation of the _genotype object
   }
 
 private:
-  paramType anyParameter
+// START Private data of an eoMyStructMutation object
+  //  varType anyVariable;		   // for example ...
+// END   Private data of an eoMyStructMutation object
 };
 
 #endif

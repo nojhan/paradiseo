@@ -8,38 +8,57 @@ Template for continuator in EO, i.e. stopping conditions for EO algorithms
 ==========================================================================
 */
 
-#ifndef _eoMyContinue_h
-#define _eoMyContinue_h
+#ifndef _eoMyStructContinue_h
+#define _eoMyStructContinue_h
 
-#include <eoMyContinue.h>
+// include the base definition of eoContinue
+#include <eoContinue.h>
 
 /** 
-  Always write a comment in this format before class definition
-  if you want the class to be documented by Doxygen
-*/
+ *  Always write a comment in this format before class definition
+ *  if you want the class to be documented by Doxygen
+ *
+ * ATTENTION, class EOT *must* derive from EO, as operator() will 
+ * be called with an eoPop<EOT>
+ */
 template< class EOT>
-class eoMyContinue: public eoContinue<EOT> {
+class eoMyStructContinue: public eoContinue<EOT> {
 public:
-	/// Ctor
-  eoMyContinue( paramType  _anyParameter) : 
-    anyParameter(_anyParameter) {}
+  /**
+   * Ctor - no requirement
+   */
+// START eventually add or modify the anyVariable argument
+  eoMyStructContinue()
+  //  eoMyStructBinCrossover( varType  _anyVariable) : anyVariable(_anyVariable) 
+// END eventually add or modify the anyVariable argument
+  {
+    // START Code of Ctor of an eoMyStructEvalFunc object
+    // END   Code of Ctor of an eoMyStructEvalFunc object
+  }
 
 
   /** Returns false when you want to stop
+   *
+   * @param _pop an eoPop
    */
   virtual bool operator() ( const eoPop<EOT>& _pop ) 
     {
-      bool stopCondition = ... ; // compute the stopping condition
+      bool stopCondition ; // to store the stopping condition
+    // START Code of computation of stopping condition
+	// stopCondition = blablabla
+    // END   Code of computation of stopping condition
       if (stopCondition) // the algo will stop upon return FALSE
 	{
-	  cout << "STOP in eoMyContinue: blablabla \n";
+	  cout << "STOP in eoMyStructContinue \n";
 	  return false;
 	}
       return true;		   // == do not stop
     }
 
 private:
-  paramType anyParameter
+// START Private data of an eoMyStructContinue object
+  //  varType anyVariable;		   // for example ...
+// END   Private data of an eoMyStructContinue object
 };
 
 #endif

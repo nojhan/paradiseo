@@ -19,11 +19,14 @@ Second version, get parents  using an external eoSelectOne
 #include <eoGenOp.h>
 
 /** 
-  Always write a comment in this format before class definition
-  if you want the class to be documented by Doxygen
-*/
-template<class Indi> 
-class eoLessOffspringExternalSelectorGenOp: public eoGenOp<Indi>
+ *  Always write a comment in this format before class definition
+ *  if you want the class to be documented by Doxygen
+ *
+ * ATTENTION, class EOT *must* derive from EO, as method invalidate() 
+ * must be called if the genotypes of the indis is modified
+ */
+template<class EOT> 
+class eoLessOffspringExternalSelectorGenOp: public eoGenOp<EOT>
 {
 public:
   /**
