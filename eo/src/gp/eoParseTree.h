@@ -175,7 +175,7 @@ public:
 	  int i = rng.random(_eo1.size());
 	  int j = rng.random(_eo2.size());
 
-	  parse_tree<Node>::subtree tmp = _eo2[j];
+	  parse_tree<Node>::subtree tmp = _eo1[j];
 	  _eo1[i] = _eo2[j]; // insert subtree
 	  _eo2[j]=tmp;
 
