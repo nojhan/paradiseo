@@ -58,8 +58,41 @@ class eoEsChromInit : public eoRealInitBounded<EOT>
 public :
   typedef typename EOT::Fitness FitT;
 
-  eoEsChromInit(eoRealVectorBounds& _bounds, double _sigma = 0.3) : 
-    eoRealInitBounded<EOT>(_bounds), sigma(_sigma)  {}
+  /** Ctor: @param
+   * eoRealVectorBounds& _bounds : bounds for uniform initialization
+   * double _sigma : initial value for the stddev
+   * bool _to_scale : wether sigma should be multiplied by the range of each variable
+   *                  added December 2004 - MS (together with the whole comment :-)
+   */
+  eoEsChromInit(eoRealVectorBounds& _bounds, double _sigma = 0.3, bool _to_scale=false) : 
+    eoRealInitBounded<EOT>(_bounds)
+  {
+    // a bit of pre-computations, to ave time later (even if some are useless)
+
+    // first, the case of one unique sigma
+    if (_to_scale)   // sigma is scaled by the average range (if that means anything!)
+      {
+	double scaleUnique = 0;
+	for (unsigned i=0; i<size(); i++)
+	  scaleUnique += theBounds().range(i);
+	scaleUnique /= size();
+	uniqueSigma = _sigma * scaleUnique;
+      }
+    else
+      uniqueSigma = _sigma;
+
+    // now the case of a vector of sigmas
+    // first allocate
+    lesSigmas.resize(size());	   // size() is the size of the bounds (see eoRealInitBounded)
+
+    for (unsigned i=0; i<size(); i++)
+      if (_to_scale)   // each sigma is scaled by the range of the corresponding variable
+	{
+	  lesSigmas[i] = _sigma * theBounds().range(i);
+	}
+      else
+	lesSigmas[i] = _sigma;
+  }
 
   void operator()(EOT& _eo)
   {
@@ -69,55 +102,45 @@ public :
   }
 
   // accessor to sigma
-  double sigmaInit() {return sigma;}
+  //  double sigmaInit() {return sigma;}
 
 private :
 
   // No adaptive mutation at all
-  void create_self_adapt(eoReal<FitT>& result)// nothing to do here ...
+  void create_self_adapt(eoReal<FitT>&)// nothing to do here ...
   { }
 
   // Adaptive mutation through a unique sigma
   void create_self_adapt(eoEsSimple<FitT>& result)
   {
-    // sigma is scaled by the average range (if that means anything!)
-    result.stdev = sigma;
+    // pre-computed in the Ctor
+      result.stdev = uniqueSigma;
   }
 
   // Adaptive mutation through a std::vector of sigmas
   void create_self_adapt(eoEsStdev<FitT>& result)
   {
-    unsigned theSize = eoRealInitBounded<EOT>::size();
-    result.stdevs.resize(theSize);
-    for (unsigned i = 0; i < theSize; ++i)
-      {
-	// should we scale sigmas to the corresponding object variable range?
-	result.stdevs[i] = sigma;
-      }
+    result.stdevs = lesSigmas;
   }
 
   // Adaptive mutation through a whole correlation matrix
   void create_self_adapt(eoEsFull<FitT>& result)
   {
-    unsigned i, theSize = eoRealInitBounded<EOT>::size();
-
-    result.stdevs.resize(theSize);
-    for (i = 0; i < theSize; ++i)
-      {
-	// should we scale sigmas to the corresponding object variable range?
-	result.stdevs[i] = sigma;
-      }
-        
+    // first the stdevs (pre-computed in the Ctor)
+    result.stdevs = lesSigmas;
+    unsigned int theSize = size();
     // nb of rotation angles: N*(N-1)/2 (in general!)
     result.correlations.resize(theSize*(theSize - 1) / 2);
-    for (i = 0; i < result.correlations.size(); ++i)
+    for (unsigned i=0; i<result.correlations.size(); ++i)
       {
 	// uniform in [-PI, PI)
 	result.correlations[i] = rng.uniform(2 * M_PI) - M_PI;
       }
   }
 
-  double sigma;			   // initial value for sigmas
+  // the DATA
+  double uniqueSigma;		   // initial value in case of a unique sigma
+  std::vector<double> lesSigmas;  // initial values in case of a vector fo sigmas
 };
 
 #endif

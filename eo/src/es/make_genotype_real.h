@@ -27,6 +27,12 @@
 #ifndef _make_genotype_h
 #define _make_genotype_h
 
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
+#include <strstream>
+#endif
+
 #include <es/eoReal.h>
 #include <es/eoEsChromInit.h>
 #include <utils/eoRealVectorBounds.h>
@@ -72,14 +78,33 @@ eoEsChromInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
 
   // now some initial value for sigmas - even if useless?
   // shoudl be used in Normal mutation
-    eoValueParam<double>& sigmaParam = _parser.getORcreateParam(0.3, "sigmaInit", "Initial value for Sigma(s)", 's',"Genotype Initialization");
+    std::string & sigmaString = _parser.getORcreateParam(std::string("0.3"), "sigmaInit", 
+		   "Initial value for Sigmas (with a '%' -> scaled by the range of each variable)", 
+				   's',"Genotype Initialization").value();
+
+    // check for %
+    bool to_scale = false;   // == no %
+    size_t pos =  sigmaString.find('%');
+    if (pos < sigmaString.size())  //  found a %
+      {
+	to_scale = true;
+	sigmaString.resize(pos);	   // get rid of %
+      }
+    
+#ifdef HAVE_SSTREAM
+    std::istringstream is(sigmaString);
+#else
+    std::istrstream is(sigmaString.c_str());
+#endif
+    double sigma;
+    is >> sigma;
 
     // minimum check
-  if ( (sigmaParam.value() < 0) )
-    throw std::runtime_error("Invalid sigma");
+  if ( (sigma < 0) )
+    throw std::runtime_error("Negative sigma in make_genotype");
 
   eoEsChromInit<EOT> * init = 
-    new eoEsChromInit<EOT>(boundsParam.value(), sigmaParam.value());
+    new eoEsChromInit<EOT>(boundsParam.value(), sigma, to_scale);
   // satore in state
   _state.storeFunctor(init);
   return *init;
