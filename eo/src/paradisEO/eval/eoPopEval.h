@@ -50,6 +50,10 @@ public :
    */
   
   void operator () (eoPop <EOT> & _pop) {
+    
+    for (unsigned i = 0 ; i < _pop.size () ; i ++)
+      _pop [i].invalidate () ;
+
     apply <EOT> (eval, _pop) ;
   }
 
