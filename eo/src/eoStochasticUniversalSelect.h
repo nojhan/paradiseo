@@ -1,8 +1,8 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoProportionalSelect.h
-// (c) GeNeura Team, 1998 - EEAAX 1999, Maarten Keijzer 2000
+// eoStochasticUniversalSelect.h
+// (c) Maarten Keijzer 2003
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -20,48 +20,65 @@
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
-             mak@dhi.dk
+             mkeijzer@cs.vu.nl
  */
 //-----------------------------------------------------------------------------
 
-#ifndef eoProportionalSelect_h
-#define eoProportionalSelect_h
+#ifndef eoStochasticUniversalSelect_h
+#define eoStochasticUniversalSelect_h
 
 //-----------------------------------------------------------------------------
 
 #include <utils/eoRNG.h>
-#include <utils/selectors.h>
 #include <eoSelectOne.h>
-#include <eoPop.h>
+
 //-----------------------------------------------------------------------------
-/** eoProportionalSelect: select an individual proportional to her stored fitness
-    value 
-    
-    Changed the algorithm to make use of a cumulative array of fitness scores, 
-    This changes the algorithm from O(n) per call to  O(log n) per call. (MK)
+/** eoStochasticUniversalSelect: select an individual proportional to her stored fitness
+    value, but in contrast with eoStochasticUniversalSelect, get rid of most finite sampling effects
+    by doing all selections in one go, using a single random number.
 */
 //-----------------------------------------------------------------------------
 
-template <class EOT> class eoProportionalSelect: public eoSelectOne<EOT> 
+template <class EOT> class eoStochasticUniversalSelect: public eoSelectOne<EOT> 
 {
 public:
   /// Sanity check
-  eoProportionalSelect(const eoPop<EOT>& pop = eoPop<EOT>()) 
+  eoStochasticUniversalSelect(const eoPop<EOT>& pop = eoPop<EOT>()) 
   {
     if (minimizing_fitness<EOT>())
-      throw std::logic_error("eoProportionalSelect: minimizing fitness");
+      throw std::logic_error("eoStochasticUniversalSelect: minimizing fitness");
   }
 
   void setup(const eoPop<EOT>& _pop)
   {
       if (_pop.size() == 0) return;
       
-      cumulative.resize(_pop.size());
+      std::vector<typename EOT::Fitness> cumulative(_pop.size());
+      
       cumulative[0] = _pop[0].fitness();
-
       for (unsigned i = 1; i < _pop.size(); ++i) 
       {
 	  cumulative[i] = _pop[i].fitness() + cumulative[i-1];
+      }
+      
+      indices.reserve(_pop.size());
+      indices.resize(0);
+
+      double fortune = rng.uniform() * cumulative.back();
+      double step = cumulative.back() / double(_pop.size());
+      
+      unsigned i = std::upper_bound(cumulative.begin(), cumulative.end(), fortune) - cumulative.begin();
+      
+      while (indices.size() < _pop.size()) {
+	    
+	  while (cumulative[i] < fortune) {i++;} // linear search is good enough as we average one step each time
+	  
+	  indices.push_back(i);
+	  fortune += step;
+	  if (fortune >= cumulative.back()) { // start at the beginning
+	      fortune -= cumulative.back();
+	      i = 0;
+	  }
       }
   }
     
@@ -69,17 +86,17 @@ public:
    */
   const EOT& operator()(const eoPop<EOT>& _pop) 
   {
-      if (cumulative.size() == 0) setup(_pop);
-      
-      double fortune = rng.uniform() * cumulative.back(); 
-      typename FitVec::iterator result = std::upper_bound(cumulative.begin(), cumulative.end(), fortune);
-      return _pop[result - cumulative.begin()];
+      if (indices.empty()) setup(_pop);
+    
+      unsigned index = indices.back();
+      indices.pop_back();
+      return _pop[index];
   }
 
 private :
 
-  typedef std::vector<typename EOT::Fitness> FitVec;
-  FitVec cumulative;
+  typedef std::vector<unsigned> IndexVec;
+  IndexVec indices;
 };
 
 #endif
