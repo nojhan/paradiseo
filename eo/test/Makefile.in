@@ -86,7 +86,7 @@ LDADDS = $(top_builddir)/src/libeo.a
 
 ###############################################################################
 
-noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA t-eoNonUniform t-eoUniform t-eoRandom
+noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA t-eoNonUniform t-eoUniform t-eoRandom t-parser
 
 ###############################################################################
 
@@ -180,6 +180,13 @@ t_eo2dVector_SOURCES = t-eo2dVector.cc
 t_eo2dVector_DEPENDENCIES = $(DEPS) 
 t_eo2dVector_LDFLAGS = -lm 
 t_eo2dVector_LDADD = $(LDADDS) 
+
+###############################################################################
+
+t_parser_SOURCES = t-parser.cpp
+t_parser_DEPENDENCIES = $(DEPS) 
+t_parser_LDFLAGS = -lm 
+t_parser_LDADD = $(LDADDS) 
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES = 
 PROGRAMS =  $(noinst_PROGRAMS)
@@ -208,6 +215,7 @@ t_eoEasyEA_OBJECTS =  t-eoEasyEA.o
 t_eoNonUniform_OBJECTS =  t-eoNonUniform.o
 t_eoUniform_OBJECTS =  t-eoUniform.o
 t_eoRandom_OBJECTS =  t-eoRandom.o
+t_parser_OBJECTS =  t-parser.o
 CXXFLAGS = @CXXFLAGS@
 CXXCOMPILE = $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -229,9 +237,9 @@ DEP_FILES =  .deps/t-eo.P .deps/t-eo2dVector.P .deps/t-eoEasyEA.P \
 .deps/t-eoNonUniform.P .deps/t-eoRandom.P .deps/t-eoUniform.P \
 .deps/t-eobin.P .deps/t-eobreeder.P .deps/t-eofitness.P \
 .deps/t-eogeneration.P .deps/t-eoinclusion.P .deps/t-eoinsertion.P \
-.deps/t-eolottery.P .deps/t-eoproblem.P
-SOURCES = $(t_eobreeder_SOURCES) $(t_eoinclusion_SOURCES) $(t_eoinsertion_SOURCES) $(t_eo_SOURCES) $(t_eofitness_SOURCES) $(t_eoproblem_SOURCES) $(t_eobin_SOURCES) $(t_eolottery_SOURCES) $(t_eo2dVector_SOURCES) $(t_eogeneration_SOURCES) $(t_eoEasyEA_SOURCES) $(t_eoNonUniform_SOURCES) $(t_eoUniform_SOURCES) $(t_eoRandom_SOURCES)
-OBJECTS = $(t_eobreeder_OBJECTS) $(t_eoinclusion_OBJECTS) $(t_eoinsertion_OBJECTS) $(t_eo_OBJECTS) $(t_eofitness_OBJECTS) $(t_eoproblem_OBJECTS) $(t_eobin_OBJECTS) $(t_eolottery_OBJECTS) $(t_eo2dVector_OBJECTS) $(t_eogeneration_OBJECTS) $(t_eoEasyEA_OBJECTS) $(t_eoNonUniform_OBJECTS) $(t_eoUniform_OBJECTS) $(t_eoRandom_OBJECTS)
+.deps/t-eolottery.P .deps/t-eoproblem.P .deps/t-parser.P
+SOURCES = $(t_eobreeder_SOURCES) $(t_eoinclusion_SOURCES) $(t_eoinsertion_SOURCES) $(t_eo_SOURCES) $(t_eofitness_SOURCES) $(t_eoproblem_SOURCES) $(t_eobin_SOURCES) $(t_eolottery_SOURCES) $(t_eo2dVector_SOURCES) $(t_eogeneration_SOURCES) $(t_eoEasyEA_SOURCES) $(t_eoNonUniform_SOURCES) $(t_eoUniform_SOURCES) $(t_eoRandom_SOURCES) $(t_parser_SOURCES)
+OBJECTS = $(t_eobreeder_OBJECTS) $(t_eoinclusion_OBJECTS) $(t_eoinsertion_OBJECTS) $(t_eo_OBJECTS) $(t_eofitness_OBJECTS) $(t_eoproblem_OBJECTS) $(t_eobin_OBJECTS) $(t_eolottery_OBJECTS) $(t_eo2dVector_OBJECTS) $(t_eogeneration_OBJECTS) $(t_eoEasyEA_OBJECTS) $(t_eoNonUniform_OBJECTS) $(t_eoUniform_OBJECTS) $(t_eoRandom_OBJECTS) $(t_parser_OBJECTS)
 
 all: all-redirect
 .SUFFIXES:
@@ -340,6 +348,10 @@ t-eoUniform: $(t_eoUniform_OBJECTS) $(t_eoUniform_DEPENDENCIES)
 t-eoRandom: $(t_eoRandom_OBJECTS) $(t_eoRandom_DEPENDENCIES)
 	@rm -f t-eoRandom
 	$(CXXLINK) $(t_eoRandom_LDFLAGS) $(t_eoRandom_OBJECTS) $(t_eoRandom_LDADD) $(LIBS)
+
+t-parser: $(t_parser_OBJECTS) $(t_parser_DEPENDENCIES)
+	@rm -f t-parser
+	$(CXXLINK) $(t_parser_LDFLAGS) $(t_parser_OBJECTS) $(t_parser_LDADD) $(LIBS)
 .cc.o:
 	$(CXXCOMPILE) -c $<
 .cc.lo:

@@ -1,6 +1,6 @@
 AC_INIT(src/eo)
 
-AM_INIT_AUTOMAKE(eo, 0.0.4)
+AM_INIT_AUTOMAKE(eo, 0.0.5)
 
 AC_PROG_CXX
 

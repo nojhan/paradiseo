@@ -8,5 +8,5 @@ lib_LIBRARIES = libeo.a
 libeo_a_SOURCES =  eoPrintable.cpp eoPersistent.cpp
 
 libeoincdir = $(includedir)/eo
-libeoinc_HEADERS = eo EO.h eoDup.h eoMultiMonOp.h eoPop.h eoUniform.h eoESChrom.h eoNegExp.h eoProblem.h eoVector.h eoFitness.h eoNormal.h eoRnd.h eoXOver2.h eo1d.h eoID.h eoObject.h eoString.h eoAged.h eoKill.h eoOp.h eoTranspose.h eoBin.h eoPrintable.h eoPersistent.h eoLottery.h eoMutation.h eoPopOps.h eoUniform.h eoInsertion.h eoInclusion.h eoBitOp.h eoBitOpFactory.h eo2d.h eo2dVector.h eoData.h eoProportionalOpSel.h eoOpSelector.h eoBreeder.h eoEvalFunc.h eoEvalFuncPtr.h eoEvaluator.h eoTerm.h eoGenTerm.h eoFitTerm.h eoGeneration.h eoAlgo.h eoEasyEA.h eoNonUniform.h eoRNG.h
+libeoinc_HEADERS = eo EO.h eoDup.h eoMultiMonOp.h eoPop.h eoUniform.h eoESChrom.h eoNegExp.h eoProblem.h eoVector.h eoFitness.h eoNormal.h eoRnd.h eoXOver2.h eo1d.h eoID.h eoObject.h eoString.h eoAged.h eoKill.h eoOp.h eoTranspose.h eoBin.h eoPrintable.h eoPersistent.h eoLottery.h eoMutation.h eoPopOps.h eoUniform.h eoInsertion.h eoInclusion.h eoBitOp.h eoBitOpFactory.h eo2d.h eo2dVector.h eoData.h eoProportionalOpSel.h eoOpSelector.h eoBreeder.h eoEvalFunc.h eoEvalFuncPtr.h eoEvaluator.h eoTerm.h eoGenTerm.h eoFitTerm.h eoGeneration.h eoAlgo.h eoEasyEA.h eoNonUniform.h eoRNG.h eoParser.h
 
