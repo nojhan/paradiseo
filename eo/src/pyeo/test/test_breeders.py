@@ -7,8 +7,8 @@ class TestBreeders(unittest.TestCase):
 	
 	pop = eoPop(50, Init(20))
 	evaluate = EvalFunc()
+	print 'HERE'	
 	for indy in pop: evaluate(indy)
-	
 	newpop = eoPop();
 
 	breed(pop,newpop)
@@ -18,13 +18,11 @@ class TestBreeders(unittest.TestCase):
 	print newpop.best()
 
     def testGeneralBreeder(self):
-	
 	seq = eoSequentialOp();
 	seq.add(Crossover(), 0.7)
 	seq.add(Mutate(), 0.1)
 
 	breed = eoGeneralBreeder(eoDetTournamentSelect(3), seq)
-
 	self.runtest(breed)
 
 def suite():

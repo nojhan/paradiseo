@@ -21,15 +21,18 @@
 #ifndef PYEO_H
 #define PYEO_H
 
-#include <EO.h>
 
 #include <string>
 #include <vector>
+#include <exception>
 #include <boost/python.hpp>
 
-using namespace boost::python;
-
-struct index_error { index_error(std::string w) : what(w) {}; std::string what; };
+#include <EO.h>
+struct index_error : public std::exception { 
+    index_error(std::string w) : what(w) {}; 
+    virtual ~index_error() throw() {}
+    std::string what; 
+};
 
 class PyFitness : public boost::python::object
 {
@@ -37,10 +40,10 @@ class PyFitness : public boost::python::object
     
     typedef PyFitness fitness_traits; // it's its own traits class :-)
 	
-    PyFitness() : object() {}
+    PyFitness() : boost::python::object() {}
     
     template <class T>
-    PyFitness(const T& o) : object(o) {}
+    PyFitness(const T& o) : boost::python::object(o) {}
     
     static unsigned nObjectives() { return objective_info.size(); }
     static double tol() { return 1e-6; }
@@ -63,7 +66,7 @@ class PyFitness : public boost::python::object
     
     double operator[](int i) const 
     { 
-	extract<double> x(object::operator[](i)); 
+	boost::python::extract<double> x(object::operator[](i)); 
     
 	if (!x.check())
 	    throw std::runtime_error("PyFitness: does not contain doubles");
@@ -101,28 +104,28 @@ class PyFitness : public boost::python::object
 	return other.operator<(*this);
     }
     
-    void printOn(std::ostream& os) const { const object& o = *this; boost::python::api::operator<<(os,o); }
+    void printOn(std::ostream& os) const { const boost::python::object& o = *this; boost::python::api::operator<<(os,o); }
     friend std::ostream& operator<<(std::ostream& os, const PyFitness& p) { p.printOn(os); return os;  }
-    friend std::istream& operator>>(std::istream& is, PyFitness& p) { object o; is >> o; p = o; return is; }
+    friend std::istream& operator>>(std::istream& is, PyFitness& p) { boost::python::object o; is >> o; p = o; return is; }
 };
 
 struct PyEO : public EO< PyFitness  >
 {  
     typedef PyFitness Fitness;
     
-    object getFitness() const { return invalid()? Fitness(): fitness(); }
-    void setFitness(object f) { if (f == Fitness()) invalidate(); else fitness(f); }
+    boost::python::object getFitness() const { return invalid()? Fitness(): fitness(); }
+    void setFitness(boost::python::object f) { if (f == Fitness()) invalidate(); else fitness(f); }
 
-    object getGenome() const { return genome; }
-    void setGenome(object g) { genome = g; }
-    object genome;
+    boost::python::object getGenome() const { return genome; }
+    void setGenome(boost::python::object g) { genome = g; }
+    boost::python::object genome;
     
     std::string to_string() const
     {
 	std::string result;
-	result += extract<const char*>(str(getFitness()));
+	result += boost::python::extract<const char*>(boost::python::str(getFitness()));
 	result += ' ';
-	result += extract<const char*>(str(genome));
+	result += boost::python::extract<const char*>(boost::python::str(genome));
 	return result;
     }
 
@@ -140,7 +143,7 @@ struct PyEO_pickle_suite : boost::python::pickle_suite
     static
     boost::python::tuple getstate(const PyEO& _eo)
     {
-	return make_tuple(_eo.getFitness(), _eo.genome);
+	return boost::python::make_tuple(_eo.getFitness(), _eo.genome);
     }
     static
     void setstate(PyEO& _eo, boost::python::tuple pickled)

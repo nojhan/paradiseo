@@ -29,6 +29,8 @@
 #include "PyEO.h"
 #include "def_abstract_functor.h"
 
+using namespace boost::python;
+
 #define DEF(x) class_<x<PyEO>, bases<eoContinue<PyEO > > >(#x).def("__call__", &eoContinue<PyEO>::operator())
 #define DEF2(x, i1) class_<x<PyEO>, bases<eoContinue<PyEO > > >(#x, init<i1>() ).def("__call__", &eoContinue<PyEO>::operator())
 #define DEF3(x, i1, i2) class_<x<PyEO>, bases<eoContinue<PyEO > > >(#x, init<i1, i2 >() ).def("__call__", &eoContinue<PyEO>::operator())

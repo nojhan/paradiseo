@@ -29,6 +29,8 @@
 #include "pickle.h"
 #include "def_abstract_functor.h"
 
+using namespace boost::python;
+
 class eoSelectOneWrapper : public eoSelectOne<PyEO>
 {
     public:

@@ -25,7 +25,6 @@
 #include "valueParam.h"
 #include <boost/python/detail/api_placeholder.hpp>
 
-
 using namespace boost::python;
 
 class ParamWrapper : public eoParam

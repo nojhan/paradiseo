@@ -25,6 +25,8 @@
 #include "PyEO.h"
 #include "def_abstract_functor.h"
 
+using namespace boost::python;
+
 #define DEF3(x, i1, i2) class_<x<PyEO>, bases<eoBreed<PyEO > > >(#x, \
 	init<i1, i2 >()[with_custodian_and_ward<1,2,with_custodian_and_ward<1,3> >()])\
 	.def("__call__", &eoBreed<PyEO>::operator())

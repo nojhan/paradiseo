@@ -18,16 +18,37 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-
-#include <eoPop.h>
 #include "PyEO.h"
+#include <eoPop.h>
+
 #ifdef HAVE_SSTREAM
 #include <sstream>
 #else
 #include <strstream>
 #endif
 
+typedef eoPop<PyEO>::iterator PopIt;
+typedef eoPop<PyEO>::const_iterator cPopIt;
+
+PopIt operator+(PopIt it, size_t a)
+{
+    return it + ptrdiff_t(a);
+}
+cPopIt operator+(cPopIt it, size_t a)
+{
+    return it + ptrdiff_t(a);
+}
+PopIt operator-(PopIt it, size_t a)
+{
+    return it - ptrdiff_t(a);
+}
+cPopIt operator-(cPopIt it, size_t a)
+{
+    return it - ptrdiff_t(a);
+}
+
 using namespace std;
+//using namespace boost::python;
 
 // static member, needs to be instantiated somewhere
 std::vector<int> PyFitness::objective_info;
@@ -82,13 +103,13 @@ struct pyPop_pickle_suite : boost::python::pickle_suite
 	for (unsigned i = 0; i != _pop.size(); ++i)
 	    entries.append( PyEO_pickle_suite::getstate(_pop[i]) );
 
-	return boost::python::make_tuple(object(_pop.size()), entries);
+	return boost::python::make_tuple(boost::python::object(_pop.size()), entries);
     }
 
     static void setstate( eoPop<PyEO>& _pop, boost::python::tuple pickled)
     {
-	int sz = extract<int>(pickled[0]);
-	boost::python::list entries = list(pickled[1]);
+	int sz = boost::python::extract<int>(pickled[0]);
+	boost::python::list entries = boost::python::list(pickled[1]);
 	_pop.resize(sz);
 	for (unsigned i = 0; i != _pop.size(); ++i)
 	{
@@ -104,13 +125,13 @@ boost::python::str to_string(T& _p)
 #ifdef HAVE_SSTREAM
     std::ostringstream os;
     _p.printOn(os);
-    return str(os.str().c_str());
+    return boost::python::str(os.str().c_str());
 #else
     std::ostrstream os;
     _p.printOn(os);
     os << ends;
     std::string s(os.str());
-    return str(s.c_str());
+    return boost::python::str(s.c_str());
 #endif
 }
 
@@ -122,9 +143,9 @@ void translate_index_error(index_error const& e)
         PyErr_SetString(PyExc_IndexError, e.what.c_str());
 }
 
-PyEO& pop_getitem(eoPop<PyEO>& pop, object key)
+PyEO& pop_getitem(eoPop<PyEO>& pop, boost::python::object key)
 {
-    extract<int> x(key);
+    boost::python::extract<int> x(key);
     if (!x.check())
 	throw index_error("Slicing not allowed");
     
@@ -132,15 +153,17 @@ PyEO& pop_getitem(eoPop<PyEO>& pop, object key)
     
     if (static_cast<unsigned>(i) >= pop.size())
     { 
+	cerr << "throwing" << endl;
 	throw index_error("Index out of bounds");
     }
-    
+    cerr << "indexing " << i << endl;
+
     return pop[i];
 }
-void pop_setitem(eoPop<PyEO>& pop, object key, PyEO& value)
-{
 
-    extract<int> x(key);
+void pop_setitem(eoPop<PyEO>& pop, boost::python::object key, PyEO& value)
+{
+    boost::python::extract<int> x(key);
     if (!x.check())
 	throw index_error("Slicing not allowed");
     
@@ -175,9 +198,11 @@ extern void statistics();
 
 BOOST_PYTHON_MODULE(PyEO)
 {
-    register_exception_translator<index_error>(&translate_index_error);
+    using namespace boost::python;
+
+    boost::python::register_exception_translator<index_error>(&translate_index_error);
     
-    class_<PyEO>("EO")
+    boost::python::class_<PyEO>("EO")
 	.add_property("fitness", &PyEO::getFitness, &PyEO::setFitness)
 	.add_property("genome", &PyEO::getGenome, &PyEO::setGenome)
 	.def_pickle(PyEO_pickle_suite())
@@ -186,7 +211,7 @@ BOOST_PYTHON_MODULE(PyEO)
 	.def("__str__", &PyEO::to_string)
 	;
 
-    class_<eoPop<PyEO> >("eoPop", init<>() )
+    boost::python::class_<eoPop<PyEO> >("eoPop", init<>() )
 	.def( init< unsigned, eoInit<PyEO>& >()[with_custodian_and_ward<1,3>()] )
 	.def("append", &eoPop<PyEO>::append)
 	.def("__str__", to_string<eoPop<PyEO> >)

@@ -22,6 +22,8 @@
 #include <utils/eoMonitor.h>
 #include "PyEO.h"
 
+using namespace boost::python;
+
 class MonitorWrapper : public eoMonitor
 {
     public:

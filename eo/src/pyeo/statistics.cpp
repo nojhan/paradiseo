@@ -3,6 +3,8 @@
 #include "PyEO.h"
 #include "valueParam.h"
 
+using namespace boost::python;
+
 class StatBaseWrapper : public eoStatBase<PyEO> 
 {
     public:

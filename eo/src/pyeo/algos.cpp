@@ -26,6 +26,8 @@
 #include "PyEO.h"
 #include "def_abstract_functor.h"
 
+using namespace boost::python;
+
 void algos()
 {
     def_abstract_functor<eoAlgo<PyEO> >("eoAlgo");

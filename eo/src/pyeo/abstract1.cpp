@@ -27,6 +27,8 @@
 #include "PyEO.h"
 #include "def_abstract_functor.h"
 
+using namespace boost::python;
+
 void abstract1()
 {
     /* Abstract Classes: overrideble from python */

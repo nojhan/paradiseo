@@ -27,6 +27,8 @@
 #include "PyEO.h"
 #include "def_abstract_functor.h"
 
+using namespace boost::python;
+
 class GenOpWrapper : public eoGenOp<PyEO>
 {
     public:

@@ -22,6 +22,8 @@
 
 #include "PyEO.h"
 
+using namespace boost::python;
+
 // unfortunately have to define it specially
 class eoReduceWrapper : public eoReduce<PyEO>
 {

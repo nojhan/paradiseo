@@ -21,6 +21,8 @@
 #include <utils/eoRNG.h>
 #include <boost/python.hpp>
 
+using namespace boost::python;
+
 #ifdef HAVE_SSTREAM
 #include <sstream>
 #else

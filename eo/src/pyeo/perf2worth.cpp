@@ -21,6 +21,8 @@
 
 #include "PyEO.h"
 
+using namespace boost::python;
+
 struct Perf2WorthWrapper : public eoPerf2Worth<PyEO,double>
 {
     PyObject* self;

@@ -56,7 +56,7 @@ struct T_pickle_suite : boost::python::pickle_suite
     static
     void setstate(T& t, boost::python::tuple pickled)
     {
-	std::string s = extract<std::string>(pickled[0]);
+	std::string s = boost::python::extract<std::string>(pickled[0]);
 #ifdef HAVE_SSTREAM
 	std::istringstream is(s);
 #else
