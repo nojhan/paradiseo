@@ -4,10 +4,15 @@
 ##
 ###############################################################################
 
-SUBDIRS 	= src test doc app tutorial contrib win
+SUBDIRS 	= src test doc contrib win
+if USE_APPLICATIONS
+SUBDIRS		+= app
+endif
+if USE_TUTORIAL
+SUBDIRS		+= tutorial
+endif
 
-
-#Directory for documents
+# Directory for documents
 DOCDIR 		= ~/public_html/eodocs
 
 #Directory for indices -- not useful for the user

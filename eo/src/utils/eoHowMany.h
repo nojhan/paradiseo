@@ -64,7 +64,9 @@
  * It is an eoPersistent because we need to be able to use eoParamValue<eoHowMany>
  */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
 #ifdef HAVE_SSTREAM
 #include <sstream>

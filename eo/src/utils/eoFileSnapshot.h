@@ -27,7 +27,9 @@
 #ifndef _eoFileSnapshot_h
 #define _eoFileSnapshot_h
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
 #include <string>
 #include <fstream>

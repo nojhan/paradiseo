@@ -28,7 +28,9 @@
 #ifndef _eoGnuplot1DSnapshot_H
 #define _eoGnuplot1DSnapshot_H
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
 #include <string>
 #ifdef HAVE_SSTREAM

@@ -16,7 +16,9 @@ AM_INIT_AUTOMAKE
 AM_CONFIG_HEADER([config.h])
 
 dnl user-switches
+AC_APPLICATIONS
 AC_PARADISEO
+AC_TUTORIAL
 
 dnl Checks for programs.
 AC_PROG_CC
@@ -65,4 +67,6 @@ AC_OUTPUT(Makefile \
           tutorial/Lesson3/Makefile \
           tutorial/Lesson4/Makefile \
           tutorial/Lesson5/Makefile \
+          tutorial/ParadisEO/Makefile \
+          tutorial/ParadisEO/Lesson1/Makefile \
           win/Makefile)

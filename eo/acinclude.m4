@@ -1,8 +1,28 @@
+# AC_APPLICATIONS()
+#
+# Compile applications unless user requests not to do it.
+AC_DEFUN([AC_APPLICATIONS],[dnl
+  AC_ARG_ENABLE([applications],[  --enable-applications          build applications (default=yes)],
+    [ case "${enableval}" in
+      yes) applications=true ;;
+      no) applications=false ;;
+      *) AC_MSG_ERROR(bad value ${enableval} for applications option) ;;
+    esac],
+    [applications=true])
+  if test "$applications" = "true"; then
+    AM_CONDITIONAL([USE_APPLICATIONS], true)
+  else
+    AM_CONDITIONAL([USE_APPLICATIONS], false)
+  fi
+])
+
+
+
 # AC_PARADISEO()
 #
 # Compile ParadisEO if user requests it.
 AC_DEFUN([AC_PARADISEO],[dnl
-  AC_ARG_ENABLE([paradiseo],[  --enable-paradiseo            build ParadisEO (default=no)],
+  AC_ARG_ENABLE([paradiseo],[  --enable-paradiseo             build ParadisEO (default=no)],
     [ case "${enableval}" in
       yes) paradiseo=true ;;
       no) paradiseo=false ;;
@@ -10,12 +30,37 @@ AC_DEFUN([AC_PARADISEO],[dnl
     esac],
     [paradiseo=false])
   if test "$paradiseo" = "true"; then
-    AC_DEFINE([PARADISEO], 1, [ParadisEO flag])
     AM_CONDITIONAL([USE_PARADISEO], true)
-    AC_CHECK_PROG([MPICXX], [mpiCC], [], AC_MSG_ERROR([Need mpiCC to build PAradisEO.]))
-    AC_CHECK_PROG([MPIRUN], [mpirun], [], AC_MSG_ERROR([Need mpirun to use PAradisEO.]))
+    AC_CHECK_PROGS(MPICXX, [mpic++ mpiCC mpicxx], [false])
+    if test $MPICXX = false; then
+      AC_MSG_ERROR([mpic++ is required for ParadisEO builds.])
+    fi
+    AC_CHECK_PROGS(MPIRUN, [mpirun], [false])
+    if test $MPIRUN = false; then
+      AC_MSG_ERROR([mpirun is required for ParadisEO builds.])
+    fi
   else
     AM_CONDITIONAL([USE_PARADISEO], false)
+  fi
+])
+
+
+
+# AC_TUTORIAL()
+#
+# Compile tutorial unless user requests not to do it.
+AC_DEFUN([AC_TUTORIAL],[dnl
+  AC_ARG_ENABLE([tutorial],[  --enable-tutorial              build tutorial (default=yes)],
+    [ case "${enableval}" in
+      yes) tutorial=true ;;
+      no) tutorial=false ;;
+      *) AC_MSG_ERROR(bad value ${enableval} for tutorial option) ;;
+    esac],
+    [tutorial=true])
+  if test "$tutorial" = "true"; then
+    AM_CONDITIONAL([USE_TUTORIAL], true)
+  else
+    AM_CONDITIONAL([USE_TUTORIAL], false)
   fi
 ])
 

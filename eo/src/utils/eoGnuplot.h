@@ -26,7 +26,9 @@
 #ifndef _eoGnuplot_H
 #define _eoGnuplot_H
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
 #include <string>
 
@@ -152,7 +154,7 @@ inline void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
  * Created......: Mon Mar 13 13:50:11 1995
  * Description..: Communication par pipe bidirectionnel avec un autre process
  *
- * Ident........: $Id: eoGnuplot.h,v 1.10 2004-09-17 16:53:15 kuepper Exp $
+ * Ident........: $Id: eoGnuplot.h,v 1.11 2004-09-22 08:18:28 kuepper Exp $
  * ----------------------------------------------------------------------
  */
 

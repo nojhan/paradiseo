@@ -24,10 +24,21 @@
 #ifndef eoEOSendMessFrom_h
 #define eoEOSendMessFrom_h
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include <iostream>
 #include <string>
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
 #include <strstream.h>
+#endif
 #include <mpi.h>
 #include <paradisEO/comm/messages/eoMessFrom.h>
+
+using namespace std;
 
 /**
    A message embeding a set of immigrants ...

@@ -28,7 +28,9 @@
 #ifndef _eoGnuplot1DMonitor_H
 #define _eoGnuplot1DMonitor_H
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
 #include <string>
 
