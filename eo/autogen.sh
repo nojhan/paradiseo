@@ -33,7 +33,7 @@ set aclocalinclude="$ACLOCAL_FLAGS"
 aclocal $aclocalinclude
 unset $aclocalinclude
 autoheader
-automake --add --copy
+automake -a -c
 autoconf
 
 # we want doc to be recompiled - and it keeps saying it's up to date!!!

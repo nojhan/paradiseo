@@ -42,3 +42,5 @@ pkginclude_HEADERS 	= eoEsChromInit.h \
 			make_op_real.h \
 			make_real.h
 
+
+AM_CXXFLAGS		= -I$(top_srcdir)/src

@@ -1,4 +1,6 @@
-#include <stdexcept>  // runtime_error 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
 //-----------------------------------------------------------------------------
 // FirstBitGA.cpp
@@ -8,12 +10,15 @@
 //
 //-----------------------------------------------------------------------------
 // standard includes
-
-#include <iostream>   // cout
-#include <strstream>  // ostrstream, istrstream
+#include <iostream>
+#include <stdexcept>
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
+#include <strstream>
+#endif
 
 // the general include for eo
-
 #include <eo>
 
 //-----------------------------------------------------------------------------
