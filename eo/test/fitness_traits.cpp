@@ -407,7 +407,7 @@ void the_main()
   }
 
   // ok, now set the scaling
-  pop1.set_scalef(perf2worth);
+  pop1.setPerf2Worth(perf2worth);
 
   algo(pop1);
 
