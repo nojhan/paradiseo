@@ -33,12 +33,16 @@
 #include <utils/eoUpdatable.h>
 #include <eoEvalFunc.h>
 #include <es/eoReal.h>
-
+#include <es/eoRealBounds.h>
 //-----------------------------------------------------------------------------
 
 /** Simple normal mutation of a vector of real values.
  *  The stDev is fixed - but it is passed ans stored as a reference, 
  *  to enable dynamic mutations (see eoOenFithMutation below).
+ *
+ * As for the bounds, the values are here folded back into the bounds.
+ * The other possiblity would be to iterate until we fall inside the bounds - 
+ *     but this sometimes takes a long time!!!
  */
 
 template<class EOT> class eoNormalMutation: public eoMonOp<EOT>
@@ -46,11 +50,23 @@ template<class EOT> class eoNormalMutation: public eoMonOp<EOT>
  public:
   /**
    * (Default) Constructor.
+   * The bounds are initialized with the global object that says: no bounds.
+   *
    * @param _sigma the range for uniform nutation
    * @param _p_change the probability to change a given coordinate
    */
   eoNormalMutation(double & _sigma, const double& _p_change = 1.0): 
-    sigma(_sigma), p_change(_p_change) {}
+    sigma(_sigma), bounds(eoDummyVectorNoBounds), p_change(_p_change) {}
+
+  /**
+   * Constructor with bounds
+   * @param _bounds an eoRealVectorBounds that contains the bounds
+   * @param _sigma the range for uniform nutation
+   * @param _p_change the probability to change a given coordinate
+   */
+  eoNormalMutation(eoRealVectorBounds & _bounds, 
+		    double & _sigma, const double& _p_change = 1.0): 
+    sigma(_sigma), bounds(_bounds), p_change(_p_change) {}
 
   /// The class name.
   string className() const { return "eoNormalMutation"; }
@@ -67,6 +83,7 @@ template<class EOT> class eoNormalMutation: public eoMonOp<EOT>
 	  if (rng.flip(p_change)) 
 	    {
 	      _eo[lieu] += sigma*rng.normal();
+	      bounds.foldsInBounds(lieu, _eo[lieu]);
 	      hasChanged = true;
 	    }
 	}
@@ -77,6 +94,7 @@ template<class EOT> class eoNormalMutation: public eoMonOp<EOT>
 protected:
   double & sigma;
 private:
+  eoRealVectorBounds & bounds;
   double p_change;
 };
 

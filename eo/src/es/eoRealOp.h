@@ -31,6 +31,7 @@
 #include <algorithm>    // swap_ranges
 #include <utils/eoRNG.h>
 #include <es/eoReal.h>
+#include <es/eoRealBounds.h>
 
 //-----------------------------------------------------------------------------
 
@@ -46,11 +47,23 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
  public:
   /**
    * (Default) Constructor.
+   * The bounds are initialized with the global object that says: no bounds.
+   *
    * @param _epsilon the range for uniform nutation
    * @param _p_change the probability to change a given coordinate
    */
   eoUniformMutation(const double& _epsilon, const double& _p_change = 1.0): 
-    epsilon(_epsilon), p_change(_p_change) {}
+    bounds(eoDummyVectorNoBounds), epsilon(_epsilon), p_change(_p_change) {}
+
+  /**
+   * Constructor with bounds
+   * @param _bounds an eoRealVectorBounds that contains the bounds
+   * @param _epsilon the range for uniform nutation
+   * @param _p_change the probability to change a given coordinate
+   */
+  eoUniformMutation(eoRealVectorBounds & _bounds, 
+		    const double& _epsilon, const double& _p_change = 1.0): 
+    bounds(_bounds), epsilon(_epsilon), p_change(_p_change) {}
 
   /// The class name.
   string className() const { return "eoUniformMutation"; }
@@ -66,7 +79,14 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
 	{
 	  if (rng.flip(p_change)) 
 	    {
-	      _eo[lieu] += 2*epsilon*rng.uniform()-epsilon;
+	      // check the bounds
+	      double emin = _eo[lieu]-epsilon;
+	      double emax = _eo[lieu]+epsilon;
+	      if (bounds.isMinBounded(lieu))
+		emin = max(bounds.minimum(lieu), emin);
+	      if (bounds.isMaxBounded(lieu))
+		emax = min(bounds.maximum(lieu), emax);
+	      _eo[lieu] = emin + (emax-emin)*rng.uniform();
 	      hasChanged = true;
 	    }
 	}
@@ -75,6 +95,7 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
     }
   
 private:
+  eoRealVectorBounds & bounds;
   double epsilon;
   double p_change;
 };
@@ -94,7 +115,17 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
    * @param number of coordinate to modify
    */
   eoDetUniformMutation(const double& _epsilon, const unsigned& _no = 1): 
-    epsilon(_epsilon), no(_no) {}
+    bounds(eoDummyVectorNoBounds), epsilon(_epsilon), no(_no) {}
+
+  /**
+   * Constructor with bounds
+   * @param _bounds an eoRealVectorBounds that contains the bounds
+   * @param _epsilon the range for uniform nutation
+   * @param number of coordinate to modify
+   */
+  eoDetUniformMutation(eoRealVectorBounds & _bounds, 
+		       const double& _epsilon, const unsigned& _no = 1): 
+    bounds(_bounds), epsilon(_epsilon), no(_no) {}
 
   /// The class name.
   string className() const { return "eoDetUniformMutation"; }
@@ -110,11 +141,20 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
 	{
 	  unsigned lieu = rng.random(_eo.size());
 	  // actually, we should test that we don't re-modify same variable!
-	  _eo[lieu] += 2*epsilon*rng.uniform()-epsilon;
+
+	      // check the bounds
+	      double emin = _eo[lieu]-epsilon;
+	      double emax = _eo[lieu]+epsilon;
+	      if (bounds.isMinBounded(lieu))
+		emin = max(bounds.minimum(lieu), emin);
+	      if (bounds.isMaxBounded(lieu))
+		emax = min(bounds.maximum(lieu), emax);
+	      _eo[lieu] = emin + (emax-emin)*rng.uniform();
 	}
     }
 
 private:
+  eoRealVectorBounds & bounds;
   double epsilon;
   unsigned no;
 };
@@ -133,12 +173,27 @@ template<class EOT> class eoSegmentCrossover: public eoQuadraticOp<EOT>
  public:
   /**
    * (Default) Constructor.
-   * @param _alpha the amount of exploration OUTSIDE the parents 
+   * The bounds are initialized with the global object that says: no bounds.
+   *
+   * @param _alphaMin the amount of exploration OUTSIDE the parents 
    *               as in BLX-alpha notation (Eshelman and Schaffer)
    *               0 == contractive application
+   *               Must be positive
    */
   eoSegmentCrossover(const double& _alpha = 0.0) : 
-    alpha(_alpha), range(1+2*alpha) {}
+    bounds(eoDummyVectorNoBounds), alpha(_alpha), range(1+2*_alpha) {}
+
+  /**
+   * Constructor with bounds
+   * @param _bounds an eoRealVectorBounds that contains the bounds
+   * @param _alphaMin the amount of exploration OUTSIDE the parents 
+   *               as in BLX-alpha notation (Eshelman and Schaffer)
+   *               0 == contractive application
+   *               Must be positive
+   */
+  eoSegmentCrossover(eoRealVectorBounds & _bounds, 
+		     const double& _alpha = 0.0) : 
+    bounds(_bounds), alpha(_alpha), range(1+2*_alpha) {}
 
   /// The class name.
   string className() const { return "eoSegmentCrossover"; }
@@ -152,7 +207,35 @@ template<class EOT> class eoSegmentCrossover: public eoQuadraticOp<EOT>
     {
       unsigned i;
       double r1, r2, fact;
-      fact = rng.uniform(range);	   // in [0,range)
+      double alphaMin = -alpha;
+      double alphaMax = 1+alpha;  
+      if (alpha == 0.0)		   // no check to perform
+	fact = -alpha + rng.uniform(range); // in [-alpha,1+alpha)
+      else			   // look for the bounds for fact
+	{
+	  for (i=0; i<_eo1.size(); i++)
+	    {
+	      r1=_eo1[i];
+	      r2=_eo2[i];
+	      if (r1 != r2) {	   // otherwise you'll get NAN's
+		double rmin = min(r1, r2);
+		double rmax = max(r1, r2);
+		double length = rmax - rmin;
+		if (bounds.isMinBounded(i))
+		  {
+		    alphaMin = max(alphaMin, (bounds.minimum(i)-rmin)/length);
+		    alphaMin = max(alphaMin, (rmax-bounds.maximum(i))/length);
+		  }		  
+		if (bounds.isMaxBounded(i))
+		  {
+		    alphaMax = min(alphaMax, (bounds.maximum(i)-rmin)/length);
+		    alphaMax = min(alphaMax, (rmax-bounds.minimum(i))/length);
+		  }
+	      }
+	    }
+	  fact = alphaMin + (alphaMax-alphaMin)*rng.uniform();
+	}
+
       for (i=0; i<_eo1.size(); i++)
 	{
 	  r1=_eo1[i];
@@ -165,6 +248,7 @@ template<class EOT> class eoSegmentCrossover: public eoQuadraticOp<EOT>
     }
 
 protected:
+  eoRealVectorBounds & bounds;
   double alpha;
   double range;			   // == 1+2*alpha
 };
@@ -180,12 +264,35 @@ template<class EOT> class eoArithmeticCrossover: public eoQuadraticOp<EOT>
  public:
   /**
    * (Default) Constructor.
-   * @param _alpha the amount of exploration OUTSIDE the parents 
+   * The bounds are initialized with the global object that says: no bounds.
+   *
+   * @param _alphaMin the amount of exploration OUTSIDE the parents 
    *               as in BLX-alpha notation (Eshelman and Schaffer)
    *               0 == contractive application
+   *               Must be positive
    */
   eoArithmeticCrossover(const double& _alpha = 0.0): 
-    alpha(_alpha), range(1+2*alpha) {}
+    bounds(eoDummyVectorNoBounds), alpha(_alpha), range(1+2*_alpha) 
+  {
+    if (_alpha < 0)
+      throw runtime_error("BLX coefficient should be positive");
+  }
+
+  /**
+   * Constructor with bounds
+   * @param _bounds an eoRealVectorBounds that contains the bounds
+   * @param _alphaMin the amount of exploration OUTSIDE the parents 
+   *               as in BLX-alpha notation (Eshelman and Schaffer)
+   *               0 == contractive application
+   *               Must be positive
+   */
+  eoArithmeticCrossover(eoRealVectorBounds & _bounds, 
+			const double& _alpha = 0.0): 
+    bounds(_bounds), alpha(_alpha), range(1+2*_alpha) 
+  {
+    if (_alpha < 0)
+      throw runtime_error("BLX coefficient should be positive");
+  }
 
   /// The class name.
   string className() const { return "eoArithmeticCrossover"; }
@@ -199,19 +306,50 @@ template<class EOT> class eoArithmeticCrossover: public eoQuadraticOp<EOT>
     {
       unsigned i;
       double r1, r2, fact;
-      for (i=0; i<_eo1.size(); i++)
-	{
-	  r1=_eo1[i];
-	  r2=_eo2[i];
-	  fact = rng.uniform(range);	   // in [0,range)
-	  _eo1[i] = fact * r1 + (1-fact) * r2;
-	  _eo2[i] = (1-fact) * r1 + fact * r2;
-	}
+      if (alpha == 0.0)		   // no check to perform
+	  for (i=0; i<_eo1.size(); i++)
+	      {
+		r1=_eo1[i];
+		r2=_eo2[i];
+	    fact = -alpha + rng.uniform(range);	 // in [-alpha,1+alpha)
+	    _eo1[i] = fact * r1 + (1-fact) * r2;
+	    _eo2[i] = (1-fact) * r1 + fact * r2;
+	  }
+      else			   // check the bounds
+	for (i=0; i<_eo1.size(); i++)
+	  {
+	    r1=_eo1[i];
+	    r2=_eo2[i];
+	    if (r1 != r2) {	   // otherwise you'll get NAN's
+	      double rmin = min(r1, r2);
+	      double rmax = max(r1, r2);
+	      double length = rmax - rmin;
+	      double alphaMin = -alpha;
+	      double alphaMax = 1+alpha;
+	      // first find the limits on the alpha's
+	      if (bounds.isMinBounded(i))
+		{
+		  alphaMin = max(alphaMin, (bounds.minimum(i)-rmin)/length);
+		  alphaMin = max(alphaMin, (rmax-bounds.maximum(i))/length);
+		}		  
+	      if (bounds.isMaxBounded(i))
+		{
+		  alphaMax = min(alphaMax, (bounds.maximum(i)-rmin)/length);
+		  alphaMax = min(alphaMax, (rmax-bounds.minimum(i))/length);
+		}
+	      fact = alphaMin + rng.uniform(alphaMax-alphaMin);
+	      _eo1[i] = fact * rmin + (1-fact) * rmax;
+	      _eo2[i] = (1-fact) * rmin + fact * rmax;
+	    }
+	  }
+      _eo1.invalidate();
+      _eo2.invalidate();
     }
 
 protected:
+  eoRealVectorBounds & bounds;
   double alpha;
-  double range;			   // == 1+2*alpha
+  double range;			   // == 1+2*alphaMin
 };
   
 
