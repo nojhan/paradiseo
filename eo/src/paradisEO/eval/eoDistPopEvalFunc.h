@@ -67,7 +67,12 @@ public :
 
     // Partitioning ...
     
-    int j = 0, l = 0 ; 
+    int j = 0, l = 0 ;
+    
+    bool t [listen.size ()] ;
+    for (int i = 0 ; i < listen.size () ; i ++)
+      t [i] = false ;
+
     for (int i = 0 ; i < num_eval ; i ++) {
       
       eoPop <EOT> pop ;
@@ -84,30 +89,32 @@ public :
       }
      
       eoEOSendMessTo <EOT> mess (pop) ;
-      mess (listen [l ++]) ;
+      mess (listen [l]) ;
+      t [l ++] = true ;
     }
     
     // On standby of the returns
     _offspring.clear () ;
     
-    while (_offspring.size () != old_size) {
-      
-      listen.wait () ;
-      
-      for (int i = 0 ; i < listen.size () ; i ++)
-	if (listen [i].label () == label && ! listen [i].empty ()) {
-	  while (! listen [i].empty ()) {
+    //  while (_offspring.size () != old_size) {
+    
+      //      listen.wait () ;
+    
+    for (int i = 0 ; i < listen.size () ; i ++)
+      if (t [i]) {
+	listen [i].wait () ;
+	//while (! listen [i].empty ()) {
 	
-	    eoPop <EOT> & pop = listen [i].front () ;
-	    
-	    for (int m = 0 ; m < pop.size () ; m ++)
-	      _offspring.push_back (pop [m]) ;
-	    
-	    listen [i].pop () ;
+	eoPop <EOT> & pop = listen [i].front () ;
 	
-	  }
-	}
-    }
+	for (int m = 0 ; m < pop.size () ; m ++)
+	  _offspring.push_back (pop [m]) ;
+	
+	listen [i].pop () ;
+	
+	//}
+	//}
+      }
   }
   
 private :

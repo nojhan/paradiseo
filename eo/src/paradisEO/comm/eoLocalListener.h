@@ -108,6 +108,19 @@ public :
     }
   }
 
+  void wait () {
+    
+    bool b = false ;
+    
+    do {
+      comm -> Probe (num_id, 0) ;
+      update () ;
+      if (! empty ())
+	b = true ;
+      
+    } while (! b) ;
+  }
+  
   /**
      String identifier of this algo/agent ?
   */
