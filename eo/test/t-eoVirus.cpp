@@ -25,9 +25,9 @@
 
 #include <iostream>   // std::cout
 #include <eo>         // general EO
-#include "../contrib/MGE/VirusOp.h"
-#include "../contrib/MGE/eoVirus.h"
-#include "../contrib/MGE/eoInitVirus.h"
+#include "MGE/VirusOp.h"
+#include "MGE/eoVirus.h"
+#include "MGE/eoInitVirus.h"
 #include <utils/eoRndGenerators.h>
 
 #include "binary_value.h"

@@ -6,10 +6,6 @@
 
 lib_LIBRARIES = libeoutils.a
 
-
-AM_CXXFLAGS 		= -I$(top_srcdir)/src
-
-
 libeoutils_a_SOURCES 	= eoParser.cpp \
 			eoRNG.cpp \
 			eoState.cpp \
@@ -19,6 +15,8 @@ libeoutils_a_SOURCES 	= eoParser.cpp \
 			eoRealBounds.cpp \
 			make_help.cpp
 
-libeoincdir 		= $(includedir)/eo/utils
+pkginclude_HEADERS 	= checkpointing $(srcdir)/*.h
 
-libeoinc_HEADERS 	= checkpointing $(srcdir)/*.h
+AM_CXXFLAGS 		= -I$(top_srcdir)/src
+
+EXTRA_DIST		= *.h

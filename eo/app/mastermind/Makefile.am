@@ -4,22 +4,15 @@
 #
 ###############################################################################
 
-DEPS = $(top_builddir)/src/libeo.a $(top_builddir)/src/utils/libeoutils.a
+bin_PROGRAMS 		= mastermind
 
-###############################################################################
+mastermind_SOURCES 	= mastermind.cpp
 
-INCLUDES = -I$(top_builddir)/src -I$(top_srcdir)/src
-LDADDS = $(top_builddir)/src/libeo.a $(top_builddir)/src/utils/libeoutils.a
+noinst_HEADERS		= mastermind.h
 
-###############################################################################
+LIBEO			= $(top_builddir)/src/libeo.a
+LIBEOUTILS		= $(top_builddir)/src/utils/libeoutils.a
 
-bin_PROGRAMS = mastermind
-
-###############################################################################
-
-mastermind_SOURCES = mastermind.cpp
-mastermind_DEPENDENCIES = $(DEPS)
-mastermind_LDFLAGS = -lm
-mastermind_LDADD = $(LDADDS)
-
-###############################################################################
+AM_CXXFLAGS		= -I$(top_srcdir)/src
+DEPS 			= $(LIBEOUTILS) $(LIBEO)
+LIBS			= $(LIBEOUTILS) $(LIBEO)

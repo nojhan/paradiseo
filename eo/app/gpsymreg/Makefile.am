@@ -4,14 +4,17 @@
 #
 ###############################################################################
 
-LIBEO		= $(top_builddir)/src/libeo.a
-LIBEOUTILS	= $(top_builddir)/src/utils/libeoutils.a
+bin_PROGRAMS 		= gpsymreg
+
+gpsymreg_SOURCES 	= main.cpp
+
+noinst_HEADERS		= fitness.h node.h parameters.h
 
 
-bin_PROGRAMS = gpsymreg
+LIBEO			= $(top_builddir)/src/libeo.a
+LIBEOUTILS		= $(top_builddir)/src/utils/libeoutils.a
 
-AM_CXXFLAGS	= -I$(top_builddir)/src
-DEPS 		= $(LIBEOUTILS) $(LIBEO)
-LIBS 		=  $(top_builddir)/src/utils/libeoutils.a
+AM_CXXFLAGS		= -I$(top_builddir)/src
+DEPS 			= $(LIBEOUTILS) $(LIBEO)
+LIBS 			= $(LIBEOUTILS) $(LIBEO)
 
-gpsymreg_SOURCES = main.cpp

@@ -1,11 +1,13 @@
-
 #ifdef _MSC_VER
 #pragma warning(disable:4786)
 #endif
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <algorithm>
 #include <fstream>
-
 #ifdef HAVE_SSTREAM
 #include <sstream>
 #else

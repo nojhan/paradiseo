@@ -16,10 +16,7 @@ noinst_HEADERS		= eoOneMax.h \
 
 extra_DIST		= Makefile.simple
 
-
+AM_CXXFLAGS		= -I$(top_srcdir)/src
 LDADD			= -L$(top_builddir)/src -L$(top_builddir)/src/ga -L$(top_builddir)/src/utils
-
 LIBS			=  -lga -leoutils -leo
-
-INCLUDES		= -I$(top_srcdir)/src
 

@@ -3,8 +3,11 @@
 #pragma warning(disable:4786)
 #endif 
 
-#include <ctime>
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
+#include <ctime>
 #ifdef HAVE_SSTREAM
 #include <sstream>
 #else
