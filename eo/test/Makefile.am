@@ -13,7 +13,7 @@ LDADDS = $(top_builddir)/src/libeo.a
 
 ###############################################################################
 
-noinst_PROGRAMS = t-eogeneration t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery
+noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration
 
 ###############################################################################
 
@@ -72,5 +72,12 @@ t_eolottery_SOURCES = t-eolottery.cpp
 t_eolottery_DEPENDENCIES = $(DEPS)
 t_eolottery_LDFLAGS = -lm
 t_eolottery_LDADD = $(LDADDS) 
+
+###############################################################################
+
+t_eo2dVector_SOURCES = t-eo2dVector.cc
+t_eo2dVector_DEPENDENCIES = $(DEPS) 
+t_eo2dVector_LDFLAGS = -lm 
+t_eo2dVector_LDADD = $(LDADDS) 
 
 ###############################################################################
