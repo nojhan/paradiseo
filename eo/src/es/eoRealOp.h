@@ -111,7 +111,6 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
 	  if (_eo.size() != bounds.size())
 	    throw runtime_error("Invalid size of indi in eoUniformMutation");
 
-	  bool hasChanged=false;
 	  for (unsigned lieu=0; lieu<_eo.size(); lieu++)
 	    if (rng.flip(p_change[lieu]))
 	      {
