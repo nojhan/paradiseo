@@ -19,7 +19,7 @@
 // Include the corresponding file
 #include <ga.h>	         // bitstring representation & operators
 // define your individuals
-typedef eoBin<double> Indi;	// A bitstring with fitness double
+typedef eoBit<double> Indi;	// A bitstring with fitness double
 
 // EVAL
 //-----------------------------------------------------------------------------
@@ -118,11 +118,11 @@ void main_function(int argc, char **argv)
   //////////////////////////////////////
 // CROSSOVER
   // 1-point crossover for bitstring
-  eoBinCrossover<Indi> xover1;
+  eo1PtBitXover<Indi> xover1;
   // uniform crossover for bitstring
-  eoBinUxOver<Indi> xoverU;
+  eoUBitXover<Indi> xoverU;
   // 2-pots xover
-  eoBinNxOver<Indi> xover2(2);
+  eoNPtsBitXover<Indi> xover2(2);
   // Combine them with relative rates
   eoPropCombinedQuadOp<Indi> xover(xover1, onePointRate);
   xover.add(xoverU, URate);
@@ -130,7 +130,7 @@ void main_function(int argc, char **argv)
 
 // MUTATION
   // standard bit-flip mutation for bitstring
-  eoBinMutation<Indi>  mutationBitFlip(P_MUT_PER_BIT);
+  eoBitMutation<Indi>  mutationBitFlip(P_MUT_PER_BIT);
   // mutate exactly 1 bit per individual
   eoDetBitFlip<Indi> mutationOneBit; 
   // Combine them with relative rates

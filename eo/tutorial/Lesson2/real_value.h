@@ -10,7 +10,11 @@ double real_value(const std::vector<double>& _ind)
 {
   double sum = 0;
   for (unsigned i = 0; i < _ind.size(); i++)
-      sum += _ind[i] * _ind[i];
+      {
+	  if ( (_ind[i]<0) || (_ind[i]>1) )
+	      cout << "Sorti des bornes: " << _ind[i] << " ";
+	  sum += _ind[i] * _ind[i];
+      }
   return -sum;
 }
 

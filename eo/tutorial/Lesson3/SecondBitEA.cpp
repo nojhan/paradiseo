@@ -14,16 +14,15 @@
 
 // the general include for eo
 #include <eo>
+#include <ga.h>
 
 // EVAL
 #include "binary_value.h"
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
-// Include the corresponding file
-#include <ga.h>	         // bitstring representation & operators
 // define your genotype and fitness types
-typedef eoBin<double> Indi;
+typedef eoBit<double> Indi;
 
 // the main_function: nothing changed(!), except variable initialization
 void main_function(int argc, char **argv)
@@ -201,11 +200,11 @@ void main_function(int argc, char **argv)
   //////////////////////////////////////
 // CROSSOVER
   // 1-point crossover for bitstring
-  eoBinCrossover<Indi> xover1;
+  eo1PtBitXover<Indi> xover1;
   // uniform crossover for bitstring
-  eoBinUxOver<Indi> xoverU;
+  eoUBitXover<Indi> xoverU;
   // 2-pots xover
-  eoBinNxOver<Indi> xover2(2);
+  eoNPtsBitXover<Indi> xover2(2);
   // Combine them with relative rates
   eoPropCombinedQuadOp<Indi> xover(xover1, onePointRate);
   xover.add(xoverU, URate);
@@ -213,7 +212,7 @@ void main_function(int argc, char **argv)
 
 // MUTATION
   // standard bit-flip mutation for bitstring
-  eoBinMutation<Indi>  mutationBitFlip(pMutPerBit);
+  eoBitMutation<Indi>  mutationBitFlip(pMutPerBit);
   // mutate exactly 1 bit per individual
   eoDetBitFlip<Indi> mutationOneBit; 
   // Combine them with relative rates

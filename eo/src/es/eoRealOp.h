@@ -168,7 +168,7 @@ private:
 \ingroup parameteric
 */
 
-template<class EOT> class eoSegmentCrossover: public eoQuadraticOp<EOT>
+template<class EOT> class eoSegmentCrossover: public eoQuadOp<EOT>
 {
  public:
   /**
@@ -259,7 +259,7 @@ protected:
 \ingroup parameteric
 */
 
-template<class EOT> class eoArithmeticCrossover: public eoQuadraticOp<EOT>
+template<class EOT> class eoArithmeticCrossover: public eoQuadOp<EOT>
 {
  public:
   /**
@@ -358,7 +358,7 @@ protected:
 \ingroup parameteric
 */
 
-template<class EOT> class eoRealUxOver: public eoQuadraticOp<EOT>
+template<class EOT> class eoRealUxOver: public eoQuadOp<EOT>
 {
  public:
   /**

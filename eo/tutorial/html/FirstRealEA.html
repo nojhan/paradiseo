@@ -34,9 +34,8 @@ Breeder - and Combined Ops</font></tt>
 <br><tt><font color="#993300">//-----------------------------------------------------------------------------</font></tt>
 <br><tt><font color="#993300">// standard includes</font></tt>
 <br><tt><font color="#993300"><b>#include &lt;stdexcept>&nbsp; </b>// runtime_error&nbsp;</font></tt>
-<br><tt><font color="#993300"><b>#include &lt;iostream>&nbsp;&nbsp; 
-</b>//
-cout</font></tt>
+<br><tt><font color="#993300"><b>#include &lt;iostream>&nbsp;&nbsp;&nbsp;
+</b>// cout</font></tt>
 <br><tt><font color="#993300"><b>#include &lt;strstream>&nbsp; </b>// ostrstream,
 istrstream</font></tt>
 <br><tt><font color="#993300">// the general include for eo</font></tt>
@@ -46,10 +45,8 @@ istrstream</font></tt>
 <a NAME="representation"></a>
 <table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFFFCC" NOSAVE >
 <tr>
-<td><tt><font color="#999900">//-----------------------------------------------------------------------------</font></tt>
-<br><tt><font color="#999900">// Include the corresponding file&nbsp;</font></tt>
-<br><tt><font color="#999900"><b>#include &lt;es.h></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-// real-representation &amp; operators&nbsp;</font></tt>
+<td><tt><font color="#999900"><b>#include &lt;es.h></b></font></tt><br>
+<tt><font color="#999900">//-----------------------------------------------------------------------------</font></tt>
 <br><tt><font color="#999900">// define your individuals</font></tt>
 <br><b><tt><font color="#999900">typedef eoReal&lt;double> Indi;&nbsp;</font></tt></b></td>
 </tr>
@@ -81,16 +78,12 @@ seed for random number generator</font></tt>
 <br><tt><font color="#3366FF"><b>&nbsp;const unsigned int T_SIZE = 3; </b>//
 size for tournament selection</font></tt>
 <br><tt><font color="#3366FF"><b>&nbsp;const unsigned int VEC_SIZE = 8;
-</b>//
-Number of object variables in genotypes</font></tt>
+</b>// Number of object variables in genotypes</font></tt>
 <br><tt><font color="#3366FF"><b>&nbsp;const unsigned int POP_SIZE = 20;
-</b>//
-Size of population</font></tt>
+</b>// Size of population</font></tt>
 <br><tt><font color="#3366FF"><b>&nbsp;const unsigned int MAX_GEN = 500;
-</b>//
-Maximum number of generation before STOP</font></tt>
-<br><tt><font color="#3366FF"><b>&nbsp;const unsigned int MIN_GEN = 10;
-
+</b>// Maximum number of generation before STOP</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const unsigned int MIN_GEN = 10;&nbsp;
 </b>// Minimum number of generation before ...</font></tt>
 <br><tt><font color="#3366FF"><b>&nbsp;const unsigned int STEADY_GEN =
 50; </b>// stop after STEADY_GEN gen. without improvelent</font></tt>
@@ -105,17 +98,13 @@ SIGMA = 0.3;&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // std dev.
 for normal mutation</font></tt>
 <br><tt><font color="#3366FF"><b>&nbsp;</b>// some parameters for chosing
 among different operators</font></tt>
-<br><tt><font color="#3366FF"><b>&nbsp;const double segmentRate = 0.5;&nbsp;&nbsp;
-
+<br><tt><font color="#3366FF"><b>&nbsp;const double segmentRate = 0.5;&nbsp;&nbsp;&nbsp;
 </b>// relative weight for 1-pt Xover</font></tt>
 <br><tt><font color="#3366FF"><b>&nbsp;const double arithmeticRate = 0.5;
-</b>//
-relative weight for 2-pt Xover</font></tt>
+</b>// relative weight for 2-pt Xover</font></tt>
 <br><tt><font color="#3366FF"><b>&nbsp;const double uniformMutRate = 0.5;
-</b>//
-relative weight for bit-flip mutation</font></tt>
-<br><tt><font color="#3366FF"><b>&nbsp;const double detMutRate = 0.5;&nbsp;&nbsp;&nbsp;
-
+</b>// relative weight for bit-flip mutation</font></tt>
+<br><tt><font color="#3366FF"><b>&nbsp;const double detMutRate = 0.5;&nbsp;&nbsp;&nbsp;&nbsp;
 </b>// relative weight for one-bit mutation</font></tt>
 <br><tt><font color="#3366FF">&nbsp;<b>const double normalMutRate = 0.5;</b>&nbsp;
 // relative weight for normal mutation</font></tt></td>
@@ -193,8 +182,8 @@ it!</font></tt>
 <tr>
 <td><tt><font color="#009900"><b>&nbsp;</b>// The robust tournament selection</font></tt>
 <br><b><tt><font color="#009900">&nbsp;eoDetTournamentSelect&lt;Indi> selectOne(T_SIZE);</font></tt></b>
-<br><a NAME="select_encapsulate"></a><tt><font color="#009900">// is now
-encapsulated in a eoSelectPerc (entage)</font></tt>
+<br><a NAME="select_encapsulate"></a><tt><font color="#009900"><b> </b>//
+is now encapsulated in a eoSelectPerc (entage)</font></tt>
 <br><tt><font color="#009900"><b>&nbsp;eoSelectPerc&lt;Indi> select(selectOne);</b>//
 by default rate==1</font></tt></td>
 </tr>
@@ -307,7 +296,8 @@ eval, select, transform, replace);</font></tt></b>
 it!</font></tt>
 <br><b><tt><font color="#FF6666">&nbsp;cout &lt;&lt; "\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Here we go\n\n";</font></tt></b>
-<br><b><tt><font color="#FF6666">&nbsp;gga(pop);</font></tt></b></td>
+<br><b><tt><font color="#FF6666">&nbsp;gga(pop);</font></tt></b>
+<br>&nbsp;</td>
 </tr>
 </table>
 <a NAME="output"></a>

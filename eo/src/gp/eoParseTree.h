@@ -5,8 +5,6 @@
 
 #include <EO.h>
 #include <eoOp.h>
-#include <eoInserter.h>
-#include <eoIndiSelector.h>
 #include <gp/parse_tree.h>
 #include <eoInit.h>
 
@@ -154,47 +152,47 @@ private :
 };
 
 template<class FType, class Node>
-class eoSubtreeXOver: public eoGeneralOp< eoParseTree<FType, Node> > {
+class eoSubtreeXOver: public eoQuadOp< eoParseTree<FType, Node> > {
 public:
 
   typedef eoParseTree<FType, Node> EoType;
 
   eoSubtreeXOver( unsigned _max_length)
-    : eoGeneralOp<EoType>(), max_length(_max_length) {};
+    : eoQuadOp<EoType>(), max_length(_max_length) {};
 
   virtual string className() const { return "eoSubtreeXOver"; };
 
   /// Dtor
   virtual ~eoSubtreeXOver () {};
 
-  void operator()(eoIndiSelector<EoType>& _select, eoInserter<EoType>& _insert )
+  void operator()(EoType & _eo1, EoType & _eo2 )
   {
-      EoType eo1 = _select();
-      const EoType& eo2 = _select();
+	  int i = rng.random(_eo1.size());
+	  int j = rng.random(_eo2.size());
 
-	  int i = rng.random(eo1.size());
-	  int j = rng.random(eo2.size());
-
-	  eo1[i] = eo2[j]; // insert subtree
+	  parse_tree<Node>::subtree tmp = _eo2[j];
+	  _eo1[i] = _eo2[j]; // insert subtree
+	  _eo2[j]=tmp;
 	  	  
-	  eo1.pruneTree(max_length);
+	  _eo1.pruneTree(max_length);
+	  _eo2.pruneTree(max_length);
 	  
-	  eo1.invalidate();
-      _insert(eo1);
+	  _eo1.invalidate();
+	  _eo2.invalidate();
   }
 
   unsigned max_length;
 };
 
 template<class FType, class Node>
-class eoBranchMutation: public eoGeneralOp< eoParseTree<FType, Node> > 
+class eoBranchMutation: public eoMonOp< eoParseTree<FType, Node> > 
 {
 public:
 
   typedef eoParseTree<FType, Node> EoType;
 
   eoBranchMutation(eoInit<EoType>& _init, unsigned _max_length)
-    : eoGeneralOp<EoType>(), max_length(_max_length), initializer(_init) 
+    : eoMonOp<EoType>(), max_length(_max_length), initializer(_init) 
   {};
 
   virtual string className() const { return "eoBranchMutation"; };
@@ -202,22 +200,20 @@ public:
   /// Dtor
   virtual ~eoBranchMutation() {};
 
-  void operator()(eoIndiSelector<EoType>& _select, eoInserter<EoType>& _insert ) 
+  void operator()(EoType& _eo1 ) 
   {
-      EoType eo1 = _select();
-	  int i = rng.random(eo1.size());
+	  int i = rng.random(_eo1.size());
       
       EoType eo2;
       initializer(eo2);
 
 	  int j = rng.random(eo2.size());
 
-	  eo1[i] = eo2[j]; // insert subtree
+	  _eo1[i] = eo2[j]; // insert subtree
 	  	  
-	  eo1.pruneTree(max_length);
+	  _eo1.pruneTree(max_length);
 	  	  
-	  eo1.invalidate();
-      _insert(eo1);
+	  _eo1.invalidate();
   }
 
 private :

@@ -5,4 +5,4 @@
 ###############################################################################
 
 libeoincdir = $(includedir)/eo/ga
-libeoinc_HEADERS = eoBin.h eoBitOp.h eoBitOpFactory.h
+libeoinc_HEADERS = eoBit.h eoBitOp.h eoBitOpFactory.h

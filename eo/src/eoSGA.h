@@ -37,7 +37,7 @@
 #include <apply.h>
 
 /** The Simple Genetic Algorithm, following Holland and Goldberg 
- *  Needs a selector (class eoSelectOne) a crossover (eoQuadratic, 
+ *  Needs a selector (class eoSelectOne) a crossover (eoQuad, 
  *    i.e. a 2->2 operator) and a mutation with their respective rates, 
  *    of course an evaluation function (eoEvalFunc) and a continuator 
  *    (eoContinue) which gives the stopping criterion. Performs full
@@ -53,7 +53,7 @@ public :
   // in the one above. Any objection :-) MS
   eoSGA(
         eoSelectOne<EOT>& _select,
-        eoQuadraticOp<EOT>& _cross, float _crate,
+        eoQuadOp<EOT>& _cross, float _crate,
         eoMonOp<EOT>& _mutate, float _mrate,
         eoEvalFunc<EOT>& _eval,
 	eoContinue<EOT>& _cont)
@@ -103,7 +103,7 @@ private :
   eoContinue<EOT>& cont;
   eoMonOp<EOT>& mutate;
   float mutationRate;
-  eoQuadraticOp<EOT>& cross;
+  eoQuadOp<EOT>& cross;
   float crossoverRate;
   eoSelectPerc<EOT> select;
   eoEvalFunc<EOT>& eval;

@@ -172,21 +172,21 @@ std::vector<double> rates;
 //// combined QuadOp
 //////////////////////////////////////////////////////
 
-/** Quadratic genetic operator: subclasses eoOp, and defines basically the 
+/** Quad genetic operator: subclasses eoOp, and defines basically the 
     operator() with two operands, both can be modified.
 */
-/** COmbined quadratic genetic operator: 
+/** Combined quad genetic operator: 
  *  operator() has two operands, both can be modified
 
  * generic operators are now allowed: there are imbedded into 
  * the corresponding "true" operator
  */
 template <class EOT>
-class eoPropCombinedQuadOp: public eoQuadraticOp<EOT>
+class eoPropCombinedQuadOp: public eoQuadOp<EOT>
 {
 public:
   /// Ctor from a true operator
-  eoPropCombinedQuadOp(eoQuadraticOp<EOT> & _first, const double _rate)
+  eoPropCombinedQuadOp(eoQuadOp<EOT> & _first, const double _rate)
   { 
     ops.push_back(&_first); 
     rates.push_back(_rate);
@@ -204,7 +204,7 @@ public:
 virtual string className() const { return "eoPropCombinedQuadOp"; }
 
   // addition of a true operator
-virtual void add(eoQuadraticOp<EOT> & _op, const double _rate, bool _verbose=false)
+virtual void add(eoQuadOp<EOT> & _op, const double _rate, bool _verbose=false)
   { 
     ops.push_back(&_op); 
     rates.push_back(_rate);
@@ -242,7 +242,7 @@ virtual void add(eoGenericQuadOp<EOT> & _op, const double _rate, bool _verbose=f
     (*ops[what])(_indi1, _indi2);		   // apply it
   }
 private:
-std::vector<eoQuadraticOp<EOT>*> ops;
+std::vector<eoQuadOp<EOT>*> ops;
 std::vector<double> rates;
 };
 

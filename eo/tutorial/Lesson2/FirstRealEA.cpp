@@ -13,11 +13,10 @@
 
 // the general include for eo
 #include <eo>
+#include <es.h>
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
-// Include the corresponding file
-#include <es.h>	         // real-valued representation & operators
 // define your individuals
 typedef eoReal<double> Indi;	
 

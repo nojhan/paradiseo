@@ -153,11 +153,11 @@ class eoExternalBinOp : public eoBinOp<ExternalEO>
   The function should return true when it changed something, false otherwise
 */
 template <class F, class External, class ExternalEO = eoExternalEO<F, External> >
-class eoExternalQuadraticOp : public eoQuadraticOp<ExternalEO>
+class eoExternalQuadOp : public eoQuadOp<ExternalEO>
 {
     public :
 
-    eoExternalQuadraticOp(bool (*_quadop)(External&, External&)) : quadop(_quadop) {}
+    eoExternalQuadOp(bool (*_quadop)(External&, External&)) : quadop(_quadop) {}
 
     void operator()(ExternalEO& eo1, ExternalEO& eo2) 
     {

@@ -20,7 +20,7 @@
 // Include the corresponding file
 #include <ga.h>	         // bitstring representation & operators
 // define your individuals
-typedef eoBin<double> Indi;	// A bitstring with fitness double
+typedef eoBit<double> Indi;	// A bitstring with fitness double
 
 //-----------------------------------------------------------------------------
 /** a simple fitness function that computes the number of ones of a bitstring
@@ -120,9 +120,9 @@ void main_function(int argc, char **argv)
   // The variation operators
   //////////////////////////////////////
   // standard bit-flip mutation for bitstring
-  eoBinMutation<Indi>  mutation(P_MUT_PER_BIT);
+  eoBitMutation<Indi>  mutation(P_MUT_PER_BIT);
   // 1-point mutation for bitstring
-  eoBinCrossover<Indi> xover;
+  eo1PtBitXover<Indi> xover;
 
   /////////////////////////////////////////
   // the algorithm

@@ -63,11 +63,8 @@ the number of ones of a bitstring</font></tt>
 <table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFFFCC" NOSAVE >
 <tr>
 <td><tt><font color="#999900">//-----------------------------------------------------------------------------</font></tt>
-<br><tt><font color="#999900">// Include the corresponding file</font></tt>
-<br><tt><font color="#999900"><b>#include &lt;ga.h></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-// bitstring representation &amp; operators</font></tt>
 <br><tt><font color="#999900">// define your genotype and fitness types</font></tt>
-<br><b><tt><font color="#999900">typedef eoBin&lt;double> Indi;</font></tt></b></td>
+<br><b><tt><font color="#999900">typedef eoBit&lt;double> Indi;</font></tt></b></td>
 </tr>
 </table>
 <a NAME="general"></a>
@@ -314,6 +311,7 @@ of initializatio of the population</font></tt></td>
 <tr>
 <td><tt><font color="#009900"><b>&nbsp;</b>// The robust tournament selection</font></tt>
 <br><tt><font color="#009900"><b>&nbsp;eoDetTournamentSelect&lt;Indi> selectOne(tSize);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 </b>// tSize in [2,POPSIZE]</font></tt>
 <br><tt><font color="#009900"><b>&nbsp;</b>// is now encapsulated in a
 eoSelectPerc (entage)</font></tt>
@@ -346,11 +344,11 @@ replace;&nbsp;</font></tt></b></td>
 <table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCFF" NOSAVE >
 <tr>
 <td><tt><font color="#993399"><b>&nbsp;</b>// 1-point crossover for bitstring</font></tt>
-<br><b><tt><font color="#993399">&nbsp;eoBinCrossover&lt;Indi> xover1;</font></tt></b>
+<br><b><tt><font color="#993399">&nbsp;eo1PtBitXover&lt;Indi> xover1;</font></tt></b>
 <br><tt><font color="#993399"><b>&nbsp;</b>// uniform crossover for bitstring</font></tt>
-<br><b><tt><font color="#993399">&nbsp;eoBinUxOver&lt;Indi> xoverU;</font></tt></b>
+<br><b><tt><font color="#993399">&nbsp;eoUBitXover&lt;Indi> xoverU;</font></tt></b>
 <br><tt><font color="#993399"><b>&nbsp;</b>// 2-pots xover</font></tt>
-<br><b><tt><font color="#993399">&nbsp;eoBinNxOver&lt;Indi> xover2(2);</font></tt></b>
+<br><b><tt><font color="#993399">&nbsp;eoNPtsBitXover&lt;Indi> xover2(2);</font></tt></b>
 <br><tt><font color="#993399"><b>&nbsp;</b>// Combine them with relative
 rates</font></tt>
 <br><b><tt><font color="#993399">&nbsp;eoPropCombinedQuadOp&lt;Indi> xover(xover1,
@@ -365,7 +363,7 @@ true);</font></tt></b></td>
 <tr>
 <td><tt><font color="#993399"><b>&nbsp;</b>// standard bit-flip mutation
 for bitstring</font></tt>
-<br><b><tt><font color="#993399">&nbsp;eoBinMutation&lt;Indi>&nbsp; mutationBitFlip(pMutPerBit);</font></tt></b>
+<br><b><tt><font color="#993399">&nbsp;eoBitMutation&lt;Indi>&nbsp; mutationBitFlip(pMutPerBit);</font></tt></b>
 <br><tt><font color="#993399"><b>&nbsp;</b>// mutate exactly 1 bit per
 individual</font></tt>
 <br><b><tt><font color="#993399">&nbsp;eoDetBitFlip&lt;Indi> mutationOneBit;&nbsp;</font></tt></b>

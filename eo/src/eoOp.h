@@ -35,11 +35,22 @@ Genetic Operators are used for various purposes
 
 /** @name Genetic operators
 
-What is a genetic algorithm without genetic operators? There is a genetic operator hierarchy, with eoOp as father and eoMonOp (monary or unary operator) and eoBinOp and eoQuadraticOp (binary operators) as siblings). Nobody should subclass eoOp, you should subclass eoGeneralOp, eoBinOp, eoQuadraticOp or eoMonOp, those are the ones actually used here. \\#eoOp#s are only printable objects, so if you want to build them from a file, it has to be done in another class, namely factories. Each hierarchy of #eoOp#s should have its own factory, which know how to build them from a description in a file.
+What is a genetic algorithm without genetic operators? 
+There is a genetic operator hierarchy, with eoOp as father and 
+eoMonOp (monary or unary operator), eoBinOp and eoQuadOp (binary operators) 
+and eoGenOp (any number of inputs and outputs, see eoGenOp.h)
+as subclasses. 
+Nobody should subclass eoOp, you should subclass eoGenOp, eoBinOp, eoQuadOp 
+or eoMonOp, those are the ones actually used here. 
 
-@author GeNeura Team
-@version 0.1
-@see eoOpFactory
+#eoOp#s are only printable objects, so if you want to build them 
+from a file, it has to be done in another class, namely factories. 
+Each hierarchy of #eoOp#s should have its own factory, which know 
+how to build them from a description in a file.
+
+@author GeNeura Team, Marten Keijzer and Marc Schoenauer
+@version 0.9
+@see eoGenOp.h eoOpFactory
 */
 
 
@@ -102,17 +113,14 @@ public:
   virtual string className() const {return "eoBinOp";};
 };
 
-// planning the change of name eoQuadraticOp --> eoQuadOp
-#define eoQuadraticOp eoQuadOp
-
-/** Quadratic genetic operator: subclasses eoOp, and defines basically the 
+/** Quad genetic operator: subclasses eoOp, and defines basically the 
     operator() with two operands, both can be modified.
 */
 template<class EOType>
-class eoQuadraticOp: public eoOp<EOType>, public eoBF<EOType&, EOType&, void> {
+class eoQuadOp: public eoOp<EOType>, public eoBF<EOType&, EOType&, void> {
 public:
   /// Ctor
-  eoQuadraticOp()
+  eoQuadOp()
     :eoOp<EOType>( eoOp<EOType>::quadratic ) {};
   virtual string className() const {return "eoQuadOp";};
 };
@@ -143,39 +151,6 @@ public:
 
 private:
   eoQuadOp<EOT> & quadOp;
-};
-
-// some forward declarations
-
-template<class EOT>
-
-class eoIndiSelector;
-
-
-template<class EOT>
-
-class eoInserter;
-
-
-/**
- * eGeneralOp: General genetic operator; for objects used to transform sets
- * of EOs. Nary ("orgy") operators should be derived from this class
-
-  Derived from eoB(inary)F(unction)
-      Applies the genetic operator
-      to a individuals dispensed by an eoIndividualSelector, 
-      and puts the results in the eoIndividualInserter.
-      Any number of inputs can be requested and any number of outputs
-      can be produced. 
- */
-
-template<class EOT>
-
-class eoGeneralOp: public eoOp<EOT>, public eoBF<eoIndiSelector<EOT>&, eoInserter<EOT>&, void>
-{
-public:
-  /// Ctor that honors its superclass
-  eoGeneralOp(): eoOp<EOT>( eoOp<EOT>::general ) {}  
 };
 
 #endif

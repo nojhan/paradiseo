@@ -30,12 +30,12 @@
 #define _ga_h
 
 // all bitstring-specific files
-#include <ga/eoBin.h>
+#include <ga/eoBit.h>
 
 // the operators
 #include <ga/eoBitOp.h>
 
-// #include <ga/eoBitOpFactory.h>
+// #include <ga/eoBitOpFactory.h> to be corrected - thanks someone!
 
 //-----------------------------------------------------------------------------
 

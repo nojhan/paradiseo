@@ -197,7 +197,6 @@ void eoParser::printOn(ostream& os) const
     std::string section = p->first;
 
     printSectionHeader(os, section);
-
     //print every param with its value
     for (; p != params.end(); ++p) 
     {

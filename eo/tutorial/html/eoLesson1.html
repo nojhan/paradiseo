@@ -2,7 +2,7 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdk i686) [Netscape]">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en] (X11; U; Linux 2.2.17-21mdksmp i686) [Netscape]">
    <title>Tutorial: Lesson 1</title>
 </head>
 <body text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000" background="beige009.jpg">
@@ -94,30 +94,34 @@ tour below. You might prefer to go directly to the <a href="#exercise1">exercise
 all C-like code, the file starts with include directives (<a href="FirstBitGA.html#start">Bit</a>
 - <a href="FirstRealGA.html#start">Real</a>). Apart from standard includes,
 the specific file to include is </font><b><font color="#FF6600">eo</font></b><font color="#000000">:
-this is a file that contains the list of the most important EO files.</font></li>
+this is a file that contains the list of the all important representation-independent
+EO files.</font></li>
 
 <br>&nbsp;
 <li>
 <b><font color="#999900">Representation</font></b><font color="#000000">:
-you need to declare the type of individuals you will be handling. First,
-include some header files where these are defined: </font><b><tt><font color="#999900">ga.h</font></tt></b><font color="#000000">
-for bitstring, </font><b><tt><font color="#999900">es.h</font></tt></b><font color="#000000">
-for real-valued genotypes.<br>
-Then a </font><b><tt><font color="#993300">typedef</font></tt></b><font color="#000000">
-directive will allow one to handle the abstract </font><b><tt><font color="#993300">Indi</font></tt></b><font color="#000000">
-all around in the main code. Remember that all evolution-related objects
-you will need are templatized w.r.t. the type of individuals.</font></li>
+you then have to declare the type of individuals you will be handling.
+All evolution-related objects you will need are templatized w.r.t. the
+type of individuals.</font></li>
 
 <ul>
 <li>
-<a href="FirstBitGA.html#representation">Bit</a> You say here that you
-will be handling <b><font face="Arial,Helvetica"><a href="../../doc/html/class_eobin.html">Bitstring
+<a href="FirstBitGA.html#representation">Bit</a> You first need to include
+the representation-dependent file <b><tt><font color="#993300"><font size=+1>ga.h</font></font></tt></b>,
+containing the bitstring representation and operators. More details about
+<a href="eoRepresentation.html#bitstring">what is available for bitstrings
+here</a>.<br>
+You then say that you will be handling <b><font face="Arial,Helvetica"><a href="../../doc/html/class_eobin.html">Bitstring
 genotypes</a></font></b>, whose fitness is a double. This makes Indi derive
 from the <a href="eoProgramming.html#STL">STL class</a> <font color="#993300">vector&lt;bool></font></li>
 
 <li>
-<a href="FirstRealGA.html#representation">Real</a> You say here that you
-will be handling <b><font face="Arial,Helvetica"><a href="../../doc/html/class_eoreal.html">Real-valued
+<a href="FirstRealGA.html#representation">Real</a> You first need to include
+the representation-dependent file <b><tt><font color="#993300"><font size=+1>es.h</font></font></tt></b>,
+containing the bitstring representation and operators. More details about
+<a href="eoRepresentation.html#real">what is available for real-values
+here</a>.<br>
+You then say that you will be handling <b><font face="Arial,Helvetica"><a href="../../doc/html/class_eoreal.html">Real-valued
 genotypes</a></font></b>, whose fitness is a double. This makes Indi derive
 from the <a href="eoProgramming.html#STL">STL class</a> <font color="#993300">vector&lt;double></font></li>
 
@@ -238,8 +242,8 @@ corresponding pages</a>, or to their respective documentation pages.</font></li>
 <br>&nbsp;
 <ul>
 <li>
-<a href="FirstBitGA.html#operators">Bit</a> The crossover <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eobincrossover.html">eoBinCrossover</a></font></font></b>
-is the standard <font color="#CC33CC">1-point crossover</font>, and <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eobinmutation.html">eoBinMutation</a></font></font></b>
+<a href="FirstBitGA.html#operators">Bit</a> The crossover <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eobincrossover.html">eo1PtBitXover</a></font></font></b>
+is the standard <font color="#CC33CC">1-point crossover</font>, and <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eobinmutation.html">eoBitMutation</a></font></font></b>
 is the standard <font color="#FF6600">bit-flip mutation</font> that randomly
 flips all bits with a given probability <b><tt>P_MUT_PER_BIT.</tt></b></li>
 

@@ -41,7 +41,7 @@ Simply calls a crossover for the object variables,
 */
 
 template <class EOT>
-class eoEsStdevXOver : public eoQuadraticOp<EOT>
+class eoEsStdevXOver : public eoQuadOp<EOT>
 {
 public :
   eoEsStdevXOver(eoGenericQuadOp<vector<double> > & _objectXOver, 

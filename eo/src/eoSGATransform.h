@@ -48,7 +48,7 @@ template<class EOT> class eoSGATransform : public eoTransform<EOT>
  public:
     
   /// Default constructor.
-  eoSGATransform(eoQuadraticOp<EOT>& _cross, double _cProba, 
+  eoSGATransform(eoQuadOp<EOT>& _cross, double _cProba, 
 		 eoMonOp<EOT>& _mutate, double _mProba)
     : cross(_cross),
       crossoverProba(_cProba),
@@ -84,7 +84,7 @@ template<class EOT> class eoSGATransform : public eoTransform<EOT>
   };
     
  private:
-  eoQuadraticOp<EOT>& cross;
+  eoQuadOp<EOT>& cross;
   double crossoverProba;
   eoMonOp<EOT>& mutate;
   double mutationProba;
@@ -102,7 +102,7 @@ template<class EOT> class eoDynSGATransform : public eoTransform<EOT>
  public:
     
   /// Default constructor - receives values
-  eoDynSGATransform(eoQuadraticOp<EOT>& _cross, double _cProba, 
+  eoDynSGATransform(eoQuadOp<EOT>& _cross, double _cProba, 
 		 eoMonOp<EOT>& _mutate, double _mProba)
     : cross(_cross),
       crossoverProbaHolder(_cProba), crossoverProba(crossoverProbaHolder),
@@ -112,7 +112,7 @@ template<class EOT> class eoDynSGATransform : public eoTransform<EOT>
   /// This constructor receives pointers
   //  these will usually be some eoValueParam<double>.value()
   //  hence the ...Holder data will bever be used in this case
-  eoDynSGATransform(eoQuadraticOp<EOT>& _cross, double* _cProbaRef, 
+  eoDynSGATransform(eoQuadOp<EOT>& _cross, double* _cProbaRef, 
 		 eoMonOp<EOT>& _mutate, double* _mProbaRef)
     : cross(_cross),
       crossoverProbaHolder(0), crossoverProba(*_cProbaRef),
@@ -154,7 +154,7 @@ private:
   // difference with eoSGATransform: the operator probabilities 
   // they can be passed by reference or by value.
   // hence we need here to use a reference, and to eventually store a value
-  eoQuadraticOp<EOT>& cross;
+  eoQuadOp<EOT>& cross;
   double crossoverProbaHolder;	// the value, used only if ctor gets a value
   double& crossoverProba;       // the reference, to be used in operator()
   eoMonOp<EOT>& mutate;

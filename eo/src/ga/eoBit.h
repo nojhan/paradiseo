@@ -1,5 +1,5 @@
 /*
-   eoBin.h
+   eoBit.h
    (c) GeNeura Team 1998, Marc Schoenauer 2000
 
     This library is free software; you can redistribute it and/or
@@ -24,10 +24,14 @@
    Added the calls to base class I/O routines that print the fitness
    Left printing/reading of the size of the bitstring, 
        for backward compatibility, and as it is a general practice in EO
+
+   MS, Feb. 7, 2001
+   replaced all ...Bin... names with ...Bit... names - for bitstring
+   as it was ambiguous with bin...ary things
 */
 
-#ifndef eoBin_h
-#define eoBin_h
+#ifndef eoBit_h
+#define eoBit_h
 
 //-----------------------------------------------------------------------------
 
@@ -43,12 +47,12 @@
   Various functions for a bitstring representation
 */
 
-/** eoBin: implementation of binary chromosome.                               
-\class eoBin eoBin.h ga/eoBin.h
+/** eoBit: implementation of bitstring chromosome.                               
+\class eoBit eoBit.h ga/eoBit.h
 \ingroup bitstring
   * based on STL's vector<bool> specialization.                                 
 */
-template <class FitT> class eoBin: public eoFixedLength<FitT, bool>
+template <class FitT> class eoBit: public eoFixedLength<FitT, bool>
 {
  public:
 
@@ -56,13 +60,13 @@ template <class FitT> class eoBin: public eoFixedLength<FitT, bool>
    * (Default) Constructor.
    * @param size Size of the binary string.
    */
-  eoBin(unsigned size = 0, bool value = false): 
+  eoBit(unsigned size = 0, bool value = false): 
     eoFixedLength<FitT, bool>(size, value) {}
       
   /// My class name.
   string className() const 
     { 
-      return "eoBin"; 
+      return "eoBit"; 
     }
   
   /**
@@ -99,4 +103,4 @@ template <class FitT> class eoBin: public eoFixedLength<FitT, bool>
 
 //-----------------------------------------------------------------------------
 
-#endif //eoBin_h
+#endif //eoBit_h

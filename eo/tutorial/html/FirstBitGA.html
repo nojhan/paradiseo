@@ -2,7 +2,7 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdk i686) [Netscape]">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en] (X11; U; Linux 2.2.17-21mdksmp i686) [Netscape]">
    <title>FirstBitGA.html</title>
 <!-- Changed by: Marc Schoenauer, 29-Nov-2000 -->
 </head>
@@ -15,7 +15,7 @@ documentation</a></font>
 <hr WIDTH="100%"><!-- -------------- End of header ------------------ --><!-- ----------------------------------------------- -->
 <center>
 <h1>
-<font color="#FF0000">FirstBitGA.html</font></h1></center>
+<font color="#FF0000">Code for FirstBitGA</font></h1></center>
 Click on the figure to see the corresponding code.
 <br>In the code, the <a href="eoTutorial.html#colors">colors are meaningfull</a>
 <br>The actual code is in boldface and the comment in normal face.
@@ -44,12 +44,10 @@ istrstream</font></tt>
 <a NAME="representation"></a>
 <table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFFFCC" NOSAVE >
 <tr>
-<td><tt><font color="#999900">//-----------------------------------------------------------------------------</font></tt>
-<br><tt><font color="#999900">// Include the corresponding file</font></tt>
-<br><tt><font color="#999900"><b>#include &lt;ga.h></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-// bitstring representation &amp; operators</font></tt>
+<td><b><tt><font color="#999900">#include &lt;ga.h></font></tt></b><br>
+<tt><font color="#999900">//-----------------------------------------------------------------------------</font></tt>
 <br><tt><font color="#999900">// define your individuals</font></tt>
-<br><tt><font color="#999900"><b>typedef eoBin&lt;double> Indi;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><tt><font color="#999900"><b>typedef eoBit&lt;double> Indi;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </b>// A bitstring with fitness double</font></tt></td>
 </tr>
 </table>
@@ -216,8 +214,8 @@ is needed</font></tt></td>
 <a NAME="crossover"></a>
 <table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCFF" NOSAVE >
 <tr>
-<td><tt><font color="#993399"><b>&nbsp;</b>// 1-point mutation for bitstring</font></tt>
-<br><b><tt><font color="#993399">&nbsp;eoBinCrossover&lt;Indi> xover;</font></tt></b></td>
+<td><tt><font color="#993399"><b>&nbsp;</b>// 1-point crossover for bitstring</font></tt>
+<br><b><tt><font color="#993399">&nbsp;eo1PtBitXover&lt;Indi> xover;</font></tt></b></td>
 </tr>
 </table>
 <a NAME="mutation"></a>
@@ -226,10 +224,10 @@ is needed</font></tt></td>
 <td>
 <br><tt><font color="#993399"><b>&nbsp;</b>// standard bit-flip mutation
 for bitstring</font></tt>
-<br><b><tt><font color="#993399">&nbsp;eoBinMutation&lt;Indi>&nbsp; mutation(P_MUT_PER_BIT);</font></tt></b></td>
+<br><b><tt><font color="#993399">&nbsp;eoBitMutation&lt;Indi>&nbsp; mutation(P_MUT_PER_BIT);</font></tt></b></td>
 </tr>
 </table>
-<a NAME="checkpoint"></a>
+<a NAME="stop"></a>
 <table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCFFFF" NOSAVE >
 <tr>
 <td><tt><font color="#3366FF"><b>&nbsp;</b>//////////////////////////////////////</font></tt>
