@@ -159,6 +159,10 @@ SOURCE=..\src\utils\eoRNG.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\utils\eoStat.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\utils\eoState.h
 # End Source File
 # Begin Source File

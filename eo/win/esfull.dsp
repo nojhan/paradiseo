@@ -75,7 +75,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 eo.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept
 
 !ENDIF 
 
@@ -89,15 +89,6 @@ LINK32=link.exe
 # Begin Source File
 
 SOURCE="..\test\t-eoESFull.cpp"
-
-!IF  "$(CFG)" == "esfull - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "esfull - Win32 Debug"
-
-# PROP Exclude_From_Build 1
-
-!ENDIF 
-
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -105,15 +96,35 @@ SOURCE="..\test\t-eoESFull.cpp"
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=..\src\es\eoESFullChrom.h
+SOURCE=..\src\es\eoEsBase.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\es\eoESFullMut.h
+SOURCE=..\src\es\eoEsChromInit.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\es\eoESInit.h
+SOURCE=..\src\es\eoEsFull.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\es\eoEsMutate.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\es\eoEsMutationInit.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\es\eoEsObjectiveBounds.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\es\eoEsSimple.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\es\eoEsStdev.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"
