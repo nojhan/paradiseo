@@ -9,11 +9,12 @@ autom4te.cache
 build*
 confdefs.h
 config.cache
-config.cache
+config.guess
 config.h
 config.h.in
 config.log
 config.status
+config.sub
 configure
 depcomp
 install-sh

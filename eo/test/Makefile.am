@@ -9,27 +9,25 @@ LIBEOUTILS			= $(top_builddir)/src/utils/libeoutils.a
 LIBES				= $(top_builddir)/src/es/libes.a
 LIBGA				= $(top_builddir)/src/ga/libga.a
 
-AM_CXXFLAGS			= -g -Wall -I$(top_srcdir)/src 
-
-CLEANFILES 			= monitor.csv t-eoRandom.out
-
-DEPS	 			= $(LIBGA) $(LIBES) $(LIBEO) $(LIBEOUTILS)
-
-LIBS	 			= $(DEPS)
-
-
-
-
 # PLEASE don't break the line (see create_batch.sh)
 check_PROGRAMS = t-eoParetoFitness t-eoPareto t-eofitness t-eoRandom t-eobin t-eoVirus t-MGE t-MGE1bit t-MGE-control t-eoStateAndParser t-eoCheckpointing t-eoSSGA t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoReal t-eoVector t-eoESAll t-eoPBIL t-eoFitnessAssembled t-eoFitnessAssembledEA t-eoRoulette t-eoSharing
 
-noinst_headers	= binary_value.h real_value.h RoyalRoad.h
+
+TESTS				= $(check_PROGRAMS) \
+				run_tests # This script can be used to check command-line arguments
+
+noinst_HEADERS			= binary_value.h real_value.h RoyalRoad.h
 
 
-# The run_tests script can be used to check various arguments 
-TESTS=$(check_PROGRAMS) run_tests
+AM_CXXFLAGS			= -g -Wall -I$(top_srcdir)/src 
+DEPS	 			= $(LIBGA) $(LIBES) $(LIBEO) $(LIBEOUTILS)
+LIBS	 			= $(DEPS)
 
+CLEANFILES 			= monitor.csv t-eoRandom.out
+EXTRA_DIST			= run_tests
 
+# extra flags for specific targets
+t_eoVirus_CXXFLAGS		= -I$(top_srcdir)/contrib
 
 # Specify source-files,
 # otherwise automake/make looks for C sources
@@ -61,6 +59,3 @@ t_eoPBIL_SOURCES 		= t-eoPBIL.cpp
 t_eoFitnessAssembled_SOURCES 	= t-eoFitnessAssembled.cpp 
 t_eoRoulette_SOURCES 		= t-eoRoulette.cpp
 t_eoSharing_SOURCES 		= t-eoSharing.cpp
-
-# extra flags for specific targets
-t_eoVirus_CXXFLAGS		= -I$(top_srcdir)/contrib

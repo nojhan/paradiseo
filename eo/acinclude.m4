@@ -1,3 +1,26 @@
+# AC_PARADISEO()
+#
+# Compile ParadisEO if user requests it.
+AC_DEFUN([AC_PARADISEO],[dnl
+  AC_ARG_ENABLE([paradiseo],[  --enable-paradiseo            build ParadisEO (default=no)],
+    [ case "${enableval}" in
+      yes) paradiseo=true ;;
+      no) paradiseo=false ;;
+      *) AC_MSG_ERROR(bad value ${enableval} for paradiseo option) ;;
+    esac],
+    [paradiseo=false])
+  if test "$paradiseo" = "true"; then
+    AC_DEFINE([PARADISEO], 1, [ParadisEO flag])
+    AM_CONDITIONAL([USE_PARADISEO], true)
+    AC_CHECK_PROG([MPICXX], [mpiCC], [], AC_MSG_ERROR([Need mpiCC to build PAradisEO.]))
+    AC_CHECK_PROG([MPIRUN], [mpirun], [], AC_MSG_ERROR([Need mpirun to use PAradisEO.]))
+  else
+    AM_CONDITIONAL([USE_PARADISEO], false)
+  fi
+])
+
+
+
 dnl Available from the GNU Autoconf Macro Archive at:
 dnl http://www.gnu.org/software/ac-archive/htmldoc/ac_cxx_have_sstream.html
 dnl
@@ -24,6 +47,8 @@ if test "$ac_cv_cxx_have_sstream" = yes; then
   AC_DEFINE(HAVE_SSTREAM,,[define if the compiler has stringstream])
 fi
 ])
+
+
 dnl Available from the GNU Autoconf Macro Archive at:
 dnl http://www.gnu.org/software/ac-archive/htmldoc/ac_cxx_namespaces.html
 dnl

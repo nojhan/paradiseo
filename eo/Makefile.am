@@ -4,28 +4,18 @@
 ##
 ###############################################################################
 
-SUBDIRS = src test doc app tutorial contrib win
+SUBDIRS 	= src test doc app tutorial contrib win
 
 
 #Directory for documents
-DOCDIR = ~/public_html/eodocs
+DOCDIR 		= ~/public_html/eodocs
 
 #Directory for indices -- not useful for the user
-IDXDIR = ~/index
+IDXDIR 		= ~/index
 
 
-# special targets
-app:
-	cd app; $(MAKE) all; cd ..
+dist-hook:
+		$(MAKE) doc
 
-# so that make doc always compiles the doc ...
-doc:    doc/eo.cfg
-	cd doc; $(MAKE) doc; touch eo.cfg; cd ..
-
-
-
-
-###############################################################################
-
-#lib:	
-#	cd src; $(MAKE) all; cd ..
+doc:    	$(srcdir)/doc/eo.cfg
+		cd doc && $(MAKE) doc && cd ..

@@ -5,10 +5,14 @@
 ###############################################################################
 
 
-# EXTRA_DIST = eo.cfg foot.html html/* latex/*
+EXTRA_DIST 		= eo.cfg foot.html \
+			$(srcdir)/html/* \
+			$(srcdir)/latex/* \
+			$(srcdir)/man/*
 
-doc:			eo.cfg
-			doxygen eo.cfg
+
+doc:
+			cd $(srcdir) && $(DOXYGEN) eo.cfg && touch eo.cfg
 
 clean-local:
-			rm -rf html latex man
+			cd $(srcdir) && rm -rf html latex man && touch eo.cfg
