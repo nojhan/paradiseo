@@ -329,13 +329,6 @@ void main_function(int argc, char **argv)
 // A main that catches the exceptions
 int main(int argc, char **argv)
 {
-#ifdef _MSC_VER
-    int flag = _CrtSetDbgFlag(_CRTDBG_LEAK_CHECK_DF);
-     flag |= _CRTDBG_LEAK_CHECK_DF;
-    _CrtSetDbgFlag(flag);
-//   _CrtSetBreakAlloc(100);
-#endif
-
     try
     {
         main_function(argc, argv);
