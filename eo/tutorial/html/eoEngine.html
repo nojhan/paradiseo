@@ -159,9 +159,12 @@ paradigm).
 <p><b><font color="#FF0000">Note</font></b>: some procedures for selecting
 a single individual require some pre-processing of the whole population
 that takes place before any selection, and will be repeated identically
-for every individual. The encapsulation of an&nbsp; into an&nbsp; allows
-to call such technical processing only once through the use of method setup
-of class . This method does nothing by default, but is mandatory
+for every individual. The encapsulation of an <font color="#009900">eoSelectOne</font>
+into an <font color="#009900">eoSelectMany</font> allows to call such technical
+processing only once through a call to the setup method of class <font color="#009900">eoSelectOne</font>.
+This method does nothing by default, but is implemented for instance in
+eoProportionalSelect (the roulette wheel-selection) to compute only once
+the total of the fitnesses of all individuals in the population.
 <br>
 <hr WIDTH="50%">
 <br><b><font color="#000099">eoSelect: </font><font color="#FF0000">Other
@@ -241,6 +244,8 @@ and you can probably guess what each of them actually does :-)</li>
 
 <br>&nbsp;
 <p>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
 <p>Available <font color="#FF6600">instances of eoMergeReduce</font> replacement
 include
 <ul>
@@ -310,7 +315,9 @@ size. Available instances of <b><tt><font color="#009900">eoSurviveAndDieReplace
 are limited todayto the <b><tt><font color="#009900">eoDeterministicSaDReplacement</font></tt></b>,
 the&nbsp; that uses a deterministic MergeReduce.</li>
 
-<p><br><b><font color="#FF0000">Note</font></b>: The basic use (and initial
+<br>&nbsp;
+<p>&nbsp;
+<p><b><font color="#FF0000">Note</font></b>: The basic use (and initial
 motivation) for <b><tt><font color="#009900">eoSurviveAndDie</font></tt></b>
 takes 2 arguments, an eoMergeReduce and a number of surviving parents.
 It starts by copying the best parents to the new populations, then merges
