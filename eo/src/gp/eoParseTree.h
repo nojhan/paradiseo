@@ -83,22 +83,27 @@ class eoGpDepthInitializer : public eoInit< eoParseTree<FType, Node> >
 	eoGpDepthInitializer(
         unsigned _max_depth,
 		const vector<Node>& _initializor,
-        bool _grow = true) 
+        bool _grow = true)
             :
             eoInit<EoType>(),
 			max_depth(_max_depth),
 			initializor(_initializor),
-			grow(_grow) 
-    {}
+			grow(_grow)
+    {
+      if(initializor.empty())
+      {
+        throw logic_error("eoGpDepthInitializer: uhm, wouldn't you rather give a non-empty set of Nodes?");
+      }
+    }
 
 	virtual string className() const { return "eoDepthInitializer"; };
 
     void operator()(EoType& _tree)
 	{
         list<Node> sequence;
-        
+
         generate(sequence, max_depth);
-        
+
         parse_tree<Node> tmp(sequence.begin(), sequence.end());
         _tree.swap(tmp);
 	}
