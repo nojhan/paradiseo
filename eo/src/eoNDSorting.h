@@ -102,7 +102,7 @@ private :
           tmp_pop[i].index = i;
         }
         
-	sort(tmp_pop.begin(), tmp_pop.end(), std::greater<DummyEO>());
+	std::sort(tmp_pop.begin(), tmp_pop.end(), std::greater<DummyEO>());
 	
         for (i = 0; i < _pop.size(); ++i)
         {
