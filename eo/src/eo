@@ -42,6 +42,8 @@
 
 #include <eoLottery.h>
 
+#include <eoBreeder.h>
+
 #include <eoInsertion.h>
 #include <eoInclusion.h>
 
