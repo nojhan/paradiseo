@@ -28,14 +28,14 @@
 #include <eoInit.h>
 
 /** 
-    Combined INIT: a proportional recombination of eoInit
+    Combined INIT: a proportional recombination of eoInit objects
 */
 
 template< class EOT>
 class eoCombinedInit: public eoInit<EOT> {
 public:
 
-  /// Ctor, make sure that at least on continuator is present
+  /** Ctor, make sure that at least one eoInit is present */
   eoCombinedInit( eoInit<EOT>& _init, double _rate)
     : eoInit<EOT> ()
   {
@@ -43,6 +43,10 @@ public:
     rates.push_back(_rate);
   }
 
+  /** The usual method to add objects to the combination
+   * note the _verbose parameter, that allows to print what's
+   * inside the combination with scaled rates
+   */
   void add(eoInit<EOT> & _init, double _rate, bool _verbose=false)
   {
     initializers.push_back(&_init);
@@ -52,7 +56,7 @@ public:
       printOn(std::cout);
   }
 
-  // outputs the operators and percentages
+  /** outputs the operators and percentages */
   virtual void printOn(std::ostream & _os)
   {
     double total = 0;
@@ -65,7 +69,7 @@ public:
   }
 
   /** Performs the init: chooses among all initializers
-   * using some roulette wheel choice
+   * using roulette wheel on the rates
    */
   virtual void operator() ( EOT & _eo )
   {
