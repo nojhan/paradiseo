@@ -4,12 +4,11 @@
 ##
 ###############################################################################
 
-###############################################################################
 
-EXTRA_DIST = eo.cfg foot.html html/* latex/*
+# EXTRA_DIST = eo.cfg foot.html html/* latex/*
 
-doc:	eo.cfg
-	doxygen eo.cfg
+doc:			eo.cfg
+			doxygen eo.cfg
 
-clean:
-	rm -rf html latex man
+clean-local:
+			rm -rf html latex man

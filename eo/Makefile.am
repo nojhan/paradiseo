@@ -4,16 +4,14 @@
 ##
 ###############################################################################
 
-SUBDIRS = src test app tutorial
+SUBDIRS = src test doc app tutorial contrib win
+
 
 #Directory for documents
 DOCDIR = ~/public_html/eodocs
 
 #Directory for indices -- not useful for the user
 IDXDIR = ~/index
-
-# EXTRA_DIST=LICENSE 
-
 
 
 # special targets
@@ -24,10 +22,6 @@ app:
 doc:    doc/eo.cfg
 	cd doc; $(MAKE) doc; touch eo.cfg; cd ..
 
-tutorial:
-	cd $(srcdir)/tutorial; $(MAKE) all; cd ..
-
-
 
 
 
@@ -35,12 +29,3 @@ tutorial:
 
 #lib:	
 #	cd src; $(MAKE) all; cd ..
-
-
-#all:
-#	for i in $(SUBDIRS); do cd $$i && $(MAKE) all; cd ..; done
-
-#clean:
-#	for i in $(SUBDIRS); do cd $$i && $(MAKE) clean; cd ..; done
-
-###############################################################################

@@ -4,9 +4,6 @@
 ##
 ###############################################################################
 
-AM_CXXFLAGS		= -I$(top_srcdir)/src
-
-
 lib_LIBRARIES 		= libes.a
 
 libes_a_SOURCES 	= make_algo_scalar_es.cpp \
@@ -24,9 +21,7 @@ libes_a_SOURCES 	= make_algo_scalar_es.cpp \
 			make_run_es.cpp \
 			make_run_real.cpp
 
-libeoincdir 		= $(includedir)/eo/es
-
-libeoinc_HEADERS 	= eoEsChromInit.h \
+pkginclude_HEADERS 	= eoEsChromInit.h \
 			eoEsFull.h \
 			eoEsGlobalXover.h \
 			eoEsMutate.h \

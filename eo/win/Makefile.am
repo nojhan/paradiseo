@@ -1,4 +1,1 @@
-
-EXTRA_DIST=eo.dsw eo.dsp
-
-
+EXTRA_DIST		= eo.dsw eo.dsp

@@ -39,6 +39,11 @@ AC_CHECK_FUNCS(select)
 
 dnl create makefiles
 AC_OUTPUT(Makefile \
+          app/Makefile \
+          app/mastermind/Makefile \
+          app/gpsymreg/Makefile \
+          contrib/Makefile \
+          doc/Makefile \
           src/Makefile \
           src/do/Makefile \
           src/es/Makefile \
@@ -46,9 +51,6 @@ AC_OUTPUT(Makefile \
           src/ga/Makefile \
           src/other/Makefile \
           src/utils/Makefile \
-          contrib/Makefile \
-          doc/Makefile \
-          win/Makefile \
           test/Makefile \
           tutorial/Makefile \
           tutorial/Lesson1/Makefile \
@@ -56,6 +58,4 @@ AC_OUTPUT(Makefile \
           tutorial/Lesson3/Makefile \
           tutorial/Lesson4/Makefile \
           tutorial/Lesson5/Makefile \
-          app/Makefile \
-          app/mastermind/Makefile \
-          app/gpsymreg/Makefile)
+          win/Makefile)
