@@ -148,6 +148,21 @@ Package=<4>
     Begin Project Dependency
     Project_Dep_Name tut_4_es
     End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name tut_para1_full
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name tut_para1_ring1
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name tut_para1_ring2
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name tut_para2_master
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name tut_para2_slave
+    End Project Dependency
 }}}
 
 ###############################################################################
@@ -608,6 +623,66 @@ Package=<4>
 ###############################################################################
 
 Project: "tut_4_es"=.\tut_4_es.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "tut_para1_full"=.\tut_para1_full.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "tut_para1_ring1"=.\tut_para1_ring1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "tut_para1_ring2"=.\tut_para1_ring2.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "tut_para2_master"=.\tut_para2_master.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "tut_para2_slave"=.\tut_para2_slave.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
