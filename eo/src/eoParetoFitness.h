@@ -26,6 +26,7 @@
 #ifndef _eoParetoFitness_h
 #define _eoParetoFitness_h
 
+#include <math.h>
 #include <vector>
 
 /**
