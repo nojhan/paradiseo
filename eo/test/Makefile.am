@@ -17,7 +17,7 @@ CXXFLAGS = -g -Wall
 
 # PLEASE don't break the line (see create_batch.sh)
 
-check_PROGRAMS = t-eoParetoFitness t-eoPareto t-eofitness t-eoRandom t-eobin t-eoVirus t-MGE t-MGE1bit t-MGE-control t-eoStateAndParser t-eoCheckpointing t-eoSSGA t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoReal t-eoVector t-eoESAll t-eoPBIL t-eoFitnessAssembled t-eoFitnessAssembledEA
+check_PROGRAMS = t-eoParetoFitness t-eoPareto t-eofitness t-eoRandom t-eobin t-eoVirus t-MGE t-MGE1bit t-MGE-control t-eoStateAndParser t-eoCheckpointing t-eoSSGA t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoReal t-eoVector t-eoESAll t-eoPBIL t-eoFitnessAssembled t-eoFitnessAssembledEA t-eoRoulette
 
 #The run_tests script can be used to check various arguments 
 TESTS=$(check_PROGRAMS) run_tests
@@ -189,5 +189,12 @@ t_eoFitnessAssembledEA_SOURCES = t-eoFitnessAssembledEA.cpp
 t_eoFitnessAssembledEA_DEPENDENCIES = $(DEPS) $(top_builddir)/src/es/libes.a
 t_eoFitnessAssembledEA_LDFLAGS = -lm
 t_eoFitnessAssembledEA_LDADD = $(top_builddir)/src/es/libes.a $(LDADDS)
+
+###############################################################################
+
+t_eoRoulette_SOURCES = t-eoRoulette.cpp
+t_eoRoulette_DEPENDENCIES = $(DEPS) 
+t_eoRoulette_LDFLAGS = -lm
+t_eoRoulette_LDADD = $(LDADDS)
 
 ###############################################################################
