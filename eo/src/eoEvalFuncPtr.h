@@ -53,7 +53,7 @@ struct eoEvalFuncPtr: public eoEvalFunc<EOT> {
   };
     
   private:
-    EOFitT (* evalFunc )( EOT& );
+    EOFitT (* evalFunc )( const EOT& );
 };
 
 #endif

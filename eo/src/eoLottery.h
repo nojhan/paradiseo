@@ -30,63 +30,63 @@
 
 #include <functional>  // 
 #include <numeric>     // accumulate
-#include "eoPopOps.h"
-#include "eoRNG.h"
+#include "selectors.h"
+#include <eo>          // eoPop eoSelect MINFLOAT
 
 //-----------------------------------------------------------------------------
-/// eoLottery: a selection method.
-/// requires EOT::Fitness to be float castable
+/** eoLottery: a selection method. Puts into the output a group of individuals 
+    selected using lottery; individuals with higher probability will have more
+    chances of being selected.
+    Requires EOT::Fitness to be float castable
+*/
 //-----------------------------------------------------------------------------
 
 template<class EOT> class eoLottery: public eoBinPopOp<EOT>
 {
  public:
   /// (Default) Constructor.
-  eoLottery(const double & _rate = 1.0): rate(_rate) {}
+  eoLottery(const float& _rate = 1.0): eoBinPopOp<EOT>(), rate(_rate) 
+  {
+      if (minimizing_fitness<EOT>())
+      {
+          eoMinimizingFitnessException up(*this);
+          throw up; // :-)
+      }
+  }
   
-    /** actually selects individuals from pop and put them into breeders
-     *  until breeders has the right size: rate*pop.size()
-     *  BUT what happens if breeders is already too big?
-     */
+  /** actually selects individuals from pop and pushes them back them into breeders
+   *  until breeders has the right size: rate*pop.size()
+   *  BUT what happens if breeders is already too big?
+   * Too big for what?
+   */
   void operator()( eoPop<EOT>& pop, eoPop<EOT>& breeders) 
     {
-      // scores of chromosomes
-      vector<double> score(pop.size());
-
-      // calculates total scores for chromosomes
-      double total = 0;
-      for (unsigned i = 0; i < pop.size(); i++) {
-	score[i] = static_cast<double>(pop[i].fitness()); 
-	total += score[i];
-      }
-
-      // number of offspring needed
-      int target = (int)rint(rate * pop.size());
+      int target = (int)(rate * pop.size());
 
       // test of consistency
       if (breeders.size() >= target) {
 	  throw("Problem in eoLottery: already too many offspring");
       }
 
+      double total;
+      
+      try
+      {
+          total = sum_fitness(pop);
+      }
+      catch (eoNegativeFitnessException&)
+      { // say where it occured...
+          throw eoNegativeFitnessException(*this);
+      }
+
       // selection of chromosomes
-      while (breeders.size() < target) {
-	  unsigned indloc = rng.roulette_wheel(score, total);
-	  breeders.push_back(pop[indloc]);
+      while (breeders.size() < target) 
+      {
+	    breeders.push_back(roulette_wheel(pop, total));
       }
     }
 
-    /// accessor to private rate
-    double Rate() {return rate;}
-
-  /** @name Methods from eoObject	*/
-  //@{
-  /** readFrom and printOn inherited from eoMerge */
-  
-  /** Inherited from eoObject. Returns the class name.
-      @see eoObject
-  */
-  virtual string className() const {return "eoLottery";};
-  //@}
+  double Rate(void) const { return rate; }
   
  private:
   double rate;  // selection rate

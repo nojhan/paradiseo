@@ -41,11 +41,11 @@
 and interchanges it
 */
 template <class EOT>
-class eoXOver2: public eoBinOp<EOT> {
+class eoXOver2: public eoQuadraticOp<EOT> {
 public:
 	///
 	eoXOver2() 
-	  : eoBinOp< EOT >(){};
+	  : eoQuadraticOp< EOT >(){};
 
 	///
 	virtual ~eoXOver2() {};

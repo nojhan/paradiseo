@@ -44,7 +44,7 @@ template <class EOT> class eoStochTournament: public eoSelectOne<EOT>
  public:
 
   ///
-  eoStochTournament(float _Trate = 1.0 ):eoSelectOne(), Trate(_Trate) {
+  eoStochTournament(float _Trate = 1.0 ):eoSelectOne<EOT>(), Trate(_Trate) {
     // consistency check
     if (Trate < 0.5) {
       cerr << "Warning, Tournament rate should be > 0.5\nAdjusted to 0.55\n";
@@ -54,19 +54,9 @@ template <class EOT> class eoStochTournament: public eoSelectOne<EOT>
   
   /** DANGER: if you want to be able to minimize as well as maximizem
       DON'T cast the fitness to a float, use the EOT comparator! */
-  virtual const EOT& operator()(const eoPop<EOT>& pop) {
-    unsigned i1 = rng.random(pop.size()),
-      i2 = rng.random(pop.size());
-
-    bool ok = ( rng.flip(Trate) );
-    if (pop[i1] < pop[ i2 ] ) {
-      if (ok) return pop[ i2 ];
-      else    return pop[ i1 ];
-    }
-    else {
-      if (ok) return pop[ i1 ];
-      else    return pop[ i2 ];
-    }
+  virtual const EOT& operator()(const eoPop<EOT>& pop) 
+  {
+      return stochastic_tournament(pop, Trate)();
   }
   
 private:

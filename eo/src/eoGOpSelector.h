@@ -3,7 +3,9 @@
     -----------------------------------------------------------------------------
     eoGOpSelector.h
       Base class for generalized (n-inputs, n-outputs) operator selectors.
-      Includes code and variables that contain operators and rates
+      Includes code and variables that contain operators and rates.
+      Also included eoProportionalGOpSelector and eoSequentialGOpSelector, that offer
+      a few concrete implementations.
 
     (c) Maarten Keijzer, GeNeura Team 1998, 1999, 2000
  
@@ -29,21 +31,15 @@
 
 //-----------------------------------------------------------------------------
 
-#include <vector>          // vector
-#include <iterator>
-#include <eoUniform.h>     // eoUniform
-#include <eoGeneralOp.h>          // eoOp, eoMonOp, eoBinOp
-#include <eoPop.h>         // eoPop
-#include <eoPopOps.h>      // eoTransform
-#include <eoOpSelector.h>  // eoOpSelector
 #include <list>
+#include "eoOpSelector.h"
+#include "eoWrappedOps.h" // for eoCombinedOp
 #include "eoRNG.h"
 
 using namespace std;
 
 /** Base class for alternative selectors, which use the generalized operator
-    interface */
-
+    interface. eoGOpBreeders expects this class */
 template<class EOT>
 class eoGOpSelector: public eoOpSelector<EOT>, public vector<eoGeneralOp<EOT>*>
 {
@@ -52,46 +48,14 @@ public:
   /// Dtor
   virtual ~eoGOpSelector() {
     for ( list< eoGeneralOp<EOT>* >::iterator i= ownOpList.begin();
-	  i != ownOpList.begin(); i ++ ) {
+	  i != ownOpList.end(); i++ ) {
       delete *i;
     }
   }
   
   /// Add any kind of operator to the operator mix, with an argument
-  virtual ID addOp( eoOp<EOT>& _op, float _arg ) {
-    eoGeneralOp<EOT>* op = dynamic_cast<eoGeneralOp<EOT>*>(&_op);
-
-    // if it's not a general op, it's a "old" op; create a wrapped op from it
-    // and keep it on a list to delete them afterwards
-    // will use auto_ptr when they're readily available
-    if (op == 0) {
-	switch(_op.readArity())
-	  {
-	  case unary :
-	    op=  new eoWrappedMonOp<EOT>(static_cast<eoMonOp<EOT>&>(_op));
-	    break;
-	  case binary :
-	    op =  new eoWrappedBinOp<EOT>(static_cast<eoBinOp<EOT>&>(_op));
-	    break;
-	  }
-	ownOpList.push_back( op );
-      }
-
-    iterator result = find(begin(), end(), (eoGeneralOp<EOT>*) 0); // search for nullpointer
-	  
-    if (result == end())
-      {
-	push_back(op);
-	rates.push_back(_arg);
-	return size();
-      }
-    // else
-    
-    *result = op;
-    ID id = result - begin();
-    rates[id] = _arg;
-    return id;
-  }
+  virtual ID addOp( eoOp<EOT>& _op, float _arg ); 
+  // implementation can be found below
   
   /** Retrieve the operator using its integer handle
       @param _id The id number. Should be a valid id, or an exception 
@@ -104,11 +68,8 @@ public:
   }
   
   ///
-  virtual void deleteOp( ID _id )
-  {
-	  operator[](_id) = 0; // TODO, check oplist and clear it there too.
-	  rates[_id] = 0.0;
-  }
+  virtual void deleteOp( ID _id );
+  // implemented below
   
   ///
   virtual eoOp<EOT>* Op()
@@ -131,9 +92,80 @@ public:
   }
 
 
-protected :
+  const vector<float>& getRates(void) const { return rates; }
+
+private :
   vector<float> rates;
   list< eoGeneralOp<EOT>* > ownOpList;
 };
 
+/* Implementation of longish functions defined above */
+
+template <class EOT>
+inline eoOpSelector<EOT>::ID eoGOpSelector<EOT>::addOp( eoOp<EOT>& _op, float _arg )
+{
+
+    eoGeneralOp<EOT>* op; 
+
+    if (_op.getType() == eoOp<EOT>::general) 
+    {
+        op = static_cast<eoGeneralOp<EOT>*>(&_op);
+    }
+    else
+    {
+    // if it's not a general op, it's a "old" op; create a wrapped op from it
+    // and keep it on a list to delete them afterwards
+    // will use auto_ptr when they're readily available
+
+	switch(_op.getType())
+	  {
+    case eoOp<EOT>::unary :
+	    op=  new eoWrappedMonOp<EOT>(static_cast<eoMonOp<EOT>&>(_op));
+	    break;
+    case eoOp<EOT>::binary :
+	    op =  new eoWrappedBinOp<EOT>(static_cast<eoBinOp<EOT>&>(_op));
+    case eoOp<EOT>::quadratic :
+         op =  new eoWrappedQuadraticOp<EOT>(static_cast<eoQuadraticOp<EOT>&>(_op));
+        break;
+	  }
+	ownOpList.push_back( op );
+      }
+
+    // Now 'op' is a general operator, either because '_op' was one or 
+    // because we wrapped it in an appropriate wrapper in the code above.
+
+    iterator result = find(begin(), end(), (eoGeneralOp<EOT>*) 0); // search for nullpointer
+	  
+    if (result == end())
+      {
+	push_back(op);
+	rates.push_back(_arg);
+	return size();
+      }
+    // else
+    
+    *result = op;
+    ID id = result - begin();
+    rates[id] = _arg;
+    return id;
+}
+
+template <class EOT>
+inline void  eoGOpSelector<EOT>::deleteOp( ID _id )
+{
+    eoGeneralOp<EOT>* op = operator[](_id);
+
+    operator[](_id) = 0; 
+    rates[_id] = 0.0;
+    
+    // check oplist and clear it there too.
+  
+    list< eoGeneralOp<EOT>* >::iterator it = find(ownOpList.begin(), ownOpList.end(), op);
+
+    if(it != ownOpList.end())
+    {
+        ownOpList.erase(it);
+    }
+}
+  
 #endif eoGOpSelector_h

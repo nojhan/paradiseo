@@ -46,13 +46,13 @@
 //-----------------------------------------------------------------------------
 
 template<class EOT> 
-class eoUniformXOver: public eoBinOp< EOT >
+class eoUniformXOver: public eoQuadraticOp< EOT >
 {
  public:
 
   ///
   eoUniformXOver( float _rate = 0.5 ): 
-    eoBinOp< EOT > (  ), rate( _rate ) {
+    eoQuadraticOp< EOT > (  ), rate( _rate ) {
     if (rate < 0 || rate > 1)
       runtime_error("UxOver --> invalid rate");
   }

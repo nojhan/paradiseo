@@ -35,6 +35,9 @@
 #include <eoPopOps.h>      // eoTransform
 #include <eoOpSelector.h>  // eoOpSelector
 
+#include "eoRandomIndiSelector.h"
+#include "eoBackInserter.h"
+
 using namespace std;
 
 /*****************************************************************************
@@ -57,33 +60,40 @@ template<class Chrom> class eoBreeder: public eoMonPopOp<Chrom>
    */
   void operator()(eoPop<Chrom>& pop) 
     {
+      size_t orgsize = pop.size();
+
       for (unsigned i = 0; i < pop.size(); i++) {
 	eoOp<Chrom>* op = opSel.Op();
-	switch (op->readArity()) {
-	case unary:
+	switch (op->getType()) {
+    case eoOp<Chrom>::unary:
 	  {
 	    eoMonOp<Chrom>* monop = static_cast<eoMonOp<Chrom>* >(op);
 	    (*monop)( pop[i] );
 	    break;
 	  }
-	case binary:
+	case eoOp<Chrom>::binary:
 	  {
 	    eoBinOp<Chrom>* binop = static_cast<eoBinOp<Chrom>* >(op);
 	    eoUniform<unsigned> u(0, pop.size() );
 	    (*binop)(pop[i], pop[ u() ] );
 	    break;
 	  }
-	case Nary:
+	case eoOp<Chrom>::quadratic:
 	  {
-	    eoNaryOp<Chrom>* Nop = static_cast<eoNaryOp<Chrom>* >(op);
-	    eoUniform<unsigned> u(0, pop.size() );
-	    eoPop<Chrom> inVec, outVec;
-	    inVec.push_back( pop[i] );
-	    unsigned numberOfOperands = u();
-	    for ( unsigned i = 0; i < numberOfOperands; i ++ ) {
-	      inVec.push_back( pop[ u() ] );
-	    }
-	    (*Nop)( inVec, outVec );
+	    eoQuadraticOp<Chrom>* Qop = static_cast<eoQuadraticOp<Chrom>* >(op);
+	    
+        eoUniform<unsigned> u(0, pop.size() );
+	    (*Qop)(pop[i], pop[ u() ] );
+	    break;
+      }
+    case eoOp<Chrom>::general :
+      {
+        eoGeneralOp<Chrom>* Gop = static_cast<eoGeneralOp<Chrom>* >(op);
+
+        eoRandomIndiSelector<Chrom> selector;
+        eoBackInserter<Chrom>   inserter;
+
+        (*Gop)(selector(pop, orgsize, i), inserter(pop));
 	    break;
 	  }
 	}

@@ -31,7 +31,7 @@
 #include <functional>  // 
 #include <numeric>     // accumulate
 #include <eoPopOps.h>          // eoPop eoSelect MINFLOAT
-#include <eoRNG.h>
+#include "selectors.h"
 
 //-----------------------------------------------------------------------------
 /** eoDetTournament: a selection method that selects ONE individual by
@@ -46,22 +46,14 @@ template <class EOT> class eoDetTournament: public eoSelectOne<EOT>
   eoDetTournament(unsigned _Tsize = 2 ):eoSelectOne(), Tsize(_Tsize) {
     // consistency check
     if (Tsize < 2) {
-      cout << "Warning, Tournament size shoudl be >= 2\nAdjusted\n";
+      cout << "Warning, Tournament size should be >= 2\nAdjusted\n";
       Tsize = 2;
     }
   }
   
-  /** DANGER: if you want to be able to minimize as well as maximizem
-      DON'T cast the fitness to a float, use the EOT comparator! */
-  virtual const EOT& operator()(const eoPop<EOT>& pop) {
-    unsigned best = rng.random(pop.size());		// random individual
-    
-    for (unsigned i = 0; i<Tsize-1; i++) {
-      unsigned tmp = rng.random(pop.size());
-      if (pop[best] < pop[tmp])
-	best = tmp;
-    }
-    return pop[best] ;
+  virtual const EOT& operator()(const eoPop<EOT>& pop) 
+  {
+    return deterministic_tournament(pop, Tsize)();
   }
 
   /** Inherited from eoObject 

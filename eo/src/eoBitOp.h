@@ -184,7 +184,7 @@ template<class Chrom> class eoBinPrev: public eoMonOp<Chrom>
 
 /** eoBinCrossover --> classic crossover */
 
-template<class Chrom> class eoBinCrossover: public eoBinOp<Chrom>
+template<class Chrom> class eoBinCrossover: public eoQuadraticOp<Chrom>
 {
  public:
   /// The class name.
@@ -205,7 +205,7 @@ template<class Chrom> class eoBinCrossover: public eoBinOp<Chrom>
 
 /** eoBinNxOver --> n-point crossover */
 
-template<class Chrom> class eoBinNxOver: public eoBinOp<Chrom>
+template<class Chrom> class eoBinNxOver: public eoQuadraticOp<Chrom>
 {
  public:
   /// (Defualt) Constructor.
@@ -263,7 +263,7 @@ template<class Chrom> class eoBinNxOver: public eoBinOp<Chrom>
 
 /** eoBinGxOver --> gene crossover */
 
-template<class Chrom> class eoBinGxOver: public eoBinOp<Chrom>
+template<class Chrom> class eoBinGxOver: public eoQuadraticOp<Chrom>
 {
  public:
   /// Constructor.
