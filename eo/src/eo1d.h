@@ -175,7 +175,7 @@ template< class T, class fitnessT>
 eo1d<T,fitnessT>::eo1d<T,fitnessT>( unsigned _size, eoRnd<T>& _rndGen,
 				    const string& _ID )
 	:EO<fitnessT> ( _ID ) {
-  for ( unsigned i = 0; i < size; i ++ ) {
+  for ( unsigned i = 0; i < _size; i ++ ) {
     insertGene( i, _rndGen() );
   }
 };
