@@ -48,6 +48,11 @@
 #include <es/eoRealOp.h>
 #include <es/eoNormalMutation.h>
 #include <es/eoRealAtomXover.h>	// for generic operators
+
+// SBX crossover (following Deb)
+#include <eoSBXcross.h>
+
+// ES specific operators
 #include <es/eoEsGlobalXover.h> // Global ES Xover
 #include <es/eoEsStandardXover.h> // 2-parents ES Xover
 
