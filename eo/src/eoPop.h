@@ -138,7 +138,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   */
   eoPop<EOT>::iterator nth_element(int nth)
   {
-      iterator it = begin() + nth;
+      typename eoPop<EOT>::iterator it = begin() + nth;
       std::nth_element(begin(), it, end(), greater<EO<Fitness> >());
       return it;
   }

@@ -143,7 +143,7 @@ inline eoOpSelector<EOT>::ID eoGOpSelector<EOT>::addOp( eoOp<EOT>& _op,
   // Now 'op' is a general operator, either because '_op' was one or 
   // because we wrapped it in an appropriate wrapper in the code above.
 
-  iterator result = find(begin(), end(), (eoGeneralOp<EOT>*) 0); // search for nullpointer
+  typename eoGOpSelector<EOT>::iterator result = find(begin(), end(), (eoGeneralOp<EOT>*) 0); // search for nullpointer
 	  
   if (result == end())
     {
