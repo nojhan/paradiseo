@@ -42,13 +42,13 @@ First, but you should now have done it without being told, go into the
 sub-dir</font> of the tutorial dir and type
 <b><tt><font color="#990000"><font size=+1>make</font></font></tt></b>.
 This will compile the <b><tt><font color="#660000"><font size=+1>SecondBitEA</font></font></tt></b>
-program (and, some day, SecondRealEA).
+and <b><tt><font color="#660000"><font size=+1>SecondRealEA</font></font></tt></b>
+programs.
 <p>You can then either
 <ul>
 <li>
-browse the corresponding code (only <a href="SecondBitEA.html">SecondBitEA</a>
-available right now, but you can figure out how SecondRealEA will look
-like),</li>
+browse the corresponding code (<a href="SecondBitEA.html">SecondBitEA</a>
+and <a href="SecondRealEA.html">SecondRealEA</a>),</li>
 
 <li>
 look at the <a href="#changes">summary of changes</a>,</li>
@@ -139,7 +139,8 @@ See the parameter section of the Component-Based tutorial, or wait until
 
 <li>
 <font color="#000000">The </font><b><tt><font color="#3366FF">eoParser</font></tt></b><font color="#000000">
-class, whose only purpose is the input of parameters.</font></li>
+class, whose only purpose is the input of parameters. Read <a href="../../doc/html/classeo_parser.html">its
+description</a> if you are interested.</font></li>
 </ul>
 
 <hr WIDTH="50%"><a NAME="paraminput"></a><b><font color="#000099">eoParser:</font><font color="#FF0000">
@@ -171,7 +172,7 @@ and optionally by a <font color="#FF6600">short (1 character) keyword</font>.</l
 the general syntax to modify parameter value at run-time is (either from
 the command-line or in a text file)</li>
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <b><tt><font color="#660000">--longKeyword=value</font></tt></b>&nbsp;&nbsp;&nbsp;&nbsp;
 or&nbsp;&nbsp;&nbsp;&nbsp; <b><tt><font color="#660000">-cvalue</font></tt></b>&nbsp;&nbsp;&nbsp;
@@ -183,12 +184,12 @@ so, after compiling the executable for Lesson 3 (<b><tt><font color="#FF6666">ma
 lesson3</font></tt></b> at system prompt in Unix), you can try to type
 in</li>
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <b><tt><font color="#FF6666">SecondBitEA</font></tt></b>
 <br>and see the algorithm run as before (OneMax optimized on 8-bits bitstrings).
 But you can now type in
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <b><tt><font color="#FF6666">SecondBitEA --vecSize=100</font></tt></b>
 <br>and see the output of the optimization of OneMax on 100-bit bitstrings.
@@ -196,7 +197,7 @@ But you can now type in
 <li>
 Take a look at all available parameters by typing in</li>
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <b><tt><font color="#FF6666">SecondBitEA --help</font></tt></b>
 <br>or by going into the code: all parameter inputs have been grouped in
@@ -209,7 +210,7 @@ it contains the list of all actual parameters used, and can directly be
 used as parameter input file: change the file name (e.g. to <b><tt><font color="#660000">SecondBitEA.param</font></tt></b>),
 edit it, change whichever parameter you want, and type in</li>
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <b><tt><font color="#FF6666">SecondBitEA @SecondBitEA.param</font></tt></b>
 <br>and you will see all values that you defined into the file taken into
 account.
@@ -249,7 +250,17 @@ somewhere else later (though of course this is not any useful for variable
 <b><tt><font color="#660000">seed</font></tt></b>!).</li>
 </ul>
 There is however another way to achieve the same result in less lines of
-code - with a different memory management (see <a href="eoLesson4.html#parameters">Lesson4</a>).
+code - with a different memory management. This is what is done in the
+code for eoRealEA. The same parameter for the <a href="eoProgramming.html#random">random
+number generator </a><b><tt><font color="#660000">seed</font></tt></b>
+is read, but in <a href="SecondRealEA.html#random">one single line of code</a>.&nbsp;
+The only difference is that now you cannot access the eoValueParam object
+itself - but this is not often necessary.
+<br>Be careful to ensure that the type of the default value in the call
+to <a href="../../doc/html/classeo_parameter_loader.html#a3">eoParameterLoader::createParam</a>
+method as this is the only way the compiler can desambiguate the template
+(remember that eoParameterLoader is <font color="#000000"><a href="../../doc/html/classeo_parser.html">a
+base class for eoParser</a></font>.
 <br>
 <hr WIDTH="100%">
 <br><a NAME="state"></a><b><font color="#000099"><font size=+2>eoState:
