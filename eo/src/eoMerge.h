@@ -97,7 +97,7 @@ template <class EOT> class eoPlus : public eoMerge<EOT>
         {
             offspring.reserve(offspring.size() + _pop.size());
 
-            for (int i = 0; i < _pop.size(); ++i)
+            for (size_t i = 0; i < _pop.size(); ++i)
             {
                 offspring.push_back(_pop[i]);
             }
