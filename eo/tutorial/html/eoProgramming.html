@@ -176,14 +176,15 @@ Template Library</font></b>.
 of STL</font> to use EO (like with "hello", "please" and "goodbye" you
 can survive in a foreign country :-) and even to contribute to new EO features.
 Moreover, while browsing through EO code, you will gradually learn how
-to use STL, especially if you check at the <a href="http://www.sgi.com/Technology/STL/">SGI&nbsp;STL
-Web site</a> from time to time, where you can not only download STL, but
-also browse in the Programmer's guide&nbsp; for isntance from the <a href="http://www.sgi.com/Technology/STL/table_of_contents.html">Table
+to use STL, especially if you check at the <a href="http://www.sgi.com/Technology/STL/">SGI
+STL Web site</a> from time to time, where you can not only download STL,
+but also browse in the Programmer's guide&nbsp; for isntance from the <a href="http://www.sgi.com/Technology/STL/table_of_contents.html">Table
 of Content</a>.
 <p>Anyway, you will only find here, in EO tutorial, the basics of STL that
 you will need to understand most of EO code - and to guess what the parts
 you don't understand are actually doing. Don't worry, <b><font color="#FF6600">I
-</font></b>don't understand everything :-)
+</font></b>don't
+understand everything :-)
 <p>STL provides the user with <b><font color="#FF6600">container</font></b>s,
 <b><font color="#FF6600">iterators</font></b>
 and <b><font color="#FF6600">algorithms</font></b>. And you can access
@@ -306,15 +307,15 @@ numbers who look random (w.r.t. some statistical criteria).
 to ensure reproducibility of the results across different platforms, EO
 has its own RNG, the ``<font color="#FF6600">Mersenne Twister</font>''
 random number generator MT19937 (thanks to <font color="#FF0000">Takuji
-Nishimura</font>, see <font face="Arial,Helvetica"><font size=+1><a href="../../../../doc/html/class_eorng.html">eoRNG.h</a></font></font>
+Nishimura</font>, see <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/eorng_h-source.html">eoRNG.h</a></font></font>
 comments).
 <p>Though you can define and use as many RNGs as you wish in EO, the library
-also provides you with a global RNG termed rng: using only that single
-RNG in all calls to random numbers allows one to be able to <b><font color="#FF6600">reproduce
-a given run</font></b>:
+also provides you with a global RNG termed <b><tt><font color="#993300">eo::rng</font></tt></b>.
+Using that single RNG in all calls to random numbers allows one to be able
+to <b><font color="#FF6600">reproduce a given run</font></b>:
 <ul>
 <li>
-as strange it seems for a random algorithm, it is mandatory for debugging
+as strange as it seems for a random algorithm, it is mandatory for debugging
 purposes</li>
 
 <li>
@@ -328,16 +329,25 @@ to simulate "true" random runs, you can just seed the RNG with a machine-clock
 related number, e.g. calling time(0), as done for instance in <a href="SecondBitEA.html#random">Lesson3</a>
 (and after).</li>
 </ul>
-As RNGs only produce (by definition) numbers that are uniformly distributed
-integers between 0 and some maximal number, EO provides you with random
-numbers following <b><font color="#FF6600">different probability distribution</font></b>
+As RNGs produce, by definition, integers that are uniformly distributed
+between 0 and some maximal number, EO provides you with random numbers
+following <b><font color="#FF6600">different probability distribution</font></b>
 (e.g. floating point following <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eorng.html#a8">normal
-distribution</a></font></font>).
-<p>EO also provides <a href="../../doc/html/rnd_generators.h-source.html">random_generators</a>
+distribution</a></font></font>). See the <a href="../../doc/html/class_eorng.html">complete
+list of RNG primitives</a>.
+<p>EO also provides <a href="../../doc/html/rnd_generators_h-source.html">random_generators</a>
 that can be used in STL call to generate series of random numbers, as in
 <a href="eoInit.html">eoPop
 initializers</a>.
-<p>
+<p><b><font color="#FF0000">Note</font></b>: the <b><tt><font color="#993300">eo::</font></tt></b>
+prefix indicates that it is in a separate C++ namespace, to avoid collision
+with possible variables that would also be named rng in some other library.
+As early versions of EO (&lt;= 9.1)&nbsp; did not use a separate namespace
+for rng, the compiler directive using eo::rng in eoRNG.h allows you to
+use the name rng without the <b><tt><font color="#993300">eo::</font></tt></b>
+prefix. However, the notation <b><tt><font color="#993300">eo::rng</font></tt></b>
+should be preferred and might become mandatory some day.
+<br>
 <hr WIDTH="100%">
 <br><a NAME="notations"></a><b><font color="#000099"><font size=+1>EO conventions
 and naming style</font></font></b>
@@ -362,6 +372,8 @@ names of the variables they are used to initialize, e.g.</li>
 
 <br>&nbsp;
 <p>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
 <br>&nbsp;
 <br>&nbsp;
 <p><b><tt><font color="#993300">class eoMyClass</font></tt></b>
