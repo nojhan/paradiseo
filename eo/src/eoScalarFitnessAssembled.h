@@ -228,7 +228,11 @@ std::ostream& operator<<(std::ostream& os, const eoScalarFitnessAssembled<F, Cmp
 {
   for (unsigned i=0; i < f.size(); ++i)
     os << f[i] << " ";
-    return os;
+  
+  os << f.feasible << " ";
+  os << f.failed << " ";
+  
+  return os;
 }
 
 template <class F, class Cmp, class FitnessTraits>
@@ -239,7 +243,10 @@ std::istream& operator>>(std::istream& is, eoScalarFitnessAssembled<F, Cmp, Fitn
     is >> value;
     f[i] = value;
   }
-   
+  
+  is >> f.feasible;
+  is >> f.failed;
+     
   return is;
 }
 
