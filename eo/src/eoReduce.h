@@ -221,7 +221,7 @@ public:
 	// in the new code from stdc++v3 an iterator from a container<T> is no longer an pointer to T
 	// Because eo already contained a fuction using eoPop<EOT>::iterator's we will use the following
 	
-	_newgen.erase( inverse_stochastic_tournament(_newgen.begin(), _newgen.end(), t_size) );
+	_newgen.erase( inverse_deterministic_tournament(_newgen.begin(), _newgen.end(), t_size) );
 	
       }
   }
