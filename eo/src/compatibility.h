@@ -28,6 +28,14 @@
 #ifndef COMPAT_H
 #define COMPAT_H
 
+#include <string>
+#include <iostream>
+
+#ifdef _1__GNUC__
+// Specifics for GNUC
+#define NO_GOOD_ISTREAM_ITERATORS
+#endif
+
 #ifdef _MSC_VER
 /* 
 Maarten: added this code here because Mirkosoft has the

@@ -79,7 +79,7 @@ public:
    * @param _os A ostream.
    */
   virtual void printOn(ostream& _os) const {
-    _os << className(); 
+    _os << className().c_str(); 
     //	  _os << arity;
   };
   

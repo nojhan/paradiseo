@@ -45,6 +45,8 @@ class eoGOpSelector: public eoOpSelector<EOT>, public vector<eoGeneralOp<EOT>*>
 {
 public:
 
+  typedef eoOpSelector<EOT>::ID ID;
+
   /// Dtor
   virtual ~eoGOpSelector() {
     for ( list< eoGeneralOp<EOT>* >::iterator i= ownOpList.begin();
@@ -84,12 +86,12 @@ public:
   virtual string className() const { return "eoGOpSelector"; };
 
   ///
-  void printOn(ostream& _os) const {
-    _os << className() << endl; 
-    for ( unsigned i=0; i!= rates.size(); i++ ) {
-      _os << *(operator[](i))  << "\t" << rates[i] << endl;
-    }
-  }
+  void printOn(ostream& _os) const {}
+  //  _os << className().c_str() << endl; 
+  //  for ( unsigned i=0; i!= rates.size(); i++ ) {
+  //    _os << *(operator[](i))  << "\t" << rates[i] << endl;
+  //  }
+  //}
 
 
   const vector<float>& getRates(void) const { return rates; }

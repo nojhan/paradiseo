@@ -30,8 +30,7 @@
 #ifndef eoInserter_h
 #define eoInserter_h
 
-#include "eoObject.h"
-
+#include "eoPop.h"
 /**
  * eoInserter: Interface class that enables an operator to insert
     new individuals into the (intermediate) population. 

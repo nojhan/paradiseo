@@ -8,3 +8,7 @@ istream & operator >> ( istream& _is, eoPersistent& _o ) {
   _o.readFrom(_is);
   return _is;
 };
+
+#include "eoRNG.h"
+
+eoRng rng;

@@ -44,7 +44,7 @@ template<class EOT> class eoSteadyStateEA: public eoAlgo<EOT>
       eoGOpSelector<EOT>& _opSelector, 
       eoPopIndiSelector<EOT>& _selector,
       eoSteadyStateInserter<EOT>& _inserter, 
-      eoTerm<Chrom>&     _terminator,
+      eoTerm<EOT>&     _terminator,
       unsigned _steps = 0 )   
       : step(_opSelector, _selector, _inserter), 
       terminator( _terminator)
@@ -57,19 +57,20 @@ template<class EOT> class eoSteadyStateEA: public eoAlgo<EOT>
     terminator( _terminator){};
   
   /// Apply one generation of evolution to the population.
-  virtual void operator()(eoPop<Chrom>& pop) {
+  virtual void operator()(eoPop<EOT>& pop) {
     do {
       try
 	{
 	  step(pop);
 	}
-      catch (exception& e)
+    catch (exception& e)
 	{
 	  string s = e.what();
 	  s.append( " in eoSteadyStateEA ");
 	  throw runtime_error( s );
 	}
     } while ( terminator( pop ) );
+  
   }
   
   /// Class name.

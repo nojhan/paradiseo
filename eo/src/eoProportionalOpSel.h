@@ -59,7 +59,8 @@ public:
   /** Gets a non-const reference to an operator, so that it can be changed, 
     modified or whatever 
     @param _id  a previously assigned ID
-    @throw runtime_error if the ID does not exist*/ 
+    @throw runtime_error if the ID does not exist*/
+ 
   virtual eoOp<EOT>& getOp( ID _id ) {
      MMF::iterator i=begin();
      ID j = 1;
@@ -135,7 +136,7 @@ public:
       base classes, so you don´t have to worry about, for instance, fitness.
       @param _s the ostream in which things are written*/
     virtual void printOn( ostream& _s ) const{
-		_s << className() << endl;
+		_s << className().c_str() << endl;
 		for ( MMF::const_iterator i=begin(); i!=end(); i++ ) {
 			_s << i->first << "\t" << *(i->second )<< endl;
 		}

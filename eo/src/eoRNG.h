@@ -197,7 +197,7 @@ public :
    {
      if (total == 0)
        { // count 
-	 for (unsigned i = 0; i < vec.size(); ++i)
+	 for (int i = 0; i < vec.size(); ++i)
 	   total += vec[i];
        }
      
@@ -270,7 +270,7 @@ private :
 /**
 	The one and only global eoRng object
 */
-static eoRng rng;
+extern eoRng rng;
 
 /**
    The class uniform_generator can be used in the STL generate function

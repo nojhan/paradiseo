@@ -43,7 +43,7 @@ template <class EOT> class eoUniformSelect: public eoSelectOne<EOT>
 {
  public:
   /// (Default) Constructor.
-  eoUniformSelect():eoSelectOne() {}
+  eoUniformSelect():eoSelectOne<EOT>() {}
   
   /// not a big deal!!!
   virtual const EOT& operator()(const eoPop<EOT>& pop) {

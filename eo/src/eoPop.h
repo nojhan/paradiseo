@@ -31,6 +31,7 @@
 // EO includes
 #include <eoRnd.h>
 #include <eoPersistent.h>
+#include <eoEvalFunc.h>
 
 /** Subpopulation: it is used to move parts of population
  from one algorithm to another and one population to another. It is safer
@@ -89,6 +90,21 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent {
 	    push_back( tmpEOT );
 	  }
 	};
+
+    /** Ctor for fixed-size chromosomes, with variable content
+	@param _popSize total population size
+	@param _eoSize chromosome size. EOT should accept a fixed-size ctor
+	@param _geneRdn random number generator for each of the genes
+	*/
+	eoPop( unsigned _popSize, unsigned _eoSize, eoRnd<Type> & _geneRnd, eoEvalFunc<EOT>& _eval)
+	  :vector<EOT>() {
+	  for ( unsigned i = 0; i < _popSize; i ++ ){
+	    EOT tmpEOT( _eoSize, _geneRnd);
+	    push_back( tmpEOT );
+        _eval(back());
+	  }
+	};
+
 
 	/** Ctor from an istream; reads the population from a stream,
 	    each element should be in different lines

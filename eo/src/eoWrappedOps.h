@@ -144,7 +144,6 @@ public :
   }
 
   /// Helper class to make sure that stuff that is inserted will be used again with the next operator
-  template <class EOT>
   class eoIndiSelectorInserter : public eoIndiSelector<EOT>, public eoInserter<EOT>
   {
   public :
@@ -204,7 +203,7 @@ public :
   void operator()( eoIndiSelector<EOT>& _in, 
 			   eoInserter<EOT>& _out ) const {
     
-    eoIndiSelectorInserter<EOT> in_out(_in);
+    eoIndiSelectorInserter in_out(_in);
 
     for (size_t i = 0; i < ops.size(); ++i)
     {
