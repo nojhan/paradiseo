@@ -57,11 +57,11 @@
 
 /// The following function merely call the templatized do_* functions 
 
-eoEsChromInit<eoReal<double> > & make_genotype(eoParser& _parser, eoState& _state, eoReal<double> _eo)
+eoRealInitBounded<eoReal<double> > & make_genotype(eoParser& _parser, eoState& _state, eoReal<double> _eo)
 {
   return do_make_genotype(_parser, _state, _eo);
 }
-eoEsChromInit<eoReal<eoMinimizingFitness> > & make_genotype(eoParser& _parser, eoState& _state, eoReal<eoMinimizingFitness> _eo)
+eoRealInitBounded<eoReal<eoMinimizingFitness> > & make_genotype(eoParser& _parser, eoState& _state, eoReal<eoMinimizingFitness> _eo)
 {
   return do_make_genotype(_parser, _state, _eo);
 }
