@@ -47,8 +47,6 @@
 #include <eoNegExp.h>
 
 #include <eoOp.h>
-#include <eoMultiMonOp.h>
-#include <eoMultiBinOp.h>
 
 #include <eoDup.h>
 #include <eoKill.h>
