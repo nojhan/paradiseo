@@ -1,6 +1,9 @@
 
 #include <eo>
 
+//#include <utils/eoMOFitnessStat.h>
+//#include <utils/eoFileSnapshot.h>
+
 using namespace std;
 typedef vector<double> fitness_type;
 
@@ -43,7 +46,7 @@ class Init : public eoInit<eoDouble>
   }
 };
 
-// Test pareto dominance and perf2worth
+// Test pareto dominance and perf2worth, and while you're at it, test the eoGnuPlot monitor as well
 
 void the_main()
 {
@@ -51,6 +54,7 @@ void the_main()
   Eval eval;
   Mutate mutate;
 
+  unsigned num_gen  = 10;
   unsigned pop_size = 50;
   eoPop<eoDouble> pop(pop_size, init);
 
@@ -80,8 +84,21 @@ void the_main()
   eoCommaReplacement<eoDouble> replace;
 
   unsigned long generation = 0;
-  eoGenContinue<eoDouble> gen(10, generation);
+  eoGenContinue<eoDouble> gen(num_gen, generation);
   eoCheckPoint<eoDouble> cp(gen);
+
+  eoMOFitnessStat<eoDouble> fitness0(0, "FirstObjective");
+  eoMOFitnessStat<eoDouble> fitness1(1, "SecondObjective");
+
+  cp.add(fitness0);
+  cp.add(fitness1);
+
+  eoGnuplot1DSnapshot snapshot("pareto");
+
+  cp.add(snapshot);
+
+  snapshot.add(fitness0);
+  snapshot.add(fitness1);
 
   // Three algos
   eoEasyEA<eoDouble> ea1(cp, eval, breeder1, replace);

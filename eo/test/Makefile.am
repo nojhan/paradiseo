@@ -15,7 +15,7 @@ CXXFLAGS = -g -Wall
 
 check_PROGRAMS = t-eoPareto t-eofitness t-eoRandom t-eobin t-eoStateAndParser t-eoCheckpointing t-eoSSGA  \
 	t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoVector
-TESTS=run_tests t-eoVector t-eoRandom t-eoSSGA
+TESTS=run_tests t-eoVector t-eoRandom t-eoSSGA t-eoPareto
 # removing temporarily t-eoESFull
 #noinst_PROGRAMS = t-eofitness t-eobin t-eoStateAndParser t-eoCheckpointing t-eoExternalEO t-eoESFull t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA
 

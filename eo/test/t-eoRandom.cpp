@@ -24,7 +24,7 @@
 */
 
 /**
-CVS Info: $Date: 2001-02-19 12:23:13 $  $Author: maartenkeijzer $ $Revision: 1.10 $
+CVS Info: $Date: 2001-03-14 10:14:27 $  $Author: maartenkeijzer $ $Revision: 1.11 $
 */
 
 //-----------------------------------------------------------------------------
@@ -45,6 +45,7 @@ main() {
   try
   { // throws an error
     eoUniformGenerator<unsigned long> utest( 10000000U, 10000U);
+    throw; // if this succeeds something is wrong, make sure that that is noticed
   }
   catch (logic_error& e)
   {
