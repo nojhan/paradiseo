@@ -23,6 +23,7 @@
              mkeijzer@dhi.dk
  */
 //-----------------------------------------------------------------------------
+#ifndef NO_GNUPLOT
 
 #ifndef _eoGnuplot1DSnapshot_H
 #define _eoGnuplot1DSnapshot_H
@@ -155,4 +156,5 @@ inline eoMonitor&   eoGnuplot1DSnapshot::operator() (void)
   return (*this);
 }
 
+#endif
 #endif

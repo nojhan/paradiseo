@@ -21,6 +21,7 @@
    Contact: Marc.Schoenauer@polytechnique.fr
  */
 //-----------------------------------------------------------------------------
+#ifndef NO_GNUPLOT
 
 #ifndef _eoGnuplot_H
 #define _eoGnuplot_H
@@ -149,7 +150,7 @@ inline void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
  * Created......: Mon Mar 13 13:50:11 1995
  * Description..: Communication par pipe bidirectionnel avec un autre process
  *
- * Ident........: $Id: eoGnuplot.h,v 1.8 2003-03-21 02:39:09 maartenkeijzer Exp $
+ * Ident........: $Id: eoGnuplot.h,v 1.9 2004-01-21 19:57:19 maartenkeijzer Exp $
  * ----------------------------------------------------------------------
  */
 
@@ -301,5 +302,5 @@ inline int PipeComWaitFor( PCom *from, char *what )
     return 1;
 }
 
-
+#endif
 #endif

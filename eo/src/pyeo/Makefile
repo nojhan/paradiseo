@@ -2,26 +2,7 @@
 #
 # You need: 
 # Python 2.2
-# Stlport
 # Boost.Python v2
-#
-#
-# On my debian (unstable), I used libstlport_gcc.so.4.5
-# and libboost_python.so.1.29.0
-#
-# Obviously together with python2.2 (as Boost.Python.v2 needs that)
-#
-# I'm pretty sure any stlport will do, but less convinced about boost.python
-# That lib seems to be pretty much under development (as I found out, the hard way)
-# but this version 1.29 seems to work for me.
-#
-# My version of boost was found in /usr/include, modify INC to your system
-# 
-# For you happy Debian unstable users, just install
-#
-# apt-get install libstlport4.5
-# apt-get install libboost-python-dev
-# apt-get install libboost-python1.29.0
 #
 
 CXX = g++ #-3.2

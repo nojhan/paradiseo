@@ -178,6 +178,7 @@ void valueParam()
     define_valueParam<double, double>("Float");
     define_valueParam<std::vector<double>, numeric::array >("Vec");
     define_valueParam< std::pair<double, double>, tuple >("Pair");
+    //define_valueParam< object, object >("Py");
 
     class_<ValueParam, bases<eoParam> >("eoValueParam", init<>())
 	//.def(init<object, std::string, std::string, char, bool>())

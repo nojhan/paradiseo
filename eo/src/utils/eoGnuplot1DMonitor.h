@@ -23,6 +23,7 @@
              mkeijzer@dhi.dk
  */
 //-----------------------------------------------------------------------------
+#ifndef NO_GNUPLOT
 
 #ifndef _eoGnuplot1DMonitor_H
 #define _eoGnuplot1DMonitor_H
@@ -128,4 +129,5 @@ inline void  eoGnuplot1DMonitor::FirstPlot()
 #endif
 }
 
+#endif
 #endif
