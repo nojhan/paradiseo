@@ -29,11 +29,8 @@
 
 #include <eoContinue.h>
 #include <utils/eoUpdater.h>
-
-template <class EOT> class eoStatBase;
-template <class EOT> class eoSortedStatBase;
-class eoMonitor;
-class eoUpdater;
+#include <utils/eoMonitor.h>
+#include <utils/eoStat.h>
 
 /** eoCheckPoint is a container class.
     It contains an eoContinue, and vertors of (pointers to) 
