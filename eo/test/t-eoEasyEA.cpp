@@ -5,6 +5,7 @@
 // to avoid long name warnings
 #pragma warning(disable:4786)
 
+
 #include <eo>
 
 #include "binary_value.h"
