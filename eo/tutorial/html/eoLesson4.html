@@ -15,13 +15,19 @@
 - <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
 documentation</a></font></font></b>
 <br>
+<hr WIDTH="100%">
+<br><b><font color="#FF0000">User's guide:</font></b> <a href="#userguide">General</a>
+- <a href="#binary">Bitstring</a> - <a href="#real">Real</a> - <a href="#ES">ES</a>
+- <b><font color="#FF0000">Programmer's guide:</font></b> <a href="#programmerguide">General</a>
+- <a href="#memory">Memory management </a>- <a href="#parameter">Parameters</a>
+<br>
 <hr WIDTH="100%"><!-- -------------- End of header ------------------ --><!-- ----------------------------------------------- -->
 <center>
 <h1>
 <font color="#FF0000">Tutorial Lesson 4: fully operational EA</font></h1></center>
 In this lesson, you will still use the same Evolutionary Algorithm. But
 this time you will have <b><font color="#FF6600">full control of all components</font></b>
-from the c<b><font color="#FF6600">ommand-line or a parameter file</font></b>.
+from the <b><font color="#FF6600">command-line or a parameter file</font></b>.
 You can even use the algorithm decribed here without any other knowledge
 of EO, just by writing your fitness function as a plain C++ function. This
 is why this lesson starts with a <a href="#userguide">user's guide</a>,
@@ -31,9 +37,10 @@ algorithms.
 <br>However, the ultimate purpose of this tutorial is to be able to do
 your own experiments - and these these will likely fall outside the scope
 of these two programs. This is why you should also read the <a href="#programmerguide">programmer's
-guides</a>, as the structure and memory managements are here radically
-different that in the 3 previous lessons - though relying of course on
-the same objects.
+guides</a>, as the structure and <a href="#memory">memory managements</a>
+are here radically different that in the 3 previous lessons - though relying
+of course on the same objects. Note that eoPersistent objects and eoParam
+objects are handled by different mechanisms.
 <br>&nbsp;
 <p>
 <hr WIDTH="100%">
@@ -53,8 +60,8 @@ is a user guide, not a programming guide. In particular, the </font><font color=
 of the parameters are </font><b><font color="#FF6600">not</font></b><font color="#000000">
 the </font><font color="#FF6600">names</font><font color="#000000"> of
 the underlying classes (though they should be similar in most cases).</font>
-<p><b><font color="#000099"><font size=+1>User's guide:</font></font><font color="#FF0000">
-Parameter input</font></b><font color="#000000"> The way to input parameters
+<p><b><font size=+1><font color="#000099">User's guide:</font><font color="#FF0000">Parameter
+input</font></font></b><font color="#000000"> The way to input parameters
 has already be described in <a href="eoLesson3.html#paraminput">Lesson
 3</a>. To get a list of parameters, type the command with option --help
 (or -h): with both testBit and testReal this will result in</font>
@@ -67,8 +74,8 @@ has already be described in <a href="eoLesson3.html#paraminput">Lesson
 or testReal.status that contains the list of all recognized parameters
 and has the format of an input parameter file.</font></li>
 </ul>
-<b><font color="#000099"><font size=+1>User's guide:</font></font><font color="#FF0000">The
-status file</font></b>
+<b><font size=+1><font color="#000099">User's guide:</font><font color="#FF0000">The
+status file</font></font></b>
 <br><font color="#000000">This file will always contain the list of the
 parameters that have been actually used by the last run of the program,
 however thay have been entered (try </font><b><tt><font color="#FF6666"><font size=+1>testBit
@@ -80,8 +87,8 @@ by the user.</font>
 in sections. Note, however, that this format is not mandatory in the param
 file, as </font><font color="#FF6600">only the keywords</font><font color="#000000">
 are processed.</font>
-<p><b><font color="#000099"><font size=+1>User's guide:</font></font><font color="#FF0000">Representation-independent
-parameters</font></b>
+<p><b><font size=+1><font color="#000099">User's guide:</font><font color="#FF0000">Representation-independent
+parameters</font></font></b>
 <br><font color="#000000">In what follows, the fixed font colored text
 is directly taken from the status file and is commented between the lines.
 The presentation follows the status file format - only two sections are
@@ -352,13 +359,13 @@ default value.</font>
 current generation upon Ctrl C</font></font></tt></b>
 <br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
 if true, Ctrl C only stops after the current generation as completed (eventually
-dumping population to a file if some saver is active). THis very useful
+dumping population to a file if some saver is active). This very useful
 feature is only available in Unix at the moment. </font><font color="#FF0000">Default
 is false.</font>
 <br>
 <hr ALIGN=LEFT SIZE=5 WIDTH="100%">
-<p><a NAME="binary"></a><b><font color="#000099"><font size=+1>User's guide:</font></font><font color="#FF0000">
-Bistring specific parameters</font></b>
+<p><a NAME="binary"></a><b><font size=+1><font color="#000099">User's guide:</font><font color="#FF0000">Bistring
+specific parameters</font></font></b>
 <br>The following describes the specific parameters that are available
 in program BitEA to evolve genotypes that are <b><font color="#FF6600">bitstrings</font></b>.
 <br>The two representation-dependent sections are concerned repectively
@@ -453,13 +460,13 @@ operators).</font>
 <br>&nbsp;
 <p>
 <hr ALIGN=LEFT SIZE=5 WIDTH="100%">
-<p><a NAME="real"></a><b><font color="#000099"><font size=+1>User's guide:</font></font><font color="#FF0000">
-Real-valued specific parameters</font></b>
+<p><a NAME="real"></a><b><font size=+1><font color="#000099">User's guide:</font><font color="#FF0000">Real-valued
+specific parameters</font></font></b>
 <br>The following describes the specific parameters that are available
 in programs <b><tt><font color="#993300"><font size=+1>RealEA</font></font></tt></b>
 and <b><tt><font color="#993300"><font size=+1>ESEA</font></font></tt></b>
 to evolve genotypes that are <b><font color="#FF6600">vector&lt;double></font></b>.
-<br><b><tt><font color="#993300"><font size=+1>RealEA</font></font></tt></b>&nbsp;
+<br><b><tt><font color="#993300"><font size=+1>RealEA</font></font></tt></b>
 implements what can be called a "real-coded GA", where everything is identical
 to the bitstring case above (except initialization and operators that are
 specific to vector&lt;double> of course) and <b><tt><font color="#993300"><font size=+1>ESEA</font></font></tt></b>
@@ -626,8 +633,8 @@ The value of standard deviation for Gaussian mutation - fixed along evolution
 (see the Evolution Strategy program below for self-adaptive mutations).</font>
 <p>
 <hr ALIGN=LEFT SIZE=5 WIDTH="100%">
-<p><a NAME="ES"></a><b><font color="#000099"><font size=+1>User's guide:</font></font><font color="#FF0000">
-ES-real-valued specific parameters</font></b>
+<p><a NAME="ES"></a><b><font size=+1><font color="#000099">User's guide:</font><font color="#FF0000">ES
+with self-adative mutation specific parameters</font></font></b>
 <br>The following describes the specific parameters for program <b><tt><font color="#993300"><font size=+1>ESEA</font></font></tt></b>,
 that implements the full Evolution-Strategy self-adaptive mutation mechanism
 - together with specific ES crossover operators. The initialization section
@@ -724,7 +731,7 @@ The factor for the mutation of the rotation angles in the case of the full
 correlated mutation. </font><font color="#FF0000">Default is 0.0873</font><font color="#000000">
 (following Schwefel).</font>
 <p>
-<hr WIDTH="100%">
+<hr SIZE=5 WIDTH="100%">
 <br><a NAME="programmerguide"></a><b><font color="#000099"><font size=+2>Programmer's
 guide</font></font></b>
 <p>At the moment, you will have to browse in the source (colored!) code
@@ -736,8 +743,8 @@ code of Lesson3, except for the memory management, performed through an
 <b><tt><font color="#993300"><font size=+1><a href="../../doc/html/classeo_state.html">eoState</a></font></font></tt></b>
 object (notice that all <b><tt><font color="#993300"><font size=+1>make_xxx</font></font></tt></b>
 calls have an eoState as second parameter).
-<p><b><font color="#000099"><font size=+2>Programmer's guide: </font></font><font color="#FF0000">The
-make_xxx files</font></b>
+<p><b><font color="#000099"><font size=+2>Programmer's guide: </font></font><font color="#FF0000"><font size=+1>The
+make_xxx files</font></font></b>
 <p><b><font color="#FF0000">Interface</font></b>: all <b><tt><font color="#993300"><font size=+1>make_xxx</font></font></tt></b>
 files have as first two parameters an <b><tt><font color="#993300"><font size=+1><a href="../../doc/html/classeo_parser.html">eoParser</a></font></font></tt></b>
 and an <b><tt><font color="#993300"><font size=+1><a href="../../doc/html/classeo_state.html">eoState</a></font></font></tt></b>.
@@ -798,7 +805,7 @@ management that this imposes.
 <br>&nbsp;
 <br>&nbsp;
 <p><a NAME="memory"></a><b><font color="#000099"><font size=+2>Programmer's
-guide: </font></font><font color="#FF0000">Memory management</font></b>
+guide: </font></font><font color="#FF0000"><font size=+1>Memory management</font></font></b>
 <br>As already said, all functions have an <b><tt><font color="#3366FF"><font size=+1>eoState</font></font></tt></b>
 as second argument - and that object is used to store the functor objects
 that were simply declared as variables of the main function up to now :
@@ -807,8 +814,8 @@ detailed explanations and take a look at the code of <b><tt><font color="#993300
 for instance, you will see the implementation of the memory management
 in action.
 <p><a NAME="parameter"></a><b><font color="#000099"><font size=+2>Programmer's
-guide: </font></font><font color="#FF0000">Memory management of eoParam
-objects</font></b>
+guide: </font></font><font color="#FF0000"><font size=+1>Memory management
+of eoParam objects</font></font></b>
 <p>It has been seen in Lesson 3 that parameters could be read from command-line
 and/or a parameter file using an <b><tt><font color="#3366FF"><font size=+1>eoParser</font></font></tt></b>
 object. However, the memory mangement problem also concerns EO parameter
@@ -837,13 +844,15 @@ to an eoParam object that is hold by the eoParser - and deleted whith it.
 between the arguments of the constructor of an eoParam object and the method
 createParam of an eoParser object: first, you need to provide the additional
 section parameter (used only when outputting the eoParser); second you
-<b><font color="#FF6600">must</font></b> make sure that the first argument
-is of the correct type otherwise the compiler will complain.
+<b><font color="#FF6600">must</font></b>
+make sure that the first argument is of the correct type otherwise the
+compiler will complain.
 <p>Note that if you don't later need the eoParam, but simply its value,
 you can even diretly write
 <p><b><tt><font color="#3366FF"><font size=+1>unsigned maxGen = _parser.createParam(unsigned(100),
-"maxGen", "Maximum number of generations () = none)",'G',"Stopping criterion").value();</font></font></tt></b><b><font color="#FF0000"></font></b>
-<p><b><font color="#FF0000">Getting parameter values in different functions:</font></b>
+"maxGen", "Maximum number of generations () = none)",'G',"Stopping criterion").value();</font></font></tt></b>
+<p><b><font color="#FF0000"><font size=+1>Getting parameter values in different
+functions:</font></font></b>
 <p>It is often useful (though probably <b><font color="#FF6600">very bad
 programming style </font></b>:-))) to be able to get the value of a user-defined
 parameter in two different places of the code without passing it around
@@ -852,7 +861,31 @@ with exactly the same syntax than <b><tt><font color="#3366FF"><font size=+1>cre
 <br>Be careful that the link between both parameters is made through their
 longmanes (second argument), and that you must so <b><font color="#FF6600">hard-code</font></b>
 that name in two different places with of course exactly the same spelling!!!
+<br><b><font color="#FF6600">Examples</font></b> can be found for instance
+in the make_genotype_xxx files, for the sizes of the genotypes: it is often
+the case that the definition of the optimization problem requires (or computes)
+such size. The idea is then that you either read or compute that size,
+then create a (dummy) parameter with the name that is used later in the
+make_genotype file. For instance, for bitstrings, the make_genotype_ga.h
+contains the following line defining the size of the bitstring
+<p><b><tt><font color="#3366FF"><font size=+1>&nbsp; unsigned theSize =
+_parser.getORcreateParam(unsigned(10), "chromSize", "The length of the
+bitstrings", 'n',"Problem").value();</font></font></tt></b>
+<p>If you want to define that size earlier, you should write somewhere
+before
+<br>&nbsp;
+<p><b><tt><font color="#3366FF"><font size=+1>&nbsp; unsigned requiredSize&nbsp;
+= ... ;</font></font></tt></b>
+<br><b><tt><font color="#3366FF"><font size=+1>&nbsp;_parser.createParam(requiredSize,
+"chromSize", "The length of the bitstrings", 'n',"Problem");</font></font></tt></b>
+<p>Of course, if that size is mandatory, you should NOT modify it at run-time
+by entering anther value !
 <p>
+<hr WIDTH="100%"><b><font color="#FF0000">User's guide:</font></b> <a href="#userguide">General</a>
+- <a href="#binary">Bitstring</a> - <a href="#real">Real</a> - <a href="#ES">ES</a>
+- <b><font color="#FF0000">Programmer's guide:</font></b> <a href="#programmerguide">General</a>
+- <a href="#memory">Memory management </a>- <a href="#parameter">Parameters</a>
+<br>
 <hr WIDTH="100%"><font color="#000000"><a href="eoLesson3.html">Lesson
 3</a> -
 <a href="eoLesson5.html">Lesson 5</a> -
@@ -864,8 +897,7 @@ documentation</a></font></font></b></font>
 <br>
 <hr>
 <address>
-<font color="#000000"><a href="mailto:Marc.Schoenauer@inria.fr">Marc
-Schoenauer</a></font></address>
+<font color="#000000"><a href="mailto:Marc.Schoenauer@inria.fr">Marc Schoenauer</a></font></address>
 
 <br><!-- Created: Tue May 1 14:49:12 CET 2001 --><!-- hhmts start --><font color="#000000">Last
 modified: None of your business!</font><!-- hhmts end -->
