@@ -1,15 +1,38 @@
+dnl Process this file with autoconf to produce a configure script.
 AC_INIT(src/eo)
 
 dnl Change the version number here
-AM_INIT_AUTOMAKE(eo, 0.9.2)
+AM_INIT_AUTOMAKE(eo, 0.9.11)
 
-AC_PROG_CXX 
-
-CXXFLAGS="-Wall -g"
-
-AM_PROG_LIBTOOL 
-
+dnl Checks for maintainer mode
 AM_MAINTAINER_MODE
 
-dnl add Makefiles that must be modified by the configuration here
-AC_OUTPUT(Makefile src/Makefile src/es/Makefile src/ga/Makefile src/gp/Makefile src/obsolete/Makefile src/other/Makefile src/utils/Makefile test/Makefile win/Makefile doc/Makefile contrib/Makefile)
+dnl Checks for programs.
+AC_PROG_CXX
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AC_PROG_RANLIB
+
+dnl Checks for libraries.
+dnl Replace `main' with a function in -leo:
+AC_CHECK_LIB(eo, main)
+dnl Replace `main' with a function in -leoutils:
+AC_CHECK_LIB(eoutils, main)
+dnl Replace `main' with a function in -lm:
+AC_CHECK_LIB(m, main)
+
+dnl Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS(limits.h)
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_C_INLINE
+AC_TYPE_SIZE_T
+
+dnl Checks for library functions.
+AC_CHECK_FUNCS(select)
+
+AC_OUTPUT(src/obsolete/Makefile doc/Makefile src/Makefile src/utils/Makefile src/other/Makefile win/Makefile src/gp/Makefile src/es/Makefile src/ga/Makefile test/Makefile contrib/Makefile Makefile app/Makefile app/gprop/Makefile)
+
