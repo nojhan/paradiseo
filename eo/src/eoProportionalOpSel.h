@@ -26,11 +26,11 @@ Operators are represented as pairs (proportion,operator)
 */
 template<class EOT>
 class eoProportionalOpSel: public eoOpSelector<EOT>, 
-	public  multimap<float,eoOp<EOT>*,greater<float> >
+	public  multimap<float,const eoOp<EOT>*,greater<float> >
 {
 public:
 
-  typedef multimap<float,eoOp<EOT>*,greater<float> > MMF;
+  typedef multimap<float, const eoOp<EOT>*,greater<float> > MMF;
 
   /// default ctor
   eoProportionalOpSel()
@@ -43,13 +43,14 @@ public:
     modified or whatever 
     @param _id  a previously assigned ID
     @throw runtime_error if the ID does not exist*/
-  virtual eoOp<EOT>& getOp( ID _id ) {
+  virtual const eoOp<EOT>& getOp( ID _id ) {
      MMF::iterator i=begin();
      ID j = 1;
      while ( (i++!=end()) &&  (j++ != _id) );
      if ( i == end() ) 
        throw runtime_error( "No such id in eoProportionalOpSel::op\n" );
      return *(i->second);
+	 //return i->second;
   }
 
   /** add an operator to the operator set
@@ -100,6 +101,7 @@ public:
 	if ( i == end() )
 		throw runtime_error( "Operator not found in eoProportionalOpSelector" );
 	return *(i->second);
+	//return i->second;
   }
 
     /// Methods inherited from eoObject
@@ -115,9 +117,10 @@ public:
       base classes, so you don´t have to worry about, for instance, fitness.
       @param _s the ostream in which things are written*/
     virtual void printOn( ostream& _s ) const{
-      for ( MMF::const_iterator i=begin(); i!=end(); i++ ) {
-	_s << i->first << "\t" << i->second << endl;
-      }
+		_s << className() << endl;
+		for ( MMF::const_iterator i=begin(); i!=end(); i++ ) {
+			_s << i->first << "\t" << *(i->second )<< endl;
+		}
     }
 
 

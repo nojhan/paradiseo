@@ -38,7 +38,7 @@ public:
       modified or whatever 
       @param _id  a previously assigned ID
       @throw runtime_exception if the ID does not exist*/
-  virtual eoOp<EOT>& getOp( ID _id ) = 0;
+  virtual const eoOp<EOT>& getOp( ID _id ) = 0;
   
   /** Remove an operator from the operator set
       @param _id a previously assigned ID
