@@ -41,12 +41,10 @@ public :
      Constructor ...
    */
   
-  eoEOSendMessTo (eoPop <EOT> & _pop
-		  ) :
-    pop (_pop),
-    eoMessTo <EOT> ("eoEOSendMessTo") {
-    
-  }
+  eoEOSendMessTo (eoPop <EOT> & _pop ) 
+    : eoMessTo <EOT> ("eoEOSendMessTo"), 
+      pop (_pop)
+  {}
   
   /**
      To send the given population ...
