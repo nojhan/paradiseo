@@ -55,6 +55,13 @@ class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent
 {
 
  public:
+     
+     using std::vector<EOT>::size;
+     using std::vector<EOT>::resize;
+     using std::vector<EOT>::operator[];
+     using std::vector<EOT>::begin;
+     using std::vector<EOT>::end;
+     
      typedef typename EOT::Fitness Fitness;
 	/** Default ctor. Creates empty pop
 	*/
