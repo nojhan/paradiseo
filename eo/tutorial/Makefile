@@ -1,7 +1,7 @@
 SUBDIRS = Lesson1 Lesson2 Lesson3 Lesson4
 
 all:
-	for i in $(SUBDIRS); do pushd $$i && $(MAKE) all; popd; done
+	for i in $(SUBDIRS); do cd $$i && $(MAKE) all; cd ..; done
 
 lesson1 : 
 	cd Lesson1; make
@@ -23,4 +23,4 @@ distdir :
 check :
 
 clean:
-	for i in $(SUBDIRS); do pushd $$i && $(MAKE) clean; popd; done
+	for i in $(SUBDIRS); do cd $$i && $(MAKE) clean; cd ..; done

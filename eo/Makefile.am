@@ -15,22 +15,22 @@ EXTRA_DIST=LICENSE
 ###############################################################################
 
 lib:	
-	pushd src; $(MAKE) all; popd
+	cd src; $(MAKE) all; cd ..
 
 # so that make doc always compiles the doc ...
 doc:    doc/eo.cfg
-	pushd doc; $(MAKE) doc; touch eo.cfg; popd
+	cd doc; $(MAKE) doc; touch eo.cfg; cd ..
 
 tutorial:
-	pushd tutorial; $(MAKE) all; popd
+	cd tutorial; $(MAKE) all; cd ..
 
 app:
-	pushd app; $(MAKE) all; popd
+	cd app; $(MAKE) all; cd ..
 
 all:
-	for i in $(SUBDIRS); do pushd $$i && $(MAKE) all; popd; done
+	for i in $(SUBDIRS); do cd $$i && $(MAKE) all; cd ..; done
 
 clean:
-	for i in $(SUBDIRS); do pushd $$i && $(MAKE) clean; popd; done
+	for i in $(SUBDIRS); do cd $$i && $(MAKE) clean; cd ..; done
 
 ###############################################################################
