@@ -20,6 +20,8 @@
 #ifndef _NODE_H
 #define _NODE_H
 
+
+
 #include <iostream>
 #include <string>
 #include <cmath> // for finite(double) function
@@ -57,15 +59,18 @@ struct Operation
 		typedef string Label;
 
 	
-	
-		union
-		{
+		// if your compiler allows you to have nameless unions you can make this a
+		// union by removing the //'s below
+		
+		//union
+		//{
 			UnaryFunction uFunction;
 			BinaryFunction bFunction;
 			VariableID id;
 			double constant;
-		};
+		//};
 	
+		
 	
 		Label label;
 		Type type;
