@@ -9,7 +9,7 @@ DEPS = $(top_builddir)/src/libeo.a $(top_builddir)/src/obsolete/libeoobsolete.a 
 ###############################################################################
 
 INCLUDES = -I$(top_builddir)/src
-LDADDS = $(top_builddir)/src/libeo.a $(top_builddir)/src/obsolete/libeoobsolete.a $(top_builddir)/src/utils/libeoutils.a
+LDADDS = $(top_builddir)/src/libeo.a $(top_builddir)/src/utils/libeoutils.a
 
 ###############################################################################
 

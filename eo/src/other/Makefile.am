@@ -10,4 +10,4 @@ INCLUDES = -I$(top_builddir)/src
 #libeoother_a_SOURCES = 
 
 libeootherincdir = $(includedir)/eo/other
-libeootherinc_HEADERS = eoExternalEO.h  eoString.h  eoStringMutation.h external_eo eoExternalOpFunctions.h
+libeootherinc_HEADERS = eoExternalEO.h  eoString.h  external_eo eoExternalOpFunctions.h
