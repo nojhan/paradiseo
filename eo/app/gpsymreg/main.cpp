@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 	// create an instantiation of the fitness/evaluation function
 	// it initializes the initSequence vector
 	// the parameters are passed on as well
-        RegFitness<FitnessType, Node >  eval(generationCounter, initSequence, parameter);
+        RegFitness eval(generationCounter, initSequence, parameter);
 
 	// Depth Initializor, defaults to grow method.  
         eoParseTreeDepthInit<FitnessType, Node> initializer(parameter.InitMaxDepth, initSequence);

@@ -95,8 +95,7 @@ double _negate(double arg1)
 
 // now let's define our tree nodes
 
-template<class TreeNode>
-void init(vector<TreeNode> &initSequence)
+void init(vector<Node> &initSequence)
 {
 			
 		// we have only one variable (X)
@@ -162,12 +161,12 @@ void init(vector<TreeNode> &initSequence)
 };
 
 
-template <class FType, class TreeNode> 
-class RegFitness: public eoEvalFunc< eoParseTree<FType, TreeNode> > 
+
+class RegFitness: public eoEvalFunc< eoParseTree<FitnessType, Node> > 
 {
 	public:
 	
-    		typedef eoParseTree<FType, TreeNode> EoType; 
+    		typedef eoParseTree<FitnessType, Node> EoType; 
     		
 		void operator()(EoType &_eo)
 		{
@@ -175,7 +174,7 @@ class RegFitness: public eoEvalFunc< eoParseTree<FType, TreeNode> >
 				vector< double > input(1); // the input variable(s)
 				double output;
 				double target;
-				FType fitness;
+				FitnessType fitness;
 				
 				
 				float x=0;
@@ -205,9 +204,9 @@ class RegFitness: public eoEvalFunc< eoParseTree<FType, TreeNode> >
 		
 		
 		
-		RegFitness(eoValueParam<unsigned> &_generationCounter, vector< TreeNode > &initSequence, Parameters &_parameter) : eoEvalFunc<EoType>(), generationCounter(_generationCounter), parameter(_parameter) 
+		RegFitness(eoValueParam<unsigned> &_generationCounter, vector< Node > &initSequence, Parameters &_parameter) : eoEvalFunc<EoType>(), generationCounter(_generationCounter), parameter(_parameter) 
 		{
-			init<TreeNode>(initSequence);
+			init(initSequence);
 			best[NORMAL] = 1000;
 			tree= "not found";
 		};
@@ -221,7 +220,7 @@ class RegFitness: public eoEvalFunc< eoParseTree<FType, TreeNode> >
 	private:
     		eoValueParam<unsigned> &generationCounter; // so we know the current generation
 		Parameters &parameter; // the parameters
-		FType best;	// the best found fitness
+		FitnessType best;	// the best found fitness
 		string tree;	
 };
 
