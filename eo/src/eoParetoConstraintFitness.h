@@ -31,7 +31,7 @@
 #include <stdexcept>
 #include <iostream>
 
-
+#include <eoParetoFitness.h>
 
 /**
   eoParetoOneConstraintFitness class: 
