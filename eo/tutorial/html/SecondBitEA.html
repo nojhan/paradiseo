@@ -4,12 +4,14 @@
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
    <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdk i686) [Netscape]">
    <title>SecondBitEA.cpp</title>
-   <!-- Changed by: Marc Schoenauer, 29-Nov-2000 -->
+<!-- Changed by: Marc Schoenauer, 29-Nov-2000 -->
 </head>
 <body text="#000000" bgcolor="#C3C2B4" link="#0000EE" vlink="#551A8B" alink="#FF0000">
 <a href="eoLesson3.html">Back to Lesson 3</a> - <a href="eoTutorial.html">Tutorial
 main page </a>- <a href="eoTopDown.html">Algorithm-Based</a> - <a href="eoBottomUp.html">Component-Based
-</a> - <a href="eoProgramming.html">Programming hints</a> - <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
+</a>-
+<a href="eoProgramming.html">Programming
+hints</a> - <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
 documentation</a></font>
 <br>
 <hr WIDTH="100%"><!-- -------------- End of header ------------------ --><!-- ----------------------------------------------- -->
@@ -46,14 +48,15 @@ cout</font></tt>
 istrstream</font></tt>
 <br><b><tt><font color="#993300">#include &lt;fstream></font></tt></b>
 <br><tt><font color="#993300">// the general include for eo</font></tt>
-<br><b><tt><font color="#993300">#include &lt;eo></font></tt></b>
+<br><b><tt><font color="#993300">#include &lt;eo></font></tt></b></td>
 </tr>
 </table>
 <a NAME="evalfunc"></a>
 <table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCCCC" NOSAVE >
 <tr>
-<td><tt><font color="#CC0000">// a simple fitness function that computes the number of ones of a bitstring</font></tt><br>
-<b><tt><font color="#CC0000">#include "binary_value.h"</font></tt></b></td>
+<td><tt><font color="#CC0000">// a simple fitness function that computes
+the number of ones of a bitstring</font></tt>
+<br><b><tt><font color="#CC0000">#include "binary_value.h"</font></tt></b></td>
 </tr>
 </table>
 <a NAME="representation"></a>
@@ -62,6 +65,15 @@ istrstream</font></tt>
 <td><tt><font color="#999900">//-----------------------------------------------------------------------------</font></tt>
 <br><tt><font color="#999900">// define your genotype and fitness types</font></tt>
 <br><b><tt><font color="#999900">typedef eoBin&lt;double> Indi;</font></tt></b></td>
+</tr>
+</table>
+<a NAME="general"></a>
+<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC99" NOSAVE >
+<tr>
+<td><tt><font color="#993300">// the main_function: nothing changed(!),
+except variable initialization</font></tt>
+<br><b><tt><font color="#993300">void main_function(int argc, char **argv)</font></tt></b>
+<br><b><tt><font color="#993300">{</font></tt></b></td>
 </tr>
 </table>
 <a NAME="parametres"></a>
@@ -78,190 +90,130 @@ or in a parameter file (same syntax, order independent,&nbsp;</font></tt>
 # = usual comment character&nbsp;</font></tt>
 <br><tt><font color="#3366FF">//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 or in the environment (TODO)</font></tt>
-<br><tt><font color="#3366FF">// note that the parameters are passed by
-reference so they can be updated</font></tt>
-<br><a NAME="seed_passing"></a><b><tt><font color="#3366FF">void read_param(eoParser & _parser,&nbsp;</font></tt></b>
-<br><b><tt><font color="#660000">uint32 &amp;
-_seed</font><font color="#3366FF">,</font></tt></b>
-<br><b><tt><font color="#999900">unsigned int &amp; _vecSize</font><font color="#3366FF">,</font></tt></b>
-<br><b><tt><font color="#009900">unsigned int &amp; _popSize,</font></tt></b>
-<br><b><tt><font color="#009900">unsigned int &amp; _tSize</font><font color="#3366FF">,</font></tt></b>
-<br><b><tt><font color="#CC33CC">double &amp; _pCross,</font></tt></b>
-<br><b><tt><font color="#CC33CC">double &amp; _pMut</font><font color="#3366FF">,</font></tt></b>
-<br><b><tt><font color="#3366FF">string &amp; _load_name,</font></tt></b>
-<br><b><tt><font color="#3366FF">unsigned int &amp; _maxGen,</font></tt></b>
-<br><b><tt><font color="#3366FF">unsigned int &amp; _minGen,</font></tt></b>
-<br><b><tt><font color="#3366FF">unsigned int &amp; _steadyGen,</font></tt></b>
-<br><b><tt><font color="#CC33CC">double &amp; _onePointRate,&nbsp;</font></tt></b>
-<br><b><tt><font color="#CC33CC">double &amp; _twoPointsRate,&nbsp;</font></tt></b>
-<br><b><tt><font color="#CC33CC">double &amp; _uRate,&nbsp;</font></tt></b>
-<br><b><tt><font color="#CC33CC">double &amp; _pMutPerBit,&nbsp;</font></tt></b>
-<br><b><tt><font color="#CC33CC">double &amp; _bitFlipRate,&nbsp;</font></tt></b>
-<br><b><tt><font color="#CC33CC">double &amp; _oneBitRate</font></tt></b>
-<br><b><tt><font color="#3366FF">)</font></tt></b>
-<br><b><tt><font color="#3366FF">{&nbsp;</font></tt></b>
-<br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp; </b>// For each
-parameter, define Parameters directly in the parser,&nbsp;</font></tt>
-<br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp; </b>// and assign
-the value to the variable</font></tt>
-<br><a NAME="random"></a><a NAME="_seed_declare"></a><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;
-</font><font color="#660000">eoValueParam&lt;uint32>&amp; seedParam = _parser.createParam&lt;uint32>(time(0),
+<p><tt><font color="#3366FF">// First define a parser from the command-line
+arguments</font></tt>
+<br><b><tt><font color="#3366FF">eoParser parser(argc, argv);</font></tt></b>
+<p><tt><font color="#3366FF">// For each parameter, define Parameter, read
+it through the parser,</font></tt>
+<br><tt><font color="#3366FF">// and assign the value to the variable</font></tt>
+<br><a NAME="random"></a>
+<br><b><tt><font color="#990000">eoValueParam&lt;uint32> seedParam(time(0),
 "seed", "Random number seed", 'S');</font></tt></b>
-<br><a NAME="seed_assign"></a><b><tt><font color="#660000">&nbsp;&nbsp;&nbsp;&nbsp;
-_seed = seedParam.value();</font></tt></b>
-<p><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#999900">eoValueParam&lt;unsigned
-int>&amp; vecSizeParam = _parser.createParam&lt;unsigned int>(8, "vecSize",
-"Genotype size",'V', "Representation");</font></tt></b>
-<br><b><tt><font color="#999900">&nbsp;&nbsp;&nbsp;&nbsp; _vecSize = vecSizeParam.value();</font></tt></b>
-<p><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#009900">eoValueParam&lt;unsigned
-int>&amp; popSizeParam = _parser.createParam&lt;unsigned int>(10, "popSize",
-"Population size",'P', "Evolution");</font></tt></b>
-<br><b><tt><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp; _popSize = popSizeParam.value();</font></tt></b>
-<br><b><tt><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp; eoValueParam&lt;unsigned
-int>&amp; tSizeParam = _parser.createParam&lt;unsigned int>(10, "tSize",
-"Tournament size",'T', "Evolution");</font></tt></b>
-<br><b><tt><font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp; _tSize = tSizeParam.value();</font></tt></b>
+<br><b><tt><font color="#990000">parser.processParam( seedParam );</font></tt></b>
+<br><a NAME="seed_assign"></a><b><tt><font color="#990000">unsigned seed
+= seedParam.value();</font></tt></b>
+<p><a NAME="_seed_declare"></a><tt><font color="#999900">// decription
+of genotype</font></tt>
+<br><b><tt><font color="#999900">eoValueParam&lt;unsigned int>&amp; vecSizeParam(8,
+"vecSize", "Genotype size",'V');</font></tt></b>
+<br><b><tt><font color="#999900">parser.processParam( vecSizeParam, "Representation"
+);</font></tt></b>
+<br><b><tt><font color="#999900">unsigned vecSize = vecSizeParam.value();</font></tt></b>
+<p><tt><font color="#009900">// parameters for evolution engine</font></tt>
+<br><b><tt><font color="#009900">eoValueParam&lt;unsigned int>&amp; popSizeParam(10,
+"popSize", "Population size",'P');</font></tt></b>
+<br><b><tt><font color="#009900">parser.processParam( popSizeParam, "Evolution
+engine" );</font></tt></b>
+<br><b><tt><font color="#009900">unsigned popSize = popSizeParam.value();</font></tt></b>
+<p><b><tt><font color="#009900">eoValueParam&lt;unsigned int>&amp; tSizeParam(10,
+"tSize", "Tournament size",'T');</font></tt></b>
+<br><b><tt><font color="#009900">parser.processParam( seedParam );</font></tt></b>
+<br><b><tt><font color="#009900">unsigned tSize = tSizeParam.value();</font></tt></b>
 <br><a NAME="_load_name"></a>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp; eoValueParam&lt;string>&amp;
-load_nameParam = _parser.createParam&lt;string>("", "Load","A save file
-to restart from",'L', "Persistence");</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; _load_name =
-load_nameParam.value();</font></tt></b>
-<p><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; eoValueParam&lt;unsigned
-int>&amp; maxGenParam = _parser.createParam&lt;unsigned int>(100, "maxGen",
-"Maximum number of generations",'G', "Stopping criterion");</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; _maxGen = maxGenParam.value();</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; eoValueParam&lt;unsigned
-int>&amp; minGenParam = _parser.createParam&lt;unsigned int>(100, "minGen",
-"Minimum number of generations",'g', "Stopping criterion");</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; _minGen = minGenParam.value();</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; eoValueParam&lt;unsigned
-int>&amp; steadyGenParam = _parser.createParam&lt;unsigned int>(100, "steadyGen",
-"Number of generations with no improvement",'s', "Stopping criterion");</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; _steadyGen =
-steadyGenParam.value();</font></tt></b>
-<p><b><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp; eoValueParam&lt;double>&amp;
-pCrossParam = _parser.createParam&lt;double>(0.6, "pCross", "Probability
-of Crossover", 'C', "Genetic Operators");&nbsp;</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp; _pCross = pCrossParam.value();</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp; eoValueParam&lt;double>&amp;
-pMutParam = _parser.createParam&lt;double>(0.1, "pMut", "Probability of
-Mutation", 'M', "Genetic Operators");</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp; _pMut = pMutParam.value();</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp; eoValueParam&lt;double>&amp;
-onePointRateParam = _parser.createParam&lt;double>(1, "onePointRate", "Relative
-rate for one point crossover", '1', "Genetic Operators");</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp; _onePointRate
-= onePointRateParam.value();</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp; eoValueParam&lt;double>&amp;
-twoPointsRateParam = _parser.createParam&lt;double>(1, "twoPointRate", "Relative
-rate for two point crossover", '2', "Genetic Operators");</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp; _twoPointsRate
-= twoPointsRateParam.value();</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp; eoValueParam&lt;double>&amp;
-uRateParam = _parser.createParam&lt;double>(2, "uRate", "Relative rate for
-uniform crossover", 'U', "Genetic Operators");</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp; _uRate =&nbsp;
-uRateParam.value();</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp; eoValueParam&lt;double>&amp;
-pMutPerBitParam = _parser.createParam&lt;double>(0.01, "pMutPerBit", "Probability
-of flipping 1 bit in bit-flip mutation", 'b', "Genetic Operators");</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp; _pMutPerBit =
-pMutPerBitParam.value();</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp; eoValueParam&lt;double>&amp;
-bitFlipRateParam = _parser.createParam&lt;double>(0.01, "bitFlipRate", "Relative
-rate for bit-flip mutation", 'B', "Genetic Operators");</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp; _bitFlipRate
-=&nbsp; bitFlipRateParam.value();</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp; eoValueParam&lt;double>&amp;
-oneBitRateParam = _parser.createParam&lt;double>(0.01, "oneBitRate", "Relative
-rate for deterministic bit-flip mutation", 'D', "Genetic Operators");</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-_oneBitRate = oneBitRateParam.value();</font></tt></b>
-<p><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp; </b>// the name
-of the "status" file where all actual parameter values will be saved</font></tt>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; string str_status
-= _parser.ProgramName() + ".status";</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; eoValueParam&lt;string>&amp;
-status_nameParam = _parser.createParam&lt;string>(str_status.c_str(), "status","Status
-file",'S', "Persistence");</font></tt></b>
-<br><tt><font color="#3366FF"><b>&nbsp;&nbsp; </b>// do the following AFTER
-ALL PARAMETERS HAVE BEEN PROCESSED</font></tt>
-<br><tt><font color="#3366FF"><b>&nbsp;&nbsp; </b>// i.e. in case you need
-parameters somewhere else, postpone these</font></tt>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; if (_parser.userNeedsHelp())</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-{</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-_parser.printHelp(cout);</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-exit(1);</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-}</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; if (status_nameParam.value()
-!= "")</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-{</font></tt></b>
-<br><b><tt><font color="#3366FF">ofstream os(status_nameParam.value().c_str());</font></tt></b>
-<br><tt><font color="#3366FF"><b>os &lt;&lt; _parser; </b>// and you can
-use that file as parameter file</font></tt>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-}</font></tt></b>
-<br><b><tt><font color="#3366FF">}</font></tt></b></td>
-</tr>
-</table>
-<a NAME="general"></a>
-<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#FFCC99" NOSAVE >
-<tr>
-<td><tt><font color="#993300">// now the main_function: nothing changed,
-except input/output</font></tt>
-<br><b><tt><font color="#993300">void main_function(int argc, char **argv)</font></tt></b>
-<br><b><tt><font color="#993300">{</font></tt></b></td>
-</tr>
-</table>
-<a NAME="parametres"></a>
-<table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#CCFFFF" NOSAVE >
-<tr>
-<td><a NAME="seed_declare"></a><b><tt><font color="#660000">&nbsp;&nbsp;
-uint32 seed;</font></tt></b>
-<br><tt><font color="#999900"><b>&nbsp;&nbsp; </b>// decription of genotype</font></tt>
-<br><b><tt><font color="#999900">&nbsp;&nbsp; unsigned int vecSize;</font></tt></b>
-<br><tt><font color="#33CC00"><b>&nbsp;&nbsp; </b>// parameters for evolution
-engine</font></tt>
-<br><b><tt><font color="#33CC00">&nbsp;&nbsp; unsigned int popSize;</font></tt></b>
-<br><b><tt><font color="#33CC00">&nbsp;&nbsp; unsigned int tSize;</font></tt></b>
-<br><tt><font color="#CC33CC"><b>&nbsp;&nbsp; </b>// operators probabilities
-at the algorithm level</font></tt>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp; double pCross;</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp; double pMut;</font></tt></b>
 <br><tt><font color="#3366FF"><b>&nbsp;&nbsp; </b>// init and stop</font></tt>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp; string load_name;</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp; unsigned int maxGen;</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp; unsigned int minGen;</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp; unsigned int steadyGen;</font></tt></b>
-<br><tt><font color="#CC33CC"><b>&nbsp;&nbsp; </b>// rates for crossovers</font></tt>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp; double onePointRate;</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp; double twoPointsRate;</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp; double URate;</font></tt></b>
-<br><tt><font color="#CC33CC"><b>&nbsp;&nbsp; </b>// rates and private
-parameters for mutations;</font></tt>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp; double pMutPerBit;</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp; double bitFlipRate;</font></tt></b>
-<br><b><tt><font color="#CC33CC">&nbsp;&nbsp; double oneBitRate;</font></tt></b>
-<br><a NAME="parser_declare"></a><tt><font color="#3366FF"><b>&nbsp;&nbsp; </b>// define a
-parser from the command-line arguments</font></tt>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; eoParser parser(argc,
-argv);</font></tt></b>
-<br><tt><font color="#3366FF"><b>&nbsp;&nbsp; </b>// Now read the parameters
-of the program</font></tt>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; read_param(argc,
-argv, seed, vecSize, popSize, tSize,</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-pCross, pMut, load_name, maxGen, minGen, steadyGen,</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-onePointRate, twoPointsRate, URate,&nbsp;</font></tt></b>
-<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-pMutPerBit, bitFlipRate, oneBitRate );</font></tt></b></td>
+<br><b><tt><font color="#3366FF">eoValueParam&lt;string> loadNameParam("",
+"Load","A save file to restart from",'L');</font></tt></b>
+<br><b><tt><font color="#3366FF">parser.processParam( loadNameParam, "Persistence"
+);</font></tt></b>
+<br><b><tt><font color="#3366FF">string loadName = loadNameParam.value();</font></tt></b>
+<p><b><tt><font color="#3366FF">eoValueParam&lt;unsigned int> maxGenParam(100,
+"maxGen", "Maximum number of generations",'G');</font></tt></b>
+<br><b><tt><font color="#3366FF">parser.processParam( maxGenParam, "Stopping
+criterion" );</font></tt></b>
+<br><b><tt><font color="#3366FF">unsigned maxGen = maxGenParam.value();</font></tt></b>
+<p><b><tt><font color="#3366FF">eoValueParam&lt;unsigned int> minGenParam(100,
+"minGen", "Minimum number of generations",'g');</font></tt></b>
+<br><b><tt><font color="#3366FF">parser.processParam( minGenParam, "Stopping
+criterion" );</font></tt></b>
+<br><b><tt><font color="#3366FF">unsigned minGen = minGenParam.value();</font></tt></b>
+<p><b><tt><font color="#3366FF">eoValueParam&lt;unsigned int> steadyGenParam(100,
+"steadyGen", "Number of generations with no improvement",'s');</font></tt></b>
+<br><b><tt><font color="#3366FF">parser.processParam( steadyGenParam, "Stopping
+criterion" );</font></tt></b>
+<br><b><tt><font color="#3366FF">unsigned steadyGen = steadyGenParam.value();</font></tt></b>
+<p><tt><font color="#CC33CC">// operators probabilities at the algorithm
+level</font></tt>
+<br><b><tt><font color="#CC33CC">eoValueParam&lt;double> pCrossParam(0.6,
+"pCross", "Probability of Crossover", 'C');&nbsp;</font></tt></b>
+<br><b><tt><font color="#CC33CC">parser.processParam( pCrossParam, "Genetic
+Operators" );</font></tt></b>
+<br><b><tt><font color="#CC33CC">double pCross = pCrossParam.value();</font></tt></b>
+<p><b><tt><font color="#CC33CC">eoValueParam&lt;double> pMutParam(0.1,
+"pMut", "Probability of Mutation", 'M');</font></tt></b>
+<br><b><tt><font color="#CC33CC">parser.processParam( pMutParam, "Genetic
+Operators" );</font></tt></b>
+<br><b><tt><font color="#CC33CC">double pMut = pMutParam.value();</font></tt></b>
+<p><tt><font color="#CC33CC">// relative rates for crossovers</font></tt>
+<br><b><tt><font color="#CC33CC">eoValueParam&lt;double> onePointRateParam(1,
+"onePointRate", "Relative rate for one point crossover", '1');</font></tt></b>
+<br><b><tt><font color="#CC33CC">parser.processParam( onePointRateParam,
+"Genetic Operators" );</font></tt></b>
+<br><b><tt><font color="#CC33CC">double onePointRate = onePointRateParam.value();</font></tt></b>
+<p><b><tt><font color="#CC33CC">eoValueParam&lt;double> twoPointsRateParam(1,
+"twoPointRate", "Relative rate for two point crossover", '2');</font></tt></b>
+<br><b><tt><font color="#CC33CC">parser.processParam( twoPointsRateParam,
+"Genetic Operators" );</font></tt></b>
+<br><b><tt><font color="#CC33CC">double twoPointsRate = twoPointsRateParam.value();</font></tt></b>
+<p><b><tt><font color="#CC33CC">eoValueParam&lt;double> uRateParam(2, "uRate",
+"Relative rate for uniform crossover", 'U');</font></tt></b>
+<br><b><tt><font color="#CC33CC">parser.processParam( uRateParam, "Genetic
+Operators" );</font></tt></b>
+<br><b><tt><font color="#CC33CC">double URate =&nbsp; uRateParam.value();</font></tt></b>
+<p><tt><font color="#CC33CC">// relative rates and private parameters for
+mutations;</font></tt>
+<br><b><tt><font color="#CC33CC">eoValueParam&lt;double> pMutPerBitParam(0.01,
+"pMutPerBit", "Probability of flipping 1 bit in bit-flip mutation", 'b');</font></tt></b>
+<br><b><tt><font color="#CC33CC">parser.processParam( pMutPerBitParam,
+"Genetic Operators" );</font></tt></b>
+<br><b><tt><font color="#CC33CC">double pMutPerBit = pMutPerBitParam.value();</font></tt></b>
+<p><b><tt><font color="#CC33CC">eoValueParam&lt;double> bitFlipRateParam(0.01,
+"bitFlipRate", "Relative rate for bit-flip mutation", 'B');</font></tt></b>
+<br><b><tt><font color="#CC33CC">parser.processParam( bitFlipRateParam,
+"Genetic Operators" );</font></tt></b>
+<br><b><tt><font color="#CC33CC">double bitFlipRate =&nbsp; bitFlipRateParam.value();</font></tt></b>
+<p><b><tt><font color="#CC33CC">eoValueParam&lt;double> oneBitRateParam(0.01,
+"oneBitRate", "Relative rate for deterministic bit-flip mutation", 'D');</font></tt></b>
+<br><b><tt><font color="#CC33CC">parser.processParam( oneBitRateParam,
+"Genetic Operators" );</font></tt></b>
+<br><b><tt><font color="#CC33CC">double oneBitRate = oneBitRateParam.value();</font></tt></b>
+<p><tt><font color="#3366FF">// the name of the "status" file where all
+actual parameter values will be saved</font></tt>
+<br><b><tt><font color="#3366FF">string str_status = parser.ProgramName()
++ ".status"; // default value</font></tt></b>
+<br><b><tt><font color="#3366FF">eoValueParam&lt;string> statusParam(str_status.c_str(),
+"status","Status file",'S');</font></tt></b>
+<br><b><tt><font color="#3366FF">parser.processParam( statusParam, "Persistence"
+);</font></tt></b>
+<p><tt><font color="#3366FF">// do the following AFTER ALL PARAMETERS HAVE
+BEEN PROCESSED</font></tt>
+<br><tt><font color="#3366FF">// i.e. in case you need parameters somewhere
+else, postpone these</font></tt>
+<br><b><tt><font color="#3366FF">if (parser.userNeedsHelp())</font></tt></b>
+<br><b><tt><font color="#3366FF">&nbsp;&nbsp; {</font></tt></b>
+<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; parser.printHelp(cout);</font></tt></b>
+<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit(1);</font></tt></b>
+<br><b><tt><font color="#3366FF">&nbsp;&nbsp; }</font></tt></b>
+<br><b><tt><font color="#3366FF">if (status_nameParam.value() != "")</font></tt></b>
+<br><b><tt><font color="#3366FF">&nbsp;&nbsp; {</font></tt></b>
+<br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ofstream
+os(status_nameParam.value().c_str());</font></tt></b>
+<br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; os &lt;&lt;
+parser; </b>// and you can use that file as parameter file</font></tt>
+<br><b><tt><font color="#3366FF">&nbsp;&nbsp; }</font></tt></b></td>
+</tr>
+
+<tr>
+<td></td>
 </tr>
 </table>
 <a NAME="eval"></a>
@@ -304,29 +256,29 @@ parameters</font></tt>
 <br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp; {</font></tt></b>
 <br><a NAME="loadstate"></a><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 inState.load(load_name); </b>//&nbsp; load the pop and the rng</font></tt>
-<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</b>// the fitness is read in the file:&nbsp;</font></tt>
-<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</b>// do only evaluate the pop if the fitness has changed</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>//
+the fitness is read in the file:&nbsp;</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>//
+do only evaluate the pop if the fitness has changed</font></tt>
 <br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp; }</font></tt></b>
 <br><b><tt><font color="#993399">&nbsp;else</font></tt></b>
 <br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp; {</font></tt></b>
 <br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 rng.reseed(seed);</font></tt></b>
-<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</b>// a Indi random initializer</font></tt>
-<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</b>// based on boolean_generator class (see utils/rnd_generator.h)</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>//
+a Indi random initializer</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>//
+based on boolean_generator class (see utils/rnd_generator.h)</font></tt>
 <br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 eoInitFixedLength&lt;Indi, boolean_generator>&nbsp;</font></tt></b>
 <br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 random(vecSize, boolean_generator());</font></tt></b>
-<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</b>// Init pop from the randomizer: need to use the append function</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>//
+Init pop from the randomizer: need to use the append function</font></tt>
 <br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 pop.append(popSize, random);&nbsp;</font></tt></b>
-<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</b>// and evaluate pop (STL syntax)&nbsp;</font></tt>
+<br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>//
+and evaluate pop (STL syntax)&nbsp;</font></tt>
 <br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 apply&lt;Indi>(eval, pop);</font></tt></b>
 <br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp; } </b>// end
@@ -356,7 +308,8 @@ of initializatio of the population</font></tt></td>
 <table BORDER=0 CELLSPACING=0 COLS=1 WIDTH="100%" BGCOLOR="#99FFCC" NOSAVE >
 <tr>
 <td><tt><font color="#009900"><b>&nbsp;</b>// The robust tournament selection</font></tt>
-<br><tt><font color="#009900"><b>&nbsp;eoDetTournament&lt;Indi> selectOne(tSize);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><tt><font color="#009900"><b>&nbsp;eoDetTournament&lt;Indi> selectOne(tSize);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 </b>// tSize in [2,POPSIZE]</font></tt>
 <br><tt><font color="#009900"><b>&nbsp;</b>// is now encapsulated in a
 eoSelectPerc (entage)</font></tt>
@@ -369,9 +322,10 @@ by default rate==1</font></tt></td>
 <tr>
 <td><tt><font color="#009900"><b>&nbsp;</b>// And we now have the full
 slection/replacement - though with&nbsp;</font></tt>
-<br><tt><font color="#009900"><b>&nbsp;</b>// the same generational
-replacement at the moment :-)</font></tt>
-<br><b><tt><font color="#009900">&nbsp;eoGenerationalReplacement&lt;Indi> replace;&nbsp;</font></tt></b></td>
+<br><tt><font color="#009900"><b>&nbsp;</b>// the same generational replacement
+at the moment :-)</font></tt>
+<br><b><tt><font color="#009900">&nbsp;eoGenerationalReplacement&lt;Indi>
+replace;&nbsp;</font></tt></b></td>
 </tr>
 </table>
 <a NAME="operators"></a>
@@ -451,12 +405,12 @@ a continuator: an eoCheckPoint&nbsp;</font></tt>
 <br><tt><font color="#3366FF"><b>&nbsp;</b>// IS AN eoContinue and will
 be called in the loop of all algorithms)</font></tt>
 <br><b><tt><font color="#3366FF">&nbsp;eoCheckPoint&lt;Indi> checkpoint(continuator);</font></tt></b>
-<p><a NAME="param_declare"></a><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;
-</b>// Create a counter parameter</font></tt>
+<p><a NAME="param_declare"></a><tt><font color="#3366FF"><b>&nbsp; </b>//
+Create a counter parameter</font></tt>
 <br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; eoValueParam&lt;unsigned>
 generationCounter(0, "Gen.");</font></tt></b>
-<p><a NAME="param_pass"></a><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;
-</b>// Create an incrementor (sub-class of eoUpdater). Note that the&nbsp;</font></tt>
+<p><a NAME="param_pass"></a><tt><font color="#3366FF"><b>&nbsp;&nbsp; </b>//
+Create an incrementor (sub-class of eoUpdater). Note that the&nbsp;</font></tt>
 <br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp; </b>// parameter's
 value is passed by reference,&nbsp;</font></tt>
 <br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp; </b>// so every
@@ -465,13 +419,13 @@ time the incrementer is updated (every generation),</font></tt>
 in generationCounter will change.</font></tt>
 <br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; eoIncrementor&lt;unsigned>
 increment(generationCounter.value());</font></tt></b>
-<br><a NAME="updater_pass"></a><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;
-</b>// Add it to the checkpoint,&nbsp;</font></tt>
+<br><a NAME="updater_pass"></a><tt><font color="#3366FF"><b>&nbsp; </b>//
+Add it to the checkpoint,&nbsp;</font></tt>
 <br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp; </b>// so the
 counter is updated (here, incremented) every generation</font></tt>
 <br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; checkpoint.add(increment);</font></tt></b>
-<br><a NAME="stat_declare"></a><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;
-</b>// now some statistics on the population:</font></tt>
+<br><a NAME="stat_declare"></a><tt><font color="#3366FF"><b>&nbsp; </b>//
+now some statistics on the population:</font></tt>
 <br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp; </b>// Best fitness
 in population</font></tt>
 <br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; eoBestFitnessStat&lt;Indi>
@@ -480,9 +434,8 @@ bestStat;</font></tt></b>
 moment stats: average and stdev</font></tt>
 <br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; eoSecondMomentStats&lt;Indi>
 SecondStat;</font></tt></b>
-<br><a NAME="stat_pass"></a><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;
-</b>// Add them to the checkpoint to get them called at the appropriate
-time</font></tt>
+<br><a NAME="stat_pass"></a><tt><font color="#3366FF"><b>&nbsp;&nbsp; </b>//
+Add them to the checkpoint to get them called at the appropriate time</font></tt>
 <br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; checkpoint.add(bestStat);</font></tt></b>
 <br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; checkpoint.add(SecondStat);</font></tt></b>
 <br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp; </b>// The Stdout
@@ -496,8 +449,7 @@ checkpoint.add(monitor);</font></tt></b>
 <br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp; </b>// the monitor
 will output a series of parameters: add them&nbsp;</font></tt>
 <br><a NAME="monitor_add"></a><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp;
-monitor.add(generationCounter);</font></tt></b>
-<a name="eval_monitor"></a>
+monitor.add(generationCounter);</font></tt></b><a NAME="eval_monitor"></a>
 <br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp; monitor.add(eval);
 </b>//
 because now eval is an eoEvalFuncCounter!</font></tt>
@@ -521,21 +473,23 @@ of item the eoCheckpoint can handle: state savers:</font></tt>
 eoState outState;</font></tt></b>
 <br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp; </b>// Register
 the algorithm into the state</font></tt>
-<br><a NAME="outstate_register"></a><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; outState.registerObject(parser);</font></tt></b>
+<br><a NAME="outstate_register"></a><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp;
+outState.registerObject(parser);</font></tt></b>
 <br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; outState.registerObject(pop);</font></tt></b>
 <br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; outState.registerObject(rng);</font></tt></b>
 <br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp; </b>// and feed
 the state to state savers</font></tt>
-<br><a NAME="statesaver_declare"></a><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;
-</b>// save state every 100th&nbsp; generation</font></tt>
+<br><a NAME="statesaver_declare"></a><tt><font color="#3366FF"><b> 
+</b>//
+save state every 100th&nbsp; generation</font></tt>
 <br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; eoCountedStateSaver
 stateSaver1(100, outState, "generation");&nbsp;</font></tt></b>
 <br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp; </b>// save state
 every 1 seconds&nbsp;</font></tt>
 <br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; eoTimedStateSaver&nbsp;&nbsp;&nbsp;
 stateSaver2(1, outState, "time");&nbsp;</font></tt></b>
-<br><a NAME="statesaver_pass"></a><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;
-</b>// Don't forget to add the two savers to the checkpoint</font></tt>
+<br><a NAME="statesaver_pass"></a><tt><font color="#3366FF"><b>&nbsp; </b>//
+Don't forget to add the two savers to the checkpoint</font></tt>
 <br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; checkpoint.add(stateSaver1);</font></tt></b>
 <br><b><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp;&nbsp; checkpoint.add(stateSaver2);</font></tt></b>
 <br><tt><font color="#3366FF"><b>&nbsp;&nbsp;&nbsp;&nbsp; </b>// and that's
@@ -599,7 +553,9 @@ cout &lt;&lt; "Exception: " &lt;&lt; e.what() &lt;&lt; '\n';</font></tt></b>
 
 <hr WIDTH="100%"><a href="eoLesson3.html">Back to Lesson 3</a> - <a href="eoTutorial.html">Tutorial
 main page </a>- <a href="eoTopDown.html">Algorithm-Based</a> - <a href="eoBottomUp.html">Component-Based
-</a> - <a href="eoProgramming.html">Programming hints</a> - <b><font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
+</a>-
+<a href="eoProgramming.html">Programming
+hints</a> - <b><font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
 documentation</a></font></b>
 <hr>
 <address>

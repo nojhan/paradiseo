@@ -24,6 +24,11 @@
 typedef eoBin<double> Indi;
 
 // PARAMETRES
+
+// the main_function: nothing changed(!), except variable initialization
+void main_function(int argc, char **argv)
+{
+// PARAMETRES
 //-----------------------------------------------------------------------------
 // instead of having all values of useful parameters as constants, read them:
 // either on the command line (--option=value or -o=value)
@@ -31,147 +36,99 @@ typedef eoBin<double> Indi;
 //                             # = usual comment character 
 //     or in the environment (TODO)
 
-// note that the parameters are passed by reference so they can be updated
-void read_param(eoParser & _parser, 
-		uint32 & _seed,
-		unsigned int & _vecSize,
-		unsigned int & _popSize,
-		unsigned int & _tSize,
-		double & _pCross,
-		double & _pMut,
-		string & _load_name,
-		unsigned int & _maxGen,
-		unsigned int & _minGen,
-		unsigned int & _steadyGen,
-		double & _onePointRate, 
-		double & _twoPointsRate, 
-		double & _uRate, 
-		double & _pMutPerBit, 
-		double & _bitFlipRate, 
-		double & _oneBitRate 
-		)
-{ 
+  // First define a parser from the command-line arguments
+    eoParser parser(argc, argv);
+
     // For each parameter, define Parameter, read it through the parser,
     // and assign the value to the variable
+
     eoValueParam<uint32> seedParam(time(0), "seed", "Random number seed", 'S');
-    _parser.processParam( seedParam );
-    _seed = seedParam.value();
+    parser.processParam( seedParam );
+    unsigned seed = seedParam.value();
 
+   // description of genotype
     eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size",'V');
-    _parser.processParam( vecSizeParam, "Representation" );
-    _vecSize = vecSizeParam.value();
+    parser.processParam( vecSizeParam, "Representation" );
+    unsigned vecSize = vecSizeParam.value();
 
+   // parameters for evolution engine
     eoValueParam<unsigned int> popSizeParam(10, "popSize", "Population size",'P');
-    _parser.processParam( popSizeParam, "Evolution engine" );
-    _popSize = popSizeParam.value();
+    parser.processParam( popSizeParam, "Evolution engine" );
+    unsigned popSize = popSizeParam.value();
 
     eoValueParam<unsigned int> tSizeParam(10, "tSize", "Tournament size",'T');
-    _parser.processParam( tSizeParam, "Evolution Engine" );
-    _tSize = tSizeParam.value();
+    parser.processParam( tSizeParam, "Evolution Engine" );
+    unsigned tSize = tSizeParam.value();
 
+   // init and stop
     eoValueParam<string> loadNameParam("", "Load","A save file to restart from",'L');
-    _parser.processParam( loadNameParam, "Persistence" );
-    _load_name = loadNameParam.value();
+    parser.processParam( loadNameParam, "Persistence" );
+    string loadName = loadNameParam.value();
  
     eoValueParam<unsigned int> maxGenParam(100, "maxGen", "Maximum number of generations",'G');
-    _parser.processParam( maxGenParam, "Stopping criterion" );
-    _maxGen = maxGenParam.value();
+    parser.processParam( maxGenParam, "Stopping criterion" );
+    unsigned maxGen = maxGenParam.value();
 
     eoValueParam<unsigned int> minGenParam(100, "minGen", "Minimum number of generations",'g');
-    _parser.processParam( minGenParam, "Stopping criterion" );
-    _minGen = minGenParam.value();
+    parser.processParam( minGenParam, "Stopping criterion" );
+    unsigned minGen = minGenParam.value();
 
     eoValueParam<unsigned int> steadyGenParam(100, "steadyGen", "Number of generations with no improvement",'s');
-    _parser.processParam( steadyGenParam, "Stopping criterion" );
-    _steadyGen = steadyGenParam.value();
+    parser.processParam( steadyGenParam, "Stopping criterion" );
+    unsigned steadyGen = steadyGenParam.value();
 
+   // operators probabilities at the algorithm level
     eoValueParam<double> pCrossParam(0.6, "pCross", "Probability of Crossover", 'C'); 
-    _parser.processParam( pCrossParam, "Genetic Operators" );
-    _pCross = pCrossParam.value();
+    parser.processParam( pCrossParam, "Genetic Operators" );
+    double pCross = pCrossParam.value();
 
     eoValueParam<double> pMutParam(0.1, "pMut", "Probability of Mutation", 'M');
-    _parser.processParam( pMutParam, "Genetic Operators" );
-    _pMut = pMutParam.value();
+    parser.processParam( pMutParam, "Genetic Operators" );
+    double pMut = pMutParam.value();
 
+   // relative rates for crossovers
     eoValueParam<double> onePointRateParam(1, "onePointRate", "Relative rate for one point crossover", '1');
-    _parser.processParam( onePointRateParam, "Genetic Operators" );
-    _onePointRate = onePointRateParam.value();
+    parser.processParam( onePointRateParam, "Genetic Operators" );
+    double onePointRate = onePointRateParam.value();
 
     eoValueParam<double> twoPointsRateParam(1, "twoPointRate", "Relative rate for two point crossover", '2');
-    _parser.processParam( twoPointsRateParam, "Genetic Operators" );
-    _twoPointsRate = twoPointsRateParam.value();
+    parser.processParam( twoPointsRateParam, "Genetic Operators" );
+    double twoPointsRate = twoPointsRateParam.value();
 
     eoValueParam<double> uRateParam(2, "uRate", "Relative rate for uniform crossover", 'U');
-    _parser.processParam( uRateParam, "Genetic Operators" );
-    _uRate =  uRateParam.value();
+    parser.processParam( uRateParam, "Genetic Operators" );
+    double URate =  uRateParam.value();
 
+   // relative rates and private parameters for mutations;
     eoValueParam<double> pMutPerBitParam(0.01, "pMutPerBit", "Probability of flipping 1 bit in bit-flip mutation", 'b');
-    _parser.processParam( pMutPerBitParam, "Genetic Operators" );
-    _pMutPerBit = pMutPerBitParam.value();
+    parser.processParam( pMutPerBitParam, "Genetic Operators" );
+    double pMutPerBit = pMutPerBitParam.value();
 
     eoValueParam<double> bitFlipRateParam(0.01, "bitFlipRate", "Relative rate for bit-flip mutation", 'B');
-    _parser.processParam( bitFlipRateParam, "Genetic Operators" );
-    _bitFlipRate =  bitFlipRateParam.value();
+    parser.processParam( bitFlipRateParam, "Genetic Operators" );
+    double bitFlipRate =  bitFlipRateParam.value();
       
     eoValueParam<double> oneBitRateParam(0.01, "oneBitRate", "Relative rate for deterministic bit-flip mutation", 'D');
-    _parser.processParam( oneBitRateParam, "Genetic Operators" );
-      _oneBitRate = oneBitRateParam.value();
+    parser.processParam( oneBitRateParam, "Genetic Operators" );
+    double oneBitRate = oneBitRateParam.value();
 
     // the name of the "status" file where all actual parameter values will be saved
-    string str_status = _parser.ProgramName() + ".status";
+    string str_status = parser.ProgramName() + ".status"; // default value
     eoValueParam<string> statusParam(str_status.c_str(), "status","Status file",'S');
-    _parser.processParam( statusParam, "Persistence" );
+    parser.processParam( statusParam, "Persistence" );
 
    // do the following AFTER ALL PARAMETERS HAVE BEEN PROCESSED
    // i.e. in case you need parameters somewhere else, postpone these
-    if (_parser.userNeedsHelp())
+    if (parser.userNeedsHelp())
       {
-        _parser.printHelp(cout);
+        parser.printHelp(cout);
         exit(1);
       }
     if (statusParam.value() != "")
       {
 	ofstream os(statusParam.value().c_str());
-	os << _parser;		// and you can use that file as parameter file
+	os << parser;		// and you can use that file as parameter file
       }
-}
-
-// GENERAL
-// now the main_function: nothing changed, except input/output
-void main_function(int argc, char **argv)
-{
-// PARAMETRES
-   uint32 seed;
-   // decription of genotype
-   unsigned int vecSize;
-   // parameters for evolution engine
-   unsigned int popSize;
-   unsigned int tSize;
-   // operators probabilities at the algorithm level
-   double pCross;
-   double pMut;
-   // init and stop
-   string load_name;
-   unsigned int maxGen;
-   unsigned int minGen;
-   unsigned int steadyGen;
-   // rates for crossovers
-   double onePointRate;
-   double twoPointsRate;
-   double URate;
-   // rates and private parameters for mutations;
-   double pMutPerBit;
-   double bitFlipRate;
-   double oneBitRate;
-
-  // define a parser from the command-line arguments
-    eoParser parser(argc, argv);
-
-   // Now read the parameters of the program
-    read_param(parser, seed, vecSize, popSize, tSize,
-	       pCross, pMut, load_name, maxGen, minGen, steadyGen,
-	       onePointRate, twoPointsRate, URate, 
-	       pMutPerBit, bitFlipRate, oneBitRate );
 
 // EVAL
   /////////////////////////////
@@ -197,9 +154,9 @@ void main_function(int argc, char **argv)
   inState.registerObject(rng);
   inState.registerObject(pop);
     
-  if (load_name != "")
+  if (loadName != "")
     {
-      inState.load(load_name); //  load the pop and the rng
+      inState.load(loadName); //  load the pop and the rng
       // the fitness is read in the file: 
       // do only evaluate the pop if the fitness has changed
     }
