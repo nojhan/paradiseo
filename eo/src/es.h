@@ -49,14 +49,11 @@
 #include <es/eoNormalMutation.h>
 #include <es/eoRealAtomXover.h>	// for generic operators
 #include <es/eoEsGlobalXover.h> // Global ES Xover
-#include <es/eoEsLocalXover.h> // Local ES Xover
+#include <es/eoEsStandardXover.h> // 2-parents ES Xover
 
 // the ES-mutations
 #include <es/eoEsMutationInit.h>
 #include <es/eoEsMutate.h>
-
-// the crossover - to be continued
-#include <es/eoEsStdevXOver.h>
 
 #endif _es_h
 

@@ -112,5 +112,31 @@ private:
   vector<const EOT*> eoPters;
 };
 
+//-----------------------------------------------------------------------------
+/** eoNoSelect: returns all individual in order WITHOUT USING FITNESS!!!
+ *       looping back to the beginning when exhasuted
+ *
+ */
+//-----------------------------------------------------------------------------
+
+template <class EOT> class eoNoSelect: public eoSelectOne<EOT>
+{
+ public:
+  /** Ctor
+  */
+  eoNoSelect(): current(0) {}
+
+  virtual const EOT& operator()(const eoPop<EOT>& _pop)
+  {
+    if (current >= _pop.size())
+      current=0;
+
+    current++;
+    return _pop[current-1] ;
+  }
+private:
+  unsigned current;
+};
+
 #endif eoRandomSelect_h
 
