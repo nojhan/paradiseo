@@ -50,7 +50,7 @@
 #include <es/eoRealAtomXover.h>	// for generic operators
 
 // SBX crossover (following Deb)
-#include <eoSBXcross.h>
+#include <es/eoSBXcross.h>
 
 // ES specific operators
 #include <es/eoEsGlobalXover.h> // Global ES Xover
