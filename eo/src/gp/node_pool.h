@@ -13,18 +13,6 @@
  * modified is included with the above copyright notice.
 
 
- * Special disclaimer and political statement: 
-
- * In contrast with the rest of the EO package where you might have found this code, this software 
- * does NOT fall under the GNU Lesser Public License or the GNU Public License, nor is anyone allowed
- * by the copyright holder (that's me) to put it under either license.
- * Doing this would limit my and your freedom to use this software in any way
- * you or I see fit, including but not limited to closed-source software. I personally do not adher to 
- * virus-like qualities of the GPL and therefore take the liberty to open this code as wide as I can.
- * Furthermore, as this work was carried out in an academic environment and thus paid by the public 
- * I do not see the need for the same public (which includes commercial companies) 
- * to be limited in any way to use this software.
-
 */
 
 #ifndef node_pool_h
