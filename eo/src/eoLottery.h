@@ -30,36 +30,33 @@
 
 #include <functional>  // 
 #include <numeric>     // accumulate
-#include <eo>          // eoPop eoSelect MINFLOAT
+#include "eoPopOps.h"
+#include "eoRNG.h"
 
 //-----------------------------------------------------------------------------
-/** eoLottery: a selection method. Puts into the output a group of individuals 
-    selected using lottery; individuals with higher probability will have more
-    chances of being selected.
-    Requires EOT::Fitness to be float castable
-*/
+/// eoLottery: a selection method.
+/// requires EOT::Fitness to be float castable
 //-----------------------------------------------------------------------------
 
 template<class EOT> class eoLottery: public eoBinPopOp<EOT>
 {
  public:
   /// (Default) Constructor.
-  eoLottery(const float& _rate = 1.0): rate(_rate) {}
+  eoLottery(const double & _rate = 1.0): rate(_rate) {}
   
-  /** actually selects individuals from pop and pushes them back them into breeders
-   *  until breeders has the right size: rate*pop.size()
-   *  BUT what happens if breeders is already too big?
-   * Too big for what?
-   */
+    /** actually selects individuals from pop and put them into breeders
+     *  until breeders has the right size: rate*pop.size()
+     *  BUT what happens if breeders is already too big?
+     */
   void operator()( eoPop<EOT>& pop, eoPop<EOT>& breeders) 
     {
       // scores of chromosomes
-      vector<float> score(pop.size());
+      vector<double> score(pop.size());
 
       // calculates total scores for chromosomes
-      float total = 0;
+      double total = 0;
       for (unsigned i = 0; i < pop.size(); i++) {
-	score[i] = static_cast<float>(pop[i].fitness()); 
+	score[i] = static_cast<double>(pop[i].fitness()); 
 	total += score[i];
       }
 
@@ -77,9 +74,22 @@ template<class EOT> class eoLottery: public eoBinPopOp<EOT>
 	  breeders.push_back(pop[indloc]);
       }
     }
+
+    /// accessor to private rate
+    double Rate() {return rate;}
+
+  /** @name Methods from eoObject	*/
+  //@{
+  /** readFrom and printOn inherited from eoMerge */
+  
+  /** Inherited from eoObject. Returns the class name.
+      @see eoObject
+  */
+  virtual string className() const {return "eoLottery";};
+  //@}
   
  private:
-  float rate;  // selection rate
+  double rate;  // selection rate
 };
 
 //-----------------------------------------------------------------------------
