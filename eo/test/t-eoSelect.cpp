@@ -16,6 +16,8 @@
 // general
 #include <eo>
 #include <eoFitnessScalingSelect.h>
+#include <eoSelectFromWorth.h>
+#include <eoLinearFitScaling.h>
 //-----------------------------------------------------------------------------
 
 struct Dummy : public EO<double>
@@ -123,8 +125,6 @@ eoValueParam<unsigned int> tournamentSizeParam = parser.createParam<unsigned int
         exit(1);
       }
 
-    unsigned i;
-
     cout << "Testing the Selections\nParents size = " << pSize 
 	 << ", offspring rate = " << oRate << endl;
 
@@ -132,16 +132,26 @@ eoValueParam<unsigned int> tournamentSizeParam = parser.createParam<unsigned int
 
 
 // the selection procedures under test
-    eoDetSelect<Dummy> detSelect(oRate);
-    testSelectMany(detSelect, "detSelect");
+//     eoDetSelect<Dummy> detSelect(oRate);
+//     testSelectMany(detSelect, "detSelect");
 
     // Roulette
-    eoProportionalSelect<Dummy> propSelect;
-    testSelectOne<Dummy>(propSelect, oRate, "propSelect");
+//     eoProportionalSelect<Dummy> propSelect;
+//     testSelectOne<Dummy>(propSelect, oRate, "propSelect");
 
     // Ranking
-    eoRankingSelect<Dummy> rankSelect(rankingPressure);
-    testSelectOne<Dummy>(rankSelect, oRate, "rankSelect");
+//     eoRankingSelect<Dummy> rankSelect(rankingPressure);
+//     testSelectOne<Dummy>(rankSelect, oRate, "rankSelect");
+
+    // New ranking using the perf2Worth construct
+      cout << "Avant appel a LinearRanking()" << endl;
+    eoRankingSelect<Dummy> newRankingSelect(rankingPressure); // pressure 2 by default
+    testSelectOne<Dummy>(newRankingSelect, oRate, "newRankSelect");
+
+    // New ranking using the perf2Worth construct
+      cout << "Avant appel a exponentialRanking()" << endl;
+    eoRankingSelect<Dummy> expRankingSelect(rankingPressure,2);
+    testSelectOne<Dummy>(expRankingSelect, oRate, "expRankingSelect");
 
     // Det tournament
     eoDetTournamentSelect<Dummy> detTourSelect(tSize);
@@ -152,8 +162,12 @@ eoValueParam<unsigned int> tournamentSizeParam = parser.createParam<unsigned int
     testSelectOne<Dummy>(stochTourSelect, oRate, "stochTourSelect");
 
     // Fitness scaling
-    eoFitnessScalingSelect<Dummy> fitScaleSelect(rankingPressure);
-    testSelectOne<Dummy>(fitScaleSelect, oRate, "fitScaleSelect");
+//     eoFitnessScalingSelect<Dummy> fitScaleSelect(rankingPressure);
+//     testSelectOne<Dummy>(fitScaleSelect, oRate, "fitScaleSelect");
+
+    // NEW Fitness scaling
+    eoFitnessScalingSelect<Dummy> newFitScaleSelect(rankingPressure);
+    testSelectOne<Dummy>(newFitScaleSelect, oRate, "NewFitScaleSelect");
 
     return 1;
 }

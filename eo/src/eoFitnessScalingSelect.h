@@ -29,78 +29,25 @@
 
 //-----------------------------------------------------------------------------
 
-#include <utils/eoRNG.h>
-#include <utils/selectors.h>
-#include <eoSelectOne.h>
+#include <eoSelectFromWorth.h>
+#include <eoLinearFitScaling.h>
 
-//-----------------------------------------------------------------------------
-/** eoFitnessScalingSelect: select an individual proportional to its rank
-          this is actually the linearRanking
+/** eoFitnessScalingSelect: select an individual proportional to the 
+ *  linearly scaled fitness that is computed by the private
+ *  eoLinearFitScaling object
 */
-//-----------------------------------------------------------------------------
-
-template <class EOT> class eoFitnessScalingSelect: public eoSelectOne<EOT> 
+template <class EOT> 
+class eoFitnessScalingSelect:  public eoRouletteWorthSelect<EOT, double> 
 {
 public:
-     typedef typename EOT::Fitness Fitness;
   /** Ctor:
    *  @param _p the selective pressure, should be in [1,2] (2 is the default)
-   *  @param _pop an optional population
    */
-  eoFitnessScalingSelect(double _p = 2.0, const eoPop<EOT>& _pop = eoPop<EOT>()): 
-    pressure(_p), scaledFitness(0) 
-  {
-    if (minimizing_fitness<EOT>())
-      throw logic_error("eoFitnessScalingSelect: minimizing fitness");
-    if (_pop.size() > 0)	   // a population in Ctor? initialize scaledFitness
-      {
-	setup(_pop);
-      }
-  }
-
-  // COmputes the coefficients of the linear transform in such a way that
-  // Pselect(Best) == pressure/sizePop
-  // Pselect(average) == 1.0/sizePop
-  // we truncate negative values to 0 - 
-  // we could also adjust the pressure so that worst get 0 scaled fitness
-  void setup(const eoPop<EOT>& _pop)
-  {
-    unsigned pSize =_pop.size();
-    scaledFitness.resize(pSize);
-
-    // best and worse fitnesses
-    double bestFitness = static_cast<double> (_pop.best_element().fitness());
-    double worstFitness = static_cast<double> (_pop.worse_element().fitness());
-
-    // average fitness
-    double sum=0.0;
-    for (unsigned i=0; i<pSize; i++)
-      sum += static_cast<double>(_pop[i].fitness());
-    double averageFitness = sum/pSize;
-
-    // the coefficients for linear scaling
-    double denom = pSize*(bestFitness - averageFitness);
-    double alpha = (pressure-1)/denom;
-    double beta = (bestFitness - pressure*averageFitness)/denom;
-//     if (beta < 0)
-//       beta = max(beta, -alpha*worstFitness);
-    for (unsigned i=0; i<pSize; i++) // truncate to 0
-      {
-	scaledFitness[i] = max(alpha*_pop[i].fitness()+beta, 0.0);
-      }
-  }
-    
-  /** do the selection, call roulette_wheel on rankFitness
-   */
-  const EOT& operator()(const eoPop<EOT>& _pop) 
-  {
-    unsigned selected = rng.roulette_wheel(scaledFitness);
-    return _pop[selected];
-  }
+  eoFitnessScalingSelect(double _p = 2.0): 
+    eoRouletteWorthSelect<EOT, double>(scaling), scaling(_p) {}
 
 private :
-  double pressure;
-  vector<double> scaledFitness;
+  eoLinearFitScaling<EOT> scaling;	   // derived from eoPerf2Worth
 };
 
 #endif 

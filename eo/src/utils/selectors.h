@@ -136,7 +136,7 @@ It roulette_wheel(It _begin, It _end, double total, eoRng& _gen = rng)
     float roulette = _gen.uniform(total);
 
     if (roulette == 0.0)	   // covers the case where total==0.0
-      return _min + _gen.random(_end - _min); // uniform choice
+      return _begin + _gen.random(_end - _begin); // uniform choice
  
     It i = _begin;
  
