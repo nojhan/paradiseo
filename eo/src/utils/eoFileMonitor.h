@@ -23,6 +23,10 @@
              mkeijzer@dhi.dk
  */
 //-----------------------------------------------------------------------------
+/** Modified the default behavior, so that it erases existing files.
+Can be modified in the ctor.
+MS 25/11/00
+*/
 
 #ifndef _eoFileMonitor_h
 #define _eoFileMonitor_h
@@ -38,17 +42,32 @@
 class eoFileMonitor : public eoMonitor
 {
 public :
-    eoFileMonitor(std::string _filename, std::string _delim = ",") : filename(_filename), delim(_delim) {}
+    eoFileMonitor(std::string _filename, std::string _delim = " ", 
+		  bool _keep = false) : 
+      filename(_filename), delim(_delim), keep(keep)
+  {
+    if (! _keep)
+      {
+	ofstream os(filename.c_str());
+	if (!os)
+	  {
+	    string str = "eoFileMonitor: Could not open " + filename;
+	    throw runtime_error(str);
+	  }
+      }
+  }
     eoMonitor& operator()(void);
 
     eoMonitor& operator()(std::ostream& os);
 
     void printHeader(void);
     virtual void printHeader(std::ostream& os);
-
+  virtual string getFileName()	   // for eoGnuPlot
+  { return filename;}
 private :
     std::string filename;
     std::string delim;
+  bool keep;			   // should we append or create a new file
 };
 
 #endif
