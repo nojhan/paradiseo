@@ -63,7 +63,7 @@ public:
 	lastImprovement = thisGeneration;
       } else {
 	if (thisGeneration - lastImprovement > repSteadyGenerations) {
-	  cout << "STOP in eoSteadyFitContnue: Done " << repSteadyGenerations 
+	  cout << "STOP in eoSteadyFitContinue: Done " << repSteadyGenerations 
 	       << " generations without improvement\n";
 	  return false;
 	}
@@ -73,7 +73,7 @@ public:
 	steadyState = true;
 	bestSoFar = bestCurrentFitness;
 	lastImprovement = thisGeneration;
-	cout << "eoSteadyFitContnue: Done the minimum number of generations\n";
+	cout << "eoSteadyFitContinue: Done the minimum number of generations\n";
       }
     }
     return true;
