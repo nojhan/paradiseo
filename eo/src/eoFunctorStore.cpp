@@ -4,7 +4,7 @@
 /// clears the memory
 eoFunctorStore::~eoFunctorStore()
 {
-    for (int i = 0; i < vec.size(); ++i)
+    for (size_t i = 0; i < vec.size(); ++i)
     {
         delete vec[i];
     }
