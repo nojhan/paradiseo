@@ -251,10 +251,12 @@ namespace mlp {
 	init (num_inputs,num_outputs,layer_sizes);
         // skip forward to pass up opening '<' char
         char c=' ';
-        while (c!='<') { is >> c;}
+        while (c!='<' && !is.eof()) { is >> c;}
         for (iterator l =begin() ; l != end(); l++) {
 	    is >> *l;
 	}
+	do { is >> c; } while (c == ' ' && !is.eof());
+	assert(c == '>');
     }
 
     void init( unsigned num_inputs, 
