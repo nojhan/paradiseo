@@ -107,7 +107,7 @@ class eoBinGenOp : public eoGenOp<EOT>
    public:
     eoBinGenOp(eoBinOp<EOT>& _op) : op(_op) {}
 
-    unsigned max_production(void) { return 2; } //2 as it will request two individuals
+    unsigned max_production(void) { return 1; } 
 
   /** do the work: get 2 individuals from the population, modifies
       only one (it's a eoBinOp) 
