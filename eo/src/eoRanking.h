@@ -68,6 +68,9 @@ public:
       unsigned pSize =_pop.size();
       unsigned int pSizeMinusOne = pSize-1;
 
+      if (pSize <= 1)
+	throw runtime_error("Cannot do ranking with population of size <= 1");
+
       // value() refers to the vector of worthes (we're in an eoParamvalue)
       value().resize(pSize);
 
