@@ -135,6 +135,7 @@ inline eoOpSelector<EOT>::ID eoGOpSelector<EOT>::addOp( eoOp<EOT>& _op,
 	case eoOp<EOT>::quadratic :
 	  op =  new eoWrappedQuadraticOp<EOT>(static_cast<eoQuadraticOp<EOT>&>(_op));
 	  break;
+	case eoOp<EOT>::general : break; // cannot happen, but gcc issued a warning
 	}
       ownOpList.push_back( op );
     }
