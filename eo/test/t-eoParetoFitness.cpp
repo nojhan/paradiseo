@@ -19,6 +19,8 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: mak@dhi.dk
+
+30/01/02 - MS - Added the eoVariableParetoTraits - and the compare Fn
  */
 //-----------------------------------------------------------------------------
 
@@ -36,10 +38,26 @@ public :
   static bool maximizing(int) { return false; }
 };
 
+template <class F>
+void compare(F & _eo1, F & _eo2)
+{
+  if (_eo1.dominates(_eo2))
+    cout << _eo1 << " dominates " << _eo2 << endl;
+  else if (_eo2.dominates(_eo2))
+    cout << _eo2 << " dominates " << _eo1 << endl;
+  else
+    cout << "None of " << _eo1 << " and " << _eo2 << "dominates the other" << endl;
+  return;
+}
+
 int main()
 {
   typedef eoParetoFitness<> MaxFitness;
   typedef eoParetoFitness<MinimizingTraits> MinFitness;
+
+  typedef eoParetoFitness<eoVariableParetoTraits> VarFitness;
+
+  try{
 
   MaxFitness f0;
   f0[0] = 0.0;
@@ -108,4 +126,64 @@ int main()
   assert(m2.dominates(m3)); //m3 < m2);
   assert(!m3.dominates(m2)); // (m2 < m3));
   assert(m2.dominates(m3)); //m2 > m3);
+
+
+  //////////////////////////////////////////
+  // now the run-time set-able number of objectives
+  ////////////////////////////////////////////
+
+  cout << "On y va" << endl;
+
+
+  // setup fitness WARNING do not try to allocate any EO before that (runtime error)
+  vector<bool> b(2, true);
+  b[0]=true; 
+  b[1]=false;
+  VarFitness::setUp(2, b);
+  cout << "\nMAXimizing on Obj 0 and MINimizing on Obj 1\n";
+
+  VarFitness mv0;
+  VarFitness mv1;
+  VarFitness mv2;
+  VarFitness mv3;
+
+  mv0[0] = 0.0;
+  mv0[1] = 1.0;
+
+  mv1[0] = 1.0;
+  mv1[1] = 0.0;
+
+  mv2[0] = 0.0;
+  mv2[1] = 0.5;
+
+  mv3[0] = 0.5;
+  mv3[1] = 0.5;
+
+  compare <VarFitness>(mv0,mv1);
+  compare <VarFitness>(mv0,mv2);
+  compare <VarFitness>(mv0,mv3);
+  compare <VarFitness>(mv1,mv2);
+  compare <VarFitness>(mv1,mv3);
+  compare <VarFitness>(mv2,mv3);
+
+  cout << "\nChanging now the min <-> max\n";
+  b[0]=false; 
+  b[1]=true;
+  VarFitness::setUp(2, b);
+  cout << "\nMINimizing on Obj 0 and MAXimizing on Obj 1\n";
+  compare <VarFitness>(mv0,mv1);
+  compare <VarFitness>(mv0,mv2);
+  compare <VarFitness>(mv0,mv3);
+  compare <VarFitness>(mv1,mv2);
+  compare <VarFitness>(mv1,mv3);
+  compare <VarFitness>(mv2,mv3);
+
+
+  }
+  catch(exception& e)
+  {
+    cout << e.what() << endl;
+  }
+
 }
+
