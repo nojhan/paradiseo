@@ -77,12 +77,15 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
     // Best fitness in population
     //---------------------------
     eoValueParam<bool>& printBestParam = _parser.createParam(true, "printBestStat", "Print Best/avg/stdev every gen.", '\0', "Output");
-    eoValueParam<bool>& plotBestParam = _parser.createParam(false, "plotBestStat", "Plot Best/avg Stat", '\0', "Output");
-    eoValueParam<string>& bestFileNameParam =  _parser.createParam(string("best.xg"), "BestFileName", "Name of file for Best/avg/stdev", '\0', "Output");
-    bool fileBestParam = _parser.isItThere(bestFileNameParam);
+    eoValueParam<bool>& plotBestParam = _parser.createParam(false, "plotBestStat", "Plot Best/avg Stat", '\0', "Output - Graphical");
+
+    // dir for DISK output
+    eoValueParam<string>& dirNameParam =  _parser.createParam(string("Res"), "resDir", "Directory to store DISK outputs", '\0', "Output - Disk");
+    eoValueParam<bool>& fileBestParam = _parser.createParam(false, "fileBestStat", "Output bes/avg/std to file", '\0', "Output - Disk");
+
 
     eoBestFitnessStat<EOT> *bestStat = NULL;
-    if ( printBestParam.value() || plotBestParam.value() || fileBestParam ) 
+    if ( printBestParam.value() || plotBestParam.value() || fileBestParam.value() ) 
       // we need the bestStat for at least one of the 3 above
       {
 	bestStat = new eoBestFitnessStat<EOT>;
@@ -134,7 +137,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
     // the Fitness Distance Correlation
     //---------------------------------
     eoValueParam<bool>& printFDCParam = _parser.createParam(true, "printFDC", "Print FDC coeff. every gen.", '\0', "Output");
-    eoValueParam<bool>& plotFDCParam = _parser.createParam(false, "plotFDCStat", "Plot FDC scatter plot", '\0', "Output");
+    eoValueParam<bool>& plotFDCParam = _parser.createParam(false, "plotFDCStat", "Plot FDC scatter plot", '\0', "Output - Graphical");
 
     eoFDCStat<EOT> *fdcStat = NULL;
     if ( printFDCParam.value() || plotFDCParam.value() ) // we need FDCStat
@@ -180,9 +183,10 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
 	  monitor->add(*popStat);
       }
 
-    if (fileBestParam)    // A file monitor for best & secondMoment
+    if (fileBestParam.value())    // A file monitor for best & secondMoment
       {
-	eoFileMonitor *fileMonitor = new eoFileMonitor(bestFileNameParam.value());
+	string stmp = dirNameParam.value() + "/best.xg";
+	eoFileMonitor *fileMonitor = new eoFileMonitor(stmp);
 	// save and give to checkpoint
 	_state.storeFunctor(fileMonitor);
 	checkpoint->add(*fileMonitor);
@@ -195,7 +199,8 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
 
     if (plotBestParam.value())    // an eoGnuplot1DMonitor for best & average
       {
-	eoGnuplot1DMonitor *gnuMonitor = new eoGnuplot1DMonitor("_gnu_best.xg",minimizing_fitness<EOT>());
+	string stmp = dirNameParam.value() + "_gnu_best.xg";
+	eoGnuplot1DMonitor *gnuMonitor = new eoGnuplot1DMonitor(stmp,minimizing_fitness<EOT>());
 	// save and give to checkpoint
 	_state.storeFunctor(gnuMonitor);
 	checkpoint->add(*gnuMonitor);
@@ -211,7 +216,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
     if (plotFDCParam.value())    // a specific plot monitor for FDC
       {
 	// first into a file (it adds everything ti itself
-	eoFDCFileSnapshot<EOT> *fdcFileSnapshot = new eoFDCFileSnapshot<EOT>(*fdcStat);
+	eoFDCFileSnapshot<EOT> *fdcFileSnapshot = new eoFDCFileSnapshot<EOT>(*fdcStat, dirNameParam.value());
 	_state.storeFunctor(fdcFileSnapshot);
 	// then to a Gnuplot monitor
 	eoGnuplot1DSnapshot *fdcGnuplot = new eoGnuplot1DSnapshot(*fdcFileSnapshot);
@@ -222,14 +227,14 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
 	checkpoint->add(*fdcGnuplot);
       }
 
-    eoValueParam<bool> plotHistogramParam = _parser.createParam(false, "plotHisto", "Plot histogram of fitnesses", '\0', "Output");
+    eoValueParam<bool> plotHistogramParam = _parser.createParam(false, "plotHisto", "Plot histogram of fitnesses", '\0', "Output - Graphical");
     if (plotHistogramParam.value()) // want to see how the fitness is spread?
       {
 	eoScalarFitnessStat<EOT> *fitStat = new eoScalarFitnessStat<EOT>;
 	_state.storeFunctor(fitStat);
 	checkpoint->add(*fitStat);
 	// a gnuplot-based monitor for snapshots: needs a dir name
-	eoGnuplot1DSnapshot *fitSnapshot = new eoGnuplot1DSnapshot("Fitnesses");
+	eoGnuplot1DSnapshot *fitSnapshot = new eoGnuplot1DSnapshot(dirNameParam.value());
 	_state.storeFunctor(fitSnapshot);
 	// add any stat that is a vector<double> to it
 	fitSnapshot->add(*fitStat);
@@ -248,7 +253,8 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
     if (_parser.isItThere(saveFrequencyParam))
     {
       unsigned freq = (saveFrequencyParam.value()>0 ? saveFrequencyParam.value() : UINT_MAX );
-      eoCountedStateSaver *stateSaver1 = new eoCountedStateSaver(freq, _state, "generation"); 
+      string stmp = dirNameParam.value() + "/generations";
+      eoCountedStateSaver *stateSaver1 = new eoCountedStateSaver(freq, _state, stmp); 
       _state.storeFunctor(stateSaver1);
     checkpoint->add(*stateSaver1);
     }
@@ -257,7 +263,8 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _stat
     eoValueParam<unsigned>& saveTimeIntervalParam = _parser.createParam(unsigned(0), "saveTimeInterval", "Save every T seconds (0 or absent = never)", '\0',"Persistence" );
     if (_parser.isItThere(saveTimeIntervalParam) && saveTimeIntervalParam.value()>0)
     {
-      eoTimedStateSaver *stateSaver2 = new eoTimedStateSaver(saveTimeIntervalParam.value(), _state, "time"); 
+      string stmp = dirNameParam.value() + "/time";
+      eoTimedStateSaver *stateSaver2 = new eoTimedStateSaver(saveTimeIntervalParam.value(), _state, stmp); 
       _state.storeFunctor(stateSaver2);
       checkpoint->add(*stateSaver2);
     }

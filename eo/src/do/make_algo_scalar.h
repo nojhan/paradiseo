@@ -73,7 +73,7 @@ template <class EOT>
 eoAlgo<EOT> & do_make_algo_scalar(eoParameterLoader& _parser, eoState& _state, eoEvalFunc<EOT>& _eval, eoContinue<EOT>& _ccontinue, eoGenOp<EOT>& _op)
 {
   // the selection
-  eoValueParam<eoParamParamType>& selectionParam = _parser.createParam(eoParamParamType("DetTour(2)"), "selection", "Selection: Roulette, DetTour(T), StochTour(t) or Sequential(ordered/unordered)", 'S', "engine");
+  eoValueParam<eoParamParamType>& selectionParam = _parser.createParam(eoParamParamType("DetTour(2)"), "selection", "Selection: Roulette, DetTour(T), StochTour(t) or Sequential(ordered/unordered)", 'S', "Evolution Engine");
 
   eoParamParamType & ppSelect = selectionParam.value(); // pair<string,vector<string> >
 
@@ -109,18 +109,21 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParameterLoader& _parser, eoState& _state, e
       select = new eoProportionalSelect<EOT>;
     }
   else
-    throw runtime_error("Invalid selection");
+    {
+      string stmp = string("Invalid selection: ") + ppSelect.first;
+      throw runtime_error(stmp.c_str());
+    }
 
   _state.storeFunctor(select);
 
   // the number of offspring 
-    eoValueParam<eoRateParamType>& offspringRateParam =  _parser.createParam(eoRateParamType("100%"), "nbOffspring", "Nb of offspring (percentage or absolute)", 'O', "engine");
+    eoValueParam<eoRateParamType>& offspringRateParam =  _parser.createParam(eoRateParamType("100%"), "nbOffspring", "Nb of offspring (percentage or absolute)", 'O', "Evolution Engine");
     // an eoRateParamType is simply a pair<double,bool>
   double offRate=offspringRateParam.value().first;
   bool offInterpret_as_rate = offspringRateParam.value().second;
 
   // the replacement
-  eoValueParam<eoParamParamType>& replacementParam = _parser.createParam(eoParamParamType("Comma"), "replacement", "Replacement: Comma, Plus or EPTour(T), SSGAWorst, SSGADet(T), SSGAStoch(t)", 'R', "engine");
+  eoValueParam<eoParamParamType>& replacementParam = _parser.createParam(eoParamParamType("Comma"), "replacement", "Replacement: Comma, Plus or EPTour(T), SSGAWorst, SSGADet(T), SSGAStoch(t)", 'R', "Evolution Engine");
 
   eoParamParamType & ppReplace = replacementParam.value(); // pair<string,vector<string> >
 
@@ -159,12 +162,15 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParameterLoader& _parser, eoState& _state, e
       replace = new eoSSGAStochTournamentReplacement<EOT>(p);
     }
   else
-    throw runtime_error("Invalid replacement");
+    {
+      string stmp = string("Invalid replacement: ") + ppReplace.first;
+      throw runtime_error(stmp.c_str());
+    }
 
   _state.storeFunctor(replace);
 
   // adding weak elitism
-  eoValueParam<bool>& weakElitismParam =  _parser.createParam(false, "weakElitism", "Old best parent replaces new worst offspring *if necessary*", 'w', "engine");
+  eoValueParam<bool>& weakElitismParam =  _parser.createParam(false, "weakElitism", "Old best parent replaces new worst offspring *if necessary*", 'w', "Evolution Engine");
   if (weakElitismParam.value())
     {
       eoReplacement<EOT> *replaceTmp = replace;

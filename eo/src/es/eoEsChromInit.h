@@ -74,10 +74,8 @@ public :
 private :
 
   // No adaptive mutation at all
-  void create_self_adapt(eoReal<FitT>& result)// security check :-)
-  {
-    throw runtime_error("We should not be in create_self_adapt(eoReal)!");
-  }
+  void create_self_adapt(eoReal<FitT>& result)// nothing to do here ...
+  { }
 
   // Adaptive mutation through a unique sigma
   void create_self_adapt(eoEsSimple<FitT>& result)
