@@ -41,6 +41,9 @@
 template<class EOT> class eoEvalFunc : public eoUF<EOT&, void>
 {
     public :
+  
+        typedef EOT EOType;
+
 	typedef typename EOT::Fitness EOFitT;
 };
 
