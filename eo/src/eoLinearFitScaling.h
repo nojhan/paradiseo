@@ -66,7 +66,8 @@ public:
 
     // average fitness
     double sum=0.0;
-    for (unsigned i=0; i<pSize; i++)
+    unsigned i;
+    for (i=0; i<pSize; i++)
       sum += static_cast<double>(_pop[i].fitness());
     double averageFitness = sum/pSize;
 
@@ -75,7 +76,7 @@ public:
     double alpha = (pressure-1)/denom;
     double beta = (bestFitness - pressure*averageFitness)/denom;
 
-    for (unsigned i=0; i<pSize; i++) // truncate to 0
+    for (i=0; i<pSize; i++) // truncate to 0
       {
 	value()[i] = max(alpha*_pop[i].fitness()+beta, 0.0);
       }

@@ -61,9 +61,9 @@ void testSelectMany(eoSelect<EOT> & _select, string _name)
 
     eoDummyPop parents(pSize);
     eoDummyPop offspring(0);
-
+    unsigned i;
     // initialize parents
-    for (unsigned i=0; i<pSize; i++)
+    for (i=0; i<pSize; i++)
       //      parents[i].fitness(log(i+1));
       //      parents[i].fitness(exp(i));
       parents[i].fitness(i);
@@ -74,7 +74,7 @@ void testSelectMany(eoSelect<EOT> & _select, string _name)
 
     // compute stats
     vector<unsigned> nb(parents.size(), 0);
-    for (unsigned i=0; i<offspring.size();  i++)
+    for (i=0; i<offspring.size();  i++)
       {
 	unsigned trouve = isInPop<Dummy>(offspring[i], parents);
 	if (trouve == parents.size()) // pas trouve
@@ -84,7 +84,7 @@ void testSelectMany(eoSelect<EOT> & _select, string _name)
     // dump to file so you can plot using gnuplot
     string fName = _name + ".prop";
     ofstream os(fName.c_str());
-    for (unsigned i=0; i<parents.size();  i++)
+    for (i=0; i<parents.size();  i++)
       {
 	cout << i << " -> " << ( (double)nb[i])/offspring.size() << endl;
 	os << i << " " << ( (double)nb[i])/offspring.size() << endl;

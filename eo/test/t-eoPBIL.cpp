@@ -132,8 +132,8 @@ int main(int argc, char* argv[])
 	string foo;
 	cin >> foo;
       }
-  }
 #endif
+  }
   catch(exception& e)
   {
     cout << e.what() << endl;
