@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoMerge.h
+// eoHowMany_h.h
 //   Base class for choosing a number of guys to apply something from a popsize
 // (c) Marc Schoenauer, 2000
 /* 
@@ -33,8 +33,13 @@
  * the default value shoudl ALWAYS be true (eo_as_a_rate).
  *
  * this construct is mandatory because in some cases you might not know the 
- * population size that will enter the replacement for instance - so you 
- * cannot simply have a pre-computed (double) rate of 1/popSize if you want 1 guy
+ * population size that will enter the replacement. For instance, you 
+ * cannot simply have a pre-computed (double) rate of 1/popSize 
+ * if you want 1 guy
+ *
+ * Example use: in <a href="class_eogeneralbreeder.html">eoGeneralBreeder.h</a>
+ * Example reading from parser: in 
+ *         <a href="make_algo_scalar_h-source.html">do/make_algo_scalar.h line 141</a>
  */
 
 class eoHowMany : public eoPersistent
