@@ -48,7 +48,7 @@ public:
   /* helper function: finds index in _pop of _eo, an EOT * */
   int lookfor(const EOT *_eo, const eoPop<EOT>& _pop)
     {
-      eoPop<EOT>::const_iterator it;
+      typename eoPop<EOT>::const_iterator it;
       for (it=_pop.begin(); it<_pop.end(); it++)
 	{
 	  if (_eo == &(*it))

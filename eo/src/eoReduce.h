@@ -98,7 +98,7 @@ typedef typename EOT::Fitness Fitness;
   /// helper struct for comparing on pairs
   // compares the scores
   // uses the fitness if scores are equals ????
-  typedef pair<float, eoPop<EOT>::iterator>  EPpair;
+  typedef pair<float, typename eoPop<EOT>::iterator>  EPpair;
   struct Cmp {
     bool operator()(const EPpair a, const EPpair b) const
     { 
@@ -175,7 +175,7 @@ class eoLinearTruncate : public eoReduce<EOT>
       throw std::logic_error("eoLinearTruncate: Cannot truncate to a larger size!\n");
     for (unsigned i=0; i<oldSize - _newsize; i++)
       {
-	eoPop<EOT>::iterator it = _newgen.it_worse_element();
+	typename eoPop<EOT>::iterator it = _newgen.it_worse_element();
 	_newgen.erase(it);	    
       }
   }

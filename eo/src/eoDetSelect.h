@@ -59,7 +59,7 @@ class eoDetSelect : public eoSelect<EOT>
 
     unsigned remain = target % pSize;
     unsigned entireCopy = target / pSize;
-    eoPop<EOT>::iterator it = _dest.begin();
+    typename eoPop<EOT>::iterator it = _dest.begin();
     
     if (target >= pSize)
       {

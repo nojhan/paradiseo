@@ -225,7 +225,7 @@ private :
 
       for (unsigned o = 0; o < value().size(); ++o)
       {
-        vector<const EOT*>::iterator nth = tmp_pop.begin() + which;
+        typename vector<const EOT*>::iterator nth = tmp_pop.begin() + which;
         std::nth_element(tmp_pop.begin(), nth, tmp_pop.end(), CmpFitness(o, traits::maximizing(o)));
         value()[o] = (*nth)->fitness()[o];
       }
@@ -310,7 +310,7 @@ private :
 
       for (unsigned o = 0; o < traits::nObjectives(); ++o)
       {
-        eoPop<EOT>::const_iterator it = max_element(_pop.begin(), _pop.end(), CmpFitness(o, traits::maximizing(o)));
+        typename eoPop<EOT>::const_iterator it = max_element(_pop.begin(), _pop.end(), CmpFitness(o, traits::maximizing(o)));
         value()[o] = it->fitness()[o];
       }
     }

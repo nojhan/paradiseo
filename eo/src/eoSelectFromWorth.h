@@ -95,7 +95,7 @@ template <class EOT, class WorthT = double>
 class eoDetTournamentWorthSelect : public eoSelectFromWorth<EOT, WorthT>
 {
 public:
-  typedef vector<WorthT>::iterator worthIterator;
+  typedef typename vector<WorthT>::iterator worthIterator;
 
   /* Default ctor from an eoPerf2Worth object +  tournament size
    */
@@ -134,7 +134,7 @@ template <class EOT, class WorthT = double>
 class eoStochTournamentWorthSelect : public eoSelectFromWorth<EOT, WorthT>
 {
 public:
-  typedef vector<WorthT>::iterator worthIterator;
+  typedef typename vector<WorthT>::iterator worthIterator;
 
   /* Default ctor from an eoPerf2Worth object +  tournament rate
    */
@@ -172,7 +172,7 @@ template <class EOT, class WorthT = double>
 class eoRouletteWorthSelect : public eoSelectFromWorth<EOT, WorthT>
 {
 public:
-  typedef vector<WorthT>::iterator worthIterator;
+  typedef typename vector<WorthT>::iterator worthIterator;
 
   /* Default ctor from an eoPerf2Worth object
    */

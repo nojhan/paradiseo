@@ -145,7 +145,7 @@ class eoProportionalOp : public eoOpContainer<EOT>
       {
         (*ops[i])(_pop);
       }
-      catch(eoPopulator<EOT>::OutOfIndividuals&)
+      catch( typename eoPopulator<EOT>::OutOfIndividuals&)
       {}
     }
   virtual string className() const {return "ProportionalOp";}

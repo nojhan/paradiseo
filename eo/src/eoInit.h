@@ -130,7 +130,7 @@ typedef typename EOT::AtomType AtomType;
   virtual void operator()(EOT& _chrom)
   {
     _chrom.resize(offset + rng.random(extent));
-    vector<AtomType>::iterator it;
+    typename vector<AtomType>::iterator it;
     for (it=_chrom.begin(); it<_chrom.end(); it++)
       init(*it);
     _chrom.invalidate();

@@ -160,7 +160,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   }
 
   /** returns an iterator to the best individual DOES NOT MOVE ANYBODY */
-  eoPop<EOT>::iterator it_best_element() 
+  typename eoPop<EOT>::iterator it_best_element() 
   {
     typename eoPop<EOT>::iterator it = max_element(begin(), end());
     return it;
@@ -181,7 +181,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   }
 
   /** returns an iterator to the worse individual DOES NOT MOVE ANYBODY */
-  eoPop<EOT>::iterator it_worse_element()
+  typename eoPop<EOT>::iterator it_worse_element()
   {
     typename eoPop<EOT>::iterator it = min_element(begin(), end());
     return it;
@@ -191,7 +191,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   slightly faster algorithm than sort to find all individuals that are better
   than the nth individual. INDIVIDUALS ARE MOVED AROUND in the pop.
   */
-  eoPop<EOT>::iterator nth_element(int nth)
+  typename eoPop<EOT>::iterator nth_element(int nth)
   {
       typename eoPop<EOT>::iterator it = begin() + nth;
       std::nth_element(begin(), it, end(), greater<EOT>());
@@ -207,7 +207,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       vector<Fitness> fitness(size());
       std::transform(begin(), end(), fitness.begin(), GetFitness());
 
-      vector<Fitness>::iterator it = fitness.begin() + which;
+      typename vector<Fitness>::iterator it = fitness.begin() + which;
       std::nth_element(fitness.begin(), it, fitness.end(), greater<Fitness>());
       return *it;
   }
@@ -221,7 +221,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       result.resize(size());
       std::transform(begin(), end(), result.begin(), Ref());
   
-      vector<const EOT*>::iterator it  = result.begin() + which;
+      typename vector<const EOT*>::iterator it  = result.begin() + which;
 
       std::nth_element(result.begin(), it, result.end(), Cmp());
   }

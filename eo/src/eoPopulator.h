@@ -122,7 +122,7 @@ public :
 
 protected :
   eoPop<EOT>& dest;
-  eoPop<EOT>::iterator current;
+  typename eoPop<EOT>::iterator current;
   const eoPop<EOT>& src;
 
 private :
