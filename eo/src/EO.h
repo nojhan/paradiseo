@@ -124,7 +124,14 @@ public:
     // A random value would so be printed.
     // Even a non-evaluated EO is also serializable ...
 
-      _os << repFitness << ' '; // trailing space to make reading in that much easier
+
+    // From now on instead of printing an invalid fitness value
+    // a default value is printed (for paradisEO)
+    
+	if (invalid())
+		_os << Fitness() << ' ';
+	else	
+	      _os << repFitness << ' '; // trailing space to make reading in that much easier
   }
 
   //@}
