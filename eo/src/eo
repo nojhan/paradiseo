@@ -51,6 +51,7 @@
 //#include <eo1d.h>
 #include <other/eoString.h>
 #include <ga/eoBin.h>
+#include <es/eoReal.h>
 
 #include <eoInit.h>
 //#include <eoUniform.h>
@@ -68,6 +69,7 @@
 
 #include <eoPop.h>
 #include <ga/eoBitOp.h>
+#include <es/eoRealOp.h>
 
 // Evaluation functions
 #include <eoEvalFunc.h>
@@ -77,6 +79,7 @@
 #include <eoContinue.h>
 #include <eoCombinedContinue.h>
 #include <eoGenContinue.h>
+#include <eoSteadyFitContinue.h>
 #include <eoFitContinue.h>
 
 // Selection and reproduction stuff
