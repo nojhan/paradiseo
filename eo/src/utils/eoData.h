@@ -41,23 +41,25 @@
 #else	
         #include <float.h>
         #include <limits.h>
-#ifndef _WIN32    // should be the define for UN*X flavours: _POSIX??
-        #include <values.h>
-#endif
-	#ifndef MAXFLOAT
-		#define  MAXFLOAT (float)1e127
-		#define  MAXDOUBLE  (double)1.79769313486231570e+308
-		#define  MAXINT 2147483647
-	#endif
 #endif
 
-// Added because it does not seem to be defined with Cygwin???
+#if !defined(_WIN32) && !defined(__CYGWIN__) && !(defined(__APPLE__) || defined(MACOSX))
+	#include <values.h>
+#endif
+
+// for cygwin and windows (and possibly MacOsX)
 #ifndef MINFLOAT
      #define MINFLOAT ( (float)1e-127 )
 #endif
 #ifndef MAXFLOAT
      #define MAXFLOAT ( (float)1e127 )
 #endif
+#ifndef MAXINT
+	#define MAXINT 2147483647
+#endif
+#ifndef MAXDOUBLE
+ 	#define MAXDOUBLE  (double)1.79769313486231570e+308
+#endif	
 
 #ifndef _MSC_VER
 #include <math.h>
