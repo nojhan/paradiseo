@@ -114,7 +114,7 @@ public:
    * @param _os A ostream.
    */
   virtual void printOn(ostream& _os) const {
-    _os << repFitness << endl;
+    _os << repFitness << ' '; // trailing space to make reading in that much easier
   }
   
   //@}
