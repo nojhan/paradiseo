@@ -47,7 +47,7 @@ public:
   virtual deleteOp( ID _id ) = 0;
   
   /// Returns a genetic operator according to the established criteria
-  virtual const eoOp<EOT>& Op() = 0;
+  virtual eoOp<EOT>* Op() = 0;
   
   /// Methods inherited from eoObject
   //@{

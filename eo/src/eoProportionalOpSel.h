@@ -26,11 +26,11 @@ Operators are represented as pairs (proportion,operator)
 */
 template<class EOT>
 class eoProportionalOpSel: public eoOpSelector<EOT>, 
-	public  multimap<float,const eoOp<EOT>*,greater<float> >
+	public  multimap<float,eoOp<EOT>*,greater<float> >
 {
 public:
 
-  typedef multimap<float, const eoOp<EOT>*,greater<float> > MMF;
+  typedef multimap<float, eoOp<EOT>*,greater<float> > MMF;
 
   /// default ctor
   eoProportionalOpSel()
@@ -79,7 +79,7 @@ public:
   };
 
   /// Returns a genetic operator according to the established criteria
-  virtual const eoOp<EOT>& Op() {
+  virtual eoOp<EOT>* Op() {
     // Check that all add up to one
     float acc = 0;
     MMF::iterator i;
@@ -100,7 +100,7 @@ public:
     } while ( (acc <= aRnd ) && (i++!=end() ) );
 	if ( i == end() )
 		throw runtime_error( "Operator not found in eoProportionalOpSelector" );
-	return *(i->second);
+	return i->second;
 	//return i->second;
   }
 

@@ -20,13 +20,10 @@ using namespace std;
 	#define  MINFLOAT  numeric_limits<float>::min()
 	#define  MAXDOUBLE  numeric_limits<double>::max() 
 	#define  MAXINT numeric_limits<int>::max() 
-	#define min _MIN
-	#define max _MAX
 #else	
         #include <float.h>
         #include <limits.h>
         #include <values.h>
-
 	#ifndef MAXFLOAT
 		#define  MAXFLOAT (float)1e127
 		#define  MAXDOUBLE  (double)1.79769313486231570e+308

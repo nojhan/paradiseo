@@ -148,6 +148,7 @@ public:
   
 };
 
+#include <eoPop.h>
 /** eoNaryOp is the N-ary operator: genetic operator that takes
  several EOs. It could be called an {\em orgy} operator
 */
@@ -168,7 +169,7 @@ public:
 
   /** applies randomly operator, to the object.
    */
-//  virtual void operator()( EOPop<EOType> & _eop) const = 0;
+	virtual void operator()( eoPop<EOType> & _eop) const = 0;
 
   /** @name Methods from eoObject
 	readFrom and printOn are directly inherited from eoObject.

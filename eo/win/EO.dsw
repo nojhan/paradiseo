@@ -51,7 +51,31 @@ Package=<4>
 
 ###############################################################################
 
+Project: "t_eobreeder"=.\t_eobreeder.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
 Project: "t_eoid"=.\t_eoid.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "t_eoinclusion"=.\t_eoinclusion.dsp - Package Owner=<4>
 
 Package=<5>
 {{{

@@ -33,7 +33,7 @@ template <class F> class eoBin: public eoVector<bool, F>
    * Constructor.
    * @param size Size of the binary string.
    */
-  eoBin(const unsigned& size, const eoRnd<Type>& rnd): eoVector<bool,F>(size) 
+  eoBin(const unsigned& size, const eoRnd<bool>& rnd): eoVector<bool,F>(size) 
     {
       generate(begin(), end(), rnd);
     }
