@@ -45,10 +45,10 @@ template <class EOT>
 class eoInit : public eoUF<EOT&, void>
 {
 public:
-//   virtual void operator()(EOT& chrom)
-//   { 
-//     throw std::runtime_error("In the eoInit base class"); // just in case
-//   }
+
+  /** SHould be pure virtual, but then we should go over the whole
+   * code to write the method for all derived classes ... MS 16/7/04 */
+  virtual std::string className(void) const { return "eoInit"; }
 };
 
 /** turning an eoInit into a generator 
