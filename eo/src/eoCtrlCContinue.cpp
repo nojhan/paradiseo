@@ -27,8 +27,8 @@
 #include <stream.h>
 
 // --- Global variables - but don't know what else to do - MS ---
-static bool     arret_demande = false;
-static bool     existCtrlCContinue = false;
+bool     arret_demande = false;
+bool     existCtrlCContinue = false;
 
 //
 // The signal handler - installed in the eoCtrlCContinue Ctor

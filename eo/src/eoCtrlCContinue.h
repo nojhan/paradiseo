@@ -30,9 +30,10 @@
 #ifndef eoCtrlCContinue_h
 #define eoCtrlCContinue_h
 
+#include <signal.h>
 #include <eoContinue.h>
 
-extern bool     arret_demande, existCtrlCContinue;
+extern bool arret_demande, existCtrlCContinue;
 
 extern void signal_handler( int sig );
 
