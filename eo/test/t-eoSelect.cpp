@@ -7,17 +7,9 @@
 
 #include <stdexcept>  // runtime_error 
 
-//-----------------------------------------------------------------------------
-// tt.cpp: 
-//
-//-----------------------------------------------------------------------------
-
-
 // general
 #include <eo>
-#include <eoFitnessScalingSelect.h>
-#include <eoSelectFromWorth.h>
-#include <eoLinearFitScaling.h>
+
 //-----------------------------------------------------------------------------
 
 struct Dummy : public EO<double>
@@ -52,22 +44,18 @@ unsigned isInPop(EOT & _indi, eoPop<EOT> & _pop)
 }
 
 unsigned int pSize;		// global variable, bouh!
+string fitnessType;		// yes, a global variable :-)
+eoDummyPop parentsOrg;
 
 template <class EOT>
 void testSelectMany(eoSelect<EOT> & _select, string _name)
 {
-  cout << "\n\n" << _name << endl;
+    unsigned i;
+  cout << "\n\n" << fitnessType + _name << endl;
   cout << "===============\n"; 
 
-    eoDummyPop parents(pSize);
+    eoDummyPop parents(parentsOrg);
     eoDummyPop offspring(0);
-    unsigned i;
-    // initialize parents
-    for (i=0; i<pSize; i++)
-      //      parents[i].fitness(log(i+1));
-      //      parents[i].fitness(exp(i));
-      parents[i].fitness(i);
-    cout << "Initial parents (odd)\n" << parents << endl;
 
     // do the selection
     _select(parents, offspring);
@@ -81,8 +69,8 @@ void testSelectMany(eoSelect<EOT> & _select, string _name)
 	  throw runtime_error("Pas trouve ds parents");
 	nb[trouve]++;
        }
-    // dump to file so you can plot using gnuplot
-    string fName = _name + ".prop";
+    // dump to file so you can plot using gnuplot - dir name is hardcoded!
+    string fName = "ResSelect/" + fitnessType + _name + ".select";
     ofstream os(fName.c_str());
     for (i=0; i<parents.size();  i++)
       {
@@ -93,9 +81,11 @@ void testSelectMany(eoSelect<EOT> & _select, string _name)
 }
 
 template <class EOT>
-void testSelectOne(eoSelectOne<EOT> & _select, eoHowMany & _hm, string _name)
+void testSelectOne(eoSelectOne<EOT> & _select, eoHowMany & _offspringRate,
+		   eoHowMany & _fertileRate, string _name)
 {
-  eoSelectMany<EOT> percSelect(_select, _hm);
+  eoTruncatedSelectOne<EOT> truncSelect(_select, _fertileRate);
+  eoSelectMany<EOT> percSelect(truncSelect, _offspringRate);
   testSelectMany<EOT>(percSelect, _name);
 }
 
@@ -113,14 +103,23 @@ int the_main(int argc, char **argv)
   eoValueParam<eoHowMany> offsrpringRateParam = parser.createParam(eoHowMany(1.0), "offsrpringRate", "Offsrpring rate (% or absolute)",'O');
     eoHowMany oRate = offsrpringRateParam.value();
 
+  eoValueParam<eoHowMany> fertileRateParam = parser.createParam(eoHowMany(1.0), "fertileRate", "Fertility rate (% or absolute)",'F');
+    eoHowMany fRate = fertileRateParam.value();
+
 eoValueParam<unsigned> tournamentSizeParam = parser.createParam(unsigned(2), "tournamentSize", "Deterministic tournament size",'T');
     unsigned int tSize = tournamentSizeParam.value();
 
-  eoValueParam<double> tournamentRateParam = parser.createParam(0.75, "tournamentRate", "Stochastic tournament rate",'R');
+  eoValueParam<double> tournamentRateParam = parser.createParam(1.0, "tournamentRate", "Stochastic tournament rate",'t');
     double tRate = tournamentRateParam.value();
 
-  eoValueParam<double> rankingPressureParam = parser.createParam(1.75, "rankingPressure", "Selective pressure for the ranking selection",'p');
+  eoValueParam<double> rankingPressureParam = parser.createParam(2.0, "rankingPressure", "Selective pressure for the ranking selection",'p');
     double rankingPressure = rankingPressureParam.value();
+
+  eoValueParam<double> rankingExponentParam = parser.createParam(1.0, "rankingExponent", "Exponent for the ranking selection",'e');
+    double rankingExponent = rankingExponentParam.value();
+
+  eoValueParam<string> fitTypeParam = parser.createParam(string("linear"), "fitType", "Type of fitness (linear, exp, log, super",'f');
+    fitnessType = fitTypeParam.value();
 
     if (parser.userNeedsHelp())
       {
@@ -128,11 +127,41 @@ eoValueParam<unsigned> tournamentSizeParam = parser.createParam(unsigned(2), "to
         exit(0);
       }
 
+    // hard-coded directory name ...
+    system("mkdir ResSelect");
     cout << "Testing the Selections\nParents size = " << pSize 
-	 << ", offspring rate = " << oRate << endl;
+	 << ", offspring rate = " << oRate;
+    cout << " and putting rsulting files in dir ResSelect" << endl;
 
-    rng.reseed(42);
+    // initialize parent population
+    parentsOrg.resize(pSize);
+    if (fitnessType == string("linear"))
+      for (unsigned i=0; i<pSize; i++)
+	parentsOrg[i].fitness(i);
+    else if (fitnessType == string("exp"))
+      for (unsigned i=0; i<pSize; i++)
+	parentsOrg[i].fitness(exp(i));
+    else if (fitnessType == string("log"))
+      for (unsigned i=0; i<pSize; i++)
+	parentsOrg[i].fitness(log(i+1));
+    else if (fitnessType == string("super"))
+      {
+	for (unsigned i=0; i<pSize-1; i++)
+	  parentsOrg[i].fitness(i);
+	parentsOrg[pSize-1].fitness(10*pSize);
+      }
+    else 
+      throw runtime_error("Invalid fitness Type"+fitnessType);
 
+    cout << "Initial parents (odd)\n" << parentsOrg << endl;
+
+  // random seed
+    eoValueParam<uint32>& seedParam = parser.createParam(uint32(0), "seed", "Random number seed", 'S');
+    if (seedParam.value() == 0)
+	seedParam.value() = time(0);
+    rng.reseed(seedParam.value());
+
+    char fileName[1024];
 
 // the selection procedures under test
     //    eoDetSelect<Dummy> detSelect(oRate);
@@ -140,39 +169,42 @@ eoValueParam<unsigned> tournamentSizeParam = parser.createParam(unsigned(2), "to
 
     // Roulette
      eoProportionalSelect<Dummy> propSelect;
-     testSelectOne<Dummy>(propSelect, oRate, "propSelect");
+     testSelectOne<Dummy>(propSelect, oRate, fRate, "PropSelect");
 
-    // Ranking
-     eoRankingSelect<Dummy> rankSelect(rankingPressure);
-     testSelectOne<Dummy>(rankSelect, oRate, "rankSelect");
+    // Linear ranking using the perf2Worth construct
+    eoRankingSelect<Dummy> newRankingSelect(rankingPressure);
+    sprintf(fileName,"LinRank_%g",rankingPressure);
+    testSelectOne<Dummy>(newRankingSelect, oRate, fRate, fileName);
 
-    // New ranking using the perf2Worth construct
-      cout << "Avant appel a LinearRanking()" << endl;
-    eoRankingSelect<Dummy> newRankingSelect(rankingPressure); // pressure 2 by default
-    testSelectOne<Dummy>(newRankingSelect, oRate, "newRankSelect");
-
-    // New ranking using the perf2Worth construct
-      cout << "Avant appel a exponentialRanking()" << endl;
-    eoRankingSelect<Dummy> expRankingSelect(rankingPressure,2);
-    testSelectOne<Dummy>(expRankingSelect, oRate, "expRankingSelect");
+    // Exponential ranking using the perf2Worth construct
+    cout << "rankingExponent " << rankingExponent << endl;
+    eoRankingSelect<Dummy> expRankingSelect(rankingPressure,rankingExponent);
+    sprintf(fileName,"ExpRank_%g_%g",rankingPressure, rankingExponent);
+    testSelectOne<Dummy>(expRankingSelect, oRate, fRate, fileName);
 
     // Det tournament
     eoDetTournamentSelect<Dummy> detTourSelect(tSize);
-    testSelectOne<Dummy>(detTourSelect, oRate, "detTourSelect");
+    sprintf(fileName,"DetTour_%d",tSize);
+    testSelectOne<Dummy>(detTourSelect, oRate, fRate, fileName);
 
     // Stoch tournament
     eoStochTournamentSelect<Dummy> stochTourSelect(tRate);
-    testSelectOne<Dummy>(stochTourSelect, oRate, "stochTourSelect");
-
-    exit(0);
+    sprintf(fileName,"StochTour_%g",tRate);
+    testSelectOne<Dummy>(stochTourSelect, oRate, fRate, fileName);
 
     // Fitness scaling
-//     eoFitnessScalingSelect<Dummy> fitScaleSelect(rankingPressure);
-//     testSelectOne<Dummy>(fitScaleSelect, oRate, "fitScaleSelect");
-
-    // NEW Fitness scaling
     eoFitnessScalingSelect<Dummy> newFitScaleSelect(rankingPressure);
-    testSelectOne<Dummy>(newFitScaleSelect, oRate, "NewFitScaleSelect");
+    sprintf(fileName,"LinFitScale_%g",rankingPressure);
+    testSelectOne<Dummy>(newFitScaleSelect, oRate, fRate, fileName);
+
+    // Sequential selections
+    eoSequentialSelect<Dummy> seqSel(false);
+    strcpy(fileName,"Sequential");
+    testSelectOne<Dummy>(seqSel, oRate, fRate, fileName);
+
+    eoEliteSequentialSelect<Dummy> eliteSeqSel;
+    strcpy(fileName,"EliteSequential");
+    testSelectOne<Dummy>(eliteSeqSel, oRate, fRate, fileName);
 
     return 1;
 }
