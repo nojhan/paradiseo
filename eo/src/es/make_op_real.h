@@ -180,6 +180,8 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
 
   eoValueParam<double> & sigmaParam = _parser.createParam(0.3, "sigma", "Sigma (fixed) for Gaussian mutation", 's', "Variation Operators" );
 
+  eoValueParam<double> & pNormalParam = _parser.createParam(1.0, "pNormal", "Proba. to change each variable for Gaussian mutation", 's', "Variation Operators" );
+
     // minimum check
   bool bMut = true;
   if (uniformMutRateParam.value()+detMutRateParam.value()+normalMutRateParam.value()==0)
@@ -209,7 +211,7 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
       ptCombinedMonOp->add(*ptMon, detMutRateParam.value());
 	
       // mutate all component using Gaussian mutation
-      ptMon = new eoNormalMutation<EOT>(boundsParam.value(), sigmaParam.value()); 
+      ptMon = new eoNormalVecMutation<EOT>(boundsParam.value(), sigmaParam.value(), pNormalParam.value()); 
       _state.storeFunctor(ptMon);
       ptCombinedMonOp->add(*ptMon, normalMutRateParam.value());
       _state.storeFunctor(ptCombinedMonOp);
