@@ -29,7 +29,7 @@
 
 #include <apply.h>
 #include <eoAlgo.h>
-#include <eoEvalFunc.h>
+#include <eoPopEvalFunc.h>
 #include <eoContinue.h>
 #include <eoSelect.h>
 #include <eoTransform.h>
