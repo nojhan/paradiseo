@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
-    CVS Info: $Date: 2001-04-24 04:52:04 $ $Version$ $Author: evomarc $ 
+    CVS Info: $Date: 2001-07-11 06:26:11 $ $Version$ $Author: evomarc $ 
  */
 //-----------------------------------------------------------------------------
 
@@ -34,94 +34,13 @@
 
 /**
   Base classes for generic mutations on variable length chromosomes.
+  Contains addition and deletion of a gene
 
-THey all require a generic mutation for their simple genes
+  The generic mutations that apply a gene-level mutation to some genes
+  dont't modify the length, and so are NOT specific to variable-length
+  Hence they are in file eoFlOr MonOp.h file (FixedLengthOrdered mutations)
 */
 
-/** THis ones applies its atomic mutation to all the genes
- */
-template <class EOT>
-class eoVlAllMutation : public eoMonOp<EOT>
-{
-public :
-
-  typedef typename EOT::AtomType AtomType;
-
-  // default ctor: requires an Atom mutation
-  eoVlAllMutation(eoMonOp<AtomType> & _atomMutation) :
-    atomMutation(_atomMutation) {}
-
-  bool operator()(EOT & _eo)
-  {
-    bool modified=false;
-    for (unsigned i=0; i<_eo.size(); i++)
-      {
-	if (atomMutation(_eo[i]))
-	  modified = true;
-      }
-    return modified;
-  }
-private:
-  eoMonOp<AtomType> & atomMutation;
-};
-
-/** THis ones applies its atomic mutation depending on a probability
- */
-template <class EOT>
-class eoVlRateMutation : public eoMonOp<EOT>
-{
-public :
-
-  typedef typename EOT::AtomType AtomType;
-
-  // default ctor: requires an Atom mutation
-  eoVlRateMutation(eoMonOp<AtomType> & _atomMutation, double _rate=0.0) :
-    atomMutation(_atomMutation), rate( _rate ) {}
-
-  bool operator()(EOT & _eo)
-  {
-    bool modified=false;
-    typename EOT::iterator i;
-    for ( i = _eo.begin(); i != _eo.end(); i ++ )
-      if ( rng.flip( rate ) ) {
-	modified |= atomMutation( *i );
-      }
-    return modified;
-  }
-private:
-  double rate;  
-  eoMonOp<AtomType> & atomMutation;
-};
-
-/** This ones applies its atomic mutation to a fixed
-    number of genes (1 by default)
- */
-template <class EOT>
-class eoVlKMutation : public eoMonOp<EOT>
-{
-public :
-
-  typedef typename EOT::AtomType AtomType;
-
-  // default ctor: requires an Atom mutation
-  eoVlKMutation(eoMonOp<AtomType> & _atomMutation, unsigned _nb=1) :
-    nb(_nb), atomMutation(_atomMutation) {}
-
-  bool operator()(EOT & _eo)
-  {
-    bool modified=false;
-    for (unsigned k=0; k<nb; k++)
-      {
-	unsigned i = rng.random(_eo.size()); // we don't test for duplicates...
-	if (atomMutation(_eo[i]))
-	  modified = true;
-      }
-    return modified;
-  }
-private:
-  unsigned nb;
-  eoMonOp<AtomType> & atomMutation;
-};
 
 /** Addition of a gene
     Is inserted at a random position - so can be applied to both
@@ -157,12 +76,12 @@ private:
   eoInit<AtomType> & atomInit;
 };
 
-//* A helper class for choosing which site to delete
+/** A helper class for choosing which site to delete */
 template <class EOT>
 class eoGeneDelChooser : public eoUF<EOT &, unsigned int>
 {};
 
-//* Unifirm choice of gene to delete
+/** Uniform choice of gene to delete */
 template <class EOT>
 class eoUniformGeneChooser: public eoGeneDelChooser<EOT>
 {
@@ -201,7 +120,6 @@ public :
     nMin(_nMin), uChooser(), chooser(uChooser) {}
 
   /** Do the job (delete one gene)
-
    * @param _eo  the EO to mutate
    */
   bool operator()(EOT & _eo)
