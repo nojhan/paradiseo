@@ -7,10 +7,9 @@
 
 //-----------------------------------------------------------------------------
 
-#include <functional>
-
-#include <numeric>  // accumulate
-#include <eo>       // eoPop eoSelect
+#include <functional>  // 
+#include <numeric>     // accumulate
+#include <eo>          // eoPop eoSelect MINFLOAT
 
 //-----------------------------------------------------------------------------
 /// eoLottery: a selection method.

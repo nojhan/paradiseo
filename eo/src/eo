@@ -8,6 +8,7 @@
 
 //-----------------------------------------------------------------------------
 
+#include <eoData.h>
 #include <eoObject.h>
 #include <eoPrintable.h>
 #include <eoPersistent.h>

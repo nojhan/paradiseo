@@ -24,17 +24,18 @@ have a factory that knows how to build them from a description
 
 //@{
 
-/**
- eoBinRandom --> mofify a chromosome in a random way
-*/
+/** eoBinRandom --> mofify a chromosome in a random way */
+
 template<class Chrom> class eoBinRandom: public eoMonOp<Chrom>
 {
  public:
   /// The class name.
   string className() const { return "eoBinRandom"; }
 
-  /// Randomizes a cromosome.
-  /// @param chrom The cromosome to be randomize.
+  /**
+   * Randomizes a cromosome.
+   * @param chrom The cromosome to be randomize.
+   */
   void operator()(Chrom& chrom) const
     {
       eoUniform<float> uniform(0.0, 1.0);
@@ -44,9 +45,7 @@ template<class Chrom> class eoBinRandom: public eoMonOp<Chrom>
 };
 
 
-//-----------------------------------------------------------------------------
-// eoBinBitFlip --> chages a bit
-//-----------------------------------------------------------------------------
+/** eoBinBitFlip --> chages a bit */
 
 template<class Chrom> class eoBinBitFlip: public eoMonOp<Chrom>
 {
@@ -54,8 +53,10 @@ template<class Chrom> class eoBinBitFlip: public eoMonOp<Chrom>
   /// The class name.
   string className() const { return "eoBinBitFlip"; }
   
-  /// Change one bit.
-  /// @param chrom The cromosome which one bit is going to be changed.
+  /**
+   * Change one bit.
+   * @param chrom The cromosome which one bit is going to be changed.
+   */
   void operator()(Chrom& chrom) const
     {
       eoUniform<float> uniform(0.0, 1.0);
@@ -64,22 +65,25 @@ template<class Chrom> class eoBinBitFlip: public eoMonOp<Chrom>
     }
 };
 
-//-----------------------------------------------------------------------------
-// eoBinMutation --> classical mutation
-//-----------------------------------------------------------------------------
+
+/** eoBinMutation --> classical mutation */
 
 template<class Chrom> class eoBinMutation: public eoMonOp<Chrom>
 {
  public:
-  /// (Default) Constructor.
-  /// @param _rate Rate of mutation.
+  /**
+   * (Default) Constructor.
+   * @param _rate Rate of mutation.
+   */
   eoBinMutation(const double& _rate = 0.01): rate(_rate), uniform(0.0, 1.0) {}
 
   /// The class name.
   string className() const { return "eoBinMutation"; }
 
-  /// Mutate a chromosome.
-  /// @param chrom The chromosome to be mutated.
+  /**
+   * Mutate a chromosome.
+   * @param chrom The chromosome to be mutated.
+   */
   void operator()(Chrom& chrom) const
     {
       for (unsigned i = 0; i < chrom.size(); i++)
@@ -92,9 +96,8 @@ template<class Chrom> class eoBinMutation: public eoMonOp<Chrom>
   mutable eoUniform<float> uniform;
 };
 
-//-----------------------------------------------------------------------------
-// eoBinInversion --> inverts the bits of the chromosome between an interval
-//-----------------------------------------------------------------------------
+
+/** eoBinInversion: inverts the bits of the chromosome between an interval */
 
 template<class Chrom> class eoBinInversion: public eoMonOp<Chrom>
 {
@@ -102,8 +105,10 @@ template<class Chrom> class eoBinInversion: public eoMonOp<Chrom>
   /// The class name.
   string className() const { return "eoBinInversion"; }
 
-  /// Inverts a range of bits in a binary chromosome.
-  /// @param chrom The chromosome whos bits are going to be inverted (a range).
+  /**
+   * Inverts a range of bits in a binary chromosome.
+   * @param chrom The chromosome whos bits are going to be inverted (a range).
+   */
   void operator()(Chrom& chrom) const
     {
       eoUniform<unsigned> uniform(0, chrom.size() + 1);
@@ -116,9 +121,8 @@ template<class Chrom> class eoBinInversion: public eoMonOp<Chrom>
     }
 };
 
-//-----------------------------------------------------------------------------
-// eoBinNext --> next binary value
-//-----------------------------------------------------------------------------
+
+/** eoBinNext --> next binary value */
 
 template<class Chrom> class eoBinNext: public eoMonOp<Chrom>
 {
@@ -126,8 +130,10 @@ template<class Chrom> class eoBinNext: public eoMonOp<Chrom>
   /// The class name.
   string className() const { return "eoBinNext"; }
   
-  /// Change the bit string x to be x+1.
-  /// @param chrom The chromosome to be added one.
+  /**
+   * Change the bit string x to be x+1.
+   * @param chrom The chromosome to be added one.
+   */
   void operator()(Chrom& chrom) const
     {
       for (int i = chrom.size() - 1; i >= 0; i--)
@@ -144,18 +150,19 @@ template<class Chrom> class eoBinNext: public eoMonOp<Chrom>
     }
 };
 
-//-----------------------------------------------------------------------------
-// eoBinPrev --> previos binary value
-//-----------------------------------------------------------------------------
+
+/** eoBinPrev --> previos binary value */
 
 template<class Chrom> class eoBinPrev: public eoMonOp<Chrom>
 {
  public:
   /// The class name.
   string className() const { return "eoBinPrev"; }
-
-  /// Change the bit string x to be x-1.
-  /// @param chrom The chromosome to be substracted one.
+  
+  /**
+   * Change the bit string x to be x-1.
+   * @param chrom The chromosome to be substracted one.
+   */
   void operator()(Chrom& chrom) const
     {
       for (int i = chrom.size() - 1; i >= 0; i--)
@@ -172,9 +179,8 @@ template<class Chrom> class eoBinPrev: public eoMonOp<Chrom>
     }
 };
   
-//-----------------------------------------------------------------------------
-// eoBinCrossover --> classic crossover
-//-----------------------------------------------------------------------------
+
+/** eoBinCrossover --> classic crossover */
 
 template<class Chrom> class eoBinCrossover: public eoBinOp<Chrom>
 {
@@ -182,9 +188,11 @@ template<class Chrom> class eoBinCrossover: public eoBinOp<Chrom>
   /// The class name.
   string className() const { return "eoBinCrossover"; }
 
-  /// 2-point crossover for binary chromosomes.
-  /// @param chrom1 The first chromosome.
-  /// @param chrom2 The first chromosome.
+  /**
+   * 2-point crossover for binary chromosomes.
+   * @param chrom1 The first chromosome.
+   * @param chrom2 The first chromosome.
+   */
   void operator()(Chrom& chrom1, Chrom& chrom2) const
     {
       eoUniform<unsigned> uniform(1, min(chrom1.size(), chrom2.size()));
@@ -192,9 +200,8 @@ template<class Chrom> class eoBinCrossover: public eoBinOp<Chrom>
     }
 };
   
-//-----------------------------------------------------------------------------
-// eoBinNxOver --> n-point crossover
-//-----------------------------------------------------------------------------
+
+/** eoBinNxOver --> n-point crossover */
 
 template<class Chrom> class eoBinNxOver: public eoBinOp<Chrom>
 {
@@ -212,9 +219,11 @@ template<class Chrom> class eoBinNxOver: public eoBinOp<Chrom>
   /// The class name.
   string className() const { return "eoBinNxOver"; }
   
-  /// n-point crossover for binary chromosomes.
-  /// @param chrom1 The first chromosome.
-  /// @param chrom2 The first chromosome.
+  /**
+   * n-point crossover for binary chromosomes.
+   * @param chrom1 The first chromosome.
+   * @param chrom2 The first chromosome.
+   */
   void operator()(Chrom& chrom1, Chrom& chrom2) const
     {
       unsigned max_size = min(chrom1.size(), chrom2.size());
@@ -252,9 +261,8 @@ template<class Chrom> class eoBinNxOver: public eoBinOp<Chrom>
   unsigned num_points;
 };
 
-//-----------------------------------------------------------------------------
-// eoBinGxOver --> gene crossover
-//-----------------------------------------------------------------------------
+
+/** eoBinGxOver --> gene crossover */
 
 template<class Chrom> class eoBinGxOver: public eoBinOp<Chrom>
 {
@@ -278,9 +286,11 @@ template<class Chrom> class eoBinGxOver: public eoBinOp<Chrom>
   /// The class name
   string className() const { return "eoBinGxOver"; }
 
-  /// Gene crossover for binary chromosomes.
-  /// @param chrom1 The first chromosome.
-  /// @param chrom2 The first chromosome.
+  /**
+   * Gene crossover for binary chromosomes.
+   * @param chrom1 The first chromosome.
+   * @param chrom2 The first chromosome.
+   */
   void operator()(Chrom& chrom1, Chrom& chrom2) const
     {
       unsigned max_genes = min(chrom1.size(), chrom2.size()) / gene_size;
@@ -314,9 +324,8 @@ template<class Chrom> class eoBinGxOver: public eoBinOp<Chrom>
   unsigned num_points;
 };
 
-//-----------------------------------------------------------------------------
-// eoBinUxOver --> uniform crossover
-//-----------------------------------------------------------------------------
+
+/** eoBinUxOver --> uniform crossover */
       
 template<class Chrom> class eoBinUxOver: public eoBinOp<Chrom>
 {
@@ -334,9 +343,11 @@ template<class Chrom> class eoBinUxOver: public eoBinOp<Chrom>
   /// The class name.
   string className() const { return "eoBinUxOver"; }
 
-  /// Uniform crossover for binary chromosomes.
-  /// @param chrom1 The first chromosome.
-  /// @param chrom2 The first chromosome.
+  /**
+   * Uniform crossover for binary chromosomes.
+   * @param chrom1 The first chromosome.
+   * @param chrom2 The first chromosome.
+   */
   void operator()(Chrom& chrom1, Chrom& chrom2) const
     {
       unsigned min_size = min(chrom1.size(), chrom2.size());

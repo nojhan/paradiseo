@@ -11,39 +11,44 @@
 
 /******************************************************************************
  * eoInsertion: A replacement algorithm.
- * Takes two populations: breeders and original populations. At the en of the 
- * process, the original population has chenge in the followin way:
- *            (1) the worst individuals haa been erased
- *            (2) the best individuals from the breeders has been added
+ * Creates a new population with all the breeders and the best individuals 
+ * from the original population.
  *****************************************************************************/
 
 template<class Chrom> class eoInsertion: public eoMerge<Chrom>
 {
  public:
   /// (Default) Constructor.
-  eoInsertion(const float& _rate = 1.0): eoMerge<Chrom>(_rate) {}
+  eoInsertion(const float& _rate = 1.0): eoMerge(_rate) {}
 
   /**
-   * Creates a new population based on breeders and original population
+   * Creates a new population based on breeders and original populations.
    * @param breeders The population of breeders.
    * @param pop The original population.
    */
   void operator()(const eoPop<Chrom>& breeders, eoPop<Chrom>& pop)
     {
-      sort(pop.begin(), pop.end());
+      int new_size = static_cast<int>(pop.size() * rate());
+      cout << "new_size = " << new_size << endl;
       
-      if (rated() > 1)
-	pop.erase(pop.end() + 
-		  (int)(pop.size() * (rate() - 1) - breeders.size()),
-		  pop.end());
+      if (new_size == breeders.size())
+	{
+	  pop = breeders;
+	}
+      else if (new_size < breeders.size())
+	{
+	  pop = breeders;
+	  sort(pop.begin(), pop.end());
+	  pop.erase(pop.begin(), pop.begin() - new_size + pop.size());
+	}
       else
 	{
-	  cout << "eoInsertion no funciona con rate < 1"
-	    exit(1);
+	  sort(pop.begin(), pop.end());
+	  pop.erase(pop.begin(), 
+		    pop.begin() + breeders.size() + pop.size() - new_size);
+	  copy(breeders.begin(), breeders.end(), 
+	       back_insert_iterator<eoPop<Chrom> >(pop));
 	}
-      
-      copy(breeders.begin(), breeders.end(), 
-	   back_insert_iterator<eoPop<Chrom> >(pop));
     }
 };
 

@@ -22,59 +22,60 @@ template<class Chrom> class eoBreeder: public eoTransform<Chrom>
   /// Default constructor.
   eoBreeder(): uniform(0.0, 1.0) {}
   
-  /// Destructor.
-  ~eoBreeder()
-    {
-      for (Operators::iterator op = operators.begin();
-	   op != operators.end();
-	   op++)
-	delete op->second;
-    }
-  
   /**
    * Adds a genetic operator.
    * @param operator The operator.
    * @param rate Rate to apply the operator.
    */
-  void add(eoOp<Chrom>* operator, float rate = 1.0)
+  void add(eoOp<Chrom>& op, float rate = 1.0)
     {
-      operators.push_back(pair<float, eoOp<Chrom> * >(operator, rate));
+      operators.push_back(pair<float, eoOp<Chrom>*>(rate, &op));
     }
   
   /**
    * Transforms a population.
    * @param pop The population to be transformed.
    */
-  void operator()(eoPop<Chrom>& pop) const
+  void operator()(eoPop<Chrom>& pop)
     {
       for (Operators::const_iterator op = operators.begin(); 
 	   op != operators.end(); 
 	   op++)
-	if (op->first < uniform())
-	  switch (op->second->readArity())
-	    {
-	    case unary:
-	      {
-		eoMonOp<Chrom>& monop = 
-		  dinamic_cast<eoMonOp<Chrom> >(*(op->second));
-		for_each(pop.begin(), pop.end(), monop);
-		break;
-	      }
-	    case binary:
-	      {
-		eoBinOp<Chrom>& binop = 
-		  dinamic_cast<eoBinOp<Chrom> >(*(op->second));
-		for (unsigned i = 1; i < pop.size(); i += 2)
-		  binop(pop[i - 1], pop[i]);
-		break;
-	      }
-	    default:
-	      {
-		cerr << "eoBreeder:operator() Not implemented yet!" << endl;
-		exit(EXIT_FAILURE);
-		break;
-	      }
+	switch (op->second->readArity())
+	  {
+	  case unary:
+	    { 
+	      eoMonOp<Chrom>& monop = (eoMonOp<Chrom>&)*(op->second);	
+	      for (unsigned i = 0; i < pop.size(); i++)
+		if (uniform() < op->first)
+		  monop(pop[i]);  
+	      break;
 	    }
+	  case binary:
+	    { 
+	      vector<unsigned> pos(pop.size(), 1);
+	      pos[0] = 0;
+	      partial_sum(pos.begin(), pos.end(), pos.begin());
+	      random_shuffle(pos.begin(), pos.end());
+	      
+	      cout << "pos = ";
+	      copy(pos.begin(), pos.end(),
+		   ostream_iterator<unsigned>(cout, " "));
+	      cout << endl;
+
+	      eoBinOp<Chrom>& binop = (eoBinOp<Chrom>&)*(op->second);
+	      for (unsigned i = 1; i < pop.size(); i += 2)
+		if (uniform() < op->first)
+		  binop(pop[pos[i - 1]], pop[pos[i]]);
+	      break;
+	    }
+	  default:
+	    {
+	      cerr << "eoBreeder:operator() Not implemented yet!" << endl;
+	      exit(EXIT_FAILURE);
+	      break;
+	    }
+	  }
     }
   
   /// The class name.

@@ -22,8 +22,11 @@ using namespace std;
 	#define  MAXINT numeric_limits<int>::max() 
 	#define min _MIN
 	#define max _MAX
-#else
-	#include <limits.h>
+#else	
+        #include <float.h>
+        #include <limits.h>
+        #include <values.h>
+
 	#ifndef MAXFLOAT
 		#define  MAXFLOAT (float)1e127
 		#define  MAXDOUBLE  (double)1.79769313486231570e+308
@@ -38,4 +41,4 @@ using namespace std;
 
 //-----------------------------------------------------------------------------
 
-#endif npi_DATATYPES_H
+#endif EODATA_H
