@@ -1,4 +1,6 @@
 
+#include <utils/eoParser.h>
+#include <utils/eoState.h>
 #include <utils/eoUpdater.h>
 #include <utils/eoMonitor.h>
 #include <utils/eoFileMonitor.h>

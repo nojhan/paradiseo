@@ -3,7 +3,7 @@
 #endif
 
 #include <gp/eoParseTree.h>
-#include <eoEvalFunc.h>
+#include <eo>
 
 using namespace gp_parse_tree;
 using namespace std;
@@ -202,15 +202,6 @@ void print_best(eoPop<EOT>& pop)
     cout << str.c_str();
     cout << endl << "RMS Error = " << pop[index].fitness() << endl;
 }
-
-
-#include <eo>
-#include "eoGOpBreeder.h"
-#include "eoSequentialGOpSel.h"
-#include "eoProportionalGOpSel.h"
-#include "eoDetTournamentInserter.h"
-#include "eoSteadyStateEA.h"
-#include "eoScalarFitness.h"
 
 int main()
 {

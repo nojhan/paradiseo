@@ -209,7 +209,7 @@ It inverse_deterministic_tournament(It _begin, It _end, unsigned _t_size, eoRng&
 {
     It worst = _begin + _gen.random(_end - _begin);		
     
-    for (unsigned i = 0; i < _t_size - 1; ++i)
+    for (unsigned i = 1; i < _t_size; ++i)
     {
         It competitor = _begin + _gen.random(_end - _begin);
 

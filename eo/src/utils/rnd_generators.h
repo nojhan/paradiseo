@@ -58,7 +58,7 @@ class boolean_generator
   public :
     boolean_generator(float _bias = 0.5, eoRng& _rng = rng) : bias(_bias), gen(_rng) {}
   
-  bool operator()(void) { return gen.flip(0.5); } 
+  bool operator()(void) { return gen.flip(bias); } 
   private :
   float bias;
   eoRng& gen;

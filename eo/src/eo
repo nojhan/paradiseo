@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------------
 // eo
-// (c) GeNeura Team 1998
+// (c) GeNeura Team 1998 - 2000
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -20,10 +20,10 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef __GNUG__
+#ifdef _MSC_VER
 // to avoid long name warnings
 #pragma warning(disable:4786)
-#endif // __GNUG__
+#endif 
 
 #ifndef _eo_
 #define _eo_
@@ -104,13 +104,16 @@
 #include <eoSteadyStateEA.h>
 #include <eoEvolutionStrategy.h>
 
+// Inserters
+#include <eoDetTournamentInserter.h>
+#include <eoStochTournamentInserter.h>
+
 // Utils
 #include <utils/checkpointing>
 
 // aliens
 //#include <eoNonUniform.h>
 #include <eoCounter.h>
-#include <utils/eoParser.h>
 
 //-----------------------------------------------------------------------------
 // to be continued ...

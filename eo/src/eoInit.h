@@ -74,7 +74,7 @@ class eoInitVariableLength: public eoInit<EOT>
             : offset(_minSize), extent(_maxSize - _minSize), generator(_generator) 
         {
             if (_minSize >= _maxSize)
-                throw logical_error("eoInitVariableLength: minSize larger or equal to maxSize");
+                throw logic_error("eoInitVariableLength: minSize larger or equal to maxSize");
         }
 
         void operator()(EOT& chrom)

@@ -79,10 +79,10 @@ public :
 		        mutate(offspring[i]);
               }
 	          
-              eval(offspring[i]);
             }
 
             _pop.swap(offspring);
+            apply<EOT>(eval, _pop);
 
         } while (cont(_pop));
     }

@@ -127,8 +127,7 @@ public:
   std::string className(void) const { return "Parser"; }
 
   /// true if the user made an error or asked for help
-  bool userNeedsHelp(void) const { return needHelp.value() || !messages.empty(); }
-
+  bool userNeedsHelp(void); 
   /**
    * Prints an automatic help in the specified output using the information
    * provided by parameters
@@ -148,14 +147,18 @@ private:
   void updateParameters() const;
   
   typedef std::multimap<std::string, eoParam*> MultiMapType;
-  
+
+  // used to store all parameters that are processed
   MultiMapType params;
   
   string programName; 
   string programDescription;
 
-  map<char, string>   shortNameMap;
-  map<string, string> longNameMap;
+  typedef map<char, string> ShortNameMapType;
+  ShortNameMapType shortNameMap;
+  
+  typedef map<string, string> LongNameMapType;
+  LongNameMapType longNameMap;
 
   eoValueParam<bool>   needHelp;
 

@@ -114,7 +114,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   
   Fitness nth_element_fitness(int which) const
   { // probably not the fastest way to do this, but what the heck
-
+      
       vector<Fitness> fitness(size());
       std::transform(begin(), end(), fitness.begin(), GetFitness());
 

@@ -63,7 +63,7 @@ void eoParser::doRegisterParam(eoParam& param) const
 {
     if (param.required() && !isItThere(param))
     {
-        string msg = "required parameter: " + param.longName() + " missing";
+        string msg = "Required parameter: " + param.longName() + " missing";
         messages.push_back(msg);
     }
 
@@ -273,4 +273,57 @@ void eoParser::printHelp(ostream& os)
     os << "\n@param_file \t defines a file where the parameters are stored\n";
     os << '\n';
 
+}
+
+bool eoParser::userNeedsHelp(void) 
+{
+    /* 
+      check whether there are long or short names entered 
+      without a corresponding parameter
+    */
+
+    for (LongNameMapType::const_iterator lIt = longNameMap.begin(); lIt != longNameMap.end(); ++lIt)
+    {
+        string entry = lIt->first;
+
+        MultiMapType::const_iterator it;
+
+        for (it = params.begin(); it != params.end(); ++it)
+        {
+            if (entry == it->second->longName())
+            {
+                break;
+            }
+        }
+
+        if (it == params.end())
+        {
+            string msg = "Unknown parameter: --" + entry + " entered, type -h or --help to see available parameters";
+            messages.push_back(msg);
+        }
+    }
+
+    for (ShortNameMapType::const_iterator sIt = shortNameMap.begin(); sIt != shortNameMap.end(); ++sIt)
+    {
+        char entry = sIt->first;
+
+        MultiMapType::const_iterator it;
+
+        for (it = params.begin(); it != params.end(); ++it)
+        {
+            if (entry == it->second->shortName())
+            {
+                break;
+            }
+        }
+
+        if (it == params.end())
+        {
+            string entryString(1, entry);
+            string msg = "Unknown parameter: -" + entryString + " entered, type -h or --help to see available parameters";
+            messages.push_back(msg);
+        }
+    }
+
+    return needHelp.value() || !messages.empty(); 
 }
