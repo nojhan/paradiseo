@@ -119,6 +119,8 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
         }
       }
 
+      unsigned first_front_size = current_front.size();
+
       vector<unsigned> next_front;
       next_front.reserve(_pop.size());
 
@@ -165,11 +167,21 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
       // now all that's left to do is to transform lower rank into higher worth
       double max_fitness = *std::max_element(value().begin(), value().end());
 
+      // but make sure it's an integer upper bound, so that all ranks inside the highest integer are the front
+      max_fitness = ceil(max_fitness);
+
+      unsigned nfirst = 0;
+
       for (unsigned i = 0; i < value().size(); ++i)
       {
         value()[i] = max_fitness - value()[i];
         assert(n[i] == 0);
+
+        if (value()[i] > (max_fitness-1)) // this would be the test for 'front_ness'
+          nfirst++;
       }
+
+      assert(nfirst == first_front_size);
     }
 };
 

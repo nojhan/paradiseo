@@ -116,21 +116,21 @@ public :
   eoRng(uint32 s) : state(0), next(0), left(-1), cached(false), N(624), M(397), K(0x9908B0DFU)  {
     state = new uint32[N+1];
     initialize(s);
-  } 
- 
+  }
+
  ~eoRng(void)
    {
      delete [] state;
    }
- 
+
  /**
     Re-initializes the Random Number Generator.
  */
- void reseed(uint32 s) 
-   { 
-     initialize(s); 
+ void reseed(uint32 s)
+   {
+     initialize(s);
    }
- 
+
  /**
     uniform(m = 1.0) returns a random double in the range [0, m)
  */
@@ -146,7 +146,7 @@ public :
    {
      return uint32(uniform() * double(m));
    }
- 
+
  /**
     flip() tosses a biased coin such that flip(x/100.0) will 
     returns true x% of the time
@@ -160,7 +160,7 @@ public :
     normal() zero mean gaussian deviate with standard deviation of 1
  */
  double normal(void);        // gaussian mutation, stdev 1       
- 
+
  /**
     normal(stdev) zero mean gaussian deviate with user defined standard deviation
  */
@@ -193,10 +193,10 @@ public :
  /**
     rand_max() the maximum returned by rand()
  */
- uint32 rand_max(void) const { return (uint32) 0xffffffff; }		
+ uint32 rand_max(void) const { return (uint32) 0xffffffff; }
  
  /**
-    roulette_wheel(vec, total = 0) does a roulette wheel selection 
+    roulette_wheel(vec, total = 0) does a roulette wheel selection
     on the input vector vec. If the total is not supplied, it is
     calculated. It returns an integer denoting the selected argument.
  */
@@ -210,14 +210,14 @@ public :
        }
      
      float change = uniform() * total;
-     
+
      int i = 0;
-     
+
      while (change > 0)
        {
 	 change -= vec[i++];
        }
-     
+
      return --i;
    }
 
@@ -231,7 +231,7 @@ public :
      _os << int(next - state) << ' ';
      _os << left << ' ' << cached << ' ' << cacheValue;
    }
- 
+
  ///
  void readFrom(istream& _is)
    {
@@ -239,11 +239,11 @@ public :
        {
 	 _is >> state[i];
        }
-     
+
      int n;
      _is >> n;
      next = state + n;
-     
+
      _is >> left;
      _is >> cached;
      _is >> cacheValue;
@@ -254,17 +254,19 @@ public :
 private :
   uint32 restart(void);
  void initialize(uint32 seed);
- 
- uint32* state; // the array for the state 
+
+ uint32* state; // the array for the state
  uint32* next;
- int left;				  
- 
+ int left;
+
+ // for normal distribution
  bool cached;
  float cacheValue;
- 
+
  const int N;
  const int M;
  const uint32 K; // a magic constant
+
 
  /**
 	Private copy ctor and assignment operator to make sure that
@@ -344,10 +346,10 @@ inline void eoRng::initialize(uint32 seed)
     //
 
    left = -1;
-   
+
    register uint32 x = (seed | 1U) & 0xFFFFFFFFU, *s = state;
    register int    j;
-   
+
    for(left=0, *s++=x, j=N; --j;
        *s++ = (x*=69069U) & 0xFFFFFFFFU);
  }
@@ -357,15 +359,15 @@ inline uint32 eoRng::restart(void)
 {
   register uint32 *p0=state, *p2=state+2, *pM=state+M, s0, s1;
   register int    j;
-  
+
   left=N-1, next=state+1;
-  
+
   for(s0=state[0], s1=state[1], j=N-M+1; --j; s0=s1, s1=*p2++)
     *p0++ = *pM++ ^ (mixBits(s0, s1) >> 1) ^ (loBit(s1) ? K : 0U);
-  
+
   for(pM=state, j=M; --j; s0=s1, s1=*p2++)
     *p0++ = *pM++ ^ (mixBits(s0, s1) >> 1) ^ (loBit(s1) ? K : 0U);
-  
+
   s1=state[0], *p0 = *pM ^ (mixBits(s0, s1) >> 1) ^ (loBit(s1) ? K : 0U);
   s1 ^= (s1 >> 11);
   s1 ^= (s1 <<  7) & 0x9D2C5680U;
@@ -373,14 +375,14 @@ inline uint32 eoRng::restart(void)
   return(s1 ^ (s1 >> 18));
 }
 
-
 inline uint32 eoRng::rand(void)
  {
+
    uint32 y;
-   
+
    if(--left < 0)
      return(restart());
-   
+
    y  = *next++;
    y ^= (y >> 11);
    y ^= (y <<  7) & 0x9D2C5680U;
@@ -389,20 +391,20 @@ inline uint32 eoRng::rand(void)
  }
 
 inline double eoRng::normal(void)
-{	
+{
   if (cached)
     {
       cached = false;
       return cacheValue;
     }
-  
+
   float rSquare, factor, var1, var2;
-  
+
   do
 	{
 	  var1 = 2.0 * uniform() - 1.0;
 	  var2 = 2.0 * uniform() - 1.0;
-	  
+
 	  rSquare = var1 * var1 + var2 * var2;
 	} 
   while (rSquare >= 1.0 || rSquare == 0.0);
