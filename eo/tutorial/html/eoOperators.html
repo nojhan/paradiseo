@@ -2,55 +2,326 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.72 [en] (X11; U; Linux 2.2.16 i686) [Netscape]">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdksmp i686) [Netscape]">
    <title>Variation Operators</title>
 </head>
-<body>
-
+<body text="#000000" link="#0000EF" vlink="#51188E" alink="#FF0000" background="beige009.jpg">
+<a href="eoTopDown.html">Top-Down page</a> - <a href="eoBottomUp.html">Bottom-up
+page</a> - <a href="eoProgramming.html">Programming hints</a> - <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
+documentation</a></font></font></b>
+<br>
+<hr WIDTH="100%">
+<br><b><font color="#FF0000">TOC</font></b> : <a href="#introduction">Introduction</a>
+- <a href="#crossover">Crossover</a> - <a href="#mutation">Mutation</a>
+- <a href="#proportional_simple">Simple combinations</a> - <a href="#general">General
+Operators</a> - <a href="#general_combination">General combinations</a>
+<br>
+<hr WIDTH="100%">
+<center>
 <h1>
-<b><font color="#000099">Variation Operators</font></b></h1>
-Variation operators modify individuals, or, equivalently, move them in
-the search space. They are almost always <font color="#FF0000">stochastic</font>,
-i.e. they generate random variations. Variation operators are classified
-depending on the number of arguments they use and/or modify.
-<p>Variation operators involving two individuals are called 
-<a href="##crossover">crossover operators</a>. 
-They can either modify one of the parents according
-to the material of the other parent, or modify both parents. In EO, the
-former are called Binary operators and the latter Quadratic operators.
-<br>&nbsp;
-<p>Variation operators involving one single individual are called <a href="##mutation">mutation
-operators.</a>
-<p>Note that in EO you can define and use variatio operators that generate
-any number of offspring fromany number of parents. These are called general
-operators, and require advanced knowledge of EO.
-<p><a NAME="#crossover"></a><b><font color="#000099"><font size=+2>Crossover</font></font></b>
-<br>Crossover operators involve two parents, and can modify one of them,
-or both of them.
-<p>Using crossover operators
-<p><a NAME="#mutation"></a><b><font color="#000099"><font size=+2>Mutation</font></font></b>
-<br>Mutation operators modify one single individual. The corresponding
-EO class is called eoMonOp.
-<h2>
-<font color="#009900"><font size=+1>Using mutation operators</font></font></h2>
-The standard EO genotypes (bistrings and real vectors) have pre-defined
-mutation operators.
-<br>&nbsp;
-<h2>
-<font color="#009900"><font size=+1>Writing a mutation operator</font></font></h2>
-&nbsp;
-<p>&nbsp;
-<p><a NAME="general"></a><b><font color="#000099"><font size=+2>General
+<b><font color="#CC0000">Variation Operators</font></b></h1></center>
+
+<p><br><a NAME="introduction"></a><b><font color="#000099"><font size=+2>Variation
 Operators</font></font></b>
-<br><b><font color="#000099"><font size=+2></font></font></b>&nbsp;
-<br><b><font color="#000099"><font size=+2></font></font></b>&nbsp;
+<br>Variation operators modify individuals, or, equivalently, move them
+in the search space. They are almost always <b><font color="#FF6600">stochastic</font></b>,
+i.e. they are based on random numbers, or equivalently, perform random
+modifications of their arguments. Variation operators are classified depending
+on the number of arguments they use and/or modify.
+<p>Variation operators involving two individuals are called <a href="#crossover">crossover
+operators</a>. They can either modify one of the parents according to the
+material of the other parent, or modify both parents. In EO, the former
+are called Binary operators and the latter Quadratic operators.
+<br>Variation operators involving one single individual are called <a href="#mutation">mutation
+operators.</a>
+<br>In EO you can also define and use variation operators that generate
+any number of offspring from any number of parents (sometimes termed <b><font color="#FF6600">orgy</font></b>
+operators). They are called <a href="#general">general operators</a>.
+<p>Though most the historical evolutionary algorithms used at most one
+crossover and one mutation (see e.g. the Simple Genetic Algorithm in <a href="eoLesson1.html">lesson1</a>),
+the trend now in evolutionary computation is to combine operators, choosing
+at run-time and for each individual which operator to apply. This can be
+done in the framework of simple operators, combining for instance several
+mutations into a variation operator that chooses one of them according
+to user-defined preferences: such combinations are called in EO <a href="#proportional_simple">proportional
+combination of simple operators</a> (see e.g. how to define and use such
+combined operators in the SGA of <a href="eoLesson2.html">lesson2</a>).
+<p>Finally, there are many other ways to combine different variation operators
+of different kind. Within EO, you can choose to apply many different types
+of operator to the population, either in turn (this is called sequential
+combination) or by randomly choosing among a set of operators at a given
+time (this is proportional combination, generalizing the one defined for
+simple operators). You can of course mix and interleave both approaches
+at will, and this is described as <a href="#general_combination">general
+combination of general operators</a>.
+<p><b><font color="#FF0000">EO implementation</font></b>: all variation
+operators in EO derive from the base (abstract) class <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoop.html">eoOp</a></font></font></b>
+(as usual, click to see the inheritance diagram). blabla
+<br>
+<hr WIDTH="100%">
+<br><a NAME="crossover"></a><b><font size=+1><font color="#000099">Simple
+operators: </font><font color="#FF0000">Crossover</font></font></b>
+<p>The characteristic of crossover operators is that they involve two parents.
+However, there are crossover operators that generate two parents, and some
+that generate one parent only, and both types are available in EO. The
+former type (2 --> 2) is termed quadratic crossover operator, and is implemanted
+in the <b><font color="#CC33CC">eoQuadOp</font></b> class; the latter type
+(2 --> 1) is termed binary operator and is implemanted in class <b><font color="#CC33CC">eoBinOp</font></b>.
+Both classes are, as usual, templatized by the type of individual they
+can handle (see documentation for <b><font face="Arial,Helvetica"><font size=+1><a href="doc/html/class_eobinop.html">eoBinOp</a></font></font></b>
+and <b><font face="Arial,Helvetica"><font size=+1><a href="doc/html/class_eoquadop.html">eoQuadOp</a></font></font></b>).
+<p><b><font color="#FF0000">Note:</font></b> Whereas it is straightforward
+to create a binary crossover operator from a quadratic one (by discarding
+the changes on the second parent), the reverse might prove impossible (imagine
+a binary crossover that simply merges the parents material: there is no
+way to generate two new parents from that!).
+<p><b><font color="#FF0000">Interfaces</font></b>:
+<br>The general approach in EO about simple variation operators is to perform
+<b><font color="#FF6600">in-place
+modifications</font></b>, i.e. modifying the arguments rather than generating
+new (modified) individuals. This results in the following interfaces for
+the functor objects eoBinOp and eoQuadOp:
+<p><b><tt><font color="#993300">void operator()(EOT &amp; , const EOT &amp;)&nbsp;</font></tt></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for eoBinOp (note the const)
+<br><b><tt><font color="#993300">void operator()(EOT &amp; , EOT &amp;
+)&nbsp;</font></tt></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for eoQuadOp
+<p>which you could have guessed from the inheritance diagrams up to the
+eoBF abstract class. You can also guess that only the first argument will
+be modified by an oeBin object, while both arguments will be modified by
+an eoQuad object.
+<p><b><font color="#FF0000">Using crossover operators</font></b>:
+<br>Directly applying crossover operators is straightforward from the interface
+above:
+<br><b><tt><font color="#993300">eoBinOpDerivedClass&lt;Indi> myBinOp(parameters);&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp; use constructor to pass</font></tt></b>
+<br><b><tt><font color="#993300">eoQuadOpDerivedClass&lt;Indi> myQuadOp(parameters);&nbsp;&nbsp;
+//&nbsp; any useful argument</font></tt></b>
+<br><b><tt><font color="#993300">Indi eo1= ..., eo2= ...;&nbsp;&nbsp; //
+the candidates to crossover</font></tt></b>
+<br><b><tt><font color="#993300">myBinOp(eo1, eo2);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// will modify eo1 only</font></tt></b>
+<br><b><tt><font color="#993300">myQuadOp(eo1, eo2);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// will modify eo1 and eo2</font></tt></b>
+<p>However, you will hardly have to do so, as operators are used within
+other classes, and are applied systematically to whole sets of individuals
+(e.g. that have already been selected, in standard generational evolutionary
+algorithms).
+<br>Hence the way to use such operators will more likely ressemble, if
+you are using for instance an SGA, this (<a href="FirstRealGA.html#operators">definition</a>,
+<a href="FirstRealGA.html#generation">usage</a>).
+See also the different ways that are described below, encapsulating the
+operators into combined operators objects.
+<br>&nbsp;
+<p><a NAME="writing_crossover"></a><b><font color="#FF0000">Writing a crossover
+operator:</font></b>
+<br>There are only two things to modify in the <a href="../Templates/crossover.tmpl">template
+class definitions</a> provided (apart from the name of the class you are
+creating!)
+<ul>
+<li>
+The <font color="#FF6600">constructor</font>, where you pass to the object
+any useful parameter</li>
+
+<li>
+The <font color="#FF6600">operator()</font> method, which performs the
+actual crossover.</li>
+
+<li>
+<b><font color="#FF6600">Warning</font></b>: don't forget to <b><font color="#FF6600">invalidate</font></b>
+the fitness of any individual that has actually been modified. Otherwise,
+the l<a href="eoEval.html#lazy">azy fitness evaluation procedure</a> in
+EO will not know it should compute the fitness again and will keep the
+old value.</li>
+</ul>
+
+<p><br>
+<hr WIDTH="100%"><a NAME="mutation"></a><b><font color="#000099"><font size=+1>Simple
+operators: </font></font><font color="#FF0000"><font size=+2>Mutation</font></font></b>
+<br>Mutation operators modify one single individual. The corresponding
+EO class is called <b><font color="#CC33CC">eoMonOp</font></b>. and it
+si as usual templatized by the type of individual it can handle (see documentation
+for <b><font face="Arial,Helvetica"><font size=+1><a href="doc/html/class_eomonop.html">eoMonOp</a></font></font></b>).
+<p><b><font color="#FF0000">Interfaces</font></b>:
+<br>The general approach in EO about simple variation operators is to perform
+<b><font color="#FF6600">in-place
+modifications</font></b>, i.e. modifying the arguments rather than generating
+new (modified) individuals. This results in the following interface for
+the functor objects eoMonOp:
+<p><b><tt><font color="#993300">void operator()(EOT &amp; )</font></tt></b>
+<p>which you could have guessed from the inheritance diagrams up to the
+eoUF abstract class.
+<p><b><font color="#FF0000">Using mutation operators</font></b>:
+<br>Directly applying mutation operators is straightforward from the interface
+above:
+<br><b><tt><font color="#993300">eoMonOpDerivedClass&lt;Indi> myMutation(parameters);
+//pass parameters in constructor</font></tt></b>
+<br><b><tt><font color="#993300">Indi eo1 = ...;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// eo1 is candidate to mutation</font></tt></b>
+<br><b><tt><font color="#993300">myMutation(eo1);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// will modify eo1</font></tt></b>
+<p>However, you will hardly have to do so, as operators are used within
+other classes, and are applied systematically to whole sets of individuals
+(e.g. that have already been selected, in standard generational evolutionary
+algorithms).
+<br>Hence the way to use such operators will more likely ressemble, if
+you are using for instance an SGA, this (<a href="FirstRealGA.html#operators">definition</a>,
+<a href="FirstRealGA.html#generation">usage</a>).
+See also the different ways that are described below, encapsulating the
+operators into combined operators objects.
+<p><a NAME="writing_mutation"></a><b><font color="#FF0000">Writing a mutation
+operator:</font></b>
+<br>There are only two things to modify in the <a href="../Templates/mutation.tmpl">template
+class definitions</a> provided (apart from the name of the class you are
+creating!)
+<ul>
+<li>
+The <font color="#FF6600">constructor</font>, where you pass to the object
+any useful parameter</li>
+
+<li>
+The <font color="#FF6600">operator()</font> method, which performs the
+actual crossover.</li>
+
+<li>
+<b><font color="#FF6600">Warning</font></b>: don't forget to <b><font color="#FF6600">invalidate</font></b>
+the fitness of the individual - if it has actually been modified. Otherwise,
+the <a href="eoEval.html#lazy">lazy fitness evaluation procedure</a> in
+EO will not know it should compute the fitness again and will keep the
+old value.</li>
+</ul>
+
+<hr WIDTH="100%">
+<br><a NAME="proportional_simple"></a><b><font size=+1><font color="#000099">Combining
+simple operators: </font><font color="#FF0000">proportional combinations</font></font></b>
+<p>The best thing to do is to go to the <a href="eoLesson2.html#combined_operators">Lesson2</a>
+of the tutorial, where everything is explained.
+<p>
+<hr WIDTH="100%"><a NAME="general"></a><b><font color="#000099"><font size=+2>General
+Operators</font></font></b>
 <br>&nbsp;
 <p>
+<hr WIDTH="100%"><a NAME="general_combination"></a><b><font color="#000099"><font size=+2>General
+Combinations:</font></font></b>
+<p>There are two main ways to use and combine general operators in EO:
+the proportional combination, similar to what has been described for simple
+operators above, and the sequential combination, which amounts to apply
+all operators in turn to a bunch of individuals, each operator being applied
+with a specific probability.
+<p><b><font color="#FF0000">Proportional combinations</font></b> behave
+like a unique operator: when it is called upon a population of candidates,
+an <b><font color="#CC33CC">eoProportionalOpContainer</font></b> enters
+the following loop:
+<p>while there are individuals left in the candidate population
+<ul>
+<li>
+choose one of the included operators according to their relative rates
+by some roulette wheel random choice</li>
+
+<li>
+find out the number of parents that it requires (haha, the tricky part
+if e.g. sequentialOp are imbedded :-)</li>
+
+<li>
+gets the required number of individual from the candidates,</li>
+
+<li>
+applies the chosen operator to those parents, generating a list of offspring</li>
+
+<li>
+removes the parents from the candidate population</li>
+
+<li>
+append the offspring to the result population</li>
+</ul>
+<b><font color="#FF0000">Sequential combinations</font></b> behave like
+a unique operator: when it is called upon a population of candidates, an
+<b><font color="#CC33CC">eoSequentialOpContainer</font></b>
+enters the following loop:
+<p>for all operators it contains, apply the operator to the candidate population,
+that is
+<ul>
+<li>
+start with an empty offspring population</li>
+
+<li>
+get the number of parents the operator at hand requires (haha, the tricky
+part if the operator is an eoProportionalOpContainer!!!)</li>
+
+<li>
+flip a coin according to the operator rate. It heads, apply the operator
+to the parents to generate some offspring, and append the generated offspring
+to the offspring population. If tails, directly append the parents to the
+offspring population</li>
+
+<li>
+until no more parents (or an insufficient number of parents) are left in
+the population. The remaining parents, if any, are copied in the offspring
+population</li>
+
+<li>
+make the offspring population the parentpopulation for next operator.</li>
+</ul>
+<font color="#FF6600">Remark:</font>The eoSGATransform presented in <a href="eoLesson2.html#transform">Lesson2</a>
+can be viewed as a particular type of <b><font color="#CC33CC">eoSequentialOpContainer</font></b>.
+It was not coded that way in order to provide a gradual introduction to
+all concepts.
+<br><font color="#FF6600">Exercise</font>: write the code to perform an
+eoSGA using the eoOpContainer constructs.
+<p><font color="#FF6600">Remark</font>: there is actually a single list
+of individuals that is maintained through a clever mecahnism of mark, rewind
+and unmark, but that's a purely technical matter. If you are interested,
+go and check the eoOpContainer and the eoSequentialOpContainer code.
+<br>&nbsp;
+<p><b><font color="#FF0000">Adding operators to a container:</font></b>
+<br>The basic function to add an operator to an eoOpContainer is the method
+<b><tt><font color="#993300">add</font></tt></b>
+from class eoOpContainer.
+<br>It is similar to all other <b><tt><font color="#993300">add</font></tt></b>
+methods in other Combined things in eo (as the simple eoProportionalCombinedXXXop
+described above, but also the eoCombinedContinue class or the eoCheckPoint
+class).
+<br>The syntax is straightforward, and it works with any of the operator
+classes defined above:
+<p><b><tt><font color="#993300">someOperatorType&lt;Indi> myOperator;</font></tt></b>
+<br><b><tt><font color="#993300">eoXXXOpContainer&lt;Indi> myOpContainer;</font></tt></b>
+<br><tt><font color="#993300"><b>myOpContainer.add(myOperator, rate); </b>//
+rate: double whose <b>meaning depends on XXX</b></font></tt>
+<p>where XXX can be one of Proportional and Sequential.
+<br>However, the way <b><tt><font color="#993300">rate</font></tt></b>
+will be used is highly dependent on the type of OpContainer your are creating
+there:
+<ul>
+<li>
+The rates for <b><font color="#CC33CC">eoProportionalOpContainer</font></b>
+will be used in a roulette wheel choice among all operators. They can take
+any value, the only important thing is their <b><font color="#FF6600">relative
+values</font></b>.</li>
+
+<li>
+The "rates" for <b><font color="#CC33CC">eoSequentialOpContainer </font></b>actually
+are probabilities, i.e. they will be used in a coin-flipping to determine
+whether that particuler operator will be applied to the next candidates
+at hand. They should be <b><font color="#FF6600">in [0,1]</font></b> (no
+error will happen if they are not, but the operator will be applied systematically
+- this is equivalent of a rate equal to 1).</li>
+</ul>
+
+<p><br>
+<hr WIDTH="100%"><b><font color="#FF0000">TOC</font></b> : <a href="#introduction">Introduction</a>
+- <a href="#crossover">Crossover</a> - <a href="#mutation">Mutation</a>
+- <a href="#proportional_simple">Simple combinations</a> - <a href="#general">General
+Operators</a> - <a href="#general_combination">General combinations</a>
+<br>
+<hr WIDTH="100%"><a href="eoTopDown.html">Top-Down page</a> - <a href="eoBottomUp.html">Bottom-up
+page</a> - <a href="eoProgramming.html">Programming hints</a> -<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
+documentation</a></font></font></b>
+<br>
 <hr>
 <address>
-<a href="mailto:marc@cmapx.polytechnique.fr">Marc Schoenauer</a></address>
+<a href="mailto:Marc.Schoenauer@polytechnique.fr">Marc Schoenauer</a></address>
 
-<br><!-- Created: Mon Oct 30 18:16:54 CET 2000 --><!-- hhmts start -->Last
-modified: Mon Oct 30 18:24:39 CET 2000<!-- hhmts end -->
+<br><!-- Created: Mon Oct 30 07:27:13 CET 2000 --><!-- hhmts start -->Last
+modified: Fri Dec. 8 2000&nbsp;<!-- hhmts end -->
 </body>
 </html>

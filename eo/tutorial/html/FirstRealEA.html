@@ -117,13 +117,11 @@ The actual code is in boldface and the comment in normal face.
 <b>  &nbsp;const float P_CROSS = 0.8;	</b>// Crossover probability<br>
 <b>  &nbsp;const float P_MUT = 0.5;	</b>// mutation probability<br>
 <b>  &nbsp;const double EPSILON = 0.01;	</b>// range for real uniform mutation<br>
-<b>  &nbsp;const double SIGMA   = 0.01;	</b>// std. dev. of normal mutation<br>
 <b>  &nbsp;</b>// some parameters for chosing among different operators<br>
 <b>  &nbsp;const double segmentRate = 0.5;  &nbsp; &nbsp; &nbsp; &nbsp;</b>// rate for 1-pt Xover<br>
 <b>  &nbsp;const double arithmeticRate = 0.5;  &nbsp; &nbsp; &nbsp; &nbsp;</b>// rate for 2-pt Xover<br>
 <b>  &nbsp;const double uniformMutRate = 0.5;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</b>// rate for bit-flip mutation<br>
 <b>  &nbsp;const double detMutRate = 0.5;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</b>// rate for one-bit mutation<br>
-<b>  &nbsp;const double normMutRate = 0.5;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</b>// rate for normal mutation<br>
 </font></tt>
 </td>
 </tr>
@@ -169,7 +167,7 @@ The actual code is in boldface and the comment in normal face.
 <b>  &nbsp; &nbsp;</b>// Initialization of the population<br>
 <b>  &nbsp;eoPop&lt;Indi> pop(POP_SIZE, random);</b><br>
 <b> </b><br>
-<b>  &nbsp;</b>// and evaluate it in one line<br>
+<b>  &nbsp;</b>// and evaluate it in one loop<br>
 <b>  &nbsp;apply&lt;Indi>(eval, pop);	</b>// STL syntax<br>
 </font></tt>
 </td>
@@ -244,7 +242,7 @@ The actual code is in boldface and the comment in normal face.
 <b>  &nbsp;eoArithmeticCrossover&lt;Indi> xoverA;</b><br>
 <b>  &nbsp;</b>// Combine them with relative rates<br>
 <b>  &nbsp;eoPropCombinedQuadOp&lt;Indi> xover(xoverS, segmentRate);</b><br>
-<b>  &nbsp;xover.add(xoverA, arithmeticRate, eo_verbose);</b><br>
+<b>  &nbsp;xover.add(xoverA, arithmeticRate, true);</b><br>
 </font></tt>
 </td>
 </tr>
@@ -254,16 +252,13 @@ The actual code is in boldface and the comment in normal face.
 <td>
 <tt><font color="#993399">
 <b>  &nbsp;</b><br>
-<b>  &nbsp;</b>// Gaussian mutation - std dev as argument<br>
-<b>  &nbsp;eoNormalMutation&lt;Indi>  &nbsp;mutationN(SIGMA);  </b><br>
 <b>  &nbsp;</b>// offspring(i) uniformly chosen in [parent(i)-epsilon, parent(i)+epsilon]<br>
 <b>  &nbsp;eoUniformMutation&lt;Indi>  &nbsp;mutationU(EPSILON); </b><br>
 <b>  &nbsp;</b>// k (=1) coordinates of parents are uniformly modified<br>
 <b>  &nbsp;eoDetUniformMutation&lt;Indi>  &nbsp;mutationD(EPSILON); </b><br>
 <b>  &nbsp;</b>// Combine them with relative rates<br>
 <b>  &nbsp;eoPropCombinedMonOp&lt;Indi> mutation(mutationU, uniformMutRate);</b><br>
-<b>  &nbsp;mutation.add(mutationD, detMutRate);</b><br>
-<b>  &nbsp;mutation.add(mutationN, normMutRate, eo_verbose);</b><br>
+<b>  &nbsp;mutation.add(mutationD, detMutRate, true);</b><br>
 <b>  &nbsp;</b><br>
 <b>  &nbsp;</b>// The operators are  &nbsp;encapsulated into an eoTRansform object<br>
 <b>  &nbsp;eoSGATransform&lt;Indi> transform(xover, P_CROSS, mutation, P_MUT);</b><br>

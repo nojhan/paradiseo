@@ -82,8 +82,10 @@ have to declare 3 template arguments: the type of EO object it will be
 applied to, the return type and the type of argument the function actually
 requires.</font></li>
 
-<p><br><b><font color="#FF0000">Note:</font></b> <font color="#000000">In
-the previous files (<a href="FirstBitGA.html#eval">Bit</a> - <a href="FirstRealGA.html#eval">Real</a>)
+<br>&nbsp;
+<p>&nbsp;
+<p><b><font color="#FF0000">Note:</font></b> <font color="#000000">In the
+previous files (<a href="FirstBitGA.html#eval">Bit</a> - <a href="FirstRealGA.html#eval">Real</a>)
 , the last 2 types were deduced from the first (2nd argument = fitness
 type of EO object, third = first).</font>
 <br>&nbsp;
@@ -113,24 +115,28 @@ the eoPop has no idea of the eval function, so it has to be done from outside!!!
 <a NAME="combined_operators"></a><font color="#000000">You can now use
 </font><font color="#CC33CC"><b>different
 </b>crossover
-</font><font color="#000000">and</font><font color="#CC33CC"> mutation
-<b>operators</b></font><font color="#000000">in
-the same algorithm, choosing among them according to
+</font><font color="#000000">and</font><font color="#CC33CC">
+mutation
+<b>operators</b></font><font color="#000000">in the same algorithm,
+choosing among them according to
 </font><b><font color="#FF6600">relative
 rates.</font></b><font color="#CC33CC"> </font><font color="#000000">The
 class </font><font color="#CC33CC"><b>eoPropCombinedxxxOp</b>,
 </font><font color="#000000">where
-xxx is either Mon (for mutations, of class </font><font color="#CC33CC"><b><tt>eoMonOp</tt></b>)</font><font color="#000000">
-or Quad (for crossovers, of class </font><b><tt><font color="#CC33CC">eoQuadOp</font></tt></b><font color="#000000">),
+xxx is either Mon (for mutations, of class <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomonop.html">eoMonOp</a></font></font></b></font><font color="#CC33CC">)</font><font color="#000000">
+or Quad (for crossovers, of class <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoquadraticop.html">eoQuadOp</a></font></font></b>),
 is derived from the corresponding eoxxxOp class. When applying the eoPropCombinedxxxOp,
 one of the eoxxxOp it contains is chosen by a <a href="../../doc/html/class_eorng.html#a12">roulette
-wheel,</a> according to their respective rates, and is applied to the arguments.</font></li>
+wheel,</a> according to their respective rates, and is applied to the arguments.
+For more details on these classes, go to the <a href="eoOperators.html#crossover">top-down
+corresponding pages</a>, or to their respective documentation pages.</font></li>
 
 <ul>
 <li>
-<font color="#000000"><a href="FirstBitEA.html#operators">Bit</a>&nbsp;<br>
-Three </font><b><font color="#FF6600">crossover operators</font></b><font color="#000000">
-are available: the </font><font color="#FF6600">one-point</font><font color="#000000">
+<font color="#000000"><a href="FirstBitEA.html#operators">Bit</a></font></li>
+
+<br><font color="#000000">Three </font><b><font color="#FF6600">crossover
+operators</font></b><font color="#000000"> are available: the </font><font color="#FF6600">one-point</font><font color="#000000">
 crossover is still there (class ), but now you also have the </font><font color="#FF6600">N-point</font><font color="#000000">
 crossover </font><font color="#CC33CC">eoBinNxOver</font><font color="#000000">
 (the&nbsp; number of points is 2 by default, but as always you can change
@@ -138,45 +144,44 @@ that in the constructor), and the </font><font color="#FF6600">Uniform</font><fo
 crossover </font><font color="#CC33CC">eoBinUxOver</font><font color="#000000">
 (where you can eventually twidle the choice from one parent to the other
 by providing a probability in the constructore - defaulted to 0.5, which
-amounts to symmetrical choice).<br>
-As for </font><b><font color="#FF6600">mutation operators</font></b><font color="#000000">,
-apart from the </font><font color="#CC33CC">eoBinMutation</font><font color="#000000">
+amounts to symmetrical choice).</font>
+<br><font color="#000000">As for </font><b><font color="#FF6600">mutation
+operators</font></b><font color="#000000">, apart from the </font><font color="#CC33CC">eoBinMutation</font><font color="#000000">
 (standard bitstring mutation flipping one bit with a given probability)
 you can also use the </font><font color="#CC33CC">eoDetBitFlip</font><font color="#000000">
 that always filps the same number of bits (1 by default, but you can change
 that in the constructor), randomly chosen in the bitstring. Even though
 the average number of bits flipped is the same if the </font><font color="#CC33CC">eoBinMutation
-</font><font color="#000000">is used with a rate of 1/N (N is the bitstring
-length) </font><font color="#FF6600">the behavior of these mutation can
-be very different</font><font color="#000000"> on many problems.</font></li>
-
+</font><font color="#000000">is
+used with a rate of 1/N (N is the bitstring length) </font><font color="#FF6600">the
+behavior of these mutation can be very different</font><font color="#000000">
+on many problems.</font>
 <li>
-<font color="#000000"><a href="FirstRealEA.html#operators">Real</a>&nbsp;<br>
-Two </font><b><font color="#FF6600">crossover operators</font></b><font color="#000000">
-are available: the </font><font color="#CC33CC">eoSegmentCrossover</font><font color="#000000">
+<font color="#000000"><a href="FirstRealEA.html#operators">Real</a></font></li>
+
+<br><font color="#000000">Two </font><b><font color="#FF6600">crossover
+operators</font></b><font color="#000000"> are available: the </font><font color="#CC33CC">eoSegmentCrossover</font><font color="#000000">
 chooses one point uniformly on the segment joining the parents, while the
 </font><font color="#CC33CC">eoArithmeticCrossover</font><font color="#000000">
 performs a segment crossover on each coordinate independently, which amount
 to choosing the offspring uniformly in the hypercube whose diagonal is
-the segment joining the parents.<br>
-As for </font><b><font color="#FF6600">mutation operators</font></b><font color="#000000">,
-apart from the </font><font color="#CC33CC">eoBinMutation</font><font color="#000000">
+the segment joining the parents.</font>
+<br><font color="#000000">As for </font><b><font color="#FF6600">mutation
+operators</font></b><font color="#000000">, apart from the </font><font color="#CC33CC">eoBinMutation</font><font color="#000000">
 (standard bitstring mutation flipping one bit with a given probability)
 you can also use the </font><font color="#CC33CC">eoDetBitFlip</font><font color="#000000">
 that always filps the same number of bits (1 by default, but you can change
 that in the constructor), randomly chosen in the bitstring. And last but
 not least, the normal mutation eoNormMutation modifies all coordinates
-with a Gaussian noise, with standard deviation passed in the constructor.</font><br>
-<BR></li>
-</ul>
+with a Gaussian noise, with standard deviation passed in the constructor.</font></ul>
 <b><font color="#FF0000">Note:</font></b> A third optional argument in
 method <b><tt><font color="#660000">add</font></tt></b> is a boolean (defaulted
 to false). When true, the actual rates for all operators are displayed
 on the screen as percentages: you don't have to input rates that sum up
 to 1, all rates are scaled anyway.
-<p><b><font color="#FF0000">Note:</font></b> The operators have to be encapsulated
-into an <b><tt><font color="#CC33CC">eoTransform</font></tt></b> object
-(<a href="FirstBitEA.html#transform">Bit</a> - <a href="FirstRealEA.html#transform">Real</a>)
+<p><a NAME="transform"></a><b><font color="#FF0000">Note:</font></b> The
+operators have to be encapsulated into an <b><tt><font color="#CC33CC">eoTransform</font></tt></b>
+object (<a href="FirstBitEA.html#transform">Bit</a> - <a href="FirstRealEA.html#transform">Real</a>)
 to be passed to the <b><tt><font color="#FF6666">eoEasyEA </font></tt></b>algorithm.
 The <b><tt><font color="#CC33CC">eoSGATransform</font></tt></b> is a simple
 <b><tt><font color="#CC33CC">eoTransform</font></tt></b>

@@ -2,12 +2,13 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.72 [en] (X11; U; Linux 2.2.16 i686) [Netscape]">
    <title>Genetic Engine</title>
 </head>
-<body>
-
 <body text="#000000" link="#0000EF" vlink="#51188E" alink="#FF0000" background="beige009.jpg">
+<a href="eoTopDown.html">Top-Down page</a> - <a href="eoBottomUp.html">Bottom-up
+page</a> - <a href="eoProgramming.html">Programming hints</a> - <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
+documentation</a></font></font></b>
+<hr WIDTH="100%">
 <center>
 <h1>
 <b><font color="#CC0000">Evolution Engine</font></b></h1></center>
@@ -27,33 +28,156 @@ Replacement</li>
 Popular evolution engines</li>
 </ul>
 
-<p><br>The term evolution engine denotes the different parts that simulate
-the Darwinism in Evolutionary Algorithms.<font color="#33CC00"></font>
+<p><br><b><font color="#000099"><font size=+2>Introduction</font></font></b>
+<br>The term evolution engine denotes the different parts that simulate
+the Darwinism in Evolutionary Algorithms.
 <center>
-<p><i><font color="#33CC00">The fittest individuals are more likely to
+<p><i><font color="#009900">The fittest individuals are more likely to
 reproduce and survive.</font></i></center>
 
 <p>Darwinism takes place in two different phases of an EA, though in many
-<a href="#popular">popular variants</a>, only one phase is activated.
+<a href="#popular">popular
+variants</a>, only one phase is activated.
 <p><a href="#selection">Selection</a> is the Darwinistic choice of parents
-that will be allowed to <font color="#33CC00">reproduce</font><font color="#CC33CC">.</font>
+that will be allowed to <b><font color="#009900">reproduce</font></b><font color="#CC33CC">.</font>
 <br><a href="#replacement">Replacement</a> takes place after reproduction,
-and is the Darwinistic choice of those individuals that will <font color="#33CC00">survive</font>,
+and is the Darwinistic choice of those individuals that will <b><font color="#009900">survive</font></b>,
 i.e. become the parents of the next generation.
 <p><a NAME="selection"></a><b><font color="#000099"><font size=+2>Selection</font></font></b>
 <br>&nbsp;
 <p><a NAME="replacement"></a><b><font color="#000099"><font size=+2>Replacement</font></font></b>
+<br>The replacement phase takes place <font color="#FF6600">after the birth
+of all offspring</font> through variation operators. The idea is to close
+the generation loop, i.e. to end up with a population of individuals that
+will be the initial population of next generation. That population will
+be <font color="#FF6600">built upon the old parents and the new-born offspring</font>.
+In all algorithms that come up with EO, the <font color="#FF6600">population
+size</font> is supposed to be <font color="#FF6600">constant</font> from
+one generation to the next one - though nothing stops you from writing
+an algorithm with varying population size.
+<p><b><font color="#000099">Replacement: </font><font color="#FF0000">The
+interface</font></b>
+<br>The abstract class for replacement procedures is the functor class
+<font color="#009900">eoReplacement</font>,
+and the interface for its <tt><font color="#993300">operator()</font></tt>
+is
+<center>
+<p><b><tt><font color="#993300">void operator()(const eoPop&lt;EOT>&amp;
+_parents, eoPop&lt;EOT>&amp; _offspring)</font></tt></b></center>
+
+<p>which you could have guessed from the inheritance tree for class <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoreplacement.html">eoReplacement</a></font></font></b>.,
+as you see there that <font color="#009900">eoReplacement</font> derives
+from <tt><font color="#993300">class eoBF&lt;const eoPop&lt;EOT>&amp;,
+eoPop&lt;EOT>&amp;, void></font></tt>.
+<br>This means that it takes <font color="#FF6600">2 populations</font>
+(called, for obvious anthropomorphic reasons, _parents and _offspring :-)
+and puts the result into population offspring (as _parents is passed as
+<b><tt><font color="#993300">const</font></tt></b>ant
+population).
+<p><b><font color="#FF0000">Note</font></b>: After the replacement step,
+all algorithms swap the parents and offspring populations - this is why
+the result of the replacement is put into the _offspring population --
+the _parents being there untouched until the very last moment.
+<p><b><font color="#000099">Replacement: </font><font color="#FF0000">Instances</font></b>
+<ul>
+<li>
+The most straightforward replacement is ... <font color="#FF6600">no replacement</font>,
+or, more precisely, <font color="#FF6600">generational replacement</font>:
+all offspring replace all parents (used in Holland's and Goldberg's traditional
+GAs). In EO, this is implemented in the <b><tt><font color="#009900">eoNoReplacement</font></tt></b>
+class, whose <tt><font color="#993300">operator()</font></tt> does ...
+<font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/eoreplacement_h-source.html#l00051">exactly
+nothing</a></font></font> (remember that _parents and _offspring will be
+swapped later on).</li>
+
 <br>&nbsp;
+<li>
+But the basic type of replacement in EO has two major steps, <font color="#FF6600">merging</font>
+both populations of parents and offspring, and <font color="#FF6600">reducing</font>
+this big population to the right size. The functor class is called <b><tt><font color="#009900">eoMergeReduce</font></tt></b>.
+and it <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/eoreplacement_h-source.html#l00064">contains
+two objects</a></font></font> of respective types <b><font color="#009900">eoMerge</font></b>
+and <b><font color="#009900">eoReduce</font></b> and you can probably guess
+what each of them actually does :-)</li>
+
+<br>&nbsp;
+<p>&nbsp;
+<p>Available <font color="#FF6600">instances of eoMerge</font> objects
+are <b><tt><font color="#009900">eoPlus</font></tt></b>, that simply adds
+the parents to the offspring, or <b><tt><font color="#009900">eoElitism</font></tt></b>,
+that adds only some of the (best) parents to the offspring. A special case
+of eoElistism is <b><tt><font color="#009900">eoNoElitism</font></tt></b>,
+an eoMerge that does nothing.
+<br>&nbsp;
+<p>Available <font color="#FF6600">instances of eoReduce</font> are <b><tt><font color="#009900">eoTruncate</font></tt></b>,
+that deterministically keeps only the required number of individuals, taking
+the best ones, and <b><tt><font color="#009900">eoEPReduce</font></tt></b>
+that usees the EP stocahstic tournamenent to reduce the population.
+<p>Available <font color="#FF6600">instances of eoMergeReduce</font> replacement
+procedures are built on the above, and include
+<ul>
+<li>
+<b><tt><font color="#009900">eoCommaReplacement</font></tt></b>, one of
+the two standard strategies in <font color="#FF6600">Evolution Strategies</font>,
+selects the best offspring. It is an <b><tt><font color="#993300">eoMergeReduce(eoNoElitism,
+eoTruncate)</font></tt></b>.</li>
+
+<li>
+<b><tt><font color="#009900">eoPlusReplacement</font></tt></b>, the other
+standard <font color="#FF6600">Evolution Startegies</font> replacement,
+where the best from offspring+parents become the next generation. It is
+an <b><tt><font color="#993300">eoMergeReduce(eoPlus, eoTruncate)</font></tt></b>.</li>
+
+<li>
+<b><tt><font color="#009900">eoEPReplacement</font></tt></b>, from <font color="#FF6600">Evolutionary
+Programming</font> historical algorithm, doing a stochastic tournament
+among parents + offspring. It is an <b><tt><font color="#993300">eoMergeReduce(eoPlus,
+eoEPReduce)</font></tt></b>.</li>
+</ul>
+
+<li>
+Another type of eoReplacement is eoKillReplace in which some individuals
+of the population are reaplced by some of the offspring.</li>
+</ul>
+
+<p><br><b><font color="#000099">Replacement: </font><font color="#FF0000">Adding
+(weak) elitism</font></b>
+<br>You can add what is called <font color="#FF6600">weak elitism</font>
+to any replacement by encapsulating it into an <b><tt><font color="#009900">eoWeakElitismReplacement</font></tt></b>
+object. Weak elitism ensures that the overall <font color="#FF6600">best
+fitness</font> in the population <font color="#FF6600">will never decrease</font>:
+if the best fitness in the new population is less than the best fitness
+of the parent population, then the best parent is added back to the new
+population, replacing the worse.
+<p>Within EO, this is very easy to add:
+<p>First, declare your replacement functor (here, generational, but it
+can be any replacement object):
+<br><b><tt><font color="#009900">eoNoReplacement&lt;Indi> genReplace;</font></tt></b>
+<br>Then wrap the weak elitism around it:
+<br><b><tt><font color="#009900">eoWeakElitismReplacement&lt;Indi> replace(genReplace);</font></tt></b>
+<br>and use now replace as your replacement procedure within your algorithm.
+<p><font color="#FF0000">Note</font>: of course, adding weak elitism to
+an elitist replacement makes no sense - but will not harm either :-)
 <p><a NAME="popular"></a><b><font color="#000099"><font size=+2>Popular
 evolution engines</font></font></b>
-<br>&nbsp;
-<br>&nbsp;
-<p>
+<br>The most popular evolution engines are listed below, together with
+the way to use them in EO. If you don't find your particuler algorithm,
+please send it to us, and we might include it here!
+<ul>
+<li>
+Generational Genetic Algorihtm</li>
+</ul>
+
+<p><br>
+<hr WIDTH="100%"><a href="eoTopDown.html">Top-Down page</a> - <a href="eoBottomUp.html">Bottom-up
+page</a> - <a href="eoProgramming.html">Programming hints</a> -<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
+documentation</a></font></font></b>
+<br>
 <hr>
 <address>
-<a href="mailto:marc@cmapx.polytechnique.fr">Marc Schoenauer</a></address>
+<a href="mailto:Marc.Schoenauer@polytechnique.fr">Marc Schoenauer</a></address>
 
-<br><!-- Created: Mon Oct 30 18:15:16 CET 2000 --><!-- hhmts start -->Last
-modified: Mon Oct 30 18:15:17 CET 2000<!-- hhmts end -->
+<br><!-- Created: Mon Oct 30 07:27:13 CET 2000 --><!-- hhmts start -->Last
+modified: Tue. Dec. 5 2000&nbsp;<!-- hhmts end -->
 </body>
 </html>
