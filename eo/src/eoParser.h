@@ -634,7 +634,7 @@ public:
     for ( p=_parser.params.begin(); p!=_parser.params.end(); p++ ) {
       switch ( p->valType() ) {
       case Param::BOOL :
-	if(p->value() == "true")
+	if( p->value() == (string) "true")
 	  os << p->longName();
 	else
 	  os << "#" << p->longName() ; // so the name of the bool is commented out
@@ -710,7 +710,9 @@ public:
     
     for ( p=params.begin(); p!=params.end(); p++ ) {
       if( p->valType() != Param::TITLE ) {
-	cout << p->shortName()<<","<<p->longName()<<":\t"<<p->description()<<endl;
+	cout << "-" << p->shortName()
+	     <<", --"<<p->longName()<<":\t"
+	     <<p->description()<<endl;
 
 	cout << "\t(";
 	switch ( p->valType() ) {
@@ -803,7 +805,31 @@ public:
       UException("Array parameter " + _param + ": No matching > ("  + _first_word 
 		 + "... )") {};
   };
-  
+
+  void createParamFile( ostream& _os ) {
+    vector<Param>::iterator p;
+    for ( p=params.begin(); p!=params.end(); p++ ) {
+      switch( p->valType() ) {
+      case Param::TITLE: 
+	_os << endl << "# -- ";
+	break;
+      case Param::BOOL: 
+	_os << ((p->value()=="true" )?"":"#") 
+	    << p->longName();
+	break;
+      case Param::STRING: 
+	_os << p->longName()<<"\t\""<<p->value()<<"\"";
+	break;
+      case Param::ARRAY: 
+	_os << p->longName()<<"\t< "<<p->value()<<" >";
+	break;
+      default:
+	_os << p->longName()<<"\t"<<p->value();
+	break;
+      } // switch
+      _os << "\t #" << p->description() << endl; 
+    }
+  }
 private:
   vector<Param> params;
   string programName; 
