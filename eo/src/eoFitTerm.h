@@ -48,7 +48,7 @@ public:
 	///
 	virtual ~eoFitTerm() {};
 
-	/** Returns false when a certain number of generations is
+	/** Returns false when a fitness criterium is
 	* reached */
 	virtual bool operator() ( const eoPop<EOT>& _vEO ) {
 	  float bestFitness=_vEO[0].fitness();
@@ -56,6 +56,8 @@ public:
 	  dif=(dif<0)?-dif:dif;
 	  return (dif>epsilon ) || (bestFitness > maximum);
 	}
+
+	std::string className(void) const { return eoFitTerm; }
 
 private:
 	float maximum, epsilon;
