@@ -95,7 +95,7 @@ public :
 
     eoCountedStateSaver(unsigned _interval, const eoState& _state, std::string _prefix = "state", std::string _extension = "sav") 
       : state(_state), interval(_interval), counter(0),
-	saveOnLastCall(false),
+	saveOnLastCall(true),
 	prefix(_prefix), extension(_extension) {}
 
     virtual void lastCall(void);
