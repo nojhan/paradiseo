@@ -99,9 +99,14 @@ this is a file that contains the list of the most important EO files.</font></li
 <br>&nbsp;
 <li>
 <b><font color="#999900">Representation</font></b><font color="#000000">:
-you then have to declare the type of individuals you will be handling.
-All evolution-related objects you will need are templatized w.r.t. the
-type of individuals.</font></li>
+you need to declare the type of individuals you will be handling. First,
+include some header files where these are defined: </font><b><tt><font color="#999900">ga.h</font></tt></b><font color="#000000">
+for bitstring, </font><b><tt><font color="#999900">es.h</font></tt></b><font color="#000000">
+for real-valued genotypes.<br>
+Then a </font><b><tt><font color="#993300">typedef</font></tt></b><font color="#000000">
+directive will allow one to handle the abstract </font><b><tt><font color="#993300">Indi</font></tt></b><font color="#000000">
+all around in the main code. Remember that all evolution-related objects
+you will need are templatized w.r.t. the type of individuals.</font></li>
 
 <ul>
 <li>
