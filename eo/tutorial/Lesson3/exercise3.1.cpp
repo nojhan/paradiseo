@@ -14,10 +14,6 @@
 
 // the general include for eo
 #include <eo>
-#include <utils/eoScalarFitnessStat.h>
-#include <utils/eoGnuplot1DMonitor.h>
-#include <utils/eoGnuplot1DSnapshot.h>
-#include <utils/eoFDCStat.h>
 
 // EVAL
 #include "binary_value.h"

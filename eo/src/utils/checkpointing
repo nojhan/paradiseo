@@ -7,3 +7,7 @@
 #include <utils/eoGnuplot1DMonitor.h>
 #include <utils/eoCheckPoint.h>
 #include <utils/eoStat.h>
+#include <utils/eoScalarFitnessStat.h>
+#include <utils/eoGnuplot1DMonitor.h>
+#include <utils/eoGnuplot1DSnapshot.h>
+#include <utils/eoFDCStat.h>
