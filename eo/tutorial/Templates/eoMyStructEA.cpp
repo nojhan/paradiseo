@@ -147,7 +147,8 @@ int main(int argc, char* argv[])
    * ("varType  _anyVariable") in their definition
    *
    * and you can optionally uncomment and modify the lines commented between
-   *    /* and */
+   *    the usual  / * and * / (without the blanks :-) 
+   */
 
    // the initializer: will be used in make_pop
   ////////////////////
