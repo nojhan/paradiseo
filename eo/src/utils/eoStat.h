@@ -33,12 +33,17 @@
 
 /**
   Base class for all statistics that need to be calculated
-  over the (unsorted) population
+  over the (unsorted) population (I guess it is not really necessary? MS)
 */
 template <class EOT>
 class eoStatBase : public eoUF<const eoPop<EOT>&, void>
 {};
 
+/**
+  The actual class that will be used as base for all statistics 
+  that need to be calculated over the (unsorted) population
+  It is an eoStatBase AND an eoValueParam so it can be used in Monitors.
+*/
 template <class EOT, class T>
 class eoStat : public eoValueParam<T>, public eoStatBase<EOT>
 {
@@ -54,6 +59,11 @@ class eoSortedStatBase : public eoUF<const vector<const EOT*>&, void>
 {
 };
 
+/**
+  The actual class that will be used as base for all statistics 
+  that need to be calculated over the sorted population
+  It's an eoSortedStatBase AND an eoValueParam so it can be used in Monitors.
+*/
 template <class EOT, class ParamType>
 class eoSortedStat : public eoSortedStatBase<EOT>, public eoValueParam<ParamType>
 {
@@ -88,6 +98,9 @@ public :
     }
 };
 
+/**
+    Average fitness + Std. dev. of a population, fitness needs to be scalar.
+*/
 template <class EOT>
 class eoSecondMomentStats : public eoStat<EOT, std::pair<double, double> >
 {
@@ -114,6 +127,9 @@ public :
     }
 };
 
+/**
+    The n_th element fitness in the population (see eoBestFitnessStat)
+*/
 template <class EOT>
 class eoNthElementFitnessStat : public eoSortedStat<EOT, typename EOT::Fitness >
 {
@@ -153,13 +169,17 @@ public :
 
 };
 */
+
+/**
+    Best fitness in the population (this is NOT an eoSortedStat but an eoStat)
+*/
 template <class EOT>
 class eoBestFitnessStat : public eoNthElementFitnessStat<EOT>
 {
 public :
     typedef typename EOT::Fitness Fitness;
  
-    eoBestFitnessStat(std::string _description = "Best Fitness") : eoNthElementFitnessStat<EOT>(0, _description) {}
+    eoBestFitnessStat(std::string _description = "Best ") : eoNthElementFitnessStat<EOT>(0, _description) {}
 };
 
 template <class EOT>
