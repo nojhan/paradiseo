@@ -126,6 +126,7 @@ int main(int argc, char *argv[])
 	checkPoint.add(avg);
 	checkPoint.add(best);
 	
+#if !defined(NO_GNUPLOT)
 	eoGnuplot1DMonitor gnuplotmonitor("gnuplotBestStats");
   	gnuplotmonitor.add(generationCounter);
 	gnuplotmonitor.add(best);
@@ -142,7 +143,7 @@ int main(int argc, char *argv[])
 
 	checkPoint.add(gnuplotmonitor);
   	checkPoint.add(gnuplotAvgmonitor);
-	
+#endif	
 	// GP Generation
 	eoEasyEA<EoType> gp(checkPoint, eval, select, transform, replace);
 
