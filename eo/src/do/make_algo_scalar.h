@@ -32,7 +32,8 @@
 
 // Selection
 // the eoSelectOne's
-#include <eoRandomSelect.h>	// also contains the eoSequentialSelect
+#include <eoRandomSelect.h>
+#include <eoSequentialSelect.h>
 #include <eoDetTournamentSelect.h>
 #include <eoProportionalSelect.h>
 #include <eoFitnessScalingSelect.h>
