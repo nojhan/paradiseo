@@ -24,7 +24,7 @@
 //-----------------------------------------------------------------------------
 
 #ifndef eoSharing_h
-#define eoPerf2Worth_h
+#define eoSharing_h
 
 #include <eoPerf2Worth.h>
 #include <utils/eoDistance.h>
@@ -33,8 +33,7 @@
  *  Goldberg and Richardson's basic sharing
 */
 
-// First a helper class
-  // helper class to  hold distances
+/** A helper class for Sharing - to  hold distances */
   class dMatrix : public std::vector<double>
   {
   public:
@@ -71,7 +70,11 @@
   };
 
 
-// template <class EOT, class Dist = eoQuadDistance<EOT> >
+/** Sharing is a perf2worth class that implements 
+ *  Goldberg and Richardson's basic sharing
+ *  see eoSharingSelect for how to use it
+ * and test/t-eoSharing.cpp for a sample use of both
+*/
 template <class EOT>
 class eoSharing : public eoPerf2Worth<EOT>
 {
@@ -107,28 +110,13 @@ class eoSharing : public eoPerf2Worth<EOT>
 	    }
 	}
 
-//       cout << "Matrice des similarités\n";
-//       for (i=0; i<pSize; i++)
-// 	{
-// 	  for (j=0; j<pSize; j++)
-// 	    {
-// 	      cout << distMatrix(i,j) << " ";
-// 	    }
-// 	  cout << "\n";
-// 	}
-//       cout << endl;
-
-//      cout << "Les similarités cumulées\n";
-      // compute the cumulated similarities
       for (i=0; i<pSize; i++)
 	{
 	  double sum=0.0;
 	  for (j=0; j<pSize; j++)
 	    sum += distMatrix(i,j);
 	  sim[i] = sum;
-//	  cout << sim[i] << " ";
 	}
-//      cout << endl;
 
       // now set the worthes values
       for (i = 0; i < _pop.size(); ++i)

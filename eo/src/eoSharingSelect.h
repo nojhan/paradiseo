@@ -31,10 +31,12 @@
 #include <eoSelectFromWorth.h>
 #include <eoSharing.h>
 
-/** eoRankingSelect: select an individual by roulette wheel on its rank
- *  is an eoRouletteWorthSelect, i.e. a selector using a std::vector of worthes
- *  rather than the raw fitness (see eoSelectFromWorth.h)
- *  uses an internal eoRanking object which is an eoPerf2Worth<EOT, double>
+/** eoSharingSelect: select an individual by roulette wheel 
+ * on its SHARED fitness. It is an eoRouletteWorthSelect, 
+ * i.e. a selector using a std::vector of worthes
+ * rather than the raw fitness (see eoSelectFromWorth.h)
+ * It uses an internal eoSharing object which is 
+ * an eoPerf2Worth<EOT, double>
 */
 
 template <class EOT> 
