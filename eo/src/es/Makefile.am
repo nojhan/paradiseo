@@ -5,4 +5,4 @@
 ###############################################################################
 
 libeoincdir = $(includedir)/eo/es
-libeoinc_HEADERS = eoESFullChrom.h eoESChrom.h eoESFullMut.h
+libeoinc_HEADERS = eoESFullChrom.h eoESChrom.h eoESFullMut.h evolution_strategies
