@@ -73,9 +73,9 @@ bool eoCheckPoint<EOT>::operator()(const eoPop<EOT>& _pop)
 {
     unsigned i;
 
+    vector<const EOT*> sorted_pop;
     if (!sorted.empty())
     {
-      vector<const EOT*> sorted_pop;
       _pop.sort(sorted_pop);
 
       for (i = 0; i < sorted.size(); ++i)
@@ -93,7 +93,27 @@ bool eoCheckPoint<EOT>::operator()(const eoPop<EOT>& _pop)
     for (i = 0; i < monitors.size(); ++i)
         (*monitors[i])();
 
-    return cont(_pop);
+    bool bContinue = cont(_pop);
+
+    if (! bContinue)	   // we're going to stop: lastCall, gentlemen
+      {
+	if (!sorted.empty())
+	  {
+	    for (i = 0; i < sorted.size(); ++i)
+	      {
+		sorted[i]->lastCall(sorted_pop);
+	      }
+	  }
+	for (i = 0; i < stats.size(); ++i)
+	  stats[i]->lastCall(_pop);
+
+	for (i = 0; i < updaters.size(); ++i)
+	  updaters[i]->lastCall();
+
+	for (i = 0; i < monitors.size(); ++i)
+	  monitors[i]->lastCall();
+      }
+    return bContinue;
 }
 
 #endif

@@ -24,13 +24,23 @@ void eoTimedStateSaver::operator()(void)
     }
 }
 
+void eoCountedStateSaver::doItNow(void)
+{
+  ostrstream os;
+  os << prefix << counter << '.' << extension << ends;
+  state.save(os.str());
+}
+
 void eoCountedStateSaver::operator()(void)
 {
     if (++counter % interval == 0)
-    {
-        ostrstream os;
-        os << prefix << counter << '.' << extension << ends;
-        state.save(os.str());
-    }
-};
+      doItNow();
+}
+
+void eoCountedStateSaver::lastCall(void)
+{
+    if (saveOnLastCall)
+      doItNow();
+}
+
 

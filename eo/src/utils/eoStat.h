@@ -37,7 +37,10 @@
 */
 template <class EOT>
 class eoStatBase : public eoUF<const eoPop<EOT>&, void>
-{};
+{
+public:
+  virtual void lastCall(const eoPop<EOT>&) {}
+};
 
 /**
   The actual class that will be used as base for all statistics 
@@ -57,6 +60,8 @@ public :
 template <class EOT>
 class eoSortedStatBase : public eoUF<const vector<const EOT*>&, void>
 {
+public:
+  virtual void lastCall(const vector<const EOT*>&) {}
 };
 
 /**
@@ -150,7 +155,7 @@ private :
     unsigned which;
 };
 
-/* Actually, you don't need to sort the population to get the best fitness
+/* Actually, you shouldn't need to sort the population to get the best fitness
    MS - 17/11/00 
 
 template <class EOT>
@@ -171,7 +176,7 @@ public :
 */
 
 /**
-    Best fitness in the population (this is NOT an eoSortedStat but an eoStat)
+    Best fitness in the population
 */
 template <class EOT>
 class eoBestFitnessStat : public eoNthElementFitnessStat<EOT>

@@ -35,7 +35,10 @@
     Yet again an empty name
 */
 class eoUpdater : public eoF<void>
-{};
+{
+public:
+  virtual void lastCall() {}
+};
 
 /**
    an eoUpdater that simply increments a counter
@@ -85,16 +88,26 @@ private :
 class eoCountedStateSaver : public eoUpdater
 {
 public :
-    eoCountedStateSaver(unsigned _interval, const eoState& _state, std::string _prefix = "state", std::string _extension = "sav") 
-        : state(_state), interval(_interval), counter(0),
-    prefix(_prefix), extension(_extension) {}
+    eoCountedStateSaver(unsigned _interval, const eoState& _state, std::string _prefix, bool _saveOnLastCall, std::string _extension = "sav") 
+      : state(_state), interval(_interval), counter(0), 
+      saveOnLastCall(_saveOnLastCall),
+      prefix(_prefix), extension(_extension) {}
 
+    eoCountedStateSaver(unsigned _interval, const eoState& _state, std::string _prefix = "state", std::string _extension = "sav") 
+      : state(_state), interval(_interval), counter(0),
+	saveOnLastCall(false),
+	prefix(_prefix), extension(_extension) {}
+
+    virtual void lastCall(void);
     void operator()(void);
 
 private :
+    void doItNow(void);
+
     const eoState& state;
     const unsigned interval;
     unsigned counter;
+    bool saveOnLastCall;
     
     const std::string prefix;
     const std::string extension;

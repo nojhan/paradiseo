@@ -45,6 +45,7 @@ class eoMonitor : public eoF<eoMonitor&>
 {
 public :
 
+  virtual void lastCall() {}
     void add(const eoParam& _param) { vec.push_back(&_param); }
 
 
