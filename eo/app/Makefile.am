@@ -9,9 +9,9 @@ SUBDIRS = gprop mastermind gpsymreg
 ###############################################################################
 
 all:
-	for i in $(SUBDIRS); do pushd $$i && $(MAKE) all; popd; done
+	for i in $(SUBDIRS); do cd $$i && $(MAKE) all; cd ..; done
 
 clean:
-	for i in $(SUBDIRS); do pushd $$i && $(MAKE) clean; popd; done
+	for i in $(SUBDIRS); do cd $$i && $(MAKE) clean; cd ..; done
 
 ###############################################################################
