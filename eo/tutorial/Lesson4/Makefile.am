@@ -21,7 +21,3 @@ LDADD			= -L$(top_builddir)/src -L$(top_builddir)/src/es \
 LIBS			=  -lga -les -leoutils -leo
 
 INCLUDES		= -I$(top_srcdir)/src
-
-
-clean-local: 
-	@/bin/rm $(ALL) *.o *.sav *.xg *.status *~
