@@ -41,7 +41,8 @@ RSC=rc.exe
 # PROP Intermediate_Dir "Release"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
-# ADD CPP /nologo /W3 /GX /O2 /I "../src" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
+# ADD CPP /nologo /W3 /GR /GX /O2 /I "../src" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /FD /c
+# SUBTRACT CPP /YX
 # ADD BASE RSC /l 0xc0a /d "NDEBUG"
 # ADD RSC /l 0xc0a /d "NDEBUG"
 BSC32=bscmake.exe
@@ -60,11 +61,12 @@ LIB32=link.exe -lib
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "eo___Win32_Debug"
-# PROP Intermediate_Dir "eo___Win32_Debug"
+# PROP Output_Dir "Debug"
+# PROP Intermediate_Dir "Debug"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
-# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /I "../src" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD CPP /nologo /W3 /Gm /GR /GX /ZI /Od /I "../src" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /FD /GZ /c
+# SUBTRACT CPP /YX
 # ADD BASE RSC /l 0xc0a /d "_DEBUG"
 # ADD RSC /l 0xc0a /d "_DEBUG"
 BSC32=bscmake.exe
@@ -85,16 +87,84 @@ LIB32=link.exe -lib
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=..\src\utils\eoFileMonitor.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\utils\eoParser.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\eoPersistent.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\src\eoPrintable.cpp
 # End Source File
+# Begin Source File
+
+SOURCE=..\src\utils\eoRNG.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\utils\eoState.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\utils\eoUpdater.cpp
+# End Source File
 # End Group
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
+# Begin Source File
+
+SOURCE=..\src\utils\compatibility.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\utils\eoData.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\utils\eoFileMonitor.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\utils\eoMonitor.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\eoObject.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\utils\eoParam.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\utils\eoParser.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\eoPersistent.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\eoPrintable.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\utils\eoRNG.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\utils\eoState.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\utils\eoUpdater.h
+# End Source File
 # End Group
 # End Target
 # End Project
