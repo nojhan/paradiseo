@@ -179,7 +179,7 @@ class eoChromMutation: public eoMonOp<Chrom>
 // eoChromXover
 //-----------------------------------------------------------------------------
 
-class eoChromXover: public eoQuadraticOp<Chrom>
+class eoChromXover: public eoQuadOp<Chrom>
 {
 public:
   void operator()(Chrom& chrom1, Chrom& chrom2)

@@ -15,7 +15,7 @@
 
 // general
 #include <utils/eoRNG.h>		// Random number generators
-#include <ga/eoBin.h>
+#include <ga.h>
 #include <utils/eoParser.h>
 #include <utils/eoState.h>
 #include <eoGenContinue.h>
@@ -41,7 +41,7 @@ public :
 int the_main(int argc, char **argv)
 { // ok, we have a command line parser and a state
   
-    typedef eoBin<float> Chrom;
+    typedef eoBit<float> Chrom;
 
     eoParser parser(argc, argv);
       

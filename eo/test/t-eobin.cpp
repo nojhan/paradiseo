@@ -31,7 +31,7 @@
 
 //-----------------------------------------------------------------------------
 
-typedef eoBin<float> Chrom;
+typedef eoBit<float> Chrom;
 
 //-----------------------------------------------------------------------------
 
@@ -74,23 +74,23 @@ void main_function()
   random(chrom); chrom.fitness(binary_value(chrom));
   cout << "after eoBinRandom ............ " << chrom << endl;
 
-  eoBinBitFlip<Chrom> bitflip;
+  eoOneBitFlip<Chrom> bitflip;
   bitflip(chrom); chrom.fitness(binary_value(chrom));
   cout << "after eoBitFlip .............. " << chrom << endl;
   
-  eoBinMutation<Chrom> mutation(0.5);
+  eoBitMutation<Chrom> mutation(0.5);
   mutation(chrom); chrom.fitness(binary_value(chrom));
   cout << "after eoBinMutation(0.5) ..... " << chrom << endl;
 
-  eoBinInversion<Chrom> inversion;
+  eoBitInversion<Chrom> inversion;
   inversion(chrom); chrom.fitness(binary_value(chrom));
   cout << "after eoBinInversion ......... " << chrom << endl;
 
-  eoBinNext<Chrom> next;
+  eoBitNext<Chrom> next;
   next(chrom); chrom.fitness(binary_value(chrom));
   cout << "after eoBinNext .............. " << chrom << endl;
 
-  eoBinPrev<Chrom> prev;
+  eoBitPrev<Chrom> prev;
   prev(chrom); chrom.fitness(binary_value(chrom));
   cout << "after eoBinPrev .............. " << chrom << endl;
 
@@ -100,7 +100,7 @@ void main_function()
        << endl << "eoBinOp's aplied to ... " 
        << chrom << " " << chrom2 << endl;
 
-  eoBinCrossover<Chrom> xover;
+  eo1PtBitXover<Chrom> xover;
   fill(chrom.begin(), chrom.end(), false);
   fill(chrom2.begin(), chrom2.end(), true);
   xover(chrom, chrom2); 
@@ -109,7 +109,7 @@ void main_function()
 
   for (i = 1; i < SIZE; i++)
     {
-      eoBinNxOver<Chrom> nxover(i);
+      eoNPtsBitXover<Chrom> nxover(i);
       fill(chrom.begin(), chrom.end(), false);
       fill(chrom2.begin(), chrom2.end(), true);
       nxover(chrom, chrom2);
@@ -121,7 +121,7 @@ void main_function()
   for (i = 1; i < SIZE / 2; i++)
     for (j = 1; j < SIZE / 2; j++)
       {
-	eoBinGxOver<Chrom> gxover(i, j);
+	eoBitGxOver<Chrom> gxover(i, j);
 	fill(chrom.begin(), chrom.end(), false);
 	fill(chrom2.begin(), chrom2.end(), true);
 	gxover(chrom, chrom2);
