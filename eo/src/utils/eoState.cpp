@@ -13,6 +13,8 @@
 
 using namespace std;
 
+
+
 void removeComment(string& str, string comment)
 {
     string::size_type pos = str.find(comment);
@@ -40,6 +42,14 @@ bool is_section(const string& str, string& name)
     name = str.substr(pos + 9, end-9);
 
     return true;
+}
+
+eoState::~eoState(void)
+{
+    for (unsigned i = 0; i < ownedObjects.size(); ++i)
+    {
+        delete ownedObjects[i];
+    }
 }
     
 void eoState::registerObject(eoPersistent& registrant)

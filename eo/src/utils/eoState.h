@@ -44,10 +44,27 @@ class eoState
 {
 public :
 
+    eoState(void) {}
+
+    ~eoState(void);
+
     /**
     * Object registration function, note that it does not take ownership!
     */
     void registerObject(eoPersistent& registrant);
+
+    /**
+    * Copies the object (MUST be derived from eoPersistent) 
+    * and returns a reference to the owned object.
+    * Note: it does not register the object, this must be done afterwards!
+    */
+    template <class T>
+    T&   takeOwnership(const T& persistent)
+    {
+        // If the compiler budges here, T is not a subclass of eoPersistent
+        ownedObjects.push_back(new T(persistent));
+        return static_cast<T&>(*ownedObjects.back());
+    }
     
     /**
     * Loading error thrown when nothing seems to work.
@@ -96,6 +113,13 @@ private :
     ObjectMap objectMap;
 
     std::vector<ObjectMap::iterator> creationOrder;
+
+    std::vector<eoPersistent*> ownedObjects;
+
+    // private copy and assignment as eoState is supposed to be unique
+    eoState(const eoState&);
+    eoState& operator=(const eoState&);
+
 };
 
 #endif //eoState_h
