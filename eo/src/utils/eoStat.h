@@ -149,7 +149,7 @@ private :
     }
     
     // Specialization for eoScalarFitnessAssembled
-    template <class ScalarType, class Compare>
+    template <class ScalarType, class Compare, class FitnessTraits>
     void doit(const eoPop<EOT>& _pop, eoScalarFitnessAssembled<ScalarType, Compare>)
     {
       
@@ -383,7 +383,7 @@ private :
     }
     
     // Specialization for eoScalarFitnessAssembled
-    template <class ScalarType, class Compare>
+    template <class ScalarType, class Compare, class FitnessTraits>
     void doit(const eoPop<EOT>& _pop, eoScalarFitnessAssembled<ScalarType, Compare>){
 
       if ( whichFitnessTerm >= _pop[0].fitness().size() )
