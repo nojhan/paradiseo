@@ -30,18 +30,23 @@ First, let's choose a name: let's call the new EO class eoAppli.
 All newly created classes will be named eoAppliXXX (in the file
 eoAppliXXX)
 
-1- choose a directory name for your application in the tutorial dir,
-"parallel" to the LessonX dirs (though any name can do, of course, we
-will suppose its full name, from the / root dir, is APPLICATION in
-what follows)
+1- cd to the tutorial dir
 
-2- cd to the tutorial/Templates dir
+2- create the directory for your application (let's assume you call it
+APPLICATION): type in
 
-3- run the helper script create.sh with the following arguments
-            create.sh Appli APPLICATION
+            mkdir APPLICATION
 
-4- cd to the APPLICATION dir. You should see there the following
-files:
+3- go to the Templates dir 
+
+            cd Templates
+
+and run the helper script create.sh with the following arguments 
+
+            ./create.sh Appli ../APPLICATION
+
+4- cd to the APPLICATION dir (cd ../APPLICATION). 
+You should see there the following files:
    AppliEA.cpp            the main file, includes all other, to be compiled
    Makefile               with default target eoAppliEA
    eoAppli.h              class eoAppli<FitT>, FitT = template fitness

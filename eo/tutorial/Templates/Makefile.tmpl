@@ -4,6 +4,17 @@
 
 .cpp.o: ; c++ -DPACKAGE=\"eo\" -DVERSION=\"0.9.1\" -DF2C -I. -I../../src -I./util -Wall -g -c $*.cpp
 
+# local sources
+LOCAL_SOURCES = MyStructEA.cpp \
+   eoMyStruct.h \
+   eoMyStructEvalFunc.h \
+   eoMyStructInit.h \
+   eoMyStructMutation.h \
+   eoMyStructQuadCrossover.h \
+   make_genotype_MyStruct.h \
+   make_op_MyStruct.h
+
+
 
 # START eventually modify the name of EO dir
 DIR_EO = ../../src
@@ -22,4 +33,6 @@ all : $(ALL)
 
 clean : ; /bin/rm  *.o $(ALL)
 
+########## local dependencies
+AppliEA.o : $(LOCAL_SOURCES)
 

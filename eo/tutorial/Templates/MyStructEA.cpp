@@ -51,9 +51,12 @@ using namespace std;
 //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 // START fitness type: double or eoMaximizingFitness if you are maximizing
 //                     eoMinimizingFitness if you are minimizing
-typedef eoMyStruct<double> Indi;      // ***MUST*** derive from EO 
+typedef eoMinimizingFitness MyFitT ;	// type of fitness 
 // END fitness type
 //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+// Then define your EO objects using that fitness type
+typedef eoMyStruct<MyFitT> Indi;      // ***MUST*** derive from EO 
 
 // create an initializer
 #include "make_genotype_MyStruct.h"
