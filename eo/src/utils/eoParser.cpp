@@ -36,7 +36,7 @@ eoParameterLoader::~eoParameterLoader()
 }
 
 
-eoParser::eoParser ( int _argc, char **_argv , string _programDescription, string _lFileParamName, char _shortHand) : 
+eoParser::eoParser ( unsigned _argc, char **_argv , string _programDescription, string _lFileParamName, char _shortHand) : 
     programName( _argv[0]),
     programDescription( _programDescription), 
     needHelp(false, "help", "Prints this message", 'h')

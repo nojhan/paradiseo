@@ -21,6 +21,11 @@
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
 */
+
+/**
+CVS Info: $Date: 2001-02-13 22:35:07 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/Attic/eoUniform.h,v 1.1 2001-02-13 22:35:07 jmerelo Exp $ $Author: jmerelo $ $Log$
+*/
+
 //-----------------------------------------------------------------------------
 
 #ifndef _EOUNIFORM_H
@@ -28,14 +33,19 @@
 
 //-----------------------------------------------------------------------------
 
-#include <eoRnd.h>
+#include <utils/eoRnd.h>
 #include <utils/eoRNG.h>
 
 //-----------------------------------------------------------------------------
 // Class eoUniform
 //-----------------------------------------------------------------------------
 
-/// Generates uniform random number over the interval [min, max)
+/** Generates uniform random number over the interval [min, max)
+Uses the global variable rng
+ */
+
+using eo::rng;
+
 template<class T>
 class eoUniform: public eoRnd<T>
 {

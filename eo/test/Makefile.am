@@ -13,7 +13,8 @@ LDADDS = $(top_builddir)/src/libeo.a $(top_builddir)/src/utils/libeoutils.a
 CXXFLAGS = -g
 ###############################################################################
 
-check_PROGRAMS = t-eofitness t-eobin t-eoStateAndParser t-eoCheckpointing t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA
+check_PROGRAMS = t-eofitness t-eoRandom t-eobin t-eoStateAndParser t-eoCheckpointing \
+	t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA
 TESTS=run_tests
 # removing temporarily t-eoESFull
 #noinst_PROGRAMS = t-eofitness t-eobin t-eoStateAndParser t-eoCheckpointing t-eoExternalEO t-eoESFull t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA
@@ -24,6 +25,11 @@ TESTS=run_tests
 #t_eoESFull_DEPENDENCIES = $(DEPS)
 #t_eoESFull_LDFLAGS = -lm
 #t_eoESFull_LDADD = $(LDADDS)
+###############################################################################
+
+t_eoRandom_SOURCES = t-eoRandom.cpp
+t_eoRandom_DEPENDENCIES = $(DEPS)
+t_eoRandom_LDADD = $(LDADDS)
 
 ###############################################################################
 

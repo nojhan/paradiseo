@@ -23,27 +23,29 @@
             
 */
 
+/**
+CVS Info: $Date: 2001-02-13 22:35:07 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/test/t-eoRandom.cpp,v 1.5 2001-02-13 22:35:07 jmerelo Exp $ $Author: jmerelo $ $Log$
+*/
 //-----------------------------------------------------------------------------
 
 #include <iostream>   // cout
 #include <strstream>  // ostrstream, istrstream
-#include <eoUniform.h>         // eoBin
-#include <eoNormal.h>
-#include <eoNegExp.h>
+#include <utils/eoUniform.h>         // eoBin
+//#include <eoNormal.h>
+//#include <eoNegExp.h>
 
 //-----------------------------------------------------------------------------
 
 main() {
-  eoNormal<float> n1(-2.5,3.5);
-  eoNormal<double> n2(0.003, 0.0005 );
-  eoNormal<unsigned long> n3( 10000000U, 10000U);
-  eoNegExp<float> e1(3.5);
+  eoUniform<float> u1(-2.5,3.5);
+  eoUniform<double> u2(0.003, 0.0005 );
+  eoUniform<unsigned long> u3( 10000000U, 10000U);
+  /*  eoNegExp<float> e1(3.5);
   eoNegExp<double> e2(0.003 );
   eoNegExp<long> e3( 10000U);
-  cout << "n1\t\tn2\t\tn3\t\te1\t\te2\t\te3" << endl;
+  cout << "n1\t\tn2\t\tn3\t\te1\t\te2\t\te3" << endl; */
   for ( unsigned i = 0; i < 100; i ++) {
-    cout << n1() << "\t" << n2() << "\t" << n3() << "\t" <<
-      e1() << "\t" << e2() << "\t" << e3() << endl;
+    cout << u1() << "\t" << u2() << "\t" << u3() << endl;
   }
  
   return 0; // to avoid VC++ complaints

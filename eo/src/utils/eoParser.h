@@ -23,7 +23,9 @@
              mkeijzer@dhi.dk
  */
 //-----------------------------------------------------------------------------
-
+/**
+CVS Info: $Date: 2001-02-13 22:35:07 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoParser.h,v 1.7 2001-02-13 22:35:07 jmerelo Exp $ $Author: jmerelo $ $Log$
+*/
 #ifndef eoParser_h
 #define eoParser_h
 
@@ -111,7 +113,7 @@ public:
    * @param _lFileParamName         Name of the parameter specifying the configuration file (--param-file)
    * @param _shortHand              Single charachter shorthand for specifying the configuration file
    */
-  eoParser ( int _argc, char **_argv , string _programDescription = "", 
+  eoParser ( unsigned _argc, char **_argv , string _programDescription = "", 
 	   string _lFileParamName = "param-file", char _shortHand = 'p');  
   
   /**

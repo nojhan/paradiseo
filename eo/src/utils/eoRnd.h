@@ -21,7 +21,9 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
  */
 //-----------------------------------------------------------------------------
-
+/**
+CVS Info: $Date: 2001-02-13 22:35:07 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/Attic/eoRnd.h,v 1.1 2001-02-13 22:35:07 jmerelo Exp $ $Author: jmerelo $ $Log$
+*/
 #ifndef _EORND_H
 #define _EORND_H
 
