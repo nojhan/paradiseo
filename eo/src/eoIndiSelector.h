@@ -83,16 +83,16 @@ template <class EOT>
 class eoPopIndiSelector : public eoIndiSelector<EOT>
 {
     public :
-        eoPopIndiSelector(void) : eoIndiSelector<EOT>(), pop(0), last(0), firstChoice(-1) {}
+        eoPopIndiSelector(void) : eoIndiSelector<EOT>(), pop(0), last(0), firstChoice(-1), secondChoice(-1) {}
         
         virtual ~eoPopIndiSelector(void) {}
         
         struct eoUnitializedException{};
 
         /** Initialization function, binds the population to the selector, can also
-            be used to specify an optional end and the first individual to return in operator()
+            be used to specify an optional end 
         */
-        eoPopIndiSelector& bind(const eoPop<EOT>& _pop, int _end = -1, int _myGuy = -1)
+        eoPopIndiSelector& bind(const eoPop<EOT>& _pop, int _end = -1)
         {
             pop = &_pop;
             last = _end;
@@ -102,9 +102,19 @@ class eoPopIndiSelector : public eoIndiSelector<EOT>
                 last = pop->size();
             }
 
-            firstChoice = _myGuy;
             return *this;
         }
+
+        /** Bias function to bias the selection function to select specific individuals
+            first before applying a selection algorithm defined in derived classes
+        */
+        eoPopIndiSelector& bias(int _first, int _second = -1)
+        {
+            firstChoice  = _first;
+            secondChoice = _second;
+            return *this;
+        }
+
 
         size_t size(void) const { valid(); return last; }
         const EOT& operator[](size_t _i) const { valid(); return pop->operator[](_i); }
@@ -119,9 +129,17 @@ class eoPopIndiSelector : public eoIndiSelector<EOT>
             valid();
             if (firstChoice < 0 || firstChoice >= (int) size())
             {
-                return do_select(); // let the child figure out what to do  
+                // see if we have a second choice
+                if (secondChoice < 0 || secondChoice >= (int) size())
+                {
+                    return do_select(); // let the child figure out what to do  
+                }
+                    
+                const EOT& result = pop->operator[](secondChoice);
+                secondChoice = -1;
+                return result;
             }
-
+                        
             const EOT& result = pop->operator[](firstChoice);
             firstChoice = -1;
             return result;
@@ -144,6 +162,7 @@ class eoPopIndiSelector : public eoIndiSelector<EOT>
         const eoPop<EOT>* pop; // need a pointer as this the pop argument can be re-instated
         int   last;
         int   firstChoice;
+        int   secondChoice;
 };
 
 #endif

@@ -40,7 +40,7 @@ class eoGOpBreeder: public eoMonPopOp<EOT>
 
       for (unsigned i = 0; i < size; i++) 
       { // and the one liner
-		opSel.selectOp()(selector.bind(_pop,size, i), inserter.bind(_pop));
+		opSel.selectOp()(selector.bind(_pop,size).bias(i), inserter.bind(_pop));
       }
 	}
   

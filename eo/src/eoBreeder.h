@@ -93,7 +93,7 @@ template<class Chrom> class eoBreeder: public eoMonPopOp<Chrom>
         eoRandomIndiSelector<Chrom> selector;
         eoBackInserter<Chrom>   inserter;
 
-        (*Gop)(selector.bind(pop, orgsize, i), inserter.bind(pop));
+        (*Gop)(selector.bind(pop, orgsize).bias(i), inserter.bind(pop));
 	    break;
 	  }
 	}
