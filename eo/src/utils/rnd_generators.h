@@ -73,7 +73,7 @@ template <class T = uint32> class random_generator
   public :
     random_generator(T _max, eoRng& _rng = rng) : maxim(_max), random(_rng) {}
   
-  T operator()(void) { return (T) random.random(max); }
+  T operator()(void) { return (T) random.random(maxim); }
   
   private :
     T maxim;
