@@ -19,6 +19,7 @@ main()
   const unsigned CHROM_SIZE = 4;
 
   eoBinRandom<Chrom> random;
+  BinaryValue eval;
 
   for (unsigned POP_SIZE = 4; POP_SIZE <=6; POP_SIZE++)
     {
@@ -28,7 +29,7 @@ main()
 	    {
 	      Chrom chrom(CHROM_SIZE);
 	      random(chrom);
-	      binary_value(chrom);
+	      eval(chrom);
 	      pop.push_back(chrom);
 	    }
       
@@ -40,7 +41,7 @@ main()
 	    {
 	      Chrom chrom(CHROM_SIZE);
 	      random(chrom);
-	      binary_value(chrom);
+	      eval(chrom);
 	      pop2.push_back(chrom);
 	    }
 	

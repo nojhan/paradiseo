@@ -50,12 +50,14 @@ main()
 
   eoBinRandom<Chrom> random;
   eoPop<Chrom> pop; 
+
+  BinaryValue eval;
   
   for (i = 0; i < POP_SIZE; ++i)
     {
       Chrom chrom(CHROM_SIZE);
       random(chrom);
-      binary_value(chrom);
+      eval(chrom);
       pop.push_back(chrom);
     }
   
@@ -73,7 +75,7 @@ main()
   breeder(pop);
 
   // reevaluation of fitness 
-  for_each(pop.begin(), pop.end(), binary_value);
+  for_each(pop.begin(), pop.end(), eval);
 
   cout << "new population:" << endl;
   for (i = 0; i < pop.size(); ++i)

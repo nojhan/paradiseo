@@ -8,6 +8,7 @@ typedef eoBin<float> Chrom;
     the fitnes.
     @param _chrom A binary chromosome 
 */
+
 float binary_value(const Chrom& _chrom)
 {
   float sum = 0;
@@ -16,3 +17,11 @@ float binary_value(const Chrom& _chrom)
       sum += pow(2, _chrom.size() - i - 1);
   return sum;
 }
+
+struct BinaryValue
+{
+  template <class Chrom> void operator()(Chrom& _chrom)
+  {
+    _chrom.fitness(binary_value(_chrom));
+  }
+};

@@ -58,7 +58,7 @@ main()
   for (i = 0; i < POP_SIZE; ++i) {
     Chrom chrom(CHROM_SIZE);
     random(chrom);
-    binary_value(chrom);
+    BinaryValue()(chrom);
     pop.push_back(chrom);
   }
   

@@ -49,6 +49,7 @@ main()
 
   eoBinRandom<Chrom> random;
   eoPop<Chrom> pop; 
+
   // Evaluation
   eoEvalFuncPtr<Chrom> eval( binary_value );
 
