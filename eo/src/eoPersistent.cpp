@@ -9,6 +9,8 @@ istream & operator >> ( istream& _is, eoPersistent& _o ) {
   return _is;
 };
 
+// temporary location for the one and only eoRng object
+
 #include "eoRNG.h"
 
 eoRng rng;

@@ -46,6 +46,10 @@ template<class EOT>
 class eoOpSelector: public eoObject, public eoPrintable
 {
 public:
+  
+    // Need virtual destructor for derived classes
+    virtual ~eoOpSelector() {}
+
   /// type of IDs assigned to each operators, used to handle them
   typedef unsigned ID;
   

@@ -126,6 +126,7 @@ inline eoOpSelector<EOT>::ID eoGOpSelector<EOT>::addOp( eoOp<EOT>& _op, float _a
 	    break;
     case eoOp<EOT>::binary :
 	    op =  new eoWrappedBinOp<EOT>(static_cast<eoBinOp<EOT>&>(_op));
+        break;
     case eoOp<EOT>::quadratic :
          op =  new eoWrappedQuadraticOp<EOT>(static_cast<eoQuadraticOp<EOT>&>(_op));
         break;

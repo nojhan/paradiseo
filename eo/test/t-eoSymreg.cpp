@@ -18,7 +18,7 @@ public :
 	SymregNode(Operator _op)		{ op = _op; }
 	virtual ~SymregNode(void)			{}
 
-	// arity function
+	// arity function, need this function!
 	int arity(void) const      { return op == X? 0 : 2; }
 	
 	// evaluation function, single case, using first argument to give value of variable
@@ -204,7 +204,7 @@ void print_best(eoPop<EOT>& pop)
     string str = pop[index].apply(string());
     
     cout << str.c_str();
-    cout << endl << "Error = " << pop[index].fitness() << endl;
+    cout << endl << "RMS Error = " << pop[index].fitness() << endl;
 }
 
 

@@ -15,6 +15,36 @@ Package=<4>
 
 ###############################################################################
 
+Project: "t_eoRegression"=.\t_eoRegression.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name eo
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "t_eoSymreg"=.\t_eoSymreg.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name eo
+    End Project Dependency
+}}}
+
+###############################################################################
+
 Project: "t_eoaged"=.\t_eoaged.dsp - Package Owner=<4>
 
 Package=<5>
@@ -147,7 +177,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "t_eval"=.\t_eval.dsp - Package Owner=<4>
+Project: "t_eval"=.\eo___Win32_Debug\t_eval.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -159,7 +189,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "t_factory"=.\t_factory.dsp - Package Owner=<4>
+Project: "t_factory"=.\eo___Win32_Debug\t_factory.dsp - Package Owner=<4>
 
 Package=<5>
 {{{

@@ -36,7 +36,9 @@ template <class EOT>
 class eoSequentialGOpSel : public eoGOpSelector<EOT>
 {
 	public :
-		
+
+        virtual ~eoSequentialGOpSel(void) {}
+        
 		virtual eoGeneralOp<EOT>& selectOp()
 		{
             combined.clear();
