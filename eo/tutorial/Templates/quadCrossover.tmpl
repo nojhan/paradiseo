@@ -42,7 +42,8 @@ public:
   string className() const { return "eoMyStructQuadCrossover"; }
 
   /**
-   * eoQuad crossover - modifies both parents
+   * eoQuad crossover - _genotype1 and _genotype2 are the (future)
+   *       offspring, i.e. _copies_ of the parents, to be modified
    * @param _genotype1 The first parent
    * @param _genotype2 The second parent
    */
