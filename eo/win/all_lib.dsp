@@ -50,6 +50,11 @@ BSC32=bscmake.exe
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo
+# Begin Special Build Tool
+SOURCE="$(InputPath)"
+PostBuild_Desc=Install
+PostBuild_Cmds=copy  Release\all_lib.lib  lib\ 
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "all_lib - Win32 Debug"
 
@@ -73,6 +78,11 @@ BSC32=bscmake.exe
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo
+# Begin Special Build Tool
+SOURCE="$(InputPath)"
+PostBuild_Desc=Install
+PostBuild_Cmds=copy  Debug\all_libd.lib  lib\ 
+# End Special Build Tool
 
 !ENDIF 
 
