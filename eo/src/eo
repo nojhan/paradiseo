@@ -43,7 +43,7 @@
 #include <eoLottery.h>
 
 #include <eoInsertion.h>
-
+#include <eoInclusion.h>
 
 
 //-----------------------------------------------------------------------------
