@@ -2,7 +2,7 @@
 
    -----------------------------------------------------------------------------
    eoDetSelect.h 
-   (c) Merc Schoenauer, Maarten Keijzer, GeNeura Team, 2000
+   (c) Marc Schoenauer, Maarten Keijzer, GeNeura Team, 2000
  
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
@@ -65,7 +65,6 @@ class eoDetSelect : public eoSelect<EOT>
       {
 	for (unsigned i=0; i<entireCopy; i++)
 	  {
-	cout << "On copie tout le monde\n";
 	    copy(_source.begin(), _source.end(), it);
 	    it += pSize;
 	  }
@@ -73,7 +72,6 @@ class eoDetSelect : public eoSelect<EOT>
     // the last ones
     if (remain) 
       {
-	cout << "On copie les " << remain << " derniers\n";
 	copy(_source.begin(), _source.begin()+remain, it);
       }
   }
