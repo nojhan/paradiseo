@@ -36,7 +36,7 @@ class eoFileMonitor : public eoMonitor
 {
 public :
     eoFileMonitor(std::string _filename, std::string _delim = ",") : filename(_filename), delim(_delim), firsttime(true) {}
-    eoMinitor& operator()(void);
+    eoMonitor& operator()(void);
 
 private :
     std::string filename;
