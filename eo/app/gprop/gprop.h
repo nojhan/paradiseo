@@ -12,7 +12,6 @@
 #include <string>                 // string
 #include <EO.h>                   // EO
 #include <eoOp.h>                 // eoMonOp eoQuadraticOp
-#include <eoEvalFuncPtr.h>        // eoEvalFunc
 #include <eoInit.h>               // eoInit
 #include <utils/rnd_generators.h> // normal_generator
 #include "mlp.h"                  // mlp::net mlp::set
@@ -110,18 +109,12 @@ mlp::set trn_set, val_set, tst_set;
 class eoChromMutation: public eoMonOp<Chrom>
 {
 public:
-  eoChromMutation(eoValueParam<unsigned>& _generation):
-    generation(_generation) {}
-  
   void operator()(Chrom& chrom)
   {
     mse::net tmp(chrom);
     tmp.train(trn_set, 10, 0, 0.001);
     chrom.invalidate();
   }
-  
-private:
-  eoValueParam<unsigned>& generation;
 };
 
 //-----------------------------------------------------------------------------

@@ -54,7 +54,7 @@ public:
 	  //	  cout << " [" << thisGeneration << "] ";
     if (thisGeneration >= repTotalGenerations) 
       {
-	cout << "STOP in eoGenContinue: Reached maximum number of generations\n";
+	cout << "STOP in eoGenContinue: Reached maximum number of generations [" << thisGeneration << "/" << repTotalGenerations << "]\n";
 	return false;
       }
     return true;

@@ -9,13 +9,15 @@
 #include <string>                  // string
 #include <utils/eoParser.h>        // eoParser
 #include <eoPop.h>                 // eoPop
+#include <eoEvalFuncPtr.h>         // eoEvalFunc
+#include <eoStochTournament.h>        // eoStochTournament
 #include <eoGenContinue.h>         // eoGenContinue
-#include <eoStochTournament.h>     // eoStochTournament
-#include <eoSGA.h>                 // eoSGA
-#include <eoGenContinue.h>         // eoGenContinue
+#include <eoFitContinue.h>         // eoFitContinue
+#include <eoCombinedContinue.h>    // eoCombinedContinue
 #include <utils/eoCheckPoint.h>    // eoCheckPoint
-#include <utils/eoStat.h>          // eoSecondMomentStats
+#include <utils/eoStat.h>          // eoBestFitnessStat
 #include <utils/eoStdoutMonitor.h> // eoStdoutMonitor
+#include <eoSGA.h>                 // eoSGA
 #include "gprop.h"                 // Chrom eoChromInit eoChromMutation eoChromXover eoChromEvaluator
 
 //-----------------------------------------------------------------------------
@@ -126,21 +128,23 @@ void ga()
   // create population
   eoInitChrom init;
   eoPop<Chrom> pop(pop_size.value(), init);
-
+  
   // evaluate population
   eoEvalFuncPtr<Chrom> evaluator(eoChromEvaluator);
   apply<Chrom>(evaluator, pop);
-
+  
   // selector
-  // eoProportional<Chrom> select(pop);
   eoStochTournament<Chrom> select;
 
   // genetic operators
-  eoChromMutation mutation(generations);
+  eoChromMutation mutation;
   eoChromXover xover;
-
+  
   // stop condition
-  eoGenContinue<Chrom> continuator(generations.value());
+  eoGenContinue<Chrom> continuator1(generations.value());
+  phenotype p; p.val_ok = val_set.size() - 1; p.mse_error = 0;
+  eoFitContinue<Chrom> continuator2(p);
+  eoCombinedContinue<Chrom> continuator(continuator1, continuator2);
 
   // checkpoint
   eoCheckPoint<Chrom> checkpoint(continuator);
@@ -150,7 +154,7 @@ void ga()
   checkpoint.add(monitor);
   
   // statistics
-  eoSecondMomentStats<Chrom> stats;
+  eoBestFitnessStat<Chrom> stats;
   checkpoint.add(stats);
   monitor.add(stats);
   
