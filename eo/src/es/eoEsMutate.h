@@ -65,7 +65,7 @@ template <class EOT>
 class eoEsMutate: public eoMonOp< EOT > {
 public:
 
-    typedef EOT::Fitness FitT;
+    typedef typename EOT::Fitness FitT;
 
     /** Initialization
         parameters:
@@ -156,7 +156,8 @@ public:
      */
     
     double global = exp(TauGlb * rng.normal());
-    for (unsigned i = 0; i < _eo.size(); i++) 
+    unsigned i;
+    for (i = 0; i < _eo.size(); i++) 
     {
 	    double stdev = _eo.stdevs[i];
 	    stdev *= global * exp(TauLcl * rng.normal());	
@@ -230,14 +231,14 @@ public:
 
   private :
 
-    void init(eoEsSimple<FitT>&, eoEsMutationInit& _init)
+    void init(eoEsSimple<FitT>, eoEsMutationInit& _init)
     {
         unsigned size = bounds.chromSize();
         TauLcl = _init.TauLcl();
         TauLcl /= sqrt((double) size);
     }
 
-    void init(eoEsStdev<FitT>&, eoEsMutationInit& _init)
+    void init(eoEsStdev<FitT>, eoEsMutationInit& _init)
     {
         unsigned size = bounds.chromSize();
 
@@ -249,7 +250,7 @@ public:
 	    TauGlb /= sqrt( 2.0 * ( (double) size ) );
     }
     
-    void init(eoEsFull<FitT>&, eoEsMutationInit& _init)
+    void init(eoEsFull<FitT>, eoEsMutationInit& _init)
     {
         init(eoEsStdev<FitT>(), _init);
         TauBeta = _init.TauBeta();

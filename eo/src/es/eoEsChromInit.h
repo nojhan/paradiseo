@@ -64,7 +64,8 @@ public :
 
     EOT operator()()
     {
-        return create(EOT());
+        EOT eo;
+        return create(eo);
     }
 
 private :
