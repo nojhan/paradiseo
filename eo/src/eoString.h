@@ -61,6 +61,14 @@ public:
 		}
 	};
 
+  	/** Ctor from a stream
+	@param _s input stream
+	*/
+	eoString( istream & _s )
+	  : eo1d<char, fitnessT>(){ 
+	  _s >> *this;
+	};
+
 	/// copy ctor
 	eoString( const eoString<fitnessT>& _eoStr )
 		:eo1d<char, fitnessT>( static_cast<const eo1d<char, fitnessT> & > ( _eoStr ) ), 

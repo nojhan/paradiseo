@@ -1,9 +1,9 @@
-// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+/** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-//-----------------------------------------------------------------------------
-// eoNegExp.h
-// (c) GeNeura Team, 1998
-/* 
+-----------------------------------------------------------------------------
+ eoNegExp.h
+ (c) GeNeura Team, 1998
+ 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -43,7 +43,7 @@ class eoNegExp: public eoRnd<T>
  public:
   /**
    * Default constructor.
-   * @param _mean  Dsitribution mean
+   * @param _mean  Distribution mean
    */
   eoNegExp(T _mean): eoRnd<T>(), mean(_mean) {};
 

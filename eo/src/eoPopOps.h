@@ -1,9 +1,9 @@
-// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+/** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-//-----------------------------------------------------------------------------
-// eoPopOps.h 
-// (c) GeNeura Team, 1998
-/* 
+   -----------------------------------------------------------------------------
+   eoPopOps.h 
+   (c) GeNeura Team, 1998
+ 
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -108,7 +108,8 @@ class eoBinPopOp: public eoObject{
 
 //-----------------------------------------------------------------------------
 
-/** eoSelect usually takes elements from one population, with or without transformation, and transfers them to the other population */
+/** eoSelectone selects only one element from a whole population. Usually used to 
+    select mates*/
 template<class EOT>
 class eoSelectOne: public eoObject{
 

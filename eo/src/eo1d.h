@@ -1,9 +1,11 @@
-// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+/* -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-//-----------------------------------------------------------------------------
-// eo1d.h 
-// (c) GeNeura Team, 1998
-/* 
+   -----------------------------------------------------------------------------
+   eo1d.h 
+       Serial EO.
+
+   (c) GeNeura Team, 1998
+ 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -43,7 +45,6 @@ using namespace std;
  */
 
 //@{
-
 /** eo1d: Base class for "chromosomes" with a single dimension
 #T# is the type it will be instantiated with; this type must have, at
 least, a copy ctor, assignment operators, 

@@ -8,7 +8,7 @@ typedef vector<double> Vec;
     to -sphere (we'll see later how to minimize rather than maximize!)
     @param _ind A floatingpoint vector 
 */
-float the_real_value(Vec& _ind)
+float real_value(const eoESFullChrom<float>& _ind)
 {
   double sum = 0;      /* compute in double format, even if return a float */
   for (unsigned i = 0; i < _ind.size(); i++)
@@ -16,8 +16,5 @@ float the_real_value(Vec& _ind)
   return -sum;
 }
 
-typedef eoESFullChrom<float> Ind;
 
-void real_value(Ind & _ind) {
-    _ind.fitness( the_real_value(_ind) );
-}
+

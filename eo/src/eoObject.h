@@ -1,9 +1,12 @@
-// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+/** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-//-----------------------------------------------------------------------------
-// eoObject.h
-// (c) GeNeura Team, 1998
-/* 
+    -----------------------------------------------------------------------------
+    eoObject.h
+      This is the base class for most objects in EO. It basically defines an interf
+    face for giving names to classes.
+
+    (c) GeNeura Team, 1998, 1999, 2000
+ 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -19,7 +22,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
- */
+*/
 //-----------------------------------------------------------------------------
 
 #ifndef EOOBJECT_H

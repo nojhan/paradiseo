@@ -113,7 +113,7 @@ public :
      @see reseed
   */
 
-  eoRng(uint32 s = (uint32) time(0) ) : state(0), next(0), left(-1), cached(false), N(624), M(397), K((0x9908B0DFU))  {
+  eoRng(uint32 s = (uint32) time(0) ) : state(0), next(0), left(-1), cached(false), N(624), M(397), K(0x9908B0DFU)  {
     state = new uint32[N+1];
     initialize(s);
   } 
@@ -197,7 +197,7 @@ public :
    {
      if (total == 0)
        { // count 
-	 for (unsigned i = 0; i < vec.size(); ++i)
+	 for (int i = 0; i < vec.size(); ++i)
 	   total += vec[i];
        }
      

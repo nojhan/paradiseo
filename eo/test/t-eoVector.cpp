@@ -1,9 +1,8 @@
 /* -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-    t-eoRandom.cpp
-      Test program for random generator
-
-    (c) GeNeura Team, 1999 
+    t-eoVectpr.cpp
+      This program tests vector-like chromosomes
+    (c) GeNeura Team, 1999, 2000
  
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,31 +21,37 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
             
 */
-
 //-----------------------------------------------------------------------------
 
 #include <iostream>   // cout
 #include <strstream>  // ostrstream, istrstream
-#include <eoUniform.h>         // eoBin
-#include <eoNormal.h>
-#include <eoNegExp.h>
+
+#include <eoUniform.h>
+#include <eoVector.h>         // eoVector
+#include <eo1dWDistance.h>
 
 //-----------------------------------------------------------------------------
 
-main() {
-  eoNormal<float> n1(-2.5,3.5);
-  eoNormal<double> n2(0.003, 0.0005 );
-  eoNormal<unsigned long> n3( 10000000U, 10000U);
-  eoNegExp<float> e1(3.5);
-  eoNegExp<double> e2(0.003 );
-  eoNegExp<long> e3( 10000U);
-  cout << "n1\t\tn2\t\tn3\t\te1\t\te2\t\te3" << endl;
-  for ( unsigned i = 0; i < 100; i ++) {
-    cout << n1() << "\t" << n2() << "\t" << n3() << "\t" <<
-      e1() << "\t" << e2() << "\t" << e3() << endl;
-  }
- 
-  return 0; // to avoid VC++ complaints
+typedef eoVector<float> Chrom;
+
+//-----------------------------------------------------------------------------
+
+main()
+{
+  const unsigned SIZE = 4;
+  unsigned i, j;
+  eoUniform<Chrom::Type> uniform(-1,1);
+
+  Chrom chrom1(SIZE,uniform), chrom2( SIZE, uniform);
+  
+  cout << "chrom1:  " << chrom1 << endl <<
+    "chrom2:  " << chrom2 << endl;
+  
+  eo1dWDistance< float, float > chromDist( chrom1 );
+  cout << "Distance from chrom1 to chrom2 " << chromDist.distance( chrom2 ) << endl;
+  
+  
+  return 0;
 }
 
 //-----------------------------------------------------------------------------

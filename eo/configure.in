@@ -1,6 +1,7 @@
 AC_INIT(src/eo)
 
-AM_INIT_AUTOMAKE(eo, 0.0.8)
+dnl Change the version number here
+AM_INIT_AUTOMAKE(eo)
 
 AC_PROG_CXX
 
@@ -10,4 +11,5 @@ AM_PROG_LIBTOOL
 
 AM_MAINTAINER_MODE
 
+dnl add Makefiles that must be modified by the configuration here
 AC_OUTPUT(Makefile src/Makefile test/Makefile win/Makefile)

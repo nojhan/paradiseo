@@ -77,16 +77,15 @@ public:
    * @param _os A ostream.
    */
   virtual void printOn(ostream& _os) const {
-	  _os << className(); 
-//	  _os << arity;
+    _os << className(); 
+    //	  _os << arity;
   };
-
-	/** Inherited from eoObject 
-		  @see eoObject
-	*/
-	virtual string className() const {return "eoOp";};
-    //@}
-
+  
+  /** Inherited from eoObject 
+      @see eoObject
+  */
+  virtual string className() const {return "eoOp";};
+  //@}
 
 private:
   /// arity is the number of operands it takes

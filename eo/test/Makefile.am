@@ -17,7 +17,36 @@ LDADDS = $(top_builddir)/src/libeo.a
 noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness \
 	t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA\
 	t-eoNonUniform t-eoUniform t-eoRandom t-parser t-eoESFull t-eoESOps\
-	t-eoAtomOps t-selectOne
+	t-eoAtomOps t-selectOne t-eoaltbreeder t-eoGeneralOps t-eoGOpSel \
+	t-eoVector
+
+###############################################################################
+
+t_eoVector_SOURCES = t-eoVector.cpp
+t_eoVector_DEPENDENCIES = $(DEPS)
+t_eoVector_LDFLAGS = -lm
+t_eoVector_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoGOpSel_SOURCES = t-eoGOpSel.cpp
+t_eoGOpSel_DEPENDENCIES = $(DEPS)
+t_eoGOpSel_LDFLAGS = -lm
+t_eoGOpSel_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoGeneralOps_SOURCES = t-eoGeneralOps.cpp
+t_eoGeneralOps_DEPENDENCIES = $(DEPS)
+t_eoGeneralOps_LDFLAGS = -lm
+t_eoGeneralOps_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoaltbreeder_SOURCES = t-eoaltbreeder.cpp
+t_eoaltbreeder_DEPENDENCIES = $(DEPS)
+t_eoaltbreeder_LDFLAGS = -lm
+t_eoaltbreeder_LDADD = $(LDADDS)
 
 ###############################################################################
 

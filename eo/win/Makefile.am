@@ -1,3 +1,4 @@
+#Some dsps are missing here
 EXTRA_DIST=EO.dsw random.dsp t_eoinsertion.dsp t_ops.dsp\
 	atomops.dsp  t_eoaged.dsp     t_eornd.dsp        t_opsel.dsp\
 	t_eobin.dsp      t_eostring.dsp     t_opselmason.dsp\

@@ -1,9 +1,11 @@
 /* -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-  -----------------------------------------------------------------------------
-  eoUniform.h
-    Uniform random number generator; 
-  (c) GeNeura Team, 1998
+    -----------------------------------------------------------------------------
+    eoObject.h
+      This is the base class for most objects in EO. It basically defines an interf
+    face for giving names to classes.
+
+    (c) GeNeura Team, 1998, 1999, 2000
  
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -23,49 +25,39 @@
 */
 //-----------------------------------------------------------------------------
 
-#ifndef _EOUNIFORM_H
-#define _EOUNIFORM_H
+#ifndef EODISTANCE_H
+#define EODISTANCE_H
 
 //-----------------------------------------------------------------------------
 
-#include <eoRnd.h>
-#include <eoRNG.h>
+using namespace std;
 
 //-----------------------------------------------------------------------------
-// Class eoUniform
+// eoDistance
 //-----------------------------------------------------------------------------
-
-/// Generates uniform random number over the interval [min, max)
-template<class T>
-class eoUniform: public eoRnd<T>
-{
+/** Defines an interface for measuring distances between evolving objects */
+template <class EOT>
+class eoDistance {
  public:
-  /**
-   * Default constructor.
-   * @param _min  The minimum value in the interval.
-   * @param _max  The maximum value in the interval.
-   */
-  eoUniform(T _min = 0, T _max = 1)
-    : eoRnd<T>(), min(_min), diff(_max - _min) {}
+  
+  /// Default Constructor.
+  eoDistance() {}
 
-  /**
-   * copy constructor.
-   * @param _rnd the other rnd
-   */
-  eoUniform( const eoUniform& _rnd)
-    : eoRnd<T>( _rnd), min(_rnd.minim), diff(_rnd.diff) {}
+  /// Copy constructor.
+  eoDistance( const eoDistance& ) {}
+
+  /// Virtual dtor. They are needed in virtual class hierarchies.
+  virtual ~eoDistance() {}
   
-  /** Returns an uniform random number over the interval [min, max)
-      Uses global rng object */
-  virtual T operator()() { 
-    return min + T( rng.uniform( diff ) );  
-  }
-  
- private:
-  T min;
-  double diff;
+
+  /** Return the distance from the object with this interface to other
+      object of the same type.
+  */
+  virtual double distance( const EOT& ) const = 0;
+
+  /// Returns classname
+  virtual string className() const { return "eoDistance"; }
+
 };
 
-//-----------------------------------------------------------------------------
-
-#endif
+#endif EOOBJECT_H

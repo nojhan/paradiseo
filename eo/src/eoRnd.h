@@ -1,9 +1,9 @@
-// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+/* -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-//-----------------------------------------------------------------------------
-// eoRnd.h
-// (c) GeNeura Team, 1998
-/* 
+-----------------------------------------------------------------------------
+ eoRnd.h
+ (c) GeNeura Team, 1998
+ 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either

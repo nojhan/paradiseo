@@ -1,4 +1,4 @@
-# Makefile.in generated automatically by automake 1.4 from Makefile.am
+# Makefile.in generated automatically by automake 1.4a from Makefile.am
 
 # Copyright (C) 1994, 1995-8, 1999 Free Software Foundation, Inc.
 # This Makefile.in is free software; the Free Software Foundation
@@ -49,9 +49,10 @@ AUTOMAKE = @AUTOMAKE@
 AUTOHEADER = @AUTOHEADER@
 
 INSTALL = @INSTALL@
-INSTALL_PROGRAM = @INSTALL_PROGRAM@ $(AM_INSTALL_PROGRAM_FLAGS)
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
+INSTALL_STRIP_FLAG =
 transform = @program_transform_name@
 
 NORMAL_INSTALL = :
@@ -72,9 +73,9 @@ LN_S = @LN_S@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 NM = @NM@
-OBJDUMP = @OBJDUMP@
 PACKAGE = @PACKAGE@
 RANLIB = @RANLIB@
+USE_SYMBOL_UNDERSCORE = @USE_SYMBOL_UNDERSCORE@
 VERSION = @VERSION@
 
 DEPS = $(top_builddir)/src/libeo.a
@@ -87,8 +88,36 @@ LDADDS = $(top_builddir)/src/libeo.a
 
 ###############################################################################
 
-noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness 	t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA 	t-eoNonUniform t-eoUniform t-eoRandom t-parser t-eoESFull t-eoESOps 	t-eoAtomOps t-selectOne
+noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness 	t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA 	t-eoNonUniform t-eoUniform t-eoRandom t-parser t-eoESFull t-eoESOps 	t-eoAtomOps t-selectOne t-eoaltbreeder t-eoGeneralOps t-eoGOpSel 	t-eoVector
 
+
+###############################################################################
+
+t_eoVector_SOURCES = t-eoVector.cpp
+t_eoVector_DEPENDENCIES = $(DEPS)
+t_eoVector_LDFLAGS = -lm
+t_eoVector_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoGOpSel_SOURCES = t-eoGOpSel.cpp
+t_eoGOpSel_DEPENDENCIES = $(DEPS)
+t_eoGOpSel_LDFLAGS = -lm
+t_eoGOpSel_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoGeneralOps_SOURCES = t-eoGeneralOps.cpp
+t_eoGeneralOps_DEPENDENCIES = $(DEPS)
+t_eoGeneralOps_LDFLAGS = -lm
+t_eoGeneralOps_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoaltbreeder_SOURCES = t-eoaltbreeder.cpp
+t_eoaltbreeder_DEPENDENCIES = $(DEPS)
+t_eoaltbreeder_LDFLAGS = -lm
+t_eoaltbreeder_LDADD = $(LDADDS)
 
 ###############################################################################
 
@@ -250,6 +279,10 @@ t_eoESFull_OBJECTS =  t-eoESFull.o
 t_eoESOps_OBJECTS =  t-eoESOps.o
 t_eoAtomOps_OBJECTS =  t-eoAtomOps.o
 t_selectOne_OBJECTS =  t-selectOne.o
+t_eoaltbreeder_OBJECTS =  t-eoaltbreeder.o
+t_eoGeneralOps_OBJECTS =  t-eoGeneralOps.o
+t_eoGOpSel_OBJECTS =  t-eoGOpSel.o
+t_eoVector_OBJECTS =  t-eoVector.o
 CXXFLAGS = @CXXFLAGS@
 CXXCOMPILE = $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -267,8 +300,8 @@ DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
 
 TAR = gtar
 GZIP_ENV = --best
-SOURCES = $(t_eobreeder_SOURCES) $(t_eoinclusion_SOURCES) $(t_eoinsertion_SOURCES) $(t_eo_SOURCES) $(t_eofitness_SOURCES) $(t_eoproblem_SOURCES) $(t_eobin_SOURCES) $(t_eolottery_SOURCES) $(t_eo2dVector_SOURCES) $(t_eogeneration_SOURCES) $(t_eoEasyEA_SOURCES) $(t_eoNonUniform_SOURCES) $(t_eoUniform_SOURCES) $(t_eoRandom_SOURCES) $(t_parser_SOURCES) $(t_eoESFull_SOURCES) $(t_eoESOps_SOURCES) $(t_eoAtomOps_SOURCES) $(t_selectOne_SOURCES)
-OBJECTS = $(t_eobreeder_OBJECTS) $(t_eoinclusion_OBJECTS) $(t_eoinsertion_OBJECTS) $(t_eo_OBJECTS) $(t_eofitness_OBJECTS) $(t_eoproblem_OBJECTS) $(t_eobin_OBJECTS) $(t_eolottery_OBJECTS) $(t_eo2dVector_OBJECTS) $(t_eogeneration_OBJECTS) $(t_eoEasyEA_OBJECTS) $(t_eoNonUniform_OBJECTS) $(t_eoUniform_OBJECTS) $(t_eoRandom_OBJECTS) $(t_parser_OBJECTS) $(t_eoESFull_OBJECTS) $(t_eoESOps_OBJECTS) $(t_eoAtomOps_OBJECTS) $(t_selectOne_OBJECTS)
+SOURCES = $(t_eobreeder_SOURCES) $(t_eoinclusion_SOURCES) $(t_eoinsertion_SOURCES) $(t_eo_SOURCES) $(t_eofitness_SOURCES) $(t_eoproblem_SOURCES) $(t_eobin_SOURCES) $(t_eolottery_SOURCES) $(t_eo2dVector_SOURCES) $(t_eogeneration_SOURCES) $(t_eoEasyEA_SOURCES) $(t_eoNonUniform_SOURCES) $(t_eoUniform_SOURCES) $(t_eoRandom_SOURCES) $(t_parser_SOURCES) $(t_eoESFull_SOURCES) $(t_eoESOps_SOURCES) $(t_eoAtomOps_SOURCES) $(t_selectOne_SOURCES) $(t_eoaltbreeder_SOURCES) $(t_eoGeneralOps_SOURCES) $(t_eoGOpSel_SOURCES) $(t_eoVector_SOURCES)
+OBJECTS = $(t_eobreeder_OBJECTS) $(t_eoinclusion_OBJECTS) $(t_eoinsertion_OBJECTS) $(t_eo_OBJECTS) $(t_eofitness_OBJECTS) $(t_eoproblem_OBJECTS) $(t_eobin_OBJECTS) $(t_eolottery_OBJECTS) $(t_eo2dVector_OBJECTS) $(t_eogeneration_OBJECTS) $(t_eoEasyEA_OBJECTS) $(t_eoNonUniform_OBJECTS) $(t_eoUniform_OBJECTS) $(t_eoRandom_OBJECTS) $(t_parser_OBJECTS) $(t_eoESFull_OBJECTS) $(t_eoESOps_OBJECTS) $(t_eoAtomOps_OBJECTS) $(t_selectOne_OBJECTS) $(t_eoaltbreeder_OBJECTS) $(t_eoGeneralOps_OBJECTS) $(t_eoGOpSel_OBJECTS) $(t_eoVector_OBJECTS)
 
 all: all-redirect
 .SUFFIXES:
@@ -403,6 +436,22 @@ t-eoAtomOps: $(t_eoAtomOps_OBJECTS) $(t_eoAtomOps_DEPENDENCIES)
 t-selectOne: $(t_selectOne_OBJECTS) $(t_selectOne_DEPENDENCIES)
 	@rm -f t-selectOne
 	$(CXXLINK) $(t_selectOne_LDFLAGS) $(t_selectOne_OBJECTS) $(t_selectOne_LDADD) $(LIBS)
+
+t-eoaltbreeder: $(t_eoaltbreeder_OBJECTS) $(t_eoaltbreeder_DEPENDENCIES)
+	@rm -f t-eoaltbreeder
+	$(CXXLINK) $(t_eoaltbreeder_LDFLAGS) $(t_eoaltbreeder_OBJECTS) $(t_eoaltbreeder_LDADD) $(LIBS)
+
+t-eoGeneralOps: $(t_eoGeneralOps_OBJECTS) $(t_eoGeneralOps_DEPENDENCIES)
+	@rm -f t-eoGeneralOps
+	$(CXXLINK) $(t_eoGeneralOps_LDFLAGS) $(t_eoGeneralOps_OBJECTS) $(t_eoGeneralOps_LDADD) $(LIBS)
+
+t-eoGOpSel: $(t_eoGOpSel_OBJECTS) $(t_eoGOpSel_DEPENDENCIES)
+	@rm -f t-eoGOpSel
+	$(CXXLINK) $(t_eoGOpSel_LDFLAGS) $(t_eoGOpSel_OBJECTS) $(t_eoGOpSel_LDADD) $(LIBS)
+
+t-eoVector: $(t_eoVector_OBJECTS) $(t_eoVector_DEPENDENCIES)
+	@rm -f t-eoVector
+	$(CXXLINK) $(t_eoVector_LDFLAGS) $(t_eoVector_OBJECTS) $(t_eoVector_LDADD) $(LIBS)
 .cc.o:
 	$(CXXCOMPILE) -c $<
 .cc.lo:
@@ -449,7 +498,7 @@ distdir: $(DISTFILES)
 	@for file in $(DISTFILES); do \
 	  d=$(srcdir); \
 	  if test -d $$d/$$file; then \
-	    cp -pr $$/$$file $(distdir)/$$file; \
+	    cp -pr $$d/$$file $(distdir)/$$file; \
 	  else \
 	    test -f $(distdir)/$$file \
 	    || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
@@ -478,7 +527,7 @@ uninstall: uninstall-am
 all-am: Makefile $(PROGRAMS)
 all-redirect: all-am
 install-strip:
-	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
+	$(MAKE) $(AM_MAKEFLAGS) INSTALL_STRIP_FLAG=-s install
 installdirs:
 
 

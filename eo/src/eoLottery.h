@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoLottery.h
 //   Implements the lottery procedure for selection
-// (c) GeNeura Team, 1998
+// (c) GeNeura Team, 1998 - Marc Schoenauer, 2000
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -33,53 +33,49 @@
 #include <eo>          // eoPop eoSelect MINFLOAT
 
 //-----------------------------------------------------------------------------
-/// eoLottery: a selection method.
-/// requires Chrom::Fitness to be float castable
+/** eoLottery: a selection method. Puts into the output a group of individuals 
+    selected using lottery; individuals with higher probability will have more
+    chances of being selected.
+    Requires EOT::Fitness to be float castable
+*/
 //-----------------------------------------------------------------------------
 
-template<class Chrom> class eoLottery: public eoBinPopOp<Chrom>
+template<class EOT> class eoLottery: public eoBinPopOp<EOT>
 {
  public:
   /// (Default) Constructor.
   eoLottery(const float& _rate = 1.0): rate(_rate) {}
   
-  /// 
-  void operator()( eoPop<Chrom>& pop, eoPop<Chrom>& breeders) 
+  /** actually selects individuals from pop and pushes them back them into breeders
+   *  until breeders has the right size: rate*pop.size()
+   *  BUT what happens if breeders is already too big?
+   * Too big for what?
+   */
+  void operator()( eoPop<EOT>& pop, eoPop<EOT>& breeders) 
     {
       // scores of chromosomes
       vector<float> score(pop.size());
 
-      // calculates accumulated scores for chromosomes
-      for (unsigned i = 0; i < pop.size(); i++)
+      // calculates total scores for chromosomes
+      float total = 0;
+      for (unsigned i = 0; i < pop.size(); i++) {
 	score[i] = static_cast<float>(pop[i].fitness()); 
+	total += score[i];
+      }
 
-      float sum = accumulate(score.begin(), score.end(), MINFLOAT);
-      transform(score.begin(), score.end(), score.begin(), 
-		bind2nd(divides<float>(), sum));
-      partial_sum(score.begin(), score.end(), score.begin());
-      
-      // generates random numbers
-      vector<float> random(rint(rate * pop.size()));
-      generate(random.begin(), random.end(), eoUniform<float>(0,1));
-      sort(random.begin(), random.end(), less<float>());
-      
+      // number of offspring needed
+      int target = (int)rint(rate * pop.size());
+
+      // test of consistency
+      if (breeders.size() >= target) {
+	  throw("Problem in eoLottery: already too many offspring");
+      }
+
       // selection of chromosomes
-      unsigned score_index = 0;   // position in score vector
-      unsigned random_index = 0;  // position in random vector
-      while (breeders.size() < random.size()) 
-	{
-	  if(random[random_index] < score[score_index]) 
-	    {
-	      breeders.push_back(pop[score_index]);
-	      random_index++;
-	    }
-	  else
-	    if (score_index < pop.size())
-	      score_index++;
-	    else
-	      fill_n(back_insert_iterator<eoPop<Chrom> >(breeders), 
-		     random.size() - breeders.size(), pop.back());
-	}
+      while (breeders.size() < target) {
+	  unsigned indloc = rng.roulette_wheel(score, total);
+	  breeders.push_back(pop[indloc]);
+      }
     }
   
  private:

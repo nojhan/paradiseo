@@ -1,7 +1,8 @@
 /* -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-    t-eoAtomOps.cpp
-      Program that tests the atomic operator classes
+    t-eoGeneralOps.cpp
+      Program that tests the General operator interface, and the wrappers
+      for monary and unary operators.
 
     (c) GeNeura Team, 1999 
  
@@ -44,23 +45,27 @@ using namespace std;
 // Several EOs
 #include <eoString.h>
 
-// RNGs
-#include <eoNegExp.h>
+// generalOp we are testing
+#include <eoGeneralOp.h>
 
 main(int argc, char *argv[]) {
   eoString<float> aString("123456");
   eoAtomCreep<char> creeper;
   eoAtomMutation< eoString<float> > mutator( creeper, 0.5 );
 
-  eoNegExp<char> charNE( 2 );
-  eoAtomRandom<char> randomer( charNE );
-  eoAtomMutation<  eoString<float> > mutator2 ( randomer, 0.5 );
-
-  cout << "Before aString " << aString << endl;
+  eoWrappedMonOp< eoString<float> > wCreeper( mutator );
+  cout << "Before aString " << aString;
   mutator( aString);
-  cout << " after mutator " << aString << endl;
-  mutator2( aString);
-  cout << " after mutator2 " << aString << endl;;
+  cout << " after mutator " << aString;
+
+  // Test now the alternative interface
+  eoPop< eoString<float> > vIn, vOut;
+  insert_iterator<eoPop<eoString<float> > > ins( vOut, vOut.begin() );
+  vIn.push_back( aString );
+  wCreeper( vIn.begin(), ins );
+
+  cout << endl << "Before " << vIn[0] << endl << " after " << vOut[0] << endl;;
+  
   return 0; // to avoid VC++ complaints
 }
 

@@ -71,9 +71,9 @@ template<class Chrom> class eoGeneration: public eoAlgo<Chrom>
   string className() const { return "eoGeneration"; }
   
  private:
-  eoBinPopOp<Chrom>&    select;
+  eoBinPopOp<Chrom>& select;
   eoMonPopOp<Chrom>& transform;
-  eoBinPopOp<Chrom>&     replace;
+  eoBinPopOp<Chrom>& replace;
   eoEvalFunc<Chrom>& evaluator;
 };
 

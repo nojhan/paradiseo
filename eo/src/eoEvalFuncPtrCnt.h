@@ -1,9 +1,8 @@
 /** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 -----------------------------------------------------------------------------
-    eoEvalFuncPtr.h
-      Converts a classical C fitness evaluation function into a fitness
-      evaluation object
+    eoEvalFuncPtrCnt.h
+      Same as eoEvalFuncPtr, but counts the number of evaluations
 
     (c) GeNeura Team, 2000
  
@@ -25,18 +24,18 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef EOEVALFUNCPTR_H
-#define EOEVALFUNCPTR_H
+#ifndef EOEVALFUNCPTRCNT_H
+#define EOEVALFUNCPTRCNT_H
 
-#include <eoEvalFunc.h>
+#include <eoEvalFuncPtr.h>
 
-/** EOEvalFuncPtr: This class
+/** EOEvalFuncCntPtr: This class
  * takes an existing function pointer and converts it into a evaluation
  * function class. That way, old style C or C++ functions can be adapted to EO
  * function classes.
  */
 template< class EOT >
-struct eoEvalFuncPtr: public eoEvalFunc<EOT> {
+struct eoEvalFuncPtrCnt: public eoEvalFuncPtr<EOT> {
 
   /** Applies the function to the chromosome and sets the fitness of the
       Chrom. Thus, the evaluation function need not be worried about that.
@@ -44,16 +43,20 @@ struct eoEvalFuncPtr: public eoEvalFunc<EOT> {
                    argument and returns the fitness
       @return the evaluated fitness for that object.
   */
-  eoEvalFuncPtr( EOFitT (* _eval)( const EOT& ) )
-    : eoEvalFunc<EOT>(), evalFunc( _eval ) {};
+  eoEvalFuncPtrCnt( EOFitT (* _eval)( const EOT& ) )
+    : eoEvalFuncPtr<EOT>( _eval ), numOfEvaluations( 0 )  {};
   
   /// Effectively applies the evaluation function to an EO 
   virtual void operator() ( EOT & _eo ) const {
-    _eo.fitness((*evalFunc)( _eo ));
+     eoEvalFuncPtr<EOT>::operator()( _eo );
+    numOfEvaluations++;
   };
-    
-  private:
-    EOFitT (* evalFunc )( EOT& );
+
+  ///
+  unsigned getNumOfEvaluations() const { return numOfEvaluations; };
+  
+private:
+  mutable unsigned numOfEvaluations;
 };
 
 #endif
