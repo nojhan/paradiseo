@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
- CVS Info: $Date: 2001-05-10 12:16:00 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/ga/eoBitOp.h,v 1.13 2001-05-10 12:16:00 jmerelo Exp $ $Author: jmerelo $
+ CVS Info: $Date: 2001-09-08 05:59:17 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/ga/eoBitOp.h,v 1.14 2001-09-08 05:59:17 evomarc Exp $ $Author: evomarc $
  */
 //-----------------------------------------------------------------------------
 
@@ -440,5 +440,5 @@ template<class Chrom> class eoBitGxOver: public eoQuadOp<Chrom>
 
 //-----------------------------------------------------------------------------
 //@}
-#endif eoBitOp_h
+#endif
 

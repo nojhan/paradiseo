@@ -55,8 +55,4 @@
 #include <es/eoEsMutationInit.h>
 #include <es/eoEsMutate.h>
 
-#endif _es_h
-
-// Local Variables:
-// mode: C++
-// End:
+#endif

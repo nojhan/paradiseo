@@ -119,4 +119,4 @@ inline void  eoGnuplot1DMonitor::FirstPlot()
   PipeComSend( gpCom, buff );
 }
 
-#endif _eoGnuplot1DMonitor_H
+#endif

@@ -52,5 +52,4 @@ private :
   eoRanking<EOT> ranking;	   // derived from eoPerf2Worth
 };
 
-#endif 
-
+#endif

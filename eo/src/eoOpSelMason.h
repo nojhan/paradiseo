@@ -106,4 +106,4 @@ private:
 };
 
 
-#endif _EOOPSELMASON_H
+#endif

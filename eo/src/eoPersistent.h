@@ -70,5 +70,5 @@ class eoPersistent: public eoPrintable
 ///Standard input for all objects in the EO hierarchy
 istream & operator >> ( istream& _is, eoPersistent& _o );
 
-#endif EOOBJECT_H
+#endif
 

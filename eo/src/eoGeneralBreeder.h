@@ -102,5 +102,5 @@ class eoGeneralBreeder: public eoBreed<EOT>
   eoHowMany howMany;
 };
 
-#endif eoBreeder_h
+#endif
 

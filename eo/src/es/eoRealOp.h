@@ -502,4 +502,4 @@ template<class EOT> class eoRealUXover: public eoQuadOp<EOT>
 
 //-----------------------------------------------------------------------------
 //@}
-#endif eoRealOp_h
+#endif

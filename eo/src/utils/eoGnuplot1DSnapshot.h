@@ -108,4 +108,4 @@ inline eoMonitor&   eoGnuplot1DSnapshot::operator() (void)
   return (*this);
 }
 
-#endif _eoGnuplot1DSnapshot_H
+#endif

@@ -138,5 +138,5 @@ private:
   unsigned current;
 };
 
-#endif eoRandomSelect_h
+#endif
 

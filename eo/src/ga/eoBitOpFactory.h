@@ -166,5 +166,5 @@ public:
 };
 
 
-#endif _EOBITOPFACTORY_H
+#endif
 

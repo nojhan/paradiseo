@@ -206,5 +206,5 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
 
 //-----------------------------------------------------------------------------
 
-#endif eoSelectTransformReduce_h
+#endif
 

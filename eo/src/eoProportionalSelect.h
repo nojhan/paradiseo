@@ -67,5 +67,4 @@ private :
   typename EOT::Fitness total;
 };
 
-#endif 
-
+#endif

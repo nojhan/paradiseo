@@ -59,5 +59,5 @@ class eoPrintable
 ///Standard output for all objects in the EO hierarchy
 ostream & operator << ( ostream& _os, const eoPrintable& _o );
 
-#endif EOPRINTABLE_H
+#endif
 

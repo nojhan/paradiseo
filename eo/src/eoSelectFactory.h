@@ -86,4 +86,4 @@ public:
 };
 
 
-#endif _EOFACTORY_H
+#endif

@@ -76,5 +76,5 @@ using namespace std;
 #define eo_is_a_rate true
 #define eo_is_an_integer false
 
-#endif EODATA_H
+#endif
 

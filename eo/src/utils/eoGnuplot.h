@@ -129,7 +129,7 @@ inline void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
  * Created......: Mon Mar 13 13:50:11 1995
  * Description..: Communication par pipe bidirectionnel avec un autre process
  *
- * Ident........: $Id: eoGnuplot.h,v 1.3 2001-02-12 13:58:51 maartenkeijzer Exp $
+ * Ident........: $Id: eoGnuplot.h,v 1.4 2001-09-08 05:59:17 evomarc Exp $
  * ----------------------------------------------------------------------
  */
 
@@ -282,4 +282,4 @@ inline int PipeComWaitFor( PCom *from, char *what )
 }
 
 
-#endif _eoGnuplot_H
+#endif
