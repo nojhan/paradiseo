@@ -2,7 +2,13 @@ AC_INIT(src/eo)
 
 AM_INIT_AUTOMAKE(eo, 0.0.0)
 
+AM_CONFIG_HEADER(config.h:config.in)
+
 AC_PROG_CXX
+
+AC_CHECK_HEADERS(bvector.h)
+AC_EGREP_HEADER(bit_vector, bvector.h, AC_DEFINE(HAVE_BIT_VECTOR))
+
 AM_PROG_LIBTOOL
 
 AM_MAINTAINER_MODE

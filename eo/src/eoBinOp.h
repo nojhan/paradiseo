@@ -7,8 +7,8 @@
 
 //-----------------------------------------------------------------------------
 
-#include <eoBin.h>     // eoBin
-#include <eoPopOps.h>  // eoMonOp
+#include <eoBin.h>  // eoBin
+#include <eoOp.h>   // eoMonOp
 
 //-----------------------------------------------------------------------------
 // eoBinRandom --> mofify a chromosome in a random way
@@ -339,6 +339,5 @@ template<class Chrom> class eoBinUxOver: public eoBinOp<Chrom>
 };
 
 //-----------------------------------------------------------------------------
-
 
 #endif eoBinOp_h
