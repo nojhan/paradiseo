@@ -42,7 +42,59 @@ This class plots through gnuplot the eoStat given as argument
 //-----------------------------------------------------------------------------
 
 #include <fstream>
-#include "pipecom.h"
+// #include "pipecom.h"
+// 
+// this is pipecom.h
+
+/* ----------------------------------------------------------------------
+ * Where........: CMAP - Polytechnique 
+ * File.........: pipecom.h
+ * Author.......: Bertrand Lamy (EEAAX)
+ * Created......: Thu Mar  9 17:21:15 1995
+ * Description..: Pipe communication with a process
+ * 
+ * Ident........: $Id: eoGnuplot1DMonitor.h,v 1.2 2000-11-29 17:20:16 evomarc Exp $
+ * ----------------------------------------------------------------------
+ */
+
+#ifndef PIPECOM_H
+#define PIPECOM_H
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <stdio.h>
+
+
+typedef struct PipeCommunication { 
+    FILE	*fWrit;
+    FILE	*fRead;
+    int		pid;
+} PCom;
+    
+
+
+PCom *PipeComOpen( char *prog );
+PCom *PipeComOpenArgv( char *prog, char *argv[] );
+
+int PipeComSend( PCom *to, char *line );
+int PipeComSendn( PCom *to, char *data, int n );
+
+int PipeComReceive( PCom *from, char *data, int max );
+
+int PipeComClose( PCom *to );
+
+int PipeComWaitFor( PCom *from, char *what );
+
+#ifdef __cplusplus
+} /* ferme extern "C" */
+#endif
+
+#endif	/* 		PIPECOM_H */
+
+
 
 /** eoGnuplot1DMonitor plots stats through gnuplot
  */
@@ -161,7 +213,7 @@ void  eoGnuplot1DMonitor::FirstPlot()
  * Created......: Mon Mar 13 13:50:11 1995
  * Description..: Communication par pipe bidirectionnel avec un autre process
  * 
- * Ident........: $Id: eoGnuplot1DMonitor.h,v 1.1 2000-11-28 06:58:06 evomarc Exp $
+ * Ident........: $Id: eoGnuplot1DMonitor.h,v 1.2 2000-11-29 17:20:16 evomarc Exp $
  * ----------------------------------------------------------------------
  */
 
@@ -171,7 +223,7 @@ void  eoGnuplot1DMonitor::FirstPlot()
 #include <signal.h>
 #include <unistd.h>
 
-#include "pipecom.h"
+// #include "pipecom.h"
 
 
 int Check( PCom *com )
