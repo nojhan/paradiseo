@@ -32,7 +32,7 @@ typedef eoBin<double> Indi;
 //     or in the environment (TODO)
 
 // note that the parameters are passed by reference so they can be updated
-void read_param(int argc, char *argv[], 
+void read_param(eoParser & _parser, 
 		uint32 & _seed,
 		unsigned int & _vecSize,
 		unsigned int & _popSize,
@@ -51,74 +51,71 @@ void read_param(int argc, char *argv[],
 		double & _oneBitRate 
 		)
 { 
-  // define a parser from the command-line arguments
-    eoParser parser(argc, argv);
-
     // For each parameter, define Parameters directly in the parser, 
     // and assign the value to the variable
-    eoValueParam<uint32>& seedParam = parser.createParam<uint32>(time(0), "seed", "Random number seed", 'S');
+    eoValueParam<uint32>& seedParam = _parser.createParam<uint32>(time(0), "seed", "Random number seed", 'S');
     _seed = seedParam.value();
 
-    eoValueParam<unsigned int>& vecSizeParam = parser.createParam<unsigned int>(8, "vecSize", "Genotype size",'V', "Representation");
+    eoValueParam<unsigned int>& vecSizeParam = _parser.createParam<unsigned int>(8, "vecSize", "Genotype size",'V', "Representation");
     _vecSize = vecSizeParam.value();
 
-    eoValueParam<unsigned int>& popSizeParam = parser.createParam<unsigned int>(10, "popSize", "Population size",'P', "Evolution");
+    eoValueParam<unsigned int>& popSizeParam = _parser.createParam<unsigned int>(10, "popSize", "Population size",'P', "Evolution");
     _popSize = popSizeParam.value();
 
-    eoValueParam<unsigned int>& tSizeParam = parser.createParam<unsigned int>(10, "tSize", "Tournament size",'T', "Evolution");
+    eoValueParam<unsigned int>& tSizeParam = _parser.createParam<unsigned int>(10, "tSize", "Tournament size",'T', "Evolution");
     _tSize = tSizeParam.value();
 
-    eoValueParam<string>& load_nameParam = parser.createParam<string>("", "Load","A save file to restart from",'L', "Persistence");
+    eoValueParam<string>& load_nameParam = _parser.createParam<string>("", "Load","A save file to restart from",'L', "Persistence");
     _load_name = load_nameParam.value();
  
-    eoValueParam<unsigned int>& maxGenParam = parser.createParam<unsigned int>(100, "maxGen", "Maximum number of generations",'G', "Stopping criterion");
+    eoValueParam<unsigned int>& maxGenParam = _parser.createParam<unsigned int>(100, "maxGen", "Maximum number of generations",'G', "Stopping criterion");
     _maxGen = maxGenParam.value();
 
-    eoValueParam<unsigned int>& minGenParam = parser.createParam<unsigned int>(100, "minGen", "Minimum number of generations",'g', "Stopping criterion");
+    eoValueParam<unsigned int>& minGenParam = _parser.createParam<unsigned int>(100, "minGen", "Minimum number of generations",'g', "Stopping criterion");
     _minGen = minGenParam.value();
 
-    eoValueParam<unsigned int>& steadyGenParam = parser.createParam<unsigned int>(100, "steadyGen", "Number of generations with no improvement",'s', "Stopping criterion");
+    eoValueParam<unsigned int>& steadyGenParam = _parser.createParam<unsigned int>(100, "steadyGen", "Number of generations with no improvement",'s', "Stopping criterion");
     _steadyGen = steadyGenParam.value();
 
-    eoValueParam<double>& pCrossParam = parser.createParam<double>(0.6, "pCross", "Probability of Crossover", 'C', "Genetic Operators"); 
+    eoValueParam<double>& pCrossParam = _parser.createParam<double>(0.6, "pCross", "Probability of Crossover", 'C', "Genetic Operators"); 
     _pCross = pCrossParam.value();
 
-    eoValueParam<double>& pMutParam = parser.createParam<double>(0.1, "pMut", "Probability of Mutation", 'M', "Genetic Operators");
+    eoValueParam<double>& pMutParam = _parser.createParam<double>(0.1, "pMut", "Probability of Mutation", 'M', "Genetic Operators");
     _pMut = pMutParam.value();
 
-    eoValueParam<double>& onePointRateParam = parser.createParam<double>(1, "onePointRate", "Relative rate for one point crossover", '1', "Genetic Operators");
+    eoValueParam<double>& onePointRateParam = _parser.createParam<double>(1, "onePointRate", "Relative rate for one point crossover", '1', "Genetic Operators");
     _onePointRate = onePointRateParam.value();
 
-    eoValueParam<double>& twoPointsRateParam = parser.createParam<double>(1, "twoPointRate", "Relative rate for two point crossover", '2', "Genetic Operators");
+    eoValueParam<double>& twoPointsRateParam = _parser.createParam<double>(1, "twoPointRate", "Relative rate for two point crossover", '2', "Genetic Operators");
     _twoPointsRate = twoPointsRateParam.value();
 
-    eoValueParam<double>& uRateParam = parser.createParam<double>(2, "uRate", "Relative rate for uniform crossover", 'U', "Genetic Operators");
+    eoValueParam<double>& uRateParam = _parser.createParam<double>(2, "uRate", "Relative rate for uniform crossover", 'U', "Genetic Operators");
     _uRate =  uRateParam.value();
 
-    eoValueParam<double>& pMutPerBitParam = parser.createParam<double>(0.01, "pMutPerBit", "Probability of flipping 1 bit in bit-flip mutation", 'b', "Genetic Operators");
+    eoValueParam<double>& pMutPerBitParam = _parser.createParam<double>(0.01, "pMutPerBit", "Probability of flipping 1 bit in bit-flip mutation", 'b', "Genetic Operators");
     _pMutPerBit = pMutPerBitParam.value();
 
-    eoValueParam<double>& bitFlipRateParam = parser.createParam<double>(0.01, "bitFlipRate", "Relative rate for bit-flip mutation", 'B', "Genetic Operators");
+    eoValueParam<double>& bitFlipRateParam = _parser.createParam<double>(0.01, "bitFlipRate", "Relative rate for bit-flip mutation", 'B', "Genetic Operators");
     _bitFlipRate =  bitFlipRateParam.value();
       
-    eoValueParam<double>& oneBitRateParam = parser.createParam<double>(0.01, "oneBitRate", "Relative rate for deterministic bit-flip mutation", 'D', "Genetic Operators");
+    eoValueParam<double>& oneBitRateParam = _parser.createParam<double>(0.01, "oneBitRate", "Relative rate for deterministic bit-flip mutation", 'D', "Genetic Operators");
       _oneBitRate = oneBitRateParam.value();
 
     // the name of the "status" file where all actual parameter values will be saved
-    string str_status = parser.ProgramName() + ".status";
-    eoValueParam<string>& status_nameParam = parser.createParam<string>(str_status.c_str(), "status","Status file",'S', "Persistence");
+    string str_status = _parser.ProgramName() + ".status";
+    eoValueParam<string>& status_nameParam = _parser.createParam<string>(str_status.c_str(), "status","Status file",'S', "Persistence");
 
    // do the following AFTER ALL PARAMETERS HAVE BEEN PROCESSED
    // i.e. in case you need parameters somewhere else, postpone these
-    if (parser.userNeedsHelp())
+    if (_parser.userNeedsHelp())
       {
-        parser.printHelp(cout);
+        _parser.printHelp(cout);
         exit(1);
       }
     if (status_nameParam.value() != "")
       {
 	ofstream os(status_nameParam.value().c_str());
-	os << parser;		// and you can use that file as parameter file
+	os << _parser;		// and you can use that file as parameter file
       }
 }
 
@@ -150,8 +147,11 @@ void main_function(int argc, char **argv)
    double bitFlipRate;
    double oneBitRate;
 
+  // define a parser from the command-line arguments
+    eoParser parser(argc, argv);
+
    // Now read the parameters of the program
-    read_param(argc, argv, seed, vecSize, popSize, tSize,
+    read_param(parser, seed, vecSize, popSize, tSize,
 	       pCross, pMut, load_name, maxGen, minGen, steadyGen,
 	       onePointRate, twoPointsRate, URate, 
 	       pMutPerBit, bitFlipRate, oneBitRate );
@@ -319,12 +319,13 @@ void main_function(int argc, char **argv)
     // Last type of item the eoCheckpoint can handle: state savers:
     eoState outState;
     // Register the algorithm into the state (so it has something to save!!)
-    outState.registerObject(rng);
+    outState.registerObject(parser);
     outState.registerObject(pop);
+    outState.registerObject(rng);
 
     // and feed the state to state savers
     // save state every 100th  generation
-    eoCountedStateSaver stateSaver1(100, outState, "generation"); 
+    eoCountedStateSaver stateSaver1(20, outState, "generation"); 
     // save state every 1 seconds 
     eoTimedStateSaver   stateSaver2(1, outState, "time"); 
 
