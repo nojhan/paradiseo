@@ -1,3 +1,28 @@
+                      EO INSTALL FILE
+=======================================================================
+         check latest news at http://eodev.sourceforge.net/
+=======================================================================
+
+This file contains the standard installation instructions for packages
+built using GNU package management facilities.
+
+You should not need to read this file unless something goes wrong when
+doing the basic install which goes:
+
+- go to the EO directory - that was created when you unzipped the
+  archive file.
+
+- run 
+            ./autogen.sh
+
+- run 
+            make
+
+and that's it. You should probably go to the tutorial and start
+learning about EO features and programming.
+
+=======================================================================
+
 Basic Installation
 ==================
 
