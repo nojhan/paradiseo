@@ -118,6 +118,9 @@
 #include <other/external_eo>
 #include <eoCounter.h>
 
+// Cellular parallel evolutionary algorithm
+#include <eoToricCellularEasyEA.h>
+
 //-----------------------------------------------------------------------------
 // to be continued ...
 //-----------------------------------------------------------------------------
