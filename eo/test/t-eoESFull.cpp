@@ -34,7 +34,7 @@ using namespace std;
 typedef double  FitT;
 
 template <class EOT>
-void runAlgorithm(EOT, eoParser& _parser, eoEsObjectiveBounds& _bounds);
+void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoEsObjectiveBounds& _bounds);
   
 main(int argc, char *argv[]) 
 {
@@ -68,15 +68,15 @@ main(int argc, char *argv[])
     // Run the appropriate algorithm
     if (stdevs.value() == false && corr.value() == false)
     {
-        runAlgorithm(eoEsSimple<FitT>() ,parser, bounds);
+        runAlgorithm(eoEsSimple<FitT>() ,parser, state, bounds);
     }
     else if (corr.value() == true)
     {
-        runAlgorithm(eoEsFull<FitT>(),parser, bounds);
+        runAlgorithm(eoEsFull<FitT>(),parser, state, bounds);
     }
     else 
     {
-        runAlgorithm(eoEsStdev<FitT>(), parser, bounds);
+        runAlgorithm(eoEsStdev<FitT>(), parser, state, bounds);
     }
 
     // and save
@@ -91,7 +91,7 @@ main(int argc, char *argv[])
 }
 
 template <class EOT>
-void runAlgorithm(EOT, eoParser& _parser, eoEsObjectiveBounds& _bounds)
+void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoEsObjectiveBounds& _bounds)
 {
     // evaluation
     eoEvalFuncPtr<eoFixedLength<FitT, double> > eval(  real_value );
@@ -107,7 +107,9 @@ void runAlgorithm(EOT, eoParser& _parser, eoEsObjectiveBounds& _bounds)
 
     // Initialization
     eoEsChromInit<EOT> init(_bounds);
-    eoPop<EOT> pop(mu.value(), init);
+    eoPop<EOT>& pop = _state.takeOwnership(eoPop<EOT>(mu.value(), init));
+
+    _state.registerObject(pop);
 
     // evaluate initial population
     eval.range(pop.begin(), pop.end());
