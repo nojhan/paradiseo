@@ -66,14 +66,14 @@ public :
     /**
      * Default Constructor
      */
-    eoParseTree(void) : EO<FType>() {}
+    eoParseTree(void)  {}
     /** 
      * Copy Constructor
      * @param tree The tree to copy
      */
-    eoParseTree(const parse_tree<Node>& tree) : EO<FType>(), parse_tree<Node>(tree) {}
+    eoParseTree(const parse_tree<Node>& tree)  : parse_tree<Node>(tree) {}
     
-    eoParseTree(const eoParseTree<FType, Node>& tree) : EO<FType>(), parse_tree<Node>(tree) {}
+//    eoParseTree(const eoParseTree<FType, Node>& tree) :  parse_tree<Node>(tree) {}
     /**
      * To prune me to a certain size
      * @param _size My maximum size
