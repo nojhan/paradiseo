@@ -102,8 +102,8 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoRealIni
   // ES crossover
   eoValueParam<string>& crossTypeParam = _parser.createParam(string("global"), "crossType", "Type of ES recombination (global or standard)", 'C', "Variation Operators");
   
-  eoValueParam<string>& crossObjParam = _parser.createParam(string("discrete"), "crossObj", "Recombination of object variables (discrete or intermediate)", 'O', "Variation Operators");
-  eoValueParam<string>& crossStdevParam = _parser.createParam(string("intermediate"), "crossStdev", "Recombination of mutation strategy parameters (intermediate or discrete)", 'S', "Variation Operators");
+  eoValueParam<string>& crossObjParam = _parser.createParam(string("discrete"), "crossObj", "Recombination of object variables (discrete, intermediate or none)", 'O', "Variation Operators");
+  eoValueParam<string>& crossStdevParam = _parser.createParam(string("intermediate"), "crossStdev", "Recombination of mutation strategy parameters (intermediate, discrete or none)", 'S', "Variation Operators");
 
   // The pointers: first the atom Xover
   eoBinOp<double> *ptObjAtomCross = NULL;
@@ -116,12 +116,16 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoRealIni
     ptObjAtomCross = new eoDoubleExchange;
   else if (crossObjParam.value() == string("intermediate"))
     ptObjAtomCross = new eoDoubleIntermediate;
+  else if (crossObjParam.value() == string("none"))
+    ptObjAtomCross = new eoBinCloneOp<double>;
   else throw runtime_error("Invalid Object variable crossover type");
 
   if (crossStdevParam.value() == string("discrete"))
     ptStdevAtomCross = new eoDoubleExchange;
   else if (crossStdevParam.value() == string("intermediate"))
     ptStdevAtomCross = new eoDoubleIntermediate;
+  else if (crossStdevParam.value() == string("none"))
+    ptStdevAtomCross = new eoBinCloneOp<double>;
   else throw runtime_error("Invalid mutation strategy parameter crossover type");
 
   // and build the indi Xover 
