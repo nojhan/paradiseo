@@ -171,7 +171,8 @@ and optionally by a <font color="#FF6600">short (1 character) keyword</font>.</l
 the general syntax to modify parameter value at run-time is (either from
 the command-line or in a text file)</li>
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 <b><tt><font color="#660000">--longKeyword=value</font></tt></b>&nbsp;&nbsp;&nbsp;&nbsp;
 or&nbsp;&nbsp;&nbsp;&nbsp; <b><tt><font color="#660000">-cvalue</font></tt></b>&nbsp;&nbsp;&nbsp;
 if 'c' is the short keyword (though <b><tt><font color="#660000">-c=value</font></tt></b>
@@ -182,18 +183,21 @@ so, after compiling the executable for Lesson 3 (<b><tt><font color="#FF6666">ma
 lesson3</font></tt></b> at system prompt in Unix), you can try to type
 in</li>
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 <b><tt><font color="#FF6666">SecondBitEA</font></tt></b>
 <br>and see the algorithm run as before (OneMax optimized on 8-bits bitstrings).
 But you can now type in
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 <b><tt><font color="#FF6666">SecondBitEA --vecSize=100</font></tt></b>
 <br>and see the output of the optimization of OneMax on 100-bit bitstrings.
 <br>&nbsp;
 <li>
 Take a look at all available parameters by typing in</li>
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 <b><tt><font color="#FF6666">SecondBitEA --help</font></tt></b>
 <br>or by going into the code: all parameter inputs have been grouped in
 the
@@ -206,7 +210,6 @@ used as parameter input file: change the file name (e.g. to <b><tt><font color="
 edit it, change whichever parameter you want, and type in</li>
 
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
 <b><tt><font color="#FF6666">SecondBitEA @SecondBitEA.param</font></tt></b>
 <br>and you will see all values that you defined into the file taken into
 account.
@@ -217,7 +220,7 @@ so you can still override the values in the parameter file by giving a
 new value directly on the command-line.</li>
 </ul>
 
-<hr WIDTH="50%"><b><font color="#000099">eoParser:</font><font color="#FF0000">
+<hr WIDTH="50%"><a NAME="parameters"></a><b><font color="#000099">eoParser:</font><font color="#FF0000">
 Programming parameter input:</font></b>
 <br>The code of SeconBitEA provides examples of parameters reading. Lets
 take the example of the <a href="eoProgramming.html#random">random number

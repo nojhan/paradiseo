@@ -750,7 +750,8 @@ detailed explanations).
 <p>There are 2 types of <b><tt><font color="#993300"><font size=+1>make_xxx</font></font></tt></b>
 files: the ones that do depend on representation, defining the <b><font color="#FF9900">genotype
 </font></b>and
-<b><font color="#CC33CC">initialization</font></b> (<b><tt><font color="#CC33CC"><font size=+1>make_genotype_xxx</font></font></tt></b>,
+<b><font color="#CC33CC">initialization</font></b>
+(<b><tt><font color="#CC33CC"><font size=+1>make_genotype_xxx</font></font></tt></b>,
 with xxx being the type of genotype) and variation operators (<b><tt><font color="#CC33CC"><font size=+1>make_op_xxx</font></font></tt></b>),
 and the one that are truly representation-independent (<b><tt><font color="#993300"><font size=+1>make_pop,
 make_continue, make _checkpoint, make_algo </font></font></tt></b><font color="#000000">and</font><b><tt><font color="#993300"><font size=+1>
@@ -794,6 +795,8 @@ and <b><tt><font color="#FF9900"><font size=+1>src/es</font></font></tt></b>
 more complex to understand, first because of the indirection needed for
 pre-compilation with a given template, and second because of the memory
 management that this imposes.
+<br>&nbsp;
+<br>&nbsp;
 <p><a NAME="memory"></a><b><font color="#000099"><font size=+2>Programmer's
 guide: </font></font><font color="#FF0000">Memory management</font></b>
 <br>As already said, all functions have an <b><tt><font color="#3366FF"><font size=+1>eoState</font></font></tt></b>
@@ -803,7 +806,52 @@ see <a href="eoProgramming.html#memory">Programming hints</a> for more
 detailed explanations and take a look at the code of <b><tt><font color="#993300"><font size=+1><a href="../../src/do/make_continue.h">make_continue</a></font></font></tt></b>
 for instance, you will see the implementation of the memory management
 in action.
-<br>&nbsp;
+<p><a NAME="parameter"></a><b><font color="#000099"><font size=+2>Programmer's
+guide: </font></font><font color="#FF0000">Memory management of eoParam
+objects</font></b>
+<p>It has been seen in Lesson 3 that parameters could be read from command-line
+and/or a parameter file using an <b><tt><font color="#3366FF"><font size=+1>eoParser</font></font></tt></b>
+object. However, the memory mangement problem also concerns EO parameter
+objects (<b><tt><font color="#3366FF"><font size=+1>eoParam</font></font></tt></b>):
+the way there are read in <a href="eoLesson3.html#parameters">Lesson3</a>
+makes them local variables of the function they are defined in.
+<br>It is however possible to ask the <b><tt><font color="#3366FF"><font size=+1>eoParser</font></font></tt></b>
+to hold them, as done for instance in eoContinue for the maximum number
+of generations. Local declaration would amount to something like :
+<p><b><tt><font color="#3366FF"><font size=+1>eoValueParam&lt;unsigned
+int>&amp; maxGenParam(100, "maxGen", "Maximum number of generations ()
+= none)",'G');</font></font></tt></b>
+<br><b><tt><font color="#3366FF"><font size=+1>&nbsp;parser.processParam(
+maxGenParam, "Stopping criterion" );</font></font></tt></b>
+<br><b><tt><font color="#3366FF"><font size=+1>&nbsp;unsigned maxGen =
+maxGenParam.value();</font></font></tt></b>
+<p>while if you want the parser to hold those eoParam objects, you will
+write something like
+<p><b><tt><font color="#3366FF"><font size=+1>eoValueParam&lt;unsigned>&amp;
+maxGenParam = _parser.createParam(unsigned(100), "maxGen", "Maximum number
+of generations () = none)",'G',"Stopping criterion");</font></font></tt></b>
+<p>and then use <b><tt><font color="#3366FF"><font size=+1>maxGenParam.value()</font></font></tt></b>
+to get the value enterred by the user. In that case, you get a <b><font color="#FF6600">reference</font></b>
+to an eoParam object that is hold by the eoParser - and deleted whith it.
+<br>Note that there are <b><font color="#FF6600">two important differences</font></b>
+between the arguments of the constructor of an eoParam object and the method
+createParam of an eoParser object: first, you need to provide the additional
+section parameter (used only when outputting the eoParser); second you
+<b><font color="#FF6600">must</font></b> make sure that the first argument
+is of the correct type otherwise the compiler will complain.
+<p>Note that if you don't later need the eoParam, but simply its value,
+you can even diretly write
+<p><b><tt><font color="#3366FF"><font size=+1>unsigned maxGen = _parser.createParam(unsigned(100),
+"maxGen", "Maximum number of generations () = none)",'G',"Stopping criterion").value();</font></font></tt></b><b><font color="#FF0000"></font></b>
+<p><b><font color="#FF0000">Getting parameter values in different functions:</font></b>
+<p>It is often useful (though probably <b><font color="#FF6600">very bad
+programming style </font></b>:-))) to be able to get the value of a user-defined
+parameter in two different places of the code without passing it around
+through many levels of call. You can then use the alternate function <b><tt><font color="#3366FF"><font size=+1>getORcreateParam</font></font></tt></b>
+with exactly the same syntax than <b><tt><font color="#3366FF"><font size=+1>createParam</font></font></tt></b>.
+<br>Be careful that the link between both parameters is made through their
+longmanes (second argument), and that you must so <b><font color="#FF6600">hard-code</font></b>
+that name in two different places with of course exactly the same spelling!!!
 <p>
 <hr WIDTH="100%"><font color="#000000"><a href="eoLesson3.html">Lesson
 3</a> -
