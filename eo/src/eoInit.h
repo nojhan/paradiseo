@@ -137,7 +137,7 @@ typedef typename EOT::AtomType AtomType;
   }
 
   // accessor to the atom initializer (needed by operator constructs sometimes)
-  const eoInit<AtomType> & atomInit() {return init;}
+  eoInit<AtomType> & atomInit() {return init;}
 
 private :
   unsigned offset;
