@@ -28,6 +28,7 @@
 #define eoNDSorting_h
 
 #include <algorithm>
+#include <eoPop.h>
 #include <eoPerf2Worth.h>
 
 /**
@@ -40,34 +41,56 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
 {
   public :
 
-    /** Pure virtual function that calculates the 'distance' for each element to the current front
+    /** Pure virtual function that calculates the 'distance' for each element in the current front
         Implement to create your own nondominated sorting algorithm. The size of the returned vector
         should be equal to the size of the current_front.
     */
     virtual vector<double> niche_penalty(const vector<unsigned>& current_front, const eoPop<EOT>& _pop) = 0;
 
-    /** implements fast nondominated sorting
+    void calculate_worths(const eoPop<EOT>& _pop)
+    {
+	// resize the worths beforehand
+	value().resize(_pop.size());
+	
+	typedef typename EOT::Fitness::fitness_traits traits;
+
+	switch (traits::nObjectives())
+	{
+	    case 1:
+		{
+		    one_objective(_pop);
+		    return;
+		}
+	    case 2:
+		{
+		    two_objectives(_pop);
+		    return;
+		}
+	    default :
+		{
+		    m_objectives(_pop);
+		}
+	}
+    }
+    
+private :
+
+    /** used in fast nondominated sorting
+	DummyEO is just a storage place for fitnesses and
+	to store the original index
     */
     class DummyEO : public EO<typename EOT::Fitness>
     {
       public: unsigned index;
     };
 
-    void calculate_worths(const eoPop<EOT>& _pop)
+    void one_objective(const eoPop<EOT>& _pop)
     {
-      unsigned i;
-      value().resize(_pop.size());
-
-      typedef typename EOT::Fitness::fitness_traits traits;
-
-      if (traits::nObjectives() == 1)
-      { // no need to do difficult sorting,
-
-        eoPop<DummyEO> tmp_pop;
+	eoPop<DummyEO> tmp_pop;
         tmp_pop.resize(_pop.size());
 
         // copy pop to dummy population (only need the fitnesses)
-        for (i = 0; i < _pop.size(); ++i)
+        for (unsigned i = 0; i < _pop.size(); ++i)
         {
           tmp_pop[i].fitness(_pop[i].fitness());
           tmp_pop[i].index = i;
@@ -77,13 +100,164 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
         tmp_pop.sort();
 
         //
-        for (i = 0; i < _pop.size(); ++i)
+        for (unsigned i = 0; i < _pop.size(); ++i)
         {
           value()[tmp_pop[i].index] = _pop.size() - i; // set rank
         }
+	
+	// no point in calculcating niche penalty, as every distinct fitness value has a distinct rank
+    }
+   
+    /**
+     * Optimization for two objectives. Makes the algorithm run in
+     * complexity O(n log n) where n is the population size
+     *
+     * This is the same complexity as for a single objective
+     * or truncation selection or sorting. A paper about this
+     * algorithm is quite likely forthcoming.
+     *
+     * It will perform a sort on the two objectives seperately,
+     * and from the information on the ranks of the individuals on
+     * these two objectives, the non-dominated sorting rank is determined.
+     * There are then three nlogn operations in place: one sort per objective,
+     * plus a binary search procedure to combine the information about the
+     * ranks.
+     *
+     * After that it is a simple exercise to calculate the distance
+     * penalty
+     */
+   
+    void two_objectives(const eoPop<EOT>& _pop)
+    {
+	typedef typename EOT::Fitness::fitness_traits traits;
+	assert(traits::nObjectives() == 2);
+	
+	vector<unsigned> sort1(_pop.size()); // index into population sorted on first objective
+	
+	for (unsigned i = 0; i < _pop.size(); ++i)
+	{
+	    sort1[i] = i;
+	}
 
-        return;
-      }
+	sort(sort1.begin(), sort1.end(), Sorter(_pop));
+
+	// Ok, now the meat of the algorithm
+	
+	unsigned last_front = 0;
+	
+	double max1 = -1e+20;
+	for (unsigned i = 0; i < _pop.size(); ++i)
+	{
+	    max1 = max(max1, _pop[i].fitness()[1]);
+	}
+	
+	max1 = max1 + 1.0; // add a bit to it so that it is a real upperbound
+	
+	unsigned prev_front = 0;
+	vector<double> d;
+	d.resize(_pop.size(), max1); // initialize with the value max1 everywhere
+	
+	vector<vector<unsigned> > fronts(_pop.size()); // to store indices into the front
+	
+	for (unsigned i = 0; i < _pop.size(); ++i)
+	{
+	    unsigned index = sort1[i];
+	    
+	    // check for clones and delete them 
+	    if (0 && i > 0)
+	    {
+		unsigned prev = sort1[i-1];
+		if ( _pop[index].fitness() == _pop[prev].fitness())
+		{ // it's a clone
+		    fronts[prev_front].push_back(index);
+		    continue;
+		}
+	    }
+	    
+	    double value2 = _pop[index].fitness()[1]; 
+
+	    if (traits::maximizing(1))
+		value2 = max1 - value2;
+	    
+	    // perform binary search using std::upper_bound, a log n operation for each member
+	    vector<double>::iterator it = 
+		std::upper_bound(d.begin(), d.begin() + last_front, value2);
+	  
+	    unsigned front = unsigned(it - d.begin());
+	    if (front == last_front) ++last_front;
+	    
+	    assert(it != d.end());
+	    
+	    *it = value2; //update d
+	    fronts[front].push_back(index); // add it to the front
+	
+	    prev_front = front;
+	}
+	
+	// ok, and finally the niche penalty
+
+	for (unsigned i = 0; i < fronts.size(); ++i)
+	{
+	    if (fronts[i].size() == 0) continue; 
+
+	    // Now we have the indices to the current front in current_front, do the niching
+	    vector<double> niche_count = niche_penalty(fronts[i], _pop);
+
+	    // Check whether the derived class was nice
+	    if (niche_count.size() != fronts[i].size())
+	    {
+	      throw logic_error("eoNDSorting: niche and front should have the same size");
+	    }
+
+	    double max_niche = *max_element(niche_count.begin(), niche_count.end());
+
+	    for (unsigned j = 0; j < fronts[i].size(); ++j)
+	    {
+	      value()[fronts[i][j]] = i + niche_count[j] / (max_niche + 1.); // divide by max_niche + 1 to ensure that this front does not overlap with the next
+	    }
+	    
+	}
+	
+	// invert ranks to obtain a 'bigger is better' score
+	rank_to_worth();
+    }
+   
+    class Sorter
+    { 
+	public:
+	    Sorter(const eoPop<EOT>& _pop) : pop(_pop) {}
+
+	    bool operator()(unsigned i, unsigned j) const
+	    {
+		typedef typename EOT::Fitness::fitness_traits traits;
+		
+		double diff = pop[i].fitness()[0] - pop[j].fitness()[0];
+		
+		if (fabs(diff) < traits::tol())
+		{
+		    diff = pop[i].fitness()[1] - pop[j].fitness()[1];
+
+		    if (fabs(diff) < traits::tol())
+			return false;
+		    
+		    if (traits::maximizing(1))
+			return diff > 0.;
+		    return diff < 0.;
+		}
+
+		if (traits::maximizing(0))
+		    return diff > 0.;
+		return diff < 0.;
+	    }
+
+	    const eoPop<EOT>& pop;
+    };
+    
+    void m_objectives(const eoPop<EOT>& _pop)
+    {
+      unsigned i;
+
+      typedef typename EOT::Fitness::fitness_traits traits;
 
       vector<vector<unsigned> > S(_pop.size()); // which individuals does guy i dominate
       vector<unsigned> n(_pop.size(), 0); // how many individuals dominate guy i
@@ -119,8 +293,6 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
           current_front.push_back(i);
         }
       }
-
-      unsigned first_front_size = current_front.size();
 
       vector<unsigned> next_front;
       next_front.reserve(_pop.size());
@@ -165,24 +337,22 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
         next_front.clear(); // clear it for the next iteration
       }
 
+      rank_to_worth();
+    }
+      
+    void rank_to_worth()
+    {
       // now all that's left to do is to transform lower rank into higher worth
       double max_fitness = *std::max_element(value().begin(), value().end());
 
       // but make sure it's an integer upper bound, so that all ranks inside the highest integer are the front
       max_fitness = ceil(max_fitness);
-
-      unsigned nfirst = 0;
-
-      for (i = 0; i < value().size(); ++i)
+      
+      for (unsigned i = 0; i < value().size(); ++i)
       {
         value()[i] = max_fitness - value()[i];
-        assert(n[i] == 0);
-
-        if (value()[i] > (max_fitness-1)) // this would be the test for 'front_ness'
-          nfirst++;
       }
 
-      assert(nfirst == first_front_size);
     }
 };
 
@@ -254,6 +424,7 @@ class eoNDSorting_II : public eoNDSorting<EOT>
     }
   };
 
+  /// _cf points into the elements that consist of the current front
   vector<double> niche_penalty(const vector<unsigned>& _cf, const eoPop<EOT>& _pop)
   {
     unsigned i;
@@ -288,7 +459,7 @@ class eoNDSorting_II : public eoNDSorting<EOT>
 
       for (i = 0; i < nc.size(); ++i)
       {
-        niche_count[i] += (max_dist + 1) - nc[i];
+        niche_count[i] = (max_dist + 1) - nc[i];
       }
     }
 
