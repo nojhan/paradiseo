@@ -34,5 +34,5 @@ AC_TYPE_SIZE_T
 dnl Checks for library functions.
 AC_CHECK_FUNCS(select)
 
-AC_OUTPUT(src/obsolete/Makefile doc/Makefile src/Makefile src/utils/Makefile src/other/Makefile win/Makefile src/gp/Makefile src/es/Makefile src/ga/Makefile test/Makefile contrib/Makefile Makefile app/Makefile app/gprop/Makefile app/mastermind/Makefile)
+AC_OUTPUT(src/obsolete/Makefile doc/Makefile src/Makefile src/utils/Makefile src/other/Makefile win/Makefile src/gp/Makefile src/es/Makefile src/ga/Makefile test/Makefile contrib/Makefile Makefile app/Makefile app/gprop/Makefile app/mastermind/Makefile app/gpsymreg/Makefile)
 
