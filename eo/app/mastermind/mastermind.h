@@ -152,7 +152,6 @@ class eoChromMutation: public eoMonOp<Chrom>
       {
       case 0: 
 	{
-	  cout << "mutation" << endl;
 	  // gene change
 	  uniform_generator<int> color(0, num_colors);
 	  chrom[position()] = color();
@@ -160,7 +159,6 @@ class eoChromMutation: public eoMonOp<Chrom>
 	}
       case 1:
 	{
-	  cout << "transposition" << endl;
 	  // transposition
 	  swap(chrom[position()], chrom[position()]);
 	  break;
