@@ -412,7 +412,7 @@ public:
       std::string u = t.substr(pos,posEnd);//(t, pos);
       /*u.resize(posEnd - pos);*/
       second.push_back(u);
-      t = t.substr(posEnd);
+      t = t.substr(posEnd+1);
     }
   }
 };
