@@ -28,9 +28,10 @@
 
 //-----------------------------------------------------------------------------
 
-#include <functional>  // 
-#include <numeric>     // accumulate
-#include <utils/eoRNG.h>
+#include <functional>
+#include <numeric>           // accumulate
+#include <eoSelectOne.h>     // eoSelectOne
+#include <utils/selectors.h> // stochastic_tournament
 
 //-----------------------------------------------------------------------------
 /** eoStochTournament: a selection method that selects ONE individual by

@@ -2,18 +2,21 @@
 // gprop
 //-----------------------------------------------------------------------------
 
-#include <stdlib.h>         // EXIT_SUCCESS EXIT_FAILURE
-#include <stdexcept>        // exception 
-#include <iostream>         // cerr cout
-#include <fstream>          // ifstream
-#include <string>           // string
-#include <utils/eoParser.h> // eoParser
-#include <eoPop.h>          // eoPop
-#include <eoGenContinue.h>  // eoGenContinue
-#include <eoProportional.h> // eoProportional
-#include <eoStochTournament.h> // eoStochTournament
-#include <eoSGA.h>          // eoSGA
-#include "gprop.h"          // Chrom eoChromInit eoChromMutation eoChromXover eoChromEvaluator
+#include <stdlib.h>                // EXIT_SUCCESS EXIT_FAILURE
+#include <stdexcept>               // exception 
+#include <iostream>                // cerr cout
+#include <fstream>                 // ifstream
+#include <string>                  // string
+#include <utils/eoParser.h>        // eoParser
+#include <eoPop.h>                 // eoPop
+#include <eoGenContinue.h>         // eoGenContinue
+#include <eoStochTournament.h>     // eoStochTournament
+#include <eoSGA.h>                 // eoSGA
+#include <eoGenContinue.h>         // eoGenContinue
+#include <utils/eoCheckPoint.h>    // eoCheckPoint
+#include <utils/eoStat.h>          // eoSecondMomentStats
+#include <utils/eoStdoutMonitor.h> // eoStdoutMonitor
+#include "gprop.h"                 // Chrom eoChromInit eoChromMutation eoChromXover eoChromEvaluator
 
 //-----------------------------------------------------------------------------
 // global variables
@@ -120,8 +123,6 @@ void load_file(mlp::set& set, const string& ext)
 
 void ga()
 {
-  eoGenContinue<Chrom> continuator(generations.value());
-
   // create population
   eoInitChrom init;
   eoPop<Chrom> pop(pop_size.value(), init);
@@ -137,13 +138,28 @@ void ga()
   // genetic operators
   eoChromMutation mutation(generations);
   eoChromXover xover;
+
+  // stop condition
+  eoGenContinue<Chrom> continuator(generations.value());
+
+  // checkpoint
+  eoCheckPoint<Chrom> checkpoint(continuator);
+  
+  // monitor
+  eoStdoutMonitor monitor;
+  checkpoint.add(monitor);
+  
+  // statistics
+  eoSecondMomentStats<Chrom> stats;
+  checkpoint.add(stats);
+  monitor.add(stats);
   
   // genetic algorithm
   eoSGA<Chrom> sga(select,
 		   xover, xover_rate.value(), 
 		   mutation, mut_rate.value(), 
 		   evaluator, 
-		   continuator);
+		   checkpoint);
  
   cout << pop << endl;
   

@@ -28,6 +28,7 @@
 #define _eoCheckPoint_h
 
 #include <eoContinue.h>
+#include <utils/eoUpdater.h>
 
 template <class EOT> class eoStatBase;
 template <class EOT> class eoSortedStatBase;

@@ -52,21 +52,21 @@ class eoSelectPerc : public eoSelect<EOT>
      @param _source the source population
      @param _dest  the resulting population (size of this population is the number of times eoSelectOne is called. It empties the destination and adds the selection into it)
      */
-     virtual void operator()(const eoPop<EOT>& _source, eoPop<EOT>& _dest)
-     {
-         size_t target = static_cast<size_t>(floor(rate * _source.size()));
-
-         _dest.resize(target);
-
-         select.setup(_source);
-
-         for (size_t i = 0; i < _dest.size(); ++i)
-             _dest[i] = select(_source);
-     }
-
- private :
-   eoSelectOne<EOT>& select;
-   float rate;
+  virtual void operator()(const eoPop<EOT>& _source, eoPop<EOT>& _dest)
+  {
+    size_t target = static_cast<size_t>(floor(rate * _source.size()));
+    
+    _dest.resize(target);
+    
+    select.setup(_source);
+    
+    for (size_t i = 0; i < _dest.size(); ++i)
+      _dest[i] = select(_source);
+  }
+  
+private :
+  eoSelectOne<EOT>& select;
+  float rate;
 };
 
 #endif
