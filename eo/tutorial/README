@@ -2,12 +2,6 @@ Eo Tutorial - corresponding to EO version 0.9.2
 
 To start the tutorial, read index.html in your favorite browser.
 
-WARNING: before that, you need to create a link from the html dir 
-to the main documentation directory of EO. Probably, you will need 
-to type something like
-.../eo/tutorial %        cd html
-.../eo/tutorial/html %   ln -s ../../doc .
-
 Many things are missing, including many solutions for the exercises, 
 the introduction to EC and most of the Bottom-Up pages.
 More important, all examples of this tutorial have only been tested 
