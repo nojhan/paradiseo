@@ -40,9 +40,9 @@ void main_function(int argc, char **argv)
   // all parameters are hard-coded!
   const unsigned int SEED = 42;      // seed for random number generator
   const unsigned int T_SIZE = 3;     // size for tournament selection
-  const unsigned int VEC_SIZE = 8;   // Number of bits in genotypes
-  const unsigned int POP_SIZE = 20;  // Size of population
-  const unsigned int MAX_GEN = 100;  // Maximum number of generation before STOP
+  const unsigned int VEC_SIZE = 16;   // Number of bits in genotypes
+  const unsigned int POP_SIZE = 100;  // Size of population
+  const unsigned int MAX_GEN = 400;  // Maximum number of generation before STOP
   const float CROSS_RATE = 0.8;      // Crossover rate
   const double P_MUT_PER_BIT = 0.01; // probability of bit-flip mutation
   const float MUT_RATE = 1.0;        // mutation rate

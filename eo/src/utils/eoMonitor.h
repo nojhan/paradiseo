@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoParam.h
+// eoMonitor.h
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
 /* 
     This library is free software; you can redistribute it and/or
@@ -21,6 +21,8 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
+CVS Info: $Date: 2001-04-03 10:08:07 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoMonitor.h,v 1.9 2001-04-03 10:08:07 jmerelo Exp $ $Author: jmerelo $ 
+
  */
 //-----------------------------------------------------------------------------
 

@@ -21,6 +21,8 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mkeijzer@dhi.dk
+CVS Info: $Date: 2001-04-03 10:08:07 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoFileMonitor.h,v 1.9 2001-04-03 10:08:07 jmerelo Exp $ $Author: jmerelo $ 
+
  */
 //-----------------------------------------------------------------------------
 /** Modified the default behavior, so that it erases existing files.

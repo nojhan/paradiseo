@@ -35,48 +35,48 @@ class eoGenContinue: public eoContinue<EOT>
 {
 public:
 
-	/// Ctor for setting a
-	eoGenContinue( unsigned long _totalGens)
+  /// Ctor for setting a
+  eoGenContinue( unsigned long _totalGens)
 	  : repTotalGenerations( _totalGens ), 
-      thisGenerationPlaceHolder(0),
-	  thisGeneration(thisGenerationPlaceHolder){};
-	
-    /// Ctor for enabling the save/load the no. of generations counted
-	eoGenContinue( unsigned long _totalGens, unsigned long& _currentGen)
+	    thisGenerationPlaceHolder(0),
+	    thisGeneration(thisGenerationPlaceHolder){};
+  
+  /// Ctor for enabling the save/load the no. of generations counted
+  eoGenContinue( unsigned long _totalGens, unsigned long& _currentGen)
 	  : repTotalGenerations( _totalGens ), 
-      thisGenerationPlaceHolder(0),
-	  thisGeneration(_currentGen){};
-
-	/** Returns false when a certain number of generations is
-	* reached */
-	virtual bool operator() ( const eoPop<EOT>& _vEO ) {
-	  thisGeneration++;
-	  //	  cout << " [" << thisGeneration << "] ";
+	    thisGenerationPlaceHolder(0),
+	    thisGeneration(_currentGen){};
+  
+  /** Returns false when a certain number of generations is
+	 * reached */
+  virtual bool operator() ( const eoPop<EOT>& _vEO ) {
+    thisGeneration++;
+    //	  cout << " [" << thisGeneration << "] ";
     if (thisGeneration >= repTotalGenerations) 
       {
 	cout << "STOP in eoGenContinue: Reached maximum number of generations [" << thisGeneration << "/" << repTotalGenerations << "]\n";
 	return false;
       }
     return true;
-	}
-
-	/** Sets the number of generations to reach 
+  }
+  
+  /** Sets the number of generations to reach 
 	    and sets the current generation to 0 (the begin)*/
-	virtual void totalGenerations( unsigned long _tg ) { 
+  virtual void totalGenerations( unsigned long _tg ) { 
 	  repTotalGenerations = _tg; 
 	  thisGeneration = 0;
 	};
-
-	/** Returns the number of generations to reach*/
-	virtual unsigned long totalGenerations( ) 
-    {  
-	  return repTotalGenerations; 
-	};
-    
+  
+  /** Returns the number of generations to reach*/
+  virtual unsigned long totalGenerations( ) 
+  {  
+    return repTotalGenerations; 
+  };
+  
 private:
-	unsigned long repTotalGenerations;
-    unsigned long thisGenerationPlaceHolder;
-    unsigned long& thisGeneration;
+  unsigned long repTotalGenerations;
+  unsigned long thisGenerationPlaceHolder;
+  unsigned long& thisGeneration;
 };
 
 #endif

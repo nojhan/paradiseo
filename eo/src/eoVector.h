@@ -22,7 +22,7 @@
              Marc.Schoenauer@polytechnique.fr
 	     mak@dhi.dk
 
-    CVS Info: $Date: 2001-03-21 12:10:13 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVector.h,v 1.9 2001-03-21 12:10:13 jmerelo Exp $ $Author: jmerelo $ 
+    CVS Info: $Date: 2001-04-03 10:08:06 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVector.h,v 1.10 2001-04-03 10:08:06 jmerelo Exp $ $Author: jmerelo $ 
 
  */
 //-----------------------------------------------------------------------------
@@ -74,7 +74,7 @@ class eoVector : public EO<FitT>, public std::vector<GeneType>
     }
 
     /// printing...
-    void printOn(ostream& os) const
+    virtual void printOn(ostream& os) const
     {
         EO<FitT>::printOn(os);
         os << ' ';
@@ -85,7 +85,7 @@ class eoVector : public EO<FitT>, public std::vector<GeneType>
     }
 
     /// reading...
-    void readFrom(istream& is)
+    virtual void readFrom(istream& is)
     {
         EO<FitT>::readFrom(is);
 

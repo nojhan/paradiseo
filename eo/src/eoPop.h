@@ -244,23 +244,21 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
         copy( begin(), end(), ostream_iterator<EOT>( _os, "\n") );
   };
 
-    	/** @name Methods from eoObject	*/
-	//@{
-	/**
-	* Read object. The EOT class must have a ctor from a stream;
-	in this case, a strstream is used.
-	* @param _is A istream.
-
-	*/
+  /** @name Methods from eoObject	*/
+  //@{
+  /**
+   * Read object. The EOT class must have a ctor from a stream;
+   in this case, a strstream is used.
+   * @param _is A istream.   
+  */
   virtual void readFrom(istream& _is) 
   {
-      size_t sz;
+    size_t sz;
     _is >> sz;
 
     resize(sz);
 
-    for (size_t i = 0; i < sz; ++i)
-    {  
+    for (size_t i = 0; i < sz; ++i) {  
         operator[](i).readFrom( _is );
     }
   }
