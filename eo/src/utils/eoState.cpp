@@ -98,8 +98,8 @@ void eoState::load(std::istream& is)
         string str = "Error while reading stream";
         throw runtime_error(str);
     }
-    
-    while(is)
+
+    while(! is.eof())
     { // parse section header
         if (is_section(str, name))
         {
@@ -125,8 +125,10 @@ void eoState::load(std::istream& is)
 
                 while (getline(is, str))
                 {
-                    if (is_section(str, name))
-                        break;
+		  if (is.eof())
+		    throw runtime_error("No section in load file");
+		  if (is_section(str, name))
+		    break;
 
                     removeComment(str, getCommentString());
                     fullstring += str + "\n";
@@ -139,6 +141,12 @@ void eoState::load(std::istream& is)
                 object->readFrom(the_stream);
             }
         }
+	else // if (is_section(str, name)) - what if file empty
+	  {
+	    getline(is, str);	// try next line!
+	    //	    if (is.eof())
+	    //	      throw runtime_error("No section in load file");
+	  }
     }
 
 }
