@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
   //// GO
   ///////
   // evaluate intial population AFTER help and status in case it takes time
-  apply(eval, pop);
+  apply<EOT>(eval, pop);
   // print it out
   cout << "Initial Population\n";
   pop.sortedPrintOn(cout);
