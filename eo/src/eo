@@ -86,6 +86,7 @@
 #include <eoPop.h>
 #include <ga/eoBitOp.h>
 #include <es/eoRealOp.h>
+#include <es/eoNormalMutation.h>
 
 // Evaluation functions
 #include <eoEvalFunc.h>
