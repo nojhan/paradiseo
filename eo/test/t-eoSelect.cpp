@@ -15,7 +15,7 @@
 
 // general
 #include <eo>
-#include <eoDetSelect.h>
+#include <eoFitnessScalingSelect.h>
 //-----------------------------------------------------------------------------
 
 struct Dummy : public EO<double>
@@ -28,6 +28,10 @@ struct Dummy : public EO<double>
   }
 };
 
+bool operator==(const Dummy & _d1, const Dummy & _d2)
+{
+  return _d1.fitness() == _d2.fitness();
+}
 
 struct eoDummyPop : public eoPop<Dummy>
 {
@@ -35,25 +39,83 @@ public :
     eoDummyPop(int s=0) { resize(s); }
 };
 
+// helper - DOES NOT WORK if different individuals have same fitness!!!
+template <class EOT>
+unsigned isInPop(EOT & _indi, eoPop<EOT> & _pop)
+{
+  for (unsigned i=0; i<_pop.size(); i++)
+    if (_pop[i] == _indi)
+      return i;
+  return _pop.size();
+}
+
+unsigned int pSize;		// global variable, bouh!
+
+template <class EOT>
+void testSelectMany(eoSelect<EOT> & _select, string _name)
+{
+  cout << "\n\n" << _name << endl;
+  cout << "===============\n"; 
+
+    eoDummyPop parents(pSize);
+    eoDummyPop offspring(0);
+
+    // initialize parents
+    for (unsigned i=0; i<pSize; i++)
+      //      parents[i].fitness(log(i+1));
+      parents[i].fitness(exp(i));
+    cout << "Initial parents (odd)\n" << parents << endl;
+
+    // do the selection
+    _select(parents, offspring);
+
+    // compute stats
+    vector<unsigned> nb(parents.size(), 0);
+    for (unsigned i=0; i<offspring.size();  i++)
+      {
+	unsigned trouve = isInPop<Dummy>(offspring[i], parents);
+	if (trouve == parents.size()) // pas trouve
+	  throw runtime_error("Pas trouve ds parents");
+	nb[trouve]++;
+       }
+    // dump to file so you can plot using gnuplot
+    string fName = _name + ".prop";
+    ofstream os(fName.c_str());
+    for (unsigned i=0; i<parents.size();  i++)
+      {
+	cout << i << " -> " << ( (double)nb[i])/offspring.size() << endl;
+	os << i << " " << ( (double)nb[i])/offspring.size() << endl;
+      }
+
+}
+
+template <class EOT>
+void testSelectOne(eoSelectOne<EOT> & _select, double _rate, string _name)
+{
+  eoSelectMany<EOT> percSelect(_select, _rate);
+  testSelectMany<EOT>(percSelect, _name);
+}
+
+
 //-----------------------------------------------------------------------------
 
 int the_main(int argc, char **argv)
 { 
   eoParser parser(argc, argv);
   eoValueParam<unsigned int> parentSizeParam = parser.createParam<unsigned int>(10, "parentSize", "Parent size",'P');
-    unsigned int pSize = parentSizeParam.value();
+    pSize = parentSizeParam.value(); // global variable
 
   eoValueParam<double> offsrpringRateParam = parser.createParam<double>(1.0, "offsrpringRate", "Offsrpring rate",'O');
     double oRate = offsrpringRateParam.value();
-
-  eoValueParam<bool> interpretAsRateParam = parser.createParam<bool>(true, "interpretAsRate", "interpret rate as Rate (False = as Number)",'b');
-    bool interpretAsRate = interpretAsRateParam.value();
 
 eoValueParam<unsigned int> tournamentSizeParam = parser.createParam<unsigned int>(2, "tournamentSize", "Deterministic tournament size",'T');
     unsigned int tSize = tournamentSizeParam.value();
 
   eoValueParam<double> tournamentRateParam = parser.createParam<double>(0.75, "tournamentRate", "Stochastic tournament rate",'R');
     double tRate = tournamentRateParam.value();
+
+  eoValueParam<double> rankingPressureParam = parser.createParam<double>(1.75, "rankingPressure", "Selective pressure for the ranking selection",'p');
+    double rankingPressure = rankingPressureParam.value();
 
     if (parser.userNeedsHelp())
       {
@@ -64,30 +126,34 @@ eoValueParam<unsigned int> tournamentSizeParam = parser.createParam<unsigned int
     unsigned i;
 
     cout << "Testing the Selections\nParents size = " << pSize 
-	 << ", offspring rate = " << oRate << 
-      "interpreted as " << (interpretAsRate ? "Rate" : "Number") << endl;
+	 << ", offspring rate = " << oRate << endl;
 
     rng.reseed(42);
 
 
-    eoDummyPop parents(pSize);
-    eoDummyPop offspring(0);
-
-    // initialize so we can recognize them later!
-    for (i=0; i<pSize; i++)
-      parents[i].fitness(i);
-
-cout << "Initial parents (odd)\n" << parents << endl;
-
 // the selection procedures under test
-    eoDetSelect<Dummy> detSelect(oRate, interpretAsRate);
+    eoDetSelect<Dummy> detSelect(oRate);
+    testSelectMany(detSelect, "detSelect");
 
-    // here we go
-    // Deterministic
-    cout << "eoDetSelect\n";
-    cout << "===========\n";
-    detSelect(parents, offspring);
-cout << "Selected offsprings (origonally all even\n" << offspring << endl;
+    // Roulette
+    eoProportionalSelect<Dummy> propSelect;
+    testSelectOne<Dummy>(propSelect, oRate, "propSelect");
+
+    // Ranking
+    eoRankingSelect<Dummy> rankSelect(rankingPressure);
+    testSelectOne<Dummy>(rankSelect, oRate, "rankSelect");
+
+    // Det tournament
+    eoDetTournamentSelect<Dummy> detTourSelect(tSize);
+    testSelectOne<Dummy>(detTourSelect, oRate, "detTourSelect");
+
+    // Stoch tournament
+    eoStochTournamentSelect<Dummy> stochTourSelect(tRate);
+    testSelectOne<Dummy>(stochTourSelect, oRate, "stochTourSelect");
+
+    // Fitness scaling
+    eoFitnessScalingSelect<Dummy> fitScaleSelect(rankingPressure);
+    testSelectOne<Dummy>(fitScaleSelect, oRate, "fitScaleSelect");
 
     return 1;
 }
