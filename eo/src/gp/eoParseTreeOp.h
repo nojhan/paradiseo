@@ -181,7 +181,7 @@ public:
 	{
 		j = rng.random(initializor.size());
 		
-	}while ((initializor[j].arity() != arity) && (_eo1[i] != initializor[j]));
+	}while ((initializor[j].arity() != arity));
 	
 	_eo1[i] = initializor[j];
 	
