@@ -96,7 +96,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       if (_newPopSize == oldSize)
 	return;
       resize(_newPopSize);	   // adjust the size
-      for ( unsigned i = oldSize; i < _popSize; i++ )
+      for ( unsigned i = oldSize; i < _newPopSize; i++ )
 	{
 	  _chromInit(operator[](i));
 	}
