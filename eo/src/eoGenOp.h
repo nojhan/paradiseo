@@ -48,6 +48,8 @@ the original population, is an instantiation of the next population and
 has often a selection function embedded in it to select new individuals.
 
 Note that the actual work is performed in the apply function.
+AND that the apply function is responsible for invalidating 
+the object if necessary
  */
 template <class EOT>
 class eoGenOp : public eoOp<EOT>, public eoUF<eoPopulator<EOT> &, void>

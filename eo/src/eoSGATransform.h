@@ -84,9 +84,9 @@ template<class EOT> class eoSGATransform : public eoTransform<EOT>
   };
     
  private:
-  eoQuadOp<EOT>& cross;
+  eoInvalidateQuadOp<EOT> cross;
   double crossoverProba;
-  eoMonOp<EOT>& mutate;
+  eoInvalidateMonOp<EOT> mutate;
   double mutationProba;
 };
 

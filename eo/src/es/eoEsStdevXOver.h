@@ -55,14 +55,7 @@ public :
     bool objectChanged = objectXOver(_eo1, _eo2); // as vector<double>
     bool stdDevChanged = stdDevXOver(_eo1.stdevs, _eo2.stdevs);
 
-    /// Marc, I didn't change it, but if only the stdev has changed,
-    /// doesn't that mean that the fitness is stil valid. Maarten
-    if ( objectChanged || stdDevChanged )
-      {
-        return true;
-      }
-
-    return false;
+    return objectChanged;
   }
 
 private:

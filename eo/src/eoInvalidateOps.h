@@ -37,6 +37,9 @@ the return type of the operator and invalidate the fitness of the individual.
 This functor is used in algorithms that work with straight eoMonOp, eoBinOp
 or eoQuadOp operators, for instance eoSGA. Note that eoGenOp derived operators
 generally do invalidate the fitness of the objects they have changed.
+
+Return value means "Has_Changed" and not "Needs_To_Be_Invalidated"
+as successive invalidation are not really a problem
 */
 
 template <class EOT>
@@ -68,6 +71,9 @@ the return type of the operator and invalidate the fitness of the individual.
 This functor is used in algorithms that work with straight eoMonOp, eoBinOp
 or eoQuadOp operators, for instance eoSGA. Note that eoGenOp derived operators
 generally do invalidate the fitness of the objects they have changed.
+
+Return value means "Has_Changed" and not "Needs_To_Be_Invalidated"
+as successive invalidation are not really a problem
 */
 
 template <class EOT>
@@ -99,6 +105,9 @@ the return type of the operator and invalidate the fitness of the individual.
 This functor is used in algorithms that work with straight eoMonOp, eoBinOp
 or eoQuadOp operators, for instance eoSGA. Note that eoGenOp derived operators
 generally do invalidate the fitness of the objects they have changed.
+
+Return value means "Has_Changed" and not "Needs_To_Be_Invalidated"
+as successive invalidation are not really a problem
 */
 
 template <class EOT>
