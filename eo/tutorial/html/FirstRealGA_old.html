@@ -8,7 +8,7 @@
 <body text="#000000" bgcolor="#C3C2B4" link="#0000EE" vlink="#551A8B" alink="#FF0000">
 <a href="eoLesson1.html">Back to Lesson 1</a> - <a href="eoTutorial.html">Tutorial
 main page </a>- <a href="eoTopDown.html">Top-Down page</a> - <a href="eoBottomUp.html">Bottom-up
-page</a> - <a href="eoProgramming.html">Programming hints</a> - <font face="Arial,Helvetica"><a href="doc/html/index.html">EO
+page</a> - <a href="eoProgramming.html">Programming hints</a> - <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
 documentation</a></font>
 <br>
 <hr WIDTH="100%"><!-- -------------- End of header ------------------ --><!-- ----------------------------------------------- -->
@@ -119,7 +119,7 @@ population</font></font>
 <p><font face="Courier New,Courier"><font size=+1>// declare the population</font></font>
 <br><font face="Courier New,Courier"><font color="#CC33CC"><font size=+1>eoPop&lt;Indi>
 pop;</font></font></font>
-<p>Declares a <font face="Arial,Helvetica"><a href="doc/html/class_eopop.html">population
+<p>Declares a <font face="Arial,Helvetica"><a href="../../doc/html/class_eopop.html">population
 object</a>, </font>which is basically an <a href="eoProgramming.html#STL">STL</a>
 <tt><font color="#993300"><font size=+1>vector&lt;Indi></font></font></tt>
 <p><font face="Courier New,Courier"><font size=+1>// fill it!</font></font>
@@ -146,7 +146,7 @@ pop.push_back(v); // and put it in the population</font></font></font>
 <br><font face="Courier New,Courier"><font color="#CC33CC"><font size=+1>&nbsp;
 }</font></font></font>
 <p>This initialization of the population is straightforward
-<br><font color="#CC33CC">rng.uniform()</font> generates a double <font face="Arial,Helvetica"><a href="doc/html/class_eorng.html">uniformly
+<br><font color="#CC33CC">rng.uniform()</font> generates a double <font face="Arial,Helvetica"><a href="../../doc/html/class_eorng.html">uniformly
 in [0,1)</a>,</font>
 <br><font color="#CC33CC">v.push_back</font> simply appends its argument
 at the end of <a href="eoProgramming.html#STL">STL</a> vector <font face="Courier New,Courier"><font color="#CC33CC"><font size=+1>v</font></font></font>
@@ -161,10 +161,10 @@ population (raw printout)</font></font>
 &lt;&lt; "Initial Population" &lt;&lt; endl;</font></font></font>
 <br><font face="Courier New,Courier"><font color="#66FFFF"><font size=+1>cout
 &lt;&lt; pop;</font></font></font>
-<p>If you looked at <font face="Arial,Helvetica"><a href="doc/html/class_eopop.html">eoPop</a></font>
-inheritance diagram, you noticed that it derives from <font face="Arial,Helvetica"><a href="doc/html/class_eoprintable.html">eoPrintable</a>:</font>
+<p>If you looked at <font face="Arial,Helvetica"><a href="../../doc/html/class_eopop.html">eoPop</a></font>
+inheritance diagram, you noticed that it derives from <font face="Arial,Helvetica"><a href="../../doc/html/class_eoprintable.html">eoPrintable</a>:</font>
 hence you can stream them using the &lt;&lt; operator. Of course, Indis
-are <font face="Arial,Helvetica"><a href="doc/html/class_eo.html">EO objects</a>
+are <font face="Arial,Helvetica"><a href="../../doc/html/class_eo.html">EO objects</a>
 </font>, which also are eoPrintable, and the &lt;&lt; operator for eoPop
 uses the &lt;&lt; operator for Indi.
 <p><font face="Courier New,Courier"><font size=+1>/////////////////////////////////////</font></font>
@@ -188,8 +188,8 @@ procedure has to be given</font></font>
 generations</font></font>
 <br><a NAME="stop"></a><font face="Courier New,Courier"><font color="#66FFFF"><font size=+1>eoGenContinue&lt;Indi>
 continuator(MAX_GEN);</font></font></font>
-<p>This class is called <font face="Arial,Helvetica"><a href="doc/html/class_eogencontinue.html">eoGenContinue</a>
-</font>because the main loop of all <font face="Arial,Helvetica"><a href="doc/html/class_eoalgo.html">eoAlgo</a>
+<p>This class is called <font face="Arial,Helvetica"><a href="../../doc/html/class_eogencontinue.html">eoGenContinue</a>
+</font>because the main loop of all <font face="Arial,Helvetica"><a href="../../doc/html/class_eoalgo.html">eoAlgo</a>
 </font>says ... while continuator(pop)
 <p><font face="Courier New,Courier"><font size=+1>//////////////////////////////////////</font></font>
 <br><a NAME="operators"></a><font face="Courier New,Courier"><font size=+1>//
@@ -204,8 +204,8 @@ offspring(i) is a linear combination of parent(i)</font></font>
 <br><font face="Courier New,Courier"><font color="#CC33CC"><font size=+1>eoArithmeticCrossover&lt;Indi>
 xover;</font></font></font>
 <p>The <a href="eoOperators.html">variation operators</a> are respectively
-an <font face="Arial,Helvetica"><a href="doc/html/class_eomonop.html">eoMonOp</a></font>
-(unary operator) and an <font face="Arial,Helvetica"><a href="doc/html/class_eoquadraticop.html">eoQuadOp</a></font>
+an <font face="Arial,Helvetica"><a href="../../doc/html/class_eomonop.html">eoMonOp</a></font>
+(unary operator) and an <font face="Arial,Helvetica"><a href="../../doc/html/class_eoquadraticop.html">eoQuadOp</a></font>
 (binary operator that modifies both its arguments).
 <p><font face="Courier New,Courier"><font size=+1>/////////////////////////////////////////</font></font>
 <br><font face="Courier New,Courier"><font size=+1>// the algorithm</font></font>
@@ -266,7 +266,7 @@ e)</font></font></font>
 <p>
 <hr WIDTH="100%"><a href="eoLesson1.html">Back to Lesson 1</a> - <a href="eoTutorial.html">Tutorial
 main page </a>- <a href="eoTopDown.html">Top-Down page</a> - <a href="eoBottomUp.html">Bottom-up
-page</a> - <a href="eoProgramming.html">Programming hints</a> - <font face="Arial,Helvetica"><a href="doc/html/index.html">EO
+page</a> - <a href="eoProgramming.html">Programming hints</a> - <font face="Arial,Helvetica"><a href="../../doc/html/index.html">EO
 documentation</a></font>
 <hr>
 <address>
