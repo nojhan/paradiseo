@@ -44,11 +44,11 @@
 
 // checkpoint
 /////////////
-eoCheckPoint<eoReal<double> >& make_checkpoint(eoParameterLoader& _parser, eoState& _state, eoEvalFuncCounter<eoReal<double> >& _eval, eoContinue<eoReal<double> >& _continue)
+eoCheckPoint<eoReal<double> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoReal<double> >& _eval, eoContinue<eoReal<double> >& _continue)
 {
   return do_make_checkpoint(_parser, _state, _eval, _continue);
 }
-eoCheckPoint<eoReal<eoMinimizingFitness> >& make_checkpoint(eoParameterLoader& _parser, eoState& _state, eoEvalFuncCounter<eoReal<eoMinimizingFitness> >& _eval, eoContinue<eoReal<eoMinimizingFitness> >& _continue) 
+eoCheckPoint<eoReal<eoMinimizingFitness> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoReal<eoMinimizingFitness> >& _eval, eoContinue<eoReal<eoMinimizingFitness> >& _continue) 
 {
   return do_make_checkpoint(_parser, _state, _eval, _continue);
 }

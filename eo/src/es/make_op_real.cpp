@@ -43,12 +43,12 @@
 
 // oeprators
 ////////////
-eoGenOp<eoReal<double> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoRealInitBounded<eoReal<double> >& _init)
+eoGenOp<eoReal<double> >&  make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<eoReal<double> >& _init)
 {
   return do_make_op(_parser, _state, _init);
 }
 
-eoGenOp<eoReal<eoMinimizingFitness> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoRealInitBounded<eoReal<eoMinimizingFitness> >& _init)
+eoGenOp<eoReal<eoMinimizingFitness> >&  make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<eoReal<eoMinimizingFitness> >& _init)
 {
   return do_make_op(_parser, _state, _init);
 }

@@ -68,7 +68,7 @@
 */
 
 template <class EOT>
-eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoRealInitBounded<EOT>& _init)
+eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<EOT>& _init)
 {
   // get vector size
   unsigned vecSize = _init.size();

@@ -40,7 +40,7 @@ bool testDirRes(std::string _dirName, bool _erase);
 
 
 template <class EOT>
-eoCheckPoint<EOT>& do_make_checkpoint(eoParameterLoader& _parser, eoState& _state, eoEvalFuncCounter<EOT>& _eval, eoContinue<EOT>& _continue)
+eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<EOT>& _eval, eoContinue<EOT>& _continue)
 {
   // first, create a checkpoint from the eoContinue
   eoCheckPoint<EOT> *checkpoint = new eoCheckPoint<EOT>(_continue);

@@ -46,34 +46,34 @@
 
 // Algo
 ///////
-eoAlgo<eoEsSimple<double> >&  make_algo_scalar(eoParameterLoader& _parser, eoState& _state, eoEvalFunc<eoEsSimple<double> >& _eval, eoContinue<eoEsSimple<double> >& _continue, eoGenOp<eoEsSimple<double> >& _op)
+eoAlgo<eoEsSimple<double> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsSimple<double> >& _eval, eoContinue<eoEsSimple<double> >& _continue, eoGenOp<eoEsSimple<double> >& _op)
 {
   return do_make_algo_scalar(_parser, _state, _eval, _continue, _op);
 }
 
-eoAlgo<eoEsSimple<eoMinimizingFitness> >&  make_algo_scalar(eoParameterLoader& _parser, eoState& _state, eoEvalFunc<eoEsSimple<eoMinimizingFitness> >& _eval, eoContinue<eoEsSimple<eoMinimizingFitness> >& _continue, eoGenOp<eoEsSimple<eoMinimizingFitness> >& _op)
+eoAlgo<eoEsSimple<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsSimple<eoMinimizingFitness> >& _eval, eoContinue<eoEsSimple<eoMinimizingFitness> >& _continue, eoGenOp<eoEsSimple<eoMinimizingFitness> >& _op)
 {
   return do_make_algo_scalar(_parser, _state, _eval, _continue, _op);
 }
 
 //////////////
-eoAlgo<eoEsStdev<double> >&  make_algo_scalar(eoParameterLoader& _parser, eoState& _state, eoEvalFunc<eoEsStdev<double> >& _eval, eoContinue<eoEsStdev<double> >& _continue, eoGenOp<eoEsStdev<double> >& _op)
+eoAlgo<eoEsStdev<double> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsStdev<double> >& _eval, eoContinue<eoEsStdev<double> >& _continue, eoGenOp<eoEsStdev<double> >& _op)
 {
   return do_make_algo_scalar(_parser, _state, _eval, _continue, _op);
 }
 
-eoAlgo<eoEsStdev<eoMinimizingFitness> >&  make_algo_scalar(eoParameterLoader& _parser, eoState& _state, eoEvalFunc<eoEsStdev<eoMinimizingFitness> >& _eval, eoContinue<eoEsStdev<eoMinimizingFitness> >& _continue, eoGenOp<eoEsStdev<eoMinimizingFitness> >& _op)
+eoAlgo<eoEsStdev<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsStdev<eoMinimizingFitness> >& _eval, eoContinue<eoEsStdev<eoMinimizingFitness> >& _continue, eoGenOp<eoEsStdev<eoMinimizingFitness> >& _op)
 {
   return do_make_algo_scalar(_parser, _state, _eval, _continue, _op);
 }
 
 ///////////////
-eoAlgo<eoEsFull<double> >&  make_algo_scalar(eoParameterLoader& _parser, eoState& _state, eoEvalFunc<eoEsFull<double> >& _eval, eoContinue<eoEsFull<double> >& _continue, eoGenOp<eoEsFull<double> >& _op)
+eoAlgo<eoEsFull<double> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsFull<double> >& _eval, eoContinue<eoEsFull<double> >& _continue, eoGenOp<eoEsFull<double> >& _op)
 {
   return do_make_algo_scalar(_parser, _state, _eval, _continue, _op);
 }
 
-eoAlgo<eoEsFull<eoMinimizingFitness> >&  make_algo_scalar(eoParameterLoader& _parser, eoState& _state, eoEvalFunc<eoEsFull<eoMinimizingFitness> >& _eval, eoContinue<eoEsFull<eoMinimizingFitness> >& _continue, eoGenOp<eoEsFull<eoMinimizingFitness> >& _op)
+eoAlgo<eoEsFull<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoEsFull<eoMinimizingFitness> >& _eval, eoContinue<eoEsFull<eoMinimizingFitness> >& _continue, eoGenOp<eoEsFull<eoMinimizingFitness> >& _op)
 {
   return do_make_algo_scalar(_parser, _state, _eval, _continue, _op);
 }

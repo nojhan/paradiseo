@@ -60,12 +60,12 @@
 //////////////////////////
 
 // the genotypes 
-eoRealInitBounded<eoReal<double> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoReal<double> _eo);
-eoRealInitBounded<eoReal<eoMinimizingFitness> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoReal<eoMinimizingFitness> _eo);
+eoRealInitBounded<eoReal<double> > & make_genotype(eoParser& _parser, eoState& _state, eoReal<double> _eo);
+eoRealInitBounded<eoReal<eoMinimizingFitness> > & make_genotype(eoParser& _parser, eoState& _state, eoReal<eoMinimizingFitness> _eo);
 
 // the operators
-eoGenOp<eoReal<double> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoRealInitBounded<eoReal<double> >& _init);
-eoGenOp<eoReal<eoMinimizingFitness> >&  make_op(eoParameterLoader& _parser, eoState& _state, eoRealInitBounded<eoReal<eoMinimizingFitness> >& _init);
+eoGenOp<eoReal<double> >&  make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<eoReal<double> >& _init);
+eoGenOp<eoReal<eoMinimizingFitness> >&  make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<eoReal<eoMinimizingFitness> >& _init);
 
 //Representation INdependent
 ////////////////////////////
@@ -80,14 +80,14 @@ eoContinue<eoReal<double> >& make_continue(eoParser& _parser, eoState& _state, e
 eoContinue<eoReal<eoMinimizingFitness> >& make_continue(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoReal<eoMinimizingFitness> > & _eval);
 
 // the checkpoint
-eoCheckPoint<eoReal<double> >& make_checkpoint(eoParameterLoader& _parser, eoState& _state, eoEvalFuncCounter<eoReal<double> >& _eval, eoContinue<eoReal<double> >& _continue);
-eoCheckPoint<eoReal<eoMinimizingFitness> >& make_checkpoint(eoParameterLoader& _parser, eoState& _state, eoEvalFuncCounter<eoReal<eoMinimizingFitness> >& _eval, eoContinue<eoReal<eoMinimizingFitness> >& _continue);
+eoCheckPoint<eoReal<double> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoReal<double> >& _eval, eoContinue<eoReal<double> >& _continue);
+eoCheckPoint<eoReal<eoMinimizingFitness> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoReal<eoMinimizingFitness> >& _eval, eoContinue<eoReal<eoMinimizingFitness> >& _continue);
 
 
 // the algo
-eoAlgo<eoReal<double> >&  make_algo_scalar(eoParameterLoader& _parser, eoState& _state, eoEvalFunc<eoReal<double> >& _eval, eoContinue<eoReal<double> >& _ccontinue, eoGenOp<eoReal<double> >& _op);
+eoAlgo<eoReal<double> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoReal<double> >& _eval, eoContinue<eoReal<double> >& _ccontinue, eoGenOp<eoReal<double> >& _op);
 
-eoAlgo<eoReal<eoMinimizingFitness> >&  make_algo_scalar(eoParameterLoader& _parser, eoState& _state, eoEvalFunc<eoReal<eoMinimizingFitness> >& _eval, eoContinue<eoReal<eoMinimizingFitness> >& _ccontinue, eoGenOp<eoReal<eoMinimizingFitness> >& _op);
+eoAlgo<eoReal<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoReal<eoMinimizingFitness> >& _eval, eoContinue<eoReal<eoMinimizingFitness> >& _ccontinue, eoGenOp<eoReal<eoMinimizingFitness> >& _op);
 
 // run
 void run_ea(eoAlgo<eoReal<double> >& _ga, eoPop<eoReal<double> >& _pop);

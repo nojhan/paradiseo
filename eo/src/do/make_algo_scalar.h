@@ -70,7 +70,7 @@
 */
 
 template <class EOT>
-eoAlgo<EOT> & do_make_algo_scalar(eoParameterLoader& _parser, eoState& _state, eoEvalFunc<EOT>& _eval, eoContinue<EOT>& _continue, eoGenOp<EOT>& _op)
+eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<EOT>& _eval, eoContinue<EOT>& _continue, eoGenOp<EOT>& _op)
 {
   // the selection
   eoValueParam<eoParamParamType>& selectionParam = _parser.createParam(eoParamParamType("DetTour(2)"), "selection", "Selection: Roulette, DetTour(T), StochTour(t) or Sequential(ordered/unordered)", 'S', "Evolution Engine");

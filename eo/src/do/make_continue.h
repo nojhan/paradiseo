@@ -60,7 +60,7 @@ eoCombinedContinue<Indi> * make_combinedContinue(eoCombinedContinue<Indi> *_comb
 }
 
 template <class Indi>
-eoContinue<Indi> & do_make_continue(eoParameterLoader& _parser, eoState& _state, eoEvalFuncCounter<Indi> & _eval)
+eoContinue<Indi> & do_make_continue(eoParser& _parser, eoState& _state, eoEvalFuncCounter<Indi> & _eval)
 {
   //////////// Stopping criterion ///////////////////
   // the combined continue - to be filled

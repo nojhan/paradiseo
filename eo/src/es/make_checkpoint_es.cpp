@@ -46,31 +46,31 @@
 
 // checkpoint
 /////////////
-eoCheckPoint<eoEsSimple<double> >& make_checkpoint(eoParameterLoader& _parser, eoState& _state, eoEvalFuncCounter<eoEsSimple<double> >& _eval, eoContinue<eoEsSimple<double> >& _continue)
+eoCheckPoint<eoEsSimple<double> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoEsSimple<double> >& _eval, eoContinue<eoEsSimple<double> >& _continue)
 {
   return do_make_checkpoint(_parser, _state, _eval, _continue);
 }
-eoCheckPoint<eoEsSimple<eoMinimizingFitness> >& make_checkpoint(eoParameterLoader& _parser, eoState& _state, eoEvalFuncCounter<eoEsSimple<eoMinimizingFitness> >& _eval, eoContinue<eoEsSimple<eoMinimizingFitness> >& _continue) 
-{
-  return do_make_checkpoint(_parser, _state, _eval, _continue);
-}
-
-/////////////
-eoCheckPoint<eoEsStdev<double> >& make_checkpoint(eoParameterLoader& _parser, eoState& _state, eoEvalFuncCounter<eoEsStdev<double> >& _eval, eoContinue<eoEsStdev<double> >& _continue)
-{
-  return do_make_checkpoint(_parser, _state, _eval, _continue);
-}
-eoCheckPoint<eoEsStdev<eoMinimizingFitness> >& make_checkpoint(eoParameterLoader& _parser, eoState& _state, eoEvalFuncCounter<eoEsStdev<eoMinimizingFitness> >& _eval, eoContinue<eoEsStdev<eoMinimizingFitness> >& _continue) 
+eoCheckPoint<eoEsSimple<eoMinimizingFitness> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoEsSimple<eoMinimizingFitness> >& _eval, eoContinue<eoEsSimple<eoMinimizingFitness> >& _continue) 
 {
   return do_make_checkpoint(_parser, _state, _eval, _continue);
 }
 
 /////////////
-eoCheckPoint<eoEsFull<double> >& make_checkpoint(eoParameterLoader& _parser, eoState& _state, eoEvalFuncCounter<eoEsFull<double> >& _eval, eoContinue<eoEsFull<double> >& _continue)
+eoCheckPoint<eoEsStdev<double> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoEsStdev<double> >& _eval, eoContinue<eoEsStdev<double> >& _continue)
 {
   return do_make_checkpoint(_parser, _state, _eval, _continue);
 }
-eoCheckPoint<eoEsFull<eoMinimizingFitness> >& make_checkpoint(eoParameterLoader& _parser, eoState& _state, eoEvalFuncCounter<eoEsFull<eoMinimizingFitness> >& _eval, eoContinue<eoEsFull<eoMinimizingFitness> >& _continue) 
+eoCheckPoint<eoEsStdev<eoMinimizingFitness> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoEsStdev<eoMinimizingFitness> >& _eval, eoContinue<eoEsStdev<eoMinimizingFitness> >& _continue) 
+{
+  return do_make_checkpoint(_parser, _state, _eval, _continue);
+}
+
+/////////////
+eoCheckPoint<eoEsFull<double> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoEsFull<double> >& _eval, eoContinue<eoEsFull<double> >& _continue)
+{
+  return do_make_checkpoint(_parser, _state, _eval, _continue);
+}
+eoCheckPoint<eoEsFull<eoMinimizingFitness> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoEsFull<eoMinimizingFitness> >& _eval, eoContinue<eoEsFull<eoMinimizingFitness> >& _continue) 
 {
   return do_make_checkpoint(_parser, _state, _eval, _continue);
 }

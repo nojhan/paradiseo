@@ -47,7 +47,7 @@ class eoEsMutationInit
 {
   public :
 
-    eoEsMutationInit(eoParameterLoader& _parser, 
+    eoEsMutationInit(eoParser& _parser, 
 		     std::string _section="ES mutation parameters" ) : 
       parser(_parser), repSection(_section), 
       TauLclParam(0), TauGlbParam(0), TauBetaParam(0) {}
@@ -101,7 +101,7 @@ class eoEsMutationInit
 
   private :
 
-  eoParameterLoader& parser;
+  eoParser& parser;
   std::string repSection;
   eoValueParam<double>* TauLclParam;
   eoValueParam<double>* TauGlbParam;

@@ -58,16 +58,28 @@
 */
 
 template <class EOT>
-eoInit<EOT> & do_make_genotype(eoParameterLoader& _parser, eoState& _state, EOT)
+eoInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
 {
   // for bitstring, only thing needed is the size
-    eoValueParam<unsigned>& chromSize = _parser.createParam(unsigned(10), "ChromSize", "The length of the bitstrings", 'n',"Genotype Initialization");
+  unsigned theSize;
+  // but it might have been already read in the definition fo the performance
+  eoParam* ptParam = _parser.getParamWithLongName(string("ChromSize")); 
+
+  if (!ptParam)			   // not already defined: read it here
+    {
+      theSize = _parser.createParam(unsigned(10), "ChromSize", "The length of the bitstrings", 'n',"Problem").value();
+    }
+  else				   // it was read before, get its value
+    {
+      eoValueParam<unsigned>* ptChromSize = dynamic_cast<eoValueParam<unsigned>*>(ptParam);
+      theSize = ptChromSize->value();
+    }
 
   // Then we can built a bitstring random initializer
   // based on boolean_generator class (see utils/rnd_generator.h)
   eoBooleanGenerator * gen = new eoBooleanGenerator;
   _state.storeFunctor(gen);
-  eoInitFixedLength<EOT>* init = new eoInitFixedLength<EOT>(chromSize.value(), *gen);
+  eoInitFixedLength<EOT>* init = new eoInitFixedLength<EOT>(theSize, *gen);
   // store in state
   _state.storeFunctor(init);
   return *init;

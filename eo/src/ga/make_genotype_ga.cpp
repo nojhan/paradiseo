@@ -40,11 +40,11 @@
 
 /// The following function merely call the templatized do_* functions above
 
-eoInit<eoBit<double> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoBit<double> _eo)
+eoInit<eoBit<double> > & make_genotype(eoParser& _parser, eoState& _state, eoBit<double> _eo)
 {
   return do_make_genotype(_parser, _state, _eo);
 }
-eoInit<eoBit<eoMinimizingFitness> > & make_genotype(eoParameterLoader& _parser, eoState& _state, eoBit<eoMinimizingFitness> _eo)
+eoInit<eoBit<eoMinimizingFitness> > & make_genotype(eoParser& _parser, eoState& _state, eoBit<eoMinimizingFitness> _eo)
 {
   return do_make_genotype(_parser, _state, _eo);
 }

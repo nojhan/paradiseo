@@ -47,12 +47,12 @@
 
 // Algo
 ///////
-eoAlgo<eoBit<double> >&  make_algo_scalar(eoParameterLoader& _parser, eoState& _state, eoEvalFunc<eoBit<double> >& _eval, eoContinue<eoBit<double> >& _continue, eoGenOp<eoBit<double> >& _op)
+eoAlgo<eoBit<double> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoBit<double> >& _eval, eoContinue<eoBit<double> >& _continue, eoGenOp<eoBit<double> >& _op)
 {
   return do_make_algo_scalar(_parser, _state, _eval, _continue, _op);
 }
 
-eoAlgo<eoBit<eoMinimizingFitness> >&  make_algo_scalar(eoParameterLoader& _parser, eoState& _state, eoEvalFunc<eoBit<eoMinimizingFitness> >& _eval, eoContinue<eoBit<eoMinimizingFitness> >& _continue, eoGenOp<eoBit<eoMinimizingFitness> >& _op)
+eoAlgo<eoBit<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoBit<eoMinimizingFitness> >& _eval, eoContinue<eoBit<eoMinimizingFitness> >& _continue, eoGenOp<eoBit<eoMinimizingFitness> >& _op)
 {
   return do_make_algo_scalar(_parser, _state, _eval, _continue, _op);
 }
