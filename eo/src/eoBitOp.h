@@ -7,8 +7,10 @@
 
 //-----------------------------------------------------------------------------
 
-#include <eoBin.h>  // eoBin
-#include <eoOp.h>   // eoMonOp
+#include <algorithm>    // swap_ranges
+#include <eoUniform.h>  // eoUniform
+#include <eoBin.h>      // eoBin
+#include <eoOp.h>       // eoMonOp
 
 
 /** @name BitWise Genetic operators
@@ -210,12 +212,9 @@ template<class Chrom> class eoBinNxOver: public eoBinOp<Chrom>
   eoBinNxOver(const unsigned& _num_points = 2): num_points(_num_points)
     { 
       if (num_points < 1)
-	{
-	  cerr << "NxOver --> invalid number of points " << num_points << endl;
-	  exit(EXIT_FAILURE);
-	}
+	runtime_error("NxOver --> invalid number of points");
     }
-
+  
   /// The class name.
   string className() const { return "eoBinNxOver"; }
   
@@ -272,20 +271,14 @@ template<class Chrom> class eoBinGxOver: public eoBinOp<Chrom>
     gene_size(_gene_size), num_points(_num_points)
     {  
       if (gene_size < 1)
-	{
-	  cerr << "GxOver --> invalid gene size " << gene_size << endl;
-	  exit(EXIT_FAILURE);
-	}
+	runtime_error("GxOver --> invalid gene size");
       if (num_points < 1)
-	{
-	  cerr << "GxOver --> invalid number of points " << num_points << endl;
-	  exit(EXIT_FAILURE);
-	}
+	runtime_error("GxOver --> invalid number of points");
     }
   
   /// The class name
   string className() const { return "eoBinGxOver"; }
-
+  
   /**
    * Gene crossover for binary chromosomes.
    * @param chrom1 The first chromosome.
@@ -310,7 +303,7 @@ template<class Chrom> class eoBinGxOver: public eoBinOp<Chrom>
 	    cut_genes--;
 	  }
       } while (cut_genes);
-  
+      
       // swaps genes
       for (unsigned i = 0; i < points.size(); i++)
 	if (points[i])
@@ -318,7 +311,7 @@ template<class Chrom> class eoBinGxOver: public eoBinOp<Chrom>
 		      chrom1.begin() + i * gene_size + gene_size, 
 		      chrom2.begin() + i * gene_size);
     }
-
+  
  private:
   unsigned gene_size;
   unsigned num_points;
@@ -326,23 +319,20 @@ template<class Chrom> class eoBinGxOver: public eoBinOp<Chrom>
 
 
 /** eoBinUxOver --> uniform crossover */
-      
+
 template<class Chrom> class eoBinUxOver: public eoBinOp<Chrom>
 {
- public:
+public:
   /// (Default) Constructor.
   eoBinUxOver(const float _rate = 0.5): rate(_rate)
     { 
       if (rate < 0 || rate > 1)
-	{
-	  cerr << "UxOver --> invalid rate " << rate << endl;
-	  exit(EXIT_FAILURE);
-	}
+	runtime_error("UxOver --> invalid rate");
     }
   
   /// The class name.
   string className() const { return "eoBinUxOver"; }
-
+  
   /**
    * Uniform crossover for binary chromosomes.
    * @param chrom1 The first chromosome.

@@ -25,26 +25,25 @@ template<class EOT>
 class eoTransform: public eoObject{
 
  public:
-	/** ctor
-	*/
-	eoTransform() {};	
-
-	/// Dtor
-	virtual ~eoTransform(){};
-
-	/// Pure virtual transformation function. Does something on the population
-	virtual void operator () ( eoPop<EOT>& _pop ) = 0;
-
-  	/** @name Methods from eoObject	*/
-	//@{
-	/** readFrom and printOn are not overriden
-	*/
-	/** Inherited from eoObject. Returns the class name.
-      @see eoObject
-	*/
-	string className() const {return "eoTransform";};
-    //@}
-
+  /** ctor */
+  eoTransform() {};	
+  
+  /// Dtor
+  virtual ~eoTransform(){};
+  
+  /// Pure virtual transformation function. Does something on the population
+  virtual void operator () ( eoPop<EOT>& _pop ) = 0;
+  
+  /** @name Methods from eoObject	*/
+  //@{
+  /** readFrom and printOn are not overriden
+   */
+  /** Inherited from eoObject. Returns the class name.
+  @see eoObject
+  */
+  string className() const {return "eoTransform";};
+  //@}
+  
 };
 
 /** eoSelect usually takes elements from one population, with or without 

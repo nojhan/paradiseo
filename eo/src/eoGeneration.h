@@ -1,9 +1,9 @@
 //-----------------------------------------------------------------------------
-// eoGA.h
+// eoGeneration.h
 //-----------------------------------------------------------------------------
 
-#ifndef eoGA_h
-#define eoGA_h
+#ifndef eoGeneration_h
+#define eoGeneration_h
 
 //-----------------------------------------------------------------------------
 
@@ -11,18 +11,21 @@
 #include <eoPopOps.h>  // eoSelect, eoTranform, eoMerge
 
 //-----------------------------------------------------------------------------
-// eoGA
+// eoGeneration
 //-----------------------------------------------------------------------------
 
-class eoGA
+template<class Chrom> class eoGeneration: public eoTransform<Chrom>
 {
  public:
   /// Constructor.
-  eoGA(eoSelect& _select, eoTranform& _transform, eoMerge& _replace)
-    {
-    }
+  eoGeneration(eoSelect& _select, 
+	       eoTranform& _transform, 
+	       eoMerge& _replace):
+    eoTransform<Chrom>() {}
   
-  /// 
+  /**
+   *
+   */
   void operator()(eoPop& pop)
     {
       eoPop breeders;
@@ -32,6 +35,9 @@ class eoGA
       replace(breeders, pop);
     }
   
+  /// Class name.
+  string className() const { return "eoGeneration"; }
+  
  private:
   eoSelect&   select;
   eoTranform& transform;
@@ -40,4 +46,4 @@ class eoGA
 
 //-----------------------------------------------------------------------------
 
-#endif eoGA_h
+#endif eoGeneration_h

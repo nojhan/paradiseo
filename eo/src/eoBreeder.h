@@ -7,11 +7,14 @@
 
 //-----------------------------------------------------------------------------
 
-#include <vector>  // vector
+#include <vector>          // vector
+#include <eoUniform.h>     // eoUniform
+#include <eoOp.h>          // eoOp, eoMonOp, eoBinOp
+#include <eoPop.h>         // eoPop
+#include <eoPopOps.h>      // eoTransform
+#include <eoOpSelector.h>  // eoOpSelector
 
 using namespace std;
-
-#include <eo>      // eoTransform, eoUniform, eoOp, eoMonOp, eoBinOp, eoPop
 
 /*****************************************************************************
  * eoBreeder: transforms a population using genetic operators.               *
@@ -24,55 +27,48 @@ template<class Chrom> class eoBreeder: public eoTransform<Chrom>
   /// Default constructor.
   eoBreeder( eoOpSelector<Chrom>& _opSel): opSel( _opSel ) {}
   
-
   /// Destructor.
-  virtual ~eoBreeder() { }
+  virtual ~eoBreeder() {}
 
   /**
    * Transforms a population.
    * @param pop The population to be transformed.
    */
-
   void operator()(eoPop<Chrom>& pop) 
     {
-      for (unsigned i = 0; i < pop.size(); i ++ ) {
-		  eoOp<Chrom>* op = opSel.Op();
-		switch (op->readArity()) {
-			case unary:
-			{
-				eoMonOp<Chrom>* monop = static_cast<eoMonOp<Chrom>* >(op);
-				(*monop)( pop[i] );
-				break;
-			}
-			case binary:
-			{
-				eoBinOp<Chrom>* binop = 
-					static_cast<eoBinOp<Chrom>* >(op);
-				eoUniform<unsigned> u(0, pop.size() );
-				(*binop)(pop[i], pop[ u() ] );
-				break;
-			}
-			case Nary:
-			{
-				eoNaryOp<Chrom>* Nop = 
-					static_cast<eoNaryOp<Chrom>* >(op);
-				eoUniform<unsigned> u(0, pop.size() );
-				eoPop<Chrom> tmpVec;
-				tmpVec.push_back( pop[i] );
-				for ( unsigned i = 0; i < u(); i ++ ) {
-					tmpVec.push_back( pop[ u() ] );
-				}
-				(*Nop)( tmpVec );
-				break;
-			}
-			default:
-			{
-				throw runtime_error( "eoBreeder:operator() Not implemented yet!" );
-				break;
-			}
+      for (unsigned i = 0; i < pop.size(); i++) {
+	eoOp<Chrom>* op = opSel.Op();
+	switch (op->readArity()) {
+	case unary:
+	  {
+	    eoMonOp<Chrom>* monop = static_cast<eoMonOp<Chrom>* >(op);
+	    (*monop)( pop[i] );
+	    break;
+	  }
+	case binary:
+	  {
+	    eoBinOp<Chrom>* binop = 
+	      static_cast<eoBinOp<Chrom>* >(op);
+	    eoUniform<unsigned> u(0, pop.size() );
+	    (*binop)(pop[i], pop[ u() ] );
+	    break;
+	  }
+	case Nary:
+	  {
+	    eoNaryOp<Chrom>* Nop = 
+	      static_cast<eoNaryOp<Chrom>* >(op);
+	    eoUniform<unsigned> u(0, pop.size() );
+	    eoPop<Chrom> tmpVec;
+	    tmpVec.push_back( pop[i] );
+	    for ( unsigned i = 0; i < u(); i ++ ) {
+	      tmpVec.push_back( pop[ u() ] );
 	    }
-    }
-  };
+	    (*Nop)( tmpVec );
+	    break;
+	  }
+	}
+      }
+    };
   
   /// The class name.
   string classname() const { return "eoBreeder"; }
