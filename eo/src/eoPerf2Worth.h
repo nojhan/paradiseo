@@ -164,7 +164,7 @@ class eoPerf2WorthCached : public eoPerf2Worth<EOT, WorthT>
       indices[i] = i;
     }
 
-    sort(indices.begin(), indices.end(), eoPerf2Worth<EOT,WorthT>::compare_worth(value()));
+    std::sort(indices.begin(), indices.end(), eoPerf2Worth<EOT,WorthT>::compare_worth(value()));
 
     eoPop<EOT>      tmp_pop;
     tmp_pop.resize(_pop.size());

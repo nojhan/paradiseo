@@ -141,7 +141,7 @@ private :
 	    sort1[i] = i;
 	}
 
-	sort(sort1.begin(), sort1.end(), Sorter(_pop));
+	std::sort(sort1.begin(), sort1.end(), Sorter(_pop));
 
 	// Ok, now the meat of the algorithm
 	
@@ -150,7 +150,7 @@ private :
 	double max1 = -1e+20;
 	for (i = 0; i < _pop.size(); ++i)
 	{
-	    max1 = max(max1, _pop[i].fitness()[1]);
+	    max1 = std::max(max1, _pop[i].fitness()[1]);
 	}
 	
 	max1 = max1 + 1.0; // add a bit to it so that it is a real upperbound
@@ -452,7 +452,7 @@ class eoNDSorting_II : public eoNDSorting<EOT>
         performance[i].second = i;
       }
 
-      sort(performance.begin(), performance.end(), compare_nodes()); // a lambda operator would've been nice here
+      std::sort(performance.begin(), performance.end(), compare_nodes()); // a lambda operator would've been nice here
 
       std::vector<double> nc(niche_count.size(), 0.0);
 
