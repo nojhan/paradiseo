@@ -53,7 +53,7 @@ if it has to evaluate.. etc.
 template<class EOT> class eoEvalFuncCounter : public eoEvalFunc<EOT>, public eoValueParam<unsigned long>
 {
     public :
-        eoEvalFuncCounter(eoEvalFunc<EOT>& _func, std::string _name = "eval_counter") 
+        eoEvalFuncCounter(eoEvalFunc<EOT>& _func, std::string _name = "Eval. ") 
             : eoValueParam<unsigned long>(0, _name), func(_func) {}
 
         void operator()(EOT& _eo)
