@@ -11,12 +11,12 @@ PROG=eo
     DIE=1
 }
 
-(libtool --version) < /dev/null > /dev/null 2>&1 ||
-{
-    echo
-    echo "You must have libtool installed to compile $PROG."
-    DIE=1
-}
+#(libtool --version) < /dev/null > /dev/null 2>&1 ||
+#{
+#    echo
+#    echo "You must have libtool installed to compile $PROG."
+#    DIE=1
+#}
 
 (automake --version) < /dev/null > /dev/null 2>&1 ||
 {
