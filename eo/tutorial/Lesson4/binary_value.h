@@ -12,7 +12,7 @@ template <class Chrom> float binary_value(const Chrom& _chrom)
   float sum = 0;
   for (unsigned i = 0; i < _chrom.size(); i++)
     if (_chrom[i])
-      sum += pow(2, _chrom.size() - i - 1);
+	sum += _chrom[i];
   return sum;
 }
 
