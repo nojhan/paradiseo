@@ -46,6 +46,7 @@
 #define eo_is_an_integer false
 //-----------------------------------------------------------------------------
 
+// gneral purpose
 #include <utils/eoData.h>
 #include <eoObject.h>
 #include <eoPrintable.h>
@@ -65,10 +66,15 @@
 #include <utils/eoRndGenerators.h>
 #include <eoInit.h>
 
+// the variation operators
 #include <eoOp.h>
 #include <eoGenOp.h>
+#include <eoCloneOps.h>
 #include <eoOpContainer.h>
+// combinations of simple eoOps (eoMonOp and eoQuadOp)
+#include <eoProportionalCombinedOp.h>
 
+// population
 #include <eoPop.h>
 
 // Evaluation functions
@@ -108,9 +114,6 @@
 #include <eoMergeReduce.h>
 #include <eoReduceMerge.h>
 #include <eoSurviveAndDie.h>
-
-// Variation
-#include <eoProportionalCombinedOp.h>
 
 // a simple transformer
 #include <eoSGATransform.h>
