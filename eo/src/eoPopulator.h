@@ -116,7 +116,7 @@ public :
   bool exhausted(void)          { return current == dest.end(); }
 
   /** the pure virtual selection method - will be instanciated in
-   *   eoSeqPopulator and eoPropPopulator
+   *   eoSeqPopulator and eoSelectivePopulator
    */
   virtual const EOT& select() = 0;
 
@@ -154,6 +154,7 @@ public :
   eoSeqPopulator(const eoPop<EOT>& _pop, eoPop<EOT>& _dest) :
     eoPopulator<EOT>(_pop, _dest), current(0) {}
 
+  /** the select method simply returns next individual in the src pop */
   const EOT& select(void)
   {
     if (current >= src.size())
@@ -183,6 +184,7 @@ public :
       sel.setup(_pop);
     }
 
+  /** the select method actually selects one guy from the src pop */
   const EOT& select()
   {
     return sel(src);
