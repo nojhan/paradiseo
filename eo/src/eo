@@ -57,6 +57,8 @@
 #include <eoOpContainer.h>
 // combinations of simple eoOps (eoMonOp and eoQuadOp)
 #include <eoProportionalCombinedOp.h>
+// didactic (mimics SGA-like variation into an eoGenOp)
+#include <eoSGAGenOp.h>
 
 // population
 #include <eoPop.h>
