@@ -60,11 +60,12 @@
 #include <eoBitOp.h>
 
 #include <eoLottery.h>
-
 #include <eoBreeder.h>
-
 #include <eoInsertion.h>
 #include <eoInclusion.h>
+#include <eoGeneration.h>
+
+#include <eoProportionalOpSel.h>
 
 //-----------------------------------------------------------------------------
 // to be continued ...

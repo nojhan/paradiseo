@@ -87,7 +87,14 @@ LDADDS = $(top_builddir)/src/libeo.a
 
 ###############################################################################
 
-noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery
+noinst_PROGRAMS = t-eogeneration t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness t-eoproblem t-eobin t-eolottery
+
+###############################################################################
+
+t_eogeneration_SOURCES = t-eogeneration.cpp
+t_eogeneration_DEPENDENCIES = $(DEPS)
+t_eogeneration_LDFLAGS = -lm
+t_eogeneration_LDADD = $(LDADDS)
 
 ###############################################################################
 
@@ -148,6 +155,7 @@ DEFS = @DEFS@ -I. -I$(srcdir)
 CPPFLAGS = @CPPFLAGS@
 LDFLAGS = @LDFLAGS@
 LIBS = @LIBS@
+t_eogeneration_OBJECTS =  t-eogeneration.o
 t_eobreeder_OBJECTS =  t-eobreeder.o
 t_eoinclusion_OBJECTS =  t-eoinclusion.o
 t_eoinsertion_OBJECTS =  t-eoinsertion.o
@@ -174,10 +182,10 @@ DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
 TAR = gtar
 GZIP_ENV = --best
 DEP_FILES =  .deps/t-eo.P .deps/t-eobin.P .deps/t-eobreeder.P \
-.deps/t-eofitness.P .deps/t-eoinclusion.P .deps/t-eoinsertion.P \
-.deps/t-eolottery.P .deps/t-eoproblem.P
-SOURCES = $(t_eobreeder_SOURCES) $(t_eoinclusion_SOURCES) $(t_eoinsertion_SOURCES) $(t_eo_SOURCES) $(t_eofitness_SOURCES) $(t_eoproblem_SOURCES) $(t_eobin_SOURCES) $(t_eolottery_SOURCES)
-OBJECTS = $(t_eobreeder_OBJECTS) $(t_eoinclusion_OBJECTS) $(t_eoinsertion_OBJECTS) $(t_eo_OBJECTS) $(t_eofitness_OBJECTS) $(t_eoproblem_OBJECTS) $(t_eobin_OBJECTS) $(t_eolottery_OBJECTS)
+.deps/t-eofitness.P .deps/t-eogeneration.P .deps/t-eoinclusion.P \
+.deps/t-eoinsertion.P .deps/t-eolottery.P .deps/t-eoproblem.P
+SOURCES = $(t_eogeneration_SOURCES) $(t_eobreeder_SOURCES) $(t_eoinclusion_SOURCES) $(t_eoinsertion_SOURCES) $(t_eo_SOURCES) $(t_eofitness_SOURCES) $(t_eoproblem_SOURCES) $(t_eobin_SOURCES) $(t_eolottery_SOURCES)
+OBJECTS = $(t_eogeneration_OBJECTS) $(t_eobreeder_OBJECTS) $(t_eoinclusion_OBJECTS) $(t_eoinsertion_OBJECTS) $(t_eo_OBJECTS) $(t_eofitness_OBJECTS) $(t_eoproblem_OBJECTS) $(t_eobin_OBJECTS) $(t_eolottery_OBJECTS)
 
 all: all-redirect
 .SUFFIXES:
@@ -230,6 +238,10 @@ clean-libtool:
 distclean-libtool:
 
 maintainer-clean-libtool:
+
+t-eogeneration: $(t_eogeneration_OBJECTS) $(t_eogeneration_DEPENDENCIES)
+	@rm -f t-eogeneration
+	$(CXXLINK) $(t_eogeneration_LDFLAGS) $(t_eogeneration_OBJECTS) $(t_eogeneration_LDADD) $(LIBS)
 
 t-eobreeder: $(t_eobreeder_OBJECTS) $(t_eobreeder_DEPENDENCIES)
 	@rm -f t-eobreeder

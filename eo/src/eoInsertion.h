@@ -7,7 +7,8 @@
 
 //-----------------------------------------------------------------------------
 
-#include <eoMerge.h>
+#include <eoPop.h>     // eoPop
+#include <eoPopOps.h>  // eoMerge
 
 /******************************************************************************
  * eoInsertion: A replacement algorithm.
