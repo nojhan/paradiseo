@@ -117,7 +117,8 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent {
       _is.getline( line, MAXLINELENGTH-1 );
 	  if (strlen( line ) ) {
 		istrstream s( line );
-		EOT thisEOT( s );
+		EOT thisEOT;
+        thisEOT.readFrom( s );
 		push_back( thisEOT );      
 	  }
     }
