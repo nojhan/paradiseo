@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoInit.h
 // (c) Maarten Keijzer 2000, GeNeura Team, 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -27,10 +27,14 @@
 #ifndef _eoInit_H
 #define _eoInit_H
 
+#include <algorithm>
+
 #include <eoOp.h>
+#include <eoSTLFunctor.h>
+#include <utils/eoRndGenerators.h>
 
 /**
-	Base (name) class for Initialization of chromosomes, used in a population 
+	Base (name) class for Initialization of chromosomes, used in a population
 	contructor. It is derived from eoMonOp, so it can be used
     inside the algorithm as well.
 
@@ -42,25 +46,29 @@ class eoInit : public eoUF<EOT&, void>
 {};
 
 /**
-    Initializor for fixed length representations with a single type
+    Initializer for fixed length representations with a single type
 */
-template <class EOT, class Gen>
+template <class EOT>
 class eoInitFixedLength: public eoInit<EOT>
 {
     public:
-        eoInitFixedLength(unsigned _howmany, Gen _generator = Gen()) 
+
+    typedef typename EOT::AtomType AtomType;
+
+        eoInitFixedLength(unsigned _howmany, eoRndGenerator<AtomType>& _generator)
             : howmany(_howmany), generator(_generator) {}
 
         void operator()(EOT& chrom)
         {
             chrom.resize(howmany);
-            generate(chrom.begin(), chrom.end(), generator);
+            std::generate(chrom.begin(), chrom.end(), generator);
             chrom.invalidate();
         }
 
     private :
         unsigned howmany;
-        Gen generator;
+        /// generic wrapper for eoFunctor (s), to make them have the function-pointer style copy semantics
+        eoSTLF<AtomType> generator;
 };
 
 /**
@@ -70,8 +78,8 @@ template <class EOT, class Gen>
 class eoInitVariableLength: public eoInit<EOT>
 {
     public:
-        eoInitVariableLength(unsigned _minSize, unsigned _maxSize, Gen _generator = Gen()) 
-            : offset(_minSize), extent(_maxSize - _minSize), generator(_generator) 
+        eoInitVariableLength(unsigned _minSize, unsigned _maxSize, Gen _generator = Gen())
+            : offset(_minSize), extent(_maxSize - _minSize), generator(_generator)
         {
             if (_minSize >= _maxSize)
                 throw logic_error("eoInitVariableLength: minSize larger or equal to maxSize");
@@ -111,7 +119,7 @@ class eoInitAdaptor : public eoMonOp<EOT>
             return true;
         }
     private :
-    
+
         eoInit<EOT>& init;
 };
 

@@ -37,8 +37,8 @@ eoPop<eoBit<FitT> >&  do_init_ga(eoParameterLoader& _parser, eoState& _state, Fi
   _parser.processParam(chromSize, "initialization");
   _parser.processParam(popSize, "initialization");
 
-  eoInitFixedLength<EOT, boolean_generator> init(chromSize.value(), boolean_generator());
-
+  eoBooleanGenerator gen;
+  eoInitFixedLength<EOT> init(chromSize.value(), gen);
 
   // Let the state handle the memory
   eoPop<EOT>& pop = _state.takeOwnership(eoPop<EOT>());

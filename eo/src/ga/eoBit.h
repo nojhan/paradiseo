@@ -62,13 +62,13 @@ template <class FitT> class eoBit: public eoVector<FitT, bool>
    */
   eoBit(unsigned size = 0, bool value = false):
     eoVector<FitT, bool>(size, value) {}
-      
+
   /// My class name.
-  string className() const 
-    { 
-      return "eoBit"; 
+  string className() const
+    {
+      return "eoBit";
     }
-  
+
   /**
    * To print me on a stream.
    * @param os The ostream.
@@ -77,10 +77,10 @@ template <class FitT> class eoBit: public eoVector<FitT, bool>
     {
       EO<FitT>::printOn(os);
       os << ' ';
-      os << size() << ' '; 
+      os << size() << ' ';
       copy(begin(), end(), ostream_iterator<bool>(os));
     }
-  
+
   /**
    * To read me from a stream.
    * @param is The istream.
@@ -95,7 +95,7 @@ template <class FitT> class eoBit: public eoVector<FitT, bool>
       if (is)
 	{
 	  resize(bits.size());
-	  transform(bits.begin(), bits.end(), begin(), 
+	  transform(bits.begin(), bits.end(), begin(),
 		    bind2nd(equal_to<char>(), '1'));
 	}
     }

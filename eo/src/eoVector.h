@@ -43,12 +43,18 @@ class eoVector : public EO<FitT>, public std::vector<GeneType>
     typedef GeneType                AtomType;
     typedef std::vector<GeneType>   ContainerType;
 
+
     eoVector(unsigned size = 0, GeneType value = GeneType()) : EO<FitT>(), std::vector<GeneType>(size, value)
+    {}
+
+    /// copy ctor abstracting from the FitT
+    template <class OtherFitnessType>
+    eoVector(const eoVector<OtherFitnessType, GeneType>& _vec) : vector<GeneType>(_vec)
     {}
 
   // we can't have a Ctor from a vector, it would create ambiguity
   //  with the copy Ctor
-  void value(std::vector<GeneType> _v)
+  void value(const std::vector<GeneType>& _v)
   {
     if (_v.size() != size())
       throw runtime_error("Wrong size in vector assignation in eoVector");

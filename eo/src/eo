@@ -62,6 +62,7 @@
 
 #include <other/eoString.h>
 
+#include <utils/eoRndGenerators.h>
 #include <eoInit.h>
 
 #include <eoOp.h>

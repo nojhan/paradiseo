@@ -2,8 +2,8 @@
 
     t-eobin.cpp
       This program tests the the binary cromosomes and several genetic operators
-    (c) GeNeura Team, 1999 
- 
+    (c) GeNeura Team, 1999
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -17,9 +17,9 @@
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- 
+
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-            
+
 */
 //-----------------------------------------------------------------------------
 
@@ -27,6 +27,7 @@
 #include <strstream>  // ostrstream, istrstream
 #include <eo>         // general EO
 #include <ga.h>	      // bitstring representation & operators
+#include <utils/eoRndGenerators.h>
 #include "binary_value.h"
 
 //-----------------------------------------------------------------------------
@@ -39,10 +40,11 @@ void main_function()
 {
   const unsigned SIZE = 8;
   unsigned i, j;
+  eoBooleanGenerator gen;
 
   Chrom chrom(SIZE), chrom2;
   chrom.fitness(binary_value(chrom)); chrom2.fitness(binary_value(chrom2));
-  
+
   cout << "chrom:  " << chrom << endl;
   chrom[0] = chrom[SIZE - 1] = true; chrom.fitness(binary_value(chrom));
   cout << "chrom:  " << chrom << endl;
@@ -51,7 +53,7 @@ void main_function()
   chrom[0] = chrom[SIZE - 1] = true; chrom.fitness(binary_value(chrom));
 
   cout << "chrom.className() = " << chrom.className() << endl;
-  
+
   cout << "chrom:  " << chrom << endl
        << "chrom2: " << chrom2 << endl;
   
@@ -67,10 +69,10 @@ void main_function()
   fill(chrom.begin(), chrom.end(), false);
   cout << "--------------------------------------------------"
        << endl << "eoMonOp's aplied to .......... " << chrom << endl;
-  
-  eoInitFixedLength<Chrom, boolean_generator> 
-      random(chrom.size(), boolean_generator());
-  
+
+  eoInitFixedLength<Chrom>
+      random(chrom.size(), gen);
+
   random(chrom); chrom.fitness(binary_value(chrom));
   cout << "after eoBinRandom ............ " << chrom << endl;
 
@@ -149,10 +151,10 @@ void main_function()
 
     eoProportionalSelect<Chrom> select;
     eoEvalFuncPtr<Chrom>  eval(binary_value);
-    
+
     eoSGA<Chrom> sga(select, xover, 0.8f, bitflip, 0.1f, eval, checkpoint);
- 
-    eoInitFixedLength<Chrom, boolean_generator> init(16, boolean_generator());
+
+    eoInitFixedLength<Chrom> init(16, gen);
     eoPop<Chrom> pop(100, init);
     
     apply<Chrom>(eval, pop);

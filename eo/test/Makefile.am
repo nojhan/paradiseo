@@ -14,8 +14,8 @@ CXXFLAGS = -g
 ###############################################################################
 
 check_PROGRAMS = t-eofitness t-eoRandom t-eobin t-eoStateAndParser t-eoCheckpointing \
-	t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA
-TESTS=run_tests
+	t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA t-eoVector
+TESTS=run_tests t-eoVector t-eoRandom
 # removing temporarily t-eoESFull
 #noinst_PROGRAMS = t-eofitness t-eobin t-eoStateAndParser t-eoCheckpointing t-eoExternalEO t-eoESFull t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp t-eoGA
 
@@ -98,6 +98,13 @@ t_eoGenOp_SOURCES = t-eoGenOp.cpp
 t_eoGenOp_DEPENDENCIES = $(DEPS)
 t_eoGenOp_LDFLAGS = -lm
 t_eoGenOp_LDADD = $(LDADDS)
+
+###############################################################################
+
+t_eoVector_SOURCES = t-eoVector.cpp
+t_eoVector_DEPENDENCIES = $(DEPS)
+t_eoVector_LDFLAGS = -lm
+t_eoVector_LDADD = $(LDADDS)
 
 ###############################################################################
 

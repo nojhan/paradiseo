@@ -26,8 +26,8 @@
 
 //-----------------------------------------------------------------------------
 
-#ifndef eoRND_GENERATORS_H
-#define eoRND_GENERATORS_H
+#ifndef eoRndGenerators_h
+#define eoRndGenerators_h
 
 #include "eoRNG.h"
 #include <eoFunctor.h>
@@ -37,9 +37,7 @@
   By popular demand re-introducing a base class for a family of
   random number generators. Derived members of this class are useful
   to initialize fixed/variable length genotypes that have an 'atomic' type
-  in an indepent way (thus without employing any knowledge abou the problem domain).
-
-  The only change from previous EO's us the use of the suffix EO. This to
+  in an indepent way (thus without employing any knowledge about the problem domain).
 
   See derived classes eoUniformGenerator, eoBooleanGenerator, eoNormalGenerator and eoNegExpGenerator
 */
