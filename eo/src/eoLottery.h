@@ -63,7 +63,7 @@ template<class EOT> class eoLottery: public eoBinPopOp<EOT>
    */
   void operator()( eoPop<EOT>& pop, eoPop<EOT>& breeders) 
     {
-      int target = static_cast<int>(rate_ * pop.size());
+      size_t target = static_cast<size_t>(rate_ * pop.size());
 
       /* Gustavo: uncomment this if it must be here
       // test of consistency
