@@ -36,6 +36,10 @@ autoheader
 automake
 autoconf
 
+# we want doc to be recompiled - and it keeps saying it's up to date!!!
+touch doc/eo.cfg
+
+
 # if test -z "$*"; then
 #     echo "I am going to run ./configure with no arguments - if you wish"
 #     echo "to pass any to it, please specify them on the $0 command line."
@@ -43,13 +47,12 @@ autoconf
 #
 # ./configure "$@"
 
-# we want doc to be recompiled - and it keeps saying it's up to date!!!
-touch doc/eo.cfg
-
 echo
-echo "Now type 'make' to compile $PROG."
+echo "Now run 'configure' and 'make' to build $PROG."
+echo
 echo "If you have Doxygen installed, type 'make doc' to generate $PROG documentation."
 echo
+
 #echo "WARNING: Compiling all test programs can take some time."
 #echo "But you don't have to: you can simply type"
 #echo "                    'make lib'"
