@@ -46,15 +46,16 @@ public:
    */
   bool operator()(GenotypeT & _genotype) 
   {
+    bool isModified;
     // START code for mutation of the _genotype object
 
        /** Requirement
-	* if _genotype has been modified
-	*     return true;
-	* otherwise
-	*     return false;
+	* if (_genotype has been modified)
+	*     isModified = true;
+	* else
+	*     isModified = false;
 	*/
-
+    return isModified;
     // END code for mutation of the _genotype object
   }
 

@@ -48,15 +48,16 @@ public:
    */
   bool operator()(GenotypeT& _genotype1, GenotypeT & _genotype2) 
   {
+    bool oneAtLeastIsModified;
     // START code for crossover of _genotype1 and _genotype2 objects
 
        /** Requirement
-	* if at least one genotype has been modified - no way to distinguish
-	*     return true;
-	* otherwise
-	*     return false;
+	* if (at least one genotype has been modified) // no way to distinguish
+	*     oneAtLeastIsModified = true;
+	* else
+	*     oneAtLeastIsModified = false;
 	*/
-
+    return oneAtLeastIsModified;
     // END code for crossover of _genotype1 and _genotype2 objects
   }
 
