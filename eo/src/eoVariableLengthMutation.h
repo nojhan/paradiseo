@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
-    CVS Info: $Date: 2001-07-11 06:26:11 $ $Version$ $Author: evomarc $ 
+    CVS Info: $Date: 2001-09-04 06:51:59 $ $Version$ $Author: evomarc $ 
  */
 //-----------------------------------------------------------------------------
 
@@ -71,6 +71,9 @@ public :
     _eo.insert(_eo.begin()+pos, atom);
     return true;
   }
+
+  virtual string className() const { return "eoVlAddMutation"; }
+
 private:
   unsigned nMax;
   eoInit<AtomType> & atomInit;
@@ -79,7 +82,11 @@ private:
 /** A helper class for choosing which site to delete */
 template <class EOT>
 class eoGeneDelChooser : public eoUF<EOT &, unsigned int>
-{};
+{
+public:
+  virtual string className() const =0;
+
+};
 
 /** Uniform choice of gene to delete */
 template <class EOT>
@@ -91,6 +98,7 @@ public:
     {
 	return eo::rng.random(_eo.size());
     }
+  virtual string className() const { return "eoUniformGeneChooser"; }
 };
 
 /** Deletion of a gene
@@ -130,6 +138,15 @@ public :
     _eo.erase(_eo.begin()+pos);
     return true;
   }
+
+  virtual string className() const
+  { 
+    char s[1024];
+    ostrstream os(s, 1022);
+    os << "eoVlDelMutation(" << chooser.className() << ")" << ends; 
+    return string(s); 
+  }
+
 private:
     unsigned nMin;
     eoUniformGeneChooser<EOT> uChooser;

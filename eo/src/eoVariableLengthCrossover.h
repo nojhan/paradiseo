@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
-    CVS Info: $Date: 2001-03-21 13:35:09 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVariableLengthCrossover.h,v 1.6 2001-03-21 13:35:09 jmerelo Exp $ $Author: jmerelo $ 
+    CVS Info: $Date: 2001-09-04 06:51:59 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVariableLengthCrossover.h,v 1.7 2001-09-04 06:51:59 evomarc Exp $ $Author: evomarc $ 
  */
 //-----------------------------------------------------------------------------
 
@@ -45,6 +45,7 @@ class eoAtomExchange : public eoBF<unsigned, Atom &, bool>
 public:
   // a function to initlialize - to be called before every crossover
   virtual void randomize(unsigned int, unsigned int){}
+  virtual string className() const=0;
 };
 
 /** Uniform crossover - well, not really for FixedLength */
@@ -68,6 +69,9 @@ public:
     {
       return mask[_i];
     }
+
+  virtual string className() const {return "eoUniformAtomExchange";}
+
 private:
   double rate;
   vector<bool> mask;
@@ -143,11 +147,21 @@ public :
     _eo2.swap(tmp2);
     return true;	 // should we test that? Yes, but no time now
   }
+
+  virtual string className() const
+  { 
+    char s[1024];
+    ostrstream os(s, 1022);
+    os << "eoVlAtomExchangeQuadOp(" << atomExchange.className() << ")" << ends; 
+    return string(s); 
+  }
+
 private:
   unsigned Min, Max;
   eoAtomExchange<AtomType> & atomExchange;
 };
-/** Exchange Crossover using an AtomExchange
+
+/** Crossover using an AtomCrossover (probably irrelevant in Variable Length)
  */
 
 template <class EOT>
@@ -172,6 +186,14 @@ public :
       }
     }
     return changed;	 // should we test that? Yes, but no time now
+  }
+
+  virtual string className() const
+  { 
+    char s[1024];
+    ostrstream os(s, 1022);
+    os << "eoInnerExchangeQuadOp(" << atomExchange.className() << ")" << ends; 
+    return string(s); 
   }
 private:
   float rate;
