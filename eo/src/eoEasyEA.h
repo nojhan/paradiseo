@@ -119,24 +119,23 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
     {
       try
       {
+	unsigned pSize = _pop.size();
          breed(_pop, offspring);
          
          apply<EOT>(eval, offspring);
-         
-         replace(_pop, offspring);
 
-         if (offspring.size() < _pop.size())
+         replace(_pop, offspring); // after replace, the new pop. is in _pop
+
+         if (pSize > _pop.size())
              throw runtime_error("Population shrinking!");
-         else if (offspring.size() > _pop.size())
+         else if (pSize < _pop.size())
              throw runtime_error("Population growing!");
-
-         _pop.swap(offspring);
 
       }
       catch (exception& e)
       {
 	    string s = e.what();
-	    s.append( " in eoSelectTransformReduce ");
+	    s.append( " in eoEasyEA");
 	    throw runtime_error( s );
       }
     } // while

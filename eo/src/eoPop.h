@@ -123,6 +123,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       std::sort(begin(), end(), greater<EOT>());
   }
 
+  // creates a vector<EOT*> pointing to the individuals in descending order
   void sort(vector<const EOT*>& result) const
   {
       result.resize(size());
@@ -132,9 +133,37 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       std::sort(result.begin(), result.end(), Cmp());
   }
 
+  // returns an iterator to the best individual DOES NOT MOVE ANYBODY
+  eoPop<EOT>::iterator it_best_element() 
+  {
+    typename eoPop<EOT>::const_iterator it = max_element(begin(), end());
+    return it;
+  }
+
+  // returns an iterator to the best individual DOES NOT MOVE ANYBODY
+  const EOT & best_element() const
+  {
+    typename eoPop<EOT>::const_iterator it = max_element(begin(), end());
+    return (*it);
+  }
+
+  // returns a const reference to the worse individual DOES NOT MOVE ANYBODY
+  const EOT & worse_element() const
+  {
+    typename eoPop<EOT>::const_iterator it = min_element(begin(), end());
+    return (*it);
+  }
+
+// returns an iterator to the worse individual DOES NOT MOVE ANYBODY
+  eoPop<EOT>::iterator it_worse_element()
+  {
+    typename eoPop<EOT>::iterator it = min_element(begin(), end());
+    return it;
+  }
+
   /**
   slightly faster algorithm than sort to find all individuals that are better
-  than the nth individual
+  than the nth individual. INDIVIDUALS ARE MOVED AROUND in the pop.
   */
   eoPop<EOT>::iterator nth_element(int nth)
   {
@@ -168,6 +197,7 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       std::nth_element(result.begin(), it, result.end(), Cmp());
   }
 
+  // does STL swap with other pop
   void swap(eoPop<EOT>& other)
   {
       std::swap(static_cast<vector<EOT>& >(*this), static_cast<vector<EOT>& >(other));

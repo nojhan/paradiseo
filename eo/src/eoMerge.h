@@ -50,32 +50,55 @@ template<class Chrom> class eoMerge: public eoBF<const eoPop<Chrom>&, eoPop<Chro
 
 /**
 Straightforward elitism class, specify the number of individuals to copy
-into new geneneration
+into new geneneration or the rate w.r.t. pop size
 */
 template <class EOT> class eoElitism : public eoMerge<EOT>
 {
-    public :
-        eoElitism(unsigned _howmany) : howmany(_howmany) {}
-
-        void operator()(const eoPop<EOT>& _pop, eoPop<EOT>& offspring)
-        {
-            if (howmany == 0)
-                return;
-
-            if (howmany > _pop.size())
-                throw std::logic_error("Elite larger than population");
-
-            vector<const EOT*> result;
-            _pop.nth_element(howmany, result);
-
-            for (size_t i = 0; i < result.size(); ++i)
-            {
-                offspring.push_back(*result[i]);
-            }
-        }
-
-    private :
-        unsigned howmany;
+public :
+  eoElitism(double  _rate, bool _interpret_as_rate = true):
+    rate(0), howmany(0)
+  {
+    if (_interpret_as_rate)
+      {
+	if ( (_rate<0) || (_rate>1) )
+	  throw std::logic_error("eoElitism: rate shoud be in [0,1]");
+	rate = _rate;
+      }
+    else
+      {
+	if (_rate<0)
+	  throw std::logic_error("Negative number of offspring in eoElitism!");
+	howmany = (unsigned int)_rate;
+	if (howmany != _rate)
+	  cout << "Warning: Number of guys to merge in eoElitism was rounded";
+      }
+  }
+  
+  void operator()(const eoPop<EOT>& _pop, eoPop<EOT>& _offspring)
+  {
+    if ((howmany == 0) && (rate == 0.0))
+      return;
+    unsigned howmanyLocal;
+    if (howmany == 0)	   // rate is specified
+      howmanyLocal = (unsigned int) (rate * _pop.size());
+    else
+      howmanyLocal = howmany;
+    
+    if (howmanyLocal > _pop.size())
+      throw std::logic_error("Elite larger than population");
+    
+    vector<const EOT*> result;
+    _pop.nth_element(howmanyLocal, result);
+    
+    for (size_t i = 0; i < result.size(); ++i)
+      {
+	_offspring.push_back(*result[i]);
+      }
+  }
+  
+private :
+  double rate;
+  unsigned howmany;
 };
 
 /**
@@ -93,18 +116,17 @@ Very elitist class, copies entire population into next gen
 template <class EOT> class eoPlus : public eoMerge<EOT>
 {
     public :
-        void operator()(const eoPop<EOT>& _pop, eoPop<EOT>& offspring)
+        void operator()(const eoPop<EOT>& _pop, eoPop<EOT>& _offspring)
         {
-            offspring.reserve(offspring.size() + _pop.size());
+            _offspring.reserve(_offspring.size() + _pop.size());
 
             for (size_t i = 0; i < _pop.size(); ++i)
             {
-                offspring.push_back(_pop[i]);
+                _offspring.push_back(_pop[i]);
             }
         }
 
     private :
-        unsigned howmany;
 };
 
 //-----------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 
    -----------------------------------------------------------------------------
    eoReplacement.h 
-   (c) Maarten Keijzer, GeNeura Team, 2000
+   (c) Maarten Keijzer, Marc Schoenauer, GeNeura Team, 2000
  
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
@@ -18,7 +18,9 @@
    License along with this library; if not, write to the Free Software
    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-   Contact: todos@geneura.ugr.es, http://geneura.ugr.es
+    Contact: todos@geneura.ugr.es, http://geneura.ugr.es
+             Marc.Schoenauer@polytechnique.fr
+             mkeijzer@dhi.dk
  */
 //-----------------------------------------------------------------------------
 
@@ -31,81 +33,85 @@
 #include <eoFunctor.h>
 #include <eoMerge.h>
 #include <eoReduce.h>
+#include <utils/eoHowMany.h>
 //-----------------------------------------------------------------------------
 
 /** 
 eoReplacement: High level strategy for creating a new generation 
-from parents and offspring. This is a combination of eoMerge and eoReduce,
-so there is an implementation called eoMergeReduce that can be found below
+from parents and offspring. 
 
-  @see eoMerge, eoReduce, eoMergeReduce
+The eoMergeReduce, combination of eoMerge and eoReduce, can be found 
+in file eoMergeReduce.h
+
+Removed the const before first argument: though it makes too many classes 
+with the same interface, it allows to minimize the number of actual copies 
+by choosing the right destination
+I also removed the enforced "swap" in the eoEasyAlgo and hence the generational
+replacement gets a class of its own that only does the swap (instead of the 
+eoNoReplacement that did nothing, relying on the algo to swap popualtions).
+MS 12/12/2000
+
+NOTE: the resulting population should always be in the first argument 
+(replace parents by offspring)! The second argument can contain any rubbish
+
+  @see eoMerge, eoReduce, eoMergeReduce, eoReduceMerge 
+
+@classes eoReplacement,                    base (pure abstract) class
+         eoGenerationalReplacement,        as it says ...
+	 eoWeakElitistReplacement          a wrapper to add elitism
 */
+
+/** 
+eoReplacement: the base class for all replacementp functors
+ */
 template<class EOT>
-class eoReplacement : public eoBF<const eoPop<EOT>&, eoPop<EOT>&, void>
+class eoReplacement : public eoBF<eoPop<EOT>&, eoPop<EOT>&, void>
 {};
 
 /**
-no replacement
+generational replacement == swap populations
 */
 template <class EOT>
-class eoNoReplacement : public eoReplacement<EOT>
+class eoGenerationalReplacement : public eoReplacement<EOT>
 {
     public :
-        /// do nothing
-        void operator()(const eoPop<EOT>&, eoPop<EOT>&)
-        {}
+  /// swap
+  void operator()(eoPop<EOT>& _parents, eoPop<EOT>& _offspring)
+  {
+    _parents.swap(_offspring);
+  }
 };
 
-/**
-eoMergeReduce: special replacement strategy that is just an application of an embedded merge, 
-followed by an embedded reduce
+/** 
+eoWeakElitistReplacement: a wrapper for other replacement procedures. 
+Copies in the new pop the best individual from the old pop, 
+AFTER normal replacement, if the best of the new pop is worse than the best 
+of the old pop. Removes the worse individual from the new pop.
+This could be changed by adding a selector there...
 */
 template <class EOT>
-class eoMergeReduce : public eoReplacement<EOT>
+class eoWeakElitistReplacement : public eoReplacement<EOT>
 {
-    public:
-        eoMergeReduce(eoMerge<EOT>& _merge, eoReduce<EOT>& _reduce) :
-        merge(_merge), reduce(_reduce)
-        {}
+public :
+  typedef typename EOT::Fitness Fitness;
 
-        void operator()(const eoPop<EOT>& _parents, eoPop<EOT>& _offspring)
-        {
-            merge(_parents, _offspring);
-            reduce(_offspring, _parents.size());
-        }
+  // Ctor, takes an eoReplacement
+  eoWeakElitistReplacement(eoReplacement<EOT> & _replace) :
+    replace(_replace) {}
 
-    private :
-        eoMerge<EOT>& merge;
-        eoReduce<EOT>& reduce;
+  /// do replacement
+  void operator()(eoPop<EOT>& _pop, eoPop<EOT>& _offspring)
+  {
+    const EOT & oldChamp = _pop.best_element();
+    replace(_pop, _offspring);	   // "normal" replacement, parents are the new
+    if (_pop.best_element() < oldChamp) // need to do something
+      {
+	typename eoPop<EOT>::iterator itPoorGuy = _pop.it_worse_element();
+	(*itPoorGuy) = oldChamp;
+      }
+  }
+private:
+  eoReplacement<EOT> & replace;
 };
-
-/**
-ES type of replacement strategy: first add parents to population, then truncate
-*/
-template <class EOT>
-class eoPlusReplacement : public eoMergeReduce<EOT>
-{
-    public :
-        eoPlusReplacement() : eoMergeReduce<EOT>(plus, truncate) {}
-
-    private :
-        eoPlus<EOT> plus;
-        eoTruncate<EOT> truncate;
-};
-
-/**
-ES type of replacement strategy: ignore parents, truncate offspring
-*/
-template <class EOT>
-class eoCommaReplacement : public eoMergeReduce<EOT>
-{
-    public :
-        eoCommaReplacement() : eoMergeReduce<EOT>(no_elite, truncate) {}
-
-    private :
-        eoNoElitism<EOT> no_elite;
-        eoTruncate<EOT> truncate;
-};
-
 
 #endif
