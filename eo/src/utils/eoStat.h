@@ -46,6 +46,7 @@ class eoStatBase : public eoUF<const eoPop<EOT>&, void>
 {
 public:
   virtual void lastCall(const eoPop<EOT>&) {}
+  virtual std::string className(void) const { return "eoStatBase"; }
 };
 
 /**
@@ -58,6 +59,7 @@ class eoStat : public eoValueParam<T>, public eoStatBase<EOT>
 {
 public :
     eoStat(T _value, std::string _description) : eoValueParam<T>(_value, _description) {}
+  virtual std::string className(void) const { return "eoStat"; }
 };
 
 /**
@@ -68,6 +70,7 @@ class eoSortedStatBase : public eoUF<const std::vector<const EOT*>&, void>
 {
 public:
   virtual void lastCall(const std::vector<const EOT*>&) {}
+  virtual std::string className(void) const { return "eoSortedStatBase"; }
 };
 
 /**
@@ -80,6 +83,7 @@ class eoSortedStat : public eoSortedStatBase<EOT>, public eoValueParam<ParamType
 {
 public :
   eoSortedStat(ParamType _value, std::string _desc) : eoValueParam<ParamType>(_value, _desc) {}
+  virtual std::string className(void) const { return "eoSortedStat"; }
 };
 
 /**
@@ -113,6 +117,8 @@ public :
     virtual void operator()(const eoPop<EOT>& _pop){ 
       doit(_pop, Fitness()); // specializations for scalar and std::vector
     }
+
+  virtual std::string className(void) const { return "eoAverageStat"; }
 
 private :
     
@@ -174,6 +180,8 @@ public :
         value().first = result.first / n; // average
         value().second = sqrt( (result.second - n * value().first * value().first) / (n - 1.0)); // stdev
     }
+
+  virtual std::string className(void) const { return "eoSecondMomentStats"; }
 };
 
 /**
@@ -201,6 +209,7 @@ public :
         doit(_pop, Fitness());
     }
 
+  virtual std::string className(void) const { return "eoNthElementFitnessStat"; }
 private :
     
     struct CmpFitness
@@ -299,6 +308,7 @@ public :
       doit(_pop, Fitness() ); // specializations for scalar and std::vector
     }
 
+  virtual std::string className(void) const { return "eoBestFitnessStat"; }
 private :
 
     struct CmpFitness
@@ -377,6 +387,8 @@ public :
         double sz = _pop.size();
         v /= sz * sz * _pop[0].size();
     }
+  virtual std::string className(void) const { return "eoDistanceStat"; }
+
 };
 
 

@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
-CVS Info: $Date: 2003-02-27 19:21:18 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoMonitor.h,v 1.10 2003-02-27 19:21:18 okoenig Exp $ $Author: okoenig $ 
+CVS Info: $Date: 2004-06-15 07:09:57 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoMonitor.h,v 1.11 2004-06-15 07:09:57 evomarc Exp $ $Author: evomarc $ 
 
  */
 //-----------------------------------------------------------------------------
@@ -55,6 +55,7 @@ public :
   */
   virtual void add(const eoParam& _param) { vec.push_back(&_param); }
 
+  virtual std::string className(void) const { return "eoMonitor"; }
 
 protected :
     typedef std::vector<const eoParam*>::iterator iterator;

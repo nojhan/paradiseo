@@ -40,6 +40,7 @@ class eoUpdater : public eoF<void>
 {
 public:
   virtual void lastCall() {}
+  virtual std::string className(void) const { return "eoUpdater"; }
 };
 
 /**
@@ -57,6 +58,7 @@ class eoIncrementor : public eoUpdater
         counter += stepsize;
     }
 
+  virtual std::string className(void) const { return "eoIncrementor"; }
 private:
     T& counter;
     T stepsize;
@@ -85,6 +87,8 @@ public :
     value() += stepsize;
   }
   
+  virtual std::string className(void) const { return "eoIncrementorParam"; }
+
 private:
   T stepsize;
 };
@@ -103,6 +107,7 @@ public :
 
     void operator()(void);
 
+  virtual std::string className(void) const { return "eoTimedStateSaver"; }
 private :
     const eoState& state;
 
@@ -132,6 +137,7 @@ public :
     virtual void lastCall(void);
     void operator()(void);
 
+  virtual std::string className(void) const { return "eoCountedStateSaver"; }
 private :
     void doItNow(void);
 

@@ -42,6 +42,7 @@ public :
       verbose(_verbose), delim(_delim), firsttime(true) {}
     eoMonitor& operator()(void);
 
+  virtual std::string className(void) const { return "eoStdoutMonitor"; }
 private :
   bool verbose;
   std::string delim;
