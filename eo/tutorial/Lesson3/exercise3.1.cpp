@@ -47,12 +47,12 @@ void main_function(int argc, char **argv)
     unsigned seed = seedParam.value();
 
    // description of genotype
-    eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size",'V');
+    eoValueParam<unsigned int> vecSizeParam(100, "vecSize", "Genotype size",'V');
     parser.processParam( vecSizeParam, "Representation" );
     unsigned vecSize = vecSizeParam.value();
 
    // parameters for evolution engine
-    eoValueParam<unsigned int> popSizeParam(10, "popSize", "Population size",'P');
+    eoValueParam<unsigned int> popSizeParam(100, "popSize", "Population size",'P');
     parser.processParam( popSizeParam, "Evolution engine" );
     unsigned popSize = popSizeParam.value();
 
@@ -65,11 +65,11 @@ void main_function(int argc, char **argv)
     parser.processParam( loadNameParam, "Persistence" );
     string loadName = loadNameParam.value();
  
-    eoValueParam<unsigned int> maxGenParam(100, "maxGen", "Maximum number of generations",'G');
+    eoValueParam<unsigned int> maxGenParam(500, "maxGen", "Maximum number of generations",'G');
     parser.processParam( maxGenParam, "Stopping criterion" );
     unsigned maxGen = maxGenParam.value();
 
-    eoValueParam<unsigned int> minGenParam(100, "minGen", "Minimum number of generations",'g');
+    eoValueParam<unsigned int> minGenParam(500, "minGen", "Minimum number of generations",'g');
     parser.processParam( minGenParam, "Stopping criterion" );
     unsigned minGen = minGenParam.value();
 
