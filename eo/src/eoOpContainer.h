@@ -43,7 +43,7 @@ class eoOpContainer : public eoGenOp<EOT>
 {
   public :
   /** Ctor: nothing much to do */
-  eoOpContainer() : max_to_produce(2) {}
+  eoOpContainer() : max_to_produce(0) {}
 
   /** Dtor: delete all the GenOps created when wrapping simple ops
    */
