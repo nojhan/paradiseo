@@ -51,7 +51,7 @@ public:
       ctors here since default types like float have no void initializer. 
       VC++ allows it, but gcc does not
   */
-  EO(): repFitness(0), invalidFitness(true) {}
+  EO(): repFitness(Fitness()), invalidFitness(true) {}
   
   /// Virtual dtor
   virtual ~EO() {};
