@@ -131,7 +131,7 @@ class eoSequentialOp : public eoOpContainer<EOT>
 };
 
 
-/** The proportinoal verions: easy! */
+/** The proportional versions: easy! */
 template <class EOT>
 class eoProportionalOp : public eoOpContainer<EOT>
 {
@@ -144,6 +144,7 @@ class eoProportionalOp : public eoOpContainer<EOT>
       try
       {
         (*ops[i])(_pop);
+	++_pop;
       }
       catch( typename eoPopulator<EOT>::OutOfIndividuals&)
       {}

@@ -28,17 +28,22 @@
 #define eoPerf2Worth_h
 
 #include <utils/eoParam.h>
+#include <eoPop.h>
+#include <eoFunctor.h>
+
 #include <algorithm>
+#include <vector>
+#include <string>
 
 /** Base class to transform raw fitnesses into fitness for selection
 
 @see eoSelectFromWorth
 */
 template <class EOT, class WorthT = double>
-class eoPerf2Worth : public eoUF<const eoPop<EOT>&, void>, public eoValueParam<vector<WorthT> >
+class eoPerf2Worth : public eoUF<const eoPop<EOT>&, void>, public eoValueParam<std::vector<WorthT> >
 {
   public:
-  eoPerf2Worth(std::string _description = "Worths"):eoValueParam<vector<WorthT> >(vector<WorthT>(0),
+  eoPerf2Worth(std::string _description = "Worths"):eoValueParam<std::vector<WorthT> >(std::vector<WorthT>(0),
 					      _description) {}
 
                   /**
@@ -46,7 +51,7 @@ class eoPerf2Worth : public eoUF<const eoPop<EOT>&, void>, public eoValueParam<v
   */
   virtual void sort_pop(eoPop<EOT>& _pop)
   { // start with a vector of indices
-    vector<unsigned> indices(_pop.size());
+      std::vector<unsigned> indices(_pop.size());
 
     unsigned i;
     for (i = 0; i < _pop.size();++i)
@@ -58,7 +63,7 @@ class eoPerf2Worth : public eoUF<const eoPop<EOT>&, void>, public eoValueParam<v
 
     eoPop<EOT>      tmp_pop;
     tmp_pop.resize(_pop.size());
-    vector<WorthT>  tmp_worths(value().size());
+    std::vector<WorthT>  tmp_worths(value().size());
 
     for (i = 0; i < _pop.size(); ++i)
     {
@@ -75,7 +80,7 @@ class eoPerf2Worth : public eoUF<const eoPop<EOT>&, void>, public eoValueParam<v
   class compare_worth
   {
   public :
-    compare_worth(const vector<WorthT>& _worths) : worths(_worths) {}
+    compare_worth(const std::vector<WorthT>& _worths) : worths(_worths) {}
 
     bool operator()(unsigned a, unsigned b) const
     {
@@ -84,7 +89,7 @@ class eoPerf2Worth : public eoUF<const eoPop<EOT>&, void>, public eoValueParam<v
 
   private :
 
-    const vector<WorthT>& worths;
+    const std::vector<WorthT>& worths;
   };
 
   virtual void resize(eoPop<EOT>& _pop, unsigned sz)
@@ -151,7 +156,7 @@ class eoPerf2WorthCached : public eoPerf2Worth<EOT, WorthT>
   */
   virtual void sort_pop(eoPop<EOT>& _pop)
   { // start with a vector of indices
-    vector<unsigned> indices(_pop.size());
+      std::vector<unsigned> indices(_pop.size());
 
     unsigned i;
     for (i = 0; i < _pop.size();++i)
@@ -163,12 +168,12 @@ class eoPerf2WorthCached : public eoPerf2Worth<EOT, WorthT>
 
     eoPop<EOT>      tmp_pop;
     tmp_pop.resize(_pop.size());
-    vector<WorthT>  tmp_worths(value().size());
+    std::vector<WorthT>  tmp_worths(value().size());
 
 #ifdef _MSC_VER
-    vector<EOT::Fitness> tmp_cache(_pop.size());
+    std::vector<EOT::Fitness> tmp_cache(_pop.size());
 #else
-    vector<typename EOT::Fitness> tmp_cache(_pop.size());
+    std::vector<typename EOT::Fitness> tmp_cache(_pop.size());
 #endif
     for (i = 0; i < _pop.size(); ++i)
     {
@@ -188,7 +193,7 @@ class eoPerf2WorthCached : public eoPerf2Worth<EOT, WorthT>
   class compare_worth
   {
   public :
-    compare_worth(const vector<WorthT>& _worths) : worths(_worths) {}
+    compare_worth(const std::vector<WorthT>& _worths) : worths(_worths) {}
 
     bool operator()(unsigned a, unsigned b) const
     {
@@ -197,7 +202,7 @@ class eoPerf2WorthCached : public eoPerf2Worth<EOT, WorthT>
 
   private :
 
-    const vector<WorthT>& worths;
+    const std::vector<WorthT>& worths;
   };
 
   virtual void resize(eoPop<EOT>& _pop, unsigned sz)
@@ -208,7 +213,7 @@ class eoPerf2WorthCached : public eoPerf2Worth<EOT, WorthT>
   }
 
   private :
-    vector <typename EOT::Fitness> fitness_cache;
+  std::vector <typename EOT::Fitness> fitness_cache;
 };
 
 /**
