@@ -14,24 +14,23 @@
 // eoGeneration
 //-----------------------------------------------------------------------------
 
-template<class Chrom> class eoGeneration: public eoTransform<Chrom>
+template<class Chrom> class eoGeneration
 {
  public:
   /// Constructor.
-  eoGeneration(eoSelect& _select, 
+  eoGeneration(eoSelect&   _select, 
 	       eoTranform& _transform, 
-	       eoMerge& _replace):
-    eoTransform<Chrom>() {}
+	       eoMerge&    _replace):
+    select(_select), transform(_transform), replace(_replace) {}
   
-  /**
-   *
-   */
+  /// apply one generation of evolution to the population
   void operator()(eoPop& pop)
     {
       eoPop breeders;
       
       select(pop, breeders);
       transform(breeders);
+      for_each(pop.begin(), pop.end(), Chrom::Fitness);
       replace(breeders, pop);
     }
   
