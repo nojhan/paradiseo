@@ -147,29 +147,28 @@ an eoQuad object.
 <p><b><font color="#FF0000">Using crossover operators</font></b>:
 <br>Directly applying crossover operators is straightforward from the interface
 above:
-<br><tt><font color="#993300"><b>eoBinOpDerivedClass&lt;Indi> myBinOp(parameters);&nbsp;&nbsp;
+<br><tt><font color="#993300"><b>eoBinOpDerivedClass&lt;Indi> myBinOp(parameters);
 
 </b>//&nbsp; use constructor to pass</font></tt>
 <br><tt><font color="#993300"><b>eoQuadOpDerivedClass&lt;Indi> myQuadOp(parameters);
-
-</b>//&nbsp; any useful argument</font></tt>
-<br><tt><font color="#993300"><b>Indi eo1= ..., eo2= ...;&nbsp;&nbsp;&nbsp;
-
-</b>// the candidates to crossover</font></tt>
+</b>//&nbsp;
+any useful argument</font></tt>
+<br><tt><font color="#993300"><b>Indi eo1= ..., eo2= ...;&nbsp;&nbsp; </b>//
+the candidates to crossover</font></tt>
 <br><b><tt><font color="#993300">if (myBinOp(eo1, eo2))</font></tt></b>
-<br><tt><font color="#993300"><b>&nbsp;&nbsp; { ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><tt><font color="#993300"><b>&nbsp;&nbsp; { ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 </b>// eo1 has been modified, <b>not</b> eo2</font></tt>
 <br><b><tt><font color="#993300">&nbsp;&nbsp; }</font></tt></b>
-<br><tt><font color="#993300"><b>else ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><tt><font color="#993300"><b>else ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 </b>// none has been modified</font></tt>
 <br><b><tt><font color="#993300">if (myQuadOp(eo1, eo2))</font></tt></b>
-<br><tt><font color="#993300"><b>&nbsp;&nbsp; { ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><tt><font color="#993300"><b>&nbsp;&nbsp; { ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 </b>// both eo1 and eo2 have been modified</font></tt>
 <br><b><tt><font color="#993300">&nbsp;&nbsp; }</font></tt></b>
-<br><tt><font color="#993300"><b>else ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><tt><font color="#993300"><b>else ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 </b>// none has been modified</font></tt>
 <p>However, you will hardly have to actually apply operators to individuals,
@@ -182,9 +181,10 @@ are described below, encapsulating the operators into combined operators
 objects.
 <p><a NAME="writing_crossover"></a><b><font color="#FF0000">Writing a crossover
 operator:</font></b>
-<br>There are three things to modify in the <a href="../Templates/crossover.tmpl">template
-class definitions</a> provided (apart from the name of the class you are
-creating!)
+<br>There are three things to modify in the template class definitions
+provided in the Templates directory for both <a href="../Templates/binCrossover.tmpl">binary
+crossover</a> and <a href="../Templates/quadCrossover.tmpl">quadratic crossovers</a>
+(apart from the name of the class you are creating!)
 <ul>
 <li>
 The <font color="#FF6600">constructor</font>, where you pass to the object
@@ -225,11 +225,11 @@ above:
 <br><tt><font color="#993300"><b>Indi eo = ...;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 /</b>/ eo is candidate to mutation</font></tt>
 <br><b><tt><font color="#993300">if (myMutation(eo))</font></tt></b>
-<br><tt><font color="#993300"><b>&nbsp;&nbsp; { ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><tt><font color="#993300"><b>&nbsp;&nbsp; { ...&nbsp;&nbsp;&nbsp;&nbsp;
 
 </b>// eo has been modified</font></tt>
 <br><b><tt><font color="#993300">&nbsp;&nbsp; }</font></tt></b>
-<br><tt><font color="#993300"><b>else&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><tt><font color="#993300"><b>else&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 </b>// eo has not been modified</font></tt>
 <p>However, you will hardly have to actually apply operators to individuals,
@@ -243,8 +243,8 @@ objects.
 <p><a NAME="writing_mutation"></a><b><font color="#FF0000">Writing a mutation
 operator:</font></b>
 <br>There are only two things to modify in the <a href="../Templates/mutation.tmpl">template
-class definitions</a> provided (apart from the name of the class you are
-creating!)
+class definitions</a> provided in the Templates directory (apart from the
+name of the class you are creating!)
 <ul>
 <li>
 The <font color="#FF6600">constructor</font>, where you pass to the object
@@ -311,14 +311,14 @@ _pop)</font></tt></b>
 <br><tt><font color="#993300"><b>&nbsp;&nbsp; EOT&amp; parent1 = *_pop;
 </b>//
 select the first parent</font></tt>
-<br><tt><font color="#993300"><b>&nbsp;&nbsp; ++_plop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><tt><font color="#993300"><b>&nbsp;&nbsp; ++_plop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 </b>// advance once for each selected parents</font></tt>
 <br><b><tt><font color="#993300">&nbsp;&nbsp; ...</font></tt></b>
 <br><tt><font color="#993300"><b>&nbsp;&nbsp; EOT&amp; parentN = *_pop;
 </b>//
 select the last parent</font></tt>
-<br><tt><font color="#993300"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br><tt><font color="#993300"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 </b>// don't advance after the last one: _plop always</font></tt>
 <br><tt><font color="#993300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -342,8 +342,6 @@ in the following:</li>
 
 <br>&nbsp;
 <p>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
 <p><b><tt><font color="#993300">void apply()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
 _pop)</font></tt></b>
 <br><b><tt><font color="#993300">{</font></tt></b>
@@ -354,8 +352,9 @@ of parents (see <a href="#apply">above</a>)</font></tt>
 <br><b><tt><font color="#993300">&nbsp; EOT ofs1 = create_individual(...);</font></tt></b>
 <br><b><tt><font color="#993300">&nbsp; ...</font></tt></b>
 <br><b><tt><font color="#993300">&nbsp; EOT ofsK = create_individual(...);</font></tt></b>
-<br><tt><font color="#993300">&nbsp; // inserts offspring in _pop after
-parentN</font></tt>
+<br><tt><font color="#993300">&nbsp; // advance and inserts offspring in
+_pop after parentN</font></tt>
+<br><b><tt><font color="#993300">&nbsp; ++_pop;</font></tt></b>
 <br><b><tt><font color="#993300">&nbsp; _pop.insert(ofs1);</font></tt></b>
 <br><b><tt><font color="#993300">&nbsp; ...</font></tt></b>
 <p><tt><font color="#993300"><b>&nbsp; </b>// invalidate the parents that
@@ -384,46 +383,56 @@ and you can access it from inside the GenOp method. For instance</li>
 
 <br>&nbsp;
 <p>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
 <p><b><tt><font color="#993300">void apply()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
 _pop)</font></tt></b>
 <br><b><tt><font color="#993300">{</font></tt></b>
-<br><tt><font color="#993300"><b>&nbsp; </b>// get the necessary number
-of parents (see <a href="#apply">above</a>)</font></tt>
+<br><tt><font color="#993300"><b>&nbsp; </b>// get as many parents as you
+will have offspring (see <a href="#apply">above</a>)</font></tt>
 <br><tt><font color="#993300">&nbsp; ...</font></tt>
 <br><tt><font color="#993300"><b>&nbsp; // </b>get extra parents - use
 private selector</font></tt>
 <br><b><tt><font color="#993300">&nbsp; const EOT&amp; parentN+1 = </font><font color="#009900">select</font><font color="#993300">(_pop.source());</font></tt></b>
 <br><b><tt><font color="#993300">&nbsp; ...</font></tt></b>
 <br><b><tt><font color="#993300">&nbsp; const EOT&amp; parentM = </font><font color="#009900">select</font><font color="#993300">(_pop.source());</font></tt></b>
-<p>where select is any selector you like. <font color="#FF6600">Note the
+<br><tt><font color="#993300">&nbsp; // do whatever needs to be done</font></tt>
+<br><tt><font color="#993300">&nbsp; ...</font></tt>
+<br><tt><font color="#993300">&nbsp; // and of course invalidate fitnesses
+of remaining modified parents</font></tt>
+<br><tt><font color="#993300">&nbsp; <b>parent1.invalidate();</b></font></tt>
+<br><b><tt><font color="#993300">&nbsp; ...</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp; parentN.invalidate();</font></tt></b>
+<br><b><tt><font color="#993300">}</font></tt></b>
+<br>where select is any selector you like. <font color="#FF6600">Note the
 const:</font> you are not allowed to modify an element of the original
 population (but you could of course have copied it!). As usual, the <b><tt><font color="#009900">select</font></tt></b>
-selector was pased to the operator at construct time.
+selector was passed to the operator at construct time. This typically allows
+one to use a different selector for one parent and the others, as demonstrated
+<a href="#advanced_general">here</a>.
+<br>&nbsp;
 <li>
-If you don't care about the size of the offspring population, you can use
-the delete method of the class <b><font color="#999900">eoPopulator</font></b>.
+If you don't care about the size of the offspring population (that is,
+if that size os controlled elsewhere, e.g. in some external loop), you
+can use the inbedded select method of the class <b><font color="#999900">eoPopulator</font></b>.
 For instance</li>
 
 <br><b><tt><font color="#993300">void apply()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
 _pop)</font></tt></b>
 <br><b><tt><font color="#993300">{</font></tt></b>
-<br><tt><font color="#993300"><b>&nbsp; </b>// get the necessary number
-of parents (see <a href="#apply">above</a>)</font></tt>
+<br><tt><font color="#993300"><b>&nbsp; </b>// get as many parents as you
+will have offspring (see <a href="#apply">above</a>)</font></tt>
 <br><tt><font color="#993300">&nbsp; ...</font></tt>
-<br><tt><font color="#993300">&nbsp; // do whatever needs to be done to
-any parent</font></tt>
-<p><tt><font color="#993300">&nbsp; // then kill the ones that are now
-useless</font></tt>
-<br><tt><font color="#993300">&nbsp; <b>_plop.erase();</b>&nbsp;&nbsp;
-// as many times as necessary</font></tt>
-<br><tt><font color="#993300">&nbsp; <b>...</b></font></tt>
-<br><tt><font color="#993300">&nbsp; // invalidate fitnesses of remaining
-modified parents</font></tt>
+<br><tt><font color="#993300"><b>&nbsp; </b>// get extra parents - use
+populator selector</font></tt>
+<br><b><tt><font color="#993300">&nbsp; const EOT&amp; parentN+1 = _pop.</font><font color="#009900">select</font><font color="#993300">();</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp; ...</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp; const EOT&amp; parentM = _pop.</font><font color="#009900">select</font><font color="#993300">();</font></tt></b>
+<br><tt><font color="#993300">&nbsp; // do whatever needs to be done</font></tt>
+<br><tt><font color="#993300">&nbsp; ...</font></tt>
+<br><tt><font color="#993300">&nbsp; // and of course invalidate fitnesses
+of remaining modified parents</font></tt>
 <br><tt><font color="#993300">&nbsp; <b>parent1.invalidate();</b></font></tt>
 <br><b><tt><font color="#993300">&nbsp; ...</font></tt></b>
-<br><b><tt><font color="#993300">&nbsp; parentK.invalidate();</font></tt></b>
+<br><b><tt><font color="#993300">&nbsp; parentN.invalidate();</font></tt></b>
 <br><tt><font color="#993300">}</font></tt></ul>
 </ul>
 <b><font color="#FF6600">Warning</font></b>: if you use operators that
@@ -441,18 +450,25 @@ But anyway general operators were thought to be used putely in <b><tt><font colo
 as described <a href="#general_combination">below</a>.
 <p><a NAME="writing_mutation"></a><b><font color="#FF0000">Writing a general
 operator:</font></b>
-<br>There are many things to modify in the <a href="../Templates/genop.tmpl">template
-class definitions</a> provided.
+<br>There are many things to do to write a general operator - but the Templates
+directory contains some sample tempaltes files to help you. It all depends
+on whether you want more or less offspring than parents, and whetehr you
+want the same selector for every parent or more specialized selectors.
 <ul>
 <li>
-First you have to choose <font color="#FF6600">which kind</font> of general
-operator you want, i.e. with more (or as many) offspring than parents,
-or less offspring than parents.</li>
+It you want <font color="#FF6600">more (or as many) </font>offspring than
+parents, you should use the <a href="../Templates/moreOffspringGenOp.tmpl">moreOffspringGenOp.tmpl</a>
+template - if you want to use the same selector for all parents, the one
+embedded in the argument <b><font color="#999900">eoPopulator</font></b>.
+Otherwise, you'll have to write your own operator based on an external
+selector, as described in <a href="../Templates/lessOffspringExternalSelectorGenOp.tmpl">lessOffspringExternalSelectorGenOp.tmpl</a>.</li>
 
 <li>
-In the latter case (more parents than offspring), you can decide either
-to get the extra parents from the populator (to delete them later), or
-to select extra parents using a private selector.</li>
+If you decide to have more parents than offspring, you can decide either
+to get the extra parents using the <b><font color="#999900">eoPopulator</font></b>&nbsp;
+own selector (see <a href="../Templates/lessOffspringSameSelectorGenOp.tmpl">lessOffspringSameSelectorGenOp.tmpl</a>,
+or to use an external selector (passed at construct-time) as described
+in <a href="../Templates/lessOffspringExternalSelectorGenOp.tmpl">lessOffspringExternalSelectorGenOp.tmpl</a>.</li>
 
 <li>
 Now you can modify the <font color="#FF6600">constructor</font>, where
@@ -463,12 +479,12 @@ object.</li>
 
 <li>
 Finally, write the core of the operator in method <font color="#FF6600">apply()</font>.
-Remember you must use the argument <b><font color="#999900">eoPopulator</font></b>to
+Remember you must use the argument <b><font color="#999900">eoPopulator
+</font></b>to
 access the members of the population in turn (method
 <b><tt><font color="#993300">operator*</font></tt></b>),
 you may use the initial population (method <b><tt><font color="#993300">source()</font></tt></b>),
-as well as the <b><tt><font color="#993300">insert</font></tt></b> or <b><tt><font color="#993300">delete</font></tt></b>
-methods.</li>
+as well as the <b><tt><font color="#993300">insert</font></tt></b> methods.</li>
 </ul>
 
 <ul><b><font color="#FF6600">Warning</font></b>: in general operators,
@@ -484,9 +500,8 @@ the fitness again and will keep the old obsolete value.</ul>
 populators:</font></font></b>
 <br>As has been said above, an
 <b><font color="#999900">eoPopulator</font></b>
-is a <b><font color="#FF6600">population</font></b>, but also behaves like
-an <b><font color="#FF6600">iterator</font></b> over a population (hence
-the name, <b><font color="#FF6600">Popul</font></b>ation-Iter<b><font color="#FF6600">ator</font></b>).
+mainly behaves like an <b><font color="#FF6600">iterator</font></b> over
+a population (hence the name, <b><font color="#FF6600">Popul</font></b>ation-Iter<b><font color="#FF6600">ator</font></b>).
 <p><a NAME="populator_interface"></a>The <b><font color="#FF6600">basic
 interface</font></b> of an <b><font color="#999900">eoPopulator</font></b>
 (see also <a href="../../doc/html/class_eogenop.html">the documentation</a>,
@@ -503,9 +518,8 @@ position management through <b><tt><font color="#993300">seekp</font></tt></b>
 (go to a given position);</li>
 
 <li>
-Individuals can also be <b><font color="#993300">insert</font></b>ed and
-<b><font color="#993300">erase</font></b>d
-at current position using the corresponding methods;</li>
+Individuals can also be <b><font color="#993300">insert</font></b>ed at
+current position using the corresponding methods;</li>
 
 <li>
 last but not least, as the individuals are returned by reference, it is
@@ -514,8 +528,8 @@ management&nbsp; routine <b><tt><font color="#993300">reserve</font></tt></b>
 is called whenever there is a chance to add some individuals in the population
 - i.e. in the eoGenOp base class operator() method.</li>
 </ul>
-Moreover, a protected method, termed <b><tt><font color="#993300">select</font></tt></b>,&nbsp;
-is used inside the object to get new parents for the following operator,
+Moreover, a public method termed <b><tt><font color="#993300">select</font></tt></b>,&nbsp;
+is used inside the object to get new parents for the following <b><tt><font color="#993300">operator*</font></tt></b>,
 and its implementation distinguishes two types of <b><font color="#999900">eoPopulator</font></b>:
 <ul>
 <li>
@@ -541,8 +555,7 @@ of parents, then you <b><font color="#FF6600">must</font></b> use an <b><font co
 to apply the variation operators to the population, and thus get exactly
 the number of offspring you want.
 <p><b><font color="#FF0000">Example</font></b>: An <b><font color="#CC33CC">eoSelectivePopulator</font></b>
-is the main ingredient of the <b><tt><font color="#FF6666">eoGeneralBreeder</font></tt></b>
-<a href="../../doc/html/eogeneralbreeder_h-source.html#l00061">operator()
+is the main ingredient of the <b><tt><font color="#FF6666">eoGeneralBreeder</font></tt></b><a href="../../doc/html/eogeneralbreeder_h-source.html#l00061">operator()
 method</a> - a class that creates a population of offspring from the parents
 applying an eoGenOp (usually an eoOpContainer) to all selected parents
 in turn.
@@ -660,12 +673,12 @@ Gen</font></b>:
 rate: double whose <b>meaning depends on YYY</b></font></tt>
 <p>where YYY can be one of Proportional and Sequential. Note that before
 being added to the container, all simple operators are wrapped into the
-corresponding eoGenOp (see e.g. how an <b><font color="#CC33CC">eoMonOp</font></b>
-<a href="../../doc/html/eogenop_h-source.html#l00079">is wrapped</a> into
-an <b><font color="#CC33CC">eoMonGenOp</font></b>- or how <a href="../../doc/html/eogenop_h-source.html#l00169">any
-operator is handled</a> by calling the appropriate wrapper). In particular,
-the wrapper ensures that <b><font color="#FF6600">individuals who have
-been modified are invalidated</font></b>.
+corresponding eoGenOp (see e.g. how an <b><font color="#CC33CC">eoMonOp</font></b><a href="../../doc/html/eogenop_h-source.html#l00079">is
+wrapped</a> into an <b><font color="#CC33CC">eoMonGenOp</font></b>- or
+how <a href="../../doc/html/eogenop_h-source.html#l00169">any operator
+is handled</a> by calling the appropriate wrapper). In particular, the
+wrapper ensures that <b><font color="#FF6600">individuals who have been
+modified are invalidated</font></b>.
 <p><a NAME="container_and_populator"></a><b><font color="#FF0000">Containers,
 Selectors and Populators</font></b>
 <br>The way the <b><font color="#CC33CC">eoOpContainer</font></b> are applied
@@ -745,14 +758,19 @@ _pop)</font></tt></b>
 <br><b><tt><font color="#993300">{</font></tt></b>
 <br><tt><font color="#993300"><b>&nbsp; EOT &amp; eo1 = *_pop; </b>// get
 (select if necessary) the first guy</font></tt>
-<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-</b>// advance</font></tt>
-<br><b><tt><font color="#993300">&nbsp; EOT &amp; eo2 = </font><font color="#009900">findBlonde</font><font color="#993300">(_pop.source());
+<br><b><tt><font color="#993300">&nbsp; EOT &amp; maBlonde = </font><font color="#009900">findBlonde</font><font color="#993300">(_pop.source());
 </font></tt></b><tt><font color="#993300">//
 select mate</font></tt>
-<br><tt><font color="#993300">// do whatever the operator is supposed to
-do</font></tt>
+<br><tt><font color="#993300">&nbsp; // do whatever the operator is supposed
+to do</font></tt>
+<br><tt><font color="#993300">&nbsp; <b>...</b></font></tt>
+<br><tt><font color="#993300">&nbsp; // if you want to put maBlonde into
+the offspring, you must</font></tt>
+<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</b>// advance</font></tt>
+<br><tt><font color="#993300">&nbsp; <b>_pop.insert(maBlonde);</b>&nbsp;&nbsp;&nbsp;
+// and insert it</font></tt>
 <br><b><tt><font color="#993300">}</font></tt></b>
 <p>Where does that <b><tt><font color="#009900">findBlonde</font></tt></b>
 selector comes from? As usual, you have to attach it to the operator,&nbsp;
