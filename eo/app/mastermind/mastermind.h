@@ -152,7 +152,7 @@ class eoChromMutation: public eoMonOp<Chrom>
       {
       case 0: 
 	{
-	  // gene change
+	  // mutation
 	  uniform_generator<int> color(0, num_colors);
 	  chrom[position()] = color();
 	  break;
@@ -162,7 +162,6 @@ class eoChromMutation: public eoMonOp<Chrom>
 	  // transposition
 	  swap(chrom[position()], chrom[position()]);
 	  break;
-	  
 	}
       default:
 	{
