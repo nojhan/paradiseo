@@ -64,7 +64,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
     // dir for DISK output
     eoValueParam<string>& dirNameParam =  _parser.createParam(string("Res"), "resDir", "Directory to store DISK outputs", '\0', "Output - Disk");
     // shoudl we empty it if exists
-    eoValueParam<bool>& eraseParam = _parser.createParam(false, "eraseDir", "erase files in dirName if any", '\0', "Output - Disk");
+    eoValueParam<bool>& eraseParam = _parser.createParam(true, "eraseDir", "erase files in dirName if any", '\0', "Output - Disk");
     bool dirOK = false;		   // not tested yet
 
     /////////////////////////////////////////
@@ -176,7 +176,11 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 
     if (fileBestParam.value())    // A file monitor for best & secondMoment
       {
+#ifdef _MSVC
+	string stmp = dirNameParam.value() + "\best.xg";
+#else
 	string stmp = dirNameParam.value() + "/best.xg";
+#endif
 	eoFileMonitor *fileMonitor = new eoFileMonitor(stmp);
 	// save and give to checkpoint
 	_state.storeFunctor(fileMonitor);
@@ -236,7 +240,11 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 	dirOK = testDirRes(dirNameParam.value(), eraseParam.value()); // TRUE
 
       unsigned freq = (saveFrequencyParam.value()>0 ? saveFrequencyParam.value() : UINT_MAX );
+#ifdef _MSVC
+      string stmp = dirNameParam.value() + "\generations";
+#else
       string stmp = dirNameParam.value() + "/generations";
+#endif
       eoCountedStateSaver *stateSaver1 = new eoCountedStateSaver(freq, _state, stmp); 
       _state.storeFunctor(stateSaver1);
     checkpoint->add(*stateSaver1);
@@ -250,7 +258,11 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
       if (! dirOK )
 	dirOK = testDirRes(dirNameParam.value(), eraseParam.value()); // TRUE
 
+#ifdef _MSVC
+      string stmp = dirNameParam.value() + "\time";
+#else
       string stmp = dirNameParam.value() + "/time";
+#endif
       eoTimedStateSaver *stateSaver2 = new eoTimedStateSaver(saveTimeIntervalParam.value(), _state, stmp); 
       _state.storeFunctor(stateSaver2);
       checkpoint->add(*stateSaver2);
