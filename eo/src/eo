@@ -28,6 +28,10 @@
 #ifndef _eo_
 #define _eo_
 
+// some defines to make things easier to get at first sight
+
+#define eo_verbose true
+#define eo_no_verbose false
 //-----------------------------------------------------------------------------
 
 #include <utils/eoData.h>

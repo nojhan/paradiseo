@@ -45,11 +45,13 @@ void main_function(int argc, char **argv)
   const float P_MUT = 0.5;	// mutation probability
 
   const double EPSILON = 0.01;	// range for real uniform mutation
+  const double SIGMA   = 0.01;	// std. dev. of normal mutation
   // some parameters for chosing among different operators
   const double segmentRate = 0.5;     // rate for 1-pt Xover
   const double arithmeticRate = 0.5;     // rate for 2-pt Xover
   const double uniformMutRate = 0.5;      // rate for bit-flip mutation
   const double detMutRate = 0.5;       // rate for one-bit mutation
+  const double normMutRate = 0.5;       // rate for normal mutation
 
 // GENERAL
   //////////////////////////
@@ -113,16 +115,19 @@ void main_function(int argc, char **argv)
   eoArithmeticCrossover<Indi> xoverA;
   // Combine them with relative rates
   eoPropCombinedQuadOp<Indi> xover(xoverS, segmentRate);
-  xover.add(xoverA, arithmeticRate, true);
+  xover.add(xoverA, arithmeticRate, eo_verbose);
 
 // MUTATION
+  // Gaussian mutation - std dev as argument
+  eoNormalMutation<Indi>  mutationN(SIGMA); 
   // offspring(i) uniformly chosen in [parent(i)-epsilon, parent(i)+epsilon]
   eoUniformMutation<Indi>  mutationU(EPSILON); 
   // k (=1) coordinates of parents are uniformly modified
   eoDetUniformMutation<Indi>  mutationD(EPSILON); 
   // Combine them with relative rates
   eoPropCombinedMonOp<Indi> mutation(mutationU, uniformMutRate);
-  mutation.add(mutationD, detMutRate, true);
+  mutation.add(mutationD, detMutRate);
+  mutation.add(mutationN, normMutRate, eo_verbose);
 
 // STOP
 // CHECKPOINT

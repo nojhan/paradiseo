@@ -235,7 +235,7 @@ void main_function(int argc, char **argv)
   // Combine them with relative rates
   eoPropCombinedQuadOp<Indi> xover(xover1, onePointRate);
   xover.add(xoverU, URate);
-  xover.add(xover2, twoPointsRate, true);
+  xover.add(xover2, twoPointsRate, eo_verbose);
 
 // MUTATION
   // standard bit-flip mutation for bitstring
@@ -244,7 +244,7 @@ void main_function(int argc, char **argv)
   eoDetBitFlip<Indi> mutationOneBit; 
   // Combine them with relative rates
   eoPropCombinedMonOp<Indi> mutation(mutationBitFlip, bitFlipRate);
-  mutation.add(mutationOneBit, oneBitRate, true);
+  mutation.add(mutationOneBit, oneBitRate, eo_verbose);
 
   // The operators are  encapsulated into an eoTRansform object
   eoSGATransform<Indi> transform(xover, pCross, mutation, pMut);
@@ -294,7 +294,7 @@ void main_function(int argc, char **argv)
     checkpoint.add(SecondStat);
 
     // The Stdout monitor will print parameters to the screen ...
-    eoStdoutMonitor monitor(false);
+    eoStdoutMonitor monitor(eo_no_verbose);
      
     // when called by the checkpoint (i.e. at every generation)
     checkpoint.add(monitor);

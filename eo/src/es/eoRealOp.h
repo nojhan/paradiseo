@@ -61,14 +61,17 @@ template<class Chrom> class eoUniformMutation: public eoMonOp<Chrom>
    */
   void operator()(Chrom& chrom) 
     {
-      chrom.invalidate();
+      bool hasChanged=false;
       for (unsigned lieu=0; lieu<chrom.size(); lieu++) 
 	{
 	  if (rng.flip(p_change)) 
 	    {
 	      chrom[lieu] += 2*epsilon*rng.uniform()-epsilon;
+	      hasChanged = true;
 	    }
 	}
+      if (hasChanged)
+	chrom.invalidate();
     }
   
 private:
@@ -114,6 +117,45 @@ template<class Chrom> class eoDetUniformMutation: public eoMonOp<Chrom>
 private:
   double epsilon;
   unsigned no;
+};
+
+
+template<class Chrom> class eoNormalMutation: public eoMonOp<Chrom>
+{
+ public:
+  /**
+   * (Default) Constructor.
+   * @param _epsilon the range for uniform nutation
+   * @param _p_change the probability to change a given coordinate
+   */
+  eoNormalMutation(const double& _epsilon, const double& _p_change = 1.0): 
+    epsilon(_epsilon), p_change(_p_change) {}
+
+  /// The class name.
+  string className() const { return "eoNormalMutation"; }
+  
+  /**
+   * Do it!
+   * @param chrom The cromosome undergoing the mutation
+   */
+  void operator()(Chrom& chrom) 
+    {
+      bool hasChanged=false;
+      for (unsigned lieu=0; lieu<chrom.size(); lieu++) 
+	{
+	  if (rng.flip(p_change)) 
+	    {
+	      chrom[lieu] += epsilon*rng.normal();
+	      hasChanged = true;
+	    }
+	}
+      if (hasChanged)
+	chrom.invalidate();
+    }
+  
+private:
+  double epsilon;
+  double p_change;
 };
 
 
