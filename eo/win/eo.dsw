@@ -3,6 +3,108 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
+Project: "all_lib"=.\all_lib\all_lib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name eo
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name es
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ga
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name utils
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "all_tests"=.\all_tests\all_tests.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name t_eo
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eobin
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eocheckpointing
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eoexternaleo
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eofitness
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eoga
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eogenop
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eopareto
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eoparetofitness
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eopbil
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eorandom
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eoreal
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eoreplacement
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eoselect
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eossga
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eostateandparser
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eosymreg
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eovector
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_eovirus
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_mge
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_mge-control
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name t_mge1bit
+    End Project Dependency
+}}}
+
+###############################################################################
+
 Project: "eo"=.\eo.dsp - Package Owner=<4>
 
 Package=<5>
@@ -39,68 +141,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "utils"=.\utils.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
-Global:
-
-Package=<5>
-{{{
-}}}
-
-Package=<3>
-{{{
-}}}
-
-###############################################################################
-
-
-Project: "t_eoparetofitness"=.\t_eoparetofitness.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
-Project: "t_eopareto"=.\t_eopareto.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
-Project: "t_eofitness"=.\t_eofitness.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
-Project: "t_eorandom"=.\t_eorandom.dsp - Package Owner=<4>
+Project: "t_eo"=.\t_eo.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -124,66 +165,6 @@ Package=<4>
 
 ###############################################################################
 
-Project: "t_eovirus"=.\t_eovirus.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
-Project: "t_mge"=.\t_mge.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
-Project: "t_mge1bit"=.\t_mge1bit.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
-Project: "t_mge-control"=.\t_mge-control.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
-Project: "t_eostateandparser"=.\t_eostateandparser.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
 Project: "t_eocheckpointing"=.\t_eocheckpointing.dsp - Package Owner=<4>
 
 Package=<5>
@@ -196,15 +177,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "t_eossga"=.\t_eossga.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
+Project: "t_eoesall"=.\t_eoesall.dsp - Package Owner=<4>
 
 ###############################################################################
 
@@ -220,7 +193,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "t_eosymreg"=.\t_eosymreg.dsp - Package Owner=<4>
+Project: "t_eofitness"=.\t_eofitness.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -232,7 +205,79 @@ Package=<4>
 
 ###############################################################################
 
-Project: "t_eo"=.\t_eo.dsp - Package Owner=<4>
+Project: "t_eoga"=.\t_eoga.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "t_eogenop"=.\t_eogenop.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "t_eopareto"=.\t_eopareto.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "t_eoparetofitness"=.\t_eoparetofitness.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "t_eopbil"=.\t_eopbil.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "t_eorandom"=.\t_eorandom.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "t_eoreal"=.\t_eoreal.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -268,7 +313,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "t_eogenop"=.\t_eogenop.dsp - Package Owner=<4>
+Project: "t_eossga"=.\t_eossga.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -280,7 +325,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "t_eoga"=.\t_eoga.dsp - Package Owner=<4>
+Project: "t_eostateandparser"=.\t_eostateandparser.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -292,7 +337,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "t_eoreal"=.\t_eoreal.dsp - Package Owner=<4>
+Project: "t_eosymreg"=.\t_eosymreg.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -316,7 +361,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "t_eoesall"=.\t_eoesall.dsp - Package Owner=<4>
+Project: "t_eovirus"=.\t_eovirus.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -328,7 +373,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "t_eopbil"=.\t_eopbil.dsp - Package Owner=<4>
+Project: "t_mge"=.\t_mge.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -339,3 +384,52 @@ Package=<4>
 }}}
 
 ###############################################################################
+
+Project: "t_mge-control"=".\t_mge-control.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "t_mge1bit"=.\t_mge1bit.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "utils"=.\utils.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+
