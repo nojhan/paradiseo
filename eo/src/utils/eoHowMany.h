@@ -37,14 +37,16 @@
  * if you want to select or kill just 1 guy. Using an eoHowMany 
  * allows one to modify the population size without touching anything else.
  *
- * There are 3 possible way to compute the return value from the argument:
- *    - a rate ->  return rate*popSize
+ * There are 4 possible way to compute the return value from the argument:
  *    - an absolute POSITIVE integer --> return rate (regardless of popsize)
+ *    - a POSITIVE rate ->  return rate*popSize
  *    - an absolute NEGATIVE integer  --> return popsize-rate
- * Note that a negative rate is unnecessary because a rate is relative anyway.
+ *    - a NEGATIVE rate ->  return (1-rate)*popSize
+ * Note that a negative rate should be unnecessary because a rate is
+ * relative, but it is there for consistency reasons - and because it
+ * is needed in <a href="classeo_g3_replacement_h-source.html">eoG3Replacement</a>
  *
- * It has 2 private members, a double for case 1, 
- *    and an integer for cases 2 and 3 above
+ * It has 2 private members, a double and an integer to cover all cases
  *
  * Example use: in <a href="class_eogeneralbreeder.html">eoGeneralBreeder.h</a>
  * Example reading from parser: in 
@@ -54,6 +56,10 @@
  *    Added the possibility to have a negative number - 
  *        when treated as a number: returns then (size - combien)
  *    Should not modify anything when a positive number is passed in the ctor
+ *
+ * MS 20/06/2002:
+ *    Added the negative rate and the operator-() (for
+ *    eoG3Repalcement)
  *
  * It is an eoPersistent because we need to be able to use eoParamValue<eoHowMany>
  */
@@ -71,14 +77,16 @@ public:
     if (_interpret_as_rate)
       {
 	if (_rate<0)
-	  throw std::logic_error("Negative rate in eoHowMany!");
+	  rate = 1.0-rate;
+	if (rate > 1.0)
+	  throw std::logic_error("rate>1 in eoHowMany!");
       }
     else
       {
 	rate = 0.0;		   // just in case, but shoud be unused
 	combien = int(_rate);	   // negative values are allowed here
 	if (combien != _rate)
-	  cout << "Warning: Number was rounded in eoHowMany";
+	  cerr << "Warning: Number was rounded in eoHowMany";
       }
   }
 
@@ -125,7 +133,7 @@ public:
   }
 
   virtual void readFrom(istream& _is) 
-  {
+   {
     string value;
     _is >> value;
     readFrom(value);
@@ -156,6 +164,16 @@ public:
     // minimal check
     if ( rate <= 0.0 )
       throw runtime_error("Negative rate read in eoHowMany::readFrom");
+  }
+
+  /** The unary - operator: reverses the computation */
+  eoHowMany operator-()
+  {
+    if (!combien)		   // only rate is used
+      rate = 1.0-rate;
+    else
+      combien = -combien;
+    return (*this);
   }
   
 private :
