@@ -60,7 +60,7 @@ class eoSelectPerc : public eoSelect<EOT>
 
          select.setup(_source);
 
-         for (int i = 0; i < _dest.size(); ++i)
+         for (size_t i = 0; i < _dest.size(); ++i)
              _dest[i] = select(_source);
      }
 
