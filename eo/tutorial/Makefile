@@ -12,5 +12,10 @@ lesson2 :
 lesson3 : 
 	cd Lesson3; make
 
+#empty dist and distdir to let top-level 'make' do its job
+dist :
+
+distdir :
+
 clean:
 	for i in $(SUBDIRS); do pushd $$i && $(MAKE) clean; popd; done
