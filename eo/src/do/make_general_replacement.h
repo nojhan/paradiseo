@@ -47,7 +47,9 @@ eoReduce<EOT> & decode_reduce(eoParamParamType & _ppReduce, eoState & _state)
   eoReduce<EOT> * ptReduce;
 
   // ---------- Deterministic
-  if (_ppReduce.first == std::string("Deterministic"))
+  if ( (_ppReduce.first == std::string("Deterministic")) || 
+       (_ppReduce.first == std::string("Sequential")) 
+       )
   {
     ptReduce = new eoTruncate<EOT>;
   }
@@ -98,7 +100,9 @@ eoReduce<EOT> & decode_reduce(eoParamParamType & _ppReduce, eoState & _state)
       
       ptReduce = new eoStochTournamentTruncate<EOT>(p);
     }
-  else if (_ppReduce.first == std::string("Uniform"))
+  else if ( (_ppReduce.first == std::string("Uniform")) || 
+	    (_ppReduce.first == std::string("Random"))
+	    )
     {
       ptReduce = new eoRandomReduce<EOT>;
     }
