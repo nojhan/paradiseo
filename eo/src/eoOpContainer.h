@@ -93,7 +93,7 @@ class eoSequentialOp : public eoOpContainer<EOT>
 
   void apply(eoPopulator<EOT>& _pop)
   {
-     position_type pos = _pop.tellp();
+    position_type pos = _pop.tellp();
 
      for (size_t i = 0; i < rates.size(); ++i)
      {

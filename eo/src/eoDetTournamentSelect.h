@@ -60,7 +60,7 @@ template <class EOT> class eoDetTournamentSelect: public eoSelectOne<EOT>
   */
   virtual const EOT& operator()(const eoPop<EOT>& _pop) 
   {
-    return deterministic_tournament(_pop, tSize);
+      return deterministic_tournament(_pop, tSize);
   }
   
  private:

@@ -44,7 +44,7 @@ class eoTruncSelect : public eoSelect<EOT>
 {
  public:
   /** Ctor: from an eoSelect (and an eoMany to tell how many are kept for selectino */
-  eoSelectMany(eoSelectOne<EOT>& _select, eoHowMany _howMany) 
+  eoTruncSelect(eoSelectOne<EOT>& _select, eoHowMany _howMany) 
     : select(_select), howMany(_howMany) {}
   
      /**

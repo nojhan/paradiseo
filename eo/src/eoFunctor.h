@@ -20,7 +20,7 @@
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              mak@dhi.dk
-    CVS Info: $Date: 2001-03-21 12:10:13 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoFunctor.h,v 1.5 2001-03-21 12:10:13 jmerelo Exp $ $Author: jmerelo $ 
+    CVS Info: $Date: 2003-01-05 16:31:47 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoFunctor.h,v 1.6 2003-01-05 16:31:47 maartenkeijzer Exp $ $Author: maartenkeijzer $ 
  */
 //-----------------------------------------------------------------------------
 
@@ -75,6 +75,11 @@ public :
 
     /// The pure virtual function that needs to be implemented by the subclass
     virtual R operator()() = 0;
+
+    static eoFunctorBase::procedure_tag functor_category()
+    {
+	return eoFunctorBase::procedure_tag();
+    }
 };
 
 /**
@@ -106,6 +111,11 @@ public :
 
     /// The pure virtual function that needs to be implemented by the subclass
     virtual R operator()(A1) = 0;
+
+    static eoFunctorBase::unary_function_tag functor_category()
+    {
+	return eoFunctorBase::unary_function_tag();
+    }
 };
 
 /**
@@ -140,6 +150,11 @@ public :
 
     /// The pure virtual function that needs to be implemented by the subclass
     virtual R operator()(A1, A2) = 0;
+
+    static eoFunctorBase::binary_function_tag functor_category()
+    {
+	return eoFunctorBase::binary_function_tag();
+    }
 };
 
 /**

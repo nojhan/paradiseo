@@ -56,8 +56,8 @@ bool minimizing_fitness()
        likely not working with scalar fitness values. In that case we're sorry
        but you cannot use lottery or roulette_wheel selection...
     */
-    eo1.fitness(0.0); // tried to cast it to an EOT::Fitness, but for some reason GNU barfs on this 
-    eo2.fitness(1.0); 
+    eo1.fitness( typename EOT::Fitness(0.0) ); // tried to cast it to an EOT::Fitness, but for some reason GNU barfs on this 
+    eo2.fitness( typename EOT::Fitness(1.0) ); 
 
     return eo2 < eo1; // check whether we have a minimizing fitness
 };
@@ -194,7 +194,7 @@ It deterministic_tournament(It _begin, It _end, unsigned _t_size, eoRng& _gen = 
         It competitor = _begin + _gen.random(_end - _begin);
 
         if (*best < *competitor)
-        {
+	{
             best = competitor;
         }
     }

@@ -67,7 +67,7 @@ class eoGenOp : public eoOp<EOT>, public eoUF<eoPopulator<EOT> &, void>
   virtual string className() const = 0;
     void operator()(eoPopulator<EOT>& _pop)
     {
-      _pop.reserve(max_production());
+    _pop.reserve(max_production());
       apply(_pop);
     }
 
@@ -163,13 +163,15 @@ class eoQuadGenOp : public eoGenOp<EOT>
     void apply(eoPopulator<EOT>& _pop)
     {
       EOT& a = *_pop;
-      EOT& b = *++_pop;
-
+      EOT& b = *++_pop;	
+      
+      
       if(op(a, b))
       {
         a.invalidate();
         b.invalidate();
       }
+
    }
   virtual string className() const {return op.className();}
 

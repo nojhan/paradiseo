@@ -32,7 +32,10 @@
 #include <eoGenOp.h>
 #include <eoPopulator.h>
 #include <eoSelectOne.h>
+#include <eoSequentialSelect.h>
 #include <eoBreed.h>
+#include <eoEvalFunc.h>
+#include <eoPopulator.h>
 #include <utils/eoHowMany.h>
 
 /*****************************************************************************
@@ -79,7 +82,7 @@ class eoOneToOneBreeder: public eoBreed<EOT>
       _offspring.clear();
       eoSelectivePopulator<EOT> popit(_parents, _offspring, select);
       
-      for (unsigned iParent=0; iParent<_parents.size(); iParent++)
+      for (unsigned iParent=0; iParent<target; iParent++)
 	{
 	  unsigned pos = popit.tellp(); // remember current position
 	  EOT theParent = *popit;  // remember the parent itself
@@ -100,8 +103,6 @@ class eoOneToOneBreeder: public eoBreed<EOT>
 	  if (theParent > leOffspring) // old parent better than offspring
 	    if (rng.uniform() < pReplace) // if probability
 	      leOffspring = theParent; // replace
-	  cout << "============ Final =========================\n";
-	  cout << _offspring << endl;
 	  // finally, go to next guy to handle
 	  ++popit;
 	}

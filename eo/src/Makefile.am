@@ -4,12 +4,12 @@
 ##
 ###############################################################################
 
-SUBDIRS = es ga gp utils other
+SUBDIRS = es ga gp utils other do 
 CPPFLAGS = -O2
 
 lib_LIBRARIES = libeo.a
 libeo_a_SOURCES = eoFunctorStore.cpp eoPersistent.cpp eoPrintable.cpp eoCtrlCContinue.cpp eoParetoFitness.cpp
 
 libeoincdir = $(includedir)/eo
-libeoinc_HEADERS = *.h eo
+libeoinc_HEADERS = *.h eo do/*.h 
 

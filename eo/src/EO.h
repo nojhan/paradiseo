@@ -120,9 +120,6 @@ public:
 		_is.seekg(pos); // rewind
 		_is >> repFitness;
 	}
-
-      
-      
   }
 
   /**
