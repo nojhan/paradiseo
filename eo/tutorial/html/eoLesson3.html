@@ -362,7 +362,7 @@ eoParameters</font></b>
 objects are used to display a set of </font><b><tt><font color="#3366FF">eoValueParam</font></tt></b><font color="#000000">
 objects.</font>
 <p><b><font color="#FF0000">Available monitors</font></b>: A few monitors
-are available in th eEO distribution:
+are available in the EO distribution:
 <ul>
 <li>
 <b><tt><font color="#3366FF">eoStdoutMonitor</font></tt></b> displays its
@@ -372,11 +372,13 @@ parameters in <font color="#FF6600">text format on the screen</font>. The
 false, parsimonious output displays one line for all parameters.</li>
 
 <li>
-<b><tt><font color="#3366FF">eoStdoutMonitor</font></tt></b> writes its
+<b><tt><font color="#3366FF">eoFileMonitor</font></tt></b> writes its
 parameters in <font color="#FF6600">text format in a file</font>. A file
 name is required in the constructor, and an optional separator character
-can be added (default is ','). Note that the file is overwritten by next
-call to the same program.</li>
+can be added (default is ' '). Note that the file is by default overwritten 
+by next call to the same program, unless you pass "true" as third (optional) 
+boolean parameter, which will result in appending to the file if it 
+ever exists.</li>
 
 <li>
 <b><tt><font color="#3366FF">eoGnuplot1DMonitor</font></tt></b> displays
