@@ -1,4 +1,6 @@
 *.o
+*.csv
+*.sav
 .deps
 Makefile
 Makefile.in
