@@ -2,26 +2,85 @@
 // eoNonUniform.h
 //-----------------------------------------------------------------------------
 
-#ifndef eoNonUniform_h
-#define eoNonUniform_h
+#ifndef EONONUNIFORM_H
+#define EONONUNIFORM_H
 
 //-----------------------------------------------------------------------------
-// eoNonUniform: base class for non uniform operators
+
+#include <math.h>  // pow
+
+//-----------------------------------------------------------------------------
+// eoNonUniform
 //-----------------------------------------------------------------------------
 
-template<class Time> class eoNonUniform
+class eoNonUniform
 {
 public:
-  eoNonUniform(const Time& _time = Time(), const Time& _max_time = Time()): 
-    time_value(_time), max_time_value(_max_time) {}
+  eoNonUniform(const unsigned _num_step):
+    step_value(0), num_step_value(_num_step) {}
   
-  const Time& time() const { return time_value; }
-  const Time& max_time() const { return max_time_value; }
+  void reset() { step_value = 0; }
+  
+  const unsigned& step() const { return step_value; }
+  const unsigned& num_step() const { return num_step_value; }
+  
+  operator int() const { return step_value < num_step_value; }
+  
+  void operator++() { ++step_value; }
+  void operator++(int) { ++step_value; }
   
 private:
-  Time &time_value, &max_time_value;
+  unsigned step_value, num_step_value;
+};
+
+//-----------------------------------------------------------------------------
+// eoLinear
+//-----------------------------------------------------------------------------
+
+class eoLinear
+{
+public:
+  eoLinear(const double        _first, 
+	   const double        _last, 
+	   const eoNonUniform& _non_uniform):
+    first(_first), 
+    diff((_last - _first) / (_non_uniform.num_step() - 1)), 
+    non_uniform(_non_uniform) {}
+  
+  double operator()() const
+  {
+    return first + diff * non_uniform.step();
+  }
+  
+private:
+  double              first, diff;
+  const eoNonUniform& non_uniform;
+};
+
+//-----------------------------------------------------------------------------
+// eoNegExp2
+//-----------------------------------------------------------------------------
+
+class eoNegExp2
+{
+ public:
+  eoNegExp2(const double        _r,
+	    const double        _b,
+	    const eoNonUniform& _non_uniform):
+    r(_r), b(_b), 
+    non_uniform(_non_uniform) {}
+  
+  double operator()() const
+    {
+      return 1.0 - pow(r, pow(1.0 - (double)non_uniform.step() / 
+			      non_uniform.num_step(), b));
+    }
+  
+ private:
+  double              r, b;
+  const eoNonUniform& non_uniform;
 };
 
 //-----------------------------------------------------------------------------
 
-#endif eoNonUniform_h
+#endif NON_UNIFORM_HH
