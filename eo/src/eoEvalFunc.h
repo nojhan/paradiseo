@@ -45,6 +45,15 @@ template<class EOT> struct eoEvalFunc {
 
   /// Effectively applies the evaluation function to an EO 
   virtual void operator() ( EOT & _eo ) const = 0;
+
+  template <class It>
+  void range(It begin, It end) const
+  {
+      for (;begin != end; ++begin)
+      {
+          operator()(*begin);
+      }
+  }
 };
 
 #endif
