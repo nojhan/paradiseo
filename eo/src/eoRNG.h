@@ -112,8 +112,8 @@ public :
      ctor takes a random seed; if you want another seed, use reseed
      @see reseed
   */
-  eoRng(uint32 s = (uint32) time(0) ) : state(0), next(0), left(-1), cached(false)
-  {
+
+  eoRng(uint32 s = (uint32) time(0) ) : state(0), next(0), left(-1), cached(false), N(624), M(397), K((0x9908B0DFU)  {
     state = new uint32[N+1];
     initialize(s);
   } 
@@ -253,16 +253,19 @@ private :
  bool cached;
  float cacheValue;
  
- static const int N;
- static const int M;
- static const uint32 K; // a magic constant
- 
-};
+ const int N;
+ const int M;
+ const uint32 K; // a magic constant
 
-// Initialization of statics
-const int eoRng::N = 624;
-const int eoRng::M = 397;
-const uint32		eoRng::K = (0x9908B0DFU);         // a magic constant
+ /**
+	Private copy ctor and assignment operator to make sure that
+	nobody accidentally copies the random number generator.
+	If you want similar RNG's, make two RNG's and initialize
+	them with the same seed.
+ */
+  eoRng (const eoRng&);				// no implementation
+  eoRng& operator=(const eoRng&);	// dito
+};
 
 /**
 	The one and only global eoRng object
