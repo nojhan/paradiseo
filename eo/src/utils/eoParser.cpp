@@ -142,9 +142,9 @@ void eoParser::updateParameters() const
 void eoParser::readFrom(istream& is)
 {
   string str;
-  
   while (is >> str)
   {
+    
       if (str[0] == '#')
       { // skip the rest of the line
           string tempStr;
@@ -179,7 +179,9 @@ void eoParser::readFrom(istream& is)
           }
           else // it should be a char
           {
-              string value(str.begin() + 3, str.end());
+	      string value = "1";
+	      if (str.size() > 2)
+		value = string(str.begin() + 3, str.end());
               shortNameMap[str[1]] = value;
           }
       }
