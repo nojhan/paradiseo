@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mkeijzer@dhi.dk
-CVS Info: $Date: 2003-02-27 19:21:19 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoFileMonitor.h,v 1.11 2003-02-27 19:21:19 okoenig Exp $ $Author: okoenig $ 
+CVS Info: $Date: 2003-11-19 13:29:15 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoFileMonitor.h,v 1.12 2003-11-19 13:29:15 okoenig Exp $ $Author: okoenig $ 
 
  */
 //-----------------------------------------------------------------------------
@@ -45,32 +45,35 @@ MS 25/11/00
 class eoFileMonitor : public eoMonitor
 {
 public :
-    eoFileMonitor(std::string _filename, std::string _delim = " ", 
-		  bool _keep = false) : 
-      filename(_filename), delim(_delim), keep(_keep)
+  
+  eoFileMonitor(std::string _filename, std::string _delim = " ", bool _keep = false, bool _header=false) 
+    : filename(_filename), delim(_delim), keep(_keep), header(_header), firstcall(true) 
   {
-    if (! _keep)
-      {
-	std::ofstream os(filename.c_str());
-	if (!os)
-	  {
-	    std::string str = "eoFileMonitor: Could not open " + filename;
-	    throw std::runtime_error(str);
-	  }
+    if (! _keep) {
+      std::ofstream os(filename.c_str());
+      if (!os){
+	std::string str = "eoFileMonitor: Could not open " + filename;
+	throw std::runtime_error(str);
       }
+    }
   }
-    eoMonitor& operator()(void);
+  
+  eoMonitor& operator()(void);
 
-    eoMonitor& operator()(std::ostream& os);
+  eoMonitor& operator()(std::ostream& os);
 
-    void printHeader(void);
-    virtual void printHeader(std::ostream& os);
-  virtual std::string getFileName()	   // for eoGnuPlot
-  { return filename;}
+  void printHeader(void);
+  virtual void printHeader(std::ostream& os);
+  
+  virtual std::string getFileName() { return filename;}
+  
 private :
-    std::string filename;
-    std::string delim;
+  std::string filename;
+  std::string delim;
   bool keep;			   // should we append or create a new file
+  bool header;                     // printing header at begin of file?
+  bool firstcall;
+  
 };
 
 #endif

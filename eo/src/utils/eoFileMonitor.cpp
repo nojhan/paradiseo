@@ -52,6 +52,11 @@ eoMonitor& eoFileMonitor::operator()(void)
         throw runtime_error(str);
     }
 
+    if (firstcall && !keep && header ){
+      printHeader();
+      firstcall = false;
+    }
+    
     return operator()(os);
 }
 
