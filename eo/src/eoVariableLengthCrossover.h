@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
-    CVS Info: $Date: 2001-03-21 13:09:47 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVariableLengthCrossover.h,v 1.5 2001-03-21 13:09:47 jmerelo Exp $ $Author: jmerelo $ 
+    CVS Info: $Date: 2001-03-21 13:35:09 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVariableLengthCrossover.h,v 1.6 2001-03-21 13:35:09 jmerelo Exp $ $Author: jmerelo $ 
  */
 //-----------------------------------------------------------------------------
 
@@ -146,6 +146,36 @@ public :
 private:
   unsigned Min, Max;
   eoAtomExchange<AtomType> & atomExchange;
+};
+/** Exchange Crossover using an AtomExchange
+ */
+
+template <class EOT>
+class eoInnerExchangeQuadOp : public eoQuadOp<EOT>
+{
+public :
+
+  typedef typename EOT::AtomType AtomType;
+
+  // default ctor: requires bounds on number of genes + a rate
+  eoInnerExchangeQuadOp( eoQuadOp<AtomType>& _op, float _rate = 0.5):
+    op(_op), rate( _rate ) {}
+
+  bool operator()(EOT & _eo1, EOT & _eo2)
+  {
+    unsigned size1 = _eo1.size(), size2 = _eo2.size(), minsize = ( size1 > size2)?size2:size1;
+    bool changed = false;
+    for ( unsigned i = 0; i < minsize; i ++ ) {
+      if ( rng.flip( rate ) ) {
+	bool changedHere = op( _eo1[i], _eo2[i] );
+	changed |= changedHere;
+      }
+    }
+    return changed;	 // should we test that? Yes, but no time now
+  }
+private:
+  float rate;
+  eoQuadOp<AtomType> & op;
 };
 
 

@@ -24,7 +24,7 @@
  */
 //-----------------------------------------------------------------------------
 /**
-CVS Info: $Date: 2001-02-13 22:35:07 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoParser.h,v 1.7 2001-02-13 22:35:07 jmerelo Exp $ $Author: jmerelo $ $Log$
+CVS Info: $Date: 2001-03-21 13:35:10 $ $Version$ $Author: jmerelo $
 */
 #ifndef eoParser_h
 #define eoParser_h
