@@ -31,8 +31,8 @@ class Mutate : public eoMonOp<eoDouble>
   {
     for (unsigned i = 0; i < chromsize; ++i)
     {
-      if (rng.flip(1./10.))
-        _eo.value[i] += rng.normal() * 0.05 * _eo.value[i];
+      if (rng.flip(1./chromsize))
+        _eo.value[i] += rng.normal() * 0.1 * _eo.value[i];
 
       if (_eo.value[i] < minval)
         _eo.value[i] = minval;
@@ -71,27 +71,61 @@ class Init : public eoInit<eoDouble>
   {
     _eo.value[0] = rng.uniform();
 
+    double range = maxval - minval;
+
     for (unsigned i = 1; i < chromsize; ++i)
-      _eo.value[i] = rng.uniform() * 10. - 5;
+      _eo.value[i] = rng.uniform() * range + minval;
     _eo.invalidate();
   }
 };
 
+// Trying out an elitist non-dominated sorted replacement scheme
+template <class EOT, class WorthT = double>
+class eoNDPlusReplacement : public eoReplacement<EOT>
+{
+public:
+  eoNDPlusReplacement(eoPerf2Worth<EOT, WorthT>& _perf2worth) : perf2worth(_perf2worth) {}
+
+  struct WorthPair : public pair<WorthT, const EOT*>
+  {
+    bool operator<(const WorthPair& other) const { return other.first < first; }
+  };
+
+  void operator()(eoPop<EOT>& _parents, eoPop<EOT>& _offspring)
+  {
+    unsigned sz = _parents.size();
+    _parents.reserve(_parents.size() + _offspring.size());
+    copy(_offspring.begin(), _offspring.end(), back_inserter(_parents));
+
+    // calculate worths
+    perf2worth(_parents);
+    perf2worth.sort_pop(_parents);
+    perf2worth.resize(_parents, sz);
+
+    _offspring.clear();
+  }
+
+private :
+  eoPerf2Worth<EOT, WorthT>& perf2worth;
+};
 
 template <class EOT>
 eoPerf2Worth<EOT, double>& make_perf2worth(eoParser& parser, eoState& state)
 {
-  eoDominanceMap<eoDouble>&  dominance = state.storeFunctor(new eoDominanceMap<EOT>);
 
-  unsigned what = parser.createParam(unsigned(0), "perf2worth", "worth mapping indicator : \n\t \
+  unsigned what = parser.createParam(unsigned(1), "perf2worth", "worth mapping indicator : \n\t \
                   0: non_dominated sorting \n\t\
                   1: non_dominated sorting 2 \n\t\
                   2: simple ranking \n\t", 'w').value();
 
   switch (what)
   {
-    case 1 : return state.storeFunctor(new eoNDSorting_II<EOT>(dominance));
-    case 2 : return state.storeFunctor(new eoParetoRanking<EOT>(dominance));
+    case 1 : return state.storeFunctor(new eoNDSorting_II<EOT>());
+    case 2 :
+    {
+      eoDominanceMap<eoDouble>&  dominance = state.storeFunctor(new eoDominanceMap<EOT>);
+      return state.storeFunctor(new eoParetoRanking<EOT>(dominance));
+    }
   }
   //default
 
@@ -101,19 +135,20 @@ eoPerf2Worth<EOT, double>& make_perf2worth(eoParser& parser, eoState& state)
     // should actually set parser flag, but I don't care
   }
 
-  return state.storeFunctor(new eoNDSorting_I<EOT>(dominance, 0.5));
+  return state.storeFunctor(new eoNDSorting_I<EOT>(0.5));
 }
 
 template <class EOT>
-eoSelectFromWorth<EOT, double>& make_selector(eoParser& parser, eoState& state, eoPerf2Worth<EOT, double>& perf2worth)
+eoSelectOne<EOT>& make_selector(eoParser& parser, eoState& state, eoPerf2Worth<EOT, double>& perf2worth)
 {
-  unsigned tournamentsize = 2;
-  double stochtour = 0.95;
+  unsigned tournamentsize = parser.createParam(unsigned(2), "tournament_size", "Tournament Size", 't').value();
+  double stochtour = parser.createParam(unsigned(0.95), "tournament_prob", "Probability in stochastic tournament").value();
 
   switch (parser.createParam(unsigned(0), "selector", "Which selector (too lazy to explain: use the source)", 's').value())
   {
     case 1 : return state.storeFunctor(new eoStochTournamentWorthSelect<eoDouble>(perf2worth, stochtour));
     case 2 : return state.storeFunctor(new eoRouletteWorthSelect<eoDouble>(perf2worth));
+    case 3 : return state.storeFunctor(new eoRandomSelect<EOT>);
   }
   // default
 
@@ -138,7 +173,7 @@ void the_main(int argc, char* argv[])
   eoPerf2Worth<eoDouble, double>& perf2worth = make_perf2worth<eoDouble>(parser, state);
 
   // Look: another factory function, now for selection
-  eoSelectFromWorth<eoDouble>& select = make_selector<eoDouble>(parser, state, perf2worth);
+  eoSelectOne<eoDouble>& select = make_selector<eoDouble>(parser, state, perf2worth);
 
   // One general operator
   eoProportionalOp<eoDouble> opsel;
@@ -148,7 +183,7 @@ void the_main(int argc, char* argv[])
   eoGeneralBreeder<eoDouble> breeder(select, opsel);
 
   // replacement
-  eoCommaReplacement<eoDouble> replace;
+  eoNDPlusReplacement<eoDouble> replace(perf2worth);
 
   unsigned long generation = 0;
   eoGenContinue<eoDouble> gen(num_gen, generation);
