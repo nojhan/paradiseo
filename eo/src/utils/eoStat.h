@@ -91,7 +91,11 @@ template <class EOT> class eoAverageStat : public eoStat<EOT, typename EOT::Fitn
 {
 public :
     typedef typename EOT::Fitness fitness_type;
+#ifdef _MSC_VER 
+    eoAverageStat(std::string _description = "Average Fitness") : eoStat<EOT, EOT::Fitness>(fitness_type(), _description) {}
+#else
     eoAverageStat(std::string _description = "Average Fitness") : eoStat<EOT, typename EOT::Fitness>(fitness_type(), _description) {}
+#endif
 
     static double sumFitness(double _sum, const EOT& _eot)
     {
@@ -170,8 +174,13 @@ public :
 /**
     The n_th element fitness in the population (see eoBestFitnessStat)
 */
+#ifdef _MSC_VER 
+template <class EOT>
+class eoNthElementFitnessStat : public eoSortedStat<EOT, EOT::Fitness >
+#else
 template <class EOT>
 class eoNthElementFitnessStat : public eoSortedStat<EOT, typename EOT::Fitness >
+#endif
 {
 public :
     typedef typename EOT::Fitness Fitness;
