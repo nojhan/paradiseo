@@ -98,7 +98,7 @@ private :
 
 /** Specialization for bool, does an unbiased coin flip */
 template <>
-void eoUniformInit<bool>::operator()(bool & _b)
+inline void eoUniformInit<bool>::operator()(bool & _b)
 {
     _b = uniform.flip(0.5);
 }

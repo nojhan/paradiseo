@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
- CVS Info: $Date: 2003-02-27 19:24:47 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/ga/eoBitOp.h,v 1.15 2003-02-27 19:24:47 okoenig Exp $ $Author: okoenig $
+ CVS Info: $Date: 2003-05-16 14:28:52 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/ga/eoBitOp.h,v 1.16 2003-05-16 14:28:52 jeggermo Exp $ $Author: jeggermo $
  */
 //-----------------------------------------------------------------------------
 
@@ -362,7 +362,11 @@ template<class Chrom> class eoNPtsBitXover: public eoQuadOp<Chrom>
 	    change = !change;
 
 	  if (change)
-	    std::swap(chrom1[bit], chrom2[bit]);
+	  {
+	  	typename Chrom::AtomType tmp= chrom1[bit];
+		chrom1[bit] = chrom2[bit];
+		chrom2[bit] = tmp;
+	  }
 	}
 
     return true;

@@ -192,14 +192,14 @@ public :
   Specialization for std::string
 */
 template <>
-std::string eoValueParam<std::string>::getValue(void) const
+inline std::string eoValueParam<std::string>::getValue(void) const
 {
   return repValue;
 }
 
 
 template <>
-void eoValueParam<bool>::setValue(std::string _value)
+inline void eoValueParam<bool>::setValue(std::string _value)
 {
     if (_value.empty())
     {
@@ -217,7 +217,7 @@ void eoValueParam<bool>::setValue(std::string _value)
 
 /// Because MSVC does not support partial specialization, the std::pair is a double, not a T
 template <>
-std::string eoValueParam<std::pair<double, double> >::getValue(void) const
+inline std::string eoValueParam<std::pair<double, double> >::getValue(void) const
 {
     // use own buffer as MSVC's buffer leaks!
 #ifdef HAVE_SSTREAM
@@ -233,7 +233,7 @@ std::string eoValueParam<std::pair<double, double> >::getValue(void) const
 
 /// Because MSVC does not support partial specialization, the std::pair is a double, not a T
 template <>
-void eoValueParam<std::pair<double, double> >::setValue(std::string _value)
+inline void eoValueParam<std::pair<double, double> >::setValue(std::string _value)
 {
 #ifdef HAVE_SSTREAM
     std::istringstream is(_value);
@@ -248,7 +248,7 @@ void eoValueParam<std::pair<double, double> >::setValue(std::string _value)
 //////////////////////////////////
 /// Because MSVC does not support partial specialization, the std::vector is a std::vector of doubles, not a T
 template <>
-std::string eoValueParam<std::vector<std::vector<double> > >::getValue(void) const
+inline std::string eoValueParam<std::vector<std::vector<double> > >::getValue(void) const
 {
 #ifdef HAVE_SSTREAM
     std::ostringstream os;
@@ -270,7 +270,7 @@ std::string eoValueParam<std::vector<std::vector<double> > >::getValue(void) con
 
 /// Because MSVC does not support partial specialization, the std::vector is a std::vector of doubles, not a T
 template <>
-void eoValueParam<std::vector<std::vector<double> > >::setValue(std::string _value)
+inline void eoValueParam<std::vector<std::vector<double> > >::setValue(std::string _value)
 {
 #ifdef HAVE_SSTREAM
     std::istringstream is(_value);
@@ -297,7 +297,7 @@ void eoValueParam<std::vector<std::vector<double> > >::setValue(std::string _val
 //////////////////////////////////
 /// Because MSVC does not support partial specialization, the std::vector is a double, not a T
 template <>
-std::string eoValueParam<std::vector<double> >::getValue(void) const
+inline std::string eoValueParam<std::vector<double> >::getValue(void) const
 {
 #ifdef HAVE_SSTREAM
     std::ostringstream os;
@@ -314,7 +314,7 @@ std::string eoValueParam<std::vector<double> >::getValue(void) const
 
 /// Because MSVC does not support partial specialization, the std::vector is a double, not a T
 template <>
-void eoValueParam<std::vector<double> >::setValue(std::string _value)
+inline void eoValueParam<std::vector<double> >::setValue(std::string _value)
 {
 #ifdef HAVE_SSTREAM
     std::istringstream is(_value);
@@ -331,7 +331,7 @@ void eoValueParam<std::vector<double> >::setValue(std::string _value)
 //////////////////////////////////
 /// Because MSVC does not support partial specialization, the std::vector is a eoMinimizingFitness, not a T
 template <>
-std::string eoValueParam<std::vector<eoMinimizingFitness> >::getValue(void) const
+inline std::string eoValueParam<std::vector<eoMinimizingFitness> >::getValue(void) const
 {
 #ifdef HAVE_SSTREAM
     std::ostringstream os;
@@ -349,7 +349,7 @@ std::string eoValueParam<std::vector<eoMinimizingFitness> >::getValue(void) cons
 /// Because MSVC does not support partial specialization, the std::vector is a eoMinimizingFitness, not a T
 // NOTE: g++ doesn support it either!!!
 template <>
-void eoValueParam<std::vector<eoMinimizingFitness> >::setValue(std::string _value)
+inline void eoValueParam<std::vector<eoMinimizingFitness> >::setValue(std::string _value)
 {
 #ifdef HAVE_SSTREAM
     std::istringstream is(_value);
@@ -365,14 +365,14 @@ void eoValueParam<std::vector<eoMinimizingFitness> >::setValue(std::string _valu
 // The std::vector<const EOT*>
 //////////////////////////////////
 template <>
-std::string eoValueParam<std::vector<void*> >::getValue(void) const
+inline std::string eoValueParam<std::vector<void*> >::getValue(void) const
 {
   throw std::runtime_error("I cannot getValue for a std::vector<EOT*>");
   return std::string("");
 }
 
 template <>
-void eoValueParam<std::vector<void*> >::setValue(std::string)
+inline void eoValueParam<std::vector<void*> >::setValue(std::string)
 {
   throw std::runtime_error("I cannot setValue for a std::vector<EOT*>");
   return;

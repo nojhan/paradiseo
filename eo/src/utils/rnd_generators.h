@@ -107,7 +107,7 @@ private :
 
 /// Specialization for bool
 template <>
-bool random_generator<bool>::operator()(void)
+inline bool random_generator<bool>::operator()(void)
 {
     return random.flip(0.5);
 }
