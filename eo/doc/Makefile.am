@@ -6,4 +6,12 @@
 
 ###############################################################################
 
-EXTRA_DIST = eo.cfg foot.html
+EXTRA_DIST = eo.cfg foot.html html/* latex/*
+
+all :
+
+doc : eo.cfg
+	doxygen eo.cfg
+
+clean :
+	rm -rf html latex man

@@ -30,6 +30,7 @@
 #include <eoContinue.h>
 
 template <class EOT> class eoStatBase;
+template <class EOT> class eoSortedStatBase;
 class eoMonitor;
 class eoUpdater;
 
@@ -42,6 +43,7 @@ public :
 
     bool operator()(const eoPop<EOT>& _pop);
 
+    void add(eoSortedStatBase<EOT>& _stat) { sorted.push_back(&_stat); }
     void add(eoStatBase<EOT>& _stat) { stats.push_back(&_stat); }
     void add(eoMonitor& _mon)        { monitors.push_back(&_mon); }
     void add(eoUpdater& _upd)        { updaters.push_back(&_upd); }
@@ -51,6 +53,7 @@ public :
 private :
 
     eoContinue<EOT>& cont;
+    std::vector<eoSortedStatBase<EOT>*>    sorted;
     std::vector<eoStatBase<EOT>*>    stats;
     std::vector<eoMonitor*> monitors;
     std::vector<eoUpdater*> updaters;
@@ -60,6 +63,18 @@ template <class EOT>
 bool eoCheckPoint<EOT>::operator()(const eoPop<EOT>& _pop)
 {
     unsigned i;
+
+    if (!sorted.empty())
+    {
+      vector<const EOT*> sorted_pop;
+      _pop.sort(sorted_pop);
+
+      for (i = 0; i < sorted.size(); ++i)
+      {
+        (*sorted[i])(sorted_pop);
+      }
+    }
+
     for (i = 0; i < stats.size(); ++i)
         (*stats[i])(_pop);
 

@@ -31,23 +31,34 @@
 #include <utils/eoParam.h>
 #include <eoPop.h>
 
+/**
+  Base class for all statistics that need to be calculated
+  over the (unsorted) population
+*/
 template <class EOT>
 class eoStatBase : public eoUnaryFunctor<void, const eoPop<EOT>&>
-{
-public :
-    virtual ~eoStatBase(){}
-
-    /**
-        calculate some statistic on the population
-    */
-    virtual void operator()(const eoPop<EOT>& _pop) = 0;
-};
+{};
 
 template <class EOT, class T>
 class eoStat : public eoValueParam<T>, public eoStatBase<EOT>
 {
 public :
     eoStat(T _value, std::string _description) : eoValueParam<T>(_value, _description) {}
+};
+
+/**
+  Base class for statistics calculated over a sorted snapshot of the population
+*/
+template <class EOT>
+class eoSortedStatBase : public eoUnaryFunctor<void, const vector<const EOT*>&>
+{
+};
+
+template <class EOT, class ParamType>
+class eoSortedStat : public eoSortedStatBase<EOT>, public eoValueParam<ParamType>
+{
+public :
+  eoSortedStat(ParamType _value, std::string _desc) : eoValueParam<ParamType>(_value, _desc) {}
 };
 
 #include <numeric>
@@ -104,19 +115,19 @@ public :
 };
 
 template <class EOT>
-class eoNthElementFitnessStat : public eoStat<EOT, typename EOT::Fitness >
+class eoNthElementFitnessStat : public eoSortedStat<EOT, typename EOT::Fitness >
 {
 public :
     typedef typename EOT::Fitness Fitness;
 
-    eoNthElementFitnessStat(int _which, std::string _description = "nth element fitness") : eoStat<EOT, Fitness>(Fitness(), _description), which(_which) {}
+    eoNthElementFitnessStat(int _which, std::string _description = "nth element fitness") : eoSortedStat<EOT, Fitness>(Fitness(), _description), which(_which) {}
 
-    virtual void operator()(const eoPop<EOT>& _pop)
+    virtual void operator()(const vector<const EOT*>& _pop)
     {
         if (which > _pop.size())
             throw logic_error("fitness requested of element outside of pop");
 
-        value() = _pop.nth_element_fitness(which);
+        value() = _pop[which]->fitness();
     }
 
 private :

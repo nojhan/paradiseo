@@ -27,6 +27,7 @@
 
 #include <vector>
 #include <strstream>
+#include <algorithm>
 
 // EO includes
 #include <eoOp.h> // for eoInit
@@ -90,6 +91,15 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
 	///
 	~eoPop() {};
 
+
+	/// helper struct for getting a pointer
+      struct Ref { const EOT* operator()(const EOT& eot) { return &eot;}};
+  /// helper struct for comparing on pointers
+      struct Cmp {
+          bool operator()(const EO<Fitness>* a, const EO<Fitness>* b) const
+            { return b->operator<(*a); }
+      };
+
     /**
     sort the population. Use this member to sort in order
     of descending Fitness, so the first individual is the best!
@@ -97,6 +107,15 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
   void sort(void)
   {
       std::sort(begin(), end(), greater<EO<Fitness> >());
+  }
+
+  void sort(vector<const EOT*>& result) const
+  {
+      result.resize(size());
+
+      std::transform(begin(), end(), result.begin(), Ref());
+
+      std::sort(result.begin(), result.end(), Cmp());
   }
 
   /**
@@ -123,11 +142,6 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       return *it;
   }
 
-      struct Ref { const EOT* operator()(const EOT& eot) { return &eot;}};
-      struct Cmp { 
-          bool operator()(const EO<Fitness>* a, const EO<Fitness>* b) const 
-            { return b->operator<(*a); } 
-      };
   /// const nth_element function, returns pointers to sorted individuals
   void nth_element(int which, vector<const EOT*>& result) const
   {
