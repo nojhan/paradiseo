@@ -101,6 +101,10 @@ SOURCE=..\src\eoFunctorStore.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\src\eoParetoFitness.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\eoPersistent.cpp
 # End Source File
 # Begin Source File
