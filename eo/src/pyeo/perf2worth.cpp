@@ -21,9 +21,61 @@
 
 #include "PyEO.h"
 
-void perf2worth() // will have to rethink this
+struct Perf2WorthWrapper : public eoPerf2Worth<PyEO,double>
 {
-    class_<eoNDSorting_II<PyEO> >("eoNDSorting_II");
+    PyObject* self;
+    Perf2WorthWrapper(PyObject* p) : self(p) {}
+
+    void operator()( const eoPop<PyEO>& pop)
+    {
+	call_method<void>(self, "__call__", boost::ref(pop));
+    }
+    
+};
+
+numeric::array get_worths(eoPerf2Worth<PyEO, double>& p)
+{
+    std::vector<double>& worths = p.value();
+    list result;
+	
+    for (unsigned i = 0; i < worths.size(); ++i)
+	result.append(worths[i]);
+    
+    return numeric::array(result);
+}
+
+struct CachedPerf2WorthWrapper : public eoPerf2WorthCached<PyEO, double>
+{
+    PyObject* self;
+    CachedPerf2WorthWrapper(PyObject* p) : self(p) {}
+
+    void calculate_worths(const eoPop<PyEO>& pop)
+    {
+	call_method<void>(self, "calculate_worths", boost::ref(pop));
+    }
+};
+
+void perf2worth() 
+{
+    numeric::array::set_module_and_type("Numeric", "ArrayType");
+    
+    class_<eoPerf2Worth<PyEO, double>, Perf2WorthWrapper, boost::noncopyable>("eoPerf2Worth", init<>())
+	.def("__call__", &Perf2WorthWrapper::operator())
+	.def("sort_pop", &eoPerf2Worth<PyEO, double>::sort_pop)
+	.def("value", get_worths)
+	;
+
+    class_<eoPerf2WorthCached<PyEO, double>, CachedPerf2WorthWrapper, bases<eoPerf2Worth<PyEO, double> >, boost::noncopyable>
+	("eoPerf2WorthCached", init<>())
+	.def("__call__", &eoPerf2WorthCached<PyEO, double>::operator())
+	.def("calculate_worths", &CachedPerf2WorthWrapper::calculate_worths)
+	;
+    
+    //class_<eoNoPerf2Worth<PyEO>, bases<eoPerf2Worth<PyEO, double> > >("eoNoPerf2Worth")
+//	.def("__call__", &eoNoPerf2Worth<PyEO>::operator());
+	
+    class_<eoNDSorting_II<PyEO>, bases<eoPerf2WorthCached<PyEO, double> > >("eoNDSorting_II")
+	.def("calculate_worths", &eoNDSorting_II<PyEO>::calculate_worths);
 }
 
 

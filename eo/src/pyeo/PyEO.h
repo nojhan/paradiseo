@@ -46,7 +46,7 @@ class PyFitness : public boost::python::object
     static double tol() { return 1e-6; }
     static bool maximizing(int which) { return objective_info[which] > 0; }
     
-    static void setObjectivesSize(int sz) { objective_info.resize(sz); }
+    static void setObjectivesSize(int sz) { objective_info.resize(sz, 0); }
     static void setObjectivesValue(unsigned which, int value)
     {
 	if (which >= objective_info.size())
