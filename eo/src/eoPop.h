@@ -132,6 +132,16 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       std::sort(begin(), end(), greater<EOT>());
   }
 
+    /**
+    shuffle the population. Use this member to put the population
+    in random order
+   */
+  void shuffle(void)
+  {
+    UF_random_generator<unsigned int> gen;
+      std::random_shuffle(begin(), end(), gen);
+  }
+
   // creates a vector<EOT*> pointing to the individuals in descending order
   void sort(vector<const EOT*>& result) const
   {
