@@ -18,7 +18,7 @@ class eoParseTree : public EO<FType>, public parse_tree<Node>
 {
 public :
 
-    typedef parse_tree<Node>::subtree Subtree;
+    typedef eoParseTree<FType, Node>::subtree Subtree;
 
     eoParseTree(void) {}
     eoParseTree(const parse_tree<Node>& tree) : parse_tree<Node>(tree) {}
