@@ -39,7 +39,8 @@ void abstract1()
     
     class_<eoSGATransform<PyEO>, bases<eoTransform<PyEO> > >("eoSGATransform",
 	    init< eoQuadOp<PyEO>&, double,
-		  eoMonOp<PyEO>&, double>());
+		  eoMonOp<PyEO>&, double>())
+	.def("__call__", &eoSGATransform<PyEO>::operator());
     
     def_abstract_functor<eoPopEvalFunc<PyEO> >("eoPopEvalFunc");
 }  
