@@ -292,8 +292,9 @@ void main_function(int argc, char **argv)
     monitor.add(SecondStat);
     monitor.add(fdcStat);
 
-    // test de eoPopStat
-    eoPopString<Indi> popStat("Dump of whole population");
+    // test de eoPopStat and/or eoSortedPopStat
+    //    eoSortedPopStat<Indi> popStat("Dump of whole population");
+    eoPopStat<Indi> popStat("Dump of whole population");
     checkpoint.add(popStat);
     monitor.add(popStat);
 

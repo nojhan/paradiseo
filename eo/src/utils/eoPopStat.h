@@ -48,13 +48,13 @@ Note: this Stat should probably be used only within eoStdOutMonitor, and not
 inside an eoFileMonitor, as the eoState construct will work much better there.
 */
 template <class EOT>
-class eoPopString : public eoStat<EOT, string>
+class eoPopStat : public eoStat<EOT, string>
 {
 public :
   /** default Ctor, void string by default, as it appears 
       on the description line once at beginning of evolution. and
       is meaningless there */
-   eoPopString(string _desc ="") : eoStat<EOT, string>("", _desc) {}
+   eoPopStat(string _desc ="") : eoStat<EOT, string>("", _desc) {}
  
 /** Fills the value() of the eoParam with the dump of the population.
 Adds a \n before so it does not get mixed up with the rest of the stats
@@ -86,13 +86,13 @@ Note: this Stat should probably be used only within eoStdOutMonitor, and not
 inside an eoFileMonitor, as the eoState construct will work much better there.
 */
 template <class EOT>
-class eoSortedPopString : public eoSortedStat<EOT, string>
+class eoSortedPopStat : public eoSortedStat<EOT, string>
 {
 public :
   /** default Ctor, void string by default, as it appears 
       on the description line once at beginning of evolution. and
       is meaningless there */
-   eoSortedPopString(string _desc ="") : eoSortedStat<EOT, string>("", _desc) {}
+   eoSortedPopStat(string _desc ="") : eoSortedStat<EOT, string>("", _desc) {}
  
 /** Fills the value() of the eoParam with the dump of the population.
 Adds a \n before so it does not get mixed up with the rest of the stats
