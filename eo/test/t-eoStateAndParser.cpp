@@ -23,6 +23,8 @@
 
 // include package checkpointing
 #include <utils/checkpointing>
+// and provisions for Bounds reading
+#include <utils/eoRealVectorBounds.h>
 
 struct Dummy : public EO<double>
 {
@@ -40,6 +42,7 @@ int the_main(int argc, char **argv)
     eoParser parser(argc, argv);
       
     // Define Parameters
+    eoValueParam<unsigned int> dimParam((unsigned int)(5), "dimension", "dimension"); 
     eoValueParam<double> rate(0.01, "mutationRatePerBit", "Initial value for mutation rate per bit"); 
     eoValueParam<double> factor(0.99, "mutationFactor", "Decrease factor for mutation rate");
     eoValueParam<uint32> seed(time(0), "seed", "Random number seed");
@@ -51,17 +54,27 @@ int the_main(int argc, char **argv)
 
     eoValueParam<string> load_name("", "Load","Load",'L');
     eoValueParam<string> save_name("", "Save","Save",'S');
+
  
     // Register them
+    parser.processParam(dimParam,   "Genetic Operators");
     parser.processParam(rate,       "Genetic Operators");
     parser.processParam(factor,     "Genetic Operators");
     parser.processParam(load_name,  "Persistence");
     parser.processParam(save_name,  "Persistence");
     parser.processParam(seed,       "Rng seeding");
 
+    // a bound param (need dim)
+    eoValueParam<eoRealVectorBounds> boundParam(eoRealVectorBounds(dimParam.value(),eoDummyRealNoBounds), "bounds","bounds",'b');
+
+    parser.processParam(boundParam, "Genetic Operators");
+
+    cout << "Bounds: " << boundParam.value() << endl;
+
    eoState state;
    state.registerObject(parser);
  
+
    if (load_name.value() != "")
    { // load the parser. This is only neccessary when the user wants to 
      // be able to change the parameters in the state file by hand.

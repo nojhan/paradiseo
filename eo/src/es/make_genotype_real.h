@@ -29,6 +29,7 @@
 
 #include <es/eoReal.h>
 #include <eoEsChromInit.h>
+#include <utils/eoRealVectorBounds.h>
   // also need the parser and param includes
 #include <utils/eoParser.h>
 #include <utils/eoState.h>
@@ -66,27 +67,8 @@ eoEsChromInit<EOT> & do_make_genotype(eoParameterLoader& _parser, eoState& _stat
   // for eoReal, only thing needed is the size
     eoValueParam<unsigned>& vecSize = _parser.createParam(unsigned(10), "vecSize", "The number of variables ", 'n',"Genotype Initialization");
 
-    // to build an eoReal Initializer, we need bounds
-    eoValueParam<eoParamParamType>& boundsParam = _parser.createParam(eoParamParamType("(0,1)"), "initBounds", "Bounds for uniform initialization", 'B', "Genotype Initialization");
-
-  eoParamParamType & ppBounds = boundsParam.value(); // pair<string,vector<string> >
-  // transform into a vector<double>
-  vector<double> v;
-  vector<string>::iterator it;
-  for (it=ppBounds.second.begin(); it<ppBounds.second.end(); it++)
-    {
-      istrstream is(it->c_str());
-      double r;
-      is >> r;
-      v.push_back(r);
-    }
-  // now create the eoRealVectorBounds object
-  eoRealVectorBounds * ptBounds = NULL;
-  if (v.size() == 2) // a min and a max for all variables 
-      ptBounds = new eoRealVectorBounds(vecSize.value(), v[0], v[1]);
-  else				   // no time now
-    throw runtime_error("Sorry, only unique bounds for all variables implemented at the moment. Come back later");
-  // we need to give ownership of this pointer to somebody
+    // to build an eoReal Initializer, we need bounds: [-1,1] by default
+  eoValueParam<eoRealVectorBounds>& boundsParam = _parser.createParam(eoRealVectorBounds(vecSize.value(),-1,1), "initBounds", "Bounds for initialization (MUST be bounded)", 'B', "Genotype Initialization");
 
   // now some initial value for sigmas - even if useless?
   // shoudl be used in Normal mutation
@@ -97,7 +79,7 @@ eoEsChromInit<EOT> & do_make_genotype(eoParameterLoader& _parser, eoState& _stat
     throw runtime_error("Invalid sigma");
 
   eoEsChromInit<EOT> * init = 
-    new eoEsChromInit<EOT>(*ptBounds, sigmaParam.value());
+    new eoEsChromInit<EOT>(boundsParam.value(), sigmaParam.value());
   // satore in state
   _state.storeFunctor(init);
   return *init;

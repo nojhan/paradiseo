@@ -70,41 +70,11 @@
 template <class EOT>
 eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoRealInitBounded<EOT>& _init)
 {
-  // First, decide whether the objective variables are bounded
-  eoValueParam<eoParamParamType>& boundsParam = _parser.createParam(eoParamParamType("(0,1)"), "objectBounds", "Bounds for variables (unbounded if absent)", 'B', "Variation Operators");
-
   // get vector size
   unsigned vecSize = _init.size();
 
-  // the bounds pointer
-  eoRealVectorBounds * ptBounds;
-  if (_parser.isItThere(boundsParam))	// otherwise, no bounds
-    {
-      /////Warning: this code should probably be replaced by creating 
-      /////    some eoValueParam<eoRealVectorBounds> with specific implementation
-      ////     in eoParser.cpp. At the moment, it is there (cf also make_genotype
-      eoParamParamType & ppBounds = boundsParam.value(); // pair<string,vector<string> >
-      // transform into a vector<double>
-      vector<double> v;
-      vector<string>::iterator it;
-      for (it=ppBounds.second.begin(); it<ppBounds.second.end(); it++)
-	{
-	  istrstream is(it->c_str());
-	  double r;
-	  is >> r;
-	  v.push_back(r);
-	}
-      // now create the eoRealVectorBounds object
-      if (v.size() == 2) // a min and a max for all variables 
-	ptBounds = new eoRealVectorBounds(vecSize, v[0], v[1]);
-      else				   // no time now
-	throw runtime_error("Sorry, only unique bounds for all variables implemented at the moment. Come back later");
-      // we need to give ownership of this pointer to somebody
-      /////////// end of temporary code
-    }
-  else			   // no param for bounds was given
-    ptBounds = new eoRealVectorNoBounds(vecSize); // DON'T USE eoDummyVectorNoBounds
-				   // as it does not have any dimension
+  // First, decide whether the objective variables are bounded
+  eoValueParam<eoRealVectorBounds>& boundsParam = _parser.createParam(eoRealVectorBounds(vecSize,eoDummyRealNoBounds), "objectBounds", "Bounds for variables", 'B', "Variation Operators");
 
     // now we read Pcross and Pmut, 
   eoValueParam<string>& operatorParam =  _parser.createParam(string("SGA"), "operator", "Description of the operator (SGA only now)", 'o', "Variation Operators");
@@ -173,7 +143,7 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoRealIni
   // Proxy for the mutation parameters
   eoEsMutationInit mutateInit(_parser, "Variation Operators");
   
-  eoEsMutate<EOT> * ptMon = new eoEsMutate<EOT>(mutateInit, *ptBounds);   
+  eoEsMutate<EOT> * ptMon = new eoEsMutate<EOT>(mutateInit, boundsParam.value());   
   _state.storeFunctor(ptMon);
 
   // encapsulate into an eoGenop

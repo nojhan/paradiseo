@@ -69,20 +69,10 @@ eoRealNoBounds the "unbounded bounds" (-infinity, +infinity)
 eoRealBelowBound the half-bounded interval [min, +infinity)
 eoRealAboveBound the   half-bounded interval (-infinity, max]
 
-Vector type: 
-------------
-Class eoRealVectorBounds implements the vectorized version: 
-it is basically a vector of eoRealBounds * and forwards all request
-to the elements of the vector.
-
-This file also contains te 2 global variables eoDummyRealNoBounds and
-eoDummyVectorNoBounds that are used as defaults in ctors (i.e. when no
-bounds are given, it is assumed unbounded values)
-
-TODO: have an eoRealBounds.cpp with the longuish parts of the code
-(and the 2 global variables).
+THis file also contains the declaration of *the* global object that
+is the unbounded bound
 */
-class eoRealBounds
+class eoRealBounds : public eoPersistent
 { 
 public:
   virtual ~eoRealBounds(){}
@@ -133,6 +123,9 @@ public:
    * @exception if unbounded
    */
   virtual double uniform(eoRng & _rng = eo::rng) = 0;
+
+  /** for memory managements - ugly */
+  virtual eoRealBounds * dup() = 0;
 };
 
 /** A default class for unbounded variables
@@ -167,6 +160,34 @@ public:
   {
     throw logic_error("Trying to generate uniform values in unbounded eoRealBounds");
   }
+
+  // methods from eoPersistent
+  /**
+   * Read object.
+   * @param _is A istream.
+   * but reading should not be done here, because of bound problems
+   * see eoRealVectorBounds
+   */
+  virtual void readFrom(istream& _is) 
+  {
+    throw runtime_error("Should not use eoRealBounds::readFrom");
+  }
+
+  /**
+   * Write object. It's called printOn since it prints the object on a stream.
+   * @param _os A ostream.
+   */
+  virtual void printOn(ostream& _os) const
+  {
+    _os << "[-inf,+inf]";
+  }
+
+  /** for memory managements - ugly */
+  virtual eoRealBounds * dup()
+  {
+    return new eoRealNoBounds(*this);
+  }
+
 };
 
 // one object for all - see eoRealBounds.cpp
@@ -255,6 +276,33 @@ public :
     return;
   }
 
+  // methods from eoPersistent
+  /**
+   * Read object.
+   * @param _is A istream.
+   * but reading should not be done here, because of bound problems
+   * see eoRealVectorBounds
+   */
+  virtual void readFrom(istream& _is) 
+  {
+    throw runtime_error("Should not use eoRealInterval::readFrom");
+  }
+
+  /**
+   * Write object. It's called printOn since it prints the object on a stream.
+   * @param _os A ostream.
+   */
+  virtual void printOn(ostream& _os) const
+  {
+    _os << "[" << repMinimum << "," << repMaximum << "]";
+  }
+
+  /** for memory managements - ugly */
+  virtual eoRealBounds * dup()
+  {
+    return new eoRealInterval(*this);
+  }
+
 private :
   double repMinimum;
   double repMaximum;
@@ -323,6 +371,34 @@ public :
       _r = repMinimum;
     return;
   }
+
+  // methods from eoPersistent
+  /**
+   * Read object.
+   * @param _is A istream.
+   * but reading should not be done here, because of bound problems
+   * see eoRealVectorBounds
+   */
+  virtual void readFrom(istream& _is) 
+  {
+    throw runtime_error("Should not use eoRealBelowBound::readFrom");
+  }
+
+  /**
+   * Write object. It's called printOn since it prints the object on a stream.
+   * @param _os A ostream.
+   */
+  virtual void printOn(ostream& _os) const
+  {
+    _os << "[" << repMinimum << ",+inf]";
+  }
+
+  /** for memory managements - ugly */
+  virtual eoRealBounds * dup()
+  {
+    return new eoRealBelowBound(*this);
+  }
+
 private :
   double repMinimum;
 };
@@ -391,273 +467,35 @@ public :
     return;
   }
 
+  // methods from eoPersistent
+  /**
+   * Read object.
+   * @param _is A istream.
+   * but reading should not be done here, because of bound problems
+   * see eoRealVectorBounds
+   */
+  virtual void readFrom(istream& _is) 
+  {
+    throw runtime_error("Should not use eoRealAboveBound::readFrom");
+  }
+
+  /**
+   * Write object. It's called printOn since it prints the object on a stream.
+   * @param _os A ostream.
+   */
+  virtual void printOn(ostream& _os) const
+  {
+    _os << "[-inf," << repMaximum << "]";
+  }
+
+  /** for memory managements - ugly */
+  virtual eoRealBounds * dup()
+  {
+    return new eoRealAboveBound(*this);
+  }
+
 private :
   double repMaximum;
 };
 
-/////////////////////////////////////////////////////////////////////
-// The Vectorized versions
-/////////////////////////////////////////////////////////////////////
-
-/** 
-Class eoRealVectorBounds implements the vectorized version: 
-it is basically a vector of eoRealBounds * and forwards all request
-to the elements of the vector.
-Probably it would have been cleaner if there had been an empty base class
-from which eoRealVectorBounds AND eoRealVectorNoBounds would have derived.
-This is because I started to write eoRealVectorNoBounds as a 
-   vector<eoRealBounds *>  whose compoenents would have been eoRealNoBounds
-   but then realize that you don't necessarily have the dimension 
-   when construction this vector - hence I added the eoRealVectorNoBounds ...
-Anyone with extra time in his agenda is welcome to change that :-)
-*/
-class eoRealVectorBounds : public vector<eoRealBounds *>
-{ 
-public:
-  // virtual desctructor (to avoid warning?)
-  virtual ~eoRealVectorBounds(){}
-
-  /** Default Ctor. I don't like it, as it leaves NULL pointers around
-   */
-  eoRealVectorBounds(unsigned _dim=0) : vector<eoRealBounds *>(_dim) {}
-
-  /** Simple bounds = minimum and maximum (allowed)
-  */
-  eoRealVectorBounds(unsigned _dim, double _min, double _max) : 
-    vector<eoRealBounds *>(_dim, new eoRealInterval(_min, _max))
-  {
-    if (_max-_min<=0)
-      throw std::logic_error("Void range in eoRealVectorBounds");
-  }
-
-  /** Ctor: same bonds for everybody, given as an eoRealBounds
-  */
-  eoRealVectorBounds(unsigned _dim, eoRealBounds & _bounds) : 
-    vector<eoRealBounds *>(_dim, &_bounds)
-  {}
-  
-  /** Ctor: different bonds for different variables, vectors of double
-   */
-  eoRealVectorBounds(vector<double> _min, vector<double> _max) 
-  {
-    if (_max.size() != _min.size())
-      throw std::logic_error("Dimensions don't match in eoRealVectorBounds");
-    for (unsigned i=0; i<_min.size(); i++)
-      {
-	push_back( new eoRealInterval(_min[i], _max[i]));
-      }
-  }
-
-  /** Ctor, particular case of dim-2
-   */
-  eoRealVectorBounds(eoRealBounds & _xbounds, eoRealBounds & _ybounds) : 
-    vector<eoRealBounds *>(0)
-  {
-	push_back( &_xbounds);
-	push_back( &_ybounds);
-  }
-  
-  /** test: is i_th component bounded
-   */
-  virtual bool isBounded(unsigned _i) 
-  { 
-    return (*this)[_i]->isBounded();
-  }
- 
-  /** test: bounded iff all are bounded
-   */
-  virtual bool isBounded(void) 
-  {
-    for (unsigned i=0; i<size(); i++)
-      if (! (*this)[i]->isBounded())
-	return false;
-    return true;
-  }
-
-  /** Self-test: true iff i_th component has no bounds at all
-   */
-  virtual bool hasNoBoundAtAll(unsigned _i) 
-  { 
-    return (*this)[_i]->hasNoBoundAtAll();
-  }
- 
-  /** Self-test: true iff all components have no bound at all
-   */
-  virtual bool hasNoBoundAtAll(void) 
-  {
-    for (unsigned i=0; i<size(); i++)
-      if (! (*this)[i]->hasNoBoundAtAll())
-	return false;
-    return true;
-  }
-
-  virtual bool isMinBounded(unsigned _i) 
-  { return (*this)[_i]->isMinBounded();} ;
-
-  virtual bool isMaxBounded(unsigned _i) 
-  { return (*this)[_i]->isMaxBounded();} ;
-
-  /** Folds a real value back into the bounds - i_th component
-   */
-  virtual void foldsInBounds(unsigned _i, double & _r)
-  {
-    (*this)[_i]->foldsInBounds(_r);
-  }
-
-  /** Folds all variables of a vector of real values into the bounds
-   */
-  virtual void foldsInBounds(vector<double> & _v)
-  {
-   for (unsigned i=0; i<size(); i++)
-     {
-       (*this)[i]->foldsInBounds(_v[i]);
-     }    
-  }
-
-  /** Truncates a real value to the bounds - i_th component
-   */
-  virtual void truncate(unsigned _i, double & _r)
-  {
-    (*this)[_i]->truncate(_r);
-  }
-
-  /** truncates all variables of a vector of real values to the bounds
-   */
-  virtual void truncate(vector<double> & _v)
-  {
-   for (unsigned i=0; i<size(); i++)
-     {
-       (*this)[i]->truncate(_v[i]);
-     }    
-  }
-
-  /** test: is i_th component within the bounds?
-   */
-  virtual bool isInBounds(unsigned _i, double _r)
-  { return (*this)[_i]->isInBounds(_r); }
-
-  /** test: are ALL components within the bounds?
-   */
-  virtual bool isInBounds(vector<double> _v)
-  {
-    for (unsigned i=0; i<size(); i++)
-      if (! isInBounds(i, _v[i]))
-	return false;
-    return true;
-  }
-
-  /** Accessors: will raise an exception if these do not exist
-   */
-  virtual double minimum(unsigned _i) {return (*this)[_i]->minimum();}
-  virtual double maximum(unsigned _i) {return (*this)[_i]->maximum();}
-  virtual double range(unsigned _i) {return (*this)[_i]->range();}
-
-  /** Computes the average range
-   *  An exception will be raised if one of the component is unbounded
-   */
-  virtual double averageRange() 
-  {
-    double r=0.0;
-    for (unsigned i=0; i<size(); i++)
-      r += range(i);
-    return r/size();
-  }
-
-  /** Generates a random number in i_th range
-   *  An exception will be raised if one of the component is unbounded
-   */
-  virtual double uniform(unsigned _i, eoRng & _rng = eo::rng)
-  { 
-    double r= (*this)[_i]->uniform();
-    return r;
-  }
-
-  /** fills a vector with uniformly chosen variables in bounds
-   *  An exception will be raised if one of the component is unbounded
-   */
-  void uniform(vector<double> & _v, eoRng & _rng = eo::rng)
-  {
-    _v.resize(size());
-    for (unsigned i=0; i<size(); i++)
-      {
-      _v[i] = uniform(i, _rng);
-      }
-  }  
-};
-
-/** the dummy unbounded eoRealVectorBounds: usefull if you don't need bounds!
- * everything is inlined.
- * Warning: we do need this class, and not only a vector<eoRealNoBounds *>
- */
-class eoRealVectorNoBounds: public eoRealVectorBounds
-{ 
-public:
-  // virtual desctructor (to avoid warning?)
-  virtual ~eoRealVectorNoBounds(){}
-
-  /** 
-   * Ctor: nothing to do, but beware of dimension: call base class ctor
-   */
-  eoRealVectorNoBounds(unsigned _dim=0) : eoRealVectorBounds(_dim)
-  {
-    // avoid NULL pointers, even though they shoudl (at the moment) never be used!
-    if (_dim)
-      for (unsigned i=0; i<_dim; i++)
-	operator[](i)=&eoDummyRealNoBounds;
-  }
-
-  
-  virtual bool isBounded(unsigned)  {return false;}
-  virtual bool isBounded(void)   {return false;}
-
-  virtual bool hasNoBoundAtAll(unsigned)  {return true;}
-  virtual bool hasNoBoundAtAll(void)  {return true;}
-
-  virtual bool isMinBounded(unsigned)   {return false;}
-  virtual bool isMaxBounded(unsigned)   {return false;}
-
-  virtual void foldsInBounds(unsigned, double &) {return;}
-  virtual void foldsInBounds(vector<double> &) {return;}
-
-  virtual void truncate(unsigned, double &) {return;}
-  virtual void truncate(vector<double> &) {return;}
-
-  virtual bool isInBounds(unsigned, double) {return true;}
-  virtual bool isInBounds(vector<double>) {return true;}
-
-  // accessors  
-  virtual double minimum(unsigned)
-  {
-    throw logic_error("Trying to get minimum of eoRealVectorNoBounds");
-  }
-  virtual double maximum(unsigned)
-  {
-    throw logic_error("Trying to get maximum of eoRealVectorNoBounds");
-  }
-  virtual double range(unsigned)
-  {
-    throw logic_error("Trying to get range of eoRealVectorNoBounds");
-  }
-
-  virtual double averageRange() 
-  {
-    throw logic_error("Trying to get average range of eoRealVectorNoBounds");
-  }
-
-  // random generators
-  virtual double uniform(unsigned, eoRng & _rng = eo::rng)
-  {
-    throw logic_error("No uniform distribution on eoRealVectorNoBounds");
-  }
-
-  // fills a vector with uniformly chosen variables in bounds
-  void uniform(vector<double> &, eoRng & _rng = eo::rng)
-  {
-    throw logic_error("No uniform distribution on eoRealVectorNoBounds");
-  }
-
-};
-
-// one object for all - see eoRealBounds.cpp
-extern eoRealVectorNoBounds eoDummyVectorNoBounds;
 #endif

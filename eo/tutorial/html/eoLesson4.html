@@ -2,8 +2,8 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.76 [en] (X11; U; Linux 2.2.17-21mdksmp i686) [Netscape]">
-   <title>Tutorial: Lesson 3</title>
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdk i686) [Netscape]">
+   <title>Tutorial: Lesson 4</title>
 </head>
 <body text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000" background="beige009.jpg">
 <a href="eoLesson2.html">Lesson 3</a> -
@@ -478,18 +478,22 @@ parameters for genitype initialization</font>
 number of variables</font></font></tt></b>
 <br><font color="#FF0000">Integer parameter:</font><font color="#000000">
 The initilization requires the length of the vector&lt;double>.</font>
-<p><b><tt><font color="#CC33CC"><font size=+1># --initBounds=(0,1) # -B
-: Bounds for uniform initialization</font></font></tt></b>
-<br><font color="#FF0000">Special string parameter:</font><font color="#000000">
-Bounds for uniform initialization of the real variables. At the moment
-only the same bounds for all variables can be chosen, and the format is
-(min,max) without any white space.&nbsp; This argument is mandatory, and
-</font><font color="#FF0000">default is (0,1)</font><font color="#000000">.</font>
+<p><b><tt><font color="#CC33CC"><font size=+1># --initBounds=10[-1,1] #
+-B : Bounds for uniform initialization</font></font></tt></b>
+<br><font color="#FF0000">Bounds parameter:</font><font color="#000000">
+Bounds for uniform initialization of the real variables. The syntax for
+this parameter given in the </font><b><tt><font color="#CC33CC"><font size=+1>objectBounds</font></font></tt></b><font color="#000000">
+parameter description below. This argument is mandatory, furthermore the
+given bounds </font><b><font color="#FF6600">must be bounded</font></b><font color="#000000">.
+</font><font color="#FF0000">The default is [-1,1]</font><font color="#000000">
+for all variables.</font>
+<br>Note that this parameter is independent of the <b><tt><font color="#CC33CC"><font size=+1>objectBounds</font></font></tt></b>
+parameter below.
 <p><b><tt><font color="#CC33CC"><font size=+1># --sigmaInit=0.3 # -s :
 Initial value for Sigma(s)</font></font></tt></b>
 <br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
 The initial value for all standard-deviation mutation strategy parameters.
-Useless when no self-adaptive mutation mechanism is used.</font><font color="#000000"></font>
+Useless when no self-adaptive mutation mechanism is used.</font>
 <p>
 <hr SIZE=5 WIDTH="30%">
 <p><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#CC33CC">######&nbsp;&nbsp;&nbsp;
@@ -497,21 +501,28 @@ Variation Operators&nbsp;&nbsp;&nbsp; ######</font></tt></font></b>
 <br><font color="#000000">This section allows to tune the way the variation
 operators will be applied to the individuals (in the strict limit of SGA
 model at the moment, see below).</font>
-<p><b><tt><font color="#CC33CC"><font size=+1># --objectBounds=(0,1) #
--B : Bounds for variables (unbounded if absent)</font></font></tt></b>
-<br><font color="#FF0000">Special string parameter:</font><font color="#000000">
-Bounds for the variables to be met by all variation operators (see format
-in </font><b><tt><font color="#CC33CC"><font size=+1>initBounds</font></font></tt></b><font color="#000000">
-above). If this parameter is </font><b><font color="#FF6600">absent, unbounded
-variables</font></b><font color="#000000"> are assumed (but they still
-need some </font><b><tt><font color="#CC33CC"><font size=+1>initBounds</font></font></tt></b><font color="#000000">
-for initialization). For the arithmetic crossovers below, and when parameter
-alpha is greater than 0, those bounds result in restricting the values
-of possible combination factors. For the uniform mutation, the interval
-of uniform choice of the variables is restricted by those bounds. Finally,
-in the case of Gaussian mutation, the probability distribution is folded
-back into the boundeds as many times as necesssary. </font><font color="#FF0000">No
-default (i.e. unbounded variables).</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+<p><b><tt><font color="#CC33CC"><font size=+1># --objectBounds=10[-inf,+inf]
+# -B : Bounds for variables</font></font></tt></b>
+<br><font color="#FF0000">Bounds parameter:</font><font color="#000000">
+Bounds for object variables. The syntax for this parameter is a succession
+of (optionally semi-colon separated) items of the form </font><b><tt><font color="#993300"><font size=+1>N[min,Max]</font></font></tt></b><font color="#000000">where
+the optional integer </font><b><tt><font color="#993300"><font size=+1>N</font></font></tt></b><font color="#000000">
+indicates how many variables have the given bounds. </font><b><tt><font color="#993300"><font size=+1>min</font></font></tt></b><font color="#000000">
+and </font><b><tt><font color="#993300"><font size=+1>Max</font></font></tt></b><font color="#000000">
+are either floating point numbers, or </font><b><tt><font color="#993300"><font size=+1>-inf</font></font></tt></b><font color="#000000">
+(resp. </font><b><tt><font color="#993300"><font size=+1>+inf</font></font></tt></b><font color="#000000">)
+to indicate unbounded direction. If not enough bounds are provided, the
+remaining variables will have the same bounds as the last bounds given.</font>
+<br><font color="#000000">This argument is mandatory, and
+</font><font color="#FF0000">default
+is [-inf,+inf]</font><font color="#000000">, i.e. unbounded variables.</font>
+<p><b><font color="#FF0000">Examples</font></b><font color="#000000">:
+</font><b><tt><font color="#CC33CC"><font size=+1>10[-1,1]</font></font></tt></b><font color="#000000">is
+equivalent to simply </font><b><tt><font color="#CC33CC"><font size=+1>[-1,1]</font></font></tt></b><font color="#000000">
+or to the extended&nbsp; </font><b><tt><font color="#CC33CC"><font size=+1>[-1,1][-1,1][-1,1][-1,1][-1,1][-1,1][-1,1][-1,1][-1,1][-1,1]</font></font></tt></b><font color="#000000">.</font>
+<br><font color="#000000">And </font><b><tt><font color="#CC33CC"><font size=+1>[-1,1];2[0,1];[-inf,10]</font></font></tt></b>results
+in the first variable staying in [-1,1], the second and the third in [0,1]
+and all remaining variables below 10.
 <p><b><tt><font color="#CC33CC"><font size=+1># --operator=SGA # -o : Description
 of the operator (SGA only now)</font></font></tt></b>
 <br><font color="#FF0000">String parameter:</font><font color="#000000">
@@ -547,7 +558,7 @@ for combination factor in real crossover</font></font></tt></b>
 <br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
 Bound for the choices of linear combination factors in both crossover belows
 (similar to BLX-alpha notation). </font><font color="#FF0000">Default is
-0</font><font color="#000000"> (i.e. combination factor are chosen in [0,1]).</font><font color="#000000"></font>
+0</font><font color="#000000"> (i.e. combination factor are chosen in [0,1]).</font>
 <p><b><tt><font color="#CC33CC"><font size=+1># --segmentRate=1 # -s :
 Relative rate for segment crossover</font></font></tt></b>
 <br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
@@ -556,7 +567,8 @@ to hypercube and uniform crossovers (see </font><b><tt><font color="#CC33CC"><fo
 parameter). Segment crossover generates offspring uniformly on the segment
 joining both parents, i.e. constructs two linear combinations of the parents
 with a random number uniformly drawn in [</font><b><tt><font color="#CC33CC"><font size=+1>alpha</font></font></tt></b><font color="#000000">,1+</font><b><tt><font color="#CC33CC"><font size=+1>alpha</font></font></tt></b><font color="#000000">].
-</font><font color="#FF0000">Default is 1</font><font color="#000000">.</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+</font><font color="#FF0000">Default
+is 1</font><font color="#000000">.</font>
 <p><b><tt><font color="#CC33CC"><font size=+1># --hypercubeRate=1 # -A
 : Relative rate for hypercube crossover</font></font></tt></b>
 <br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
@@ -566,7 +578,7 @@ parameter). Hypercube crossover generates offspring uniformly on the hypercube
 whose diagonal is the segment joining both parents, i.e. by doing linear
 combinations of each variable independently (a random number in [</font><b><tt><font color="#CC33CC"><font size=+1>alpha</font></font></tt></b><font color="#000000">,1+</font><b><tt><font color="#CC33CC"><font size=+1>alpha</font></font></tt></b><font color="#000000">]
 is drawn anew for each variable). </font><font color="#FF0000">Default
-is 1</font><font color="#000000">.</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+is 1</font><font color="#000000">.</font>
 <p><b><tt><font color="#CC33CC"><font size=+1># --uxoverRate=1 # -A : Relative
 rate for uniform crossover</font></font></tt></b>
 <br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
@@ -574,14 +586,16 @@ Rate of application of the segment crossover </font><b><font color="#FF6600">rel
 to hypercube and segment crossovers (see </font><b><tt><font color="#CC33CC"><font size=+1>pCross</font></font></tt></b><font color="#000000">
 parameter). Uniform crossover simply exchanges values of variables, i.e.
 uniformly picks up two other summits of the hypercube defined by the parents.
-</font><font color="#FF0000">Default is 1</font><font color="#000000">.</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+</font><font color="#FF0000">Default
+is 1</font><font color="#000000">.</font>
 <p><b><tt><font color="#CC33CC"><font size=+1># --epsilon=0.01 # -e : Half-size
 of interval for Uniform Mutation</font></font></tt></b>
 <br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
 The uniform and deterministic-uniform mutations will choose values of variable
 X uniformly in </font><b><tt><font size=+1><font color="#993300">[X-</font><font color="#CC33CC">epsilon</font><font color="#993300">,
 X+</font><font color="#CC33CC">epsilon</font><font color="#993300">]</font></font></tt></b><font color="#000000">.
-</font><font color="#FF0000">Default is 0.01</font><font color="#000000">.</font><font color="#000000"></font>
+</font><font color="#FF0000">Default
+is 0.01</font><font color="#000000">.</font>
 <p><b><tt><font color="#CC33CC"><font size=+1># --uniformMutRate=1 # -u
 : Relative rate for uniform mutation</font></font></tt></b>
 <br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
@@ -589,7 +603,7 @@ Rate of aplication of the uniform mutation </font><b><font color="#FF6600">relat
 to determinitic uniform and the normal mutations (see </font><b><tt><font color="#CC33CC"><font size=+1>pMut</font></font></tt></b><font color="#000000">
 above). Uniform mutation modifies all variables by choosing new values
 uniformly on an interval centered on the old value of width </font><b><tt><font size=+1><font color="#993300">2*</font><font color="#CC33CC">epsilon</font></font></tt></b><font color="#000000">
-(see above). </font><font color="#FF0000">Default is1</font><font color="#000000">.</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+(see above). </font><font color="#FF0000">Default is1</font><font color="#000000">.</font>
 <p><b><tt><font color="#CC33CC"><font size=+1># --detMutRate=1 # -d : Relative
 rate for deterministic uniform mutation</font></font></tt></b>
 <br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
@@ -597,13 +611,14 @@ Rate of aplication of the determinisitc-uniform mutation </font><b><font color="
 to uniform and normal mutations (see </font><b><tt><font color="#CC33CC"><font size=+1>pMut</font></font></tt></b><font color="#000000">
 above). Deterministic-uniform mutation modifies one single variable uniformly
 based on epsilon </font><b><tt><font color="#CC33CC"><font size=+1>epsilon</font></font></tt></b><font color="#000000">.
-</font><font color="#FF0000">Default is1</font><font color="#000000">.</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+</font><font color="#FF0000">Default
+is1</font><font color="#000000">.</font>
 <p><b><tt><font color="#CC33CC"><font size=+1># --normalMutRate=1 # -d
 : Relative rate for Gaussian mutation</font></font></tt></b>
 <br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
 Rate of aplication of the normal mutation </font><b><font color="#FF6600">relatively</font></b><font color="#000000">
 to two uniform mutations above (see </font><b><tt><font color="#CC33CC"><font size=+1>pMut</font></font></tt></b><font color="#000000">
-above). </font><font color="#FF0000">Default is1</font><font color="#000000">.</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+above). </font><font color="#FF0000">Default is1</font><font color="#000000">.</font>
 <p><b><tt><font color="#CC33CC"><font size=+1># --sigma=0.3 # -s : Sigma
 (fixed) for Gaussian mutation</font></font></tt></b>
 <br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
@@ -634,35 +649,35 @@ mutation will be used. There are three available types: isotropic mutation,
 using one standard deviation for each individual, that will be applied
 to all variables; anisotropic mutation, where each individual carries as
 many standard deviations as it has variables; and correlated mutation where
-each individuals has its own full correlation matrix.</font><font color="#000000"></font>
+each individuals has its own full correlation matrix.</font>
 <p><b><tt><font color="#CC33CC"><font size=+1># --Isotropic=1 # -i : Isotropic
 self-adaptive mutation</font></font></tt></b>
 <br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
 If true, at least one self-adaptive parameter will be used for each individual.
-</font><font color="#FF0000">Default is true</font><font color="#000000">.</font><font color="#000000"></font>
+</font><font color="#FF0000">Default
+is true</font><font color="#000000">.</font>
 <p><b><tt><font color="#CC33CC"><font size=+1># --Stdev=0 # -s : One self-adaptive
 stDev per variable</font></font></tt></b>
 <br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
 If true, at least one self-adaptive parameter per variable will be used
-for each individual. </font><font color="#FF0000">Default is false</font><font color="#000000">.</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+for each individual. </font><font color="#FF0000">Default is false</font><font color="#000000">.</font>
 <p><b><tt><font color="#CC33CC"><font size=+1># --Correl=0 # -c : Use correlated
 mutations</font></font></tt></b>
 <br><font color="#FF0000">Boolean parameter:</font><font color="#000000">
 If true, full correalted self-adaptive mutation will be used for each individual.
-</font><font color="#FF0000">Default is false</font><font color="#000000">.</font><tt><font color="#CC33CC"><font size=+1></font></font></tt>
+</font><font color="#FF0000">Default
+is false</font><font color="#000000">.</font>
 <p><b><font color="#FF6600">Note</font></b><font color="#000000">: The
-default values result in an isotropic self-adaptive mutation to be chosen.</font><font color="#000000"></font>
+default values result in an isotropic self-adaptive mutation to be chosen.</font>
 <p>
 <hr SIZE=5 WIDTH="30%">
 <p><b><font size=+1><font color="#FF0000">Section </font><tt><font color="#CC33CC">######&nbsp;&nbsp;&nbsp;
 Variation Operators&nbsp;&nbsp;&nbsp; ######</font></tt></font></b>
 <br><font color="#000000">Only the parameters that are specific to ESEA
-are presented here - the </font><b><tt><font color="#CC33CC"><font size=+1>objectBounds,</font></font></tt></b><font color="#000000">
-</font><b><tt><font color="#CC33CC"><font size=+1>operator,</font></font></tt></b><font color="#000000">
-</font><b><tt><font color="#CC33CC"><font size=+1>pCross</font></font></tt></b><font color="#000000">
+are presented here - the </font><b><tt><font color="#CC33CC"><font size=+1>objectBounds,operator,pCross</font></font></tt></b><font color="#000000">
 and </font><b><tt><font color="#CC33CC"><font size=+1>pMut</font></font></tt></b><font color="#000000">
 are exactly the same as for </font><b><tt><font color="#993300"><font size=+1>RealEA</font></font></tt></b><font color="#000000">
-above.</font><font color="#000000"></font>
+above.</font>
 <p><b><tt><font color="#CC33CC"><font size=+1># --crossType=global # -C
 : Type of ES recombination (global or standard)</font></font></tt></b>
 <br><font color="#FF0000">String parameter:</font><font color="#000000">&nbsp;
@@ -671,7 +686,7 @@ the </font><b><tt><font color="#CC33CC"><font size=+1>standard</font></font></tt
 hypercube crossover describe for the </font><b><tt><font color="#993300"><font size=+1>RealEA</font></font></tt></b><font color="#000000">
 parameters above. But new parents can also be chosen anew for each variable
 before doing the crossover for that variable - and this is called </font><b><tt><font color="#CC33CC"><font size=+1>global</font></font></tt></b><font color="#000000">
-recombination.</font><font color="#000000"></font>
+recombination.</font>
 <p><b><tt><font color="#CC33CC"><font size=+1># --crossObj=discrete # -O
 : Recombination of object variables (discrete or intermediate)</font></font></tt></b>
 <br><font color="#FF0000">String parameter:</font><font color="#000000">&nbsp;
@@ -682,31 +697,32 @@ a linear combination of parents;variables - it si similar to the hypercube
 crossover described for&nbsp; with alpah parameter set to 0. This parameter
 allso to choose the type of crossover that will be applied to the </font><b><font color="#FF6600">object
 variables</font></b><font color="#000000"> (i.e. the origianl variables
-of the problem). </font><font color="#FF0000">Default is discrete.</font><font color="#000000"></font>
+of the problem). </font><font color="#FF0000">Default is discrete.</font>
 <p><b><tt><font color="#CC33CC"><font size=+1># --crossStdev=intermediate
 # -S : Recombination of mutation strategy parameters (intermediate or discrete)</font></font></tt></b>
 <br><font color="#FF0000">String parameter:</font><font color="#000000">&nbsp;
 This parameter allows to choose the type of crossover (see above) that
 will be applied to the </font><b><font color="#FF6600">mutation strategy
 parameters</font></b><font color="#000000"> that are part of the genotype.
-</font><font color="#FF0000">Default is intermediate.</font><b><tt><font color="#CC33CC"><font size=+1></font></font></tt></b>
+</font><font color="#FF0000">Default
+is intermediate.</font>
 <p><b><tt><font color="#CC33CC"><font size=+1># --TauLoc=1 # -l : Local
 Tau (before normalization)</font></font></tt></b>
 <br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
 The local factor for the mutation of the mutation strategy parameters (the
 only one used when a single standard deviation is used). </font><font color="#FF0000">Default
-is 1</font><font color="#000000">.</font><font color="#000000"></font>
+is 1</font><font color="#000000">.</font>
 <p><b><tt><font color="#CC33CC"><font size=+1># --TauGlob=1 # -g : Global
 Tau (before normalization)</font></font></tt></b>
 <br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
 The global factor for the mutation of the mutation strategy parameters
 (only useful when more than one standard deviation are used). </font><font color="#FF0000">Default
-is 1</font><font color="#000000">.</font><font color="#000000"></font>
+is 1</font><font color="#000000">.</font>
 <p><b><tt><font color="#CC33CC"><font size=+1># --Beta=0.0873 # -b : Beta</font></font></tt></b>
 <br><font color="#FF0000">Floating-point parameter:</font><font color="#000000">
 The factor for the mutation of the rotation angles in the case of the full
 correlated mutation. </font><font color="#FF0000">Default is 0.0873</font><font color="#000000">
-(following Schwefel).</font><font color="#000000"></font>
+(following Schwefel).</font>
 <p>
 <hr WIDTH="100%">
 <br><a NAME="programmerguide"></a><b><font color="#000099"><font size=+2>Programmer's

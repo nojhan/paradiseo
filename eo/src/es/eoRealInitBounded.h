@@ -31,7 +31,7 @@
 #include <utils/eoRNG.h>
 #include <eoInit.h>
 #include <es/eoReal.h>
-#include <utils/eoRealBounds.h>
+#include <utils/eoRealVectorBounds.h>
 
 /** Simple initialization for any EOT that derives from vector<double> 
  *    uniformly in some bounds 
