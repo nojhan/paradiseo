@@ -79,7 +79,7 @@ void main_function(int argc, char **argv)
    // Initialization of the population
   eoPop<Indi> pop(POP_SIZE, random);
  
-  // and evaluate it in one loop
+  // and evaluate it in one line
   apply<Indi>(eval, pop);	// STL syntax
 
 // OUTPUT
