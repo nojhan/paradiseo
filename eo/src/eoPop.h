@@ -133,6 +133,16 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       std::sort(begin(), end(), greater<EOT>());
   }
 
+  // creates a vector<EOT*> pointing to the individuals in descending order
+  void sort(vector<const EOT*>& result) const
+  {
+      result.resize(size());
+
+      std::transform(begin(), end(), result.begin(), Ref());
+
+      std::sort(result.begin(), result.end(), Cmp());
+  }
+
     /**
     shuffle the population. Use this member to put the population
     in random order
@@ -143,14 +153,15 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
       std::random_shuffle(begin(), end(), gen);
   }
 
-  // creates a vector<EOT*> pointing to the individuals in descending order
-  void sort(vector<const EOT*>& result) const
+  // creates a vector<EOT*> pointing to the individuals in random order
+  void shuffle(vector<const EOT*>& result) const
   {
       result.resize(size());
 
       std::transform(begin(), end(), result.begin(), Ref());
 
-      std::sort(result.begin(), result.end(), Cmp());
+      UF_random_generator<unsigned int> gen;
+      std::random_shuffle(result.begin(), result.end(), gen);
   }
 
   // returns an iterator to the best individual DOES NOT MOVE ANYBODY
