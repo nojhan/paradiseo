@@ -28,6 +28,9 @@
 #include <eoPrintable.h>
 #include <eoFunctor.h>
 #include <eoOp.h>
+#include <eoGenericMonOp.h>
+#include <eoGenericBinOp.h>
+#include <eoGenericQuadOp.h>
 #include <utils/eoRNG.h>
 /**
 \defgroup PropCombined operators
@@ -45,37 +48,66 @@ into an algorithm, chosing by a roulette wheel based on user-defined rates
 */
 
 
+//////////////////////////////////////////////////////
+//// combined MonOp
+//////////////////////////////////////////////////////
 
-/** eoMonOp is the monary operator: genetic operator that takes only one EO */
+/** eoMonOp is the monary operator: genetic operator that takes only one EO 
+
+ * now accepts generic operators
+*/
 
 template <class EOT>
 class eoPropCombinedMonOp: public eoMonOp<EOT>
 {
 public:
-  /// Ctor
+  /// Ctor from a "true" operator
   eoPropCombinedMonOp(eoMonOp<EOT> & _first, const double _rate)
   { 
     ops.push_back(&_first); 
     rates.push_back(_rate);
   }
 
-virtual string className() const { return "eoPropCombinedMonOp"; }
+  /// Ctor from a generic operator
+  eoPropCombinedMonOp(eoGenericMonOp<EOT> & _first, const double _rate)
+  { 
+    eoGeneric2TrueMonOp<EOT> *trueFirst = 
+      new eoGeneric2TrueMonOp<EOT>(_first);
+    ops.push_back(trueFirst); 
+    rates.push_back(_rate);
+  }
 
-virtual void add(eoMonOp<EOT> & _op, const double _rate, bool _verbose=false)
+  virtual string className() const { return "eoPropCombinedMonOp"; }
+
+  virtual void add(eoMonOp<EOT> & _op, const double _rate, bool _verbose=false)
   { 
     ops.push_back(&_op); 
     rates.push_back(_rate);
     // compute the relative rates in percent - to warn the user!
     if (_verbose)
-      {
-	double total = 0;
-	unsigned i;
-	for (i=0; i<ops.size(); i++)
-	  total += rates[i];
-	cout << "In " << className() << "\n" ;
-	for (i=0; i<ops.size(); i++)
-	  cout << ops[i]->className() << " with rate " << 100*rates[i]/total << " %\n";
-      }
+      printOn(cout);
+  }
+
+  virtual void add(eoGenericMonOp<EOT> & _op, const double _rate, bool _verbose=false)
+  { 
+    eoGeneric2TrueMonOp<EOT> *trueOp = new eoGeneric2TrueMonOp<EOT>(_op);
+    ops.push_back(trueOp); 
+    rates.push_back(_rate);
+    // compute the relative rates in percent - to warn the user!
+    if (_verbose)
+      printOn(cout);
+  }
+
+  // outputs the operators and percentages
+  virtual void printOn(ostream & _os)
+  {
+    double total = 0;
+    unsigned i;
+    for (i=0; i<ops.size(); i++)
+      total += rates[i];
+    _os << "In " << className() << "\n" ;
+    for (i=0; i<ops.size(); i++)
+      _os << ops[i]->className() << " with rate " << 100*rates[i]/total << " %\n";
   }
 
   virtual void operator()(EOT & _indi)
@@ -88,7 +120,9 @@ std::vector<eoMonOp<EOT>*> ops;
 std::vector<double> rates;
 };
 
-
+//////////////////////////////////////////////////////
+//// combined BinOp
+//////////////////////////////////////////////////////
 
 /** COmbined Binary genetic operator: 
  *  operator() has two operands, only the first one can be modified
@@ -134,40 +168,72 @@ std::vector<double> rates;
 };
 
 
+//////////////////////////////////////////////////////
+//// combined QuadOp
+//////////////////////////////////////////////////////
+
 /** Quadratic genetic operator: subclasses eoOp, and defines basically the 
     operator() with two operands, both can be modified.
 */
-/** COmbined Binary genetic operator: 
- *  operator() has two operands, only the first one can be modified
+/** COmbined quadratic genetic operator: 
+ *  operator() has two operands, both can be modified
+
+ * generic operators are now allowed: there are imbedded into 
+ * the corresponding "true" operator
  */
 template <class EOT>
 class eoPropCombinedQuadOp: public eoQuadraticOp<EOT>
 {
 public:
-  /// Ctor
+  /// Ctor from a true operator
   eoPropCombinedQuadOp(eoQuadraticOp<EOT> & _first, const double _rate)
   { 
     ops.push_back(&_first); 
     rates.push_back(_rate);
   }
 
+  /// Ctor from a generic operator
+  eoPropCombinedQuadOp(eoGenericQuadOp<EOT> & _first, const double _rate)
+  { 
+    eoGeneric2TrueQuadOp<EOT> *trueFirst = 
+      new eoGeneric2TrueQuadOp<EOT>(_first);
+    ops.push_back(trueFirst); 
+    rates.push_back(_rate);
+  }
+
 virtual string className() const { return "eoPropCombinedQuadOp"; }
 
+  // addition of a true operator
 virtual void add(eoQuadraticOp<EOT> & _op, const double _rate, bool _verbose=false)
   { 
     ops.push_back(&_op); 
     rates.push_back(_rate);
     // compute the relative rates in percent - to warn the user!
     if (_verbose)
-      {
-	double total = 0;
-	unsigned i;
-	for (i=0; i<ops.size(); i++)
-	  total += rates[i];
-	cout << "In " << className() << "\n" ;
-	for (i=0; i<ops.size(); i++)
-	  cout << ops[i]->className() << " with rate " << 100*rates[i]/total << " %\n";
-      }
+      printOn(cout);
+  }
+
+  // addition of a generic operator
+virtual void add(eoGenericQuadOp<EOT> & _op, const double _rate, bool _verbose=false)
+  { 
+    eoGeneric2TrueQuadOp<EOT> *trueOp = new eoGeneric2TrueQuadOp<EOT>(_op);
+    ops.push_back(trueOp); 
+    rates.push_back(_rate);
+    // compute the relative rates in percent - to warn the user!
+    if (_verbose)
+      printOn(cout);
+  }
+
+  // outputs the operators and percentages
+  virtual void printOn(ostream & _os)
+  {
+    double total = 0;
+    unsigned i;
+    for (i=0; i<ops.size(); i++)
+      total += rates[i];
+    _os << "In " << className() << "\n" ;
+    for (i=0; i<ops.size(); i++)
+      _os << ops[i]->className() << " with rate " << 100*rates[i]/total << " %\n";
   }
 
   virtual void operator()(EOT & _indi1, EOT & _indi2)
