@@ -79,9 +79,6 @@ void eoParser::doRegisterParam(eoParam& param) const
 
     if (value.first)
     {
-        if (value.second == "") // it is there, but no value is given, default to "1"
-            value.second = "1"; // for bool
-
         param.setValue(value.second);
     }
 }

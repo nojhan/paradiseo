@@ -169,6 +169,21 @@ private :
     ValueType repValue;
 };
 
+/// Specialized setValue for bool
+template <>
+void eoValueParam<bool>::setValue(std::string _value)
+{
+    if (_value.empty())
+    {
+        repValue = true;
+        return;
+    }
+
+    std::istrstream is(_value.c_str());
+    is >> repValue;
+}
+
+
 /// Because MSVC does not support partial specialization, the pair is a double, not a T
 template <>
 std::string eoValueParam<std::pair<double, double> >::getValue(void) const
