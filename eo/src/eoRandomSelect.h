@@ -69,50 +69,6 @@ template <class EOT> class eoBestSelect: public eoSelectOne<EOT>
 };
 
 //-----------------------------------------------------------------------------
-/** eoSequentialSelect: returns all individual in order
- *       looping back to the beginning when exhasuted
- * can be from best to worse, or in random order
- *
- * It is the eoSelectOne equivalent of eoDetSelect -
- *    though eoDetSelect always returns individuals from best to worst
- */
-//-----------------------------------------------------------------------------
-
-template <class EOT> class eoSequentialSelect: public eoSelectOne<EOT>
-{
- public:
-  /** Ctor: sets the current pter to MAXINT so init will take place first time
-      not very elegant, maybe ...
-  */
-  eoSequentialSelect(bool _ordered = true):
-    ordered(_ordered), current(MAXINT) {}
-
-  void setup(const eoPop<EOT>& _pop)
-  {
-    eoPters.resize(_pop.size());
-    if (ordered)    // probably we could have a marker to avoid re-sorting
-	    _pop.sort(eoPters);
-    else
-      _pop.shuffle(eoPters);
-    current=0;
-  }
-
-  virtual const EOT& operator()(const eoPop<EOT>& _pop)
-  {
-    if (current >= _pop.size())
-      setup(_pop);
-
-    unsigned eoN = current;
-    current++;
-    return *eoPters[eoN] ;
-  }
-private:
-  bool ordered;
-  unsigned current;
-  vector<const EOT*> eoPters;
-};
-
-//-----------------------------------------------------------------------------
 /** eoNoSelect: returns all individual in order WITHOUT USING FITNESS!!!
  *       looping back to the beginning when exhasuted
  *
