@@ -7,10 +7,14 @@
 
 //-----------------------------------------------------------------------------
 
-#include <eo>
+#include <values.h>  // MINFLOAT
+#include <numeric>  // accumulate
+#include <eo>       // eoPop eoSelect
 
 //-----------------------------------------------------------------------------
-// eoLottery
+/// eoLottery: a selection method.
+/// requires that the fitness type of the chromosome inherits from eoFitness
+/// or have a cast to float implemented
 //-----------------------------------------------------------------------------
 
 template<class Chrom> class eoLottery: public eoSelect<Chrom>
@@ -18,7 +22,7 @@ template<class Chrom> class eoLottery: public eoSelect<Chrom>
  public:
   /// (Default) Constructor.
   eoLottery(const float& _rate = 1.0): rate(_rate) {}
-
+  
   /// 
   void operator()(const eoPop<Chrom>& pop, eoPop<Chrom>& breeders) const
     {
@@ -26,15 +30,9 @@ template<class Chrom> class eoLottery: public eoSelect<Chrom>
       vector<float> score(pop.size());
       
       // calculates accumulated scores for chromosomes
-      
-      transform(pop.begin(), pop.end(), score.begin(), fitness);
-
       for (unsigned i = 0; i < pop.size(); i++)
 	score[i] = pop[i].fitness();
-	
-
-
-
+      
       float sum = accumulate(score.begin(), score.end(), MINFLOAT);
       transform(score.begin(), score.end(), score.begin(), 
 		bind2nd(divides<float>(), sum));
@@ -44,7 +42,7 @@ template<class Chrom> class eoLottery: public eoSelect<Chrom>
       vector<float> random(pop.size());
       generate(random.begin(), random.end(), eoUniform<float>(0,1));
       sort(random.begin(), random.end(), less<float>());
-
+      
       // selection of chromosomes
       unsigned score_index = 0;   // position in score vector
       unsigned random_index = 0;  // position in random vector
@@ -63,7 +61,7 @@ template<class Chrom> class eoLottery: public eoSelect<Chrom>
 		   num_chroms - breeders.size(), pop.back());
       } while (breeders.size() < num_chroms);
     }
-
+  
  private:
   float rate;  // selection rate
 };
