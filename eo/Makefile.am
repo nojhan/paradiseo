@@ -14,7 +14,7 @@ EXTRA_DIST=LICENSE
 
 ###############################################################################
 
-lib:	src/libeo.a src/utils/libeoutils.a
+lib:	
 	pushd src; $(MAKE) all; popd
 
 test:
@@ -22,7 +22,7 @@ test:
 
 # so that make doc always compiles the doc ...
 doc:    doc/eo.cfg
-	pushd doc; $(MAKE) doc; touch doc/eo.cfg; popd
+	pushd doc; $(MAKE) doc; touch eo.cfg; popd
 
 tutorial:
 	pushd tutorial; $(MAKE) all; popd
