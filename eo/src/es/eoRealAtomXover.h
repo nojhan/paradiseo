@@ -38,16 +38,16 @@
 /** 
   Discrete crossover == exchange of values
 */
-class eoRealAtomExchange: public eoBinOp<double>
+class eoDoubleExchange: public eoBinOp<double>
 {
 public:
   /**
    * (Default) Constructor.
    */
-  eoRealAtomExchange() {}
+  eoDoubleExchange() {}
 
   /// The class name. Used to display statistics
-  virtual string className() const { return "eoRealAtomExchange"; }
+  virtual string className() const { return "eoDoubleExchange"; }
 
   /**
      Exchanges or not the values
@@ -68,16 +68,16 @@ public:
 /** 
   Intermediate crossover == linear combination
 */
-class eoRealIntermediate: public eoBinOp<double>
+class eoDoubleIntermediate: public eoBinOp<double>
 {
 public:
   /**
    * (Default) Constructor.
    */
-  eoRealIntermediate() {}
+  eoDoubleIntermediate() {}
 
   /// The class name. Used to display statistics
-  virtual string className() const { return "eoRealIntermediate"; }
+  virtual string className() const { return "eoDoubleIntermediate"; }
 
   /**
      Linear combination of both parents

@@ -63,45 +63,51 @@ public:
    */
   bool operator()(EOT& _eo1, const EOT& _eo2)
     {
+      bool bLoc=false;
     // first, the object variables
     for (unsigned i=0; i<_eo1.size(); i++)
       {
-	crossObj(_eo1[i], _eo2[i]); // apply eoBinOp
+	bLoc |= crossObj(_eo1[i], _eo2[i]); // apply eoBinOp
       }
     // then the self-adaptation parameters
-    cross_self_adapt(_eo1, _eo2);
+    bLoc |= cross_self_adapt(_eo1, _eo2);
+    return bLoc;
   }
   
 private:
 
   // the method to cross slef-adaptation parameters: need to specialize
 
-  void cross_self_adapt(eoEsSimple<FitT> & _parent1, const eoEsSimple<FitT> & _parent2)
+  bool cross_self_adapt(eoEsSimple<FitT> & _parent1, const eoEsSimple<FitT> & _parent2)
   {
-    crossMut(_parent1.stdev, _parent2.stdev); // apply eoBinOp
+    return crossMut(_parent1.stdev, _parent2.stdev); // apply eoBinOp
   }
 
-  void cross_self_adapt(eoEsStdev<FitT> & _parent1, const eoEsStdev<FitT> & _parent2)
+  bool cross_self_adapt(eoEsStdev<FitT> & _parent1, const eoEsStdev<FitT> & _parent2)
   {
+    bool bLoc=false;
     for (unsigned i=0; i<_parent1.size(); i++)
       {
-	crossMut(_parent1.stdevs[i], _parent2.stdevs[i]); // apply eoBinOp
+	bLoc |= crossMut(_parent1.stdevs[i], _parent2.stdevs[i]); // apply eoBinOp
       }
+    return bLoc;
   }
 
-  void cross_self_adapt(eoEsFull<FitT> & _parent1, const eoEsFull<FitT> & _parent2)
+  bool cross_self_adapt(eoEsFull<FitT> & _parent1, const eoEsFull<FitT> & _parent2)
   {
+    bool bLoc=false;
     unsigned i;
     // the StDev
     for (i=0; i<_parent1.size(); i++)
       {
-	crossMut(_parent1.stdevs[i], _parent2.stdevs[i]); // apply eoBinOp
+	bLoc |= crossMut(_parent1.stdevs[i], _parent2.stdevs[i]); // apply eoBinOp
       }
     // the roataion angles
     for (i=0; i<_parent1.correlations.size(); i++)
       {
-	crossMut(_parent1.correlations[i], _parent2.correlations[i]); // apply eoBinOp
+	bLoc |= crossMut(_parent1.correlations[i], _parent2.correlations[i]); // apply eoBinOp
       }
+    return bLoc;
 
   }
 

@@ -301,12 +301,12 @@ template<class EOT> class eoSegmentCrossover: public eoQuadOp<EOT>
 		if (bounds.isMinBounded(i))
 		  {
 		    alphaMin = max(alphaMin, (bounds.minimum(i)-rmin)/length);
-		    alphaMin = max(alphaMin, (rmax-bounds.maximum(i))/length);
+		    alphaMax = min(alphaMax, (rmax-bounds.minimum(i))/length);
 		  }
 		if (bounds.isMaxBounded(i))
 		  {
 		    alphaMax = min(alphaMax, (bounds.maximum(i)-rmin)/length);
-		    alphaMax = min(alphaMax, (rmax-bounds.minimum(i))/length);
+		    alphaMin = max(alphaMin, (rmax-bounds.maximum(i))/length);
 		  }
 	      }
 	    }
@@ -380,46 +380,67 @@ template<class EOT> class eoHypercubeCrossover: public eoQuadOp<EOT>
    */
   bool operator()(EOT& _eo1, EOT& _eo2)
     {
+      bool hasChanged = false;
       unsigned i;
       double r1, r2, fact;
       if (alpha == 0.0)		   // no check to perform
 	  for (i=0; i<_eo1.size(); i++)
-	      {
-		r1=_eo1[i];
-		r2=_eo2[i];
-	    fact = -alpha + rng.uniform(range);	 // in [-alpha,1+alpha)
-	    _eo1[i] = fact * r1 + (1-fact) * r2;
-	    _eo2[i] = (1-fact) * r1 + fact * r2;
-	  }
-      else			   // check the bounds
+	    {
+	      r1=_eo1[i];
+	      r2=_eo2[i];
+	      if (r1 != r2) {	   // otherwise do nothing
+		fact = rng.uniform(range);	 // in [0,1)
+		_eo1[i] = fact * r1 + (1-fact) * r2;
+		_eo2[i] = (1-fact) * r1 + fact * r2;
+		hasChanged = true; // forget (im)possible alpha=0
+	      }
+	    }
+      else	   // check the bounds
+	// do not try to get a bound on the linear factor, but rather 
+	// on the object variables themselves
 	for (i=0; i<_eo1.size(); i++)
 	  {
 	    r1=_eo1[i];
 	    r2=_eo2[i];
-	    if (r1 != r2) {	   // otherwise you'll get NAN's
+	    if (r1 != r2) {	   // otherwise do nothing
 	      double rmin = min(r1, r2);
 	      double rmax = max(r1, r2);
-	      double length = rmax - rmin;
-	      double alphaMin = -alpha;
-	      double alphaMax = 1+alpha;
+
+	      // compute min and max for object variables
+	      double objMin = -alpha * rmax + (1+alpha) * rmin;
+	      double objMax = -alpha * rmin + (1+alpha) * rmax;
+
 	      // first find the limits on the alpha's
 	      if (bounds.isMinBounded(i))
 		{
-		  alphaMin = max(alphaMin, (bounds.minimum(i)-rmin)/length);
-		  alphaMin = max(alphaMin, (rmax-bounds.maximum(i))/length);
+		  objMin = max(objMin, bounds.minimum(i));
 		}
 	      if (bounds.isMaxBounded(i))
 		{
-		  alphaMax = min(alphaMax, (bounds.maximum(i)-rmin)/length);
-		  alphaMax = min(alphaMax, (rmax-bounds.minimum(i))/length);
+		  objMax = min(objMax, bounds.maximum(i));
 		}
-	      fact = alphaMin + rng.uniform(alphaMax-alphaMin);
-	      _eo1[i] = fact * rmin + (1-fact) * rmax;
-	      _eo2[i] = (1-fact) * rmin + fact * rmax;
+	      // then draw variables
+	      double median = (objMin+objMax)/2.0; // uniform within bounds
+	      // double median = (rmin+rmax)/2.0;  // Bounce on bounds
+	      double valMin = objMin + (median-objMin)*rng.uniform();
+	      double valMax = median + (objMax-median)*rng.uniform();
+	      // don't always put large value in _eo1 - or what?
+	      if (rng.flip(0.5))
+		{
+		  _eo1[i] = valMin;
+		  _eo2[i] = valMax;
+		}
+	      else
+		{
+		  _eo1[i] = valMax;
+		  _eo2[i] = valMin;
+		}
+	      // seomthing has changed
+	      hasChanged = true; // forget (im)possible alpha=0
 	    }
 	  }
 
-    return true;
+    return hasChanged;
    }
 
 protected:

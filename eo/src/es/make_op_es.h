@@ -42,7 +42,7 @@
 #include <es/eoEsMutationInit.h>
 #include <es/eoEsMutate.h>
 #include <es/eoEsGlobalXover.h>
-#include <es/eoEsLocalXover.h>
+#include <es/eoEsStandardXover.h>
   // also need the parser and param includes
 #include <utils/eoParser.h>
 #include <utils/eoState.h>
@@ -108,27 +108,32 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoRealIni
   // The pointers: first the atom Xover
   eoBinOp<double> *ptObjAtomCross = NULL;
   eoBinOp<double> *ptStdevAtomCross = NULL;
-  // then the global one
+  // then the EOT-level one (need to be an eoGenOp as global Xover is
   eoGenOp<EOT> *ptCross;
 
   // check for the atom Xovers
   if (crossObjParam.value() == string("discrete"))
-    ptObjAtomCross = new eoRealAtomExchange;
+    ptObjAtomCross = new eoDoubleExchange;
   else if (crossObjParam.value() == string("intermediate"))
-    ptObjAtomCross = new eoRealAtomExchange;
+    ptObjAtomCross = new eoDoubleIntermediate;
   else throw runtime_error("Invalid Object variable crossover type");
 
   if (crossStdevParam.value() == string("discrete"))
-    ptStdevAtomCross = new eoRealAtomExchange;
+    ptStdevAtomCross = new eoDoubleExchange;
   else if (crossStdevParam.value() == string("intermediate"))
-    ptStdevAtomCross = new eoRealAtomExchange;
+    ptStdevAtomCross = new eoDoubleIntermediate;
   else throw runtime_error("Invalid mutation strategy parameter crossover type");
 
   // and build the indi Xover 
   if (crossTypeParam.value() == string("global"))
     ptCross = new eoEsGlobalXover<EOT>(*ptObjAtomCross, *ptStdevAtomCross);
   else if (crossTypeParam.value() == string("standard"))
-    ptCross = new eoEsLocalXover<EOT>(*ptObjAtomCross, *ptStdevAtomCross);
+    {	   // using a standard eoBinOp, but wrap it into an eoGenOp
+      eoBinOp<EOT> & crossTmp = _state.storeFunctor(
+	     new eoEsStandardXover<EOT>(*ptObjAtomCross, *ptStdevAtomCross)
+	     );
+      ptCross = new eoBinGenOp<EOT>(crossTmp);
+    }
   else throw runtime_error("Invalide Object variable crossover type");
 
   // now that everything is OK, DON'T FORGET TO STORE MEMORY
@@ -143,14 +148,18 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoRealIni
   // Proxy for the mutation parameters
   eoEsMutationInit mutateInit(_parser, "Variation Operators");
   
-  eoEsMutate<EOT> * ptMon = new eoEsMutate<EOT>(mutateInit, boundsParam.value());   
-  _state.storeFunctor(ptMon);
+  eoEsMutate<EOT> & mut =  _state.storeFunctor(
+           new eoEsMutate<EOT>(mutateInit, boundsParam.value()));   
 
-  // encapsulate into an eoGenop
-  eoMonGenOp<EOT> * op = new eoMonGenOp<EOT>(*ptMon);
-  _state.storeFunctor(op);
+  // now the general op - a sequential application of crossover and mutatation
+  // no need to first have crossover combined with a clone as it is an
+  // eoBinOp and not an eoQuadOp as in SGA paradigm
+
+  eoSequentialOp<EOT> & op = _state.storeFunctor(new eoSequentialOp<EOT>);
+  op.add(*ptCross, pCrossParam.value());
+  op.add(mut, pMutParam.value());
 
   // that's it!
-  return *op;
+  return op;
 }
 #endif

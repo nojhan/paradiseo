@@ -232,12 +232,11 @@ eoGenOp<EOT> & do_make_op(eoParameterLoader& _parser, eoState& _state, eoRealIni
   cross->add(*ptQuad, 1-pCrossParam.value()); // clone operator
 
   // now the sequential
-  eoSequentialOp<EOT> *op = new eoSequentialOp<EOT>;
-  _state.storeFunctor(op);
-  op->add(*cross, 1.0);	 // always crossover (but clone with prob 1-pCross
-  op->add(*ptCombinedMonOp, pMutParam.value());
+  eoSequentialOp<EOT> & op =  _state.storeFunctor(new eoSequentialOp<EOT>);
+  op.add(*cross, 1.0);	 // always crossover (but clone with prob 1-pCross
+  op.add(*ptCombinedMonOp, pMutParam.value());
 
   // that's it!
-  return *op;
+  return op;
 }
 #endif
