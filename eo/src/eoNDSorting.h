@@ -31,6 +31,7 @@
 #include <algorithm>
 #include <eoPop.h>
 #include <eoPerf2Worth.h>
+#include <cassert>
 
 /**
   Non dominated sorting, it *is a* vector of doubles, the integer part is the rank (to which front it belongs),
@@ -90,8 +91,8 @@ private :
 
     void one_objective(const eoPop<EOT>& _pop)
     {
-		unsigned i;
-	eoPop<DummyEO> tmp_pop;
+	unsigned i;
+	vector<DummyEO> tmp_pop;
         tmp_pop.resize(_pop.size());
 
         // copy pop to dummy population (only need the fitnesses)
@@ -101,10 +102,10 @@ private :
           tmp_pop[i].index = i;
         }
 
-        // sort it
-        tmp_pop.sort();
+        // sort it in ascending
+        sort(tmp_pop.begin(), tmp_pop.end(), greater<DummyEO>() ); 
 
-        //
+         
         for (i = 0; i < _pop.size(); ++i)
         {
           value()[tmp_pop[i].index] = _pop.size() - i; // set rank
@@ -438,10 +439,12 @@ class eoNDSorting_II : public eoNDSorting<EOT>
   /// _cf points into the elements that consist of the current front
   vector<double> niche_penalty(const vector<unsigned>& _cf, const eoPop<EOT>& _pop)
   {
+    typedef typename EOT::Fitness::fitness_traits traits;
     unsigned i;
     vector<double> niche_count(_cf.size(), 0.);
 
-    unsigned nObjectives = _pop[_cf[0]].fitness().size();
+    
+    unsigned nObjectives = traits::nObjectives(); //_pop[_cf[0]].fitness().size();
 
     for (unsigned o = 0; o < nObjectives; ++o)
     {
@@ -470,14 +473,12 @@ class eoNDSorting_II : public eoNDSorting<EOT>
 
       for (i = 0; i < nc.size(); ++i)
       {
-        niche_count[i] = (max_dist + 1) - nc[i];
+        niche_count[i] = (max_dist + 1 - nc[i]);
       }
     }
 
     return niche_count;
   }
-
-
 };
 
 #endif
