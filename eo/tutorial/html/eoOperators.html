@@ -2,64 +2,111 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdksmp i686) [Netscape]">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdk i686) [Netscape]">
    <title>Variation Operators</title>
 </head>
 <body text="#000000" link="#0000EF" vlink="#51188E" alink="#FF0000" background="beige009.jpg">
-<a href="eoTopDown.html">Top-Down page</a> - <a href="eoBottomUp.html">Bottom-up
-page</a> - <a href="eoProgramming.html">Programming hints</a> - <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
+<b><font color="#FF0000">General</font></b>: <a href="eoTopDown.html">Algorithm-Based
+page</a> - <a href="eoBottomUp.html">Component-Based</a> - <a href="eoProgramming.html">Programming
+hints</a> - <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
 documentation</a></font></font></b>
 <br>
 <hr WIDTH="100%">
-<br><b><font color="#FF0000">TOC</font></b> : <a href="#introduction">Introduction</a>
+<br><b><font color="#FF0000">Local</font></b>: <a href="#introduction">Introduction</a>
 - <a href="#crossover">Crossover</a> - <a href="#mutation">Mutation</a>
-- <a href="#proportional_simple">Simple combinations</a> - <a href="#general">General
-Operators</a> - <a href="#general_combination">General combinations</a>
+- <a href="#proportional_simple">Combinations</a> - <a href="#general">General
+Operators</a> - <a href="#populators">Populators</a> - <a href="#general_combination">General
+combinations</a>- <a href="#advanced_general">Advanced operators</a>
 <br>
 <hr WIDTH="100%">
 <center>
 <h1>
 <b><font color="#CC0000">Variation Operators</font></b></h1></center>
-
-<p><br><a NAME="introduction"></a><b><font color="#000099"><font size=+2>Variation
+<a NAME="introduction"></a><b><font color="#000099"><font size=+2>Variation
 Operators</font></font></b>
 <br>Variation operators modify individuals, or, equivalently, move them
-in the search space. They are almost always <b><font color="#FF6600">stochastic</font></b>,
-i.e. they are based on random numbers, or equivalently, perform random
-modifications of their arguments. Variation operators are classified depending
-on the number of arguments they use and/or modify.
-<p>Variation operators involving two individuals are called <a href="#crossover">crossover
-operators</a>. They can either modify one of the parents according to the
-material of the other parent, or modify both parents. In EO, the former
-are called Binary operators and the latter Quadratic operators.
-<br>Variation operators involving one single individual are called <a href="#mutation">mutation
-operators.</a>
-<br>In EO you can also define and use variation operators that generate
-any number of offspring from any number of parents (sometimes termed <b><font color="#FF6600">orgy</font></b>
-operators). They are called <a href="#general">general operators</a>.
-<p>Though most the historical evolutionary algorithms used at most one
-crossover and one mutation (see e.g. the Simple Genetic Algorithm in <a href="eoLesson1.html">lesson1</a>),
-the trend now in evolutionary computation is to combine operators, choosing
-at run-time and for each individual which operator to apply. This can be
-done in the framework of simple operators, combining for instance several
-mutations into a variation operator that chooses one of them according
-to user-defined preferences: such combinations are called in EO <a href="#proportional_simple">proportional
-combination of simple operators</a> (see e.g. how to define and use such
-combined operators in the SGA of <a href="eoLesson2.html">lesson2</a>).
-<p>Finally, there are many other ways to combine different variation operators
-of different kind. Within EO, you can choose to apply many different types
-of operator to the population, either in turn (this is called sequential
-combination) or by randomly choosing among a set of operators at a given
-time (this is proportional combination, generalizing the one defined for
-simple operators). You can of course mix and interleave both approaches
-at will, and this is described as <a href="#general_combination">general
-combination of general operators</a>.
-<p><b><font color="#FF0000">EO implementation</font></b>: all variation
-operators in EO derive from the base (abstract) class <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoop.html">eoOp</a></font></font></b>
-(as usual, click to see the inheritance diagram). blabla
-<br>
+in the search space. In Evolutionary Algorithms, varitaion operators are
+almost always <b><font color="#FF6600">stochastic</font></b>, i.e. they
+are based on random numbers, or equivalently, perform random modifications
+of their arguments. Variation operators are classified depending on the
+number of arguments they use and/or modify.
+<ul>
+<li>
+Variation operators involving <b><font color="#FF6600">two individuals</font></b>
+are called <a href="#crossover">crossover operators</a>. They can either
+modify one of the parents according to the material of the other parent,
+or modify both parents. In EO, the former are called Binary operators and
+the latter Quadratic operators.</li>
+
+<li>
+Variation operators involving <b><font color="#FF6600">one single individual</font></b>
+are called <a href="#mutation">mutation operators.</a></li>
+
+<li>
+Straightforward extensions of these simple operators allow to combine them:
+in
+<a href="#proportional_simple">proportional combinations</a>, one operator
+is chosen among a given set of operators of same arity according to some
+weights.</li>
+
+<li>
+In EO you can also define and use variation operators that generate any
+number of offspring from any number of parents (sometimes termed <b><font color="#FF6600">orgy</font></b>
+operators). They are called <a href="#general">general operators</a>.</li>
+
+<li>
+However, the interface of such operators was designed for their use inside
+<a href="#general_combination">general
+combinations</a>: you can use <b><font color="#FF6600">proportional combination</font></b>,
+in which one operator is chosen among a given set of operators of same
+arity according to some weights, as for simple operators except that operators
+of different arities can be mixed, but you can also use <b><font color="#FF6600">sequential
+combinations</font></b>, where different operators&nbsp; are applied in
+turn with given probability. But you can also embed any of such combinations
+at any depth.</li>
+
+<li>
+The price to pay for that is that you must use an instermediate class to
+access the individuals, the <a href="#populators">eoPopulator</a> class.</li>
+
+<li>
+Thanks to that class, it also become easy to design <a href="#advanced_general">advanced
+operators</a>, such as crossover operators where the mate is chosen according
+to <b><font color="#FF6600">sexual preference</font></b> rather than fitness-based
+preferences.</li>
+</ul>
+<b><font color="#FF0000">EO classes for variation operators</font></b>:
+<ul>
+<li>
+<b><font color="#FF0000">Base classes</font></b>: all variation operators
+in EO derive from the base (pure abstract) class <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoop.html">eoOp</a></font></font></b>
+(as usual, click to see the inheritance diagram).&nbsp; Four (also abstract)
+classes derive from <b><font color="#CC33CC">eoOp</font></b>, namely <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomonop.html">eoMonOp</a></font></font></b>
+(for <a href="#mutation">mutations</a>), <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eobinop.html">eoBinOp</a></font></font></b>
+and <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoquadop.html">eoQuadOp</a></font></font></b>
+(for <a href="#crossover">crossover</a>) and <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eogenop.html">eoGenOp</a></font></font></b>
+for <a href="#general">all other operators</a>.</li>
+
+<li>
+<b><font color="#FF0000">Combined classes</font></b>: those classes combine
+variation operators, and are variation operators by themselves: the simple
+variation operators can be combined into the corresponding <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoproportionalcombinedmonop.html">eoProportionalCombinedMonOp</a></font></font></b>,
+<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoproportionalcombinedbinop.html">eoProportionalCombinedBinOp</a></font></font></b>
+and <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eoproportionalcombinedquadop.html">eoProportionalCombinedQuadOp</a></font></font></b>.
+The general operators <b><font color="#CC33CC">eoGenOp</font></b> can be
+combined into some <b><font face="Arial,Helvetica"><font color="#000000"><font size=+1><a href="../../doc/html/class_eoopcontainer.html">eoOpContainer</a></font></font></font></b>,
+abstract class with two implementations, <b><font face="Arial,Helvetica"><font color="#000000"><font size=+1><a href="../../doc/html/class_eoproportionalopcontainer.html">eoProportionalOpContainer</a></font></font></font></b>
+and <b><font face="Arial,Helvetica"><font color="#000000"><font size=+1><a href="../../doc/html/class_eosequentialopcontainer.html">eoSequentialOpContainer</a></font></font></font></b></li>
+
+<li>
+<b><font color="#FF0000">Related classes</font></b>: General operators
+of class <b><font color="#CC33CC">eoGenOp</font></b> can only be used through
+the <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eopopulator.html">eoPopulator</a></font></font></b>
+class.</li>
+</ul>
+
 <hr WIDTH="100%">
-<br><a NAME="crossover"></a><b><font size=+1><font color="#000099">Simple
+<a NAME="crossover"></a><b><font size=+1><font color="#000099">Simple
 operators: </font><font color="#FF0000">Crossover</font></font></b>
 <p>The characteristic of crossover operators is that they involve two parents.
 However, there are crossover operators that generate two parents, and some
@@ -112,7 +159,6 @@ you are using for instance an SGA, this (<a href="FirstRealGA.html#operators">de
 <a href="FirstRealGA.html#generation">usage</a>).
 See also the different ways that are described below, encapsulating the
 operators into combined operators objects.
-<br>&nbsp;
 <p><a NAME="writing_crossover"></a><b><font color="#FF0000">Writing a crossover
 operator:</font></b>
 <br>There are only two things to modify in the <a href="../Templates/crossover.tmpl">template
@@ -121,7 +167,7 @@ creating!)
 <ul>
 <li>
 The <font color="#FF6600">constructor</font>, where you pass to the object
-any useful parameter</li>
+any useful parameter (see the private data at end of class definition).</li>
 
 <li>
 The <font color="#FF6600">operator()</font> method, which performs the
@@ -130,12 +176,11 @@ actual crossover.</li>
 <li>
 <b><font color="#FF6600">Warning</font></b>: don't forget to <b><font color="#FF6600">invalidate</font></b>
 the fitness of any individual that has actually been modified. Otherwise,
-the l<a href="eoEval.html#lazy">azy fitness evaluation procedure</a> in
-EO will not know it should compute the fitness again and will keep the
+the <a href="eoEval.html#lazy">lazy fitness evaluation procedure</a> in
+EO might not know it should compute the fitness again and will keep the
 old value.</li>
 </ul>
 
-<p><br>
 <hr WIDTH="100%"><a NAME="mutation"></a><b><font color="#000099"><font size=+1>Simple
 operators: </font></font><font color="#FF0000"><font size=+2>Mutation</font></font></b>
 <br>Mutation operators modify one single individual. The corresponding
@@ -177,7 +222,7 @@ creating!)
 <ul>
 <li>
 The <font color="#FF6600">constructor</font>, where you pass to the object
-any useful parameter</li>
+any useful parameter (see the private data at end of class definition).</li>
 
 <li>
 The <font color="#FF6600">operator()</font> method, which performs the
@@ -187,80 +232,287 @@ actual crossover.</li>
 <b><font color="#FF6600">Warning</font></b>: don't forget to <b><font color="#FF6600">invalidate</font></b>
 the fitness of the individual - if it has actually been modified. Otherwise,
 the <a href="eoEval.html#lazy">lazy fitness evaluation procedure</a> in
-EO will not know it should compute the fitness again and will keep the
+EO might not know it should compute the fitness again and will keep the
 old value.</li>
 </ul>
 
 <hr WIDTH="100%">
-<br><a NAME="proportional_simple"></a><b><font size=+1><font color="#000099">Combining
+<a NAME="proportional_simple"></a><b><font size=+1><font color="#000099">Combining
 simple operators: </font><font color="#FF0000">proportional combinations</font></font></b>
 <p>The best thing to do is to go to the <a href="eoLesson2.html#combined_operators">Lesson2</a>
-of the tutorial, where everything is explained.
+of the tutorial, where everything is explained. You will find out how you
+can use
+<br>several mutations (respectiveley crossovers) as a single operator:
+every time the operator is called, one of the available operators is chosen
+by some roulette wheel selection using realtive weights.
 <p>
 <hr WIDTH="100%"><a NAME="general"></a><b><font color="#000099"><font size=+2>General
 Operators</font></font></b>
+<p>General operators in EO are variation operators that are neither simple
+mutations nor simple crossovers. They can involve any number of parents,
+and create any number of offspring. Moreover, they can make use of different
+ways to get the parents they will involve, e.g. they can use a different
+selector for each of the parents they need to select.
+<p>The corresponding EO class is called <b><font color="#CC33CC">eoGenOp</font></b>.
+and it is as usual templatized by the type of individual it can handle
+(see documentation for <b><font face="Arial,Helvetica"><font size=+1><a href="doc/html/class_eomonop.html">eoGenOp</a></font></font></b>
+:-)
+<p><a NAME="interface"></a><b><font color="#FF0000">Interface</font></b>:
+<br><font color="#000000">The interface for </font><b><font color="#CC33CC">eoGenOp</font></b><font color="#000000">
+is based on that of another class, called </font><b><font color="#999900">eoPopulator</font><font color="#CC33CC">.
+</font></b>An
+<b><font color="#999900">eoPopulator</font></b>
+is a <b><font color="#FF6600">population</font></b>, but also behaves like
+an <b><font color="#FF6600">iterator</font></b> over a population (hence
+the name, <b><font color="#FF6600">Popul</font></b>ation-Iter<b><font color="#FF6600">ator</font></b>).
+<p><a NAME="populator_interface"></a>The <b><font color="#FF6600">basic
+interface</font></b> of an <b><font color="#999900">eoPopulator</font></b>
+(see also <a href="../../doc/html/class_eogenop.html">the documentation</a>,
+of course) is the following: Individuals are accessed through the <b><tt><font color="#993300">operator*</font></tt></b>;
+Basic iterator operations are available, like (pre)incrementation through
+<b><tt><font color="#993300">operator++</font></tt></b>,
+position management through <b><tt><font color="#993300">seekp</font></tt></b>
+(returns the current position) and <b><tt><font color="#993300">tellp</font></tt></b>
+(go to a given position); Individuals can also be <b><font color="#993300">insert</font></b>ed
+and <b><font color="#993300">erase</font></b>d at current position using
+the corresponding methods; last but not least, as the individuals are returned
+by reference, it is mandatory to ensure that they will not be moved around
+later: the memory management&nbsp; routine reserve is called whenever there
+is a chance to add some individuals in the population.
+<p>This results in the following general interface for an <b><font color="#CC33CC">eoGenOp</font></b>:
+It receives as argument an <b><font color="#999900">eoPopulator</font></b>,
+gets the individuals it needs using the <b><tt><font color="#993300">operator*</font></tt></b>,
+and must handle the positinning of the&nbsp; using the <b><tt><font color="#993300">operator++</font></tt></b>
+method.
+<p><b><tt><font color="#993300">void operator()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
+_pop)</font></tt></b>
+<br><b><tt><font color="#993300">{</font></tt></b>
+<br><tt><font color="#993300"><b>&nbsp; EOT &amp; eo1 = *_pop; </b>// get
+(select if necessary) the guy</font></tt>
+<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</b>// advance</font></tt>
+<br><tt><font color="#993300"><b>&nbsp; EOT &amp; eo2 = *_pop; </b>// get
+(select if necessary) the guy</font></tt>
+<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</b>// advance</font></tt>
+<br><b><tt><font color="#993300">...</font></tt></b>
+<br><tt><font color="#993300"><b>&nbsp; EOT &amp; eoN = *_pop; </b>// get
+(select if necessary) the guy</font></tt>
+<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</b>// advance</font></tt>
+<p><tt><font color="#993300">// do whatever the operator is supposed to
+do</font></tt>
+<br><b><tt><font color="#993300">}</font></tt></b>
+<p><b><font color="#FF6600">What happens next?</font></b> Well, it all
+depends on how many parents and how many offspring your general op needs:
+<ul>
+<li>
+If the number of generated offspring is <font color="#FF6600">equal</font>
+to the number of parents, the operator simply needs to modify them (they
+are passed by reference, no useless copy takes place).</li>
+
+<li>
+If the operator produces <font color="#FF6600">more offspring than there
+were parents</font>, it needs to insert them into the list using the <b><tt><font color="#993300">insert</font></tt></b>
+method of the class <b><font color="#999900">eoPopulator</font></b> as
+in the following:</li>
+
 <br>&nbsp;
-<p>
+<p>&nbsp;
+<p><b><tt><font color="#993300">void operator()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
+_pop)</font></tt></b>
+<br><b><tt><font color="#993300">{</font></tt></b>
+<br><tt><font color="#993300"><b>&nbsp; EOT &amp; eo1 = *_pop; </b>// get
+(select if necessary) the guy</font></tt>
+<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</b>// advance</font></tt>
+<br><tt><font color="#993300">&nbsp; // Now create second offspring - eo1
+is modified too!</font></tt>
+<br><b><tt><font color="#993300">&nbsp; EOT eo2 = create_individual(eo1);</font></tt></b>
+<br><tt><font color="#993300">&nbsp; // inserts eo2 in _pop after eo1</font></tt>
+<br><b><tt><font color="#993300">&nbsp; _pop.insert(eo2);</font></tt></b>
+<br><b><tt><font color="#993300">...</font></tt></b>
+<br>Of course the size of the resulting population will grow - and you
+should have a replacement procedure that takes care of that.
+<li>
+The case where <font color="#FF6600">more parents are needed than offspring
+will be created</font> is a little more delicate: think about <b><font color="#CC33CC">eoBinOp</font></b>,
+and try to imagine the reasons why no crossover of that class asre used
+in the first lessons of the tutorial, within the SGA framework. There are
+two possibilities:</li>
+
+<ul>
+<li>
+If you think "generational", the first idea is to get the parents from
+outside the curent list, so the total number of (intermediate) offspring
+is always equal to the initial population size. By chance, the <b><font color="#999900">eoPopulator</font></b>has
+a handle on the initial population that was used to start the process,
+and you can access it from inside the GenOp method. For instance
+<p><b><tt><font color="#993300">void operator()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
+_pop)</font></tt></b>
+<br><b><tt><font color="#993300">{</font></tt></b>
+<br><tt><font color="#993300"><b>&nbsp; EOT &amp; eo1 = *_pop; </b>// get
+(select if necessary) the guy</font></tt>
+<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>// advance</font></tt>
+<br><b><tt><font color="#993300">&nbsp; const EOT &amp; eo2 = </font><font color="#009900">select</font><font color="#993300">(_pop.source());</font></tt></b>
+<p>where select is any selector you like. Note the const: you are not allowed
+to modify an element of the original population (but you could of course
+have copied it!). Now to find out where that selector comes from, you'll
+have to wait until next section. If you can't wait, go directly there.</li>
+
+<li>
+If you don't care about the size of the offspring population, you can use
+the delete method of the class <b><font color="#999900">eoPopulator</font></b>.
+For instance
+<br><b><tt><font color="#993300">void operator()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
+_pop)</font></tt></b>
+<br><b><tt><font color="#993300">{</font></tt></b>
+<br><tt><font color="#993300"><b>&nbsp; EOT &amp; eo1 = *_pop; </b>// get
+(select if necessary) the guy</font></tt>
+<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>// advance</font></tt>
+<br><tt><font color="#993300"><b>&nbsp; EOT &amp; eo2 = *_pop; </b>// get
+(select if necessary) the guy</font></tt>
+<br><tt><font color="#993300"><b>&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>// advance</font></tt>
+<br><tt><font color="#993300">&nbsp; // do whatever needs to be done, modifying
+eo1 but not eo2</font></tt>
+<br><tt><font color="#993300"><b>&nbsp; _pop.delete();&nbsp;&nbsp; </b>//
+removes (untouched) eo2 from the list</font></tt></li></ul>
+</ul>
+<b><font color="#FF6600">Warning</font></b>: if you use operators that
+have different number of parents than offspring, you are deviating from
+the simple generational approach. Be careful to have the proper replacement
+procedure to take care of the population size: in most instances of algorithms
+that come within EO, this is enforced (an exception is thrown if population
+size varies from one genertaion to the other) but this might not be true
+for all forthcoming EO algorithms.
+<p><b><font color="#FF0000">Using general operators</font></b>:
+<br>Directly applying general operators to given individuals is impossible
+in EO, due to its <a href="#interface">interface</a>. You need the help
+of an individual dispenser of class <b><font color="#999900">eoPopulator</font></b>.
+But anyway general operators were thought to be used mainly in combination
+of one another, as described <a href="#general_combination">below</a>.
+<p><a NAME="writing_mutation"></a><b><font color="#FF0000">Writing a general
+operator:</font></b>
+<br>There are many things to modify in the <a href="../Templates/mutation.tmpl">template
+class definitions</a> provided.
+<ul>
+<li>
+The <font color="#FF6600">constructor</font>, where you pass to the object
+any useful parameter (see private data at end of class definition).</li>
+
+<li>
+The <font color="#FF6600">operator()</font> method, which performs the
+actual crossover. Remember you must use the argument <b><font color="#999900">eoPopulator</font></b>to
+access the members of the [p[ulation in turn (method
+<b><tt><font color="#993300">operator*</font></tt></b>),
+you may use the initial population (method <b><tt><font color="#993300">source()</font></tt></b>),
+as well as the <b><tt><font color="#993300">insert</font></tt></b> or <b><tt><font color="#993300">delete</font></tt></b>
+methods.</li>
+
+<br><b><font color="#FF6600">Warning</font></b>: as usual, don't forget
+to <b><font color="#FF6600">invalidate</font></b> the fitness of the individual
+- if it has actually been modified. Otherwise, the <a href="eoEval.html#lazy">lazy
+fitness evaluation procedure</a> in EO will not know it should compute
+the fitness again and will keep the old value.</ul>
+
+<hr WIDTH="100%"><a NAME="populators"></a><b><font color="#000099"><font size=+2>The
+populators:</font></font></b>
+<br>The public interface class <b><font color="#999900">eoPopulator</font></b>
+has been described above. However, a protected method, termed <b><tt><font color="#993300">select</font></tt></b>,&nbsp;
+is used inside the object to get new parents for the following operator,
+and its implementation distinguishes two types of <b><font color="#999900">eoPopulator</font></b>:
+<ul>
+<li>
+The <b><font color="#999900">eoSeqPopulator</font></b> gets new parents
+from its source (the initial population). When the source is exhausted,
+an exception if thrown. The idea of such pooulator is to start from a population
+of already selected individuals.</li>
+
+<br>The programmer should hence be very careful that the number of available
+parents matches the requirements of the operators when using an <b><font color="#999900">eoSeqPopulator</font></b>
+object.
+<li>
+The <b><font color="#999900">eoSelectivePopulator</font></b> , on the opposite,
+always gets new parents using its private <b><font color="#009900">eoSelectOne</font></b>
+object (passed at construct time). Hence it can handle any number of parents
+at will. The idea of such populator is to handle the whole <b><font color="#FF6600">breeding</font></b>
+process, i.e. selection and variation operators.</li>
+</ul>
+An immediate consequence is that if you are not sure of the numebr of&nbsp;
+parents you will need in some operators (e.g. because of some stochastic
+proportional selection ebtween operators that don't need the same number
+of parents, then you <b><font color="#FF6600">must</font></b> use an <b><font color="#CC33CC">eoSelectivePopulator</font></b>
+to apply the variation operators to the population.
+<br>
 <hr WIDTH="100%"><a NAME="general_combination"></a><b><font color="#000099"><font size=+2>General
 Combinations:</font></font></b>
-<p>There are two main ways to use and combine general operators in EO:
+<br>There are two main ways to use and combine general operators in EO:
 the proportional combination, similar to what has been described for simple
-operators above, and the sequential combination, which amounts to apply
-all operators in turn to a bunch of individuals, each operator being applied
-with a specific probability.
-<p><b><font color="#FF0000">Proportional combinations</font></b> behave
-like a unique operator: when it is called upon a population of candidates,
-an <b><font color="#CC33CC">eoProportionalOpContainer</font></b> enters
-the following loop:
-<p>while there are individuals left in the candidate population
+operators <a href="#proportional_simple">above</a>, and the sequential
+combination, which amounts to apply all operators in turn to a bunch of
+individuals, each operator being applied with a specific probability.
+<p><a NAME="prop_container"></a><b><font color="#FF0000">Proportional combinations</font></b>
+<br>When called upon a population (through an <b><font color="#999900">eoPopulator</font></b>
+object), an <b><font color="#CC33CC">eoProportionalOpContainer</font></b>
+enters the following loop:
+<p>while there are individuals left in the list
 <ul>
 <li>
 choose one of the included operators according to their relative rates
-by some roulette wheel random choice</li>
+(by some roulette wheel random choice)</li>
 
 <li>
-find out the number of parents that it requires (haha, the tricky part
-if e.g. sequentialOp are imbedded :-)</li>
+applies the chosen operator. The parents are dispensed to the operator
+from the list on demand.</li>
 
 <li>
-gets the required number of individual from the candidates,</li>
+What happens next exactly depends on the type of operator, but basically,
+some of the parents get modified, some might get removed from the list
+and some new individual might get inserted on the list.</li>
 
 <li>
-applies the chosen operator to those parents, generating a list of offspring</li>
-
-<li>
-removes the parents from the candidate population</li>
-
-<li>
-append the offspring to the result population</li>
+updates the list pointer (if needed) to the individual following the ones
+that just have been modified/inserted/deleted.</li>
 </ul>
-<b><font color="#FF0000">Sequential combinations</font></b> behave like
-a unique operator: when it is called upon a population of candidates, an
+<a NAME="seqential_container"></a><b><font color="#FF0000">Sequential combinations</font></b>
+<br>When it is called upon a list of pending candidates, an
 <b><font color="#CC33CC">eoSequentialOpContainer</font></b>
 enters the following loop:
-<p>for all operators it contains, apply the operator to the candidate population,
-that is
+<p>mark the current position
+<br>for all operators it contains,
 <ul>
 <li>
-start with an empty offspring population</li>
+go to marked position</li>
 
 <li>
-get the number of parents the operator at hand requires (haha, the tricky
-part if the operator is an eoProportionalOpContainer!!!)</li>
+until <a href="#container_and_populator">current end of population</a>
+is reached do</li>
+
+<ul>
+<li>
+flip a coin according to the operator rate.</li>
+
+<ul>
+<li>
+If true, apply the operator to the parents. The current parents can be
+modified, or some can be deleted from the list, or some offspring can be
+inserted in the list.</li>
 
 <li>
-flip a coin according to the operator rate. It heads, apply the operator
-to the parents to generate some offspring, and append the generated offspring
-to the offspring population. If tails, directly append the parents to the
-offspring population</li>
+If false, move the pointer over the required number of parents (i.e. don't
+modify thoses parents)</li>
+</ul>
 
 <li>
-until no more parents (or an insufficient number of parents) are left in
-the population. The remaining parents, if any, are copied in the offspring
-population</li>
+Next pending parent</li>
+</ul>
 
 <li>
-make the offspring population the parentpopulation for next operator.</li>
+Next operator</li>
 </ul>
 <font color="#FF6600">Remark:</font>The eoSGATransform presented in <a href="eoLesson2.html#transform">Lesson2</a>
 can be viewed as a particular type of <b><font color="#CC33CC">eoSequentialOpContainer</font></b>.
@@ -268,29 +520,27 @@ It was not coded that way in order to provide a gradual introduction to
 all concepts.
 <br><font color="#FF6600">Exercise</font>: write the code to perform an
 eoSGA using the eoOpContainer constructs.
-<p><font color="#FF6600">Remark</font>: there is actually a single list
-of individuals that is maintained through a clever mecahnism of mark, rewind
-and unmark, but that's a purely technical matter. If you are interested,
-go and check the eoOpContainer and the eoSequentialOpContainer code.
-<br>&nbsp;
 <p><b><font color="#FF0000">Adding operators to a container:</font></b>
-<br>The basic function to add an operator to an eoOpContainer is the method
-<b><tt><font color="#993300">add</font></tt></b>
-from class eoOpContainer.
-<br>It is similar to all other <b><tt><font color="#993300">add</font></tt></b>
-methods in other Combined things in eo (as the simple eoProportionalCombinedXXXop
+<br>The way to add an operator to an <b><font color="#CC33CC">eoOpContainer</font></b>
+is the method
+<b><tt><font color="#993300">add</font></tt></b>. It is similar
+to all other <b><tt><font color="#993300">add</font></tt></b> methods in
+other Combined things in eo (as the simple eoProportionalCombinedXXXop
 described above, but also the eoCombinedContinue class or the eoCheckPoint
 class).
 <br>The syntax is straightforward, and it works with any of the operator
-classes defined above:
+classes <b><font color="#CC33CC">eoXXXOp</font></b>, where XXX stands for
+<b><font color="#CC33CC">Mon,
+Bin, Quad </font></b><font color="#000000">or</font><b><font color="#CC33CC">
+Gen</font></b>:
 <p><b><tt><font color="#993300">someOperatorType&lt;Indi> myOperator;</font></tt></b>
-<br><b><tt><font color="#993300">eoXXXOpContainer&lt;Indi> myOpContainer;</font></tt></b>
+<br><b><tt><font color="#993300">eoYYYOpContainer&lt;Indi> myOpContainer;</font></tt></b>
 <br><tt><font color="#993300"><b>myOpContainer.add(myOperator, rate); </b>//
 rate: double whose <b>meaning depends on XXX</b></font></tt>
-<p>where XXX can be one of Proportional and Sequential.
-<br>However, the way <b><tt><font color="#993300">rate</font></tt></b>
-will be used is highly dependent on the type of OpContainer your are creating
-there:
+<p>where YYY can be one of Proportional and Sequential.
+<br><b><font color="#FF6600">Warning</font></b>: the way <b><tt><font color="#993300">rate</font></tt></b>
+will be used is highly dependent on the type of <b><font color="#CC33CC">eoOpContainer</font></b>
+your are creating there:
 <ul>
 <li>
 The rates for <b><font color="#CC33CC">eoProportionalOpContainer</font></b>
@@ -300,21 +550,115 @@ values</font></b>.</li>
 
 <li>
 The "rates" for <b><font color="#CC33CC">eoSequentialOpContainer </font></b>actually
-are probabilities, i.e. they will be used in a coin-flipping to determine
-whether that particuler operator will be applied to the next candidates
-at hand. They should be <b><font color="#FF6600">in [0,1]</font></b> (no
-error will happen if they are not, but the operator will be applied systematically
-- this is equivalent of a rate equal to 1).</li>
+are <b><font color="#FF6600">probabilities</font></b>, i.e. they will be
+used in a coin-flipping to determine whether that particuler operator will
+be applied to the next candidates at hand. They should be <b><font color="#FF6600">in
+[0,1]</font></b> (no error will happen if they are not, but the operator
+will be applied systematically - this is equivalent of a rate equal to
+1).</li>
+</ul>
+<a NAME="container_and_populator"></a><b><font color="#FF0000">Containers,
+Selectors and Populators</font></b>
+<br>The way the <b><font color="#CC33CC">eoOpContainer</font></b> are applied
+on a population using an <b><font color="#999900">eoPopulator</font></b>
+object. But, whereas the behavior of <b><font color="#CC33CC"><a href="#prop_container">eoProportionalOpContainer</a></font></b>
+does not depend on the type of <b><font color="#999900">eoPopulator</font></b>,(one
+operator is chosen by roulette_wheel, and applied once before control is
+given back to the caller), the main loop in method <b><tt><font color="#993300">operator()
+</font></tt></b>of
+class <b><font color="#CC33CC"><a href="#seqential_container">eoSequentialOpContainer</a></font></b>
+iterates <b><tt><font color="#993300">while (!_pop.exhausted())</font></tt></b>
+which is interpreted differently depending on the <a href="#populators">type
+of <b><font color="#CC33CC">eoPopulator</font></b></a>:
+<ul>
+<li>
+if the argument is an <b><font color="#999900">eoSelectivePopulator</font></b>,
+the default position of the eoPopulator, considered as a population iterator,
+is at end of population. Individuals are added upon demand of an operator,
+and in most cases all operators are applied once. This also depends, however,
+on the arities of all operators:</li>
+
+<ul>
+<li>
+Consider an <b><font color="#CC33CC">eoSequentialOpContainer</font></b>
+containing an eoQuadOp and an eoMonOp. The eoQuadOp first asks for two
+parents and modifies them. The eoMonOp is then called starting from the
+forst of thoses two modified individuals, and is hence applied twice, once
+on each parent.</li>
+
+<li>
+But consider now an <b><font color="#CC33CC">eoSequentialOpContainer</font></b>
+containing an <b><font color="#CC33CC">eoGenOp</font></b> that takes one
+parent and generates three offspring, followed by an <b><font color="#CC33CC">eoQuadOp</font></b>.
+The <b><font color="#CC33CC">eoGenOp</font></b> will call the selector
+to get the parent its need and will modify it and put 2 additional offspring
+at end of the population. The <b><font color="#CC33CC">eoQuadOp</font></b>
+will then be called on the first of the three outputs of the <b><font color="#CC33CC">eoGenOp</font></b>,
+and hence will act upon the frist two of them. But at that point, the populator
+iterator will point to the third of the individuals resulting from the
+<b><font color="#CC33CC">eoGenOp</font></b>,
+and the test <b><tt><font color="#993300">_pop.exhausted()</font></tt></b>
+will return false, so the <b><font color="#CC33CC">eoQuadOp</font></b>
+will again be called. The second parent it needs will be given by a new
+call to the embedded <b><font color="#009900">eoSelectOne</font></b> of
+the&nbsp; and everything will go on smoothly, except that a total of 4
+offspring will have been generated by application of this particular <b><font color="#CC33CC">eoSequentialOpContainer</font></b>.</li>
 </ul>
 
-<p><br>
-<hr WIDTH="100%"><b><font color="#FF0000">TOC</font></b> : <a href="#introduction">Introduction</a>
+<li>
+if the argument is an <b><font color="#999900">eoSeqPopulator</font></b>,
+the position of the iterator starts from the beginning of an existing population
+(the source populations), and hence when an&nbsp; an <b><font color="#CC33CC">eoSequentialOpContainer</font></b>
+is called, it goes through the whole remaining of the population (the test
+<b><tt><font color="#993300">_pop.exhausted()</font></tt></b>
+only returns true at end of the source population).</li>
+
+<li>
+From the above it is easy to see that passing an <b><font color="#999900">eoSeqPopulator</font></b>
+to an <b><font color="#CC33CC">eoProportionalOpContainer</font></b> that
+contains an <b><font color="#CC33CC">eoSequentialOpContainer</font></b>,
+though not technically forbiddden, will most produce something&nbsp; totally
+unpredictable, and hence should probably not be used without great care.</li>
+</ul>
+
+<hr WIDTH="100%"><a NAME="advanced_general"></a><b><font color="#000099"><font size=+2>Advanced
+general operators:</font></font></b>
+<p>It is sometimes useful to be able to use a selector from inside an operator
+(a typical example is when you want to implement <b><font color="#FF6600">sexual
+preferences</font></b>, i.e. choose a mate for a first parent according
+to some characteritics of that first parent).
+<br>This is made possible in EO because the general operators have a handle
+on the initial population through the method source() of the argument eoPopulator
+they work on. Their <b><tt><font color="#993300">operator()</font></tt></b>
+method shoudl look like
+<p><b><tt><font color="#993300">void operator()(</font><font color="#999900">eoPopulator</font><font color="#993300">&amp;
+_pop)</font></tt></b>
+<br><b><tt><font color="#993300">{</font></tt></b>
+<br><tt><font color="#993300"><b>&nbsp; EOT &amp; eo1 = *_pop; </b>// get
+(select if necessary) the first guy</font></tt>
+<br><b><tt><font color="#993300">&nbsp; ++_pop;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</font></tt></b><tt><font color="#993300">// advance</font></tt>
+<br><b><tt><font color="#993300">&nbsp; EOT &amp; eo2 = </font><font color="#009900">findBlonde</font><font color="#993300">(_pop.source());&nbsp;
+
+</font></tt></b><tt><font color="#993300">// select mate</font></tt>
+<br><tt><font color="#993300">// do whatever the operator is supposed to
+do</font></tt>
+<br><b><tt><font color="#993300">}</font></tt></b>
+<p>Where does that <b><tt><font color="#009900">findBlonde</font></tt></b>
+selector comes from? As usual, you have to attach it to the operator,&nbsp;
+in its constructor for instance, which should give something like:
+<p><b><tt><font color="#993300">sexualSelectorType&lt;Indi>&nbsp; findBlonde;</font></tt></b>
+<br><b><tt><font color="#993300">sexualOperatorType&lt;Indi> yourBrainAndMyBeauty(findBlonde);</font></tt></b>
+<p>
+<hr WIDTH="100%"><b><font color="#FF0000">Local</font></b>: <a href="#introduction">Introduction</a>
 - <a href="#crossover">Crossover</a> - <a href="#mutation">Mutation</a>
-- <a href="#proportional_simple">Simple combinations</a> - <a href="#general">General
-Operators</a> - <a href="#general_combination">General combinations</a>
-<br>
-<hr WIDTH="100%"><a href="eoTopDown.html">Top-Down page</a> - <a href="eoBottomUp.html">Bottom-up
-page</a> - <a href="eoProgramming.html">Programming hints</a> -<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
+- <a href="#proportional_simple">Combinations</a> - <a href="#general">General
+Operators</a> - <a href="#populators">Populators</a> - <a href="#general_combination">General
+combinations</a>- <a href="#advanced_general">Advanced operators
+<hr WIDTH="100%"></a><b><font color="#FF0000">General</font></b>: <a href="eoTopDown.html">Algorithm-Based
+page</a> - <a href="eoBottomUp.html">Component-Based</a> - <a href="eoProgramming.html">Programming
+hints</a> -<b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/index.html">EO
 documentation</a></font></font></b>
 <br>
 <hr>
@@ -323,5 +667,6 @@ documentation</a></font></font></b>
 
 <br><!-- Created: Mon Oct 30 07:27:13 CET 2000 --><!-- hhmts start -->Last
 modified: Fri Dec. 8 2000&nbsp;<!-- hhmts end -->
+<br>&nbsp;
 </body>
 </html>
