@@ -21,6 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
+    CVS Info: $Date: 2001-03-21 13:09:47 $ $Version$ $Author: jmerelo $ 
  */
 //-----------------------------------------------------------------------------
 
@@ -28,8 +29,8 @@
 #define _eoVariableLengthMutation_h
 
 #include <eoFunctor.h>
-#include <eoVariableLength.h>
 #include <eoOp.h>
+#include <eoInit.h>
 
 /**
   Base classes for generic mutations on variable length chromosomes.
@@ -61,6 +62,34 @@ public :
     return modified;
   }
 private:
+  eoMonOp<AtomType> & atomMutation;
+};
+
+/** THis ones applies its atomic mutation depending on a probability
+ */
+template <class EOT>
+class eoVlRateMutation : public eoMonOp<EOT>
+{
+public :
+
+  typedef typename EOT::AtomType AtomType;
+
+  // default ctor: requires an Atom mutation
+  eoVlRateMutation(eoMonOp<AtomType> & _atomMutation, double _rate=0.0) :
+    atomMutation(_atomMutation), rate( _rate ) {}
+
+  bool operator()(EOT & _eo)
+  {
+    bool modified=false;
+    typename EOT::iterator i;
+    for ( i = _eo.begin(); i != _eo.end(); i ++ )
+      if ( rng.flip( rate ) ) {
+	modified |= atomMutation( *i );
+      }
+    return modified;
+  }
+private:
+  double rate;  
   eoMonOp<AtomType> & atomMutation;
 };
 

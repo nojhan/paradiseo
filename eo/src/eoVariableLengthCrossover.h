@@ -21,6 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
+    CVS Info: $Date: 2001-03-21 13:09:47 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVariableLengthCrossover.h,v 1.5 2001-03-21 13:09:47 jmerelo Exp $ $Author: jmerelo $ 
  */
 //-----------------------------------------------------------------------------
 
