@@ -27,25 +27,6 @@
 #include <strstream>
 #endif
 
-typedef eoPop<PyEO>::iterator PopIt;
-typedef eoPop<PyEO>::const_iterator cPopIt;
-
-PopIt operator+(PopIt it, size_t a)
-{
-    return it + ptrdiff_t(a);
-}
-cPopIt operator+(cPopIt it, size_t a)
-{
-    return it + ptrdiff_t(a);
-}
-PopIt operator-(PopIt it, size_t a)
-{
-    return it - ptrdiff_t(a);
-}
-cPopIt operator-(cPopIt it, size_t a)
-{
-    return it - ptrdiff_t(a);
-}
 
 using namespace std;
 //using namespace boost::python;
@@ -153,11 +134,8 @@ PyEO& pop_getitem(eoPop<PyEO>& pop, boost::python::object key)
     
     if (static_cast<unsigned>(i) >= pop.size())
     { 
-	cerr << "throwing" << endl;
 	throw index_error("Index out of bounds");
     }
-    cerr << "indexing " << i << endl;
-
     return pop[i];
 }
 
