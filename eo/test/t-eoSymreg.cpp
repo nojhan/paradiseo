@@ -95,13 +95,16 @@ static SymregNode init_sequence[5] = {SymregNode::X, SymregNode::Plus, SymregNod
 
 // MSVC does not recognize the lt_arity<Node> in eoParseTreeDepthInit
 // without this specialization ...
-#ifdef _MSC_VER 
+// 2 months later, it seems it does not accept this definition ...
+// but dies accept the lt_arity<Node> in eoParseTreeDepthInit
+// !!!
+// #ifdef _MSC_VER 
 template <>
 bool lt_arity(const SymregNode &node1, const SymregNode &node2) 
 {
      	return (node1.arity() < node2.arity());
 }
-#endif
+// #endif
 
 //-----------------------------------------------------------
 // saving, loading
