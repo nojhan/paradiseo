@@ -10,7 +10,7 @@ DEPS = $(top_builddir)/src/libeo.a $(top_builddir)/src/utils/libeoutils.a
 
 INCLUDES = -I$(top_builddir)/src
 LDADDS = $(top_builddir)/src/libeo.a $(top_builddir)/src/utils/libeoutils.a
-
+CXXFLAGS = -g
 ###############################################################################
 
 noinst_PROGRAMS = t-eofitness t-eobin t-eoStateAndParser t-eoCheckpointing t-eoExternalEO t-eoSymreg t-eo t-eoReplacement t-eoSelect t-eoGenOp
