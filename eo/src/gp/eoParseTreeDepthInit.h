@@ -121,7 +121,7 @@ class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
     {
 	    if (last_terminal == -1)
 	    { // check where the last terminal in the sequence resides
-            vector<Node>::iterator it;
+            typename vector<Node>::iterator it;
 		    for (it = initializor.begin(); it != initializor.end(); ++it)
 		    {
 			    if (it->arity() > 0)
@@ -133,12 +133,12 @@ class eoParseTreeDepthInit : public eoInit< eoParseTree<FType, Node> >
 
 	    if (the_max == 1)
 	    { // generate terminals only
-		    vector<Node>::iterator it = initializor.begin() + rng.random(last_terminal);
+		    typename vector<Node>::iterator it = initializor.begin() + rng.random(last_terminal);
 		    sequence.push_front(*it);
 		    return;
 	    }
 	
-	    vector<Node>::iterator what_it;
+	    typename vector<Node>::iterator what_it;
 
 	    if (grow)
 	    {

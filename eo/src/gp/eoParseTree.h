@@ -27,6 +27,8 @@
 #ifndef eoParseTree_h
 #define eoParseTree_h
 
+#include <iterator>
+
 #include <list>
 
 #include <EO.h>
@@ -54,7 +56,7 @@ class eoParseTree : public EO<FType>, public parse_tree<Node>
 {
 public :
 
-    typedef parse_tree<Node>::subtree Subtree;
+    typedef typename parse_tree<Node>::subtree Subtree;
 
    /* For Compatibility with the intel C++ compiler for Linux 5.x */
    typedef Node reference;

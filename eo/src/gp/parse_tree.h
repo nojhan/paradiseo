@@ -282,7 +282,7 @@ public :
     }
 
     template <class RetVal, class It>
-    void apply_mem_func(RetVal& v, It misc, void (T::* f)(RetVal&, subtree::iterator, It))
+    void apply_mem_func(RetVal& v, It misc, void (T::* f)(RetVal&, typename subtree::iterator, It))
     {
         (content->*f)(v, begin(), misc);
     }
@@ -618,7 +618,7 @@ private :
 		{ _root.apply(v, varValues); }
     
     template <class RetVal, class It>
-        void apply_mem_func(RetVal& v, It misc, void (T::* f)(RetVal&, subtree::iterator, It))
+        void apply_mem_func(RetVal& v, It misc, void (T::* f)(RetVal&, typename subtree::iterator, It))
     {
         _root.apply_mem_func(v, misc, f);
     }
@@ -689,7 +689,7 @@ private :
                 return *this;
             }
             // else
-			subtree::iterator it;
+	    typename subtree::iterator it;
             for (it = parent->begin(); it != parent->end(); ++it)
             {
                 if (node == &(*it))
@@ -779,7 +779,7 @@ private :
                 return *this;
             }
             // else
-			subtree::const_iterator it;
+	    typename subtree::const_iterator it;
 
             for (it = parent->begin(); it != parent->end(); ++it)
             {
@@ -888,7 +888,7 @@ private :
         
 		_root = t;
 
-        for (subtree::iterator it = _root.begin(); it != _root.end(); it++)
+        for (typename subtree::iterator it = _root.begin(); it != _root.end(); it++)
         {
 			*it = pushed.back();   
             pushed.pop_back();
@@ -940,25 +940,25 @@ namespace std
 { // for use with stlport on MSVC
 
 template <class T> inline 
-std::forward_iterator_tag iterator_category(gp_parse_tree::parse_tree<T>::embedded_iterator)
+std::forward_iterator_tag iterator_category(typename gp_parse_tree::parse_tree<T>::embedded_iterator)
 {
 	return std::forward_iterator_tag();
 }
 
 template <class T> inline 
-ptrdiff_t*  distance_type(gp_parse_tree::parse_tree<T>::embedded_iterator)
+ptrdiff_t*  distance_type(typename gp_parse_tree::parse_tree<T>::embedded_iterator)
 {
 	return 0;
 }
 
 template <class T> inline 
-std::forward_iterator_tag iterator_category(gp_parse_tree::parse_tree<T>::iterator)
+std::forward_iterator_tag iterator_category(typename gp_parse_tree::parse_tree<T>::iterator)
 {
 	return std::forward_iterator_tag();
 }
 
 template <class T> inline 
-ptrdiff_t*  distance_type(gp_parse_tree::parse_tree<T>::iterator)
+ptrdiff_t*  distance_type(typename gp_parse_tree::parse_tree<T>::iterator)
 {
 	return 0;
 }

@@ -140,10 +140,10 @@ eoValueParam<unsigned> tournamentSizeParam = parser.createParam(unsigned(2), "to
 	parentsOrg[i].fitness(i);
     else if (fitnessType == string("exp"))
       for (unsigned i=0; i<pSize; i++)
-	parentsOrg[i].fitness(exp(i));
+	parentsOrg[i].fitness(exp((double)i));
     else if (fitnessType == string("log"))
       for (unsigned i=0; i<pSize; i++)
-	parentsOrg[i].fitness(log(i+1));
+	parentsOrg[i].fitness(log(i+1.));
     else if (fitnessType == string("super"))
       {
 	for (unsigned i=0; i<pSize-1; i++)

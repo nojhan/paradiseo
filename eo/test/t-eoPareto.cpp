@@ -197,7 +197,7 @@ void the_main(int argc, char* argv[])
 
 #if !defined(NO_GNUPLOT)
   eoGnuplot1DSnapshot snapshot("pareto");
-  snapshot.pointSize =3;
+  //snapshot.with(eoGnuplot::Points(3));
 
   cp.add(snapshot);
 

@@ -169,7 +169,7 @@ public :
         is >> repValue;
     }
 
-private :
+//private :
     ValueType repValue;
 };
 
