@@ -409,8 +409,8 @@ public:
   while ( (pos=t.find_first_not_of(delim)) < t.size())
     {
       size_t posEnd = t.find_first_of(delim, pos);
-      std::string u(t,pos);
-      u.resize(posEnd-pos);
+      std::string u = t.substr(pos,posEnd);//(t, pos);
+      /*u.resize(posEnd - pos);*/
       second.push_back(u);
       t = t.substr(posEnd);
     }

@@ -29,6 +29,7 @@
 #include <eoOp.h>
 #include <eoPopulator.h>
 #include <eoFunctorStore.h>
+#include <assert.h>
 
 /** @name General variation operators
 

@@ -29,8 +29,10 @@
 #endif 
 
 #include <utils/eoParser.h>
-#include <fstream.h>
+#include <fstream>
 #include <stdexcept>
+
+using namespace std;
 
 /** Generation of the status file, and output of the help message if needed
  *

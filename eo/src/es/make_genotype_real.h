@@ -28,7 +28,7 @@
 #define _make_genotype_h
 
 #include <es/eoReal.h>
-#include <eoEsChromInit.h>
+#include <es/eoEsChromInit.h>
 #include <utils/eoRealVectorBounds.h>
   // also need the parser and param includes
 #include <utils/eoParser.h>
