@@ -45,9 +45,24 @@ using namespace std;
  */
 
 //@{
-/** eo1d: Base class for "chromosomes" with a single dimension
+/** 
+@deprecated {eo1d} eo1d
+\deprecated
+*/
+
+/**  
+
+  eo1d: Base class for "chromosomes" with a single dimension
 #T# is the type it will be instantiated with; this type must have, at
 least, a copy ctor, assignment operators, 
+
+  \deprecated 
+  As eo1d provides a so-called 'fat' interface, it might be wiser to
+  use eoFixedLength or eoVariableLength instead, that derive from
+  vector and list respectively and (important) redirect the less than
+  comparison operator to EO rather than the STL variants.
+ 
+   @see eoFixedLength eoVariableLength
 */
 template<class T, class fitnessT = float>
 class eo1d: public EO< fitnessT > {
