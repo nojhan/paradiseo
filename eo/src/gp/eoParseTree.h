@@ -40,7 +40,7 @@ using namespace std;
 /**
 \defgroup ParseTree
 
-  Various functions for a tree-based Genetic Programming
+  Various functions for tree-based Genetic Programming
 */
 
 /** eoParseTree : implementation of parse-tree for genetic programming
