@@ -40,11 +40,20 @@ public:
     // END   Code of default Ctor of an eoMyStruct object
   }
 
+  virtual ~eoMyStruct()
+  {
+    // START Code of Destructor of an eoEASEAGenome object
+    // END   Code of Destructor of an eoEASEAGenome object
+  }
+
   virtual string className() const { return "eoMyStruct"; }
 
   /** printing... */
     void printOn(ostream& os) const
     {
+      // First write the fitness
+      EO<FitT>::printOn(os);
+      os << ' ';
     // START Code of default output 
 
 	/** HINTS
@@ -60,6 +69,8 @@ public:
    */
     void readFrom(istream& is)
       {
+	// of course you should read the fitness first!
+	EO<FitT>::readFrom(is);
     // START Code of input
 
 	/** HINTS
