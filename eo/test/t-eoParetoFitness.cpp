@@ -43,7 +43,7 @@ void compare(F & _eo1, F & _eo2)
 {
   if (_eo1.dominates(_eo2))
     cout << _eo1 << " dominates " << _eo2 << endl;
-  else if (_eo2.dominates(_eo2))
+  else if (_eo2.dominates(_eo1))
     cout << _eo2 << " dominates " << _eo1 << endl;
   else
     cout << "None of " << _eo1 << " and " << _eo2 << "dominates the other" << endl;
