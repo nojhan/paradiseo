@@ -19,7 +19,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: mak@dhi.dk
-             Marc.Schoenauer@polytechnique.fr
+             Marc.Schoenauer@inria.fr
  */
 //-----------------------------------------------------------------------------
 
@@ -28,11 +28,14 @@
 
 #include <math.h>
 #include <vector>
+#include <stdexcept>
 
 /**
-  eoFitnessTraits: a traits class to specify the number of objectives and which one are maximizing
-  or not. See eoParetoFitness for its use. If you define your own, make sure you make the functions
-  static!
+ * eoFitnessTraits: a traits class to specify 
+ *           the number of objectives and which one are maximizing or not
+ * See test/t-eoParetoFitness for its use. 
+ *
+ * If you define your own, make sure you make the functions static!
 */
 class eoParetoFitnessTraits
 {
@@ -42,6 +45,50 @@ class eoParetoFitnessTraits
   static double tol()               { return 1e-6; }
   static bool maximizing(int which) { return true; } // by default: all are maximizing
 };
+
+/** 
+ * eoVariableParetoTraits : an eoParetoFitnessTraits whose characteristics 
+ *     can be set at run-time (nb objectives and min/max's)
+ * Why bother? For didactical purposes (and EASEA implementation :-)
+ */
+class eoVariableParetoTraits : public eoParetoFitnessTraits
+{
+public :
+  /** setting the static stuff */
+  static void setUp(unsigned _n, vector<bool> & _b)
+  {
+    nObj=_n; 
+    bObj=_b;
+    if (nObj != bObj.size())
+      throw runtime_error("Number of objectives and min/max size don't match in VariableParetoTraits::setup");
+  }
+
+  /** the accessors */
+  static unsigned nObjectives()
+  { 
+#ifndef NDEBUG
+    if (!nObj)
+      throw runtime_error("Number of objectives not assigned in VariableParetoTraits");
+#endif
+    return nObj; 
+  }
+  static bool maximizing(unsigned _i) 
+  {
+#ifndef NDEBUG
+    if (_i >= bObj.size())
+      throw runtime_error("Wrong index in VariableParetoTraits");
+#endif
+    return bObj[_i]; 
+  }
+private:
+  static unsigned nObj;
+  static vector<bool> bObj;
+};
+
+// need to allocate these -> should probably be done in some cpp file!
+unsigned eoVariableParetoTraits::nObj;
+vector<bool> eoVariableParetoTraits::bObj;
+
 
 /**
   eoParetoFitness class: vector of doubles with overloaded comparison operators. Comparison is done
@@ -60,6 +107,12 @@ public :
   typedef FitnessTraits fitness_traits;
 
   eoParetoFitness(void) : std::vector<double>(FitnessTraits::nObjectives(),0.0) {}
+
+  /** access to the traits characteristics (so you don't have to write 
+   * a lot of typedef's around
+   */
+  static void setUp(unsigned _n, vector<bool> & _b) {FitnessTraits::setUp(_n, _b);}
+  static bool maximizing(unsigned _i) { return FitnessTraits::maximizing(_i);}
 
   /// Partial order based on Pareto-dominance
   //bool operator<(const eoParetoFitness<FitnessTraits>& _other) const
