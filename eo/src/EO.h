@@ -74,6 +74,11 @@ public:
    */
   bool invalid() const { return invalidFitness; }
   
+  /** Returns true if 
+      @return true if the fitness is higher
+   */
+  bool operator<(const EO& _eo2) {  return fitness() < _eo2.fitness();}
+
   /// Methods inherited from eoObject
   //@{
   
@@ -112,9 +117,9 @@ private:
 
 //-----------------------------------------------------------------------------
 
-template<class T> bool operator<(const EO<T>& eo1, const EO<T>& eo2)
+template<class T> bool operator<(const EO<T>& _eo1, const EO<T>& _eo2)
 {
-  return eo1.fitness() < eo2.fitness();
+  return _eo1.fitness() < _eo2.fitness();
 }
 
 //-----------------------------------------------------------------------------
