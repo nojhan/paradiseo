@@ -111,7 +111,7 @@ class eoDominanceMap : public eoUF<const eoPop<EoType>&, void>, public std::vect
           default :
           {
             operator[](i)[j] = false;
-            operator[](j)[i] = true;
+            operator[](j)[i] = false;
           }
         }
       }
@@ -162,7 +162,7 @@ class eoDominanceMap : public eoUF<const eoPop<EoType>&, void>, public std::vect
           default :
           {
             operator[](i)[j] = false;
-            operator[](j)[i] = true;
+            operator[](j)[i] = false;
           }
         }
       }
