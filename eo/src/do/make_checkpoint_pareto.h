@@ -83,7 +83,11 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
      * eoSortedPopStat   : whole population - type string (!!)
      */
 
-  eoValueParam<eoParamParamType>& fPlotParam = _parser.createParam(eoParamParamType("1(0,1)"), "frontPlot", "Fronts (pairs of comma-separated objectives in 1 single parentheses pair)", '\0', "Output - Graphical");
+  eoValueParam<eoParamParamType>& fPlotParam = _parser.createParam(eoParamParamType("1(0,1)"), "frontFileFrequency", "File save frequency in objective spaces (pairs of comma-separated objectives in 1 single parentheses pair)", '\0', "Output - Disk");
+
+#if !defined(NO_GNUPLOT)
+  bool boolGnuplot = _parser.createParam(false, "plotFront", "Objective plots (requires corresponding files - see frontFileFrequency", '\0', "Output - Graphical").value();
+#endif
 
   eoParamParamType & fPlot = fPlotParam.value(); // pair<string,vector<string> >
   unsigned frequency = atoi(fPlot.first.c_str());
@@ -91,13 +95,14 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
     {
       unsigned nbPlot = fPlot.second.size(); 
       if ( nbPlot % 2 )		   // odd!
-	throw runtime_error("Odd number of objectives in make_checkpoint_pareto");
+	throw runtime_error("Odd number of front description in make_checkpoint_pareto");
 
       // only create the necessary stats
       std::vector<bool> bStat(nObj, false); // track of who's already there
       std::vector<eoMOFitnessStat<EOT>* > theStats(nObj);
 
-      for (unsigned i=0; i<nbPlot/2; i+=2)
+      // first create the stats
+      for (unsigned i=0; i<nbPlot; i+=2)
 	{
 	  unsigned obj1 = atoi(fPlot.second[i].c_str());
 	  unsigned obj2 = atoi(fPlot.second[i+1].c_str());
@@ -125,18 +130,27 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
 	      checkpoint.add(*fStat);
 	    }
 
-#if !defined(NO_GNUPLOT)
+	  // then the fileSnapshots
 	  char s3[1024];
 	  ostrstream os3(s3, 1022);
 	  os3 << "Front." << obj1 << "." << obj2 << "." << ends; 
-	  eoGnuplot1DSnapshot & snapshot = _state.storeFunctor(new 
-		 eoGnuplot1DSnapshot(dirName, frequency, s3 ) );
-	  snapshot.pointSize =3;
+	  eoFileSnapshot & snapshot = _state.storeFunctor(new 
+		 eoFileSnapshot(dirName, frequency, s3 ) );
       
 	  checkpoint.add(snapshot);
       
 	  snapshot.add(*theStats[obj1]);
 	  snapshot.add(*theStats[obj2]);
+
+	  // and create the gnuplotter from the fileSnapshot
+#if !defined(NO_GNUPLOT)
+	  if (boolGnuplot) 
+	    {
+	      eoGnuplot1DSnapshot & plotSnapshot = _state.storeFunctor(new
+		    eoGnuplot1DSnapshot(snapshot));
+	      plotSnapshot.pointSize =3;
+	      checkpoint.add(plotSnapshot);
+	    }
 #endif
 	}
     }
