@@ -97,15 +97,11 @@ PostBuild_Cmds=copy  Debug\eod.lib  lib\
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE=..\src\utils\eoFileMonitor.cpp
+SOURCE=..\src\eoCtrlCContinue.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\src\eoFunctorStore.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoParser.cpp
 # End Source File
 # Begin Source File
 
@@ -115,53 +111,16 @@ SOURCE=..\src\eoPersistent.cpp
 
 SOURCE=..\src\eoPrintable.cpp
 # End Source File
-# Begin Source File
 
-SOURCE=..\src\utils\eoRNG.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoState.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoStdoutMonitor.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoUpdater.cpp
-# End Source File
-# End Group
-# Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=..\src\utils\compatibility.h
+SOURCE=..\src\eoCtrlCContinue.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoData.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoFileMonitor.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoMonitor.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\eoObject.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoParam.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoParser.h
+SOURCE=..\src\eoFunctorStore.H
 # End Source File
 # Begin Source File
 
@@ -170,22 +129,6 @@ SOURCE=..\src\eoPersistent.h
 # Begin Source File
 
 SOURCE=..\src\eoPrintable.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoRNG.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoStat.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoState.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoUpdater.h
 # End Source File
 # End Group
 # End Target
