@@ -57,7 +57,7 @@ There is also a uniform() method that generates a uniform value
 (if possible, i.e. if bounded) in the interval.
 
 Derived class are 
- eoRealInterval, that holds a minimum and maximum value
+eoRealInterval, that holds a minimum and maximum value, 
  eoRealNoBounds, that implements the "unbounded bounds"
 
 TODO: the eoRealMinBound and eoRealMaxBound that implement 
@@ -196,8 +196,11 @@ private :
 };
 
 
-// now the vectorized version
-
+/** 
+Class eoRealVectorBounds implements the vectorized version: 
+it is basically a vector of eoRealBounds * and forwards all request
+to the elements of the vector.
+*/
 class eoRealVectorBounds : public vector<eoRealBounds *>
 { 
 public:
@@ -224,7 +227,8 @@ public:
     vector<eoRealBounds *>(_dim, &_bounds)
   {}
   
-  // Ctor: different bonds for different variables, vectors of double
+  /** Ctor: different bonds for different variables, vectors of double
+   */
   eoRealVectorBounds(vector<double> _min, vector<double> _max) 
   {
     if (_max.size() != _min.size())
@@ -235,7 +239,8 @@ public:
       }
   }
 
-  // Ctor, particular case of dim-2
+  /** Ctor, particular case of dim-2
+   */
   eoRealVectorBounds(eoRealBounds & _xbounds, eoRealBounds & _ybounds) : 
     vector<eoRealBounds *>(0)
   {
@@ -243,12 +248,15 @@ public:
 	push_back( &_ybounds);
   }
   
+  /** test: is i_th component bounded
+   */
   virtual bool isBounded(unsigned _i) 
   { 
     return (*this)[_i]->isBounded();
   }
  
-  // bounded iff all are bounded
+  /** test: bounded iff all are bounded
+   */
   virtual bool isBounded(void) 
   {
     for (unsigned i=0; i<size(); i++)
@@ -264,11 +272,15 @@ public:
   virtual bool isMaxBounded(unsigned _i) 
   { return (*this)[_i]->isMaxBounded();} ;
 
+  /** Modifies a real value so that it stays in the bounds - i_th component
+   */
   virtual void foldsInBounds(unsigned _i, double & _r)
   {
     (*this)[_i]->foldsInBounds(_r);
   }
 
+  /** Modifies a vector of real value so that it stays in the bounds
+   */
   virtual void foldsInBounds(vector<double> & _v)
   {
    for (unsigned i=0; i<size(); i++)
@@ -277,10 +289,13 @@ public:
      }    
   }
 
+  /** test: is i_th component within the bounds
+   */
   virtual bool isInBounds(unsigned _i, double _r)
   { return (*this)[_i]->isInBounds(_r); }
 
-  // isInBounds iff all are in bouds
+  /** test: are ALL components within the bounds
+   */
   virtual bool isInBounds(vector<double> _v)
   {
     for (unsigned i=0; i<size(); i++)
@@ -302,14 +317,16 @@ public:
     return r/size();
   }
 
-  // random generators
+  /** Generates a random number in i_th range
+   */
   virtual double uniform(unsigned _i, eoRng & _rng = eo::rng)
   { 
     double r= (*this)[_i]->uniform();
     return r;
   }
 
-  // fills a vector with uniformly chosen variables in bounds
+  /** fills a vector with uniformly chosen variables in bounds
+   */
   void uniform(vector<double> & _v, eoRng & _rng = eo::rng)
   {
     _v.resize(size());
@@ -320,8 +337,8 @@ public:
   }  
 };
 
-// the dummy unbounded eoRealVectorBounds:
-
+/** the dummy unbounded eoRealVectorBounds: usefull if you don't need bounds!
+ */
 class eoRealVectorNoBounds: public eoRealVectorBounds
 { 
 public:
