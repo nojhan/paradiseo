@@ -32,8 +32,7 @@
 #include <eoSelect.h>
 #include <eoTransform.h>
 #include <eoBreed.h>
-#include <eoMerge.h>
-#include <eoReduce.h>
+#include <eoMergeReduce.h>
 #include <eoReplacement.h>
 
 /** eoEasyEA:
