@@ -81,7 +81,7 @@
 
 // Selection 
 // the eoSelectOne's
-#include <eoRandomSelect.h>
+#include <eoRandomSelect.h>	// also contains the eoSequentialSelect
 #include <eoDetTournamentSelect.h>
 #include <eoProportionalSelect.h>
 #include <eoFitnessScalingSelect.h>
@@ -105,9 +105,6 @@
 
 // Variation
 #include <eoProportionalCombinedOp.h>
-#include <eoProportionalOpSel.h>
-#include <eoProportionalGOpSel.h>
-#include <eoSequentialGOpSel.h>
 
 // a simple transformer
 #include <eoSGATransform.h>
@@ -115,12 +112,7 @@
 // Algorithms
 #include <eoEasyEA.h>
 #include <eoSGA.h>
-#include <eoSteadyStateEA.h>
-#include <eoEvolutionStrategy.h>
-
-// Inserters
-#include <eoDetTournamentInserter.h>
-#include <eoStochTournamentInserter.h>
+// #include <eoEvolutionStrategy.h>   removed for a while - until eoGenOp is done
 
 // Utils
 #include <utils/checkpointing>
