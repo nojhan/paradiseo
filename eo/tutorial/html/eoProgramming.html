@@ -73,8 +73,13 @@ has been designed to hold all functors. This base class is itself divided
 into three derived class. These classes tell you immediately what kind
 of arguments the <b><tt><font color="#993300">operator()</font></tt></b>
 method requires and what kind of result it produces. See <a href="#notations">EO
-conventions</a>, and the <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eofunctorbase.html">inheritance
+conventions</a>,
+and the <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eofunctorbase.html">inheritance
 diagram of class eoFunctorBase</a>.</font></font></b>
+<br>For a more complete introduction to functors, with detailed discussion,
+go to the <a href="http://www.sgi.com/Technology/STL/functors.html">STL
+documentation</a> - as STL also heavily relies on functors, and the eoFunctorBase
+paradigm is borrowed from there.
 <p><b><font color="#FF0000">Functors:</font><font color="#000099"> Example:</font></b>
 <p>The following is a basic example of how to program and use a functor
 object: First code the class:
@@ -170,15 +175,21 @@ Template Library</font></b>.
 <br>But <font color="#FF6600">you don't have to know more than a few words
 of STL</font> to use EO (like with "hello", "please" and "goodbye" you
 can survive in a foreign country :-) and even to contribute to new EO features.
-<p>You will only find here the basics of STL that you will need to understand
-most of EO code - and to guess what the parts you don't understand are
-actually doing. Don't worry, <b><font color="#FF6600">I </font></b>don't
-understand everything :-)
+Moreover, while browsing through EO code, you will gradually learn how
+to use STL, especially if you check at the <a href="http://www.sgi.com/Technology/STL/">SGI&nbsp;STL
+Web site</a> from time to time, where you can not only download STL, but
+also browse in the Programmer's guide&nbsp; for isntance from the <a href="http://www.sgi.com/Technology/STL/table_of_contents.html">Table
+of Content</a>.
+<p>Anyway, you will only find here, in EO tutorial, the basics of STL that
+you will need to understand most of EO code - and to guess what the parts
+you don't understand are actually doing. Don't worry, <b><font color="#FF6600">I
+</font></b>don't understand everything :-)
 <p>STL provides the user with <b><font color="#FF6600">container</font></b>s,
 <b><font color="#FF6600">iterators</font></b>
 and <b><font color="#FF6600">algorithms</font></b>. And you can access
 (almost) all containers content using (almost) all iterators, or apply
-(almost) all algorithms on (almost) all containers.
+(almost) all algorithms on (almost) all containers (of course the tricky
+part is to instanciate the "almost" in the previous sentence :-)
 <p><b><font color="#FF0000">STL: </font><font color="#000099">Containers</font></b>
 <br>Containers are high level data types used to hold simpler data - the
 most widely used example of a container is the <b><font color="#FF6600">vector</font></b>
@@ -351,6 +362,8 @@ names of the variables they are used to initialize, e.g.</li>
 
 <br>&nbsp;
 <p>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
 <p><b><tt><font color="#993300">class eoMyClass</font></tt></b>
 <br><b><tt><font color="#993300">{</font></tt></b>
 <br><b><tt><font color="#993300">public:</font></tt></b>

@@ -232,17 +232,15 @@ that offspring and parents are of the same size (but does not check!).</li>
 <li>
 <a NAME="SSGA"></a><b><tt><font color="#009900">eoMergeReduce</font></tt></b>
 This is one the basic types of replacement in EO. It has two major steps,
-<font color="#FF6600">merging</font> both populations of parents and offspring,
-and <font color="#FF6600">reducing</font> this big population to the right
-size. It <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomegereduce.html">contains
+<font color="#FF6600">merging</font>
+both populations of parents and offspring, and <font color="#FF6600">reducing</font>
+this big population to the right size. It <font face="Arial,Helvetica"><font size=+1><a href="../../doc/html/class_eomegereduce.html">contains
 two objects</a></font></font> of respective types <b><font color="#009900"><a href="#merge">eoMerge</a></font></b>
 and <b><font color="#009900"><a href="#reduce">eoReduce</a></font></b>
 and you can probably guess what each of them actually does :-)</li>
 
-<br>&nbsp;
-<p>&nbsp;
-<p>Available <font color="#FF6600">instances of eoMergeReduce</font> replacement
-include
+<p><br>Available <font color="#FF6600">instances of eoMergeReduce</font>
+replacement include
 <ul>
 <li>
 <b><tt><font color="#009900">eoCommaReplacement</font></tt></b>, one of
@@ -302,7 +300,7 @@ Additional parameter (in the constructor) is the tournament rate, a <b><tt><font
 </ul>
 
 <hr WIDTH="50%">
-<br><b><font color="#000099">Replacement: </font><font color="#FF0000">Adding
+<br><a NAME="weakelitism"></a><b><font color="#000099">Replacement: </font><font color="#FF0000">Adding
 (weak) elitism</font></b>
 <p>You can add what is called <font color="#FF6600">weak elitism</font>
 to any replacement by encapsulating it into an <b><tt><font color="#009900">eoWeakElitismReplacement</font></tt></b>
@@ -337,25 +335,88 @@ that all of these are already implemented in EO (except maybe some of the
 last category :-) !!!!!!
 <p>The most popular evolution engines are listed below, together with the
 way to use them in EO. If you don't find your particuler algorithm, please
-send it to us, and we might include it here!
+send it to us, and we might include it here! In the following, P will denote
+the number of individuals in the initial population.
 <ul>
 <li>
-<a NAME="GGA"></a>Generational Genetic Algorihtm</li>
+<a NAME="GGA"></a><b><font color="#000099">Generational Genetic Algorihtm</font></b><font color="#000000">:
+popularized by Holland (75) and Goldberg (89), it uses&nbsp;<br>
+</font><font color="#FF0000">Number of offspring:&nbsp;</font><font color="#000000">
+P<br>
+</font><font color="#FF0000">Selection:</font><font color="#000000"> Proportional
+(the historical roulette wheel) </font><b><font color="#FF6600">when maximizing
+a positive scalar fitness</font></b><font color="#000000">, ranking or
+tournament (stochatic or deterministic) in all cases.<br>
+</font><font color="#FF0000">Replacement:</font><font color="#000000">
+Generational.<br>
+</font><font color="#FF0000">Remark:</font><font color="#000000"> You could
+use also the Comma replacement, with exactly the same result as there are
+as many offspring as we need indiviudals in the next population. And using
+the eoSSGAWorseReplacement would also give the same result, but would be
+very inefficient!<br>
+You can also add <a href="#weakelitism">weak elitism</a> to preserve the
+best individual.</font></li>
 
 <li>
-<a NAME="SSGA"></a>Steady-State Genetic Algorithm</li>
+<a NAME="SSGA"></a><b><font color="#000099">Steady-State Genetic Algorithm</font></b><font color="#000000">:
+widely used in GA/GP community<br>
+</font><font color="#FF0000">Number of offspring:&nbsp;</font><font color="#000000">
+small (historically, 1)<br>
+</font><font color="#FF0000">Selection:</font><font color="#000000"> tournament
+(you can use ranking or proportional, but it will be rather inefficient).<br>
+</font><font color="#FF0000">Replacement:</font><font color="#000000">
+An eoSSGAxxxReplacement.&nbsp;<br>
+</font><font color="#FF0000">Remark:</font><font color="#000000"> You can
+also use the eoPlusReplacement, but you divert from the original SSGA</font></li>
 
 <li>
-<a NAME="ESPlus"></a>(MU+Lambda)-Evolution Strategy</li>
+<a NAME="ESPlus"></a><b><font color="#000099">(MU+Lambda)-Evolution Strategy</font></b><font color="#000000">:
+The elitist ES strategy (Rechenberg 71 and Schwefel 81)<br>
+</font><font color="#FF0000">Number of offspring:&nbsp;</font><font color="#000000">
+Any<br>
+</font><font color="#FF0000">Selection:</font><font color="#000000"> eoDetSelect
+(batch deterministic).<br>
+</font><font color="#FF0000">Replacement:</font><font color="#000000">
+eoPlusReplacement<br>
+</font><font color="#FF0000">Remark:</font><font color="#000000"> You could
+also use eoEPReplacement, to smoothen the selective pressure during replacement,
+thus getting close to EP&nbsp;evolution engine</font></li>
 
 <li>
-<a NAME="ESComma"></a>(MU,LAMBDA)-Evolution Strategy</li>
+<a NAME="ESComma"></a><b><font color="#000099">(MU,Lambda)-Evolution Strategy</font></b><font color="#000000">:
+The non-elitist ES strategy<br>
+</font><font color="#FF0000">Number of offspring:&nbsp;</font><font color="#000000">
+> P<br>
+</font><font color="#FF0000">Selection:</font><font color="#000000"> eoDetSelect
+(batch deterministic).<br>
+</font><font color="#FF0000">Replacement:</font><font color="#000000">
+eoCommaReplacement<br>
+</font><font color="#FF0000">Remark:</font><font color="#000000"> You can
+also add <a href="#weakelitism">weak elitism</a> to preserve the best individual
+- though you'd probably use the plus strategy if you want (strong) elitism.</font></li>
 
 <li>
-<a NAME="EP"></a>Evolutionary Programming</li>
+<a NAME="EP"></a><b><font color="#000099">Evolutionary Programming</font></b><font color="#000000">:
+The historical method of L. Fogel (65)<br>
+</font><font color="#FF0000">Number of offspring:&nbsp;</font><font color="#000000">
+P<br>
+</font><font color="#FF0000">Selection:</font><font color="#000000"> eoDetSelect
+(batch deterministic). Every individual reproduces exactly once.<br>
+</font><font color="#FF0000">Replacement:</font><font color="#000000">
+eoEPReplacement, though one historical replacement was the determnistic
+replacement - i.e. in EO the eoPlusReplacement).<br>
+</font><font color="#FF0000">Remark:</font><font color="#000000"> Close
+to an (P+P)-ES</font></li>
 
 <li>
-<a NAME="General"></a>You name it :-)</li>
+<a NAME="General"></a><font color="#FF0000">You name it :-)</font><font color="#000000">:
+you can of course choose whatever combination you like - respecting a few
+constraints and common-sense remarks. For instance, eoProportionalSelect
+should be used only when maximizing a positive fitness, eoCommaReplacement
+requires more offspring than parents, and, over all, existing EO algorithms
+wirk with fixed size population - and it is your responsability to use
+a cmbinatino of selection/replacement that fulfills this requirement (or
+to create your own eoAlgo that handles varying size populations).</font></li>
 </ul>
 
 <hr WIDTH="100%">
