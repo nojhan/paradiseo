@@ -147,8 +147,8 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
 #else
 	      char s[1024];
 	      std::ostrstream os2(s, 1022);
-	      os << "Obj. " << obj2 << std::ends; 
-	      fStat = new eoMOFitnessStat<EOT>(obj, s);
+	      os2 << "Obj. " << obj2 << std::ends; 
+	      fStat = new eoMOFitnessStat<EOT>(obj2, s);
 #endif
 	      _state.storeFunctor(fStat);
 	      bStat[obj2]=true;

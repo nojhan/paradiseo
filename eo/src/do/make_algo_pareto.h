@@ -49,7 +49,7 @@ public:
 
   struct WorthPair : public std::pair<WorthT, const EOT*>
   {
-    bool operator<(const WorthPair& other) const { return other.first < first; }
+    bool operator<(const WorthPair& other) const { return other.first < this->first; }
   };
 
   void operator()(eoPop<EOT>& _parents, eoPop<EOT>& _offspring)
