@@ -27,21 +27,16 @@ template<class Chrom> class eoInclusion: public eoMerge<Chrom>
    * @param breeders The population of breeders.
    * @param pop The original population.
    */
-  void operator()(const eoPop<Chrom>& breeders, eoPop<Chrom>& pop)
+  void operator()(eoPop<Chrom>& breeders, eoPop<Chrom>& pop)
     {
-      eoPop<Chrom> all, tmp = breeders;
+      unsigned target = min(static_cast<unsigned>(rint(pop.size() * rate())), 
+			    pop.size() + breeders.size());
       
-      sort(tmp.begin(), tmp.end());
-      sort(pop.begin(), pop.end());
-      
-      merge(tmp.begin(), tmp.end(),
-	    pop.begin(), pop.end(),
-	    back_insert_iterator<eoPop<Chrom> >(all));
-      
-      all.erase(all.begin(),
-		all.begin() + (unsigned)(all.size() - pop.size() * rate()));
-      
-      pop.swap(all);
+      copy(breeders.begin(), breeders.end(), 
+	   back_insert_iterator<eoPop<Chrom> >(pop));
+      partial_sort(pop.begin(), pop.begin() + target, pop.end(),
+		   greater<Chrom>());
+      pop.erase(pop.begin() + target, pop.end());
     }
 };
 

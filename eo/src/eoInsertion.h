@@ -7,7 +7,7 @@
 
 //-----------------------------------------------------------------------------
 
-#include <eo>
+#include <eoMerge.h>
 
 /******************************************************************************
  * eoInsertion: A replacement algorithm.
@@ -26,7 +26,7 @@ template<class Chrom> class eoInsertion: public eoMerge<Chrom>
    * @param breeders The population of breeders.
    * @param pop The original population.
    */
-  void operator()(const eoPop<Chrom>& breeders, eoPop<Chrom>& pop)
+  /*void operator()(eoPop<Chrom>& breeders, eoPop<Chrom>& pop)
     {
       int new_size = static_cast<int>(pop.size() * rate());
       
@@ -46,6 +46,28 @@ template<class Chrom> class eoInsertion: public eoMerge<Chrom>
 	  pop.erase(pop.begin(), 
 		    pop.begin() + breeders.size() + pop.size() - new_size);
 	  copy(breeders.begin(), breeders.end(), 
+	       back_insert_iterator<eoPop<Chrom> >(pop));
+	}
+	}*/
+  
+  void operator()(eoPop<Chrom>& breeders, eoPop<Chrom>& pop)
+    {
+      unsigned target = static_cast<unsigned>(rint(pop.size() * rate()));
+      
+      pop.swap(breeders);
+      
+      if (target < pop.size())
+	{
+	  partial_sort(pop.begin(), pop.begin() + target, pop.end(), 
+		       greater<Chrom>());
+	  pop.erase(pop.begin() + target, pop.end());
+	}
+      else
+	{
+	  target = min(target - pop.size(), breeders.size());
+	  partial_sort(breeders.begin(), breeders.begin() + target, 
+		       breeders.end(), greater<Chrom>());
+	  copy(breeders.begin(), breeders.begin() + target,
 	       back_insert_iterator<eoPop<Chrom> >(pop));
 	}
     }

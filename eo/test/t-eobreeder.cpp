@@ -58,6 +58,7 @@ main()
 
   breeder(pop);
 
+  // reevaluation of fitness 
   for_each(pop.begin(), pop.end(), binary_value);
 
   cout << "new population:" << endl;

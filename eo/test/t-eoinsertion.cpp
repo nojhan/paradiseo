@@ -43,7 +43,7 @@ main()
       
       for (unsigned POP2_SIZE = 4; POP2_SIZE <=6; POP2_SIZE++)
 	{
-	  eoPop<Chrom> pop2, pop3, pop4, pop5;
+	  eoPop<Chrom> pop2, pop3, pop4, pop5, popx;
 	 	
 	  for (i = 0; i < POP2_SIZE; i++)
 	    {
@@ -68,16 +68,19 @@ main()
 	    }
 	
 	  eoInsertion<Chrom> insertion(0.75);
+	  popx = pop;
 	  pop3 = pop2;
-	  insertion(pop, pop3); 
+	  insertion(popx, pop3);
 	  
-	  eoInsertion<Chrom> insertion2; 
+	  eoInsertion<Chrom> insertion2;
+	  popx = pop; 
 	  pop4 = pop2;
-	  insertion2(pop, pop4); 
+	  insertion2(popx, pop4); 
 	  
 	  eoInsertion<Chrom> insertion3(1.5);
+	  popx = pop;
 	  pop5 = pop2;
-	  insertion3(pop, pop5); 
+	  insertion3(popx, pop5); 
 	  
 	  cout << endl
 	       << "0.75 \t\t1.0 \t\t1.5" << endl
