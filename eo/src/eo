@@ -81,7 +81,7 @@
 #include <eoSteadyFitContinue.h>
 #include <eoFitContinue.h>
 
-// Selection 
+// Selection
 // the eoSelectOne's
 #include <eoRandomSelect.h>	// also contains the eoSequentialSelect
 #include <eoDetTournamentSelect.h>
@@ -112,6 +112,9 @@
 
 // a simple transformer
 #include <eoSGATransform.h>
+
+// Perf2Worth
+#include <eoParetoRanking.h>
 
 // Algorithms
 #include <eoEasyEA.h>

@@ -31,56 +31,104 @@
 #include <eoObject.h>      // eoObject
 #include <eoPersistent.h>  // eoPersistent
 
+template <class T>
+ostream& print_fitness(ostream& _os, const std::vector<T>& vec)
+{
+  _os << vec.size() << ' ';
+  std::copy(vec.begin(), vec.end(), ostream_iterator<T>(_os));
+  return _os;
+}
+
+template <class T, class U>
+ostream& print_fitness(ostream& _os, const std::pair<T, U>& pair)
+{
+  return _os << pair.first << ' ' << pair.second;
+}
+
+template <class T>
+ostream& print_fitness(ostream& _os, const T& t)
+{ // general, try operator<<
+  return _os << t;
+}
+
+template <class T>
+istream& read_fitness(istream& _is, vector<T>& vec)
+{
+  unsigned sz;
+  _is >> sz;
+  vec.resize(sz);
+  for (unsigned i = 0; i < vec.size(); ++i)
+  {
+    _is >> vec[i];
+  }
+
+  return _is;
+}
+
+template <class T, class U>
+istream& read_fitness(istream& _is, pair<T, U>& pair)
+{
+  _is >> pair.first;
+  _is >> pair.second;
+  return _is;
+}
+template <class T>
+istream& read_fitness(istream& _is, T& t)
+{
+  _is >> t;
+  return _is;
+}
+
 //-----------------------------------------------------------------------------
-/** EO is a base class for evolvable objects, that is, the subjects of 
+/** EO is a base class for evolvable objects, that is, the subjects of
     evolution. EOs have only got a fitness, which at the same time needs to be
-    only an object with the operation less than (<) defined. Fitness says how 
-    good is the object; evolution or change of these objects is left to the 
-    genetic operators. A fitness less than another means a worse fitness, in 
-    whatever the context; thus, fitness is always maximized; although it can 
-    be minimized with a proper definition of the < operator. The fitness 
+    only an object with the operation less than (<) defined. Fitness says how
+    good is the object; evolution or change of these objects is left to the
+    genetic operators. A fitness less than another means a worse fitness, in
+    whatever the context; thus, fitness is always maximized; although it can
+    be minimized with a proper definition of the < operator. The fitness
     object must have, besides an void ctor, a copy ctor.
 */
 template<class F> class EO: public eoObject, public eoPersistent
 {
 public:
   typedef F Fitness;
-  
+
   /** Default constructor.
-      Fitness must have a ctor which takes 0 as a value; we can not use void 
-      ctors here since default types like float have no void initializer. 
+      Fitness must have a ctor which takes 0 as a value; we can not use void
+      ctors here since default types like float have no void initializer.
       VC++ allows it, but gcc does not
   */
   EO(): repFitness(Fitness()), invalidFitness(true) {}
-  
+
   /// Virtual dtor
   virtual ~EO() {};
-  
+
   /// Return fitness value.
   Fitness fitness() const {
     if (invalid())
       throw runtime_error("invalid fitness");
     return repFitness;
   }
-  
+
   // Set fitness as invalid.
   void invalidate() { invalidFitness = true; }
-  
+
   /** Set fitness. At the same time, validates it.
    *  @param _fitness New fitness value.
    */
   void fitness(const Fitness& _fitness)
-  { 
+  {
     repFitness = _fitness;
     invalidFitness = false;
   }
-  
+
   /** Return true If fitness value is invalid, false otherwise.
    *  @return true If fitness is invalid.
    */
   bool invalid() const { return invalidFitness; }
-  
-  /** Returns true if 
+
+  /** Returns true if
       @return true if the fitness is higher
   */
   bool operator<(const EO& _eo2) const { return fitness() < _eo2.fitness(); }
@@ -88,28 +136,28 @@ public:
 
   /// Methods inherited from eoObject
   //@{
-  
-  /** Return the class id. 
+
+  /** Return the class id.
    *  @return the class name as a string
    */
   virtual string className() const { return "EO"; }
-  
+
   /**
    * Read object.\\
-   * Calls base class, just in case that one had something to do. 
-   * The read and print methods should be compatible and have the same format. 
+   * Calls base class, just in case that one had something to do.
+   * The read and print methods should be compatible and have the same format.
    * In principle, format is "plain": they just print a number
    * @param _is a istream.
    * @throw runtime_exception If a valid object can't be read.
    */
-  virtual void readFrom(istream& _is) { 
-    _is >> repFitness;
+  virtual void readFrom(istream& _is) {
+    read_fitness(_is, repFitness);
     if (_is)
       invalidFitness = false;
     else
       throw runtime_error("EO(istream&): can't read valid eo from istream");
   }
-  
+
   /**
    * Write object. Called printOn since it prints the object _on_ a stream.
    * @param _os A ostream.
@@ -118,11 +166,11 @@ public:
     if (invalid())
       _os << "INVALID ";
     else
-      _os << repFitness << ' '; // trailing space to make reading in that much easier
+      print_fitness(_os, repFitness) << ' '; // trailing space to make reading in that much easier
   }
-  
+
   //@}
-  
+
 private:
   Fitness repFitness;   // value of fitness for this chromosome
   bool invalidFitness;  // true if the value of fitness is invalid

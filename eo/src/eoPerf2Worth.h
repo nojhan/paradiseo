@@ -41,8 +41,8 @@ template <class EOT, class WorthT = typename EOT::Fitness>
 class eoPerf2Worth : public eoStat<EOT, vector<WorthT> >
 {
   public:
-  eoPerf2Worth():eoStat<EOT, vector<WorthT> >(vector<WorthT>(0),
-					      "Worths") {}
+  eoPerf2Worth(std::string _description = "Worths"):eoStat<EOT, vector<WorthT> >(vector<WorthT>(0),
+					      _description) {}
 };
 
 #endif

@@ -57,13 +57,35 @@ public:
     perf2Worth(_perf2Worth) {}
 
   /* setup the worthes */
-  virtual void setup(const eoPop<EOT>& _pop) 
+  virtual void setup(const eoPop<EOT>& _pop)
   {
     perf2Worth(_pop);
+
+#ifndef NDEBUG
+  fitness.resize(_pop.size());
+  for (unsigned i = 0; i < _pop.size(); ++i)
+  {
+    fitness[i] = _pop[i].fitness();
+  }
+#endif
   }
 
 protected:
   eoPerf2Worth<EOT, WorthType> & perf2Worth;
+
+#ifndef NDEBUG
+  vector<typename EOT::Fitness> fitness; // for debugging purposes, to check that the perf2worth and pop are in sync
+
+  void check_sync(unsigned index, const EOT& _eo)
+  {
+    if (fitness[index] != _eo.fitness())
+    {
+      throw runtime_error("eoSelectFromWorth: fitnesses are not in sync");
+    }
+  }
+
+#endif
+
 };
 
 
@@ -82,16 +104,24 @@ public:
 			     unsigned _tSize) :
     eoSelectFromWorth<EOT, WorthT>(_perf2Worth), tSize(_tSize) {}
 
-  /* Perform deterministic tournament on worthes 
-     by calling the appropriate fn 
+  /* Perform deterministic tournament on worthes
+     by calling the appropriate fn
      see selectors.h
   */
-  virtual const EOT& operator()(const eoPop<EOT>& _pop) 
+  virtual const EOT& operator()(const eoPop<EOT>& _pop)
   {
     worthIterator it = deterministic_tournament(
 			perf2Worth.value().begin(),
 			perf2Worth.value().end(), tSize);
-    return _pop[it-perf2Worth.value().begin()];
+
+   unsigned index = it - perf2Worth.value().begin();
+
+#ifndef NDEBUG
+  // check whether the stuff is still in sync
+  check_sync(index, _pop[index]);
+#endif
+
+    return _pop[index];
   }
 
 private:
@@ -99,7 +129,7 @@ private:
 };
 
 /** An instance of eoSelectPerf2Worth that does selection from the Worthes
- *  using a ... determinisitic tournament, yes!
+ *  using a ... stochastic tournament, yes!
  */
 template <class EOT, class WorthT = double>
 class eoStochTournamentWorthSelect : public eoSelectFromWorth<EOT, WorthT>
@@ -113,15 +143,23 @@ public:
 			     double _tRate) :
     eoSelectFromWorth<EOT, WorthT>(_perf2Worth), tRate(_tRate) {}
 
-  /* Perform stochastic tournament on worthes 
+  /* Perform stochastic tournament on worthes
      by calling the appropriate fn in selectors.h
   */
-  virtual const EOT& operator()(const eoPop<EOT>& _pop) 
+  virtual const EOT& operator()(const eoPop<EOT>& _pop)
   {
-    worthIterator it = deterministic_tournament(
+    worthIterator it = stochastic_tournament(
 			perf2Worth.value().begin(),
 			perf2Worth.value().end(), tRate);
-    return _pop[it-perf2Worth.value().begin()];
+
+   unsigned index = it - perf2Worth.value().begin();
+
+#ifndef NDEBUG
+  // check whether the stuff is still in sync
+  check_sync(index, _pop[index]);
+#endif
+
+    return _pop[index];
   }
 
 private:
@@ -145,25 +183,34 @@ public:
   /* We have to override the default behavior to compute the total
    * only once!
    */
-  virtual void setup(const eoPop<EOT>& _pop) 
+  virtual void setup(const eoPop<EOT>& _pop)
   {
-    perf2Worth(_pop);
+    eoSelectFromWorth<EOT, WorthT>::setup(_pop);
     total = 0.0;
     for (worthIterator it = perf2Worth.value().begin();
 	 it<perf2Worth.value().end(); ++it)
       total += (*it);
   }
 
-  /* Perform deterministic tournament on worthes 
-     by calling the appropriate fn 
+  /* Perform deterministic tournament on worthes
+     by calling the appropriate fn
      see selectors.h
   */
-  virtual const EOT& operator()(const eoPop<EOT>& _pop) 
+  virtual const EOT& operator()(const eoPop<EOT>& _pop)
   {
     worthIterator it = roulette_wheel(
 			perf2Worth.value().begin(),
 			perf2Worth.value().end(),
 			total);
+
+   unsigned index = it - perf2Worth.value().begin();
+
+#ifndef NDEBUG
+  // check whether the stuff is still in sync
+  check_sync(index, _pop[index]);
+#endif
+
+    return _pop[index];
     return _pop[it-perf2Worth.value().begin()];
   }
 
