@@ -76,31 +76,8 @@ main()
   propSel.addOp(xover, 0.5);
   for ( i = 0; i < POP_SIZE; i ++ ) {
     eoGeneralOp<Chrom>& foo =  propSel.selectOp();
-    cout << foo.nInputs() << " " 
-	 << foo.nOutputs()  << endl;
   }
   
- //  eoAltBreeder<Chrom> breeder( propSel );
-  
-  
-
-//   breeder(pop);
-
-//   eoSequentialOpSelector<Chrom,   eoAltBreeder<Chrom>::outIt > seqSel;
-
-//   eoAltBreeder<Chrom> breeder2( seqSel );
-//   seqSel.addOp(bitflip, 0.25);
-//   seqSel.addOp(xover, 0.75);
-
-//   breeder2(pop);
-
-//   // reevaluation of fitness 
-//   for_each(pop.begin(), pop.end(), binary_value);
-
-//   cout << "new population:" << endl;
-//   for (i = 0; i < pop.size(); ++i)
-//     cout << pop[i] << " " << pop[i].fitness() << endl;
-
   return 0;
 }
 

@@ -16,8 +16,8 @@ LDADDS = $(top_builddir)/src/libeo.a $(top_builddir)/src/obsolete/libeoobsolete.
 
 noinst_PROGRAMS = t-eobreeder t-eoinclusion t-eoinsertion t-eo t-eofitness \
 	t-eoproblem t-eobin t-eolottery t-eo2dVector t-eogeneration t-eoEasyEA\
-	t-eoNonUniform t-eoUniform t-eoRandom t-parser t-eoESFull t-eoESOps\
-	t-eoAtomOps t-selectOne t-eoaltbreeder t-eoGeneralOps t-eoGOpSel \
+	t-eoNonUniform t-eoUniform t-eoRandom t-eoStateAndParser \
+	t-eoAtomOps t-selectOne t-eoGOpSel \
 	t-eoVector t-eoCheckpointing
 
 ###############################################################################
@@ -36,20 +36,6 @@ t_eoGOpSel_LDADD = $(LDADDS)
 
 ###############################################################################
 
-t_eoGeneralOps_SOURCES = t-eoGeneralOps.cpp
-t_eoGeneralOps_DEPENDENCIES = $(DEPS)
-t_eoGeneralOps_LDFLAGS = -lm
-t_eoGeneralOps_LDADD = $(LDADDS)
-
-###############################################################################
-
-t_eoaltbreeder_SOURCES = t-eoaltbreeder.cpp
-t_eoaltbreeder_DEPENDENCIES = $(DEPS)
-t_eoaltbreeder_LDFLAGS = -lm
-t_eoaltbreeder_LDADD = $(LDADDS)
-
-###############################################################################
-
 t_selectOne_SOURCES = t-selectOne.cpp
 t_selectOne_DEPENDENCIES = $(DEPS)
 t_selectOne_LDFLAGS = -lm
@@ -63,18 +49,18 @@ t_eoAtomOps_LDFLAGS = -lm
 t_eoAtomOps_LDADD = $(LDADDS)
 
 ###############################################################################
-
-t_eoESOps_SOURCES = t-eoESOps.cpp
-t_eoESOps_DEPENDENCIES = $(DEPS)
-t_eoESOps_LDFLAGS = -lm
-t_eoESOps_LDADD = $(LDADDS)
+#disabled
+#t_eoESOps_SOURCES = t-eoESOps.cpp
+#t_eoESOps_DEPENDENCIES = $(DEPS)
+#t_eoESOps_LDFLAGS = -lm
+#t_eoESOps_LDADD = $(LDADDS)
 
 ###############################################################################
 
-t_eoESFull_SOURCES = t-eoESFull.cpp real_value.h
-t_eoESFull_DEPENDENCIES = $(DEPS)
-t_eoESFull_LDFLAGS = -lm
-t_eoESFull_LDADD = $(LDADDS)
+#t_eoESFull_SOURCES = t-eoESFull.cpp real_value.h
+#t_eoESFull_DEPENDENCIES = $(DEPS)
+#t_eoESFull_LDFLAGS = -lm
+#t_eoESFull_LDADD = $(LDADDS)
 
 ###############################################################################
 
@@ -171,10 +157,10 @@ t_eo2dVector_LDADD = $(LDADDS)
 
 ###############################################################################
 
-t_parser_SOURCES = t-parser.cpp
-t_parser_DEPENDENCIES = $(DEPS) 
-t_parser_LDFLAGS = -lm 
-t_parser_LDADD = $(LDADDS) 
+t_eoStateAndParser_SOURCES = t-eoStateAndParser.cpp
+t_eoStateAndParser_DEPENDENCIES = $(DEPS) 
+t_eoStateAndParser_LDFLAGS = -lm 
+t_eoStateAndParser_LDADD = $(LDADDS) 
 
 ###############################################################################
 

@@ -39,7 +39,7 @@ public :
   /** Returns the operator proportionally selected */
   virtual eoGeneralOp<EOT>& selectOp()
     {
-      unsigned what = rng.roulette_wheel(rates);
+      unsigned what = rng.roulette_wheel(getRates());
       return *operator[](what);
     }
 
