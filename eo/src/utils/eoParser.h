@@ -24,7 +24,7 @@
  */
 //-----------------------------------------------------------------------------
 /**
-CVS Info: $Date: 2001-03-21 13:35:10 $ $Version$ $Author: jmerelo $
+CVS Info: $Date: 2001-04-10 15:08:09 $ $Version$ $Author: evomarc $
 */
 #ifndef eoParser_h
 #define eoParser_h
@@ -55,6 +55,11 @@ public :
       *   @param section    the section where this parameter belongs
     */
     virtual void processParam(eoParam& param, std::string section = "") = 0;
+
+  /** 
+   * checks if _param has been actually entered
+   */
+  virtual bool isItThere(eoParam& _param) const = 0;
 
   /**
    * Construct a Param and sets its value. The loader will own the memory thus created
@@ -138,12 +143,16 @@ public:
 
   string ProgramName() { return programName; }
  
+  /** 
+   * checks if _param has been actually entered by the user
+   */
+  virtual bool isItThere(eoParam& _param) const 
+  { return getValue(_param).first; }
+
 private:
   
   void doRegisterParam(eoParam& param) const;
   
-  bool isItThere(eoParam& _param) const { return getValue(_param).first; }
-
   std::pair<bool, string> getValue(eoParam& _param) const;
 
   void updateParameters() const;
