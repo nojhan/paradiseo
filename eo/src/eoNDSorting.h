@@ -55,6 +55,7 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
 
     void calculate_worths(const eoPop<EOT>& _pop)
     {
+      unsigned i;
       value().resize(_pop.size());
 
       typedef typename EOT::Fitness::fitness_traits traits;
@@ -66,7 +67,7 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
         tmp_pop.resize(_pop.size());
 
         // copy pop to dummy population (only need the fitnesses)
-        for (unsigned i = 0; i < _pop.size(); ++i)
+        for (i = 0; i < _pop.size(); ++i)
         {
           tmp_pop[i].fitness(_pop[i].fitness());
           tmp_pop[i].index = i;
@@ -76,7 +77,7 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
         tmp_pop.sort();
 
         //
-        for (unsigned i = 0; i < _pop.size(); ++i)
+        for (i = 0; i < _pop.size(); ++i)
         {
           value()[tmp_pop[i].index] = _pop.size() - i; // set rank
         }
@@ -87,10 +88,10 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
       vector<vector<unsigned> > S(_pop.size()); // which individuals does guy i dominate
       vector<unsigned> n(_pop.size(), 0); // how many individuals dominate guy i
 
-
-      for (unsigned i = 0; i < _pop.size(); ++i)
+      unsigned j;
+      for (i = 0; i < _pop.size(); ++i)
       {
-        for (unsigned j = 0; j < _pop.size(); ++j)
+        for (j = 0; j < _pop.size(); ++j)
         {
           if (_pop[i].fitness().dominates(_pop[j].fitness()))
           { // i dominates j
@@ -111,7 +112,7 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
       current_front.reserve(_pop.size());
 
       // get the first front out
-      for (unsigned i = 0; i < _pop.size(); ++i)
+      for (i = 0; i < _pop.size(); ++i)
       {
         if (n[i] == 0)
         {
@@ -138,16 +139,16 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
 
         double max_niche = *max_element(niche_count.begin(), niche_count.end());
 
-        for (unsigned i = 0; i < current_front.size(); ++i)
+        for (i = 0; i < current_front.size(); ++i)
         {
           value()[current_front[i]] = front_index + niche_count[i] / (max_niche + 1.); // divide by max_niche + 1 to ensure that this front does not overlap with the next
         }
 
         // Calculate which individuals are in the next front;
 
-        for (unsigned i = 0; i < current_front.size(); ++i)
+        for (i = 0; i < current_front.size(); ++i)
         {
-          for (unsigned j = 0; j < S[current_front[i]].size(); ++j)
+          for (j = 0; j < S[current_front[i]].size(); ++j)
           {
             unsigned dominated_individual = S[current_front[i]][j];
             n[dominated_individual]--; // As we remove individual i -- being part of the current front -- it no longer dominates j
@@ -172,7 +173,7 @@ class eoNDSorting : public eoPerf2WorthCached<EOT, double>
 
       unsigned nfirst = 0;
 
-      for (unsigned i = 0; i < value().size(); ++i)
+      for (i = 0; i < value().size(); ++i)
       {
         value()[i] = max_fitness - value()[i];
         assert(n[i] == 0);
@@ -255,6 +256,7 @@ class eoNDSorting_II : public eoNDSorting<EOT>
 
   vector<double> niche_penalty(const vector<unsigned>& _cf, const eoPop<EOT>& _pop)
   {
+    unsigned i;
     vector<double> niche_count(_cf.size(), 0.);
 
     unsigned nObjectives = _pop[_cf[0]].fitness().size();
@@ -263,7 +265,7 @@ class eoNDSorting_II : public eoNDSorting<EOT>
     {
 
       vector<pair<double, unsigned> > performance(_cf.size());
-      for (unsigned i =0; i < _cf.size(); ++i)
+      for (i =0; i < _cf.size(); ++i)
       {
         performance[i].first = _pop[_cf[i]].fitness()[o];
         performance[i].second = i;
@@ -273,7 +275,7 @@ class eoNDSorting_II : public eoNDSorting<EOT>
 
       vector<double> nc(niche_count.size(), 0.0);
 
-      for (unsigned i = 1; i < _cf.size()-1; ++i)
+      for (i = 1; i < _cf.size()-1; ++i)
       { // and yet another level of indirection
         nc[performance[i].second] = performance[i+1].first - performance[i-1].first;
       }
@@ -284,7 +286,7 @@ class eoNDSorting_II : public eoNDSorting<EOT>
       nc[performance[0].second] = max_dist + 1;
       nc[performance.back().second] = max_dist + 1;
 
-      for (unsigned i = 0; i < nc.size(); ++i)
+      for (i = 0; i < nc.size(); ++i)
       {
         niche_count[i] += (max_dist + 1) - nc[i];
       }

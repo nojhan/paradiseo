@@ -57,29 +57,29 @@
 
 /// The following function merely call the templatized do_* functions 
 
-eoEsChromInit<eoEsSimple<double> > & make_genotype(eoParser& _parser, eoState& _state, eoEsSimple<double> _eo)
+eoRealInitBounded<eoEsSimple<double> > & make_genotype(eoParser& _parser, eoState& _state, eoEsSimple<double> _eo)
 {
   return do_make_genotype(_parser, _state, _eo);
 }
-eoEsChromInit<eoEsSimple<eoMinimizingFitness> > & make_genotype(eoParser& _parser, eoState& _state, eoEsSimple<eoMinimizingFitness> _eo)
-{
-  return do_make_genotype(_parser, _state, _eo);
-}
-
-eoEsChromInit<eoEsStdev<double> > & make_genotype(eoParser& _parser, eoState& _state, eoEsStdev<double> _eo)
-{
-  return do_make_genotype(_parser, _state, _eo);
-}
-eoEsChromInit<eoEsStdev<eoMinimizingFitness> > & make_genotype(eoParser& _parser, eoState& _state, eoEsStdev<eoMinimizingFitness> _eo)
+eoRealInitBounded<eoEsSimple<eoMinimizingFitness> > & make_genotype(eoParser& _parser, eoState& _state, eoEsSimple<eoMinimizingFitness> _eo)
 {
   return do_make_genotype(_parser, _state, _eo);
 }
 
-eoEsChromInit<eoEsFull<double> > & make_genotype(eoParser& _parser, eoState& _state, eoEsFull<double> _eo)
+eoRealInitBounded<eoEsStdev<double> > & make_genotype(eoParser& _parser, eoState& _state, eoEsStdev<double> _eo)
 {
   return do_make_genotype(_parser, _state, _eo);
 }
-eoEsChromInit<eoEsFull<eoMinimizingFitness> > & make_genotype(eoParser& _parser, eoState& _state, eoEsFull<eoMinimizingFitness> _eo)
+eoRealInitBounded<eoEsStdev<eoMinimizingFitness> > & make_genotype(eoParser& _parser, eoState& _state, eoEsStdev<eoMinimizingFitness> _eo)
+{
+  return do_make_genotype(_parser, _state, _eo);
+}
+
+eoRealInitBounded<eoEsFull<double> > & make_genotype(eoParser& _parser, eoState& _state, eoEsFull<double> _eo)
+{
+  return do_make_genotype(_parser, _state, _eo);
+}
+eoRealInitBounded<eoEsFull<eoMinimizingFitness> > & make_genotype(eoParser& _parser, eoState& _state, eoEsFull<eoMinimizingFitness> _eo)
 {
   return do_make_genotype(_parser, _state, _eo);
 }

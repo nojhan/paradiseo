@@ -9,7 +9,11 @@
 #include <iostream>
 #include <iterator>
 #include <stdexcept>
-#include <time.h>
+#include <ctime>
+
+#ifdef _MSC_VER
+  #include <crtdbg.h>
+#endif
 
 using namespace std;
 

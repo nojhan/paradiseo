@@ -105,7 +105,7 @@ void testSelectOne(eoSelectOne<EOT> & _select, eoHowMany & _hm, string _name)
 int the_main(int argc, char **argv)
 { 
   eoParser parser(argc, argv);
-  eoValueParam<unsigned int> parentSizeParam = parser.createParam<unsigned int>(10, "parentSize", "Parent size",'P');
+  eoValueParam<unsigned> parentSizeParam = parser.createParam(unsigned(10), "parentSize", "Parent size",'P');
     pSize = parentSizeParam.value(); // global variable
 
 //   eoValueParam<double> offsrpringRateParam = parser.createParam<double>(1.0, "offsrpringRate", "Offsrpring rate",'O');
@@ -113,13 +113,13 @@ int the_main(int argc, char **argv)
   eoValueParam<eoHowMany> offsrpringRateParam = parser.createParam(eoHowMany(1.0), "offsrpringRate", "Offsrpring rate (% or absolute)",'O');
     eoHowMany oRate = offsrpringRateParam.value();
 
-eoValueParam<unsigned int> tournamentSizeParam = parser.createParam<unsigned int>(2, "tournamentSize", "Deterministic tournament size",'T');
+eoValueParam<unsigned> tournamentSizeParam = parser.createParam(unsigned(2), "tournamentSize", "Deterministic tournament size",'T');
     unsigned int tSize = tournamentSizeParam.value();
 
-  eoValueParam<double> tournamentRateParam = parser.createParam<double>(0.75, "tournamentRate", "Stochastic tournament rate",'R');
+  eoValueParam<double> tournamentRateParam = parser.createParam(0.75, "tournamentRate", "Stochastic tournament rate",'R');
     double tRate = tournamentRateParam.value();
 
-  eoValueParam<double> rankingPressureParam = parser.createParam<double>(1.75, "rankingPressure", "Selective pressure for the ranking selection",'p');
+  eoValueParam<double> rankingPressureParam = parser.createParam(1.75, "rankingPressure", "Selective pressure for the ranking selection",'p');
     double rankingPressure = rankingPressureParam.value();
 
     if (parser.userNeedsHelp())

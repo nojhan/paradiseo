@@ -195,6 +195,7 @@ void the_main(int argc, char* argv[])
   cp.add(fitness0);
   cp.add(fitness1);
 
+#if !defined(NO_GNUPLOT)
   eoGnuplot1DSnapshot snapshot("pareto");
   snapshot.pointSize =3;
 
@@ -202,6 +203,7 @@ void the_main(int argc, char* argv[])
 
   snapshot.add(fitness0);
   snapshot.add(fitness1);
+#endif
 
   // the algo
   eoEasyEA<eoDouble> ea(cp, eval, breeder, replace);

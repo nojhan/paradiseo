@@ -48,7 +48,8 @@ class eoPerf2Worth : public eoUF<const eoPop<EOT>&, void>, public eoValueParam<v
   { // start with a vector of indices
     vector<unsigned> indices(_pop.size());
 
-    for (unsigned i = 0; i < _pop.size();++i)
+    unsigned i;
+    for (i = 0; i < _pop.size();++i)
     { // could use generate, but who cares
       indices[i] = i;
     }
@@ -59,7 +60,7 @@ class eoPerf2Worth : public eoUF<const eoPop<EOT>&, void>, public eoValueParam<v
     tmp_pop.resize(_pop.size());
     vector<WorthT>  tmp_worths(value().size());
 
-    for (unsigned i = 0; i < _pop.size(); ++i)
+    for (i = 0; i < _pop.size(); ++i)
     {
       tmp_pop[i] = _pop[indices[i]];
       tmp_worths[i] = value()[indices[i]];
@@ -111,10 +112,11 @@ class eoPerf2WorthCached : public eoPerf2Worth<EOT, WorthT>
   */
   void operator()(const eoPop<EOT>& _pop)
   {
+    unsigned i;
       if (fitness_cache.size() == _pop.size())
       {
         bool in_sync = true;
-        for (unsigned i = 0; i < _pop.size(); ++i)
+        for (i = 0; i < _pop.size(); ++i)
         {
           if (fitness_cache[i] != _pop[i].fitness())
           {
@@ -131,7 +133,7 @@ class eoPerf2WorthCached : public eoPerf2Worth<EOT, WorthT>
       else // just cache the fitness
       {
         fitness_cache.resize(_pop.size());
-        for (unsigned i = 0; i < _pop.size(); ++i)
+        for (i = 0; i < _pop.size(); ++i)
         {
           fitness_cache[i] = _pop[i].fitness();
         }
@@ -151,7 +153,8 @@ class eoPerf2WorthCached : public eoPerf2Worth<EOT, WorthT>
   { // start with a vector of indices
     vector<unsigned> indices(_pop.size());
 
-    for (unsigned i = 0; i < _pop.size();++i)
+    unsigned i;
+    for (i = 0; i < _pop.size();++i)
     { // could use generate, but who cares
       indices[i] = i;
     }
@@ -161,9 +164,13 @@ class eoPerf2WorthCached : public eoPerf2Worth<EOT, WorthT>
     eoPop<EOT>      tmp_pop;
     tmp_pop.resize(_pop.size());
     vector<WorthT>  tmp_worths(value().size());
-    vector<typename EOT::Fitness> tmp_cache(_pop.size());
 
-    for (unsigned i = 0; i < _pop.size(); ++i)
+#ifdef _MSC_VER
+    vector<EOT::Fitness> tmp_cache(_pop.size());
+#else
+    vector<typename EOT::Fitness> tmp_cache(_pop.size());
+#endif
+    for (i = 0; i < _pop.size(); ++i)
     {
       tmp_pop[i] = _pop[indices[i]];
       tmp_worths[i] = value()[indices[i]];
@@ -215,8 +222,9 @@ class eoNoPerf2Worth : public eoPerf2Worth<EOT, typename EOT::Fitness>
     // default behaviour, just copy fitnesses
     void operator()(const eoPop<EOT>& _pop)
     {
+      unsigned i;
       value.resize(_pop.size());
-      for (unsigned i = 0; i < _pop.size(); ++i)
+      for (i = 0; i < _pop.size(); ++i)
         value()[i]=_pop[i];
     }
 };

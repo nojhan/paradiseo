@@ -26,7 +26,7 @@
 #ifndef _make_PBILdistrib_h
 #define _make_PBILdistrib_h
 
-#include <sys/time.h>		   // for time(0) for random seeding
+#include <ctime>		   // for time(0) for random seeding
 #include <ga/eoPBILOrg.h>
 #include <utils/eoRNG.h>
 #include <utils/eoParser.h>

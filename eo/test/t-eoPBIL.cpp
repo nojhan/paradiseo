@@ -1,5 +1,30 @@
-#include <iostream>
+// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
+//-----------------------------------------------------------------------------
+// t-eoPBIL.cpp
+// (c) Marc Schoenauer, 2001
+/*
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+    Contact: Marc.Schoenauer@inria.fr
+ */
+//-----------------------------------------------------------------------------
+
+/** test program for PBIL algorithm */
+
+#include <iostream>
 #include <eo>
 #include <ga/make_ga.h>
 #include "binary_value.h"
@@ -66,6 +91,7 @@ int main(int argc, char* argv[])
   if (!ptDirNameParam)	// not found
     throw runtime_error("Parameter resDir not found where it was supposed to be");
 
+#if !defined(NO_GNUPLOT)
   // now create the snapshot monitor
     eoValueParam<bool>& plotDistribParam = parser.createParam(false, "plotDistrib", "Plot Distribution", '\0', "Output - Graphical");
     if (plotDistribParam.value())
@@ -78,6 +104,7 @@ int main(int argc, char* argv[])
 	// and of course add it to the checkpoint
 	checkpoint.add(*distribSnapshot);
       }
+#endif
 
   // the algorithm: DEA
     // don't know where else to put the population size!
@@ -98,6 +125,7 @@ int main(int argc, char* argv[])
   distrib.printOn(cout);
   cout << endl;
 
+#if !defined(NO_GNUPLOT)
   // wait - for graphical output
     if (plotDistribParam.value())
       {
@@ -105,6 +133,7 @@ int main(int argc, char* argv[])
 	cin >> foo;
       }
   }
+#endif
   catch(exception& e)
   {
     cout << e.what() << endl;

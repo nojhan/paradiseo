@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoGenOp.h 
+// eoGenOp.cpp
 // (c) Maarten Keijzer and Marc Schoenauer, 2001
 /* 
     This library is free software; you can redistribute it and/or
@@ -189,7 +189,7 @@ int the_main(int argc, char **argv)
 {
 
   eoParser parser(argc, argv);
-  eoValueParam<unsigned int> parentSizeParam = parser.createParam<unsigned int>(10, "parentSize", "Parent size",'P');
+  eoValueParam<unsigned int> parentSizeParam = parser.createParam(unsigned(10), "parentSize", "Parent size",'P');
     pSize = parentSizeParam.value(); // global variable
 
     eoValueParam<uint32> seedParam(time(0), "seed", "Random number seed", 'S');

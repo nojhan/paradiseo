@@ -35,7 +35,11 @@
  * function class. That way, old style C or C++ functions can be adapted to EO
  * function classes.
  */
+#ifdef _MSC_VER
+template< class EOT, class FitT = EOT::Fitness, class FunctionArg = const EOT& >
+#else
 template< class EOT, class FitT = typename EOT::Fitness, class FunctionArg = const EOT& >
+#endif
 struct eoEvalFuncPtr: public eoEvalFunc<EOT> {
 
   /** Applies the function to the chromosome and sets the fitness of the
