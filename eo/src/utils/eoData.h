@@ -53,6 +53,14 @@ using namespace std;
 	#endif
 #endif
 
+// Added because it does not seem to be defined with Cygwin???
+#ifndef MINFLOAT
+     #define MINFLOAT ( (float)1e-127 )
+#endif
+#ifndef MAXFLOAT
+     #define MAXFLOAT ( (float)1e127 )
+#endif
+
 #ifndef _MSC_VER
 #include <math.h>
 #define _isnan isnan
