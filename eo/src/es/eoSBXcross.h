@@ -65,7 +65,7 @@ template<class EOT> class eoSBXCrossover: public eoQuadOp<EOT>
 
 
   /// The class name.
-  virtual string className() const { return "eoSBXCrossover"; }
+  virtual std::string className() const { return "eoSBXCrossover"; }
 
   /*****************************************
    * SBX crossover - modifies both parents *
