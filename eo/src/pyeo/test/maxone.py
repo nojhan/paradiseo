@@ -8,10 +8,20 @@ print 'done'
 
 from copy import copy
 
-
+class MinimFit(float):
+    def __cmp__(self, other):
+	if other == None: # I seem to be getting None's, don't know why
+	    return 1
+	return float.__cmp__(other, self)
+    
 class EvalFunc(eoEvalFunc):
     def __call__(self, eo):
 	eo.fitness = reduce(lambda x,y: x+y, eo.genome, 0)
+	
+class MinEvalFunc(eoEvalFunc):
+    def __call__(self, eo):
+	f = reduce(lambda x,y: x+y, eo.genome, 0 )
+	eo.fitness = MinimFit(f)
 
 class Init(eoInit):
     def __init__(self, genome_length = 10):
@@ -68,7 +78,7 @@ if __name__ == '__main__':
     print
     print
     
-    pop = Pop(1, init)
+    pop = eoPop(1, init)
     
     pop[0] = eo;
 

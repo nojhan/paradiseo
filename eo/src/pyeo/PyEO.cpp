@@ -156,6 +156,8 @@ extern void breeders();
 extern void mergers();
 extern void valueParam();
 extern void perf2worth();
+extern void monitors();
+extern void statistics();
 
 BOOST_PYTHON_MODULE(PyEO)
 {
@@ -170,7 +172,7 @@ BOOST_PYTHON_MODULE(PyEO)
 	.def("__str__", &PyEO::to_string)
 	;
 
-    class_<eoPop<PyEO> >("Pop", init<>() )
+    class_<eoPop<PyEO> >("eoPop", init<>() )
 	.def( init< unsigned, eoInit<PyEO>& >() )
 	.def("append", &eoPop<PyEO>::append)
 	.def("__str__", to_string<eoPop<PyEO> >)
@@ -195,6 +197,8 @@ BOOST_PYTHON_MODULE(PyEO)
     selectOne();
     selectors();
     perf2worth();
+    monitors();
+    statistics();
     continuators();
     reduce();
     replacement();

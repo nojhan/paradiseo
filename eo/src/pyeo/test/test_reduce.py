@@ -4,7 +4,7 @@ import unittest
 class TestReduce(unittest.TestCase):
     
     def run_test(self, ReduceClass, Arg = None):
-	pop = Pop(10, init)
+	pop = eoPop(10, init)
 	for indy in pop: evaluate(indy)
 	
 	if Arg:

@@ -9,7 +9,7 @@ class TestSGA(unittest.TestCase):
 
     def __init__(self, a):
 	unittest.TestCase.__init__(self, a)	
-	self.pop = Pop(4, Init())
+	self.pop = eoPop(4, Init())
 
 	for i in range(len(self.pop)):
 	   self.pop[i].fitness = i; 

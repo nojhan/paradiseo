@@ -2,7 +2,8 @@
 
 for i in *.py
 do
-    python $i
+    python $i > /dev/null
+
 done
 
 

@@ -23,6 +23,7 @@
 
 #include <EO.h>
 
+#include <string>
 #include <vector>
 #include <boost/python.hpp>
 

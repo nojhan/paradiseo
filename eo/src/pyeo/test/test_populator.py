@@ -22,7 +22,7 @@ class Xover(Crossover):
 class TestPopulator(unittest.TestCase):
     
     def make_pop(self):
-	pop = Pop(20, init)
+	pop = eoPop(20, init)
 	for indy in pop: evaluate(indy)
 	return pop
 	
@@ -57,7 +57,7 @@ class TestPopulator(unittest.TestCase):
 	seq.add(xover, 0.8)
 
 	pop = self.make_pop();
-	offspring = Pop()
+	offspring = eoPop()
 	
 	sel = eoDetTournamentSelect(2)
     

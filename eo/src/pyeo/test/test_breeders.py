@@ -10,10 +10,10 @@ class TestSGA(unittest.TestCase):
     
     def runtest(self, breed):
 	
-	pop = Pop(50, init)
+	pop = eoPop(50, init)
 	for indy in pop: evaluate(indy)
 	
-	newpop = Pop();
+	newpop = eoPop();
 
 	breed(pop,newpop)
 	
@@ -32,6 +32,10 @@ class TestSGA(unittest.TestCase):
 	breed = eoGeneralBreeder(sel, seq)
 
 	self.runtest(breed)
+
+def suite():
+    return unittest.makeSuite(TestSGA,'test')
+
 
 if __name__=='__main__':
     unittest.main()

@@ -23,6 +23,8 @@
 #include <eoEvalContinue.h>
 #include <eoFitContinue.h>
 #include <eoSteadyFitContinue.h>
+#include <utils/eoCheckPoint.h>
+#include <utils/eoStat.h>
 
 #include "PyEO.h"
 #include "def_abstract_functor.h"
@@ -30,6 +32,8 @@
 #define DEF(x) class_<x<PyEO>, bases<eoContinue<PyEO > > >(#x).def("__call__", &eoContinue<PyEO>::operator())
 #define DEF2(x, i1) class_<x<PyEO>, bases<eoContinue<PyEO > > >(#x, init<i1>() ).def("__call__", &eoContinue<PyEO>::operator())
 #define DEF3(x, i1, i2) class_<x<PyEO>, bases<eoContinue<PyEO > > >(#x, init<i1, i2 >() ).def("__call__", &eoContinue<PyEO>::operator())
+
+void add_checkpoint();
 
 void continuators()
 {
@@ -60,4 +64,23 @@ void continuators()
     DEF2(eoFitContinue, object); // object is the fitness type
 
     DEF3(eoSteadyFitContinue, unsigned long, unsigned long);
+
+    add_checkpoint();
+}
+
+void addContinue(eoCheckPoint<PyEO>& c, eoContinue<PyEO>& cc) { c.add(cc); }
+void addMonitor(eoCheckPoint<PyEO>& c, eoMonitor& m) { c.add(m);}
+void addStat(eoCheckPoint<PyEO>& c, eoStatBase<PyEO>& s) { c.add(s);}
+void addSortedStat(eoCheckPoint<PyEO>& c, eoSortedStatBase<PyEO>& s) { c.add(s);}
+
+void add_checkpoint()
+{
+    class_<eoCheckPoint<PyEO>, bases< eoContinue<PyEO> > >("eoCheckPoint",
+	    init<eoContinue<PyEO>&>())
+	.def("add", addContinue)
+	.def("add", addMonitor, with_custodian_and_ward<1,2>() )
+	.def("add", addStat)
+	.def("add", addSortedStat)
+	.def("__call__", &eoCheckPoint<PyEO>::operator())
+	;
 }

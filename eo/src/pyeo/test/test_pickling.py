@@ -48,7 +48,7 @@ class TestPickling(unittest.TestCase):
     
     def testPop(self):
 	
-	pop = Pop(40, init)
+	pop = eoPop(40, init)
 	for indy in pop: 
 	    evaluate(indy)
 

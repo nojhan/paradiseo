@@ -57,12 +57,17 @@ struct CachedPerf2WorthWrapper : public eoPerf2WorthCached<PyEO, double>
 
 void perf2worth() 
 {
-    numeric::array::set_module_and_type("Numeric", "ArrayType");
+    //numeric::array::set_module_and_type("Numeric", "ArrayType");
     
-    class_<eoPerf2Worth<PyEO, double>, Perf2WorthWrapper, boost::noncopyable>("eoPerf2Worth", init<>())
-	.def("__call__", &Perf2WorthWrapper::operator())
-	.def("sort_pop", &eoPerf2Worth<PyEO, double>::sort_pop)
-	.def("value", get_worths)
+    class_<
+	eoPerf2Worth<PyEO, double>, 
+	Perf2WorthWrapper,
+	bases< eoValueParam<std::vector<double> > >,
+	boost::noncopyable>("eoPerf2Worth", init<>())
+	
+	    .def("__call__", &Perf2WorthWrapper::operator())
+	    .def("sort_pop", &eoPerf2Worth<PyEO, double>::sort_pop)
+	   //.def("value", get_worths)
 	;
 
     class_<eoPerf2WorthCached<PyEO, double>, CachedPerf2WorthWrapper, bases<eoPerf2Worth<PyEO, double> >, boost::noncopyable>
