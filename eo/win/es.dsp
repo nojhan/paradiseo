@@ -1,24 +1,24 @@
-# Microsoft Developer Studio Project File - Name="eo" - Package Owner=<4>
+# Microsoft Developer Studio Project File - Name="es" - Package Owner=<4>
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
 # ** DO NOT EDIT **
 
 # TARGTYPE "Win32 (x86) Static Library" 0x0104
 
-CFG=eo - Win32 Debug
+CFG=es - Win32 Debug
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
-!MESSAGE NMAKE /f "eo.mak".
+!MESSAGE NMAKE /f "es.mak".
 !MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "eo.mak" CFG="eo - Win32 Debug"
+!MESSAGE NMAKE /f "es.mak" CFG="es - Win32 Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "eo - Win32 Release" (based on "Win32 (x86) Static Library")
-!MESSAGE "eo - Win32 Debug" (based on "Win32 (x86) Static Library")
+!MESSAGE "es - Win32 Release" (based on "Win32 (x86) Static Library")
+!MESSAGE "es - Win32 Debug" (based on "Win32 (x86) Static Library")
 !MESSAGE 
 
 # Begin Project
@@ -28,7 +28,7 @@ CFG=eo - Win32 Debug
 CPP=cl.exe
 RSC=rc.exe
 
-!IF  "$(CFG)" == "eo - Win32 Release"
+!IF  "$(CFG)" == "es - Win32 Release"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
@@ -41,9 +41,8 @@ RSC=rc.exe
 # PROP Intermediate_Dir "Release"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
-# ADD CPP /nologo /w /W0 /GR /GX /O2 /I "..\src" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /FD /c
-# SUBTRACT CPP /YX
-# ADD BASE RSC /l 0xc0a /d "NDEBUG"
+# ADD CPP /nologo /w /W0 /GR /GX /O2 /I "..\src" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /D "NO_GNUPLOT" /YX /FD /Zm200 /c
+# ADD BASE RSC /l 0x40c /d "NDEBUG"
 # ADD RSC /l 0x40c /d "NDEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
@@ -54,15 +53,15 @@ LIB32=link.exe -lib
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
 PostBuild_Desc=Install
-PostBuild_Cmds=copy  Release\eo.lib  lib\ 
+PostBuild_Cmds=copy  Release\es.lib  lib\ 
 # End Special Build Tool
 
-!ELSEIF  "$(CFG)" == "eo - Win32 Debug"
+!ELSEIF  "$(CFG)" == "es - Win32 Debug"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "eo___Win32_Debug"
-# PROP BASE Intermediate_Dir "eo___Win32_Debug"
+# PROP BASE Output_Dir "Debug"
+# PROP BASE Intermediate_Dir "Debug"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
@@ -70,66 +69,85 @@ PostBuild_Cmds=copy  Release\eo.lib  lib\
 # PROP Intermediate_Dir "Debug"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
-# ADD CPP /nologo /W3 /Gm /GR /GX /ZI /Od /I "..\src" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /FD /GZ /c
-# SUBTRACT CPP /YX
-# ADD BASE RSC /l 0xc0a /d "_DEBUG"
-# ADD RSC /l 0xc0a /d "_DEBUG"
+# ADD CPP /nologo /w /W0 /Gm /GR /GX /ZI /Od /I "..\src" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /D "NO_GNUPLOT" /YX /FD /GZ /Zm200 /c
+# ADD BASE RSC /l 0x40c /d "_DEBUG"
+# ADD RSC /l 0x40c /d "_DEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"Debug\eod.lib"
+# ADD LIB32 /nologo /out:"Debug\esd.lib"
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
 PostBuild_Desc=Install
-PostBuild_Cmds=copy  Debug\eod.lib  lib\ 
+PostBuild_Cmds=copy  Debug\esd.lib  lib\ 
 # End Special Build Tool
 
 !ENDIF 
 
 # Begin Target
 
-# Name "eo - Win32 Release"
-# Name "eo - Win32 Debug"
+# Name "es - Win32 Release"
+# Name "es - Win32 Debug"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE=..\src\utils\eoFileMonitor.cpp
+SOURCE=..\src\es\make_algo_scalar_es.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\eoFunctorStore.cpp
+SOURCE=..\src\es\make_algo_scalar_real.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoParser.cpp
+SOURCE=..\src\es\make_checkpoint_es.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\eoPersistent.cpp
+SOURCE=..\src\es\make_checkpoint_real.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\eoPrintable.cpp
+SOURCE=..\src\es\make_continue_es.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoRNG.cpp
+SOURCE=..\src\es\make_continue_real.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoState.cpp
+SOURCE=..\src\es\make_genotype_es.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoStdoutMonitor.cpp
+SOURCE=..\src\es\make_genotype_real.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoUpdater.cpp
+SOURCE=..\src\es\make_op_es.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\es\make_op_real.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\es\make_pop_es.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\es\make_pop_real.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\es\make_run_es.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\es\make_run_real.cpp
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -137,55 +155,79 @@ SOURCE=..\src\utils\eoUpdater.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=..\src\utils\compatibility.h
+SOURCE=..\src\es\eoEsChromInit.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoData.h
+SOURCE=..\src\es\eoEsFull.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoFileMonitor.h
+SOURCE=..\src\es\eoEsGlobalXover.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoMonitor.h
+SOURCE=..\src\es\eoEsMutate.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\eoObject.h
+SOURCE=..\src\es\eoEsMutationInit.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoParam.h
+SOURCE=..\src\es\eoEsSimple.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoParser.h
+SOURCE=..\src\es\eoEsStandardXover.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\eoPersistent.h
+SOURCE=..\src\es\eoEsStdev.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\eoPrintable.h
+SOURCE=..\src\es\eoNormalMutation.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoRNG.h
+SOURCE=..\src\es\eoReal.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoStat.h
+SOURCE=..\src\es\eoRealAtomXover.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoState.h
+SOURCE=..\src\es\eoRealInitBounded.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoUpdater.h
+SOURCE=..\src\es\eoRealOp.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\es\make_es.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\es\make_genotype_real.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\es\make_op.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\es\make_op_es.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\es\make_op_real.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\es\make_real.h
 # End Source File
 # End Group
 # End Target

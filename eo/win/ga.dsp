@@ -1,24 +1,24 @@
-# Microsoft Developer Studio Project File - Name="eo" - Package Owner=<4>
+# Microsoft Developer Studio Project File - Name="ga" - Package Owner=<4>
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
 # ** DO NOT EDIT **
 
 # TARGTYPE "Win32 (x86) Static Library" 0x0104
 
-CFG=eo - Win32 Debug
+CFG=ga - Win32 Debug
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
-!MESSAGE NMAKE /f "eo.mak".
+!MESSAGE NMAKE /f "ga.mak".
 !MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "eo.mak" CFG="eo - Win32 Debug"
+!MESSAGE NMAKE /f "ga.mak" CFG="ga - Win32 Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "eo - Win32 Release" (based on "Win32 (x86) Static Library")
-!MESSAGE "eo - Win32 Debug" (based on "Win32 (x86) Static Library")
+!MESSAGE "ga - Win32 Release" (based on "Win32 (x86) Static Library")
+!MESSAGE "ga - Win32 Debug" (based on "Win32 (x86) Static Library")
 !MESSAGE 
 
 # Begin Project
@@ -28,7 +28,7 @@ CFG=eo - Win32 Debug
 CPP=cl.exe
 RSC=rc.exe
 
-!IF  "$(CFG)" == "eo - Win32 Release"
+!IF  "$(CFG)" == "ga - Win32 Release"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
@@ -41,9 +41,8 @@ RSC=rc.exe
 # PROP Intermediate_Dir "Release"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
-# ADD CPP /nologo /w /W0 /GR /GX /O2 /I "..\src" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /FD /c
-# SUBTRACT CPP /YX
-# ADD BASE RSC /l 0xc0a /d "NDEBUG"
+# ADD CPP /nologo /w /W0 /GR /GX /O2 /I "..\src" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /D "NO_GNUPLOT" /YX /FD /c
+# ADD BASE RSC /l 0x40c /d "NDEBUG"
 # ADD RSC /l 0x40c /d "NDEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
@@ -54,82 +53,73 @@ LIB32=link.exe -lib
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
 PostBuild_Desc=Install
-PostBuild_Cmds=copy  Release\eo.lib  lib\ 
+PostBuild_Cmds=copy  Release\ga.lib  lib\ 
 # End Special Build Tool
 
-!ELSEIF  "$(CFG)" == "eo - Win32 Debug"
+!ELSEIF  "$(CFG)" == "ga - Win32 Debug"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "eo___Win32_Debug"
-# PROP BASE Intermediate_Dir "eo___Win32_Debug"
+# PROP BASE Output_Dir "ga___Win32_Debug"
+# PROP BASE Intermediate_Dir "ga___Win32_Debug"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
 # PROP Output_Dir "Debug"
 # PROP Intermediate_Dir "Debug"
 # PROP Target_Dir ""
-# ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
-# ADD CPP /nologo /W3 /Gm /GR /GX /ZI /Od /I "..\src" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /FD /GZ /c
-# SUBTRACT CPP /YX
-# ADD BASE RSC /l 0xc0a /d "_DEBUG"
-# ADD RSC /l 0xc0a /d "_DEBUG"
+# ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ  /c
+# ADD CPP /nologo /w /W0 /Gm /GR /GX /ZI /Od /I "..\src" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /D "NO_GNUPLOT" /YX /FD /GZ  /c
+# ADD BASE RSC /l 0x40c /d "_DEBUG"
+# ADD RSC /l 0x40c /d "_DEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"Debug\eod.lib"
+# ADD LIB32 /nologo /out:"Debug\gad.lib"
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
 PostBuild_Desc=Install
-PostBuild_Cmds=copy  Debug\eod.lib  lib\ 
+PostBuild_Cmds=copy  Debug\gad.lib  lib\ 
 # End Special Build Tool
 
 !ENDIF 
 
 # Begin Target
 
-# Name "eo - Win32 Release"
-# Name "eo - Win32 Debug"
+# Name "ga - Win32 Release"
+# Name "ga - Win32 Debug"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE=..\src\utils\eoFileMonitor.cpp
+SOURCE=..\src\ga\make_algo_scalar_ga.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\eoFunctorStore.cpp
+SOURCE=..\src\ga\make_checkpoint_ga.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoParser.cpp
+SOURCE=..\src\ga\make_continue_ga.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\eoPersistent.cpp
+SOURCE=..\src\ga\make_genotype_ga.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\eoPrintable.cpp
+SOURCE=..\src\ga\make_op_ga.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoRNG.cpp
+SOURCE=..\src\ga\make_pop_ga.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoState.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoStdoutMonitor.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoUpdater.cpp
+SOURCE=..\src\ga\make_run_ga.cpp
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -137,55 +127,27 @@ SOURCE=..\src\utils\eoUpdater.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=..\src\utils\compatibility.h
+SOURCE=..\src\ga\eoBit.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoData.h
+SOURCE=..\src\ga\eoBitOp.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoFileMonitor.h
+SOURCE=..\src\ga\eoBitOpFactory.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoMonitor.h
+SOURCE=..\src\ga\make_ga.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\eoObject.h
+SOURCE=..\src\ga\make_genotype_ga.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\utils\eoParam.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoParser.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\eoPersistent.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\eoPrintable.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoRNG.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoStat.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoState.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\utils\eoUpdater.h
+SOURCE=..\src\ga\make_op.h
 # End Source File
 # End Group
 # End Target
