@@ -36,7 +36,7 @@ It can then be instantiated, and compiled on its own for a given EOType
 // Continuators - all include eoContinue.h
 #include <eoCombinedContinue.h>
 #include <eoGenContinue.h>
-#include <eoSteadyGenContinue.h>
+#include <eoSteadyFitContinue.h>
 #include <eoEvalContinue.h>
 #include <eoFitContinue.h>
 #ifndef _MSC_VER
@@ -85,7 +85,7 @@ eoContinue<Indi> & do_make_continue(eoParameterLoader& _parser, eoState& _state,
   eoValueParam<unsigned>& minGenParam = _parser.createParam(unsigned(0), "minGen", "Minimum number of generations",'g', "Stopping criterion");
     if (_parser.isItThere(steadyGenParam))
       {
-	eoSteadyGenContinue<Indi> *steadyCont = new eoSteadyGenContinue<Indi>
+	eoSteadyFitContinue<Indi> *steadyCont = new eoSteadyFitContinue<Indi>
 	  (minGenParam.value(), steadyGenParam.value());
 	// store
 	_state.storeFunctor(steadyCont);
