@@ -32,6 +32,7 @@ MS 25/11/00
 #define _eoFileMonitor_h
 
 #include <string>
+#include <fstream>
 
 #include <utils/eoMonitor.h>
 #include <eoObject.h>
