@@ -24,11 +24,17 @@
 
 */
 //-----------------------------------------------------------------------------
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
-#include <iostream>   // std::cout
-#include <strstream>  // ostrstream, istrstream
-
-#include <assert.h>
+#include <cassert>
+#include <iostream>
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
+#include <strstream>
+#endif
 
 #include <utils/eoRndGenerators.h>
 #include <eoVector.h>         // eoVector

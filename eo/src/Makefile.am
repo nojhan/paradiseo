@@ -4,11 +4,9 @@
 ##
 ###############################################################################
 
-INCLUDES = -I$(top_srcdir)/src
+SUBDIRS 	= es ga gp utils other do
 
-SUBDIRS = es ga gp utils other do
-
-CPPFLAGS = -O2
+AM_CXXFLAGS	= -I$(top_srcdir)/src
 
 lib_LIBRARIES = libeo.a
 

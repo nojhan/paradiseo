@@ -1,17 +1,25 @@
-//-----------------------------------------------------------------------------
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
 // to avoid long name warnings
 #ifdef _MSC_VER
 #pragma warning(disable:4786)
 #endif
 
-#include <vector.h>
-#include <stream.h>
-#include <stdexcept>  // runtime_error 
+#include <iostream>
+#include <stdexcept>
+#include <vector>
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
+#include <strstream>
+#endif
 
 // general
 #include <eo>
 #include <utils/eoDistance.h>
+
 //-----------------------------------------------------------------------------
 
 struct Dummy : public EO<double>
@@ -20,7 +28,7 @@ struct Dummy : public EO<double>
   void printOn(std::ostream & _os) const
   {
       EO<double>::printOn(_os);
-      cout << " " << xdist ;
+      std::cout << " " << xdist ;
   }
   double xdist;
 };
@@ -140,7 +148,7 @@ int the_main(int argc, char **argv)
 	peakNumber = 2;
       }
 
-  vector<unsigned> nbIndiPerPeak(peakNumber);
+  std::vector<unsigned> nbIndiPerPeak(peakNumber);
   unsigned i, sum=0;
 
   // the second item is a vector<string> containing all values

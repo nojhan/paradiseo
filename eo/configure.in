@@ -8,10 +8,8 @@ AC_CONFIG_SRCDIR(src/eoOp.h)
 AM_INIT_AUTOMAKE
 AM_CONFIG_HEADER([config.h])
 
-dnl Checks for maintainer mode
-AM_MAINTAINER_MODE
-
 dnl Checks for programs.
+AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_INSTALL
 AC_PROG_LN_S

@@ -49,6 +49,7 @@ touch doc/eo.cfg
 
 echo
 echo "Now run 'configure' and 'make' to build $PROG."
+echo "You can check the build running 'make check'"
 echo
 echo "If you have Doxygen installed, type 'make doc' to generate $PROG documentation."
 echo
