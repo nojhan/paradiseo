@@ -30,6 +30,7 @@
 //-----------------------------------------------------------------------------
 #include <string>
 #include <strstream>
+#include <vector>
 
 /**
     eoParam: Base class for monitoring and parsing parameters
@@ -41,7 +42,7 @@ public:
   /** Empty constructor - called from outside any parser
    */
   eoParam ()
-    : repLongName(""), repDescription(""), repDefault(""), 
+    : repLongName(""), repDefault(""), repDescription(""), 
     repShortHand(0), repRequired(false){}
 
   /**
@@ -54,9 +55,9 @@ public:
    */
   eoParam (std::string _longName, std::string _default, 
       std::string _description, char _shortName = 0, bool _required = false)
-    : repShortHand(_shortName), repLongName(_longName), 
-    repDescription(_description ), repDefault(_default),
-    repRequired( _required) {}
+    : repLongName(_longName), repDefault(_default),
+    repDescription(_description ), 
+    repShortHand(_shortName), repRequired( _required) {}
   
   /**
    * Virtual destructor is needed.
@@ -64,7 +65,7 @@ public:
   virtual ~eoParam () {};
   
   /**
-  * Pure virtual function to get the value out.
+  * Pure virtual function to get the value out. 
   */
   virtual std::string getValue ( void ) const = 0;
 
@@ -118,6 +119,9 @@ private:
     eoValueParam<ValueType>: templatized derivation of eoParam. Can be used to contain 
     any scalar value type. It makes use of std::strstream to get and set values. This
     should be changed to std::stringstream when that class is available in g++.
+
+    Note also that there is a template specialization for pair<double, double> and
+    for vector<double>. These stream their contents delimited with whitespace.
 */
 
 template <class ValueType>
@@ -136,10 +140,10 @@ public :
    */
     eoValueParam (ValueType _defaultValue, 
                 std::string _longName, 
-                std::string _description, 
+                std::string _description = "No description", 
                 char _shortHand = 0,
                 bool _required = false)
-    : repValue(_defaultValue), eoParam(_longName, "", _description, _shortHand, _required)
+    : eoParam(_longName, "", _description, _shortHand, _required), repValue(_defaultValue)
     {
         eoParam::defValue(getValue());
     }
@@ -164,6 +168,46 @@ public :
 private :
     ValueType repValue;
 };
+
+/// Because MSVC does not support partial specialization, the pair is a double, not a T
+template <>
+std::string eoValueParam<std::pair<double, double> >::getValue(void) const
+{
+    std::ostrstream os;
+    os << repValue.first << ' ' << repValue.second << std::ends;
+    return os.str();
+}
+
+/// Because MSVC does not support partial specialization, the pair is a double, not a T
+template <>
+void eoValueParam<std::pair<double, double> >::setValue(std::string _value)
+{
+    std::istrstream is(_value.c_str());
+    is >> repValue.first;
+    is >> repValue.second;
+}
+
+/// Because MSVC does not support partial specialization, the vector is a double, not a T
+template <>
+std::string eoValueParam<std::vector<double> >::getValue(void) const
+{
+    std::ostrstream os;
+    os << repValue.size() << ' ';
+    std::copy(repValue.begin(), repValue.end(), std::ostream_iterator<double>(os, " "));
+    os << std::ends;
+    return os.str();
+}
+
+/// Because MSVC does not support partial specialization, the vector is a double, not a T
+template <>
+void eoValueParam<std::vector<double> >::setValue(std::string _value)
+{
+    std::istrstream is(_value.c_str());
+    unsigned sz;
+    is >> sz;
+    repValue.resize(sz);
+    std::copy(std::istream_iterator<double>(is), std::istream_iterator<double>(), repValue.begin());
+}
 
 /*template <class ContainerType>
 class eoContainerParam : public eoParam

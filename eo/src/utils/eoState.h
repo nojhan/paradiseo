@@ -71,7 +71,7 @@ public :
     *
     *   @param _filename    the name of the file to save into
     */
-    void save(const std::string& _filename);
+    void save(const std::string& _filename) const;
 
 private :
     std::string createObjectName(eoObject* obj);

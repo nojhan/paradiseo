@@ -29,7 +29,7 @@ std::ostream& printSectionHeader(std::ostream& os, std::string section)
 
 eoParameterLoader::~eoParameterLoader()
 {
-    for (int i = 0; i < ownedParams.size(); ++i)
+    for (unsigned i = 0; i < ownedParams.size(); ++i)
     {
         delete ownedParams[i];
     }

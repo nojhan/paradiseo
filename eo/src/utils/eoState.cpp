@@ -115,7 +115,7 @@ void eoState::load(const string& _filename)
 
 }
 
-void eoState::save(const string& filename)
+void eoState::save(const string& filename) const
 { // saves in order of insertion
     ofstream os(filename.c_str());
 
@@ -125,7 +125,7 @@ void eoState::save(const string& filename)
         throw runtime_error(msg);
     }
 
-    for (vector<ObjectMap::iterator>::iterator it = creationOrder.begin(); it != creationOrder.end(); ++it)
+    for (vector<ObjectMap::iterator>::const_iterator it = creationOrder.begin(); it != creationOrder.end(); ++it)
     {
         os << "\\section{" << (*it)->first << "}\n";
         (*it)->second->printOn(os);
