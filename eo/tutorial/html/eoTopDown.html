@@ -2,7 +2,7 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17-21mdk i686) [Netscape]">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.7-10 i686) [Netscape]">
    <title>EO - The Algorithm-Based approach</title>
 </head>
 <body text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000" background="beige009.jpg">
@@ -26,9 +26,9 @@ of "lessons" for you.
 <li>
 <a href="eoLesson1.html">Lesson 1 </a>- a gentle introduction to the <font color="#FF6600">EO
 way</font>: your first steps into <b><font color="#999900">EO representations</font></b>
-using a simple generational GA. Please, <b><blink><font color="#FF0000">spend
-the necessary time</font></blink></b> on that one, since all basic constructs
-presented there are used throughout EO.</li>
+using a simple generational GA. Please, <b><font color="#FF0000">spend
+the necessary time</font></b> on that one, since all basic constructs presented
+there are used throughout EO.</li>
 
 <li>
 <a href="eoLesson2.html">Lesson 2</a> - <font color="#FF6600">encapsulate</font>,
@@ -48,48 +48,51 @@ populations,
 ...).</li>
 
 <li>
-<a href="eoLesson3.html">Lesson 4 </a>- The same algorithms - again! - but now fully operational: 
-<font color="#FF6600">every component</font> of the algorithm can be defined 
-<font color="#FF6600">on the command-line</font>, except the type of genotype; 
-moreover, you now have a full library, i.e. everything except your fitness function is 
-<font color="#FF6600">already compiled.</font>
-</li>
+<a href="eoLesson3.html">Lesson 4 </a>- The same algorithms - again! -
+but now fully operational: <font color="#FF6600">every component</font>
+of the algorithm can be defined <font color="#FF6600">on the command-line</font>,
+except the type of genotype; moreover, you now have a full library, i.e.
+everything except your fitness function is <font color="#FF6600">already
+compiled.</font></li>
 
-<p><br>Current version (May. 5, 2001) stops here, but ...
+<li>
+<a href="eoLesson5.html">Lesson 5</a> <b><blink><font color="#FF6600">(new)</font></blink></b>
+- Use your own <b><font color="#999900">representation</font></b>. Thanks
+to <font color="#FF6600">template files and a little script</font> in Unix,
+or the <font color="#FF6600">Application template</font> in MSVC++, you
+can easily define a new genotype and run an Evolutionary Algorithm that
+will intantly benefit from the power of <b><font color="#009900">all EO
+Evolution Engines</font></b> (including <b><font color="#3366FF">easy user-parameter
+input </font></b>presented in Lesson 4). You simply need to gradually fill
+in the shell-files that the script will generate for you.</li>
+</ul>
+<br>Current version (May. 5, 2002) stops here, but ...
 <p>From there on, you don't need to follow the lesson order any more: you
 can go directly to any lesson and experiment. Of course, you will need
 to bring together the different pieces to write exactly what you want -
 but only because we had no idea of what you exactly want :-)
-<br>&nbsp;
-
+<ul>
 <li>
-Lesson 4 - More <b><font color="#CC33CC">general operators</font></b>:
-e.g. binary, n-ary, or even specific mate selection (your brain and my
-beauty)! Add your own to the basic algorithm using the template files.</li>
-
-<li>
-Lesson 5 - More about <b><font color="#3366FF">checkpointing</font></b>:
+Lesson 6 (forthcoming) - More about <b><font color="#3366FF">checkpointing</font></b>:
 write your first <b><font color="#FF6600">adaptive mechanism</font></b>,
 and find out how easy it is to <b><font color="#3366FF">update</font></b>
 and <b><font color="#3366FF">monitor </font><font color="#FF6600">dynamic
 parameters</font></b></li>
 
 <li>
-Lesson 6 - Why not go <b><font color="#993300">parallel</font></b>? From
-the simple asynchronous SSGA to the more sophisticated island model (no
-totally distributed population yet).</li>
+Lesson 7 - More <b><font color="#CC33CC">general operators</font></b>:
+e.g. binary, n-ary, or even specific mate selection (your brain and my
+beauty)! Add your own to the basic algorithm using the template files.</li>
 
 <li>
-Lesson 7 - Use your own <b><font color="#999900">representation</font></b>.
-You need only to write the base individual class, the initilization class
-and the variation operators. EO provides many helps: The <b><font color="#999900">eoExternal</font></b>
-paradigm let you encapsulate into EO classes existing code. And the <b><font color="#999900">eoFixedLength</font></b>
-and <b><font color="#999900">eoVariableLength</font></b> super classes
-allow quick definition of new genotypes that handle identical Atoms.</li>
+Lesson 7 - Use predefined generic <b><font color="#999900">representations</font></b>.
+The <b><font color="#999900">eoFixedLength</font></b> and <b><font color="#999900">eoVariableLength</font></b>
+super classes allow quick definition of new genotypes that handle identical
+Atoms, together with generic variation operators.</li>
 </ul>
 Of course, in each lesson, you have links to the corresponding Component-Based
-page. ( ... Well, to tell you the truth, as of today, Jan. 5, 2001, this
-is not exactly true :-)
+page. ( ... Well, to tell you the truth, as of today, this is not exactly
+true :-)
 <br>
 <hr WIDTH="100%">
 <br><a href="eoTutorial.html">Tutorial main page </a>- <a href="eoTopDown.html">Algorithm-Based</a>

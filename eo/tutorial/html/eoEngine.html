@@ -12,9 +12,9 @@ hints</a> - <b><font face="Arial,Helvetica"><font size=+1><a href="../../doc/htm
 documentation
 <hr WIDTH="100%"></a></font></font><font color="#CC0000">Local: </font></b><a href="#introduction">Introduction</a>&nbsp;
 - <a href="#selection">Selection</a> - <a href="#replacement">Replacement</a>
-- <a href="#popular">Popular evolution engines</a> - <a href="#tournament">Tournaments</a>
-- <a href="#merge">Merge</a> - <a href="#reduce">Reduce</a> - <a href="#howmany">HowMany</a>
-- <a href="#SAD">SurviveAndDie</a>
+- <a href="#general">General Replacement</a> - <a href="#popular">Popular
+evolution engines</a> - <a href="#tournament">Tournaments</a> - <a href="#merge">Merge</a>
+- <a href="#reduce">Reduce</a> - <a href="#howmany">HowMany</a> - <a href="#SAD">SurviveAndDie</a>
 <hr WIDTH="100%">
 <center>
 <h1>
@@ -314,6 +314,8 @@ the&nbsp; that uses a deterministic MergeReduce.</li>
 
 <br>&nbsp;
 <p>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
 <p><b><font color="#FF0000">Note</font></b>: The basic use (and initial
 motivation) for <b><tt><font color="#009900">eoSurviveAndDie</font></tt></b>
 takes 2 arguments, an eoMergeReduce and a number of surviving parents.
@@ -350,11 +352,81 @@ above replacement procedures within a very simple and easy-to-monitor Dummy
 EO class.
 <p>
 <hr WIDTH="100%">
+<br><a NAME="general"></a><b><font color="#000099"><font size=+2>General
+Replacement: eoReduceMergeReduce</font></font></b>
+<p>In an attempt to unify all the well-known replacements, plus most of
+the less-known-though-often-used, the <b><tt><font color="#009900">eoReduceMergeReduce</font></tt></b>
+replacement has been designed, and supersedes all of the above instances.
+<br>It allows to implement <b><font color="#FF0000">strong elistism</font></b>
+(i.e. some parents survive, whatever their fitness and that of the offspring),
+as well as multiple weak elistism (the best parents are put back in the
+next population if they outperform the best offspring).
+<p>Basically, an <b><tt><font color="#009900">eoReduceMergeReduce</font></tt></b>
+starts by eventually preserving the (strong) elite parents, proceeds by
+reducing both the parent and offspring populations, merges those populations,
+and eventually reduces the resulting populations (augmented with the elite
+parents) to the right size. Last, the weak elitism is taken care of if
+necessary.
+<br>The following image, taken from the graphical interface of EASEA, somehow
+demonstrates the different parameters of an <b><tt><font color="#009900">eoReduceMergeReduce.</font></tt></b>
+<br>
+<hr WIDTH="50%">
+<br><b><font color="#000099">eoReduceMergeReduce: </font><font color="#FF0000">The&nbsp;
+interface</font></b>
+<br>Of course the interface is that of eoReplacement. Let's concentrate
+on the constructor.
+<p>The constructor takes 6 arguments:
+<ol>
+<li>
+<b><tt><font color="#993300">eoHowMany elite</font></tt></b> determines
+the number of parents to be treated as elite (actual behavior determined
+by next parameter) using the <a href="#howmany">eoHowMany</a> behavior.</li>
+
+<li>
+<b><tt><font color="#993300">bool strongElitism</font></tt></b> tells whether
+the elite above corresponds to strong (true) or false(weak) elitism.</li>
+
+<br><b><font color="#FF0000">Note</font></b>: the case of no elitism is
+obtained by setting elite to 0
+<li>
+<b><tt><font color="#993300">eoHowMany reducedParents </font></tt></b>gives
+the number of parents remaining after reducing them</li>
+
+<br><b><font color="#FF0000">Note</font></b>: 0 means that no parent survive
+(except the possible elite), as in <b><tt><font color="#009900">eoCommaReplacement</font></tt></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-1 is used inside <b><tt><font color="#009900">eoSSGAReplacement</font></tt></b>s
+(one parent is killed to make room for the newborn)
+<li>
+<b><tt><font color="#993300">eoReduce&lt;EOT> &amp; reduceParents</font></tt></b>
+indicates how the parents will be reduced (see <a href="#reduce">available
+instances</a>).</li>
+
+<li>
+<b><tt><font color="#993300">eoHowMany reducedOffspring </font></tt></b>gives
+the number of offspring remaining after reducing them</li>
+
+<br><b><font color="#FF0000">Note</font></b>: 0 is impossible (no evolution!!!)
+<li>
+<b><tt><font color="#993300">eoReduce&lt;EOT> &amp; reduceOffspring</font></tt></b>
+indicates how the offspring will be reduced (see <a href="#reduce">available
+instances</a>).</li>
+
+<li>
+<b><tt><font color="#993300">eoReduce&lt;EOT> &amp; reduceFinal</font></tt></b>
+indicates how the merged reduced-parents/reduced-offspring will be reduced
+(see <a href="#reduce">available instances</a>).</li>
+
+<br><b><font color="#FF0000">Note</font></b>: the number of individuals
+remaining after that reduction is of course the original size of the population.</ol>
+All popular evolution engines use some replacement procedure that can be
+viewed as an instance of an <b><tt><font color="#009900">eoReduceMergeReduce</font></tt></b>.
+<br>Moreover, a <b><font color="#FF0000">parser-based</font></b> input
+of a general&nbsp; is proposed in file do/make_checkpoint.h.
+<br>
+<hr WIDTH="100%">
 <br><a NAME="popular"></a><b><font color="#000099"><font size=+2>Popular
 evolution engines</font></font></b>
-<p>This section will be completed soon - in the meantime just trust us
-that all of these are already implemented in EO (except maybe some of the
-last category :-) !!!!!!
 <p>The most popular evolution engines are listed below, together with the
 way to use them in EO. If you don't find your particuler algorithm, please
 send it to us, and we might include it here! In the following, P will denote
@@ -372,10 +444,10 @@ a positive scalar fitness</font></b><font color="#000000">, ranking or
 tournament (stochatic or deterministic) in all cases.</font>
 <br><font color="#FF0000">Replacement:</font><font color="#000000"> Generational.</font>
 <br><font color="#FF0000">Remark:</font><font color="#000000"> You could
-use also the Comma replacement, with exactly the same result as there are
-as many offspring as we need indiviudals in the next population. And using
-the eoSSGAWorseReplacement would also give the same result, but would be
-very inefficient!</font>
+use also the </font><b><tt><font color="#009900">eoCommaReplacement</font></tt></b><font color="#000000">,
+with exactly the same result as there are as many offspring as we need
+indiviudals in the next population. And using the </font><b><tt><font color="#009900">eoSSGAWorseReplacement</font></tt></b><font color="#000000">
+would also give the same result, but would be very inefficient!</font>
 <br><font color="#000000">You can also add <a href="#weakelitism">weak
 elitism</a> to preserve the best individual.</font>
 <li>
@@ -461,7 +533,7 @@ is implemented in the <b><tt><font color="#009900">eoDetTournamentSelect</font><
 class, a sub-class of eoSelectOne, as well as in the <b><tt><font color="#009900">eoDetTournamentTruncate</font></tt></b>
 class that repeatidly removes from the population the "winner" of the inverse
 tournament.&nbsp; These objects use the C++ function determinitic_tournament
-in&nbsp; <a href="../../doc/html/selectors_8h-source.html">selectors.h</a>.</li>
+in&nbsp; <a href="../../doc/html/selectors_h-source.html">selectors.h</a>.</li>
 
 <li>
 <a NAME="stochTournament"></a><b><tt><font color="#009900">Stochastic Tournament</font></tt></b>
@@ -471,7 +543,7 @@ parameter R should be in [0.5,1]. It is implemented in the <b><tt><font color="#
 class, a sub-class of eoSelectOne, as well as in the <b><tt><font color="#009900">eoStochTournamentTruncate</font></tt></b>
 class that repeatidly removes from the population the "winner" of the inverse
 tournament.&nbsp; These objects use the C++ function determinitic_tournament
-in&nbsp; <a href="../../doc/html/selectors_8h-source.html">selectors.h</a>.</li>
+in&nbsp; <a href="../../doc/html/selectors_h-source.html">selectors.h</a>.</li>
 
 <br><b><font color="#FF0000">Note</font></b>: A stochastic tournament with
 rate 1.0 is strictly identical to a deterministic tournament of size 2.
@@ -592,21 +664,29 @@ as parameter in the constructor (default is 0.75).</li>
 <br><a NAME="howmany"></a><b><font color="#000099"><font size=+2>eoHowMany:
 Choosing a number of individuals</font></font></b>
 <p>Many classes in selection/replacement procedures will handle a number
-of individuals that may either be fixed or be a fraction of some argument-population
+of individuals that may either be fixed or be related to some argument-population
 size.
-<br>Of course, it is possible to write two different classes that will
-only differ by the way they compute the number of individuals they have
-to treat, as it is done for selectors with the two classes <font color="#009900">eoSelectPerc</font>
+<br>Of course, it is possible to write different classes that will only
+differ by the way they compute the number of individuals they have to treat,
+as it is done for selectors with the two classes <font color="#009900">eoSelectPerc</font>
 and <font color="#009900">eoSelectNumber</font> (it could also have been
 possible to have some pure abstrat class and implement the computation
 of the number of individuals to treat in some derived classes).
-<br>However, rather than multiply the number of class, EO has defined a
-class that will handle the problem once and for all, the class <b><tt><font color="#993300">eoHowMany</font></tt></b>.
-It receives a <b><tt><font color="#993300">double</font></tt></b>, and
-a <b><tt><font color="#993300">boolean</font></tt></b> indicating whether
-that double is to be treated <b><font color="#FF6600">as a rate</font></b>
-or as <b><font color="#FF6600">an absolute (unisgned) interger.</font></b>
-<br>
+<br>However, the class <b><tt><font color="#993300">eoHowMany</font></tt></b>
+allows one to handle in a single class three different behaviors when given
+a poopulatio size as argument:
+<ul>
+<li>
+return a given rate of the argument population size</li>
+
+<li>
+return an absolute (unsigned) integer, whatever the argument population
+size</li>
+
+<li>
+return the argument population size minus a given number</li>
+</ul>
+
 <hr WIDTH="50%">
 <br><b><font color="#000099">eoHowMany</font></b>: <b><font color="#FF0000">interface</font></b>
 <br>The class interface for its <tt><font color="#993300">operator()</font></tt>
@@ -618,16 +698,34 @@ is
 as you see there that <b><tt><font color="#993300">eoHowMany</font></tt></b>
 derives from
 <br><tt><font color="#993300">class eoUF&lt;unsigned int, unsigned int></font></tt>.
-<p>Its constructor takes 2 argumenrts:
-<center>
-<p><b><tt><font color="#993300">eoHowMany(double _rate, bool _interpret_as_rate
-= true)</font></tt></b></center>
-so by default the double is indeed interpreted as a rate.
-<p>It is used in <font color="#009900">eoSelectMany</font> (which supersedes
+<p>It has 3 possible constructors, that determine its behavior:
+<ul>
+<li>
+<b><tt><font color="#993300">eoHowMany(double _rate, bool _interpret_as_rate
+= true)</font></tt></b> where <b><tt><font color="#993300">_rate</font></tt></b>
+is by default the fixed rate of behavior 1 above. However, if the boolean
+second argument is false, the rate is transformed into a positive integer,
+and is used for behavior 2 above</li>
+
+<li>
+<b><tt><font color="#993300">eoHowMany(int _combien)</font></tt></b>: if
+<b><tt><font color="#993300">_combien</font></tt></b>
+is positive, it is the absolute number of behavior 2 above, and if <b><tt><font color="#993300">_combien</font></tt></b>
+is negative, its absolute value is used to decrease the argument population
+in behavior 3 above</li>
+
+<li>
+<b><tt><font color="#993300">eoHowMany(unsigned int _combien)</font></tt></b>:
+<b><tt><font color="#993300">_combien</font></tt></b>
+(positive!)&nbsp; is the absolute number of behavior 2 above. <b><font color="#FF6600">Note</font></b>
+that this constructor is mandatory to avoid ambiguity, as an unsigned int
+can be casted to either an int or a double.</li>
+</ul>
+It is used in <font color="#009900">eoSelectMany</font> (which supersedes
 <font color="#009900">eoSelectPerc</font>
 and <font color="#009900">eoSelectNumber</font>, but they are left there
 for tutorial reasons!) as well as in many <a href="#reduce">truncation</a>
-methods.
+methods, and it is used a lot in the eoGeneralReplacement construct.
 <p>
 <hr WIDTH="100%">
 <br><a NAME="SAD"></a><b><font color="#000099"><font size=+2>Survive and
@@ -661,9 +759,9 @@ should be erased from the source.
 <p>
 <hr WIDTH="100%"><b><font color="#CC0000">Local: </font></b><a href="#introduction">Introduction</a>&nbsp;
 - <a href="#selection">Selection</a> - <a href="#replacement">Replacement</a>
-- <a href="#popular">Popular evolution engines</a> - <a href="#tournament">Tournaments</a>
-- <a href="#merge">Merge</a> - <a href="#reduce">Reduce</a> - <a href="#howmany">HowMany</a>
-- <a href="#SAD">SurviveAndDie</a>
+- <a href="#general">General Replacement</a> - <a href="#popular">Popular
+evolution engines</a> - <a href="#tournament">Tournaments</a> - <a href="#merge">Merge</a>
+- <a href="#reduce">Reduce</a> - <a href="#howmany">HowMany</a> - <a href="#SAD">SurviveAndDie</a>
 <br>
 <hr WIDTH="100%">
 <br><b><font color="#CC0000">General: </font></b><a href="eoTopDown.html">Algorithm-Based</a>
