@@ -13,38 +13,32 @@ In case of any problem, please e-mail us at
 
 eodev@egroups.com, eodev-main@lists.sourceforge.net
 
+
 ==================================================================
                       BUILDING EO
 ==================================================================
-The basic installatio procedure goes the following:
+The basic installation procedure goes the following:
 
-- go to the EO directory - that was created when you unzipped the
-  archive file.
+Go to your build-directory and run 
+    $(SRCDIR)/configure
+    make
+    make check
+    make install
+where $(SRCDIR) is the top-level source directory of EO, i.e. where
+the sources where unpacked.
 
-- run 
-            ./autogen.sh
+See $(SRCDIR)/configure for possible options. You can specify to not
+build example applications, the tutorial, or to build the ParadisEO
+tutorial. You may also change the installation directory that way.
 
-- run 
-            make
+Now you should probably go to the tutorial and start learning about EO
+features and programming.
 
-and that's it. You should probably go to the tutorial and start
-learning about EO features and programming.
-
-WARNING: Compiling all test programs can take some time.
-         But you don't have to: 
-
-- you can simply type
-
-            make lib
-
-and then go in your application (or in the tutorial) dir and run make
-
-            cd tutorial
-            make
 
 In case of problems, you can read the INSTALL file - but remember this
 is a standard installation file from GNU and that it contains nothing
 specific about EO.
+
 
 ===================================================================
                        DIRECTORY STRUCTURE
@@ -101,14 +95,8 @@ structure:
 
 ===================================================================
               NOTES
-===================================================================
-if you extracted a fresh snapshot from the cvs-repository, remember to do:
-
-$> ./autogen.sh --enable-maintainer-mode
-
-instead of
-
-$> ./autogen.sh
-
-before making the libraries.
-
+=================================================================== if
+you extracted a fresh snapshot from the cvs-repository, remember to
+run
+    ./autogen.sh
+in the source-directory before building the libraries.
