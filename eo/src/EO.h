@@ -40,7 +40,7 @@ public:
   */
   EO( istream& _is ) {
     _is >> repFitness;
-    validFitness = true;
+    invalidFitness = false;
   };
 
   /// Copy ctor
@@ -53,7 +53,8 @@ public:
   Fitness fitness() const
     {
       if (invalid())
-	throw runtime_error("invalid fitness");
+	//throw runtime_error("invalid fitness");
+	cout << "invalid fitness" << endl;
       return repFitness;
     }
   

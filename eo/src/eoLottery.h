@@ -13,8 +13,7 @@
 
 //-----------------------------------------------------------------------------
 /// eoLottery: a selection method.
-/// requires that the fitness type of the chromosome inherits from eoFitness
-/// or have a cast to float implemented
+/// requires Chrom::Fitness to be float castable
 //-----------------------------------------------------------------------------
 
 template<class Chrom> class eoLottery: public eoSelect<Chrom>
@@ -28,11 +27,11 @@ template<class Chrom> class eoLottery: public eoSelect<Chrom>
     {
       // scores of chromosomes
       vector<float> score(pop.size());
-      
+
       // calculates accumulated scores for chromosomes
       for (unsigned i = 0; i < pop.size(); i++)
-	score[i] = pop[i].fitness();
-      
+	score[i] = static_cast<float>(pop[i].fitness()); 
+
       float sum = accumulate(score.begin(), score.end(), MINFLOAT);
       transform(score.begin(), score.end(), score.begin(), 
 		bind2nd(divides<float>(), sum));
