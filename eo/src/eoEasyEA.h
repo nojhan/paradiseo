@@ -28,7 +28,7 @@
 //-----------------------------------------------------------------------------
 
 #include <apply.h>
-#include <eoAlgo.h>
+#include <eoPopAlgo.h>
 #include <eoPopEvalFunc.h>
 #include <eoContinue.h>
 #include <eoSelect.h>
@@ -55,7 +55,11 @@ Note: it looks ugly only because we wanted to authorize many different
   constructors. Please only look at the operator() and there shall be light
 */
 
-template<class EOT> class eoEasyEA: public eoAlgo<EOT>
+template <class EOT> class eoIslandsEasyEA ;
+
+template <class EOT> class eoDistEvalEasyEA ;
+
+template<class EOT> class eoEasyEA: public eoPopAlgo<EOT>
 {
  public:
 
@@ -66,13 +70,32 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
          eoBreed<EOT>& _breed,
          eoReplacement<EOT>& _replace     
      ) : continuator(_continuator), 
+	 eval (_eval),
 	 loopEval(_eval),
 	 popEval(loopEval),
-         selectTransform(dummySelect, dummyTransform),
+	 selectTransform(dummySelect, dummyTransform),
          breed(_breed),
          mergeReduce(dummyMerge, dummyReduce),
          replace(_replace)
          {}
+
+  /*
+  eoEasyEA(eoContinue <EOT> & _continuator,
+	   eoPopEvalFunc <EOT> & _pop_eval,
+	   eoBreed <EOT> & _breed,
+	   eoReplacement <EOT> & _replace     
+	   ) :
+    continuator (_continuator), 
+    eval (dummyEval),
+    loopEval(dummyEval),
+    popEval (_pop_eval),
+    selectTransform (dummySelect, dummyTransform),
+    breed (_breed),
+    mergeReduce (dummyMerge, dummyReduce),
+    replace (_replace) {
+    
+  }
+  */
 
   /** NEW Ctor taking a breed and merge and an eoPopEval */
      eoEasyEA(
@@ -80,7 +103,8 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
          eoPopEvalFunc<EOT>& _eval,
          eoBreed<EOT>& _breed,
          eoReplacement<EOT>& _replace     
-     ) : continuator(_continuator), 
+     ) : continuator(_continuator),
+	 eval (dummyEval), 
 	 loopEval(dummyEval),
          popEval(_eval),
          selectTransform(dummySelect, dummyTransform),
@@ -96,7 +120,8 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
          eoBreed<EOT>& _breed,
          eoMerge<EOT>& _merge,
          eoReduce<EOT>& _reduce
-     ) : continuator(_continuator), 
+     ) : continuator(_continuator),
+	 eval (_eval),
 	 loopEval(_eval),
 	 popEval(loopEval),
          selectTransform(dummySelect, dummyTransform),
@@ -112,7 +137,8 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
          eoSelect<EOT>& _select,
          eoTransform<EOT>& _transform,
          eoReplacement<EOT>& _replace     
-     ) : continuator(_continuator), 
+     ) : continuator(_continuator),
+	 eval (_eval),
 	 loopEval(_eval),
 	 popEval(loopEval),
          selectTransform(_select, _transform),
@@ -130,6 +156,7 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
          eoMerge<EOT>&     _merge,
          eoReduce<EOT>&    _reduce
      ) : continuator(_continuator),
+	 eval (_eval),
 	 loopEval(_eval),
 	 popEval(loopEval),
          selectTransform(_select, _transform),
@@ -145,7 +172,6 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
   virtual void operator()(eoPop<EOT>& _pop)
   {
     eoPop<EOT> offspring;
-
     do
     {
       try
@@ -174,11 +200,11 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
     } while ( continuator( _pop ) );
   }
 
- private:
-
+protected :
+  
   // If selectTransform needs not be used, dummySelect and dummyTransform are used
   // to instantiate it.
-     class eoDummySelect : public eoSelect<EOT>
+  class eoDummySelect : public eoSelect<EOT>
      { public : void operator()(const eoPop<EOT>&, eoPop<EOT>&) {} } dummySelect;
 
      class eoDummyTransform : public eoTransform<EOT>
@@ -188,8 +214,10 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
   {public: void operator()(EOT &) {} } dummyEval;
 
   eoContinue<EOT>&          continuator;
-
+  
+  eoEvalFunc <EOT> &        eval ;
   eoPopLoopEval<EOT>        loopEval;  
+
   eoPopEvalFunc<EOT>&       popEval;
   
   eoSelectTransform<EOT>    selectTransform;
@@ -202,6 +230,10 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
 
   eoMergeReduce<EOT>        mergeReduce;
   eoReplacement<EOT>&       replace;
+  
+  // Friend classes
+  friend class eoIslandsEasyEA <EOT> ;
+  friend class eoDistEvalEasyEA <EOT> ;
 };
 
 //-----------------------------------------------------------------------------
