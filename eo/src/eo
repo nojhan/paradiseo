@@ -60,8 +60,8 @@
 // population
 #include <eoPop.h>
 
-// Evaluation functions
-#include <eoEvalFunc.h>
+// Evaluation functions (all include eoEvalFunc.h)
+#include <eoPopEvalFunc.h>
 #include <eoEvalFuncPtr.h>
 
 // Continuators - all include eoContinue.h

@@ -42,20 +42,47 @@
     and any selection transformation, merging and evaluation
     algorithms; you can even change in runtime parameters of those
     sub-algorithms 
+
+Change (MS, July 3. 2001): 
+  Replaced the eoEvalFunc by an eoPopEvalFunc: this immediately
+  allows many useful constructs, such as co-evolution (e.g. game players),
+  parisian approach (the solution to the problem is the whole population)
+  or simple distribution of evaluations on a cluster.
+  In case an eoEvalFunc is passed, it is embedded on an eoPopLoopEval
+  This makes things a little uglier (required an additional "dummy" member
+
+Note: it looks ugly only because we wanted to authorize many different
+  constructors. Please only look at the operator() and there shall be light
 */
 
 template<class EOT> class eoEasyEA: public eoAlgo<EOT>
 {
  public:
 
-  /// Ctor taking a breed and merge.
+  /** Ctor taking a breed and merge */
      eoEasyEA(
          eoContinue<EOT>& _continuator,
          eoEvalFunc<EOT>& _eval,
          eoBreed<EOT>& _breed,
          eoReplacement<EOT>& _replace     
      ) : continuator(_continuator), 
-         eval(_eval),
+	 loopEval(_eval),
+	 popEval(loopEval),
+         selectTransform(dummySelect, dummyTransform),
+         breed(_breed),
+         mergeReduce(dummyMerge, dummyReduce),
+         replace(_replace)
+         {}
+
+  /** NEW Ctor taking a breed and merge and an eoPopEval */
+     eoEasyEA(
+         eoContinue<EOT>& _continuator,
+         eoPopEvalFunc<EOT>& _eval,
+         eoBreed<EOT>& _breed,
+         eoReplacement<EOT>& _replace     
+     ) : continuator(_continuator), 
+	 loopEval(dummyEval),
+         popEval(_eval),
          selectTransform(dummySelect, dummyTransform),
          breed(_breed),
          mergeReduce(dummyMerge, dummyReduce),
@@ -70,7 +97,8 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
          eoMerge<EOT>& _merge,
          eoReduce<EOT>& _reduce
      ) : continuator(_continuator), 
-         eval(_eval),
+	 loopEval(_eval),
+	 popEval(loopEval),
          selectTransform(dummySelect, dummyTransform),
          breed(_breed),
          mergeReduce(_merge, _reduce),
@@ -85,7 +113,8 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
          eoTransform<EOT>& _transform,
          eoReplacement<EOT>& _replace     
      ) : continuator(_continuator), 
-         eval(_eval),
+	 loopEval(_eval),
+	 popEval(loopEval),
          selectTransform(_select, _transform),
          breed(selectTransform),
          mergeReduce(dummyMerge, dummyReduce),
@@ -101,7 +130,8 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
          eoMerge<EOT>&     _merge,
          eoReduce<EOT>&    _reduce
      ) : continuator(_continuator),
-         eval(_eval),
+	 loopEval(_eval),
+	 popEval(loopEval),
          selectTransform(_select, _transform),
          breed(selectTransform),
          mergeReduce(_merge, _reduce),
@@ -125,7 +155,7 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
 
          breed(_pop, offspring);
 
-         apply<EOT>(eval, offspring);
+         popEval(_pop, offspring); // eval of parents + offspring if necessary
 
          replace(_pop, offspring); // after replace, the new pop. is in _pop
 
@@ -154,9 +184,13 @@ template<class EOT> class eoEasyEA: public eoAlgo<EOT>
      class eoDummyTransform : public eoTransform<EOT>
      { public : void operator()(eoPop<EOT>&) {} } dummyTransform;
 
+  class eoDummyEval : public eoEvalFunc<EOT>
+  {public: void operator()(EOT &) {} } dummyEval;
 
   eoContinue<EOT>&          continuator;
-  eoEvalFunc<EOT>&          eval;
+
+  eoPopLoopEval<EOT>        loopEval;  
+  eoPopEvalFunc<EOT>&       popEval;
   
   eoSelectTransform<EOT>    selectTransform;
   eoBreed<EOT>&             breed;
