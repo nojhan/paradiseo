@@ -24,6 +24,8 @@
 template <class T, class fitnessT>
 class eoVector: public eo1d<T, fitnessT>, public vector<T> {
 public:
+  typedef Type T;
+  
   /// Canonical part of the objects: several ctors, copy ctor, dtor and assignment operator
   //@{
   
@@ -31,7 +33,7 @@ public:
       @param _size Lineal length of the object
       @param _val Common initial value
   */
-  eoVector( unsigned _size, T _val = 0)
+  eoVector( unsigned _size = 0, T _val = 0)
     : eo1d<T, fitnessT>(), vector<T>( _size, _val ){ };
   
   /** Ctor using a random number generator
@@ -80,7 +82,7 @@ which is supposed to be dynamic and dependent on environment.
   virtual T& gene( unsigned _i )  {
     if ( _i >= size() )
       throw out_of_range( "out_of_range when writing a gene");
-    return (*this)[_i];
+    return operator[](_i);
   };
   
   /** methods that implement the eo1d <em>protocol</em>

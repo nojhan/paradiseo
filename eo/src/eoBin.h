@@ -7,36 +7,40 @@
 
 //-----------------------------------------------------------------------------
 
-#include <iostream>                                   // ostream, istream
-#include <functional>                                 // bind2nd
+#include <iostream>    // ostream, istream
+#include <functional>  // bind2nd
+#include <string>      // string
+#include <eoVector.h>  // EO
 
-#include <string>                                     // string
-#include <eoVector.h>                                       // EO
+/*****************************************************************************
+ * eoBin: implementation of binary chromosome.                               *
+ * based on STL's bit_vector (vector<bool>).                                 *
+ *****************************************************************************/
 
-//-----------------------------------------------------------------------------
-/** eoBin: implementation of binary chromosome.
- based on STL's bit_vector (vector<bool>)*/
-//-----------------------------------------------------------------------------
-
-template <class F> class eoBin: public eoVector<bool,F>
+template <class F> class eoBin: public eoVector<bool, F>
 {
  public:
-  typedef bool Type;
 
-  /// (Default) Constructor.
-  /// @param size Size of the binary string.
+  /**
+   * (Default) Constructor.
+   * @param size Size of the binary string.
+   */
   eoBin(const unsigned& size = 0, const bool& value = false): 
     eoVector<bool,F>(size, value) {}
-
-  /// (Default) Constructor.
-  /// @param size Size of the binary string.
+  
+  /**
+   * Constructor.
+   * @param size Size of the binary string.
+   */
   eoBin(const unsigned& size, const eoRnd<Type>& rnd): eoVector<bool,F>(size) 
     {
       generate(begin(), end(), rnd);
     }
   
-  /// Constructor from istream.
-  /// @param is The istream to read from.
+  /**
+   * Constructor from istream.
+   * @param is The istream to read from.
+   */
   eoBin(istrstream& is)
     { 
       readFrom(is); 
@@ -48,15 +52,19 @@ template <class F> class eoBin: public eoVector<bool,F>
       return "eoBin"; 
     }
   
-  /// To print me on a stream.
-  /// @param os The ostream.
+  /**
+   * To print me on a stream.
+   * @param os The ostream.
+   */
   void printOn(ostream& os) const
     {
       copy(begin(), end(), ostream_iterator<bool>(os));
     }
   
-  /// To read me from a stream.
-  /// @param is The istream.
+  /**
+   * To read me from a stream.
+   * @param is The istream.
+   */
   void readFrom(istream& is)
     {
       string bits;
