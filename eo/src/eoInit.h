@@ -45,10 +45,10 @@ template <class EOT>
 class eoInit : public eoUF<EOT&, void>
 {
 public:
-  virtual void operator()(EOT& chrom)
-  { 
-    throw runtime_error("In the eoInit base class"); // just in case
-  }
+//   virtual void operator()(EOT& chrom)
+//   { 
+//     throw runtime_error("In the eoInit base class"); // just in case
+//   }
 };
 
 /** turning an eoInit into a generator 
