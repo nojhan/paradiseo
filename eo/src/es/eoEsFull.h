@@ -51,11 +51,11 @@ class eoEsFull : public eoFixedLength<Fit, double>
         eoFixedLength<Fit,double>::printOn(os);
 
         os << ' ';
-        std::copy(stdevs.begin(), stdevs.end(), std::ostream_iterator<double>(os));
+        std::copy(stdevs.begin(), stdevs.end(), std::ostream_iterator<double>(os, " "));
     
         os << ' ';
 
-        std::copy(correlations.begin(), correlations.end(), std::ostream_iterator<double>(os));
+        std::copy(correlations.begin(), correlations.end(), std::ostream_iterator<double>(os, " "));
         
         os << ' ';
     }

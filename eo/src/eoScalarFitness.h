@@ -75,10 +75,13 @@ class eoScalarFitness
 };
 
 /**
-Typedefs for fitness comparison, 
+Typedefs for fitness comparison, Maximizing Fitness compares with less,
+and minimizing fitness compares with greater. This because we want ordinary
+fitness values (doubles) to be equivalent with Maximizing Fitness, and 
+comparing with less is the default behaviour.
 */  
-typedef eoScalarFitness<double, std::greater<double> >    eoMaximizingFitness;
-typedef eoScalarFitness<double, std::less<double> > eoMinimizingFitness;
+typedef eoScalarFitness<double, std::less<double> >    eoMaximizingFitness;
+typedef eoScalarFitness<double, std::greater<double> > eoMinimizingFitness;
 
 template <class F, class Cmp>
 std::ostream& operator<<(std::ostream& os, const eoScalarFitness<F, Cmp>& f)

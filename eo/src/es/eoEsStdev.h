@@ -52,7 +52,7 @@ class eoEsStdev : public eoFixedLength<Fit, double>
         eoFixedLength<Fit,double>::printOn(os);
         
         os << ' ';
-        std::copy(stdevs.begin(), stdevs.end(), std::ostream_iterator<double>(os));
+        std::copy(stdevs.begin(), stdevs.end(), std::ostream_iterator<double>(os, " "));
     
         os << ' ';
     }

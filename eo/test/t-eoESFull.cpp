@@ -25,7 +25,7 @@ using namespace std;
 typedef eoMinimizingFitness  FitT;
 
 template <class EOT>
-void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoEsObjectiveBounds& _bounds);
+void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoEsObjectiveBounds& _bounds, eoValueParam<string> _load_name);
   
 int main(int argc, char *argv[]) 
 {
@@ -61,15 +61,15 @@ int main(int argc, char *argv[])
     // Run the appropriate algorithm
     if (stdevs.value() == false && corr.value() == false)
     {
-        runAlgorithm(eoEsSimple<FitT>() ,parser, state, bounds);
+        runAlgorithm(eoEsSimple<FitT>() ,parser, state, bounds, load_name);
     }
     else if (corr.value() == true)
     {
-        runAlgorithm(eoEsFull<FitT>(),parser, state, bounds);
+        runAlgorithm(eoEsFull<FitT>(),parser, state, bounds, load_name);
     }
     else 
     {
-        runAlgorithm(eoEsStdev<FitT>(), parser, state, bounds);
+        runAlgorithm(eoEsStdev<FitT>(), parser, state, bounds, load_name);
     }
 
     // and save
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 }
 
 template <class EOT>
-void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoEsObjectiveBounds& _bounds)
+void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoEsObjectiveBounds& _bounds, eoValueParam<string> _load_name)
 {
     // evaluation
     eoEvalFuncPtr<EOT, double, const vector<double>&> eval(  real_value );
@@ -100,13 +100,22 @@ void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoEsObjectiveBounds& 
 
     // Initialization
     eoEsChromInit<EOT> init(_bounds);
+    
+    // State takes ownership of pop because it needs to save it in caller
     eoPop<EOT>& pop = _state.takeOwnership(eoPop<EOT>(mu.value(), init));
 
     _state.registerObject(pop);
 
-    // evaluate initial population
-    apply<EOT>(eval, pop);
-    
+    if (!_load_name.value().empty())
+    { // The real loading happens here when all objects are registered
+       _state.load(_load_name.value()); // load all and everything
+    }
+    else
+    {
+        // evaluate initial population
+        apply<EOT>(eval, pop);
+    }
+
     // Ok, time to set up the algorithm
     // Proxy for the mutation parameters
     eoEsMutationInit mutateInit(_parser);
@@ -119,7 +128,7 @@ void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoEsObjectiveBounds& 
 
     monitor.add(average);
 
-    eoGenContinue<EOT> cnt(2000);
+    eoGenContinue<EOT> cnt(20);
     eoCheckPoint<EOT> checkpoint(cnt);
     checkpoint.add(monitor);
     checkpoint.add(average);

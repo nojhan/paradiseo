@@ -153,7 +153,6 @@ void main_function()
     eoPop<Chrom> pop(100, init);
     
     apply<Chrom>(eval, pop);
-    //for_each(pop.begin(), pop.end(), eval);
     
     sga(pop);
 
@@ -182,6 +181,7 @@ void main_function()
 }
 
 //-----------------------------------------------------------------------------
+// For MSVC memory lead detection
 #ifdef _MSC_VER
 #include <crtdbg.h> 
 #endif

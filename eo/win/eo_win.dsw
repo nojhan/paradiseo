@@ -75,21 +75,6 @@ Package=<4>
 
 ###############################################################################
 
-Project: "t_eoGOpSel"=.\t_eoGOpSel.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name eo
-    End Project Dependency
-}}}
-
-###############################################################################
-
 Project: "t_eobin"=.\t_eobin.dsp - Package Owner=<4>
 
 Package=<5>
@@ -105,67 +90,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "t_eobreeder"=.\t_eobreeder.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name eo
-    End Project Dependency
-}}}
-
-###############################################################################
-
 Project: "t_eofitness"=.\t_eofitness.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name eo
-    End Project Dependency
-}}}
-
-###############################################################################
-
-Project: "t_eoinclusion"=.\t_eoinclusion.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name eo
-    End Project Dependency
-}}}
-
-###############################################################################
-
-Project: "t_eoinsertion"=.\t_eoinsertion.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name eo
-    End Project Dependency
-}}}
-
-###############################################################################
-
-Project: "t_eoproblem"=.\t_eoproblem.dsp - Package Owner=<4>
 
 Package=<5>
 {{{

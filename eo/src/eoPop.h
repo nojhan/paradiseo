@@ -90,24 +90,6 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
 	///
 	~eoPop() {};
 
-  	/** @name Methods from eoObject	*/
-	//@{
-	/**
-	* Read object. The EOT class must have a ctor from a stream;
-	in this case, a strstream is used.
-	* @param _is A istream.
-
-	*/
-  virtual void readFrom(istream& _is) 
-  {
-    while( _is ) 
-    {  
-        EOT thisEOT;
-        thisEOT.readFrom( _is );
-		push_back( thisEOT );      
-    }
-  }
-
     /**
     sort the population. Use this member to sort in order
     of descending Fitness, so the first individual is the best!
@@ -166,9 +148,32 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent
    * Write object. It's called printOn since it prints the object _on_ a stream.
    * @param _os A ostream. 
    */
-  virtual void printOn(ostream& _os) const {
-    copy( begin(), end(), ostream_iterator<EOT>( _os, "\n") );
+  virtual void printOn(ostream& _os) const 
+  {
+        _os << size() << '\n';
+        copy( begin(), end(), ostream_iterator<EOT>( _os, "\n") );
   };
+
+    	/** @name Methods from eoObject	*/
+	//@{
+	/**
+	* Read object. The EOT class must have a ctor from a stream;
+	in this case, a strstream is used.
+	* @param _is A istream.
+
+	*/
+  virtual void readFrom(istream& _is) 
+  {
+      size_t sz;
+    _is >> sz;
+
+    resize(sz);
+
+    for (size_t i = 0; i < sz; ++i)
+    {  
+        operator[](i).readFrom( _is );
+    }
+  }
 
   /** Inherited from eoObject. Returns the class name.
       @see eoObject

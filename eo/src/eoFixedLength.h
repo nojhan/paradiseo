@@ -60,7 +60,7 @@ class eoFixedLength : public EO<FitT>, public std::vector<GeneType>
 
         os << size() << ' ';
 
-        std::copy(begin(), end(), ostream_iterator<double>(os));
+        std::copy(begin(), end(), ostream_iterator<double>(os, " "));
     }
 
     /// reading...
