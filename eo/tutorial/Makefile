@@ -1,4 +1,4 @@
-SUBDIRS = Lesson1 Lesson2 Lesson3 Lesson4
+SUBDIRS = Lesson1 Lesson2 Lesson3 Lesson4 Lesson5
 
 all:
 	for i in $(SUBDIRS); do cd $$i && $(MAKE) all; cd ..; done
@@ -14,6 +14,9 @@ lesson3 :
 
 lesson4 : 
 	cd Lesson4; make
+
+lesson5 : 
+	cd Lesson5; make
 
 #empty dist and distdir to let top-level 'make' do its job
 dist :
