@@ -1,5 +1,5 @@
 /*
-    pyeo
+    PyEO
     
     Copyright (C) 2003 Maarten Keijzer
 
@@ -25,7 +25,7 @@
 #include <eoTruncatedSelectOne.h>
 #include <eoSequentialSelect.h>
 
-#include "pyeo.h"
+#include "PyEO.h"
 #include "pickle.h"
 
 class eoSelectOneWrapper : public eoSelectOne<PyEO>

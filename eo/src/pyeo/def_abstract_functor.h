@@ -1,5 +1,5 @@
 /*
-    pyeo
+    PyEO
     
     Copyright (C) 2003 Maarten Keijzer
 

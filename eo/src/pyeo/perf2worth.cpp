@@ -1,5 +1,5 @@
 /*
-    pyeo
+    PyEO
     
     Copyright (C) 2003 Maarten Keijzer
 
@@ -17,14 +17,13 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
-//#include <eoPerf2Worth.h>
-//#include <eoNDSorting.h>
+#include <eoNDSorting.h>
 
-//#include "pyeo.h"
+#include "PyEO.h"
 
 void perf2worth() // will have to rethink this
 {
- //   class_<eoNDSorting_II<PyEO> >("eoNDSorting_II");
+    class_<eoNDSorting_II<PyEO> >("eoNDSorting_II");
 }
 
 

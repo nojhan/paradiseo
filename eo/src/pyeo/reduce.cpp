@@ -1,5 +1,5 @@
 /*
-    pyeo
+    PyEO
     
     Copyright (C) 2003 Maarten Keijzer
 
@@ -20,7 +20,7 @@
 
 #include <eoReduce.h>
 
-#include "pyeo.h"
+#include "PyEO.h"
 
 // unfortunately have to define it specially
 class eoReduceWrapper : public eoReduce<PyEO>

@@ -1,5 +1,5 @@
 /*
-    pyeo
+    PyEO
     
     Copyright (C) 2003 Maarten Keijzer
 
@@ -19,7 +19,7 @@
 */
 
 #include <utils/eoMonitor.h>
-#include "pyeo.h"
+#include "PyEO.h"
 
 void monitors()
 {

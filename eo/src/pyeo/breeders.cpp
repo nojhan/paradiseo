@@ -1,5 +1,5 @@
 /*
-    pyeo
+    PyEO
     
     Copyright (C) 2003 Maarten Keijzer
 
@@ -22,7 +22,7 @@
 #include <eoGeneralBreeder.h>
 #include <eoOneToOneBreeder.h>
 
-#include "pyeo.h"
+#include "PyEO.h"
 #include "def_abstract_functor.h"
 
 #define DEF(x) class_<x<PyEO>, bases<eoBreed<PyEO > > >(#x).def("__call__", &eoBreed<PyEO>::operator())

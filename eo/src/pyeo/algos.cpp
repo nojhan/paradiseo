@@ -1,5 +1,5 @@
 /*
-    pyeo
+    PyEO
     
     Copyright (C) 2003 Maarten Keijzer
 
@@ -23,7 +23,7 @@
 #include <eoDetSelect.h>
 #include <eoCellularEasyEA.h>
 
-#include "pyeo.h"
+#include "PyEO.h"
 #include "def_abstract_functor.h"
 
 void algos()

@@ -1,5 +1,5 @@
 /*
-    pyeo
+    PyEO
     
     Copyright (C) 2003 Maarten Keijzer
 
@@ -24,7 +24,7 @@
 #include <eoReduceMergeReduce.h>
 #include <eoMGGReplacement.h>
 
-#include "pyeo.h"
+#include "PyEO.h"
 #include "def_abstract_functor.h"
 
 #define DEF(x) class_<x<PyEO>, bases<eoReplacement<PyEO > > >(#x).def("__call__", &eoReplacement<PyEO>::operator())

@@ -1,5 +1,5 @@
 /*
-    pyeo
+    PyEO
     
     Copyright (C) 2003 Maarten Keijzer
 
@@ -24,7 +24,7 @@
 #include <eoSGATransform.h>
 #include <eoPopEvalFunc.h>
 
-#include "pyeo.h"
+#include "PyEO.h"
 #include "def_abstract_functor.h"
 
 void abstract1()

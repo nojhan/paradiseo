@@ -1,5 +1,5 @@
 /*
-    pyeo
+    PyEO
     
     Copyright (C) 2003 Maarten Keijzer
 
@@ -24,7 +24,7 @@
 #include <eoPopulator.h>
 #include <eoOpContainer.h>
 
-#include "pyeo.h"
+#include "PyEO.h"
 
 class GenOpWrapper : public eoGenOp<PyEO>
 {

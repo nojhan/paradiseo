@@ -1,5 +1,5 @@
 /*
-    pyeo
+    PyEO
     
     Copyright (C) 2003 Maarten Keijzer
 
@@ -19,7 +19,7 @@
 */
 
 #include <eoMerge.h>
-#include "pyeo.h"
+#include "PyEO.h"
 #include "def_abstract_functor.h"
 
 #define DEF(x) class_<x<PyEO>, bases<eoMerge<PyEO > > >(#x).def("__call__", &eoMerge<PyEO>::operator())

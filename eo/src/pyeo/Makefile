@@ -30,25 +30,25 @@ CPPFLAGS = -Wall #-O2
 LDFLAGS = 
 COMPILE = $(CXX) $(CXXFLAGS) $(CPPFLAGS) -c
 LINK = $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) 
-INC=-I/usr/include/python2.2/ -I/usr/include/stlport -I.. -ftemplate-depth-50
+INC=-I/usr/include/python2.2 -I/usr/include/stlport -I.. -ftemplate-depth-50
 
-OBJECTS=eoFunctorStore.o pyeo.o abstract1.o algos.o \
+OBJECTS=eoFunctorStore.o PyEO.o abstract1.o algos.o \
 	random_numbers.o geneticOps.o selectOne.o continuators.o\
 	reduce.o replacement.o selectors.o breeders.o\
 	mergers.o valueParam.o perf2worth.o
 
-all: pyeo.so
+all: PyEO.so
 
 clean:
 	rm *.so *.o test/*.pyc
 
-pyeo.so: $(OBJECTS)
-	$(LINK) -o pyeo.so $(OBJECTS) -lboost_python -lpython2.2 -shared -lstlport
+PyEO.so: $(OBJECTS)
+	$(LINK) -o PyEO.so $(OBJECTS) -lboost_python -lpython2.2 -shared -lstlport
 
 eoFunctorStore.o: ../eoFunctorStore.h ../eoFunctorStore.cpp
 	$(COMPILE) -o eoFunctorStore.o ../eoFunctorStore.cpp $(INC)
 
-%.o:%.cpp pyeo.h def_abstract_functor.h 
+%.o:%.cpp PyEO.h def_abstract_functor.h 
 	$(COMPILE) $< $(INC)
 
 

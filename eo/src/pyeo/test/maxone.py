@@ -3,7 +3,7 @@ import sys
 sys.path.append('..')
 
 print 'importing pyeo'
-from pyeo import *
+from PyEO import *
 print 'done'
 
 from copy import copy
