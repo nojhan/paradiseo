@@ -26,53 +26,92 @@
 #ifndef eoHowMany_h
 #define eoHowMany_h
 
-/**
- * to be used in selection / replacement procedures to indicate whether 
- * the argument (rate, a double) shoudl be treated as a rate (number=rate*popSize)
- * or as an absolute integer (number=rate regardless of popsize).
- * the default value shoudl ALWAYS be true (eo_as_a_rate).
- *
- * this construct is mandatory because in some cases you might not know the 
+/** A helper class, to determine a number of individuals from another one
+ *  Typically, is used in selection / replacement procedures, e.g.
+ *             the number of offspring from the number of parents, or
+ *             the number of survivors for an eoReduce functor, ...
+ * 
+ * Such construct is very useful because in some cases you might not know the 
  * population size that will enter the replacement. For instance, you 
  * cannot simply have a pre-computed (double) rate of 1/popSize 
- * if you want 1 guy
+ * if you want to select or kill just 1 guy. Using an eoHowMany 
+ * allows one to modify the population size without touching anything else.
+ *
+ * There are 3 possible way to compute the return value from the argument:
+ *    - a rate ->  return rate*popSize
+ *    - an absolute POSITIVE integer --> return rate (regardless of popsize)
+ *    - an absolute NEGATIVE integer  --> return popsize-rate
+ * Note that a negative rate is unnecessary because a rate is relative anyway.
+ *
+ * It has 2 private members, a double for case 1, 
+ *    and an integer for cases 2 and 3 above
  *
  * Example use: in <a href="class_eogeneralbreeder.html">eoGeneralBreeder.h</a>
  * Example reading from parser: in 
  *         <a href="make_algo_scalar_h-source.html">do/make_algo_scalar.h line 141</a>
+
+ * MS 10/04/2002: 
+ *    Added the possibility to have a negative number - 
+ *        when treated as a number: returns then (size - combien)
+ *    Should not modify anything when a positive number is passed in the ctor
+ *
+ * It is an eoPersistent because we need to be able to use eoParamValue<eoHowMany>
  */
 
 class eoHowMany : public eoPersistent
 {
 public:
-  /** Original Ctor from direct rate + bool */
+  /** Original Ctor from direct rate + bool 
+      @param rate    the rate, OR the integer to store, depending on 2nd arg.
+      @param _interpret_as_rate to tell whether the rate actually is a rate
+  */
   eoHowMany(double  _rate = 0.0, bool _interpret_as_rate = true):
-    rate(0), combien(0)
+    rate(_rate), combien(0)
   {
     if (_interpret_as_rate)
       {
-	rate = _rate;
+	if (_rate<0)
+	  throw std::logic_error("Negative rate in eoHowMany!");
       }
     else
       {
-	if (_rate<0)
-	  throw std::logic_error("Negative number in eoHowMany!");
-	combien = (unsigned int)_rate;
+	rate = 0.0;		   // just in case, but shoud be unused
+	combien = int(_rate);	   // negative values are allowed here
 	if (combien != _rate)
 	  cout << "Warning: Number was rounded in eoHowMany";
       }
   }
 
+  /** Ctor from an int - both from int and unsigned int are needed 
+   *     to avoid ambiguity with the Ctor from a double */
+  eoHowMany(int _combien) : rate(0.0), combien(_combien) {}
+
+  /** Ctor from an unsigned int - both from int and unsigned int are needed 
+   *     to avoid ambiguity with the Ctor from a double */
+  eoHowMany(unsigned int _combien) : rate(0.0), combien(_combien) {}
+
   /// Virtual dtor. They are needed in virtual class hierarchies.
   virtual ~eoHowMany() {}
 
+  /** Does what it was designed for 
+   *  - combien==0 : return rate*_size
+   *  - else
+   *    - combien>0 : return combien (regardless of _size)
+   *    - combien<0 : return _size-|combien|
+   */
   unsigned int operator()(unsigned int _size)
   {
     if (combien == 0)
       {
 	return (unsigned int) (rate * _size);
       }
-    return combien;
+    if (combien < 0)
+      {
+	if (_size+combien<0)
+	  throw runtime_error("Negative result in eoHowMany");
+	return _size+combien;
+      }
+    return unsigned(combien);
   }
 
   virtual void printOn(ostream& _os) const 
@@ -112,16 +151,16 @@ public:
 	rate /= 100.0;
       }
     else
-      combien = unsigned(rate);	   // and rate will not be used
+      combien = int(rate);	   // and rate will not be used
 
     // minimal check
-    if ( (combien <= 0) && (rate <= 0.0) )
-      throw runtime_error("Invalid parameters read in eoHowMany::readFrom");
+    if ( rate <= 0.0 )
+      throw runtime_error("Negative rate read in eoHowMany::readFrom");
   }
   
 private :
   double rate;
-  unsigned combien;
+  int combien;
 };
 
 
