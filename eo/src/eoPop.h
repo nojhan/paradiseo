@@ -110,25 +110,19 @@ class eoPop: public vector<EOT>, public eoObject, public eoPersistent {
 	* @param _is A istream.
 
 	*/
-  virtual void readFrom(istream& _is) {
-    while( _is ) {  // reads line by line, and creates an object per
-      // line
-      char line[MAXLINELENGTH];
-      _is.getline( line, MAXLINELENGTH-1 );
-	  if (strlen( line ) ) {
-		istrstream s( line );
-		EOT thisEOT;
-        thisEOT.readFrom( s );
+  virtual void readFrom(istream& _is) 
+  {
+    while( _is ) 
+    {  
+        EOT thisEOT;
+        thisEOT.readFrom( _is );
 		push_back( thisEOT );      
-	  }
     }
   }
   
   /**
    * Write object. It's called printOn since it prints the object _on_ a stream.
-   * @param _os A ostream. In this case, prints the population to
-   standard output. The EOT class must hav standard output with cout,
-   but since it should be an eoObject anyways, it's no big deal.
+   * @param _os A ostream. 
    */
   virtual void printOn(ostream& _os) const {
     copy( begin(), end(), ostream_iterator<EOT>( _os, "\n") );
