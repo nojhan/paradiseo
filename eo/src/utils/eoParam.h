@@ -31,7 +31,7 @@
 #include <string>
 #include <strstream>
 #include <vector>
-
+#include <eoScalarFitness.h>   // for specializations
 /**
     eoParam: Base class for monitoring and parsing parameters
 */
@@ -170,7 +170,6 @@ private :
     ValueType repValue;
 };
 
-/// Specialized setValue for bool
 template <>
 void eoValueParam<bool>::setValue(std::string _value)
 {
