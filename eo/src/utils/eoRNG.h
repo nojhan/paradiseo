@@ -279,7 +279,13 @@ private :
 /**
 	The one and only global eoRng object
 */
+namespace eo
+{
 extern eoRng rng;
+}
+
+using eo::rng;
+
 
 // Implementation of some eoRng members.... Don't mind the mess, it does work.
 
