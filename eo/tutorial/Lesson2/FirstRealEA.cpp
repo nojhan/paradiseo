@@ -75,8 +75,8 @@ void main_function(int argc, char **argv)
   // Initilisation of population
   ////////////////////////////////
   // based on a uniform generator
-  eoInitFixedLength<Indi, uniform_generator<double> >
-      random(VEC_SIZE, uniform_generator<double>(-1.0, 1.0));
+  eoUniformGenerator<double> uGen(-1.0, 1.0);
+  eoInitFixedLength<Indi> random(VEC_SIZE, uGen);
    // Initialization of the population
   eoPop<Indi> pop(POP_SIZE, random);
  

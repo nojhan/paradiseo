@@ -270,11 +270,11 @@ rng.reseed(seed);</font></tt></b>
 <br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>//
 a Indi random initializer</font></tt>
 <br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>//
-based on boolean_generator class (see utils/rnd_generator.h)</font></tt>
-<br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-eoInitFixedLength&lt;Indi, boolean_generator>&nbsp;</font></tt></b>
-<br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-random(vecSize, boolean_generator());</font></tt></b>
+based on eoUniformGenerator class (see utils/eoRndGenerators.h)</font></tt>
+<br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eoUniformGenerator&lt;bool>
+uGen;</font></tt></b>
+<br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eoInitFixedLength&lt;Indi>
+random(vecSize, uGen);</font></tt></b>
 <br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>//
 Init pop from the randomizer: need to use the append function</font></tt>
 <br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -284,7 +284,7 @@ and evaluate pop (STL syntax)&nbsp;</font></tt>
 <br><b><tt><font color="#993399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 apply&lt;Indi>(eval, pop);</font></tt></b>
 <br><tt><font color="#993399"><b>&nbsp;&nbsp;&nbsp;&nbsp; } </b>// end
-of initializatio of the population</font></tt></td>
+of initialization of the population</font></tt></td>
 </tr>
 </table>
 <a NAME="output"></a>
@@ -311,7 +311,6 @@ of initializatio of the population</font></tt></td>
 <tr>
 <td><tt><font color="#009900"><b>&nbsp;</b>// The robust tournament selection</font></tt>
 <br><tt><font color="#009900"><b>&nbsp;eoDetTournamentSelect&lt;Indi> selectOne(tSize);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
 </b>// tSize in [2,POPSIZE]</font></tt>
 <br><tt><font color="#009900"><b>&nbsp;</b>// is now encapsulated in a
 eoSelectPerc (entage)</font></tt>

@@ -12,3 +12,7 @@ all : $(ALL)
 
 clean : 
 	@/bin/rm $(ALL) *.o *~
+
+FirstRealEA : real_value.h
+
+FirstBitEA : binary_value.h

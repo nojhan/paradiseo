@@ -164,8 +164,8 @@ void main_function(int argc, char **argv)
       rng.reseed(seed);
       // a Indi random initializer
       // based on boolean_generator class (see utils/rnd_generator.h)
-      eoInitFixedLength<Indi, boolean_generator> 
-	random(vecSize, boolean_generator());
+      eoUniformGenerator<bool> uGen;
+      eoInitFixedLength<Indi> random(vecSize, uGen);
 	
       // Init pop from the randomizer: need to use the append function
       pop.append(popSize, random);      

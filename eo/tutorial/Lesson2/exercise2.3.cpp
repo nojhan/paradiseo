@@ -76,8 +76,8 @@ void main_function(int argc, char **argv)
   ////////////////////////////////
 
   // based on boolean_generator class (see utils/rnd_generator.h)
-  eoInitFixedLength<Indi, boolean_generator> 
-    random(VEC_SIZE, boolean_generator());
+  eoUniformGenerator<bool> uGen;
+  eoInitFixedLength<Indi> random(VEC_SIZE, uGen);
   // Initialization of the population
   eoPop<Indi> pop(POP_SIZE, random);
 

@@ -162,9 +162,9 @@ The actual code is in boldface and the comment in normal face.
 <b>  &nbsp;</b>////////////////////////////////<br>
 <b>  &nbsp;</b>// Initilisation of population<br>
 <b>  &nbsp;</b>////////////////////////////////<br>
-<b>  &nbsp;</b>// based on boolean_generator class (see utils/rnd_generator.h)<br>
-<b>  &nbsp;eoInitFixedLength&lt;Indi, boolean_generator> </b><br>
-<b>  &nbsp; &nbsp; &nbsp;random(VEC_SIZE, boolean_generator());</b><br>
+<b>  &nbsp;</b>// based on eoUniformGenerator class (see utils/eoRndGenerators.h)<br>
+<b>  &nbsp;eoUniformGenerator&lt;bool> uGen;</b><br>
+<b>  &nbsp;eoInitFixedLength&lt;Indi> random(VEC_SIZE, uGen);</b><br>
 <b>  &nbsp;</b>// Initialization of the population<br>
 <b>  &nbsp;eoPop&lt;Indi> pop(POP_SIZE, random);</b><br>
 <b>  &nbsp;</b>// and evaluate it in one line<br>
