@@ -14,7 +14,10 @@
 
 // the general include for eo
 #include <eo>
+#include <utils/eoScalarFitnessStat.h>
 #include <utils/eoGnuplot1DMonitor.h>
+#include <utils/eoGnuplot1DSnapshot.h>
+#include <utils/eoFDCStat.h>
 
 // EVAL
 #include "binary_value.h"
@@ -24,7 +27,7 @@
 // Include the corresponding file
 #include <ga.h>	         // bitstring representation & operators
 // define your genotype and fitness types
-typedef eoBin<double> Indi;
+typedef eoBin<eoMinimizingFitness> Indi;
 
 // the main_function: nothing changed(!), except variable initialization
 void main_function(int argc, char **argv)
@@ -235,10 +238,10 @@ void main_function(int argc, char **argv)
   /////////////////////////////////////
   eoGenContinue<Indi> genCont(maxGen);
   eoSteadyFitContinue<Indi> steadyCont(minGen, steadyGen);
-  eoFitContinue<Indi> fitCont(vecSize);
+  // eoFitContinue<Indi> fitCont(vecSize);   // remove if minimizing :-)
   eoCombinedContinue<Indi> continuator(genCont);
   continuator.add(steadyCont);
-  continuator.add(fitCont);
+  //  continuator.add(fitCont);
   
   
 // CHECKPOINT
@@ -269,15 +272,20 @@ void main_function(int argc, char **argv)
     eoAverageStat<Indi> averageStat;
     // Second moment stats: average and stdev
     eoSecondMomentStats<Indi> SecondStat;
+    // the Fitness Distance Correlation
+    // need first an object to compute the distances
+    eoQuadDistance<Indi> dist;	// Hamming distance
+    eoFDCStat<Indi> fdcStat(dist);
 
     // Add them to the checkpoint to get them called at the appropriate time
     checkpoint.add(bestStat);
     checkpoint.add(averageStat);
     checkpoint.add(SecondStat);
+    checkpoint.add(fdcStat);
 
     // The Stdout monitor will print parameters to the screen ...
     eoStdoutMonitor monitor(false);
-     
+
     // when called by the checkpoint (i.e. at every generation)
     checkpoint.add(monitor);
 
@@ -286,10 +294,12 @@ void main_function(int argc, char **argv)
     monitor.add(eval);		// because now eval is an eoEvalFuncCounter!
     monitor.add(bestStat);
     monitor.add(SecondStat);
+    monitor.add(fdcStat);
 
     // A file monitor: will print parameters to ... a File, yes, you got it!
     eoFileMonitor fileMonitor("stats.xg", " ");
-    eoGnuplot1DMonitor gnuMonitor("best_average.xg");
+    // and an eoGnuplot1DMonitor will 1-print to a file, and 2- plot on screen
+    eoGnuplot1DMonitor gnuMonitor("best_average.xg",minimizing_fitness<Indi>());
      
     // the checkpoint mechanism can handle multiple monitors
     checkpoint.add(fileMonitor);
@@ -303,6 +313,26 @@ void main_function(int argc, char **argv)
     gnuMonitor.add(eval);
     gnuMonitor.add(bestStat);
     gnuMonitor.add(averageStat);
+
+    // a specific plot monitor for FDC
+    // first into a file (it adds everything ti itself
+    eoFDCFileSnapshot<Indi> fdcFileSnapshot(fdcStat);  
+    // then to a Gnuplot monitor
+    eoGnuplot1DSnapshot fdcGnuplot(fdcFileSnapshot);
+    // and of coruse add them to the checkPoint
+    checkpoint.add(fdcFileSnapshot);
+    checkpoint.add(fdcGnuplot);
+
+    // want to see how the fitness is spread?
+    eoScalarFitnessStat<Indi> fitStat;
+    checkpoint.add(fitStat);
+    // a gnuplot-based monitor for snapshots: needs a dir name 
+    // where to store the files
+    eoGnuplot1DSnapshot fitSnapshot("Fitnesses");
+    // add any stat that is a vector<double> to it
+    fitSnapshot.add(fitStat);
+    // and of course add it to the checkpoint
+    checkpoint.add(fitSnapshot);
 
     // Last type of item the eoCheckpoint can handle: state savers:
     eoState outState;

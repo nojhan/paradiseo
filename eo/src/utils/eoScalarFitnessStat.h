@@ -1,8 +1,8 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoParam.h
-// (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
+// eoScalarFitnessStat.h
+// (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000, 2001
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -20,38 +20,31 @@
 
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
-             mak@dhi.dk
+             mkeijzer@dhi.dk
  */
 //-----------------------------------------------------------------------------
 
-#ifndef _eoMonitor_h
-#define _eoMonitor_h
+#ifndef _eoScalarFitnessStat_h
+#define _eoScalarFitnessStat_h
 
-
-#include <vector>
-
-#include <eoFunctor.h>
-
-class eoParam;
+#include <utils/eoStat.h>
 
 /**
-    The abstract monitor class is a vector of parameter pointers. Use
-    either push_back a pointer or add a reference to a parameter. 
-    Derived classes will then implement the operator()(void) which 
-    will stream or pipe the current values of the parameters to wherever you
-    want it streamed or piped to.
+    The fitnesses of a whole population, as a vector
 */
-class eoMonitor : public eoF<eoMonitor&>
+template <class EOT, class FitT = typename EOT::Fitness>
+class eoScalarFitnessStat : public eoSortedStat<EOT, vector<FitT> >
 {
 public :
+    eoScalarFitnessStat(std::string _description = "FitnessES") : 
+      eoSortedStat<EOT,  vector<FitT> >(vector<FitT>(0), _description) {}
 
-  virtual void lastCall() {}
-    virtual void add(const eoParam& _param) { vec.push_back(&_param); }
-
-
-protected :
-    typedef std::vector<const eoParam*>::iterator iterator;
-    std::vector<const eoParam*> vec;
+    virtual void operator()(const vector<const EOT*>& _popPters)
+    {
+      value().resize(_popPters.size());
+      for (unsigned i=0; i<_popPters.size(); i++)
+        value()[i] = _popPters[i]->fitness();
+    }
 };
 
 #endif

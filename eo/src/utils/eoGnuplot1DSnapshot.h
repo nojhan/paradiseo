@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoGnuplot1DMonitor.h
+// eoGnuplot1DSnapshot.h
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
 /* 
    This library is free software; you can redistribute it and/or
@@ -24,12 +24,12 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef _eoGnuplot1DMonitor_H
-#define _eoGnuplot1DMonitor_H
+#ifndef _eoGnuplot1DSnapshot_H
+#define _eoGnuplot1DSnapshot_H
 
 #include <string>
 
-#include <utils/eoMonitor.h>
+#include <utils/eoFileSnapshot.h>
 #include <utils/eoGnuplot.h>
 #include <eoObject.h>
 
@@ -51,23 +51,29 @@ This class plots through gnuplot the eoStat given as argument
  *  assumes that the same file is appened every so and so, 
  *  and replots it everytime
  */
-class eoGnuplot1DMonitor: public eoFileMonitor, public eoGnuplot
+class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
 {
  public:
     // Ctor
-  eoGnuplot1DMonitor(std::string _filename, bool _top=false) : 
-      eoFileMonitor(_filename, " "), 
-      eoGnuplot(_filename,(_top?"":"set key bottom"))
+  eoGnuplot1DSnapshot(std::string _dirname, unsigned _frequency = 1, 
+	     std::string _filename = "gen", std::string _delim = " ") : 
+      eoFileSnapshot(_dirname, _frequency, _filename, _delim), 
+      eoGnuplot(_filename,"set data style points")
+  {}
+
+    // Ctor
+  eoGnuplot1DSnapshot(eoFileSnapshot & _fSnapshot) : 
+      eoFileSnapshot(_fSnapshot), 
+      eoGnuplot(_fSnapshot.baseFileName(),"set data style points")
   {}
   
   // Dtor
-  virtual ~eoGnuplot1DMonitor(){}
+  virtual ~eoGnuplot1DSnapshot(){}
 
   virtual eoMonitor&  operator() (void) ;
-  virtual void  FirstPlot();  
 
   /// Class name.
-  virtual string className() const { return "eoGnuplot1DMonitor"; }
+  virtual string className() const { return "eoGnuplot1DSnapshot"; }
 
 private: 
 };
@@ -75,48 +81,27 @@ private:
 // the following should be placed in a separate eoGnuplot1DMonitor.cpp 
 
 ////////////////////////////////////////////////////////////
-eoMonitor&   eoGnuplot1DMonitor::operator() (void)
+eoMonitor&   eoGnuplot1DSnapshot::operator() (void)
   /////////////////////////////////////////////////////////
 {
   // update file using the eoFileMonitor
-  eoFileMonitor::operator()();
+  eoFileSnapshot::operator()();
 
   // sends plot order to gnuplot
   // assumes successive plots will have same nb of columns!!!
-  if (firstTime)
-    {
-      FirstPlot();
-      firstTime = false;
-    }
-  else 
-    {
-      if( gpCom ) {
-	PipeComSend( gpCom, "replot\n" );	
-      }
-    }
-  return *this;
-}
 
-////////////////////////////////////////////////////////////
-void  eoGnuplot1DMonitor::FirstPlot() 
-  ////////////////////////////////////////////////////////
-{
-  if (vec.size() < 2) 
-    {
-      throw runtime_error("Must have some stats to plot!\n");
-    }
+
   char buff[1024];
   ostrstream os(buff, 1024);
   os << "plot";
-  for (unsigned i=1; i<vec.size(); i++) {
+
     os << " '" << getFileName().c_str() <<
-      "' using 1:" << i+1 << " title '" << vec[i]->longName() << "' with lines" ;
-    if (i<vec.size()-1)
-      os << ", ";
-  }
+      "' notitle with points ps 5" ;
   os << "\n";
   os << '\0';
   PipeComSend( gpCom, buff );
+
+  return (*this);
 }
     
-#endif _eoGnuplot1DMonitor_H
+#endif _eoGnuplot1DSnapshot_H

@@ -41,11 +41,11 @@ class eoDistance : public eoBF<const EOT &, const EOT &, double>
     assumes the 2 things are vectors of something that is double-castable
 */
 
-template< class T >
-class eoQuadDistance : public eoDistance<vector<T> >
+template< class EOT >
+class eoQuadDistance : public eoDistance<EOT>
 {
 public:
-  double operator()(const vector<T> & _v1, const vector<T> & _v2)
+  double operator()(const EOT & _v1, const EOT & _v2)
   {
     double sum=0.0;
     for (unsigned i=0; i<_v1.size(); i++)

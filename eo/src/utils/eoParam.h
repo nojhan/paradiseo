@@ -227,6 +227,29 @@ void eoValueParam<std::vector<double> >::setValue(std::string _value)
     std::copy(std::istream_iterator<double>(is), std::istream_iterator<double>(), repValue.begin());
 }
 
+/// Because MSVC does not support partial specialization, the vector is a eoMinimizingFitness, not a T
+template <>
+std::string eoValueParam<std::vector<eoMinimizingFitness> >::getValue(void) const
+{
+    std::ostrstream os;
+    os << repValue.size() << ' ';
+    std::copy(repValue.begin(), repValue.end(), std::ostream_iterator<eoMinimizingFitness>(os, " "));
+    os << std::ends;
+    return os.str();
+}
+
+/// Because MSVC does not support partial specialization, the vector is a eoMinimizingFitness, not a T
+// NOTE: g++ doesn support it either!!!
+template <>
+void eoValueParam<std::vector<eoMinimizingFitness> >::setValue(std::string _value)
+{
+    std::istrstream is(_value.c_str());
+    unsigned sz;
+    is >> sz;
+    repValue.resize(sz);
+    std::copy(std::istream_iterator<eoMinimizingFitness>(is), std::istream_iterator<eoMinimizingFitness>(), repValue.begin());
+}
+
 /*template <class ContainerType>
 class eoContainerParam : public eoParam
 {
