@@ -31,6 +31,7 @@
 #include <gp/eoParseTree.h>
 #include <eoInit.h>
 #include <eoOp.h>
+#include <eoPop.h>
 
 using namespace gp_parse_tree;
 using namespace std;
@@ -141,5 +142,50 @@ class eoGpDepthInitializer : public eoInit< eoParseTree<FType, Node> >
     std::vector<Node> initializor;
 	bool grow;
 };
+
+/**
+     * A template function for ramped half and half initialization of an eoParseTree population
+     * @param pop the population to be created
+     * @param population_size the size of the population to be created
+     * @param init_max_depth the initial maximum tree depth
+     * @param initializor A vector containing the possible nodes
+     
+     \ingroup ParseTree
+     */
+template <class FType, class Node>
+void  eoInitRampedHalfAndHalf(eoPop< eoParseTree<FType,Node> > &pop, unsigned int population_size, unsigned int init_max_depth, vector<Node> &initializor)
+{
+	typedef eoParseTree<FType,Node> EoType;
+	typedef eoPop< EoType > Pop;
+	
+	unsigned int M = init_max_depth - 1;
+	unsigned int part_pop_size = population_size / (2*M);
+	unsigned int m=0;
+	
+	
+	pop.clear();
+	
+	// initialize with Depth's (D) -> 2
+	for(m=init_max_depth; m >= 2; m--)
+	{
+		eoGpDepthInitializer<FType, Node> grow_initializer(m, initializor, true);
+		Pop grow(part_pop_size, grow_initializer);
+		pop.insert(pop.begin(), grow.begin(), grow.end());
+		
+		eoGpDepthInitializer<FType, Node> full_initializer(m, initializor, false);
+		Pop full(part_pop_size, full_initializer);
+		pop.insert(pop.begin(), full.begin(), full.end());
+	}	
+	
+	bool g = true;
+	while (pop.size() < population_size)
+	{
+		eoGpDepthInitializer<FType, Node> initializer(init_max_depth, initializor, g);
+		Pop p(1, initializer);
+		pop.insert(pop.begin(), p.begin(), p.end());
+		g= !g;
+	}
+}
+
 
 #endif
