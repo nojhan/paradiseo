@@ -34,6 +34,7 @@
 #include <eoSelectPerc.h>
 #include <eoEvalFunc.h>
 #include <eoAlgo.h>
+#include <apply.h>
 
 /** The Simple Genetic Algorithm, following Holland and Goldberg 
  *  Needs a selector (class eoSelectOne) a crossover (eoQuadratic, 
@@ -47,13 +48,13 @@ template <class EOT>
 class eoSGA : public eoAlgo<EOT>
 {
 public :
-    eoSGA(
+  eoSGA(
         eoContinue<EOT>& _cont, 
         eoMonOp<EOT>& _mutate, float _mrate,
         eoQuadraticOp<EOT>& _cross, float _crate,
         eoSelectOne<EOT>& _select,
         eoEvalFunc<EOT>& _eval) 
-        : cont(_cont), 
+    : cont(_cont), 
           mutate(_mutate), 
           mutationRate(_mrate),
           cross(_cross),
@@ -63,13 +64,13 @@ public :
 
   // added this second ctor as I didn't like the ordering of the parameters
   // in the one above. Any objection :-) MS
-    eoSGA(
+  eoSGA(
         eoSelectOne<EOT>& _select,
         eoQuadraticOp<EOT>& _cross, float _crate,
         eoMonOp<EOT>& _mutate, float _mrate,
         eoEvalFunc<EOT>& _eval,
 	eoContinue<EOT>& _cont)
-        : cont(_cont), 
+    : cont(_cont), 
           mutate(_mutate), 
           mutationRate(_mrate),
           cross(_cross),
@@ -77,49 +78,48 @@ public :
           select(_select),
           eval(_eval) {}
 
-    void operator()(eoPop<EOT>& _pop)
-    {
-        eoPop<EOT> offspring;
+  void operator()(eoPop<EOT>& _pop)
+  {
+    eoPop<EOT> offspring;
         
-        do
-        {
-            select(_pop, offspring);
+    do
+      {
+	select(_pop, offspring);
 
-            unsigned i;
+	unsigned i;
 	        
-            for (i=0; i<_pop.size()/2; i++) 
-            {
-	          if ( rng.flip(crossoverRate) ) 
-              {
-		        // this crossover generates 2 offspring from two parents
-		        cross(offspring[2*i], offspring[2*i+1]);
-	          }
-	        }
-
-	        for (i=0; i < _pop.size(); i++) 
-            {
-	          if (rng.flip(mutationRate) ) 
-              {
-		        mutate(offspring[i]);
-              }
-	          
-            }
-
-            _pop.swap(offspring);
-            apply<EOT>(eval, _pop);
-
-        } while (cont(_pop));
-    }
-
+	for (i=0; i<_pop.size()/2; i++) 
+	  {
+	    if ( rng.flip(crossoverRate) ) 
+	      {
+		// this crossover generates 2 offspring from two parents
+		cross(offspring[2*i], offspring[2*i+1]);
+	      }
+	  }
+	    
+	for (i=0; i < _pop.size(); i++) 
+	  {
+	    if (rng.flip(mutationRate) ) 
+	      {
+		mutate(offspring[i]);
+	      }
+	  }
+	    
+	_pop.swap(offspring);
+	apply<EOT>(eval, _pop);
+	    
+      } while (cont(_pop));
+  }
+  
 private :
 
-    eoContinue<EOT>& cont;
-    eoMonOp<EOT>& mutate;
-    float mutationRate;
-    eoQuadraticOp<EOT>& cross;
-    float crossoverRate;
-    eoSelectPerc<EOT> select;
-    eoEvalFunc<EOT>& eval;
+  eoContinue<EOT>& cont;
+  eoMonOp<EOT>& mutate;
+  float mutationRate;
+  eoQuadraticOp<EOT>& cross;
+  float crossoverRate;
+  eoSelectPerc<EOT> select;
+  eoEvalFunc<EOT>& eval;
 };
 
 #endif
