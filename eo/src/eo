@@ -76,23 +76,30 @@
 #endif
 // Selection
 // the eoSelectOne's
-#include <eoRandomSelect.h>	// also contains the eoSequentialSelect
+#include <eoRandomSelect.h>
+#include <eoSequentialSelect.h>
 #include <eoDetTournamentSelect.h>
 #include <eoProportionalSelect.h>
-#include <eoFitnessScalingSelect.h>
+#include <eoFitnessScalingSelect.h> // also contains eoLinearFitScaling.h
 #include <eoRankingSelect.h>
 #include <eoStochTournamentSelect.h>
+// Embedding truncation selection 
+#include <eoTruncatedSelectOne.h>
+
 // the batch selection - from an eoSelectOne
 #include <eoSelectPerc.h>
 #include <eoSelectNumber.h>
 #include <eoSelectMany.h>
+#include <eoTruncatedSelectMany.h>
+
 // other batch selections
-// DetSelect probably shoudl be turned into an eoSelectOne
+// DetSelect can also be obtained as eoSequentialSelect, an eoSelectOne
 // (using setup and an index)
 #include <eoDetSelect.h>
 
 // Breeders
-#include <eoGeneralBreeder.h>
+#include <eoGeneralBreeder.h>	// applies one eoGenOp, stop on offspring count
+// #include <eoOneToOneBreeder.h>	// parent + SINGLE offspring compete (e.g. DE) - not ready yet...
 
 // Replacement
 // #include <eoReplacement.h>
@@ -103,7 +110,7 @@
 // a simple transformer
 #include <eoSGATransform.h>
 
-// Perf2Worth
+// Perf2Worth stuff - includes eoSelectFromWorth.h
 #include <eoParetoRanking.h>
 #include <eoNDSorting.h>
 
