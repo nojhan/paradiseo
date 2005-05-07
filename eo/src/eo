@@ -61,7 +61,12 @@
 // combinations of simple eoOps (eoMonOp and eoQuadOp)
 #include <eoProportionalCombinedOp.h>
 // didactic (mimics SGA-like variation into an eoGenOp)
+// calls crossover and mutation sequentially, 
+// with their respective mutation rates
 #include <eoSGAGenOp.h>
+// its dual: crossover, mutation (and copy) - proportional choice
+// w.r.t. given relative weights
+#include <eoPropGAGenOp.h>
 
 // population
 #include <eoPop.h>
