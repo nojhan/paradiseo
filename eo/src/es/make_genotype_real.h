@@ -37,12 +37,14 @@
 #include <strstream>
 #endif
 
-#include <es/eoReal.h>
-#include <es/eoEsChromInit.h>
-#include <utils/eoRealVectorBounds.h>
+#include <iostream>
+
+#include "es/eoReal.h"
+#include "es/eoEsChromInit.h"
+#include "utils/eoRealVectorBounds.h"
   // also need the parser and param includes
-#include <utils/eoParser.h>
-#include <utils/eoState.h>
+#include "utils/eoParser.h"
+#include "utils/eoState.h"
 
 
 /*
@@ -71,30 +73,35 @@
 template <class EOT>
 eoEsChromInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
 {
-  // the fitness type
-  typedef typename EOT::Fitness FitT;
+    // the fitness type
+    typedef typename EOT::Fitness FitT;
 
-  // for eoReal, only thing needed is the size - but might have been created elswhere ...
-    eoValueParam<unsigned>& vecSize = _parser.getORcreateParam(unsigned(10), "vecSize", "The number of variables ", 'n',"Genotype Initialization");
-
+    // for eoReal, only thing needed is the size - but might have been created elswhere ...
+    eoValueParam<unsigned>& vecSize
+        = _parser.getORcreateParam(unsigned(10), "vecSize",
+                                   "The number of variables ",
+                                   'n',"Genotype Initialization");
     // to build an eoReal Initializer, we need bounds: [-1,1] by default
-  eoValueParam<eoRealVectorBounds>& boundsParam = _parser.getORcreateParam(eoRealVectorBounds(vecSize.value(),-1,1), "initBounds", "Bounds for initialization (MUST be bounded)", 'B', "Genotype Initialization");
-
-  // now some initial value for sigmas - even if useless?
-  // shoudl be used in Normal mutation
-    std::string & sigmaString = _parser.getORcreateParam(std::string("0.3"), "sigmaInit",
-		   "Initial value for Sigmas (with a '%' -> scaled by the range of each variable)",
+    eoValueParam<eoRealVectorBounds>& boundsParam
+        = _parser.getORcreateParam(eoRealVectorBounds(vecSize.value(), -1, 1),
+                                   "initBounds",
+                                   "Bounds for initialization (MUST be bounded)",
+                                   'B', "Genotype Initialization");
+    // now some initial value for sigmas - even if useless?
+    // shoudl be used in Normal mutation
+    std::string& sigmaString
+        = _parser.getORcreateParam(std::string("0.3"), "sigmaInit",
+                                   "Initial value for Sigmas (with a '%' -> scaled by the range of each variable)",
 				   's',"Genotype Initialization").value();
-
     // check for %
-    bool to_scale = false;   // == no %
+    bool to_scale = false;
     size_t pos =  sigmaString.find('%');
-    if (pos < sigmaString.size())  //  found a %
-      {
+    if (pos < sigmaString.size())
+    {
+        //  found a % - use scaling and get rid of '%'
 	to_scale = true;
-	sigmaString.resize(pos);	   // get rid of %
-      }
-
+	sigmaString.resize(pos);
+    }
 #ifdef HAVE_SSTREAM
     std::istringstream is(sigmaString);
 #else
@@ -102,16 +109,13 @@ eoEsChromInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
 #endif
     double sigma;
     is >> sigma;
-
     // minimum check
-  if ( (sigma < 0) )
-    throw std::runtime_error("Negative sigma in make_genotype");
-
-  eoEsChromInit<EOT> * init =
-    new eoEsChromInit<EOT>(boundsParam.value(), sigma, to_scale);
-  // satore in state
-  _state.storeFunctor(init);
-  return *init;
+    if ( (sigma < 0) )
+        throw std::runtime_error("Negative sigma in make_genotype");
+    eoEsChromInit<EOT> * init = new eoEsChromInit<EOT>(boundsParam.value(), sigma, to_scale);
+    // store in state
+    _state.storeFunctor(init);
+    return *init;
 }
 
 #endif

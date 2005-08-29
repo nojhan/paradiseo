@@ -27,6 +27,7 @@
 #ifndef _eoEsChromInit_H
 #define _eoEsChromInit_H
 
+#include <cmath>
 #include <es/eoRealInitBounded.h>
 #include <es/eoEsSimple.h>
 #include <es/eoEsStdev.h>
@@ -62,16 +63,17 @@ public:
 
     typedef typename EOT::Fitness FitT;
 
-  /** Ctor: @param
-   * eoRealVectorBounds& _bounds : bounds for uniform initialization
-   * double _sigma : initial value for the stddev
-   * bool _to_scale : wether sigma should be multiplied by the range of each variable
-   *                  added December 2004 - MS (together with the whole comment :-)
-   */
-  eoEsChromInit(eoRealVectorBounds& _bounds, double _sigma = 0.3, bool _to_scale=false) :
-    eoRealInitBounded<EOT>(_bounds)
-  {
-    // a bit of pre-computations, to ave time later (even if some are useless)
+    /** Ctor:
+
+    @param eoRealVectorBounds& _bounds : bounds for uniform initialization
+    @param _sigma : initial value for the stddev
+    @param _to_scale : wether sigma should be multiplied by the range of each variable
+                       added December 2004 - MS (together with the whole comment :-)
+    */
+    eoEsChromInit(eoRealVectorBounds& _bounds, double _sigma = 0.3, bool _to_scale=false)
+        : eoRealInitBounded<EOT>(_bounds)
+    {
+    // a bit of pre-computations, to save time later (even if some are useless)
 
     // first, the case of one unique sigma
     if (_to_scale)   // sigma is scaled by the average range (if that means anything!)
@@ -96,7 +98,7 @@ public:
 	}
       else
 	lesSigmas[i] = _sigma;
-  }
+    }
 
   void operator()(EOT& _eo)
   {

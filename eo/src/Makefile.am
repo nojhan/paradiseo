@@ -71,6 +71,7 @@ pkginclude_HEADERS 	= eo \
 			eoPopEvalFunc.h \
 			eoPopulator.h \
 			eoPrintable.h \
+			eoPropGAGenOp.h \
 			eoProportionalCombinedOp.h \
 			eoProportionalSelect.h \
 			eoRandomSelect.h \
