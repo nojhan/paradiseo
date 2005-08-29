@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoParser.h
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -24,12 +24,13 @@
  */
 //-----------------------------------------------------------------------------
 /**
-CVS Info: $Date: 2004-04-05 15:28:12 $ $Version$ $Author: evomarc $
+CVS Info: $Date: 2005-08-29 07:50:50 $ $Version$ $Author: kuepper $
 */
 #ifndef eoParser_h
 #define eoParser_h
 
 #include <map>
+#include <sstream>
 #include <string>
 
 #include "eoParam.h"
@@ -37,63 +38,67 @@ CVS Info: $Date: 2004-04-05 15:28:12 $ $Version$ $Author: evomarc $
 #include "eoPersistent.h"
 
 /**
-    eoParameterLoader is an abstract class that can be used as a base for your own 
+    eoParameterLoader is an abstract class that can be used as a base for your own
     parameter loading and saving. The command line parser eoParser is derived from
     this class.
 */
 class eoParameterLoader
 {
 public :
-    
+
     /** Need a virtual destructor */
     virtual ~eoParameterLoader();
 
     /**
       *  processParam is used to register a parameter and set its value if it is known
-      *     
+      *
       *   @param param      the parameter to process
       *   @param section    the section where this parameter belongs
     */
     virtual void processParam(eoParam& param, std::string section = "") = 0;
 
-  /** 
-   * checks if _param has been actually entered
-   */
-  virtual bool isItThere(eoParam& _param) const = 0;
+    /**
+     * checks if _param has been actually entered
+     */
+    virtual bool isItThere(eoParam& _param) const = 0;
 
-  /**
-   * Construct a Param and sets its value. The loader will own the memory thus created
-   *
-   * @param _defaultValue       The default value
-   * @param _longName           Long name of the argument
-   * @param _description        Description of the parameter. What is useful for.
-   * @param _shortName          Short name of the argument (Optional)
-   * @param _section            Name of the section where the parameter belongs
-   * @param _required           If it is a necessary parameter or not
-   */
+    /**
+     * Construct a Param and sets its value. The loader will own the memory thus created
+     *
+     * @param _defaultValue       The default value
+     * @param _longName           Long name of the argument
+     * @param _description        Description of the parameter. What is useful for.
+     * @param _shortName          Short name of the argument (Optional)
+     * @param _section            Name of the section where the parameter belongs
+     * @param _required           If it is a necessary parameter or not
+     */
     template <class ValueType>
     eoValueParam<ValueType>& createParam
-               (ValueType _defaultValue, 
-                std::string _longName, 
+               (ValueType _defaultValue,
+                std::string _longName,
                 std::string _description,
                 char _shortHand = 0,
                 std::string _section = "",
                 bool _required = false)
     {
-        eoValueParam<ValueType>* p = new eoValueParam<ValueType>(_defaultValue, _longName, _description, _shortHand, _required);
-
+        eoValueParam<ValueType>* p = new eoValueParam<ValueType>(_defaultValue,
+                                                                 _longName,
+                                                                 _description,
+                                                                 _shortHand,
+                                                                 _required);
         ownedParams.push_back(p);
-    
         processParam(*p, _section);
-
         return *p;
     }
+
 
 private :
 
     std::vector<eoParam*> ownedParams;
 
 };
+
+
 
 /**
     eoParser: command line parser and configuration file reader
@@ -109,6 +114,7 @@ public:
    * Constructor
    * a complete constructor that reads the command line an optionally reads
    * a configuration file.
+
    *
    * myEo --param-file=param.rc     will then load using the parameter file param.rc
    *
@@ -118,9 +124,9 @@ public:
    * @param _lFileParamName         Name of the parameter specifying the configuration file (--param-file)
    * @param _shortHand              Single charachter shorthand for specifying the configuration file
    */
-  eoParser ( unsigned _argc, char **_argv , std::string _programDescription = "", 
-	   std::string _lFileParamName = "param-file", char _shortHand = 'p');  
-  
+  eoParser ( unsigned _argc, char **_argv , std::string _programDescription = "",
+	   std::string _lFileParamName = "param-file", char _shortHand = 'p');
+
   /**
     Processes the parameter and puts it in the appropriate section for readability
   */
@@ -129,12 +135,12 @@ public:
   void readFrom(std::istream& is);
 
   void printOn(std::ostream& os) const;
-  
-  /// className for readibility 
+
+  /// className for readibility
   std::string className(void) const { return "Parser"; }
 
   /// true if the user made an error or asked for help
-  bool userNeedsHelp(void); 
+  bool userNeedsHelp(void);
   /**
    * Prints an automatic help in the specified output using the information
    * provided by parameters
@@ -142,79 +148,112 @@ public:
   void printHelp(std::ostream& os);
 
   std::string ProgramName() { return programName; }
- 
-  /** 
+
+  /**
    * checks if _param has been actually entered by the user
    */
-  virtual bool isItThere(eoParam& _param) const 
+  virtual bool isItThere(eoParam& _param) const
   { return getValue(_param).first; }
 
-/** 
- * get a handle on a param from its longName
- * 
- * if not found, returns 0 (null pointer :-)
- *
- * Not very clean (requires hard-coding of the long name twice!)
- * but very useful in many occasions...
- */
-  eoParam* getParamWithLongName(std::string _name);
+    /**
+     * get a handle on a param from its longName
+     *
+     * if not found, returns 0 (null pointer :-)
+     *
+     * Not very clean (requires hard-coding of the long name twice!)
+     * but very useful in many occasions...
+     */
+    eoParam * getParamWithLongName(const std::string& _name) const;
 
-  /** it seems finally that the easiest use of the above method is
-      through the following, whose interface is similar to that of the
-      widely-used createParam
-      For some (probably very stupid) reason, I failed to put it in
-      the .cpp. Any hint???
-  */
+
+
+    /** Get or create parameter
+
+    It seems finally that the easiest use of the above method is
+    through the following, whose interface is similar to that of the
+    widely-used createParam.
+
+    For some (probably very stupid) reason, I failed to put it in the
+    .cpp. Any hint???
+    */
     template <class ValueType>
-    eoValueParam<ValueType>& getORcreateParam
-               (ValueType _defaultValue, 
-                std::string _longName, 
-                std::string _description,
-                char _shortHand = 0,
-                std::string _section = "",
-                bool _required = false)
-{
-  eoParam* ptParam = getParamWithLongName(_longName);
-  if (ptParam) {			// found
-    eoValueParam<ValueType>* ptTypedParam = 
-      dynamic_cast<eoValueParam<ValueType>*>(ptParam);
-    return *ptTypedParam;
-  }
-  // not found -> create it
-  return createParam (_defaultValue, _longName, _description, 
-		      _shortHand, _section, _required);
-}
+    eoValueParam<ValueType>& getORcreateParam(ValueType _defaultValue,
+                                              std::string _longName,
+                                              std::string _description,
+                                              char _shortHand = 0,
+                                              std::string _section = "",
+                                              bool _required = false)
+        {
+            eoParam* ptParam = getParamWithLongName(_longName);
+            if (ptParam) {
+                // found
+                eoValueParam<ValueType>* ptTypedParam =
+                    dynamic_cast<eoValueParam<ValueType>*>(ptParam);
+                return *ptTypedParam;
+            }
+            // not found -> create it
+            return createParam (_defaultValue, _longName, _description,
+                                _shortHand, _section, _required);
+        }
 
-//   /** accessors to the stopOnUnknownParam value */
-  void setStopOnUnknownParam(bool _b) {stopOnUnknownParam.value()=_b;}
-  bool getStopOnUnknownParam() {return stopOnUnknownParam.value();}
 
-  /** Prefix handling */
-  void setPrefix(const std:: string & _prefix) {prefix = _prefix;}
+
+    /** Make sure parameter has specific value
+
+    This requires that operator<< is defined for ValueType.
+    */
+    template <class ValueType>
+    void setORcreateParam(ValueType _defaultValue, std::string _longName,
+                          std::string _description, char _shortHand = 0,
+                          std::string _section = "", bool _required = false)
+        {
+            eoParam *param = getParamWithLongName(_longName);
+            if(0 == param) {
+                createParam(_defaultValue, _longName, _description,
+                            _shortHand, _section, _required);
+            } else {
+#ifdef HAVE_SSTREAM
+                std::ostringstream os;
+#else
+                std::ostrstream os;
+#endif
+                os << _defaultValue;
+                dynamic_cast<eoValueParam<int> *>(param)->setValue(os.str());
+            }
+        }
+
+
+
+    /** accessors to the stopOnUnknownParam value */
+    void setStopOnUnknownParam(bool _b) {stopOnUnknownParam.value()=_b;}
+    bool getStopOnUnknownParam() {return stopOnUnknownParam.value();}
+
+    /** Prefix handling */
+    void setPrefix(const std:: string & _prefix) {prefix = _prefix;}
 
   void resetPrefix() {prefix = "";}
 
   std::string getPrefix() {return prefix;}
 
 private:
-  
+
   void doRegisterParam(eoParam& param) const;
-  
+
   std::pair<bool, std::string> getValue(eoParam& _param) const;
 
   void updateParameters() const;
-  
+
   typedef std::multimap<std::string, eoParam*> MultiMapType;
 
   // used to store all parameters that are processed
   MultiMapType params;
-  
-  std::string programName; 
+
+  std::string programName;
   std::string programDescription;
 
   typedef std::map<char, std::string> ShortNameMapType;
   ShortNameMapType shortNameMap;
-  
+
   typedef std::map<std::string, std::string> LongNameMapType;
   LongNameMapType longNameMap;
 

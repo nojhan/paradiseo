@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoParser.cpp
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -31,7 +31,7 @@
 #include <stdexcept>
 #include <algorithm>
 #include <fstream>
-#include <iomanip> 
+#include <iomanip>
 
 #include <utils/compatibility.h>
 
@@ -49,8 +49,8 @@ std::ostream& printSectionHeader(std::ostream& os, std::string section)
     if (section == "")
         section = "General";
 
-  os << '\n' << setw(10) << "######    " << setw(20) << section << setw(10) << "    ######\n";
-  return os;
+    os << '\n' << setw(10) << "######    " << setw(20) << section << setw(10) << "    ######\n";
+    return os;
 }
 
 eoParameterLoader::~eoParameterLoader()
@@ -62,102 +62,62 @@ eoParameterLoader::~eoParameterLoader()
 }
 
 
-eoParser::eoParser ( unsigned _argc, char **_argv , string _programDescription, string _lFileParamName, char _shortHand) : 
-    programName( _argv[0]),
-    programDescription( _programDescription), 
+eoParser::eoParser ( unsigned _argc, char **_argv , string _programDescription,
+                     string _lFileParamName, char _shortHand) :
+    programName(_argv[0]),
+    programDescription( _programDescription),
     needHelp(false, "help", "Prints this message", 'h'),
     stopOnUnknownParam(true, "stopOnUnknownParam", "Stop if unkown param entered", '\0')
 {
-    // need to process the param file first 
+    // need to process the param file first
     // if we want command-line to have highest priority
-	unsigned i;
+    unsigned i;
     for (i = 1; i < _argc; ++i)
-      {
-	if (_argv[i][0] == '@')
-	  { // read response file
+    {
+	if(_argv[i][0] == '@')
+        { // read response file
 	    char *pts = _argv[i]+1; // yes a char*, sorry :-)
-        
 	    ifstream ifs (pts);
-
 	    ifs.peek(); // check if it exists
-	    
 	    if (!ifs)
-	      {
-		string msg = (string)("Could not open response file: ") + pts;
+            {
+		string msg = string("Could not open response file: ") + pts;
 		throw runtime_error(msg);
-	      }
-	    
+            }
 	    // read  - will be overwritten by command-line
 	    readFrom(ifs);
 	    break; // stop reading command line args for '@'
-	  }
-      }
-
+        }
+    }
     // now read arguments on command-line
 #ifdef HAVE_SSTREAM
     stringstream stream;
 #else
     strstream stream;
 #endif
-
     for (i = 1; i < _argc; ++i)
     {
         stream << _argv[i] << '\n';
     }
-
     readFrom(stream);
-
     processParam(needHelp);
     processParam(stopOnUnknownParam);
 }
 
-/** 
- * get a handle on a param from its longName
- * 
- * if not found, returns 0 (null pointer :-)
- *
- * Not very clean (requires hard-coding of the long name twice!)
- * but very useful in many occasions...
- */
-eoParam* eoParser::getParamWithLongName(std::string _name)
+
+
+eoParam * eoParser::getParamWithLongName(const std::string& _name) const
 {
-  typedef std::multimap<std::string, eoParam*> MultiMapType;
-  typedef MultiMapType::const_iterator It;
-  for (It p = params.begin(); p != params.end(); ++p)
-    {
-      if (p->second->longName() == prefix+_name)
-	return p->second;
-    }
-  return 0;
+    typedef std::multimap<std::string, eoParam*> MultiMapType;
+    typedef MultiMapType::const_iterator iter;
+    std::string search(prefix+_name);
+    for(iter p = params.begin(); p != params.end(); ++p)
+        if(p->second->longName() == search)
+            return p->second;
+    return 0;
 }
 
-/** it seems finally that the easiest use of the above method is
-    through the following, whose interface is similar to that of the
-    widely-used createParam
-      For some (probably very stupid) reason, I failed to put it in
-      the .cpp. Any hint???
-*/
-/*
-template <class ValueType>
-eoValueParam<ValueType>& eoParser::getORcreateParam (
-		 ValueType _defaultValue, 
-		 std::string _longName, 
-		 std::string _description,
-		 char _shortHand,
-		 std::string _section,
-		 bool _required)
-{
-  eoParam* ptParam = getParamWithLongName(_longName);
-  if (ptParam) {			// found
-    eoValueParam<ValueType>* ptTypedParam = 
-      dynamic_cast<eoValueParam<ValueType>*>(ptParam);
-    return *ptTypedParam;
-  }
-  // not found -> create it
-  return createParam (_defaultValue, _longName, _description, 
-		      _shortHand, _section, _required);
-}
-*/
+
 
 void eoParser::processParam(eoParam& param, std::string section)
 {
@@ -210,7 +170,7 @@ pair<bool, string> eoParser::getValue(eoParam& _param) const
         result.second = it->second;
         result.first = true;
         return result;
-    }        
+    }
     // else (TODO: check environment, just long names)
 
     return result;
@@ -256,7 +216,7 @@ void eoParser::readFrom(istream& is)
 		{
 		  string::iterator equalLocation = find(str.begin() + 2, str.end(), '=');
 		  string value;
-              
+
 		  if (equalLocation == str.end())
 		    { // TODO: it should be the next string
 		      value = "";
@@ -306,7 +266,7 @@ void eoParser::printOn(ostream& os) const
 
     printSectionHeader(os, section);
     //print every param with its value
-    for (; p != params.end(); ++p) 
+    for (; p != params.end(); ++p)
       {
         std::string newSection = p->first;
 
@@ -315,14 +275,14 @@ void eoParser::printOn(ostream& os) const
             section = newSection;
             printSectionHeader(os, section);
         }
-    
+
         eoParam* param = p->second;
 
 	if (!isItThere(*param))  // comment out the ones not set by the user
 	  os << "# ";
 
         string str = "--" + param->longName() + "=" + param->getValue();
-        
+
         os.setf(ios_base::left, ios_base::adjustfield);
         os << setw(40) << str;
 
@@ -330,7 +290,7 @@ void eoParser::printOn(ostream& os) const
         if (param->shortName())
             os << '-' << param->shortName() << " : ";
         os << param->description();
-    
+
         if (param->required())
         {
             os << " REQUIRED ";
@@ -340,7 +300,7 @@ void eoParser::printOn(ostream& os) const
     }
 }
 
-void eoParser::printHelp(ostream& os) 
+void eoParser::printHelp(ostream& os)
 {
     if (needHelp.value() == false && !messages.empty())
     {
@@ -355,7 +315,7 @@ void eoParser::printHelp(ostream& os)
     // print the usage when calling the program from the command line
     os << "Usage: "<< programName<<" [Options]\n";
     // only short usage!
-    os << "Options of the form \"-f[=Value]\" or \"--Name[=value]\"" << endl; 
+    os << "Options of the form \"-f[=Value]\" or \"--Name[=value]\"" << endl;
 
     os << "Where:"<<endl;
 
@@ -368,7 +328,7 @@ void eoParser::printHelp(ostream& os)
     printSectionHeader(os, section);
 
     //print every param with its value
-    for (; p != params.end(); ++p) 
+    for (; p != params.end(); ++p)
     {
         std::string newSection = p->first;
 
@@ -383,7 +343,7 @@ void eoParser::printHelp(ostream& os)
 
         os << "--" <<p->second->longName() <<":\t"
 	     << p->second->description() ;
-	
+
 	  os << "\n" << setw(20) << ( (p->second->required())?"Required":"Optional" );
       os <<". By default: "<<p->second->defValue() << '\n';
     } // for p
@@ -393,10 +353,10 @@ void eoParser::printHelp(ostream& os)
 
 }
 
-bool eoParser::userNeedsHelp(void) 
+bool eoParser::userNeedsHelp(void)
 {
-  /* 
-     check whether there are long or short names entered 
+  /*
+     check whether there are long or short names entered
      without a corresponding parameter
   */
   // first, check if we want to check that !
@@ -445,18 +405,18 @@ bool eoParser::userNeedsHelp(void)
 	    }
 	}
     }
-  return needHelp.value() || !messages.empty(); 
+  return needHelp.value() || !messages.empty();
 }
 
 ///////////////// I put these here at the moment
 ostream & operator<<(ostream & _os, const eoParamParamType & _rate)
-{ 
+{
   _rate.printOn(_os);
   return _os;
 }
 
 istream & operator>>(istream & _is,  eoParamParamType & _rate)
-{ 
+{
   _rate.readFrom(_is);
   return _is;
 }
