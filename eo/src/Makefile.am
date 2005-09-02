@@ -104,7 +104,6 @@ pkginclude_HEADERS 	= eo \
 			eoStochTournamentSelect.h \
 			eoStochasticUniversalSelect.h \
 			eoSurviveAndDie.h \
-			eoToricCellularEasyEA.h \
 			eoTransform.h \
 			eoTruncSelect.h \
 			eoTruncatedSelectMany.h \
