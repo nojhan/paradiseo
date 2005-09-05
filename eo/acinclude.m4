@@ -18,34 +18,6 @@ AC_DEFUN([AC_APPLICATIONS],[dnl
 
 
 
-# AC_PARADISEO()
-#
-# Compile ParadisEO if user requests it.
-AC_DEFUN([AC_PARADISEO],[dnl
-  AC_ARG_ENABLE([paradiseo],[  --enable-paradiseo             build ParadisEO (default=no)],
-    [ case "${enableval}" in
-      yes) paradiseo=true ;;
-      no) paradiseo=false ;;
-      *) AC_MSG_ERROR(bad value ${enableval} for paradiseo option) ;;
-    esac],
-    [paradiseo=false])
-  if test "$paradiseo" = "true"; then
-    AM_CONDITIONAL([USE_PARADISEO], true)
-    AC_CHECK_PROGS(MPICXX, [mpic++ mpiCC mpicxx], [false])
-    if test $MPICXX = false; then
-      AC_MSG_ERROR([mpic++ is required for ParadisEO builds.])
-    fi
-    AC_CHECK_PROGS(MPIRUN, [mpirun], [false])
-    if test $MPIRUN = false; then
-      AC_MSG_ERROR([mpirun is required for ParadisEO builds.])
-    fi
-  else
-    AM_CONDITIONAL([USE_PARADISEO], false)
-  fi
-])
-
-
-
 # AC_TUTORIAL()
 #
 # Compile tutorial unless user requests not to do it.
