@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoUpdatable.h
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -36,14 +36,20 @@
 class eoUpdatable
 {
 public:
+
+    /** @brief Virtual destructor */
+    virtual ~eoUpdatable() {};
+
     virtual void update() = 0;
 };
+
+
 
 /**
    A base class to actually update an eoUpdatable object
 */
 class eoDynUpdater : public eoUpdater
-{public :   
+{public :
     eoDynUpdater(eoUpdatable & _toUpdate) : toUpdate(_toUpdate) {};
 
     virtual void operator()()
@@ -61,14 +67,14 @@ private:
 class eoTimedDynUpdate : public eoDynUpdater
 {
 public :
-    eoTimedDynUpdate(eoUpdatable & _toUpdate, time_t _interval) : 
-    eoDynUpdater(_toUpdate), 
+    eoTimedDynUpdate(eoUpdatable & _toUpdate, time_t _interval) :
+    eoDynUpdater(_toUpdate),
         interval(_interval), last_time(time(0)), first_time(time(0)) {}
 
     void operator()(void)
       {
 	time_t now = time(0);
-	
+
 	if (now >= last_time + interval)
 	  {
 	    last_time = now;

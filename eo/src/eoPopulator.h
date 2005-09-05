@@ -46,6 +46,9 @@ public :
     current = dest.end();
   }
 
+    /** @brief Virtual Constructor */
+    virtual ~eoPopulator() {};
+
   struct OutOfIndividuals {};
 
   /** a populator behaves like an iterator. Hence the operator*
