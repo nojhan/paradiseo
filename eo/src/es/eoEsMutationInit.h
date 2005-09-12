@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoEsMutationInit.h
 // (c) GeNeura Team, 1998 - EEAAX 1999 - Maarten Keijzer 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -34,11 +34,11 @@
 
     eoESMutationInit. Proxy class that is used for initializing the mutation
     operator. It provides an interface between eoEsMutate and the abstract
-    parameterLoader. It also provides the names for the parameters in this 
+    parameterLoader. It also provides the names for the parameters in this
     class as virtual protected member functions.
-    
+
     If you have more than a single ES in a project that need different
-    names in the configuration files, you might consider overriding this class 
+    names in the configuration files, you might consider overriding this class
     to change the names.
 
   @see eoEsMutate
@@ -47,9 +47,9 @@ class eoEsMutationInit
 {
   public :
 
-    eoEsMutationInit(eoParser& _parser, 
-		     std::string _section="ES mutation parameters" ) : 
-      parser(_parser), repSection(_section), 
+    eoEsMutationInit(eoParser& _parser,
+		     std::string _section="ES mutation parameters" ) :
+      parser(_parser), repSection(_section),
       TauLclParam(0), TauGlbParam(0), TauBetaParam(0) {}
 
   // because we have virtual function - size
@@ -59,7 +59,9 @@ class eoEsMutationInit
     {
         if (TauLclParam == 0)
         {
-            TauLclParam = &parser.createParam(1.0, TauLclName(), "Local Tau (before normalization)", TauLclShort(), section());
+            TauLclParam = &parser.getORcreateParam(1.0, TauLclName(),
+                                                   "Local Tau (before normalization)",
+                                                   TauLclShort(), section());
         }
 
         return TauLclParam->value();
@@ -69,7 +71,9 @@ class eoEsMutationInit
     {
         if (TauGlbParam == 0)
         {
-            TauGlbParam = &parser.createParam(1.0, TauGlbName(), "Global Tau (before normalization)", TauGlbShort(), section());
+            TauGlbParam = &parser.getORcreateParam(1.0, TauGlbName(),
+                                                   "Global Tau (before normalization)",
+                                                   TauGlbShort(), section());
         }
 
         return TauGlbParam->value();
@@ -79,25 +83,26 @@ class eoEsMutationInit
     {
         if (TauBetaParam == 0)
         {
-            TauBetaParam = &parser.createParam(0.0873, TauBetaName(), "Beta", TauBetaShort(), section());
+            TauBetaParam = &parser.getORcreateParam(0.0873, TauBetaName(),
+                                                    "Beta", TauBetaShort(), section());
         }
 
         return TauBetaParam->value();
     }
 
   protected :
-    
-    virtual std::string section(void) 
+
+    virtual std::string section(void)
     { return repSection; }
 
     virtual std::string TauLclName(void) const       { return "TauLoc"; }
     virtual char   TauLclShort(void) const           { return 'l'; }
-    
-    virtual std::string TauGlbName(void) const      { return "TauGlob"; }
-    virtual char   TauGlbShort(void) const          { return 'g'; }
 
-    virtual std::string TauBetaName(void) const        { return "Beta"; }
-    virtual char   TauBetaShort(void) const            { return 'b'; }
+    virtual std::string TauGlbName(void) const       { return "TauGlob"; }
+    virtual char   TauGlbShort(void) const           { return 'g'; }
+
+    virtual std::string TauBetaName(void) const      { return "Beta"; }
+    virtual char   TauBetaShort(void) const          { return 'b'; }
 
   private :
 

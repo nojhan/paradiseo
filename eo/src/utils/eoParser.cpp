@@ -123,11 +123,10 @@ void eoParser::processParam(eoParam& param, std::string section)
 {
     // this param enters the parser: add the prefix to the long name
     if (prefix != "")
-      {
+    {
 	param.setLongName(prefix+param.longName());
 	section = prefix + section;  // and to section
-      }
-
+    }
     doRegisterParam(param); // plainly register it
     params.insert(make_pair(section, &param));
 }
@@ -139,9 +138,7 @@ void eoParser::doRegisterParam(eoParam& param) const
         string msg = "Required parameter: " + param.longName() + " missing";
         messages.push_back(msg);
     }
-
     pair<bool, string> value = getValue(param);
-
     if (value.first)
     {
         param.setValue(value.second);
@@ -162,9 +159,7 @@ pair<bool, string> eoParser::getValue(eoParam& _param) const
             return result;
         }
     }
-
     map<string, string>::const_iterator it = longNameMap.find(_param.longName());
-
     if (it != longNameMap.end())
     {
         result.second = it->second;
@@ -172,7 +167,6 @@ pair<bool, string> eoParser::getValue(eoParam& _param) const
         return result;
     }
     // else (TODO: check environment, just long names)
-
     return result;
 }
 
@@ -188,72 +182,72 @@ void eoParser::updateParameters() const
 
 void eoParser::readFrom(istream& is)
 {
-  string str;
-  // we must avoid processing \section{xxx} if xxx is NOT "Parser"
-  bool processing = true;
-  while (is >> str)
+    string str;
+    // we must avoid processing \section{xxx} if xxx is NOT "Parser"
+    bool processing = true;
+    while (is >> str)
     {
-      if (str.find(string("\\section{"))==0) // found section begin
-	processing = (str.find(string("Parser"))<str.size());
+        if (str.find(string("\\section{"))==0) // found section begin
+            processing = (str.find(string("Parser"))<str.size());
 
-      if (processing)		// right \section (or no \section at all)
+        if (processing)		// right \section (or no \section at all)
 	{
-	  if (str[0] == '#')
+            if (str[0] == '#')
 	    { // skip the rest of the line
-	      string tempStr;
-	      getline(is, tempStr);
+                string tempStr;
+                getline(is, tempStr);
 	    }
-	  if (str[0] == '-')
+            if (str[0] == '-')
 	    {
-	      if (str.size() < 2)
+                if (str.size() < 2)
 		{
-		  eoWarning("Missing parameter");
-		  needHelp.value() = true;
-		  return;
+                    eoWarning("Missing parameter");
+                    needHelp.value() = true;
+                    return;
 		}
 
-	      if (str[1] == '-') // two consecutive dashes
+                if (str[1] == '-') // two consecutive dashes
 		{
-		  string::iterator equalLocation = find(str.begin() + 2, str.end(), '=');
-		  string value;
+                    string::iterator equalLocation = find(str.begin() + 2, str.end(), '=');
+                    string value;
 
-		  if (equalLocation == str.end())
+                    if (equalLocation == str.end())
 		    { // TODO: it should be the next string
-		      value = "";
+                        value = "";
 		    }
-		  else
+                    else
 		    {
-		      value = string(equalLocation + 1, str.end());
+                        value = string(equalLocation + 1, str.end());
 		    }
 
-		  string name(str.begin() + 2, equalLocation);
-		  longNameMap[name] = value;
+                    string name(str.begin() + 2, equalLocation);
+                    longNameMap[name] = value;
 
 		}
-	      else // it should be a char
+                else // it should be a char
 		{
-	          string value = "1"; // flags do not need a special
+                    string value = "1"; // flags do not need a special
 
-		  if (str.size() >= 2)
+                    if (str.size() >= 2)
 		    {
-		      if (str[2] == '=')
+                        if (str[2] == '=')
 			{
-			  if (str.size() >= 3)
-			    value = string(str.begin() + 3, str.end());
+                            if (str.size() >= 3)
+                                value = string(str.begin() + 3, str.end());
 			}
-		      else
+                        else
 			{
-			  value = string(str.begin() + 2, str.end());
+                            value = string(str.begin() + 2, str.end());
 			}
 		    }
 
-		  shortNameMap[str[1]] = value;
+                    shortNameMap[str[1]] = value;
 		}
 	    }
 	}
-  }
+    }
 
-  updateParameters();
+    updateParameters();
 }
 
 void eoParser::printOn(ostream& os) const

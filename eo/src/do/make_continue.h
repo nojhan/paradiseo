@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // make_continue.h
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -94,7 +94,10 @@ eoContinue<Indi> & do_make_continue(eoParser& _parser, eoState& _state, eoEvalFu
       }
 
   // Same thing with Eval - but here default value is 0
-  eoValueParam<unsigned long>& maxEvalParam = _parser.createParam((unsigned long)0, "maxEval", "Maximum number of evaluations (0 = none)",'E',"Stopping criterion");
+  eoValueParam<unsigned long>& maxEvalParam
+      = _parser.getORcreateParam((unsigned long)0, "maxEval",
+                                 "Maximum number of evaluations (0 = none)",
+                                 'E', "Stopping criterion");
 
     if (maxEvalParam.value()) // positive: -> define and store
       {

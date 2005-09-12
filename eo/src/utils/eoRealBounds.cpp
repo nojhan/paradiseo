@@ -1,7 +1,7 @@
 #ifdef _MSC_VER
 // to avoid long name warnings
 #pragma warning(disable:4786)
-#endif 
+#endif
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -18,7 +18,7 @@
 #include "eoRealVectorBounds.h"
 
 
-// the global dummy bounds 
+// the global dummy bounds
 // (used for unbounded variables when bounds are required)
 eoRealNoBounds eoDummyRealNoBounds;
 eoRealVectorNoBounds eoDummyVectorNoBounds(0);
@@ -74,7 +74,7 @@ eoRealVectorBounds::eoRealVectorBounds(const eoRealVectorBounds & _b):
 
 // the readFrom method of eoRealVectorNoBounds:
 // only calls the readFrom(string) - for param reading
-void eoRealVectorBounds::readFrom(std::istream& _is) 
+void eoRealVectorBounds::readFrom(std::istream& _is)
 {
   std::string value;
   _is >> value;
@@ -95,7 +95,7 @@ void eoRealVectorBounds::readFrom(std::string _value)
   ownedBounds.resize(0);
   factor.resize(0);
   resize(0);
-  
+
   // now read
   std::string delim(",; ");
   while (_value.size()>0)
@@ -129,7 +129,7 @@ void eoRealVectorBounds::readFrom(std::string _value)
       std::string sBounds = _value.substr(posDeb+1, posFin-posDeb-1);
       // and remove from original string
       _value = _value.substr(posFin+1);
-  
+
       remove_leading(sBounds, delim);
       size_t posDelim = sBounds.find_first_of(delim);
       if (posDelim >= sBounds.size())
@@ -193,10 +193,10 @@ void eoRealVectorBounds::adjust_size(unsigned _dim)
     }
 }
 
-/** the constructor for eoGeneralRealBound - from a string 
- *  very similar to the eoRealVectorBounds::readFrom above 
+/** the constructor for eoGeneralRealBound - from a string
+ *  very similar to the eoRealVectorBounds::readFrom above
  *  but was written much later so the readFrom does not call this one
- *  as it should do 
+ *  as it should do
  */
 eoRealBounds* eoGeneralRealBounds::getBoundsFromString(std::string _value)
 {
@@ -208,7 +208,7 @@ eoRealBounds* eoGeneralRealBounds::getBoundsFromString(std::string _value)
 
   // look for opening char
   size_t posDeb = _value.find_first_of(beginOrClose);	// allow ]a,b]
-  if (posDeb >= _value.size())	// nothing left to read 
+  if (posDeb >= _value.size())	// nothing left to read
     throw std::runtime_error("Syntax error in eoGeneralRealBounds Ctor");
 
   // ending char: next {}() after posDeb
@@ -220,7 +220,7 @@ eoRealBounds* eoGeneralRealBounds::getBoundsFromString(std::string _value)
   std::string sBounds = _value.substr(posDeb+1, posFin-posDeb-1);
   // and remove from original string
   _value = _value.substr(posFin+1);
-  
+
   remove_leading(sBounds, delim);
   size_t posDelim = sBounds.find_first_of(delim);
   if (posDelim >= sBounds.size())
@@ -260,7 +260,7 @@ eoRealBounds* eoGeneralRealBounds::getBoundsFromString(std::string _value)
 	  if (maxBound <= minBound)
 	    throw std::runtime_error("Syntax error in eoGeneralRealBounds Ctor");
 	  locBound = new eoRealInterval(minBound, maxBound);
-	}	  
+	}
       else if (!minBounded && !maxBounded)	// no bound at all
 	locBound = new eoRealNoBounds;
       else if (!minBounded && maxBounded)

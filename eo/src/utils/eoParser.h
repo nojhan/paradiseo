@@ -24,7 +24,7 @@
  */
 //-----------------------------------------------------------------------------
 /**
-CVS Info: $Date: 2005-08-29 07:50:50 $ $Version$ $Author: kuepper $
+CVS Info: $Date: 2005-09-12 17:53:24 $ $Version$ $Author: kuepper $
 */
 #ifndef eoParser_h
 #define eoParser_h
@@ -73,29 +73,27 @@ public :
      * @param _required           If it is a necessary parameter or not
      */
     template <class ValueType>
-    eoValueParam<ValueType>& createParam
-               (ValueType _defaultValue,
-                std::string _longName,
-                std::string _description,
-                char _shortHand = 0,
-                std::string _section = "",
-                bool _required = false)
-    {
-        eoValueParam<ValueType>* p = new eoValueParam<ValueType>(_defaultValue,
-                                                                 _longName,
-                                                                 _description,
-                                                                 _shortHand,
-                                                                 _required);
-        ownedParams.push_back(p);
-        processParam(*p, _section);
-        return *p;
-    }
+    eoValueParam<ValueType>& createParam(ValueType _defaultValue,
+                                         std::string _longName,
+                                         std::string _description,
+                                         char _shortHand = 0,
+                                         std::string _section = "",
+                                         bool _required = false)
+        {
+            eoValueParam<ValueType>* p = new eoValueParam<ValueType>(_defaultValue,
+                                                                     _longName,
+                                                                     _description,
+                                                                     _shortHand,
+                                                                     _required);
+            ownedParams.push_back(p);
+            processParam(*p, _section);
+            return *p;
+        }
 
 
 private :
 
     std::vector<eoParam*> ownedParams;
-
 };
 
 
@@ -198,7 +196,10 @@ public:
 
 
 
-    /** Make sure parameter has specific value
+    /** Set parameter value or create parameter
+
+    This makes sure that the specified parameter has the given value.
+    If the parameter does not exist yet, it is created.
 
     This requires that operator<< is defined for ValueType.
     */
@@ -207,18 +208,19 @@ public:
                           std::string _description, char _shortHand = 0,
                           std::string _section = "", bool _required = false)
         {
-            eoParam *param = getParamWithLongName(_longName);
-            if(0 == param) {
-                createParam(_defaultValue, _longName, _description,
-                            _shortHand, _section, _required);
-            } else {
+            eoValueParam<ValueType>& param = createParam(_defaultValue, _longName, _description,
+                                                         _shortHand, _section, _required);
 #ifdef HAVE_SSTREAM
-                std::ostringstream os;
+            std::ostringstream os;
 #else
-                std::ostrstream os;
+            std::ostrstream os;
 #endif
-                os << _defaultValue;
-                dynamic_cast<eoValueParam<int> *>(param)->setValue(os.str());
+            os << _defaultValue;
+            if(isItThere(param)) {
+                param.setValue(os.str());
+            } else {
+                longNameMap[_longName] = os.str();
+                shortNameMap[_shortHand] = os.str();
             }
         }
 

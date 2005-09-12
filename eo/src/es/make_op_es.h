@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // make_op.h - the real-valued version
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -59,9 +59,9 @@
  * This is why the template is the complete EOT even though only the fitness
  * is actually templatized here: the following only applies to bitstrings
  *
- * Note : the last parameter is an eoInit: if some operator needs some info 
+ * Note : the last parameter is an eoInit: if some operator needs some info
  *        about the gneotypes, the init has it all (e.g. bounds, ...)
- *        Simply do 
+ *        Simply do
  *        EOT myEO;
  *        _init(myEO);
  *        and myEO is then an ACTUAL object
@@ -74,24 +74,33 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
   unsigned vecSize = _init.size();
 
   // First, decide whether the objective variables are bounded
-  eoValueParam<eoRealVectorBounds>& boundsParam = _parser.createParam(eoRealVectorBounds(vecSize,eoDummyRealNoBounds), "objectBounds", "Bounds for variables", 'B', "Variation Operators");
+  eoValueParam<eoRealVectorBounds>& boundsParam
+      = _parser.getORcreateParam(eoRealVectorBounds(vecSize,eoDummyRealNoBounds),
+                                 "objectBounds", "Bounds for variables", 'B', "Variation Operators");
 
-    // now we read Pcross and Pmut, 
-  eoValueParam<std::string>& operatorParam =  _parser.createParam(std::string("SGA"), "operator", "Description of the operator (SGA only now)", 'o', "Variation Operators");
+    // now we read Pcross and Pmut,
+  eoValueParam<std::string>& operatorParam
+      = _parser.getORcreateParam(std::string("SGA"), "operator",
+                                 "Description of the operator (SGA only now)",
+                                 'o', "Variation Operators");
 
   if (operatorParam.value() != std::string("SGA"))
     throw std::runtime_error("Sorry, only SGA-like operator available right now\n");
 
-    // now we read Pcross and Pmut, 
-    // and create the eoGenOp that is exactly 
+    // now we read Pcross and Pmut,
+    // and create the eoGenOp that is exactly
     // crossover with pcross + mutation with pmut
 
-  eoValueParam<double>& pCrossParam = _parser.createParam(1.0, "pCross", "Probability of Crossover", 'C', "Variation Operators" );
+  eoValueParam<double>& pCrossParam
+      = _parser.getORcreateParam(1.0, "pCross", "Probability of Crossover",
+                                 'C', "Variation Operators" );
   // minimum check
   if ( (pCrossParam.value() < 0) || (pCrossParam.value() > 1) )
     throw std::runtime_error("Invalid pCross");
 
-  eoValueParam<double>& pMutParam = _parser.createParam(1.0, "pMut", "Probability of Mutation", 'M', "Variation Operators" );
+  eoValueParam<double>& pMutParam
+      = _parser.getORcreateParam(1.0, "pMut", "Probability of Mutation",
+                                 'M', "Variation Operators" );
   // minimum check
   if ( (pMutParam.value() < 0) || (pMutParam.value() > 1) )
     throw std::runtime_error("Invalid pMut");
@@ -100,10 +109,19 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
   // crossover
   /////////////
   // ES crossover
-  eoValueParam<std::string>& crossTypeParam = _parser.createParam(std::string("global"), "crossType", "Type of ES recombination (global or standard)", 'C', "Variation Operators");
-  
-  eoValueParam<std::string>& crossObjParam = _parser.createParam(std::string("discrete"), "crossObj", "Recombination of object variables (discrete, intermediate or none)", 'O', "Variation Operators");
-  eoValueParam<std::string>& crossStdevParam = _parser.createParam(std::string("intermediate"), "crossStdev", "Recombination of mutation strategy parameters (intermediate, discrete or none)", 'S', "Variation Operators");
+  eoValueParam<std::string>& crossTypeParam
+      = _parser.getORcreateParam(std::string("global"), "crossType",
+                                 "Type of ES recombination (global or standard)",
+                                 'C', "Variation Operators");
+
+  eoValueParam<std::string>& crossObjParam
+      = _parser.getORcreateParam(std::string("discrete"), "crossObj",
+                                 "Recombination of object variables (discrete, intermediate or none)",
+                                 'O', "Variation Operators");
+  eoValueParam<std::string>& crossStdevParam
+      = _parser.getORcreateParam(std::string("intermediate"), "crossStdev",
+                                 "Recombination of mutation strategy parameters (intermediate, discrete or none)",
+                                 'S', "Variation Operators");
 
   // The pointers: first the atom Xover
   eoBinOp<double> *ptObjAtomCross = NULL;
@@ -128,7 +146,7 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
     ptStdevAtomCross = new eoBinCloneOp<double>;
   else throw std::runtime_error("Invalid mutation strategy parameter crossover type");
 
-  // and build the indi Xover 
+  // and build the indi Xover
   if (crossTypeParam.value() == std::string("global"))
     ptCross = new eoEsGlobalXover<EOT>(*ptObjAtomCross, *ptStdevAtomCross);
   else if (crossTypeParam.value() == std::string("standard"))
@@ -145,15 +163,15 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
   _state.storeFunctor(ptStdevAtomCross);
   _state.storeFunctor(ptCross);
 
-  //  mutation 
+  //  mutation
   /////////////
 
   // Ok, time to set up the self-adaptive mutation
   // Proxy for the mutation parameters
   eoEsMutationInit mutateInit(_parser, "Variation Operators");
-  
+
   eoEsMutate<EOT> & mut =  _state.storeFunctor(
-           new eoEsMutate<EOT>(mutateInit, boundsParam.value()));   
+           new eoEsMutate<EOT>(mutateInit, boundsParam.value()));
 
   // now the general op - a sequential application of crossover and mutatation
   // no need to first have crossover combined with a clone as it is an
