@@ -24,7 +24,7 @@
  */
 //-----------------------------------------------------------------------------
 /**
-CVS Info: $Date: 2005-09-12 17:53:24 $ $Version$ $Author: kuepper $
+CVS Info: $Date: 2005-09-13 10:24:50 $ $Version$ $Author: kuepper $
 */
 #ifndef eoParser_h
 #define eoParser_h
@@ -202,11 +202,23 @@ public:
     If the parameter does not exist yet, it is created.
 
     This requires that operator<< is defined for ValueType.
+
+
+    @param _defaultValue Default value.
+    @param _longName     Long name of the argument.
+    @param _description  Description of the parameter.
+    @param _shortName    Short name of the argument (Optional)
+    @param _section      Name of the section where the parameter belongs.
+    @param _required     Is the parameter mandatory?
+    @return Corresponding parameter.
     */
     template <class ValueType>
-    void setORcreateParam(ValueType _defaultValue, std::string _longName,
-                          std::string _description, char _shortHand = 0,
-                          std::string _section = "", bool _required = false)
+    eoValueParam<ValueType>& setORcreateParam(ValueType _defaultValue,
+                                              std::string _longName,
+                                              std::string _description,
+                                              char _shortHand = 0,
+                                              std::string _section = "",
+                                              bool _required = false)
         {
             eoValueParam<ValueType>& param = createParam(_defaultValue, _longName, _description,
                                                          _shortHand, _section, _required);
@@ -222,6 +234,7 @@ public:
                 longNameMap[_longName] = os.str();
                 shortNameMap[_shortHand] = os.str();
             }
+            return param;
         }
 
 
