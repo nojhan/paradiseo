@@ -151,7 +151,7 @@ public :
  */
  double uniform(double m = 1.0)
    { // random number between [0, m]
-     return m * double(rand()) / double(rand_max());
+     return m * double(rand()) / double(1.0 + rand_max());
    }
  
  /**
@@ -235,6 +235,15 @@ public :
      return --i;
    }
 
+ /** 
+  * choice(vec), returns a uniformly chosen element from the vector
+  */
+ template <class T>
+     const T& choice(const std::vector<T>& vec) { return vec[rng.random(vec.size())]; }
+ 
+ template <class T>
+     T& choice(std::vector<T>& vec) { return vec[rng.random(vec.size())]; }
+ 
  ///
  void printOn(std::ostream& _os) const
    {
