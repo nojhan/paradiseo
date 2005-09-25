@@ -439,5 +439,25 @@ inline double eoRng::normal(void)
   return (var2 * factor);
 }
 
+namespace eo {
+// a few convenience functions for generating numbers
+    
+    /**
+     * Templatized random function, works with most basic types such as:
+     *	char
+     *	int
+     *	unsigned
+     *	float
+     *	double
+     */
+    template <typename T>
+	inline
+	T random(const T& mx) { return static_cast<T>(rng.uniform() * mx); }
+    
+    /** Normal distribution */
+    inline double normal() { return rng.normal(); }
+}
+
+
 #endif
 
