@@ -252,10 +252,10 @@ public :
   * choice(vec), returns a uniformly chosen element from the vector
   */
  template <class T>
-     const T& choice(const std::vector<T>& vec) { return vec[rng.random(vec.size())]; }
+     const T& choice(const std::vector<T>& vec) { return vec[random(vec.size())]; }
 
  template <class T>
-     T& choice(std::vector<T>& vec) { return vec[rng.random(vec.size())]; }
+     T& choice(std::vector<T>& vec) { return vec[random(vec.size())]; }
 
  ///
  void printOn(std::ostream& _os) const
