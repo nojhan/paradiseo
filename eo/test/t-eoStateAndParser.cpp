@@ -5,10 +5,10 @@
 #pragma warning(disable:4786)
 #endif
 
-#include <stdexcept>  // runtime_error 
+#include <stdexcept>  // runtime_error
 
 //-----------------------------------------------------------------------------
-// tt.cpp: 
+// tt.cpp:
 //
 //-----------------------------------------------------------------------------
 
@@ -36,16 +36,16 @@ struct Dummy : public EO<double>
 
 int the_main(int argc, char **argv)
 { // ok, we have a command line parser and a state
-  
+
     typedef eoBit<float> Chrom;
 
     eoParser parser(argc, argv);
-      
+
     // Define Parameters
-    eoValueParam<unsigned int> dimParam((unsigned int)(5), "dimension", "dimension"); 
-    eoValueParam<double> rate(0.01, "mutationRatePerBit", "Initial value for mutation rate per bit"); 
+    eoValueParam<unsigned int> dimParam((unsigned int)(5), "dimension", "dimension");
+    eoValueParam<double> rate(0.01, "mutationRatePerBit", "Initial value for mutation rate per bit");
     eoValueParam<double> factor(0.99, "mutationFactor", "Decrease factor for mutation rate");
-    eoValueParam<uint32> seed(time(0), "seed", "Random number seed");
+    eoValueParam<uint32_t> seed(time(0), "seed", "Random number seed");
     // test if user entered or if default value used
     if (parser.isItThere(seed))
       std::cout << "YES\n";
@@ -55,7 +55,7 @@ int the_main(int argc, char **argv)
     eoValueParam<std::string> load_name("", "Load","Load",'L');
     eoValueParam<std::string> save_name("", "Save","Save",'S');
 
- 
+
     // Register them
     parser.processParam(dimParam,   "Genetic Operators");
     parser.processParam(rate,       "Genetic Operators");
@@ -73,16 +73,16 @@ int the_main(int argc, char **argv)
 
    eoState state;
    state.registerObject(parser);
- 
+
 
    if (load_name.value() != "")
-   { // load the parser. This is only neccessary when the user wants to 
+   { // load the parser. This is only neccessary when the user wants to
      // be able to change the parameters in the state file by hand.
        state.load(load_name.value()); // load the parser
    }
-  
+
     // Create the algorithm here
-    
+
     // Register the algorithm
     state.registerObject(rng);
     //state.registerObject(pop);

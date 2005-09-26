@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoGenOp.cpp
 // (c) Maarten Keijzer and Marc Schoenauer, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -126,7 +126,7 @@ class one2threeOp : public eoGenOp<EOT> // :-)
 
 class two2oneOp : public eoGenOp<EOT> // :-)
 {
-  public: 
+  public:
     unsigned max_production(void) { return 1; }
 
     void apply(eoPopulator<EOT>& _plop)
@@ -141,7 +141,7 @@ class two2oneOp : public eoGenOp<EOT> // :-)
 
 class three2threeOp : public eoGenOp<EOT> // :-)
 {
-  public: 
+  public:
     unsigned max_production(void) { return 3; }
 
     void apply(eoPopulator<EOT>& _plop)
@@ -182,7 +182,7 @@ void init(eoPop<Dummy> & _pop, unsigned _pSize)
 	char s[255];
       std::ostrstream os(s, 254);
 #endif
-      
+
       os << i << std::ends;
       _pop[i] = Dummy(os.str());
       _pop[i].fitness(i);
@@ -197,7 +197,7 @@ int the_main(int argc, char **argv)
   eoValueParam<unsigned int> parentSizeParam = parser.createParam(unsigned(10), "parentSize", "Parent size",'P');
     pSize = parentSizeParam.value(); // global variable
 
-    eoValueParam<uint32> seedParam(time(0), "seed", "Random number seed", 'S');
+    eoValueParam<uint32_t> seedParam(time(0), "seed", "Random number seed", 'S');
     parser.processParam( seedParam );
     eo::rng.reseed(seedParam.value());
 

@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // make_pop.h
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -49,7 +49,7 @@ template <class EOT>
 eoPop<EOT>&  do_make_pop(eoParser & _parser, eoState& _state, eoInit<EOT> & _init)
 {
   // random seed
-    eoValueParam<uint32>& seedParam = _parser.createParam(uint32(0), "seed", "Random number seed", 'S');
+    eoValueParam<uint32_t>& seedParam = _parser.createParam(uint32_t(0), "seed", "Random number seed", 'S');
     if (seedParam.value() == 0)
 	seedParam.value() = time(0);
     eoValueParam<unsigned>& popSize = _parser.createParam(unsigned(20), "popSize", "Population Size", 'P', "Evolution Engine");
@@ -57,10 +57,10 @@ eoPop<EOT>&  do_make_pop(eoParser & _parser, eoState& _state, eoInit<EOT> & _ini
   // Either load or initialize
   // create an empty pop and let the state handle the memory
   eoPop<EOT>& pop = _state.takeOwnership(eoPop<EOT>());
-  
+
   eoValueParam<std::string>& loadNameParam = _parser.createParam(std::string(""), "Load","A save file to restart from",'L', "Persistence" );
   eoValueParam<bool> & recomputeFitnessParam = _parser.createParam(false, "recomputeFitness", "Recompute the fitness after re-loading the pop.?", 'r',  "Persistence" );
-    
+
   if (loadNameParam.value() != "") // something to load
     {
       // create another state for reading
@@ -71,7 +71,7 @@ eoPop<EOT>&  do_make_pop(eoParser & _parser, eoState& _state, eoInit<EOT> & _ini
       inState.registerObject(pop);
       inState.registerObject(rng);
       inState.load(loadNameParam.value()); //  load the pop and the rng
-      // the fitness is read in the file: 
+      // the fitness is read in the file:
       // do only evaluate the pop if the fitness has changed
       if (recomputeFitnessParam.value())
 	{
@@ -92,7 +92,7 @@ eoPop<EOT>&  do_make_pop(eoParser & _parser, eoState& _state, eoInit<EOT> & _ini
     }
 
   if (pop.size() < popSize.value()) // missing some guys
-    {	
+    {
       // Init pop from the randomizer: need to use the append function
       pop.append(popSize.value(), _init);
     }

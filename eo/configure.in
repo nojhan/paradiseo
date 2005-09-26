@@ -30,6 +30,7 @@ AC_CHECK_PROG(DOXYGEN, doxygen, doxygen, true)
 
 dnl Checks for header files.
 AC_HEADER_STDC
+AC_CHECK_HEADERS(inttypes.h)
 AC_CHECK_HEADERS(limits.h)
 AC_CHECK_HEADERS(values.h)
 AC_CXX_HAVE_NUMERIC_LIMITS
@@ -39,6 +40,8 @@ AC_CXX_NAMESPACES
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
 AC_C_INLINE
+AC_CHECK_SIZEOF([unsigned long])
+AC_CHECK_TYPES(uint32_t)
 AC_TYPE_SIZE_T
 
 dnl Checks for libraries.

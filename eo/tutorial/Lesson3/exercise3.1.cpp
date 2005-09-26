@@ -13,7 +13,7 @@
 // standard includes
 #include <fstream>
 #include <iostream>   // cout
-#include <stdexcept>  // runtime_error 
+#include <stdexcept>  // runtime_error
 #ifdef HAVE_SSTREAM
 #include <sstream>
 #else
@@ -42,8 +42,8 @@ void main_function(int argc, char **argv)
 //-----------------------------------------------------------------------------
 // instead of having all values of useful parameters as constants, read them:
 // either on the command line (--option=value or -o=value)
-//     or in a parameter file (same syntax, order independent, 
-//                             # = usual comment character 
+//     or in a parameter file (same syntax, order independent,
+//                             # = usual comment character
 //     or in the environment (TODO)
 
   // First define a parser from the command-line arguments
@@ -52,7 +52,7 @@ void main_function(int argc, char **argv)
     // For each parameter, define Parameter, read it through the parser,
     // and assign the value to the variable
 
-    eoValueParam<uint32> seedParam(time(0), "seed", "Random number seed", 'S');
+    eoValueParam<uint32_t> seedParam(time(0), "seed", "Random number seed", 'S');
     parser.processParam( seedParam );
     unsigned seed = seedParam.value();
 
@@ -88,7 +88,7 @@ void main_function(int argc, char **argv)
     unsigned steadyGen = steadyGenParam.value();
 
    // operators probabilities at the algorithm level
-    eoValueParam<double> pCrossParam(0.6, "pCross", "Probability of Crossover", 'C'); 
+    eoValueParam<double> pCrossParam(0.6, "pCross", "Probability of Crossover", 'C');
     parser.processParam( pCrossParam, "Genetic Operators" );
     double pCross = pCrossParam.value();
 
@@ -117,7 +117,7 @@ void main_function(int argc, char **argv)
     eoValueParam<double> bitFlipRateParam(0.01, "bitFlipRate", "Relative rate for bit-flip mutation", 'B');
     parser.processParam( bitFlipRateParam, "Genetic Operators" );
     double bitFlipRate =  bitFlipRateParam.value();
-      
+
     eoValueParam<double> oneBitRateParam(0.01, "oneBitRate", "Relative rate for deterministic bit-flip mutation", 'D');
     parser.processParam( oneBitRateParam, "Genetic Operators" );
     double oneBitRate = oneBitRateParam.value();
@@ -163,11 +163,11 @@ void main_function(int argc, char **argv)
   // eventually with different parameters
   inState.registerObject(rng);
   inState.registerObject(pop);
-    
+
   if (loadName != "")
     {
       inState.load(loadName); //  load the pop and the rng
-      // the fitness is read in the file: 
+      // the fitness is read in the file:
       // do only evaluate the pop if the fitness has changed
     }
   else
@@ -177,14 +177,14 @@ void main_function(int argc, char **argv)
       // based on boolean_generator class (see utils/rnd_generator.h)
       eoUniformGenerator<bool> uGen;
       eoInitFixedLength<Indi> random(vecSize, uGen);
-	
+
       // Init pop from the randomizer: need to use the append function
-      pop.append(popSize, random);      
-      // and evaluate pop (STL syntax)    
+      pop.append(popSize, random);
+      // and evaluate pop (STL syntax)
       apply<Indi>(eval, pop);
     } // end of initializatio of the population
 
-// OUTPUT    
+// OUTPUT
   // sort pop for pretty printout
   //   pop.sort();
   // Print (sorted) intial population (raw printout)
@@ -202,13 +202,13 @@ void main_function(int argc, char **argv)
   eoSelectPerc<Indi> select(selectOne);// by default rate==1
 
 // REPLACE
-  // And we now have the full slection/replacement - though with 
+  // And we now have the full slection/replacement - though with
   // generational replacement at the moment :-)
-  eoGenerationalReplacement<Indi> replace; 
+  eoGenerationalReplacement<Indi> replace;
   // want to add (weak) elitism? easy!
   // rename the eoGenerationalReplacement replace_main,
   // then encapsulate it in the elitist replacement
-  //  eoWeakElitistReplacement<Indi> replace(replace_main); 
+  //  eoWeakElitistReplacement<Indi> replace(replace_main);
 
 // OPERATORS
   //////////////////////////////////////
@@ -230,7 +230,7 @@ void main_function(int argc, char **argv)
   // standard bit-flip mutation for bitstring
   eoBitMutation<Indi>  mutationBitFlip(pMutPerBit);
   // mutate exactly 1 bit per individual
-  eoDetBitFlip<Indi> mutationOneBit; 
+  eoDetBitFlip<Indi> mutationOneBit;
   // Combine them with relative rates
   eoPropCombinedMonOp<Indi> mutation(mutationBitFlip, bitFlipRate);
   mutation.add(mutationOneBit, oneBitRate, true);
@@ -252,27 +252,27 @@ void main_function(int argc, char **argv)
 #ifndef _MSC_VER
   eoCtrlCContinue<Indi> ctrlC;
   continuator.add(ctrlC);
-#endif  
-  
+#endif
+
 // CHECKPOINT
-  // but now you want to make many different things every generation 
+  // but now you want to make many different things every generation
   // (e.g. statistics, plots, ...).
   // the class eoCheckPoint is dedicated to just that:
 
-  // Declare a checkpoint (from a continuator: an eoCheckPoint 
+  // Declare a checkpoint (from a continuator: an eoCheckPoint
   // IS AN eoContinue and will be called in the loop of all algorithms)
   eoCheckPoint<Indi> checkpoint(continuator);
-  
+
     // Create a counter parameter
     eoValueParam<unsigned> generationCounter(0, "Gen.");
-    
-    // Create an incrementor (sub-class of eoUpdater). Note that the 
-    // parameter's value is passed by reference, 
+
+    // Create an incrementor (sub-class of eoUpdater). Note that the
+    // parameter's value is passed by reference,
     // so every time the incrementer is updated (every generation),
     // the data in generationCounter will change.
     eoIncrementor<unsigned> increment(generationCounter.value());
 
-    // Add it to the checkpoint, 
+    // Add it to the checkpoint,
     // so the counter is updated (here, incremented) every generation
     checkpoint.add(increment);
 
@@ -306,7 +306,7 @@ void main_function(int argc, char **argv)
     monitor.add(SecondStat);
     monitor.add(fdcStat);
 
-    // test de eoPopStat and/or eoSortedPopStat. 
+    // test de eoPopStat and/or eoSortedPopStat.
     // Dumps the whole pop every 10 gen.
     //    eoSortedPopStat<Indi> popStat(10, "Dump of whole population");
 //     eoPopStat<Indi> popStat(10, "Dump of whole population");
@@ -365,9 +365,9 @@ void main_function(int argc, char **argv)
 
     // and feed the state to state savers
     // save state every 100th  generation
-    eoCountedStateSaver stateSaver1(100, outState, "generation"); 
-    // save state every 1 seconds 
-    eoTimedStateSaver   stateSaver2(1, outState, "time"); 
+    eoCountedStateSaver stateSaver1(100, outState, "generation");
+    // save state every 1 seconds
+    eoTimedStateSaver   stateSaver2(1, outState, "time");
 
     // Don't forget to add the two savers to the checkpoint
     checkpoint.add(stateSaver1);
@@ -379,13 +379,13 @@ void main_function(int argc, char **argv)
   // the algorithm
   ////////////////////////////////////////
 
-  // Easy EA requires 
+  // Easy EA requires
   // selection, transformation, eval, replacement, and stopping criterion
   eoEasyEA<Indi> gga(checkpoint, eval, select, transform, replace);
 
   // Apply algo to pop - that's it!
   gga(pop);
-  
+
 // OUTPUT
   // Print (sorted) intial population
   pop.sort();

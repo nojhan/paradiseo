@@ -5,7 +5,7 @@
 #pragma warning(disable:4786)
 #endif
 
-#include <stdexcept>  // runtime_error 
+#include <stdexcept>  // runtime_error
 
 // general
 #include <eo>
@@ -52,7 +52,7 @@ void testSelectMany(eoSelect<EOT> & _select, std::string _name)
 {
     unsigned i;
   std::cout << "\n\n" << fitnessType + _name << std::endl;
-  std::cout << "===============\n"; 
+  std::cout << "===============\n";
 
     eoDummyPop parents(parentsOrg);
     eoDummyPop offspring(0);
@@ -93,7 +93,7 @@ void testSelectOne(eoSelectOne<EOT> & _select, eoHowMany & _offspringRate,
 //-----------------------------------------------------------------------------
 
 int the_main(int argc, char **argv)
-{ 
+{
   eoParser parser(argc, argv);
   eoValueParam<unsigned> parentSizeParam = parser.createParam(unsigned(10), "parentSize", "Parent size",'P');
     pSize = parentSizeParam.value(); // global variable
@@ -129,7 +129,7 @@ eoValueParam<unsigned> tournamentSizeParam = parser.createParam(unsigned(2), "to
 
     // hard-coded directory name ...
     system("mkdir ResSelect");
-    std::cout << "Testing the Selections\nParents size = " << pSize 
+    std::cout << "Testing the Selections\nParents size = " << pSize
 	 << ", offspring rate = " << oRate;
     std::cout << " and putting rsulting files in dir ResSelect" << std::endl;
 
@@ -150,13 +150,14 @@ eoValueParam<unsigned> tournamentSizeParam = parser.createParam(unsigned(2), "to
 	  parentsOrg[i].fitness(i);
 	parentsOrg[pSize-1].fitness(10*pSize);
       }
-    else 
+    else
       throw std::runtime_error("Invalid fitness Type"+fitnessType);
 
     std::cout << "Initial parents (odd)\n" << parentsOrg << std::endl;
 
   // random seed
-    eoValueParam<uint32>& seedParam = parser.createParam(uint32(0), "seed", "Random number seed", 'S');
+    eoValueParam<uint32_t>& seedParam = parser.createParam(uint32_t(0), "seed",
+                                                           "Random number seed", 'S');
     if (seedParam.value() == 0)
 	seedParam.value() = time(0);
     rng.reseed(seedParam.value());

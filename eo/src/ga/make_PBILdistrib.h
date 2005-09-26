@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // make_PBILdistrib.h
 // (c) Marc Schoenauer, Maarten Keijzer, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -49,15 +49,15 @@ template <class EOT>
 eoPBILDistrib<EOT> &  do_make_PBILdistrib(eoParser & _parser, eoState& _state, EOT)
 {
   // First the random seed
-    eoValueParam<uint32>& seedParam = _parser.createParam(uint32(0), "seed", "Random number seed", 'S');
+    eoValueParam<uint32_t>& seedParam = _parser.createParam(uint32_t(0), "seed", "Random number seed", 'S');
     if (seedParam.value() == 0)
 	seedParam.value() = time(0);
 
-    // chromosome size: 
+    // chromosome size:
     unsigned theSize;
     // but it might have been already read in the definition fo the performance
-    eoParam* ptParam = _parser.getParamWithLongName(std::string("chromSize")); 
-    
+    eoParam* ptParam = _parser.getParamWithLongName(std::string("chromSize"));
+
     if (!ptParam)			   // not already defined: read it here
       {
 	theSize = _parser.createParam(unsigned(10), "chromSize", "The length of the bitstrings", 'n',"Problem").value();
@@ -67,17 +67,17 @@ eoPBILDistrib<EOT> &  do_make_PBILdistrib(eoParser & _parser, eoState& _state, E
 	eoValueParam<unsigned>* ptChromSize = dynamic_cast<eoValueParam<unsigned>*>(ptParam);
 	theSize = ptChromSize->value();
       }
-    
+
     eoPBILDistrib<EOT> * ptDistrib = new eoPBILDistrib<EOT>(theSize);
     _state.storeFunctor(ptDistrib);
 
     // now the initialization: read a previously saved distribution, or random
-  eoValueParam<std::string>& loadNameParam = _parser.createParam(std::string(""), "Load","A save file to restart from",'L', "Persistence" ); 
+  eoValueParam<std::string>& loadNameParam = _parser.createParam(std::string(""), "Load","A save file to restart from",'L', "Persistence" );
   if (loadNameParam.value() != "") // something to load
     {
       // create another state for reading
       eoState inState;		// a state for loading - WITHOUT the parser
-      // register the rng and the distribution in the state, 
+      // register the rng and the distribution in the state,
       // so they can be loaded,
       // and the present run will be the exact continuation of the saved run
       // eventually with different parameters

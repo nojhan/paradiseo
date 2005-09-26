@@ -2,7 +2,7 @@
 
 #ifdef _MSC_VER
 #pragma warning(disable:4786)
-#endif 
+#endif
 
 #include <algorithm>
 #include <string>
@@ -20,20 +20,21 @@ using namespace std;
 
 #include "real_value.h"		// the sphere fitness
 
-// Now the main 
-/////////////// 
+// Now the main
+///////////////
 typedef eoMinimizingFitness  FitT;
 
 template <class EOT>
 void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoRealVectorBounds& _bounds, eoValueParam<string> _load_name);
-  
-int main_function(int argc, char *argv[]) 
+
+int main_function(int argc, char *argv[])
 {
   // Create the command-line parser
   eoParser parser( argc, argv, "Basic EA for vector<float> with adaptive mutations");
 
   // Define Parameters and load them
-  eoValueParam<uint32>& seed        = parser.createParam(static_cast<uint32>(time(0)), "seed", "Random number seed");
+  eoValueParam<uint32_t>& seed        = parser.createParam(static_cast<uint32_t>(time(0)),
+                                                           "seed", "Random number seed");
   eoValueParam<string>& load_name   = parser.createParam(string(), "Load","Load a state file",'L');
   eoValueParam<string>& save_name   = parser.createParam(string(), "Save","Saves a state file",'S');
   eoValueParam<bool>&   stdevs      = parser.createParam(false, "Stdev", "Use adaptive mutation rates", 's');
@@ -47,7 +48,7 @@ int main_function(int argc, char *argv[])
     rng.reseed(seed.value());
 
    if (!load_name.value().empty())
-   { // load the parser. This is only neccessary when the user wants to 
+   { // load the parser. This is only neccessary when the user wants to
      // be able to change the parameters in the state file by hand
      // Note that only parameters inserted in the parser at this point
      // will be loaded!.
@@ -57,7 +58,7 @@ int main_function(int argc, char *argv[])
     state.registerObject(rng);
 
     eoRealVectorBounds bounds(chromSize.value(), minimum.value(), maximum.value());
-    
+
     // Run the appropriate algorithm
     if (stdevs.value() == false && corr.value() == false)
     {
@@ -67,7 +68,7 @@ int main_function(int argc, char *argv[])
     {
         runAlgorithm(eoEsFull<FitT>(),parser, state, bounds, load_name);
     }
-    else 
+    else
     {
         runAlgorithm(eoEsStdev<FitT>(), parser, state, bounds, load_name);
     }
@@ -80,11 +81,11 @@ int main_function(int argc, char *argv[])
         state.save(file_name);
     }
 
-	return 0;  
+	return 0;
 }
 
 // A main that catches the exceptions
- 
+
 int main(int argc, char **argv)
 {
 #ifdef _MSC_VER
@@ -94,7 +95,7 @@ int main(int argc, char **argv)
     _CrtSetDbgFlag(flag);
 //   _CrtSetBreakAlloc(100);
 #endif
- 
+
     try
     {
         main_function(argc, argv);
@@ -103,7 +104,7 @@ int main(int argc, char **argv)
     {
         std::cout << "Exception: " << e.what() << '\n';
     }
- 
+
     return 1;
 }
 
@@ -124,7 +125,7 @@ void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoRealVectorBounds& _
 
     // Initialization
     eoEsChromInit<EOT> init(_bounds);
-    
+
     // State takes ownership of pop because it needs to save it in caller
     eoPop<EOT>& pop = _state.takeOwnership(eoPop<EOT>(mu.value(), init));
 
@@ -158,8 +159,8 @@ void runAlgorithm(EOT, eoParser& _parser, eoState& _state, eoRealVectorBounds& _
     checkpoint.add(average);
 
     // only mutation (== with rate 1.0)
-    eoMonGenOp<EOT> op(mutate);	
-    
+    eoMonGenOp<EOT> op(mutate);
+
     // the selection: sequential selection
     eoSequentialSelect<EOT> select;
     // the general breeder (lambda is a rate -> true)

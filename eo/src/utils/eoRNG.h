@@ -1,6 +1,6 @@
 /*
 *	Random number generator adapted from (see comments below)
-*   
+*
 *   The random number generator is modified into a class
 *   by Maarten Keijzer (mak@dhi.dk). Also added the Box-Muller
 *   transformation to generate normal deviates.
@@ -70,7 +70,7 @@
 //
 
 //
-// uint32 must be an unsigned integer type capable of holding at least 32
+// uint32_t must be an unsigned integer type capable of holding at least 32
 // bits; exactly 32 should be fastest, but 64 is better on an Alpha with
 // GCC at -O3 optimization so try your options and see what's best for you
 //
@@ -81,6 +81,12 @@
 #ifndef EO_RANDOM_NUMBER_GENERATOR
 #define EO_RANDOM_NUMBER_GENERATOR
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+#ifdef HAVE_INTTYPES_H
+#include <inttypes.h>
+#endif
 
 #include "../eoPersistent.h"
 #include "../eoObject.h"
@@ -89,7 +95,14 @@
 // Unfortunately MSVC's preprocessor does not comprehend sizeof()
 // so neat preprocessing tricks will not work
 
-typedef unsigned long uint32; // Compiler and platform dependent!
+#if(! (defined HAVE_UINT32_T))
+#if(SIZEOF_UNSIGNED_LONG == 4)
+typedef unsigned long uint32_t;
+#else
+#error Need to provide a type for uint32_t in eoRNG.h.
+#endif
+#endif
+
 
 //-----------------------------------------------------------------------------
 // eoRng
@@ -101,7 +114,7 @@ for generating random numbers. The various member functions implement useful fun
 for evolutionary algorithms. Included are: rand(), random(), flip() and normal().
 
 Note for people porting EO to other platforms: please make sure that the typedef
-uint32 in the file eoRng.h is exactly 32 bits long. It may be longer, but not
+uint32_t in the file eoRng.h is exactly 32 bits long. It may be longer, but not
 shorter. If it is longer, file compatibility between EO on different platforms
 may be broken.
 */
@@ -113,8 +126,8 @@ public :
      @see reseed to see why the parameter to initialize is doubled
   */
 
-  eoRng(uint32 s) : state(0), next(0), left(-1), cached(false), N(624), M(397), K(0x9908B0DFU)  {
-    state = new uint32[N+1];
+  eoRng(uint32_t s) : state(0), next(0), left(-1), cached(false), N(624), M(397), K(0x9908B0DFU)  {
+    state = new uint32_t[N+1];
     initialize(2*s);
   }
 
@@ -130,10 +143,10 @@ public :
   *    the argument to reseed is now doubled before being passed on.
   *
   *    Manually divide the seed by 2 if you want to re-run old runs
-  * 
+  *
   * MS. 5 Oct. 2001
  */
- void reseed(uint32 s)
+ void reseed(uint32_t s)
    {
      initialize(2*s);
    }
@@ -141,7 +154,7 @@ public :
  /**
     Re-initializes the Random Number Generator - old version
  */
- void oldReseed(uint32 s)
+ void oldReseed(uint32_t s)
    {
      initialize(s);
    }
@@ -153,37 +166,37 @@ public :
    { // random number between [0, m]
      return m * double(rand()) / double(1.0 + rand_max());
    }
- 
+
  /**
     random() returns a random integer in the range [0, m)
  */
- uint32 random(uint32 m)
+ uint32_t random(uint32_t m)
    {
-     return uint32(uniform() * double(m));
+     return uint32_t(uniform() * double(m));
    }
 
  /**
-    flip() tosses a biased coin such that flip(x/100.0) will 
+    flip() tosses a biased coin such that flip(x/100.0) will
     returns true x% of the time
  */
  bool flip(float bias=0.5)
    {
      return uniform() < bias;
    }
- 
+
  /**
     normal() zero mean gaussian deviate with standard deviation of 1
  */
- double normal(void);        // gaussian mutation, stdev 1       
+ double normal(void);        // gaussian mutation, stdev 1
 
  /**
     normal(stdev) zero mean gaussian deviate with user defined standard deviation
  */
- double normal(double stdev)  
+ double normal(double stdev)
    {
      return stdev * normal();
    }
- 
+
  /**
     normal(mean, stdev) user defined mean gaussian deviate with user defined standard deviation
  */
@@ -203,13 +216,13 @@ public :
  /**
     rand() returns a random number in the range [0, rand_max)
  */
- uint32 rand(); 
- 
+ uint32_t rand();
+
  /**
     rand_max() the maximum returned by rand()
  */
- uint32 rand_max(void) const { return (uint32) 0xffffffff; }
- 
+ uint32_t rand_max(void) const { return (uint32_t) 0xffffffff; }
+
  /**
     roulette_wheel(vec, total = 0) does a roulette wheel selection
     on the input std::vector vec. If the total is not supplied, it is
@@ -219,11 +232,11 @@ public :
    int roulette_wheel(const std::vector<T>& vec, T total = 0)
    {
      if (total == 0)
-       { // count 
+       { // count
 	 for (unsigned    i = 0; i < vec.size(); ++i)
 	   total += vec[i];
        }
-     
+
      double fortune = uniform() * total;
      int i = 0;
 
@@ -231,19 +244,19 @@ public :
        {
 	 fortune -= vec[i++];
        }
-    
+
      return --i;
    }
 
- /** 
+ /**
   * choice(vec), returns a uniformly chosen element from the vector
   */
  template <class T>
      const T& choice(const std::vector<T>& vec) { return vec[rng.random(vec.size())]; }
- 
+
  template <class T>
      T& choice(std::vector<T>& vec) { return vec[rng.random(vec.size())]; }
- 
+
  ///
  void printOn(std::ostream& _os) const
    {
@@ -275,11 +288,11 @@ public :
  std::string className(void) const { return "Mersenne-Twister"; }
 
 private :
-  uint32 restart(void);
- void initialize(uint32 seed);
+  uint32_t restart(void);
+ void initialize(uint32_t seed);
 
- uint32* state; // the array for the state
- uint32* next;
+ uint32_t* state; // the array for the state
+ uint32_t* next;
  int left;
 
  // for normal distribution
@@ -288,7 +301,7 @@ private :
 
  const int N;
  const int M;
- const uint32 K; // a magic constant
+ const uint32_t K; // a magic constant
 
 
  /**
@@ -319,7 +332,7 @@ using eo::rng;
 #define loBits(u)      ((u) & 0x7FFFFFFFU)   // mask     the highest   bit of u
 #define mixBits(u, v)  (hiBit(u)|loBits(v))  // move hi bit of u to hi bit of v
 
-inline void eoRng::initialize(uint32 seed)
+inline void eoRng::initialize(uint32_t seed)
  {
     //
     // We initialize state[0..(N-1)] via the generator
@@ -369,7 +382,7 @@ inline void eoRng::initialize(uint32 seed)
 
    left = -1;
 
-   register uint32 x = (seed | 1U) & 0xFFFFFFFFU, *s = state;
+   register uint32_t x = (seed | 1U) & 0xFFFFFFFFU, *s = state;
    register int    j;
 
    for(left=0, *s++=x, j=N; --j;
@@ -377,9 +390,9 @@ inline void eoRng::initialize(uint32 seed)
  }
 
 
-inline uint32 eoRng::restart(void)
+inline uint32_t eoRng::restart(void)
 {
-  register uint32 *p0=state, *p2=state+2, *pM=state+M, s0, s1;
+  register uint32_t *p0=state, *p2=state+2, *pM=state+M, s0, s1;
   register int    j;
 
   left=N-1, next=state+1;
@@ -397,10 +410,10 @@ inline uint32 eoRng::restart(void)
   return(s1 ^ (s1 >> 18));
 }
 
-inline uint32 eoRng::rand(void)
+inline uint32_t eoRng::rand(void)
  {
 
-   uint32 y;
+   uint32_t y;
 
    if(--left < 0)
      return(restart());
@@ -428,20 +441,20 @@ inline double eoRng::normal(void)
 	  var2 = 2.0 * uniform() - 1.0;
 
 	  rSquare = var1 * var1 + var2 * var2;
-	} 
+	}
   while (rSquare >= 1.0 || rSquare == 0.0);
-  
+
   factor = sqrt(-2.0 * log(rSquare) / rSquare);
-  
+
   cacheValue = var1 * factor;
   cached = true;
-  
+
   return (var2 * factor);
 }
 
 namespace eo {
 // a few convenience functions for generating numbers
-    
+
     /**
      * Templatized random function, works with most basic types such as:
      *	char
@@ -453,7 +466,7 @@ namespace eo {
     template <typename T>
 	inline
 	T random(const T& mx) { return static_cast<T>(rng.uniform() * mx); }
-    
+
     /** Normal distribution */
     inline double normal() { return rng.normal(); }
 }

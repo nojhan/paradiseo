@@ -74,7 +74,7 @@ void testSelectMany(eoSelect<EOT> & _select, std::string _name)
 {
     unsigned i;
   std::cout << "\n\n" << fitnessType + _name << std::endl;
-  std::cout << "===============\n"; 
+  std::cout << "===============\n";
 
     eoDummyPop parents(parentsOrg);
     eoDummyPop offspring(0);
@@ -117,11 +117,11 @@ void testSelectOne(eoSelectOne<EOT> & _select, eoHowMany & _offspringRate,
 //-----------------------------------------------------------------------------
 
 int the_main(int argc, char **argv)
-{ 
+{
   eoParser parser(argc, argv);
 
   // random seed
-    eoValueParam<uint32>& seedParam = parser.createParam(uint32(0), "seed", "Random number seed", 'S');
+    eoValueParam<uint32_t>& seedParam = parser.createParam(uint32_t(0), "seed", "Random number seed", 'S');
     if (seedParam.value() == 0)
 	seedParam.value() = time(0);
     rng.reseed(seedParam.value());
@@ -158,7 +158,7 @@ int the_main(int argc, char **argv)
 	for (i=0; i<peakNumber; i++)
 	  nbIndiPerPeak[i] = pSize/peakNumber;
       }
-    else	  // parameters passed by user 
+    else	  // parameters passed by user
       if (peakParam.second.size() != peakNumber)
 	{
 	  std::cerr << "ERROR, not enough nb of indis per peaks" << std::endl;
@@ -174,7 +174,7 @@ int the_main(int argc, char **argv)
 	}
 
   // compute exact total
-  sum = 0; 	  
+  sum = 0;
   for (i=0; i<peakNumber; i++)
     sum += nbIndiPerPeak[i];
   if (sum != pSize)
@@ -182,8 +182,8 @@ int the_main(int argc, char **argv)
       pSize = pSizeParam.value() = sum;
       std::cerr << "WARNING, adjusting pSize to " << pSize << std::endl;
     }
-	  
-    make_help(parser); 
+
+    make_help(parser);
 
     // hard-coded directory name ...
     std::cout << "Testing the Sharing\n";
