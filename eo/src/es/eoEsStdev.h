@@ -52,10 +52,8 @@ public:
     void printOn(std::ostream& os) const
     {
         eoVector<Fit,double>::printOn(os);
-
         os << ' ';
         std::copy(stdevs.begin(), stdevs.end(), std::ostream_iterator<double>(os, " "));
-
         os << ' ';
     }
 
@@ -63,7 +61,6 @@ public:
     {
         eoVector<Fit,double>::readFrom(is);
         stdevs.resize(size());
-
         unsigned i;
         for (i = 0; i < size(); ++i)
             is >> stdevs[i];

@@ -1,4 +1,4 @@
-/** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*- 
+/** -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
 // eoEsGlobalXover.h : ES global crossover
@@ -8,16 +8,16 @@
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
     version 2 of the License, or (at your option) any later version.
- 
+
     This library is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
     Lesser General Public License for more details.
- 
+
     You should have received a copy of the GNU Lesser General Public
     License along with this library; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- 
+
     Contact: marc.schoenauer@polytechnique.fr http://eeaax.cmap.polytchnique.fr/
  */
 //-----------------------------------------------------------------------------
@@ -40,7 +40,7 @@
   *  Uses some Atom crossovers to handle both the object variables
   *  and the mutation strategy parameters
   */
-template<class EOT> 
+template<class EOT>
 class eoEsGlobalXover: public eoGenOp<EOT>
 {
 public:
@@ -68,7 +68,7 @@ public:
   {
     // First, select as many parents as you will have offspring
     EOT& parent = *_plop; // select the first parent
-    
+
     // first, the object variables
     for (unsigned i=0; i<parent.size(); i++)
       {
@@ -84,11 +84,13 @@ public:
     // dont' forget to invalidate
     parent.invalidate();
   }
-  
+
 private:
 
-  // the method to cross slef-adaptation parameters: need to specialize
+  /** Method for cross self-adaptation parameters
 
+  Specialization for eoEsSimple.
+  */
   void cross_self_adapt(eoEsSimple<FitT> & _parent, const eoPop<eoEsSimple<FitT> >& _pop)
   {
     const EOT& realParent1 = sel(_pop);
@@ -97,6 +99,10 @@ private:
     crossMut(_parent.stdev, realParent2.stdev); // apply eoBinOp
   }
 
+  /** Method for cross self-adaptation parameters
+
+  Specialization for eoEsStdev.
+  */
   void cross_self_adapt(eoEsStdev<FitT> & _parent, const eoPop<eoEsStdev<FitT> >& _pop)
   {
     for (unsigned i=0; i<_parent.size(); i++)
@@ -108,6 +114,10 @@ private:
       }
   }
 
+  /** Method for cross self-adaptation parameters
+
+  Specialization for eoEsFull.
+  */
   void cross_self_adapt(eoEsFull<FitT> & _parent, const eoPop<eoEsFull<FitT> >& _pop)
   {
     unsigned i;

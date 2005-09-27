@@ -53,14 +53,10 @@ public:
     void printOn(std::ostream& os) const
     {
         eoVector<Fit,double>::printOn(os);
-
         os << ' ';
         std::copy(stdevs.begin(), stdevs.end(), std::ostream_iterator<double>(os, " "));
-
         os << ' ';
-
         std::copy(correlations.begin(), correlations.end(), std::ostream_iterator<double>(os, " "));
-
         os << ' ';
     }
 
