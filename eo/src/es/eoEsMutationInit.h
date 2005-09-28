@@ -27,10 +27,6 @@
 #ifndef _eoEsMutationInit_h
 #define _eoEsMutationInit_h
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include <utils/eoParser.h>
 
 /** Initialize Mutation operator

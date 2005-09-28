@@ -27,10 +27,6 @@
 #ifndef _make_checkpoint_pareto_h
 #define _make_checkpoint_pareto_h
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <stdlib.h>
 #include <sstream>
 
