@@ -236,11 +236,25 @@ public:
     /** Bounds of parameters */
     eoRealVectorBounds& bounds;
 
-    /** Minimum stdev */
+    /** Minimum stdev.
+
+    If you let the step-size go to 0, self-adaptation stops, therefore we give a
+    lower bound. The actual value used is somewhat arbitrary and the is no
+    theoretical reasoning known for it (Sep 2005).
+
+    The code that we have in EO is a port from a C code that Thomas Bäck kindly
+    donated to the community some years ago. It has been modified by Marc
+    Schoenauer for inclusion in EvolC, than by Maarten Keijzer into EO. The
+    exact value was adjusted based on practice.
+
+    Removing this doesn't work well, but it was never tried to figure out what
+    the best value would be.
+    */
     static const double stdev_eps;
 };
 
 
+// Minimum value of stdevs, see declaration for details.
 template <class EOT>
 const double eoEsMutate<EOT>::stdev_eps = 1.0e-40;
 
