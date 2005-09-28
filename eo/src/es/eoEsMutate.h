@@ -43,19 +43,18 @@
 #define M_PI 3.1415926535897932384626433832795
 #endif
 
-/** @ingroup EvolutionStrategies
+/** ES-style mutation in the large
 
-@brief ES-style mutation in the large
+@ingroup EvolutionStrategies
 
 Obviously, valid only for eoES*. It is currently valid for three types
 of ES chromosomes:
-- eoEsSimple:   only 1 std deviation
-- eoEsStdev:    as many standard deviations as object variables
+- eoEsSimple:   Exactly one stdandard-deviation
+- eoEsStdev:    As many standard deviations as object variables
 - eoEsFull:     The whole guacemole: correlations, stdevs and object variables
 
 Each of these three variant has it's own operator() in eoEsMutate and
-intialization is also split into three cases (that share some
-commonalities)
+intialization is also split into three cases (that share some commonalities)
 */
 template <class EOT>
 class eoEsMutate : public eoMonOp< EOT >
@@ -64,6 +63,7 @@ public:
 
     /** Fitness-type */
     typedef typename EOT::Fitness FitT;
+
 
     /** Initialization.
 
@@ -75,6 +75,7 @@ public:
     {
         init(EOT(), _init); // initialize on actual type used
     }
+
 
     /** @brief Virtual Destructor */
     virtual ~eoEsMutate() {};
@@ -89,7 +90,10 @@ public:
     virtual std::string className() const {return "eoESMutate";};
 
 
-    /** Mutate eoEsSimple */
+    /** Mutate eoEsSimple
+
+    @param _eo Individual to mutate.
+    */
     virtual bool operator()( eoEsSimple<FitT>& _eo)
         {
             _eo.stdev *= exp(TauLcl * rng.normal());
@@ -105,7 +109,9 @@ public:
         }
 
 
-    /** Standard mutation in ESs
+    /** Standard mutation in ES
+
+    @overload
 
     Standard mutation of object variables and standard deviations in ESs.
 
@@ -115,7 +121,8 @@ public:
 
     @param _eo Individual to mutate.
 
-    @see Schwefel 1977: Numerische Optimierung von Computer-Modellen mittels der
+    @see
+    Schwefel 1977: Numerische Optimierung von Computer-Modellen mittels der
     Evolutionsstrategie, pp. 165 ff.
     */
     virtual bool operator()( eoEsStdev<FitT>& _eo )
@@ -135,17 +142,24 @@ public:
         }
 
 
-    /** Correlated mutations in ESs
+    /** Correlated mutations in ES
 
-    Correlated mutations in ESs, according to the following sources:
-    - H.-P. Schwefel: Internal Report of KFA Juelich, KFA-STE-IB-3/80, p. 43, 1980
+    @overload
+
+    Mutation of object variables, standard deviations, and their correlations in
+    ESs.
+
+    @param _eo Individual to mutate.
+
+    @see
+    - H.-P. Schwefel: Internal Report of KFA Juelich, KFA-STE-IB-3/80, p. 43, 1980.
     - G. Rudolph: Globale Optimierung mit parallelen Evolutionsstrategien,
-      Diploma Thesis, University of Dortmund, 1990
-    - Code from Thomas Baeck
+      Diploma Thesis, University of Dortmund, 1990.
     */
     virtual bool operator()( eoEsFull<FitT> & _eo )
+    // Code originally from Thomas Bäck
         {
-            // First: mutate standard deviations (as above).
+            // First: mutate standard deviations (as for eoEsStdev<FitT>).
             double global = TauGlb * rng.normal();
             unsigned i;
             for (i = 0; i < _eo.size(); i++)
@@ -197,6 +211,7 @@ public:
 
   private :
 
+    /** Initialization of simple ES */
     void init(eoEsSimple<FitT>, eoEsMutationInit& _init)
     {
         unsigned size = bounds.size();
@@ -205,6 +220,11 @@ public:
 	std::cout << "Init<eoEsSimple>: tau local " << TauLcl << std::endl;
     }
 
+
+    /** Initialization of standard ES
+
+    @overload
+    */
     void init(eoEsStdev<FitT>, eoEsMutationInit& _init)
     {
         unsigned size = bounds.size();
@@ -216,6 +236,11 @@ public:
         std::cout << "Init<eoStDev>: tau local " << TauLcl << " et global " << TauGlb << std::endl;
     }
 
+
+    /** Initialization of full ES
+
+    @overload
+    */
     void init(eoEsFull<FitT>, eoEsMutationInit& _init)
     {
         init(eoEsStdev<FitT>(), _init);
@@ -259,4 +284,3 @@ template <class EOT>
 const double eoEsMutate<EOT>::stdev_eps = 1.0e-40;
 
 #endif
-
