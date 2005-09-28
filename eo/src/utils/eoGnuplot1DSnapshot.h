@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoGnuplot1DSnapshot.h
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
-/* 
+/*
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -28,14 +28,8 @@
 #ifndef _eoGnuplot1DSnapshot_H
 #define _eoGnuplot1DSnapshot_H
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#include <string>
-#ifdef HAVE_SSTREAM
 #include <sstream>
-#endif
+#include <string>
 
 #include <utils/eoFileSnapshot.h>
 #include <utils/eoGnuplot.h>
@@ -57,7 +51,7 @@ This class plots through gnuplot the eoStat given as argument
 
 
 /** eoGnuplot1DSnapshot plots stats through gnuplot
- *  assumes that the same file is re-written every so and so, 
+ *  assumes that the same file is re-written every so and so,
  *  and plots it from scratch everytime it's called
  */
 class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
@@ -107,14 +101,8 @@ class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
 
   virtual void handleBounds(eoRealVectorBounds & _bounds)
   {
-#ifdef HAVE_SSTREAM
       std::ostringstream os;
-#else
-    // use strstream and not std::stringstream until strstream is in all distributions
-    char buf[1024];
-    std::ostrstream os(buf, 1023);
-#endif
-    //    std::ostrstream os;       
+    //    std::ostrstream os;
     os << "set autoscale\nset yrange [" ;
     if (_bounds.isMinBounded(0))
       os << _bounds.minimum(0);
@@ -140,25 +128,13 @@ inline eoMonitor&   eoGnuplot1DSnapshot::operator() (void)
   eoFileSnapshot::operator()();
 
   // sends plot order to gnuplot
-#ifdef HAVE_SSTREAM
   //std::string buff; // need local memory
   std::ostringstream os;
-#else
-  char buff[1024];
-  std::ostrstream os(buff, 1024);
-#endif
-  
   os << "set title 'Gen. " << getCounter() << "'; plot '"
     // mk: had to use getFilename().c_str(), because it seems the string(stream) lib is screwed in gcc3.2
       << getFileName().c_str() << "' notitle with points ps " << pointSize;
   os << std::endl;
-  
-#ifdef HAVE_SSTREAM
   PipeComSend( gpCom, os.str().c_str());
-#else
-  os << std::ends;
-  PipeComSend( gpCom, buff );
-#endif
   return (*this);
 }
 

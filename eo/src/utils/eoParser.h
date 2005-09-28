@@ -24,7 +24,7 @@
  */
 //-----------------------------------------------------------------------------
 /**
-CVS Info: $Date: 2005-09-13 10:24:50 $ $Version$ $Author: kuepper $
+CVS Info: $Date: 2005-09-28 21:49:26 $ $Version$ $Author: kuepper $
 */
 #ifndef eoParser_h
 #define eoParser_h
@@ -222,11 +222,7 @@ public:
         {
             eoValueParam<ValueType>& param = createParam(_defaultValue, _longName, _description,
                                                          _shortHand, _section, _required);
-#ifdef HAVE_SSTREAM
             std::ostringstream os;
-#else
-            std::ostrstream os;
-#endif
             os << _defaultValue;
             if(isItThere(param)) {
                 param.setValue(os.str());

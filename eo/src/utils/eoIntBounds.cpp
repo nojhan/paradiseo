@@ -8,12 +8,7 @@
 #endif
 
 #include <ctime>
-
-#ifdef HAVE_SSTREAM
 #include <sstream>
-#else
-#include <strstream>
-#endif
 
 #include "eoIntBounds.h"
 

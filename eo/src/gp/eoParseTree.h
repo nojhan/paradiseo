@@ -27,33 +27,29 @@
 #ifndef eoParseTree_h
 #define eoParseTree_h
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <iterator>
-
 #include <list>
 
 #include <EO.h>
+#include <eoInit.h>
 #include <eoOp.h>
 #include <gp/parse_tree.h>
-#include <eoInit.h>
 
 using namespace gp_parse_tree;
 
-/**
-\defgroup ParseTree
+/** @defgroup ParseTree
 
-  Various functions for tree-based Genetic Programming
-*/
-
-/** eoParseTree : implementation of parse-tree for genetic programming
-\class eoParseTree eoParseTree.h gp/eoParseTree.h
-\ingroup ParseTree
+Various functions for tree-based Genetic Programming
 */
 
 
+
+/** Implementation of parse-tree for genetic programming
+
+@class eoParseTree eoParseTree.h gp/eoParseTree.h
+
+@ingroup ParseTree
+*/
 template <class FType, class Node>
 class eoParseTree : public EO<FType>, public parse_tree<Node>
 {

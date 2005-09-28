@@ -1,4 +1,3 @@
-
 noinst_PROGRAMS		= BitEA RealEA ESEA
 
 
@@ -15,9 +14,13 @@ noinst_HEADERS		= binary_value.h \
 extra_DIST		= Makefile.simple
 
 
-LDADD			= -L$(top_builddir)/src -L$(top_builddir)/src/es \
-			-L$(top_builddir)/src/ga -L$(top_builddir)/src/utils
+AM_CXXFLAGS		= -I$(top_srcdir)/src
 
-LIBS			=  -lga -les -leoutils -leo
+LIBEO			= $(top_builddir)/src/libeo.a
+LIBES			= $(top_builddir)/src/es/libes.a
+LIBGA			= $(top_builddir)/src/ga/libga.a
+LIBUTILS		= $(top_builddir)/src/utils/libeoutils.a
 
-INCLUDES		= -I$(top_srcdir)/src
+DEPS			= $(LIBEO) $(LIBUTILS) $(LIBES) $(LIBGA)
+
+LIBS			= $(LIBES) $(LIBGA) $(LIBEO) $(LIBUTILS)

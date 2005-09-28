@@ -245,6 +245,9 @@ namespace mlp {
 	load(is);
     }
 
+      /** Virtual destructor */
+      virtual ~net() {};
+
     void load(istream &is) {
 	unsigned num_inputs;
 	unsigned num_outputs;
@@ -253,7 +256,7 @@ namespace mlp {
 	is >> num_inputs >> num_outputs >> num_hidden_layers;
 
 	std::vector<unsigned> layer_sizes;
-	for (int i=0; i<num_hidden_layers;i++) {
+	for (unsigned i=0; i<num_hidden_layers;i++) {
 	   unsigned layer_size;
 	   is >> layer_size;
 	   layer_sizes.push_back(layer_size);

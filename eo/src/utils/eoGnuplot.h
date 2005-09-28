@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoGnuplot1DMonitor.h
 // (c) Marc Schoenauer, 2001
-/* 
+/*
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -25,10 +25,6 @@
 
 #ifndef _eoGnuplot_H
 #define _eoGnuplot_H
-
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
 
 #include <string>
 
@@ -52,13 +48,13 @@ class eoGnuplot
 {
  public:
     // Ctor
-  eoGnuplot(std::string _title, std::string _extra = std::string("")) : 
+  eoGnuplot(std::string _title, std::string _extra = std::string("")) :
     firstTime(true)
   {
     // opens pipe with Gnuplot
     initGnuPlot(_title, _extra);
   }
-  
+
   // Dtor
   virtual ~eoGnuplot() {
   // close - the gnuplot windows if pipe was correctly opened
@@ -109,24 +105,13 @@ private:
 inline void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
   /////////////////////////////////////////////////////////
 {
-#ifdef HAVE_SSTREAM
     std::ostringstream os;
   os << "250x150-0+" << numWindow*170;
-#else
-    char snum[255];
-  std::ostrstream os(snum, 254);
-  os << "250x150-0+" << numWindow*170 << std::ends;
-#endif
-  
   numWindow++;
   char	*args[6];
   args[0] = strdup( "gnuplot" );
   args[1] = strdup( "-geometry" );
-#ifdef HAVE_SSTREAM
   args[2] = strdup( os.str().c_str());
-#else
-  args[2] = strdup( os.str() );
-#endif
   args[3] = strdup( "-title" );
   args[4] = strdup( _title.c_str() );
   args[5] = 0;
@@ -154,7 +139,7 @@ inline void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
  * Created......: Mon Mar 13 13:50:11 1995
  * Description..: Communication par pipe bidirectionnel avec un autre process
  *
- * Ident........: $Id: eoGnuplot.h,v 1.12 2005-09-07 17:09:19 maartenkeijzer Exp $
+ * Ident........: $Id: eoGnuplot.h,v 1.13 2005-09-28 21:49:26 kuepper Exp $
  * ----------------------------------------------------------------------
  */
 

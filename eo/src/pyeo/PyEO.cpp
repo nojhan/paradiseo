@@ -1,6 +1,6 @@
 /*
     PyEO
-    
+
     Copyright (C) 2003 Maarten Keijzer
 
     This program is free software; you can redistribute it and/or modify
@@ -18,14 +18,10 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
+#include <sstream>
+
 #include "PyEO.h"
 #include <eoPop.h>
-
-#ifdef HAVE_SSTREAM
-#include <sstream>
-#else
-#include <strstream>
-#endif
 
 
 using namespace std;
@@ -33,20 +29,20 @@ using namespace std;
 
 // static member, needs to be instantiated somewhere
 std::vector<int> PyFitness::objective_info;
-    
+
 bool PyFitness::dominates(const PyFitness& oth) const
-{   
+{
     bool dom = false;
 
     for (unsigned i = 0; i < nObjectives(); ++i)
     {
       int objective = objective_info[i];
-      
+
       if (objective == 0) // ignore
 	  continue;
 
       bool maxim = objective > 0;
-      
+
       double aval = maxim? (*this)[i] : -(*this)[i];
       double bval = maxim? oth[i] : -oth[i];
 
@@ -103,17 +99,9 @@ struct pyPop_pickle_suite : boost::python::pickle_suite
 template <class T>
 boost::python::str to_string(T& _p)
 {
-#ifdef HAVE_SSTREAM
     std::ostringstream os;
     _p.printOn(os);
     return boost::python::str(os.str().c_str());
-#else
-    std::ostrstream os;
-    _p.printOn(os);
-    os << ends;
-    std::string s(os.str());
-    return boost::python::str(s.c_str());
-#endif
 }
 
 void pop_sort(eoPop<PyEO>& pop) { pop.sort(); }
@@ -129,11 +117,11 @@ PyEO& pop_getitem(eoPop<PyEO>& pop, boost::python::object key)
     boost::python::extract<int> x(key);
     if (!x.check())
 	throw index_error("Slicing not allowed");
-    
+
     int i = x();
-    
+
     if (static_cast<unsigned>(i) >= pop.size())
-    { 
+    {
 	throw index_error("Index out of bounds");
     }
     return pop[i];
@@ -144,14 +132,14 @@ void pop_setitem(eoPop<PyEO>& pop, boost::python::object key, PyEO& value)
     boost::python::extract<int> x(key);
     if (!x.check())
 	throw index_error("Slicing not allowed");
-    
+
     int i = x();
-    
+
     if (static_cast<unsigned>(i) >= pop.size())
-    { 
+    {
 	throw index_error("Index out of bounds");
     }
-    
+
     pop[i] = value;
 }
 
@@ -179,7 +167,7 @@ BOOST_PYTHON_MODULE(PyEO)
     using namespace boost::python;
 
     boost::python::register_exception_translator<index_error>(&translate_index_error);
-    
+
     boost::python::class_<PyEO>("EO")
 	.add_property("fitness", &PyEO::getFitness, &PyEO::setFitness)
 	.add_property("genome", &PyEO::getGenome, &PyEO::setGenome)
@@ -204,8 +192,8 @@ BOOST_PYTHON_MODULE(PyEO)
 	.def_pickle(pyPop_pickle_suite())
 	;
 
-    
-    // Other definitions in different compilation units, 
+
+    // Other definitions in different compilation units,
     // this to avoid having g++ to choke on the load
     random_numbers();
     valueParam();

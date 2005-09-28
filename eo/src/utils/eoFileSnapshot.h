@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoFileSnapshot.h
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -27,10 +27,6 @@
 #ifndef _eoFileSnapshot_h
 #define _eoFileSnapshot_h
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <string>
 #include <fstream>
 #include <utils/eoParam.h>
@@ -39,15 +35,15 @@
 
 
 /**
-    Prints snapshots of fitnesses to a (new) file every N generations 
+    Prints snapshots of fitnesses to a (new) file every N generations
 
-Assumes that the parameters that are passed to the monitor 
+Assumes that the parameters that are passed to the monitor
 (method add in eoMonitor.h) are eoValueParam<std::vector<double> > of same size.
 
-A dir is created and one file per snapshot is created there - 
+A dir is created and one file per snapshot is created there -
 so you can later generate a movie!
 
-TODO: The counter is handled internally, but this should be changed 
+TODO: The counter is handled internally, but this should be changed
 so that you can pass e.g. an evalcounter (minor)
 
 I failed to templatize everything so that it can handle eoParam<std::vector<T> >
@@ -103,17 +99,9 @@ public :
    */
   void setCurrentFileName()
   {
-#ifdef HAVE_SSTREAM
-    std::ostringstream oscount;
-    oscount << counter;
-#else
-    char buff[255];
-    std::ostrstream oscount(buff, 254);
-    oscount << counter;
-    oscount << std::ends;
-#endif
-
-    currentFileName = dirname + "/" + filename + oscount.str();
+      std::ostringstream oscount;
+      oscount << counter;
+      currentFileName = dirname + "/" + filename + oscount.str();
   }
 
   /** The operator(void): opens the std::ostream and calls the write method

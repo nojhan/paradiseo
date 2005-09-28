@@ -1,6 +1,6 @@
 /*
     PyEO
-    
+
     Copyright (C) 2003 Maarten Keijzer
 
     This program is free software; you can redistribute it and/or modify
@@ -23,12 +23,7 @@
 
 using namespace boost::python;
 
-#ifdef HAVE_SSTREAM
 #include <sstream>
-#else
-#include <strstream>
-#endif
-
 #include <boost/python/detail/api_placeholder.hpp>
 
 using namespace boost::python;
@@ -43,11 +38,7 @@ double normal(eoRng& rng) { return rng.normal(); }
 
 std::string rng_to_string(const eoRng& _rng)
 {
-#ifdef HAVE_SSTREAM
     std::ostringstream os;
-#else
-    std::ostrstream os;
-#endif
     _rng.printOn(os);
     os << std::ends;
     return os.str();
@@ -56,11 +47,7 @@ std::string rng_to_string(const eoRng& _rng)
 
 void rng_from_string(eoRng& _rng, std::string s)
 {
-#ifdef HAVE_SSTREAM
     std::istringstream is(s);
-#else
-    std::istrstream is(s.c_str(), s.size());
-#endif
     _rng.readFrom(is);
 }
 
@@ -91,7 +78,7 @@ int spin(eoRng& _rng, numeric::array values, double total)
    }
 
    double chance = _rng.uniform() * total;
-    
+
    int i = 0;
    while (chance >= 0.0)
        chance -= extract<double>(values[i++]);
@@ -115,6 +102,6 @@ void random_numbers()
 	.def("roulette_wheel", spin)
 	.def_pickle(RNG_pickle_suite())
 	;
-    
+
     def("rng", get_rng, return_value_policy<reference_existing_object>());
 }

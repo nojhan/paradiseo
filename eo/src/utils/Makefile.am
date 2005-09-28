@@ -1,8 +1,9 @@
 ## Makefile.am for eo/src/utils
 
-lib_LIBRARIES = libeoutils.a
+lib_LIBRARIES 		= libeoutils.a
 
-libeoutils_a_SOURCES 	= eoParser.cpp \
+libeoutils_a_SOURCES 	= eoData.cpp \
+			eoParser.cpp \
 			eoRNG.cpp \
 			eoState.cpp \
 			eoUpdater.cpp \
@@ -11,8 +12,6 @@ libeoutils_a_SOURCES 	= eoParser.cpp \
 			eoRealBounds.cpp \
 			eoIntBounds.cpp \
 			make_help.cpp
-
-AM_CXXFLAGS 		= -I$(top_srcdir)/src
 
 utilsincludedir		= $(pkgincludedir)/utils
 
@@ -50,3 +49,6 @@ utilsinclude_HEADERS 	= checkpointing \
 			pipecom.h \
 			rnd_generators.h \
 			selectors.h
+
+AM_CXXFLAGS 		= -I$(top_srcdir)/src
+

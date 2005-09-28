@@ -6,11 +6,7 @@
 #include <config.h>
 #endif
 
-#ifdef HAVE_SSTREAM
 #include <sstream>
-#else
-#include <strstream>
-#endif
 
 #include <utils/eoState.h>
 #include <utils/eoUpdater.h>
@@ -24,28 +20,17 @@ void eoTimedStateSaver::operator()(void)
     if (now >= last_time + interval)
     {
         last_time = now;
-        
-#ifdef HAVE_SSTREAM
 	ostringstream os;
         os << prefix << (now - first_time) << '.' << extension;
-#else
-	ostrstream os;
-        os << prefix << (now - first_time) << '.' << extension << ends;
-#endif
         state.save(os.str());
     }
 }
 
 void eoCountedStateSaver::doItNow(void)
 {
-#ifdef HAVE_SSTREAM
 	ostringstream os;
-  os << prefix << counter << '.' << extension;
-#else
-	ostrstream os;
-  os << prefix << counter << '.' << extension << ends;
-#endif
-  state.save(os.str());
+        os << prefix << counter << '.' << extension;
+        state.save(os.str());
 }
 
 void eoCountedStateSaver::operator()(void)

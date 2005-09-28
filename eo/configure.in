@@ -28,28 +28,27 @@ AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 AC_CHECK_PROG(DOXYGEN, doxygen, doxygen, true)
 
-dnl Checks for header files.
-AC_HEADER_STDC
-AC_CHECK_HEADERS(inttypes.h)
-AC_CHECK_HEADERS(limits.h)
-AC_CHECK_HEADERS(values.h)
-AC_CXX_HAVE_NUMERIC_LIMITS
-AC_CXX_HAVE_SSTREAM
+dnl Checks for compiler characteristics.
 AC_CXX_NAMESPACES
+AC_TYPE_SIZE_T
+
+dnl Checks for header files.
+AC_LANG(C)
+AC_HEADER_STDC
+AC_CHECK_HEADERS(limits.h)
+AC_LANG(C++)
+AC_CHECK_HEADERS(sstream, [], AC_MSG_ERROR([Need sstream C++ include.]))
+AC_CHECK_HEADERS(stdint.h, [], AC_MSG_WARN([Need C99 standard header.]))
+AC_CXX_HAVE_NUMERIC_LIMITS
 
 dnl Checks for typedefs, structures, and compiler characteristics.
-AC_C_CONST
-AC_C_INLINE
-AC_CHECK_SIZEOF([unsigned long])
-AC_CHECK_TYPES(uint32_t)
-AC_TYPE_SIZE_T
+AC_CHECK_SIZEOF(unsigned long)
+AC_CHECK_TYPES(uint32_t, [], AC_MSG_WARN([Need uint32_t from C99 standard.]))
 
 dnl Checks for libraries.
 AC_CHECK_LIB(m, cos)
 
 dnl Checks for library functions.
-AC_CHECK_FUNCS(select)
-
 
 dnl create makefiles
 AC_OUTPUT(Makefile \

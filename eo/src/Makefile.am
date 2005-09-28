@@ -12,8 +12,6 @@ libeo_a_SOURCES 	= eoFunctorStore.cpp \
 			eoScalarFitnessAssembled.cpp  
 
 
-AM_CXXFLAGS		= -I$(top_srcdir)/src
-
 pkginclude_HEADERS 	= eo \
 			EO.h \
 			apply.h \
@@ -114,3 +112,6 @@ pkginclude_HEADERS 	= eo \
 			es.h \
 			ga.h
 
+AM_CXXFLAGS		= -I$(top_srcdir)/src
+
+AM_LIBS			= -Lutils -leoutil

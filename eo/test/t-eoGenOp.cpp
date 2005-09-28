@@ -26,6 +26,9 @@
 /**  test program for the general operator - millenium version!
  * uses dummy individuals
  */
+
+#include <sstream>
+
 #include <eo>
 #include <eoPopulator.h>
 #include <eoOpContainer.h>
@@ -176,13 +179,7 @@ void init(eoPop<Dummy> & _pop, unsigned _pSize)
     }
   for (unsigned i=0; i<_pSize; i++)
     {
-#ifdef HAVE_SSTREAM
 	std::ostringstream os;
-#else
-	char s[255];
-      std::ostrstream os(s, 254);
-#endif
-
       os << i << std::ends;
       _pop[i] = Dummy(os.str());
       _pop[i].fitness(i);

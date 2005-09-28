@@ -8,11 +8,7 @@
 
 #include <algorithm>
 #include <fstream>
-#ifdef HAVE_SSTREAM
 #include <sstream>
-#else
-#include <strstream>
-#endif
 
 #include "eoState.h"
 #include "eoObject.h"
@@ -32,7 +28,7 @@ void removeComment(string& str, string comment)
     }
 }
 
-bool is_section(const string& str, string& name) 
+bool is_section(const string& str, string& name)
 {
     string::size_type pos = str.find("\\section{");
 
@@ -58,12 +54,12 @@ eoState::~eoState(void)
         delete ownedObjects[i];
     }
 }
-    
+
 void eoState::registerObject(eoPersistent& registrant)
 {
     string name = createObjectName(dynamic_cast<eoObject*>(&registrant));
- 
-    pair<ObjectMap::iterator,bool> res = objectMap.insert(make_pair(name, &registrant)); 
+
+    pair<ObjectMap::iterator,bool> res = objectMap.insert(make_pair(name, &registrant));
 
     if (res.second == true)
     {
@@ -84,7 +80,7 @@ void eoState::load(const string& _filename)
         string str = "Could not open file " + _filename;
         throw runtime_error(str);
     }
-    
+
     load(is);
 }
 
@@ -94,7 +90,7 @@ void eoState::load(std::istream& is)
     string name;
 
     getline(is, str);
-    
+
     if (is.fail())
     {
         string str = "Error while reading stream";
@@ -118,7 +114,7 @@ void eoState::load(std::istream& is)
             }
             else
             {
-            
+
                 eoPersistent* object = it->second;
 
                 // now we have the object, get lines, remove comments etc.
@@ -135,11 +131,7 @@ void eoState::load(std::istream& is)
                     removeComment(str, getCommentString());
                     fullstring += str + "\n";
                 }
-#ifdef HAVE_SSTREAM
 		istringstream the_stream(fullstring);
-#else
-                istrstream the_stream(fullstring.c_str(), fullstring.size());
-#endif
                 object->readFrom(the_stream);
             }
         }
@@ -180,32 +172,21 @@ string eoState::createObjectName(eoObject* obj)
 {
     if (obj == 0)
     {
-#ifdef HAVE_SSTREAM
 	ostringstream os;
-#else
-        ostrstream os;
-#endif
         os << objectMap.size();
         return os.str();
     }
     // else
-    
+
     string name = obj->className();
     ObjectMap::const_iterator it = objectMap.find(name);
 
     unsigned count = 1;
     while (it != objectMap.end())
     {
-#ifdef HAVE_SSTREAM
 	ostringstream os;
         os << obj->className().c_str() << count++;
-#else
-        ostrstream os;
-        os << obj->className().c_str() << count++ << ends;
-#endif
-
         name = os.str();
-
         it = objectMap.find(name);
     }
 

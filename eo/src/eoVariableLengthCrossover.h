@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoVariableLengthCrossover.h
 // (c) GeNeura Team, 2000 - EEAAX 1999 - Maarten Keijzer 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -55,7 +55,7 @@ public:
     eoUniformAtomExchange(double _rate=0.5):rate(_rate){}
 
   /** randomize: fill the mask: the exchange will be simulated first
-   * to see if sizes are OK, so it must be repeatable : 
+   * to see if sizes are OK, so it must be repeatable :
    * the mask has to be a private data, cannot be computed on the fly
    */
   void randomize(unsigned _size1, unsigned _size2)
@@ -154,17 +154,10 @@ public :
 
   /** the inherited className */
   virtual std::string className() const
-  { 
-#ifdef HAVE_SSTREAM
+  {
       std::ostringstream os;
-    os << "eoVlAtomExchangeQuadOp(" << atomExchange.className() << ")"; 
-    return os.str()
-#else
-    char s[1024];
-    std::ostrstream os(s, 1022);
-    os << "eoVlAtomExchangeQuadOp(" << atomExchange.className() << ")" << std::ends; 
-    return std::string(s); 
-#endif
+      os << "eoVlAtomExchangeQuadOp(" << atomExchange.className() << ")";
+      return os.str()
   }
 
 private:
@@ -172,7 +165,7 @@ private:
   eoAtomExchange<AtomType> & atomExchange;
 };
 
-/** Crossover using an AtomCrossover. Probably irrelevant in Variable Length - 
+/** Crossover using an AtomCrossover. Probably irrelevant in Variable Length -
     see eoFlOrBinOp.h and eoFlOrQuadOp.h for the similar Fixed Length operators
  */
 template <class EOT>
@@ -201,7 +194,7 @@ public :
   }
 
   virtual std::string className() const
-  { 
+  {
     return "eoInnerExchangeQuadOp(" + op.className() + ")";
   }
 

@@ -27,24 +27,13 @@
 #ifndef eoParam_h
 #define eoParam_h
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-//-----------------------------------------------------------------------------
-#include <math.h>		   // for floor
-#include <string>
-
-#ifdef HAVE_SSTREAM
-#include <sstream>
-#else
-#include <strstream>
-#endif
-
-#include <vector>
-#include <iterator>		// for GCC 3.2
+#include <cmath>
+#include <iterator>
 #include <stdexcept>
-#include <eoScalarFitness.h>   // for specializations
+#include <sstream>
+#include <string>
+#include <vector>
+#include <eoScalarFitness.h>
 
 
 /**
@@ -189,26 +178,15 @@ public :
 
     std::string getValue(void) const
         {
-#ifdef HAVE_SSTREAM
             std::ostringstream os;
             os << repValue;
-#else
-            char buf[1024];
-            std::ostrstream os(buf, 1023);
-            os << repValue;
-            os << std::ends;
-#endif
             return os.str();
         }
 
 
     void setValue(const std::string& _value)
         {
-#ifdef HAVE_SSTREAM
             std::istringstream is(_value);
-#else
-            std::istrstream is(_value.c_str());
-#endif
             is >> repValue;
         }
 
@@ -235,11 +213,7 @@ inline void eoValueParam<bool>::setValue(const std::string& _value)
         repValue = true;
         return;
     }
-#ifdef HAVE_SSTREAM
     std::istringstream is(_value);
-#else
-    std::istrstream is(_value.c_str());
-#endif
     is >> repValue;
 }
 
@@ -249,14 +223,8 @@ template <>
 inline std::string eoValueParam<std::pair<double, double> >::getValue(void) const
 {
     // use own buffer as MSVC's buffer leaks!
-#ifdef HAVE_SSTREAM
     std::ostringstream os;
     os << repValue.first << ' ' << repValue.second;
-#else
-    char buff[1024];
-    std::ostrstream os(buff, 1024);
-    os << repValue.first << ' ' << repValue.second << std::ends;
-#endif
     return os.str();
 }
 
@@ -264,11 +232,7 @@ inline std::string eoValueParam<std::pair<double, double> >::getValue(void) cons
 template <>
 inline void eoValueParam<std::pair<double, double> >::setValue(const std::string& _value)
 {
-#ifdef HAVE_SSTREAM
     std::istringstream is(_value);
-#else
-    std::istrstream is(_value.c_str());
-#endif
     is >> repValue.first;
     is >> repValue.second;
 }
@@ -279,21 +243,13 @@ inline void eoValueParam<std::pair<double, double> >::setValue(const std::string
 template <>
 inline std::string eoValueParam<std::vector<std::vector<double> > >::getValue(void) const
 {
-#ifdef HAVE_SSTREAM
     std::ostringstream os;
-#else
-    std::ostrstream os;
-#endif
     os << repValue.size() << ' ';
     for (unsigned i = 0; i < repValue.size(); ++i)
     {
         os << repValue[i].size() << ' ';
         std::copy(repValue[i].begin(), repValue[i].end(), std::ostream_iterator<double>(os, " "));
     }
-
-#ifndef HAVE_SSTREAM
-    os << std::ends;
-#endif
     return os.str();
 }
 
@@ -301,11 +257,7 @@ inline std::string eoValueParam<std::vector<std::vector<double> > >::getValue(vo
 template <>
 inline void eoValueParam<std::vector<std::vector<double> > >::setValue(const std::string& _value)
 {
-#ifdef HAVE_SSTREAM
     std::istringstream is(_value);
-#else
-    std::istrstream is(_value.c_str());
-#endif
     unsigned i,j,sz;
     is >> sz;
     repValue.resize(sz);
@@ -328,16 +280,9 @@ inline void eoValueParam<std::vector<std::vector<double> > >::setValue(const std
 template <>
 inline std::string eoValueParam<std::vector<double> >::getValue(void) const
 {
-#ifdef HAVE_SSTREAM
     std::ostringstream os;
-#else
-    std::ostrstream os;
-#endif
     os << repValue.size() << ' ';
     std::copy(repValue.begin(), repValue.end(), std::ostream_iterator<double>(os, " "));
-#ifndef HAVE_SSTREAM
-    os << std::ends;
-#endif
     return os.str();
 }
 
@@ -345,11 +290,7 @@ inline std::string eoValueParam<std::vector<double> >::getValue(void) const
 template <>
 inline void eoValueParam<std::vector<double> >::setValue(const std::string& _value)
 {
-#ifdef HAVE_SSTREAM
     std::istringstream is(_value);
-#else
-    std::istrstream is(_value.c_str());
-#endif
     unsigned sz;
     is >> sz;
     repValue.resize(sz);
@@ -362,16 +303,9 @@ inline void eoValueParam<std::vector<double> >::setValue(const std::string& _val
 template <>
 inline std::string eoValueParam<std::vector<eoMinimizingFitness> >::getValue(void) const
 {
-#ifdef HAVE_SSTREAM
     std::ostringstream os;
-#else
-    std::ostrstream os;
-#endif
     os << repValue.size() << ' ';
     std::copy(repValue.begin(), repValue.end(), std::ostream_iterator<eoMinimizingFitness>(os, " "));
-#ifndef HAVE_SSTREAM
-    os<< std::ends;
-#endif
     return os.str();
 }
 
@@ -380,11 +314,7 @@ inline std::string eoValueParam<std::vector<eoMinimizingFitness> >::getValue(voi
 template <>
 inline void eoValueParam<std::vector<eoMinimizingFitness> >::setValue(const std::string& _value)
 {
-#ifdef HAVE_SSTREAM
     std::istringstream is(_value);
-#else
-    std::istrstream is(_value.c_str());
-#endif
     unsigned sz;
     is >> sz;
     repValue.resize(sz);

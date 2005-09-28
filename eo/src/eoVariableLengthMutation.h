@@ -142,16 +142,9 @@ public :
 
   virtual std::string className() const
   {
-#ifdef HAVE_SSTREAM
     std::ostringstream os;
     os << "eoVlDelMutation("<<chooser.className() << ")";
     return os.str();
-#else
-    char s[1024];
-    std::ostrstream os(s, 1022);
-    os << "eoVlDelMutation(" << chooser.className() << ")" << std::ends; 
-    return std::string(s); 
-#endif
   }
 
 private:

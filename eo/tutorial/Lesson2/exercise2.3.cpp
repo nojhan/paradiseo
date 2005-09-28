@@ -2,7 +2,7 @@
 // FirstBitEA.cpp
 //-----------------------------------------------------------------------------
 //*
-// Still an instance of a VERY simple Bitstring Genetic Algorithm 
+// Still an instance of a VERY simple Bitstring Genetic Algorithm
 // (see FirstBitGA.cpp) but now with  Breeder - and Combined Ops
 //
 //-----------------------------------------------------------------------------
@@ -11,13 +11,8 @@
 #endif
 
 // standard includes
-#include <stdexcept>  // runtime_error 
+#include <stdexcept>  // runtime_error
 #include <iostream>   // cout
-#ifdef HAVE_SSTREAM
-#include <sstream>
-#else
-#include <strstream>  // ostrstream, istrstream
-#endif
 
 // the general include for eo
 #include <eo>
@@ -68,7 +63,7 @@ void main_function(int argc, char **argv)
   //////////////////////////
   //  Random seed
   //////////////////////////
-  //reproducible random seed: if you don't change SEED above, 
+  //reproducible random seed: if you don't change SEED above,
   // you'll aways get the same result, NOT a random run
   rng.reseed(SEED);
 
@@ -108,7 +103,7 @@ void main_function(int argc, char **argv)
 // SELECT
   // The robust tournament selection
   eoDetTournamentSelect<Indi> selectOne(T_SIZE);       // T_SIZE in [2,POP_SIZE]
-  // solution solution solution solution solution solution solution 
+  // solution solution solution solution solution solution solution
   // modify the nb offspring / rate in the constructor. 2 ways:
   // second arg treated as integer
   eoSelectMany<Indi> select(selectOne,2, eo_is_an_integer);
@@ -116,10 +111,10 @@ void main_function(int argc, char **argv)
   //  eoSelectMany<Indi> select(selectOne,0.1);
 
 // REPLACE
-  // solution solution solution solution solution solution solution 
+  // solution solution solution solution solution solution solution
   // eoCommaReplacement keeps the best among offspring
   // eoPlusReplacement keeps the best among parents + offspring
-  //  eoCommaReplacement<Indi> replace; 
+  //  eoCommaReplacement<Indi> replace;
   eoPlusReplacement<Indi> replace;
 
 // OPERATORS
@@ -142,7 +137,7 @@ void main_function(int argc, char **argv)
   // standard bit-flip mutation for bitstring
   eoBitMutation<Indi>  mutationBitFlip(P_MUT_PER_BIT);
   // mutate exactly 1 bit per individual
-  eoDetBitFlip<Indi> mutationOneBit; 
+  eoDetBitFlip<Indi> mutationOneBit;
   // Combine them with relative rates
   eoPropCombinedMonOp<Indi> mutation(mutationBitFlip, bitFlipRate);
   mutation.add(mutationOneBit, oneBitRate, true);
@@ -165,19 +160,19 @@ void main_function(int argc, char **argv)
   eoCombinedContinue<Indi> continuator(genCont);
   continuator.add(steadyCont);
   continuator.add(fitCont);
-  
+
 // GENERATION
   /////////////////////////////////////////
   // the algorithm
   ////////////////////////////////////////
 
-  // Easy EA requires 
+  // Easy EA requires
   // selection, transformation, eval, replacement, and stopping criterion
   eoEasyEA<Indi> gga(continuator, eval, select, transform, replace);
 
   // Apply algo to pop - that's it!
   gga(pop);
-  
+
 // OUTPUT
   // Print (sorted) intial population
   pop.sort();

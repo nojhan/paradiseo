@@ -2,7 +2,7 @@
 // FirstRealEA.cpp
 //-----------------------------------------------------------------------------
 //*
-// Still an instance of a VERY simple Real-coded  Genetic Algorithm 
+// Still an instance of a VERY simple Real-coded  Genetic Algorithm
 // (see FirstBitGA.cpp) but now with  Breeder - and Combined Ops
 //
 //-----------------------------------------------------------------------------
@@ -11,13 +11,8 @@
 #endif
 
 // standard includes
-#include <stdexcept>  // runtime_error 
+#include <stdexcept>  // runtime_error
 #include <iostream>   // cout
-#ifdef HAVE_SSTREAM
-#include <sstream>
-#else
-#include <strstream>  // ostrstream, istrstream
-#endif
 
 // the general include for eo
 #include <eo>
@@ -26,7 +21,7 @@
 // REPRESENTATION
 //-----------------------------------------------------------------------------
 // define your individuals
-typedef eoReal<double> Indi;	
+typedef eoReal<double> Indi;
 
 // Use functions from namespace std
 using namespace std;
@@ -69,7 +64,7 @@ void main_function(int argc, char **argv)
   //////////////////////////
   //  Random seed
   //////////////////////////
-  //reproducible random seed: if you don't change SEED above, 
+  //reproducible random seed: if you don't change SEED above,
   // you'll aways get the same result, NOT a random run
   rng.reseed(SEED);
 
@@ -90,7 +85,7 @@ void main_function(int argc, char **argv)
   eoInitFixedLength<Indi> random(VEC_SIZE, uGen);
    // Initialization of the population
   eoPop<Indi> pop(POP_SIZE, random);
- 
+
   // and evaluate it in one loop
   apply<Indi>(eval, pop);	// STL syntax
 
@@ -112,9 +107,9 @@ void main_function(int argc, char **argv)
   eoSelectPerc<Indi> select(selectOne);// by default rate==1
 
 // REPLACE
-  // And we now have the full slection/replacement - though with 
+  // And we now have the full slection/replacement - though with
   // no replacement (== generational replacement) at the moment :-)
-  eoGenerationalReplacement<Indi> replace; 
+  eoGenerationalReplacement<Indi> replace;
 
 // OPERATORS
   //////////////////////////////////////
@@ -131,11 +126,11 @@ void main_function(int argc, char **argv)
 
 // MUTATION
   // offspring(i) uniformly chosen in [parent(i)-epsilon, parent(i)+epsilon]
-  eoUniformMutation<Indi>  mutationU(EPSILON); 
+  eoUniformMutation<Indi>  mutationU(EPSILON);
   // k (=1) coordinates of parents are uniformly modified
-  eoDetUniformMutation<Indi>  mutationD(EPSILON); 
+  eoDetUniformMutation<Indi>  mutationD(EPSILON);
   // all coordinates of parents are normally modified (stDev SIGMA)
-  eoNormalMutation<Indi>  mutationN(SIGMA); 
+  eoNormalMutation<Indi>  mutationN(SIGMA);
   // Combine them with relative weights
   eoPropCombinedMonOp<Indi> mutation(mutationU, uniformMutRate);
   mutation.add(mutationD, detMutRate);
@@ -156,7 +151,7 @@ void main_function(int argc, char **argv)
   eoCombinedContinue<Indi> continuator(genCont);
   continuator.add(steadyCont);
   continuator.add(fitCont);
-  
+
   // The operators are  encapsulated into an eoTRansform object
   eoSGATransform<Indi> transform(xover, P_CROSS, mutation, P_MUT);
 
@@ -165,14 +160,14 @@ void main_function(int argc, char **argv)
   // the algorithm
   ////////////////////////////////////////
 
-  // Easy EA requires 
+  // Easy EA requires
   // selection, transformation, eval, replacement, and stopping criterion
   eoEasyEA<Indi> gga(continuator, eval, select, transform, replace);
 
   // Apply algo to pop - that's it!
   cout << "\n        Here we go\n\n";
   gga(pop);
-  
+
 // OUTPUT
   // Print (sorted) intial population
   pop.sort();

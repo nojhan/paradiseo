@@ -1,6 +1,6 @@
 /*
     PyEO
-    
+
     Copyright (C) 2003 Maarten Keijzer
 
     This program is free software; you can redistribute it and/or modify
@@ -24,30 +24,22 @@
 #include <config.h>
 
 #include <boost/python.hpp>
-#ifdef HAVE_SSTREAM
 #include <sstream>
-#else
-#include <strstream>
-#endif
 /** Implements pickle support for eoPersistent derivatives */
 
 
 template <class T>
 struct T_pickle_suite : boost::python::pickle_suite
 {
-    static 
+    static
     std::string print_to_string(const T& t)
     {
-#ifdef HAVE_SSTREAM
 	std::ostringstream os;
-#else
-	std::ostrstream os;
-#endif
 	t.printOn(os);
 	os << std::ends;
 	return os.str();
     }
-    
+
     static
     boost::python::tuple getstate(const T& t)
     {
@@ -59,11 +51,7 @@ struct T_pickle_suite : boost::python::pickle_suite
     void setstate(T& t, boost::python::tuple pickled)
     {
 	std::string s = boost::python::extract<std::string>(pickled[0]);
-#ifdef HAVE_SSTREAM
 	std::istringstream is(s);
-#else
-	std::istrstream is(s.c_str(), s.size());
-#endif
 	t.readFrom(is);
     }
 };

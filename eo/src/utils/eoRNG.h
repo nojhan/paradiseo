@@ -1,10 +1,9 @@
-/*
-*	Random number generator adapted from (see comments below)
-*
-*   The random number generator is modified into a class
-*   by Maarten Keijzer (mak@dhi.dk). Also added the Box-Muller
-*   transformation to generate normal deviates.
-*
+/** Random number generator adapted from (see comments below)
+
+    The random number generator is modified into a class
+    by Maarten Keijzer (mak@dhi.dk). Also added the Box-Muller
+    transformation to generate normal deviates.
+
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -22,142 +21,118 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
 */
 
-/* ************ DOCUMENTATION IN ORIGINAL FILE *********************/
-
-// This is the ``Mersenne Twister'' random number generator MT19937, which
-// generates pseudorandom integers uniformly distributed in 0..(2^32 - 1)
-// starting from any odd seed in 0..(2^32 - 1).  This version is a recode
-// by Shawn Cokus (Cokus@math.washington.edu) on March 8, 1998 of a version by
-// Takuji Nishimura (who had suggestions from Topher Cooper and Marc Rieffel in
-// July-August 1997).
-//
-// Effectiveness of the recoding (on Goedel2.math.washington.edu, a DEC Alpha
-// running OSF/1) using GCC -O3 as a compiler: before recoding: 51.6 sec. to
-// generate 300 million random numbers; after recoding: 24.0 sec. for the same
-// (i.e., 46.5% of original time), so speed is now about 12.5 million random
-// number generations per second on this machine.
-//
-// According to the URL <http://www.math.keio.ac.jp/~matumoto/emt.html>
-// (and paraphrasing a bit in places), the Mersenne Twister is ``designed
-// with consideration of the flaws of various existing generators,'' has
-// a period of 2^19937 - 1, gives a sequence that is 623-dimensionally
-// equidistributed, and ``has passed many std::stringent tests, including the
-// die-hard test of G. Marsaglia and the load test of P. Hellekalek and
-// S. Wegenkittl.''  It is efficient in memory usage (typically using 2506
-// to 5012 bytes of static data, depending on data type sizes, and the code
-// is quite short as well).  It generates random numbers in batches of 624
-// at a time, so the caching and pipelining of modern systems is exploited.
-// It is also divide- and mod-free.
-//
-// This library is free software; you can redistribute it and/or modify it
-// under the terms of the GNU Library General Public License as published by
-// the Free Software Foundation (either version 2 of the License or, at your
-// option, any later version).  This library is distributed in the hope that
-// it will be useful, but WITHOUT ANY WARRANTY, without even the implied
-// warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See
-// the GNU Library General Public License for more details.  You should have
-// received a copy of the GNU Library General Public License along with this
-// library; if not, write to the Free Software Foundation, Inc., 59 Temple
-// Place, Suite 330, Boston, MA 02111-1307, USA.
-//
-// The code as Shawn received it included the following notice:
-//
-//   Copyright (C) 1997 Makoto Matsumoto and Takuji Nishimura.  When
-//   you use this, send an e-mail to <matumoto@math.keio.ac.jp> with
-//   an appropriate reference to your work.
-//
-// It would be nice to CC: <Cokus@math.washington.edu> when you write.
-//
-
 //
 // uint32_t must be an unsigned integer type capable of holding at least 32
 // bits; exactly 32 should be fastest, but 64 is better on an Alpha with
 // GCC at -O3 optimization so try your options and see what's best for you
 //
 
-/* ************ END DOCUMENTATION IN ORIGINAL FILE *********************/
-
 
 #ifndef EO_RANDOM_NUMBER_GENERATOR
 #define EO_RANDOM_NUMBER_GENERATOR
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-#ifdef HAVE_INTTYPES_H
-#include <inttypes.h>
-#endif
+#include <stdint.h>
+#include <vector>
+#include "eoPersistent.h"
+#include "eoObject.h"
 
-#include "../eoPersistent.h"
-#include "../eoObject.h"
+/** Random Number Generator
 
-// TODO: check for various compilers if this is exactly 32 bits
-// Unfortunately MSVC's preprocessor does not comprehend sizeof()
-// so neat preprocessing tricks will not work
+@class eoRng eoRNG.h utils/eoRNG.h
 
-#if(! (defined HAVE_UINT32_T))
-#if(SIZEOF_UNSIGNED_LONG == 4)
-typedef unsigned long uint32_t;
-#else
-#error Need to provide a type for uint32_t in eoRNG.h.
-#endif
-#endif
+eoRng is a persistent class that uses the ``Mersenne Twister'' random
+number generator MT19937 for generating random numbers. The various
+member functions implement useful functions for evolutionary
+algorithms. Included are: rand(), random(), flip() and normal().
+
+<h1>DOCUMENTATION IN ORIGINAL FILE</h1>
+
+This is the ``Mersenne Twister'' random number generator MT19937, which
+generates pseudorandom integers uniformly distributed in 0..(2^32 - 1) starting
+from any odd seed in 0..(2^32 - 1). This version is a recode by Shawn Cokus
+(Cokus@math.washington.edu) on March 8, 1998 of a version by Takuji Nishimura
+(who had suggestions from Topher Cooper and Marc Rieffel in July-August 1997).
+
+Effectiveness of the recoding (on Goedel2.math.washington.edu, a DEC Alpha
+running OSF/1) using GCC -O3 as a compiler: before recoding: 51.6 sec. to
+generate 300 million random numbers; after recoding: 24.0 sec. for the same
+(i.e., 46.5% of original time), so speed is now about 12.5 million random number
+generations per second on this machine.
+
+According to the URL <http://www.math.keio.ac.jp/~matumoto/emt.html> (and
+paraphrasing a bit in places), the Mersenne Twister is ``designed with
+consideration of the flaws of various existing generators,'' has a period of
+2^19937 - 1, gives a sequence that is 623-dimensionally equidistributed, and
+``has passed many std::stringent tests, including the die-hard test of G.
+Marsaglia and the load test of P. Hellekalek and S. Wegenkittl.'' It is
+efficient in memory usage (typically using 2506 to 5012 bytes of static data,
+depending on data type sizes, and the code is quite short as well). It generates
+random numbers in batches of 624 at a time, so the caching and pipelining of
+modern systems is exploited. It is also divide- and mod-free.
+
+The code as Shawn received it included the following notice:
+- Copyright (C) 1997 Makoto Matsumoto and Takuji Nishimura. When you use this,
+  send an e-mail to <matumoto@math.keio.ac.jp> with an appropriate reference to
+  your work.
+- It would be nice to CC: <Cokus@math.washington.edu> when you write.
 
 
-//-----------------------------------------------------------------------------
-// eoRng
-//-----------------------------------------------------------------------------
-/**
-\class eoRng eoRNG.h utils/eoRNG.h
-eoRng is a persistent class that uses the ``Mersenne Twister'' random number generator MT19937
-for generating random numbers. The various member functions implement useful functions
-for evolutionary algorithms. Included are: rand(), random(), flip() and normal().
+<h1>Portability</h1>
 
-Note for people porting EO to other platforms: please make sure that the typedef
+Note for people porting EO to other platforms: please make sure that the type
 uint32_t in the file eoRng.h is exactly 32 bits long. It may be longer, but not
 shorter. If it is longer, file compatibility between EO on different platforms
 may be broken.
 */
-class eoRng  : public eoObject, public eoPersistent
+class eoRng : public eoObject, public eoPersistent
 {
 public :
-  /**
-     ctor takes a random seed; if you want another seed, use reseed
-     @see reseed to see why the parameter to initialize is doubled
-  */
 
-  eoRng(uint32_t s) : state(0), next(0), left(-1), cached(false), N(624), M(397), K(0x9908B0DFU)  {
-    state = new uint32_t[N+1];
-    initialize(2*s);
-  }
+    /** Constructor
 
- ~eoRng(void)
-   {
-     delete [] state;
-   }
+    @param s Random seed; if you want another seed, use reseed.
 
- /**
-  * Re-initializes the Random Number Generator.
-  * WARNING: after Jeroen Eggermont <jeggermo@liacs.nl> noticed that
-  *    initialize does not differentiate between odd and even numbers,
-  *    the argument to reseed is now doubled before being passed on.
-  *
-  *    Manually divide the seed by 2 if you want to re-run old runs
-  *
-  * MS. 5 Oct. 2001
- */
- void reseed(uint32_t s)
-   {
-     initialize(2*s);
-   }
+    @see reseed for details on usage of the seeding value.
+    */
+    eoRng(uint32_t s)
+        : state(0), next(0), left(-1), cached(false), N(624), M(397), K(0x9908B0DFU)
+        {
+            state = new uint32_t[N+1];
+            initialize(2*s);
+        }
 
- /**
-    Re-initializes the Random Number Generator - old version
- */
- void oldReseed(uint32_t s)
-   {
-     initialize(s);
-   }
+    ~eoRng(void)
+        {
+            delete [] state;
+        }
+
+    /** Re-initializes the Random Number Generator.
+
+    WARNING: Jeroen Eggermont <jeggermo@liacs.nl> noticed that initialize does
+    not differentiate between odd and even numbers, therefore the argument to
+    reseed is now doubled before being passed on.
+
+    Manually divide the seed by 2 if you want to re-run old runs
+
+    @version MS. 5 Oct. 2001
+    */
+    void reseed(uint32_t s)
+        {
+            initialize(2*s);
+        }
+
+    /** Re-initializes the Random Number Generator
+
+    This is the traditional seeding procedure.
+
+    @see reseed for details on usage of the seeding value.
+
+    @version old version
+    */
+    void oldReseed(uint32_t s)
+        {
+            initialize(s);
+        }
 
  /**
     uniform(m = 1.0) returns a random double in the range [0, m)
@@ -218,44 +193,52 @@ public :
  */
  uint32_t rand();
 
- /**
-    rand_max() the maximum returned by rand()
- */
- uint32_t rand_max(void) const { return (uint32_t) 0xffffffff; }
+    /**
+       rand_max() the maximum returned by rand()
+    */
+    uint32_t rand_max(void) const { return uint32_t(0xffffffff); }
 
- /**
-    roulette_wheel(vec, total = 0) does a roulette wheel selection
-    on the input std::vector vec. If the total is not supplied, it is
-    calculated. It returns an integer denoting the selected argument.
- */
- template <class T>
-   int roulette_wheel(const std::vector<T>& vec, T total = 0)
-   {
-     if (total == 0)
-       { // count
-	 for (unsigned    i = 0; i < vec.size(); ++i)
-	   total += vec[i];
-       }
+    /**
+       roulette_wheel(vec, total = 0) does a roulette wheel selection
+       on the input std::vector vec. If the total is not supplied, it is
+       calculated. It returns an integer denoting the selected argument.
+    */
+    template <typename TYPE>
+    int roulette_wheel(const std::vector<TYPE>& vec, TYPE total = 0)
+        {
+            if (total == 0)
+            { // count
+                for (unsigned    i = 0; i < vec.size(); ++i)
+                    total += vec[i];
+            }
+            double fortune = uniform() * total;
+            int i = 0;
+            while (fortune > 0)
+            {
+                fortune -= vec[i++];
+            }
+            return --i;
+        };
 
-     double fortune = uniform() * total;
-     int i = 0;
 
-     while (fortune > 0)
-       {
-	 fortune -= vec[i++];
-       }
+    /** Randomly select element from vector.
 
-     return --i;
-   }
+    @return Uniformly chosen element from the vector.
+    */
+    template <typename TYPE>
+    const TYPE& choice(const std::vector<TYPE>& vec) const
+        { return vec[random(vec.size())]; }
 
- /**
-  * choice(vec), returns a uniformly chosen element from the vector
-  */
- template <class T>
-     const T& choice(const std::vector<T>& vec) { return vec[random(vec.size())]; }
 
- template <class T>
-     T& choice(std::vector<T>& vec) { return vec[random(vec.size())]; }
+    /** Randomly select element from vector.
+
+    @overload
+
+    @return Uniformly chosen element from the vector.
+    */
+    template <typename TYPE>
+    TYPE& choice(std::vector<TYPE>& vec)
+        { return vec[random(vec.size())]; }
 
  ///
  void printOn(std::ostream& _os) const
@@ -474,3 +457,10 @@ namespace eo {
 
 #endif
 
+
+// Local Variables:
+// coding: iso-8859-1
+// mode: C++
+// c-file-style: "Stroustrup"
+// fill-column: 80
+// End:

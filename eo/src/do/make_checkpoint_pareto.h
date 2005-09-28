@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // make_checkpoint_pareto.h
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -32,11 +32,7 @@
 #endif
 
 #include <stdlib.h>
-#ifdef HAVE_SSTREAM
 #include <sstream>
-#else
-#include <strstream>
-#endif
 
 #include "EO.h"
 #include "eoParetoFitness.h"
@@ -55,7 +51,7 @@ template <class EOT>
 eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state, eoEvalFuncCounter<EOT>& _eval, eoContinue<EOT>& _continue)
 {
   // first, create a checkpoint from the eoContinue - and store in _state
-  eoCheckPoint<EOT> & checkpoint = 
+  eoCheckPoint<EOT> & checkpoint =
         _state.storeFunctor(new eoCheckPoint<EOT>(_continue));
 
   /////// get number of obectives from Fitness - not very elegant
@@ -72,9 +68,9 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
     // Create anyway a generation-counter parameter WARNING: not stored anywhere!!!
     eoValueParam<unsigned> *generationCounter = new eoValueParam<unsigned>(0, "Gen.");
     // Create an incrementor (sub-class of eoUpdater).
-    eoIncrementor<unsigned> & increment = 
+    eoIncrementor<unsigned> & increment =
       _state.storeFunctor(new eoIncrementor<unsigned>(generationCounter->value()) );
-    // Add it to the checkpoint, 
+    // Add it to the checkpoint,
     checkpoint.add(increment);
 
     // dir for DISK output
@@ -109,7 +105,7 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
   unsigned frequency = atoi(fPlot.first.c_str());
   if (frequency)		   // something to plot
     {
-      unsigned nbPlot = fPlot.second.size(); 
+      unsigned nbPlot = fPlot.second.size();
       if ( nbPlot % 2 )		   // odd!
 	throw std::runtime_error("Odd number of front description in make_checkpoint_pareto");
 
@@ -124,32 +120,18 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
 	  unsigned obj2 = atoi(fPlot.second[i+1].c_str());
 	  eoMOFitnessStat<EOT>* fStat;
 	  if (!bStat[obj1]) {		   // not already there: create it
-#ifdef HAVE_SSTREAM
 	      std::ostringstream os;
-	      os << "Obj. " << obj1 << std::ends; 
+	      os << "Obj. " << obj1 << std::ends;
 	      fStat = new eoMOFitnessStat<EOT>(obj1, os.str().c_str());
-#else
-	      char s[1024];
-	      std::ostrstream os(s, 1022);
-	      os << "Obj. " << obj1 << std::ends; 
-	      fStat = new eoMOFitnessStat<EOT>(obj1, s);
-#endif
 	      _state.storeFunctor(fStat);
 	      bStat[obj1]=true;
 	      theStats[obj1]=fStat;
 	      checkpoint.add(*fStat);
           }
 	  if (!bStat[obj2]) {		   // not already there: create it
-#ifdef HAVE_SSTREAM
 	      std::ostringstream os;
-	      os << "Obj. " << obj2 << std::ends; 
+	      os << "Obj. " << obj2 << std::ends;
 	      fStat = new eoMOFitnessStat<EOT>(obj2, os.str().c_str());
-#else
-	      char s[1024];
-	      std::ostrstream os2(s, 1022);
-	      os2 << "Obj. " << obj2 << std::ends; 
-	      fStat = new eoMOFitnessStat<EOT>(obj2, s);
-#endif
 	      _state.storeFunctor(fStat);
 	      bStat[obj2]=true;
 	      theStats[obj2]=fStat;
@@ -157,26 +139,18 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
           }
 
 	  // then the fileSnapshots
-#ifdef HAVE_SSTREAM
           std::ostringstream os;
-	  os << "Front." << obj1 << "." << obj2 << "." << std::ends; 
+	  os << "Front." << obj1 << "." << obj2 << "." << std::ends;
 	  eoFileSnapshot& snapshot = _state.storeFunctor(
               new eoFileSnapshot(dirName, frequency, os.str().c_str()));
-#else
-	  char s3[1024];
-	  std::ostrstream os3(s3, 1022);
-	  os3 << "Front." << obj1 << "." << obj2 << "." << std::ends; 
-	  eoFileSnapshot & snapshot = _state.storeFunctor(
-              new eoFileSnapshot(dirName, frequency, s3 ) );
-#endif
 	  checkpoint.add(snapshot);
-      
+
 	  snapshot.add(*theStats[obj1]);
 	  snapshot.add(*theStats[obj2]);
 
 	  // and create the gnuplotter from the fileSnapshot
 #if !defined(NO_GNUPLOT)
-	  if (boolGnuplot) 
+	  if (boolGnuplot)
 	    {
 	      eoGnuplot1DSnapshot & plotSnapshot = _state.storeFunctor(new
 		    eoGnuplot1DSnapshot(snapshot));
@@ -204,8 +178,8 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
     // do we want an eoStdoutMonitor?
     bool needStdoutMonitor = printPop ;	// only this one at the moment
 
-    // The Stdout monitor will print parameters to the screen ...  
-    if ( needStdoutMonitor ) 
+    // The Stdout monitor will print parameters to the screen ...
+    if ( needStdoutMonitor )
       {
 	eoStdoutMonitor & monitor = _state.storeFunctor(new eoStdoutMonitor(false));
 
@@ -241,12 +215,12 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
 #else
       std::string stmp = dirName + "/generations";
 #endif
-      eoCountedStateSaver *stateSaver1 = new eoCountedStateSaver(freq, _state, stmp); 
+      eoCountedStateSaver *stateSaver1 = new eoCountedStateSaver(freq, _state, stmp);
       _state.storeFunctor(stateSaver1);
     checkpoint.add(*stateSaver1);
     }
 
-    // save state every T seconds 
+    // save state every T seconds
     eoValueParam<unsigned>& saveTimeIntervalParam = _parser.createParam(unsigned(0), "saveTimeInterval", "Save every T seconds (0 or absent = never)", '\0',"Persistence" );
     if (_parser.isItThere(saveTimeIntervalParam) && saveTimeIntervalParam.value()>0)
     {
@@ -259,7 +233,7 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
 #else
       std::string stmp = dirName + "/time";
 #endif
-      eoTimedStateSaver *stateSaver2 = new eoTimedStateSaver(saveTimeIntervalParam.value(), _state, stmp); 
+      eoTimedStateSaver *stateSaver2 = new eoTimedStateSaver(saveTimeIntervalParam.value(), _state, stmp);
       _state.storeFunctor(stateSaver2);
       checkpoint.add(*stateSaver2);
     }

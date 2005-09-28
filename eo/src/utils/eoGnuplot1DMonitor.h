@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoGnuplot1DMonitor.h
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
-/* 
+/*
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -27,10 +27,6 @@
 
 #ifndef _eoGnuplot1DMonitor_H
 #define _eoGnuplot1DMonitor_H
-
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
 
 #include <string>
 
@@ -93,10 +89,10 @@ inline eoMonitor&   eoGnuplot1DMonitor::operator() (void)
       FirstPlot();
       firstTime = false;
     }
-  else 
+  else
     {
       if( gpCom ) {
-	PipeComSend( gpCom, "replot\n" );	
+	PipeComSend( gpCom, "replot\n" );
       }
     }
   return *this;
@@ -110,13 +106,7 @@ inline void  eoGnuplot1DMonitor::FirstPlot()
     {
       throw std::runtime_error("Must have some stats to plot!\n");
     }
-#ifdef HAVE_SSTREAM
   std::ostringstream os;
-#else
-  char buff[1024];
-  std::ostrstream os(buff, 1024);
-#endif
-
   os << "plot";
   for (unsigned i=1; i<vec.size(); i++) {
     os << " '" << getFileName().c_str() <<
@@ -125,12 +115,7 @@ inline void  eoGnuplot1DMonitor::FirstPlot()
       os << ", ";
   }
   os << '\n';
-#ifdef HAVE_SSTREAM
   PipeComSend( gpCom, os.str().c_str());
-#else
-  os << std::ends;
-  PipeComSend( gpCom, buff );
-#endif
 }
 
 #endif

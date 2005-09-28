@@ -27,23 +27,13 @@
 #ifndef _make_genotype_h
 #define _make_genotype_h
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#ifdef HAVE_SSTREAM
-#include <sstream>
-#else
-#include <strstream>
-#endif
-
 #include <iostream>
+#include <sstream>
 
 #include "es/eoReal.h"
 #include "es/eoEsChromInit.h"
-#include "utils/eoRealVectorBounds.h"
-  // also need the parser and param includes
 #include "utils/eoParser.h"
+#include "utils/eoRealVectorBounds.h"
 #include "utils/eoState.h"
 
 
@@ -102,11 +92,7 @@ eoEsChromInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
 	to_scale = true;
 	sigmaString.resize(pos);
     }
-#ifdef HAVE_SSTREAM
     std::istringstream is(sigmaString);
-#else
-    std::istrstream is(sigmaString.c_str());
-#endif
     double sigma;
     is >> sigma;
     // minimum check

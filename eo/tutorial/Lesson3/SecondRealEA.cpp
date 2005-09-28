@@ -15,12 +15,7 @@
 // standard includes
 #include <fstream>
 #include <iostream>   // cout
-#include <stdexcept>  // runtime_error 
-#ifdef HAVE_SSTREAM
-#include <sstream>
-#else
-#include <strstream>  // ostrstream, istrstream
-#endif
+#include <stdexcept>  // runtime_error
 
 // the general include for eo
 #include <eo>
@@ -29,7 +24,7 @@
 // REPRESENTATION
 //-----------------------------------------------------------------------------
 // define your individuals
-typedef eoReal<eoMinimizingFitness> Indi;	
+typedef eoReal<eoMinimizingFitness> Indi;
 
 // Use functions from namespace std
 using namespace std;
@@ -50,18 +45,18 @@ void main_function(int argc, char **argv)
 //-----------------------------------------------------------------------------
 // instead of having all values of useful parameters as constants, read them:
 // either on the command line (--option=value or -o=value)
-//     or in a parameter file (same syntax, order independent, 
-//                             # = usual comment character 
+//     or in a parameter file (same syntax, order independent,
+//                             # = usual comment character
 //     or in the environment (TODO)
 
   // First define a parser from the command-line arguments
   eoParser parser(argc, argv);
-  
+
   // For each parameter, you can in on single line
   // define the parameter, read it through the parser, and assign it
-  
+
   unsigned seed = parser.createParam(unsigned(time(0)), "seed", "Random number seed", 'S').value(); // will be in default section General
-  
+
   // description of genotype
   unsigned vecSize = parser.createParam(unsigned(8), "vecSize", "Genotype size",'V', "Representation" ).value();
 
@@ -72,7 +67,7 @@ void main_function(int argc, char **argv)
 
    // init and stop
     string loadName = parser.createParam(string(""), "Load","A save file to restart from",'L', "Persistence" ).value();
- 
+
     unsigned maxGen = parser.createParam(unsigned(100), "maxGen", "Maximum number of generations",'G', "Stopping criterion" ).value();
 
     unsigned minGen = parser.createParam(unsigned(100), "minGen", "Minimum number of generations",'g', "Stopping criterion" ).value();
@@ -91,7 +86,7 @@ void main_function(int argc, char **argv)
 
     // internal parameters for the mutations
     double EPSILON = parser.createParam(double(0.01), "EPSILON", "Width for uniform mutation", '\0', "Genetic Operators" ).value();
-    
+
     double SIGMA = parser.createParam(double(0.3), "SIGMA", "Sigma for normal mutation", '\0', "Genetic Operators" ).value();
 
    // relative rates for mutations
@@ -101,7 +96,7 @@ void main_function(int argc, char **argv)
 
     double normalMutRate = parser.createParam(double(1), "normalMutRate", "Relative rate for normal mutation", '\0', "Genetic Operators" ).value();
 
-    // the name of the "status" file where all actual parameter values will be saved 
+    // the name of the "status" file where all actual parameter values will be saved
     string str_status = parser.ProgramName() + ".status"; // default value
     string statusName = parser.createParam(str_status, "status","Status file",'S', "Persistence" ).value();
 
@@ -142,11 +137,11 @@ void main_function(int argc, char **argv)
   // eventually with different parameters
   inState.registerObject(rng);
   inState.registerObject(pop);
-    
+
   if (loadName != "")
     {
       inState.load(loadName); //  load the pop and the rng
-      // the fitness is read in the file: 
+      // the fitness is read in the file:
       // do only evaluate the pop if the fitness has changed
     }
   else
@@ -156,10 +151,10 @@ void main_function(int argc, char **argv)
       // based on boolean_generator class (see utils/rnd_generator.h)
       eoUniformGenerator<double> uGen(-1.0, 1.0);
       eoInitFixedLength<Indi> random(vecSize, uGen);
-	
+
       // Init pop from the randomizer: need to use the append function
-      pop.append(popSize, random);      
-      // and evaluate pop (STL syntax)    
+      pop.append(popSize, random);
+      // and evaluate pop (STL syntax)
       apply<Indi>(eval, pop);
     } // end of initializatio of the population
 
@@ -181,9 +176,9 @@ void main_function(int argc, char **argv)
   eoSelectPerc<Indi> select(selectOne);// by default rate==1
 
 // REPLACE
-  // And we now have the full slection/replacement - though with 
+  // And we now have the full slection/replacement - though with
   // no replacement (== generational replacement) at the moment :-)
-  eoGenerationalReplacement<Indi> replace; 
+  eoGenerationalReplacement<Indi> replace;
 
 // OPERATORS
   //////////////////////////////////////
@@ -200,11 +195,11 @@ void main_function(int argc, char **argv)
 
 // MUTATION
   // offspring(i) uniformly chosen in [parent(i)-epsilon, parent(i)+epsilon]
-  eoUniformMutation<Indi>  mutationU(EPSILON); 
+  eoUniformMutation<Indi>  mutationU(EPSILON);
   // k (=1) coordinates of parents are uniformly modified
-  eoDetUniformMutation<Indi>  mutationD(EPSILON); 
+  eoDetUniformMutation<Indi>  mutationD(EPSILON);
   // all coordinates of parents are normally modified (stDev SIGMA)
-  eoNormalMutation<Indi>  mutationN(SIGMA); 
+  eoNormalMutation<Indi>  mutationN(SIGMA);
   // Combine them with relative weights
   eoPropCombinedMonOp<Indi> mutation(mutationU, uniformMutRate);
   mutation.add(mutationD, detMutRate);
@@ -223,27 +218,27 @@ void main_function(int argc, char **argv)
   eoCombinedContinue<Indi> continuator(genCont);
   continuator.add(steadyCont);
   continuator.add(fitCont);
-  
-  
+
+
 // CHECKPOINT
-  // but now you want to make many different things every generation 
+  // but now you want to make many different things every generation
   // (e.g. statistics, plots, ...).
   // the class eoCheckPoint is dedicated to just that:
 
-  // Declare a checkpoint (from a continuator: an eoCheckPoint 
+  // Declare a checkpoint (from a continuator: an eoCheckPoint
   // IS AN eoContinue and will be called in the loop of all algorithms)
   eoCheckPoint<Indi> checkpoint(continuator);
-  
+
     // Create a counter parameter
     eoValueParam<unsigned> generationCounter(0, "Gen.");
-    
-    // Create an incrementor (sub-class of eoUpdater). Note that the 
-    // parameter's value is passed by reference, 
+
+    // Create an incrementor (sub-class of eoUpdater). Note that the
+    // parameter's value is passed by reference,
     // so every time the incrementer is updated (every generation),
     // the data in generationCounter will change.
     eoIncrementor<unsigned> increment(generationCounter.value());
 
-    // Add it to the checkpoint, 
+    // Add it to the checkpoint,
     // so the counter is updated (here, incremented) every generation
     checkpoint.add(increment);
 
@@ -259,11 +254,11 @@ void main_function(int argc, char **argv)
 
     // The Stdout monitor will print parameters to the screen ...
     eoStdoutMonitor monitor(false);
-     
+
     // when called by the checkpoint (i.e. at every generation)
     checkpoint.add(monitor);
 
-    // the monitor will output a series of parameters: add them 
+    // the monitor will output a series of parameters: add them
     monitor.add(generationCounter);
     monitor.add(eval);		// because now eval is an eoEvalFuncCounter!
     monitor.add(bestStat);
@@ -271,7 +266,7 @@ void main_function(int argc, char **argv)
 
     // A file monitor: will print parameters to ... a File, yes, you got it!
     eoFileMonitor fileMonitor("stats.xg", " ");
-     
+
     // the checkpoint mechanism can handle multiple monitors
     checkpoint.add(fileMonitor);
 
@@ -289,9 +284,9 @@ void main_function(int argc, char **argv)
 
     // and feed the state to state savers
     // save state every 100th  generation
-    eoCountedStateSaver stateSaver1(20, outState, "generation"); 
-    // save state every 1 seconds 
-    eoTimedStateSaver   stateSaver2(1, outState, "time"); 
+    eoCountedStateSaver stateSaver1(20, outState, "generation");
+    // save state every 1 seconds
+    eoTimedStateSaver   stateSaver2(1, outState, "time");
 
     // Don't forget to add the two savers to the checkpoint
     checkpoint.add(stateSaver1);
@@ -303,13 +298,13 @@ void main_function(int argc, char **argv)
   // the algorithm
   ////////////////////////////////////////
 
-  // Easy EA requires 
+  // Easy EA requires
   // stopping criterion, eval, selection, transformation, replacement
   eoEasyEA<Indi> gga(checkpoint, eval, select, transform, replace);
 
   // Apply algo to pop - that's it!
   gga(pop);
-  
+
 // OUTPUT
   // Print (sorted) intial population
   pop.sort();

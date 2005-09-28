@@ -9,16 +9,9 @@
 #include <config.h>
 #endif
 
-// standard includes
-#include <stdexcept>  // runtime_error 
-#include <iostream>   // cout
-#ifdef HAVE_SSTREAM
+#include <stdexcept>
+#include <iostream>
 #include <sstream>
-#else
-#include <strstream>  // ostrstream, istrstream
-#endif
-
-// the general include for eo
 
 #include <eo>
 #include <es.h>
@@ -34,7 +27,7 @@ using namespace std;
 // EVAL
 //-----------------------------------------------------------------------------
 // a simple fitness function that computes the euclidian norm of a real vector
-//    @param _indi A real-valued individual 
+//    @param _indi A real-valued individual
 
 double real_value(const Indi & _indi)
 {
@@ -62,7 +55,7 @@ void main_function(int argc, char **argv)
   //////////////////////////
   //  Random seed
   //////////////////////////
-  //reproducible random seed: if you don't change SEED above, 
+  //reproducible random seed: if you don't change SEED above,
   // you'll aways get the same result, NOT a random run
   rng.reseed(SEED);
 
@@ -121,7 +114,7 @@ void main_function(int argc, char **argv)
   eoSegmentCrossover<Indi> xover;
 // MUTATION
   // offspring(i) uniformly chosen in [parent(i)-epsilon, parent(i)+epsilon]
-  eoUniformMutation<Indi>  mutation(EPSILON); 
+  eoUniformMutation<Indi>  mutation(EPSILON);
 
 // STOP
 // CHECKPOINT
@@ -130,21 +123,21 @@ void main_function(int argc, char **argv)
   /////////////////////////////////////
   // stop after MAX_GEN generations
   eoGenContinue<Indi> continuator(MAX_GEN);
-  
+
 // GENERATION
   /////////////////////////////////////////
   // the algorithm
   ////////////////////////////////////////
   // standard Generational GA requires
   // selection, evaluation, crossover and mutation, stopping criterion
- 
 
-  eoSGA<Indi> gga(select, xover, CROSS_RATE, mutation, MUT_RATE, 
+
+  eoSGA<Indi> gga(select, xover, CROSS_RATE, mutation, MUT_RATE,
                    eval, continuator);
 
   // Apply algo to pop - that's it!
   gga(pop);
-  
+
 // OUTPUT
   // Print (sorted) intial population
   pop.sort();

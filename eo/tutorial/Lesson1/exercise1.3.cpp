@@ -12,11 +12,6 @@
 // standard includes
 #include <iostream>
 #include <stdexcept>
-#ifdef HAVE_SSTREAM
-#include <sstream>
-#else
-#include <strstream>
-#endif
 
 // the general include for eo
 #include <eo>
@@ -57,7 +52,7 @@ void main_function(int argc, char **argv)
   //////////////////////////
   //  Random seed
   //////////////////////////
-  //reproducible random seed: if you don't change SEED above, 
+  //reproducible random seed: if you don't change SEED above,
   // you'll aways get the same result, NOT a random run
   rng.reseed(SEED);
 
@@ -96,10 +91,10 @@ void main_function(int argc, char **argv)
   // selection and replacement
   ////////////////////////////////////
 
-  // solution solution solution: uncomment one of the following, 
+  // solution solution solution: uncomment one of the following,
   //                             comment out the eoDetTournament lines
 
-  // The well-known roulette 
+  // The well-known roulette
   // eoProportionalSelect<Indi> select;
 
   // could also use stochastic binary tournament selection
@@ -121,7 +116,7 @@ void main_function(int argc, char **argv)
   /////////////////////////////////////
   // stop after MAX_GEN generations
   eoGenContinue<Indi> continuator(MAX_GEN);
-  
+
 
   //////////////////////////////////////
   // The variation operators
@@ -136,14 +131,14 @@ void main_function(int argc, char **argv)
   ////////////////////////////////////////
   // standard Generational GA requires as parameters
   // selection, evaluation, crossover and mutation, stopping criterion
- 
 
-  eoSGA<Indi> gga(select, xover, CROSS_RATE, mutation, MUT_RATE, 
+
+  eoSGA<Indi> gga(select, xover, CROSS_RATE, mutation, MUT_RATE,
   		   eval, continuator);
 
   // Apply algo to pop - that's it!
   gga(pop);
-  
+
   // Print (sorted) intial population
   pop.sort();
   cout << "FINAL Population\n" << pop << endl;

@@ -10,16 +10,8 @@
 #include <config.h>
 #endif
 
-// standard includes
-#include <stdexcept>  // runtime_error 
-#include <iostream>   // cout
-#ifdef HAVE_SSTREAM
-#include <sstream>
-#else
-#include <strstream>  // ostrstream, istrstream
-#endif
-
-// the general include for eo
+#include <stdexcept>
+#include <iostream>
 
 #include <eo>
 #include <ga.h>
@@ -27,7 +19,7 @@
 // Use functions from namespace std
 using namespace std;
 
-// REPRESENTATION 
+// REPRESENTATION
 //-----------------------------------------------------------------------------
 // define your individuals
 typedef eoBit<double> Indi;     // A bitstring with fitness double
@@ -63,7 +55,7 @@ void main_function(int argc, char **argv)
   //////////////////////////
   //  Random seed
   //////////////////////////
-  //reproducible random seed: if you don't change SEED above, 
+  //reproducible random seed: if you don't change SEED above,
   // you'll aways get the same result, NOT a random run
   rng.reseed(SEED);
 
@@ -136,21 +128,21 @@ void main_function(int argc, char **argv)
   /////////////////////////////////////
   // stop after MAX_GEN generations
   eoGenContinue<Indi> continuator(MAX_GEN);
-  
+
 // GENERATION
   /////////////////////////////////////////
   // the algorithm
   ////////////////////////////////////////
   // standard Generational GA requires as parameters
   // selection, evaluation, crossover and mutation, stopping criterion
- 
 
-  eoSGA<Indi> gga(select, xover, CROSS_RATE, mutation, MUT_RATE, 
+
+  eoSGA<Indi> gga(select, xover, CROSS_RATE, mutation, MUT_RATE,
                   eval, continuator);
 
   // Apply algo to pop - that's it!
   gga(pop);
-  
+
 // OUTPUT
   // Print (sorted) intial population
   pop.sort();

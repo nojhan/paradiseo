@@ -2,7 +2,7 @@
 // FirstBitEA.cpp
 //-----------------------------------------------------------------------------
 //*
-// Still an instance of a VERY simple Bitstring Genetic Algorithm 
+// Still an instance of a VERY simple Bitstring Genetic Algorithm
 // (see FirstBitGA.cpp) but now with  Breeder - and Combined Ops
 //
 //-----------------------------------------------------------------------------
@@ -11,13 +11,8 @@
 #endif
 
 // standard includes
-#include <stdexcept>  // runtime_error 
+#include <stdexcept>  // runtime_error
 #include <iostream>   // cout
-#ifdef HAVE_SSTREAM
-#include <sstream>
-#else
-#include <strstream>  // ostrstream, istrstream
-#endif
 
 // the general include for eo
 #include <eo>
@@ -68,7 +63,7 @@ void main_function(int argc, char **argv)
   //////////////////////////
   //  Random seed
   //////////////////////////
-  //reproducible random seed: if you don't change SEED above, 
+  //reproducible random seed: if you don't change SEED above,
   // you'll aways get the same result, NOT a random run
   rng.reseed(SEED);
 
@@ -112,9 +107,9 @@ void main_function(int argc, char **argv)
   eoSelectPerc<Indi> select(selectOne);// by default rate==1
 
 // REPLACE
-  // And we now have the full slection/replacement - though with 
+  // And we now have the full slection/replacement - though with
   // no replacement (== generational replacement) at the moment :-)
-  eoGenerationalReplacement<Indi> replace; 
+  eoGenerationalReplacement<Indi> replace;
 
 // OPERATORS
   //////////////////////////////////////
@@ -136,7 +131,7 @@ void main_function(int argc, char **argv)
   // standard bit-flip mutation for bitstring
   eoBitMutation<Indi>  mutationBitFlip(P_MUT_PER_BIT);
   // mutate exactly 1 bit per individual
-  eoDetBitFlip<Indi> mutationOneBit; 
+  eoDetBitFlip<Indi> mutationOneBit;
   // Combine them with relative rates
   eoPropCombinedMonOp<Indi> mutation(mutationBitFlip, bitFlipRate);
   mutation.add(mutationOneBit, oneBitRate, true);
@@ -159,20 +154,20 @@ void main_function(int argc, char **argv)
   eoCombinedContinue<Indi> continuator(genCont);
   continuator.add(steadyCont);
   continuator.add(fitCont);
-  
+
 // GENERATION
   /////////////////////////////////////////
   // the algorithm
   ////////////////////////////////////////
 
-  // Easy EA requires 
+  // Easy EA requires
   // selection, transformation, eval, replacement, and stopping criterion
   eoEasyEA<Indi> gga(continuator, eval, select, transform, replace);
 
   // Apply algo to pop - that's it!
   cout << "\n        Here we go\n\n";
   gga(pop);
-  
+
 // OUTPUT
   // Print (sorted) intial population
   pop.sort();

@@ -14,11 +14,6 @@
 #include <fstream>
 #include <iostream>   // cout
 #include <stdexcept>  // runtime_error
-#ifdef HAVE_SSTREAM
-#include <sstream>
-#else
-#include <strstream>  // ostrstream, istrstream
-#endif
 
 // the general include for eo
 #include <eo>

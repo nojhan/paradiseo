@@ -8,13 +8,9 @@
 #endif
 
 #include <iostream>
+#include <sstream>
 #include <stdexcept>
 #include <vector>
-#ifdef HAVE_SSTREAM
-#include <sstream>
-#else
-#include <strstream>
-#endif
 
 // general
 #include <eo>

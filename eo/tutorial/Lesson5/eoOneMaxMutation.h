@@ -14,14 +14,14 @@ Template for simple mutation operators
 
 #include <eoOp.h>
 
-/** 
+/**
  *  Always write a comment in this format before class definition
  *  if you want the class to be documented by Doxygen
  *
  * THere is NO ASSUMPTION on the class GenoypeT.
  * In particular, it does not need to derive from EO
  */
-template<class GenotypeT> 
+template<class GenotypeT>
 class eoOneMaxMutation: public eoMonOp<GenotypeT>
 {
 public:
@@ -30,7 +30,7 @@ public:
    */
 // START eventually add or modify the anyVariable argument
   eoOneMaxMutation()
-  //  eoOneMaxMutation( varType  _anyVariable) : anyVariable(_anyVariable) 
+  //  eoOneMaxMutation( varType  _anyVariable) : anyVariable(_anyVariable)
 // END eventually add or modify the anyVariable argument
   {
     // START Code of Ctor of an eoOneMaxEvalFunc object
@@ -44,7 +44,7 @@ public:
    * modifies the parent
    * @param _genotype The parent genotype (will be modified)
    */
-  bool operator()(GenotypeT & _genotype) 
+  bool operator()(GenotypeT & _genotype)
   {
     bool isModified;
     // START code for mutation of the _genotype object

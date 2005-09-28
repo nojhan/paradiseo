@@ -27,11 +27,7 @@
 #endif
 
 #include <iostream>   // std::cout
-#ifdef HAVE_SSTREAM
 #include <sstream>
-#else
-#include <strstream>  // ostrstream, istrstream
-#endif
 
 #include <eo>         // general EO
 #include <ga.h>	      // bitstring representation & operators
@@ -65,23 +61,14 @@ void main_function()
   std::cout << "chrom:  " << chrom << std::endl
        << "chrom2: " << chrom2 << std::endl;
 
-#ifdef HAVE_SSTREAM
   std::ostringstream os;
-#else
-  char buff[1024];
-  std::ostrstream os(buff, 1024);
-#endif
   os << chrom;
-#ifdef HAVE_SSTREAM
   std::istringstream is(os.str());
-#else
-  std::istrstream is(os.str());
-#endif
   is >> chrom2; chrom.fitness(binary_value(chrom2));
-  
+
   std::cout << "\nTesting reading, writing\n";
   std::cout << "chrom:  " << chrom << "\nchrom2: " << chrom2 << '\n';
-  
+
   std::fill(chrom.begin(), chrom.end(), false);
   std::cout << "--------------------------------------------------"
        << std::endl << "eoMonOp's aplied to .......... " << chrom << std::endl;
@@ -95,7 +82,7 @@ void main_function()
   eoOneBitFlip<Chrom> bitflip;
   bitflip(chrom); chrom.fitness(binary_value(chrom));
   std::cout << "after eoBitFlip .............. " << chrom << std::endl;
-  
+
   eoBitMutation<Chrom> mutation(0.5);
   mutation(chrom); chrom.fitness(binary_value(chrom));
   std::cout << "after eoBinMutation(0.5) ..... " << chrom << std::endl;
@@ -115,15 +102,15 @@ void main_function()
   std::fill(chrom.begin(), chrom.end(), false); chrom.fitness(binary_value(chrom));
   std::fill(chrom2.begin(), chrom2.end(), true); chrom2.fitness(binary_value(chrom2));
   std::cout << "--------------------------------------------------"
-       << std::endl << "eoBinOp's aplied to ... " 
+       << std::endl << "eoBinOp's aplied to ... "
        << chrom << " " << chrom2 << std::endl;
 
   eo1PtBitXover<Chrom> xover;
   std::fill(chrom.begin(), chrom.end(), false);
   std::fill(chrom2.begin(), chrom2.end(), true);
-  xover(chrom, chrom2); 
+  xover(chrom, chrom2);
   chrom.fitness(binary_value(chrom)); chrom2.fitness(binary_value(chrom2));
-  std::cout << "eoBinCrossover ........ " << chrom << " " << chrom2 << std::endl; 
+  std::cout << "eoBinCrossover ........ " << chrom << " " << chrom2 << std::endl;
 
   for (i = 1; i < SIZE; i++)
     {
@@ -132,8 +119,8 @@ void main_function()
       std::fill(chrom2.begin(), chrom2.end(), true);
       nxover(chrom, chrom2);
       chrom.fitness(binary_value(chrom)); chrom2.fitness(binary_value(chrom2));
-      std::cout << "eoBinNxOver(" << i << ") ........ " 
-	   << chrom << " " << chrom2 << std::endl; 
+      std::cout << "eoBinNxOver(" << i << ") ........ "
+	   << chrom << " " << chrom2 << std::endl;
     }
 
   for (i = 1; i < SIZE / 2; i++)
@@ -144,8 +131,8 @@ void main_function()
 	std::fill(chrom2.begin(), chrom2.end(), true);
 	gxover(chrom, chrom2);
 	chrom.fitness(binary_value(chrom)); chrom2.fitness(binary_value(chrom2));
-	std::cout  << "eoBinGxOver(" << i << ", " << j << ") ..... " 
-	      << chrom << " " << chrom2 << std::endl; 
+	std::cout  << "eoBinGxOver(" << i << ", " << j << ") ..... "
+	      << chrom << " " << chrom2 << std::endl;
       }
 
     // test SGA algorithm
@@ -206,7 +193,7 @@ void main_function()
 //-----------------------------------------------------------------------------
 // For MSVC memory lead detection
 #ifdef _MSC_VER
-#include <crtdbg.h> 
+#include <crtdbg.h>
 #endif
 
 int main()

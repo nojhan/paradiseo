@@ -17,6 +17,12 @@ noinst_HEADERS		= eoOneMax.h \
 extra_DIST		= Makefile.simple
 
 AM_CXXFLAGS		= -I$(top_srcdir)/src
-LDADD			= -L$(top_builddir)/src -L$(top_builddir)/src/ga -L$(top_builddir)/src/utils
-LIBS			=  -lga -leoutils -leo
 
+LIBEO			= $(top_builddir)/src/libeo.a
+LIBES			= $(top_builddir)/src/es/libes.a
+LIBGA			= $(top_builddir)/src/ga/libga.a
+LIBUTILS		= $(top_builddir)/src/utils/libeoutils.a
+
+DEPS			= $(LIBEO) $(LIBUTILS) $(LIBES) $(LIBGA)
+
+LIBS			= $(LIBES) $(LIBGA) $(LIBEO) $(LIBUTILS)

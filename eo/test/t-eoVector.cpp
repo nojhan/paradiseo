@@ -30,11 +30,6 @@
 
 #include <cassert>
 #include <iostream>
-#ifdef HAVE_SSTREAM
-#include <sstream>
-#else
-#include <strstream>
-#endif
 
 #include <utils/eoRndGenerators.h>
 #include <eoVector.h>         // eoVector

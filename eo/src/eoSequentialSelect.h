@@ -28,12 +28,13 @@
 #define eoSequential_h
 
 /** Contains the following classes:
- *  - eoSequentialSelect, returns all individuals one by one, 
+ *  - eoSequentialSelect, returns all individuals one by one,
  *    either sorted or shuffled
  *  - eoEliteSequentialSelect, returns all indivisuals one by one
  *    starting with best, continuing shuffled (see G3 engine)
  */
 
+#include <utils/eoData.h>
 #include <utils/eoRNG.h>
 #include <eoSelectOne.h>
 
@@ -129,7 +130,7 @@ template <class EOT> class eoEliteSequentialSelect: public eoSelectOne<EOT>
     const EOT *ptmp = eoPters[0];
     eoPters[0]=best;
     eoPters[ibest] = ptmp;
-    // exit after setting current 
+    // exit after setting current
     current=0;
   }
 
