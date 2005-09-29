@@ -1,0 +1,232 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta name="author" content="J.J. Merelo, M. Schoenauer">
+    <meta name="keywords" content="Class libraries, evolutionary computation, evolution strategies, genetic algorithms, genetic programming, simulated annealing, C++">
+    <meta name="resource-type" content="document">
+    <meta name="distribution" content="Global">
+    <title>EO Evolutionary Computation Framework</title>
+    <style type="text/css">
+      H2 {
+      font-family: Helvetica,Arial;
+      color: #ffffcc;
+      background: #00309c;
+      }
+    </style>
+  </head>
+  <body alink="#ff0000" bgcolor="#ffffcc" link="#0000ee" text="#00309c" vlink="#551a8b">
+    <center>
+      <h1> EO Evolutionary Computation Framework</h1>
+    </center>
+    <table bgcolor="#ffffcc" border="0" cellpadding="5" cols="3" width="100%">
+      <tbody>
+        <tr>
+          <td class="TITLE" align="right" valign="top" width="100">
+            <h2> What is EO?</h2>
+          </td>
+          <td bgcolor="#ffcc99">EO is a templates-based, ANSI-C++ compliant
+            evolutionary computation library. It contains classes for almost any
+            kind of evolutionary computation you might come up to - at least for
+            the ones we could think of. It is component-based, so that if you
+            don't find the class you need in it, it is very easy to subclass
+            existing abstract or concrete classes.&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="TITLE" align="right" valign="top" width="100">
+            <h2> Download</h2>
+          </td>
+          <td bgcolor="#ffcc99">Current release
+            is&nbsp; <a
+            href="https://sourceforge.net/project/showfiles.php?group_id=9775&amp;package_id=10921&amp;release_id=359994">0.9.3z</a>:
+            it supports gcc 3.x, 4.x, and good old gcc 2.9x.&nbsp; This is the
+            version you should use <b><font color="#ff6600">NOW (September 29.
+            2005)</font></b>.
+            <br>
+            All subsequent versions will
+            <span style="font-weight: bold; color: rgb(255, 0, 0);">NOT</span>
+            support gcc 2.xx any more.<br> In particular, you can also get
+            the <font color="#ff0000">current version</font> through the daily
+            snapshots made available
+            at <a href="http://www.lri.fr/%7Emarc/EO/snapshot">LRI</a>.
+            <p>The tutorial home page is at
+              <a href="http://www.lri.fr/%7Emarc/EO/">LRI</a>. The latest
+              <a href="http://www.lri.fr/%7Emarc/EO/">tutorial release</a> Dec. 12,
+              2002!) contains tutorial for ParadisEO, the parallel version of EO. And
+              still demonstrates that writing an evolutionary algorithm evolving your
+              own structures is now <font color="#ff0000">easy</font>, using
+              ready-to-use template files. </p>
+            <p>EO was initiated at <a href="http://geneura.ugr.es/%7Ejmerelo/EO.html">University of Granada</a>,
+              and the original Web site is also the only place where you will find
+              old releases of EO (up to 0.8.7), but beware that it is not compatible
+              at all with the current version.&nbsp;</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="TITLE" align="right" valign="top" width="100">
+            <h2>EO@sourceforge</h2>
+          </td>
+          <td bgcolor="#ffcc99">EO was started by the
+            <a href="http://geneura.ugr.es/">Geneura Team</a> at University of
+            Granada, headed by <a href="http://geneura.ugr.es/%7Ejmerelo/">JJ.
+              Merelo</a>. The developement team has&nbsp; then been reinforced by
+            <a href="http://www.dcs.napier.ac.uk/coil/summerschool/seniors-keijzer.html">Maarten
+              Keijzer</a>, the C++ wizzard, and <a href="http://www.lri.fr/%7Emarc">Marc
+              Schoenauer</a>. Later came <a href="http://www.liacs.nl/%7Ejeggermo/">Jeroen
+              Eggermont</a>, who, among other things, did a lot of work on GP,
+            <a href="http://www.lifl.fr/%7Ecahon/">S&eacute;bastien Cahon</a>, who
+            developped the parallel version of EO, ParadisEO,
+            <a href="mailto:okoenig@users.sourceforge.net">Olivier K&ouml;nig</a>,
+            who did a lot of useful additions and cleaning of the code
+            and <a href="http://www.jochen-kuepper.de">Jochen K&uuml;pper</a>,
+            the master of automatic installation procedures.
+            <p>The following resources are available, thanks to sourceforge</p>
+            <ul>
+              <li> <a href="https://sourceforge.net/project/?group_id=9775">EO
+                  SourceForge Project Page</a></li>
+              <li><a href="http://eodev.sourceforge.net/eo/doc/html/index.html">EO
+                  automatic documentation page at SF</a><br>
+              </li>
+              <li><a href="http://eodev.sourceforge.net/eo/tutorial/html/eoTutorial.html">EO
+                  tutorial page at SF</a><br>
+              </li>
+              <li> <a href="https://sourceforge.net/project/showfiles.php?group_id=9775">Releases</a></li>
+              <li> <a href="http://sourceforge.net/mail/?group_id=9775">Mailing Lists</a></li>
+              <li> <a href="http://sourceforge.net/forum/?group_id=9775">Message Forums</a></li>
+              <li> <a href="http://sourceforge.net/bugs/?group_id=9775">Bug Submission and Tracking</a></li>
+              <li> <a href="http://sourceforge.net/support/?group_id=9775">Technical Support</a></li>
+              <li> <a href="http://sourceforge.net/patch/?group_id=9775">Patch Submission</a></li>
+              <li> <a href="http://sourceforge.net/cvs/?group_id=9775">CVS repository</a></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="TITLE" align="right" valign="top" width="100">
+            <h2>Tutorial</h2>
+          </td>
+          <td bgcolor="#ffcc99">The tutorial has not been upgraded for some time
+            now (almost 3 years!). It nevertheless remains the best way to dive
+            into EO. You can start by
+            <a href="http://www.lri.fr/%7Emarc/EO/eo/tutorial/html/eoTutorial.html">trying
+            it on-line</a>,
+            before <a href="http://www.lri.fr/%7Emarc/EO/">downloading it</a>.
+            <p><b>Warning</b>: the tutorial refers to the current 0.9.2
+              version of EO (see Download section).</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="TITLE" align="right" valign="top" width="100">
+            <h2>Platforms</h2>
+          </td>
+          <td bgcolor="#ffcc99">EO has been tested and works on the
+            following platforms:&nbsp;
+            <ul>
+              <li>Linux with egcs 1.0.2, g++ 2.95, g++ 3.x, gcc 4.x</li>
+              <li>Irix 4.0 with egcs 1.0.2&nbsp;</li>
+              <li>Solaris with egcs 1.0.2 and gcc 2.8.1&nbsp;</li>
+              <li>Win95/NT with CygWin/egcs 1.0.2, VC++ 5.0 and Borland Builder.
+                Makefiles and projects files are provided.&nbsp;</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="TITLE" align="right" valign="top" width="100">
+            <h2>Presentations</h2>
+          </td>
+          <td bgcolor="#ffcc99">A functional and "philosophical" overview of EO
+            was presented at
+            <a href="http://www.cmap.polytechnique.fr/%7Eea01/">EA'01
+            conference</a>. You can download <a href="EO_EA01.ps.gz">the paper
+            (gzipped Postscript)</a> or <a href="LeCreusot.pdf">the slides
+            (PDF)</a>.&nbsp;
+            <p>An older, but <i>huge</i>, PowerPoint presentation shows the EO
+              philosophy, and it includes a Visual Basic macro for evolving
+              objects in Visual Basic for Applications. You can download
+              it <a href="ftp://geneura.ugr.es/pub/jmerelo/eo_ppt.zip">from
+              here</a>.&nbsp;</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="TITLE" align="right" valign="top" width="100">
+            <h2>Related Apps</h2>
+          </td>
+          <td bgcolor="#ffcc99">
+            <a href="ftp://geneura.ugr.es/pub/eo/eo-0.8.4.zip">EO 0.8.4</a>
+            has been embedded in an ActiveX control,
+            called <font face="Helvetica,sans serif">DegaX</font> by 3 degree
+            students. You can download it
+            from <a href="ftp://geneura.ugr.es/pub/eo/DegaX">the DegaX
+            directory</a>. It's better if you download it by parts:
+            <ul>
+              <li>Start by
+                <a href="ftp://geneura.ugr.es/pub/eo/DegaX/DegaX-doc.zip">the documentation</a>,
+                which is, as everthing else, in Spanish, explains how to
+                decompress and use everything, and the evolutionary and
+                Microsoftie basics. The documentation is also available
+                from <a href="DegaX">here</a>.</li>
+              <li>Follow by downloading
+                the <a href="ftp://geneura.ugr.es/pub/eo/DegaX/DegaX-inst.zip">ActiveX
+                control</a>, and install it. You'll need this to embed it in any
+                application.</li>
+              <li>Several apps that use the ActiveX control are also there:
+                in <a href="ftp://geneura.ugr.es/pub/eo/DegaX/DegaX-VB.zip">Visual
+                Basic</a>,
+                in <a href="ftp://geneura.ugr.es/pub/eo/DegaX/DegaX-VC.zip">Visual
+                C++</a>, and in <a href="ftp://geneura.ugr.es/pub/eo/DegaX/DegaX-xls.zip">Excel</a>.</li>
+              <li> Finally, if you feel like it, download the
+                <a href="ftp://geneura.ugr.es/pub/eo/DegaX/DegaX-src.zip">sources
+                  for everything.&nbsp;</a></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="TITLE" align="right" valign="top" width="100">
+            <h2>License</h2>
+          </td>
+          <td bgcolor="#ffcc99">EO is distributed under the
+            <a href="http://www.gnu.org/copyleft/lesser.html">GNU Lesser General
+              Public License</a></td>
+        </tr>
+        <tr>
+          <td class="TITLE" align="right" valign="top" width="100">
+            <h2>Releases</h2>
+          </td>
+          <td bgcolor="#ffcc99">Releases are at
+            <a href="http://sourceforge.net/project/filelist.php?group_id=9775">EO
+              site at sourceforge</a>.
+            <p>You can also of course use the
+              sourceforge <a href="http://sourceforge.net/cvs/?group_id=9775">CVS
+                facilities</a> or get a snapshot
+              from <a href="http://www.lri.fr/%7Emarc/EO/snapshot">LRI</a>.</p> 
+          </td>
+        </tr>
+        <tr>
+          <td class="TITLE" align="right" valign="top" width="100">
+            <h2> Mailing Lists</h2>
+          </td>
+          <td bgcolor="#ffcc99">We would like EO to be an open development
+            effort; that is why we have created two mailing lists to discuss
+            future developments, solve technical problems, announce releases,
+            publish patches, and discuss evolutionary computation in general.
+            Join the <a href="http://sourceforge.net/mail/?group_id=9775">EO
+            mailing lists</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <center>
+      <p><a href="mailto:maartenkeijzer@users.sourceforge.net">maartenkeijzer@users.sourceforge.net</a>
+        - <a href="mailto:merelo@users.sourceforge.net">merelo@users.sourceforge.net</a>
+        - <a href="mailto:evomarc@users.sourceforge.net">evomarc@users.sourceforge.net</a>
+      </p>
+      <p>Hosted by: <br>
+        <a href="http://sourceforge.net/"><img src="sflogo-hammer1.jpg"> </a></p>
+    </center>
+    <br>
+  </body>
+</html>
+
+
+<!-- Local Variables: -->
+<!-- coding: iso-8859-1 -->
+<!-- fill-column: 80 -->
+<!-- End: -->
