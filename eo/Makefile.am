@@ -18,11 +18,13 @@ DOCDIR 		= ~/public_html/eodocs
 IDXDIR 		= ~/index
 
 
+# Add documentation to distribution
 dist-hook:
 		$(MAKE) documentation
-		cp -p -r $(srcdir)/doc/html $(srcdir)/doc/latex $(srcdir)/doc/man $(distdir)/doc/
+		$(INSTALL_DATA) -d $(srcdir)/doc/html $(srcdir)/doc/latex $(srcdir)/doc/man $(distdir)/doc/
 
+# Prepare documentation
 documentation:
 		cd doc && $(MAKE) doc && cd ..
-
+# convinience-target
 doc: 		documentation
