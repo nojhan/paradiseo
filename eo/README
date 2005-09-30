@@ -95,8 +95,8 @@ structure:
 
 ===================================================================
               NOTES
-=================================================================== if
-you extracted a fresh snapshot from the cvs-repository, remember to
-run
+===================================================================
+If you extracted a fresh snapshot from the cvs-repository, remember
+to run
     ./autogen.sh
 in the source-directory before building the libraries.
