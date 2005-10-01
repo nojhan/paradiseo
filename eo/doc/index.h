@@ -19,7 +19,7 @@ the <a href="../../tutorial/html/eoTutorial.html">tutorial</a>.
 
 @section install Installation
 
-Installing the package: everything is detailed in the <a
+The installation procedure of the package is detailed in the <a
 href="../../README">README</a> file in the top-directory of the source-tree.
 
 
@@ -37,7 +37,7 @@ Conference on Artificial Evolution</em></a>.
 
 
 
-/** @page related Related Pages
+/** @page webpages Related webpages
 
 - SourceForge <a href="http://eodev.sourceforge.net">project page</a>
 - <a href="../../README">README</a>
