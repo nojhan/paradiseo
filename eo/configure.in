@@ -1,6 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
+dnl
 dnl Change the version number here
-AC_INIT(Evolving Objects, 0.9.3, eodev-help@sourceforge.net, eo)
+AC_INIT([Evolving Objects], [0.9.4-cvs], [eodev-help@sourceforge.net], [eo])
 AC_PREREQ(2.53)
 
 dnl make sure we are compiling from the correct sources
@@ -33,10 +34,9 @@ AC_CXX_NAMESPACES
 AC_TYPE_SIZE_T
 
 dnl Checks for header files.
-AC_LANG(C)
+AC_LANG(C++)
 AC_HEADER_STDC
 AC_CHECK_HEADERS(limits.h)
-AC_LANG(C++)
 AC_CHECK_HEADERS(sstream, [], AC_MSG_ERROR([Need sstream C++ include.]))
 AC_CHECK_HEADERS(stdint.h, [], AC_MSG_WARN([Need C99 standard header.]))
 AC_CXX_HAVE_NUMERIC_LIMITS
@@ -46,9 +46,9 @@ AC_CHECK_SIZEOF(unsigned long)
 AC_CHECK_TYPES(uint32_t, [], AC_MSG_WARN([Need uint32_t from C99 standard.]))
 
 dnl Checks for libraries.
-AC_CHECK_LIB(m, cos)
 
 dnl Checks for library functions.
+AC_CHECK_LIB(m, cos)
 
 dnl create makefiles
 AC_OUTPUT(Makefile \
