@@ -30,7 +30,8 @@ AC_PROG_RANLIB
 AC_ARG_VAR([DOXYGEN], [doxygen - automatic documentation generator])
 AC_CHECK_PROGS([DOXYGEN], [doxygen], [true])
 AC_ARG_VAR([AR], [ar - archiver for static libraries])
-AC_CHECK_PROGS([AR], [ar], [false], [$PATH:/usr/ccs/bin])
+# solaris-x86 hides ar at "/usr/ccs/bin/ar"
+AC_CHECK_PROGS([AR], [ar /usr/ccs/bin/ar], [false])
 
 dnl Checks for compiler characteristics.
 AC_CXX_NAMESPACES
