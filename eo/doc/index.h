@@ -39,7 +39,8 @@ Conference on Artificial Evolution</em></a>.
 
 /** @page webpages Related webpages
 
-- SourceForge <a href="http://eodev.sourceforge.net">project page</a>
+- EO <a href="http://eodev.sourceforge.net">homepage</a>
+- SourceForge <a href="https://sourceforge.net/projects/eodev">project page</a>
 - <a href="../../README">README</a>
 - <a href="../../NEWS">NEWS</a>
 */
@@ -52,7 +53,7 @@ Conference on Artificial Evolution</em></a>.
 
 <a href="http://www.lifl.fr/~cahon/paradisEO">ParadisEO</a> is a project to
 extend EO to make use of dedicated parallel or distributed computing
-environments by <a href="http://www.lifl.fr/~cahon">Sébastien CAHON</a>.
+environments by <a href="http://www.lifl.fr/~cahon">Sébastien Cahon</a>.
 */
 
 
