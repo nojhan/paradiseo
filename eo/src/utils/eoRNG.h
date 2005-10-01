@@ -21,24 +21,23 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
 */
 
-//
-// uint32_t must be an unsigned integer type capable of holding at least 32
-// bits; exactly 32 should be fastest, but 64 is better on an Alpha with
-// GCC at -O3 optimization so try your options and see what's best for you
-//
-
-
 #ifndef EO_RANDOM_NUMBER_GENERATOR
 #define EO_RANDOM_NUMBER_GENERATOR
 
-#ifdef HAVE_STDINT_H
+// uint32_t is an unsigned integer type capable of holding 32 bits.
+//
+// In the applicatione here exactly 32 but should typically be fastest, but 64
+// might be better on an Alpha with GCC at -O3 optimization so try your options
+// and see what's best for you.
+//
+// The C99-standard defines uint32_t to be declared in stdint.h, but some
+// systmes don't have that and implement it in inttypes.h.
+#if (! defined __sun)
 #include <stdint.h>
 #else
-#ifdef HAVE_INTTYPES_H
 #include <inttypes.h>
-#else
-#error Nedd header to define uint32_t. Please contact the EO mailing list.
 #endif
+
 #include <vector>
 #include "eoPersistent.h"
 #include "eoObject.h"
@@ -52,7 +51,8 @@ number generator MT19937 for generating random numbers. The various
 member functions implement useful functions for evolutionary
 algorithms. Included are: rand(), random(), flip() and normal().
 
-<h1>DOCUMENTATION IN ORIGINAL FILE</h1>
+
+<h1>Documentation in original file</h1>
 
 This is the ``Mersenne Twister'' random number generator MT19937, which
 generates pseudorandom integers uniformly distributed in 0..(2^32 - 1) starting
