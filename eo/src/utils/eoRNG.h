@@ -31,7 +31,14 @@
 #ifndef EO_RANDOM_NUMBER_GENERATOR
 #define EO_RANDOM_NUMBER_GENERATOR
 
+#ifdef HAVE_STDINT_H
 #include <stdint.h>
+#else
+#ifdef HAVE_INTTYPES_H
+#include <inttypes.h>
+#else
+#error Nedd header to define uint32_t. Please contact the EO mailing list.
+#endif
 #include <vector>
 #include "eoPersistent.h"
 #include "eoObject.h"
