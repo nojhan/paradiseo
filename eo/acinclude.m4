@@ -32,7 +32,7 @@ AC_DEFUN([AC_GNUPLOT], [dnl
                    [ac_cv_use_gnuplot=no])
     if test "$ac_cv_use_gnuplot" = "yes"; then
         AC_ARG_VAR([GNUPLOT], [gnuplot used for graphical display])
-        AC_CHECK_PROG([GNUPLOT], [gnuplot], [true])
+        AC_CHECK_PROG([GNUPLOT], [gnuplot], [gnuplot], [true])
         AC_DEFINE([HAVE_GNUPLOT], [1], [gnuplot graphical display])
     else
         AC_DEFINE([NO_GNUPLOT], [1], [no gnuplot graphical display])
