@@ -23,36 +23,30 @@
              mkeijzer@dhi.dk
  */
 //-----------------------------------------------------------------------------
-#ifndef NO_GNUPLOT
 
-#ifndef _eoGnuplot1DSnapshot_H
-#define _eoGnuplot1DSnapshot_H
 
+#ifndef EO_eoGnuplot1DSnapshot_H
+#define EO_eoGnuplot1DSnapshot_H
+
+#include <fstream>
 #include <sstream>
 #include <string>
 
+#include <eoObject.h>
+#include "eoRealVectorBounds.h"
+#include <utils/pipecom.h>
 #include <utils/eoFileSnapshot.h>
 #include <utils/eoGnuplot.h>
-#include <eoObject.h>
 
-/**
+/** Plot stats through gnuplot
+
 @author Marc Schoenauer 2000
 @version 0.0
 
 This class plots through gnuplot the eoStat given as argument
 
-*/
-//-----------------------------------------------------------------------------
-
-#include <fstream>
-#include "eoRealVectorBounds.h"
-#include <utils/pipecom.h>
-
-
-
-/** eoGnuplot1DSnapshot plots stats through gnuplot
- *  assumes that the same file is re-written every so and so,
- *  and plots it from scratch everytime it's called
+Assumes that the same file is re-written every so and so, and plots it
+from scratch everytime it's called
  */
 class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
 {
@@ -118,25 +112,5 @@ private:
 
 };
 
-// the following should be placed in a separate eoGnuplot1DMonitor.cpp
 
-////////////////////////////////////////////////////////////
-inline eoMonitor&   eoGnuplot1DSnapshot::operator() (void)
-  /////////////////////////////////////////////////////////
-{
-  // update file using the eoFileMonitor method
-  eoFileSnapshot::operator()();
-
-  // sends plot order to gnuplot
-  //std::string buff; // need local memory
-  std::ostringstream os;
-  os << "set title 'Gen. " << getCounter() << "'; plot '"
-    // mk: had to use getFilename().c_str(), because it seems the string(stream) lib is screwed in gcc3.2
-      << getFileName().c_str() << "' notitle with points ps " << pointSize;
-  os << std::endl;
-  PipeComSend( gpCom, os.str().c_str());
-  return (*this);
-}
-
-#endif
 #endif

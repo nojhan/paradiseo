@@ -113,5 +113,3 @@ pkginclude_HEADERS 	= eo \
 			ga.h
 
 AM_CXXFLAGS		= -I$(top_srcdir)/src
-
-AM_LIBS			= -Lutils -leoutil

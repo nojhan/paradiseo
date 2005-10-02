@@ -1,5 +1,3 @@
-// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
-
 //-----------------------------------------------------------------------------
 // eoGnuplot1DMonitor.h
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
@@ -23,51 +21,62 @@
              mkeijzer@dhi.dk
  */
 //-----------------------------------------------------------------------------
-#ifndef EO_eoGnuplot1DMonitor_H
-#define EO_eoGnuplot1DMonitor_H
-
-#include <fstream>
-#include <string>
-
-#include "eoObject.h"
-#include "utils/eoFileMonitor.h"
-#include "utils/eoGnuplot.h"
-#include "utils/pipecom.h"
-
-/** Plot eoStat
-
-@author Marc Schoenauer
-@version 0.0 (2000)
-
-This class plots through gnuplot the eoStat given as argument
-
-eoGnuplot1DMonitor plots stats through gnuplot
-
-Assumes that the same file is appened every so and so, and replots it
-everytime
-*/
-class eoGnuplot1DMonitor : public eoFileMonitor, public eoGnuplot
-{
-public:
-    using eoMonitor::vec;
-
-    /** Constructor */
-    eoGnuplot1DMonitor(std::string _filename, bool _top=false) :
-        eoFileMonitor(_filename, " "),
-        eoGnuplot(_filename,(_top?"":"set key bottom"))
-        {}
-
-    /** Destructor */
-    virtual ~eoGnuplot1DMonitor(){}
-
-    virtual eoMonitor& operator()();
-
-    virtual void FirstPlot();
-
-    /** Class name */
-    virtual std::string className() const
-        { return "eoGnuplot1DMonitor"; }
-};
 
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
 #endif
+
+#include <sstream>
+
+#include "eoGnuplot1DMonitor.h"
+#include "eoParam.h"
+
+
+eoMonitor& eoGnuplot1DMonitor::operator() (void)
+{
+  // update file using the eoFileMonitor
+  eoFileMonitor::operator()();
+
+  // sends plot order to gnuplot
+  // assumes successive plots will have same nb of columns!!!
+  if (firstTime)
+    {
+      FirstPlot();
+      firstTime = false;
+    }
+  else
+    {
+      if( gpCom ) {
+	PipeComSend( gpCom, "replot\n" );
+      }
+    }
+  return *this;
+}
+
+
+
+void eoGnuplot1DMonitor::FirstPlot()
+{
+    if (vec.size() < 2)
+    {
+        throw std::runtime_error("Must have some stats to plot!\n");
+    }
+    std::ostringstream os;
+    os << "plot";
+    for (unsigned i=1; i<vec.size(); i++) {
+        os << " '" << getFileName().c_str() <<
+            "' using 1:" << i+1 << " title '" << (vec[i])->longName() << "' with lines" ;
+        if (i<vec.size()-1)
+            os << ", ";
+    }
+    os << '\n';
+    PipeComSend( gpCom, os.str().c_str());
+}
+
+
+
+// Local Variables:
+// c-file-style: "Stroustrup"
+// fill-column: 80
+// End:

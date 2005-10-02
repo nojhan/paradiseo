@@ -16,10 +16,6 @@ dnl automake initialization
 AM_INIT_AUTOMAKE([gnu dist-bzip2 dist-zip])
 AM_CONFIG_HEADER(config.h)
 
-dnl user-switches
-AC_APPLICATIONS
-AC_TUTORIAL
-
 dnl Checks for programs.
 AC_PROG_CC
 AC_PROG_CXX
@@ -27,32 +23,31 @@ AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
-AC_ARG_VAR([DOXYGEN], [doxygen - automatic documentation generator])
+AC_PATH_PROG([AR], [ar], [false], [$PATH:/usr/ccs/bin]) # solaris-x86 needs extra path
+AC_ARG_VAR([DOXYGEN], [automatic documentation generation])
 AC_CHECK_PROGS([DOXYGEN], [doxygen], [true])
-AC_ARG_VAR([AR], [ar - archiver for static libraries])
-# solaris-x86 hides ar at "/usr/ccs/bin/ar"
-AC_CHECK_PROGS([AR], [ar /usr/ccs/bin/ar], [false])
-
-dnl Checks for compiler characteristics.
-AC_CXX_NAMESPACES
-AC_TYPE_SIZE_T
 
 dnl Checks for header files.
 AC_LANG(C++)
 AC_HEADER_STDC
-AC_CHECK_HEADERS(limits.h)
+AC_CHECK_HEADERS(limits, [], AC_MSG_ERROR([Need limits C++ include.]))
 AC_CHECK_HEADERS(sstream, [], AC_MSG_ERROR([Need sstream C++ include.]))
 AC_CHECK_HEADERS(stdint.h, [], AC_MSG_WARN([Need C99 standard header.]))
-AC_CXX_HAVE_NUMERIC_LIMITS
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_CHECK_SIZEOF(unsigned long)
 AC_CHECK_TYPES(uint32_t, [], AC_MSG_WARN([Need uint32_t from C99 standard.]))
+AC_TYPE_SIZE_T
 
 dnl Checks for libraries.
 
 dnl Checks for library functions.
 AC_CHECK_LIB(m, cos)
+
+dnl user-switches
+AC_APPLICATIONS
+AC_GNUPLOT
+AC_TUTORIAL
 
 dnl create makefiles
 AC_OUTPUT(Makefile \

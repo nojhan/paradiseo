@@ -10,5 +10,5 @@ LIBEO			= $(top_builddir)/src/libeo.a
 LIBEOUTILS		= $(top_builddir)/src/utils/libeoutils.a
 
 AM_CXXFLAGS		= -I$(top_srcdir)/src
-DEPS 			= $(LIBEOUTILS) $(LIBEO)
-LIBS			= $(LIBEOUTILS) $(LIBEO)
+DEPS 			= $(LIBEO) $(LIBEOUTILS)
+LIBS			= $(LIBEO) $(LIBEOUTILS)

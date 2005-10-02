@@ -17,6 +17,6 @@ extra_DIST		= Makefile.simple
 
 LDADD			= -L$(top_builddir)/src -L$(top_builddir)/src/ga -L$(top_builddir)/src/utils
 
-LIBS			=  -lga -leoutils -leo
+LIBS			=  -lga -leo -leoutils
 
 INCLUDES		= -I$(top_srcdir)/src

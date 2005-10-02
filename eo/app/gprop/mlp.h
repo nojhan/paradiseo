@@ -5,41 +5,29 @@
 #ifndef mlp_h
 #define mlp_h
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#ifdef HAVE_NUMERIC_LIMITS
-#include <numeric>
-#define MLP_MAXFLOAT std::numeric_limits<double>::max()
-#define MLP_MINFLOAT std::numeric_limits<double>::min()
-#elif defined HAVE_VALUES_H
-#include <values.h>
-#define MLP_MAXFLOAT MAXFLOAT
-#define MLP_MINFLOAT MINFLOAT
-#else
-#error numerical limits not available
-#endif
-#include <math.h>                 // exp
-#include <stdexcept>              // invalid_argument
-#include <iostream>               // istream ostream
 #include <algorithm>              // generate
-#include <vector>                 // vector
-#include <utils/eoRNG.h>          // eoRng
-#include <utils/rnd_generators.h> // normal_geneurator
-#include <vecop.h>                // *
-#include <utility>
+#include <cmath>                  // exp
+#include <iostream>
 #include <iterator>
+#include <numeric>
+#include <stdexcept>              // invalid_argument
+#include <utility>
+#include <vector>
+#include <utils/eoRNG.h>          // eoRng
+#include <utils/rnd_generators.h> // normal_generator
+#include <vecop.h>                // *
 
 
-using namespace std;
 
 
 namespace mlp
 {
-  typedef double            real;
-  typedef std::vector<real> vector;
+    using namespace std;
+
+    typedef double real;
+    typedef std::vector<real> vector;
 }
+
 
 namespace std {
   ostream& operator<<(ostream& os, const mlp::vector& v)
@@ -60,13 +48,15 @@ namespace std {
 
 namespace mlp
 {
+  using namespace std;
+
   //---------------------------------------------------------------------------
   // useful typedefs
   //---------------------------------------------------------------------------
 
 
-  const real max_real = MLP_MAXFLOAT;
-  const real min_real = MLP_MINFLOAT;
+  const real max_real = std::numeric_limits<real>::max();
+  const real min_real = std::numeric_limits<real>::min();
 
 
   //---------------------------------------------------------------------------
@@ -459,11 +449,8 @@ namespace mlp {
 
 
 
-#undef MLP_MAXFLOAT
-#undef MLP_MINFLOAT
-
-
 #endif // mlp_h
+
 
 // Local Variables:
 // mode:C++

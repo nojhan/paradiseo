@@ -1,7 +1,6 @@
 #!/bin/sh
 
 DIE=0
-
 PROG=eo
 
 (autoconf --version) < /dev/null > /dev/null 2>&1 ||
@@ -10,13 +9,6 @@ PROG=eo
     echo "You must have autoconf installed to compile $PROG."
     DIE=1
 }
-
-#(libtool --version) < /dev/null > /dev/null 2>&1 ||
-#{
-#    echo
-#    echo "You must have libtool installed to compile $PROG."
-#    DIE=1
-#}
 
 (automake --version) < /dev/null > /dev/null 2>&1 ||
 {
@@ -37,7 +29,7 @@ automake -a -c
 autoconf
 
 # we want doc to be recompiled - and it keeps saying it's up to date!!!
-touch doc/eo.cfg
+# touch doc/eo.cfg
 
 echo
 echo "Now run 'configure' and 'make' to build $PROG."

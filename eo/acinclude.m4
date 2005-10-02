@@ -2,7 +2,8 @@
 #
 # Compile applications unless user requests not to do it.
 AC_DEFUN([AC_APPLICATIONS],[dnl
-  AC_ARG_ENABLE([applications],[  --enable-applications          build applications (default=yes)],
+  AC_ARG_ENABLE([applications],
+    AC_HELP_STRING([--enable-applications], [build applications (default=yes)]),
     [ case "${enableval}" in
       yes) applications=true ;;
       no) applications=false ;;
@@ -18,11 +19,34 @@ AC_DEFUN([AC_APPLICATIONS],[dnl
 
 
 
+# AC_GNUPLOT()
+#
+# Compile applications unless user requests not to do it.
+AC_DEFUN([AC_GNUPLOT], [dnl
+    AC_ARG_ENABLE([gnuplot],
+                  AC_HELP_STRING([--enable-gnuplot], [use gnuplot for graphical display (default=yes)]),
+                  [ac_cv_use_gnuplot=$enableval],
+                  [ac_cv_use_gnuplot=yes])
+    AC_CACHE_CHECK([use gnuplot for graphical display],
+                   [ac_cv_use_gnuplot],
+                   [ac_cv_use_gnuplot=no])
+    if test "$ac_cv_use_gnuplot" = "yes"; then
+        AC_ARG_VAR([GNUPLOT], [gnuplot used for graphical display])
+        AC_CHECK_PROG([GNUPLOT], [gnuplot], [true])
+        AC_DEFINE([HAVE_GNUPLOT], [1], [gnuplot graphical display])
+    else
+        AC_DEFINE([NO_GNUPLOT], [1], [no gnuplot graphical display])
+    fi
+])
+
+
+
 # AC_TUTORIAL()
 #
 # Compile tutorial unless user requests not to do it.
 AC_DEFUN([AC_TUTORIAL],[dnl
-  AC_ARG_ENABLE([tutorial],[  --enable-tutorial              build tutorial (default=yes)],
+  AC_ARG_ENABLE([tutorial],
+    AC_HELP_STRING([--enable-tutoria], [build tutorial (default=yes)]),
     [ case "${enableval}" in
       yes) tutorial=true ;;
       no) tutorial=false ;;
@@ -34,47 +58,4 @@ AC_DEFUN([AC_TUTORIAL],[dnl
   else
     AM_CONDITIONAL([USE_TUTORIAL], false)
   fi
-])
-
-
-
-dnl Available from the GNU Autoconf Macro Archive at:
-dnl http://www.gnu.org/software/ac-archive/htmldoc/ac_cxx_namespaces.html
-dnl
-AC_DEFUN([AC_CXX_NAMESPACES],
-[AC_CACHE_CHECK(whether the compiler implements namespaces,
-ac_cv_cxx_namespaces,
-[AC_LANG_SAVE
- AC_LANG_CPLUSPLUS
- AC_TRY_COMPILE([namespace Outer { namespace Inner { int i = 0; }}],
-                [using namespace Outer::Inner; return i;],
- ac_cv_cxx_namespaces=yes, ac_cv_cxx_namespaces=no)
- AC_LANG_RESTORE
-])
-if test "$ac_cv_cxx_namespaces" = yes; then
-  AC_DEFINE(HAVE_NAMESPACES,,[define if the compiler implements namespaces])
-fi
-])
-
-
-
-dnl Available from the GNU Autoconf Macro Archive at:
-dnl http://www.gnu.org/software/ac-archive/htmldoc/ac_cxx_have_numeric_limits.html
-dnl
-AC_DEFUN([AC_CXX_HAVE_NUMERIC_LIMITS],
-[AC_CACHE_CHECK(whether the compiler has numeric_limits<T>,
-ac_cv_cxx_have_numeric_limits,
-[AC_REQUIRE([AC_CXX_NAMESPACES])
- AC_LANG_SAVE
- AC_LANG_CPLUSPLUS
- AC_TRY_COMPILE([#include <limits>
-#ifdef HAVE_NAMESPACES
-using namespace std;
-#endif],[double e = numeric_limits<double>::epsilon(); return 0;],
- ac_cv_cxx_have_numeric_limits=yes, ac_cv_cxx_have_numeric_limits=no)
- AC_LANG_RESTORE
-])
-if test "$ac_cv_cxx_have_numeric_limits" = yes; then
-  AC_DEFINE(HAVE_NUMERIC_LIMITS,,[define if the compiler has numeric_limits<T>])
-fi
 ])

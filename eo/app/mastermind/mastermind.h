@@ -11,7 +11,7 @@
 #include <eoVector.h>             // eoVectorLength
 #include <eoOp.h>                 // eoMonOp eoQuadraticOp
 #include <eoInit.h>               // eoInit
-#include <utils/rnd_generators.h> // uniform_generator
+#include "utils/rnd_generators.h" // uniform_generator
 
 //-----------------------------------------------------------------------------
 // phenotype
@@ -50,7 +50,7 @@ phenotype eoChromEvaluator(const Chrom& chrom)
 	++black;
 	tmp[i] = -1;
       }
-  
+
   // look for whites
   for (unsigned i = 0; i < chrom.size(); ++i)
     for (unsigned j = 0; j < tmp.size(); ++j)
@@ -75,7 +75,7 @@ unsigned num_colors;
 void init_eoChromEvaluator(const unsigned& c, const unsigned& l, std::string s)
 {
   num_colors = c;
-  
+
   // check consistency between parameters
   if (s != default_solution)
     {
@@ -85,14 +85,14 @@ void init_eoChromEvaluator(const unsigned& c, const unsigned& l, std::string s)
 	  std::cerr << "solution length != length" << std::endl;
 	  exit(EXIT_FAILURE);
 	}
-      
+
       // check number of colors
-      if (c != default_colors && c < *max_element(s.begin(), s.end()) - '0')
+      if ((c != default_colors) && (c < unsigned(*max_element(s.begin(), s.end()) - '0')))
 	{
 	  std::cerr << "too high color number found!" << std::endl;
 	  exit(EXIT_FAILURE);
 	}
-    } 
+    }
   else
     if (l != default_length || c != default_colors )
       // generate a random solution
@@ -102,7 +102,7 @@ void init_eoChromEvaluator(const unsigned& c, const unsigned& l, std::string s)
 	  s.resize(l);
 	  generate(s.begin(), s.end(), color);
 	}
-  
+
   // put the solution parameter on the solution chromosome
   if (num_colors <= 10)
     {

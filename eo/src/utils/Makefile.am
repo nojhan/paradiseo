@@ -3,15 +3,19 @@
 lib_LIBRARIES 		= libeoutils.a
 
 libeoutils_a_SOURCES 	= eoData.cpp \
+			eoFileMonitor.cpp \
+			eoGnuplot.cpp \
+			eoGnuplot1DMonitor.cpp \
+			eoGnuplot1DSnapshot.cpp \
+			eoIntBounds.cpp \
 			eoParser.cpp \
+			eoRealBounds.cpp \
 			eoRNG.cpp \
 			eoState.cpp \
-			eoUpdater.cpp \
-			eoFileMonitor.cpp \
 			eoStdoutMonitor.cpp \
-			eoRealBounds.cpp \
-			eoIntBounds.cpp \
-			make_help.cpp
+			eoUpdater.cpp \
+			make_help.cpp \
+			pipecom.cpp
 
 utilsincludedir		= $(pkgincludedir)/utils
 
@@ -50,5 +54,4 @@ utilsinclude_HEADERS 	= checkpointing \
 			rnd_generators.h \
 			selectors.h
 
-AM_CXXFLAGS 		= -I$(top_srcdir)/src
-
+AM_CXXFLAGS 		= -I$(top_srcdir)/src -DGNUPLOT_PROGRAM=\"@GNUPLOT@\"

@@ -14,7 +14,7 @@ SUBDIRS		= src doc contrib win $(SUBDIRS_APP) $(SUBDIRS_TUT) test
 # Directory for documents
 DOCDIR 		= ~/public_html/eodocs
 
-#Directory for indices -- not useful for the user
+# Directory for indices -- not useful for the user
 IDXDIR 		= ~/index
 
 

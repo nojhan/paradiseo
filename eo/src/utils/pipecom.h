@@ -1,48 +1,47 @@
 /* ----------------------------------------------------------------------
- * Where........: CMAP - Polytechnique 
+ * Where........: CMAP - Polytechnique
  * File.........: pipecom.h
  * Author.......: Bertrand Lamy (EEAAX)
  * Created......: Thu Mar  9 17:21:15 1995
  * Description..: Pipe communication with a process
- * 
- * Ident........: $Id: pipecom.h,v 1.3 2001-10-08 09:13:16 evomarc Exp $
  * ----------------------------------------------------------------------
  */
 
-#ifndef PIPECOM_H
-#define PIPECOM_H
+// This file cannot be used from C any more due to some const additions.
+// However, if you remove the const, it should work in C as well.
 
-// this file cannot be used from C or C++ any more due to some const additions
-// however, if you remove the const, it should work in C also
-#ifdef __cplusplus
-extern "C" {
-#endif
+#ifndef EO_PIPECOM_H
+#define EO_PIPECOM_H
 
 #include <stdio.h>
 
 
-typedef struct PipeCommunication { 
+typedef struct PipeCommunication {
     FILE	*fWrit;
     FILE	*fRead;
     int		pid;
 } PCom;
-    
 
 
-PCom *PipeComOpen( char *prog );
-PCom *PipeComOpenArgv( char *prog, char *argv[] );
+extern PCom *PipeComOpen( char *prog );
+extern PCom *PipeComOpenArgv( char *prog, char *argv[] );
 
-int PipeComSend( PCom *to, const char *line );
-int PipeComSendn( PCom *to, const char *data, int n );
+extern int PipeComSend( PCom *to, const char *line );
+extern int PipeComSendn( PCom *to, const char *data, int n );
 
-int PipeComReceive( PCom *from, char *data, int max );
+extern int PipeComReceive( PCom *from, char *data, int max );
 
-int PipeComClose( PCom *to );
+extern int PipeComClose( PCom *to );
+extern int PipeComWaitFor( PCom *from, char *what );
 
-int PipeComWaitFor( PCom *from, char *what );
 
-#ifdef __cplusplus
-} /* ferme extern "C" */
-#endif
+#endif // EO_PIPECOM_H
 
-#endif
+
+
+// Local Variables:
+// coding: iso-8859-1
+// mode: C++
+// c-file-style: "Stroustrup"
+// fill-column: 80
+// End:
