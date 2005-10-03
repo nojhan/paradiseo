@@ -1,7 +1,7 @@
 * release 0.9.4
   - Update introductory pages of documentation and webpage.
   - Remove support for pre-standard C++ compiler (i.e. gcc-2.x), which allows to
-    clean up the code considerably.
+    clean up the code considerably. Assume availability of sstream and limits.
   
 
 * releases 0.9.3... (latest release is 0.9.3zz, 1. Oct. 2005)

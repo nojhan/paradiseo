@@ -25,11 +25,6 @@
 #ifndef EODATA_H
 #define EODATA_H
 
-#ifdef MAXINT
-#undef MAXINT
-#endif
-extern int MAXINT;
-
 #ifndef _MSC_VER
 #include <math.h>
 #define _isnan isnan

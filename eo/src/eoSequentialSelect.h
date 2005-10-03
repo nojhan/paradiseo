@@ -27,6 +27,12 @@
 #ifndef eoSequential_h
 #define eoSequential_h
 
+#include <limits>
+
+#include "utils/eoData.h"
+#include "utils/eoRNG.h"
+#include "eoSelectOne.h"
+
 /** Contains the following classes:
  *  - eoSequentialSelect, returns all individuals one by one,
  *    either sorted or shuffled
@@ -34,33 +40,23 @@
  *    starting with best, continuing shuffled (see G3 engine)
  */
 
-#include <utils/eoData.h>
-#include <utils/eoRNG.h>
-#include <eoSelectOne.h>
 
-//-----------------------------------------------------------------------------
-/** eoSequentialSelect: returns all individual in order
- *       looping back to the beginning when exhasuted
- * can be from best to worse, or in random order
- *
- * It is the eoSelectOne equivalent of eoDetSelect -
- *    though eoDetSelect always returns individuals from best to worst
- */
-//-----------------------------------------------------------------------------
+/** All Individuals in order
 
+Looping back to the beginning when exhausted, can be from best to
+worse, or in random order.
+
+It is the eoSelectOne equivalent of eoDetSelect - though eoDetSelect
+always returns individuals from best to worst
+*/
 template <class EOT> class eoSequentialSelect: public eoSelectOne<EOT>
 {
  public:
-  /** Ctor: sets the current pter to MAXINT so init will take place first time
+  /** Ctor: sets the current pter to numeric_limits<unsigned>::max() so init will take place first time
       not very elegant, maybe ...
   */
-#ifdef _MSC_VER
   eoSequentialSelect(bool _ordered = true)
-  	: ordered(_ordered), current(std::MAXINT) {}
-#else
-  eoSequentialSelect(bool _ordered = true)
-  	: ordered(_ordered), current(MAXINT) {}
-#endif
+  	: ordered(_ordered), current(std::numeric_limits<unsigned>::max()) {}
 
   void setup(const eoPop<EOT>& _pop)
   {
@@ -88,28 +84,24 @@ private:
 };
 
 
-//-----------------------------------------------------------------------------
-/** eoEliteSequentialSelect: returns the best individual first,
- *              then the others in sequence (random order).
- *              for G3 evolution engine, see Deb, Anad and Joshi, CEC 2002
- *
- * As eoSequentialSelect, it is an eoSelectOne to be used within the eoEaseyEA
- * algo, but conceptually it should be a global eoSelect, as
- * it selects a bunch of guys in one go (done in the setup function now)
- */
 
+/** All Individuals in order
+
+The best individual first, then the others in sequence (random order).
+for G3 evolution engine, see Deb, Anad and Joshi, CEC 2002
+
+As eoSequentialSelect, it is an eoSelectOne to be used within the
+eoEaseyEA algo, but conceptually it should be a global eoSelect, as it
+selects a bunch of guys in one go (done in the setup function now)
+*/
 template <class EOT> class eoEliteSequentialSelect: public eoSelectOne<EOT>
 {
  public:
 
-  /** Ctor: sets the current pter to MAXINT so init will take place first time
+  /** Ctor: sets the current pter to numeric_limits<unsigned>::max() so init will take place first time
       not very elegant, maybe ...
   */
-  #ifdef _MSC_VER
-  eoEliteSequentialSelect(): current(std::MAXINT) {}
-  #else
-  eoEliteSequentialSelect(): current(MAXINT) {}
-  #endif
+  eoEliteSequentialSelect(): current(std::numeric_limits<unsigned>::max()) {}
 
   void setup(const eoPop<EOT>& _pop)
   {
@@ -150,4 +142,3 @@ private:
 
 
 #endif
-
