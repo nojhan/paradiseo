@@ -29,7 +29,7 @@ href="../../README">README</a> file in the top-directory of the source-tree.
 For an introduction to the design of EO you can look at the <a
 href="http://eodev.sourceforge.net/eo/doc/LeCreusot.pdf">slides</a> from a talk
 at EA 2001 or the corresponding <a
-href="http://citeseer.csail.mit.edu/keijzer01evolving.html">article</a> in <a
+href="http://eodev.sourceforge.net/eo/doc/EO_EA2001.pdf">article</a> in <a
 href="http://portal.acm.org/citation.cfm?id=727742"><em>Lecture Notes In
 Computer Science</em> <b>2310</b>, <em>Selected Papers from the 5th European
 Conference on Artificial Evolution</em></a>.
@@ -40,6 +40,7 @@ Conference on Artificial Evolution</em></a>.
 /** @page webpages Related webpages
 
 - EO <a href="http://eodev.sourceforge.net">homepage</a>
+- EO <a href="../../tutorial/html/eoTutorial.html">Tutorial</a>.
 - SourceForge <a href="https://sourceforge.net/projects/eodev">project page</a>
 - <a href="../../README">README</a>
 - <a href="../../NEWS">NEWS</a>
