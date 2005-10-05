@@ -2,8 +2,7 @@
 
 -----------------------------------------------------------------------------
     eoData.h
-        Some numeric limits and types and things like that; with #ifdefs to keep
-	compatibility
+
     (c) GeNeura Team & Maarten Keijzer, 1998, 1999, 2000
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
