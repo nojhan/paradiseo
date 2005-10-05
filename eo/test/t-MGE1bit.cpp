@@ -80,7 +80,7 @@ int main()
   checkpoint.add(stats);
 
   // GA generation
-  eoEasyEA<Chrom> ea(checkpoint, eval,  breeder, replace);
+  eoEasyEA<Chrom> ea(checkpoint, eval, breeder, replace);
 
   // evolution
   try {
