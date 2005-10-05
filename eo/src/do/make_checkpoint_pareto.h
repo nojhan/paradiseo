@@ -44,22 +44,24 @@ bool testDirRes(std::string _dirName, bool _erase);
 /** Of course, Fitness needs to be an eoParetoFitness!!!
  */
 template <class EOT>
-eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state, eoEvalFuncCounter<EOT>& _eval, eoContinue<EOT>& _continue)
+eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
+                                             eoEvalFuncCounter<EOT>& _eval, eoContinue<EOT>& _continue)
 {
-  // first, create a checkpoint from the eoContinue - and store in _state
-  eoCheckPoint<EOT> & checkpoint =
-        _state.storeFunctor(new eoCheckPoint<EOT>(_continue));
+    // first, create a checkpoint from the eoContinue - and store in _state
+    eoCheckPoint<EOT> & checkpoint = _state.storeFunctor(new eoCheckPoint<EOT>(_continue));
 
-  /////// get number of obectives from Fitness - not very elegant
-  typedef typename EOT::Fitness Fit;
-  Fit fit;
-  unsigned nObj = fit.size();
+    /////// get number of obectives from Fitness - not very elegant
+    typedef typename EOT::Fitness Fit;
+    Fit fit;
+    unsigned nObj = fit.size();
 
-  ///////////////////
-  // Counters
-  //////////////////
-  // is nb Eval to be used as counter?
-  bool useEval = _parser.createParam(true, "useEval", "Use nb of eval. as counter (vs nb of gen.)", '\0', "Output").value();
+    ///////////////////
+    // Counters
+    //////////////////
+    // is nb Eval to be used as counter?
+    bool useEval = _parser.getORcreateParam(true, "useEval",
+                                            "Use nb of eval. as counter (vs nb of gen.)",
+                                            '\0', "Output").value();
 
     // Create anyway a generation-counter parameter WARNING: not stored anywhere!!!
     eoValueParam<unsigned> *generationCounter = new eoValueParam<unsigned>(0, "Gen.");
@@ -70,9 +72,13 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
     checkpoint.add(increment);
 
     // dir for DISK output
-    std::string & dirName =  _parser.getORcreateParam(std::string("Res"), "resDir", "Directory to store DISK outputs", '\0', "Output - Disk").value();
+    std::string & dirName =  _parser.getORcreateParam(std::string("Res"), "resDir",
+                                                      "Directory to store DISK outputs",
+                                                      '\0', "Output - Disk").value();
     // shoudl we empty it if exists
-    eoValueParam<bool>& eraseParam = _parser.createParam(true, "eraseDir", "erase files in dirName if any", '\0', "Output - Disk");
+    eoValueParam<bool>& eraseParam = _parser.getORcreateParam(true, "eraseDir",
+                                                              "erase files in dirName if any",
+                                                              '\0', "Output - Disk");
     bool dirOK = false;		   // not tested yet
 
     /////////////////////////////////////////
@@ -84,22 +90,20 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
      * eoSortedPopStat   : whole population - type std::string (!!)
      */
 
-  eoValueParam<eoParamParamType>& fPlotParam = _parser.createParam(
-      eoParamParamType("1(0,1)"), "frontFileFrequency",
+    eoValueParam<eoParamParamType>& fPlotParam
+        = _parser.getORcreateParam(eoParamParamType("1(0,1)"), "frontFileFrequency",
       "File save frequency in objective spaces (std::pairs of comma-separated objectives " \
       "in 1 single parentheses std::pair)",
-      '\0', "Output - Disk");
+                                   '\0', "Output - Disk");
 
-#if !defined(NO_GNUPLOT)
-  bool boolGnuplot = _parser.createParam(false, "plotFront",
-                                         "Objective plots (requires corresponding files " \
-                                         "- see frontFileFrequency",
-                                         '\0', "Output - Graphical").value();
-#endif
+    bool boolGnuplot = _parser.getORcreateParam(false, "plotFront",
+                                                "Objective plots (requires corresponding files " \
+                                                "- see frontFileFrequency",
+                                                '\0', "Output - Graphical").value();
 
-  eoParamParamType & fPlot = fPlotParam.value(); // std::pair<std::string,std::vector<std::string> >
-  unsigned frequency = atoi(fPlot.first.c_str());
-  if (frequency)		   // something to plot
+    eoParamParamType & fPlot = fPlotParam.value(); // std::pair<std::string,std::vector<std::string> >
+    unsigned frequency = atoi(fPlot.first.c_str());
+    if (frequency)		   // something to plot
     {
       unsigned nbPlot = fPlot.second.size();
       if ( nbPlot % 2 )		   // odd!
@@ -145,20 +149,20 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
 	  snapshot.add(*theStats[obj2]);
 
 	  // and create the gnuplotter from the fileSnapshot
-#if !defined(NO_GNUPLOT)
-	  if (boolGnuplot)
+	  if(boolGnuplot)
 	    {
 	      eoGnuplot1DSnapshot & plotSnapshot = _state.storeFunctor(new
 		    eoGnuplot1DSnapshot(snapshot));
 	      plotSnapshot.pointSize =3;
 	      checkpoint.add(plotSnapshot);
 	    }
-#endif
 	}
     }
     // Dump of the whole population
     //-----------------------------
-    bool printPop = _parser.createParam(false, "printPop", "Print sorted pop. every gen.", '\0', "Output").value();
+    bool printPop = _parser.getORcreateParam(false, "printPop",
+                                             "Print sorted pop. every gen.",
+                                             '\0', "Output").value();
     eoSortedPopStat<EOT> * popStat;
     if ( printPop ) // we do want pop dump
       {
@@ -217,7 +221,9 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
     }
 
     // save state every T seconds
-    eoValueParam<unsigned>& saveTimeIntervalParam = _parser.createParam(unsigned(0), "saveTimeInterval", "Save every T seconds (0 or absent = never)", '\0',"Persistence" );
+    eoValueParam<unsigned>& saveTimeIntervalParam
+        = _parser.getORcreateParam(unsigned(0), "saveTimeInterval",
+                                   "Save every T seconds (0 or absent = never)", '\0',"Persistence" );
     if (_parser.isItThere(saveTimeIntervalParam) && saveTimeIntervalParam.value()>0)
     {
       // first make sure dirName is OK

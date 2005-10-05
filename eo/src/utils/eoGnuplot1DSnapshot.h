@@ -53,7 +53,8 @@ class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
  public:
     // Ctor
   eoGnuplot1DSnapshot(std::string _dirname, unsigned _frequency = 1,
-	     std::string _filename = "gen", std::string _delim = " ", unsigned _counter = 0, bool _rmFiles = true) :
+                      std::string _filename = "gen", std::string _delim = " ",
+                      unsigned _counter = 0, bool _rmFiles = true) :
       eoFileSnapshot(_dirname, _frequency, _filename, _delim, _counter, _rmFiles),
       eoGnuplot(_filename,"set data style points"),
       pointSize(5)
@@ -88,7 +89,7 @@ class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
   // Dtor
   virtual ~eoGnuplot1DSnapshot(){}
 
-  virtual eoMonitor&  operator() (void) ;
+  virtual eoMonitor& operator()();
 
   /// Class name.
   virtual std::string className() const { return "eoGnuplot1DSnapshot"; }
@@ -96,20 +97,20 @@ class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
   virtual void handleBounds(eoRealVectorBounds & _bounds)
   {
       std::ostringstream os;
-    //    std::ostrstream os;
-    os << "set autoscale\nset yrange [" ;
-    if (_bounds.isMinBounded(0))
-      os << _bounds.minimum(0);
-    os << ":" ;
-    if (_bounds.isMaxBounded(0))
-       os << _bounds.maximum(0);
-    os << "]\n";
-    gnuplotCommand(os.str());
+      os << "set autoscale\nset yrange [" ;
+      if (_bounds.isMinBounded(0))
+          os << _bounds.minimum(0);
+      os << ":" ;
+      if (_bounds.isMaxBounded(0))
+          os << _bounds.maximum(0);
+      os << "]\n";
+      gnuplotCommand(os.str());
   }
 
-  unsigned pointSize;
-private:
 
+protected:
+
+    unsigned pointSize;
 };
 
 

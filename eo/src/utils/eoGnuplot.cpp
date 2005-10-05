@@ -44,30 +44,34 @@ eoGnuplot::eoGnuplot(std::string _title, std::string _extra)
 
 eoGnuplot::~eoGnuplot()
 {
+#ifdef HAVE_GNUPLOT
     if( gpCom ) {
         PipeComSend( gpCom, "quit\n" );
         PipeComClose( gpCom );
         gpCom =NULL;
     }
+#endif
 }
 
 
 
 void eoGnuplot::gnuplotCommand(const char *_command)
 {
+#ifdef HAVE_GNUPLOT
     if(gpCom) {
         PipeComSend( gpCom, _command );
         PipeComSend( gpCom, "\n" );
     }
+#endif
 }
 
 
 
 void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
 {
+#ifdef HAVE_GNUPLOT
     std::ostringstream os;
-    os << "250x150-0+" << numWindow*170;
-    numWindow++;
+    os << "250x150-0+" << 170 * numWindow++;
     char *args[6];
     args[0] = strdup( GNUPLOT_PROGRAM );
     args[1] = strdup( "-geometry" );
@@ -83,6 +87,7 @@ void eoGnuplot::initGnuPlot(std::string _title, std::string _extra)
         PipeComSend( gpCom, _extra.c_str() );
         PipeComSend( gpCom, "\n" );
     }
+#endif
 }
 
 

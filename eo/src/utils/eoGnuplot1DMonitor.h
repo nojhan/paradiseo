@@ -1,5 +1,3 @@
-// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
-
 //-----------------------------------------------------------------------------
 // eoGnuplot1DMonitor.h
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
@@ -49,6 +47,7 @@ everytime
 class eoGnuplot1DMonitor : public eoFileMonitor, public eoGnuplot
 {
 public:
+
     using eoMonitor::vec;
 
     /** Constructor */
@@ -70,4 +69,13 @@ public:
 };
 
 
-#endif
+#endif // EO_eoGnuplot1DMonitor_H
+
+
+
+// Local Variables:
+// c-file-style: "Stroustrup"
+// comment-column: 35
+// fill-column: 80
+// mode: C++
+// End:

@@ -29,29 +29,30 @@
 
 #include <sstream>
 
-#include "eoGnuplot1DMonitor.h"
-#include "eoParam.h"
+#include "utils/eoGnuplot1DMonitor.h"
+#include "utils/eoParam.h"
 
 
 eoMonitor& eoGnuplot1DMonitor::operator() (void)
 {
-  // update file using the eoFileMonitor
-  eoFileMonitor::operator()();
-
-  // sends plot order to gnuplot
-  // assumes successive plots will have same nb of columns!!!
-  if (firstTime)
+    // update file using the eoFileMonitor
+    eoFileMonitor::operator()();
+#ifdef HAVE_GNUPLOT
+    // sends plot order to gnuplot
+    // assumes successive plots will have same nb of columns!!!
+    if (firstTime)
     {
-      FirstPlot();
-      firstTime = false;
+        FirstPlot();
+        firstTime = false;
     }
-  else
+    else
     {
-      if( gpCom ) {
-	PipeComSend( gpCom, "replot\n" );
-      }
+        if( gpCom ) {
+            PipeComSend( gpCom, "replot\n" );
+        }
     }
-  return *this;
+#endif
+    return *this;
 }
 
 
@@ -62,6 +63,7 @@ void eoGnuplot1DMonitor::FirstPlot()
     {
         throw std::runtime_error("Must have some stats to plot!\n");
     }
+#ifdef HAVE_GNUPLOT
     std::ostringstream os;
     os << "plot";
     for (unsigned i=1; i<vec.size(); i++) {
@@ -72,6 +74,7 @@ void eoGnuplot1DMonitor::FirstPlot()
     }
     os << '\n';
     PipeComSend( gpCom, os.str().c_str());
+#endif
 }
 
 

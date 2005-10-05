@@ -65,7 +65,7 @@ int main(int argc, char* argv[])
   ///// FIRST, problem or representation dependent stuff
   //////////////////////////////////////////////////////
 
-  // The evaluation fn - encapsulated into an eval counter for output 
+  // The evaluation fn - encapsulated into an eval counter for output
   eoEvalFuncPtr<Indi, double> mainEval( binary_value<Indi>);
   eoEvalFuncCounter<Indi> eval(mainEval);
 
@@ -83,7 +83,7 @@ int main(int argc, char* argv[])
   eoCheckPoint<Indi> & checkpoint = make_checkpoint(parser, state, eval, term);
 
   // add a graphical output for the distribution
-  // first, get the direname from the parser 
+  // first, get the direname from the parser
   //    it has been enetered in make_checkoint
 
   eoParam* ptParam = parser.getParamWithLongName(string("resDir"));
@@ -91,24 +91,26 @@ int main(int argc, char* argv[])
   if (!ptDirNameParam)	// not found
     throw runtime_error("Parameter resDir not found where it was supposed to be");
 
-#if !defined(NO_GNUPLOT)
   // now create the snapshot monitor
-    eoValueParam<bool>& plotDistribParam = parser.createParam(false, "plotDistrib", "Plot Distribution", '\0', "Output - Graphical");
+  eoValueParam<bool>& plotDistribParam = parser.getORcreateParam(false, "plotDistrib",
+                                                                 "Plot Distribution", '\0',
+                                                                 "Output - Graphical");
     if (plotDistribParam.value())
       {
 	unsigned frequency=1;		// frequency of plots updates
-	eoGnuplot1DSnapshot *distribSnapshot = new eoGnuplot1DSnapshot(ptDirNameParam->value(), frequency, "distrib");
+	eoGnuplot1DSnapshot *distribSnapshot = new eoGnuplot1DSnapshot(ptDirNameParam->value(),
+                                                                       frequency, "distrib");
 	state.storeFunctor(distribSnapshot);
 	// add the distribution (it is an eoValueParam<vector<double> >)
 	distribSnapshot->add(distrib);
 	// and of course add it to the checkpoint
 	checkpoint.add(*distribSnapshot);
       }
-#endif
 
   // the algorithm: EDA
     // don't know where else to put the population size!
-  unsigned popSize = parser.createParam(unsigned(100), "popSize", "Population Size", 'P', "Algorithm").value();
+  unsigned popSize = parser.getORcreateParam(unsigned(100), "popSize",
+                                             "Population Size", 'P', "Algorithm").value();
   eoSimpleEDA<Indi> eda(update, eval, popSize, checkpoint);
 
   ///// End of construction of the algorith
@@ -125,14 +127,12 @@ int main(int argc, char* argv[])
   distrib.printOn(std::cout);
   std::cout << std::endl;
 
-#if !defined(NO_GNUPLOT)
   // wait - for graphical output
     if (plotDistribParam.value())
       {
 	string foo;
 	cin >> foo;
       }
-#endif
   }
   catch(std::exception& e)
   {

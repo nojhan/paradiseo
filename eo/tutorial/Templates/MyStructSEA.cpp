@@ -17,7 +17,7 @@ main file BitEA in tutorial/Lesson4 dir.
 Or you can wait until we do it :-)
 */
 
-// Miscilaneous include and declaration 
+// Miscilaneous include and declaration
 #include <iostream>
 using namespace std;
 
@@ -29,17 +29,17 @@ using namespace std;
 // include here whatever specific files for your representation
 // Basically, this should include at least the following
 
-/** definition of representation: 
+/** definition of representation:
  * class eoMyStruct MUST derive from EO<FitT> for some fitness
  */
 #include "eoMyStruct.h"
 
-/** definition of initilizqtion: 
+/** definition of initilizqtion:
  * class eoMyStructInit MUST derive from eoInit<eoMyStruct>
  */
 #include "eoMyStructInit.h"
 
-/** definition of evaluation: 
+/** definition of evaluation:
  * class eoMyStructEvalFunc MUST derive from eoEvalFunc<eoMyStruct>
  * and should test for validity before doing any computation
  * see tutorial/Templates/evalFunc.tmpl
@@ -47,7 +47,7 @@ using namespace std;
 #include "eoMyStructEvalFunc.h"
 
 /** definitions of operators: write as many classes as types of operators
- * and include them here. In this simple example, 
+ * and include them here. In this simple example,
  * one crossover (2->2) and one mutation (1->1) operators are used
  */
 #include "eoMyStructQuadCrossover.h"
@@ -61,17 +61,17 @@ using namespace std;
 //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 // START fitness type: double or eoMaximizingFitness if you are maximizing
 //                     eoMinimizingFitness if you are minimizing
-typedef eoMinimizingFitness MyFitT ;	// type of fitness 
+typedef eoMinimizingFitness MyFitT ;	// type of fitness
 // END fitness type
 //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
 // Then define your EO objects using that fitness type
-typedef eoMyStruct<MyFitT> Indi;      // ***MUST*** derive from EO 
+typedef eoMyStruct<MyFitT> Indi;      // ***MUST*** derive from EO
 
 
 // Use existing modules to define representation independent routines
 
-// how to initialize the population 
+// how to initialize the population
 // it IS representation independent if an eoInit is given
 #include <do/make_pop.h>
 eoPop<Indi >&  make_pop(eoParser& _parser, eoState& _state, eoInit<Indi> & _init)
@@ -88,7 +88,7 @@ eoContinue<Indi>& make_continue(eoParser& _parser, eoState& _state, eoEvalFuncCo
 
 // outputs (stats, population dumps, ...)
 #include <do/make_checkpoint.h>
-eoCheckPoint<Indi>& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<Indi>& _eval, eoContinue<Indi>& _continue) 
+eoCheckPoint<Indi>& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<Indi>& _eval, eoContinue<Indi>& _continue)
 {
   return do_make_checkpoint(_parser, _state, _eval, _continue);
 }
@@ -100,7 +100,7 @@ eoAlgo<Indi>&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<I
   return do_make_algo_scalar(_parser, _state, _eval, _continue, _op, _dist);
 }
 
-// simple call to the algo. stays there for consistency reasons 
+// simple call to the algo. stays there for consistency reasons
 // no template for that one
 #include <do/make_run.h>
 // the instanciating fitnesses
@@ -120,40 +120,40 @@ int main(int argc, char* argv[])
 try
   {
     eoParser parser(argc, argv);  // for user-parameter reading
-    
+
     eoState state;    // keeps all things allocated
-    
+
     // The fitness
     //////////////
     eoMyStructEvalFunc<Indi> plainEval/* (varType  _anyVariable) */;
     // turn that object into an evaluation counter
     eoEvalFuncCounter<Indi> eval(plainEval);
-    
+
     // a genotype initializer
     eoMyStructInit<Indi> init;
-    // or, if you need some parameters, you might as well 
+    // or, if you need some parameters, you might as well
     // - write a constructor of the eoMyStructInit that uses a parser
     // - call it from here:
     //        eoMyStructInit<Indi> init(parser);
-    
+
     // if you want to do sharing, you'll need a distance.
     // see file utils/eoDistance.h
     //
-    // IF you representation has an operator[]() double-castable, 
+    // IF you representation has an operator[]() double-castable,
     // then you can use for instance the quadratic distance (L2 norm)
     //    eoQuadDistance<Indi> dist;
     // or the Hamming distance (L1 norm)
     // eoHammingDistance<Indi> dist;
 
-    
+
     // Build the variation operator (any seq/prop construct)
     // here, a simple example with only 1 crossover (2->2, a QuadOp) and
     // one mutation, is given.
     // Hints to have choice among multiple crossovers and mutations are given
-    
+
     // A (first) crossover (possibly use the parser in its Ctor)
     eoMyStructQuadCrossover<Indi> cross /* (eoParser parser) */;
-    
+
     // IF MORE THAN ONE:
 
     // read its relative rate in the combination
@@ -167,9 +167,9 @@ try
     // 2- include that file here together with eoMyStructQuadCrossover above
     // 3- uncomment and duplicate the following lines:
     //
-// eoMyStructSecondCrossover<Indi> cross2(eoParser parser); 
-// double cross2Rate = parser.createParam(1.0, "cross2Rate", "Relative rate for crossover 2", '2', "Variation Operators").value(); 
-// cross.add(cross2, cross2Rate); 
+// eoMyStructSecondCrossover<Indi> cross2(eoParser parser);
+// double cross2Rate = parser.createParam(1.0, "cross2Rate", "Relative rate for crossover 2", '2', "Variation Operators").value();
+// cross.add(cross2, cross2Rate);
 
   // NOTE: if you want some gentle output, the last one shoudl be like
   //  cross.add(cross, crossXXXRate, true);
@@ -192,9 +192,9 @@ try
     // 2- include that file here together with eoMyStructMutation above
     // 3- uncomment and duplicate the following lines:
     //
-// eoMyStructSecondMutation<Indi> mut2(eoParser parser); 
-// double mut2Rate = parser.createParam(1.0, "mut2Rate", "Relative rate for mutation 2", '2', "Variation Operators").value(); 
-// mut.add(mut2, mut2Rate); 
+// eoMyStructSecondMutation<Indi> mut2(eoParser parser);
+// double mut2Rate = parser.createParam(1.0, "mut2Rate", "Relative rate for mutation 2", '2', "Variation Operators").value();
+// mut.add(mut2, mut2Rate);
 
   // NOTE: if you want some gentle output, the last one shoudl be like
   //  mut.add(mut, mutXXXRate, true);
@@ -217,7 +217,7 @@ try
     eoSGAGenOp<Indi> op(cross, pCross, mut, pMut);
 
 
-    //// Now some representation-independent things 
+    //// Now some representation-independent things
     //
     // You do not need to modify anything beyond this point
     // unless you want to add specific statistics to the checkpoint
@@ -240,7 +240,7 @@ try
   // if uncommented, it is assumed that you will want to print some stat.
   // if not, then the following objects will be created uselessly - but what the heck!
 
-  eoMyStructStat<Indi>   myStat;       // or maybe myStat(parser); 
+  eoMyStructStat<Indi>   myStat;       // or maybe myStat(parser);
   checkpoint.add(myStat);
   // This one is probably redundant with the one in make_checkpoint, but w.t.h.
   eoIncrementorParam<unsigned> generationCounter("Gen.");
@@ -252,7 +252,7 @@ try
   // those need to be pointers because of the if's
   eoStdoutMonitor *myStdOutMonitor;
   eoFileMonitor   *myFileMonitor;
-#if !defined(NO_GNUPLOT)
+#ifdef HAVE_GNUPLOT
   eoGnuplot1DMonitor *myGnuMonitor;
 #endif
 
@@ -283,7 +283,7 @@ try
   // should we write it to a file ?
   if (fileMyStructStat)
     {
-      // the file name is hard-coded - of course you can read 
+      // the file name is hard-coded - of course you can read
       // a string parameter in the parser if you prefer
       myFileMonitor = new eoFileMonitor(dirName + "myStat.xg");
       // don't forget to store the memory in the state
@@ -296,14 +296,14 @@ try
       myFileMonitor->add(myStat);
     }
 
-#if !defined(NO_GNUPLOT)
+#ifdef HAVE_GNUPLOT
   // should we PLOT it on StdOut ? (one dot per generation, incremental plot)
   if (plotMyStructStat)
     {
       myGnuMonitor = new eoGnuplot1DMonitor(dirName+"plot_myStat.xg",minimizing_fitness<Indi>());
       // NOTE: you cand send commands to gnuplot at any time with the method
       // myGnuMonitor->gnuplotCommand(string)
-      // par exemple, gnuplotCommand("set logscale y") 
+      // par exemple, gnuplotCommand("set logscale y")
 
       // don't forget to store the memory in the state
       state.storeFunctor(myGnuMonitor);

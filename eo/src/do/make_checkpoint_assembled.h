@@ -11,16 +11,16 @@
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
     version 2 of the License, or (at your option) any later version.
- 
+
     This library is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
     Lesser General Public License for more details.
- 
+
     You should have received a copy of the GNU Lesser General Public
     License along with this library; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- 
+
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@inria.fr
              mak@dhi.dk
@@ -49,18 +49,26 @@ template <class EOT>
 eoCheckPoint<EOT>& do_make_checkpoint_assembled(eoParser& _parser, eoState& _state, eoEvalFuncCounter<EOT>& _eval, eoContinue<EOT>& _continue)
 {
 
-  // SOME PARSER PARAMETERS
-  // ----------------------
-  std::string dirName       = _parser.createParam(std::string("Res"), "resDir", "Directory to store DISK outputs", '\0', "Output").value();
-  bool        erase         = _parser.createParam(true, "eraseDir", "Erase files in dirName if any", '\0', "Output").value();
-#if !defined(NO_GNUPLOT)
-  bool        gnuplots      = _parser.createParam(true,"plots","Plot stuff using GnuPlot",'\0',"Output").value();
-#endif
-  bool        printFile     = _parser.createParam(true,"printFile","Print statistics file",'\0',"Output").value();
+    // SOME PARSER PARAMETERS
+    // ----------------------
+    std::string dirName = _parser.getORcreateParam(std::string("Res"), "resDir",
+                                                   "Directory to store DISK outputs",
+                                                   '\0', "Output").value();
+    bool erase = _parser.getORcreateParam(true, "eraseDir",
+                                          "Erase files in dirName if any",
+                                          '\0', "Output").value();
+    bool gnuplots = _parser.getORcreateParam(true, "plots",
+                                             "Plot stuff using GnuPlot",
+                                             '\0', "Output").value();
+    bool printFile = _parser.getORcreateParam(true, "printFile",
+                                              "Print statistics file",
+                                              '\0', "Output").value();
 
-  eoValueParam<unsigned>& saveFrequencyParam = 
-    _parser.createParam(unsigned(0),"saveFrequency","Save every F generation (0 = only final state, absent = never)",'\0',"Persistence" );
-  
+  eoValueParam<unsigned>& saveFrequencyParam
+      = _parser.getORcreateParam(unsigned(0), "saveFrequency",
+                                 "Save every F generation (0 = only final state, absent = never)",
+                                 '\0', "Persistence" );
+
   testDirRes(dirName, erase); // TRUE
 
   // CREATE CHECKPOINT FROM eoContinue
@@ -88,7 +96,7 @@ eoCheckPoint<EOT>& do_make_checkpoint_assembled(eoParser& _parser, eoState& _sta
   Fit fit;
   std::vector<std::string> fitness_descriptions = fit.getDescriptionVector();
   unsigned nTerms = fitness_descriptions.size();
-  
+
   // STAT VALUES OF A POPULATION
   // ---------------------------
 
@@ -109,7 +117,7 @@ eoCheckPoint<EOT>& do_make_checkpoint_assembled(eoParser& _parser, eoState& _sta
     _state.storeFunctor( bestvals[j] );
     checkpoint->add( *bestvals[j] );
   }
-  
+
   // STDOUT
   // ------
   eoStdoutMonitor *monitor = new eoStdoutMonitor(false);
@@ -125,10 +133,9 @@ eoCheckPoint<EOT>& do_make_checkpoint_assembled(eoParser& _parser, eoState& _sta
   // Add all average vals
   for (unsigned l=0; l < nTerms; ++l)
     monitor->add( *avgvals[l] );
-  
+
   // GNUPLOT
   // -------
-#if !defined(NO_GNUPLOT)
   if (gnuplots ){
     std::string stmp;
 
@@ -144,7 +151,7 @@ eoCheckPoint<EOT>& do_make_checkpoint_assembled(eoParser& _parser, eoState& _sta
     // and of course add it to the checkpoint
     checkpoint->add(*fitSnapshot);
 
-    std::vector<eoGnuplot1DMonitor*> gnumonitors(nTerms, NULL );    
+    std::vector<eoGnuplot1DMonitor*> gnumonitors(nTerms, NULL );
     for (unsigned k=0; k < nTerms; ++k){
       stmp = dirName + "/gnuplot_" + fitness_descriptions[k] + ".xg";
       gnumonitors[k] = new eoGnuplot1DMonitor(stmp,true);
@@ -156,7 +163,6 @@ eoCheckPoint<EOT>& do_make_checkpoint_assembled(eoParser& _parser, eoState& _sta
     }
 
   }
-#endif
 
   // WRITE STUFF TO FILE
   // -------------------
@@ -181,10 +187,10 @@ eoCheckPoint<EOT>& do_make_checkpoint_assembled(eoParser& _parser, eoState& _sta
   // feed the state to state savers
 
   if (_parser.isItThere(saveFrequencyParam)) {
-    
+
     unsigned freq = (saveFrequencyParam.value() > 0 ? saveFrequencyParam.value() : UINT_MAX );
     std::string stmp = dirName + "/generations";
-    eoCountedStateSaver *stateSaver1 = new eoCountedStateSaver(freq, _state, stmp); 
+    eoCountedStateSaver *stateSaver1 = new eoCountedStateSaver(freq, _state, stmp);
     _state.storeFunctor(stateSaver1);
     checkpoint->add(*stateSaver1);
   }

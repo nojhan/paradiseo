@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // make_checkpoint.h
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -45,7 +45,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
   // first, create a checkpoint from the eoContinue
   eoCheckPoint<EOT> *checkpoint = new eoCheckPoint<EOT>(_continue);
   _state.storeFunctor(checkpoint);
-  
+
   ///////////////////
   // Counters
   //////////////////
@@ -55,14 +55,14 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 
   // if we want the time, we need an eoTimeCounter
   eoTimeCounter * tCounter = NULL;
-  
-  // Create anyway a generation-counter 
-  // Recent change (03/2002): it is now an eoIncrementorParam, both 
+
+  // Create anyway a generation-counter
+  // Recent change (03/2002): it is now an eoIncrementorParam, both
   // a parameter AND updater so you can store it into the eoState
   eoIncrementorParam<unsigned> *generationCounter = new eoIncrementorParam<unsigned>("Gen.");
   // store it in the state
   _state.storeFunctor(generationCounter);
-  // And add it to the checkpoint, 
+  // And add it to the checkpoint,
   checkpoint->add(*generationCounter);
 
     // dir for DISK output
@@ -91,7 +91,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
     eoValueParam<bool>& fileBestParam = _parser.createParam(false, "fileBestStat", "Output bes/avg/std to file", '\0', "Output - Disk");
 
     eoBestFitnessStat<EOT> *bestStat = NULL;
-    if ( printBestParam.value() || plotBestParam.value() || fileBestParam.value() ) 
+    if ( printBestParam.value() || plotBestParam.value() || fileBestParam.value() )
       // we need the bestStat for at least one of the 3 above
       {
 	bestStat = new eoBestFitnessStat<EOT>;
@@ -147,11 +147,11 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
     // The monitors
     ///////////////
     // do we want an eoStdoutMonitor?
-    bool needStdoutMonitor = printBestParam.value() 
+    bool needStdoutMonitor = printBestParam.value()
 	|| printPopParam.value() ;
 
-    // The Stdout monitor will print parameters to the screen ...  
-    if ( needStdoutMonitor ) 
+    // The Stdout monitor will print parameters to the screen ...
+    if ( needStdoutMonitor )
       {
 	eoStdoutMonitor *monitor = new eoStdoutMonitor(false);
 	_state.storeFunctor(monitor);
@@ -180,7 +180,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
       }
 
     // first handle the dir test - if we need at least one file
-    if ( ( fileBestParam.value() || plotBestParam.value() || 
+    if ( ( fileBestParam.value() || plotBestParam.value() ||
 	   plotHistogramParam.value() )
 	 && !dirOK )		   // just in case we add something before
       dirOK = testDirRes(dirNameParam.value(), eraseParam.value()); // TRUE
@@ -204,11 +204,10 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 	    //	    std::cout << "On met timecounter\n";
 	    fileMonitor->add(*tCounter);
 	  }
-	fileMonitor->add(*bestStat); 
+	fileMonitor->add(*bestStat);
 	fileMonitor->add(*secondStat);
       }
 
-#if !defined(NO_GNUPLOT)
     if (plotBestParam.value())    // an eoGnuplot1DMonitor for best & average
       {
 	std::string stmp = dirNameParam.value() + "/gnu_best.xg";
@@ -241,7 +240,6 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 	// and of course add it to the checkpoint
 	checkpoint->add(*fitSnapshot);
       }
-#endif
 
     //////////////////////////////////
     // State savers
@@ -263,12 +261,12 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 #else
       std::string stmp = dirNameParam.value() + "/generations";
 #endif
-      eoCountedStateSaver *stateSaver1 = new eoCountedStateSaver(freq, _state, stmp); 
+      eoCountedStateSaver *stateSaver1 = new eoCountedStateSaver(freq, _state, stmp);
       _state.storeFunctor(stateSaver1);
     checkpoint->add(*stateSaver1);
     }
 
-    // save state every T seconds 
+    // save state every T seconds
     eoValueParam<unsigned>& saveTimeIntervalParam = _parser.createParam(unsigned(0), "saveTimeInterval", "Save every T seconds (0 or absent = never)", '\0',"Persistence" );
     if (_parser.isItThere(saveTimeIntervalParam) && saveTimeIntervalParam.value()>0)
     {
@@ -281,7 +279,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 #else
       std::string stmp = dirNameParam.value() + "/time";
 #endif
-      eoTimedStateSaver *stateSaver2 = new eoTimedStateSaver(saveTimeIntervalParam.value(), _state, stmp); 
+      eoTimedStateSaver *stateSaver2 = new eoTimedStateSaver(saveTimeIntervalParam.value(), _state, stmp);
       _state.storeFunctor(stateSaver2);
       checkpoint->add(*stateSaver2);
     }
