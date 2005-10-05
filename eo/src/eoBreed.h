@@ -33,20 +33,24 @@
 #include <eoTransform.h>
 //-----------------------------------------------------------------------------
 
-/**
-eoBreed: breeding is thought of a combination of selecting and transforming
-a population. For efficiency reasons you might want to build your own
-eoBreed derived class rather than relying on a seperate select and transform
-function.
+/** Breeding: combination of selecting and transforming a population
 
-  @see eoSelect, eoTransform, eoSelectTransform
+Breeding is thought of a combination of selecting and transforming a
+population. For efficiency reasons you might want to build your own
+eoBreed derived class rather than relying on a seperate select and
+transform function.
+
+@see eoSelect, eoTransform, eoSelectTransform
 */
 template<class EOT>
 class eoBreed : public eoBF<const eoPop<EOT>&, eoPop<EOT>&, void>
 {};
 
-/**
-eoSelectTransform: special breeder that is just an application of an embedded select,
+
+
+/** Embedded select, followed by an embedded transform
+
+Special breeder that is just an application of an embedded select,
 followed by an embedded transform
 */
 template <class EOT>

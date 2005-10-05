@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoEasyEA.h
 // (c) GeNeura Team, 1998
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -47,9 +47,9 @@ template <class EOT> class eoDistEvalEasyEA ;
 /** An easy-to-use evolutionary algorithm; you can use any chromosome,
     and any selection transformation, merging and evaluation
     algorithms; you can even change in runtime parameters of those
-    sub-algorithms 
+    sub-algorithms
 
-Change (MS, July 3. 2001): 
+Change (MS, July 3. 2001):
   Replaced the eoEvalFunc by an eoPopEvalFunc: this immediately
   allows many useful constructs, such as co-evolution (e.g. game players),
   parisian approach (the solution to the problem is the whole population)
@@ -68,8 +68,8 @@ public:
          eoContinue<EOT>& _continuator,
          eoEvalFunc<EOT>& _eval,
          eoBreed<EOT>& _breed,
-         eoReplacement<EOT>& _replace     
-     ) : continuator(_continuator), 
+         eoReplacement<EOT>& _replace
+     ) : continuator(_continuator),
 	 eval (_eval),
 	 loopEval(_eval),
 	 popEval(loopEval),
@@ -83,9 +83,9 @@ public:
   eoEasyEA(eoContinue <EOT> & _continuator,
 	   eoPopEvalFunc <EOT> & _pop_eval,
 	   eoBreed <EOT> & _breed,
-	   eoReplacement <EOT> & _replace     
+	   eoReplacement <EOT> & _replace
 	   ) :
-    continuator (_continuator), 
+    continuator (_continuator),
     eval (dummyEval),
     loopEval(dummyEval),
     popEval (_pop_eval),
@@ -93,7 +93,7 @@ public:
     breed (_breed),
     mergeReduce (dummyMerge, dummyReduce),
     replace (_replace) {
-    
+
   }
   */
 
@@ -102,9 +102,9 @@ public:
          eoContinue<EOT>& _continuator,
          eoPopEvalFunc<EOT>& _eval,
          eoBreed<EOT>& _breed,
-         eoReplacement<EOT>& _replace     
+         eoReplacement<EOT>& _replace
      ) : continuator(_continuator),
-	 eval (dummyEval), 
+	 eval (dummyEval),
 	 loopEval(dummyEval),
          popEval(_eval),
          selectTransform(dummySelect, dummyTransform),
@@ -136,7 +136,7 @@ public:
          eoEvalFunc<EOT>& _eval,
          eoSelect<EOT>& _select,
          eoTransform<EOT>& _transform,
-         eoReplacement<EOT>& _replace     
+         eoReplacement<EOT>& _replace
      ) : continuator(_continuator),
 	 eval (_eval),
 	 loopEval(_eval),
@@ -171,13 +171,13 @@ public:
   /// Apply a few generation of evolution to the population.
   virtual void operator()(eoPop<EOT>& _pop)
   {
-    eoPop<EOT> offspring, empty_pop; 
+    eoPop<EOT> offspring, empty_pop;
     popEval(empty_pop, _pop); // A first eval of pop.
     do
     {
       try
       {
-	       unsigned pSize = _pop.size();
+         unsigned pSize = _pop.size();
          offspring.clear(); // new offspring
 
          breed(_pop, offspring);
@@ -202,7 +202,7 @@ public:
   }
 
 protected :
-  
+
   // If selectTransform needs not be used, dummySelect and dummyTransform are used
   // to instantiate it.
   class eoDummySelect : public eoSelect<EOT>
@@ -215,15 +215,15 @@ protected :
   {public: void operator()(EOT &) {} } dummyEval;
 
   eoContinue<EOT>&          continuator;
-  
+
   eoEvalFunc <EOT> &        eval ;
-  eoPopLoopEval<EOT>        loopEval;  
+  eoPopLoopEval<EOT>        loopEval;
 
   eoPopEvalFunc<EOT>&       popEval;
-  
+
   eoSelectTransform<EOT>    selectTransform;
   eoBreed<EOT>&             breed;
-  
+
   // If mergeReduce needs not be used, dummyMerge and dummyReduce are used
   // to instantiate it.
   eoNoElitism<EOT>          dummyMerge;
@@ -231,7 +231,7 @@ protected :
 
   eoMergeReduce<EOT>        mergeReduce;
   eoReplacement<EOT>&       replace;
-  
+
   // Friend classes
   friend class eoIslandsEasyEA <EOT> ;
   friend class eoDistEvalEasyEA <EOT> ;
