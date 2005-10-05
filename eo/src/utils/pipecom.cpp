@@ -167,7 +167,6 @@ int PipeComWaitFor( PCom *from, char *what )
 
 // Local Variables:
 // coding: iso-8859-1
-// mode: C++
 // c-file-style: "Stroustrup"
 // fill-column: 80
 // End:
