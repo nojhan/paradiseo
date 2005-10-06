@@ -210,17 +210,18 @@ int main(int argc, char* argv[]) {
     if (meas_param == 1) meas = ErrorMeasure::mean_squared;
 
     
-    if (functions_added == 0) {
-	cout << "ERROR: no functions defined" << endl;
-	exit(1);
-    }
-    
     /* End parsing */
     if (parser.userNeedsHelp())
     {
 	parser.printHelp(std::cout);
 	return 1;
     }
+    
+    if (functions_added == 0) {
+	cout << "ERROR: no functions defined" << endl;
+	exit(1);
+    }
+    
     
     Dataset dataset;
     dataset.load_data(datafile.value());
