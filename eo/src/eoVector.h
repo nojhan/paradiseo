@@ -22,7 +22,7 @@
              Marc.Schoenauer@polytechnique.fr
 	     mak@dhi.dk
 
-    CVS Info: $Date: 2004-12-23 15:29:06 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVector.h,v 1.16 2004-12-23 15:29:06 kuepper Exp $ $Author: kuepper $
+    CVS Info: $Date: 2005-10-06 17:22:40 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/eoVector.h,v 1.17 2005-10-06 17:22:40 kuepper Exp $ $Author: kuepper $
 
  */
 //-----------------------------------------------------------------------------
@@ -31,7 +31,7 @@
 #define _eoVector_h
 
 #include <vector>
-#include <iterator> // needed for GCC 3.2
+#include <iterator>
 #include <EO.h>
 
 /**

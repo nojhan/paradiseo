@@ -39,18 +39,19 @@
 #include <functional>  // bind2nd
 #include <string>      // std::string
 
-#include <eoVector.h>
+#include "eoVector.h"
 
-/**
-\defgroup bitstring
+/** @defgroup bitstring
 
-  Various functions for a bitstring representation
+Various functions for a bitstring representation
 */
 
-/** eoBit: implementation of bitstring chromosome.
-\class eoBit eoBit.h ga/eoBit.h
-\ingroup bitstring
-  * based on STL's std::vector<bool> specialization.
+/** Implementation of bitstring chromosome.
+
+@class eoBit eoBit.h ga/eoBit.h
+@ingroup bitstring
+
+Based on STL's std::vector<bool> specialization.
 */
 template <class FitT> class eoBit: public eoVector<FitT, bool>
 {

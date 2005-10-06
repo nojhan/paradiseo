@@ -2,20 +2,23 @@
 // t-eoMGE.cpp
 //-----------------------------------------------------------------------------
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #ifndef __GNUG__
 // to avoid long name warnings
 #pragma warning(disable:4786)
 #endif // __GNUG__
 
-#include <eo>
-#include <ga/eoBitOp.h>
-
+#include "eo"
+#include "ga/eoBitOp.h"
 #include "RoyalRoad.h"
 
 // Viri
-#include "../contrib/MGE/VirusOp.h"
-#include "../contrib/MGE/eoVirus.h"
-#include "../contrib/MGE/eoInitVirus.h"
+#include "VirusOp.h"
+#include "eoVirus.h"
+#include "eoInitVirus.h"
 
 //-----------------------------------------------------------------------------
 

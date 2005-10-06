@@ -2,6 +2,10 @@
 // t-eoMGE.cpp
 //-----------------------------------------------------------------------------
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #ifndef __GNUG__
 // to avoid long name warnings
 #pragma warning(disable:4786)
@@ -13,9 +17,9 @@
 #include "RoyalRoad.h"
 
 // Viri
-#include "../contrib/MGE/VirusOp.h"
-#include "../contrib/MGE/eoVirus.h"
-#include "../contrib/MGE/eoInitVirus.h"
+#include "VirusOp.h"
+#include "eoVirus.h"
+#include "eoInitVirus.h"
 
 //-----------------------------------------------------------------------------
 
@@ -29,25 +33,25 @@ int main()
   unsigned i;
   eoBooleanGenerator gen;
 
-  // the populations: 
-  eoPop<Chrom> pop; 
+  // the populations:
+  eoPop<Chrom> pop;
 
   // Evaluation
-  RoyalRoad<Chrom> rr( 8 ); 
+  RoyalRoad<Chrom> rr( 8 );
   eoEvalFuncCounter<Chrom> eval( rr );
 
-  eoInitVirus<float> random(CHROM_SIZE, gen); 
+  eoInitVirus<float> random(CHROM_SIZE, gen);
   for (i = 0; i < POP_SIZE; ++i) {
       Chrom chrom;
       random(chrom);
       eval(chrom);
       pop.push_back(chrom);
   }
-  
+
   std::cout << "population:" << std::endl;
   for (i = 0; i < pop.size(); ++i)
     std::cout << "\t" << pop[i] << " " << pop[i].fitness() << std::endl;
-  
+
   // selection
   eoStochTournamentSelect<Chrom> lottery(0.9 );
 
@@ -62,14 +66,14 @@ int main()
   propSel.add(vf, 0.05);
   propSel.add(vt, 0.05);
   propSel.add(xover, 0.8);
-  
+
   // Replace a single one
   eoCommaReplacement<Chrom> replace;
 
   // Terminators
   eoGenContinue<Chrom> continuator1(10);
   eoFitContinue<Chrom> continuator2(CHROM_SIZE);
-  eoCombinedContinue<Chrom> continuator(continuator1, continuator2);  
+  eoCombinedContinue<Chrom> continuator(continuator1, continuator2);
   eoCheckPoint<Chrom> checkpoint(continuator);
   eoStdoutMonitor monitor;
   checkpoint.add(monitor);
@@ -92,7 +96,7 @@ int main()
 	std::cout << "exception: " << e.what() << std::endl;;
 	exit(EXIT_FAILURE);
     }
-  
+
   std::cout << "pop" << std::endl;
   for (i = 0; i < pop.size(); ++i)
     std::cout << "\t" <<  pop[i] << " " << pop[i].fitness() << std::endl;
