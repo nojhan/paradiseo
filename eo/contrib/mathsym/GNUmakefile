@@ -72,7 +72,7 @@ tcc/libtcc1.a: tcc/Makefile
 
 #rules
 c_compile.o: eval/c_compile.c
-	gcc -c eval/c_compile.c -I./tcc $(COMPILEFLAGS) $(OPTFLAGS)
+	$(CC) -c eval/c_compile.c -I./tcc $(COMPILEFLAGS) $(OPTFLAGS)
 
 %.o:%.cpp
 	$(CXX) -o $@ -c $< $(CPPFLAGS) $(INCLUDE)
