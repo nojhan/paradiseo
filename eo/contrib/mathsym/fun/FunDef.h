@@ -54,23 +54,35 @@ class FunDef {
 extern std::vector<const FunDef*> get_defined_functions();
 extern const FunDef& get_element(token_t token);
 
-/* Single case evaluation */
+/** Single case evaluation */
 extern double      eval(const Sym& sym, const std::vector<double>& inputs);
 
-/* Static analysis through interval arithmetic */
+/** Static analysis through interval arithmetic */
 extern Interval eval(const Sym& sym, const std::vector<Interval>& inputs);
 
-/* Pretty printers, second version allows setting of variable names */
+/** Pretty printers, second version allows setting of variable names */
 extern std::string c_print(const Sym& sym);
+
+/** Pretty printers, allows setting of variable names */
 extern std::string c_print(const Sym& sym, const std::vector<std::string>& var_names);
 
-/* Pretty printer streamer */
+/** Pretty printer streamer */
 inline std::ostream& operator<<(std::ostream& os, Sym sym) { return os << c_print(sym); }
 
-/* Create constant */
+/** Create constant with this value, memory is managed. If reference count drops to zero value is deleted.  */
 extern Sym SymConst(double value);
 
-/* Create variable */
+/** Get out the values for all constants in the expression */
+std::vector<double> get_constants(Sym sym);
+
+/** Set the values for all constants in the expression. Vector needs to be the same size as the one get_constants returns 
+ * The argument isn't touched, it will return a new sym with the constants set. */
+Sym set_constants(Sym sym, const std::vector<double>& constants);
+
+/** check if a token is constant (for instance Sym sym; is_constant(sym.token()); ) */
+extern bool is_constant(token_t token);
+
+/** Create variable */
 extern Sym SymVar(unsigned idx);
 
 /* Add function to the language table (and take a guess at the arity) */

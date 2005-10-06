@@ -130,13 +130,13 @@ struct HashDouble{
 typedef hash_map<double, token_t, HashDouble> DoubleSet;
 
 static DoubleSet doubleSet; // for quick checking if a constant already exists
-static vector<bool> is_constant;
+static vector<bool> is_constant_flag;
 static vector<double> token_value;
 
 static std::vector<token_t> free_list;
 
 void delete_val(token_t token) { // clean up the information about this constant
-    if (is_constant[token]) {
+    if (is_constant_flag[token]) {
 	double value = token_value[token];
 	
 	delete language[token];
@@ -162,7 +162,7 @@ Sym SymConst(double value) {
     if (free_list.empty()) { // make space for tokens;
 	unsigned sz = language.size();
 	language.resize(sz + sz+1); // double
-	is_constant.resize(language.size(), false);
+	is_constant_flag.resize(language.size(), false);
 	token_value.resize(language.size(), 0.0);
 	
 	for (unsigned i = sz; i < language.size(); ++i) {
@@ -177,10 +177,15 @@ Sym SymConst(double value) {
     
     language[token] = make_const(value);
     doubleSet[value] = token;
-    is_constant[token] = true;
+    is_constant_flag[token] = true;
     token_value[token] = value;
     
     return Sym(token);
+}
+
+bool is_constant(token_t token) {
+    if (token >= is_constant_flag.size()) return false;
+    return is_constant_flag[token];
 }
 
 /* LanguageTable depends on this one, XXX move somewhere safe.*/
@@ -220,10 +225,10 @@ class Var : public FunDef {
 };
 
 class Const : public FunDef {
-    private:
+    public:
 	double value;
 	string value_str;
-    public:
+	
 	Const(double _value) : value(_value) {
 	    ostringstream os;
 	    os.precision(17);
@@ -250,6 +255,48 @@ class Const : public FunDef {
 	string name() const { return "parameter"; }
 };
 
+void get_constants(Sym sym, vector<double>& ret) {
+    token_t token = sym.token();
+    if (is_constant_flag[token]) {
+	double val = static_cast<const Const*>(language[token])->value;
+	ret.push_back(val);
+    }
+
+    const SymVec& args = sym.args();
+    for (unsigned i = 0; i < args.size(); ++i) {
+	 get_constants(args[i], ret);
+    }
+    
+}
+
+/** Get out the values for all constants in the expression */
+vector<double> get_constants(Sym sym) {
+    vector<double> retval;
+    get_constants(sym, retval);
+    return retval;
+}
+
+/** Set the values for all constants in the expression. Vector needs to be the same size as the one get_constants returns 
+ * The argument isn't touched, it will return a new sym with the constants set. */
+Sym set_constants(Sym sym, vector<double>::const_iterator& it) {
+    
+    token_t token = sym.token();
+    if (is_constant_flag[token]) {
+	return SymConst(*it++);
+    }
+
+    SymVec args = sym.args();
+    for (unsigned i = 0; i < args.size(); ++i) {
+	 args[i] = set_constants(sym, it);
+    }
+    
+    return Sym(token, args);
+}
+
+Sym set_constants(Sym sym, const vector<double>& constants) {
+    vector<double>::const_iterator it = constants.begin();
+    return set_constants(sym, it);
+}
 
 // Get functions out, excluding Const and Var
 vector<const FunDef*> get_defined_functions() {
@@ -491,7 +538,7 @@ void write_raw(ostream& os, const Sym& sym) {
     token_t token = sym.token();
     const SymVec& args = sym.args();
     
-    if (is_constant.size() > token && is_constant[token]) {
+    if (is_constant_flag.size() > token && is_constant_flag[token]) {
 	os << "c" << language[token]->c_print(vector<string>(), vector<string>()); 
     } else {
 
