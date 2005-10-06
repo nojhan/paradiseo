@@ -70,6 +70,32 @@ The directory 'fun' contains the functionality for the function and terminal set
 with ERC's etc. fun/FunDef.cpp contains the definition of the functionality. Stuff can be
 added here, but best to contact me if you miss particular functions.
 
+With the sym and the function set in place, some fairly nice overloading is possible. A quick tour:
+
+To create a variable that reads the first value from the inputs, do:
+
+Sym var = SymVar(0);
+
+To create a constant of value 0.4432, do
+
+Sym cnst = SymConst(0.4432);
+
+The constants are also stored uniquely so that:
+
+Sym cnst2 = SymConst(0.4432)
+
+will lead to:
+
+cnst == cnst2
+
+to be true (this happens without value compare, they point to the same element in the hashtable)
+
+To add two values, do
+
+Sym sym = var + const;
+
+This will create a tree with tree nodes. All other operations work identically.
+
 === Evaluation (eval/) ===
 
 The second important thing is evaluation. Although Syms can be evaluated through an interpreter,
@@ -118,7 +144,7 @@ The three compilation functions can be found in eval/sym_compile.h
 
 A limiting factor in tinycc is that the struct TCCState that is used to hold the compilation context,
 is not really self-contained. This unfortunately means that with every call to 'compile' ALL previous
-pointers that have been produced are invalidated. I'm still looking at ways to circumvent this.
+pointers that have been produced become unsafe for use. I'm still looking at ways to circumvent this.
 
 To work with mathsym, a few small changes in tccelf.c were necessary, check README.TCC for details.
 
