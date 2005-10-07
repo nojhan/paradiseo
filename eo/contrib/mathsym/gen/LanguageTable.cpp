@@ -23,8 +23,6 @@
 
 using namespace std;
 
-eoRng rng(time(0)); 
-
 extern Sym default_const();
 
 class LanguageImpl {

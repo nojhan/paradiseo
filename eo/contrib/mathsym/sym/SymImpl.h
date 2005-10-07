@@ -84,7 +84,7 @@ struct SymValue
     unsigned getSize() const     { return size; }
     unsigned getDepth() const    { return depth; }
     
-    private :
+     
     
     // for reference counting
     unsigned refcount;
@@ -92,8 +92,8 @@ struct SymValue
     // some simple stats
     unsigned size;
     unsigned depth;
-    
     UniqueNodeStats* uniqueNodeStats;
+    
 };
 
 

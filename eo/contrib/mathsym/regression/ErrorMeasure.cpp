@@ -24,6 +24,7 @@
 #include "Sym.h"
 #include "sym_compile.h"
 #include "TargetInfo.h"
+#include "stats.h"
 
 using namespace std;
 
@@ -101,9 +102,71 @@ class ErrorMeasureImpl {
 	    
 	    multi_function all = compile(pop);
 	    std::vector<double> y(pop.size());
-	    std::vector<double> err(pop.size()); 
+	    
+	    Scaling noScaling = Scaling(new NoScaling);
 	    
 	    const std::valarray<double>& t = train_info.targets();
+	    
+	    if (measure == ErrorMeasure::mean_squared_scaled) {
+		std::vector<Var> var(pop.size());
+		std::vector<Cov> cov(pop.size());
+	    
+		Var vart;
+
+		for (unsigned i = 0; i < t.size(); ++i) {
+		    vart.update(t[i]);
+		    
+		    all(&data.get_inputs(i)[0], &y[0]); // evalutate
+
+		    for (unsigned j = 0; j < pop.size(); ++j) {
+			var[j].update(y[j]);
+			cov[j].update(y[j], t[i]);
+		    }
+		}
+		
+		std::vector<ErrorMeasure::result> result(pop.size());
+		
+		for (unsigned i = 0; i < pop.size(); ++i) {
+		    
+		    // calculate scaling
+		    double b = cov[i].get_cov() / var[i].get_var();
+		    
+		    if (!finite(b)) {
+			result[i].scaling = noScaling;
+			result[i].error = vart.get_var(); // largest error
+			continue;
+		    }
+		    
+		    double a = vart.get_mean() - b * var[i].get_mean();
+		    
+		    result[i].scaling = Scaling( new LinearScaling(a,b));
+
+		    // calculate error
+		    double c = cov[i].get_cov();
+		    c *= c;
+		    
+		    double err = vart.get_var() - c / var[i].get_var();
+		    result[i].error = err; 
+		    if (!finite(err)) {
+			cout << "b     " << b << endl;
+			cout << "var t " << vart.get_var() << endl;
+			cout << "var i " << var[i].get_var() << endl;
+			cout << "cov   " << cov[i].get_cov() << endl;
+			
+			for (unsigned j = 0; j < t.size(); ++j) {
+			    all(&data.get_inputs(i)[0], &y[0]); // evalutate
+			    
+			    cout << y[i] << endl;
+			}
+			
+			exit(1);
+		    }
+		}
+	
+		return result;
+	    }
+
+	    std::vector<double> err(pop.size()); 
 	    
 	    for (unsigned i = 0; i < train_cases(); ++i) {
 		// evaluate
@@ -124,10 +187,9 @@ class ErrorMeasureImpl {
 	    std::vector<ErrorMeasure::result> result(pop.size());
 
 	    double n = train_cases();
-	    Scaling no = Scaling(new NoScaling);
 	    for (unsigned i = 0; i < pop.size(); ++i) {
 		result[i].error = err[i] / n;
-		result[i].scaling = no;
+		result[i].scaling = noScaling;
 	    }
 
 	    return result;
@@ -194,7 +256,7 @@ class ErrorMeasureImpl {
 		    dresult = multi_function_eval(decloned);
 		    break;
 		case ErrorMeasure::mean_squared_scaled:
-		    dresult = single_function_eval(decloned);
+		    dresult = multi_function_eval(decloned);
 		    break;
 	    }
 	    
@@ -241,7 +303,6 @@ ErrorMeasure::result ErrorMeasure::calc_error(Sym sym) {
 	    res.error = not_a_number;
 	    return res;
 	}
-	
     }
    
     return pimpl->eval(y); 

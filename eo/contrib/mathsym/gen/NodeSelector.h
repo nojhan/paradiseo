@@ -23,6 +23,8 @@ class Sym;
 /** Base class for selecting nodes */
 class NodeSelector {
     public:
+    virtual ~NodeSelector() {}
+	
     virtual unsigned select_node(Sym sym) const = 0;  
 };
 

@@ -16,13 +16,6 @@
  */
 
 
-#if __GNUC__ == 3
-#include <backward/hash_map.h>
-#else
-#include <hash_map.h>
-using std::hash_map;
-#endif
-
 #include "Sym.h"
 #include "FunDef.h"
 #include "sym_compile.h"

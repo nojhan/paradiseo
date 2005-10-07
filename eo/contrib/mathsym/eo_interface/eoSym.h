@@ -29,7 +29,7 @@ class EoSym : public EO<Fitness>, public Sym {
     public:
 	
 	void set(const Sym& sym) {
-	    invalidate();
+	    EO<Fitness>::invalidate();
 	    static_cast<Sym*>(this)->operator=(sym);
 	}
 	
@@ -54,7 +54,7 @@ void EoSym<Fitness>::readFrom(istream& is) {
 template <class Fitness>
 inline std::ostream& operator<<(std::ostream& os, const EoSym<Fitness>& f) { f.printOn(os); return os; }
 template <class Fitness>
-inline istream& operator>>(std::istream& is, EoSym<Fitness>& f) { f.readFrom(is); return os; }
+inline istream& operator>>(std::istream& is, EoSym<Fitness>& f) { f.readFrom(is); return is; }
 
 
 #endif

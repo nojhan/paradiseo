@@ -28,7 +28,9 @@ class TargetInfo;
 
 class ScalingBase {
     public:
-
+    
+    virtual ~ScalingBase() {}
+	
     std::valarray<double> apply(const std::valarray<double>& x) { 
 	std::valarray<double> xtmp = x;
 	transform(xtmp);

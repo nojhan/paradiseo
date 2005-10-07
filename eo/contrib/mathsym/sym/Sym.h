@@ -20,7 +20,7 @@
 
 #include <cassert>
 
-#if __GNUC__ == 3
+#if __GNUC__ >= 3
 #include <backward/hash_map.h>
 #else
 #include <hash_map.h>
