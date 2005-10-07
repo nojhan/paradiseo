@@ -157,7 +157,7 @@ public :
   {
       std::ostringstream os;
       os << "eoVlAtomExchangeQuadOp(" << atomExchange.className() << ")";
-      return os.str()
+      return os.str();
   }
 
 private:
