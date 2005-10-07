@@ -244,10 +244,16 @@ int main(int argc, char* argv[]) {
 
     NodeSelector& node_selector = select<NodeSelector>(use_uniform, random_sel, biased_sel);
     
-    eoProportionalOp<EoType> genetic_operator;
+    //eoProportionalOp<EoType> genetic_operator;
+    eoSequentialOp<EoType> genetic_operator;
     
     eoSymSubtreeMutate<EoType> submutate(builder, node_selector);
     genetic_operator.add( submutate, subtree_mut_prob);
+   
+    // todo, make this parameter, etc
+    double std = 0.01;
+    eoSymConstantMutate<EoType> constmutate(std);
+    genetic_operator.add( constmutate, 0.1);
     
     eoSymNodeMutate<EoType>    nodemutate(table);
     genetic_operator.add(nodemutate, node_mut_prob);

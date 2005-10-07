@@ -287,7 +287,7 @@ Sym set_constants(Sym sym, vector<double>::const_iterator& it) {
 
     SymVec args = sym.args();
     for (unsigned i = 0; i < args.size(); ++i) {
-	 args[i] = set_constants(sym, it);
+	 args[i] = set_constants(args[i], it);
     }
     
     return Sym(token, args);

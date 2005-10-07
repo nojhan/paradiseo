@@ -167,17 +167,43 @@ class ErrorMeasureImpl {
 	}
 	
 	vector<ErrorMeasure::result> calc_error(const vector<Sym>& pop) {
-	
+
+	    // first declone
+	    typedef hash_map<Sym, unsigned, HashSym> HashMap;
+	    
+	    HashMap clone_map;
+	    vector<Sym> decloned; 
+	    decloned.reserve(pop.size());
+	    
+	    for (unsigned i = 0; i < pop.size(); ++i) {
+		HashMap::iterator it = clone_map.find(pop[i]);
+
+		if (it == clone_map.end()) { // new
+		    clone_map[ pop[i] ] = decloned.size();
+		    decloned.push_back(pop[i]);
+		} 
+		
+	    }
+	    
+	    // evaluate 
+	    vector<ErrorMeasure::result> dresult;
 	    // currently we can only accumulate simple measures such as absolute and mean_squared
 	    switch(measure) {
 		case ErrorMeasure::mean_squared:
 		case ErrorMeasure::absolute:
-		    return multi_function_eval(pop);
+		    dresult = multi_function_eval(decloned);
+		    break;
 		case ErrorMeasure::mean_squared_scaled:
-		    return single_function_eval(pop);
+		    dresult = single_function_eval(decloned);
+		    break;
 	    }
 	    
-	    return vector<ErrorMeasure::result>();
+	    vector<ErrorMeasure::result> result(pop.size());
+	    for (unsigned i = 0; i < result.size(); ++i) {
+		result[i] = dresult[ clone_map[pop[i]] ];
+	    }
+	
+	    return result;
 	}
 	
 };

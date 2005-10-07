@@ -1,7 +1,7 @@
 COMPILEFLAGS=-Wno-deprecated -g -Wall -Wshadow #-DINTERVAL_DEBUG
 OPTFLAGS= -O2 -DNDEBUG 
 
-PROFILE_FLAGS=#-pg
+PROFILE_FLAGS=-pg
 
 INCLUDES=-I. -Isym -Ifun -Igen -Ieval -Iregression -I../../src -Ieo_interface  -I..
 
@@ -16,9 +16,9 @@ VPATH=sym fun gen eval regression eo_interface
 
 CXXSOURCES=FunDef.cpp Sym.cpp SymImpl.cpp SymOps.cpp sym_compile.cpp TreeBuilder.cpp LanguageTable.cpp\
 	Dataset.cpp ErrorMeasure.cpp Scaling.cpp TargetInfo.cpp BoundsCheck.cpp util.cpp NodeSelector.cpp\
-	eoSymCrossover.cpp
+	eoSymCrossover.cpp sym_operations.cpp eoSymMutate.cpp
 
-PROGRAMS=test/test test/test_compile test/testeo
+TESTPROGRAMS=test/test_compile test/testeo test/test_simplify
 
 OBJS= $(CXXSOURCES:.cpp=.o) c_compile.o
 
@@ -27,7 +27,7 @@ all: tcc/ symreg
 include $(CXXSOURCES:.cpp=.d) symreg.d 
 
 clean:
-	rm *.o *.d $(PROGRAMS) $(SYMLIB) symreg || true
+	rm *.o *.d $(TESTPROGRAMS) $(SYMLIB) symreg || true
 
 distclean: clean
 	rm -rf tcc
@@ -38,17 +38,17 @@ symreg: libsym.a symreg.o $(EXTLIBS)
 libsym.a: $(OBJS) 
 	rm libsym.a; ar cq $(SYMLIB) $(OBJS) 
 
-check: $(PROGRAMS)
-	test/test && test/test_compile && test/testeo && echo "all tests succeeded"
-
-test/test: test/test.o ${SYMLIB}
-	$(CXX) -o test/test test/test.o ${SYMLIB} ${LIBS}
+check: $(TESTPROGRAMS)
+	test/test_compile && test/testeo && test_simplify && echo "all tests succeeded"
 
 test/test_compile: test/test_compile.o ${SYMLIB}
 	$(CXX) -o test/test_compile test/test_compile.o $(SYMLIB) ${LIBS}
 
 test/testeo: test/testeo.o ${SYMLIB}
 	$(CXX) -o test/testeo test/testeo.o  $(SYMLIB) ${LIBS}
+
+test/test_simplify: test/test_simplify.o $(SYMLIB)
+	$(CXX) -o test/test_simplify test/test_simplify.o  $(SYMLIB) ${LIBS}
 
 # eo
 ../../src/libeo.a:

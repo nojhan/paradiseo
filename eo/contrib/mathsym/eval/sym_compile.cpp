@@ -45,7 +45,7 @@ string make_prototypes() {
     return prot;
 }
 
-// contains variable names, like 'a0', 'a1', etc.
+// contains variable names, like 'a0', 'a1', etc. or regular code
 typedef hash_map<Sym, string, HashSym> HashMap;
 
 HashMap::iterator find_entry(Sym sym, ostream& os, HashMap& map) {

@@ -85,6 +85,12 @@ extern bool is_constant(token_t token);
 /** Create variable */
 extern Sym SymVar(unsigned idx);
 
+/** simplifies a sym (sym_operations.cpp) */
+extern Sym simplify(Sym sym);
+
+/** differentiates a sym to a token (sym_operations.cpp) */
+extern Sym differentiate(Sym sym, token_t var_token);
+
 /* Add function to the language table (and take a guess at the arity) */
 class LanguageTable;
 extern void add_function_to_table(LanguageTable& table, token_t token);

@@ -53,6 +53,8 @@ class eoSymSubtreeMutate : public eoMonOp<EoType> {
  *	is_rate_absolute : don't rescale the rate to the size of the tree
  */
 
+extern bool mutate(Sym& sym, double p, const LanguageTable& table);
+
 template <class EoType>
 class eoSymNodeMutate : public eoMonOp<EoType> {
     
@@ -60,36 +62,7 @@ class eoSymNodeMutate : public eoMonOp<EoType> {
 	double own_mutation_rate;
 	bool   own_is_rate_absolute;
 	
-	// these two can (should?) move to an impl file
-	bool mutate(Sym& sym, double p) {
-	    std::pair<Sym, bool> r = do_mutate(sym, p);
-	    sym = r.first;
-	    return r.second;
-	}
-	
-	std::pair<Sym, bool> do_mutate(Sym sym, double p) {
-	    
-	    bool changed = false;
-	    SymVec args = sym.args();
-	    if (rng.flip(p)) {
-		token_t new_token = table.get_random_function( args.size());
-		if (new_token != sym.token()) changed = true;
-		sym = Sym(new_token, args);
-	    }
 
-	    for (unsigned i = 0; i < args.size(); ++i) {
-		std::pair<Sym,bool> r = do_mutate(args[i], p);	
-		changed |= r.second;
-		if (r.second) 
-		    args[i] = r.first;
-	    }
-
-	    if (changed)
-		return std::make_pair(Sym(sym.token(), args), true);
-	    // else
-	    return std::make_pair(sym, false);
-	}
-	
     public:
 	
 	double& mutation_rate;
@@ -114,9 +87,29 @@ class eoSymNodeMutate : public eoMonOp<EoType> {
 	    double p = mutation_rate;
 	    if (!is_rate_absolute) p /= _eo.size();
 
-	    return mutate(_eo, p);
+	    return mutate(_eo, p, table);
 	}
 	
+};
+
+/** 
+ * Simple constant mutation class, adds gaussian noise (configurable variance) to the individuals
+ **/
+extern bool mutate_constants(Sym& sym, double stdev);
+template <class EoType>
+class eoSymConstantMutate : public eoMonOp<EoType> {
+    
+    double& stdev;
+
+    
+    public :
+    eoSymConstantMutate(double& _stdev) : stdev(_stdev) {}
+
+    bool operator()(EoType& _eo) {
+	return mutate_constants(_eo, stdev);
+    }
+    
+    
 };
 
 #endif
