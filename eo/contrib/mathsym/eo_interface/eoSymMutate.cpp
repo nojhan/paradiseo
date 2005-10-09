@@ -54,7 +54,6 @@ bool mutate(Sym& sym, double p, const LanguageTable& table) {
 
 
 bool mutate_constants(Sym& sym, double stdev) {
-    
     vector<double> values = get_constants(sym);
 
     if (values.empty()) {

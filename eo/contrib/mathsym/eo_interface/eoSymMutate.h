@@ -29,7 +29,6 @@ class eoSymSubtreeMutate : public eoMonOp<EoType> {
     
 	TreeBuilder& subtree_builder;
 	NodeSelector& node_selector;
-    
     public :
 	
 	eoSymSubtreeMutate(TreeBuilder& _subtree_builder, NodeSelector& _node_selector)

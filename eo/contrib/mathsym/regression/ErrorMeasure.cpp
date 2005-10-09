@@ -165,7 +165,8 @@ class ErrorMeasureImpl {
 	
 		return result;
 	    }
-
+	
+	    
 	    std::vector<double> err(pop.size()); 
 	    
 	    for (unsigned i = 0; i < train_cases(); ++i) {
@@ -319,6 +320,6 @@ double ErrorMeasure::worst_performance() const {
 	return pimpl->train_info.tvar();
     }
     
-    return 1e+20; // TODO: make this general
+    return 1e+20; 
 }
 

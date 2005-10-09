@@ -88,25 +88,36 @@ extern Sym SymVar(unsigned idx);
 /** simplifies a sym (sym_operations.cpp) */
 extern Sym simplify(Sym sym);
 
-/** differentiates a sym to a token (sym_operations.cpp) */
-extern Sym differentiate(Sym sym, token_t var_token);
+/** differentiates a sym to a token (sym_operations.cpp)
+ * The token can be a variable or a constant 
+*/
+extern Sym differentiate(Sym sym, token_t dx);
+struct differentiation_error{}; // thrown in case of ifltz
 
 /* Add function to the language table (and take a guess at the arity) */
 class LanguageTable;
 extern void add_function_to_table(LanguageTable& table, token_t token);
 
-// token names
-extern const token_t sum_token;
-extern const token_t prod_token;
-extern const token_t inv_token;
-extern const token_t min_token;
-extern const token_t pow_token;
-extern const token_t ifltz_token;
+enum {
+    sum_token,
+    prod_token,
+    inv_token,
+    min_token,
+    pow_token,
+    ifltz_token,
+    sin_token, cos_token, tan_token,
+    asin_token, acos_token, atan_token,
+    sinh_token, cosh_token, tanh_token,
+    acosh_token, asinh_token, atanh_token,
+    exp_token, log_token,
+    sqr_token, sqrt_token
+};
 
-#define HEADERFUNC(name) extern const token_t name##_token;\
-    inline Sym name(Sym arg) { return Sym(name##_token, arg); }
+
+#define HEADERFUNC(name) inline Sym name(Sym arg) { return Sym(name##_token, arg); }
 
 /* This defines the tokens: sin_token, cos_token, etc. */
+HEADERFUNC(inv);
 HEADERFUNC(sin);
 HEADERFUNC(cos);
 HEADERFUNC(tan);

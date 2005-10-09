@@ -29,13 +29,14 @@ class eoSymPopEval : public eoPopEvalFunc<EoType> {
 
     BoundsCheck&  check;
     ErrorMeasure& measure;
+    unsigned size_cap; 
     
     public:
 
-    eoSymPopEval(BoundsCheck& _check, ErrorMeasure& _measure) :
-	check(_check), measure(_measure) {}
+    eoSymPopEval(BoundsCheck& _check, ErrorMeasure& _measure, unsigned _size_cap) :
+	check(_check), measure(_measure), size_cap(_size_cap) {}
 
-    /** apparently this thing works on two populations, why?
+    /** apparently this thing works on two populations, 
      *
      * In any case, currently only implemented the population wide
      * evaluation version, as that one is much faster. This because the
@@ -51,7 +52,7 @@ class eoSymPopEval : public eoPopEvalFunc<EoType> {
 	for (unsigned i = 0; i < p1.size(); ++i) {
 	    if (p1[i].invalid()) {
 
-		if (check.in_bounds(p1[i])) {
+		if (p1[i].size() < size_cap && check.in_bounds(p1[i])) {
 		    unevaluated.push_back(i);
 		    tmppop.push_back( static_cast<Sym>(p1[i]) );
 		} else {
@@ -63,7 +64,7 @@ class eoSymPopEval : public eoPopEvalFunc<EoType> {
 	for (unsigned i = 0; i < p2.size(); ++i) {
 	    if (p2[i].invalid()) {
 		
-		if (check.in_bounds(p2[i])) {
+		if (p2[i].size() < size_cap && check.in_bounds(p2[i])) {
 		    
 		    unevaluated.push_back(p1.size() + i);
 		    tmppop.push_back( static_cast<Sym>(p2[i]) );

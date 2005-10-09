@@ -16,17 +16,17 @@
  */
 
 
-#include "LanguageTable.h"
-#include "TreeBuilder.h"
-#include "FunDef.h"
-#include "Dataset.h"
+#include <LanguageTable.h>
+#include <TreeBuilder.h>
+#include <FunDef.h>
+#include <Dataset.h>
 
-#include "eoSymInit.h"
-#include "eoSym.h"
-#include "eoPop.h"
-#include "eoSymMutate.h"
-#include "eoSymCrossover.h"
-#include "eoSymEval.h"
+#include <eoSymInit.h>
+#include <eoSym.h>
+#include <eoPop.h>
+#include <eoSymMutate.h>
+#include <eoSymCrossover.h>
+#include <eoSymEval.h>
 
 typedef EoSym<double> EoType;
 
@@ -106,7 +106,7 @@ int main() {
     IntervalBoundsCheck check(dataset.input_minima(), dataset.input_maxima());
     ErrorMeasure measure(dataset, 0.90, ErrorMeasure::mean_squared_scaled);
 
-    eoSymPopEval<EoType> evaluator(check, measure);
+    eoSymPopEval<EoType> evaluator(check, measure, 20000);
     
     eoPop<EoType> dummy;
     evaluator(pop, dummy);

@@ -17,14 +17,14 @@
 
 #include <utils/eoRNG.h>
 
-#include "FunDef.h"
-#include "sym_compile.h"
+#include <FunDef.h>
+#include <sym_compile.h>
 
-#include "Dataset.h"
-#include "ErrorMeasure.h"
-#include "LanguageTable.h"
-#include "BoundsCheck.h"
-#include "TreeBuilder.h"
+#include <Dataset.h>
+#include <ErrorMeasure.h>
+#include <LanguageTable.h>
+#include <BoundsCheck.h>
+#include <TreeBuilder.h>
 
 #include <iostream>
 
@@ -34,7 +34,7 @@ void test_xover();
 
 int main() {
     Dataset dataset;
-    dataset.load_data("problem4.dat");
+    dataset.load_data("test_data.txt");
     
     cout << "Records/Fields " << dataset.n_records() << ' ' << dataset.n_fields() << endl;
    

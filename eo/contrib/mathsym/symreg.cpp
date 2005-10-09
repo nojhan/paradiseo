@@ -194,6 +194,13 @@ int main(int argc, char* argv[]) {
 	    't',
 	    "Population").value();
 
+    unsigned maximumSize = parser.createParam(
+	    0xffffffffu,
+	    "maximum-size",
+	    "Maximum size after crossover",
+	    's',
+	    "Population").value();
+    
     unsigned meas_param = parser.createParam(
 	    2u,
 	    "measure",
@@ -204,7 +211,8 @@ int main(int argc, char* argv[]) {
 		",
 		'm',
 		"Regression").value();
-   
+  
+    
     ErrorMeasure::measure meas = ErrorMeasure::mean_squared_scaled;
     if (meas_param == 0) meas = ErrorMeasure::absolute;
     if (meas_param == 1) meas = ErrorMeasure::mean_squared;
@@ -253,7 +261,7 @@ int main(int argc, char* argv[]) {
     // todo, make this parameter, etc
     double std = 0.01;
     eoSymConstantMutate<EoType> constmutate(std);
-    genetic_operator.add( constmutate, 0.1);
+    genetic_operator.add(constmutate, 0.1);
     
     eoSymNodeMutate<EoType>    nodemutate(table);
     genetic_operator.add(nodemutate, node_mut_prob);
@@ -269,7 +277,7 @@ int main(int argc, char* argv[]) {
     IntervalBoundsCheck check(dataset.input_minima(), dataset.input_maxima());
     ErrorMeasure measure(dataset, train_percentage, meas);
 
-    eoSymPopEval<EoType> evaluator(check, measure);
+    eoSymPopEval<EoType> evaluator(check, measure, maximumSize);
     
     eoDetTournamentSelect<EoType> selectOne(tournamentsize);
     eoGeneralBreeder<EoType> breeder(selectOne, genetic_operator);

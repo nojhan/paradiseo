@@ -75,7 +75,9 @@ void write_entry(Sym sym, ostream& os, HashMap& map, unsigned out) {
 
 multi_function compile(const std::vector<Sym>& syms) {
     
-    ostringstream os;
+    // static stream to avoid fragmentation of these LARGE strings
+    static ostringstream os;
+    os.str("");
 
     os << make_prototypes();
 
@@ -88,11 +90,8 @@ multi_function compile(const std::vector<Sym>& syms) {
     }
     
     os << ";}";
-    string func_str = os.str();
-  
-    //cout << "compiling " << func_str << endl;
-    
-    return (multi_function) symc_make(func_str.c_str(), "func"); 
+ 
+    return (multi_function) symc_make(os.str().c_str(), "func"); 
 }
 
 single_function compile(Sym sym) {
@@ -140,7 +139,9 @@ string print_code(Sym sym, HashMap& map) {
 void compile(const std::vector<Sym>& syms, std::vector<single_function>& functions) {
     symc_init();
     
-    ostringstream os;
+    static ostringstream os;
+    os.str("");
+    
     os << make_prototypes();
     HashMap map; 
     for (unsigned i = 0; i < syms.size(); ++i) {
@@ -153,10 +154,11 @@ void compile(const std::vector<Sym>& syms, std::vector<single_function>& functio
 	//cout << "compiling " << os.str() << endl;	
     }
 
+    os << ends;
 #ifdef INTERVAL_DEBUG
     //cout << "Compiling " << os.str() << endl;
 #endif
-    
+
     symc_compile(os.str().c_str()); 
     symc_link();
 

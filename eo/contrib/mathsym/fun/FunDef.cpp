@@ -482,6 +482,12 @@ string prototypes = "double pow(double, double);";
 string get_prototypes() { return prototypes; }
 unsigned add_prototype(string str) { prototypes += string("double ") + str + "(double);"; return prototypes.size(); }
 
+token_t add_function(FunDef* function, token_t where) {
+    if (language.size() <= where) language.resize(where+1);
+    language[where] = function;
+    return 0;
+}
+
 
 #define FUNCDEF(funcname) struct funcname##_struct { \
     double operator()(double val) const { return funcname(val); }\
@@ -489,20 +495,18 @@ unsigned add_prototype(string str) { prototypes += string("double ") + str + "(d
     Interval operator()(Interval val) const { return funcname(val); }\
     string name() const { return string(#funcname); }\
 };\
-const token_t funcname##_token = add_function( new Unary<funcname##_struct>);\
+static const token_t funcname##_token_static = add_function( new Unary<funcname##_struct>, funcname##_token);\
 unsigned funcname##_size = add_prototype(#funcname);
-
-
 
 FunDef* make_var(int idx) { return new Var(idx); }
 FunDef* make_const(double value) { return new Const(value); }
 
-const token_t sum_token  = add_function( new Sum );
-const token_t prod_token = add_function( new Prod);
-const token_t inv_token  = add_function( new Unary<Inv>);
-const token_t min_token  = add_function( new Unary<Min>);
-const token_t pow_token  = add_function( new Power);
-const token_t ifltz_token = add_function( new IsNeg);
+static token_t ssum_token  = add_function( new Sum , sum_token);
+static token_t sprod_token = add_function( new Prod, prod_token);
+static token_t sinv_token  = add_function( new Unary<Inv>, inv_token);
+static token_t smin_token  = add_function( new Unary<Min>, min_token);
+static token_t spow_token  = add_function( new Power, pow_token);
+static token_t sifltz_token = add_function( new IsNeg, ifltz_token);
 
 FUNCDEF(sin);
 FUNCDEF(cos);

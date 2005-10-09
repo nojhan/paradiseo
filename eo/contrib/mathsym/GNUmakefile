@@ -1,5 +1,5 @@
 COMPILEFLAGS=-Wno-deprecated -g -Wall -Wshadow #-DINTERVAL_DEBUG
-OPTFLAGS= -O2 -DNDEBUG 
+OPTFLAGS= -O3 -DNDEBUG 
 
 PROFILE_FLAGS=-pg
 
@@ -18,7 +18,7 @@ CXXSOURCES=FunDef.cpp Sym.cpp SymImpl.cpp SymOps.cpp sym_compile.cpp TreeBuilder
 	Dataset.cpp ErrorMeasure.cpp Scaling.cpp TargetInfo.cpp BoundsCheck.cpp util.cpp NodeSelector.cpp\
 	eoSymCrossover.cpp sym_operations.cpp eoSymMutate.cpp
 
-TESTPROGRAMS=test/test_compile test/testeo test/test_simplify
+TESTPROGRAMS=test/test_compile test/testeo test/test_simplify test/test_diff
 
 OBJS= $(CXXSOURCES:.cpp=.o) c_compile.o
 
@@ -49,6 +49,9 @@ test/testeo: test/testeo.o ${SYMLIB}
 
 test/test_simplify: test/test_simplify.o $(SYMLIB)
 	$(CXX) -o test/test_simplify test/test_simplify.o  $(SYMLIB) ${LIBS}
+
+test/test_diff: test/test_diff.o $(SYMLIB)
+	$(CXX) -o test/test_diff test/test_diff.o  $(SYMLIB) ${LIBS}
 
 # eo
 ../../src/libeo.a:
