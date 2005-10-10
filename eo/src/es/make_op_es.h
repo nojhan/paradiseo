@@ -1,31 +1,27 @@
-// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+/* (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2001
 
-//-----------------------------------------------------------------------------
-// make_op.h - the real-valued version
-// (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2001
-/*
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2 of the License, or (at your option) any later version.
+This library is free software; you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option) any
+later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+This library is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+You should have received a copy of the GNU Lesser General Public License along
+with this library; if not, write to the Free Software Foundation, Inc., 59
+Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-    Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-             Marc.Schoenauer@polytechnique.fr
-             mkeijzer@dhi.dk
+Contact: http://eodev.sourceforge.net
+         todos@geneura.ugr.es, http://geneura.ugr.es
+         Marc.Schoenauer@polytechnique.fr
+         mkeijzer@dhi.dk
  */
-//-----------------------------------------------------------------------------
 
-#ifndef _make_op_h
-#define _make_op_h
+
+#ifndef EO_make_op_h
+#define EO_make_op_h
 
 // the operators
 #include <eoOp.h>
@@ -76,7 +72,10 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
   // First, decide whether the objective variables are bounded
   eoValueParam<eoRealVectorBounds>& boundsParam
       = _parser.getORcreateParam(eoRealVectorBounds(vecSize,eoDummyRealNoBounds),
-                                 "objectBounds", "Bounds for variables", 'B', "Variation Operators");
+                                 "objectBounds", "Bounds for variables",
+                                 'B', "Variation Operators");
+
+  std::cerr << boundsParam.value() << std::endl;
 
     // now we read Pcross and Pmut,
   eoValueParam<std::string>& operatorParam
@@ -120,7 +119,8 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
                                  'O', "Variation Operators");
   eoValueParam<std::string>& crossStdevParam
       = _parser.getORcreateParam(std::string("intermediate"), "crossStdev",
-                                 "Recombination of mutation strategy parameters (intermediate, discrete or none)",
+                                 "Recombination of mutation strategy parameters "
+                                 "(intermediate, discrete or none)",
                                  'S', "Variation Operators");
 
   // The pointers: first the atom Xover
@@ -171,7 +171,7 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
   eoEsMutationInit mutateInit(_parser, "Variation Operators");
 
   eoEsMutate<EOT> & mut =  _state.storeFunctor(
-           new eoEsMutate<EOT>(mutateInit, boundsParam.value()));
+      new eoEsMutate<EOT>(mutateInit, boundsParam.value()));
 
   // now the general op - a sequential application of crossover and mutatation
   // no need to first have crossover combined with a clone as it is an
@@ -184,4 +184,14 @@ eoGenOp<EOT> & do_make_op(eoParser& _parser, eoState& _state, eoRealInitBounded<
   // that's it!
   return op;
 }
-#endif
+#endif // EO_make_op_h
+
+
+
+// Local Variables:
+// coding: iso-8859-1
+// mode:C++
+// c-file-style: "Stroustrup"
+// comment-column: 35
+// fill-column: 80
+// End:
