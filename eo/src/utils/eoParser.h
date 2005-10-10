@@ -1,33 +1,27 @@
-// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+/* (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
 
-//-----------------------------------------------------------------------------
-// eoParser.h
-// (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2000
-/*
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2 of the License, or (at your option) any later version.
+This library is free software; you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option) any
+later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+This library is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+You should have received a copy of the GNU Lesser General Public License along
+with this library; if not, write to the Free Software Foundation, Inc., 59
+Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-    Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-             Marc.Schoenauer@polytechnique.fr
-             mkeijzer@dhi.dk
- */
-//-----------------------------------------------------------------------------
-/**
-CVS Info: $Date: 2005-09-28 21:49:26 $ $Version$ $Author: kuepper $
+Contact: http://eodev.sourceforge.net
+         todos@geneura.ugr.es, http://geneura.ugr.es
+         Marc.Schoenauer@polytechnique.fr
+         mkeijzer@dhi.dk
 */
-#ifndef eoParser_h
-#define eoParser_h
+
+
+#ifndef EO_PARSER_H
+#define EO_PARSER_H
 
 #include <map>
 #include <sstream>
@@ -37,10 +31,11 @@ CVS Info: $Date: 2005-09-28 21:49:26 $ $Version$ $Author: kuepper $
 #include "eoObject.h"
 #include "eoPersistent.h"
 
-/**
-    eoParameterLoader is an abstract class that can be used as a base for your own
-    parameter loading and saving. The command line parser eoParser is derived from
-    this class.
+/** Parameter saving and loading
+
+eoParameterLoader is an abstract class that can be used as a base for your own
+parameter loading and saving. The command line parser eoParser is derived from
+this class.
 */
 class eoParameterLoader
 {
@@ -49,11 +44,10 @@ public :
     /** Need a virtual destructor */
     virtual ~eoParameterLoader();
 
-    /**
-      *  processParam is used to register a parameter and set its value if it is known
-      *
-      *   @param param      the parameter to process
-      *   @param section    the section where this parameter belongs
+    /** Register a parameter and set its value if it is known
+
+    @param param      the parameter to process
+    @param section    the section where this parameter belongs
     */
     virtual void processParam(eoParam& param, std::string section = "") = 0;
 
@@ -147,11 +141,12 @@ public:
 
   std::string ProgramName() { return programName; }
 
-  /**
-   * checks if _param has been actually entered by the user
-   */
-  virtual bool isItThere(eoParam& _param) const
-  { return getValue(_param).first; }
+    /** Has param been entered by user?
+
+    Checks if _param has been actually entered by the user
+    */
+    virtual bool isItThere(eoParam& _param) const
+        { return getValue(_param).first; }
 
     /**
      * get a handle on a param from its longName
@@ -278,4 +273,15 @@ private:
 };
 
 
-#endif
+
+#endif //  EO_PARSER_H
+
+
+
+// Local Variables:
+// coding: iso-8859-1
+// mode:C++
+// c-file-style: "Stroustrup"
+// comment-column: 35
+// fill-column: 80
+// End:

@@ -4,7 +4,7 @@
     clean up the code considerably. Assume availability of sstream and limits.
   
 
-* releases 0.9.3... (latest release is 0.9.3zz, 1. Oct. 2005)
+* release 0.9.3z.1 (1. Oct. 2005)
   - Support gcc-3.4 and gcc.4.x.
   - Provide full automake/autoconf/configure support.
 

@@ -54,6 +54,9 @@ EXTRA_DIST			= run_tests
 
 # extra flags for specific targets
 t_eoVirus_CXXFLAGS		= $(AM_CXXFLAGS) -I$(top_srcdir)/contrib
+t_MGE_CXXFLAGS 			= -I$(top_srcdir)/contrib/MGE
+t_MGE1bit_CXXFLAGS 		= -I$(top_srcdir)/contrib/MGE
+t_MGE_control_CXXFLAGS 		= -I$(top_srcdir)/contrib/MGE
 
 # Specify source-files,
 # otherwise automake/make looks for C sources
@@ -63,11 +66,8 @@ t_eofitness_SOURCES 		= t-eofitness.cpp
 t_eoFitnessAssembledEA_SOURCES 	= t-eoFitnessAssembledEA.cpp
 t_eobin_SOURCES 		= t-eobin.cpp
 t_eoVirus_SOURCES 		= t-eoVirus.cpp
-t_MGE1bit_CXXFLAGS 		= -I$(top_srcdir)/contrib/MGE
 t_MGE1bit_SOURCES 		= t-MGE1bit.cpp
-t_MGE_CXXFLAGS 			= -I$(top_srcdir)/contrib/MGE
 t_MGE_SOURCES 			= t-MGE.cpp
-t_MGE_control_CXXFLAGS 		= -I$(top_srcdir)/contrib/MGE
 t_MGE_control_SOURCES 		= t-MGE-control.cpp
 t_eoStateAndParser_SOURCES 	= t-eoStateAndParser.cpp
 t_eoCheckpointing_SOURCES 	= t-eoCheckpointing.cpp
