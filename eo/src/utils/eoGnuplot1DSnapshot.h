@@ -107,6 +107,8 @@ class eoGnuplot1DSnapshot: public eoFileSnapshot, public eoGnuplot
       gnuplotCommand(os.str());
   }
 
+  void setPointSize(unsigned  _pointSize)
+  { pointSize = _pointSize; }
 
 protected:
 
