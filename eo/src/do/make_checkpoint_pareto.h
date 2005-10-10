@@ -153,7 +153,7 @@ eoCheckPoint<EOT>& do_make_checkpoint_pareto(eoParser& _parser, eoState& _state,
 	    {
 	      eoGnuplot1DSnapshot & plotSnapshot = _state.storeFunctor(new
 		    eoGnuplot1DSnapshot(snapshot));
-	      plotSnapshot.pointSize =3;
+	      plotSnapshot.setPointSize(3);
 	      checkpoint.add(plotSnapshot);
 	    }
 	}
