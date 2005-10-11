@@ -102,7 +102,7 @@ int main() {
     cout << "****** Evaluation **********" << endl;
     
     Dataset dataset;
-    dataset.load_data("problem4.dat");
+    dataset.load_data("test_data.txt");
     IntervalBoundsCheck check(dataset.input_minima(), dataset.input_maxima());
     ErrorMeasure measure(dataset, 0.90, ErrorMeasure::mean_squared_scaled);
 

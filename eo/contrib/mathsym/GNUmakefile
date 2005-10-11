@@ -39,7 +39,7 @@ libsym.a: $(OBJS)
 	rm libsym.a; ar cq $(SYMLIB) $(OBJS) 
 
 check: $(TESTPROGRAMS)
-	test/test_compile && test/testeo && test_simplify && echo "all tests succeeded"
+	test/test_compile && test/testeo && test/test_simplify && test/test_diff && echo "all tests succeeded"
 
 test/test_compile: test/test_compile.o ${SYMLIB}
 	$(CXX) -o test/test_compile test/test_compile.o $(SYMLIB) ${LIBS}
