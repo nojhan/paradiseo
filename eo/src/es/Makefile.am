@@ -1,6 +1,6 @@
 ## Makefile.am for eo/src/es
 
-lib_LIBRARIES 		= libes.a
+lib_LIBRARIES 		= libes.a libcma.a
 
 libes_a_SOURCES 	= make_algo_scalar_es.cpp \
 			make_algo_scalar_real.cpp \
@@ -40,5 +40,15 @@ esinclude_HEADERS 	= eoEsChromInit.h \
 			make_op_real.h \
 			make_real.h
 
+libcma_a_SOURCES	= eig.cpp \
+			CMAState.cpp \
+			CMAParams.cpp
+
+cmaincludedir		= $(pkgincludedir)/es
+
+cmainclude_HEADERS	= eig.h \
+			CMAState.h \
+			matrices.h \
+			CMAParams.h 
 
 AM_CXXFLAGS		= -I$(top_srcdir)/src
