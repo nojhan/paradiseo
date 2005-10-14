@@ -67,6 +67,7 @@ class eoCMABreed : public eoBreed< eoVector<FitT, double> > {
 
 	for (unsigned i = 0; i < lambda; ++i) {
 	    state.sample( static_cast< std::vector<double>& >( offspring[i] ));
+	    offspring[i].invalidate();
 	}
 	
     }
