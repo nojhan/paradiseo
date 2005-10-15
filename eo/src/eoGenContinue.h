@@ -26,24 +26,26 @@
 #define _eoGenContinue_h
 
 #include <eoContinue.h>
-
+#include <utils/eoParam.h>
 /** 
     Generational continuator: continues until a number of generations is reached
 */
 template< class EOT>
-class eoGenContinue: public eoContinue<EOT>
+class eoGenContinue: public eoContinue<EOT>, public eoValueParam<unsigned>
 {
 public:
 
   /// Ctor for setting a
   eoGenContinue( unsigned long _totalGens)
-	  : repTotalGenerations( _totalGens ), 
+	  : eoValueParam<unsigned>(0, "Generations", "Generations"),
+	    repTotalGenerations( _totalGens ), 
 	    thisGenerationPlaceHolder(0),
 	    thisGeneration(thisGenerationPlaceHolder), verbose(true) {};
   
   /// Ctor for enabling the save/load the no. of generations counted
   eoGenContinue( unsigned long _totalGens, unsigned long& _currentGen)
-	  : repTotalGenerations( _totalGens ), 
+	  : eoValueParam<unsigned>(0, "Generations", "Generations"),
+	    repTotalGenerations( _totalGens ), 
 	    thisGenerationPlaceHolder(0),
 	    thisGeneration(_currentGen), verbose(true){};
   
@@ -51,6 +53,7 @@ public:
 	 * reached */
   virtual bool operator() ( const eoPop<EOT>& _vEO ) {
     thisGeneration++;
+    value() = thisGeneration;
     //	  std::cout << " [" << thisGeneration << "] ";
     if (thisGeneration >= repTotalGenerations) 
       {
