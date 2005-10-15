@@ -46,7 +46,7 @@ size_t get_depth(const SymVec& vec) {
     return dp;
 }
 
-Sym::Sym(token_t tok, const SymVec& args_) 
+Sym::Sym(token_t tok, const SymVec& args_) : node(dag.end())
 {
     detail::SymKey key(tok, detail::SymArgs(args_));
     detail::SymValue val;
@@ -64,7 +64,7 @@ Sym::Sym(token_t tok, const SymVec& args_)
     else incref();
 }
 
-Sym::Sym(token_t tok, const Sym& a) { 
+Sym::Sym(token_t tok, const Sym& a) : node(dag.end()) { 
     SymVec args_; args_.push_back(a); 
     detail::SymKey key(tok, detail::SymArgs(args_));
     detail::SymValue val;
@@ -82,7 +82,7 @@ Sym::Sym(token_t tok, const Sym& a) {
     else incref();
 }
 
-Sym::Sym(token_t tok) {
+Sym::Sym(token_t tok) : node(dag.end()) {
     detail::SymKey key(tok);
     detail::SymValue val;
     node = dag.insert(pair<const detail::SymKey, detail::SymValue>(key, val)).first; 

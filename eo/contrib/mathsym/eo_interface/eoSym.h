@@ -33,20 +33,20 @@ class EoSym : public EO<Fitness>, public Sym {
 	    static_cast<Sym*>(this)->operator=(sym);
 	}
 	
-	virtual void printOn(ostream& os) const;
-	virtual void readFrom(istream& is);
+	virtual void printOn(std::ostream& os) const;
+	virtual void readFrom(std::istream& is);
 };
 
 
 template <class Fitness>
-void EoSym<Fitness>::printOn(ostream& os) const {
+void EoSym<Fitness>::printOn(std::ostream& os) const {
     EO<Fitness>::printOn(os);
     os << ' ';
     write_raw(os, *this);
 }
 
 template <class Fitness>
-void EoSym<Fitness>::readFrom(istream& is) {
+void EoSym<Fitness>::readFrom(std::istream& is) {
     EO<Fitness>::readFrom(is);
     read_raw(is, *this); 
 }
@@ -54,7 +54,7 @@ void EoSym<Fitness>::readFrom(istream& is) {
 template <class Fitness>
 inline std::ostream& operator<<(std::ostream& os, const EoSym<Fitness>& f) { f.printOn(os); return os; }
 template <class Fitness>
-inline istream& operator>>(std::istream& is, EoSym<Fitness>& f) { f.readFrom(is); return is; }
+inline std::istream& operator>>(std::istream& is, EoSym<Fitness>& f) { f.readFrom(is); return is; }
 
 
 #endif

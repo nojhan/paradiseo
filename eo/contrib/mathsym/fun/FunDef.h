@@ -21,6 +21,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <iostream>
 
 #include "Sym.h"
 #include "Interval.h"
@@ -142,7 +143,7 @@ extern std::string get_prototypes();
 
 // reading and writing in internal format
 extern std::string write_raw(const Sym& sym);
-extern void write_raw(ostream& os, const Sym& sym);
+extern void write_raw(std::ostream& os, const Sym& sym);
 extern Sym read_raw(std::string str);
 extern Sym read_raw(std::istream& is); 
 extern void read_raw(std::istream& is, Sym& sym); 

@@ -22,6 +22,16 @@
 #include "token.h"
 
 class Sym;
+
+#if __GNUC__ > 4 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 4)
+#include <ext/pool_allocator.h>
+typedef std::vector<Sym, __gnu_cxx::__pool_alloc<Sym> > std::vector<Sym>;
+//typedef std::vector<Sym> SymVec;
+#else
+typedef std::vector<Sym> SymVec;
+#endif
+
+
 namespace detail {
 
 class SymArgsImpl;
@@ -47,8 +57,8 @@ class SymArgs {
 class SymKey
 {
     public:
-	SymKey(token_t _token) : args(), token(_token) {}
-	SymKey(token_t _token, const detail::SymArgs& _args) : args(_args), token(_token) {}
+	SymKey(token_t _token) : args(), token(_token), hash_code(calc_hash()) {}
+	SymKey(token_t _token, const detail::SymArgs& _args) : args(_args), token(_token), hash_code(calc_hash()) {}
 	
 	
     private:
@@ -69,8 +79,11 @@ class SymKey
 	// fixates (i.e. claims memory) for the embedded vector of Syms
 	void fixate() const { args.fixate(); }
 	
+	int get_hash_code() const { return hash_code; }
+	
     private:
 	int calc_hash() const;
+	int hash_code;
 };
 
 struct SymValue

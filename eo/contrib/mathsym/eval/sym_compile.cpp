@@ -39,9 +39,14 @@ string make_prototypes() {
 }
 
 // contains variable names, like 'a0', 'a1', etc. or regular code
-typedef hash_map<Sym, string, HashSym> HashMap;
 
-HashMap::iterator find_entry(Sym sym, ostream& os, HashMap& map) {
+#if USE_TR1 
+typedef std::tr1::unordered_map<Sym, string, HashSym> HashMap;
+#else
+typedef hash_map<Sym, string, HashSym> HashMap;
+#endif
+
+HashMap::iterator find_entry(const Sym& sym, ostream& os, HashMap& map) {
     HashMap::iterator result = map.find(sym);
 
     if (result == map.end()) { // new entry
@@ -68,12 +73,81 @@ HashMap::iterator find_entry(Sym sym, ostream& os, HashMap& map) {
     return result;
 }
 
-void write_entry(Sym sym, ostream& os, HashMap& map, unsigned out) {
-    HashMap::iterator it = find_entry(sym, os, map);
+// prints 'num' in reverse notation. Does not matter as it's a unique id
+string make_var(unsigned num) {
+    string str = "a";
+    do {
+	str += char('0' + (num % 10));
+	num /= 10;
+    } while (num);
+    return str;
+}
+
+HashMap::iterator find_entry2(const Sym& sym, string& str, HashMap& map) {
+    HashMap::iterator result = map.find(sym);
+
+    if (result == map.end()) { // new entry
+	const SymVec& args = sym.args();
+	
+	vector<string> argstr(args.size());
+	for (unsigned i = 0; i < args.size(); ++i) {
+	    argstr[i] = find_entry2(args[i], str, map)->second;
+	}
+
+	string var = make_var(map.size()); // map.size(): unique id
+	
+	// write out the code
+	const FunDef& fun = get_element(sym.token());
+	string code = fun.c_print(argstr, vector<string>() );
+	str += "double " + var + "=" + code + ";\n";
+
+	result = map.insert( make_pair(sym, var ) ).first; // only want iterator
+    }
+    
+    return result;
+}
+
+void write_entry(const Sym& sym, ostream& os, HashMap& map, unsigned out) {
+    string s;
+    HashMap::iterator it = find_entry2(sym, s, map);
+    os << s;
     os << "y[" << out << "]=" << it->second << ";\n";
 }
 
+template <class T>
+string to_string(T t) {
+    ostringstream os;
+    os << t;
+    return os.str();
+}
+
+void write_entry(const Sym& sym, string& str, HashMap& map, unsigned out) {
+    HashMap::iterator it = find_entry2(sym, str, map);
+    
+    str += "y[" + to_string(out) + "]=" + it->second + ";\n";
+}
+
 multi_function compile(const std::vector<Sym>& syms) {
+    
+    // static stream to avoid fragmentation of these LARGE strings
+    static string str;
+
+    str += make_prototypes();
+
+    str += "double func(const double* x, double* y) { \n ";
+   
+    HashMap map(Sym::get_dag().size());
+    
+    for (unsigned i = 0; i < syms.size(); ++i) {
+	write_entry(syms[i], str, map, i);
+    }
+    
+    str += ";}";
+ 
+    return (multi_function) symc_make(str.c_str(), "func"); 
+}
+
+multi_function compile2(const std::vector<Sym>& syms) {
     
     // static stream to avoid fragmentation of these LARGE strings
     static ostringstream os;
@@ -83,7 +157,8 @@ multi_function compile(const std::vector<Sym>& syms) {
 
     os << "double func(const double* x, double* y) { \n ";
    
-    HashMap map;
+    HashMap map(Sym::get_dag().size());
+    
     
     for (unsigned i = 0; i < syms.size(); ++i) {
 	write_entry(syms[i], os, map, i);
@@ -143,7 +218,7 @@ void compile(const std::vector<Sym>& syms, std::vector<single_function>& functio
     os.str("");
     
     os << make_prototypes();
-    HashMap map; 
+    HashMap map(Sym::get_dag().size());
     for (unsigned i = 0; i < syms.size(); ++i) {
 	
 	os << "double func" << i << "(const double* x) { return ";

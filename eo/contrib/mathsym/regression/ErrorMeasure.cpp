@@ -232,8 +232,11 @@ class ErrorMeasureImpl {
 	vector<ErrorMeasure::result> calc_error(const vector<Sym>& pop) {
 
 	    // first declone
+#if USE_TR1
+	    typedef std::tr1::unordered_map<Sym, unsigned, HashSym> HashMap;
+#else
 	    typedef hash_map<Sym, unsigned, HashSym> HashMap;
-	    
+#endif	    
 	    HashMap clone_map;
 	    vector<Sym> decloned; 
 	    decloned.reserve(pop.size());

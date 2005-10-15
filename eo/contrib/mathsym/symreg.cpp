@@ -306,6 +306,7 @@ int main(int argc, char* argv[]) {
     genmon.add(avgSize);
     genmon.add(dagSize);
     genmon.add(sumSize);
+    genmon.add(term); // add generation counter
     
     checkpoint.add(genmon);
     

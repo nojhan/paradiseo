@@ -1,7 +1,7 @@
-COMPILEFLAGS=-Wno-deprecated -g -Wall -Wshadow #-DINTERVAL_DEBUG
-OPTFLAGS= -O3 -DNDEBUG 
+COMPILEFLAGS=-Wno-deprecated -g -Wall #-DINTERVAL_DEBUG
+OPTFLAGS= #-O3 -DNDEBUG 
 
-PROFILE_FLAGS=-pg
+PROFILE_FLAGS=#-pg 
 
 INCLUDES=-I. -Isym -Ifun -Igen -Ieval -Iregression -I../../src -Ieo_interface  -I..
 
@@ -33,7 +33,7 @@ distclean: clean
 	rm -rf tcc
 
 symreg: libsym.a symreg.o $(EXTLIBS)
-	$(CXX) -o symreg symreg.o libsym.a $(LIBS) $(PROFILE_FLAGS)
+	$(CXX) -o symreg symreg.o libsym.a $(LIBS) $(PROFILE_FLAGS) 
 
 libsym.a: $(OBJS) 
 	rm libsym.a; ar cq $(SYMLIB) $(OBJS) 

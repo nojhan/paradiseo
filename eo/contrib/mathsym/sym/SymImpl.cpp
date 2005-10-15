@@ -21,7 +21,7 @@ namespace detail {
     
 class SymArgsImpl {
     public:
-    vector<Sym> owned_args;
+    std::vector<Sym> owned_args;
 };
 
 size_t SymArgs::len() const { 
@@ -76,7 +76,7 @@ int SymKey::calc_hash() const {
     unsigned long hash = unsigned(token);
     hash *= PRIMET;
     
-    const SymVec& v = args.vec();
+    const std::vector<Sym>& v = args.vec();
     for (unsigned i = 0; i < v.size(); ++i) {
 	hash += ( (v[i].address() >> 3) * primes[i%nprimes]) % HASHMOD;
     }

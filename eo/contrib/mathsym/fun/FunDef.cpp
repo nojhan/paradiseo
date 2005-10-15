@@ -120,7 +120,11 @@ struct HashDouble{
     }
 };
 
+#if USE_TR1
+typedef std::tr1::unordered_map<double, token_t> DoubleSet;
+#else
 typedef hash_map<double, token_t, HashDouble> DoubleSet;
+#endif
 
 static DoubleSet doubleSet; // for quick checking if a constant already exists
 static vector<bool> is_constant_flag;
@@ -186,6 +190,7 @@ bool is_constant(token_t token) {
 extern Sym default_const() { return SymConst(rng.normal()); }
 
 /* The functions */
+namespace {
 
 class Var : public FunDef {
     public :
@@ -247,7 +252,8 @@ class Const : public FunDef {
 
 	string name() const { return "parameter"; }
 };
-
+} // namespace 
+    
 void get_constants(Sym sym, vector<double>& ret) {
     token_t token = sym.token();
     if (is_constant_flag[token]) {
@@ -304,6 +310,12 @@ vector<const FunDef*> get_defined_functions() {
 
     return res;
 }
+
+FunDef* make_var(int idx) { return new Var(idx); }
+FunDef* make_const(double value) { return new Const(value); }
+
+
+namespace {
 
 class Sum : public FunDef {
 
@@ -478,6 +490,8 @@ struct Min {
     string name() const { return "min"; }
 };
 
+} // namespace
+
 string prototypes = "double pow(double, double);";
 string get_prototypes() { return prototypes; }
 unsigned add_prototype(string str) { prototypes += string("double ") + str + "(double);"; return prototypes.size(); }
@@ -488,6 +502,7 @@ token_t add_function(FunDef* function, token_t where) {
     return 0;
 }
 
+namespace {
 
 #define FUNCDEF(funcname) struct funcname##_struct { \
     double operator()(double val) const { return funcname(val); }\
@@ -497,9 +512,6 @@ token_t add_function(FunDef* function, token_t where) {
 };\
 static const token_t funcname##_token_static = add_function( new Unary<funcname##_struct>, funcname##_token);\
 unsigned funcname##_size = add_prototype(#funcname);
-
-FunDef* make_var(int idx) { return new Var(idx); }
-FunDef* make_const(double value) { return new Const(value); }
 
 static token_t ssum_token  = add_function( new Sum , sum_token);
 static token_t sprod_token = add_function( new Prod, prod_token);
@@ -524,11 +536,14 @@ FUNCDEF(atanh);
 
 FUNCDEF(exp);
 FUNCDEF(log);
+} // namespace
 
 double sqr(double x) { return x*x; }
 
+namespace {
 FUNCDEF(sqr);
 FUNCDEF(sqrt);
+} // namespace 
 
 /* Serialization */
 void write_raw(ostream& os, const Sym& sym) {

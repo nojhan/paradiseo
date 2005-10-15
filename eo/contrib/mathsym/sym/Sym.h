@@ -22,7 +22,7 @@
 
 #if __GNUC__ >= 3
 #include <backward/hash_map.h>
-#else
+#elif __GNUC__ < 3
 #include <hash_map.h>
 using std::hash_map;
 #endif
@@ -33,15 +33,23 @@ struct UniqueNodeStats { virtual ~UniqueNodeStats(){} };
 #include "SymImpl.h"
 #include "token.h"
 
-typedef hash_map<detail::SymKey, detail::SymValue, detail::SymKey::Hash> SymMap;
-typedef SymMap::iterator SymIterator;
-class Sym;
+#if __GNUC__ == 444
+#define USE_TR1 1
+#else
+#define USE_TR1 0
+#endif
 
-typedef std::vector<Sym> SymVec;
+#if USE_TR1
+#include <tr1/unordered_map>
+typedef std::tr1::unordered_map<detail::SymKey, detail::SymValue, detail::SymKey::Hash> SymMap;
+#else
+typedef hash_map<detail::SymKey, detail::SymValue, detail::SymKey::Hash> SymMap;
+#endif
+
+typedef SymMap::iterator SymIterator;
 
 /* Sym is the tree, for which all the nodes are stored in a hash table. 
  * This makes checking for equality O(1) */
-
 class Sym
 {
     public:
@@ -67,7 +75,7 @@ class Sym
 	/* Unique Stats are user defined */
 	UniqueNodeStats* extra_stats() const { return empty()? 0 : node->second.uniqueNodeStats; }
 	
-	int hashcode() const { detail::SymKey::Hash hash; return hash(node->first); }
+	int hashcode() const { return node->first.get_hash_code(); } //detail::SymKey::Hash hash; return hash(node->first); }
 	
 	// Friends, need to touch the node
 	friend struct detail::SymKey::Hash;
