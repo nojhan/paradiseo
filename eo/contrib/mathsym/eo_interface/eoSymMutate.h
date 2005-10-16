@@ -36,7 +36,7 @@ class eoSymSubtreeMutate : public eoMonOp<EoType> {
 	
 	
 	bool operator()(EoType& tomutate) {
-	    unsigned xover_point = node_selector.select_node(tomutate);
+	    unsigned xover_point = node_selector.select_node(tomutate).idx();
 	    // create subtree
 	    Sym newtree = subtree_builder.build_tree(6, true); // TODO, parameterize
 	    static_cast<Sym&>(tomutate) = insert_subtree(tomutate, xover_point, newtree);

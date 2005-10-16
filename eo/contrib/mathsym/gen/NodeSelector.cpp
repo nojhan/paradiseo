@@ -20,21 +20,31 @@
 
 #include <utils/eoRNG.h>
 
-unsigned RandomNodeSelector::select_node(Sym sym) const {
-    return rng.random(sym.size());
+// If subtree is not set (by randomnodeselector for instance, find it now
+Sym NodeSelector::NodeSelection::subtree() {
+    if (subtree_.empty()) {
+	subtree_ = get_subtree(root_, subtree_index_);
+    }
+    return subtree_;
 }
 
-unsigned BiasedNodeSelector::select_node(Sym sym) const {
+NodeSelector::NodeSelection RandomNodeSelector::select_node(Sym sym) const {
+    unsigned idx = rng.random(sym.size());
+    return  NodeSelection(sym, idx, Sym() ); // empty subtree, find it when needed
+}
+
+NodeSelector::NodeSelection BiasedNodeSelector::select_node(Sym sym) const {
     
     unsigned p = rng.random(sym.size());
+    Sym res;
     for (unsigned i = 0; i < nRounds; ++i) {
-	Sym res = get_subtree(sym, p);
+	res = get_subtree(sym, p);
 	
 	if (res.args().size() > 0) break;
 	
 	p = rng.random(sym.size());
     }
     
-    return p;
+    return NodeSelection(sym, p, res);
 }
 

@@ -52,7 +52,10 @@ class FunDef {
     
 };
 
+/** Gets out all function that are defined (excluding constants and variables) */
 extern std::vector<const FunDef*> get_defined_functions();
+
+/** Gets a specific function (including vars and constants) out */
 extern const FunDef& get_element(token_t token);
 
 /** Single case evaluation */
@@ -70,8 +73,24 @@ extern std::string c_print(const Sym& sym, const std::vector<std::string>& var_n
 /** Pretty printer streamer */
 inline std::ostream& operator<<(std::ostream& os, Sym sym) { return os << c_print(sym); }
 
+/* Support for Ephemeral Random Constants (ERC) */
+
 /** Create constant with this value, memory is managed. If reference count drops to zero value is deleted.  */
 extern Sym SymConst(double value);
+/** Create variable */
+extern Sym SymVar(unsigned idx);
+
+/** Create 'lambda expression; 
+ * This is a neutral operation. It will replace
+ * all variables in the expression by arguments,
+ * wrap the expression in a Lambda function
+ * and returns a tree applying the lambda function
+ * to the original variable.
+ *
+ * A call like SymLambda( SymVar(1) + SymVar(1) * 3.1) will result in 
+ * a Lambda function (a0 + a0 * 3.1) with one argument: SymVar(1)*/
+
+extern Sym SymLambda(Sym expression);
 
 /** Get out the values for all constants in the expression */
 std::vector<double> get_constants(Sym sym);
@@ -80,13 +99,15 @@ std::vector<double> get_constants(Sym sym);
  * The argument isn't touched, it will return a new sym with the constants set. */
 Sym set_constants(Sym sym, const std::vector<double>& constants);
 
-/** check if a token is constant (for instance Sym sym; is_constant(sym.token()); ) */
+/** check if a token is a constant */
 extern bool is_constant(token_t token);
+/** check if a token is a variable */
+extern bool is_variable(token_t token);
+/** check if a token is a user/automatically defined function */
+extern bool is_lambda(token_t token);
 
-/** Create variable */
-extern Sym SymVar(unsigned idx);
 
-/** simplifies a sym (sym_operations.cpp) */
+/** simplifies a sym (sym_operations.cpp) Currently only simplifies constants */
 extern Sym simplify(Sym sym);
 
 /** differentiates a sym to a token (sym_operations.cpp)
@@ -114,6 +135,7 @@ enum {
     sqr_token, sqrt_token
 };
 
+/* Defition of function overloads: for example, this define the function 'Sym sin(Sym)' */
 
 #define HEADERFUNC(name) inline Sym name(Sym arg) { return Sym(name##_token, arg); }
 
@@ -139,9 +161,10 @@ HEADERFUNC(log);
 HEADERFUNC(sqr);
 HEADERFUNC(sqrt);
 
+/* Get the prototype functions out, this is needed for compilation */
 extern std::string get_prototypes();
 
-// reading and writing in internal format
+// reading and writing in internal format, no parser for symbolic functions implemented yet
 extern std::string write_raw(const Sym& sym);
 extern void write_raw(std::ostream& os, const Sym& sym);
 extern Sym read_raw(std::string str);

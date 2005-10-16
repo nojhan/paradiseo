@@ -100,7 +100,7 @@ class DagSizeStat : public eoStat<EoType, unsigned> {
 };
 
 int main(int argc, char* argv[]) {
-    
+   
     eoParser parser(argc, argv);
   
     /* Language */

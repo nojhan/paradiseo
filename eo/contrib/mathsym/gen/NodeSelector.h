@@ -18,21 +18,37 @@
 #ifndef NODESELECTOR_H
 #define NODESELECTOR_H
 
-class Sym;
+#include <Sym.h>
 
 /** Base class for selecting nodes */
 class NodeSelector {
     public:
+	
+    class NodeSelection {
+	Sym root_;
+	unsigned subtree_index_;
+	Sym subtree_;
+
+	public :
+	    NodeSelection(Sym r, unsigned idx, Sym s) 
+		: root_(r), subtree_index_(idx), subtree_(s) {}
+
+	    Sym root() const { return root_; }
+	    unsigned idx()  const { return subtree_index_; }
+	    Sym subtree(); 
+	
+    };
+
     virtual ~NodeSelector() {}
 	
-    virtual unsigned select_node(Sym sym) const = 0;  
+    virtual NodeSelection select_node(Sym sym) const = 0;  
 };
 
 
 /** Select nodes uniformly */
 class RandomNodeSelector : public NodeSelector {
     public:
-    unsigned select_node(Sym sym) const;
+    NodeSelection select_node(Sym sym) const;
 };
 
 /** A node selector that does a specified number of rounds ignoring terminals */
@@ -43,7 +59,7 @@ class BiasedNodeSelector : public NodeSelector {
     BiasedNodeSelector() : nRounds(3) {} // 3: for binary trees 87.5% chance of selecting an internal node
     BiasedNodeSelector(unsigned n) : nRounds(n) {}
     
-    unsigned select_node(Sym sym) const;
+    NodeSelection select_node(Sym sym) const;
 };
 
 #endif

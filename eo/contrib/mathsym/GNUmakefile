@@ -1,7 +1,8 @@
 COMPILEFLAGS=-Wno-deprecated -g -Wall #-DINTERVAL_DEBUG
-OPTFLAGS= #-O3 -DNDEBUG 
+OPTFLAGS= -O3 DNDEBUG 
 
 PROFILE_FLAGS=#-pg 
+LDFLAGS=#-a
 
 INCLUDES=-I. -Isym -Ifun -Igen -Ieval -Iregression -I../../src -Ieo_interface  -I..
 
@@ -18,7 +19,7 @@ CXXSOURCES=FunDef.cpp Sym.cpp SymImpl.cpp SymOps.cpp sym_compile.cpp TreeBuilder
 	Dataset.cpp ErrorMeasure.cpp Scaling.cpp TargetInfo.cpp BoundsCheck.cpp util.cpp NodeSelector.cpp\
 	eoSymCrossover.cpp sym_operations.cpp eoSymMutate.cpp
 
-TESTPROGRAMS=test/test_compile test/testeo test/test_simplify test/test_diff
+TESTPROGRAMS=test/test_compile test/testeo test/test_simplify test/test_diff test/test_lambda
 
 OBJS= $(CXXSOURCES:.cpp=.o) c_compile.o
 
@@ -27,19 +28,19 @@ all: tcc/ symreg
 include $(CXXSOURCES:.cpp=.d) symreg.d 
 
 clean:
-	rm *.o *.d $(TESTPROGRAMS) $(SYMLIB) symreg || true
+	rm *.o *.d $(TESTPROGRAMS) $(SYMLIB) symreg test/*.o || true
 
 distclean: clean
 	rm -rf tcc
 
 symreg: libsym.a symreg.o $(EXTLIBS)
-	$(CXX) -o symreg symreg.o libsym.a $(LIBS) $(PROFILE_FLAGS) 
+	$(CXX) -o symreg symreg.o libsym.a $(LIBS) $(PROFILE_FLAGS) ${LDFLAGS}
 
 libsym.a: $(OBJS) 
 	rm libsym.a; ar cq $(SYMLIB) $(OBJS) 
 
 check: $(TESTPROGRAMS)
-	test/test_compile && test/testeo && test/test_simplify && test/test_diff && echo "all tests succeeded"
+	test/test_compile && test/testeo && test/test_simplify && test/test_diff && test/test_lambda && echo "all tests succeeded"
 
 test/test_compile: test/test_compile.o ${SYMLIB}
 	$(CXX) -o test/test_compile test/test_compile.o $(SYMLIB) ${LIBS}
@@ -52,6 +53,9 @@ test/test_simplify: test/test_simplify.o $(SYMLIB)
 
 test/test_diff: test/test_diff.o $(SYMLIB)
 	$(CXX) -o test/test_diff test/test_diff.o  $(SYMLIB) ${LIBS}
+
+test/test_lambda: test/test_lambda.o $(SYMLIB)
+	$(CXX) -o test/test_lambda test/test_lambda.o  $(SYMLIB) ${LIBS}
 
 # eo
 ../../src/libeo.a:

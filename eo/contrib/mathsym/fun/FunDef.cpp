@@ -127,13 +127,12 @@ typedef hash_map<double, token_t, HashDouble> DoubleSet;
 #endif
 
 static DoubleSet doubleSet; // for quick checking if a constant already exists
-static vector<bool> is_constant_flag;
 static vector<double> token_value;
 
 static std::vector<token_t> free_list;
 
-void delete_val(token_t token) { // clean up the information about this constant
-    if (is_constant_flag[token]) {
+void delete_val(token_t token) { // clean up the information about this value
+    if (is_constant(token)) {
 	double value = token_value[token];
 	
 	delete language[token];
@@ -142,9 +141,26 @@ void delete_val(token_t token) { // clean up the information about this constant
 	doubleSet.erase(value);
 	free_list.push_back(token);
     }
+
+    if (is_lambda(token)) {
+	delete language[token];
+	language[token] = 0;
+	free_list.push_back(token);
+    }
 }
+
+
 FunDef* make_const(double value);
+
+void extend_free_list() {
+    unsigned sz = language.size();
+    language.resize(sz + sz+1); // double
     
+    for (unsigned i = sz; i < language.size(); ++i) {
+       free_list.push_back(i); 
+    }
+}
+
 Sym SymConst(double value) { 
    
     Sym::set_extra_dtor(delete_val);
@@ -157,14 +173,8 @@ Sym SymConst(double value) {
        
     
     if (free_list.empty()) { // make space for tokens;
-	unsigned sz = language.size();
-	language.resize(sz + sz+1); // double
-	is_constant_flag.resize(language.size(), false);
+	extend_free_list();
 	token_value.resize(language.size(), 0.0);
-	
-	for (unsigned i = sz; i < language.size(); ++i) {
-	   free_list.push_back(i); 
-	}
     }
 
     token_t token = free_list.back();
@@ -174,15 +184,9 @@ Sym SymConst(double value) {
     
     language[token] = make_const(value);
     doubleSet[value] = token;
-    is_constant_flag[token] = true;
     token_value[token] = value;
     
     return Sym(token);
-}
-
-bool is_constant(token_t token) {
-    if (token >= is_constant_flag.size()) return false;
-    return is_constant_flag[token];
 }
 
 /* LanguageTable depends on this one, XXX move somewhere safe.*/
@@ -252,11 +256,12 @@ class Const : public FunDef {
 
 	string name() const { return "parameter"; }
 };
+
 } // namespace 
     
 void get_constants(Sym sym, vector<double>& ret) {
     token_t token = sym.token();
-    if (is_constant_flag[token]) {
+    if (is_constant(token)) {
 	double val = static_cast<const Const*>(language[token])->value;
 	ret.push_back(val);
     }
@@ -280,7 +285,7 @@ vector<double> get_constants(Sym sym) {
 Sym set_constants(Sym sym, vector<double>::const_iterator& it) {
     
     token_t token = sym.token();
-    if (is_constant_flag[token]) {
+    if (is_constant(token)) {
 	return SymConst(*it++);
     }
 
@@ -303,7 +308,7 @@ vector<const FunDef*> get_defined_functions() {
     for (unsigned i = 0; i < language.size(); ++i) {
 	res.push_back(language[i]);
 
-	if (dynamic_cast<const Const*>(language[i]) != 0 || (dynamic_cast<const Var*>(language[i]) != 0) ) {
+	if (is_constant(i) || is_variable(i)) {
 	    res.back() = 0; // erase
 	}
     }
@@ -313,6 +318,103 @@ vector<const FunDef*> get_defined_functions() {
 
 FunDef* make_var(int idx) { return new Var(idx); }
 FunDef* make_const(double value) { return new Const(value); }
+
+bool is_constant(token_t token) {
+    const Const* cnst = dynamic_cast<const Const*>( language[token] );
+    return cnst != 0;
+}
+
+bool is_variable(token_t token) {
+    const Var* var = dynamic_cast<const Var*>( language[token] );
+    return var != 0;
+}
+
+
+namespace {
+class Lambda : public FunDef {
+    public:
+	Sym expression;
+	int arity;
+	
+	Lambda(Sym expr, int arity_) : expression(expr), arity(arity_) {}
+    
+	double eval(const vector<double>& vals, const vector<double>& _) const {
+	    return ::eval(expression, vals); 
+	}
+	
+	string c_print(const vector<string>& args, const vector<string>& str) const {
+	    return ::c_print(expression, args);
+	}
+	
+	Interval eval(const vector<Interval>& args, const vector<Interval>& inputs) const { 
+	    return ::eval(expression, args);
+	}
+
+	unsigned min_arity() const { return arity; }
+	string name() const { return "F"; }
+	
+};
+    Sym normalize(Sym sym, SymVec& args) {
+	// check if it's a variable
+	token_t token = sym.token();
+	const Var* var = dynamic_cast< const Var*>(language[token]);
+    
+	if (var != 0) {
+	    for (unsigned i = 0; i < args.size(); ++i) {
+		if (sym == args[i]) {
+		    return SymVar(i); // replace with reference to arg
+		}
+	    }
+
+	    // not replaced, add it
+	    args.push_back(sym);
+	    return SymVar(args.size()-1);
+	    
+	}
+	
+	SymVec a = sym.args();
+	for (unsigned i = 0; i < a.size(); ++i) {
+	    a[i] = normalize(a[i], args);
+	}
+	
+	return Sym(token, a);
+    }
+}
+
+
+bool is_lambda(token_t token) {
+    const Lambda* lambda = dynamic_cast<const Lambda*>( language[token]); 
+    return lambda != 0;
+}
+
+
+Sym SymLambda(Sym expression) {
+    vector<Sym> args;
+    Sym expr = normalize(expression, args);
+    
+    // check if expression is already present as a lambda expression
+    for (unsigned i = 0; i < language.size(); ++i) {
+	const Lambda* lambda = dynamic_cast<const Lambda*>(language[i]);
+	if (lambda != 0 && lambda->expression == expr) {
+	    return Sym(i, args);
+	}
+    }
+    // else add it
+    Lambda* lambda = new Lambda(expr, args.size());
+    
+    
+    // insert in language table
+    if (free_list.empty()) {
+	extend_free_list();
+    }
+    
+    token_t lambda_token = free_list.back();
+    free_list.pop_back();
+    language[lambda_token] = lambda;
+    
+    
+    return Sym(lambda_token, args);
+}
 
 
 namespace {
@@ -550,7 +652,7 @@ void write_raw(ostream& os, const Sym& sym) {
     token_t token = sym.token();
     const SymVec& args = sym.args();
     
-    if (is_constant_flag.size() > token && is_constant_flag[token]) {
+    if (is_constant(token)) {
 	os << "c" << language[token]->c_print(vector<string>(), vector<string>()); 
     } else {
 

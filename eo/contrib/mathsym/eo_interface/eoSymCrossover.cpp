@@ -23,11 +23,11 @@
 #include <utils/eoRNG.h>
 
 bool subtree_quad(Sym& a, Sym& b, NodeSelector& select) {
-    unsigned i = select.select_node(a);
-    unsigned j = select.select_node(b);
+    NodeSelector::NodeSelection sel_a = select.select_node(a);
+    NodeSelector::NodeSelection sel_b = select.select_node(b);
 
-    Sym aprime = insert_subtree(a, i, get_subtree(b, j));
-    Sym bprime = insert_subtree(b, j, get_subtree(a, i));
+    Sym aprime = insert_subtree(a, sel_a.idx(), sel_b.subtree() );
+    Sym bprime = insert_subtree(b, sel_b.idx(), sel_a.subtree() );
 
     a = aprime;
     b = bprime;
@@ -35,16 +35,18 @@ bool subtree_quad(Sym& a, Sym& b, NodeSelector& select) {
 }
 
 bool subtree_bin(Sym& a, const Sym& b, NodeSelector& select) {
-    unsigned i = select.select_node(a);
-    unsigned j = select.select_node(b);
+    NodeSelector::NodeSelection sel_a = select.select_node(a);
+    NodeSelector::NodeSelection sel_b = select.select_node(b);
 
-    a = insert_subtree(a, i, get_subtree(b,j));
+    a = insert_subtree(a, sel_a.idx(), sel_b.subtree());
 
     return true;
 }
 
 Sym homologous_binimpl(Sym a, Sym b) {
-
+    
+    if(a == b) { return a; } // no point 
+    
     bool use_a = rng.random(2);
 
     token_t head = (use_a? a : b).token();
