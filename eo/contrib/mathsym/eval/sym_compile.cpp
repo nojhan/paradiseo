@@ -127,11 +127,12 @@ void write_entry(const Sym& sym, string& str, HashMap& map, unsigned out) {
     str += "y[" + to_string(out) + "]=" + it->second + ";\n";
 }
 
+//#include <fstream>
 multi_function compile(const std::vector<Sym>& syms) {
     
     // static stream to avoid fragmentation of these LARGE strings
     static string str;
-
+    str.clear();
     str += make_prototypes();
 
     str += "double func(const double* x, double* y) { \n ";
@@ -143,7 +144,11 @@ multi_function compile(const std::vector<Sym>& syms) {
     }
     
     str += ";}";
- 
+    
+ //   ofstream cmp("compiled.c");
+ //   cmp << str;
+ //   cmp.close();
+    
     return (multi_function) symc_make(str.c_str(), "func"); 
 }
 
