@@ -66,7 +66,7 @@ bool minimizing_fitness()
 #endif
 
     return eo2 < eo1; // check whether we have a minimizing fitness
-};
+}
 
 inline double scale_fitness(const std::pair<double, double>& _minmax, double _value)
 {

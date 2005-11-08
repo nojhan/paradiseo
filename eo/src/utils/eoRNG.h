@@ -225,7 +225,7 @@ public :
                 fortune -= vec[i++];
             }
             return --i;
-        };
+        }
 
 
     /** Randomly select element from vector.
