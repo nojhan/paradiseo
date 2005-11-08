@@ -48,7 +48,9 @@ class eoGnuplot1DMonitor : public eoFileMonitor, public eoGnuplot
 {
 public:
 
-    using eoMonitor::vec;
+  // this "using" directive generates a compiler internal error in GCC 4.0.0 ...
+  // it's been removed, and the only call to vec was replaced by this->vec in eoGnuplot1DMonitor.cpp
+  //    using eoMonitor::vec;
 
     /** Constructor */
     eoGnuplot1DMonitor(std::string _filename, bool _top=false) :

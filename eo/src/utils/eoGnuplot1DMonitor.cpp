@@ -59,17 +59,17 @@ eoMonitor& eoGnuplot1DMonitor::operator() (void)
 
 void eoGnuplot1DMonitor::FirstPlot()
 {
-    if (vec.size() < 2)
+    if (this->vec.size() < 2)
     {
         throw std::runtime_error("Must have some stats to plot!\n");
     }
 #ifdef HAVE_GNUPLOT
     std::ostringstream os;
     os << "plot";
-    for (unsigned i=1; i<vec.size(); i++) {
+    for (unsigned i=1; i<this->vec.size(); i++) {
         os << " '" << getFileName().c_str() <<
-            "' using 1:" << i+1 << " title '" << (vec[i])->longName() << "' with lines" ;
-        if (i<vec.size()-1)
+            "' using 1:" << i+1 << " title '" << (this->vec[i])->longName() << "' with lines" ;
+        if (i<this->vec.size()-1)
             os << ", ";
     }
     os << '\n';
