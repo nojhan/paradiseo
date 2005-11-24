@@ -25,6 +25,7 @@
 #include <eoSym.h>
 #include <eoPop.h>
 #include <eoSymMutate.h>
+//#include <eoSymLambdaMutate.h>
 #include <eoSymCrossover.h>
 #include <eoSymEval.h>
 #include <eoOpContainer.h>
@@ -151,6 +152,13 @@ int main(int argc, char* argv[]) {
 	    0,
 	    "Population").value();
 	    
+    double constant_mut_prob = parser.createParam(
+	    0.1,
+	    "constant-mut-rate",
+	    "Probability of performing constant mutation",
+	    0,
+	    "Population").value();
+    
     
     double subtree_mut_prob = parser.createParam(
 	    0.2,
@@ -165,7 +173,14 @@ int main(int argc, char* argv[]) {
 	    "Probability of performing node mutation",
 	    0,
 	    "Population").value();
-
+    
+/*    double lambda_mut_prob = parser.createParam(
+	    1.0,
+	    "lambda-mut-rate",
+	    "Probability of performing (neutral) lambda extraction/expansion",
+	    0,
+	    "Population").value();
+*/
     double subtree_xover_prob = parser.createParam(
 	    0.4,
 	    "xover-rate",
@@ -195,7 +210,7 @@ int main(int argc, char* argv[]) {
 	    "Population").value();
 
     unsigned maximumSize = parser.createParam(
-	    0xffffffffu,
+	    -1u,
 	    "maximum-size",
 	    "Maximum size after crossover",
 	    's',
@@ -261,10 +276,13 @@ int main(int argc, char* argv[]) {
     // todo, make this parameter, etc
     double std = 0.01;
     eoSymConstantMutate<EoType> constmutate(std);
-    genetic_operator.add(constmutate, 0.1);
+    genetic_operator.add(constmutate, constant_mut_prob);
     
     eoSymNodeMutate<EoType>    nodemutate(table);
     genetic_operator.add(nodemutate, node_mut_prob);
+   
+//    eoSymLambdaMutate<EoType> lambda_mutate(node_selector);
+//    genetic_operator.add(lambda_mutate, lambda_mut_prob); // TODO: prob should be settable
     
     //eoQuadSubtreeCrossover<EoType> quad(node_selector);
     eoBinSubtreeCrossover<EoType> bin(node_selector);

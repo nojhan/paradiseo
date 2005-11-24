@@ -71,7 +71,7 @@ extern std::string c_print(const Sym& sym);
 extern std::string c_print(const Sym& sym, const std::vector<std::string>& var_names);
 
 /** Pretty printer streamer */
-inline std::ostream& operator<<(std::ostream& os, Sym sym) { return os << c_print(sym); }
+inline std::ostream& operator<<(std::ostream& os, const Sym& sym) { return os << c_print(sym); }
 
 /* Support for Ephemeral Random Constants (ERC) */
 
@@ -92,6 +92,12 @@ extern Sym SymVar(unsigned idx);
 
 extern Sym SymLambda(Sym expression);
 
+extern Sym SymUnlambda(Sym sym);
+
+/** Expands all lambda expressions inline */
+extern Sym expand_all(Sym sym);
+extern Sym compress(Sym sym);
+
 /** Get out the values for all constants in the expression */
 std::vector<double> get_constants(Sym sym);
 
@@ -101,8 +107,11 @@ Sym set_constants(Sym sym, const std::vector<double>& constants);
 
 /** check if a token is a constant */
 extern bool is_constant(token_t token);
+extern double get_constant_value(token_t token);
 /** check if a token is a variable */
 extern bool is_variable(token_t token);
+extern unsigned get_variable_index(token_t token);
+
 /** check if a token is a user/automatically defined function */
 extern bool is_lambda(token_t token);
 

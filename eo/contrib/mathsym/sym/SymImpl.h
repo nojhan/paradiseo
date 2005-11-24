@@ -23,7 +23,7 @@
 
 class Sym;
 
-#if __GNUC__ > 4 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 4)
+#if __GNUC__ > 4 
 #include <ext/pool_allocator.h>
 typedef std::vector<Sym, __gnu_cxx::__pool_alloc<Sym> > std::vector<Sym>;
 //typedef std::vector<Sym> SymVec;
@@ -60,10 +60,6 @@ class SymKey
 	SymKey(token_t _token) : args(), token(_token), hash_code(calc_hash()) {}
 	SymKey(token_t _token, const detail::SymArgs& _args) : args(_args), token(_token), hash_code(calc_hash()) {}
 	
-	
-    private:
-	detail::SymArgs args;
-    public:
 	bool operator==(const SymKey& other) const;
 	
 	struct Hash
@@ -74,13 +70,14 @@ class SymKey
 	unsigned arity() const { return args.len(); }
 	const std::vector<Sym>& vec() const { return args.vec(); }
 	
-	token_t token;     // identifies the function
-
 	// fixates (i.e. claims memory) for the embedded vector of Syms
 	void fixate() const { args.fixate(); }
 	
 	int get_hash_code() const { return hash_code; }
 	
+	detail::SymArgs args;
+	token_t token;     // identifies the function
+
     private:
 	int calc_hash() const;
 	int hash_code;

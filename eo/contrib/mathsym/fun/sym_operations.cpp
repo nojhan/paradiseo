@@ -36,25 +36,25 @@ Sym simplify_constants(Sym sym) {
 	}
 	args[i] = arg;
 
-	
 	all_constants &= is_constant(args[i].token());
     }
     
-    if (args.size() == 0) return sym; // variable or constant
-   
+    if (args.size() == 0) {
+	
+	if (sym.token() == sum_token) return SymConst(0.0);
+	if (sym.token() == prod_token) return SymConst(1.0);
+	
+	return sym; // variable or constant
+    }
     
     if (all_constants) {
 	// evaluate 
 	
 	vector<double> dummy;
 	
-	vector<double> vals(args.size());
-	for (unsigned i = 0; i < vals.size(); ++i) {
-	    vals[i] = eval(sym, dummy);
-	}
+	double v = ::eval(sym, dummy);
 	
-	Sym result = SymConst( get_element(token).eval(vals, dummy) );
-	
+	Sym result = SymConst(v);
 	
 	return result;
     }
@@ -101,9 +101,10 @@ Sym derivative(token_t token, Sym x) {
 
 	case sqr_token : return SymConst(2.0) * x;
 	case sqrt_token : return SymConst(0.5) * inv( sqrt(x));
+	default :
+	    throw differentiation_error();
     }
     
-    throw differentiation_error();
     return x;
 }
 

@@ -26,8 +26,8 @@ using namespace std;
 
 extern "C" {
     void  symc_init();
-    void  symc_compile(const char* func_str);
-    void  symc_link();
+    int  symc_compile(const char* func_str);
+    int  symc_link();
     void* symc_get_fun(const char* func_name);
     void* symc_make(const char* func_str, const char* func_name);
 }
@@ -46,33 +46,6 @@ typedef std::tr1::unordered_map<Sym, string, HashSym> HashMap;
 typedef hash_map<Sym, string, HashSym> HashMap;
 #endif
 
-HashMap::iterator find_entry(const Sym& sym, ostream& os, HashMap& map) {
-    HashMap::iterator result = map.find(sym);
-
-    if (result == map.end()) { // new entry
-	const SymVec& args = sym.args();
-	vector<string> argstr(args.size());
-	for (unsigned i = 0; i < args.size(); ++i) {
-	    argstr[i] = find_entry(args[i], os, map)->second;
-	}
-
-	unsigned current_entry = map.size(); // current number of variables defined
-
-	// write out the code
-	const FunDef& fun = get_element(sym.token());
-	string code = fun.c_print(argstr, vector<string>());
-	os << "double a" << current_entry << "=" << code << ";\n";
-
-	// insert variable ref in map
-	ostringstream str;
-	str << 'a' << current_entry;
-
-	result = map.insert( make_pair(sym, str.str()) ).first; // only want iterator
-    }
-    
-    return result;
-}
-
 // prints 'num' in reverse notation. Does not matter as it's a unique id
 string make_var(unsigned num) {
     string str = "a";
@@ -83,37 +56,6 @@ string make_var(unsigned num) {
     return str;
 }
 
-HashMap::iterator find_entry2(const Sym& sym, string& str, HashMap& map) {
-    HashMap::iterator result = map.find(sym);
-
-    if (result == map.end()) { // new entry
-	const SymVec& args = sym.args();
-	
-	vector<string> argstr(args.size());
-	for (unsigned i = 0; i < args.size(); ++i) {
-	    argstr[i] = find_entry2(args[i], str, map)->second;
-	}
-
-	string var = make_var(map.size()); // map.size(): unique id
-	
-	// write out the code
-	const FunDef& fun = get_element(sym.token());
-	string code = fun.c_print(argstr, vector<string>() );
-	str += "double " + var + "=" + code + ";\n";
-
-	result = map.insert( make_pair(sym, var ) ).first; // only want iterator
-    }
-    
-    return result;
-}
-
-void write_entry(const Sym& sym, ostream& os, HashMap& map, unsigned out) {
-    string s;
-    HashMap::iterator it = find_entry2(sym, s, map);
-    os << s;
-    os << "y[" << out << "]=" << it->second << ";\n";
-}
-
 template <class T>
 string to_string(T t) {
     ostringstream os;
@@ -121,22 +63,50 @@ string to_string(T t) {
     return os.str();
 }
 
-void write_entry(const Sym& sym, string& str, HashMap& map, unsigned out) {
-    HashMap::iterator it = find_entry2(sym, str, map);
+
+HashMap::iterator find_entry(const Sym& sym, string& str, HashMap& map) {
+    HashMap::iterator result = map.find(sym);
+
+    if (result == map.end()) { // new entry
+	const SymVec& args = sym.args();
+	
+	vector<string> argstr(args.size());
+	for (unsigned i = 0; i < args.size(); ++i) {
+	    argstr[i] = find_entry(args[i], str, map)->second;
+	}
+
+	string var = make_var(map.size()); // map.size(): unique id
+	string code;	
+	// write out the code
+	const FunDef& fun = get_element(sym.token());
+	code = fun.c_print(argstr, vector<string>() );
+	    
+	str += "double " + var + "=" + code + ";\n";
+	result = map.insert( make_pair(sym, var ) ).first; // only want iterator
+    }
     
-    str += "y[" + to_string(out) + "]=" + it->second + ";\n";
+    return result;
 }
 
-//#include <fstream>
+void write_entry(const Sym& sym, string& str, HashMap& map, unsigned out) {
+    HashMap::iterator it = find_entry(sym, str, map);
+    
+    str += "y[" + to_string(out) + "]=" + it->second + ";\n";
+    //cout << "wrote " << out << '\n';
+}
+
+#include <fstream>
 multi_function compile(const std::vector<Sym>& syms) {
     
+    //cout << "Multifunction " << syms.size() << endl;
     // static stream to avoid fragmentation of these LARGE strings
     static string str;
     str.clear();
     str += make_prototypes();
 
-    str += "double func(const double* x, double* y) { \n ";
+    str += "extern double func(const double* x, double* y) { \n ";
    
+    multi_function result;
     HashMap map(Sym::get_dag().size());
     
     for (unsigned i = 0; i < syms.size(); ++i) {
@@ -144,34 +114,27 @@ multi_function compile(const std::vector<Sym>& syms) {
     }
     
     str += ";}";
-    
- //   ofstream cmp("compiled.c");
- //   cmp << str;
- //   cmp.close();
-    
-    return (multi_function) symc_make(str.c_str(), "func"); 
-}
 
-multi_function compile2(const std::vector<Sym>& syms) {
     
-    // static stream to avoid fragmentation of these LARGE strings
-    static ostringstream os;
-    os.str("");
+    /*static int counter = 0;
+    ostringstream nm;
+    nm << "cmp/compiled" << (counter++) << ".c";
+    cout << "Saving as " << nm.str() << endl;
+    ofstream cmp(nm.str().c_str());
+    cmp << str;
+    cmp.close();
 
-    os << make_prototypes();
+    //cout << "Multifunction " << syms.size() << endl;
+    cout << "Size of map " << map.size() << endl;
+*/
 
-    os << "double func(const double* x, double* y) { \n ";
-   
-    HashMap map(Sym::get_dag().size());
-    
-    
-    for (unsigned i = 0; i < syms.size(); ++i) {
-	write_entry(syms[i], os, map, i);
+    result = (multi_function) symc_make(str.c_str(), "func"); 
+
+    if (result==0) { // error
+	cout << "Error in compile " << endl;
     }
-    
-    os << ";}";
- 
-    return (multi_function) symc_make(os.str().c_str(), "func"); 
+
+    return result;
 }
 
 single_function compile(Sym sym) {
@@ -238,7 +201,7 @@ void compile(const std::vector<Sym>& syms, std::vector<single_function>& functio
 #ifdef INTERVAL_DEBUG
     //cout << "Compiling " << os.str() << endl;
 #endif
-
+    
     symc_compile(os.str().c_str()); 
     symc_link();
 

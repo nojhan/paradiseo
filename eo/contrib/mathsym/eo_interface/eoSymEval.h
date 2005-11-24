@@ -19,6 +19,7 @@
 #define SYMEVAL_H
 
 #include <Sym.h>
+#include <FunDef.h>
 #include <ErrorMeasure.h>
 #include <BoundsCheck.h>
 
@@ -52,7 +53,7 @@ class eoSymPopEval : public eoPopEvalFunc<EoType> {
 	for (unsigned i = 0; i < p1.size(); ++i) {
 	    if (p1[i].invalid()) {
 
-		if (p1[i].size() < size_cap && check.in_bounds(p1[i])) {
+		if (expand_all(p1[i]).size() < size_cap && check.in_bounds(p1[i])) {
 		    unevaluated.push_back(i);
 		    tmppop.push_back( static_cast<Sym>(p1[i]) );
 		} else {
@@ -64,7 +65,7 @@ class eoSymPopEval : public eoPopEvalFunc<EoType> {
 	for (unsigned i = 0; i < p2.size(); ++i) {
 	    if (p2[i].invalid()) {
 		
-		if (p2[i].size() < size_cap && check.in_bounds(p2[i])) {
+		if (expand_all(p2[i]).size() < size_cap && check.in_bounds(p2[i])) {
 		    
 		    unevaluated.push_back(p1.size() + i);
 		    tmppop.push_back( static_cast<Sym>(p2[i]) );

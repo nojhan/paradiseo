@@ -32,6 +32,9 @@ class EoSym : public EO<Fitness>, public Sym {
 	    EO<Fitness>::invalidate();
 	    static_cast<Sym*>(this)->operator=(sym);
 	}
+
+	Sym& get()      { return static_cast<Sym&>(*this); };
+	Sym get() const { return static_cast<Sym&>(*this); };
 	
 	virtual void printOn(std::ostream& os) const;
 	virtual void readFrom(std::istream& is);

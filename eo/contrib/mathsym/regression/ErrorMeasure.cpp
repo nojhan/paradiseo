@@ -19,9 +19,12 @@
 #include <vector>
 #include <valarray>
 
+#include "MultiFunction.h"
+
 #include "ErrorMeasure.h"
 #include "Dataset.h"
 #include "Sym.h"
+#include "FunDef.h"
 #include "sym_compile.h"
 #include "TargetInfo.h"
 #include "stats.h"
@@ -99,13 +102,18 @@ class ErrorMeasureImpl {
 	}
 
 	vector<ErrorMeasure::result> multi_function_eval(const vector<Sym>& pop) {
+	   
+	    if (pop.size() == 0) return vector<ErrorMeasure::result>();
 	    
 	    multi_function all = compile(pop);
+	    //MultiFunction all(pop);
 	    std::vector<double> y(pop.size());
 	    
 	    Scaling noScaling = Scaling(new NoScaling);
 	    
 	    const std::valarray<double>& t = train_info.targets();
+	    
+	    cout << "Population size " << pop.size() << endl;
 	    
 	    if (measure == ErrorMeasure::mean_squared_scaled) {
 		std::vector<Var> var(pop.size());
@@ -117,6 +125,7 @@ class ErrorMeasureImpl {
 		    vart.update(t[i]);
 		    
 		    all(&data.get_inputs(i)[0], &y[0]); // evalutate
+		    //all(data.get_inputs(i), y); // evalutate
 
 		    for (unsigned j = 0; j < pop.size(); ++j) {
 			var[j].update(y[j]);
@@ -148,6 +157,7 @@ class ErrorMeasureImpl {
 		    double err = vart.get_var() - c / var[i].get_var();
 		    result[i].error = err; 
 		    if (!finite(err)) {
+			//cout << pop[i] << endl;
 			cout << "b     " << b << endl;
 			cout << "var t " << vart.get_var() << endl;
 			cout << "var i " << var[i].get_var() << endl;
@@ -155,8 +165,9 @@ class ErrorMeasureImpl {
 			
 			for (unsigned j = 0; j < t.size(); ++j) {
 			    all(&data.get_inputs(i)[0], &y[0]); // evalutate
+			    //all(data.get_inputs(j), y); // evalutate
 			    
-			    cout << y[i] << endl;
+			    cout << y[i] << ' ' << ::eval(pop[i], data.get_inputs(j)) << endl;
 			}
 			
 			exit(1);
@@ -172,8 +183,9 @@ class ErrorMeasureImpl {
 	    for (unsigned i = 0; i < train_cases(); ++i) {
 		// evaluate
 		all(&data.get_inputs(i)[0], &y[0]);
+		//all(data.get_inputs(i), y);
 
-		for (unsigned j = 0; j < y.size(); ++j) {
+		for (unsigned j = 0; j < pop.size(); ++j) {
 		    double diff = y[j] - t[i];
 		    if (measure == ErrorMeasure::mean_squared) { // branch prediction will probably solve this inefficiency
 			err[j] += diff * diff;

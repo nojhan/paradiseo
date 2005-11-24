@@ -9,25 +9,42 @@ extern void symc_init() {
 	tcc_delete(s);
     }
     s = tcc_new();
-
     if (s == 0) {
 	fprintf(stderr, "Tiny cc doesn't function properly");
 	exit(1);
     }
+    
+    tcc_set_output_type(s, TCC_OUTPUT_MEMORY);
 }
 
-extern void symc_compile(const char* func_str) {
+extern int symc_compile(const char* func_str) {
     //printf("Compiling %s\n", func_str);
-    tcc_compile_string(s, func_str);
+    int err = tcc_compile_string(s, func_str);
+
+    if (err) {
+	fprintf(stderr,"Compile failed");
+    }
+    return err;
 }
 
-extern void symc_link() {
-    tcc_relocate(s);
+extern int symc_link() {
+    int err = tcc_relocate(s);
+    if (err) {
+	fprintf(stderr,"Compile failed");
+	exit(1);
+    }
+    return err;
 }
 
 extern void* symc_get_fun(const char* func_name) {
     unsigned long val;
     tcc_get_symbol(s, &val, func_name);
+    
+    if (val == 0) {
+	fprintf(stderr,"getfun failed");
+	exit(1);
+    }
+    
     return (void*) val;
 }
 

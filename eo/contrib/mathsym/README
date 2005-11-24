@@ -11,17 +11,17 @@ running it through a simulator, you might find what you're looking for here.
 
 Mathsym has a few interesting characteristics. First and foremost is the
 basic representation. It uses trees, but these trees are stored in a 
-reference counted hashtable. This means that every subtree that is alive
-is stored once and only once. The reference counting mechanism takes care
-of memory management. 
+reference counted hashtable. This means that every distinct subtree that is alive
+is stored once and only once. 
+The reference counting mechanism takes care of memory management. 
 
 The idea of using a hashtable (for offline analysis) comes from Walter Tackett, in his
 1994 dissertation. The current system is just a real-time implementation of this
 idea, adding the reference counting for ease of use.
 
 The hashtable brings overhead. It's still pretty fast, but a string based representation
-would run rounds around it. However, by virtue of it storing every subtree only once, it
-is fairly tight on memory. This helps tremendously when confronted with growing populations, bloat.
+would run circles around it. However, by virtue of it storing every subtree only once, it
+is fairly tight on memory. This helps tremendously when confronted with excessively growing populations, bloat.
 The hashtable implementation can not stop bloat, but does make it more manageable. In a typical
 GP run, the number of distinct subtrees is only 10-20% of the total number of subtrees.
 

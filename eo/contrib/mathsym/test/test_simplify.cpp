@@ -13,6 +13,9 @@ int main() {
     
     cout << expr << endl;
     cout << simplify(expr) << endl;
-    
+
+    Sym dv = differentiate( exp(expr) , v1.token());
+    cout << dv << endl;
+    cout << simplify(dv) << endl;
 }
 

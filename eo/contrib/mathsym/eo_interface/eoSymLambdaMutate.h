@@ -15,22 +15,33 @@
  *          Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef SYMCOMPILE_H_
-#define SYMCOMPILE_H_
+#ifndef SYMLAMBDAMUTATE_H
+#define SYMLAMBDAMUTATE_H
 
-#include <vector>
+#include <eoOp.h>
+
+class NodeSelector;
+class Sym;
+extern Sym compress(Sym, NodeSelector&);
+extern Sym expand(Sym, NodeSelector&);
 
 
-typedef double (*single_function)(const double []);
-typedef double (*multi_function)(const double[], double[]);
+template <class EoType>
+class eoSymLambdaMutate : public eoMonOp<EoType> {
+    NodeSelector& selector;
+    public :
+	eoSymLambdaMutate(NodeSelector& s) : selector(s) {}
+	
+	bool operator()(EoType& tomutate) {
+	    if (rng.flip()) {
+		tomutate.set( expand(tomutate, selector));
+	    } else {
+		tomutate.set( compress(tomutate, selector));
+	    }
+	    return true; 
+	}
+    
+};
 
-/* 
- * Important, after every call of the functions below, the function pointers of the previous
- * call are invalidated. Sorry, but that's the way the cookie crumbles (in tcc)
- * */
-
-single_function compile(Sym sym);
-multi_function  compile(const std::vector<Sym>& sym);
-void compile(const std::vector<Sym>& sym, std::vector<single_function>& functions);
 
 #endif

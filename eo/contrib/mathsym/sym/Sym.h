@@ -33,7 +33,7 @@ struct UniqueNodeStats { virtual ~UniqueNodeStats(){} };
 #include "SymImpl.h"
 #include "token.h"
 
-#if __GNUC__ == 444
+#if __GNUC__ == 4
 #define USE_TR1 1
 #else
 #define USE_TR1 0
@@ -92,7 +92,7 @@ class Sym
 
 	/* Support for traversing trees */
 	unsigned arity() const { return node->first.arity(); }
-	token_t    token() const { assert(!empty()); return node->first.token; }
+	token_t    token() const { return node->first.token; }
 	
 	const SymVec& args() const { return node->first.vec(); }
 	
@@ -109,9 +109,9 @@ class Sym
 	 * it can for instance be used to create ERC's and what not. */
 	static void set_factory_function(UniqueNodeStats* (*f)(const Sym&)) { factory=f; } 
 	static void clear_factory_function() { factory = 0; }
-
-	static void set_extra_dtor( void (*extra)(token_t) ) { extra_dtor = extra; }
-
+	
+	static const std::vector<unsigned>& token_refcount() { return token_count; }
+	
 	unsigned address() const { return reinterpret_cast<unsigned>(&*node); }
 	
     private :
@@ -122,15 +122,17 @@ class Sym
 	unsigned __unchecked_refcount() const { return node->second.refcount; }
 	
 	void incref() {
-	    if (!empty())
+	    if (!empty()) {
 		++(node->second.refcount);
+		++token_count[token()];
+	    }
 	}
 	void decref() {
-	    if (!empty() && --(node->second.refcount) == 0) {
-		if (extra_dtor) {
-		    extra_dtor(token());
+	    if (!empty()) {
+		--token_count[token()];
+		if (--(node->second.refcount) == 0) {
+		    dag.erase(node);
 		}
-		dag.erase(node);
 	    }
 	}
 
@@ -140,10 +142,10 @@ class Sym
 	// A static hash_map that contains all live nodes.. 
 	static SymMap dag;
 	
+	static std::vector<unsigned> token_count;
+	
 	// Factory function for creating extra node stats, default will be 0
 	static UniqueNodeStats* (*factory)(const Sym&);
-	
-	static void (*extra_dtor)(token_t);
 	
 };
 

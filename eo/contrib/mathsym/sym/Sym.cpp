@@ -26,9 +26,9 @@ typedef UniqueNodeStats* (*NodeStatFunc)(Sym&);
 
 UniqueNodeStats* (*Sym::factory)(const Sym&) = 0;
 
-void (*Sym::extra_dtor)(token_t) = 0;
-
 SymMap Sym::dag(100000); // reserve space for so many nodes
+std::vector<unsigned> Sym::token_count;
+	
 
 size_t get_size(const SymVec& vec) {
     size_t sz = 0;
@@ -56,10 +56,17 @@ Sym::Sym(token_t tok, const SymVec& args_) : node(dag.end())
     if (__unchecked_refcount() == 0) { // new node, set some stats 
 	node->second.size  = 1 + get_size(args_);
 	node->second.depth = 1 + get_depth(args_);
+	
+	// token count
+	if (tok >= token_count.size()) {
+	    token_count.resize(tok+1);
+	}
+	
 	incref();
 	node->first.fixate();	
 	// call the factory function if available
 	if (factory) node->second.uniqueNodeStats = factory(*this);
+    
     }
     else incref();
 }
@@ -74,6 +81,12 @@ Sym::Sym(token_t tok, const Sym& a) : node(dag.end()) {
     if (__unchecked_refcount() == 0) { // new node, set some stats 
 	node->second.size = 1 + get_size(args_);
 	node->second.depth = 1 + get_depth(args_);
+	
+	// token count
+	if (tok >= token_count.size()) {
+	    token_count.resize(tok+1);
+	}
+	
 	incref();
 	node->first.fixate();
 	// call the factory function if available
@@ -90,10 +103,17 @@ Sym::Sym(token_t tok) : node(dag.end()) {
     if (__unchecked_refcount() == 0) { // new node, set some stats 
 	node->second.size = 1;
 	node->second.depth = 1;
+	
+	// token count
+	if (tok >= token_count.size()) {
+	    token_count.resize(tok+1);
+	}
+	
 	incref();
 
 	// call the factory function if available
 	if (factory) node->second.uniqueNodeStats = factory(*this);
+	
     }
     else incref();
 }

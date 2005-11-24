@@ -1,5 +1,5 @@
-COMPILEFLAGS=-Wno-deprecated -g -Wall #-DINTERVAL_DEBUG
-OPTFLAGS= -O3 DNDEBUG 
+COMPILEFLAGS=-Wno-deprecated -g -Wall -mpreferred-stack-boundary=2 -falign-functions=0#-DINTERVAL_DEBUG
+OPTFLAGS= #-O3 -DNDEBUG 
 
 PROFILE_FLAGS=#-pg 
 LDFLAGS=#-a
@@ -17,9 +17,9 @@ VPATH=sym fun gen eval regression eo_interface
 
 CXXSOURCES=FunDef.cpp Sym.cpp SymImpl.cpp SymOps.cpp sym_compile.cpp TreeBuilder.cpp LanguageTable.cpp\
 	Dataset.cpp ErrorMeasure.cpp Scaling.cpp TargetInfo.cpp BoundsCheck.cpp util.cpp NodeSelector.cpp\
-	eoSymCrossover.cpp sym_operations.cpp eoSymMutate.cpp
+	eoSymCrossover.cpp sym_operations.cpp eoSymMutate.cpp eoSymLambdaMutate.cpp MultiFunction.cpp
 
-TESTPROGRAMS=test/test_compile test/testeo test/test_simplify test/test_diff test/test_lambda
+TESTPROGRAMS=test/test_compile test/testeo test/test_simplify test/test_diff test/test_lambda test/test_mf
 
 OBJS= $(CXXSOURCES:.cpp=.o) c_compile.o
 
@@ -57,12 +57,15 @@ test/test_diff: test/test_diff.o $(SYMLIB)
 test/test_lambda: test/test_lambda.o $(SYMLIB)
 	$(CXX) -o test/test_lambda test/test_lambda.o  $(SYMLIB) ${LIBS}
 
+test/test_mf: test/test_mf.o $(SYMLIB)
+	$(CXX) -o test/test_mf test/test_mf.o  $(SYMLIB) ${LIBS}
+
 # eo
 ../../src/libeo.a:
-	make -C ../../src
+	make -C ../../src libeo.a
 
 ../../src/utils/libeoutils.a:
-	make -C ../../src/utils
+	make -C ../../src/utils libeoutils.a
 
 # tiny cc
 tcc/: tcc.tar.gz

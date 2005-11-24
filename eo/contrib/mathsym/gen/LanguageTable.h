@@ -49,7 +49,7 @@ class LanguageTable {
     Sym get_random_const() const;
     
     functor_t get_random_function() const;
-    token_t  get_random_function(unsigned arity) const;
+    token_t  get_random_function(token_t org, unsigned arity) const;
 };
 
 #endif

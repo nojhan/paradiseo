@@ -86,8 +86,11 @@ functor_t LanguageTable::get_random_function() const
     return rng.choice(pimpl->functions); 
 }
 
-token_t LanguageTable::get_random_function(unsigned arity) const 
+token_t LanguageTable::get_random_function(token_t token, unsigned arity) const 
 { 
+    if (pimpl->functions_per_arity.size() <= arity || pimpl->functions_per_arity[arity].empty()) {
+	return token; // return original token if no functions of this arity are found
+    }
     return rng.choice(pimpl->functions_per_arity[arity]); 
 }
 

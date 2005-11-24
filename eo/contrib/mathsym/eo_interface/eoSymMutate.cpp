@@ -26,9 +26,11 @@ std::pair<Sym, bool> do_mutate(Sym sym, double p, const LanguageTable& table) {
     bool changed = false;
     SymVec args = sym.args();
     if (rng.flip(p)) {
-	token_t new_token = table.get_random_function( args.size());
-	if (new_token != sym.token()) changed = true;
-	sym = Sym(new_token, args);
+	token_t new_token = table.get_random_function(sym.token(), args.size());
+	if (new_token != sym.token()) {
+	    changed = true;
+	    sym = Sym(new_token, args);
+	}
     }
 
     for (unsigned i = 0; i < args.size(); ++i) {

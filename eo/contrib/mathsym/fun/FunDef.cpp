@@ -65,7 +65,6 @@ Interval eval(const Sym& sym, const vector<Interval>& inputs) {
     
 	if (!valid(interv[i])) throw interval_error();
     }
-    
     return language[sym.token()]->eval(interv, inputs);
 }
 
@@ -103,7 +102,6 @@ Sym SymVar(unsigned idx) {
     } else if (var_token[idx] == token_t(-1)) {
 	var_token[idx] = add_function( make_var(idx) );
     }
-    
     return Sym(var_token[idx]);
 }
 
@@ -122,27 +120,37 @@ struct HashDouble{
 
 #if USE_TR1
 typedef std::tr1::unordered_map<double, token_t> DoubleSet;
+typedef std::tr1::unordered_map<Sym, token_t>    LambdaSet;
 #else
 typedef hash_map<double, token_t, HashDouble> DoubleSet;
+typedef hash_map<Sym, token_t, HashSym> LambdaSet;
 #endif
 
 static DoubleSet doubleSet; // for quick checking if a constant already exists
 static vector<double> token_value;
 
+static LambdaSet lambdaSet;
+static vector<Sym> token_lambda;
+
 static std::vector<token_t> free_list;
 
 void delete_val(token_t token) { // clean up the information about this value
+     
     if (is_constant(token)) {
+	//cout << "Deleting constant token " << token << endl;
 	double value = token_value[token];
+	doubleSet.erase(value);
 	
 	delete language[token];
 	language[token] = 0;
-
-	doubleSet.erase(value);
 	free_list.push_back(token);
     }
-
-    if (is_lambda(token)) {
+    else if (is_lambda(token)) {
+	//cout << "Deleting lambda token " << token << endl;
+	
+	Sym expression = token_lambda[token];
+	lambdaSet.erase(expression);
+	
 	delete language[token];
 	language[token] = 0;
 	free_list.push_back(token);
@@ -152,38 +160,30 @@ void delete_val(token_t token) { // clean up the information about this value
 
 FunDef* make_const(double value);
 
-void extend_free_list() {
-    unsigned sz = language.size();
-    language.resize(sz + sz+1); // double
-    
-    for (unsigned i = sz; i < language.size(); ++i) {
-       free_list.push_back(i); 
-    }
-}
+void extend_free_list();
 
 Sym SymConst(double value) { 
    
-    Sym::set_extra_dtor(delete_val);
-    
     DoubleSet::iterator it = doubleSet.find(value);
     
     if (it != doubleSet.end()) {
-	return Sym(it->second);
+	return Sym(it->second); // already exists
     }
        
     
     if (free_list.empty()) { // make space for tokens;
 	extend_free_list();
-	token_value.resize(language.size(), 0.0);
     }
 
     token_t token = free_list.back();
     free_list.pop_back();
-    
+    //cout << "Creating constant with token " << token << endl; 
     assert(language[token] == 0);
     
     language[token] = make_const(value);
+    
     doubleSet[value] = token;
+    if (token_value.size() < token) token_value.resize(token+1);
     token_value[token] = value;
     
     return Sym(token);
@@ -198,10 +198,10 @@ namespace {
 
 class Var : public FunDef {
     public :
-	int idx;
+	unsigned idx;
 	string default_str;
 
-	Var(int _idx) : idx(_idx) {
+	Var(unsigned _idx) : idx(_idx) {
 	    ostringstream os;
 	    os << "x[" << idx << ']'; // CompiledCode expects this form
 	    default_str = os.str();
@@ -273,6 +273,10 @@ void get_constants(Sym sym, vector<double>& ret) {
     
 }
 
+double get_constant_value(token_t token) {
+    return static_cast<const Const*>(language[token])->value;
+}
+
 /** Get out the values for all constants in the expression */
 vector<double> get_constants(Sym sym) {
     vector<double> retval;
@@ -329,24 +333,28 @@ bool is_variable(token_t token) {
     return var != 0;
 }
 
+unsigned get_variable_index(token_t token) {
+    const Var* var = static_cast<const Var*>( language[token] );
+    return var->idx;
+}
 
 namespace {
 class Lambda : public FunDef {
     public:
 	Sym expression;
 	int arity;
-	
-	Lambda(Sym expr, int arity_) : expression(expr), arity(arity_) {}
     
+	Lambda(Sym expr, int arity_) : expression(expr), arity(arity_) {}
+	
 	double eval(const vector<double>& vals, const vector<double>& _) const {
 	    return ::eval(expression, vals); 
 	}
 	
-	string c_print(const vector<string>& args, const vector<string>& str) const {
-	    return ::c_print(expression, args);
+	string c_print(const vector<string>& args, const vector<string>& _) const {
+	    return string("/*f*/") + ::c_print(expression, args) + string("/*eof*/");
 	}
 	
-	Interval eval(const vector<Interval>& args, const vector<Interval>& inputs) const { 
+	Interval eval(const vector<Interval>& args, const vector<Interval>& _) const { 
 	    return ::eval(expression, args);
 	}
 
@@ -381,41 +389,155 @@ class Lambda : public FunDef {
     }
 }
 
-
 bool is_lambda(token_t token) {
     const Lambda* lambda = dynamic_cast<const Lambda*>( language[token]); 
     return lambda != 0;
 }
 
-
-Sym SymLambda(Sym expression) {
-    vector<Sym> args;
-    Sym expr = normalize(expression, args);
+std::ostream& print_list(Sym sym, ostream& os) {
+    os << sym.token() << ' ';
     
-    // check if expression is already present as a lambda expression
-    for (unsigned i = 0; i < language.size(); ++i) {
-	const Lambda* lambda = dynamic_cast<const Lambda*>(language[i]);
-	if (lambda != 0 && lambda->expression == expr) {
-	    return Sym(i, args);
-	}
+    const SymVec& args = sym.args();
+    for (unsigned i = 0; i < args.size(); ++i) {
+	print_list(args[i], os);
     }
-    // else add it
-    Lambda* lambda = new Lambda(expr, args.size());
+    return os;
+}
+
+token_t new_lambda(Sym sym, int arity) {
+    // check if already present
+
+    LambdaSet::iterator it = lambdaSet.find(sym);
+    if (it != lambdaSet.end()) {
+	return it->second;
+    }
+
     
-    
-    // insert in language table
+    // new, insert
+    Lambda* lambda = new Lambda(sym, arity);
+
     if (free_list.empty()) {
 	extend_free_list();
     }
     
-    token_t lambda_token = free_list.back();
+    token_t token = free_list.back();
     free_list.pop_back();
-    language[lambda_token] = lambda;
+    language[token] = lambda;
     
+    lambdaSet[sym] = token;
+    if (token_lambda.size() <= token) token_lambda.resize(token+1);
+    token_lambda[token] = sym;
     
-    return Sym(lambda_token, args);
+    return token;
 }
 
+/* Compression */
+typedef hash_map<Sym, unsigned, HashSym> OccMap;
+
+void count_occurances(Sym sym, OccMap& occ) {
+    occ[sym]++;
+    const SymVec& args = sym.args();
+    for (unsigned i = 0; i < args.size(); ++i) {
+	count_occurances(args[i], occ);
+    }
+}
+
+Sym create_lambda(Sym sym, OccMap& occ, unsigned nvars, vector<Sym>& args) {
+    unsigned o = occ[sym];
+    unsigned sz = sym.size();
+
+    if (o * sz > o + sz + nvars || is_variable(sym.token()) ) {
+	// check if it's already present
+	for (unsigned i = 0; i < args.size(); ++i) {
+	    if (args[i] == sym) {
+		return SymVar(i);
+	    }
+	}
+	// push_back
+	args.push_back(sym);
+	return SymVar(args.size()-1);
+    }
+    
+    SymVec sym_args = sym.args();
+    for (unsigned i = 0; i < sym_args.size(); ++i) {
+	sym_args[i] = create_lambda(sym_args[i], occ, nvars, args);
+    }
+
+    return Sym(sym.token(), sym_args);
+    
+}
+
+Sym compress(Sym sym) { 
+    OccMap occ(sym.size());
+    count_occurances(sym, occ);
+
+    unsigned nvars = 0;
+    for (OccMap::iterator it = occ.begin(); it != occ.end(); ++it) {
+	if (is_variable(it->first.token())) nvars++;
+    }
+    
+    SymVec args;
+    Sym body = create_lambda(sym, occ, nvars, args);
+    
+    
+    if (body.size() < sym.size()) {
+	// see if the body can be compressed some more
+	body = compress(body);
+		
+	token_t token = new_lambda(body, args.size());
+	
+	for (unsigned i = 0; i < args.size(); ++i) {
+	    args[i] = compress(args[i]);
+	}
+
+	Sym result = Sym(token, args);
+	return compress(result); // see if it can be compressed some more
+    }
+    
+    return sym; 
+}
+
+Sym SymLambda(Sym expr) { return compress(expr); }
+
+Sym expand(Sym expr, const SymVec& args) {
+    
+    const Var* var = dynamic_cast<const Var*>( language[expr.token()] );
+    if (var != 0) {
+	return args[var->idx];
+    }
+
+    SymVec expr_args = expr.args();
+    for (unsigned i = 0; i < expr_args.size(); ++i) {
+	expr_args[i] = expand(expr_args[i], args);
+    }
+    
+    return Sym(expr.token(), expr_args);
+}
+
+Sym SymUnlambda(Sym sym) {
+    Sym retval = sym;
+    const Lambda* lambda = dynamic_cast<const Lambda*>( language[sym.token()] );
+    if (lambda != 0) {
+	retval = expand(lambda->expression, sym.args());
+    }
+
+    return retval;
+}
+
+Sym expand_all(Sym sym) {
+    SymVec args = sym.args();
+    for (unsigned i = 0; i < args.size(); ++i) {
+	args[i] = expand_all(args[i]);
+    }
+    
+    Sym nw = SymUnlambda( Sym(sym.token(), args) ); 
+    
+    if (nw != sym) {
+	nw = expand_all(nw);
+    }
+    
+    return nw;
+}
 
 namespace {
 
@@ -442,10 +564,9 @@ class Sum : public FunDef {
 	}
 	
 	Interval eval(const vector<Interval>& args, const vector<Interval>& inputs) const { 
-	    Interval interv(0.0); //(0.0-BiasEpsilon, 0.0+BiasEpsilon); // Profil/Bias seems to have a problem with 0 * inf when the Interval is exact zero (fpe)
+	    Interval interv(0.0); 
 	    for (unsigned i = 0; i < args.size(); ++i) {
-		Interval a = args[i]; // Profil doesn't know much about const correctness
-		interv += a;
+		interv += args[i];
 	    }
 	    return interv;
 	}
@@ -483,8 +604,7 @@ class Prod : public FunDef {
 	Interval eval(const vector<Interval>& args, const vector<Interval>& inputs) const { 
 	    Interval interv(1.0);
 	    for (unsigned i = 0; i < args.size(); ++i) {
-		Interval a = args[i]; // Profil doesn't know much about const correctness
-		interv *= a;
+		interv *= args[i];
 	    }
 	    return interv;
 	}
@@ -645,7 +765,50 @@ double sqr(double x) { return x*x; }
 namespace {
 FUNCDEF(sqr);
 FUNCDEF(sqrt);
+
+const int buildInFunctionOffset = language.size();
 } // namespace 
+
+void add_tokens() {
+    unsigned sz = language.size();
+    language.resize(sz + sz+1); // double
+    
+    for (unsigned i = sz; i < language.size(); ++i) {
+       free_list.push_back(i); 
+    }
+}
+
+void extend_free_list() {
+    // first check if we can clean up unused tokens;
+    const vector<unsigned>& refcount = Sym::token_refcount();
+    for (unsigned i = buildInFunctionOffset; i < refcount.size(); ++i) {
+	if (language[i] == 0) continue;
+	
+	bool c = is_constant(i);
+	bool l = is_lambda(i);
+	
+	if (refcount[i] == 0 && (c || l)) {
+	    
+	    if (c) {
+		doubleSet.erase(token_value[i]);
+	    }
+
+	    if (l) {
+		lambdaSet.erase(token_lambda[i]);	
+	    }
+	    
+	    delete language[i];
+	    language[i] = 0;
+	    free_list.push_back(i);
+	}
+    }
+
+    // if still empty, add new tokens
+    if (free_list.empty()) {
+	add_tokens();
+    }
+}
+
 
 /* Serialization */
 void write_raw(ostream& os, const Sym& sym) {
