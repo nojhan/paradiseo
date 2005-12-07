@@ -59,6 +59,7 @@ public:
 
     using eoVector< FitT, bool >::begin;
     using eoVector< FitT, bool >::end;
+    using eoVector< FitT, bool >::resize;
     using eoVector< FitT, bool >::size;
 
   /**

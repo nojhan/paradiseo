@@ -75,6 +75,12 @@ eoEsChromInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
                                    "initBounds",
                                    "Bounds for initialization (MUST be bounded)",
                                    'B', "Genotype Initialization");
+    // now some initial value for sigmas - even if useless?
+    // should be used in Normal mutation
+    eoValueParam<std::string>& sigmaParam
+        = _parser.getORcreateParam(std::string("0.3"), "sigmaInit",
+                                   "Initial value for Sigmas (with a '%' -> scaled by the range of each variable)",
+				   's',"Genotype Initialization");
     // check if there is a vecSigmaInit
     eoParam *vecSigmaParam = _parser.getParamWithLongName("vecSigmaInit");
     if(vecSigmaParam) {

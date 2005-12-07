@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoRealOp.h
 // (c) Maarten Keijzer 2000 - Marc Schoenauer 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -54,7 +54,7 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
    * @param _p_change the probability to change a given coordinate
    */
   eoUniformMutation(const double& _epsilon, const double& _p_change = 1.0):
-    homogeneous(true), bounds(eoDummyVectorNoBounds), epsilon(1, _epsilon), 
+    homogeneous(true), bounds(eoDummyVectorNoBounds), epsilon(1, _epsilon),
     p_change(1, _p_change) {}
 
   /**
@@ -65,8 +65,8 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
    */
   eoUniformMutation(eoRealVectorBounds & _bounds,
 		    const double& _epsilon, const double& _p_change = 1.0):
-    homogeneous(false), bounds(_bounds), epsilon(_bounds.size(), _epsilon), 
-    p_change(_bounds.size(), _p_change) 
+    homogeneous(false), bounds(_bounds), epsilon(_bounds.size(), _epsilon),
+    p_change(_bounds.size(), _p_change)
   {
     // scale to the range - if any
     for (unsigned i=0; i<bounds.size(); i++)
@@ -81,9 +81,9 @@ template<class EOT> class eoUniformMutation: public eoMonOp<EOT>
    * @param _p_change the VECTOR of probabilities for each coordinates
    */
   eoUniformMutation(eoRealVectorBounds & _bounds,
-		    const std::vector<double>& _epsilon, 
+		    const std::vector<double>& _epsilon,
 		    const std::vector<double>& _p_change):
-    homogeneous(false), bounds(_bounds), epsilon(_epsilon), 
+    homogeneous(false), bounds(_bounds), epsilon(_epsilon),
     p_change(_p_change) {}
 
   /// The class name.
@@ -152,7 +152,7 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
    * @param number of coordinate to modify
    */
   eoDetUniformMutation(const double& _epsilon, const unsigned& _no = 1):
-    homogeneous(true), bounds(eoDummyVectorNoBounds), 
+    homogeneous(true), bounds(eoDummyVectorNoBounds),
     epsilon(1, _epsilon), no(_no) {}
 
   /**
@@ -161,10 +161,10 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
    * @param _epsilon the range for uniform nutation (to be scaled if necessary)
    * @param number of coordinate to modify
    */
-  eoDetUniformMutation(eoRealVectorBounds & _bounds, 
-		       const double& _epsilon, const unsigned& _no = 1): 
-    homogeneous(false), bounds(_bounds), 
-    epsilon(_bounds.size(), _epsilon), no(_no) 
+  eoDetUniformMutation(eoRealVectorBounds & _bounds,
+		       const double& _epsilon, const unsigned& _no = 1):
+    homogeneous(false), bounds(_bounds),
+    epsilon(_bounds.size(), _epsilon), no(_no)
   {
     // scale to the range - if any
     for (unsigned i=0; i<bounds.size(); i++)
@@ -178,20 +178,20 @@ template<class EOT> class eoDetUniformMutation: public eoMonOp<EOT>
    * @param _epsilon the VECTOR of ranges for uniform mutation
    * @param number of coordinate to modify
    */
-  eoDetUniformMutation(eoRealVectorBounds & _bounds, 
-		       const std::vector<double>& _epsilon, 
-		       const unsigned& _no = 1): 
-    homogeneous(false), bounds(_bounds), epsilon(_epsilon), no(_no) 
+  eoDetUniformMutation(eoRealVectorBounds & _bounds,
+		       const std::vector<double>& _epsilon,
+		       const unsigned& _no = 1):
+    homogeneous(false), bounds(_bounds), epsilon(_epsilon), no(_no)
   {
     // scale to the range - if any
     for (unsigned i=0; i<bounds.size(); i++)
       if (bounds.isBounded(i))
-	  epsilon[i] *= _epsilon*bounds.range(i);
+	  epsilon[i] *= _epsilon[i]*bounds.range(i);
   }
 
   /// The class name.
   virtual std::string className() const { return "eoDetUniformMutation"; }
-  
+
   /**
    * Do it!
    * @param _eo The indi undergoing the mutation
@@ -262,13 +262,13 @@ template<class EOT> class eoSegmentCrossover: public eoQuadOp<EOT>
   /**
    * Constructor with bounds
    * @param _bounds an eoRealVectorBounds that contains the bounds
-   * @param _alphaMin the amount of exploration OUTSIDE the parents 
+   * @param _alphaMin the amount of exploration OUTSIDE the parents
    *               as in BLX-alpha notation (Eshelman and Schaffer)
    *               0 == contractive application
    *               Must be positive
    */
-  eoSegmentCrossover(eoRealVectorBounds & _bounds, 
-		     const double& _alpha = 0.0) : 
+  eoSegmentCrossover(eoRealVectorBounds & _bounds,
+		     const double& _alpha = 0.0) :
     bounds(_bounds), alpha(_alpha), range(1+2*_alpha) {}
 
   /// The class name.
@@ -356,14 +356,14 @@ template<class EOT> class eoHypercubeCrossover: public eoQuadOp<EOT>
   /**
    * Constructor with bounds
    * @param _bounds an eoRealVectorBounds that contains the bounds
-   * @param _alphaMin the amount of exploration OUTSIDE the parents 
+   * @param _alphaMin the amount of exploration OUTSIDE the parents
    *               as in BLX-alpha notation (Eshelman and Schaffer)
    *               0 == contractive application
    *               Must be positive
    */
-  eoHypercubeCrossover(eoRealVectorBounds & _bounds, 
-			const double& _alpha = 0.0): 
-    bounds(_bounds), alpha(_alpha), range(1+2*_alpha) 
+  eoHypercubeCrossover(eoRealVectorBounds & _bounds,
+			const double& _alpha = 0.0):
+    bounds(_bounds), alpha(_alpha), range(1+2*_alpha)
   {
     if (_alpha < 0)
       throw std::runtime_error("BLX coefficient should be positive");
@@ -395,7 +395,7 @@ template<class EOT> class eoHypercubeCrossover: public eoQuadOp<EOT>
 	      }
 	    }
       else	   // check the bounds
-	// do not try to get a bound on the linear factor, but rather 
+	// do not try to get a bound on the linear factor, but rather
 	// on the object variables themselves
 	for (i=0; i<_eo1.size(); i++)
 	  {
@@ -462,7 +462,7 @@ template<class EOT> class eoRealUXover: public eoQuadOp<EOT>
    * @param _preference bias in the choice (usually, no bias == 0.5)
    */
   eoRealUXover(const float& _preference = 0.5): preference(_preference)
-    { 
+    {
       if ( (_preference <= 0.0) || (_preference >= 1.0) )
 	std::runtime_error("UxOver --> invalid preference");
     }
@@ -497,7 +497,7 @@ template<class EOT> class eoRealUXover: public eoQuadOp<EOT>
     private:
       float preference;
 };
-  
+
 
 //-----------------------------------------------------------------------------
 //@}
