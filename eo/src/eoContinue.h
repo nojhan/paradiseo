@@ -27,16 +27,27 @@
 
 #include <eoFunctor.h>
 #include <eoPop.h>
+#include <eoPersistent.h>
 
 /** Termination condition for the genetic algorithm
  * Takes the population as input, returns true for continue,
  * false for termination 
  */
 template< class EOT>
-class eoContinue : public eoUF<const eoPop<EOT>&, bool> 
+class eoContinue : public eoUF<const eoPop<EOT>&, bool>, public eoPersistent 
 {
 public:
   virtual std::string className(void) const { return "eoContinue"; }
+
+  void readFrom (std :: istream & __is) {
+    
+    /* It should be implemented by subclasses ! */
+  }
+  
+  void printOn (std :: ostream & __os) const {
+    
+    /* It should be implemented by subclasses ! */
+  }
 };
 
 #endif
