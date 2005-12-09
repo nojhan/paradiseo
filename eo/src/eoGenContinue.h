@@ -79,6 +79,17 @@ public:
     
   
   virtual std::string className(void) const { return "eoGenContinue"; }
+
+  void readFrom (std :: istream & __is) {
+    
+    __is >> thisGeneration; /* Loading the number of generations counted */
+  }
+  
+  void printOn (std :: ostream & __os) const {
+    
+    __os << thisGeneration << std :: endl; /* Saving the number of generations counted */   
+  }
+
 private:
   unsigned long repTotalGenerations;
   unsigned long thisGenerationPlaceHolder;
