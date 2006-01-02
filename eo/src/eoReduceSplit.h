@@ -221,7 +221,8 @@ public:
   }
 
   /** Performs repeated inverse_deterministic_tournament on the pop */
-  void operator()(eoPop<EOT>& _newgen, unsigned _newsize)
+  void operator()(eoPop<EOT>& _newgen, eoPop<EOT> & _eliminated)
+  // BUG???  void operator()(eoPop<EOT>& _newgen, unsigned _newsize)
   {
     unsigned popSize = _newgen.size();
     unsigned eliminated = howMany(popSize);
@@ -276,14 +277,29 @@ public:
   }
 
   /** Performs repeated inverse_stochastic_tournament on the pop */
-  void operator()(eoPop<EOT>& _newgen, unsigned _newsize)
+  void operator()(eoPop<EOT>& _newgen, eoPop<EOT> & _eliminated)
+  //BUG???  void operator()(eoPop<EOT>& _newgen, unsigned _newsize)
   {
+    /* old version
     if (!_eliminated.size())	   // nothing to do
       return;
     unsigned oldSize = _newgen.size();
     unsigned newSize = oldSize - _eliminated.size();
+    unsigned eliminated = howMany(popSize);
     if (newSize < 0)
       throw std::logic_error("eoStochTournamentTruncateSplit: Cannot truncate to a larger size!\n");
+
+end of old version    */
+
+    unsigned popSize = _newgen.size();
+    unsigned eliminated = howMany(popSize);
+    if (!eliminated)   // nothing to do
+      return ;
+    unsigned newsize = popSize - eliminated;
+    if (newsize < 0)
+      throw std::logic_error("eoDetTournamentTruncateSplit: Cannot truncate to a larger size!\n");
+
+
 
     _eliminated.reserve(_eliminated.size()+eliminated); //in case not empty?
     for (unsigned i=0; i<_eliminated.size(); i++)
