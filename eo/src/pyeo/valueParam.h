@@ -30,7 +30,7 @@ class ValueParam : public eoParam // ValueParam containing python object
 	return std::string(boost::python::extract<const char*>(s));
     }
 
-    void setValue(std::string v)
+    void setValue(const std::string& v)
     {
 	std::cerr << "not implemented yet" << std::endl;
     }

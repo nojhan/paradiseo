@@ -88,7 +88,7 @@ int spin(eoRng& _rng, numeric::array values, double total)
 
 void random_numbers()
 {
-    class_<eoRng, boost::noncopyable>("eoRng", init<uint32>())
+    class_<eoRng, boost::noncopyable>("eoRng", init<uint32_t>())
 	.def("flip", &eoRng::flip)
 	.def("random", &eoRng::random)
 	.def("rand", &eoRng::rand)

@@ -45,7 +45,7 @@ public:
 	return call_method<std::string>(self, "getValueAsString");
     }
 
-    void setValue(std::string s)
+    void setValue(const std::string& s)
     {
 	call_method<void>(self, "setValueAsString", s);
     }
