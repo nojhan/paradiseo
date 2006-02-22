@@ -21,9 +21,9 @@ and to</font></b></center>
 </center>
 
 <ul>
-<li><b><blink><font color="#FF0000">New</font></blink></b> - 
+<li><b><font color="#FF0000">New</font></b> - 
 Well, in fact, nothing really new, 
-but some people advised us to annouce from the very beginning that
+but some people advised us to announce from the very beginning that
 if you are looking for a <font color="#FF0000"><b>ready-to-use</b></font>
 (except for the fitness)  <font color="#FF0000"><b>fully tunable Evolutionary
 Algorithm</b></font> evolving real values or bitstring, you can 
@@ -39,7 +39,9 @@ color="#FF6666"><b>Makefiles</b></font></tt> have been created in the
 tutorial directories. The good-old manually-created files are
 still there, now named 
 <tt><font color="#FF6666"><b>Makefile.simple</b></font></tt>.
+Moreover, when you compile the whole library (typing <font color="#FF6600"><b>make</b></font> in the main EO dir), all lessons of the tutorial gets compiled, too.
 </li>
+<br>
 
 <center><font color="#FF0000">Version 0.98 - May 2004</font></center>
 </b> 
@@ -217,15 +219,18 @@ rather than when you have something urgent to code :-)</li>
 <hr WIDTH="100%"><a NAME="install"></a><b><font color="#000099"><font size=+1>Before
 you start</font></font></b>
 <p>You should of course have downloaded and installed the whole <a href="http://www.sourceforge.net/projects/eodev">EO
-library</a> (how did you get this file if not???).
-<br>So we'll assume that you are now in the Tutorial directory, and that
+library</a> (how did you get this file if not???). 
+If you are using a recent version of EO (0.9.3+), all tutorial Lessons 
+should have been compiled when installing the library, and you can now 
+proceed with <a href="eoLesson1.html">Lesson1</a>. <br>
+<br>Otherwise, we'll assume that you are now in the tutorial directory, and that
 your prompt looks something like
-<p><b><tt><font color="#FF6666">(myname@myhost) EOdir/Tutorial %</font></tt></b>
+<p><b><tt><font color="#FF6666">(myname@myhost) EOdir/tutorial %</font></tt></b>
 <p>so you should now type in
-<p><b><tt><font color="#FF6666">make lesson1</font></tt></b>
+<p><b><tt><font color="#FF6666">make Lesson1</font></tt></b>
 <p>and see something like
 <p><font face="Courier New,Courier"><font color="#000000">(myname@myhost)
-EOdir/Tutorial % make lesson1</font></font>
+EOdir/tutorial % make Lesson1</font></font>
 <br><b><tt><font color="#FF6666">c++ -DPACKAGE=\"eo\" -DVERSION=\"0.9.1\"
 -I. -I../../src -Wall -g -c FirstBitGA.cpp</font></tt></b>
 <br><b><tt><font color="#FF6666">c++ -Wall -g -o FirstBitGA FirstBitGA.o
@@ -259,7 +264,8 @@ documentation</a></font></font></b></center>
 <address>
 <a href="mailto:Marc.Schoenauer@inria.fr">Marc Schoenauer</a></address>
 
-<br><!-- Created: Mon Oct 30 07:27:13 CET 2000 --><!-- hhmts start -->Last
-modified: Fri Nov 28 2000&nbsp;<!-- hhmts end -->
+<br>
+<!-- Created: Mon Oct 30 07:27:13 CET 2000 --><!-- hhmts start -->Last
+modified: Wed Feb 22 2006&nbsp;<!-- hhmts end -->
 </body>
 </html>
