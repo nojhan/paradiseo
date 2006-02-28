@@ -81,6 +81,7 @@
 #include <eoSteadyFitContinue.h>
 #include <eoEvalContinue.h>
 #include <eoFitContinue.h>
+#include <eoPeriodicContinue.h>
 #ifndef _MSC_VER
 #include <eoCtrlCContinue.h>  // CtrlC handling (using 2 global variables!)
 #endif
