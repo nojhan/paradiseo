@@ -22,7 +22,7 @@ class CMAParams {
     public:
     
     CMAParams() { /* Call this and all values need to be set by hand */ }
-    CMAParams(eoParser& parser, bool requireDimensionality = true);
+    CMAParams(eoParser& parser, unsigned dimensionality = 0); // 0 dimensionality -> user needs to set it
  
     void defaults(unsigned n_, unsigned maxgen_); /* apply all defaults using n and maxgen */
     

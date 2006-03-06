@@ -53,11 +53,11 @@ using namespace std;
 
 namespace eo {
 
-CMAParams::CMAParams(eoParser& parser, bool requireDimensionality) {
+CMAParams::CMAParams(eoParser& parser, unsigned dimensionality) {
     
     string section = "CMA parameters";
     
-    n = parser.createParam(0, "dimensionality", "Dimensionality (N) of the problem", 'N', section, requireDimensionality).value();
+    n = parser.createParam(dimensionality, "dimensionality", "Dimensionality (N) of the problem", 'N', section, dimensionality == 0).value();
     
     maxgen = parser.createParam(
 	    1000,
