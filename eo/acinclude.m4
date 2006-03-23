@@ -46,7 +46,7 @@ AC_DEFUN([AC_GNUPLOT], [dnl
 # Compile tutorial unless user requests not to do it.
 AC_DEFUN([AC_TUTORIAL],[dnl
   AC_ARG_ENABLE([tutorial],
-    AC_HELP_STRING([--enable-tutoria], [build tutorial (default=yes)]),
+    AC_HELP_STRING([--enable-tutorial], [build tutorial (default=yes)]),
     [ case "${enableval}" in
       yes) tutorial=true ;;
       no) tutorial=false ;;
