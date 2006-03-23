@@ -63,6 +63,7 @@ pkginclude_HEADERS 	= eo \
 			eoParetoFitness.h \
 			eoParetoRanking.h \
 			eoPerf2Worth.h \
+			eoPeriodicContinue.h \
 			eoPersistent.h \
 			eoPop.h \
 			eoPopAlgo.h \
