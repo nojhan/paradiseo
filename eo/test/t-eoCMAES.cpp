@@ -54,8 +54,16 @@ double f_rosen(const vector<double>& x) {
 
 
 int main(int argc, char* argv[]) {
-
-    eoParser parser(argc, argv);
+    
+    // make sure we have a dimensionality parameter (for testing) 
+    char** rargv = new char*[argc+1];
+    rargv[0] = argv[0];
+    rargv[1] = "-N10";
+    for (int i = 2; i < argc; ++i) {
+	rargv[i] = argv[i-1];
+    }
+    
+    eoParser parser(argc+1, rargv);
     
     CMAParams params(parser);
 
