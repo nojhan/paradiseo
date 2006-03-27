@@ -80,7 +80,7 @@ class eoSharing : public eoPerf2Worth<EOT>
 {
 public:
 
-    using eoSharing< EOT >::value;
+    using eoPerf2Worth<EOT>::value;
 
 
   /* Ctor requires a distance - cannot have a default distance! */

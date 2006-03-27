@@ -44,7 +44,7 @@ class eoLinearFitScaling : public eoPerf2Worth<EOT> // false: do not cache fitne
 {
 public:
 
-    using eoLinearFitScaling< EOT >::value;
+    using eoPerf2Worth<EOT>::value;
 
     /* Ctor:
        @param _p selective pressure (in (1,2])

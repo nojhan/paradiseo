@@ -72,7 +72,7 @@ class eoIncrementorParam : public eoUpdater, public eoValueParam<T>
 {
 public:
 
-    using eoIncrementorParam< T >::value;
+    using eoValueParam<T>::value;
 
   /** Default Ctor : a name and optionally an increment*/
   eoIncrementorParam( std::string _name, T _stepsize = 1) :

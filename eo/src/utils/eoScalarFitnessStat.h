@@ -38,13 +38,13 @@ class eoScalarFitnessStat : public eoSortedStat<EOT, std::vector<double> >
 {
 public:
 
-    using eoScalarFitnessStat< EOT, FitT >::value;
+    using eoSortedStat<EOT, std::vector<double> >::value;
 
     eoScalarFitnessStat(std::string _description = "FitnessES",
-		      eoRealVectorBounds & _bounds = eoDummyVectorNoBounds) :
-     eoSortedStat<EOT,  std::vector<double> >(std::vector<double>(0), _description) ,
-     range(*_bounds[0])
-    {}
+                        eoRealVectorBounds & _bounds = eoDummyVectorNoBounds)
+        : eoSortedStat<EOT,  std::vector<double> >(std::vector<double>(0), _description),
+          range(*_bounds[0])
+        {}
 
   virtual void operator()(const std::vector<const EOT*>& _popPters)
     {

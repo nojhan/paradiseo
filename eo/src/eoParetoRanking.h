@@ -41,7 +41,7 @@ class eoParetoRanking : public eoPerf2WorthCached<EOT, double>
 {
 public:
 
-    using eoParetoRanking< EOT>::value;
+    using eoPerf2WorthCached<EOT, double>::value;
 
     eoParetoRanking(eoDominanceMap<EOT>& _dominanceMap)
         : eoPerf2WorthCached<EOT, double>(), dominanceMap(_dominanceMap)

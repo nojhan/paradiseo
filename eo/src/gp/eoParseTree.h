@@ -55,10 +55,10 @@ class eoParseTree : public EO<FType>, public parse_tree<Node>
 {
 public:
 
-    using eoParseTree<FType, Node >::back;
-    using eoParseTree<FType, Node >::ebegin;
-    using eoParseTree<FType, Node >::eend;
-    using eoParseTree<FType, Node >::size;
+    using parse_tree<Node>::back;
+    using parse_tree<Node>::ebegin;
+    using parse_tree<Node>::eend;
+    using parse_tree<Node>::size;
 
 
     typedef typename parse_tree<Node>::subtree Subtree;

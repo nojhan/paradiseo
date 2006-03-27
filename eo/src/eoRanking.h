@@ -39,7 +39,7 @@ class eoRanking : public eoPerf2Worth<EOT> // false: do not cache fitness
 {
 public:
 
-    using eoRanking< EOT >::value;
+    using eoPerf2Worth<EOT>::value;
 
   /* Ctor:
    @param _p selective pressure (in (1,2]

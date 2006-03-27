@@ -110,7 +110,7 @@ template <class EOT> class eoAverageStat : public eoStat<EOT, typename EOT::Fitn
 {
 public :
 
-    using eoAverageStat< EOT >::value;
+    using eoStat<EOT, typename EOT::Fitness>::value;
 
     typedef typename EOT::Fitness Fitness;
 
@@ -169,7 +169,7 @@ class eoSecondMomentStats : public eoStat<EOT, std::pair<double, double> >
 {
 public :
 
-    using eoSecondMomentStats< EOT >::value;
+    using eoStat<EOT, std::pair<double, double> >::value;
 
     typedef typename EOT::Fitness fitness_type;
 
@@ -212,7 +212,7 @@ class eoNthElementFitnessStat : public eoSortedStat<EOT, typename EOT::Fitness >
 #endif
 {
 public :
-    using eoNthElementFitnessStat< EOT >::value;
+    using eoSortedStat<EOT, typename EOT::Fitness >::value;
 
     typedef typename EOT::Fitness Fitness;
 
@@ -318,7 +318,7 @@ class eoBestFitnessStat : public eoStat<EOT, typename EOT::Fitness>
 {
 public:
 
-    using eoBestFitnessStat< EOT >::value;
+    using eoStat<EOT, typename EOT::Fitness>::value;
 
     typedef typename EOT::Fitness Fitness;
 

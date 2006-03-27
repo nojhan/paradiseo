@@ -40,7 +40,7 @@ class eoFDCStat : public eoStat<EOT, double>
 {
 public:
 
-    using eoFDCStat < EOT>::value;
+    using eoStat<EOT, double>::value;
 
     /** Ctor without the optimum */
   eoFDCStat(eoDistance<EOT> & _dist, std::string _description = "FDC") :

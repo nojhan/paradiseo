@@ -38,7 +38,7 @@ class eoEsStdev : public eoVector<Fit, double>
 {
 public:
 
-    using eoEsStdev<Fit>::size;
+    using eoVector<Fit, double>::size;
 
     typedef double Type;
 

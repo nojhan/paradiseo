@@ -42,11 +42,12 @@ template <class EOT>
 class eoNDSorting : public eoPerf2WorthCached<EOT, double>
 {
   public :
-      
-    using eoNDSorting< EOT >::value;
-      eoNDSorting(bool nasty_flag_ = false) : nasty_declone_flag_that_only_is_implemented_for_two_objectives(nasty_flag_)
-      {}
-	  
+
+    using eoPerf2WorthCached<EOT, double>::value;
+      eoNDSorting(bool nasty_flag_ = false)
+          : nasty_declone_flag_that_only_is_implemented_for_two_objectives(nasty_flag_)
+        {}
+
 
     eoNDSorting()
         : nasty_declone_flag_that_only_is_implemented_for_two_objectives(false)
@@ -433,9 +434,9 @@ template <class EOT>
 class eoNDSorting_II : public eoNDSorting<EOT>
 {
   public:
-    
+
     eoNDSorting_II(bool nasty_flag_ = false) : eoNDSorting<EOT>(nasty_flag_) {}
-      
+
   typedef std::pair<double, unsigned> double_index_pair;
 
   class compare_nodes

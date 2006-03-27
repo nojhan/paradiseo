@@ -56,8 +56,8 @@ class eoEsChromInit : public eoRealInitBounded<EOT>
 {
 public:
 
-    using eoEsChromInit<EOT>::size;
-    using eoEsChromInit<EOT>::theBounds;
+    using eoRealInitBounded<EOT>::size;
+    using eoRealInitBounded<EOT>::theBounds;
 
     typedef typename EOT::Fitness FitT;
 

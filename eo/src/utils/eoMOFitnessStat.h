@@ -37,7 +37,7 @@ class eoFitnessStat : public eoSortedStat<EOT, std::vector<FitT> >
 {
 public :
 
-    using eoFitnessStat< EOT, FitT >::value;
+    using eoSortedStat<EOT, std::vector<FitT> >::value;
 
     eoFitnessStat(std::string _description = "AllFitnesses") :
       eoSortedStat<EOT,std::vector<FitT> >(std::vector<FitT>(0), _description) {}
@@ -67,7 +67,7 @@ class eoMOFitnessStat : public eoSortedStat<EOT, std::vector<PartFitT> >
 {
 public:
 
-    using eoMOFitnessStat< EOT, PartFitT >::value;
+    using eoSortedStat<EOT, std::vector<PartFitT> >::value;
 
   /** Ctor: say what component you want
    */

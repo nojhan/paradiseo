@@ -89,8 +89,8 @@ class eoSequentialOp : public eoOpContainer<EOT>
 {
 public:
 
-    using eoOpContainer< EOT >::ops;
-    using eoOpContainer< EOT >::rates;
+    using eoOpContainer<EOT>::ops;
+    using eoOpContainer<EOT>::rates;
 
     typedef unsigned position_type;
 

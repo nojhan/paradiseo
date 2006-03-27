@@ -41,7 +41,7 @@ class eoEsFull : public eoVector<Fit, double>
 {
 public:
 
-    using eoEsFull< Fit >::size;
+    using eoVector<Fit, double>::size;
 
 
     typedef double Type;

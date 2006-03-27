@@ -52,7 +52,7 @@ class eoPopStat : public eoStat<EOT, std::string>
 {
 public:
 
-    using eoPopStat< EOT>::value;
+    using eoStat<EOT, std::string>::value;
 
   /** default Ctor, void std::string by default, as it appears
       on the description line once at beginning of evolution. and
@@ -97,7 +97,7 @@ class eoSortedPopStat : public eoSortedStat<EOT, std::string>
 {
 public:
 
-    using eoSortedPopStat< EOT>::value;
+    using eoSortedStat<EOT, std::string>::value;
 
     /** default Ctor, void std::string by default, as it appears on
         the description line once at beginning of evolution. and is

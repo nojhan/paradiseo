@@ -44,7 +44,7 @@ class eoPerf2Worth : public eoUF<const eoPop<EOT>&, void>, public eoValueParam<s
 {
 public:
 
-    using eoPerf2Worth<EOT, WorthT>::value;
+    using eoValueParam<std::vector<WorthT> >::value;
 
     /** @brief default constructor */
     eoPerf2Worth(std::string _description = "Worths")

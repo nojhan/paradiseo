@@ -47,7 +47,7 @@ class eoAssembledFitnessAverageStat : public eoStat<EOT, double>
 {
 public :
 
-    using eoAssembledFitnessAverageStat< EOT >::value;
+    using eoStat<EOT, double>::value;
 
     typedef typename EOT::Fitness Fitness;
 
@@ -88,7 +88,7 @@ class eoAssembledFitnessBestStat : public eoStat<EOT, double>
 {
 public:
 
-    using eoAssembledFitnessBestStat< EOT >::value;
+    using eoStat<EOT, double>::value;
 
     typedef typename EOT::Fitness Fitness;
 
