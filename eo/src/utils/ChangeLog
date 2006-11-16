@@ -1,0 +1,15 @@
+2006-11-16  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* eoParser.h (eoParser::getORcreateParam): Make this a real if-then-else
+	clause around ptParam (found or not).
+
+	* eoParam.h (eoValueParam::setValue): Document.
+	(eoValueParam<std::vector<double> >::setValue): Allow delimiters ',' and
+	';'. A plain ' ' does not work, as it is not correctly read by
+	eoParser::readFrom. 
+
+	* Local Variables:
+	* coding: iso-8859-1
+	* mode: flyspell
+	* fill-column: 80
+	* End:

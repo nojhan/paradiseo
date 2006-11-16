@@ -24,6 +24,7 @@ Contact: http://eodev.sourceforge.net
 #ifndef _eoEsChromInit_H
 #define _eoEsChromInit_H
 
+#include <algorithm>
 #include <cmath>
 #include <vector>
 
@@ -106,9 +107,12 @@ public:
     @param _bounds bounds for uniform initialization
     @param _sigma initial value for the stddev
     */
-    eoEsChromInit(eoRealVectorBounds& _bounds, std::vector<double> _vecSigma)
+    eoEsChromInit(eoRealVectorBounds& _bounds, const std::vector<double>& _vecSigma)
         : eoRealInitBounded<EOT>(_bounds), uniqueSigma(_vecSigma[0]), vecSigma(_vecSigma)
-        {}
+        {
+            assert(_bounds.size() == size());
+            assert(_vecSigma.size() == size());
+        }
 
 
     void operator()(EOT& _eo)

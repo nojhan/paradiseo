@@ -53,7 +53,7 @@ It returns an eoInit<EOT> tha can later be used to initialize the population
 It uses a parser (to get user parameters) and a state (to store the memory) the
 last argument is to disambiguate the call upon different instanciations.
 
-WARNING: that last argument will generally be the result of calling the default
+@warning: that last argument will generally be the result of calling the default
 ctor of EOT, resulting in most cases in an EOT that is ***not properly
 initialized***
 */
@@ -68,7 +68,7 @@ eoEsChromInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
     eoValueParam<unsigned>& vecSize
         = _parser.getORcreateParam(unsigned(10), "vecSize",
                                    "The number of variables ",
-                                   'n',"Genotype Initialization");
+                                   'n', "Genotype Initialization");
     // to build an eoReal Initializer, we need bounds: [-1,1] by default
     eoValueParam<eoRealVectorBounds>& boundsParam
         = _parser.getORcreateParam(eoRealVectorBounds(vecSize.value(), -1, 1),
@@ -80,43 +80,30 @@ eoEsChromInit<EOT> & do_make_genotype(eoParser& _parser, eoState& _state, EOT)
     eoValueParam<std::string>& sigmaParam
         = _parser.getORcreateParam(std::string("0.3"), "sigmaInit",
                                    "Initial value for Sigmas (with a '%' -> scaled by the range of each variable)",
-				   's',"Genotype Initialization");
-    // check if there is a vecSigmaInit
-    eoParam *vecSigmaParam = _parser.getParamWithLongName("vecSigmaInit");
-    if(vecSigmaParam) {
-        eoValueParam<std::vector<double> >& vecSigmaParam
-            = _parser.getORcreateParam(std::vector<double>(vecSize.value(), 0.3),
-                                       "vecSigmaInit", "Initial value for Sigma(s)",
-                                       'V',"Genotype Initialization");
-        init = new eoEsChromInit<EOT>(boundsParam.value(), vecSigmaParam.value());
-    } else {
-        // now some initial value for sigmas - even if useless?
-        // should be used in Normal mutation
-        eoValueParam<std::string>& sigmaParam
-            = _parser.getORcreateParam(std::string("0.3"), "sigmaInit",
-                                       "Initial value for Sigmas "
-                                       "(with '%' scaled by the range of each variable)",
-                                       's',"Genotype Initialization");
-        // check for %
-        bool to_scale = false;
-        size_t pos =  sigmaParam.value().find('%');
-        if(pos < sigmaParam.value().size())
-        {
-            //  found a % - use scaling and get rid of '%'
-            to_scale = true;
-            sigmaParam.value().resize(pos);
-        }
-        std::istringstream is(sigmaParam.value());
-        double sigma;
-        is >> sigma;
-        // minimum check
-        if(sigma < 0)
-            throw std::runtime_error("Negative sigma in make_genotype");
+				   's', "Genotype Initialization");
+    // check for %
+    bool to_scale = false;
+    size_t pos =  sigmaParam.value().find('%');
+    if(pos < sigmaParam.value().size()) {
+        //  found a % - use scaling and get rid of '%'
+        to_scale = true;
+        sigmaParam.value().resize(pos);
+    }
+    std::istringstream is(sigmaParam.value());
+    double sigma;
+    is >> sigma;
+    // minimum check
+    if(sigma < 0)
+        throw std::runtime_error("Negative sigma in make_genotype");
+    if(to_scale)
         init = new eoEsChromInit<EOT>(boundsParam.value(), sigma, to_scale);
+    else {
         // define parameter
-        _parser.getORcreateParam(std::vector<double>(vecSize.value(), 0.3),
-                                 "vecSigmaInit", "Initial value for Sigma(s)",
-                                 'V',"Genotype Initialization");
+        eoValueParam<std::vector<double> >& vecSigmaParam
+            = _parser.getORcreateParam(std::vector<double>(vecSize.value(), sigma), "vecSigmaInit",
+                                       "Initial value for Sigmas (only used when initSigma is not scaled)",
+                                       'S', "Genotype Initialization");
+        init = new eoEsChromInit<EOT>(boundsParam.value(), vecSigmaParam.value());
     }
     // store in state
     _state.storeFunctor(init);

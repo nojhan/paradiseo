@@ -184,6 +184,19 @@ public :
         }
 
 
+    /** @brief Set value according to the speciied string
+
+    For scalar types the textual represenation is typically quite
+    straigtforward.
+
+    For vector<double> we expect a list of numbers, where the first is
+    an unsigned integer taken as the length ot the vector and then
+    successively the vector elements. Vector elements can be separated
+    by ',', ';', or ' '. Note, however, that eoParser does not deal
+    correctly with parameter values contianing spaces (' ').
+
+    @param _value Textual representation of the new value
+    */
     void setValue(const std::string& _value)
         {
             std::istringstream is(_value);
@@ -290,11 +303,18 @@ inline std::string eoValueParam<std::vector<double> >::getValue(void) const
 template <>
 inline void eoValueParam<std::vector<double> >::setValue(const std::string& _value)
 {
+    static const std::string delimiter(",;");
     std::istringstream is(_value);
     unsigned sz;
     is >> sz;
     repValue.resize(sz);
-    std::copy(std::istream_iterator<double>(is), std::istream_iterator<double>(), repValue.begin());
+    for(unsigned i=0; i<repValue.size(); ++i) {
+        char c;
+        do {
+            is >> c;
+        } while((std::string::npos != delimiter.find(c)) && (! is.eof()));
+        is >> repValue[i];
+    }
 }
 
 // The std::vector<eoMinimizingFitness>

@@ -218,7 +218,6 @@ void eoParser::readFrom(istream& is)
 
                     string name(str.begin() + 2, equalLocation);
                     longNameMap[name] = value;
-
 		}
                 else // it should be a char
 		{

@@ -180,13 +180,14 @@ public:
             eoParam* ptParam = getParamWithLongName(_longName);
             if (ptParam) {
                 // found
-                eoValueParam<ValueType>* ptTypedParam =
-                    dynamic_cast<eoValueParam<ValueType>*>(ptParam);
+                eoValueParam<ValueType>* ptTypedParam(
+                    dynamic_cast<eoValueParam<ValueType>*>(ptParam));
                 return *ptTypedParam;
+            } else {
+                // not found -> create it
+                return createParam(_defaultValue, _longName, _description,
+                                   _shortHand, _section, _required);
             }
-            // not found -> create it
-            return createParam (_defaultValue, _longName, _description,
-                                _shortHand, _section, _required);
         }
 
 
