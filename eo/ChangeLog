@@ -1,5 +1,9 @@
+2006-11-16  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
 
+	* configure.in (AC_DEBUG): add test
 
+	* acinclude.m4 (AC_DEBUG): Define debug-feature and set DEBUG, NODEBUG,
+	or NDEBUG according to its value.
 
 	* Local Variables:
 	* coding: iso-8859-1

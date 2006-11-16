@@ -46,6 +46,7 @@ AC_CHECK_LIB(m, cos)
 
 dnl user-switches
 AC_APPLICATIONS
+AC_DEBUG
 AC_GNUPLOT
 AC_TUTORIAL
 

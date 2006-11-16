@@ -19,6 +19,29 @@ AC_DEFUN([AC_APPLICATIONS],[dnl
 
 
 
+# AC_DEBUG()
+#
+# Check for commandline options requesting DEBUG feature.
+# Might define DEBUG, NODEBUG, or NDEBUG, depending on flags given.
+AC_DEFUN([AC_DEBUG],[dnl
+  AC_ARG_ENABLE([debug], 
+    AC_HELP_STRING([--enable-debug], [include debugging code (default=no)]),
+    [ case "${enableval}" in
+      yes) debug=true ;;
+      no) debug=false ;;
+      *) AC_MSG_ERROR(bad value ${enableval} for debug option) ;;
+    esac],
+    [debug=false])
+  if test "$debug" = true; then
+    AC_DEFINE([DEBUG], true, [Debugging flag])
+  else
+    AC_DEFINE([NDEBUG], true, [no debugging])
+    AC_DEFINE([NODEBUG], true, [no debugging])
+  fi
+])
+
+
+
 # AC_GNUPLOT()
 #
 # Compile applications unless user requests not to do it.
