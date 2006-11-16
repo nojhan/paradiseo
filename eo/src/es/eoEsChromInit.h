@@ -25,6 +25,7 @@ Contact: http://eodev.sourceforge.net
 #define _eoEsChromInit_H
 
 #include <algorithm>
+#include <cassert>
 #include <cmath>
 #include <vector>
 

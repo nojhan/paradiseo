@@ -5,8 +5,7 @@
 	always use vecSigmaInit with default all values of sigmaInit.
 
 	* eoEsChromInit.h (class eoEsChromInit):  Take const-reference to sigma-vector.
-
-
+	include <cassert>
 
 	* Local Variables:
 	* coding: iso-8859-1
