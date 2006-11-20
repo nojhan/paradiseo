@@ -32,11 +32,19 @@ Contact: todos@geneura.ugr.es, http://geneura.ugr.es
 //
 // The C99-standard defines uint32_t to be declared in stdint.h, but some
 // systmes don't have that and implement it in inttypes.h.
+
+// first if check added for MSVC by Jeroen Eggermont 20-11-2006, needed for MSVC 2003 (and 2005)
+# if (defined _MSC_VER)
+typedef unsigned long uint32_t;
+#include <cmath>
+#else
 #if (! defined __sun)
 #include <stdint.h>
 #else
 #include <inttypes.h>
 #endif
+#endif
+
 
 #include <vector>
 #include "eoPersistent.h"

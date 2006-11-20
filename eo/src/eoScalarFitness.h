@@ -59,6 +59,11 @@ class eoScalarFitness
     bool operator<(const eoScalarFitness& other) const
     { return Compare()(value, other.value); }
 
+	/// Comparison, using less by default
+	//  needed for MSVC 8 (MSVC 2005) added by J.Eggermont 20-11-2006
+    bool operator<(const ScalarType& other) const
+    { return Compare()(value, other); }
+
     // implementation of the other operators
     bool operator>( const eoScalarFitness<ScalarType, Compare>& y ) const  { return y < *this; }
     // implementation of the other operators

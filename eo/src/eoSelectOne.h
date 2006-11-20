@@ -37,7 +37,7 @@
 
       @see eoSelectMany, eoSelectRandom, eoDetTournament, eoStochTournament, eoProportional
 */
-#ifdef _MSC_VER
+#if  defined(_MSC_VER) && (_MSC_VER < 1300)
 template<class EOT, class WorthT = EOT::Fitness>
 #else
 template<class EOT, class WorthT = typename EOT::Fitness>

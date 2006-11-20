@@ -208,6 +208,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 	fileMonitor->add(*secondStat);
       }
 
+#if !defined(NO_GNUPLOT)
     if (plotBestParam.value())    // an eoGnuplot1DMonitor for best & average
       {
 	std::string stmp = dirNameParam.value() + "/gnu_best.xg";
@@ -240,7 +241,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoEval
 	// and of course add it to the checkpoint
 	checkpoint->add(*fitSnapshot);
       }
-
+#endif
     //////////////////////////////////
     // State savers
     //////////////////////////////

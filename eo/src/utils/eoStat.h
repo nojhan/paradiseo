@@ -102,7 +102,7 @@ public :
 
    ( For eoScalarFitnessAssembled user eoAssembledFitnessStat classes.)
 */
-#ifdef _MSC_VER
+#if  defined(_MSC_VER) && (_MSC_VER < 1300)
 template <class EOT> class eoAverageStat : public eoStat<EOT, EOT::Fitness>
 #else
 template <class EOT> class eoAverageStat : public eoStat<EOT, typename EOT::Fitness>
@@ -203,7 +203,7 @@ public :
 /**
     The n_th element fitness in the population (see eoBestFitnessStat)
 */
-#ifdef _MSC_VER
+#if  defined(_MSC_VER) && (_MSC_VER < 1300)
 template <class EOT>
 class eoNthElementFitnessStat : public eoSortedStat<EOT, EOT::Fitness >
 #else
@@ -308,7 +308,7 @@ public :
    ( For eoScalarFitnessAssembled look at eoAssembledFitnessStat )
 */
 
-#ifdef _MSC_VER
+#if  defined(_MSC_VER) && (_MSC_VER < 1300)
 template <class EOT>
 class eoBestFitnessStat : public eoStat<EOT, EOT::Fitness>
 #else
