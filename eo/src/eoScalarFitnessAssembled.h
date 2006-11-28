@@ -209,7 +209,7 @@ public:
       os << FitnessTraits::getDescription(i) << " = " << operator[](i) << " ";
   }
 
-  // Comparison, using less by default
+  //! Comparison, using less by default
   bool operator<(const eoScalarFitnessAssembled& other) const{
     if ( empty() || other.empty() )
       return false;
@@ -217,6 +217,12 @@ public:
       return Compare()( front() , other.front() );
   }
 
+  //! Comparison with ScalarTypes. Explicit definition needed to compile with VS 8.0
+  bool operator<(ScalarType x) const{
+  	eoScalarFitnessAssembled ScalarFitness(x);
+  	return this->operator<(ScalarFitness);
+  }
+  
   // implementation of the other operators
   bool operator>( const eoScalarFitnessAssembled<ScalarType, Compare, FitnessTraits>& y ) const  { return y < *this; }
 
