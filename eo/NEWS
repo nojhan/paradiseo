@@ -1,9 +1,9 @@
 * release 0.9.4 (not yet released)
+  - Implement CMA-ES.
   - Update introductory pages of documentation and webpage.
   - Remove support for pre-standard C++ compiler (i.e. gcc-2.x), which allows to
     clean up the code considerably. Assume availability of sstream and limits.
-  - Implement CMA-ES.
-  
+  - Add Microsoft Visual C++ project support files
 
 * release 0.9.3z.1 (1. Oct. 2005)
   - Support gcc-3.4 and gcc.4.x.
