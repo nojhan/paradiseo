@@ -1,3 +1,7 @@
+2006-11-30  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* eoRNG.h: Generally include <cmath>
+
 2006-11-16  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
 
 	* eoParser.h (eoParser::getORcreateParam): Make this a real if-then-else
