@@ -40,7 +40,7 @@ class eoExternalEO : public EO<Fit>, virtual public External
 {
 public :
 
-    eoExternalEO(void)
+    eoExternalEO()
         : EO<Fit>(), External()
         {}
 

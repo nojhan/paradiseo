@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoTimedMonitor.h
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2005
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -40,8 +40,8 @@
 class eoTimedMonitor : public eoMonitor
 {
 public :
-    eoTimedMonitor(int seconds_) : seconds(seconds_), last_tick(0) {}
-    
+    eoTimedMonitor(int seconds_) : last_tick(0), seconds(seconds_) {}
+
     eoMonitor& operator()(void) {
 	bool monitor = false;
 	if (last_tick == 0) {
@@ -65,7 +65,7 @@ public :
     }
 
     void add(eoMonitor& mon) { monitors.push_back(&mon); }
-    
+
   virtual std::string className(void) const { return "eoTimedMonitor"; }
 private :
   clock_t last_tick;

@@ -18,7 +18,8 @@ You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-Contact: todos@geneura.ugr.es, http://geneura.ugr.es
+Contact: eodev-main@lists.sourceforge.net
+Old contact information: todos@geneura.ugr.es, http://geneura.ugr.es
 */
 
 #ifndef EO_RANDOM_NUMBER_GENERATOR
@@ -26,18 +27,17 @@ Contact: todos@geneura.ugr.es, http://geneura.ugr.es
 
 // uint32_t is an unsigned integer type capable of holding 32 bits.
 //
-// In the applicatione here exactly 32 but should typically be fastest, but 64
-// might be better on an Alpha with GCC at -O3 optimization so try your options
-// and see what's best for you.
-//
-// The C99-standard defines uint32_t to be declared in stdint.h, but some
-// systems don't have that and implement it in inttypes.h.
+// In the applicatione here exactly 32 are used.
+// 64 bits might be better on an Alpha or other 64 bit systems with GCC at high
+// optimization levels so feel free to try your options and see what's best for
+// you.
 
-// first if check added for MSVC by Jeroen Eggermont 20-11-2006, needed for MSVC 2003 (and 2005)
 # if (defined _MSC_VER)
 typedef unsigned long uint32_t;
 #else
 #if (! defined __sun)
+// The C99-standard defines uint32_t to be declared in stdint.h, but some
+// systems don't have that and implement it in inttypes.h.
 #include <stdint.h>
 #else
 #include <inttypes.h>
@@ -125,7 +125,7 @@ public :
             initialize(2*s);
         }
 
-    ~eoRng(void)
+    ~eoRng()
         {
             delete [] state;
         }
@@ -188,7 +188,7 @@ public :
     /**
     normal() zero mean gaussian deviate with standard deviation of 1
     */
-    double normal(void);        // gaussian mutation, stdev 1
+    double normal();        // gaussian mutation, stdev 1
 
     /**
     normal(stdev) zero mean gaussian deviate with user defined standard deviation
@@ -222,9 +222,10 @@ public :
     /**
     rand_max() the maximum returned by rand()
     */
-    uint32_t rand_max(void) const { return uint32_t(0xffffffff); }
+    uint32_t rand_max() const { return uint32_t(0xffffffff); }
 
-    /**
+    /** Roulette wheel selection
+
     roulette_wheel(vec, total = 0) does a roulette wheel selection
     on the input std::vector vec. If the total is not supplied, it is
     calculated. It returns an integer denoting the selected argument.
@@ -298,11 +299,11 @@ public :
             _is >> cacheValue;
         }
 
-    std::string className(void) const { return "Mersenne-Twister"; }
+    std::string className() const { return "Mersenne-Twister"; }
 
 private:
 
-    uint32_t restart(void);
+    uint32_t restart();
 
 
     /* @brief Initialize state
@@ -360,7 +361,7 @@ private:
 
     int left;
 
-    // for normal distribution
+    /** @brief Are there cached values for normal distribution? */
     bool cached;
 
     double cacheValue;
@@ -405,11 +406,11 @@ using eo::rng;
 
 // Implementation of some eoRng members.... Don't mind the mess, it does work.
 
-
 #define hiBit(u)       ((u) & 0x80000000U)   // mask all but highest   bit of u
 #define loBit(u)       ((u) & 0x00000001U)   // mask all but lowest    bit of u
 #define loBits(u)      ((u) & 0x7FFFFFFFU)   // mask     the highest   bit of u
 #define mixBits(u, v)  (hiBit(u)|loBits(v))  // move hi bit of u to hi bit of v
+
 
 inline void eoRng::initialize(uint32_t seed)
 {
@@ -424,7 +425,7 @@ inline void eoRng::initialize(uint32_t seed)
 
 
 
-inline uint32_t eoRng::restart(void)
+inline uint32_t eoRng::restart()
 {
     register uint32_t *p0=state, *p2=state+2, *pM=state+M, s0, s1;
     register int    j;
@@ -446,15 +447,11 @@ inline uint32_t eoRng::restart(void)
 
 
 
-inline uint32_t eoRng::rand(void)
+inline uint32_t eoRng::rand()
 {
-
-    uint32_t y;
-
     if(--left < 0)
         return(restart());
-
-    y  = *next++;
+    uint32_t y  = *next++;
     y ^= (y >> 11);
     y ^= (y <<  7) & 0x9D2C5680U;
     y ^= (y << 15) & 0xEFC60000U;
@@ -463,58 +460,38 @@ inline uint32_t eoRng::rand(void)
 
 
 
-inline double eoRng::normal(void)
+inline double eoRng::normal()
 {
-    if (cached)
-    {
+    if (cached) {
         cached = false;
         return cacheValue;
     }
-
-    double rSquare, factor, var1, var2;
-
-    do
-    {
+    double rSquare, var1, var2;
+    do {
         var1 = 2.0 * uniform() - 1.0;
         var2 = 2.0 * uniform() - 1.0;
-
         rSquare = var1 * var1 + var2 * var2;
-    }
-    while (rSquare >= 1.0 || rSquare == 0.0);
-
-    factor = sqrt(-2.0 * log(rSquare) / rSquare);
-
+    } while (rSquare >= 1.0 || rSquare == 0.0);
+    double factor = sqrt(-2.0 * log(rSquare) / rSquare);
     cacheValue = var1 * factor;
     cached = true;
-
     return (var2 * factor);
 }
 
 
 
-namespace eo {
-    // a few convenience functions for generating numbers
-
+namespace eo
+{
     /** @brief Random function
 
-    Templatized random function, returns a random double in the range [0, max).
-
-    @param max Maximum for distribution
-
-    It works with most basic types such as:
-    - char
-    - int
-    - unsigned
-    - float
-    - double
-    */
-    template <typename T>
-    inline T random(const T& max) {
-        return static_cast<T>(rng.uniform() * max); }
-
-    /** @brief Random function
+    This is a convenience function for generating random numbers using the
+    global eo::rng object.
 
     Templatized random function, returns a random double in the range [min, max).
+    It works with most basic types such as:
+    - char
+    - int (short, long, signed and unsigned)
+    - float, double
 
     @param min Minimum for distribution
     @param max Maximum for distribution
@@ -525,7 +502,34 @@ namespace eo {
     inline T random(const T& min, const T& max) {
         return static_cast<T>(rng.uniform() * (max-min)) + min; }
 
-    /** Normal distribution */
+    /** @brief Random function
+
+    @overload
+
+    This is a convenience function for generating random numbers using the
+    global eo::rng object.
+
+    Templatized random function, returns a random double in the range [0, max).
+    It works with most basic types such as:
+    - char
+    - int (short, long, signed and unsigned)
+    - float, double
+
+    @param max Maximum for distribution
+
+    @see random(const T& min, const T& max)
+    */
+    template <typename T>
+    inline T random(const T& max) {
+        return static_cast<T>(rng.uniform() * max); }
+
+    /** Normal distribution
+
+    This is a convenience function for generating random numbers using the
+    global eo::rng object.
+
+    @return ormally distributed random number
+    */
     inline double normal() { return rng.normal(); }
 }
 
@@ -536,6 +540,7 @@ namespace eo {
 // Local Variables:
 // coding: iso-8859-1
 // mode: C++
+// c-file-offsets: ((c . 0))
 // c-file-style: "Stroustrup"
 // fill-column: 80
 // End:
