@@ -180,7 +180,7 @@ public :
     flip() tosses a biased coin such that flip(x/100.0) will
     returns true x% of the time
     */
-    bool flip(float bias=0.5)
+    bool flip(double bias=0.5)
         {
             return uniform() < bias;
         }
@@ -363,7 +363,7 @@ private:
     // for normal distribution
     bool cached;
 
-    float cacheValue;
+    double cacheValue;
 
     const int N;
 
@@ -471,7 +471,7 @@ inline double eoRng::normal(void)
         return cacheValue;
     }
 
-    float rSquare, factor, var1, var2;
+    double rSquare, factor, var1, var2;
 
     do
     {

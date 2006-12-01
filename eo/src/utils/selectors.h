@@ -143,7 +143,7 @@ template <class It>
 It roulette_wheel(It _begin, It _end, double total, eoRng& _gen = rng)
 {
 
-    float roulette = _gen.uniform(total);
+    double roulette = _gen.uniform(total);
 
     if (roulette == 0.0)	   // covers the case where total==0.0
       return _begin + _gen.random(_end - _begin); // uniform choice
@@ -161,7 +161,7 @@ It roulette_wheel(It _begin, It _end, double total, eoRng& _gen = rng)
 template <class EOT>
 const EOT& roulette_wheel(const eoPop<EOT>& _pop, double total, eoRng& _gen = rng)
 {
-    float roulette = _gen.uniform(total);
+    double roulette = _gen.uniform(total);
 
     if (roulette == 0.0)	   // covers the case where total==0.0
       return _pop[_gen.random(_pop.size())]; // uniform choice

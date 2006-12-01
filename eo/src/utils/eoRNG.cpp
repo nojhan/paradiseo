@@ -9,6 +9,6 @@
 namespace eo
 {
     /// The Global random number generator.
-    eoRng rng(time(0));
+    eoRng rng( (uint32_t) time(0) );
 }
 
