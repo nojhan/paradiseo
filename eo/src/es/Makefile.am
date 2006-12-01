@@ -46,9 +46,11 @@ libcma_a_SOURCES	= eig.cpp \
 
 cmaincludedir		= $(pkgincludedir)/es
 
-cmainclude_HEADERS	= eig.h \
+cmainclude_HEADERS	=  CMAParams.h \
 			CMAState.h \
-			matrices.h \
-			CMAParams.h 
+			eig.h \
+			eoCMAInit.h \
+			eoCMABreed.h \
+			matrices.h 
 
 AM_CXXFLAGS		= -I$(top_srcdir)/src

@@ -47,6 +47,7 @@ utilsinclude_HEADERS 	= checkpointing \
 			eoState.h \
 			eoStdoutMonitor.h \
 			eoTimeCounter.h \
+			eoTimedMonitor.h \
 			eoUniformInit.h \
 			eoUpdatable.h \
 			eoUpdater.h \
