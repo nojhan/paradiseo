@@ -110,7 +110,7 @@ public:
                         _chrom.virusBitSet(i, false);
                     }
                 } else {
-                    if ( i - 1 > 0 ) {
+                    if ( i > 1 ) {
                         _chrom.virusBitSet(i-1,true);
                         _chrom.virusBitSet(i, false);
                     }
