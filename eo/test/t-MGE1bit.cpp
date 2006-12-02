@@ -22,7 +22,7 @@
 
 //-----------------------------------------------------------------------------
 
-typedef eoVirus<float> Chrom;
+typedef eoVirus<double> Chrom;
 
 //-----------------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ int main()
   RoyalRoad<Chrom> rr( 8 );
   eoEvalFuncCounter<Chrom> eval( rr );
 
-  eoInitVirus1bit<float> random(CHROM_SIZE, gen);
+  eoInitVirus1bit<double> random(CHROM_SIZE, gen);
   for (i = 0; i < POP_SIZE; ++i) {
       Chrom chrom;
       random(chrom);
@@ -55,9 +55,9 @@ int main()
   eoStochTournamentSelect<Chrom> lottery(0.9 );
 
   // breeder
-  VirusShiftMutation<float> vm;
-  VirusTransmission<float> vt;
-  VirusBitFlip<float> vf;
+  VirusShiftMutation<double> vm;
+  VirusTransmission<double> vt;
+  VirusBitFlip<double> vf;
   eoUBitXover<Chrom> xover;
   eoProportionalOp<Chrom> propSel;
   eoGeneralBreeder<Chrom> breeder( lottery, propSel );
