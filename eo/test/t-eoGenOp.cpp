@@ -35,16 +35,15 @@
 
 struct Dummy : public EO<double>
 {
-  typedef double Type;
-  Dummy(std::string _s="") : s(_s) {}
+    Dummy(std::string _s="") : s(_s) {}
 
-  void printOn(std::ostream & _os) const
-  {
-    EO<double>::printOn(_os);
-    _os << " - " << s ;
-  }
+    void printOn(std::ostream & _os) const
+        {
+            EO<double>::printOn(_os);
+            _os << " - " << s ;
+        }
 
-  std::string s;
+    std::string s;
 };
 
 typedef Dummy EOT;
@@ -180,18 +179,18 @@ void init(eoPop<Dummy> & _pop, unsigned _pSize)
   for (unsigned i=0; i<_pSize; i++)
     {
 	std::ostringstream os;
-      os << i << std::ends;
-      _pop[i] = Dummy(os.str());
-      _pop[i].fitness(i);
+        os << i;
+        _pop[i] = Dummy(os.str());
+        _pop[i].fitness(i);
     }
 }
 
 // ok, now for the real work
 int the_main(int argc, char **argv)
 {
-
-  eoParser parser(argc, argv);
-  eoValueParam<unsigned int> parentSizeParam = parser.createParam(unsigned(10), "parentSize", "Parent size",'P');
+    eoParser parser(argc, argv);
+    eoValueParam<unsigned int> parentSizeParam(
+        parser.createParam(unsigned(10), "parentSize", "Parent size",'P'));
     pSize = parentSizeParam.value(); // global variable
 
     eoValueParam<uint32_t> seedParam(time(0), "seed", "Random number seed", 'S');
@@ -269,7 +268,7 @@ int the_main(int argc, char **argv)
   init(pop, pSize);
 // sort pop so seqPopulator is identical to SelectPopulator(SequentialSelect)
   pop.sort();
-  std::cout << "Population initiale\n" << pop << std::endl;
+  std::cout << "Population initiale" << std::endl << pop << std::endl;
 
   // To simulate SGA: first a prop between quadOp and quadClone
   eoProportionalOp<EOT> pSGAOp;

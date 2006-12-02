@@ -27,11 +27,11 @@
 #ifndef _eoTimedMonitor_h
 #define _eoTimedMonitor_h
 
+#include <ctime>
 #include <string>
 
 #include <utils/eoMonitor.h>
 #include <eoObject.h>
-#include <time.h>
 
 /**
     Holds a collection of monitors and only fires them when a time limit
@@ -39,8 +39,14 @@
 */
 class eoTimedMonitor : public eoMonitor
 {
-public :
-    eoTimedMonitor(int seconds_) : last_tick(0), seconds(seconds_) {}
+public:
+
+    /** Constructor
+
+    No negative time can be specified, use 0 if you want it to fire "always".
+    @param seconds_ Specify time limit (s).
+    */
+    eoTimedMonitor(unsigned seconds_) : last_tick(0), seconds(seconds_) {}
 
     eoMonitor& operator()(void) {
 	bool monitor = false;
@@ -67,10 +73,14 @@ public :
     void add(eoMonitor& mon) { monitors.push_back(&mon); }
 
   virtual std::string className(void) const { return "eoTimedMonitor"; }
-private :
-  clock_t last_tick;
-  int seconds;
-  std::vector<eoMonitor*> monitors;
+
+private:
+
+    clock_t last_tick;
+
+    unsigned seconds;
+
+    std::vector<eoMonitor*> monitors;
 };
 
 #endif

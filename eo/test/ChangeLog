@@ -1,0 +1,15 @@
+2006-12-02  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* t-eoGenOp.cpp (init): Do not add std::ends to end of string, as this
+	results in escape-codes (^@) to be printed at runtime and is not
+	necessary anyway.
+
+	* test/t-eoSymreg.cpp (SymregNode::operator()): Initialize r1 and r2 to
+	avoid compiler warnings.
+
+
+	* Local Variables:
+	* coding: iso-8859-1
+	* mode: flyspell
+	* fill-column: 80
+	* End:
