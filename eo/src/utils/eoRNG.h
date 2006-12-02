@@ -104,7 +104,7 @@ would be nice to Cc: <Cokus@math.washington.edu> and
 <h1>Portability</h1>
 
 Note for people porting EO to other platforms: please make sure that the type
-uint32_t in the file eoRng.h is exactly 32 bits long. It may in principle be
+uint32_t in the file eoRNG.h is exactly 32 bits long. It may in principle be
 longer, but not shorter. If it is longer, file compatibility between EO on
 different platforms may be broken.
 */
@@ -119,12 +119,13 @@ public :
     @see reseed for details on usage of the seeding value.
     */
     eoRng(uint32_t s)
-        : state(0), next(0), left(-1), cached(false), N(624), M(397), K(0x9908B0DFU)
+        : state(0), next(0), left(-1), cached(false)
         {
             state = new uint32_t[N+1];
             initialize(2*s);
         }
 
+    /** Destructor */
     ~eoRng()
         {
             delete [] state;
@@ -160,58 +161,75 @@ public :
             initialize(s);
         }
 
-    /**
-    uniform(m = 1.0) returns a random double in the range [0, m)
+    /** Radnom number from unifom distribution
+
+    @param m Define interval for random number to [0, m)
+    @return random number in the range [0, m)
     */
     double uniform(double m = 1.0)
         { // random number between [0, m]
             return m * double(rand()) / double(1.0 + rand_max());
         }
 
-    /**
-    random() returns a random integer in the range [0, m)
+    /** Radnom integer number from unifom distribution
+
+    @param m Define interval for random number to [0, m)
+    @return random integer in the range [0, m)
     */
     uint32_t random(uint32_t m)
         {
             return uint32_t(uniform() * double(m));
         }
 
-    /**
-    flip() tosses a biased coin such that flip(x/100.0) will
-    returns true x% of the time
+    /** Biased coin toss
+
+    This tosses a biased coin such that flip(x/100.0) will true x% of the time
+
+    @param bias The coins' bias (the \e x above)
+    @return The result of the biased coin toss
     */
     bool flip(double bias=0.5)
         {
             return uniform() < bias;
         }
 
-    /**
-    normal() zero mean gaussian deviate with standard deviation of 1
-    */
-    double normal();        // gaussian mutation, stdev 1
+    /** Gaussian deviate
 
-    /**
-    normal(stdev) zero mean gaussian deviate with user defined standard deviation
+    Zero mean Gaussian deviate with standard deviation 1.
+
+    @return Random Gaussian deviate
+    */
+    double normal();
+
+    /** Gaussian deviate
+
+    Gaussian deviate with zero mean and specified standard deviation.
+
+    @param stdev Standard deviation for Gaussian distribution
+    @return Random Gaussian deviate
     */
     double normal(double stdev)
-        {
-            return stdev * normal();
-        }
+        { return normal(stdev); }
 
-    /**
-    normal(mean, stdev) user defined mean gaussian deviate with user defined standard deviation
+    /** Gaussian deviate
+
+    Gaussian deviate with specified mean and standard deviation.
+
+    @param mean Mean for Gaussian distribution
+    @param stdev Standard deviation for Gaussian distribution
+    @return Random Gaussian deviate
     */
     double normal(double mean, double stdev)
-        {
-            return mean + normal(stdev);
-        }
+        { return mean + normal(stdev); }
 
-    /**
-    Generates random numbers using a negative exponential distribution
+    /** Random numbers using a negative exponential distribution
+
+    @param mean Mean value of distribution
+    @return Random number from a negative exponential distribution
     */
     double negexp(double mean)
         {
-            return ( -mean*log((double)rand() / rand_max()));
+            return -mean*log(double(rand()) / rand_max());
         }
 
     /**
@@ -271,7 +289,10 @@ public :
     TYPE& choice(std::vector<TYPE>& vec)
         { return vec[random(vec.size())]; }
 
-    ///
+    /** @brief Print RNG
+
+    @param _os Stream to print RNG on
+    */
     void printOn(std::ostream& _os) const
         {
             for (int i = 0; i < N; ++i)
@@ -282,7 +303,10 @@ public :
             _os << left << ' ' << cached << ' ' << cacheValue;
         }
 
-    ///
+    /** @brief Read RNG
+
+    @param _is Stream to read RNG from
+    */
     void readFrom(std::istream& _is)
         {
             for (int i = 0; i < N; ++i)
@@ -304,7 +328,6 @@ public :
 private:
 
     uint32_t restart();
-
 
     /* @brief Initialize state
 
@@ -355,23 +378,28 @@ private:
     void initialize(uint32_t seed);
 
     /** @brief Array for the state */
-    uint32_t* state;
+    uint32_t *state;
 
-    uint32_t* next;
+    /** Pointer to next available random number */
+    uint32_t *next;
 
+    /** Number of random numbers currently left */
     int left;
 
-    /** @brief Are there cached values for normal distribution? */
+    /** @brief Is there a valid cached value for the normal distribution? */
     bool cached;
 
+    /** @brief Cached value for normal distribution? */
     double cacheValue;
 
-    const int N;
+    /** @brief Size of the state-vector */
+    static const int N;
 
-    const int M;
+    /** Internal constant */
+    static const int M;
 
     /** @brief Magic constant */
-    const uint32_t K;
+    static const uint32_t K;
 
 
     /** @brief Copy constructor
@@ -384,7 +412,7 @@ private:
     */
     eoRng(const eoRng&);
 
-    /** @brief Assignmant operator
+    /** @brief Assignment operator
 
     @see Copy constructor eoRng(const eoRng&).
     */
@@ -428,7 +456,7 @@ inline void eoRng::initialize(uint32_t seed)
 inline uint32_t eoRng::restart()
 {
     register uint32_t *p0=state, *p2=state+2, *pM=state+M, s0, s1;
-    register int    j;
+    register int j;
 
     left=N-1, next=state+1;
 
