@@ -16,9 +16,9 @@
     License along with this library; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-    Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-             Marc.Schoenauer@polytechnique.fr
-CVS Info: $Date: 2003-02-27 19:26:43 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/contrib/MGE/VirusOp.h,v 1.3 2003-02-27 19:26:43 okoenig Exp $ $Author: okoenig $
+    Contact:     eodev-main@lists.sourceforge.net
+    old contact: todos@geneura.ugr.es, http://geneura.ugr.es
+                 Marc.Schoenauer@polytechnique.fr
 */
 
 #ifndef VirusOp_h
@@ -31,7 +31,7 @@ CVS Info: $Date: 2003-02-27 19:26:43 $ $Header: /home/nojhan/dev/eodev/eodev_cvs
 #include <string>      // std::string
 
 #include <utils/eoRNG.h>
-#include "../contrib/MGE/eoVirus.h"
+#include "eoVirus.h"
 
 /** VirusBitFlip --> changes 1 bit
 */
@@ -42,10 +42,10 @@ class VirusBitFlip: public eoMonOp<eoVirus<FitT> > {
   /// The class name.
   virtual std::string className() const { return "VirusBitFlip"; };
 
-  /**
-   * Change one bit.
-   * @param chrom The cromosome which one bit is going to be changed.
-   */
+  /** Change one bit.
+
+  @param chrom The cromosome which one bit is going to be changed.
+  */
   bool operator()(eoVirus<FitT>& _chrom) {
       unsigned i = eo::rng.random(_chrom.size());
       _chrom.virusBitSet(i, _chrom.virusBit(i) ? false : true );
@@ -53,71 +53,72 @@ class VirusBitFlip: public eoMonOp<eoVirus<FitT> > {
   }
 };
 
+
 template<class FitT>
 class VirusMutation: public eoMonOp<eoVirus<FitT> > {
- public:
-  /// The class name.
-  virtual std::string className() const { return "VirusMutation"; };
+public:
+    /// The class name.
+    virtual std::string className() const { return "VirusMutation"; };
 
-  /**
-   * Change one bit.
-   * @param chrom The cromosome which one bit is going to be changed.
-   */
-  bool operator()(eoVirus<FitT>& _chrom) {
+    /** Change one bit.
+
+    @param chrom The cromosome which one bit is going to be changed.
+    */
+    bool operator()(eoVirus<FitT>& _chrom) {
 	// Search for virus bits
         std::vector<unsigned> bitsSet;
 	for ( unsigned i = 0; i < _chrom.size(); i ++ ) {
-	  if ( _chrom.virusBit(i) ) {
+            if ( _chrom.virusBit(i) ) {
 		bitsSet.push_back( i );
-	  }
+            }
 	}
 	if ( !bitsSet.size() ) {
-	  return false;
+            return false;
 	}
-    unsigned flipSite = eo::rng.random(bitsSet.size());
+        unsigned flipSite = eo::rng.random(bitsSet.size());
 	unsigned flipValue = bitsSet[ flipSite ];
 	_chrom[flipValue] = _chrom[flipValue] ? false : true;
 	return true;
-  }
+    }
 };
+
 
 /// Works for 1-bit virus; shifts the one to the right or left
 template<class FitT>
-class VirusShiftMutation: public eoMonOp<eoVirus<FitT> > {
- public:
+class VirusShiftMutation: public eoMonOp<eoVirus<FitT> >
+{
+public:
 
-  /// Ctor
-  VirusShiftMutation( ) {};
+    /// Ctor
+    VirusShiftMutation( ) {};
 
-  /// The class name.
-  virtual std::string className() const { return "VirusShiftMutation"; };
+    /// The class name.
+    virtual std::string className() const { return "VirusShiftMutation"; };
 
-  /**
-   * Change one bit.
-   * @param chrom The cromosome which one bit is going to be changed.
-   */
-  bool operator()(eoVirus<FitT>& _chrom) {
-	// Search for virus bits
-	eoBooleanGenerator gen;
-	for ( unsigned i = 0; i < _chrom.size(); i ++ ) {
-	  if ( _chrom.virusBit(i) ) {
-		if ( gen() ) {
-		  if ( i + 1 < _chrom.size() ) {
-			_chrom.virusBitSet(i+1,true);
-			_chrom.virusBitSet(i, false);
-		  }
-		} else {
-		  if ( i - 1 > 0 ) {
-			_chrom.virusBitSet(i-1,true);
-			_chrom.virusBitSet(i, false);
-		  }
-		}
-	  }
-	}
-	return true;
-  }
+    /** Change one bit.
 
- private:
+    @param chrom The cromosome which one bit is going to be changed.
+    */
+    bool operator()(eoVirus<FitT>& _chrom) {
+        // Search for virus bits
+        eoBooleanGenerator gen;
+        for ( unsigned i = 0; i < _chrom.size(); i ++ ) {
+            if ( _chrom.virusBit(i) ) {
+                if ( gen() ) {
+                    if ( i + 1 < _chrom.size() ) {
+                        _chrom.virusBitSet(i+1,true);
+                        _chrom.virusBitSet(i, false);
+                    }
+                } else {
+                    if ( i - 1 > 0 ) {
+                        _chrom.virusBitSet(i-1,true);
+                        _chrom.virusBitSet(i, false);
+                    }
+                }
+            }
+        }
+        return true;
+    }
 };
 
 

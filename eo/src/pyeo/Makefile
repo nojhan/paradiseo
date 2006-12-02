@@ -6,7 +6,6 @@
 #
 
 CXX = g++ 
-CXXFLAGS = -DHAVE_SSTREAM
 CPPFLAGS = -Wall -O2 #-g #-O2
 LDFLAGS = 
 COMPILE = $(CXX) $(CXXFLAGS) $(CPPFLAGS) -c

@@ -1,3 +1,7 @@
+2006-12-02  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* configure.in: Remove unnecessary tests.
+
 2006-11-16  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
 
 	* configure.in (AC_DEBUG): add test

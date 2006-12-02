@@ -30,18 +30,12 @@ AC_CHECK_PROGS([DOXYGEN], [doxygen], [true])
 dnl Checks for header files.
 AC_LANG(C++)
 AC_HEADER_STDC
-AC_CHECK_HEADERS(limits, [], AC_MSG_ERROR([Need limits C++ include.]))
-AC_CHECK_HEADERS(sstream, [], AC_MSG_ERROR([Need sstream C++ include.]))
-AC_CHECK_HEADERS(stdint.h, [], AC_MSG_WARN([Need C99 standard header.]))
 
 dnl Checks for typedefs, structures, and compiler characteristics.
-AC_CHECK_SIZEOF(unsigned long)
 AC_CHECK_TYPES(uint32_t, [], AC_MSG_WARN([Need uint32_t from C99 standard.]))
 AC_TYPE_SIZE_T
 
-dnl Checks for libraries.
-
-dnl Checks for library functions.
+dnl Checks for libraries and library functions.
 AC_CHECK_LIB(m, cos)
 
 dnl user-switches
