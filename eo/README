@@ -1,4 +1,6 @@
+
                       EO README FILE
+
 =======================================================================
          check latest news at http://eodev.sourceforge.net/
 =======================================================================
@@ -6,12 +8,14 @@
 Welcome to EO, the Evolving Objects library.
 
 The latest news about EO can be found on the sourceforge repository at
-
-http://eodev.sourceforge.net/
+    http://eodev.sourceforge.net/
 
 In case of any problem, please e-mail us at
+    eodev-help@lists.sourceforge.net, eodev@egroups.com
 
-eodev@egroups.com, eodev-main@lists.sourceforge.net
+
+To get started, take a look at the tutorial, starting with
+    ./tutorial/html/eoTutorial.html  
 
 
 ==================================================================
@@ -27,9 +31,10 @@ Go to your build-directory and run
 where $(SRCDIR) is the top-level source directory of EO, i.e. where
 the sources where unpacked.
 
-See $(SRCDIR)/configure for possible options. You can specify to not
-build example applications, the tutorial, or to build the ParadisEO
-tutorial. You may also change the installation directory that way.
+Run "$(SRCDIR)/configure --help" for possible options. You can specify
+to not build example applications, the tutorial, or to build the
+ParadisEO tutorial. You may also change the installation directory
+that way.
 
 Now you should probably go to the tutorial and start learning about EO
 features and programming.

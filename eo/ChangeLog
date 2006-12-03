@@ -1,3 +1,9 @@
+2006-12-03  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* README: Add more specific note about tutorial.
+
+	* configure.in: Bump version to 1.0-beta1
+
 2006-12-02  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
 
 	* configure.in: Remove unnecessary tests.
