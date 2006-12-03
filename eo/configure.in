@@ -67,6 +67,6 @@ AC_OUTPUT(Makefile \
           tutorial/Lesson3/Makefile \
           tutorial/Lesson4/Makefile \
           tutorial/Lesson5/Makefile \
-          tutorial/TEMPLATES/Makefile \
+          tutorial/Templates/Makefile \
           tutorial/pdf/Makefile \
           win/Makefile)
