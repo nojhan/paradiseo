@@ -209,7 +209,7 @@ public :
     @return Random Gaussian deviate
     */
     double normal(double stdev)
-        { return normal(stdev); }
+        { return stdev * normal(); }
 
     /** Gaussian deviate
 

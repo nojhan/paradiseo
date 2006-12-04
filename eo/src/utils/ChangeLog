@@ -1,3 +1,7 @@
+2006-12-04  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* eoRNG.h (eoRng::normal(stdev)): Revert erroneous change.
+
 2006-12-02  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
 
 	* eoTimedMonitor.h (eoTimedMonitor::seconds): Make unsigned.
