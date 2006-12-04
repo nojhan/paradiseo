@@ -1,3 +1,9 @@
+2006-12-04  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* Makefile.am: Add t-eoRNG
+
+	* t-eoRNG.cpp: Start test for random number generator.
+
 2006-12-02  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
 
 	* t-MGE1bit.cpp: Change float to double.

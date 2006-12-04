@@ -38,7 +38,8 @@ check_PROGRAMS 			= t-eoParetoFitness \
 				t-eoFitnessAssembledEA \
 				t-eoRoulette \
 				t-eoSharing \
-				t-eoCMAES
+				t-eoCMAES \
+				t-eoRNG
 
 
 TESTS				= $(check_PROGRAMS) \
@@ -91,3 +92,4 @@ t_eoFitnessAssembled_SOURCES 	= t-eoFitnessAssembled.cpp
 t_eoRoulette_SOURCES 		= t-eoRoulette.cpp
 t_eoSharing_SOURCES 		= t-eoSharing.cpp
 t_eoCMAES_SOURCES		= t-eoCMAES.cpp
+t_eoRNG_SOURCES 		= t-eoRNG.cpp
