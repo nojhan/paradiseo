@@ -1,0 +1,10 @@
+2006-12-05  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* win/Makefile.am (EXTRA_DIST): Add new MSVC project files to distribution.
+
+	
+	* Local Variables:
+	* coding: iso-8859-1
+	* mode: flyspell
+	* fill-column: 80
+	* End:
