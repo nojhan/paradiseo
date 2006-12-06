@@ -1,0 +1,103 @@
+.TH "moGenSolContinue" 3 "6 Dec 2006" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moGenSolContinue \- One possible stop criterion for a solution-based heuristic.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moGenSolContinue.h>\fP
+.PP
+Inherits \fBmoSolContinue< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoGenSolContinue\fP (unsigned __maxNumGen)"
+.br
+.RI "\fISimple constructor. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (const EOT &__sol)"
+.br
+.RI "\fIFunction that activates the stop criterion. \fP"
+.ti -1c
+.RI "void \fBinit\fP ()"
+.br
+.RI "\fIProcedure which allows to initialise the generation counter. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned \fBmaxNumGen\fP"
+.br
+.RI "\fIIteration maximum number. \fP"
+.ti -1c
+.RI "unsigned \fBnumGen\fP"
+.br
+.RI "\fIIteration current number. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class moGenSolContinue< EOT >"
+One possible stop criterion for a solution-based heuristic. 
+
+The stop criterion corresponds to a maximum number of iteration. 
+.PP
+Definition at line 21 of file moGenSolContinue.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBmoGenSolContinue\fP< EOT >::\fBmoGenSolContinue\fP (unsigned __maxNumGen)\fC [inline]\fP"
+.PP
+Simple constructor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__maxNumGen\fP the maximum number of generation. 
+.RE
+.PP
+
+.PP
+Definition at line 30 of file moGenSolContinue.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> bool \fBmoGenSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline]\fP"
+.PP
+Function that activates the stop criterion. 
+.PP
+Increments the counter and returns TRUE if the current number of iteration is lower than the given maximum number of iterations.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__sol\fP the current solution. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+TRUE or FALSE according to the current generation number. 
+.RE
+.PP
+
+.PP
+Definition at line 44 of file moGenSolContinue.h.
+.PP
+References moGenSolContinue< EOT >::maxNumGen, and moGenSolContinue< EOT >::numGen.
+.SS "template<class EOT> void \fBmoGenSolContinue\fP< EOT >::init ()\fC [inline, virtual]\fP"
+.PP
+Procedure which allows to initialise the generation counter. 
+.PP
+It can also be used to reset the iteration counter. 
+.PP
+Implements \fBmoSolContinue< EOT >\fP.
+.PP
+Definition at line 54 of file moGenSolContinue.h.
+.PP
+References moGenSolContinue< EOT >::numGen.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PARADISEO-MO from the source code.

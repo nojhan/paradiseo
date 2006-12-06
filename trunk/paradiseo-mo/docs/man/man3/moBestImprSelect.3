@@ -1,0 +1,115 @@
+.TH "moBestImprSelect" 3 "6 Dec 2006" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moBestImprSelect \- One of the possible \fBmoMoveSelect\fP.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moBestImprSelect.h>\fP
+.PP
+Inherits \fBmoMoveSelect< M >< M >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef M::EOType::Fitness \fBFitness\fP"
+.br
+.RI "\fIAlias for the fitness. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinit\fP (const \fBFitness\fP &__fit)"
+.br
+.RI "\fIProcedure which initialise the exploration. \fP"
+.ti -1c
+.RI "bool \fBupdate\fP (const M &__move, const \fBFitness\fP &__fit)"
+.br
+.RI "\fIFunction that indicates if the current move has not improved the fitness. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (M &__move, \fBFitness\fP &__fit)  throw (EmptySelection)"
+.br
+.RI "\fIProcedure which saved the best move and fitness. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "bool \fBfirst_time\fP"
+.br
+.RI "\fIAllowing to know if at least one move has been generated. \fP"
+.ti -1c
+.RI "M \fBbest_move\fP"
+.br
+.RI "\fIThe best move. \fP"
+.ti -1c
+.RI "\fBFitness\fP \fBbest_fit\fP"
+.br
+.RI "\fIThe best fitness. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class M> class moBestImprSelect< M >"
+One of the possible \fBmoMoveSelect\fP. 
+
+All neighbors are considered, and the movement which enables the best improvement is selected. 
+.PP
+Definition at line 22 of file moBestImprSelect.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class M> bool \fBmoBestImprSelect\fP< M >::update (const M & __move, const \fBFitness\fP & __fit)\fC [inline, virtual]\fP"
+.PP
+Function that indicates if the current move has not improved the fitness. 
+.PP
+If the given fitness enables an improvment, the move (\fBmoMove\fP) and the fitness linked to this move are saved.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__move\fP a move. 
+.br
+\fI__fit\fP a fitness linked to the move. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+TRUE if the move does not improve the fitness. 
+.RE
+.PP
+
+.PP
+Implements \fBmoMoveSelect< M >\fP.
+.PP
+Definition at line 47 of file moBestImprSelect.h.
+.PP
+References moBestImprSelect< M >::best_fit, moBestImprSelect< M >::best_move, and moBestImprSelect< M >::first_time.
+.SS "template<class M> void \fBmoBestImprSelect\fP< M >::operator() (M & __move, \fBFitness\fP & __fit)  throw (\fBEmptySelection\fP)\fC [inline]\fP"
+.PP
+Procedure which saved the best move and fitness. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__move\fP the current move (result of the procedure). 
+.br
+\fI__fit\fP the current fitness (result of the procedure). 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fI\fBEmptySelection\fP\fP if no move has improved the fitness. 
+.RE
+.PP
+
+.PP
+Definition at line 68 of file moBestImprSelect.h.
+.PP
+References moBestImprSelect< M >::best_fit, moBestImprSelect< M >::best_move, and moBestImprSelect< M >::first_time.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PARADISEO-MO from the source code.

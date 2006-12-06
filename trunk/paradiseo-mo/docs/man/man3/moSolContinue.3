@@ -1,0 +1,44 @@
+.TH "moSolContinue" 3 "6 Dec 2006" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moSolContinue \- Class that describes a stop criterion for a solution-based heuristic.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moSolContinue.h>\fP
+.PP
+Inherited by \fBmoGenSolContinue< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBinit\fP ()=0"
+.br
+.RI "\fIProcedure which initialises all that the stop criterion needs. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class moSolContinue< EOT >"
+Class that describes a stop criterion for a solution-based heuristic. 
+
+It allows to add an initialisation procedure to an object that is a unary function (eoUF). 
+.PP
+Definition at line 22 of file moSolContinue.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> virtual void \fBmoSolContinue\fP< EOT >::init ()\fC [pure virtual]\fP"
+.PP
+Procedure which initialises all that the stop criterion needs. 
+.PP
+Generally, it allocates some data structures or initialises some counters. 
+.PP
+Implemented in \fBmoGenSolContinue< EOT >\fP.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PARADISEO-MO from the source code.
