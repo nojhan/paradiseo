@@ -1,0 +1,83 @@
+\section{moeo\-Select\-One\-From\-Pop\-And\-Arch$<$ EOT $>$ Class Template Reference}
+\label{classmoeoSelectOneFromPopAndArch}\index{moeoSelectOneFromPopAndArch@{moeoSelectOneFromPopAndArch}}
+Elitist selection process that consists in choosing individuals in the archive as well as in the current population.  
+
+
+{\tt \#include $<$moeo\-Select\-One\-From\-Pop\-And\-Arch.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf moeo\-Select\-One\-From\-Pop\-And\-Arch} (eo\-Select\-One$<$ EOT $>$ \&\_\-pop\-Select\-One, eo\-Select\-One$<$ EOT $>$ \_\-arch\-Select\-One, {\bf moeo\-Archive}$<$ EOT $>$ \&\_\-arch, double \_\-ratio\-From\-Pop=0.5)
+\begin{CompactList}\small\item\em Ctor. \item\end{CompactList}\item 
+{\bf moeo\-Select\-One\-From\-Pop\-And\-Arch} (eo\-Select\-One$<$ EOT $>$ \&\_\-pop\-Select\-One, {\bf moeo\-Archive}$<$ EOT $>$ \&\_\-arch, double \_\-ratio\-From\-Pop=0.5)
+\begin{CompactList}\small\item\em Ctor - the archive's selection operator is a random selector. \item\end{CompactList}\item 
+virtual const EOT \& {\bf operator()} (const eo\-Pop$<$ EOT $>$ \&pop)\label{classmoeoSelectOneFromPopAndArch_3c97abfde2dd9959ae4db4c32038017d}
+
+\begin{CompactList}\small\item\em The selection process. \item\end{CompactList}\item 
+virtual void {\bf setup} (const eo\-Pop$<$ EOT $>$ \&\_\-pop)\label{classmoeoSelectOneFromPopAndArch_a2acc5ddcf045c0c63c22f8d04274858}
+
+\begin{CompactList}\small\item\em Setups some population stats. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+eo\-Select\-One$<$ EOT $>$ \& {\bf pop\-Select\-One}\label{classmoeoSelectOneFromPopAndArch_4f6d51d06d92b0a3383f9f47e3b2b682}
+
+\begin{CompactList}\small\item\em The population's selection operator. \item\end{CompactList}\item 
+eo\-Select\-One$<$ EOT $>$ \& {\bf arch\-Select\-One}\label{classmoeoSelectOneFromPopAndArch_5e062a1deca0307a91121271d3b976ba}
+
+\begin{CompactList}\small\item\em The archive's selection operator. \item\end{CompactList}\item 
+{\bf moeo\-Archive}$<$ EOT $>$ \& {\bf arch}\label{classmoeoSelectOneFromPopAndArch_3ca71296847a931355a1e88d0cc524cb}
+
+\begin{CompactList}\small\item\em the archive \item\end{CompactList}\item 
+double {\bf ratio\-From\-Pop}\label{classmoeoSelectOneFromPopAndArch_97b57e598752bccafaaf6a8a724d9a43}
+
+\begin{CompactList}\small\item\em the ratio of selected individuals from the population \item\end{CompactList}\item 
+eo\-Random\-Select$<$ EOT $>$ {\bf random\-Select}\label{classmoeoSelectOneFromPopAndArch_77cbe0150e70219e5a7fd48296acc4c7}
+
+\begin{CompactList}\small\item\em the random selection operator \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class EOT$>$ class moeo\-Select\-One\-From\-Pop\-And\-Arch$<$ EOT $>$}
+
+Elitist selection process that consists in choosing individuals in the archive as well as in the current population. 
+
+
+
+Definition at line 25 of file moeo\-Select\-One\-From\-Pop\-And\-Arch.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{moeoSelectOneFromPopAndArch@{moeo\-Select\-One\-From\-Pop\-And\-Arch}!moeoSelectOneFromPopAndArch@{moeoSelectOneFromPopAndArch}}
+\index{moeoSelectOneFromPopAndArch@{moeoSelectOneFromPopAndArch}!moeoSelectOneFromPopAndArch@{moeo\-Select\-One\-From\-Pop\-And\-Arch}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf moeo\-Select\-One\-From\-Pop\-And\-Arch}$<$ EOT $>$::{\bf moeo\-Select\-One\-From\-Pop\-And\-Arch} (eo\-Select\-One$<$ EOT $>$ \& {\em \_\-pop\-Select\-One}, eo\-Select\-One$<$ EOT $>$ {\em \_\-arch\-Select\-One}, {\bf moeo\-Archive}$<$ EOT $>$ \& {\em \_\-arch}, double {\em \_\-ratio\-From\-Pop} = {\tt 0.5})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoSelectOneFromPopAndArch_8d75155e2bb6994b080c696d6382c6c9}
+
+
+Ctor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop\-Select\-One}]the population's selection operator \item[{\em \_\-arch\-Select\-One}]the archive's selection operator \item[{\em \_\-arch}]the archive \item[{\em \_\-ratio\-From\-Pop}]the ratio of selected individuals from the population \end{description}
+\end{Desc}
+
+
+Definition at line 37 of file moeo\-Select\-One\-From\-Pop\-And\-Arch.h.\index{moeoSelectOneFromPopAndArch@{moeo\-Select\-One\-From\-Pop\-And\-Arch}!moeoSelectOneFromPopAndArch@{moeoSelectOneFromPopAndArch}}
+\index{moeoSelectOneFromPopAndArch@{moeoSelectOneFromPopAndArch}!moeoSelectOneFromPopAndArch@{moeo\-Select\-One\-From\-Pop\-And\-Arch}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf moeo\-Select\-One\-From\-Pop\-And\-Arch}$<$ EOT $>$::{\bf moeo\-Select\-One\-From\-Pop\-And\-Arch} (eo\-Select\-One$<$ EOT $>$ \& {\em \_\-pop\-Select\-One}, {\bf moeo\-Archive}$<$ EOT $>$ \& {\em \_\-arch}, double {\em \_\-ratio\-From\-Pop} = {\tt 0.5})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoSelectOneFromPopAndArch_1aeab159a74bf4cd171e2045e25be2b7}
+
+
+Ctor - the archive's selection operator is a random selector. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop\-Select\-One}]the population's selection operator \item[{\em \_\-arch}]the archive \item[{\em \_\-ratio\-From\-Pop}]the ratio of selected individuals from the population \end{description}
+\end{Desc}
+
+
+Definition at line 49 of file moeo\-Select\-One\-From\-Pop\-And\-Arch.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-Select\-One\-From\-Pop\-And\-Arch.h\end{CompactItemize}

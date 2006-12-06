@@ -1,0 +1,116 @@
+\section{moeo\-Contribution\-Metric$<$ EOT $>$ Class Template Reference}
+\label{classmoeoContributionMetric}\index{moeoContributionMetric@{moeoContributionMetric}}
+The contribution metric evaluates the proportion of non-dominated solutions given by a Pareto set relatively to another Pareto set.  
+
+
+{\tt \#include $<$moeo\-Contribution\-Metric.h$>$}
+
+Inheritance diagram for moeo\-Contribution\-Metric$<$ EOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4cm]{classmoeoContributionMetric}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+typedef EOT::Fitness {\bf EOFitness}\label{classmoeoContributionMetric_06c0247b9558eeb34e32c9a694924a66}
+
+\begin{CompactList}\small\item\em The fitness type of a solution. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+double {\bf operator()} (const std::vector$<$ {\bf EOFitness} $>$ \&\_\-set1, const std::vector$<$ {\bf EOFitness} $>$ \&\_\-set2)
+\begin{CompactList}\small\item\em Returns the contribution of the Pareto set '\_\-set1' relatively to the Pareto set '\_\-set2'. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+unsigned {\bf card\_\-C} (const std::vector$<$ {\bf EOFitness} $>$ \&\_\-set1, const std::vector$<$ {\bf EOFitness} $>$ \&\_\-set2)
+\begin{CompactList}\small\item\em Returns the number of solutions both in '\_\-set1' and '\_\-set2'. \item\end{CompactList}\item 
+unsigned {\bf card\_\-W} (const std::vector$<$ {\bf EOFitness} $>$ \&\_\-set1, const std::vector$<$ {\bf EOFitness} $>$ \&\_\-set2)
+\begin{CompactList}\small\item\em Returns the number of solutions in '\_\-set1' dominating at least one solution of '\_\-set2'. \item\end{CompactList}\item 
+unsigned {\bf card\_\-N} (const std::vector$<$ {\bf EOFitness} $>$ \&\_\-set1, const std::vector$<$ {\bf EOFitness} $>$ \&\_\-set2)
+\begin{CompactList}\small\item\em Returns the number of solutions in '\_\-set1' having no relation of dominance with those from '\_\-set2'. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class EOT$>$ class moeo\-Contribution\-Metric$<$ EOT $>$}
+
+The contribution metric evaluates the proportion of non-dominated solutions given by a Pareto set relatively to another Pareto set. 
+
+(Meunier, Talbi, Reininger: 'A multiobjective genetic algorithm for radio network optimization', in Proc. of the 2000 Congress on Evolutionary Computation, IEEE Press, pp. 317-324) 
+
+
+
+Definition at line 23 of file moeo\-Contribution\-Metric.h.
+
+\subsection{Member Function Documentation}
+\index{moeoContributionMetric@{moeo\-Contribution\-Metric}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoContributionMetric@{moeo\-Contribution\-Metric}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ double {\bf moeo\-Contribution\-Metric}$<$ EOT $>$::operator() (const std::vector$<$ {\bf EOFitness} $>$ \& {\em \_\-set1}, const std::vector$<$ {\bf EOFitness} $>$ \& {\em \_\-set2})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoContributionMetric_76b6b93124263ca1a8232b12a556d843}
+
+
+Returns the contribution of the Pareto set '\_\-set1' relatively to the Pareto set '\_\-set2'. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-set1}]the first Pareto set \item[{\em \_\-set2}]the second Pareto set \end{description}
+\end{Desc}
+
+
+Definition at line 38 of file moeo\-Contribution\-Metric.h.
+
+References moeo\-Contribution\-Metric$<$ EOT $>$::card\_\-C(), moeo\-Contribution\-Metric$<$ EOT $>$::card\_\-N(), and moeo\-Contribution\-Metric$<$ EOT $>$::card\_\-W().\index{moeoContributionMetric@{moeo\-Contribution\-Metric}!card_C@{card\_\-C}}
+\index{card_C@{card\_\-C}!moeoContributionMetric@{moeo\-Contribution\-Metric}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ unsigned {\bf moeo\-Contribution\-Metric}$<$ EOT $>$::card\_\-C (const std::vector$<$ {\bf EOFitness} $>$ \& {\em \_\-set1}, const std::vector$<$ {\bf EOFitness} $>$ \& {\em \_\-set2})\hspace{0.3cm}{\tt  [inline, private]}}\label{classmoeoContributionMetric_a0041e60c941dd1909f28fadcf011b87}
+
+
+Returns the number of solutions both in '\_\-set1' and '\_\-set2'. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-set1}]the first Pareto set \item[{\em \_\-set2}]the second Pareto set \end{description}
+\end{Desc}
+
+
+Definition at line 57 of file moeo\-Contribution\-Metric.h.
+
+Referenced by moeo\-Contribution\-Metric$<$ EOT $>$::operator()().\index{moeoContributionMetric@{moeo\-Contribution\-Metric}!card_W@{card\_\-W}}
+\index{card_W@{card\_\-W}!moeoContributionMetric@{moeo\-Contribution\-Metric}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ unsigned {\bf moeo\-Contribution\-Metric}$<$ EOT $>$::card\_\-W (const std::vector$<$ {\bf EOFitness} $>$ \& {\em \_\-set1}, const std::vector$<$ {\bf EOFitness} $>$ \& {\em \_\-set2})\hspace{0.3cm}{\tt  [inline, private]}}\label{classmoeoContributionMetric_64a72db699a10d6b4794773d4adbae3c}
+
+
+Returns the number of solutions in '\_\-set1' dominating at least one solution of '\_\-set2'. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-set1}]the first Pareto set \item[{\em \_\-set2}]the second Pareto set \end{description}
+\end{Desc}
+
+
+Definition at line 76 of file moeo\-Contribution\-Metric.h.
+
+Referenced by moeo\-Contribution\-Metric$<$ EOT $>$::operator()().\index{moeoContributionMetric@{moeo\-Contribution\-Metric}!card_N@{card\_\-N}}
+\index{card_N@{card\_\-N}!moeoContributionMetric@{moeo\-Contribution\-Metric}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ unsigned {\bf moeo\-Contribution\-Metric}$<$ EOT $>$::card\_\-N (const std::vector$<$ {\bf EOFitness} $>$ \& {\em \_\-set1}, const std::vector$<$ {\bf EOFitness} $>$ \& {\em \_\-set2})\hspace{0.3cm}{\tt  [inline, private]}}\label{classmoeoContributionMetric_9960fc1396dbadb412719aaeeedcf961}
+
+
+Returns the number of solutions in '\_\-set1' having no relation of dominance with those from '\_\-set2'. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-set1}]the first Pareto set \item[{\em \_\-set2}]the second Pareto set \end{description}
+\end{Desc}
+
+
+Definition at line 95 of file moeo\-Contribution\-Metric.h.
+
+Referenced by moeo\-Contribution\-Metric$<$ EOT $>$::operator()().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-Contribution\-Metric.h\end{CompactItemize}

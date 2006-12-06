@@ -1,0 +1,611 @@
+<?xml version='1.0' encoding='ISO-8859-1' standalone='yes' ?>
+<tagfile>
+  <compound kind="page">
+    <name>main</name>
+    <title>Welcome to ParadisEO-MOEO</title>
+    <filename>main</filename>
+    <docanchor file="main">intro</docanchor>
+    <docanchor file="main">tutorial</docanchor>
+    <docanchor file="main">install</docanchor>
+    <docanchor file="main">design</docanchor>
+  </compound>
+  <compound kind="page">
+    <name>webpages</name>
+    <title>Related webpages</title>
+    <filename>webpages</filename>
+  </compound>
+  <compound kind="class">
+    <name>moeoArchive</name>
+    <filename>classmoeoArchive.html</filename>
+    <templarg>EOT</templarg>
+    <member kind="typedef">
+      <type>EOT::Fitness</type>
+      <name>EOFitness</name>
+      <anchorfile>classmoeoArchive.html</anchorfile>
+      <anchor>798bc97d8321b1e2c469e5c341a96dac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>dominates</name>
+      <anchorfile>classmoeoArchive.html</anchorfile>
+      <anchor>7786c8bfe67fefa19ac31a4ac700df06</anchor>
+      <arglist>(const EOFitness &amp;_fit) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>contains</name>
+      <anchorfile>classmoeoArchive.html</anchorfile>
+      <anchor>71feaf270daa7185e829caef40bbf956</anchor>
+      <arglist>(const EOFitness &amp;_fit) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>update</name>
+      <anchorfile>classmoeoArchive.html</anchorfile>
+      <anchor>be9f67bfe41c25537292056d5b30f56a</anchor>
+      <arglist>(const EOT &amp;_eo)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>update</name>
+      <anchorfile>classmoeoArchive.html</anchorfile>
+      <anchor>58e891ab400ba352e8b0a341d0bdc107</anchor>
+      <arglist>(const eoPop&lt; EOT &gt; &amp;_pop)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moeoArchiveFitnessSavingUpdater</name>
+    <filename>classmoeoArchiveFitnessSavingUpdater.html</filename>
+    <templarg>EOT</templarg>
+    <member kind="function">
+      <type></type>
+      <name>moeoArchiveFitnessSavingUpdater</name>
+      <anchorfile>classmoeoArchiveFitnessSavingUpdater.html</anchorfile>
+      <anchor>b61826bfa0f47064aed460817cf61b92</anchor>
+      <arglist>(moeoArchive&lt; EOT &gt; &amp;_arch, const std::string &amp;_filename=&quot;Res/Arch&quot;, int _id=-1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>operator()</name>
+      <anchorfile>classmoeoArchiveFitnessSavingUpdater.html</anchorfile>
+      <anchor>2ad5d3ab2c2066a1a3b85fff2ac14a19</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moeoArchive&lt; EOT &gt; &amp;</type>
+      <name>arch</name>
+      <anchorfile>classmoeoArchiveFitnessSavingUpdater.html</anchorfile>
+      <anchor>b8eeccd7b43eb11e36cee2ec7d7c9c21</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::string</type>
+      <name>filename</name>
+      <anchorfile>classmoeoArchiveFitnessSavingUpdater.html</anchorfile>
+      <anchor>17c82bea631bf9ff635a3698d08907f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>id</name>
+      <anchorfile>classmoeoArchiveFitnessSavingUpdater.html</anchorfile>
+      <anchor>e064861d67aae0747c2d8ffab90cbfbf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned</type>
+      <name>counter</name>
+      <anchorfile>classmoeoArchiveFitnessSavingUpdater.html</anchorfile>
+      <anchor>e32fab4bb828d40fe19c283dbd2a6423</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moeoArchiveUpdater</name>
+    <filename>classmoeoArchiveUpdater.html</filename>
+    <templarg>EOT</templarg>
+    <member kind="function">
+      <type></type>
+      <name>moeoArchiveUpdater</name>
+      <anchorfile>classmoeoArchiveUpdater.html</anchorfile>
+      <anchor>71027fd5f8dac7d8069b682c998c03c5</anchor>
+      <arglist>(moeoArchive&lt; EOT &gt; &amp;_arch, const eoPop&lt; EOT &gt; &amp;_pop)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>operator()</name>
+      <anchorfile>classmoeoArchiveUpdater.html</anchorfile>
+      <anchor>19e98244f0dd641983af81d8dcaf0f7d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moeoArchive&lt; EOT &gt; &amp;</type>
+      <name>arch</name>
+      <anchorfile>classmoeoArchiveUpdater.html</anchorfile>
+      <anchor>2fd7b92786ced836e3d0b5abfb801a86</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>const eoPop&lt; EOT &gt; &amp;</type>
+      <name>pop</name>
+      <anchorfile>classmoeoArchiveUpdater.html</anchorfile>
+      <anchor>0fc3f08f0385c55569eb056737303363</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moeoBinaryMetricSavingUpdater</name>
+    <filename>classmoeoBinaryMetricSavingUpdater.html</filename>
+    <templarg>EOT</templarg>
+    <member kind="typedef">
+      <type>EOT::Fitness</type>
+      <name>EOFitness</name>
+      <anchorfile>classmoeoBinaryMetricSavingUpdater.html</anchorfile>
+      <anchor>c22e390633d94bbf69309e8d0cae1f0a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>moeoBinaryMetricSavingUpdater</name>
+      <anchorfile>classmoeoBinaryMetricSavingUpdater.html</anchorfile>
+      <anchor>978c6e8a99459722220387f911c1f461</anchor>
+      <arglist>(moeoVectorVsVectorBM&lt; EOT, double &gt; &amp;_metric, const eoPop&lt; EOT &gt; &amp;_pop, std::string _filename)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>operator()</name>
+      <anchorfile>classmoeoBinaryMetricSavingUpdater.html</anchorfile>
+      <anchor>2d051d28def4cadf69957c8a21bf88dc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moeoVectorVsVectorBM&lt; EOT, double &gt; &amp;</type>
+      <name>metric</name>
+      <anchorfile>classmoeoBinaryMetricSavingUpdater.html</anchorfile>
+      <anchor>52e12414a266bce1dbce0b913025fd37</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>const eoPop&lt; EOT &gt; &amp;</type>
+      <name>pop</name>
+      <anchorfile>classmoeoBinaryMetricSavingUpdater.html</anchorfile>
+      <anchor>9c30673aca66a1531856cb92068edaf7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>eoPop&lt; EOT &gt;</type>
+      <name>oldPop</name>
+      <anchorfile>classmoeoBinaryMetricSavingUpdater.html</anchorfile>
+      <anchor>c1751bf23ef440d895a39cdff25c384c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::string</type>
+      <name>filename</name>
+      <anchorfile>classmoeoBinaryMetricSavingUpdater.html</anchorfile>
+      <anchor>32c78860e3aee52346df3aa30c5ac42f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>firstGen</name>
+      <anchorfile>classmoeoBinaryMetricSavingUpdater.html</anchorfile>
+      <anchor>1e40103a5cfa592a9d2408102e507a19</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned</type>
+      <name>counter</name>
+      <anchorfile>classmoeoBinaryMetricSavingUpdater.html</anchorfile>
+      <anchor>280b52506c280b07356726ad5d497ef8</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moeoBM</name>
+    <filename>classmoeoBM.html</filename>
+    <templarg>A1</templarg>
+    <templarg>A2</templarg>
+    <templarg>R</templarg>
+    <base>moeoMetric</base>
+  </compound>
+  <compound kind="class">
+    <name>moeoCombinedMOLS</name>
+    <filename>classmoeoCombinedMOLS.html</filename>
+    <templarg>EOT</templarg>
+    <base>moeoMOLS</base>
+    <member kind="function">
+      <type></type>
+      <name>moeoCombinedMOLS</name>
+      <anchorfile>classmoeoCombinedMOLS.html</anchorfile>
+      <anchor>9305380cd8f5a4d85ef603fa85c1860b</anchor>
+      <arglist>(eoEvalFunc&lt; EOT &gt; &amp;_eval, moeoMOLS&lt; EOT &gt; &amp;_first_ls)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>add</name>
+      <anchorfile>classmoeoCombinedMOLS.html</anchorfile>
+      <anchor>bd6b8f46211d5d531753c69fcd76cba4</anchor>
+      <arglist>(moeoMOLS&lt; EOT &gt; &amp;_ls)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>operator()</name>
+      <anchorfile>classmoeoCombinedMOLS.html</anchorfile>
+      <anchor>fa7de12db00b89feb139372603bba4aa</anchor>
+      <arglist>(const EOT &amp;_eo, moeoArchive&lt; EOT &gt; &amp;_arch)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>eoEvalFunc&lt; EOT &gt; &amp;</type>
+      <name>eval</name>
+      <anchorfile>classmoeoCombinedMOLS.html</anchorfile>
+      <anchor>b2c0866a1808022bd3a9dac89e528a01</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::vector&lt; moeoMOLS&lt; EOT &gt; * &gt;</type>
+      <name>combinedMOLS</name>
+      <anchorfile>classmoeoCombinedMOLS.html</anchorfile>
+      <anchor>a5ccc182c0d61421fc524c2da3671099</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moeoContributionMetric</name>
+    <filename>classmoeoContributionMetric.html</filename>
+    <templarg>EOT</templarg>
+    <base>moeoVectorVsVectorBM&lt; EOT, double &gt;</base>
+    <member kind="typedef">
+      <type>EOT::Fitness</type>
+      <name>EOFitness</name>
+      <anchorfile>classmoeoContributionMetric.html</anchorfile>
+      <anchor>06c0247b9558eeb34e32c9a694924a66</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>operator()</name>
+      <anchorfile>classmoeoContributionMetric.html</anchorfile>
+      <anchor>76b6b93124263ca1a8232b12a556d843</anchor>
+      <arglist>(const std::vector&lt; EOFitness &gt; &amp;_set1, const std::vector&lt; EOFitness &gt; &amp;_set2)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>unsigned</type>
+      <name>card_C</name>
+      <anchorfile>classmoeoContributionMetric.html</anchorfile>
+      <anchor>a0041e60c941dd1909f28fadcf011b87</anchor>
+      <arglist>(const std::vector&lt; EOFitness &gt; &amp;_set1, const std::vector&lt; EOFitness &gt; &amp;_set2)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>unsigned</type>
+      <name>card_W</name>
+      <anchorfile>classmoeoContributionMetric.html</anchorfile>
+      <anchor>64a72db699a10d6b4794773d4adbae3c</anchor>
+      <arglist>(const std::vector&lt; EOFitness &gt; &amp;_set1, const std::vector&lt; EOFitness &gt; &amp;_set2)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>unsigned</type>
+      <name>card_N</name>
+      <anchorfile>classmoeoContributionMetric.html</anchorfile>
+      <anchor>9960fc1396dbadb412719aaeeedcf961</anchor>
+      <arglist>(const std::vector&lt; EOFitness &gt; &amp;_set1, const std::vector&lt; EOFitness &gt; &amp;_set2)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moeoDisctinctElitistReplacement</name>
+    <filename>classmoeoDisctinctElitistReplacement.html</filename>
+    <templarg>EOT</templarg>
+    <templarg>WorthT</templarg>
+    <base>moeoReplacement</base>
+    <member kind="function">
+      <type></type>
+      <name>moeoDisctinctElitistReplacement</name>
+      <anchorfile>classmoeoDisctinctElitistReplacement.html</anchorfile>
+      <anchor>f39200df2b68f6d35fbed2a2688a9d75</anchor>
+      <arglist>(eoPerf2Worth&lt; EOT, WorthT &gt; &amp;_perf2worth)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>operator()</name>
+      <anchorfile>classmoeoDisctinctElitistReplacement.html</anchorfile>
+      <anchor>ca73704e827074092e7d228253427a8a</anchor>
+      <arglist>(eoPop&lt; EOT &gt; &amp;_parents, eoPop&lt; EOT &gt; &amp;_offspring)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>createNewPop</name>
+      <anchorfile>classmoeoDisctinctElitistReplacement.html</anchorfile>
+      <anchor>7aed100016940e4806a7c93c0e22bf85</anchor>
+      <arglist>(eoPop&lt; EOT &gt; &amp;_pop, unsigned _size)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>eoPerf2Worth&lt; EOT, WorthT &gt; &amp;</type>
+      <name>perf2worth</name>
+      <anchorfile>classmoeoDisctinctElitistReplacement.html</anchorfile>
+      <anchor>3d1616ba57c10f5a77e0ec021cc8beb2</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moeoElitistReplacement</name>
+    <filename>classmoeoElitistReplacement.html</filename>
+    <templarg>EOT</templarg>
+    <templarg>WorthT</templarg>
+    <base>moeoReplacement</base>
+    <member kind="function">
+      <type></type>
+      <name>moeoElitistReplacement</name>
+      <anchorfile>classmoeoElitistReplacement.html</anchorfile>
+      <anchor>fa62ed508ac194ed7b720e37dd22458c</anchor>
+      <arglist>(eoPerf2Worth&lt; EOT, WorthT &gt; &amp;_perf2worth)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>operator()</name>
+      <anchorfile>classmoeoElitistReplacement.html</anchorfile>
+      <anchor>aad627deb45859e65ace0709c004049a</anchor>
+      <arglist>(eoPop&lt; EOT &gt; &amp;_parents, eoPop&lt; EOT &gt; &amp;_offspring)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>eoPerf2Worth&lt; EOT, WorthT &gt; &amp;</type>
+      <name>perf2worth</name>
+      <anchorfile>classmoeoElitistReplacement.html</anchorfile>
+      <anchor>020f0e0b6b88a0081d922cca5b05990e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moeoEntropyMetric</name>
+    <filename>classmoeoEntropyMetric.html</filename>
+    <templarg>EOT</templarg>
+    <base>moeoVectorVsVectorBM&lt; EOT, double &gt;</base>
+    <member kind="typedef">
+      <type>EOT::Fitness</type>
+      <name>EOFitness</name>
+      <anchorfile>classmoeoEntropyMetric.html</anchorfile>
+      <anchor>306b72d2236de1ecbae986c65490a8fe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>operator()</name>
+      <anchorfile>classmoeoEntropyMetric.html</anchorfile>
+      <anchor>58136405dfed951efa340ddf541c29fd</anchor>
+      <arglist>(const std::vector&lt; EOFitness &gt; &amp;_set1, const std::vector&lt; EOFitness &gt; &amp;_set2)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>removeDominated</name>
+      <anchorfile>classmoeoEntropyMetric.html</anchorfile>
+      <anchor>3252e7534b1ceb1317936c5d2b3abcbe</anchor>
+      <arglist>(std::vector&lt; EOFitness &gt; &amp;_f)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>prenormalize</name>
+      <anchorfile>classmoeoEntropyMetric.html</anchorfile>
+      <anchor>c9f0c65b4de69accbfb42486f6445cb0</anchor>
+      <arglist>(const std::vector&lt; EOFitness &gt; &amp;_f)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>normalize</name>
+      <anchorfile>classmoeoEntropyMetric.html</anchorfile>
+      <anchor>bc32468b148a0da4eb21a9fc14dfafae</anchor>
+      <arglist>(std::vector&lt; EOFitness &gt; &amp;_f)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>computeUnion</name>
+      <anchorfile>classmoeoEntropyMetric.html</anchorfile>
+      <anchor>2de60a0e6be362f074b50e6b455152ab</anchor>
+      <arglist>(const std::vector&lt; EOFitness &gt; &amp;_f1, const std::vector&lt; EOFitness &gt; &amp;_f2, std::vector&lt; EOFitness &gt; &amp;_f)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>unsigned</type>
+      <name>howManyInNicheOf</name>
+      <anchorfile>classmoeoEntropyMetric.html</anchorfile>
+      <anchor>a9369be315e139ebdf19fac09ad0563f</anchor>
+      <arglist>(const std::vector&lt; EOFitness &gt; &amp;_f, const EOFitness &amp;_s, unsigned _size)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>double</type>
+      <name>euclidianDistance</name>
+      <anchorfile>classmoeoEntropyMetric.html</anchorfile>
+      <anchor>34f825ce7c53132f7218483130da8652</anchor>
+      <arglist>(const EOFitness &amp;_set1, const EOFitness &amp;_to, unsigned _deg=2)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::vector&lt; double &gt;</type>
+      <name>vect_min_val</name>
+      <anchorfile>classmoeoEntropyMetric.html</anchorfile>
+      <anchor>d4046a304badfe78aa35b2d57938ffe9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::vector&lt; double &gt;</type>
+      <name>vect_max_val</name>
+      <anchorfile>classmoeoEntropyMetric.html</anchorfile>
+      <anchor>af0ae9645bdbb993de4bc990a0a08883</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moeoHybridMOLS</name>
+    <filename>classmoeoHybridMOLS.html</filename>
+    <templarg>EOT</templarg>
+    <member kind="function">
+      <type></type>
+      <name>eoHybridMOLS</name>
+      <anchorfile>classmoeoHybridMOLS.html</anchorfile>
+      <anchor>ced4b6d35035bfe3339dd571646e570d</anchor>
+      <arglist>(eoContinue&lt; EOT &gt; &amp;_term, eoSelect&lt; EOT &gt; &amp;_select, moeoMOLS&lt; EOT &gt; &amp;_mols, moeoArchive&lt; EOT &gt; &amp;_arch)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>operator()</name>
+      <anchorfile>classmoeoHybridMOLS.html</anchorfile>
+      <anchor>f62b4221d0ec094e39b73b386b508fc1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>eoContinue&lt; EOT &gt; &amp;</type>
+      <name>term</name>
+      <anchorfile>classmoeoHybridMOLS.html</anchorfile>
+      <anchor>cd05dc1c82febb819945663c3b5c6a75</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>eoSelect&lt; EOT &gt; &amp;</type>
+      <name>select</name>
+      <anchorfile>classmoeoHybridMOLS.html</anchorfile>
+      <anchor>b47c4d1bce77c5648b437a5884a7c41f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moeoMOLS&lt; EOT &gt; &amp;</type>
+      <name>mols</name>
+      <anchorfile>classmoeoHybridMOLS.html</anchorfile>
+      <anchor>5ecf318c321a71857c11da1ff5000092</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moeoArchive&lt; EOT &gt; &amp;</type>
+      <name>arch</name>
+      <anchorfile>classmoeoHybridMOLS.html</anchorfile>
+      <anchor>4aecb1f300f2f09b8d45998cc140576b</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moeoMetric</name>
+    <filename>classmoeoMetric.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>moeoMOLS</name>
+    <filename>classmoeoMOLS.html</filename>
+    <templarg>EOT</templarg>
+  </compound>
+  <compound kind="class">
+    <name>moeoReplacement</name>
+    <filename>classmoeoReplacement.html</filename>
+    <templarg>EOT</templarg>
+    <templarg>WorthT</templarg>
+  </compound>
+  <compound kind="class">
+    <name>moeoSelectOneFromPopAndArch</name>
+    <filename>classmoeoSelectOneFromPopAndArch.html</filename>
+    <templarg>EOT</templarg>
+    <member kind="function">
+      <type></type>
+      <name>moeoSelectOneFromPopAndArch</name>
+      <anchorfile>classmoeoSelectOneFromPopAndArch.html</anchorfile>
+      <anchor>8d75155e2bb6994b080c696d6382c6c9</anchor>
+      <arglist>(eoSelectOne&lt; EOT &gt; &amp;_popSelectOne, eoSelectOne&lt; EOT &gt; _archSelectOne, moeoArchive&lt; EOT &gt; &amp;_arch, double _ratioFromPop=0.5)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>moeoSelectOneFromPopAndArch</name>
+      <anchorfile>classmoeoSelectOneFromPopAndArch.html</anchorfile>
+      <anchor>1aeab159a74bf4cd171e2045e25be2b7</anchor>
+      <arglist>(eoSelectOne&lt; EOT &gt; &amp;_popSelectOne, moeoArchive&lt; EOT &gt; &amp;_arch, double _ratioFromPop=0.5)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const EOT &amp;</type>
+      <name>operator()</name>
+      <anchorfile>classmoeoSelectOneFromPopAndArch.html</anchorfile>
+      <anchor>3c97abfde2dd9959ae4db4c32038017d</anchor>
+      <arglist>(const eoPop&lt; EOT &gt; &amp;pop)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setup</name>
+      <anchorfile>classmoeoSelectOneFromPopAndArch.html</anchorfile>
+      <anchor>a2acc5ddcf045c0c63c22f8d04274858</anchor>
+      <arglist>(const eoPop&lt; EOT &gt; &amp;_pop)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>eoSelectOne&lt; EOT &gt; &amp;</type>
+      <name>popSelectOne</name>
+      <anchorfile>classmoeoSelectOneFromPopAndArch.html</anchorfile>
+      <anchor>4f6d51d06d92b0a3383f9f47e3b2b682</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>eoSelectOne&lt; EOT &gt; &amp;</type>
+      <name>archSelectOne</name>
+      <anchorfile>classmoeoSelectOneFromPopAndArch.html</anchorfile>
+      <anchor>5e062a1deca0307a91121271d3b976ba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moeoArchive&lt; EOT &gt; &amp;</type>
+      <name>arch</name>
+      <anchorfile>classmoeoSelectOneFromPopAndArch.html</anchorfile>
+      <anchor>3ca71296847a931355a1e88d0cc524cb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>double</type>
+      <name>ratioFromPop</name>
+      <anchorfile>classmoeoSelectOneFromPopAndArch.html</anchorfile>
+      <anchor>97b57e598752bccafaaf6a8a724d9a43</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>eoRandomSelect&lt; EOT &gt;</type>
+      <name>randomSelect</name>
+      <anchorfile>classmoeoSelectOneFromPopAndArch.html</anchorfile>
+      <anchor>77cbe0150e70219e5a7fd48296acc4c7</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moeoSolutionUM</name>
+    <filename>classmoeoSolutionUM.html</filename>
+    <templarg>EOT</templarg>
+    <templarg>R</templarg>
+    <templarg>EOFitness</templarg>
+    <base>moeoUM&lt; const EOFitness &amp;, R &gt;</base>
+  </compound>
+  <compound kind="class">
+    <name>moeoSolutionVsSolutionBM</name>
+    <filename>classmoeoSolutionVsSolutionBM.html</filename>
+    <templarg>EOT</templarg>
+    <templarg>R</templarg>
+    <templarg>EOFitness</templarg>
+    <base>moeoBM</base>
+  </compound>
+  <compound kind="class">
+    <name>moeoUM</name>
+    <filename>classmoeoUM.html</filename>
+    <templarg>A</templarg>
+    <templarg>R</templarg>
+    <base>moeoMetric</base>
+  </compound>
+  <compound kind="class">
+    <name>moeoVectorUM</name>
+    <filename>classmoeoVectorUM.html</filename>
+    <templarg>EOT</templarg>
+    <templarg>R</templarg>
+    <templarg>EOFitness</templarg>
+    <base>moeoUM&lt; const std::vector&lt; EOFitness &gt; &amp;, R &gt;</base>
+  </compound>
+  <compound kind="class">
+    <name>moeoVectorVsSolutionBM</name>
+    <filename>classmoeoVectorVsSolutionBM.html</filename>
+    <templarg>EOT</templarg>
+    <templarg>R</templarg>
+    <templarg>EOFitness</templarg>
+    <base>moeoBM</base>
+  </compound>
+  <compound kind="class">
+    <name>moeoVectorVsVectorBM</name>
+    <filename>classmoeoVectorVsVectorBM.html</filename>
+    <templarg>EOT</templarg>
+    <templarg>R</templarg>
+    <templarg>EOFitness</templarg>
+    <base>moeoBM</base>
+  </compound>
+</tagfile>
