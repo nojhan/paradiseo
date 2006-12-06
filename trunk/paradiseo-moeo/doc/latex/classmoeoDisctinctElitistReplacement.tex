@@ -1,0 +1,99 @@
+\section{moeo\-Disctinct\-Elitist\-Replacement$<$ EOT, Worth\-T $>$ Class Template Reference}
+\label{classmoeoDisctinctElitistReplacement}\index{moeoDisctinctElitistReplacement@{moeoDisctinctElitistReplacement}}
+Same than \doxyref{moeo\-Elitist\-Replacement}{p.}{classmoeoElitistReplacement} except that distinct individuals are privilegied.  
+
+
+{\tt \#include $<$moeo\-Replacement.h$>$}
+
+Inheritance diagram for moeo\-Disctinct\-Elitist\-Replacement$<$ EOT, Worth\-T $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classmoeoDisctinctElitistReplacement}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf moeo\-Disctinct\-Elitist\-Replacement} (eo\-Perf2Worth$<$ EOT, Worth\-T $>$ \&\_\-perf2worth)
+\begin{CompactList}\small\item\em constructor \item\end{CompactList}\item 
+void {\bf operator()} (eo\-Pop$<$ EOT $>$ \&\_\-parents, eo\-Pop$<$ EOT $>$ \&\_\-offspring)
+\begin{CompactList}\small\item\em replacement - result in \_\-parents \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf create\-New\-Pop} (eo\-Pop$<$ EOT $>$ \&\_\-pop, unsigned \_\-size)
+\begin{CompactList}\small\item\em creation of the new population of size \_\-size \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+eo\-Perf2Worth$<$ EOT, Worth\-T $>$ \& {\bf perf2worth}\label{classmoeoDisctinctElitistReplacement_3d1616ba57c10f5a77e0ec021cc8beb2}
+
+\begin{CompactList}\small\item\em the functor object to transform raw fitnesses into fitness for selection \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class EOT, class Worth\-T = double$>$ class moeo\-Disctinct\-Elitist\-Replacement$<$ EOT, Worth\-T $>$}
+
+Same than \doxyref{moeo\-Elitist\-Replacement}{p.}{classmoeoElitistReplacement} except that distinct individuals are privilegied. 
+
+
+
+Definition at line 78 of file moeo\-Replacement.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{moeoDisctinctElitistReplacement@{moeo\-Disctinct\-Elitist\-Replacement}!moeoDisctinctElitistReplacement@{moeoDisctinctElitistReplacement}}
+\index{moeoDisctinctElitistReplacement@{moeoDisctinctElitistReplacement}!moeoDisctinctElitistReplacement@{moeo\-Disctinct\-Elitist\-Replacement}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT, class Worth\-T = double$>$ {\bf moeo\-Disctinct\-Elitist\-Replacement}$<$ EOT, Worth\-T $>$::{\bf moeo\-Disctinct\-Elitist\-Replacement} (eo\-Perf2Worth$<$ EOT, Worth\-T $>$ \& {\em \_\-perf2worth})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoDisctinctElitistReplacement_f39200df2b68f6d35fbed2a2688a9d75}
+
+
+constructor 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-perf2worth}]the functor class to transform raw fitnesses into fitness for selection \end{description}
+\end{Desc}
+
+
+Definition at line 87 of file moeo\-Replacement.h.
+
+\subsection{Member Function Documentation}
+\index{moeoDisctinctElitistReplacement@{moeo\-Disctinct\-Elitist\-Replacement}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoDisctinctElitistReplacement@{moeo\-Disctinct\-Elitist\-Replacement}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT, class Worth\-T = double$>$ void {\bf moeo\-Disctinct\-Elitist\-Replacement}$<$ EOT, Worth\-T $>$::operator() (eo\-Pop$<$ EOT $>$ \& {\em \_\-parents}, eo\-Pop$<$ EOT $>$ \& {\em \_\-offspring})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoDisctinctElitistReplacement_ca73704e827074092e7d228253427a8a}
+
+
+replacement - result in \_\-parents 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-parents}]parents population \item[{\em \_\-offspring}]offspring population \end{description}
+\end{Desc}
+
+
+Definition at line 99 of file moeo\-Replacement.h.
+
+References moeo\-Disctinct\-Elitist\-Replacement$<$ EOT, Worth\-T $>$::create\-New\-Pop().\index{moeoDisctinctElitistReplacement@{moeo\-Disctinct\-Elitist\-Replacement}!createNewPop@{createNewPop}}
+\index{createNewPop@{createNewPop}!moeoDisctinctElitistReplacement@{moeo\-Disctinct\-Elitist\-Replacement}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT, class Worth\-T = double$>$ void {\bf moeo\-Disctinct\-Elitist\-Replacement}$<$ EOT, Worth\-T $>$::create\-New\-Pop (eo\-Pop$<$ EOT $>$ \& {\em \_\-pop}, unsigned {\em \_\-size})\hspace{0.3cm}{\tt  [inline, private]}}\label{classmoeoDisctinctElitistReplacement_7aed100016940e4806a7c93c0e22bf85}
+
+
+creation of the new population of size \_\-size 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the initial population (will be modified) \item[{\em \_\-size}]the size of the population to create \end{description}
+\end{Desc}
+
+
+Definition at line 123 of file moeo\-Replacement.h.
+
+References moeo\-Disctinct\-Elitist\-Replacement$<$ EOT, Worth\-T $>$::perf2worth.
+
+Referenced by moeo\-Disctinct\-Elitist\-Replacement$<$ EOT, Worth\-T $>$::operator()().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-Replacement.h\end{CompactItemize}
