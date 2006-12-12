@@ -1,0 +1,44 @@
+dnl Process this file with autoconf to produce a configure script.
+dnl Created by Anjuta - will be overwritten
+dnl If you don't want it to overwrite it,
+dnl 	Please disable it in the Anjuta project configuration
+
+AC_INIT(configure.in)
+AM_INIT_AUTOMAKE(paradisEO, 0.3)
+dnl AM_CONFIG_HEADER(config.h)
+
+AC_ISC_POSIX
+CXXFLAGS=""
+AC_SUBST(CXXFLAGS)
+AC_PROG_CXX
+AM_PROG_CC_STDC
+AC_HEADER_STDC
+AC_PROG_RANLIB
+
+AC_SUBST(EO_DIR)
+
+dnl EO
+AC_ARG_WITH(EOdir,
+  --with-EOdir : Giving the path of the EO tree.,
+  dnl Well done :-)
+  EO_DIR="$withval"
+  if test ! -d $EO_DIR
+     then
+        echo ""
+        echo "# --with-EOdir Invalid directory $withval"
+        exit 1
+  fi, 
+  dnl Bouhhhh !!!!  
+  echo ""
+  echo "# You forgot to give the path of the EO tree !"
+  echo "# Please write something like ... './configure --with-EOdir=\$HOME/eo'"
+  exit 1
+  )
+
+AC_OUTPUT([
+Makefile
+src/Makefile
+src/rmc/Makefile
+src/rmc/mpi/Makefile
+])
+
