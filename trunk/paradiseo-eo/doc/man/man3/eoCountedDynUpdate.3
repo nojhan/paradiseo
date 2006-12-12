@@ -1,0 +1,44 @@
+.TH "eoCountedDynUpdate" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoCountedDynUpdate \- An \fBeoUpdater\fP to update an \fBeoUpdatable\fP object every given tic.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoUpdatable.h>\fP
+.PP
+Inherits \fBeoDynUpdater\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoCountedDynUpdate\fP (\fBeoUpdatable\fP &_toUpdate, unsigned _interval)"
+.br
+.ti -1c
+.RI "void \fBoperator()\fP (void)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "const unsigned \fBinterval\fP"
+.br
+.ti -1c
+.RI "unsigned \fBcounter\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+An \fBeoUpdater\fP to update an \fBeoUpdatable\fP object every given tic. 
+.PP
+Definition at line 93 of file eoUpdatable.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

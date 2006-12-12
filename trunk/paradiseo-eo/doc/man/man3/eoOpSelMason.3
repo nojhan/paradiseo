@@ -1,0 +1,94 @@
+.TH "eoOpSelMason" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoOpSelMason \- \fBEO\fP Mason, or builder, for operator selectors.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoOpSelMason.h>\fP
+.PP
+Inherits \fBeoFactory< eoOpSelector< eoClass > >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef std::vector< \fBeoOp\fP< eoClass > * > \fBvOpP\fP"
+.br
+.ti -1c
+.RI "typedef map< eoOpSelector< eoClass > *, vOpP > \fBMEV\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual eoOpSelector< eoClass > * \fBmake\fP (std::istream &_is)"
+.br
+.RI "\fIFactory methods: creates an object from an std::istream, reading from it whatever is needed to create the object. \fP"
+.in -1c
+.PP
+.RI "\fBctors and dtors\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "\fBeoOpSelMason\fP (eoOpFactory< eoClass > &_opFact)"
+.br
+.RI "\fIconstructor \fP"
+.ti -1c
+.RI "virtual \fB~eoOpSelMason\fP ()"
+.br
+.RI "\fIdestructor \fP"
+.in -1c
+.in -1c
+.PP
+.RI "\fBeoObject methods\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIReturn the class id. \fP"
+.in -1c
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "map< eoOpSelector< eoClass > *, std::vector< \fBeoOp\fP< eoClass > * > > \fBallocMap\fP"
+.br
+.ti -1c
+.RI "eoOpFactory< eoClass > & \fBoperatorFactory\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class eoClass> class eoOpSelMason< eoClass >"
+\fBEO\fP Mason, or builder, for operator selectors. 
+
+A builder must allocate memory to the objects it builds, and then deallocate it when it gets out of scope 
+.PP
+Definition at line 39 of file eoOpSelMason.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class eoClass> virtual eoOpSelector<eoClass>* \fBeoOpSelMason\fP< eoClass >::make (std::istream & _is)\fC [inline, virtual]\fP"
+.PP
+Factory methods: creates an object from an std::istream, reading from it whatever is needed to create the object. 
+.PP
+The format is opSelClassName\\ rate 1 operator1\\ rate 2 operator2\\ ...\\ Stores all operators built in a database (#allocMap#), so that somebody can destroy them later. The Mason is in charge or destroying the operators, since the built object can´t do it itself. The objects built must be destroyed from outside, using the #destroy# method
+.PP
+Implements \fBeoFactory< eoOpSelector< eoClass > >\fP.
+.PP
+Definition at line 65 of file eoOpSelMason.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

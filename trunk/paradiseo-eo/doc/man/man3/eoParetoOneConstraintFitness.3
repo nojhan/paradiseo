@@ -1,0 +1,103 @@
+.TH "eoParetoOneConstraintFitness" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoParetoOneConstraintFitness \- eoParetoOneConstraintFitness class: std::vector of doubles + constraint value  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoParetoConstraintFitness.h>\fP
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef FitnessTraits \fBfitness_traits\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoParetoOneConstraintFitness\fP (std::vector< double > &_v)"
+.br
+.ti -1c
+.RI "\fBeoParetoOneConstraintFitness\fP (std::vector< double > &_v, double _c)"
+.br
+.ti -1c
+.RI "bool \fBfeasible\fP () const "
+.br
+.ti -1c
+.RI "double \fBviolation\fP () const "
+.br
+.ti -1c
+.RI "double \fBConstraintValue\fP () const "
+.br
+.ti -1c
+.RI "void \fBConstraintValue\fP (double _c)"
+.br
+.ti -1c
+.RI "bool \fBdominates\fP (const \fBeoParetoOneConstraintFitness\fP< FitnessTraits > &_other) const "
+.br
+.RI "\fIPartial order based on Pareto-dominance. \fP"
+.ti -1c
+.RI "bool \fBoperator<\fP (const \fBeoParetoOneConstraintFitness\fP< FitnessTraits > &_other) const "
+.br
+.RI "\fIcompare *not* on dominance, but on the first, then the second, etc \fP"
+.ti -1c
+.RI "bool \fBoperator>\fP (const \fBeoParetoOneConstraintFitness\fP< FitnessTraits > &_other) const "
+.br
+.ti -1c
+.RI "bool \fBoperator<=\fP (const \fBeoParetoOneConstraintFitness\fP< FitnessTraits > &_other) const "
+.br
+.ti -1c
+.RI "bool \fBoperator>=\fP (const \fBeoParetoOneConstraintFitness\fP< FitnessTraits > &_other) const "
+.br
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBeoParetoOneConstraintFitness\fP< FitnessTraits > &_other) const "
+.br
+.ti -1c
+.RI "bool \fBoperator!=\fP (const \fBeoParetoOneConstraintFitness\fP< FitnessTraits > &_other) const "
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBsetUp\fP (unsigned _n, std::vector< bool > &_b)"
+.br
+.RI "\fIaccess to the traits characteristics (so you don't have to write a lot of typedef's around \fP"
+.ti -1c
+.RI "bool \fBmaximizing\fP (unsigned _i)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBconstraintValue\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class FitnessTraits = eoParetoFitnessTraits> class eoParetoOneConstraintFitness< FitnessTraits >"
+eoParetoOneConstraintFitness class: std::vector of doubles + constraint value 
+
+Comparison (dominance) is done on pareto dominance for 2 feasible individuals, one feasible individual always wins over an infeasible on constraint violations for 2 infeasible individuals
+.PP
+The template argument FitnessTraits defaults to \fBeoParetoFitnessTraits\fP, which can be replaces at will by any other class that implements the static functions defined therein.
+.PP
+Note that the domninance defines a partial order, so that !dominates(a,b) && !domaintes(b,a) does not neccessarily imply that (a==b) The other way around does hold.
+.PP
+However, be careful that the comparison operators do define a total order based on considering first objective, then in case of tie, second objective, etc
+.PP
+NOTE: in a hurry, I did not want to make it derive from \fBeoParetoFitness\fP (used cut-and-paste instead!) : I know it might be a good idea, but I'm not sure I see why at the moment (any hint someone?) 
+.PP
+Definition at line 61 of file eoParetoConstraintFitness.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

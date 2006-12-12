@@ -1,0 +1,78 @@
+.TH "eoDetBitFlip" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoDetBitFlip \- eoDetBitFlip --> changes exactly k bits  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <ga/eoBitOp.h>\fP
+.PP
+Inherits \fBeoMonOp< Chrom >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoDetBitFlip\fP (const unsigned &_num_bit=1)"
+.br
+.RI "\fI(Default) Constructor. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIThe class name. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (Chrom &chrom)"
+.br
+.RI "\fIChange num_bit bits. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned \fBnum_bit\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class Chrom> class eoDetBitFlip< Chrom >"
+eoDetBitFlip --> changes exactly k bits 
+.PP
+Definition at line 67 of file eoBitOp.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class Chrom> \fBeoDetBitFlip\fP< Chrom >::\fBeoDetBitFlip\fP (const unsigned & _num_bit = \fC1\fP)\fC [inline]\fP"
+.PP
+(Default) Constructor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_num_bit\fP The number of bits to change default is one - equivalent to eoOneBitFlip then 
+.RE
+.PP
+
+.PP
+Definition at line 75 of file eoBitOp.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class Chrom> bool \fBeoDetBitFlip\fP< Chrom >::operator() (Chrom & chrom)\fC [inline, virtual]\fP"
+.PP
+Change num_bit bits. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIchrom\fP The cromosome which one bit is going to be changed. 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< Chrom &, bool >\fP.
+.PP
+Definition at line 84 of file eoBitOp.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

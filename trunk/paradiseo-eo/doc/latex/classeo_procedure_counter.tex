@@ -1,0 +1,65 @@
+\section{eo\-Procedure\-Counter$<$ Procedure $>$ Class Template Reference}
+\label{classeo_procedure_counter}\index{eoProcedureCounter@{eoProcedureCounter}}
+Generic counter class that counts the number of times a procedure is used.  
+
+
+{\tt \#include $<$eo\-Counter.h$>$}
+
+Inheritance diagram for eo\-Procedure\-Counter$<$ Procedure $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{classeo_procedure_counter}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Procedure\-Counter} (Procedure \&\_\-proc, std::string \_\-name=\char`\"{}proc\_\-counter\char`\"{})\label{classeo_procedure_counter_a0}
+
+\item 
+Procedure::result\_\-type {\bf operator()} (void)
+\begin{CompactList}\small\item\em Calls the embedded function and increments the counter. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+Procedure \& {\bf proc}\label{classeo_procedure_counter_r0}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Procedure$>$ class eo\-Procedure\-Counter$<$ Procedure $>$}
+
+Generic counter class that counts the number of times a procedure is used. 
+
+Add a procedure through its ctor and use this class instead of it.
+
+It is derived from {\bf eo\-Value\-Param}{\rm (p.\,\pageref{classeo_value_param})} so you can add it to a monitor. 
+
+
+
+Definition at line 41 of file eo\-Counter.h.
+
+\subsection{Member Function Documentation}
+\index{eoProcedureCounter@{eo\-Procedure\-Counter}!operator()@{operator()}}
+\index{operator()@{operator()}!eoProcedureCounter@{eo\-Procedure\-Counter}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class Procedure$>$ Procedure::result\_\-type {\bf eo\-Procedure\-Counter}$<$ Procedure $>$::operator() (void)\hspace{0.3cm}{\tt  [inline]}}\label{classeo_procedure_counter_a1}
+
+
+Calls the embedded function and increments the counter. 
+
+Note for MSVC users, if this code does not compile, you are quite likely trying to count a function that has a non-void return type. Don't look at us, look at the MSVC builders. Code like \char`\"{}return void;\char`\"{} is perfectly legal according to the ANSI standard, but the guys at Microsoft didn't get to implementing it yet.
+
+We had two choices: assuming (and compiling ) code that returns void or code that returns non-void. Given that in {\bf EO}{\rm (p.\,\pageref{class_e_o})} most functors return void, it was chosen to support void.
+
+But also please let me know if you have a compiler that defines \_\-MSC\_\-VER (lot's of windows compilers do), but is quite capable of compiling return void; type of code. We'll try to change the signature then.
+
+You happy GNU (and other compiler) users will not have a problem with this.. 
+
+Definition at line 64 of file eo\-Counter.h.
+
+References eo\-Value\-Param$<$ unsigned long $>$::value().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+eo\-Counter.h\end{CompactItemize}

@@ -1,0 +1,71 @@
+.TH "eoSelectPerc" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoSelectPerc \- eoSelectPerc selects many individuals using \fBeoSelectOne\fP as it's mechanism.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoSelectPerc.h>\fP
+.PP
+Inherits \fBeoSelect< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoSelectPerc\fP (\fBeoSelectOne\fP< \fBEOT\fP > &_select, float _rate=1.0)"
+.br
+.RI "\fIinit \fP"
+.ti -1c
+.RI "virtual void \fBoperator()\fP (const \fBeoPop\fP< \fBEOT\fP > &_source, \fBeoPop\fP< \fBEOT\fP > &_dest)"
+.br
+.RI "\fIThe implementation selects a percentage. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoSelectOne\fP< \fBEOT\fP > & \fBselect\fP"
+.br
+.ti -1c
+.RI "float \fBrate\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoSelectPerc< EOT >"
+eoSelectPerc selects many individuals using \fBeoSelectOne\fP as it's mechanism. 
+
+Therefore eoSelectPerc needs an \fBeoSelectOne\fP in its ctor
+.PP
+It will select floor(rate*pop.size()) individuals and pushes them to the back of the destination population. 
+.PP
+Definition at line 42 of file eoSelectPerc.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> virtual void \fBeoSelectPerc\fP< \fBEOT\fP >::operator() (const \fBeoPop\fP< \fBEOT\fP > & _source, \fBeoPop\fP< \fBEOT\fP > & _dest)\fC [inline, virtual]\fP"
+.PP
+The implementation selects a percentage. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_source\fP the source population 
+.br
+\fI_dest\fP the resulting population (size of this population is the number of times \fBeoSelectOne\fP is called. It empties the destination and adds the selection into it) 
+.RE
+.PP
+
+.PP
+Implements \fBeoBF< const eoPop< EOT > &, eoPop< EOT > &, void >\fP.
+.PP
+Definition at line 55 of file eoSelectPerc.h.
+.PP
+References eoSelectOne< EOT, WorthT >::setup().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

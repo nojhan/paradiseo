@@ -1,0 +1,46 @@
+\section{eo\-External\-Bin\-Op$<$ F, External, External\-EO $>$ Class Template Reference}
+\label{classeo_external_bin_op}\index{eoExternalBinOp@{eoExternalBinOp}}
+Crossover of external struct, ctor expects a function of the following signature:.  
+
+
+{\tt \#include $<$eo\-External\-Op\-Functions.h$>$}
+
+Inheritance diagram for eo\-External\-Bin\-Op$<$ F, External, External\-EO $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.04566cm]{classeo_external_bin_op}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-External\-Bin\-Op} (bool($\ast$\_\-binop)(External \&, const External \&))\label{classeo_external_bin_op_a0}
+
+\item 
+bool {\bf operator()} (External\-EO \&eo1, const External\-EO \&eo2)\label{classeo_external_bin_op_a1}
+
+\begin{CompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+bool($\ast$ {\bf binop} )(External \&, const External \&)\label{classeo_external_bin_op_r0}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class F, class External, class External\-EO = eo\-External\-EO$<$F, External$>$$>$ class eo\-External\-Bin\-Op$<$ F, External, External\-EO $>$}
+
+Crossover of external struct, ctor expects a function of the following signature:. 
+
+bool func(External\&, const External\&);
+
+Where External is the user defined struct or class The function should return true when it changed something, false otherwise 
+
+
+
+Definition at line 128 of file eo\-External\-Op\-Functions.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+eo\-External\-Op\-Functions.h\end{CompactItemize}

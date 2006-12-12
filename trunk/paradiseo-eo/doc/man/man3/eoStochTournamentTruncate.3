@@ -1,0 +1,45 @@
+.TH "eoStochTournamentTruncate" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoStochTournamentTruncate \- a truncate class based on a repeated deterministic (reverse!) tournament To be used in SSGA-like replacements (e.g.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoReduce.h>\fP
+.PP
+Inherits \fBeoReduce< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoStochTournamentTruncate\fP (double _t_rate)"
+.br
+.ti -1c
+.RI "void \fBoperator()\fP (\fBeoPop\fP< \fBEOT\fP > &_newgen, unsigned _newsize)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBt_rate\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoStochTournamentTruncate< EOT >"
+a truncate class based on a repeated deterministic (reverse!) tournament To be used in SSGA-like replacements (e.g. 
+
+see \fBeoSSGAStochTournamentReplacement\fP) 
+.PP
+Definition at line 236 of file eoReduce.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

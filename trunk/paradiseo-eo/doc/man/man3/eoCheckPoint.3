@@ -1,0 +1,79 @@
+.TH "eoCheckPoint" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoCheckPoint \- eoCheckPoint is a container class.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoCheckPoint.h>\fP
+.PP
+Inherits \fBeoContinue< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoCheckPoint\fP (\fBeoContinue\fP< \fBEOT\fP > &_cont)"
+.br
+.ti -1c
+.RI "bool \fBoperator()\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.ti -1c
+.RI "void \fBadd\fP (\fBeoContinue\fP< \fBEOT\fP > &_cont)"
+.br
+.ti -1c
+.RI "void \fBadd\fP (\fBeoSortedStatBase\fP< \fBEOT\fP > &_stat)"
+.br
+.ti -1c
+.RI "void \fBadd\fP (\fBeoStatBase\fP< \fBEOT\fP > &_stat)"
+.br
+.ti -1c
+.RI "void \fBadd\fP (\fBeoMonitor\fP &_mon)"
+.br
+.ti -1c
+.RI "void \fBadd\fP (\fBeoUpdater\fP &_upd)"
+.br
+.ti -1c
+.RI "virtual std::string \fBclassName\fP (void) const "
+.br
+.ti -1c
+.RI "std::string \fBallClassNames\fP () const "
+.br
+.RI "\fIreturns a string with all className() of data separated with '\\n' (for debugging) \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< \fBeoContinue\fP< \fBEOT\fP > * > \fBcontinuators\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBeoSortedStatBase\fP< \fBEOT\fP > * > \fBsorted\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBeoStatBase\fP< \fBEOT\fP > * > \fBstats\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBeoMonitor\fP * > \fBmonitors\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBeoUpdater\fP * > \fBupdaters\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoCheckPoint< EOT >"
+eoCheckPoint is a container class. 
+
+It contains std::vectors of (pointers to) \fBeoContinue\fP (modif. MS July 16. 2002) eoStats, \fBeoUpdater\fP and \fBeoMonitor\fP it is an \fBeoContinue\fP, so its operator() will be called every generation - and will return the contained-combined-eoContinue result but before that it will call in turn every single {statistics, updaters, monitors} that it has been given, and after that, if stopping, all lastCall methods of the above. 
+.PP
+Definition at line 46 of file eoCheckPoint.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

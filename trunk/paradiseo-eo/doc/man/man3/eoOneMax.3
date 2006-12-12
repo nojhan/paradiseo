@@ -1,0 +1,109 @@
+.TH "eoOneMax" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoOneMax \- Always write a comment in this format before class definition if you want the class to be documented by Doxygen.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoOneMax.h>\fP
+.PP
+Inherits \fBEO< FitT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoOneMax\fP ()"
+.br
+.RI "\fICtor: you MUST provide a default ctor. \fP"
+.ti -1c
+.RI "virtual string \fBclassName\fP () const "
+.br
+.RI "\fIReturn the class id. \fP"
+.ti -1c
+.RI "void \fBprintOn\fP (ostream &_os) const "
+.br
+.RI "\fIprinting... \fP"
+.ti -1c
+.RI "void \fBreadFrom\fP (istream &_is)"
+.br
+.RI "\fIreading... \fP"
+.ti -1c
+.RI "void \fBsetB\fP (vector< bool > &_b)"
+.br
+.ti -1c
+.RI "const vector< bool > & \fBB\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< bool > \fBb\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class FitT> class eoOneMax< FitT >"
+Always write a comment in this format before class definition if you want the class to be documented by Doxygen. 
+
+Note that you MUST derive your structure from EO<fitT> but you MAY use some other already prepared class in the hierarchy like \fBeoVector\fP for instance, if you handle a vector of something....
+.PP
+If you create a structure from scratch, the only thing you need to provide are a default constructor IO routines printOn and readFrom
+.PP
+Note that operator<< and operator>> are defined at \fBEO\fP level using these routines 
+.PP
+Definition at line 31 of file eoOneMax.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class FitT> \fBeoOneMax\fP< \fBFitT\fP >::\fBeoOneMax\fP ()\fC [inline]\fP"
+.PP
+Ctor: you MUST provide a default ctor. 
+.PP
+though such individuals will generally be processed by some \fBeoInit\fP object 
+.PP
+Definition at line 37 of file eoOneMax.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class FitT> virtual string \fBeoOneMax\fP< \fBFitT\fP >::className (void) const\fC [inline, virtual]\fP"
+.PP
+Return the class id. 
+.PP
+\fBReturns:\fP
+.RS 4
+the class name as a std::string 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBEO< FitT >\fP.
+.PP
+Definition at line 49 of file eoOneMax.h.
+.SS "template<class FitT> void \fBeoOneMax\fP< \fBFitT\fP >::printOn (ostream & _os) const\fC [inline]\fP"
+.PP
+printing... 
+.PP
+HINTS in \fBEO\fP we systematically write the sizes of things before the things so readFrom is easier to code (see below)
+.PP
+Definition at line 52 of file eoOneMax.h.
+.PP
+References EO< F >::printOn().
+.SS "template<class FitT> void \fBeoOneMax\fP< \fBFitT\fP >::readFrom (istream & _is)\fC [inline]\fP"
+.PP
+reading... 
+.PP
+of course, your readFrom must be able to read what printOn writes!!!
+.PP
+HINTS remember the eoOneMax object will come from the default ctor this is why having the sizes written out is useful 
+.PP
+Definition at line 72 of file eoOneMax.h.
+.PP
+References EO< F >::readFrom().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

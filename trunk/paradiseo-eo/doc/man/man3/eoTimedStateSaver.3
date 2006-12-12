@@ -1,0 +1,59 @@
+.TH "eoTimedStateSaver" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoTimedStateSaver \- an \fBeoUpdater\fP that saves a state every given time interval  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoUpdater.h>\fP
+.PP
+Inherits \fBeoUpdater\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoTimedStateSaver\fP (time_t _interval, const \fBeoState\fP &_state, std::string _prefix='state', std::string _extension='sav')"
+.br
+.ti -1c
+.RI "void \fBoperator()\fP (void)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP (void) const "
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "const \fBeoState\fP & \fBstate\fP"
+.br
+.ti -1c
+.RI "const time_t \fBinterval\fP"
+.br
+.ti -1c
+.RI "time_t \fBlast_time\fP"
+.br
+.ti -1c
+.RI "const time_t \fBfirst_time\fP"
+.br
+.ti -1c
+.RI "const std::string \fBprefix\fP"
+.br
+.ti -1c
+.RI "const std::string \fBextension\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+an \fBeoUpdater\fP that saves a state every given time interval 
+.PP
+Definition at line 104 of file eoUpdater.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

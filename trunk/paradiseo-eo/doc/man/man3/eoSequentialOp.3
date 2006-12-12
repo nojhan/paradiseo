@@ -1,0 +1,53 @@
+.TH "eoSequentialOp" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoSequentialOp \- Sequential selection: note the mark, rewind, unmark cycle here operators are repeatedly applied on the same individual(s) not all too elegant, but it sort of works...  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoOpContainer.h>\fP
+.PP
+Inherits \fBeoOpContainer< EOT >< EOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef unsigned \fBposition_type\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBapply\fP (\fBeoPopulator\fP< \fBEOT\fP > &_pop)"
+.br
+.RI "\fIthe function that will do the work \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< size_t > \fBto_apply\fP"
+.br
+.ti -1c
+.RI "std::vector< size_t > \fBproduction\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoSequentialOp< EOT >"
+Sequential selection: note the mark, rewind, unmark cycle here operators are repeatedly applied on the same individual(s) not all too elegant, but it sort of works... 
+.PP
+Definition at line 88 of file eoOpContainer.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

@@ -1,0 +1,80 @@
+.TH "eoVector" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoVector \- Base class for fixed length chromosomes, just derives from \fBEO\fP and std::vector and redirects the smaller than operator to EO (fitness based comparison).  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoVector.h>\fP
+.PP
+Inherits \fBEO< FitT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef GeneType \fBAtomType\fP"
+.br
+.ti -1c
+.RI "typedef std::vector< GeneType > \fBContainerType\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoVector\fP (unsigned size=0, GeneType value=GeneType())"
+.br
+.RI "\fIdefault constructor \fP"
+.ti -1c
+.RI "template<class OtherFitnessType> \fBeoVector\fP (const \fBeoVector\fP< OtherFitnessType, GeneType > &_vec)"
+.br
+.RI "\fIcopy ctor abstracting from the FitT \fP"
+.ti -1c
+.RI "void \fBvalue\fP (const std::vector< GeneType > &_v)"
+.br
+.ti -1c
+.RI "bool \fBoperator<\fP (const \fBeoVector\fP< \fBFitT\fP, GeneType > &_eo) const "
+.br
+.RI "\fIto avoid conflicts between EO::operator< and std::vector<GeneType>::operator< \fP"
+.ti -1c
+.RI "virtual void \fBprintOn\fP (std::ostream &os) const "
+.br
+.RI "\fIprinting... \fP"
+.ti -1c
+.RI "virtual void \fBreadFrom\fP (std::istream &is)"
+.br
+.RI "\fIreading... \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class FitT, class GeneType> class eoVector< FitT, GeneType >"
+Base class for fixed length chromosomes, just derives from \fBEO\fP and std::vector and redirects the smaller than operator to EO (fitness based comparison). 
+
+GeneType must have the following methods: void ctor (needed for the std::vector<>), copy ctor, 
+.PP
+Definition at line 46 of file eoVector.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class FitT, class GeneType> \fBeoVector\fP< \fBFitT\fP, GeneType >::\fBeoVector\fP (unsigned size = \fC0\fP, GeneType value = \fCGeneType()\fP)\fC [inline]\fP"
+.PP
+default constructor 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsize\fP Length of vector (default is 0) 
+.br
+\fIvalue\fP Initial value of all elements (default is default value of type GeneType) 
+.RE
+.PP
+
+.PP
+Definition at line 65 of file eoVector.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

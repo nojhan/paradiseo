@@ -1,0 +1,53 @@
+.TH "eoTimedMonitor" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoTimedMonitor \- Holds a collection of monitors and only fires them when a time limit has been reached.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoTimedMonitor.h>\fP
+.PP
+Inherits \fBeoMonitor\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoTimedMonitor\fP (int seconds_)"
+.br
+.ti -1c
+.RI "\fBeoMonitor\fP & \fBoperator()\fP (void)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.ti -1c
+.RI "void \fBadd\fP (\fBeoMonitor\fP &mon)"
+.br
+.ti -1c
+.RI "virtual std::string \fBclassName\fP (void) const "
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "clock_t \fBlast_tick\fP"
+.br
+.ti -1c
+.RI "int \fBseconds\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBeoMonitor\fP * > \fBmonitors\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Holds a collection of monitors and only fires them when a time limit has been reached. 
+.PP
+Definition at line 40 of file eoTimedMonitor.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

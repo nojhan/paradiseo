@@ -1,0 +1,51 @@
+.TH "eoSTLF" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoSTLF \- Generic set of classes that wrap an \fBeoF\fP, \fBeoUF\fP or \fBeoBF\fP so that they have the copy semantics the STL functions usually require (i.e.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoSTLFunctor.h>\fP
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef R \fBresult_type\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoSTLF\fP (\fBeoF\fP< R > &_f)"
+.br
+.ti -1c
+.RI "R \fBoperator()\fP (void)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoF\fP< R > & \fBf\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class R> class eoSTLF< R >"
+Generic set of classes that wrap an \fBeoF\fP, \fBeoUF\fP or \fBeoBF\fP so that they have the copy semantics the STL functions usually require (i.e. 
+
+they can be passed by value, rather than the \fBEO\fP standard pass by reference).
+.PP
+The family consists of eoSTLF, \fBeoSTLUF\fP, \fBeoSTLBF\fP that modify \fBeoF\fP, \fBeoUF\fP and \fBeoBF\fP respectively 
+.PP
+Definition at line 41 of file eoSTLFunctor.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

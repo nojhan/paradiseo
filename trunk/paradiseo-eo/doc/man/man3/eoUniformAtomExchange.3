@@ -1,0 +1,54 @@
+.TH "eoUniformAtomExchange" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoUniformAtomExchange \- Uniform crossover - well, not really, efficient for FixedLength.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoVariableLengthCrossover.h>\fP
+.PP
+Inherits \fBeoAtomExchange< Atom >< Atom >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoUniformAtomExchange\fP (double _rate=0.5)"
+.br
+.ti -1c
+.RI "void \fBrandomize\fP (unsigned _size1, unsigned _size2)"
+.br
+.RI "\fIrandomize: fill the mask: the exchange will be simulated first to see if sizes are OK, so it must be repeatable : the mask has to be a private data, cannot be computed on the fly \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (unsigned _i, Atom &)"
+.br
+.RI "\fIthe operator() simply returns the mask booleans in turn \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIinherited \fBclassName()\fP \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBrate\fP"
+.br
+.ti -1c
+.RI "std::vector< bool > \fBmask\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class Atom> class eoUniformAtomExchange< Atom >"
+Uniform crossover - well, not really, efficient for FixedLength. 
+.PP
+Definition at line 52 of file eoVariableLengthCrossover.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

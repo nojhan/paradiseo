@@ -1,0 +1,58 @@
+.TH "eoPersistent" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoPersistent \- An persistent object that knows how to write (through functions inherited from \fBeoPrintable\fP#) and read itself.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoPersistent.h>\fP
+.PP
+Inherits \fBeoPrintable\fP.
+.PP
+Inherited by \fBEO< F >\fP, \fBEO< double >\fP, \fBEO< EOT::Fitness >\fP, \fBEO< Fit >\fP, \fBEO< Fitness >\fP, \fBEO< fitness_type >\fP, \fBEO< fitnessT >\fP, \fBEO< FitT >\fP, \fBEO< FType >\fP, \fBEO< phenotype >\fP, \fBEO< PyFitness >\fP, \fBeoContinue< EOT >\fP, \fBeoDistribution< EOT >\fP, \fBeoHowMany\fP, \fBeoIntBounds\fP, \fBeoParser\fP, \fBeoPop< EOT >\fP, \fBeoPop< Dummy >\fP, \fBeoPop< PyEO >\fP, \fBeoRealBounds\fP, \fBeoRealVectorBounds\fP, and \fBeoRng\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual \fB~eoPersistent\fP ()"
+.br
+.RI "\fIVirtual dtor. They are needed in virtual class hierarchies. \fP"
+.ti -1c
+.RI "virtual void \fBreadFrom\fP (std::istream &_is)=0"
+.br
+.RI "\fIRead object. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+An persistent object that knows how to write (through functions inherited from \fBeoPrintable\fP#) and read itself. 
+.PP
+Definition at line 52 of file eoPersistent.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual void eoPersistent::readFrom (std::istream & _is)\fC [pure virtual]\fP"
+.PP
+Read object. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_is\fP A std::istream. 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIruntime_std::exception\fP If a valid object can't be read. 
+.RE
+.PP
+
+.PP
+Implemented in \fBEO< F >\fP, \fBeoContinue< EOT >\fP, \fBeoGenContinue< EOT >\fP, \fBeoPop< EOT >\fP, \fBeoVector< FitT, GeneType >\fP, \fBeoEsFull< Fit >\fP, \fBeoEsSimple< Fit >\fP, \fBeoEsStdev< Fit >\fP, \fBeoBit< FitT >\fP, \fBeoPBILDistrib< EOT >\fP, \fBeoParseTree< FType, Node >\fP, \fBeoExternalEO< Fit, External >\fP, \fBeoHowMany\fP, \fBeoIntNoBounds\fP, \fBeoIntInterval\fP, \fBeoIntBelowBound\fP, \fBeoIntAboveBound\fP, \fBeoGeneralIntBounds\fP, \fBeoParser\fP, \fBeoRealNoBounds\fP, \fBeoRealInterval\fP, \fBeoRealBelowBound\fP, \fBeoRealAboveBound\fP, \fBeoGeneralRealBounds\fP, \fBeoRealVectorBounds\fP, \fBeoRng\fP, \fBEO< double >\fP, \fBEO< EOT::Fitness >\fP, \fBEO< FitT >\fP, \fBEO< phenotype >\fP, \fBEO< fitnessT >\fP, \fBEO< Fit >\fP, \fBEO< FType >\fP, \fBEO< fitness_type >\fP, \fBEO< Fitness >\fP, \fBEO< PyFitness >\fP, \fBeoPop< PyEO >\fP, \fBeoPop< Dummy >\fP, \fBeoVector< Fit, double >\fP, \fBeoVector< FitT, double >\fP, and \fBeoVector< FitT, bool >\fP.
+.PP
+Referenced by eoState::load().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

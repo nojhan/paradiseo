@@ -1,0 +1,47 @@
+.TH "eoInitVirus1bit" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoInitVirus1bit \- Inits the virus with one bit to the left set to one.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoInitVirus.h>\fP
+.PP
+Inherits \fBeoInit< eoVirus< FitT > >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoInitVirus1bit\fP (unsigned _combien, \fBeoRndGenerator\fP< bool > &_generator)"
+.br
+.ti -1c
+.RI "virtual void \fBoperator()\fP (eoVirus< \fBFitT\fP > &chrom)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned \fBcombien\fP"
+.br
+.ti -1c
+.RI "\fBeoSTLF\fP< bool > \fBgenerator\fP"
+.br
+.RI "\fIgeneric wrapper for eoFunctor (s), to make them have the function-pointer style copy semantics \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class FitT> class eoInitVirus1bit< FitT >"
+Inits the virus with one bit to the left set to one. 
+.PP
+Definition at line 66 of file eoInitVirus.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

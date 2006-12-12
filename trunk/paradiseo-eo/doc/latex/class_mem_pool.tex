@@ -1,0 +1,53 @@
+\section{Mem\-Pool Class Reference}
+\label{class_mem_pool}\index{MemPool@{MemPool}}
+Pool allocator for the subtree and parse tree classes (homebrew and not compliant to ANSI allocator requirements) (c) copyright Maarten Keijzer 1999, 2000.  
+
+
+{\tt \#include $<$node\_\-pool.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Mem\-Pool} (unsigned int sz)\label{class_mem_pool_a0}
+
+\item 
+void $\ast$ {\bf allocate} ()\label{class_mem_pool_a2}
+
+\item 
+void {\bf deallocate} (void $\ast$b)\label{class_mem_pool_a3}
+
+\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf grow} ()\label{class_mem_pool_d0}
+
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+Chunk $\ast$ {\bf chunks}\label{class_mem_pool_r0}
+
+\item 
+const unsigned int {\bf esize}\label{class_mem_pool_r1}
+
+\item 
+Link $\ast$ {\bf head}\label{class_mem_pool_r2}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Pool allocator for the subtree and parse tree classes (homebrew and not compliant to ANSI allocator requirements) (c) copyright Maarten Keijzer 1999, 2000. 
+
+Permission to copy, use, modify, sell and distribute this software is granted provided this copyright notice appears in all copies. This software is provided \char`\"{}as is\char`\"{} without express or implied warranty, and with no claim as to its suitability for any purpose.
+
+Permission to modify the code and to distribute modified code is granted, provided the above notices are retained, and a notice that the code was modified is included with the above copyright notice. 
+
+
+
+Definition at line 21 of file node\_\-pool.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+node\_\-pool.h\end{CompactItemize}

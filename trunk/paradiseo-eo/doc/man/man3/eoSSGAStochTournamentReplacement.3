@@ -1,0 +1,44 @@
+.TH "eoSSGAStochTournamentReplacement" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoSSGAStochTournamentReplacement \- SSGA stochastic tournament replacement.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoReduceMerge.h>\fP
+.PP
+Inherits \fBeoReduceMerge< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoSSGAStochTournamentReplacement\fP (double _t_rate)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoStochTournamentTruncate\fP< \fBEOT\fP > \fBtruncate\fP"
+.br
+.ti -1c
+.RI "\fBeoPlus\fP< \fBEOT\fP > \fBplus\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoSSGAStochTournamentReplacement< EOT >"
+SSGA stochastic tournament replacement. 
+
+Is an \fBeoReduceMerge\fP. It much cleaner to insert directly the offspring in the parent population, but it is NOT equivalent in case of more than 1 offspring as already replaced could be removed , which is not possible in the \fBeoReduceMerge\fP So what the heck ! 
+.PP
+Definition at line 108 of file eoReduceMerge.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

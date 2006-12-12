@@ -1,0 +1,44 @@
+.TH "StParseTree" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+StParseTree \- Various functions for strongly typed tree-based Genetic Programming.  
+
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBeoStParseTreeDepthInit< FType, Node >\fP"
+.br
+.RI "\fIeoStParseTreeDepthInit : the initializer class for strongly typed tree-based genetic programming \fP"
+.ti -1c
+.RI "class \fBeoStSubtreeXOver< FType, Node >\fP"
+.br
+.RI "\fIeoStSubtreeXOver --> subtree xover for strongly typed tree-based genetic programming \fP"
+.ti -1c
+.RI "class \fBeoStBranchMutation< FType, Node >\fP"
+.br
+.RI "\fIeoStBranchMutation --> replace a strongly typed subtree with a randomly created strongly typed subtree \fP"
+.ti -1c
+.RI "class \fBeoStPointMutation< FType, Node >\fP"
+.br
+.RI "\fIeoStPointMutation --> replace a Node with a Node of the same arity and type \fP"
+.ti -1c
+.RI "class \fBeoStHoistMutation< FType, Node >\fP"
+.br
+.RI "\fIeoStHoistMutation --> replace the individual with one of its strongly typed subtree's \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Various functions for strongly typed tree-based Genetic Programming. 
+.PP
+The StParseTree functions use the same \fBeoParseTree\fP class for the individual but now each node class must have two additional functions. 
+.PD 0
+
+.IP "\(bu" 2
+int type(void) which returns the return type of the node 
+.IP "\(bu" 2
+int type(int child) which returns the required type for child 0, 1 or 2
+.PP
+Pruning strongly typed trees is not possible at the moment. 

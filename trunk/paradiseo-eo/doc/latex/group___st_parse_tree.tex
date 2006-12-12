@@ -1,0 +1,24 @@
+\section{St\-Parse\-Tree}
+\label{group___st_parse_tree}\index{StParseTree@{StParseTree}}
+Various functions for strongly typed tree-based Genetic Programming.  
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf eo\-St\-Parse\-Tree\-Depth\-Init$<$ FType, Node $>$}
+\begin{CompactList}\small\item\em eo\-St\-Parse\-Tree\-Depth\-Init : the initializer class for strongly typed tree-based genetic programming \item\end{CompactList}\item 
+class {\bf eo\-St\-Subtree\-XOver$<$ FType, Node $>$}
+\begin{CompactList}\small\item\em eo\-St\-Subtree\-XOver --$>$ subtree xover for strongly typed tree-based genetic programming \item\end{CompactList}\item 
+class {\bf eo\-St\-Branch\-Mutation$<$ FType, Node $>$}
+\begin{CompactList}\small\item\em eo\-St\-Branch\-Mutation --$>$ replace a strongly typed subtree with a randomly created strongly typed subtree \item\end{CompactList}\item 
+class {\bf eo\-St\-Point\-Mutation$<$ FType, Node $>$}
+\begin{CompactList}\small\item\em eo\-St\-Point\-Mutation --$>$ replace a Node with a Node of the same arity and type \item\end{CompactList}\item 
+class {\bf eo\-St\-Hoist\-Mutation$<$ FType, Node $>$}
+\begin{CompactList}\small\item\em eo\-St\-Hoist\-Mutation --$>$ replace the individual with one of its strongly typed subtree's \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Various functions for strongly typed tree-based Genetic Programming. 
+
+The St\-Parse\-Tree functions use the same {\bf eo\-Parse\-Tree}{\rm (p.\,\pageref{classeo_parse_tree})} class for the individual but now each node class must have two additional functions. \begin{itemize}
+\item int type(void) which returns the return type of the node \item int type(int child) which returns the required type for child 0, 1 or 2\end{itemize}
+Pruning strongly typed trees is not possible at the moment. 

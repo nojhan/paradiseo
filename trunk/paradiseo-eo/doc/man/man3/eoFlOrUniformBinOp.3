@@ -1,0 +1,55 @@
+.TH "eoFlOrUniformBinOp" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoFlOrUniformBinOp \- The uniform crossover - exchanges atoms uniformly !  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoFlOrBinOp.h>\fP
+.PP
+Inherits \fBeoBinOp< EOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOT::AtomType \fBAtomType\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoFlOrUniformBinOp\fP (double _rate=0.5)"
+.br
+.RI "\fIdefault ctor: requires a rate - 0.5 by default \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (\fBEOT\fP &_eo1, const \fBEOT\fP &_eo2)"
+.br
+.RI "\fIexcahnges atoms at given rate \fP"
+.ti -1c
+.RI "virtual string \fBclassName\fP () const "
+.br
+.RI "\fIinherited \fBclassName()\fP \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBrate\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoFlOrUniformBinOp< EOT >"
+The uniform crossover - exchanges atoms uniformly ! 
+.PP
+Definition at line 136 of file eoFlOrBinOp.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

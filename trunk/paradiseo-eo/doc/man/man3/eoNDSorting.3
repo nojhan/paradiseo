@@ -1,0 +1,94 @@
+.TH "eoNDSorting" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoNDSorting \- Non dominated sorting, it *is a* std::vector of doubles, the integer part is the rank (to which front it belongs), the fractional part the niching penalty or distance penalty or whatever penalty you want to squeeze into the bits.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoNDSorting.h>\fP
+.PP
+Inherits \fBeoPerf2WorthCached< EOT, double >\fP.
+.PP
+Inherited by \fBeoNDSorting_I< EOT >\fP, and \fBeoNDSorting_II< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoNDSorting\fP (bool nasty_flag_=false)"
+.br
+.ti -1c
+.RI "virtual std::vector< double > \fBniche_penalty\fP (const std::vector< unsigned > &current_front, const \fBeoPop\fP< \fBEOT\fP > &_pop)=0"
+.br
+.RI "\fIPure virtual function that calculates the 'distance' for each element in the current front Implement to create your own nondominated sorting algorithm. \fP"
+.ti -1c
+.RI "void \fBcalculate_worths\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop)"
+.br
+.RI "\fIThe actual virtual function the derived classes should implement. \fP"
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "bool \fBnasty_declone_flag_that_only_is_implemented_for_two_objectives\fP"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBone_objective\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop)"
+.br
+.ti -1c
+.RI "void \fBtwo_objectives\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop)"
+.br
+.RI "\fIOptimization for two objectives. \fP"
+.ti -1c
+.RI "void \fBm_objectives\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop)"
+.br
+.ti -1c
+.RI "void \fBrank_to_worth\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoNDSorting< EOT >"
+Non dominated sorting, it *is a* std::vector of doubles, the integer part is the rank (to which front it belongs), the fractional part the niching penalty or distance penalty or whatever penalty you want to squeeze into the bits. 
+.PP
+Definition at line 42 of file eoNDSorting.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> virtual std::vector<double> \fBeoNDSorting\fP< \fBEOT\fP >::niche_penalty (const std::vector< unsigned > & current_front, const \fBeoPop\fP< \fBEOT\fP > & _pop)\fC [pure virtual]\fP"
+.PP
+Pure virtual function that calculates the 'distance' for each element in the current front Implement to create your own nondominated sorting algorithm. 
+.PP
+The size of the returned std::vector should be equal to the size of the current_front. 
+.PP
+Implemented in \fBeoNDSorting_I< EOT >\fP, and \fBeoNDSorting_II< EOT >\fP.
+.PP
+Referenced by eoNDSorting< EOT >::two_objectives().
+.SS "template<class EOT> void \fBeoNDSorting\fP< \fBEOT\fP >::two_objectives (const \fBeoPop\fP< \fBEOT\fP > & _pop)\fC [inline, private]\fP"
+.PP
+Optimization for two objectives. 
+.PP
+Makes the algorithm run in complexity O(n log n) where n is the population size
+.PP
+This is the same complexity as for a single objective or truncation selection or sorting.
+.PP
+It will perform a sort on the two objectives seperately, and from the information on the ranks of the individuals on these two objectives, the non-dominated sorting rank is determined. There are then three nlogn operations in place: one sort per objective, plus a binary search procedure to combine the information about the ranks.
+.PP
+After that it is a simple exercise to calculate the distance penalty 
+.PP
+Definition at line 140 of file eoNDSorting.h.
+.PP
+References eoNDSorting< EOT >::niche_penalty(), and eoValueParam< std::vector< double > >::value().
+.PP
+Referenced by eoNDSorting< EOT >::calculate_worths().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

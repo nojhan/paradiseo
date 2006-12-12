@@ -1,0 +1,57 @@
+.TH "eoProportionalSelect" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoProportionalSelect \- eoProportionalSelect: select an individual proportional to her stored fitness value  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoProportionalSelect.h>\fP
+.PP
+Inherits \fBeoSelectOne< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoProportionalSelect\fP (const \fBeoPop\fP< \fBEOT\fP > &pop=\fBeoPop\fP< \fBEOT\fP >())"
+.br
+.RI "\fISanity check. \fP"
+.ti -1c
+.RI "void \fBsetup\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop)"
+.br
+.RI "\fIvirtual function to setup some population stats (for instance eoProportional can benefit greatly from this) \fP"
+.ti -1c
+.RI "const \fBEOT\fP & \fBoperator()\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop)"
+.br
+.RI "\fIdo the selection, \fP"
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "typedef std::vector< typename EOT::Fitness > \fBFitVec\fP"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "FitVec \fBcumulative\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoProportionalSelect< EOT >"
+eoProportionalSelect: select an individual proportional to her stored fitness value 
+
+Changed the algorithm to make use of a cumulative array of fitness scores, This changes the algorithm from O(n) per call to O(log n) per call. (MK) 
+.PP
+Definition at line 45 of file eoProportionalSelect.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

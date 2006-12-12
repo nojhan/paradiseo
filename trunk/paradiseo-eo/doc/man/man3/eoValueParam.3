@@ -1,0 +1,118 @@
+.TH "eoValueParam" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoValueParam \- eoValueParam<ValueType>: templatized derivation of \fBeoParam\fP.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoParam.h>\fP
+.PP
+Inherits \fBeoParam\fP.
+.PP
+Inherited by \fBeoPerf2Worth< EOT, EOT::Fitness >\fP, and \fBeoPerf2Worth< EOT, WorthType >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoValueParam\fP (void)"
+.br
+.RI "\fIConstruct a Param. \fP"
+.ti -1c
+.RI "\fBeoValueParam\fP (ValueType _defaultValue, std::string _longName, std::string _description='No description', char _shortHand=0, bool _required=false)"
+.br
+.RI "\fIConstruct a Param. \fP"
+.ti -1c
+.RI "ValueType & \fBvalue\fP ()"
+.br
+.RI "\fIParameter value. \fP"
+.ti -1c
+.RI "const ValueType & \fBvalue\fP () const "
+.br
+.RI "\fIParameter value. \fP"
+.ti -1c
+.RI "std::string \fBgetValue\fP (void) const "
+.br
+.RI "\fIPure virtual function to get the value out. \fP"
+.ti -1c
+.RI "void \fBsetValue\fP (const std::string &_value)"
+.br
+.RI "\fIPure virtual function to set the value. \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "ValueType \fBrepValue\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class ValueType> class eoValueParam< ValueType >"
+eoValueParam<ValueType>: templatized derivation of \fBeoParam\fP. 
+
+Can be used to contain any scalar value type. It makes use of std::strstream to get and set values. This should be changed to std::stringstream when that class is available in g++.
+.PP
+Note also that there is a template specialization for std::pair<double, double> and for std::vector<double>. These stream their contents delimited with whitespace. 
+.PP
+Definition at line 136 of file eoParam.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class ValueType> \fBeoValueParam\fP< ValueType >::\fBeoValueParam\fP (ValueType _defaultValue, std::string _longName, std::string _description = \fC'No description'\fP, char _shortHand = \fC0\fP, bool _required = \fCfalse\fP)\fC [inline]\fP"
+.PP
+Construct a Param. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_defaultValue\fP The default value 
+.br
+\fI_longName\fP Long name of the argument 
+.br
+\fI_description\fP Description of the parameter. What is useful for. 
+.br
+\fI_shortName\fP Short name of the argument (Optional) 
+.br
+\fI_required\fP If it is a necessary parameter or not 
+.RE
+.PP
+
+.PP
+Definition at line 151 of file eoParam.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class ValueType> ValueType& \fBeoValueParam\fP< ValueType >::value ()\fC [inline]\fP"
+.PP
+Parameter value. 
+.PP
+\fBReturns:\fP
+.RS 4
+parameter value 
+.RE
+.PP
+
+.PP
+Definition at line 166 of file eoParam.h.
+.PP
+Referenced by eoNoPerf2Worth< EOT >::operator()(), eoFileSnapshot::operator()(), eoFDCStat< EOT >::operator()(), and eoParser::setStopOnUnknownParam().
+.SS "template<class ValueType> const ValueType& \fBeoValueParam\fP< ValueType >::value () const\fC [inline]\fP"
+.PP
+Parameter value. 
+.PP
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.PP
+\fBReturns:\fP
+.RS 4
+parameter value 
+.RE
+.PP
+
+.PP
+Definition at line 175 of file eoParam.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

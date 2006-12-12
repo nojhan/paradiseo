@@ -1,0 +1,263 @@
+.TH "EO" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EO \- EO is a base class for evolvable objects, that is, the subjects of evolution.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <EO.h>\fP
+.PP
+Inherits \fBeoObject\fP, and \fBeoPersistent\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef F \fBFitness\fP"
+.br
+.ti -1c
+.RI "typedef Traits \fBfitness_traits\fP"
+.br
+.ti -1c
+.RI "typedef Traits::storage_type \fBstorage_type\fP"
+.br
+.ti -1c
+.RI "typedef Traits::performance_type \fBperformance_type\fP"
+.br
+.ti -1c
+.RI "typedef Traits::worth_type \fBworth_type\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBEO\fP ()"
+.br
+.RI "\fIDefault constructor. \fP"
+.ti -1c
+.RI "virtual \fB~EO\fP ()"
+.br
+.RI "\fIVirtual dtor. \fP"
+.ti -1c
+.RI "Fitness \fBfitness\fP () const "
+.br
+.RI "\fIReturn fitness value. \fP"
+.ti -1c
+.RI "void \fBinvalidate\fP ()"
+.br
+.ti -1c
+.RI "void \fBfitness\fP (const Fitness &_fitness)"
+.br
+.RI "\fISet fitness. \fP"
+.ti -1c
+.RI "bool \fBinvalid\fP () const "
+.br
+.RI "\fIReturn true If fitness value is invalid, false otherwise. \fP"
+.ti -1c
+.RI "bool \fBoperator<\fP (const \fBEO\fP &_eo2) const "
+.br
+.RI "\fIReturns true if. \fP"
+.ti -1c
+.RI "bool \fBoperator>\fP (const \fBEO\fP &_eo2) const "
+.br
+.ti -1c
+.RI "void \fBfitness\fP (performance_type perf)"
+.br
+.ti -1c
+.RI "void \fBperformance\fP (performance_type perf)"
+.br
+.ti -1c
+.RI "performance_type \fBperformance\fP (void) const "
+.br
+.ti -1c
+.RI "void \fBworth\fP (worth_type worth)"
+.br
+.ti -1c
+.RI "worth_type \fBworth\fP (void) const "
+.br
+.ti -1c
+.RI "worth_type \fBfitness\fP (void) const "
+.br
+.ti -1c
+.RI "void \fBinvalidate\fP (void)"
+.br
+.ti -1c
+.RI "void \fBinvalidate_worth\fP (void)"
+.br
+.ti -1c
+.RI "bool \fBoperator<\fP (const EO< Fitness, Traits > &other) const "
+.br
+.ti -1c
+.RI "bool \fBoperator>\fP (const EO< Fitness, Traits > &other) const "
+.br
+.in -1c
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIReturn the class id. \fP"
+.ti -1c
+.RI "virtual void \fBreadFrom\fP (std::istream &_is)"
+.br
+.RI "\fIRead object.\\ Calls base class, just in case that one had something to do. \fP"
+.ti -1c
+.RI "virtual void \fBprintOn\fP (std::ostream &_os) const "
+.br
+.RI "\fIWrite object. \fP"
+.in -1c
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "Fitness \fBrepFitness\fP"
+.br
+.ti -1c
+.RI "bool \fBinvalidFitness\fP"
+.br
+.ti -1c
+.RI "bool \fBvalid_performance\fP"
+.br
+.ti -1c
+.RI "bool \fBvalid_worth\fP"
+.br
+.ti -1c
+.RI "storage_type \fBrep_fitness\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class F> class EO< F >"
+EO is a base class for evolvable objects, that is, the subjects of evolution. 
+
+EOs have only got a fitness, which at the same time needs to be only an object with the operation less than (<) defined. Fitness says how good is the object; evolution or change of these objects is left to the genetic operators. A fitness less than another means a worse fitness, in whatever the context; thus, fitness is always maximized; although it can be minimized with a proper definition of the < operator. The fitness object must have, besides an void ctor, a copy ctor. 
+.PP
+Definition at line 44 of file EO.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class F> \fBEO\fP< F >::\fBEO\fP ()\fC [inline]\fP"
+.PP
+Default constructor. 
+.PP
+Fitness must have a ctor which takes 0 as a value; we can not use void ctors here since default types like float have no void initializer. VC++ allows it, but gcc does not 
+.PP
+Definition at line 54 of file EO.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class F> void \fBEO\fP< F >::fitness (const Fitness & _fitness)\fC [inline]\fP"
+.PP
+Set fitness. 
+.PP
+At the same time, validates it. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_fitness\fP New fitness value. 
+.RE
+.PP
+
+.PP
+Definition at line 72 of file EO.h.
+.SS "template<class F> bool \fBEO\fP< F >::invalid () const\fC [inline]\fP"
+.PP
+Return true If fitness value is invalid, false otherwise. 
+.PP
+\fBReturns:\fP
+.RS 4
+true If fitness is invalid. 
+.RE
+.PP
+
+.PP
+Definition at line 81 of file EO.h.
+.PP
+Referenced by EO< PyFitness >::fitness(), eoOneMaxEvalFunc< EOT >::operator()(), eoOneFifthMutation< EOT >::operator()(), eoEvalFuncPtr< EOT, FitT, FunctionArg >::operator()(), eoEvalFuncCounter< EOT >::operator()(), and EO< PyFitness >::printOn().
+.SS "template<class F> bool \fBEO\fP< F >::operator< (const \fBEO\fP< F > & _eo2) const\fC [inline]\fP"
+.PP
+Returns true if. 
+.PP
+\fBReturns:\fP
+.RS 4
+true if the fitness is higher 
+.RE
+.PP
+
+.PP
+Definition at line 86 of file EO.h.
+.PP
+Referenced by eoVector< FitT, bool >::operator<().
+.SS "template<class F> virtual std::string \fBEO\fP< F >::className (void) const\fC [inline, virtual]\fP"
+.PP
+Return the class id. 
+.PP
+\fBReturns:\fP
+.RS 4
+the class name as a std::string 
+.RE
+.PP
+
+.PP
+Implements \fBeoObject\fP.
+.PP
+Reimplemented in \fBeoEsFull< Fit >\fP, \fBeoEsSimple< Fit >\fP, \fBeoEsStdev< Fit >\fP, \fBeoReal< FitT >\fP, \fBeoBit< FitT >\fP, \fBeoParseTree< FType, Node >\fP, \fBeoString< fitnessT >\fP, and \fBeoOneMax< FitT >\fP.
+.PP
+Definition at line 95 of file EO.h.
+.SS "template<class F> virtual void \fBEO\fP< F >::readFrom (std::istream & _is)\fC [inline, virtual]\fP"
+.PP
+Read object.\\ Calls base class, just in case that one had something to do. 
+.PP
+The read and print methods should be compatible and have the same format. In principle, format is 'plain': they just print a number 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_is\fP a std::istream. 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIruntime_std::exception\fP If a valid object can't be read. 
+.RE
+.PP
+
+.PP
+Implements \fBeoPersistent\fP.
+.PP
+Reimplemented in \fBeoVector< FitT, GeneType >\fP, \fBeoEsFull< Fit >\fP, \fBeoEsSimple< Fit >\fP, \fBeoEsStdev< Fit >\fP, \fBeoBit< FitT >\fP, \fBeoParseTree< FType, Node >\fP, \fBeoExternalEO< Fit, External >\fP, \fBeoVector< Fit, double >\fP, \fBeoVector< FitT, double >\fP, and \fBeoVector< FitT, bool >\fP.
+.PP
+Definition at line 105 of file EO.h.
+.PP
+Referenced by eoVector< FitT, bool >::readFrom(), eoPop< Dummy >::readFrom(), eoParseTree< FType, Node >::readFrom(), eoOneMax< FitT >::readFrom(), eoExternalEO< Fit, External >::readFrom(), and eoBit< FitT >::readFrom().
+.SS "template<class F> virtual void \fBEO\fP< F >::printOn (std::ostream & _os) const\fC [inline, virtual]\fP"
+.PP
+Write object. 
+.PP
+Called printOn since it prints the object _on_ a stream. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_os\fP A std::ostream. 
+.RE
+.PP
+
+.PP
+Implements \fBeoPrintable\fP.
+.PP
+Reimplemented in \fBeoVector< FitT, GeneType >\fP, \fBeoEsFull< Fit >\fP, \fBeoEsSimple< Fit >\fP, \fBeoEsStdev< Fit >\fP, \fBeoBit< FitT >\fP, \fBeoParseTree< FType, Node >\fP, \fBeoExternalEO< Fit, External >\fP, \fBeoString< fitnessT >\fP, \fBDummy\fP, \fBDummy\fP, \fBDummy\fP, \fBDummy\fP, \fBeoVector< Fit, double >\fP, \fBeoVector< FitT, double >\fP, and \fBeoVector< FitT, bool >\fP.
+.PP
+Definition at line 129 of file EO.h.
+.PP
+Referenced by Dummy::printOn(), eoVector< FitT, bool >::printOn(), eoString< fitnessT >::printOn(), eoParseTree< FType, Node >::printOn(), eoOneMax< FitT >::printOn(), eoExternalEO< Fit, External >::printOn(), and eoBit< FitT >::printOn().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

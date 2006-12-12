@@ -1,0 +1,64 @@
+.TH "Bitstring" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Bitstring \- Various functions for a bitstring representation.  
+
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBeoBit< FitT >\fP"
+.br
+.RI "\fIImplementation of bitstring chromosome. \fP"
+.ti -1c
+.RI "class \fBeoBit< FitT >\fP"
+.br
+.RI "\fIImplementation of bitstring chromosome. \fP"
+.ti -1c
+.RI "class \fBeoBitBitFlip\fP"
+.br
+.RI "\fIeoBitFlip --> changes 1 bit \fP"
+.ti -1c
+.RI "class \fBeoDetBitFlip< Chrom >\fP"
+.br
+.RI "\fIeoDetBitFlip --> changes exactly k bits \fP"
+.ti -1c
+.RI "class \fBeoBitMutation< Chrom >\fP"
+.br
+.RI "\fIeoBitMutation --> classical mutation \fP"
+.ti -1c
+.RI "class \fBeoBitInversion< Chrom >\fP"
+.br
+.RI "\fIeoBitInversion: inverts the bits of the chromosome between an interval \fP"
+.ti -1c
+.RI "class \fBeoBitNext< Chrom >\fP"
+.br
+.RI "\fIeoBitNext --> next value when bitstring considered as binary value \fP"
+.ti -1c
+.RI "class \fBeoBitPrev< Chrom >\fP"
+.br
+.RI "\fIeoBitPrev --> previous value when bitstring treated as binary value \fP"
+.ti -1c
+.RI "class \fBeo1PtBitCrossover\fP"
+.br
+.RI "\fIeo1PtBitXover --> classic 1-point crossover \fP"
+.ti -1c
+.RI "class \fBeoUBitXover< Chrom >\fP"
+.br
+.RI "\fIeoUBitXover --> classic Uniform crossover \fP"
+.ti -1c
+.RI "class \fBeoNPtsBitXover< Chrom >\fP"
+.br
+.RI "\fIeoNPtsBitXover --> n-point crossover \fP"
+.ti -1c
+.RI "class \fBeoBitGxOver< Chrom >\fP"
+.br
+.RI "\fIeoBitGxOver --> Npts crossover when bistd::string considered as a std::string of binary-encoded genes (exchanges genes) Is anybody still using it apart from historians ??? :-) \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Various functions for a bitstring representation. 
+.PP
+

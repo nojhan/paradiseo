@@ -1,0 +1,160 @@
+.TH "eoHowMany" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoHowMany \- A helper class, to determine a number of individuals from another one Typically, is used in selection / replacement procedures, e.g.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoHowMany.h>\fP
+.PP
+Inherits \fBeoPersistent\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoHowMany\fP (double _rate=0.0, bool _interpret_as_rate=true)"
+.br
+.RI "\fIOriginal Ctor from direct rate + bool. \fP"
+.ti -1c
+.RI "\fBeoHowMany\fP (int _combien)"
+.br
+.RI "\fICtor from an int - both from int and unsigned int are needed to avoid ambiguity with the Ctor from a double. \fP"
+.ti -1c
+.RI "\fBeoHowMany\fP (unsigned int _combien)"
+.br
+.RI "\fICtor from an unsigned int - both from int and unsigned int are needed to avoid ambiguity with the Ctor from a double. \fP"
+.ti -1c
+.RI "virtual \fB~eoHowMany\fP ()"
+.br
+.RI "\fIVirtual dtor. They are needed in virtual class hierarchies. \fP"
+.ti -1c
+.RI "unsigned int \fBoperator()\fP (unsigned int _size)"
+.br
+.RI "\fIDoes what it was designed for combien==0 : return rate*_size else combien>0 : return combien (regardless of _size) combien<0 : return _size-|combien|. \fP"
+.ti -1c
+.RI "virtual void \fBprintOn\fP (std::ostream &_os) const "
+.br
+.RI "\fIWrite object. \fP"
+.ti -1c
+.RI "virtual void \fBreadFrom\fP (std::istream &_is)"
+.br
+.RI "\fIRead object. \fP"
+.ti -1c
+.RI "void \fBreadFrom\fP (std::string _value)"
+.br
+.ti -1c
+.RI "\fBeoHowMany\fP \fBoperator-\fP ()"
+.br
+.RI "\fIThe unary - operator: reverses the computation. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBrate\fP"
+.br
+.ti -1c
+.RI "int \fBcombien\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A helper class, to determine a number of individuals from another one Typically, is used in selection / replacement procedures, e.g. 
+
+the number of offspring from the number of parents, or the number of survivors for an \fBeoReduce\fP functor, ...
+.PP
+Such construct is very useful because in some cases you might not know the population size that will enter the replacement. For instance, you cannot simply have a pre-computed (double) rate of 1/popSize if you want to select or kill just 1 guy. Using an eoHowMany allows one to modify the population size without touching anything else.
+.PP
+There are 4 possible way to compute the return value from the argument:
+.IP "\(bu" 2
+an absolute POSITIVE integer --> return it (regardless of popsize)
+.IP "\(bu" 2
+a POSITIVE rate --> return rate*popSize
+.IP "\(bu" 2
+an absolute NEGATIVE integer --> return popsize-rate (if positive)
+.IP "\(bu" 2
+a NEGATIVE rate in [-1,0] --> store and use 1-|rate| (positive) Note that a negative rate should be have been necessary because a rate is relative, but it is there for consistency reasons - and because it is needed in \fCeoG3Replacement\fP
+.PP
+.PP
+It has 2 private members, a double and an integer to cover all cases
+.PP
+Example use: in \fCeoGeneralBreeder.h\fP Example reading from parser: in \fCdo/make_algo_scalar.h line 141\fP
+.PP
+MS 10/04/2002: Added the possibility to have a negative number - when treated as a number: returns then (size - combien) Should not modify anything when a positive number is passed in the ctor
+.PP
+MS 20/06/2002: Added the negative rate and the \fBoperator-()\fP (for eoG3Repalcement)
+.PP
+It is an \fBeoPersistent\fP because we need to be able to use eoParamValue<eoHowMany> 
+.PP
+Definition at line 69 of file eoHowMany.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "eoHowMany::eoHowMany (double _rate = \fC0.0\fP, bool _interpret_as_rate = \fCtrue\fP)\fC [inline]\fP"
+.PP
+Original Ctor from direct rate + bool. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIrate\fP the rate, OR the integer to store, depending on 2nd arg. 
+.br
+\fI_interpret_as_rate\fP to tell whether the rate actually is a rate 
+.RE
+.PP
+
+.PP
+Definition at line 76 of file eoHowMany.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "unsigned int eoHowMany::operator() (unsigned int _size)\fC [inline]\fP"
+.PP
+Does what it was designed for combien==0 : return rate*_size else combien>0 : return combien (regardless of _size) combien<0 : return _size-|combien|. 
+.PP
+.IP "\(bu" 2
+* - * - * - 
+.PP
+
+.PP
+Definition at line 114 of file eoHowMany.h.
+.SS "virtual void eoHowMany::printOn (std::ostream & _os) const\fC [inline, virtual]\fP"
+.PP
+Write object. 
+.PP
+It's called printOn since it prints the object on a stream. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_os\fP A std::ostream. 
+.RE
+.PP
+
+.PP
+Implements \fBeoPrintable\fP.
+.PP
+Definition at line 130 of file eoHowMany.h.
+.SS "virtual void eoHowMany::readFrom (std::istream & _is)\fC [inline, virtual]\fP"
+.PP
+Read object. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_is\fP A std::istream. 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIruntime_std::exception\fP If a valid object can't be read. 
+.RE
+.PP
+
+.PP
+Implements \fBeoPersistent\fP.
+.PP
+Definition at line 140 of file eoHowMany.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

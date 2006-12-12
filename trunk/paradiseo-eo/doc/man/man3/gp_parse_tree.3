@@ -1,0 +1,175 @@
+.TH "gp_parse_tree" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+gp_parse_tree \- Parse_tree and subtree classes (c) copyright Maarten Keijzer 1999, 2000.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBgp_parse_tree::MemPool\fP"
+.br
+.RI "\fIPool allocator for the subtree and parse tree classes (homebrew and not compliant to ANSI allocator requirements) (c) copyright Maarten Keijzer 1999, 2000. \fP"
+.ti -1c
+.RI "struct \fBgp_parse_tree::MemPool::Link\fP"
+.br
+.ti -1c
+.RI "struct \fBgp_parse_tree::MemPool::Chunk\fP"
+.br
+.ti -1c
+.RI "class \fBgp_parse_tree::Node_alloc< T >\fP"
+.br
+.ti -1c
+.RI "class \fBgp_parse_tree::Standard_alloc< T >\fP"
+.br
+.ti -1c
+.RI "class \fBgp_parse_tree::Standard_Node_alloc< T >\fP"
+.br
+.ti -1c
+.RI "class \fBgp_parse_tree::Tree_alloc< T >\fP"
+.br
+.ti -1c
+.RI "class \fBgp_parse_tree::parse_tree< T >\fP"
+.br
+.ti -1c
+.RI "class \fBgp_parse_tree::parse_tree< T >::subtree\fP"
+.br
+.ti -1c
+.RI "class \fBgp_parse_tree::parse_tree< T >::base_iterator\fP"
+.br
+.ti -1c
+.RI "class \fBgp_parse_tree::parse_tree< T >::iterator\fP"
+.br
+.ti -1c
+.RI "class \fBgp_parse_tree::parse_tree< T >::embedded_iterator\fP"
+.br
+.ti -1c
+.RI "class \fBgp_parse_tree::parse_tree< T >::base_const_iterator\fP"
+.br
+.ti -1c
+.RI "class \fBgp_parse_tree::parse_tree< T >::const_iterator\fP"
+.br
+.ti -1c
+.RI "class \fBgp_parse_tree::parse_tree< T >::embedded_const_iterator\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<class T> void \fBdo_the_swap\fP (T &a, T &b)"
+.br
+.RI "\fIThis ones defined because gcc does not always implement namespaces. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Parse_tree and subtree classes (c) copyright Maarten Keijzer 1999, 2000. 
+
+Permission to copy, use, modify, sell and distribute this software is granted provided this copyright notice appears in all copies. This software is provided 'as is' without express or implied warranty, and with no claim as to its suitability for any purpose.
+.PP
+Permission to modify the code and to distribute modified code is granted, provided the above notices as well as this one are retained, and a notice that the code was modified is included with the above copyright notice.
+.PP
+Usage information.
+.PP
+class Node (your node in the tree) must have the following implemented:
+.PP
+Arity ******
+.PP
+int arity(void) const
+.PP
+Note: the default constructor of a Node should provide a Node with arity 0!
+.PP
+Evaluation ******
+.PP
+A parse_tree is evaluated through one of it's apply() members:
+.PP
+1) parse_tree::apply(RetVal)
+.PP
+is the simplest evaluation, it will call
+.PP
+RetVal Node::operator()(RetVal, subtree<Node, RetVal>::const_iterator)
+.PP
+(Unfortunately the first RetVal argument is mandatory (although you might not need it. This is because MSVC does not support member template functions properly. If it cannot deduce the template arguments (as is the case in templatizing over return value) you are not allowed to specify them. calling tree.apply<double>() would result in a syntax error. That is why you have to call tree.apply(double()) instead.)
+.PP
+2) parse_tree::apply(RetVal v, It values)
+.PP
+will call:
+.PP
+RetVal Node::operator()(RetVal, subtree<... , It values)
+.PP
+where It is whatever type you desire (most of the time this will be a std::vector containing the values of your variables);
+.PP
+3) parse_tree::apply(RetVal, It values, It2 moreValues)
+.PP
+will call:
+.PP
+RetVal Node::operator()(RetVal, subtree<... , It values, It2 moreValues)
+.PP
+although I do not see the immediate use of this, however...
+.PP
+4) parse_tree::apply(RetVal, It values, It2 args, It3 adfs)
+.PP
+that calls:
+.PP
+RetVal Node::operator()(subtree<... , It values, It2 args, It3 adfs)
+.PP
+can be useful for implementing adfs.
+.PP
+In general it is a good idea to leave the specifics of the arguments open so that different ways of evaluation remain possible. Implement the simplest eval as:
+.PP
+template <class it=''> RetVal operator()(RetVal dummy, It begin) const
+.PP
+Internal Structure ******
+.PP
+A parse_tree has two template arguments: the Node and the ReturnValue produced by evaluating the node. The structure of the tree is defined through a subtree class that has the same two template arguments.
+.PP
+The nodes are stored in a tree like :
+.PP
+node4 / \\ node3 node2 / \\ node1 node0
+.PP
+where nodes 2 and 4 have arity 2 and nodes 0,1 and 3 arity 0 (terminals)
+.PP
+The nodes are subtrees, containing the structure of the tree, together with its size and depth. They contain a Node, the user defined template argument. To access these nodes from a subtree, use operator-> or operator*.
+.PP
+The numbers behind the nodes define a reverse-polish or postfix traversel through the tree. The parse_tree defines iterators on the tree such that
+.PP
+tree.begin() points at the subtree at node0 and tree.back() returns the subtree at node4, the complete tree
+.PP
+Likewise operator[] is defined on the tree, such that:
+.PP
+tree[0] will return the subtree at node0, while tree[2] will return the subtree at node2
+.PP
+Assigments of subtrees is protected so that the code:
+.PP
+tree[2] = tree[0];
+.PP
+will not crash and result in a tree structured as:
+.PP
+node4 / \\ node3 node0
+.PP
+Note that the rank numbers no longer specify their place in the tree:
+.PP
+tree[0] still points at node0, but tree[1] now points to node3 and tree[2] points at the root node4
+.PP
+Embedded iterators are implemented to iterate over nodes rather than subtrees. So an easy way to copy your tree to a std::vector is:
+.PP
+std::vector<Node> vec(tree.size()); copy(tree.ebegin(), tree.eend(), vec.begin());
+.PP
+You can also copy it to an std::ostream_iterator with this technique, given that your Node implements an appropriate operator<<. Reinitializing a tree with the std::vector is also simple:
+.PP
+tree.clear(); copy(vec.begin(), vec.end(), back_inserter(tree));
+.PP
+or from an std::istream:
+.PP
+copy(std::istream_iterator<T>(my_stream), std::istream_iterator<T>(), back_inserter(tree));
+.PP
+Note that the back_inserter must be used as there is no resize member in the parse_tree. back_inserter will use the push_back member from the parse_tree 
+.PP
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

@@ -1,0 +1,58 @@
+.TH "eoSecondMomentStats" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoSecondMomentStats \- Average fitness + Std.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoStat.h>\fP
+.PP
+Inherits \fBeoStat< EOT, std::pair< double, double > >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOT::Fitness \fBfitness_type\fP"
+.br
+.ti -1c
+.RI "typedef std::pair< double, double > \fBSquarePair\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoSecondMomentStats\fP (std::string _description='Average & Stdev')"
+.br
+.ti -1c
+.RI "virtual void \fBoperator()\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP (void) const "
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "SquarePair \fBsumOfSquares\fP (SquarePair _sq, const \fBEOT\fP &_eo)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoSecondMomentStats< EOT >"
+Average fitness + Std. 
+
+dev. of a population, fitness needs to be scalar. 
+.PP
+Definition at line 168 of file eoStat.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

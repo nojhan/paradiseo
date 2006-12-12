@@ -1,0 +1,60 @@
+.TH "eoScalarFitnessAssembledTraits" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoScalarFitnessAssembledTraits \- Defines properties of \fBeoScalarFitnessAssembled\fP.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoScalarFitnessAssembled.h>\fP
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef std::vector< std::string >::size_type \fBsize_type\fP"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBsetDescription\fP (size_type _idx, std::string _descr)"
+.br
+.ti -1c
+.RI "std::string \fBgetDescription\fP (size_type _idx)"
+.br
+.ti -1c
+.RI "void \fBresize\fP (size_type _n, const std::string &_descr)"
+.br
+.ti -1c
+.RI "size_type \fBsize\fP ()"
+.br
+.ti -1c
+.RI "std::vector< std::string > \fBgetDescriptionVector\fP ()"
+.br
+.in -1c
+.SS "Static Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< std::string > \fBTermDescriptions\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Defines properties of \fBeoScalarFitnessAssembled\fP. 
+
+Properties that are hold in this traits class:
+.IP "\(bu" 2
+std::vector<std::string> to hold descriptions of the different fitness terms 
+.PP
+
+.PP
+Definition at line 43 of file eoScalarFitnessAssembled.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

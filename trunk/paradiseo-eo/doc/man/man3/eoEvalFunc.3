@@ -1,0 +1,41 @@
+.TH "eoEvalFunc" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoEvalFunc \- Evaluate: takes one \fBEO\fP and sets its 'fitness' property returning this fitness also.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoEvalFunc.h>\fP
+.PP
+Inherits \fBeoUF< EOT &, void >\fP.
+.PP
+Inherited by eoAssembledEvalFunc< EOT >, eoEasyEA< EOT >::eoDummyEval, \fBeoEvalFuncCounter< EOT >\fP, \fBeoEvalFuncPtr< EOT, FitT, FunctionArg >\fP, eoMyEval< EOT >, \fBeoOneMaxEvalFunc< EOT >\fP, and RoyalRoad< EOT >.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBEOT\fP \fBEOType\fP"
+.br
+.ti -1c
+.RI "typedef EOT::Fitness \fBEOFitT\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoEvalFunc< EOT >"
+Evaluate: takes one \fBEO\fP and sets its 'fitness' property returning this fitness also. 
+
+That is why EOT is passed by non-const reference: it must be altered within evaluate.\\
+.PP
+The requirements on the types with which this class is to be instantiated with are null, or else, they depend on the particular class it's going to be applied to; \fBEO\fP does not impose any requirement on it. If you subclass this abstract class, and use it to evaluate an \fBEO\fP, the requirements on this \fBEO\fP will depend on the evaluator. 
+.PP
+Definition at line 41 of file eoEvalFunc.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

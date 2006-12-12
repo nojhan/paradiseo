@@ -1,0 +1,49 @@
+.TH "eoNDSorting_II" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoNDSorting_II \- Fast Elitist Non-Dominant Sorting Genetic Algorithm.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoNDSorting.h>\fP
+.PP
+Inherits \fBeoNDSorting< EOT >< EOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef std::pair< double, unsigned > \fBdouble_index_pair\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoNDSorting_II\fP (bool nasty_flag_=false)"
+.br
+.ti -1c
+.RI "std::vector< double > \fBniche_penalty\fP (const std::vector< unsigned > &_cf, const \fBeoPop\fP< \fBEOT\fP > &_pop)"
+.br
+.RI "\fI_cf points into the elements that consist of the current front \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoNDSorting_II< EOT >"
+Fast Elitist Non-Dominant Sorting Genetic Algorithm. 
+
+Adapted from Deb, Agrawal, Pratab and Meyarivan: A Fast Elitist Non-Dominant Sorting Genetic Algorithm for MultiObjective Optimization: NSGA-II KanGAL Report No. 200001
+.PP
+Note that this class does not do the sorting per se, but the sorting of it worth_std::vector will give the right order
+.PP
+The crowding distance is calculated as the sum of the distances to the nearest neighbours. As we need to return the penalty value, we have to invert that and invert it again in the base class, but such is life, sigh 
+.PP
+Definition at line 434 of file eoNDSorting.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

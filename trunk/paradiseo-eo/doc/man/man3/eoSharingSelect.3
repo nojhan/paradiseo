@@ -1,0 +1,56 @@
+.TH "eoSharingSelect" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoSharingSelect \- eoSharingSelect: select an individual by roulette wheel on its SHARED fitness.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoSharingSelect.h>\fP
+.PP
+Inherits \fBeoRouletteWorthSelect< EOT, double >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoSharingSelect\fP (double _sigma, \fBeoDistance\fP< \fBEOT\fP > &_dist)"
+.br
+.RI "\fICtor:. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoSharing\fP< \fBEOT\fP > \fBsharing\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoSharingSelect< EOT >"
+eoSharingSelect: select an individual by roulette wheel on its SHARED fitness. 
+
+It is an \fBeoRouletteWorthSelect\fP, i.e. a selector using a std::vector of worthes rather than the raw fitness (see \fBeoSelectFromWorth.h\fP) It uses an internal \fBeoSharing\fP object which is an \fBeoPerf2Worth<EOT, double>\fP 
+.PP
+Definition at line 43 of file eoSharingSelect.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBeoSharingSelect\fP< \fBEOT\fP >::\fBeoSharingSelect\fP (double _sigma, \fBeoDistance\fP< \fBEOT\fP > & _dist)\fC [inline]\fP"
+.PP
+Ctor:. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_s\fP the sigma_share 
+.RE
+.PP
+
+.PP
+Definition at line 49 of file eoSharingSelect.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

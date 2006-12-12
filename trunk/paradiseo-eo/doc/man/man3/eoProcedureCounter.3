@@ -1,0 +1,64 @@
+.TH "eoProcedureCounter" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoProcedureCounter \- Generic counter class that counts the number of times a procedure is used.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoCounter.h>\fP
+.PP
+Inherits \fBeoValueParam< unsigned long >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoProcedureCounter\fP (Procedure &_proc, std::string _name='proc_counter')"
+.br
+.ti -1c
+.RI "Procedure::result_type \fBoperator()\fP (void)"
+.br
+.RI "\fICalls the embedded function and increments the counter. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "Procedure & \fBproc\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class Procedure> class eoProcedureCounter< Procedure >"
+Generic counter class that counts the number of times a procedure is used. 
+
+Add a procedure through its ctor and use this class instead of it.
+.PP
+It is derived from \fBeoValueParam\fP so you can add it to a monitor. 
+.PP
+Definition at line 41 of file eoCounter.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class Procedure> Procedure::result_type \fBeoProcedureCounter\fP< Procedure >::operator() (void)\fC [inline]\fP"
+.PP
+Calls the embedded function and increments the counter. 
+.PP
+Note for MSVC users, if this code does not compile, you are quite likely trying to count a function that has a non-void return type. Don't look at us, look at the MSVC builders. Code like 'return void;' is perfectly legal according to the ANSI standard, but the guys at Microsoft didn't get to implementing it yet.
+.PP
+We had two choices: assuming (and compiling ) code that returns void or code that returns non-void. Given that in \fBEO\fP most functors return void, it was chosen to support void.
+.PP
+But also please let me know if you have a compiler that defines _MSC_VER (lot's of windows compilers do), but is quite capable of compiling return void; type of code. We'll try to change the signature then.
+.PP
+You happy GNU (and other compiler) users will not have a problem with this.. 
+.PP
+Definition at line 64 of file eoCounter.h.
+.PP
+References eoValueParam< unsigned long >::value().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

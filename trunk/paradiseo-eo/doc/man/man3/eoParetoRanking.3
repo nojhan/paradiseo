@@ -1,0 +1,45 @@
+.TH "eoParetoRanking" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoParetoRanking \- Straightforward pareto ranking.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoParetoRanking.h>\fP
+.PP
+Inherits \fBeoPerf2WorthCached< EOT, double >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoParetoRanking\fP (\fBeoDominanceMap\fP< \fBEOT\fP > &_dominanceMap)"
+.br
+.ti -1c
+.RI "void \fBcalculate_worths\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop)"
+.br
+.RI "\fIThe actual virtual function the derived classes should implement. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoDominanceMap\fP< \fBEOT\fP > & \fBdominanceMap\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoParetoRanking< EOT >"
+Straightforward pareto ranking. 
+
+Every individual gets a rank according to the number of elements it dominates. Note that without niching, this technique will usually not find the whole front of non-dominated solutions, but will quite likely converge on a single spot on the front. 
+.PP
+Definition at line 40 of file eoParetoRanking.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

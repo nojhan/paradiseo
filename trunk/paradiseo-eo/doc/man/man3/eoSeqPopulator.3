@@ -1,0 +1,43 @@
+.TH "eoSeqPopulator" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoSeqPopulator \- SeqPopulator: an \fBeoPopulator\fP that sequentially goes through the population is supposed to be used after a batch select of a whole bunch or genitors.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoPopulator.h>\fP
+.PP
+Inherits \fBeoPopulator< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoSeqPopulator\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop, \fBeoPop\fP< \fBEOT\fP > &_dest)"
+.br
+.ti -1c
+.RI "const \fBEOT\fP & \fBselect\fP (void)"
+.br
+.RI "\fIthe select method simply returns next individual in the src pop \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned \fBcurrent\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoSeqPopulator< EOT >"
+SeqPopulator: an \fBeoPopulator\fP that sequentially goes through the population is supposed to be used after a batch select of a whole bunch or genitors. 
+.PP
+Definition at line 152 of file eoPopulator.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

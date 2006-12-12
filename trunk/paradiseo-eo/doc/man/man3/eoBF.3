@@ -1,0 +1,47 @@
+.TH "eoBF" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoBF \- Basic Binary Functor.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoFunctor.h>\fP
+.PP
+Inherits \fBeoFunctorBase\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual \fB~eoBF\fP ()"
+.br
+.RI "\fIvirtual dtor here so there is no need to define it in derived classes \fP"
+.ti -1c
+.RI "virtual R \fBoperator()\fP (A1, A2)=0"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoFunctorBase::binary_function_tag\fP \fBfunctor_category\fP ()"
+.br
+.RI "\fItag to identify a procedure in compile time function selection functor_category \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class A1, class A2, class R> class eoBF< A1, A2, R >"
+Basic Binary Functor. 
+
+Derive from this class when defining any binary function. First template argument is result_type, second is first_argument_type, third is second_argument_type. Argument and result types can be any type including void for result_type 
+.PP
+Definition at line 145 of file eoFunctor.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

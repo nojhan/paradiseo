@@ -1,0 +1,58 @@
+.TH "eoFlOrKAtomQuadOp" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoFlOrKAtomQuadOp \- Quad Crossover using an Atom Crossover that is applied to a FIXED NB of components.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoFlOrQuadOp.h>\fP
+.PP
+Inherits \fBeoQuadOp< EOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOT::AtomType \fBAtomType\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoFlOrAtomQuadOp\fP (\fBeoQuadOp\fP< AtomType > &_op, unsigned _k=1)"
+.br
+.RI "\fIdefault ctor: requires an Atom QuadOp and an unsigned \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (\fBEOT\fP &_eo1, const \fBEOT\fP &_eo2)"
+.br
+.RI "\fIapplies the Atom QuadOp to some components \fP"
+.ti -1c
+.RI "virtual string \fBclassName\fP () const "
+.br
+.RI "\fIinherited \fBclassName()\fP \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned \fBk\fP"
+.br
+.ti -1c
+.RI "\fBeoQuadOp\fP< AtomType > & \fBop\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoFlOrKAtomQuadOp< EOT >"
+Quad Crossover using an Atom Crossover that is applied to a FIXED NB of components. 
+.PP
+Definition at line 84 of file eoFlOrQuadOp.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

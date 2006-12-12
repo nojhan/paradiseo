@@ -1,0 +1,49 @@
+.TH "eoMGGReplacement" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoMGGReplacement \- eoMGGReplacement is an \fBeoReplacement\fP: - choose N (2) parents RANDOMLY - remove them from the parent population - select best offspring, add to parents - merge (other?) offspring and the N removed parents - select best N-1 of this merged population (detTournament only at the moment) - put them back into parent population  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoMGGReplacement.h>\fP
+.PP
+Inherits \fBeoReplacement< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoMGGReplacement\fP (\fBeoHowMany\fP _howManyEliminatedParents=\fBeoHowMany\fP(2, false), unsigned _tSize=2)"
+.br
+.ti -1c
+.RI "void \fBoperator()\fP (\fBeoPop\fP< \fBEOT\fP > &_parents, \fBeoPop\fP< \fBEOT\fP > &_offspring)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoLinearTruncateSplit\fP< \fBEOT\fP > \fBsplit\fP"
+.br
+.ti -1c
+.RI "\fBeoPlus\fP< \fBEOT\fP > \fBplus\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBtSize\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoMGGReplacement< EOT >"
+eoMGGReplacement is an \fBeoReplacement\fP: - choose N (2) parents RANDOMLY - remove them from the parent population - select best offspring, add to parents - merge (other?) offspring and the N removed parents - select best N-1 of this merged population (detTournament only at the moment) - put them back into parent population 
+.PP
+Definition at line 50 of file eoMGGReplacement.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

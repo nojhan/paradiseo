@@ -1,0 +1,83 @@
+.TH "eoContinue" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoContinue \- Termination condition for the genetic algorithm Takes the population as input, returns true for continue, false for termination.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoContinue.h>\fP
+.PP
+Inherits \fBeoUF< const eoPop< EOT > &, bool >\fP, and \fBeoPersistent\fP.
+.PP
+Inherited by \fBeoCheckPoint< EOT >\fP, \fBeoCombinedContinue< EOT >\fP, \fBeoCtrlCContinue< EOT >\fP, \fBeoEvalContinue< EOT >\fP, \fBeoFitContinue< EOT >\fP, \fBeoGenContinue< EOT >\fP, eoPeriodicContinue< EOT >, and \fBeoSteadyFitContinue< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual std::string \fBclassName\fP (void) const "
+.br
+.ti -1c
+.RI "void \fBreadFrom\fP (std::istream &__is)"
+.br
+.RI "\fIRead object. \fP"
+.ti -1c
+.RI "void \fBprintOn\fP (std::ostream &__os) const "
+.br
+.RI "\fIWrite object. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoContinue< EOT >"
+Termination condition for the genetic algorithm Takes the population as input, returns true for continue, false for termination. 
+.PP
+Definition at line 37 of file eoContinue.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> void \fBeoContinue\fP< \fBEOT\fP >::readFrom (std::istream & __is)\fC [inline, virtual]\fP"
+.PP
+Read object. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_is\fP A std::istream. 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIruntime_std::exception\fP If a valid object can't be read. 
+.RE
+.PP
+
+.PP
+Implements \fBeoPersistent\fP.
+.PP
+Reimplemented in \fBeoGenContinue< EOT >\fP.
+.PP
+Definition at line 42 of file eoContinue.h.
+.SS "template<class EOT> void \fBeoContinue\fP< \fBEOT\fP >::printOn (std::ostream & __os) const\fC [inline, virtual]\fP"
+.PP
+Write object. 
+.PP
+It's called printOn since it prints the object on a stream. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_os\fP A std::ostream. 
+.RE
+.PP
+
+.PP
+Implements \fBeoPrintable\fP.
+.PP
+Reimplemented in \fBeoGenContinue< EOT >\fP.
+.PP
+Definition at line 47 of file eoContinue.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

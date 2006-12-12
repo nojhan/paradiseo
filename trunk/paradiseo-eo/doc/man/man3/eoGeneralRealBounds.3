@@ -1,0 +1,119 @@
+.TH "eoGeneralRealBounds" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoGeneralRealBounds \- A class that encapsulate all possible \fBeoIntBounds\fP.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoRealBounds.h>\fP
+.PP
+Inherits \fBeoRealBounds\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoGeneralRealBounds\fP (std::string _s='[-infinity,+infinity]')"
+.br
+.RI "\fICtor: from a string, chooses the type of bound. \fP"
+.ti -1c
+.RI "\fBeoGeneralRealBounds\fP (const \fBeoGeneralRealBounds\fP &_b)"
+.br
+.RI "\fINeed a Cpy Ctor because we are allocating memory. \fP"
+.ti -1c
+.RI "\fBeoGeneralRealBounds\fP & \fBoperator=\fP (const \fBeoGeneralRealBounds\fP &_b)"
+.br
+.ti -1c
+.RI "\fB~eoGeneralRealBounds\fP ()"
+.br
+.RI "\fINeed a Dtor because we allocate an actual bound. \fP"
+.ti -1c
+.RI "virtual bool \fBisBounded\fP (void) const "
+.br
+.RI "\fISelf-Test: true if ***both*** a min and a max. \fP"
+.ti -1c
+.RI "virtual bool \fBhasNoBoundAtAll\fP (void) const "
+.br
+.RI "\fISelf-Test: true if no min ***and*** no max hence no further need to test/truncate/fold anything. \fP"
+.ti -1c
+.RI "virtual bool \fBisMinBounded\fP (void) const "
+.br
+.RI "\fISelf-Test: bounded from below??? \fP"
+.ti -1c
+.RI "virtual bool \fBisMaxBounded\fP (void) const "
+.br
+.RI "\fISelf-Test: bounded from above??? \fP"
+.ti -1c
+.RI "virtual bool \fBisInBounds\fP (double _x) const "
+.br
+.RI "\fITest on a value: is it in bounds? \fP"
+.ti -1c
+.RI "virtual void \fBfoldsInBounds\fP (double &_x) const "
+.br
+.RI "\fIPut value back into bounds - by folding back and forth. \fP"
+.ti -1c
+.RI "virtual void \fBtruncate\fP (double &_x) const "
+.br
+.RI "\fIPut value back into bounds - by truncating to a boundary value. \fP"
+.ti -1c
+.RI "virtual double \fBminimum\fP () const "
+.br
+.RI "\fIget minimum value ::exception if does not exist \fP"
+.ti -1c
+.RI "virtual double \fBmaximum\fP () const "
+.br
+.RI "\fIget maximum value ::exception if does not exist \fP"
+.ti -1c
+.RI "virtual double \fBrange\fP () const "
+.br
+.RI "\fIget range ::exception if unbounded \fP"
+.ti -1c
+.RI "virtual double \fBuniform\fP (\fBeoRng\fP &_rng=eo::rng) const "
+.br
+.RI "\fIrandom generator of uniform numbers in bounds ::exception if unbounded \fP"
+.ti -1c
+.RI "virtual \fBeoRealBounds\fP * \fBdup\fP () const "
+.br
+.RI "\fIfor memory managements - ugly \fP"
+.ti -1c
+.RI "const \fBeoRealBounds\fP & \fBtheBounds\fP () const "
+.br
+.RI "\fIfor efficiency, it's better to use the embedded boud directly \fP"
+.ti -1c
+.RI "virtual void \fBprintOn\fP (std::ostream &_os) const "
+.br
+.RI "\fIdon't forget the printOn method - again that of the embedded bound \fP"
+.ti -1c
+.RI "virtual void \fBreadFrom\fP (std::istream &_is)"
+.br
+.RI "\fIno readFrom ??? Have to check that later \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoRealBounds\fP * \fBgetBoundsFromString\fP (std::string)"
+.br
+.RI "\fIthe constructor for eoGeneralRealBound - from a string very similar to the \fBeoRealVectorBounds::readFrom\fP above but was written much later so the readFrom does not call this one as it should do \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoRealBounds\fP * \fBrepBound\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A class that encapsulate all possible \fBeoIntBounds\fP. 
+
+Mandatory in order to read through the parser 
+.PP
+Definition at line 506 of file eoRealBounds.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

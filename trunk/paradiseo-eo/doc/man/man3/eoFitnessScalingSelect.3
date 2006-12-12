@@ -1,0 +1,54 @@
+.TH "eoFitnessScalingSelect" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoFitnessScalingSelect \- eoFitnessScalingSelect: select an individual proportional to the linearly scaled fitness that is computed by the private \fBeoLinearFitScaling\fP object  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoFitnessScalingSelect.h>\fP
+.PP
+Inherits \fBeoRouletteWorthSelect< EOT, double >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoFitnessScalingSelect\fP (double _p=2.0)"
+.br
+.RI "\fICtor:. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoLinearFitScaling\fP< \fBEOT\fP > \fBscaling\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoFitnessScalingSelect< EOT >"
+eoFitnessScalingSelect: select an individual proportional to the linearly scaled fitness that is computed by the private \fBeoLinearFitScaling\fP object 
+.PP
+Definition at line 40 of file eoFitnessScalingSelect.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBeoFitnessScalingSelect\fP< \fBEOT\fP >::\fBeoFitnessScalingSelect\fP (double _p = \fC2.0\fP)\fC [inline]\fP"
+.PP
+Ctor:. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_p\fP the selective pressure, should be in [1,2] (2 is the default) 
+.RE
+.PP
+
+.PP
+Definition at line 46 of file eoFitnessScalingSelect.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

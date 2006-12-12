@@ -1,0 +1,51 @@
+.TH "eoRanking" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoRanking \- An instance of eoPerfFromWorth COmputes the ranked fitness: fitnesses range in [m,M] with m=2-pressure/popSize and M=pressure/popSize.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoRanking.h>\fP
+.PP
+Inherits \fBeoPerf2Worth< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoRanking\fP (double _p=2.0, double _e=1.0)"
+.br
+.ti -1c
+.RI "int \fBlookfor\fP (const \fBEOT\fP *_eo, const \fBeoPop\fP< \fBEOT\fP > &_pop)"
+.br
+.ti -1c
+.RI "virtual void \fBoperator()\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBpressure\fP"
+.br
+.ti -1c
+.RI "double \fBexponent\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoRanking< EOT >"
+An instance of eoPerfFromWorth COmputes the ranked fitness: fitnesses range in [m,M] with m=2-pressure/popSize and M=pressure/popSize. 
+
+in between, the progression depstd::ends on exponent (linear if 1). 
+.PP
+Definition at line 38 of file eoRanking.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

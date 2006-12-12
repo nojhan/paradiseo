@@ -1,0 +1,75 @@
+.TH "eoCellularEasyEA" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoCellularEasyEA \- The abstract cellular easy algorithm.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoCellularEasyEA.h>\fP
+.PP
+Inherits \fBeoAlgo< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoCellularEasyEA\fP (\fBeoContinue\fP< \fBEOT\fP > &_cont, \fBeoEvalFunc\fP< \fBEOT\fP > &_eval, \fBeoSelectOne\fP< \fBEOT\fP > &_sel_neigh, \fBeoBinOp\fP< \fBEOT\fP > &_cross, \fBeoMonOp\fP< \fBEOT\fP > &_mut, \fBeoSelectOne\fP< \fBEOT\fP > &_sel_repl)"
+.br
+.RI "\fITwo constructors. \fP"
+.ti -1c
+.RI "\fBeoCellularEasyEA\fP (\fBeoContinue\fP< \fBEOT\fP > &_cont, \fBeoEvalFunc\fP< \fBEOT\fP > &_eval, \fBeoSelectOne\fP< \fBEOT\fP > &_sel_neigh, \fBeoQuadOp\fP< \fBEOT\fP > &_cross, \fBeoMonOp\fP< \fBEOT\fP > &_mut, \fBeoSelectOne\fP< \fBEOT\fP > &_sel_child, \fBeoSelectOne\fP< \fBEOT\fP > &_sel_repl)"
+.br
+.ti -1c
+.RI "void \fBoperator()\fP (\fBeoPop\fP< \fBEOT\fP > &pop)"
+.br
+.RI "\fIFor a given population. \fP"
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual \fBeoPop\fP< \fBEOT\fP > \fBneighbours\fP (const \fBeoPop\fP< \fBEOT\fP > &pop, int rank)=0"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoContinue\fP< \fBEOT\fP > & \fBcont\fP"
+.br
+.ti -1c
+.RI "\fBeoEvalFunc\fP< \fBEOT\fP > & \fBeval\fP"
+.br
+.ti -1c
+.RI "\fBeoPopLoopEval\fP< \fBEOT\fP > \fBpopEval\fP"
+.br
+.ti -1c
+.RI "\fBeoSelectOne\fP< \fBEOT\fP > & \fBsel_neigh\fP"
+.br
+.ti -1c
+.RI "\fBeoBF\fP< \fBEOT\fP &, \fBEOT\fP &, bool > & \fBcross\fP"
+.br
+.ti -1c
+.RI "\fBeoMonOp\fP< \fBEOT\fP > & \fBmut\fP"
+.br
+.ti -1c
+.RI "\fBeoSelectOne\fP< \fBEOT\fP > & \fBsel_child\fP"
+.br
+.ti -1c
+.RI "\fBeoSelectOne\fP< \fBEOT\fP > & \fBsel_repl\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoCellularEasyEA< EOT >"
+The abstract cellular easy algorithm. 
+.PP
+Definition at line 38 of file eoCellularEasyEA.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

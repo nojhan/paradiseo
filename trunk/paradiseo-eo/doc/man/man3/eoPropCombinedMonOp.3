@@ -1,0 +1,58 @@
+.TH "eoPropCombinedMonOp" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoPropCombinedMonOp \- \fBeoMonOp\fP is the monary operator: genetic operator that takes only one \fBEO\fP  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoProportionalCombinedOp.h>\fP
+.PP
+Inherits \fBeoMonOp< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoPropCombinedMonOp\fP (\fBeoMonOp\fP< \fBEOT\fP > &_first, const double _rate)"
+.br
+.RI "\fICtor from a 'true' operator. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.ti -1c
+.RI "virtual void \fBadd\fP (\fBeoMonOp\fP< \fBEOT\fP > &_op, const double _rate, bool _verbose=false)"
+.br
+.ti -1c
+.RI "virtual void \fBprintOn\fP (std::ostream &_os)"
+.br
+.ti -1c
+.RI "virtual bool \fBoperator()\fP (\fBEOT\fP &_indi)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< \fBeoMonOp\fP< \fBEOT\fP > * > \fBops\fP"
+.br
+.ti -1c
+.RI "std::vector< double > \fBrates\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoPropCombinedMonOp< EOT >"
+\fBeoMonOp\fP is the monary operator: genetic operator that takes only one \fBEO\fP 
+
+now accepts generic operators 
+.PP
+Definition at line 58 of file eoProportionalCombinedOp.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

@@ -1,0 +1,43 @@
+.TH "eoDynUpdater" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoDynUpdater \- A base class to actually update an \fBeoUpdatable\fP object.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoUpdatable.h>\fP
+.PP
+Inherits \fBeoUpdater\fP.
+.PP
+Inherited by \fBeoCountedDynUpdate\fP, and \fBeoTimedDynUpdate\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoDynUpdater\fP (\fBeoUpdatable\fP &_toUpdate)"
+.br
+.ti -1c
+.RI "virtual void \fBoperator()\fP ()"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoUpdatable\fP & \fBtoUpdate\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A base class to actually update an \fBeoUpdatable\fP object. 
+.PP
+Definition at line 51 of file eoUpdatable.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

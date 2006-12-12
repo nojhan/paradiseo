@@ -1,0 +1,50 @@
+.TH "eoMonGenOp" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoMonGenOp \- Wrapper for \fBeoMonOp\fP.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoGenOp.h>\fP
+.PP
+Inherits \fBeoGenOp< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoMonGenOp\fP (\fBeoMonOp\fP< \fBEOT\fP > &_op)"
+.br
+.ti -1c
+.RI "unsigned \fBmax_production\fP (void)"
+.br
+.RI "\fIMax production is used to reserve space for all elements that are used by the operator, not setting it properly can result in a crash. \fP"
+.ti -1c
+.RI "void \fBapply\fP (\fBeoPopulator\fP< \fBEOT\fP > &_it)"
+.br
+.RI "\fIthe function that will do the work \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoMonOp\fP< \fBEOT\fP > & \fBop\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoMonGenOp< EOT >"
+Wrapper for \fBeoMonOp\fP. 
+.PP
+Definition at line 85 of file eoGenOp.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

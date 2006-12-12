@@ -1,0 +1,51 @@
+.TH "eoIncrementorParam" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoIncrementorParam \- an \fBeoUpdater\fP that is an \fBeoValueParam\fP (and thus OWNS its counter) Mandatory for generation counter in make_checkpoint  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoUpdater.h>\fP
+.PP
+Inherits \fBeoUpdater\fP, and \fBeoValueParam< T >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoIncrementorParam\fP (std::string _name, T _stepsize=1)"
+.br
+.RI "\fIDefault Ctor : a name and optionally an increment. \fP"
+.ti -1c
+.RI "\fBeoIncrementorParam\fP (std::string _name, T _countValue, T _stepsize)"
+.br
+.RI "\fICtor with a name and non-zero initial value and mandatory stepSize to remove ambiguity. \fP"
+.ti -1c
+.RI "virtual void \fBoperator()\fP ()"
+.br
+.RI "\fISimply increments. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP (void) const "
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "T \fBstepsize\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T> class eoIncrementorParam< T >"
+an \fBeoUpdater\fP that is an \fBeoValueParam\fP (and thus OWNS its counter) Mandatory for generation counter in make_checkpoint 
+.PP
+Definition at line 71 of file eoUpdater.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

@@ -1,0 +1,36 @@
+\section{eo\-Param\-Param\-Type Class Reference}
+\label{classeo_param_param_type}\index{eoParamParamType@{eoParamParamType}}
+Another helper class for parsing parameters like Keyword(arg1, arg2, ...).  
+
+
+{\tt \#include $<$eo\-Param.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Param\-Param\-Type} (std::string \_\-value)\label{classeo_param_param_type_a0}
+
+\item 
+std::ostream \& {\bf print\-On} (std::ostream \&\_\-os) const \label{classeo_param_param_type_a1}
+
+\item 
+std::istream \& {\bf read\-From} (std::istream \&\_\-is)\label{classeo_param_param_type_a2}
+
+\item 
+void {\bf read\-From} (std::string \&\_\-value)\label{classeo_param_param_type_a3}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Another helper class for parsing parameters like Keyword(arg1, arg2, ...). 
+
+It is basically a std::pair$<$std::string,std::vector$<$std::string$>$ $>$ first std::string is keyword the std::vector$<$std::string$>$ contains all arguments (as std::strings) See make\_\-algo.h 
+
+
+
+Definition at line 373 of file eo\-Param.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+eo\-Param.h\end{CompactItemize}

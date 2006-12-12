@@ -1,0 +1,37 @@
+.TH "eoPopEvalFunc" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoPopEvalFunc \- eoPopEvalFunc: This abstract class is for GLOBAL evaluators of a population after variation.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoPopEvalFunc.h>\fP
+.PP
+Inherits \fBeoBF< eoPop< EOT > &, eoPop< EOT > &, void >\fP.
+.PP
+Inherited by \fBeoPopLoopEval< EOT >\fP, and \fBeoTimeVaryingLoopEval< EOT >\fP.
+.PP
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoPopEvalFunc< EOT >"
+eoPopEvalFunc: This abstract class is for GLOBAL evaluators of a population after variation. 
+
+It takes 2 populations (typically the parents and the offspring) and is suppposed to evaluate them alltogether
+.PP
+Basic use: apply an embedded \fBeoEvalFunc\fP to the offspring
+.PP
+Time-varying fitness: apply the embedded \fBeoEvalFunc\fP to both offspring and parents
+.PP
+Advanced uses: Co-evolution or 'parisian' approach, or ...
+.PP
+Basic parallelization (synchronous standard evolution engine): call the slaves and wait for the results 
+.PP
+Definition at line 49 of file eoPopEvalFunc.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

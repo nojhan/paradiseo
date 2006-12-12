@@ -1,0 +1,42 @@
+.TH "eoSelectOne" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoSelectOne \- eoSelectOne selects only one element from a whole population.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoSelectOne.h>\fP
+.PP
+Inherits \fBeoUF< const eoPop< EOT > &, const EOT & >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBsetup\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop)"
+.br
+.RI "\fIvirtual function to setup some population stats (for instance eoProportional can benefit greatly from this) \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT, class WorthT = typename EOT::Fitness> class eoSelectOne< EOT, WorthT >"
+eoSelectOne selects only one element from a whole population. 
+
+Most selection techniques are simply repeated applications of eoSelectOne.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBeoSelectMany\fP, eoSelectRandom, eoDetTournament, eoStochTournament, eoProportional 
+.RE
+.PP
+
+.PP
+Definition at line 45 of file eoSelectOne.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

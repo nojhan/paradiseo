@@ -1,0 +1,38 @@
+.TH "eoQuadOp" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoQuadOp \- Quad genetic operator: subclasses \fBeoOp\fP, and defines basically the operator() with two operands, both can be modified.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoOp.h>\fP
+.PP
+Inherits \fBeoOp< EOType >< EOType >\fP, and \fBeoBF< EOType &, EOType &, bool >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoQuadOp\fP ()"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOType> class eoQuadOp< EOType >"
+Quad genetic operator: subclasses \fBeoOp\fP, and defines basically the operator() with two operands, both can be modified. 
+
+When defining your own, make sure that you return a boolean value indicating that you have changed the content. 
+.PP
+Definition at line 132 of file eoOp.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

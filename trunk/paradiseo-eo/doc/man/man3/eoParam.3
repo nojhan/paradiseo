@@ -1,0 +1,116 @@
+.TH "eoParam" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoParam \- eoParam: Base class for monitoring and parsing parameters  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoParam.h>\fP
+.PP
+Inherited by \fBeoValueParam< ValueType >\fP, \fBeoValueParam< bool >\fP, \fBeoValueParam< double >\fP, \fBeoValueParam< EOT::Fitness >\fP, \fBeoValueParam< ParamType >\fP, \fBeoValueParam< std::pair< double, double > >\fP, \fBeoValueParam< std::string >\fP, \fBeoValueParam< std::vector< double > >\fP, \fBeoValueParam< std::vector< FitT > >\fP, \fBeoValueParam< std::vector< PartFitT > >\fP, \fBeoValueParam< std::vector< WorthT > >\fP, \fBeoValueParam< string >\fP, \fBeoValueParam< T >\fP, \fBeoValueParam< unsigned >\fP, \fBeoValueParam< unsigned long >\fP, ParamWrapper, and ValueParam.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoParam\fP ()"
+.br
+.RI "\fIEmpty constructor - called from outside any parser. \fP"
+.ti -1c
+.RI "\fBeoParam\fP (std::string _longName, std::string _default, std::string _description, char _shortName=0, bool _required=false)"
+.br
+.RI "\fIConstruct a Param. \fP"
+.ti -1c
+.RI "virtual \fB~eoParam\fP ()"
+.br
+.RI "\fIVirtual destructor is needed. \fP"
+.ti -1c
+.RI "virtual std::string \fBgetValue\fP () const =0"
+.br
+.RI "\fIPure virtual function to get the value out. \fP"
+.ti -1c
+.RI "virtual void \fBsetValue\fP (const std::string &_value)=0"
+.br
+.RI "\fIPure virtual function to set the value. \fP"
+.ti -1c
+.RI "char \fBshortName\fP () const "
+.br
+.RI "\fIReturns the short name. \fP"
+.ti -1c
+.RI "const std::string & \fBlongName\fP () const "
+.br
+.RI "\fIReturns the long name. \fP"
+.ti -1c
+.RI "const std::string & \fBdescription\fP () const "
+.br
+.RI "\fIReturns the description of the argument. \fP"
+.ti -1c
+.RI "const std::string & \fBdefValue\fP () const "
+.br
+.RI "\fIReturns the default value of the argument. \fP"
+.ti -1c
+.RI "void \fBdefValue\fP (const std::string &str)"
+.br
+.RI "\fISets the default value of the argument,. \fP"
+.ti -1c
+.RI "void \fBsetLongName\fP (std::string _longName)"
+.br
+.RI "\fIALlows to change the name (see the prefix in \fBeoParser.h\fP). \fP"
+.ti -1c
+.RI "bool \fBrequired\fP () const "
+.br
+.RI "\fIReturns if required or not. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBrepLongName\fP"
+.br
+.ti -1c
+.RI "std::string \fBrepDefault\fP"
+.br
+.ti -1c
+.RI "std::string \fBrepDescription\fP"
+.br
+.ti -1c
+.RI "char \fBrepShortHand\fP"
+.br
+.ti -1c
+.RI "bool \fBrepRequired\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+eoParam: Base class for monitoring and parsing parameters 
+.PP
+Definition at line 42 of file eoParam.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "eoParam::eoParam (std::string _longName, std::string _default, std::string _description, char _shortName = \fC0\fP, bool _required = \fCfalse\fP)\fC [inline]\fP"
+.PP
+Construct a Param. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_longName\fP Long name of the argument 
+.br
+\fI_default\fP The default value 
+.br
+\fI_description\fP Description of the parameter. What is useful for. 
+.br
+\fI_shortName\fP Short name of the argument (Optional) 
+.br
+\fI_required\fP If it is a necessary parameter or not 
+.RE
+.PP
+
+.PP
+Definition at line 60 of file eoParam.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

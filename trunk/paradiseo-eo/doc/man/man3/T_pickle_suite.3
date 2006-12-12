@@ -1,0 +1,36 @@
+.TH "T_pickle_suite" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+T_pickle_suite \- Implements pickle support for \fBeoPersistent\fP derivatives.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <pickle.h>\fP
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBprint_to_string\fP (const T &t)"
+.br
+.ti -1c
+.RI "boost::python::tuple \fBgetstate\fP (const T &t)"
+.br
+.ti -1c
+.RI "void \fBsetstate\fP (T &t, boost::python::tuple pickled)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T> struct T_pickle_suite< T >"
+Implements pickle support for \fBeoPersistent\fP derivatives. 
+.PP
+Definition at line 32 of file pickle.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

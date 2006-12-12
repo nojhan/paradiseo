@@ -1,0 +1,108 @@
+.TH "eoSegmentCrossover" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoSegmentCrossover \- eoSegmentCrossover --> uniform choice in segment == arithmetical with same value along all coordinates  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <Tutorial/eoRealOp.h>\fP
+.PP
+Inherits \fBeoQuadOp< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoSegmentCrossover\fP (const double &_alpha=0.0)"
+.br
+.RI "\fI(Default) Constructor. \fP"
+.ti -1c
+.RI "\fBeoSegmentCrossover\fP (\fBeoRealVectorBounds\fP &_bounds, const double &_alpha=0.0)"
+.br
+.RI "\fIConstructor with bounds. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIThe class name. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (\fBEOT\fP &_eo1, \fBEOT\fP &_eo2)"
+.br
+.RI "\fIsegment crossover - modifies both parents \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoRealVectorBounds\fP & \fBbounds\fP"
+.br
+.ti -1c
+.RI "double \fBalpha\fP"
+.br
+.ti -1c
+.RI "double \fBrange\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoSegmentCrossover< EOT >"
+eoSegmentCrossover --> uniform choice in segment == arithmetical with same value along all coordinates 
+.PP
+Definition at line 247 of file eoRealOp.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBeoSegmentCrossover\fP< \fBEOT\fP >::\fBeoSegmentCrossover\fP (const double & _alpha = \fC0.0\fP)\fC [inline]\fP"
+.PP
+(Default) Constructor. 
+.PP
+The bounds are initialized with the global object that says: no bounds.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_alphaMin\fP the amount of exploration OUTSIDE the parents as in BLX-alpha notation (Eshelman and Schaffer) 0 == contractive application Must be positive 
+.RE
+.PP
+
+.PP
+Definition at line 259 of file eoRealOp.h.
+.SS "template<class EOT> \fBeoSegmentCrossover\fP< \fBEOT\fP >::\fBeoSegmentCrossover\fP (\fBeoRealVectorBounds\fP & _bounds, const double & _alpha = \fC0.0\fP)\fC [inline]\fP"
+.PP
+Constructor with bounds. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_bounds\fP an \fBeoRealVectorBounds\fP that contains the bounds 
+.br
+\fI_alphaMin\fP the amount of exploration OUTSIDE the parents as in BLX-alpha notation (Eshelman and Schaffer) 0 == contractive application Must be positive 
+.RE
+.PP
+
+.PP
+Definition at line 270 of file eoRealOp.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> bool \fBeoSegmentCrossover\fP< \fBEOT\fP >::operator() (\fBEOT\fP & _eo1, \fBEOT\fP & _eo2)\fC [inline, virtual]\fP"
+.PP
+segment crossover - modifies both parents 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_eo1\fP The first parent 
+.br
+\fI_eo2\fP The first parent 
+.RE
+.PP
+
+.PP
+Implements \fBeoBF< EOT &, EOT &, bool >\fP.
+.PP
+Definition at line 282 of file eoRealOp.h.
+.PP
+References eoRealBaseVectorBounds::isMaxBounded(), eoRealBaseVectorBounds::isMinBounded(), eoRealBaseVectorBounds::maximum(), eoRealBaseVectorBounds::minimum(), and eoRng::uniform().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

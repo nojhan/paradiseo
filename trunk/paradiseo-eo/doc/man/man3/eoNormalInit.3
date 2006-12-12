@@ -1,0 +1,48 @@
+.TH "eoNormalInit" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoNormalInit \- The class \fBnormal_generator\fP can be used in the STL generate function to easily generate gaussian distributed floats and doubles.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoUniformInit.h>\fP
+.PP
+Inherits \fBeoInit< T >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoNormalInit\fP (T _stdev=T(1.0), \fBeoRng\fP &_rng=rng)"
+.br
+.ti -1c
+.RI "void \fBoperator()\fP (T &_t)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "T \fBstdev\fP"
+.br
+.ti -1c
+.RI "\fBeoRng\fP & \fBnormal\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T = double> class eoNormalInit< T >"
+The class \fBnormal_generator\fP can be used in the STL generate function to easily generate gaussian distributed floats and doubles. 
+
+The user can supply a standard deviation which defaults to 1. 
+.PP
+Definition at line 126 of file eoUniformInit.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

@@ -1,0 +1,54 @@
+.TH "eoEPReduce" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoEPReduce \- EP truncation method (some global stochastic tournament + sort) Softer selective pressure than pure truncate.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoReduce.h>\fP
+.PP
+Inherits \fBeoReduce< EOT >< EOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOT::Fitness \fBFitness\fP"
+.br
+.ti -1c
+.RI "typedef std::pair< float, typename \fBeoPop\fP< \fBEOT\fP >::iterator > \fBEPpair\fP"
+.br
+.RI "\fIhelper struct for comparing on std::pairs \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoEPReduce\fP (unsigned _t_size)"
+.br
+.ti -1c
+.RI "void \fBoperator()\fP (\fBeoPop\fP< \fBEOT\fP > &_newgen, unsigned _newsize)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned \fBt_size\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoEPReduce< EOT >"
+EP truncation method (some global stochastic tournament + sort) Softer selective pressure than pure truncate. 
+.PP
+Definition at line 83 of file eoReduce.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

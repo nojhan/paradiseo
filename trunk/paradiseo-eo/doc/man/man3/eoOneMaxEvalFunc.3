@@ -1,0 +1,55 @@
+.TH "eoOneMaxEvalFunc" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoOneMaxEvalFunc \- Always write a comment in this format before class definition if you want the class to be documented by Doxygen.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoOneMaxEvalFunc.h>\fP
+.PP
+Inherits \fBeoEvalFunc< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoOneMaxEvalFunc\fP ()"
+.br
+.RI "\fICtor - no requirement. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (\fBEOT\fP &_eo)"
+.br
+.RI "\fIActually compute the fitness. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoOneMaxEvalFunc< EOT >"
+Always write a comment in this format before class definition if you want the class to be documented by Doxygen. 
+.PP
+Definition at line 26 of file eoOneMaxEvalFunc.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> void \fBeoOneMaxEvalFunc\fP< \fBEOT\fP >::operator() (\fBEOT\fP & _eo)\fC [inline, virtual]\fP"
+.PP
+Actually compute the fitness. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIEOT\fP & _eo the \fBEO\fP object to evaluate it should stay templatized to be usable with any fitness type 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< EOT &, void >\fP.
+.PP
+Definition at line 45 of file eoOneMaxEvalFunc.h.
+.PP
+References EO< F >::fitness(), and EO< F >::invalid().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

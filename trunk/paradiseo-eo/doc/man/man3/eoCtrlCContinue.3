@@ -1,0 +1,40 @@
+.TH "eoCtrlCContinue" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoCtrlCContinue \- Ctrl C handling: this \fBeoContinue\fP tells whether the user pressed Ctrl C.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoCtrlCContinue.h>\fP
+.PP
+Inherits \fBeoContinue< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoCtrlCContinue\fP ()"
+.br
+.RI "\fICtor : installs the signal handler. \fP"
+.ti -1c
+.RI "virtual bool \fBoperator()\fP (const \fBeoPop\fP< \fBEOT\fP > &_vEO)"
+.br
+.RI "\fIReturns false when Ctrl C has been typed in reached. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP (void) const "
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoCtrlCContinue< EOT >"
+Ctrl C handling: this \fBeoContinue\fP tells whether the user pressed Ctrl C. 
+.PP
+Definition at line 45 of file eoCtrlCContinue.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

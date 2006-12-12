@@ -1,0 +1,61 @@
+.TH "eoVlAtomExchangeQuadOp" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoVlAtomExchangeQuadOp \- Exchange Crossover using an AtomExchange.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoVariableLengthCrossover.h>\fP
+.PP
+Inherits \fBeoQuadOp< EOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOT::AtomType \fBAtomType\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoVlAtomExchangeQuadOp\fP (unsigned _Min, unsigned _Max, \fBeoAtomExchange\fP< AtomType > &_atomExchange)"
+.br
+.RI "\fIdefault ctor: requires bounds on number of genes + a rate \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (\fBEOT\fP &_eo1, \fBEOT\fP &_eo2)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIthe inherited className \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned \fBMin\fP"
+.br
+.ti -1c
+.RI "unsigned \fBMax\fP"
+.br
+.ti -1c
+.RI "\fBeoAtomExchange\fP< AtomType > & \fBatomExchange\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoVlAtomExchangeQuadOp< EOT >"
+Exchange Crossover using an AtomExchange. 
+.PP
+Definition at line 89 of file eoVariableLengthCrossover.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

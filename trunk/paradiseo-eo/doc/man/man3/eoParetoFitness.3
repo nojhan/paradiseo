@@ -1,0 +1,75 @@
+.TH "eoParetoFitness" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoParetoFitness \- eoParetoFitness class: std::vector of doubles with overloaded comparison operators.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoParetoFitness.h>\fP
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef FitnessTraits \fBfitness_traits\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoParetoFitness\fP (std::vector< double > &_v)"
+.br
+.ti -1c
+.RI "bool \fBdominates\fP (const \fBeoParetoFitness\fP< FitnessTraits > &_other) const "
+.br
+.RI "\fIPartial order based on Pareto-dominance. \fP"
+.ti -1c
+.RI "bool \fBoperator<\fP (const \fBeoParetoFitness\fP< FitnessTraits > &_other) const "
+.br
+.RI "\fIcompare *not* on dominance, but on the first, then the second, etc \fP"
+.ti -1c
+.RI "bool \fBoperator>\fP (const \fBeoParetoFitness\fP< FitnessTraits > &_other) const "
+.br
+.ti -1c
+.RI "bool \fBoperator<=\fP (const \fBeoParetoFitness\fP< FitnessTraits > &_other) const "
+.br
+.ti -1c
+.RI "bool \fBoperator>=\fP (const \fBeoParetoFitness\fP< FitnessTraits > &_other) const "
+.br
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBeoParetoFitness\fP< FitnessTraits > &_other) const "
+.br
+.ti -1c
+.RI "bool \fBoperator!=\fP (const \fBeoParetoFitness\fP< FitnessTraits > &_other) const "
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBsetUp\fP (unsigned _n, std::vector< bool > &_b)"
+.br
+.RI "\fIaccess to the traits characteristics (so you don't have to write a lot of typedef's around \fP"
+.ti -1c
+.RI "bool \fBmaximizing\fP (unsigned _i)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class FitnessTraits = eoParetoFitnessTraits> class eoParetoFitness< FitnessTraits >"
+eoParetoFitness class: std::vector of doubles with overloaded comparison operators. 
+
+Comparison is done on pareto dominance. The template argument FitnessTraits defaults to \fBeoParetoFitnessTraits\fP, which can be replaces at will by any other class that implements the static functions defined therein.
+.PP
+Note that the comparison defines a partial order, so that !(a < b) && !(b <a) does not neccessarily imply that (a==b) The other way around does hold. 
+.PP
+Definition at line 108 of file eoParetoFitness.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

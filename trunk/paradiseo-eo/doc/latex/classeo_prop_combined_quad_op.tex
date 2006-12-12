@@ -1,0 +1,56 @@
+\section{eo\-Prop\-Combined\-Quad\-Op$<$ EOT $>$ Class Template Reference}
+\label{classeo_prop_combined_quad_op}\index{eoPropCombinedQuadOp@{eoPropCombinedQuadOp}}
+Combined quad genetic operator: operator() has two operands, both can be modified.  
+
+
+{\tt \#include $<$eo\-Proportional\-Combined\-Op.h$>$}
+
+Inheritance diagram for eo\-Prop\-Combined\-Quad\-Op$<$ EOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.96296cm]{classeo_prop_combined_quad_op}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Prop\-Combined\-Quad\-Op} ({\bf eo\-Quad\-Op}$<$ {\bf EOT} $>$ \&\_\-first, const double \_\-rate)\label{classeo_prop_combined_quad_op_a0}
+
+\begin{CompactList}\small\item\em Ctor from a true operator. \item\end{CompactList}\item 
+virtual std::string {\bf class\-Name} () const \label{classeo_prop_combined_quad_op_a1}
+
+\item 
+virtual void {\bf add} ({\bf eo\-Quad\-Op}$<$ {\bf EOT} $>$ \&\_\-op, const double \_\-rate, bool \_\-verbose=false)\label{classeo_prop_combined_quad_op_a2}
+
+\item 
+virtual void {\bf print\-On} (std::ostream \&\_\-os)\label{classeo_prop_combined_quad_op_a3}
+
+\item 
+virtual bool {\bf operator()} ({\bf EOT} \&\_\-indi1, {\bf EOT} \&\_\-indi2)\label{classeo_prop_combined_quad_op_a4}
+
+\begin{CompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+std::vector$<$ {\bf eo\-Quad\-Op}$<$ {\bf EOT} $>$ $\ast$ $>$ {\bf ops}\label{classeo_prop_combined_quad_op_r0}
+
+\item 
+std::vector$<$ double $>$ {\bf rates}\label{classeo_prop_combined_quad_op_r1}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class EOT$>$ class eo\-Prop\-Combined\-Quad\-Op$<$ EOT $>$}
+
+Combined quad genetic operator: operator() has two operands, both can be modified. 
+
+generic operators are now allowed: there are imbedded into the corresponding \char`\"{}true\char`\"{} operator 
+
+
+
+Definition at line 163 of file eo\-Proportional\-Combined\-Op.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+eo\-Proportional\-Combined\-Op.h\end{CompactItemize}

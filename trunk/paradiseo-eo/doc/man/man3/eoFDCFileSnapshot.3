@@ -1,0 +1,55 @@
+.TH "eoFDCFileSnapshot" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoFDCFileSnapshot \- Specific class for FDCStat monitoring: As I failed to have FDC stat as an \fBeoStat\fP, this is the trick to put the 2 \fBeoParam\fP<std::vector<double> > into a monitor This class does nothing else.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoFDCStat.h>\fP
+.PP
+Inherits \fBeoFileSnapshot\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoFDCFileSnapshot\fP (\fBeoFDCStat\fP< \fBEOT\fP > &_FDCstat, std::string _dirname='tmpFDC', unsigned _frequency=1, std::string _filename='FDC', std::string _delim=' ')"
+.br
+.RI "\fICtor: in addition to the parameters of the ctor of an \fBeoFileSnapshot\fP we need here an \fBeoFDCStat\fP. \fP"
+.ti -1c
+.RI "virtual void \fBadd\fP (const \fBeoParam\fP &_param)"
+.br
+.RI "\fIjust to be sure the add method is not called further \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoFDCStat\fP< \fBEOT\fP > & \fBFDCstat\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoFDCFileSnapshot< EOT >"
+Specific class for FDCStat monitoring: As I failed to have FDC stat as an \fBeoStat\fP, this is the trick to put the 2 \fBeoParam\fP<std::vector<double> > into a monitor This class does nothing else. 
+.PP
+Definition at line 111 of file eoFDCStat.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBeoFDCFileSnapshot\fP< \fBEOT\fP >::\fBeoFDCFileSnapshot\fP (\fBeoFDCStat\fP< \fBEOT\fP > & _FDCstat, std::string _dirname = \fC'tmpFDC'\fP, unsigned _frequency = \fC1\fP, std::string _filename = \fC'FDC'\fP, std::string _delim = \fC' '\fP)\fC [inline]\fP"
+.PP
+Ctor: in addition to the parameters of the ctor of an \fBeoFileSnapshot\fP we need here an \fBeoFDCStat\fP. 
+.PP
+The 2 std::vectors (distances to optimum and fitnesses) are added to the monitor so they can be processed later to a file - and eventually by gnuplot 
+.PP
+Definition at line 119 of file eoFDCStat.h.
+.PP
+References eoFileSnapshot::add().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

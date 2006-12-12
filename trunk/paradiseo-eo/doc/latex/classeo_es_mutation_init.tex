@@ -1,0 +1,103 @@
+\section{eo\-Es\-Mutation\-Init Class Reference}
+\label{classeo_es_mutation_init}\index{eoEsMutationInit@{eoEsMutationInit}}
+Initialize Mutation operator.  
+
+
+{\tt \#include $<$eo\-Es\-Mutation\-Init.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Es\-Mutation\-Init} ({\bf eo\-Parser} \&\_\-parser, std::string \_\-section=\char`\"{}ES mutation parameters\char`\"{})
+\begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
+virtual {\bf $\sim$eo\-Es\-Mutation\-Init} ()\label{classeo_es_mutation_init_a1}
+
+\begin{CompactList}\small\item\em Virtual destructor. \item\end{CompactList}\item 
+double {\bf Tau\-Lcl} (void)\label{classeo_es_mutation_init_a2}
+
+\begin{CompactList}\small\item\em local  \item\end{CompactList}\item 
+double {\bf Tau\-Glb} (void)\label{classeo_es_mutation_init_a3}
+
+\begin{CompactList}\small\item\em global tau \item\end{CompactList}\item 
+double {\bf Tau\-Beta} (void)\label{classeo_es_mutation_init_a4}
+
+\begin{CompactList}\small\item\em correlation's tau \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+virtual std::string {\bf section} (void)\label{classeo_es_mutation_init_b0}
+
+\item 
+virtual std::string {\bf Tau\-Lcl\-Name} (void) const \label{classeo_es_mutation_init_b1}
+
+\item 
+virtual char {\bf Tau\-Lcl\-Short} (void) const \label{classeo_es_mutation_init_b2}
+
+\item 
+virtual std::string {\bf Tau\-Glb\-Name} (void) const \label{classeo_es_mutation_init_b3}
+
+\item 
+virtual char {\bf Tau\-Glb\-Short} (void) const \label{classeo_es_mutation_init_b4}
+
+\item 
+virtual std::string {\bf Tau\-Beta\-Name} (void) const \label{classeo_es_mutation_init_b5}
+
+\item 
+virtual char {\bf Tau\-Beta\-Short} (void) const \label{classeo_es_mutation_init_b6}
+
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Parser} \& {\bf parser}\label{classeo_es_mutation_init_r0}
+
+\item 
+std::string {\bf rep\-Section}\label{classeo_es_mutation_init_r1}
+
+\item 
+{\bf eo\-Value\-Param}$<$ double $>$ $\ast$ {\bf Tau\-Lcl\-Param}\label{classeo_es_mutation_init_r2}
+
+\item 
+{\bf eo\-Value\-Param}$<$ double $>$ $\ast$ {\bf Tau\-Glb\-Param}\label{classeo_es_mutation_init_r3}
+
+\item 
+{\bf eo\-Value\-Param}$<$ double $>$ $\ast$ {\bf Tau\-Beta\-Param}\label{classeo_es_mutation_init_r4}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Initialize Mutation operator. 
+
+Proxy class that is used for initializing the mutation operator. It provides an interface between {\bf eo\-Es\-Mutate}{\rm (p.\,\pageref{classeo_es_mutate})} and the abstract parameter\-Loader. It also provides the names for the parameters in this class as virtual protected member functions.
+
+If you have more than a single ES in a project that need different names in the configuration files, you might consider overriding this class to change the names.
+
+\begin{Desc}
+\item[See also:]{\bf eo\-Es\-Mutate}{\rm (p.\,\pageref{classeo_es_mutate})} \end{Desc}
+
+
+
+
+Definition at line 47 of file eo\-Es\-Mutation\-Init.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{eoEsMutationInit@{eo\-Es\-Mutation\-Init}!eoEsMutationInit@{eoEsMutationInit}}
+\index{eoEsMutationInit@{eoEsMutationInit}!eoEsMutationInit@{eo\-Es\-Mutation\-Init}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}eo\-Es\-Mutation\-Init::eo\-Es\-Mutation\-Init ({\bf eo\-Parser} \& {\em \_\-parser}, std::string {\em \_\-section} = {\tt \char`\"{}ES\ mutation\ parameters\char`\"{}})\hspace{0.3cm}{\tt  [inline]}}\label{classeo_es_mutation_init_a0}
+
+
+Constructor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-parser}]Parser to read parameters from. \item[{\em \_\-section}]Parser section for -parameters. \end{description}
+\end{Desc}
+
+
+Definition at line 56 of file eo\-Es\-Mutation\-Init.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+eo\-Es\-Mutation\-Init.h\end{CompactItemize}

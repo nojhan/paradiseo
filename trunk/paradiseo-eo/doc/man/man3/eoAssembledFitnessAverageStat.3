@@ -1,0 +1,52 @@
+.TH "eoAssembledFitnessAverageStat" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoAssembledFitnessAverageStat \- Average fitness values of a population, where the fitness is of type eoScalarAssembledFitness.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoAssembledFitnessStat.h>\fP
+.PP
+Inherits \fBeoStat< EOT, double >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOT::Fitness \fBFitness\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoAssembledFitnessAverageStat\fP (unsigned _whichTerm=0, std::string _description='Average Fitness')"
+.br
+.ti -1c
+.RI "virtual void \fBoperator()\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned \fBwhichFitnessTerm\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoAssembledFitnessAverageStat< EOT >"
+Average fitness values of a population, where the fitness is of type eoScalarAssembledFitness. 
+
+Specify in the constructor, for which fitness term (index) the average should be evaluated. Only values of object where the failed boolean = false is set are counted. 
+.PP
+Definition at line 46 of file eoAssembledFitnessStat.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

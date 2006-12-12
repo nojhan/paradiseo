@@ -1,0 +1,58 @@
+.TH "eoPropCombinedQuadOp" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoPropCombinedQuadOp \- Combined quad genetic operator: operator() has two operands, both can be modified.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoProportionalCombinedOp.h>\fP
+.PP
+Inherits \fBeoQuadOp< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoPropCombinedQuadOp\fP (\fBeoQuadOp\fP< \fBEOT\fP > &_first, const double _rate)"
+.br
+.RI "\fICtor from a true operator. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.ti -1c
+.RI "virtual void \fBadd\fP (\fBeoQuadOp\fP< \fBEOT\fP > &_op, const double _rate, bool _verbose=false)"
+.br
+.ti -1c
+.RI "virtual void \fBprintOn\fP (std::ostream &_os)"
+.br
+.ti -1c
+.RI "virtual bool \fBoperator()\fP (\fBEOT\fP &_indi1, \fBEOT\fP &_indi2)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< \fBeoQuadOp\fP< \fBEOT\fP > * > \fBops\fP"
+.br
+.ti -1c
+.RI "std::vector< double > \fBrates\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoPropCombinedQuadOp< EOT >"
+Combined quad genetic operator: operator() has two operands, both can be modified. 
+
+generic operators are now allowed: there are imbedded into the corresponding 'true' operator 
+.PP
+Definition at line 163 of file eoProportionalCombinedOp.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

@@ -1,0 +1,54 @@
+\section{eo\-Drawable$<$ Object $>$ Class Template Reference}
+\label{classeo_drawable}\index{eoDrawable@{eoDrawable}}
+eo\-Drawable is a template class that adds a drawing interface to an object.$\backslash$ Requisites for template instantiation are that the object must admit a default ctor and a copy ctor.  
+
+
+{\tt \#include $<$eo\-Drawable.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Drawable} (const Object \&\_\-o)\label{classeo_drawable_a0}
+
+\begin{CompactList}\small\item\em Main ctor from an already built Object. \item\end{CompactList}\item 
+{\bf eo\-Drawable} (const {\bf eo\-Drawable} \&\_\-d)\label{classeo_drawable_a1}
+
+\begin{CompactList}\small\item\em Copy constructor. \item\end{CompactList}\item 
+virtual {\bf $\sim$eo\-Drawable} ()\label{classeo_drawable_a2}
+
+\begin{CompactList}\small\item\em Virtual dtor. They are needed in virtual class hierarchies. \item\end{CompactList}\item 
+virtual void {\bf draw} (unsigned \_\-x, unsigned \_\-y)=0
+\begin{CompactList}\small\item\em Draws the object. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Object$>$ class eo\-Drawable$<$ Object $>$}
+
+eo\-Drawable is a template class that adds a drawing interface to an object.$\backslash$ Requisites for template instantiation are that the object must admit a default ctor and a copy ctor. 
+
+The Object must be an {\bf eo\-Object}{\rm (p.\,\pageref{classeo_object})}, thus, it must have its methods: class\-Name, eo\-Drawables can be drawn on any two-dimensional surface; it can be added to any object with above characteristics. \begin{Desc}
+\item[See also:]{\bf eo\-Object}{\rm (p.\,\pageref{classeo_object})} \end{Desc}
+
+
+
+
+Definition at line 44 of file eo\-Drawable.h.
+
+\subsection{Member Function Documentation}
+\index{eoDrawable@{eo\-Drawable}!draw@{draw}}
+\index{draw@{draw}!eoDrawable@{eo\-Drawable}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class Object$>$ virtual void {\bf eo\-Drawable}$<$ Object $>$::draw (unsigned {\em \_\-x}, unsigned {\em \_\-y})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classeo_drawable_a3}
+
+
+Draws the object. 
+
+It must be redefined in any subclass, it180s impossible to have a general drawing method \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-x,\_\-y}]coorinates \end{description}
+\end{Desc}
+
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+eo\-Drawable.h\end{CompactItemize}

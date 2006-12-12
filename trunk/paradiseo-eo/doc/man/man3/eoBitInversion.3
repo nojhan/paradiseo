@@ -1,0 +1,53 @@
+.TH "eoBitInversion" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoBitInversion \- eoBitInversion: inverts the bits of the chromosome between an interval  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <ga/eoBitOp.h>\fP
+.PP
+Inherits \fBeoMonOp< Chrom >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIThe class name. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (Chrom &chrom)"
+.br
+.RI "\fIInverts a range of bits in a binary chromosome. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class Chrom> class eoBitInversion< Chrom >"
+eoBitInversion: inverts the bits of the chromosome between an interval 
+.PP
+Definition at line 146 of file eoBitOp.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class Chrom> bool \fBeoBitInversion\fP< Chrom >::operator() (Chrom & chrom)\fC [inline, virtual]\fP"
+.PP
+Inverts a range of bits in a binary chromosome. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIchrom\fP The chromosome whos bits are going to be inverted (a range). 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< Chrom &, bool >\fP.
+.PP
+Definition at line 156 of file eoBitOp.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

@@ -1,0 +1,50 @@
+\section{eo\-F$<$ R $>$ Class Template Reference}
+\label{classeo_f}\index{eoF@{eoF}}
+Basic Function.  
+
+
+{\tt \#include $<$eo\-Functor.h$>$}
+
+Inheritance diagram for eo\-F$<$ R $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classeo_f}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+typedef R {\bf result\_\-type}\label{classeo_f_w0}
+
+\begin{CompactList}\small\item\em the return type - probably useless .... \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+virtual {\bf $\sim$eo\-F} ()\label{classeo_f_a0}
+
+\begin{CompactList}\small\item\em virtual dtor here so there is no need to define it in derived classes \item\end{CompactList}\item 
+virtual R {\bf operator()} ()=0\label{classeo_f_a1}
+
+\begin{CompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Functor\-Base::procedure\_\-tag} {\bf functor\_\-category} ()\label{classeo_f_e0}
+
+\begin{CompactList}\small\item\em tag to identify a procedure in compile time function selection functor\_\-category \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class R$>$ class eo\-F$<$ R $>$}
+
+Basic Function. 
+
+Derive from this class when defining any procedure. It defines a result\_\-type that can be used to determine the return type Argument and result types can be any type including void for result\_\-type 
+
+
+
+Definition at line 68 of file eo\-Functor.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+eo\-Functor.h\end{CompactItemize}

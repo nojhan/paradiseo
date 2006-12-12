@@ -1,0 +1,69 @@
+.TH "eoCombinedContinue" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoCombinedContinue \- Combined continuators - logical AND: Continues until one of the embedded continuators says halt!  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoCombinedContinue.h>\fP
+.PP
+Inherits \fBeoContinue< EOT >< EOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOT::Fitness \fBFitnessType\fP"
+.br
+.RI "\fIDefine Fitness. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoCombinedContinue\fP (\fBeoContinue\fP< \fBEOT\fP > &_cont)"
+.br
+.RI "\fICtor, make sure that at least on continuator is present. \fP"
+.ti -1c
+.RI "\fBeoCombinedContinue\fP (\fBeoContinue\fP< \fBEOT\fP > &_cont1, \fBeoContinue\fP< \fBEOT\fP > &_cont2)"
+.br
+.RI "\fICtor - for historical reasons ... should disspear some day. \fP"
+.ti -1c
+.RI "void \fBadd\fP (\fBeoContinue\fP< \fBEOT\fP > &_cont)"
+.br
+.ti -1c
+.RI "void \fBremoveLast\fP (void)"
+.br
+.ti -1c
+.RI "virtual bool \fBoperator()\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop)"
+.br
+.RI "\fIReturns false when one of the embedded continuators say so (logical and). \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP (void) const "
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< \fBeoContinue\fP< \fBEOT\fP > * > \fBcontinuators\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoCombinedContinue< EOT >"
+Combined continuators - logical AND: Continues until one of the embedded continuators says halt! 
+
+20/11/00 MS: Changed the 2-continuator construct to a std::vector<eoContinue<EOT> > to be consistent with other Combined constructs and allow to easily handle more than 2 continuators
+.PP
+02/2003 Ramón Casero Cañas - added the removeLast() method 
+.PP
+Definition at line 42 of file eoCombinedContinue.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

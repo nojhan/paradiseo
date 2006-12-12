@@ -1,0 +1,50 @@
+.TH "eoBinGenOp" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoBinGenOp \- Wrapper for binop: here we use select method of \fBeoPopulator\fP but we could also have an embedded selector to select the second parent.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoGenOp.h>\fP
+.PP
+Inherits \fBeoGenOp< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoBinGenOp\fP (\fBeoBinOp\fP< \fBEOT\fP > &_op)"
+.br
+.ti -1c
+.RI "unsigned \fBmax_production\fP (void)"
+.br
+.RI "\fIMax production is used to reserve space for all elements that are used by the operator, not setting it properly can result in a crash. \fP"
+.ti -1c
+.RI "void \fBapply\fP (\fBeoPopulator\fP< \fBEOT\fP > &_pop)"
+.br
+.RI "\fIdo the work: get 2 individuals from the population, modifies only one (it's a \fBeoBinOp\fP) \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoBinOp\fP< \fBEOT\fP > & \fBop\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoBinGenOp< EOT >"
+Wrapper for binop: here we use select method of \fBeoPopulator\fP but we could also have an embedded selector to select the second parent. 
+.PP
+Definition at line 107 of file eoGenOp.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

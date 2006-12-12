@@ -1,0 +1,44 @@
+.TH "eoMOFitnessStat" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoMOFitnessStat \- For multi-objective fitness, we need to translate a stat<vector<double> > into a vector<stat>, so each objective gets a seperate stat.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoMOFitnessStat.h>\fP
+.PP
+Inherits \fBeoSortedStat< EOT, std::vector< PartFitT > >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoMOFitnessStat\fP (unsigned _objective, std::string _description='MO-Fitness')"
+.br
+.RI "\fICtor: say what component you want. \fP"
+.ti -1c
+.RI "virtual void \fBoperator()\fP (const std::vector< const \fBEOT\fP * > &_popPters)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBobjective\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT, class PartFitT = double> class eoMOFitnessStat< EOT, PartFitT >"
+For multi-objective fitness, we need to translate a stat<vector<double> > into a vector<stat>, so each objective gets a seperate stat. 
+.PP
+Definition at line 64 of file eoMOFitnessStat.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

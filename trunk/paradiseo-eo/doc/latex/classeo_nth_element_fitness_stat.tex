@@ -1,0 +1,60 @@
+\section{eo\-Nth\-Element\-Fitness\-Stat$<$ EOT $>$ Class Template Reference}
+\label{classeo_nth_element_fitness_stat}\index{eoNthElementFitnessStat@{eoNthElementFitnessStat}}
+The n\_\-th element fitness in the population (see {\bf eo\-Best\-Fitness\-Stat}{\rm (p.\,\pageref{classeo_best_fitness_stat})}).  
+
+
+{\tt \#include $<$eo\-Stat.h$>$}
+
+Inheritance diagram for eo\-Nth\-Element\-Fitness\-Stat$<$ EOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.55708cm]{classeo_nth_element_fitness_stat}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+typedef EOT::Fitness {\bf Fitness}\label{classeo_nth_element_fitness_stat_w0}
+
+\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Nth\-Element\-Fitness\-Stat} (unsigned \_\-which\-Element, std::string \_\-description=\char`\"{}nth element fitness\char`\"{})\label{classeo_nth_element_fitness_stat_a0}
+
+\item 
+virtual void {\bf operator()} (const std::vector$<$ const {\bf EOT} $\ast$ $>$ \&\_\-pop)\label{classeo_nth_element_fitness_stat_a1}
+
+\begin{CompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \item\end{CompactList}\item 
+virtual std::string {\bf class\-Name} (void) const \label{classeo_nth_element_fitness_stat_a2}
+
+\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+template$<$class T$>$ void {\bf doit} (const {\bf eo\-Pop}$<$ {\bf EOT} $>$ \&\_\-pop, {\bf eo\-Pareto\-Fitness}$<$ T $>$)\label{classeo_nth_element_fitness_stat_d0}
+
+\item 
+template$<$class T$>$ void {\bf doit} (const std::vector$<$ const {\bf EOT} $\ast$ $>$ \&\_\-pop, T)\label{classeo_nth_element_fitness_stat_d1}
+
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+unsigned {\bf which\-Element}\label{classeo_nth_element_fitness_stat_r0}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class EOT$>$ class eo\-Nth\-Element\-Fitness\-Stat$<$ EOT $>$}
+
+The n\_\-th element fitness in the population (see {\bf eo\-Best\-Fitness\-Stat}{\rm (p.\,\pageref{classeo_best_fitness_stat})}). 
+
+
+
+Definition at line 211 of file eo\-Stat.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+eo\-Stat.h\end{CompactItemize}

@@ -1,0 +1,58 @@
+.TH "eoFlOrAllAtomQuadOp" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoFlOrAllAtomQuadOp \- Quad Crossover using an Atom Crossover.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoFlOrQuadOp.h>\fP
+.PP
+Inherits \fBeoQuadOp< EOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOT::AtomType \fBAtomType\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoFlOrAllAtomQuadOp\fP (\fBeoQuadOp\fP< AtomType > &_op, double _rate=1)"
+.br
+.RI "\fIdefault ctor: requires an Atom QuadOp \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (\fBEOT\fP &_eo1, \fBEOT\fP &_eo2)"
+.br
+.RI "\fIapplies Atom crossover to ALL components with given rate \fP"
+.ti -1c
+.RI "virtual string \fBclassName\fP () const "
+.br
+.RI "\fIinherited \fBclassName()\fP \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBrate\fP"
+.br
+.ti -1c
+.RI "\fBeoQuadOp\fP< AtomType > & \fBop\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoFlOrAllAtomQuadOp< EOT >"
+Quad Crossover using an Atom Crossover. 
+.PP
+Definition at line 46 of file eoFlOrQuadOp.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

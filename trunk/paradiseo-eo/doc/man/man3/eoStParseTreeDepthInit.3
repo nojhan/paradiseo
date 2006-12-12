@@ -1,0 +1,103 @@
+.TH "eoStParseTreeDepthInit" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoStParseTreeDepthInit \- eoStParseTreeDepthInit : the initializer class for strongly typed tree-based genetic programming  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <gp/eoStParseTreeDepthInit.h>\fP
+.PP
+Inherits \fBeoInit< eoParseTree< FType, Node > >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBeoParseTree\fP< FType, Node > \fBEoType\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoStParseTreeDepthInit\fP (unsigned _max_depth, const std::vector< Node > &_node, const int &_return_type, bool _grow=true)"
+.br
+.RI "\fIConstructor. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIMy class name. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (\fBEoType\fP &_tree)"
+.br
+.RI "\fIinitialize a tree \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBgenerate\fP (std::list< Node > &sequence, int the_max, int request_type)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned \fBmax_depth\fP"
+.br
+.ti -1c
+.RI "map< int, map< int, std::vector< Node > > > \fBnode\fP"
+.br
+.ti -1c
+.RI "int \fBreturn_type\fP"
+.br
+.ti -1c
+.RI "bool \fBgrow\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class FType, class Node> class eoStParseTreeDepthInit< FType, Node >"
+eoStParseTreeDepthInit : the initializer class for strongly typed tree-based genetic programming 
+.PP
+Definition at line 61 of file eoStParseTreeDepthInit.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class FType, class Node> \fBeoStParseTreeDepthInit\fP< FType, Node >::\fBeoStParseTreeDepthInit\fP (unsigned _max_depth, const std::vector< Node > & _node, const int & _return_type, bool _grow = \fCtrue\fP)\fC [inline]\fP"
+.PP
+Constructor. 
+.PP
+_max_depth The maximum depth of a tree 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_initializor\fP A std::vector containing the possible nodes 
+.br
+\fI_grow\fP False results in a full tree, True result is a randomly grown tree 
+.RE
+.PP
+
+.PP
+Definition at line 73 of file eoStParseTreeDepthInit.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class FType, class Node> void \fBeoStParseTreeDepthInit\fP< FType, Node >::operator() (\fBEoType\fP & _tree)\fC [inline]\fP"
+.PP
+initialize a tree 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_tree\fP : the tree to be initialized 
+.RE
+.PP
+
+.PP
+Definition at line 125 of file eoStParseTreeDepthInit.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

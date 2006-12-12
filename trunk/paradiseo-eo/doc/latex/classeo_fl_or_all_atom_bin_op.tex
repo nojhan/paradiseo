@@ -1,0 +1,54 @@
+\section{eo\-Fl\-Or\-All\-Atom\-Bin\-Op$<$ EOT $>$ Class Template Reference}
+\label{classeo_fl_or_all_atom_bin_op}\index{eoFlOrAllAtomBinOp@{eoFlOrAllAtomBinOp}}
+Bin Crossover using an Atom Crossover that is applied to a ALL components with given rate.  
+
+
+{\tt \#include $<$eo\-Fl\-Or\-Bin\-Op.h$>$}
+
+Inheritance diagram for eo\-Fl\-Or\-All\-Atom\-Bin\-Op$<$ EOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.60163cm]{classeo_fl_or_all_atom_bin_op}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+typedef EOT::Atom\-Type {\bf Atom\-Type}\label{classeo_fl_or_all_atom_bin_op_w0}
+
+\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Fl\-Or\-All\-Atom\-Bin\-Op} ({\bf eo\-Bin\-Op}$<$ Atom\-Type $>$ \&\_\-op, float \_\-rate=1.0)\label{classeo_fl_or_all_atom_bin_op_a0}
+
+\begin{CompactList}\small\item\em default ctor: requires an Atom Bin\-Op \item\end{CompactList}\item 
+bool {\bf operator()} ({\bf EOT} \&\_\-eo1, const {\bf EOT} \&\_\-eo2)\label{classeo_fl_or_all_atom_bin_op_a1}
+
+\begin{CompactList}\small\item\em applies Atom crossover to ALL components with given rate \item\end{CompactList}\item 
+virtual string {\bf class\-Name} () const \label{classeo_fl_or_all_atom_bin_op_a2}
+
+\begin{CompactList}\small\item\em inherited {\bf class\-Name()}{\rm (p.\,\pageref{classeo_fl_or_all_atom_bin_op_a2})} \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+double {\bf rate}\label{classeo_fl_or_all_atom_bin_op_r0}
+
+\item 
+{\bf eo\-Bin\-Op}$<$ Atom\-Type $>$ \& {\bf op}\label{classeo_fl_or_all_atom_bin_op_r1}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class EOT$>$ class eo\-Fl\-Or\-All\-Atom\-Bin\-Op$<$ EOT $>$}
+
+Bin Crossover using an Atom Crossover that is applied to a ALL components with given rate. 
+
+
+
+Definition at line 49 of file eo\-Fl\-Or\-Bin\-Op.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+eo\-Fl\-Or\-Bin\-Op.h\end{CompactItemize}

@@ -1,0 +1,85 @@
+.TH "eoString" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoString \- Adaptor that turns an STL std::string into an \fBEO\fP.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoString.h>\fP
+.PP
+Inherits \fBEO< fitnessT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef char \fBType\fP"
+.br
+.ti -1c
+.RI "typedef char \fBAtomType\fP"
+.br
+.ti -1c
+.RI "typedef std::string \fBContainerType\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "\fBeoString\fP (const std::string &_str='')"
+.br
+.RI "\fIctor \fP"
+.ti -1c
+.RI "virtual void \fBprintOn\fP (std::ostream &os) const "
+.br
+.RI "\fIprinting... \fP"
+.in -1c
+.in -1c
+.PP
+.RI "\fBMethods from eoObject\fP"
+.br
+readFrom and printOn are directly inherited from eo1d 
+.PP
+.in +1c
+.in +1c
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIInherited from \fBeoObject\fP. \fP"
+.in -1c
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class fitnessT> class eoString< fitnessT >"
+Adaptor that turns an STL std::string into an \fBEO\fP. 
+.PP
+Definition at line 42 of file eoString.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class fitnessT> virtual std::string \fBeoString\fP< fitnessT >::className (void) const\fC [inline, virtual]\fP"
+.PP
+Inherited from \fBeoObject\fP. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBeoObject\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBEO< fitnessT >\fP.
+.PP
+Definition at line 74 of file eoString.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

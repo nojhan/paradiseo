@@ -1,0 +1,130 @@
+.TH "eoEsGlobalXover" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoEsGlobalXover \- Gloabl crossover operator for ES genotypes.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoEsGlobalXover.h>\fP
+.PP
+Inherits \fBeoGenOp< EOT >< EOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOT::Fitness \fBFitT\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoEsGlobalXover\fP (\fBeoBinOp\fP< double > &_crossObj, \fBeoBinOp\fP< double > &_crossMut)"
+.br
+.RI "\fI(Default) Constructor. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIThe class name. Used to display statistics. \fP"
+.ti -1c
+.RI "unsigned \fBmax_production\fP (void)"
+.br
+.RI "\fIThe TOTAL number of offspring (here = nb of parents modified in place). \fP"
+.ti -1c
+.RI "void \fBapply\fP (\fBeoPopulator\fP< \fBEOT\fP > &_plop)"
+.br
+.RI "\fImodifies one parents in the populator using 2 new parents for each component! \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBcross_self_adapt\fP (\fBeoEsSimple\fP< FitT > &_parent, const \fBeoPop\fP< \fBeoEsSimple\fP< FitT > > &_pop)"
+.br
+.RI "\fIMethod for cross self-adaptation parameters. \fP"
+.ti -1c
+.RI "void \fBcross_self_adapt\fP (\fBeoEsStdev\fP< FitT > &_parent, const \fBeoPop\fP< \fBeoEsStdev\fP< FitT > > &_pop)"
+.br
+.RI "\fIMethod for cross self-adaptation parameters. \fP"
+.ti -1c
+.RI "void \fBcross_self_adapt\fP (\fBeoEsFull\fP< FitT > &_parent, const \fBeoPop\fP< \fBeoEsFull\fP< FitT > > &_pop)"
+.br
+.RI "\fIMethod for cross self-adaptation parameters. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoRandomSelect\fP< \fBEOT\fP > \fBsel\fP"
+.br
+.ti -1c
+.RI "\fBeoBinOp\fP< double > & \fBcrossObj\fP"
+.br
+.ti -1c
+.RI "\fBeoBinOp\fP< double > & \fBcrossMut\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoEsGlobalXover< EOT >"
+Gloabl crossover operator for ES genotypes. 
+
+Uses some Atom crossovers to handle both the object variables and the mutation strategy parameters 
+.PP
+Definition at line 44 of file eoEsGlobalXover.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> void \fBeoEsGlobalXover\fP< \fBEOT\fP >::apply (\fBeoPopulator\fP< \fBEOT\fP > & _plop)\fC [inline, virtual]\fP"
+.PP
+modifies one parents in the populator using 2 new parents for each component! 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP a POPULATOR (not a simple population) 
+.RE
+.PP
+
+.PP
+Implements \fBeoGenOp< EOT >\fP.
+.PP
+Definition at line 67 of file eoEsGlobalXover.h.
+.PP
+References eoEsGlobalXover< EOT >::cross_self_adapt(), EO< F >::invalidate(), and eoPopulator< EOT >::source().
+.SS "template<class EOT> void \fBeoEsGlobalXover\fP< \fBEOT\fP >::cross_self_adapt (\fBeoEsSimple\fP< FitT > & _parent, const \fBeoPop\fP< \fBeoEsSimple\fP< FitT > > & _pop)\fC [inline, private]\fP"
+.PP
+Method for cross self-adaptation parameters. 
+.PP
+Specialization for \fBeoEsSimple\fP. 
+.PP
+Definition at line 94 of file eoEsGlobalXover.h.
+.PP
+References eoEsSimple< Fit >::stdev.
+.PP
+Referenced by eoEsGlobalXover< EOT >::apply().
+.SS "template<class EOT> void \fBeoEsGlobalXover\fP< \fBEOT\fP >::cross_self_adapt (\fBeoEsStdev\fP< FitT > & _parent, const \fBeoPop\fP< \fBeoEsStdev\fP< FitT > > & _pop)\fC [inline, private]\fP"
+.PP
+Method for cross self-adaptation parameters. 
+.PP
+Specialization for \fBeoEsStdev\fP. 
+.PP
+Definition at line 106 of file eoEsGlobalXover.h.
+.PP
+References eoEsStdev< Fit >::stdevs.
+.SS "template<class EOT> void \fBeoEsGlobalXover\fP< \fBEOT\fP >::cross_self_adapt (\fBeoEsFull\fP< FitT > & _parent, const \fBeoPop\fP< \fBeoEsFull\fP< FitT > > & _pop)\fC [inline, private]\fP"
+.PP
+Method for cross self-adaptation parameters. 
+.PP
+Specialization for \fBeoEsFull\fP. 
+.PP
+Definition at line 121 of file eoEsGlobalXover.h.
+.PP
+References eoEsFull< Fit >::correlations, and eoEsFull< Fit >::stdevs.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

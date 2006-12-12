@@ -1,0 +1,76 @@
+.TH "eoEsStandardXover" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoEsStandardXover \- Standard (i.e.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoEsStandardXover.h>\fP
+.PP
+Inherits \fBeoBinOp< EOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOT::Fitness \fBFitT\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoEsStandardXover\fP (\fBeoBinOp\fP< double > &_crossObj, \fBeoBinOp\fP< double > &_crossMut)"
+.br
+.RI "\fI(Default) Constructor. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIThe class name. Used to display statistics. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (\fBEOT\fP &_eo1, const \fBEOT\fP &_eo2)"
+.br
+.RI "\fImodifies one parents in the populator using a second parent \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBcross_self_adapt\fP (\fBeoEsSimple\fP< FitT > &_parent1, const \fBeoEsSimple\fP< FitT > &_parent2)"
+.br
+.ti -1c
+.RI "bool \fBcross_self_adapt\fP (\fBeoEsStdev\fP< FitT > &_parent1, const \fBeoEsStdev\fP< FitT > &_parent2)"
+.br
+.ti -1c
+.RI "bool \fBcross_self_adapt\fP (\fBeoEsFull\fP< FitT > &_parent1, const \fBeoEsFull\fP< FitT > &_parent2)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoRandomSelect\fP< \fBEOT\fP > \fBsel\fP"
+.br
+.ti -1c
+.RI "\fBeoBinOp\fP< double > & \fBcrossObj\fP"
+.br
+.ti -1c
+.RI "\fBeoBinOp\fP< double > & \fBcrossMut\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoEsStandardXover< EOT >"
+Standard (i.e. 
+
+\fBeoBinOp\fP) crossover operator for ES genotypes. Uses some Atom crossovers to handle both the object variables and the mutation strategy parameters It is an \fBeoBinOp\fP and has to be wrapped into an \fBeoGenOp\fP before being used like the global version 
+.PP
+Definition at line 46 of file eoEsStandardXover.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

@@ -1,0 +1,13 @@
+/bcc_rounding_control.hpp/1.1/Thu Oct  6 12:13:52 2005//
+/bugs.hpp/1.1/Thu Oct  6 12:13:52 2005//
+/c99_rounding_control.hpp/1.1/Thu Oct  6 12:13:52 2005//
+/c99sub_rounding_control.hpp/1.1/Thu Oct  6 12:13:52 2005//
+/division.hpp/1.1/Thu Oct  6 12:13:52 2005//
+/interval_prototype.hpp/1.1/Thu Oct  6 12:13:52 2005//
+/msvc_rounding_control.hpp/1.1/Thu Oct  6 12:13:52 2005//
+/ppc_rounding_control.hpp/1.1/Thu Oct  6 12:13:52 2005//
+/sparc_rounding_control.hpp/1.1/Thu Oct  6 12:13:52 2005//
+/test_input.hpp/1.1/Thu Oct  6 12:13:52 2005//
+/x86_rounding_control.hpp/1.1/Thu Oct  6 12:13:52 2005//
+/x86gcc_rounding_control.hpp/1.1/Thu Oct  6 12:13:52 2005//
+D

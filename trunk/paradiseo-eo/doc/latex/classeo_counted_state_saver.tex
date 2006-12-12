@@ -1,0 +1,71 @@
+\section{eo\-Counted\-State\-Saver Class Reference}
+\label{classeo_counted_state_saver}\index{eoCountedStateSaver@{eoCountedStateSaver}}
+an {\bf eo\-Updater}{\rm (p.\,\pageref{classeo_updater})} that saves a state every given generations  
+
+
+{\tt \#include $<$eo\-Updater.h$>$}
+
+Inheritance diagram for eo\-Counted\-State\-Saver::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4cm]{classeo_counted_state_saver}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Counted\-State\-Saver} (unsigned \_\-interval, const {\bf eo\-State} \&\_\-state, std::string \_\-prefix, bool \_\-save\-On\-Last\-Call, std::string \_\-extension=\char`\"{}sav\char`\"{}, unsigned \_\-counter=0)\label{classeo_counted_state_saver_a0}
+
+\item 
+{\bf eo\-Counted\-State\-Saver} (unsigned \_\-interval, const {\bf eo\-State} \&\_\-state, std::string \_\-prefix=\char`\"{}state\char`\"{}, std::string \_\-extension=\char`\"{}sav\char`\"{}, unsigned \_\-counter=0)\label{classeo_counted_state_saver_a1}
+
+\item 
+virtual void {\bf last\-Call} (void)\label{classeo_counted_state_saver_a2}
+
+\item 
+void {\bf operator()} (void)\label{classeo_counted_state_saver_a3}
+
+\begin{CompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \item\end{CompactList}\item 
+virtual std::string {\bf class\-Name} (void) const \label{classeo_counted_state_saver_a4}
+
+\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf do\-It\-Now} (void)\label{classeo_counted_state_saver_d0}
+
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+const {\bf eo\-State} \& {\bf state}\label{classeo_counted_state_saver_r0}
+
+\item 
+const unsigned {\bf interval}\label{classeo_counted_state_saver_r1}
+
+\item 
+unsigned {\bf counter}\label{classeo_counted_state_saver_r2}
+
+\item 
+bool {\bf save\-On\-Last\-Call}\label{classeo_counted_state_saver_r3}
+
+\item 
+const std::string {\bf prefix}\label{classeo_counted_state_saver_r4}
+
+\item 
+const std::string {\bf extension}\label{classeo_counted_state_saver_r5}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+an {\bf eo\-Updater}{\rm (p.\,\pageref{classeo_updater})} that saves a state every given generations 
+
+
+
+Definition at line 127 of file eo\-Updater.h.
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+eo\-Updater.h\item 
+eo\-Updater.cpp\end{CompactItemize}

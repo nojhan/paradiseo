@@ -1,0 +1,133 @@
+.TH "eoUniformMutation" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoUniformMutation \- eoUniformMutation --> changes all values of the std::vector by uniform choice with range epsilon with probability p_change per variable  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <Tutorial/eoRealOp.h>\fP
+.PP
+Inherits \fBeoMonOp< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoUniformMutation\fP (const double &_epsilon, const double &_p_change=1.0)"
+.br
+.RI "\fIConstructor without bounds == unbounded variables :-) not very clean, but who's doing unbounded optimization anyway? and it's there mostly for backward compatibility. \fP"
+.ti -1c
+.RI "\fBeoUniformMutation\fP (\fBeoRealVectorBounds\fP &_bounds, const double &_epsilon, const double &_p_change=1.0)"
+.br
+.RI "\fIConstructor with bounds. \fP"
+.ti -1c
+.RI "\fBeoUniformMutation\fP (\fBeoRealVectorBounds\fP &_bounds, const std::vector< double > &_epsilon, const std::vector< double > &_p_change)"
+.br
+.RI "\fIConstructor with bounds. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIThe class name. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (\fBEOT\fP &_eo)"
+.br
+.RI "\fIDo it! \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "bool \fBhomogeneous\fP"
+.br
+.ti -1c
+.RI "\fBeoRealVectorBounds\fP & \fBbounds\fP"
+.br
+.ti -1c
+.RI "std::vector< double > \fBepsilon\fP"
+.br
+.ti -1c
+.RI "std::vector< double > \fBp_change\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoUniformMutation< EOT >"
+eoUniformMutation --> changes all values of the std::vector by uniform choice with range epsilon with probability p_change per variable 
+.PP
+Definition at line 45 of file eoRealOp.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBeoUniformMutation\fP< \fBEOT\fP >::\fBeoUniformMutation\fP (const double & _epsilon, const double & _p_change = \fC1.0\fP)\fC [inline]\fP"
+.PP
+Constructor without bounds == unbounded variables :-) not very clean, but who's doing unbounded optimization anyway? and it's there mostly for backward compatibility. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_epsilon\fP the range for uniform nutation 
+.br
+\fI_p_change\fP the probability to change a given coordinate 
+.RE
+.PP
+
+.PP
+Definition at line 56 of file eoRealOp.h.
+.SS "template<class EOT> \fBeoUniformMutation\fP< \fBEOT\fP >::\fBeoUniformMutation\fP (\fBeoRealVectorBounds\fP & _bounds, const double & _epsilon, const double & _p_change = \fC1.0\fP)\fC [inline]\fP"
+.PP
+Constructor with bounds. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_bounds\fP an \fBeoRealVectorBounds\fP that contains the bounds 
+.br
+\fI_epsilon\fP the range for uniform mutation - a double to be scaled 
+.br
+\fI_p_change\fP the one probability to change all coordinates 
+.RE
+.PP
+
+.PP
+Definition at line 66 of file eoRealOp.h.
+.PP
+References eoRealBaseVectorBounds::isBounded(), and eoRealBaseVectorBounds::range().
+.SS "template<class EOT> \fBeoUniformMutation\fP< \fBEOT\fP >::\fBeoUniformMutation\fP (\fBeoRealVectorBounds\fP & _bounds, const std::vector< double > & _epsilon, const std::vector< double > & _p_change)\fC [inline]\fP"
+.PP
+Constructor with bounds. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_bounds\fP an \fBeoRealVectorBounds\fP that contains the bounds 
+.br
+\fI_epsilon\fP the VECTOR of ranges for uniform mutation 
+.br
+\fI_p_change\fP the VECTOR of probabilities for each coordinates 
+.RE
+.PP
+
+.PP
+Definition at line 83 of file eoRealOp.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> bool \fBeoUniformMutation\fP< \fBEOT\fP >::operator() (\fBEOT\fP & _eo)\fC [inline, virtual]\fP"
+.PP
+Do it! 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_eo\fP The indi undergoing the mutation 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< EOT &, bool >\fP.
+.PP
+Definition at line 96 of file eoRealOp.h.
+.PP
+References eoRng::flip(), eoRealBaseVectorBounds::isMaxBounded(), eoRealBaseVectorBounds::isMinBounded(), eoRealBaseVectorBounds::maximum(), eoRealBaseVectorBounds::minimum(), and eoRng::uniform().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

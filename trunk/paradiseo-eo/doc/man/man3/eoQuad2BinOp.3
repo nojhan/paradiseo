@@ -1,0 +1,58 @@
+.TH "eoQuad2BinOp" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoQuad2BinOp \- Turning an \fBeoQuadOp\fP into an \fBeoBinOp\fP: simply don't touch the second arg!  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoOp.h>\fP
+.PP
+Inherits \fBeoBinOp< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoQuad2BinOp\fP (\fBeoQuadOp\fP< \fBEOT\fP > &_quadOp)"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (\fBEOT\fP &_eo1, const \fBEOT\fP &_eo2)"
+.br
+.RI "\fIOperator() simply calls embedded quadOp operator() with dummy second arg. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoQuadOp\fP< \fBEOT\fP > & \fBquadOp\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoQuad2BinOp< EOT >"
+Turning an \fBeoQuadOp\fP into an \fBeoBinOp\fP: simply don't touch the second arg! 
+.PP
+Definition at line 143 of file eoOp.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBeoQuad2BinOp\fP< \fBEOT\fP >::\fBeoQuad2BinOp\fP (\fBeoQuadOp\fP< \fBEOT\fP > & _quadOp)\fC [inline]\fP"
+.PP
+Ctor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_quadOp\fP the \fBeoQuadOp\fP to be transformed 
+.RE
+.PP
+
+.PP
+Definition at line 149 of file eoOp.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

@@ -1,0 +1,72 @@
+.TH "eoSortedPopStat" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoSortedPopStat \- Thanks to MS/VC++, \fBeoParam\fP mechanism is unable to handle std::vectors of stats.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoPopStat.h>\fP
+.PP
+Inherits \fBeoSortedStat< EOT, std::string >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoSortedPopStat\fP (unsigned _howMany=0, std::string _desc='')"
+.br
+.RI "\fIdefault Ctor, void std::string by default, as it appears on the description line once at beginning of evolution. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (const std::vector< const \fBEOT\fP * > &_pop)"
+.br
+.RI "\fIFills the \fBvalue()\fP of the \fBeoParam\fP with the dump of the population. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned \fBcombien\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoSortedPopStat< EOT >"
+Thanks to MS/VC++, \fBeoParam\fP mechanism is unable to handle std::vectors of stats. 
+
+This snippet is a workaround: This class will 'print' a whole population into a std::string - that you can later send to any stream This is the Sorted version - see eoPopString for the plain version
+.PP
+Note: this Stat should probably be used only within eoStdOutMonitor, and not inside an \fBeoFileMonitor\fP, as the \fBeoState\fP construct will work much better there. 
+.PP
+Definition at line 96 of file eoPopStat.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBeoSortedPopStat\fP< \fBEOT\fP >::\fBeoSortedPopStat\fP (unsigned _howMany = \fC0\fP, std::string _desc = \fC''\fP)\fC [inline]\fP"
+.PP
+default Ctor, void std::string by default, as it appears on the description line once at beginning of evolution. 
+.PP
+and is meaningless there _howMany defaults to 0, that is, the whole population 
+.PP
+Definition at line 107 of file eoPopStat.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> void \fBeoSortedPopStat\fP< \fBEOT\fP >::operator() (const std::vector< const \fBEOT\fP * > & _pop)\fC [inline, virtual]\fP"
+.PP
+Fills the \fBvalue()\fP of the \fBeoParam\fP with the dump of the population. 
+.PP
+Adds a 
+.br
+ before so it does not get mixed up with the rest of the stats that are written by the monitor it is probably used from. 
+.PP
+Implements \fBeoUF< const std::vector< const EOT * > &, void >\fP.
+.PP
+Definition at line 116 of file eoPopStat.h.
+.PP
+References eoValueParam< std::string >::value().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

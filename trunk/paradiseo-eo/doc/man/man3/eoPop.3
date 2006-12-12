@@ -1,0 +1,309 @@
+.TH "eoPop" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoPop \- A std::vector of \fBEO\fP object, to be used in all algorithms (selectors, operators, replacements, ...).  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoPop.h>\fP
+.PP
+Inherits \fBeoObject\fP, and \fBeoPersistent\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOT::Fitness \fBFitness\fP"
+.br
+.ti -1c
+.RI "typedef EOT::fitness_traits \fBfitness_traits\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoPop\fP ()"
+.br
+.RI "\fIDefault ctor. \fP"
+.ti -1c
+.RI "\fBeoPop\fP (unsigned _popSize, \fBeoInit\fP< \fBEOT\fP > &_chromInit)"
+.br
+.RI "\fICtor for the initialization of chromosomes. \fP"
+.ti -1c
+.RI "void \fBappend\fP (unsigned _newPopSize, \fBeoInit\fP< \fBEOT\fP > &_chromInit)"
+.br
+.RI "\fIappstd::ends random guys at end of pop. \fP"
+.ti -1c
+.RI "\fBeoPop\fP (std::istream &_is)"
+.br
+.RI "\fICtor from an std::istream; reads the population from a stream, each element should be in different lines. \fP"
+.ti -1c
+.RI "virtual \fB~eoPop\fP ()"
+.br
+.RI "\fIEmpty Dtor. \fP"
+.ti -1c
+.RI "void \fBsort\fP (void)"
+.br
+.RI "\fIsort the population. \fP"
+.ti -1c
+.RI "void \fBsort\fP (std::vector< const \fBEOT\fP * > &result) const "
+.br
+.RI "\fIcreates a std::vector<EOT*> pointing to the individuals in descending order \fP"
+.ti -1c
+.RI "void \fBshuffle\fP (void)"
+.br
+.RI "\fIshuffle the population. \fP"
+.ti -1c
+.RI "void \fBshuffle\fP (std::vector< const \fBEOT\fP * > &result) const "
+.br
+.RI "\fIcreates a std::vector<EOT*> pointing to the individuals in random order \fP"
+.ti -1c
+.RI "\fBeoPop\fP< \fBEOT\fP >::iterator \fBit_best_element\fP ()"
+.br
+.RI "\fIreturns an iterator to the best individual DOES NOT MOVE ANYBODY \fP"
+.ti -1c
+.RI "const \fBEOT\fP & \fBbest_element\fP () const "
+.br
+.RI "\fIreturns an iterator to the best individual DOES NOT MOVE ANYBODY \fP"
+.ti -1c
+.RI "const \fBEOT\fP & \fBworse_element\fP () const "
+.br
+.RI "\fIreturns a const reference to the worse individual DOES NOT MOVE ANYBODY \fP"
+.ti -1c
+.RI "\fBeoPop\fP< \fBEOT\fP >::iterator \fBit_worse_element\fP ()"
+.br
+.RI "\fIreturns an iterator to the worse individual DOES NOT MOVE ANYBODY \fP"
+.ti -1c
+.RI "\fBeoPop\fP< \fBEOT\fP >::iterator \fBnth_element\fP (int nth)"
+.br
+.RI "\fIslightly faster algorithm than sort to find all individuals that are better than the nth individual. \fP"
+.ti -1c
+.RI "Fitness \fBnth_element_fitness\fP (int which) const "
+.br
+.RI "\fIreturns the fitness of the nth element \fP"
+.ti -1c
+.RI "void \fBnth_element\fP (int which, std::vector< const \fBEOT\fP * > &result) const "
+.br
+.RI "\fIconst nth_element function, returns pointers to sorted individuals up the the nth \fP"
+.ti -1c
+.RI "void \fBswap\fP (\fBeoPop\fP< \fBEOT\fP > &other)"
+.br
+.RI "\fIdoes STL swap with other pop \fP"
+.ti -1c
+.RI "virtual void \fBsortedPrintOn\fP (std::ostream &_os) const "
+.br
+.RI "\fIPrints sorted pop but does NOT modify it! \fP"
+.ti -1c
+.RI "virtual void \fBprintOn\fP (std::ostream &_os) const "
+.br
+.RI "\fIWrite object. \fP"
+.ti -1c
+.RI "virtual void \fBinvalidate\fP ()"
+.br
+.ti -1c
+.RI "void \fBsort\fP ()"
+.br
+.ti -1c
+.RI "void \fBscale\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetPerf2Worth\fP (\fBeoPerf2Worth\fP< \fBEOT\fP > &_p2w)"
+.br
+.ti -1c
+.RI "void \fBsetPerf2Worth\fP (\fBeoPerf2Worth\fP< \fBEOT\fP > *_p2w)"
+.br
+.ti -1c
+.RI "\fBeoPerf2Worth\fP< \fBEOT\fP > * \fBgetPerf2Worth\fP ()"
+.br
+.ti -1c
+.RI "void \fBswap\fP (\fBeoPop\fP< \fBEOT\fP > &other)"
+.br
+.in -1c
+.PP
+.RI "\fBMethods from eoObject\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "virtual void \fBreadFrom\fP (std::istream &_is)"
+.br
+.RI "\fIRead object. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIInherited from \fBeoObject\fP. \fP"
+.in -1c
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoPerf2Worth\fP< \fBEOT\fP > * \fBp2w\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoPop< EOT >"
+A std::vector of \fBEO\fP object, to be used in all algorithms (selectors, operators, replacements, ...). 
+
+We have no idea if a population can be some other thing that a std::vector, but if somebody thinks of it, this concrete implementation can be moved to 'generic' and an abstract Population interface be provided.
+.PP
+The template can be instantiated with anything that accepts a 'size' and \fBeoInit\fP derived object. in the ctor. EOT must also have a copy ctor, since temporaries are created and then passed to the \fBeoInit\fP object 
+.PP
+Definition at line 54 of file eoPop.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBeoPop\fP< \fBEOT\fP >::\fBeoPop\fP ()\fC [inline]\fP"
+.PP
+Default ctor. 
+.PP
+Creates empty pop
+.PP
+Definition at line 68 of file eoPop.h.
+.SS "template<class EOT> \fBeoPop\fP< \fBEOT\fP >::\fBeoPop\fP (unsigned _popSize, \fBeoInit\fP< \fBEOT\fP > & _chromInit)\fC [inline]\fP"
+.PP
+Ctor for the initialization of chromosomes. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_popSize\fP total population size 
+.br
+\fI_chromInit\fP Initialization routine, produces EO's, needs to be an \fBeoInit\fP
+.RE
+.PP
+
+.PP
+Definition at line 75 of file eoPop.h.
+.SS "template<class EOT> \fBeoPop\fP< \fBEOT\fP >::\fBeoPop\fP (std::istream & _is)\fC [inline]\fP"
+.PP
+Ctor from an std::istream; reads the population from a stream, each element should be in different lines. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_is\fP the stream 
+.RE
+.PP
+
+.PP
+Definition at line 113 of file eoPop.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> void \fBeoPop\fP< \fBEOT\fP >::append (unsigned _newPopSize, \fBeoInit\fP< \fBEOT\fP > & _chromInit)\fC [inline]\fP"
+.PP
+appstd::ends random guys at end of pop. 
+.PP
+Can be used to initialize it pop is empty
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_popSize\fP total population size 
+.br
+\fI_chromInit\fP Initialization routine, produces EO's, needs to be an \fBeoInit\fP
+.RE
+.PP
+
+.PP
+Definition at line 91 of file eoPop.h.
+.PP
+Referenced by eoEasyEA< EOT >::operator()().
+.SS "template<class EOT> void \fBeoPop\fP< \fBEOT\fP >::sort (void)\fC [inline]\fP"
+.PP
+sort the population. 
+.PP
+Use this member to sort in order of descending Fitness, so the first individual is the best! 
+.PP
+Definition at line 133 of file eoPop.h.
+.PP
+Referenced by eoTruncatedSelectMany< EOT >::operator()(), eoReduceMergeReduce< EOT >::operator()(), eoRanking< EOT >::operator()(), eoPBILAdditive< EOT >::operator()(), eoCheckPoint< EOT >::operator()(), eoSequentialSelect< EOT >::setup(), and eoPop< Dummy >::sortedPrintOn().
+.SS "template<class EOT> void \fBeoPop\fP< \fBEOT\fP >::shuffle (void)\fC [inline]\fP"
+.PP
+shuffle the population. 
+.PP
+Use this member to put the population in random order 
+.PP
+Definition at line 152 of file eoPop.h.
+.PP
+Referenced by eoTruncatedSelectMany< EOT >::operator()(), eoRandomSplit< EOT >::operator()(), eoRandomReduce< EOT >::operator()(), eoEliteSequentialSelect< EOT >::setup(), and eoSequentialSelect< EOT >::setup().
+.SS "template<class EOT> \fBeoPop\fP<\fBEOT\fP>::iterator \fBeoPop\fP< \fBEOT\fP >::nth_element (int nth)\fC [inline]\fP"
+.PP
+slightly faster algorithm than sort to find all individuals that are better than the nth individual. 
+.PP
+INDIVIDUALS ARE MOVED AROUND in the pop. 
+.PP
+Definition at line 201 of file eoPop.h.
+.PP
+Referenced by eoDeterministicSurviveAndDie< EOT >::operator()(), eoTruncateSplit< EOT >::operator()(), eoReduceMergeReduce< EOT >::operator()(), eoTruncate< EOT >::operator()(), eoElitism< EOT >::operator()(), and eoTruncatedSelectOne< EOT >::setup().
+.SS "template<class EOT> virtual void \fBeoPop\fP< \fBEOT\fP >::sortedPrintOn (std::ostream & _os) const\fC [inline, virtual]\fP"
+.PP
+Prints sorted pop but does NOT modify it! 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_os\fP A std::ostream. 
+.RE
+.PP
+
+.PP
+Definition at line 247 of file eoPop.h.
+.SS "template<class EOT> virtual void \fBeoPop\fP< \fBEOT\fP >::printOn (std::ostream & _os) const\fC [inline, virtual]\fP"
+.PP
+Write object. 
+.PP
+It's called printOn since it prints the object _on_ a stream. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_os\fP A std::ostream. 
+.RE
+.PP
+
+.PP
+Implements \fBeoPrintable\fP.
+.PP
+Definition at line 262 of file eoPop.h.
+.SS "template<class EOT> virtual void \fBeoPop\fP< \fBEOT\fP >::readFrom (std::istream & _is)\fC [inline, virtual]\fP"
+.PP
+Read object. 
+.PP
+The EOT class must have a ctor from a stream; 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_is\fP A std::istream. 
+.RE
+.PP
+
+.PP
+Implements \fBeoPersistent\fP.
+.PP
+Definition at line 274 of file eoPop.h.
+.PP
+Referenced by eoPop< Dummy >::eoPop().
+.SS "template<class EOT> virtual std::string \fBeoPop\fP< \fBEOT\fP >::className (void) const\fC [inline, virtual]\fP"
+.PP
+Inherited from \fBeoObject\fP. 
+.PP
+Returns the class name. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBeoObject\fP 
+.RE
+.PP
+
+.PP
+Implements \fBeoObject\fP.
+.PP
+Definition at line 289 of file eoPop.h.
+.PP
+Referenced by eoCheckPoint< EOT >::allClassNames().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

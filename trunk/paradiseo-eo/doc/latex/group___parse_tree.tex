@@ -1,0 +1,50 @@
+\section{Parse\-Tree}
+\label{group___parse_tree}\index{ParseTree@{ParseTree}}
+Various functions for tree-based Genetic Programming.  
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf eo\-Parse\-Tree$<$ FType, Node $>$}
+\begin{CompactList}\small\item\em Implementation of parse-tree for genetic programming. \item\end{CompactList}\item 
+class {\bf eo\-Parse\-Tree\-Depth\-Init$<$ FType, Node $>$}
+\begin{CompactList}\small\item\em eo\-Parse\-Tree\-Depth\-Init : the initializer class for {\bf eo\-Parse\-Tree}{\rm (p.\,\pageref{classeo_parse_tree})} \item\end{CompactList}\item 
+class {\bf eo\-Subtree\-XOver$<$ FType, Node $>$}
+\begin{CompactList}\small\item\em eo\-Subtree\-XOver --$>$ subtree xover \item\end{CompactList}\item 
+class {\bf eo\-Branch\-Mutation$<$ FType, Node $>$}
+\begin{CompactList}\small\item\em eo\-Branch\-Mutation --$>$ replace a subtree with a randomly created subtree \item\end{CompactList}\item 
+class {\bf eo\-Point\-Mutation$<$ FType, Node $>$}
+\begin{CompactList}\small\item\em eo\-Point\-Mutation --$>$ replace a Node with a Node of the same arity \item\end{CompactList}\item 
+class {\bf eo\-Expansion\-Mutation$<$ FType, Node $>$}
+\begin{CompactList}\small\item\em eo\-Expansion\-Mutation --$>$ replace a terminal with a randomly created subtree \item\end{CompactList}\item 
+class {\bf eo\-Collapse\-Subtree\-Mutation$<$ FType, Node $>$}
+\begin{CompactList}\small\item\em eo\-Collapse\-Subtree --$>$ replace a subtree with a randomly chosen terminal \item\end{CompactList}\item 
+class {\bf eo\-Hoist\-Mutation$<$ FType, Node $>$}
+\begin{CompactList}\small\item\em eo\-Hoist\-Mutation --$>$ replace the individual with one of its subtree's \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+template$<$class FType, class Node$>$ void {\bf eo\-Init\-Ramped\-Half\-And\-Half} ({\bf eo\-Pop}$<$ {\bf eo\-Parse\-Tree}$<$ FType, Node $>$ $>$ \&pop, unsigned int population\_\-size, unsigned int init\_\-max\_\-depth, std::vector$<$ Node $>$ \&initializor)
+\begin{CompactList}\small\item\em A template function for ramped half and half initialization of an {\bf eo\-Parse\-Tree}{\rm (p.\,\pageref{classeo_parse_tree})} population. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Various functions for tree-based Genetic Programming. 
+
+
+
+\subsection{Function Documentation}
+\index{ParseTree@{Parse\-Tree}!eoInitRampedHalfAndHalf@{eoInitRampedHalfAndHalf}}
+\index{eoInitRampedHalfAndHalf@{eoInitRampedHalfAndHalf}!ParseTree@{Parse\-Tree}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class FType, class Node$>$ void eo\-Init\-Ramped\-Half\-And\-Half ({\bf eo\-Pop}$<$ {\bf eo\-Parse\-Tree}$<$ FType, Node $>$ $>$ \& {\em pop}, unsigned int {\em population\_\-size}, unsigned int {\em init\_\-max\_\-depth}, std::vector$<$ Node $>$ \& {\em initializor})}\label{group___parse_tree_ga0}
+
+
+A template function for ramped half and half initialization of an {\bf eo\-Parse\-Tree}{\rm (p.\,\pageref{classeo_parse_tree})} population. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pop}]the population to be created \item[{\em population\_\-size}]the size of the population to be created \item[{\em init\_\-max\_\-depth}]the initial maximum tree depth \item[{\em initializor}]A std::vector containing the possible nodes \end{description}
+\end{Desc}
+
+
+Definition at line 179 of file eo\-Parse\-Tree\-Depth\-Init.h.

@@ -1,0 +1,97 @@
+.TH "eoBit" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoBit \- Implementation of bitstring chromosome.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <ga/eoBit.h>\fP
+.PP
+Inherits \fBeoVector< FitT, bool >\fP.
+.PP
+Inherited by eoVirus< FitT >.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoBit\fP (unsigned size=0, bool value=false)"
+.br
+.RI "\fI(Default) Constructor. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIMy class name. \fP"
+.ti -1c
+.RI "virtual void \fBprintOn\fP (std::ostream &os) const "
+.br
+.RI "\fITo print me on a stream. \fP"
+.ti -1c
+.RI "virtual void \fBreadFrom\fP (std::istream &is)"
+.br
+.RI "\fITo read me from a stream. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class FitT> class eoBit< FitT >"
+Implementation of bitstring chromosome. 
+
+Based on STL's vector<bool> specialization. 
+.PP
+Definition at line 56 of file eoBit.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class FitT> \fBeoBit\fP< \fBFitT\fP >::\fBeoBit\fP (unsigned size = \fC0\fP, bool value = \fCfalse\fP)\fC [inline]\fP"
+.PP
+(Default) Constructor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsize\fP Size of the binary std::string. 
+.RE
+.PP
+
+.PP
+Definition at line 69 of file eoBit.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class FitT> virtual void \fBeoBit\fP< \fBFitT\fP >::printOn (std::ostream & os) const\fC [inline, virtual]\fP"
+.PP
+To print me on a stream. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIos\fP The std::ostream. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBeoVector< FitT, bool >\fP.
+.PP
+Definition at line 82 of file eoBit.h.
+.PP
+References EO< F >::printOn().
+.SS "template<class FitT> virtual void \fBeoBit\fP< \fBFitT\fP >::readFrom (std::istream & is)\fC [inline, virtual]\fP"
+.PP
+To read me from a stream. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIis\fP The std::istream. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBeoVector< FitT, bool >\fP.
+.PP
+Definition at line 94 of file eoBit.h.
+.PP
+References EO< F >::readFrom().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

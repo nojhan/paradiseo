@@ -1,0 +1,17 @@
+* release 0.9.4 (not yet released)
+  - Update introductory pages of documentation and webpage.
+  - Remove support for pre-standard C++ compiler (i.e. gcc-2.x), which allows to
+    clean up the code considerably. Assume availability of sstream and limits.
+  - Implement CMA-ES.
+  
+
+* release 0.9.3z.1 (1. Oct. 2005)
+  - Support gcc-3.4 and gcc.4.x.
+  - Provide full automake/autoconf/configure support.
+
+
+# Local Variables:
+# coding: iso-8859-1
+# mode: text
+# fill-column: 80
+# End:

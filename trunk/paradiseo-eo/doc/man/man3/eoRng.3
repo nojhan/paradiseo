@@ -1,0 +1,345 @@
+.TH "eoRng" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoRng \- Random Number Generator.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <utils/eoRNG.h>\fP
+.PP
+Inherits \fBeoObject\fP, and \fBeoPersistent\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoRng\fP (uint32_t s)"
+.br
+.RI "\fIConstructor. \fP"
+.ti -1c
+.RI "void \fBreseed\fP (uint32_t s)"
+.br
+.RI "\fIRe-initializes the Random Number Generator. \fP"
+.ti -1c
+.RI "void \fBoldReseed\fP (uint32_t s)"
+.br
+.RI "\fIRe-initializes the Random Number Generator. \fP"
+.ti -1c
+.RI "double \fBuniform\fP (double m=1.0)"
+.br
+.RI "\fIuniform(m = 1.0) returns a random double in the range [0, m) \fP"
+.ti -1c
+.RI "uint32_t \fBrandom\fP (uint32_t m)"
+.br
+.RI "\fI\fBrandom()\fP returns a random integer in the range [0, m) \fP"
+.ti -1c
+.RI "bool \fBflip\fP (float bias=0.5)"
+.br
+.RI "\fI\fBflip()\fP tosses a biased coin such that flip(x/100.0) will returns true x% of the time \fP"
+.ti -1c
+.RI "double \fBnormal\fP (void)"
+.br
+.RI "\fI\fBnormal()\fP zero mean gaussian deviate with standard deviation of 1 \fP"
+.ti -1c
+.RI "double \fBnormal\fP (double stdev)"
+.br
+.RI "\fInormal(stdev) zero mean gaussian deviate with user defined standard deviation \fP"
+.ti -1c
+.RI "double \fBnormal\fP (double mean, double stdev)"
+.br
+.RI "\fInormal(mean, stdev) user defined mean gaussian deviate with user defined standard deviation \fP"
+.ti -1c
+.RI "double \fBnegexp\fP (double mean)"
+.br
+.RI "\fIGenerates random numbers using a negative exponential distribution. \fP"
+.ti -1c
+.RI "uint32_t \fBrand\fP ()"
+.br
+.RI "\fI\fBrand()\fP returns a random number in the range [0, rand_max) \fP"
+.ti -1c
+.RI "uint32_t \fBrand_max\fP (void) const "
+.br
+.RI "\fI\fBrand_max()\fP the maximum returned by \fBrand()\fP \fP"
+.ti -1c
+.RI "template<typename TYPE> int \fBroulette_wheel\fP (const std::vector< TYPE > &vec, TYPE total=0)"
+.br
+.RI "\fIroulette_wheel(vec, total = 0) does a roulette wheel selection on the input std::vector vec. \fP"
+.ti -1c
+.RI "template<typename TYPE> const TYPE & \fBchoice\fP (const std::vector< TYPE > &vec) const "
+.br
+.RI "\fIRandomly select element from vector. \fP"
+.ti -1c
+.RI "template<typename TYPE> TYPE & \fBchoice\fP (std::vector< TYPE > &vec)"
+.br
+.RI "\fIRandomly select element from vector. \fP"
+.ti -1c
+.RI "void \fBprintOn\fP (std::ostream &_os) const "
+.br
+.RI "\fIWrite object. \fP"
+.ti -1c
+.RI "void \fBreadFrom\fP (std::istream &_is)"
+.br
+.RI "\fIRead object. \fP"
+.ti -1c
+.RI "std::string \fBclassName\fP (void) const "
+.br
+.RI "\fIReturn the class id. \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "uint32_t \fBrestart\fP (void)"
+.br
+.ti -1c
+.RI "void \fBinitialize\fP (uint32_t seed)"
+.br
+.ti -1c
+.RI "\fBeoRng\fP (const \fBeoRng\fP &)"
+.br
+.RI "\fICopy constructor. \fP"
+.ti -1c
+.RI "\fBeoRng\fP & \fBoperator=\fP (const \fBeoRng\fP &)"
+.br
+.RI "\fIAssignmant operator. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "uint32_t * \fBstate\fP"
+.br
+.RI "\fIArray for the state. \fP"
+.ti -1c
+.RI "uint32_t * \fBnext\fP"
+.br
+.ti -1c
+.RI "int \fBleft\fP"
+.br
+.ti -1c
+.RI "bool \fBcached\fP"
+.br
+.ti -1c
+.RI "float \fBcacheValue\fP"
+.br
+.ti -1c
+.RI "const int \fBN\fP"
+.br
+.ti -1c
+.RI "const int \fBM\fP"
+.br
+.ti -1c
+.RI "const uint32_t \fBK\fP"
+.br
+.RI "\fIMagic constant. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Random Number Generator. 
+
+eoRng is a persistent class that uses the ``Mersenne Twister'' random number generator MT19937 for generating random numbers. The various member functions implement useful functions for evolutionary algorithms. Included are: \fBrand()\fP, \fBrandom()\fP, \fBflip()\fP and \fBnormal()\fP.
+.PP
+\fBEO\fP provides a global random number generator \fCrng\fP that is seeded by the current UNIX time at program start. Moreover some global convenience functions are provided that use the global random number generator: \fCrandom\fP, \fCnormal\fP.
+.PP
+\fBWarning:\fP
+.RS 4
+If you want to repeatedly generated the same sequence of pseudo-random numbers, you should always reseed the generator at the beginning of your code.
+.RE
+.PP
+.SH "Documentation in original file"
+.PP
+.PP
+This is the ``Mersenne Twister'' random number generator MT19937, which generates pseudorandom integers uniformly distributed in 0..(2^32 - 1) starting from any odd seed in 0..(2^32 - 1). This version is a recode by Shawn Cokus (Cokus@math.washington.edu) on March 8, 1998 of a version by Takuji Nishimura (who had suggestions from Topher Cooper and Marc Rieffel in July-August 1997).
+.PP
+Effectiveness of the recoding (on Goedel2.math.washington.edu, a DEC Alpha running OSF/1) using GCC -O3 as a compiler: before recoding: 51.6 sec. to generate 300 million random numbers; after recoding: 24.0 sec. for the same (i.e., 46.5% of original time), so speed is now about 12.5 million random number generations per second on this machine.
+.PP
+According to the URL <http://www.math.keio.ac.jp/~matumoto/emt.html> (and paraphrasing a bit in places), the Mersenne Twister is ``designed with consideration of the flaws of various existing generators,'' has a period of 2^19937 - 1, gives a sequence that is 623-dimensionally equidistributed, and ``has passed many std::stringent tests, including the die-hard test of G. Marsaglia and the load test of P. Hellekalek and S. Wegenkittl.'' It is efficient in memory usage (typically using 2506 to 5012 bytes of static data, depending on data type sizes, and the code is quite short as well). It generates random numbers in batches of 624 at a time, so the caching and pipelining of modern systems is exploited. It is also divide- and mod-free.
+.PP
+The code as Shawn received it included the following notice: \fCCopyright (C) 1997 Makoto Matsumoto and Takuji Nishimura. When you use this, send an e-mail to <matumoto@math.keio.ac.jp> with an appropriate reference to your work.\fP It would be nice to Cc: <Cokus@math.washington.edu> and <eodev-main@lists.sourceforge.net> when you write.
+.PP
+.SH "Portability"
+.PP
+.PP
+Note for people porting \fBEO\fP to other platforms: please make sure that the type uint32_t in the file \fBeoRng.h\fP is exactly 32 bits long. It may in principle be longer, but not shorter. If it is longer, file compatibility between \fBEO\fP on different platforms may be broken. 
+.PP
+Definition at line 103 of file eoRNG.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "eoRng::eoRng (uint32_t s)\fC [inline]\fP"
+.PP
+Constructor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIs\fP Random seed; if you want another seed, use reseed.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBreseed\fP for details on usage of the seeding value. 
+.RE
+.PP
+
+.PP
+Definition at line 113 of file eoRNG.h.
+.PP
+References K, and state.
+.SS "eoRng::eoRng (const \fBeoRng\fP &)\fC [private]\fP"
+.PP
+Copy constructor. 
+.PP
+Private copy ctor and assignment operator to make sure that nobody accidentally copies the random number generator. If you want similar RNG's, make two RNG's and initialize them with the same seed.
+.PP
+As it cannot be called, we do not provide an implementation. 
+.SH "Member Function Documentation"
+.PP 
+.SS "void eoRng::reseed (uint32_t s)\fC [inline]\fP"
+.PP
+Re-initializes the Random Number Generator. 
+.PP
+WARNING: Jeroen Eggermont <jeggermo@liacs.nl> noticed that initialize does not differentiate between odd and even numbers, therefore the argument to reseed is now doubled before being passed on.
+.PP
+Manually divide the seed by 2 if you want to re-run old runs
+.PP
+\fBVersion:\fP
+.RS 4
+MS. 5 Oct. 2001 
+.RE
+.PP
+
+.PP
+Definition at line 135 of file eoRNG.h.
+.SS "void eoRng::oldReseed (uint32_t s)\fC [inline]\fP"
+.PP
+Re-initializes the Random Number Generator. 
+.PP
+This is the traditional seeding procedure. This version is deprecated and only provided for compatibility with old code. In new projects you should use reseed.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBreseed\fP for details on usage of the seeding value.
+.RE
+.PP
+\fBVersion:\fP
+.RS 4
+old version (deprecated) 
+.RE
+.PP
+
+.PP
+Definition at line 150 of file eoRNG.h.
+.SS "template<typename TYPE> int eoRng::roulette_wheel (const std::vector< TYPE > & vec, TYPE total = \fC0\fP)\fC [inline]\fP"
+.PP
+roulette_wheel(vec, total = 0) does a roulette wheel selection on the input std::vector vec. 
+.PP
+If the total is not supplied, it is calculated. It returns an integer denoting the selected argument. 
+.PP
+Definition at line 225 of file eoRNG.h.
+.PP
+References uniform().
+.PP
+Referenced by eoPropCombinedQuadOp< EOT >::operator()(), eoPropCombinedBinOp< EOT >::operator()(), eoPropCombinedMonOp< EOT >::operator()(), and eoCombinedInit< EOT >::operator()().
+.SS "template<typename TYPE> const TYPE& eoRng::choice (const std::vector< TYPE > & vec) const\fC [inline]\fP"
+.PP
+Randomly select element from vector. 
+.PP
+\fBReturns:\fP
+.RS 4
+Uniformly chosen element from the vector. 
+.RE
+.PP
+
+.PP
+Definition at line 247 of file eoRNG.h.
+.PP
+References random().
+.SS "template<typename TYPE> TYPE& eoRng::choice (std::vector< TYPE > & vec)\fC [inline]\fP"
+.PP
+Randomly select element from vector. 
+.PP
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+.PP
+Provide a version returning a non-const element reference.
+.PP
+\fBReturns:\fP
+.RS 4
+Uniformly chosen element from the vector.
+.RE
+.PP
+\fBWarning:\fP
+.RS 4
+Changing the return value does alter the vector. 
+.RE
+.PP
+
+.PP
+Definition at line 262 of file eoRNG.h.
+.PP
+References random().
+.SS "void eoRng::printOn (std::ostream & _os) const\fC [inline, virtual]\fP"
+.PP
+Write object. 
+.PP
+It's called printOn since it prints the object on a stream. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_os\fP A std::ostream. 
+.RE
+.PP
+
+.PP
+Implements \fBeoPrintable\fP.
+.PP
+Definition at line 266 of file eoRNG.h.
+.PP
+References state.
+.SS "void eoRng::readFrom (std::istream & _is)\fC [inline, virtual]\fP"
+.PP
+Read object. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_is\fP A std::istream. 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIruntime_std::exception\fP If a valid object can't be read. 
+.RE
+.PP
+
+.PP
+Implements \fBeoPersistent\fP.
+.PP
+Definition at line 277 of file eoRNG.h.
+.PP
+References state.
+.SS "std::string eoRng::className (void) const\fC [inline, virtual]\fP"
+.PP
+Return the class id. 
+.PP
+This should be redefined in each class. Only 'leaf' classes can be non-virtual.
+.PP
+Maarten: removed the default implementation as this proved to be too error-prone: I found several classes that had a typo in className (like classname), which would print \fBeoObject\fP instead of their own. Having it pure will force the implementor to provide a name. 
+.PP
+Implements \fBeoObject\fP.
+.PP
+Definition at line 293 of file eoRNG.h.
+.SS "\fBeoRng\fP& eoRng::operator= (const \fBeoRng\fP &)\fC [private]\fP"
+.PP
+Assignmant operator. 
+.PP
+\fBSee also:\fP
+.RS 4
+Copy constructor \fBeoRng(const eoRng&)\fP. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

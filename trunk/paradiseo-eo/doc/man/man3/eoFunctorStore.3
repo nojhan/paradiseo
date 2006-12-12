@@ -1,0 +1,60 @@
+.TH "eoFunctorStore" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoFunctorStore \- eoFunctorStore is a class that stores functors that are allocated on the heap.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoFunctorStore.h>\fP
+.PP
+Inherited by \fBeoState\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoFunctorStore\fP ()"
+.br
+.RI "\fIDefault Ctor. \fP"
+.ti -1c
+.RI "virtual \fB~eoFunctorStore\fP ()"
+.br
+.RI "\fIclears the memory \fP"
+.ti -1c
+.RI "template<class Functor> Functor & \fBstoreFunctor\fP (Functor *r)"
+.br
+.RI "\fIAdd an \fBeoFunctorBase\fP to the store. \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoFunctorStore\fP (const \fBeoFunctorStore\fP &)"
+.br
+.RI "\fIno copying allowed \fP"
+.ti -1c
+.RI "\fBeoFunctorStore\fP \fBoperator=\fP (const \fBeoFunctorStore\fP &)"
+.br
+.RI "\fIno copying allowed \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< \fBeoFunctorBase\fP * > \fBvec\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+eoFunctorStore is a class that stores functors that are allocated on the heap. 
+
+This class can be used in factories to store allocated memory for dynamically created functors. 
+.PP
+Definition at line 39 of file eoFunctorStore.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

@@ -1,0 +1,49 @@
+.TH "eoInvalidateQuadOp" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoInvalidateQuadOp \- One of the invalidator operators.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoInvalidateOps.h>\fP
+.PP
+Inherits \fBeoQuadOp< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoInvalidateQuadOp\fP (\fBeoQuadOp\fP< \fBEOT\fP > &_op)"
+.br
+.ti -1c
+.RI "bool \fBoperator()\fP (\fBEOT\fP &_eo1, \fBEOT\fP &_eo2)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoQuadOp\fP< \fBEOT\fP > & \fBop\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoInvalidateQuadOp< EOT >"
+One of the invalidator operators. 
+
+Use this one as a 'hat' on an operator that is defined to work on a generic datatype. This functor will then check the return type of the operator and invalidate the fitness of the individual.
+.PP
+This functor is used in algorithms that work with straight \fBeoMonOp\fP, \fBeoBinOp\fP or \fBeoQuadOp\fP operators, for instance \fBeoSGA\fP. Note that \fBeoGenOp\fP derived operators generally do invalidate the fitness of the objects they have changed.
+.PP
+Return value means 'Has_Changed' and not 'Needs_To_Be_Invalidated' as successive invalidation are not really a problem 
+.PP
+Definition at line 114 of file eoInvalidateOps.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

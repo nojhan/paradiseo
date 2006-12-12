@@ -1,0 +1,81 @@
+.TH "eoOpContainer" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoOpContainer \- eoOpContainer is a base class for the sequential and proportional selectors It takes care of wrapping the other operators, and deleting stuff that it has allocated  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoOpContainer.h>\fP
+.PP
+Inherits \fBeoGenOp< EOT >< EOT >\fP.
+.PP
+Inherited by \fBeoProportionalOp< EOT >\fP, and \fBeoSequentialOp< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoOpContainer\fP ()"
+.br
+.RI "\fICtor: nothing much to do. \fP"
+.ti -1c
+.RI "virtual \fB~eoOpContainer\fP (void)"
+.br
+.RI "\fIDtor: delete all the GenOps created when wrapping simple ops. \fP"
+.ti -1c
+.RI "virtual unsigned \fBmax_production\fP (void)"
+.br
+.RI "\fIfor memory management (doesn't have to be very precise \fP"
+.ti -1c
+.RI "void \fBadd\fP (\fBeoOp\fP< \fBEOT\fP > &_op, double _rate)"
+.br
+.RI "\fIAdd an operator to the container, also give it a rate. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const =0"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< double > \fBrates\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBeoGenOp\fP< \fBEOT\fP > * > \fBops\fP"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoFunctorStore\fP \fBstore\fP"
+.br
+.ti -1c
+.RI "unsigned \fBmax_to_produce\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoOpContainer< EOT >"
+eoOpContainer is a base class for the sequential and proportional selectors It takes care of wrapping the other operators, and deleting stuff that it has allocated 
+
+Warning: all operators are added together with a rate (double) However, the meaning of this rate will be different in the differnet instances of eoOpContainer: an ***absolute*** probability in the sequential version, and a ***relative*** weight in the proportional version 
+.PP
+Definition at line 42 of file eoOpContainer.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> void \fBeoOpContainer\fP< \fBEOT\fP >::add (\fBeoOp\fP< \fBEOT\fP > & _op, double _rate)\fC [inline]\fP"
+.PP
+Add an operator to the container, also give it a rate. 
+.PP
+(sidenote, it's much less hairy since I added the wrap_op is used) 
+.PP
+Definition at line 63 of file eoOpContainer.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

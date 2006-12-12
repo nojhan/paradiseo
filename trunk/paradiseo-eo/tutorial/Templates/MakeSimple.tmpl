@@ -1,0 +1,28 @@
+# sample makefile for building an EA evolving a new genotype
+
+# START eventually modify the name of EO dir
+DIR_EO = ../../src
+# END eventually modify the name of EO dir
+LIB_EO = $(DIR_EO)/utils/libeoutils.a $(DIR_EO)/libeo.a
+
+.cpp: ; c++  -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I$(DIR_EO) -Wall -Wno-deprecated -g  -o $@  $*.cpp $(LIB_EO)
+
+.cpp.o: ; c++ -DPACKAGE=\"eo\" -DVERSION=\"0.9.3\" -I. -I$(DIR_EO) -Wall -Wno-deprecated -g -c $*.cpp
+
+# local sources
+SOURCES = MyStructEA.cpp \
+   eoMyStruct.h \
+   eoMyStructEvalFunc.h \
+   eoMyStructInit.h \
+   eoMyStructMutation.h \
+   eoMyStructQuadCrossover.h
+
+MyStructEA : MyStructEA.cpp
+	c++ -I. -I$(DIR_EO) -Wno-deprecated -g -o $@ MyStructEA.cpp $(LIB_EO) -lm 
+
+tar : ; tar czvf MyStruct.tgz *.h *.cpp Makefile
+
+clean : ; /bin/rm  *.o MyStructEA
+
+########## local dependencies
+MyStructEA : $(SOURCES) 

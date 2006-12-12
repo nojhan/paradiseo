@@ -1,0 +1,117 @@
+.TH "eoGenContinue" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoGenContinue \- Generational continuator: continues until a number of generations is reached.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoGenContinue.h>\fP
+.PP
+Inherits \fBeoContinue< EOT >< EOT >\fP, and \fBeoValueParam< unsigned >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoGenContinue\fP (unsigned long _totalGens)"
+.br
+.RI "\fICtor for setting a. \fP"
+.ti -1c
+.RI "\fBeoGenContinue\fP (unsigned long _totalGens, unsigned long &_currentGen)"
+.br
+.RI "\fICtor for enabling the save/load the no. of generations counted. \fP"
+.ti -1c
+.RI "virtual bool \fBoperator()\fP (const \fBeoPop\fP< \fBEOT\fP > &_vEO)"
+.br
+.RI "\fIReturns false when a certain number of generations is reached. \fP"
+.ti -1c
+.RI "virtual void \fBtotalGenerations\fP (unsigned long _tg)"
+.br
+.RI "\fISets the number of generations to reach and sets the current generation to 0 (the begin). \fP"
+.ti -1c
+.RI "virtual unsigned long \fBtotalGenerations\fP ()"
+.br
+.RI "\fIReturns the number of generations to reach. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP (void) const "
+.br
+.ti -1c
+.RI "void \fBreadFrom\fP (std::istream &__is)"
+.br
+.RI "\fIRead object. \fP"
+.ti -1c
+.RI "void \fBprintOn\fP (std::ostream &__os) const "
+.br
+.RI "\fIWrite object. \fP"
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "bool \fBverbose\fP"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned long \fBrepTotalGenerations\fP"
+.br
+.ti -1c
+.RI "unsigned long \fBthisGenerationPlaceHolder\fP"
+.br
+.ti -1c
+.RI "unsigned long & \fBthisGeneration\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoGenContinue< EOT >"
+Generational continuator: continues until a number of generations is reached. 
+.PP
+Definition at line 34 of file eoGenContinue.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> void \fBeoGenContinue\fP< \fBEOT\fP >::readFrom (std::istream & __is)\fC [inline, virtual]\fP"
+.PP
+Read object. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_is\fP A std::istream. 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIruntime_std::exception\fP If a valid object can't be read. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBeoContinue< EOT >\fP.
+.PP
+Definition at line 83 of file eoGenContinue.h.
+.SS "template<class EOT> void \fBeoGenContinue\fP< \fBEOT\fP >::printOn (std::ostream & __os) const\fC [inline, virtual]\fP"
+.PP
+Write object. 
+.PP
+It's called printOn since it prints the object on a stream. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_os\fP A std::ostream. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBeoContinue< EOT >\fP.
+.PP
+Definition at line 88 of file eoGenContinue.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

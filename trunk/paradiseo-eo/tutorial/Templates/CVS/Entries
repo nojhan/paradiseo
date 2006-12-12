@@ -1,0 +1,24 @@
+/EO.tpl/1.1/Fri Aug 23 16:02:02 2002//
+/MakeSimple.tmpl/1.2/Tue May 25 07:57:52 2004//
+/Makefile.tmpl/1.6/Wed Oct 23 04:42:07 2002//
+/MyStructEA.cpp/1.5/Wed May  1 04:04:15 2002//
+/MyStructLibEA.cpp/1.1/Wed May  8 06:47:50 2002//
+/MyStructSEA.cpp/1.4/Wed Oct  5 21:34:19 2005//
+/README/1.4/Tue May 25 07:57:52 2004//
+/binCrossover.tmpl/1.3/Tue Sep  4 08:35:22 2001//
+/continue.tmpl/1.2/Tue Sep  4 08:35:22 2001//
+/create.sh/1.4/Wed May  8 06:47:50 2002//
+/createSimple/1.2/Tue May 25 07:57:52 2004//
+/eoMyStruct.tmpl/1.4/Sat Mar 22 06:39:21 2003//
+/evalFunc.tmpl/1.2/Thu Oct  4 20:12:19 2001//
+/init.tmpl/1.2/Sat Nov 10 06:32:05 2001//
+/lessOffspringExternalSelectorGenOp.tmpl/1.3/Tue Sep  4 08:35:22 2001//
+/lessOffspringSameSelectorGenOp.tmpl/1.3/Tue Sep  4 08:35:22 2001//
+/make_MyStruct.cpp/1.1/Wed May  8 06:47:50 2002//
+/make_genotype_MyStruct.h/1.2/Fri May  3 05:12:32 2002//
+/make_op_MyStruct.h/1.1/Thu Oct  4 20:12:19 2001//
+/moreOffspringGenOp.tmpl/1.3/Tue Sep  4 08:35:22 2001//
+/mutation.tmpl/1.6/Mon Sep 24 05:59:13 2001//
+/quadCrossover.tmpl/1.5/Sat Jun 21 06:34:00 2003//
+/stat.tmpl/1.2/Thu Feb 10 09:57:28 2005//
+D

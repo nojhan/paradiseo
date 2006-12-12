@@ -1,0 +1,135 @@
+.TH "eoDetUniformMutation" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoDetUniformMutation \- eoDetUniformMutation --> changes exactly k values of the std::vector by uniform choice with range epsilon  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <Tutorial/eoRealOp.h>\fP
+.PP
+Inherits \fBeoMonOp< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoDetUniformMutation\fP (const double &_epsilon, const unsigned &_no=1)"
+.br
+.RI "\fI(Default) Constructor for homogeneous genotype it's there mostly for backward compatibility \fP"
+.ti -1c
+.RI "\fBeoDetUniformMutation\fP (\fBeoRealVectorBounds\fP &_bounds, const double &_epsilon, const unsigned &_no=1)"
+.br
+.RI "\fIConstructor with bounds. \fP"
+.ti -1c
+.RI "\fBeoDetUniformMutation\fP (\fBeoRealVectorBounds\fP &_bounds, const std::vector< double > &_epsilon, const unsigned &_no=1)"
+.br
+.RI "\fIConstructor with bounds and full std::vector of epsilon. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIThe class name. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (\fBEOT\fP &_eo)"
+.br
+.RI "\fIDo it! \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "bool \fBhomogeneous\fP"
+.br
+.ti -1c
+.RI "\fBeoRealVectorBounds\fP & \fBbounds\fP"
+.br
+.ti -1c
+.RI "std::vector< double > \fBepsilon\fP"
+.br
+.ti -1c
+.RI "unsigned \fBno\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoDetUniformMutation< EOT >"
+eoDetUniformMutation --> changes exactly k values of the std::vector by uniform choice with range epsilon 
+.PP
+Definition at line 144 of file eoRealOp.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBeoDetUniformMutation\fP< \fBEOT\fP >::\fBeoDetUniformMutation\fP (const double & _epsilon, const unsigned & _no = \fC1\fP)\fC [inline]\fP"
+.PP
+(Default) Constructor for homogeneous genotype it's there mostly for backward compatibility 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_epsilon\fP the range for uniform nutation 
+.br
+\fInumber\fP of coordinate to modify 
+.RE
+.PP
+
+.PP
+Definition at line 154 of file eoRealOp.h.
+.SS "template<class EOT> \fBeoDetUniformMutation\fP< \fBEOT\fP >::\fBeoDetUniformMutation\fP (\fBeoRealVectorBounds\fP & _bounds, const double & _epsilon, const unsigned & _no = \fC1\fP)\fC [inline]\fP"
+.PP
+Constructor with bounds. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_bounds\fP an \fBeoRealVectorBounds\fP that contains the bounds 
+.br
+\fI_epsilon\fP the range for uniform nutation (to be scaled if necessary) 
+.br
+\fInumber\fP of coordinate to modify 
+.RE
+.PP
+
+.PP
+Definition at line 164 of file eoRealOp.h.
+.PP
+References eoRealBaseVectorBounds::isBounded(), and eoRealBaseVectorBounds::range().
+.SS "template<class EOT> \fBeoDetUniformMutation\fP< \fBEOT\fP >::\fBeoDetUniformMutation\fP (\fBeoRealVectorBounds\fP & _bounds, const std::vector< double > & _epsilon, const unsigned & _no = \fC1\fP)\fC [inline]\fP"
+.PP
+Constructor with bounds and full std::vector of epsilon. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_bounds\fP an \fBeoRealVectorBounds\fP that contains the bounds 
+.br
+\fI_epsilon\fP the VECTOR of ranges for uniform mutation 
+.br
+\fInumber\fP of coordinate to modify 
+.RE
+.PP
+
+.PP
+Definition at line 181 of file eoRealOp.h.
+.PP
+References eoRealBaseVectorBounds::isBounded(), and eoRealBaseVectorBounds::range().
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> bool \fBeoDetUniformMutation\fP< \fBEOT\fP >::operator() (\fBEOT\fP & _eo)\fC [inline, virtual]\fP"
+.PP
+Do it! 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_eo\fP The indi undergoing the mutation 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< EOT &, bool >\fP.
+.PP
+Definition at line 199 of file eoRealOp.h.
+.PP
+References eoRealBaseVectorBounds::isMaxBounded(), eoRealBaseVectorBounds::isMinBounded(), eoRealBaseVectorBounds::maximum(), eoRealBaseVectorBounds::minimum(), eoRng::random(), and eoRng::uniform().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

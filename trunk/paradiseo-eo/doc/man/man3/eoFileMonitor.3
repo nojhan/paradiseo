@@ -1,0 +1,76 @@
+.TH "eoFileMonitor" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoFileMonitor \- Prints statistics to file.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoFileMonitor.h>\fP
+.PP
+Inherits \fBeoMonitor\fP.
+.PP
+Inherited by \fBeoGnuplot1DMonitor\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoFileMonitor\fP (std::string _filename, std::string _delim=' ', bool _keep=false, bool _header=false)"
+.br
+.ti -1c
+.RI "virtual \fBeoMonitor\fP & \fBoperator()\fP (void)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.ti -1c
+.RI "virtual \fBeoMonitor\fP & \fBoperator()\fP (std::ostream &os)"
+.br
+.ti -1c
+.RI "void \fBprintHeader\fP (void)"
+.br
+.ti -1c
+.RI "virtual void \fBprintHeader\fP (std::ostream &os)"
+.br
+.ti -1c
+.RI "virtual std::string \fBgetFileName\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBfilename\fP"
+.br
+.ti -1c
+.RI "std::string \fBdelim\fP"
+.br
+.ti -1c
+.RI "bool \fBkeep\fP"
+.br
+.ti -1c
+.RI "bool \fBheader\fP"
+.br
+.ti -1c
+.RI "bool \fBfirstcall\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Prints statistics to file. 
+
+Modified the default behavior, so that it erases existing files. Can be modified in the ctor.
+.PP
+\fBVersion:\fP
+.RS 4
+MS 25/11/00 
+.RE
+.PP
+
+.PP
+Definition at line 44 of file eoFileMonitor.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

@@ -1,0 +1,45 @@
+.TH "eoSelectivePopulator" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoSelectivePopulator \- SelectivePopulator an eoPoplator that uses an \fBeoSelectOne\fP to select guys.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoPopulator.h>\fP
+.PP
+Inherits \fBeoPopulator< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoSelectivePopulator\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop, \fBeoPop\fP< \fBEOT\fP > &_dest, \fBeoSelectOne\fP< \fBEOT\fP > &_sel)"
+.br
+.ti -1c
+.RI "const \fBEOT\fP & \fBselect\fP ()"
+.br
+.RI "\fIthe select method actually selects one guy from the src pop \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoSelectOne\fP< \fBEOT\fP > & \fBsel\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoSelectivePopulator< EOT >"
+SelectivePopulator an eoPoplator that uses an \fBeoSelectOne\fP to select guys. 
+
+Supposedly, it is passed the initial population. 
+.PP
+Definition at line 184 of file eoPopulator.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

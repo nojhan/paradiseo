@@ -1,0 +1,54 @@
+.TH "eoOp" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoOp \- Abstract data types for \fBEO\fP operators.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoOp.h>\fP
+.PP
+Inherited by \fBeoBinOp< EOType >\fP, \fBeoMonOp< EOType >\fP, and \fBeoQuadOp< EOType >\fP.
+.PP
+.SS "[NOHEADER]"
+
+.in +1c
+.ti -1c
+.RI "enum \fBOpType\fP { \fBunary\fP =  0, \fBbinary\fP =  1, \fBquadratic\fP =  2, \fBgeneral\fP =  3 }"
+.br
+.ti -1c
+.RI "\fBeoOp\fP (OpType _type)"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "\fBeoOp\fP (const \fBeoOp\fP &_eop)"
+.br
+.RI "\fICopy Ctor. \fP"
+.ti -1c
+.RI "virtual \fB~eoOp\fP ()"
+.br
+.RI "\fINeeded virtual destructor. \fP"
+.ti -1c
+.RI "OpType \fBgetType\fP () const "
+.br
+.RI "\fIgetType: number of operands it takes and individuals it produces \fP"
+.ti -1c
+.RI "OpType \fBopType\fP"
+.br
+.RI "\fIOpType is the type of the operator: how many operands it takes and how many it produces. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOType> class eoOp< EOType >"
+Abstract data types for \fBEO\fP operators. 
+
+Genetic operators act on chromosomes, changing them. The type to use them on is problem specific. If your genotype is a std::vector<bool>, there are operators that work specifically on std::vector<bool>, but you might also find that generic operators working on std::vector<T> are what you need. 
+.PP
+Definition at line 68 of file eoOp.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

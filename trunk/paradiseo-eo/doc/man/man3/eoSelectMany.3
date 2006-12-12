@@ -1,0 +1,74 @@
+.TH "eoSelectMany" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoSelectMany \- eoSelectMany selects many individuals using \fBeoSelectOne\fP as it's mechanism.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoSelectMany.h>\fP
+.PP
+Inherits \fBeoSelect< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoSelectMany\fP (\fBeoSelectOne\fP< \fBEOT\fP > &_select, double _rate, bool _interpret_as_rate=true)"
+.br
+.RI "\fIinit \fP"
+.ti -1c
+.RI "\fBeoSelectMany\fP (\fBeoSelectOne\fP< \fBEOT\fP > &_select, \fBeoHowMany\fP _howMany)"
+.br
+.ti -1c
+.RI "virtual void \fBoperator()\fP (const \fBeoPop\fP< \fBEOT\fP > &_source, \fBeoPop\fP< \fBEOT\fP > &_dest)"
+.br
+.RI "\fIThe implementation repeatidly selects an individual. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoSelectOne\fP< \fBEOT\fP > & \fBselect\fP"
+.br
+.ti -1c
+.RI "\fBeoHowMany\fP \fBhowMany\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoSelectMany< EOT >"
+eoSelectMany selects many individuals using \fBeoSelectOne\fP as it's mechanism. 
+
+Therefore eoSelectMany needs an \fBeoSelectOne\fP in its ctor
+.PP
+It will use an eoHowMnay to determine the number of guys to select, and push them to the back of the destination population. 
+.PP
+Definition at line 45 of file eoSelectMany.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> virtual void \fBeoSelectMany\fP< \fBEOT\fP >::operator() (const \fBeoPop\fP< \fBEOT\fP > & _source, \fBeoPop\fP< \fBEOT\fP > & _dest)\fC [inline, virtual]\fP"
+.PP
+The implementation repeatidly selects an individual. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_source\fP the source population 
+.br
+\fI_dest\fP the resulting population (size of this population is the number of times \fBeoSelectOne\fP is called. It empties the destination and adds the selection into it) 
+.RE
+.PP
+
+.PP
+Implements \fBeoBF< const eoPop< EOT > &, eoPop< EOT > &, void >\fP.
+.PP
+Definition at line 63 of file eoSelectMany.h.
+.PP
+References eoSelectOne< EOT, WorthT >::setup().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

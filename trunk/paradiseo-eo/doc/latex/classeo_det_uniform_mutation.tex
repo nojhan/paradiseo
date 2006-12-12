@@ -1,0 +1,126 @@
+\section{eo\-Det\-Uniform\-Mutation$<$ EOT $>$ Class Template Reference}
+\label{classeo_det_uniform_mutation}\index{eoDetUniformMutation@{eoDetUniformMutation}}
+eo\-Det\-Uniform\-Mutation --$>$ changes exactly k values of the std::vector by uniform choice with range epsilon  
+
+
+{\tt \#include $<$Tutorial/eo\-Real\-Op.h$>$}
+
+Inheritance diagram for eo\-Det\-Uniform\-Mutation$<$ EOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.71476cm]{classeo_det_uniform_mutation}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Det\-Uniform\-Mutation} (const double \&\_\-epsilon, const unsigned \&\_\-no=1)
+\begin{CompactList}\small\item\em (Default) Constructor for homogeneous genotype it's there mostly for backward compatibility \item\end{CompactList}\item 
+{\bf eo\-Det\-Uniform\-Mutation} ({\bf eo\-Real\-Vector\-Bounds} \&\_\-bounds, const double \&\_\-epsilon, const unsigned \&\_\-no=1)
+\begin{CompactList}\small\item\em Constructor with bounds. \item\end{CompactList}\item 
+{\bf eo\-Det\-Uniform\-Mutation} ({\bf eo\-Real\-Vector\-Bounds} \&\_\-bounds, const std::vector$<$ double $>$ \&\_\-epsilon, const unsigned \&\_\-no=1)
+\begin{CompactList}\small\item\em Constructor with bounds and full std::vector of epsilon. \item\end{CompactList}\item 
+virtual std::string {\bf class\-Name} () const \label{classeo_det_uniform_mutation_a3}
+
+\begin{CompactList}\small\item\em The class name. \item\end{CompactList}\item 
+bool {\bf operator()} ({\bf EOT} \&\_\-eo)
+\begin{CompactList}\small\item\em Do it! \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+bool {\bf homogeneous}\label{classeo_det_uniform_mutation_r0}
+
+\item 
+{\bf eo\-Real\-Vector\-Bounds} \& {\bf bounds}\label{classeo_det_uniform_mutation_r1}
+
+\item 
+std::vector$<$ double $>$ {\bf epsilon}\label{classeo_det_uniform_mutation_r2}
+
+\item 
+unsigned {\bf no}\label{classeo_det_uniform_mutation_r3}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class EOT$>$ class eo\-Det\-Uniform\-Mutation$<$ EOT $>$}
+
+eo\-Det\-Uniform\-Mutation --$>$ changes exactly k values of the std::vector by uniform choice with range epsilon 
+
+
+
+Definition at line 144 of file eo\-Real\-Op.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{eoDetUniformMutation@{eo\-Det\-Uniform\-Mutation}!eoDetUniformMutation@{eoDetUniformMutation}}
+\index{eoDetUniformMutation@{eoDetUniformMutation}!eoDetUniformMutation@{eo\-Det\-Uniform\-Mutation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf eo\-Det\-Uniform\-Mutation}$<$ {\bf EOT} $>$::{\bf eo\-Det\-Uniform\-Mutation} (const double \& {\em \_\-epsilon}, const unsigned \& {\em \_\-no} = {\tt 1})\hspace{0.3cm}{\tt  [inline]}}\label{classeo_det_uniform_mutation_a0}
+
+
+(Default) Constructor for homogeneous genotype it's there mostly for backward compatibility 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-epsilon}]the range for uniform nutation \item[{\em number}]of coordinate to modify \end{description}
+\end{Desc}
+
+
+Definition at line 154 of file eo\-Real\-Op.h.\index{eoDetUniformMutation@{eo\-Det\-Uniform\-Mutation}!eoDetUniformMutation@{eoDetUniformMutation}}
+\index{eoDetUniformMutation@{eoDetUniformMutation}!eoDetUniformMutation@{eo\-Det\-Uniform\-Mutation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf eo\-Det\-Uniform\-Mutation}$<$ {\bf EOT} $>$::{\bf eo\-Det\-Uniform\-Mutation} ({\bf eo\-Real\-Vector\-Bounds} \& {\em \_\-bounds}, const double \& {\em \_\-epsilon}, const unsigned \& {\em \_\-no} = {\tt 1})\hspace{0.3cm}{\tt  [inline]}}\label{classeo_det_uniform_mutation_a1}
+
+
+Constructor with bounds. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-bounds}]an {\bf eo\-Real\-Vector\-Bounds}{\rm (p.\,\pageref{classeo_real_vector_bounds})} that contains the bounds \item[{\em \_\-epsilon}]the range for uniform nutation (to be scaled if necessary) \item[{\em number}]of coordinate to modify \end{description}
+\end{Desc}
+
+
+Definition at line 164 of file eo\-Real\-Op.h.
+
+References eo\-Real\-Base\-Vector\-Bounds::is\-Bounded(), and eo\-Real\-Base\-Vector\-Bounds::range().\index{eoDetUniformMutation@{eo\-Det\-Uniform\-Mutation}!eoDetUniformMutation@{eoDetUniformMutation}}
+\index{eoDetUniformMutation@{eoDetUniformMutation}!eoDetUniformMutation@{eo\-Det\-Uniform\-Mutation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf eo\-Det\-Uniform\-Mutation}$<$ {\bf EOT} $>$::{\bf eo\-Det\-Uniform\-Mutation} ({\bf eo\-Real\-Vector\-Bounds} \& {\em \_\-bounds}, const std::vector$<$ double $>$ \& {\em \_\-epsilon}, const unsigned \& {\em \_\-no} = {\tt 1})\hspace{0.3cm}{\tt  [inline]}}\label{classeo_det_uniform_mutation_a2}
+
+
+Constructor with bounds and full std::vector of epsilon. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-bounds}]an {\bf eo\-Real\-Vector\-Bounds}{\rm (p.\,\pageref{classeo_real_vector_bounds})} that contains the bounds \item[{\em \_\-epsilon}]the VECTOR of ranges for uniform mutation \item[{\em number}]of coordinate to modify \end{description}
+\end{Desc}
+
+
+Definition at line 181 of file eo\-Real\-Op.h.
+
+References eo\-Real\-Base\-Vector\-Bounds::is\-Bounded(), and eo\-Real\-Base\-Vector\-Bounds::range().
+
+\subsection{Member Function Documentation}
+\index{eoDetUniformMutation@{eo\-Det\-Uniform\-Mutation}!operator()@{operator()}}
+\index{operator()@{operator()}!eoDetUniformMutation@{eo\-Det\-Uniform\-Mutation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf eo\-Det\-Uniform\-Mutation}$<$ {\bf EOT} $>$::operator() ({\bf EOT} \& {\em \_\-eo})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classeo_det_uniform_mutation_a4}
+
+
+Do it! 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-eo}]The indi undergoing the mutation \end{description}
+\end{Desc}
+
+
+Implements {\bf eo\-UF$<$ EOT \&, bool $>$} {\rm (p.\,\pageref{classeo_u_f_a1})}.
+
+Definition at line 199 of file eo\-Real\-Op.h.
+
+References eo\-Real\-Base\-Vector\-Bounds::is\-Max\-Bounded(), eo\-Real\-Base\-Vector\-Bounds::is\-Min\-Bounded(), eo\-Real\-Base\-Vector\-Bounds::maximum(), eo\-Real\-Base\-Vector\-Bounds::minimum(), eo\-Rng::random(), and eo\-Rng::uniform().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+eo\-Real\-Op.h\end{CompactItemize}

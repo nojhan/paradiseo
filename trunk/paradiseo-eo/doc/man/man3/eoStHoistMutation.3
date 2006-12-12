@@ -1,0 +1,94 @@
+.TH "eoStHoistMutation" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoStHoistMutation \- eoStHoistMutation --> replace the individual with one of its strongly typed subtree's  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <gp/eoStParseTreeOp.h>\fP
+.PP
+Inherits \fBeoMonOp< eoParseTree< FType, Node > >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBeoParseTree\fP< FType, Node > \fBEoType\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoStHoistMutation\fP (\fBeoInit\fP< \fBEoType\fP > &_init, unsigned _max_length)"
+.br
+.RI "\fIConstructor. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIthe class name \fP"
+.ti -1c
+.RI "virtual \fB~eoStHoistMutation\fP ()"
+.br
+.RI "\fIDtor. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (\fBEoType\fP &_eo1)"
+.br
+.RI "\fIMutate an individual. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned \fBmax_length\fP"
+.br
+.ti -1c
+.RI "\fBeoInit\fP< \fBEoType\fP > & \fBinitializer\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class FType, class Node> class eoStHoistMutation< FType, Node >"
+eoStHoistMutation --> replace the individual with one of its strongly typed subtree's 
+.PP
+Definition at line 258 of file eoStParseTreeOp.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class FType, class Node> \fBeoStHoistMutation\fP< FType, Node >::\fBeoStHoistMutation\fP (\fBeoInit\fP< \fBEoType\fP > & _init, unsigned _max_length)\fC [inline]\fP"
+.PP
+Constructor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_init\fP An instantiation of eoStDepthInit 
+.br
+\fI_max_length\fP the maximum size of an individual 
+.RE
+.PP
+
+.PP
+Definition at line 268 of file eoStParseTreeOp.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class FType, class Node> bool \fBeoStHoistMutation\fP< FType, Node >::operator() (\fBEoType\fP & _eo1)\fC [inline]\fP"
+.PP
+Mutate an individual. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_eo1\fP The individual that is to be changed 
+.RE
+.PP
+
+.PP
+Definition at line 282 of file eoStParseTreeOp.h.
+.PP
+References eoRng::random().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

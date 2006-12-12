@@ -1,0 +1,55 @@
+\section{eo\-Sequential\-Select$<$ EOT $>$ Class Template Reference}
+\label{classeo_sequential_select}\index{eoSequentialSelect@{eoSequentialSelect}}
+All Individuals in order.  
+
+
+{\tt \#include $<$eo\-Sequential\-Select.h$>$}
+
+Inheritance diagram for eo\-Sequential\-Select$<$ EOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.23699cm]{classeo_sequential_select}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Sequential\-Select} (bool \_\-ordered=true)\label{classeo_sequential_select_a0}
+
+\begin{CompactList}\small\item\em Ctor: sets the current pter to numeric\_\-limits$<$unsigned$>$::max() so init will take place first time not very elegant, maybe ... \item\end{CompactList}\item 
+void {\bf setup} (const {\bf eo\-Pop}$<$ {\bf EOT} $>$ \&\_\-pop)\label{classeo_sequential_select_a1}
+
+\begin{CompactList}\small\item\em virtual function to setup some population stats (for instance eo\-Proportional can benefit greatly from this) \item\end{CompactList}\item 
+virtual const {\bf EOT} \& {\bf operator()} (const {\bf eo\-Pop}$<$ {\bf EOT} $>$ \&\_\-pop)\label{classeo_sequential_select_a2}
+
+\begin{CompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+bool {\bf ordered}\label{classeo_sequential_select_r0}
+
+\item 
+unsigned {\bf current}\label{classeo_sequential_select_r1}
+
+\item 
+std::vector$<$ const {\bf EOT} $\ast$ $>$ {\bf eo\-Pters}\label{classeo_sequential_select_r2}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class EOT$>$ class eo\-Sequential\-Select$<$ EOT $>$}
+
+All Individuals in order. 
+
+Looping back to the beginning when exhausted, can be from best to worse, or in random order.
+
+It is the {\bf eo\-Select\-One}{\rm (p.\,\pageref{classeo_select_one})} equivalent of {\bf eo\-Det\-Select}{\rm (p.\,\pageref{classeo_det_select})} - though {\bf eo\-Det\-Select}{\rm (p.\,\pageref{classeo_det_select})} always returns individuals from best to worst 
+
+
+
+Definition at line 52 of file eo\-Sequential\-Select.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+eo\-Sequential\-Select.h\end{CompactItemize}

@@ -1,0 +1,126 @@
+.TH "eoRealAboveBound" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoRealAboveBound \- An eoRealBound bounded from above only.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoRealBounds.h>\fP
+.PP
+Inherits \fBeoRealBounds\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoRealAboveBound\fP (double _max=0)"
+.br
+.RI "\fISimple bounds = minimum. \fP"
+.ti -1c
+.RI "virtual double \fBmaximum\fP () const "
+.br
+.RI "\fIget maximum value ::exception if does not exist \fP"
+.ti -1c
+.RI "virtual double \fBminimum\fP () const "
+.br
+.RI "\fIget minimum value ::exception if does not exist \fP"
+.ti -1c
+.RI "virtual double \fBrange\fP () const "
+.br
+.RI "\fIget range ::exception if unbounded \fP"
+.ti -1c
+.RI "virtual double \fBuniform\fP (\fBeoRng\fP &_rng=eo::rng) const "
+.br
+.RI "\fIrandom generator of uniform numbers in bounds ::exception if unbounded \fP"
+.ti -1c
+.RI "virtual bool \fBisBounded\fP (void) const "
+.br
+.RI "\fISelf-Test: true if ***both*** a min and a max. \fP"
+.ti -1c
+.RI "virtual bool \fBhasNoBoundAtAll\fP (void) const "
+.br
+.RI "\fISelf-Test: true if no min ***and*** no max hence no further need to test/truncate/fold anything. \fP"
+.ti -1c
+.RI "virtual bool \fBisMinBounded\fP (void) const "
+.br
+.RI "\fISelf-Test: bounded from below??? \fP"
+.ti -1c
+.RI "virtual bool \fBisMaxBounded\fP (void) const "
+.br
+.RI "\fISelf-Test: bounded from above??? \fP"
+.ti -1c
+.RI "virtual bool \fBisInBounds\fP (double _r) const "
+.br
+.RI "\fITest on a value: is it in bounds? \fP"
+.ti -1c
+.RI "virtual void \fBfoldsInBounds\fP (double &_r) const "
+.br
+.RI "\fIPut value back into bounds - by folding back and forth. \fP"
+.ti -1c
+.RI "virtual void \fBtruncate\fP (double &_r) const "
+.br
+.RI "\fIPut value back into bounds - by truncating to a boundary value. \fP"
+.ti -1c
+.RI "virtual void \fBreadFrom\fP (std::istream &_is)"
+.br
+.RI "\fIRead object. \fP"
+.ti -1c
+.RI "virtual void \fBprintOn\fP (std::ostream &_os) const "
+.br
+.RI "\fIWrite object. \fP"
+.ti -1c
+.RI "virtual \fBeoRealBounds\fP * \fBdup\fP () const "
+.br
+.RI "\fIfor memory managements - ugly \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBrepMaximum\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+An eoRealBound bounded from above only. 
+.PP
+Definition at line 409 of file eoRealBounds.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual void eoRealAboveBound::readFrom (std::istream & _is)\fC [inline, virtual]\fP"
+.PP
+Read object. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_is\fP A std::istream. but reading should not be done here, because of bound problems see \fBeoRealVectorBounds\fP 
+.RE
+.PP
+
+.PP
+Implements \fBeoPersistent\fP.
+.PP
+Definition at line 477 of file eoRealBounds.h.
+.SS "virtual void eoRealAboveBound::printOn (std::ostream & _os) const\fC [inline, virtual]\fP"
+.PP
+Write object. 
+.PP
+It's called printOn since it prints the object on a stream. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_os\fP A std::ostream. 
+.RE
+.PP
+
+.PP
+Implements \fBeoPrintable\fP.
+.PP
+Definition at line 486 of file eoRealBounds.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

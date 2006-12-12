@@ -1,0 +1,55 @@
+.TH "eoInit" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoInit \- Base (name) class for Initialization of chromosomes, used in a population contructor.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoInit.h>\fP
+.PP
+Inherits \fBeoUF< EOT &, void >\fP.
+.PP
+Inherited by \fBeoCombinedInit< EOT >\fP, \fBeoDistribution< EOT >\fP, \fBeoInitFixedLength< EOT >\fP, \fBeoInitVariableLength< EOT >\fP, and \fBeoRealInitBounded< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual std::string \fBclassName\fP (void) const "
+.br
+.RI "\fIclassName: Mandatory because of \fBeoCombinedInit\fP. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoInit< EOT >"
+Base (name) class for Initialization of chromosomes, used in a population contructor. 
+
+It is derived from \fBeoMonOp\fP, so it can be used inside the algorithm as well.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBeoPop\fP 
+.RE
+.PP
+
+.PP
+Definition at line 45 of file eoInit.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> virtual std::string \fBeoInit\fP< \fBEOT\fP >::className (void) const\fC [inline, virtual]\fP"
+.PP
+className: Mandatory because of \fBeoCombinedInit\fP. 
+.PP
+SHould be pure virtual, but then we should go over the whole code to write the method for all derived classes ... MS 16/7/04 
+.PP
+Reimplemented in \fBeoCombinedInit< EOT >\fP, \fBeoPBILDistrib< EOT >\fP, \fBeoParseTreeDepthInit< FType, Node >\fP, and \fBeoStParseTreeDepthInit< FType, Node >\fP.
+.PP
+Definition at line 52 of file eoInit.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

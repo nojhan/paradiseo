@@ -1,0 +1,52 @@
+.TH "random_generator" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+random_generator \- The class random_generator can be used in the STL generate function to easily generate random ints either between [0, _max) if only one value (_max) is given to the ctor or in [_min,_max) if 2 values are given (_min, _max).  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <rnd_generators.h>\fP
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBrandom_generator\fP (T _max, \fBeoRng\fP &_rng=rng)"
+.br
+.ti -1c
+.RI "\fBrandom_generator\fP (T _min, T _max, \fBeoRng\fP &_rng=rng)"
+.br
+.ti -1c
+.RI "T \fBoperator()\fP (void)"
+.br
+.ti -1c
+.RI "template<> bool \fBoperator()\fP (void)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "T \fBminim\fP"
+.br
+.ti -1c
+.RI "T \fBrange\fP"
+.br
+.ti -1c
+.RI "\fBeoRng\fP & \fBrandom\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T = uint32_t> class random_generator< T >"
+The class random_generator can be used in the STL generate function to easily generate random ints either between [0, _max) if only one value (_max) is given to the ctor or in [_min,_max) if 2 values are given (_min, _max). 
+.PP
+Definition at line 87 of file rnd_generators.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

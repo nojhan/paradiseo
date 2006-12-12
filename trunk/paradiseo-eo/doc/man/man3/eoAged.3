@@ -1,0 +1,141 @@
+.TH "eoAged" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoAged \- eoAge is a template class that adds an age to an object.\\ Requisites for template instantiation are that the object must admit a default ctor and a copy ctor.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoAged.h>\fP
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoAged\fP (const Object &_o)"
+.br
+.RI "\fIMain ctor from an already built Object. \fP"
+.ti -1c
+.RI "\fBeoAged\fP (const \fBeoAged\fP &_a)"
+.br
+.RI "\fICopy constructor. \fP"
+.ti -1c
+.RI "virtual \fB~eoAged\fP ()"
+.br
+.RI "\fIVirtual dtor. They are needed in virtual class hierarchies. \fP"
+.ti -1c
+.RI "unsigned long \fBAge\fP () const "
+.br
+.RI "\fIreturns the age of the object \fP"
+.ti -1c
+.RI "const \fBeoAged\fP & \fBoperator++\fP ()"
+.br
+.RI "\fIIncrements age. \fP"
+.in -1c
+.PP
+.RI "\fBMethods from eoObject\fP"
+.br
+readFrom and printOn are directly inherited from eo1d 
+.PP
+.in +1c
+.in +1c
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIReturn the class id. \fP"
+.ti -1c
+.RI "virtual void \fBreadFrom\fP (istream &_is)"
+.br
+.RI "\fIRead object. \fP"
+.ti -1c
+.RI "virtual void \fBprintOn\fP (ostream &_os) const "
+.br
+.RI "\fIWrite object. \fP"
+.in -1c
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoAged\fP ()"
+.br
+.RI "\fIDefault Constructor. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned long \fBage\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class Object> class eoAged< Object >"
+eoAge is a template class that adds an age to an object.\\ Requisites for template instantiation are that the object must admit a default ctor and a copy ctor. 
+
+The Object must be an \fBeoObject\fP, thus, it must have its methods: className, printOn, readFrom. 
+.PP
+\fBSee also:\fP
+.RS 4
+\fBeoObject\fP 
+.RE
+.PP
+
+.PP
+Definition at line 47 of file eoAged.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class Object> \fBeoAged\fP< Object >::\fBeoAged\fP ()\fC [inline, private]\fP"
+.PP
+Default Constructor. 
+.PP
+\\ It´s private so that it is not used anywhere; the right way of using this object is to create an Object and passing it to an aged by means of the copy ctor; that way it´s turned into an Aged object 
+.PP
+Definition at line 103 of file eoAged.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class Object> virtual std::string \fBeoAged\fP< Object >::className () const\fC [inline, virtual]\fP"
+.PP
+Return the class id. 
+.PP
+This should be redefined in each class; but it's got code as an example of implementation. Only 'leaf' classes can be non-virtual. 
+.PP
+Definition at line 74 of file eoAged.h.
+.SS "template<class Object> virtual void \fBeoAged\fP< Object >::readFrom (istream & _is)\fC [inline, virtual]\fP"
+.PP
+Read object. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_is\fP A istream. 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIruntime_exception\fP If a valid object can't be read. 
+.RE
+.PP
+
+.PP
+Definition at line 81 of file eoAged.h.
+.SS "template<class Object> virtual void \fBeoAged\fP< Object >::printOn (ostream & _os) const\fC [inline, virtual]\fP"
+.PP
+Write object. 
+.PP
+It's called printOn since it prints the object _on_ a stream. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_os\fP A ostream. 
+.RE
+.PP
+
+.PP
+Definition at line 91 of file eoAged.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

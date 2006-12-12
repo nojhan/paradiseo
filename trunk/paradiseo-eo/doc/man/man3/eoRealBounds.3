@@ -1,0 +1,103 @@
+.TH "eoRealBounds" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoRealBounds \- Defines bound classes for real numbers.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <es/eoRealBounds.h>\fP
+.PP
+Inherits \fBeoPersistent\fP.
+.PP
+Inherited by \fBeoGeneralRealBounds\fP, \fBeoRealAboveBound\fP, \fBeoRealBelowBound\fP, \fBeoRealInterval\fP, and \fBeoRealNoBounds\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual bool \fBisBounded\fP (void) const =0"
+.br
+.RI "\fISelf-Test: true if ***both*** a min and a max. \fP"
+.ti -1c
+.RI "virtual bool \fBhasNoBoundAtAll\fP (void) const =0"
+.br
+.RI "\fISelf-Test: true if no min ***and*** no max hence no further need to test/truncate/fold anything. \fP"
+.ti -1c
+.RI "virtual bool \fBisMinBounded\fP (void) const =0"
+.br
+.RI "\fISelf-Test: bounded from below??? \fP"
+.ti -1c
+.RI "virtual bool \fBisMaxBounded\fP (void) const =0"
+.br
+.RI "\fISelf-Test: bounded from above??? \fP"
+.ti -1c
+.RI "virtual bool \fBisInBounds\fP (double) const =0"
+.br
+.RI "\fITest on a value: is it in bounds? \fP"
+.ti -1c
+.RI "virtual void \fBfoldsInBounds\fP (double &) const =0"
+.br
+.RI "\fIPut value back into bounds - by folding back and forth. \fP"
+.ti -1c
+.RI "virtual void \fBtruncate\fP (double &) const =0"
+.br
+.RI "\fIPut value back into bounds - by truncating to a boundary value. \fP"
+.ti -1c
+.RI "virtual double \fBminimum\fP () const =0"
+.br
+.RI "\fIget minimum value ::exception if does not exist \fP"
+.ti -1c
+.RI "virtual double \fBmaximum\fP () const =0"
+.br
+.RI "\fIget maximum value ::exception if does not exist \fP"
+.ti -1c
+.RI "virtual double \fBrange\fP () const =0"
+.br
+.RI "\fIget range ::exception if unbounded \fP"
+.ti -1c
+.RI "virtual double \fBuniform\fP (\fBeoRng\fP &_rng=eo::rng) const =0"
+.br
+.RI "\fIrandom generator of uniform numbers in bounds ::exception if unbounded \fP"
+.ti -1c
+.RI "virtual \fBeoRealBounds\fP * \fBdup\fP () const =0"
+.br
+.RI "\fIfor memory managements - ugly \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Defines bound classes for real numbers. 
+
+Scalar type: ------------ Basic class is eoRealBounds, a pure virtual.
+.PP
+The following pure virtual methods are to be used in mutations:
+.IP "\(bu" 2
+void foldsInBounds(double &) that folds any value that falls out of the bounds back into the bounds, by bouncing on the limit (if any)
+.IP "\(bu" 2
+bool isInBounds(double) that simply says whether or not the argument is in the bounds
+.IP "\(bu" 2
+void truncate(double &) that set the argument to the bound value it it exceeds it
+.PP
+.PP
+So mutation can choose
+.IP "\(bu" 2
+iterate trying until they fall in bounds,
+.IP "\(bu" 2
+only try once and 'restd::pair' by using the foldsInBounds method
+.IP "\(bu" 2
+only try once and restd::pair using the truncate method (will create a huge bias toward the bound if the soluiton is not far from the bounds)
+.PP
+.PP
+There is also a \fBuniform()\fP method that generates a uniform value (if possible, i.e. if bounded) in the interval.
+.PP
+Derived class are \fBeoRealInterval\fP that holds a minimum and maximum value, \fBeoRealNoBounds\fP the 'unbounded bounds' (-infinity, +infinity) \fBeoRealBelowBound\fP the half-bounded interval [min, +infinity) \fBeoRealAboveBound\fP the half-bounded interval (-infinity, max]
+.PP
+THis file also contains the declaration of *the* global object that is the unbounded bound 
+.PP
+Definition at line 75 of file eoRealBounds.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

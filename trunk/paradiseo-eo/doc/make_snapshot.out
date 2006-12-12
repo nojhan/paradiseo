@@ -1,0 +1,1449 @@
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/MGE/eoVirus.h:36: Warning: missing title after \defgroup bitstring
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOp.h:33: Warning: missing title after \defgroup Operators
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalCombinedOp.h:33: Warning: missing title after \defgroup PropCombinedOperators
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalCombinedOp.h:212: Warning: Missing //@}
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoNormalMutation.h:274: Warning: end of group without matching begin.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealInitBounded.h:66: Warning: end of group without matching begin.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:503: Warning: end of group without matching begin.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoBit.h:44: Warning: missing title after \defgroup bitstring
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoBitOp.h:446: Warning: end of group without matching begin.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTree.h:40: Warning: missing title after \defgroup ParseTree
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeDepthInit.h:44: Warning: missing title after \defgroup StParseTree
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:34: Warning: missing title after \defgroup EvolutionStrategies
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:34: Warning: missing title after \defgroup EvolutionStrategies
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealVectorBounds.h:35: Warning: missing title after \defgroup EvolutionStrategies
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/selectors.h:46: Warning: missing title after \defgroup selectors
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFunctor.h:52: Command @see not allowed in single-line C++ comment! Ignoring.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFunctor.h:54: Command @see not allowed in single-line C++ comment! Ignoring.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFunctor.h:56: Command @see not allowed in single-line C++ comment! Ignoring.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFunctor.h:81: Command @see not allowed in single-line C++ comment! Ignoring.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFunctor.h:118: Command @see not allowed in single-line C++ comment! Ignoring.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFunctor.h:158: Command @see not allowed in single-line C++ comment! Ignoring.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoBit.h:44: Warning: group bitstring already documented. Skipping documentation.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:34: Warning: group EvolutionStrategies already documented. Skipping documentation.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealVectorBounds.h:35: Warning: group EvolutionStrategies already documented. Skipping documentation.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoBit.h:51: Warning: class eoBit already has a detailed description. Skipping the one found here.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoBit.h:51: Warning: class eoBit already has a brief description
+         skipping the one found here.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:56: Warning: Compound fitness_traits< minimization > is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eval/MultiFunction.cpp:29: Warning: Compound Function is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/sym/SymImpl.h:87: Warning: Compound detail::SymValue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eval/BoundsCheck.h:34: Warning: Compound IntervalBoundsCheck is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/valueParam.cpp:57: Warning: Compound ValueParam_pickle_suite is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoDistance.h:87: Warning: Compound eoFitnessDistance is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:52: Warning: Compound minimization is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoPareto.cpp:69: Warning: Compound Init is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/valueParam.cpp:31: Warning: Compound ParamWrapper is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoSBXcross.h:36: Warning: Compound eoSBXCrossover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:339: Warning: Compound eoBestFitnessStat::CmpFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/TargetInfo.cpp:107: Warning: Compound SortOnTargets is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gprop/gprop.h:47: Warning: Compound phenotype is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:1033: Warning: Compound gp_parse_tree::parse_tree::iterator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:286: Warning: Compound gp_parse_tree::Standard_alloc is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/sym/Sym.h:54: Warning: Compound Sym is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoGenOp.cpp:56: Warning: Compound monop is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOneToOneBreeder.h:53: Warning: Compound eoOneToOneBreeder is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/symreg.cpp:81: Warning: Compound SumSizeStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/sym/README.cpp:235: Warning: Compound MyNodeStats is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoSymreg.cpp:141: Warning: Compound RMS is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eo_interface/eoSymLambdaMutate.h:30: Warning: Compound eoSymLambdaMutate is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:234: Warning: Compound eoNthElementFitnessStat::CmpFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gpsymreg/fitness.h:166: Warning: Compound RegFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:66: Warning: Compound fitness_traits< maximization > is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoPareto.cpp:98: Warning: Compound eoNDPlusReplacement::WorthPair is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/do/make_algo_pareto.h:51: Warning: Compound eoNDPlusReplacement::WorthPair is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/matrices.h:6: Warning: Compound lower_triangular_matrix is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/RoyalRoad.h:29: Warning: Compound RoyalRoad is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/sym/SymImpl.cpp:22: Warning: Compound detail::SymArgsImpl is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/Scaling.h:48: Warning: Compound LinearScaling is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gprop/mse.h:54: Warning: Compound mse::net is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/sym/SymImpl.h:66: Warning: Compound detail::SymKey::Hash is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:77: Warning: Compound fitness_traits< pair< Performance, Worth > > is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoBitOp.h:45: Warning: Compound eoOneBitFlip is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gprop/l2.h:58: Warning: Compound l2::net is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/perf2worth.cpp:27: Warning: Compound Perf2WorthWrapper is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/MGE/VirusOp.h:57: Warning: Compound VirusMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eo_interface/eoSymCrossover.h:55: Warning: Compound eoBinHomologousCrossover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eval/BoundsCheck.h:51: Warning: Compound NoBoundsCheck is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/ErrorMeasure.cpp:48: Warning: Compound ErrorMeasureImpl is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:968: Warning: Compound gp_parse_tree::parse_tree::base_iterator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/fun/FunDef.h:126: Warning: Compound differentiation_error is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoGenOp.cpp:71: Warning: Compound binop is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:338: Warning: Compound eoHypercubeCrossover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoRoulette.cpp:7: Warning: Compound TestEO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:1153: Warning: Compound gp_parse_tree::parse_tree::embedded_const_iterator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/monitors.cpp:28: Warning: Compound MonitorWrapper is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eval/BoundsCheck.cpp:27: Warning: Compound IntervalBoundsCheckImpl is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/node_pool.h:79: Warning: Compound MemPool::Chunk is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/stats.h:83: Warning: Compound CovMatrix is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:209: Warning: Compound eoEasyEA::eoDummySelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/mastermind/mastermind.h:144: Warning: Compound eoChromMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gprop/gprop.h:166: Warning: Compound eoChromMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eo_interface/eoSymCrossover.h:40: Warning: Compound eoBinSubtreeCrossover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eval/MultiFunction.h:9: Warning: Compound MultiFunction is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/node_pool.h:74: Warning: Compound MemPool::Link is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/reduce.cpp:29: Warning: Compound eoReduceWrapper is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeDepthInit.h:54: Warning: Compound eoParseTreeDepthInit::lt_arity is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:346: Warning: Compound gp_parse_tree::Tree_alloc is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eo_interface/eoSym.h:27: Warning: Compound EoSym is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:243: Warning: Compound gp_parse_tree::MemPool::Chunk is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/def_abstract_functor.h:98: Warning: Compound eoutils::BinaryWrapper is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/MGE/VirusOp.h:125: Warning: Compound VirusTransmission is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/Scaling.h:29: Warning: Compound ScalingBase is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eo_interface/eoSymEval.h:29: Warning: Compound eoSymPopEval is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/statistics.cpp:21: Warning: Compound SortedStatBaseWrapper is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoNDSorting.h:443: Warning: Compound eoNDSorting_II::compare_nodes is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/sym/SymImpl.h:58: Warning: Compound detail::SymKey is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/geneticOps.cpp:86: Warning: Compound QuadOpWrapper is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/geneticOps.cpp:54: Warning: Compound PopulatorWrapper is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eval/BoundsCheck.h:26: Warning: Compound BoundsCheck is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eval/MultiFunction.cpp:199: Warning: Compound MultiFunctionImpl is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/PyEO.cpp:76: Warning: Compound pyPop_pickle_suite is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gprop/qp.h:51: Warning: Compound qp::neuron is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/sym/SymImpl.h:38: Warning: Compound detail::SymArgs is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/tutorial/Lesson4/binary_value.h:20: Warning: Compound BinaryValue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoGenOp.cpp:111: Warning: Compound one2threeOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eval/Interval.h:32: Warning: Compound interval_error is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/fun/FunDef.h:29: Warning: Compound FunDef is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoGenOp.cpp:102: Warning: Compound quadClone is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoBaseFunctions.cpp:9: Warning: Compound eo1 is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoBaseFunctions.cpp:14: Warning: Compound eo2 is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gprop/mlp.h:389: Warning: Compound mlp::set is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/shared_ptr.h:72: Warning: Compound weak_ptr is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/ErrorMeasure.h:27: Warning: Compound ErrorMeasure is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/mastermind/mastermind.h:183: Warning: Compound eoChromXover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gprop/gprop.h:181: Warning: Compound eoChromXover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:494: Warning: Compound gp_parse_tree::parse_tree::subtree is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:458: Warning: Compound eoRealUXover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoSharing.cpp:49: Warning: Compound eoDummyPop is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoSelect.cpp:31: Warning: Compound eoDummyPop is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoReplacement.cpp:32: Warning: Compound eoDummyPop is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoCheckpointing.cpp:34: Warning: Compound eoDummyPop is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/statistics.cpp:9: Warning: Compound StatBaseWrapper is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/stats.h:37: Warning: Compound Var is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/pipecom.h:19: Warning: Compound PipeCommunication is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gpsymreg/node.h:118: Warning: Compound Node is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/shared_ptr.h:25: Warning: Compound shared_ptr is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoFitnessAssembledEA.cpp:58: Warning: Compound eoAssembledEvalFunc is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/PyEO.h:31: Warning: Compound index_error is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoExternalEO.cpp:16: Warning: Compound UserDefStruct is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/MGE/eoVirus.h:50: Warning: Compound eoVirus is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gpsymreg/parameters.h:29: Warning: Compound Parameters is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:379: Warning: Compound eoDistanceStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoGenOp.cpp:84: Warning: Compound quadop is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduce.h:102: Warning: Compound eoEPReduce::Cmp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:1131: Warning: Compound gp_parse_tree::parse_tree::const_iterator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/PyEO.h:140: Warning: Compound PyEO_pickle_suite is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoPareto.cpp:24: Warning: Compound eoDouble is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoPareto.cpp:12: Warning: Compound MinimizingFitnessTraits is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gpsymreg/fitness.h:44: Warning: Compound MinimizingFitnessTraits is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:212: Warning: Compound eoEasyEA::eoDummyTransform is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/node_pool.h:159: Warning: Compound Standard_Node_alloc is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eval/MultiFunction.cpp:51: Warning: Compound Compiler is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPeriodicContinue.h:30: Warning: Compound eoPeriodicContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoSharing.cpp:34: Warning: Compound eoDummyDistance is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPopulator.h:174: Warning: Compound eoSeqPopulator::OutOfIndividuals is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:53: Warning: Compound maximization is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:238: Warning: Compound gp_parse_tree::MemPool::Link is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/CMAState.cpp:70: Warning: Compound eo::CMAStateImpl is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/geneticOps.cpp:70: Warning: Compound MonOpWrapper is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/PyEO.h:113: Warning: Compound PyEO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gprop/mlp.h:366: Warning: Compound mlp::sample is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoGenOp.cpp:146: Warning: Compound three2threeOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:1057: Warning: Compound gp_parse_tree::parse_tree::embedded_iterator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gprop/mlp.h:224: Warning: Compound mlp::net is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/valueParam.h:8: Warning: Compound ValueParam is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPop.h:208: Warning: Compound eoPop::GetFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoSSGA.cpp:8: Warning: Compound eoBreedOne is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPopulator.h:52: Warning: Compound eoPopulator::OutOfIndividuals is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoproblem.cpp:26: Warning: Compound Easy is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eo_interface/eoSymMutate.h:28: Warning: Compound eoSymSubtreeMutate is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/def_abstract_functor.h:36: Warning: Compound eoutils::ProcWrapper is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/node_pool.h:122: Warning: Compound Standard_alloc is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoPareto.cpp:48: Warning: Compound Eval is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gpsymreg/node.h:54: Warning: Compound Operation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:215: Warning: Compound eoEasyEA::eoDummyEval is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoSymreg.cpp:14: Warning: Compound SymregNode is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/gen/NodeSelector.h:27: Warning: Compound NodeSelector::NodeSelection is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gprop/gprop.h:108: Warning: Compound Chrom is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eo_interface/eoSymCrossover.h:28: Warning: Compound eoQuadSubtreeCrossover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:323: Warning: Compound gp_parse_tree::Standard_Node_alloc is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eo_interface/eoSymMutate.h:58: Warning: Compound eoSymNodeMutate is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/random_numbers.cpp:55: Warning: Compound RNG_pickle_suite is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gprop/qp.h:125: Warning: Compound qp::net is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/perf2worth.cpp:50: Warning: Compound CachedPerf2WorthWrapper is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/symreg.cpp:94: Warning: Compound DagSizeStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:15: Warning: Compound fitness_traits is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/CMAState.h:24: Warning: Compound eo::CMAState is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/selectOne.cpp:35: Warning: Compound eoSelectOneWrapper is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/CMAParams.h:20: Warning: Compound eo::CMAParams is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/sym/Sym.h:153: Warning: Compound HashSym is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoFunctor.cpp:12: Warning: Compound Tester is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/PyEO.h:38: Warning: Compound PyFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/def_abstract_functor.h:65: Warning: Compound eoutils::UnaryWrapper is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/node_pool.h:182: Warning: Compound Tree_alloc is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:256: Warning: Compound gp_parse_tree::Node_alloc is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/mastermind/mastermind.h:128: Warning: Compound eoInitChrom is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gprop/gprop.h:132: Warning: Compound eoInitChrom is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/Dataset.cpp:26: Warning: Compound DataSetImpl is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/gen/LanguageTable.h:26: Warning: Compound LanguageTable is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:1079: Warning: Compound gp_parse_tree::parse_tree::base_const_iterator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:489: Warning: Compound gp_parse_tree::parse_tree is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/stats.h:20: Warning: Compound Mean is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/ErrorMeasure.h:39: Warning: Compound ErrorMeasure::result is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoNDSorting.h:242: Warning: Compound eoNDSorting::Sorter is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/Dataset.h:26: Warning: Compound Dataset is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/geneticOps.cpp:78: Warning: Compound BinOpWrapper is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/gen/LanguageTable.cpp:28: Warning: Compound LanguageImpl is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/fun/FunDef.cpp:111: Warning: Compound HashDouble is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/TargetInfo.h:24: Warning: Compound TargetInfo is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoGenOp.cpp:131: Warning: Compound two2oneOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/symreg.cpp:56: Warning: Compound eoBestIndividualStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/gen/TreeBuilder.h:24: Warning: Compound TreeBuilder is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/sym/token.h:23: Warning: Compound functor_t is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/sym/Sym.h:31: Warning: Compound UniqueNodeStats is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gprop/mlp.h:151: Warning: Compound mlp::layer is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoSSGA.cpp:51: Warning: Compound Mutate is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoPareto.cpp:29: Warning: Compound Mutate is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/Scaling.h:73: Warning: Compound NoScaling is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCellularEasyEA.h:148: Warning: Compound eoCellularEasyEA::eoSelectFirstOne is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoBitOp.h:243: Warning: Compound eo1PtBitXover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/node_pool.h:92: Warning: Compound Node_alloc is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoSSGA.cpp:29: Warning: Compound eoMyEval is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/symreg.cpp:68: Warning: Compound AverageSizeStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gprop/mlp.h:77: Warning: Compound mlp::neuron is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoSSGA.cpp:40: Warning: Compound Xover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/geneticOps.cpp:33: Warning: Compound GenOpWrapper is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eo_interface/eoSymMutate.h:99: Warning: Compound eoSymConstantMutate is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/app/gprop/qp.h:94: Warning: Compound qp::layer is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/matrices.h:24: Warning: Compound square_matrix is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/sym/SymImpl.cpp:50: Warning: no matching class member found for
+  const SymArgs & detail::SymArgs::operator=(const SymArgs &args)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eig.h:21: Warning: no matching file member found for 
+int eo::eig(int N, const lower_triangular_matrix &C, std::valarray< double > &diag, square_matrix &Q, int niter=0)
+Possible candidates:
+  int eig(int N, const lower_triangular_matrix &C, valarray< double > &diag, square_matrix &Q, int niter)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.cpp:71: Warning: no matching class member found for
+  eoParser::eoParser(unsigned _argc, char **_argv, string _programDescription, string _lFileParamName, char _shortHand)
+Possible candidates:
+  eoParser::eoParser(unsigned _argc, char **_argv, std::string _programDescription="", std::string _lFileParamName="param-file", char _shortHand= 'p')
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.cpp:106: Warning: no matching class member found for
+  eoParam * eoParser::getParamWithLongName(const std::string &_name) const
+Possible candidates:
+  eoParam * eoParser::getParamWithLongName(const std::string &_name) const 
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.cpp:119: Warning: no matching class member found for
+  void eoParser::processParam(eoParam &param, std::string section)
+Possible candidates:
+  void eoParser::processParam(eoParam &param, std::string section="")
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.cpp:131: Warning: no matching class member found for
+  void eoParser::doRegisterParam(eoParam &param) const
+Possible candidates:
+  void eoParser::doRegisterParam(eoParam &param) const 
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.cpp:145: Warning: no matching class member found for
+  pair< bool, string > eoParser::getValue(eoParam &_param) const
+Possible candidates:
+  std::pair< bool, std::string > eoParser::getValue(eoParam &_param) const 
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.cpp:170: Warning: no matching class member found for
+  void eoParser::updateParameters() const
+Possible candidates:
+  void eoParser::updateParameters() const 
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.cpp:180: Warning: no matching class member found for
+  void eoParser::readFrom(istream &is)
+Possible candidates:
+  void eoParser::readFrom(std::istream &is)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.cpp:250: Warning: no matching class member found for
+  void eoParser::printOn(ostream &os) const
+Possible candidates:
+  void eoParser::printOn(std::ostream &os) const 
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.cpp:294: Warning: no matching class member found for
+  void eoParser::printHelp(ostream &os)
+Possible candidates:
+  void eoParser::printHelp(std::ostream &os)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.cpp:347: Warning: no matching class member found for
+  bool eoParser::userNeedsHelp(void)
+Possible candidates:
+  bool eoParser::userNeedsHelp(void)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/eoAged.h:105: Warning: Member age of class eoAged is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoAssembledFitnessStat.h:52: Warning: Member Fitness of class eoAssembledFitnessAverageStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoAssembledFitnessStat.h:57: Warning: Member eoAssembledFitnessAverageStat(unsigned _whichTerm=0, std::string _description="Average Fitness") of class eoAssembledFitnessAverageStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoAssembledFitnessStat.h:78: Warning: Member whichFitnessTerm of class eoAssembledFitnessAverageStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoAssembledFitnessStat.h:93: Warning: Member Fitness of class eoAssembledFitnessBestStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoAssembledFitnessStat.h:97: Warning: Member eoAssembledFitnessBestStat(unsigned _whichTerm=0, std::string _description="Best Fitness") of class eoAssembledFitnessBestStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoAssembledFitnessStat.h:109: Warning: Member whichFitnessTerm of class eoAssembledFitnessBestStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:115: Warning: Member Fitness of class eoAverageStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:118: Warning: Member eoAverageStat(std::string _description="Average Fitness") of class eoAverageStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:125: Warning: Member eoAverageStat(double _value, std::string _desc) of class eoAverageStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:131: Warning: Member className(void) const  of class eoAverageStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:120: Warning: Member sumFitness(double _sum, const EOT &_eot) of class eoAverageStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:138: Warning: Member doit(const eoPop< EOT > &_pop, eoParetoFitness< T >) of class eoAverageStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:156: Warning: Member doit(const eoPop< EOT > &_pop, T) of class eoAverageStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:323: Warning: Member Fitness of class eoBestFitnessStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:327: Warning: Member eoBestFitnessStat(std::string _description="Best ") of class eoBestFitnessStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:333: Warning: Member className(void) const  of class eoBestFitnessStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:357: Warning: Member doit(const eoPop< EOT > &_pop, eoParetoFitness< T >) of class eoBestFitnessStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:371: Warning: Member doit(const eoPop< EOT > &_pop, T) of class eoBestFitnessStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/gen/NodeSelector.h:60: Warning: Member BiasedNodeSelector(unsigned n) of class BiasedNodeSelector is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/gen/NodeSelector.h:62: Warning: Member select_node(Sym sym) const  of class BiasedNodeSelector is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/gen/NodeSelector.h:57: Warning: Member nRounds of class BiasedNodeSelector is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCounter.h:146: Warning: Member eoBinaryFunctorCounter(BinaryFunctor &_func, std::string _name="proc_counter") of class eoBinaryFunctorCounter is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCounter.h:179: Warning: Member func of class eoBinaryFunctorCounter is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCloneOps.h:62: Warning: Member className() const  of class eoBinCloneOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenOp.h:110: Warning: Member eoBinGenOp(eoBinOp< EOT > &_op) of class eoBinGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenOp.h:125: Warning: Member className() const  of class eoBinGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenOp.h:128: Warning: Member op of class eoBinGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOp.h:123: Warning: Member className() const  of class eoBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoBit.h:65: Warning: The following parameters of eoBit< FitT >::eoBit(unsigned size=0, bool value=false) are not documented:
+  parameter value
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoBitOp.h:439: Warning: Member gene_size of class eoBitGxOver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoBitOp.h:440: Warning: Member num_points of class eoBitGxOver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoBitOp.h:136: Warning: Member rate of class eoBitMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoBitOp.h:137: Warning: Member normalize of class eoBitMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoBitOp.h:107: Warning: The following parameters of eoBitMutation< Chrom >::eoBitMutation(const double &_rate=0.01, bool _normalize=false) are not documented:
+  parameter _normalize
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:73: Warning: Member boolean_generator(float _bias=0.5, eoRng &_rng=rng) of class boolean_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:75: Warning: Member operator()(void) of class boolean_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:77: Warning: Member bias of class boolean_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:78: Warning: Member gen of class boolean_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRndGenerators.h:107: Warning: Member eoBooleanGenerator(float _bias=0.5, eoRng &_rng=rng) of class eoBooleanGenerator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRndGenerators.h:111: Warning: Member bias of class eoBooleanGenerator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRndGenerators.h:112: Warning: Member gen of class eoBooleanGenerator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUniformInit.h:113: Warning: Member eoBooleanInit(float _bias=0.5, eoRng &_rng=rng) of class eoBooleanInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUniformInit.h:117: Warning: Member bias of class eoBooleanInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUniformInit.h:118: Warning: Member gen of class eoBooleanInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeOp.h:91: Warning: Member EoType of class eoBranchMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeOp.h:129: Warning: Member max_length of class eoBranchMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeOp.h:130: Warning: Member initializer of class eoBranchMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCellularEasyEA.h:81: Warning: Member eoCellularEasyEA(eoContinue< EOT > &_cont, eoEvalFunc< EOT > &_eval, eoSelectOne< EOT > &_sel_neigh, eoQuadOp< EOT > &_cross, eoMonOp< EOT > &_mut, eoSelectOne< EOT > &_sel_child, eoSelectOne< EOT > &_sel_repl) of class eoCellularEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCellularEasyEA.h:135: Warning: Member neighbours(const eoPop< EOT > &pop, int rank)=0 of class eoCellularEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCellularEasyEA.h:139: Warning: Member cont of class eoCellularEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCellularEasyEA.h:140: Warning: Member eval of class eoCellularEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCellularEasyEA.h:141: Warning: Member popEval of class eoCellularEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCellularEasyEA.h:142: Warning: Member sel_neigh of class eoCellularEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCellularEasyEA.h:143: Warning: Member cross of class eoCellularEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCellularEasyEA.h:144: Warning: Member mut of class eoCellularEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCellularEasyEA.h:145: Warning: Member sel_child of class eoCellularEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCellularEasyEA.h:146: Warning: Member sel_repl of class eoCellularEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoCheckPoint.h:51: Warning: Member eoCheckPoint(eoContinue< EOT > &_cont) of class eoCheckPoint is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoCheckPoint.h:57: Warning: Member add(eoContinue< EOT > &_cont) of class eoCheckPoint is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoCheckPoint.h:58: Warning: Member add(eoSortedStatBase< EOT > &_stat) of class eoCheckPoint is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoCheckPoint.h:59: Warning: Member add(eoStatBase< EOT > &_stat) of class eoCheckPoint is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoCheckPoint.h:60: Warning: Member add(eoMonitor &_mon) of class eoCheckPoint is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoCheckPoint.h:61: Warning: Member add(eoUpdater &_upd) of class eoCheckPoint is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoCheckPoint.h:63: Warning: Member className(void) const  of class eoCheckPoint is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoCheckPoint.h:68: Warning: Member continuators of class eoCheckPoint is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoCheckPoint.h:69: Warning: Member sorted of class eoCheckPoint is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoCheckPoint.h:70: Warning: Member stats of class eoCheckPoint is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoCheckPoint.h:71: Warning: Member monitors of class eoCheckPoint is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoCheckPoint.h:72: Warning: Member updaters of class eoCheckPoint is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoCMABreed.h:44: Warning: Member eoCMABreed(eo::CMAState &state_, unsigned lambda_) of class eoCMABreed is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoCMABreed.h:46: Warning: Member operator()(const eoPop< EOT > &parents, eoPop< EOT > &offspring) of class eoCMABreed is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoCMABreed.h:41: Warning: Member EOT of class eoCMABreed is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoCMABreed.h:38: Warning: Member state of class eoCMABreed is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoCMABreed.h:39: Warning: Member lambda of class eoCMABreed is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoCMAInit.h:44: Warning: Member eoCMAInit(const eo::CMAState &state_) of class eoCMAInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoCMAInit.h:47: Warning: Member operator()(EOT &v) of class eoCMAInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoCMAInit.h:41: Warning: Member EOT of class eoCMAInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoCMAInit.h:39: Warning: Member state of class eoCMAInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeOp.h:276: Warning: Member EoType of class eoCollapseSubtreeMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeOp.h:325: Warning: Member max_length of class eoCollapseSubtreeMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeOp.h:326: Warning: Member initializer of class eoCollapseSubtreeMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCombinedContinue.h:64: Warning: Member add(eoContinue< EOT > &_cont) of class eoCombinedContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCombinedContinue.h:70: Warning: Member removeLast(void) of class eoCombinedContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCombinedContinue.h:85: Warning: Member className(void) const  of class eoCombinedContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCombinedContinue.h:88: Warning: Member continuators of class eoCombinedContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCombinedInit.h:84: Warning: Member initializers of class eoCombinedInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCombinedInit.h:85: Warning: Member rates of class eoCombinedInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoMergeReduce.h:93: Warning: Member no_elite of class eoCommaReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoMergeReduce.h:94: Warning: Member truncate of class eoCommaReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoContinue.h:40: Warning: Member className(void) const  of class eoContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPersistent.h:58: Warning: argument `_is' of command @param is not found in the argument list of eoContinue< EOT >::readFrom(std::istream &__is)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPersistent.h:58: Warning: The following parameters of eoContinue< EOT >::readFrom(std::istream &__is) are not documented:
+  parameter __is
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPrintable.h:49: Warning: argument `_os' of command @param is not found in the argument list of eoContinue< EOT >::printOn(std::ostream &__os) const
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPrintable.h:49: Warning: The following parameters of eoContinue< EOT >::printOn(std::ostream &__os) const are not documented:
+  parameter __os
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdatable.h:97: Warning: Member eoCountedDynUpdate(eoUpdatable &_toUpdate, unsigned _interval) of class eoCountedDynUpdate is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdatable.h:107: Warning: Member interval of class eoCountedDynUpdate is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdatable.h:108: Warning: Member counter of class eoCountedDynUpdate is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:133: Warning: Member eoCountedStateSaver(unsigned _interval, const eoState &_state, std::string _prefix, bool _saveOnLastCall, std::string _extension="sav", unsigned _counter=0) of class eoCountedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:138: Warning: Member eoCountedStateSaver(unsigned _interval, const eoState &_state, std::string _prefix="state", std::string _extension="sav", unsigned _counter=0) of class eoCountedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:140: Warning: Member lastCall(void) of class eoCountedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:143: Warning: Member className(void) const  of class eoCountedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:145: Warning: Member doItNow(void) of class eoCountedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:147: Warning: Member state of class eoCountedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:148: Warning: Member interval of class eoCountedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:149: Warning: Member counter of class eoCountedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:150: Warning: Member saveOnLastCall of class eoCountedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:152: Warning: Member prefix of class eoCountedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:153: Warning: Member extension of class eoCountedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/stats.h:67: Warning: Member update(double a, double b) of class Cov is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/stats.h:78: Warning: Member get_meana() const  of class Cov is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/stats.h:79: Warning: Member get_meanb() const  of class Cov is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/stats.h:80: Warning: Member get_cov() const  of class Cov is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/stats.h:59: Warning: Member n of class Cov is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/stats.h:60: Warning: Member meana of class Cov is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/stats.h:61: Warning: Member meanb of class Cov is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/regression/stats.h:62: Warning: Member sumcov of class Cov is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCtrlCContinue.h:69: Warning: Member className(void) const  of class eoCtrlCContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoBitOp.h:95: Warning: Member num_bit of class eoDetBitFlip is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSurviveAndDie.h:180: Warning: Member reduceGlobal of class eoDeterministicSaDReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSurviveAndDie.h:181: Warning: Member sAdParents of class eoDeterministicSaDReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSurviveAndDie.h:182: Warning: Member sAdOffspring of class eoDeterministicSaDReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSurviveAndDie.h:184: Warning: Member plus of class eoDeterministicSaDReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSurviveAndDie.h:186: Warning: Member truncate of class eoDeterministicSaDReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoDetSelect.h:80: Warning: Member howMany of class eoDetSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoDetTournamentSelect.h:50: Warning: Member eoDetTournamentSelect(unsigned _tSize=2) of class eoDetTournamentSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoDetTournamentSelect.h:67: Warning: Member tSize of class eoDetTournamentSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduce.h:193: Warning: Member eoDetTournamentTruncate(unsigned _t_size) of class eoDetTournamentTruncate is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduce.h:229: Warning: Member t_size of class eoDetTournamentTruncate is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceSplit.h:247: Warning: Member t_size of class eoDetTournamentTruncateSplit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceSplit.h:248: Warning: Member howMany of class eoDetTournamentTruncateSplit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceSplit.h:249: Warning: Member returnEliminated of class eoDetTournamentTruncateSplit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectFromWorth.h:97: Warning: Member worthIterator of class eoDetTournamentWorthSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectFromWorth.h:102: Warning: Member eoDetTournamentWorthSelect(eoPerf2Worth< EOT, WorthT > &perf2Worth, unsigned _tSize) of class eoDetTournamentWorthSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectFromWorth.h:121: Warning: Member tSize of class eoDetTournamentWorthSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:232: Warning: Member homogeneous of class eoDetUniformMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:233: Warning: Member bounds of class eoDetUniformMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:234: Warning: Member epsilon of class eoDetUniformMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:235: Warning: Member no of class eoDetUniformMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:147: Warning: argument `number' of command @param is not found in the argument list of eoDetUniformMutation< EOT >::eoDetUniformMutation(const double &_epsilon, const unsigned &_no=1)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:147: Warning: The following parameters of eoDetUniformMutation< EOT >::eoDetUniformMutation(const double &_epsilon, const unsigned &_no=1) are not documented:
+  parameter _no
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:158: Warning: argument `number' of command @param is not found in the argument list of eoDetUniformMutation< EOT >::eoDetUniformMutation(eoRealVectorBounds &_bounds, const double &_epsilon, const unsigned &_no=1)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:158: Warning: The following parameters of eoDetUniformMutation< EOT >::eoDetUniformMutation(eoRealVectorBounds &_bounds, const double &_epsilon, const unsigned &_no=1) are not documented:
+  parameter _no
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:175: Warning: argument `number' of command @param is not found in the argument list of eoDetUniformMutation< EOT >::eoDetUniformMutation(eoRealVectorBounds &_bounds, const std::vector< double > &_epsilon, const unsigned &_no=1)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:175: Warning: The following parameters of eoDetUniformMutation< EOT >::eoDetUniformMutation(eoRealVectorBounds &_bounds, const std::vector< double > &_epsilon, const unsigned &_no=1) are not documented:
+  parameter _no
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSharing.h:41: Warning: Member dMatrix(unsigned _s) of class dMatrix is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSharing.h:69: Warning: Member rSize of class dMatrix is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoDominanceMap.h:159: Warning: Member fitness of class eoDominanceMap is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoCheckpointing.cpp:29: Warning: Member Type of class Dummy is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoGenOp.cpp:38: Warning: Member Type of class Dummy is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoReplacement.cpp:22: Warning: Member Type of class Dummy is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoSelect.cpp:17: Warning: Member Type of class Dummy is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoSharing.cpp:23: Warning: Member Type of class Dummy is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoStateAndParser.cpp:31: Warning: Member Type of class Dummy is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoGenOp.cpp:39: Warning: Member Dummy(std::string _s="") of class Dummy is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoGenOp.cpp:47: Warning: Member s of class Dummy is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoSharing.cpp:29: Warning: Member xdist of class Dummy is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGATransform.h:148: Warning: Member PCrossHandle() of class eoDynSGATransform is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGATransform.h:149: Warning: Member PMutHandle() of class eoDynSGATransform is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGATransform.h:155: Warning: Member cross of class eoDynSGATransform is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGATransform.h:156: Warning: Member crossoverProbaHolder of class eoDynSGATransform is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGATransform.h:157: Warning: Member crossoverProba of class eoDynSGATransform is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGATransform.h:158: Warning: Member mutate of class eoDynSGATransform is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGATransform.h:159: Warning: Member mutationProbaHolder of class eoDynSGATransform is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGATransform.h:160: Warning: Member mutationProba of class eoDynSGATransform is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGATransform.h:121: Warning: argument `pop' of command @param is not found in the argument list of eoDynSGATransform< EOT >::operator()(eoPop< EOT > &_pop)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGATransform.h:121: Warning: The following parameters of eoDynSGATransform< EOT >::operator()(eoPop< EOT > &_pop) are not documented:
+  parameter _pop
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdatable.h:53: Warning: Member eoDynUpdater(eoUpdatable &_toUpdate) of class eoDynUpdater is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdatable.h:61: Warning: Member toUpdate of class eoDynUpdater is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:209: Warning: Member dummySelect of class eoEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:212: Warning: Member dummyTransform of class eoEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:215: Warning: Member dummyEval of class eoEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:217: Warning: Member continuator of class eoEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:219: Warning: Member eval of class eoEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:220: Warning: Member loopEval of class eoEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:222: Warning: Member popEval of class eoEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:224: Warning: Member selectTransform of class eoEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:225: Warning: Member breed of class eoEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:229: Warning: Member dummyMerge of class eoEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:230: Warning: Member dummyReduce of class eoEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:232: Warning: Member mergeReduce of class eoEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:233: Warning: Member replace of class eoEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:236: Warning: Member eoIslandsEasyEA<EOT> of class eoEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEasyEA.h:237: Warning: Member eoDistEvalEasyEA<EOT> of class eoEasyEA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSequentialSelect.h:139: Warning: Member current of class eoEliteSequentialSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSequentialSelect.h:140: Warning: Member eoPters of class eoEliteSequentialSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoMerge.h:60: Warning: Member eoElitism(double _rate, bool _interpret_as_rate=true) of class eoElitism is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoMerge.h:100: Warning: Member rate of class eoElitism is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoMerge.h:101: Warning: Member combien of class eoElitism is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/EO.h:47: Warning: Member Fitness of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:115: Warning: Member fitness_traits of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:116: Warning: Member storage_type of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:117: Warning: Member performance_type of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:118: Warning: Member worth_type of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/EO.h:67: Warning: Member invalidate() of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/EO.h:87: Warning: Member operator>(const EO &_eo2) const  of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:124: Warning: Member fitness(performance_type perf) of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:129: Warning: Member performance(performance_type perf) of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:135: Warning: Member performance(void) const  of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:141: Warning: Member worth(worth_type worth) of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:147: Warning: Member worth(void) const  of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:154: Warning: Member fitness(void) const  of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:159: Warning: Member invalidate(void) of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:165: Warning: Member invalidate_worth(void) of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:170: Warning: Member operator<(const EO< Fitness, Traits > &other) const  of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:175: Warning: Member operator>(const EO< Fitness, Traits > &other) const  of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/EO.h:146: Warning: Member repFitness of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/EO.h:147: Warning: Member invalidFitness of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:181: Warning: Member valid_performance of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:182: Warning: Member valid_worth of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:183: Warning: Member rep_fitness of class EO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduce.h:86: Warning: Member Fitness of class eoEPReduce is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduce.h:90: Warning: Member eoEPReduce(unsigned _t_size) of class eoEPReduce is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduce.h:160: Warning: Member t_size of class eoEPReduce is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoMergeReduce.h:107: Warning: Member eoEPReplacement(int _tSize) of class eoEPReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoMergeReduce.h:109: Warning: Member plus of class eoEPReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoMergeReduce.h:110: Warning: Member truncate of class eoEPReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsChromInit.h:62: Warning: Member FitT of class eoEsChromInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsChromInit.h:100: Warning: argument `_sigma' of command @param is not found in the argument list of eoEsChromInit< EOT >::eoEsChromInit(eoRealVectorBounds &_bounds, std::vector< double > _vecSigma)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsChromInit.h:100: Warning: The following parameters of eoEsChromInit< EOT >::eoEsChromInit(eoRealVectorBounds &_bounds, std::vector< double > _vecSigma) are not documented:
+  parameter _vecSigma
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsFull.h:47: Warning: Member Type of class eoEsFull is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsFull.h:79: Warning: Member stdevs of class eoEsFull is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsFull.h:80: Warning: Member correlations of class eoEsFull is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsGlobalXover.h:47: Warning: Member FitT of class eoEsGlobalXover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsGlobalXover.h:144: Warning: Member sel of class eoEsGlobalXover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsGlobalXover.h:145: Warning: Member crossObj of class eoEsGlobalXover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsGlobalXover.h:146: Warning: Member crossMut of class eoEsGlobalXover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsGlobalXover.h:61: Warning: argument `_pop' of command @param is not found in the argument list of eoEsGlobalXover< EOT >::apply(eoPopulator< EOT > &_plop)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsGlobalXover.h:61: Warning: The following parameters of eoEsGlobalXover< EOT >::apply(eoPopulator< EOT > &_plop) are not documented:
+  parameter _plop
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsMutationInit.h:64: Warning: Found unknown command `\tau'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsMutationInit.h:101: Warning: Member section(void) of class eoEsMutationInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsMutationInit.h:103: Warning: Member TauLclName(void) const  of class eoEsMutationInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsMutationInit.h:104: Warning: Member TauLclShort(void) const  of class eoEsMutationInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsMutationInit.h:106: Warning: Member TauGlbName(void) const  of class eoEsMutationInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsMutationInit.h:107: Warning: Member TauGlbShort(void) const  of class eoEsMutationInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsMutationInit.h:109: Warning: Member TauBetaName(void) const  of class eoEsMutationInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsMutationInit.h:110: Warning: Member TauBetaShort(void) const  of class eoEsMutationInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsMutationInit.h:114: Warning: Member parser of class eoEsMutationInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsMutationInit.h:115: Warning: Member repSection of class eoEsMutationInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsMutationInit.h:116: Warning: Member TauLclParam of class eoEsMutationInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsMutationInit.h:117: Warning: Member TauGlbParam of class eoEsMutationInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsMutationInit.h:118: Warning: Member TauBetaParam of class eoEsMutationInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsMutationInit.h:52: Warning: Found unknown command `\tau'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsSimple.h:46: Warning: Member Type of class eoEsSimple is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsSimple.h:64: Warning: Member stdev of class eoEsSimple is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsStandardXover.h:49: Warning: Member FitT of class eoEsStandardXover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsStandardXover.h:82: Warning: Member cross_self_adapt(eoEsSimple< FitT > &_parent1, const eoEsSimple< FitT > &_parent2) of class eoEsStandardXover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsStandardXover.h:87: Warning: Member cross_self_adapt(eoEsStdev< FitT > &_parent1, const eoEsStdev< FitT > &_parent2) of class eoEsStandardXover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsStandardXover.h:97: Warning: Member cross_self_adapt(eoEsFull< FitT > &_parent1, const eoEsFull< FitT > &_parent2) of class eoEsStandardXover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsStandardXover.h:115: Warning: Member sel of class eoEsStandardXover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsStandardXover.h:116: Warning: Member crossObj of class eoEsStandardXover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsStandardXover.h:117: Warning: Member crossMut of class eoEsStandardXover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsStdev.h:43: Warning: Member Type of class eoEsStdev is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoEsStdev.h:67: Warning: Member stdevs of class eoEsStdev is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEvalContinue.h:62: Warning: Member className(void) const  of class eoEvalContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEvalContinue.h:64: Warning: Member eval of class eoEvalContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEvalContinue.h:65: Warning: Member repTotalEvaluations of class eoEvalContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEvalFunc.h:44: Warning: Member EOType of class eoEvalFunc is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEvalFunc.h:46: Warning: Member EOFitT of class eoEvalFunc is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEvalFuncCounter.h:41: Warning: Member eoEvalFuncCounter(eoEvalFunc< EOT > &_func, std::string _name="Eval. ") of class eoEvalFuncCounter is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEvalFuncCounter.h:53: Warning: Member func of class eoEvalFuncCounter is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoEvalFuncPtr.h:62: Warning: Member evalFunc)(FunctionArg) of class eoEvalFuncPtr is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeOp.h:208: Warning: Member EoType of class eoExpansionMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeOp.h:262: Warning: Member max_length of class eoExpansionMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeOp.h:263: Warning: Member initializer of class eoExpansionMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/other/eoExternalOpFunctions.h:132: Warning: Member eoExternalBinOp(bool(*_binop)(External &, const External &)) of class eoExternalBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/other/eoExternalOpFunctions.h:141: Warning: Member binop)(External &, const External &) of class eoExternalBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/other/eoExternalEO.h:54: Warning: Member eoExternalEO(std::istream &is, const External &ext) of class eoExternalEO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/other/eoExternalOpFunctions.h:77: Warning: Member eoExternalEvalFunc(F(*_eval)(const External &)) of class eoExternalEvalFunc is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/other/eoExternalOpFunctions.h:87: Warning: Member eval)(const External &) of class eoExternalEvalFunc is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/other/eoExternalOpFunctions.h:50: Warning: Member eoExternalInit(External(*_init)(void)) of class eoExternalInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/other/eoExternalOpFunctions.h:61: Warning: Member init)(void) of class eoExternalInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/other/eoExternalOpFunctions.h:106: Warning: Member eoExternalMonOp(bool(*_mutate)(External &)) of class eoExternalMonOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/other/eoExternalOpFunctions.h:115: Warning: Member mutate)(External &) of class eoExternalMonOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/other/eoExternalOpFunctions.h:158: Warning: Member eoExternalQuadOp(bool(*_quadop)(External &, External &)) of class eoExternalQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/other/eoExternalOpFunctions.h:167: Warning: Member quadop)(External &, External &) of class eoExternalQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFDCStat.h:135: Warning: Member FDCstat of class eoFDCFileSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFDCStat.h:94: Warning: Member theFit() of class eoFDCStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFDCStat.h:98: Warning: Member dist of class eoFDCStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFDCStat.h:99: Warning: Member theBest of class eoFDCStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFDCStat.h:100: Warning: Member boolOpt of class eoFDCStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFDCStat.h:101: Warning: Member distToBest of class eoFDCStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFDCStat.h:102: Warning: Member fitnesses of class eoFDCStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileMonitor.h:50: Warning: Member eoFileMonitor(std::string _filename, std::string _delim=" ", bool _keep=false, bool _header=false) of class eoFileMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileMonitor.h:62: Warning: Member operator()(std::ostream &os) of class eoFileMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileMonitor.h:64: Warning: Member printHeader(void) of class eoFileMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileMonitor.h:65: Warning: Member printHeader(std::ostream &os) of class eoFileMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileMonitor.h:67: Warning: Member getFileName() of class eoFileMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileMonitor.h:70: Warning: Member filename of class eoFileMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileMonitor.h:71: Warning: Member delim of class eoFileMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileMonitor.h:72: Warning: Member keep of class eoFileMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileMonitor.h:73: Warning: Member header of class eoFileMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileMonitor.h:74: Warning: Member firstcall of class eoFileMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileSnapshot.h:56: Warning: Member vDouble of class eoFileSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileSnapshot.h:57: Warning: Member vDoubleParam of class eoFileSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileSnapshot.h:63: Warning: Member eoFileSnapshot(std::string _dirname, unsigned _frequency=1, std::string _filename="gen", std::string _delim=" ", unsigned _counter=0, bool _rmFiles=true) of class eoFileSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileSnapshot.h:166: Warning: Member getDirName() of class eoFileSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileSnapshot.h:168: Warning: Member baseFileName() of class eoFileSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileSnapshot.h:181: Warning: Member dirname of class eoFileSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileSnapshot.h:182: Warning: Member frequency of class eoFileSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileSnapshot.h:183: Warning: Member filename of class eoFileSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileSnapshot.h:184: Warning: Member delim of class eoFileSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileSnapshot.h:185: Warning: Member counter of class eoFileSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileSnapshot.h:186: Warning: Member currentFileName of class eoFileSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoFileSnapshot.h:187: Warning: Member boolChanged of class eoFileSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFitContinue.h:60: Warning: Member className(void) const  of class eoFitContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFitContinue.h:62: Warning: Member maximum of class eoFitContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFitnessScalingSelect.h:50: Warning: Member scaling of class eoFitnessScalingSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoMOFitnessStat.h:43: Warning: Member eoFitnessStat(std::string _description="AllFitnesses") of class eoFitnessStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrBinOp.h:185: Warning: Member AtomType of class eoFlOr1ptBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrQuadOp.h:177: Warning: Member AtomType of class eoFlOr1ptQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrBinOp.h:53: Warning: Member AtomType of class eoFlOrAllAtomBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrBinOp.h:81: Warning: Member rate of class eoFlOrAllAtomBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrBinOp.h:82: Warning: Member op of class eoFlOrAllAtomBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrQuadOp.h:50: Warning: Member AtomType of class eoFlOrAllAtomQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrQuadOp.h:73: Warning: Member rate of class eoFlOrAllAtomQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrQuadOp.h:74: Warning: Member op of class eoFlOrAllAtomQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrMonOp.h:49: Warning: Member AtomType of class eoFlOrAllMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrMonOp.h:74: Warning: Member atomMutation of class eoFlOrAllMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrMonOp.h:75: Warning: Member rate of class eoFlOrAllMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrBinOp.h:96: Warning: Member AtomType of class eoFlOrKAtomBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrBinOp.h:125: Warning: Member k of class eoFlOrKAtomBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrBinOp.h:126: Warning: Member op of class eoFlOrKAtomBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrQuadOp.h:88: Warning: Member AtomType of class eoFlOrKAtomQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrQuadOp.h:117: Warning: Member k of class eoFlOrKAtomQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrQuadOp.h:118: Warning: Member op of class eoFlOrKAtomQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrMonOp.h:86: Warning: Member AtomType of class eoFlOrKMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrMonOp.h:113: Warning: Member nb of class eoFlOrKMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrMonOp.h:114: Warning: Member atomMutation of class eoFlOrKMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrBinOp.h:140: Warning: Member AtomType of class eoFlOrUniformBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrBinOp.h:172: Warning: Member rate of class eoFlOrUniformBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrQuadOp.h:131: Warning: Member AtomType of class eoFlOrUniformQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFlOrQuadOp.h:165: Warning: Member rate of class eoFlOrUniformQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoFunctorStore.h:67: Warning: Member vec of class eoFunctorStore is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoG3Replacement.h:58: Warning: Member eoG3Replacement(eoHowMany _howManyEliminatedParents=eoHowMany(2, false)) of class eoG3Replacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoG3Replacement.h:81: Warning: Member split of class eoG3Replacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoG3Replacement.h:82: Warning: Member reduce of class eoG3Replacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoG3Replacement.h:83: Warning: Member plus of class eoG3Replacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenContinue.h:81: Warning: Member className(void) const  of class eoGenContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenContinue.h:99: Warning: Member verbose of class eoGenContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenContinue.h:94: Warning: Member repTotalGenerations of class eoGenContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenContinue.h:95: Warning: Member thisGenerationPlaceHolder of class eoGenContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenContinue.h:96: Warning: Member thisGeneration of class eoGenContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPersistent.h:58: Warning: argument `_is' of command @param is not found in the argument list of eoGenContinue< EOT >::readFrom(std::istream &__is)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPersistent.h:58: Warning: The following parameters of eoGenContinue< EOT >::readFrom(std::istream &__is) are not documented:
+  parameter __is
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPrintable.h:49: Warning: argument `_os' of command @param is not found in the argument list of eoGenContinue< EOT >::printOn(std::ostream &__os) const
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPrintable.h:49: Warning: The following parameters of eoGenContinue< EOT >::printOn(std::ostream &__os) const are not documented:
+  parameter __os
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthMutation.h:88: Warning: Member className() const =0 of class eoGeneDelChooser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGeneralBreeder.h:100: Warning: Member select of class eoGeneralBreeder is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGeneralBreeder.h:101: Warning: Member op of class eoGeneralBreeder is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGeneralBreeder.h:102: Warning: Member howMany of class eoGeneralBreeder is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:574: Warning: Member operator=(const eoGeneralIntBounds &_b) of class eoGeneralIntBounds is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:637: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:641: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:645: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:650: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:655: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:688: Warning: Member repBound of class eoGeneralIntBounds is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:539: Warning: Member operator=(const eoGeneralRealBounds &_b) of class eoGeneralRealBounds is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:602: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:606: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:610: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:615: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:648: Warning: Member repBound of class eoGeneralRealBounds is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenOp.h:68: Warning: Member className() const =0 of class eoGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoGnuplot.h:44: Warning: Unsupported html tag <none> found
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoGnuplot1DMonitor.h:66: Warning: Member FirstPlot() of class eoGnuplot1DMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoGnuplot1DSnapshot.h:61: Warning: Member eoGnuplot1DSnapshot(std::string _dirname, unsigned _frequency=1, std::string _filename="gen", std::string _delim=" ", unsigned _counter=0, bool _rmFiles=true) of class eoGnuplot1DSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoGnuplot1DSnapshot.h:70: Warning: Member eoGnuplot1DSnapshot(std::string _dirname, eoRealVectorBounds &_bounds, unsigned _frequency=1, std::string _filename="gen", std::string _delim=" ", unsigned _counter=0, bool _rmFiles=true) of class eoGnuplot1DSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoGnuplot1DSnapshot.h:78: Warning: Member eoGnuplot1DSnapshot(eoFileSnapshot &_fSnapshot) of class eoGnuplot1DSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoGnuplot1DSnapshot.h:85: Warning: Member eoGnuplot1DSnapshot(eoFileSnapshot &_fSnapshot, eoRealVectorBounds &_bounds) of class eoGnuplot1DSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoGnuplot1DSnapshot.h:98: Warning: Member handleBounds(eoRealVectorBounds &_bounds) of class eoGnuplot1DSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoGnuplot1DSnapshot.h:111: Warning: Member setPointSize(unsigned _pointSize) of class eoGnuplot1DSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoGnuplot1DSnapshot.h:115: Warning: Member pointSize of class eoGnuplot1DSnapshot is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeOp.h:340: Warning: Member EoType of class eoHoistMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeOp.h:341: Warning: argument `none' of command @param is not found in the argument list of eoHoistMutation< FType, Node >::eoHoistMutation()
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoHowMany.h:149: Warning: Member readFrom(std::string _value) of class eoHowMany is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoHowMany.h:186: Warning: Member rate of class eoHowMany is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoHowMany.h:187: Warning: Member combien of class eoHowMany is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoHowMany.h:72: Warning: argument `rate' of command @param is not found in the argument list of eoHowMany::eoHowMany(double _rate=0.0, bool _interpret_as_rate=true)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoHowMany.h:72: Warning: The following parameters of eoHowMany::eoHowMany(double _rate=0.0, bool _interpret_as_rate=true) are not documented:
+  parameter _rate
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:61: Warning: Member className(void) const  of class eoIncrementor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:63: Warning: Member counter of class eoIncrementor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:64: Warning: Member stepsize of class eoIncrementor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:93: Warning: Member className(void) const  of class eoIncrementorParam is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:96: Warning: Member stepsize of class eoIncrementorParam is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInit.h:160: Warning: Member eoInitAdaptor(eoInit< EOT > &_init) of class eoInitAdaptor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInit.h:169: Warning: Member init of class eoInitAdaptor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInit.h:152: Warning: End of list marker found without any preceding list items
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInit.h:85: Warning: Member AtomType of class eoInitFixedLength is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInit.h:88: Warning: Member eoInitFixedLength(unsigned _combien, eoRndGenerator< AtomType > &_generator) of class eoInitFixedLength is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInit.h:98: Warning: Member combien of class eoInitFixedLength is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInit.h:74: Warning: Member init of class eoInitGenerator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInit.h:110: Warning: Member AtomType of class eoInitVariableLength is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInit.h:141: Warning: Member atomInit() of class eoInitVariableLength is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInit.h:144: Warning: Member offset of class eoInitVariableLength is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInit.h:145: Warning: Member extent of class eoInitVariableLength is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInit.h:146: Warning: Member init of class eoInitVariableLength is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/MGE/eoInitVirus.h:45: Warning: Member eoInitVirus(unsigned _combien, eoRndGenerator< bool > &_generator) of class eoInitVirus is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/MGE/eoInitVirus.h:59: Warning: Member combien of class eoInitVirus is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/MGE/eoInitVirus.h:70: Warning: Member eoInitVirus1bit(unsigned _combien, eoRndGenerator< bool > &_generator) of class eoInitVirus1bit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/MGE/eoInitVirus.h:82: Warning: Member combien of class eoInitVirus1bit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:176: Warning: Member AtomType of class eoInnerExchangeQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:197: Warning: Member className() const  of class eoInnerExchangeQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:202: Warning: Member rate of class eoInnerExchangeQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:203: Warning: Member op of class eoInnerExchangeQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:131: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:127: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:135: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:140: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:470: Warning: Member random(eoRng &_rng=eo::rng) const  of class eoIntAboveBound is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:533: Warning: Member repMaximum of class eoIntAboveBound is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:127: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:131: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:135: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:140: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:372: Warning: Member random(eoRng &_rng=eo::rng) const  of class eoIntBelowBound is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:435: Warning: Member repMinimum of class eoIntBelowBound is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:127: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:131: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:135: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:140: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:145: Warning: Member random(eoRng &_rng=eo::rng) const =0 of class eoIntBounds is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:127: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:131: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:135: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:140: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:255: Warning: Member random(eoRng &_rng=eo::rng) const  of class eoIntInterval is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:336: Warning: Member repMinimum of class eoIntInterval is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:337: Warning: Member repMaximum of class eoIntInterval is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:338: Warning: Member repRange of class eoIntInterval is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:127: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:131: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:135: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:140: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoIntBounds.h:184: Warning: Member random(eoRng &_rng=eo::rng) const  of class eoIntNoBounds is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInvalidateOps.h:83: Warning: Member eoInvalidateBinOp(eoBinOp< EOT > &_op) of class eoInvalidateBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInvalidateOps.h:97: Warning: Member op of class eoInvalidateBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInvalidateOps.h:49: Warning: Member eoInvalidateMonOp(eoMonOp< EOT > &_op) of class eoInvalidateMonOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInvalidateOps.h:63: Warning: Member op of class eoInvalidateMonOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInvalidateOps.h:117: Warning: Member eoInvalidateQuadOp(eoQuadOp< EOT > &_op) of class eoInvalidateQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoInvalidateOps.h:131: Warning: Member op of class eoInvalidateQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoLinearFitScaling.h:54: Warning: Member eoLinearFitScaling(double _p=2.0) of class eoLinearFitScaling is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoLinearFitScaling.h:87: Warning: Member pressure of class eoLinearFitScaling is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceSplit.h:196: Warning: Member howMany of class eoLinearRandomSplit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceSplit.h:197: Warning: Member returnEliminated of class eoLinearRandomSplit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceSplit.h:118: Warning: Member howMany of class eoLinearTruncateSplit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceSplit.h:119: Warning: Member returnEliminated of class eoLinearTruncateSplit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/node_pool.h:25: Warning: Member MemPool(unsigned int sz) of class MemPool is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/node_pool.h:38: Warning: Member allocate() of class MemPool is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/node_pool.h:46: Warning: Member deallocate(void *b) of class MemPool is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/node_pool.h:55: Warning: Member grow() of class MemPool is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/node_pool.h:85: Warning: Member chunks of class MemPool is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/node_pool.h:86: Warning: Member esize of class MemPool is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/node_pool.h:87: Warning: Member head of class MemPool is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoMergeReduce.h:55: Warning: Member eoMergeReduce(eoMerge< EOT > &_merge, eoReduce< EOT > &_reduce) of class eoMergeReduce is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoMergeReduce.h:65: Warning: Member merge of class eoMergeReduce is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoMergeReduce.h:66: Warning: Member reduce of class eoMergeReduce is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoMGGReplacement.h:58: Warning: Member eoMGGReplacement(eoHowMany _howManyEliminatedParents=eoHowMany(2, false), unsigned _tSize=2) of class eoMGGReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoMGGReplacement.h:98: Warning: Member split of class eoMGGReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoMGGReplacement.h:99: Warning: Member plus of class eoMGGReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoMGGReplacement.h:100: Warning: Member tSize of class eoMGGReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoParetoFitness.cpp:40: Warning: Member maximizing(int) of class MinimizingTraits is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoMOFitnessStat.h:88: Warning: Member objective of class eoMOFitnessStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCloneOps.h:49: Warning: Member className() const  of class eoMonCloneOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenOp.h:88: Warning: Member eoMonGenOp(eoMonOp< EOT > &_op) of class eoMonGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenOp.h:98: Warning: Member className() const  of class eoMonGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenOp.h:100: Warning: Member op of class eoMonGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoMonitor.h:50: Warning: Member lastCall() of class eoMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoMonitor.h:58: Warning: Member className(void) const  of class eoMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoMonitor.h:61: Warning: Member iterator of class eoMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoMonitor.h:62: Warning: Member vec of class eoMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOp.h:107: Warning: Member className() const  of class eoMonOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/do/make_algo_pareto.h:48: Warning: Member eoNDPlusReplacement(eoPerf2Worth< EOT, WorthT > &_perf2worth) of class eoNDPlusReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoPareto.cpp:95: Warning: Member eoNDPlusReplacement(eoPerf2Worth< EOT, WorthT > &_perf2worth) of class eoNDPlusReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/do/make_algo_pareto.h:70: Warning: Member perf2worth of class eoNDPlusReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/t-eoPareto.cpp:119: Warning: Member perf2worth of class eoNDPlusReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoNDSorting.h:49: Warning: Member eoNDSorting(bool nasty_flag_=false) of class eoNDSorting is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoNDSorting.h:373: Warning: Member nasty_declone_flag_that_only_is_implemented_for_two_objectives of class eoNDSorting is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoNDSorting.h:100: Warning: Member one_objective(const eoPop< EOT > &_pop) of class eoNDSorting is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoNDSorting.h:273: Warning: Member m_objectives(const eoPop< EOT > &_pop) of class eoNDSorting is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoNDSorting.h:360: Warning: Member rank_to_worth() of class eoNDSorting is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoNDSorting.h:96: Warning: Member index of class eoNDSorting::DummyEO is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoNDSorting.h:383: Warning: Member eoNDSorting_I(double _nicheSize, bool nasty_flag_=false) of class eoNDSorting_I is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoNDSorting.h:416: Warning: Member nicheSize of class eoNDSorting_I is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoNDSorting.h:440: Warning: Member double_index_pair of class eoNDSorting_II is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoNDSorting.h:438: Warning: Member eoNDSorting_II(bool nasty_flag_=false) of class eoNDSorting_II is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:159: Warning: Member negexp_generator(T _mean=1.0, eoRng &_rng=rng) of class negexp_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:161: Warning: Member operator()(void) of class negexp_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:164: Warning: Member mean of class negexp_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:165: Warning: Member negexp of class negexp_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRndGenerators.h:140: Warning: Member eoNegExpGenerator(T _mean=1.0, eoRng &_rng=rng) of class eoNegExpGenerator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRndGenerators.h:145: Warning: Member mean of class eoNegExpGenerator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRndGenerators.h:146: Warning: Member negexp of class eoNegExpGenerator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUniformInit.h:146: Warning: Member eoNegExpInit(T _mean=1.0, eoRng &_rng=rng) of class eoNegExpInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUniformInit.h:151: Warning: Member mean of class eoNegExpInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUniformInit.h:152: Warning: Member negexp of class eoNegExpInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/gen/NodeSelector.h:44: Warning: Member select_node(Sym sym) const =0 of class NodeSelector is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:142: Warning: Member normal_generator(T _stdev=T(1.0), eoRng &_rng=rng) of class normal_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:144: Warning: Member operator()(void) of class normal_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:147: Warning: Member stdev of class normal_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:148: Warning: Member normal of class normal_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRndGenerators.h:123: Warning: Member eoNormalGenerator(T _stdev=T(1.0), eoRng &_rng=rng) of class eoNormalGenerator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRndGenerators.h:128: Warning: Member stdev of class eoNormalGenerator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRndGenerators.h:129: Warning: Member normal of class eoNormalGenerator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUniformInit.h:129: Warning: Member eoNormalInit(T _stdev=T(1.0), eoRng &_rng=rng) of class eoNormalInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUniformInit.h:134: Warning: Member stdev of class eoNormalInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUniformInit.h:135: Warning: Member normal of class eoNormalInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoNormalMutation.h:166: Warning: Member sigma of class eoNormalMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoNormalMutation.h:167: Warning: Member bounds of class eoNormalMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoNormalMutation.h:168: Warning: Member p_change of class eoNormalMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoNormalMutation.h:102: Warning: Member sigma of class eoNormalVecMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoNormalMutation.h:103: Warning: Member bounds of class eoNormalVecMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoNormalMutation.h:104: Warning: Member p_change of class eoNormalVecMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoRandomSelect.h:94: Warning: Member current of class eoNoSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoBitOp.h:376: Warning: Member num_points of class eoNPtsBitXover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:217: Warning: Member Fitness of class eoNthElementFitnessStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:220: Warning: Member eoNthElementFitnessStat(unsigned _whichElement, std::string _description="nth element fitness") of class eoNthElementFitnessStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:230: Warning: Member className(void) const  of class eoNthElementFitnessStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:252: Warning: Member doit(const eoPop< EOT > &_pop, eoParetoFitness< T >) of class eoNthElementFitnessStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:271: Warning: Member doit(const std::vector< const EOT * > &_pop, T) of class eoNthElementFitnessStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:275: Warning: Member whichElement of class eoNthElementFitnessStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoNormalMutation.h:184: Warning: Member Fitness of class eoOneFifthMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoNormalMutation.h:264: Warning: Member eval of class eoOneFifthMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoNormalMutation.h:265: Warning: Member threshold of class eoOneFifthMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoNormalMutation.h:266: Warning: Member updateFactor of class eoOneFifthMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoNormalMutation.h:267: Warning: Member nbMut of class eoOneFifthMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoNormalMutation.h:268: Warning: Member nbSuccess of class eoOneFifthMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoNormalMutation.h:269: Warning: Member genIndex of class eoOneFifthMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoNormalMutation.h:186: Warning: argument `eval' of command @param is not found in the argument list of eoOneFifthMutation< EOT >::eoOneFifthMutation(eoEvalFunc< EOT > &_eval, double &_sigmaInit, unsigned _windowSize=10, double _updateFactor=0.83, double _threshold=0.2)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoNormalMutation.h:186: Warning: The following parameters of eoOneFifthMutation< EOT >::eoOneFifthMutation(eoEvalFunc< EOT > &_eval, double &_sigmaInit, unsigned _windowSize=10, double _updateFactor=0.83, double _threshold=0.2) are not documented:
+  parameter _eval
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/tutorial/Lesson5/eoOneMax.h:96: Warning: Member setB(vector< bool > &_b) of class eoOneMax is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/tutorial/Lesson5/eoOneMax.h:100: Warning: Member B() of class eoOneMax is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/tutorial/Lesson5/eoOneMax.h:106: Warning: Member b of class eoOneMax is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/tutorial/Lesson5/eoOneMaxEvalFunc.h:39: Warning: argument `EOT' of command @param is not found in the argument list of eoOneMaxEvalFunc< EOT >::operator()(EOT &_eo)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/tutorial/Lesson5/eoOneMaxEvalFunc.h:39: Warning: The following parameters of eoOneMaxEvalFunc< EOT >::operator()(EOT &_eo) are not documented:
+  parameter _eo
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/tutorial/Lesson5/eoOneMaxInit.h:57: Warning: Member vecSize of class eoOneMaxInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOpContainer.h:70: Warning: Member className() const =0 of class eoOpContainer is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOpContainer.h:74: Warning: Member rates of class eoOpContainer is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOpContainer.h:75: Warning: Member ops of class eoOpContainer is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOpContainer.h:78: Warning: Member store of class eoOpContainer is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOpContainer.h:79: Warning: Member max_to_produce of class eoOpContainer is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOpSelMason.h:42: Warning: Member vOpP of class eoOpSelMason is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOpSelMason.h:43: Warning: Member MEV of class eoOpSelMason is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOpSelMason.h:104: Warning: Member allocMap of class eoOpSelMason is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOpSelMason.h:105: Warning: Member operatorFactory of class eoOpSelMason is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParam.h:118: Warning: Member repLongName of class eoParam is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParam.h:119: Warning: Member repDefault of class eoParam is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParam.h:120: Warning: Member repDescription of class eoParam is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParam.h:121: Warning: Member repShortHand of class eoParam is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParam.h:122: Warning: Member repRequired of class eoParam is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:90: Warning: Member ownedParams of class eoParameterLoader is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:59: Warning: argument `_shortName' of command @param is not found in the argument list of eoParameterLoader::createParam(ValueType _defaultValue, std::string _longName, std::string _description, char _shortHand=0, std::string _section="", bool _required=false)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:59: Warning: The following parameters of eoParameterLoader::createParam(ValueType _defaultValue, std::string _longName, std::string _description, char _shortHand=0, std::string _section="", bool _required=false) are not documented:
+  parameter _shortHand
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParam.h:377: Warning: Member eoParamParamType(std::string _value) of class eoParamParamType is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParam.h:382: Warning: Member printOn(std::ostream &_os) const  of class eoParamParamType is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParam.h:403: Warning: Member readFrom(std::istream &_is) of class eoParamParamType is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParam.h:411: Warning: Member readFrom(std::string &_value) of class eoParamParamType is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoFitness.h:112: Warning: Member fitness_traits of class eoParetoFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoFitness.h:117: Warning: Member eoParetoFitness(std::vector< double > &_v) of class eoParetoFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoFitness.h:182: Warning: Member operator>(const eoParetoFitness< FitnessTraits > &_other) const  of class eoParetoFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoFitness.h:187: Warning: Member operator<=(const eoParetoFitness< FitnessTraits > &_other) const  of class eoParetoFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoFitness.h:192: Warning: Member operator>=(const eoParetoFitness< FitnessTraits > &_other) const  of class eoParetoFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoFitness.h:197: Warning: Member operator==(const eoParetoFitness< FitnessTraits > &_other) const  of class eoParetoFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoFitness.h:209: Warning: Member operator!=(const eoParetoFitness< FitnessTraits > &_other) const  of class eoParetoFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoFitness.h:124: Warning: Member maximizing(unsigned _i) of class eoParetoFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoFitness.h:46: Warning: Member nObjectives() of class eoParetoFitnessTraits is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoFitness.h:47: Warning: Member tol() of class eoParetoFitnessTraits is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoFitness.h:48: Warning: Member maximizing(int which) of class eoParetoFitnessTraits is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoConstraintFitness.h:69: Warning: Member fitness_traits of class eoParetoOneConstraintFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoConstraintFitness.h:76: Warning: Member eoParetoOneConstraintFitness(std::vector< double > &_v) of class eoParetoOneConstraintFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoConstraintFitness.h:88: Warning: Member eoParetoOneConstraintFitness(std::vector< double > &_v, double _c) of class eoParetoOneConstraintFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoConstraintFitness.h:102: Warning: Member feasible() const  of class eoParetoOneConstraintFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoConstraintFitness.h:103: Warning: Member violation() const  of class eoParetoOneConstraintFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoConstraintFitness.h:104: Warning: Member ConstraintValue() const  of class eoParetoOneConstraintFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoConstraintFitness.h:105: Warning: Member ConstraintValue(double _c) of class eoParetoOneConstraintFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoConstraintFitness.h:173: Warning: Member operator>(const eoParetoOneConstraintFitness< FitnessTraits > &_other) const  of class eoParetoOneConstraintFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoConstraintFitness.h:178: Warning: Member operator<=(const eoParetoOneConstraintFitness< FitnessTraits > &_other) const  of class eoParetoOneConstraintFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoConstraintFitness.h:183: Warning: Member operator>=(const eoParetoOneConstraintFitness< FitnessTraits > &_other) const  of class eoParetoOneConstraintFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoConstraintFitness.h:188: Warning: Member operator==(const eoParetoOneConstraintFitness< FitnessTraits > &_other) const  of class eoParetoOneConstraintFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoConstraintFitness.h:200: Warning: Member operator!=(const eoParetoOneConstraintFitness< FitnessTraits > &_other) const  of class eoParetoOneConstraintFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoConstraintFitness.h:100: Warning: Member maximizing(unsigned _i) of class eoParetoOneConstraintFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoConstraintFitness.h:66: Warning: Member constraintValue of class eoParetoOneConstraintFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoRanking.h:48: Warning: Member eoParetoRanking(eoDominanceMap< EOT > &_dominanceMap) of class eoParetoRanking is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoRanking.h:68: Warning: Member dominanceMap of class eoParetoRanking is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:142: Warning: Member ProgramName() of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:235: Warning: Member getStopOnUnknownParam() of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:240: Warning: Member resetPrefix() of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:242: Warning: Member getPrefix() of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:252: Warning: Member MultiMapType of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:260: Warning: Member ShortNameMapType of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:263: Warning: Member LongNameMapType of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:246: Warning: Member doRegisterParam(eoParam &param) const  of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:248: Warning: Member getValue(eoParam &_param) const  of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:250: Warning: Member updateParameters() const  of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:255: Warning: Member params of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:257: Warning: Member programName of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:258: Warning: Member programDescription of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:261: Warning: Member shortNameMap of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:264: Warning: Member longNameMap of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:266: Warning: Member needHelp of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:267: Warning: Member stopOnUnknownParam of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:269: Warning: Member messages of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:271: Warning: Member prefix of class eoParser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPersistent.h:58: Warning: argument `_is' of command @param is not found in the argument list of eoParser::readFrom(std::istream &is)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPersistent.h:58: Warning: The following parameters of eoParser::readFrom(std::istream &is) are not documented:
+  parameter is
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPrintable.h:49: Warning: argument `_os' of command @param is not found in the argument list of eoParser::printOn(std::ostream &os) const
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPrintable.h:49: Warning: The following parameters of eoParser::printOn(std::ostream &os) const are not documented:
+  parameter os
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:194: Warning: argument `_shortName' of command @param is not found in the argument list of eoParser::setORcreateParam(ValueType _defaultValue, std::string _longName, std::string _description, char _shortHand=0, std::string _section="", bool _required=false)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParser.h:194: Warning: The following parameters of eoParser::setORcreateParam(ValueType _defaultValue, std::string _longName, std::string _description, char _shortHand=0, std::string _section="", bool _required=false) are not documented:
+  parameter _shortHand
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTree.h:64: Warning: Member Subtree of class eoParseTree is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTree.h:67: Warning: Member reference of class eoParseTree is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTree.h:68: Warning: Member const_reference of class eoParseTree is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeDepthInit.h:60: Warning: Member EoType of class eoParseTreeDepthInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeDepthInit.h:120: Warning: Member generate(std::list< Node > &sequence, int the_max, int last_terminal=-1) of class eoParseTreeDepthInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeDepthInit.h:162: Warning: Member max_depth of class eoParseTreeDepthInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeDepthInit.h:163: Warning: Member initializor of class eoParseTreeDepthInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeDepthInit.h:164: Warning: Member grow of class eoParseTreeDepthInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeDepthInit.h:165: Warning: Member ramped_half_and_half of class eoParseTreeDepthInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeDepthInit.h:166: Warning: Member current_depth of class eoParseTreeDepthInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeDepthInit.h:62: Warning: Found unknown command `\parm'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeDepthInit.h:62: Warning: The following parameters of eoParseTreeDepthInit< FType, Node >::eoParseTreeDepthInit(unsigned _max_depth, const std::vector< Node > &_initializor, bool _grow=true, bool _ramped_half_and_half=false) are not documented:
+  parameter _max_depth
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoPBILAdditive.h:113: Warning: Member maxBound of class eoPBILAdditive is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoPBILAdditive.h:113: Warning: Member minBound of class eoPBILAdditive is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoPBILAdditive.h:114: Warning: Member LR of class eoPBILAdditive is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoPBILAdditive.h:115: Warning: Member nbBest of class eoPBILAdditive is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoPBILAdditive.h:116: Warning: Member nbWorst of class eoPBILAdditive is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoPBILAdditive.h:117: Warning: Member lrb of class eoPBILAdditive is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoPBILAdditive.h:117: Warning: Member lrw of class eoPBILAdditive is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoPBILDistrib.h:92: Warning: Member size() of class eoPBILDistrib is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoPBILDistrib.h:97: Warning: Member genomeSize of class eoPBILDistrib is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoPBILOrg.h:74: Warning: Member LR of class eoPBILOrg is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoPBILOrg.h:75: Warning: Member maxBound of class eoPBILOrg is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoPBILOrg.h:75: Warning: Member minBound of class eoPBILOrg is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPerf2Worth.h:100: Warning: Member resize(eoPop< EOT > &_pop, unsigned sz) of class eoPerf2Worth is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:207: Warning: Member operator()(eoPop< EOT > &_pop) of class eoPerf2Worth is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPerf2Worth.h:87: Warning: Member compare_worth(const std::vector< WorthT > &_worths) of class eoPerf2Worth::compare_worth is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPerf2Worth.h:89: Warning: Member operator()(unsigned a, unsigned b) const  of class eoPerf2Worth::compare_worth is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPerf2Worth.h:95: Warning: Member worths of class eoPerf2Worth::compare_worth is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPerf2Worth.h:117: Warning: Member eoPerf2WorthCached(std::string _description="Worths") of class eoPerf2WorthCached is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPerf2Worth.h:216: Warning: Member resize(eoPop< EOT > &_pop, unsigned sz) of class eoPerf2WorthCached is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPerf2Worth.h:223: Warning: Member fitness_cache of class eoPerf2WorthCached is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPerf2Worth.h:203: Warning: Member compare_worth(const std::vector< WorthT > &_worths) of class eoPerf2WorthCached::compare_worth is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPerf2Worth.h:206: Warning: Member operator()(unsigned a, unsigned b) const  of class eoPerf2WorthCached::compare_worth is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPerf2Worth.h:212: Warning: Member worths of class eoPerf2WorthCached::compare_worth is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoMergeReduce.h:79: Warning: Member plus of class eoPlusReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoMergeReduce.h:80: Warning: Member truncate of class eoPlusReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeOp.h:151: Warning: Member EoType of class eoPointMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeOp.h:194: Warning: Member initializor of class eoPointMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPop.h:65: Warning: Member Fitness of class eoPop is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:222: Warning: Member fitness_traits of class eoPop is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPop.h:293: Warning: Member invalidate() of class eoPop is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:227: Warning: Member sort() of class eoPop is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:234: Warning: Member scale() of class eoPop is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:251: Warning: Member setPerf2Worth(eoPerf2Worth< EOT > &_p2w) of class eoPop is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:256: Warning: Member setPerf2Worth(eoPerf2Worth< EOT > *_p2w) of class eoPop is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:260: Warning: Member getPerf2Worth() of class eoPop is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:263: Warning: Member swap(eoPop< EOT > &other) of class eoPop is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/test/fitness_traits.cpp:273: Warning: Member p2w of class eoPop is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPop.h:85: Warning: argument `_popSize' of command @param is not found in the argument list of eoPop< EOT >::append(unsigned _newPopSize, eoInit< EOT > &_chromInit)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPop.h:85: Warning: The following parameters of eoPop< EOT >::append(unsigned _newPopSize, eoInit< EOT > &_chromInit) are not documented:
+  parameter _newPopSize
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPop.h:126: Warning: Member operator()(const EOT *a, const EOT *b) const  of class eoPop::Cmp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPop.h:122: Warning: Member operator()(const EOT &eot) of class eoPop::Ref is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPopEvalFunc.h:72: Warning: Member eval of class eoPopLoopEval is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoPopStat.h:83: Warning: Member combien of class eoPopStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPopulator.h:112: Warning: Member position_type of class eoPopulator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPopulator.h:44: Warning: Member eoPopulator(const eoPop< EOT > &_src, eoPop< EOT > &_dest) of class eoPopulator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPopulator.h:127: Warning: Member dest of class eoPopulator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPopulator.h:128: Warning: Member current of class eoPopulator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPopulator.h:129: Warning: Member src of class eoPopulator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPopulator.h:133: Warning: Member get_next() of class eoPopulator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCounter.h:46: Warning: Member eoProcedureCounter(Procedure &_proc, std::string _name="proc_counter") of class eoProcedureCounter is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCounter.h:76: Warning: Member proc of class eoProcedureCounter is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalCombinedOp.h:119: Warning: Member className() const  of class eoPropCombinedBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalCombinedOp.h:122: Warning: Member add(eoBinOp< EOT > &_op, const double _rate, bool _verbose=false) of class eoPropCombinedBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalCombinedOp.h:144: Warning: Member ops of class eoPropCombinedBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalCombinedOp.h:145: Warning: Member rates of class eoPropCombinedBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalCombinedOp.h:68: Warning: Member className() const  of class eoPropCombinedMonOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalCombinedOp.h:71: Warning: Member add(eoMonOp< EOT > &_op, const double _rate, bool _verbose=false) of class eoPropCombinedMonOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalCombinedOp.h:81: Warning: Member printOn(std::ostream &_os) of class eoPropCombinedMonOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalCombinedOp.h:97: Warning: Member ops of class eoPropCombinedMonOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalCombinedOp.h:98: Warning: Member rates of class eoPropCombinedMonOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalCombinedOp.h:173: Warning: Member className() const  of class eoPropCombinedQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalCombinedOp.h:177: Warning: Member add(eoQuadOp< EOT > &_op, const double _rate, bool _verbose=false) of class eoPropCombinedQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalCombinedOp.h:187: Warning: Member printOn(std::ostream &_os) of class eoPropCombinedQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalCombinedOp.h:203: Warning: Member ops of class eoPropCombinedQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalCombinedOp.h:204: Warning: Member rates of class eoPropCombinedQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPropGAGenOp.h:73: Warning: Member className() const  of class eoPropGAGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPropGAGenOp.h:77: Warning: Member wClone of class eoPropGAGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPropGAGenOp.h:78: Warning: Member cross of class eoPropGAGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPropGAGenOp.h:79: Warning: Member wCross of class eoPropGAGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPropGAGenOp.h:80: Warning: Member mut of class eoPropGAGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPropGAGenOp.h:81: Warning: Member wMut of class eoPropGAGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPropGAGenOp.h:82: Warning: Member propOp of class eoPropGAGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPropGAGenOp.h:83: Warning: Member monClone of class eoPropGAGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOpContainer.h:154: Warning: Member className() const  of class eoProportionalOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalSelect.h:81: Warning: Member FitVec of class eoProportionalSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoProportionalSelect.h:82: Warning: Member cumulative of class eoProportionalSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOp.h:165: Warning: Member quadOp of class eoQuad2BinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCloneOps.h:74: Warning: Member className() const  of class eoQuadCloneOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenOp.h:160: Warning: Member eoQuadGenOp(eoQuadOp< EOT > &_op) of class eoQuadGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenOp.h:177: Warning: Member className() const  of class eoQuadGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenOp.h:180: Warning: Member op of class eoQuadGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOp.h:137: Warning: Member className() const  of class eoQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:93: Warning: Member random_generator(T _max, eoRng &_rng=rng) of class random_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:96: Warning: Member random_generator(T _min, T _max, eoRng &_rng=rng) of class random_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:101: Warning: Member operator()(void) of class random_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:112: Warning: Member operator()(void) of class random_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:104: Warning: Member minim of class random_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:105: Warning: Member range of class random_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:106: Warning: Member random of class random_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/gen/NodeSelector.h:51: Warning: Member select_node(Sym sym) const  of class RandomNodeSelector is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceSplit.h:156: Warning: Member howMany of class eoRandomSplit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceSplit.h:157: Warning: Member returnEliminated of class eoRandomSplit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoRanking.h:49: Warning: Member eoRanking(double _p=2.0, double _e=1.0) of class eoRanking is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoRanking.h:53: Warning: Member lookfor(const EOT *_eo, const eoPop< EOT > &_pop) of class eoRanking is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoRanking.h:104: Warning: Member pressure of class eoRanking is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoRanking.h:105: Warning: Member exponent of class eoRanking is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoRankingSelect.h:52: Warning: Member ranking of class eoRankingSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoReal.h:41: Warning: The following parameters of eoReal< FitT >::eoReal(unsigned size=0, double value=0.0) are not documented:
+  parameter value
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:113: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:109: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:117: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:122: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:498: Warning: Member repMaximum of class eoRealAboveBound is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealVectorBounds.h:118: Warning: Member isMinBounded(unsigned _i) of class eoRealBaseVectorBounds is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealVectorBounds.h:121: Warning: Member isMaxBounded(unsigned _i) of class eoRealBaseVectorBounds is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealVectorBounds.h:175: Warning: Member maximum(unsigned _i) of class eoRealBaseVectorBounds is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealVectorBounds.h:176: Warning: Member range(unsigned _i) of class eoRealBaseVectorBounds is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:109: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:113: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:117: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:122: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:403: Warning: Member repMinimum of class eoRealBelowBound is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:109: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:113: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:117: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:122: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealInitBounded.h:59: Warning: Member size() of class eoRealInitBounded is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealInitBounded.h:62: Warning: Member bounds of class eoRealInitBounded is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:109: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:113: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:117: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:122: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:307: Warning: Member repMinimum of class eoRealInterval is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:308: Warning: Member repMaximum of class eoRealInterval is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:309: Warning: Member repRange of class eoRealInterval is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:109: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:113: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:117: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealBounds.h:122: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealVectorBounds.h:344: Warning: Member operator=(const eoRealVectorBounds &) of class eoRealVectorBounds is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealVectorBounds.h:341: Warning: Member factor of class eoRealVectorBounds is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealVectorBounds.h:342: Warning: Member ownedBounds of class eoRealVectorBounds is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealVectorBounds.h:306: Warning: argument `_is' of command @param is not found in the argument list of eoRealVectorBounds::readFrom(std::string _s)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealVectorBounds.h:306: Warning: The following parameters of eoRealVectorBounds::readFrom(std::string _s) are not documented:
+  parameter _s
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealVectorBounds.h:372: Warning: Member isMinBounded(unsigned) of class eoRealVectorNoBounds is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealVectorBounds.h:373: Warning: Member isMaxBounded(unsigned) of class eoRealVectorNoBounds is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealVectorBounds.h:390: Warning: Member maximum(unsigned) of class eoRealVectorNoBounds is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRealVectorBounds.h:394: Warning: Member range(unsigned) of class eoRealVectorNoBounds is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMerge.h:58: Warning: Member eoReduceMerge(eoReduce< EOT > &_reduce, eoMerge< EOT > &_merge) of class eoReduceMerge is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMerge.h:69: Warning: Member reduce of class eoReduceMerge is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMerge.h:70: Warning: Member merge of class eoReduceMerge is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMerge.h:44: Warning: Found unknown command `\classes'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMergeReduce.h:66: Warning: Member eoReduceMergeReduce(eoHowMany _howManyElite, bool _strongElitism, eoHowMany _howManyReducedParents, eoReduce< EOT > &_reduceParents, eoHowMany _howManyReducedOffspring, eoReduce< EOT > &_reduceOffspring, eoReduce< EOT > &_reduceFinal) of class eoReduceMergeReduce is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMergeReduce.h:133: Warning: Member howManyElite of class eoReduceMergeReduce is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMergeReduce.h:134: Warning: Member strongElitism of class eoReduceMergeReduce is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMergeReduce.h:135: Warning: Member howManyReducedParents of class eoReduceMergeReduce is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMergeReduce.h:136: Warning: Member howManyReducedOffspring of class eoReduceMergeReduce is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMergeReduce.h:138: Warning: Member reduceParents of class eoReduceMergeReduce is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMergeReduce.h:139: Warning: Member reduceOffspring of class eoReduceMergeReduce is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMergeReduce.h:140: Warning: Member reduceFinal of class eoReduceMergeReduce is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReplacement.h:64: Warning: Found unknown command `\classes'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRndGenerators.h:49: Warning: Member AtomType of class eoRndGenerator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRNG.h:297: Warning: Member restart(void) of class eoRng is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRNG.h:346: Warning: Member initialize(uint32_t seed) of class eoRng is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRNG.h:351: Warning: Member next of class eoRng is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRNG.h:353: Warning: Member left of class eoRng is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRNG.h:356: Warning: Member cached of class eoRng is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRNG.h:358: Warning: Member cacheValue of class eoRng is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRNG.h:360: Warning: Member N of class eoRng is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRNG.h:362: Warning: Member M of class eoRng is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectFromWorth.h:173: Warning: Member worthIterator of class eoRouletteWorthSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectFromWorth.h:179: Warning: Member eoRouletteWorthSelect(eoPerf2Worth< EOT, WorthT > &_perf2Worth) of class eoRouletteWorthSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectFromWorth.h:220: Warning: Member total of class eoRouletteWorthSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitness.h:48: Warning: Member eoScalarFitness(const eoScalarFitness &other) of class eoScalarFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitness.h:49: Warning: Member eoScalarFitness(const ScalarType &v) of class eoScalarFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitness.h:52: Warning: Member operator=(const eoScalarFitness &other) of class eoScalarFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitness.h:54: Warning: Member operator=(const ScalarType &v) of class eoScalarFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitness.h:56: Warning: Member operator ScalarType(void) const  of class eoScalarFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitness.h:63: Warning: Member operator>(const eoScalarFitness< ScalarType, Compare > &y) const  of class eoScalarFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitness.h:65: Warning: Member operator<=(const eoScalarFitness< ScalarType, Compare > &y) const  of class eoScalarFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitness.h:67: Warning: Member operator>=(const eoScalarFitness< ScalarType, Compare > &y) const  of class eoScalarFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitness.h:71: Warning: Member value of class eoScalarFitness is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:97: Warning: Member baseVector of class eoScalarFitnessAssembled is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:98: Warning: Member size_type of class eoScalarFitnessAssembled is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:111: Warning: Member eoScalarFitnessAssembled(size_type _n, const ScalarType &_val, const std::string &_descr="Unnamed variable") of class eoScalarFitnessAssembled is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:121: Warning: Member eoScalarFitnessAssembled(const eoScalarFitnessAssembled &other) of class eoScalarFitnessAssembled is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:123: Warning: Member operator=(const eoScalarFitnessAssembled &other) of class eoScalarFitnessAssembled is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:135: Warning: Member eoScalarFitnessAssembled(const ScalarType &v) of class eoScalarFitnessAssembled is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:137: Warning: Member operator=(const ScalarType &v) of class eoScalarFitnessAssembled is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:199: Warning: Member operator ScalarType(void) const  of class eoScalarFitnessAssembled is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:213: Warning: Member operator<(const eoScalarFitnessAssembled &other) const  of class eoScalarFitnessAssembled is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:221: Warning: Member operator>(const eoScalarFitnessAssembled< ScalarType, Compare, FitnessTraits > &y) const  of class eoScalarFitnessAssembled is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:224: Warning: Member operator<=(const eoScalarFitnessAssembled< ScalarType, Compare, FitnessTraits > &y) const  of class eoScalarFitnessAssembled is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:227: Warning: Member operator>=(const eoScalarFitnessAssembled< ScalarType, Compare, FitnessTraits > &y) const  of class eoScalarFitnessAssembled is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:47: Warning: Member size_type of class eoScalarFitnessAssembledTraits is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:49: Warning: Member setDescription(size_type _idx, std::string _descr) of class eoScalarFitnessAssembledTraits is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:58: Warning: Member getDescription(size_type _idx) of class eoScalarFitnessAssembledTraits is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:65: Warning: Member resize(size_type _n, const std::string &_descr) of class eoScalarFitnessAssembledTraits is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:69: Warning: Member size() of class eoScalarFitnessAssembledTraits is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:71: Warning: Member getDescriptionVector() of class eoScalarFitnessAssembledTraits is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoScalarFitnessAssembled.h:74: Warning: Member TermDescriptions of class eoScalarFitnessAssembledTraits is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoScalarFitnessStat.h:47: Warning: Member eoScalarFitnessStat(std::string _description="FitnessES", eoRealVectorBounds &_bounds=eoDummyVectorNoBounds) of class eoScalarFitnessStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoScalarFitnessStat.h:60: Warning: Member range of class eoScalarFitnessStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:174: Warning: Member fitness_type of class eoSecondMomentStats is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:176: Warning: Member SquarePair of class eoSecondMomentStats is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:180: Warning: Member eoSecondMomentStats(std::string _description="Average & Stdev") of class eoSecondMomentStats is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:200: Warning: Member className(void) const  of class eoSecondMomentStats is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:183: Warning: Member sumOfSquares(SquarePair _sq, const EOT &_eo) of class eoSecondMomentStats is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:326: Warning: Member bounds of class eoSegmentCrossover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:327: Warning: Member alpha of class eoSegmentCrossover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:328: Warning: Member range of class eoSegmentCrossover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:250: Warning: argument `_alphaMin' of command @param is not found in the argument list of eoSegmentCrossover< EOT >::eoSegmentCrossover(const double &_alpha=0.0)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:250: Warning: The following parameters of eoSegmentCrossover< EOT >::eoSegmentCrossover(const double &_alpha=0.0) are not documented:
+  parameter _alpha
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:262: Warning: argument `_alphaMin' of command @param is not found in the argument list of eoSegmentCrossover< EOT >::eoSegmentCrossover(eoRealVectorBounds &_bounds, const double &_alpha=0.0)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:262: Warning: The following parameters of eoSegmentCrossover< EOT >::eoSegmentCrossover(eoRealVectorBounds &_bounds, const double &_alpha=0.0) are not documented:
+  parameter _alpha
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenOp.h:137: Warning: Member eoSelBinGenOp(eoBinOp< EOT > &_op, eoSelectOne< EOT > &_sel) of class eoSelBinGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenOp.h:146: Warning: Member className() const  of class eoSelBinGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenOp.h:149: Warning: Member op of class eoSelBinGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoGenOp.h:150: Warning: Member sel of class eoSelBinGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectFromWorth.h:58: Warning: Member eoSelectFromWorth(eoPerf2Worth< EOT, WorthType > &_perf2Worth) of class eoSelectFromWorth is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectFromWorth.h:78: Warning: Member check_sync(unsigned index, const EOT &_eo) of class eoSelectFromWorth is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectFromWorth.h:74: Warning: Member perf2Worth of class eoSelectFromWorth is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectFromWorth.h:77: Warning: Member fitness of class eoSelectFromWorth is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPopulator.h:192: Warning: Member eoSelectivePopulator(const eoPop< EOT > &_pop, eoPop< EOT > &_dest, eoSelectOne< EOT > &_sel) of class eoSelectivePopulator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPopulator.h:202: Warning: Member sel of class eoSelectivePopulator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectMany.h:55: Warning: Member eoSelectMany(eoSelectOne< EOT > &_select, eoHowMany _howMany) of class eoSelectMany is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectMany.h:76: Warning: Member select of class eoSelectMany is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectMany.h:77: Warning: Member howMany of class eoSelectMany is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectNumber.h:68: Warning: Member select of class eoSelectNumber is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectNumber.h:69: Warning: Member nb_to_select of class eoSelectNumber is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectPerc.h:68: Warning: Member select of class eoSelectPerc is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectPerc.h:69: Warning: Member rate of class eoSelectPerc is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoBreed.h:62: Warning: Member eoSelectTransform(eoSelect< EOT > &_select, eoTransform< EOT > &_transform) of class eoSelectTransform is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoBreed.h:71: Warning: Member select of class eoSelectTransform is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoBreed.h:72: Warning: Member transform of class eoSelectTransform is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPopulator.h:159: Warning: Member eoSeqPopulator(const eoPop< EOT > &_pop, eoPop< EOT > &_dest) of class eoSeqPopulator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPopulator.h:176: Warning: Member current of class eoSeqPopulator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOpContainer.h:95: Warning: Member position_type of class eoSequentialOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOpContainer.h:123: Warning: Member className() const  of class eoSequentialOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOpContainer.h:127: Warning: Member to_apply of class eoSequentialOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoOpContainer.h:128: Warning: Member production of class eoSequentialOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSequentialSelect.h:81: Warning: Member ordered of class eoSequentialSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSequentialSelect.h:82: Warning: Member current of class eoSequentialSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSequentialSelect.h:83: Warning: Member eoPters of class eoSequentialSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGA.h:67: Warning: Member eoSGA(eoSelectOne< EOT > &_select, eoQuadOp< EOT > &_cross, float _crate, eoMonOp< EOT > &_mutate, float _mrate, eoEvalFunc< EOT > &_eval, eoContinue< EOT > &_cont) of class eoSGA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGA.h:109: Warning: Member cont of class eoSGA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGA.h:112: Warning: Member mutationRate of class eoSGA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGA.h:114: Warning: Member cross of class eoSGA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGA.h:115: Warning: Member crossoverRate of class eoSGA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGA.h:116: Warning: Member select of class eoSGA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGA.h:117: Warning: Member eval of class eoSGA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGAGenOp.h:77: Warning: Member className() const  of class eoSGAGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGAGenOp.h:81: Warning: Member cross of class eoSGAGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGAGenOp.h:82: Warning: Member pCross of class eoSGAGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGAGenOp.h:83: Warning: Member mut of class eoSGAGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGAGenOp.h:84: Warning: Member pMut of class eoSGAGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGAGenOp.h:85: Warning: Member propOp of class eoSGAGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGAGenOp.h:86: Warning: Member quadClone of class eoSGAGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGAGenOp.h:87: Warning: Member op of class eoSGAGenOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGATransform.h:86: Warning: Member cross of class eoSGATransform is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGATransform.h:87: Warning: Member crossoverProba of class eoSGATransform is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGATransform.h:88: Warning: Member mutate of class eoSGATransform is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGATransform.h:89: Warning: Member mutationProba of class eoSGATransform is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGATransform.h:58: Warning: argument `pop' of command @param is not found in the argument list of eoSGATransform< EOT >::operator()(eoPop< EOT > &_pop)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSGATransform.h:58: Warning: The following parameters of eoSGATransform< EOT >::operator()(eoPop< EOT > &_pop) are not documented:
+  parameter _pop
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSharing.h:90: Warning: Member eoSharing(double _nicheSize, eoDistance< EOT > &_dist) of class eoSharing is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSharing.h:131: Warning: Member nicheSize of class eoSharing is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSharing.h:132: Warning: Member dist of class eoSharing is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSharingSelect.h:53: Warning: Member sharing of class eoSharingSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSharingSelect.h:46: Warning: argument `_s' of command @param is not found in the argument list of eoSharingSelect< EOT >::eoSharingSelect(double _sigma, eoDistance< EOT > &_dist)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSharingSelect.h:46: Warning: The following parameters of eoSharingSelect< EOT >::eoSharingSelect(double _sigma, eoDistance< EOT > &_dist) are not documented:
+  parameter _sigma
+  parameter _dist
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSimpleEDA.h:93: Warning: Member update of class eoSimpleEDA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSimpleEDA.h:95: Warning: Member eval of class eoSimpleEDA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSimpleEDA.h:97: Warning: Member popSize of class eoSimpleEDA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSimpleEDA.h:99: Warning: Member continuator of class eoSimpleEDA is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoPopStat.h:130: Warning: Member combien of class eoSortedPopStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:92: Warning: Member eoSortedStat(ParamType _value, std::string _desc) of class eoSortedStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:93: Warning: Member className(void) const  of class eoSortedStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:79: Warning: Member lastCall(const std::vector< const EOT * > &) of class eoSortedStatBase is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:80: Warning: Member className(void) const  of class eoSortedStatBase is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMerge.h:95: Warning: Member eoSSGADetTournamentReplacement(unsigned _t_size) of class eoSSGADetTournamentReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMerge.h:98: Warning: Member truncate of class eoSSGADetTournamentReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMerge.h:99: Warning: Member plus of class eoSSGADetTournamentReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMerge.h:112: Warning: Member eoSSGAStochTournamentReplacement(double _t_rate) of class eoSSGAStochTournamentReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMerge.h:115: Warning: Member truncate of class eoSSGAStochTournamentReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMerge.h:116: Warning: Member plus of class eoSSGAStochTournamentReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMerge.h:83: Warning: Member truncate of class eoSSGAWorseReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceMerge.h:84: Warning: Member plus of class eoSSGAWorseReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:64: Warning: Member eoStat(T _value, std::string _description) of class eoStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:67: Warning: Member className(void) const  of class eoStat is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:48: Warning: Member lastCall(const eoPop< EOT > &) of class eoStatBase is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStat.h:49: Warning: Member className(void) const  of class eoStatBase is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoState.h:88: Warning: Member getCommentString(void) const  of class eoState is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoState.h:122: Warning: Member ObjectMap of class eoState is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoState.h:119: Warning: Member createObjectName(eoObject *obj) of class eoState is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoState.h:130: Warning: Member eoState(const eoState &) of class eoState is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoState.h:131: Warning: Member operator=(const eoState &) of class eoState is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoState.h:124: Warning: Member objectMap of class eoState is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoState.h:126: Warning: Member creationOrder of class eoState is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoState.h:127: Warning: Member ownedObjects of class eoState is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoState.h:85: Warning: Member loading_error(std::string huh="Error while loading") of class eoState::loading_error is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeOp.h:134: Warning: Member EoType of class eoStBranchMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeOp.h:185: Warning: Member max_length of class eoStBranchMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeOp.h:186: Warning: Member initializer of class eoStBranchMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStdoutMonitor.h:42: Warning: Member eoStdoutMonitor(bool _verbose=true, std::string _delim="\t") of class eoStdoutMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStdoutMonitor.h:45: Warning: Member className(void) const  of class eoStdoutMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStdoutMonitor.h:47: Warning: Member verbose of class eoStdoutMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStdoutMonitor.h:48: Warning: Member delim of class eoStdoutMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoStdoutMonitor.h:49: Warning: Member firsttime of class eoStdoutMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSteadyFitContinue.h:38: Warning: Member Fitness of class eoSteadyFitContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSteadyFitContinue.h:100: Warning: Member steadyGenerations() of class eoSteadyFitContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSteadyFitContinue.h:102: Warning: Member className(void) const  of class eoSteadyFitContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSteadyFitContinue.h:104: Warning: Member repMinGenerations of class eoSteadyFitContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSteadyFitContinue.h:105: Warning: Member repSteadyGenerations of class eoSteadyFitContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSteadyFitContinue.h:106: Warning: Member steadyState of class eoSteadyFitContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSteadyFitContinue.h:107: Warning: Member thisGenerationPlaceHolder of class eoSteadyFitContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSteadyFitContinue.h:108: Warning: Member thisGeneration of class eoSteadyFitContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSteadyFitContinue.h:109: Warning: Member lastImprovement of class eoSteadyFitContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSteadyFitContinue.h:110: Warning: Member bestSoFar of class eoSteadyFitContinue is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeOp.h:262: Warning: Member EoType of class eoStHoistMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeOp.h:310: Warning: Member max_length of class eoStHoistMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeOp.h:311: Warning: Member initializer of class eoStHoistMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSTLFunctor.h:104: Warning: Member eoSTLBF(eoUF< A1, R > &_f) of class eoSTLBF is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSTLFunctor.h:107: Warning: Member operator()(A1 a1, A2 a2) of class eoSTLBF is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSTLFunctor.h:113: Warning: Member f of class eoSTLBF is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSTLFunctor.h:45: Warning: Member result_type of class eoSTLF is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSTLFunctor.h:47: Warning: Member eoSTLF(eoF< R > &_f) of class eoSTLF is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSTLFunctor.h:50: Warning: Member operator()(void) of class eoSTLF is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSTLFunctor.h:56: Warning: Member f of class eoSTLF is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSTLFunctor.h:81: Warning: Member eoSTLUF(eoUF< A1, R > &_f) of class eoSTLUF is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSTLFunctor.h:84: Warning: Member operator()(A1 a) of class eoSTLUF is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSTLFunctor.h:89: Warning: Member f of class eoSTLUF is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoStochasticUniversalSelect.h:105: Warning: Member IndexVec of class eoStochasticUniversalSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoStochasticUniversalSelect.h:106: Warning: Member indices of class eoStochasticUniversalSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoStochTournamentSelect.h:48: Warning: Member eoStochTournamentSelect(double _Trate=1.0) of class eoStochTournamentSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoStochTournamentSelect.h:67: Warning: Member Trate of class eoStochTournamentSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduce.h:241: Warning: Member eoStochTournamentTruncate(double _t_rate) of class eoStochTournamentTruncate is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduce.h:283: Warning: Member t_rate of class eoStochTournamentTruncate is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceSplit.h:316: Warning: Member t_rate of class eoStochTournamentTruncateSplit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceSplit.h:317: Warning: Member howMany of class eoStochTournamentTruncateSplit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceSplit.h:318: Warning: Member returnEliminated of class eoStochTournamentTruncateSplit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectFromWorth.h:134: Warning: Member worthIterator of class eoStochTournamentWorthSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectFromWorth.h:139: Warning: Member eoStochTournamentWorthSelect(eoPerf2Worth< EOT, WorthT > &_perf2Worth, double _tRate) of class eoStochTournamentWorthSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSelectFromWorth.h:160: Warning: Member tRate of class eoStochTournamentWorthSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeDepthInit.h:65: Warning: Member EoType of class eoStParseTreeDepthInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeDepthInit.h:140: Warning: Member generate(std::list< Node > &sequence, int the_max, int request_type) of class eoStParseTreeDepthInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeDepthInit.h:183: Warning: Member max_depth of class eoStParseTreeDepthInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeDepthInit.h:184: Warning: Member node of class eoStParseTreeDepthInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeDepthInit.h:186: Warning: Member return_type of class eoStParseTreeDepthInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeDepthInit.h:187: Warning: Member grow of class eoStParseTreeDepthInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeDepthInit.h:67: Warning: Found unknown command `\parm'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeDepthInit.h:67: Warning: argument `_initializor' of command @param is not found in the argument list of eoStParseTreeDepthInit< FType, Node >::eoStParseTreeDepthInit(unsigned _max_depth, const std::vector< Node > &_node, const int &_return_type, bool _grow=true)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeDepthInit.h:67: Warning: The following parameters of eoStParseTreeDepthInit< FType, Node >::eoStParseTreeDepthInit(unsigned _max_depth, const std::vector< Node > &_node, const int &_return_type, bool _grow=true) are not documented:
+  parameter _max_depth
+  parameter _node
+  parameter _return_type
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeOp.h:199: Warning: Member EoType of class eoStPointMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeOp.h:249: Warning: Member node of class eoStPointMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeOp.h:201: Warning: argument `_initializor' of command @param is not found in the argument list of eoStPointMutation< FType, Node >::eoStPointMutation(std::vector< Node > &_node)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeOp.h:201: Warning: The following parameters of eoStPointMutation< FType, Node >::eoStPointMutation(std::vector< Node > &_node) are not documented:
+  parameter _node
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/other/eoString.h:46: Warning: Member Type of class eoString is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/other/eoString.h:47: Warning: Member AtomType of class eoString is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/other/eoString.h:48: Warning: Member ContainerType of class eoString is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeOp.h:59: Warning: Member EoType of class eoStSubtreeXOver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoStParseTreeOp.h:122: Warning: Member max_length of class eoStSubtreeXOver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeOp.h:45: Warning: Member EoType of class eoSubtreeXOver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/eoParseTreeOp.h:79: Warning: Member max_length of class eoSubtreeXOver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSurviveAndDie.h:59: Warning: Member eoSurviveAndDie(double _survive, double _die, bool _interpret_as_rate=true) of class eoSurviveAndDie is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSurviveAndDie.h:62: Warning: Member howmanySurvive of class eoSurviveAndDie is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoSurviveAndDie.h:63: Warning: Member howmanyDie of class eoSurviveAndDie is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eo_interface/eoSymInit.h:28: Warning: Member builder of class eoSymInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eo_interface/eoSymInit.h:30: Warning: Member own_grow_prob of class eoSymInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eo_interface/eoSymInit.h:31: Warning: Member own_max_depth of class eoSymInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eo_interface/eoSymInit.h:34: Warning: Member grow_prob of class eoSymInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/mathsym/eo_interface/eoSymInit.h:35: Warning: Member max_depth of class eoSymInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/pickle.h:36: Warning: Member print_to_string(const T &t) of class T_pickle_suite is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/pickle.h:45: Warning: Member getstate(const T &t) of class T_pickle_suite is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/pyeo/pickle.h:52: Warning: Member setstate(T &t, boost::python::tuple pickled) of class T_pickle_suite is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoTimeCounter.h:62: Warning: Member utime of class eoTimeCounter is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdatable.h:72: Warning: Member eoTimedDynUpdate(eoUpdatable &_toUpdate, time_t _interval) of class eoTimedDynUpdate is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdatable.h:85: Warning: Member interval of class eoTimedDynUpdate is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdatable.h:86: Warning: Member last_time of class eoTimedDynUpdate is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdatable.h:87: Warning: Member first_time of class eoTimedDynUpdate is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoTimedMonitor.h:43: Warning: Member eoTimedMonitor(int seconds_) of class eoTimedMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoTimedMonitor.h:67: Warning: Member add(eoMonitor &mon) of class eoTimedMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoTimedMonitor.h:69: Warning: Member className(void) const  of class eoTimedMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoTimedMonitor.h:71: Warning: Member last_tick of class eoTimedMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoTimedMonitor.h:72: Warning: Member seconds of class eoTimedMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoTimedMonitor.h:73: Warning: Member monitors of class eoTimedMonitor is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:109: Warning: Member eoTimedStateSaver(time_t _interval, const eoState &_state, std::string _prefix="state", std::string _extension="sav") of class eoTimedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:113: Warning: Member className(void) const  of class eoTimedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:115: Warning: Member state of class eoTimedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:117: Warning: Member interval of class eoTimedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:118: Warning: Member last_time of class eoTimedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:119: Warning: Member first_time of class eoTimedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:120: Warning: Member prefix of class eoTimedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:121: Warning: Member extension of class eoTimedStateSaver is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoPopEvalFunc.h:97: Warning: Member eval of class eoTimeVaryingLoopEval is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoTruncatedSelectMany.h:69: Warning: Member eoTruncatedSelectMany(eoSelectOne< EOT > &_select, eoHowMany _howManyGenitors, eoHowMany _howManyFertile) of class eoTruncatedSelectMany is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoTruncatedSelectMany.h:112: Warning: Member select of class eoTruncatedSelectMany is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoTruncatedSelectMany.h:113: Warning: Member howManyGenitors of class eoTruncatedSelectMany is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoTruncatedSelectMany.h:114: Warning: Member howManyFertile of class eoTruncatedSelectMany is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoTruncatedSelectOne.h:105: Warning: Member select of class eoTruncatedSelectOne is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoTruncatedSelectOne.h:106: Warning: Member howManyFertile of class eoTruncatedSelectOne is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoTruncatedSelectOne.h:107: Warning: Member tmpPop of class eoTruncatedSelectOne is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoTruncatedSelectOne.h:108: Warning: Member actualPop of class eoTruncatedSelectOne is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoTruncatedSelectOne.h:92: Warning: argument `_source' of command @param is not found in the argument list of eoTruncatedSelectOne< EOT >::operator()(const eoPop< EOT > &_pop)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoTruncatedSelectOne.h:92: Warning: argument `_dest' of command @param is not found in the argument list of eoTruncatedSelectOne< EOT >::operator()(const eoPop< EOT > &_pop)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoTruncatedSelectOne.h:92: Warning: The following parameters of eoTruncatedSelectOne< EOT >::operator()(const eoPop< EOT > &_pop) are not documented:
+  parameter _pop
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceSplit.h:79: Warning: Member howMany of class eoTruncateSplit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReduceSplit.h:80: Warning: Member returnEliminated of class eoTruncateSplit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoTruncSelect.h:69: Warning: Member select of class eoTruncSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoTruncSelect.h:70: Warning: Member howMany of class eoTruncSelect is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoBitOp.h:310: Warning: Member preference of class eoUBitXover is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/ga/eoBitOp.h:288: Warning: Found unknown command `\std'
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:125: Warning: Member UF_random_generator(eoRng &_rng=rng) of class UF_random_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:127: Warning: Member operator()(T _t) of class UF_random_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:130: Warning: Member random of class UF_random_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCounter.h:99: Warning: Member eoUnaryFunctorCounter(UnaryFunctor &_func, std::string _name="uf_counter") of class eoUnaryFunctorCounter is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoCounter.h:130: Warning: Member func of class eoUnaryFunctorCounter is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:50: Warning: Member uniform_generator(T _max=T(1.0), eoRng &_rng=rng) of class uniform_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:53: Warning: Member uniform_generator(T _min, T _max, eoRng &_rng=rng) of class uniform_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:58: Warning: Member operator()(void) of class uniform_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:61: Warning: Member minim of class uniform_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:62: Warning: Member range of class uniform_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/rnd_generators.h:63: Warning: Member uniform of class uniform_generator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:55: Warning: Member eoUniformAtomExchange(double _rate=0.5) of class eoUniformAtomExchange is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:78: Warning: Member rate of class eoUniformAtomExchange is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:79: Warning: Member mask of class eoUniformAtomExchange is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthMutation.h:102: Warning: Member className() const  of class eoUniformGeneChooser is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRndGenerators.h:72: Warning: Member eoUniformGenerator(T _max=T(1.0), eoRng &_rng=rng) of class eoUniformGenerator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRndGenerators.h:75: Warning: Member eoUniformGenerator(T _min, T _max, eoRng &_rng=rng) of class eoUniformGenerator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRndGenerators.h:87: Warning: Member minim of class eoUniformGenerator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRndGenerators.h:88: Warning: Member range of class eoUniformGenerator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoRndGenerators.h:89: Warning: Member uniform of class eoUniformGenerator is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUniformInit.h:102: Warning: Member operator()(bool &_b) of class eoUniformInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUniformInit.h:93: Warning: Member minim of class eoUniformInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUniformInit.h:94: Warning: Member range of class eoUniformInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUniformInit.h:95: Warning: Member uniform of class eoUniformInit is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:132: Warning: Member homogeneous of class eoUniformMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:133: Warning: Member bounds of class eoUniformMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:134: Warning: Member epsilon of class eoUniformMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/es/eoRealOp.h:135: Warning: Member p_change of class eoUniformMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdatable.h:43: Warning: Member update()=0 of class eoUpdatable is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:42: Warning: Member lastCall() of class eoUpdater is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoUpdater.h:43: Warning: Member className(void) const  of class eoUpdater is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParam.h:195: Warning: Member repValue of class eoValueParam is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParam.h:143: Warning: argument `_shortName' of command @param is not found in the argument list of eoValueParam< ValueType >::eoValueParam(ValueType _defaultValue, std::string _longName, std::string _description="No description", char _shortHand=0, bool _required=false)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/utils/eoParam.h:143: Warning: The following parameters of eoValueParam< ValueType >::eoValueParam(ValueType _defaultValue, std::string _longName, std::string _description="No description", char _shortHand=0, bool _required=false) are not documented:
+  parameter _shortHand
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoFitness.h:86: Warning: Member maximizing(unsigned _i) of class eoVariableParetoTraits is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoFitness.h:94: Warning: Member nObj of class eoVariableParetoTraits is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoParetoFitness.h:95: Warning: Member bObj of class eoVariableParetoTraits is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVector.h:57: Warning: Member AtomType of class eoVector is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVector.h:58: Warning: Member ContainerType of class eoVector is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVector.h:77: Warning: Member value(const std::vector< GeneType > &_v) of class eoVector is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/MGE/VirusOp.h:45: Warning: argument `chrom' of command @param is not found in the argument list of VirusBitFlip< FitT >::operator()(eoVirus< FitT > &_chrom)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/MGE/VirusOp.h:45: Warning: The following parameters of VirusBitFlip< FitT >::operator()(eoVirus< FitT > &_chrom) are not documented:
+  parameter _chrom
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/MGE/VirusOp.h:95: Warning: argument `chrom' of command @param is not found in the argument list of VirusShiftMutation< FitT >::operator()(eoVirus< FitT > &_chrom)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/contrib/MGE/VirusOp.h:95: Warning: The following parameters of VirusShiftMutation< FitT >::operator()(eoVirus< FitT > &_chrom) are not documented:
+  parameter _chrom
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthMutation.h:52: Warning: Member AtomType of class eoVlAddMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthMutation.h:78: Warning: Member nMax of class eoVlAddMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthMutation.h:79: Warning: Member atomInit of class eoVlAddMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthMutation.h:54: Warning: argument `nMax' of command @param is not found in the argument list of eoVlAddMutation< EOT >::eoVlAddMutation(unsigned _nMax, eoInit< AtomType > &_atomInit)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthMutation.h:54: Warning: The following parameters of eoVlAddMutation< EOT >::eoVlAddMutation(unsigned _nMax, eoInit< AtomType > &_atomInit) are not documented:
+  parameter _nMax
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:93: Warning: Member AtomType of class eoVlAtomExchangeQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:164: Warning: Member Min of class eoVlAtomExchangeQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:164: Warning: Member Max of class eoVlAtomExchangeQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:165: Warning: Member atomExchange of class eoVlAtomExchangeQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthMutation.h:114: Warning: Member AtomType of class eoVlDelMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthMutation.h:144: Warning: Member className() const  of class eoVlDelMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthMutation.h:151: Warning: Member nMin of class eoVlDelMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthMutation.h:152: Warning: Member uChooser of class eoVlDelMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthMutation.h:153: Warning: Member chooser of class eoVlDelMutation is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthMutation.h:116: Warning: argument `nMin' of command @param is not found in the argument list of eoVlDelMutation< EOT >::eoVlDelMutation(unsigned _nMin, eoGeneDelChooser< EOT > &_chooser)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthMutation.h:116: Warning: argument `_geneChooser' of command @param is not found in the argument list of eoVlDelMutation< EOT >::eoVlDelMutation(unsigned _nMin, eoGeneDelChooser< EOT > &_chooser)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthMutation.h:116: Warning: The following parameters of eoVlDelMutation< EOT >::eoVlDelMutation(unsigned _nMin, eoGeneDelChooser< EOT > &_chooser) are not documented:
+  parameter _nMin
+  parameter _chooser
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthMutation.h:124: Warning: argument `nMin' of command @param is not found in the argument list of eoVlDelMutation< EOT >::eoVlDelMutation(unsigned _nMin)
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthMutation.h:124: Warning: The following parameters of eoVlDelMutation< EOT >::eoVlDelMutation(unsigned _nMin) are not documented:
+  parameter _nMin
+
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:284: Warning: Member AtomType of class eoVlUniformBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:288: Warning: Member eoVlUniformBinOp(unsigned _Min, unsigned _Max, double _rate=0.5) of class eoVlUniformBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:342: Warning: Member Min of class eoVlUniformBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:342: Warning: Member Max of class eoVlUniformBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:343: Warning: Member rate of class eoVlUniformBinOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:223: Warning: Member AtomType of class eoVlUniformQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:227: Warning: Member eoVlUniformQuadOp(unsigned _Min, unsigned _Max, double _rate=0.5) of class eoVlUniformQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:265: Warning: Member Min of class eoVlUniformQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:265: Warning: Member Max of class eoVlUniformQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoVariableLengthCrossover.h:266: Warning: Member rate of class eoVlUniformQuadOp is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReplacement.h:105: Warning: Member Fitness of class eoWeakElitistReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReplacement.h:109: Warning: Member eoWeakElitistReplacement(eoReplacement< EOT > &_replace) of class eoWeakElitistReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/eoReplacement.h:123: Warning: Member replace of class eoWeakElitistReplacement is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:75: Warning: Unsupported html tag <class> found
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:189: Warning: Member MemPool(unsigned int sz) of class gp_parse_tree::MemPool is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:202: Warning: Member allocate() of class gp_parse_tree::MemPool is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:210: Warning: Member deallocate(void *b) of class gp_parse_tree::MemPool is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:219: Warning: Member grow() of class gp_parse_tree::MemPool is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:249: Warning: Member chunks of class gp_parse_tree::MemPool is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:250: Warning: Member esize of class gp_parse_tree::MemPool is not documented.
+/users/dsa/marc/WWW/EO/eo.19Oct2006/src/gp/parse_tree.h:251: Warning: Member head of class gp_parse_tree::MemPool is not documented.

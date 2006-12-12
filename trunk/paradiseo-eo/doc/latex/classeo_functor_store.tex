@@ -1,0 +1,55 @@
+\section{eo\-Functor\-Store Class Reference}
+\label{classeo_functor_store}\index{eoFunctorStore@{eoFunctorStore}}
+eo\-Functor\-Store is a class that stores functors that are allocated on the heap.  
+
+
+{\tt \#include $<$eo\-Functor\-Store.h$>$}
+
+Inheritance diagram for eo\-Functor\-Store::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classeo_functor_store}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Functor\-Store} ()\label{classeo_functor_store_a0}
+
+\begin{CompactList}\small\item\em Default Ctor. \item\end{CompactList}\item 
+virtual {\bf $\sim$eo\-Functor\-Store} ()\label{classeo_functor_store_a1}
+
+\begin{CompactList}\small\item\em clears the memory \item\end{CompactList}\item 
+template$<$class Functor$>$ Functor \& {\bf store\-Functor} (Functor $\ast$r)\label{classeo_functor_store_a2}
+
+\begin{CompactList}\small\item\em Add an {\bf eo\-Functor\-Base}{\rm (p.\,\pageref{classeo_functor_base})} to the store. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Functor\-Store} (const {\bf eo\-Functor\-Store} \&)\label{classeo_functor_store_d0}
+
+\begin{CompactList}\small\item\em no copying allowed \item\end{CompactList}\item 
+{\bf eo\-Functor\-Store} {\bf operator=} (const {\bf eo\-Functor\-Store} \&)\label{classeo_functor_store_d1}
+
+\begin{CompactList}\small\item\em no copying allowed \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+std::vector$<$ {\bf eo\-Functor\-Base} $\ast$ $>$ {\bf vec}\label{classeo_functor_store_r0}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+eo\-Functor\-Store is a class that stores functors that are allocated on the heap. 
+
+This class can be used in factories to store allocated memory for dynamically created functors. 
+
+
+
+Definition at line 39 of file eo\-Functor\-Store.h.
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+eo\-Functor\-Store.h\item 
+eo\-Functor\-Store.cpp\end{CompactItemize}

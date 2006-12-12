@@ -1,0 +1,45 @@
+.TH "eoLinearFitScaling" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoLinearFitScaling \- An instance of \fBeoPerf2Worth\fP COmputes the linearly scaled fitnesses with given selective pressure Pselect(Best) == pressure/sizePop Pselect(average) == 1.0/sizePop truncate negative values to 0 -.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoLinearFitScaling.h>\fP
+.PP
+Inherits \fBeoPerf2Worth< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoLinearFitScaling\fP (double _p=2.0)"
+.br
+.ti -1c
+.RI "virtual void \fBoperator()\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBpressure\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoLinearFitScaling< EOT >"
+An instance of \fBeoPerf2Worth\fP COmputes the linearly scaled fitnesses with given selective pressure Pselect(Best) == pressure/sizePop Pselect(average) == 1.0/sizePop truncate negative values to 0 -. 
+
+to be used within an \fBeoSelectFromWorth\fP object 
+.PP
+Definition at line 43 of file eoLinearFitScaling.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

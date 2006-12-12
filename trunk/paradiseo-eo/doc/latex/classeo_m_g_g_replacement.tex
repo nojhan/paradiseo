@@ -1,0 +1,48 @@
+\section{eo\-MGGReplacement$<$ EOT $>$ Class Template Reference}
+\label{classeo_m_g_g_replacement}\index{eoMGGReplacement@{eoMGGReplacement}}
+eo\-MGGReplacement is an {\bf eo\-Replacement}{\rm (p.\,\pageref{classeo_replacement})}: - choose N (2) parents RANDOMLY - remove them from the parent population - select best offspring, add to parents - merge (other?) offspring and the N removed parents - select best N-1 of this merged population (det\-Tournament only at the moment) - put them back into parent population  
+
+
+{\tt \#include $<$eo\-MGGReplacement.h$>$}
+
+Inheritance diagram for eo\-MGGReplacement$<$ EOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.01075cm]{classeo_m_g_g_replacement}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-MGGReplacement} ({\bf eo\-How\-Many} \_\-how\-Many\-Eliminated\-Parents={\bf eo\-How\-Many}(2, false), unsigned \_\-t\-Size=2)\label{classeo_m_g_g_replacement_a0}
+
+\item 
+void {\bf operator()} ({\bf eo\-Pop}$<$ {\bf EOT} $>$ \&\_\-parents, {\bf eo\-Pop}$<$ {\bf EOT} $>$ \&\_\-offspring)\label{classeo_m_g_g_replacement_a1}
+
+\begin{CompactList}\small\item\em The pure virtual function that needs to be implemented by the subclass. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Linear\-Truncate\-Split}$<$ {\bf EOT} $>$ {\bf split}\label{classeo_m_g_g_replacement_r0}
+
+\item 
+{\bf eo\-Plus}$<$ {\bf EOT} $>$ {\bf plus}\label{classeo_m_g_g_replacement_r1}
+
+\item 
+unsigned int {\bf t\-Size}\label{classeo_m_g_g_replacement_r2}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class EOT$>$ class eo\-MGGReplacement$<$ EOT $>$}
+
+eo\-MGGReplacement is an {\bf eo\-Replacement}{\rm (p.\,\pageref{classeo_replacement})}: - choose N (2) parents RANDOMLY - remove them from the parent population - select best offspring, add to parents - merge (other?) offspring and the N removed parents - select best N-1 of this merged population (det\-Tournament only at the moment) - put them back into parent population 
+
+
+
+Definition at line 50 of file eo\-MGGReplacement.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+eo\-MGGReplacement.h\end{CompactItemize}

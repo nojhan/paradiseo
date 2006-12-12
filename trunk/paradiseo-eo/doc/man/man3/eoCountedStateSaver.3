@@ -1,0 +1,72 @@
+.TH "eoCountedStateSaver" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoCountedStateSaver \- an \fBeoUpdater\fP that saves a state every given generations  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoUpdater.h>\fP
+.PP
+Inherits \fBeoUpdater\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoCountedStateSaver\fP (unsigned _interval, const \fBeoState\fP &_state, std::string _prefix, bool _saveOnLastCall, std::string _extension='sav', unsigned _counter=0)"
+.br
+.ti -1c
+.RI "\fBeoCountedStateSaver\fP (unsigned _interval, const \fBeoState\fP &_state, std::string _prefix='state', std::string _extension='sav', unsigned _counter=0)"
+.br
+.ti -1c
+.RI "virtual void \fBlastCall\fP (void)"
+.br
+.ti -1c
+.RI "void \fBoperator()\fP (void)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP (void) const "
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBdoItNow\fP (void)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "const \fBeoState\fP & \fBstate\fP"
+.br
+.ti -1c
+.RI "const unsigned \fBinterval\fP"
+.br
+.ti -1c
+.RI "unsigned \fBcounter\fP"
+.br
+.ti -1c
+.RI "bool \fBsaveOnLastCall\fP"
+.br
+.ti -1c
+.RI "const std::string \fBprefix\fP"
+.br
+.ti -1c
+.RI "const std::string \fBextension\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+an \fBeoUpdater\fP that saves a state every given generations 
+.PP
+Definition at line 127 of file eoUpdater.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

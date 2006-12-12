@@ -1,0 +1,111 @@
+\section{eo\-Scalar\-Fitness\-Assembled$<$ Scalar\-Type, Compare, Fitness\-Traits $>$ Class Template Reference}
+\label{classeo_scalar_fitness_assembled}\index{eoScalarFitnessAssembled@{eoScalarFitnessAssembled}}
+Implements fitness as std::vector, storing all values that might occur during fitness assembly.  
+
+
+{\tt \#include $<$eo\-Scalar\-Fitness\-Assembled.h$>$}
+
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+typedef std::vector$<$ Scalar\-Type $>$ {\bf base\-Vector}\label{classeo_scalar_fitness_assembled_w0}
+
+\item 
+typedef base\-Vector::size\_\-type {\bf size\_\-type}\label{classeo_scalar_fitness_assembled_w1}
+
+\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Scalar\-Fitness\-Assembled} (size\_\-type \_\-n, const Scalar\-Type \&\_\-val, const std::string \&\_\-descr=\char`\"{}Unnamed variable\char`\"{})\label{classeo_scalar_fitness_assembled_a1}
+
+\item 
+{\bf eo\-Scalar\-Fitness\-Assembled} (const {\bf eo\-Scalar\-Fitness\-Assembled} \&other)\label{classeo_scalar_fitness_assembled_a2}
+
+\item 
+{\bf eo\-Scalar\-Fitness\-Assembled} \& {\bf operator=} (const {\bf eo\-Scalar\-Fitness\-Assembled} \&other)\label{classeo_scalar_fitness_assembled_a3}
+
+\item 
+{\bf eo\-Scalar\-Fitness\-Assembled} (const Scalar\-Type \&v)\label{classeo_scalar_fitness_assembled_a4}
+
+\item 
+{\bf eo\-Scalar\-Fitness\-Assembled} \& {\bf operator=} (const Scalar\-Type \&v)\label{classeo_scalar_fitness_assembled_a5}
+
+\item 
+void {\bf push\_\-back} (const Scalar\-Type \&\_\-val)\label{classeo_scalar_fitness_assembled_a6}
+
+\begin{CompactList}\small\item\em Overload {\bf push\_\-back()}{\rm (p.\,\pageref{classeo_scalar_fitness_assembled_a6})}. \item\end{CompactList}\item 
+void {\bf push\_\-back} (const Scalar\-Type \&\_\-val, const std::string \&\_\-descr)\label{classeo_scalar_fitness_assembled_a7}
+
+\begin{CompactList}\small\item\em Overload {\bf push\_\-back()}{\rm (p.\,\pageref{classeo_scalar_fitness_assembled_a6})}. \item\end{CompactList}\item 
+void {\bf resize} (size\_\-type \_\-n, const Scalar\-Type \&\_\-val=Scalar\-Type(), const std::string \&\_\-descr=\char`\"{}Unnamed variable\char`\"{})\label{classeo_scalar_fitness_assembled_a8}
+
+\begin{CompactList}\small\item\em Overload {\bf resize()}{\rm (p.\,\pageref{classeo_scalar_fitness_assembled_a8})}. \item\end{CompactList}\item 
+void {\bf set\-Description} (size\_\-type \_\-idx, std::string \_\-descr)\label{classeo_scalar_fitness_assembled_a9}
+
+\begin{CompactList}\small\item\em Set description. \item\end{CompactList}\item 
+std::string {\bf get\-Description} (size\_\-type \_\-idx)\label{classeo_scalar_fitness_assembled_a10}
+
+\begin{CompactList}\small\item\em Get description. \item\end{CompactList}\item 
+std::vector$<$ std::string $>$ {\bf get\-Description\-Vector} ()\label{classeo_scalar_fitness_assembled_a11}
+
+\begin{CompactList}\small\item\em Get vector with descriptions. \item\end{CompactList}\item 
+{\bf operator Scalar\-Type} (void) const \label{classeo_scalar_fitness_assembled_a12}
+
+\item 
+void {\bf print\-All} (std::ostream \&os) const \label{classeo_scalar_fitness_assembled_a13}
+
+\begin{CompactList}\small\item\em Print term values and descriptions. \item\end{CompactList}\item 
+bool {\bf operator$<$} (const {\bf eo\-Scalar\-Fitness\-Assembled} \&other) const \label{classeo_scalar_fitness_assembled_a14}
+
+\item 
+bool {\bf operator$>$} (const {\bf eo\-Scalar\-Fitness\-Assembled}$<$ Scalar\-Type, Compare, Fitness\-Traits $>$ \&y) const \label{classeo_scalar_fitness_assembled_a15}
+
+\item 
+bool {\bf operator$<$=} (const {\bf eo\-Scalar\-Fitness\-Assembled}$<$ Scalar\-Type, Compare, Fitness\-Traits $>$ \&y) const \label{classeo_scalar_fitness_assembled_a16}
+
+\item 
+bool {\bf operator$>$=} (const {\bf eo\-Scalar\-Fitness\-Assembled}$<$ Scalar\-Type, Compare, Fitness\-Traits $>$ \&y) const \label{classeo_scalar_fitness_assembled_a17}
+
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+bool {\bf feasible}\label{classeo_scalar_fitness_assembled_o0}
+
+\begin{CompactList}\small\item\em Can be specified anywhere in fitness evaluation as an indicator if the individual is in some feasible range. \item\end{CompactList}\item 
+bool {\bf failed}\label{classeo_scalar_fitness_assembled_o1}
+
+\begin{CompactList}\small\item\em Can be specified anywhere in fitness evaluation as an indicator if the evaluation of the individual failed. \item\end{CompactList}\item 
+std::string {\bf msg}
+\begin{CompactList}\small\item\em Can be specified anywhere in fitness evaluation. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Scalar\-Type, class Compare, class Fitness\-Traits$>$ class eo\-Scalar\-Fitness\-Assembled$<$ Scalar\-Type, Compare, Fitness\-Traits $>$}
+
+Implements fitness as std::vector, storing all values that might occur during fitness assembly. 
+
+Properties:\begin{itemize}
+\item Wraps a scalar fitness values such as a double or int, with the option of maximizing (using less$<$Scalar\-Type$>$) or minimizing (using greater$<$Scalar\-Type$>$).\item Stores all kinda different values met during fitness assembly, to be defined in {\bf eo\-Eval\-Func}{\rm (p.\,\pageref{classeo_eval_func})}.\item It overrides operator$<$() to use the Compare template argument.\item Suitable constructors and assignments and casts are defined to work with this quantity as if it were a Scalar\-Type.\item Global fitness value is stored as first element in the vector \end{itemize}
+
+
+
+
+Definition at line 88 of file eo\-Scalar\-Fitness\-Assembled.h.
+
+\subsection{Member Data Documentation}
+\index{eoScalarFitnessAssembled@{eo\-Scalar\-Fitness\-Assembled}!msg@{msg}}
+\index{msg@{msg}!eoScalarFitnessAssembled@{eo\-Scalar\-Fitness\-Assembled}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class Scalar\-Type, class Compare, class Fitness\-Traits$>$ std::string {\bf eo\-Scalar\-Fitness\-Assembled}$<$ Scalar\-Type, Compare, Fitness\-Traits $>$::{\bf msg}}\label{classeo_scalar_fitness_assembled_o2}
+
+
+Can be specified anywhere in fitness evaluation. 
+
+Typically used to store some sort of error messages, if evaluation of individual failed. 
+
+Definition at line 195 of file eo\-Scalar\-Fitness\-Assembled.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+eo\-Scalar\-Fitness\-Assembled.h\end{CompactItemize}

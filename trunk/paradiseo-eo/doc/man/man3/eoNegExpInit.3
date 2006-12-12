@@ -1,0 +1,48 @@
+.TH "eoNegExpInit" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoNegExpInit \- The class \fBnegexp_generator\fP can be used in the STL generate function to easily generate negative exponential distributed floats and doubles.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoUniformInit.h>\fP
+.PP
+Inherits \fBeoInit< T >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoNegExpInit\fP (T _mean=1.0, \fBeoRng\fP &_rng=rng)"
+.br
+.ti -1c
+.RI "void \fBoperator()\fP (T &_t)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "T \fBmean\fP"
+.br
+.ti -1c
+.RI "\fBeoRng\fP & \fBnegexp\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T = double> class eoNegExpInit< T >"
+The class \fBnegexp_generator\fP can be used in the STL generate function to easily generate negative exponential distributed floats and doubles. 
+
+The user can supply a mean. 
+.PP
+Definition at line 143 of file eoUniformInit.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

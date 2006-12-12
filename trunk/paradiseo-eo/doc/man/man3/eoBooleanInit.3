@@ -1,0 +1,44 @@
+.TH "eoBooleanInit" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoBooleanInit \- The class eoBooleanInit can be used in the STL apply function to easily generate random booleans with a specified bias.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoUniformInit.h>\fP
+.PP
+Inherits \fBeoInit< bool >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoBooleanInit\fP (float _bias=0.5, \fBeoRng\fP &_rng=rng)"
+.br
+.ti -1c
+.RI "void \fBoperator()\fP (bool &_b)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "float \fBbias\fP"
+.br
+.ti -1c
+.RI "\fBeoRng\fP & \fBgen\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The class eoBooleanInit can be used in the STL apply function to easily generate random booleans with a specified bias. 
+.PP
+Definition at line 110 of file eoUniformInit.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

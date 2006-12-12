@@ -1,0 +1,98 @@
+\section{eo\-St\-Parse\-Tree\-Depth\-Init$<$ FType, Node $>$ Class Template Reference}
+\label{classeo_st_parse_tree_depth_init}\index{eoStParseTreeDepthInit@{eoStParseTreeDepthInit}}
+eo\-St\-Parse\-Tree\-Depth\-Init : the initializer class for strongly typed tree-based genetic programming  
+
+
+{\tt \#include $<$gp/eo\-St\-Parse\-Tree\-Depth\-Init.h$>$}
+
+Inheritance diagram for eo\-St\-Parse\-Tree\-Depth\-Init$<$ FType, Node $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.21839cm]{classeo_st_parse_tree_depth_init}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+typedef {\bf eo\-Parse\-Tree}$<$ FType, Node $>$ {\bf Eo\-Type}\label{classeo_st_parse_tree_depth_init_w0}
+
+\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-St\-Parse\-Tree\-Depth\-Init} (unsigned \_\-max\_\-depth, const std::vector$<$ Node $>$ \&\_\-node, const int \&\_\-return\_\-type, bool \_\-grow=true)
+\begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
+virtual std::string {\bf class\-Name} () const \label{classeo_st_parse_tree_depth_init_a1}
+
+\begin{CompactList}\small\item\em My class name. \item\end{CompactList}\item 
+void {\bf operator()} ({\bf Eo\-Type} \&\_\-tree)
+\begin{CompactList}\small\item\em initialize a tree \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+bool {\bf generate} (std::list$<$ Node $>$ \&sequence, int the\_\-max, int request\_\-type)\label{classeo_st_parse_tree_depth_init_d0}
+
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+unsigned {\bf max\_\-depth}\label{classeo_st_parse_tree_depth_init_r0}
+
+\item 
+map$<$ int, map$<$ int, std::vector$<$ Node $>$ $>$ $>$ {\bf node}\label{classeo_st_parse_tree_depth_init_r1}
+
+\item 
+int {\bf return\_\-type}\label{classeo_st_parse_tree_depth_init_r2}
+
+\item 
+bool {\bf grow}\label{classeo_st_parse_tree_depth_init_r3}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class FType, class Node$>$ class eo\-St\-Parse\-Tree\-Depth\-Init$<$ FType, Node $>$}
+
+eo\-St\-Parse\-Tree\-Depth\-Init : the initializer class for strongly typed tree-based genetic programming 
+
+
+
+Definition at line 61 of file eo\-St\-Parse\-Tree\-Depth\-Init.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{eoStParseTreeDepthInit@{eo\-St\-Parse\-Tree\-Depth\-Init}!eoStParseTreeDepthInit@{eoStParseTreeDepthInit}}
+\index{eoStParseTreeDepthInit@{eoStParseTreeDepthInit}!eoStParseTreeDepthInit@{eo\-St\-Parse\-Tree\-Depth\-Init}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class FType, class Node$>$ {\bf eo\-St\-Parse\-Tree\-Depth\-Init}$<$ FType, Node $>$::{\bf eo\-St\-Parse\-Tree\-Depth\-Init} (unsigned {\em \_\-max\_\-depth}, const std::vector$<$ Node $>$ \& {\em \_\-node}, const int \& {\em \_\-return\_\-type}, bool {\em \_\-grow} = {\tt true})\hspace{0.3cm}{\tt  [inline]}}\label{classeo_st_parse_tree_depth_init_a0}
+
+
+Constructor. 
+
+\_\-max\_\-depth The maximum depth of a tree \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-initializor}]A std::vector containing the possible nodes \item[{\em \_\-grow}]False results in a full tree, True result is a randomly grown tree \end{description}
+\end{Desc}
+
+
+Definition at line 73 of file eo\-St\-Parse\-Tree\-Depth\-Init.h.
+
+\subsection{Member Function Documentation}
+\index{eoStParseTreeDepthInit@{eo\-St\-Parse\-Tree\-Depth\-Init}!operator()@{operator()}}
+\index{operator()@{operator()}!eoStParseTreeDepthInit@{eo\-St\-Parse\-Tree\-Depth\-Init}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class FType, class Node$>$ void {\bf eo\-St\-Parse\-Tree\-Depth\-Init}$<$ FType, Node $>$::operator() ({\bf Eo\-Type} \& {\em \_\-tree})\hspace{0.3cm}{\tt  [inline]}}\label{classeo_st_parse_tree_depth_init_a2}
+
+
+initialize a tree 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-tree}]: the tree to be initialized \end{description}
+\end{Desc}
+
+
+Definition at line 125 of file eo\-St\-Parse\-Tree\-Depth\-Init.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+eo\-St\-Parse\-Tree\-Depth\-Init.h\end{CompactItemize}

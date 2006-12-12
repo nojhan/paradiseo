@@ -1,0 +1,81 @@
+.TH "eoBitMutation" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoBitMutation \- eoBitMutation --> classical mutation  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <ga/eoBitOp.h>\fP
+.PP
+Inherits \fBeoMonOp< Chrom >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoBitMutation\fP (const double &_rate=0.01, bool _normalize=false)"
+.br
+.RI "\fI(Default) Constructor. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIThe class name. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (Chrom &chrom)"
+.br
+.RI "\fIMutate a chromosome. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBrate\fP"
+.br
+.ti -1c
+.RI "bool \fBnormalize\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class Chrom> class eoBitMutation< Chrom >"
+eoBitMutation --> classical mutation 
+.PP
+Definition at line 104 of file eoBitOp.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class Chrom> \fBeoBitMutation\fP< Chrom >::\fBeoBitMutation\fP (const double & _rate = \fC0.01\fP, bool _normalize = \fCfalse\fP)\fC [inline]\fP"
+.PP
+(Default) Constructor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_rate\fP Rate of mutation. 
+.RE
+.PP
+
+.PP
+Definition at line 111 of file eoBitOp.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class Chrom> bool \fBeoBitMutation\fP< Chrom >::operator() (Chrom & chrom)\fC [inline, virtual]\fP"
+.PP
+Mutate a chromosome. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIchrom\fP The chromosome to be mutated. 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< Chrom &, bool >\fP.
+.PP
+Definition at line 121 of file eoBitOp.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

@@ -1,0 +1,67 @@
+.TH "eoBestFitnessStat" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoBestFitnessStat \- Best fitness of a population.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoStat.h>\fP
+.PP
+Inherits \fBeoStat< EOT, EOT::Fitness >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOT::Fitness \fBFitness\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoBestFitnessStat\fP (std::string _description='Best ')"
+.br
+.ti -1c
+.RI "void \fBoperator()\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop)"
+.br
+.RI "\fIThe pure virtual function that needs to be implemented by the subclass. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP (void) const "
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "template<class T> void \fBdoit\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop, \fBeoParetoFitness\fP< T >)"
+.br
+.ti -1c
+.RI "template<class T> void \fBdoit\fP (const \fBeoPop\fP< \fBEOT\fP > &_pop, T)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoBestFitnessStat< EOT >"
+Best fitness of a population. 
+
+Fitness can be:
+.IP "\(bu" 2
+double
+.IP "\(bu" 2
+eoMinimizingFitness or eoMaximizingFitness
+.IP "\(bu" 2
+\fBeoParetoFitness\fP:
+.PP
+.PP
+( For \fBeoScalarFitnessAssembled\fP look at eoAssembledFitnessStat ) 
+.PP
+Definition at line 316 of file eoStat.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

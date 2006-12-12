@@ -1,0 +1,83 @@
+.TH "eoTruncatedSelectMany" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoTruncatedSelectMany \- eoTruncatedSelectMany selects many individuals using \fBeoSelectOne\fP as it's mechanism.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoTruncatedSelectMany.h>\fP
+.PP
+Inherits \fBeoSelect< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoTruncatedSelectMany\fP (\fBeoSelectOne\fP< \fBEOT\fP > &_select, double _rateGenitors, double _rateFertile, bool _interpret_as_rateG=true, bool _interpret_as_rateF=true)"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "\fBeoTruncatedSelectMany\fP (\fBeoSelectOne\fP< \fBEOT\fP > &_select, \fBeoHowMany\fP _howManyGenitors, \fBeoHowMany\fP _howManyFertile)"
+.br
+.ti -1c
+.RI "virtual void \fBoperator()\fP (const \fBeoPop\fP< \fBEOT\fP > &_source, \fBeoPop\fP< \fBEOT\fP > &_dest)"
+.br
+.RI "\fIThe implementation repeatidly selects an individual. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoSelectOne\fP< \fBEOT\fP > & \fBselect\fP"
+.br
+.ti -1c
+.RI "\fBeoHowMany\fP \fBhowManyGenitors\fP"
+.br
+.ti -1c
+.RI "\fBeoHowMany\fP \fBhowManyFertile\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoTruncatedSelectMany< EOT >"
+eoTruncatedSelectMany selects many individuals using \fBeoSelectOne\fP as it's mechanism. 
+
+Therefore \fBeoSelectMany\fP needs an \fBeoSelectOne\fP in its ctor
+.PP
+It will use an eoHowMnay to determine the number of guys to select, and push them to the back of the destination population.
+.PP
+And it will only perform selection from the top guys in the population.
+.PP
+It is NOT a special case of \fBeoSelectMany\fP because it needs to SORT the population to discard the worst guys before doing the selection
+.PP
+However, the same result can be obtained by embedding an \fBeoTruncatedSelectOne\fP into an \fBeoSelectMany\fP ... 
+.PP
+Definition at line 53 of file eoTruncatedSelectMany.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> virtual void \fBeoTruncatedSelectMany\fP< \fBEOT\fP >::operator() (const \fBeoPop\fP< \fBEOT\fP > & _source, \fBeoPop\fP< \fBEOT\fP > & _dest)\fC [inline, virtual]\fP"
+.PP
+The implementation repeatidly selects an individual. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_source\fP the source population 
+.br
+\fI_dest\fP the resulting population (size of this population is the number of times \fBeoSelectOne\fP is called. It empties the destination and adds the selection into it) 
+.RE
+.PP
+
+.PP
+Implements \fBeoBF< const eoPop< EOT > &, eoPop< EOT > &, void >\fP.
+.PP
+Definition at line 77 of file eoTruncatedSelectMany.h.
+.PP
+References eoSelectOne< EOT, WorthT >::setup(), eoPop< EOT >::shuffle(), and eoPop< EOT >::sort().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.

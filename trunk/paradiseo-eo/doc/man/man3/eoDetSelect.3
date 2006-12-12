@@ -1,0 +1,59 @@
+.TH "eoDetSelect" 3 "19 Oct 2006" "Version 0.9.4-cvs" "EO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoDetSelect \- eoDetSelect selects many individuals determinisctically  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoDetSelect.h>\fP
+.PP
+Inherits \fBeoSelect< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoDetSelect\fP (double _rate=1.0, bool _interpret_as_rate=true)"
+.br
+.RI "\fIinit \fP"
+.ti -1c
+.RI "virtual void \fBoperator()\fP (const \fBeoPop\fP< \fBEOT\fP > &_source, \fBeoPop\fP< \fBEOT\fP > &_dest)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoHowMany\fP \fBhowMany\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoDetSelect< EOT >"
+eoDetSelect selects many individuals determinisctically 
+.PP
+Definition at line 40 of file eoDetSelect.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> virtual void \fBeoDetSelect\fP< \fBEOT\fP >::operator() (const \fBeoPop\fP< \fBEOT\fP > & _source, \fBeoPop\fP< \fBEOT\fP > & _dest)\fC [inline, virtual]\fP"
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_source\fP the source population 
+.br
+\fI_dest\fP the resulting population (size of this population is given by the HowMany data It empties the destination and adds the selection into it) 
+.RE
+.PP
+
+.PP
+Implements \fBeoBF< const eoPop< EOT > &, eoPop< EOT > &, void >\fP.
+.PP
+Definition at line 53 of file eoDetSelect.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for EO from the source code.
