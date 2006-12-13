@@ -1,0 +1,79 @@
+
+==================================================================
+                      BUILDING PARADISEO FULL PACKAGE
+==================================================================
+The basic installation procedure must be done in the directory 
+which contains the extracted archive.
+
+You have to specify the FULL PATH for target installation :
+
+--> Example : ./installParadiseo /home/soft
+
+--> AVOID : ./installParadiseo ../ 
+
+Pleasa try ./installParadiseo --help  for further information
+
+===================================================================
+                       DIRECTORY STRUCTURE
+===================================================================
+After unpacking the archive file, you should end up with the following
+structure:
+
+.../                        Installation directory (specified with ./installParadiseo)
+   |
+   +-- paradiseo-eo                     EO dir
+   |   
+   |	
+   +-- paradiseo-mo                     MO dir 
+   |
+   |
+   +-- paradiseo-moeo                   MOEO dir
+   |   
+   |
+   +-- paradiseo-peo              PARADISEO dir
+   |   
+   |
+   +-- libxml2-2.6.0                LIBXML dir (required for ParadisEO)
+   |   
+   |
+   +-- mpich2-1.0.3                  MPICH2 dir (required for ParadisEO)
+
+
+===================================================================
+                       DIRECTORY STRUCTURE AFTER INSTALLATION
+===================================================================
+After running the script "install" and if the process is successful,
+you should have the following structure :
+
+.../                        Installation directory (specified with ./installParadiseo)
+   |
+   +-- paradiseo-eo                     EO dir
+   |   
+   |	
+   +-- paradiseo-mo                     MO dir 
+   |
+   |
+   +-- paradiseo-moeo                   MOEO dir
+   |   
+   |
+   +-- paradiseo-paradiseo              PARADISEO dir
+   |   
+   |
+   +-- libxml2                LIBXML dir (required for ParadisEO)
+   |   
+   |
+   +-- mpich2                 MPICH2 dir (required for ParadisEO)
+
+
+===================================================================
+              NOTES
+===================================================================
+Please read README file of each extracted directory if you have
+problems for the installation.
+
+
+===================================================================
+              CONTACT
+===================================================================
+For further information about ParadisEO, help or to report any
+problem : paradiseo-help@lists.gforge.inria.fr
