@@ -1,1 +1,0 @@
-../archive/installParadiseo_11122006.sh
