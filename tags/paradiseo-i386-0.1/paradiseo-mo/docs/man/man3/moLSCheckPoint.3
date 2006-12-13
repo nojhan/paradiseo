@@ -1,0 +1,81 @@
+.TH "moLSCheckPoint" 3 "12 Dec 2006" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moLSCheckPoint \- Class which allows a checkpointing system.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moLSCheckPoint.h>\fP
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBoperator()\fP (const M &__move, const typename M::EOType &__sol)"
+.br
+.RI "\fIFunction which launches the checkpointing. \fP"
+.ti -1c
+.RI "void \fBadd\fP (eoBF< const M &, const typename M::EOType &, void > &__f)"
+.br
+.RI "\fIProcedure which add a new function to the function vector. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< eoBF< const M &, const typename M::EOType &, void > * > \fBfunc\fP"
+.br
+.RI "\fIvector of function \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class M> class moLSCheckPoint< M >"
+Class which allows a checkpointing system. 
+
+Thanks to this class, at each iteration, additionnal function can be used (and not only one). 
+.PP
+Definition at line 21 of file moLSCheckPoint.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class M> void \fBmoLSCheckPoint\fP< M >::operator() (const M & __move, const typename M::EOType & __sol)\fC [inline]\fP"
+.PP
+Function which launches the checkpointing. 
+.PP
+Each saved function is used on the current move and the current solution.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__move\fP a move. 
+.br
+\fI__sol\fP a solution. 
+.RE
+.PP
+
+.PP
+Definition at line 34 of file moLSCheckPoint.h.
+.PP
+References moLSCheckPoint< M >::func.
+.SS "template<class M> void \fBmoLSCheckPoint\fP< M >::add (eoBF< const M &, const typename M::EOType &, void > & __f)\fC [inline]\fP"
+.PP
+Procedure which add a new function to the function vector. 
+.PP
+The new function is added at the end of the vector. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__f\fP a new function to add. 
+.RE
+.PP
+
+.PP
+Definition at line 49 of file moLSCheckPoint.h.
+.PP
+References moLSCheckPoint< M >::func.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PARADISEO-MO from the source code.
