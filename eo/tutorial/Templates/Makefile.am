@@ -11,4 +11,5 @@ EXTRA_DIST	= EO.tpl \
 		README.tmpl \
 		configure.ac.tmpl \
 		Makefile.am.top-tmpl \
-		Makefile.am.src-tmpl
+		Makefile.am.src-tmpl \
+		createEOproject.sh
