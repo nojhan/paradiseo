@@ -17,7 +17,7 @@ and src/es (for real vectors).
 
 */
 
-// Miscilaneous include and declaration 
+// Miscilaneous include and declaration
 #include <iostream>
 using namespace std;
 
@@ -29,7 +29,7 @@ using namespace std;
 // include here whatever specific files for your representation
 // Basically, this should include at least the following
 
-/** definition of representation: 
+/** definition of representation:
  * class eoMyStruct MUST derive from EO<FitT> for some fitness
  */
 #include "eoMyStruct.h"
@@ -43,12 +43,12 @@ using namespace std;
 // eoInit<eoMyStruct<double>> & make_genotype(eoParser& _parser, eoState&_state, eoMyStruct<double> _eo)
 // {
 //   return do_make_genotype(_parser, _state, _eo);
-// } 
+// }
 
 // eoInit<eoMyStruct<eoMinimizingFitness>> & make_genotype(eoParser& _parser, eoState&_state, eoMyStruct<eoMinimizingFitness> _eo)
 // {
 //   return do_make_genotype(_parser, _state, _eo);
-// } 
+// }
 
 // same thing for the variation operaotrs
 //---------------------------------------
@@ -65,9 +65,9 @@ using namespace std;
 
 // The following modules use ***representation independent*** routines
 
-// how to initialize the population 
+// how to initialize the population
 // it IS representation independent if an eoInit is given
-#include <do/make_pop.h>
+#include <make_pop.h>
 eoPop<eoMyStruct<double> >&  make_pop(eoParser& _parser, eoState& _state, eoInit<eoMyStruct<double> > & _init)
 {
   return do_make_pop(_parser, _state, _init);
@@ -79,7 +79,7 @@ eoPop<eoMyStruct<eoMinimizingFitness> >&  make_pop(eoParser& _parser, eoState& _
 }
 
 // the stopping criterion
-#include <do/make_continue.h>
+#include <make_continue.h>
 eoContinue<eoMyStruct<double> >& make_continue(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoMyStruct<double> > & _eval)
 {
   return do_make_continue(_parser, _state, _eval);
@@ -91,19 +91,19 @@ eoContinue<eoMyStruct<eoMinimizingFitness> >& make_continue(eoParser& _parser, e
 }
 
 // outputs (stats, population dumps, ...)
-#include <do/make_checkpoint.h>
-eoCheckPoint<eoMyStruct<double> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoMyStruct<double> >& _eval, eoContinue<eoMyStruct<double> >& _continue) 
+#include <make_checkpoint.h>
+eoCheckPoint<eoMyStruct<double> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoMyStruct<double> >& _eval, eoContinue<eoMyStruct<double> >& _continue)
 {
   return do_make_checkpoint(_parser, _state, _eval, _continue);
 }
 
-eoCheckPoint<eoMyStruct<eoMinimizingFitness> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoMyStruct<eoMinimizingFitness> >& _eval, eoContinue<eoMyStruct<eoMinimizingFitness> >& _continue) 
+eoCheckPoint<eoMyStruct<eoMinimizingFitness> >& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<eoMyStruct<eoMinimizingFitness> >& _eval, eoContinue<eoMyStruct<eoMinimizingFitness> >& _continue)
 {
   return do_make_checkpoint(_parser, _state, _eval, _continue);
 }
 
 // evolution engine (selection and replacement)
-#include <do/make_algo_scalar.h>
+#include <make_algo_scalar.h>
 eoAlgo<eoMyStruct<double> >&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<eoMyStruct<double> >& _eval, eoContinue<eoMyStruct<double> >& _continue, eoGenOp<eoMyStruct<double> >& _op)
 {
   return do_make_algo_scalar(_parser, _state, _eval, _continue, _op);
@@ -114,9 +114,9 @@ eoAlgo<eoMyStruct<eoMinimizingFitness> >&  make_algo_scalar(eoParser& _parser, e
   return do_make_algo_scalar(_parser, _state, _eval, _continue, _op);
 }
 
-// simple call to the algo. stays there for consistency reasons 
+// simple call to the algo. stays there for consistency reasons
 // no template for that one
-#include <do/make_run.h>
+#include <make_run.h>
 void run_ea(eoAlgo<eoMyStruct<double> >& _ga, eoPop<eoMyStruct<double> >& _pop)
 {
   do_run(_ga, _pop);

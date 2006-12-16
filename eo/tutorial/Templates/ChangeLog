@@ -1,0 +1,19 @@
+2006-12-16  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* EO.tpl, MyStructEA.cpp, MyStructSEA.cpp, make_MyStruct.cpp: Use
+	correct names for includes.
+
+	* README.manual: This is a copy of the old README.
+
+	* README: Describe the new way and setup of creating a new EO project.
+	
+	* createEOproject.sh, Makefile.am.src-tmpl, Makefile.am.top-tmpl:
+	* configure.ac.tmpl: New files to create a standalone EO project from
+	templates.
+
+	
+	* Local Variables:
+	* coding: iso-8859-1
+	* mode: flyspell
+	* fill-column: 80
+	* End:

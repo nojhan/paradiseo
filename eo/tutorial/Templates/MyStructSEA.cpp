@@ -73,28 +73,28 @@ typedef eoMyStruct<MyFitT> Indi;      // ***MUST*** derive from EO
 
 // how to initialize the population
 // it IS representation independent if an eoInit is given
-#include <do/make_pop.h>
+#include <make_pop.h>
 eoPop<Indi >&  make_pop(eoParser& _parser, eoState& _state, eoInit<Indi> & _init)
 {
   return do_make_pop(_parser, _state, _init);
 }
 
 // the stopping criterion
-#include <do/make_continue.h>
+#include <make_continue.h>
 eoContinue<Indi>& make_continue(eoParser& _parser, eoState& _state, eoEvalFuncCounter<Indi> & _eval)
 {
   return do_make_continue(_parser, _state, _eval);
 }
 
 // outputs (stats, population dumps, ...)
-#include <do/make_checkpoint.h>
+#include <make_checkpoint.h>
 eoCheckPoint<Indi>& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<Indi>& _eval, eoContinue<Indi>& _continue)
 {
   return do_make_checkpoint(_parser, _state, _eval, _continue);
 }
 
 // evolution engine (selection and replacement)
-#include <do/make_algo_scalar.h>
+#include <make_algo_scalar.h>
 eoAlgo<Indi>&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<Indi>& _eval, eoContinue<Indi>& _continue, eoGenOp<Indi>& _op, eoDistance<Indi> *_dist = NULL)
 {
   return do_make_algo_scalar(_parser, _state, _eval, _continue, _op, _dist);
@@ -102,7 +102,7 @@ eoAlgo<Indi>&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<I
 
 // simple call to the algo. stays there for consistency reasons
 // no template for that one
-#include <do/make_run.h>
+#include <make_run.h>
 // the instanciating fitnesses
 #include <eoScalarFitness.h>
 void run_ea(eoAlgo<Indi>& _ga, eoPop<Indi>& _pop)

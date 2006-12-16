@@ -17,7 +17,7 @@ main file BitEA in tutorial/Lesson4 dir.
 Or you can wait until we do it :-)
 */
 
-// Miscilaneous include and declaration 
+// Miscilaneous include and declaration
 #include <iostream>
 using namespace std;
 
@@ -29,17 +29,17 @@ using namespace std;
 // include here whatever specific files for your representation
 // Basically, this should include at least the following
 
-/** definition of representation: 
+/** definition of representation:
  * class eoMyStruct MUST derive from EO<FitT> for some fitness
  */
 #include "eoMyStruct.h"
 
-/** definition of initilizqtion: 
+/** definition of initilizqtion:
  * class eoMyStructInit MUST derive from eoInit<eoMyStruct>
  */
 #include "eoMyStructInit.h"
 
-/** definition of evaluation: 
+/** definition of evaluation:
  * class eoMyStructEvalFunc MUST derive from eoEvalFunc<eoMyStruct>
  * and should test for validity before doing any computation
  * see tutorial/Templates/evalFunc.tmpl
@@ -51,19 +51,19 @@ using namespace std;
 //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 // START fitness type: double or eoMaximizingFitness if you are maximizing
 //                     eoMinimizingFitness if you are minimizing
-typedef eoMinimizingFitness MyFitT ;	// type of fitness 
+typedef eoMinimizingFitness MyFitT ;	// type of fitness
 // END fitness type
 //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
 // Then define your EO objects using that fitness type
-typedef eoMyStruct<MyFitT> Indi;      // ***MUST*** derive from EO 
+typedef eoMyStruct<MyFitT> Indi;      // ***MUST*** derive from EO
 
 // create an initializer
 #include "make_genotype_MyStruct.h"
 eoInit<Indi> & make_genotype(eoParser& _parser, eoState&_state, Indi _eo)
 {
   return do_make_genotype(_parser, _state, _eo);
-} 
+}
 
 // and the variation operaotrs
 #include "make_op_MyStruct.h"
@@ -75,38 +75,38 @@ eoGenOp<Indi>&  make_op(eoParser& _parser, eoState& _state, eoInit<Indi>& _init)
 // Use existing modules to define representation independent routines
 // These are parser-based definitions of objects
 
-// how to initialize the population 
+// how to initialize the population
 // it IS representation independent if an eoInit is given
-#include <do/make_pop.h>
+#include <make_pop.h>
 eoPop<Indi >&  make_pop(eoParser& _parser, eoState& _state, eoInit<Indi> & _init)
 {
   return do_make_pop(_parser, _state, _init);
 }
 
 // the stopping criterion
-#include <do/make_continue.h>
+#include <make_continue.h>
 eoContinue<Indi>& make_continue(eoParser& _parser, eoState& _state, eoEvalFuncCounter<Indi> & _eval)
 {
   return do_make_continue(_parser, _state, _eval);
 }
 
 // outputs (stats, population dumps, ...)
-#include <do/make_checkpoint.h>
-eoCheckPoint<Indi>& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<Indi>& _eval, eoContinue<Indi>& _continue) 
+#include <make_checkpoint.h>
+eoCheckPoint<Indi>& make_checkpoint(eoParser& _parser, eoState& _state, eoEvalFuncCounter<Indi>& _eval, eoContinue<Indi>& _continue)
 {
   return do_make_checkpoint(_parser, _state, _eval, _continue);
 }
 
 // evolution engine (selection and replacement)
-#include <do/make_algo_scalar.h>
+#include <make_algo_scalar.h>
 eoAlgo<Indi>&  make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<Indi>& _eval, eoContinue<Indi>& _continue, eoGenOp<Indi>& _op)
 {
   return do_make_algo_scalar(_parser, _state, _eval, _continue, _op);
 }
 
-// simple call to the algo. stays there for consistency reasons 
+// simple call to the algo. stays there for consistency reasons
 // no template for that one
-#include <do/make_run.h>
+#include <make_run.h>
 // the instanciating fitnesses
 #include <eoScalarFitness.h>
 void run_ea(eoAlgo<Indi>& _ga, eoPop<Indi>& _pop)
@@ -141,7 +141,7 @@ int main(int argc, char* argv[])
   eoGenOp<Indi>& op = make_op(parser, state, init);
 
 
-  //// Now the representation-independent things 
+  //// Now the representation-independent things
   //
   // YOU SHOULD NOT NEED TO MODIFY ANYTHING BEYOND THIS POINT
   // unless you want to add specific statistics to the checkpoint
