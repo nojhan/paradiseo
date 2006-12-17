@@ -1,3 +1,9 @@
+2006-12-17  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* README: Added this file.
+
+	* general: Removed all old unnecessary files.
+
 2006-12-05  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
 
 	* win/Makefile.am (EXTRA_DIST): Add new MSVC project files to distribution.
