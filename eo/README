@@ -13,9 +13,13 @@ The latest news about EO can be found on the sourceforge repository at
 In case of any problem, please e-mail us at
     eodev-help@lists.sourceforge.net, eodev@egroups.com
 
-
 To get started, take a look at the tutorial, starting with
     ./tutorial/html/eoTutorial.html  
+
+The easiest way to start programming a new genome with all EO
+evolution engines handy is to create a new standalone EO project from
+the tutorial/Templates/ directory. Read Lesson 5 of the tutorial for
+an introduction;)
 
 
 ==================================================================
