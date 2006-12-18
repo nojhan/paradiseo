@@ -59,9 +59,27 @@ environments by <a href="http://www.lifl.fr/~cahon">Sébastien Cahon</a>.
 
 
 
+/** An old TODO list for EO, this could be updated...
+
+@todo (old) Provide a way to easily manipulate the algorithm in runtime, be it from
+grafically or text; expand command-line capabities?
+
+@todo (old) Provide a graphical interface for Windows, in VC++ or BBuilder.
+
+@todo (old) Create more examples of the objects of which there is only one instance:
+algorithms, evaluators. Try to adapt most well-know algorithms to EO
+
+@todo (old) Integrate the gTK interface seamlessly in the library.
+
+@todo Complete documentation.
+*/
+
+
+
 // Local Variables:
 // coding: iso-8859-1
 // mode: C++
+// c-file-offsets: ((c . 0))
 // c-file-style: "Stroustrup"
 // fill-column: 80
 // End:
