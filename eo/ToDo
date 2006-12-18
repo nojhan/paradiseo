@@ -1,0 +1,17 @@
+An old TODO list for EO (from 1998):
+
+Provide a way to easily manipulate the algorithm in runtime, be it
+from grafically or text; expand command-line capabities?
+
+Provide a graphical interface for Windows, in VC++ or BBuilder.
+
+Creare more examples of the objects of which there is only one
+instance: algorithms, evaluators. Try to adapt most well-know
+algorithms to EO
+
+Integrate the gTK interface seamlessly in the library.
+
+Complete documentation.
+
+Try to implemente as algorithms the best known paradigms: Evolution
+Strategies, Evolutionary programming.

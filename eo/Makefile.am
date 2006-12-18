@@ -8,23 +8,23 @@ if USE_TUTORIAL
 SUBDIRS_TUT		= tutorial
 endif
 
-SUBDIRS		= src doc contrib win $(SUBDIRS_APP) $(SUBDIRS_TUT) test
+SUBDIRS			= src doc contrib win $(SUBDIRS_APP) $(SUBDIRS_TUT) test
 
 
 # Directory for documents
-DOCDIR 		= ~/public_html/eodocs
+DOCDIR 			= ~/public_html/eodocs
 
 # Directory for indices -- not useful for the user
-IDXDIR 		= ~/index
+IDXDIR 			= ~/index
 
 
 # Add documentation to distribution
 dist-hook:
-		$(MAKE) documentation
-		$(INSTALL_DATA) -d $(srcdir)/doc/html $(srcdir)/doc/latex $(srcdir)/doc/man $(distdir)/doc/
+			$(MAKE) documentation
+			$(INSTALL_DATA) -d $(srcdir)/doc/html $(srcdir)/doc/latex $(srcdir)/doc/man $(distdir)/doc/
 
 # Prepare documentation
 documentation:
-		cd doc && $(MAKE) doc && cd ..
+			cd doc && $(MAKE) doc && cd ..
 # convinience-target
-doc: 		documentation
+doc: 			documentation
