@@ -1,4 +1,4 @@
 Here will be copied the eo libraries.
 
-xx.lib are Release versions
-xxd.lib are Debug versions
+xx.lib are Release versions and in the Release directory
+xxd.lib are Debug versions and in the Debug directory

@@ -2,6 +2,14 @@ This directory contains the project files for Microsoft Visual C++
 
 For Visual Studio 2003 (and 2005) you can go to the eo\win (this)
 directory and open the eo.sln file. It allows for the compilation of 4
-lib files (which will be placed in eo\win\lib). At the moment there
-are no project/solution files to compile the test programs(eo\test) or
-applications (eo\app).
+lib files (which will be placed in eo\win\lib\release and eo\win\lib\debug). 
+At the moment there are no project/solution files to compile the test 
+programs (eo\test) or applications (eo\app).
+
+The library files correspond to the .a files under Unix/Linux.
+eo.lib -> libeo.a
+eoes.lib -> libes.a
+eoga.lib -> libga.a
+eoutils.lib -> libeoutils.a
+
+The debug versions of the files are named eod.lib, eoesd.lib, eogad.lib and eoutilsd.lib.
