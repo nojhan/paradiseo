@@ -5,7 +5,7 @@
 The basic installation procedure must be done in the directory 
 which contains the extracted archive.
 
---> Example : ./installParadiseo.sh
+ --> Example : ./installParadiseo.sh
 
 Please try ./installParadiseo.sh --help  for further information
 
