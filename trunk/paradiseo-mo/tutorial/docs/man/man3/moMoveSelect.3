@@ -1,0 +1,82 @@
+.TH "moMoveSelect" 3 "18 Dec 2006" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moMoveSelect \- Class that describes a move selector (\fBmoMove\fP).  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moMoveSelect.h>\fP
+.PP
+Inherited by \fBmoBestImprSelect< M >\fP, \fBmoFirstImprSelect< M >\fP, and \fBmoRandImprSelect< M >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef M::EOType::Fitness \fBFitness\fP"
+.br
+.RI "\fIAlias for the fitness. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBinit\fP (const \fBFitness\fP &__fit)=0"
+.br
+.RI "\fIProcedure which initialises all that the move selector needs including the initial fitness. \fP"
+.ti -1c
+.RI "virtual bool \fBupdate\fP (const M &__move, const \fBFitness\fP &__fit)=0"
+.br
+.RI "\fIFunction which updates the best solutions. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class M> class moMoveSelect< M >"
+Class that describes a move selector (\fBmoMove\fP). 
+
+It iteratively considers some moves (\fBmoMove\fP) and their associated fitnesses. The best move is so regularly updated. At any time, it could be accessed. 
+.PP
+Definition at line 32 of file moMoveSelect.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class M> virtual void \fBmoMoveSelect\fP< M >::init (const \fBFitness\fP & __fit)\fC [pure virtual]\fP"
+.PP
+Procedure which initialises all that the move selector needs including the initial fitness. 
+.PP
+In order to know the fitness of the solution, for which the neighborhood will be soon explored
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__fit\fP the current fitness. 
+.RE
+.PP
+
+.PP
+Implemented in \fBmoBestImprSelect< M >\fP, \fBmoFirstImprSelect< M >\fP, and \fBmoRandImprSelect< M >\fP.
+.SS "template<class M> virtual bool \fBmoMoveSelect\fP< M >::update (const M & __move, const \fBFitness\fP & __fit)\fC [pure virtual]\fP"
+.PP
+Function which updates the best solutions. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__move\fP a new move. 
+.br
+\fI__fit\fP a fitness linked to the new move. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a boolean that expresses the need to resume the exploration. 
+.RE
+.PP
+
+.PP
+Implemented in \fBmoBestImprSelect< M >\fP, and \fBmoRandImprSelect< M >\fP.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PARADISEO-MO from the source code.

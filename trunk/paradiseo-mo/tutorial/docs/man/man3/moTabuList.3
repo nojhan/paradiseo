@@ -1,0 +1,75 @@
+.TH "moTabuList" 3 "18 Dec 2006" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moTabuList \- Class describing a tabu list that a \fBmoTS\fP uses.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moTabuList.h>\fP
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef M::EOType \fBEOT\fP"
+.br
+.RI "\fIAlias for the type. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBadd\fP (const M &__move, const \fBEOT\fP &__sol)=0"
+.br
+.RI "\fIProcedure to add a move in the tabu list. \fP"
+.ti -1c
+.RI "virtual void \fBupdate\fP ()=0"
+.br
+.RI "\fIProcedure that updates the tabu list content. \fP"
+.ti -1c
+.RI "virtual void \fBinit\fP ()=0"
+.br
+.RI "\fIProcedure which initialises the tabu list. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class M> class moTabuList< M >"
+Class describing a tabu list that a \fBmoTS\fP uses. 
+
+It is only a description, does nothing... A new object that herits from this class has to be defined in order to be used in a \fBmoTS\fP. 
+.PP
+Definition at line 22 of file moTabuList.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class M> virtual void \fBmoTabuList\fP< M >::add (const M & __move, const \fBEOT\fP & __sol)\fC [pure virtual]\fP"
+.PP
+Procedure to add a move in the tabu list. 
+.PP
+The two parameters have not to be modified so they are constant parameters
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__move\fP a new tabu move 
+.br
+\fI__sol\fP the solution associated to this move 
+.RE
+.PP
+
+.SS "template<class M> virtual void \fBmoTabuList\fP< M >::update ()\fC [pure virtual]\fP"
+.PP
+Procedure that updates the tabu list content. 
+.PP
+Generally, a counter associated to each saved move is decreased by one. 
+.SS "template<class M> virtual void \fBmoTabuList\fP< M >::init ()\fC [pure virtual]\fP"
+.PP
+Procedure which initialises the tabu list. 
+.PP
+Can be useful if the data structure needs to be allocated before being used. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PARADISEO-MO from the source code.
