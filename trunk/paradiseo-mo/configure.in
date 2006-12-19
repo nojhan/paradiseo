@@ -1,11 +1,11 @@
 AC_INIT(configure.in)
-AM_INIT_AUTOMAKE(mo, 0.1)
+AM_INIT_AUTOMAKE(paradiseo-mo, 0.1)
 
 AC_ISC_POSIX
 AC_PROG_CXX
 AM_PROG_CC_STDC
 AC_HEADER_STDC
-AC_CXX_HAVE_SSTREAM
+#AC_CXX_HAVE_SSTREAM
 AC_PROG_RANLIB
 
 AC_PROG_INSTALL
@@ -40,7 +40,13 @@ AC_OUTPUT([
 Makefile
 src/Makefile
 docs/Makefile
-examples/Makefile
-examples/tsp/Makefile
-examples/tsp/share/Makefile
+tutorial/Makefile
+tutorial/examples/Makefile
+tutorial/examples/tsp/Makefile
+tutorial/examples/tsp/src/Makefile
+tutorial/Lesson1/Makefile
+tutorial/Lesson2/Makefile
+tutorial/Lesson3/Makefile
 ])
+
+echo "Type 'make doc' for building documentation"

@@ -15,12 +15,8 @@ Go to your build-directory and run
     make
     make doc
 
-where $(SRCDIR) is the top-level source directory of EO, i.e. where
+where $(SRCDIR) is the top-level source directory of ParadisEO-MO, i.e. where
 the sources where unpacked.
-
-In case of problems, you can read the INSTALL file - but remember this
-is a standard installation file from GNU and that it contains nothing
-specific about MO.
 
 To clean everything, in the simply run 
     make clean_all
@@ -45,17 +41,27 @@ structure:
    |   +- man            Unix man format documentation.
    |
    |
-   +-- test              TEST files - for debugging purposes only.
-   |
-   |
-   +-- examples          APPLICATIONS - one directory per separate application.
+   +-- tutorial          TUTORIAL with lessons 
        |
-       +- tsp            traveling salesman problem example with main algorithms.
-          |
-       	  +-benchs       Instance files for testing.
-          |
-          +-share        sources files.
-   
+       +-examples        APPLICATIONS - one directory per separate application.
+       | |
+       | +- tsp          traveling salesman problem example.
+       |    |
+       |    +-src        sources files for the lesson examples using the tsp.
+       |    |
+       |     +-benchs    TSP Instance files.
+       |   
+       +-Lesson1         How make a Hill Climbing on the TSP example.
+       | |
+       | +-benchs        TSP Instance files.
+       |
+       +-Lesson2         How make a Tabu Search on the TSP example.
+       | |
+       | +-benchs        TSP Instance files.
+       | 
+       +-Lesson3         How make a Simulated Annealing on the TSP example.
+         |
+         +-benchs        TSP Instance files.
 ===================================================================
               NOTES
 ===================================================================
