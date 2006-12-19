@@ -1,0 +1,88 @@
+.TH "moImprBestFitAspirCrit" 3 "12 Dec 2006" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moImprBestFitAspirCrit \- One of the possible \fBmoAspirCrit\fP.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moImprBestFitAspirCrit.h>\fP
+.PP
+Inherits \fBmoAspirCrit< M >< M >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef M::EOType::Fitness \fBFitness\fP"
+.br
+.RI "\fIAlias for the fitness. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoImprBestFitAspirCrit\fP ()"
+.br
+.RI "\fIContructor. \fP"
+.ti -1c
+.RI "void \fBinit\fP ()"
+.br
+.RI "\fIInitialisation procedure. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (const M &__move, const \fBFitness\fP &__fit)"
+.br
+.RI "\fIFunction that indicates if the fit is better that the already saved fit. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBFitness\fP \fBbest_fit\fP"
+.br
+.RI "\fIBest fitness found until now. \fP"
+.ti -1c
+.RI "bool \fBfirst_time\fP"
+.br
+.RI "\fIIndicates that a fitness has been already saved or not. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class M> class moImprBestFitAspirCrit< M >"
+One of the possible \fBmoAspirCrit\fP. 
+
+This criterion is satisfied when a given fitness is the best ever considered. 
+.PP
+Definition at line 22 of file moImprBestFitAspirCrit.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class M> bool \fBmoImprBestFitAspirCrit\fP< M >::operator() (const M & __move, const \fBFitness\fP & __fit)\fC [inline]\fP"
+.PP
+Function that indicates if the fit is better that the already saved fit. 
+.PP
+The first time, the function only saved the current move and fitness.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__move\fP a move. 
+.br
+\fI__fit\fP a fitnes linked to the move. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+TRUE the first time and if __fit > best_fit, else FALSE. 
+.RE
+.PP
+
+.PP
+Definition at line 52 of file moImprBestFitAspirCrit.h.
+.PP
+References moImprBestFitAspirCrit< M >::best_fit, and moImprBestFitAspirCrit< M >::first_time.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PARADISEO-MO from the source code.
