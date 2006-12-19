@@ -38,6 +38,11 @@ REMOVE_TEMP_DIRECTORY_ERROR=113
 VAR_CONFIG_ERROR=114
 MPD_COPY_ERROR=115
 
+#Date
+DATE=`/bin/date '+%Y%m%d%H%M%S'`
+# create log file
+SPY=$PWD/install.${DATE}.log
+
 #------------------------------------------------------#
 #-- FUNCTION   :  run_install			    ---#
 #------------------------------------------------------#
@@ -55,94 +60,94 @@ function run_install()
 	########## STEP 0 : introduction ##########
 	clear
 	echo ""
-	echo -e ' \033[40m\033[1;33m### ParadisEO install starting .... ### \033[0m '
+	echo -e ' \033[40m\033[1;33m### ParadisEO install starting .... ### \033[0m ' | tee -a $SPY
 	#sleep 4
-	echo
-	echo "Installing the environment for paradiseo... this may take about ten minutes to complete. Note that the librairies \"libxml2\" ans \"mpich2\" required for ParadisEO are provided with this package."
+	echo | tee -a $SPY
+	echo "Installing the environment for Paradiseo... this may take about ten minutes to complete. Note that the librairies \"libxml2\" ans \"mpich2\" required for ParadisEO are provided with this package." | tee -a $SPY
 	sleep 3
 
-	echo
-	echo 
+	echo | tee -a $SPY
+	echo | tee -a $SPY
 
 	########## STEP 1: unpacking paradiseo-eo ##########
-	echo -e '	\033[40m\033[1;34m# STEP 1 \033[0m '
-	echo '		--> Unpacking Paradiseo-EO (Evolving Objects) ...'
+	echo -e '	\033[40m\033[1;34m# STEP 1 \033[0m ' | tee -a $SPY
+	echo '		--> Unpacking Paradiseo-EO (Evolving Objects) ...' | tee -a $SPY
 
 	tar xvf $resourceKitPath/$LIBS_PATH/$PARADISEO_EO_ARCHIVE --directory $installKitPath >> $TAR_MSG
 	if [ ! "$?" = "0" ]
 	then
-		echo ''
-		echo "	Error when unpacking Paradiseo-EO"
-		echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+		echo '' | tee -a $SPY
+		echo "	Error when unpacking Paradiseo-EO" | tee -a $SPY
+		echo -e ' \033[40m\033[1;33m### END ### \033[0m ' | tee -a $SPY
 		return $EO_UNPACKING_ERROR
 	else
-		echo -e '	\033[40m\033[1;34m# STEP 1 OK \033[0m'
-		echo
+		echo -e '	\033[40m\033[1;34m# STEP 1 OK \033[0m' | tee -a $SPY
+		echo | tee -a $SPY
 	fi 
 	
 
 	########## STEP 2: unpacking libxml2 ##########
-	echo -e  '	\033[40m\033[1;34m# STEP 2 \033[0m '
-	echo '		--> Unpacking libxml2 (required for ParadisEO) ...'
+	echo -e  '	\033[40m\033[1;34m# STEP 2 \033[0m ' | tee -a $SPY
+	echo '		--> Unpacking libxml2 (required for ParadisEO) ...' | tee -a $SPY
 	
 	tar xvjf $resourceKitPath/$LIBS_PATH/$LIBXML2_ARCHIVE  --directory $installKitPath >> $TAR_MSG
 	if [ ! "$?" = "0" ]
 	then
-		echo ''
-		echo "	Error when unpacking libxml2"
-		echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+		echo '' | tee -a $SPY
+		echo "	Error when unpacking libxml2" | tee -a $SPY
+		echo -e ' \033[40m\033[1;33m### END ### \033[0m ' | tee -a $SPY
 		return $LIBXML_UNPACKING_ERROR
 	else
-		echo -e '	\033[40m\033[1;34m# STEP 2 OK \033[0m'
-		echo
+		echo -e '	\033[40m\033[1;34m# STEP 2 OK \033[0m' | tee -a $SPY
+		echo | tee -a $SPY
 	fi 
 
 	########## STEP 3: unpacking mpich2 ##########
-	echo -e  '	\033[40m\033[1;34m# STEP 3 \033[0m '
-	echo '		--> Unpacking mpich2 (required for ParadisEO) ...'
+	echo -e  '	\033[40m\033[1;34m# STEP 3 \033[0m ' | tee -a $SPY
+	echo '		--> Unpacking mpich2 (required for ParadisEO) ...' | tee -a $SPY
 	
 	tar xzvf $resourceKitPath/$LIBS_PATH/$MPICH2_ARCHIVE --directory $installKitPath >> $TAR_MSG
 	if [ ! "$?" = "0" ]
 	then
-		echo ''
-		echo "	Error when unpacking mpich2"
-		echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+		echo '' | tee -a $SPY
+		echo "	Error when unpacking mpich2" | tee -a $SPY
+		echo -e ' \033[40m\033[1;33m### END ### \033[0m ' | tee -a $SPY
 		return $MPICH_UNPACKING_ERROR
 	else
-		echo -e '	\033[40m\033[1;34m# STEP 3 OK \033[0m'
-		echo
+		echo -e '	\033[40m\033[1;34m# STEP 3 OK \033[0m' | tee -a $SPY
+		echo | tee -a $SPY
 	fi 
 
 	########## STEP 4: installing paradiseo-eo ##########
-	echo -e  '	\033[40m\033[1;34m# STEP 4 \033[0m '
-	echo '		--> Installing Paradiseo-EO ...'
+	echo -e  '	\033[40m\033[1;34m# STEP 4 \033[0m ' | tee -a $SPY
+	echo '		--> Installing Paradiseo-EO ...' | tee -a $SPY
 	
-	cd $installKitPath/paradiseo-eo && ./autogen.sh && ./configure && make
+	cd $installKitPath/paradiseo-eo && ./autogen.sh  >>  $SPY && ./configure  >>  $SPY && make >>  $SPY
 	if [ ! "$?" = "0" ]
 	then
-		echo ''
-		echo "	Error when installing Paradiseo-EO"
-		echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+		echo '' | tee -a $SPY
+		echo "	Error when installing Paradiseo-EO" | tee -a $SPY
+		echo -e ' \033[40m\033[1;33m### END ### \033[0m ' | tee -a $SPY
 		return $EO_INSTALL_ERROR
 	else
-		echo -e '	\033[40m\033[1;34m# STEP 4 OK \033[0m'
-		echo
+		echo -e '	\033[40m\033[1;34m# STEP 4 OK \033[0m' | tee -a $SPY
+		echo | tee -a $SPY
 	fi 
 
 	########## STEP 5: installing paradiseo-mo ##########
-	echo -e  '	\033[40m\033[1;34m# STEP 5 \033[0m '
-	echo '		--> Installing Paradiseo-MO ...'
+	echo -e  '	\033[40m\033[1;34m# STEP 5 \033[0m ' | tee -a $SPY
+	echo '		--> Installing Paradiseo-MO ...' | tee -a $SPY
 	
 	cd $installKitPath/paradiseo-mo && ./autogen.sh --with-EOdir=$installKitPath/paradiseo-eo && make
 	if [ ! "$?" = "0" ]
 	then
-		echo ''
-		echo "	Error when installing Paradiseo-MO"
-		echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+		echo '' | tee -a $SPY
+		echo "	Error when installing Paradiseo-MO" | tee -a $SPY
+		echo -e ' \033[40m\033[1;33m### END ### \033[0m ' | tee -a $SPY
 		return $MO_INSTALL_ERROR
 	else
-		echo -e '	\033[40m\033[1;34m# STEP 5 OK \033[0m'
-		echo
+		echo -e '	\033[40m\033[1;34m# STEP 5 OK \033[0m' | tee -a $SPY
+		echo | tee -a $SPY
 	fi 
 
 	########## STEP 6: installing MOEO ##########
@@ -179,19 +184,19 @@ function run_install()
 
 
 	########## STEP 8: installing MPICH2 ##########
-	echo -e  '	\033[40m\033[1;34m# STEP 8 \033[0m '
-	echo '		--> Installing MPICH2 ...'
+	echo -e  '	\033[40m\033[1;34m# STEP 8 \033[0m ' | tee -a $SPY
+	echo '		--> Installing MPICH2 ...' | tee -a $SPY
 	
 	mkdir $installKitPath/mpich2 && cd $installKitPath/mpich2-1.0.3/ && ./configure --prefix=$installKitPath/mpich2/ && make && make install
 	if [ ! "$?" = "0" ]
 	then
-		echo ''
-		echo "	Error when installing MPICH2"
-		echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+		echo '' | tee -a $SPY
+		echo "	Error when installing MPICH2" | tee -a $SPY
+		echo -e ' \033[40m\033[1;33m### END ### \033[0m ' | tee -a $SPY
 		return $MPICH_INSTALL_ERROR
 	else
-		echo -e '	\033[40m\033[1;34m# STEP 8 OK \033[0m'
-		echo
+		echo -e '	\033[40m\033[1;34m# STEP 8 OK \033[0m' | tee -a $SPY
+		echo | tee -a $SPY
 	fi 
 
 	########## STEP 9: removing temp directory for libxml ##########
@@ -234,11 +239,11 @@ function run_install()
 	idx=$?	 
 	export PATH=$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:$PATH
 	idx=`expr $idx + $?`
-	echo "export LD_LIBRARY_PATH=$installKitPath/libxml2/lib:$LD_LIBRARY_PATH" >> $bashrcPath/.bashrc
+	echo "export LD_LIBRARY_PATH=$installKitPath/libxml2/lib:$LD_LIBRARY_PATH" >> $homePath/.bashrc
 	idx=`expr $idx + $?`
-	echo "export PATH=$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:$PATH" >> $bashrcPath/.bashrc
+	echo "export PATH=$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:$PATH" >> $homePath/.bashrc
 	idx=`expr $idx + $?`
-	source $bashrcPath/.bashrc
+	source $homePath/.bashrc
 	idx=`expr $idx + $?`
 	if [ ! $(($idx)) = 0 ]
 	then
@@ -269,15 +274,19 @@ function run_install()
 	fi 
 
 	
-	######## STEP 13: copy .mpd.conf file to bashrc (required for ParadisEO) ##########
+	######## STEP 13: copy .mpd.conf file in your HOME directory or in /etc if you are root (required for mpich2) ##########
 	echo -e  '	\033[40m\033[1;34m# STEP 13 \033[0m '
-	echo '		--> Copy .mpd.conf file to bashrc path (required for Paradiseo-PEO)  ...'
-	
-	cp $resourceKitPath/.mpd.conf $bashrcPath/ && chmod 600 $bashrcPath/.mpd.conf
+	echo '		--> Copy .mpd.conf file in your HOME directory or in /etc if you are root (required for mpich2)  ...'
+	if [ "$UID" = "0" ]
+	then
+		cp $resourceKitPath/.mpd.conf /etc && mv /etc/.mpd.conf /etc/mpd.conf && chmod 600 /etc/mpd.conf
+	else
+		cp $resourceKitPath/.mpd.conf $homePath/ && chmod 600 $homePath/.mpd.conf
+	fi
 	if [ ! "$?" = "0" ]
 	then
 		echo ''
-		echo "	Error when copying .mpd.conf file to bashrc path"
+		echo "	Error when copying .mpd.conf file"
 		echo -e ' \033[40m\033[1;33m### END ### \033[0m '
 		return $MPD_COPY_ERROR
 	else
@@ -285,7 +294,7 @@ function run_install()
 		echo
 	fi 	
 
-	echo -e "\033[40m\033[1;33m### Now please run \"source $bashrcPath/.bashrc\" to save context ### \033[0m"
+	echo -e "\033[40m\033[1;33m### Now please run \"source $homePath/.bashrc\" to save context ### \033[0m"
 	sleep 2
 	echo
 	echo
@@ -373,28 +382,28 @@ function on_error()
 if [ "$1" = "--help" ]
 then
 	echo
-	echo 'Use : ./installParadiseo.sh  if your .bashrc file is in your home directory.'
+	echo 'Use : ./installParadiseo.sh for standard install'
 	echo
-	echo 'Use : ./installParadiseo.sh <bashrc path> to give your .bashrc path'
-	echo 'Example: ./installParadiseo.sh /usr/mybashrcpath'
+	echo 'Use : ./installParadiseo.sh <HOME path> to give your HOME path'
+	echo 'Example: ./installParadiseo.sh /usr/home/me'
 	echo
 	echo '=> For further help, please contact paradiseo-help@lists.gforge.inria.fr'
 	echo
 	exit
 fi
 
-if [ ! -f $HOME/.bashrc ]
+if [ ! -d $HOME]
 then
-	if [ "$1" == "" ] || [ ! -f $1/.bashrc ]
+	if [ "$1" == "" ]
 	then
-		echo " Please give a valid path for your bashrc file (use ./installParadiseo.sh --help for further information)"
+		echo " Please give a valid path for your home directory (use ./installParadiseo.sh --help for further information)"
 	else
-		bashrcPath=$1
+		homePath=$1
 		paradiseoInstall=run_install $PWD
 		on_error $paradiseoInstall
 	fi
 else
-	bashrcPath=$HOME
+	homePath=$HOME
 	run_install $PWD
 	paradiseoInstall=$?
 	on_error $paradiseoInstall
