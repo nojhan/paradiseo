@@ -351,7 +351,7 @@ function run_install()
 	
 	execute_cmd "cd $installKitPath/paradiseo-peo" "[12-1] Go in Paradiseo-PEO dir"  $SPY 
 	RETURN=$?
-	execute_cmd " ./configure --with-EOdir=$installKitPath/paradiseo-eo/ --with-MOdir=$installKitPath/paradiseo-mo/ --with-MOEOdir=$installKitPath/paradiseo-moeo" "[12-2] Run configure for ParadisEO-PEO"  $SPY
+	execute_cmd " ./autogen.sh --with-EOdir=$installKitPath/paradiseo-eo/ --with-MOdir=$installKitPath/paradiseo-mo/ --with-MOEOdir=$installKitPath/paradiseo-moeo" "[12-2] Run autogen for ParadisEO-PEO"  $SPY
 	RETURN=`expr $RETURN + $?`
 	execute_cmd "make" "[12-3] Compile ParadisEO-PEO "  $SPY
 	RETURN=`expr $RETURN + $?`
@@ -461,7 +461,7 @@ function on_error()
 
 	$PARADISEO_INSTALL_ERROR) 
 		echo
-		echo '  An error has occured : impossible to install Paradiseo-PEO.See $SPY for more details' 
+		echo "  An error has occured : impossible to install Paradiseo-PEO.See $SPY for more details" 
 		echo '  Make sure you have the required variables in your environment (ex: by using "echo $PATH" for PATH variable) : '
 		echo '	-LD_LIBRARY_PATH=<libxml2 install path>/libxml2/lib:$LD_LIBRARY_PATH'
 		echo '	-PATH=<libxml2 install path>/libxml2/bin:<mpich2 install path>/mpich2/bin:$PATH'
