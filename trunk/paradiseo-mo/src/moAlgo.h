@@ -14,9 +14,9 @@
 
 #include <eoOp.h>
 
-//! Description of an algorithm of the mo library
+//! Description of an algorithm of the paradiseo-mo library
 /*!
-  moHC, moTS and moSA are 3 examples of algorithm of the mo library.
+  moHC, moTS and moSA are 3 examples of algorithm of the paradiseo-mo library.
  */
 template < class EOT > class moAlgo:public eoMonOp < EOT >
 {
