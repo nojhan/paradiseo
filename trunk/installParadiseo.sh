@@ -323,13 +323,18 @@ function run_install()
 		echo
 	fi 
 
+
 	########## STEP 11: Configuring environment variables ##########
 	echo -e  '	\033[40m\033[1;34m# STEP 11 \033[0m '
 	echo '		--> Configuring environment variables for libxml2 and mpich2 ...'
 	
-	execute_cmd "echo \"export LD_LIBRARY_PATH=$installKitPath/libxml2/lib:$LD_LIBRARY_PATH\" >> $homePath/.bashrc" "[11-1] Export LD_LIBRARY_PATH variable" $SPY
+	execute_cmd "export LD_LIBRARY_PATH=$installKitPath/libxml2/lib:$LD_LIBRARY_PATH" "[11-1] Export LD_LIBRARY_PATH variable" $SPY
 	idx=$?	 
-	execute_cmd "echo \"export PATH=$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:$PATH\" >> $homePath/.bashrc" "[11-2] Export PATH variable" $SPY
+	execute_cmd "export PATH=$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:$PATH" "[11-2] Export PATH variable" $SPY 
+
+	execute_cmd "echo export LD_LIBRARY_PATH=$installKitPath/libxml2/lib:$LD_LIBRARY_PATH" "[11-3] Export LD_LIBRARY_PATH variable into env" $SPY $homePath/.bashrc
+	idx=$?	 
+	execute_cmd "echo export PATH=$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:$PATH" "[11-4] Export PATH variable into env" $SPY $homePath/.bashrc
 	idx=`expr $idx + $?`
 	execute_cmd "source $homePath/.bashrc" "[11-3] Export variables" $SPY
 	idx=`expr $idx + $?`
