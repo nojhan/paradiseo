@@ -23,10 +23,6 @@ Go to your build-directory and run
 where $(SRCDIR) is the top-level source directory of PARADISEO-MOEO,
 i.e. where the sources where unpacked.
 
-In case of problems, you can read the INSTALL file - but remember this
-is a standard installation file from GNU and that it contains nothing
-specific about PARADISEO-MOEO.
-
 To clean everything, the simply run 
     make clean_all
 
@@ -36,7 +32,7 @@ To clean everything, the simply run
 After unpacking the archive file, you should end up with the following
 structure:
 
-.../                     The MAIN PARADISEO-MO directory, created when unpacking.
+.../                     The MAIN PARADISEO-MOEO directory, created when unpacking.
    |
    +-- src               SOURCE directory Contains most PARADISEO-MOEO .h files.
    |   
