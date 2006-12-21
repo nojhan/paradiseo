@@ -39,4 +39,5 @@ src/Makefile
 docs/Makefile
 tutorials/Makefile
 tutorials/lesson1/Makefile
+tutorials/lesson2/Makefile
 ])

@@ -1,1 +1,1 @@
-SUBDIRS=lesson1
+SUBDIRS=lesson1 lesson2
