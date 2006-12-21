@@ -1,4 +1,4 @@
-.TH "moHCMoveLoopExpl" 3 "20 Dec 2006" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moHCMoveLoopExpl" 3 "21 Dec 2006" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -87,7 +87,7 @@ All the boxes have to be specified.
 Definition at line 43 of file moHCMoveLoopExpl.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> void \fBmoHCMoveLoopExpl\fP< M >::operator() (const \fBEOT\fP & __old_sol, \fBEOT\fP & __new_sol)\fC [inline]\fP"
+.SS "template<class M> void \fBmoHCMoveLoopExpl\fP< M >::operator() (const \fBEOT\fP & __old_sol, \fBEOT\fP & __new_sol)\fC [inline, virtual]\fP"
 .PP
 Procedure which launches the explorer. 
 .PP
@@ -101,6 +101,8 @@ The exploration starts from an old solution and provides a new solution.
 .RE
 .PP
 
+.PP
+Implements \fBeoBF< const M::EOType &, M::EOType &, void >\fP.
 .PP
 Definition at line 59 of file moHCMoveLoopExpl.h.
 .PP

@@ -1,4 +1,4 @@
-.TH "moGenSolContinue" 3 "20 Dec 2006" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moGenSolContinue" 3 "21 Dec 2006" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -65,7 +65,7 @@ Simple constructor.
 Definition at line 30 of file moGenSolContinue.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class EOT> bool \fBmoGenSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline]\fP"
+.SS "template<class EOT> bool \fBmoGenSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline, virtual]\fP"
 .PP
 Function that activates the stop criterion. 
 .PP
@@ -82,6 +82,8 @@ TRUE or FALSE according to the current generation number.
 .RE
 .PP
 
+.PP
+Implements \fBeoUF< const EOT &, bool >\fP.
 .PP
 Definition at line 44 of file moGenSolContinue.h.
 .PP

@@ -8,15 +8,15 @@ Tabu Search (TS).
 Inheritance diagram for mo\-TS$<$ M $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{classmo_t_s}
+\includegraphics[height=5cm]{classmo_t_s}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-{\bf mo\-TS} ({\bf mo\-Move\-Init}$<$ M $>$ \&\_\-\_\-move\_\-init, {\bf mo\-Next\-Move}$<$ M $>$ \&\_\-\_\-next\_\-move, {\bf mo\-Move\-Incr\-Eval}$<$ M $>$ \&\_\-\_\-incr\_\-eval, {\bf mo\-Tabu\-List}$<$ M $>$ \&\_\-\_\-tabu\_\-list, {\bf mo\-Aspir\-Crit}$<$ M $>$ \&\_\-\_\-aspir\_\-crit, {\bf mo\-Sol\-Continue}$<$ {\bf EOT} $>$ \&\_\-\_\-cont, eo\-Eval\-Func$<$ {\bf EOT} $>$ \&\_\-\_\-full\_\-eval)
+{\bf mo\-TS} ({\bf mo\-Move\-Init}$<$ M $>$ \&\_\-\_\-move\_\-init, {\bf mo\-Next\-Move}$<$ M $>$ \&\_\-\_\-next\_\-move, {\bf mo\-Move\-Incr\-Eval}$<$ M $>$ \&\_\-\_\-incr\_\-eval, {\bf mo\-Tabu\-List}$<$ M $>$ \&\_\-\_\-tabu\_\-list, {\bf mo\-Aspir\-Crit}$<$ M $>$ \&\_\-\_\-aspir\_\-crit, {\bf mo\-Sol\-Continue}$<$ {\bf EOT} $>$ \&\_\-\_\-cont, {\bf eo\-Eval\-Func}$<$ {\bf EOT} $>$ \&\_\-\_\-full\_\-eval)
 \begin{CompactList}\small\item\em Constructor of a \doxyref{mo\-TS}{p.}{classmo_t_s} specifying all the boxes. \item\end{CompactList}\item 
-{\bf mo\-TS} ({\bf mo\-Move\-Expl}$<$ M $>$ \&\_\-\_\-move\_\-expl, {\bf mo\-Sol\-Continue}$<$ {\bf EOT} $>$ \&\_\-\_\-cont, eo\-Eval\-Func$<$ {\bf EOT} $>$ \&\_\-\_\-full\_\-eval)
+{\bf mo\-TS} ({\bf mo\-Move\-Expl}$<$ M $>$ \&\_\-\_\-move\_\-expl, {\bf mo\-Sol\-Continue}$<$ {\bf EOT} $>$ \&\_\-\_\-cont, {\bf eo\-Eval\-Func}$<$ {\bf EOT} $>$ \&\_\-\_\-full\_\-eval)
 \begin{CompactList}\small\item\em Constructor with less parameters. \item\end{CompactList}\item 
 bool {\bf operator()} ({\bf EOT} \&\_\-\_\-sol)
 \begin{CompactList}\small\item\em Function which launchs the Tabu Search. \item\end{CompactList}\end{CompactItemize}
@@ -38,7 +38,7 @@ typedef EOT::Fitness {\bf Fitness}\label{classmo_t_s_aa0eefbb17111422e495d1255f8
 {\bf mo\-Sol\-Continue}$<$ {\bf EOT} $>$ \& {\bf cont}\label{classmo_t_s_969371cd2202f3d29cbb426f57ac7d3a}
 
 \begin{CompactList}\small\item\em Stop criterion. \item\end{CompactList}\item 
-eo\-Eval\-Func$<$ {\bf EOT} $>$ \& {\bf full\_\-eval}\label{classmo_t_s_fb67eddae5d0bfca4ed881995523231e}
+{\bf eo\-Eval\-Func}$<$ {\bf EOT} $>$ \& {\bf full\_\-eval}\label{classmo_t_s_fb67eddae5d0bfca4ed881995523231e}
 
 \begin{CompactList}\small\item\em Full evaluation function. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Static Private Attributes}
@@ -66,7 +66,7 @@ Definition at line 30 of file mo\-TS.h.
 \subsection{Constructor \& Destructor Documentation}
 \index{moTS@{mo\-TS}!moTS@{moTS}}
 \index{moTS@{moTS}!moTS@{mo\-TS}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf mo\-TS}$<$ M $>$::{\bf mo\-TS} ({\bf mo\-Move\-Init}$<$ M $>$ \& {\em \_\-\_\-move\_\-init}, {\bf mo\-Next\-Move}$<$ M $>$ \& {\em \_\-\_\-next\_\-move}, {\bf mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\em \_\-\_\-incr\_\-eval}, {\bf mo\-Tabu\-List}$<$ M $>$ \& {\em \_\-\_\-tabu\_\-list}, {\bf mo\-Aspir\-Crit}$<$ M $>$ \& {\em \_\-\_\-aspir\_\-crit}, {\bf mo\-Sol\-Continue}$<$ {\bf EOT} $>$ \& {\em \_\-\_\-cont}, eo\-Eval\-Func$<$ {\bf EOT} $>$ \& {\em \_\-\_\-full\_\-eval})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_t_s_2be23f4524733ee6f37b71310d76407e}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf mo\-TS}$<$ M $>$::{\bf mo\-TS} ({\bf mo\-Move\-Init}$<$ M $>$ \& {\em \_\-\_\-move\_\-init}, {\bf mo\-Next\-Move}$<$ M $>$ \& {\em \_\-\_\-next\_\-move}, {\bf mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\em \_\-\_\-incr\_\-eval}, {\bf mo\-Tabu\-List}$<$ M $>$ \& {\em \_\-\_\-tabu\_\-list}, {\bf mo\-Aspir\-Crit}$<$ M $>$ \& {\em \_\-\_\-aspir\_\-crit}, {\bf mo\-Sol\-Continue}$<$ {\bf EOT} $>$ \& {\em \_\-\_\-cont}, {\bf eo\-Eval\-Func}$<$ {\bf EOT} $>$ \& {\em \_\-\_\-full\_\-eval})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_t_s_2be23f4524733ee6f37b71310d76407e}
 
 
 Constructor of a \doxyref{mo\-TS}{p.}{classmo_t_s} specifying all the boxes. 
@@ -84,7 +84,7 @@ Definition at line 59 of file mo\-TS.h.
 
 References mo\-TS$<$ M $>$::first\_\-time, and mo\-TS$<$ M $>$::mutex.\index{moTS@{mo\-TS}!moTS@{moTS}}
 \index{moTS@{moTS}!moTS@{mo\-TS}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf mo\-TS}$<$ M $>$::{\bf mo\-TS} ({\bf mo\-Move\-Expl}$<$ M $>$ \& {\em \_\-\_\-move\_\-expl}, {\bf mo\-Sol\-Continue}$<$ {\bf EOT} $>$ \& {\em \_\-\_\-cont}, eo\-Eval\-Func$<$ {\bf EOT} $>$ \& {\em \_\-\_\-full\_\-eval})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_t_s_508e675c4232cf2ca06dded931c90bab}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf mo\-TS}$<$ M $>$::{\bf mo\-TS} ({\bf mo\-Move\-Expl}$<$ M $>$ \& {\em \_\-\_\-move\_\-expl}, {\bf mo\-Sol\-Continue}$<$ {\bf EOT} $>$ \& {\em \_\-\_\-cont}, {\bf eo\-Eval\-Func}$<$ {\bf EOT} $>$ \& {\em \_\-\_\-full\_\-eval})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_t_s_508e675c4232cf2ca06dded931c90bab}
 
 
 Constructor with less parameters. 
@@ -105,7 +105,7 @@ References mo\-TS$<$ M $>$::first\_\-time, and mo\-TS$<$ M $>$::mutex.
 \subsection{Member Function Documentation}
 \index{moTS@{mo\-TS}!operator()@{operator()}}
 \index{operator()@{operator()}!moTS@{mo\-TS}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf mo\-TS}$<$ M $>$::operator() ({\bf EOT} \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_t_s_94d25a76fe1bc9ef0bbd0358ff55aceb}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf mo\-TS}$<$ M $>$::operator() ({\bf EOT} \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_t_s_94d25a76fe1bc9ef0bbd0358ff55aceb}
 
 
 Function which launchs the Tabu Search. 
@@ -120,6 +120,8 @@ Algorithm of the tabu search. As a \doxyref{mo\-SA}{p.}{classmo_s_a} or a \doxyr
 \begin{Desc}
 \item[Returns:]TRUE. \end{Desc}
 
+
+Implements {\bf eo\-UF$<$ M::EOType \&, bool $>$}.
 
 Definition at line 104 of file mo\-TS.h.
 

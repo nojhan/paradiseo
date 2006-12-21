@@ -1,4 +1,4 @@
-.TH "moEasyCoolSched" 3 "20 Dec 2006" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moEasyCoolSched" 3 "21 Dec 2006" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -61,7 +61,7 @@ Simple constructor.
 Definition at line 31 of file moEasyCoolSched.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "bool moEasyCoolSched::operator() (double & __temp)\fC [inline]\fP"
+.SS "bool moEasyCoolSched::operator() (double & __temp)\fC [inline, virtual]\fP"
 .PP
 Function which proceeds to the cooling. 
 .PP
@@ -78,6 +78,8 @@ if the new temperature (current temperature * ratio) is greater than the thresho
 .RE
 .PP
 
+.PP
+Implements \fBeoUF< double &, bool >\fP.
 .PP
 Definition at line 44 of file moEasyCoolSched.h.
 .PP
