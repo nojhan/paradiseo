@@ -1,0 +1,95 @@
+.TH "moeoNSGA_II" 3 "22 Dec 2006" "Version 0.1" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoNSGA_II \- 
+.SH SYNOPSIS
+.br
+.PP
+Inherits \fBeoAlgo< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoNSGA_II\fP (unsigned _max_gen, \fBeoEvalFunc\fP< EOT > &_eval, \fBeoGenOp\fP< EOT > &_op)"
+.br
+.RI "\fIThis constructor builds the algorithm as descibed in the paper. \fP"
+.ti -1c
+.RI "\fBmoeoNSGA_II\fP (unsigned _max_gen, \fBeoEvalFunc\fP< EOT > &_eval, \fBeoQuadOp\fP< EOT > &crossover, double pCross, \fBeoMonOp\fP< EOT > &mutation, double pMut)"
+.br
+.RI "\fICtor taking _max_gen, crossover and mutation. \fP"
+.ti -1c
+.RI "\fBmoeoNSGA_II\fP (\fBeoContinue\fP< EOT > &_continuator, \fBeoEvalFunc\fP< EOT > &_eval, \fBeoGenOp\fP< EOT > &_op)"
+.br
+.RI "\fICtor taking a continuator instead of _gen_max. \fP"
+.ti -1c
+.RI "virtual void \fBoperator()\fP (\fBeoPop\fP< EOT > &_pop)"
+.br
+.RI "\fIApply a few generation of evolution to the population. \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoContinue\fP< EOT > & \fBcontinuator\fP"
+.br
+.ti -1c
+.RI "\fBeoEvalFunc\fP< EOT > & \fBeval\fP"
+.br
+.ti -1c
+.RI "\fBeoPopLoopEval\fP< EOT > \fBloopEval\fP"
+.br
+.ti -1c
+.RI "\fBeoPopEvalFunc\fP< EOT > & \fBpopEval\fP"
+.br
+.ti -1c
+.RI "\fBmoeoNDSorting_II\fP< EOT > \fBsorting\fP"
+.br
+.RI "\fINSGAII sorting. \fP"
+.ti -1c
+.RI "\fBeoDetTournamentWorthSelect\fP< EOT > \fBselectOne\fP"
+.br
+.RI "\fIBinary tournament selection. \fP"
+.ti -1c
+.RI "\fBmoeoElitistReplacement\fP< EOT > \fBreplace\fP"
+.br
+.RI "\fIElitist replacement. \fP"
+.ti -1c
+.RI "\fBeoGeneralBreeder\fP< EOT > \fBgenBreed\fP"
+.br
+.ti -1c
+.RI "\fBeoBreed\fP< EOT > & \fBbreed\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class moeoNSGA_II< EOT >"
+
+.PP
+Definition at line 31 of file moeoNSGA_II.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBmoeoNSGA_II\fP< EOT >::\fBmoeoNSGA_II\fP (unsigned _max_gen, \fBeoEvalFunc\fP< EOT > & _eval, \fBeoGenOp\fP< EOT > & _op)\fC [inline]\fP"
+.PP
+This constructor builds the algorithm as descibed in the paper. 
+.PP
+Deb, K., S. Agrawal, A. Pratap, and T. Meyarivan, A fast elitist non-dominated sorting genetic algorithm for multi-objective optimization: NSGA-II. In IEEE Transactions on Evolutionary Computation, Vol. 6, No 2, pp 182-197, April 2002. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_max_gen\fP number of generations before stopping 
+.br
+\fI_eval\fP evaluation function 
+.br
+\fI_op\fP variation operator 
+.RE
+.PP
+
+.PP
+Definition at line 45 of file moeoNSGA_II.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.
