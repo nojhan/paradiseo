@@ -1,0 +1,264 @@
+cd . && doxygen paradiseo-peo.doxyfile
+Error: Tag file `~adrian/workspace/installs/eo/doc/eo.doxytag' does not exist or is not a file. Skipping it...
+Error: Tag file `../../paradiseo-mo/docs/mo.doxytag' does not exist or is not a file. Skipping it...
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/communicable.h:35: Warning: Member Communicable() (function) of class Communicable is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/communicable.h:37: Warning: Member ~Communicable() (function) of class Communicable is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/communicable.h:39: Warning: Member getKey() (function) of class Communicable is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/communicable.h:41: Warning: Member lock() (function) of class Communicable is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/communicable.h:42: Warning: Member unlock() (function) of class Communicable is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/communicable.h:44: Warning: Member stop() (function) of class Communicable is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/communicable.h:45: Warning: Member resume() (function) of class Communicable is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/communicable.h:49: Warning: Member key (variable) of class Communicable is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/communicable.h:51: Warning: Member sem_lock (variable) of class Communicable is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/communicable.h:53: Warning: Member sem_stop (variable) of class Communicable is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/communicable.h:55: Warning: Member num_comm (variable) of class Communicable is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/comm.h:35: Warning: Member Communicator(int *__argc, char ***__argv) (function) of class Communicator is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/comm.h:37: Warning: Member start() (function) of class Communicator is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/cooperative.h:36: Warning: Member getOwner() (function) of class Cooperative is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/cooperative.h:38: Warning: Member setOwner(Runner &__runner) (function) of class Cooperative is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/cooperative.h:44: Warning: Member send(Cooperative *__coop) (function) of class Cooperative is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/cooperative.h:46: Warning: Member notifySending() (function) of class Cooperative is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/cooperative.h:50: Warning: Member owner (variable) of class Cooperative is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/schema.h:37: Warning: Member rk (variable) of class Node is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/schema.h:38: Warning: Member name (variable) of class Node is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/schema.h:39: Warning: Member num_workers (variable) of class Node is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/schema.h:40: Warning: Member rk_sched (variable) of class Node is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/schema.h:41: Warning: Member id_run (variable) of class Node is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:163: Warning: Member emigrate() (function) of class peoAsyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:164: Warning: Member immigrate() (function) of class peoAsyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:169: Warning: Member cont (variable) of class peoAsyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:170: Warning: Member select (variable) of class peoAsyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:171: Warning: Member replace (variable) of class peoAsyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:172: Warning: Member topology (variable) of class peoAsyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:175: Warning: Member source (variable) of class peoAsyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:176: Warning: Member destination (variable) of class peoAsyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:179: Warning: Member imm (variable) of class peoAsyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:180: Warning: Member em (variable) of class peoAsyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:182: Warning: Member coop_em (variable) of class peoAsyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:69: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:70: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:76: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:77: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:87: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:88: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:89: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:94: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:95: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:106: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:107: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:131: Warning: argument `eoContinue' of command @param is not found in the argument list of peoAsyncIslandMig< EOT >::peoAsyncIslandMig(eoContinue< EOT > &__cont, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, Topology &__topology, eoPop< EOT > &__source, eoPop< EOT > &__destination)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:131: Warning: argument `eoSelect' of command @param is not found in the argument list of peoAsyncIslandMig< EOT >::peoAsyncIslandMig(eoContinue< EOT > &__cont, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, Topology &__topology, eoPop< EOT > &__source, eoPop< EOT > &__destination)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:131: Warning: argument `eoReplacement' of command @param is not found in the argument list of peoAsyncIslandMig< EOT >::peoAsyncIslandMig(eoContinue< EOT > &__cont, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, Topology &__topology, eoPop< EOT > &__source, eoPop< EOT > &__destination)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:131: Warning: argument `Topology' of command @param is not found in the argument list of peoAsyncIslandMig< EOT >::peoAsyncIslandMig(eoContinue< EOT > &__cont, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, Topology &__topology, eoPop< EOT > &__source, eoPop< EOT > &__destination)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:131: Warning: argument `eoPop' of command @param is not found in the argument list of peoAsyncIslandMig< EOT >::peoAsyncIslandMig(eoContinue< EOT > &__cont, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, Topology &__topology, eoPop< EOT > &__source, eoPop< EOT > &__destination)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:131: Warning: argument `eoPop' of command @param is not found in the argument list of peoAsyncIslandMig< EOT >::peoAsyncIslandMig(eoContinue< EOT > &__cont, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, Topology &__topology, eoPop< EOT > &__source, eoPop< EOT > &__destination)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoAsyncIslandMig.h:131: Warning: The following parameters of peoAsyncIslandMig::peoAsyncIslandMig(eoContinue< EOT > &__cont, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, Topology &__topology, eoPop< EOT > &__source, eoPop< EOT > &__destination) are not documented:
+  parameter __cont
+  parameter __select
+  parameter __replace
+  parameter __topology
+  parameter __source
+  parameter __destination
+
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoEA.h:104: Warning: Member cont (variable) of class peoEA is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoEA.h:105: Warning: Member pop_eval (variable) of class peoEA is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoEA.h:106: Warning: Member select (variable) of class peoEA is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoEA.h:107: Warning: Member trans (variable) of class peoEA is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoEA.h:108: Warning: Member replace (variable) of class peoEA is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoEA.h:109: Warning: Member pop (variable) of class peoEA is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoEA.h:73: Warning: argument `eoContinue' of command @param is not found in the argument list of peoEA< EOT >::peoEA(eoContinue< EOT > &__cont, peoPopEval< EOT > &__pop_eval, eoSelect< EOT > &__select, peoTransform< EOT > &__trans, eoReplacement< EOT > &__replace)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoEA.h:73: Warning: argument `peoPopEval' of command @param is not found in the argument list of peoEA< EOT >::peoEA(eoContinue< EOT > &__cont, peoPopEval< EOT > &__pop_eval, eoSelect< EOT > &__select, peoTransform< EOT > &__trans, eoReplacement< EOT > &__replace)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoEA.h:73: Warning: argument `eoSelect' of command @param is not found in the argument list of peoEA< EOT >::peoEA(eoContinue< EOT > &__cont, peoPopEval< EOT > &__pop_eval, eoSelect< EOT > &__select, peoTransform< EOT > &__trans, eoReplacement< EOT > &__replace)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoEA.h:73: Warning: argument `peoTransform' of command @param is not found in the argument list of peoEA< EOT >::peoEA(eoContinue< EOT > &__cont, peoPopEval< EOT > &__pop_eval, eoSelect< EOT > &__select, peoTransform< EOT > &__trans, eoReplacement< EOT > &__replace)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoEA.h:73: Warning: argument `eoReplacement' of command @param is not found in the argument list of peoEA< EOT >::peoEA(eoContinue< EOT > &__cont, peoPopEval< EOT > &__pop_eval, eoSelect< EOT > &__select, peoTransform< EOT > &__trans, eoReplacement< EOT > &__replace)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoEA.h:73: Warning: The following parameters of peoEA::peoEA(eoContinue< EOT > &__cont, peoPopEval< EOT > &__pop_eval, eoSelect< EOT > &__select, peoTransform< EOT > &__trans, eoReplacement< EOT > &__replace) are not documented:
+  parameter __cont
+  parameter __pop_eval
+  parameter __select
+  parameter __trans
+  parameter __replace
+
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoEA.h:96: Warning: argument `eoPop' of command @param is not found in the argument list of peoEA< EOT >::operator()(eoPop< EOT > &__pop)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoEA.h:96: Warning: The following parameters of peoEA::operator()(eoPop< EOT > &__pop) are not documented:
+  parameter __pop
+
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaPopEval.h:97: Warning: Member funcs (variable) of class peoParaPopEval is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaPopEval.h:98: Warning: Member one_func (variable) of class peoParaPopEval is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaPopEval.h:100: Warning: Member merge_eval (variable) of class peoParaPopEval is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaPopEval.h:101: Warning: Member no_merge_eval (variable) of class peoParaPopEval is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaPopEval.h:103: Warning: Member tasks (variable) of class peoParaPopEval is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaPopEval.h:105: Warning: Member progression (variable) of class peoParaPopEval is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaPopEval.h:107: Warning: Member num_func (variable) of class peoParaPopEval is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaPopEval.h:109: Warning: Member sol (variable) of class peoParaPopEval is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaPopEval.h:111: Warning: Member ad_sol (variable) of class peoParaPopEval is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaPopEval.h:113: Warning: Member total (variable) of class peoParaPopEval is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaPopEval.h:50: Warning: argument `eoEvalFunc' of command @param is not found in the argument list of peoParaPopEval< EOT >::peoParaPopEval(eoEvalFunc< EOT > &__eval_func)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaPopEval.h:50: Warning: The following parameters of peoParaPopEval::peoParaPopEval(eoEvalFunc< EOT > &__eval_func) are not documented:
+  parameter __eval_func
+
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaPopEval.h:56: Warning: argument `const' of command @param is not found in the argument list of peoParaPopEval< EOT >::peoParaPopEval(const std::vector< eoEvalFunc< EOT > * > &__funcs, peoAggEvalFunc< EOT > &__merge_eval)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaPopEval.h:56: Warning: argument `peoAggEvalFunc' of command @param is not found in the argument list of peoParaPopEval< EOT >::peoParaPopEval(const std::vector< eoEvalFunc< EOT > * > &__funcs, peoAggEvalFunc< EOT > &__merge_eval)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaPopEval.h:56: Warning: The following parameters of peoParaPopEval::peoParaPopEval(const std::vector< eoEvalFunc< EOT > * > &__funcs, peoAggEvalFunc< EOT > &__merge_eval) are not documented:
+  parameter __funcs
+  parameter __merge_eval
+
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaPopEval.h:62: Warning: argument `eoPop' of command @param is not found in the argument list of peoParaPopEval< EOT >::operator()(eoPop< EOT > &__pop)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaPopEval.h:62: Warning: The following parameters of peoParaPopEval::operator()(eoPop< EOT > &__pop) are not documented:
+  parameter __pop
+
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:51: Warning: Member peoParaSGATransform(eoQuadOp< EOT > &__cross, double __cross_rate, eoMonOp< EOT > &__mut, double __mut_rate) (function) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:53: Warning: Member operator()(eoPop< EOT > &__pop) (function) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:55: Warning: Member packData() (function) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:57: Warning: Member unpackData() (function) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:59: Warning: Member execute() (function) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:61: Warning: Member packResult() (function) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:63: Warning: Member unpackResult() (function) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:65: Warning: Member notifySendingData() (function) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:66: Warning: Member notifySendingAllResourceRequests() (function) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:70: Warning: Member cross (variable) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:71: Warning: Member cross_rate (variable) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:73: Warning: Member mut (variable) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:74: Warning: Member mut_rate (variable) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:76: Warning: Member idx (variable) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:78: Warning: Member pop (variable) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:80: Warning: Member father (variable) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:80: Warning: Member mother (variable) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoParaSGATransform.h:82: Warning: Member num_term (variable) of class peoParaSGATransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSeqPopEval.h:52: Warning: Member eval (variable) of class peoSeqPopEval is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSeqPopEval.h:40: Warning: argument `eoEvalFunc' of command @param is not found in the argument list of peoSeqPopEval< EOT >::peoSeqPopEval(eoEvalFunc< EOT > &__eval)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSeqPopEval.h:40: Warning: The following parameters of peoSeqPopEval::peoSeqPopEval(eoEvalFunc< EOT > &__eval) are not documented:
+  parameter __eval
+
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSeqPopEval.h:45: Warning: argument `eoPop' of command @param is not found in the argument list of peoSeqPopEval< EOT >::operator()(eoPop< EOT > &__pop)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSeqPopEval.h:45: Warning: The following parameters of peoSeqPopEval::operator()(eoPop< EOT > &__pop) are not documented:
+  parameter __pop
+
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSeqTransform.h:66: Warning: Member trans (variable) of class peoSeqTransform is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSeqTransform.h:39: Warning: argument `eoTransform' of command @param is not found in the argument list of peoSeqTransform< EOT >::peoSeqTransform(eoTransform< EOT > &__trans)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSeqTransform.h:39: Warning: The following parameters of peoSeqTransform::peoSeqTransform(eoTransform< EOT > &__trans) are not documented:
+  parameter __trans
+
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSeqTransform.h:44: Warning: argument `eoPop' of command @param is not found in the argument list of peoSeqTransform< EOT >::operator()(eoPop< EOT > &__pop)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSeqTransform.h:44: Warning: The following parameters of peoSeqTransform::operator()(eoPop< EOT > &__pop) are not documented:
+  parameter __pop
+
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:168: Warning: Member emigrate() (function) of class peoSyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:169: Warning: Member immigrate() (function) of class peoSyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:174: Warning: Member cont (variable) of class peoSyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:175: Warning: Member select (variable) of class peoSyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:176: Warning: Member replace (variable) of class peoSyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:177: Warning: Member topology (variable) of class peoSyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:180: Warning: Member source (variable) of class peoSyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:181: Warning: Member destination (variable) of class peoSyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:184: Warning: Member imm (variable) of class peoSyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:185: Warning: Member em (variable) of class peoSyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:187: Warning: Member coop_em (variable) of class peoSyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:189: Warning: Member sync (variable) of class peoSyncIslandMig is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:72: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:73: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:79: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:80: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:89: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:90: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:91: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:96: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:97: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:108: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:109: Warning: HTML tags may not use the 'empty tag' XHTML syntax.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:133: Warning: argument `unsigned' of command @param is not found in the argument list of peoSyncIslandMig< EOT >::peoSyncIslandMig(unsigned __frequency, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, Topology &__topology, eoPop< EOT > &__source, eoPop< EOT > &__destination)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:133: Warning: argument `eoSelect' of command @param is not found in the argument list of peoSyncIslandMig< EOT >::peoSyncIslandMig(unsigned __frequency, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, Topology &__topology, eoPop< EOT > &__source, eoPop< EOT > &__destination)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:133: Warning: argument `eoReplacement' of command @param is not found in the argument list of peoSyncIslandMig< EOT >::peoSyncIslandMig(unsigned __frequency, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, Topology &__topology, eoPop< EOT > &__source, eoPop< EOT > &__destination)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:133: Warning: argument `Topology' of command @param is not found in the argument list of peoSyncIslandMig< EOT >::peoSyncIslandMig(unsigned __frequency, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, Topology &__topology, eoPop< EOT > &__source, eoPop< EOT > &__destination)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:133: Warning: argument `eoPop' of command @param is not found in the argument list of peoSyncIslandMig< EOT >::peoSyncIslandMig(unsigned __frequency, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, Topology &__topology, eoPop< EOT > &__source, eoPop< EOT > &__destination)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:133: Warning: argument `eoPop' of command @param is not found in the argument list of peoSyncIslandMig< EOT >::peoSyncIslandMig(unsigned __frequency, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, Topology &__topology, eoPop< EOT > &__source, eoPop< EOT > &__destination)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncIslandMig.h:133: Warning: The following parameters of peoSyncIslandMig::peoSyncIslandMig(unsigned __frequency, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, Topology &__topology, eoPop< EOT > &__source, eoPop< EOT > &__destination) are not documented:
+  parameter __frequency
+  parameter __select
+  parameter __replace
+  parameter __topology
+  parameter __source
+  parameter __destination
+
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncMultiStart.h:105: Warning: Member cont (variable) of class peoSyncMultiStart is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncMultiStart.h:106: Warning: Member select (variable) of class peoSyncMultiStart is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncMultiStart.h:107: Warning: Member replace (variable) of class peoSyncMultiStart is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncMultiStart.h:109: Warning: Member ls (variable) of class peoSyncMultiStart is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncMultiStart.h:111: Warning: Member pop (variable) of class peoSyncMultiStart is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncMultiStart.h:112: Warning: Member sel (variable) of class peoSyncMultiStart is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncMultiStart.h:113: Warning: Member impr_sel (variable) of class peoSyncMultiStart is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncMultiStart.h:115: Warning: Member sol (variable) of class peoSyncMultiStart is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncMultiStart.h:116: Warning: Member idx (variable) of class peoSyncMultiStart is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncMultiStart.h:117: Warning: Member num_term (variable) of class peoSyncMultiStart is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncMultiStart.h:55: Warning: argument `eoContinue' of command @param is not found in the argument list of peoSyncMultiStart< EOT >::peoSyncMultiStart(eoContinue< EOT > &__cont, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, moAlgo< EOT > &__ls, eoPop< EOT > &__pop)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncMultiStart.h:55: Warning: argument `eoSelect' of command @param is not found in the argument list of peoSyncMultiStart< EOT >::peoSyncMultiStart(eoContinue< EOT > &__cont, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, moAlgo< EOT > &__ls, eoPop< EOT > &__pop)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncMultiStart.h:55: Warning: argument `eoReplacement' of command @param is not found in the argument list of peoSyncMultiStart< EOT >::peoSyncMultiStart(eoContinue< EOT > &__cont, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, moAlgo< EOT > &__ls, eoPop< EOT > &__pop)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncMultiStart.h:55: Warning: argument `moAlgo' of command @param is not found in the argument list of peoSyncMultiStart< EOT >::peoSyncMultiStart(eoContinue< EOT > &__cont, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, moAlgo< EOT > &__ls, eoPop< EOT > &__pop)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncMultiStart.h:55: Warning: argument `eoPop' of command @param is not found in the argument list of peoSyncMultiStart< EOT >::peoSyncMultiStart(eoContinue< EOT > &__cont, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, moAlgo< EOT > &__ls, eoPop< EOT > &__pop)
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/peoSyncMultiStart.h:55: Warning: The following parameters of peoSyncMultiStart::peoSyncMultiStart(eoContinue< EOT > &__cont, eoSelect< EOT > &__select, eoReplacement< EOT > &__replace, moAlgo< EOT > &__ls, eoPop< EOT > &__pop) are not documented:
+  parameter __cont
+  parameter __select
+  parameter __replace
+  parameter __ls
+  parameter __pop
+
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/reac_thread.h:36: Warning: Member ReactiveThread() (function) of class ReactiveThread is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/reac_thread.h:38: Warning: Member sleep() (function) of class ReactiveThread is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/reac_thread.h:40: Warning: Member wakeUp() (function) of class ReactiveThread is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/reac_thread.h:44: Warning: Member sem (variable) of class ReactiveThread is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/ring_topo.h:35: Warning: Member setNeighbors(Cooperative *__mig, std::vector< Cooperative * > &__from, std::vector< Cooperative * > &__to) (function) of class RingTopology is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/runner.h:38: Warning: Member Runner() (function) of class Runner is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/runner.h:40: Warning: Member start() (function) of class Runner is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/runner.h:42: Warning: Member waitStarting() (function) of class Runner is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/runner.h:44: Warning: Member isLocal() (function) of class Runner is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/runner.h:46: Warning: Member terminate() (function) of class Runner is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/runner.h:50: Warning: Member getID() (function) of class Runner is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/runner.h:52: Warning: Member packTermination() (function) of class Runner is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/runner.h:54: Warning: Member notifySendingTermination() (function) of class Runner is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/runner.h:58: Warning: Member sem_start (variable) of class Runner is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/runner.h:60: Warning: Member id (variable) of class Runner is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/send.cpp:41: Warning: Member comm (variable) of class SEND_REQUEST is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/send.cpp:42: Warning: Member to (variable) of class SEND_REQUEST is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/send.cpp:43: Warning: Member tag (variable) of class SEND_REQUEST is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/service.h:36: Warning: Member setOwner(Thread &__owner) (function) of class Service is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/service.h:38: Warning: Member getOwner() (function) of class Service is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/service.h:40: Warning: Member requestResourceRequest(unsigned __how_many=1) (function) of class Service is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/service.h:41: Warning: Member packResourceRequest() (function) of class Service is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/service.h:43: Warning: Member packData() (function) of class Service is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/service.h:44: Warning: Member unpackData() (function) of class Service is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/service.h:46: Warning: Member execute() (function) of class Service is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/service.h:48: Warning: Member packResult() (function) of class Service is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/service.h:49: Warning: Member unpackResult() (function) of class Service is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/service.h:51: Warning: Member notifySendingData() (function) of class Service is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/service.h:52: Warning: Member notifySendingResourceRequest() (function) of class Service is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/service.h:53: Warning: Member notifySendingAllResourceRequests() (function) of class Service is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/service.h:57: Warning: Member owner (variable) of class Service is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/service.h:59: Warning: Member num_sent_rr (variable) of class Service is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/thread.h:36: Warning: Member Thread() (function) of class Thread is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/thread.h:39: Warning: Member ~Thread() (function) of class Thread is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/thread.h:44: Warning: Member setActive() (function) of class Thread is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/thread.h:45: Warning: Member setPassive() (function) of class Thread is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/thread.h:50: Warning: Member act (variable) of class Thread is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/topology.h:35: Warning: Member ~Topology() (function) of class Topology is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/topology.h:37: Warning: Member add(Cooperative &__mig) (function) of class Topology is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/topology.h:45: Warning: Member mig (variable) of class Topology is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/worker.h:37: Warning: Member Worker() (function) of class Worker is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/worker.h:39: Warning: Member start() (function) of class Worker is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/worker.h:41: Warning: Member packResult() (function) of class Worker is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/worker.h:43: Warning: Member unpackData() (function) of class Worker is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/worker.h:45: Warning: Member packTaskDone() (function) of class Worker is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/worker.h:47: Warning: Member notifySendingResult() (function) of class Worker is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/worker.h:49: Warning: Member notifySendingTaskDone() (function) of class Worker is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/worker.h:51: Warning: Member setSource(int __rank) (function) of class Worker is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/worker.h:55: Warning: Member id (variable) of class Worker is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/worker.h:56: Warning: Member serv_id (variable) of class Worker is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/worker.h:57: Warning: Member serv (variable) of class Worker is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/worker.h:58: Warning: Member src (variable) of class Worker is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/rmc/mpi/worker.h:60: Warning: Member toto (variable) of class Worker is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/peo_fin.cpp:29: Warning: Member finalize() (function) of namespace peo is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/peo_init.cpp:37: Warning: Member init(int &__argc, char **&__argv) (function) of namespace peo is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/peo_param.cpp:31: Warning: Member loadParameters(int &__argc, char **&__argv) (function) of namespace peo is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/peo_run.cpp:29: Warning: Member run() (function) of namespace peo is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/peo_init.cpp:33: Warning: Member argc (variable) of namespace peo is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/peo_init.cpp:35: Warning: Member argv (variable) of namespace peo is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/peo_init.h:29: Warning: Member argc (variable) of namespace peo is not documented.
+/home/adrian/paradiseo-doxygen/paradiseo-peo/src/core/peo_init.h:31: Warning: Member argv (variable) of namespace peo is not documented.
