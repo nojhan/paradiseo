@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-%subst = ( );
+%subst = ( "eo.doxytag", "", "mo.doxytag", "");
 $quiet   = 0;
 
 if (open(F,"search.cfg"))
