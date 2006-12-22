@@ -1,0 +1,70 @@
+\section{Service Class Reference}
+\label{class_service}\index{Service@{Service}}
+Inheritance diagram for Service::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.8cm]{class_service}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf set\-Owner} ({\bf Thread} \&\_\-\_\-owner)\label{class_service_33b149b98498c0e7e401b0f0839d7f0d}
+
+\item 
+{\bf Thread} $\ast$ {\bf get\-Owner} ()\label{class_service_0dae00309c51a7b7069788142aed799f}
+
+\item 
+void {\bf request\-Resource\-Request} (unsigned \_\-\_\-how\_\-many=1)\label{class_service_7e2ae35a9070a05dcd46488df649896d}
+
+\item 
+void {\bf pack\-Resource\-Request} ()\label{class_service_c4289f98d1cd9ed53e850efbb6a947bd}
+
+\item 
+virtual void {\bf pack\-Data} ()\label{class_service_aea4b8f7f8fb88e83862ee4bfd9ab207}
+
+\item 
+virtual void {\bf unpack\-Data} ()\label{class_service_3bd87b444710813d30fd754d4d0b4df3}
+
+\item 
+virtual void {\bf execute} ()\label{class_service_e4f2894e6121e60f38d41cfbd7447ae4}
+
+\item 
+virtual void {\bf pack\-Result} ()\label{class_service_e5e4f90b2315e15c2a2913bd370f4cf5}
+
+\item 
+virtual void {\bf unpack\-Result} ()\label{class_service_45c06344edbfa482b91f68e2035a6099}
+
+\item 
+virtual void {\bf notify\-Sending\-Data} ()\label{class_service_81ad4d6ebb50045b8977e2ab74826f30}
+
+\item 
+virtual void {\bf notify\-Sending\-Resource\-Request} ()\label{class_service_94e2012e76aaae3aa8199250f558d503}
+
+\item 
+virtual void {\bf notify\-Sending\-All\-Resource\-Requests} ()\label{class_service_f94cc8a5c2665d4574041737e61e9ffc}
+
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+{\bf Thread} $\ast$ {\bf owner}\label{class_service_8b615c65c876f342fe8209eb7e36d7b2}
+
+\item 
+unsigned {\bf num\_\-sent\_\-rr}\label{class_service_a5b2ad9520bb3710b54348b99acebd58}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+Definition at line 32 of file service.h.
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+service.h\item 
+core/service.cpp\item 
+rmc/mpi/service.cpp\end{CompactItemize}
