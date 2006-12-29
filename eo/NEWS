@@ -1,8 +1,8 @@
-* release 1.0 (not yet released)
+* release 1.0 (29. Dec. 2006)
   - Implement CMA-ES.
   - Update introductory pages of documentation and webpage.
   - Add Microsoft Visual C++ project support files (for Visual Studio 2003 and 2005)
-  - Upgrade Teamplates/ script to create a complete standalon EO project (using autotools)
+  - Upgrade Teamplates/ script to create a complete standalone EO project (using autotools)
   - Remove support for pre-standard C++ compiler (i.e. gcc-2.x), which allows to
     clean up the code considerably. 
     Assume availability of sstream and limits.
