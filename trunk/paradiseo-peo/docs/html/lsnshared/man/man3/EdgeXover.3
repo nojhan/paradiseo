@@ -1,0 +1,54 @@
+.TH "EdgeXover" 3 "30 Dec 2006" "Version 0.1" "ParadisEO-PEO - Lessons" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EdgeXover \- Edge Crossover.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <edge_xover.h>\fP
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBoperator()\fP (Route &__route1, Route &__route2)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBcross\fP (const Route &__par1, const Route &__par2, Route &__child)"
+.br
+.ti -1c
+.RI "void \fBremove_entry\fP (unsigned __vertex, std::vector< std::set< unsigned > > &__map)"
+.br
+.ti -1c
+.RI "void \fBbuild_map\fP (const Route &__par1, const Route &__par2)"
+.br
+.ti -1c
+.RI "void \fBadd_vertex\fP (unsigned __vertex, Route &__child)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< std::set< unsigned > > \fB_map\fP"
+.br
+.ti -1c
+.RI "std::vector< bool > \fBvisited\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Edge Crossover. 
+.PP
+Definition at line 35 of file edge_xover.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-PEO - Lessons from the source code.

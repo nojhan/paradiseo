@@ -1,0 +1,109 @@
+.TH "peoEA" 3 "30 Dec 2006" "Version 0.1" "ParadisEO-PEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+peoEA \- The \fBpeoEA\fP class offers an elementary evolutionary algorithm implementation.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <peoEA.h>\fP
+.PP
+Inherits \fBRunner\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBpeoEA\fP (eoContinue< EOT > &__cont, \fBpeoPopEval\fP< EOT > &__pop_eval, eoSelect< EOT > &__select, \fBpeoTransform\fP< EOT > &__trans, eoReplacement< EOT > &__replace)"
+.br
+.RI "\fIConstructor for the evolutionary algorithm object - several basic parameters have to be specified, allowing for different levels of parallelism. \fP"
+.ti -1c
+.RI "void \fBrun\fP ()"
+.br
+.RI "\fIEvolutionary algorithm function - a side effect of the fact that the class is derived from the \fB\fBRunner\fP\fP class, thus requiring the existence of a \fIrun\fP function, the algorithm being executed on a distinct thread. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (eoPop< EOT > &__pop)"
+.br
+.RI "\fIFunction operator for specifying the population to be associated with the algorithm. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "eoContinue< EOT > & \fBcont\fP"
+.br
+.ti -1c
+.RI "\fBpeoPopEval\fP< EOT > & \fBpop_eval\fP"
+.br
+.ti -1c
+.RI "eoSelect< EOT > & \fBselect\fP"
+.br
+.ti -1c
+.RI "\fBpeoTransform\fP< EOT > & \fBtrans\fP"
+.br
+.ti -1c
+.RI "eoReplacement< EOT > & \fBreplace\fP"
+.br
+.ti -1c
+.RI "eoPop< EOT > * \fBpop\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class peoEA< EOT >"
+The \fBpeoEA\fP class offers an elementary evolutionary algorithm implementation. 
+
+In addition, as compared with the algorithms provided by the EO framework, the \fBpeoEA\fP class has the underlying necessary structure for including, for example, parallel evaluation and parallel transformation operators, migration operators etc. Although there is no restriction on using the algorithms provided by the EO framework, the drawback resides in the fact that the EO implementation is exclusively sequential and, in consequence, no parallelism is provided. A simple example for constructing a \fBpeoEA\fP object:
+.PP
+...      eoPop< EOT > population( POP_SIZE, popInitializer );   // creation of a population with POP_SIZE individuals - the popInitializer is a functor to be called for each individual       eoGenContinue< EOT > eaCont( NUM_GEN );   // number of generations for the evolutionary algorithm eoCheckPoint< EOT > eaCheckpointContinue( eaCont );   // checkpoint incorporating the continuation criterion - startpoint for adding other checkpoint objects       peoSeqPopEval< EOT > eaPopEval( evalFunction );   // sequential evaluation functor wrapper - evalFunction represents the actual evaluation functor        eoRankingSelect< EOT > selectionStrategy;   // selection strategy for creating the offspring population - a simple ranking selection in this case  eoSelectNumber< EOT > eaSelect( selectionStrategy, POP_SIZE );   // the number of individuals to be selected for creating the offspring population  eoRankingSelect< EOT > selectionStrategy;   // selection strategy for creating the offspring population - a simple ranking selection in this case        eoSGATransform< EOT > transform( crossover, CROSS_RATE, mutation, MUT_RATE );   // transformation operator - crossover and mutation operators with their associated probabilities  peoSeqTransform< EOT > eaTransform( transform );   // ParadisEO specific sequential operator - a parallel version may be specified in the same manner        eoPlusReplacement< EOT > eaReplace;   // replacement strategy - for integrating the offspring resulting individuals in the initial population        peoEA< EOT > eaAlg( eaCheckpointContinue, eaPopEval, eaSelect, eaTransform, eaReplace );   // ParadisEO evolutionary algorithm integrating the above defined objects  eaAlg( population );   // specifying the initial population for the algorithm  ...      
+.PP
+Definition at line 69 of file peoEA.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBpeoEA\fP< EOT >::\fBpeoEA\fP (eoContinue< EOT > & __cont, \fBpeoPopEval\fP< EOT > & __pop_eval, eoSelect< EOT > & __select, \fBpeoTransform\fP< EOT > & __trans, eoReplacement< EOT > & __replace)"
+.PP
+Constructor for the evolutionary algorithm object - several basic parameters have to be specified, allowing for different levels of parallelism. 
+.PP
+Depending on the requirements, a sequential or a parallel evaluation operator may be specified or, in the same manner, a sequential or a parallel transformation operator may be given as parameter. Out of the box objects may be provided, from the EO package, for example, or custom defined ones may be specified, provided that they are derived from the correct base classes.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIeoContinue<\fP EOT >& __cont - continuation criterion specifying whether the algorithm should continue or not; 
+.br
+\fIpeoPopEval<\fP EOT >& __pop_eval - evaluation operator; it allows the specification of parallel evaluation operators, aggregate evaluation functions, etc.; 
+.br
+\fIeoSelect<\fP EOT >& __select - selection strategy to be applied for constructing a list of offspring individuals; 
+.br
+\fIpeoTransform<\fP EOT >& __trans - transformation operator, i.e. crossover and mutation; allows for sequential or parallel transform; 
+.br
+\fIeoReplacement<\fP EOT >& __replace - replacement strategy for integrating the offspring individuals in the initial population; 
+.RE
+.PP
+
+.PP
+Definition at line 113 of file peoEA.h.
+.PP
+References peoEA< EOT >::pop_eval, and peoEA< EOT >::trans.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> void \fBpeoEA\fP< EOT >::operator() (eoPop< EOT > & __pop)"
+.PP
+Function operator for specifying the population to be associated with the algorithm. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIeoPop<\fP EOT >& __pop - initial population of the algorithm, to be iteratively evolved; 
+.RE
+.PP
+
+.PP
+Definition at line 129 of file peoEA.h.
+.PP
+References peoEA< EOT >::pop.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-PEO from the source code.
