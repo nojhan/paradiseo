@@ -62,7 +62,7 @@ int main( int __argc, char** __argv ) {
 	peoSeqPopEval< Route > eaPopEval( full_eval );		// evaluator object - to be applied at each iteration on the entire population
 
 	eoGenContinue< Route > eaCont( NUM_GEN );		// continuation criterion - the algorithm will iterate for NUM_GEN generations
-	eoCheckPoint< Route > eaCheckpointContinue( eaConts );	// checkpoint object - verify at each iteration if the continuation criterion is met
+	eoCheckPoint< Route > eaCheckpointContinue( eaCont );	// checkpoint object - verify at each iteration if the continuation criterion is met
 
 	eoRankingSelect< Route > selectionStrategy;		// selection strategy - applied at each iteration for selecting parent individuals
 	eoSelectNumber< Route > eaSelect( selectionStrategy, POP_SIZE ); // selection object - POP_SIZE individuals are selected at each iteration
