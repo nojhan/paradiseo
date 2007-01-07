@@ -1,4 +1,4 @@
-// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*- 
+ 
 
 /* 
    file: 'mix.h'      

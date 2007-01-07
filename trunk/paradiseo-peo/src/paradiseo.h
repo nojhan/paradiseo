@@ -1,23 +1,8 @@
-// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
-
 // "paradiseo.h"
 
 // (c) OPAC Team, LIFL, August 2005
 
-/* This library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2 of the License, or (at your option) any later version.
-   
-   This library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-   
-   You should have received a copy of the GNU Lesser General Public
-   License along with this library; if not, write to the Free Software
-   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
-   
+/* 
    Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
@@ -269,7 +254,7 @@
 //!		<a href="lesson1/html/main.html" style="text-decoration:none;"> creating a simple ParadisEO evolutionary algorithm</a>;
 //!	</li>
 //! </ul>
-//! All the presented examples have as case study the travel salesman problem (TSP). Different operators and auxiliary objects were designed,
+//! All the presented examples have as case study the traveling salesman problem (TSP). Different operators and auxiliary objects were designed,
 //! standing as a <a href="lsnshared/html/index.html" target="new" style="text-decoration:none;">common shared source code base</a>. While not being
 //! part of the ParadisEO-PEO framework, it may represent a startpoint for a better understanding of the presented tutorials.
 
