@@ -1,0 +1,101 @@
+\hypertarget{main_structure}{}\section{Introduction}\label{main_structure}
+One of the first steps in designing an evolutionary algorihtm using the Paradis\-EO-PEO framework consists in having a clear overview of the implemented algorithm. A brief pseudo-code description is offered bellow - the entire source code for the Paradis\-EO-PEO evolutionary algorithm is defined in the {\bf peo\-EA.h} header file. The main elements to be considered when building an evolutionary algorithm are the transformation operators, i.e. crossover and mutation, the evaluation function, the continuation criterion and the selection and replacement strategy.
+
+\begin{TabularC}{2}
+\hline
+{\bf do} \{ ~ &~  \\\hline
+~~~~~~~~ select( population, offsprings ); ~ &// select the offsprings from the current population \\\hline
+~~~~~~~~ transform( offsprings ); ~ &// crossover and mutation operators are applied on the selected offsprings \\\hline
+~~~~~~~~ evaluate( offsprings ); ~ &// evaluation step of the resulting offsprings \\\hline
+~~~~~~~~ replace( population, offsprings ); ~ &// replace the individuals in the current population whith individuals from the offspring population, according to a specified replacement strategy \\\hline
+\} {\bf while} ( ea\-Checkpoint\-Continue( population ) ); ~ &// checkpoint operators are applied on the current population \\\hline
+\end{TabularC}
+
+
+The \doxyref{peo\-EA} class offers an elementary evolutionary algorithm implementation. The \doxyref{peo\-EA} class has the underlying structure for including parallel evaluation and parallel transformation operators, migration operators etc. Although there is no restriction on using the algorithms provided by the EO framework, no parallelism is provided - the EO implementation is exclusively sequential. \par
+\hypertarget{main_requirements}{}\section{Requirements}\label{main_requirements}
+You should have already installed the Paradis\-EO-PEO package - this requires several additional packages which should be already included in the provided archive. The installation script has to be launched in order to configure and compile all the required components. At the end of the installation phase you should end up having a directory tree resembling the following: {\bf  \par
+~~~~ ... \par
+~~~~ paradiseo-mo \par
+~~~~ paradiseo-moeo \par
+~~~~ paradiseo-peo \par
+~~~~ ~~~~~~ docs \par
+~~~~ ~~~~~~ examples \par
+~~~~ ~~~~~~ ~~~~~~ lesson1 \par
+~~~~ ~~~~~~ ~~~~~~ lesson2 \par
+~~~~ ~~~~~~ ~~~~~~ ... \par
+~~~~ ~~~~~~ ~~~~~~ shared \par
+~~~~ ~~~~~~ ~~~~~~ ... \par
+~~~~ ~~~~~~ src \par
+~~~~ ~~~~~~ ... \par
+~~~~ ... } \par
+
+
+The source-code for this tutorial may be found in the {\bf paradiseo-peo/examples/lesson1} directory, in the {\bf \hyperlink{main_8cpp-source}{main.cpp}} file. For a complete reference on the TSP-related classes and definitions please refer to the files under the {\bf paradiseo-peo/examples/shared}. After the installation phase you should end up having an {\bf tsp\-Example} executable file in the {\bf paradiseo-peo/examples/lesson1} directory. We will discuss testing and launching aspects later in the tutorial.
+
+
+
+ {\bf NOTE}: All the presented examples have as case study the {\em Traveling Salesman Problem (TSP)\/}. All the presented tutorials rely on a \href{../../lsnshared/html/index.html}{\tt common shared source code} defining transformation operators, evaluation functions, etc. for the TSP problem. For a complete understanding of the presented tutorials please take your time for consulting and for studying the additional underlying defined classes. 
+
+\par
+\hypertarget{main_problemDef}{}\section{Problem Definition and Representation}\label{main_problemDef}
+As we are not directly concerned with the {\em Traveling Salesman Problem\/}, and to some extent out of scope, no in depth details are offered for the TSP. The problem requires finding the shortest path connecting a given set of cities, while visiting each of the specified cities only once and returning to the startpoint city. The problem is known to be NP-complete, i.e. no polynomial time algorithm exists for solving the problem in exact manner.
+
+The construction of a Paradis\-EO-PEO evolutionary algorithm requires following a few simple steps - please take your time to study the signature of the \doxyref{peo\-EA} constructor:
+
+\begin{TabularC}{2}
+\hline
+~~~~ \doxyref{peo\-EA}( \par
+~~~~ ~~~~~~ eo\-Continue$<$ EOT $>$\& \_\-\_\-cont, \par
+~~~~ ~~~~~~ peo\-Pop\-Eval$<$ EOT $>$\& \_\-\_\-pop\_\-eval, \par
+~~~~ ~~~~~~ eo\-Select$<$ EOT $>$\& \_\-\_\-select, \par
+~~~~ ~~~~~~ peo\-Transform$<$ EOT $>$\& \_\-\_\-trans, \par
+~~~~ ~~~~~~ eo\-Replacement$<$ EOT $>$\& \_\-\_\-replace \par
+~~~~ );  &  \\\hline
+\end{TabularC}
+
+
+A few remarks have to be made: while most of the parameters are passed as EO-specific types, the evaluation and the transformation objects have to be derived from the Paradis\-EO-PEO \doxyref{peo\-Pop\-Eval} and \doxyref{peo\-Transform} classes. Derived classes like the \doxyref{peo\-Para\-Pop\-Eval} and \doxyref{peo\-Para\-SGATransform} classes allow for parallel evaluation of the population and parallel transformation operators, respectively. Wrappers are provided thus allowing to make use of the EO classes.
+
+In the followings, the main required elements for building an evolutionary algorithm are enumerated. For complete details regarding the implementation aspects of each of the components, please refer to the \href{../../lsnshared/html/index.html}{\tt common shared source code}. Each of the bellow refered header files may be found in the {\bf pardiseo-peo/examples/shared} directory.
+
+\begin{enumerate}
+\item {\em {\bf representation}\/} - the first decision to be taken concerns the representation of the individuals. You may create your own representation or you may use/derive one of the predefined classes of the EO framework. \par
+
+
+For our case study, the TSP, each city is defined as a \doxyref{Node} in the {\bf node.h} header file - in fact an unsigned value defined as {\bf typedef unsigned \doxyref{Node}}. Moreover, each individual (of the evolutionary algorithm) is represented as a Route object, a vector of \doxyref{Node} objects, in the {\bf route.h} header file - {\bf typedef eo\-Vector$<$ int, Node $>$ Route}. The definition of the Route object implies two elements: (1) a route is a vector of nodes, and (2) the fitness is an integer value (please refer to the eo\-Vector definition in the EO framework).
+
+In addition you should also take a look in the {\bf route\_\-init.h} header file which includes the Route\-Init class, defined for initializing in random manner Route objects.  \item {\em {\bf evaluation function}\/} - having a representation model, an evaluation object has to be defined, implementing a specific fitness function. The designed class has to be derived (directly or indirectly) from the \doxyref{peo\-Pop\-Eval} class - you have the choice of using \doxyref{peo\-Seq\-Pop\-Eval} or \doxyref{peo\-Para\-Pop\-Eval} for sequential and parallel evaluation, respectively. These classes act as wrappers requiring the specification of an EO evaluation object derived from the eo\-Eval\-Func class - please refer to their respective documentation. \par
+
+
+The fitness function for our TSP case study is implemented in the {\bf route\_\-eval.h} header file. The class is derived from the eo\-Eval\-Func EO class, being defined as {\bf class Route\-Eval : public eo\-Eval\-Func$<$ Route $>$}.  \item {\em {\bf transformation operators}\/} - in order to assure the evolution of the initial population, transformation operators have to be defined. Depending on your prolem, you may specify quadruple operators (two input individuals, two output resulting individuals), i.e. crossover operators, binary operators (one input individual and one output resulting individual), i.e. mutation operators, or combination of both types. As for the evaluation function, the signature of the \doxyref{peo\-EA} constructor requires specifying a \doxyref{peo\-Transform} derived object as transformation operator.
+
+The transform operators, crossover and mutation, for the herein presended example are defined in the {\bf order\_\-xover.h} and the {\bf city\_\-swap.h} header files, respectively.  \item {\em {\bf continuation criterion}\/} - the evolutionary algorithm evolves in an iterative manner; a continuation criterion has to be specified. One of the most common and simplest options considers a maximum number of generations. It is your choice whether to use a predefined EO class for specifying the continuation criterion or using a custom defined class. In the later case you have to make sure that your class derives the eo\-Continue class.\par
+  \item {\em {\bf selection strategy}\/} - at each iteration a set of individuals are selected for applying the transform operators, in order to obtain the offspring population. As the specified parameter has to be derived from the eo\-Select it is your option of whehter using the EO provided selection strategies or implementing your own, as long as it inherits the eo\-Select class.
+
+For our example we chose to use the eo\-Ranking\-Select strategy, provided in the EO framework.  \item {\em {\bf replacement strategy}\/} - once the offspring population is obtained, the offsprings have to be integrated back into the initial population, according to a given strategy. For custom defined strategies you have to inherit the eo\-Replacement EO class. We chose to use an eo\-Plus\-Replacement as strategy (please review the EO documentation for details on the different strategies available).  \end{enumerate}
+\par
+\hypertarget{main_example}{}\section{A simple example for constructing a peo\-EA object}\label{main_example}
+\begin{TabularC}{2}
+\hline
+... ~ &~  \\\hline
+eo\-Pop$<$ EOT $>$ population( POP\_\-SIZE, pop\-Initializer ); ~ &// creation of a population with POP\_\-SIZE individuals - the pop\-Initializer is a functor to be called for each individual \\\hline
+~  &~  \\\hline
+eo\-Gen\-Continue$<$ EOT $>$ ea\-Cont( NUM\_\-GEN ); ~ &// number of generations for the evolutionary algorithm \\\hline
+eo\-Check\-Point$<$ EOT $>$ ea\-Checkpoint\-Continue( ea\-Cont ); ~ &// checkpoint incorporating the continuation criterion - startpoint for adding other checkpoint objects \\\hline
+~  &~  \\\hline
+peo\-Seq\-Pop\-Eval$<$ EOT $>$ ea\-Pop\-Eval( eval\-Function ); ~ &// sequential evaluation functor wrapper - eval\-Function represents the actual evaluation functor  \\\hline
+~  &~  \\\hline
+eo\-Ranking\-Select$<$ EOT $>$ selection\-Strategy; ~ &// selection strategy for creating the offspring population - a simple ranking selection in this case  \\\hline
+eo\-Select\-Number$<$ EOT $>$ ea\-Select( selection\-Strategy, POP\_\-SIZE ); ~ &// the number of individuals to be selected for creating the offspring population  \\\hline
+eo\-Ranking\-Select$<$ EOT $>$ selection\-Strategy; ~ &// selection strategy for creating the offspring population - a simple ranking selection in this case  \\\hline
+~  &~  \\\hline
+eo\-SGATransform$<$ EOT $>$ transform( crossover, CROSS\_\-RATE, mutation, MUT\_\-RATE ); ~ &// transformation operator - crossover and mutation operators with their associated probabilities  \\\hline
+peo\-Seq\-Transform$<$ EOT $>$ ea\-Transform( transform ); ~ &// Paradis\-EO specific sequential operator - a parallel version may be specified in the same manner  \\\hline
+~  &~  \\\hline
+eo\-Plus\-Replacement$<$ EOT $>$ ea\-Replace; ~ &// replacement strategy - for integrating the offspring resulting individuals in the initial population  \\\hline
+~  &~  \\\hline
+peo\-EA$<$ EOT $>$ ea\-Alg( ea\-Checkpoint\-Continue, ea\-Pop\-Eval, ea\-Select, ea\-Transform, ea\-Replace ); ~ &// Paradis\-EO evolutionary algorithm integrating the above defined objects  \\\hline
+ea\-Alg( population ); ~ &// specifying the initial population for the algorithm  \\\hline
+... ~ &~  \\\hline
+\end{TabularC}

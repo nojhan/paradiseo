@@ -1,0 +1,225 @@
+\hypertarget{classpeoSyncIslandMig}{
+\section{peo\-Sync\-Island\-Mig$<$ EOT $>$ Class Template Reference}
+\label{classpeoSyncIslandMig}\index{peoSyncIslandMig@{peoSyncIslandMig}}
+}
+The \hyperlink{classpeoSyncIslandMig}{peo\-Sync\-Island\-Mig} class offers the elementary basis for implementating a synchronous island migration model - requires the specification of several basic parameters, i.e.  
+
+
+{\tt \#include $<$peo\-Sync\-Island\-Mig.h$>$}
+
+Inheritance diagram for peo\-Sync\-Island\-Mig$<$ EOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{classpeoSyncIslandMig}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classpeoSyncIslandMig_96b7b6de20b5e318a8b1cde76842305c}{peo\-Sync\-Island\-Mig} (unsigned \_\-\_\-frequency, eo\-Select$<$ EOT $>$ \&\_\-\_\-select, eo\-Replacement$<$ EOT $>$ \&\_\-\_\-replace, \hyperlink{classTopology}{Topology} \&\_\-\_\-topology, eo\-Pop$<$ EOT $>$ \&\_\-\_\-source, eo\-Pop$<$ EOT $>$ \&\_\-\_\-destination)
+\begin{CompactList}\small\item\em Constructor for the \hyperlink{classpeoSyncIslandMig}{peo\-Sync\-Island\-Mig} class; the characteristics of the migration model are defined through the specified parameters - out of the box objects provided in EO, etc., or custom, derived objects may be passed as parameters. \item\end{CompactList}\item 
+void \hyperlink{classpeoSyncIslandMig_178476fd276f78b73607b33d19522c36}{operator()} ()
+\begin{CompactList}\small\item\em Function operator to be called as checkpoint for performing the migration step. \item\end{CompactList}\item 
+\hypertarget{classpeoSyncIslandMig_e334188141eeba9f7b78bc6716f819ad}{
+void \hyperlink{classpeoSyncIslandMig_e334188141eeba9f7b78bc6716f819ad}{pack} ()}
+\label{classpeoSyncIslandMig_e334188141eeba9f7b78bc6716f819ad}
+
+\begin{CompactList}\small\item\em Auxiliary function dealing with sending the emigrant individuals. There is no need to explicitly call the function. \item\end{CompactList}\item 
+\hypertarget{classpeoSyncIslandMig_85777bd9f709c5d4107799e8619948d1}{
+void \hyperlink{classpeoSyncIslandMig_85777bd9f709c5d4107799e8619948d1}{unpack} ()}
+\label{classpeoSyncIslandMig_85777bd9f709c5d4107799e8619948d1}
+
+\begin{CompactList}\small\item\em Auxiliary function dealing with receiving immigrant individuals. There is no need to explicitly call the function. \item\end{CompactList}\item 
+\hypertarget{classpeoSyncIslandMig_8c427b3f91c19ff85f86930366b96008}{
+void \hyperlink{classpeoSyncIslandMig_8c427b3f91c19ff85f86930366b96008}{notify\-Sending} ()}
+\label{classpeoSyncIslandMig_8c427b3f91c19ff85f86930366b96008}
+
+\begin{CompactList}\small\item\em Auxiliary function dealing with migration notifications. There is no need to explicitly call the function. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+\hypertarget{classpeoSyncIslandMig_4c8416e3acce1a6e4c3b0a442d94b063}{
+void \hyperlink{classpeoSyncIslandMig_4c8416e3acce1a6e4c3b0a442d94b063}{emigrate} ()}
+\label{classpeoSyncIslandMig_4c8416e3acce1a6e4c3b0a442d94b063}
+
+\item 
+\hypertarget{classpeoSyncIslandMig_38dd72312a3d16808af1aa7beb9ed4a7}{
+void \hyperlink{classpeoSyncIslandMig_38dd72312a3d16808af1aa7beb9ed4a7}{immigrate} ()}
+\label{classpeoSyncIslandMig_38dd72312a3d16808af1aa7beb9ed4a7}
+
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hypertarget{classpeoSyncIslandMig_2d8ae9104376f3e073e0b250d9b425a2}{
+eo\-Periodic\-Continue$<$ EOT $>$ \hyperlink{classpeoSyncIslandMig_2d8ae9104376f3e073e0b250d9b425a2}{cont}}
+\label{classpeoSyncIslandMig_2d8ae9104376f3e073e0b250d9b425a2}
+
+\item 
+\hypertarget{classpeoSyncIslandMig_5e9c9f5f65d6418ad46e647ee1804a3d}{
+eo\-Select$<$ EOT $>$ \& \hyperlink{classpeoSyncIslandMig_5e9c9f5f65d6418ad46e647ee1804a3d}{select}}
+\label{classpeoSyncIslandMig_5e9c9f5f65d6418ad46e647ee1804a3d}
+
+\item 
+\hypertarget{classpeoSyncIslandMig_cb6d2d909503a86415912900d6e1d891}{
+eo\-Replacement$<$ EOT $>$ \& \hyperlink{classpeoSyncIslandMig_cb6d2d909503a86415912900d6e1d891}{replace}}
+\label{classpeoSyncIslandMig_cb6d2d909503a86415912900d6e1d891}
+
+\item 
+\hypertarget{classpeoSyncIslandMig_ebfe6edb6be16d46bf6d71cb233fcace}{
+\hyperlink{classTopology}{Topology} \& \hyperlink{classpeoSyncIslandMig_ebfe6edb6be16d46bf6d71cb233fcace}{topology}}
+\label{classpeoSyncIslandMig_ebfe6edb6be16d46bf6d71cb233fcace}
+
+\item 
+\hypertarget{classpeoSyncIslandMig_33fde1f09faf2a3f772d8b8f6a2615c6}{
+eo\-Pop$<$ EOT $>$ \& \hyperlink{classpeoSyncIslandMig_33fde1f09faf2a3f772d8b8f6a2615c6}{source}}
+\label{classpeoSyncIslandMig_33fde1f09faf2a3f772d8b8f6a2615c6}
+
+\item 
+\hypertarget{classpeoSyncIslandMig_a9bf4612c7c04da6cf69245c6617e6a6}{
+eo\-Pop$<$ EOT $>$ \& \hyperlink{classpeoSyncIslandMig_a9bf4612c7c04da6cf69245c6617e6a6}{destination}}
+\label{classpeoSyncIslandMig_a9bf4612c7c04da6cf69245c6617e6a6}
+
+\item 
+\hypertarget{classpeoSyncIslandMig_088c1623f32668dcd3683fceff9426c3}{
+std::queue$<$ eo\-Pop$<$ EOT $>$ $>$ \hyperlink{classpeoSyncIslandMig_088c1623f32668dcd3683fceff9426c3}{imm}}
+\label{classpeoSyncIslandMig_088c1623f32668dcd3683fceff9426c3}
+
+\item 
+\hypertarget{classpeoSyncIslandMig_11d6dd3e4a6db710433f501af0988322}{
+std::queue$<$ eo\-Pop$<$ EOT $>$ $>$ \hyperlink{classpeoSyncIslandMig_11d6dd3e4a6db710433f501af0988322}{em}}
+\label{classpeoSyncIslandMig_11d6dd3e4a6db710433f501af0988322}
+
+\item 
+\hypertarget{classpeoSyncIslandMig_2f7ca18d67ab7fb47a9851ab3179eb7d}{
+std::queue$<$ \hyperlink{classCooperative}{Cooperative} $\ast$ $>$ \hyperlink{classpeoSyncIslandMig_2f7ca18d67ab7fb47a9851ab3179eb7d}{coop\_\-em}}
+\label{classpeoSyncIslandMig_2f7ca18d67ab7fb47a9851ab3179eb7d}
+
+\item 
+\hypertarget{classpeoSyncIslandMig_91e0e1ea59c2a6a66eb496bddd60a18f}{
+sem\_\-t \hyperlink{classpeoSyncIslandMig_91e0e1ea59c2a6a66eb496bddd60a18f}{sync}}
+\label{classpeoSyncIslandMig_91e0e1ea59c2a6a66eb496bddd60a18f}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class EOT$>$ class peo\-Sync\-Island\-Mig$<$ EOT $>$}
+
+The \hyperlink{classpeoSyncIslandMig}{peo\-Sync\-Island\-Mig} class offers the elementary basis for implementating a synchronous island migration model - requires the specification of several basic parameters, i.e. 
+
+frequency of the migrations, selection and replacement strategies, a topological model and the source and destination population for the migrating individuals. The main difference as opposed to the asynchronous migration model is the synchronization step performed after selecting and sending the emigrant individuals.
+
+The migration operator is called at the end of each generation of an evolutionary algorithms as a checkpoint object - the following code exposes the structure of a classic evolutionary algorithm:
+
+\begin{TabularC}{2}
+\hline
+{\bf do} \{ ~ &~  \\\hline
+~~~~~~~~ select( population, offsprings ); ~ &// select the offsprings from the current population \\\hline
+~~~~~~~~ transform( offsprings ); ~ &// crossover and mutation operators are applied on the selected offsprings \\\hline
+~~~~~~~~ evaluate( offsprings ); ~ &// evaluation step of the resulting offspring \\\hline
+~~~~~~~~ replace( population, offsprings ); ~ &// replace the individuals in the current population whith individuals from the offspring population, according to a specified replacement strategy \\\hline
+\} {\bf while} ( ea\-Checkpoint\-Continue( population ) ); ~ &// checkpoint operators are applied on the current population, including the migration operator, if any specified  \\\hline
+\end{TabularC}
+
+
+Constructing a synchronous island migration model requires having defined (1) a topological migration model, (2) the control parameters of the migration process, (3) a checkpoint object associated with an evolutionary algorithm, and (4) an owner object must be set. The owner object must be derived from the {\bf \hyperlink{classRunner}{Runner}} class (for example a \hyperlink{classpeoEA}{peo\-EA} object represents a possible owner). A simple example is offered bellow:
+
+\begin{enumerate}
+\item topological model to be followed when performing migrations: \par
+ \par
+ \begin{TabularC}{2}
+\hline
+\hyperlink{classRingTopology}{Ring\-Topology} mig\-Topology; ~ &// a simple ring topological model - each island communicates with two other islands \\\hline
+\end{TabularC}
+
+
+\item the continuation criterion, selection and replacement strategy etc. are defined: \par
+ \par
+ \begin{TabularC}{2}
+\hline
+eo\-Pop$<$ EOT $>$ population( POP\_\-SIZE, pop\-Initializer ); ~ &// population of individuals to be used for the evolutionary algorithm \\\hline
+~  &~  \\\hline
+eo\-Random\-Select$<$ EOT $>$ mig\-Select\-Strategy; ~ &// selection strategy - in this case a random selection is applied \\\hline
+eo\-Select\-Number$<$ EOT $>$ mig\-Select( mig\-Select\-Strategy, MIG\_\-SIZE ); ~ &// number of individuals to be selected using the specified strategy \\\hline
+eo\-Plus\-Replacement$<$ EOT $>$ mig\-Replace; ~ &// immigration strategy - the worse individuals in the destination population are replaced by the immigrant individuals \\\hline
+~  &~  \\\hline
+peo\-Sync\-Island\-Mig$<$ EOT $>$ sync\-Migration( \par
+ ~~~~~~~~ MIG\_\-FREQ, mig\-Select, mig\-Replace, mig\-Topology, \par
+ ~~~~~~~~ population, population \par
+ ); ~  &// synchronous migration object - the emigrant individuals are selected from the same from population in which the immigrant individuals are being integrated  \\\hline
+\end{TabularC}
+
+
+\item creation of a checkpoint object as part of the definition of an evolutionary algoritm (details of th EA not given as being out of scope): \par
+ \par
+ \begin{TabularC}{2}
+\hline
+... ~ &~  \\\hline
+eo\-Gen\-Continue$<$ EOT $>$ ea\-Cont( NUM\_\-GEN ); ~ &// the evolutionary algorithm will stop after NUM\_\-GEN generations \\\hline
+eo\-Check\-Point$<$ EOT $>$ ea\-Checkpoint\-Continue( ea\-Cont ); ~ &// number of individuals to be selected using the specified strategy \\\hline
+... ~ &~  \\\hline
+ea\-Checkpoint\-Continue.add( sync\-Migration ); ~ &// adding the migration operator as checkpoint element \\\hline
+... ~ &~  \\\hline
+\end{TabularC}
+
+
+\item definition of an owner evolutionary algorithm (an object inheriting the {\bf \hyperlink{classRunner}{Runner}} class): \par
+ \par
+ \begin{TabularC}{2}
+\hline
+peo\-EA$<$ EOT $>$ ea\-Alg( ea\-Checkpoint\-Continue, ea\-Pop\-Eval, ea\-Select, ea\-Transform, ea\-Replace); ~ &// evolutionary algorithm having as checkpoint the ea\-Checkpoint\-Continue object defined above  \\\hline
+sync\-Migration.set\-Owner( ea\-Alg ); ~ &// setting the evolutionary algorithm as owner of the migration object  \\\hline
+ea\-Alg( population ); ~ &// applying the evolutionary algorithm on a given population  \\\hline
+\end{TabularC}
+\end{enumerate}
+
+
+The source and the destination population for the migration object were specified as being the same, in step no. 2, as we are usually interested in selecting the emigrants and integrating the immigrant individuals from and in, respectively, one unique population, iteratively evolved by an evolutionary algorithm. There is no restriction in having two distinct populations as source and destination for the emigrant and immigrant individuals respectively.
+
+The above steps only create a synchronous migration object associated to an evolutionary algorithm. The creation of several islands requires the reiteration of the steps 2 through 4 for creating distinct algorithms, with distinct populations and the associated distinctly parametrized migration objects. The interconnecting element is the underlying topology, defined at step 1 (the same C++ mig\-Topology object has to be passed as parameter for all the migration objects, in order to interconnect them). 
+
+
+
+Definition at line 129 of file peo\-Sync\-Island\-Mig.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classpeoSyncIslandMig_96b7b6de20b5e318a8b1cde76842305c}{
+\index{peoSyncIslandMig@{peo\-Sync\-Island\-Mig}!peoSyncIslandMig@{peoSyncIslandMig}}
+\index{peoSyncIslandMig@{peoSyncIslandMig}!peoSyncIslandMig@{peo\-Sync\-Island\-Mig}}
+\subsubsection[peoSyncIslandMig]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ \hyperlink{classpeoSyncIslandMig}{peo\-Sync\-Island\-Mig}$<$ EOT $>$::\hyperlink{classpeoSyncIslandMig}{peo\-Sync\-Island\-Mig} (unsigned {\em \_\-\_\-frequency}, eo\-Select$<$ EOT $>$ \& {\em \_\-\_\-select}, eo\-Replacement$<$ EOT $>$ \& {\em \_\-\_\-replace}, \hyperlink{classTopology}{Topology} \& {\em \_\-\_\-topology}, eo\-Pop$<$ EOT $>$ \& {\em \_\-\_\-source}, eo\-Pop$<$ EOT $>$ \& {\em \_\-\_\-destination})}}
+\label{classpeoSyncIslandMig_96b7b6de20b5e318a8b1cde76842305c}
+
+
+Constructor for the \hyperlink{classpeoSyncIslandMig}{peo\-Sync\-Island\-Mig} class; the characteristics of the migration model are defined through the specified parameters - out of the box objects provided in EO, etc., or custom, derived objects may be passed as parameters. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em unsigned}]\_\-\_\-frequency - frequency of the migrations - the migrations occur periodically; \item[{\em eo\-Select$<$}]EOT $>$\& \_\-\_\-select - selection strategy to be applied for constructing a list of emigrant individuals out of the source population; \item[{\em eo\-Replacement$<$}]EOT $>$\& \_\-\_\-replace - replacement strategy used for integrating the immigrant individuals in the destination population; \item[{\em Topology\&}]\_\-\_\-topology - topological model to be followed when performing migrations; \item[{\em eo\-Pop$<$}]EOT $>$\& \_\-\_\-source - source population from which the emigrant individuals are selected; \item[{\em eo\-Pop$<$}]EOT $>$\& \_\-\_\-destination - destination population in which the immigrant population are integrated. \end{description}
+\end{Desc}
+
+
+Definition at line 193 of file peo\-Sync\-Island\-Mig.h.
+
+References Topology::add(), and peo\-Sync\-Island\-Mig$<$ EOT $>$::sync.
+
+\subsection{Member Function Documentation}
+\hypertarget{classpeoSyncIslandMig_178476fd276f78b73607b33d19522c36}{
+\index{peoSyncIslandMig@{peo\-Sync\-Island\-Mig}!operator()@{operator()}}
+\index{operator()@{operator()}!peoSyncIslandMig@{peo\-Sync\-Island\-Mig}}
+\subsubsection[operator()]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \hyperlink{classpeoSyncIslandMig}{peo\-Sync\-Island\-Mig}$<$ EOT $>$::operator() ()}}
+\label{classpeoSyncIslandMig_178476fd276f78b73607b33d19522c36}
+
+
+Function operator to be called as checkpoint for performing the migration step. 
+
+The emigrant individuals are selected from the source population and sent to the next island (defined by the topology object) while the immigrant individuals are integrated in the destination population. There is no need to explicitly call the function - the wrapper checkpoint object (please refer to the above example) will perform the call when required. 
+
+Definition at line 267 of file peo\-Sync\-Island\-Mig.h.
+
+References peo\-Sync\-Island\-Mig$<$ EOT $>$::cont, peo\-Sync\-Island\-Mig$<$ EOT $>$::emigrate(), Cooperative::get\-Owner(), peo\-Sync\-Island\-Mig$<$ EOT $>$::immigrate(), Thread::set\-Active(), peo\-Sync\-Island\-Mig$<$ EOT $>$::source, Communicable::stop(), and peo\-Sync\-Island\-Mig$<$ EOT $>$::sync.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+peo\-Sync\-Island\-Mig.h\end{CompactItemize}

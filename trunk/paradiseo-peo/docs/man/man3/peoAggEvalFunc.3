@@ -1,0 +1,31 @@
+.TH "peoAggEvalFunc" 3 "7 Jan 2007" "Version 0.1" "ParadisEO-PEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+peoAggEvalFunc \- The \fBpeoAggEvalFunc\fP class offers only the interface for creating aggregate evaluation functions - there are no direct internal functions provided.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <peoAggEvalFunc.h>\fP
+.PP
+Inherited by \fBpeoNoAggEvalFunc< EOT >\fP.
+.PP
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class peoAggEvalFunc< EOT >"
+The \fBpeoAggEvalFunc\fP class offers only the interface for creating aggregate evaluation functions - there are no direct internal functions provided. 
+
+The class inherits \fBpublic eoBF< EOT&, const typename EOT :: Fitness&, void >\fP thus requiring, for the derived classes, the creation of a function having the following signature:
+.PP
+void operator()( EOT& __eot, const typename EOT :: Fitness& __partial_fittness );      
+.PP
+The aggregation object is called in an iterative manner for each of the results obtained by applying partial evaluation functions. 
+.PP
+Definition at line 40 of file peoAggEvalFunc.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-PEO from the source code.
