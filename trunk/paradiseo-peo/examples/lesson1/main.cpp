@@ -6,14 +6,14 @@
    Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include "param.h"
-
 #include "route.h"
 #include "route_init.h"
 #include "route_eval.h"
 
 #include "order_xover.h"
 #include "city_swap.h"
+
+#include "param.h"
 
 #include <paradiseo>
 

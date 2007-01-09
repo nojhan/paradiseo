@@ -2,7 +2,7 @@
 //!
 //! \section structure Introduction
 //!
-//! One of the first steps in designing an evolutionary algorihtm using the ParadisEO-PEO framework 
+//! One of the first steps in designing an evolutionary algorithm using the ParadisEO-PEO framework 
 //! consists in having a clear overview of the implemented algorithm. A brief pseudo-code description is offered 
 //! bellow - the entire source code for the ParadisEO-PEO evolutionary algorithm is defined in the <b>peoEA.h</b>
 //! header file. The main elements to be considered when building an evolutionary algorithm are the transformation
@@ -47,10 +47,13 @@
 //! <br/>
 //!
 //! The source-code for this tutorial may be found in the <b>paradiseo-peo/examples/lesson1</b> directory, in the <b>main.cpp</b> file.
-//! For a complete reference on the TSP-related classes and definitions please refer to the files under the <b>paradiseo-peo/examples/shared</b>.
-//! After the installation phase you should end up having an <b>tspExample</b> executable file in the <b>paradiseo-peo/examples/lesson1</b> directory.
+//! We strongly encourage creating a backup copy of the file if you consider modifying the source code. For a complete reference on the 
+//! TSP-related classes and definitions please refer to the files under the <b>paradiseo-peo/examples/shared</b>. After the installation
+//! phase you should end up having an <b>tspExample</b> executable file in the <b>paradiseo-peo/examples/lesson1</b> directory.
 //! We will discuss testing and launching aspects later in the tutorial.
-//! 
+//!
+//! You are supposed to be familiar with working in C/C++ (with an extensive use of templates) and you should have at least an introductory
+//! background in working with the EO framework.
 //!
 //! <hr/>
 //! <b>NOTE</b>: All the presented examples have as case study the <i>Traveling Salesman Problem (TSP)</i>. All the presented tutorials rely
@@ -91,7 +94,7 @@
 //!
 //! In the followings, the main required elements for building an evolutionary algorithm are enumerated. For complete details regarding the 
 //! implementation aspects of each of the components, please refer to the <a href="../../lsnshared/html/index.html" target="new">common shared source code</a>.
-//! Each of the bellow refered header files may be found in the <b>pardiseo-peo/examples/shared</b> directory.
+//! Each of the bellow referred header files may be found in the <b>pardiseo-peo/examples/shared</b> directory.
 //!
 //! <ol>
 //!	<li><i><b>representation</b></i> - the first decision to be taken concerns the representation of the individuals. You may create your
@@ -115,11 +118,11 @@
 //!		EO class, being defined as <b>class RouteEval : public eoEvalFunc< Route ></b>.
 //!	</li>
 //!	<li><i><b>transformation operators</b></i> - in order to assure the evolution of the initial population, transformation operators have to be defined.
-//!		Depending on your prolem, you may specify quadruple operators (two input individuals, two output resulting individuals), i.e. crossover operators,
+//!		Depending on your problem, you may specify quadruple operators (two input individuals, two output resulting individuals), i.e. crossover operators,
 //!		binary operators (one input individual and one output resulting individual), i.e. mutation operators, or combination of both types. As for the
 //!		evaluation function, the signature of the peoEA constructor requires specifying a peoTransform derived object as transformation operator.
 //!
-//!		The transform operators, crossover and mutation, for the herein presended example are defined in the <b>order_xover.h</b> and the <b>city_swap.h</b>
+//!		The transform operators, crossover and mutation, for the herein presented example are defined in the <b>order_xover.h</b> and the <b>city_swap.h</b>
 //!		header files, respectively.
 //!	</li>
 //!	<li><i><b>continuation criterion</b></i> - the evolutionary algorithm evolves in an iterative manner; a continuation criterion has to be specified.
@@ -128,7 +131,7 @@
 //!		make sure that your class derives the eoContinue class.<br/>
 //!	</li>
 //!	<li><i><b>selection strategy</b></i> - at each iteration a set of individuals are selected for applying the transform operators, in order
-//!		to obtain the offspring population. As the specified parameter has to be derived from the eoSelect it is your option of whehter using
+//!		to obtain the offspring population. As the specified parameter has to be derived from the eoSelect it is your option of whether using
 //!		the EO provided selection strategies or implementing your own, as long as it inherits the eoSelect class.
 //!
 //!		For our example we chose to use the eoRankingSelect strategy, provided in the EO framework.
@@ -142,25 +145,354 @@
 //!
 //! \section example A simple example for constructing a peoEA object
 //!
-//!	<table style="border:none; border-spacing:0px;text-align:left; vertical-align:top; font-size:8pt;" border="0">
-//!	<tr><td>... &nbsp;</td> <td> &nbsp; </td></tr>
-//!	<tr><td>eoPop< EOT > population( POP_SIZE, popInitializer ); &nbsp;</td> <td>// creation of a population with POP_SIZE individuals - the popInitializer is a functor to be called for each individual</td></tr>
-//!	<tr><td> &nbsp; </td> <td> &nbsp; </td></tr>
-//!	<tr><td>eoGenContinue< EOT > eaCont( NUM_GEN ); &nbsp;</td> <td>// number of generations for the evolutionary algorithm</td></tr>
-//!	<tr><td>eoCheckPoint< EOT > eaCheckpointContinue( eaCont ); &nbsp;</td> <td>// checkpoint incorporating the continuation criterion - startpoint for adding other checkpoint objects</td></tr>
-//!	<tr><td> &nbsp; </td> <td> &nbsp; </td></tr>
-//!	<tr><td>peoSeqPopEval< EOT > eaPopEval( evalFunction ); &nbsp;</td> <td>// sequential evaluation functor wrapper - evalFunction represents the actual evaluation functor </td></tr>
-//!	<tr><td> &nbsp; </td> <td> &nbsp; </td></tr>
-//!	<tr><td>eoRankingSelect< EOT > selectionStrategy; &nbsp;</td> <td>// selection strategy for creating the offspring population - a simple ranking selection in this case </td></tr>
-//!	<tr><td>eoSelectNumber< EOT > eaSelect( selectionStrategy, POP_SIZE ); &nbsp;</td> <td>// the number of individuals to be selected for creating the offspring population </td></tr>
-//!	<tr><td>eoRankingSelect< EOT > selectionStrategy; &nbsp;</td> <td>// selection strategy for creating the offspring population - a simple ranking selection in this case </td></tr>
-//!	<tr><td> &nbsp; </td> <td> &nbsp; </td></tr>
-//!	<tr><td>eoSGATransform< EOT > transform( crossover, CROSS_RATE, mutation, MUT_RATE ); &nbsp;</td> <td>// transformation operator - crossover and mutation operators with their associated probabilities </td></tr>
-//!	<tr><td>peoSeqTransform< EOT > eaTransform( transform ); &nbsp;</td> <td>// ParadisEO specific sequential operator - a parallel version may be specified in the same manner </td></tr>
-//!	<tr><td> &nbsp; </td> <td> &nbsp; </td></tr>
-//!	<tr><td>eoPlusReplacement< EOT > eaReplace; &nbsp;</td> <td>// replacement strategy - for integrating the offspring resulting individuals in the initial population </td></tr>
-//!	<tr><td> &nbsp; </td> <td> &nbsp; </td></tr>
-//!	<tr><td>peoEA< EOT > eaAlg( eaCheckpointContinue, eaPopEval, eaSelect, eaTransform, eaReplace ); &nbsp;</td> <td>// ParadisEO evolutionary algorithm integrating the above defined objects </td></tr>
-//!	<tr><td>eaAlg( population ); &nbsp;</td> <td>// specifying the initial population for the algorithm </td></tr>
-//!	<tr><td>... &nbsp;</td> <td> &nbsp; </td></tr>
-//!	</table>
+//! The source code for this example may be found in the <b>main.cpp</b> file, under the <b>paradiseo-peo/examples/lesson1</b> directory. Please make sure you
+//! At this point you have two options: (a) you can just follow the example without touching the <b>main.cpp</b> or, (b) you can start from scratch,
+//! following the presented steps, in which case you are required make a backup copy of the <b>main.cpp</b> file and replace the original file with an 
+//! empty one.
+//!
+//! <ol>
+//!	<li> <b>include the necessary header files</b> - as we will be using Route objects, we have to include the files 
+//!		which define the Route type, the initializing functor and the evaluation functions. Furthermore, in order to make use of 
+//!		transform operators, we require having the headers which define the crossover and the mutation operators. 
+//!		All these files may be found in the shared directory that we mentioned in the beginning. At this point you
+//!		should have something like the following:<br/>
+//!
+//!		<pre>
+//!		##include "route.h"
+//!		##include "route_init.h"
+//!		##include "route_eval.h"
+//!		
+//!		##include "order_xover.h"
+//!		##include "city_swap.h"
+//!		</pre>
+//!		In addition we require having the <i>paradiseo</i> header file, in order to use the ParadisEO-PEO features, and a header specific
+//!		for our problem, dealing with processing command-line parameters - the <b>param.h</b> header file. The complete picture at this point
+//!		with all the required header files is as follows:<br/>
+//!
+//!		<pre>
+//!		##include "route.h"
+//!		##include "route_init.h"
+//!		##include "route_eval.h"
+//!		
+//!		##include "order_xover.h"
+//!		##include "city_swap.h"
+//!
+//!		##include "param.h"
+//!
+//!		##include &lt;paradiseo&gt;
+//!		</pre>
+//!		<b>NOTE</b>: the <b><i>paradiseo</i></b> header file is in fact a "super-header" - it includes all the esential ParadisEO-PEO header files. 
+//!		It is at at your choice if you want use the <b><i>paradiseo</i></b> header file or to explicitly include different header files, 
+//!		like the <b>peoEA.h</b> header file, for example.
+//!		
+//!	</li> 
+//!	<li> <b>define problem specific parameters</b> - in our case we have to specify how many individuals we want to have in our population, the number
+//!		of generations for the evolutionary algorithm to iterate and the probabilities associated with the crossover and mutation operators.<br/>
+//!
+//!		<pre>
+//!		##include "route.h"
+//!		##include "route_init.h"
+//!		##include "route_eval.h"
+//!		
+//!		##include "order_xover.h"
+//!		##include "city_swap.h"
+//!
+//!		##include "param.h"
+//!
+//!		##include &lt;paradiseo&gt;
+//!
+//!
+//!		##define POP_SIZE 10
+//!		##define NUM_GEN 100
+//!		##define CROSS_RATE 1.0
+//!		##define MUT_RATE 0.01
+//!		</pre>
+//!	</li>
+//!	<li> <b>construct the skeleton of a simple ParadisEO-PEO program</b> - the main function including the code for initializing the ParadisEO-PEO
+//!		environment, for loading problem data and for shutting down the ParadisEO-PEO environment. From this point on we will make 
+//!		abstraction of the previous part referring only to the main function.<br/>
+//!
+//!		<pre>
+//!		...
+//!		
+//!		int main( int __argc, char** __argv ) {
+//!		
+//!			<i>//</i> initializing the ParadisEO-PEO environment
+//!			peo :: init( __argc, __argv );
+//!		
+//!			<i>//</i> processing the command line specified parameters
+//!			loadParameters( __argc, __argv );
+//!		
+//!
+//!			<i>//</i> EVOLUTIONARY ALGORITHM TO BE DEFINED
+//!
+//!		
+//!			peo :: run( );
+//!			peo :: finalize( );
+//!			<i>//</i> shutting down the ParadisEO-PEO environment
+//!		
+//!			return 0;
+//!		}
+//!		</pre>
+//!	</li>
+//!	<li> <b>initialization functors, evaluation function and transform operators</b> - basically we only need to create instances for each of the
+//!		enumerated objects, to be passed later as parameters for higher-level components of the evolutionary algorithm.<br/>
+//!
+//!		<pre>
+//!		RouteInit route_init;	<i>//</i> random init object - creates random Route objects
+//!		RouteEval full_eval;	<i>//</i> evaluator object - offers a fitness value for a specified Route object
+//!
+//!		OrderXover crossover;	<i>//</i> crossover operator - creates two offsprings out of two specified parents
+//!		CitySwap mutation;	<i>//</i> mutation operator - randomly mutates one gene for a specified individual
+//!		</pre>
+//!	</li>
+//!	<li> <b>construct the components of the evolutionary algorithm</b> - each of the components that has to be passed as parameter to the
+//!		<b>peoEA</b> constructor has to be defined along with the associated parameters. Except for the requirement to provide the
+//!		appropriate objects (for example, a peoPopEval derived object must be specified for the evaluation functor), there is no strict
+//!		path to follow. It is your option what elements to mix, depending on your problem - we aimed for simplicity in our example.
+//!
+//!		<ul>
+//!			<li> an initial population has to be specified; the constructor accepts the specification of an initializing object. Further,
+//!				an evaluation object is required - the <b>peoEA</b> constructor requires a <b>peoPopEval</b> derived class.
+//!			</li>
+//!		</ul>
+//!		<pre>
+//!		eoPop< Route > population( POP_SIZE, route_init );	<i>//</i> initial population for the algorithm having POP_SIZE individuals
+//!		peoSeqPopEval< Route > eaPopEval( full_eval );		// evaluator object - to be applied at each iteration on the entire population
+//!		</pre>
+//!		<ul>
+//!			<li> the evolutionary algorithm continues to iterate till a continuation criterion is not met. For our case we consider
+//!				a fixed number of generations. The continuation criterion has to be specified as a checkpoint object, thus requiring
+//!				the creation of an <i>eoCheckPoint</i> object in addition.
+//!			</li>
+//!		</ul>
+//!		<pre>
+//!		eoGenContinue< Route > eaCont( NUM_GEN );		<i>//</i> continuation criterion - the algorithm will iterate for NUM_GEN generations
+//!		eoCheckPoint< Route > eaCheckpointContinue( eaCont );	<i>//</i> checkpoint object - verify at each iteration if the continuation criterion is met
+//!		</pre>
+//!		<ul>
+//!			<li> selection strategy - we are required to specify a selection strategy for extracting individuals out of the parent
+//!				population; in addition the number of individuals to be selected has to be specified.
+//!			</li>
+//!		</ul>
+//!		<pre>
+//!		eoRankingSelect< Route > selectionStrategy;		<i>//</i> selection strategy - applied at each iteration for selecting parent individuals
+//!		eoSelectNumber< Route > eaSelect( selectionStrategy, POP_SIZE ); <i>//</i> selection object - POP_SIZE individuals are selected at each iteration
+//!		</pre>
+//!		<ul>
+//!			<li> transformation operators - we have to integrate the crossover and the mutation functors into an object which may be passed
+//!				as a parameter when creating the <b>peoEA</b> object. The constructor of <b>peoEA</b> requires a <b>peoTransform</b> derived
+//!				object. Associated probabilities have to be specified also.
+//!			</li>
+//!		</ul>
+//!		<pre>
+//!		<i>//</i> transform operator - includes the crossover and the mutation operators with a specified associated rate
+//!		eoSGATransform< Route > transform( crossover, CROSS_RATE, mutation, MUT_RATE );
+//!		peoSeqTransform< Route > eaTransform( transform );	<i>//</i> ParadisEO transform operator (please remark the peo prefix) - wraps an e EO transform object
+//!		</pre>
+//!		<ul>
+//!			<li> replacement strategy - required for defining the way for integrating the resulting offsprings into the initial population.
+//!			At your option whether you would like to chose one of the predefined replacement strategies that come with the EO framework
+//!			or if you want to define your own.
+//!			</li>
+//!		</ul>
+//!		<pre>
+//!		eoPlusReplacement< Route > eaReplace;			<i>//</i> replacement strategy - for replacing the initial population with offspring individuals
+//!		</pre>
+//!	</li>
+//!	<li> <b>evolutionary algorithm</b> - having defined all the previous components, we are ready for instanciating an evolutionary algorithm.
+//!		In the end we have to associate a population with the algorithm, which will serve as the initial population, to be iteratively evolved.
+//!
+//!		<pre>
+//!		peoEA< Route > eaAlg( eaCheckpointContinue, eaPopEval, eaSelect, eaTransform, eaReplace );
+//!
+//!		eaAlg( population );	// specifying the initial population for the algorithm, to be iteratively evolved
+//!		</pre>
+//!	</li>
+//! </ol>
+//!
+//! If you have not missed any of the enumerated points, your program should be like the following:
+//!
+//! <pre>
+//! ##include "route.h"
+//! ##include "route_init.h"
+//! ##include "route_eval.h"
+//! 
+//! ##include "order_xover.h"
+//! ##include "city_swap.h"
+//! 
+//! ##include "param.h"
+//! 
+//! ##include <paradiseo>
+//! 
+//! 
+//! ##define POP_SIZE 10
+//! ##define NUM_GEN 100
+//! ##define CROSS_RATE 1.0
+//! ##define MUT_RATE 0.01
+//! 
+//! 
+//! int main( int __argc, char** __argv ) {
+//! 
+//! 	<i>//</i> initializing the ParadisEO-PEO environment
+//! 	peo :: init( __argc, __argv );
+//! 
+//! 
+//! 	<i>//</i> processing the command line specified parameters
+//! 	loadParameters( __argc, __argv );
+//! 
+//! 
+//! 	<i>//</i> init, eval operators, EA operators -------------------------------------------------------------------------------------------------------------
+//! 
+//! 	RouteInit route_init;	<i>//</i> random init object - creates random Route objects
+//! 	RouteEval full_eval;	<i>//</i> evaluator object - offers a fitness value for a specified Route object
+//! 
+//! 	OrderXover crossover;	<i>//</i> crossover operator - creates two offsprings out of two specified parents
+//! 	CitySwap mutation;	<i>//</i> mutation operator - randomly mutates one gene for a specified individual
+//! 	<i>//</i> ------------------------------------------------------------------------------------------------------------------------------------------------
+//! 
+//! 
+//! 	<i>//</i> evolutionary algorithm components --------------------------------------------------------------------------------------------------------------
+//! 
+//! 	eoPop< Route > population( POP_SIZE, route_init );	<i>//</i> initial population for the algorithm having POP_SIZE individuals
+//! 	peoSeqPopEval< Route > eaPopEval( full_eval );		<i>//</i> evaluator object - to be applied at each iteration on the entire population
+//! 
+//! 	eoGenContinue< Route > eaCont( NUM_GEN );		<i>//</i> continuation criterion - the algorithm will iterate for NUM_GEN generations
+//! 	eoCheckPoint< Route > eaCheckpointContinue( eaCont );	<i>//</i> checkpoint object - verify at each iteration if the continuation criterion is met
+//! 
+//! 	eoRankingSelect< Route > selectionStrategy;		<i>//</i> selection strategy - applied at each iteration for selecting parent individuals
+//! 	eoSelectNumber< Route > eaSelect( selectionStrategy, POP_SIZE ); <i>//</i> selection object - POP_SIZE individuals are selected at each iteration
+//! 
+//! 	<i>//</i> transform operator - includes the crossover and the mutation operators with a specified associated rate
+//! 	eoSGATransform< Route > transform( crossover, CROSS_RATE, mutation, MUT_RATE );
+//! 	peoSeqTransform< Route > eaTransform( transform );	<i>//</i> ParadisEO transform operator (please remark the peo prefix) - wraps an e EO transform object
+//! 
+//! 	eoPlusReplacement< Route > eaReplace;			<i>//</i> replacement strategy - for replacing the initial population with offspring individuals
+//! 	<i>//</i> ------------------------------------------------------------------------------------------------------------------------------------------------
+//! 
+//! 
+//! 	<i>//</i> ParadisEO-PEO evolutionary algorithm -----------------------------------------------------------------------------------------------------------
+//! 
+//! 	peoEA< Route > eaAlg( eaCheckpointContinue, eaPopEval, eaSelect, eaTransform, eaReplace );
+//! 	
+//! 	eaAlg( population );	<i>//</i> specifying the initial population for the algorithm, to be iteratively evolved
+//! 	<i>//</i> ------------------------------------------------------------------------------------------------------------------------------------------------
+//! 
+//! 
+//! 	peo :: run( );
+//! 	peo :: finalize( );
+//! 	<i>//</i> shutting down the ParadisEO-PEO environment
+//! 
+//! 	return 0;
+//! }
+//! </pre>
+//!
+//!
+//! \section testing Compilation and Execution
+//!
+//! First, please make sure that you followed all the previous steps in defining the evolutionary algorithm. Your file should be called <b>main.cpp</b> - please
+//! make sure you do not rename the file (we will be using a pre-built makefile, thus you are required not to change the file names). Please make sure you 
+//! are in the <b>paradiseo-peo/examples/lesson1</b> directory - you should open a console and you should change your current directory to the one of Lesson1.
+//!
+//! <b>Compilation</b>: being in the <b>paradiseo-peo/examples/lesson1</b> directory, you have to type <i>make</i>. As a result the <b>main.cpp</b> file
+//! will be compiled and you should obtain an executable file called <b>tspExample</b>. If you have errors, please verify any of the followings:
+//!
+//!	<ul>
+//!		<li>you are under the right directory - you can verify by typing the <i>pwd</i> command - you should have something like <b>.../paradiseo-peo/examples/lesson1</b></li>
+//!		<li>you saved your modifications in a file called <b>main.cpp</b>, in the <b>paradiseo-peo/examples/lesson1</b> directory</li>
+//!		<li>there are no differences between the example presented above and your file</li>
+//!	</ul>
+//!
+//! <b>NOTE</b>: in order to successfully compile your program you should already have installed an MPI distribution in your system.
+//!
+//! <b>Execution</b>: the execution of a ParadisEO-PEO program requires having already created an environment for launching MPI programs. For <i>MPICH-2</i>,
+//! for example, this requires starting a ring of daemons. The implementation that we provided as an example is sequential and includes no parallelism - we 
+//! will see in the end how to include also parallelism. Executing a parallel program requires specifying a mapping of resources, in order to assing different
+//! algorithms to different machines, define worker machines etc. This mapping is defined by an XML file called <b>schema.xml</b>, which, for our case, has
+//! the following structure:
+//!
+//! <pre>
+//!	<?xml version="1.0"?>
+//!	
+//!	<schema>
+//!		<group scheduler="0">
+//!			<node name="0" num_workers="0">
+//!			</node>
+//!			
+//!			<node name="1" num_workers="0">
+//!			<runner>1</runner>
+//!			</node>
+//!			
+//!			<node name="2" num_workers="1">
+//!			</node>
+//!			<node name="3" num_workers="1">
+//!			</node>
+//!		</group>
+//!	</schema>
+//! </pre>
+//!
+//! Not going into details, the XML file presented above describes a mapping which includes four nodes, the first one having the role of scheduler,
+//! the second one being the node on which the evolutionary algorithm is actually executed and the third and the fourth ones being slave nodes. Overall
+//! the mapping says that we will be launching four processes, out of which only one will be executing the evolutionary algorithm. The other node entries
+//! in the XML file have no real functionality as we have no parallelism in our program - the entries were created for you convenience, in order to provide
+//! a smooth transition to creating a parallel program.
+//!
+//! Launching the program may be different, depending on your MPI distribution - for MPICH-2, in a console, in the <b>paradiseo-peo/examples/lesson1</b>
+//! directory you have to type the following command:
+//!
+//!		<b>mpiexec -n 4 ./tspExample @lesson.param</b>
+//!
+//! <b>NOTE</b>: the "-n 4" indicates the number of processes to be launched. The last argument, "@lesson.param", indicates a file which specifies different
+//! application specific parameters (the mapping file to be used, for example, whether to use logging or not, etc).
+//!
+//! The result of your execution should be similar to the following:
+//!	<pre>
+//! 	Loading '../data/eil101.tsp'.
+//! 	NAME: eil101.
+//! 	COMMENT: 101-city problem (Christofides/Eilon).
+//! 	TYPE: TSP.
+//! 	DIMENSION: 101.
+//! 	EDGE_WEIGHT_TYPE: EUC_2D.
+//! 	Loading '../data/eil101.tsp'.
+//! 	NAME: eil101.
+//! 	COMMENT: 101-city problem (Christofides/Eilon).
+//! 	EOF.
+//! 	TYPE: TSP.
+//! 	DIMENSION: 101.
+//! 	EDGE_WEIGHT_TYPE: EUC_2D.
+//! 	EOF.
+//! 	Loading '../data/eil101.tsp'.
+//! 	NAME: eil101.
+//! 	COMMENT: 101-city problem (Christofides/Eilon).
+//! 	TYPE: TSP.
+//! 	DIMENSION: 101.
+//! 	EDGE_WEIGHT_TYPE: EUC_2D.
+//! 	EOF.
+//! 	Loading '../data/eil101.tsp'.
+//! 	NAME: eil101.
+//! 	COMMENT: 101-city problem (Christofides/Eilon).
+//! 	TYPE: TSP.
+//! 	DIMENSION: 101.
+//! 	EDGE_WEIGHT_TYPE: EUC_2D.
+//! 	EOF.
+//! 	STOP in eoGenContinue: Reached maximum number of generations [100/100]
+//!	</pre>
+//!
+//!
+//! \section paraIntro Introducing parallelism
+//!
+//! Creating parallel programs with ParadisEO-PEO represents an easy task once you have the basic structure for your program. For experimentation,
+//! in the <b>main.cpp</b> file, replace the line
+//! <pre>
+//!	peo<b>Seq</b>PopEval< Route > eaPopEval( full_eval );
+//! </pre>
+//! with
+//! <pre>
+//!	peo<b>Para</b>PopEval< Route > eaPopEval( full_eval );
+//! </pre>
+//! The second line only tells that we would like to evaluate individuals in parallel - this is very interesting if you have a time consuming fitness
+//! evaluation function. If you take another look on the <b>schema.xml</b> XML file you will see the last two nodes being marked as slaves (the "num_workers"
+//! attribute - these nodes will be used for computing the fitness of the individuals.
+//!
+//! At this point you only have to recompile your program and to launch it again - as we are not using a time consuming fitness fitness function, the
+//! effects might not be visible - you may increase the number of individuals to experiment.
