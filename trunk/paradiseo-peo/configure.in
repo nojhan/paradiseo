@@ -87,6 +87,7 @@ examples/shared/Makefile
 examples/lesson1/Makefile
 examples/lesson2/Makefile
 src/Makefile
+src/core/Makefile
 src/rmc/Makefile
 src/rmc/mpi/Makefile
 ])
