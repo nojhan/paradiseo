@@ -20,7 +20,7 @@ tspExample_SOURCES = \
 tspExample_LDFLAGS = 		\
 	-L$(EO_DIR)/src/ 	\
 	-L$(EO_DIR)/src/utils 	\
-	-L../../src/ 		\
+	-L../../src/core	\
 	-L../../src/rmc/mpi/ 	\
 	-L../shared/		\
 	`xml2-config --libs` 
