@@ -1,6 +1,12 @@
 2007-01-14  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
 
+	* createEOproject.sh: Set TargetDir to /tmp/<name>. This is a workaround
+	for automake finding the scripts of eo itself if we run it in a embedded
+	subdirectory.
+	(COPYING, INSTALL): create.
+
 	* README: State more explicitly what a "complete installation" means.
+	Give build-instructions for moved directories.
 
 2006-12-16  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
 

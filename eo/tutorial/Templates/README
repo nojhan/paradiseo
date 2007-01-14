@@ -13,4 +13,11 @@ setenv CPLUS_INCLUDE_PATH /usr/local/include/eo:"$CPLUS_INCLUDE_PATH"
 setenv LIBRARY_PATH /usr/local/lib:"$LIBRARY_PATH"
 
 
+You can freely move the created project around. However, whenever you
+change the location of the source- or build-directories, you need to
+run 
+  touch configure.ac && autoreconf && make
+in the source-directory and make in the build-directory.
+
+
 See README.manual for more details.

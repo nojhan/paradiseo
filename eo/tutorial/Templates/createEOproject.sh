@@ -21,9 +21,9 @@ endif
 # we're going to do something
 echo " "
 if ($#argv == 1) then
-    set TargetDir = ../$1
+    set TargetDir = /tmp/$1
 else
-    set TargetDir = ../$2
+    set TargetDir = /tmp/$2
 endif
 if ( -d $TargetDir ) then
     echo "Warning: The target directory does exist already."
@@ -57,7 +57,9 @@ sed s/MyStruct/$1/g Makefile.am.top-tmpl > $TargetDir/Makefile.am
 sed s/MyStruct/$1/g Makefile.am.src-tmpl > $TargetDir/src/Makefile.am
 sed s/MyStruct/$1/g README.tmpl > $TargetDir/README
 touch $TargetDir/AUTHORS
+touch $TargetDir/COPYING
 touch $TargetDir/ChangeLog
+touch $TargetDir/INSTALL
 touch $TargetDir/NEWS
 
 echo "Successfully created project $1 in $TargetDir!"
@@ -68,12 +70,13 @@ echo "Start building the new project"
 cd $TargetDir
 aclocal  || exit
 autoheader  || exit
-automake --add-missing --copy --gnu  || exit
+automake --add-missing --copy --force-missing --gnu  || exit
 autoconf  || exit
 ./configure  || exit
 make  || exit
 
 
 # done
+echo ""
 echo "Project $1 successfully build in $TargetDir!"
 echo "Implement your code and enjoy."
