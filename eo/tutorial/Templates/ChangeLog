@@ -1,3 +1,7 @@
+2007-01-14  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* README: State more explicitly what a "complete installation" means.
+
 2006-12-16  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
 
 	* Makefile.am (EXTRA_DIST): Distribute exactly the necessary files

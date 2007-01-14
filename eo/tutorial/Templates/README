@@ -1,7 +1,8 @@
 This Templates directory contains template files of an EO project and
 a script createEOproject.sh to create a complete new EO project.
 
-The template requires a complete installation of EO. 
+The template requires a complete installation of EO, that is, you must
+have run "make install" in the build-directory.
 
 In particular, the C++ compiler must find the EO include files and the
 linker must find the EO libraries. Most probably, that means that you
