@@ -176,10 +176,10 @@ boxfont setfont
 (moeoMetric) cw
 (eoFunctorBase) cw
 (moeoBM< A1, A2, R >) cw
-(moeoBM< const EOFitness &, const EOFitness &, R >) cw
-(moeoBM< const std::vector< EOFitness > &, const EOFitness &, R >) cw
-(moeoBM< const std::vector< EOFitness > &, const std::vector< EOFitness > &, R >) cw
-(moeoBM< const std::vector< typename EOT::Fitness > &, const std::vector< typename EOT::Fitness > &, double >) cw
+(moeoBM< const const EOFitness &, EOFitness &, R >) cw
+(moeoBM< const const std::vector< EOFitness > &, EOFitness &, R >) cw
+(moeoBM< const const std::vector< EOFitness > &, std::vector< EOFitness > &, R >) cw
+(moeoBM< const const std::vector< typename EOT::Fitness > &, std::vector< typename EOT::Fitness > &, double >) cw
 (moeoUM< A, R >) cw
 (moeoUM< const EOFitness &, R >) cw
 (moeoUM< const std::vector< EOFitness > &, R >) cw
@@ -197,14 +197,11 @@ boundx scalefactor div boundy scalefactor div scale
  (moeoMetric) 0 8 box
  (eoFunctorBase) 0 9 box
  (moeoBM< A1, A2, R >) 1 7 box
- (moeoBM< const EOFitness &, const EOFitness &, R >) 1 6 box
-1 6 mark
- (moeoBM< const std::vector< EOFitness > &, const EOFitness &, R >) 1 5 box
-1 5 mark
- (moeoBM< const std::vector< EOFitness > &, const std::vector< EOFitness > &, R >) 1 4 box
-1 4 mark
- (moeoBM< const std::vector< typename EOT::Fitness > &, const std::vector< typename EOT::Fitness > &, double >) 1 3 box
-1 3 mark
+1 7 mark
+ (moeoBM< const const EOFitness &, EOFitness &, R >) 1 6 box
+ (moeoBM< const const std::vector< EOFitness > &, EOFitness &, R >) 1 5 box
+ (moeoBM< const const std::vector< EOFitness > &, std::vector< EOFitness > &, R >) 1 4 box
+ (moeoBM< const const std::vector< typename EOT::Fitness > &, std::vector< typename EOT::Fitness > &, double >) 1 3 box
  (moeoUM< A, R >) 1 2 box
  (moeoUM< const EOFitness &, R >) 1 1 box
 1 1 mark

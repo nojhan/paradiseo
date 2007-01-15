@@ -1,4 +1,4 @@
-.TH "moeoArchive" 3 "22 Dec 2006" "Version 0.1" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoArchive" 3 "15 Jan 2007" "Version 0.1" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -24,11 +24,11 @@ Inherits \fBeoPop< EOT >< EOT >\fP.
 
 .in +1c
 .ti -1c
-.RI "bool \fBdominates\fP (const \fBEOFitness\fP &_fit) const "
+.RI "bool \fBdominates\fP (const \fBEOFitness\fP &_fit) const"
 .br
 .RI "\fIReturns true if the current archive dominates _fit. \fP"
 .ti -1c
-.RI "bool \fBcontains\fP (const \fBEOFitness\fP &_fit) const "
+.RI "bool \fBcontains\fP (const \fBEOFitness\fP &_fit) const"
 .br
 .RI "\fIReturns true if the current archive contains _fit. \fP"
 .ti -1c
@@ -61,6 +61,8 @@ Returns true if the current archive dominates _fit.
 
 .PP
 Definition at line 39 of file moeoArchive.h.
+.PP
+Referenced by moeoArchive< EOT >::update().
 .SS "template<class EOT> bool \fBmoeoArchive\fP< EOT >::contains (const \fBEOFitness\fP & _fit) const\fC [inline]\fP"
 .PP
 Returns true if the current archive contains _fit. 
@@ -85,6 +87,10 @@ Updates the archive with a given individual _eo.
 
 .PP
 Definition at line 63 of file moeoArchive.h.
+.PP
+References moeoArchive< EOT >::dominates().
+.PP
+Referenced by moeoArchive< EOT >::update().
 .SS "template<class EOT> void \fBmoeoArchive\fP< EOT >::update (const \fBeoPop\fP< EOT > & _pop)\fC [inline]\fP"
 .PP
 Updates the archive with a given population _pop. 
@@ -97,6 +103,8 @@ Updates the archive with a given population _pop.
 
 .PP
 Definition at line 98 of file moeoArchive.h.
+.PP
+References moeoArchive< EOT >::update().
 
 .SH "Author"
 .PP 

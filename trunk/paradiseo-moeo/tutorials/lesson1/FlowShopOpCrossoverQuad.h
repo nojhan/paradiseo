@@ -1,25 +1,14 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-// "FlowShopOpCrossoverQuad.h"
+//-----------------------------------------------------------------------------
+// FlowShopOpCrossoverQuad.h
+// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2006
+/*
+    This library...
 
-// (c) OPAC Team, LIFL, April 2006
-
-/* This library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2 of the License, or (at your option) any later version.
-   
-   This library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-   
-   You should have received a copy of the GNU Lesser General Public
-   License along with this library; if not, write to the Free Software
-   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
-   
-   Contact: Arnaud.Liefooghe@lifl.fr
-*/
+    Contact: paradiseo-help@lists.gforge.inria.fr, http://paradiseo.gforge.inria.fr
+ */
+//-----------------------------------------------------------------------------
 
 #ifndef _FlowShopOpCrossoverQuad_h
 #define _FlowShopOpCrossoverQuad_h
@@ -55,7 +44,7 @@ public:
    * @param FlowShop & _genotype1  the first parent
    * @param FlowShop & _genotype2  the second parent
    */
-  bool operator  () (FlowShop & _genotype1, FlowShop & _genotype2)
+  bool operator   () (FlowShop & _genotype1, FlowShop & _genotype2)
   {
     bool oneAtLeastIsModified;
 

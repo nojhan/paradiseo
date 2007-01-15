@@ -20,9 +20,9 @@ typedef EOT::Fitness {\bf EOFitness}\label{classmoeoArchive_798bc97d8321b1e2c469
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-bool {\bf dominates} (const {\bf EOFitness} \&\_\-fit) const 
+bool {\bf dominates} (const {\bf EOFitness} \&\_\-fit) const
 \begin{CompactList}\small\item\em Returns true if the current archive dominates \_\-fit. \item\end{CompactList}\item 
-bool {\bf contains} (const {\bf EOFitness} \&\_\-fit) const 
+bool {\bf contains} (const {\bf EOFitness} \&\_\-fit) const
 \begin{CompactList}\small\item\em Returns true if the current archive contains \_\-fit. \item\end{CompactList}\item 
 void {\bf update} (const EOT \&\_\-eo)
 \begin{CompactList}\small\item\em Updates the archive with a given individual \_\-eo. \item\end{CompactList}\item 
@@ -42,7 +42,7 @@ Definition at line 21 of file moeo\-Archive.h.
 \subsection{Member Function Documentation}
 \index{moeoArchive@{moeo\-Archive}!dominates@{dominates}}
 \index{dominates@{dominates}!moeoArchive@{moeo\-Archive}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf moeo\-Archive}$<$ EOT $>$::dominates (const {\bf EOFitness} \& {\em \_\-fit}) const\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoArchive_22b298bb0e4f4b02f9d8c5d3385134a2}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf moeo\-Archive}$<$ EOT $>$::dominates (const {\bf EOFitness} \& {\em \_\-fit}) const\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoArchive_7786c8bfe67fefa19ac31a4ac700df06}
 
 
 Returns true if the current archive dominates \_\-fit. 
@@ -54,9 +54,11 @@ Returns true if the current archive dominates \_\-fit.
 \end{Desc}
 
 
-Definition at line 39 of file moeo\-Archive.h.\index{moeoArchive@{moeo\-Archive}!contains@{contains}}
+Definition at line 39 of file moeo\-Archive.h.
+
+Referenced by moeo\-Archive$<$ EOT $>$::update().\index{moeoArchive@{moeo\-Archive}!contains@{contains}}
 \index{contains@{contains}!moeoArchive@{moeo\-Archive}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf moeo\-Archive}$<$ EOT $>$::contains (const {\bf EOFitness} \& {\em \_\-fit}) const\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoArchive_b62d5274da2b12802113858be49a21a4}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf moeo\-Archive}$<$ EOT $>$::contains (const {\bf EOFitness} \& {\em \_\-fit}) const\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoArchive_71feaf270daa7185e829caef40bbf956}
 
 
 Returns true if the current archive contains \_\-fit. 
@@ -82,7 +84,11 @@ Updates the archive with a given individual \_\-eo.
 \end{Desc}
 
 
-Definition at line 63 of file moeo\-Archive.h.\index{moeoArchive@{moeo\-Archive}!update@{update}}
+Definition at line 63 of file moeo\-Archive.h.
+
+References moeo\-Archive$<$ EOT $>$::dominates().
+
+Referenced by moeo\-Archive$<$ EOT $>$::update().\index{moeoArchive@{moeo\-Archive}!update@{update}}
 \index{update@{update}!moeoArchive@{moeo\-Archive}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void {\bf moeo\-Archive}$<$ EOT $>$::update (const {\bf eo\-Pop}$<$ EOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoArchive_58e891ab400ba352e8b0a341d0bdc107}
 
@@ -97,6 +103,8 @@ Updates the archive with a given population \_\-pop.
 
 
 Definition at line 98 of file moeo\-Archive.h.
+
+References moeo\-Archive$<$ EOT $>$::update().
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 

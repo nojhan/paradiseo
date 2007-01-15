@@ -1,25 +1,14 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-// "make_algo_MOEO.h"
+//-----------------------------------------------------------------------------
+// make_algo_MOEO.h
+// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2006
+/*
+    This library...
 
-// (c) OPAC Team, LIFL, June 2006
-
-/* This library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2 of the License, or (at your option) any later version.
-   
-   This library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-   
-   You should have received a copy of the GNU Lesser General Public
-   License along with this library; if not, write to the Free Software
-   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
-   
-   Contact: Arnaud.Liefooghe@lifl.fr
-*/
+    Contact: paradiseo-help@lists.gforge.inria.fr, http://paradiseo.gforge.inria.fr
+ */
+//-----------------------------------------------------------------------------
 
 #ifndef _make_algo_MOEO_h
 #define _make_algo_MOEO_h
@@ -29,10 +18,10 @@
 #include "utils/eoState.h"
 // selections
 #include "eoNDSorting.h"
-#include "eoIBEA.h"
-#include "eoBinaryQualityIndicator.h"
+#include "old/moeoIBEA.h"
+#include "old/moeoBinaryQualityIndicator.h"
 #include "eoParetoRanking.h"
-#include "eoParetoSharing.h"
+#include "moeoParetoSharing.h"
 #include "eoSelectFromWorth.h"
 #include "moeoSelectOneFromPopAndArch.h"
 // replacements
@@ -88,21 +77,22 @@ template < class EOT >
     p2w = new eoNDSorting_I < EOT > (nicheSize);
   else if (selStr == string ("NSGA-II"))	// NSGA-II
     p2w = new eoNDSorting_II < EOT > ();
-  /*
-     else if (selStr == string("IBEA")) {  // IBEA
-     // the binary quality indicator
-     eoBinaryQualityIndicator<EOFitness>* I;
-     if (indStr == string("Epsilon"))
-     I = new eoAdditiveBinaryEpsilonIndicator<EOFitness>;
-     else if (indStr == string("Hypervolume"))
-     I = new eoBinaryHypervolumeIndicator<EOFitness>(rho);
-     else {
-     string stmp = string("Invalid binary quality indicator (for IBEA): ") + indStr;
-     throw std::runtime_error(stmp.c_str());
-     }
-     p2w = new eoIBEASorting<EOT>(I, kappa);      
-     }  
-   */
+  else if (selStr == string ("IBEA"))
+    {				// IBEA
+      // the binary quality indicator
+      moeoBinaryQualityIndicator < EOFitness > *I;
+      if (indStr == string ("Epsilon"))
+	I = new moeoAdditiveBinaryEpsilonIndicator < EOFitness >;
+      else if (indStr == string ("Hypervolume"))
+	I = new moeoBinaryHypervolumeIndicator < EOFitness > (rho);
+      else
+	{
+	  string stmp =
+	    string ("Invalid binary quality indicator (for IBEA): ") + indStr;
+	  throw std::runtime_error (stmp.c_str ());
+	}
+      p2w = new moeoIBEASorting < EOT > (I, kappa);
+    }
   else if (selStr == string ("ParetoRanking"))
     {				// Pareto Ranking
       eoDominanceMap < EOT > &dominance =
@@ -111,7 +101,7 @@ template < class EOT >
     }
   else if (selStr == string ("ParetoSharing"))
     {				// Pareto Sharing    
-      p2w = new eoParetoSharing < EOT > (nicheSize);
+      p2w = new moeoParetoSharing < EOT > (nicheSize);
     }
   else
     {
@@ -221,11 +211,17 @@ template < class EOT >
 			 'R', "Evolution Engine").value ();
   eoReplacement < EOT > *replace;
   if (repStr == string ("Plus"))	// Plus
-    replace = new moeoElitistReplacement < EOT, double >(*p2w);
+    {
+      replace = new moeoElitistReplacement < EOT, double >(*p2w);
+    }
   else if (repStr == string ("DistinctPlus"))	// DistinctPlus
-  replace = new moeoDisctinctElitistReplacement < EOT, double >(*p2w);
+    {
+      replace = new moeoDisctinctElitistReplacement < EOT, double >(*p2w);
+    }
   else if (repStr == string ("Generational"))	// Generational
-  replace = new eoGenerationalReplacement < EOT >;
+    {
+      replace = new eoGenerationalReplacement < EOT >;
+    }
   else
     {
       string stmp = string ("Invalid replacement: ") + repStr;
@@ -242,7 +238,7 @@ template < class EOT >
   eoGeneralBreeder < EOT > *breed =
     new eoGeneralBreeder < EOT > (*select, _op, offspringRateParam.value ());
   _state.storeFunctor (breed);
-  
+
   // the eoEasyEA
   eoAlgo < EOT > *algo =
     new eoEasyEA < EOT > (_continue, _eval, *breed, *replace);

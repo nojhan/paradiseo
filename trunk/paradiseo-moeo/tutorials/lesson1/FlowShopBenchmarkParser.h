@@ -1,25 +1,14 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-// "FlowShopBenchmarkParser.h"
+//-----------------------------------------------------------------------------
+// FlowShopBenchmarkParser.h
+// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2006
+/*
+    This library...
 
-// (c) OPAC Team, LIFL, March 2006
-
-/* This library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2 of the License, or (at your option) any later version.
-   
-   This library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-   
-   You should have received a copy of the GNU Lesser General Public
-   License along with this library; if not, write to the Free Software
-   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
-   
-   Contact: Arnaud.Liefooghe@lifl.fr
-*/
+    Contact: paradiseo-help@lists.gforge.inria.fr, http://paradiseo.gforge.inria.fr
+ */
+//-----------------------------------------------------------------------------
 
 #ifndef _FlowShopBenchmarkParser_h
 #define _FlowShopBenchmarkParser_h
@@ -38,7 +27,8 @@ const static
  * Class to handle parameters of a flow-shop instance from a benchmark file
  * benchmark files are available at www.lifl.fr/~basseur/BenchsUncertain/
  */
-class FlowShopBenchmarkParser
+class
+  FlowShopBenchmarkParser
 {
 
 public:
@@ -74,7 +64,8 @@ public:
    * the processing times
    */
   const
-    std::vector < std::vector < unsigned > >
+    std::vector <
+  std::vector < unsigned > >
   getP ()
   {
     return p;
@@ -144,9 +135,11 @@ private:
   void
   init (const string _benchmarkFileName)
   {
-    string buffer;
+    string
+      buffer;
     string::size_type start, end;
-    ifstream inputFile (_benchmarkFileName.data (), ios::in);
+    ifstream
+    inputFile (_benchmarkFileName.data (), ios::in);
     // opening of the benchmark file
     if (!inputFile)
       cerr << "*** ERROR : Unable to open the benchmark file '" <<
@@ -161,7 +154,7 @@ private:
     getline (inputFile, buffer, '\n');
     // processing times and due-dates
     p = std::vector < std::vector < unsigned > > (M, N);
-    d = std::vector < unsigned > (N);
+    d = std::vector < unsigned >(N);
     // for each job...
     for (unsigned j = 0; j < N; j++)
       {

@@ -1,25 +1,14 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-// "FlowShopEval.h"
+//-----------------------------------------------------------------------------
+// FlowShopEval.h
+// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2006
+/*
+    This library...
 
-// (c) OPAC Team, LIFL, March 2006
-
-/* This library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2 of the License, or (at your option) any later version.
-   
-   This library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-   
-   You should have received a copy of the GNU Lesser General Public
-   License along with this library; if not, write to the Free Software
-   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
-   
-   Contact: Arnaud.Liefooghe@lifl.fr
-*/
+    Contact: paradiseo-help@lists.gforge.inria.fr, http://paradiseo.gforge.inria.fr
+ */
+//-----------------------------------------------------------------------------
 
 #ifndef _FlowShopEval_h
 #define _FlowShopEval_h
@@ -63,7 +52,7 @@ public:
    * computation of the multi-objective evaluation of an eoFlowShop object
    * @param FlowShop & _eo  the FlowShop object to evaluate
    */
-  void operator  () (FlowShop & _eo)
+  void operator   () (FlowShop & _eo)
   {
     FlowShopFitness fitness;
     fitness[0] = tardiness (_eo);
@@ -82,9 +71,9 @@ private:
   /** number of jobs */
   unsigned N;
   /** p[i][j] = processing time of job j on machine i */
-  std::vector < std::vector < unsigned > > p;
+  std::vector < std::vector < unsigned > >p;
   /** d[j] = due-date of the job j */
-  std::vector < unsigned > d;
+  std::vector < unsigned >d;
 
 
 
@@ -98,7 +87,7 @@ private:
     vector < unsigned >scheduling = _eo.getScheduling ();
     // completion times computation for each job on each machine
     // C[i][j] = completion of the jth job of the scheduling on the ith machine
-    std::vector < std::vector < unsigned > > C = completionTime (_eo);
+    std::vector < std::vector < unsigned > >C = completionTime (_eo);
     // fitness == C[M-1][scheduling[N-1]];     
     return C[M - 1][scheduling[N - 1]];
   }
@@ -115,7 +104,7 @@ private:
     vector < unsigned >scheduling = _eo.getScheduling ();
     // completion times computation for each job on each machine
     // C[i][j] = completion of the jth job of the scheduling on the ith machine
-    std::vector < std::vector < unsigned > > C = completionTime (_eo);
+    std::vector < std::vector < unsigned > >C = completionTime (_eo);
     // tardiness computation
     unsigned long sum = 0;
     for (unsigned j = 0; j < N; j++)
@@ -134,10 +123,10 @@ private:
    * C[i][j] = completion of the jth job of the scheduling on the ith machine
    * @param const FlowShop _eo  the genotype to evaluate
    */
-  std::vector < std::vector < unsigned > > completionTime (FlowShop _eo)
+  std::vector < std::vector < unsigned > >completionTime (FlowShop _eo)
   {
-    vector < unsigned > scheduling = _eo.getScheduling ();
-    std::vector < std::vector < unsigned > > C (M, N);
+    vector < unsigned >scheduling = _eo.getScheduling ();
+    std::vector < std::vector < unsigned > >C (M, N);
     C[0][scheduling[0]] = p[0][scheduling[0]];
     for (unsigned j = 1; j < N; j++)
       C[0][scheduling[j]] = C[0][scheduling[j - 1]] + p[0][scheduling[j]];

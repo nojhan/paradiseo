@@ -1,8 +1,8 @@
-.TH "moeoNDSorting_II" 3 "22 Dec 2006" "Version 0.1" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoNDSorting_II" 3 "15 Jan 2007" "Version 0.1" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-moeoNDSorting_II \- Fast Elitist Non-Dominant Sorting Genetic Algorithm.  
+moeoNDSorting_II \- Fast Elitist Non-Dominant Sorting Genetic Algorithm assignment strategie Note : This is a corrected version of the original \fBeoNDSorting_II\fP class.  
 
 .PP
 .SH SYNOPSIS
@@ -18,6 +18,7 @@ Inherits \fBeoNDSorting< EOT >< EOT >\fP.
 .ti -1c
 .RI "typedef std::pair< double, unsigned > \fBdouble_index_pair\fP"
 .br
+.RI "\fIindex pair \fP"
 .in -1c
 .SS "Public Member Functions"
 
@@ -25,6 +26,7 @@ Inherits \fBeoNDSorting< EOT >< EOT >\fP.
 .ti -1c
 .RI "\fBmoeoNDSorting_II\fP (bool nasty_flag_=false)"
 .br
+.RI "\fIconstructor \fP"
 .ti -1c
 .RI "std::vector< double > \fBniche_penalty\fP (const std::vector< unsigned > &_cf, const \fBeoPop\fP< EOT > &_pop)"
 .br
@@ -36,15 +38,14 @@ Inherits \fBeoNDSorting< EOT >< EOT >\fP.
 .ti -1c
 .RI "class \fBcompare_nodes\fP"
 .br
+.RI "\fIA class to compare the nodes. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
 
 .SS "template<class EOT> class moeoNDSorting_II< EOT >"
-Fast Elitist Non-Dominant Sorting Genetic Algorithm. 
+Fast Elitist Non-Dominant Sorting Genetic Algorithm assignment strategie Note : This is a corrected version of the original \fBeoNDSorting_II\fP class. 
 
-Note : This is a corrected version of the original \fBeoNDSorting_II\fP class
-.PP
 \fBSee also:\fP
 .RS 4
 \fBeoNDSorting_II\fP 
