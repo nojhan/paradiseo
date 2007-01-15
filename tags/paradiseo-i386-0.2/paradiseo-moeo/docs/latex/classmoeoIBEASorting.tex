@@ -1,0 +1,103 @@
+\section{moeo\-IBEASorting$<$ EOT, Fitness $>$ Class Template Reference}
+\label{classmoeoIBEASorting}\index{moeoIBEASorting@{moeoIBEASorting}}
+Functor The sorting phase of IBEA (Indicator-Based Evolutionary Algorithm) without uncertainty Adapted from the Zitzler and K\~{A}¼nzli paper \char`\"{}Indicator-Based Selection in Multiobjective Search\char`\"{} (2004) Of course, Fitness needs to be an {\bf eo\-Pareto\-Fitness} object.  
+
+
+{\tt \#include $<$moeo\-IBEA.h$>$}
+
+Inheritance diagram for moeo\-IBEASorting$<$ EOT, Fitness $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=6cm]{classmoeoIBEASorting}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf moeo\-IBEASorting} ({\bf moeo\-Binary\-Quality\-Indicator}$<$ Fitness $>$ $\ast$\_\-I, const double \_\-kappa)
+\begin{CompactList}\small\item\em constructor \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf set\-Bounds} (const {\bf eo\-Pop}$<$ EOT $>$ \&\_\-pop)
+\begin{CompactList}\small\item\em computation and setting of the bounds for each objective \item\end{CompactList}\item 
+void {\bf fitnesses} (const {\bf eo\-Pop}$<$ EOT $>$ \&\_\-pop)
+\begin{CompactList}\small\item\em computation and setting of the fitness for each individual of the population \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+double {\bf kappa}\label{classmoeoIBEASorting_4789daab5ea5e215075d7430f343a321}
+
+\begin{CompactList}\small\item\em scaling factor kappa \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class EOT, class Fitness = typename EOT::Fitness$>$ class moeo\-IBEASorting$<$ EOT, Fitness $>$}
+
+Functor The sorting phase of IBEA (Indicator-Based Evolutionary Algorithm) without uncertainty Adapted from the Zitzler and K\~{A}¼nzli paper \char`\"{}Indicator-Based Selection in Multiobjective Search\char`\"{} (2004) Of course, Fitness needs to be an {\bf eo\-Pareto\-Fitness} object. 
+
+
+
+Definition at line 84 of file moeo\-IBEA.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{moeoIBEASorting@{moeo\-IBEASorting}!moeoIBEASorting@{moeoIBEASorting}}
+\index{moeoIBEASorting@{moeoIBEASorting}!moeoIBEASorting@{moeo\-IBEASorting}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT, class Fitness = typename EOT::Fitness$>$ {\bf moeo\-IBEASorting}$<$ EOT, Fitness $>$::{\bf moeo\-IBEASorting} ({\bf moeo\-Binary\-Quality\-Indicator}$<$ Fitness $>$ $\ast$ {\em \_\-I}, const double {\em \_\-kappa})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoIBEASorting_4d00a499f4d03b8cf66e9ce8f68cb174}
+
+
+constructor 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em eo\-Binary\-Quality\-Indicator$<$EOT$>$$\ast$}]\_\-I the binary quality indicator to use in the selection process \item[{\em double}]\_\-kappa scaling factor kappa \end{description}
+\end{Desc}
+
+
+Definition at line 96 of file moeo\-IBEA.h.
+
+References moeo\-IBEASorting$<$ EOT, Fitness $>$::kappa.
+
+\subsection{Member Function Documentation}
+\index{moeoIBEASorting@{moeo\-IBEASorting}!setBounds@{setBounds}}
+\index{setBounds@{setBounds}!moeoIBEASorting@{moeo\-IBEASorting}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT, class Fitness = typename EOT::Fitness$>$ void {\bf moeo\-IBEASorting}$<$ EOT, Fitness $>$::set\-Bounds (const {\bf eo\-Pop}$<$ EOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, private, virtual]}}\label{classmoeoIBEASorting_f29f38584c69217f25e904118f6bfb2b}
+
+
+computation and setting of the bounds for each objective 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em const}]eo\-Pop$<$EOT$>$\& \_\-pop the population \end{description}
+\end{Desc}
+
+
+Implements {\bf moeo\-IBEA$<$ EOT, Fitness $>$} \doxyref{}{p.}{classmoeoIBEA}.
+
+Definition at line 121 of file moeo\-IBEA.h.
+
+References moeo\-IBEA$<$ EOT, Fitness $>$::I, and moeo\-Binary\-Quality\-Indicator$<$ EOFitness $>$::set\-Bounds().\index{moeoIBEASorting@{moeo\-IBEASorting}!fitnesses@{fitnesses}}
+\index{fitnesses@{fitnesses}!moeoIBEASorting@{moeo\-IBEASorting}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT, class Fitness = typename EOT::Fitness$>$ void {\bf moeo\-IBEASorting}$<$ EOT, Fitness $>$::fitnesses (const {\bf eo\-Pop}$<$ EOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, private, virtual]}}\label{classmoeoIBEASorting_63c3953d362b41e875e6e7759a308e07}
+
+
+computation and setting of the fitness for each individual of the population 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em const}]eo\-Pop$<$EOT$>$\& \_\-pop the population \end{description}
+\end{Desc}
+
+
+Implements {\bf moeo\-IBEA$<$ EOT, Fitness $>$} \doxyref{}{p.}{classmoeoIBEA}.
+
+Definition at line 150 of file moeo\-IBEA.h.
+
+References moeo\-IBEASorting$<$ EOT, Fitness $>$::kappa, and eo\-Value\-Param$<$ std::vector$<$ Worth\-T $>$ $>$::value().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-IBEA.h\end{CompactItemize}

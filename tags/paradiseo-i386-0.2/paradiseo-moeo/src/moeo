@@ -1,0 +1,18 @@
+// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+
+//-----------------------------------------------------------------------------
+// moeo
+// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2006
+/*
+    This library...
+
+    Contact: paradiseo-help@lists.gforge.inria.fr, http://paradiseo.gforge.inria.fr
+ */
+//-----------------------------------------------------------------------------
+
+#ifndef MOEO_
+#define MOEO_
+
+#include <moeo.h>
+
+#endif /*MOEO_H_*/
