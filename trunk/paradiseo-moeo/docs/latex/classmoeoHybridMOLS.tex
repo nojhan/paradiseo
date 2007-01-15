@@ -1,0 +1,67 @@
+\section{moeo\-Hybrid\-MOLS$<$ EOT $>$ Class Template Reference}
+\label{classmoeoHybridMOLS}\index{moeoHybridMOLS@{moeoHybridMOLS}}
+This class allows to apply a multi-objective local search to a number of selected individuals contained in the archive at every generation until a stopping criteria is verified.  
+
+
+{\tt \#include $<$moeo\-Hybrid\-MOLS.h$>$}
+
+Inheritance diagram for moeo\-Hybrid\-MOLS$<$ EOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4cm]{classmoeoHybridMOLS}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Hybrid\-MOLS} ({\bf eo\-Continue}$<$ EOT $>$ \&\_\-term, {\bf eo\-Select}$<$ EOT $>$ \&\_\-select, {\bf moeo\-MOLS}$<$ EOT $>$ \&\_\-mols, {\bf moeo\-Archive}$<$ EOT $>$ \&\_\-arch)
+\begin{CompactList}\small\item\em Ctor. \item\end{CompactList}\item 
+void {\bf operator()} ()\label{classmoeoHybridMOLS_f62b4221d0ec094e39b73b386b508fc1}
+
+\begin{CompactList}\small\item\em Applies the multi-objective local search to selected individuals contained in the archive if the stopping criteria is not verified. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+{\bf eo\-Continue}$<$ EOT $>$ \& {\bf term}\label{classmoeoHybridMOLS_cd05dc1c82febb819945663c3b5c6a75}
+
+\begin{CompactList}\small\item\em stopping criteria \item\end{CompactList}\item 
+{\bf eo\-Select}$<$ EOT $>$ \& {\bf select}\label{classmoeoHybridMOLS_b47c4d1bce77c5648b437a5884a7c41f}
+
+\begin{CompactList}\small\item\em selector \item\end{CompactList}\item 
+{\bf moeo\-MOLS}$<$ EOT $>$ \& {\bf mols}\label{classmoeoHybridMOLS_5ecf318c321a71857c11da1ff5000092}
+
+\begin{CompactList}\small\item\em multi-objective local search \item\end{CompactList}\item 
+{\bf moeo\-Archive}$<$ EOT $>$ \& {\bf arch}\label{classmoeoHybridMOLS_4aecb1f300f2f09b8d45998cc140576b}
+
+\begin{CompactList}\small\item\em archive \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class EOT$>$ class moeo\-Hybrid\-MOLS$<$ EOT $>$}
+
+This class allows to apply a multi-objective local search to a number of selected individuals contained in the archive at every generation until a stopping criteria is verified. 
+
+
+
+Definition at line 27 of file moeo\-Hybrid\-MOLS.h.
+
+\subsection{Member Function Documentation}
+\index{moeoHybridMOLS@{moeo\-Hybrid\-MOLS}!eoHybridMOLS@{eoHybridMOLS}}
+\index{eoHybridMOLS@{eoHybridMOLS}!moeoHybridMOLS@{moeo\-Hybrid\-MOLS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf moeo\-Hybrid\-MOLS}$<$ EOT $>$::eo\-Hybrid\-MOLS ({\bf eo\-Continue}$<$ EOT $>$ \& {\em \_\-term}, {\bf eo\-Select}$<$ EOT $>$ \& {\em \_\-select}, {\bf moeo\-MOLS}$<$ EOT $>$ \& {\em \_\-mols}, {\bf moeo\-Archive}$<$ EOT $>$ \& {\em \_\-arch})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoHybridMOLS_ced4b6d35035bfe3339dd571646e570d}
+
+
+Ctor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-term}]stopping criteria \item[{\em \_\-select}]selector \item[{\em \_\-mols}]a multi-objective local search \item[{\em \_\-arch}]the archive \end{description}
+\end{Desc}
+
+
+Definition at line 38 of file moeo\-Hybrid\-MOLS.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-Hybrid\-MOLS.h\end{CompactItemize}

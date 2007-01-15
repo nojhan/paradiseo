@@ -1,0 +1,171 @@
+.TH "eoBinaryHypervolumeIndicator" 3 "22 Dec 2006" "Version 0.1" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoBinaryHypervolumeIndicator \- Functor Binary hypervolume indicator for \fBeoParetoFitness\fP.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoBinaryQualityIndicator.h>\fP
+.PP
+Inherits \fBeoBinaryQualityIndicator< EOFitness >< EOFitness >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoBinaryHypervolumeIndicator\fP (double _rho)"
+.br
+.RI "\fIconstructor \fP"
+.ti -1c
+.RI "double \fBoperator()\fP (const EOFitness &_fitness_eo1, const EOFitness &_fitness_eo2)"
+.br
+.RI "\fIindicator value of the hypervolume of the portion of the objective space that is dominated by individual _eo1 but not by individual _eo2 (don't forget to set the bounds before the call of this function) \fP"
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOFitness::fitness_traits \fBtraits\fP"
+.br
+.RI "\fIfitness traits \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "double \fBhypervolumeIndicatorValue\fP (const EOFitness &_fitness_eo1, const EOFitness &_fitness_eo2, const unsigned _iObj, const bool _flag=false)"
+.br
+.RI "\fIcomputation of the hypervolume of the portion of the objective space that is dominated by individual _eo1 but not by individual _eo2 \fP"
+.ti -1c
+.RI "double \fBhypervolumeIndicatorValueMin\fP (const EOFitness &_fitness_eo1, const EOFitness &_fitness_eo2, const unsigned _iObj, const bool _flag)"
+.br
+.RI "\fIcomputation of the hypervolume of the portion of the objective space that is dominated by individual _eo1 but not by individual _eo2 in case of a minimization on the objective _iObj \fP"
+.ti -1c
+.RI "double \fBhypervolumeIndicatorValueMax\fP (const EOFitness &_fitness_eo1, const EOFitness &_fitness_eo2, const unsigned _iObj, const bool _flag)"
+.br
+.RI "\fIcomputation of the hypervolume of the portion of the objective space that is dominated by individual _eo1 but not by individual _eo2 in case of a maximization on the objective _iObj \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBrho\fP"
+.br
+.RI "\fIreference point for the hypervolume calculation \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOFitness> class eoBinaryHypervolumeIndicator< EOFitness >"
+Functor Binary hypervolume indicator for \fBeoParetoFitness\fP. 
+.PP
+Definition at line 217 of file eoBinaryQualityIndicator.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOFitness> \fBeoBinaryHypervolumeIndicator\fP< EOFitness >::\fBeoBinaryHypervolumeIndicator\fP (double _rho)\fC [inline]\fP"
+.PP
+constructor 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdouble\fP _rho reference point for the hypervolume calculation (rho must not be smaller than 1) 
+.RE
+.PP
+
+.PP
+Definition at line 227 of file eoBinaryQualityIndicator.h.
+.PP
+References eoBinaryHypervolumeIndicator< EOFitness >::rho.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOFitness> double \fBeoBinaryHypervolumeIndicator\fP< EOFitness >::operator() (const EOFitness & _fitness_eo1, const EOFitness & _fitness_eo2)\fC [inline, virtual]\fP"
+.PP
+indicator value of the hypervolume of the portion of the objective space that is dominated by individual _eo1 but not by individual _eo2 (don't forget to set the bounds before the call of this function) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIEOFitness\fP & _fitness_eo1 the fitness of the first individual 
+.br
+\fIEOFitness\fP & _fitness_eo2 the fitness of the second individual 
+.RE
+.PP
+
+.PP
+Implements \fBeoBF< const EOFitness &, const EOFitness &, double >\fP.
+.PP
+Definition at line 250 of file eoBinaryQualityIndicator.h.
+.PP
+References eoBinaryHypervolumeIndicator< EOFitness >::hypervolumeIndicatorValue().
+.SS "template<class EOFitness> double \fBeoBinaryHypervolumeIndicator\fP< EOFitness >::hypervolumeIndicatorValue (const EOFitness & _fitness_eo1, const EOFitness & _fitness_eo2, const unsigned _iObj, const bool _flag = \fCfalse\fP)\fC [inline, private]\fP"
+.PP
+computation of the hypervolume of the portion of the objective space that is dominated by individual _eo1 but not by individual _eo2 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIEOFitness\fP & _fitness_eo1 the fitness of the first individual 
+.br
+\fIEOFitness\fP & _fitness_eo2 the fitness of the second individual 
+.br
+\fIunsigned\fP _iObj number of objectives (used for iteration) 
+.br
+\fIbool\fP _flag = false (only used for iteration) 
+.RE
+.PP
+
+.PP
+Definition at line 285 of file eoBinaryQualityIndicator.h.
+.PP
+References eoBinaryQualityIndicator< EOFitness >::bounds, eoBinaryHypervolumeIndicator< EOFitness >::hypervolumeIndicatorValueMax(), and eoBinaryHypervolumeIndicator< EOFitness >::hypervolumeIndicatorValueMin().
+.PP
+Referenced by eoBinaryHypervolumeIndicator< EOFitness >::hypervolumeIndicatorValueMax(), eoBinaryHypervolumeIndicator< EOFitness >::hypervolumeIndicatorValueMin(), and eoBinaryHypervolumeIndicator< EOFitness >::operator()().
+.SS "template<class EOFitness> double \fBeoBinaryHypervolumeIndicator\fP< EOFitness >::hypervolumeIndicatorValueMin (const EOFitness & _fitness_eo1, const EOFitness & _fitness_eo2, const unsigned _iObj, const bool _flag)\fC [inline, private]\fP"
+.PP
+computation of the hypervolume of the portion of the objective space that is dominated by individual _eo1 but not by individual _eo2 in case of a minimization on the objective _iObj 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIEOFitness\fP & _fitness_eo1 the fitness of the first individual 
+.br
+\fIEOFitness\fP & _fitness_eo2 the fitness of the second individual 
+.br
+\fIunsigned\fP _iObj index of the objective 
+.br
+\fIbool\fP _flag (only used for iteration) 
+.RE
+.PP
+
+.PP
+Definition at line 320 of file eoBinaryQualityIndicator.h.
+.PP
+References eoBinaryQualityIndicator< EOFitness >::bounds, eoBinaryHypervolumeIndicator< EOFitness >::hypervolumeIndicatorValue(), and eoBinaryHypervolumeIndicator< EOFitness >::rho.
+.PP
+Referenced by eoBinaryHypervolumeIndicator< EOFitness >::hypervolumeIndicatorValue().
+.SS "template<class EOFitness> double \fBeoBinaryHypervolumeIndicator\fP< EOFitness >::hypervolumeIndicatorValueMax (const EOFitness & _fitness_eo1, const EOFitness & _fitness_eo2, const unsigned _iObj, const bool _flag)\fC [inline, private]\fP"
+.PP
+computation of the hypervolume of the portion of the objective space that is dominated by individual _eo1 but not by individual _eo2 in case of a maximization on the objective _iObj 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIEOFitness\fP & _fitness_eo1 the fitness of the first individual 
+.br
+\fIEOFitness\fP & _fitness_eo2 the fitness of the second individual 
+.br
+\fIunsigned\fP _iObj index of the objective 
+.br
+\fIbool\fP _flag (only used for iteration) 
+.RE
+.PP
+
+.PP
+Definition at line 374 of file eoBinaryQualityIndicator.h.
+.PP
+References eoBinaryQualityIndicator< EOFitness >::bounds, eoBinaryHypervolumeIndicator< EOFitness >::hypervolumeIndicatorValue(), and eoBinaryHypervolumeIndicator< EOFitness >::rho.
+.PP
+Referenced by eoBinaryHypervolumeIndicator< EOFitness >::hypervolumeIndicatorValue().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.
