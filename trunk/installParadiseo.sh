@@ -225,7 +225,7 @@ function run_install()
 	
 	execute_cmd "cd $installKitPath/paradiseo-moeo" "[6-1] Go in Paradiseo-MOEO dir"  $SPY 
 	RETURN=$?
-	execute_cmd "./autogen.sh --with-EOdir=$installKitPath/paradiseo-eo --with-MOdir=$installKitPath/paradiseo-mo/" "[6-2] Run autogen"  $SPY
+	execute_cmd "./autogen.sh --with-EOdir=$installKitPath/paradiseo-eo" "[6-2] Run autogen"  $SPY
 	RETURN=`expr $RETURN + $?`
 	execute_cmd "make" "[6-3] Compile ParadisEO-MOEO"  $SPY
 	RETURN=`expr $RETURN + $?`
@@ -392,7 +392,7 @@ function run_install()
 	if [ ! $(($RETURN)) = 0 ]
 	then
 		echo ''
-		echo "		--> Error when copying .mpd.conf file"
+		echo "		--> Error when copying .mpd.conf file "
 		echo -e ' \033[40m\033[1;33m### END ### \033[0m '
 		return $MPD_COPY_ERROR
 	else
