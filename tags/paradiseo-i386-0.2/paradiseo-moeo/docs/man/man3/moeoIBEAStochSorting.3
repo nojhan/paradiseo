@@ -1,0 +1,101 @@
+.TH "moeoIBEAStochSorting" 3 "15 Jan 2007" "Version 0.1" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoIBEAStochSorting \- Functor The sorting phase of IBEA (Indicator-Based Evolutionary Algorithm) under uncertainty Adapted from the Basseur and Zitzler paper 'Handling Uncertainty in Indicator-Based Multiobjective Optimization' (2006) Of course, the fitness of an individual needs to be an eoStochasticParetoFitness object.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoIBEA.h>\fP
+.PP
+Inherits \fBmoeoIBEA< EOT, FitnessEval >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoIBEAStochSorting\fP (\fBmoeoBinaryQualityIndicator\fP< FitnessEval > *_I)"
+.br
+.RI "\fIconstructor \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBsetBounds\fP (const \fBeoPop\fP< EOT > &_pop)"
+.br
+.RI "\fIcomputation and setting of the bounds for each objective \fP"
+.ti -1c
+.RI "void \fBfitnesses\fP (const \fBeoPop\fP< EOT > &_pop)"
+.br
+.RI "\fIcomputation and setting of the fitness for each individual of the population \fP"
+.in -1c
+.SS "Static Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static double \fBzero\fP ()"
+.br
+.RI "\fIapproximated zero value \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT, class FitnessEval = typename EOT::Fitness::FitnessEval> class moeoIBEAStochSorting< EOT, FitnessEval >"
+Functor The sorting phase of IBEA (Indicator-Based Evolutionary Algorithm) under uncertainty Adapted from the Basseur and Zitzler paper 'Handling Uncertainty in Indicator-Based Multiobjective Optimization' (2006) Of course, the fitness of an individual needs to be an eoStochasticParetoFitness object. 
+.PP
+Definition at line 203 of file moeoIBEA.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT, class FitnessEval = typename EOT::Fitness::FitnessEval> \fBmoeoIBEAStochSorting\fP< EOT, FitnessEval >::\fBmoeoIBEAStochSorting\fP (\fBmoeoBinaryQualityIndicator\fP< FitnessEval > * _I)\fC [inline]\fP"
+.PP
+constructor 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIeoBinaryQualityIndicator<EOT>*\fP _I the binary quality indicator to use in the selection process 
+.RE
+.PP
+
+.PP
+Definition at line 214 of file moeoIBEA.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT, class FitnessEval = typename EOT::Fitness::FitnessEval> void \fBmoeoIBEAStochSorting\fP< EOT, FitnessEval >::setBounds (const \fBeoPop\fP< EOT > & _pop)\fC [inline, private, virtual]\fP"
+.PP
+computation and setting of the bounds for each objective 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIconst\fP eoPop<EOT>& _pop the population 
+.RE
+.PP
+
+.PP
+Implements \fBmoeoIBEA< EOT, FitnessEval >\fP.
+.PP
+Definition at line 243 of file moeoIBEA.h.
+.PP
+References moeoIBEA< EOT, FitnessEval >::I, and moeoBinaryQualityIndicator< EOFitness >::setBounds().
+.SS "template<class EOT, class FitnessEval = typename EOT::Fitness::FitnessEval> void \fBmoeoIBEAStochSorting\fP< EOT, FitnessEval >::fitnesses (const \fBeoPop\fP< EOT > & _pop)\fC [inline, private, virtual]\fP"
+.PP
+computation and setting of the fitness for each individual of the population 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIconst\fP eoPop<EOT>& _pop the population 
+.RE
+.PP
+
+.PP
+Implements \fBmoeoIBEA< EOT, FitnessEval >\fP.
+.PP
+Definition at line 272 of file moeoIBEA.h.
+.PP
+References eoValueParam< std::vector< WorthT > >::value(), and moeoIBEAStochSorting< EOT, FitnessEval >::zero().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.

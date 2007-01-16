@@ -1,0 +1,77 @@
+.TH "moeoHybridMOLS" 3 "15 Jan 2007" "Version 0.1" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoHybridMOLS \- This class allows to apply a multi-objective local search to a number of selected individuals contained in the archive at every generation until a stopping criteria is verified.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoHybridMOLS.h>\fP
+.PP
+Inherits \fBeoUpdater\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoHybridMOLS\fP (\fBeoContinue\fP< EOT > &_term, \fBeoSelect\fP< EOT > &_select, \fBmoeoMOLS\fP< EOT > &_mols, \fBmoeoArchive\fP< EOT > &_arch)"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP ()"
+.br
+.RI "\fIApplies the multi-objective local search to selected individuals contained in the archive if the stopping criteria is not verified. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoContinue\fP< EOT > & \fBterm\fP"
+.br
+.RI "\fIstopping criteria \fP"
+.ti -1c
+.RI "\fBeoSelect\fP< EOT > & \fBselect\fP"
+.br
+.RI "\fIselector \fP"
+.ti -1c
+.RI "\fBmoeoMOLS\fP< EOT > & \fBmols\fP"
+.br
+.RI "\fImulti-objective local search \fP"
+.ti -1c
+.RI "\fBmoeoArchive\fP< EOT > & \fBarch\fP"
+.br
+.RI "\fIarchive \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class moeoHybridMOLS< EOT >"
+This class allows to apply a multi-objective local search to a number of selected individuals contained in the archive at every generation until a stopping criteria is verified. 
+.PP
+Definition at line 27 of file moeoHybridMOLS.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> \fBmoeoHybridMOLS\fP< EOT >::eoHybridMOLS (\fBeoContinue\fP< EOT > & _term, \fBeoSelect\fP< EOT > & _select, \fBmoeoMOLS\fP< EOT > & _mols, \fBmoeoArchive\fP< EOT > & _arch)\fC [inline]\fP"
+.PP
+Ctor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_term\fP stopping criteria 
+.br
+\fI_select\fP selector 
+.br
+\fI_mols\fP a multi-objective local search 
+.br
+\fI_arch\fP the archive 
+.RE
+.PP
+
+.PP
+Definition at line 38 of file moeoHybridMOLS.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.
