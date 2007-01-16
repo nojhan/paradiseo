@@ -15,10 +15,7 @@ TAR_MSG=" "
 
 
 #others
-PARADISEO_EO_ARCHIVE=paradiseo-eo.tgz
-PARADISEO_MO_ARCHIVE=paradiseo-mo.tgz	
-PARADISEO_MOEO_ARCHIVE=paradiseo-moeo.tgz
-PARADISEO_PEO_ARCHIVE=paradiseo-peo.bz2
+PARADISEO_EO_ARCHIVE=paradiseo-eo.tar.gz
 LIBS_PATH=lib
 LIBXML2_ARCHIVE=libxml2-2.6.0.tar.bz2
 MPICH2_ARCHIVE=mpich2-1.0.3.tar.gz
@@ -130,7 +127,7 @@ function run_install()
 	echo -e '	\033[40m\033[1;34m# STEP 1 \033[0m '
 	echo '		--> Unpacking Paradiseo-EO (Evolving Objects) ...'
 
-	execute_cmd "tar xvf $resourceKitPath/$LIBS_PATH/$PARADISEO_EO_ARCHIVE --directory $installKitPath" "[1] Unpack Paradiseo-EO" $SPY
+	execute_cmd "tar xvzf $resourceKitPath/$LIBS_PATH/$PARADISEO_EO_ARCHIVE --directory $installKitPath" "[1] Unpack Paradiseo-EO" $SPY
 	if [ ! "$?" = "0" ]
 	then
 		echo ''
