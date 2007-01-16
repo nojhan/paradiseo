@@ -1,0 +1,69 @@
+.TH "Service" 3 "9 Jan 2007" "Version 0.1" "ParadisEO-PEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Service \- 
+.SH SYNOPSIS
+.br
+.PP
+Inherits \fBCommunicable\fP.
+.PP
+Inherited by \fBpeoPopEval< EOT >\fP, \fBpeoSyncMultiStart< EOT >\fP, and \fBpeoTransform< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBsetOwner\fP (\fBThread\fP &__owner)"
+.br
+.ti -1c
+.RI "\fBThread\fP * \fBgetOwner\fP ()"
+.br
+.ti -1c
+.RI "void \fBrequestResourceRequest\fP (unsigned __how_many=1)"
+.br
+.ti -1c
+.RI "void \fBpackResourceRequest\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBpackData\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBunpackData\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBexecute\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBpackResult\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBunpackResult\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBnotifySendingData\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBnotifySendingResourceRequest\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBnotifySendingAllResourceRequests\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBThread\fP * \fBowner\fP"
+.br
+.ti -1c
+.RI "unsigned \fBnum_sent_rr\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 17 of file service.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-PEO from the source code.

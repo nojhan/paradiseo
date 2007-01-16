@@ -1,0 +1,83 @@
+.TH "moeoBinaryQualityIndicator" 3 "16 Jan 2007" "Version 0.1" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoBinaryQualityIndicator \- Functor Binary quality indicator Binary performance measure to use in the replacement selection process of IBEA (Indicator-Based Evolutionary Algorithm) Of course, EOFitness needs to be an \fBeoParetoFitness\fP object.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoBinaryQualityIndicator.h>\fP
+.PP
+Inherits \fBeoBF< A1, A2, R >< const const EOFitness &, EOFitness &, double >\fP.
+.PP
+Inherited by \fBmoeoAdditiveBinaryEpsilonIndicator< EOFitness >\fP, and \fBmoeoBinaryHypervolumeIndicator< EOFitness >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoBinaryQualityIndicator\fP ()"
+.br
+.RI "\fIconstructor \fP"
+.ti -1c
+.RI "void \fBsetBounds\fP (const unsigned _iObj, const double _min, const double _max)"
+.br
+.RI "\fIset the bounds for objective _iObj \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< \fBRange\fP > \fBbounds\fP"
+.br
+.RI "\fIrange (min and max double value) for each objective \fP"
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOFitness::fitness_traits \fBtraits\fP"
+.br
+.RI "\fIfitness traits \fP"
+.in -1c
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBRange\fP"
+.br
+.RI "\fIPrivate class to represent the bounds. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOFitness> class moeoBinaryQualityIndicator< EOFitness >"
+Functor Binary quality indicator Binary performance measure to use in the replacement selection process of IBEA (Indicator-Based Evolutionary Algorithm) Of course, EOFitness needs to be an \fBeoParetoFitness\fP object. 
+.PP
+Definition at line 28 of file moeoBinaryQualityIndicator.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOFitness> void \fBmoeoBinaryQualityIndicator\fP< EOFitness >::setBounds (const unsigned _iObj, const double _min, const double _max)\fC [inline]\fP"
+.PP
+set the bounds for objective _iObj 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIunsigned\fP _iObj the index of the objective 
+.br
+\fIdouble\fP _min the minimum value 
+.br
+\fIdouble\fP _max the maximum value 
+.RE
+.PP
+
+.PP
+Definition at line 51 of file moeoBinaryQualityIndicator.h.
+.PP
+Referenced by moeoIBEAAvgSorting< EOT, FitnessEval >::setBounds(), moeoIBEAStochSorting< EOT, FitnessEval >::setBounds(), and moeoIBEASorting< EOT, Fitness >::setBounds().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.

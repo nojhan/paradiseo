@@ -1,0 +1,107 @@
+.TH "moeoCombinedMOLS" 3 "16 Jan 2007" "Version 0.1" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoCombinedMOLS \- This class allows to embed a set of local searches that are sequentially applied, and so working and updating the same archive of non-dominated solutions.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoCombinedMOLS.h>\fP
+.PP
+Inherits \fBmoeoMOLS< EOT >< EOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoCombinedMOLS\fP (\fBeoEvalFunc\fP< EOT > &_eval, \fBmoeoMOLS\fP< EOT > &_first_ls)"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "void \fBadd\fP (\fBmoeoMOLS\fP< EOT > &_ls)"
+.br
+.RI "\fIAdds a new local search to combine. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (const EOT &_eo, \fBmoeoArchive\fP< EOT > &_arch)"
+.br
+.RI "\fIGives a new solution in order to explore the neigborhood. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoEvalFunc\fP< EOT > & \fBeval\fP"
+.br
+.RI "\fIthe full evaluator of a solution \fP"
+.ti -1c
+.RI "std::vector< \fBmoeoMOLS\fP< EOT > * > \fBcombinedMOLS\fP"
+.br
+.RI "\fIthe vector that contains the combined MOLS \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class moeoCombinedMOLS< EOT >"
+This class allows to embed a set of local searches that are sequentially applied, and so working and updating the same archive of non-dominated solutions. 
+.PP
+Definition at line 24 of file moeoCombinedMOLS.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBmoeoCombinedMOLS\fP< EOT >::\fBmoeoCombinedMOLS\fP (\fBeoEvalFunc\fP< EOT > & _eval, \fBmoeoMOLS\fP< EOT > & _first_ls)\fC [inline]\fP"
+.PP
+Ctor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_eval\fP the full evaluator of a solution 
+.br
+\fI_first_ls\fP the first multi-objective local search to add 
+.RE
+.PP
+
+.PP
+Definition at line 33 of file moeoCombinedMOLS.h.
+.PP
+References moeoCombinedMOLS< EOT >::combinedMOLS.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> void \fBmoeoCombinedMOLS\fP< EOT >::add (\fBmoeoMOLS\fP< EOT > & _ls)\fC [inline]\fP"
+.PP
+Adds a new local search to combine. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_ls\fP the multi-objective local search to add 
+.RE
+.PP
+
+.PP
+Definition at line 43 of file moeoCombinedMOLS.h.
+.PP
+References moeoCombinedMOLS< EOT >::combinedMOLS.
+.SS "template<class EOT> void \fBmoeoCombinedMOLS\fP< EOT >::operator() (const EOT & _eo, \fBmoeoArchive\fP< EOT > & _arch)\fC [inline, virtual]\fP"
+.PP
+Gives a new solution in order to explore the neigborhood. 
+.PP
+The new non-dominated solutions are added to the archive 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_eo\fP the solution 
+.br
+\fI_arch\fP the archive of non-dominated solutions 
+.RE
+.PP
+
+.PP
+Implements \fBeoBF< const EOT &, moeoArchive< EOT > &, void >\fP.
+.PP
+Definition at line 54 of file moeoCombinedMOLS.h.
+.PP
+References moeoCombinedMOLS< EOT >::combinedMOLS, and moeoCombinedMOLS< EOT >::eval.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.
