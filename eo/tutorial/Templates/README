@@ -7,17 +7,21 @@ have run "make install" in the build-directory.
 In particular, the C++ compiler must find the EO include files and the
 linker must find the EO libraries. Most probably, that means that you
 have to set the variables CPLUS_INCLUDE_PATH and LIBRARY_PATH, i.e.
-for a standard installation and using tcsh:
+for a standard installation and using tcsh: 
+  setenv CPLUS_INCLUDE_PATH /usr/local/include/eo:"$CPLUS_INCLUDE_PATH"
+  setenv LIBRARY_PATH /usr/local/lib:"$LIBRARY_PATH"
 
-setenv CPLUS_INCLUDE_PATH /usr/local/include/eo:"$CPLUS_INCLUDE_PATH"
-setenv LIBRARY_PATH /usr/local/lib:"$LIBRARY_PATH"
-
+When running bash, use this:
+  export CPLUS_INCLUDE_PATH=/usr/local/include/eo:"$CPLUS_INCLUDE_PATH"
+  export LIBRARY_PATH=/usr/local/lib:"$LIBRARY_PATH"
 
 You can freely move the created project around. However, whenever you
 change the location of the source- or build-directories, you need to
 run 
-  touch configure.ac && autoreconf && make
-in the source-directory and make in the build-directory.
+  touch configure.ac && autoreconf
+in the source-directory and 
+  make 
+in the build-directory (which might or might not be the same for you).
 
 
 See README.manual for more details.
