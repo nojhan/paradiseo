@@ -44,12 +44,12 @@
 <a name="l00021"></a>00021 <span class="preprocessor">#include "moeoBinaryQualityIndicator.h"</span>
 <a name="l00022"></a>00022 
 <a name="l00023"></a>00023 
-<a name="l00028"></a><a class="code" href="classmoeoIBEA.html">00028</a> <span class="keyword">template</span> &lt; <span class="keyword">class</span> EOT, <span class="keyword">class</span> Fitness &gt; <span class="keyword">class </span><a class="code" href="classmoeoIBEA.html">moeoIBEA</a>:<span class="keyword">public</span> <a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_perf2_worth_cached.html">eoPerf2WorthCached</a> &lt; EOT,
+<a name="l00028"></a><a class="code" href="classmoeoIBEA.html">00028</a> <span class="keyword">template</span> &lt; <span class="keyword">class</span> EOT, <span class="keyword">class</span> Fitness &gt; <span class="keyword">class </span><a class="code" href="classmoeoIBEA.html">moeoIBEA</a>:<span class="keyword">public</span> <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_perf2_worth_cached.html">eoPerf2WorthCached</a> &lt; EOT,
 <a name="l00029"></a>00029   double &gt;
 <a name="l00030"></a>00030 {
 <a name="l00031"></a>00031 
 <a name="l00032"></a>00032 <span class="keyword">public</span>:
-<a name="l00034"></a>00034   <span class="keyword">using</span> <a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_value_param.html#a2">eoPerf2WorthCached &lt; EOT, double &gt;::value</a>;
+<a name="l00034"></a>00034   <span class="keyword">using</span> <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_value_param.html#a2">eoPerf2WorthCached &lt; EOT, double &gt;::value</a>;
 <a name="l00035"></a>00035 
 <a name="l00036"></a><a class="code" href="classmoeoIBEA.html#3de9693e4e8a723b2e40864ac1f4ac65">00036</a>     <a class="code" href="classmoeoIBEA.html#3de9693e4e8a723b2e40864ac1f4ac65">moeoIBEA</a> (moeoBinaryQualityIndicator &lt; Fitness &gt; *_I)
 <a name="l00037"></a>00037   {
@@ -60,7 +60,7 @@
 <a name="l00046"></a><a class="code" href="classmoeoIBEA.html#9e8738189ef146eb2e6ecb19c9709a31">00046</a>   <span class="keywordtype">void</span> <a class="code" href="classmoeoIBEA.html#9e8738189ef146eb2e6ecb19c9709a31">calculate_worths</a> (<span class="keyword">const</span> eoPop &lt; EOT &gt; &amp;_pop)
 <a name="l00047"></a>00047   {
 <a name="l00048"></a>00048     <span class="comment">/* resizing the worths beforehand */</span>
-<a name="l00049"></a>00049     <a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_value_param.html#a2">value</a> ().resize (_pop.size ());
+<a name="l00049"></a>00049     <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_value_param.html#a2">value</a> ().resize (_pop.size ());
 <a name="l00050"></a>00050 
 <a name="l00051"></a>00051     <span class="comment">/* computation and setting of the bounds for each objective */</span>
 <a name="l00052"></a>00052     setBounds (_pop);
@@ -69,9 +69,9 @@
 <a name="l00055"></a>00055     fitnesses (_pop);
 <a name="l00056"></a>00056 
 <a name="l00057"></a>00057     <span class="comment">// higher is better, so invert the value</span>
-<a name="l00058"></a>00058     <span class="keywordtype">double</span> max = *std::max_element (<a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_value_param.html#a2">value</a> ().begin (), <a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_value_param.html#a2">value</a> ().end ());
-<a name="l00059"></a>00059     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; <a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_value_param.html#a2">value</a> ().size (); i++)
-<a name="l00060"></a>00060       <a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_value_param.html#a2">value</a> ()[i] = max - <a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_value_param.html#a2">value</a> ()[i];
+<a name="l00058"></a>00058     <span class="keywordtype">double</span> max = *std::max_element (<a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_value_param.html#a2">value</a> ().begin (), <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_value_param.html#a2">value</a> ().end ());
+<a name="l00059"></a>00059     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_value_param.html#a2">value</a> ().size (); i++)
+<a name="l00060"></a>00060       <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_value_param.html#a2">value</a> ()[i] = max - <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_value_param.html#a2">value</a> ()[i];
 <a name="l00061"></a>00061   }
 <a name="l00062"></a>00062 
 <a name="l00063"></a>00063 
@@ -172,10 +172,10 @@
 <a name="l00181"></a>00181     <span class="comment">// computation of the fitness for each individual</span>
 <a name="l00182"></a>00182     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; _pop.size (); i++)
 <a name="l00183"></a>00183       {
-<a name="l00184"></a>00184         <a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_value_param.html#a2">value</a> ()[i] = 0;
+<a name="l00184"></a>00184         <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_value_param.html#a2">value</a> ()[i] = 0;
 <a name="l00185"></a>00185         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; _pop.size (); j++)
 <a name="l00186"></a>00186           <span class="keywordflow">if</span> (i != j)
-<a name="l00187"></a>00187             <a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_value_param.html#a2">value</a> ()[i] += fitComponents[j][i];
+<a name="l00187"></a>00187             <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_value_param.html#a2">value</a> ()[i] += fitComponents[j][i];
 <a name="l00188"></a>00188       }
 <a name="l00189"></a>00189   }
 <a name="l00190"></a>00190 
@@ -259,7 +259,7 @@
 <a name="l00291"></a>00291 
 <a name="l00292"></a>00292     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> ind = 0; ind &lt; _pop.size (); ind++)
 <a name="l00293"></a>00293       {
-<a name="l00294"></a>00294         <a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_value_param.html#a2">value</a> ()[ind] = 0.0;    <span class="comment">// fitness value for the individual ind</span>
+<a name="l00294"></a>00294         <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_value_param.html#a2">value</a> ()[ind] = 0.0;    <span class="comment">// fitness value for the individual ind</span>
 <a name="l00295"></a>00295         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> eval = 0; eval &lt; nEval; eval++)
 <a name="l00296"></a>00296           {
 <a name="l00297"></a>00297 
@@ -308,7 +308,7 @@
 <a name="l00340"></a>00340                 <span class="comment">// sum of p update</span>
 <a name="l00341"></a>00341                 sumP += p;
 <a name="l00342"></a>00342               }
-<a name="l00343"></a>00343             <a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_value_param.html#a2">value</a> ()[ind] += eiv / nEval;
+<a name="l00343"></a>00343             <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_value_param.html#a2">value</a> ()[ind] += eiv / nEval;
 <a name="l00344"></a>00344           }
 <a name="l00345"></a>00345       }
 <a name="l00346"></a>00346 
@@ -409,10 +409,10 @@
 <a name="l00463"></a>00463     <span class="comment">// computation of the fitness for each individual</span>
 <a name="l00464"></a>00464     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; _pop.size (); i++)
 <a name="l00465"></a>00465       {
-<a name="l00466"></a>00466         <a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_value_param.html#a2">value</a> ()[i] = 0;
+<a name="l00466"></a>00466         <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_value_param.html#a2">value</a> ()[i] = 0;
 <a name="l00467"></a>00467         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; _pop.size (); j++)
 <a name="l00468"></a>00468           <span class="keywordflow">if</span> (i != j)
-<a name="l00469"></a>00469             <a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_value_param.html#a2">value</a> ()[i] += fitComponents[j][i];
+<a name="l00469"></a>00469             <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_value_param.html#a2">value</a> ()[i] += fitComponents[j][i];
 <a name="l00470"></a>00470       }
 <a name="l00471"></a>00471   }
 <a name="l00472"></a>00472 
@@ -420,7 +420,7 @@
 <a name="l00474"></a>00474 
 <a name="l00475"></a>00475 
 <a name="l00476"></a>00476 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Jan 15 14:19:18 2007 for ParadisEO-MOEO by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Tue Jan 16 15:49:53 2007 for ParadisEO-MOEO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.1 </small></address>
 </body>

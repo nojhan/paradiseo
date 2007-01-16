@@ -39,11 +39,11 @@
 <a name="l00016"></a>00016 <span class="preprocessor">#include &lt;eoParetoRanking.h&gt;</span>
 <a name="l00017"></a>00017 
 <a name="l00018"></a>00018 <span class="keyword">template</span> &lt; <span class="keyword">class </span>EOT, <span class="keyword">class </span>worthT =
-<a name="l00019"></a><a class="code" href="classmoeoParetoSharing.html">00019</a>   <span class="keywordtype">double</span> &gt;<span class="keyword">class </span><a class="code" href="classmoeoParetoSharing.html">moeoParetoSharing</a>:<span class="keyword">public</span> <a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_perf2_worth.html">eoPerf2Worth</a> &lt; EOT, worthT &gt;
+<a name="l00019"></a><a class="code" href="classmoeoParetoSharing.html">00019</a>   <span class="keywordtype">double</span> &gt;<span class="keyword">class </span><a class="code" href="classmoeoParetoSharing.html">moeoParetoSharing</a>:<span class="keyword">public</span> <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_perf2_worth.html">eoPerf2Worth</a> &lt; EOT, worthT &gt;
 <a name="l00020"></a>00020 {
 <a name="l00021"></a>00021 <span class="keyword">public</span>:
 <a name="l00022"></a>00022 
-<a name="l00023"></a><a class="code" href="classmoeoParetoSharing.html#e2bb92004d3ec5193c7c3efcd499c489">00023</a>   <a class="code" href="classmoeoParetoSharing.html#e2bb92004d3ec5193c7c3efcd499c489">moeoParetoSharing</a> (<span class="keywordtype">double</span> _nicheSize):<a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_perf2_worth.html">eoPerf2Worth</a> &lt; EOT,
+<a name="l00023"></a><a class="code" href="classmoeoParetoSharing.html#e2bb92004d3ec5193c7c3efcd499c489">00023</a>   <a class="code" href="classmoeoParetoSharing.html#e2bb92004d3ec5193c7c3efcd499c489">moeoParetoSharing</a> (<span class="keywordtype">double</span> _nicheSize):<a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_perf2_worth.html">eoPerf2Worth</a> &lt; EOT,
 <a name="l00024"></a>00024     worthT &gt; (<span class="stringliteral">"ParetoSharing"</span>), <a class="code" href="classmoeoParetoSharing.html#b5519750a3f30747cbabf67df9b4afd8">nicheSize</a> (_nicheSize), <a class="code" href="classmoeoParetoSharing.html#329d7d08f06988fcb0f03059c88ed209">dist</a> (<a class="code" href="classmoeoParetoSharing.html#42bc90da2e7f3f7d3837484c771f638e">euc_dist</a>),
 <a name="l00025"></a>00025     <a class="code" href="classmoeoParetoSharing.html#0219625f2dd8bfd9ae7cb3039084059f">Dmax</a> (_nicheSize)
 <a name="l00026"></a>00026   {
@@ -51,7 +51,7 @@
 <a name="l00028"></a>00028 
 <a name="l00029"></a>00029 
 <a name="l00030"></a><a class="code" href="classmoeoParetoSharing.html#757d64059315641796855d5adc48cce9">00030</a>   <a class="code" href="classmoeoParetoSharing.html#e2bb92004d3ec5193c7c3efcd499c489">moeoParetoSharing</a> (<span class="keywordtype">double</span> _nicheSize, <a class="code" href="classmoeoParetoPhenDist.html">moeoParetoPhenDist</a> &lt; EOT,
-<a name="l00031"></a>00031                      worthT &gt; &amp;_dist):<a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_perf2_worth.html">eoPerf2Worth</a> &lt; EOT,
+<a name="l00031"></a>00031                      worthT &gt; &amp;_dist):<a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_perf2_worth.html">eoPerf2Worth</a> &lt; EOT,
 <a name="l00032"></a>00032     worthT &gt; (<span class="stringliteral">"ParetoSharing"</span>), <a class="code" href="classmoeoParetoSharing.html#b5519750a3f30747cbabf67df9b4afd8">nicheSize</a> (_nicheSize), <a class="code" href="classmoeoParetoSharing.html#329d7d08f06988fcb0f03059c88ed209">dist</a> (_dist),
 <a name="l00033"></a>00033     <a class="code" href="classmoeoParetoSharing.html#0219625f2dd8bfd9ae7cb3039084059f">Dmax</a> (_nicheSize)
 <a name="l00034"></a>00034   {
@@ -69,7 +69,7 @@
 <a name="l00046"></a>00046     <span class="keywordflow">if</span> (pSize &lt;= 1)
 <a name="l00047"></a>00047       <span class="keywordflow">throw</span> std::
 <a name="l00048"></a>00048         runtime_error (<span class="stringliteral">"Apptempt to do sharing with population of size 1"</span>);
-<a name="l00049"></a>00049     <a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_value_param.html#a2">eoPerf2Worth &lt; EOT, worthT &gt;::value</a> ().<a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_perf2_worth.html#a2">resize</a> (pSize);
+<a name="l00049"></a>00049     <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_value_param.html#a2">eoPerf2Worth &lt; EOT, worthT &gt;::value</a> ().<a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_perf2_worth.html#a2">resize</a> (pSize);
 <a name="l00050"></a>00050     std::vector &lt; double &gt;sim (pSize);  <span class="comment">// to hold the similarities</span>
 <a name="l00051"></a>00051 
 <a name="l00052"></a>00052     <a class="code" href="classmoeoParetoSharing_1_1dMatrix.html">dMatrix</a> distMatrix (pSize);
@@ -101,10 +101,10 @@
 <a name="l00078"></a>00078       }
 <a name="l00079"></a>00079 
 <a name="l00080"></a>00080     eoDominanceMap &lt; EOT &gt; Dmap1;
-<a name="l00081"></a>00081     Dmap1.<a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_dominance_map.html#a3">setup</a> (_pop);
+<a name="l00081"></a>00081     Dmap1.<a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_dominance_map.html#a3">setup</a> (_pop);
 <a name="l00082"></a>00082 
 <a name="l00083"></a>00083     eoParetoRanking &lt; EOT &gt; rnk1 (Dmap1);
-<a name="l00084"></a>00084     rnk1.<a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_pareto_ranking.html#a1">calculate_worths</a> (_pop);
+<a name="l00084"></a>00084     rnk1.<a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_pareto_ranking.html#a1">calculate_worths</a> (_pop);
 <a name="l00085"></a>00085 <span class="comment">// now set the worthes values</span>
 <a name="l00086"></a>00086     <span class="keywordflow">for</span> (i = 0; i &lt; pSize; ++i)
 <a name="l00087"></a>00087       {
@@ -120,7 +120,7 @@
 <a name="l00097"></a>00097 <span class="comment">//for(unsigned k=0;k&lt;_pop[i].fitness().size();++k)</span>
 <a name="l00098"></a>00098 <span class="comment">//v[k]=_pop[i].fitness().operator[](k)/sim[i];</span>
 <a name="l00099"></a>00099 <span class="comment">//_pop[i].fitness(v);//.operator[](k)=0;//_pop[i].fitness().operator[](k)/sim[i];</span>
-<a name="l00100"></a>00100         <a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_value_param.html#a2">eoPerf2Worth &lt; EOT, worthT &gt;::value</a> ()[i] = rnk1.<a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_value_param.html#a2">value</a> ().operator[](i) / sim[i];       <span class="comment">//*_pop[i].fitness().operator[](1)*_pop[i].fitness().operator[](1));</span>
+<a name="l00100"></a>00100         <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_value_param.html#a2">eoPerf2Worth &lt; EOT, worthT &gt;::value</a> ()[i] = rnk1.<a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_value_param.html#a2">value</a> ().operator[](i) / sim[i];       <span class="comment">//*_pop[i].fitness().operator[](1)*_pop[i].fitness().operator[](1));</span>
 <a name="l00101"></a>00101 <span class="comment">//cout&lt;&lt;"\n__________"&lt;&lt;pSize&lt;&lt;"  "&lt;&lt;value()[i]&lt;&lt;"    "&lt;&lt;i;</span>
 <a name="l00102"></a>00102       }
 <a name="l00103"></a>00103 
@@ -134,7 +134,7 @@
 <a name="l00111"></a>00111   <span class="keyword">public</span>:
 <a name="l00112"></a><a class="code" href="classmoeoParetoSharing_1_1dMatrix.html#97aa4b1596be7ddba2b52a43ebc4cb6a">00112</a>     <a class="code" href="classmoeoParetoSharing_1_1dMatrix.html#97aa4b1596be7ddba2b52a43ebc4cb6a">dMatrix</a> (<span class="keywordtype">unsigned</span> _s):<a class="code" href="classmoeoParetoSharing_1_1dMatrix.html#792b8a45e222a0daecad1ed344fc9a4f">rSize</a> (_s)
 <a name="l00113"></a>00113     {
-<a name="l00114"></a>00114       this-&gt;<a class="codeRef" doxygen="eo.doxytag:../../../workspace/paradiseo-eo/doc/doc/html/" href="../../../workspace/paradiseo-eo/doc/doc/html/classeo_perf2_worth.html#a2">resize</a> (_s);
+<a name="l00114"></a>00114       this-&gt;<a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_perf2_worth.html#a2">resize</a> (_s);
 <a name="l00115"></a>00115       <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; _s; ++i)
 <a name="l00116"></a>00116         this-&gt;operator[] (i).resize (_s);
 <a name="l00117"></a>00117     }
@@ -178,7 +178,7 @@
 <a name="l00155"></a><a class="code" href="classmoeoParetoSharing.html#0219625f2dd8bfd9ae7cb3039084059f">00155</a>   <span class="keywordtype">double</span> <a class="code" href="classmoeoParetoSharing.html#0219625f2dd8bfd9ae7cb3039084059f">Dmax</a>;
 <a name="l00156"></a>00156 
 <a name="l00157"></a>00157 };
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Jan 15 14:19:18 2007 for ParadisEO-MOEO by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Tue Jan 16 15:49:53 2007 for ParadisEO-MOEO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.1 </small></address>
 </body>
