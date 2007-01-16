@@ -1,0 +1,101 @@
+\section{moeo\-IBEAStoch\-Sorting$<$ EOT, Fitness\-Eval $>$ Class Template Reference}
+\label{classmoeoIBEAStochSorting}\index{moeoIBEAStochSorting@{moeoIBEAStochSorting}}
+Functor The sorting phase of IBEA (Indicator-Based Evolutionary Algorithm) under uncertainty Adapted from the Basseur and Zitzler paper \char`\"{}Handling Uncertainty in Indicator-Based Multiobjective Optimization\char`\"{} (2006) Of course, the fitness of an individual needs to be an eo\-Stochastic\-Pareto\-Fitness object.  
+
+
+{\tt \#include $<$moeo\-IBEA.h$>$}
+
+Inheritance diagram for moeo\-IBEAStoch\-Sorting$<$ EOT, Fitness\-Eval $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=6cm]{classmoeoIBEAStochSorting}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf moeo\-IBEAStoch\-Sorting} ({\bf moeo\-Binary\-Quality\-Indicator}$<$ Fitness\-Eval $>$ $\ast$\_\-I)
+\begin{CompactList}\small\item\em constructor \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf set\-Bounds} (const {\bf eo\-Pop}$<$ EOT $>$ \&\_\-pop)
+\begin{CompactList}\small\item\em computation and setting of the bounds for each objective \item\end{CompactList}\item 
+void {\bf fitnesses} (const {\bf eo\-Pop}$<$ EOT $>$ \&\_\-pop)
+\begin{CompactList}\small\item\em computation and setting of the fitness for each individual of the population \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{CompactItemize}
+\item 
+static double {\bf zero} ()\label{classmoeoIBEAStochSorting_3426ae274256fe8cedb9e0c009f81e15}
+
+\begin{CompactList}\small\item\em approximated zero value \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class EOT, class Fitness\-Eval = typename EOT::Fitness::Fitness\-Eval$>$ class moeo\-IBEAStoch\-Sorting$<$ EOT, Fitness\-Eval $>$}
+
+Functor The sorting phase of IBEA (Indicator-Based Evolutionary Algorithm) under uncertainty Adapted from the Basseur and Zitzler paper \char`\"{}Handling Uncertainty in Indicator-Based Multiobjective Optimization\char`\"{} (2006) Of course, the fitness of an individual needs to be an eo\-Stochastic\-Pareto\-Fitness object. 
+
+
+
+Definition at line 203 of file moeo\-IBEA.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{moeoIBEAStochSorting@{moeo\-IBEAStoch\-Sorting}!moeoIBEAStochSorting@{moeoIBEAStochSorting}}
+\index{moeoIBEAStochSorting@{moeoIBEAStochSorting}!moeoIBEAStochSorting@{moeo\-IBEAStoch\-Sorting}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT, class Fitness\-Eval = typename EOT::Fitness::Fitness\-Eval$>$ {\bf moeo\-IBEAStoch\-Sorting}$<$ EOT, Fitness\-Eval $>$::{\bf moeo\-IBEAStoch\-Sorting} ({\bf moeo\-Binary\-Quality\-Indicator}$<$ Fitness\-Eval $>$ $\ast$ {\em \_\-I})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoIBEAStochSorting_675d3ff90643f398b8aacbea5ea7eb31}
+
+
+constructor 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em eo\-Binary\-Quality\-Indicator$<$EOT$>$$\ast$}]\_\-I the binary quality indicator to use in the selection process \end{description}
+\end{Desc}
+
+
+Definition at line 214 of file moeo\-IBEA.h.
+
+\subsection{Member Function Documentation}
+\index{moeoIBEAStochSorting@{moeo\-IBEAStoch\-Sorting}!setBounds@{setBounds}}
+\index{setBounds@{setBounds}!moeoIBEAStochSorting@{moeo\-IBEAStoch\-Sorting}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT, class Fitness\-Eval = typename EOT::Fitness::Fitness\-Eval$>$ void {\bf moeo\-IBEAStoch\-Sorting}$<$ EOT, Fitness\-Eval $>$::set\-Bounds (const {\bf eo\-Pop}$<$ EOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, private, virtual]}}\label{classmoeoIBEAStochSorting_c23afa90c4eb5b21bb8f118c968ed0a2}
+
+
+computation and setting of the bounds for each objective 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em const}]eo\-Pop$<$EOT$>$\& \_\-pop the population \end{description}
+\end{Desc}
+
+
+Implements {\bf moeo\-IBEA$<$ EOT, Fitness\-Eval $>$} \doxyref{}{p.}{classmoeoIBEA}.
+
+Definition at line 243 of file moeo\-IBEA.h.
+
+References moeo\-IBEA$<$ EOT, Fitness\-Eval $>$::I, and moeo\-Binary\-Quality\-Indicator$<$ EOFitness $>$::set\-Bounds().\index{moeoIBEAStochSorting@{moeo\-IBEAStoch\-Sorting}!fitnesses@{fitnesses}}
+\index{fitnesses@{fitnesses}!moeoIBEAStochSorting@{moeo\-IBEAStoch\-Sorting}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT, class Fitness\-Eval = typename EOT::Fitness::Fitness\-Eval$>$ void {\bf moeo\-IBEAStoch\-Sorting}$<$ EOT, Fitness\-Eval $>$::fitnesses (const {\bf eo\-Pop}$<$ EOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, private, virtual]}}\label{classmoeoIBEAStochSorting_b75848ab2c0d03058b48147f11105dcb}
+
+
+computation and setting of the fitness for each individual of the population 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em const}]eo\-Pop$<$EOT$>$\& \_\-pop the population \end{description}
+\end{Desc}
+
+
+Implements {\bf moeo\-IBEA$<$ EOT, Fitness\-Eval $>$} \doxyref{}{p.}{classmoeoIBEA}.
+
+Definition at line 272 of file moeo\-IBEA.h.
+
+References eo\-Value\-Param$<$ std::vector$<$ Worth\-T $>$ $>$::value(), and moeo\-IBEAStoch\-Sorting$<$ EOT, Fitness\-Eval $>$::zero().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-IBEA.h\end{CompactItemize}
