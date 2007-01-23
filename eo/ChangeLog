@@ -1,8 +1,16 @@
+2007-01-23  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* NEWS: Add 1.0.1 release
+
+	* configure.in: Bump version to 1.0.1
+
 2006-12-18  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
 
 	* TODO.html, README.html: Remove these old files.
 
 	* AUTHORS, COPYING, ForRelease, NEWS, ToDo: Update for release.
+
+	* configure.in: Bump version to 1.0
 
 2006-12-17  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
 
