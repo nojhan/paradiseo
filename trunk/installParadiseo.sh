@@ -12,7 +12,8 @@
 installStartTime=$SECONDS 
 resourceKitPath=$PWD
 TAR_MSG=" "
-
+DIE=0
+PROG=ParadisEO
 
 #others
 PARADISEO_EO_ARCHIVE=paradiseo-eo.tar.gz
@@ -397,7 +398,7 @@ function run_install()
 		echo
 	fi 	
 
-	echo -e "\033[40m\033[1;33m### Now please run \"source $homePath/.bashrc\" to save context ### \033[0m"
+	echo -e "\033[40m\033[1;33m### Now please run \"source $homePath/.bashrc\" to save the context ### \033[0m"
 	sleep 2
 	echo
 	echo
@@ -482,6 +483,25 @@ function on_error()
 #-- BODY   :  					    ---#
 #------------------------------------------------------#
 
+#check if we have all we need
+(autoconf --version) < /dev/null > /dev/null 2>&1 ||
+{
+    echo
+    execute_cmd "echo \"You must have autoconf installed to compile $PROG. Please update your system to get it before installing $PROG.\"" "[0-1] Check autoconf" $SPY    
+    DIE=1
+}
+
+(automake --version) < /dev/null > /dev/null 2>&1 ||
+{
+    echo
+    execute_cmd "echo \"You must have automake installed to compile $PROG. Please update your system to get it before installing $PROG.\"" "[0-2] Check autoconf" $SPY 
+    DIE=1
+}
+
+if test "$DIE" -eq 1; then
+    exit 1
+fi
+
 if [ "$1" = "--help" ]
 then
 	echo
@@ -510,7 +530,7 @@ fi
 
 # That's it !
 run_install $PWD
-paradiseoInstall=$? 
+paradiseoInstall=$?
 on_error $paradiseoInstall
 
 
