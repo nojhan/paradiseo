@@ -54,11 +54,11 @@ int main (int __argc, char * __argv []) {
   moEasyCoolSched cool_sched (0.1, 0.98) ; // Cooling Schedule 
   
   moGenSolContinue <Route> cont (1000) ; /* Temperature Descreasing
-					    will occur each 100
+					    will occur each 1000
 					    iterations */ 
   
-  moSA <TwoOpt> simul_anneal (two_opt_rand, two_opt_incr_eval, cont, 1000, cool_sched, full_eval) ;
-  simul_anneal (route) ;
+  moSA <TwoOpt> simulated_annealing (two_opt_rand, two_opt_incr_eval, cont, 1000, cool_sched, full_eval) ;
+  simulated_annealing (route) ;
 
   std :: cout << "[To] " << route << std :: endl ;
   
