@@ -61,8 +61,8 @@ int main (int __argc, char * __argv []) {
   moBestImprSelect <TwoOpt> two_opt_select ;
   //moRandImprSelect <TwoOpt> two_opt_select ;
 
-  moHC <TwoOpt> hill_climb (two_opt_init, two_opt_next, two_opt_incr_eval, two_opt_select, full_eval) ;
-  hill_climb (route) ;
+  moHC <TwoOpt> hill_climbing (two_opt_init, two_opt_next, two_opt_incr_eval, two_opt_select, full_eval) ;
+  hill_climbing (route) ;
 
   std :: cout << "[To] " << route << std :: endl ;
 
