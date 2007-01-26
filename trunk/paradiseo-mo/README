@@ -11,11 +11,11 @@ Welcome to PARADISEO-MO (Moving Objects), one of the extension of Evolving Objec
 The basic installation procedure goes the following:
 
 Go to your build-directory and run 
-    $(SRCDIR)/configure
+    ./autogen --with-EOdir=$(EO_SRC)
     make
     make doc
 
-where $(SRCDIR) is the top-level source directory of ParadisEO-MO, i.e. where
+where $(SRCDIR) is the top-level source directory of Paradiseo-eo (Evoling Object), i.e. where
 the sources where unpacked.
 
 To clean everything, in the simply run 
