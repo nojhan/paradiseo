@@ -14,15 +14,15 @@
 #define MOEOFASTNONDOMINATEDSORTINGFITNESSASSIGNMENT_H_
 
 #include <eoPop.h>
-#include <moeoFitnessAssignment.h>
 #include <moeoComparator.h>
+#include <moeoFitnessAssignment.h>
 #include <moeoObjectiveVectorComparator.h>
 
 /**
- * Fitness assignment sheme based on Pareto-dominance count proposed in 
- * N. Srinivas, K. Deb, "Multiobjective Optimization Using Nondominated Sorting in Genetic Algorithms", Evolutionary Computation vol. 2, no. 3, pp. 221-248 (1994)
- * and in
- * K. Deb, A. Pratap, S. Agarwal, T. Meyarivan, "A Fast and Elitist Multi-Objective Genetic Algorithm: NSGA-II", IEEE Transactions on Evolutionary Computation, vol. 6, no. 2 (2002).
+ * Fitness assignment sheme based on Pareto-dominance count proposed in: 
+ * *N. Srinivas, K. Deb, "Multiobjective Optimization Using Nondominated Sorting in Genetic Algorithms", Evolutionary Computation vol. 2, no. 3, pp. 221-248 (1994)*
+ * and in:
+ * *K. Deb, A. Pratap, S. Agarwal, T. Meyarivan, "A Fast and Elitist Multi-Objective Genetic Algorithm: NSGA-II", IEEE Transactions on Evolutionary Computation, vol. 6, no. 2 (2002)*.
  * This strategy is, for instance, used in NSGA and NSGA-II.
  */
 template < class MOEOT >

@@ -14,19 +14,20 @@
 #define MOEOARCHIVE_H_
 
 #include <eoPop.h>
+#include <moeoObjectiveVectorComparator.h>
 
 /**
- * An archive is a secondary population that stores non-dominated solutions
+ * An archive is a secondary population that stores non-dominated solutions.
  */
 template < class MOEOT >
 class moeoArchive : public eoPop < MOEOT >
 {
 public:
 
-	using std::vector< MOEOT > :: size;
-	using std::vector< MOEOT > :: operator[];
-	using std::vector< MOEOT > :: back;
-	using std::vector< MOEOT > :: pop_back;
+	using std::vector < MOEOT > :: size;
+	using std::vector < MOEOT > :: operator[];
+	using std::vector < MOEOT > :: back;
+	using std::vector < MOEOT > :: pop_back;
 	
 	
 	/**
@@ -57,9 +58,9 @@ public:
 	 */
 	bool dominates (const ObjectiveVector & _objectiveVector) const
 	{
-		for (unsigned i = 0; i < size(); i++)
+		for (unsigned i = 0; i<size(); i++)
 		{
-			if ( comparator(operator[](i).fitness(), _objectiveVector)==1 )
+			if ( comparator(operator[](i).fitness(), _objectiveVector) == 1 )
 			{
 				return true;
 			}			
@@ -74,9 +75,9 @@ public:
 	 */
 	bool contains (const ObjectiveVector & _objectiveVector) const
 	{
-		for (unsigned i = 0; i < size; i++)
+		for (unsigned i = 0; i<size(); i++)
 		{
-			if (operator[](i).fitness () == _objectiveVector)
+			if (operator[](i).fitness() == _objectiveVector)
 			{
 				return true;
 			}
@@ -92,16 +93,14 @@ public:
 	void update (const MOEOT & _moeo)
 	{
 		// first step: removing the dominated solutions from the archive
-		for (unsigned j = 0; j < size();)
+		for (unsigned j=0; j<size();)
 		{
-			// if _moeo.fitness() dominates operator[](j).fitness()
-			//if ( comparator(_moeo.fitness(), operator[](j).fitness())==1 )
+			// if _moeo dominates the jth solution contanied in the archive			
 			if ( comparator(_moeo.objectiveVector(), operator[](j).objectiveVector())==1 )
 			{
 				operator[](j) = back();
 	    		pop_back();
 			}
-			//else if (_moeo.fitness() == operator[](j).fitness())
 			else if (_moeo.objectiveVector() == operator[](j).objectiveVector())
 			{
 				operator[](j) = back();
@@ -116,9 +115,8 @@ public:
 		bool dom = false;
 		for (unsigned j=0; j<size(); j++)
 		{
-			// if operator[](j).fitness() dominates _moeo.fitness()
-			//if ( comparator(operator[](j).fitness(), _moeo.fitness())==1 )
-			if ( comparator(operator[](j).objectiveVector(), _moeo.objectiveVector())==1 )
+			// if the jth solution contanied in the archive dominates _moeo
+			if ( comparator(operator[](j).objectiveVector(), _moeo.objectiveVector()) == 1 )
 			{
 				dom = true;
 				break;

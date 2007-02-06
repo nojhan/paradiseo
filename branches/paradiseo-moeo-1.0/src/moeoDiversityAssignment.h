@@ -17,7 +17,7 @@
 #include <eoPop.h>
 
 /**
- * Functor that sets the diversity values of a whole population
+ * Functor that sets the diversity values of a whole population.
  */
 template < class MOEOT >
 class moeoDiversityAssignment : public eoUF < eoPop < MOEOT > &, void >

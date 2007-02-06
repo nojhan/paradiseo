@@ -16,7 +16,7 @@
 #include <eoReplacement.h>
 
 /**
- * Replacement strategy for multi-objective optimization
+ * Replacement strategy for multi-objective optimization.
  */
 template < class MOEOT >
 class moeoReplacement : public eoReplacement < MOEOT > {};

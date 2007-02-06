@@ -10,14 +10,13 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef MOEOPOPSORTER_H_
-#define MOEOPOPSORTER_H_
+#ifndef MOEOCOMPARATOR_H_
+#define MOEOCOMPARATOR_H_
 
 #include <eoFunctor.h>
-#include <eoPop.h>
 
 /**
- * Functor allowing to compare two solutions
+ * Functor allowing to compare two solutions.
  */
 template < class MOEOT >
 class moeoComparator : public eoBF < const MOEOT &, const MOEOT &, const bool >
@@ -25,7 +24,7 @@ class moeoComparator : public eoBF < const MOEOT &, const MOEOT &, const bool >
 
 
 /**
- * Functor allowing to compare two solutions according to their first objective value, then their second, and so on
+ * Functor allowing to compare two solutions according to their first objective value, then their second, and so on.
  */
 template < class MOEOT >
 class moeoObjectiveComparator : public moeoComparator < MOEOT >
@@ -44,7 +43,7 @@ public:
 
 
 /**
- * Functor allowing to compare two solutions according to their fitness values
+ * Functor allowing to compare two solutions according to their fitness values.
  */
 template < class MOEOT >
 class moeoFitnessComparator : public moeoComparator < MOEOT >
@@ -63,7 +62,7 @@ public:
 
 
 /**
- * Functor allowing to compare two solutions according to their diversity values
+ * Functor allowing to compare two solutions according to their diversity values.
  */
 template < class MOEOT >
 class moeoDiversityComparator : public moeoComparator < MOEOT >
@@ -82,7 +81,7 @@ public:
 
 
 /**
- * Functor allowing to compare two solutions according to their fitness values, then according to their diversity values
+ * Functor allowing to compare two solutions according to their fitness values, then according to their diversity values.
  */
 template < class MOEOT >
 class moeoFitnessThenDiversityComparator : public moeoComparator < MOEOT >
@@ -108,7 +107,7 @@ public:
 
 
 /**
- * Functor allowing to compare two solutions according to their diversity values, then according to their fitness values
+ * Functor allowing to compare two solutions according to their diversity values, then according to their fitness values.
  */
 template < class MOEOT >
 class moeoDiversityThenFitnessComparator : public moeoComparator < MOEOT >
@@ -134,7 +133,7 @@ public:
 
 
 /**
- * Functor allowing to compare two solutions according to Pareto dominance relation => USEFULL ???
+ * Functor allowing to compare two solutions according to Pareto dominance relation. => USEFULL ???
  *
 template < class MOEOT >
 class moeoParetoDominanceComparator : public moeoComparator < MOEOT >
@@ -179,4 +178,4 @@ public:
 };
 */
 
-#endif /*MOEOPOPSORTER_H_*/
+#endif /*MOEOCOMPARATOR_H_*/

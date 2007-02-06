@@ -16,7 +16,7 @@
 #include <eoAlgo.h>
 
 /**
- * Abstract class for multi-objective evolutionary algorithms
+ * Abstract class for multi-objective evolutionary algorithms.
  */
 template < class MOEOT >
 class moeoEA : public eoAlgo < MOEOT > {};

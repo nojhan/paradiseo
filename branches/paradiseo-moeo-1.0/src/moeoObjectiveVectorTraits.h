@@ -18,7 +18,7 @@
 #include <stdexcept>
 
 /**
- * A traits class for moeoObjectiveVector to specify the number of objectives and which ones have to be minimized or maximized
+ * A traits class for moeoObjectiveVector to specify the number of objectives and which ones have to be minimized or maximized.
  */
 class moeoObjectiveVectorTraits
 {

@@ -18,7 +18,7 @@
 #include <moeoArchive.h>
 
 /**
- * This class allows to update the archive at each generation with newly found non-dominated solutions
+ * This class allows to update the archive at each generation with newly found non-dominated solutions.
  */
 template < class EOT >
 class moeoArchiveUpdater : public eoUpdater

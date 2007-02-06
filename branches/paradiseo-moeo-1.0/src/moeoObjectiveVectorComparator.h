@@ -26,7 +26,7 @@ class moeoObjectiveVectorComparator : public eoBF < const ObjectiveVector &, con
 
 
 /**
- * This functor class allows to compare 2 objective vectors according to Pareto dominance
+ * This functor class allows to compare 2 objective vectors according to Pareto dominance.
  */
 template < class ObjectiveVector >
 class moeoParetoObjectiveVectorComparator : public moeoObjectiveVectorComparator < ObjectiveVector >

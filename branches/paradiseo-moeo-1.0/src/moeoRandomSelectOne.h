@@ -17,7 +17,7 @@
 #include <eoRandomSelect.h>
 
 /**
- * Selection strategy that selects only one element randomly from a whole population
+ * Selection strategy that selects only one element randomly from a whole population.
  */
 template < class MOEOT >
 class moeoRandomSelectOne : public moeoSelectOne < MOEOT >, public eoRandomSelect < MOEOT > {};
