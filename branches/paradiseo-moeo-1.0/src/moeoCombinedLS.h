@@ -48,7 +48,7 @@ public:
 	/**
 	 * Gives a new solution in order to explore the neigborhood. 
 	 * The new non-dominated solutions are added to the archive
-	 * @param _eo the solution
+	 * @param _moeo the solution
 	 * @param _arch the archive of non-dominated solutions 
 	 */
 	void operator () (const MOEOT & _moeo, moeoArchive < MOEOT > & _arch)

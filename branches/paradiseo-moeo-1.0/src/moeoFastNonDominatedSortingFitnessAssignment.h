@@ -51,7 +51,7 @@ public:
 		}
 		else if (nObjectives == 2)
 		{
-			// two objectives (the two objectives function is still to do)
+			// two objectives (the two objectives function is still to implement)
 			mObjectives(_pop);
 		}
 		else if (nObjectives > 2)
