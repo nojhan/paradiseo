@@ -16,14 +16,14 @@
 #include <eoFunctor.h>
 
 /**
- * Base class for performance metrics (also called quality indicators)
+ * Base class for performance metrics (also known as quality indicators).
  */
 class moeoMetric : public eoFunctorBase
 {};
 
 
 /**
- * Base class for unary metrics
+ * Base class for unary metrics.
  */
 template < class A, class R >
 class moeoUnaryMetric : public eoUF < A, R >, public moeoMetric
@@ -31,7 +31,7 @@ class moeoUnaryMetric : public eoUF < A, R >, public moeoMetric
 
 
 /**
- * Base class for binary metrics
+ * Base class for binary metrics.
  */
 template < class A1, class A2, class R >
 class moeoBinaryMetric : public eoBF < A1, A2, R >, public moeoMetric
@@ -39,47 +39,42 @@ class moeoBinaryMetric : public eoBF < A1, A2, R >, public moeoMetric
 
 
 /**
- * Base class for unary metrics dedicated to the performance evaluation of a single solution's Pareto fitness
+ * Base class for unary metrics dedicated to the performance evaluation of a single solution's objective vector.
  */
-template < class MOEOT, class R>//, class ObjVector = typename MOEOT::ObjectiveVector >
-//class moeoSolutionUnaryMetric : public moeoUnaryMetric < const ObjVector &, R >
-class moeoSolutionUnaryMetric : public moeoUnaryMetric < const MOEOT &, R >
+template < class ObjectiveVector, class R >
+class moeoSolutionUnaryMetric : public moeoUnaryMetric < const ObjectiveVector &, R >
 {};
 
 
 /**
- * Base class for unary metrics dedicated to the performance evaluation of a Pareto set (a vector of Pareto fitnesses)
+ * Base class for unary metrics dedicated to the performance evaluation of a Pareto set (a vector of objective vectors)
  */
-template < class MOEOT, class R>//, class ObjVector = typename MOEOT::ObjectiveVector >
-//class moeoVectorUnaryMetric : public moeoUnaryMetric < const std::vector < ObjVector > &, R >
-class moeoPopUnaryMetric : public moeoUnaryMetric < const eoPop < MOEOT > &, R >
+template < class ObjectiveVector, class R >
+class moeoVectorUnaryMetric : public moeoUnaryMetric < const std::vector < ObjectiveVector > &, R >
 {};
 
 
 /**
- * Base class for binary metrics dedicated to the performance comparison between two solutions's Pareto fitnesses
+ * Base class for binary metrics dedicated to the performance comparison between two solutions's objective vectors.
  */
-template < class MOEOT, class R>//, class ObjVector = typename MOEOT::ObjectiveVector >
-//class moeoSolutionVsSolutionBinaryMetric : public moeoBinaryMetric < const ObjVector &, const ObjVector &, R >
-class moeoSolutionVsSolutionBinaryMetric : public moeoBinaryMetric < const MOEOT &, const MOEOT &, R >
+template < class ObjectiveVector, class R >
+class moeoSolutionVsSolutionBinaryMetric : public moeoBinaryMetric < const ObjectiveVector &, const ObjectiveVector &, R >
 {};
 
 
 /**
- * Base class for binary metrics dedicated to the performance comparison between a Pareto set (a vector of Pareto fitnesses) and a single solution's Pareto fitness
+ * Base class for binary metrics dedicated to the performance comparison between a Pareto set (a vector of objective vectors) and a single solution's objective vector.
  */
-template < class MOEOT, class R>//, class ObjVector = typename MOEOT::ObjectiveVector >
-//class moeoVectorVsSolutionBinaryMetric : public moeoBinaryMetric < const std::vector < ObjVector > &, const ObjVector &, R >
-class moeoPopVsSolutionBinaryMetric : public moeoBinaryMetric < const eoPop < MOEOT > &, const MOEOT &, R >
+template < class ObjectiveVector, class R >
+class moeoVectorVsSolutionBinaryMetric : public moeoBinaryMetric < const std::vector < ObjectiveVector > &, const ObjectiveVector &, R >
 {};
 
 
 /**
- * Base class for binary metrics dedicated to the performance comparison between two Pareto sets (two vectors of Pareto fitnesses)
+ * Base class for binary metrics dedicated to the performance comparison between two Pareto sets (two vectors of objective vectors)
  */
-template < class MOEOT, class R >//, class ObjVector = typename MOEOT::ObjectiveVector >
-//class moeoVectorVsVectorBinaryMetric : public moeoBinaryMetric < const std::vector < ObjVector > &, const std::vector < ObjVector > &, R >
-class moeoPopVsPopBinaryMetric : public moeoBinaryMetric < const eoPop < MOEOT > &, const eoPop < MOEOT > &, R >
+template < class ObjectiveVector, class R >
+class moeoVectorVsVectorBinaryMetric : public moeoBinaryMetric < const std::vector < ObjectiveVector > &, const std::vector < ObjectiveVector > &, R >
 {};
 
 

@@ -2,7 +2,7 @@
 
 //-----------------------------------------------------------------------------
 // moeoEntropyMetric.h
-// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2006
+// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
 /*
     This library...
 
@@ -16,18 +16,14 @@
 #include <metric/moeoMetric.h>
 
 /**
- * The entropy gives an idea of the diversity of a Pareto set relatively to another Pareto set
- * 
+ * The entropy gives an idea of the diversity of a Pareto set relatively to another
  * (Basseur, Seynhaeve, Talbi: 'Design of Multi-objective Evolutionary Algorithms: Application to the Flow-shop Scheduling Problem', in Proc. of the 2002 Congress on Evolutionary Computation, IEEE Press, pp. 1155-1156)
  */
-template < class MOEOT >
-class moeoEntropyMetric : public moeoVectorVsVectorBinaryMetric < MOEOT, double >
+template < class ObjectiveVector >
+class moeoEntropyMetric : public moeoVectorVsVectorBinaryMetric < ObjectiveVector, double >
 {
 public:
-	
-	/** the objective vector type of a solution */
-	typedef typename MOEOT::ObjectiveVector ObjectiveVector;
-	
+
 	/**
 	 * Returns the entropy of the Pareto set '_set1' relatively to the Pareto set '_set2'
 	 * @param _set1 the first Pareto set
@@ -72,10 +68,17 @@ public:
 
 private:
 
+	/** vector of min values */
 	std::vector<double> vect_min_val;
+	/** vector of max values */
 	std::vector<double> vect_max_val;
 
-	void removeDominated(std::vector< ObjectiveVector > & _f) {
+
+	/**
+	 * Removes the dominated individuals contained in _f
+	 * @param _f a Pareto set
+	 */
+	void removeDominated(std::vector < ObjectiveVector > & _f) {
 		for (unsigned i=0 ; i<_f.size(); i++) {
 			bool dom = false;
 			for (unsigned j=0; j<_f.size(); j++)
@@ -91,6 +94,11 @@ private:
 		}
 	}
 	
+	
+	/**
+	 * Prenormalization
+	 * @param _f a Pareto set
+	 */
 	void prenormalize (const std::vector< ObjectiveVector > & _f) {
 		vect_min_val.clear();
 		vect_max_val.clear();
@@ -108,12 +116,24 @@ private:
 		}
 	}
 	
+	
+	/**
+	 * Normalization
+	 * @param _f a Pareto set
+	 */
 	void normalize (std::vector< ObjectiveVector > & _f) {		
 		for (unsigned i=0 ; i<ObjectiveVector::nObjectives(); i++)
 			for (unsigned j=0; j<_f.size(); j++)
 				_f[j][i] = (_f[j][i] - vect_min_val[i]) / (vect_max_val[i] - vect_min_val[i]);
 	}	
 	
+	
+	/**
+	 * Computation of the union of _f1 and _f2 in _f
+	 * @param _f1 the first Pareto set
+	 * @param _f2 the second Pareto set
+	 * @param _f the final Pareto set
+	 */
 	void computeUnion(const std::vector< ObjectiveVector > & _f1, const std::vector< ObjectiveVector > & _f2, std::vector< ObjectiveVector > & _f) {
 		_f = _f1 ;
 		for (unsigned i=0; i<_f2.size(); i++) {
@@ -128,6 +148,10 @@ private:
 		}
 	}
 	
+	
+	/**
+	 * How many in niche
+	 */
 	unsigned howManyInNicheOf (const std::vector< ObjectiveVector > & _f, const ObjectiveVector & _s, unsigned _size) {
 		unsigned n=0;
 		for (unsigned i=0 ; i<_f.size(); i++) {
@@ -137,6 +161,10 @@ private:
 		return n;
 	}
 	
+	
+	/**
+	 * Euclidian distance
+	 */
 	double euclidianDistance (const ObjectiveVector & _set1, const ObjectiveVector & _to, unsigned _deg = 2) {
 		double dist=0;
 		for (unsigned i=0; i<_set1.size(); i++)

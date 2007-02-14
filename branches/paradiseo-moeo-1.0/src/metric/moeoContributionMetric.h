@@ -2,7 +2,7 @@
 
 //-----------------------------------------------------------------------------
 // moeoContributionMetric.h
-// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2006
+// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
 /*
     This library...
 
@@ -17,37 +17,24 @@
 
 /**
  * The contribution metric evaluates the proportion of non-dominated solutions given by a Pareto set relatively to another Pareto set
- * 
  * (Meunier, Talbi, Reininger: 'A multiobjective genetic algorithm for radio network optimization', in Proc. of the 2000 Congress on Evolutionary Computation, IEEE Press, pp. 317-324)
  */
-template < class MOEOT >
-class moeoContributionMetric : public moeoPopVsPopBinaryMetric < MOEOT, double >
+template < class ObjectiveVector >
+class moeoContributionMetric : public moeoVectorVsVectorBinaryMetric < ObjectiveVector, double >
 {
 public:
-	
-	/** the objective vector type of a solution */
-	typedef typename MOEOT::ObjectiveVector ObjectiveVector;
-	
 
 	/**
 	 * Returns the contribution of the Pareto set '_set1' relatively to the Pareto set '_set2'
 	 * @param _set1 the first Pareto set
 	 * @param _set2 the second Pareto set
 	 */
-	double operator()(const eoPop < MOEOT > & _pop1, const eoPop < MOEOT >  & _pop2) {
-		/************/
-		std::vector<ObjectiveVector> set1;
-		std::vector<ObjectiveVector> set2;
-		for (unsigned i=0; i<_pop1.size(); i++)
-			set1.push_back(_pop1[i].objectiveVector());
-		for (unsigned i=0 ; i<_pop2.size(); i++)
-			set2.push_back(_pop2[i].objectiveVector());
-		/****************/		
-		unsigned c  = card_C(set1, set2);
-		unsigned w1 = card_W(set1, set2);
-		unsigned n1 = card_N(set1, set2);
-		unsigned w2 = card_W(set2, set1);
-		unsigned n2 = card_N(set2, set1);
+	double operator()(const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2) {
+		unsigned c  = card_C(_set1, _set2);
+		unsigned w1 = card_W(_set1, _set2);
+		unsigned n1 = card_N(_set1, _set2);
+		unsigned w2 = card_W(_set2, _set1);
+		unsigned n2 = card_N(_set2, _set1);
 		return (double) (c / 2.0 + w1 + n1) / (c + w1 + n1 + w2 + n2);
 	}
 
