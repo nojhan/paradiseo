@@ -14,15 +14,15 @@ Template for computing statistics on eoPop
 // include the base definition of eoInit
 #include <utils/eoStat.h>
 
-/** 
+/**
  *  Always write a comment in this format before class definition
  *  if you want the class to be documented by Doxygen
  *
- * ASSUMPTION on the class GenoypeT: 
+ * ASSUMPTION on the class GenoypeT:
  *             it needs to derive from EO (i.e. has a Fitness).
  *
- * It is assumed that you want to compute a double. 
- * In case you want something else, then your stat should derive from 
+ * It is assumed that you want to compute a double.
+ * In case you want something else, then your stat should derive from
  *                      eoStat<GenotypeT, T>
  *  where class T is the class of the computed statistics
  */
@@ -33,7 +33,7 @@ public :
     typedef typename EOT::Fitness Fitness;
 
 // START eventually add or modify the anyVariable argument
-  /** Ctor - you change the default name of course. 
+  /** Ctor - you change the default name of course.
    * @param
    *  _description : inherited from eoValueParam (eoStat is an  from eoVapueParam)
    */
@@ -46,7 +46,7 @@ public :
   }
 
     void operator()(const eoPop<EOT>& _pop){
-      double tmpStat;
+        double tmpStat(0.);
     // START Code for computing the statistics - in tmpStat
       // tmpStat = blablabla
     // END   Code for computing the statistics

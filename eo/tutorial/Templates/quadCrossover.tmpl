@@ -15,14 +15,14 @@ Quadratic crossover operators modify the both genotypes
 
 #include <eoOp.h>
 
-/** 
+/**
  *  Always write a comment in this format before class definition
  *  if you want the class to be documented by Doxygen
  *
  * THere is NO ASSUMPTION on the class GenoypeT.
  * In particular, it does not need to derive from EO
  */
-template<class GenotypeT> 
+template<class GenotypeT>
 class eoMyStructQuadCrossover: public eoQuadOp<GenotypeT>
 {
 public:
@@ -31,7 +31,7 @@ public:
    */
 // START eventually add or modify the anyVariable argument
   eoMyStructQuadCrossover()
-  //  eoMyStructQuadCrossover( varType  _anyVariable) : anyVariable(_anyVariable) 
+  //  eoMyStructQuadCrossover( varType  _anyVariable) : anyVariable(_anyVariable)
 // END eventually add or modify the anyVariable argument
   {
     // START Code of Ctor of an eoMyStructEvalFunc object
@@ -47,9 +47,9 @@ public:
    * @param _genotype1 The first parent
    * @param _genotype2 The second parent
    */
-  bool operator()(GenotypeT& _genotype1, GenotypeT & _genotype2) 
+  bool operator()(GenotypeT& _genotype1, GenotypeT & _genotype2)
   {
-    bool oneAtLeastIsModified;
+      bool oneAtLeastIsModified(true);
     // START code for crossover of _genotype1 and _genotype2 objects
 
        /** Requirement

@@ -1,3 +1,16 @@
+2007-02-22  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* mutation.tmpl, quadCrossover.tmpl, stat.tmpl: Initialize
+	formerly uninitialized variables.
+
+	* README.tmpl: Hint to regular Templates/README for details.
+
+	* README: Add documentation for adding new source-files.
+
+	* Makefile.am.src-tmpl (noinst_HEADERS): Add
+	(MyStruct_SOURCES): Move header files from here to the new
+	noinst_HEADERS variable.
+
 2007-01-16  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
 
 	* README: Add instructions for bash.

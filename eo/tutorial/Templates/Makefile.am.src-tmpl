@@ -1,12 +1,12 @@
 bin_PROGRAMS 		= MyStruct
 
-MyStruct_SOURCES 	= MyStructEA.cpp \
-			eoMyStruct.h \
+noinst_HEADERS		= eoMyStruct.h \
 			eoMyStructEvalFunc.h \
 			eoMyStructInit.h \
 			eoMyStructMutation.h \
 			eoMyStructQuadCrossover.h
 
+MyStruct_SOURCES 	= MyStructEA.cpp
 
 
 dnl Local Variables:
