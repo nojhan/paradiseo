@@ -17,10 +17,32 @@
 #include <eoPop.h>
 
 /**
- * Functor that sets the diversity values of a whole population.
+ * Functor that sets the diversity values of a whole population
  */
-template < class MOEOT >
-class moeoDiversityAssignment : public eoUF < eoPop < MOEOT > &, void >
-{};
+template < class MOEOT > class moeoDiversityAssignment:public eoUF < eoPop < MOEOT > &,
+  void >
+{
+};
 
-#endif /*MOEODIVERSITYASSIGNMENT_H_*/
+
+/**
+ * moeoDummyDiversityAssignment is a moeoDiversityAssignment which gives 0 as the diversity for the whole population.
+ */
+template < class MOEOT > class moeoDummyDiversityAssignment:public moeoDiversityAssignment <
+  MOEOT >
+{
+  // main operator
+  void operator () (eoPop < MOEOT > &_pop)
+  {
+    for (int idx = 0; idx < _pop.size (); idx++)
+      {
+	// set the diversity to 0
+	_pop[idx].diversity (0);
+      }
+  }
+
+};
+
+
+
+#endif /*MOEODIVERSITYASSIGNMENT_H_ */

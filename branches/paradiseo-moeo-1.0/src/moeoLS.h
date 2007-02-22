@@ -20,8 +20,9 @@
  * Abstract class for local searches applied to multi-objective optimization.
  * Starting from only one solution, it produces a set of new non-dominated solutions.
  */
-template < class MOEOT >
-class moeoLS: public eoBF < const MOEOT &, moeoArchive < MOEOT > &, void > 
-{};  
+template < class MOEOT > class moeoLS:public eoBF < const MOEOT &, moeoArchive < MOEOT > &,
+  void >
+{
+};
 
-#endif /*MOEOLS_H_*/
+#endif /*MOEOLS_H_ */

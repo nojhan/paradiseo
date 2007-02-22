@@ -17,9 +17,12 @@
 #include <moeoGenerationalReplacement.h>
 
 /**
- * Generational replacement: only the new individuals are preserved.
+ * Generational replacement: only the new individuals are preserved
  */
-template < class MOEOT >
-class moeoGenerationalReplacement : public moeoReplacement < MOEOT >, public eoGenerationalReplacement < MOEOT > {};
+template < class MOEOT > class moeoGenerationalReplacement:public moeoReplacement < MOEOT >,
+  public eoGenerationalReplacement <
+  MOEOT >
+{
+};
 
-#endif /*MOEOGENERATIONALREPLACEMENT_H_*/
+#endif /*MOEOGENERATIONALREPLACEMENT_H_ */
