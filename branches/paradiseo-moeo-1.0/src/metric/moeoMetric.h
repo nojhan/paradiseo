@@ -63,6 +63,55 @@ class moeoSolutionVsSolutionBinaryMetric : public moeoBinaryMetric < const Objec
 
 
 /**
+ * Base class for binary metrics dedicated to the performance comparison between two solutions's objective vectors using normalized values.
+ * Then, indicator values lie in the interval [-1,1].
+ * Note that you have to set the bounds for every objective before using the operator().
+ */
+template < class ObjectiveVector, class R >
+class moeoNormalizedSolutionVsSolutionBinaryMetric : public moeoSolutionVsSolutionBinaryMetric < ObjectiveVector, R >
+{
+public:
+
+	/**
+	 * Default ctr for any moeoNormalizedSolutionVsSolutionBinaryMetric object
+	 */
+	moeoNormalizedSolutionVsSolutionBinaryMetric()
+	{
+		bounds.resize(ObjectiveVector::Traits::nObjectives());
+	}
+	
+	
+	/**
+	 * Sets the lower bound (_min) and the upper bound (_max) for the objective _obj
+	 * _min lower bound
+	 * _max upper bound
+	 * _obj the objective index
+	 */
+	virtual void setup(double _min, double _max, unsigned _obj)
+	{
+		bounds[_obj] = eoRealInterval(_min, _max);
+	}
+	
+	/**
+	 * Sets the lower bound and the upper bound for the objective _obj using a eoRealInterval object
+	 * _realInterval the eoRealInterval object
+	 * _obj the objective index
+	 */
+	virtual void setup(eoRealInterval _realInterval, unsigned _obj)
+	{
+		bounds[_obj] = _realInterval;
+	}
+	
+	
+protected:
+
+	/** the bounds for every objective (bounds[i] = bounds for the objective i) */
+	std::vector < eoRealInterval > bounds;
+	
+};
+
+
+/**
  * Base class for binary metrics dedicated to the performance comparison between a Pareto set (a vector of objective vectors) and a single solution's objective vector.
  */
 template < class ObjectiveVector, class R >
