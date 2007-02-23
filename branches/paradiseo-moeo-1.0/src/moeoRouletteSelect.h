@@ -17,13 +17,13 @@
 #include <moeoSelectors.h>
 
 /**
- *  moeoRouletteSelect: a selection method that selects ONE individual by
- *	using roulette wheel process
+ * Selection strategy that selects ONE individual by using roulette wheel process.
  */
 template < class MOEOT >
  class moeoRouletteSelect:public moeoSelectOne <MOEOT>
 {
 public:
+
 	/**
 	 * Full Ctor
 	 * @param _evalFitness the population fitness assignment

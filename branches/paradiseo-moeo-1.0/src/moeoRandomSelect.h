@@ -24,24 +24,23 @@ template < class MOEOT > class moeoRandomSelect:public moeoSelectOne < MOEOT >, 
 public:
 
 	/**
-	 * CTor.
+	 * Ctor.
 	 */
 	moeoRandomSelect(){}
 	
-  /*
-   * Do nothing: we don't need to evaluate the fitness and the diversity; we only select one individual at random.
+  /**
+   * Do nothing: we don't need to evaluate the fitness and the diversity; we only select one individual randomly.
    */
   void setup (eoPop < MOEOT > &_pop)
   {
-    // do nothing
+    // nothing to do
   }
 
      /**
-      * Return one individual at random.  // Need to have a "const" pop ?
+      * Return one individual at random.
       */
   const MOEOT & operator () (const eoPop < MOEOT > &_pop)
   {
-
     eoRandomSelect < MOEOT >::operator ()(_pop);
   }
 

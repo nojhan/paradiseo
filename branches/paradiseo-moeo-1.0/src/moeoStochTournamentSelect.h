@@ -17,22 +17,22 @@
 #include <moeoSelectors.h>
 
 /**
- *  ???
+ *  Selection strategy that selects ONE individual by stochastic tournament.
  */
 template < class MOEOT > class moeoStochTournamentSelect:public moeoSelectOne <MOEOT>
 {
 public:
+
 	/**
 	 * Full Ctor
-	 * @param _evalFitness the population fitness assignment
-	 * @param _evalDiversity the population diversity assignment
-	 * @param _comparator the comparator to compare the individuals
+	 * @param _evalFitness the fitness assignment strategy
+	 * @param _evalDiversity the diversity assignment strategy
+	 * @param _comparator the comparator (used to compare 2 individuals)
 	 * @param _tRate the tournament rate
 	 */
-moeoStochTournamentSelect (moeoFitnessAssignment < MOEOT > &_evalFitness, moeoDiversityAssignment < MOEOT > &_evalDiversity, moeoComparator < MOEOT > &_comparator, double _tRate = 1.0):evalFitness (_evalFitness), evalDiversity (_evalDiversity),
-    comparator (_comparator),
-    tRate (_tRate)
-  {
+	moeoStochTournamentSelect (moeoFitnessAssignment < MOEOT > & _evalFitness, moeoDiversityAssignment < MOEOT > & _evalDiversity, moeoComparator < MOEOT > & _comparator, double _tRate = 1.0) : 
+	evalFitness (_evalFitness), evalDiversity (_evalDiversity), comparator (_comparator), tRate (_tRate)
+	{
     // consistency checks
     if (tRate < 0.5)
       {
@@ -51,12 +51,12 @@ moeoStochTournamentSelect (moeoFitnessAssignment < MOEOT > &_evalFitness, moeoDi
 
 	/**
 	 * Ctor without comparator. A moeoFitnessThenDiversityComparator is used as default.
-	 * @param _evalFitness the population fitness assignment
-	 * @param _evalDiversity the population diversity assignment
+	 * @param _evalFitness the fitness assignment strategy
+	 * @param _evalDiversity the diversity assignment strategy
 	 * @param _tRate the tournament rate
 	 */
-	moeoStochTournamentSelect (moeoFitnessAssignment < MOEOT > &_evalFitness, moeoDiversityAssignment < MOEOT > &_evalDiversity)
-		:evalFitness (_evalFitness), evalDiversity (_evalDiversity)
+	moeoStochTournamentSelect (moeoFitnessAssignment < MOEOT > &_evalFitness, moeoDiversityAssignment < MOEOT > &_evalDiversity, double _tRate = 1.0)
+		:evalFitness (_evalFitness), evalDiversity (_evalDiversity), tRate (_tRate)
 	    
 	  {
 	  	 // a moeoFitThenDivComparator is used as default
@@ -67,8 +67,9 @@ moeoStochTournamentSelect (moeoFitnessAssignment < MOEOT > &_evalFitness, moeoDi
 
 	/**
 	 * Ctor without diversity assignment. A dummy diversity assignment is used.
-	 * @param _evalFitness the population fitness assignment
-	 * @param _comparator the comparator to compare the individuals
+	 * @param _evalFitness the fitness assignment strategy
+	 * @param _comparator the comparator (used to compare 2 individuals)
+	 * @param _tRate the tournament rate
 	 */
 moeoStochTournamentSelect (moeoFitnessAssignment < MOEOT > &_evalFitness, moeoComparator < MOEOT > &_comparator, double _tRate = 1.0):evalFitness (_evalFitness), comparator (_comparator),
     tRate
@@ -97,7 +98,8 @@ moeoStochTournamentSelect (moeoFitnessAssignment < MOEOT > &_evalFitness, moeoCo
 
      /**
 	 * Ctor without diversity assignment nor comparator. A moeoDummyDiversityAssignment and a moeoFitnessThenDiversityComparator are used as default.
-	 * @param _evalFitness the population fitness assignment
+	 * @param _evalFitness the fitness assignment strategy
+	 * @param _tRate the tournament rate
 	 */
 moeoStochTournamentSelect (moeoFitnessAssignment < MOEOT > &_evalFitness, double _tRate = 1.0):evalFitness (_evalFitness),
     tRate
@@ -128,20 +130,21 @@ moeoStochTournamentSelect (moeoFitnessAssignment < MOEOT > &_evalFitness, double
   }
 
 
-     /*
+     /**
 	 * Evaluate the fitness and the diversity of each individual of the population.
+	 * @param _pop the population
 	 */
 	 void setup (eoPop<MOEOT>& _pop)
       {
       		// eval fitness
-      		evalFitness(_pop);
-      		
+      		evalFitness(_pop);      		
       		// eval diversity
       		evalDiversity(_pop);      
       }
 
   /**
    *  Apply the tournament to the given population
+   * @param _pop the population
    */
   const MOEOT & operator() (const eoPop < MOEOT > &_pop)
   {
@@ -152,15 +155,15 @@ moeoStochTournamentSelect (moeoFitnessAssignment < MOEOT > &_evalFitness, double
 
 
 protected:
+	/** the fitness assignment strategy */
+	moeoFitnessAssignment < MOEOT > & evalFitness;
+	/** the diversity assignment strategy */
+	moeoDiversityAssignment < MOEOT > & evalDiversity;
+	/** the diversity assignment strategy */
+	moeoComparator < MOEOT > & comparator;
+	/** the tournament rate */
+	double tRate;
 
-  moeoFitnessAssignment < MOEOT > &evalFitness;
-
-  moeoDiversityAssignment < MOEOT > &evalDiversity;
-
-  moeoComparator < MOEOT > &comparator;
-
-  double tRate;
 };
-
 
 #endif /*MOEOSTOCHTOURNAMENTSELECT_H_ */
