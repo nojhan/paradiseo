@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// moeoSelectOneFormPopAndArch.h
+// moeoSelectFormPopAndArch.h
 // (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
 /*
     This library...
@@ -23,7 +23,7 @@
  * Elitist selection process that consists in choosing individuals in the archive as well as in the current population.
  */
 template < class MOEOT >
-class moeoSelectOneFromPopAndArch : public moeoSelectOne < MOEOT >
+class moeoSelectFromPopAndArch : public moeoSelectOne < MOEOT >
 {
 public:
 
@@ -34,7 +34,7 @@ public:
 	 * @param _arch the archive
 	 * @param _ratioFromPop the ratio of selected individuals from the population
 	 */
-	moeoSelectOneFromPopAndArch (moeoSelectOne < MOEOT > & _popSelectOne, moeoSelectOne < MOEOT > _archSelectOne, moeoArchive < MOEOT > & _arch, double _ratioFromPop=0.5)
+	moeoSelectFromPopAndArch (moeoSelectOne < MOEOT > & _popSelectOne, moeoSelectOne < MOEOT > _archSelectOne, moeoArchive < MOEOT > & _arch, double _ratioFromPop=0.5)
 	 : popSelectOne(_popSelectOne), archSelectOne(_archSelectOne), arch(_arch), ratioFromPop(_ratioFromPop)
 	{}
 	
@@ -44,7 +44,7 @@ public:
 	 * @param _arch the archive
 	 * @param _ratioFromPop the ratio of selected individuals from the population
 	 */
-	moeoSelectOneFromPopAndArch (moeoSelectOne < MOEOT > & _popSelectOne, moeoArchive < MOEOT > & _arch, double _ratioFromPop=0.5)
+	moeoSelectFromPopAndArch (moeoSelectOne < MOEOT > & _popSelectOne, moeoArchive < MOEOT > & _arch, double _ratioFromPop=0.5)
 	 : popSelectOne(_popSelectOne), archSelectOne(randomSelectOne), arch(_arch), ratioFromPop(_ratioFromPop)
 	{}	
 	
