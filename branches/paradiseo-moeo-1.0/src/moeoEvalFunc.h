@@ -18,8 +18,7 @@
 /*
  * Functor that evaluates one MOEO by setting all its objective values.
  */
-template < class MOEOT > class moeoEvalFunc:public eoEvalFunc < MOEOT >
-{
-};
+template < class MOEOT >
+class moeoEvalFunc : public eoEvalFunc< MOEOT > {};
 
-#endif /*MOEOEVALFUNC_H_ */
+#endif /*MOEOEVALFUNC_H_*/

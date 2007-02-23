@@ -15,9 +15,11 @@
 
 #include <eo>
 
+#include <metric/moeoAdditiveEpsilonBinaryMetric.h>
 #include <metric/moeoBinaryMetricSavingUpdater.h>
 #include <metric/moeoContributionMetric.h>
 #include <metric/moeoEntropyMetric.h>
+#include <metric/moeoHypervolumeBinaryMetric.h>
 #include <metric/moeoMetric.h>
 #include <moeoArchiveFitnessSavingUpdater.h>
 #include <moeoArchiveUpdater.h>
@@ -28,6 +30,7 @@
 #include <moeoEA.h>
 #include <moeoEvalFunc.h>
 #include <moeoFastNonDominatedSortingFitnessAssignment.h>
+#include <moeoFitnessAssignment.h>
 #include <moeoGenerationalReplacement.h>
 #include <moeoHybridLS.h>
 #include <moeoLS.h>

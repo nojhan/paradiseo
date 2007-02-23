@@ -24,7 +24,8 @@
 /**
  * This class allows to save the fitnesses of solutions contained in an archive into a file at each generation.
  */
-template < class EOT > class moeoArchiveFitnessSavingUpdater:public eoUpdater
+template <class EOT>
+class moeoArchiveFitnessSavingUpdater : public eoUpdater
 {
 public:
 
@@ -34,25 +35,21 @@ public:
    * @param _filename target filename
    * @param _id own ID
    */
-moeoArchiveFitnessSavingUpdater (moeoArchive < EOT > &_arch, const std::string & _filename = "Res/Arch", int _id = -1):arch (_arch), filename (_filename), id (_id),
-    counter
-    (0)
-  {
-  }
+  moeoArchiveFitnessSavingUpdater (moeoArchive<EOT> & _arch, const std::string & _filename = "Res/Arch", int _id = -1) : arch(_arch), filename(_filename), id(_id), counter(0)
+  {}
 
   /**
    * Saves the fitness of the archive's members into the file
    */
-  void operator () ()
-  {
+  void operator()() {
     char buff[MAX_BUFFER_SIZE];
     if (id == -1)
-      sprintf (buff, "%s.%u", filename.c_str (), counter++);
+      sprintf (buff, "%s.%u", filename.c_str(), counter ++);
     else
-      sprintf (buff, "%s.%u.%u", filename.c_str (), id, counter++);
-    std::ofstream f (buff);
+      sprintf (buff, "%s.%u.%u", filename.c_str(), id, counter ++);
+    std::ofstream f(buff);
     for (unsigned i = 0; i < arch.size (); i++)
-      f << arch[i].objectiveVector () << std::endl;
+      f << arch[i].objectiveVector() << std::endl;
     f.close ();
   }
 
@@ -60,14 +57,14 @@ moeoArchiveFitnessSavingUpdater (moeoArchive < EOT > &_arch, const std::string &
 private:
 
 	/** local archive */
-  moeoArchive < EOT > &arch;
+	moeoArchive<EOT> & arch;
 	/** target filename */
-  std::string filename;
+	std::string filename;
 	/** own ID */
-  int id;
+	int id;
 	/** counter */
-  unsigned counter;
+	unsigned counter;
 
 };
 
-#endif /*MOEOARCHIVEFITNESSSAVINGUPDATER_H_ */
+#endif /*MOEOARCHIVEFITNESSSAVINGUPDATER_H_*/

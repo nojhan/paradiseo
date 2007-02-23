@@ -24,7 +24,8 @@
  * This class allows to apply a multi-objective local search to a number of selected individuals contained in the archive  
  * at every generation until a stopping criteria is verified.
  */
-template < class MOEOT > class moeoHybridLS:public eoUpdater
+template < class MOEOT >
+class moeoHybridLS : public eoUpdater
 {
 public:
 
@@ -32,45 +33,42 @@ public:
 	 * Ctor
 	 * @param _term stopping criteria
 	 * @param _select selector
-	 * @param _ls a multi-objective local search
+	 * @param _mols a multi-objective local search
 	 * @param _arch the archive
 	 */
-eoHybridLS (eoContinue < MOEOT > &_term, eoSelect < MOEOT > &_select, moeoLS < MOEOT > &_ls, moeoArchive < MOEOT > &_arch):term (_term), select (_select), ls (_ls),
-    arch
-    (_arch)
-  {
-  }
+	eoHybridLS (eoContinue < MOEOT > & _term, eoSelect < MOEOT > & _select, moeoLS < MOEOT > & _mols, moeoArchive < MOEOT > & _arch) : term(_term), select(_select), mols(_mols), arch(_arch)
+	{}
 
 	/**
 	 * Applies the multi-objective local search to selected individuals contained in the archive if the stopping criteria is not verified 
 	 */
-  void operator  () ()
-  {
-    if (!cont (arch))
-      {
-	// selection of solutions
-	eoPop < MOEOT > selectedSolutions;
-	select (arch, selectedSolutions);
-	// apply the local search to every selected solution
-	for (unsigned i = 0; i < selectedSolutions.size (); i++)
-	  {
-	    ls (selectedSolutions[i], arch);
-	  }
-      }
-  }
+	void operator () ()
+	{
+		if (! cont (arch))
+		{
+			// selection of solutions
+			eoPop < MOEOT > selectedSolutions;
+			select(arch, selectedSolutions);
+			// apply the local search to every selected solution
+			for (unsigned i=0; i<selectedSolutions.size(); i++)
+			{
+				mols(selectedSolutions[i], arch);
+			}
+		}
+	}
 
 
 private:
 
 	/** stopping criteria*/
-  eoContinue < MOEOT > &term;
+	eoContinue < MOEOT > & term;
 	/** selector */
-  eoSelect < MOEOT > &select;
+	eoSelect < MOEOT > & select;
 	/** multi-objective local search */
-  moeoLS < MOEOT > &ls;
+	moeoLS < MOEOT > & mols;
 	/** archive */
-  moeoArchive < MOEOT > &arch;
+	moeoArchive < MOEOT > & arch;
 
 };
 
-#endif /*MOEOHYBRIDLS_H_ */
+#endif /*MOEOHYBRIDLS_H_*/

@@ -16,8 +16,9 @@
 #include <eoSelectOne.h>
 
 /**
- * Selection strategy for multi-objective optimization that selects only one element from a whole population
+ * Selection strategy for multi-objective optimization that selects only one element from a whole population.
  */
-template < class MOEOT > class moeoSelectOne : public eoSelectOne < MOEOT > {};
+template < class MOEOT >
+class moeoSelectOne : public eoSelectOne < MOEOT > {};
 
-#endif /*MOEOSELECTONE_H_ */
+#endif /*MOEOSELECTONE_H_*/
