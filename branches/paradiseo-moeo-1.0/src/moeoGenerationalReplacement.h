@@ -13,13 +13,27 @@
 #ifndef MOEOGENERATIONALREPLACEMENT_H_
 #define MOEOGENERATIONALREPLACEMENT_H_
 
-#include <eoGenerationalReplacement.h>
-#include <moeoGenerationalReplacement.h>
+#include <eoReplacement.h>
+#include <moeoReplacement.h>
 
 /**
  * Generational replacement: only the new individuals are preserved.
  */
 template < class MOEOT >
-class moeoGenerationalReplacement : public moeoReplacement < MOEOT >, public eoGenerationalReplacement < MOEOT > {};
+class moeoGenerationalReplacement : public moeoReplacement < MOEOT >, public eoGenerationalReplacement < MOEOT >
+{
+public:
+	
+	/**
+	 * Swaps _parents and _offspring
+	 * @param _parents the parents population
+	 * @param _offspring the offspring population
+	 */
+	void operator()(eoPop < MOEOT > & _parents, eoPop < MOEOT > & _offspring)
+	{
+		eoGenerationalReplacement < MOEOT >::operator ()(_parents, _offspring);
+	}
+
+};
 
 #endif /*MOEOGENERATIONALREPLACEMENT_H_*/
