@@ -32,7 +32,7 @@ public:
 	 * @param _evalDiversity the diversity assignment strategy
 	 * @param _comparator the comparator (used to compare 2 individuals)
 	 */
-	moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _evalFitness, moeoDiversityAssignment < MOEOT > & _evalDiversity, moeoComparator < MOEOT > _comparator) : 
+	moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _evalFitness, moeoDiversityAssignment < MOEOT > & _evalDiversity, moeoComparator < MOEOT > & _comparator) : 
 	evalFitness (_evalFitness), evalDiversity (_evalDiversity), comparator (_comparator)
 	{}
 	 
@@ -55,7 +55,7 @@ public:
 	 * @param _evalFitness the fitness assignment strategy
 	 * @param _comparator the comparator (used to compare 2 individuals)
 	 */
-	moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _evalFitness, moeoComparator < MOEOT > _comparator) : 
+	moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _evalFitness, moeoComparator < MOEOT > & _comparator) : 
 	evalFitness (_evalFitness), comparator (_comparator)
 	{
 		// a dummy diversity is used as default
@@ -71,10 +71,10 @@ public:
 	moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _evalFitness) : evalFitness (_evalFitness)
 	{
 	 	// a dummy diversity is used as default
-    	moeoDummyDiversityAssignment < MOEOT > &dummyDiversityAssignment;
+    	moeoDummyDiversityAssignment < MOEOT > & dummyDiversityAssignment;
     	evalDiversity = dummyDiversityAssignment;
     	// a moeoFitThenDivComparator is used as default
-    	moeoFitnessThenDiversityComparator < MOEOT > &fitThenDivComparator;
+    	moeoFitnessThenDiversityComparator < MOEOT > & fitThenDivComparator;
     	comparator = fitThenDivComparator;
 	}
 
@@ -104,11 +104,11 @@ public:
 protected:
 
 	/** the fitness assignment strategy */
-	moeoFitnessAssignment < MOEOT > &evalFitness;
+	moeoFitnessAssignment < MOEOT > & evalFitness;
 	/** the diversity assignment strategy */
-	moeoDiversityAssignment < MOEOT > &evalDiversity;
+	moeoDiversityAssignment < MOEOT > & evalDiversity;
 	/** the comparator (used to compare 2 individuals) */
-	moeoComparator < MOEOT > &comparator;.
+	moeoComparator < MOEOT > & comparator;
 
 };
 
