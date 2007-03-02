@@ -12,12 +12,12 @@
 #ifndef part_two_opt_init_h
 #define part_two_opt_init_h
 
-#include <eoMoveInit.h>
+#include <moMoveInit.h>
 
 #include "two_opt.h"
 
 /** It sets the first couple of edges */
-class PartTwoOptInit : public eoMoveInit <TwoOpt> {
+class PartTwoOptInit : public moMoveInit <TwoOpt> {
   
 public :
   

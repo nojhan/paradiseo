@@ -12,11 +12,11 @@
 #ifndef part_two_opt_next_h
 #define part_two_opt_next_h
 
-#include <eoNextMove.h>
+#include <moNextMove.h>
 #include "two_opt.h"
 
 /** It updates a couple of edges */
-class PartTwoOptNext : public eoNextMove <TwoOpt> {
+class PartTwoOptNext : public moNextMove <TwoOpt> {
 
 public :
   
