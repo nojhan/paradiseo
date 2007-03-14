@@ -29,11 +29,14 @@
 #include <moeoFastNonDominatedSortingFitnessAssignment.h>
 #include <moeoFitnessAssignment.h>
 #include <moeoGenerationalReplacement.h>
+#include <moeoIndicatorBasedFitnessAssignment.h>
 #include <moeoRandomSelect.h>
 #include <moeoReplacement.h>
 #include <moeoRouletteSelect.h>
 #include <moeoSelectOne.h>
 #include <moeoStochTournamentSelect.h>
+#include <metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h>
+#include <metric/moeoVectorVsSolutionBinaryMetric.h>
 
 /**
  * ...
@@ -49,12 +52,21 @@ eoAlgo < MOEOT > & do_make_algo(eoParser & _parser, eoState & _state, eoEvalFunc
 	
 	/* the fitness assignment strategy */
 	string & fitnessParam = _parser.createParam(string("FastNonDominatedSorting"), "fitness", 
-		"Fitness assignment strategy parameter: FastNonDominatedSorting, ...", 'F', "Evolution Engine").value();
+		"Fitness assignment strategy parameter: FastNonDominatedSorting, IndicatorBased...", 'F', "Evolution Engine").value();
 	moeoFitnessAssignment < MOEOT > * fitnessAssignment;
 	if (fitnessParam == string("FastNonDominatedSorting"))
 	{
 		fitnessAssignment = new moeoFastNonDominatedSortingFitnessAssignment < MOEOT> ();
 	}
+	/****************************************************************************************************************************/
+	else if (fitnessParam == string("IndicatorBased"))
+	{
+		typedef typename MOEOT::ObjectiveVector ObjectiveVector;
+    	moeoAdditiveEpsilonBinaryMetric < ObjectiveVector > * e = new moeoAdditiveEpsilonBinaryMetric < ObjectiveVector >;
+		moeoVectorVsSolutionBinaryMetric < ObjectiveVector, double > * metric = new moeoExponentialVectorVsSolutionBinaryMetric < ObjectiveVector> (e,0.001);
+		fitnessAssignment = new moeoIndicatorBasedFitnessAssignment < MOEOT> (metric);
+	}
+	/****************************************************************************************************************************/
     else
     {
     	string stmp = string("Invalid fitness assignment strategy: ") + fitnessParam;

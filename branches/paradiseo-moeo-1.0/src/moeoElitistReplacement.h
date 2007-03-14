@@ -93,7 +93,12 @@ public:
 		evalFitness (_parents);
 		evalDiversity (_parents);
 		// sorts the whole population according to the comparator
-		std::sort (_parents.begin (), _parents.end (), comparator);
+		
+		/*************************************************************************/
+		moeoFitnessThenDiversityComparator < MOEOT > comp;
+		std::sort (_parents.begin (), _parents.end (), comp);
+		/*************************************************************************/
+		
 		// finally, resize this global population
 		_parents.resize (sz);
 		// and clear the offspring population

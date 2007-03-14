@@ -115,7 +115,7 @@ public:
 	{
 		if ( invalidFitness() )
 		{
-			throw std::runtime_error("invalid fitness");
+		//	throw std::runtime_error("invalid fitness");
 		}
 		return fitnessValue;
 	}
@@ -157,7 +157,7 @@ public:
 	{
 		if ( invalidDiversity() )
 		{
-			throw std::runtime_error("invalid diversity");
+		//	throw std::runtime_error("invalid diversity");
 		}
 		return diversityValue;
 	}
