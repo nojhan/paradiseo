@@ -35,7 +35,7 @@ public:
 	 * @param _mols a multi-objective local search
 	 * @param _arch the archive
 	 */
-eoHybridMOLS (eoContinue < EOT > &_term, eoSelect < EOT > &_select, moeoMOLS < EOT > &_mols, moeoArchive < EOT > &_arch):term (_term), select (_select), mols (_mols),
+moeoHybridMOLS (eoContinue < EOT > &_term, eoSelect < EOT > &_select, moeoMOLS < EOT > &_mols, moeoArchive < EOT > &_arch):term (_term), select (_select), mols (_mols),
     arch
     (_arch)
   {
@@ -46,7 +46,7 @@ eoHybridMOLS (eoContinue < EOT > &_term, eoSelect < EOT > &_select, moeoMOLS < E
 	 */
   void operator  () ()
   {
-    if (!cont (arch))
+    if (!term (arch))
       {
 	// selection of solutions
 	eoPop < EOT > selectedSolutions;
