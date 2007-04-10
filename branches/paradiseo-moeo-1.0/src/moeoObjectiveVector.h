@@ -207,7 +207,7 @@ std::ostream & operator<<(std::ostream & _os, const moeoObjectiveVectorDouble < 
 {
 	for (unsigned i=0; i<_objectiveVector.size(); i++)
 	{
-		_os << _objectiveVector[i] << ' ';
+		_os << _objectiveVector[i] << '\t';
 	} 
 	return _os;
 }

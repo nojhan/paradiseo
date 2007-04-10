@@ -31,14 +31,49 @@ class moeoObjectiveComparator : public moeoComparator < MOEOT >
 {
 public:
 	/**
-	 * Returns true if _moeo1 is smaller than _moeo2 on the first objective, then on the second, and so on
+	 * Returns true if _moeo1 is greater than _moeo2 on the first objective, then on the second, and so on
 	 * @param _moeo1 the first solution
 	 * @param _moeo2 the second solution
 	 */
 	const bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
 	{
-		return _moeo1.objectiveVector() < _moeo2.objectiveVector();
+		return _moeo1.objectiveVector() > _moeo2.objectiveVector();
 	}
+};
+
+/**
+ * Functor allowing to compare two solutions according to one objective.
+ */
+template < class MOEOT >
+class moeoOneObjectiveComparator : public moeoComparator < MOEOT >
+{
+public:
+	
+	/**
+	 * Ctor.
+	 * @param _obj the index of objective
+	 */
+	moeoOneObjectiveComparator(unsigned _obj) : obj(_obj)
+	{
+		if (obj > MOEOT::ObjectiveVector::nObjectives())
+		{
+			throw std::runtime_error("Problem with the index of objective in moeoOneObjectiveComparator");
+		}
+	}
+
+	/**
+	 * Returns true if _moeo1 is greater than _moeo2 on the obj objective
+	 * @param _moeo1 the first solution
+	 * @param _moeo2 the second solution
+	 */
+	const bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
+	{
+		return _moeo1.objectiveVector()[obj] > _moeo2.objectiveVector()[obj];
+	}
+
+private:
+	unsigned obj;
+
 };
 
 
@@ -50,7 +85,7 @@ class moeoFitnessThenDiversityComparator : public moeoComparator < MOEOT >
 {
 public:
 	/**
-	 * Returns true if _moeo1 is smaller than _moeo2 according to their fitness values, then according to their diversity values	 
+	 * Returns true if _moeo1 is greater than _moeo2 according to their fitness values, then according to their diversity values	 
 	 * @param _moeo1 the first solution
 	 * @param _moeo2 the second solution
 	 */
@@ -58,11 +93,11 @@ public:
 	{
 		if (_moeo1.fitness() == _moeo2.fitness())
 		{
-			return _moeo1.diversity() < _moeo2.diversity();
+			return _moeo1.diversity() > _moeo2.diversity();
 		}
 		else
 		{
-			return _moeo1.fitness() < _moeo2.fitness();
+			return _moeo1.fitness() > _moeo2.fitness();
 		}
 	}
 };
@@ -76,7 +111,7 @@ class moeoDiversityThenFitnessComparator : public moeoComparator < MOEOT >
 {
 public:
 	/**
-	 * Returns true if _moeo1 is smaller than _moeo2 according to their diversity values, then according to their fitness values
+	 * Returns true if _moeo1 is greater than _moeo2 according to their diversity values, then according to their fitness values
 	 * @param _moeo1 the first solution
 	 * @param _moeo2 the second solution
 	 */
@@ -84,11 +119,11 @@ public:
 	{
 		if (_moeo1.diversity() == _moeo2.diversity())
 		{
-			return _moeo1.fitness() < _moeo2.fitness();
+			return _moeo1.fitness() > _moeo2.fitness();
 		}
 		else
 		{
-			return _moeo1.diversity() < _moeo2.diversity();
+			return _moeo1.diversity() > _moeo2.diversity();
 		}
 	}
 };

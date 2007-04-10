@@ -14,15 +14,14 @@
 #define MOEOCOMBINEDLS_H_
 
 #include <moeoArchive.h>
-#include <moeoEvalFunc.h>
 #include <moeoLS.h>
 
 /**
  * This class allows to embed a set of local searches that are sequentially applied, 
  * and so working and updating the same archive of non-dominated solutions.
  */
-template < class MOEOT >
-class moeoCombinedLS : public moeoLS < MOEOT >
+template < class MOEOT, class Type >
+class moeoCombinedLS : public moeoLS < MOEOT, Type >
 {
 public:
 	
@@ -31,18 +30,18 @@ public:
 	 * @param _eval the full evaluator of a solution
 	 * @param _first_mols the first multi-objective local search to add
 	 */
-	moeoCombinedLS(moeoEvalFunc < MOEOT > & _eval, moeoLS < MOEOT > & _first_mols) : eval (_eval)
+	moeoCombinedLS(moeoLS < MOEOT, Type > & _first_mols)
 	{
 		combinedLS.push_back (& _first_mols);
-	}	
+	}
 	
 	/**
 	 * Adds a new local search to combine
 	 * @param _mols the multi-objective local search to add
 	 */
-	void add(moeoLS < MOEOT > & _mols)
+	void add(moeoLS < MOEOT, Type > & _mols)
 	{
-		combinedMOLS.push_back(& _mols);
+		combinedLS.push_back(& _mols);
 	}
 	
 	/**
@@ -51,20 +50,17 @@ public:
 	 * @param _moeo the solution
 	 * @param _arch the archive of non-dominated solutions 
 	 */
-	void operator () (const MOEOT & _moeo, moeoArchive < MOEOT > & _arch)
+	void operator () (Type _type, moeoArchive < MOEOT > & _arch)
 	{
-		eval(const_cast < MOEOT & > (_moeo));
 		for (unsigned i=0; i<combinedLS.size(); i++)
-			combinedLS[i] -> operator()(_moeo, _arch);
+			combinedLS[i] -> operator()(_type, _arch);
 	}
 
 
 private:
 
-	/** the full evaluator of a solution */
-	moeoEvalFunc < MOEOT > & eval;
 	/** the vector that contains the combined LS */
-	std::vector< moeoLS < MOEOT > * >  combinedLS;
+	std::vector< moeoLS < MOEOT, Type > * >  combinedLS;
 
 };
 

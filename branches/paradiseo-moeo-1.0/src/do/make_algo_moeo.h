@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// make_algo.h
+// make_algo_moeo.h
 // (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
 /*
     This library...
@@ -10,10 +10,10 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef MAKE_ALGO_H_
-#define MAKE_ALGO_H_
+#ifndef MAKE_ALGO_MOEO_H_
+#define MAKE_ALGO_MOEO_H_
 
-#include <eoEasyEA.h>
+#include <stdlib.h>
 #include <eoContinue.h>
 #include <eoEvalFunc.h>
 #include <eoGeneralBreeder.h>
@@ -22,51 +22,71 @@
 #include <utils/eoState.h>
 #include <moeoArchive.h>
 #include <moeoComparator.h>
+#include <moeoCrowdingDiversityAssignment.h>
 #include <moeoDetTournamentSelect.h>
 #include <moeoDiversityAssignment.h>
 #include <moeoEA.h>
+#include <moeoEasyEA.h>
 #include <moeoElitistReplacement.h>
+#include <moeoEnvironmentalReplacement.h>
 #include <moeoFastNonDominatedSortingFitnessAssignment.h>
 #include <moeoFitnessAssignment.h>
 #include <moeoGenerationalReplacement.h>
 #include <moeoIndicatorBasedFitnessAssignment.h>
 #include <moeoRandomSelect.h>
+#include <moeoReferencePointIndicatorBasedFitnessAssignment.h>
 #include <moeoReplacement.h>
 #include <moeoRouletteSelect.h>
 #include <moeoSelectOne.h>
 #include <moeoStochTournamentSelect.h>
 #include <metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h>
-#include <metric/moeoVectorVsSolutionBinaryMetric.h>
 
 /**
  * ...
- *  
- * !!! eoEvalFunc => moeoEvalFunc
- * !!! eoAlgo => moeoEA
- * !!! ...
  */
 template < class MOEOT >
-eoAlgo < MOEOT > & do_make_algo(eoParser & _parser, eoState & _state, eoEvalFunc < MOEOT > & _eval, 
-									eoContinue < MOEOT > & _continue, eoGenOp < MOEOT > & _op, moeoArchive < MOEOT > & _archive)
+moeoEA < MOEOT > & do_make_algo_moeo(eoParser & _parser, eoState & _state, eoEvalFunc < MOEOT > & _eval, eoContinue < MOEOT > & _continue, eoGenOp < MOEOT > & _op, moeoArchive < MOEOT > & _archive)
 {
 	
+	/* the objective vector type */
+	typedef typename MOEOT::ObjectiveVector ObjectiveVector;
+
+
 	/* the fitness assignment strategy */
 	string & fitnessParam = _parser.createParam(string("FastNonDominatedSorting"), "fitness", 
-		"Fitness assignment strategy parameter: FastNonDominatedSorting, IndicatorBased...", 'F', "Evolution Engine").value();
+		"Fitness assignment strategy parameter: FastNonDominatedSorting, IndicatorBased, ReferencePointIndicatorBased ...", 'F',
+		"Evolution Engine").value();
+	string & indicatorParam = _parser.createParam(string("Epsilon"), "indicator", 
+		"Binary indicator to use with the IndicatorBased assignment: Epsilon, Hypervolume", 'i',
+		"Evolution Engine").value();
+	double rho = _parser.createParam(1.1, "rho", "reference point for the hypervolume indicator", 'r',
+		"Evolution Engine").value();
+	double kappa = _parser.createParam(0.05, "kappa", "Scaling factor kappa for IndicatorBased", 'k',
+		"Evolution Engine").value();
 	moeoFitnessAssignment < MOEOT > * fitnessAssignment;
 	if (fitnessParam == string("FastNonDominatedSorting"))
 	{
 		fitnessAssignment = new moeoFastNonDominatedSortingFitnessAssignment < MOEOT> ();
 	}
-	/****************************************************************************************************************************/
 	else if (fitnessParam == string("IndicatorBased"))
 	{
-		typedef typename MOEOT::ObjectiveVector ObjectiveVector;
-    	moeoAdditiveEpsilonBinaryMetric < ObjectiveVector > * e = new moeoAdditiveEpsilonBinaryMetric < ObjectiveVector >;
-		moeoVectorVsSolutionBinaryMetric < ObjectiveVector, double > * metric = new moeoExponentialVectorVsSolutionBinaryMetric < ObjectiveVector> (e,0.001);
-		fitnessAssignment = new moeoIndicatorBasedFitnessAssignment < MOEOT> (metric);
+		// metric
+		moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > *metric;
+		if (indicatorParam == string("Epsilon"))
+		{
+			metric = new moeoAdditiveEpsilonBinaryMetric < ObjectiveVector >;
+		}
+		else if (indicatorParam == string("Hypervolume"))
+		{
+			metric = new moeoHypervolumeBinaryMetric < ObjectiveVector > (rho);
+		}
+		else
+		{
+			string stmp = string("Invalid binary quality indicator: ") + indicatorParam;
+      			throw std::runtime_error(stmp.c_str());
+		}
+		fitnessAssignment = new moeoIndicatorBasedFitnessAssignment < MOEOT> (metric, kappa);
 	}
-	/****************************************************************************************************************************/
     else
     {
     	string stmp = string("Invalid fitness assignment strategy: ") + fitnessParam;
@@ -76,10 +96,14 @@ eoAlgo < MOEOT > & do_make_algo(eoParser & _parser, eoState & _state, eoEvalFunc
 	
 	
 	/* the diversity assignment strategy */
-	string & diversityParam = _parser.createParam(string("Dummy"), "diversity", 
-		"Diversity assignment strategy parameter: Dummy, ...", 'D', "Evolution Engine").value();
+	string & diversityParam = _parser.createParam(string("Dummy"), "diversity",
+		"Diversity assignment strategy parameter: Dummy, Crowding, ...", 'D', "Evolution Engine").value();
 	moeoDiversityAssignment < MOEOT > * diversityAssignment;
-	if (diversityParam == string("Dummy"))
+	if (diversityParam == string("Crowding"))
+	{
+		diversityAssignment = new moeoCrowdingDiversityAssignment < MOEOT> ();
+	}
+	else if (diversityParam == string("Dummy"))
 	{
 		diversityAssignment = new moeoDummyDiversityAssignment < MOEOT> ();
 	}
@@ -113,7 +137,7 @@ eoAlgo < MOEOT > & do_make_algo(eoParser & _parser, eoState & _state, eoEvalFunc
     
     /* the selection strategy */
 	eoValueParam < eoParamParamType > & selectionParam = _parser.createParam(eoParamParamType("DetTour(2)"), "selection", 
-		"Selection strategy parameter: DetTour(T), StochTour(t), Roulette or Random", 'S', "Evolution Engine");
+		"Selection strategy parameter: DetTour(T), StochTour(t) or Random", 'S', "Evolution Engine");
 	eoParamParamType & ppSelect = selectionParam.value();
 	moeoSelectOne < MOEOT > * select;
 	if (ppSelect.first == string("DetTour"))
@@ -167,11 +191,15 @@ eoAlgo < MOEOT > & do_make_algo(eoParser & _parser, eoState & _state, eoEvalFunc
     
     /* the replacement strategy */
     string & replacementParam = _parser.createParam(string("Elitist"), "replacement", 
-		"Replacement strategy parameter: Elitist or Generational", 'R', "Evolution Engine").value();
+		"Replacement strategy parameter: Elitist, Environmental or Generational", 'R', "Evolution Engine").value();
 	moeoReplacement < MOEOT > * replace;
 	if (replacementParam == string("Elitist"))
 	{
 		replace = new moeoElitistReplacement < MOEOT> (*fitnessAssignment, *diversityAssignment, *comparator);
+	}
+	else if (replacementParam == string("Environmental"))
+	{
+		replace = new moeoEnvironmentalReplacement < MOEOT> (*fitnessAssignment, *diversityAssignment, *comparator);
 	}
 	else if (replacementParam == string("Generational"))
 	{
@@ -194,10 +222,10 @@ eoAlgo < MOEOT > & do_make_algo(eoParser & _parser, eoState & _state, eoEvalFunc
 	eoGeneralBreeder < MOEOT > * breed = new eoGeneralBreeder < MOEOT > (*select, _op, offspringRateParam.value());
 	_state.storeFunctor(breed);
 	// the eoEasyEA
-	eoAlgo < MOEOT > * algo = new eoEasyEA < MOEOT > (_continue, _eval, *breed, *replace);
+	moeoEA < MOEOT > * algo = new moeoEasyEA < MOEOT > (_continue, _eval, *breed, *replace, *fitnessAssignment, *diversityAssignment);
 	_state.storeFunctor(algo);
 	return *algo;
 	
 }
 
-#endif /*MAKE_ALGO_H_*/
+#endif /*MAKE_ALGO_MOEO_H_*/

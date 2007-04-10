@@ -19,6 +19,7 @@
  * Replacement strategy for multi-objective optimization.
  */
 template < class MOEOT >
-class moeoReplacement : public eoReplacement < MOEOT > {};
+class moeoReplacement : public eoReplacement < MOEOT >
+{};
 
 #endif /*MOEOREPLACEMENT_H_*/

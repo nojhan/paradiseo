@@ -73,7 +73,92 @@ public:
 			}
 		}
 		return dom;
-	}   
+	}
+
+};
+
+
+/**
+ * This functor class allows to compare 2 objective vectors according to g-dominance.
+ * The concept of g-dominance as been introduced in:
+ * J. Molina, L. V. Santana, A. G. Hernandez-Diaz, C. A. Coello Coello, R. Caballero,
+ * "g-dominance: Reference point based dominance" (2007)
+ */
+template < class ObjectiveVector >
+class moeoGDominanceObjectiveVectorComparator : public moeoObjectiveVectorComparator < ObjectiveVector >
+{
+public:
+
+	/**
+	 * Ctor.
+	 * @param _ref the reference point
+	 */
+	moeoGDominanceObjectiveVectorComparator(ObjectiveVector _ref) : ref(_ref)
+	{}
+
+
+	/**
+	 * Returns true if _objectiveVector1 g-dominates _objectiveVector2.
+	 * @param _objectiveVector1 the first objective vector
+	 * @param _objectiveVector2 the second objective vector
+	 */
+	bool operator()(const ObjectiveVector & _objectiveVector1, const ObjectiveVector & _objectiveVector2)
+	{
+		unsigned flag1 = flag(_objectiveVector1);
+		unsigned flag2 = flag(_objectiveVector2);
+		if (flag1==0)
+		{
+			// cannot dominate
+			return false;
+		}
+		else if ( (flag1==1) && (flag2==0) )
+		{
+			// dominates
+			return true;
+		}
+		else // (flag1==1) && (flag2==1)
+		{
+			// both are on the good region, so let's use the classical Pareto dominance
+			return paretoComparator(_objectiveVector1, _objectiveVector2);
+		}
+	}
+
+
+private:
+
+	/** the reference point */
+	ObjectiveVector ref;
+	/** Pareto comparator */
+	moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
+
+
+	/**
+	 * Returns the flag of _objectiveVector according to the reference point
+	 * @param _objectiveVector the first objective vector
+	 */
+	unsigned flag(const ObjectiveVector & _objectiveVector)
+	{
+		unsigned result=1;
+		for (unsigned i=0; i<ref.nObjectives(); i++)
+		{
+			if (_objectiveVector[i] > ref[i])
+			{
+				result=0;
+			}
+		}
+		if (result==0)
+		{
+			result=1;
+			for (unsigned i=0; i<ref.nObjectives(); i++)
+			{
+				if (_objectiveVector[i] < ref[i])
+				{
+					result=0;
+				}
+			}
+		}
+		return result;
+	}
 
 };
 

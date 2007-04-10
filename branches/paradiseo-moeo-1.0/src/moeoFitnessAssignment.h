@@ -21,7 +21,10 @@
  */
 template < class MOEOT >
 class moeoFitnessAssignment : public eoUF < eoPop < MOEOT > &, void >
-{};
+{
+public:
+	virtual void updateByDeleting(eoPop < MOEOT > & _pop, MOEOT & _moeo) = 0;
+};
 
 
 /**

@@ -63,7 +63,7 @@ public:
 			if ( comparator(operator[](i).fitness(), _objectiveVector) )
 			{
 				return true;
-			}			
+			}
 		}
 		return false;
 	}
@@ -77,7 +77,7 @@ public:
 	{
 		for (unsigned i = 0; i<size(); i++)
 		{
-			if (operator[](i).fitness() == _objectiveVector)
+			if (operator[](i).objectiveVector() == _objectiveVector)
 			{
 				return true;
 			}
@@ -99,7 +99,7 @@ public:
 			if ( comparator(_moeo.objectiveVector(), operator[](j).objectiveVector()) )
 			{
 				operator[](j) = back();
-	    		pop_back();
+			pop_back();
 			}
 			else if (_moeo.objectiveVector() == operator[](j).objectiveVector())
 			{
@@ -110,7 +110,7 @@ public:
 			{
 				j++;
 			}
-		}		
+		}
 		// second step: is _moeo dominated?
 		bool dom = false;
 		for (unsigned j=0; j<size(); j++)
@@ -125,7 +125,7 @@ public:
 		if (!dom)
 		{
 			push_back(_moeo);
-		}		
+		}
 	}
 	
 	
@@ -138,17 +138,42 @@ public:
 		for (unsigned i=0; i<_pop.size(); i++)
 		{
 			update(_pop[i]);
-		} 
+		}
 	}
-	
-	
+
+
+	/**
+	 * Returns true if the current archive contains the same objective vectors
+	 * than the given archive _arch
+	 * @param _arch the given archive
+	 */
+	bool equals (const moeoArchive < MOEOT > & _arch)
+	{
+		for (unsigned i=0; i<size(); i++)
+		{
+			if (! _arch.contains(operator[](i).objectiveVector()))
+			{
+				return false;
+			}
+		}
+		for (unsigned i=0; i<_arch.size() ; i++)
+		{
+			if (! contains(_arch[i].objectiveVector()))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+
 private:
 
 	/** The moeoObjectiveVectorComparator used to compare solutions */
 	moeoObjectiveVectorComparator < ObjectiveVector > & comparator;
-	/** A moeoObjectiveVectorComparator	based on Pareto dominance (used as default) */
+	/** A moeoObjectiveVectorComparator based on Pareto dominance (used as default) */
 	moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
-	
+
 };
 
 #endif /*MOEOARCHIVE_H_ */

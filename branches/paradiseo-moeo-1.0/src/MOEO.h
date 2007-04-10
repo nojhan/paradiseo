@@ -32,7 +32,7 @@
  * !!!!!!!!!!!!!!!!!!!!!!! 
  */
 template < class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity > 
-class MOEO : public EO < MOEOFitness >
+class MOEO : public EO < MOEOObjectiveVector >
 {
 public:
 
@@ -115,7 +115,7 @@ public:
 	{
 		if ( invalidFitness() )
 		{
-		//	throw std::runtime_error("invalid fitness");
+			throw std::runtime_error("invalid fitness (MOEO)");
 		}
 		return fitnessValue;
 	}
@@ -157,7 +157,7 @@ public:
 	{
 		if ( invalidDiversity() )
 		{
-		//	throw std::runtime_error("invalid diversity");
+			throw std::runtime_error("invalid diversity");
 		}
 		return diversityValue;
 	}

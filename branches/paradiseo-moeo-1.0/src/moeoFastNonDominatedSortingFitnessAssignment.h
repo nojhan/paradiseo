@@ -64,8 +64,23 @@ public:
 			// problem with the number of objectives
 			throw std::runtime_error("Problem with the number of objectives in moeoFastNonDominatedSortingFitnessAssignment");
 		}
+		// a higher fitness is better, so the values need to be inverted
+		double max = _pop[0].fitness();
+		for (unsigned i=1 ; i<_pop.size() ; i++)
+		{
+			max = std::max(max, _pop[i].fitness());
+		}
+		for (unsigned i=0 ; i<_pop.size() ; i++)
+		{
+			_pop[i].fitness(max - _pop[i].fitness());
+		}
 	}
 
+
+	void updateByDeleting(eoPop < MOEOT > & _pop, MOEOT & _moeo)
+	{
+		cout << "WARNING : not yet implemented in NDSortingFitAss" << endl;
+	}
 
 private:
 
@@ -83,11 +98,14 @@ private:
 	 */
 	void oneObjective (eoPop < MOEOT > & _pop)
 	{
+		// TO DO !
+		/*
 		std::sort(_pop.begin(), _pop.end(), objComparator);
 		for (unsigned i=0; i<_pop.size(); i++)
 		{
 			_pop[i].fitness(i+1);
 		}
+		*/
 	}
 	
 	

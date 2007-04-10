@@ -17,7 +17,7 @@
 #include <utils/eoRNG.h>
 #include <moeoArchive.h>
 #include <moeoSelectOne.h>
-#include <moeoRandomSelectOne.h>
+#include <moeoRandomSelect.h>
 
 /**
  * Elitist selection process that consists in choosing individuals in the archive as well as in the current population.
@@ -82,7 +82,7 @@ private:
 	/** The ratio of selected individuals from the population*/
 	double ratioFromPop;
 	/** A random selection operator (used as default for archSelectOne) */
-	moeoRandomSelectOne< MOEOT > randomSelectOne;
+	moeoRandomSelect < MOEOT > randomSelectOne;
 	
 };
 

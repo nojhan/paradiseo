@@ -27,7 +27,7 @@ class moeoNormalizedSolutionVsSolutionBinaryMetric : public moeoSolutionVsSoluti
 {
 public:
 	
-	/** very small value to avoid the extreme case where the min bound = the max bound */
+	/** very small value to avoid the extreme case where the min bound == the max bound */
 	const static double tiny = 1e-6;
 
 
@@ -46,15 +46,13 @@ public:
 	 * _max upper bound
 	 * _obj the objective index
 	 */
-	virtual void setup(double _min, double _max, unsigned _obj)
+	void setup(double _min, double _max, unsigned _obj)
 	{
-		/*
-		if (min = max)
+		if (_min == _max)
 		{
-			min -= tiny;
-			max += tiny;
+			_min -= tiny;
+			_max += tiny;
 		}
-		*/
 		bounds[_obj] = eoRealInterval(_min, _max);
 	}
 	
