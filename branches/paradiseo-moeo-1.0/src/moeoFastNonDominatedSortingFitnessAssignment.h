@@ -30,14 +30,27 @@ class moeoFastNonDominatedSortingFitnessAssignment : public moeoParetoBasedFitne
 {
 public:
 
+	/** the objective vector type of the solutions */
+	typedef typename MOEOT::ObjectiveVector ObjectiveVector;
+	
+	
 	/**
-	 * Ctor
+	 * Default ctor
 	 */
-	moeoFastNonDominatedSortingFitnessAssignment() {}
+	moeoFastNonDominatedSortingFitnessAssignment() : comparator(paretoComparator)
+	{}
 	
 	
 	/**
-	 * Computes fitness values for every solution contained in the population _pop
+	 * Ctor where you can choose your own way to compare objective vectors
+	 * @param _comparator the functor used to compare objective vectors
+	 */
+	moeoFastNonDominatedSortingFitnessAssignment(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator) : comparator(_comparator)
+	{}
+	
+	
+	/**
+	 * Sets the fitness values for every solution contained in the population _pop
 	 * @param _pop the population
 	 */
 	void operator()(eoPop < MOEOT > & _pop)
@@ -62,7 +75,7 @@ public:
 		else
 		{
 			// problem with the number of objectives
-			throw std::runtime_error("Problem with the number of objectives in moeoFastNonDominatedSortingFitnessAssignment");
+			throw std::runtime_error("Problem with the number of objectives in moeoNonDominatedSortingFitnessAssignment");
 		}
 		// a higher fitness is better, so the values need to be inverted
 		double max = _pop[0].fitness();
@@ -77,20 +90,28 @@ public:
 	}
 
 
-	void updateByDeleting(eoPop < MOEOT > & _pop, MOEOT & _moeo)
+	/**
+	 * @warning NOT IMPLEMENTED, DO NOTHING !
+	 * Updates the fitness values of the whole population _pop by taking the deletion of the objective vector _objVec into account.
+	 * @param _pop the population
+	 * @param _objecVec the objective vector
+	 * @warning NOT IMPLEMENTED, DO NOTHING !
+	 */
+	void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
 	{
-		cout << "WARNING : not yet implemented in NDSortingFitAss" << endl;
+		cout << "WARNING : updateByDeleting not implemented in moeoNonDominatedSortingFitnessAssignment" << endl;
 	}
+
 
 private:
 
-	/** the objective vector type of the solutions */
-	typedef typename MOEOT::ObjectiveVector ObjectiveVector;
+	/** Functor to compare two objective vectors */
+	moeoObjectiveVectorComparator < ObjectiveVector > & comparator;
 	/** Functor to compare two objective vectors according to Pareto dominance relation */
-	moeoParetoObjectiveVectorComparator < ObjectiveVector > comparator;
-	/** Functor to compare two solutions on the first objective, then on the second, and so on */
-	moeoObjectiveComparator < MOEOT > objComparator;
+	moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
 	
+	
+		
 	
 	/**
 	 * Sets the fitness values for mono-objective problems
@@ -98,14 +119,13 @@ private:
 	 */
 	void oneObjective (eoPop < MOEOT > & _pop)
 	{
-		// TO DO !
-		/*
+		// Functor to compare two solutions on the first objective, then on the second, and so on
+		moeoObjectiveComparator < MOEOT > objComparator;
 		std::sort(_pop.begin(), _pop.end(), objComparator);
 		for (unsigned i=0; i<_pop.size(); i++)
 		{
 			_pop[i].fitness(i+1);
 		}
-		*/
 	}
 	
 	

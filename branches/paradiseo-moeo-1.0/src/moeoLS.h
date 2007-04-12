@@ -18,7 +18,7 @@
 
 /**
  * Abstract class for local searches applied to multi-objective optimization.
- * Starting from a Type, it produces a set of new non-dominated solutions.
+ * Starting from a Type (i.e.: an individual, a pop, an archive...), it produces a set of new non-dominated solutions.
  */
 template < class MOEOT, class Type >
 class moeoLS: public eoBF < Type, moeoArchive < MOEOT > &, void > 

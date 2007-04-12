@@ -18,14 +18,18 @@
 #include <moeoFitnessAssignment.h>
 #include <moeoDiversityAssignment.h>
 
-
 /**
- * ???
+ * Environmental replacement strategy that consists in keeping the N best individuals by deleting individuals 1 by 1 
+ * and by updating the fitness and diversity values after each deletion.
  */
 template < class MOEOT > class moeoEnvironmentalReplacement:public moeoReplacement < MOEOT >
 {
 public:
 
+	/** The type for objective vector */
+	typedef typename MOEOT::ObjectiveVector ObjectiveVector;
+	
+	
 	/**
 	 * Full constructor.
 	 * @param _evalFitness the fitness assignment strategy
@@ -63,7 +67,8 @@ public:
     	moeoDummyDiversityAssignment < MOEOT > &dummyDiversityAssignment;
     	evalDiversity = dummyDiversityAssignment;
 	}
-	
+
+
 	/**
 	 * Constructor without moeoDiversityAssignement nor moeoComparator.
 	 * A moeoFitThenDivComparator and a dummy diversity are used as default.
@@ -95,13 +100,14 @@ public:
 		evalDiversity (_parents);
 		// remove individuals 1 by 1 and update the fitness values
 		Cmp cmp(comparator);
-		MOEOT worst;
+		ObjectiveVector worstObjVec;
 		while (_parents.size() > sz)
 		{
 			std::sort (_parents.begin(), _parents.end(), cmp);
-			worst = _parents[_parents.size()-1];
+			worstObjVec = _parents[_parents.size()-1].objectiveVector();
 			_parents.resize(_parents.size()-1);
-			evalFitness.updateByDeleting(_parents, worst);
+			evalFitness.updateByDeleting(_parents, worstObjVec);
+			evalDiversity.updateByDeleting(_parents, worstObjVec);
 		}
 		// clear the offspring population
 		_offspring.clear ();
@@ -117,16 +123,38 @@ protected:
 	/** the comparator (used to compare 2 individuals) */
 	moeoComparator < MOEOT > & comparator;
 
+
+	/**
+	 * This class is used to compare solutions in order to sort the population.
+	 */
 	class Cmp
 	{
 	public:
-		Cmp(moeoComparator < MOEOT > & _comparator) : comparator(_comparator) {}
-		bool operator()(const MOEOT & a, const MOEOT & b)
+	
+		/**
+		 * Ctor.
+		 * @param _comparator the comparator
+		 */
+		Cmp(moeoComparator < MOEOT > & _comparator) : comparator(_comparator)
+		{}
+		
+		
+		/**
+		 * Returns true if _moeo1 is greater than _moeo2 according to the comparator
+		 * _moeo1 the first individual
+		 * _moeo2 the first individual
+		 */
+		bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
 		{
-			return comparator(a,b);
+			return comparator(_moeo1,_moeo2);
 		}
+		
+		
 	private:
+	
+		/** the comparator */
 		moeoComparator < MOEOT > & comparator;
+		
 	};
 
 };

@@ -1,142 +1,106 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// make_continue_pareto.h
-// (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2000
-/* 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2 of the License, or (at your option) any later version.
+// make_continue_moeo.h
+// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
+/*
+    This library...
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
-
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-    Contact: todos@geneura.ugr.es, http://geneura.ugr.es
-             Marc.Schoenauer@inria.fr
-             mkeijzer@dhi.dk
+    Contact: paradiseo-help@lists.gforge.inria.fr, http://paradiseo.gforge.inria.fr
  */
 //-----------------------------------------------------------------------------
 
-#ifndef _make_continue_pareto_h
-#define _make_continue_pareto_h
+#ifndef MAKE_CONTINUE_MOEO_H_
+#define MAKE_CONTINUE_MOEO_H_
 
-/*
-Contains the templatized version of parser-based choice of stopping criterion
-for Pareto optimization (e.g. no "... without improvement" criterion
-It can then be instantiated, and compiled on its own for a given EOType
-(see e.g. in dir ga, ga.cpp)
-*/
-
-// Continuators - all include eoContinue.h
 #include <eoCombinedContinue.h>
 #include <eoGenContinue.h>
 #include <eoEvalContinue.h>
 #include <eoFitContinue.h>
 #include <eoTimeContinue.h>
 #ifndef _MSC_VER
-#include <eoCtrlCContinue.h>  // CtrlC handling (using 2 global variables!)
+#include <eoCtrlCContinue.h> 
 #endif
-
-  // also need the parser and param includes
 #include <utils/eoParser.h>
 #include <utils/eoState.h>
 
 
-/////////////////// helper function ////////////////
-template <class Indi>
-eoCombinedContinue<Indi> * make_combinedContinue(eoCombinedContinue<Indi> *_combined, eoContinue<Indi> *_cont)
+/**
+ * Helper function
+ * @param _combined the eoCombinedContinue object
+ * @param _cont the eoContinue to add
+ */
+template <class MOEOT>
+eoCombinedContinue<MOEOT> * make_combinedContinue(eoCombinedContinue<MOEOT> *_combined, eoContinue<MOEOT> *_cont)
 {
   if (_combined)		   // already exists
     _combined->add(*_cont);
   else
-    _combined = new eoCombinedContinue<Indi>(*_cont);
+    _combined = new eoCombinedContinue<MOEOT>(*_cont);
   return _combined;
 }
 
-///////////// The make_continue function
-template <class Indi>
-eoContinue<Indi> & do_make_continue_moeo(eoParser& _parser, eoState& _state, eoEvalFuncCounter<Indi> & _eval)
+
+/**
+ * This functions allows to build a eoContinue for multi-objective optimization from the parser (partly taken from make_continue_pareto.h)
+ * @param _parser the parser
+ * @param _state to store allocated objects
+ * @param _eval the funtions evaluator
+ */
+template <class MOEOT>
+eoContinue<MOEOT> & do_make_continue_moeo(eoParser& _parser, eoState& _state, eoEvalFuncCounter<MOEOT> & _eval)
 {
-  //////////// Stopping criterion ///////////////////
   // the combined continue - to be filled
-  eoCombinedContinue<Indi> *continuator = NULL;
-
-  // for each possible criterion, check if wanted, otherwise do nothing
-
+  eoCombinedContinue<MOEOT> *continuator = NULL;
   // First the eoGenContinue - need a default value so you can run blind
   // but we also need to be able to avoid it <--> 0
-  eoValueParam<unsigned>& maxGenParam = _parser.createParam(unsigned(100), "maxGen", "Maximum number of generations () = none)",'G',"Stopping criterion");
-
-    if (maxGenParam.value()) // positive: -> define and store
-      {
-	eoGenContinue<Indi> *genCont = new eoGenContinue<Indi>(maxGenParam.value());
-	_state.storeFunctor(genCont);
-	// and "add" to combined
-	continuator = make_combinedContinue<Indi>(continuator, genCont);
-      }
-
-
-/**************************/
-	eoValueParam<unsigned long>& maxEvalParam
-       = _parser.getORcreateParam((unsigned long)0, "maxEval",
-                                  "Maximum number of evaluations (0 = none)",
-                                  'E', "Stopping criterion");
-     if (maxEvalParam.value()) // positive: -> define and store
-       {
-         eoEvalContinue<Indi> *evalCont = new eoEvalContinue<Indi>(_eval, maxEvalParam.value());
-         _state.storeFunctor(evalCont);
-         // and "add" to combined
-         continuator = make_combinedContinue<Indi>(continuator, evalCont);
-       }
-/**************************/
-
-
-
-/**************************/
-	eoValueParam<unsigned long>& maxTimeParam
-       = _parser.getORcreateParam((unsigned long)0, "maxTime",
-                                  "Maximum running time in seconds (0 = none)",
-                                  'T', "Stopping criterion");
-     if (maxTimeParam.value()) // positive: -> define and store
-       {
-         eoTimeContinue<Indi> *timeCont = new eoTimeContinue<Indi>(maxTimeParam.value());
-         _state.storeFunctor(timeCont);
-         // and "add" to combined
-         continuator = make_combinedContinue<Indi>(continuator, timeCont);
-       }
-/**************************/
-
-
-
+  eoValueParam<unsigned>& maxGenParam = _parser.createParam(unsigned(100), "maxGen", "Maximum number of generations (0 = none)",'G',"Stopping criterion");
+  if (maxGenParam.value()) // positive: -> define and store
+  {
+  	eoGenContinue<MOEOT> *genCont = new eoGenContinue<MOEOT>(maxGenParam.value());
+  	_state.storeFunctor(genCont);
+  	// and "add" to combined
+  	continuator = make_combinedContinue<MOEOT>(continuator, genCont);
+  }
+  // maxEval
+  eoValueParam<unsigned long>& maxEvalParam = _parser.getORcreateParam((unsigned long)0, "maxEval", "Maximum number of evaluations (0 = none)", 'E', "Stopping criterion");
+  if (maxEvalParam.value())
+  {
+  	eoEvalContinue<MOEOT> *evalCont = new eoEvalContinue<MOEOT>(_eval, maxEvalParam.value());
+  	_state.storeFunctor(evalCont);
+  	// and "add" to combined
+  	continuator = make_combinedContinue<MOEOT>(continuator, evalCont);
+  }
+  // maxTime
+  eoValueParam<unsigned long>& maxTimeParam = _parser.getORcreateParam((unsigned long)0, "maxTime", "Maximum running time in seconds (0 = none)", 'T', "Stopping criterion");
+  if (maxTimeParam.value()) // positive: -> define and store
+  {
+  	eoTimeContinue<MOEOT> *timeCont = new eoTimeContinue<MOEOT>(maxTimeParam.value());
+  	_state.storeFunctor(timeCont);
+  	// and "add" to combined
+  	continuator = make_combinedContinue<MOEOT>(continuator, timeCont);
+  }
+  // CtrlC
 #ifndef _MSC_VER
     // the CtrlC interception (Linux only I'm afraid)
-    eoCtrlCContinue<Indi> *ctrlCCont;
+    eoCtrlCContinue<MOEOT> *ctrlCCont;
     eoValueParam<bool>& ctrlCParam = _parser.createParam(true, "CtrlC", "Terminate current generation upon Ctrl C",'C', "Stopping criterion");
     if (_parser.isItThere(ctrlCParam))
       {
-	ctrlCCont = new eoCtrlCContinue<Indi>;
+	ctrlCCont = new eoCtrlCContinue<MOEOT>;
 	// store
 	_state.storeFunctor(ctrlCCont);
 	// add to combinedContinue
-	continuator = make_combinedContinue<Indi>(continuator, ctrlCCont);
+	continuator = make_combinedContinue<MOEOT>(continuator, ctrlCCont);
       }
 #endif
-
     // now check that there is at least one!
     if (!continuator)
       throw std::runtime_error("You MUST provide a stopping criterion");
   // OK, it's there: store in the eoState
   _state.storeFunctor(continuator);
-
   // and return
     return *continuator;
 }
 
-#endif
+#endif /*MAKE_CONTINUE_MOEO_H_*/

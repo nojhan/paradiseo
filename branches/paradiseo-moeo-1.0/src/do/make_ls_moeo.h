@@ -27,13 +27,23 @@
 #include <moeoMoveIncrEval.h>
 
 /**
- * ...
+ * This functions allows to build a moeoLS from the parser
+ * @param _parser the parser
+ * @param _state to store allocated objects
+ * @param _eval the funtions evaluator
+ * @param _moveIncrEval the incremental evaluation
+ * @param _continue the stopping crietria
+ * @param _op the variation operators
+ * @param _opInit the initilization operator
+ * @param _moveInit the move initializer
+ * @param _nextMove the move incrementor
+ * @param _archive the archive of non-dominated solutions
  */
 template < class MOEOT, class Move >
 moeoLS < MOEOT, eoPop<MOEOT> & > & do_make_ls_moeo	(
 					eoParser & _parser,
 					eoState & _state,
-					moeoEvalFunc < MOEOT > & _eval,
+					eoEvalFunc < MOEOT > & _eval,
 					moeoMoveIncrEval < Move > & _moveIncrEval,
 					eoContinue < MOEOT > & _continue,
 					eoMonOp < MOEOT > & _op,
@@ -43,11 +53,8 @@ moeoLS < MOEOT, eoPop<MOEOT> & > & do_make_ls_moeo	(
 					moeoArchive < MOEOT > & _archive
 					)
 {
-	
 	/* the objective vector type */
 	typedef typename MOEOT::ObjectiveVector ObjectiveVector;
-
-
 	/* the fitness assignment strategy */
 	string & fitnessParam = _parser.getORcreateParam(string("IndicatorBased"), "fitness", 
 		"Fitness assignment strategy parameter: IndicatorBased...", 'F',
@@ -85,15 +92,8 @@ moeoLS < MOEOT, eoPop<MOEOT> & > & do_make_ls_moeo	(
 		throw std::runtime_error(stmp.c_str());
 	}
 	_state.storeFunctor(fitnessAssignment);
-
-
-
-
-	unsigned n = _parser.getORcreateParam(1, "n", "Number of iterations for population Initialization",
-		'n', "Evolution Engine").value();
-
-
-
+	// number of iterations
+	unsigned n = _parser.getORcreateParam(1, "n", "Number of iterations for population Initialization", 'n', "Evolution Engine").value();
 	// LS
 	string & lsParam = _parser.getORcreateParam(string("I-IBMOLS"), "ls",
 		"Local Search: IBMOLS, I-IBMOLS (Iterated-IBMOLS)...", 'L',
@@ -113,10 +113,8 @@ moeoLS < MOEOT, eoPop<MOEOT> & > & do_make_ls_moeo	(
 		throw std::runtime_error(stmp.c_str());
 	}
 	_state.storeFunctor(ls);
-
-
+	// that's it !
 	return *ls;
-	
 }
 
 #endif /*MAKE_LS_MOEO_H_*/

@@ -20,26 +20,31 @@
 #include <metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h>
 
 /**
- * Default is exponential
+ * Fitness assignment sheme based an Indicator proposed in:
+ * E. Zitzler, S. Künzli, "Indicator-Based Selection in Multiobjective Search", Proc. 8th International Conference on Parallel Problem Solving from Nature (PPSN VIII), pp. 832-842, Birmingham, UK (2004).
+ * This strategy is, for instance, used in IBEA. 
  */
 template < class MOEOT >
-class moeoIndicatorBasedFitnessAssignment : public moeoFitnessAssignment < MOEOT >
+class moeoIndicatorBasedFitnessAssignment : public moeoParetoBasedFitnessAssignment < MOEOT >
 {
 public:
 
 	/** The type of objective vector */
 	typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 	
+	
 	/**
-	 * Ctor
-	 * @param ...
+	 * Ctor.
+	 * @param _metric the quality indicator
+	 * @param _kappa the scaling factor
 	 */
 	moeoIndicatorBasedFitnessAssignment(moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > * _metric, const double _kappa) : metric(_metric), kappa(_kappa)
 	{}
 	
 	
 	/**
-	 *
+	 * Sets the fitness values for every solution contained in the population _pop
+	 * @param _pop the population
 	 */
 	void operator()(eoPop < MOEOT > & _pop)
 	{
@@ -52,26 +57,12 @@ public:
 	}
 
 
-/////////////////////////////////////////////////////////////////////
-
-
-// A SIMPLIFIER ! => utiliser la fonction d'en dessous ;-)
-	void updateByDeleting(eoPop < MOEOT > & _pop, MOEOT & _moeo)
-	{
-		vector < double > v;
-		v.resize(_pop.size());
-		for (unsigned i=0; i<_pop.size(); i++)
-		{
-			v[i] = (*metric)(_moeo.objectiveVector(), _pop[i].objectiveVector());
-		}
-		for (unsigned i=0; i<_pop.size(); i++)
-		{
-			_pop[i].fitness( _pop[i].fitness() + exp(-v[i]/kappa) );
-		}
-	}
-
-
-        void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
+	/**
+	 * Updates the fitness values of the whole population _pop by taking the deletion of the objective vector _objVec into account.
+	 * @param _pop the population
+	 * @param _objecVec the objective vector
+	 */
+	void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
 	{
 		vector < double > v;
 		v.resize(_pop.size());
@@ -84,40 +75,15 @@ public:
 			_pop[i].fitness( _pop[i].fitness() + exp(-v[i]/kappa) );
 		}
 	}
-
-
-  // IDEM !
-	void updateByAdding(eoPop < MOEOT > & _pop, MOEOT & _moeo)
-	{
-		vector < double > v;
-		// update every fitness values to take the new individual into account
-		v.resize(_pop.size());
-		for (unsigned i=0; i<_pop.size(); i++)
-		{
-			v[i] = (*metric)(_moeo.objectiveVector(), _pop[i].objectiveVector());
-		}
-		for (unsigned i=0; i<_pop.size(); i++)
-		{
-			_pop[i].fitness( _pop[i].fitness() - exp(-v[i]/kappa) );
-		}
-		// compute the fitness of the new individual
-		v.clear();
-		v.resize(_pop.size());
-		for (unsigned i=0; i<_pop.size(); i++)
-		{
-			v[i] = (*metric)(_pop[i].objectiveVector(), _moeo.objectiveVector());
-		}
-		double fitness = 0;
-		for (unsigned i=0; i<v.size(); i++)
-		{
-			fitness -= exp(-v[i]/kappa);
-		}
-		_moeo.fitness(fitness);
-	}
-
-
-  // update _pop et retourne la valeur de fitness de _objVec
-        double updateByAdding(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
+	
+	
+	/**
+	 * Updates the fitness values of the whole population _pop by taking the adding of the objective vector _objVec into account
+	 * and returns the fitness value of _objVec.
+	 * @param _pop the population
+	 * @param _objecVec the objective vector
+	 */
+	double updateByAdding(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
 	{
 		vector < double > v;
 		// update every fitness values to take the new individual into account
@@ -146,12 +112,13 @@ public:
 	}
 
 
-/////////////////////////////////////////////////////////////////////
-
-
 protected:
+
+	/** the quality indicator */
 	moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > * metric;
+	/** the scaling factor */
 	double kappa;
+	/** the computed indicator values */
 	std::vector < std::vector<double> > values;
 
 
@@ -176,9 +143,10 @@ protected:
 		}
 	}
 
+
 	/**
-	 * Compute every indicator value : values[i] = I(_v[i], _o) !!!!!!!!!!!
-	 * @param ...
+	 * Compute every indicator value in values (values[i] = I(_v[i], _o))
+	 * @param _pop the population
 	 */
 	void computeValues(const eoPop < MOEOT > & _pop)
 	{
@@ -197,6 +165,11 @@ protected:
 		}
 	}
 
+
+	/**
+	 * Sets the fitness value of the whple population
+	 * @param _pop the population
+	 */
 	void setFitnesses(eoPop < MOEOT > & _pop)
 	{
 		for (unsigned i=0; i<_pop.size(); i++)
@@ -205,6 +178,11 @@ protected:
 		}
 	}
 
+
+	/**
+	 * Returns the fitness value of the _idx th individual of the population
+	 * @param _idx the index
+	 */
 	double computeFitness(const unsigned _idx)
 	{
 		double result = 0;
@@ -217,6 +195,7 @@ protected:
 		}
 		return result;
 	}
+	
 };
 
 #endif /*MOEOINDICATORBASEDFITNESSASSIGNMENT_H_*/

@@ -10,8 +10,8 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef MOEOCROWDINGDISTANCEASSIGNMENT_H_
-#define MOEOCROWDINGDISTANCEASSIGNMENT_H_
+#ifndef MOEOCROWDINGDIVERSITYASSIGNMENT_H_
+#define MOEOCROWDINGDIVERSITYASSIGNMENT_H_
 
 #include <eoPop.h>
 #include <moeoComparator.h>
@@ -27,21 +27,26 @@ class moeoCrowdingDiversityAssignment : public moeoDiversityAssignment < MOEOT >
 {
 public:
 
-
-  /** Infinity value */
-  double inf ()const
-  {
-    return std::numeric_limits<double>::max();
-  }
-
-
+	/** the objective vector type of the solutions */
+	typedef typename MOEOT::ObjectiveVector ObjectiveVector;
+	
+	
 	/**
-	 * ...
-	 * @param _pop the population
+	 * Returns a big value (regarded as infinite)
 	 */
-	void operator()(eoPop < MOEOT > & _pop)
-	{
-		// number of objectives for the problem under consideration
+	 double inf() const
+	 {
+	 	return std::numeric_limits<double>::max();
+	 }
+	 
+	 
+	 /**
+	  * Computes diversity values for every solution contained in the population _pop
+	  * @param _pop the population
+	  */
+	  void operator()(eoPop < MOEOT > & _pop)
+	  {
+	  	// number of objectives for the problem under consideration
 		unsigned nObjectives = MOEOT::ObjectiveVector::nObjectives();
 		if (_pop.size() <= 2)
 		{
@@ -54,19 +59,26 @@ public:
 		{
 			setDistances(_pop);
 		}
-	}
-
-
-	
-
-private:
-
-	/** the objective vector type of the solutions */
-	typedef typename MOEOT::ObjectiveVector ObjectiveVector;
+	  }
 
 
 	/**
-	 * ...
+	 * @warning NOT IMPLEMENTED, DO NOTHING !
+	 * Updates the diversity values of the whole population _pop by taking the deletion of the objective vector _objVec into account.
+	 * @param _pop the population
+	 * @param _objecVec the objective vector
+	 * @warning NOT IMPLEMENTED, DO NOTHING !
+	 */
+	void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
+	{
+		cout << "WARNING : updateByDeleting not implemented in moeoCrowdingDiversityAssignment" << endl;
+	}
+	
+	
+private:
+
+	/**
+	 * Sets the distance values
 	 * @param _pop the population
 	 */
 	void setDistances (eoPop < MOEOT > & _pop)
@@ -88,6 +100,7 @@ private:
 			// min & max
 			min = _pop[0].objectiveVector()[obj];
 			max = _pop[_pop.size()-1].objectiveVector()[obj];
+			// set the diversity value to infiny for min and max
 			_pop[0].diversity(inf());
 			_pop[_pop.size()-1].diversity(inf());
 			for (unsigned i=1; i<_pop.size()-1; i++)

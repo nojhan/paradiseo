@@ -15,8 +15,8 @@
 
 #include <eoContinue.h>
 #include <eoPop.h>
-#include <eoUpdater.h>
 #include <eoSelect.h>
+#include <utils/eoUpdater.h>
 #include <moeoArchive.h>
 #include <moeoLS.h>
 
@@ -36,15 +36,17 @@ public:
 	 * @param _mols a multi-objective local search
 	 * @param _arch the archive
 	 */
-	eoHybridLS (eoContinue < MOEOT > & _term, eoSelect < MOEOT > & _select, moeoLS < MOEOT > & _mols, moeoArchive < MOEOT > & _arch) : term(_term), select(_select), mols(_mols), arch(_arch)
+	moeoHybridLS (eoContinue < MOEOT > & _term, eoSelect < MOEOT > & _select, moeoLS < MOEOT, MOEOT > & _mols, moeoArchive < MOEOT > & _arch) :
+	term(_term), select(_select), mols(_mols), arch(_arch)
 	{}
+
 
 	/**
 	 * Applies the multi-objective local search to selected individuals contained in the archive if the stopping criteria is not verified 
 	 */
 	void operator () ()
 	{
-		if (! cont (arch))
+		if (! term (arch))
 		{
 			// selection of solutions
 			eoPop < MOEOT > selectedSolutions;
@@ -60,12 +62,12 @@ public:
 
 private:
 
-	/** stopping criteria*/
+	/** stopping criteria */
 	eoContinue < MOEOT > & term;
 	/** selector */
 	eoSelect < MOEOT > & select;
 	/** multi-objective local search */
-	moeoLS < MOEOT > & mols;
+	moeoLS < MOEOT, MOEOT > & mols;
 	/** archive */
 	moeoArchive < MOEOT > & arch;
 

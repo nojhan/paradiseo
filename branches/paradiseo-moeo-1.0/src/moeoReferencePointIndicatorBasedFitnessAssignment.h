@@ -19,7 +19,7 @@
 #include <metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h>
 
 /**
- *
+ * Fitness assignment sheme based a Reference Point and a Quality Indicator.
  */
 template < class MOEOT >
 class moeoReferencePointIndicatorBasedFitnessAssignment : public moeoFitnessAssignment < MOEOT >
@@ -31,21 +31,17 @@ public:
 	
 	/**
 	 * Ctor
-	 * @param ...
+	 * @param _refPoint the reference point
+	 * @param _metric the quality indicator
 	 */
-	moeoReferencePointIndicatorBasedFitnessAssignment
-	(
-		const ObjectiveVector _refPoint,
-		moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > * _metric
-
-	) :
-		refPoint(_refPoint),
-		metric(_metric)
+	moeoReferencePointIndicatorBasedFitnessAssignment (const ObjectiveVector _refPoint, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > * _metric) :
+	refPoint(_refPoint), metric(_metric)
 	{}
 	
 	
 	/**
-	 * NE CALCULER LE FITNESS D'UNE SOL QUE SI INVALID() (ATTENTION BOUNDS !)
+	 * Sets the fitness values for every solution contained in the population _pop
+	 * @param _pop the population
 	 */
 	void operator()(eoPop < MOEOT > & _pop)
 	{
@@ -55,6 +51,12 @@ public:
 		setFitnesses(_pop);
 	}
 
+
+	/**
+	 * Updates the fitness values of the whole population _pop by taking the deletion of the objective vector _objVec into account.
+	 * @param _pop the population
+	 * @param _objecVec the objective vector
+	 */
 	void updateByDeleting(eoPop < MOEOT > & _pop, MOEOT & _moeo)
 	{
 		// nothing to do  ;-)
@@ -62,8 +64,11 @@ public:
 
 
 protected:
-	moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > * metric;
+
+	/** the reference point */
 	ObjectiveVector refPoint;
+	/** the quality indicator */
+	moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > * metric;
 
 
 	/**
@@ -87,12 +92,14 @@ protected:
 		}
 	}
 
-
+	/**
+	 * Sets the fitness of every individual contained in the population _pop
+	 * @param _pop the population
+	 */
 	void setFitnesses(eoPop < MOEOT > & _pop)
 	{
 		for (unsigned i=0; i<_pop.size(); i++)
 		{
-			//_pop[i].fitness( (*metric)(refPoint, _pop[i].objectiveVector()) );
 			_pop[i].fitness(- (*metric)(_pop[i].objectiveVector(), refPoint) );
 		}
 	}

@@ -14,13 +14,13 @@
 #define MOEOINDICATORBASEDLS_H_
 
 #include <eoContinue.h>
+#include <eoEvalFunc.h>
 #include <eoPop.h>
 #include <moMove.h>
 #include <moMoveInit.h>
 #include <moNextMove.h>
 #include <moeoMoveIncrEval.h>
 #include <moeoArchive.h>
-#include <moeoEvalFunc.h>
 #include <moeoLS.h>
 #include <moeoIndicatorBasedFitnessAssignment.h>
 
@@ -49,7 +49,7 @@ public:
 	moeoIndicatorBasedLS(
 		moMoveInit < Move > & _moveInit,
 		moNextMove < Move > & _nextMove,
-		moeoEvalFunc < MOEOT > & _eval,
+		eoEvalFunc < MOEOT > & _eval,
 		moeoMoveIncrEval < Move > & _moveIncrEval,
 		moeoIndicatorBasedFitnessAssignment < MOEOT > & _fitnessAssignment,
 		eoContinue < MOEOT > & _continuator

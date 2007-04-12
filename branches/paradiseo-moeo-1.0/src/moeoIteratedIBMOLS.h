@@ -14,6 +14,7 @@
 #define MOEOITERATEDIBMOLS_H_
 
 #include <eoContinue.h>
+#include <eoEvalFunc.h>
 #include <eoOp.h>
 #include <eoPop.h>
 #include <utils/rnd_generators.h>
@@ -22,14 +23,13 @@
 #include <moNextMove.h>
 #include <moeoMoveIncrEval.h>
 #include <moeoArchive.h>
-#include <moeoEvalFunc.h>
 #include <moeoLS.h>
 #include <moeoIndicatorBasedFitnessAssignment.h>
 #include <moeoIndicatorBasedLS.h>
 
 
 
-#include <rsCrossQuad.h>
+//#include <rsCrossQuad.h>
 
 
 
@@ -61,7 +61,7 @@ public:
 	moeoIteratedIBMOLS(
 		moMoveInit < Move > & _moveInit,
 		moNextMove < Move > & _nextMove,
-		moeoEvalFunc < MOEOT > & _eval,
+		eoEvalFunc < MOEOT > & _eval,
 		moeoMoveIncrEval < Move > & _moveIncrEval,
 		moeoIndicatorBasedFitnessAssignment < MOEOT > & _fitnessAssignment,
 		eoContinue < MOEOT > & _continuator,
@@ -109,7 +109,7 @@ private:
 	/** the local search to iterate */
 	moeoIndicatorBasedLS < MOEOT, Move > ibmols;
 	/** the full evaluation */
-	moeoEvalFunc < MOEOT > & eval;
+	eoEvalFunc < MOEOT > & eval;
 	/** the monary operator */
 	eoMonOp < MOEOT > & monOp;
 	/** the random monary operator (or random initializer) */
@@ -168,6 +168,7 @@ private:
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // A DEVELOPPER RAPIDEMENT POUR TESTER AVEC CROSSOVER //
+/*
 	void generateNewSolutions2(eoPop < MOEOT > & _pop, const moeoArchive < MOEOT > & _arch)
 	{
 		// here, we must have a QuadOp !
@@ -207,6 +208,7 @@ private:
 			i++;
 		}
 	}
+	*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
