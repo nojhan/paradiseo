@@ -20,16 +20,16 @@
  * Selection strategy that selects ONE individual by using roulette wheel process.
  */
 template < class MOEOT >
- class moeoRouletteSelect:public moeoSelectOne <MOEOT>
+class moeoRouletteSelect:public moeoSelectOne <MOEOT>
 {
 public:
 
 
-	/**
-     * Full Ctor.
-     * @param _comparator the comparator (used to compare 2 individuals)
-     * @param _tSize the number of individuals in the tournament (default: 2)
-     */
+    /**
+        * Full Ctor.
+        * @param _comparator the comparator (used to compare 2 individuals)
+        * @param _tSize the number of individuals in the tournament (default: 2)
+        */
     moeoRouletteSelect (moeoComparator < MOEOT > &_comparator, unsigned _tSize = 2):
             comparator (_comparator), tSize (_tSize)
     {
@@ -60,21 +60,21 @@ public:
         }
     }
 
-  /**
-   *  Apply the tournament to the given population
-   */
-  const MOEOT & operator  () (const eoPop < MOEOT > &_pop)
-  {
-  	// use the selector
-   	return mo_roulette_wheel(_pop,total); //comparator ??
-  }
+    /**
+     *  Apply the tournament to the given population
+     */
+    const MOEOT & operator  () (const eoPop < MOEOT > &_pop)
+    {
+        // use the selector
+        return mo_roulette_wheel(_pop,total); //comparator ??
+    }
 
 
 protected:
 
-	moeoComparator < MOEOT > &comparator;
+    moeoComparator < MOEOT > &comparator;
 
-	double & total;
+    double & total;
 
 };
 
