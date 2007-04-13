@@ -45,12 +45,8 @@ public:
 	 * @param _evalDiversity the diversity assignment strategy
 	 */
 	moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _evalFitness, moeoDiversityAssignment < MOEOT > & _evalDiversity) : 
-	evalFitness (_evalFitness), evalDiversity (_evalDiversity)
-	{
-	  	// a moeoFitThenDivComparator is used as default
-	    moeoFitnessThenDiversityComparator < MOEOT > &fitThenDivComparator;
-	    comparator = fitThenDivComparator;
-	}
+	evalFitness (_evalFitness), evalDiversity (_evalDiversity), comparator (*(new moeoFitnessThenDiversityComparator < MOEOT >))
+	{}
 
 
 	/**
@@ -59,12 +55,8 @@ public:
 	 * @param _comparator the comparator (used to compare 2 individuals)
 	 */
 	moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _evalFitness, moeoComparator < MOEOT > & _comparator) : 
-	evalFitness (_evalFitness), comparator (_comparator)
-	{
-		// a dummy diversity is used as default
-    	moeoDummyDiversityAssignment < MOEOT > &dummyDiversityAssignment;
-    	evalDiversity = dummyDiversityAssignment;
-	}
+	evalFitness (_evalFitness), evalDiversity (*(new moeoDummyDiversityAssignment < MOEOT >)), comparator (_comparator)
+	{}
 
 
 	/**
@@ -72,15 +64,9 @@ public:
 	 * A moeoFitThenDivComparator and a dummy diversity are used as default.
 	 * @param _evalFitness the fitness assignment strategy
 	 */
-	moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _evalFitness) : evalFitness (_evalFitness)
-	{
-	 	// a dummy diversity is used as default
-    	moeoDummyDiversityAssignment < MOEOT > & dummyDiversityAssignment;
-    	evalDiversity = dummyDiversityAssignment;
-    	// a moeoFitThenDivComparator is used as default
-    	moeoFitnessThenDiversityComparator < MOEOT > & fitThenDivComparator;
-    	comparator = fitThenDivComparator;
-	}
+	moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _evalFitness) : 
+	evalFitness (_evalFitness), evalDiversity (*(new moeoDummyDiversityAssignment < MOEOT >)), comparator (*(new moeoFitnessThenDiversityComparator < MOEOT >))
+	{}
 
 
 	/**
@@ -120,7 +106,6 @@ protected:
 	moeoDiversityAssignment < MOEOT > & evalDiversity;
 	/** the comparator (used to compare 2 individuals) */
 	moeoComparator < MOEOT > & comparator;
-
 
 	/**
 	 * This class is used to compare solutions in order to sort the population.
