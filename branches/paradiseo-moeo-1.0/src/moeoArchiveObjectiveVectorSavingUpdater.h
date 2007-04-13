@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// moeoArchiveFitnessSavingUpdater.h
+// moeoArchiveObjectiveVectorSavingUpdater.h
 // (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2006
 /*
     This library...
@@ -10,8 +10,8 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef MOEOARCHIVEFITNESSSAVINGUPDATER_H_
-#define MOEOARCHIVEFITNESSSAVINGUPDATER_H_
+#ifndef MOEOARCHIVEOBJECTIVEVECTORSAVINGUPDATER_H_
+#define MOEOARCHIVEOBJECTIVEVECTORSAVINGUPDATER_H_
 
 #include <fstream>
 #include <string>
@@ -25,7 +25,7 @@
  * This class allows to save the fitnesses of solutions contained in an archive into a file at each generation.
  */
 template <class EOT>
-class moeoArchiveFitnessSavingUpdater : public eoUpdater
+class moeoArchiveObjectiveVectorSavingUpdater : public eoUpdater
 {
 public:
 
@@ -35,7 +35,7 @@ public:
      * @param _filename target filename
      * @param _id own ID
      */
-    moeoArchiveFitnessSavingUpdater (moeoArchive<EOT> & _arch, const std::string & _filename = "Res/Arch", int _id = -1) : arch(_arch), filename(_filename), id(_id), counter(0)
+    moeoArchiveObjectiveVectorSavingUpdater (moeoArchive<EOT> & _arch, const std::string & _filename, int _id = -1) : arch(_arch), filename(_filename), id(_id), counter(0)
     {}
 
     /**
@@ -67,4 +67,4 @@ private:
 
 };
 
-#endif /*MOEOARCHIVEFITNESSSAVINGUPDATER_H_*/
+#endif /*MOEOARCHIVEOBJECTIVEVECTORSAVINGUPDATER_H_*/
