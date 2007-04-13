@@ -26,10 +26,6 @@
  * All template arguments must have a void and a copy constructor.
  * Besides, note that, contrary to the mono-objective case (and to EO) where the fitness value of a solution is confused with its objective value,  
  * the fitness value differs of the objectives values in the multi-objective case.
- *  
- * !!!!!!!!!!!!!!!!! !!!!!
- * operator '<' et '>' ???
- * !!!!!!!!!!!!!!!!!!!!!!! 
  */
 template < class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity > 
 class MOEO : public EO < MOEOObjectiveVector >
@@ -212,6 +208,18 @@ public:
 	}
 	
 	
+	/**
+	 * Returns true if the objective vector of the current solution is smaller than the objective vector of _other on the first objective, 
+	 * then on the second, and so on (can be usefull for sorting/printing).
+	 * You should implement another function in the sub-class of MOEO to have another sorting mecanism.
+	 * @param _other the other MOEO object to compare with
+	 */
+	bool operator<(const MOEO & _other) const
+	{
+		return objectiveVector() < _other.objectiveVector();
+	}
+	
+		
 	/**
 	 * Return the class id (the class name as a std::string)
 	 */
