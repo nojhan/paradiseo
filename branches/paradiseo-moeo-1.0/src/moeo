@@ -22,7 +22,7 @@
 #include <moeoCombinedLS.h>
 #include <moeoComparator.h>
 #include <moeoConvertPopToObjectiveVectors.h>
-#include <moeoCrowdingDiversityAssignment.h>
+#include <moeoCrowdingDistanceDiversityAssignment.h>
 #include <moeoDetTournamentSelect.h>
 #include <moeoDiversityAssignment.h>
 #include <moeoEA.h>
@@ -35,9 +35,10 @@
 #include <moeoGenerationalReplacement.h>
 #include <moeoHybridLS.h>
 #include <moeoIndicatorBasedFitnessAssignment.h>
-#include <moeoIndicatorBasedLS.h>
-#include <moeoIteratedIBMOLS.h>
+//#include <moeoIndicatorBasedLS.h>
+//#include <moeoIteratedIBMOLS.h>
 #include <moeoLS.h>
+#include <moeoNSGAII.h>
 #include <moeoObjectiveVectorComparator.h>
 #include <moeoObjectiveVector.h>
 #include <moeoRandomSelect.h>
@@ -46,6 +47,7 @@
 #include <moeoSelectFromPopAndArch.h>
 #include <moeoSelectOne.h>
 #include <moeoStochTournamentSelect.h>
+#include <moeoVector.h>
 #include <metric/moeoBinaryMetricSavingUpdater.h>
 #include <metric/moeoContributionMetric.h>
 #include <metric/moeoEntropyMetric.h>
