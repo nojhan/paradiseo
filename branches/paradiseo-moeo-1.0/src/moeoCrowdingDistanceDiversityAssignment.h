@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// moeoCrowdingDiversityAssignment.h
+// moeoCrowdingDistanceDiversityAssignment.h
 // (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
 /*
     This library...
@@ -10,8 +10,8 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef MOEOCROWDINGDIVERSITYASSIGNMENT_H_
-#define MOEOCROWDINGDIVERSITYASSIGNMENT_H_
+#ifndef MOEOCROWDINGDISTANCEDIVERSITYASSIGNMENT_H_
+#define MOEOCROWDINGDISTANCEDIVERSITYASSIGNMENT_H_
 
 #include <eoPop.h>
 #include <moeoComparator.h>
@@ -23,7 +23,7 @@
  * This strategy is, for instance, used in NSGA-II.
  */
 template < class MOEOT >
-class moeoCrowdingDiversityAssignment : public moeoDiversityAssignment < MOEOT >
+class moeoCrowdingDistanceDiversityAssignment : public moeoDiversityAssignment < MOEOT >
 {
 public:
 
@@ -66,7 +66,7 @@ public:
 	 * @warning NOT IMPLEMENTED, DO NOTHING !
 	 * Updates the diversity values of the whole population _pop by taking the deletion of the objective vector _objVec into account.
 	 * @param _pop the population
-	 * @param _objecVec the objective vector
+	 * @param _objVec the objective vector
 	 * @warning NOT IMPLEMENTED, DO NOTHING !
 	 */
 	void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
@@ -113,4 +113,4 @@ private:
 
 };
 
-#endif /*MOEOCROWDINGDIVERSITYASSIGNMENT_H_*/
+#endif /*MOEOCROWDINGDISTANCEDIVERSITYASSIGNMENT_H_*/
