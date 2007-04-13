@@ -24,41 +24,41 @@ class FlowShopInit: public eoInit<FlowShop> {
 
 public:
 
-  /** 
-   * constructor
-   * @param const unsigned _N  the number of jobs to schedule
-   */
-  FlowShopInit(const unsigned _N) {
-    N = _N;
-  }
-  
-  /**
-   * randomize a genotype
-   * @param FlowShop & _genotype  a genotype that has been default-constructed
-   */
-  void operator()(FlowShop & _genotype) {
-    // scheduling vector
-    vector<unsigned> scheduling(N);
-    // initialisation of possible values
-    vector<unsigned> possibles(N);
-    for(unsigned i=0 ; i<N ; i++)
-      possibles[i] = i;
-    // random initialization
-    unsigned rInd;     // random index
-    for (unsigned i=0; i<N; i++) {
-      rInd = (unsigned) rng.uniform(N-i);
-      scheduling[i] = possibles[rInd];
-      possibles[rInd] = possibles[N-i-1];
+    /**
+     * constructor
+     * @param const unsigned _N  the number of jobs to schedule
+     */
+    FlowShopInit(const unsigned _N) {
+        N = _N;
     }
-    _genotype.setScheduling(scheduling);
-    _genotype.invalidate();	   // IMPORTANT in case the _genotype is old
-  }
+
+    /**
+     * randomize a genotype
+     * @param FlowShop & _genotype  a genotype that has been default-constructed
+     */
+    void operator()(FlowShop & _genotype) {
+        // scheduling vector
+        vector<unsigned> scheduling(N);
+        // initialisation of possible values
+        vector<unsigned> possibles(N);
+        for (unsigned i=0 ; i<N ; i++)
+            possibles[i] = i;
+        // random initialization
+        unsigned rInd;     // random index
+        for (unsigned i=0; i<N; i++) {
+            rInd = (unsigned) rng.uniform(N-i);
+            scheduling[i] = possibles[rInd];
+            possibles[rInd] = possibles[N-i-1];
+        }
+        _genotype.setScheduling(scheduling);
+        _genotype.invalidate();	   // IMPORTANT in case the _genotype is old
+    }
 
 
 private:
-  /** the number of jobs (size of a scheduling vector) */
-  unsigned N;
- 
+    /** the number of jobs (size of a scheduling vector) */
+    unsigned N;
+
 };
 
 #endif /*FLOWSHOPINIT_H_*/

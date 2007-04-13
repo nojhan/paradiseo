@@ -5,8 +5,8 @@
 
 #include <eoFunctor.h>
 
-template < class Move > 
+template < class Move >
 class moeoMoveIncrEval : public eoBF < const Move &, const typename Move::EOType &, typename Move::EOType::ObjectiveVector >
-{};
+    {};
 
 #endif

@@ -43,7 +43,7 @@ eoCheckPoint < MOEOT > & do_make_checkpoint_moeo (eoParser & _parser, eoState & 
 {
     eoCheckPoint < MOEOT > & checkpoint = _state.storeFunctor(new eoCheckPoint < MOEOT > (_continue));
     /* the objective vector type */
-	typedef typename MOEOT::ObjectiveVector ObjectiveVector;
+    typedef typename MOEOT::ObjectiveVector ObjectiveVector;
     // get number of obectives
     unsigned nObj = ObjectiveVector::nObjectives();
 
@@ -63,17 +63,17 @@ eoCheckPoint < MOEOT > & do_make_checkpoint_moeo (eoParser & _parser, eoState & 
     // shoudl we empty it if exists
     eoValueParam<bool>& eraseParam = _parser.getORcreateParam(true, "eraseDir", "erase files in dirName if any", '\0', "Output");
     bool dirOK = false;		   // not tested yet
-    
+
     // Dump of the whole population
     //-----------------------------
     bool printPop = _parser.getORcreateParam(false, "printPop", "Print sorted pop. every gen.", '\0', "Output").value();
     eoSortedPopStat<MOEOT> * popStat;
     if ( printPop ) // we do want pop dump
     {
-    	popStat = & _state.storeFunctor(new eoSortedPopStat<MOEOT>);
-    	checkpoint.add(*popStat);
+        popStat = & _state.storeFunctor(new eoSortedPopStat<MOEOT>);
+        checkpoint.add(*popStat);
     }
-    
+
     //////////////////////////////////
     // State savers
     //////////////////////////////
@@ -82,36 +82,36 @@ eoCheckPoint < MOEOT > & do_make_checkpoint_moeo (eoParser & _parser, eoState & 
     eoValueParam<unsigned>& saveFrequencyParam = _parser.createParam(unsigned(0), "saveFrequency", "Save every F generation (0 = only final state, absent = never)", '\0', "Persistence" );
     if (_parser.isItThere(saveFrequencyParam))
     {
-    	// first make sure dirName is OK
-    	if (! dirOK )
-    		dirOK = testDirRes(dirName, eraseParam.value()); // TRUE
-    	unsigned freq = (saveFrequencyParam.value()>0 ? saveFrequencyParam.value() : UINT_MAX );
+        // first make sure dirName is OK
+        if (! dirOK )
+            dirOK = testDirRes(dirName, eraseParam.value()); // TRUE
+        unsigned freq = (saveFrequencyParam.value()>0 ? saveFrequencyParam.value() : UINT_MAX );
 #ifdef _MSVC
-		std::string stmp = dirName + "\generations";
+        std::string stmp = dirName + "\generations";
 #else
-		std::string stmp = dirName + "/generations";
+        std::string stmp = dirName + "/generations";
 #endif
-		eoCountedStateSaver *stateSaver1 = new eoCountedStateSaver(freq, _state, stmp);
-		_state.storeFunctor(stateSaver1);
-		checkpoint.add(*stateSaver1);
+        eoCountedStateSaver *stateSaver1 = new eoCountedStateSaver(freq, _state, stmp);
+        _state.storeFunctor(stateSaver1);
+        checkpoint.add(*stateSaver1);
     }
     // save state every T seconds
     eoValueParam<unsigned>& saveTimeIntervalParam = _parser.getORcreateParam(unsigned(0), "saveTimeInterval", "Save every T seconds (0 or absent = never)", '\0',"Persistence" );
     if (_parser.isItThere(saveTimeIntervalParam) && saveTimeIntervalParam.value()>0)
     {
-    	// first make sure dirName is OK
-    	if (! dirOK )
-    		dirOK = testDirRes(dirName, eraseParam.value()); // TRUE
+        // first make sure dirName is OK
+        if (! dirOK )
+            dirOK = testDirRes(dirName, eraseParam.value()); // TRUE
 #ifdef _MSVC
-			std::string stmp = dirName + "\time";
+        std::string stmp = dirName + "\time";
 #else
-			std::string stmp = dirName + "/time";
+        std::string stmp = dirName + "/time";
 #endif
-			eoTimedStateSaver *stateSaver2 = new eoTimedStateSaver(saveTimeIntervalParam.value(), _state, stmp);
-			_state.storeFunctor(stateSaver2);
-			checkpoint.add(*stateSaver2);
+        eoTimedStateSaver *stateSaver2 = new eoTimedStateSaver(saveTimeIntervalParam.value(), _state, stmp);
+        _state.storeFunctor(stateSaver2);
+        checkpoint.add(*stateSaver2);
     }
-    
+
     ///////////////////
     // Archive
     //////////////////
@@ -119,58 +119,58 @@ eoCheckPoint < MOEOT > & do_make_checkpoint_moeo (eoParser & _parser, eoState & 
     bool updateArch = _parser.getORcreateParam(true, "updateArch", "Update the archive at each gen.", '\0', "Evolution Engine").value();
     if (updateArch)
     {
-    	moeoArchiveUpdater < MOEOT > * updater = new moeoArchiveUpdater < MOEOT > (_archive, _pop);
-    	_state.storeFunctor(updater);
-     	checkpoint.add(*updater);
+        moeoArchiveUpdater < MOEOT > * updater = new moeoArchiveUpdater < MOEOT > (_archive, _pop);
+        _state.storeFunctor(updater);
+        checkpoint.add(*updater);
     }
     // store the objective vectors contained in the archive every generation
     bool storeArch = _parser.getORcreateParam(false, "storeArch", "Store the archive's objective vectors at each gen.", '\0', "Output").value();
     if (storeArch)
     {
-    	if (! dirOK )
-    		dirOK = testDirRes(dirName, eraseParam.value()); // TRUE
+        if (! dirOK )
+            dirOK = testDirRes(dirName, eraseParam.value()); // TRUE
 #ifdef _MSVC
-			std::string stmp = dirName + "\arch";
+        std::string stmp = dirName + "\arch";
 #else
-			std::string stmp = dirName + "/arch";
+        std::string stmp = dirName + "/arch";
 #endif
-    	moeoArchiveObjectiveVectorSavingUpdater < MOEOT > * save_updater = new moeoArchiveObjectiveVectorSavingUpdater < MOEOT > (_archive, stmp);
-    	_state.storeFunctor(save_updater);
-     	checkpoint.add(*save_updater);
+        moeoArchiveObjectiveVectorSavingUpdater < MOEOT > * save_updater = new moeoArchiveObjectiveVectorSavingUpdater < MOEOT > (_archive, stmp);
+        _state.storeFunctor(save_updater);
+        checkpoint.add(*save_updater);
     }
     // store the contribution of the non-dominated solutions
     bool cont = _parser.getORcreateParam(false, "contribution", "Store the contribution of the archive at each gen.", '\0', "Output").value();
     if (cont)
     {
-    	if (! dirOK )
-    		dirOK = testDirRes(dirName, eraseParam.value()); // TRUE
+        if (! dirOK )
+            dirOK = testDirRes(dirName, eraseParam.value()); // TRUE
 #ifdef _MSVC
-			std::string stmp = dirName + "\contribution";
+        std::string stmp = dirName + "\contribution";
 #else
-			std::string stmp = dirName + "/contribution";
+        std::string stmp = dirName + "/contribution";
 #endif
-    	moeoContributionMetric < ObjectiveVector > * contribution = new moeoContributionMetric < ObjectiveVector >;
-    	moeoBinaryMetricSavingUpdater < MOEOT > * contribution_updater = new moeoBinaryMetricSavingUpdater < MOEOT > (*contribution, _archive, stmp);
-    	_state.storeFunctor(contribution_updater);
-    	checkpoint.add(*contribution_updater);
+        moeoContributionMetric < ObjectiveVector > * contribution = new moeoContributionMetric < ObjectiveVector >;
+        moeoBinaryMetricSavingUpdater < MOEOT > * contribution_updater = new moeoBinaryMetricSavingUpdater < MOEOT > (*contribution, _archive, stmp);
+        _state.storeFunctor(contribution_updater);
+        checkpoint.add(*contribution_updater);
     }
     // store the entropy of the non-dominated solutions
     bool ent = _parser.getORcreateParam(false, "entropy", "Store the entropy of the archive at each gen.", '\0', "Output").value();
     if (ent)
     {
-    	if (! dirOK )
-    		dirOK = testDirRes(dirName, eraseParam.value()); // TRUE
+        if (! dirOK )
+            dirOK = testDirRes(dirName, eraseParam.value()); // TRUE
 #ifdef _MSVC
-			std::string stmp = dirName + "\entropy";
+        std::string stmp = dirName + "\entropy";
 #else
-			std::string stmp = dirName + "/entropy";
+        std::string stmp = dirName + "/entropy";
 #endif
-    	moeoEntropyMetric < ObjectiveVector > * entropy = new moeoEntropyMetric < ObjectiveVector >;
-    	moeoBinaryMetricSavingUpdater < MOEOT > * entropy_updater = new moeoBinaryMetricSavingUpdater < MOEOT > (*entropy, _archive, stmp);
-    	_state.storeFunctor(entropy_updater);
-    	checkpoint.add(*entropy_updater);
+        moeoEntropyMetric < ObjectiveVector > * entropy = new moeoEntropyMetric < ObjectiveVector >;
+        moeoBinaryMetricSavingUpdater < MOEOT > * entropy_updater = new moeoBinaryMetricSavingUpdater < MOEOT > (*entropy, _archive, stmp);
+        _state.storeFunctor(entropy_updater);
+        checkpoint.add(*entropy_updater);
     }
-    
+
     // and that's it for the (control and) output
     return checkpoint;
 }

@@ -20,16 +20,16 @@ template <class It,class MOEOT>
 It mo_deterministic_tournament(It _begin, It _end, unsigned _t_size,moeoComparator<MOEOT>& _comparator ,eoRng& _gen = rng)
 {
     It best = _begin + _gen.random(_end - _begin);
-	
+
     for (unsigned i = 0; i < _t_size - 1; ++i)
     {
         It competitor = _begin + _gen.random(_end - _begin);
-        
-		// compare the two individuals by using the comparator
-		if(_comparator(*best,*competitor))
-		
-			// best "better" than competitor
-			best=competitor;
+
+        // compare the two individuals by using the comparator
+        if (_comparator(*best,*competitor))
+
+            // best "better" than competitor
+            best=competitor;
     }
 
     return best;
@@ -53,22 +53,22 @@ MOEOT& mo_deterministic_tournament(eoPop<MOEOT>& _pop, unsigned _t_size,moeoComp
 template <class It,class MOEOT>
 It mo_stochastic_tournament(It _begin, It _end, double _t_rate,moeoComparator<MOEOT>& _comparator ,eoRng& _gen = rng)
 {
-  It i1 = _begin + _gen.random(_end - _begin);
-  It i2 = _begin + _gen.random(_end - _begin);
+    It i1 = _begin + _gen.random(_end - _begin);
+    It i2 = _begin + _gen.random(_end - _begin);
 
-  bool return_better = _gen.flip(_t_rate);
-  
-  if (_comparator(*i1 , *i2))
-  {
-      if (return_better) return i2;
-      // else
+    bool return_better = _gen.flip(_t_rate);
 
-      return i1;
-   }
+    if (_comparator(*i1 , *i2))
+    {
+        if (return_better) return i2;
+        // else
+
+        return i1;
+    }
     else
     {
-      if (return_better) return i1;
-      // else
+        if (return_better) return i1;
+        // else
     }
     // else
 
@@ -96,13 +96,13 @@ It mo_roulette_wheel(It _begin, It _end, double total, eoRng& _gen = rng)
     float roulette = _gen.uniform(total);
 
     if (roulette == 0.0)	   // covers the case where total==0.0
-      return _begin + _gen.random(_end - _begin); // uniform choice
+        return _begin + _gen.random(_end - _begin); // uniform choice
 
     It i = _begin;
 
     while (roulette > 0.0)
     {
-	    roulette -= static_cast<double>(*(i++));
+        roulette -= static_cast<double>(*(i++));
     }
 
     return --i;
@@ -114,13 +114,13 @@ const MOEOT& mo_roulette_wheel(const eoPop<MOEOT>& _pop, double total, eoRng& _g
     float roulette = _gen.uniform(total);
 
     if (roulette == 0.0)	   // covers the case where total==0.0
-      return _pop[_gen.random(_pop.size())]; // uniform choice
+        return _pop[_gen.random(_pop.size())]; // uniform choice
 
     typename eoPop<MOEOT>::const_iterator i = _pop.begin();
 
     while (roulette > 0.0)
     {
-	    roulette -= static_cast<double>((i++)->fitness());
+        roulette -= static_cast<double>((i++)->fitness());
     }
 
     return *--i;
@@ -132,14 +132,14 @@ MOEOT& mo_roulette_wheel(eoPop<MOEOT>& _pop, double total, eoRng& _gen = rng)
     float roulette = _gen.uniform(total);
 
     if (roulette == 0.0)	   // covers the case where total==0.0
-      return _pop[_gen.random(_pop.size())]; // uniform choice
+        return _pop[_gen.random(_pop.size())]; // uniform choice
 
     typename eoPop<MOEOT>::iterator i = _pop.begin();
 
     while (roulette > 0.0)
     {
-    	// fitness ?
-	    roulette -= static_cast<double>((i++)->fitness());
+        // fitness ?
+        roulette -= static_cast<double>((i++)->fitness());
     }
 
     return *--i;

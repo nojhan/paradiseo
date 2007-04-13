@@ -23,20 +23,20 @@ class moeoConvertPopToObjectiveVectors : public eoUF < const eoPop < MOEOT >, co
 {
 public:
 
-	/**
-	 * Returns a vector of the objective vectors from the population _pop
-	 * @param _pop the population
-	 */
-	const std::vector < ObjectiveVector > operator()(const eoPop < MOEOT > _pop)
-	{
-		std::vector < ObjectiveVector > result;
-		result.resize(_pop.size());
-		for (unsigned i=0; i<_pop.size(); i++)
-		{
-			result.push_back(_pop[i].objectiveVector());
-		}
-		return result;
-	}
+    /**
+     * Returns a vector of the objective vectors from the population _pop
+     * @param _pop the population
+     */
+    const std::vector < ObjectiveVector > operator()(const eoPop < MOEOT > _pop)
+    {
+        std::vector < ObjectiveVector > result;
+        result.resize(_pop.size());
+        for (unsigned i=0; i<_pop.size(); i++)
+        {
+            result.push_back(_pop[i].objectiveVector());
+        }
+        return result;
+    }
 };
 
 #endif /*MOEOPOPTOOBJECTIVEVECTORS_H_*/

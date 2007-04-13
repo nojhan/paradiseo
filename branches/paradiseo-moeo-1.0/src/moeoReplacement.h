@@ -20,6 +20,6 @@
  */
 template < class MOEOT >
 class moeoReplacement : public eoReplacement < MOEOT >
-{};
+    {};
 
 #endif /*MOEOREPLACEMENT_H_*/

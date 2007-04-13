@@ -24,30 +24,30 @@ template < class EOT >
 class moeoArchiveUpdater : public eoUpdater
 {
 public:
-  
-  /**
-   * Ctor
-   * @param _arch an archive of non-dominated solutions
-   * @param _pop the main population
-   */
-  moeoArchiveUpdater(moeoArchive <EOT> & _arch, const eoPop<EOT> & _pop) : arch(_arch), pop(_pop)
-  {}
-  
-  
-  /**
-   * Updates the archive with newly found non-dominated solutions contained in the main population
-   */
-  void operator()() {    
-    arch.update(pop);    
-  }
+
+    /**
+     * Ctor
+     * @param _arch an archive of non-dominated solutions
+     * @param _pop the main population
+     */
+    moeoArchiveUpdater(moeoArchive <EOT> & _arch, const eoPop<EOT> & _pop) : arch(_arch), pop(_pop)
+    {}
+
+
+    /**
+     * Updates the archive with newly found non-dominated solutions contained in the main population
+     */
+    void operator()() {
+        arch.update(pop);
+    }
 
 
 private:
 
-	/** the archive of non-dominated solutions */
-	moeoArchive<EOT> & arch;
-	/** the main population */
-	const eoPop<EOT> & pop;
+    /** the archive of non-dominated solutions */
+    moeoArchive<EOT> & arch;
+    /** the main population */
+    const eoPop<EOT> & pop;
 
 };
 

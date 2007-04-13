@@ -23,16 +23,16 @@ template < class MOEOT >
 class moeoGenerationalReplacement : public moeoReplacement < MOEOT >, public eoGenerationalReplacement < MOEOT >
 {
 public:
-	
-	/**
-	 * Swaps _parents and _offspring
-	 * @param _parents the parents population
-	 * @param _offspring the offspring population
-	 */
-	void operator()(eoPop < MOEOT > & _parents, eoPop < MOEOT > & _offspring)
-	{
-		eoGenerationalReplacement < MOEOT >::operator ()(_parents, _offspring);
-	}
+
+    /**
+     * Swaps _parents and _offspring
+     * @param _parents the parents population
+     * @param _offspring the offspring population
+     */
+    void operator()(eoPop < MOEOT > & _parents, eoPop < MOEOT > & _offspring)
+    {
+        eoGenerationalReplacement < MOEOT >::operator ()(_parents, _offspring);
+    }
 
 };
 

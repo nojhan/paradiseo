@@ -27,63 +27,63 @@ class moeoSelectFromPopAndArch : public moeoSelectOne < MOEOT >
 {
 public:
 
-	/**
-	 * Ctor
-	 * @param _popSelectOne the population's selection operator
-	 * @param _archSelectOne the archive's selection operator
-	 * @param _arch the archive
-	 * @param _ratioFromPop the ratio of selected individuals from the population
-	 */
-	moeoSelectFromPopAndArch (moeoSelectOne < MOEOT > & _popSelectOne, moeoSelectOne < MOEOT > _archSelectOne, moeoArchive < MOEOT > & _arch, double _ratioFromPop=0.5)
-	 : popSelectOne(_popSelectOne), archSelectOne(_archSelectOne), arch(_arch), ratioFromPop(_ratioFromPop)
-	{}
-	
-	/**
-	 * Defaulr ctor - the archive's selection operator is a random selector
-	 * @param _popSelectOne the population's selection operator	 
-	 * @param _arch the archive
-	 * @param _ratioFromPop the ratio of selected individuals from the population
-	 */
-	moeoSelectFromPopAndArch (moeoSelectOne < MOEOT > & _popSelectOne, moeoArchive < MOEOT > & _arch, double _ratioFromPop=0.5)
-	 : popSelectOne(_popSelectOne), archSelectOne(randomSelectOne), arch(_arch), ratioFromPop(_ratioFromPop)
-	{}	
-	
-	/**
-	 * The selection process
-	 */
-	virtual const MOEOT & operator () (const eoPop < MOEOT > & pop)
-	{
-		if (arch.size() > 0)
-			if (rng.flip(ratioFromPop))
-				return popSelectOne(pop);
-			else
-				return archSelectOne(arch);
-		else
-			return popSelectOne(pop);
-	}
-	
-	/**
-	 * Setups some population stats
-	 */
-	virtual void setup (const eoPop < MOEOT > & _pop)
-	{
-		popSelectOne.setup(_pop);
-	}
+    /**
+     * Ctor
+     * @param _popSelectOne the population's selection operator
+     * @param _archSelectOne the archive's selection operator
+     * @param _arch the archive
+     * @param _ratioFromPop the ratio of selected individuals from the population
+     */
+    moeoSelectFromPopAndArch (moeoSelectOne < MOEOT > & _popSelectOne, moeoSelectOne < MOEOT > _archSelectOne, moeoArchive < MOEOT > & _arch, double _ratioFromPop=0.5)
+            : popSelectOne(_popSelectOne), archSelectOne(_archSelectOne), arch(_arch), ratioFromPop(_ratioFromPop)
+    {}
+
+    /**
+     * Defaulr ctor - the archive's selection operator is a random selector
+     * @param _popSelectOne the population's selection operator	
+     * @param _arch the archive
+     * @param _ratioFromPop the ratio of selected individuals from the population
+     */
+    moeoSelectFromPopAndArch (moeoSelectOne < MOEOT > & _popSelectOne, moeoArchive < MOEOT > & _arch, double _ratioFromPop=0.5)
+            : popSelectOne(_popSelectOne), archSelectOne(randomSelectOne), arch(_arch), ratioFromPop(_ratioFromPop)
+    {}
+
+    /**
+     * The selection process
+     */
+    virtual const MOEOT & operator () (const eoPop < MOEOT > & pop)
+    {
+        if (arch.size() > 0)
+            if (rng.flip(ratioFromPop))
+                return popSelectOne(pop);
+            else
+                return archSelectOne(arch);
+        else
+            return popSelectOne(pop);
+    }
+
+    /**
+     * Setups some population stats
+     */
+    virtual void setup (const eoPop < MOEOT > & _pop)
+    {
+        popSelectOne.setup(_pop);
+    }
 
 
 private:
 
-	/** The population's selection operator */
-	moeoSelectOne < MOEOT > & popSelectOne;
-	/** The archive's selection operator */
-	moeoSelectOne < MOEOT > & archSelectOne;
-	/** The archive */
-	moeoArchive < MOEOT > & arch;
-	/** The ratio of selected individuals from the population*/
-	double ratioFromPop;
-	/** A random selection operator (used as default for archSelectOne) */
-	moeoRandomSelect < MOEOT > randomSelectOne;
-	
+    /** The population's selection operator */
+    moeoSelectOne < MOEOT > & popSelectOne;
+    /** The archive's selection operator */
+    moeoSelectOne < MOEOT > & archSelectOne;
+    /** The archive */
+    moeoArchive < MOEOT > & arch;
+    /** The ratio of selected individuals from the population*/
+    double ratioFromPop;
+    /** A random selection operator (used as default for archSelectOne) */
+    moeoRandomSelect < MOEOT > randomSelectOne;
+
 };
 
 #endif /*MOEOSELECTONEFROMPOPANDARCH_H_*/

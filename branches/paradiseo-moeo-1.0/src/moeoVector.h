@@ -33,7 +33,7 @@ public:
     using std::vector < GeneType > :: resize;
     using std::vector < GeneType > :: size;
 
-	/** the atomic type */
+    /** the atomic type */
     typedef GeneType AtomType;
     /** the container type */
     typedef std::vector < GeneType > ContainerType;
@@ -44,60 +44,60 @@ public:
      * @param _size Length of vector (default is 0)
      * @param _value Initial value of all elements (default is default value of type GeneType)
      */
-    moeoVector(unsigned _size = 0, GeneType _value = GeneType()) : 
-    MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity >(), std::vector<GeneType>(_size, _value)
+    moeoVector(unsigned _size = 0, GeneType _value = GeneType()) :
+            MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity >(), std::vector<GeneType>(_size, _value)
     {}
-   
-    
+
+
     /**
      * We can't have a Ctor from a std::vector as it would create ambiguity  with the copy Ctor.
      * @param _v a vector of GeneType
      */
     void value(const std::vector < GeneType > & _v)
     {
-    	if (_v.size() != size())	   // safety check
-    	{
-    		if (size())		   // NOT an initial empty std::vector
-    		{
-    			std::cout << "Warning: Changing size in moeoVector assignation"<<std::endl;
-    			resize(_v.size());
-    		}
-    	}
-    	std::copy(_v.begin(), _v.end(), begin());
-    	invalidate();
+        if (_v.size() != size())	   // safety check
+        {
+            if (size())		   // NOT an initial empty std::vector
+            {
+                std::cout << "Warning: Changing size in moeoVector assignation"<<std::endl;
+                resize(_v.size());
+            }
+        }
+        std::copy(_v.begin(), _v.end(), begin());
+        invalidate();
     }
-    
-    
+
+
     /**
      * To avoid conflicts between MOEO::operator< and std::vector<GeneType>::operator<
      * @param _moeo the object to compare with
      */
     bool operator<(const moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType> & _moeo) const
     {
-    	return MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity >::operator<(_moeo);
+        return MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity >::operator<(_moeo);
     }
-    
-    
+
+
     /**
-	 * Writing object
-	 * @param _os output stream
-	 */
-	virtual void printOn(std::ostream & _os) const
+    * Writing object
+    * @param _os output stream
+    */
+    virtual void printOn(std::ostream & _os) const
     {
-    	MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity >::printOn(_os);
+        MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity >::printOn(_os);
         _os << ' ';
         _os << size() << ' ';
         std::copy(begin(), end(), std::ostream_iterator<AtomType>(_os, " "));
     }
-    
-    
+
+
     /**
-	 * Reading object
-	 * @param _is input stream
-	 */
-	virtual void readFrom(std::istream & _is)
+    * Reading object
+    * @param _is input stream
+    */
+    virtual void readFrom(std::istream & _is)
     {
-    	MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity >::readFrom(_is);
+        MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity >::readFrom(_is);
         unsigned sz;
         _is >> sz;
         resize(sz);
@@ -109,7 +109,7 @@ public:
             operator[](i) = atom;
         }
     }
-    
+
 };
 
 
@@ -145,13 +145,13 @@ class moeoRealVector : public moeoVector < MOEOObjectiveVector, MOEOFitness, MOE
 {
 public:
 
-	/**
-	 * Ctor
-	 * @param _size Length of vector (default is 0)
-	 * @param _value Initial value of all elements (default is default value of type GeneType)
-	 */
-	moeoRealVector(unsigned _size = 0, double _value = 0.0) : moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, double >(_size, _value)
-	{}
+    /**
+     * Ctor
+     * @param _size Length of vector (default is 0)
+     * @param _value Initial value of all elements (default is default value of type GeneType)
+     */
+    moeoRealVector(unsigned _size = 0, double _value = 0.0) : moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, double >(_size, _value)
+    {}
 
 };
 
@@ -164,52 +164,52 @@ class moeoBitVector : public moeoVector < MOEOObjectiveVector, MOEOFitness, MOEO
 {
 public:
 
-	using moeoVector < MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool > :: begin;
+    using moeoVector < MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool > :: begin;
     using moeoVector < MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool > :: end;
     using moeoVector < MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool > :: resize;
     using moeoVector < MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool > :: size;
 
-    
-	/**
-	 * Ctor
-	 * @param _size Length of vector (default is 0)
-	 * @param _value Initial value of all elements (default is default value of type GeneType)
-	 */
-	moeoBitVector(unsigned _size = 0, bool _value = false) : moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool >(_size, _value)
-	{}
 
-	
-	/**
-	 * Writing object
-	 * @param _os output stream
-	 */
-	virtual void printOn(std::ostream & _os) const
+    /**
+     * Ctor
+     * @param _size Length of vector (default is 0)
+     * @param _value Initial value of all elements (default is default value of type GeneType)
+     */
+    moeoBitVector(unsigned _size = 0, bool _value = false) : moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool >(_size, _value)
+    {}
+
+
+    /**
+     * Writing object
+     * @param _os output stream
+     */
+    virtual void printOn(std::ostream & _os) const
     {
-    	MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity >::printOn(_os);
+        MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity >::printOn(_os);
         _os << ' ';
         _os << size() << ' ';
         std::copy(begin(), end(), std::ostream_iterator<bool>(_os));
     }
-    
-    
+
+
     /**
-	 * Reading object
-	 * @param _is input stream
-	 */
-	virtual void readFrom(std::istream & _is)
+    * Reading object
+    * @param _is input stream
+    */
+    virtual void readFrom(std::istream & _is)
     {
-    	MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity >::readFrom(_is);
+        MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity >::readFrom(_is);
         unsigned s;
         _is >> s;
         std::string bits;
         _is >> bits;
         if (_is)
         {
-        	resize(bits.size());
-        	std::transform(bits.begin(), bits.end(), begin(), std::bind2nd(std::equal_to<char>(), '1'));
+            resize(bits.size());
+            std::transform(bits.begin(), bits.end(), begin(), std::bind2nd(std::equal_to<char>(), '1'));
         }
     }
-    
+
 };
 
 

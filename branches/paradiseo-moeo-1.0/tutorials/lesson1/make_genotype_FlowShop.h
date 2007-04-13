@@ -25,25 +25,25 @@
  * @param eoState& _state  to store the memory
  */
 eoInit<FlowShop> & do_make_genotype(eoParser& _parser, eoState& _state) {
- 
-  // benchmark file name
-  string benchmarkFileName = _parser.getORcreateParam(string(), "BenchmarkFile", "Benchmark file name (benchmarks are available at " + BENCHMARKS_WEB_SITE + ")", 'B',"Representation", true).value();
-  if (benchmarkFileName == "") {
-    std::string stmp = "*** Missing name of the benchmark file\n";
-    stmp += "   Type '-B=the_benchmark_file_name' or '--BenchmarkFile=the_benchmark_file_name'\n";
-    stmp += "   Benchmarks files are available at " + BENCHMARKS_WEB_SITE;
-    throw std::runtime_error(stmp.c_str());
-  }
-  // reading of number of jobs to schedule contained in the benchmark file   
-  FlowShopBenchmarkParser fParser(benchmarkFileName);
-  unsigned N = fParser.getN();
 
-  // build of the initializer (a pointer, stored in the eoState)
-  eoInit<FlowShop>* init = new FlowShopInit(N);
-  // store in state
-  _state.storeFunctor(init);
-  // and return a reference
-  return *init;
+    // benchmark file name
+    string benchmarkFileName = _parser.getORcreateParam(string(), "BenchmarkFile", "Benchmark file name (benchmarks are available at " + BENCHMARKS_WEB_SITE + ")", 'B',"Representation", true).value();
+    if (benchmarkFileName == "") {
+        std::string stmp = "*** Missing name of the benchmark file\n";
+        stmp += "   Type '-B=the_benchmark_file_name' or '--BenchmarkFile=the_benchmark_file_name'\n";
+        stmp += "   Benchmarks files are available at " + BENCHMARKS_WEB_SITE;
+        throw std::runtime_error(stmp.c_str());
+    }
+    // reading of number of jobs to schedule contained in the benchmark file
+    FlowShopBenchmarkParser fParser(benchmarkFileName);
+    unsigned N = fParser.getN();
+
+    // build of the initializer (a pointer, stored in the eoState)
+    eoInit<FlowShop>* init = new FlowShopInit(N);
+    // store in state
+    _state.storeFunctor(init);
+    // and return a reference
+    return *init;
 }
 
 #endif /*MAKE_GENOTYPE_FLOWSHOP_H_*/

@@ -29,41 +29,41 @@ class moeoArchiveFitnessSavingUpdater : public eoUpdater
 {
 public:
 
-  /**
-   * Ctor
-   * @param _arch local archive
-   * @param _filename target filename
-   * @param _id own ID
-   */
-  moeoArchiveFitnessSavingUpdater (moeoArchive<EOT> & _arch, const std::string & _filename = "Res/Arch", int _id = -1) : arch(_arch), filename(_filename), id(_id), counter(0)
-  {}
+    /**
+     * Ctor
+     * @param _arch local archive
+     * @param _filename target filename
+     * @param _id own ID
+     */
+    moeoArchiveFitnessSavingUpdater (moeoArchive<EOT> & _arch, const std::string & _filename = "Res/Arch", int _id = -1) : arch(_arch), filename(_filename), id(_id), counter(0)
+    {}
 
-  /**
-   * Saves the fitness of the archive's members into the file
-   */
-  void operator()() {
-    char buff[MAX_BUFFER_SIZE];
-    if (id == -1)
-      sprintf (buff, "%s.%u", filename.c_str(), counter ++);
-    else
-      sprintf (buff, "%s.%u.%u", filename.c_str(), id, counter ++);
-    std::ofstream f(buff);
-    for (unsigned i = 0; i < arch.size (); i++)
-      f << arch[i].objectiveVector() << std::endl;
-    f.close ();
-  }
+    /**
+     * Saves the fitness of the archive's members into the file
+     */
+    void operator()() {
+        char buff[MAX_BUFFER_SIZE];
+        if (id == -1)
+            sprintf (buff, "%s.%u", filename.c_str(), counter ++);
+        else
+            sprintf (buff, "%s.%u.%u", filename.c_str(), id, counter ++);
+        std::ofstream f(buff);
+        for (unsigned i = 0; i < arch.size (); i++)
+            f << arch[i].objectiveVector() << std::endl;
+        f.close ();
+    }
 
 
 private:
 
-	/** local archive */
-	moeoArchive<EOT> & arch;
-	/** target filename */
-	std::string filename;
-	/** own ID */
-	int id;
-	/** counter */
-	unsigned counter;
+    /** local archive */
+    moeoArchive<EOT> & arch;
+    /** target filename */
+    std::string filename;
+    /** own ID */
+    int id;
+    /** counter */
+    unsigned counter;
 
 };
 

@@ -10,7 +10,7 @@
  */
 //-----------------------------------------------------------------------------
 
-// Miscilaneous include and declaration 
+// Miscilaneous include and declaration
 using namespace std;
 
 
@@ -41,78 +41,78 @@ void make_help(eoParser & _parser);
 
 
 int main(int argc, char* argv[]) {
-  try {
-        
-    eoParser parser(argc, argv);  // for user-parameter reading
-    eoState state;                // to keep all things allocated
+    try {
+
+        eoParser parser(argc, argv);  // for user-parameter reading
+        eoState state;                // to keep all things allocated
 
 
 
 
 
-    /*** the representation-dependent things ***/
+        /*** the representation-dependent things ***/
 
-    // The fitness evaluation
-    eoEvalFuncCounter<FlowShop>& eval = do_make_eval(parser, state);
-    // the genotype (through a genotype initializer)
-    eoInit<FlowShop>& init = do_make_genotype(parser, state);
-    // the variation operators
-    eoGenOp<FlowShop>& op = do_make_op(parser, state);
-
-
-
-
-
-    /*** the representation-independent things ***/
-
-    // initialization of the population   
-    eoPop<FlowShop>& pop = do_make_pop(parser, state, init);
-    // definition of the archive
-    moeoArchive<FlowShop> arch;
-    // stopping criteria
-    eoContinue<FlowShop>& term = do_make_continue_moeo(parser, state, eval);
-    // output
-    eoCheckPoint<FlowShop>& checkpoint = do_make_checkpoint_moeo(parser, state, eval, term, pop, arch);
-    // algorithm    
-    eoAlgo<FlowShop>& algo = do_make_ea_moeo(parser, state, eval, checkpoint, op, arch);
-       
+        // The fitness evaluation
+        eoEvalFuncCounter<FlowShop>& eval = do_make_eval(parser, state);
+        // the genotype (through a genotype initializer)
+        eoInit<FlowShop>& init = do_make_genotype(parser, state);
+        // the variation operators
+        eoGenOp<FlowShop>& op = do_make_op(parser, state);
 
 
 
 
-    /*** Go ! ***/
 
-    // help ?
-    make_help(parser);
+        /*** the representation-independent things ***/
 
-    // first evalution
-    apply<FlowShop>(eval, pop);
-    
-    pop.sort();
-    arch.update(pop);
-
-    // printing of the initial population
-    cout << "Initial Population\n";
-    pop.sortedPrintOn(cout);
-    cout << endl;
-
-    // run the algo
-    do_run(algo, pop);
-    
-    // printing of the final population
-    cout << "Final Population\n";
-    pop.sortedPrintOn(cout);
-    cout << endl;
-
-    // printing of the final archive
-    cout << "Final Archive\n";
-    arch.sortedPrintOn(cout);
-    cout << endl;
+        // initialization of the population
+        eoPop<FlowShop>& pop = do_make_pop(parser, state, init);
+        // definition of the archive
+        moeoArchive<FlowShop> arch;
+        // stopping criteria
+        eoContinue<FlowShop>& term = do_make_continue_moeo(parser, state, eval);
+        // output
+        eoCheckPoint<FlowShop>& checkpoint = do_make_checkpoint_moeo(parser, state, eval, term, pop, arch);
+        // algorithm
+        eoAlgo<FlowShop>& algo = do_make_ea_moeo(parser, state, eval, checkpoint, op, arch);
 
 
 
-  } catch(exception& e) {
-    cout << e.what() << endl;
-  }
-  return EXIT_SUCCESS;
+
+
+        /*** Go ! ***/
+
+        // help ?
+        make_help(parser);
+
+        // first evalution
+        apply<FlowShop>(eval, pop);
+
+        pop.sort();
+        arch.update(pop);
+
+        // printing of the initial population
+        cout << "Initial Population\n";
+        pop.sortedPrintOn(cout);
+        cout << endl;
+
+        // run the algo
+        do_run(algo, pop);
+
+        // printing of the final population
+        cout << "Final Population\n";
+        pop.sortedPrintOn(cout);
+        cout << endl;
+
+        // printing of the final archive
+        cout << "Final Archive\n";
+        arch.sortedPrintOn(cout);
+        cout << endl;
+
+
+
+    } catch (exception& e) {
+        cout << e.what() << endl;
+    }
+    return EXIT_SUCCESS;
 }

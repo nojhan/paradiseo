@@ -20,7 +20,7 @@
  */
 template < class MOEOT >
 class moeoComparator : public eoBF < const MOEOT &, const MOEOT &, const bool >
-{};
+    {};
 
 
 /**
@@ -30,15 +30,15 @@ template < class MOEOT >
 class moeoObjectiveComparator : public moeoComparator < MOEOT >
 {
 public:
-	/**
-	 * Returns true if _moeo1 is greater than _moeo2 on the first objective, then on the second, and so on
-	 * @param _moeo1 the first solution
-	 * @param _moeo2 the second solution
-	 */
-	const bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
-	{
-		return _moeo1.objectiveVector() > _moeo2.objectiveVector();
-	}
+    /**
+     * Returns true if _moeo1 is greater than _moeo2 on the first objective, then on the second, and so on
+     * @param _moeo1 the first solution
+     * @param _moeo2 the second solution
+     */
+    const bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
+    {
+        return _moeo1.objectiveVector() > _moeo2.objectiveVector();
+    }
 };
 
 /**
@@ -48,31 +48,31 @@ template < class MOEOT >
 class moeoOneObjectiveComparator : public moeoComparator < MOEOT >
 {
 public:
-	
-	/**
-	 * Ctor.
-	 * @param _obj the index of objective
-	 */
-	moeoOneObjectiveComparator(unsigned _obj) : obj(_obj)
-	{
-		if (obj > MOEOT::ObjectiveVector::nObjectives())
-		{
-			throw std::runtime_error("Problem with the index of objective in moeoOneObjectiveComparator");
-		}
-	}
 
-	/**
-	 * Returns true if _moeo1 is greater than _moeo2 on the obj objective
-	 * @param _moeo1 the first solution
-	 * @param _moeo2 the second solution
-	 */
-	const bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
-	{
-		return _moeo1.objectiveVector()[obj] > _moeo2.objectiveVector()[obj];
-	}
+    /**
+     * Ctor.
+     * @param _obj the index of objective
+     */
+    moeoOneObjectiveComparator(unsigned _obj) : obj(_obj)
+    {
+        if (obj > MOEOT::ObjectiveVector::nObjectives())
+        {
+            throw std::runtime_error("Problem with the index of objective in moeoOneObjectiveComparator");
+        }
+    }
+
+    /**
+     * Returns true if _moeo1 is greater than _moeo2 on the obj objective
+     * @param _moeo1 the first solution
+     * @param _moeo2 the second solution
+     */
+    const bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
+    {
+        return _moeo1.objectiveVector()[obj] > _moeo2.objectiveVector()[obj];
+    }
 
 private:
-	unsigned obj;
+    unsigned obj;
 
 };
 
@@ -84,22 +84,22 @@ template < class MOEOT >
 class moeoFitnessThenDiversityComparator : public moeoComparator < MOEOT >
 {
 public:
-	/**
-	 * Returns true if _moeo1 is greater than _moeo2 according to their fitness values, then according to their diversity values	 
-	 * @param _moeo1 the first solution
-	 * @param _moeo2 the second solution
-	 */
-	const bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
-	{
-		if (_moeo1.fitness() == _moeo2.fitness())
-		{
-			return _moeo1.diversity() > _moeo2.diversity();
-		}
-		else
-		{
-			return _moeo1.fitness() > _moeo2.fitness();
-		}
-	}
+    /**
+     * Returns true if _moeo1 is greater than _moeo2 according to their fitness values, then according to their diversity values	
+     * @param _moeo1 the first solution
+     * @param _moeo2 the second solution
+     */
+    const bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
+    {
+        if (_moeo1.fitness() == _moeo2.fitness())
+        {
+            return _moeo1.diversity() > _moeo2.diversity();
+        }
+        else
+        {
+            return _moeo1.fitness() > _moeo2.fitness();
+        }
+    }
 };
 
 
@@ -110,22 +110,22 @@ template < class MOEOT >
 class moeoDiversityThenFitnessComparator : public moeoComparator < MOEOT >
 {
 public:
-	/**
-	 * Returns true if _moeo1 is greater than _moeo2 according to their diversity values, then according to their fitness values
-	 * @param _moeo1 the first solution
-	 * @param _moeo2 the second solution
-	 */
-	const bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
-	{
-		if (_moeo1.diversity() == _moeo2.diversity())
-		{
-			return _moeo1.fitness() > _moeo2.fitness();
-		}
-		else
-		{
-			return _moeo1.diversity() > _moeo2.diversity();
-		}
-	}
+    /**
+     * Returns true if _moeo1 is greater than _moeo2 according to their diversity values, then according to their fitness values
+     * @param _moeo1 the first solution
+     * @param _moeo2 the second solution
+     */
+    const bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
+    {
+        if (_moeo1.diversity() == _moeo2.diversity())
+        {
+            return _moeo1.fitness() > _moeo2.fitness();
+        }
+        else
+        {
+            return _moeo1.diversity() > _moeo2.diversity();
+        }
+    }
 };
 
 

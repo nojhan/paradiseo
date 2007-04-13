@@ -19,7 +19,7 @@
  * Base class for performance metrics (also known as quality indicators).
  */
 class moeoMetric : public eoFunctorBase
-{};
+    {};
 
 
 /**
@@ -27,7 +27,7 @@ class moeoMetric : public eoFunctorBase
  */
 template < class A, class R >
 class moeoUnaryMetric : public eoUF < A, R >, public moeoMetric
-{};
+    {};
 
 
 /**
@@ -35,7 +35,7 @@ class moeoUnaryMetric : public eoUF < A, R >, public moeoMetric
  */
 template < class A1, class A2, class R >
 class moeoBinaryMetric : public eoBF < A1, A2, R >, public moeoMetric
-{};
+    {};
 
 
 /**
@@ -43,7 +43,7 @@ class moeoBinaryMetric : public eoBF < A1, A2, R >, public moeoMetric
  */
 template < class ObjectiveVector, class R >
 class moeoSolutionUnaryMetric : public moeoUnaryMetric < const ObjectiveVector &, R >
-{};
+    {};
 
 
 /**
@@ -51,7 +51,7 @@ class moeoSolutionUnaryMetric : public moeoUnaryMetric < const ObjectiveVector &
  */
 template < class ObjectiveVector, class R >
 class moeoVectorUnaryMetric : public moeoUnaryMetric < const std::vector < ObjectiveVector > &, R >
-{};
+    {};
 
 
 /**
@@ -59,7 +59,7 @@ class moeoVectorUnaryMetric : public moeoUnaryMetric < const std::vector < Objec
  */
 template < class ObjectiveVector, class R >
 class moeoSolutionVsSolutionBinaryMetric : public moeoBinaryMetric < const ObjectiveVector &, const ObjectiveVector &, R >
-{};
+    {};
 
 
 /**
@@ -67,7 +67,7 @@ class moeoSolutionVsSolutionBinaryMetric : public moeoBinaryMetric < const Objec
  */
 template < class ObjectiveVector, class R >
 class moeoVectorVsVectorBinaryMetric : public moeoBinaryMetric < const std::vector < ObjectiveVector > &, const std::vector < ObjectiveVector > &, R >
-{};
+    {};
 
 
 #endif /*MOEOMETRIC_H_*/
