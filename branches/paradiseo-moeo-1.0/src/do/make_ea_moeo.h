@@ -22,7 +22,7 @@
 #include <utils/eoState.h>
 #include <moeoArchive.h>
 #include <moeoComparator.h>
-#include <moeoCrowdingDiversityAssignment.h>
+#include <moeoCrowdingDistanceDiversityAssignment.h>
 #include <moeoDetTournamentSelect.h>
 #include <moeoDiversityAssignment.h>
 #include <moeoEA.h>
@@ -107,11 +107,11 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
 	
 	/* the diversity assignment strategy */
 	string & diversityParam = _parser.createParam(string("Dummy"), "diversity",
-		"Diversity assignment scheme: Dummy or Crowding", 'D', "Evolution Engine").value();
+		"Diversity assignment scheme: Dummy or CrowdingDistance", 'D', "Evolution Engine").value();
 	moeoDiversityAssignment < MOEOT > * diversityAssignment;
-	if (diversityParam == string("Crowding"))
+	if (diversityParam == string("CrowdingDistance"))
 	{
-		diversityAssignment = new moeoCrowdingDiversityAssignment < MOEOT> ();
+		diversityAssignment = new moeoCrowdingDistanceDiversityAssignment < MOEOT> ();
 	}
 	else if (diversityParam == string("Dummy"))
 	{
@@ -164,7 +164,7 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
 		{
 			tSize = atoi(ppSelect.second[0].c_str());
 		}
-		select = new moeoDetTournamentSelect < MOEOT > (*fitnessAssignment, *diversityAssignment, *comparator, tSize);
+		select = new moeoDetTournamentSelect < MOEOT > (*comparator, tSize);
 	}
 	else if (ppSelect.first == string("StochTour"))
 	{
@@ -180,7 +180,7 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
 		{
 			tRate = atof(ppSelect.second[0].c_str());
 		}
-		select = new moeoStochTournamentSelect < MOEOT > (*fitnessAssignment, *diversityAssignment, *comparator, tRate);
+		select = new moeoStochTournamentSelect < MOEOT > (*comparator, tRate);
 	}
 	else if (ppSelect.first == string("Roulette"))
 	{
