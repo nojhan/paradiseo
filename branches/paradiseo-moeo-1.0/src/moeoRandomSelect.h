@@ -17,32 +17,25 @@
 #include <eoRandomSelect.h>
 
 /**
- * Selection strategy that selects only one element randomly from a whole population. Neither the fitness nor the diversity of the individuals is required here.
+ * Selection strategy that selects only one element randomly from a whole population.
  */
 template < class MOEOT > class moeoRandomSelect:public moeoSelectOne < MOEOT >, public eoRandomSelect <MOEOT >
 {
 public:
 
-	/**
-	 * Ctor.
-	 */
-	moeoRandomSelect(){}
-	
-  /**
-   * Do nothing: we don't need to evaluate the fitness and the diversity; we only select one individual randomly.
-   */
-  void setup (eoPop < MOEOT > &_pop)
-  {
-    // nothing to do
-  }
+    /**
+     * Ctor.
+     */
+    moeoRandomSelect(){}
 
-     /**
-      * Return one individual at random.
-      */
-  const MOEOT & operator () (const eoPop < MOEOT > &_pop)
-  {
-    eoRandomSelect < MOEOT >::operator ()(_pop);
-  }
+
+    /**
+     * Return one individual at random by using an eoRandomSelect.
+     */
+    const MOEOT & operator () (const eoPop < MOEOT > &_pop)
+    {
+        eoRandomSelect < MOEOT >::operator ()(_pop);
+    }
 
 };
 
