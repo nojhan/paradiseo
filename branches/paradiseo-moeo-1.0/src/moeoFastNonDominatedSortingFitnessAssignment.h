@@ -94,7 +94,7 @@ public:
      * @warning NOT IMPLEMENTED, DO NOTHING !
      * Updates the fitness values of the whole population _pop by taking the deletion of the objective vector _objVec into account.
      * @param _pop the population
-     * @param _objecVec the objective vector
+     * @param _objVec the objective vector
      * @warning NOT IMPLEMENTED, DO NOTHING !
      */
     void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)

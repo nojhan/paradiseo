@@ -31,7 +31,7 @@ public:
     /**
      * Updates the fitness values of the whole population _pop by taking the deletion of the objective vector _objVec into account.
      * @param _pop the population
-     * @param _objecVec the objective vector
+     * @param _objVec the objective vector
      */
     virtual void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec) = 0;
 
@@ -81,7 +81,7 @@ public:
     /**
      * Updates the fitness values of the whole population _pop by taking the deletion of the objective vector _objVec into account.
      * @param _pop the population
-     * @param _objecVec the objective vector
+     * @param _objVec the objective vector
      */
     void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
     {

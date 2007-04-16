@@ -27,7 +27,6 @@ public:
 
     /**
      * Ctor
-     * @param _eval the full evaluator of a solution
      * @param _first_mols the first multi-objective local search to add
      */
     moeoCombinedLS(moeoLS < MOEOT, Type > & _first_mols)
@@ -47,7 +46,7 @@ public:
     /**
      * Gives a new solution in order to explore the neigborhood. 
      * The new non-dominated solutions are added to the archive
-     * @param _moeo the solution
+     * @param _type the object to apply the local search to
      * @param _arch the archive of non-dominated solutions 
      */
     void operator () (Type _type, moeoArchive < MOEOT > & _arch)
