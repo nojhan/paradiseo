@@ -19,7 +19,9 @@ PROG=ParadisEO
 P_FULL_INSTALL=1
 P_BASIC_INSTALL=2
 P_PARALLEL_INSTALL=3
-P_EXIT_INSTALL=4
+P_RM_PREVIOUS_INSTALLL=4
+P_EXIT_INSTALL=5
+
 
 # install steps
 S_INTRODUCTION=1000
@@ -37,14 +39,17 @@ S_REMOVE_TEMP_MPICH=1011
 S_CONFIGURE_ENV=1012
 S_CONFIGURE_MPD=1013
 S_PEO_CHECK=1014
-S_END=1015
+S_REMOVE_INSTALL=1015
+S_END=1016
 
 # define what are the possible install and their content
-FULL_INSTALL="$S_INTRODUCTION $S_UNPACK_EO $S_UNPACK_LIBXML $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
+FULL_INSTALL="$S_CONFIGURE_ENV $S_INTRODUCTION $S_UNPACK_EO $S_UNPACK_LIBXML $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
 
 BASIC_INSTALL="$S_INTRODUCTION $S_UNPACK_EO $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_END"
 
 PARALLEL_INSTALL="$S_PEO_CHECK $S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_UNPACK_MPICH $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
+
+RM_PREVIOUS_INSTALL="$S_REMOVE_INSTALL"
 
 #others
 PARADISEO_EO_ARCHIVE=paradiseo-eo.tar.gz
@@ -69,6 +74,8 @@ MPD_COPY_ERROR=115
 LIBXML_INSTALL_ERROR=116
 MPICH_INSTALL_ERROR=117
 PEO_CHECK_ERROR=118
+RM_PARADISEO_EO_ERROR=119
+RM_UTIL_ERROR=120
 
 #Date
 DATE=`/bin/date '+%Y%m%d%H%M%S'`
@@ -129,6 +136,123 @@ function execute_cmd
 		echo "     $ERROR_TAG ${COMMENT} NOK" >> ${FIC_ESP}
 		return 1
 	fi
+}
+
+
+
+#------------------------------------------------------#
+#-- FUNCTION   :  on_error			    ---#
+#------------------------------------------------------#
+#-- PARAMETERS :  				    ---#
+#--	Error number	                            ---#
+#------------------------------------------------------#
+#-- RETURN:			                    ---#
+#------------------------------------------------------#
+function on_error()
+{
+	case $1 in
+ 	  $EO_UNPACKING_ERROR) 
+		echo
+		echo "  An error has occured : impossible to unpack paradiseo-eo archive.See $SPY for more details" 
+	  	echo "  Make sure that eo archive exists in current directory "
+		echo 
+		echo " => To report any problem of for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
+		echo 
+		kill $$
+		;;
+
+	$LIBXML_UNPACKING_ERROR) 
+		echo
+		echo "  An error has occured : impossible to unpack libxml2 archive.See $SPY for more details" 
+	  	echo "  Make sure that libxml2 archive exists in current directory"
+		echo 
+		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr  and join $SPY"
+		echo 
+		kill $$;;
+
+	$MPICH_UNPACKING_ERROR) 
+		echo
+		echo "  An error has occured : impossible to unpack mpich2 archive.See $SPY for more details" 
+	  	echo "  Make sure that mpich2 archive exists in current directory"
+		echo 
+		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr  and join $SPY"
+		echo ;;
+
+	$EO_INSTALL_ERROR) 
+		echo
+		echo "  An error has occured : impossible to install Paradiseo-EO.See $SPY for more details" 
+	  	echo "If you need help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
+		echo 
+		echo 
+		kill $$;;
+
+	$MO_INSTALL_ERROR) 
+		echo
+		echo "  An error has occured : impossible to install Paradiseo-MO.See $SPY for more details" 
+		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
+		echo 
+		kill $$;;
+
+	$MOEO_INSTALL_ERROR) 
+		echo
+		echo "  An error has occured : impossible to install Paradiseo-MOEO.See $SPY for more details" 
+		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
+		echo 
+		kill $$;;
+
+	$PARADISEO_INSTALL_ERROR) 
+		echo
+		echo "  An error has occured : impossible to install Paradiseo-PEO.See $SPY for more details" 
+		echo '  Make sure you have the required variables in your environment (ex: by using "echo $PATH" for PATH variable) : '
+		echo '	-LD_LIBRARY_PATH=<libxml2 install path>/libxml2/lib:$LD_LIBRARY_PATH'
+		echo '	-PATH=<libxml2 install path>/libxml2/bin:<mpich2 install path>/mpich2/bin:$PATH'
+		echo
+		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
+		echo 
+		kill $$;;
+
+	$LIBXML_INSTALL_ERROR)
+		echo
+		echo "  An error has occured : impossible to install libxml2. See $SPY for more details" 
+		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
+		echo 
+		kill $$;;
+
+	$MPICH_INSTALL_ERROR)
+		echo
+		echo "  An error has occured : impossible to install mpich2 See $SPY for more details" 
+		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
+		echo 
+		kill $$;;
+
+	$PEO_CHECK_ERROR)
+		echo
+		echo " If you want to install ParadisEO-PEO, you should remove the old directories of libxml2 or mpich2 or choose another location." 
+		echo 
+		kill $$;;
+
+	$RM_PARADISEO_EO_ERROR)
+		echo
+		echo "  An error has occured : impossible to remove ParadisEO-EO. See $SPY for more details" 
+		echo " You may not have a previous ParadisEO install available in the current directory"
+		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
+		echo 
+		kill $$;;
+
+	$RM_UTIL_ERROR)
+		echo
+		echo "  An error has occured : impossible to remove the previous install of mpich2 and libxml2. See $SPY for more details" 
+		echo " You may not have a previous ParadisEO install available in the current directory"
+		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
+		echo 
+		kill $$;;
+
+	$SUCCESSFUL_STEP)
+		;;
+	*)
+		echo 
+		;;
+ 	 esac
 }
 
 #------------------------------------------------------#
@@ -366,6 +490,7 @@ function run_install_step()
 			return $SUCCESSFUL_STEP
 		fi 
 		;;
+
 	$S_REMOVE_TEMP_MPICH)
 		########## removing temp directory for mpich ##########
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
@@ -384,21 +509,68 @@ function run_install_step()
 			return $SUCCESSFUL_STEP
 		fi 
 		;;
+
+	$S_REMOVE_INSTALL)
+		########## removing a previous install of EO ##########
+		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
+		echo '		--> Removing your previous install of ParadisEO ...'
+	
+		execute_cmd "rm -r $installKitPath/paradiseo-eo " "[$currentStepCounter] Remove previous version of ParadisEO-EO" $SPY
+		if [ ! "$?" = "0" ]
+		then
+			echo ''
+			echo "		--> Error when removing $installKitPath/paradiseo-eo"
+			echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+			return $RM_PARADISEO_EO_ERROR
+		else
+			echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter OK \033[0m"
+			echo
+			return $SUCCESSFUL_STEP
+		fi 
+
+		if [ -d "$installKitPath/mpich2" ]
+		then
+			execute_cmd "rm -r $installKitPath/mpich2" "[$currentStepCounter] Remove previous install of mpich2" $SPY 
+		fi
+		idx=$?
+
+		if [ -d "$installKitPath/libxml2" ]
+		then
+			execute_cmd "rm -r $installKitPath/libxml2" "[$currentStepCounter] Remove previous install of libxml2" $SPY 
+		fi
+		idx=`expr $idx + $?`
+
+		if [ ! $(($idx)) = 0 ]
+		then
+			echo ''
+			echo "		--> Error when removing previous install of libxml2 and mpich2"
+			echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+			return $RM_UTIL_ERROR
+		else
+			echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter OK \033[0m"
+			echo
+			return $SUCCESSFUL_STEP
+		fi 
+		;;
+
 	$S_CONFIGURE_ENV)
 		########## Configuring environment variables ##########
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Configuring environment variables for libxml2 and mpich2 ...'
 		
-		execute_cmd "export LD_LIBRARY_PATH=$installKitPath/libxml2/lib:"'$LD_LIBRARY_PATH' "[$currentStepCounter-1] Export LD_LIBRARY_PATH variable" $SPY
+		execute_cmd "export LD_LIBRARY_PATH=$installKitPath/libxml2/lib:\$LD_LIBRARY_PATH" "[$currentStepCounter-1] Export LD_LIBRARY_PATH variable" $SPY
 		idx=$?	 
-		execute_cmd "export PATH=$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:"'$PATH' "[$currentStepCounter-2] Export PATH variable" $SPY 
+		execute_cmd "export PATH=$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:\$PATH" "[$currentStepCounter-2] Export PATH variable" $SPY 
 	
-		execute_cmd "echo export LD_LIBRARY_PATH=$installKitPath/libxml2/lib:"'$LD_LIBRARY_PATH' "[$currentStepCounter-3] Export LD_LIBRARY_PATH variable into env" $SPY $homePath/.bashrc
+		execute_cmd "echo export LD_LIBRARY_PATH=$installKitPath/libxml2/lib:\$LD_LIBRARY_PATH" "[$currentStepCounter-3] Export LD_LIBRARY_PATH variable into env" $SPY $homePath/.bashrc
 		idx=$?	 
-		execute_cmd "echo export PATH=$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:"'$PATH' "[$currentStepCounter-4] Export PATH variable into env" $SPY $homePath/.bashrc
+
+		execute_cmd "echo export PATH=$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:\$PATH" "[$currentStepCounter-4] Export PATH variable into env" $SPY $homePath/.bashrc
 		idx=`expr $idx + $?`
+
 		execute_cmd "source $homePath/.bashrc" "[$currentStepCounter-5] Export variables" $SPY
 		idx=`expr $idx + $?`
+
 		if [ ! $(($idx)) = 0 ]
 		then
 			echo ''
@@ -466,19 +638,34 @@ function run_install_step()
 		;;
 
 	$S_PEO_CHECK)
-		if ( [ -d "libxml2" ] || [ -d "mpich2" ] )
+		if ( [ -d paradiseo-eo ] && [ ! -d paradiseo-mo ] && [ ! -d paradiseo-moeo ] )
 		then
-			echo 
-			echo "A previous installation of ParadisEO-PEO may exist because libxml2 or mpich2 directory have been detected in $installKitPath."
-			echo -e " \033[40m\033[1;33m	=> Do you want to remove these directories for a new installation ? If you choose NO, the installation will stop. (y/n) ? \033[0m "
-			read ANSWER
-			if [ "$ANSWER" = "y" ]
+			if ( [ -d libxml2 ] || [ -d mpich2 ] )
 			then
-				execute_cmd "rm -rf $installKitPath/libxml2 $installKitPath/mpich2" "[$currentStepCounter] Remove libxml2 ans mpich2 directories for a new install" $SPY "/dev/null" "/dev/null"
-			else
-				return $PEO_CHECK_ERROR
-			fi
-		fi 
+				echo 
+				echo "A previous installation of ParadisEO-PEO may exist because libxml2 or mpich2 directory have been detected in $installKitPath."
+				echo -e " \033[40m\033[1;33m	=> Do you want to remove these directories for a new installation ? If you choose NO, the installation will stop. (y/n) ? \033[0m "
+				read ANSWER
+				if [ "$ANSWER" = "y" ]
+				then
+					execute_cmd "rm -rf $installKitPath/libxml2 $installKitPath/mpich2" "[$currentStepCounter] Remove libxml2 ans mpich2 directories for a new install" $SPY "/dev/null" "/dev/null"
+				else
+					return $PEO_CHECK_ERROR
+				fi
+			fi 
+		else			
+			echo 
+			echo "Basic install not found (at least one of the EO,MO,MOEO components is missing) in $installKitPath."
+			
+			execute_cmd "test -d paradiseo-eo" "[$currentStepCounter-1] Check previous basic install" $SPY
+			execute_cmd "test -d paradiseo-mo" "[$currentStepCounter-2] Check previous basic install" $SPY
+			execute_cmd "test -d paradiseo-moeo" "[$currentStepCounter-3] Check previous basic install" $SPY
+
+			echo ''
+			echo "		--> Error when searching for a previous basic install in $installKitPath."
+			echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+			return $RM_PARADISEO_EO_ERROR	
+		fi
 		;;
 	$S_END)
 		echo -e "\033[40m\033[1;33m### Now please run \"source $homePath/.bashrc\" to save the context ### \033[0m"
@@ -495,105 +682,6 @@ function run_install_step()
 	esac
 }
 
-
-#------------------------------------------------------#
-#-- FUNCTION   :  on_error			    ---#
-#------------------------------------------------------#
-#-- PARAMETERS :  				    ---#
-#--	Error number	                            ---#
-#------------------------------------------------------#
-#-- RETURN:			                    ---#
-#------------------------------------------------------#
-function on_error()
-{
-	case $1 in
- 	  $EO_UNPACKING_ERROR) 
-		echo
-		echo "  An error has occured : impossible to unpack paradiseo-eo archive.See $SPY for more details" 
-	  	echo "  Make sure that eo archive exists in current directory "
-		echo 
-		echo " => To report any problem of for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
-		echo 
-		kill $$
-		;;
-
-	$LIBXML_UNPACKING_ERROR) 
-		echo
-		echo "  An error has occured : impossible to unpack libxml2 archive.See $SPY for more details" 
-	  	echo "  Make sure that libxml2 archive exists in current directory"
-		echo 
-		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr  and join $SPY"
-		echo 
-		kill $$;;
-
-	$MPICH_UNPACKING_ERROR) 
-		echo
-		echo "  An error has occured : impossible to unpack mpich2 archive.See $SPY for more details" 
-	  	echo "  Make sure that mpich2 archive exists in current directory"
-		echo 
-		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr  and join $SPY"
-		echo ;;
-
-	$EO_INSTALL_ERROR) 
-		echo
-		echo "  An error has occured : impossible to install Paradiseo-EO.See $SPY for more details" 
-	  	echo "If you need help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
-		echo 
-		echo 
-		kill $$;;
-
-	$MO_INSTALL_ERROR) 
-		echo
-		echo "  An error has occured : impossible to install Paradiseo-MO.See $SPY for more details" 
-		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
-		echo 
-		kill $$;;
-
-	$MOEO_INSTALL_ERROR) 
-		echo
-		echo "  An error has occured : impossible to install Paradiseo-MOEO.See $SPY for more details" 
-		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
-		echo 
-		kill $$;;
-
-	$PARADISEO_INSTALL_ERROR) 
-		echo
-		echo "  An error has occured : impossible to install Paradiseo-PEO.See $SPY for more details" 
-		echo '  Make sure you have the required variables in your environment (ex: by using "echo $PATH" for PATH variable) : '
-		echo '	-LD_LIBRARY_PATH=<libxml2 install path>/libxml2/lib:$LD_LIBRARY_PATH'
-		echo '	-PATH=<libxml2 install path>/libxml2/bin:<mpich2 install path>/mpich2/bin:$PATH'
-		echo
-		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
-		echo 
-		kill $$;;
-
-	$LIBXML_INSTALL_ERROR)
-		echo
-		echo "  An error has occured : impossible to install libxml2. See $SPY for more details" 
-		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
-		echo 
-		kill $$;;
-
-	$MPICH_INSTALL_ERROR)
-		echo
-		echo "  An error has occured : impossible to install mpich2 See $SPY for more details" 
-		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
-		echo 
-		kill $$;;
-
-	$PEO_CHECK_ERROR)
-		echo
-		echo " If you want to install ParadisEO-PEO, you should remove the old directories of libxml2 or mpich2 or choose another location." 
-		echo 
-		kill $$;;
-
-	$SUCCESSFUL_STEP)
-		;;
-	*)
-		echo 
-		;;
- 	 esac
-}
 
 #------------------------------------------------------#
 #-- BODY   :  					    ---#
@@ -686,6 +774,17 @@ do
 		INSTALL_TREATENED=1
 		;;
 
+	$P_RM_PREVIOUS_INSTALLL)
+		counter=0
+		for step in $RM_PREVIOUS_INSTALL	
+		do
+			run_install_step $INSTALL_PATH $step $counter
+			on_error $?
+			counter=`expr $counter + 1`
+		done
+		INSTALL_TREATENED=1
+		;;
+
 	$P_EXIT_INSTALL)
 		INSTALL_TREATENED=1
 		;;
@@ -697,7 +796,8 @@ do
 		echo "	 1 : Full install (all the components : EO,MO,MOEO and PEO)"
 		echo "	 2 : Basic install: only EO,MO and MOEO components will be installed."
 		echo "	 3 : ParadisEO-PEO install. I've already installed the basic version and I want to install ParadisEO-PEO"
-		echo "	 4 : Exit install"
+		echo "	 4 : Remove a previous install of ParadisEO located in $INSTALL_PATH"
+		echo "	 5 : Exit install"
 		read INSTALL_TYPE
 	;;
 	esac
