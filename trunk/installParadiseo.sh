@@ -558,14 +558,14 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Configuring environment variables for libxml2 and mpich2 ...'
 		
-		execute_cmd "export LD_LIBRARY_PATH=$installKitPath/libxml2/lib:\$LD_LIBRARY_PATH" "[$currentStepCounter-1] Export LD_LIBRARY_PATH variable" $SPY
+		execute_cmd "export LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH\":$installKitPath/libxml2/lib:" "[$currentStepCounter-1] Export LD_LIBRARY_PATH variable" $SPY
 		idx=$?	 
-		execute_cmd "export PATH=$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:\$PATH" "[$currentStepCounter-2] Export PATH variable" $SPY 
+		execute_cmd "export PATH=\"$PATH\":$installKitPath/libxml2/bin:$installKitPath/mpich2/bin" "[$currentStepCounter-2] Export PATH variable" $SPY 
 	
-		execute_cmd "echo export LD_LIBRARY_PATH=$installKitPath/libxml2/lib:\$LD_LIBRARY_PATH" "[$currentStepCounter-3] Export LD_LIBRARY_PATH variable into env" $SPY $homePath/.bashrc
+		execute_cmd "echo export LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH\":$installKitPath/libxml2/lib" "[$currentStepCounter-3] Export LD_LIBRARY_PATH variable into env" $SPY $homePath/.bashrc
 		idx=$?	 
 
-		execute_cmd "echo export PATH=$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:\$PATH" "[$currentStepCounter-4] Export PATH variable into env" $SPY $homePath/.bashrc
+		execute_cmd "echo export PATH=\"$PATH\":$installKitPath/libxml2/bin:$installKitPath/mpich2/bin" "[$currentStepCounter-4] Export PATH variable into env" $SPY $homePath/.bashrc
 		idx=`expr $idx + $?`
 
 		execute_cmd "source $homePath/.bashrc" "[$currentStepCounter-5] Export variables" $SPY
