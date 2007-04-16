@@ -66,15 +66,16 @@ public:
     const MOEOT & operator  () (const eoPop < MOEOT > &_pop)
     {
         // use the selector
-        return mo_roulette_wheel(_pop,total); //comparator ??
+        return mo_roulette_wheel(_pop,tSize); //comparator ??
     }
 
 
 protected:
 
+	/** comparator */
     moeoComparator < MOEOT > &comparator;
-
-    double & total;
+	/** size */
+    double & tSize;
 
 };
 
