@@ -27,10 +27,6 @@ class moeoNormalizedSolutionVsSolutionBinaryMetric : public moeoSolutionVsSoluti
 {
 public:
 
-    /** very small value to avoid the extreme case where the min bound == the max bound */
-    const static double tiny = 1e-6;
-
-
     /**
      * Default ctr for any moeoNormalizedSolutionVsSolutionBinaryMetric object
      */
@@ -50,8 +46,8 @@ public:
     {
         if (_min == _max)
         {
-            _min -= tiny;
-            _max += tiny;
+            _min -= tiny();
+            _max += tiny();
         }
         bounds[_obj] = eoRealInterval(_min, _max);
     }
@@ -64,6 +60,15 @@ public:
     virtual void setup(eoRealInterval _realInterval, unsigned _obj)
     {
         bounds[_obj] = _realInterval;
+    }
+
+
+    /**
+     * Returns a very small value that can be used to avoid extreme cases (where the min bound == the max bound)
+     */
+    static double tiny()
+    {
+        return 1e-6;
     }
 
 
