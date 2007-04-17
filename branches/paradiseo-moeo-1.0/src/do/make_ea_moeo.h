@@ -34,7 +34,6 @@
 #include <moeoGenerationalReplacement.h>
 #include <moeoIndicatorBasedFitnessAssignment.h>
 #include <moeoRandomSelect.h>
-#include <moeoReferencePointIndicatorBasedFitnessAssignment.h>
 #include <moeoReplacement.h>
 #include <moeoRouletteSelect.h>
 #include <moeoSelectOne.h>
