@@ -2,7 +2,7 @@
 
 //-----------------------------------------------------------------------------
 // moeoArchiveUpdater.h
-// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2006
+// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
 /*
     This library...
 
@@ -13,14 +13,14 @@
 #ifndef MOEOARCHIVEUPDATER_H_
 #define MOEOARCHIVEUPDATER_H_
 
-#include <eoPop.h>
-#include <utils/eoUpdater.h>
-#include <moeoArchive.h>
+#include < eoPop.h >
+#include < utils/eoUpdater.h >
+#include < moeoArchive.h >
 
 /**
  * This class allows to update the archive at each generation with newly found non-dominated solutions.
  */
-template < class EOT >
+template < class MOEOT >
 class moeoArchiveUpdater : public eoUpdater
 {
 public:
@@ -30,7 +30,7 @@ public:
      * @param _arch an archive of non-dominated solutions
      * @param _pop the main population
      */
-    moeoArchiveUpdater(moeoArchive <EOT> & _arch, const eoPop<EOT> & _pop) : arch(_arch), pop(_pop)
+    moeoArchiveUpdater(moeoArchive < MOEOT > & _arch, const eoPop < MOEOT > & _pop) : arch(_arch), pop(_pop)
     {}
 
 
@@ -45,9 +45,9 @@ public:
 private:
 
     /** the archive of non-dominated solutions */
-    moeoArchive<EOT> & arch;
+    moeoArchive < MOEOT > & arch;
     /** the main population */
-    const eoPop<EOT> & pop;
+    const eoPop < MOEOT > & pop;
 
 };
 

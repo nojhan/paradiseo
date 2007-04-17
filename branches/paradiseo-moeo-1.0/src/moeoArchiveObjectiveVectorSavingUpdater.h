@@ -2,7 +2,7 @@
 
 //-----------------------------------------------------------------------------
 // moeoArchiveObjectiveVectorSavingUpdater.h
-// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2006
+// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
 /*
     This library...
 
