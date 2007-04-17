@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// moeoReplacement.h
+// moeoEvalFunc.h
 // (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
 /*
     This library...
@@ -10,16 +10,15 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef MOEOREPLACEMENT_H_
-#define MOEOREPLACEMENT_H_
+#ifndef MOEOEVALFUNC_H_
+#define MOEOEVALFUNC_H_
 
-#include <eoReplacement.h>
+#include <eoEvalFunc.h>
 
-/**
- * Replacement strategy for multi-objective optimization.
+/*
+ * Functor that evaluates one MOEO by setting all its objective values.
  */
 template < class MOEOT >
-class moeoReplacement : public eoReplacement < MOEOT >
-    {};
+class moeoEvalFunc : public eoEvalFunc< MOEOT > {};
 
-#endif /*MOEOREPLACEMENT_H_*/
+#endif /*MOEOEVALFUNC_H_*/

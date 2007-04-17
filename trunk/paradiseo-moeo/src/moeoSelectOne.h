@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// moeoReplacement.h
+// moeoSelectOne.h
 // (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
 /*
     This library...
@@ -10,16 +10,15 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef MOEOREPLACEMENT_H_
-#define MOEOREPLACEMENT_H_
+#ifndef MOEOSELECTONE_H_
+#define MOEOSELECTONE_H_
 
-#include <eoReplacement.h>
+#include <eoSelectOne.h>
 
 /**
- * Replacement strategy for multi-objective optimization.
+ * Selection strategy for multi-objective optimization that selects only one element from a whole population.
  */
 template < class MOEOT >
-class moeoReplacement : public eoReplacement < MOEOT >
-    {};
+class moeoSelectOne : public eoSelectOne < MOEOT > {};
 
-#endif /*MOEOREPLACEMENT_H_*/
+#endif /*MOEOSELECTONE_H_*/

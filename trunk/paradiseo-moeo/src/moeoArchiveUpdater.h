@@ -2,7 +2,7 @@
 
 //-----------------------------------------------------------------------------
 // moeoArchiveUpdater.h
-// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2006
+// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
 /*
     This library...
 
@@ -18,39 +18,37 @@
 #include <moeoArchive.h>
 
 /**
- * This class allows to update the archive at each generation with newly found non-dominated solutions
+ * This class allows to update the archive at each generation with newly found non-dominated solutions.
  */
-template < class EOT > class moeoArchiveUpdater:public eoUpdater
+template < class MOEOT >
+class moeoArchiveUpdater : public eoUpdater
 {
 public:
 
-  /**
-   * Ctor
-   * @param _arch an archive of non-dominated solutions
-   * @param _pop the main population
-   */
-  moeoArchiveUpdater (moeoArchive < EOT > &_arch,
-		      const eoPop < EOT > &_pop):arch (_arch), pop (_pop)
-  {
-  }
+    /**
+     * Ctor
+     * @param _arch an archive of non-dominated solutions
+     * @param _pop the main population
+     */
+    moeoArchiveUpdater(moeoArchive < MOEOT > & _arch, const eoPop < MOEOT > & _pop) : arch(_arch), pop(_pop)
+    {}
 
 
-  /**
-   * Updates the archive with newly found non-dominated solutions contained in the main population
-   */
-  void operator () ()
-  {
-    arch.update (pop);
-  }
+    /**
+     * Updates the archive with newly found non-dominated solutions contained in the main population
+     */
+    void operator()() {
+        arch.update(pop);
+    }
 
 
 private:
 
-	/** the archive of non-dominated solutions */
-  moeoArchive < EOT > &arch;
-	/** the main population */
-  const eoPop < EOT > &pop;
+    /** the archive of non-dominated solutions */
+    moeoArchive < MOEOT > & arch;
+    /** the main population */
+    const eoPop < MOEOT > & pop;
 
 };
 
-#endif /*MOEOARCHIVEUPDATER_H_ */
+#endif /*MOEOARCHIVEUPDATER_H_*/

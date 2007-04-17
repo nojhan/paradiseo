@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// moeoReplacement.h
+// moeoEA.h
 // (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
 /*
     This library...
@@ -10,16 +10,16 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef MOEOREPLACEMENT_H_
-#define MOEOREPLACEMENT_H_
+#ifndef MOEOEA_H_
+#define MOEOEA_H_
 
-#include <eoReplacement.h>
+#include <eoAlgo.h>
 
 /**
- * Replacement strategy for multi-objective optimization.
+ * Abstract class for multi-objective evolutionary algorithms.
  */
 template < class MOEOT >
-class moeoReplacement : public eoReplacement < MOEOT >
-    {};
+class moeoEA : public eoAlgo < MOEOT > {};
 
-#endif /*MOEOREPLACEMENT_H_*/
+
+#endif /*MOEOEA_H_*/
