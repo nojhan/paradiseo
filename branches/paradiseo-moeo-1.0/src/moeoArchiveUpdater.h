@@ -13,9 +13,9 @@
 #ifndef MOEOARCHIVEUPDATER_H_
 #define MOEOARCHIVEUPDATER_H_
 
-#include < eoPop.h >
-#include < utils/eoUpdater.h >
-#include < moeoArchive.h >
+#include <eoPop.h>
+#include <utils/eoUpdater.h>
+#include <moeoArchive.h>
 
 /**
  * This class allows to update the archive at each generation with newly found non-dominated solutions.
