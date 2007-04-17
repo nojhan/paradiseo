@@ -14,9 +14,9 @@ using the whole version of ParadisEO.
 
 
 
-@section tutorial Tutorial
+@section tutorials Tutorials
 
-A tutorial about a bi-objective flow-shop scheduling problem will be available soon.
+Tutorials for ParadisEO-MOEO are available <a href="http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.UsersGuides">here</a>.
 
 
 
