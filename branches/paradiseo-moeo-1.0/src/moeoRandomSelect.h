@@ -34,7 +34,7 @@ public:
      */
     const MOEOT & operator () (const eoPop < MOEOT > &_pop)
     {
-        eoRandomSelect < MOEOT >::operator ()(_pop);
+        return eoRandomSelect < MOEOT >::operator ()(_pop);
     }
 
 };
