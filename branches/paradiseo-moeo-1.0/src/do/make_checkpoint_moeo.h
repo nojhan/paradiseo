@@ -44,14 +44,12 @@ eoCheckPoint < MOEOT > & do_make_checkpoint_moeo (eoParser & _parser, eoState & 
     eoCheckPoint < MOEOT > & checkpoint = _state.storeFunctor(new eoCheckPoint < MOEOT > (_continue));
     /* the objective vector type */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
-    // get number of obectives
-    unsigned nObj = ObjectiveVector::nObjectives();
 
     ///////////////////
     // Counters
     //////////////////
     // is nb Eval to be used as counter?
-    bool useEval = _parser.getORcreateParam(true, "useEval", "Use nb of eval. as counter (vs nb of gen.)", '\0', "Output").value();
+    //bool useEval = _parser.getORcreateParam(true, "useEval", "Use nb of eval. as counter (vs nb of gen.)", '\0', "Output").value();
     // Create anyway a generation-counter parameter
     eoValueParam<unsigned> *generationCounter = new eoValueParam<unsigned>(0, "Gen.");
     // Create an incrementor (sub-class of eoUpdater).
