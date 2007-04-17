@@ -16,15 +16,19 @@ paradiseo-help@lists.gforge.inria.fr
 The basic installation procedure goes the following:
 
 Go to your build-directory and run 
-    $(SRCDIR)/configure
-    make
-    make doc
+    > $(SRCDIR)/configure
+    > make
+    > make doc
 
 where $(SRCDIR) is the top-level source directory of PARADISEO-MOEO,
-i.e. where the sources where unpacked.
+i.e. where the sources were unpacked.
 
-To clean everything, the simply run 
-    make clean_all
+In case of problems, you can read the INSTALL file - but remember this
+is a standard installation file from GNU and that it contains nothing
+specific about PARADISEO-MOEO.
+
+To clean everything, simply run 
+    > make clean_all
 
 ===================================================================
                        DIRECTORY STRUCTURE
@@ -32,7 +36,7 @@ To clean everything, the simply run
 After unpacking the archive file, you should end up with the following
 structure:
 
-.../                     The MAIN PARADISEO-MOEO directory, created when unpacking.
+.../                     The main PARADISEO-MOEO directory, created when unpacking.
    |
    +-- src               SOURCE directory Contains most PARADISEO-MOEO .h files. 
    |   
