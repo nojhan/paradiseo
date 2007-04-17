@@ -24,9 +24,6 @@ class moeoObjectiveVectorTraits
 {
 public:
 
-    /** The tolerance value (used to compare solutions) */
-    const static double tol = 1e-6;
-
     /**
      * Parameters setting
      * @param _nObjectives the number of objectives
@@ -86,7 +83,7 @@ public:
      */
     static double tolerance()
     {
-        return tol;
+        return 1e-6;
     }
 
 
