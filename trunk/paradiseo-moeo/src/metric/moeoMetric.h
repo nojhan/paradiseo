@@ -2,7 +2,7 @@
 
 //-----------------------------------------------------------------------------
 // moeoMetric.h
-// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2006
+// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
 /*
     This library...
 
@@ -16,91 +16,58 @@
 #include <eoFunctor.h>
 
 /**
- * Base class for performance metrics (also called quality indicators)
+ * Base class for performance metrics (also known as quality indicators).
  */
-class moeoMetric:public eoFunctorBase
-{
-};
+class moeoMetric : public eoFunctorBase
+    {};
 
 
 /**
- * Base class for unary metrics
+ * Base class for unary metrics.
  */
-template < class A, class R > class moeoUM:public eoUF < A, R >,
-  public moeoMetric
-{
-};
+template < class A, class R >
+class moeoUnaryMetric : public eoUF < A, R >, public moeoMetric
+    {};
 
 
 /**
- * Base class for binary metrics
+ * Base class for binary metrics.
  */
-template < class A1, class A2, class R > class moeoBM:public eoBF < A1, A2, R >,
-  public moeoMetric
-{
-};
+template < class A1, class A2, class R >
+class moeoBinaryMetric : public eoBF < A1, A2, R >, public moeoMetric
+    {};
 
 
 /**
- * Base class for unary metrics dedicated to the performance evaluation of a single solution's Pareto fitness
+ * Base class for unary metrics dedicated to the performance evaluation of a single solution's objective vector.
  */
-template < class EOT, class R, class EOFitness = typename EOT::Fitness > class moeoSolutionUM:public moeoUM <
-  const
-  EOFitness &,
-  R >
-{
-};
+template < class ObjectiveVector, class R >
+class moeoSolutionUnaryMetric : public moeoUnaryMetric < const ObjectiveVector &, R >
+    {};
 
 
 /**
- * Base class for unary metrics dedicated to the performance evaluation of a Pareto set (a vector of Pareto fitnesses)
+ * Base class for unary metrics dedicated to the performance evaluation of a Pareto set (a vector of objective vectors)
  */
-template < class EOT, class R, class EOFitness = typename EOT::Fitness > class moeoVectorUM:public moeoUM <
-  const
-  std::vector <
-EOFitness > &,
-  R >
-{
-};
+template < class ObjectiveVector, class R >
+class moeoVectorUnaryMetric : public moeoUnaryMetric < const std::vector < ObjectiveVector > &, R >
+    {};
 
 
 /**
- * Base class for binary metrics dedicated to the performance comparison between two solutions's Pareto fitnesses
+ * Base class for binary metrics dedicated to the performance comparison between two solutions's objective vectors.
  */
-template < class EOT, class R, class EOFitness = typename EOT::Fitness > class moeoSolutionVsSolutionBM:public moeoBM <
-  const
-  EOFitness &, const
-  EOFitness &,
-  R >
-{
-};
+template < class ObjectiveVector, class R >
+class moeoSolutionVsSolutionBinaryMetric : public moeoBinaryMetric < const ObjectiveVector &, const ObjectiveVector &, R >
+    {};
 
 
 /**
- * Base class for binary metrics dedicated to the performance comparison between a Pareto set (a vector of Pareto fitnesses) and a single solution's Pareto fitness
+ * Base class for binary metrics dedicated to the performance comparison between two Pareto sets (two vectors of objective vectors)
  */
-template < class EOT, class R, class EOFitness = typename EOT::Fitness > class moeoVectorVsSolutionBM:public moeoBM <
-  const
-  std::vector <
-EOFitness > &, const
-  EOFitness &,
-  R >
-{
-};
+template < class ObjectiveVector, class R >
+class moeoVectorVsVectorBinaryMetric : public moeoBinaryMetric < const std::vector < ObjectiveVector > &, const std::vector < ObjectiveVector > &, R >
+    {};
 
 
-/**
- * Base class for binary metrics dedicated to the performance comparison between two Pareto sets (two vectors of Pareto fitnesses)
- */
-template < class EOT, class R, class EOFitness = typename EOT::Fitness > class moeoVectorVsVectorBM:public moeoBM <
-  const
-  std::vector <
-EOFitness > &, const
-  std::vector <
-EOFitness > &,
-  R >
-{
-};
-
-
-#endif /*MOEOMETRIC_H_ */
+#endif /*MOEOMETRIC_H_*/
