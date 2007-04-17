@@ -46,8 +46,6 @@ public:
      */
     void operator()(eoPop < MOEOT > & _pop)
     {
-        // number of objectives for the problem under consideration
-        unsigned nObjectives = MOEOT::ObjectiveVector::nObjectives();
         if (_pop.size() <= 2)
         {
             for (unsigned i=0; i<_pop.size(); i++)
