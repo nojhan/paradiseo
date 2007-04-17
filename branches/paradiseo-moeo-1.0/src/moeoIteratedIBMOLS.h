@@ -104,12 +104,12 @@ public:
 
 private:
 
-    /** the stopping criteria */
-    eoContinue < MOEOT > & continuator;
     /** the local search to iterate */
     moeoIndicatorBasedLS < MOEOT, Move > ibmols;
     /** the full evaluation */
     eoEvalFunc < MOEOT > & eval;
+    /** the stopping criteria */
+    eoContinue < MOEOT > & continuator;
     /** the monary operator */
     eoMonOp < MOEOT > & monOp;
     /** the random monary operator (or random initializer) */
