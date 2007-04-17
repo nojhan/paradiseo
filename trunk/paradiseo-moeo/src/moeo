@@ -41,7 +41,6 @@
 #include <moeoObjectiveVector.h>
 #include <moeoRandomSelect.h>
 #include <moeoReplacement.h>
-#include <moeoRouletteSelect.h>
 #include <moeoSelectFromPopAndArch.h>
 #include <moeoSelectOne.h>
 #include <moeoStochTournamentSelect.h>

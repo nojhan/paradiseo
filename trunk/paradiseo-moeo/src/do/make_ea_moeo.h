@@ -35,7 +35,6 @@
 #include <moeoIndicatorBasedFitnessAssignment.h>
 #include <moeoRandomSelect.h>
 #include <moeoReplacement.h>
-#include <moeoRouletteSelect.h>
 #include <moeoSelectOne.h>
 #include <moeoStochTournamentSelect.h>
 #include <metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h>
