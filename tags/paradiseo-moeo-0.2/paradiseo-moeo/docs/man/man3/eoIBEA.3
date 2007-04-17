@@ -1,0 +1,62 @@
+.TH "eoIBEA" 3 "22 Dec 2006" "Version 0.1" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoIBEA \- Functor The sorting phase of IBEA (Indicator-Based Evolutionary Algorithm).  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoIBEA.h>\fP
+.PP
+Inherits \fBeoPerf2WorthCached< EOT, double >\fP.
+.PP
+Inherited by \fBeoIBEASorting< EOT, Fitness >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoIBEA\fP (\fBeoBinaryQualityIndicator\fP< Fitness > *_I)"
+.br
+.ti -1c
+.RI "void \fBcalculate_worths\fP (const \fBeoPop\fP< EOT > &_pop)"
+.br
+.RI "\fImapping \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoBinaryQualityIndicator\fP< Fitness > * \fBI\fP"
+.br
+.RI "\fIbinary quality indicator to use in the selection process \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT, class Fitness> class eoIBEA< EOT, Fitness >"
+Functor The sorting phase of IBEA (Indicator-Based Evolutionary Algorithm). 
+.PP
+Definition at line 38 of file eoIBEA.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT, class Fitness> void \fBeoIBEA\fP< EOT, Fitness >::calculate_worths (const \fBeoPop\fP< EOT > & _pop)\fC [inline, virtual]\fP"
+.PP
+mapping 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIconst\fP eoPop<EOT>& _pop the population 
+.RE
+.PP
+
+.PP
+Implements \fBeoPerf2WorthCached< EOT, double >\fP.
+.PP
+Definition at line 56 of file eoIBEA.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.
