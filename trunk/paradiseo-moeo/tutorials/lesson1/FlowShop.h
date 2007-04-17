@@ -2,7 +2,7 @@
 
 //-----------------------------------------------------------------------------
 // FlowShop.h
-// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2006
+// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
 /*
     This library...
 
@@ -10,41 +10,41 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef _FlowShop_h
-#define _FlowShop_h
+#ifndef FLOWSHOP_H_
+#define FLOWSHOP_H_
 
-#include <EO.h>
-// Fitness for multi-objective flow-shop
-#include "FlowShopFitness.h"
+#include <MOEO.h>
+#include <moeoObjectiveVector.h>
+#include <moeoObjectiveVectorTraits.h>
+
+
+/**
+ * definition of the objective vector for multi-objective flow-shop problems
+ */
+typedef moeoObjectiveVectorDouble<moeoObjectiveVectorTraits> FlowShopObjectiveVector;
 
 
 /** 
  *  Structure of the genotype for the flow-shop scheduling problem
  */
-class FlowShop:public EO < FlowShopFitness >
-{
+class FlowShop: public MOEO<FlowShopObjectiveVector, double, double> {
 
 public:
 
   /** 
    * default constructor
    */
-  FlowShop ()
-  {
-  }
+  FlowShop() {}
 
   /** 
    * destructor
    */
-  virtual ~ FlowShop ()
-  {
-  }
-
+  virtual ~FlowShop() {}
+  
   /** 
    * class name
    */
-  virtual string className () const
-  {
+  virtual string className() const { 
     return "FlowShop";
   }
 
@@ -52,86 +52,63 @@ public:
    * set scheduling vector
    * @param vector<unsigned> & _scheduling  the new scheduling to set 
    */
-  void setScheduling (vector < unsigned >&_scheduling)
-  {
+  void setScheduling(vector<unsigned> & _scheduling) {
     scheduling = _scheduling;
   }
-
+  
   /** 
    * get scheduling vector
    */
-  const vector < unsigned >&getScheduling () const
-  {
+  const vector<unsigned> & getScheduling() const {
     return scheduling;
   }
-
+  
   /**
    * printing...
    */
-  void printOn (ostream & _os) const
-  {
+  void printOn(ostream& _os) const {
     // fitness
-    EO < FlowShopFitness >::printOn (_os);
-    _os << "\t";
+    MOEO<FlowShopObjectiveVector, double, double>::printOn(_os);    
     // size
-    _os << scheduling.size () << "\t";
+    _os << scheduling.size() << "\t" ;
     // scheduling
-    for (unsigned i = 0; i < scheduling.size (); i++)
-      _os << scheduling[i] << ' ';
+    for (unsigned i=0; i<scheduling.size(); i++)
+      _os << scheduling[i] << ' ' ;
   }
-
+  
   /**
    * reading...
    */
-  void readFrom (istream & _is)
-  {
+  void readFrom(istream& _is) {
     // fitness
-    EO < FlowShopFitness >::readFrom (_is);
+    MOEO<FlowShopObjectiveVector, double, double>::readFrom(_is);
     // size
     unsigned size;
     _is >> size;
     // scheduling
-    scheduling.resize (size);
+    scheduling.resize(size);
     bool tmp;
-    for (unsigned i = 0; i < size; i++)
-      {
-	_is >> tmp;
-	scheduling[i] = tmp;
-      }
+    for (unsigned i=0; i<size; i++) {
+      _is >> tmp;
+      scheduling[i] = tmp;
+    }
   }
-
-
-  bool operator== (const FlowShop & _other) const
-  {
-    return scheduling == _other.getScheduling ();
-  }
-  bool operator!= (const FlowShop & _other) const
-  {
-    return scheduling != _other.getScheduling ();
-  }
-  bool operator< (const FlowShop & _other) const
-  {
-    return scheduling < _other.getScheduling ();
-  }
-  bool operator> (const FlowShop & _other) const
-  {
-    return scheduling > _other.getScheduling ();
-  }
-  bool operator<= (const FlowShop & _other) const
-  {
-    return scheduling <= _other.getScheduling ();
-  }
-  bool operator>= (const FlowShop & _other) const
-  {
-    return scheduling >= _other.getScheduling ();
-  }
+  
+  
+  bool operator==(const FlowShop& _other) const { return scheduling == _other.getScheduling(); }
+  bool operator!=(const FlowShop& _other) const { return scheduling != _other.getScheduling(); }
+  bool operator< (const FlowShop& _other) const { return scheduling <  _other.getScheduling(); }
+  bool operator> (const FlowShop& _other) const { return scheduling >  _other.getScheduling(); }
+  bool operator<=(const FlowShop& _other) const { return scheduling <= _other.getScheduling(); }
+  bool operator>=(const FlowShop& _other) const { return scheduling >= _other.getScheduling(); }
 
 
 private:
 
   /** scheduling (order of operations) */
-    std::vector < unsigned >scheduling;
+  std::vector<unsigned> scheduling;
 
 };
 
-#endif
+
+#endif /*FLOWSHOP_H_*/
