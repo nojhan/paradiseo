@@ -109,14 +109,14 @@ protected:
     eoPopLoopEval < MOEOT > loopEval;
     /** to evaluate the whole population */
     eoPopEvalFunc < MOEOT > & popEval;
-    /** general breeder */
-    eoGeneralBreeder < MOEOT > genBreed;
-    /** breeder */
-    eoBreed < MOEOT > & breed;
     /** binary tournament selection */
     moeoDetTournamentSelect < MOEOT > select;
     /** elitist replacement */
     moeoElitistReplacement < MOEOT > replace;
+    /** general breeder */
+    eoGeneralBreeder < MOEOT > genBreed;
+    /** breeder */
+    eoBreed < MOEOT > & breed;
     /** fitness assignment used in NSGA-II */
     moeoFastNonDominatedSortingFitnessAssignment < MOEOT > fitnessAssignment;
     /** Diversity assignment used in NSGA-II */
