@@ -1,0 +1,49 @@
+\section{moeo\-Objective\-Comparator$<$ MOEOT $>$ Class Template Reference}
+\label{classmoeoObjectiveComparator}\index{moeoObjectiveComparator@{moeoObjectiveComparator}}
+Functor allowing to compare two solutions according to their first objective value, then their second, and so on.  
+
+
+{\tt \#include $<$moeo\-Comparator.h$>$}
+
+Inheritance diagram for moeo\-Objective\-Comparator$<$ MOEOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4cm]{classmoeoObjectiveComparator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+const bool {\bf operator()} (const MOEOT \&\_\-moeo1, const MOEOT \&\_\-moeo2)
+\begin{CompactList}\small\item\em Returns true if \_\-moeo1 is greater than \_\-moeo2 on the first objective, then on the second, and so on. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class MOEOT$>$ class moeo\-Objective\-Comparator$<$ MOEOT $>$}
+
+Functor allowing to compare two solutions according to their first objective value, then their second, and so on. 
+
+
+
+Definition at line 30 of file moeo\-Comparator.h.
+
+\subsection{Member Function Documentation}
+\index{moeoObjectiveComparator@{moeo\-Objective\-Comparator}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoObjectiveComparator@{moeo\-Objective\-Comparator}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ const bool {\bf moeo\-Objective\-Comparator}$<$ MOEOT $>$::operator() (const MOEOT \& {\em \_\-moeo1}, const MOEOT \& {\em \_\-moeo2})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoObjectiveComparator_2de70cc9c5034f9594cc7695af57edaf}
+
+
+Returns true if \_\-moeo1 is greater than \_\-moeo2 on the first objective, then on the second, and so on. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-moeo1}]the first solution \item[{\em \_\-moeo2}]the second solution \end{description}
+\end{Desc}
+
+
+Definition at line 38 of file moeo\-Comparator.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-Comparator.h\end{CompactItemize}

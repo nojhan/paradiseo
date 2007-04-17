@@ -1,0 +1,95 @@
+.TH "moeoObjectiveVector" 3 "17 Apr 2007" "Version 1.0.alpha" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoObjectiveVector \- Abstract class allowing to represent a solution in the objective space (phenotypic representation).  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoObjectiveVector.h>\fP
+.PP
+Inherited by \fBmoeoObjectiveVectorDouble< ObjectiveVectorTraits >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef ObjectiveVectorTraits \fBTraits\fP"
+.br
+.RI "\fIThe traits of objective vectors. \fP"
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static void \fBsetup\fP (unsigned _nObjectives, std::vector< bool > &_bObjectives)"
+.br
+.RI "\fIParameters setting (for the objective vector of any solution). \fP"
+.ti -1c
+.RI "static unsigned \fBnObjectives\fP ()"
+.br
+.RI "\fIReturns the number of objectives. \fP"
+.ti -1c
+.RI "static bool \fBminimizing\fP (unsigned _i)"
+.br
+.RI "\fIReturns true if the _ith objective have to be minimized. \fP"
+.ti -1c
+.RI "static bool \fBmaximizing\fP (unsigned _i)"
+.br
+.RI "\fIReturns true if the _ith objective have to be maximized. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class ObjectiveVectorTraits> class moeoObjectiveVector< ObjectiveVectorTraits >"
+Abstract class allowing to represent a solution in the objective space (phenotypic representation). 
+
+The template argument ObjectiveVectorTraits defaults to \fBmoeoObjectiveVectorTraits\fP, but it can be replaced at will by any other class that implements the static functions defined therein. Some static funtions to access to the traits characteristics are re-defined in order not to write a lot of typedef's. 
+.PP
+Definition at line 28 of file moeoObjectiveVector.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class ObjectiveVectorTraits> static void \fBmoeoObjectiveVector\fP< ObjectiveVectorTraits >::setup (unsigned _nObjectives, std::vector< bool > & _bObjectives)\fC [inline, static]\fP"
+.PP
+Parameters setting (for the objective vector of any solution). 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_nObjectives\fP the number of objectives 
+.br
+\fI_bObjectives\fP the min/max vector (true = min / false = max) 
+.RE
+.PP
+
+.PP
+Definition at line 41 of file moeoObjectiveVector.h.
+.SS "template<class ObjectiveVectorTraits> static bool \fBmoeoObjectiveVector\fP< ObjectiveVectorTraits >::minimizing (unsigned _i)\fC [inline, static]\fP"
+.PP
+Returns true if the _ith objective have to be minimized. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_i\fP the index 
+.RE
+.PP
+
+.PP
+Definition at line 60 of file moeoObjectiveVector.h.
+.SS "template<class ObjectiveVectorTraits> static bool \fBmoeoObjectiveVector\fP< ObjectiveVectorTraits >::maximizing (unsigned _i)\fC [inline, static]\fP"
+.PP
+Returns true if the _ith objective have to be maximized. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_i\fP the index 
+.RE
+.PP
+
+.PP
+Definition at line 69 of file moeoObjectiveVector.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.

@@ -1,0 +1,165 @@
+.TH "moeoNSGAII" 3 "17 Apr 2007" "Version 1.0.alpha" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoNSGAII \- The NSGA-II algorithm as described in: Deb, K., S.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoNSGAII.h>\fP
+.PP
+Inherits \fBmoeoEA< MOEOT >< MOEOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoNSGAII\fP (unsigned _max_gen, \fBeoEvalFunc\fP< MOEOT > &_eval, \fBeoGenOp\fP< MOEOT > &_op)"
+.br
+.RI "\fIThis constructor builds the algorithm as descibed in the paper. \fP"
+.ti -1c
+.RI "\fBmoeoNSGAII\fP (unsigned _max_gen, \fBeoEvalFunc\fP< MOEOT > &_eval, \fBeoQuadOp\fP< MOEOT > &_crossover, double _pCross, \fBeoMonOp\fP< MOEOT > &_mutation, double _pMut)"
+.br
+.RI "\fICtor taking _max_gen, crossover and mutation. \fP"
+.ti -1c
+.RI "\fBmoeoNSGAII\fP (\fBeoContinue\fP< MOEOT > &_continuator, \fBeoEvalFunc\fP< MOEOT > &_eval, \fBeoGenOp\fP< MOEOT > &_op)"
+.br
+.RI "\fICtor taking a continuator instead of _gen_max. \fP"
+.ti -1c
+.RI "virtual void \fBoperator()\fP (\fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fIApply a few generation of evolution to the population _pop. \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoContinue\fP< MOEOT > & \fBcontinuator\fP"
+.br
+.RI "\fIstopping criteria \fP"
+.ti -1c
+.RI "\fBeoEvalFunc\fP< MOEOT > & \fBeval\fP"
+.br
+.RI "\fIevaluation function \fP"
+.ti -1c
+.RI "\fBeoPopLoopEval\fP< MOEOT > \fBloopEval\fP"
+.br
+.RI "\fIto evaluate the whole population \fP"
+.ti -1c
+.RI "\fBeoPopEvalFunc\fP< MOEOT > & \fBpopEval\fP"
+.br
+.RI "\fIto evaluate the whole population \fP"
+.ti -1c
+.RI "\fBmoeoDetTournamentSelect\fP< MOEOT > \fBselect\fP"
+.br
+.RI "\fIbinary tournament selection \fP"
+.ti -1c
+.RI "\fBmoeoElitistReplacement\fP< MOEOT > \fBreplace\fP"
+.br
+.RI "\fIelitist replacement \fP"
+.ti -1c
+.RI "\fBeoGeneralBreeder\fP< MOEOT > \fBgenBreed\fP"
+.br
+.RI "\fIgeneral breeder \fP"
+.ti -1c
+.RI "\fBeoBreed\fP< MOEOT > & \fBbreed\fP"
+.br
+.RI "\fIbreeder \fP"
+.ti -1c
+.RI "\fBmoeoFastNonDominatedSortingFitnessAssignment\fP< MOEOT > \fBfitnessAssignment\fP"
+.br
+.RI "\fIfitness assignment used in NSGA-II \fP"
+.ti -1c
+.RI "\fBmoeoCrowdingDistanceDiversityAssignment\fP< MOEOT > \fBdiversityAssignment\fP"
+.br
+.RI "\fIDiversity assignment used in NSGA-II. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT> class moeoNSGAII< MOEOT >"
+The NSGA-II algorithm as described in: Deb, K., S. 
+
+Agrawal, A. Pratap, and T. Meyarivan : 'A fast elitist non-dominated sorting genetic algorithm for multi-objective optimization: NSGA-II'. In IEEE Transactions on Evolutionary Computation, Vol. 6, No 2, pp 182-197 (April 2002). This class builds the NSGA-II algorithm only by using the components of the ParadisEO-MOEO framework. 
+.PP
+Definition at line 36 of file moeoNSGAII.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class MOEOT> \fBmoeoNSGAII\fP< MOEOT >::\fBmoeoNSGAII\fP (unsigned _max_gen, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBeoGenOp\fP< MOEOT > & _op)\fC [inline]\fP"
+.PP
+This constructor builds the algorithm as descibed in the paper. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_max_gen\fP number of generations before stopping 
+.br
+\fI_eval\fP evaluation function 
+.br
+\fI_op\fP variation operator 
+.RE
+.PP
+
+.PP
+Definition at line 46 of file moeoNSGAII.h.
+.SS "template<class MOEOT> \fBmoeoNSGAII\fP< MOEOT >::\fBmoeoNSGAII\fP (unsigned _max_gen, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBeoQuadOp\fP< MOEOT > & _crossover, double _pCross, \fBeoMonOp\fP< MOEOT > & _mutation, double _pMut)\fC [inline]\fP"
+.PP
+Ctor taking _max_gen, crossover and mutation. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_max_gen\fP number of generations before stopping 
+.br
+\fI_eval\fP evaluation function 
+.br
+\fI_crossover\fP crossover 
+.br
+\fI_pCross\fP crossover probability 
+.br
+\fI_mutation\fP mutation 
+.br
+\fI_pMut\fP mutation probability 
+.RE
+.PP
+
+.PP
+Definition at line 61 of file moeoNSGAII.h.
+.SS "template<class MOEOT> \fBmoeoNSGAII\fP< MOEOT >::\fBmoeoNSGAII\fP (\fBeoContinue\fP< MOEOT > & _continuator, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBeoGenOp\fP< MOEOT > & _op)\fC [inline]\fP"
+.PP
+Ctor taking a continuator instead of _gen_max. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_continuator\fP stopping criteria 
+.br
+\fI_eval\fP evaluation function 
+.br
+\fI_op\fP variation operator 
+.RE
+.PP
+
+.PP
+Definition at line 73 of file moeoNSGAII.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT> virtual void \fBmoeoNSGAII\fP< MOEOT >::operator() (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
+.PP
+Apply a few generation of evolution to the population _pop. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< eoPop< MOEOT > &, void >\fP.
+.PP
+Definition at line 83 of file moeoNSGAII.h.
+.PP
+References moeoNSGAII< MOEOT >::breed, moeoNSGAII< MOEOT >::continuator, moeoNSGAII< MOEOT >::diversityAssignment, moeoNSGAII< MOEOT >::fitnessAssignment, moeoNSGAII< MOEOT >::popEval, and moeoNSGAII< MOEOT >::replace.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.

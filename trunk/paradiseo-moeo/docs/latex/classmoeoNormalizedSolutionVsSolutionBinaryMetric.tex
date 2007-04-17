@@ -1,0 +1,53 @@
+\section{moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric$<$ Objective\-Vector, R $>$ Class Template Reference}
+\label{classmoeoNormalizedSolutionVsSolutionBinaryMetric}\index{moeoNormalizedSolutionVsSolutionBinaryMetric@{moeoNormalizedSolutionVsSolutionBinaryMetric}}
+Base class for binary metrics dedicated to the performance comparison between two solutions's objective vectors using normalized values.  
+
+
+{\tt \#include $<$moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric.h$>$}
+
+Inheritance diagram for moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric$<$ Objective\-Vector, R $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.30189cm]{classmoeoNormalizedSolutionVsSolutionBinaryMetric}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric} ()\label{classmoeoNormalizedSolutionVsSolutionBinaryMetric_e58174a553269d3e8b0685a1f22b8333}
+
+\begin{CompactList}\small\item\em Default ctr for any \doxyref{moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric}{p.}{classmoeoNormalizedSolutionVsSolutionBinaryMetric} object. \item\end{CompactList}\item 
+void {\bf setup} (double \_\-min, double \_\-max, unsigned \_\-obj)\label{classmoeoNormalizedSolutionVsSolutionBinaryMetric_4483614f6a7922b56cfec290afb36afd}
+
+\begin{CompactList}\small\item\em Sets the lower bound (\_\-min) and the upper bound (\_\-max) for the objective \_\-obj \_\-min lower bound \_\-max upper bound \_\-obj the objective index. \item\end{CompactList}\item 
+virtual void {\bf setup} ({\bf eo\-Real\-Interval} \_\-real\-Interval, unsigned \_\-obj)\label{classmoeoNormalizedSolutionVsSolutionBinaryMetric_5e72d2dd299c9f7b8b3a8ad09e165e6c}
+
+\begin{CompactList}\small\item\em Sets the lower bound and the upper bound for the objective \_\-obj using a {\bf eo\-Real\-Interval} object \_\-real\-Interval the {\bf eo\-Real\-Interval} object \_\-obj the objective index. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{CompactItemize}
+\item 
+static double {\bf tiny} ()\label{classmoeoNormalizedSolutionVsSolutionBinaryMetric_d0ccbdceb71b9d2d6ae8ceec1af9dcdb}
+
+\begin{CompactList}\small\item\em Returns a very small value that can be used to avoid extreme cases (where the min bound == the max bound). \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+std::vector$<$ {\bf eo\-Real\-Interval} $>$ {\bf bounds}\label{classmoeoNormalizedSolutionVsSolutionBinaryMetric_81bff9a83c74f7f7f8a1db28c09c4c38}
+
+\begin{CompactList}\small\item\em the bounds for every objective (bounds[i] = bounds for the objective i) \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Objective\-Vector, class R$>$ class moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric$<$ Objective\-Vector, R $>$}
+
+Base class for binary metrics dedicated to the performance comparison between two solutions's objective vectors using normalized values. 
+
+Then, indicator values lie in the interval [-1,1]. Note that you have to set the bounds for every objective before using the operator(). 
+
+
+
+Definition at line 26 of file moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric.h\end{CompactItemize}

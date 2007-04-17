@@ -1,0 +1,57 @@
+.TH "moeoEnvironmentalReplacement::Cmp" 3 "17 Apr 2007" "Version 1.0.alpha" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoEnvironmentalReplacement::Cmp \- This class is used to compare solutions in order to sort the population.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoEnvironmentalReplacement.h>\fP
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCmp\fP (\fBmoeoComparator\fP< MOEOT > &_comparator)"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (const MOEOT &_moeo1, const MOEOT &_moeo2)"
+.br
+.RI "\fIReturns true if _moeo1 is greater than _moeo2 according to the comparator _moeo1 the first individual _moeo2 the first individual. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoComparator\fP< MOEOT > & \fBcomparator\fP"
+.br
+.RI "\fIthe comparator \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT> class moeoEnvironmentalReplacement< MOEOT >::Cmp"
+This class is used to compare solutions in order to sort the population. 
+.PP
+Definition at line 117 of file moeoEnvironmentalReplacement.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class MOEOT> \fBmoeoEnvironmentalReplacement\fP< MOEOT >::Cmp::Cmp (\fBmoeoComparator\fP< MOEOT > & _comparator)\fC [inline]\fP"
+.PP
+Ctor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_comparator\fP the comparator 
+.RE
+.PP
+
+.PP
+Definition at line 125 of file moeoEnvironmentalReplacement.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.

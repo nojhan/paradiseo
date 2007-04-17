@@ -1,0 +1,211 @@
+\section{moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$ Class Template Reference}
+\label{classmoeoIndicatorBasedFitnessAssignment}\index{moeoIndicatorBasedFitnessAssignment@{moeoIndicatorBasedFitnessAssignment}}
+Fitness assignment sheme based an Indicator proposed in: E.  
+
+
+{\tt \#include $<$moeo\-Indicator\-Based\-Fitness\-Assignment.h$>$}
+
+Inheritance diagram for moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5cm]{classmoeoIndicatorBasedFitnessAssignment}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+typedef MOEOT::Objective\-Vector {\bf Objective\-Vector}\label{classmoeoIndicatorBasedFitnessAssignment_d3e6ebd336966e4c27c49b1f3a5caff7}
+
+\begin{CompactList}\small\item\em The type of objective vector. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf moeo\-Indicator\-Based\-Fitness\-Assignment} ({\bf moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric}$<$ {\bf Objective\-Vector}, double $>$ $\ast$\_\-metric, const double \_\-kappa)
+\begin{CompactList}\small\item\em Ctor. \item\end{CompactList}\item 
+void {\bf operator()} ({\bf eo\-Pop}$<$ MOEOT $>$ \&\_\-pop)
+\begin{CompactList}\small\item\em Sets the fitness values for every solution contained in the population \_\-pop. \item\end{CompactList}\item 
+void {\bf update\-By\-Deleting} ({\bf eo\-Pop}$<$ MOEOT $>$ \&\_\-pop, {\bf Objective\-Vector} \&\_\-obj\-Vec)
+\begin{CompactList}\small\item\em Updates the fitness values of the whole population \_\-pop by taking the deletion of the objective vector \_\-obj\-Vec into account. \item\end{CompactList}\item 
+double {\bf update\-By\-Adding} ({\bf eo\-Pop}$<$ MOEOT $>$ \&\_\-pop, {\bf Objective\-Vector} \&\_\-obj\-Vec)
+\begin{CompactList}\small\item\em Updates the fitness values of the whole population \_\-pop by taking the adding of the objective vector \_\-obj\-Vec into account and returns the fitness value of \_\-obj\-Vec. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf setup} (const {\bf eo\-Pop}$<$ MOEOT $>$ \&\_\-pop)
+\begin{CompactList}\small\item\em Sets the bounds for every objective using the min and the max value for every objective vector of \_\-pop. \item\end{CompactList}\item 
+void {\bf compute\-Values} (const {\bf eo\-Pop}$<$ MOEOT $>$ \&\_\-pop)
+\begin{CompactList}\small\item\em Compute every indicator value in values (values[i] = I(\_\-v[i], \_\-o)). \item\end{CompactList}\item 
+void {\bf set\-Fitnesses} ({\bf eo\-Pop}$<$ MOEOT $>$ \&\_\-pop)
+\begin{CompactList}\small\item\em Sets the fitness value of the whple population. \item\end{CompactList}\item 
+double {\bf compute\-Fitness} (const unsigned \_\-idx)
+\begin{CompactList}\small\item\em Returns the fitness value of the \_\-idx th individual of the population. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+{\bf moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric}$<$ {\bf Objective\-Vector}, double $>$ $\ast$ {\bf metric}\label{classmoeoIndicatorBasedFitnessAssignment_fbabae702d72cbcda1a384b2766e5a8d}
+
+\begin{CompactList}\small\item\em the quality indicator \item\end{CompactList}\item 
+double {\bf kappa}\label{classmoeoIndicatorBasedFitnessAssignment_d03b1277faa2c3719d2dc24a0de36183}
+
+\begin{CompactList}\small\item\em the scaling factor \item\end{CompactList}\item 
+std::vector$<$ std::vector$<$ double $>$ $>$ {\bf values}\label{classmoeoIndicatorBasedFitnessAssignment_30cd71c3fcc46432eee7b462d41d357b}
+
+\begin{CompactList}\small\item\em the computed indicator values \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class MOEOT$>$ class moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$}
+
+Fitness assignment sheme based an Indicator proposed in: E. 
+
+Zitzler, S. K\~{A}¼nzli, \char`\"{}Indicator-Based Selection in Multiobjective Search\char`\"{}, Proc. 8th International Conference on Parallel Problem Solving from Nature (PPSN VIII), pp. 832-842, Birmingham, UK (2004). This strategy is, for instance, used in IBEA. 
+
+
+
+Definition at line 28 of file moeo\-Indicator\-Based\-Fitness\-Assignment.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{moeoIndicatorBasedFitnessAssignment@{moeo\-Indicator\-Based\-Fitness\-Assignment}!moeoIndicatorBasedFitnessAssignment@{moeoIndicatorBasedFitnessAssignment}}
+\index{moeoIndicatorBasedFitnessAssignment@{moeoIndicatorBasedFitnessAssignment}!moeoIndicatorBasedFitnessAssignment@{moeo\-Indicator\-Based\-Fitness\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ {\bf moeo\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$::{\bf moeo\-Indicator\-Based\-Fitness\-Assignment} ({\bf moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric}$<$ {\bf Objective\-Vector}, double $>$ $\ast$ {\em \_\-metric}, const double {\em \_\-kappa})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoIndicatorBasedFitnessAssignment_007384a5f3d13eaa52819c5684a2124b}
+
+
+Ctor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-metric}]the quality indicator \item[{\em \_\-kappa}]the scaling factor \end{description}
+\end{Desc}
+
+
+Definition at line 41 of file moeo\-Indicator\-Based\-Fitness\-Assignment.h.
+
+\subsection{Member Function Documentation}
+\index{moeoIndicatorBasedFitnessAssignment@{moeo\-Indicator\-Based\-Fitness\-Assignment}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoIndicatorBasedFitnessAssignment@{moeo\-Indicator\-Based\-Fitness\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ void {\bf moeo\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$::operator() ({\bf eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmoeoIndicatorBasedFitnessAssignment_01cd4c9d1383f2a5948851278866c068}
+
+
+Sets the fitness values for every solution contained in the population \_\-pop. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \end{description}
+\end{Desc}
+
+
+Implements {\bf eo\-UF$<$ eo\-Pop$<$ MOEOT $>$ \&, void $>$}.
+
+Definition at line 49 of file moeo\-Indicator\-Based\-Fitness\-Assignment.h.
+
+References moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::compute\-Values(), moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::set\-Fitnesses(), and moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::setup().\index{moeoIndicatorBasedFitnessAssignment@{moeo\-Indicator\-Based\-Fitness\-Assignment}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoIndicatorBasedFitnessAssignment@{moeo\-Indicator\-Based\-Fitness\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ void {\bf moeo\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$::update\-By\-Deleting ({\bf eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop}, {\bf Objective\-Vector} \& {\em \_\-obj\-Vec})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmoeoIndicatorBasedFitnessAssignment_04d6a7e20060af2da765e76600c72e2c}
+
+
+Updates the fitness values of the whole population \_\-pop by taking the deletion of the objective vector \_\-obj\-Vec into account. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \item[{\em \_\-obj\-Vec}]the objective vector \end{description}
+\end{Desc}
+
+
+Implements {\bf moeo\-Fitness\-Assignment$<$ MOEOT $>$} \doxyref{}{p.}{classmoeoFitnessAssignment_4922629569eddc9be049b3ead1ab0269}.
+
+Definition at line 65 of file moeo\-Indicator\-Based\-Fitness\-Assignment.h.
+
+References moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::kappa, and moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::metric.\index{moeoIndicatorBasedFitnessAssignment@{moeo\-Indicator\-Based\-Fitness\-Assignment}!updateByAdding@{updateByAdding}}
+\index{updateByAdding@{updateByAdding}!moeoIndicatorBasedFitnessAssignment@{moeo\-Indicator\-Based\-Fitness\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ double {\bf moeo\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$::update\-By\-Adding ({\bf eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop}, {\bf Objective\-Vector} \& {\em \_\-obj\-Vec})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoIndicatorBasedFitnessAssignment_33707dba105ebf6a8ba75e31b2319c98}
+
+
+Updates the fitness values of the whole population \_\-pop by taking the adding of the objective vector \_\-obj\-Vec into account and returns the fitness value of \_\-obj\-Vec. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \item[{\em \_\-obj\-Vec}]the objective vector \end{description}
+\end{Desc}
+
+
+Definition at line 86 of file moeo\-Indicator\-Based\-Fitness\-Assignment.h.
+
+References moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::kappa, and moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::metric.\index{moeoIndicatorBasedFitnessAssignment@{moeo\-Indicator\-Based\-Fitness\-Assignment}!setup@{setup}}
+\index{setup@{setup}!moeoIndicatorBasedFitnessAssignment@{moeo\-Indicator\-Based\-Fitness\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ void {\bf moeo\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$::setup (const {\bf eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, protected]}}\label{classmoeoIndicatorBasedFitnessAssignment_decaa6258ead44f1e0587e84208c6bf9}
+
+
+Sets the bounds for every objective using the min and the max value for every objective vector of \_\-pop. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \end{description}
+\end{Desc}
+
+
+Definition at line 129 of file moeo\-Indicator\-Based\-Fitness\-Assignment.h.
+
+Referenced by moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::operator()().\index{moeoIndicatorBasedFitnessAssignment@{moeo\-Indicator\-Based\-Fitness\-Assignment}!computeValues@{computeValues}}
+\index{computeValues@{computeValues}!moeoIndicatorBasedFitnessAssignment@{moeo\-Indicator\-Based\-Fitness\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ void {\bf moeo\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$::compute\-Values (const {\bf eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, protected]}}\label{classmoeoIndicatorBasedFitnessAssignment_2fd93c0a5fe35e979637c5f602c39341}
+
+
+Compute every indicator value in values (values[i] = I(\_\-v[i], \_\-o)). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \end{description}
+\end{Desc}
+
+
+Definition at line 151 of file moeo\-Indicator\-Based\-Fitness\-Assignment.h.
+
+References moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::values.
+
+Referenced by moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::operator()().\index{moeoIndicatorBasedFitnessAssignment@{moeo\-Indicator\-Based\-Fitness\-Assignment}!setFitnesses@{setFitnesses}}
+\index{setFitnesses@{setFitnesses}!moeoIndicatorBasedFitnessAssignment@{moeo\-Indicator\-Based\-Fitness\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ void {\bf moeo\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$::set\-Fitnesses ({\bf eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, protected]}}\label{classmoeoIndicatorBasedFitnessAssignment_8d23624ddefd5eb2cf88eb28049b588c}
+
+
+Sets the fitness value of the whple population. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \end{description}
+\end{Desc}
+
+
+Definition at line 173 of file moeo\-Indicator\-Based\-Fitness\-Assignment.h.
+
+References moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::compute\-Fitness().
+
+Referenced by moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::operator()().\index{moeoIndicatorBasedFitnessAssignment@{moeo\-Indicator\-Based\-Fitness\-Assignment}!computeFitness@{computeFitness}}
+\index{computeFitness@{computeFitness}!moeoIndicatorBasedFitnessAssignment@{moeo\-Indicator\-Based\-Fitness\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ double {\bf moeo\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$::compute\-Fitness (const unsigned {\em \_\-idx})\hspace{0.3cm}{\tt  [inline, protected]}}\label{classmoeoIndicatorBasedFitnessAssignment_fc5825dbcf0641a1fb08ab26418313e9}
+
+
+Returns the fitness value of the \_\-idx th individual of the population. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-idx}]the index \end{description}
+\end{Desc}
+
+
+Definition at line 186 of file moeo\-Indicator\-Based\-Fitness\-Assignment.h.
+
+References moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::kappa, and moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::values.
+
+Referenced by moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::set\-Fitnesses().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-Indicator\-Based\-Fitness\-Assignment.h\end{CompactItemize}
