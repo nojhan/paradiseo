@@ -1,0 +1,64 @@
+.TH "eoParetoSharing" 3 "22 Dec 2006" "Version 0.1" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoParetoSharing \- 
+.SH SYNOPSIS
+.br
+.PP
+Inherits \fBeoPerf2Worth< EOT, worthT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoParetoSharing\fP (double _nicheSize)"
+.br
+.ti -1c
+.RI "\fBeoParetoSharing\fP (double _nicheSize, \fBeoParetoPhenDist\fP< EOT, worthT > &_dist)"
+.br
+.ti -1c
+.RI "void \fBoperator\fP ()(const \fBeoPop\fP< EOT > &_pop)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "double \fBsh\fP (double \fBdist\fP, double \fBDmax\fP)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBnicheSize\fP"
+.br
+.ti -1c
+.RI "\fBeoParetoPhenDist\fP< EOT, worthT > & \fBdist\fP"
+.br
+.ti -1c
+.RI "\fBeoParetoEuclidDist\fP< EOT > \fBeuc_dist\fP"
+.br
+.ti -1c
+.RI "double \fBDmax\fP"
+.br
+.in -1c
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBdMatrix\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT, class worthT = double> class eoParetoSharing< EOT, worthT >"
+
+.PP
+Definition at line 9 of file eoParetoSharing.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.

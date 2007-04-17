@@ -1,0 +1,101 @@
+.TH "eoIBEASorting" 3 "22 Dec 2006" "Version 0.1" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoIBEASorting \- Functor The sorting phase of IBEA (Indicator-Based Evolutionary Algorithm) without uncertainty Adapted from the Zitzler and Künzli paper 'Indicator-Based Selection in Multiobjective Search' (2004) Of course, Fitness needs to be an \fBeoParetoFitness\fP object.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoIBEA.h>\fP
+.PP
+Inherits \fBeoIBEA< EOT, Fitness >< EOT, Fitness >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoIBEASorting\fP (\fBeoBinaryQualityIndicator\fP< Fitness > *_I, const double _kappa)"
+.br
+.RI "\fIconstructor \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBsetBounds\fP (const \fBeoPop\fP< EOT > &_pop)"
+.br
+.RI "\fIcomputation and setting of the bounds for each objective \fP"
+.ti -1c
+.RI "void \fBfitnesses\fP (const \fBeoPop\fP< EOT > &_pop)"
+.br
+.RI "\fIcomputation and setting of the fitness for each individual of the population \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBkappa\fP"
+.br
+.RI "\fIscaling factor kappa \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT, class Fitness = typename EOT::Fitness> class eoIBEASorting< EOT, Fitness >"
+Functor The sorting phase of IBEA (Indicator-Based Evolutionary Algorithm) without uncertainty Adapted from the Zitzler and Künzli paper 'Indicator-Based Selection in Multiobjective Search' (2004) Of course, Fitness needs to be an \fBeoParetoFitness\fP object. 
+.PP
+Definition at line 94 of file eoIBEA.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT, class Fitness = typename EOT::Fitness> \fBeoIBEASorting\fP< EOT, Fitness >::\fBeoIBEASorting\fP (\fBeoBinaryQualityIndicator\fP< Fitness > * _I, const double _kappa)\fC [inline]\fP"
+.PP
+constructor 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIeoBinaryQualityIndicator<EOT>*\fP _I the binary quality indicator to use in the selection process 
+.br
+\fIdouble\fP _kappa scaling factor kappa 
+.RE
+.PP
+
+.PP
+Definition at line 106 of file eoIBEA.h.
+.PP
+References eoIBEASorting< EOT, Fitness >::kappa.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT, class Fitness = typename EOT::Fitness> void \fBeoIBEASorting\fP< EOT, Fitness >::setBounds (const \fBeoPop\fP< EOT > & _pop)\fC [inline, private, virtual]\fP"
+.PP
+computation and setting of the bounds for each objective 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIconst\fP eoPop<EOT>& _pop the population 
+.RE
+.PP
+
+.PP
+Implements \fBeoIBEA< EOT, Fitness >\fP.
+.PP
+Definition at line 134 of file eoIBEA.h.
+.SS "template<class EOT, class Fitness = typename EOT::Fitness> void \fBeoIBEASorting\fP< EOT, Fitness >::fitnesses (const \fBeoPop\fP< EOT > & _pop)\fC [inline, private, virtual]\fP"
+.PP
+computation and setting of the fitness for each individual of the population 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIconst\fP eoPop<EOT>& _pop the population 
+.RE
+.PP
+
+.PP
+Implements \fBeoIBEA< EOT, Fitness >\fP.
+.PP
+Definition at line 162 of file eoIBEA.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.
