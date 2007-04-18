@@ -20,7 +20,7 @@
 #include "moAlgo.h"
 #include "moRandMove.h"
 #include "moMoveIncrEval.h"
-#include "moCoolSched.h"
+#include "moCoolingSchedule.h"
 #include "moSolContinue.h"
 
 #include <math.h>
@@ -61,7 +61,7 @@ public:
 	moMoveIncrEval < M > &__incr_eval,
 	moSolContinue < EOT > &__cont,
 	double __init_temp,
-	moCoolSched & __cool_sched, eoEvalFunc < EOT > &__full_eval):
+	moCoolingSchedule & __cool_sched, eoEvalFunc < EOT > &__full_eval):
   move_rand (__move_rand),
   incr_eval (__incr_eval),
   cont (__cont),
@@ -144,7 +144,7 @@ private:
     init_temp;
 
   //! The cooling schedule
-  moCoolSched & cool_sched;
+  moCoolingSchedule & cool_sched;
 
   //! A full evaluation function.
   eoEvalFunc < EOT > &full_eval;	// Full evaluator.

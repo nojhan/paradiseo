@@ -17,13 +17,11 @@
     <name>moAlgo</name>
     <filename>classmo_algo.html</filename>
     <templarg>EOT</templarg>
-    <base>eoMonOp&lt; EOT &gt;</base>
   </compound>
   <compound kind="class">
     <name>moAspirCrit</name>
     <filename>classmo_aspir_crit.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
       <name>init</name>
@@ -88,40 +86,39 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>moCoolSched</name>
-    <filename>classmo_cool_sched.html</filename>
-    <base>eoUF&lt; double &amp;, bool &gt;</base>
+    <name>moCoolingSchedule</name>
+    <filename>classmo_cooling_schedule.html</filename>
   </compound>
   <compound kind="class">
-    <name>moEasyCoolSched</name>
-    <filename>classmo_easy_cool_sched.html</filename>
-    <base>moCoolSched</base>
+    <name>moExponentialCoolingSchedule</name>
+    <filename>classmo_exponential_cooling_schedule.html</filename>
+    <base>moCoolingSchedule</base>
     <member kind="function">
       <type></type>
-      <name>moEasyCoolSched</name>
-      <anchorfile>classmo_easy_cool_sched.html</anchorfile>
-      <anchor>c556b41343700293bb17e3b20d81e0f2</anchor>
+      <name>moExponentialCoolingSchedule</name>
+      <anchorfile>classmo_exponential_cooling_schedule.html</anchorfile>
+      <anchor>b01930c1051c0940666c6325bfd036bc</anchor>
       <arglist>(double __threshold, double __ratio)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>operator()</name>
-      <anchorfile>classmo_easy_cool_sched.html</anchorfile>
-      <anchor>ca08df878417ef1124e6933a9c2d7a0b</anchor>
+      <anchorfile>classmo_exponential_cooling_schedule.html</anchorfile>
+      <anchor>00642b03453b51612a10fcf2280543db</anchor>
       <arglist>(double &amp;__temp)</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>double</type>
       <name>threshold</name>
-      <anchorfile>classmo_easy_cool_sched.html</anchorfile>
-      <anchor>3dd53700390b7bb6428db80e01626c83</anchor>
+      <anchorfile>classmo_exponential_cooling_schedule.html</anchorfile>
+      <anchor>8d4327c0bb33b7121a322279eea97f84</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>double</type>
       <name>ratio</name>
-      <anchorfile>classmo_easy_cool_sched.html</anchorfile>
-      <anchor>1f84deff87defafd927e8c323b188f38</anchor>
+      <anchorfile>classmo_exponential_cooling_schedule.html</anchorfile>
+      <anchor>e8f3f87417c1c7253efb938a740846fa</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -442,10 +439,42 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>moLinearCoolingSchedule</name>
+    <filename>classmo_linear_cooling_schedule.html</filename>
+    <base>moCoolingSchedule</base>
+    <member kind="function">
+      <type></type>
+      <name>moLinearCoolingSchedule</name>
+      <anchorfile>classmo_linear_cooling_schedule.html</anchorfile>
+      <anchor>2fdde7b1520d5a41251627e81cc9c13d</anchor>
+      <arglist>(double __threshold, double __quantity)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_linear_cooling_schedule.html</anchorfile>
+      <anchor>814b109fdfd9426a92a5444b05014da3</anchor>
+      <arglist>(double &amp;__temp)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>double</type>
+      <name>threshold</name>
+      <anchorfile>classmo_linear_cooling_schedule.html</anchorfile>
+      <anchor>e7f539f986801ea71392c4a55ba08a76</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>double</type>
+      <name>quantity</name>
+      <anchorfile>classmo_linear_cooling_schedule.html</anchorfile>
+      <anchor>6159dc39ceda89b23ffdab3d6ce8d8ed</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>moLSCheckPoint</name>
     <filename>classmo_l_s_check_point.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
     <member kind="function">
       <type>void</type>
       <name>operator()</name>
@@ -472,7 +501,6 @@
     <name>moMove</name>
     <filename>classmo_move.html</filename>
     <templarg>EOT</templarg>
-    <base>eoUF&lt; EOT &amp;, void &gt;</base>
     <member kind="typedef">
       <type>EOT</type>
       <name>EOType</name>
@@ -485,19 +513,16 @@
     <name>moMoveExpl</name>
     <filename>classmo_move_expl.html</filename>
     <templarg>M</templarg>
-    <base>eoBF&lt; const M::EOType &amp;, M::EOType &amp;, void &gt;</base>
   </compound>
   <compound kind="class">
     <name>moMoveIncrEval</name>
     <filename>classmo_move_incr_eval.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
   </compound>
   <compound kind="class">
     <name>moMoveInit</name>
     <filename>classmo_move_init.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
   </compound>
   <compound kind="class">
     <name>moMoveLoopExpl</name>
@@ -509,7 +534,6 @@
     <name>moMoveSelect</name>
     <filename>classmo_move_select.html</filename>
     <templarg>M</templarg>
-    <base>eoBF&lt; M &amp;, M::EOType::Fitness &amp;, void &gt;</base>
     <member kind="typedef">
       <type>M::EOType::Fitness</type>
       <name>Fitness</name>
@@ -536,7 +560,6 @@
     <name>moNextMove</name>
     <filename>classmo_next_move.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
   </compound>
   <compound kind="class">
     <name>moNoAspirCrit</name>
@@ -617,7 +640,6 @@
     <name>moRandMove</name>
     <filename>classmo_rand_move.html</filename>
     <templarg>M</templarg>
-    <base>eoUF&lt; M &amp;, void &gt;</base>
   </compound>
   <compound kind="class">
     <name>moSA</name>
@@ -628,8 +650,8 @@
       <type></type>
       <name>moSA</name>
       <anchorfile>classmo_s_a.html</anchorfile>
-      <anchor>ef9ffb0d95c599e0a06c78db5f2f4b12</anchor>
-      <arglist>(moRandMove&lt; M &gt; &amp;__move_rand, moMoveIncrEval&lt; M &gt; &amp;__incr_eval, moSolContinue&lt; EOT &gt; &amp;__cont, double __init_temp, moCoolSched &amp;__cool_sched, eoEvalFunc&lt; EOT &gt; &amp;__full_eval)</arglist>
+      <anchor>01f6a44483e5a7abbce33eb480b6a9b9</anchor>
+      <arglist>(moRandMove&lt; M &gt; &amp;__move_rand, moMoveIncrEval&lt; M &gt; &amp;__incr_eval, moSolContinue&lt; EOT &gt; &amp;__cont, double __init_temp, moCoolingSchedule &amp;__cool_sched, eoEvalFunc&lt; EOT &gt; &amp;__full_eval)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -681,10 +703,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>moCoolSched &amp;</type>
+      <type>moCoolingSchedule &amp;</type>
       <name>cool_sched</name>
       <anchorfile>classmo_s_a.html</anchorfile>
-      <anchor>c7aaf7424aa1b9f889d2ba9c959e5a1d</anchor>
+      <anchor>11c7d0cab649b7d680dd85bb74cb4ff6</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -699,7 +721,6 @@
     <name>moSolContinue</name>
     <filename>classmo_sol_continue.html</filename>
     <templarg>EOT</templarg>
-    <base>eoUF&lt; const EOT &amp;, bool &gt;</base>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
       <name>init</name>
@@ -712,7 +733,6 @@
     <name>moTabuList</name>
     <filename>classmo_tabu_list.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
     <member kind="typedef">
       <type>M::EOType</type>
       <name>EOT</name>

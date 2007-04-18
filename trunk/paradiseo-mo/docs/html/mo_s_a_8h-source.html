@@ -43,7 +43,7 @@
 <a name="l00020"></a>00020 <span class="preprocessor">#include "moAlgo.h"</span>
 <a name="l00021"></a>00021 <span class="preprocessor">#include "moRandMove.h"</span>
 <a name="l00022"></a>00022 <span class="preprocessor">#include "moMoveIncrEval.h"</span>
-<a name="l00023"></a>00023 <span class="preprocessor">#include "moCoolSched.h"</span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include "moCoolingSchedule.h"</span>
 <a name="l00024"></a>00024 <span class="preprocessor">#include "moSolContinue.h"</span>
 <a name="l00025"></a>00025 
 <a name="l00026"></a>00026 <span class="preprocessor">#include &lt;math.h&gt;</span>
@@ -65,16 +65,16 @@
 <a name="l00047"></a>00047 <span class="keyword">public</span>:
 <a name="l00048"></a>00048 
 <a name="l00050"></a>00050 
-<a name="l00060"></a><a class="code" href="classmo_s_a.html#ef9ffb0d95c599e0a06c78db5f2f4b12">00060</a>   <a class="code" href="classmo_s_a.html#ef9ffb0d95c599e0a06c78db5f2f4b12">moSA</a> (moRandMove &lt; M &gt; &amp;__move_rand,
+<a name="l00060"></a><a class="code" href="classmo_s_a.html#01f6a44483e5a7abbce33eb480b6a9b9">00060</a>   <a class="code" href="classmo_s_a.html#01f6a44483e5a7abbce33eb480b6a9b9">moSA</a> (moRandMove &lt; M &gt; &amp;__move_rand,
 <a name="l00061"></a>00061         moMoveIncrEval &lt; M &gt; &amp;__incr_eval,
 <a name="l00062"></a>00062         moSolContinue &lt; EOT &gt; &amp;__cont,
 <a name="l00063"></a>00063         <span class="keywordtype">double</span> __init_temp,
-<a name="l00064"></a>00064         <a class="code" href="classmo_cool_sched.html">moCoolSched</a> &amp; __cool_sched, eoEvalFunc &lt; EOT &gt; &amp;__full_eval):
+<a name="l00064"></a>00064         <a class="code" href="classmo_cooling_schedule.html">moCoolingSchedule</a> &amp; __cool_sched, eoEvalFunc &lt; EOT &gt; &amp;__full_eval):
 <a name="l00065"></a>00065   <a class="code" href="classmo_s_a.html#71c49935b63a202d25888a5f86121fec">move_rand</a> (__move_rand),
 <a name="l00066"></a>00066   <a class="code" href="classmo_s_a.html#4c3be32e9832e465b24e6d33559356bc">incr_eval</a> (__incr_eval),
 <a name="l00067"></a>00067   <a class="code" href="classmo_s_a.html#54484c8a514866ea496e0058c2e09716">cont</a> (__cont),
 <a name="l00068"></a>00068   <a class="code" href="classmo_s_a.html#f1af7636b52aa5f6b381f8187b667bd4">init_temp</a> (__init_temp),
-<a name="l00069"></a>00069   <a class="code" href="classmo_s_a.html#c7aaf7424aa1b9f889d2ba9c959e5a1d">cool_sched</a> (__cool_sched),
+<a name="l00069"></a>00069   <a class="code" href="classmo_s_a.html#11c7d0cab649b7d680dd85bb74cb4ff6">cool_sched</a> (__cool_sched),
 <a name="l00070"></a>00070   <a class="code" href="classmo_s_a.html#bcd6a940046f23dd741444c0b85edf2c">full_eval</a> (__full_eval)
 <a name="l00071"></a>00071   {
 <a name="l00072"></a>00072 
@@ -123,7 +123,7 @@
 <a name="l00121"></a>00121         <span class="keywordflow">while</span> (<a class="code" href="classmo_s_a.html#54484c8a514866ea496e0058c2e09716">cont</a> (__sol));
 <a name="l00122"></a>00122 
 <a name="l00123"></a>00123       }
-<a name="l00124"></a>00124     <span class="keywordflow">while</span> (<a class="code" href="classmo_s_a.html#c7aaf7424aa1b9f889d2ba9c959e5a1d">cool_sched</a> (temp));
+<a name="l00124"></a>00124     <span class="keywordflow">while</span> (<a class="code" href="classmo_s_a.html#11c7d0cab649b7d680dd85bb74cb4ff6">cool_sched</a> (temp));
 <a name="l00125"></a>00125 
 <a name="l00126"></a>00126     __sol = best_sol;
 <a name="l00127"></a>00127 
@@ -141,13 +141,13 @@
 <a name="l00143"></a>00143   <span class="keywordtype">double</span>
 <a name="l00144"></a><a class="code" href="classmo_s_a.html#f1af7636b52aa5f6b381f8187b667bd4">00144</a>     <a class="code" href="classmo_s_a.html#f1af7636b52aa5f6b381f8187b667bd4">init_temp</a>;
 <a name="l00145"></a>00145 
-<a name="l00147"></a><a class="code" href="classmo_s_a.html#c7aaf7424aa1b9f889d2ba9c959e5a1d">00147</a>   <a class="code" href="classmo_cool_sched.html">moCoolSched</a> &amp; <a class="code" href="classmo_s_a.html#c7aaf7424aa1b9f889d2ba9c959e5a1d">cool_sched</a>;
+<a name="l00147"></a><a class="code" href="classmo_s_a.html#11c7d0cab649b7d680dd85bb74cb4ff6">00147</a>   <a class="code" href="classmo_cooling_schedule.html">moCoolingSchedule</a> &amp; <a class="code" href="classmo_s_a.html#11c7d0cab649b7d680dd85bb74cb4ff6">cool_sched</a>;
 <a name="l00148"></a>00148 
 <a name="l00150"></a><a class="code" href="classmo_s_a.html#bcd6a940046f23dd741444c0b85edf2c">00150</a>   eoEvalFunc &lt; EOT &gt; &amp;<a class="code" href="classmo_s_a.html#bcd6a940046f23dd741444c0b85edf2c">full_eval</a>;        <span class="comment">// Full evaluator.</span>
 <a name="l00151"></a>00151 };
 <a name="l00152"></a>00152 
 <a name="l00153"></a>00153 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Thu Dec 21 10:49:58 2006 for PARADISEO-MO by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Wed Apr 18 10:15:03 2007 for PARADISEO-MO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.1 </small></address>
 </body>

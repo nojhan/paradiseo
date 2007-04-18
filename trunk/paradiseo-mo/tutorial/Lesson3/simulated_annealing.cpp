@@ -10,7 +10,8 @@
 */
 
 #include <moSA.h>
-#include <moEasyCoolSched.h>
+#include <moExponentialCoolingSchedule.h>
+#include <moLinearCoolingSchedule.h>
 #include <moGenSolContinue.h>
 
 #include <graph.h>
@@ -51,7 +52,8 @@ int main (int __argc, char * __argv []) {
   
   TwoOpt move ;
   
-  moEasyCoolSched cool_sched (0.1, 0.98) ; // Cooling Schedule 
+  moExponentialCoolingSchedule cool_sched (0.1, 0.98) ; // Exponential Cooling Schedule 
+  //moLinearCoolingSchedule cool_sched (0.1, 0.5) ; // Linear Cooling Schedule 
   
   moGenSolContinue <Route> cont (1000) ; /* Temperature Descreasing
 					    will occur each 1000

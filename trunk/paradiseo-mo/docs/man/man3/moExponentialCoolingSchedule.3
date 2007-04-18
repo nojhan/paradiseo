@@ -1,22 +1,22 @@
-.TH "moEasyCoolSched" 3 "21 Dec 2006" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moExponentialCoolingSchedule" 3 "18 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-moEasyCoolSched \- One of the possible \fBmoCoolSched\fP.  
+moExponentialCoolingSchedule \- One of the possible \fBmoCoolingSchedule\fP.  
 
 .PP
 .SH SYNOPSIS
 .br
 .PP
-\fC#include <moEasyCoolSched.h>\fP
+\fC#include <moExponentialCoolingSchedule.h>\fP
 .PP
-Inherits \fBmoCoolSched\fP.
+Inherits \fBmoCoolingSchedule\fP.
 .PP
 .SS "Public Member Functions"
 
 .in +1c
 .ti -1c
-.RI "\fBmoEasyCoolSched\fP (double __threshold, double __ratio)"
+.RI "\fBmoExponentialCoolingSchedule\fP (double __threshold, double __ratio)"
 .br
 .RI "\fISimple constructor. \fP"
 .ti -1c
@@ -38,14 +38,14 @@ Inherits \fBmoCoolSched\fP.
 .in -1c
 .SH "Detailed Description"
 .PP 
-One of the possible \fBmoCoolSched\fP. 
+One of the possible \fBmoCoolingSchedule\fP. 
 
-The simpliest, the temperature decrease according to a ratio until it greater than a threshold. 
+An other very simple cooling schedule, the temperature decrease according to a ratio while the temperature is greater than a given threshold. 
 .PP
-Definition at line 22 of file moEasyCoolSched.h.
+Definition at line 22 of file moExponentialCoolingSchedule.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "moEasyCoolSched::moEasyCoolSched (double __threshold, double __ratio)\fC [inline]\fP"
+.SS "moExponentialCoolingSchedule::moExponentialCoolingSchedule (double __threshold, double __ratio)\fC [inline]\fP"
 .PP
 Simple constructor. 
 .PP
@@ -58,14 +58,14 @@ Simple constructor.
 .PP
 
 .PP
-Definition at line 31 of file moEasyCoolSched.h.
+Definition at line 31 of file moExponentialCoolingSchedule.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "bool moEasyCoolSched::operator() (double & __temp)\fC [inline, virtual]\fP"
+.SS "bool moExponentialCoolingSchedule::operator() (double & __temp)\fC [inline]\fP"
 .PP
 Function which proceeds to the cooling. 
 .PP
-Decrease the temperature and indicates if it is greater than the threshold.
+It decreases the temperature and indicates if it is greater than the threshold.
 .PP
 \fBParameters:\fP
 .RS 4
@@ -79,9 +79,7 @@ if the new temperature (current temperature * ratio) is greater than the thresho
 .PP
 
 .PP
-Implements \fBeoUF< double &, bool >\fP.
-.PP
-Definition at line 44 of file moEasyCoolSched.h.
+Definition at line 41 of file moExponentialCoolingSchedule.h.
 .PP
 References ratio, and threshold.
 
