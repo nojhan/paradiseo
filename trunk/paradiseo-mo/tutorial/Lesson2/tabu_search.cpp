@@ -16,6 +16,8 @@
 #include <moFirstImprSelect.h>
 #include <moBestImprSelect.h>
 #include <moRandImprSelect.h>
+#include <moSimpleMoveTabuList.h>
+#include <moSimpleSolutionTabuList.h>
 
 #include <graph.h>
 #include <route.h>
@@ -58,10 +60,12 @@ int main (int __argc, char * __argv []) {
   TwoOptIncrEval two_opt_incr_eval ; // Eff. eval.
 
   TwoOptTabuList tabu_list ; // Tabu List
+  //moSimpleMoveTabuList<TwoOpt> tabu_list(10);
+  //moSimpleSolutionTabuList<TwoOpt> tabu_list(10);
 
   moNoAspirCrit <TwoOpt> aspir_crit ; // Aspiration Criterion
 
-  moGenSolContinue <Route> cont (50000) ; // Continuator
+  moGenSolContinue <Route> cont (10000) ; // Continuator
 
   moTS <TwoOpt> tabu_search (two_opt_init, two_opt_next, two_opt_incr_eval, tabu_list, aspir_crit, cont, full_eval) ;
   tabu_search (route) ;

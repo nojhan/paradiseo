@@ -1,4 +1,4 @@
-.TH "moTabuList" 3 "18 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moTabuList" 3 "19 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -9,6 +9,8 @@ moTabuList \- Class describing a tabu list that a \fBmoTS\fP uses.
 .br
 .PP
 \fC#include <moTabuList.h>\fP
+.PP
+Inherited by \fBmoSimpleMoveTabuList< M >\fP, and \fBmoSimpleSolutionTabuList< M >\fP.
 .PP
 .SS "Public Types"
 
@@ -49,26 +51,32 @@ Definition at line 22 of file moTabuList.h.
 .PP
 Procedure to add a move in the tabu list. 
 .PP
-The two parameters have not to be modified so they are constant parameters
+The two parameters have not to be modified so they are constant parameters.
 .PP
 \fBParameters:\fP
 .RS 4
-\fI__move\fP a new tabu move 
+\fI__move\fP a new tabu move. 
 .br
-\fI__sol\fP the solution associated to this move 
+\fI__sol\fP the origianl solution associated to this move. 
 .RE
 .PP
 
+.PP
+Implemented in \fBmoSimpleMoveTabuList< M >\fP, and \fBmoSimpleSolutionTabuList< M >\fP.
 .SS "template<class M> virtual void \fBmoTabuList\fP< M >::update ()\fC [pure virtual]\fP"
 .PP
 Procedure that updates the tabu list content. 
 .PP
 Generally, a counter associated to each saved move is decreased by one. 
+.PP
+Implemented in \fBmoSimpleMoveTabuList< M >\fP, and \fBmoSimpleSolutionTabuList< M >\fP.
 .SS "template<class M> virtual void \fBmoTabuList\fP< M >::init ()\fC [pure virtual]\fP"
 .PP
 Procedure which initialises the tabu list. 
 .PP
 Can be useful if the data structure needs to be allocated before being used. 
+.PP
+Implemented in \fBmoSimpleMoveTabuList< M >\fP, and \fBmoSimpleSolutionTabuList< M >\fP.
 
 .SH "Author"
 .PP 

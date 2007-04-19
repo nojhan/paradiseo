@@ -14,7 +14,7 @@
 
 #include <eoFunctor.h>
 
-//! Class describing a tabu list that a moTS uses
+//! Class describing a tabu list that a moTS uses.
 /*!
   It is only a description, does nothing... A new object that herits from this class has to be defined in order
   to be used in a moTS.
@@ -26,30 +26,26 @@ template < class M > class moTabuList:public eoBF < const M &, const typename
 
 public:
   //! Alias for the type
-  typedef
-    typename
-    M::EOType
-    EOT;
-
+  typedef typename M::EOType EOT;
 
   //! Procedure to add a move in the tabu list
   /*!
-     The two parameters have not to be modified so they are constant parameters
+     The two parameters have not to be modified so they are constant parameters.
 
-     \param __move a new tabu move
-     \param __sol the solution associated to this move
+     \param __move a new tabu move.
+     \param __sol the origianl solution associated to this move.
    */
   virtual void
   add (const M & __move, const EOT & __sol) = 0;
 
-  //! Procedure that updates the tabu list content
+  //! Procedure that updates the tabu list content.
   /*!
      Generally, a counter associated to each saved move is decreased by one.
-   */
+  */
   virtual void
   update () = 0;
 
-  //! Procedure which initialises the tabu list
+  //! Procedure which initialises the tabu list.
   /*!
      Can be useful if the data structure needs to be allocated before being used.
    */

@@ -718,6 +718,144 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>moSimpleMoveTabuList</name>
+    <filename>classmo_simple_move_tabu_list.html</filename>
+    <templarg>M</templarg>
+    <base>moTabuList</base>
+    <member kind="typedef">
+      <type>M::EOType</type>
+      <name>EOT</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>91286ff3ba6b1e9e1db9e4fdade2edb7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>moSimpleMoveTabuList</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>d29bb1cfc8d1fd2de1cccf821d066b66</anchor>
+      <arglist>(unsigned __size)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>bb7fe9da28617f56734af71c42c8265a</anchor>
+      <arglist>(const M &amp;__move, const EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>add</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>43c979a9ec876c5e5b591b1c422395ef</anchor>
+      <arglist>(const M &amp;__move, const EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>update</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>96cffc8118456ed762b07b9fc0e0679f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>b91ae9971be30769757d1ad92c6009dc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned</type>
+      <name>maxSize</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>9f4860b378366e774c61a0d2034811e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned</type>
+      <name>currentSize</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>bd417b084e01343cba914a8193dab3a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::list&lt; M &gt;</type>
+      <name>tabuList</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>d91bc838361524720616b44eda9b2c3a</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moSimpleSolutionTabuList</name>
+    <filename>classmo_simple_solution_tabu_list.html</filename>
+    <templarg>M</templarg>
+    <base>moTabuList</base>
+    <member kind="typedef">
+      <type>M::EOType</type>
+      <name>EOT</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>881060871a6b49e5e8554c5df85176d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>moSimpleSolutionTabuList</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>24576bd9a907b8925c7d7d5ce6fde445</anchor>
+      <arglist>(unsigned __size)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>e1f1cf258b55554d8be88fb5780a0047</anchor>
+      <arglist>(const M &amp;__move, const EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>add</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>fd6b3a1764121169650c969bba895615</anchor>
+      <arglist>(const M &amp;__move, const EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>update</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>91b8b01dba7ffea8b63765d931e56f56</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>d5645c39fec71a6110a2cbccbb08b816</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned</type>
+      <name>maxSize</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>d059072e23ba086ede801abdd32f7218</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned</type>
+      <name>currentSize</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>ddc7196b9adcba0081810619a978490c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::list&lt; EOT &gt;</type>
+      <name>tabuList</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>75df9cd683528d3722d02bac407b710b</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>moSolContinue</name>
     <filename>classmo_sol_continue.html</filename>
     <templarg>EOT</templarg>

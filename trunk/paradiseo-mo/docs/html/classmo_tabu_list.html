@@ -33,6 +33,12 @@
 <p>
 <code>#include &lt;<a class="el" href="mo_tabu_list_8h-source.html">moTabuList.h</a>&gt;</code>
 <p>
+<p>Inheritance diagram for moTabuList&lt; M &gt;:
+<p><center><img src="classmo_tabu_list.png" usemap="#moTabuList< M >_map" border="0" alt=""></center>
+<map name="moTabuList< M >_map">
+<area href="classmo_simple_move_tabu_list.html" alt="moSimpleMoveTabuList< M >" shape="rect" coords="0,56,192,80">
+<area href="classmo_simple_solution_tabu_list.html" alt="moSimpleSolutionTabuList< M >" shape="rect" coords="202,56,394,80">
+</map>
 <a href="classmo_tabu_list-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Types</h2></td></tr>
@@ -92,14 +98,16 @@ template&lt;class M&gt; </div>
 <p>
 Procedure to add a move in the tabu list. 
 <p>
-The two parameters have not to be modified so they are constant parameters<p>
+The two parameters have not to be modified so they are constant parameters.<p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>__move</em>&nbsp;</td><td>a new tabu move </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>__sol</em>&nbsp;</td><td>the solution associated to this move </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>__move</em>&nbsp;</td><td>a new tabu move. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>__sol</em>&nbsp;</td><td>the origianl solution associated to this move. </td></tr>
   </table>
 </dl>
 
+<p>
+Implemented in <a class="el" href="classmo_simple_move_tabu_list.html#43c979a9ec876c5e5b591b1c422395ef">moSimpleMoveTabuList&lt; M &gt;</a>, and <a class="el" href="classmo_simple_solution_tabu_list.html#fd6b3a1764121169650c969bba895615">moSimpleSolutionTabuList&lt; M &gt;</a>.
 </div>
 </div><p>
 <a class="anchor" name="a2e5d1132f064093c8ed57046405f5ca"></a><!-- doxytag: member="moTabuList::update" ref="a2e5d1132f064093c8ed57046405f5ca" args="()=0" -->
@@ -123,6 +131,8 @@ template&lt;class M&gt; </div>
 Procedure that updates the tabu list content. 
 <p>
 Generally, a counter associated to each saved move is decreased by one. 
+<p>
+Implemented in <a class="el" href="classmo_simple_move_tabu_list.html#96cffc8118456ed762b07b9fc0e0679f">moSimpleMoveTabuList&lt; M &gt;</a>, and <a class="el" href="classmo_simple_solution_tabu_list.html#91b8b01dba7ffea8b63765d931e56f56">moSimpleSolutionTabuList&lt; M &gt;</a>.
 </div>
 </div><p>
 <a class="anchor" name="0a06c459d56e8e2b408a8f3c6aec4e57"></a><!-- doxytag: member="moTabuList::init" ref="0a06c459d56e8e2b408a8f3c6aec4e57" args="()=0" -->
@@ -146,11 +156,13 @@ template&lt;class M&gt; </div>
 Procedure which initialises the tabu list. 
 <p>
 Can be useful if the data structure needs to be allocated before being used. 
+<p>
+Implemented in <a class="el" href="classmo_simple_move_tabu_list.html#b91ae9971be30769757d1ad92c6009dc">moSimpleMoveTabuList&lt; M &gt;</a>, and <a class="el" href="classmo_simple_solution_tabu_list.html#d5645c39fec71a6110a2cbccbb08b816">moSimpleSolutionTabuList&lt; M &gt;</a>.
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="mo_tabu_list_8h-source.html">moTabuList.h</a></ul>
-<hr size="1"><address style="align: right;"><small>Generated on Wed Apr 18 10:15:04 2007 for PARADISEO-MO by&nbsp;
+<hr size="1"><address style="align: right;"><small>Generated on Thu Apr 19 15:16:09 2007 for PARADISEO-MO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.1 </small></address>
 </body>
