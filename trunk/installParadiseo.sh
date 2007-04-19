@@ -43,7 +43,7 @@ S_REMOVE_INSTALL=1015
 S_END=1016
 
 # define what are the possible install and their content
-FULL_INSTALL="$S_CONFIGURE_ENV $S_INTRODUCTION $S_UNPACK_EO $S_UNPACK_LIBXML $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
+FULL_INSTALL="$S_INTRODUCTION $S_UNPACK_EO $S_UNPACK_LIBXML $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
 
 BASIC_INSTALL="$S_INTRODUCTION $S_UNPACK_EO $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_END"
 
@@ -159,8 +159,7 @@ function on_error()
 		echo 
 		echo " => To report any problem of for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
 		echo 
-		kill $$
-		;;
+		kill $$;;
 
 	$LIBXML_UNPACKING_ERROR) 
 		echo
@@ -304,7 +303,7 @@ function run_install_step()
 		echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Unpacking Paradiseo-EO (Evolving Objects) ...'
 	
-		execute_cmd "tar xvzf $resourceKitPath/$LIBS_PATH/$PARADISEO_EO_ARCHIVE --directory $installKitPath" "[$currentStepCounter] Unpack Paradiseo-EO" $SPY
+		execute_cmd "tar xvf $resourceKitPath/$LIBS_PATH/$PARADISEO_EO_ARCHIVE --directory $installKitPath" "[$currentStepCounter] Unpack Paradiseo-EO" $SPY
 		if [ ! "$?" = "0" ]
 		then
 			echo ''
