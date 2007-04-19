@@ -7,6 +7,9 @@ AC_INIT(configure.in)
 AM_INIT_AUTOMAKE(paradisEO, 0.3)
 dnl AM_CONFIG_HEADER(config.h)
 
+dnl Autoconf 2.6 or higher compatibility
+AC_DEFUN([AC_DATAROOTDIR_CHECKED])
+
 AC_ISC_POSIX
 CXXFLAGS=""
 AC_SUBST(CXXFLAGS)
