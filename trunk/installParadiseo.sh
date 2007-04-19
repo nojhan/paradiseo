@@ -47,7 +47,7 @@ FULL_INSTALL="$S_CONFIGURE_ENV $S_INTRODUCTION $S_UNPACK_EO $S_UNPACK_LIBXML $S_
 
 BASIC_INSTALL="$S_INTRODUCTION $S_UNPACK_EO $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_END"
 
-PARALLEL_INSTALL="$S_PEO_CHECK $S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_UNPACK_MPICH $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
+PARALLEL_INSTALL="$S_CONFIGURE_ENV $S_PEO_CHECK $S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_UNPACK_MPICH $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
 
 RM_PREVIOUS_INSTALL="$S_REMOVE_INSTALL"
 
@@ -76,6 +76,7 @@ MPICH_INSTALL_ERROR=117
 PEO_CHECK_ERROR=118
 RM_PARADISEO_EO_ERROR=119
 RM_UTIL_ERROR=120
+BASIC_INSTALL_MISSING_ERROR=121
 
 #Date
 DATE=`/bin/date '+%Y%m%d%H%M%S'`
@@ -243,6 +244,14 @@ function on_error()
 		echo
 		echo "  An error has occured : impossible to remove the previous install of mpich2 and libxml2. See $SPY for more details" 
 		echo " You may not have a previous ParadisEO install available in the current directory"
+		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
+		echo 
+		kill $$;;
+
+	$BASIC_INSTALL_MISSING_ERROR)
+		echo
+		echo "  An error has occured : impossible to find the basic install of ParadisEO. See $SPY for more details" 
+		echo " You may not have a basic ParadisEO install available in the current directory"
 		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
 		echo 
 		kill $$;;
@@ -525,7 +534,6 @@ function run_install_step()
 		else
 			echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter OK \033[0m"
 			echo
-			return $SUCCESSFUL_STEP
 		fi 
 
 		if [ -d "$installKitPath/mpich2" ]
@@ -558,14 +566,14 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Configuring environment variables for libxml2 and mpich2 ...'
 		
-		execute_cmd "export LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH\":$installKitPath/libxml2/lib:" "[$currentStepCounter-1] Export LD_LIBRARY_PATH variable" $SPY
+		execute_cmd "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$installKitPath/libxml2/lib:" "[$currentStepCounter-1] Export LD_LIBRARY_PATH variable" $SPY
 		idx=$?	 
-		execute_cmd "export PATH=\"$PATH\":$installKitPath/libxml2/bin:$installKitPath/mpich2/bin" "[$currentStepCounter-2] Export PATH variable" $SPY 
+		execute_cmd "export PATH=$PATH:$installKitPath/libxml2/bin:$installKitPath/mpich2/bin" "[$currentStepCounter-2] Export PATH variable" $SPY 
 	
-		execute_cmd "echo export LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH\":$installKitPath/libxml2/lib" "[$currentStepCounter-3] Export LD_LIBRARY_PATH variable into env" $SPY $homePath/.bashrc
+		execute_cmd "echo export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$installKitPath/libxml2/lib" "[$currentStepCounter-3] Export LD_LIBRARY_PATH variable into env" $SPY $homePath/.bashrc
 		idx=$?	 
 
-		execute_cmd "echo export PATH=\"$PATH\":$installKitPath/libxml2/bin:$installKitPath/mpich2/bin" "[$currentStepCounter-4] Export PATH variable into env" $SPY $homePath/.bashrc
+		execute_cmd "echo export PATH=$PATH:$installKitPath/libxml2/bin:$installKitPath/mpich2/bin" "[$currentStepCounter-4] Export PATH variable into env" $SPY $homePath/.bashrc
 		idx=`expr $idx + $?`
 
 		execute_cmd "source $homePath/.bashrc" "[$currentStepCounter-5] Export variables" $SPY
@@ -638,9 +646,9 @@ function run_install_step()
 		;;
 
 	$S_PEO_CHECK)
-		if ( [ -d paradiseo-eo ] && [ ! -d paradiseo-mo ] && [ ! -d paradiseo-moeo ] )
+		if [ -d paradiseo-eo -a -d paradiseo-mo -a -d paradiseo-moeo ]
 		then
-			if ( [ -d libxml2 ] || [ -d mpich2 ] )
+			if  [ -d libxml2 -o -d mpich2 ]
 			then
 				echo 
 				echo "A previous installation of ParadisEO-PEO may exist because libxml2 or mpich2 directory have been detected in $installKitPath."
@@ -664,7 +672,7 @@ function run_install_step()
 			echo ''
 			echo "		--> Error when searching for a previous basic install in $installKitPath."
 			echo -e ' \033[40m\033[1;33m### END ### \033[0m '
-			return $RM_PARADISEO_EO_ERROR	
+			return $BASIC_INSTALL_MISSING_ERROR	
 		fi
 		;;
 	$S_END)
