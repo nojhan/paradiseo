@@ -37,7 +37,7 @@
 #include "moRandMove.h"
 #include "moSA.h"
 #include "moSimpleMoveTabuList.h"
-#include "moSimplesolutionTabuList.h"
+#include "moSimpleSolutionTabuList.h"
 #include "moSolContinue.h"
 #include "moTabuList.h"
 #include "moTS.h"
