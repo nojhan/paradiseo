@@ -1,0 +1,165 @@
+.TH "moeoEnvironmentalReplacement" 3 "17 Apr 2007" "Version 1.0.alpha" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoEnvironmentalReplacement \- Environmental replacement strategy that consists in keeping the N best individuals by deleting individuals 1 by 1 and by updating the fitness and diversity values after each deletion.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoEnvironmentalReplacement.h>\fP
+.PP
+Inherits \fBmoeoReplacement< MOEOT >< MOEOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef MOEOT::ObjectiveVector \fBObjectiveVector\fP"
+.br
+.RI "\fIThe type for objective vector. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoEnvironmentalReplacement\fP (\fBmoeoFitnessAssignment\fP< MOEOT > &_evalFitness, \fBmoeoDiversityAssignment\fP< MOEOT > &_evalDiversity, \fBmoeoComparator\fP< MOEOT > &_comparator)"
+.br
+.RI "\fIFull constructor. \fP"
+.ti -1c
+.RI "\fBmoeoEnvironmentalReplacement\fP (\fBmoeoFitnessAssignment\fP< MOEOT > &_evalFitness, \fBmoeoDiversityAssignment\fP< MOEOT > &_evalDiversity)"
+.br
+.RI "\fIConstructor without comparator. \fP"
+.ti -1c
+.RI "\fBmoeoEnvironmentalReplacement\fP (\fBmoeoFitnessAssignment\fP< MOEOT > &_evalFitness, \fBmoeoComparator\fP< MOEOT > &_comparator)"
+.br
+.RI "\fIConstructor without moeoDiversityAssignement. \fP"
+.ti -1c
+.RI "\fBmoeoEnvironmentalReplacement\fP (\fBmoeoFitnessAssignment\fP< MOEOT > &_evalFitness)"
+.br
+.RI "\fIConstructor without moeoDiversityAssignement nor \fBmoeoComparator\fP. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (\fBeoPop\fP< MOEOT > &_parents, \fBeoPop\fP< MOEOT > &_offspring)"
+.br
+.RI "\fIReplaces the first population by adding the individuals of the second one, sorting with a \fBmoeoComparator\fP and resizing the whole population obtained. \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoFitnessAssignment\fP< MOEOT > & \fBevalFitness\fP"
+.br
+.RI "\fIthe fitness assignment strategy \fP"
+.ti -1c
+.RI "\fBmoeoDiversityAssignment\fP< MOEOT > & \fBevalDiversity\fP"
+.br
+.RI "\fIthe diversity assignment strategy \fP"
+.ti -1c
+.RI "\fBmoeoComparator\fP< MOEOT > & \fBcomparator\fP"
+.br
+.RI "\fIthe comparator (used to compare 2 individuals) \fP"
+.in -1c
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBCmp\fP"
+.br
+.RI "\fIThis class is used to compare solutions in order to sort the population. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT> class moeoEnvironmentalReplacement< MOEOT >"
+Environmental replacement strategy that consists in keeping the N best individuals by deleting individuals 1 by 1 and by updating the fitness and diversity values after each deletion. 
+.PP
+Definition at line 25 of file moeoEnvironmentalReplacement.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class MOEOT> \fBmoeoEnvironmentalReplacement\fP< MOEOT >::\fBmoeoEnvironmentalReplacement\fP (\fBmoeoFitnessAssignment\fP< MOEOT > & _evalFitness, \fBmoeoDiversityAssignment\fP< MOEOT > & _evalDiversity, \fBmoeoComparator\fP< MOEOT > & _comparator)\fC [inline]\fP"
+.PP
+Full constructor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_evalFitness\fP the fitness assignment strategy 
+.br
+\fI_evalDiversity\fP the diversity assignment strategy 
+.br
+\fI_comparator\fP the comparator (used to compare 2 individuals) 
+.RE
+.PP
+
+.PP
+Definition at line 39 of file moeoEnvironmentalReplacement.h.
+.SS "template<class MOEOT> \fBmoeoEnvironmentalReplacement\fP< MOEOT >::\fBmoeoEnvironmentalReplacement\fP (\fBmoeoFitnessAssignment\fP< MOEOT > & _evalFitness, \fBmoeoDiversityAssignment\fP< MOEOT > & _evalDiversity)\fC [inline]\fP"
+.PP
+Constructor without comparator. 
+.PP
+A moeoFitThenDivComparator is used as default. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_evalFitness\fP the fitness assignment strategy 
+.br
+\fI_evalDiversity\fP the diversity assignment strategy 
+.RE
+.PP
+
+.PP
+Definition at line 49 of file moeoEnvironmentalReplacement.h.
+.SS "template<class MOEOT> \fBmoeoEnvironmentalReplacement\fP< MOEOT >::\fBmoeoEnvironmentalReplacement\fP (\fBmoeoFitnessAssignment\fP< MOEOT > & _evalFitness, \fBmoeoComparator\fP< MOEOT > & _comparator)\fC [inline]\fP"
+.PP
+Constructor without moeoDiversityAssignement. 
+.PP
+A dummy diversity is used as default. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_evalFitness\fP the fitness assignment strategy 
+.br
+\fI_comparator\fP the comparator (used to compare 2 individuals) 
+.RE
+.PP
+
+.PP
+Definition at line 59 of file moeoEnvironmentalReplacement.h.
+.SS "template<class MOEOT> \fBmoeoEnvironmentalReplacement\fP< MOEOT >::\fBmoeoEnvironmentalReplacement\fP (\fBmoeoFitnessAssignment\fP< MOEOT > & _evalFitness)\fC [inline]\fP"
+.PP
+Constructor without moeoDiversityAssignement nor \fBmoeoComparator\fP. 
+.PP
+A moeoFitThenDivComparator and a dummy diversity are used as default. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_evalFitness\fP the fitness assignment strategy 
+.RE
+.PP
+
+.PP
+Definition at line 69 of file moeoEnvironmentalReplacement.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT> void \fBmoeoEnvironmentalReplacement\fP< MOEOT >::operator() (\fBeoPop\fP< MOEOT > & _parents, \fBeoPop\fP< MOEOT > & _offspring)\fC [inline, virtual]\fP"
+.PP
+Replaces the first population by adding the individuals of the second one, sorting with a \fBmoeoComparator\fP and resizing the whole population obtained. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_parents\fP the population composed of the parents (the population you want to replace) 
+.br
+\fI_offspring\fP the offspring population 
+.RE
+.PP
+
+.PP
+Implements \fBeoBF< eoPop< MOEOT > &, eoPop< MOEOT > &, void >\fP.
+.PP
+Definition at line 79 of file moeoEnvironmentalReplacement.h.
+.PP
+References moeoEnvironmentalReplacement< MOEOT >::comparator, moeoEnvironmentalReplacement< MOEOT >::evalDiversity, and moeoEnvironmentalReplacement< MOEOT >::evalFitness.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.

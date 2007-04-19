@@ -1,0 +1,49 @@
+.TH "moeoParetoObjectiveVectorComparator" 3 "17 Apr 2007" "Version 1.0.alpha" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoParetoObjectiveVectorComparator \- This functor class allows to compare 2 objective vectors according to Pareto dominance.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoObjectiveVectorComparator.h>\fP
+.PP
+Inherits \fBmoeoObjectiveVectorComparator< ObjectiveVector >< ObjectiveVector >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBoperator()\fP (const ObjectiveVector &_objectiveVector1, const ObjectiveVector &_objectiveVector2)"
+.br
+.RI "\fIReturns true if _objectiveVector1 dominates _objectiveVector2. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class ObjectiveVector> class moeoParetoObjectiveVectorComparator< ObjectiveVector >"
+This functor class allows to compare 2 objective vectors according to Pareto dominance. 
+.PP
+Definition at line 32 of file moeoObjectiveVectorComparator.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class ObjectiveVector> bool \fBmoeoParetoObjectiveVectorComparator\fP< ObjectiveVector >::operator() (const ObjectiveVector & _objectiveVector1, const ObjectiveVector & _objectiveVector2)\fC [inline]\fP"
+.PP
+Returns true if _objectiveVector1 dominates _objectiveVector2. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_objectiveVector1\fP the first objective vector 
+.br
+\fI_objectiveVector2\fP the second objective vector 
+.RE
+.PP
+
+.PP
+Definition at line 41 of file moeoObjectiveVectorComparator.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.
