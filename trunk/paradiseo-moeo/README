@@ -16,18 +16,17 @@ paradiseo-help@lists.gforge.inria.fr
 The basic installation procedure goes the following:
 
 Go to your build-directory and run 
-    > $(SRCDIR)/configure
+    > ./autogen.sh --with-EOdir=$(EO_SRC)
     > make
     > make doc
 
-where $(SRCDIR) is the top-level source directory of PARADISEO-MOEO,
-i.e. where the sources were unpacked.
+where $(EO_SRC) is the top-level source directory of PARADISEO-EO.
 
 In case of problems, you can read the INSTALL file - but remember this
 is a standard installation file from GNU and that it contains nothing
 specific about PARADISEO-MOEO.
 
-To clean everything, simply run 
+To clean everything, the simply run 
     > make clean_all
 
 ===================================================================
