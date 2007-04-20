@@ -17,13 +17,11 @@
     <name>moAlgo</name>
     <filename>classmo_algo.html</filename>
     <templarg>EOT</templarg>
-    <base>eoMonOp&lt; EOT &gt;</base>
   </compound>
   <compound kind="class">
     <name>moAspirCrit</name>
     <filename>classmo_aspir_crit.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
       <name>init</name>
@@ -90,7 +88,6 @@
   <compound kind="class">
     <name>moCoolingSchedule</name>
     <filename>classmo_cooling_schedule.html</filename>
-    <base>eoUF&lt; double &amp;, bool &gt;</base>
   </compound>
   <compound kind="class">
     <name>moExponentialCoolingSchedule</name>
@@ -478,7 +475,6 @@
     <name>moLSCheckPoint</name>
     <filename>classmo_l_s_check_point.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
     <member kind="function">
       <type>void</type>
       <name>operator()</name>
@@ -505,7 +501,6 @@
     <name>moMove</name>
     <filename>classmo_move.html</filename>
     <templarg>EOT</templarg>
-    <base>eoUF&lt; EOT &amp;, void &gt;</base>
     <member kind="typedef">
       <type>EOT</type>
       <name>EOType</name>
@@ -518,19 +513,16 @@
     <name>moMoveExpl</name>
     <filename>classmo_move_expl.html</filename>
     <templarg>M</templarg>
-    <base>eoBF&lt; const M::EOType &amp;, M::EOType &amp;, void &gt;</base>
   </compound>
   <compound kind="class">
     <name>moMoveIncrEval</name>
     <filename>classmo_move_incr_eval.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
   </compound>
   <compound kind="class">
     <name>moMoveInit</name>
     <filename>classmo_move_init.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
   </compound>
   <compound kind="class">
     <name>moMoveLoopExpl</name>
@@ -542,7 +534,6 @@
     <name>moMoveSelect</name>
     <filename>classmo_move_select.html</filename>
     <templarg>M</templarg>
-    <base>eoBF&lt; M &amp;, M::EOType::Fitness &amp;, void &gt;</base>
     <member kind="typedef">
       <type>M::EOType::Fitness</type>
       <name>Fitness</name>
@@ -569,7 +560,6 @@
     <name>moNextMove</name>
     <filename>classmo_next_move.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
   </compound>
   <compound kind="class">
     <name>moNoAspirCrit</name>
@@ -650,7 +640,6 @@
     <name>moRandMove</name>
     <filename>classmo_rand_move.html</filename>
     <templarg>M</templarg>
-    <base>eoUF&lt; M &amp;, void &gt;</base>
   </compound>
   <compound kind="class">
     <name>moSA</name>
@@ -884,7 +873,6 @@
     <name>moSolContinue</name>
     <filename>classmo_sol_continue.html</filename>
     <templarg>EOT</templarg>
-    <base>eoUF&lt; const EOT &amp;, bool &gt;</base>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
       <name>init</name>
@@ -897,7 +885,6 @@
     <name>moTabuList</name>
     <filename>classmo_tabu_list.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
     <member kind="typedef">
       <type>M::EOType</type>
       <name>EOT</name>

@@ -30,7 +30,7 @@ Inherits \fBmoMoveSelect< M >< M >\fP.
 .ti -1c
 .RI "bool \fBupdate\fP (const M &__move, const typename M::EOType::Fitness &__fit)"
 .br
-.RI "\fI\fBFunction\fP that indicates if the current move has not improved the fitness. \fP"
+.RI "\fIFunction that indicates if the current move has not improved the fitness. \fP"
 .ti -1c
 .RI "void \fBoperator()\fP (M &__move, \fBFitness\fP &__fit)  throw (EmptySelection)"
 .br
@@ -80,7 +80,7 @@ Definition at line 35 of file moFirstImprSelect.h.
 References moFirstImprSelect< M >::init_fit, and moFirstImprSelect< M >::valid.
 .SS "template<class M> bool \fBmoFirstImprSelect\fP< M >::update (const M & __move, const typename M::EOType::Fitness & __fit)\fC [inline]\fP"
 .PP
-\fBFunction\fP that indicates if the current move has not improved the fitness. 
+Function that indicates if the current move has not improved the fitness. 
 .PP
 If the given fitness enables an improvment, the move (\fBmoMove\fP) should be applied to the current solution.
 .PP
@@ -101,7 +101,7 @@ TRUE if the move does not improve the fitness.
 Definition at line 52 of file moFirstImprSelect.h.
 .PP
 References moFirstImprSelect< M >::best_fit, moFirstImprSelect< M >::best_move, moFirstImprSelect< M >::init_fit, and moFirstImprSelect< M >::valid.
-.SS "template<class M> void \fBmoFirstImprSelect\fP< M >::operator() (M & __move, \fBFitness\fP & __fit)  throw (\fBEmptySelection\fP)\fC [inline, virtual]\fP"
+.SS "template<class M> void \fBmoFirstImprSelect\fP< M >::operator() (M & __move, \fBFitness\fP & __fit)  throw (\fBEmptySelection\fP)\fC [inline]\fP"
 .PP
 Procedure which saved the best move and fitness. 
 .PP
@@ -118,8 +118,6 @@ Procedure which saved the best move and fitness.
 .RE
 .PP
 
-.PP
-Implements \fBeoBF< M &, M::EOType::Fitness &, void >\fP.
 .PP
 Definition at line 76 of file moFirstImprSelect.h.
 .PP
