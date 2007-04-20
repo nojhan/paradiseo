@@ -36,7 +36,9 @@
 <p>Inheritance diagram for moSimpleMoveTabuList&lt; M &gt;:
 <p><center><img src="classmo_simple_move_tabu_list.png" usemap="#moSimpleMoveTabuList< M >_map" border="0" alt=""></center>
 <map name="moSimpleMoveTabuList< M >_map">
-<area href="classmo_tabu_list.html" alt="moTabuList< M >" shape="rect" coords="0,0,179,24">
+<area href="classmo_tabu_list.html" alt="moTabuList< M >" shape="rect" coords="0,112,179,136">
+<area doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_b_f.html" alt="eoBF< A1, A2, R >" shape="rect" coords="0,56,179,80">
+<area doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_functor_base.html" alt="eoFunctorBase" shape="rect" coords="0,0,179,24">
 </map>
 <a href="classmo_simple_move_tabu_list-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
@@ -52,7 +54,7 @@ typedef M::EOType&nbsp;</td><td class="memItemRight" valign="bottom"><a class="e
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_simple_move_tabu_list.html#bb7fe9da28617f56734af71c42c8265a">operator()</a> (const M &amp;__move, const <a class="el" href="classmo_simple_move_tabu_list.html#91286ff3ba6b1e9e1db9e4fdade2edb7">EOT</a> &amp;__sol)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Function that indicates if, in a given state, the _move is tabu or not.  <a href="#bb7fe9da28617f56734af71c42c8265a"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="elRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/struct_function.html">Function</a> that indicates if, in a given state, the _move is tabu or not.  <a href="#bb7fe9da28617f56734af71c42c8265a"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_simple_move_tabu_list.html#43c979a9ec876c5e5b591b1c422395ef">add</a> (const M &amp;__move, const <a class="el" href="classmo_simple_move_tabu_list.html#91286ff3ba6b1e9e1db9e4fdade2edb7">EOT</a> &amp;__sol)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Procedure to add a move in the tabu list.  <a href="#43c979a9ec876c5e5b591b1c422395ef"></a><br></td></tr>
@@ -62,6 +64,10 @@ typedef M::EOType&nbsp;</td><td class="memItemRight" valign="bottom"><a class="e
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_simple_move_tabu_list.html#b91ae9971be30769757d1ad92c6009dc">init</a> ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Procedure which initialises the tabu list.  <a href="#b91ae9971be30769757d1ad92c6009dc"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_simple_move_tabu_list.html#a3fa2bd19e09f1541878fa28e867d20f">removeMove</a> (const M &amp;__move)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Procedure that removes a given move from the tabu list (if it is into, else do nothing).  <a href="#a3fa2bd19e09f1541878fa28e867d20f"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9f4860b378366e774c61a0d2034811e1"></a><!-- doxytag: member="moSimpleMoveTabuList::maxSize" ref="9f4860b378366e774c61a0d2034811e1" args="" -->
 unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_simple_move_tabu_list.html#9f4860b378366e774c61a0d2034811e1">maxSize</a></td></tr>
@@ -113,7 +119,7 @@ template&lt;class M&gt; </div>
 <div class="memdoc">
 
 <p>
-Function that indicates if, in a given state, the _move is tabu or not. 
+<a class="elRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/struct_function.html">Function</a> that indicates if, in a given state, the _move is tabu or not. 
 <p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
@@ -126,7 +132,7 @@ Function that indicates if, in a given state, the _move is tabu or not.
 <p>
 Definition at line <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00046">46</a> of file <a class="el" href="mo_simple_move_tabu_list_8h-source.html">moSimpleMoveTabuList.h</a>.
 <p>
-References <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00095">moSimpleMoveTabuList&lt; M &gt;::tabuList</a>.
+References <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00123">moSimpleMoveTabuList&lt; M &gt;::tabuList</a>.
 </div>
 </div><p>
 <a class="anchor" name="43c979a9ec876c5e5b591b1c422395ef"></a><!-- doxytag: member="moSimpleMoveTabuList::add" ref="43c979a9ec876c5e5b591b1c422395ef" args="(const M &amp;__move, const EOT &amp;__sol)" -->
@@ -172,7 +178,7 @@ Implements <a class="el" href="classmo_tabu_list.html#d279d72cb486d812da1ad3d24a
 <p>
 Definition at line <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00060">60</a> of file <a class="el" href="mo_simple_move_tabu_list_8h-source.html">moSimpleMoveTabuList.h</a>.
 <p>
-References <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00092">moSimpleMoveTabuList&lt; M &gt;::currentSize</a>, <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00089">moSimpleMoveTabuList&lt; M &gt;::maxSize</a>, and <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00095">moSimpleMoveTabuList&lt; M &gt;::tabuList</a>.
+References <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00120">moSimpleMoveTabuList&lt; M &gt;::currentSize</a>, <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00117">moSimpleMoveTabuList&lt; M &gt;::maxSize</a>, <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00100">moSimpleMoveTabuList&lt; M &gt;::removeMove()</a>, and <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00123">moSimpleMoveTabuList&lt; M &gt;::tabuList</a>.
 </div>
 </div><p>
 <a class="anchor" name="96cffc8118456ed762b07b9fc0e0679f"></a><!-- doxytag: member="moSimpleMoveTabuList::update" ref="96cffc8118456ed762b07b9fc0e0679f" args="()" -->
@@ -199,7 +205,7 @@ Generally, a counter associated to each saved move is decreased by one.
 <p>
 Implements <a class="el" href="classmo_tabu_list.html#a2e5d1132f064093c8ed57046405f5ca">moTabuList&lt; M &gt;</a>.
 <p>
-Definition at line <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00075">75</a> of file <a class="el" href="mo_simple_move_tabu_list_8h-source.html">moSimpleMoveTabuList.h</a>.
+Definition at line <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00082">82</a> of file <a class="el" href="mo_simple_move_tabu_list_8h-source.html">moSimpleMoveTabuList.h</a>.
 </div>
 </div><p>
 <a class="anchor" name="b91ae9971be30769757d1ad92c6009dc"></a><!-- doxytag: member="moSimpleMoveTabuList::init" ref="b91ae9971be30769757d1ad92c6009dc" args="()" -->
@@ -226,12 +232,47 @@ Can be useful if the data structure needs to be allocated before being used.
 <p>
 Implements <a class="el" href="classmo_tabu_list.html#0a06c459d56e8e2b408a8f3c6aec4e57">moTabuList&lt; M &gt;</a>.
 <p>
-Definition at line <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00081">81</a> of file <a class="el" href="mo_simple_move_tabu_list_8h-source.html">moSimpleMoveTabuList.h</a>.
+Definition at line <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00088">88</a> of file <a class="el" href="mo_simple_move_tabu_list_8h-source.html">moSimpleMoveTabuList.h</a>.
+</div>
+</div><p>
+<a class="anchor" name="a3fa2bd19e09f1541878fa28e867d20f"></a><!-- doxytag: member="moSimpleMoveTabuList::removeMove" ref="a3fa2bd19e09f1541878fa28e867d20f" args="(const M &amp;__move)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class M&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classmo_simple_move_tabu_list.html">moSimpleMoveTabuList</a>&lt; M &gt;::removeMove           </td>
+          <td>(</td>
+          <td class="paramtype">const M &amp;&nbsp;</td>
+          <td class="paramname"> <em>__move</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline, private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Procedure that removes a given move from the tabu list (if it is into, else do nothing). 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>__move</em>&nbsp;</td><td>A given <a class="el" href="classmo_move.html">moMove</a>. </td></tr>
+  </table>
+</dl>
+
+<p>
+Definition at line <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00100">100</a> of file <a class="el" href="mo_simple_move_tabu_list_8h-source.html">moSimpleMoveTabuList.h</a>.
+<p>
+References <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00123">moSimpleMoveTabuList&lt; M &gt;::tabuList</a>.
+<p>
+Referenced by <a class="el" href="mo_simple_move_tabu_list_8h-source.html#l00060">moSimpleMoveTabuList&lt; M &gt;::add()</a>.
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="mo_simple_move_tabu_list_8h-source.html">moSimpleMoveTabuList.h</a></ul>
-<hr size="1"><address style="align: right;"><small>Generated on Thu Apr 19 15:16:09 2007 for PARADISEO-MO by&nbsp;
+<hr size="1"><address style="align: right;"><small>Generated on Fri Apr 20 11:23:38 2007 for PARADISEO-MO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.1 </small></address>
 </body>

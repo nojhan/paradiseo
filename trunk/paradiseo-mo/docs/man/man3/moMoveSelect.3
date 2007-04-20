@@ -1,4 +1,4 @@
-.TH "moMoveSelect" 3 "19 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moMoveSelect" 3 "20 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -9,6 +9,8 @@ moMoveSelect \- Class that describes a move selector (\fBmoMove\fP).
 .br
 .PP
 \fC#include <moMoveSelect.h>\fP
+.PP
+Inherits \fBeoBF< M &, M::EOType::Fitness &, void >\fP.
 .PP
 Inherited by \fBmoBestImprSelect< M >\fP, \fBmoFirstImprSelect< M >\fP, and \fBmoRandImprSelect< M >\fP.
 .PP
@@ -30,7 +32,7 @@ Inherited by \fBmoBestImprSelect< M >\fP, \fBmoFirstImprSelect< M >\fP, and \fBm
 .ti -1c
 .RI "virtual bool \fBupdate\fP (const M &__move, const \fBFitness\fP &__fit)=0"
 .br
-.RI "\fIFunction which updates the best solutions. \fP"
+.RI "\fI\fBFunction\fP which updates the best solutions. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -59,7 +61,7 @@ In order to know the fitness of the solution, for which the neighborhood will be
 Implemented in \fBmoBestImprSelect< M >\fP, \fBmoFirstImprSelect< M >\fP, and \fBmoRandImprSelect< M >\fP.
 .SS "template<class M> virtual bool \fBmoMoveSelect\fP< M >::update (const M & __move, const \fBFitness\fP & __fit)\fC [pure virtual]\fP"
 .PP
-Function which updates the best solutions. 
+\fBFunction\fP which updates the best solutions. 
 .PP
 \fBParameters:\fP
 .RS 4

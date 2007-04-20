@@ -1,4 +1,4 @@
-.TH "moRandImprSelect" 3 "19 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moRandImprSelect" 3 "20 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -30,7 +30,7 @@ Inherits \fBmoMoveSelect< M >< M >\fP.
 .ti -1c
 .RI "bool \fBupdate\fP (const M &__move, const \fBFitness\fP &__fit)"
 .br
-.RI "\fIFunction that updates the fitness and move vectors. \fP"
+.RI "\fI\fBFunction\fP that updates the fitness and move vectors. \fP"
 .ti -1c
 .RI "void \fBoperator()\fP (M &__move, \fBFitness\fP &__fit)  throw (EmptySelection)"
 .br
@@ -83,7 +83,7 @@ Definition at line 40 of file moRandImprSelect.h.
 References moRandImprSelect< M >::init_fit, moRandImprSelect< M >::vect_better_fit, and moRandImprSelect< M >::vect_better_moves.
 .SS "template<class M> bool \fBmoRandImprSelect\fP< M >::update (const M & __move, const \fBFitness\fP & __fit)\fC [inline, virtual]\fP"
 .PP
-Function that updates the fitness and move vectors. 
+\fBFunction\fP that updates the fitness and move vectors. 
 .PP
 if a move give a better fitness than the initial fitness, it is saved and the fitness too.
 .PP
@@ -106,7 +106,7 @@ Implements \fBmoMoveSelect< M >\fP.
 Definition at line 56 of file moRandImprSelect.h.
 .PP
 References moRandImprSelect< M >::init_fit, moRandImprSelect< M >::vect_better_fit, and moRandImprSelect< M >::vect_better_moves.
-.SS "template<class M> void \fBmoRandImprSelect\fP< M >::operator() (M & __move, \fBFitness\fP & __fit)  throw (\fBEmptySelection\fP)\fC [inline]\fP"
+.SS "template<class M> void \fBmoRandImprSelect\fP< M >::operator() (M & __move, \fBFitness\fP & __fit)  throw (\fBEmptySelection\fP)\fC [inline, virtual]\fP"
 .PP
 The move selection. 
 .PP
@@ -126,9 +126,11 @@ One the saved move is randomly chosen.
 .PP
 
 .PP
+Implements \fBeoBF< M &, M::EOType::Fitness &, void >\fP.
+.PP
 Definition at line 77 of file moRandImprSelect.h.
 .PP
-References moRandImprSelect< M >::vect_better_fit, and moRandImprSelect< M >::vect_better_moves.
+References eoRng::random(), moRandImprSelect< M >::vect_better_fit, and moRandImprSelect< M >::vect_better_moves.
 
 .SH "Author"
 .PP 

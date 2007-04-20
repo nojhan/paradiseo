@@ -36,7 +36,7 @@ public:
     currentSize=0;
   }
 
-   //! Function that indicates if, in a given state, the _move is tabu or not.
+  //! Function that indicates if, in a given state, the _move is tabu or not.
   /*!
     \param __move A given moMove.
     \param __sol A solution.
@@ -59,6 +59,13 @@ public:
   void
   add (const M & __move, const EOT & __sol)
   {
+    if(currentSize!=0)
+      {
+	// Useful in the case of a move has been kept thanks to the moAspirCrit.
+	// In this case, the move can already be in the tabuList.
+	removeMove(__move);
+      }
+
     tabuList.push_back(__move);
     
     if(currentSize==maxSize)
@@ -85,6 +92,27 @@ public:
 
 private:
   
+  //! Procedure that removes a given move from the tabu list (if it is into, else do nothing).
+  /*!
+    \param __move A given moMove.
+  */
+  void
+  removeMove(const M & __move)
+  {
+    typename std::list<M>::iterator it;
+    
+    it=tabuList.begin();
+    while(it!=tabuList.end()&&(!((*it)==__move)))
+      {
+	it++;
+      }
+
+    if(it!=tabuList.end())
+      {
+	tabuList.erase(it);
+      }
+  }
+
   //! The maximum size of the tabu list.
   unsigned maxSize;
 

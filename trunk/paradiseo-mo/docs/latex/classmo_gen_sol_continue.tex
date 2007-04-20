@@ -8,7 +8,7 @@ One possible stop criterion for a solution-based heuristic.
 Inheritance diagram for mo\-Gen\-Sol\-Continue$<$ EOT $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{classmo_gen_sol_continue}
+\includegraphics[height=4cm]{classmo_gen_sol_continue}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -17,7 +17,7 @@ Inheritance diagram for mo\-Gen\-Sol\-Continue$<$ EOT $>$::\begin{figure}[H]
 {\bf mo\-Gen\-Sol\-Continue} (unsigned \_\-\_\-max\-Num\-Gen)
 \begin{CompactList}\small\item\em Simple constructor. \item\end{CompactList}\item 
 bool {\bf operator()} (const EOT \&\_\-\_\-sol)
-\begin{CompactList}\small\item\em Function that activates the stop criterion. \item\end{CompactList}\item 
+\begin{CompactList}\small\item\em {\bf Function} that activates the stop criterion. \item\end{CompactList}\item 
 void {\bf init} ()
 \begin{CompactList}\small\item\em Procedure which allows to initialise the generation counter. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
@@ -62,10 +62,10 @@ Definition at line 30 of file mo\-Gen\-Sol\-Continue.h.
 \subsection{Member Function Documentation}
 \index{moGenSolContinue@{mo\-Gen\-Sol\-Continue}!operator()@{operator()}}
 \index{operator()@{operator()}!moGenSolContinue@{mo\-Gen\-Sol\-Continue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf mo\-Gen\-Sol\-Continue}$<$ EOT $>$::operator() (const EOT \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_gen_sol_continue_457257cd73b474d6f7783d84d02c2e61}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf mo\-Gen\-Sol\-Continue}$<$ EOT $>$::operator() (const EOT \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_gen_sol_continue_457257cd73b474d6f7783d84d02c2e61}
 
 
-Function that activates the stop criterion. 
+{\bf Function} that activates the stop criterion. 
 
 Increments the counter and returns TRUE if the current number of iteration is lower than the given maximum number of iterations.
 
@@ -78,11 +78,13 @@ Increments the counter and returns TRUE if the current number of iteration is lo
 \item[Returns:]TRUE or FALSE according to the current generation number. \end{Desc}
 
 
+Implements {\bf eo\-UF$<$ const EOT \&, bool $>$}.
+
 Definition at line 44 of file mo\-Gen\-Sol\-Continue.h.
 
 References mo\-Gen\-Sol\-Continue$<$ EOT $>$::max\-Num\-Gen, and mo\-Gen\-Sol\-Continue$<$ EOT $>$::num\-Gen.\index{moGenSolContinue@{mo\-Gen\-Sol\-Continue}!init@{init}}
 \index{init@{init}!moGenSolContinue@{mo\-Gen\-Sol\-Continue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void {\bf mo\-Gen\-Sol\-Continue}$<$ EOT $>$::init ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_gen_sol_continue_6c5db8182157584b56507cc9075602d4}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void {\bf mo\-Gen\-Sol\-Continue}$<$ EOT $>$::init (void)\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_gen_sol_continue_6c5db8182157584b56507cc9075602d4}
 
 
 Procedure which allows to initialise the generation counter. 

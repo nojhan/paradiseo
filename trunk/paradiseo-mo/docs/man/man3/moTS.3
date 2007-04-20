@@ -1,4 +1,4 @@
-.TH "moTS" 3 "19 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moTS" 3 "20 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -16,17 +16,17 @@ Inherits \fBmoAlgo< M::EOType >\fP.
 
 .in +1c
 .ti -1c
-.RI "\fBmoTS\fP (\fBmoMoveInit\fP< M > &__move_init, \fBmoNextMove\fP< M > &__next_move, \fBmoMoveIncrEval\fP< M > &__incr_eval, \fBmoTabuList\fP< M > &__tabu_list, \fBmoAspirCrit\fP< M > &__aspir_crit, \fBmoSolContinue\fP< \fBEOT\fP > &__cont, eoEvalFunc< \fBEOT\fP > &__full_eval)"
+.RI "\fBmoTS\fP (\fBmoMoveInit\fP< M > &__move_init, \fBmoNextMove\fP< M > &__next_move, \fBmoMoveIncrEval\fP< M > &__incr_eval, \fBmoTabuList\fP< M > &__tabu_list, \fBmoAspirCrit\fP< M > &__aspir_crit, \fBmoSolContinue\fP< \fBEOT\fP > &__cont, \fBeoEvalFunc\fP< \fBEOT\fP > &__full_eval)"
 .br
 .RI "\fIConstructor of a \fBmoTS\fP specifying all the boxes. \fP"
 .ti -1c
-.RI "\fBmoTS\fP (\fBmoMoveExpl\fP< M > &__move_expl, \fBmoSolContinue\fP< \fBEOT\fP > &__cont, eoEvalFunc< \fBEOT\fP > &__full_eval)"
+.RI "\fBmoTS\fP (\fBmoMoveExpl\fP< M > &__move_expl, \fBmoSolContinue\fP< \fBEOT\fP > &__cont, \fBeoEvalFunc\fP< \fBEOT\fP > &__full_eval)"
 .br
 .RI "\fIConstructor with less parameters. \fP"
 .ti -1c
 .RI "bool \fBoperator()\fP (\fBEOT\fP &__sol)"
 .br
-.RI "\fIFunction which launchs the Tabu Search. \fP"
+.RI "\fI\fBFunction\fP which launchs the Tabu Search. \fP"
 .in -1c
 .SS "Private Types"
 
@@ -52,7 +52,7 @@ Inherits \fBmoAlgo< M::EOType >\fP.
 .br
 .RI "\fIStop criterion. \fP"
 .ti -1c
-.RI "eoEvalFunc< \fBEOT\fP > & \fBfull_eval\fP"
+.RI "\fBeoEvalFunc\fP< \fBEOT\fP > & \fBfull_eval\fP"
 .br
 .RI "\fIFull evaluation function. \fP"
 .in -1c
@@ -79,7 +79,7 @@ Generic algorithm that describes a tabu search.
 Definition at line 30 of file moTS.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<class M> \fBmoTS\fP< M >::\fBmoTS\fP (\fBmoMoveInit\fP< M > & __move_init, \fBmoNextMove\fP< M > & __next_move, \fBmoMoveIncrEval\fP< M > & __incr_eval, \fBmoTabuList\fP< M > & __tabu_list, \fBmoAspirCrit\fP< M > & __aspir_crit, \fBmoSolContinue\fP< \fBEOT\fP > & __cont, eoEvalFunc< \fBEOT\fP > & __full_eval)\fC [inline]\fP"
+.SS "template<class M> \fBmoTS\fP< M >::\fBmoTS\fP (\fBmoMoveInit\fP< M > & __move_init, \fBmoNextMove\fP< M > & __next_move, \fBmoMoveIncrEval\fP< M > & __incr_eval, \fBmoTabuList\fP< M > & __tabu_list, \fBmoAspirCrit\fP< M > & __aspir_crit, \fBmoSolContinue\fP< \fBEOT\fP > & __cont, \fBeoEvalFunc\fP< \fBEOT\fP > & __full_eval)\fC [inline]\fP"
 .PP
 Constructor of a \fBmoTS\fP specifying all the boxes. 
 .PP
@@ -107,7 +107,7 @@ In this constructor, a \fBmoTSMoveLoopExpl\fP is instanciated.
 Definition at line 59 of file moTS.h.
 .PP
 References moTS< M >::first_time, and moTS< M >::mutex.
-.SS "template<class M> \fBmoTS\fP< M >::\fBmoTS\fP (\fBmoMoveExpl\fP< M > & __move_expl, \fBmoSolContinue\fP< \fBEOT\fP > & __cont, eoEvalFunc< \fBEOT\fP > & __full_eval)\fC [inline]\fP"
+.SS "template<class M> \fBmoTS\fP< M >::\fBmoTS\fP (\fBmoMoveExpl\fP< M > & __move_expl, \fBmoSolContinue\fP< \fBEOT\fP > & __cont, \fBeoEvalFunc\fP< \fBEOT\fP > & __full_eval)\fC [inline]\fP"
 .PP
 Constructor with less parameters. 
 .PP
@@ -129,9 +129,9 @@ Definition at line 81 of file moTS.h.
 References moTS< M >::first_time, and moTS< M >::mutex.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> bool \fBmoTS\fP< M >::operator() (\fBEOT\fP & __sol)\fC [inline]\fP"
+.SS "template<class M> bool \fBmoTS\fP< M >::operator() (\fBEOT\fP & __sol)\fC [inline, virtual]\fP"
 .PP
-Function which launchs the Tabu Search. 
+\fBFunction\fP which launchs the Tabu Search. 
 .PP
 Algorithm of the tabu search. As a \fBmoSA\fP or a \fBmoHC\fP, it can be used for HYBRIDATION in an evolutionary algorithm. For security a lock (pthread_mutex_t) is closed during the algorithm.
 .PP
@@ -146,6 +146,8 @@ TRUE.
 .RE
 .PP
 
+.PP
+Implements \fBeoUF< M::EOType &, bool >\fP.
 .PP
 Definition at line 104 of file moTS.h.
 .PP

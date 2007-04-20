@@ -1,4 +1,4 @@
-.TH "moSimpleMoveTabuList" 3 "19 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moSimpleMoveTabuList" 3 "20 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -30,7 +30,7 @@ Inherits \fBmoTabuList< M >< M >\fP.
 .ti -1c
 .RI "bool \fBoperator()\fP (const M &__move, const \fBEOT\fP &__sol)"
 .br
-.RI "\fIFunction that indicates if, in a given state, the _move is tabu or not. \fP"
+.RI "\fI\fBFunction\fP that indicates if, in a given state, the _move is tabu or not. \fP"
 .ti -1c
 .RI "void \fBadd\fP (const M &__move, const \fBEOT\fP &__sol)"
 .br
@@ -43,6 +43,14 @@ Inherits \fBmoTabuList< M >< M >\fP.
 .RI "void \fBinit\fP ()"
 .br
 .RI "\fIProcedure which initialises the tabu list. \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBremoveMove\fP (const M &__move)"
+.br
+.RI "\fIProcedure that removes a given move from the tabu list (if it is into, else do nothing). \fP"
 .in -1c
 .SS "Private Attributes"
 
@@ -71,7 +79,7 @@ Definition at line 22 of file moSimpleMoveTabuList.h.
 .PP 
 .SS "template<class M> bool \fBmoSimpleMoveTabuList\fP< M >::operator() (const M & __move, const \fBEOT\fP & __sol)\fC [inline]\fP"
 .PP
-Function that indicates if, in a given state, the _move is tabu or not. 
+\fBFunction\fP that indicates if, in a given state, the _move is tabu or not. 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -109,7 +117,7 @@ Implements \fBmoTabuList< M >\fP.
 .PP
 Definition at line 60 of file moSimpleMoveTabuList.h.
 .PP
-References moSimpleMoveTabuList< M >::currentSize, moSimpleMoveTabuList< M >::maxSize, and moSimpleMoveTabuList< M >::tabuList.
+References moSimpleMoveTabuList< M >::currentSize, moSimpleMoveTabuList< M >::maxSize, moSimpleMoveTabuList< M >::removeMove(), and moSimpleMoveTabuList< M >::tabuList.
 .SS "template<class M> void \fBmoSimpleMoveTabuList\fP< M >::update ()\fC [inline, virtual]\fP"
 .PP
 Procedure that updates the tabu list content. 
@@ -118,7 +126,7 @@ Generally, a counter associated to each saved move is decreased by one.
 .PP
 Implements \fBmoTabuList< M >\fP.
 .PP
-Definition at line 75 of file moSimpleMoveTabuList.h.
+Definition at line 82 of file moSimpleMoveTabuList.h.
 .SS "template<class M> void \fBmoSimpleMoveTabuList\fP< M >::init ()\fC [inline, virtual]\fP"
 .PP
 Procedure which initialises the tabu list. 
@@ -127,7 +135,23 @@ Can be useful if the data structure needs to be allocated before being used.
 .PP
 Implements \fBmoTabuList< M >\fP.
 .PP
-Definition at line 81 of file moSimpleMoveTabuList.h.
+Definition at line 88 of file moSimpleMoveTabuList.h.
+.SS "template<class M> void \fBmoSimpleMoveTabuList\fP< M >::removeMove (const M & __move)\fC [inline, private]\fP"
+.PP
+Procedure that removes a given move from the tabu list (if it is into, else do nothing). 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__move\fP A given \fBmoMove\fP. 
+.RE
+.PP
+
+.PP
+Definition at line 100 of file moSimpleMoveTabuList.h.
+.PP
+References moSimpleMoveTabuList< M >::tabuList.
+.PP
+Referenced by moSimpleMoveTabuList< M >::add().
 
 .SH "Author"
 .PP 

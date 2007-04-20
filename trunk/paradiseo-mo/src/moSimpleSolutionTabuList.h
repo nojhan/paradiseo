@@ -67,6 +67,13 @@ public:
     EOT _sol=(EOT) _sol;
     
     _move(_sol);
+
+    if(currentSize!=0)
+      {
+	// Useful in the case of a solution has been kept thanks to the moAspirCrit.
+	// In this case, the solution can already be in the tabuList.
+	removeSolution(_sol);
+      }
     
     tabuList.push_back(_sol);
     
@@ -93,6 +100,27 @@ public:
   }
 
 private:
+
+  //! Procedure that removes a given solution from the tabu list (if it is into, else does nothing).
+  /*!
+    \param __sol A given solution.
+  */
+  void
+  removeSolution(const EOT & __sol)
+  {
+    typename std::list<EOT>::iterator it;
+
+    it=tabuList.begin();
+    while(it!=tabuList.end()&&(!((*it)==__sol)))
+      {
+	it++;
+      }
+
+    if(it!=tabuList.end())
+      {
+	tabuList.erase(it);
+      }
+  }
   
   //! The maximum size of the tabu list.
   unsigned maxSize;

@@ -8,13 +8,13 @@ Simulated Annealing (SA).
 Inheritance diagram for mo\-SA$<$ M $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{classmo_s_a}
+\includegraphics[height=5cm]{classmo_s_a}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-{\bf mo\-SA} ({\bf mo\-Rand\-Move}$<$ M $>$ \&\_\-\_\-move\_\-rand, {\bf mo\-Move\-Incr\-Eval}$<$ M $>$ \&\_\-\_\-incr\_\-eval, {\bf mo\-Sol\-Continue}$<$ {\bf EOT} $>$ \&\_\-\_\-cont, double \_\-\_\-init\_\-temp, {\bf mo\-Cooling\-Schedule} \&\_\-\_\-cool\_\-sched, eo\-Eval\-Func$<$ {\bf EOT} $>$ \&\_\-\_\-full\_\-eval)
+{\bf mo\-SA} ({\bf mo\-Rand\-Move}$<$ M $>$ \&\_\-\_\-move\_\-rand, {\bf mo\-Move\-Incr\-Eval}$<$ M $>$ \&\_\-\_\-incr\_\-eval, {\bf mo\-Sol\-Continue}$<$ {\bf EOT} $>$ \&\_\-\_\-cont, double \_\-\_\-init\_\-temp, {\bf mo\-Cooling\-Schedule} \&\_\-\_\-cool\_\-sched, {\bf eo\-Eval\-Func}$<$ {\bf EOT} $>$ \&\_\-\_\-full\_\-eval)
 \begin{CompactList}\small\item\em SA constructor. \item\end{CompactList}\item 
 bool {\bf operator()} ({\bf EOT} \&\_\-\_\-sol)
 \begin{CompactList}\small\item\em function that launches the SA algorithm. \item\end{CompactList}\end{CompactItemize}
@@ -45,7 +45,7 @@ double {\bf init\_\-temp}\label{classmo_s_a_f1af7636b52aa5f6b381f8187b667bd4}
 {\bf mo\-Cooling\-Schedule} \& {\bf cool\_\-sched}\label{classmo_s_a_11c7d0cab649b7d680dd85bb74cb4ff6}
 
 \begin{CompactList}\small\item\em The cooling schedule. \item\end{CompactList}\item 
-eo\-Eval\-Func$<$ {\bf EOT} $>$ \& {\bf full\_\-eval}\label{classmo_s_a_bcd6a940046f23dd741444c0b85edf2c}
+{\bf eo\-Eval\-Func}$<$ {\bf EOT} $>$ \& {\bf full\_\-eval}\label{classmo_s_a_bcd6a940046f23dd741444c0b85edf2c}
 
 \begin{CompactList}\small\item\em A full evaluation function. \item\end{CompactList}\end{CompactItemize}
 
@@ -64,7 +64,7 @@ Definition at line 32 of file mo\-SA.h.
 \subsection{Constructor \& Destructor Documentation}
 \index{moSA@{mo\-SA}!moSA@{moSA}}
 \index{moSA@{moSA}!moSA@{mo\-SA}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf mo\-SA}$<$ M $>$::{\bf mo\-SA} ({\bf mo\-Rand\-Move}$<$ M $>$ \& {\em \_\-\_\-move\_\-rand}, {\bf mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\em \_\-\_\-incr\_\-eval}, {\bf mo\-Sol\-Continue}$<$ {\bf EOT} $>$ \& {\em \_\-\_\-cont}, double {\em \_\-\_\-init\_\-temp}, {\bf mo\-Cooling\-Schedule} \& {\em \_\-\_\-cool\_\-sched}, eo\-Eval\-Func$<$ {\bf EOT} $>$ \& {\em \_\-\_\-full\_\-eval})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_s_a_01f6a44483e5a7abbce33eb480b6a9b9}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf mo\-SA}$<$ M $>$::{\bf mo\-SA} ({\bf mo\-Rand\-Move}$<$ M $>$ \& {\em \_\-\_\-move\_\-rand}, {\bf mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\em \_\-\_\-incr\_\-eval}, {\bf mo\-Sol\-Continue}$<$ {\bf EOT} $>$ \& {\em \_\-\_\-cont}, double {\em \_\-\_\-init\_\-temp}, {\bf mo\-Cooling\-Schedule} \& {\em \_\-\_\-cool\_\-sched}, {\bf eo\-Eval\-Func}$<$ {\bf EOT} $>$ \& {\em \_\-\_\-full\_\-eval})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_s_a_01f6a44483e5a7abbce33eb480b6a9b9}
 
 
 SA constructor. 
@@ -83,7 +83,7 @@ Definition at line 60 of file mo\-SA.h.
 \subsection{Member Function Documentation}
 \index{moSA@{mo\-SA}!operator()@{operator()}}
 \index{operator()@{operator()}!moSA@{mo\-SA}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf mo\-SA}$<$ M $>$::operator() ({\bf EOT} \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_s_a_0e4c54b57bc13fcbd4763883b8f719e5}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf mo\-SA}$<$ M $>$::operator() ({\bf EOT} \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_s_a_0e4c54b57bc13fcbd4763883b8f719e5}
 
 
 function that launches the SA algorithm. 
@@ -99,9 +99,11 @@ As a \doxyref{mo\-TS}{p.}{classmo_t_s} or a \doxyref{mo\-HC}{p.}{classmo_h_c}, t
 \item[Returns:]TRUE. \end{Desc}
 
 
+Implements {\bf eo\-UF$<$ M::EOType \&, bool $>$}.
+
 Definition at line 82 of file mo\-SA.h.
 
-References mo\-SA$<$ M $>$::cont, mo\-SA$<$ M $>$::cool\_\-sched, mo\-SA$<$ M $>$::full\_\-eval, mo\-SA$<$ M $>$::incr\_\-eval, mo\-SA$<$ M $>$::init\_\-temp, and mo\-SA$<$ M $>$::move\_\-rand.
+References mo\-SA$<$ M $>$::cont, mo\-SA$<$ M $>$::cool\_\-sched, mo\-SA$<$ M $>$::full\_\-eval, mo\-SA$<$ M $>$::incr\_\-eval, mo\-SA$<$ M $>$::init\_\-temp, mo\-SA$<$ M $>$::move\_\-rand, and eo\-Rng::uniform().
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 

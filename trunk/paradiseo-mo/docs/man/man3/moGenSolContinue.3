@@ -1,4 +1,4 @@
-.TH "moGenSolContinue" 3 "19 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moGenSolContinue" 3 "20 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -22,7 +22,7 @@ Inherits \fBmoSolContinue< EOT >< EOT >\fP.
 .ti -1c
 .RI "bool \fBoperator()\fP (const EOT &__sol)"
 .br
-.RI "\fIFunction that activates the stop criterion. \fP"
+.RI "\fI\fBFunction\fP that activates the stop criterion. \fP"
 .ti -1c
 .RI "void \fBinit\fP ()"
 .br
@@ -65,9 +65,9 @@ Simple constructor.
 Definition at line 30 of file moGenSolContinue.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class EOT> bool \fBmoGenSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline]\fP"
+.SS "template<class EOT> bool \fBmoGenSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline, virtual]\fP"
 .PP
-Function that activates the stop criterion. 
+\fBFunction\fP that activates the stop criterion. 
 .PP
 Increments the counter and returns TRUE if the current number of iteration is lower than the given maximum number of iterations.
 .PP
@@ -83,10 +83,12 @@ TRUE or FALSE according to the current generation number.
 .PP
 
 .PP
+Implements \fBeoUF< const EOT &, bool >\fP.
+.PP
 Definition at line 44 of file moGenSolContinue.h.
 .PP
 References moGenSolContinue< EOT >::maxNumGen, and moGenSolContinue< EOT >::numGen.
-.SS "template<class EOT> void \fBmoGenSolContinue\fP< EOT >::init ()\fC [inline, virtual]\fP"
+.SS "template<class EOT> void \fBmoGenSolContinue\fP< EOT >::init (void)\fC [inline, virtual]\fP"
 .PP
 Procedure which allows to initialise the generation counter. 
 .PP

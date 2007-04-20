@@ -8,7 +8,7 @@ One possible \doxyref{mo\-Move\-Select}{p.}{classmo_move_select}.
 Inheritance diagram for mo\-First\-Impr\-Select$<$ M $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{classmo_first_impr_select}
+\includegraphics[height=4cm]{classmo_first_impr_select}
 \end{center}
 \end{figure}
 \subsection*{Public Types}
@@ -23,7 +23,7 @@ typedef M::EOType::Fitness {\bf Fitness}\label{classmo_first_impr_select_64763ce
 virtual void {\bf init} (const {\bf Fitness} \&\_\-\_\-fit)
 \begin{CompactList}\small\item\em Procedure which initialise the exploration. \item\end{CompactList}\item 
 bool {\bf update} (const M \&\_\-\_\-move, const typename M::EOType::Fitness \&\_\-\_\-fit)
-\begin{CompactList}\small\item\em Function that indicates if the current move has not improved the fitness. \item\end{CompactList}\item 
+\begin{CompactList}\small\item\em {\bf Function} that indicates if the current move has not improved the fitness. \item\end{CompactList}\item 
 void {\bf operator()} (M \&\_\-\_\-move, {\bf Fitness} \&\_\-\_\-fit)  throw (Empty\-Selection)
 \begin{CompactList}\small\item\em Procedure which saved the best move and fitness. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
@@ -73,7 +73,7 @@ References mo\-First\-Impr\-Select$<$ M $>$::init\_\-fit, and mo\-First\-Impr\-S
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf mo\-First\-Impr\-Select}$<$ M $>$::update (const M \& {\em \_\-\_\-move}, const typename M::EOType::Fitness \& {\em \_\-\_\-fit})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_first_impr_select_7ba0882728daedc75c249647c070ccf0}
 
 
-Function that indicates if the current move has not improved the fitness. 
+{\bf Function} that indicates if the current move has not improved the fitness. 
 
 If the given fitness enables an improvment, the move (\doxyref{mo\-Move}{p.}{classmo_move}) should be applied to the current solution.
 
@@ -90,7 +90,7 @@ Definition at line 52 of file mo\-First\-Impr\-Select.h.
 
 References mo\-First\-Impr\-Select$<$ M $>$::best\_\-fit, mo\-First\-Impr\-Select$<$ M $>$::best\_\-move, mo\-First\-Impr\-Select$<$ M $>$::init\_\-fit, and mo\-First\-Impr\-Select$<$ M $>$::valid.\index{moFirstImprSelect@{mo\-First\-Impr\-Select}!operator()@{operator()}}
 \index{operator()@{operator()}!moFirstImprSelect@{mo\-First\-Impr\-Select}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void {\bf mo\-First\-Impr\-Select}$<$ M $>$::operator() (M \& {\em \_\-\_\-move}, {\bf Fitness} \& {\em \_\-\_\-fit})  throw ({\bf Empty\-Selection})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_first_impr_select_3be12cf4cbaed00df7c4fa735b2c0a95}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void {\bf mo\-First\-Impr\-Select}$<$ M $>$::operator() (M \& {\em \_\-\_\-move}, {\bf Fitness} \& {\em \_\-\_\-fit})  throw ({\bf Empty\-Selection})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_first_impr_select_3be12cf4cbaed00df7c4fa735b2c0a95}
 
 
 Procedure which saved the best move and fitness. 
@@ -106,6 +106,8 @@ Procedure which saved the best move and fitness.
 \item[{\em \doxyref{Empty\-Selection}{p.}{class_empty_selection}}]if no move has improved the fitness. \end{description}
 \end{Desc}
 
+
+Implements {\bf eo\-BF$<$ M \&, M::EOType::Fitness \&, void $>$}.
 
 Definition at line 76 of file mo\-First\-Impr\-Select.h.
 

@@ -1,4 +1,4 @@
-.TH "moTSMoveLoopExpl" 3 "19 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moTSMoveLoopExpl" 3 "20 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -99,7 +99,7 @@ Definition at line 49 of file moTSMoveLoopExpl.h.
 References moTSMoveLoopExpl< M >::aspir_crit, and moTSMoveLoopExpl< M >::tabu_list.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> void \fBmoTSMoveLoopExpl\fP< M >::operator() (const \fBEOT\fP & __old_sol, \fBEOT\fP & __new_sol)\fC [inline]\fP"
+.SS "template<class M> void \fBmoTSMoveLoopExpl\fP< M >::operator() (const \fBEOT\fP & __old_sol, \fBEOT\fP & __new_sol)\fC [inline, virtual]\fP"
 .PP
 Procedure which lauches the exploration. 
 .PP
@@ -113,6 +113,8 @@ The exploration continues while the chosen move is not in the tabu list or the a
 .RE
 .PP
 
+.PP
+Implements \fBeoBF< const M::EOType &, M::EOType &, void >\fP.
 .PP
 Definition at line 69 of file moTSMoveLoopExpl.h.
 .PP

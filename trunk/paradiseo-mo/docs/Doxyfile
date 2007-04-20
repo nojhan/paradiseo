@@ -198,8 +198,7 @@ SKIP_FUNCTION_MACROS   = YES
 #---------------------------------------------------------------------------
 # Configuration::additions related to external references   
 #---------------------------------------------------------------------------
-#TAGFILES               = ../../paradiseo-eo/doc/eo.doxytag=../../../paradiseo-eo/doc/html
-TAGFILES               = 
+TAGFILES               = ../../paradiseo-eo/doc/eo.doxytag=../../../paradiseo-eo/doc/html
 GENERATE_TAGFILE       = mo.doxytag
 ALLEXTERNALS           = NO
 EXTERNAL_GROUPS        = YES

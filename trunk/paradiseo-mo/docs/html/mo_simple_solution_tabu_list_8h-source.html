@@ -80,42 +80,67 @@
 <a name="l00067"></a>00067     <a class="code" href="classmo_simple_solution_tabu_list.html#881060871a6b49e5e8554c5df85176d9">EOT</a> _sol=(<a class="code" href="classmo_simple_solution_tabu_list.html#881060871a6b49e5e8554c5df85176d9">EOT</a>) _sol;
 <a name="l00068"></a>00068     
 <a name="l00069"></a>00069     _move(_sol);
-<a name="l00070"></a>00070     
-<a name="l00071"></a>00071     <a class="code" href="classmo_simple_solution_tabu_list.html#75df9cd683528d3722d02bac407b710b">tabuList</a>.push_back(_sol);
-<a name="l00072"></a>00072     
-<a name="l00073"></a>00073     <span class="keywordflow">if</span>(<a class="code" href="classmo_simple_solution_tabu_list.html#ddc7196b9adcba0081810619a978490c">currentSize</a>==<a class="code" href="classmo_simple_solution_tabu_list.html#d059072e23ba086ede801abdd32f7218">maxSize</a>)
-<a name="l00074"></a>00074       {
-<a name="l00075"></a>00075         <a class="code" href="classmo_simple_solution_tabu_list.html#75df9cd683528d3722d02bac407b710b">tabuList</a>.erase(<a class="code" href="classmo_simple_solution_tabu_list.html#75df9cd683528d3722d02bac407b710b">tabuList</a>.begin());
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071     <span class="keywordflow">if</span>(<a class="code" href="classmo_simple_solution_tabu_list.html#ddc7196b9adcba0081810619a978490c">currentSize</a>!=0)
+<a name="l00072"></a>00072       {
+<a name="l00073"></a>00073         <span class="comment">// Useful in the case of a solution has been kept thanks to the moAspirCrit.</span>
+<a name="l00074"></a>00074         <span class="comment">// In this case, the solution can already be in the tabuList.</span>
+<a name="l00075"></a>00075         <a class="code" href="classmo_simple_solution_tabu_list.html#7847a48f33c15e31298f3e715d754560">removeSolution</a>(_sol);
 <a name="l00076"></a>00076       }
-<a name="l00077"></a>00077     <span class="keywordflow">else</span>
-<a name="l00078"></a>00078       {
-<a name="l00079"></a>00079         <a class="code" href="classmo_simple_solution_tabu_list.html#ddc7196b9adcba0081810619a978490c">currentSize</a>++;
-<a name="l00080"></a>00080       }
-<a name="l00081"></a>00081   }
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083   <span class="keywordtype">void</span>
-<a name="l00084"></a><a class="code" href="classmo_simple_solution_tabu_list.html#91b8b01dba7ffea8b63765d931e56f56">00084</a>   <a class="code" href="classmo_simple_solution_tabu_list.html#91b8b01dba7ffea8b63765d931e56f56">update</a> ()
-<a name="l00085"></a>00085   {
-<a name="l00086"></a>00086     <span class="comment">//nothing to do</span>
-<a name="l00087"></a>00087   }
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089   <span class="keywordtype">void</span>
-<a name="l00090"></a><a class="code" href="classmo_simple_solution_tabu_list.html#d5645c39fec71a6110a2cbccbb08b816">00090</a>   <a class="code" href="classmo_simple_solution_tabu_list.html#d5645c39fec71a6110a2cbccbb08b816">init</a> ()
-<a name="l00091"></a>00091   {
-<a name="l00092"></a>00092     <span class="comment">//nothing to do</span>
-<a name="l00093"></a>00093   }
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095 <span class="keyword">private</span>:
-<a name="l00096"></a>00096   
-<a name="l00098"></a><a class="code" href="classmo_simple_solution_tabu_list.html#d059072e23ba086ede801abdd32f7218">00098</a>   <span class="keywordtype">unsigned</span> <a class="code" href="classmo_simple_solution_tabu_list.html#d059072e23ba086ede801abdd32f7218">maxSize</a>;
-<a name="l00099"></a>00099 
-<a name="l00101"></a><a class="code" href="classmo_simple_solution_tabu_list.html#ddc7196b9adcba0081810619a978490c">00101</a>   <span class="keywordtype">unsigned</span> <a class="code" href="classmo_simple_solution_tabu_list.html#ddc7196b9adcba0081810619a978490c">currentSize</a>;
-<a name="l00102"></a>00102   
-<a name="l00104"></a><a class="code" href="classmo_simple_solution_tabu_list.html#75df9cd683528d3722d02bac407b710b">00104</a>   std::list&lt;EOT&gt; <a class="code" href="classmo_simple_solution_tabu_list.html#75df9cd683528d3722d02bac407b710b">tabuList</a>;
-<a name="l00105"></a>00105 };
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Thu Apr 19 15:16:09 2007 for PARADISEO-MO by&nbsp;
+<a name="l00077"></a>00077     
+<a name="l00078"></a>00078     <a class="code" href="classmo_simple_solution_tabu_list.html#75df9cd683528d3722d02bac407b710b">tabuList</a>.push_back(_sol);
+<a name="l00079"></a>00079     
+<a name="l00080"></a>00080     <span class="keywordflow">if</span>(<a class="code" href="classmo_simple_solution_tabu_list.html#ddc7196b9adcba0081810619a978490c">currentSize</a>==<a class="code" href="classmo_simple_solution_tabu_list.html#d059072e23ba086ede801abdd32f7218">maxSize</a>)
+<a name="l00081"></a>00081       {
+<a name="l00082"></a>00082         <a class="code" href="classmo_simple_solution_tabu_list.html#75df9cd683528d3722d02bac407b710b">tabuList</a>.erase(<a class="code" href="classmo_simple_solution_tabu_list.html#75df9cd683528d3722d02bac407b710b">tabuList</a>.begin());
+<a name="l00083"></a>00083       }
+<a name="l00084"></a>00084     <span class="keywordflow">else</span>
+<a name="l00085"></a>00085       {
+<a name="l00086"></a>00086         <a class="code" href="classmo_simple_solution_tabu_list.html#ddc7196b9adcba0081810619a978490c">currentSize</a>++;
+<a name="l00087"></a>00087       }
+<a name="l00088"></a>00088   }
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090   <span class="keywordtype">void</span>
+<a name="l00091"></a><a class="code" href="classmo_simple_solution_tabu_list.html#91b8b01dba7ffea8b63765d931e56f56">00091</a>   <a class="code" href="classmo_simple_solution_tabu_list.html#91b8b01dba7ffea8b63765d931e56f56">update</a> ()
+<a name="l00092"></a>00092   {
+<a name="l00093"></a>00093     <span class="comment">//nothing to do</span>
+<a name="l00094"></a>00094   }
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096   <span class="keywordtype">void</span>
+<a name="l00097"></a><a class="code" href="classmo_simple_solution_tabu_list.html#d5645c39fec71a6110a2cbccbb08b816">00097</a>   <a class="code" href="classmo_simple_solution_tabu_list.html#d5645c39fec71a6110a2cbccbb08b816">init</a> ()
+<a name="l00098"></a>00098   {
+<a name="l00099"></a>00099     <span class="comment">//nothing to do</span>
+<a name="l00100"></a>00100   }
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102 <span class="keyword">private</span>:
+<a name="l00103"></a>00103 
+<a name="l00105"></a>00105 
+<a name="l00108"></a>00108   <span class="keywordtype">void</span>
+<a name="l00109"></a><a class="code" href="classmo_simple_solution_tabu_list.html#7847a48f33c15e31298f3e715d754560">00109</a>   <a class="code" href="classmo_simple_solution_tabu_list.html#7847a48f33c15e31298f3e715d754560">removeSolution</a>(<span class="keyword">const</span> <a class="code" href="classmo_simple_solution_tabu_list.html#881060871a6b49e5e8554c5df85176d9">EOT</a> &amp; __sol)
+<a name="l00110"></a>00110   {
+<a name="l00111"></a>00111     <span class="keyword">typename</span> std::list&lt;EOT&gt;::iterator it;
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113     it=<a class="code" href="classmo_simple_solution_tabu_list.html#75df9cd683528d3722d02bac407b710b">tabuList</a>.begin();
+<a name="l00114"></a>00114     <span class="keywordflow">while</span>(it!=<a class="code" href="classmo_simple_solution_tabu_list.html#75df9cd683528d3722d02bac407b710b">tabuList</a>.end()&amp;&amp;(!((*it)==__sol)))
+<a name="l00115"></a>00115       {
+<a name="l00116"></a>00116         it++;
+<a name="l00117"></a>00117       }
+<a name="l00118"></a>00118 
+<a name="l00119"></a>00119     <span class="keywordflow">if</span>(it!=<a class="code" href="classmo_simple_solution_tabu_list.html#75df9cd683528d3722d02bac407b710b">tabuList</a>.end())
+<a name="l00120"></a>00120       {
+<a name="l00121"></a>00121         <a class="code" href="classmo_simple_solution_tabu_list.html#75df9cd683528d3722d02bac407b710b">tabuList</a>.erase(it);
+<a name="l00122"></a>00122       }
+<a name="l00123"></a>00123   }
+<a name="l00124"></a>00124   
+<a name="l00126"></a><a class="code" href="classmo_simple_solution_tabu_list.html#d059072e23ba086ede801abdd32f7218">00126</a>   <span class="keywordtype">unsigned</span> <a class="code" href="classmo_simple_solution_tabu_list.html#d059072e23ba086ede801abdd32f7218">maxSize</a>;
+<a name="l00127"></a>00127 
+<a name="l00129"></a><a class="code" href="classmo_simple_solution_tabu_list.html#ddc7196b9adcba0081810619a978490c">00129</a>   <span class="keywordtype">unsigned</span> <a class="code" href="classmo_simple_solution_tabu_list.html#ddc7196b9adcba0081810619a978490c">currentSize</a>;
+<a name="l00130"></a>00130   
+<a name="l00132"></a><a class="code" href="classmo_simple_solution_tabu_list.html#75df9cd683528d3722d02bac407b710b">00132</a>   std::list&lt;EOT&gt; <a class="code" href="classmo_simple_solution_tabu_list.html#75df9cd683528d3722d02bac407b710b">tabuList</a>;
+<a name="l00133"></a>00133 };
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135 <span class="preprocessor">#endif</span>
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Apr 20 11:23:37 2007 for PARADISEO-MO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.1 </small></address>
 </body>
