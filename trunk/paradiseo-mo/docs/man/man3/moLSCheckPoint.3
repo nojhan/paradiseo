@@ -1,4 +1,4 @@
-.TH "moLSCheckPoint" 3 "20 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moLSCheckPoint" 3 "23 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,6 +10,8 @@ moLSCheckPoint \- Class which allows a checkpointing system.
 .PP
 \fC#include <moLSCheckPoint.h>\fP
 .PP
+Inherits \fBeoBF< A1, A2, R >< const const M &, M::EOType &, void >\fP.
+.PP
 .SS "Public Member Functions"
 
 .in +1c
@@ -18,7 +20,7 @@ moLSCheckPoint \- Class which allows a checkpointing system.
 .br
 .RI "\fIFunction which launches the checkpointing. \fP"
 .ti -1c
-.RI "void \fBadd\fP (eoBF< const M &, const typename M::EOType &, void > &__f)"
+.RI "void \fBadd\fP (\fBeoBF\fP< const M &, const typename M::EOType &, void > &__f)"
 .br
 .RI "\fIProcedure which add a new function to the function vector. \fP"
 .in -1c
@@ -26,7 +28,7 @@ moLSCheckPoint \- Class which allows a checkpointing system.
 
 .in +1c
 .ti -1c
-.RI "std::vector< eoBF< const M &, const typename M::EOType &, void > * > \fBfunc\fP"
+.RI "std::vector< \fBeoBF\fP< const M &, const typename M::EOType &, void > * > \fBfunc\fP"
 .br
 .RI "\fIvector of function \fP"
 .in -1c
@@ -59,7 +61,7 @@ Each saved function is used on the current move and the current solution.
 Definition at line 34 of file moLSCheckPoint.h.
 .PP
 References moLSCheckPoint< M >::func.
-.SS "template<class M> void \fBmoLSCheckPoint\fP< M >::add (eoBF< const M &, const typename M::EOType &, void > & __f)\fC [inline]\fP"
+.SS "template<class M> void \fBmoLSCheckPoint\fP< M >::add (\fBeoBF\fP< const M &, const typename M::EOType &, void > & __f)\fC [inline]\fP"
 .PP
 Procedure which add a new function to the function vector. 
 .PP

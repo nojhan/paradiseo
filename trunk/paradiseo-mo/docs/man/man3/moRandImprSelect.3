@@ -1,4 +1,4 @@
-.TH "moRandImprSelect" 3 "20 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moRandImprSelect" 3 "23 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -106,7 +106,7 @@ Implements \fBmoMoveSelect< M >\fP.
 Definition at line 56 of file moRandImprSelect.h.
 .PP
 References moRandImprSelect< M >::init_fit, moRandImprSelect< M >::vect_better_fit, and moRandImprSelect< M >::vect_better_moves.
-.SS "template<class M> void \fBmoRandImprSelect\fP< M >::operator() (M & __move, \fBFitness\fP & __fit)  throw (\fBEmptySelection\fP)\fC [inline]\fP"
+.SS "template<class M> void \fBmoRandImprSelect\fP< M >::operator() (M & __move, \fBFitness\fP & __fit)  throw (\fBEmptySelection\fP)\fC [inline, virtual]\fP"
 .PP
 The move selection. 
 .PP
@@ -126,9 +126,11 @@ One the saved move is randomly chosen.
 .PP
 
 .PP
+Implements \fBeoBF< M &, M::EOType::Fitness &, void >\fP.
+.PP
 Definition at line 77 of file moRandImprSelect.h.
 .PP
-References moRandImprSelect< M >::vect_better_fit, and moRandImprSelect< M >::vect_better_moves.
+References eoRng::random(), moRandImprSelect< M >::vect_better_fit, and moRandImprSelect< M >::vect_better_moves.
 
 .SH "Author"
 .PP 
