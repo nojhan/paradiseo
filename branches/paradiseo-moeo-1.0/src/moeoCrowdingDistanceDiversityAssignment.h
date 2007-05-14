@@ -41,6 +41,15 @@ public:
 
 
     /**
+        * Returns a very small value that can be used to avoid extreme cases (where the min bound == the max bound)
+        */
+    double tiny() const
+    {
+        return 1e-6;
+    }
+
+
+    /**
      * Computes diversity values for every solution contained in the population _pop
      * @param _pop the population
      */
@@ -81,33 +90,80 @@ private:
      */
     void setDistances (eoPop < MOEOT > & _pop)
     {
+        unsigned a,b;
         double min, max, distance;
         unsigned nObjectives = MOEOT::ObjectiveVector::nObjectives();
-        // set diversity to 0
+        // set diversity to 0 for every individual
         for (unsigned i=0; i<_pop.size(); i++)
         {
-            _pop[i].diversity(0);
+            _pop[i].diversity(0.0);
         }
-        // for each objective
-        for (unsigned obj=0; obj<nObjectives; obj++)
+        // sort the whole pop according to fitness values
+        moeoFitnessThenDiversityComparator < MOEOT > fitnessComparator;
+        std::sort(_pop.begin(), _pop.end(), fitnessComparator);
+        // compute the crowding distance values for every individual "front" by "front" (front : from a to b)
+        a = 0;	        			// the front starts at a
+        while (a < _pop.size())
         {
-            // comparator
-            moeoOneObjectiveComparator < MOEOT > comp(obj);
-            // sort
-            std::sort(_pop.begin(), _pop.end(), comp);
-            // min & max
-            min = _pop[0].objectiveVector()[obj];
-            max = _pop[_pop.size()-1].objectiveVector()[obj];
-            // set the diversity value to infiny for min and max
-            _pop[0].diversity(inf());
-            _pop[_pop.size()-1].diversity(inf());
-            for (unsigned i=1; i<_pop.size()-1; i++)
+            b = lastIndex(_pop,a);	// the front ends at b
+            // if there is 2 or less individuals in the front...
+            if ((b-a) < 2)
             {
-                distance = (_pop[i+1].objectiveVector()[obj] - _pop[i-1].objectiveVector()[obj]) / (max-min);
-                _pop[i].diversity(_pop[i].diversity() + distance);
+                for (unsigned i=a; i<=b; i++)
+                {
+                    _pop[i].diversity(inf());
+                }
             }
+            // else...
+            else
+            {
+                // for each objective
+                for (unsigned obj=0; obj<nObjectives; obj++)
+                {
+                    // sort in the descending order using the values of the objective 'obj'
+                    moeoOneObjectiveComparator < MOEOT > objComp(obj);
+                    std::sort(_pop.begin()+a, _pop.begin()+b+1, objComp);
+                    // min & max
+                    min = _pop[b].objectiveVector()[obj];
+                    max = _pop[a].objectiveVector()[obj];
+                    // avoid extreme case
+                    if (min == max)
+                    {
+                        min -= tiny();
+                        max += tiny();
+                    }
+                    // set the diversity value to infiny for min and max
+                    _pop[a].diversity(inf());
+                    _pop[b].diversity(inf());
+                    // set the diversity values for the other individuals
+                    for (unsigned i=a+1; i<b; i++)
+                    {
+                        distance = (_pop[i-1].objectiveVector()[obj] - _pop[i+1].objectiveVector()[obj]) / (max-min);
+                        _pop[i].diversity(_pop[i].diversity() + distance);
+                    }
+                }
+            }
+            // go to the next front
+            a = b+1;
         }
     }
+
+
+    /**
+     * Returns the index of the last individual having the same fitness value than _pop[_start]
+     * @param _pop the population
+     * @param _start the index to start from
+     */
+    unsigned lastIndex (eoPop < MOEOT > & _pop, unsigned _start)
+    {
+        unsigned i=_start;
+        while ( (i<_pop.size()-1) && (_pop[i].fitness()==_pop[i+1].fitness()) )
+        {
+            i++;
+        }
+        return i;
+    }
+
 
 };
 
