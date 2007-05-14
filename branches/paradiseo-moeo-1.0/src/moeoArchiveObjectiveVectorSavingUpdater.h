@@ -22,9 +22,9 @@
 #define MAX_BUFFER_SIZE 1000
 
 /**
- * This class allows to save the fitnesses of solutions contained in an archive into a file at each generation.
+ * This class allows to save the objective vectors of the solutions contained in an archive into a file at each generation.
  */
-template <class EOT>
+template < class MOEOT >
 class moeoArchiveObjectiveVectorSavingUpdater : public eoUpdater
 {
 public:
@@ -35,7 +35,7 @@ public:
      * @param _filename target filename
      * @param _id own ID
      */
-    moeoArchiveObjectiveVectorSavingUpdater (moeoArchive<EOT> & _arch, const std::string & _filename, int _id = -1) : arch(_arch), filename(_filename), id(_id), counter(0)
+    moeoArchiveObjectiveVectorSavingUpdater (moeoArchive<MOEOT> & _arch, const std::string & _filename, int _id = -1) : arch(_arch), filename(_filename), id(_id), counter(0)
     {}
 
     /**
@@ -44,7 +44,7 @@ public:
     void operator()() {
         char buff[MAX_BUFFER_SIZE];
         if (id == -1)
-            sprintf (buff, "%s.%u", filename.c_str(), counter ++);
+	        sprintf (buff, "%s.%u", filename.c_str(), counter ++);
         else
             sprintf (buff, "%s.%u.%u", filename.c_str(), id, counter ++);
         std::ofstream f(buff);
@@ -57,7 +57,7 @@ public:
 private:
 
     /** local archive */
-    moeoArchive<EOT> & arch;
+    moeoArchive<MOEOT> & arch;
     /** target filename */
     std::string filename;
     /** own ID */
