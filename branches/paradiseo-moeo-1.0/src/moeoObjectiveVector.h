@@ -24,8 +24,8 @@
  * but it can be replaced at will by any other class that implements the static functions defined therein.
  * Some static funtions to access to the traits characteristics are re-defined in order not to write a lot of typedef's.
  */
-template < class ObjectiveVectorTraits >
-class moeoObjectiveVector
+template < class ObjectiveVectorTraits, class Type >
+class moeoObjectiveVector : public std::vector < Type >
 {
 public:
 
@@ -33,6 +33,21 @@ public:
     typedef ObjectiveVectorTraits Traits;
 
 
+	/**
+     * Ctor
+     */
+    moeoObjectiveVector(Type _value = Type()) : std::vector < Type > (ObjectiveVectorTraits::nObjectives(), _value)
+    {}
+
+
+	/**
+     * Ctor from a vector of Type
+     * @param _v the std::vector < Type >
+     */
+    moeoObjectiveVector(std::vector < Type > & _v) : std::vector < Type > (_v)
+    {}
+    
+    
     /**
      * Parameters setting (for the objective vector of any solution)
      * @param _nObjectives the number of objectives
@@ -78,24 +93,26 @@ public:
  * i.e. that an objective value is represented using a double, and this for any objective.
  */
 template < class ObjectiveVectorTraits >
-class moeoObjectiveVectorDouble : public moeoObjectiveVector < ObjectiveVectorTraits >, public std::vector < double >
+class moeoObjectiveVectorDouble : public moeoObjectiveVector < ObjectiveVectorTraits, double >
 {
 public:
 
-    using std::vector< double >::size;
-    using std::vector< double >::operator[];
+    using moeoObjectiveVector < ObjectiveVectorTraits, double >::size;
+    using moeoObjectiveVector < ObjectiveVectorTraits, double >::operator[];
 
     /**
      * Ctor
      */
-    moeoObjectiveVectorDouble() : std::vector < double > (ObjectiveVectorTraits::nObjectives(), 0.0) {}
+    moeoObjectiveVectorDouble(double _value = 0.0) : moeoObjectiveVector < ObjectiveVectorTraits, double > (_value)
+    {}
 
 
     /**
      * Ctor from a vector of doubles
      * @param _v the std::vector < double >
      */
-    moeoObjectiveVectorDouble(std::vector <double> & _v) : std::vector < double > (_v) {}
+    moeoObjectiveVectorDouble(std::vector < double > & _v) : moeoObjectiveVector < ObjectiveVectorTraits, double > (_v)
+    {}
 
 
     /**
