@@ -68,9 +68,9 @@ public:
      */
     static double tiny()
     {
-        return 1e-6;
+    	return 1e-6;
     }
-
+    
 
 protected:
 
@@ -193,8 +193,8 @@ public:
     double operator()(const ObjectiveVector & _o1, const ObjectiveVector & _o2)
     {
         double result;
-        // if _o1 dominates _o2
-        if ( paretoComparator(_o1,_o2) )
+        // if _o2 is dominated by _o1
+        if ( paretoComparator(_o2,_o1) )
         {
             result = - hypervolume(_o1, _o2, ObjectiveVector::Traits::nObjectives()-1);
         }
