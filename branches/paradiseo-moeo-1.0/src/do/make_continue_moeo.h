@@ -27,6 +27,7 @@
 
 /**
  * Helper function
+
  * @param _combined the eoCombinedContinue object
  * @param _cont the eoContinue to add
  */
