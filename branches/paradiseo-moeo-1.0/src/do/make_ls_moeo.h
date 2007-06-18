@@ -84,7 +84,7 @@ moeoLS < MOEOT, eoPop<MOEOT> & > & do_make_ls_moeo	(
             string stmp = string("Invalid binary quality indicator: ") + indicatorParam;
             throw std::runtime_error(stmp.c_str());
         }
-        fitnessAssignment = new moeoIndicatorBasedFitnessAssignment < MOEOT> (metric, kappa);
+        fitnessAssignment = new moeoIndicatorBasedFitnessAssignment < MOEOT> (*metric, kappa);
     }
     else
     {

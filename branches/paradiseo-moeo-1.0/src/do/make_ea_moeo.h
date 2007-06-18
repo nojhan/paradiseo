@@ -94,7 +94,7 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
             string stmp = string("Invalid binary quality indicator: ") + indicatorParam;
             throw std::runtime_error(stmp.c_str());
         }
-        fitnessAssignment = new moeoIndicatorBasedFitnessAssignment < MOEOT> (metric, kappa);
+        fitnessAssignment = new moeoIndicatorBasedFitnessAssignment < MOEOT > (*metric, kappa);
     }
     else
     {
@@ -181,11 +181,13 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
         }
         select = new moeoStochTournamentSelect < MOEOT > (*comparator, tRate);
     }
+    /*
     else if (ppSelect.first == string("Roulette"))
     {
         // TO DO !
         // ...
     }
+    */
     else if (ppSelect.first == string("Random"))
     {
         select = new moeoRandomSelect <MOEOT > ();
