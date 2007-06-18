@@ -72,6 +72,8 @@ private:
     std::vector<double> vect_min_val;
     /** vector of max values */
     std::vector<double> vect_max_val;
+    /** Functor to compare two objective vectors according to Pareto dominance relation */
+    moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
 
 
     /**
@@ -82,7 +84,8 @@ private:
         for (unsigned i=0 ; i<_f.size(); i++) {
             bool dom = false;
             for (unsigned j=0; j<_f.size(); j++)
-                if (i != j && _f[j].dominates(_f[i])) {
+                if (i != j && paretoComparator(_f[i],_f[j]))
+                {
                     dom = true;
                     break;
                 }

@@ -13,6 +13,7 @@
 #ifndef MOEOCONTRIBUTIONMETRIC_H_
 #define MOEOCONTRIBUTIONMETRIC_H_
 
+#include <moeoObjectiveVectorComparator.h>
 #include <metric/moeoMetric.h>
 
 /**
@@ -41,6 +42,10 @@ public:
 
 private:
 
+    /** Functor to compare two objective vectors according to Pareto dominance relation */
+    moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
+    
+    
     /**
      * Returns the number of solutions both in '_set1' and '_set2'
      * @param _set1 the first Pareto set
@@ -66,7 +71,8 @@ private:
         unsigned w=0;
         for (unsigned i=0; i<_set1.size(); i++)
             for (unsigned j=0; j<_set2.size(); j++)
-                if (_set1[i].dominates(_set2[j])) {
+                if (paretoComparator(_set2[j], _set1[i]))
+                {
                     w++;
                     break;
                 }
@@ -83,7 +89,8 @@ private:
         for (unsigned i=0; i<_set1.size(); i++) {
             bool domin_rel = false;
             for (unsigned j=0; j<_set2.size(); j++)
-                if (_set1[i].dominates(_set2[j]) || _set2[j].dominates(_set1 [i])) {
+                if ( (paretoComparator(_set2[j], _set1[i])) || (paretoComparator(_set1[i], _set2[j])) )
+                {
                     domin_rel = true;
                     break;
                 }
