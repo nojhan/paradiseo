@@ -24,30 +24,32 @@
  * but it can be replaced at will by any other class that implements the static functions defined therein.
  * Some static funtions to access to the traits characteristics are re-defined in order not to write a lot of typedef's.
  */
-template < class ObjectiveVectorTraits, class Type >
-class moeoObjectiveVector : public std::vector < Type >
+template < class ObjectiveVectorTraits, class ObjectiveVectorType >
+class moeoObjectiveVector : public std::vector < ObjectiveVectorType >
 {
 public:
 
     /** The traits of objective vectors */
     typedef ObjectiveVectorTraits Traits;
+    /** The type of an objective value */
+    typedef ObjectiveVectorType Type;
 
 
-	/**
-     * Ctor
-     */
+    /**
+        * Ctor
+        */
     moeoObjectiveVector(Type _value = Type()) : std::vector < Type > (ObjectiveVectorTraits::nObjectives(), _value)
     {}
 
 
-	/**
-     * Ctor from a vector of Type
-     * @param _v the std::vector < Type >
-     */
+    /**
+        * Ctor from a vector of Type
+        * @param _v the std::vector < Type >
+        */
     moeoObjectiveVector(std::vector < Type > & _v) : std::vector < Type > (_v)
     {}
-    
-    
+
+
     /**
      * Parameters setting (for the objective vector of any solution)
      * @param _nObjectives the number of objectives
@@ -123,7 +125,7 @@ public:
     bool dominates(const moeoObjectiveVectorDouble < ObjectiveVectorTraits > & _other) const
     {
         moeoParetoObjectiveVectorComparator < moeoObjectiveVectorDouble<ObjectiveVectorTraits> > comparator;
-        return comparator(*this, _other);
+        return comparator(_other, *this);
     }
 
 
@@ -161,21 +163,8 @@ public:
      */
     bool operator<(const moeoObjectiveVectorDouble < ObjectiveVectorTraits > & _other) const
     {
-        for (unsigned i=0; i < size(); i++)
-        {
-            if ( fabs(operator[](i) - _other[i]) > ObjectiveVectorTraits::tolerance() )
-            {
-                if (operator[](i) < _other[i])
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-        return false;
+        moeoObjectiveObjectiveVectorComparator < moeoObjectiveVectorDouble < ObjectiveVectorTraits > > cmp;
+        return cmp(*this, _other);
     }
 
 
