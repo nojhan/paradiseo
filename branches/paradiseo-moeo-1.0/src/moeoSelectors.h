@@ -135,7 +135,7 @@ MOEOT& mo_roulette_wheel(eoPop<MOEOT>& _pop, double total, eoRng& _gen = rng)
 
     while (roulette > 0.0)
     {
-        // fitness ?
+        // fitness only
         roulette -= static_cast<double>((i++)->fitness());
     }
 
