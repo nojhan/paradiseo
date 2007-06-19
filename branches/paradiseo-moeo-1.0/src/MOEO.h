@@ -24,6 +24,9 @@
  * The template argument MOEOFitness is an object reflecting the quality of the solution in term of convergence (the fitness of a solution is always to be maximized).
  * The template argument MOEODiversity is an object reflecting the quality of the solution in term of diversity (the diversity of a solution is always to be maximized).
  * All template arguments must have a void and a copy constructor.
+ * Using some specific representations, you will have to define a copy constructor if the default one is not what you want.
+ * In the same cases, you will also have to define the affectation operator (operator=).
+ * Then, you will explicitly have to call the parent copy constructor and the parent affectation operator at the beginning of the corresponding implementation.
  * Besides, note that, contrary to the mono-objective case (and to EO) where the fitness value of a solution is confused with its objective value,
  * the fitness value differs of the objectives values in the multi-objective case.
  */
