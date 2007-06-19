@@ -38,7 +38,7 @@ public:
      * @param _metric the quality indicator
      * @param _kappa the scaling factor
      */
-    moeoIndicatorBasedFitnessAssignment(moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > * _metric, const double _kappa) : metric(_metric), kappa(_kappa)
+    moeoIndicatorBasedFitnessAssignment(moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa) : metric(_metric), kappa(_kappa)
     {}
 
 
@@ -68,7 +68,7 @@ public:
         v.resize(_pop.size());
         for (unsigned i=0; i<_pop.size(); i++)
         {
-            v[i] = (*metric)(_objVec, _pop[i].objectiveVector());
+            v[i] = metric(_objVec, _pop[i].objectiveVector());
         }
         for (unsigned i=0; i<_pop.size(); i++)
         {
@@ -90,7 +90,7 @@ public:
         v.resize(_pop.size());
         for (unsigned i=0; i<_pop.size(); i++)
         {
-            v[i] = (*metric)(_objVec, _pop[i].objectiveVector());
+            v[i] = metric(_objVec, _pop[i].objectiveVector());
         }
         for (unsigned i=0; i<_pop.size(); i++)
         {
@@ -101,7 +101,7 @@ public:
         v.resize(_pop.size());
         for (unsigned i=0; i<_pop.size(); i++)
         {
-            v[i] = (*metric)(_pop[i].objectiveVector(), _objVec);
+            v[i] = metric(_pop[i].objectiveVector(), _objVec);
         }
         double result = 0;
         for (unsigned i=0; i<v.size(); i++)
@@ -115,7 +115,7 @@ public:
 protected:
 
     /** the quality indicator */
-    moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > * metric;
+    moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & metric;
     /** the scaling factor */
     double kappa;
     /** the computed indicator values */
@@ -139,7 +139,7 @@ protected:
                 max = std::max(max, _pop[j].objectiveVector()[i]);
             }
             // setting of the bounds for the objective i
-            (*metric).setup(min, max, i);
+            metric.setup(min, max, i);
         }
     }
 
@@ -159,7 +159,7 @@ protected:
             {
                 if (i != j)
                 {
-                    values[i][j] = (*metric)(_pop[i].objectiveVector(), _pop[j].objectiveVector());
+                    values[i][j] = metric(_pop[i].objectiveVector(), _pop[j].objectiveVector());
                 }
             }
         }
