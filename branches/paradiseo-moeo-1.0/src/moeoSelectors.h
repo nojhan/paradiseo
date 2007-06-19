@@ -24,14 +24,11 @@ It mo_deterministic_tournament(It _begin, It _end, unsigned _t_size,moeoComparat
     for (unsigned i = 0; i < _t_size - 1; ++i)
     {
         It competitor = _begin + _gen.random(_end - _begin);
-
         // compare the two individuals by using the comparator
-        if (_comparator(*best,*competitor))
-
+        if (_comparator(*best, *competitor))
             // best "better" than competitor
             best=competitor;
     }
-
     return best;
 }
 
@@ -58,7 +55,7 @@ It mo_stochastic_tournament(It _begin, It _end, double _t_rate,moeoComparator<MO
 
     bool return_better = _gen.flip(_t_rate);
 
-    if (_comparator(*i1 , *i2))
+    if (_comparator(*i1, *i2))
     {
         if (return_better) return i2;
         // else
