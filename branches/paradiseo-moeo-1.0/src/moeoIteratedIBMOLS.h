@@ -85,20 +85,15 @@ public:
      */
     void operator() (eoPop < MOEOT > & _pop, moeoArchive < MOEOT > & _arch)
     {
-
         _arch.update(_pop);
-        cout << endl << endl << "***** IBMOLS 1" << endl;
-        unsigned counter = 2;
         ibmols(_pop, _arch);
         while (continuator(_arch))
         {
             // generate new solutions from the archive
             generateNewSolutions(_pop, _arch);
-            cout << endl << endl << "***** IBMOLS " << counter++ << endl;
             // apply the local search (the global archive is updated in the sub-function)
             ibmols(_pop, _arch);
         }
-
     }
 
 
