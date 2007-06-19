@@ -34,7 +34,7 @@ public:
      * @param _refPoint the reference point
      * @param _metric the quality indicator
      */
-    moeoReferencePointIndicatorBasedFitnessAssignment (const ObjectiveVector _refPoint, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > * _metric) :
+    moeoReferencePointIndicatorBasedFitnessAssignment (ObjectiveVector & _refPoint, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric) :
             refPoint(_refPoint), metric(_metric)
     {}
 
@@ -66,9 +66,9 @@ public:
 protected:
 
     /** the reference point */
-    ObjectiveVector refPoint;
+    ObjectiveVector & refPoint;
     /** the quality indicator */
-    moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > * metric;
+    moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & metric;
 
 
     /**
@@ -88,7 +88,7 @@ protected:
                 max = std::max(max, _pop[j].objectiveVector()[i]);
             }
             // setting of the bounds for the objective i
-            (*metric).setup(min, max, i);
+            metric.setup(min, max, i);
         }
     }
 
@@ -100,7 +100,7 @@ protected:
     {
         for (unsigned i=0; i<_pop.size(); i++)
         {
-            _pop[i].fitness(- (*metric)(_pop[i].objectiveVector(), refPoint) );
+            _pop[i].fitness(- metric(_pop[i].objectiveVector(), refPoint) );
         }
     }
 
