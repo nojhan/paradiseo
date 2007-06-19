@@ -38,41 +38,66 @@ class moeoNSGAII: public moeoEA < MOEOT >
 public:
 
     /**
-     * This constructor builds the algorithm as descibed in the paper.
-     * @param _max_gen number of generations before stopping
+     * Simple ctor with a eoGenOp.
+     * @param _maxGen number of generations before stopping
      * @param _eval evaluation function
      * @param _op variation operator
     */
-    moeoNSGAII (unsigned _max_gen, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > &_op) :
-            continuator (*(new eoGenContinue < MOEOT > (_max_gen))), eval (_eval), loopEval (_eval), popEval (loopEval), select (2),	// binary tournament selection
-            replace (fitnessAssignment, diversityAssignment), genBreed (select, _op), breed (genBreed)
+    moeoNSGAII (unsigned _maxGen, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op) :
+            defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select(2),
+            replace(fitnessAssignment, diversityAssignment), genBreed(select, _op), breed(genBreed)
     {}
 
 
     /**
-     * Ctor taking _max_gen, crossover and mutation.
-     * @param _max_gen number of generations before stopping
+     * Simple ctor with a eoTransform.
+     * @param _maxGen number of generations before stopping
+     * @param _eval evaluation function
+     * @param _op variation operator
+    */
+    moeoNSGAII (unsigned _maxGen, eoEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _op) :
+            defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select(2),
+            replace(fitnessAssignment, diversityAssignment), genBreed(select, _op), breed(genBreed)
+    {}
+
+
+    /**
+     * Ctor with crossover, mutation and corresponding rates.
+     * @param _maxGen number of generations before stopping
     * @param _eval evaluation function
     * @param _crossover crossover
     * @param _pCross crossover probability
     * @param _mutation mutation
     * @param _pMut mutation probability
      */
-    moeoNSGAII (unsigned _max_gen, eoEvalFunc < MOEOT > &_eval, eoQuadOp < MOEOT > & _crossover, double _pCross, eoMonOp < MOEOT > & _mutation, double _pMut) :
-            continuator (*(new eoGenContinue < MOEOT > (_max_gen))), eval (_eval), loopEval (_eval), popEval (loopEval), select (2),	// binary tournament selection
-            replace (fitnessAssignment, diversityAssignment), genBreed (select, *new eoSGAGenOp < MOEOT > (_crossover, _pCross, _mutation, _pMut)), breed (genBreed)
+    moeoNSGAII (unsigned _maxGen, eoEvalFunc < MOEOT > & _eval, eoQuadOp < MOEOT > & _crossover, double _pCross, eoMonOp < MOEOT > & _mutation, double _pMut) :
+            defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select (2),
+            replace (fitnessAssignment, diversityAssignment), defaultSGAGenOp(_crossover, _pCross, _mutation, _pMut),
+            genBreed (select, defaultSGAGenOp), breed (genBreed)
     {}
 
 
     /**
-     * Ctor taking a continuator instead of _gen_max.
+        * Ctor with a continuator (instead of _maxGen) and a eoGenOp.
+        * @param _continuator stopping criteria
+        * @param _eval evaluation function
+        * @param _op variation operator
+       */
+    moeoNSGAII (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op) :
+            continuator(_continuator), popEval(_eval), select(2),
+            replace(fitnessAssignment, diversityAssignment), genBreed(select, _op), breed(genBreed)
+    {}
+
+
+    /**
+     * Ctor with a continuator (instead of _maxGen) and a eoTransform.
      * @param _continuator stopping criteria
      * @param _eval evaluation function
      * @param _op variation operator
-     */
-    moeoNSGAII (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op) :
-            continuator (_continuator), eval (_eval), loopEval (_eval), popEval (loopEval), select (2),	// binary tournament selection
-            replace (fitnessAssignment, diversityAssignment), genBreed (select, _op), breed (genBreed)
+    */
+    moeoNSGAII (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _op) :
+            continuator(_continuator), popEval(_eval), select(2),
+            replace(fitnessAssignment, diversityAssignment), genBreed(select, _op), breed(genBreed)
     {}
 
 
@@ -101,26 +126,26 @@ public:
 
 protected:
 
+    /** a continuator based on the number of generations (used as default) */
+    eoGenContinue < MOEOT > defaultGenContinuator;
     /** stopping criteria */
     eoContinue < MOEOT > & continuator;
-    /** evaluation function */
-    eoEvalFunc < MOEOT > & eval;
-    /** to evaluate the whole population */
-    eoPopLoopEval < MOEOT > loopEval;
-    /** to evaluate the whole population */
-    eoPopEvalFunc < MOEOT > & popEval;
+    /** evaluation function used to evaluate the whole population */
+    eoPopLoopEval < MOEOT > popEval;
     /** binary tournament selection */
     moeoDetTournamentSelect < MOEOT > select;
-    /** elitist replacement */
-    moeoElitistReplacement < MOEOT > replace;
-    /** general breeder */
-    eoGeneralBreeder < MOEOT > genBreed;
-    /** breeder */
-    eoBreed < MOEOT > & breed;
     /** fitness assignment used in NSGA-II */
     moeoFastNonDominatedSortingFitnessAssignment < MOEOT > fitnessAssignment;
     /** Diversity assignment used in NSGA-II */
     moeoCrowdingDistanceDiversityAssignment  < MOEOT > diversityAssignment;
+    /** elitist replacement */
+    moeoElitistReplacement < MOEOT > replace;
+    /** a object for genetic operators (used as default) */
+    eoSGAGenOp < MOEOT > defaultSGAGenOp;
+    /** general breeder */
+    eoGeneralBreeder < MOEOT > genBreed;
+    /** breeder */
+    eoBreed < MOEOT > & breed;
 
 };
 
