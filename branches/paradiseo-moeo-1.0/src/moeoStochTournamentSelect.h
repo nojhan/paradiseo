@@ -28,21 +28,17 @@ public:
      * @param _comparator the comparator (used to compare 2 individuals)
      * @param _tRate the tournament rate
      */
-    moeoStochTournamentSelect (moeoComparator < MOEOT > & _comparator, double _tRate = 1.0) :
-            comparator (_comparator), tRate (_tRate)
+    moeoStochTournamentSelect (moeoComparator < MOEOT > & _comparator, double _tRate = 1.0) : comparator (_comparator), tRate (_tRate)
     {
         // consistency checks
         if (tRate < 0.5)
         {
-            std::
-            cerr <<
-            "Warning, Tournament rate should be > 0.5\nAdjusted to 0.55\n";
+            std::cerr << "Warning, Tournament rate should be > 0.5\nAdjusted to 0.55\n";
             tRate = 0.55;
         }
         if (tRate > 1)
         {
-            std::
-            cerr << "Warning, Tournament rate should be < 1\nAdjusted to 1\n";
+            std::cerr << "Warning, Tournament rate should be < 1\nAdjusted to 1\n";
             tRate = 1;
         }
     }
@@ -51,22 +47,17 @@ public:
      * Ctor without comparator. A moeoFitnessThenDiversityComparator is used as default.
      * @param _tRate the tournament rate
      */
-    moeoStochTournamentSelect (double _tRate = 1.0)
-            :comparator (*(new moeoFitnessThenDiversityComparator < MOEOT > ())), tRate (_tRate)
-
+    moeoStochTournamentSelect (double _tRate = 1.0) : comparator (defaultComparator), tRate (_tRate)
     {
         // consistency checks
         if (tRate < 0.5)
         {
-            std::
-            cerr <<
-            "Warning, Tournament rate should be > 0.5\nAdjusted to 0.55\n";
+            std::cerr << "Warning, Tournament rate should be > 0.5\nAdjusted to 0.55\n";
             tRate = 0.55;
         }
         if (tRate > 1)
         {
-            std::
-            cerr << "Warning, Tournament rate should be < 1\nAdjusted to 1\n";
+            std::cerr << "Warning, Tournament rate should be < 1\nAdjusted to 1\n";
             tRate = 1;
         }
     }
@@ -83,11 +74,12 @@ public:
     }
 
 
-
 protected:
 
-    /** the diversity assignment strategy */
+    /** the comparator (used to compare 2 individuals) */
     moeoComparator < MOEOT > & comparator;
+    /** a fitness then diversity comparator can be used as default */
+    moeoFitnessThenDiversityComparator < MOEOT > defaultComparator;
     /** the tournament rate */
     double tRate;
 
