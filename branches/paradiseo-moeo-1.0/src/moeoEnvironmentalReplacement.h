@@ -86,13 +86,12 @@ public:
         fitnessAssignment (_parents);
         diversityAssignment (_parents);
         // remove individuals 1 by 1 and update the fitness values
-        Cmp cmp(comparator);
         unsigned worstIdx;
         ObjectiveVector worstObjVec;
         while (_parents.size() > sz)
         {
             // the individual to delete
-            worstIdx = std::min_element(_parents.begin(), _parents.end(), cmp) - _parents.begin();
+            worstIdx = std::min_element(_parents.begin(), _parents.end(), comparator) - _parents.begin();
             worstObjVec = _parents[worstIdx].objectiveVector();
             // remove the woorst individual
             _parents[worstIdx] = _parents.back();
@@ -115,26 +114,18 @@ protected:
     moeoDiversityAssignment < MOEOT > & diversityAssignment;
     /** a dummy diversity assignment can be used as default */
     moeoDummyDiversityAssignment < MOEOT > defaultDiversity;
-    /** the comparator (used to compare 2 individuals) */
-    moeoComparator < MOEOT > & comparator;
     /** a fitness then diversity comparator can be used as default */
     moeoFitnessThenDiversityComparator < MOEOT > defaultComparator;
-
-    /**
-     * This class is used to compare solutions in order to sort the population.
-     */
+    /** this object is used to compare solutions in order to sort the population */
     class Cmp
     {
     public:
-
         /**
          * Ctor.
          * @param _comparator the comparator
          */
-        Cmp(moeoComparator < MOEOT > & _comparator) : comparator(_comparator)
+        Cmp(moeoComparator < MOEOT > & _comp) : comp(_comp)
         {}
-
-
         /**
          * Returns true if _moeo1 is greater than _moeo2 according to the comparator
          * _moeo1 the first individual
@@ -142,16 +133,12 @@ protected:
          */
         bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
         {
-            return comparator(_moeo1,_moeo2);
+            return comp(_moeo1,_moeo2);
         }
-
-
     private:
-
         /** the comparator */
-        moeoComparator < MOEOT > & comparator;
-
-    };
+        moeoComparator < MOEOT > & comp;
+    } comparator;
 
 };
 

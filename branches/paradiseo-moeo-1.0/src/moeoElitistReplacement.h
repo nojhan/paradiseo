@@ -81,8 +81,7 @@ public:
         fitnessAssignment (_parents);
         diversityAssignment (_parents);
         // sorts the whole population according to the comparator
-        Cmp cmp(comparator);
-        std::sort(_parents.begin(), _parents.end(), cmp);
+        std::sort(_parents.begin(), _parents.end(), comparator);
         // finally, resize this global population
         _parents.resize (sz);
         // and clear the offspring population
@@ -98,27 +97,18 @@ protected:
     moeoDiversityAssignment < MOEOT > & diversityAssignment;
     /** a dummy diversity assignment can be used as default */
     moeoDummyDiversityAssignment < MOEOT > defaultDiversity;
-    /** the comparator (used to compare 2 individuals) */
-    moeoComparator < MOEOT > & comparator;
     /** a fitness then diversity comparator can be used as default */
     moeoFitnessThenDiversityComparator < MOEOT > defaultComparator;
-
-
-    /**
-     * This class is used to compare solutions in order to sort the population.
-     */
+    /** this object is used to compare solutions in order to sort the population */
     class Cmp
     {
     public:
-
         /**
          * Ctor.
          * @param _comparator the comparator
          */
-        Cmp(moeoComparator < MOEOT > & _comparator) : comparator(_comparator)
+        Cmp(moeoComparator < MOEOT > & _comp) : comp(_comp)
         {}
-
-
         /**
          * Returns true if _moeo1 is greater than _moeo2 according to the comparator
          * _moeo1 the first individual
@@ -126,16 +116,12 @@ protected:
          */
         bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
         {
-            return comparator(_moeo2,_moeo1);
+            return comp(_moeo2,_moeo1);
         }
-
-
     private:
-
         /** the comparator */
-        moeoComparator < MOEOT > & comparator;
-
-    };
+        moeoComparator < MOEOT > & comp;
+    } comparator;
 
 };
 
