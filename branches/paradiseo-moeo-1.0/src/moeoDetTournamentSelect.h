@@ -20,8 +20,7 @@
 /**
  * Selection strategy that selects ONE individual by deterministic tournament.
  */
-template < class MOEOT > class moeoDetTournamentSelect:public moeoSelectOne <
-            MOEOT >
+template < class MOEOT > class moeoDetTournamentSelect:public moeoSelectOne < MOEOT >
 {
 public:
 
@@ -30,8 +29,7 @@ public:
      * @param _comparator the comparator (used to compare 2 individuals)
      * @param _tSize the number of individuals in the tournament (default: 2)
      */
-    moeoDetTournamentSelect (moeoComparator < MOEOT > &_comparator, unsigned _tSize = 2):
-            comparator (_comparator), tSize (_tSize)
+    moeoDetTournamentSelect (moeoComparator < MOEOT > & _comparator, unsigned _tSize = 2) : comparator (_comparator), tSize (_tSize)
     {
         // consistency check
         if (tSize < 2)
@@ -47,9 +45,7 @@ public:
     * Ctor without comparator. A moeoFitnessThenDiversityComparator is used as default.
     * @param _tSize the number of individuals in the tournament (default: 2)	 
     */
-    moeoDetTournamentSelect (unsigned _tSize = 2):
-            comparator (*(new moeoFitnessThenDiversityComparator < MOEOT > ())),
-            tSize (_tSize)
+    moeoDetTournamentSelect (unsigned _tSize = 2) : comparator (defaultComparator), tSize (_tSize)
     {
         // consistency check
         if (tSize < 2)
@@ -65,7 +61,7 @@ public:
      * Apply the tournament to the given population
      * @param _pop the population
      */
-    const MOEOT & operator   () (const eoPop < MOEOT > &_pop)
+    const MOEOT & operator() (const eoPop < MOEOT > &_pop)
     {
         // use the selector
         return mo_deterministic_tournament (_pop, tSize, comparator);
@@ -75,10 +71,12 @@ public:
 protected:
 
     /** the comparator (used to compare 2 individuals) */
-    moeoComparator < MOEOT > &comparator;
-
+    moeoComparator < MOEOT > & comparator;
+    /** a fitness then diversity comparator can be used as default */
+    moeoFitnessThenDiversityComparator < MOEOT > defaultComparator;
     /** the number of individuals in the tournament */
     unsigned tSize;
+
 };
 
 #endif /*MOEODETTOURNAMENTSELECT_H_ */
