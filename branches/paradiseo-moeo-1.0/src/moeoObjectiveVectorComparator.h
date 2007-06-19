@@ -21,8 +21,43 @@
  * The template argument ObjectiveVector have to be a moeoObjectiveVector.
  */
 template < class ObjectiveVector >
-class moeoObjectiveVectorComparator : public eoBF < const ObjectiveVector &, const ObjectiveVector &, bool >
+class moeoObjectiveVectorComparator : public eoBF < const ObjectiveVector &, const ObjectiveVector &, const bool >
     {};
+
+
+/**
+ * Functor allowing to compare two objective vectors according to their first objective value, then their second, and so on.
+ */
+template < class ObjectiveVector >
+class moeoObjectiveObjectiveVectorComparator : public moeoObjectiveVectorComparator < ObjectiveVector >
+{
+public:
+
+    /**
+     * Returns true if _objectiveVector1 < _objectiveVector2 on the first objective, then on the second, and so on
+     * @param _objectiveVector1 the first objective vector
+     * @param _objectiveVector2 the second objective vector
+     */
+    const bool operator()(const ObjectiveVector & _objectiveVector1, const ObjectiveVector & _objectiveVector2)
+    {
+        for (unsigned i=0; i<ObjectiveVector::nObjectives(); i++)
+        {
+            if ( fabs(_objectiveVector1[i] - _objectiveVector2[i]) > ObjectiveVector::Traits::tolerance() )
+            {
+                if (_objectiveVector1[i] < _objectiveVector2[i])
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+
+};
 
 
 /**
@@ -34,11 +69,11 @@ class moeoParetoObjectiveVectorComparator : public moeoObjectiveVectorComparator
 public:
 
     /**
-     * Returns true if _objectiveVector1 dominates _objectiveVector2
-     * @param _objectiveVector1 the first objective vector
-     * @param _objectiveVector2 the second objective vector	
-     */
-    bool operator()(const ObjectiveVector & _objectiveVector1, const ObjectiveVector & _objectiveVector2)
+        * Returns true if _objectiveVector1 is dominated by _objectiveVector2
+        * @param _objectiveVector1 the first objective vector
+        * @param _objectiveVector2 the second objective vector	
+        */
+    const bool operator()(const ObjectiveVector & _objectiveVector1, const ObjectiveVector & _objectiveVector2)
     {
         bool dom = false;
         for (unsigned i=0; i<ObjectiveVector::nObjectives(); i++)
@@ -49,13 +84,13 @@ public:
                 // if the ith objective have to be minimized...
                 if (ObjectiveVector::minimizing(i))
                 {
-                    if (_objectiveVector1[i] < _objectiveVector2[i])
+                    if (_objectiveVector1[i] > _objectiveVector2[i])
                     {
-                        dom = true;		//_objectiveVector1[i] is better than _objectiveVector2[i]
+                        dom = true;		//_objectiveVector1[i] is not better than _objectiveVector2[i]
                     }
                     else
                     {
-                        return false;	//_objectiveVector1 cannot dominate _objectiveVector2
+                        return false;	//_objectiveVector2 cannot dominate _objectiveVector1
                     }
                 }
                 // if the ith objective have to be maximized...
@@ -63,11 +98,11 @@ public:
                 {
                     if (_objectiveVector1[i] > _objectiveVector2[i])
                     {
-                        dom = true;		//_objectiveVector1[i] is better than _objectiveVector2[i]
+                        dom = true;		//_objectiveVector1[i] is not better than _objectiveVector2[i]
                     }
                     else
                     {
-                        return false;	//_objectiveVector1 cannot dominate _objectiveVector2
+                        return false;	//_objectiveVector2 cannot dominate _objectiveVector1
                     }
                 }
             }
@@ -93,27 +128,27 @@ public:
      * Ctor.
      * @param _ref the reference point
      */
-    moeoGDominanceObjectiveVectorComparator(ObjectiveVector _ref) : ref(_ref)
+    moeoGDominanceObjectiveVectorComparator(ObjectiveVector & _ref) : ref(_ref)
     {}
 
 
     /**
-     * Returns true if _objectiveVector1 g-dominates _objectiveVector2.
+     * Returns true if _objectiveVector1 is g-dominated by _objectiveVector2.
      * @param _objectiveVector1 the first objective vector
      * @param _objectiveVector2 the second objective vector
      */
-    bool operator()(const ObjectiveVector & _objectiveVector1, const ObjectiveVector & _objectiveVector2)
+    const bool operator()(const ObjectiveVector & _objectiveVector1, const ObjectiveVector & _objectiveVector2)
     {
         unsigned flag1 = flag(_objectiveVector1);
         unsigned flag2 = flag(_objectiveVector2);
-        if (flag1==0)
+        if (flag2==0)
         {
             // cannot dominate
             return false;
         }
-        else if ( (flag1==1) && (flag2==0) )
+        else if ( (flag2==1) && (flag1==0) )
         {
-            // dominates
+            // is dominated
             return true;
         }
         else // (flag1==1) && (flag2==1)
@@ -127,7 +162,7 @@ public:
 private:
 
     /** the reference point */
-    ObjectiveVector ref;
+    ObjectiveVector & ref;
     /** Pareto comparator */
     moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
 
