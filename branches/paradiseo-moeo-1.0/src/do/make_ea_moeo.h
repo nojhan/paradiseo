@@ -126,7 +126,7 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
 
     /* the comparator strategy */
     string & comparatorParam = _parser.createParam(string("FitnessThenDiversity"), "comparator",
-                               "Comparator scheme: FitnessThenDiversity or DiversityThenFitness", 'C', "Evolution Engine").value();
+                               "Comparator scheme: FitnessThenDiversity, DiversityThenFitness or Aggregative", 'C', "Evolution Engine").value();
     moeoComparator < MOEOT > * comparator;
     if (comparatorParam == string("FitnessThenDiversity"))
     {
@@ -135,6 +135,10 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
     else if (comparatorParam == string("DiversityThenFitness"))
     {
         comparator = new moeoDiversityThenFitnessComparator < MOEOT> ();
+    }
+    else if (comparatorParam == string("Aggregative"))
+    {
+        comparator = new moeoAggregativeComparator < MOEOT> ();
     }
     else
     {
