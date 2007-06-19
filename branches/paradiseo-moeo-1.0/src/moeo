@@ -16,9 +16,10 @@
 #include <eo>
 
 #include <MOEO.h>
+#include <moeoAchievementFitnessAssignment.h>
+#include <moeoArchive.h>
 #include <moeoArchiveObjectiveVectorSavingUpdater.h>
 #include <moeoArchiveUpdater.h>
-#include <moeoArchive.h>
 #include <moeoCombinedLS.h>
 #include <moeoComparator.h>
 #include <moeoConvertPopToObjectiveVectors.h>
@@ -38,14 +39,16 @@
 //#include <moeoIndicatorBasedLS.h>
 //#include <moeoIteratedIBMOLS.h>
 #include <moeoLS.h>
+//#include <moeoMoveIncrEval.h>
 #include <moeoNSGAII.h>
-#include <moeoObjectiveVectorComparator.h>
 #include <moeoObjectiveVector.h>
+#include <moeoObjectiveVectorComparator.h>
 #include <moeoRandomSelect.h>
 #include <moeoReplacement.h>
 #include <moeoRouletteSelect.h>
 #include <moeoSelectFromPopAndArch.h>
 #include <moeoSelectOne.h>
+#include <moeoSelectors.h>
 #include <moeoStochTournamentSelect.h>
 #include <moeoVector.h>
 #include <metric/moeoBinaryMetricSavingUpdater.h>
