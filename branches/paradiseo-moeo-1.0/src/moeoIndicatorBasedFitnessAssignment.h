@@ -1,5 +1,5 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
- 
+
 //-----------------------------------------------------------------------------
 // moeoIndicatorBasedFitnessAssignment.h
 // (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
@@ -38,7 +38,7 @@ public:
      * @param _metric the quality indicator
      * @param _kappa the scaling factor
      */
-    moeoIndicatorBasedFitnessAssignment(moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa) : metric(_metric), kappa(_kappa)
+    moeoIndicatorBasedFitnessAssignment(moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa = 0.05) : metric(_metric), kappa(_kappa)
     {}
 
 
