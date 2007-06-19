@@ -91,15 +91,20 @@ public:
 
 
     /**
-     * @warning NOT IMPLEMENTED, DO NOTHING !
      * Updates the fitness values of the whole population _pop by taking the deletion of the objective vector _objVec into account.
      * @param _pop the population
      * @param _objVec the objective vector
-     * @warning NOT IMPLEMENTED, DO NOTHING !
      */
     void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
     {
-        cout << "WARNING : updateByDeleting not implemented in moeoNonDominatedSortingFitnessAssignment" << endl;
+        for (unsigned i=0; i<_pop.size(); i++)
+        {
+            // if _pop[i] is dominated by _objVec
+            if ( comparator(_pop[i].objectiveVector(), _objVec) )
+            {
+                _pop[i].fitness(_pop[i].fitness()+1);
+            }
+        }
     }
 
 
@@ -121,10 +126,18 @@ private:
     {
         // Functor to compare two solutions on the first objective, then on the second, and so on
         moeoObjectiveComparator < MOEOT > objComparator;
+        // sorts the population in the ascending order
         std::sort(_pop.begin(), _pop.end(), objComparator);
-        for (unsigned i=0; i<_pop.size(); i++)
+        // assign fitness values
+        unsigned rank = 1;
+        _pop[_pop.size()-1].fitness(rank);
+        for (unsigned i=_pop.size()-2; i>=0; i--)
         {
-            _pop[i].fitness(i+1);
+            if (_pop[i].objectiveVector() != _pop[i+1].objectiveVector())
+            {
+                rank++;
+            }
+            _pop[i].fitness(rank);
         }
     }
 
@@ -150,21 +163,21 @@ private:
         // n[i] = number of individuals that dominate the individual _pop[i]
         std::vector < unsigned > n(_pop.size(), 0);
         // fronts: F[i] = indexes of the individuals contained in the ith front
-        std::vector < std::vector<unsigned> > F(_pop.size()+1);
+        std::vector < std::vector<unsigned> > F(_pop.size()+2);
         // used to store the number of the first front
         F[1].reserve(_pop.size());
         for (unsigned p=0; p<_pop.size(); p++)
         {
             for (unsigned q=0; q<_pop.size(); q++)
             {
-                // if p dominates q
-                if ( comparator(_pop[p].objectiveVector(), _pop[q].objectiveVector()) )
+                // if q is dominated by p
+                if ( comparator(_pop[q].objectiveVector(), _pop[p].objectiveVector()) )
                 {
                     // add q to the set of solutions dominated by p
                     S[p].push_back(q);
                 }
-                // if q dominates p
-                else if  ( comparator(_pop[q].objectiveVector(), _pop[p].objectiveVector()) )
+                // if p is dominated by q
+                else if  ( comparator(_pop[p].objectiveVector(), _pop[q].objectiveVector()) )
                 {
                     // increment the domination counter of p
                     n[p]++;
