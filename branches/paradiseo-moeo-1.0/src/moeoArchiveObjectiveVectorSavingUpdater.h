@@ -33,9 +33,11 @@ public:
      * Ctor
      * @param _arch local archive
      * @param _filename target filename
+     * @param _count put this variable to true if you want a new file to be created each time () is called and to false if you only want the file to be updated
      * @param _id own ID
      */
-    moeoArchiveObjectiveVectorSavingUpdater (moeoArchive<MOEOT> & _arch, const std::string & _filename, int _id = -1) : arch(_arch), filename(_filename), id(_id), counter(0)
+    moeoArchiveObjectiveVectorSavingUpdater (moeoArchive<MOEOT> & _arch, const std::string & _filename, bool _count = false, int _id = -1) :
+            arch(_arch), filename(_filename), count(_count), counter(0), id(_id)
     {}
 
     /**
@@ -43,10 +45,29 @@ public:
      */
     void operator()() {
         char buff[MAX_BUFFER_SIZE];
-        if (id == -1)
-	        sprintf (buff, "%s.%u", filename.c_str(), counter ++);
+        if (count)
+        {
+            if (id == -1)
+            {
+                sprintf (buff, "%s.%u", filename.c_str(), counter ++);
+            }
+            else
+            {
+                sprintf (buff, "%s.%u.%u", filename.c_str(), id, counter ++);
+            }
+        }
         else
-            sprintf (buff, "%s.%u.%u", filename.c_str(), id, counter ++);
+        {
+            if (id == -1)
+            {
+                sprintf (buff, "%s", filename.c_str());
+            }
+            else
+            {
+                sprintf (buff, "%s.%u", filename.c_str(), id);
+            }
+            counter ++;
+        }
         std::ofstream f(buff);
         for (unsigned i = 0; i < arch.size (); i++)
             f << arch[i].objectiveVector() << std::endl;
@@ -60,10 +81,12 @@ private:
     moeoArchive<MOEOT> & arch;
     /** target filename */
     std::string filename;
-    /** own ID */
-    int id;
+    /** this variable is set to true if a new file have to be created each time () is called and to false if the file only HAVE to be updated */
+    bool count;
     /** counter */
     unsigned counter;
+    /** own ID */
+    int id;
 
 };
 
