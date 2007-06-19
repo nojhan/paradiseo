@@ -72,10 +72,12 @@ public:
     void operator() (eoPop < MOEOT > & _pop, moeoArchive < MOEOT > & _arch)
     {
         // evaluation of the objective values
-        for (unsigned i=0; i<_pop.size(); i++)
-        {
-            eval(_pop[i]);
-        }
+        /*
+                for (unsigned i=0; i<_pop.size(); i++)
+                {
+                    eval(_pop[i]);
+                }
+        */
         // fitness assignment for the whole population
         fitnessAssignment(_pop);
         // creation of a local archive
@@ -84,16 +86,13 @@ public:
         moeoArchive < MOEOT > previousArchive;
         // update the archive with the initial population
         archive.update(_pop);
-        unsigned counter=0;
         do
         {
             previousArchive.update(archive);
             oneStep(_pop);
             archive.update(_pop);
-            counter++;
         } while ( (! archive.equals(previousArchive)) && (continuator(_arch)) );
         _arch.update(archive);
-        cout << "\t=> " << counter << " step(s)" << endl;
     }
 
 
@@ -119,6 +118,10 @@ private:
      */
     void oneStep (eoPop < MOEOT > & _pop)
     {
+////////////////////////////////////////////
+        int ext_0_idx, ext_1_idx;
+        ObjectiveVector ext_0_objVec, ext_1_objVec;
+///////////////////////////////////////////
         // the move
         Move move;
         // the objective vector and the fitness of the current solution
@@ -139,20 +142,87 @@ private:
             x_objVec = moveIncrEval(move, _pop[i]);
             // update every fitness values to take x into account and compute the fitness of x
             x_fitness = fitnessAssignment.updateByAdding(_pop, x_objVec);
-            // who is the worst individual ?
-            worst_idx = -1;
-            worst_objVec = x_objVec;
-            worst_fitness = x_fitness;
-            for (unsigned j=0; j<_pop.size(); j++)
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// qui sont les extremes ? (=> min only  !!!)
+            ext_0_idx = -1;
+            ext_0_objVec = x_objVec;
+            ext_1_idx = -1;
+            ext_1_objVec = x_objVec;
+            for (unsigned k=0; k<_pop.size(); k++)
             {
-                if (_pop[j].fitness() < worst_fitness)
+                // ext_0
+                if (_pop[k].objectiveVector()[0] < ext_0_objVec[0])
                 {
-                    worst_idx = j;
-                    worst_objVec = _pop[j].objectiveVector();
-                    worst_fitness = _pop[j].fitness();
+                    ext_0_idx = k;
+                    ext_0_objVec = _pop[k].objectiveVector();
+                }
+                else if ( (_pop[k].objectiveVector()[0] == ext_0_objVec[0]) && (_pop[k].objectiveVector()[1] < ext_0_objVec[1]) )
+                {
+                    ext_0_idx = k;
+                    ext_0_objVec = _pop[k].objectiveVector();
+                }
+                // ext_1
+                else if (_pop[k].objectiveVector()[1] < ext_1_objVec[1])
+                {
+                    ext_1_idx = k;
+                    ext_1_objVec = _pop[k].objectiveVector();
+                }
+                else if ( (_pop[k].objectiveVector()[1] == ext_1_objVec[1]) && (_pop[k].objectiveVector()[0] < ext_1_objVec[0]) )
+                {
+                    ext_1_idx = k;
+                    ext_1_objVec = _pop[k].objectiveVector();
                 }
             }
-            // the worst solution is the new one
+// worst init
+            if (ext_0_idx == -1)
+            {
+                unsigned ind = 0;
+                while (ind == ext_1_idx)
+                {
+                    ind++;
+                }
+                worst_idx = ind;
+                worst_objVec = _pop[ind].objectiveVector();
+                worst_fitness = _pop[ind].fitness();
+            }
+            else if (ext_1_idx == -1)
+            {
+                unsigned ind = 0;
+                while (ind == ext_0_idx)
+                {
+                    ind++;
+                }
+                worst_idx = ind;
+                worst_objVec = _pop[ind].objectiveVector();
+                worst_fitness = _pop[ind].fitness();
+            }
+            else
+            {
+                worst_idx = -1;
+                worst_objVec = x_objVec;
+                worst_fitness = x_fitness;
+            }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            // who is the worst ?
+            for (unsigned j=0; j<_pop.size(); j++)
+            {
+                if ( (j!=ext_0_idx) && (j!=ext_1_idx) )
+                {
+                    if (_pop[j].fitness() < worst_fitness)
+                    {
+                        worst_idx = j;
+                        worst_objVec = _pop[j].objectiveVector();
+                        worst_fitness = _pop[j].fitness();
+                    }
+                }
+            }
+            // if the worst solution is the new one
             if (worst_idx == -1)
             {
                 // if all its neighbours have been explored,
@@ -167,7 +237,7 @@ private:
                     }
                 }
             }
-            // the worst solution is located before _pop[i]
+            // if the worst solution is located before _pop[i]
             else if (worst_idx <= i)
             {
                 // the new solution takes place insteed of _pop[worst_idx]
@@ -183,7 +253,7 @@ private:
                     moveInit(move, _pop[i]);
                 }
             }
-            // the worst solution is located after _pop[i]
+            // if the worst solution is located after _pop[i]
             else if (worst_idx > i)
             {
                 // the new solution takes place insteed of _pop[i+1] and _pop[worst_idx] is deleted
@@ -192,8 +262,8 @@ private:
                 move(_pop[i+1]);
                 _pop[i+1].objectiveVector(x_objVec);
                 _pop[i+1].fitness(x_fitness);
-                // do not explore the neighbors of the new solution immediately
-                i = i+2;
+                // let's explore the neighborhoud of the individual _pop[i+2]
+                i += 2;
                 if (i<_pop.size())
                 {
                     // initilization of the move for the next individual
