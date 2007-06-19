@@ -60,7 +60,8 @@ public:
     {
         for (unsigned i = 0; i<size(); i++)
         {
-            if ( comparator(operator[](i).fitness(), _objectiveVector) )
+            // if _objectiveVector is dominated by the ith individual of the archive...
+            if ( comparator(_objectiveVector, operator[](i).objectiveVector()) )
             {
                 return true;
             }
@@ -95,8 +96,8 @@ public:
         // first step: removing the dominated solutions from the archive
         for (unsigned j=0; j<size();)
         {
-            // if _moeo dominates the jth solution contained in the archive
-            if ( comparator(_moeo.objectiveVector(), operator[](j).objectiveVector()) )
+            // if the jth solution contained in the archive is dominated by _moeo
+            if ( comparator(operator[](j).objectiveVector(), _moeo.objectiveVector()) )
             {
                 operator[](j) = back();
                 pop_back();
@@ -115,8 +116,8 @@ public:
         bool dom = false;
         for (unsigned j=0; j<size(); j++)
         {
-            // if the jth solution contained in the archive dominates _moeo
-            if ( comparator(operator[](j).objectiveVector(), _moeo.objectiveVector()) )
+            // if _moeo is dominated by the jth solution contained in the archive
+            if ( comparator(_moeo.objectiveVector(), operator[](j).objectiveVector()) )
             {
                 dom = true;
                 break;
