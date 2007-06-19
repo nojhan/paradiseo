@@ -19,8 +19,10 @@
 #include <eoTransform.h>
 #include <eoBreed.h>
 #include <eoMergeReduce.h>
+
 #include <moeoEA.h>
-#include <eoReplacement.h>
+#include <moeoReplacement.h>
+#include <eoSelect.h>
 #include <moeoFitnessAssignment.h>
 #include <moeoDiversityAssignment.h>
 
@@ -33,20 +35,96 @@ class moeoEasyEA: public moeoEA < MOEOT >
 public:
 
     /**
-     * Ctor.
+     * Ctor taking a breed and merge.
      * @param _continuator the stopping criteria
      * @param _eval the evaluation functions
      * @param _breed the breeder
-     * @param _replace the replacment strategy
+     * @param _replace the replacement strategy
      * @param _fitnessEval the fitness evaluation scheme
      * @param _diversityEval the diversity evaluation scheme
      * @param _evalFitAndDivBeforeSelection put this parameter to 'true' if you want to re-evalue the fitness and the diversity of the population before the selection process
      */
-    moeoEasyEA(eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoBreed < MOEOT > & _breed, eoReplacement < MOEOT > & _replace,
+    moeoEasyEA(eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoBreed < MOEOT > & _breed, moeoReplacement < MOEOT > & _replace,
                moeoFitnessAssignment < MOEOT > & _fitnessEval, moeoDiversityAssignment < MOEOT > & _diversityEval, bool _evalFitAndDivBeforeSelection = false)
             :
-            continuator(_continuator), eval (_eval), loopEval(_eval), popEval(loopEval), breed(_breed), replace(_replace), fitnessEval(_fitnessEval),
-            diversityEval(_diversityEval), evalFitAndDivBeforeSelection(_evalFitAndDivBeforeSelection)
+            continuator(_continuator), eval (_eval), loopEval(_eval), popEval(loopEval), selectTransform(dummySelect, dummyTransform), breed(_breed), mergeReduce(dummyMerge, dummyReduce), replace(_replace),
+            fitnessEval(_fitnessEval), diversityEval(_diversityEval), evalFitAndDivBeforeSelection(_evalFitAndDivBeforeSelection)
+    {}
+
+
+    /**
+     * Ctor taking a breed, a merge and a eoPopEval.
+     * @param _continuator the stopping criteria
+     * @param _popEval the evaluation functions for the whole population
+     * @param _breed the breeder
+     * @param _replace the replacement strategy
+     * @param _fitnessEval the fitness evaluation scheme
+     * @param _diversityEval the diversity evaluation scheme
+     * @param _evalFitAndDivBeforeSelection put this parameter to 'true' if you want to re-evalue the fitness and the diversity of the population before the selection process
+     */
+    moeoEasyEA(eoContinue < MOEOT > & _continuator, eoPopEvalFunc < MOEOT > & _popEval, eoBreed < MOEOT > & _breed, moeoReplacement < MOEOT > & _replace,
+               moeoFitnessAssignment < MOEOT > & _fitnessEval, moeoDiversityAssignment < MOEOT > & _diversityEval, bool _evalFitAndDivBeforeSelection = false)
+            :
+            continuator(_continuator), eval (dummyEval), loopEval(dummyEval), popEval(_popEval), selectTransform(dummySelect, dummyTransform), breed(_breed), mergeReduce(dummyMerge, dummyReduce), replace(_replace),
+            fitnessEval(_fitnessEval), diversityEval(_diversityEval), evalFitAndDivBeforeSelection(_evalFitAndDivBeforeSelection)
+    {}
+
+
+    /**
+     * Ctor taking a breed, a merge and a reduce.
+     * @param _continuator the stopping criteria
+     * @param _eval the evaluation functions
+     * @param _breed the breeder
+     * @param _merge the merge scheme
+     * @param _reduce the reduce scheme
+     * @param _fitnessEval the fitness evaluation scheme
+     * @param _diversityEval the diversity evaluation scheme
+     * @param _evalFitAndDivBeforeSelection put this parameter to 'true' if you want to re-evalue the fitness and the diversity of the population before the selection process
+     */
+    moeoEasyEA(eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoBreed < MOEOT > & _breed, eoMerge < MOEOT > & _merge, eoReduce< MOEOT > & _reduce,
+               moeoFitnessAssignment < MOEOT > & _fitnessEval, moeoDiversityAssignment < MOEOT > & _diversityEval, bool _evalFitAndDivBeforeSelection = false)
+            :
+            continuator(_continuator), eval(_eval), loopEval(_eval), popEval(loopEval), selectTransform(dummySelect, dummyTransform), breed(_breed), mergeReduce(_merge,_reduce), replace(mergeReduce),
+            fitnessEval(_fitnessEval), diversityEval(_diversityEval), evalFitAndDivBeforeSelection(_evalFitAndDivBeforeSelection)
+    {}
+
+
+    /**
+     * Ctor taking a select, a transform and a replacement.
+     * @param _continuator the stopping criteria
+     * @param _eval the evaluation functions
+     * @param _select the selection scheme
+     * @param _transform the tranformation scheme
+     * @param _replace the replacement strategy
+     * @param _fitnessEval the fitness evaluation scheme
+     * @param _diversityEval the diversity evaluation scheme
+     * @param _evalFitAndDivBeforeSelection put this parameter to 'true' if you want to re-evalue the fitness and the diversity of the population before the selection process
+     */
+    moeoEasyEA(eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoSelect < MOEOT > & _select, eoTransform < MOEOT > & _transform, moeoReplacement < MOEOT > & _replace,
+               moeoFitnessAssignment < MOEOT > & _fitnessEval, moeoDiversityAssignment < MOEOT > & _diversityEval, bool _evalFitAndDivBeforeSelection = false)
+            :
+            continuator(_continuator), eval(_eval), loopEval(_eval), popEval(loopEval), selectTransform(_select, _transform), breed(selectTransform), mergeReduce(dummyMerge, dummyReduce), replace(_replace),
+            fitnessEval(_fitnessEval), diversityEval(_diversityEval), evalFitAndDivBeforeSelection(_evalFitAndDivBeforeSelection)
+    {}
+
+
+    /**
+     * Ctor taking a select, a transform, a merge and a reduce.
+     * @param _continuator the stopping criteria
+     * @param _eval the evaluation functions
+     * @param _select the selection scheme
+     * @param _transform the tranformation scheme
+     * @param _merge the merge scheme
+     * @param _reduce the reduce scheme
+     * @param _fitnessEval the fitness evaluation scheme
+     * @param _diversityEval the diversity evaluation scheme
+     * @param _evalFitAndDivBeforeSelection put this parameter to 'true' if you want to re-evalue the fitness and the diversity of the population before the selection process
+     */
+    moeoEasyEA(eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoSelect < MOEOT > & _select, eoTransform < MOEOT > & _transform, eoMerge < MOEOT > & _merge, eoReduce< MOEOT > & _reduce,
+               moeoFitnessAssignment < MOEOT > & _fitnessEval, moeoDiversityAssignment < MOEOT > & _diversityEval, bool _evalFitAndDivBeforeSelection = false)
+            :
+            continuator(_continuator), eval(_eval), loopEval(_eval), popEval(loopEval), selectTransform(_select, _transform), breed(selectTransform), mergeReduce(_merge,_reduce), replace(mergeReduce),
+            fitnessEval(_fitnessEval), diversityEval(_diversityEval), evalFitAndDivBeforeSelection(_evalFitAndDivBeforeSelection)
     {}
 
 
@@ -104,16 +182,36 @@ protected:
     eoPopLoopEval < MOEOT > loopEval;
     /** to evaluate the whole population */
     eoPopEvalFunc < MOEOT > & popEval;
+    /** breed: a select followed by a transform */
+    eoSelectTransform < MOEOT > selectTransform;
     /** the breeder */
     eoBreed < MOEOT > & breed;
+    /** replacement: a merge followed by a reduce  */
+    eoMergeReduce < MOEOT > mergeReduce;
     /** the replacment strategy */
-    eoReplacement < MOEOT > & replace;
+    moeoReplacement < MOEOT > & replace;
     /** the fitness assignment strategy */
     moeoFitnessAssignment < MOEOT > & fitnessEval;
     /** the diversity assignment strategy */
     moeoDiversityAssignment < MOEOT > & diversityEval;
     /** if this parameter is set to 'true', the fitness and the diversity of the whole population will be re-evaluated before the selection process */
     bool evalFitAndDivBeforeSelection;
+    /** a dummy eval */
+class eoDummyEval : public eoEvalFunc < MOEOT >
+{ public: /** the dummy functor */
+        void operator()(MOEOT &) {}} dummyEval;
+    /** a dummy select */
+class eoDummySelect : public eoSelect < MOEOT >
+{ public: /** the dummy functor */
+        void operator()(const eoPop < MOEOT > &, eoPop < MOEOT > &) {} } dummySelect;
+    /** a dummy transform */
+class eoDummyTransform : public eoTransform < MOEOT >
+{ public: /** the dummy functor */
+        void operator()(eoPop < MOEOT > &) {} } dummyTransform;
+    /** a dummy merge */
+    eoNoElitism < MOEOT > dummyMerge;
+    /** a dummy reduce */
+    eoTruncate < MOEOT > dummyReduce;
 
 };
 
