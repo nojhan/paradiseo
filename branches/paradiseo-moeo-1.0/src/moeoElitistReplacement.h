@@ -17,9 +17,6 @@
 #include <moeoComparator.h>
 #include <moeoFitnessAssignment.h>
 #include <moeoDiversityAssignment.h>
-///////////////////////////////////////
-//#include <eoRemoveDoubles.h>
-///////////////////////////////////////
 
 /**
  * Elitist replacement strategy that consists in keeping the N best individuals.
@@ -30,42 +27,42 @@ public:
 
     /**
      * Full constructor.
-     * @param _evalFitness the fitness assignment strategy
-     * @param _evalDiversity the diversity assignment strategy
+     * @param _fitnessAssignment the fitness assignment strategy
+     * @param _diversityAssignment the diversity assignment strategy
      * @param _comparator the comparator (used to compare 2 individuals)
      */
-    moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _evalFitness, moeoDiversityAssignment < MOEOT > & _evalDiversity, moeoComparator < MOEOT > & _comparator) :
-            evalFitness (_evalFitness), evalDiversity (_evalDiversity), comparator (_comparator)
+    moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _fitnessAssignment, moeoDiversityAssignment < MOEOT > & _diversityAssignment, moeoComparator < MOEOT > & _comparator) :
+            fitnessAssignment (_fitnessAssignment), diversityAssignment (_diversityAssignment), comparator (_comparator)
     {}
 
 
     /**
      * Constructor without comparator. A moeoFitThenDivComparator is used as default.
-     * @param _evalFitness the fitness assignment strategy
-     * @param _evalDiversity the diversity assignment strategy
+     * @param _fitnessAssignment the fitness assignment strategy
+     * @param _diversityAssignment the diversity assignment strategy
      */
-    moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _evalFitness, moeoDiversityAssignment < MOEOT > & _evalDiversity) :
-            evalFitness (_evalFitness), evalDiversity (_evalDiversity), comparator (*(new moeoFitnessThenDiversityComparator < MOEOT >))
+    moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _fitnessAssignment, moeoDiversityAssignment < MOEOT > & _diversityAssignment) :
+            fitnessAssignment (_fitnessAssignment), diversityAssignment (_diversityAssignment), comparator (defaultComparator)
     {}
 
 
     /**
      * Constructor without moeoDiversityAssignement. A dummy diversity is used as default.
-     * @param _evalFitness the fitness assignment strategy
+     * @param _fitnessAssignment the fitness assignment strategy
      * @param _comparator the comparator (used to compare 2 individuals)
      */
-    moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _evalFitness, moeoComparator < MOEOT > & _comparator) :
-            evalFitness (_evalFitness), evalDiversity (*(new moeoDummyDiversityAssignment < MOEOT >)), comparator (_comparator)
+    moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _fitnessAssignment, moeoComparator < MOEOT > & _comparator) :
+            fitnessAssignment (_fitnessAssignment), diversityAssignment (defaultDiversity), comparator (_comparator)
     {}
 
 
     /**
      * Constructor without moeoDiversityAssignement nor moeoComparator.
      * A moeoFitThenDivComparator and a dummy diversity are used as default.
-     * @param _evalFitness the fitness assignment strategy
+     * @param _fitnessAssignment the fitness assignment strategy
      */
-    moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _evalFitness) :
-            evalFitness (_evalFitness), evalDiversity (*(new moeoDummyDiversityAssignment < MOEOT >)), comparator (*(new moeoFitnessThenDiversityComparator < MOEOT >))
+    moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _fitnessAssignment) :
+            fitnessAssignment (_fitnessAssignment), diversityAssignment (defaultDiversity), comparator (defaultComparator)
     {}
 
 
@@ -80,14 +77,9 @@ public:
         // merges offspring and parents into a global population
         _parents.reserve (_parents.size () + _offspring.size ());
         copy (_offspring.begin (), _offspring.end (), back_inserter (_parents));
-        //remove the doubles in the whole pop
-        /****************************************************************************
-        eoRemoveDoubles < MOEOT > r;
-        r(_parents);
-        ****************************************************************************/
         // evaluates the fitness and the diversity of this global population
-        evalFitness (_parents);
-        evalDiversity (_parents);
+        fitnessAssignment (_parents);
+        diversityAssignment (_parents);
         // sorts the whole population according to the comparator
         Cmp cmp(comparator);
         std::sort(_parents.begin(), _parents.end(), cmp);
@@ -101,11 +93,16 @@ public:
 protected:
 
     /** the fitness assignment strategy */
-    moeoFitnessAssignment < MOEOT > & evalFitness;
+    moeoFitnessAssignment < MOEOT > & fitnessAssignment;
     /** the diversity assignment strategy */
-    moeoDiversityAssignment < MOEOT > & evalDiversity;
+    moeoDiversityAssignment < MOEOT > & diversityAssignment;
+    /** a dummy diversity assignment can be used as default */
+    moeoDummyDiversityAssignment < MOEOT > defaultDiversity;
     /** the comparator (used to compare 2 individuals) */
     moeoComparator < MOEOT > & comparator;
+    /** a fitness then diversity comparator can be used as default */
+    moeoFitnessThenDiversityComparator < MOEOT > defaultComparator;
+
 
     /**
      * This class is used to compare solutions in order to sort the population.
@@ -129,7 +126,7 @@ protected:
          */
         bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
         {
-            return comparator(_moeo1,_moeo2);
+            return comparator(_moeo2,_moeo1);
         }
 
 
