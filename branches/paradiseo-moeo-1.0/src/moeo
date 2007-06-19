@@ -35,6 +35,7 @@
 #include <moeoFitnessAssignment.h>
 #include <moeoGenerationalReplacement.h>
 #include <moeoHybridLS.h>
+#include <moeoIBEA.h>
 #include <moeoIndicatorBasedFitnessAssignment.h>
 //#include <moeoIndicatorBasedLS.h>
 //#include <moeoIteratedIBMOLS.h>
@@ -44,6 +45,7 @@
 #include <moeoObjectiveVector.h>
 #include <moeoObjectiveVectorComparator.h>
 #include <moeoRandomSelect.h>
+//#include <moeoReferencePointIndicatorBasedFitnessAssignment.h>
 #include <moeoReplacement.h>
 #include <moeoRouletteSelect.h>
 #include <moeoSelectFromPopAndArch.h>
