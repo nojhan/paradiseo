@@ -17,7 +17,7 @@
 #include <moeoFitnessAssignment.h>
 
 /**
- *
+ * Fitness assignment sheme based on the achievement scalarizing function propozed by Wiersbicki (1980).
  */
 template < class MOEOT >
 class moeoAchievementFitnessAssignment : public moeoScalarFitnessAssignment < MOEOT >
