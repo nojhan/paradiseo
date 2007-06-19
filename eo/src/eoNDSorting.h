@@ -175,7 +175,7 @@ private :
 	    unsigned index = sort1[i];
 
 	    // check for clones and delete them
-	    if (0 && i > 0)
+	    if (i > 0)
 	    {
 		unsigned prev = sort1[i-1];
 		if ( _pop[index].fitness() == _pop[prev].fitness())
