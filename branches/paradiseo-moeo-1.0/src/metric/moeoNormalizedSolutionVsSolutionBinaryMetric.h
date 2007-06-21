@@ -44,9 +44,9 @@ public:
 
     /**
      * Sets the lower bound (_min) and the upper bound (_max) for the objective _obj
-     * _min lower bound
-     * _max upper bound
-     * _obj the objective index
+     * @param _min lower bound
+     * @param _max upper bound
+     * @param _obj the objective index
      */
     void setup(double _min, double _max, unsigned _obj)
     {
@@ -60,8 +60,8 @@ public:
 
     /**
      * Sets the lower bound and the upper bound for the objective _obj using a eoRealInterval object
-     * _realInterval the eoRealInterval object
-     * _obj the objective index
+     * @param _realInterval the eoRealInterval object
+     * @param _obj the objective index
      */
     virtual void setup(eoRealInterval _realInterval, unsigned _obj)
     {
@@ -74,9 +74,9 @@ public:
      */
     static double tiny()
     {
-    	return 1e-6;
+        return 1e-6;
     }
-    
+
 
 protected:
 
