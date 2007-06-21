@@ -44,6 +44,7 @@
 #include <moeoNSGAII.h>
 #include <moeoObjectiveVector.h>
 #include <moeoObjectiveVectorComparator.h>
+#include <moeoObjectiveVectorTraits.h>
 #include <moeoRandomSelect.h>
 //#include <moeoReferencePointIndicatorBasedFitnessAssignment.h>
 #include <moeoReplacement.h>
