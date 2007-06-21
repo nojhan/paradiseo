@@ -26,13 +26,13 @@ class moeoDistance : public eoBF < const MOEOT &, const MOEOT &, const Type >
 public:
 
 
-	/**
-     * Nothing to do
-     * @param _pop the population
-     */
+    /**
+        * Nothing to do
+        * @param _pop the population
+        */
     virtual void setup(const eoPop < MOEOT > & _pop)
     {}
-    
+
     /**
      * Nothing to do
      * @param _min lower bound
@@ -43,14 +43,14 @@ public:
     {}
 
 
-	/**
-     * Nothing to do
-     * @param _realInterval the eoRealInterval object
-     * @param _obj the objective index
-     */
+    /**
+        * Nothing to do
+        * @param _realInterval the eoRealInterval object
+        * @param _obj the objective index
+        */
     virtual void setup(eoRealInterval _realInterval, unsigned _obj)
     {}
-    
+
 };
 
 
@@ -62,7 +62,7 @@ class moeoNormalizedDistance : public moeoDistance < MOEOT , Type >
 {
 public:
 
-	/** the objective vector type of the solutions */
+    /** the objective vector type of the solutions */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 
 
@@ -84,7 +84,7 @@ public:
      */
     static double tiny()
     {
-    	return 1e-6;
+        return 1e-6;
     }
 
 
@@ -110,12 +110,12 @@ public:
     }
 
 
-	/**
-     * Sets the lower bound (_min) and the upper bound (_max) for the objective _obj
-     * @param _min lower bound
-     * @param _max upper bound
-     * @param _obj the objective index
-     */
+    /**
+        * Sets the lower bound (_min) and the upper bound (_max) for the objective _obj
+        * @param _min lower bound
+        * @param _max upper bound
+        * @param _obj the objective index
+        */
     virtual void setup(double _min, double _max, unsigned _obj)
     {
         if (_min == _max)
@@ -127,11 +127,11 @@ public:
     }
 
 
-	/**
-     * Sets the lower bound and the upper bound for the objective _obj using a eoRealInterval object
-     * @param _realInterval the eoRealInterval object
-     * @param _obj the objective index
-     */
+    /**
+        * Sets the lower bound and the upper bound for the objective _obj using a eoRealInterval object
+        * @param _realInterval the eoRealInterval object
+        * @param _obj the objective index
+        */
     virtual void setup(eoRealInterval _realInterval, unsigned _obj)
     {
         bounds[_obj] = _realInterval;
@@ -155,24 +155,24 @@ class moeoEuclideanDistance : public moeoNormalizedDistance < MOEOT >
 {
 public:
 
-	/** the objective vector type of the solutions */
+    /** the objective vector type of the solutions */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
-    
-    
+
+
     /**
      * Returns the euclidian distance between _moeo1 and _moeo2 in the objective space
      * @param _moeo1 the first solution
      * @param _moeo2 the second solution
      */
-	const double operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
+    const double operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
     {
-		double result = 0.0;
-		double tmp1, tmp2;
+        double result = 0.0;
+        double tmp1, tmp2;
         for (unsigned i=0; i<ObjectiveVector::nObjectives(); i++)
         {
-        	tmp1 = (_moeo1.objectiveVector()[i] - bounds[i].minimum()) / bounds[i].range();
-        	tmp2 = (_moeo2.objectiveVector()[i] - bounds[i].minimum()) / bounds[i].range();
-        	result += (tmp1-tmp2) * (tmp1-tmp2);
+            tmp1 = (_moeo1.objectiveVector()[i] - bounds[i].minimum()) / bounds[i].range();
+            tmp2 = (_moeo2.objectiveVector()[i] - bounds[i].minimum()) / bounds[i].range();
+            result += (tmp1-tmp2) * (tmp1-tmp2);
         }
         return sqrt(result);
     }
@@ -194,24 +194,24 @@ class moeoManhattanDistance : public moeoNormalizedDistance < MOEOT >
 {
 public:
 
-	/** the objective vector type of the solutions */
+    /** the objective vector type of the solutions */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
-    
-    
+
+
     /**
      * Returns the Manhattan distance between _moeo1 and _moeo2 in the objective space
      * @param _moeo1 the first solution
      * @param _moeo2 the second solution
      */
-	const double operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
+    const double operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
     {
-		double result = 0.0;
-		double tmp1, tmp2;
+        double result = 0.0;
+        double tmp1, tmp2;
         for (unsigned i=0; i<ObjectiveVector::nObjectives(); i++)
         {
-        	tmp1 = (_moeo1.objectiveVector()[i] - bounds[i].minimum()) / bounds[i].range();
-        	tmp2 = (_moeo2.objectiveVector()[i] - bounds[i].minimum()) / bounds[i].range();
-        	result += fabs(tmp1-tmp2);
+            tmp1 = (_moeo1.objectiveVector()[i] - bounds[i].minimum()) / bounds[i].range();
+            tmp2 = (_moeo2.objectiveVector()[i] - bounds[i].minimum()) / bounds[i].range();
+            result += fabs(tmp1-tmp2);
         }
         return result;
     }
