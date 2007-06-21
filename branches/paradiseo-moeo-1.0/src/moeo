@@ -51,8 +51,11 @@
 #include <moeoSelectFromPopAndArch.h>
 #include <moeoSelectOne.h>
 #include <moeoSelectors.h>
+#include <moeoSharingDiversityAssignment.h>
 #include <moeoStochTournamentSelect.h>
 #include <moeoVector.h>
+#include <distance/moeoDistance.h>
+#include <distance/moeoDistanceMatrix.h>
 #include <metric/moeoBinaryMetricSavingUpdater.h>
 #include <metric/moeoContributionMetric.h>
 #include <metric/moeoEntropyMetric.h>
