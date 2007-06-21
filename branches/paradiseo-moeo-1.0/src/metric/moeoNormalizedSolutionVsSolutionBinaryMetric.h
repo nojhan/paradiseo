@@ -14,6 +14,7 @@
 #define MOEONORMALIZEDSOLUTIONVSSOLUTIONBINARYMETRIC_H_
 
 #include <stdexcept>
+#include <utils/eoRealBounds.h>
 #include <metric/moeoMetric.h>
 
 
@@ -33,6 +34,11 @@ public:
     moeoNormalizedSolutionVsSolutionBinaryMetric()
     {
         bounds.resize(ObjectiveVector::Traits::nObjectives());
+        // initialize bounds in case someone does not want to use them
+        for (unsigned i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
+        {
+            bounds[i] = eoRealInterval(0,1);
+        }
     }
 
 
