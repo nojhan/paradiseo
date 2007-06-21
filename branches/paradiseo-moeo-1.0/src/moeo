@@ -17,6 +17,7 @@
 
 #include <MOEO.h>
 #include <moeoAchievementFitnessAssignment.h>
+#include <moeoAlgo.h>
 #include <moeoArchive.h>
 #include <moeoArchiveObjectiveVectorSavingUpdater.h>
 #include <moeoArchiveUpdater.h>
