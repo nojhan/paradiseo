@@ -96,10 +96,10 @@ private:
 
 };
 
-#endif /*MOEOOBJECTIVEVECTORTRAITS_H_*/
-
 
 // The static variables of the moeoObjectiveVectorTraits class need to be allocated
-// (maybe it would have been better to put this on a moeoObjectiveVectorTraits.cpp file)
 unsigned moeoObjectiveVectorTraits::nObj;
 std::vector < bool > moeoObjectiveVectorTraits::bObj;
+
+
+#endif /*MOEOOBJECTIVEVECTORTRAITS_H_*/
