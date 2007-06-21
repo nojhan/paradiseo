@@ -105,20 +105,36 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
 
 
     /* the diversity assignment strategy */
-    string & diversityParam = _parser.createParam(string("Dummy"), "diversity",
-                              "Diversity assignment scheme: Dummy or CrowdingDistance", 'D', "Evolution Engine").value();
+    eoValueParam<eoParamParamType> & diversityParam = _parser.createParam(eoParamParamType("Dummy"), "diversity",
+            "Diversity assignment scheme: Dummy, Sharing(nicheSize) or Crowding", 'D', "Evolution Engine");
+    eoParamParamType & diversityParamValue = diversityParam.value();
     moeoDiversityAssignment < MOEOT > * diversityAssignment;
-    if (diversityParam == string("CrowdingDistance"))
-    {
-        diversityAssignment = new moeoCrowdingDistanceDiversityAssignment < MOEOT> ();
-    }
-    else if (diversityParam == string("Dummy"))
+    if (diversityParamValue.first == string("Dummy"))
     {
         diversityAssignment = new moeoDummyDiversityAssignment < MOEOT> ();
     }
+    else if (diversityParamValue.first == string("Sharing"))
+    {
+        double nicheSize;
+        if (!diversityParamValue.second.size())   // no parameter added
+        {
+            cerr << "WARNING, no niche size given for Sharing, using 0.5" << std::endl;
+            nicheSize = 0.5;
+            diversityParamValue.second.push_back(std::string("0.5"));
+        }
+        else
+        {
+            nicheSize = atoi(diversityParamValue.second[0].c_str());
+        }
+        diversityAssignment = new moeoFrontByFrontSharingDiversityAssignment < MOEOT> (nicheSize);
+    }
+    else if (diversityParamValue.first == string("Crowding"))
+    {
+        diversityAssignment = new moeoFrontByFrontCrowdingDistanceDiversityAssignment < MOEOT> ();
+    }
     else
     {
-        string stmp = string("Invalid diversity assignment strategy: ") + diversityParam;
+        string stmp = string("Invalid diversity assignment strategy: ") + diversityParamValue.first;
         throw std::runtime_error(stmp.c_str());
     }
     _state.storeFunctor(diversityAssignment);
