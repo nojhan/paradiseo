@@ -14,6 +14,7 @@
 #define MOEOLS_H_
 
 #include <eoFunctor.h>
+#include <moeoAlgo.h>
 #include <moeoArchive.h>
 
 /**
@@ -21,7 +22,7 @@
  * Starting from a Type (i.e.: an individual, a pop, an archive...), it produces a set of new non-dominated solutions.
  */
 template < class MOEOT, class Type >
-class moeoLS: public eoBF < Type, moeoArchive < MOEOT > &, void >
+class moeoLS: public moeoAlgo, public eoBF < Type, moeoArchive < MOEOT > &, void >
     {};
 
 #endif /*MOEOLS_H_*/

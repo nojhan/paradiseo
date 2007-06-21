@@ -14,12 +14,13 @@
 #define MOEOEA_H_
 
 #include <eoAlgo.h>
+#include <moeoAlgo.h>
 
 /**
  * Abstract class for multi-objective evolutionary algorithms.
  */
 template < class MOEOT >
-class moeoEA : public eoAlgo < MOEOT > {};
+class moeoEA : public moeoAlgo, public eoAlgo < MOEOT > {};
 
 
 #endif /*MOEOEA_H_*/
