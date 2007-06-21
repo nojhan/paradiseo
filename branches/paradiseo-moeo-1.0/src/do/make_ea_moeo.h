@@ -37,6 +37,7 @@
 #include <moeoReplacement.h>
 #include <moeoRouletteSelect.h>
 #include <moeoSelectOne.h>
+#include <moeoSharingDiversityAssignment.h>
 #include <moeoStochTournamentSelect.h>
 #include <metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h>
 
