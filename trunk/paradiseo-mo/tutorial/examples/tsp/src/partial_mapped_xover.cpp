@@ -11,7 +11,7 @@
 
 #include <assert.h>
 
-#include <vector.h>
+#include <vector>
 
 #include <utils/eoRNG.h>
 
@@ -19,25 +19,26 @@
 #include "route_valid.h"
 #include "mix.h"
 
-void PartialMappedXover :: repair (Route & __route, unsigned __cut1, unsigned __cut2) {
+void PartialMappedXover :: repair (Route & __route, unsigned __cut1, unsigned __cut2) 
+{
   
-  vector<unsigned> v; // Number of times a cities are visited ...
-
+  std::vector<unsigned int> v; // Number of times a cities are visited ...
+  
   v.resize(__route.size ()); 
   
-  for (unsigned i = 0 ; i < __route.size () ; i ++)
+  for (unsigned int i = 0 ; i < __route.size () ; i ++)
     {
       v [i] = 0 ;
     }
   
-  for (unsigned i = 0 ; i < __route.size () ; i ++)
+  for (unsigned int i = 0 ; i < __route.size () ; i ++)
     {
       v [__route [i]] ++ ;
     }
   
-  std :: vector <unsigned> vert ;
+  std :: vector <unsigned int> vert ;
 
-  for (unsigned i = 0 ; i < __route.size () ; i ++)
+  for (unsigned int i = 0 ; i < __route.size () ; i ++)
     {
       if (! v [i])
 	{
@@ -47,7 +48,7 @@ void PartialMappedXover :: repair (Route & __route, unsigned __cut1, unsigned __
   
   mix (vert) ;
 
-  for (unsigned i = 0 ; i < __route.size () ; i ++)
+  for (unsigned int i = 0 ; i < __route.size () ; i ++)
     {
       if (i < __cut1 || i >= __cut2)
 	{
@@ -62,16 +63,20 @@ void PartialMappedXover :: repair (Route & __route, unsigned __cut1, unsigned __
   v.clear();
 }
 
-bool PartialMappedXover :: operator () (Route & __route1, Route & __route2) {
-    
-  unsigned cut1 = rng.random (__route1.size ()), cut2 = rng.random (__route2.size ()) ;
+bool PartialMappedXover :: operator () (Route & __route1, Route & __route2) 
+{
+  unsigned int cut1 = rng.random (__route1.size ()), cut2 = rng.random (__route2.size ()) ;
   
   if (cut2 < cut1)
-    std :: swap (cut1, cut2) ;
+    {
+      std :: swap (cut1, cut2) ;
+    }
   
   // Between the cuts
-  for (unsigned i = cut1 ; i < cut2 ; i ++)
-    std :: swap (__route1 [i], __route2 [i]) ;
+  for (unsigned int i = cut1 ; i < cut2 ; i ++)
+    {
+      std :: swap (__route1 [i], __route2 [i]) ;
+    }
   
   // Outside the cuts
   repair (__route1, cut1, cut2) ;

@@ -11,24 +11,25 @@
 
 #include "route_valid.h"
 
-#include <vector.h>
+#include <vector>
 
-bool valid (Route & __route) {
+bool valid (Route & __route) 
+{
   
-  vector<unsigned> t;
+  std::vector<unsigned int> t;
   t.resize(__route.size());
   
-  for (unsigned i = 0 ; i < __route.size () ; i ++)
+  for (unsigned int i = 0 ; i < __route.size () ; i ++)
     {
       t [i] = 0 ;
     }
   
-  for (unsigned i = 0 ; i < __route.size () ; i ++)
+  for (unsigned int i = 0 ; i < __route.size () ; i ++)
     {
       t [__route [i]] ++ ;
     }
   
-  for (unsigned i = 0 ; i < __route.size () ; i ++)
+  for (unsigned int i = 0 ; i < __route.size () ; i ++)
     {
       if (t [i] != 1)
 	{

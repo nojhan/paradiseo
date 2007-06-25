@@ -12,22 +12,16 @@
 #include "part_route_eval.h"
 #include "graph.h"
 
-PartRouteEval :: PartRouteEval (float __from,
-				float __to
-				) : from (__from),
-				    to (__to) {
-  
-}
+PartRouteEval :: PartRouteEval (float __from, float __to) : from (__from), to (__to) {}
 
-void PartRouteEval :: operator () (Route & __route) {
-  
-  
+void PartRouteEval :: operator () (Route & __route) 
+{
   float len = 0 ;
   
-  for (unsigned i = (unsigned) (__route.size () * from) ;
-       i < (unsigned) (__route.size () * to) ;
-       i ++)
-    len -= Graph :: distance (__route [i], __route [(i + 1) % Graph :: size ()]) ;
+  for (unsigned int i = (unsigned int) (__route.size () * from) ; i < (unsigned int ) (__route.size () * to) ; i ++)
+    {
+      len -= Graph :: distance (__route [i], __route [(i + 1) % Graph :: size ()]) ;
+    }
   
   __route.fitness (len) ;
 }

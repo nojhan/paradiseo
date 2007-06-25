@@ -16,8 +16,9 @@
 #include "two_opt.h"
 
 /** It updates a couple of edges */
-class PartTwoOptNext : public moNextMove <TwoOpt> {
-
+class PartTwoOptNext : public moNextMove <TwoOpt> 
+{
+  
 public :
   
   bool operator () (TwoOpt & __move, const Route & __route) ;

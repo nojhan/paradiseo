@@ -87,8 +87,7 @@ public:
 	full_eval (__sol);
       }
 
-    double
-      temp = init_temp;
+    double temp = init_temp;
 
     M move;
 
@@ -140,8 +139,7 @@ private:
   moSolContinue < EOT > &cont;
 
   //! Initial temperature
-  double
-    init_temp;
+  double  init_temp;
 
   //! The cooling schedule
   moCoolingSchedule & cool_sched;

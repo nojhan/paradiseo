@@ -35,7 +35,7 @@ public:
      \param __max_iter the iteration maximum number.
    */
   moItRandNextMove (moRandMove < M > &__rand_move,
-		    unsigned __max_iter):rand_move (__rand_move),
+		    unsigned int __max_iter):rand_move (__rand_move),
     max_iter (__max_iter), num_iter (0)
   {
 
@@ -74,10 +74,10 @@ private:
   moRandMove < M > &rand_move;
 
   //! Iteration maximum number.
-  unsigned max_iter;
+  unsigned int max_iter;
 
   //! Iteration current number.
-  unsigned num_iter;
+  unsigned int num_iter;
 
 };
 

@@ -17,8 +17,8 @@
 #include "route.h"
 
 /** The table of tabu movements, i.e. forbidden edges */
-class TwoOptTabuList : public moTabuList <TwoOpt> {
-  
+class TwoOptTabuList : public moTabuList <TwoOpt> 
+{
 public :
   
   bool operator () (const TwoOpt & __move, const Route & __sol) ;
@@ -26,7 +26,7 @@ public :
   void add (const TwoOpt & __move, const Route & __sol) ;
   
   void update () ;
-
+  
   void init () ;
   
 private :

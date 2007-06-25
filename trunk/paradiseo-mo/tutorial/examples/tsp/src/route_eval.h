@@ -17,10 +17,11 @@
 #include "route.h"
 
 /** Route Evaluator */
-class RouteEval : public eoEvalFunc <Route> {
+class RouteEval : public eoEvalFunc <Route> 
+{
   
 public :
-    
+  
   void operator () (Route & __route) ;
   
 } ;

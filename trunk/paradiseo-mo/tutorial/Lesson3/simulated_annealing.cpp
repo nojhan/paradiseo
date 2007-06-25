@@ -9,10 +9,7 @@
    Contact:  paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <moSA.h>
-#include <moExponentialCoolingSchedule.h>
-#include <moLinearCoolingSchedule.h>
-#include <moGenSolContinue.h>
+#include <mo.h>
 
 #include <graph.h>
 #include <route.h>

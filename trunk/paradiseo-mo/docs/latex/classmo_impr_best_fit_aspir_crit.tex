@@ -1,11 +1,11 @@
-\section{mo\-Impr\-Best\-Fit\-Aspir\-Crit$<$ M $>$ Class Template Reference}
+\section{moImprBestFitAspirCrit$<$ M $>$ Class Template Reference}
 \label{classmo_impr_best_fit_aspir_crit}\index{moImprBestFitAspirCrit@{moImprBestFitAspirCrit}}
-One of the possible \doxyref{mo\-Aspir\-Crit}{p.}{classmo_aspir_crit}.  
+One of the possible \doxyref{moAspirCrit}{p.}{classmo_aspir_crit}.  
 
 
-{\tt \#include $<$mo\-Impr\-Best\-Fit\-Aspir\-Crit.h$>$}
+{\tt \#include $<$moImprBestFitAspirCrit.h$>$}
 
-Inheritance diagram for mo\-Impr\-Best\-Fit\-Aspir\-Crit$<$ M $>$::\begin{figure}[H]
+Inheritance diagram for moImprBestFitAspirCrit$<$ M $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=4cm]{classmo_impr_best_fit_aspir_crit}
@@ -20,7 +20,7 @@ typedef M::EOType::Fitness {\bf Fitness}\label{classmo_impr_best_fit_aspir_crit_
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-{\bf mo\-Impr\-Best\-Fit\-Aspir\-Crit} ()\label{classmo_impr_best_fit_aspir_crit_e2c697a5cf3a7696e38bb52b6694a340}
+{\bf moImprBestFitAspirCrit} ()\label{classmo_impr_best_fit_aspir_crit_e2c697a5cf3a7696e38bb52b6694a340}
 
 \begin{CompactList}\small\item\em Contructor. \item\end{CompactList}\item 
 void {\bf init} ()\label{classmo_impr_best_fit_aspir_crit_ffa451a14ff4ea86fb8bd9fdbc348630}
@@ -40,20 +40,20 @@ bool {\bf first\_\-time}\label{classmo_impr_best_fit_aspir_crit_2d5226c7dd661b33
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class M$>$ class mo\-Impr\-Best\-Fit\-Aspir\-Crit$<$ M $>$}
+\subsubsection*{template$<$class M$>$ class moImprBestFitAspirCrit$<$ M $>$}
 
-One of the possible \doxyref{mo\-Aspir\-Crit}{p.}{classmo_aspir_crit}. 
+One of the possible \doxyref{moAspirCrit}{p.}{classmo_aspir_crit}. 
 
 This criterion is satisfied when a given fitness is the best ever considered. 
 
 
 
-Definition at line 22 of file mo\-Impr\-Best\-Fit\-Aspir\-Crit.h.
+Definition at line 22 of file moImprBestFitAspirCrit.h.
 
 \subsection{Member Function Documentation}
-\index{moImprBestFitAspirCrit@{mo\-Impr\-Best\-Fit\-Aspir\-Crit}!operator()@{operator()}}
-\index{operator()@{operator()}!moImprBestFitAspirCrit@{mo\-Impr\-Best\-Fit\-Aspir\-Crit}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf mo\-Impr\-Best\-Fit\-Aspir\-Crit}$<$ M $>$::operator() (const M \& {\em \_\-\_\-move}, const {\bf Fitness} \& {\em \_\-\_\-fit})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_impr_best_fit_aspir_crit_53f62fb56dcae3051a741f1fddb0204b}
+\index{moImprBestFitAspirCrit@{moImprBestFitAspirCrit}!operator()@{operator()}}
+\index{operator()@{operator()}!moImprBestFitAspirCrit@{moImprBestFitAspirCrit}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf moImprBestFitAspirCrit}$<$ M $>$::operator() (const M \& {\em \_\-\_\-move}, const {\bf Fitness} \& {\em \_\-\_\-fit})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_impr_best_fit_aspir_crit_53f62fb56dcae3051a741f1fddb0204b}
 
 
 Function that indicates if the fit is better that the already saved fit. 
@@ -69,10 +69,12 @@ The first time, the function only saved the current move and fitness.
 \item[Returns:]TRUE the first time and if \_\-\_\-fit $>$ best\_\-fit, else FALSE. \end{Desc}
 
 
-Definition at line 52 of file mo\-Impr\-Best\-Fit\-Aspir\-Crit.h.
+Implements {\bf eoBF$<$ const M \&, const M::EOType::Fitness \&, bool $>$}.
 
-References mo\-Impr\-Best\-Fit\-Aspir\-Crit$<$ M $>$::best\_\-fit, and mo\-Impr\-Best\-Fit\-Aspir\-Crit$<$ M $>$::first\_\-time.
+Definition at line 52 of file moImprBestFitAspirCrit.h.
+
+References moImprBestFitAspirCrit$<$ M $>$::best\_\-fit, and moImprBestFitAspirCrit$<$ M $>$::first\_\-time.
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 
-mo\-Impr\-Best\-Fit\-Aspir\-Crit.h\end{CompactItemize}
+moImprBestFitAspirCrit.h\end{CompactItemize}

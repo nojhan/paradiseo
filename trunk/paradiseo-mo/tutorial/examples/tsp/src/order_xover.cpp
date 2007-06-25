@@ -10,43 +10,46 @@
 */
 
 #include <assert.h>
-#include <vector.h>
+#include <vector>
 
 #include <utils/eoRNG.h>
 
 #include "order_xover.h"
 #include "route_valid.h"
 
-void OrderXover :: cross (const Route & __par1, const Route & __par2, Route & __child) {
+void OrderXover :: cross (const Route & __par1, const Route & __par2, Route & __child) 
+{
   
-  unsigned cut = rng.random (__par1.size ()) ;
+  unsigned int cut = rng.random (__par1.size ()) ;
       
   /* To store vertices that have
      already been crossed */
-  vector<bool> v;
+  std::vector<bool> v;
   v.resize(__par1.size());
   
-  for (unsigned i = 0 ; i < __par1.size () ; i ++)
+  for (unsigned int i = 0 ; i < __par1.size () ; i ++)
     {
       v [i] = false ;
     }
 
   /* Copy of the left partial
      route of the first parent */ 
-  for (unsigned i = 0 ; i < cut ; i ++) {
-    __child [i] = __par1 [i] ; 
-    v [__par1 [i]] = true ;
-  }
+  for (unsigned int i = 0 ; i < cut ; i ++) 
+    {
+      __child [i] = __par1 [i] ; 
+      v [__par1 [i]] = true ;
+    }
    
   /* Searching the vertex of the second path, that ended
      the previous first one */
-  unsigned from = 0 ;
-  for (unsigned i = 0 ; i < __par2.size () ; i ++)
+  unsigned int from = 0 ;
+  for (unsigned int i = 0 ; i < __par2.size () ; i ++)
     {
-      if (__par2 [i] == __child [cut - 1]) {
-	from = i ;
-	break ;
-      }
+      if (__par2 [i] == __child [cut - 1]) 
+	{
+	  from = i ;
+	  break ;
+	}
     }
   
   /* Selecting a direction
@@ -55,11 +58,11 @@ void OrderXover :: cross (const Route & __par1, const Route & __par2, Route & __
     
   /* Copy of the left vertices from
      the second parent path */
-  unsigned l = cut ;
+  unsigned int l = cut ;
   
-  for (unsigned i = 0 ; i < __par2.size () ; i ++) 
+  for (unsigned int i = 0 ; i < __par2.size () ; i ++) 
     {
-      unsigned bidule /* :-) */ = (direct * i + from + __par2.size ()) % __par2.size () ;
+      unsigned int bidule /* :-) */ = (direct * i + from + __par2.size ()) % __par2.size () ;
       if (! v [__par2 [bidule]]) 
 	{
 	  __child [l ++] = __par2 [bidule] ;
@@ -70,7 +73,8 @@ void OrderXover :: cross (const Route & __par1, const Route & __par2, Route & __
   v.clear();
 } 
 
-bool OrderXover :: operator () (Route & __route1, Route & __route2) {
+bool OrderXover :: operator () (Route & __route1, Route & __route2) 
+{
   
   // Init. copy
   Route par [2] ;

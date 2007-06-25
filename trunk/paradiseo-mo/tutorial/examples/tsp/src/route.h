@@ -14,6 +14,6 @@
 
 #include <eoVector.h>
 
-typedef eoVector <float, unsigned> Route ; // [Fitness (- length), Gene (city)]
+typedef eoVector <float, unsigned int> Route ; // [Fitness (- length), Gene (city)]
 
 #endif

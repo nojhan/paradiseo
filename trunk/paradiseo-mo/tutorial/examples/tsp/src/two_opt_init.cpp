@@ -11,8 +11,8 @@
 
 #include "two_opt_init.h"
 
-void TwoOptInit :: operator () (TwoOpt & __move, const Route & __route) {
-  
+void TwoOptInit :: operator () (TwoOpt & __move, const Route & __route) 
+{
   __move.first = 0 ;
   __move.second = 2 ;
 }

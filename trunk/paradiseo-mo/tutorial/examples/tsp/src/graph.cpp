@@ -19,61 +19,71 @@ namespace Graph {
 
   static std :: vector <std :: pair <double, double> > vectCoord ; // Coordinates
   
-  static std :: vector <std :: vector <unsigned> > dist ; // Distances Mat.
+  static std :: vector <std :: vector <unsigned int> > dist ; // Distances Mat.
 
-  unsigned size () {
-    
+  unsigned size () 
+  {
     return dist.size () ;
   }
 
-  void computeDistances () {
-  
+  void computeDistances () 
+  {
+    
     // Dim.
-    unsigned numCities = vectCoord.size () ;
+    unsigned int numCities = vectCoord.size () ;
     dist.resize (numCities) ;
-    for (unsigned i = 0 ; i < dist.size () ; i ++)
-      dist [i].resize (numCities) ;
+    for (unsigned int i = 0 ; i < dist.size () ; i ++)
+      {
+	dist [i].resize (numCities) ;
+      }
     
     // Computations.
-    for (unsigned i = 0 ; i < dist.size () ; i ++)
-      for (unsigned j = i + 1 ; j < dist.size () ; j ++) {
-	double distX = vectCoord [i].first - vectCoord [j].first ;
-	double distY = vectCoord [i].second - vectCoord [j].second ;
-	dist [i] [j] = dist [j] [i] = (unsigned) (sqrt ((float) (distX * distX + distY * distY)) + 0.5) ;
+    for (unsigned int i = 0 ; i < dist.size () ; i ++)
+      {
+	for (unsigned int j = i + 1 ; j < dist.size () ; j ++) 
+	  {
+	    double distX = (double)(vectCoord [i].first - vectCoord [j].first) ;
+	    double distY = (double)(vectCoord [i].second - vectCoord [j].second) ;
+	    dist [i] [j] = dist [j] [i] = (unsigned) (sqrt ((float) (distX * distX + distY * distY)) + 0.5) ;
+	  }
       }
   }
 
-  void load (const char * __fileName) {
-  
+  void load (const char * __fileName) 
+  {
+    
     std :: ifstream f (__fileName) ;
-  
+    
     std :: cout << ">> Loading [" << __fileName << "]" << std :: endl ;
     
-    if (f) {
-    
-      unsigned num_vert ; 
-      
-      f >> num_vert ;
-      vectCoord.resize (num_vert) ;
-
-      for (unsigned i = 0 ; i < num_vert ; i ++)	
-	f >> vectCoord [i].first >> vectCoord [i].second ;
+    if (f) 
+      {
+	unsigned int num_vert ; 
+	
+	f >> num_vert ;
+	vectCoord.resize (num_vert) ;
+	
+	for (unsigned int i = 0 ; i < num_vert ; i ++)	
+	  {
+	    f >> vectCoord [i].first >> vectCoord [i].second ;
+	  }
                   
-      f.close () ;
-      
-      computeDistances () ;
-    }
-    else {
-      
-      std :: cout << __fileName << " doesn't exist !!!" << std :: endl ;
-      // Bye !!!
-      exit (1) ;
-    }
+	f.close () ;
+	
+	computeDistances () ;
+      }
+    else 
+      {
+	
+	std :: cout << __fileName << " doesn't exist !!!" << std :: endl ;
+	// Bye !!!
+	exit (1) ;
+      }
   }
-
-  float distance (unsigned __from, unsigned __to) {
-    
-    return dist [__from] [__to] ;
+  
+  float distance (unsigned int __from, unsigned int __to) 
+  {
+    return (float)(dist [__from] [__to]) ;
   }
 }
 

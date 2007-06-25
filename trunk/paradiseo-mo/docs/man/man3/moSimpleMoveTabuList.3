@@ -1,4 +1,4 @@
-.TH "moSimpleMoveTabuList" 3 "23 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moSimpleMoveTabuList" 3 "25 Jun 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -24,7 +24,7 @@ Inherits \fBmoTabuList< M >< M >\fP.
 
 .in +1c
 .ti -1c
-.RI "\fBmoSimpleMoveTabuList\fP (unsigned __size)"
+.RI "\fBmoSimpleMoveTabuList\fP (unsigned int __size)"
 .br
 .RI "\fIConstructor. \fP"
 .ti -1c
@@ -56,11 +56,11 @@ Inherits \fBmoTabuList< M >< M >\fP.
 
 .in +1c
 .ti -1c
-.RI "unsigned \fBmaxSize\fP"
+.RI "unsigned int \fBmaxSize\fP"
 .br
 .RI "\fIThe maximum size of the tabu list. \fP"
 .ti -1c
-.RI "unsigned \fBcurrentSize\fP"
+.RI "unsigned int \fBcurrentSize\fP"
 .br
 .RI "\fIThe current size of the tabu list. \fP"
 .ti -1c
@@ -77,7 +77,7 @@ Class describing a move tabu list with a limited memory.
 Definition at line 22 of file moSimpleMoveTabuList.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> bool \fBmoSimpleMoveTabuList\fP< M >::operator() (const M & __move, const \fBEOT\fP & __sol)\fC [inline]\fP"
+.SS "template<class M> bool \fBmoSimpleMoveTabuList\fP< M >::operator() (const M & __move, const \fBEOT\fP & __sol)\fC [inline, virtual]\fP"
 .PP
 Function that indicates if, in a given state, the _move is tabu or not. 
 .PP
@@ -94,6 +94,8 @@ true or false.
 .RE
 .PP
 
+.PP
+Implements \fBeoBF< const M &, const M::EOType &, bool >\fP.
 .PP
 Definition at line 46 of file moSimpleMoveTabuList.h.
 .PP

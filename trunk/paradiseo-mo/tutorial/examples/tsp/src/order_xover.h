@@ -17,12 +17,13 @@
 #include "route.h"
 
 /** Order Crossover */
-class OrderXover : public eoQuadOp <Route> {
+class OrderXover : public eoQuadOp <Route> 
+{
   
 public :
   
   bool operator () (Route & __route1, Route & __route2) ;
-
+  
 private :
   
   void cross (const Route & __par1, const Route & __par2, Route & __child) ;

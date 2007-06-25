@@ -15,8 +15,9 @@
 #include <moMoveIncrEval.h>
 #include "two_opt.h"
 
-class TwoOptIncrEval : public moMoveIncrEval <TwoOpt> {
-
+class TwoOptIncrEval : public moMoveIncrEval <TwoOpt> 
+{
+  
 public :
   
   float operator () (const TwoOpt & __move, const Route & __route) ; 

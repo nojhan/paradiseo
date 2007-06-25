@@ -17,19 +17,20 @@
 #include "route.h"
 
 /** Route Evaluator */
-class PartRouteEval : public eoEvalFunc <Route> {
+class PartRouteEval : public eoEvalFunc <Route> 
+{
   
 public :
-
+  
   /** Constructor */
   PartRouteEval (float __from, float __to) ;
-    
+  
   void operator () (Route & __route) ;
   
 private :
 
   float from, to ;
-
+  
 } ;
 
 

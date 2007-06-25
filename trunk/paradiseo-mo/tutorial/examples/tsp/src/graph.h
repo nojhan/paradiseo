@@ -15,16 +15,16 @@
 #include <vector>
 #include <utility>
 
-namespace Graph {
-
+namespace Graph 
+{
   void load (const char * __file_name) ;
   /* Loading cities
      (expressed by their coordinates)
      from the given file name */  
   
-  float distance (unsigned __from, unsigned __to) ;
+  float distance (unsigned int __from, unsigned int __to) ;
 
-  unsigned size () ; // How many cities ?
+  unsigned int size () ; // How many cities ?
 }
 
 #endif

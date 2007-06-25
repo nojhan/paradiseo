@@ -27,7 +27,7 @@ public:
   /*!
      \param __maxNumGen the maximum number of generation.
    */
-  moGenSolContinue (unsigned __maxNumGen):maxNumGen (__maxNumGen), numGen (0)
+  moGenSolContinue (unsigned int __maxNumGen):maxNumGen (__maxNumGen), numGen (0)
   {
 
   }
@@ -60,10 +60,10 @@ public:
 private:
 
   //! Iteration maximum number.
-  unsigned maxNumGen;
+  unsigned int maxNumGen;
 
   //! Iteration current number.
-  unsigned numGen;
+  unsigned int numGen;
 };
 
 #endif

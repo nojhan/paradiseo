@@ -19,16 +19,17 @@
 
 #include "route.h"
 
-class TwoOpt : public moMove <Route>, public std :: pair <unsigned, unsigned>, public eoPersistent {
-
+class TwoOpt : public moMove <Route>, public std :: pair <unsigned, unsigned>, public eoPersistent 
+{
+  
 public :
   
   TwoOpt operator ! () const ;
-
+  
   void operator () (Route & __route) ;
-
+  
   void readFrom (std :: istream & __is) ;
-
+  
   void printOn (std :: ostream & __os) const ;
 } ;
 

@@ -1,11 +1,11 @@
-\section{mo\-SA$<$ M $>$ Class Template Reference}
+\section{moSA$<$ M $>$ Class Template Reference}
 \label{classmo_s_a}\index{moSA@{moSA}}
 Simulated Annealing (SA).  
 
 
-{\tt \#include $<$mo\-SA.h$>$}
+{\tt \#include $<$moSA.h$>$}
 
-Inheritance diagram for mo\-SA$<$ M $>$::\begin{figure}[H]
+Inheritance diagram for moSA$<$ M $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=5cm]{classmo_s_a}
@@ -14,7 +14,7 @@ Inheritance diagram for mo\-SA$<$ M $>$::\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-{\bf mo\-SA} ({\bf mo\-Rand\-Move}$<$ M $>$ \&\_\-\_\-move\_\-rand, {\bf mo\-Move\-Incr\-Eval}$<$ M $>$ \&\_\-\_\-incr\_\-eval, {\bf mo\-Sol\-Continue}$<$ {\bf EOT} $>$ \&\_\-\_\-cont, double \_\-\_\-init\_\-temp, {\bf mo\-Cooling\-Schedule} \&\_\-\_\-cool\_\-sched, {\bf eo\-Eval\-Func}$<$ {\bf EOT} $>$ \&\_\-\_\-full\_\-eval)
+{\bf moSA} ({\bf moRandMove}$<$ M $>$ \&\_\-\_\-move\_\-rand, {\bf moMoveIncrEval}$<$ M $>$ \&\_\-\_\-incr\_\-eval, {\bf moSolContinue}$<$ {\bf EOT} $>$ \&\_\-\_\-cont, double \_\-\_\-init\_\-temp, {\bf moCoolingSchedule} \&\_\-\_\-cool\_\-sched, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \&\_\-\_\-full\_\-eval)
 \begin{CompactList}\small\item\em SA constructor. \item\end{CompactList}\item 
 bool {\bf operator()} ({\bf EOT} \&\_\-\_\-sol)
 \begin{CompactList}\small\item\em function that launches the SA algorithm. \item\end{CompactList}\end{CompactItemize}
@@ -30,28 +30,28 @@ typedef EOT::Fitness {\bf Fitness}\label{classmo_s_a_97f1a40d5ab5a0b3f878d0347b3
 \subsection*{Private Attributes}
 \begin{CompactItemize}
 \item 
-{\bf mo\-Rand\-Move}$<$ M $>$ \& {\bf move\_\-rand}\label{classmo_s_a_71c49935b63a202d25888a5f86121fec}
+{\bf moRandMove}$<$ M $>$ \& {\bf move\_\-rand}\label{classmo_s_a_71c49935b63a202d25888a5f86121fec}
 
 \begin{CompactList}\small\item\em A move generator (generally randomly). \item\end{CompactList}\item 
-{\bf mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\bf incr\_\-eval}\label{classmo_s_a_4c3be32e9832e465b24e6d33559356bc}
+{\bf moMoveIncrEval}$<$ M $>$ \& {\bf incr\_\-eval}\label{classmo_s_a_4c3be32e9832e465b24e6d33559356bc}
 
 \begin{CompactList}\small\item\em A (generally) efficient evaluation function. \item\end{CompactList}\item 
-{\bf mo\-Sol\-Continue}$<$ {\bf EOT} $>$ \& {\bf cont}\label{classmo_s_a_54484c8a514866ea496e0058c2e09716}
+{\bf moSolContinue}$<$ {\bf EOT} $>$ \& {\bf cont}\label{classmo_s_a_54484c8a514866ea496e0058c2e09716}
 
 \begin{CompactList}\small\item\em Stopping criterion before temperature update. \item\end{CompactList}\item 
 double {\bf init\_\-temp}\label{classmo_s_a_f1af7636b52aa5f6b381f8187b667bd4}
 
 \begin{CompactList}\small\item\em Initial temperature. \item\end{CompactList}\item 
-{\bf mo\-Cooling\-Schedule} \& {\bf cool\_\-sched}\label{classmo_s_a_11c7d0cab649b7d680dd85bb74cb4ff6}
+{\bf moCoolingSchedule} \& {\bf cool\_\-sched}\label{classmo_s_a_11c7d0cab649b7d680dd85bb74cb4ff6}
 
 \begin{CompactList}\small\item\em The cooling schedule. \item\end{CompactList}\item 
-{\bf eo\-Eval\-Func}$<$ {\bf EOT} $>$ \& {\bf full\_\-eval}\label{classmo_s_a_bcd6a940046f23dd741444c0b85edf2c}
+{\bf eoEvalFunc}$<$ {\bf EOT} $>$ \& {\bf full\_\-eval}\label{classmo_s_a_bcd6a940046f23dd741444c0b85edf2c}
 
 \begin{CompactList}\small\item\em A full evaluation function. \item\end{CompactList}\end{CompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class M$>$ class mo\-SA$<$ M $>$}
+\subsubsection*{template$<$class M$>$ class moSA$<$ M $>$}
 
 Simulated Annealing (SA). 
 
@@ -59,12 +59,12 @@ Class that describes a Simulated Annealing algorithm.
 
 
 
-Definition at line 32 of file mo\-SA.h.
+Definition at line 32 of file moSA.h.
 
 \subsection{Constructor \& Destructor Documentation}
-\index{moSA@{mo\-SA}!moSA@{moSA}}
-\index{moSA@{moSA}!moSA@{mo\-SA}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf mo\-SA}$<$ M $>$::{\bf mo\-SA} ({\bf mo\-Rand\-Move}$<$ M $>$ \& {\em \_\-\_\-move\_\-rand}, {\bf mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\em \_\-\_\-incr\_\-eval}, {\bf mo\-Sol\-Continue}$<$ {\bf EOT} $>$ \& {\em \_\-\_\-cont}, double {\em \_\-\_\-init\_\-temp}, {\bf mo\-Cooling\-Schedule} \& {\em \_\-\_\-cool\_\-sched}, {\bf eo\-Eval\-Func}$<$ {\bf EOT} $>$ \& {\em \_\-\_\-full\_\-eval})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_s_a_01f6a44483e5a7abbce33eb480b6a9b9}
+\index{moSA@{moSA}!moSA@{moSA}}
+\index{moSA@{moSA}!moSA@{moSA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf moSA}$<$ M $>$::{\bf moSA} ({\bf moRandMove}$<$ M $>$ \& {\em \_\-\_\-move\_\-rand}, {\bf moMoveIncrEval}$<$ M $>$ \& {\em \_\-\_\-incr\_\-eval}, {\bf moSolContinue}$<$ {\bf EOT} $>$ \& {\em \_\-\_\-cont}, double {\em \_\-\_\-init\_\-temp}, {\bf moCoolingSchedule} \& {\em \_\-\_\-cool\_\-sched}, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \& {\em \_\-\_\-full\_\-eval})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_s_a_01f6a44483e5a7abbce33eb480b6a9b9}
 
 
 SA constructor. 
@@ -78,17 +78,17 @@ All the boxes used by a SA need to be given.
 \end{Desc}
 
 
-Definition at line 60 of file mo\-SA.h.
+Definition at line 60 of file moSA.h.
 
 \subsection{Member Function Documentation}
-\index{moSA@{mo\-SA}!operator()@{operator()}}
-\index{operator()@{operator()}!moSA@{mo\-SA}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf mo\-SA}$<$ M $>$::operator() ({\bf EOT} \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_s_a_0e4c54b57bc13fcbd4763883b8f719e5}
+\index{moSA@{moSA}!operator()@{operator()}}
+\index{operator()@{operator()}!moSA@{moSA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf moSA}$<$ M $>$::operator() ({\bf EOT} \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_s_a_0e4c54b57bc13fcbd4763883b8f719e5}
 
 
 function that launches the SA algorithm. 
 
-As a \doxyref{mo\-TS}{p.}{classmo_t_s} or a \doxyref{mo\-HC}{p.}{classmo_h_c}, the SA can be used for HYBRIDATION in an evolutionary algorithm.
+As a \doxyref{moTS}{p.}{classmo_t_s} or a \doxyref{moHC}{p.}{classmo_h_c}, the SA can be used for HYBRIDATION in an evolutionary algorithm.
 
 \begin{Desc}
 \item[Parameters:]
@@ -99,12 +99,12 @@ As a \doxyref{mo\-TS}{p.}{classmo_t_s} or a \doxyref{mo\-HC}{p.}{classmo_h_c}, t
 \item[Returns:]TRUE. \end{Desc}
 
 
-Implements {\bf eo\-UF$<$ M::EOType \&, bool $>$}.
+Implements {\bf eoUF$<$ M::EOType \&, bool $>$}.
 
-Definition at line 82 of file mo\-SA.h.
+Definition at line 82 of file moSA.h.
 
-References mo\-SA$<$ M $>$::cont, mo\-SA$<$ M $>$::cool\_\-sched, mo\-SA$<$ M $>$::full\_\-eval, mo\-SA$<$ M $>$::incr\_\-eval, mo\-SA$<$ M $>$::init\_\-temp, mo\-SA$<$ M $>$::move\_\-rand, and eo\-Rng::uniform().
+References moSA$<$ M $>$::cont, moSA$<$ M $>$::cool\_\-sched, moSA$<$ M $>$::full\_\-eval, moSA$<$ M $>$::incr\_\-eval, moSA$<$ M $>$::init\_\-temp, moSA$<$ M $>$::move\_\-rand, and eoRng::uniform().
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 
-mo\-SA.h\end{CompactItemize}
+moSA.h\end{CompactItemize}

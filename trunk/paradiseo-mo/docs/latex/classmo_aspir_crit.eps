@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 218.579
+%%BoundingBox: 0 0 500 119.76
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,7 +19,7 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 2.2875 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 4.175 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
@@ -174,7 +174,7 @@
 boxfont setfont
 1 boundaspect scale
 (moAspirCrit< M >) cw
-(eoBF< A1, A2, R >) cw
+(eoBF< const M &, const M::EOType::Fitness &, bool >) cw
 (eoFunctorBase) cw
 (moImprBestFitAspirCrit< M >) cw
 (moNoAspirCrit< M >) cw
@@ -190,7 +190,7 @@ boundx scalefactor div boundy scalefactor div scale
 % ----- classes -----
 
  (moAspirCrit< M >) 0.5 1 box
- (eoBF< A1, A2, R >) 0.5 2 box
+ (eoBF< const M &, const M::EOType::Fitness &, bool >) 0.5 2 box
  (eoFunctorBase) 0.5 3 box
  (moImprBestFitAspirCrit< M >) 0 0 box
  (moNoAspirCrit< M >) 1 0 box

@@ -31,7 +31,7 @@ public:
   /*!
     \param __size The maximum size of the solution tabu list.
    */
-  moSimpleSolutionTabuList(unsigned __size): maxSize(__size)
+  moSimpleSolutionTabuList(unsigned int __size): maxSize(__size)
   {
     currentSize=0;
   }
@@ -123,10 +123,10 @@ private:
   }
   
   //! The maximum size of the tabu list.
-  unsigned maxSize;
+  unsigned int maxSize;
 
   //! The current size of the tabu list.
-  unsigned currentSize;
+  unsigned int currentSize;
   
   //! The solution tabu list.
   std::list<EOT> tabuList;

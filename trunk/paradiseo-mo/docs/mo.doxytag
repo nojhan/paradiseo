@@ -23,7 +23,7 @@
     <name>moAspirCrit</name>
     <filename>classmo_aspir_crit.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
+    <base>eoBF&lt; const M &amp;, const M::EOType::Fitness &amp;, bool &gt;</base>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
       <name>init</name>
@@ -196,8 +196,8 @@
       <type></type>
       <name>moGenSolContinue</name>
       <anchorfile>classmo_gen_sol_continue.html</anchorfile>
-      <anchor>6b6cab23a23bd8904ea52ef5141d8d0a</anchor>
-      <arglist>(unsigned __maxNumGen)</arglist>
+      <anchor>b56e890f1caa3f98e161c6512b59c95b</anchor>
+      <arglist>(unsigned int __maxNumGen)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -214,17 +214,17 @@
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>unsigned</type>
+      <type>unsigned int</type>
       <name>maxNumGen</name>
       <anchorfile>classmo_gen_sol_continue.html</anchorfile>
-      <anchor>6d7674fc51d17423e8ee28693a08b5af</anchor>
+      <anchor>30b9861e090578bdfa2374806600987a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>unsigned</type>
+      <type>unsigned int</type>
       <name>numGen</name>
       <anchorfile>classmo_gen_sol_continue.html</anchorfile>
-      <anchor>a18ebfd270f96517b4edaa2cad3eb9e0</anchor>
+      <anchor>630d9736a3a2c952540cdc211764258c</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -402,8 +402,8 @@
       <type></type>
       <name>moItRandNextMove</name>
       <anchorfile>classmo_it_rand_next_move.html</anchorfile>
-      <anchor>95ed13e1178f4e44cab7184b040b83d7</anchor>
-      <arglist>(moRandMove&lt; M &gt; &amp;__rand_move, unsigned __max_iter)</arglist>
+      <anchor>2b61b3713d482ecf71db8d941551ff7a</anchor>
+      <arglist>(moRandMove&lt; M &gt; &amp;__rand_move, unsigned int __max_iter)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -427,17 +427,17 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>unsigned</type>
+      <type>unsigned int</type>
       <name>max_iter</name>
       <anchorfile>classmo_it_rand_next_move.html</anchorfile>
-      <anchor>3c476f7cc089b171493c52965f920542</anchor>
+      <anchor>dc67fa86677d7a4f982de8d8b1eba033</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>unsigned</type>
+      <type>unsigned int</type>
       <name>num_iter</name>
       <anchorfile>classmo_it_rand_next_move.html</anchorfile>
-      <anchor>c3551d7910cf351d63f0f3427fc18504</anchor>
+      <anchor>f43494b13931d8f76b5d9d5d6469e91b</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -478,7 +478,7 @@
     <name>moLSCheckPoint</name>
     <filename>classmo_l_s_check_point.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
+    <base>eoBF&lt; const M &amp;, const M::EOType &amp;, void &gt;</base>
     <member kind="function">
       <type>void</type>
       <name>operator()</name>
@@ -524,13 +524,13 @@
     <name>moMoveIncrEval</name>
     <filename>classmo_move_incr_eval.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
+    <base>eoBF&lt; const M &amp;, const M::EOType &amp;, M::EOType::Fitness &gt;</base>
   </compound>
   <compound kind="class">
     <name>moMoveInit</name>
     <filename>classmo_move_init.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
+    <base>eoBF&lt; M &amp;, const M::EOType &amp;, void &gt;</base>
   </compound>
   <compound kind="class">
     <name>moMoveLoopExpl</name>
@@ -569,7 +569,7 @@
     <name>moNextMove</name>
     <filename>classmo_next_move.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
+    <base>eoBF&lt; M &amp;, const M::EOType &amp;, bool &gt;</base>
   </compound>
   <compound kind="class">
     <name>moNoAspirCrit</name>
@@ -744,8 +744,8 @@
       <type></type>
       <name>moSimpleMoveTabuList</name>
       <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
-      <anchor>d29bb1cfc8d1fd2de1cccf821d066b66</anchor>
-      <arglist>(unsigned __size)</arglist>
+      <anchor>12798ce0bc3a2ee031fb301290ed6d79</anchor>
+      <arglist>(unsigned int __size)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -783,17 +783,17 @@
       <arglist>(const M &amp;__move)</arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>unsigned</type>
+      <type>unsigned int</type>
       <name>maxSize</name>
       <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
-      <anchor>9f4860b378366e774c61a0d2034811e1</anchor>
+      <anchor>e48848e9e5c9c8435475cbdf21658e23</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>unsigned</type>
+      <type>unsigned int</type>
       <name>currentSize</name>
       <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
-      <anchor>bd417b084e01343cba914a8193dab3a1</anchor>
+      <anchor>f1f9524e62d48f3688aa58a6055ccceb</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -820,8 +820,8 @@
       <type></type>
       <name>moSimpleSolutionTabuList</name>
       <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
-      <anchor>24576bd9a907b8925c7d7d5ce6fde445</anchor>
-      <arglist>(unsigned __size)</arglist>
+      <anchor>8f8ce82b49ff49efbd934cedd3e34178</anchor>
+      <arglist>(unsigned int __size)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -859,17 +859,17 @@
       <arglist>(const EOT &amp;__sol)</arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>unsigned</type>
+      <type>unsigned int</type>
       <name>maxSize</name>
       <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
-      <anchor>d059072e23ba086ede801abdd32f7218</anchor>
+      <anchor>662e1f65fadff234692be009a2440845</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>unsigned</type>
+      <type>unsigned int</type>
       <name>currentSize</name>
       <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
-      <anchor>ddc7196b9adcba0081810619a978490c</anchor>
+      <anchor>2aaf6e882d10495adddae94cb7a48fbf</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -897,7 +897,7 @@
     <name>moTabuList</name>
     <filename>classmo_tabu_list.html</filename>
     <templarg>M</templarg>
-    <base>eoBF</base>
+    <base>eoBF&lt; const M &amp;, const M::EOType &amp;, bool &gt;</base>
     <member kind="typedef">
       <type>M::EOType</type>
       <name>EOT</name>

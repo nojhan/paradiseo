@@ -1,4 +1,4 @@
-.TH "moItRandNextMove" 3 "23 Apr 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moItRandNextMove" 3 "25 Jun 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -16,7 +16,7 @@ Inherits \fBmoNextMove< M >< M >\fP.
 
 .in +1c
 .ti -1c
-.RI "\fBmoItRandNextMove\fP (\fBmoRandMove\fP< M > &__rand_move, unsigned __max_iter)"
+.RI "\fBmoItRandNextMove\fP (\fBmoRandMove\fP< M > &__rand_move, unsigned int __max_iter)"
 .br
 .RI "\fIThe constructor. \fP"
 .ti -1c
@@ -40,11 +40,11 @@ Inherits \fBmoNextMove< M >< M >\fP.
 .br
 .RI "\fIA move generator (generally randomly). \fP"
 .ti -1c
-.RI "unsigned \fBmax_iter\fP"
+.RI "unsigned int \fBmax_iter\fP"
 .br
 .RI "\fIIteration maximum number. \fP"
 .ti -1c
-.RI "unsigned \fBnum_iter\fP"
+.RI "unsigned int \fBnum_iter\fP"
 .br
 .RI "\fIIteration current number. \fP"
 .in -1c
@@ -59,7 +59,7 @@ This class is a move (\fBmoMove\fP) generator with a bound for the maximum numbe
 Definition at line 22 of file moItRandNextMove.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<class M> \fBmoItRandNextMove\fP< M >::\fBmoItRandNextMove\fP (\fBmoRandMove\fP< M > & __rand_move, unsigned __max_iter)\fC [inline]\fP"
+.SS "template<class M> \fBmoItRandNextMove\fP< M >::\fBmoItRandNextMove\fP (\fBmoRandMove\fP< M > & __rand_move, unsigned int __max_iter)\fC [inline]\fP"
 .PP
 The constructor. 
 .PP
@@ -77,7 +77,7 @@ The constructor.
 Definition at line 37 of file moItRandNextMove.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> bool \fBmoItRandNextMove\fP< M >::operator() (M & __move, const \fBEOT\fP & __sol)\fC [inline]\fP"
+.SS "template<class M> bool \fBmoItRandNextMove\fP< M >::operator() (M & __move, const \fBEOT\fP & __sol)\fC [inline, virtual]\fP"
 .PP
 Generation of a new move. 
 .PP
@@ -96,6 +96,8 @@ FALSE if the maximum number of iteration is reached, else TRUE.
 .RE
 .PP
 
+.PP
+Implements \fBeoBF< M &, const M::EOType &, bool >\fP.
 .PP
 Definition at line 52 of file moItRandNextMove.h.
 .PP

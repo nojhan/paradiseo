@@ -13,8 +13,8 @@
 
 #include "part_two_opt_init.h"
 
-void PartTwoOptInit :: operator () (TwoOpt & __move, const Route & __route) {
-  
+void PartTwoOptInit :: operator () (TwoOpt & __move, const Route & __route) 
+{
   __move.first = rng.random (__route.size () - 6) ;
   __move.second = __move.first + 2 ;
 }

@@ -9,10 +9,7 @@
    Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <moHC.h>
-#include <moFirstImprSelect.h>
-#include <moBestImprSelect.h>
-#include <moRandImprSelect.h>
+#include <mo.h>
 
 #include <graph.h>
 #include <route.h>

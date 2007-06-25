@@ -11,32 +11,37 @@
 
 #include "two_opt.h"
 
-TwoOpt TwoOpt :: operator ! () const {
-  
+TwoOpt TwoOpt :: operator ! () const 
+{
   TwoOpt move = * this ;
   std :: swap (move.first, move.second) ;
   
   return move ;
 }
 
-void TwoOpt :: operator () (Route & __route) {
+void TwoOpt :: operator () (Route & __route) 
+{
   
-  std :: vector <unsigned> seq_cities ;
+  std :: vector <unsigned int> seq_cities ;
   
-  for (unsigned i = second ; i > first ; i --)
-    seq_cities.push_back (__route [i]) ;
+  for (unsigned int i = second ; i > first ; i --)
+    {
+      seq_cities.push_back (__route [i]) ;
+    }
   
-  unsigned j = 0 ;
-  for (unsigned i = first + 1 ; i < second + 1 ; i ++)
-    __route [i] = seq_cities [j ++] ;
+  unsigned int j = 0 ;
+  for (unsigned int i = first + 1 ; i < second + 1 ; i ++)
+    {
+      __route [i] = seq_cities [j ++] ;
+    }
 }
 
-void TwoOpt :: readFrom (std :: istream & __is) {
-  
+void TwoOpt :: readFrom (std :: istream & __is) 
+{
   __is >> first >> second ;
 }
 
-void TwoOpt :: printOn (std :: ostream & __os) const {
-  
+void TwoOpt :: printOn (std :: ostream & __os) const 
+{
   __os << first << ' ' << second ;
 }

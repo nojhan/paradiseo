@@ -14,10 +14,12 @@
 
 #include <utils/eoRNG.h>
 
-template <class T> void mix (std :: vector <T> & __vect) {
-  
-  for (unsigned i = 0 ; i < __vect.size () ; i ++)   
-    std :: swap (__vect [i], __vect [rng.random (__vect.size ())]) ;
+template <class T> void mix (std :: vector <T> & __vect) 
+{
+  for (unsigned int i = 0 ; i < __vect.size () ; i ++)   
+    {
+      std :: swap (__vect [i], __vect [rng.random (__vect.size ())]) ;
+    }
 }
 
 #endif

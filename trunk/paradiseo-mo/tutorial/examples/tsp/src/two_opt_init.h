@@ -17,7 +17,8 @@
 #include "two_opt.h"
 
 /** It sets the first couple of edges */
-class TwoOptInit : public moMoveInit <TwoOpt> {
+class TwoOptInit : public moMoveInit <TwoOpt> 
+{
   
 public :
   

@@ -156,14 +156,10 @@ moTS (moMoveExpl < M > &__move_expl, moSolContinue < EOT > &__cont, eoEvalFunc <
 private:
 
   //! Boolean allowing to initialise the ptread_mutex_t in the constructor
-  static
-    bool
-    first_time;
+  static bool first_time;
 
   //! The lock
-  static
-    pthread_mutex_t
-    mutex;
+  static  pthread_mutex_t  mutex;
 
   //! Neighborhood explorer
   moMoveExpl < M > &move_expl;

@@ -20,7 +20,8 @@
 #include "route.h"
 
 /** Edge Crossover */
-class EdgeXover : public eoQuadOp <Route> {
+class EdgeXover : public eoQuadOp <Route> 
+{
   
 public :
   
@@ -30,14 +31,14 @@ private :
   
   void cross (const Route & __par1, const Route & __par2, Route & __child) ; /* Binary */
 
-  void remove_entry (unsigned __vertex, std :: vector <std :: set <unsigned> > & __map) ;
+  void remove_entry (unsigned int __vertex, std :: vector <std :: set <unsigned> > & __map) ;
   /* Updating the map of entries */
 
   void build_map (const Route & __par1, const Route & __par2) ;
 
-  void add_vertex (unsigned __vertex, Route & __child) ;
+  void add_vertex (unsigned int __vertex, Route & __child) ;
 
-  std :: vector <std :: set <unsigned> > _map ; /* The handled map */
+  std :: vector <std :: set <unsigned int> > _map ; /* The handled map */
 
   std :: vector <bool> visited ; /* Vertices that are already visited */
 

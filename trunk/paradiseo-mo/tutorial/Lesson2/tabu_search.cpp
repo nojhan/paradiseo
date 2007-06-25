@@ -9,15 +9,7 @@
    Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <moTS.h>
-#include <moNoAspirCrit.h>
-#include <moImprBestFitAspirCrit.h>
-#include <moGenSolContinue.h>
-#include <moFirstImprSelect.h>
-#include <moBestImprSelect.h>
-#include <moRandImprSelect.h>
-#include <moSimpleMoveTabuList.h>
-#include <moSimpleSolutionTabuList.h>
+#include <mo.h>
 
 #include <graph.h>
 #include <route.h>

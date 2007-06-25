@@ -16,7 +16,8 @@
 
 #include "route.h"
 
-class RouteInit : public eoInit <Route> {
+class RouteInit : public eoInit <Route> 
+{
   
 public :
   

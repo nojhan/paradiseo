@@ -34,7 +34,7 @@ public:
   operator   () (const M & __move, const typename M::EOType & __sol)
   {
 
-    for (unsigned i = 0; i < func.size (); i++)
+    for (unsigned int i = 0; i < func.size (); i++)
       {
 	func[i]->operator   ()(__move, __sol);
       }

@@ -13,8 +13,8 @@
 #include "graph.h"
 #include <utils/eoRNG.h>
 
-void TwoOptRand :: operator () (TwoOpt & __move) {
-    
+void TwoOptRand :: operator () (TwoOpt & __move) 
+{
   __move.first = rng.random (Graph :: size () - 3) ;
   __move.second = __move.first + 2 + rng.random (Graph :: size () - __move.first - 3) ;
 }

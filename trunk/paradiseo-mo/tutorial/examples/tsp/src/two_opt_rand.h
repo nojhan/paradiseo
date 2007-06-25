@@ -16,7 +16,8 @@
 
 #include "two_opt.h"
 
-class TwoOptRand : public moRandMove <TwoOpt> {
+class TwoOptRand : public moRandMove <TwoOpt> 
+{
   
 public :
   

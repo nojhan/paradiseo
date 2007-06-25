@@ -31,7 +31,7 @@ public:
   /*
     \param __size The maximum size of the move tabu list.
    */
-  moSimpleMoveTabuList(unsigned __size): maxSize(__size)
+  moSimpleMoveTabuList(unsigned int __size): maxSize(__size)
   {
     currentSize=0;
   }
@@ -114,10 +114,10 @@ private:
   }
 
   //! The maximum size of the tabu list.
-  unsigned maxSize;
+  unsigned int maxSize;
 
   //! The current size of the tabu list.
-  unsigned currentSize;
+  unsigned int currentSize;
   
   //! The move tabu list.
   std::list<M> tabuList;
