@@ -37,9 +37,9 @@ AC_OUTPUT([
 Makefile
 src/Makefile
 src/core/Makefile
-docs/Makefile
-tutorials/Makefile
-tutorials/lesson1/Makefile
-tutorials/lesson1/flowshop/Makefile
-tutorials/lesson2/Makefile
+doc/Makefile
+tutorial/Makefile
+tutorial/Lesson1/Makefile
+tutorial/Lesson1/flowshop/Makefile
+tutorial/Lesson2/Makefile
 ])
