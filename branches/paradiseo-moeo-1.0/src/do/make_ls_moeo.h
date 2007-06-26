@@ -18,13 +18,13 @@
 #include <eoGenOp.h>
 #include <utils/eoParser.h>
 #include <utils/eoState.h>
-#include <moeoArchive.h>
-#include <moeoIndicatorBasedFitnessAssignment.h>
-#include <moeoLS.h>
-#include <moeoIndicatorBasedLS.h>
-#include <moeoIteratedIBMOLS.h>
+#include <algo/moeoIBMOLS.h>
+#include <algo/moeoIteratedIBMOLS.h>
+#include <algo/moeoLS.h>
+#include <archive/moeoArchive.h>
+#include <fitness/moeoIndicatorBasedFitnessAssignment.h>
 #include <metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h>
-#include <moeoMoveIncrEval.h>
+#include <move/moeoMoveIncrEval.h>
 
 /**
  * This functions allows to build a moeoLS from the parser
@@ -56,10 +56,10 @@ moeoLS < MOEOT, eoPop<MOEOT> & > & do_make_ls_moeo	(
     /* the objective vector type */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
     /* the fitness assignment strategy */
-    string & fitnessParam = _parser.getORcreateParam(string("IndicatorBased"), "fitness",
+    std::string & fitnessParam = _parser.getORcreateParam(std::string("IndicatorBased"), "fitness",
                             "Fitness assignment strategy parameter: IndicatorBased...", 'F',
                             "Evolution Engine").value();
-    string & indicatorParam = _parser.getORcreateParam(string("Epsilon"), "indicator",
+    std::string & indicatorParam = _parser.getORcreateParam(std::string("Epsilon"), "indicator",
                               "Binary indicator to use with the IndicatorBased assignment: Epsilon, Hypervolume", 'i',
                               "Evolution Engine").value();
     double rho = _parser.getORcreateParam(1.1, "rho", "reference point for the hypervolume indicator",
@@ -67,49 +67,49 @@ moeoLS < MOEOT, eoPop<MOEOT> & > & do_make_ls_moeo	(
     double kappa = _parser.getORcreateParam(0.05, "kappa", "Scaling factor kappa for IndicatorBased",
                                             'k', "Evolution Engine").value();
     moeoIndicatorBasedFitnessAssignment < MOEOT > * fitnessAssignment;
-    if (fitnessParam == string("IndicatorBased"))
+    if (fitnessParam == std::string("IndicatorBased"))
     {
         // metric
         moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > *metric;
-        if (indicatorParam == string("Epsilon"))
+        if (indicatorParam == std::string("Epsilon"))
         {
             metric = new moeoAdditiveEpsilonBinaryMetric < ObjectiveVector >;
         }
-        else if (indicatorParam == string("Hypervolume"))
+        else if (indicatorParam == std::string("Hypervolume"))
         {
             metric = new moeoHypervolumeBinaryMetric < ObjectiveVector > (rho);
         }
         else
         {
-            string stmp = string("Invalid binary quality indicator: ") + indicatorParam;
+            std::string stmp = std::string("Invalid binary quality indicator: ") + indicatorParam;
             throw std::runtime_error(stmp.c_str());
         }
         fitnessAssignment = new moeoIndicatorBasedFitnessAssignment < MOEOT> (*metric, kappa);
     }
     else
     {
-        string stmp = string("Invalid fitness assignment strategy: ") + fitnessParam;
+        std::string stmp = std::string("Invalid fitness assignment strategy: ") + fitnessParam;
         throw std::runtime_error(stmp.c_str());
     }
     _state.storeFunctor(fitnessAssignment);
     // number of iterations
-    unsigned n = _parser.getORcreateParam(1, "n", "Number of iterations for population Initialization", 'n', "Evolution Engine").value();
+    unsigned int n = _parser.getORcreateParam(1, "n", "Number of iterations for population Initialization", 'n', "Evolution Engine").value();
     // LS
-    string & lsParam = _parser.getORcreateParam(string("I-IBMOLS"), "ls",
+    std::string & lsParam = _parser.getORcreateParam(std::string("I-IBMOLS"), "ls",
                        "Local Search: IBMOLS, I-IBMOLS (Iterated-IBMOLS)...", 'L',
                        "Evolution Engine").value();
     moeoLS < MOEOT, eoPop<MOEOT> & > * ls;
-    if (lsParam == string("IBMOLS"))
+    if (lsParam == std::string("IBMOLS"))
     {
-        ls = new moeoIndicatorBasedLS < MOEOT, Move > (_moveInit, _nextMove, _eval, _moveIncrEval, *fitnessAssignment, _continue);;
+        ls = new moeoIBMOLS < MOEOT, Move > (_moveInit, _nextMove, _eval, _moveIncrEval, *fitnessAssignment, _continue);;
     }
-    else if (lsParam == string("I-IBMOLS"))
+    else if (lsParam == std::string("I-IBMOLS"))
     {
         ls = new moeoIteratedIBMOLS < MOEOT, Move > (_moveInit, _nextMove, _eval, _moveIncrEval, *fitnessAssignment, _continue, _op, _opInit, n);
     }
     else
     {
-        string stmp = string("Invalid fitness assignment strategy: ") + fitnessParam;
+        std::string stmp = std::string("Invalid fitness assignment strategy: ") + fitnessParam;
         throw std::runtime_error(stmp.c_str());
     }
     _state.storeFunctor(ls);

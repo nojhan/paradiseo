@@ -20,26 +20,35 @@
 #include <eoGenOp.h>
 #include <utils/eoParser.h>
 #include <utils/eoState.h>
-#include <moeoArchive.h>
-#include <moeoComparator.h>
-#include <moeoCrowdingDistanceDiversityAssignment.h>
-#include <moeoDetTournamentSelect.h>
-#include <moeoDiversityAssignment.h>
-#include <moeoEA.h>
-#include <moeoEasyEA.h>
-#include <moeoElitistReplacement.h>
-#include <moeoEnvironmentalReplacement.h>
-#include <moeoFastNonDominatedSortingFitnessAssignment.h>
-#include <moeoFitnessAssignment.h>
-#include <moeoGenerationalReplacement.h>
-#include <moeoIndicatorBasedFitnessAssignment.h>
-#include <moeoRandomSelect.h>
-#include <moeoReplacement.h>
-#include <moeoRouletteSelect.h>
-#include <moeoSelectOne.h>
-#include <moeoSharingDiversityAssignment.h>
-#include <moeoStochTournamentSelect.h>
+
+#include <algo/moeoEA.h>
+#include <algo/moeoEasyEA.h>
+#include <archive/moeoArchive.h>
+#include <comparator/moeoAggregativeComparator.h>
+#include <comparator/moeoComparator.h>
+#include <comparator/moeoDiversityThenFitnessComparator.h>
+#include <comparator/moeoFitnessThenDiversityComparator.h>
+#include <diversity/moeoDiversityAssignment.h>
+#include <diversity/moeoDummyDiversityAssignment.h>
+#include <diversity/moeoFrontByFrontCrowdingDistanceDiversityAssignment.h>
+#include <diversity/moeoFrontByFrontSharingDiversityAssignment.h>
+#include <fitness/moeoFastNonDominatedSortingFitnessAssignment.h>
+#include <fitness/moeoDummyFitnessAssignment.h>
+#include <fitness/moeoFitnessAssignment.h>
+#include <fitness/moeoIndicatorBasedFitnessAssignment.h>
+#include <metric/moeoAdditiveEpsilonBinaryMetric.h>
+#include <metric/moeoHypervolumeBinaryMetric.h>
 #include <metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h>
+#include <replacement/moeoElitistReplacement.h>
+#include <replacement/moeoEnvironmentalReplacement.h>
+#include <replacement/moeoGenerationalReplacement.h>
+#include <replacement/moeoReplacement.h>
+#include <selection/moeoDetTournamentSelect.h>
+#include <selection/moeoRandomSelect.h>
+#include <selection/moeoStochTournamentSelect.h>
+#include <selection/moeoSelectOne.h>
+#include <selection/moeoSelectors.h>
+
 
 /**
  * This functions allows to build a moeoEA from the parser
@@ -59,10 +68,10 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
 
 
     /* the fitness assignment strategy */
-    string & fitnessParam = _parser.createParam(string("FastNonDominatedSorting"), "fitness",
+    std::string & fitnessParam = _parser.createParam(std::string("FastNonDominatedSorting"), "fitness",
                             "Fitness assignment scheme: Dummy, FastNonDominatedSorting or IndicatorBased", 'F',
                             "Evolution Engine").value();
-    string & indicatorParam = _parser.createParam(string("Epsilon"), "indicator",
+    std::string & indicatorParam = _parser.createParam(std::string("Epsilon"), "indicator",
                               "Binary indicator for IndicatorBased: Epsilon, Hypervolume", 'i',
                               "Evolution Engine").value();
     double rho = _parser.createParam(1.1, "rho", "reference point for the hypervolume indicator", 'r',
@@ -70,36 +79,36 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
     double kappa = _parser.createParam(0.05, "kappa", "Scaling factor kappa for IndicatorBased", 'k',
                                        "Evolution Engine").value();
     moeoFitnessAssignment < MOEOT > * fitnessAssignment;
-    if (fitnessParam == string("Dummy"))
+    if (fitnessParam == std::string("Dummy"))
     {
         fitnessAssignment = new moeoDummyFitnessAssignment < MOEOT> ();
     }
-    else if (fitnessParam == string("FastNonDominatedSorting"))
+    else if (fitnessParam == std::string("FastNonDominatedSorting"))
     {
         fitnessAssignment = new moeoFastNonDominatedSortingFitnessAssignment < MOEOT> ();
     }
-    else if (fitnessParam == string("IndicatorBased"))
+    else if (fitnessParam == std::string("IndicatorBased"))
     {
         // metric
         moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > *metric;
-        if (indicatorParam == string("Epsilon"))
+        if (indicatorParam == std::string("Epsilon"))
         {
             metric = new moeoAdditiveEpsilonBinaryMetric < ObjectiveVector >;
         }
-        else if (indicatorParam == string("Hypervolume"))
+        else if (indicatorParam == std::string("Hypervolume"))
         {
             metric = new moeoHypervolumeBinaryMetric < ObjectiveVector > (rho);
         }
         else
         {
-            string stmp = string("Invalid binary quality indicator: ") + indicatorParam;
+            std::string stmp = std::string("Invalid binary quality indicator: ") + indicatorParam;
             throw std::runtime_error(stmp.c_str());
         }
         fitnessAssignment = new moeoIndicatorBasedFitnessAssignment < MOEOT > (*metric, kappa);
     }
     else
     {
-        string stmp = string("Invalid fitness assignment strategy: ") + fitnessParam;
+        std::string stmp = std::string("Invalid fitness assignment strategy: ") + fitnessParam;
         throw std::runtime_error(stmp.c_str());
     }
     _state.storeFunctor(fitnessAssignment);
@@ -110,16 +119,16 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
             "Diversity assignment scheme: Dummy, Sharing(nicheSize) or Crowding", 'D', "Evolution Engine");
     eoParamParamType & diversityParamValue = diversityParam.value();
     moeoDiversityAssignment < MOEOT > * diversityAssignment;
-    if (diversityParamValue.first == string("Dummy"))
+    if (diversityParamValue.first == std::string("Dummy"))
     {
         diversityAssignment = new moeoDummyDiversityAssignment < MOEOT> ();
     }
-    else if (diversityParamValue.first == string("Sharing"))
+    else if (diversityParamValue.first == std::string("Sharing"))
     {
         double nicheSize;
         if (!diversityParamValue.second.size())   // no parameter added
         {
-            cerr << "WARNING, no niche size given for Sharing, using 0.5" << std::endl;
+            std::cerr << "WARNING, no niche size given for Sharing, using 0.5" << std::endl;
             nicheSize = 0.5;
             diversityParamValue.second.push_back(std::string("0.5"));
         }
@@ -129,37 +138,37 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
         }
         diversityAssignment = new moeoFrontByFrontSharingDiversityAssignment < MOEOT> (nicheSize);
     }
-    else if (diversityParamValue.first == string("Crowding"))
+    else if (diversityParamValue.first == std::string("Crowding"))
     {
         diversityAssignment = new moeoFrontByFrontCrowdingDistanceDiversityAssignment < MOEOT> ();
     }
     else
     {
-        string stmp = string("Invalid diversity assignment strategy: ") + diversityParamValue.first;
+        std::string stmp = std::string("Invalid diversity assignment strategy: ") + diversityParamValue.first;
         throw std::runtime_error(stmp.c_str());
     }
     _state.storeFunctor(diversityAssignment);
 
 
     /* the comparator strategy */
-    string & comparatorParam = _parser.createParam(string("FitnessThenDiversity"), "comparator",
+    std::string & comparatorParam = _parser.createParam(std::string("FitnessThenDiversity"), "comparator",
                                "Comparator scheme: FitnessThenDiversity, DiversityThenFitness or Aggregative", 'C', "Evolution Engine").value();
     moeoComparator < MOEOT > * comparator;
-    if (comparatorParam == string("FitnessThenDiversity"))
+    if (comparatorParam == std::string("FitnessThenDiversity"))
     {
         comparator = new moeoFitnessThenDiversityComparator < MOEOT> ();
     }
-    else if (comparatorParam == string("DiversityThenFitness"))
+    else if (comparatorParam == std::string("DiversityThenFitness"))
     {
         comparator = new moeoDiversityThenFitnessComparator < MOEOT> ();
     }
-    else if (comparatorParam == string("Aggregative"))
+    else if (comparatorParam == std::string("Aggregative"))
     {
         comparator = new moeoAggregativeComparator < MOEOT> ();
     }
     else
     {
-        string stmp = string("Invalid comparator strategy: ") + comparatorParam;
+        std::string stmp = std::string("Invalid comparator strategy: ") + comparatorParam;
         throw std::runtime_error(stmp.c_str());
     }
     _state.storeFunctor(comparator);
@@ -170,15 +179,15 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
             "Selection scheme: DetTour(T), StochTour(t) or Random", 'S', "Evolution Engine");
     eoParamParamType & ppSelect = selectionParam.value();
     moeoSelectOne < MOEOT > * select;
-    if (ppSelect.first == string("DetTour"))
+    if (ppSelect.first == std::string("DetTour"))
     {
-        unsigned tSize;
+        unsigned int tSize;
         if (!ppSelect.second.size()) // no parameter added
         {
-            cerr << "WARNING, no parameter passed to DetTour, using 2" << endl;
+            std::cerr << "WARNING, no parameter passed to DetTour, using 2" << std::endl;
             tSize = 2;
             // put back 2 in parameter for consistency (and status file)
-            ppSelect.second.push_back(string("2"));
+            ppSelect.second.push_back(std::string("2"));
         }
         else // parameter passed by user as DetTour(T)
         {
@@ -186,15 +195,15 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
         }
         select = new moeoDetTournamentSelect < MOEOT > (*comparator, tSize);
     }
-    else if (ppSelect.first == string("StochTour"))
+    else if (ppSelect.first == std::string("StochTour"))
     {
         double tRate;
         if (!ppSelect.second.size()) // no parameter added
         {
-            cerr << "WARNING, no parameter passed to StochTour, using 1" << endl;
+            std::cerr << "WARNING, no parameter passed to StochTour, using 1" << std::endl;
             tRate = 1;
             // put back 1 in parameter for consistency (and status file)
-            ppSelect.second.push_back(string("1"));
+            ppSelect.second.push_back(std::string("1"));
         }
         else // parameter passed by user as StochTour(T)
         {
@@ -209,37 +218,37 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
         // ...
     }
     */
-    else if (ppSelect.first == string("Random"))
+    else if (ppSelect.first == std::string("Random"))
     {
         select = new moeoRandomSelect <MOEOT > ();
     }
     else
     {
-        string stmp = string("Invalid selection strategy: ") + ppSelect.first;
+        std::string stmp = std::string("Invalid selection strategy: ") + ppSelect.first;
         throw std::runtime_error(stmp.c_str());
     }
     _state.storeFunctor(select);
 
 
     /* the replacement strategy */
-    string & replacementParam = _parser.createParam(string("Elitist"), "replacement",
+    std::string & replacementParam = _parser.createParam(std::string("Elitist"), "replacement",
                                 "Replacement scheme: Elitist, Environmental or Generational", 'R', "Evolution Engine").value();
     moeoReplacement < MOEOT > * replace;
-    if (replacementParam == string("Elitist"))
+    if (replacementParam == std::string("Elitist"))
     {
         replace = new moeoElitistReplacement < MOEOT> (*fitnessAssignment, *diversityAssignment, *comparator);
     }
-    else if (replacementParam == string("Environmental"))
+    else if (replacementParam == std::string("Environmental"))
     {
         replace = new moeoEnvironmentalReplacement < MOEOT> (*fitnessAssignment, *diversityAssignment, *comparator);
     }
-    else if (replacementParam == string("Generational"))
+    else if (replacementParam == std::string("Generational"))
     {
         replace = new moeoGenerationalReplacement < MOEOT> ();
     }
     else
     {
-        string stmp = string("Invalid replacement strategy: ") + replacementParam;
+        std::string stmp = std::string("Invalid replacement strategy: ") + replacementParam;
         throw std::runtime_error(stmp.c_str());
     }
     _state.storeFunctor(replace);

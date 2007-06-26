@@ -21,11 +21,11 @@
 #include <utils/selectors.h>
 #include <utils/eoParser.h>
 #include <utils/eoState.h>
-#include <moeoArchiveUpdater.h>
-#include <moeoArchiveObjectiveVectorSavingUpdater.h>
-#include <metric/moeoBinaryMetricSavingUpdater.h>
 #include <metric/moeoContributionMetric.h>
 #include <metric/moeoEntropyMetric.h>
+#include <utils/moeoArchiveUpdater.h>
+#include <utils/moeoArchiveObjectiveVectorSavingUpdater.h>
+#include <utils/moeoBinaryMetricSavingUpdater.h>
 
 bool testDirRes(std::string _dirName, bool _erase);
 
@@ -51,9 +51,9 @@ eoCheckPoint < MOEOT > & do_make_checkpoint_moeo (eoParser & _parser, eoState & 
     // is nb Eval to be used as counter?
     //bool useEval = _parser.getORcreateParam(true, "useEval", "Use nb of eval. as counter (vs nb of gen.)", '\0', "Output").value();
     // Create anyway a generation-counter parameter
-    eoValueParam<unsigned> *generationCounter = new eoValueParam<unsigned>(0, "Gen.");
+    eoValueParam<unsigned int> *generationCounter = new eoValueParam<unsigned int>(0, "Gen.");
     // Create an incrementor (sub-class of eoUpdater).
-    eoIncrementor<unsigned> & increment = _state.storeFunctor( new eoIncrementor<unsigned>(generationCounter->value()) );
+    eoIncrementor<unsigned int> & increment = _state.storeFunctor( new eoIncrementor<unsigned int>(generationCounter->value()) );
     // Add it to the checkpoint
     checkpoint.add(increment);
     // dir for DISK output
@@ -77,13 +77,13 @@ eoCheckPoint < MOEOT > & do_make_checkpoint_moeo (eoParser & _parser, eoState & 
     //////////////////////////////
     // feed the state to state savers
     // save state every N  generation
-    eoValueParam<unsigned>& saveFrequencyParam = _parser.createParam(unsigned(0), "saveFrequency", "Save every F generation (0 = only final state, absent = never)", '\0', "Persistence" );
+    eoValueParam<unsigned int>& saveFrequencyParam = _parser.createParam((unsigned int)(0), "saveFrequency", "Save every F generation (0 = only final state, absent = never)", '\0', "Persistence" );
     if (_parser.isItThere(saveFrequencyParam))
     {
         // first make sure dirName is OK
         if (! dirOK )
             dirOK = testDirRes(dirName, eraseParam.value()); // TRUE
-        unsigned freq = (saveFrequencyParam.value()>0 ? saveFrequencyParam.value() : UINT_MAX );
+        unsigned int freq = (saveFrequencyParam.value()>0 ? saveFrequencyParam.value() : UINT_MAX );
 #ifdef _MSVC
         std::string stmp = dirName + "\generations";
 #else
@@ -94,7 +94,7 @@ eoCheckPoint < MOEOT > & do_make_checkpoint_moeo (eoParser & _parser, eoState & 
         checkpoint.add(*stateSaver1);
     }
     // save state every T seconds
-    eoValueParam<unsigned>& saveTimeIntervalParam = _parser.getORcreateParam(unsigned(0), "saveTimeInterval", "Save every T seconds (0 or absent = never)", '\0',"Persistence" );
+    eoValueParam<unsigned int>& saveTimeIntervalParam = _parser.getORcreateParam((unsigned int)(0), "saveTimeInterval", "Save every T seconds (0 or absent = never)", '\0',"Persistence" );
     if (_parser.isItThere(saveTimeIntervalParam) && saveTimeIntervalParam.value()>0)
     {
         // first make sure dirName is OK

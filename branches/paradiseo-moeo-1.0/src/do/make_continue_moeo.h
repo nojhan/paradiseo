@@ -54,7 +54,7 @@ eoContinue<MOEOT> & do_make_continue_moeo(eoParser& _parser, eoState& _state, eo
     eoCombinedContinue<MOEOT> *continuator = NULL;
     // First the eoGenContinue - need a default value so you can run blind
     // but we also need to be able to avoid it <--> 0
-    eoValueParam<unsigned>& maxGenParam = _parser.createParam(unsigned(100), "maxGen", "Maximum number of generations (0 = none)",'G',"Stopping criterion");
+    eoValueParam<unsigned int>& maxGenParam = _parser.createParam((unsigned int)(100), "maxGen", "Maximum number of generations (0 = none)",'G',"Stopping criterion");
     if (maxGenParam.value()) // positive: -> define and store
     {
         eoGenContinue<MOEOT> *genCont = new eoGenContinue<MOEOT>(maxGenParam.value());
@@ -63,7 +63,7 @@ eoContinue<MOEOT> & do_make_continue_moeo(eoParser& _parser, eoState& _state, eo
         continuator = make_combinedContinue<MOEOT>(continuator, genCont);
     }
     // maxEval
-    eoValueParam<unsigned long>& maxEvalParam = _parser.getORcreateParam((unsigned long)0, "maxEval", "Maximum number of evaluations (0 = none)", 'E', "Stopping criterion");
+    eoValueParam<unsigned long>& maxEvalParam = _parser.getORcreateParam((unsigned long)(0), "maxEval", "Maximum number of evaluations (0 = none)", 'E', "Stopping criterion");
     if (maxEvalParam.value())
     {
         eoEvalContinue<MOEOT> *evalCont = new eoEvalContinue<MOEOT>(_eval, maxEvalParam.value());
@@ -72,7 +72,7 @@ eoContinue<MOEOT> & do_make_continue_moeo(eoParser& _parser, eoState& _state, eo
         continuator = make_combinedContinue<MOEOT>(continuator, evalCont);
     }
     // maxTime
-    eoValueParam<unsigned long>& maxTimeParam = _parser.getORcreateParam((unsigned long)0, "maxTime", "Maximum running time in seconds (0 = none)", 'T', "Stopping criterion");
+    eoValueParam<unsigned long>& maxTimeParam = _parser.getORcreateParam((unsigned long)(0), "maxTime", "Maximum running time in seconds (0 = none)", 'T', "Stopping criterion");
     if (maxTimeParam.value()) // positive: -> define and store
     {
         eoTimeContinue<MOEOT> *timeCont = new eoTimeContinue<MOEOT>(maxTimeParam.value());
