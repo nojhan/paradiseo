@@ -1,0 +1,107 @@
+.TH "moeoDetTournamentSelect" 3 "26 Jun 2007" "Version 1.0" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoDetTournamentSelect \- Selection strategy that selects ONE individual by deterministic tournament.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoDetTournamentSelect.h>\fP
+.PP
+Inherits \fBmoeoSelectOne< MOEOT >< MOEOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoDetTournamentSelect\fP (\fBmoeoComparator\fP< MOEOT > &_comparator, unsigned int _tSize=2)"
+.br
+.RI "\fIFull Ctor. \fP"
+.ti -1c
+.RI "\fBmoeoDetTournamentSelect\fP (unsigned int _tSize=2)"
+.br
+.RI "\fICtor without comparator. \fP"
+.ti -1c
+.RI "const MOEOT & \fBoperator()\fP (const \fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fIApply the tournament to the given population. \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoComparator\fP< MOEOT > & \fBcomparator\fP"
+.br
+.RI "\fIthe comparator (used to compare 2 individuals) \fP"
+.ti -1c
+.RI "\fBmoeoFitnessThenDiversityComparator\fP< MOEOT > \fBdefaultComparator\fP"
+.br
+.RI "\fIa fitness then diversity comparator can be used as default \fP"
+.ti -1c
+.RI "unsigned int \fBtSize\fP"
+.br
+.RI "\fIthe number of individuals in the tournament \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT> class moeoDetTournamentSelect< MOEOT >"
+Selection strategy that selects ONE individual by deterministic tournament. 
+.PP
+Definition at line 24 of file moeoDetTournamentSelect.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class MOEOT> \fBmoeoDetTournamentSelect\fP< MOEOT >::\fBmoeoDetTournamentSelect\fP (\fBmoeoComparator\fP< MOEOT > & _comparator, unsigned int _tSize = \fC2\fP)\fC [inline]\fP"
+.PP
+Full Ctor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_comparator\fP the comparator (used to compare 2 individuals) 
+.br
+\fI_tSize\fP the number of individuals in the tournament (default: 2) 
+.RE
+.PP
+
+.PP
+Definition at line 33 of file moeoDetTournamentSelect.h.
+.PP
+References moeoDetTournamentSelect< MOEOT >::tSize.
+.SS "template<class MOEOT> \fBmoeoDetTournamentSelect\fP< MOEOT >::\fBmoeoDetTournamentSelect\fP (unsigned int _tSize = \fC2\fP)\fC [inline]\fP"
+.PP
+Ctor without comparator. 
+.PP
+A \fBmoeoFitnessThenDiversityComparator\fP is used as default. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_tSize\fP the number of individuals in the tournament (default: 2) 
+.RE
+.PP
+
+.PP
+Definition at line 49 of file moeoDetTournamentSelect.h.
+.PP
+References moeoDetTournamentSelect< MOEOT >::tSize.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT> const MOEOT& \fBmoeoDetTournamentSelect\fP< MOEOT >::operator() (const \fBeoPop\fP< MOEOT > & _pop)\fC [inline]\fP"
+.PP
+Apply the tournament to the given population. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Definition at line 65 of file moeoDetTournamentSelect.h.
+.PP
+References moeoDetTournamentSelect< MOEOT >::comparator, and moeoDetTournamentSelect< MOEOT >::tSize.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.
