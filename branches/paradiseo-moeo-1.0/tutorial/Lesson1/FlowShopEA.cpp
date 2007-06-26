@@ -10,19 +10,15 @@
  */
 //-----------------------------------------------------------------------------
 
-// Miscilaneous include and declaration
-using namespace std;
 
-
-/* EO + MOEO */
 // moeo general include
 #include <moeo>
 // for the creation of an evaluator
-#include "make_eval_FlowShop.h"
+#include <make_eval_FlowShop.h>
 // for the creation of an initializer
-#include "make_genotype_FlowShop.h"
+#include <make_genotype_FlowShop.h>
 // for the creation of the variation operators
-#include "make_op_FlowShop.h"
+#include <make_op_FlowShop.h>
 // how to initialize the population
 #include <do/make_pop.h>
 // the stopping criterion
@@ -35,19 +31,20 @@ using namespace std;
 #include <do/make_run.h>
 // checks for help demand, and writes the status file and make_help; in libutils
 void make_help(eoParser & _parser);
-/* FLOW-SHOP */
-// definition of representation
-#include "FlowShop.h"
+// definition of the representation
+#include <FlowShop.h>
 
 
-int main(int argc, char* argv[]) {
-    try {
+using namespace std;
 
+
+int main(int argc, char* argv[])
+{
+    try
+    {
+    
         eoParser parser(argc, argv);  // for user-parameter reading
         eoState state;                // to keep all things allocated
-
-
-
 
 
         /*** the representation-dependent things ***/
@@ -58,9 +55,6 @@ int main(int argc, char* argv[]) {
         eoInit<FlowShop>& init = do_make_genotype(parser, state);
         // the variation operators
         eoGenOp<FlowShop>& op = do_make_op(parser, state);
-
-
-
 
 
         /*** the representation-independent things ***/
@@ -77,9 +71,6 @@ int main(int argc, char* argv[]) {
         eoAlgo<FlowShop>& algo = do_make_ea_moeo(parser, state, eval, checkpoint, op, arch);
 
 
-
-
-
         /*** Go ! ***/
 
         // help ?
@@ -87,9 +78,6 @@ int main(int argc, char* argv[]) {
 
         // first evalution
         apply<FlowShop>(eval, pop);
-
-        pop.sort();
-        arch.update(pop);
 
         // printing of the initial population
         cout << "Initial Population\n";
@@ -110,8 +98,9 @@ int main(int argc, char* argv[]) {
         cout << endl;
 
 
-
-    } catch (exception& e) {
+    }
+    catch (exception& e)
+    {
         cout << e.what() << endl;
     }
     return EXIT_SUCCESS;
