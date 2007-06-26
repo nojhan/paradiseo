@@ -12,8 +12,6 @@
 #ifndef __moSA_h
 #define __moSA_h
 
-#include <unistd.h>
-
 #include <eoOp.h>
 #include <eoEvalFunc.h>
 
