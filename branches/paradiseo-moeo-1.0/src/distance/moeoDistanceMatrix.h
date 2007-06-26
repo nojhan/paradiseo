@@ -13,6 +13,7 @@
 #ifndef MOEODISTANCEMATRIX_H_
 #define MOEODISTANCEMATRIX_H_
 
+#include <vector>
 #include <eoFunctor.h>
 #include <distance/moeoDistance.h>
 
@@ -33,10 +34,10 @@ public:
      * @param _size size for every dimension of the matrix
      * @param _distance the distance to use
      */
-    moeoDistanceMatrix (unsigned _size, moeoDistance < MOEOT , Type > & _distance) : distance(_distance)
+    moeoDistanceMatrix (unsigned int _size, moeoDistance < MOEOT , Type > & _distance) : distance(_distance)
     {
         this->resize(_size);
-        for (unsigned i=0; i<_size; i++)
+        for (unsigned int i=0; i<_size; i++)
         {
             this->operator[](i).resize(_size);
         }
@@ -53,10 +54,10 @@ public:
         distance.setup(_pop);
         // 2 - compute distances
         this->operator[](0).operator[](0) = Type();
-        for (unsigned i=0; i<size(); i++)
+        for (unsigned int i=0; i<size(); i++)
         {
             this->operator[](i).operator[](i) = Type();
-            for (unsigned j=0; j<i; j++)
+            for (unsigned int j=0; j<i; j++)
             {
                 this->operator[](i).operator[](j) = distance(_pop[i], _pop[j]);
                 this->operator[](j).operator[](i) = this->operator[](i).operator[](j);
