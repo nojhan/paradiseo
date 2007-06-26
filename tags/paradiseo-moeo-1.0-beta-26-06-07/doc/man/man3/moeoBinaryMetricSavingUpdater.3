@@ -1,0 +1,91 @@
+.TH "moeoBinaryMetricSavingUpdater" 3 "26 Jun 2007" "Version 1.0" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoBinaryMetricSavingUpdater \- This class allows to save the progression of a binary metric comparing the objective vectors of the current population (or archive) with the objective vectors of the population (or archive) of the generation (n-1) into a file.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoBinaryMetricSavingUpdater.h>\fP
+.PP
+Inherits \fBeoUpdater\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef MOEOT::ObjectiveVector \fBObjectiveVector\fP"
+.br
+.RI "\fIThe objective vector type of a solution. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoBinaryMetricSavingUpdater\fP (\fBmoeoVectorVsVectorBinaryMetric\fP< \fBObjectiveVector\fP, double > &_metric, const \fBeoPop\fP< MOEOT > &_pop, std::string _filename)"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP ()"
+.br
+.RI "\fISaves the metric's value for the current generation. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoVectorVsVectorBinaryMetric\fP< \fBObjectiveVector\fP, double > & \fBmetric\fP"
+.br
+.RI "\fIbinary metric comparing two Pareto sets \fP"
+.ti -1c
+.RI "const \fBeoPop\fP< MOEOT > & \fBpop\fP"
+.br
+.RI "\fImain population \fP"
+.ti -1c
+.RI "\fBeoPop\fP< MOEOT > \fBoldPop\fP"
+.br
+.RI "\fI(n-1) population \fP"
+.ti -1c
+.RI "std::string \fBfilename\fP"
+.br
+.RI "\fItarget filename \fP"
+.ti -1c
+.RI "bool \fBfirstGen\fP"
+.br
+.RI "\fIis it the first generation ? \fP"
+.ti -1c
+.RI "unsigned int \fBcounter\fP"
+.br
+.RI "\fIcounter \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT> class moeoBinaryMetricSavingUpdater< MOEOT >"
+This class allows to save the progression of a binary metric comparing the objective vectors of the current population (or archive) with the objective vectors of the population (or archive) of the generation (n-1) into a file. 
+.PP
+Definition at line 28 of file moeoBinaryMetricSavingUpdater.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class MOEOT> \fBmoeoBinaryMetricSavingUpdater\fP< MOEOT >::\fBmoeoBinaryMetricSavingUpdater\fP (\fBmoeoVectorVsVectorBinaryMetric\fP< \fBObjectiveVector\fP, double > & _metric, const \fBeoPop\fP< MOEOT > & _pop, std::string _filename)\fC [inline]\fP"
+.PP
+Ctor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_metric\fP the binary metric comparing two Pareto sets 
+.br
+\fI_pop\fP the main population 
+.br
+\fI_filename\fP the target filename 
+.RE
+.PP
+
+.PP
+Definition at line 42 of file moeoBinaryMetricSavingUpdater.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.
