@@ -1,0 +1,100 @@
+// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+
+//-----------------------------------------------------------------------------
+// moeo
+// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
+/*
+    This library...
+
+    Contact: paradiseo-help@lists.gforge.inria.fr, http://paradiseo.gforge.inria.fr
+ */
+//-----------------------------------------------------------------------------
+
+#ifndef MOEO_
+#define MOEO_
+
+#include <eo>
+
+#include <algo/moeoAlgo.h>
+#include <algo/moeoCombinedLS.h>
+#include <algo/moeoEA.h>
+#include <algo/moeoEasyEA.h>
+#include <algo/moeoHybridLS.h>
+#include <algo/moeoIBEA.h>
+//#include <algo/moeoIBMOLS.h>
+//#include <algo/moeoIteratedIBMOLS.h>
+#include <algo/moeoLS.h>
+#include <algo/moeoNSGA.h>
+#include <algo/moeoNSGAII.h>
+
+#include <archive/moeoArchive.h>
+
+#include <comparator/moeoAggregativeComparator.h>
+#include <comparator/moeoComparator.h>
+#include <comparator/moeoDiversityThenFitnessComparator.h>
+#include <comparator/moeoFitnessThenDiversityComparator.h>
+#include <comparator/moeoGDominanceObjectiveVectorComparator.h>
+#include <comparator/moeoObjectiveVectorComparator.h>
+#include <comparator/moeoObjectiveObjectiveVectorComparator.h>
+#include <comparator/moeoOneObjectiveComparator.h>
+#include <comparator/moeoParetoObjectiveVectorComparator.h>
+
+#include <core/MOEO.h>
+#include <core/moeoBitVector.h>
+#include <core/moeoEvalFunc.h>
+#include <core/moeoObjectiveVector.h>
+#include <core/moeoObjectiveVectorDouble.h>
+#include <core/moeoObjectiveVectorTraits.h>
+#include <core/moeoBitVector.h>
+#include <core/moeoRealVector.h>
+
+#include <distance/moeoDistance.h>
+#include <distance/moeoDistanceMatrix.h>
+#include <distance/moeoEuclideanDistance.h>
+#include <distance/moeoManhattanDistance.h>
+#include <distance/moeoNormalizedDistance.h>
+
+#include <diversity/moeoCrowdingDistanceDiversityAssignment.h>
+#include <diversity/moeoDiversityAssignment.h>
+#include <diversity/moeoDummyDiversityAssignment.h>
+#include <diversity/moeoFrontByFrontCrowdingDistanceDiversityAssignment.h>
+#include <diversity/moeoFrontByFrontSharingDiversityAssignment.h>
+#include <diversity/moeoSharingDiversityAssignment.h>
+
+#include <fitness/moeoAchievementFitnessAssignment.h>
+#include <fitness/moeoCriterionBasedFitnessAssignment.h>
+#include <fitness/moeoDummyFitnessAssignment.h>
+#include <fitness/moeoFastNonDominatedSortingFitnessAssignment.h>
+#include <fitness/moeoFitnessAssignment.h>
+#include <fitness/moeoIndicatorBasedFitnessAssignment.h>
+#include <fitness/moeoParetoBasedFitnessAssignment.h>
+//#include <fitness/moeoReferencePointIndicatorBasedFitnessAssignment.h>
+#include <fitness/moeoScalarFitnessAssignment.h>
+
+#include <metric/moeoAdditiveEpsilonBinaryMetric.h>
+#include <metric/moeoContributionMetric.h>
+#include <metric/moeoEntropyMetric.h>
+#include <metric/moeoHypervolumeBinaryMetric.h>
+#include <metric/moeoMetric.h>
+#include <metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h>
+
+#include <replacement/moeoElitistReplacement.h>
+#include <replacement/moeoEnvironmentalReplacement.h>
+#include <replacement/moeoGenerationalReplacement.h>
+#include <replacement/moeoReplacement.h>
+
+#include <selection/moeoDetTournamentSelect.h>
+#include <selection/moeoRandomSelect.h>
+#include <selection/moeoRouletteSelect.h>
+#include <selection/moeoSelectFromPopAndArch.h>
+#include <selection/moeoSelectOne.h>
+#include <selection/moeoSelectors.h>
+#include <selection/moeoStochTournamentSelect.h>
+
+#include <utils/moeoArchiveObjectiveVectorSavingUpdater.h>
+#include <utils/moeoArchiveUpdater.h>
+#include <utils/moeoBinaryMetricSavingUpdater.h>
+#include <utils/moeoConvertPopToObjectiveVectors.h>
+
+
+#endif /*MOEO_*/
