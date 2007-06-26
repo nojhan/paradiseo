@@ -36,8 +36,10 @@ AC_ARG_WITH(EOdir,
 AC_OUTPUT([
 Makefile
 src/Makefile
+src/core/Makefile
 docs/Makefile
 tutorials/Makefile
 tutorials/lesson1/Makefile
+tutorials/lesson1/flowshop/Makefile
 tutorials/lesson2/Makefile
 ])
