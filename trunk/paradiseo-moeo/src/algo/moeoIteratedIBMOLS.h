@@ -129,7 +129,7 @@ private:
             shuffle[i] = i;
         }
         // randomize shuffle
-        UF_random_generator <unsigned int int> gen;
+        UF_random_generator <unsigned int> gen;
         std::random_shuffle(shuffle.begin(), shuffle.end(), gen);
         // start the creation of new solutions
         for (unsigned int i=0; i<_pop.size(); i++)
