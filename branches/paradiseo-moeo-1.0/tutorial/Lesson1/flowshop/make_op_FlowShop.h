@@ -20,16 +20,17 @@
 #include <eoCloneOps.h>
 #include <eoOpContainer.h>
 #include <eoProportionalCombinedOp.h>
-#include "FlowShopOpCrossoverQuad.h"
-#include "FlowShopOpMutationShift.h"
-#include "FlowShopOpMutationExchange.h"
+#include <FlowShopOpCrossoverQuad.h>
+#include <FlowShopOpMutationShift.h>
+#include <FlowShopOpMutationExchange.h>
 
 /*
  * This function builds the operators that will be applied to the eoFlowShop
  * @param eoParameterLoader& _parser to get user parameters
  * @param eoState& _state to store the memory
  */
-eoGenOp<FlowShop> & do_make_op(eoParameterLoader& _parser, eoState& _state) {
+eoGenOp<FlowShop> & do_make_op(eoParameterLoader& _parser, eoState& _state)
+{
 
     /////////////////////////////
     // Variation operators
@@ -78,12 +79,12 @@ eoGenOp<FlowShop> & do_make_op(eoParameterLoader& _parser, eoState& _state) {
     eoValueParam<double>& pCrossParam = _parser.createParam(0.25, "pCross", "Probability of Crossover", 'c', "Variation Operators" );
     // minimum check
     if ( (pCrossParam.value() < 0) || (pCrossParam.value() > 1) )
-        throw runtime_error("Invalid pCross");
+        throw std::runtime_error("Invalid pCross");
 
     eoValueParam<double>& pMutParam = _parser.createParam(0.35, "pMut", "Probability of Mutation", 'm', "Variation Operators" );
     // minimum check
     if ( (pMutParam.value() < 0) || (pMutParam.value() > 1) )
-        throw runtime_error("Invalid pMut");
+        throw std::runtime_error("Invalid pMut");
 
     // the crossover - with probability pCross
     eoProportionalOp<FlowShop> * propOp = new eoProportionalOp<FlowShop> ;

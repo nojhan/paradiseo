@@ -15,29 +15,28 @@
 
 #include <utils/eoParser.h>
 #include <utils/eoState.h>
-#include "FlowShop.h"
-#include "FlowShopInit.h"
-#include "FlowShopBenchmarkParser.h"
+#include <FlowShop.h>
+#include <FlowShopInit.h>
+#include <FlowShopBenchmarkParser.h>
 
 /*
  * This function creates an eoInit<eoFlowShop> that can later be used to initialize the population (see make_pop.h).
  * @param eoParser& _parser  to get user parameters
  * @param eoState& _state  to store the memory
  */
-eoInit<FlowShop> & do_make_genotype(eoParser& _parser, eoState& _state) {
-
+eoInit<FlowShop> & do_make_genotype(eoParser& _parser, eoState& _state)
+{
     // benchmark file name
-    string benchmarkFileName = _parser.getORcreateParam(string(), "BenchmarkFile", "Benchmark file name (benchmarks are available at " + BENCHMARKS_WEB_SITE + ")", 'B',"Representation", true).value();
+    std::string benchmarkFileName = _parser.getORcreateParam(std::string(), "BenchmarkFile", "Benchmark file name (benchmarks are available at www.lifl.fr/~liefooga/benchmarks/)", 'B',"Representation", true).value();
     if (benchmarkFileName == "") {
         std::string stmp = "*** Missing name of the benchmark file\n";
         stmp += "   Type '-B=the_benchmark_file_name' or '--BenchmarkFile=the_benchmark_file_name'\n";
-        stmp += "   Benchmarks files are available at " + BENCHMARKS_WEB_SITE;
+        stmp += "   Benchmarks files are available at www.lifl.fr/~liefooga/benchmarks";
         throw std::runtime_error(stmp.c_str());
     }
     // reading of number of jobs to schedule contained in the benchmark file
     FlowShopBenchmarkParser fParser(benchmarkFileName);
-    unsigned N = fParser.getN();
-
+    unsigned int N = fParser.getN();
     // build of the initializer (a pointer, stored in the eoState)
     eoInit<FlowShop>* init = new FlowShopInit(N);
     // store in state
