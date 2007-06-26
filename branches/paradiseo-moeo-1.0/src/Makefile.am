@@ -1,1 +1,1 @@
-# Nothing to compile !
+SUBDIRS				= core
