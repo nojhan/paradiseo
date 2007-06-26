@@ -42,12 +42,3 @@ you can look at the <a href="http://paradiseo.gforge.inria.fr">ParadisEO website
 - <a href="../../README">README</a>
 - <a href="../../NEWS">NEWS</a>
 */
-
-
-
-// Local Variables:
-// coding: iso-8859-1
-// mode: C++
-// c-file-style: "Stroustrup"
-// fill-column: 80
-// End:
