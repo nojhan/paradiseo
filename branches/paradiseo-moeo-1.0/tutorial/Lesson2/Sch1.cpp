@@ -10,13 +10,12 @@
  */
 //-----------------------------------------------------------------------------
 
-using namespace std;
-
 #include <stdio.h>
 #include <moeo>
 #include <es/eoRealInitBounded.h>
 #include <es/eoRealOp.h>
-#include <moeoObjectiveVectorTraits.h>
+
+using namespace std;
 
 // the moeoObjectiveVectorTraits : minimizing 2 objectives
 class Sch1ObjectiveVectorTraits : public moeoObjectiveVectorTraits
@@ -26,7 +25,7 @@ public:
     {
         return true;
     }
-    static unsigned nObjectives ()
+    static unsigned int nObjectives ()
     {
         return 2;
     }
@@ -67,8 +66,8 @@ public:
 int main (int argc, char *argv[])
 {
     // parameters
-    unsigned POP_SIZE = 20;
-    unsigned MAX_GEN = 100;
+    unsigned int POP_SIZE = 20;
+    unsigned int MAX_GEN = 100;
     double M_EPSILON = 0.01;
     double P_CROSS = 0.25;
     double P_MUT = 0.35;
