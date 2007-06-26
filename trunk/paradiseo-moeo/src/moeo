@@ -15,39 +15,6 @@
 
 #include <eo>
 
-<<<<<<< .courant
-#include <MOEO.h>
-#include <moeoArchiveObjectiveVectorSavingUpdater.h>
-#include <moeoArchiveUpdater.h>
-#include <moeoArchive.h>
-#include <moeoCombinedLS.h>
-#include <moeoComparator.h>
-#include <moeoConvertPopToObjectiveVectors.h>
-#include <moeoCrowdingDistanceDiversityAssignment.h>
-#include <moeoDetTournamentSelect.h>
-#include <moeoDiversityAssignment.h>
-#include <moeoEA.h>
-#include <moeoEasyEA.h>
-#include <moeoElitistReplacement.h>
-#include <moeoEnvironmentalReplacement.h>
-#include <moeoEvalFunc.h>
-#include <moeoFastNonDominatedSortingFitnessAssignment.h>
-#include <moeoFitnessAssignment.h>
-#include <moeoGenerationalReplacement.h>
-#include <moeoHybridLS.h>
-#include <moeoIndicatorBasedFitnessAssignment.h>
-#include <moeoLS.h>
-#include <moeoNSGAII.h>
-#include <moeoObjectiveVectorComparator.h>
-#include <moeoObjectiveVector.h>
-#include <moeoRandomSelect.h>
-#include <moeoReplacement.h>
-#include <moeoSelectFromPopAndArch.h>
-#include <moeoSelectOne.h>
-#include <moeoStochTournamentSelect.h>
-#include <moeoVector.h>
-#include <metric/moeoBinaryMetricSavingUpdater.h>
-=======
 #include <algo/moeoAlgo.h>
 #include <algo/moeoCombinedLS.h>
 #include <algo/moeoEA.h>
@@ -105,7 +72,6 @@
 #include <fitness/moeoScalarFitnessAssignment.h>
 
 #include <metric/moeoAdditiveEpsilonBinaryMetric.h>
->>>>>>> .fusion-droit.r399
 #include <metric/moeoContributionMetric.h>
 #include <metric/moeoEntropyMetric.h>
 #include <metric/moeoHypervolumeBinaryMetric.h>
