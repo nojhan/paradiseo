@@ -13,6 +13,8 @@
 #ifndef MOEOENTROPYMETRIC_H_
 #define MOEOENTROPYMETRIC_H_
 
+#include <vector>
+#include <comparator/moeoParetoObjectiveVectorComparator.h>
 #include <metric/moeoMetric.h>
 
 /**
@@ -48,13 +50,13 @@ public:
         std::vector< ObjectiveVector > union_set1_star; // rotf again ...
         computeUnion (set1, star, union_set1_star);
 
-        unsigned C = union_set1_star.size();
+        unsigned int C = union_set1_star.size();
         float omega=0;
         float entropy=0;
 
-        for (unsigned i=0 ; i<C ; i++) {
-            unsigned N_i = howManyInNicheOf (union_set1_star, union_set1_star[i], star.size());
-            unsigned n_i = howManyInNicheOf (set1, union_set1_star[i], star.size());
+        for (unsigned int i=0 ; i<C ; i++) {
+            unsigned int N_i = howManyInNicheOf (union_set1_star, union_set1_star[i], star.size());
+            unsigned int n_i = howManyInNicheOf (set1, union_set1_star[i], star.size());
             if (n_i > 0) {
                 omega += 1.0 / N_i;
                 entropy += (float) n_i / (N_i * C) * log (((float) n_i / C) / log (2.0));
@@ -72,6 +74,8 @@ private:
     std::vector<double> vect_min_val;
     /** vector of max values */
     std::vector<double> vect_max_val;
+    /** Functor to compare two objective vectors according to Pareto dominance relation */
+    moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
 
 
     /**
@@ -79,10 +83,11 @@ private:
      * @param _f a Pareto set
      */
     void removeDominated(std::vector < ObjectiveVector > & _f) {
-        for (unsigned i=0 ; i<_f.size(); i++) {
+        for (unsigned int i=0 ; i<_f.size(); i++) {
             bool dom = false;
-            for (unsigned j=0; j<_f.size(); j++)
-                if (i != j && _f[j].dominates(_f[i])) {
+            for (unsigned int j=0; j<_f.size(); j++)
+                if (i != j && paretoComparator(_f[i],_f[j]))
+                {
                     dom = true;
                     break;
                 }
@@ -103,9 +108,9 @@ private:
         vect_min_val.clear();
         vect_max_val.clear();
 
-        for (unsigned char i=0 ; i<ObjectiveVector::nObjectives(); i++) {
+        for (unsigned int i=0 ; i<ObjectiveVector::nObjectives(); i++) {
             float min_val = _f.front()[i], max_val = min_val;
-            for (unsigned j=1 ; j<_f.size(); j++) {
+            for (unsigned int j=1 ; j<_f.size(); j++) {
                 if (_f[j][i] < min_val)
                     min_val = _f[j][i];
                 if (_f[j][i]>max_val)
@@ -122,8 +127,8 @@ private:
      * @param _f a Pareto set
      */
     void normalize (std::vector< ObjectiveVector > & _f) {
-        for (unsigned i=0 ; i<ObjectiveVector::nObjectives(); i++)
-            for (unsigned j=0; j<_f.size(); j++)
+        for (unsigned int i=0 ; i<ObjectiveVector::nObjectives(); i++)
+            for (unsigned int j=0; j<_f.size(); j++)
                 _f[j][i] = (_f[j][i] - vect_min_val[i]) / (vect_max_val[i] - vect_min_val[i]);
     }
 
@@ -136,9 +141,9 @@ private:
      */
     void computeUnion(const std::vector< ObjectiveVector > & _f1, const std::vector< ObjectiveVector > & _f2, std::vector< ObjectiveVector > & _f) {
         _f = _f1 ;
-        for (unsigned i=0; i<_f2.size(); i++) {
+        for (unsigned int i=0; i<_f2.size(); i++) {
             bool b = false;
-            for (unsigned j=0; j<_f1.size(); j ++)
+            for (unsigned int j=0; j<_f1.size(); j ++)
                 if (_f1[j] == _f2[i]) {
                     b = true;
                     break;
@@ -152,9 +157,9 @@ private:
     /**
      * How many in niche
      */
-    unsigned howManyInNicheOf (const std::vector< ObjectiveVector > & _f, const ObjectiveVector & _s, unsigned _size) {
-        unsigned n=0;
-        for (unsigned i=0 ; i<_f.size(); i++) {
+    unsigned int howManyInNicheOf (const std::vector< ObjectiveVector > & _f, const ObjectiveVector & _s, unsigned int _size) {
+        unsigned int n=0;
+        for (unsigned int i=0 ; i<_f.size(); i++) {
             if (euclidianDistance(_f[i], _s) < (_s.size() / (double) _size))
                 n++;
         }
@@ -165,9 +170,9 @@ private:
     /**
      * Euclidian distance
      */
-    double euclidianDistance (const ObjectiveVector & _set1, const ObjectiveVector & _to, unsigned _deg = 2) {
+    double euclidianDistance (const ObjectiveVector & _set1, const ObjectiveVector & _to, unsigned int _deg = 2) {
         double dist=0;
-        for (unsigned i=0; i<_set1.size(); i++)
+        for (unsigned int i=0; i<_set1.size(); i++)
             dist += pow(fabs(_set1[i] - _to[i]), (int)_deg);
         return pow(dist, 1.0 / _deg);
     }

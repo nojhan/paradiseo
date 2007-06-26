@@ -13,6 +13,7 @@
 #ifndef MOEOCONTRIBUTIONMETRIC_H_
 #define MOEOCONTRIBUTIONMETRIC_H_
 
+#include <comparator/moeoParetoObjectiveVectorComparator.h>
 #include <metric/moeoMetric.h>
 
 /**
@@ -30,26 +31,30 @@ public:
      * @param _set2 the second Pareto set
      */
     double operator()(const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2) {
-        unsigned c  = card_C(_set1, _set2);
-        unsigned w1 = card_W(_set1, _set2);
-        unsigned n1 = card_N(_set1, _set2);
-        unsigned w2 = card_W(_set2, _set1);
-        unsigned n2 = card_N(_set2, _set1);
+        unsigned int c  = card_C(_set1, _set2);
+        unsigned int w1 = card_W(_set1, _set2);
+        unsigned int n1 = card_N(_set1, _set2);
+        unsigned int w2 = card_W(_set2, _set1);
+        unsigned int n2 = card_N(_set2, _set1);
         return (double) (c / 2.0 + w1 + n1) / (c + w1 + n1 + w2 + n2);
     }
 
 
 private:
 
+    /** Functor to compare two objective vectors according to Pareto dominance relation */
+    moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
+    
+    
     /**
      * Returns the number of solutions both in '_set1' and '_set2'
      * @param _set1 the first Pareto set
      * @param _set2 the second Pareto set
      */
-    unsigned card_C (const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2) {
-        unsigned c=0;
-        for (unsigned i=0; i<_set1.size(); i++)
-            for (unsigned j=0; j<_set2.size(); j++)
+    unsigned int card_C (const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2) {
+        unsigned int c=0;
+        for (unsigned int i=0; i<_set1.size(); i++)
+            for (unsigned int j=0; j<_set2.size(); j++)
                 if (_set1[i] == _set2[j]) {
                     c++;
                     break;
@@ -57,33 +62,37 @@ private:
         return c;
     }
 
+
     /**
      * Returns the number of solutions in '_set1' dominating at least one solution of '_set2'
      * @param _set1 the first Pareto set
      * @param _set2 the second Pareto set
      */
-    unsigned card_W (const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2) {
-        unsigned w=0;
-        for (unsigned i=0; i<_set1.size(); i++)
-            for (unsigned j=0; j<_set2.size(); j++)
-                if (_set1[i].dominates(_set2[j])) {
+    unsigned int card_W (const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2) {
+        unsigned int w=0;
+        for (unsigned int i=0; i<_set1.size(); i++)
+            for (unsigned int j=0; j<_set2.size(); j++)
+                if (paretoComparator(_set2[j], _set1[i]))
+                {
                     w++;
                     break;
                 }
         return w;
     }
 
+
     /**
      * Returns the number of solutions in '_set1' having no relation of dominance with those from '_set2'
      * @param _set1 the first Pareto set
      * @param _set2 the second Pareto set
      */
-    unsigned card_N (const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2) {
-        unsigned n=0;
-        for (unsigned i=0; i<_set1.size(); i++) {
+    unsigned int card_N (const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2) {
+        unsigned int n=0;
+        for (unsigned int i=0; i<_set1.size(); i++) {
             bool domin_rel = false;
-            for (unsigned j=0; j<_set2.size(); j++)
-                if (_set1[i].dominates(_set2[j]) || _set2[j].dominates(_set1 [i])) {
+            for (unsigned int j=0; j<_set2.size(); j++)
+                if ( (paretoComparator(_set2[j], _set1[i])) || (paretoComparator(_set1[i], _set2[j])) )
+                {
                     domin_rel = true;
                     break;
                 }

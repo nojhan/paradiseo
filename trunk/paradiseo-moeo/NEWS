@@ -1,3 +1,4 @@
+<<<<<<< .courant
 * release 1.0.alpha
 
 # Local Variables:
@@ -5,3 +6,6 @@
 # mode: text
 # fill-column: 80
 # End:
+=======
+* release 1.0
+>>>>>>> .fusion-droit.r399

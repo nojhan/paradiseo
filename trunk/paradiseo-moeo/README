@@ -52,7 +52,9 @@ structure:
        |
        +-- lesson1       A bi-objective flow-shop problem example with main algorithms.
        |   |
-       |   +-benchmarks  Instance files for testing.
+       |   +- flowshop   Flow-shop source files
+       |   |
+       |   +- benchmarks Instance files for testing.
        |
        |-- lesson2       Implement NSGA-II for the SCH1 problem.
 
