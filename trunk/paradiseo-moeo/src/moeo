@@ -13,6 +13,7 @@
 #ifndef MOEO_
 #define MOEO_
 
+
 #include <eo>
 
 #include <algo/moeoAlgo.h>
@@ -21,8 +22,6 @@
 #include <algo/moeoEasyEA.h>
 #include <algo/moeoHybridLS.h>
 #include <algo/moeoIBEA.h>
-//#include <algo/moeoIBMOLS.h>
-//#include <algo/moeoIteratedIBMOLS.h>
 #include <algo/moeoLS.h>
 #include <algo/moeoNSGA.h>
 #include <algo/moeoNSGAII.h>
@@ -68,7 +67,6 @@
 #include <fitness/moeoFitnessAssignment.h>
 #include <fitness/moeoIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoParetoBasedFitnessAssignment.h>
-//#include <fitness/moeoReferencePointIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoScalarFitnessAssignment.h>
 
 #include <metric/moeoAdditiveEpsilonBinaryMetric.h>
