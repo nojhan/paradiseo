@@ -20,25 +20,6 @@
 #include <eoGenOp.h>
 #include <utils/eoParser.h>
 #include <utils/eoState.h>
-<<<<<<< .courant
-#include <moeoArchive.h>
-#include <moeoComparator.h>
-#include <moeoCrowdingDistanceDiversityAssignment.h>
-#include <moeoDetTournamentSelect.h>
-#include <moeoDiversityAssignment.h>
-#include <moeoEA.h>
-#include <moeoEasyEA.h>
-#include <moeoElitistReplacement.h>
-#include <moeoEnvironmentalReplacement.h>
-#include <moeoFastNonDominatedSortingFitnessAssignment.h>
-#include <moeoFitnessAssignment.h>
-#include <moeoGenerationalReplacement.h>
-#include <moeoIndicatorBasedFitnessAssignment.h>
-#include <moeoRandomSelect.h>
-#include <moeoReplacement.h>
-#include <moeoSelectOne.h>
-#include <moeoStochTournamentSelect.h>
-=======
 
 #include <algo/moeoEA.h>
 #include <algo/moeoEasyEA.h>
@@ -57,7 +38,6 @@
 #include <fitness/moeoIndicatorBasedFitnessAssignment.h>
 #include <metric/moeoAdditiveEpsilonBinaryMetric.h>
 #include <metric/moeoHypervolumeBinaryMetric.h>
->>>>>>> .fusion-droit.r399
 #include <metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h>
 #include <replacement/moeoElitistReplacement.h>
 #include <replacement/moeoEnvironmentalReplacement.h>
