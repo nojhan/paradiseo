@@ -1,4 +1,4 @@
-SUBDIRS = docs src tutorial
+SUBDIRS = doc src tutorial
 
 CXX=g++
 
@@ -22,7 +22,9 @@ clean_aux:
 	-@find . \( -name "*~" -o -name "*.old" -o -name "#*" -o -name "*.bak" \) -print -exec rm -rf \{\} \;
 
 doc:
-	-@(cd docs; make doc)
+	-@(cd doc; make doc)
 
 clean_doc:
-	-@(cd docs; make clean-local)
+	-@(cd doc; make clean-local)
+
+.PHONY: clean_all clean_aux doc clean_doc

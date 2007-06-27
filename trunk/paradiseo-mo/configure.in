@@ -42,14 +42,17 @@ AC_ARG_WITH(EOdir,
 AC_OUTPUT([
 Makefile
 src/Makefile
-docs/Makefile
+doc/Makefile
 tutorial/Makefile
 tutorial/examples/Makefile
 tutorial/examples/tsp/Makefile
 tutorial/examples/tsp/src/Makefile
 tutorial/Lesson1/Makefile
+tutorial/Lesson1/src/Makefile
 tutorial/Lesson2/Makefile
+tutorial/Lesson2/src/Makefile
 tutorial/Lesson3/Makefile
+tutorial/Lesson3/src/Makefile
 ])
 
 echo "Type 'make doc' for building documentation"
