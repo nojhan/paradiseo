@@ -30,10 +30,10 @@
 --recomputeFitness=0                     # -r : Recompute the fitness after re-loading the pop.?
 --saveFrequency=0                        # Save every F generation (0 = only final state, absent = never)
 --saveTimeInterval=0                     # Save every T seconds (0 or absent = never)
---status=./FlowShopEA.status             # Status file
+--status=../FlowShopEA.status            # Status file
 
 ######    Representation          ######
---BenchmarkFile=benchmarks/020_10_01.txt # -B : Benchmark file name (benchmarks are available at www.lifl.fr/~liefooga/benchmarks) REQUIRED 
+--BenchmarkFile=benchs/020_10_01.txt     # -B : Benchmark file name (benchmarks are available at www.lifl.fr/~liefooga/benchmarks) REQUIRED 
 
 ######    Stopping criterion      ######
 --maxGen=100                             # -G : Maximum number of generations (0 = none)
