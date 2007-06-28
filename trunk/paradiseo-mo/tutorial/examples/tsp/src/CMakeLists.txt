@@ -14,9 +14,9 @@ INCLUDE_DIRECTORIES(${MO_SRC_DIR})
 ######################################################################################
 
 SET(TSP_LIB_OUTPUT_PATH ${TSP_EXAMPLE_DIR}/build)
-SET(LIBRARY_OUTPUT_PATH ${TSP_LIB_OUTPUT_PATH} "TSP library output directory")
+SET(LIBRARY_OUTPUT_PATH ${TSP_LIB_OUTPUT_PATH})
 
-SET (TSP_SOURCES graph.cpp route_init.cpp  route_eval.cpp part_route_eval.cpp edge_xover.cpp	order_xover.cpp route_valid.cpp partial_mapped_xover.cpp city_swap.cpp two_opt.cpp	two_opt_init.cpp two_opt_next.cpp two_opt_incr_eval.cpp two_opt_tabu_list.cpp two_opt_rand.cpp)
+SET (TSP_SOURCES graph.cpp route_init.cpp  route_eval.cpp part_route_eval.cpp edge_xover.cpp order_xover.cpp route_valid.cpp partial_mapped_xover.cpp city_swap.cpp two_opt.cpp	two_opt_init.cpp two_opt_next.cpp two_opt_incr_eval.cpp two_opt_tabu_list.cpp two_opt_rand.cpp)
 
 # --> UNIX 
 IF(UNIX)   
