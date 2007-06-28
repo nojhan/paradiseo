@@ -79,9 +79,9 @@ SET_TARGET_PROPERTIES(simulated_annealing PROPERTIES VERSION "${SIMULATEDANNEALI
 
 # --> UNIX 
 IF(UNIX) 
-  TARGET_LINK_LIBRARIES(tabu_search tsp) 
-  TARGET_LINK_LIBRARIES(tabu_search eo)
-  TARGET_LINK_LIBRARIES(tabu_search eoutils)
+  TARGET_LINK_LIBRARIES(simulated_annealing tsp) 
+  TARGET_LINK_LIBRARIES(simulated_annealing eo)
+  TARGET_LINK_LIBRARIES(simulated_annealing eoutils)
 
 # --> WIN
 ELSEIF(WIN32)  
