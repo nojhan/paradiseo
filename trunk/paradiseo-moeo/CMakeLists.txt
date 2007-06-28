@@ -72,7 +72,7 @@ IF(NOT DEFINED MOEO_SRC_DIR)
 ENDIF(NOT DEFINED MOEO_SRC_DIR)
 
 IF(NOT DEFINED MOEO_DOC_DIR)
-  SET(MOEO_DOC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/docs)
+  SET(MOEO_DOC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/doc)
 ENDIF(NOT DEFINED MOEO_DOC_DIR)
 ######################################################################################
 
