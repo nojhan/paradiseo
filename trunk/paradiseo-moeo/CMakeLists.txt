@@ -59,7 +59,7 @@ ENDIF(NOT DEFINED MOEO_DIR)
 IF(NOT DEFINED EO_DIR OR NOT EO_DIR)
   SET(EO_DIR ${EOdir} CACHE PATH "ParadisEO-EO main directory" FORCE) # given on the command line
 ELSE(NOT DEFINED EO_DIR OR NOT EO_DIR)
-  MESSAGE(STATUS "EOdir already defined in as ${EO_DIR}")
+  MESSAGE(STATUS "EOdir already defined as ${EO_DIR}")
 ENDIF(NOT DEFINED EO_DIR OR NOT EO_DIR)
 
 # Set the main paths

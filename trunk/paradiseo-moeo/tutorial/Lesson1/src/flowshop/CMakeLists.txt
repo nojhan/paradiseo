@@ -46,7 +46,14 @@ SET(FLOWSHOP_LIB_OUTPUT_PATH ${TUTORIAL_LESSON1_DIR}/build)
 SET(LIBRARY_OUTPUT_PATH ${FLOWSHOP_LIB_OUTPUT_PATH})
 
 
-SET (FLOWSHOP_SOURCES  FlowShopBenchmarkParser.cpp FlowShopEval.cpp FlowShopInit.cpp FlowShopObjectiveVectorTraits.cpp FlowShopOpCrossoverQuad.cpp FlowShopOpMutationExchange.cpp FlowShopOpMutationShift.cpp FlowShop.cpp)
+SET (FLOWSHOP_SOURCES   FlowShopBenchmarkParser.cpp 
+						FlowShopEval.cpp 
+						FlowShopInit.cpp 
+						FlowShopObjectiveVectorTraits.cpp 
+						FlowShopOpCrossoverQuad.cpp 
+						FlowShopOpMutationExchange.cpp 
+						FlowShopOpMutationShift.cpp 
+						FlowShop.cpp)
 
 # --> UNIX 
 IF(UNIX)   
