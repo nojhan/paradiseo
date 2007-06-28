@@ -83,7 +83,7 @@ ENDIF(NOT DEFINED MOEO_DOC_DIR)
 IF(EXISTS ${EO_DIR})
 	MESSAGE (STATUS "Using ParadisEO-EO path: ${EO_DIR}")
 ELSE(EXISTS ${EO_DIR})
-	MESSAGE (FATAL_ERROR "Could not find the ParadisEO-EO path: ${EO_DIR}")
+	MESSAGE (FATAL_ERROR "Could not find the ParadisEO-EO path: ${EO_DIR}. You should use : cmake . -DEOdir=<your path to paradiseo-eo>")
 ENDIF(EXISTS ${EO_DIR})
 
 # Is it an absolute path ?
