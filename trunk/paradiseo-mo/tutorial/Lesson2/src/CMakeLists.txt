@@ -1,13 +1,4 @@
 
-######################################################################################
-### 0) Need tsp directory
-######################################################################################
-
-SET(TSP_EXAMPLE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/tsp)
-
-######################################################################################
-
-
 
 ######################################################################################
 ### 1) Include the sources
@@ -15,7 +6,8 @@ SET(TSP_EXAMPLE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/tsp)
 
 INCLUDE_DIRECTORIES(${EO_SRC_DIR})
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/utils)
-INCLUDE_DIRECTORIES(${TSP_EXAMPLE_DIR})
+INCLUDE_DIRECTORIES(${MO_SRC_DIR})
+INCLUDE_DIRECTORIES(${TSP_EXAMPLE_DIR}/src)
 ######################################################################################
 
 
