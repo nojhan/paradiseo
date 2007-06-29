@@ -102,6 +102,8 @@ ELSEIF(WIN32)
   ELSEIF(CMAKE_BUILD_TYPE STREQUAL Release)
   	TARGET_LINK_LIBRARIES(flowshop moeo)
     TARGET_LINK_LIBRARIES(flowshop eo)
+  ELSE(CMAKE_BUILD_TYPE STREQUAL Debug)
+    MESSAGE(FATAL_ERROR " Cmake build type can only be \"Debug\" or \"Release\" ")
   ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
 
 ENDIF(UNIX)

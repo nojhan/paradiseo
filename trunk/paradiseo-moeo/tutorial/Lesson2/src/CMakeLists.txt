@@ -88,6 +88,8 @@ ELSEIF(WIN32)
   	TARGET_LINK_LIBRARIES(sch1 moeo)
     TARGET_LINK_LIBRARIES(sch1 eo)
     TARGET_LINK_LIBRARIES(sch1 eoutils)   
+  ELSE(CMAKE_BUILD_TYPE STREQUAL Debug)
+    MESSAGE(FATAL_ERROR " Cmake build type can only be \"Debug\" or \"Release\" ")
   ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
 
 ENDIF(UNIX)
