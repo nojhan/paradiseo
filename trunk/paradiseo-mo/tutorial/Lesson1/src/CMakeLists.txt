@@ -90,6 +90,8 @@ ELSEIF(WIN32)
   	TARGET_LINK_LIBRARIES(hill_climbing tsp)
     TARGET_LINK_LIBRARIES(hill_climbing eo)
     TARGET_LINK_LIBRARIES(hill_climbing eoutils)   
+  ELSE(CMAKE_BUILD_TYPE STREQUAL Debug)
+    MESSAGE(FATAL_ERROR " Cmake build type can only be \"Debug\" or \"Release\" ")
   ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
 
 ENDIF(UNIX)
