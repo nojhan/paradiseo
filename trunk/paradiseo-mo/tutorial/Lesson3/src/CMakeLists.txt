@@ -83,7 +83,7 @@ ELSEIF(WIN32)
   ENDIF (NOT DEFINED CMAKE_BUILD_TYPE)
  
   IF (CMAKE_BUILD_TYPE STREQUAL Debug)
-  	TARGET_LINK_LIBRARIES(simulated_annealing tspd)
+  	TARGET_LINK_LIBRARIES(simulated_annealing tsp)
     TARGET_LINK_LIBRARIES(simulated_annealing eod)
     TARGET_LINK_LIBRARIES(simulated_annealing eoutilsd)    
   ELSEIF(CMAKE_BUILD_TYPE STREQUAL Release)
