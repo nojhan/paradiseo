@@ -21,7 +21,6 @@
 #include "moMoveExpl.h"
 #include "moTSMoveLoopExpl.h"
 
-#include <pthread.h>
 
 //! Tabu Search (TS)
 /*!
@@ -59,16 +58,7 @@ public:
 moTS (moMoveInit < M > &__move_init, moNextMove < M > &__next_move, moMoveIncrEval < M > &__incr_eval, moTabuList < M > &__tabu_list, moAspirCrit < M > &__aspir_crit, moSolContinue < EOT > &__cont, eoEvalFunc < EOT > &__full_eval):move_expl (*new moTSMoveLoopExpl < M >
 	     (__move_init, __next_move, __incr_eval, __tabu_list,
 	      __aspir_crit)), cont (__cont), full_eval (__full_eval)
-  {
-
-    if (first_time)
-      {
-
-	pthread_mutex_init (&mutex, 0);
-
-	first_time = false;
-      }
-  }
+      {}
 
   //! Constructor with less parameters
   /*!
@@ -81,16 +71,7 @@ moTS (moMoveInit < M > &__move_init, moNextMove < M > &__next_move, moMoveIncrEv
 moTS (moMoveExpl < M > &__move_expl, moSolContinue < EOT > &__cont, eoEvalFunc < EOT > &__full_eval):move_expl (__move_expl),
     cont (__cont),
     full_eval (__full_eval)
-  {
-
-    if (first_time)
-      {
-
-	pthread_mutex_init (&mutex, 0);
-
-	first_time = false;
-      }
-  }
+    {}
 
   //! Function which launchs the Tabu Search
   /*!
@@ -103,9 +84,6 @@ moTS (moMoveExpl < M > &__move_expl, moSolContinue < EOT > &__cont, eoEvalFunc <
    */
   bool operator   ()(EOT & __sol)
   {
-
-    pthread_mutex_lock (&mutex);
-
     if (__sol.invalid ())
       {
 	full_eval (__sol);
@@ -147,19 +125,11 @@ moTS (moMoveExpl < M > &__move_expl, moSolContinue < EOT > &__cont, eoEvalFunc <
     while (cont (__sol));
 
     __sol = best_sol;
-
-    pthread_mutex_unlock (&mutex);
-
+ 
     return true;
   }
 
 private:
-
-  //! Boolean allowing to initialise the ptread_mutex_t in the constructor
-  static bool first_time;
-
-  //! The lock
-  static  pthread_mutex_t  mutex;
 
   //! Neighborhood explorer
   moMoveExpl < M > &move_expl;
@@ -170,11 +140,5 @@ private:
   //! Full evaluation function
   eoEvalFunc < EOT > &full_eval;
 };
-
-//! declaration of the mutex variable
-template < class EOT > pthread_mutex_t moTS < EOT >::mutex;
-
-//! by default, first_time must have the value true
-template < class EOT > bool moTS < EOT >::first_time = true;
 
 #endif
