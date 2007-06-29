@@ -395,7 +395,7 @@ function run_install_step()
 	
 		execute_cmd "cd $installKitPath/paradiseo-mo" "[$currentStepCounter-1] Go in Paradiseo-MO dir"  $SPY 
 		RETURN=$?
-		execute_cmd "./autogen.sh --with-EOdir=$installKitPath/paradiseo-eo" "[$currentStepCounter-2] Run autogen"  $SPY
+		execute_cmd "cmake . -DEOdir=$installKitPath/paradiseo-eo" "[$currentStepCounter-2] Run CMake"  $SPY
 		RETURN=`expr $RETURN + $?`
 		execute_cmd "make" "[$currentStepCounter-3] Compile ParadisEO-MO"  $SPY
 		RETURN=`expr $RETURN + $?`
@@ -418,7 +418,7 @@ function run_install_step()
 		
 		execute_cmd "cd $installKitPath/paradiseo-moeo" "[$currentStepCounter-1] Go in Paradiseo-MOEO dir"  $SPY 
 		RETURN=$?
-		execute_cmd "./autogen.sh --with-EOdir=$installKitPath/paradiseo-eo" "[$currentStepCounter-2] Run autogen"  $SPY
+		execute_cmd "cmake . -DEOdir=$installKitPath/paradiseo-eo" "[$currentStepCounter-2] Run CMake"  $SPY
 		RETURN=`expr $RETURN + $?`
 		execute_cmd "make" "[$currentStepCounter-3] Compile ParadisEO-MOEO"  $SPY
 		RETURN=`expr $RETURN + $?`
@@ -605,7 +605,7 @@ function run_install_step()
 		
 		execute_cmd "cd $installKitPath/paradiseo-peo" "[$currentStepCounter-1] Go in Paradiseo-PEO dir"  $SPY 
 		RETURN=$?
-		execute_cmd " ./autogen.sh --with-EOdir=$installKitPath/paradiseo-eo/ --with-MOdir=$installKitPath/paradiseo-mo/ --with-MOEOdir=$installKitPath/paradiseo-moeo" "[$currentStepCounter-2] Run autogen for ParadisEO-PEO"  $SPY
+		execute_cmd "cmake . -DEOdir=$installKitPath/paradiseo-eo/ -DMOdir=$installKitPath/paradiseo-mo" "[$currentStepCounter-2] Run CMake for ParadisEO-PEO"  $SPY
 		RETURN=`expr $RETURN + $?`
 		execute_cmd "make" "[$currentStepCounter-3] Compile ParadisEO-PEO "  $SPY
 		RETURN=`expr $RETURN + $?`
@@ -621,6 +621,7 @@ function run_install_step()
 			return $SUCCESSFUL_STEP
 		fi 
 		;;
+
 	$S_CONFIGURE_MPD)
 		######## copy .mpd.conf file in your HOME directory or in /etc if you are root (required for mpich2) 
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
