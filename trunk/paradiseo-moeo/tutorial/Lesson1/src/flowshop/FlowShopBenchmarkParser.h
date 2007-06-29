@@ -14,6 +14,7 @@
 #define FLOWSHOPBENCHMARKPARSER_H_
 
 #include <fstream>
+#include <string>
 #include <vector>
 
 /**
