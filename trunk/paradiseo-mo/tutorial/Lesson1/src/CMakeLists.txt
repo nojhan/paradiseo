@@ -83,7 +83,7 @@ ELSEIF(WIN32)
   ENDIF (NOT DEFINED CMAKE_BUILD_TYPE)
  
   IF (CMAKE_BUILD_TYPE STREQUAL Debug)
-  	TARGET_LINK_LIBRARIES(hill_climbing tspd)
+  	TARGET_LINK_LIBRARIES(hill_climbing tsp)
     TARGET_LINK_LIBRARIES(hill_climbing eod)
     TARGET_LINK_LIBRARIES(hill_climbing eoutilsd)    
   ELSEIF(CMAKE_BUILD_TYPE STREQUAL Release)
