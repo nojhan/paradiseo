@@ -707,6 +707,14 @@ function run_install_step()
     execute_cmd "echo \"You must have automake installed to compile $PROG. Please update your system to get it before installing $PROG.\"" "[0-2] Check autoconf" $SPY 
     DIE=1
 }
+
+(cmake --version) < /dev/null > /dev/null 2>&1 ||
+{
+    echo "You must have CMake installed to compile $PROG. Please update your system to get it before installing $PROG."
+    execute_cmd "echo \"You must have CMake installed to compile $PROG. Please update your system to get it before installing $PROG.\"" "[0-3] Check autoconf" $SPY 
+    DIE=1
+}
+
 if [ "$DIE" = "1" ] 
 then
     exit 1
