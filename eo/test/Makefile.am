@@ -39,9 +39,9 @@ check_PROGRAMS 			= t-eoParetoFitness \
 				t-eoRoulette \
 				t-eoSharing \
 				t-eoCMAES \
-				t-eoRNG
-
-
+				t-eoRNG		\
+				t-eoEasyPSO
+				
 TESTS				= $(check_PROGRAMS) \
 				run_tests # This script can be used to check command-line arguments
 
@@ -93,3 +93,4 @@ t_eoRoulette_SOURCES 		= t-eoRoulette.cpp
 t_eoSharing_SOURCES 		= t-eoSharing.cpp
 t_eoCMAES_SOURCES		= t-eoCMAES.cpp
 t_eoRNG_SOURCES 		= t-eoRNG.cpp
+t_eoEasyPSO_SOURCES		= t-eoEasyPSO.cpp

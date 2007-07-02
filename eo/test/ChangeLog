@@ -1,10 +1,10 @@
-2006-12-04  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+2006-12-04  Jochen Kpper  <jochen@fhi-berlin.mpg.de>
 
 	* Makefile.am: Add t-eoRNG
 
 	* t-eoRNG.cpp: Start test for random number generator.
 
-2006-12-02  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+2006-12-02  Jochen Kpper  <jochen@fhi-berlin.mpg.de>
 
 	* t-MGE1bit.cpp: Change float to double.
 
@@ -14,8 +14,14 @@
 
 	* test/t-eoSymreg.cpp (SymregNode::operator()): Initialize r1 and r2 to
 	avoid compiler warnings.
+	
+	
+2006-07-02  Thomas Legrand  <thomas.legrand@lifl.fr>
 
-
+	* test/t-eoEasyPSO.cpp: add PSO test
+	
+	* test/Makefile.am: add PSO test
+	
 	* Local Variables:
 	* coding: iso-8859-1
 	* mode: flyspell
