@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// moeoIndicatorBasedFitnessAssignment.h
+// moeoUnaryIndicatorBasedFitnessAssignment.h
 // (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
 /*
     This library...
@@ -10,15 +10,15 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef MOEOINDICATORBASEDFITNESSASSIGNMENT_H_
-#define MOEOINDICATORBASEDFITNESSASSIGNMENT_H_
+#ifndef MOEOUNARYINDICATORBASEDFITNESSASSIGNMENT_H_
+#define MOEOUNARYINDICATORBASEDFITNESSASSIGNMENT_H_
 
-#include <fitness/moeoFitnessAssignment.h>
+#include <fitness/moeoIndicatorBasedFitnessAssignment.h>
 
 /**
- * moeoIndicatorBasedFitnessAssignment is a moeoFitnessAssignment for Indicator-based strategies.
+ * moeoIndicatorBasedFitnessAssignment for unary indicators.
  */
 template < class MOEOT >
-class moeoIndicatorBasedFitnessAssignment : public moeoFitnessAssignment < MOEOT > {};
+class moeoUnaryIndicatorBasedFitnessAssignment : public moeoIndicatorBasedFitnessAssignment < MOEOT > {};
 
 #endif /*MOEOINDICATORBASEDFITNESSASSIGNMENT_H_*/
