@@ -30,12 +30,12 @@
 #include <comparator/moeoFitnessThenDiversityComparator.h>
 #include <diversity/moeoDiversityAssignment.h>
 #include <diversity/moeoDummyDiversityAssignment.h>
-#include <diversity/moeoFrontByFrontCrowdingDistanceDiversityAssignment.h>
+#include <diversity/moeoFrontByFrontCrowdingDiversityAssignment.h>
 #include <diversity/moeoFrontByFrontSharingDiversityAssignment.h>
-#include <fitness/moeoFastNonDominatedSortingFitnessAssignment.h>
 #include <fitness/moeoDummyFitnessAssignment.h>
+#include <fitness/moeoExpBinaryIndicatorBasedFitnessAssignment.h>
+#include <fitness/moeoFastNonDominatedSortingFitnessAssignment.h>
 #include <fitness/moeoFitnessAssignment.h>
-#include <fitness/moeoIndicatorBasedFitnessAssignment.h>
 #include <metric/moeoAdditiveEpsilonBinaryMetric.h>
 #include <metric/moeoHypervolumeBinaryMetric.h>
 #include <metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h>
@@ -104,7 +104,7 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
             std::string stmp = std::string("Invalid binary quality indicator: ") + indicatorParam;
             throw std::runtime_error(stmp.c_str());
         }
-        fitnessAssignment = new moeoIndicatorBasedFitnessAssignment < MOEOT > (*metric, kappa);
+        fitnessAssignment = new moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT > (*metric, kappa);
     }
     else
     {
@@ -140,7 +140,7 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
     }
     else if (diversityParamValue.first == std::string("Crowding"))
     {
-        diversityAssignment = new moeoFrontByFrontCrowdingDistanceDiversityAssignment < MOEOT> ();
+        diversityAssignment = new moeoFrontByFrontCrowdingDiversityAssignment < MOEOT> ();
     }
     else
     {
