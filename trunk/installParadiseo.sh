@@ -43,16 +43,15 @@ S_REMOVE_INSTALL=1015
 S_END=1016
 
 # define what are the possible install and their content
-FULL_INSTALL="$S_INTRODUCTION $S_UNPACK_EO $S_UNPACK_LIBXML $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
+FULL_INSTALL="$S_INTRODUCTION $S_UNPACK_LIBXML $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
 
-BASIC_INSTALL="$S_INTRODUCTION $S_UNPACK_EO $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_END"
+BASIC_INSTALL="$S_INTRODUCTION $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_END"
 
 PARALLEL_INSTALL="$S_CONFIGURE_ENV $S_PEO_CHECK $S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_UNPACK_MPICH $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
 
 RM_PREVIOUS_INSTALL="$S_REMOVE_INSTALL"
 
 #others
-PARADISEO_EO_ARCHIVE=paradiseo-eo.tar.gz
 LIBS_PATH=lib
 LIBXML2_ARCHIVE=libxml2-2.6.0.tar.bz2
 MPICH2_ARCHIVE=mpich2-1.0.3.tar.gz
@@ -151,16 +150,7 @@ function execute_cmd
 #------------------------------------------------------#
 function on_error()
 {
-	case $1 in
- 	  $EO_UNPACKING_ERROR) 
-		echo
-		echo "  An error has occured : impossible to unpack paradiseo-eo archive.See $SPY for more details" 
-	  	echo "  Make sure that eo archive exists in current directory "
-		echo 
-		echo " => To report any problem of for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
-		echo 
-		kill $$;;
-
+	case $1 in 	
 	$LIBXML_UNPACKING_ERROR) 
 		echo
 		echo "  An error has occured : impossible to unpack libxml2 archive.See $SPY for more details" 
