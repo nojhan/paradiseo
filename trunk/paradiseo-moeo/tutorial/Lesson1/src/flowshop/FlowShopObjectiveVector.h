@@ -13,12 +13,12 @@
 #ifndef FLOWSHOPOBJECTIVEVECTOR_H_
 #define FLOWSHOPOBJECTIVEVECTOR_H_
 
-#include <core/moeoObjectiveVectorDouble.h>
+#include <core/moeoRealObjectiveVector.h>
 #include <FlowShopObjectiveVectorTraits.h>
 
 /**
  * Definition of the objective vector for multi-objective flow-shop problems: a vector of doubles
  */
-typedef moeoObjectiveVectorDouble < FlowShopObjectiveVectorTraits > FlowShopObjectiveVector;
+typedef moeoRealObjectiveVector < FlowShopObjectiveVectorTraits > FlowShopObjectiveVector;
 
 #endif /*FLOWSHOPOBJECTIVEVECTOR_H_*/

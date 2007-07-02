@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// moeoObjectiveVectorDouble.h
+// moeoRealObjectiveVector.h
 // (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
 /*
     This library...
@@ -10,8 +10,8 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef MOEOOBJECTIVEVECTORDOUBLE_H_
-#define MOEOOBJECTIVEVECTORDOUBLE_H_
+#ifndef MOEOREALOBJECTIVEVECTOR_H_
+#define MOEOREALOBJECTIVEVECTOR_H_
 
 #include <iostream>
 #include <math.h>
@@ -20,11 +20,11 @@
 #include <core/moeoObjectiveVector.h>
 
 /**
- * This class allows to represent a solution in the objective space (phenotypic representation) by a std::vector of doubles,
+ * This class allows to represent a solution in the objective space (phenotypic representation) by a std::vector of real values,
  * i.e. that an objective value is represented using a double, and this for any objective.
  */
 template < class ObjectiveVectorTraits >
-class moeoObjectiveVectorDouble : public moeoObjectiveVector < ObjectiveVectorTraits, double >
+class moeoRealObjectiveVector : public moeoObjectiveVector < ObjectiveVectorTraits, double >
 {
 public:
 
@@ -34,7 +34,7 @@ public:
     /**
      * Ctor
      */
-    moeoObjectiveVectorDouble(double _value = 0.0) : moeoObjectiveVector < ObjectiveVectorTraits, double > (_value)
+    moeoRealObjectiveVector(double _value = 0.0) : moeoObjectiveVector < ObjectiveVectorTraits, double > (_value)
     {}
 
 
@@ -42,27 +42,27 @@ public:
      * Ctor from a vector of doubles
      * @param _v the std::vector < double >
      */
-    moeoObjectiveVectorDouble(std::vector < double > & _v) : moeoObjectiveVector < ObjectiveVectorTraits, double > (_v)
+    moeoRealObjectiveVector(std::vector < double > & _v) : moeoObjectiveVector < ObjectiveVectorTraits, double > (_v)
     {}
 
 
     /**
      * Returns true if the current objective vector dominates _other according to the Pareto dominance relation
      * (but it's better to use a moeoObjectiveVectorComparator object to compare solutions)
-     * @param _other the other moeoObjectiveVectorDouble object to compare with
+     * @param _other the other moeoRealObjectiveVector object to compare with
      */
-    bool dominates(const moeoObjectiveVectorDouble < ObjectiveVectorTraits > & _other) const
+    bool dominates(const moeoRealObjectiveVector < ObjectiveVectorTraits > & _other) const
     {
-        moeoParetoObjectiveVectorComparator < moeoObjectiveVectorDouble<ObjectiveVectorTraits> > comparator;
+        moeoParetoObjectiveVectorComparator < moeoRealObjectiveVector<ObjectiveVectorTraits> > comparator;
         return comparator(_other, *this);
     }
 
 
     /**
      * Returns true if the current objective vector is equal to _other (according to a tolerance value)
-     * @param _other the other moeoObjectiveVectorDouble object to compare with
+     * @param _other the other moeoRealObjectiveVector object to compare with
      */
-    bool operator==(const moeoObjectiveVectorDouble < ObjectiveVectorTraits > & _other) const
+    bool operator==(const moeoRealObjectiveVector < ObjectiveVectorTraits > & _other) const
     {
         for (unsigned int i=0; i < size(); i++)
         {
@@ -77,9 +77,9 @@ public:
 
     /**
      * Returns true if the current objective vector is different than _other (according to a tolerance value)
-     * @param _other the other moeoObjectiveVectorDouble object to compare with 
+     * @param _other the other moeoRealObjectiveVector object to compare with 
      */
-    bool operator!=(const moeoObjectiveVectorDouble < ObjectiveVectorTraits > & _other) const
+    bool operator!=(const moeoRealObjectiveVector < ObjectiveVectorTraits > & _other) const
     {
         return ! operator==(_other);
     }
@@ -88,11 +88,11 @@ public:
     /**
      * Returns true if the current objective vector is smaller than _other on the first objective, then on the second, and so on
      * (can be usefull for sorting/printing)
-     * @param _other the other moeoObjectiveVectorDouble object to compare with
+     * @param _other the other moeoRealObjectiveVector object to compare with
      */
-    bool operator<(const moeoObjectiveVectorDouble < ObjectiveVectorTraits > & _other) const
+    bool operator<(const moeoRealObjectiveVector < ObjectiveVectorTraits > & _other) const
     {
-        moeoObjectiveObjectiveVectorComparator < moeoObjectiveVectorDouble < ObjectiveVectorTraits > > cmp;
+        moeoObjectiveObjectiveVectorComparator < moeoRealObjectiveVector < ObjectiveVectorTraits > > cmp;
         return cmp(*this, _other);
     }
 
@@ -100,9 +100,9 @@ public:
     /**
      * Returns true if the current objective vector is greater than _other on the first objective, then on the second, and so on
      * (can be usefull for sorting/printing)
-     * @param _other the other moeoObjectiveVectorDouble object to compare with
+     * @param _other the other moeoRealObjectiveVector object to compare with
      */
-    bool operator>(const moeoObjectiveVectorDouble < ObjectiveVectorTraits > & _other) const
+    bool operator>(const moeoRealObjectiveVector < ObjectiveVectorTraits > & _other) const
     {
         return _other < *this;
     }
@@ -111,9 +111,9 @@ public:
     /**
      * Returns true if the current objective vector is smaller than or equal to _other on the first objective, then on the second, and so on
      * (can be usefull for sorting/printing)
-     * @param _other the other moeoObjectiveVectorDouble object to compare with
+     * @param _other the other moeoRealObjectiveVector object to compare with
      */
-    bool operator<=(const moeoObjectiveVectorDouble < ObjectiveVectorTraits > & _other) const
+    bool operator<=(const moeoRealObjectiveVector < ObjectiveVectorTraits > & _other) const
     {
         return operator==(_other) || operator<(_other);
     }
@@ -122,9 +122,9 @@ public:
     /**
      * Returns true if the current objective vector is greater than or equal to _other on the first objective, then on the second, and so on
      * (can be usefull for sorting/printing)
-     * @param _other the other moeoObjectiveVectorDouble object to compare with
+     * @param _other the other moeoRealObjectiveVector object to compare with
      */
-    bool operator>=(const moeoObjectiveVectorDouble < ObjectiveVectorTraits > & _other) const
+    bool operator>=(const moeoRealObjectiveVector < ObjectiveVectorTraits > & _other) const
     {
         return operator==(_other) || operator>(_other);
     }
@@ -133,12 +133,12 @@ public:
 
 
 /**
- * Output for a moeoObjectiveVectorDouble object
+ * Output for a moeoRealObjectiveVector object
  * @param _os output stream
  * @param _objectiveVector the objective vector to write
  */
 template < class ObjectiveVectorTraits >
-std::ostream & operator<<(std::ostream & _os, const moeoObjectiveVectorDouble < ObjectiveVectorTraits > & _objectiveVector)
+std::ostream & operator<<(std::ostream & _os, const moeoRealObjectiveVector < ObjectiveVectorTraits > & _objectiveVector)
 {
     for (unsigned int i=0; i<_objectiveVector.size(); i++)
     {
@@ -148,14 +148,14 @@ std::ostream & operator<<(std::ostream & _os, const moeoObjectiveVectorDouble < 
 }
 
 /**
- * Input for a moeoObjectiveVectorDouble object
+ * Input for a moeoRealObjectiveVector object
  * @param _is input stream
  * @param _objectiveVector the objective vector to read
  */
 template < class ObjectiveVectorTraits >
-std::istream & operator>>(std::istream & _is, moeoObjectiveVectorDouble < ObjectiveVectorTraits > & _objectiveVector)
+std::istream & operator>>(std::istream & _is, moeoRealObjectiveVector < ObjectiveVectorTraits > & _objectiveVector)
 {
-    _objectiveVector = moeoObjectiveVectorDouble < ObjectiveVectorTraits > ();
+    _objectiveVector = moeoRealObjectiveVector < ObjectiveVectorTraits > ();
     for (unsigned int i=0; i<_objectiveVector.size(); i++)
     {
         _is >> _objectiveVector[i];
@@ -163,4 +163,4 @@ std::istream & operator>>(std::istream & _is, moeoObjectiveVectorDouble < Object
     return _is;
 }
 
-#endif /*MOEOOBJECTIVEVECTORDOUBLE_H_*/
+#endif /*MOEOREALOBJECTIVEVECTOR_H_*/

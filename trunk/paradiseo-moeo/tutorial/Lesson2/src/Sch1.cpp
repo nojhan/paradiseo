@@ -32,8 +32,8 @@ public:
 };
 
 
-// objective vector of doubles
-typedef moeoObjectiveVectorDouble < Sch1ObjectiveVectorTraits > Sch1ObjectiveVector;
+// objective vector of real values
+typedef moeoRealObjectiveVector < Sch1ObjectiveVectorTraits > Sch1ObjectiveVector;
 
 
 // multi-objective evolving object for the Sch1 problem
