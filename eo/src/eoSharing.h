@@ -99,7 +99,7 @@ public:
 	throw std::runtime_error("Apptempt to do sharing with population of size 1");
       value().resize(pSize);
       std::vector<double> sim(pSize);	   // to hold the similarities
-      dMatrix distMatrix(pSize*(pSize-1)/2); // to hold the distances
+      dMatrix distMatrix(pSize); // to hold the distances
 
       // compute the similarities (wrong name for distMatrix, I know)
       distMatrix(0,0)=1;
