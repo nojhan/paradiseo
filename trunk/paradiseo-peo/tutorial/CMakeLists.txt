@@ -11,6 +11,6 @@ SET(TSP_EXAMPLE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/examples/tsp CACHE PATH "TSP exa
 ### 2) Where must cmake go now ?
 ######################################################################################
 
-SUBDIRS(examples Lesson1 Lesson2)
+SUBDIRS(examples Lesson1 Lesson2 Lesson3)
 
 ######################################################################################
