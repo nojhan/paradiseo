@@ -5,7 +5,7 @@
 #---------------------------------------------------------------------------
 PROJECT_NAME           = "ParadisEO-PEO Lesson2"
 PROJECT_NUMBER         = 0.1
-OUTPUT_DIRECTORY       = ../../docs/html/lesson2
+OUTPUT_DIRECTORY       = ../../../doc/html/lesson2
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
 USE_WINDOWS_ENCODING   = NO
