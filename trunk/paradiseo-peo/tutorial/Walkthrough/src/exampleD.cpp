@@ -62,9 +62,15 @@ int main (int __argc, char * * __argv) {
   peo :: run ();
   peo :: finalize (); /* Termination */
   
-  
-  std::cout << ox_pop[ 0 ].fitness() << std::endl;
+ 
 
+  // rank 0 is assigned to the scheduler in the XML mapping file
+  if ( getNodeRank() == 1 ) {
+
+    std::cout << "EA[ 0 ] -----> " << ox_pop.best_element().fitness() << std::endl;
+    std::cout << "EA[ 1 ] -----> " << ox_pop2.best_element().fitness() << std::endl;
+  }
+ 
     
   return 0;
 }

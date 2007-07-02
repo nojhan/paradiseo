@@ -23,7 +23,7 @@
 #define CROSS_RATE 1.0
 #define MUT_RATE 0.01
 
-#define MIG_FREQ 2
+#define MIG_FREQ 3
 #define MIG_SIZE 5
 
 
@@ -35,20 +35,19 @@ int main (int __argc, char * * __argv) {
   loadParameters (__argc, __argv); /* Processing some parameters relative to the tackled
 				      problem (TSP) */
 
-  RouteInit route_init; /* Its builds random routes */  
-  RouteEval full_eval; /* Full route evaluator */
-
-  
-  OrderXover order_cross; /* Recombination */
-  CitySwap city_swap_mut;  /* Mutation */
-
-
   /* Migration topology */
   RingTopology topo;
 
 
 
   // The First EA -------------------------------------------------------------------------------------
+  
+  RouteInit route_init; /* Its builds random routes */
+  RouteEval full_eval; /* Full route evaluator */
+
+  OrderXover order_cross; /* Recombination */
+  CitySwap city_swap_mut;  /* Mutation */
+  
   eoPop <Route> ox_pop (POP_SIZE, route_init);  /* Population */
   
   eoGenContinue <Route> ox_cont (NUM_GEN); /* A fixed number of iterations */  
@@ -57,7 +56,7 @@ int main (int __argc, char * * __argv) {
   eoStochTournamentSelect <Route> ox_select_one;
   eoSelectNumber <Route> ox_select (ox_select_one, POP_SIZE);
   eoSGATransform <Route> ox_transform (order_cross, CROSS_RATE, city_swap_mut, MUT_RATE);
-  peoSeqTransform <Route> ox_para_transform (ox_transform);    
+  peoSeqTransform <Route> ox_seq_transform (ox_transform);    
   eoEPReplacement <Route> ox_replace (2);
 
   
@@ -70,7 +69,7 @@ int main (int __argc, char * * __argv) {
   peoAsyncIslandMig <Route> ox_mig (ox_mig_cont, ox_mig_select, ox_mig_replace, topo, ox_pop, ox_pop);
   ox_checkpoint.add (ox_mig);
   
-  peoEA <Route> ox_ea (ox_checkpoint, ox_pop_eval, ox_select, ox_para_transform, ox_replace);
+  peoEA <Route> ox_ea (ox_checkpoint, ox_pop_eval, ox_select, ox_seq_transform, ox_replace);
   ox_mig.setOwner (ox_ea);
   
   ox_ea (ox_pop);   /* Application to the given population */
@@ -80,15 +79,24 @@ int main (int __argc, char * * __argv) {
 
 
   // The Second EA ------------------------------------------------------------------------------------
-  eoPop <Route> ox_pop2 (POP_SIZE, route_init);  /* Population */
+
+  RouteInit route_init2; /* Its builds random routes */
+  RouteEval full_eval2; /* Full route evaluator */
+
+  OrderXover order_cross2; /* Recombination */
+  CitySwap city_swap_mut2;  /* Mutation */
+
+
+  eoPop <Route> ox_pop2 (POP_SIZE, route_init2);  /* Population */
+
 
   eoGenContinue <Route> ox_cont2 (NUM_GEN); /* A fixed number of iterations */
   eoCheckPoint <Route> ox_checkpoint2 (ox_cont2); /* Checkpoint */
-  peoSeqPopEval <Route> ox_pop_eval2 (full_eval);
+  peoSeqPopEval <Route> ox_pop_eval2 (full_eval2);
   eoStochTournamentSelect <Route> ox_select_one2;
   eoSelectNumber <Route> ox_select2 (ox_select_one2, POP_SIZE);
-  eoSGATransform <Route> ox_transform2 (order_cross, CROSS_RATE, city_swap_mut, MUT_RATE);
-  peoSeqTransform <Route> ox_para_transform2 (ox_transform2);
+  eoSGATransform <Route> ox_transform2 (order_cross2, CROSS_RATE, city_swap_mut2, MUT_RATE);
+  peoSeqTransform <Route> ox_seq_transform2 (ox_transform2);
   eoEPReplacement <Route> ox_replace2 (2);
 
 
@@ -101,7 +109,7 @@ int main (int __argc, char * * __argv) {
   peoAsyncIslandMig <Route> ox_mig2 (ox_mig_cont2, ox_mig_select2, ox_mig_replace2, topo, ox_pop2, ox_pop2);
   ox_checkpoint2.add (ox_mig2);
 
-  peoEA <Route> ox_ea2 (ox_checkpoint2, ox_pop_eval2, ox_select2, ox_para_transform2, ox_replace2);
+  peoEA <Route> ox_ea2 (ox_checkpoint2, ox_pop_eval2, ox_select2, ox_seq_transform2, ox_replace2);
   ox_mig2.setOwner (ox_ea2);
 
   ox_ea2 (ox_pop2);   /* Application to the given population */
@@ -112,9 +120,12 @@ int main (int __argc, char * * __argv) {
   peo :: run ();
   peo :: finalize (); /* Termination */
   
-  
-  std::cout << ox_pop[ 0 ].fitness() << std::endl;
+  // rank 0 is assigned to the scheduler in the XML mapping file
+  if ( getNodeRank() == 1 ) { 
 
-    
+    std::cout << "EA[ 0 ] -----> " << ox_pop.best_element().fitness() << std::endl;
+    std::cout << "EA[ 1 ] -----> " << ox_pop2.best_element().fitness() << std::endl;
+  }
+
   return 0;
 }
