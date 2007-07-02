@@ -16,18 +16,14 @@ paradiseo-help@lists.gforge.inria.fr
 The basic installation procedure goes the following:
 
 Go to your build-directory and run 
-    > ./autogen.sh --with-EOdir=$(EO_SRC)
+    > cmake -DEOdir=$(EO_SRC)
     > make
     > make doc
 
 where $(EO_SRC) is the top-level source directory of PARADISEO-EO.
 
-In case of problems, you can read the INSTALL file - but remember this
-is a standard installation file from GNU and that it contains nothing
-specific about PARADISEO-MOEO.
-
-To clean everything, the simply run 
-    > make clean_all
+To clean everything, simply run
+    > make clean
 
 ===================================================================
                        DIRECTORY STRUCTURE
@@ -54,7 +50,7 @@ structure:
        |   |
        |   +- flowshop   Flow-shop source files
        |   |
-       |   +- benchmarks Instance files for testing.
+       |   +- benchs     Instance files for testing.
        |
        |-- Lesson2       Implement NSGA-II for the SCH1 problem.
 
