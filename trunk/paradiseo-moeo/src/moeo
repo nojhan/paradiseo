@@ -42,9 +42,9 @@
 #include <core/moeoBitVector.h>
 #include <core/moeoEvalFunc.h>
 #include <core/moeoObjectiveVector.h>
-#include <core/moeoObjectiveVectorDouble.h>
 #include <core/moeoObjectiveVectorTraits.h>
 #include <core/moeoBitVector.h>
+#include <core/moeoRealObjectiveVector.h>
 #include <core/moeoRealVector.h>
 
 #include <distance/moeoDistance.h>
@@ -53,21 +53,24 @@
 #include <distance/moeoManhattanDistance.h>
 #include <distance/moeoNormalizedDistance.h>
 
-#include <diversity/moeoCrowdingDistanceDiversityAssignment.h>
+#include <diversity/moeoCrowdingDiversityAssignment.h>
 #include <diversity/moeoDiversityAssignment.h>
 #include <diversity/moeoDummyDiversityAssignment.h>
-#include <diversity/moeoFrontByFrontCrowdingDistanceDiversityAssignment.h>
+#include <diversity/moeoFrontByFrontCrowdingDiversityAssignment.h>
 #include <diversity/moeoFrontByFrontSharingDiversityAssignment.h>
 #include <diversity/moeoSharingDiversityAssignment.h>
 
 #include <fitness/moeoAchievementFitnessAssignment.h>
+#include <fitness/moeoBinaryIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoCriterionBasedFitnessAssignment.h>
 #include <fitness/moeoDummyFitnessAssignment.h>
+#include <fitness/moeoExpBinaryIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoFastNonDominatedSortingFitnessAssignment.h>
 #include <fitness/moeoFitnessAssignment.h>
 #include <fitness/moeoIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoParetoBasedFitnessAssignment.h>
 #include <fitness/moeoScalarFitnessAssignment.h>
+#include <fitness/moeoUnaryIndicatorBasedFitnessAssignment.h>
 
 #include <metric/moeoAdditiveEpsilonBinaryMetric.h>
 #include <metric/moeoContributionMetric.h>
