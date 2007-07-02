@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// moeoFrontByFrontCrowdingDistanceDiversityAssignment.h
+// moeoFrontByFrontCrowdingDiversityAssignment.h
 // (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
 /*
     This library...
@@ -10,19 +10,19 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef MOEOFRONTBYFRONTCROWDINGDISTANCEDIVERSITYASSIGNMENT_H_
-#define MOEOFRONTBYFRONTCROWDINGDISTANCEDIVERSITYASSIGNMENT_H_
+#ifndef MOEOFRONTBYFRONTCROWDINGDIVERSITYASSIGNMENT_H_
+#define MOEOFRONTBYFRONTCROWDINGDIVERSITYASSIGNMENT_H_
 
-#include <diversity/moeoCrowdingDistanceDiversityAssignment.h>
+#include <diversity/moeoCrowdingDiversityAssignment.h>
 #include <comparator/moeoFitnessThenDiversityComparator.h>
 
 /**
- * Diversity assignment sheme based on crowding distance proposed in:
+ * Diversity assignment sheme based on crowding proposed in:
  * K. Deb, A. Pratap, S. Agarwal, T. Meyarivan, "A Fast and Elitist Multi-Objective Genetic Algorithm: NSGA-II", IEEE Transactions on Evolutionary Computation, vol. 6, no. 2 (2002).
  * Tis strategy assigns diversity values FRONT BY FRONT. It is, for instance, used in NSGA-II.
  */
 template < class MOEOT >
-class moeoFrontByFrontCrowdingDistanceDiversityAssignment : public moeoCrowdingDistanceDiversityAssignment < MOEOT >
+class moeoFrontByFrontCrowdingDiversityAssignment : public moeoCrowdingDiversityAssignment < MOEOT >
 {
 public:
 
@@ -45,8 +45,8 @@ public:
 
 private:
 
-    using moeoCrowdingDistanceDiversityAssignment < MOEOT >::inf;
-    using moeoCrowdingDistanceDiversityAssignment < MOEOT >::tiny;
+    using moeoCrowdingDiversityAssignment < MOEOT >::inf;
+    using moeoCrowdingDiversityAssignment < MOEOT >::tiny;
 
     /**
      * Sets the distance values
@@ -130,4 +130,4 @@ private:
 
 };
 
-#endif /*MOEOFRONTBYFRONTCROWDINGDISTANCEDIVERSITYASSIGNMENT_H_*/
+#endif /*MOEOFRONTBYFRONTCROWDINGDIVERSITYASSIGNMENT_H_*/

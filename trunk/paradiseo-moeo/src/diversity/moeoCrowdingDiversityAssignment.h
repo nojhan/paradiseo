@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// moeoCrowdingDistanceDiversityAssignment.h
+// moeoCrowdingDiversityAssignment.h
 // (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007
 /*
     This library...
@@ -10,19 +10,19 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef MOEOCROWDINGDISTANCEDIVERSITYASSIGNMENT_H_
-#define MOEOCROWDINGDISTANCEDIVERSITYASSIGNMENT_H_
+#ifndef MOEOCROWDINGDIVERSITYASSIGNMENT_H_
+#define MOEOCROWDINGDIVERSITYASSIGNMENT_H_
 
 #include <eoPop.h>
 #include <comparator/moeoOneObjectiveComparator.h>
 #include <diversity/moeoDiversityAssignment.h>
 
 /**
- * Diversity assignment sheme based on crowding distance proposed in:
+ * Diversity assignment sheme based on crowding proposed in:
  * K. Deb, A. Pratap, S. Agarwal, T. Meyarivan, "A Fast and Elitist Multi-Objective Genetic Algorithm: NSGA-II", IEEE Transactions on Evolutionary Computation, vol. 6, no. 2 (2002).
  */
 template < class MOEOT >
-class moeoCrowdingDistanceDiversityAssignment : public moeoDiversityAssignment < MOEOT >
+class moeoCrowdingDiversityAssignment : public moeoDiversityAssignment < MOEOT >
 {
 public:
 
@@ -119,4 +119,4 @@ protected:
 
 };
 
-#endif /*MOEOCROWDINGDISTANCEDIVERSITYASSIGNMENT_H_*/
+#endif /*MOEOCROWDINGDIVERSITYASSIGNMENT_H_*/

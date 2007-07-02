@@ -22,7 +22,7 @@
 #include <eoPopEvalFunc.h>
 #include <eoSGAGenOp.h>
 #include <algo/moeoEA.h>
-#include <diversity/moeoFrontByFrontCrowdingDistanceDiversityAssignment.h>
+#include <diversity/moeoFrontByFrontCrowdingDiversityAssignment.h>
 #include <fitness/moeoFastNonDominatedSortingFitnessAssignment.h>
 #include <replacement/moeoElitistReplacement.h>
 #include <selection/moeoDetTournamentSelect.h>
@@ -138,7 +138,7 @@ protected:
     /** fitness assignment used in NSGA-II */
     moeoFastNonDominatedSortingFitnessAssignment < MOEOT > fitnessAssignment;
     /** diversity assignment used in NSGA-II */
-    moeoFrontByFrontCrowdingDistanceDiversityAssignment  < MOEOT > diversityAssignment;
+    moeoFrontByFrontCrowdingDiversityAssignment  < MOEOT > diversityAssignment;
     /** elitist replacement */
     moeoElitistReplacement < MOEOT > replace;
     /** an object for genetic operators (used as default) */
