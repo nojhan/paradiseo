@@ -30,7 +30,16 @@ public:
      */
     moeoRealVector(unsigned int _size = 0, double _value = 0.0) : moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, double >(_size, _value)
     {}
-
+    
+    
+    /**
+     * Returns the class name as a std::string
+     */
+    virtual std::string className() const
+    {
+    	return "moeoRealVector";
+    }
+    
 };
 
 #endif /*MOEOREALVECTOR_H_*/

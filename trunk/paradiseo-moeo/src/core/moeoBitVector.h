@@ -39,6 +39,15 @@ public:
 
 
     /**
+     * Returns the class name as a std::string
+     */
+    virtual std::string className() const
+    {
+    	return "moeoBitVector";
+    }
+    
+    
+    /**
      * Writing object
      * @param _os output stream
      */
