@@ -111,7 +111,7 @@ public :
   /// do replacement
   void operator()(eoPop<EOT>& _pop, eoPop<EOT>& _offspring)
   {
-    const EOT & oldChamp = _pop.best_element();
+    const EOT oldChamp = _pop.best_element();
     replace(_pop, _offspring);	   // "normal" replacement, parents are the new
     if (_pop.best_element() < oldChamp) // need to do something
       {
