@@ -1,0 +1,143 @@
+.TH "moeoIBMOLS" 3 "2 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoIBMOLS \- Indicator-Based Multi-Objective Local Search (IBMOLS) as described in Basseur M., Burke K.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoIBMOLS.h>\fP
+.PP
+Inherits \fBmoeoLS< MOEOT, eoPop< MOEOT > & >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef MOEOT::ObjectiveVector \fBObjectiveVector\fP"
+.br
+.RI "\fIThe type of objective vector. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoIBMOLS\fP (moMoveInit< Move > &_moveInit, moNextMove< Move > &_nextMove, \fBeoEvalFunc\fP< MOEOT > &_eval, \fBmoeoMoveIncrEval\fP< Move > &_moveIncrEval, \fBmoeoIndicatorBasedFitnessAssignment\fP< MOEOT > &_fitnessAssignment, \fBeoContinue\fP< MOEOT > &_continuator)"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (\fBeoPop\fP< MOEOT > &_pop, \fBmoeoArchive\fP< MOEOT > &_arch)"
+.br
+.RI "\fIApply the local search until a local archive does not change or another stopping criteria is met and update the archive _arch with new non-dominated solutions. \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBoneStep\fP (\fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fIApply one step of the local search to the population _pop. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "moMoveInit< Move > & \fBmoveInit\fP"
+.br
+.RI "\fIthe move initializer \fP"
+.ti -1c
+.RI "moNextMove< Move > & \fBnextMove\fP"
+.br
+.RI "\fIthe neighborhood explorer \fP"
+.ti -1c
+.RI "\fBeoEvalFunc\fP< MOEOT > & \fBeval\fP"
+.br
+.RI "\fIthe full evaluation \fP"
+.ti -1c
+.RI "\fBmoeoMoveIncrEval\fP< Move > & \fBmoveIncrEval\fP"
+.br
+.RI "\fIthe incremental evaluation \fP"
+.ti -1c
+.RI "\fBmoeoIndicatorBasedFitnessAssignment\fP< MOEOT > & \fBfitnessAssignment\fP"
+.br
+.RI "\fIthe fitness assignment strategy \fP"
+.ti -1c
+.RI "\fBeoContinue\fP< MOEOT > & \fBcontinuator\fP"
+.br
+.RI "\fIthe stopping criteria \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT, class Move> class moeoIBMOLS< MOEOT, Move >"
+Indicator-Based Multi-Objective Local Search (IBMOLS) as described in Basseur M., Burke K. 
+
+: 'Indicator-Based Multi-Objective Local Search' (2007). 
+.PP
+Definition at line 32 of file moeoIBMOLS.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class MOEOT, class Move> \fBmoeoIBMOLS\fP< MOEOT, Move >::\fBmoeoIBMOLS\fP (moMoveInit< Move > & _moveInit, moNextMove< Move > & _nextMove, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBmoeoMoveIncrEval\fP< Move > & _moveIncrEval, \fBmoeoIndicatorBasedFitnessAssignment\fP< MOEOT > & _fitnessAssignment, \fBeoContinue\fP< MOEOT > & _continuator)\fC [inline]\fP"
+.PP
+Ctor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_moveInit\fP the move initializer 
+.br
+\fI_nextMove\fP the neighborhood explorer 
+.br
+\fI_eval\fP the full evaluation 
+.br
+\fI_moveIncrEval\fP the incremental evaluation 
+.br
+\fI_fitnessAssignment\fP the fitness assignment strategy 
+.br
+\fI_continuator\fP the stopping criteria 
+.RE
+.PP
+
+.PP
+Definition at line 49 of file moeoIBMOLS.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT, class Move> void \fBmoeoIBMOLS\fP< MOEOT, Move >::operator() (\fBeoPop\fP< MOEOT > & _pop, \fBmoeoArchive\fP< MOEOT > & _arch)\fC [inline, virtual]\fP"
+.PP
+Apply the local search until a local archive does not change or another stopping criteria is met and update the archive _arch with new non-dominated solutions. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the initial population 
+.br
+\fI_arch\fP the (updated) archive 
+.RE
+.PP
+
+.PP
+Implements \fBeoBF< eoPop< MOEOT > &, moeoArchive< MOEOT > &, void >\fP.
+.PP
+Definition at line 72 of file moeoIBMOLS.h.
+.PP
+References moeoIBMOLS< MOEOT, Move >::continuator, moeoArchive< MOEOT >::equals(), moeoIBMOLS< MOEOT, Move >::fitnessAssignment, moeoIBMOLS< MOEOT, Move >::oneStep(), and moeoArchive< MOEOT >::update().
+.SS "template<class MOEOT, class Move> void \fBmoeoIBMOLS\fP< MOEOT, Move >::oneStep (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, private]\fP"
+.PP
+Apply one step of the local search to the population _pop. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Definition at line 119 of file moeoIBMOLS.h.
+.PP
+References moeoIBMOLS< MOEOT, Move >::continuator, moeoIBMOLS< MOEOT, Move >::fitnessAssignment, moeoIBMOLS< MOEOT, Move >::moveIncrEval, moeoIBMOLS< MOEOT, Move >::moveInit, and moeoIBMOLS< MOEOT, Move >::nextMove.
+.PP
+Referenced by moeoIBMOLS< MOEOT, Move >::operator()().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.

@@ -53,33 +53,39 @@
 <a name="l00038"></a>00038     {}
 <a name="l00039"></a>00039 
 <a name="l00040"></a>00040 
-<a name="l00045"></a><a class="code" href="classmoeoBitVector.html#78f821c548cf46d8bcd30aa8a52ffb7c">00045</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classmoeoBitVector.html#78f821c548cf46d8bcd30aa8a52ffb7c">printOn</a>(std::ostream &amp; _os)<span class="keyword"> const</span>
-<a name="l00046"></a>00046 <span class="keyword">    </span>{
-<a name="l00047"></a>00047         MOEO &lt; MOEOObjectiveVector, MOEOFitness, MOEODiversity &gt;::printOn(_os);
-<a name="l00048"></a>00048         _os &lt;&lt; <span class="charliteral">' '</span>;
-<a name="l00049"></a>00049         _os &lt;&lt; size() &lt;&lt; <span class="charliteral">' '</span>;
-<a name="l00050"></a>00050         std::copy(begin(), end(), std::ostream_iterator&lt;bool&gt;(_os));
-<a name="l00051"></a>00051     }
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 
-<a name="l00058"></a><a class="code" href="classmoeoBitVector.html#31cd3f894615d0a27dd116a5c8082521">00058</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classmoeoBitVector.html#31cd3f894615d0a27dd116a5c8082521">readFrom</a>(std::istream &amp; _is)
-<a name="l00059"></a>00059     {
-<a name="l00060"></a>00060         MOEO &lt; MOEOObjectiveVector, MOEOFitness, MOEODiversity &gt;::readFrom(_is);
-<a name="l00061"></a>00061         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> s;
-<a name="l00062"></a>00062         _is &gt;&gt; s;
-<a name="l00063"></a>00063         std::string bits;
-<a name="l00064"></a>00064         _is &gt;&gt; bits;
-<a name="l00065"></a>00065         <span class="keywordflow">if</span> (_is)
-<a name="l00066"></a>00066         {
-<a name="l00067"></a>00067             resize(bits.size());
-<a name="l00068"></a>00068             std::transform(bits.begin(), bits.end(), begin(), std::bind2nd(std::equal_to&lt;char&gt;(), <span class="charliteral">'1'</span>));
-<a name="l00069"></a>00069         }
-<a name="l00070"></a>00070     }
-<a name="l00071"></a>00071 
-<a name="l00072"></a>00072 };
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 <span class="preprocessor">#endif </span><span class="comment">/*MOEOBITVECTOR_H_*/</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Tue Jun 26 15:42:07 2007 for ParadisEO-MOEO by&nbsp;
+<a name="l00044"></a><a class="code" href="classmoeoBitVector.html#dc2b3649bb839b04a14371b5b96dc738">00044</a>     <span class="keyword">virtual</span> std::string <a class="code" href="classmoeoBitVector.html#dc2b3649bb839b04a14371b5b96dc738">className</a>()<span class="keyword"> const</span>
+<a name="l00045"></a>00045 <span class="keyword">    </span>{
+<a name="l00046"></a>00046         <span class="keywordflow">return</span> <span class="stringliteral">"moeoBitVector"</span>;
+<a name="l00047"></a>00047     }
+<a name="l00048"></a>00048     
+<a name="l00049"></a>00049     
+<a name="l00054"></a><a class="code" href="classmoeoBitVector.html#78f821c548cf46d8bcd30aa8a52ffb7c">00054</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classmoeoBitVector.html#78f821c548cf46d8bcd30aa8a52ffb7c">printOn</a>(std::ostream &amp; _os)<span class="keyword"> const</span>
+<a name="l00055"></a>00055 <span class="keyword">    </span>{
+<a name="l00056"></a>00056         MOEO &lt; MOEOObjectiveVector, MOEOFitness, MOEODiversity &gt;::printOn(_os);
+<a name="l00057"></a>00057         _os &lt;&lt; <span class="charliteral">' '</span>;
+<a name="l00058"></a>00058         _os &lt;&lt; size() &lt;&lt; <span class="charliteral">' '</span>;
+<a name="l00059"></a>00059         std::copy(begin(), end(), std::ostream_iterator&lt;bool&gt;(_os));
+<a name="l00060"></a>00060     }
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 
+<a name="l00067"></a><a class="code" href="classmoeoBitVector.html#31cd3f894615d0a27dd116a5c8082521">00067</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classmoeoBitVector.html#31cd3f894615d0a27dd116a5c8082521">readFrom</a>(std::istream &amp; _is)
+<a name="l00068"></a>00068     {
+<a name="l00069"></a>00069         MOEO &lt; MOEOObjectiveVector, MOEOFitness, MOEODiversity &gt;::readFrom(_is);
+<a name="l00070"></a>00070         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> s;
+<a name="l00071"></a>00071         _is &gt;&gt; s;
+<a name="l00072"></a>00072         std::string bits;
+<a name="l00073"></a>00073         _is &gt;&gt; bits;
+<a name="l00074"></a>00074         <span class="keywordflow">if</span> (_is)
+<a name="l00075"></a>00075         {
+<a name="l00076"></a>00076             resize(bits.size());
+<a name="l00077"></a>00077             std::transform(bits.begin(), bits.end(), begin(), std::bind2nd(std::equal_to&lt;char&gt;(), <span class="charliteral">'1'</span>));
+<a name="l00078"></a>00078         }
+<a name="l00079"></a>00079     }
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081 };
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 <span class="preprocessor">#endif </span><span class="comment">/*MOEOBITVECTOR_H_*/</span>
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Jul 2 16:00:16 2007 for ParadisEO-MOEO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

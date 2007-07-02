@@ -1,4 +1,4 @@
-.TH "moeoBitVector" 3 "26 Jun 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoBitVector" 3 "2 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -19,6 +19,10 @@ Inherits \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool >\
 .RI "\fBmoeoBitVector\fP (unsigned int _size=0, bool _value=false)"
 .br
 .RI "\fICtor. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIReturns the class name as a std::string. \fP"
 .ti -1c
 .RI "virtual void \fBprintOn\fP (std::ostream &_os) const "
 .br
@@ -66,7 +70,7 @@ Writing object.
 .PP
 Reimplemented from \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool >\fP.
 .PP
-Definition at line 45 of file moeoBitVector.h.
+Definition at line 54 of file moeoBitVector.h.
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity> virtual void \fBmoeoBitVector\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::readFrom (std::istream & _is)\fC [inline, virtual]\fP"
 .PP
 Reading object. 
@@ -80,7 +84,7 @@ Reading object.
 .PP
 Reimplemented from \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool >\fP.
 .PP
-Definition at line 58 of file moeoBitVector.h.
+Definition at line 67 of file moeoBitVector.h.
 
 .SH "Author"
 .PP 

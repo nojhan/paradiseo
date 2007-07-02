@@ -53,12 +53,12 @@
 <a name="l00030"></a>00030 <span class="preprocessor">#include &lt;comparator/moeoFitnessThenDiversityComparator.h&gt;</span>
 <a name="l00031"></a>00031 <span class="preprocessor">#include &lt;diversity/moeoDiversityAssignment.h&gt;</span>
 <a name="l00032"></a>00032 <span class="preprocessor">#include &lt;diversity/moeoDummyDiversityAssignment.h&gt;</span>
-<a name="l00033"></a>00033 <span class="preprocessor">#include &lt;diversity/moeoFrontByFrontCrowdingDistanceDiversityAssignment.h&gt;</span>
+<a name="l00033"></a>00033 <span class="preprocessor">#include &lt;diversity/moeoFrontByFrontCrowdingDiversityAssignment.h&gt;</span>
 <a name="l00034"></a>00034 <span class="preprocessor">#include &lt;diversity/moeoFrontByFrontSharingDiversityAssignment.h&gt;</span>
-<a name="l00035"></a>00035 <span class="preprocessor">#include &lt;fitness/moeoFastNonDominatedSortingFitnessAssignment.h&gt;</span>
-<a name="l00036"></a>00036 <span class="preprocessor">#include &lt;fitness/moeoDummyFitnessAssignment.h&gt;</span>
-<a name="l00037"></a>00037 <span class="preprocessor">#include &lt;fitness/moeoFitnessAssignment.h&gt;</span>
-<a name="l00038"></a>00038 <span class="preprocessor">#include &lt;fitness/moeoIndicatorBasedFitnessAssignment.h&gt;</span>
+<a name="l00035"></a>00035 <span class="preprocessor">#include &lt;fitness/moeoDummyFitnessAssignment.h&gt;</span>
+<a name="l00036"></a>00036 <span class="preprocessor">#include &lt;fitness/moeoExpBinaryIndicatorBasedFitnessAssignment.h&gt;</span>
+<a name="l00037"></a>00037 <span class="preprocessor">#include &lt;fitness/moeoFastNonDominatedSortingFitnessAssignment.h&gt;</span>
+<a name="l00038"></a>00038 <span class="preprocessor">#include &lt;fitness/moeoFitnessAssignment.h&gt;</span>
 <a name="l00039"></a>00039 <span class="preprocessor">#include &lt;metric/moeoAdditiveEpsilonBinaryMetric.h&gt;</span>
 <a name="l00040"></a>00040 <span class="preprocessor">#include &lt;metric/moeoHypervolumeBinaryMetric.h&gt;</span>
 <a name="l00041"></a>00041 <span class="preprocessor">#include &lt;metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h&gt;</span>
@@ -118,7 +118,7 @@
 <a name="l00104"></a>00104             std::string stmp = std::string(<span class="stringliteral">"Invalid binary quality indicator: "</span>) + indicatorParam;
 <a name="l00105"></a>00105             <span class="keywordflow">throw</span> std::runtime_error(stmp.c_str());
 <a name="l00106"></a>00106         }
-<a name="l00107"></a>00107         fitnessAssignment = <span class="keyword">new</span> moeoIndicatorBasedFitnessAssignment &lt; MOEOT &gt; (*metric, kappa);
+<a name="l00107"></a>00107         fitnessAssignment = <span class="keyword">new</span> moeoExpBinaryIndicatorBasedFitnessAssignment &lt; MOEOT &gt; (*metric, kappa);
 <a name="l00108"></a>00108     }
 <a name="l00109"></a>00109     <span class="keywordflow">else</span>
 <a name="l00110"></a>00110     {
@@ -154,7 +154,7 @@
 <a name="l00140"></a>00140     }
 <a name="l00141"></a>00141     <span class="keywordflow">else</span> <span class="keywordflow">if</span> (diversityParamValue.first == std::string(<span class="stringliteral">"Crowding"</span>))
 <a name="l00142"></a>00142     {
-<a name="l00143"></a>00143         diversityAssignment = <span class="keyword">new</span> moeoFrontByFrontCrowdingDistanceDiversityAssignment &lt; MOEOT&gt; ();
+<a name="l00143"></a>00143         diversityAssignment = <span class="keyword">new</span> moeoFrontByFrontCrowdingDiversityAssignment &lt; MOEOT&gt; ();
 <a name="l00144"></a>00144     }
 <a name="l00145"></a>00145     <span class="keywordflow">else</span>
 <a name="l00146"></a>00146     {
@@ -284,7 +284,7 @@
 <a name="l00270"></a>00270 }
 <a name="l00271"></a>00271 
 <a name="l00272"></a>00272 <span class="preprocessor">#endif </span><span class="comment">/*MAKE_EA_MOEO_H_*/</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Tue Jun 26 15:42:07 2007 for ParadisEO-MOEO by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Jul 2 16:00:16 2007 for ParadisEO-MOEO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

@@ -1,4 +1,4 @@
-.TH "moeoFitnessAssignment" 3 "26 Jun 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoFitnessAssignment" 3 "2 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -12,7 +12,7 @@ moeoFitnessAssignment \- Functor that sets the fitness values of a whole populat
 .PP
 Inherits \fBeoUF< eoPop< MOEOT > &, void >\fP.
 .PP
-Inherited by \fBmoeoCriterionBasedFitnessAssignment< MOEOT >\fP, \fBmoeoDummyFitnessAssignment< MOEOT >\fP, \fBmoeoIndicatorBasedFitnessAssignment< MOEOT >\fP, \fBmoeoParetoBasedFitnessAssignment< MOEOT >\fP, and \fBmoeoScalarFitnessAssignment< MOEOT >\fP.
+Inherited by \fBmoeoCriterionBasedFitnessAssignment< MOEOT >\fP, \fBmoeoDummyFitnessAssignment< MOEOT >\fP, \fBmoeoIndicatorBasedFitnessAssignment< MOEOT >\fP, \fBmoeoParetoBasedFitnessAssignment< MOEOT >\fP, \fBmoeoReferencePointIndicatorBasedFitnessAssignment< MOEOT >\fP, and \fBmoeoScalarFitnessAssignment< MOEOT >\fP.
 .PP
 .SS "Public Types"
 
@@ -56,7 +56,7 @@ Updates the fitness values of the whole population _pop by taking the deletion o
 .PP
 
 .PP
-Implemented in \fBmoeoAchievementFitnessAssignment< MOEOT >\fP, \fBmoeoDummyFitnessAssignment< MOEOT >\fP, \fBmoeoFastNonDominatedSortingFitnessAssignment< MOEOT >\fP, and \fBmoeoIndicatorBasedFitnessAssignment< MOEOT >\fP.
+Implemented in \fBmoeoAchievementFitnessAssignment< MOEOT >\fP, \fBmoeoDummyFitnessAssignment< MOEOT >\fP, \fBmoeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >\fP, \fBmoeoFastNonDominatedSortingFitnessAssignment< MOEOT >\fP, and \fBmoeoReferencePointIndicatorBasedFitnessAssignment< MOEOT >\fP.
 .PP
 Referenced by moeoFitnessAssignment< MOEOT >::updateByDeleting().
 .SS "template<class MOEOT> void \fBmoeoFitnessAssignment\fP< MOEOT >::updateByDeleting (\fBeoPop\fP< MOEOT > & _pop, MOEOT & _moeo)\fC [inline]\fP"

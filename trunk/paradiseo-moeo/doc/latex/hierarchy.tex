@@ -59,6 +59,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \item \contentsline{section}{moeo\-Manhattan\-Distance$<$ MOEOT $>$}{\pageref{classmoeoManhattanDistance}}{}
 \end{CompactList}
 \end{CompactList}
+\item \contentsline{section}{moeo\-Move\-Incr\-Eval$<$ Move $>$}{\pageref{classmoeoMoveIncrEval}}{}
 \item \contentsline{section}{moeo\-Objective\-Vector\-Comparator$<$ Objective\-Vector $>$}{\pageref{classmoeoObjectiveVectorComparator}}{}
 \begin{CompactList}
 \item \contentsline{section}{moeo\-GDominance\-Objective\-Vector\-Comparator$<$ Objective\-Vector $>$}{\pageref{classmoeoGDominanceObjectiveVectorComparator}}{}
@@ -77,6 +78,13 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \end{CompactList}
 \item eo\-BF$<$ const const std::vector$<$ Objective\-Vector $>$ \&, std::vector$<$ Objective\-Vector $>$ \&, R $>${\tt  [external]}\begin{CompactList}
 \item \contentsline{section}{moeo\-Binary\-Metric$<$ const const std::vector$<$ Objective\-Vector $>$ \&, std::vector$<$ Objective\-Vector $>$ \&, R $>$}{\pageref{classmoeoBinaryMetric}}{}
+\end{CompactList}
+\item eo\-BF$<$ eo\-Pop$<$ MOEOT $>$ \&, moeo\-Archive$<$ MOEOT $>$ \&, void $>${\tt  [external]}\begin{CompactList}
+\item \contentsline{section}{moeo\-LS$<$ MOEOT, eo\-Pop$<$ MOEOT $>$ \& $>$}{\pageref{classmoeoLS}}{}
+\begin{CompactList}
+\item \contentsline{section}{moeo\-IBMOLS$<$ MOEOT, Move $>$}{\pageref{classmoeoIBMOLS}}{}
+\item \contentsline{section}{moeo\-Iterated\-IBMOLS$<$ MOEOT, Move $>$}{\pageref{classmoeoIteratedIBMOLS}}{}
+\end{CompactList}
 \end{CompactList}
 \item eo\-BF$<$ Type, moeo\-Archive$<$ MOEOT $>$ \&, void $>${\tt  [external]}\begin{CompactList}
 \item \contentsline{section}{moeo\-LS$<$ MOEOT, Type $>$}{\pageref{classmoeoLS}}{}
@@ -147,9 +155,9 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \item eo\-UF$<$ eo\-Pop$<$ MOEOT $>$ \&, void $>${\tt  [external]}\begin{CompactList}
 \item \contentsline{section}{moeo\-Diversity\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoDiversityAssignment}}{}
 \begin{CompactList}
-\item \contentsline{section}{moeo\-Crowding\-Distance\-Diversity\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoCrowdingDistanceDiversityAssignment}}{}
+\item \contentsline{section}{moeo\-Crowding\-Diversity\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoCrowdingDiversityAssignment}}{}
 \begin{CompactList}
-\item \contentsline{section}{moeo\-Front\-By\-Front\-Crowding\-Distance\-Diversity\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoFrontByFrontCrowdingDistanceDiversityAssignment}}{}
+\item \contentsline{section}{moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoFrontByFrontCrowdingDiversityAssignment}}{}
 \end{CompactList}
 \item \contentsline{section}{moeo\-Dummy\-Diversity\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoDummyDiversityAssignment}}{}
 \item \contentsline{section}{moeo\-Sharing\-Diversity\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoSharingDiversityAssignment}}{}
@@ -162,10 +170,18 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \item \contentsline{section}{moeo\-Criterion\-Based\-Fitness\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoCriterionBasedFitnessAssignment}}{}
 \item \contentsline{section}{moeo\-Dummy\-Fitness\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoDummyFitnessAssignment}}{}
 \item \contentsline{section}{moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoIndicatorBasedFitnessAssignment}}{}
+\begin{CompactList}
+\item \contentsline{section}{moeo\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoBinaryIndicatorBasedFitnessAssignment}}{}
+\begin{CompactList}
+\item \contentsline{section}{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoExpBinaryIndicatorBasedFitnessAssignment}}{}
+\end{CompactList}
+\item \contentsline{section}{moeo\-Unary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoUnaryIndicatorBasedFitnessAssignment}}{}
+\end{CompactList}
 \item \contentsline{section}{moeo\-Pareto\-Based\-Fitness\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoParetoBasedFitnessAssignment}}{}
 \begin{CompactList}
 \item \contentsline{section}{moeo\-Fast\-Non\-Dominated\-Sorting\-Fitness\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoFastNonDominatedSortingFitnessAssignment}}{}
 \end{CompactList}
+\item \contentsline{section}{moeo\-Reference\-Point\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoReferencePointIndicatorBasedFitnessAssignment}}{}
 \item \contentsline{section}{moeo\-Scalar\-Fitness\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoScalarFitnessAssignment}}{}
 \begin{CompactList}
 \item \contentsline{section}{moeo\-Achievement\-Fitness\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoAchievementFitnessAssignment}}{}
@@ -211,13 +227,14 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \begin{CompactList}
 \item \contentsline{section}{moeo\-EA$<$ MOEOT $>$}{\pageref{classmoeoEA}}{}
 \item \contentsline{section}{moeo\-LS$<$ MOEOT, Type $>$}{\pageref{classmoeoLS}}{}
+\item \contentsline{section}{moeo\-LS$<$ MOEOT, eo\-Pop$<$ MOEOT $>$ \& $>$}{\pageref{classmoeoLS}}{}
 \end{CompactList}
 \item \contentsline{section}{moeo\-Elitist\-Replacement$<$ MOEOT $>$::Cmp}{\pageref{classmoeoElitistReplacement_1_1Cmp}}{}
 \item \contentsline{section}{moeo\-Environmental\-Replacement$<$ MOEOT $>$::Cmp}{\pageref{classmoeoEnvironmentalReplacement_1_1Cmp}}{}
 \item \contentsline{section}{moeo\-Objective\-Vector$<$ Objective\-Vector\-Traits, Objective\-Vector\-Type $>$}{\pageref{classmoeoObjectiveVector}}{}
 \item \contentsline{section}{moeo\-Objective\-Vector$<$ Objective\-Vector\-Traits, double $>$}{\pageref{classmoeoObjectiveVector}}{}
 \begin{CompactList}
-\item \contentsline{section}{moeo\-Objective\-Vector\-Double$<$ Objective\-Vector\-Traits $>$}{\pageref{classmoeoObjectiveVectorDouble}}{}
+\item \contentsline{section}{moeo\-Real\-Objective\-Vector$<$ Objective\-Vector\-Traits $>$}{\pageref{classmoeoRealObjectiveVector}}{}
 \end{CompactList}
 \item \contentsline{section}{moeo\-Objective\-Vector\-Traits}{\pageref{classmoeoObjectiveVectorTraits}}{}
 \end{CompactList}

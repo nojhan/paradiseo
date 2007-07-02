@@ -1,4 +1,4 @@
-.TH "moeoArchive" 3 "26 Jun 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoArchive" 3 "2 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -137,7 +137,7 @@ Definition at line 95 of file moeoArchive.h.
 .PP
 References moeoArchive< MOEOT >::comparator.
 .PP
-Referenced by moeoArchive< MOEOT >::update().
+Referenced by moeoIteratedIBMOLS< MOEOT, Move >::operator()(), moeoIBMOLS< MOEOT, Move >::operator()(), and moeoArchive< MOEOT >::update().
 .SS "template<class MOEOT> void \fBmoeoArchive\fP< MOEOT >::update (const \fBeoPop\fP< MOEOT > & _pop)\fC [inline]\fP"
 .PP
 Updates the archive with a given population _pop. 
@@ -166,6 +166,8 @@ Returns true if the current archive contains the same objective vectors than the
 Definition at line 151 of file moeoArchive.h.
 .PP
 References moeoArchive< MOEOT >::contains().
+.PP
+Referenced by moeoIBMOLS< MOEOT, Move >::operator()().
 
 .SH "Author"
 .PP 
