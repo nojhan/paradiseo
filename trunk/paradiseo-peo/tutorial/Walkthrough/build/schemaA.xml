@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<schema>
+  <group scheduler="0">
+    <node name="0" num_workers="0">
+      <runner>1</runner>
+    </node>    
+  </group>
+</schema>
+
