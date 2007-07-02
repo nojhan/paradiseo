@@ -16,11 +16,15 @@ pkginclude_HEADERS 	= eo \
 			EO.h \
 			apply.h \
 			eoAlgo.h \
+			eoBinaryFlight.h \
+			eoBitParticle.h \
 			eoBreed.h \
 			eoCellularEasyEA.h \
 			eoCloneOps.h \
 			eoCombinedContinue.h \
 			eoCombinedInit.h \
+			eoConstrictedVariableWeightVelocity.h \
+			eoConstrictedVelocity.h \
 			eoContinue.h \
 			eoCounter.h \
 			eoCtrlCContinue.h \
@@ -29,8 +33,10 @@ pkginclude_HEADERS 	= eo \
 			eoDistribUpdater.h \
 			eoDistribution.h \
 			eoDominanceMap.h \
+			eoDummyFlight.h \
 			eoEDA.h \
 			eoEasyEA.h \
+			eoEasyPSO.h \
 			eoEvalContinue.h \
 			eoEvalFunc.h \
 			eoEvalFuncCounter.h \
@@ -38,22 +44,29 @@ pkginclude_HEADERS 	= eo \
 			eoFactory.h \
 			eoFitContinue.h \
 			eoFitnessScalingSelect.h \
+			eoFixedInertiaWeightedVelocity.h \
+			eoFlight.h \
 			eoFlOrBinOp.h \
 			eoFlOrMonOp.h \
 			eoFlOrQuadOp.h \
 			eoFunctor.h \
 			eoFunctorStore.h \
 			eoG3Replacement.h \
+			eoGaussRealWeightUp.h \
 			eoGenContinue.h \
 			eoGenOp.h \
 			eoGeneralBreeder.h \
 			eoInit.h \
 			eoInvalidateOps.h \
+			eoLinearDecreasingWeightUp.h  \
 			eoLinearFitScaling.h \
+			eoLinearTopology.h \
+			eoLSPSO.h \
 			eoMGGReplacement.h \
 			eoMerge.h \
 			eoMergeReduce.h \
 			eoNDSorting.h \
+			eoNeighborhood.h \
 			eoObject.h \
 			eoOneToOneBreeder.h \
 			eoOp.h \
@@ -62,6 +75,7 @@ pkginclude_HEADERS 	= eo \
 			eoParetoConstraintFitness.h \
 			eoParetoFitness.h \
 			eoParetoRanking.h \
+			eoParticleBestInit.h \
 			eoPerf2Worth.h \
 			eoPeriodicContinue.h \
 			eoPersistent.h \
@@ -73,9 +87,13 @@ pkginclude_HEADERS 	= eo \
 			eoPropGAGenOp.h \
 			eoProportionalCombinedOp.h \
 			eoProportionalSelect.h \
+			eoPSO.h \
+			eoRandomRealWeightUp.h \
 			eoRandomSelect.h \
 			eoRanking.h \
 			eoRankingSelect.h \
+			eoRealBoundModifier.h \
+			eoRealParticle.h \
 			eoReduce.h \
 			eoReduceMerge.h \
 			eoReduceMergeReduce.h \
@@ -98,19 +116,33 @@ pkginclude_HEADERS 	= eo \
 			eoSequentialSelect.h \
 			eoSharing.h \
 			eoSharingSelect.h \
+			eoSigBinaryFlight.h \
 			eoSimpleEDA.h \
+			eoSocialNeighborhood.h \
+			eoSSPSO.h \
+			eoStandardFlight.h \
+			eoStandardVelocity.h \
+			eoStarTopology.h \
 			eoSteadyFitContinue.h \
 			eoStochTournamentSelect.h \
 			eoStochasticUniversalSelect.h \
 			eoSurviveAndDie.h \
+			eoSyncEasyPSO.h \
+			eoTopology.h \
 			eoTransform.h \
 			eoTruncSelect.h \
 			eoTruncatedSelectMany.h \
 			eoTruncatedSelectOne.h \
+			eoVariableInertiaWeightedVelocity.h \
 			eoVariableLengthCrossover.h \
 			eoVariableLengthMutation.h \
 			eoVector.h \
+			eoVectorParticle.h \
+			eoVelocity.h \
+			eoVelocityInit.h \
+			eoWeightUpdater.h \
 			es.h \
-			ga.h
+			ga.h \
+			PO.h
 
 AM_CXXFLAGS		= -I$(top_srcdir)/src

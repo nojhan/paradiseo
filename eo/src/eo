@@ -82,6 +82,7 @@
 #include <eoEvalContinue.h>
 #include <eoFitContinue.h>
 #include <eoPeriodicContinue.h>
+#include <eoTimeContinue.h> // added th T.Legrand
 #ifndef _MSC_VER
 #include <eoCtrlCContinue.h>  // CtrlC handling (using 2 global variables!)
 #endif
@@ -144,6 +145,54 @@
 //-----------------------------------------------------------------------------
 // to be continued ...
 //-----------------------------------------------------------------------------
+
+/*** Particle Swarm Optimization stuff ***/
+
+// basic particle definitions
+#include <PO.h>
+#include <eoVectorParticle.h>
+#include <eoBitParticle.h>
+#include <eoRealParticle.h>
+
+// initialization
+#include <eoParticleBestInit.h>
+
+// velocities
+#include <eoVelocity.h>
+#include <eoStandardVelocity.h> 
+#include <eoConstrictedVelocity.h>
+#include <eoFixedInertiaWeightedVelocity.h>
+#include <eoVariableInertiaWeightedVelocity.h>
+#include <eoConstrictedVariableWeightVelocity.h> 
+
+// flights
+#include <eoFlight.h>
+#include <eoStandardFlight.h>      
+#include <eoVelocityInit.h>
+#include <eoDummyFlight.h> 
+#include <eoBinaryFlight.h> 
+#include <eoSigBinaryFlight.h>   
+
+// topologies
+#include <eoTopology.h>
+#include <eoStarTopology.h>
+#include <eoLinearTopology.h>
+#include <eoNeighborhood.h>  
+#include <eoSocialNeighborhood.h> 
+  
+// PS algorithms    
+#include <eoPSO.h>               
+#include <eoEasyPSO.h>                            
+#include <eoLSPSO.h>                    
+#include <eoSSPSO.h>          
+#include <eoSyncEasyPSO.h> 
+
+// utils
+#include <eoRealBoundModifier.h>
+#include <eoRandomRealWeightUp.h>
+#include <eoWeightUpdater.h>
+#include <eoLinearDecreasingWeightUp.h>
+#include <eoGaussRealWeightUp.h> 
 
 //-----------------------------------------------------------------------------
 
