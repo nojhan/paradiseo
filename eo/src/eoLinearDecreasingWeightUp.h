@@ -31,7 +31,7 @@
 
 
 /**
- * Linear (inertia) weight updater. Update a weight according to:
+ * Linear (inertia) weight updater for particle swarm optimization. Update a weight according to:
  * w(t)=(w(0)-w(Nt))*(Nt -t)/Nt + w(Nt) where
  *  t is the current generation/event
  *  Nt is the total number of generations/event

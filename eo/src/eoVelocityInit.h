@@ -32,7 +32,7 @@
 #include <eoSTLFunctor.h>
 #include <utils/eoRndGenerators.h>
 
-/** Abstract class for PSO velocities initilization.*/
+/** Abstract class for velocities initilization of particle swarm optimization.*/
 template < class POT > class eoVelocityInit:public eoInit < POT >
 {
 public:

@@ -34,7 +34,7 @@
 
 
 /**
- *  One of the local best strategies. Each particle has a fixed number of neighbours, ans
+ *  One of the local best strategies for particle swarm optimization. Each particle has a fixed number of neighbours, ans
  *  the neighborhood is social.
  *  The topology is never modified during the flight.
  */

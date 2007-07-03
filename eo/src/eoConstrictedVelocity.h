@@ -34,7 +34,7 @@
 //-----------------------------------------------------------------------------
 
 
-/** Constricted velocity performer. Derivated from abstract eoVelocity,
+/** Constricted velocity performer for particle swarm optimization. Derivated from abstract eoVelocity,
 *   At step t+1 : v(t+1)= C * [ v(t) + c1*r1 * (xbest(t)-x(t)) + c2*r2 * (gbest(t) - x(t)) ]
 *   C is fixed for all the particles and all the generations.
 *   Default C = 2 * k / abs(2 - P - sqrt (P*(P-4)))

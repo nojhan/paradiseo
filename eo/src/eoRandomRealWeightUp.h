@@ -31,7 +31,9 @@
 //-----------------------------------------------------------------------------
 
 /**
- * Update an inertia weight by assigning it an (uniform) random value.
+ * Update an inertia weight by assigning it an (uniform) random value. 
+ * The weight is a basic feature to evaluate the velocity of a particle in
+ * swarm optimization.
  */
 class eoRandomRealWeightUp:public eoWeightUpdater<double>
 {

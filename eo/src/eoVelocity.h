@@ -32,7 +32,7 @@
 //-----------------------------------------------------------------------------
 
 /**
- * Abstract class for PSO velocities calculation.
+ * Abstract class for velocities calculation (particle swarm optimization).
  * All the velocities must derivated from eoVelocity.
  */
 template < class POT > class eoVelocity:public eoBF < POT &,unsigned , void >

@@ -35,7 +35,7 @@
 
 
 
-/** Inertia variable weighted based velocity performer. Derivated from abstract eoVelocity,
+/** Inertia variable weight based velocity for particle swarm optimization. Derivated from abstract eoVelocity,
 *   At step t: v(t+1)= w*v(t) + c1*r1* ( xbest(t)-x(t) ) + c2*r2* ( gbest(t) - x(t) )
 *   w is updated each time the velocity performer is called.
 *   (ci given and Ri chosen at random in [0;1]).

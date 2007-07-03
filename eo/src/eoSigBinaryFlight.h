@@ -32,7 +32,7 @@
 
 
 /**
- * 	Binary flight based on the sigmoid function. Velocities are expected to be "double"
+ * 	Binary flight for particle swarm optimization based on the sigmoid function. Velocities are expected to be "double"
  *  Consider Pi to be the i-th position of a particle and Vi to be the i-th velocity of the same particle :
  * 		if rand[0;1] < sig(Vi) (Vi <=> double)
  * 			Pi=1

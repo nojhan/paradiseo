@@ -30,7 +30,7 @@
 #include <utils/eoRealVectorBounds.h>
 //-----------------------------------------------------------------------------
 
-/** Abstract class for PSO flight.
+/** Abstract class for particle swarm optimization flight.
 * All the flights must derivated from eoFlight.
 */
 

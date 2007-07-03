@@ -29,7 +29,7 @@
 #include <eoVectorParticle.h>
 
 
-/** eoBitParticle: Implementation of a bit-coded particle.
+/** eoBitParticle: Implementation of a bit-coded particle (swarm optimization).
  *  Positions and best positions are 0 or 1 but the velocity is a vector of double.
 */
 template < class FitT> class eoBitParticle: public eoVectorParticle<FitT,bool,double>

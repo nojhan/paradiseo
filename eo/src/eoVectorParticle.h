@@ -28,7 +28,7 @@
 #include <PO.h>
 
 /**
- * Main class for particle representation. The positions, velocities and the best positions
+ * Main class for particle representation of particle swarm optimization. The positions, velocities and the best positions
  * associated to the  particle are stored as vectors. Inheriting from PO and std::vector,
  * tree templates arguments are required: the fitness type (which is also the type of the
  * particle's best fitness), the position type and the velocity type.

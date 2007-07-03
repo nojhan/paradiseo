@@ -29,7 +29,8 @@
 #include <eoVectorParticle.h>
 
 
-/** eoRealParticle: Implementation of a real-coded particle. Positions, velocities and best positions are real-coded.
+/** eoRealParticle: Implementation of a real-coded particle for
+ *  particle swarm optimization. Positions, velocities and best positions are real-coded.
 */
 template < class FitT> class eoRealParticle: public eoVectorParticle<FitT,double,double>
 

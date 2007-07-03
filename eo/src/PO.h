@@ -30,7 +30,7 @@
 #include <EO.h>
 //-----------------------------------------------------------------------------
 
-/** PO inheriting from EO is specially designed for PSO particle.POs have got a fitness,
+/** PO inheriting from EO is specially designed for particle swarm optimization particle.POs have got a fitness,
     which at the same time needs to be only an object with the operation less than (<)
     defined. A best fitness also belongs to the particle.Fitness says how
     good is the particle for a current iteration whereas the best fitness can be saved for
