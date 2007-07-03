@@ -68,7 +68,6 @@ int main (int __argc, char * * __argv) {
   if ( getNodeRank() == 1 ) {
 
     std::cout << "EA[ 0 ] -----> " << ox_pop.best_element().fitness() << std::endl;
-    std::cout << "EA[ 1 ] -----> " << ox_pop2.best_element().fitness() << std::endl;
   }
  
     
