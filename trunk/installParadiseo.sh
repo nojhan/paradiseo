@@ -22,6 +22,10 @@ P_PARALLEL_INSTALL=3
 P_RM_PREVIOUS_INSTALLL=4
 P_EXIT_INSTALL=5
 
+IS_MPICH_INSTALLED=1
+IS_LIBXML2_INSTALLED=1
+USE_EXISTING_MPICH=1
+USE_EXISTING_LIBXML2=1
 
 # install steps
 S_INTRODUCTION=1000
@@ -42,13 +46,30 @@ S_PEO_CHECK=1014
 S_REMOVE_INSTALL=1015
 S_END=1016
 
-# define what are the possible install and their content
+#### define what are the possible installs and their content
+
+# full install
 FULL_INSTALL="$S_INTRODUCTION $S_UNPACK_LIBXML $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
 
+FULL_INSTALL_WITHOUT_LIBXML2="$S_INTRODUCTION $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_MPICH_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
+
+FULL_INSTALL_WITHOUT_MPICH2="$S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_CONFIGURE_LIBXML2_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
+
+FULL_INSTALL_WITHOUT_LIBXML2_MPICH2="$S_INTRODUCTION $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
+
+# basic install
 BASIC_INSTALL="$S_INTRODUCTION $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_END"
 
-PARALLEL_INSTALL="$S_CONFIGURE_ENV $S_PEO_CHECK $S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_UNPACK_MPICH $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
+# install only paradiseo-peo
+PARALLEL_INSTALL="$S_PEO_CHECK $S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_UNPACK_MPICH $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
 
+PARALLEL_INSTALL_WITHOUT_LIBXML2="$S_PEO_CHECK $S_INTRODUCTION  $S_UNPACK_MPICH $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_MPICH_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
+
+PARALLEL_INSTALL_WITHOUT_MPICH2="$S_PEO_CHECK $S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_CONFIGURE_LIBXML2_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
+
+PARALLEL_INSTALL_WITHOUT_LIBXML2_MPICH2="$S_PEO_CHECK $S_INTRODUCTION $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
+
+# remove a previous install
 RM_PREVIOUS_INSTALL="$S_REMOVE_INSTALL"
 
 #others
@@ -288,7 +309,7 @@ function run_install_step()
 		echo ""
 		echo -e ' \033[40m\033[1;33m### ParadisEO install starting .... ### \033[0m '
 		echo
-		echo "Installing the environment for Paradiseo...Note that the librairies \"libxml2\" ans \"mpich2\" required for ParadisEO are provided with this package."
+		echo "Installing the environment for ParadisEO...Note that the librairies \"libxml2\" ans \"mpich2\" required for ParadisEO are provided with this package."
 		sleep 3
 	
 		echo
@@ -521,18 +542,7 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Removing your previous install of ParadisEO ...'
 	
-		execute_cmd "rm -r $installKitPath/paradiseo-eo " "[$currentStepCounter] Remove previous version of ParadisEO-EO" $SPY
-		if [ ! "$?" = "0" ]
-		then
-			echo ''
-			echo "		--> Error when removing $installKitPath/paradiseo-eo"
-			echo -e ' \033[40m\033[1;33m### END ### \033[0m '
-			return $RM_PARADISEO_EO_ERROR
-		else
-			echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter OK \033[0m"
-			echo
-		fi 
-
+	
 		if [ -d "$installKitPath/mpich2" ]
 		then
 			execute_cmd "rm -r $installKitPath/mpich2" "[$currentStepCounter] Remove previous install of mpich2" $SPY 
@@ -558,6 +568,62 @@ function run_install_step()
 		fi 
 		;;
 
+	$S_CONFIGURE_MPICH_ENV)
+		########## Configuring mpich environment variables ##########
+		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
+		echo '		--> Configuring environment variables for mpich2 ...'
+
+		execute_cmd "export PATH=$PATH:`xml2-config --prefix`/bin:$installKitPath/mpich2/bin" "[$currentStepCounter-2] Export PATH variable" $SPY 
+		idx=$?	
+
+		execute_cmd "echo export PATH=$PATH:$installKitPath/mpich2/bin" "[$currentStepCounter-4] Export PATH variable into env" $SPY $homePath/.bashrc
+		idx=`expr $idx + $?`
+
+		execute_cmd "source $homePath/.bashrc" "[$currentStepCounter-5] Export variables for mpich2" $SPY
+		idx=`expr $idx + $?`
+
+		if [ ! $(($idx)) = 0 ]
+		then
+			echo ''
+			echo "		--> Error when configuring environment variables for mpich2"
+			echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+			return $VAR_CONFIG_ERROR
+		else
+			echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter OK \033[0m"
+			echo
+			return $SUCCESSFUL_STEP
+		fi 
+		;;
+
+	$S_CONFIGURE_LIBXML2_ENV)
+		########## Configuring environment variables ##########
+		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
+		echo '		--> Configuring environment variables for libxml2 ...'
+		
+		execute_cmd "export LD_LIBRARY_PATH=`xml2-config --prefix`/lib:" "[$currentStepCounter-1] Export LD_LIBRARY_PATH variable" $SPY
+		idx=$?	 
+		
+		execute_cmd "echo export LD_LIBRARY_PATH=$`xml2-config --prefix`/lib" "[$currentStepCounter-3] Export LD_LIBRARY_PATH variable into env" $SPY $homePath/.bashrc
+		idx=$?	 
+
+		execute_cmd "echo export PATH=$PATH:`xml2-config --prefix`/bin" "[$currentStepCounter-4] Export PATH variable into env" $SPY $homePath/.bashrc
+		idx=`expr $idx + $?`
+
+		execute_cmd "source $homePath/.bashrc" "[$currentStepCounter-5] Export variables for libxml2" $SPY
+		idx=`expr $idx + $?`
+
+		if [ ! $(($idx)) = 0 ]
+		then
+			echo ''
+			echo "		--> Error when configuring environment variables for libxml2"
+			echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+			return $VAR_CONFIG_ERROR
+		else
+			echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter OK \033[0m"
+			echo
+			return $SUCCESSFUL_STEP
+		fi 
+		;;
 	$S_CONFIGURE_ENV)
 		########## Configuring environment variables ##########
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
@@ -690,8 +756,92 @@ function run_install_step()
 
 
 #------------------------------------------------------#
-#-- BODY   :  					    ---#
+#-- FUNCTION   :  check_utils_install		    ---#
 #------------------------------------------------------#
+#-- PARAMETERS : No 				    ---#	
+#-- Set some global variables (used for libxml2     ---#
+#-- and mpich2 install management)                  ---#
+#------------------------------------------------------#
+function check_utils_install
+{
+	
+	# is there an available version of mpich on the system ?
+	(mpicxx --version) < /dev/null > /dev/null 2>&1 ||
+	{
+	IS_MPICH_INSTALLED=0
+	}
+	
+	# is there an available version of libxml2 on the system ?
+	(xml2-config --version) < /dev/null > /dev/null 2>&1 ||
+	{
+	IS_LIBXML2_INSTALLED=0
+	}
+	
+	# ask the user if he'd like to keep his mpich version instead of the provided one
+	if [ "$IS_MPICH_INSTALLED" = "1" ]
+	then
+		echo 
+		echo -e ' \033[40m\033[1;31m###  A version of the MPI compiler has been detected on your system. Do you want to use it (if no, the mpich2 package, provided with ParadisEO, will be installed on your computer) [y/n] \033[0m '
+	
+		execute_cmd "echo \" A version of the MPI compiler has been detected on the system\"" "Is there a previous install of MPI ?" $SPY
+	
+		TREATENED=0
+		while [ "$TREATENED" = "0" ]
+		do
+			read MPICH_YES_NO
+			if  [ ! "$MPICH_YES_NO" = "y" ] && [ ! "$MPICH_YES_NO" = "n" ] 
+			then
+				TREATENED=0
+			else
+				if [ "$MPICH_YES_NO" = "y" ] 
+				then
+					USE_EXISTING_MPICH=1
+				else
+					USE_EXISTING_MPICH=0
+				fi	
+				TREATENED=1
+			fi
+		done
+	else
+		echo $IS_MPICH_INSTALLED
+	fi
+	
+	
+	# ask the user if he'd like to keep his libxml2 version instead of the provided one
+	if [ "$IS_LIBXML2_INSTALLED" = "1" ]
+	then
+		echo 
+		echo -e ' \033[40m\033[1;31m###  A version of libxml2 has been detected on your system. Do you want to use it (if no, the libxml2 package, provided with ParadisEO, will be installed on your computer) [y/n] \033[0m '
+	
+		execute_cmd "echo \" A version of libxml2 has been detected on the system\"" "Is there a previous install of libxml2 ?" $SPY
+	
+		TREATENED=0
+		while [ "$TREATENED" = "0" ]
+		do
+			read LIBXML2_YES_NO
+			if [ ! "$LIBXML2_YES_NO" = "y" ] && [ ! "$LIBXML2_YES_NO" = "n" ] 
+			then
+				TREATENED=0
+			else
+				if [ "$LIBXML2_YES_NO" = "y" ] 
+				then
+					USE_EXISTING_LIBXML2=1
+				else
+					USE_EXISTING_LIBXML2=0
+				fi	
+				TREATENED=1
+			fi
+		done
+	fi
+
+}
+
+
+
+########################################################
+######### 		BODY 			########
+#########################################################
+
 
 #check if we have all we need
 (autoconf --version) < /dev/null > /dev/null 2>&1 ||
@@ -715,6 +865,8 @@ function run_install_step()
     DIE=1
 }
 
+
+
 if [ "$DIE" = "1" ] 
 then
     exit 1
@@ -735,6 +887,7 @@ then
 	exit
 fi
 
+# do we have a valid path ?
 if [ ! -d $HOME ]
 then
 	if [ "$1" = "" ]
@@ -756,8 +909,28 @@ while [ ! "$INSTALL_TREATENED" = "1" ]
 do	
 	case "$INSTALL_TYPE" in
 	$P_FULL_INSTALL)
+	
+		check_utils_install
+
+		if [ "$USE_EXISTING_MPICH" = "1" ] && [ "$USE_EXISTING_LIBXML2" = "1" ] 
+		then
+			THE_GOOD_INSTALL=$FULL_INSTALL_WITHOUT_LIBXML2_MPICH2
+		fi
+		if [ "$USE_EXISTING_MPICH" = "1" ] && [ "$USE_EXISTING_LIBXML2" = "0" ] 
+		then
+			THE_GOOD_INSTALL=$FULL_INSTALL_WITHOUT_MPICH
+		fi
+		if [ "$USE_EXISTING_MPICH" = "0" ] && [ "$USE_EXISTING_LIBXML2" = "1" ] 
+		then
+			THE_GOOD_INSTALL=$FULL_INSTALL_WITHOUT_LIBXML2
+		fi
+		if [ "$USE_EXISTING_MPICH" = "0" ] && [ "$USE_EXISTING_LIBXML2" = "0" ] 
+		then
+			THE_GOOD_INSTALL=$FULL_INSTALL
+		fi
+
 		counter=0
-		for step in $FULL_INSTALL	
+		for step in $THE_GOOD_INSTALL	
 		do
 			run_install_step $INSTALL_PATH $step $counter
 			on_error $?
@@ -777,9 +950,29 @@ do
 		INSTALL_TREATENED=1
 		;;
 
-	$P_PARALLEL_INSTALL)
+	$P_PARALLEL_INSTALL)	
+
+		check_utils_install
+
+		if [ "$USE_EXISTING_MPICH" = "1" ] && [ "$USE_EXISTING_LIBXML2" = "1" ] 
+		then
+			THE_GOOD_PARALLEL_INSTALL=$PARALLEL_INSTALL_WITHOUT_LIBXML2_MPICH2
+		fi
+		if [ "$USE_EXISTING_MPICH" = "1" ] && [ "$USE_EXISTING_LIBXML2" = "0" ] 
+		then
+			THE_GOOD_PARALLEL_INSTALL=$PARALLEL_INSTALL_WITHOUT_MPICH2
+		fi
+		if [ "$USE_EXISTING_MPICH" = "0" ] && [ "$USE_EXISTING_LIBXML2" = "1" ] 
+		then
+			THE_GOOD_PARALLEL_INSTALL=$PARALLEL_INSTALL_WITHOUT_LIBXML2
+		fi
+		if [ "$USE_EXISTING_MPICH" = "0" ] && [ "$USE_EXISTING_LIBXML2" = "0" ] 
+		then
+			THE_GOOD_PARALLEL_INSTALL=$PARALLEL_INSTALL
+		fi
+
 		counter=0
-		for step in $PARALLEL_INSTALL	
+		for step in $THE_GOOD_PARALLEL_INSTALL	
 		do
 			run_install_step $INSTALL_PATH $step $counter
 			on_error $?
