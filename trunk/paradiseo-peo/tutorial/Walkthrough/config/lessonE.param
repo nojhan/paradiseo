@@ -4,7 +4,7 @@
 
 ## deployment schema
 
---schema=../src/schemaE.xml
+--schema=../config/schemaE.xml
 
 ## parameters
 
