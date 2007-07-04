@@ -600,7 +600,11 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Configuring environment variables for libxml2 ...'
 		
-		execute_cmd "export LD_LIBRARY_PATH=`xml2-config --prefix`/lib:" "[$currentStepCounter-1] Export LD_LIBRARY_PATH variable" $SPY
+		execute_cmd "XML2_CONFIG=\`xml2-config --prefix\`" "[$currentStepCounter-1] Run xml2-config variable" $SPY
+		idx=$?
+		echo "******** $XML2_CONFIG *********"
+
+		execute_cmd "export LD_LIBRARY_PATH=`xml2-config --prefix`/lib:" "[$currentStepCounter-2] Export LD_LIBRARY_PATH variable" $SPY
 		idx=$?	 
 		
 		execute_cmd "echo export LD_LIBRARY_PATH=$`xml2-config --prefix`/lib" "[$currentStepCounter-3] Export LD_LIBRARY_PATH variable into env" $SPY $homePath/.bashrc
