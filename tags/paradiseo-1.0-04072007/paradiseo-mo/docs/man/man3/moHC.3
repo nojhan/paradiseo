@@ -1,0 +1,132 @@
+.TH "moHC" 3 "26 Jun 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moHC \- Hill Climbing (HC).  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moHC.h>\fP
+.PP
+Inherits \fBmoAlgo< M::EOType >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoHC\fP (\fBmoMoveInit\fP< M > &__move_init, \fBmoNextMove\fP< M > &__next_move, \fBmoMoveIncrEval\fP< M > &__incr_eval, \fBmoMoveSelect\fP< M > &__move_select, \fBeoEvalFunc\fP< \fBEOT\fP > &__full_eval)"
+.br
+.RI "\fIFull constructor. \fP"
+.ti -1c
+.RI "\fBmoHC\fP (\fBmoMoveExpl\fP< M > &__move_expl, \fBeoEvalFunc\fP< \fBEOT\fP > &__full_eval)"
+.br
+.RI "\fILight constructor. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (\fBEOT\fP &__sol)"
+.br
+.RI "\fIFunction which launches the HC. \fP"
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "typedef M::EOType \fBEOT\fP"
+.br
+.RI "\fIAlias for the type. \fP"
+.ti -1c
+.RI "typedef EOT::Fitness \fBFitness\fP"
+.br
+.RI "\fIAlias for the fitness. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmoMoveExpl\fP< M > & \fBmove_expl\fP"
+.br
+.RI "\fIComplete exploration of the neighborhood. \fP"
+.ti -1c
+.RI "\fBeoEvalFunc\fP< \fBEOT\fP > & \fBfull_eval\fP"
+.br
+.RI "\fIA full evaluation function. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class M> class moHC< M >"
+Hill Climbing (HC). 
+
+Class which describes the algorithm for a hill climbing. 
+.PP
+Definition at line 26 of file moHC.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class M> \fBmoHC\fP< M >::\fBmoHC\fP (\fBmoMoveInit\fP< M > & __move_init, \fBmoNextMove\fP< M > & __next_move, \fBmoMoveIncrEval\fP< M > & __incr_eval, \fBmoMoveSelect\fP< M > & __move_select, \fBeoEvalFunc\fP< \fBEOT\fP > & __full_eval)\fC [inline]\fP"
+.PP
+Full constructor. 
+.PP
+All the boxes are given in order the HC to use a \fBmoHCMoveLoopExpl\fP.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__move_init\fP a move initialiser. 
+.br
+\fI__next_move\fP a neighborhood explorer. 
+.br
+\fI__incr_eval\fP a (generally) efficient evaluation function. 
+.br
+\fI__move_select\fP a move selector. 
+.br
+\fI__full_eval\fP a full evaluation function. 
+.RE
+.PP
+
+.PP
+Definition at line 53 of file moHC.h.
+.SS "template<class M> \fBmoHC\fP< M >::\fBmoHC\fP (\fBmoMoveExpl\fP< M > & __move_expl, \fBeoEvalFunc\fP< \fBEOT\fP > & __full_eval)\fC [inline]\fP"
+.PP
+Light constructor. 
+.PP
+This constructor allow to use another \fBmoMoveExpl\fP (generally not a \fBmoHCMoveLoopExpl\fP).
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__move_expl\fP a complete explorer. 
+.br
+\fI__full_eval\fP a full evaluation function. 
+.RE
+.PP
+
+.PP
+Definition at line 67 of file moHC.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class M> bool \fBmoHC\fP< M >::operator() (\fBEOT\fP & __sol)\fC [inline, virtual]\fP"
+.PP
+Function which launches the HC. 
+.PP
+The HC has to improve a current solution. As the \fBmoSA\fP and the mo TS, it can be used for HYBRIDATION in an evolutionnary algorithm.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__sol\fP a current solution to improve. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+TRUE. 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< M::EOType &, bool >\fP.
+.PP
+Definition at line 82 of file moHC.h.
+.PP
+References moHC< M >::full_eval, and moHC< M >::move_expl.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PARADISEO-MO from the source code.
