@@ -1,0 +1,126 @@
+.TH "moeoCrowdingDiversityAssignment" 3 "2 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoCrowdingDiversityAssignment \- Diversity assignment sheme based on crowding proposed in: K.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoCrowdingDiversityAssignment.h>\fP
+.PP
+Inherits \fBmoeoDiversityAssignment< MOEOT >< MOEOT >\fP.
+.PP
+Inherited by \fBmoeoFrontByFrontCrowdingDiversityAssignment< MOEOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef MOEOT::ObjectiveVector \fBObjectiveVector\fP"
+.br
+.RI "\fIthe objective vector type of the solutions \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "double \fBinf\fP () const "
+.br
+.RI "\fIReturns a big value (regarded as infinite). \fP"
+.ti -1c
+.RI "double \fBtiny\fP () const "
+.br
+.RI "\fIReturns a very small value that can be used to avoid extreme cases (where the min bound == the max bound). \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (\fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fIComputes diversity values for every solution contained in the population _pop. \fP"
+.ti -1c
+.RI "void \fBupdateByDeleting\fP (\fBeoPop\fP< MOEOT > &_pop, \fBObjectiveVector\fP &_objVec)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBsetDistances\fP (\fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fISets the distance values. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT> class moeoCrowdingDiversityAssignment< MOEOT >"
+Diversity assignment sheme based on crowding proposed in: K. 
+
+Deb, A. Pratap, S. Agarwal, T. Meyarivan, 'A Fast and Elitist Multi-Objective Genetic Algorithm: NSGA-II', IEEE Transactions on Evolutionary Computation, vol. 6, no. 2 (2002). 
+.PP
+Definition at line 25 of file moeoCrowdingDiversityAssignment.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT> void \fBmoeoCrowdingDiversityAssignment\fP< MOEOT >::operator() (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
+.PP
+Computes diversity values for every solution contained in the population _pop. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< eoPop< MOEOT > &, void >\fP.
+.PP
+Definition at line 55 of file moeoCrowdingDiversityAssignment.h.
+.PP
+References moeoCrowdingDiversityAssignment< MOEOT >::inf(), and moeoCrowdingDiversityAssignment< MOEOT >::setDistances().
+.SS "template<class MOEOT> void \fBmoeoCrowdingDiversityAssignment\fP< MOEOT >::updateByDeleting (\fBeoPop\fP< MOEOT > & _pop, \fBObjectiveVector\fP & _objVec)\fC [inline, virtual]\fP"
+.PP
+\fBWarning:\fP
+.RS 4
+NOT IMPLEMENTED, DO NOTHING ! Updates the diversity values of the whole population _pop by taking the deletion of the objective vector _objVec into account. 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.br
+\fI_objVec\fP the objective vector 
+.RE
+.PP
+\fBWarning:\fP
+.RS 4
+NOT IMPLEMENTED, DO NOTHING ! 
+.RE
+.PP
+
+.PP
+Implements \fBmoeoDiversityAssignment< MOEOT >\fP.
+.PP
+Reimplemented in \fBmoeoFrontByFrontCrowdingDiversityAssignment< MOEOT >\fP.
+.PP
+Definition at line 78 of file moeoCrowdingDiversityAssignment.h.
+.SS "template<class MOEOT> virtual void \fBmoeoCrowdingDiversityAssignment\fP< MOEOT >::setDistances (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, protected, virtual]\fP"
+.PP
+Sets the distance values. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBmoeoFrontByFrontCrowdingDiversityAssignment< MOEOT >\fP.
+.PP
+Definition at line 90 of file moeoCrowdingDiversityAssignment.h.
+.PP
+References moeoCrowdingDiversityAssignment< MOEOT >::inf().
+.PP
+Referenced by moeoCrowdingDiversityAssignment< MOEOT >::operator()().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.

@@ -1,0 +1,61 @@
+.TH "moeoManhattanDistance" 3 "2 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoManhattanDistance \- A class allowing to compute the Manhattan distance between two solutions in the objective space normalized objective values (i.e.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoManhattanDistance.h>\fP
+.PP
+Inherits \fBmoeoNormalizedDistance< MOEOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef MOEOT::ObjectiveVector \fBObjectiveVector\fP"
+.br
+.RI "\fIthe objective vector type of the solutions \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "const double \fBoperator()\fP (const MOEOT &_moeo1, const MOEOT &_moeo2)"
+.br
+.RI "\fIReturns the Manhattan distance between _moeo1 and _moeo2 in the objective space. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT> class moeoManhattanDistance< MOEOT >"
+A class allowing to compute the Manhattan distance between two solutions in the objective space normalized objective values (i.e. 
+
+between 0 and 1). A distance value then lies between 0 and nObjectives. 
+.PP
+Definition at line 24 of file moeoManhattanDistance.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT> const double \fBmoeoManhattanDistance\fP< MOEOT >::operator() (const MOEOT & _moeo1, const MOEOT & _moeo2)\fC [inline]\fP"
+.PP
+Returns the Manhattan distance between _moeo1 and _moeo2 in the objective space. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_moeo1\fP the first solution 
+.br
+\fI_moeo2\fP the second solution 
+.RE
+.PP
+
+.PP
+Definition at line 37 of file moeoManhattanDistance.h.
+.PP
+References moeoNormalizedDistance< MOEOT >::bounds.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.

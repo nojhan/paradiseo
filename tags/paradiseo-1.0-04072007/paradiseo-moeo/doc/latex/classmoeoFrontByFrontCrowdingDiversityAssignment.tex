@@ -1,0 +1,102 @@
+\section{moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment$<$ MOEOT $>$ Class Template Reference}
+\label{classmoeoFrontByFrontCrowdingDiversityAssignment}\index{moeoFrontByFrontCrowdingDiversityAssignment@{moeoFrontByFrontCrowdingDiversityAssignment}}
+Diversity assignment sheme based on crowding proposed in: K.  
+
+
+{\tt \#include $<$moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment.h$>$}
+
+Inheritance diagram for moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment$<$ MOEOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5cm]{classmoeoFrontByFrontCrowdingDiversityAssignment}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+typedef MOEOT::Objective\-Vector \bf{Objective\-Vector}\label{classmoeoFrontByFrontCrowdingDiversityAssignment_aebd424133b426cf6a2ec7b20743bbaf}
+
+\begin{CompactList}\small\item\em the objective vector type of the solutions \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+void \bf{update\-By\-Deleting} (\bf{eo\-Pop}$<$ MOEOT $>$ \&\_\-pop, \bf{Objective\-Vector} \&\_\-obj\-Vec)
+\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+void \bf{set\-Distances} (\bf{eo\-Pop}$<$ MOEOT $>$ \&\_\-pop)
+\begin{CompactList}\small\item\em Sets the distance values. \item\end{CompactList}\item 
+unsigned int \bf{last\-Index} (\bf{eo\-Pop}$<$ MOEOT $>$ \&\_\-pop, unsigned int \_\-start)
+\begin{CompactList}\small\item\em Returns the index of the last individual having the same fitness value than \_\-pop[\_\-start]. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class MOEOT$>$ class moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment$<$ MOEOT $>$}
+
+Diversity assignment sheme based on crowding proposed in: K. 
+
+Deb, A. Pratap, S. Agarwal, T. Meyarivan, \char`\"{}A Fast and Elitist Multi-Objective Genetic Algorithm: NSGA-II\char`\"{}, IEEE Transactions on Evolutionary Computation, vol. 6, no. 2 (2002). Tis strategy assigns diversity values FRONT BY FRONT. It is, for instance, used in NSGA-II. 
+
+
+
+Definition at line 25 of file moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment.h.
+
+\subsection{Member Function Documentation}
+\index{moeoFrontByFrontCrowdingDiversityAssignment@{moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoFrontByFrontCrowdingDiversityAssignment@{moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ void \bf{moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment}$<$ MOEOT $>$::update\-By\-Deleting (\bf{eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop}, \bf{Objective\-Vector} \& {\em \_\-obj\-Vec})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmoeoFrontByFrontCrowdingDiversityAssignment_f73ff88bd29c49260e2ca859250e4b68}
+
+
+\begin{Desc}
+\item[Warning:]NOT IMPLEMENTED, DO NOTHING ! Updates the diversity values of the whole population \_\-pop by taking the deletion of the objective vector \_\-obj\-Vec into account. \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \item[{\em \_\-obj\-Vec}]the objective vector \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Warning:]NOT IMPLEMENTED, DO NOTHING ! \end{Desc}
+
+
+Reimplemented from \bf{moeo\-Crowding\-Diversity\-Assignment$<$ MOEOT $>$} \doxyref{p.}{classmoeoCrowdingDiversityAssignment_ba1d60c8e59fbe2c12e9eef33863f012}.
+
+Definition at line 40 of file moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment.h.\index{moeoFrontByFrontCrowdingDiversityAssignment@{moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment}!setDistances@{setDistances}}
+\index{setDistances@{setDistances}!moeoFrontByFrontCrowdingDiversityAssignment@{moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ void \bf{moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment}$<$ MOEOT $>$::set\-Distances (\bf{eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, private, virtual]}}\label{classmoeoFrontByFrontCrowdingDiversityAssignment_1aa0ec7b94fbbf952636bcc21e1a9d16}
+
+
+Sets the distance values. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \end{description}
+\end{Desc}
+
+
+Reimplemented from \bf{moeo\-Crowding\-Diversity\-Assignment$<$ MOEOT $>$} \doxyref{p.}{classmoeoCrowdingDiversityAssignment_acbe3e03404ecc67dd5e83f00576c255}.
+
+Definition at line 55 of file moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment.h.
+
+References moeo\-Crowding\-Diversity\-Assignment$<$ MOEOT $>$::inf(), moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment$<$ MOEOT $>$::last\-Index(), and moeo\-Crowding\-Diversity\-Assignment$<$ MOEOT $>$::tiny().\index{moeoFrontByFrontCrowdingDiversityAssignment@{moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment}!lastIndex@{lastIndex}}
+\index{lastIndex@{lastIndex}!moeoFrontByFrontCrowdingDiversityAssignment@{moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ unsigned int \bf{moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment}$<$ MOEOT $>$::last\-Index (\bf{eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop}, unsigned int {\em \_\-start})\hspace{0.3cm}{\tt  [inline, private]}}\label{classmoeoFrontByFrontCrowdingDiversityAssignment_ab8e153a4716375414ff2140fc3fa480}
+
+
+Returns the index of the last individual having the same fitness value than \_\-pop[\_\-start]. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \item[{\em \_\-start}]the index to start from \end{description}
+\end{Desc}
+
+
+Definition at line 121 of file moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment.h.
+
+Referenced by moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment$<$ MOEOT $>$::set\-Distances().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-Front\-By\-Front\-Crowding\-Diversity\-Assignment.h\end{CompactItemize}
