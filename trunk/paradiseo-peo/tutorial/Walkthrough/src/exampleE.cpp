@@ -23,6 +23,8 @@
 #define CROSS_RATE 1.0
 #define MUT_RATE 0.01
 
+#define NUM_PART_EVALS 2
+
 
 int main (int __argc, char * * __argv) {
 
@@ -35,45 +37,47 @@ int main (int __argc, char * * __argv) {
   RouteInit route_init; /* Its builds random routes */  
   RouteEval full_eval; /* Full route evaluator */
 
+
+  MergeRouteEval merge_eval;
+
+  std :: vector <eoEvalFunc <Route> *> part_eval;
+  for (unsigned i = 1 ; i <= NUM_PART_EVALS ; i ++)
+    part_eval.push_back (new PartRouteEval ((float) (i - 1) / NUM_PART_EVALS, (float) i / NUM_PART_EVALS));
+
   
   OrderXover order_cross; /* Recombination */
-  PartialMappedXover pm_cross;
-  EdgeXover edge_cross;
   CitySwap city_swap_mut;  /* Mutation */
 
-
-  /** Local Search */
-  TwoOptInit pmx_two_opt_init;
-  TwoOptNext pmx_two_opt_next;
-  TwoOptIncrEval pmx_two_opt_incr_eval;
-  moBestImprSelect <TwoOpt> pmx_two_opt_move_select;
-  moHC <TwoOpt> hc (pmx_two_opt_init, pmx_two_opt_next, pmx_two_opt_incr_eval, pmx_two_opt_move_select, full_eval);
 
   /** The EA */
   eoPop <Route> ox_pop (POP_SIZE, route_init);  /* Population */
   
   eoGenContinue <Route> ox_cont (NUM_GEN); /* A fixed number of iterations */  
   eoCheckPoint <Route> ox_checkpoint (ox_cont); /* Checkpoint */
-  peoSeqPopEval <Route> ox_pop_eval (full_eval);  
+  peoParaPopEval <Route> ox_pop_eval (full_eval);  
   eoStochTournamentSelect <Route> ox_select_one;
   eoSelectNumber <Route> ox_select (ox_select_one, POP_SIZE);
   eoSGATransform <Route> ox_transform (order_cross, CROSS_RATE, city_swap_mut, MUT_RATE);
   peoSeqTransform <Route> ox_para_transform (ox_transform);    
   eoEPReplacement <Route> ox_replace (2);
 
-  peoEA <Route> ox_ea (ox_checkpoint, ox_pop_eval, ox_select, ox_para_transform, ox_replace);
   
-  ox_ea (ox_pop);   /* Application to the given population */
+  peoEA <Route> ox_ea (ox_checkpoint, ox_pop_eval, ox_select, ox_para_transform, ox_replace);
+
     
+  ox_ea (ox_pop);   /* Application to the given population */
     
   peo :: run ();
   peo :: finalize (); /* Termination */
   
+ 
 
-  std :: cout << ox_pop[ 0 ].fitness();
-  hc( ox_pop[ 0 ] );
-  std :: cout << " -> " << ox_pop[ 0 ].fitness() << std :: endl;
+  // rank 0 is assigned to the scheduler in the XML mapping file
+  if ( getNodeRank() == 1 ) {
 
-  
+    std::cout << "EA[ 0 ] -----> " << ox_pop.best_element().fitness() << std::endl;
+  }
+ 
+    
   return 0;
 }

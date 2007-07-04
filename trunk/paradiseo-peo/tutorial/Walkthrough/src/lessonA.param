@@ -4,7 +4,7 @@
 
 ## deployment schema
 
---schema=schemaB.xml
+--schema=../src/schemaA.xml
 
 ## parameters
 

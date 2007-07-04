@@ -23,7 +23,7 @@
 #define CROSS_RATE 1.0
 #define MUT_RATE 0.01
 
-#define MIG_FREQ 3
+#define MIG_FREQ 1 
 #define MIG_SIZE 5
 
 
@@ -62,7 +62,7 @@ int main (int __argc, char * * __argv) {
   
   /* The migration policy */
   eoPeriodicContinue <Route> ox_mig_cont (MIG_FREQ); /* Migration occurs periodically */
-  eoRandomSelect <Route> ox_mig_select_one; /* Emigrants are randomly selected */
+  eoStochTournamentSelect <Route> ox_mig_select_one; /* Emigrants are randomly selected */
   eoSelectNumber <Route> ox_mig_select (ox_mig_select_one, MIG_SIZE);
   eoPlusReplacement <Route> ox_mig_replace; /* Immigrants replace the worse individuals */
   
@@ -74,8 +74,7 @@ int main (int __argc, char * * __argv) {
   
   ox_ea (ox_pop);   /* Application to the given population */
   // --------------------------------------------------------------------------------------------------
-
-
+  
 
 
   // The Second EA ------------------------------------------------------------------------------------
@@ -99,10 +98,9 @@ int main (int __argc, char * * __argv) {
   peoSeqTransform <Route> ox_seq_transform2 (ox_transform2);
   eoEPReplacement <Route> ox_replace2 (2);
 
-
   /* The migration policy */
   eoPeriodicContinue <Route> ox_mig_cont2 (MIG_FREQ); /* Migration occurs periodically */
-  eoRandomSelect <Route> ox_mig_select_one2; /* Emigrants are randomly selected */
+  eoStochTournamentSelect <Route> ox_mig_select_one2; /* Emigrants are randomly selected */
   eoSelectNumber <Route> ox_mig_select2 (ox_mig_select_one2, MIG_SIZE);
   eoPlusReplacement <Route> ox_mig_replace2; /* Immigrants replace the worse individuals */
 
@@ -119,13 +117,15 @@ int main (int __argc, char * * __argv) {
 
   peo :: run ();
   peo :: finalize (); /* Termination */
-  
+
+
   // rank 0 is assigned to the scheduler in the XML mapping file
   if ( getNodeRank() == 1 ) { 
 
     std::cout << "EA[ 0 ] -----> " << ox_pop.best_element().fitness() << std::endl;
     std::cout << "EA[ 1 ] -----> " << ox_pop2.best_element().fitness() << std::endl;
   }
+
 
   return 0;
 }

@@ -46,7 +46,7 @@ int main (int __argc, char * * __argv) {
   
   eoGenContinue <Route> ox_cont (NUM_GEN); /* A fixed number of iterations */  
   eoCheckPoint <Route> ox_checkpoint (ox_cont); /* Checkpoint */
-  peoParaPopEval <Route> ox_pop_eval (full_eval);  
+  peoSeqPopEval <Route> ox_pop_eval (full_eval);  
   eoStochTournamentSelect <Route> ox_select_one;
   eoSelectNumber <Route> ox_select (ox_select_one, POP_SIZE);
   eoSGATransform <Route> ox_transform (order_cross, CROSS_RATE, city_swap_mut, MUT_RATE);

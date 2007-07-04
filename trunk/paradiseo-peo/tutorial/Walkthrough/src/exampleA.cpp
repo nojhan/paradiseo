@@ -32,7 +32,7 @@ int main (int __argc, char * * __argv) {
   loadParameters (__argc, __argv); /* Processing some parameters relative to the tackled
 				      problem (TSP) */
 
-  RouteInit route_init; /* Its builds random routes */  
+  RouteInit route_init; /* It builds random routes */  
   RouteEval full_eval; /* Full route evaluator */
 
   
@@ -64,7 +64,6 @@ int main (int __argc, char * * __argv) {
   peoEA <Route> ox_ea (ox_checkpoint, ox_pop_eval, ox_select, ox_para_transform, ox_replace);
   
   ox_ea (ox_pop);   /* Application to the given population */    
-    
     
   peo :: run ();
   peo :: finalize (); /* Termination */
