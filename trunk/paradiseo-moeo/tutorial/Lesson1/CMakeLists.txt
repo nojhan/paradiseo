@@ -1,9 +1,16 @@
 
 ######################################################################################
-### 0) Need flowhsop directory
+### 0) Need flowhsop directory and copy the benchs
 ######################################################################################
 
-SET(FLOWSHOP_EXAMPLE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/flowshop)
+ADD_CUSTOM_TARGET(copy_flowshop_param ALL)
+ADD_CUSTOM_COMMAND(
+    TARGET copy_flowshop_param
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND}
+    ARGS -E copy_if_different
+      ${ParadisEO-MOEO_SOURCE_DIR}/tutorial/Lesson1/FlowShopEA.param
+      ${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson1)
 
 ######################################################################################
 
@@ -16,7 +23,8 @@ SET(FLOWSHOP_EXAMPLE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/flowshop)
 INCLUDE_DIRECTORIES(${EO_SRC_DIR})
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/utils)
 INCLUDE_DIRECTORIES(${MOEO_SRC_DIR})
-INCLUDE_DIRECTORIES(${FLOWSHOP_EXAMPLE_DIR})
+INCLUDE_DIRECTORIES(${FLOWSHOP_SRC_DIR})
+
 ######################################################################################
 
 
@@ -27,7 +35,7 @@ INCLUDE_DIRECTORIES(${FLOWSHOP_EXAMPLE_DIR})
 
 # --> UNIX 
 IF(UNIX)  
-  LINK_DIRECTORIES(${EO_SRC_DIR} ${EO_SRC_DIR}/utils ${MOEO_DIR}/build ${TUTORIAL_LESSON1_DIR}/build)
+  LINK_DIRECTORIES(${EO_SRC_DIR} ${EO_SRC_DIR}/utils ${ParadisEO-MOEO_BINARY_DIR}/lib ${FLOWSHOP_BINARY_DIR}/lib)
 
 # --> WIN
 ELSEIF(WIN32)  
@@ -37,10 +45,12 @@ ELSEIF(WIN32)
   ENDIF (NOT DEFINED CMAKE_BUILD_TYPE)
  
   IF (CMAKE_BUILD_TYPE STREQUAL Debug)
-  	LINK_DIRECTORIES(${TUTORIAL_LESSON1_DIR}\\build\\debug)
+  	LINK_DIRECTORIES(${FLOWSHOP_BINARY_DIR}\\lib\\debug)
+  	LINK_DIRECTORIES(${ParadisEO-MOEO_BINARY_DIR}\\lib\\debug)
   	LINK_DIRECTORIES(${EO_LIB_DIR}\\debug)
   ELSEIF(CMAKE_BUILD_TYPE STREQUAL Release)
-  	LINK_DIRECTORIES(${TUTORIAL_LESSON1_DIR}\\build\\release)
+  	LINK_DIRECTORIES(${FLOWSHOP_BINARY_DIR}\\lib\\release)
+  	LINK_DIRECTORIES(${ParadisEO-MOEO_BINARY_DIR}\\lib\\release)
   	LINK_DIRECTORIES(${EO_LIB_DIR}\\release)  
   ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
 
@@ -59,8 +69,6 @@ ADD_EXECUTABLE(FlowShopEA FlowShopEA.cpp)
 
 ADD_DEPENDENCIES(FlowShopEA moeo)
 ADD_DEPENDENCIES(FlowShopEA flowshop)
-
-SET(EXECUTABLE_OUTPUT_PATH ${TUTORIAL_LESSON1_DIR}/build)
 ######################################################################################
 
 
@@ -129,14 +137,5 @@ ENDIF(UNIX)
      ENDIF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005")
    ENDIF(NOT WITH_SHARED_LIBS)
   ENDIF(CMAKE_CXX_COMPILER MATCHES cl)
-######################################################################################
-
-
-######################################################################################
-### 7) Where should CMake go now ?
-######################################################################################
-
-SUBDIRS(${FLOWSHOP_EXAMPLE_DIR})
-
 ######################################################################################
 

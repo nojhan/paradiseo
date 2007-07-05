@@ -16,7 +16,7 @@ INCLUDE_DIRECTORIES(${MOEO_SRC_DIR})
 
 # --> UNIX 
 IF(UNIX)  
-  LINK_DIRECTORIES(${EO_SRC_DIR} ${EO_SRC_DIR}/utils ${MOEO_DIR}/build)
+  LINK_DIRECTORIES(${EO_SRC_DIR} ${EO_SRC_DIR}/utils ${ParadisEO-MOEO_BINARY_DIR}/lib)
 
 # --> WIN
 ELSEIF(WIN32)  
@@ -26,10 +26,10 @@ ELSEIF(WIN32)
   ENDIF (NOT DEFINED CMAKE_BUILD_TYPE)
  
   IF (CMAKE_BUILD_TYPE STREQUAL Debug)
-  	LINK_DIRECTORIES(${MOEO_DIR}\\build\\debug)
+  	LINK_DIRECTORIES(${ParadisEO-MOEO_BINARY_DIR}\\lib\\debug)
   	LINK_DIRECTORIES(${EO_LIB_DIR}\\debug)  	
   ELSEIF(CMAKE_BUILD_TYPE STREQUAL Release)
-  	LINK_DIRECTORIES(${MOEO_DIR}\\build\\release)
+  	LINK_DIRECTORIES(${ParadisEO-MOEO_BINARY_DIR}\\lib\\release)
   	LINK_DIRECTORIES(${EO_LIB_DIR}\\release)  
   ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
 
@@ -47,8 +47,6 @@ ENDIF(UNIX)
 ADD_EXECUTABLE(sch1 Sch1.cpp) 
 
 ADD_DEPENDENCIES(sch1 moeo)
-
-SET(EXECUTABLE_OUTPUT_PATH ${TUTORIAL_LESSON2_DIR}/build)
 ######################################################################################
 
 

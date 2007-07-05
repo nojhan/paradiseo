@@ -3,20 +3,10 @@
 ######################################################################################
 ###  In this file, you can specify many CMake variables used to build paradisEO-MOEO.
 ###  For example, if you don't want ot give the EO path each time on the command line,
-###  uncomment the line the "SET(PROJECT_NAME...)" and set your favorite name.
+###  uncomment the line the "SET(EO_DIR...)" and set your path.
 ###  The section numbers are the same as those used in the CMakeLists.txt file.
 ######################################################################################
 ######################################################################################
-
-
-######################################################################################
-### 0) OPTIONNAL - Overwrite project default config 
-######################################################################################
-  
-# SET(PROJECT_NAME "ParadisEO-MOEO")
-
-######################################################################################
-
 
 ######################################################################################
 ### 3) OPTIONNAL - Overwrite default paths

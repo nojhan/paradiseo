@@ -12,12 +12,8 @@ INCLUDE(moeo-conf.cmake OPTIONAL)
 ### 1) Main project config 
 ######################################################################################
 
-IF(NOT DEFINED ${PROJECT_NAME} OR ${PROJECT_NAME} STREQUAL "Project")
-    SET(PROJECT_NAME "ParadisEO-MOEO")
-ENDIF(NOT DEFINED ${PROJECT_NAME} OR ${PROJECT_NAME} STREQUAL "Project")
-
 # set the project name
-PROJECT(${PROJECT_NAME})
+PROJECT(ParadisEO-MOEO)
 
 # check cmake version compatibility
 CMAKE_MINIMUM_REQUIRED(VERSION 2.4 FATAL_ERROR)
@@ -52,7 +48,7 @@ INCLUDE(CheckLibraryExists)
 ######################################################################################
 
 IF(NOT DEFINED MOEO_DIR)
-  SET(MOEO_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE PATH "ParadisEO-MOEO main directory") 
+  SET(MOEO_DIR ${ParadisEO-MOEO_SOURCE_DIR} CACHE PATH "ParadisEO-MOEO main directory") 
 ENDIF(NOT DEFINED MOEO_DIR)
 
 # Need main EO directory path
@@ -68,11 +64,11 @@ IF(NOT DEFINED EO_SRC_DIR)
 ENDIF(NOT DEFINED EO_SRC_DIR)
 
 IF(NOT DEFINED MOEO_SRC_DIR)
-  SET(MOEO_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
+  SET(MOEO_SRC_DIR ${MOEO_DIR}/src)
 ENDIF(NOT DEFINED MOEO_SRC_DIR)
 
 IF(NOT DEFINED MOEO_DOC_DIR)
-  SET(MOEO_DOC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/doc)
+  SET(MOEO_DOC_DIR ${MOEO_DIR}/doc)
 ENDIF(NOT DEFINED MOEO_DOC_DIR)
 ######################################################################################
 

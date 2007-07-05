@@ -13,7 +13,7 @@ INCLUDE_DIRECTORIES(${MOEO_SRC_DIR})
 ### 2) Define your target(s): just  the moeo lib here.
 ######################################################################################
 
-SET(MOEO_LIB_OUTPUT_PATH ${MOEO_DIR}/build)
+SET(MOEO_LIB_OUTPUT_PATH ${ParadisEO-MOEO_BINARY_DIR}/lib)
 SET(LIBRARY_OUTPUT_PATH ${MOEO_LIB_OUTPUT_PATH})
 
 SET (MOEO_SOURCES core/moeoObjectiveVectorTraits.cpp)
