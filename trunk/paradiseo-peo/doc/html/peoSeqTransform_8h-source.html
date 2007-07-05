@@ -41,9 +41,9 @@
 <a name="l00021"></a>00021 
 <a name="l00022"></a>00022 <span class="keyword">public</span>:
 <a name="l00023"></a>00023 
-<a name="l00027"></a>00027         <a class="code" href="classpeoSeqTransform.html#3b8e4ed19d9458938eb669d83a53c626">peoSeqTransform</a>( eoTransform&lt; EOT &gt;&amp; __trans );
+<a name="l00027"></a>00027         <a class="code" href="classpeoSeqTransform.html#3b8e4ed19d9458938eb669d83a53c626">peoSeqTransform</a>( <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_transform.html">eoTransform&lt; EOT &gt;</a>&amp; __trans );
 <a name="l00028"></a>00028         
-<a name="l00032"></a>00032         <span class="keywordtype">void</span> <a class="code" href="classpeoSeqTransform.html#1ba63536abb6c4e1c369e0b7e066872e">operator()</a>( eoPop&lt; EOT &gt;&amp; __pop );
+<a name="l00032"></a>00032         <span class="keywordtype">void</span> <a class="code" href="classpeoSeqTransform.html#1ba63536abb6c4e1c369e0b7e066872e">operator()</a>( <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_pop.html">eoPop&lt; EOT &gt;</a>&amp; __pop );
 <a name="l00033"></a>00033         
 <a name="l00035"></a><a class="code" href="classpeoSeqTransform.html#c4bf2724e9f6055f12bd169fad893be3">00035</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classpeoSeqTransform.html#c4bf2724e9f6055f12bd169fad893be3">packData</a>() { }
 <a name="l00036"></a>00036 
@@ -57,23 +57,23 @@
 <a name="l00048"></a>00048 
 <a name="l00049"></a>00049 <span class="keyword">private</span>:
 <a name="l00050"></a>00050 
-<a name="l00051"></a><a class="code" href="classpeoSeqTransform.html#ad3e16c59dd6c46dfc1baf7b88af30cf">00051</a>         eoTransform&lt; EOT &gt;&amp; <a class="code" href="classpeoSeqTransform.html#ad3e16c59dd6c46dfc1baf7b88af30cf">trans</a>;
+<a name="l00051"></a><a class="code" href="classpeoSeqTransform.html#ad3e16c59dd6c46dfc1baf7b88af30cf">00051</a>         <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_transform.html">eoTransform&lt; EOT &gt;</a>&amp; <a class="code" href="classpeoSeqTransform.html#ad3e16c59dd6c46dfc1baf7b88af30cf">trans</a>;
 <a name="l00052"></a>00052 };
 <a name="l00053"></a>00053 
 <a name="l00054"></a>00054 
-<a name="l00055"></a><a class="code" href="classpeoSeqTransform.html#3b8e4ed19d9458938eb669d83a53c626">00055</a> <span class="keyword">template</span>&lt; <span class="keyword">class</span> EOT &gt; <a class="code" href="classpeoSeqTransform.html#3b8e4ed19d9458938eb669d83a53c626">peoSeqTransform&lt; EOT &gt; :: peoSeqTransform</a>( eoTransform&lt; EOT &gt;&amp; __trans ) : trans( __trans ) {
+<a name="l00055"></a><a class="code" href="classpeoSeqTransform.html#3b8e4ed19d9458938eb669d83a53c626">00055</a> <span class="keyword">template</span>&lt; <span class="keyword">class</span> EOT &gt; <a class="code" href="classpeoSeqTransform.html#3b8e4ed19d9458938eb669d83a53c626">peoSeqTransform&lt; EOT &gt; :: peoSeqTransform</a>( <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_transform.html">eoTransform&lt; EOT &gt;</a>&amp; __trans ) : trans( __trans ) {
 <a name="l00056"></a>00056 
 <a name="l00057"></a>00057 }
 <a name="l00058"></a>00058 
 <a name="l00059"></a>00059 
-<a name="l00060"></a><a class="code" href="classpeoSeqTransform.html#1ba63536abb6c4e1c369e0b7e066872e">00060</a> <span class="keyword">template</span>&lt; <span class="keyword">class</span> EOT &gt; <span class="keywordtype">void</span> <a class="code" href="classpeoSeqTransform.html#1ba63536abb6c4e1c369e0b7e066872e">peoSeqTransform&lt; EOT &gt; :: operator()</a>( eoPop&lt; EOT &gt;&amp; __pop ) {
+<a name="l00060"></a><a class="code" href="classpeoSeqTransform.html#1ba63536abb6c4e1c369e0b7e066872e">00060</a> <span class="keyword">template</span>&lt; <span class="keyword">class</span> EOT &gt; <span class="keywordtype">void</span> <a class="code" href="classpeoSeqTransform.html#1ba63536abb6c4e1c369e0b7e066872e">peoSeqTransform&lt; EOT &gt; :: operator()</a>( <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_pop.html">eoPop&lt; EOT &gt;</a>&amp; __pop ) {
 <a name="l00061"></a>00061 
 <a name="l00062"></a>00062         <a class="code" href="classpeoSeqTransform.html#ad3e16c59dd6c46dfc1baf7b88af30cf">trans</a>( __pop );
 <a name="l00063"></a>00063 }
 <a name="l00064"></a>00064 
 <a name="l00065"></a>00065 
 <a name="l00066"></a>00066 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Thu Jun 28 15:51:15 2007 for ParadisEO-PEO by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Thu Jul 5 13:41:04 2007 for ParadisEO-PEO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

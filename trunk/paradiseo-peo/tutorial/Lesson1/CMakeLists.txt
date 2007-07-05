@@ -1,10 +1,27 @@
 
 ######################################################################################
-### 0) Set the compiler
+### 0) Set the compiler and define targets to easily run the lessons
 ######################################################################################
 
 SET (CMAKE_CXX_COMPILER mpicxx)
 
+ADD_CUSTOM_TARGET(copy_lesson1_param ALL)
+ADD_CUSTOM_COMMAND(
+    TARGET copy_lesson1_param
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND}
+    ARGS -E copy_if_different
+      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/lesson.param
+      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson1)
+
+ADD_CUSTOM_TARGET(copy_lesson1_xmlschema ALL)
+ADD_CUSTOM_COMMAND(
+    TARGET copy_lesson1_xmlschema
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND}
+    ARGS -E copy_if_different
+      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/schema.xml
+      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson1)
 ######################################################################################
 
 
@@ -15,7 +32,7 @@ SET (CMAKE_CXX_COMPILER mpicxx)
 INCLUDE_DIRECTORIES(${EO_SRC_DIR})
 INCLUDE_DIRECTORIES(${MO_SRC_DIR})
 INCLUDE_DIRECTORIES(${PEO_SRC_DIR})
-INCLUDE_DIRECTORIES(${TSP_SRC_DIR}/src)
+INCLUDE_DIRECTORIES(${TSP_SRC_DIR})
 
 ######################################################################################
 

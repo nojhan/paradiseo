@@ -36,14 +36,14 @@
 <a name="l00012"></a>00012 
 <a name="l00013"></a>00013 <span class="keywordtype">void</span> loadRMCParameters (<span class="keywordtype">int</span> &amp; __argc, <span class="keywordtype">char</span> * * &amp; __argv) {
 <a name="l00014"></a>00014 
-<a name="l00015"></a>00015   eoParser parser (__argc, __argv);
+<a name="l00015"></a>00015   <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_parser.html">eoParser</a> parser (__argc, __argv);
 <a name="l00016"></a>00016 
 <a name="l00017"></a>00017   <span class="comment">/* Schema */</span>
 <a name="l00018"></a>00018   eoValueParam &lt;std :: string&gt; schema_param (<span class="stringliteral">"schema.xml"</span>, <span class="stringliteral">"schema"</span>, <span class="stringliteral">"?"</span>);
 <a name="l00019"></a>00019   parser.processParam (schema_param);
 <a name="l00020"></a>00020   loadSchema (schema_param.value ().c_str ());
 <a name="l00021"></a>00021 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Thu Jun 28 15:51:15 2007 for ParadisEO-PEO by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Thu Jul 5 13:41:04 2007 for ParadisEO-PEO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

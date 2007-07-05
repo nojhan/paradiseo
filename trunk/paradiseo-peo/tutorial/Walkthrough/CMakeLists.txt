@@ -12,7 +12,7 @@ ADD_CUSTOM_COMMAND(
     COMMAND ${CMAKE_COMMAND}
     ARGS -E copy_directory 
       ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Walkthrough/config
-      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Walkthrough/tsp/config)
+      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Walkthrough/config)
 ######################################################################################
 
 

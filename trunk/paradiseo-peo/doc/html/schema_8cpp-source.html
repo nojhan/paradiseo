@@ -41,7 +41,7 @@
 <a name="l00017"></a>00017 
 <a name="l00018"></a>00018 std :: vector &lt;Node&gt; the_schema;
 <a name="l00019"></a>00019 
-<a name="l00020"></a>00020 <a class="code" href="structNode.html">Node</a> * my_node;
+<a name="l00020"></a>00020 <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/class_node.html">Node</a> * my_node;
 <a name="l00021"></a>00021 
 <a name="l00022"></a>00022 RANK_ID getRankOfRunner (RUNNER_ID __key) {
 <a name="l00023"></a>00023 
@@ -55,14 +55,14 @@
 <a name="l00031"></a>00031 
 <a name="l00032"></a>00032 <span class="keyword">static</span> <span class="keywordtype">void</span> loadNode (<span class="keywordtype">int</span> __rk_sched) {
 <a name="l00033"></a>00033 
-<a name="l00034"></a>00034   <a class="code" href="structNode.html">Node</a> node;
+<a name="l00034"></a>00034   <a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/class_node.html">Node</a> node;
 <a name="l00035"></a>00035   
-<a name="l00036"></a>00036   node.<a class="code" href="structNode.html#98deed2036c3dd8fc0f4fe8dacf56a92">rk_sched</a> = __rk_sched;
+<a name="l00036"></a>00036   node.<a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/class_node.html">rk_sched</a> = __rk_sched;
 <a name="l00037"></a>00037 
 <a name="l00038"></a>00038   <span class="comment">/* ATT: name*/</span>
-<a name="l00039"></a>00039   node.<a class="code" href="structNode.html#7de6f254b6b8c3f9f8287af0bb742e9b">rk</a> = getRankFromName (getAttributeValue (<span class="stringliteral">"name"</span>));
+<a name="l00039"></a>00039   node.<a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/class_node.html">rk</a> = getRankFromName (getAttributeValue (<span class="stringliteral">"name"</span>));
 <a name="l00040"></a>00040   <span class="comment">/* ATT: num_workers */</span>
-<a name="l00041"></a>00041   node.<a class="code" href="structNode.html#01fec86d75332858b158c810d57caee3">num_workers</a> = atoi (getAttributeValue (<span class="stringliteral">"num_workers"</span>).c_str ());
+<a name="l00041"></a>00041   node.<a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/class_node.html">num_workers</a> = atoi (getAttributeValue (<span class="stringliteral">"num_workers"</span>).c_str ());
 <a name="l00042"></a>00042 
 <a name="l00043"></a>00043   <span class="keywordflow">while</span> (<span class="keyword">true</span>) {
 <a name="l00044"></a>00044     
@@ -71,7 +71,7 @@
 <a name="l00047"></a>00047     assert (name == <span class="stringliteral">"runner"</span> || name == <span class="stringliteral">"node"</span>);    
 <a name="l00048"></a>00048     <span class="keywordflow">if</span> (name == <span class="stringliteral">"runner"</span>) {
 <a name="l00049"></a>00049       <span class="comment">/* TAG: &lt;/node&gt; */</span>
-<a name="l00050"></a>00050       node.<a class="code" href="structNode.html#a90013b890888d3d252a71cb4fe48934">id_run</a>.push_back (atoi (getNextNode ().c_str ()));
+<a name="l00050"></a>00050       node.<a class="codeRef" doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/class_node.html">id_run</a>.push_back (atoi (getNextNode ().c_str ()));
 <a name="l00051"></a>00051       <span class="comment">/* TAG: &lt;/runner&gt; */</span>
 <a name="l00052"></a>00052       assert (getNextNode () == <span class="stringliteral">"runner"</span>);
 <a name="l00053"></a>00053     }
@@ -157,7 +157,7 @@
 <a name="l00133"></a>00133   closeXMLDocument ();
 <a name="l00134"></a>00134 }
 <a name="l00135"></a>00135 
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Thu Jun 28 15:51:15 2007 for ParadisEO-PEO by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Thu Jul 5 13:41:04 2007 for ParadisEO-PEO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

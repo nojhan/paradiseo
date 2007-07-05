@@ -11,7 +11,7 @@ ENDIF(WIN32)
 FIND_PROGRAM(XML2_CONFIG_PROGRAM NAMES xml2-config  PATHS /usr/local/bin /usr/bin  DOC "The libxml2 (www.xmlsoft.org) configuration tool")
 
 IF(NOT XML2_CONFIG_PROGRAM)
-	#MESSAGE(FATAL_ERROR "Libxml2 cannot be found on your system. Libxml2 is required for ParadisEO-PEO install")
+	MESSAGE(FATAL_ERROR "Libxml2 cannot be found on your system. Libxml2 is required for ParadisEO-PEO install")
 ENDIF(NOT XML2_CONFIG_PROGRAM)
 
 # set libxml2 cflags in XML2_CFLAGS
