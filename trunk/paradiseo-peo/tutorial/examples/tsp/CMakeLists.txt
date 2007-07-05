@@ -1,5 +1,21 @@
 
 ######################################################################################
+### 0) Copy the "benchs" directory in the build directory to easily run the lessons
+######################################################################################
+
+ADD_CUSTOM_TARGET(copy_tsp_benchmarks ALL)
+ADD_CUSTOM_COMMAND(
+    TARGET copy_tsp_benchmarks
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND}
+    ARGS -E copy_directory 
+      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/examples/tsp/benchs
+      ${ParadisEO-PEO_BINARY_DIR}/tutorial/examples/tsp/benchs)
+
+######################################################################################
+
+
+######################################################################################
 ### 1) Include the sources
 ######################################################################################
 
@@ -14,7 +30,7 @@ INCLUDE_DIRECTORIES(${PEO_SRC_DIR})
 ### 2) Define your target(s): just the tsp lib here
 ######################################################################################
 
-SET(TSP_LIB_OUTPUT_PATH ${TSP_EXAMPLE_DIR}/build)
+SET(TSP_LIB_OUTPUT_PATH ${TSP_BINARY_DIR}/lib)
 SET(LIBRARY_OUTPUT_PATH ${TSP_LIB_OUTPUT_PATH})
 
 SET (TSP_SOURCES 	data.h 

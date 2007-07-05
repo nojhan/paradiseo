@@ -3,8 +3,8 @@
 ### 1) Definitions (required for tsp target)
 ######################################################################################
 
-SET(TSP_EXAMPLE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/examples/tsp CACHE PATH "TSP example directory")
-
+SET(TSP_SRC_DIR ${ParadisEO-PEO_SOURCE_DIR}/tutorial/examples/tsp)
+SET(TSP_BINARY_DIR ${ParadisEO-PEO_BINARY_DIR}/tutorial/examples/tsp)
 ######################################################################################
 
 ######################################################################################

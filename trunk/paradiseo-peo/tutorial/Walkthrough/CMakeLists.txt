@@ -1,10 +1,18 @@
 
 ######################################################################################
-### 0) Set the compiler
+### 0) Pre-config
 ######################################################################################
 
 SET (CMAKE_CXX_COMPILER mpicxx)
 
+ADD_CUSTOM_TARGET(copy_walkthrough_config ALL)
+ADD_CUSTOM_COMMAND(
+    TARGET copy_walkthrough_config
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND}
+    ARGS -E copy_directory 
+      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Walkthrough/config
+      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Walkthrough/tsp/config)
 ######################################################################################
 
 
@@ -15,7 +23,7 @@ SET (CMAKE_CXX_COMPILER mpicxx)
 INCLUDE_DIRECTORIES(${EO_SRC_DIR})
 INCLUDE_DIRECTORIES(${MO_SRC_DIR})
 INCLUDE_DIRECTORIES(${PEO_SRC_DIR})
-INCLUDE_DIRECTORIES(${TSP_EXAMPLE_DIR}/src)
+INCLUDE_DIRECTORIES(${TSP_SRC_DIR})
 
 ######################################################################################
 

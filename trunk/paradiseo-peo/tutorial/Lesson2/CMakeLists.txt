@@ -15,7 +15,7 @@ SET (CMAKE_CXX_COMPILER mpicxx)
 INCLUDE_DIRECTORIES(${EO_SRC_DIR})
 INCLUDE_DIRECTORIES(${MO_SRC_DIR})
 INCLUDE_DIRECTORIES(${PEO_SRC_DIR})
-INCLUDE_DIRECTORIES(${TSP_EXAMPLE_DIR}/src)
+INCLUDE_DIRECTORIES(${TSP_SRC_DIR})
 
 ######################################################################################
 
@@ -26,9 +26,9 @@ INCLUDE_DIRECTORIES(${TSP_EXAMPLE_DIR}/src)
 
 LINK_DIRECTORIES(	${EO_SRC_DIR} 
 					${EO_SRC_DIR}/utils 
-					${PEO_DIR}/build 
-					${TSP_EXAMPLE_DIR}/build)
-
+					${ParadisEO-PEO_BINARY_DIR}/lib 
+					${TSP_BINARY_DIR}/lib)
+					
 ######################################################################################
 
 
@@ -43,7 +43,6 @@ ADD_DEPENDENCIES(tspExample tsp)
 ADD_DEPENDENCIES(tspExample peo)
 ADD_DEPENDENCIES(tspExample rmc_mpi)
 
-SET(EXECUTABLE_OUTPUT_PATH ${TUTORIAL_LESSON2_DIR}/build)
 ######################################################################################
 
 
