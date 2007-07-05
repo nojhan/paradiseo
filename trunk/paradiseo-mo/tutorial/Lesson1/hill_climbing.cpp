@@ -21,10 +21,9 @@
 #include <two_opt_next.h>
 #include <two_opt_incr_eval.h>
 
-
-
-int main (int __argc, char * __argv []) {
-
+int
+main (int __argc, char * __argv []) 
+{
   if (__argc != 2) {
     
     std :: cerr << "Usage : ./hill_climbing [instance]" << std :: endl ;

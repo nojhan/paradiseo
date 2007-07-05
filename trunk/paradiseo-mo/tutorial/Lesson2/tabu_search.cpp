@@ -22,21 +22,22 @@
 #include <two_opt_incr_eval.h>
 #include <two_opt_tabu_list.h>
 
-int main (int __argc, char * __argv []) {
-
-  if (__argc != 2) {
-    
-    std :: cerr << "Usage : ./tabu_search [instance]" << std :: endl ;
-    return 1 ;
-  }
-
+int
+main (int __argc, char * __argv []) 
+{
+  if (__argc != 2) 
+    {
+      std :: cerr << "Usage : ./tabu_search [instance]" << std :: endl ;
+      return 1 ;
+    }
+  
   Graph :: load (__argv [1]) ; // Instance
-
+  
   Route route ; // Solution
   
   RouteInit init ; // Sol. Random Init.
   init (route) ;
-
+  
   RouteEval full_eval ; // Full. Eval.
   full_eval (route) ;
   
@@ -61,9 +62,9 @@ int main (int __argc, char * __argv []) {
 
   moTS <TwoOpt> tabu_search (two_opt_init, two_opt_next, two_opt_incr_eval, tabu_list, aspir_crit, cont, full_eval) ;
   tabu_search (route) ;
-
+  
   std :: cout << "[To] " << route << std :: endl ;
-
+  
   return 0 ;
 }
 

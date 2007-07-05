@@ -20,14 +20,15 @@
 #include <two_opt_rand.h>
 #include <two_opt_incr_eval.h>
 
-int main (int __argc, char * __argv []) {
-
-  if (__argc != 2) {
-    
-    std :: cerr << "Usage : ./simulated_annealing [instance]" << std :: endl ;
-    return 1 ;
-  }
-
+int
+main (int __argc, char * __argv []) 
+{
+  if (__argc != 2) 
+    {
+      std :: cerr << "Usage : ./simulated_annealing [instance]" << std :: endl ;
+      return 1 ;
+    }
+  
   Graph :: load (__argv [1]) ; // Instance
 
   Route route ; // Solution
