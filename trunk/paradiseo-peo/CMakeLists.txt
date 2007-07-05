@@ -4,14 +4,14 @@
 ######################################################################################
 
 IF(WIN32)
-	#MESSAGE (FATAL_ERROR "ParadisEO-PEO can not be generated on Windows systems")
+	MESSAGE (FATAL_ERROR "ParadisEO-PEO can not be generated on Windows systems")
 ENDIF(WIN32)
 
 # check libxml2
 FIND_PROGRAM(XML2_CONFIG_PROGRAM NAMES xml2-config  PATHS /usr/local/bin /usr/bin  DOC "The libxml2 (www.xmlsoft.org) configuration tool")
 
 IF(NOT XML2_CONFIG_PROGRAM)
-	MESSAGE(FATAL_ERROR "Libxml2 cannot be found on your system. Libxml2 is required for ParadisEO-PEO install")
+	#MESSAGE(FATAL_ERROR "Libxml2 cannot be found on your system. Libxml2 is required for ParadisEO-PEO install")
 ENDIF(NOT XML2_CONFIG_PROGRAM)
 
 # set libxml2 cflags in XML2_CFLAGS
@@ -145,6 +145,6 @@ ENDIF(NOT ${MO_DIR} MATCHES "${ABSOLUTE_PATH_REGEX}")
 ### 6) Where must cmake go now ?
 ######################################################################################
 
-SUBDIRS(doc src ) #tutorial)
+SUBDIRS(doc src tutorial)
 
 ######################################################################################

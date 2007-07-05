@@ -24,8 +24,8 @@ P_EXIT_INSTALL=5
 
 IS_MPICH_INSTALLED=1
 IS_LIBXML2_INSTALLED=1
-USE_EXISTING_MPICH=1
-USE_EXISTING_LIBXML2=1
+USE_EXISTING_MPICH=-1
+USE_EXISTING_LIBXML2=-1
 
 # install steps
 S_INTRODUCTION=1000
@@ -768,7 +768,6 @@ function run_install_step()
 #------------------------------------------------------#
 function check_utils_install
 {
-	
 	# is there an available version of mpich on the system ?
 	(mpicxx --version) < /dev/null > /dev/null 2>&1 ||
 	{
@@ -806,8 +805,6 @@ function check_utils_install
 				TREATENED=1
 			fi
 		done
-	else
-		echo $IS_MPICH_INSTALLED
 	fi
 	
 	
@@ -919,17 +916,19 @@ do
 		if [ "$USE_EXISTING_MPICH" = "1" ] && [ "$USE_EXISTING_LIBXML2" = "1" ] 
 		then
 			THE_GOOD_INSTALL=$FULL_INSTALL_WITHOUT_LIBXML2_MPICH2
-		fi
-		if [ "$USE_EXISTING_MPICH" = "1" ] && [ "$USE_EXISTING_LIBXML2" = "0" ] 
+		
+		elif [ "$USE_EXISTING_MPICH" = "1" ] && [ "$USE_EXISTING_LIBXML2" = "0" ] 
 		then
 			THE_GOOD_INSTALL=$FULL_INSTALL_WITHOUT_MPICH
-		fi
-		if [ "$USE_EXISTING_MPICH" = "0" ] && [ "$USE_EXISTING_LIBXML2" = "1" ] 
+		
+		elif [ "$USE_EXISTING_MPICH" = "0" ] && [ "$USE_EXISTING_LIBXML2" = "1" ] 
 		then
 			THE_GOOD_INSTALL=$FULL_INSTALL_WITHOUT_LIBXML2
-		fi
-		if [ "$USE_EXISTING_MPICH" = "0" ] && [ "$USE_EXISTING_LIBXML2" = "0" ] 
+		
+		elif [ "$USE_EXISTING_MPICH" = "0" ] && [ "$USE_EXISTING_LIBXML2" = "0" ] 
 		then
+			THE_GOOD_INSTALL=$FULL_INSTALL
+		else
 			THE_GOOD_INSTALL=$FULL_INSTALL
 		fi
 
@@ -961,17 +960,19 @@ do
 		if [ "$USE_EXISTING_MPICH" = "1" ] && [ "$USE_EXISTING_LIBXML2" = "1" ] 
 		then
 			THE_GOOD_PARALLEL_INSTALL=$PARALLEL_INSTALL_WITHOUT_LIBXML2_MPICH2
-		fi
-		if [ "$USE_EXISTING_MPICH" = "1" ] && [ "$USE_EXISTING_LIBXML2" = "0" ] 
+		
+		elif [ "$USE_EXISTING_MPICH" = "1" ] && [ "$USE_EXISTING_LIBXML2" = "0" ] 
 		then
 			THE_GOOD_PARALLEL_INSTALL=$PARALLEL_INSTALL_WITHOUT_MPICH2
-		fi
-		if [ "$USE_EXISTING_MPICH" = "0" ] && [ "$USE_EXISTING_LIBXML2" = "1" ] 
+		
+		elif [ "$USE_EXISTING_MPICH" = "0" ] && [ "$USE_EXISTING_LIBXML2" = "1" ] 
 		then
 			THE_GOOD_PARALLEL_INSTALL=$PARALLEL_INSTALL_WITHOUT_LIBXML2
-		fi
-		if [ "$USE_EXISTING_MPICH" = "0" ] && [ "$USE_EXISTING_LIBXML2" = "0" ] 
+		
+		elif [ "$USE_EXISTING_MPICH" = "0" ] && [ "$USE_EXISTING_LIBXML2" = "0" ] 
 		then
+			THE_GOOD_PARALLEL_INSTALL=$PARALLEL_INSTALL
+		else
 			THE_GOOD_PARALLEL_INSTALL=$PARALLEL_INSTALL
 		fi
 

@@ -43,7 +43,6 @@ ADD_DEPENDENCIES(tspExample tsp)
 ADD_DEPENDENCIES(tspExample peo)
 ADD_DEPENDENCIES(tspExample rmc_mpi)
 
-SET(EXECUTABLE_OUTPUT_PATH ${TUTORIAL_LESSON3_DIR}/build)
 ######################################################################################
 
 

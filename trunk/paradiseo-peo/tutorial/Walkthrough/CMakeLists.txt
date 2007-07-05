@@ -35,7 +35,7 @@ INCLUDE_DIRECTORIES(${TSP_SRC_DIR})
 LINK_DIRECTORIES(	${EO_SRC_DIR} 
 					${EO_SRC_DIR}/utils 
 					${PEO_DIR}/build 
-					${TSP_EXAMPLE_DIR}/build)
+					${TSP_BINARY_DIR}/lib)
 
 ######################################################################################
 
@@ -69,7 +69,6 @@ ADD_DEPENDENCIES(exampleC rmc_mpi)
 ADD_DEPENDENCIES(exampleD rmc_mpi)
 ADD_DEPENDENCIES(exampleE rmc_mpi)
 
-SET(EXECUTABLE_OUTPUT_PATH ${TUTORIAL_WALKTHROUGH_DIR}/build)
 ######################################################################################
 
 
