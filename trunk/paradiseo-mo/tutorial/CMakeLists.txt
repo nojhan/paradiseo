@@ -1,9 +1,10 @@
 
 ######################################################################################
-### 2) Definitions (required for tsp target)
+### 1) Definitions (required for tsp target)
 ######################################################################################
 
-SET(TSP_EXAMPLE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/examples/tsp CACHE PATH "TSP example directory")
+SET(TSP_SRC_DIR ${ParadisEO-MO_SOURCE_DIR}/tutorial/examples/tsp CACHE PATH "TSP src directory")
+SET(TSP_BINARY_DIR ${ParadisEO-MO_BINARY_DIR}/tutorial/examples/tsp CACHE PATH "TSP binary directory")
 
 ######################################################################################
 

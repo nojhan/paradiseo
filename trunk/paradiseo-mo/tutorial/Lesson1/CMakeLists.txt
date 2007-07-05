@@ -7,7 +7,7 @@
 INCLUDE_DIRECTORIES(${EO_SRC_DIR})
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/utils)
 INCLUDE_DIRECTORIES(${MO_SRC_DIR})
-INCLUDE_DIRECTORIES(${TSP_EXAMPLE_DIR}/src)
+INCLUDE_DIRECTORIES(${TSP_SRC_DIR})
 ######################################################################################
 
 
@@ -18,8 +18,7 @@ INCLUDE_DIRECTORIES(${TSP_EXAMPLE_DIR}/src)
 
 # --> UNIX 
 IF(UNIX)  
-  LINK_DIRECTORIES(${EO_SRC_DIR} ${EO_SRC_DIR}/utils ${TSP_EXAMPLE_DIR}/build)
-
+  LINK_DIRECTORIES(${EO_SRC_DIR} ${EO_SRC_DIR}/utils ${TSP_BINARY_DIR}/lib)
 # --> WIN
 ELSEIF(WIN32)  
   # "CMAKE_BUILD_TYPE" supposed to be given on the command line, default=Debug
@@ -28,10 +27,10 @@ ELSEIF(WIN32)
   ENDIF (NOT DEFINED CMAKE_BUILD_TYPE)
  
   IF (CMAKE_BUILD_TYPE STREQUAL Debug)
-  	LINK_DIRECTORIES(${TSP_EXAMPLE_DIR}\\build\\debug)
+  	LINK_DIRECTORIES(${TSP_BINARY_DIR}\\debug)
   	LINK_DIRECTORIES(${EO_LIB_DIR}\\debug)
   ELSEIF(CMAKE_BUILD_TYPE STREQUAL Release)
-  	LINK_DIRECTORIES(${TSP_EXAMPLE_DIR}\\build\\release)
+  	LINK_DIRECTORIES(${TSP_BINARY_DIR}\\release)
   	LINK_DIRECTORIES(${EO_LIB_DIR}\\release)  
   ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
 
@@ -49,8 +48,6 @@ ENDIF(UNIX)
 ADD_EXECUTABLE(hill_climbing hill_climbing.cpp) 
 
 ADD_DEPENDENCIES(hill_climbing tsp)
-
-SET(EXECUTABLE_OUTPUT_PATH ${TUTORIAL_LESSON1_DIR}/build)
 ######################################################################################
 
 
