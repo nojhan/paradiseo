@@ -24,7 +24,7 @@ INCLUDE_DIRECTORIES(${XML2_CFLAGS_WITH_WHITESPACE})
 ### 2) Define your target(s): just the core library here
 ######################################################################################
 
-SET(RMC_MPI_LIB_OUTPUT_PATH ${PEO_DIR}/build)
+SET(RMC_MPI_LIB_OUTPUT_PATH ${ParadisEO-PEO_BINARY_DIR}/lib)
 SET(LIBRARY_OUTPUT_PATH ${RMC_MPI_LIB_OUTPUT_PATH})
 
 SET (RMC_MPI_SOURCES node.cpp 

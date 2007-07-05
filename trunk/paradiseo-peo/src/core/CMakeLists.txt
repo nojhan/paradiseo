@@ -13,7 +13,7 @@ INCLUDE_DIRECTORIES(${EO_SRC_DIR})
 ### 2) Define your target(s): just the peo library here
 ######################################################################################
 
-SET(CORE_LIB_OUTPUT_PATH ${PEO_DIR}/build)
+SET(CORE_LIB_OUTPUT_PATH ${ParadisEO-PEO_BINARY_DIR}/lib)
 SET(LIBRARY_OUTPUT_PATH ${CORE_LIB_OUTPUT_PATH})
 
 SET (CORE_SOURCES 	peo_init.cpp

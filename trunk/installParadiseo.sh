@@ -404,7 +404,7 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Installing Paradiseo-MO. Please wait ...'
 	
-		execute_cmd "cd $installKitPath/paradiseo-mo" "[$currentStepCounter-1] Go in Paradiseo-MO dir"  $SPY 
+		execute_cmd "cd $installKitPath/paradiseo-mo/build" "[$currentStepCounter-1] Go in Paradiseo-MO dir"  $SPY 
 		RETURN=$?
 		execute_cmd "cmake . -DEOdir=$installKitPath/paradiseo-eo" "[$currentStepCounter-2] Run CMake"  $SPY
 		RETURN=`expr $RETURN + $?`
@@ -427,7 +427,7 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Installing Paradiseo-MOEO. Please wait ...'
 		
-		execute_cmd "cd $installKitPath/paradiseo-moeo" "[$currentStepCounter-1] Go in Paradiseo-MOEO dir"  $SPY 
+		execute_cmd "cd $installKitPath/paradiseo-moeo/build" "[$currentStepCounter-1] Go in Paradiseo-MOEO dir"  $SPY 
 		RETURN=$?
 		execute_cmd "cmake . -DEOdir=$installKitPath/paradiseo-eo" "[$currentStepCounter-2] Run CMake"  $SPY
 		RETURN=`expr $RETURN + $?`
@@ -663,7 +663,7 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Installing Paradiseo-PEO. Please wait ...'
 		
-		execute_cmd "cd $installKitPath/paradiseo-peo" "[$currentStepCounter-1] Go in Paradiseo-PEO dir"  $SPY 
+		execute_cmd "cd $installKitPath/paradiseo-peo/build" "[$currentStepCounter-1] Go in Paradiseo-PEO dir"  $SPY 
 		RETURN=$?
 		execute_cmd "cmake . -DEOdir=$installKitPath/paradiseo-eo/ -DMOdir=$installKitPath/paradiseo-mo" "[$currentStepCounter-2] Run CMake for ParadisEO-PEO"  $SPY
 		RETURN=`expr $RETURN + $?`

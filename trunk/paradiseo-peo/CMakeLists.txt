@@ -4,7 +4,7 @@
 ######################################################################################
 
 IF(WIN32)
-	MESSAGE (FATAL_ERROR "ParadisEO-PEO can not be generated on Windows systems")
+	#MESSAGE (FATAL_ERROR "ParadisEO-PEO can not be generated on Windows systems")
 ENDIF(WIN32)
 
 # check libxml2
@@ -36,12 +36,8 @@ INCLUDE(peo-conf.cmake OPTIONAL)
 ### 2) Main project config 
 ######################################################################################
 
-IF(NOT DEFINED ${PROJECT_NAME} OR ${PROJECT_NAME} STREQUAL "Project")
-    SET(PROJECT_NAME "ParadisEO-PEO")
-ENDIF(NOT DEFINED ${PROJECT_NAME} OR ${PROJECT_NAME} STREQUAL "Project")
-
 # set the project name
-PROJECT(${PROJECT_NAME})
+PROJECT(ParadisEO-PEO)
 
 # check cmake version compatibility
 CMAKE_MINIMUM_REQUIRED(VERSION 2.4 FATAL_ERROR)
@@ -76,7 +72,7 @@ INCLUDE(CheckLibraryExists)
 ######################################################################################
 
 IF(NOT DEFINED PEO_DIR)
-  SET(PEO_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE PATH "ParadisEO-PEO main directory") 
+  SET(PEO_DIR ${ParadisEO-PEO_SOURCE_DIR} CACHE PATH "ParadisEO-PEO main directory") 
 ENDIF(NOT DEFINED PEO_DIR)
 
 # Need main EO directory path
@@ -104,11 +100,11 @@ IF(NOT DEFINED MO_SRC_DIR)
 ENDIF(NOT DEFINED MO_SRC_DIR)
 
 IF(NOT DEFINED PEO_SRC_DIR)
-  SET(PEO_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
+  SET(PEO_SRC_DIR ${PEO_DIR}/src)
 ENDIF(NOT DEFINED PEO_SRC_DIR)
 
 IF(NOT DEFINED PEO_DOC_DIR)
-  SET(PEO_DOC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/doc)
+  SET(PEO_DOC_DIR ${PEO_DIR}/doc)
 ENDIF(NOT DEFINED PEO_DOC_DIR)
 ######################################################################################
 
@@ -149,6 +145,6 @@ ENDIF(NOT ${MO_DIR} MATCHES "${ABSOLUTE_PATH_REGEX}")
 ### 6) Where must cmake go now ?
 ######################################################################################
 
-SUBDIRS(doc src tutorial)
+SUBDIRS(doc src ) #tutorial)
 
 ######################################################################################
