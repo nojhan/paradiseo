@@ -33,7 +33,7 @@
 --status=./FlowShopEA.status               # Status file
 
 ######    Representation          ######
---BenchmarkFile=../benchs/020_10_01.txt    # -B : Benchmark file name (benchmarks are available at www.lifl.fr/~liefooga/benchmarks) REQUIRED 
+--BenchmarkFile=../examples/flowshop/benchs/020_10_01.txt  # -B : Benchmark file name REQUIRED
 
 ######    Stopping criterion      ######
 --maxGen=100                               # -G : Maximum number of generations (0 = none)
