@@ -1,4 +1,4 @@
-.TH "moFirstImprSelect" 3 "27 Jun 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moFirstImprSelect" 3 "5 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -30,7 +30,7 @@ Inherits \fBmoMoveSelect< M >< M >\fP.
 .ti -1c
 .RI "bool \fBupdate\fP (const M &__move, const typename M::EOType::Fitness &__fit)"
 .br
-.RI "\fIFunction that indicates if the current move has not improved the fitness. \fP"
+.RI "\fI\fBFunction\fP that indicates if the current move has not improved the fitness. \fP"
 .ti -1c
 .RI "void \fBoperator()\fP (M &__move, \fBFitness\fP &__fit)  throw (EmptySelection)"
 .br
@@ -80,7 +80,7 @@ Definition at line 35 of file moFirstImprSelect.h.
 References moFirstImprSelect< M >::init_fit, and moFirstImprSelect< M >::valid.
 .SS "template<class M> bool \fBmoFirstImprSelect\fP< M >::update (const M & __move, const typename M::EOType::Fitness & __fit)\fC [inline]\fP"
 .PP
-Function that indicates if the current move has not improved the fitness. 
+\fBFunction\fP that indicates if the current move has not improved the fitness. 
 .PP
 If the given fitness enables an improvment, the move (\fBmoMove\fP) should be applied to the current solution.
 .PP

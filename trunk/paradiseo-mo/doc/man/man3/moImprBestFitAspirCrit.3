@@ -1,4 +1,4 @@
-.TH "moImprBestFitAspirCrit" 3 "27 Jun 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moImprBestFitAspirCrit" 3 "5 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -34,7 +34,7 @@ Inherits \fBmoAspirCrit< M >< M >\fP.
 .ti -1c
 .RI "bool \fBoperator()\fP (const M &__move, const \fBFitness\fP &__fit)"
 .br
-.RI "\fIFunction that indicates if the fit is better that the already saved fit. \fP"
+.RI "\fI\fBFunction\fP that indicates if the fit is better that the already saved fit. \fP"
 .in -1c
 .SS "Private Attributes"
 
@@ -59,9 +59,9 @@ This criterion is satisfied when a given fitness is the best ever considered.
 Definition at line 22 of file moImprBestFitAspirCrit.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> bool \fBmoImprBestFitAspirCrit\fP< M >::operator() (const M & __move, const \fBFitness\fP & __fit)\fC [inline, virtual]\fP"
+.SS "template<class M> bool \fBmoImprBestFitAspirCrit\fP< M >::operator() (const M & __move, const \fBFitness\fP & __fit)\fC [inline]\fP"
 .PP
-Function that indicates if the fit is better that the already saved fit. 
+\fBFunction\fP that indicates if the fit is better that the already saved fit. 
 .PP
 The first time, the function only saved the current move and fitness.
 .PP
@@ -78,8 +78,6 @@ TRUE the first time and if __fit > best_fit, else FALSE.
 .RE
 .PP
 
-.PP
-Implements \fBeoBF< const M &, const M::EOType::Fitness &, bool >\fP.
 .PP
 Definition at line 52 of file moImprBestFitAspirCrit.h.
 .PP

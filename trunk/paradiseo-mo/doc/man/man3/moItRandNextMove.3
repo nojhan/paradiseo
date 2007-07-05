@@ -1,4 +1,4 @@
-.TH "moItRandNextMove" 3 "27 Jun 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moItRandNextMove" 3 "5 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -77,7 +77,7 @@ The constructor.
 Definition at line 37 of file moItRandNextMove.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> bool \fBmoItRandNextMove\fP< M >::operator() (M & __move, const \fBEOT\fP & __sol)\fC [inline, virtual]\fP"
+.SS "template<class M> bool \fBmoItRandNextMove\fP< M >::operator() (M & __move, const \fBEOT\fP & __sol)\fC [inline]\fP"
 .PP
 Generation of a new move. 
 .PP
@@ -96,8 +96,6 @@ FALSE if the maximum number of iteration is reached, else TRUE.
 .RE
 .PP
 
-.PP
-Implements \fBeoBF< M &, const M::EOType &, bool >\fP.
 .PP
 Definition at line 52 of file moItRandNextMove.h.
 .PP

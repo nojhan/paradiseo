@@ -1,11 +1,11 @@
-\section{moMoveSelect$<$ M $>$ Class Template Reference}
+\section{mo\-Move\-Select$<$ M $>$ Class Template Reference}
 \label{classmo_move_select}\index{moMoveSelect@{moMoveSelect}}
-Class that describes a move selector (\doxyref{moMove}{p.}{classmo_move}).  
+Class that describes a move selector (\doxyref{mo\-Move}{p.}{classmo_move}).  
 
 
-{\tt \#include $<$moMoveSelect.h$>$}
+{\tt \#include $<$mo\-Move\-Select.h$>$}
 
-Inheritance diagram for moMoveSelect$<$ M $>$::\begin{figure}[H]
+Inheritance diagram for mo\-Move\-Select$<$ M $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2.82828cm]{classmo_move_select}
@@ -14,33 +14,33 @@ Inheritance diagram for moMoveSelect$<$ M $>$::\begin{figure}[H]
 \subsection*{Public Types}
 \begin{CompactItemize}
 \item 
-typedef M::EOType::Fitness {\bf Fitness}\label{classmo_move_select_8148ccc0e6fbd209c3fe6829559895c8}
+typedef M::EOType::Fitness \bf{Fitness}\label{classmo_move_select_8148ccc0e6fbd209c3fe6829559895c8}
 
 \begin{CompactList}\small\item\em Alias for the fitness. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-virtual void {\bf init} (const {\bf Fitness} \&\_\-\_\-fit)=0
+virtual void \bf{init} (const \bf{Fitness} \&\_\-\_\-fit)=0
 \begin{CompactList}\small\item\em Procedure which initialises all that the move selector needs including the initial fitness. \item\end{CompactList}\item 
-virtual bool {\bf update} (const M \&\_\-\_\-move, const {\bf Fitness} \&\_\-\_\-fit)=0
-\begin{CompactList}\small\item\em Function which updates the best solutions. \item\end{CompactList}\end{CompactItemize}
+virtual bool \bf{update} (const M \&\_\-\_\-move, const \bf{Fitness} \&\_\-\_\-fit)=0
+\begin{CompactList}\small\item\em \doxyref{Function} which updates the best solutions. \item\end{CompactList}\end{CompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class M$>$ class moMoveSelect$<$ M $>$}
+\subsubsection*{template$<$class M$>$ class mo\-Move\-Select$<$ M $>$}
 
-Class that describes a move selector (\doxyref{moMove}{p.}{classmo_move}). 
+Class that describes a move selector (\doxyref{mo\-Move}{p.}{classmo_move}). 
 
-It iteratively considers some moves (\doxyref{moMove}{p.}{classmo_move}) and their associated fitnesses. The best move is so regularly updated. At any time, it could be accessed. 
+It iteratively considers some moves (\doxyref{mo\-Move}{p.}{classmo_move}) and their associated fitnesses. The best move is so regularly updated. At any time, it could be accessed. 
 
 
 
-Definition at line 32 of file moMoveSelect.h.
+Definition at line 32 of file mo\-Move\-Select.h.
 
 \subsection{Member Function Documentation}
-\index{moMoveSelect@{moMoveSelect}!init@{init}}
-\index{init@{init}!moMoveSelect@{moMoveSelect}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ virtual void {\bf moMoveSelect}$<$ M $>$::init (const {\bf Fitness} \& {\em \_\-\_\-fit})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classmo_move_select_bca4c43f13d26eca7163aeb272a4a52e}
+\index{moMoveSelect@{mo\-Move\-Select}!init@{init}}
+\index{init@{init}!moMoveSelect@{mo\-Move\-Select}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ virtual void \bf{mo\-Move\-Select}$<$ M $>$::init (const \bf{Fitness} \& {\em \_\-\_\-fit})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classmo_move_select_bca4c43f13d26eca7163aeb272a4a52e}
 
 
 Procedure which initialises all that the move selector needs including the initial fitness. 
@@ -54,12 +54,12 @@ In order to know the fitness of the solution, for which the neighborhood will be
 \end{Desc}
 
 
-Implemented in {\bf moBestImprSelect$<$ M $>$} \doxyref{}{p.}{classmo_best_impr_select_2d2abf9aa17dc77cbb4f41810ab7b956}, {\bf moFirstImprSelect$<$ M $>$} \doxyref{}{p.}{classmo_first_impr_select_4c5ce18ede46247a439c68f6954a4055}, and {\bf moRandImprSelect$<$ M $>$} \doxyref{}{p.}{classmo_rand_impr_select_a19726a1509cff874801615d63a3b5d9}.\index{moMoveSelect@{moMoveSelect}!update@{update}}
-\index{update@{update}!moMoveSelect@{moMoveSelect}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ virtual bool {\bf moMoveSelect}$<$ M $>$::update (const M \& {\em \_\-\_\-move}, const {\bf Fitness} \& {\em \_\-\_\-fit})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classmo_move_select_7c157b6e64fd417acf6e900059204eb1}
+Implemented in \bf{mo\-Best\-Impr\-Select$<$ M $>$} \doxyref{p.}{classmo_best_impr_select_2d2abf9aa17dc77cbb4f41810ab7b956}, \bf{mo\-First\-Impr\-Select$<$ M $>$} \doxyref{p.}{classmo_first_impr_select_4c5ce18ede46247a439c68f6954a4055}, and \bf{mo\-Rand\-Impr\-Select$<$ M $>$} \doxyref{p.}{classmo_rand_impr_select_a19726a1509cff874801615d63a3b5d9}.\index{moMoveSelect@{mo\-Move\-Select}!update@{update}}
+\index{update@{update}!moMoveSelect@{mo\-Move\-Select}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ virtual bool \bf{mo\-Move\-Select}$<$ M $>$::update (const M \& {\em \_\-\_\-move}, const \bf{Fitness} \& {\em \_\-\_\-fit})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classmo_move_select_7c157b6e64fd417acf6e900059204eb1}
 
 
-Function which updates the best solutions. 
+\doxyref{Function} which updates the best solutions. 
 
 \begin{Desc}
 \item[Parameters:]
@@ -70,8 +70,8 @@ Function which updates the best solutions.
 \item[Returns:]a boolean that expresses the need to resume the exploration. \end{Desc}
 
 
-Implemented in {\bf moBestImprSelect$<$ M $>$} \doxyref{}{p.}{classmo_best_impr_select_d10e3e6f8a0277731e95ef506d064d6d}, and {\bf moRandImprSelect$<$ M $>$} \doxyref{}{p.}{classmo_rand_impr_select_60ae5548560caee7e28d5ed2446186c9}.
+Implemented in \bf{mo\-Best\-Impr\-Select$<$ M $>$} \doxyref{p.}{classmo_best_impr_select_d10e3e6f8a0277731e95ef506d064d6d}, and \bf{mo\-Rand\-Impr\-Select$<$ M $>$} \doxyref{p.}{classmo_rand_impr_select_60ae5548560caee7e28d5ed2446186c9}.
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 
-moMoveSelect.h\end{CompactItemize}
+mo\-Move\-Select.h\end{CompactItemize}
