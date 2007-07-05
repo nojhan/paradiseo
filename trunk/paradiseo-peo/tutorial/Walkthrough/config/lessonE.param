@@ -4,8 +4,8 @@
 
 ## deployment schema
 
---schema=../config/schemaE.xml
+--schema=config/schemaE.xml
 
 ## parameters
 
---inst=../../examples/tsp/benchs/eil101.tsp
+--inst=../examples/tsp/benchs/eil101.tsp
