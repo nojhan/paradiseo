@@ -13,15 +13,27 @@ paradiseo-help@lists.gforge.inria.fr
 =======================================================================
                         BUILDING PARADISEO-MOEO
 =======================================================================
-The basic installation procedure goes the following:
+The basic installation procedure goes the following.
 
-Go to your build-directory and run 
-    > cmake -DEOdir=$(EO_SRC)
+To compile paradiseo-moeo in the default directory,
+go to paradiseo-moeo/build/ and run:
+    > cmake ../ -DEOdir=$(EO_SRC)
     > make
+    // for an easy-use of the provided lessons
+    > make install
     // optional (if the documentation is not already available)
     > make doc
 
-where $(EO_SRC) is the top-level source directory of PARADISEO-EO.
+To compile paradiseo-moeo anywhere else, simply run:
+    > cmake $(MOEO) -DEOdir=$(EO_SRC)
+    > make
+    // for an easy-use of the provided lessons
+    > make install
+    // optional (if the documentation is not already available)
+    > make doc
+
+where $(EO_SRC) is the top-level source directory of PARADISEO-EO,
+and $(MOEO) is the top-level directory of PARADISEO-MOEO.
 
 To clean everything, simply run
     > make clean
