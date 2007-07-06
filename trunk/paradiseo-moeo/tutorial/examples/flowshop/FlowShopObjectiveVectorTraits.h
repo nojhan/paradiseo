@@ -30,6 +30,13 @@ public:
 
 
     /**
+     * Returns true if the _ith objective have to be maximzed
+     * @param _i index of the objective
+     */
+    static bool maximizing (int _i);
+
+
+    /**
      * Returns the number of objectives
      */
     static unsigned int nObjectives ();

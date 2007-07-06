@@ -25,6 +25,10 @@ public:
     {
         return true;
     }
+    static bool maximizing (int i)
+    {
+        return false;
+    }
     static unsigned int nObjectives ()
     {
         return 2;

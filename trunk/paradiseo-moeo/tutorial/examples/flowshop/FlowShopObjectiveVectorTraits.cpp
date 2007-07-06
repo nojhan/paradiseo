@@ -19,6 +19,11 @@ bool FlowShopObjectiveVectorTraits::minimizing (int _i)
     return true;
 }
 
+bool FlowShopObjectiveVectorTraits::maximizing (int _i)
+{
+    // minimizing both
+    return false;
+}
 
 unsigned int FlowShopObjectiveVectorTraits::nObjectives ()
 {
