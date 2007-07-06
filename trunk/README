@@ -18,9 +18,11 @@ structure:
 .../                        Installation directory (specified with ./installParadiseo.sh)
    |
    +-- lib/
-   |	   | +-- /paradiseo-eo.tar.gz     ParadisEO-EO archive
    |	   | +-- /libxml2-2.6.0.tar.bz2   LIBXML2 archive (required for ParadisEO)
    |	   | +-- /mpich2-1.0.3.tar.gz     MPICH2 archive (required for ParadisEO)
+   |
+   |
+   +-- paradiseo-eo 			   paradiseo-eo dir
    |
    |
    +-- paradiseo-mo                        paradiseo-mo dir 
@@ -46,7 +48,6 @@ you should have the following structure :
 .../                        Installation directory (specified with ./installParadiseo.sh)
    |
    +-- lib/
-   |	   | +-- /paradiseo-eo.tar.gz     ParadisEO-EO archive
    |	   | +-- /libxml2-2.6.0.tar.bz2   LIBXML2 archive (required for ParadisEO)
    |	   | +-- /mpich2-1.0.3.tar.gz     MPICH2 archive (required for ParadisEO)
    |
