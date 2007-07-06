@@ -10,14 +10,28 @@ Welcome to PARADISEO-MO (Moving Objects), one part of the ParadisEO framework.
 =======================================================================
 The basic installation procedure goes the following:
 
-Go to your build-directory and run
-   cmake . -DEOdir=$(EO_SRC) 
-   make
-   //optional, for documentation if it is not already available.
-   make doc
+To compile paradiseo-mo in the default directory,
+go to paradiseo-mo/build/ and run:
+    > cmake ../ -DEOdir=$(EO)
+    > make
+    // for an easy-use of the provided lessons
+    > make install
+    // optional (if the documentation is not already available)
+    > make doc
 
-where $(EO_SRC) is the top-level source directory of ParadisEO-EO (Evoling Object), i.e. where
-the sources where unpacked.
+To compile paradiseo-mo anywhere else, simply run:
+    > cmake $(MO) -DEOdir=$(EO)
+    > make
+    // for an easy-use of the provided lessons
+    > make install
+    // optional (if the documentation is not already available)
+    > make doc
+
+where $(EO) is the top-level directory of PARADISEO-EO,
+  and $(MO) is the top-level directory of PARADISEO-MO.
+
+To clean everything, simply run
+    > make clean
 
 ======================================================================
                       DIRECTORY STRUCTURE
@@ -26,6 +40,9 @@ After unpacking the archive file, you should end up with the following
 structure:
 
 .../                       The MAIN PARADISEO-MO directory, created when unpacking.
+   |
+   +-- build               Repertory where the executables will be produced.	
+   |
    |
    +-- src                 SOURCE directory contains most PARADISEO-MO .h files.
    |   
@@ -40,34 +57,19 @@ structure:
    |
    |
    +-- tutorial            TUTORIAL with lessons 
-   |   |
-   |   +- examples         APPLICATIONS - one directory per separate application.
-   |   |  |
-   |   |  +- tsp           traveling salesman problem (TSP) example.
-   |   |     |
-   |   |     +- src        sources files for the lesson examples using the TSP.
-   |   |     |
-   |   |     +- benchs     TSP Instance files.
-   |   |   
-   |   +- Lesson1          How make a Hill Climbing on the TSP example.
-   |   |  |
-   |   |  +- build	   Repertory where the executable "hill_climbing" will be produced.	
-   |   |  |
-   |   |  +- src           Hill climbing sources.
-   |   |
-   |   +- Lesson2          How make a Tabu Search on the TSP example.
-   |   |  |
-   |   |  +- build	   Repertory where the executable "tabu_search" will be produced.	
-   |   |  |
-   |   |  +- src           Tabu search sources.
-   |   | 
-   |   +- Lesson3          How make a Simulated Annealing on the TSP example.
-   |      |
-   |      +- build	   Repertory where the executable "simulated_annealing" will be produced.	
-   |      | 
-   |      +- src           Simulated annealing sources.
-   |
-   +-- win                 All the stuff needs for the Windows version.
+       |
+       +- examples         APPLICATIONS - one directory per separate application.
+       |  |
+       |  +- tsp           traveling salesman problem (TSP) example sources.
+       |     |
+       |     +- benchs     TSP instance files.
+       |   
+       +- Lesson1          How make a Hill Climbing on the TSP example (source file and lesson_1.pdf).
+       |
+       +- Lesson2          How make a Tabu Search on the TSP example (source file and lesson_2.pdf).
+       |  
+       +- Lesson3          How make a Simulated Annealing on the TSP example (source file and lesson_3.pdf).
+   
 ===================================================================
               NOTES
 ===================================================================
