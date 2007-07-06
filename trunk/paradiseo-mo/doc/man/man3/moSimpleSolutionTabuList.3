@@ -1,4 +1,4 @@
-.TH "moSimpleSolutionTabuList" 3 "5 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moSimpleSolutionTabuList" 3 "6 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -30,7 +30,7 @@ Inherits \fBmoTabuList< M >< M >\fP.
 .ti -1c
 .RI "bool \fBoperator()\fP (const M &__move, const \fBEOT\fP &__sol)"
 .br
-.RI "\fI\fBFunction\fP that indicates if, in a given state, the _move is tabu or not. \fP"
+.RI "\fIFunction that indicates if, in a given state, the _move is tabu or not. \fP"
 .ti -1c
 .RI "void \fBadd\fP (const M &__move, const \fBEOT\fP &__sol)"
 .br
@@ -93,9 +93,9 @@ Definition at line 34 of file moSimpleSolutionTabuList.h.
 References moSimpleSolutionTabuList< M >::currentSize.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> bool \fBmoSimpleSolutionTabuList\fP< M >::operator() (const M & __move, const \fBEOT\fP & __sol)\fC [inline]\fP"
+.SS "template<class M> bool \fBmoSimpleSolutionTabuList\fP< M >::operator() (const M & __move, const \fBEOT\fP & __sol)\fC [inline, virtual]\fP"
 .PP
-\fBFunction\fP that indicates if, in a given state, the _move is tabu or not. 
+Function that indicates if, in a given state, the _move is tabu or not. 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -110,6 +110,8 @@ true or false.
 .RE
 .PP
 
+.PP
+Implements \fBeoBF< const M &, const M::EOType &, bool >\fP.
 .PP
 Definition at line 45 of file moSimpleSolutionTabuList.h.
 .PP
