@@ -3,9 +3,9 @@
 ### 0) Copy the "benchs" directory in the build directory to easily run the lessons
 ######################################################################################
 
-ADD_CUSTOM_TARGET(copy_tsp_benchmarks ALL)
+ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/tutorial/examples/tsp/benchs)
 ADD_CUSTOM_COMMAND(
-    TARGET copy_tsp_benchmarks
+    TARGET install
     POST_BUILD
     COMMAND ${CMAKE_COMMAND}
     ARGS -E copy_directory 

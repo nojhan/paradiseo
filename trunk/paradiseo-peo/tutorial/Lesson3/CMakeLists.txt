@@ -2,21 +2,19 @@
 ######################################################################################
 ### 0) Set the compiler and define targets to easily run the lessons
 ######################################################################################
-
 SET (CMAKE_CXX_COMPILER mpicxx)
 
-ADD_CUSTOM_TARGET(copy_lesson3_param ALL)
+ADDADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson3/lesson.param ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson3/schema.xml)
+
 ADD_CUSTOM_COMMAND(
-    TARGET copy_lesson3_param
+    TARGET install
     POST_BUILD
     COMMAND ${CMAKE_COMMAND}
     ARGS -E copy_if_different
       ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson3/lesson.param
       ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson3)
-
-ADD_CUSTOM_TARGET(copy_lesson3_xmlschema ALL)
 ADD_CUSTOM_COMMAND(
-    TARGET copy_lesson3_xmlschema
+    TARGET install
     POST_BUILD
     COMMAND ${CMAKE_COMMAND}
     ARGS -E copy_if_different

@@ -5,9 +5,10 @@
 
 SET (CMAKE_CXX_COMPILER mpicxx)
 
-ADD_CUSTOM_TARGET(copy_walkthrough_config ALL)
+ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Walkthrough/config)
+
 ADD_CUSTOM_COMMAND(
-    TARGET copy_walkthrough_config
+    TARGET install
     POST_BUILD
     COMMAND ${CMAKE_COMMAND}
     ARGS -E copy_directory 

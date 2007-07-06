@@ -1,17 +1,16 @@
 
 ######################################################################################
-### 0) Need flowhsop directory and copy the benchs
+### 0) Copy the FlowShop.param file in the build path for an easy use.
 ######################################################################################
 
-ADD_CUSTOM_TARGET(copy_flowshop_param ALL)
+ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-MOEO_SOURCE_DIR}/tutorial/Lesson1/FlowShopEA.param)
 ADD_CUSTOM_COMMAND(
-    TARGET copy_flowshop_param
+    TARGET install
     POST_BUILD
     COMMAND ${CMAKE_COMMAND}
     ARGS -E copy_if_different
       ${ParadisEO-MOEO_SOURCE_DIR}/tutorial/Lesson1/FlowShopEA.param
       ${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson1)
-
 ######################################################################################
 
 

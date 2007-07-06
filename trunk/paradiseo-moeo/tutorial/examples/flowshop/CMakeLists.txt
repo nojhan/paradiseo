@@ -3,9 +3,9 @@
 ### 0) Copy the "benchs" directory in the build directory to easily run the lessons
 ######################################################################################
 
-ADD_CUSTOM_TARGET(copy_flowshop_benchmarks ALL)
+ADD_CUSTOM_TARGET(install DEPENDS ${FLOWSHOP_SRC_DIR}/benchs)
 ADD_CUSTOM_COMMAND(
-    TARGET copy_flowshop_benchmarks
+    TARGET install
     POST_BUILD
     COMMAND ${CMAKE_COMMAND}
     ARGS -E copy_directory 
