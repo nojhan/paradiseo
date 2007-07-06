@@ -1,0 +1,211 @@
+.TH "peoSyncMultiStart" 3 "5 Jul 2007" "Version 0.1" "ParadisEO-PEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+peoSyncMultiStart \- The \fBpeoSyncMultiStart\fP class provides the basis for implementing the synchronous multi-start model, for launching several solution-based algorithms in parallel on a specified initial population.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <peoSyncMultiStart.h>\fP
+.PP
+Inherits \fBService\fP, and \fBeoUpdater\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBpeoSyncMultiStart\fP (\fBeoContinue\fP< EOT > &__cont, \fBeoSelect\fP< EOT > &__select, \fBeoReplacement\fP< EOT > &__replace, \fBmoAlgo\fP< EOT > &__ls, \fBeoPop\fP< EOT > &__pop)"
+.br
+.RI "\fIConstructor function - several simple parameters are required for defining the characteristics of the multi-start model. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP ()"
+.br
+.RI "\fIOperator which synchronously executes the specified algorithm on the individuals selected from the initial population. \fP"
+.ti -1c
+.RI "void \fBpackData\fP ()"
+.br
+.RI "\fIAuxiliary function for transferring data between the process requesting the synchronous execution of the specified algorithm and the process which actually executes the algorithm. \fP"
+.ti -1c
+.RI "void \fBunpackData\fP ()"
+.br
+.RI "\fIAuxiliary function for transferring data between the process requesting the synchronous execution of the specified algorithm and the process which actually executes the algorithm. \fP"
+.ti -1c
+.RI "void \fBexecute\fP ()"
+.br
+.RI "\fIAuxiliary function for actually executing the specified algorithm on one assigned individual. \fP"
+.ti -1c
+.RI "void \fBpackResult\fP ()"
+.br
+.RI "\fIAuxiliary function for transferring data between the process requesting the synchronous execution of the specified algorithm and the process which actually executes the algorithm. \fP"
+.ti -1c
+.RI "void \fBunpackResult\fP ()"
+.br
+.RI "\fIAuxiliary function for transferring data between the process requesting the synchronous execution of the specified algorithm and the process which actually executes the algorithm. \fP"
+.ti -1c
+.RI "void \fBnotifySendingData\fP ()"
+.br
+.RI "\fIAuxiliary function for notifications between the process requesting the synchronous multi-start execution and the processes that performs the actual execution phase. \fP"
+.ti -1c
+.RI "void \fBnotifySendingAllResourceRequests\fP ()"
+.br
+.RI "\fIAuxiliary function for notifications between the process requesting the synchronous multi-start execution and the processes that performs the actual execution phase. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoContinue\fP< EOT > & \fBcont\fP"
+.br
+.ti -1c
+.RI "\fBeoSelect\fP< EOT > & \fBselect\fP"
+.br
+.ti -1c
+.RI "\fBeoReplacement\fP< EOT > & \fBreplace\fP"
+.br
+.ti -1c
+.RI "\fBmoAlgo\fP< EOT > & \fBls\fP"
+.br
+.ti -1c
+.RI "\fBeoPop\fP< EOT > & \fBpop\fP"
+.br
+.ti -1c
+.RI "\fBeoPop\fP< EOT > \fBsel\fP"
+.br
+.ti -1c
+.RI "\fBeoPop\fP< EOT > \fBimpr_sel\fP"
+.br
+.ti -1c
+.RI "EOT \fBsol\fP"
+.br
+.ti -1c
+.RI "unsigned \fBidx\fP"
+.br
+.ti -1c
+.RI "unsigned \fBnum_term\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class peoSyncMultiStart< EOT >"
+The \fBpeoSyncMultiStart\fP class provides the basis for implementing the synchronous multi-start model, for launching several solution-based algorithms in parallel on a specified initial population. 
+
+As a simple example, several hill climbing algorithms may be synchronously launched on the specified population, each algorithm acting upon one individual only, the final result being integrated back in the population. A \fBpeoSyncMultiStart\fP object can be specified as checkpoint object for a classic ParadisEO evolutionary algorithm thus allowing for simple hybridization schemes which combine the evolutionary approach with a local search approach, for example, executed at the end of each generation. 
+.PP
+Definition at line 36 of file peoSyncMultiStart.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBpeoSyncMultiStart\fP< EOT >::\fBpeoSyncMultiStart\fP (\fBeoContinue\fP< EOT > & __cont, \fBeoSelect\fP< EOT > & __select, \fBeoReplacement\fP< EOT > & __replace, \fBmoAlgo\fP< EOT > & __ls, \fBeoPop\fP< EOT > & __pop)"
+.PP
+Constructor function - several simple parameters are required for defining the characteristics of the multi-start model. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIeoContinue<\fP EOT >& __cont - defined for including further functionality - no semantics associated at this time; 
+.br
+\fIeoSelect<\fP EOT >& __select - selection strategy for obtaining a subset of the initial population on which to apply the specified algorithm; 
+.br
+\fIeoReplacement<\fP EOT >& __replace - replacement strategy for integrating the resulting individuals in the initial population; 
+.br
+\fImoAlgo<\fP EOT >& __ls - algorithm to be applied on each of the selected individuals - a \fBmoAlgo< EOT >\fP-derived object must be specified; 
+.br
+\fIeoPop<\fP EOT >& __pop - the initial population from which the individuals are selected for applying the specified algorithm. 
+.RE
+.PP
+
+.PP
+Definition at line 106 of file peoSyncMultiStart.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> void \fBpeoSyncMultiStart\fP< EOT >::operator() ()\fC [virtual]\fP"
+.PP
+Operator which synchronously executes the specified algorithm on the individuals selected from the initial population. 
+.PP
+There is no need to explicitly call the operator - automatically called as checkpoint operator. 
+.PP
+Implements \fBeoF< void >\fP.
+.PP
+Definition at line 161 of file peoSyncMultiStart.h.
+.PP
+References peoSyncMultiStart< EOT >::idx, peoSyncMultiStart< EOT >::impr_sel, peoSyncMultiStart< EOT >::num_term, peoSyncMultiStart< EOT >::pop, Service::requestResourceRequest(), peoSyncMultiStart< EOT >::sel, peoSyncMultiStart< EOT >::select, and Communicable::stop().
+.SS "template<class EOT> void \fBpeoSyncMultiStart\fP< EOT >::packData ()\fC [virtual]\fP"
+.PP
+Auxiliary function for transferring data between the process requesting the synchronous execution of the specified algorithm and the process which actually executes the algorithm. 
+.PP
+There is no need to explicitly call the function. 
+.PP
+Reimplemented from \fBService\fP.
+.PP
+Definition at line 120 of file peoSyncMultiStart.h.
+.PP
+References peoSyncMultiStart< EOT >::idx, and peoSyncMultiStart< EOT >::sel.
+.SS "template<class EOT> void \fBpeoSyncMultiStart\fP< EOT >::unpackData ()\fC [virtual]\fP"
+.PP
+Auxiliary function for transferring data between the process requesting the synchronous execution of the specified algorithm and the process which actually executes the algorithm. 
+.PP
+There is no need to explicitly call the function. 
+.PP
+Reimplemented from \fBService\fP.
+.PP
+Definition at line 126 of file peoSyncMultiStart.h.
+.PP
+References peoSyncMultiStart< EOT >::sol.
+.SS "template<class EOT> void \fBpeoSyncMultiStart\fP< EOT >::execute ()\fC [virtual]\fP"
+.PP
+Auxiliary function for actually executing the specified algorithm on one assigned individual. 
+.PP
+There is no need to explicitly call the function. 
+.PP
+Reimplemented from \fBService\fP.
+.PP
+Definition at line 132 of file peoSyncMultiStart.h.
+.PP
+References peoSyncMultiStart< EOT >::ls, and peoSyncMultiStart< EOT >::sol.
+.SS "template<class EOT> void \fBpeoSyncMultiStart\fP< EOT >::packResult ()\fC [virtual]\fP"
+.PP
+Auxiliary function for transferring data between the process requesting the synchronous execution of the specified algorithm and the process which actually executes the algorithm. 
+.PP
+There is no need to explicitly call the function. 
+.PP
+Reimplemented from \fBService\fP.
+.PP
+Definition at line 138 of file peoSyncMultiStart.h.
+.PP
+References peoSyncMultiStart< EOT >::sol.
+.SS "template<class EOT> void \fBpeoSyncMultiStart\fP< EOT >::unpackResult ()\fC [virtual]\fP"
+.PP
+Auxiliary function for transferring data between the process requesting the synchronous execution of the specified algorithm and the process which actually executes the algorithm. 
+.PP
+There is no need to explicitly call the function. 
+.PP
+Reimplemented from \fBService\fP.
+.PP
+Definition at line 144 of file peoSyncMultiStart.h.
+.PP
+References Service::getOwner(), peoSyncMultiStart< EOT >::impr_sel, peoSyncMultiStart< EOT >::num_term, peoSyncMultiStart< EOT >::pop, peoSyncMultiStart< EOT >::replace, Communicable::resume(), peoSyncMultiStart< EOT >::sel, Thread::setActive(), and peoSyncMultiStart< EOT >::sol.
+.SS "template<class EOT> void \fBpeoSyncMultiStart\fP< EOT >::notifySendingData ()\fC [virtual]\fP"
+.PP
+Auxiliary function for notifications between the process requesting the synchronous multi-start execution and the processes that performs the actual execution phase. 
+.PP
+There is no need to explicitly call the function. 
+.PP
+Reimplemented from \fBService\fP.
+.PP
+Definition at line 172 of file peoSyncMultiStart.h.
+.SS "template<class EOT> void \fBpeoSyncMultiStart\fP< EOT >::notifySendingAllResourceRequests ()\fC [virtual]\fP"
+.PP
+Auxiliary function for notifications between the process requesting the synchronous multi-start execution and the processes that performs the actual execution phase. 
+.PP
+There is no need to explicitly call the function. 
+.PP
+Reimplemented from \fBService\fP.
+.PP
+Definition at line 177 of file peoSyncMultiStart.h.
+.PP
+References Service::getOwner(), and Thread::setPassive().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-PEO from the source code.

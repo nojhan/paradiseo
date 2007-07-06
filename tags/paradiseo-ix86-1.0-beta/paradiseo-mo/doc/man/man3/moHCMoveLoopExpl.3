@@ -1,0 +1,113 @@
+.TH "moHCMoveLoopExpl" 3 "5 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moHCMoveLoopExpl \- Iterative explorer used by a \fBmoHC\fP.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moHCMoveLoopExpl.h>\fP
+.PP
+Inherits \fBmoMoveLoopExpl< M >< M >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoHCMoveLoopExpl\fP (\fBmoMoveInit\fP< M > &__move_init, \fBmoNextMove\fP< M > &__next_move, \fBmoMoveIncrEval\fP< M > &__incr_eval, \fBmoMoveSelect\fP< M > &__move_select)"
+.br
+.RI "\fIConstructor. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (const \fBEOT\fP &__old_sol, \fBEOT\fP &__new_sol)"
+.br
+.RI "\fIProcedure which launches the explorer. \fP"
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "typedef M::EOType \fBEOT\fP"
+.br
+.RI "\fIAlias for the type. \fP"
+.ti -1c
+.RI "typedef M::EOType::Fitness \fBFitness\fP"
+.br
+.RI "\fIAlias for the fitness. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmoMoveInit\fP< M > & \fBmove_init\fP"
+.br
+.RI "\fIMove initialiser. \fP"
+.ti -1c
+.RI "\fBmoNextMove\fP< M > & \fBnext_move\fP"
+.br
+.RI "\fINeighborhood explorer. \fP"
+.ti -1c
+.RI "\fBmoMoveIncrEval\fP< M > & \fBincr_eval\fP"
+.br
+.RI "\fI(generally) Efficient evaluation. \fP"
+.ti -1c
+.RI "\fBmoMoveSelect\fP< M > & \fBmove_select\fP"
+.br
+.RI "\fIMove selector. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class M> class moHCMoveLoopExpl< M >"
+Iterative explorer used by a \fBmoHC\fP. 
+.PP
+Definition at line 23 of file moHCMoveLoopExpl.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class M> \fBmoHCMoveLoopExpl\fP< M >::\fBmoHCMoveLoopExpl\fP (\fBmoMoveInit\fP< M > & __move_init, \fBmoNextMove\fP< M > & __next_move, \fBmoMoveIncrEval\fP< M > & __incr_eval, \fBmoMoveSelect\fP< M > & __move_select)\fC [inline]\fP"
+.PP
+Constructor. 
+.PP
+All the boxes have to be specified.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__move_init\fP the move initialiser. 
+.br
+\fI__next_move\fP the neighborhood explorer. 
+.br
+\fI__incr_eval\fP (generally) efficient evaluation function. 
+.br
+\fI__move_select\fP the move selector. 
+.RE
+.PP
+
+.PP
+Definition at line 43 of file moHCMoveLoopExpl.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class M> void \fBmoHCMoveLoopExpl\fP< M >::operator() (const \fBEOT\fP & __old_sol, \fBEOT\fP & __new_sol)\fC [inline, virtual]\fP"
+.PP
+Procedure which launches the explorer. 
+.PP
+The exploration starts from an old solution and provides a new solution.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__old_sol\fP the current solution. 
+.br
+\fI__new_sol\fP the new_sol (result of the procedure). 
+.RE
+.PP
+
+.PP
+Implements \fBeoBF< const M::EOType &, M::EOType &, void >\fP.
+.PP
+Definition at line 59 of file moHCMoveLoopExpl.h.
+.PP
+References moHCMoveLoopExpl< M >::incr_eval, moHCMoveLoopExpl< M >::move_init, moHCMoveLoopExpl< M >::move_select, and moHCMoveLoopExpl< M >::next_move.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PARADISEO-MO from the source code.

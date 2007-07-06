@@ -1,0 +1,6 @@
+#ifndef __mo
+#define __mo
+
+#include "mo.h"
+
+#endif
