@@ -15,7 +15,7 @@ paradiseo-help@lists.gforge.inria.fr
 =======================================================================
 The basic installation procedure goes the following.
 
-To compile paradiseo-moeo in the default directory,
+To compile paradiseo-peo in the default directory,
 go to paradiseo-peo/build/ and run:
     > cmake ../ -DEOdir=$(EO_SRC) -DMOdir=$(MO_SRC)
     > make
@@ -33,7 +33,7 @@ To compile paradiseo-peo anywhere else, simply run:
     > make doc
 
 where $(EO_SRC) is the top-level source directory of PARADISEO-EO,
-and $(MOEO) is the top-level directory of PARADISEO-MOEO.
+and $(MO) is the top-level directory of PARADISEO-MO.
 
 To clean everything, simply run
     > make clean
@@ -46,6 +46,8 @@ After unpacking the archive file, you should end up with the following
 structure:
 
 .../                     The main PARADISEO-PEO directory, created when unpacking.
+   |
+   +-- build             BUILD directory that contains libraries and executable files.
    |
    +-- src               SOURCE directory Contains most PARADISEO-PEO .h files. 
    |   
