@@ -52,12 +52,12 @@ public:
 
   void readFrom (std :: istream & __is) {
     
-    __is >> start >> seconds; /* Loading the number of generations counted */
+    __is >> start >> seconds; 
   }
   
   void printOn (std :: ostream & __os) const {
     
-    __os << start << ' ' << seconds << std :: endl; /* Saving the number of generations counted */   
+    __os << start << ' ' << seconds << std :: endl;    
   }
 
 };
