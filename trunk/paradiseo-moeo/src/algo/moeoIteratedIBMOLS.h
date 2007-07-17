@@ -24,7 +24,7 @@
 #include <algo/moeoIBMOLS.h>
 #include <algo/moeoLS.h>
 #include <archive/moeoArchive.h>
-#include <fitness/moeoIndicatorBasedFitnessAssignment.h>
+#include <fitness/moeoBinaryIndicatorBasedFitnessAssignment.h>
 #include <move/moeoMoveIncrEval.h>
 
 
@@ -63,7 +63,7 @@ public:
         moNextMove < Move > & _nextMove,
         eoEvalFunc < MOEOT > & _eval,
         moeoMoveIncrEval < Move > & _moveIncrEval,
-        moeoIndicatorBasedFitnessAssignment < MOEOT > & _fitnessAssignment,
+        moeoBinaryIndicatorBasedFitnessAssignment < MOEOT > & _fitnessAssignment,
         eoContinue < MOEOT > & _continuator,
         eoMonOp < MOEOT > & _monOp,
         eoMonOp < MOEOT > & _randomMonOp,
@@ -134,19 +134,17 @@ private:
         // start the creation of new solutions
         for (unsigned int i=0; i<_pop.size(); i++)
         {
-            if (shuffle[i] < _arch.size())
-                // the given archive contains the individual i
+            if (shuffle[i] < _arch.size()) // the given archive contains the individual i
             {
                 // add it to the resulting pop
                 _pop[i] = _arch[shuffle[i]];
-                // then, apply the operator nIterationsNoise times
+                // apply noise
                 for (unsigned int j=0; j<nNoiseIterations; j++)
                 {
                     monOp(_pop[i]);
                 }
             }
-            else
-                // a randomly generated solution needs to be added
+            else // a random solution needs to be added
             {
                 // random initialization
                 randomMonOp(_pop[i]);

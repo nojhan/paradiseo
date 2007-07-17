@@ -22,7 +22,8 @@
 #include <algo/moeoIteratedIBMOLS.h>
 #include <algo/moeoLS.h>
 #include <archive/moeoArchive.h>
-#include <fitness/moeoIndicatorBasedFitnessAssignment.h>
+#include <fitness/moeoBinaryIndicatorBasedFitnessAssignment.h>
+#include <fitness/moeoExpBinaryIndicatorBasedFitnessAssignment.h>
 #include <metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h>
 #include <move/moeoMoveIncrEval.h>
 
@@ -66,7 +67,7 @@ moeoLS < MOEOT, eoPop<MOEOT> & > & do_make_ls_moeo	(
                                           'r', "Evolution Engine").value();
     double kappa = _parser.getORcreateParam(0.05, "kappa", "Scaling factor kappa for IndicatorBased",
                                             'k', "Evolution Engine").value();
-    moeoIndicatorBasedFitnessAssignment < MOEOT > * fitnessAssignment;
+    moeoBinaryIndicatorBasedFitnessAssignment < MOEOT > * fitnessAssignment;
     if (fitnessParam == std::string("IndicatorBased"))
     {
         // metric
@@ -84,7 +85,7 @@ moeoLS < MOEOT, eoPop<MOEOT> & > & do_make_ls_moeo	(
             std::string stmp = std::string("Invalid binary quality indicator: ") + indicatorParam;
             throw std::runtime_error(stmp.c_str());
         }
-        fitnessAssignment = new moeoIndicatorBasedFitnessAssignment < MOEOT> (*metric, kappa);
+        fitnessAssignment = new moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT> (*metric, kappa);
     }
     else
     {
