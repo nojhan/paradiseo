@@ -87,16 +87,13 @@ public:
         moeoArchive < MOEOT > previousArchive;
         // update the archive with the initial population
         archive.update(_pop);
-        unsigned int count = 0;
         do
         {
             previousArchive.update(archive);
             oneStep(_pop);
-            count++;
             archive.update(_pop);
         } while ( (! archive.equals(previousArchive)) && (continuator(_arch)) );
         _arch.update(archive);
-        cout << "\t" << count << " steps" << endl;
     }
 
 
@@ -120,7 +117,7 @@ private:
      * Apply one step of the local search to the population _pop
      * @param _pop the population
      */
-    void old_oneStep (eoPop < MOEOT > & _pop)
+    void oneStep (eoPop < MOEOT > & _pop)
     {
         // the move
         Move move;
@@ -131,11 +128,11 @@ private:
         int worst_idx;
         ObjectiveVector worst_objVec;
         double worst_fitness;
-////////////////////////////////////////////
+////////////////////////////////////////////       
         // the indexes and the objective vectors of the extreme non-dominated points
         int ext_0_idx, ext_1_idx;
         ObjectiveVector ext_0_objVec, ext_1_objVec;
-        unsigned int ind;
+        unsigned int ind;   
 ////////////////////////////////////////////
         // the index of the current solution to be explored
         unsigned int i=0;
@@ -152,7 +149,7 @@ private:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // extreme solutions (min only!)
+			// extreme solutions (min only!)
             ext_0_idx = -1;
             ext_0_objVec = x_objVec;
             ext_1_idx = -1;
@@ -182,7 +179,7 @@ private:
                     ext_1_objVec = _pop[k].objectiveVector();
                 }
             }
-            // worst init
+			// worst init
             if (ext_0_idx == -1)
             {
                 ind = 0;
@@ -315,10 +312,10 @@ private:
         int worst_idx;
         ObjectiveVector worst_objVec;
         double worst_fitness;
-////////////////////////////////////////////
+////////////////////////////////////////////       
         // the index of the extreme non-dominated points
         int ext_0_idx, ext_1_idx;
-        unsigned int ind;
+        unsigned int ind;   
 ////////////////////////////////////////////
         // the index current of the current solution to be explored
         unsigned int i=0;
@@ -335,12 +332,12 @@ private:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // extremes solutions
+			// extremes solutions
             OneObjectiveComparator comp0(0);
             ext_0_idx = std::min_element(_pop.begin(), _pop.end(), comp0) - _pop.begin();
             OneObjectiveComparator comp1(1);
             ext_1_idx = std::min_element(_pop.begin(), _pop.end(), comp1) - _pop.begin();
-            // new = extreme ?
+			// new = extreme ?
             if (x_objVec[0] < _pop[ext_0_idx].objectiveVector()[0])
             {
                 ext_0_idx = -1;
@@ -366,7 +363,7 @@ private:
                     ind++;
                 }
                 worst_idx = ind;
-                worst_objVec = _pop[ind].objectiveVector();
+               	worst_objVec = _pop[ind].objectiveVector();
                 worst_fitness = _pop[ind].fitness();
             }
             else if (ext_1_idx == -1)
@@ -377,13 +374,13 @@ private:
                     ind++;
                 }
                 worst_idx = ind;
-                worst_objVec = _pop[ind].objectiveVector();
+               	worst_objVec = _pop[ind].objectiveVector();
                 worst_fitness = _pop[ind].fitness();
             }
             else
             {
                 worst_idx = -1;
-                worst_objVec = x_objVec;
+               	worst_objVec = x_objVec;
                 worst_fitness = x_fitness;
             }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
