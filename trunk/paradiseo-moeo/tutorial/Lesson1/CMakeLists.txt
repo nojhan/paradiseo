@@ -35,9 +35,10 @@ INCLUDE_DIRECTORIES(${FLOWSHOP_SRC_DIR})
 # --> UNIX 
 IF(UNIX)  
   LINK_DIRECTORIES(${EO_SRC_DIR} ${EO_SRC_DIR}/utils ${ParadisEO-MOEO_BINARY_DIR}/lib ${FLOWSHOP_BINARY_DIR}/lib)
+ENDIF(UNIX)
 
 # --> WIN
-ELSEIF(WIN32)  
+IF(WIN32)  
   # "CMAKE_BUILD_TYPE" supposed to be given on the command line, default=Debug
   IF (NOT DEFINED CMAKE_BUILD_TYPE)
     set (CMAKE_BUILD_TYPE Debug)
@@ -47,13 +48,15 @@ ELSEIF(WIN32)
   	LINK_DIRECTORIES(${FLOWSHOP_BINARY_DIR}\\lib\\debug)
   	LINK_DIRECTORIES(${ParadisEO-MOEO_BINARY_DIR}\\lib\\debug)
   	LINK_DIRECTORIES(${EO_LIB_DIR}\\debug)
-  ELSEIF(CMAKE_BUILD_TYPE STREQUAL Release)
+  ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
+  	
+  IF(CMAKE_BUILD_TYPE STREQUAL Release)
   	LINK_DIRECTORIES(${FLOWSHOP_BINARY_DIR}\\lib\\release)
   	LINK_DIRECTORIES(${ParadisEO-MOEO_BINARY_DIR}\\lib\\release)
   	LINK_DIRECTORIES(${EO_LIB_DIR}\\release)  
-  ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
+  ENDIF(CMAKE_BUILD_TYPE STREQUAL Release)
 
-ENDIF(UNIX)
+ENDIF(WIN32)
 
 ######################################################################################
 
@@ -92,9 +95,10 @@ IF(UNIX)
   TARGET_LINK_LIBRARIES(FlowShopEA flowshop) 
   TARGET_LINK_LIBRARIES(FlowShopEA eo)
   TARGET_LINK_LIBRARIES(FlowShopEA eoutils)
+ENDIF(UNIX) 
 
 # --> WIN
-ELSEIF(WIN32)  
+IF(WIN32)  
   # "CMAKE_BUILD_TYPE" supposed to be given on the command line, default=Debug
   IF (NOT DEFINED CMAKE_BUILD_TYPE)
     set (CMAKE_BUILD_TYPE Debug)
@@ -104,17 +108,17 @@ ELSEIF(WIN32)
   	TARGET_LINK_LIBRARIES(FlowShopEA moeo)
   	TARGET_LINK_LIBRARIES(FlowShopEA flowshop)
     TARGET_LINK_LIBRARIES(FlowShopEA eod)
-    TARGET_LINK_LIBRARIES(FlowShopEA eoutilsd)    
-  ELSEIF(CMAKE_BUILD_TYPE STREQUAL Release)
+    TARGET_LINK_LIBRARIES(FlowShopEA eoutilsd)     
+  ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug) 
+      
+  IF(CMAKE_BUILD_TYPE STREQUAL Release)
   	TARGET_LINK_LIBRARIES(FlowShopEA moeo)
   	TARGET_LINK_LIBRARIES(FlowShopEA flowshop)
     TARGET_LINK_LIBRARIES(FlowShopEA eo)
     TARGET_LINK_LIBRARIES(FlowShopEA eoutils)   
-  ELSE(CMAKE_BUILD_TYPE STREQUAL Debug)
-    MESSAGE(FATAL_ERROR " Cmake build type can only be \"Debug\" or \"Release\" ")
-  ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
+  ENDIF(CMAKE_BUILD_TYPE STREQUAL Release)
 
-ENDIF(UNIX)
+ENDIF(WIN32) 
 ######################################################################################
 
 

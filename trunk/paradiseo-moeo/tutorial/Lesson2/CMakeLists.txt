@@ -17,9 +17,10 @@ INCLUDE_DIRECTORIES(${MOEO_SRC_DIR})
 # --> UNIX 
 IF(UNIX)  
   LINK_DIRECTORIES(${EO_SRC_DIR} ${EO_SRC_DIR}/utils ${ParadisEO-MOEO_BINARY_DIR}/lib)
+ENDIF(UNIX)
 
 # --> WIN
-ELSEIF(WIN32)  
+IF(WIN32)  
   # "CMAKE_BUILD_TYPE" supposed to be given on the command line, default=Debug
   IF (NOT DEFINED CMAKE_BUILD_TYPE)
     set (CMAKE_BUILD_TYPE Debug)
@@ -27,13 +28,15 @@ ELSEIF(WIN32)
  
   IF (CMAKE_BUILD_TYPE STREQUAL Debug)
   	LINK_DIRECTORIES(${ParadisEO-MOEO_BINARY_DIR}\\lib\\debug)
-  	LINK_DIRECTORIES(${EO_LIB_DIR}\\debug)  	
-  ELSEIF(CMAKE_BUILD_TYPE STREQUAL Release)
+  	LINK_DIRECTORIES(${EO_LIB_DIR}\\debug)   		
+  ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
+  
+  IF(CMAKE_BUILD_TYPE STREQUAL Release)
   	LINK_DIRECTORIES(${ParadisEO-MOEO_BINARY_DIR}\\lib\\release)
   	LINK_DIRECTORIES(${EO_LIB_DIR}\\release)  
-  ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
+  ENDIF(CMAKE_BUILD_TYPE STREQUAL Release)
 
-ENDIF(UNIX)
+ENDIF(WIN32)
 
 ######################################################################################
 
@@ -70,9 +73,10 @@ IF(UNIX)
   TARGET_LINK_LIBRARIES(sch1 moeo)
   TARGET_LINK_LIBRARIES(sch1 eo)
   TARGET_LINK_LIBRARIES(sch1 eoutils)
+ENDIF(UNIX)
 
 # --> WIN
-ELSEIF(WIN32)  
+IF(WIN32)  
   # "CMAKE_BUILD_TYPE" supposed to be given on the command line, default=Debug
   IF (NOT DEFINED CMAKE_BUILD_TYPE)
     set (CMAKE_BUILD_TYPE Debug)
@@ -81,16 +85,16 @@ ELSEIF(WIN32)
   IF (CMAKE_BUILD_TYPE STREQUAL Debug)
   	TARGET_LINK_LIBRARIES(sch1 moeo)
     TARGET_LINK_LIBRARIES(sch1 eod)
-    TARGET_LINK_LIBRARIES(sch1 eoutilsd)    
-  ELSEIF(CMAKE_BUILD_TYPE STREQUAL Release)
+    TARGET_LINK_LIBRARIES(sch1 eoutilsd)   
+  ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)  
+     
+  IF(CMAKE_BUILD_TYPE STREQUAL Release)
   	TARGET_LINK_LIBRARIES(sch1 moeo)
     TARGET_LINK_LIBRARIES(sch1 eo)
     TARGET_LINK_LIBRARIES(sch1 eoutils)   
-  ELSE(CMAKE_BUILD_TYPE STREQUAL Debug)
-    MESSAGE(FATAL_ERROR " Cmake build type can only be \"Debug\" or \"Release\" ")
-  ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
+  ENDIF(CMAKE_BUILD_TYPE STREQUAL Release)
 
-ENDIF(UNIX)
+ENDIF(WIN32)
 ######################################################################################
 
 

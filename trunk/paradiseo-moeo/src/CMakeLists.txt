@@ -21,12 +21,13 @@ SET (MOEO_SOURCES core/moeoObjectiveVectorTraits.cpp)
 # --> UNIX 
 IF(UNIX)   
   ADD_LIBRARY(moeo STATIC ${MOEO_SOURCES})
-  		
-# --> WIN
-ELSEIF(WIN32)  
-  ADD_LIBRARY(moeo STATIC ${MOEO_SOURCES})
-
 ENDIF(UNIX)
+		
+# --> WIN
+IF(WIN32)  
+  ADD_LIBRARY(moeo STATIC ${MOEO_SOURCES})
+ENDIF(WIN32)
+
 ######################################################################################
 
 

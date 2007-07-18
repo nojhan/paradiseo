@@ -19,8 +19,10 @@ INCLUDE_DIRECTORIES(${TSP_SRC_DIR})
 # --> UNIX 
 IF(UNIX)  
   LINK_DIRECTORIES(${EO_SRC_DIR} ${EO_SRC_DIR}/utils ${TSP_BINARY_DIR}/lib)
+ENDIF(UNIX)
+
 # --> WIN
-ELSEIF(WIN32)  
+IF(WIN32)  
   # "CMAKE_BUILD_TYPE" supposed to be given on the command line, default=Debug
   IF (NOT DEFINED CMAKE_BUILD_TYPE)
     set (CMAKE_BUILD_TYPE Debug)
@@ -29,12 +31,14 @@ ELSEIF(WIN32)
   IF (CMAKE_BUILD_TYPE STREQUAL Debug)
   	LINK_DIRECTORIES(${TSP_BINARY_DIR}\\debug)
   	LINK_DIRECTORIES(${EO_LIB_DIR}\\debug)
-  ELSEIF(CMAKE_BUILD_TYPE STREQUAL Release)
+  ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
+  
+  IF (CMAKE_BUILD_TYPE STREQUAL Release)
   	LINK_DIRECTORIES(${TSP_BINARY_DIR}\\release)
   	LINK_DIRECTORIES(${EO_LIB_DIR}\\release)  
-  ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
+  ENDIF(CMAKE_BUILD_TYPE STREQUAL Release)
 
-ENDIF(UNIX)
+ENDIF(WIN32)
 
 ######################################################################################
 
@@ -71,9 +75,10 @@ IF(UNIX)
   TARGET_LINK_LIBRARIES(hill_climbing tsp) 
   TARGET_LINK_LIBRARIES(hill_climbing eo)
   TARGET_LINK_LIBRARIES(hill_climbing eoutils)
+ENDIF(UNIX) 
 
 # --> WIN
-ELSEIF(WIN32)  
+IF(WIN32)  
   # "CMAKE_BUILD_TYPE" supposed to be given on the command line, default=Debug
   IF (NOT DEFINED CMAKE_BUILD_TYPE)
     set (CMAKE_BUILD_TYPE Debug)
@@ -82,16 +87,16 @@ ELSEIF(WIN32)
   IF (CMAKE_BUILD_TYPE STREQUAL Debug)
   	TARGET_LINK_LIBRARIES(hill_climbing tsp)
     TARGET_LINK_LIBRARIES(hill_climbing eod)
-    TARGET_LINK_LIBRARIES(hill_climbing eoutilsd)    
-  ELSEIF(CMAKE_BUILD_TYPE STREQUAL Release)
+    TARGET_LINK_LIBRARIES(hill_climbing eoutilsd)   
+  ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
+    
+  IF(CMAKE_BUILD_TYPE STREQUAL Release)
   	TARGET_LINK_LIBRARIES(hill_climbing tsp)
     TARGET_LINK_LIBRARIES(hill_climbing eo)
     TARGET_LINK_LIBRARIES(hill_climbing eoutils)   
-  ELSE(CMAKE_BUILD_TYPE STREQUAL Debug)
-    MESSAGE(FATAL_ERROR " Cmake build type can only be \"Debug\" or \"Release\" ")
-  ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
-
-ENDIF(UNIX)
+  ENDIF(CMAKE_BUILD_TYPE STREQUAL Release) 
+  
+ENDIF(WIN32) 
 ######################################################################################
 
 

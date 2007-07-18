@@ -51,12 +51,13 @@ SET (TSP_SOURCES 	graph.cpp
 # --> UNIX 
 IF(UNIX)   
   ADD_LIBRARY(tsp STATIC ${TSP_SOURCES})
-  		
+ENDIF(UNIX) 
+	
 # --> WIN
-ELSEIF(WIN32)  
+IF(WIN32)  
   ADD_LIBRARY(tsp STATIC ${TSP_SOURCES})
+ENDIF(WIN32)
 
-ENDIF(UNIX)
 ######################################################################################
 
 
