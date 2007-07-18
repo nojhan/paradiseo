@@ -88,7 +88,7 @@ IF(WIN32)
   	TARGET_LINK_LIBRARIES(tabu_search tsp)
     TARGET_LINK_LIBRARIES(tabu_search eod)
     TARGET_LINK_LIBRARIES(tabu_search eoutilsd)   
-   ELSE(CMAKE_BUILD_TYPE STREQUAL Debug)
+  ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
     
   IF(CMAKE_BUILD_TYPE STREQUAL Release)
   	TARGET_LINK_LIBRARIES(tabu_search tsp)
