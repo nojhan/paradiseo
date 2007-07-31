@@ -53,7 +53,7 @@ public:
       {
 	fitness=__sol.fitness();
 	counter=0;
-	FirstFitnessSaved=false;
+	firstFitnessSaved=false;
 	return true;
       }
     
