@@ -1,6 +1,6 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
-// "eoGenSolContinue.h"
+// "moGenSolContinue.h"
 
 // (c) OPAC Team, LIFL, 2003-2006
 
@@ -14,48 +14,39 @@
 
 #include "moSolContinue.h"
 
-//! One possible stop criterion for a solution-based heuristic.
+//! One possible stopping criterion for a solution-based heuristic.
 /*!
-  The stop criterion corresponds to a maximum number of iteration.
+  The stopping criterion corresponds to a maximum number of iteration.
  */
 template < class EOT > class moGenSolContinue:public moSolContinue < EOT >
 {
 
 public:
 
-  //! Simple constructor.
+  //! Basic constructor.
   /*!
      \param __maxNumGen the maximum number of generation.
    */
   moGenSolContinue (unsigned int __maxNumGen):maxNumGen (__maxNumGen), numGen (0)
-  {
-
-  }
+  {}
 
   //! Function that activates the stop criterion.
   /*!
-     Increments the counter and returns TRUE if the
+     Increments the counter and returns true if the
      current number of iteration is lower than the given
      maximum number of iterations.
 
      \param __sol the current solution.
-     \return TRUE or FALSE according to the current generation number.
+     \return true or false according to the current generation number.
    */
-  bool operator   () (const EOT & __sol)
+  bool operator () (const EOT & __sol)
   {
-
     return (++numGen < maxNumGen);
   }
 
-  //! Procedure which allows to initialise the generation counter.
-  /*!
-     It can also be used to reset the iteration counter.
-   */
+  //! Procedure which allows to initialise all the stuff needed.
   void init ()
-  {
-
-    numGen = 0;
-  }
+  {}
 
 private:
 

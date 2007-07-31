@@ -24,7 +24,7 @@
 </div>
 <h1>moGenSolContinue.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-</span>
 <a name="l00002"></a>00002 
-<a name="l00003"></a>00003 <span class="comment">// "eoGenSolContinue.h"</span>
+<a name="l00003"></a>00003 <span class="comment">// "moGenSolContinue.h"</span>
 <a name="l00004"></a>00004 
 <a name="l00005"></a>00005 <span class="comment">// (c) OPAC Team, LIFL, 2003-2006</span>
 <a name="l00006"></a>00006 
@@ -39,40 +39,33 @@
 <a name="l00015"></a>00015 <span class="preprocessor">#include "moSolContinue.h"</span>
 <a name="l00016"></a>00016 
 <a name="l00018"></a>00018 
-<a name="l00021"></a><a class="code" href="classmo_gen_sol_continue.html">00021</a> <span class="keyword">template</span> &lt; <span class="keyword">class</span> EOT &gt; <span class="keyword">class </span><a class="code" href="classmo_gen_sol_continue.html" title="One possible stop criterion for a solution-based heuristic.">moGenSolContinue</a>:<span class="keyword">public</span> <a class="code" href="classmo_sol_continue.html" title="Class that describes a stop criterion for a solution-based heuristic.">moSolContinue</a> &lt; EOT &gt;
+<a name="l00021"></a><a class="code" href="classmo_gen_sol_continue.html">00021</a> <span class="keyword">template</span> &lt; <span class="keyword">class</span> EOT &gt; <span class="keyword">class </span><a class="code" href="classmo_gen_sol_continue.html" title="One possible stopping criterion for a solution-based heuristic.">moGenSolContinue</a>:<span class="keyword">public</span> <a class="code" href="classmo_sol_continue.html" title="Class that describes a stopping criterion for a solution-based heuristic.">moSolContinue</a> &lt; EOT &gt;
 <a name="l00022"></a>00022 {
 <a name="l00023"></a>00023 
 <a name="l00024"></a>00024 <span class="keyword">public</span>:
 <a name="l00025"></a>00025 
 <a name="l00027"></a>00027 
-<a name="l00030"></a><a class="code" href="classmo_gen_sol_continue.html#b56e890f1caa3f98e161c6512b59c95b">00030</a>   <a class="code" href="classmo_gen_sol_continue.html#b56e890f1caa3f98e161c6512b59c95b" title="Simple constructor.">moGenSolContinue</a> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __maxNumGen):<a class="code" href="classmo_gen_sol_continue.html#30b9861e090578bdfa2374806600987a" title="Iteration maximum number.">maxNumGen</a> (__maxNumGen), <a class="code" href="classmo_gen_sol_continue.html#630d9736a3a2c952540cdc211764258c" title="Iteration current number.">numGen</a> (0)
-<a name="l00031"></a>00031   {
+<a name="l00030"></a><a class="code" href="classmo_gen_sol_continue.html#b56e890f1caa3f98e161c6512b59c95b">00030</a>   <a class="code" href="classmo_gen_sol_continue.html#b56e890f1caa3f98e161c6512b59c95b" title="Basic constructor.">moGenSolContinue</a> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __maxNumGen):<a class="code" href="classmo_gen_sol_continue.html#30b9861e090578bdfa2374806600987a" title="Iteration maximum number.">maxNumGen</a> (__maxNumGen), <a class="code" href="classmo_gen_sol_continue.html#630d9736a3a2c952540cdc211764258c" title="Iteration current number.">numGen</a> (0)
+<a name="l00031"></a>00031   {}
 <a name="l00032"></a>00032 
-<a name="l00033"></a>00033   }
 <a name="l00034"></a>00034 
-<a name="l00036"></a>00036 
-<a name="l00044"></a><a class="code" href="classmo_gen_sol_continue.html#457257cd73b474d6f7783d84d02c2e61">00044</a>   <span class="keywordtype">bool</span> <a class="code" href="classmo_gen_sol_continue.html#457257cd73b474d6f7783d84d02c2e61" title="Function that activates the stop criterion.">operator   () </a>(<span class="keyword">const</span> EOT &amp; __sol)
-<a name="l00045"></a>00045   {
+<a name="l00042"></a><a class="code" href="classmo_gen_sol_continue.html#457257cd73b474d6f7783d84d02c2e61">00042</a>   <span class="keywordtype">bool</span> <a class="code" href="classmo_gen_sol_continue.html#457257cd73b474d6f7783d84d02c2e61" title="Function that activates the stop criterion.">operator () </a>(<span class="keyword">const</span> EOT &amp; __sol)
+<a name="l00043"></a>00043   {
+<a name="l00044"></a>00044     <span class="keywordflow">return</span> (++<a class="code" href="classmo_gen_sol_continue.html#630d9736a3a2c952540cdc211764258c" title="Iteration current number.">numGen</a> &lt; <a class="code" href="classmo_gen_sol_continue.html#30b9861e090578bdfa2374806600987a" title="Iteration maximum number.">maxNumGen</a>);
+<a name="l00045"></a>00045   }
 <a name="l00046"></a>00046 
-<a name="l00047"></a>00047     <span class="keywordflow">return</span> (++<a class="code" href="classmo_gen_sol_continue.html#630d9736a3a2c952540cdc211764258c" title="Iteration current number.">numGen</a> &lt; <a class="code" href="classmo_gen_sol_continue.html#30b9861e090578bdfa2374806600987a" title="Iteration maximum number.">maxNumGen</a>);
-<a name="l00048"></a>00048   }
-<a name="l00049"></a>00049 
-<a name="l00051"></a>00051 
-<a name="l00054"></a><a class="code" href="classmo_gen_sol_continue.html#6c5db8182157584b56507cc9075602d4">00054</a>   <span class="keywordtype">void</span> <a class="code" href="classmo_gen_sol_continue.html#6c5db8182157584b56507cc9075602d4" title="Procedure which allows to initialise the generation counter.">init</a> ()
-<a name="l00055"></a>00055   {
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057     <a class="code" href="classmo_gen_sol_continue.html#630d9736a3a2c952540cdc211764258c" title="Iteration current number.">numGen</a> = 0;
-<a name="l00058"></a>00058   }
+<a name="l00048"></a><a class="code" href="classmo_gen_sol_continue.html#6c5db8182157584b56507cc9075602d4">00048</a>   <span class="keywordtype">void</span> <a class="code" href="classmo_gen_sol_continue.html#6c5db8182157584b56507cc9075602d4" title="Procedure which allows to initialise all the stuff needed.">init</a> ()
+<a name="l00049"></a>00049   {}
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051 <span class="keyword">private</span>:
+<a name="l00052"></a>00052 
+<a name="l00054"></a><a class="code" href="classmo_gen_sol_continue.html#30b9861e090578bdfa2374806600987a">00054</a>   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classmo_gen_sol_continue.html#30b9861e090578bdfa2374806600987a" title="Iteration maximum number.">maxNumGen</a>;
+<a name="l00055"></a>00055 
+<a name="l00057"></a><a class="code" href="classmo_gen_sol_continue.html#630d9736a3a2c952540cdc211764258c">00057</a>   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classmo_gen_sol_continue.html#630d9736a3a2c952540cdc211764258c" title="Iteration current number.">numGen</a>;
+<a name="l00058"></a>00058 };
 <a name="l00059"></a>00059 
-<a name="l00060"></a>00060 <span class="keyword">private</span>:
-<a name="l00061"></a>00061 
-<a name="l00063"></a><a class="code" href="classmo_gen_sol_continue.html#30b9861e090578bdfa2374806600987a">00063</a>   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classmo_gen_sol_continue.html#30b9861e090578bdfa2374806600987a" title="Iteration maximum number.">maxNumGen</a>;
-<a name="l00064"></a>00064 
-<a name="l00066"></a><a class="code" href="classmo_gen_sol_continue.html#630d9736a3a2c952540cdc211764258c">00066</a>   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classmo_gen_sol_continue.html#630d9736a3a2c952540cdc211764258c" title="Iteration current number.">numGen</a>;
-<a name="l00067"></a>00067 };
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Fri Jul 6 17:23:18 2007 for PARADISEO-MO by&nbsp;
+<a name="l00060"></a>00060 <span class="preprocessor">#endif</span>
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Tue Jul 31 13:43:22 2007 for PARADISEO-MO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.2 </small></address>
 </body>

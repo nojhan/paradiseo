@@ -14,7 +14,7 @@
 
 #include <eoFunctor.h>
 
-//! Class that describes a stop criterion for a solution-based heuristic
+//! Class that describes a stopping criterion for a solution-based heuristic
 
 /*! 
   It allows to add an initialisation procedure to an object that is a unary function (eoUF).
@@ -23,7 +23,7 @@ template < class EOT > class moSolContinue:public eoUF < const EOT &, bool >
 {
 
 public:
-  //! Procedure which initialises all that the stop criterion needs
+  //! Procedure which initialises all that the stopping criterion needs
   /*!
      Generally, it allocates some data structures or initialises some counters.
    */

@@ -59,6 +59,9 @@ main (int __argc, char * __argv [])
   moNoAspirCrit <TwoOpt> aspir_crit ; // Aspiration Criterion
 
   moGenSolContinue <Route> cont (10000) ; // Continuator
+  //moFitSolContinue <Route> cont (-700);
+  //moSteadyFitSolContinue <Route> cont (1000, 2000);
+  //moNoFitImprSolContinue <Route> cont (1000);
 
   moTS <TwoOpt> tabu_search (two_opt_init, two_opt_next, two_opt_incr_eval, tabu_list, aspir_crit, cont, full_eval) ;
   tabu_search (route) ;

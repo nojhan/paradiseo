@@ -1,0 +1,127 @@
+.TH "moNoFitImprSolContinue" 3 "31 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moNoFitImprSolContinue \- One possible stop criterion for a solution-based heuristic.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moNoFitImprSolContinue.h>\fP
+.PP
+Inherits \fBmoSolContinue< EOT >< EOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOT::Fitness \fBFitness\fP"
+.br
+.RI "\fIAlias for the fitness. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoNoFitImprSolContinue\fP (unsigned int __maxNumberOfIterationWithoutImprovment, bool __maximization=true)"
+.br
+.RI "\fIBasic constructor. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (const EOT &__sol)"
+.br
+.RI "\fIFunction that activates the stopping criterion. \fP"
+.ti -1c
+.RI "void \fBinit\fP ()"
+.br
+.RI "\fIProcedure which allows to initialise all the stuff needed. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBmaxNumberOfIterationsWithoutImprovment\fP"
+.br
+.RI "\fIMaximum number of iterations without improvment allowed. \fP"
+.ti -1c
+.RI "bool \fBfirstFitnessSaved\fP"
+.br
+.RI "\fIFlag that this is the first time that the fitness is used. \fP"
+.ti -1c
+.RI "\fBFitness\fP \fBfitness\fP"
+.br
+.RI "\fICurrent Fitness. \fP"
+.ti -1c
+.RI "bool \fBmaximization\fP"
+.br
+.RI "\fIFlag that indicate if there is a maximization (true) or a minimization (false) of the fitness value. \fP"
+.ti -1c
+.RI "unsigned int \fBcounter\fP"
+.br
+.RI "\fIThe iteration couter. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class moNoFitImprSolContinue< EOT >"
+One possible stop criterion for a solution-based heuristic. 
+
+The stop criterion corresponds to a maximum number of iterations without improvement. 
+.PP
+Definition at line 21 of file moNoFitImprSolContinue.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBmoNoFitImprSolContinue\fP< EOT >::\fBmoNoFitImprSolContinue\fP (unsigned int __maxNumberOfIterationWithoutImprovment, bool __maximization = \fCtrue\fP)\fC [inline]\fP"
+.PP
+Basic constructor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__maxNumberOfIterationWithoutImprovment\fP The number of iterations without fitness improvment to reach for stop. 
+.br
+\fI__maximization\fP Indicate if the the aim is to maximize or minimize the fitness. 
+.RE
+.PP
+
+.PP
+Definition at line 34 of file moNoFitImprSolContinue.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> bool \fBmoNoFitImprSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline, virtual]\fP"
+.PP
+Function that activates the stopping criterion. 
+.PP
+Indicates if the fitness has not been improved since a given number of iterations (after a minimum of iterations). 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__sol\fP the current solution. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true or false. 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< const EOT &, bool >\fP.
+.PP
+Definition at line 45 of file moNoFitImprSolContinue.h.
+.PP
+References moNoFitImprSolContinue< EOT >::counter, moNoFitImprSolContinue< EOT >::firstFitnessSaved, moNoFitImprSolContinue< EOT >::fitness, moNoFitImprSolContinue< EOT >::maximization, and moNoFitImprSolContinue< EOT >::maxNumberOfIterationsWithoutImprovment.
+.SH "Member Data Documentation"
+.PP 
+.SS "template<class EOT> bool \fBmoNoFitImprSolContinue\fP< EOT >::\fBmaximization\fP\fC [private]\fP"
+.PP
+Flag that indicate if there is a maximization (true) or a minimization (false) of the fitness value. 
+.PP
+It can be interesting to know this information because some solution-based metaheuristics can generate solutions wiht a fitness that is worse that the best known fitness (in this case, the counter is not reinitialized). 
+.PP
+Definition at line 96 of file moNoFitImprSolContinue.h.
+.PP
+Referenced by moNoFitImprSolContinue< EOT >::operator()().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PARADISEO-MO from the source code.

@@ -1,0 +1,137 @@
+.TH "moSteadyFitSolContinue" 3 "31 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moSteadyFitSolContinue \- One possible stopping criterion for a solution-based heuristic.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moSteadyFitSolContinue.h>\fP
+.PP
+Inherits \fBmoSolContinue< EOT >< EOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOT::Fitness \fBFitness\fP"
+.br
+.RI "\fIAlias for the fitness. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoSteadyFitSolContinue\fP (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovment, bool __maximization=true)"
+.br
+.RI "\fIBasic constructor. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (const EOT &__sol)"
+.br
+.RI "\fIFunction that activates the stopping criterion. \fP"
+.ti -1c
+.RI "void \fBinit\fP ()"
+.br
+.RI "\fIProcedure which allows to initialise the stuff needed. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBmaxNumberOfIterations\fP"
+.br
+.RI "\fIMaximum number of iterations before considering the fitness. \fP"
+.ti -1c
+.RI "unsigned int \fBmaxNumberOfIterationsWithoutImprovment\fP"
+.br
+.RI "\fIMaximum number of iterations without improvment allowed. \fP"
+.ti -1c
+.RI "bool \fBmaxNumberOfIterationsReached\fP"
+.br
+.RI "\fIFlag that indicates that the maxNumberIteration have been reached. \fP"
+.ti -1c
+.RI "bool \fBfirstFitnessSaved\fP"
+.br
+.RI "\fIFlag that this is the first time that the fitness is used. \fP"
+.ti -1c
+.RI "\fBFitness\fP \fBfitness\fP"
+.br
+.RI "\fICurrent Fitness. \fP"
+.ti -1c
+.RI "bool \fBmaximization\fP"
+.br
+.RI "\fIFlag that indicate if there is a maximization (true) or a minimization (false) of the fitness value. \fP"
+.ti -1c
+.RI "unsigned int \fBcounter\fP"
+.br
+.RI "\fIThe iteration couter. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class moSteadyFitSolContinue< EOT >"
+One possible stopping criterion for a solution-based heuristic. 
+
+The stop criterion corresponds to a maximum number of iterations without improvement (after a minimum number of iterations). 
+.PP
+Definition at line 21 of file moSteadyFitSolContinue.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBmoSteadyFitSolContinue\fP< EOT >::\fBmoSteadyFitSolContinue\fP (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovment, bool __maximization = \fCtrue\fP)\fC [inline]\fP"
+.PP
+Basic constructor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__maxNumberOfIterations\fP The number of iterations to reach before looking for the fitness. 
+.br
+\fI__maxNumberOfIterationWithoutImprovment\fP The number of iterations without fitness improvment to reach for stop. 
+.br
+\fI__maximization\fP Indicate if the the aim is to maximize or minimize the fitness. 
+.RE
+.PP
+
+.PP
+Definition at line 35 of file moSteadyFitSolContinue.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> bool \fBmoSteadyFitSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline, virtual]\fP"
+.PP
+Function that activates the stopping criterion. 
+.PP
+Indicates if the fitness has not been improved since a number of iterations (after a minimum of iterations).
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__sol\fP the current solution. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true or false. 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< const EOT &, bool >\fP.
+.PP
+Definition at line 47 of file moSteadyFitSolContinue.h.
+.PP
+References moSteadyFitSolContinue< EOT >::counter, moSteadyFitSolContinue< EOT >::firstFitnessSaved, moSteadyFitSolContinue< EOT >::fitness, moSteadyFitSolContinue< EOT >::maximization, moSteadyFitSolContinue< EOT >::maxNumberOfIterations, moSteadyFitSolContinue< EOT >::maxNumberOfIterationsReached, and moSteadyFitSolContinue< EOT >::maxNumberOfIterationsWithoutImprovment.
+.SH "Member Data Documentation"
+.PP 
+.SS "template<class EOT> bool \fBmoSteadyFitSolContinue\fP< EOT >::\fBmaximization\fP\fC [private]\fP"
+.PP
+Flag that indicate if there is a maximization (true) or a minimization (false) of the fitness value. 
+.PP
+It can be interesting to know this information because some solution-based metaheuristics can generate solution with a fitness that is worse that the best known fitness (in this case, the counter is not reinitialized). 
+.PP
+Definition at line 114 of file moSteadyFitSolContinue.h.
+.PP
+Referenced by moSteadyFitSolContinue< EOT >::operator()().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PARADISEO-MO from the source code.
