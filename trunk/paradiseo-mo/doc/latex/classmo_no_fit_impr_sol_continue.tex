@@ -20,7 +20,7 @@ typedef EOT::Fitness {\bf Fitness}\label{classmo_no_fit_impr_sol_continue_64c184
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-{\bf moNoFitImprSolContinue} (unsigned int \_\-\_\-maxNumberOfIterationWithoutImprovment, bool \_\-\_\-maximization=true)
+{\bf moNoFitImprSolContinue} (unsigned int \_\-\_\-maxNumberOfIterationWithoutImprovement, bool \_\-\_\-maximization=true)
 \begin{CompactList}\small\item\em Basic constructor. \item\end{CompactList}\item 
 bool {\bf operator()} (const EOT \&\_\-\_\-sol)
 \begin{CompactList}\small\item\em Function that activates the stopping criterion. \item\end{CompactList}\item 
@@ -30,9 +30,9 @@ void {\bf init} ()\label{classmo_no_fit_impr_sol_continue_21641c0a38a4501baae613
 \subsection*{Private Attributes}
 \begin{CompactItemize}
 \item 
-unsigned int {\bf maxNumberOfIterationsWithoutImprovment}\label{classmo_no_fit_impr_sol_continue_9dbd725a2dab787f9f7b159b759e4834}
+unsigned int {\bf maxNumberOfIterationsWithoutImprovement}\label{classmo_no_fit_impr_sol_continue_03612ffc3af9d943c1b1d2cde09d461b}
 
-\begin{CompactList}\small\item\em Maximum number of iterations without improvment allowed. \item\end{CompactList}\item 
+\begin{CompactList}\small\item\em Maximum number of iterations without improvement allowed. \item\end{CompactList}\item 
 bool {\bf firstFitnessSaved}\label{classmo_no_fit_impr_sol_continue_ca3591e47a075b59e0826f31234c71ef}
 
 \begin{CompactList}\small\item\em Flag that this is the first time that the fitness is used. \item\end{CompactList}\item 
@@ -51,7 +51,7 @@ unsigned int {\bf counter}\label{classmo_no_fit_impr_sol_continue_46fc008a8f7cd0
 
 One possible stop criterion for a solution-based heuristic. 
 
-The stop criterion corresponds to a maximum number of iterations without improvement. 
+The stop criterion corresponds to a maximum number of iterations without improevement. 
 
 
 
@@ -60,7 +60,7 @@ Definition at line 21 of file moNoFitImprSolContinue.h.
 \subsection{Constructor \& Destructor Documentation}
 \index{moNoFitImprSolContinue@{moNoFitImprSolContinue}!moNoFitImprSolContinue@{moNoFitImprSolContinue}}
 \index{moNoFitImprSolContinue@{moNoFitImprSolContinue}!moNoFitImprSolContinue@{moNoFitImprSolContinue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf moNoFitImprSolContinue}$<$ EOT $>$::{\bf moNoFitImprSolContinue} (unsigned int {\em \_\-\_\-maxNumberOfIterationWithoutImprovment}, bool {\em \_\-\_\-maximization} = {\tt true})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_no_fit_impr_sol_continue_979c991cbae53e1fd596964837c8d32d}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf moNoFitImprSolContinue}$<$ EOT $>$::{\bf moNoFitImprSolContinue} (unsigned int {\em \_\-\_\-maxNumberOfIterationWithoutImprovement}, bool {\em \_\-\_\-maximization} = {\tt true})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_no_fit_impr_sol_continue_07684d717a14a70bb94307e3ff62a826}
 
 
 Basic constructor. 
@@ -68,7 +68,7 @@ Basic constructor.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em \_\-\_\-maxNumberOfIterationWithoutImprovment}]The number of iterations without fitness improvment to reach for stop. \item[{\em \_\-\_\-maximization}]Indicate if the the aim is to maximize or minimize the fitness. \end{description}
+\item[{\em \_\-\_\-maxNumberOfIterationWithoutImprovement}]The number of iterations without fitness improvement to reach for stop. \item[{\em \_\-\_\-maximization}]Indicate if the the aim is to maximize or minimize the fitness. \end{description}
 \end{Desc}
 
 
@@ -95,7 +95,7 @@ Implements {\bf eoUF$<$ const EOT \&, bool $>$}.
 
 Definition at line 45 of file moNoFitImprSolContinue.h.
 
-References moNoFitImprSolContinue$<$ EOT $>$::counter, moNoFitImprSolContinue$<$ EOT $>$::firstFitnessSaved, moNoFitImprSolContinue$<$ EOT $>$::fitness, moNoFitImprSolContinue$<$ EOT $>$::maximization, and moNoFitImprSolContinue$<$ EOT $>$::maxNumberOfIterationsWithoutImprovment.
+References moNoFitImprSolContinue$<$ EOT $>$::counter, moNoFitImprSolContinue$<$ EOT $>$::firstFitnessSaved, moNoFitImprSolContinue$<$ EOT $>$::fitness, moNoFitImprSolContinue$<$ EOT $>$::maximization, and moNoFitImprSolContinue$<$ EOT $>$::maxNumberOfIterationsWithoutImprovement.
 
 \subsection{Member Data Documentation}
 \index{moNoFitImprSolContinue@{moNoFitImprSolContinue}!maximization@{maximization}}

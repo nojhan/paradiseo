@@ -17,7 +17,7 @@
 //! One possible moMoveSelect.
 /*!
   The neighborhood is explored until
-  a move enables an improvment of the
+  a move enables an improvement of the
   current solution.
 */
 template < class M > class moFirstImprSelect:public moMoveSelect < M >
@@ -42,7 +42,7 @@ public:
 
   //!Function that indicates if the current move has not improved the fitness.
   /*!
-     If the given fitness enables an improvment,
+     If the given fitness enables an improvement,
      the move (moMove) should be applied to the current solution.
 
      \param __move a move.

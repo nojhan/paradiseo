@@ -37,7 +37,7 @@ public:
 
   //!Function that indicates if the current move has not improved the fitness.
   /*!
-     If the given fitness enables an improvment,
+     If the given fitness enables an improvement,
      the move (moMove) and the fitness linked to this move are saved.
 
      \param __move a move.

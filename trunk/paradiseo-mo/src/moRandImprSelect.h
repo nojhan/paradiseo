@@ -20,7 +20,7 @@
 //! One of the possible moMove selector (moMoveSelect)
 /*!
   All the neighbors are considered. 
-  One of them that enables an improvment of the objective function is choosen.
+  One of them that enables an improvement of the objective function is choosen.
 */
 template < class M > class moRandImprSelect:public moMoveSelect < M >
 {

@@ -20,7 +20,7 @@ typedef EOT::Fitness {\bf Fitness}\label{classmo_steady_fit_sol_continue_c289721
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-{\bf moSteadyFitSolContinue} (unsigned int \_\-\_\-maxNumberOfIterations, unsigned int \_\-\_\-maxNumberOfIterationWithoutImprovment, bool \_\-\_\-maximization=true)
+{\bf moSteadyFitSolContinue} (unsigned int \_\-\_\-maxNumberOfIterations, unsigned int \_\-\_\-maxNumberOfIterationWithoutImprovement, bool \_\-\_\-maximization=true)
 \begin{CompactList}\small\item\em Basic constructor. \item\end{CompactList}\item 
 bool {\bf operator()} (const EOT \&\_\-\_\-sol)
 \begin{CompactList}\small\item\em Function that activates the stopping criterion. \item\end{CompactList}\item 
@@ -33,9 +33,9 @@ void {\bf init} ()\label{classmo_steady_fit_sol_continue_87563493addc8e4b58982c5
 unsigned int {\bf maxNumberOfIterations}\label{classmo_steady_fit_sol_continue_36b43c2a252887ad027165ac32393fe8}
 
 \begin{CompactList}\small\item\em Maximum number of iterations before considering the fitness. \item\end{CompactList}\item 
-unsigned int {\bf maxNumberOfIterationsWithoutImprovment}\label{classmo_steady_fit_sol_continue_92a3ea5b6752938b159257f8c6c62580}
+unsigned int {\bf maxNumberOfIterationsWithoutImprovement}\label{classmo_steady_fit_sol_continue_cde593c09f497a5fa66ff62732544f40}
 
-\begin{CompactList}\small\item\em Maximum number of iterations without improvment allowed. \item\end{CompactList}\item 
+\begin{CompactList}\small\item\em Maximum number of iterations without improvement allowed. \item\end{CompactList}\item 
 bool {\bf maxNumberOfIterationsReached}\label{classmo_steady_fit_sol_continue_7d88c0eb91b2a12121ba1c3ae9139887}
 
 \begin{CompactList}\small\item\em Flag that indicates that the maxNumberIteration have been reached. \item\end{CompactList}\item 
@@ -66,7 +66,7 @@ Definition at line 21 of file moSteadyFitSolContinue.h.
 \subsection{Constructor \& Destructor Documentation}
 \index{moSteadyFitSolContinue@{moSteadyFitSolContinue}!moSteadyFitSolContinue@{moSteadyFitSolContinue}}
 \index{moSteadyFitSolContinue@{moSteadyFitSolContinue}!moSteadyFitSolContinue@{moSteadyFitSolContinue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf moSteadyFitSolContinue}$<$ EOT $>$::{\bf moSteadyFitSolContinue} (unsigned int {\em \_\-\_\-maxNumberOfIterations}, unsigned int {\em \_\-\_\-maxNumberOfIterationWithoutImprovment}, bool {\em \_\-\_\-maximization} = {\tt true})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_steady_fit_sol_continue_bde46266638f645d409cf1afb7190c19}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf moSteadyFitSolContinue}$<$ EOT $>$::{\bf moSteadyFitSolContinue} (unsigned int {\em \_\-\_\-maxNumberOfIterations}, unsigned int {\em \_\-\_\-maxNumberOfIterationWithoutImprovement}, bool {\em \_\-\_\-maximization} = {\tt true})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_steady_fit_sol_continue_3ebfa3cfb83cdbf2e23cddc9d16fd00b}
 
 
 Basic constructor. 
@@ -74,7 +74,7 @@ Basic constructor.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em \_\-\_\-maxNumberOfIterations}]The number of iterations to reach before looking for the fitness. \item[{\em \_\-\_\-maxNumberOfIterationWithoutImprovment}]The number of iterations without fitness improvment to reach for stop. \item[{\em \_\-\_\-maximization}]Indicate if the the aim is to maximize or minimize the fitness. \end{description}
+\item[{\em \_\-\_\-maxNumberOfIterations}]The number of iterations to reach before looking for the fitness. \item[{\em \_\-\_\-maxNumberOfIterationWithoutImprovement}]The number of iterations without fitness improvement to reach for stop. \item[{\em \_\-\_\-maximization}]Indicate if the the aim is to maximize or minimize the fitness. \end{description}
 \end{Desc}
 
 
@@ -103,7 +103,7 @@ Implements {\bf eoUF$<$ const EOT \&, bool $>$}.
 
 Definition at line 47 of file moSteadyFitSolContinue.h.
 
-References moSteadyFitSolContinue$<$ EOT $>$::counter, moSteadyFitSolContinue$<$ EOT $>$::firstFitnessSaved, moSteadyFitSolContinue$<$ EOT $>$::fitness, moSteadyFitSolContinue$<$ EOT $>$::maximization, moSteadyFitSolContinue$<$ EOT $>$::maxNumberOfIterations, moSteadyFitSolContinue$<$ EOT $>$::maxNumberOfIterationsReached, and moSteadyFitSolContinue$<$ EOT $>$::maxNumberOfIterationsWithoutImprovment.
+References moSteadyFitSolContinue$<$ EOT $>$::counter, moSteadyFitSolContinue$<$ EOT $>$::firstFitnessSaved, moSteadyFitSolContinue$<$ EOT $>$::fitness, moSteadyFitSolContinue$<$ EOT $>$::maximization, moSteadyFitSolContinue$<$ EOT $>$::maxNumberOfIterations, moSteadyFitSolContinue$<$ EOT $>$::maxNumberOfIterationsReached, and moSteadyFitSolContinue$<$ EOT $>$::maxNumberOfIterationsWithoutImprovement.
 
 \subsection{Member Data Documentation}
 \index{moSteadyFitSolContinue@{moSteadyFitSolContinue}!maximization@{maximization}}

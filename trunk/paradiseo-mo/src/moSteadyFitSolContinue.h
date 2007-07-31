@@ -29,11 +29,11 @@ public:
   //! Basic constructor.
   /*!
      \param __maxNumberOfIterations The number of iterations to reach before looking for the fitness.
-     \param __maxNumberOfIterationWithoutImprovment The number of iterations without fitness improvment to reach for stop.
+     \param __maxNumberOfIterationWithoutImprovement The number of iterations without fitness improvement to reach for stop.
      \param __maximization Indicate if the the aim is to maximize or minimize the fitness.
    */
-  moSteadyFitSolContinue (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovment, bool __maximization=true)
-    : maxNumberOfIterations (__maxNumberOfIterations), maxNumberOfIterationsWithoutImprovment(__maxNumberOfIterationWithoutImprovment),
+  moSteadyFitSolContinue (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement, bool __maximization=true)
+    : maxNumberOfIterations (__maxNumberOfIterations), maxNumberOfIterationsWithoutImprovement(__maxNumberOfIterationWithoutImprovement),
       maximization(__maximization), maxNumberOfIterationsReached(false), firstFitnessSaved(true), counter(0) 
   {}
 
@@ -78,11 +78,11 @@ public:
 	counter=0;
       }
   
-    if(counter==maxNumberOfIterationsWithoutImprovment)
+    if(counter==maxNumberOfIterationsWithoutImprovement)
       {
 	std::cout << "moSteadyFitSolContinue: Done [" << counter  << "] iterations without improvement." << std::endl;
       }
-    return counter!=maxNumberOfIterationsWithoutImprovment;
+    return counter!=maxNumberOfIterationsWithoutImprovement;
   }
 
   //! Procedure which allows to initialise the stuff needed.
@@ -94,8 +94,8 @@ private:
   //! Maximum number of iterations before considering the fitness.
   unsigned int maxNumberOfIterations;
 
-   //! Maximum number of iterations without improvment allowed.
-  unsigned int maxNumberOfIterationsWithoutImprovment;
+   //! Maximum number of iterations without improvement allowed.
+  unsigned int maxNumberOfIterationsWithoutImprovement;
 
   //! Flag that indicates that the maxNumberIteration have been reached.
   bool maxNumberOfIterationsReached;

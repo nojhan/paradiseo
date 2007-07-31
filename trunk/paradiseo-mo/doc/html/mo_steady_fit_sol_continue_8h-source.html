@@ -47,8 +47,8 @@
 <a name="l00027"></a><a class="code" href="classmo_steady_fit_sol_continue.html#c289721abbbafe50f6e3b8305dd31007">00027</a>   <span class="keyword">typedef</span> <span class="keyword">typename</span> EOT::Fitness <a class="code" href="classmo_steady_fit_sol_continue.html#c289721abbbafe50f6e3b8305dd31007" title="Alias for the fitness.">Fitness</a>;
 <a name="l00028"></a>00028 
 <a name="l00030"></a>00030 
-<a name="l00035"></a><a class="code" href="classmo_steady_fit_sol_continue.html#bde46266638f645d409cf1afb7190c19">00035</a>   <a class="code" href="classmo_steady_fit_sol_continue.html#bde46266638f645d409cf1afb7190c19" title="Basic constructor.">moSteadyFitSolContinue</a> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __maxNumberOfIterations, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __maxNumberOfIterationWithoutImprovment, <span class="keywordtype">bool</span> __maximization=<span class="keyword">true</span>)
-<a name="l00036"></a>00036     : <a class="code" href="classmo_steady_fit_sol_continue.html#36b43c2a252887ad027165ac32393fe8" title="Maximum number of iterations before considering the fitness.">maxNumberOfIterations</a> (__maxNumberOfIterations), <a class="code" href="classmo_steady_fit_sol_continue.html#92a3ea5b6752938b159257f8c6c62580" title="Maximum number of iterations without improvment allowed.">maxNumberOfIterationsWithoutImprovment</a>(__maxNumberOfIterationWithoutImprovment),
+<a name="l00035"></a><a class="code" href="classmo_steady_fit_sol_continue.html#3ebfa3cfb83cdbf2e23cddc9d16fd00b">00035</a>   <a class="code" href="classmo_steady_fit_sol_continue.html#3ebfa3cfb83cdbf2e23cddc9d16fd00b" title="Basic constructor.">moSteadyFitSolContinue</a> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __maxNumberOfIterations, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __maxNumberOfIterationWithoutImprovement, <span class="keywordtype">bool</span> __maximization=<span class="keyword">true</span>)
+<a name="l00036"></a>00036     : <a class="code" href="classmo_steady_fit_sol_continue.html#36b43c2a252887ad027165ac32393fe8" title="Maximum number of iterations before considering the fitness.">maxNumberOfIterations</a> (__maxNumberOfIterations), <a class="code" href="classmo_steady_fit_sol_continue.html#cde593c09f497a5fa66ff62732544f40" title="Maximum number of iterations without improvement allowed.">maxNumberOfIterationsWithoutImprovement</a>(__maxNumberOfIterationWithoutImprovement),
 <a name="l00037"></a>00037       <a class="code" href="classmo_steady_fit_sol_continue.html#cc54de2c6f32b650e5a7ee36efc1ba73" title="Flag that indicate if there is a maximization (true) or a minimization (false) of...">maximization</a>(__maximization), <a class="code" href="classmo_steady_fit_sol_continue.html#7d88c0eb91b2a12121ba1c3ae9139887" title="Flag that indicates that the maxNumberIteration have been reached.">maxNumberOfIterationsReached</a>(false), <a class="code" href="classmo_steady_fit_sol_continue.html#025bf2789e470fdde989eee9121035c3" title="Flag that this is the first time that the fitness is used.">firstFitnessSaved</a>(true), <a class="code" href="classmo_steady_fit_sol_continue.html#245c9099a2c40dfc4f34b3ff216d13ce" title="The iteration couter.">counter</a>(0) 
 <a name="l00038"></a>00038   {}
 <a name="l00039"></a>00039 
@@ -74,7 +74,7 @@
 <a name="l00065"></a>00065       {
 <a name="l00066"></a>00066         <a class="code" href="classmo_steady_fit_sol_continue.html#a5c62e7049b36f6e71e92b559568c09e" title="Current Fitness.">fitness</a>=__sol.fitness();
 <a name="l00067"></a>00067         <a class="code" href="classmo_steady_fit_sol_continue.html#245c9099a2c40dfc4f34b3ff216d13ce" title="The iteration couter.">counter</a>=0;
-<a name="l00068"></a>00068         FirstFitnessSaved=<span class="keyword">false</span>;
+<a name="l00068"></a>00068         firstFitnessSaved=<span class="keyword">false</span>;
 <a name="l00069"></a>00069         <span class="keywordflow">return</span> <span class="keyword">true</span>;
 <a name="l00070"></a>00070       }
 <a name="l00071"></a>00071     
@@ -87,11 +87,11 @@
 <a name="l00078"></a>00078         <a class="code" href="classmo_steady_fit_sol_continue.html#245c9099a2c40dfc4f34b3ff216d13ce" title="The iteration couter.">counter</a>=0;
 <a name="l00079"></a>00079       }
 <a name="l00080"></a>00080   
-<a name="l00081"></a>00081     <span class="keywordflow">if</span>(<a class="code" href="classmo_steady_fit_sol_continue.html#245c9099a2c40dfc4f34b3ff216d13ce" title="The iteration couter.">counter</a>==<a class="code" href="classmo_steady_fit_sol_continue.html#92a3ea5b6752938b159257f8c6c62580" title="Maximum number of iterations without improvment allowed.">maxNumberOfIterationsWithoutImprovment</a>)
+<a name="l00081"></a>00081     <span class="keywordflow">if</span>(<a class="code" href="classmo_steady_fit_sol_continue.html#245c9099a2c40dfc4f34b3ff216d13ce" title="The iteration couter.">counter</a>==<a class="code" href="classmo_steady_fit_sol_continue.html#cde593c09f497a5fa66ff62732544f40" title="Maximum number of iterations without improvement allowed.">maxNumberOfIterationsWithoutImprovement</a>)
 <a name="l00082"></a>00082       {
 <a name="l00083"></a>00083         std::cout &lt;&lt; <span class="stringliteral">"moSteadyFitSolContinue: Done ["</span> &lt;&lt; <a class="code" href="classmo_steady_fit_sol_continue.html#245c9099a2c40dfc4f34b3ff216d13ce" title="The iteration couter.">counter</a>  &lt;&lt; <span class="stringliteral">"] iterations without improvement."</span> &lt;&lt; std::endl;
 <a name="l00084"></a>00084       }
-<a name="l00085"></a>00085     <span class="keywordflow">return</span> <a class="code" href="classmo_steady_fit_sol_continue.html#245c9099a2c40dfc4f34b3ff216d13ce" title="The iteration couter.">counter</a>!=<a class="code" href="classmo_steady_fit_sol_continue.html#92a3ea5b6752938b159257f8c6c62580" title="Maximum number of iterations without improvment allowed.">maxNumberOfIterationsWithoutImprovment</a>;
+<a name="l00085"></a>00085     <span class="keywordflow">return</span> <a class="code" href="classmo_steady_fit_sol_continue.html#245c9099a2c40dfc4f34b3ff216d13ce" title="The iteration couter.">counter</a>!=<a class="code" href="classmo_steady_fit_sol_continue.html#cde593c09f497a5fa66ff62732544f40" title="Maximum number of iterations without improvement allowed.">maxNumberOfIterationsWithoutImprovement</a>;
 <a name="l00086"></a>00086   }
 <a name="l00087"></a>00087 
 <a name="l00089"></a><a class="code" href="classmo_steady_fit_sol_continue.html#87563493addc8e4b58982c55a67179b9">00089</a>   <span class="keywordtype">void</span> <a class="code" href="classmo_steady_fit_sol_continue.html#87563493addc8e4b58982c55a67179b9" title="Procedure which allows to initialise the stuff needed.">init</a> ()
@@ -101,7 +101,7 @@
 <a name="l00093"></a>00093 
 <a name="l00095"></a><a class="code" href="classmo_steady_fit_sol_continue.html#36b43c2a252887ad027165ac32393fe8">00095</a>   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classmo_steady_fit_sol_continue.html#36b43c2a252887ad027165ac32393fe8" title="Maximum number of iterations before considering the fitness.">maxNumberOfIterations</a>;
 <a name="l00096"></a>00096 
-<a name="l00098"></a><a class="code" href="classmo_steady_fit_sol_continue.html#92a3ea5b6752938b159257f8c6c62580">00098</a>   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classmo_steady_fit_sol_continue.html#92a3ea5b6752938b159257f8c6c62580" title="Maximum number of iterations without improvment allowed.">maxNumberOfIterationsWithoutImprovment</a>;
+<a name="l00098"></a><a class="code" href="classmo_steady_fit_sol_continue.html#cde593c09f497a5fa66ff62732544f40">00098</a>   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classmo_steady_fit_sol_continue.html#cde593c09f497a5fa66ff62732544f40" title="Maximum number of iterations without improvement allowed.">maxNumberOfIterationsWithoutImprovement</a>;
 <a name="l00099"></a>00099 
 <a name="l00101"></a><a class="code" href="classmo_steady_fit_sol_continue.html#7d88c0eb91b2a12121ba1c3ae9139887">00101</a>   <span class="keywordtype">bool</span> <a class="code" href="classmo_steady_fit_sol_continue.html#7d88c0eb91b2a12121ba1c3ae9139887" title="Flag that indicates that the maxNumberIteration have been reached.">maxNumberOfIterationsReached</a>;
 <a name="l00102"></a>00102 
@@ -116,7 +116,7 @@
 <a name="l00118"></a>00118 };
 <a name="l00119"></a>00119 
 <a name="l00120"></a>00120 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Tue Jul 31 13:43:22 2007 for PARADISEO-MO by&nbsp;
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Tue Jul 31 14:12:37 2007 for PARADISEO-MO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.2 </small></address>
 </body>

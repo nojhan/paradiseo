@@ -16,7 +16,7 @@
 
 //! One possible stop criterion for a solution-based heuristic.
 /*!
-  The stop criterion corresponds to a maximum number of iterations without improvement.
+  The stop criterion corresponds to a maximum number of iterations without improevement.
  */
 template < class EOT > class moNoFitImprSolContinue:public moSolContinue < EOT >
 {
@@ -28,11 +28,11 @@ public:
 
   //! Basic constructor.
   /*!
-     \param __maxNumberOfIterationWithoutImprovment The number of iterations without fitness improvment to reach for stop.
+     \param __maxNumberOfIterationWithoutImprovement The number of iterations without fitness improvement to reach for stop.
      \param __maximization Indicate if the the aim is to maximize or minimize the fitness.
    */
-  moNoFitImprSolContinue (unsigned int __maxNumberOfIterationWithoutImprovment, bool __maximization=true)
-    : maxNumberOfIterationsWithoutImprovment(__maxNumberOfIterationWithoutImprovment),maximization(__maximization), 
+  moNoFitImprSolContinue (unsigned int __maxNumberOfIterationWithoutImprovement, bool __maximization=true)
+    : maxNumberOfIterationsWithoutImprovement(__maxNumberOfIterationWithoutImprovement),maximization(__maximization), 
       firstFitnessSaved(true), counter(0) 
   {}
 
@@ -66,11 +66,11 @@ public:
 	counter=0;
       }
   
-    if(counter==maxNumberOfIterationsWithoutImprovment)
+    if(counter==maxNumberOfIterationsWithoutImprovement)
       {
 	std::cout << "moNoFitImrpSolContinue: Done [" << counter  << "] iterations without improvement." << std::endl;
       }
-    return counter!=maxNumberOfIterationsWithoutImprovment;
+    return counter!=maxNumberOfIterationsWithoutImprovement;
   }
 
   //! Procedure which allows to initialise all the stuff needed.
@@ -79,8 +79,8 @@ public:
 
 private:
 
-  //! Maximum number of iterations without improvment allowed.
-  unsigned int maxNumberOfIterationsWithoutImprovment;
+  //! Maximum number of iterations without improvement allowed.
+  unsigned int maxNumberOfIterationsWithoutImprovement;
 
   //! Flag that this is the first time that the fitness is used.
   bool firstFitnessSaved;

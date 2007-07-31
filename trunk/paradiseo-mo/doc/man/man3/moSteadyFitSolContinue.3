@@ -24,7 +24,7 @@ Inherits \fBmoSolContinue< EOT >< EOT >\fP.
 
 .in +1c
 .ti -1c
-.RI "\fBmoSteadyFitSolContinue\fP (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovment, bool __maximization=true)"
+.RI "\fBmoSteadyFitSolContinue\fP (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement, bool __maximization=true)"
 .br
 .RI "\fIBasic constructor. \fP"
 .ti -1c
@@ -44,9 +44,9 @@ Inherits \fBmoSolContinue< EOT >< EOT >\fP.
 .br
 .RI "\fIMaximum number of iterations before considering the fitness. \fP"
 .ti -1c
-.RI "unsigned int \fBmaxNumberOfIterationsWithoutImprovment\fP"
+.RI "unsigned int \fBmaxNumberOfIterationsWithoutImprovement\fP"
 .br
-.RI "\fIMaximum number of iterations without improvment allowed. \fP"
+.RI "\fIMaximum number of iterations without improvement allowed. \fP"
 .ti -1c
 .RI "bool \fBmaxNumberOfIterationsReached\fP"
 .br
@@ -79,7 +79,7 @@ The stop criterion corresponds to a maximum number of iterations without improve
 Definition at line 21 of file moSteadyFitSolContinue.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<class EOT> \fBmoSteadyFitSolContinue\fP< EOT >::\fBmoSteadyFitSolContinue\fP (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovment, bool __maximization = \fCtrue\fP)\fC [inline]\fP"
+.SS "template<class EOT> \fBmoSteadyFitSolContinue\fP< EOT >::\fBmoSteadyFitSolContinue\fP (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement, bool __maximization = \fCtrue\fP)\fC [inline]\fP"
 .PP
 Basic constructor. 
 .PP
@@ -87,7 +87,7 @@ Basic constructor.
 .RS 4
 \fI__maxNumberOfIterations\fP The number of iterations to reach before looking for the fitness. 
 .br
-\fI__maxNumberOfIterationWithoutImprovment\fP The number of iterations without fitness improvment to reach for stop. 
+\fI__maxNumberOfIterationWithoutImprovement\fP The number of iterations without fitness improvement to reach for stop. 
 .br
 \fI__maximization\fP Indicate if the the aim is to maximize or minimize the fitness. 
 .RE
@@ -119,7 +119,7 @@ Implements \fBeoUF< const EOT &, bool >\fP.
 .PP
 Definition at line 47 of file moSteadyFitSolContinue.h.
 .PP
-References moSteadyFitSolContinue< EOT >::counter, moSteadyFitSolContinue< EOT >::firstFitnessSaved, moSteadyFitSolContinue< EOT >::fitness, moSteadyFitSolContinue< EOT >::maximization, moSteadyFitSolContinue< EOT >::maxNumberOfIterations, moSteadyFitSolContinue< EOT >::maxNumberOfIterationsReached, and moSteadyFitSolContinue< EOT >::maxNumberOfIterationsWithoutImprovment.
+References moSteadyFitSolContinue< EOT >::counter, moSteadyFitSolContinue< EOT >::firstFitnessSaved, moSteadyFitSolContinue< EOT >::fitness, moSteadyFitSolContinue< EOT >::maximization, moSteadyFitSolContinue< EOT >::maxNumberOfIterations, moSteadyFitSolContinue< EOT >::maxNumberOfIterationsReached, and moSteadyFitSolContinue< EOT >::maxNumberOfIterationsWithoutImprovement.
 .SH "Member Data Documentation"
 .PP 
 .SS "template<class EOT> bool \fBmoSteadyFitSolContinue\fP< EOT >::\fBmaximization\fP\fC [private]\fP"
