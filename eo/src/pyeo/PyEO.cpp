@@ -145,6 +145,7 @@ void pop_setitem(eoPop<PyEO>& pop, boost::python::object key, PyEO& value)
 
 void pop_push_back(eoPop<PyEO>& pop, PyEO& p) { pop.push_back(p); }
 void pop_resize(   eoPop<PyEO>& pop, unsigned i) { pop.resize(i); }
+int pop_size(   eoPop<PyEO>& pop) { return pop.size(); }
 
 extern void abstract1();
 extern void algos();
@@ -181,7 +182,7 @@ BOOST_PYTHON_MODULE(PyEO)
 	.def( init< unsigned, eoInit<PyEO>& >()[with_custodian_and_ward<1,3>()] )
 	.def("append", &eoPop<PyEO>::append)
 	.def("__str__", to_string<eoPop<PyEO> >)
-	.def("__len__", &eoPop<PyEO>::size)
+	.def("__len__", pop_size)
 	.def("sort",    pop_sort )
 	.def("shuffle", pop_shuffle)
 	.def("__getitem__", pop_getitem, return_internal_reference<>() )
