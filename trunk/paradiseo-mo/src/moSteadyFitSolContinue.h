@@ -30,11 +30,11 @@ public:
   /*!
      \param __maxNumberOfIterations The number of iterations to reach before looking for the fitness.
      \param __maxNumberOfIterationWithoutImprovement The number of iterations without fitness improvement to reach for stop.
-     \param __maximization Indicate if the the aim is to maximize or minimize the fitness.
+     \param __minimization Indicate if the the aim is to maximize or minimize the fitness.
    */
-  moSteadyFitSolContinue (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement, bool __maximization=true)
+  moSteadyFitSolContinue (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement, bool __minimization=true)
     : maxNumberOfIterations (__maxNumberOfIterations), maxNumberOfIterationsWithoutImprovement(__maxNumberOfIterationWithoutImprovement),
-      maximization(__maximization), maxNumberOfIterationsReached(false), firstFitnessSaved(true), counter(0) 
+      minimization(__minimization), maxNumberOfIterationsReached(false), firstFitnessSaved(true), counter(0) 
   {}
 
   //! Function that activates the stopping criterion.
@@ -71,8 +71,8 @@ public:
     
     counter++;
 
-    if( ((maximization) && (__sol.fitness() > fitness)) || 
-	((!maximization) && (__sol.fitness() < fitness)) )
+    if( ((minimization) && (__sol.fitness() < fitness)) || 
+	((!minimization) && (__sol.fitness() > fitness)) )
       {
 	fitness=__sol.fitness();
 	counter=0;
@@ -106,12 +106,12 @@ private:
   //! Current Fitness.
   Fitness fitness;
 
-  //! Flag that indicate if there is a maximization (true) or a minimization (false) of the fitness value.
+  //! Flag that indicate if there is a minimization (true) or a maximization (false) of the fitness value.
   /*!
     It can be interesting to know this information because some solution-based metaheuristics can generate solution with a fitness that
     is worse that the best known fitness (in this case, the counter is not reinitialized).
    */
-  bool maximization;
+  bool minimization;
 
   //! The iteration couter.
   unsigned int counter;

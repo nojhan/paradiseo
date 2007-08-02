@@ -47,8 +47,8 @@
 <a name="l00027"></a><a class="code" href="classmo_no_fit_impr_sol_continue.html#64c184de66bb37d75d53aa600ac947b3">00027</a>   <span class="keyword">typedef</span> <span class="keyword">typename</span> EOT::Fitness <a class="code" href="classmo_no_fit_impr_sol_continue.html#64c184de66bb37d75d53aa600ac947b3" title="Alias for the fitness.">Fitness</a>;
 <a name="l00028"></a>00028 
 <a name="l00030"></a>00030 
-<a name="l00034"></a><a class="code" href="classmo_no_fit_impr_sol_continue.html#07684d717a14a70bb94307e3ff62a826">00034</a>   <a class="code" href="classmo_no_fit_impr_sol_continue.html#07684d717a14a70bb94307e3ff62a826" title="Basic constructor.">moNoFitImprSolContinue</a> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __maxNumberOfIterationWithoutImprovement, <span class="keywordtype">bool</span> __maximization=<span class="keyword">true</span>)
-<a name="l00035"></a>00035     : <a class="code" href="classmo_no_fit_impr_sol_continue.html#03612ffc3af9d943c1b1d2cde09d461b" title="Maximum number of iterations without improvement allowed.">maxNumberOfIterationsWithoutImprovement</a>(__maxNumberOfIterationWithoutImprovement),<a class="code" href="classmo_no_fit_impr_sol_continue.html#73295d6a4ad437b0ab06848ac24698c4" title="Flag that indicate if there is a maximization (true) or a minimization (false) of...">maximization</a>(__maximization), 
+<a name="l00034"></a><a class="code" href="classmo_no_fit_impr_sol_continue.html#6246733469ea1b5001bf4c567e3dfdcb">00034</a>   <a class="code" href="classmo_no_fit_impr_sol_continue.html#6246733469ea1b5001bf4c567e3dfdcb" title="Basic constructor.">moNoFitImprSolContinue</a> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> __maxNumberOfIterationWithoutImprovement, <span class="keywordtype">bool</span> __minimization=<span class="keyword">true</span>)
+<a name="l00035"></a>00035     : <a class="code" href="classmo_no_fit_impr_sol_continue.html#03612ffc3af9d943c1b1d2cde09d461b" title="Maximum number of iterations without improvement allowed.">maxNumberOfIterationsWithoutImprovement</a>(__maxNumberOfIterationWithoutImprovement),<a class="code" href="classmo_no_fit_impr_sol_continue.html#2d216544c9188ec593d808c8e95208f5" title="Flag that indicate if there is a minimization (true) or a maximization (false) of...">minimization</a>(__minimization), 
 <a name="l00036"></a>00036       <a class="code" href="classmo_no_fit_impr_sol_continue.html#ca3591e47a075b59e0826f31234c71ef" title="Flag that this is the first time that the fitness is used.">firstFitnessSaved</a>(true), <a class="code" href="classmo_no_fit_impr_sol_continue.html#46fc008a8f7cd06dcaaeb4016b433adb" title="The iteration couter.">counter</a>(0) 
 <a name="l00037"></a>00037   {}
 <a name="l00038"></a>00038 
@@ -70,8 +70,8 @@
 <a name="l00059"></a>00059     
 <a name="l00060"></a>00060     <a class="code" href="classmo_no_fit_impr_sol_continue.html#46fc008a8f7cd06dcaaeb4016b433adb" title="The iteration couter.">counter</a>++;
 <a name="l00061"></a>00061 
-<a name="l00062"></a>00062     <span class="keywordflow">if</span>( ((<a class="code" href="classmo_no_fit_impr_sol_continue.html#73295d6a4ad437b0ab06848ac24698c4" title="Flag that indicate if there is a maximization (true) or a minimization (false) of...">maximization</a>) &amp;&amp; (__sol.fitness() &gt; <a class="code" href="classmo_no_fit_impr_sol_continue.html#3d3d2b43a4dd73e38689cc0018d44ee7" title="Current Fitness.">fitness</a>)) || 
-<a name="l00063"></a>00063         ((!<a class="code" href="classmo_no_fit_impr_sol_continue.html#73295d6a4ad437b0ab06848ac24698c4" title="Flag that indicate if there is a maximization (true) or a minimization (false) of...">maximization</a>) &amp;&amp; (__sol.fitness() &lt; <a class="code" href="classmo_no_fit_impr_sol_continue.html#3d3d2b43a4dd73e38689cc0018d44ee7" title="Current Fitness.">fitness</a>)) )
+<a name="l00062"></a>00062     <span class="keywordflow">if</span>( ((<a class="code" href="classmo_no_fit_impr_sol_continue.html#2d216544c9188ec593d808c8e95208f5" title="Flag that indicate if there is a minimization (true) or a maximization (false) of...">minimization</a>) &amp;&amp; (__sol.fitness() &lt; <a class="code" href="classmo_no_fit_impr_sol_continue.html#3d3d2b43a4dd73e38689cc0018d44ee7" title="Current Fitness.">fitness</a>)) || 
+<a name="l00063"></a>00063         ((!<a class="code" href="classmo_no_fit_impr_sol_continue.html#2d216544c9188ec593d808c8e95208f5" title="Flag that indicate if there is a minimization (true) or a maximization (false) of...">minimization</a>) &amp;&amp; (__sol.fitness() &gt; <a class="code" href="classmo_no_fit_impr_sol_continue.html#3d3d2b43a4dd73e38689cc0018d44ee7" title="Current Fitness.">fitness</a>)) )
 <a name="l00064"></a>00064       {
 <a name="l00065"></a>00065         <a class="code" href="classmo_no_fit_impr_sol_continue.html#3d3d2b43a4dd73e38689cc0018d44ee7" title="Current Fitness.">fitness</a>=__sol.fitness();
 <a name="l00066"></a>00066         <a class="code" href="classmo_no_fit_impr_sol_continue.html#46fc008a8f7cd06dcaaeb4016b433adb" title="The iteration couter.">counter</a>=0;
@@ -96,13 +96,13 @@
 <a name="l00089"></a><a class="code" href="classmo_no_fit_impr_sol_continue.html#3d3d2b43a4dd73e38689cc0018d44ee7">00089</a>   <a class="code" href="classmo_no_fit_impr_sol_continue.html#64c184de66bb37d75d53aa600ac947b3" title="Alias for the fitness.">Fitness</a> <a class="code" href="classmo_no_fit_impr_sol_continue.html#3d3d2b43a4dd73e38689cc0018d44ee7" title="Current Fitness.">fitness</a>;
 <a name="l00090"></a>00090 
 <a name="l00092"></a>00092 
-<a name="l00096"></a><a class="code" href="classmo_no_fit_impr_sol_continue.html#73295d6a4ad437b0ab06848ac24698c4">00096</a>   <span class="keywordtype">bool</span> <a class="code" href="classmo_no_fit_impr_sol_continue.html#73295d6a4ad437b0ab06848ac24698c4" title="Flag that indicate if there is a maximization (true) or a minimization (false) of...">maximization</a>;
+<a name="l00096"></a><a class="code" href="classmo_no_fit_impr_sol_continue.html#2d216544c9188ec593d808c8e95208f5">00096</a>   <span class="keywordtype">bool</span> <a class="code" href="classmo_no_fit_impr_sol_continue.html#2d216544c9188ec593d808c8e95208f5" title="Flag that indicate if there is a minimization (true) or a maximization (false) of...">minimization</a>;
 <a name="l00097"></a>00097 
 <a name="l00099"></a><a class="code" href="classmo_no_fit_impr_sol_continue.html#46fc008a8f7cd06dcaaeb4016b433adb">00099</a>   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classmo_no_fit_impr_sol_continue.html#46fc008a8f7cd06dcaaeb4016b433adb" title="The iteration couter.">counter</a>;
 <a name="l00100"></a>00100 };
 <a name="l00101"></a>00101 
 <a name="l00102"></a>00102 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Tue Jul 31 14:12:37 2007 for PARADISEO-MO by&nbsp;
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Thu Aug 2 09:02:25 2007 for PARADISEO-MO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.2 </small></address>
 </body>

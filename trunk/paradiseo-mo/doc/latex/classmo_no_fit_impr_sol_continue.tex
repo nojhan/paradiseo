@@ -20,7 +20,7 @@ typedef EOT::Fitness {\bf Fitness}\label{classmo_no_fit_impr_sol_continue_64c184
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-{\bf moNoFitImprSolContinue} (unsigned int \_\-\_\-maxNumberOfIterationWithoutImprovement, bool \_\-\_\-maximization=true)
+{\bf moNoFitImprSolContinue} (unsigned int \_\-\_\-maxNumberOfIterationWithoutImprovement, bool \_\-\_\-minimization=true)
 \begin{CompactList}\small\item\em Basic constructor. \item\end{CompactList}\item 
 bool {\bf operator()} (const EOT \&\_\-\_\-sol)
 \begin{CompactList}\small\item\em Function that activates the stopping criterion. \item\end{CompactList}\item 
@@ -39,8 +39,8 @@ bool {\bf firstFitnessSaved}\label{classmo_no_fit_impr_sol_continue_ca3591e47a07
 {\bf Fitness} {\bf fitness}\label{classmo_no_fit_impr_sol_continue_3d3d2b43a4dd73e38689cc0018d44ee7}
 
 \begin{CompactList}\small\item\em Current Fitness. \item\end{CompactList}\item 
-bool {\bf maximization}
-\begin{CompactList}\small\item\em Flag that indicate if there is a maximization (true) or a minimization (false) of the fitness value. \item\end{CompactList}\item 
+bool {\bf minimization}
+\begin{CompactList}\small\item\em Flag that indicate if there is a minimization (true) or a maximization (false) of the fitness value. \item\end{CompactList}\item 
 unsigned int {\bf counter}\label{classmo_no_fit_impr_sol_continue_46fc008a8f7cd06dcaaeb4016b433adb}
 
 \begin{CompactList}\small\item\em The iteration couter. \item\end{CompactList}\end{CompactItemize}
@@ -60,7 +60,7 @@ Definition at line 21 of file moNoFitImprSolContinue.h.
 \subsection{Constructor \& Destructor Documentation}
 \index{moNoFitImprSolContinue@{moNoFitImprSolContinue}!moNoFitImprSolContinue@{moNoFitImprSolContinue}}
 \index{moNoFitImprSolContinue@{moNoFitImprSolContinue}!moNoFitImprSolContinue@{moNoFitImprSolContinue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf moNoFitImprSolContinue}$<$ EOT $>$::{\bf moNoFitImprSolContinue} (unsigned int {\em \_\-\_\-maxNumberOfIterationWithoutImprovement}, bool {\em \_\-\_\-maximization} = {\tt true})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_no_fit_impr_sol_continue_07684d717a14a70bb94307e3ff62a826}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf moNoFitImprSolContinue}$<$ EOT $>$::{\bf moNoFitImprSolContinue} (unsigned int {\em \_\-\_\-maxNumberOfIterationWithoutImprovement}, bool {\em \_\-\_\-minimization} = {\tt true})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_no_fit_impr_sol_continue_6246733469ea1b5001bf4c567e3dfdcb}
 
 
 Basic constructor. 
@@ -68,7 +68,7 @@ Basic constructor.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em \_\-\_\-maxNumberOfIterationWithoutImprovement}]The number of iterations without fitness improvement to reach for stop. \item[{\em \_\-\_\-maximization}]Indicate if the the aim is to maximize or minimize the fitness. \end{description}
+\item[{\em \_\-\_\-maxNumberOfIterationWithoutImprovement}]The number of iterations without fitness improvement to reach for stop. \item[{\em \_\-\_\-minimization}]Indicate if the the aim is to maximize or minimize the fitness. \end{description}
 \end{Desc}
 
 
@@ -95,15 +95,15 @@ Implements {\bf eoUF$<$ const EOT \&, bool $>$}.
 
 Definition at line 45 of file moNoFitImprSolContinue.h.
 
-References moNoFitImprSolContinue$<$ EOT $>$::counter, moNoFitImprSolContinue$<$ EOT $>$::firstFitnessSaved, moNoFitImprSolContinue$<$ EOT $>$::fitness, moNoFitImprSolContinue$<$ EOT $>$::maximization, and moNoFitImprSolContinue$<$ EOT $>$::maxNumberOfIterationsWithoutImprovement.
+References moNoFitImprSolContinue$<$ EOT $>$::counter, moNoFitImprSolContinue$<$ EOT $>$::firstFitnessSaved, moNoFitImprSolContinue$<$ EOT $>$::fitness, moNoFitImprSolContinue$<$ EOT $>$::maxNumberOfIterationsWithoutImprovement, and moNoFitImprSolContinue$<$ EOT $>$::minimization.
 
 \subsection{Member Data Documentation}
-\index{moNoFitImprSolContinue@{moNoFitImprSolContinue}!maximization@{maximization}}
-\index{maximization@{maximization}!moNoFitImprSolContinue@{moNoFitImprSolContinue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf moNoFitImprSolContinue}$<$ EOT $>$::{\bf maximization}\hspace{0.3cm}{\tt  [private]}}\label{classmo_no_fit_impr_sol_continue_73295d6a4ad437b0ab06848ac24698c4}
+\index{moNoFitImprSolContinue@{moNoFitImprSolContinue}!minimization@{minimization}}
+\index{minimization@{minimization}!moNoFitImprSolContinue@{moNoFitImprSolContinue}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf moNoFitImprSolContinue}$<$ EOT $>$::{\bf minimization}\hspace{0.3cm}{\tt  [private]}}\label{classmo_no_fit_impr_sol_continue_2d216544c9188ec593d808c8e95208f5}
 
 
-Flag that indicate if there is a maximization (true) or a minimization (false) of the fitness value. 
+Flag that indicate if there is a minimization (true) or a maximization (false) of the fitness value. 
 
 It can be interesting to know this information because some solution-based metaheuristics can generate solutions wiht a fitness that is worse that the best known fitness (in this case, the counter is not reinitialized). 
 

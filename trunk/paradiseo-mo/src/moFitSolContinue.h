@@ -29,14 +29,14 @@ public:
   //! Basic constructor.
   /*!
      \param __fitness The fitness to reach.
-     \param __maximization Indicate if the the aim is to maximize or minimize the fitness.
+     \param __minimization Indicate if the the aim is to maximize or minimize the fitness.
    */
-  moFitSolContinue (Fitness __fitness, bool __maximization=true): fitness (__fitness), maximization(__maximization)
+  moFitSolContinue (Fitness __fitness, bool __minimization=true): fitness (__fitness), minimization(__minimization)
   {}
 
   //! Function that activates the stopping criterion.
   /*!
-    Indicates if the fitness threshold has not been yet reached.
+    Indicates if the fitness threshold has not yet been reached.
 
      \param __sol the current solution.
      \return true or false according to the value of the fitness.
@@ -48,11 +48,11 @@ public:
 	return true;
       }
 
-    if(maximization)
+    if(minimization)
       {
-	return __sol.fitness()<fitness;
+	return __sol.fitness()>fitness;
       }
-    return __sol.fitness()>fitness;
+    return __sol.fitness()<=fitness;
   }
 
   //! Procedure which allows to initialise all the stuff needed.
@@ -64,12 +64,12 @@ private:
   //! Fitness target.
   Fitness fitness;
 
-  //! Flag that indicate if there is a maximization (true) or a minimization (false) of the fitness value.
+  //! Flag that indicate if there is a minimization (true) or a maximization (false) of the fitness value.
   /*!
     It can be interesting to know this information because some solution-based metaheuristics can generate solution with a fitness that
     is worse that the best known fitness (in this case, the counter is not reinitialized).
    */
-  bool maximization;
+  bool minimization;
 };
 
 #endif

@@ -1,4 +1,4 @@
-.TH "moSteadyFitSolContinue" 3 "31 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moSteadyFitSolContinue" 3 "2 Aug 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -24,7 +24,7 @@ Inherits \fBmoSolContinue< EOT >< EOT >\fP.
 
 .in +1c
 .ti -1c
-.RI "\fBmoSteadyFitSolContinue\fP (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement, bool __maximization=true)"
+.RI "\fBmoSteadyFitSolContinue\fP (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement, bool __minimization=true)"
 .br
 .RI "\fIBasic constructor. \fP"
 .ti -1c
@@ -60,9 +60,9 @@ Inherits \fBmoSolContinue< EOT >< EOT >\fP.
 .br
 .RI "\fICurrent Fitness. \fP"
 .ti -1c
-.RI "bool \fBmaximization\fP"
+.RI "bool \fBminimization\fP"
 .br
-.RI "\fIFlag that indicate if there is a maximization (true) or a minimization (false) of the fitness value. \fP"
+.RI "\fIFlag that indicate if there is a minimization (true) or a maximization (false) of the fitness value. \fP"
 .ti -1c
 .RI "unsigned int \fBcounter\fP"
 .br
@@ -79,7 +79,7 @@ The stop criterion corresponds to a maximum number of iterations without improve
 Definition at line 21 of file moSteadyFitSolContinue.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<class EOT> \fBmoSteadyFitSolContinue\fP< EOT >::\fBmoSteadyFitSolContinue\fP (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement, bool __maximization = \fCtrue\fP)\fC [inline]\fP"
+.SS "template<class EOT> \fBmoSteadyFitSolContinue\fP< EOT >::\fBmoSteadyFitSolContinue\fP (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement, bool __minimization = \fCtrue\fP)\fC [inline]\fP"
 .PP
 Basic constructor. 
 .PP
@@ -89,7 +89,7 @@ Basic constructor.
 .br
 \fI__maxNumberOfIterationWithoutImprovement\fP The number of iterations without fitness improvement to reach for stop. 
 .br
-\fI__maximization\fP Indicate if the the aim is to maximize or minimize the fitness. 
+\fI__minimization\fP Indicate if the the aim is to maximize or minimize the fitness. 
 .RE
 .PP
 
@@ -119,12 +119,12 @@ Implements \fBeoUF< const EOT &, bool >\fP.
 .PP
 Definition at line 47 of file moSteadyFitSolContinue.h.
 .PP
-References moSteadyFitSolContinue< EOT >::counter, moSteadyFitSolContinue< EOT >::firstFitnessSaved, moSteadyFitSolContinue< EOT >::fitness, moSteadyFitSolContinue< EOT >::maximization, moSteadyFitSolContinue< EOT >::maxNumberOfIterations, moSteadyFitSolContinue< EOT >::maxNumberOfIterationsReached, and moSteadyFitSolContinue< EOT >::maxNumberOfIterationsWithoutImprovement.
+References moSteadyFitSolContinue< EOT >::counter, moSteadyFitSolContinue< EOT >::firstFitnessSaved, moSteadyFitSolContinue< EOT >::fitness, moSteadyFitSolContinue< EOT >::maxNumberOfIterations, moSteadyFitSolContinue< EOT >::maxNumberOfIterationsReached, moSteadyFitSolContinue< EOT >::maxNumberOfIterationsWithoutImprovement, and moSteadyFitSolContinue< EOT >::minimization.
 .SH "Member Data Documentation"
 .PP 
-.SS "template<class EOT> bool \fBmoSteadyFitSolContinue\fP< EOT >::\fBmaximization\fP\fC [private]\fP"
+.SS "template<class EOT> bool \fBmoSteadyFitSolContinue\fP< EOT >::\fBminimization\fP\fC [private]\fP"
 .PP
-Flag that indicate if there is a maximization (true) or a minimization (false) of the fitness value. 
+Flag that indicate if there is a minimization (true) or a maximization (false) of the fitness value. 
 .PP
 It can be interesting to know this information because some solution-based metaheuristics can generate solution with a fitness that is worse that the best known fitness (in this case, the counter is not reinitialized). 
 .PP

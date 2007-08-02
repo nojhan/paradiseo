@@ -20,7 +20,7 @@ typedef EOT::Fitness {\bf Fitness}\label{classmo_steady_fit_sol_continue_c289721
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-{\bf moSteadyFitSolContinue} (unsigned int \_\-\_\-maxNumberOfIterations, unsigned int \_\-\_\-maxNumberOfIterationWithoutImprovement, bool \_\-\_\-maximization=true)
+{\bf moSteadyFitSolContinue} (unsigned int \_\-\_\-maxNumberOfIterations, unsigned int \_\-\_\-maxNumberOfIterationWithoutImprovement, bool \_\-\_\-minimization=true)
 \begin{CompactList}\small\item\em Basic constructor. \item\end{CompactList}\item 
 bool {\bf operator()} (const EOT \&\_\-\_\-sol)
 \begin{CompactList}\small\item\em Function that activates the stopping criterion. \item\end{CompactList}\item 
@@ -45,8 +45,8 @@ bool {\bf firstFitnessSaved}\label{classmo_steady_fit_sol_continue_025bf2789e470
 {\bf Fitness} {\bf fitness}\label{classmo_steady_fit_sol_continue_a5c62e7049b36f6e71e92b559568c09e}
 
 \begin{CompactList}\small\item\em Current Fitness. \item\end{CompactList}\item 
-bool {\bf maximization}
-\begin{CompactList}\small\item\em Flag that indicate if there is a maximization (true) or a minimization (false) of the fitness value. \item\end{CompactList}\item 
+bool {\bf minimization}
+\begin{CompactList}\small\item\em Flag that indicate if there is a minimization (true) or a maximization (false) of the fitness value. \item\end{CompactList}\item 
 unsigned int {\bf counter}\label{classmo_steady_fit_sol_continue_245c9099a2c40dfc4f34b3ff216d13ce}
 
 \begin{CompactList}\small\item\em The iteration couter. \item\end{CompactList}\end{CompactItemize}
@@ -66,7 +66,7 @@ Definition at line 21 of file moSteadyFitSolContinue.h.
 \subsection{Constructor \& Destructor Documentation}
 \index{moSteadyFitSolContinue@{moSteadyFitSolContinue}!moSteadyFitSolContinue@{moSteadyFitSolContinue}}
 \index{moSteadyFitSolContinue@{moSteadyFitSolContinue}!moSteadyFitSolContinue@{moSteadyFitSolContinue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf moSteadyFitSolContinue}$<$ EOT $>$::{\bf moSteadyFitSolContinue} (unsigned int {\em \_\-\_\-maxNumberOfIterations}, unsigned int {\em \_\-\_\-maxNumberOfIterationWithoutImprovement}, bool {\em \_\-\_\-maximization} = {\tt true})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_steady_fit_sol_continue_3ebfa3cfb83cdbf2e23cddc9d16fd00b}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf moSteadyFitSolContinue}$<$ EOT $>$::{\bf moSteadyFitSolContinue} (unsigned int {\em \_\-\_\-maxNumberOfIterations}, unsigned int {\em \_\-\_\-maxNumberOfIterationWithoutImprovement}, bool {\em \_\-\_\-minimization} = {\tt true})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_steady_fit_sol_continue_0c7e09ca080bfb1dd493015d23a50ad7}
 
 
 Basic constructor. 
@@ -74,7 +74,7 @@ Basic constructor.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em \_\-\_\-maxNumberOfIterations}]The number of iterations to reach before looking for the fitness. \item[{\em \_\-\_\-maxNumberOfIterationWithoutImprovement}]The number of iterations without fitness improvement to reach for stop. \item[{\em \_\-\_\-maximization}]Indicate if the the aim is to maximize or minimize the fitness. \end{description}
+\item[{\em \_\-\_\-maxNumberOfIterations}]The number of iterations to reach before looking for the fitness. \item[{\em \_\-\_\-maxNumberOfIterationWithoutImprovement}]The number of iterations without fitness improvement to reach for stop. \item[{\em \_\-\_\-minimization}]Indicate if the the aim is to maximize or minimize the fitness. \end{description}
 \end{Desc}
 
 
@@ -103,15 +103,15 @@ Implements {\bf eoUF$<$ const EOT \&, bool $>$}.
 
 Definition at line 47 of file moSteadyFitSolContinue.h.
 
-References moSteadyFitSolContinue$<$ EOT $>$::counter, moSteadyFitSolContinue$<$ EOT $>$::firstFitnessSaved, moSteadyFitSolContinue$<$ EOT $>$::fitness, moSteadyFitSolContinue$<$ EOT $>$::maximization, moSteadyFitSolContinue$<$ EOT $>$::maxNumberOfIterations, moSteadyFitSolContinue$<$ EOT $>$::maxNumberOfIterationsReached, and moSteadyFitSolContinue$<$ EOT $>$::maxNumberOfIterationsWithoutImprovement.
+References moSteadyFitSolContinue$<$ EOT $>$::counter, moSteadyFitSolContinue$<$ EOT $>$::firstFitnessSaved, moSteadyFitSolContinue$<$ EOT $>$::fitness, moSteadyFitSolContinue$<$ EOT $>$::maxNumberOfIterations, moSteadyFitSolContinue$<$ EOT $>$::maxNumberOfIterationsReached, moSteadyFitSolContinue$<$ EOT $>$::maxNumberOfIterationsWithoutImprovement, and moSteadyFitSolContinue$<$ EOT $>$::minimization.
 
 \subsection{Member Data Documentation}
-\index{moSteadyFitSolContinue@{moSteadyFitSolContinue}!maximization@{maximization}}
-\index{maximization@{maximization}!moSteadyFitSolContinue@{moSteadyFitSolContinue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf moSteadyFitSolContinue}$<$ EOT $>$::{\bf maximization}\hspace{0.3cm}{\tt  [private]}}\label{classmo_steady_fit_sol_continue_cc54de2c6f32b650e5a7ee36efc1ba73}
+\index{moSteadyFitSolContinue@{moSteadyFitSolContinue}!minimization@{minimization}}
+\index{minimization@{minimization}!moSteadyFitSolContinue@{moSteadyFitSolContinue}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf moSteadyFitSolContinue}$<$ EOT $>$::{\bf minimization}\hspace{0.3cm}{\tt  [private]}}\label{classmo_steady_fit_sol_continue_4176d8cc6fda6cb854997a845faaf8a4}
 
 
-Flag that indicate if there is a maximization (true) or a minimization (false) of the fitness value. 
+Flag that indicate if there is a minimization (true) or a maximization (false) of the fitness value. 
 
 It can be interesting to know this information because some solution-based metaheuristics can generate solution with a fitness that is worse that the best known fitness (in this case, the counter is not reinitialized). 
 

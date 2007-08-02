@@ -50,9 +50,9 @@ typedef EOT::Fitness&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Alias for the fitness. <br></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_no_fit_impr_sol_continue.html#07684d717a14a70bb94307e3ff62a826">moNoFitImprSolContinue</a> (unsigned int __maxNumberOfIterationWithoutImprovement, bool __maximization=true)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_no_fit_impr_sol_continue.html#6246733469ea1b5001bf4c567e3dfdcb">moNoFitImprSolContinue</a> (unsigned int __maxNumberOfIterationWithoutImprovement, bool __minimization=true)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Basic constructor.  <a href="#07684d717a14a70bb94307e3ff62a826"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Basic constructor.  <a href="#6246733469ea1b5001bf4c567e3dfdcb"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_no_fit_impr_sol_continue.html#dbd663623cae56ec76ee504ecb226fed">operator()</a> (const EOT &amp;__sol)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Function that activates the stopping criterion.  <a href="#dbd663623cae56ec76ee504ecb226fed"></a><br></td></tr>
@@ -73,9 +73,9 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <a class="el" href="classmo_no_fit_impr_sol_continue.html#64c184de66bb37d75d53aa600ac947b3">Fitness</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_no_fit_impr_sol_continue.html#3d3d2b43a4dd73e38689cc0018d44ee7">fitness</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Current Fitness. <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_no_fit_impr_sol_continue.html#73295d6a4ad437b0ab06848ac24698c4">maximization</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_no_fit_impr_sol_continue.html#2d216544c9188ec593d808c8e95208f5">minimization</a></td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Flag that indicate if there is a maximization (true) or a minimization (false) of the fitness value.  <a href="#73295d6a4ad437b0ab06848ac24698c4"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Flag that indicate if there is a minimization (true) or a maximization (false) of the fitness value.  <a href="#2d216544c9188ec593d808c8e95208f5"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="46fc008a8f7cd06dcaaeb4016b433adb"></a><!-- doxytag: member="moNoFitImprSolContinue::counter" ref="46fc008a8f7cd06dcaaeb4016b433adb" args="" -->
 unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_no_fit_impr_sol_continue.html#46fc008a8f7cd06dcaaeb4016b433adb">counter</a></td></tr>
 
@@ -92,7 +92,7 @@ The stop criterion corresponds to a maximum number of iterations without improev
 
 <p>
 Definition at line <a class="el" href="mo_no_fit_impr_sol_continue_8h-source.html#l00021">21</a> of file <a class="el" href="mo_no_fit_impr_sol_continue_8h-source.html">moNoFitImprSolContinue.h</a>.<hr><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" name="07684d717a14a70bb94307e3ff62a826"></a><!-- doxytag: member="moNoFitImprSolContinue::moNoFitImprSolContinue" ref="07684d717a14a70bb94307e3ff62a826" args="(unsigned int __maxNumberOfIterationWithoutImprovement, bool __maximization=true)" -->
+<a class="anchor" name="6246733469ea1b5001bf4c567e3dfdcb"></a><!-- doxytag: member="moNoFitImprSolContinue::moNoFitImprSolContinue" ref="6246733469ea1b5001bf4c567e3dfdcb" args="(unsigned int __maxNumberOfIterationWithoutImprovement, bool __minimization=true)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -108,7 +108,7 @@ template&lt;class EOT&gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>__maximization</em> = <code>true</code></td><td>&nbsp;</td>
+          <td class="paramname"> <em>__minimization</em> = <code>true</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -125,7 +125,7 @@ Basic constructor.
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>__maxNumberOfIterationWithoutImprovement</em>&nbsp;</td><td>The number of iterations without fitness improvement to reach for stop. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>__maximization</em>&nbsp;</td><td>Indicate if the the aim is to maximize or minimize the fitness. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>__minimization</em>&nbsp;</td><td>Indicate if the the aim is to maximize or minimize the fitness. </td></tr>
   </table>
 </dl>
 
@@ -167,25 +167,25 @@ Implements <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/
 <p>
 Definition at line <a class="el" href="mo_no_fit_impr_sol_continue_8h-source.html#l00045">45</a> of file <a class="el" href="mo_no_fit_impr_sol_continue_8h-source.html">moNoFitImprSolContinue.h</a>.
 <p>
-References <a class="el" href="mo_no_fit_impr_sol_continue_8h-source.html#l00099">moNoFitImprSolContinue&lt; EOT &gt;::counter</a>, <a class="el" href="mo_no_fit_impr_sol_continue_8h-source.html#l00086">moNoFitImprSolContinue&lt; EOT &gt;::firstFitnessSaved</a>, <a class="el" href="mo_no_fit_impr_sol_continue_8h-source.html#l00089">moNoFitImprSolContinue&lt; EOT &gt;::fitness</a>, <a class="el" href="mo_no_fit_impr_sol_continue_8h-source.html#l00096">moNoFitImprSolContinue&lt; EOT &gt;::maximization</a>, and <a class="el" href="mo_no_fit_impr_sol_continue_8h-source.html#l00083">moNoFitImprSolContinue&lt; EOT &gt;::maxNumberOfIterationsWithoutImprovement</a>.
+References <a class="el" href="mo_no_fit_impr_sol_continue_8h-source.html#l00099">moNoFitImprSolContinue&lt; EOT &gt;::counter</a>, <a class="el" href="mo_no_fit_impr_sol_continue_8h-source.html#l00086">moNoFitImprSolContinue&lt; EOT &gt;::firstFitnessSaved</a>, <a class="el" href="mo_no_fit_impr_sol_continue_8h-source.html#l00089">moNoFitImprSolContinue&lt; EOT &gt;::fitness</a>, <a class="el" href="mo_no_fit_impr_sol_continue_8h-source.html#l00083">moNoFitImprSolContinue&lt; EOT &gt;::maxNumberOfIterationsWithoutImprovement</a>, and <a class="el" href="mo_no_fit_impr_sol_continue_8h-source.html#l00096">moNoFitImprSolContinue&lt; EOT &gt;::minimization</a>.
 </div>
 </div><p>
 <hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="73295d6a4ad437b0ab06848ac24698c4"></a><!-- doxytag: member="moNoFitImprSolContinue::maximization" ref="73295d6a4ad437b0ab06848ac24698c4" args="" -->
+<a class="anchor" name="2d216544c9188ec593d808c8e95208f5"></a><!-- doxytag: member="moNoFitImprSolContinue::minimization" ref="2d216544c9188ec593d808c8e95208f5" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class EOT&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classmo_no_fit_impr_sol_continue.html">moNoFitImprSolContinue</a>&lt; EOT &gt;::<a class="el" href="classmo_no_fit_impr_sol_continue.html#73295d6a4ad437b0ab06848ac24698c4">maximization</a><code> [private]</code>          </td>
+          <td class="memname">bool <a class="el" href="classmo_no_fit_impr_sol_continue.html">moNoFitImprSolContinue</a>&lt; EOT &gt;::<a class="el" href="classmo_no_fit_impr_sol_continue.html#2d216544c9188ec593d808c8e95208f5">minimization</a><code> [private]</code>          </td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-Flag that indicate if there is a maximization (true) or a minimization (false) of the fitness value. 
+Flag that indicate if there is a minimization (true) or a maximization (false) of the fitness value. 
 <p>
 It can be interesting to know this information because some solution-based metaheuristics can generate solutions wiht a fitness that is worse that the best known fitness (in this case, the counter is not reinitialized). 
 <p>
@@ -196,7 +196,7 @@ Referenced by <a class="el" href="mo_no_fit_impr_sol_continue_8h-source.html#l00
 </div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="mo_no_fit_impr_sol_continue_8h-source.html">moNoFitImprSolContinue.h</a></ul>
-<hr size="1"><address style="text-align: right;"><small>Generated on Tue Jul 31 14:12:37 2007 for PARADISEO-MO by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Aug 2 09:02:25 2007 for PARADISEO-MO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.2 </small></address>
 </body>
