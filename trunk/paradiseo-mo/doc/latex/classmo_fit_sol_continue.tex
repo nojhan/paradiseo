@@ -24,8 +24,7 @@ typedef EOT::Fitness {\bf Fitness}\label{classmo_fit_sol_continue_369ed94a788d8b
 \begin{CompactList}\small\item\em Basic constructor. \item\end{CompactList}\item 
 bool {\bf operator()} (const EOT \&\_\-\_\-sol)
 \begin{CompactList}\small\item\em Function that activates the stopping criterion. \item\end{CompactList}\item 
-void {\bf init} ()\label{classmo_fit_sol_continue_670bd895b4edfcd3aebb40d2295d7f7c}
-
+void {\bf init} ()
 \begin{CompactList}\small\item\em Procedure which allows to initialise all the stuff needed. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
 \begin{CompactItemize}
@@ -86,7 +85,18 @@ Implements {\bf eoUF$<$ const EOT \&, bool $>$}.
 
 Definition at line 43 of file moFitSolContinue.h.
 
-References moFitSolContinue$<$ EOT $>$::fitness.
+References moFitSolContinue$<$ EOT $>$::fitness.\index{moFitSolContinue@{moFitSolContinue}!init@{init}}
+\index{init@{init}!moFitSolContinue@{moFitSolContinue}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void {\bf moFitSolContinue}$<$ EOT $>$::init ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_fit_sol_continue_670bd895b4edfcd3aebb40d2295d7f7c}
+
+
+Procedure which allows to initialise all the stuff needed. 
+
+It can be also used to reinitialize all the needed things. 
+
+Implements {\bf moSolContinue$<$ EOT $>$} \doxyref{}{p.}{classmo_sol_continue_064dc966a210f4ffb9515be3f03ca4c7}.
+
+Definition at line 57 of file moFitSolContinue.h.
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 
