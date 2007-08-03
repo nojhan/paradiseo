@@ -16,7 +16,7 @@
 
 //! One possible stop criterion for a solution-based heuristic.
 /*!
-  The stop criterion corresponds to a maximum number of iterations without improevement.
+  The stop criterion corresponds to a maximum number of iterations without improvement.
  */
 template < class EOT > class moNoFitImprSolContinue:public moSolContinue < EOT >
 {
@@ -72,7 +72,7 @@ public:
 
   //! Procedure which allows to initialise all the stuff needed.
   /*!
-    It can be also used to reinitialize the counter all the needed things.
+    It can be also used to reinitialize all the needed things.
   */
   void init ()
   {

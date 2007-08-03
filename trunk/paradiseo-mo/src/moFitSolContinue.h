@@ -51,6 +51,9 @@ public:
   }
 
   //! Procedure which allows to initialise all the stuff needed.
+  /*!
+    It can be also used to reinitialize all the needed things.
+  */
   void init ()
   {}
 
