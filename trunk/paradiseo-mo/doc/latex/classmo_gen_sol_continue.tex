@@ -18,8 +18,7 @@ Inheritance diagram for moGenSolContinue$<$ EOT $>$::\begin{figure}[H]
 \begin{CompactList}\small\item\em Basic constructor. \item\end{CompactList}\item 
 bool {\bf operator()} (const EOT \&\_\-\_\-sol)
 \begin{CompactList}\small\item\em Function that activates the stop criterion. \item\end{CompactList}\item 
-void {\bf init} ()\label{classmo_gen_sol_continue_6c5db8182157584b56507cc9075602d4}
-
+void {\bf init} ()
 \begin{CompactList}\small\item\em Procedure which allows to initialise all the stuff needed. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
 \begin{CompactItemize}
@@ -83,7 +82,20 @@ Implements {\bf eoUF$<$ const EOT \&, bool $>$}.
 
 Definition at line 42 of file moGenSolContinue.h.
 
-References moGenSolContinue$<$ EOT $>$::maxNumGen, and moGenSolContinue$<$ EOT $>$::numGen.
+References moGenSolContinue$<$ EOT $>$::maxNumGen, and moGenSolContinue$<$ EOT $>$::numGen.\index{moGenSolContinue@{moGenSolContinue}!init@{init}}
+\index{init@{init}!moGenSolContinue@{moGenSolContinue}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void {\bf moGenSolContinue}$<$ EOT $>$::init ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_gen_sol_continue_6c5db8182157584b56507cc9075602d4}
+
+
+Procedure which allows to initialise all the stuff needed. 
+
+It can be also used to reinitialize the counter all the needed things. 
+
+Implements {\bf moSolContinue$<$ EOT $>$} \doxyref{}{p.}{classmo_sol_continue_064dc966a210f4ffb9515be3f03ca4c7}.
+
+Definition at line 51 of file moGenSolContinue.h.
+
+References moGenSolContinue$<$ EOT $>$::numGen.
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 

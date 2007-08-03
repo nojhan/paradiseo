@@ -1,4 +1,4 @@
-.TH "moNoFitImprSolContinue" 3 "2 Aug 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moNoFitImprSolContinue" 3 "3 Aug 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -24,7 +24,7 @@ Inherits \fBmoSolContinue< EOT >< EOT >\fP.
 
 .in +1c
 .ti -1c
-.RI "\fBmoNoFitImprSolContinue\fP (unsigned int __maxNumberOfIterationWithoutImprovement, bool __minimization=true)"
+.RI "\fBmoNoFitImprSolContinue\fP (unsigned int __maxNumberOfIterationWithoutImprovement)"
 .br
 .RI "\fIBasic constructor. \fP"
 .ti -1c
@@ -52,10 +52,6 @@ Inherits \fBmoSolContinue< EOT >< EOT >\fP.
 .br
 .RI "\fICurrent Fitness. \fP"
 .ti -1c
-.RI "bool \fBminimization\fP"
-.br
-.RI "\fIFlag that indicate if there is a minimization (true) or a maximization (false) of the fitness value. \fP"
-.ti -1c
 .RI "unsigned int \fBcounter\fP"
 .br
 .RI "\fIThe iteration couter. \fP"
@@ -71,20 +67,18 @@ The stop criterion corresponds to a maximum number of iterations without improev
 Definition at line 21 of file moNoFitImprSolContinue.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<class EOT> \fBmoNoFitImprSolContinue\fP< EOT >::\fBmoNoFitImprSolContinue\fP (unsigned int __maxNumberOfIterationWithoutImprovement, bool __minimization = \fCtrue\fP)\fC [inline]\fP"
+.SS "template<class EOT> \fBmoNoFitImprSolContinue\fP< EOT >::\fBmoNoFitImprSolContinue\fP (unsigned int __maxNumberOfIterationWithoutImprovement)\fC [inline]\fP"
 .PP
 Basic constructor. 
 .PP
 \fBParameters:\fP
 .RS 4
 \fI__maxNumberOfIterationWithoutImprovement\fP The number of iterations without fitness improvement to reach for stop. 
-.br
-\fI__minimization\fP Indicate if the the aim is to maximize or minimize the fitness. 
 .RE
 .PP
 
 .PP
-Definition at line 34 of file moNoFitImprSolContinue.h.
+Definition at line 33 of file moNoFitImprSolContinue.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class EOT> bool \fBmoNoFitImprSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline, virtual]\fP"
@@ -107,20 +101,20 @@ true or false.
 .PP
 Implements \fBeoUF< const EOT &, bool >\fP.
 .PP
-Definition at line 45 of file moNoFitImprSolContinue.h.
+Definition at line 43 of file moNoFitImprSolContinue.h.
 .PP
-References moNoFitImprSolContinue< EOT >::counter, moNoFitImprSolContinue< EOT >::firstFitnessSaved, moNoFitImprSolContinue< EOT >::fitness, moNoFitImprSolContinue< EOT >::maxNumberOfIterationsWithoutImprovement, and moNoFitImprSolContinue< EOT >::minimization.
-.SH "Member Data Documentation"
-.PP 
-.SS "template<class EOT> bool \fBmoNoFitImprSolContinue\fP< EOT >::\fBminimization\fP\fC [private]\fP"
+References moNoFitImprSolContinue< EOT >::counter, moNoFitImprSolContinue< EOT >::firstFitnessSaved, moNoFitImprSolContinue< EOT >::fitness, and moNoFitImprSolContinue< EOT >::maxNumberOfIterationsWithoutImprovement.
+.SS "template<class EOT> void \fBmoNoFitImprSolContinue\fP< EOT >::init ()\fC [inline, virtual]\fP"
 .PP
-Flag that indicate if there is a minimization (true) or a maximization (false) of the fitness value. 
+Procedure which allows to initialise all the stuff needed. 
 .PP
-It can be interesting to know this information because some solution-based metaheuristics can generate solutions wiht a fitness that is worse that the best known fitness (in this case, the counter is not reinitialized). 
+It can be also used to reinitialize the counter all the needed things. 
 .PP
-Definition at line 96 of file moNoFitImprSolContinue.h.
+Implements \fBmoSolContinue< EOT >\fP.
 .PP
-Referenced by moNoFitImprSolContinue< EOT >::operator()().
+Definition at line 77 of file moNoFitImprSolContinue.h.
+.PP
+References moNoFitImprSolContinue< EOT >::counter, and moNoFitImprSolContinue< EOT >::firstFitnessSaved.
 
 .SH "Author"
 .PP 

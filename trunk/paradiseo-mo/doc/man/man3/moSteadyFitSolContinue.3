@@ -1,4 +1,4 @@
-.TH "moSteadyFitSolContinue" 3 "2 Aug 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moSteadyFitSolContinue" 3 "3 Aug 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -24,7 +24,7 @@ Inherits \fBmoSolContinue< EOT >< EOT >\fP.
 
 .in +1c
 .ti -1c
-.RI "\fBmoSteadyFitSolContinue\fP (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement, bool __minimization=true)"
+.RI "\fBmoSteadyFitSolContinue\fP (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement)"
 .br
 .RI "\fIBasic constructor. \fP"
 .ti -1c
@@ -60,10 +60,6 @@ Inherits \fBmoSolContinue< EOT >< EOT >\fP.
 .br
 .RI "\fICurrent Fitness. \fP"
 .ti -1c
-.RI "bool \fBminimization\fP"
-.br
-.RI "\fIFlag that indicate if there is a minimization (true) or a maximization (false) of the fitness value. \fP"
-.ti -1c
 .RI "unsigned int \fBcounter\fP"
 .br
 .RI "\fIThe iteration couter. \fP"
@@ -79,7 +75,7 @@ The stop criterion corresponds to a maximum number of iterations without improve
 Definition at line 21 of file moSteadyFitSolContinue.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<class EOT> \fBmoSteadyFitSolContinue\fP< EOT >::\fBmoSteadyFitSolContinue\fP (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement, bool __minimization = \fCtrue\fP)\fC [inline]\fP"
+.SS "template<class EOT> \fBmoSteadyFitSolContinue\fP< EOT >::\fBmoSteadyFitSolContinue\fP (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement)\fC [inline]\fP"
 .PP
 Basic constructor. 
 .PP
@@ -88,13 +84,11 @@ Basic constructor.
 \fI__maxNumberOfIterations\fP The number of iterations to reach before looking for the fitness. 
 .br
 \fI__maxNumberOfIterationWithoutImprovement\fP The number of iterations without fitness improvement to reach for stop. 
-.br
-\fI__minimization\fP Indicate if the the aim is to maximize or minimize the fitness. 
 .RE
 .PP
 
 .PP
-Definition at line 35 of file moSteadyFitSolContinue.h.
+Definition at line 34 of file moSteadyFitSolContinue.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class EOT> bool \fBmoSteadyFitSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline, virtual]\fP"
@@ -117,20 +111,20 @@ true or false.
 .PP
 Implements \fBeoUF< const EOT &, bool >\fP.
 .PP
-Definition at line 47 of file moSteadyFitSolContinue.h.
+Definition at line 46 of file moSteadyFitSolContinue.h.
 .PP
-References moSteadyFitSolContinue< EOT >::counter, moSteadyFitSolContinue< EOT >::firstFitnessSaved, moSteadyFitSolContinue< EOT >::fitness, moSteadyFitSolContinue< EOT >::maxNumberOfIterations, moSteadyFitSolContinue< EOT >::maxNumberOfIterationsReached, moSteadyFitSolContinue< EOT >::maxNumberOfIterationsWithoutImprovement, and moSteadyFitSolContinue< EOT >::minimization.
-.SH "Member Data Documentation"
-.PP 
-.SS "template<class EOT> bool \fBmoSteadyFitSolContinue\fP< EOT >::\fBminimization\fP\fC [private]\fP"
+References moSteadyFitSolContinue< EOT >::counter, moSteadyFitSolContinue< EOT >::firstFitnessSaved, moSteadyFitSolContinue< EOT >::fitness, moSteadyFitSolContinue< EOT >::maxNumberOfIterations, moSteadyFitSolContinue< EOT >::maxNumberOfIterationsReached, and moSteadyFitSolContinue< EOT >::maxNumberOfIterationsWithoutImprovement.
+.SS "template<class EOT> void \fBmoSteadyFitSolContinue\fP< EOT >::init ()\fC [inline, virtual]\fP"
 .PP
-Flag that indicate if there is a minimization (true) or a maximization (false) of the fitness value. 
+Procedure which allows to initialise the stuff needed. 
 .PP
-It can be interesting to know this information because some solution-based metaheuristics can generate solution with a fitness that is worse that the best known fitness (in this case, the counter is not reinitialized). 
+It can be also used to reinitialize the counter all the needed things. 
 .PP
-Definition at line 114 of file moSteadyFitSolContinue.h.
+Implements \fBmoSolContinue< EOT >\fP.
 .PP
-Referenced by moSteadyFitSolContinue< EOT >::operator()().
+Definition at line 90 of file moSteadyFitSolContinue.h.
+.PP
+References moSteadyFitSolContinue< EOT >::counter, moSteadyFitSolContinue< EOT >::firstFitnessSaved, and moSteadyFitSolContinue< EOT >::maxNumberOfIterationsReached.
 
 .SH "Author"
 .PP 

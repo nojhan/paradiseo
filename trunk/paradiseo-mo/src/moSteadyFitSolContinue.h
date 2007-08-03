@@ -30,11 +30,10 @@ public:
   /*!
      \param __maxNumberOfIterations The number of iterations to reach before looking for the fitness.
      \param __maxNumberOfIterationWithoutImprovement The number of iterations without fitness improvement to reach for stop.
-     \param __minimization Indicate if the the aim is to maximize or minimize the fitness.
    */
-  moSteadyFitSolContinue (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement, bool __minimization=true)
+  moSteadyFitSolContinue (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement)
     : maxNumberOfIterations (__maxNumberOfIterations), maxNumberOfIterationsWithoutImprovement(__maxNumberOfIterationWithoutImprovement),
-      minimization(__minimization), maxNumberOfIterationsReached(false), firstFitnessSaved(true), counter(0) 
+      maxNumberOfIterationsReached(false), firstFitnessSaved(true), counter(0) 
   {}
 
   //! Function that activates the stopping criterion.
@@ -71,8 +70,7 @@ public:
     
     counter++;
 
-    if( ((minimization) && (__sol.fitness() < fitness)) || 
-	((!minimization) && (__sol.fitness() > fitness)) )
+    if( __sol.fitness() > fitness )
       {
 	fitness=__sol.fitness();
 	counter=0;
@@ -86,8 +84,15 @@ public:
   }
 
   //! Procedure which allows to initialise the stuff needed.
+  /*!
+    It can be also used to reinitialize the counter all the needed things.
+  */
   void init ()
-  {}
+  {
+    maxNumberOfIterationsReached=false;
+    counter=0;
+    firstFitnessSaved=true;
+  }
 
 private:
 
@@ -105,13 +110,6 @@ private:
 
   //! Current Fitness.
   Fitness fitness;
-
-  //! Flag that indicate if there is a minimization (true) or a maximization (false) of the fitness value.
-  /*!
-    It can be interesting to know this information because some solution-based metaheuristics can generate solution with a fitness that
-    is worse that the best known fitness (in this case, the counter is not reinitialized).
-   */
-  bool minimization;
 
   //! The iteration couter.
   unsigned int counter;

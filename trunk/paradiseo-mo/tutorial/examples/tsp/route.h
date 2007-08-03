@@ -2,7 +2,7 @@
 
 // "route.h"
 
-// (c) OPAC Team, LIFL, 2003-2006
+// (c) OPAC Team, LIFL, 2003-2007
 
 /* LICENCE TEXT 
    
@@ -13,7 +13,10 @@
 #define route_h
 
 #include <eoVector.h>
+#include <eoScalarFitness.h>
 
-typedef eoVector <float, unsigned int> Route ; // [Fitness (- length), Gene (city)]
+typedef eoScalarFitness< float, std::greater< float > > tspFitness ;
+
+typedef eoVector <tspFitness, unsigned int> Route ; // [Fitness (length), Gene (city)]
 
 #endif

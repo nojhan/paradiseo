@@ -71,31 +71,31 @@
 <a name="l00064"></a>00064     <span class="comment">//</span>
 <a name="l00065"></a>00065     <a class="code" href="classmo_h_c_move_loop_expl.html#6776fc51331c1b452d026b92448b4ffc" title="Move initialiser.">move_init</a> (move, __old_sol);        <span class="comment">/* Restarting the exploration of </span>
 <a name="l00066"></a>00066 <span class="comment">                                           of the neighborhood ! */</span>
-<a name="l00067"></a>00067 
+<a name="l00067"></a>00067     
 <a name="l00068"></a>00068     <a class="code" href="classmo_h_c_move_loop_expl.html#13bcd1322b2b97fd665be2f60c532fbb" title="Move selector.">move_select</a>.init (__old_sol.fitness ());
-<a name="l00069"></a>00069 
+<a name="l00069"></a>00069     
 <a name="l00070"></a>00070     <span class="keywordflow">while</span> (<a class="code" href="classmo_h_c_move_loop_expl.html#13bcd1322b2b97fd665be2f60c532fbb" title="Move selector.">move_select</a>.update (move, <a class="code" href="classmo_h_c_move_loop_expl.html#84a8fccba05ab30414281469bc8ee779" title="(generally) Efficient evaluation.">incr_eval</a> (move, __old_sol))
 <a name="l00071"></a>00071            &amp;&amp; <a class="code" href="classmo_h_c_move_loop_expl.html#f716c5271e0eba9275c585dc52768443" title="Neighborhood explorer.">next_move</a> (move, __old_sol));
-<a name="l00072"></a>00072 
+<a name="l00072"></a>00072     
 <a name="l00073"></a>00073     <span class="keywordflow">try</span>
-<a name="l00074"></a>00074     {
-<a name="l00075"></a>00075 
-<a name="l00076"></a>00076       M best_move;
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078       <a class="code" href="classmo_h_c_move_loop_expl.html#f24871224316d5549b9013a2d27ab465" title="Alias for the fitness.">Fitness</a> best_move_fit;
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080       <a class="code" href="classmo_h_c_move_loop_expl.html#13bcd1322b2b97fd665be2f60c532fbb" title="Move selector.">move_select</a> (best_move, best_move_fit);
-<a name="l00081"></a>00081       __new_sol.fitness (best_move_fit);
-<a name="l00082"></a>00082       best_move (__new_sol);
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084     }
+<a name="l00074"></a>00074       {
+<a name="l00075"></a>00075         
+<a name="l00076"></a>00076         M best_move;
+<a name="l00077"></a>00077         
+<a name="l00078"></a>00078         <a class="code" href="classmo_h_c_move_loop_expl.html#f24871224316d5549b9013a2d27ab465" title="Alias for the fitness.">Fitness</a> best_move_fit;
+<a name="l00079"></a>00079         
+<a name="l00080"></a>00080         <a class="code" href="classmo_h_c_move_loop_expl.html#13bcd1322b2b97fd665be2f60c532fbb" title="Move selector.">move_select</a> (best_move, best_move_fit);
+<a name="l00081"></a>00081         __new_sol.fitness (best_move_fit);
+<a name="l00082"></a>00082         best_move (__new_sol);
+<a name="l00083"></a>00083         
+<a name="l00084"></a>00084       }
 <a name="l00085"></a>00085     <span class="keywordflow">catch</span> (<a class="code" href="class_empty_selection.html" title="Special class that describes the case of no selection.">EmptySelection</a> &amp; __ex)
-<a name="l00086"></a>00086     {
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088       <span class="comment">// ?</span>
-<a name="l00089"></a>00089     }
+<a name="l00086"></a>00086       {
+<a name="l00087"></a>00087         
+<a name="l00088"></a>00088         <span class="comment">// ?</span>
+<a name="l00089"></a>00089       }
 <a name="l00090"></a>00090   }
-<a name="l00091"></a>00091 
+<a name="l00091"></a>00091   
 <a name="l00092"></a>00092 <span class="keyword">private</span>:
 <a name="l00093"></a>00093 
 <a name="l00095"></a><a class="code" href="classmo_h_c_move_loop_expl.html#6776fc51331c1b452d026b92448b4ffc">00095</a>   moMoveInit &lt; M &gt; &amp;<a class="code" href="classmo_h_c_move_loop_expl.html#6776fc51331c1b452d026b92448b4ffc" title="Move initialiser.">move_init</a>;
@@ -109,7 +109,7 @@
 <a name="l00106"></a>00106 };
 <a name="l00107"></a>00107 
 <a name="l00108"></a>00108 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Thu Aug 2 09:02:25 2007 for PARADISEO-MO by&nbsp;
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Fri Aug 3 16:25:56 2007 for PARADISEO-MO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.2 </small></address>
 </body>

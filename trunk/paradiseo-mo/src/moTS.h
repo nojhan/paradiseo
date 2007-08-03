@@ -91,13 +91,13 @@ moTS (moMoveExpl < M > &__move_expl, moSolContinue < EOT > &__cont, eoEvalFunc <
 
     M move;
 
-    EOT best_sol = __sol, new_sol;
+    EOT best_sol, new_sol;
+    best_sol = __sol;
 
     cont.init ();
 
     do
       {
-
 	new_sol = __sol;
 
 	try
@@ -112,8 +112,7 @@ moTS (moMoveExpl < M > &__move_expl, moSolContinue < EOT > &__cont, eoEvalFunc <
 	  break;
 	}
 
-	/* Updating the best solution
-	   found until now ? */
+	/* Updating the best solution found until now ? */
 	if (new_sol.fitness () > __sol.fitness ())
 	  {
 	    best_sol = new_sol;

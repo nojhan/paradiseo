@@ -47,37 +47,30 @@
 <a name="l00027"></a><a class="code" href="classmo_fit_sol_continue.html#369ed94a788d8bdc08d5554f7669376f">00027</a>   <span class="keyword">typedef</span> <span class="keyword">typename</span> EOT::Fitness <a class="code" href="classmo_fit_sol_continue.html#369ed94a788d8bdc08d5554f7669376f" title="Alias for the fitness.">Fitness</a>;
 <a name="l00028"></a>00028 
 <a name="l00030"></a>00030 
-<a name="l00034"></a><a class="code" href="classmo_fit_sol_continue.html#667090eca00b8532524f8e0a6e988fed">00034</a>   <a class="code" href="classmo_fit_sol_continue.html#667090eca00b8532524f8e0a6e988fed" title="Basic constructor.">moFitSolContinue</a> (<a class="code" href="classmo_fit_sol_continue.html#369ed94a788d8bdc08d5554f7669376f" title="Alias for the fitness.">Fitness</a> __fitness, <span class="keywordtype">bool</span> __minimization=<span class="keyword">true</span>): <a class="code" href="classmo_fit_sol_continue.html#87d0ba8f2f76f61c89317eed5f094dfc" title="Fitness target.">fitness</a> (__fitness), <a class="code" href="classmo_fit_sol_continue.html#a4c90279f00774d9868a2e38ead45696" title="Flag that indicate if there is a minimization (true) or a maximization (false) of...">minimization</a>(__minimization)
-<a name="l00035"></a>00035   {}
-<a name="l00036"></a>00036 
-<a name="l00038"></a>00038 
-<a name="l00044"></a><a class="code" href="classmo_fit_sol_continue.html#fa9f0a15f99c998115cae9b456403a27">00044</a>   <span class="keywordtype">bool</span> <a class="code" href="classmo_fit_sol_continue.html#fa9f0a15f99c998115cae9b456403a27" title="Function that activates the stopping criterion.">operator   () </a>(<span class="keyword">const</span> EOT &amp; __sol)
-<a name="l00045"></a>00045   {
-<a name="l00046"></a>00046     <span class="keywordflow">if</span>(__sol.invalid())
-<a name="l00047"></a>00047       {
-<a name="l00048"></a>00048         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00049"></a>00049       }
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051     <span class="keywordflow">if</span>(<a class="code" href="classmo_fit_sol_continue.html#a4c90279f00774d9868a2e38ead45696" title="Flag that indicate if there is a minimization (true) or a maximization (false) of...">minimization</a>)
-<a name="l00052"></a>00052       {
-<a name="l00053"></a>00053         <span class="keywordflow">return</span> __sol.fitness()&gt;<a class="code" href="classmo_fit_sol_continue.html#87d0ba8f2f76f61c89317eed5f094dfc" title="Fitness target.">fitness</a>;
-<a name="l00054"></a>00054       }
-<a name="l00055"></a>00055     <span class="keywordflow">return</span> __sol.fitness()&lt;=<a class="code" href="classmo_fit_sol_continue.html#87d0ba8f2f76f61c89317eed5f094dfc" title="Fitness target.">fitness</a>;
-<a name="l00056"></a>00056   }
-<a name="l00057"></a>00057 
-<a name="l00059"></a><a class="code" href="classmo_fit_sol_continue.html#670bd895b4edfcd3aebb40d2295d7f7c">00059</a>   <span class="keywordtype">void</span> <a class="code" href="classmo_fit_sol_continue.html#670bd895b4edfcd3aebb40d2295d7f7c" title="Procedure which allows to initialise all the stuff needed.">init</a> ()
-<a name="l00060"></a>00060   {}
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062 <span class="keyword">private</span>:
-<a name="l00063"></a>00063 
-<a name="l00065"></a><a class="code" href="classmo_fit_sol_continue.html#87d0ba8f2f76f61c89317eed5f094dfc">00065</a>   <a class="code" href="classmo_fit_sol_continue.html#369ed94a788d8bdc08d5554f7669376f" title="Alias for the fitness.">Fitness</a> <a class="code" href="classmo_fit_sol_continue.html#87d0ba8f2f76f61c89317eed5f094dfc" title="Fitness target.">fitness</a>;
-<a name="l00066"></a>00066 
-<a name="l00068"></a>00068 
-<a name="l00072"></a><a class="code" href="classmo_fit_sol_continue.html#a4c90279f00774d9868a2e38ead45696">00072</a>   <span class="keywordtype">bool</span> <a class="code" href="classmo_fit_sol_continue.html#a4c90279f00774d9868a2e38ead45696" title="Flag that indicate if there is a minimization (true) or a maximization (false) of...">minimization</a>;
-<a name="l00073"></a>00073 };
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Thu Aug 2 09:02:25 2007 for PARADISEO-MO by&nbsp;
+<a name="l00033"></a><a class="code" href="classmo_fit_sol_continue.html#b14f37ba88de4e12583b22f5aabeb682">00033</a>   <a class="code" href="classmo_fit_sol_continue.html#b14f37ba88de4e12583b22f5aabeb682" title="Basic constructor.">moFitSolContinue</a> (<a class="code" href="classmo_fit_sol_continue.html#369ed94a788d8bdc08d5554f7669376f" title="Alias for the fitness.">Fitness</a> __fitness): <a class="code" href="classmo_fit_sol_continue.html#87d0ba8f2f76f61c89317eed5f094dfc" title="Fitness target.">fitness</a> (__fitness)
+<a name="l00034"></a>00034   {}
+<a name="l00035"></a>00035 
+<a name="l00037"></a>00037 
+<a name="l00043"></a><a class="code" href="classmo_fit_sol_continue.html#fa9f0a15f99c998115cae9b456403a27">00043</a>   <span class="keywordtype">bool</span> <a class="code" href="classmo_fit_sol_continue.html#fa9f0a15f99c998115cae9b456403a27" title="Function that activates the stopping criterion.">operator   () </a>(<span class="keyword">const</span> EOT &amp; __sol)
+<a name="l00044"></a>00044   {
+<a name="l00045"></a>00045     <span class="keywordflow">if</span>(__sol.invalid())
+<a name="l00046"></a>00046       {
+<a name="l00047"></a>00047         <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00048"></a>00048       }
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050     <span class="keywordflow">return</span> __sol.fitness() &lt; <a class="code" href="classmo_fit_sol_continue.html#87d0ba8f2f76f61c89317eed5f094dfc" title="Fitness target.">fitness</a>;
+<a name="l00051"></a>00051   }
+<a name="l00052"></a>00052 
+<a name="l00054"></a><a class="code" href="classmo_fit_sol_continue.html#670bd895b4edfcd3aebb40d2295d7f7c">00054</a>   <span class="keywordtype">void</span> <a class="code" href="classmo_fit_sol_continue.html#670bd895b4edfcd3aebb40d2295d7f7c" title="Procedure which allows to initialise all the stuff needed.">init</a> ()
+<a name="l00055"></a>00055   {}
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 <span class="keyword">private</span>:
+<a name="l00058"></a>00058 
+<a name="l00060"></a><a class="code" href="classmo_fit_sol_continue.html#87d0ba8f2f76f61c89317eed5f094dfc">00060</a>   <a class="code" href="classmo_fit_sol_continue.html#369ed94a788d8bdc08d5554f7669376f" title="Alias for the fitness.">Fitness</a> <a class="code" href="classmo_fit_sol_continue.html#87d0ba8f2f76f61c89317eed5f094dfc" title="Fitness target.">fitness</a>;
+<a name="l00061"></a>00061 };
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063 <span class="preprocessor">#endif</span>
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Fri Aug 3 16:25:55 2007 for PARADISEO-MO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.2 </small></address>
 </body>

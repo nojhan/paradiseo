@@ -23,7 +23,7 @@ class moExponentialCoolingSchedule: public moCoolingSchedule
 {
 
 public:
-  //! Simple constructor
+  //! Basic constructor
   /*!
      \param __threshold the threshold.
      \param __ratio the ratio used to descrease the temperature.

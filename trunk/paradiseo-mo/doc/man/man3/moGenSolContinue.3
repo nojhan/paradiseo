@@ -1,4 +1,4 @@
-.TH "moGenSolContinue" 3 "2 Aug 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moGenSolContinue" 3 "3 Aug 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -88,6 +88,17 @@ Implements \fBeoUF< const EOT &, bool >\fP.
 Definition at line 42 of file moGenSolContinue.h.
 .PP
 References moGenSolContinue< EOT >::maxNumGen, and moGenSolContinue< EOT >::numGen.
+.SS "template<class EOT> void \fBmoGenSolContinue\fP< EOT >::init ()\fC [inline, virtual]\fP"
+.PP
+Procedure which allows to initialise all the stuff needed. 
+.PP
+It can be also used to reinitialize the counter all the needed things. 
+.PP
+Implements \fBmoSolContinue< EOT >\fP.
+.PP
+Definition at line 51 of file moGenSolContinue.h.
+.PP
+References moGenSolContinue< EOT >::numGen.
 
 .SH "Author"
 .PP 

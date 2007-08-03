@@ -20,7 +20,7 @@ typedef EOT::Fitness {\bf Fitness}\label{classmo_fit_sol_continue_369ed94a788d8b
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-{\bf moFitSolContinue} ({\bf Fitness} \_\-\_\-fitness, bool \_\-\_\-minimization=true)
+{\bf moFitSolContinue} ({\bf Fitness} \_\-\_\-fitness)
 \begin{CompactList}\small\item\em Basic constructor. \item\end{CompactList}\item 
 bool {\bf operator()} (const EOT \&\_\-\_\-sol)
 \begin{CompactList}\small\item\em Function that activates the stopping criterion. \item\end{CompactList}\item 
@@ -32,9 +32,7 @@ void {\bf init} ()\label{classmo_fit_sol_continue_670bd895b4edfcd3aebb40d2295d7f
 \item 
 {\bf Fitness} {\bf fitness}\label{classmo_fit_sol_continue_87d0ba8f2f76f61c89317eed5f094dfc}
 
-\begin{CompactList}\small\item\em Fitness target. \item\end{CompactList}\item 
-bool {\bf minimization}
-\begin{CompactList}\small\item\em Flag that indicate if there is a minimization (true) or a maximization (false) of the fitness value. \item\end{CompactList}\end{CompactItemize}
+\begin{CompactList}\small\item\em Fitness target. \item\end{CompactList}\end{CompactItemize}
 
 
 \subsection{Detailed Description}
@@ -51,7 +49,7 @@ Definition at line 21 of file moFitSolContinue.h.
 \subsection{Constructor \& Destructor Documentation}
 \index{moFitSolContinue@{moFitSolContinue}!moFitSolContinue@{moFitSolContinue}}
 \index{moFitSolContinue@{moFitSolContinue}!moFitSolContinue@{moFitSolContinue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf moFitSolContinue}$<$ EOT $>$::{\bf moFitSolContinue} ({\bf Fitness} {\em \_\-\_\-fitness}, bool {\em \_\-\_\-minimization} = {\tt true})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_fit_sol_continue_667090eca00b8532524f8e0a6e988fed}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf moFitSolContinue}$<$ EOT $>$::{\bf moFitSolContinue} ({\bf Fitness} {\em \_\-\_\-fitness})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_fit_sol_continue_b14f37ba88de4e12583b22f5aabeb682}
 
 
 Basic constructor. 
@@ -59,11 +57,11 @@ Basic constructor.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em \_\-\_\-fitness}]The fitness to reach. \item[{\em \_\-\_\-minimization}]Indicate if the the aim is to maximize or minimize the fitness. \end{description}
+\item[{\em \_\-\_\-fitness}]The fitness to reach. \end{description}
 \end{Desc}
 
 
-Definition at line 34 of file moFitSolContinue.h.
+Definition at line 33 of file moFitSolContinue.h.
 
 \subsection{Member Function Documentation}
 \index{moFitSolContinue@{moFitSolContinue}!operator()@{operator()}}
@@ -86,23 +84,9 @@ Indicates if the fitness threshold has not yet been reached.
 
 Implements {\bf eoUF$<$ const EOT \&, bool $>$}.
 
-Definition at line 44 of file moFitSolContinue.h.
+Definition at line 43 of file moFitSolContinue.h.
 
-References moFitSolContinue$<$ EOT $>$::fitness, and moFitSolContinue$<$ EOT $>$::minimization.
-
-\subsection{Member Data Documentation}
-\index{moFitSolContinue@{moFitSolContinue}!minimization@{minimization}}
-\index{minimization@{minimization}!moFitSolContinue@{moFitSolContinue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf moFitSolContinue}$<$ EOT $>$::{\bf minimization}\hspace{0.3cm}{\tt  [private]}}\label{classmo_fit_sol_continue_a4c90279f00774d9868a2e38ead45696}
-
-
-Flag that indicate if there is a minimization (true) or a maximization (false) of the fitness value. 
-
-It can be interesting to know this information because some solution-based metaheuristics can generate solution with a fitness that is worse that the best known fitness (in this case, the counter is not reinitialized). 
-
-Definition at line 72 of file moFitSolContinue.h.
-
-Referenced by moFitSolContinue$<$ EOT $>$::operator()().
+References moFitSolContinue$<$ EOT $>$::fitness.
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 

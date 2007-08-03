@@ -45,8 +45,13 @@ public:
   }
 
   //! Procedure which allows to initialise all the stuff needed.
+  /*!
+    It can be also used to reinitialize the counter all the needed things.
+  */
   void init ()
-  {}
+  {
+    numGen=0;
+  }
 
 private:
 

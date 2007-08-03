@@ -46,16 +46,13 @@ public:
    */
   bool update (const M & __move, const Fitness & __fit)
   {
-
-    if (first_time || __fit > best_fit)
+    if ((first_time) || (__fit > best_fit))
       {
-
 	best_fit = __fit;
 	best_move = __move;
 
 	first_time = false;
       }
-
     return true;
   }
 
@@ -87,7 +84,6 @@ private:
 
   //! The best fitness.
   Fitness best_fit;
-
 };
 
 #endif

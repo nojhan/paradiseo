@@ -1,4 +1,4 @@
-.TH "moFitSolContinue" 3 "2 Aug 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moFitSolContinue" 3 "3 Aug 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -24,7 +24,7 @@ Inherits \fBmoSolContinue< EOT >< EOT >\fP.
 
 .in +1c
 .ti -1c
-.RI "\fBmoFitSolContinue\fP (\fBFitness\fP __fitness, bool __minimization=true)"
+.RI "\fBmoFitSolContinue\fP (\fBFitness\fP __fitness)"
 .br
 .RI "\fIBasic constructor. \fP"
 .ti -1c
@@ -43,10 +43,6 @@ Inherits \fBmoSolContinue< EOT >< EOT >\fP.
 .RI "\fBFitness\fP \fBfitness\fP"
 .br
 .RI "\fIFitness target. \fP"
-.ti -1c
-.RI "bool \fBminimization\fP"
-.br
-.RI "\fIFlag that indicate if there is a minimization (true) or a maximization (false) of the fitness value. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -59,20 +55,18 @@ The stop criterion corresponds to a fitness threshold gained.
 Definition at line 21 of file moFitSolContinue.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<class EOT> \fBmoFitSolContinue\fP< EOT >::\fBmoFitSolContinue\fP (\fBFitness\fP __fitness, bool __minimization = \fCtrue\fP)\fC [inline]\fP"
+.SS "template<class EOT> \fBmoFitSolContinue\fP< EOT >::\fBmoFitSolContinue\fP (\fBFitness\fP __fitness)\fC [inline]\fP"
 .PP
 Basic constructor. 
 .PP
 \fBParameters:\fP
 .RS 4
 \fI__fitness\fP The fitness to reach. 
-.br
-\fI__minimization\fP Indicate if the the aim is to maximize or minimize the fitness. 
 .RE
 .PP
 
 .PP
-Definition at line 34 of file moFitSolContinue.h.
+Definition at line 33 of file moFitSolContinue.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class EOT> bool \fBmoFitSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline, virtual]\fP"
@@ -95,20 +89,9 @@ true or false according to the value of the fitness.
 .PP
 Implements \fBeoUF< const EOT &, bool >\fP.
 .PP
-Definition at line 44 of file moFitSolContinue.h.
+Definition at line 43 of file moFitSolContinue.h.
 .PP
-References moFitSolContinue< EOT >::fitness, and moFitSolContinue< EOT >::minimization.
-.SH "Member Data Documentation"
-.PP 
-.SS "template<class EOT> bool \fBmoFitSolContinue\fP< EOT >::\fBminimization\fP\fC [private]\fP"
-.PP
-Flag that indicate if there is a minimization (true) or a maximization (false) of the fitness value. 
-.PP
-It can be interesting to know this information because some solution-based metaheuristics can generate solution with a fitness that is worse that the best known fitness (in this case, the counter is not reinitialized). 
-.PP
-Definition at line 72 of file moFitSolContinue.h.
-.PP
-Referenced by moFitSolContinue< EOT >::operator()().
+References moFitSolContinue< EOT >::fitness.
 
 .SH "Author"
 .PP 
