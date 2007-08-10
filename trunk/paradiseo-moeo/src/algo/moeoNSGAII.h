@@ -27,6 +27,9 @@
 #include <replacement/moeoElitistReplacement.h>
 #include <selection/moeoDetTournamentSelect.h>
 
+
+#include <eoCloneOps.h>
+
 /**
  * NSGA-II (Non-dominated Sorting Genetic Algorithm II) as described in:
  * Deb, K., S. Agrawal, A. Pratap, and T. Meyarivan : "A fast elitist non-dominated sorting genetic algorithm for multi-objective optimization: NSGA-II".
@@ -46,7 +49,8 @@ public:
     */
     moeoNSGAII (unsigned int _maxGen, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op) :
             defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select(2),
-            replace(fitnessAssignment, diversityAssignment), genBreed(select, _op), breed(genBreed)
+            replace(fitnessAssignment, diversityAssignment), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0),
+            genBreed(select, _op), breed(genBreed)
     {}
 
 
@@ -58,7 +62,8 @@ public:
     */
     moeoNSGAII (unsigned int _maxGen, eoEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _op) :
             defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select(2),
-            replace(fitnessAssignment, diversityAssignment), genBreed(select, _op), breed(genBreed)
+            replace(fitnessAssignment, diversityAssignment), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0),
+            genBreed(select, _op), breed(genBreed)
     {}
 
 
@@ -85,8 +90,9 @@ public:
         * @param _op variation operator
        */
     moeoNSGAII (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op) :
-            continuator(_continuator), popEval(_eval), select(2),
-            replace(fitnessAssignment, diversityAssignment), genBreed(select, _op), breed(genBreed)
+            defaultGenContinuator(0), continuator(_continuator), popEval(_eval), select(2),
+            replace(fitnessAssignment, diversityAssignment), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0),
+            genBreed(select, _op), breed(genBreed)
     {}
 
 
@@ -98,7 +104,8 @@ public:
     */
     moeoNSGAII (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _op) :
             continuator(_continuator), popEval(_eval), select(2),
-            replace(fitnessAssignment, diversityAssignment), genBreed(select, _op), breed(genBreed)
+            replace(fitnessAssignment, diversityAssignment), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0),
+            genBreed(select, _op), breed(genBreed)
     {}
 
 
@@ -141,6 +148,10 @@ protected:
     moeoFrontByFrontCrowdingDiversityAssignment  < MOEOT > diversityAssignment;
     /** elitist replacement */
     moeoElitistReplacement < MOEOT > replace;
+    /** a default crossover */
+    eoQuadCloneOp < MOEOT > defaultQuadOp;
+    /** a default mutation */
+    eoMonCloneOp < MOEOT > defaultMonOp;
     /** an object for genetic operators (used as default) */
     eoSGAGenOp < MOEOT > defaultSGAGenOp;
     /** general breeder */
