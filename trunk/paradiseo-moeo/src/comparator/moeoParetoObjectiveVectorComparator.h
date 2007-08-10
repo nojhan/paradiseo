@@ -51,7 +51,7 @@ public:
                 // if the ith objective have to be maximized...
                 else if (ObjectiveVector::maximizing(i))
                 {
-                    if (_objectiveVector1[i] > _objectiveVector2[i])
+                    if (_objectiveVector1[i] < _objectiveVector2[i])
                     {
                         dom = true;		//_objectiveVector1[i] is not better than _objectiveVector2[i]
                     }
