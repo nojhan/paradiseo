@@ -14,6 +14,8 @@
 #include <config.h>
 #endif
 
+#ifndef _MSC_VER
+
 #include <cstdlib>
 #include <cstring>
 #include <stdio.h>
@@ -163,6 +165,7 @@ int PipeComWaitFor( PCom *from, char *what )
     return 1;
 }
 
+#endif /*_MSC_VER*/
 
 
 // Local Variables:
