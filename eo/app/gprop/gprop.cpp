@@ -1,7 +1,6 @@
 //-----------------------------------------------------------------------------
 // gprop
 //-----------------------------------------------------------------------------
-using namespace std;
 
 #include <stdlib.h>                // EXIT_SUCCESS EXIT_FAILURE
 #include <stdexcept>               // exception 
@@ -10,6 +9,8 @@ using namespace std;
 #include <string>                  // string
 #include <eo>                      // all usefull eo stuff
 #include "gprop.h"                 // Chrom eoChromInit eoChromMutation eoChromXover eoChromEvaluator
+
+using namespace std;
 
 //-----------------------------------------------------------------------------
 // global variables

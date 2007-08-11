@@ -78,7 +78,7 @@ namespace qp
     }
   };
   
-  ostream& operator<<(ostream& os, const neuron& n)
+  std::ostream& operator<<(std::ostream& os, const neuron& n)
   {
     return os << *n.n << " " << n.out << " " << n.delta << " " 
 	      << n.ndelta << " " << n.dbias1 << " " << n.dbias2 << " " 
@@ -164,7 +164,7 @@ namespace qp
 	  else
 	    {
 	      eta *= backtrack_step;
-	      eta = max(eta, eta_floor);
+	      eta = std::max(eta, eta_floor);
 	      momentum = eta * lambda;
 	      weight_update(ts.size(), false, eta, momentum);
 	      error_ = last_error;
@@ -206,15 +206,15 @@ namespace qp
 	    ew += n->dxo * n->dweight1;
 	  }
       
-      me = max(static_cast<real>(sqrt(me)), me_floor);
-      mw = max(static_cast<real>(sqrt(mw)), mw_floor);
+      me = std::max(static_cast<real>(sqrt(me)), me_floor);
+      mw = std::max(static_cast<real>(sqrt(mw)), mw_floor);
       eta *= (1.0 + 0.5 * ew / ( me * mw));
-      eta = max(eta, eta_floor);
+      eta = std::max(eta, eta_floor);
       lambda = lambda0 * me / mw;
       momentum = eta * lambda;
 #ifdef DEBUG
-      cout << me << "  \t" << mw << "  \t" << ew << "  \t" 
-	   << eta << "  \t" << momentum << "  \t" << lambda << endl;
+      std::cout << me << "  \t" << mw << "  \t" << ew << "  \t" 
+	   << eta << "  \t" << momentum << "  \t" << lambda << std::endl;
 #endif // DEBUG
     }
     

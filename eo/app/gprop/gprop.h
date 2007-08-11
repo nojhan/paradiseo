@@ -72,7 +72,7 @@ struct phenotype
   
   
   
-  friend ostream& operator<<(ostream& os, const phenotype& p)
+  friend std::ostream& operator<<(std::ostream& os, const phenotype& p)
   {
     return os << p.trn_ok << "/" << p.trn_max << " "
 	      << p.val_ok << "/" << p.val_max << " "
@@ -80,7 +80,7 @@ struct phenotype
 	      << p.mse_error;
   }
   
-  friend istream& operator>>(istream& is, phenotype& p)
+  friend std::istream& operator>>(std::istream& is, phenotype& p)
   {
     return is; // complete me
   }
@@ -107,18 +107,18 @@ extern unsigned in, out, hidden;
 class Chrom: public EO<phenotype>, public genotype
 {
 public:
-  Chrom(): genotype(in, out, vector<unsigned>(hidden < 1 ? 0 : 1, hidden)) {}
+  Chrom(): genotype(in, out, std::vector<unsigned>(hidden < 1 ? 0 : 1, hidden)) {}
 
-  string className() const { return "Chrom"; }
+  std::string className() const { return "Chrom"; }
 
-  void printOn (ostream& os) const 
+  void printOn (std::ostream& os) const 
   { 
-    os << setprecision(3) << static_cast<genotype>(*this) << "  \t" 
+    os << std::setprecision(3) << static_cast<genotype>(*this) << "  \t" 
        << fitness(); 
     // os << fitness();
   }
   
-  void readFrom (istream& is) 
+  void readFrom (std::istream& is) 
   {
     invalidate(); // complete me
   }
@@ -152,8 +152,8 @@ void gprop_use_datasets(mlp::set *trn, mlp::set *val, mlp::set *tst) {
 
 void ensure_datasets_initialized() {
     if (!trn_set) {
-	cerr << "trn_set is not initialized.  Must call gprop_use_datasets before training\n";
-	cerr.flush();
+	std::cerr << "trn_set is not initialized.  Must call gprop_use_datasets before training\n";
+	std::cerr.flush();
 	abort();
     }
 }

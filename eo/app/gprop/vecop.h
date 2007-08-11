@@ -13,139 +13,139 @@
 #include <numeric>     // inner_product
 
 //-----------------------------------------------------------------------------
-// vector + vector
+// std::vector + std::vector
 //-----------------------------------------------------------------------------
 
-template<class T> vector<T> operator+(const vector<T>& v1, const vector<T>& v2)
+template<class T> std::vector<T> operator+(const std::vector<T>& v1, const std::vector<T>& v2)
 {
-  vector<T> tmp = v1;
-  transform(tmp.begin(), tmp.end(), v2.begin(), tmp.begin(), plus<T>());
+  std::vector<T> tmp = v1;
+  std::transform(tmp.begin(), tmp.end(), v2.begin(), tmp.begin(), std::plus<T>());
   return tmp;
 }
 
-template<class T> vector<T> operator-(const vector<T>& v1, const vector<T>& v2)
+template<class T> std::vector<T> operator-(const std::vector<T>& v1, const std::vector<T>& v2)
 {
-  vector<T> tmp = v1;
-  transform(tmp.begin(), tmp.end(), v2.begin(), tmp.begin(), minus<T>());
+  std::vector<T> tmp = v1;
+  std::transform(tmp.begin(), tmp.end(), v2.begin(), tmp.begin(), std::minus<T>());
   return tmp;
 }
 
-template<class T> T operator*(const vector<T>& v1, const vector<T>& v2)
+template<class T> T operator*(const std::vector<T>& v1, const std::vector<T>& v2)
 {
   return inner_product(v1.begin(), v1.end(), v2.begin(), static_cast<T>(0));
 }
 
-template<class T> T operator/(const vector<T>& v1, const vector<T>& v2)
+template<class T> T operator/(const std::vector<T>& v1, const std::vector<T>& v2)
 {
   return inner_product(v1.begin(), v1.end(), v2.begin(), static_cast<T>(0),
-		       plus<T>(), divides<T>());
+		       std::plus<T>(), std::divides<T>());
 }
 
 //-----------------------------------------------------------------------------
-// vector += vector
+// std::vector += std::vector
 //-----------------------------------------------------------------------------
 
-template<class T> vector<T>& operator+=(vector<T>& v1, const vector<T>& v2)
+template<class T> std::vector<T>& operator+=(std::vector<T>& v1, const std::vector<T>& v2)
 {
-  transform(v1.begin(), v1.end(), v2.begin(), v1.begin(), plus<T>());
+  std::transform(v1.begin(), v1.end(), v2.begin(), v1.begin(), std::plus<T>());
   return v1;
 }
 
-template<class T> vector<T>& operator-=(vector<T>& v1, const vector<T>& v2)
+template<class T> std::vector<T>& operator-=(std::vector<T>& v1, const std::vector<T>& v2)
 {
-  transform(v1.begin(), v1.end(), v2.begin(), v1.begin(), minus<T>());
+  std::transform(v1.begin(), v1.end(), v2.begin(), v1.begin(), std::minus<T>());
   return v1;
 }
 
 //-----------------------------------------------------------------------------
-// vector + number
+// std::vector + number
 //-----------------------------------------------------------------------------
 
-template<class A, class B> vector<A> operator+(const vector<A>& a, const B& b)
+template<class A, class B> std::vector<A> operator+(const std::vector<A>& a, const B& b)
 {
-  vector<A> tmp = a;
-  transform(tmp.begin(), tmp.end(), tmp.begin(), bind2nd(plus<A>(), b));
+  std::vector<A> tmp = a;
+  std::transform(tmp.begin(), tmp.end(), tmp.begin(), std::bind2nd(std::plus<A>(), b));
   return tmp;
 }
 
-template<class A, class B> vector<A> operator-(const vector<A>& a, const B& b)
+template<class A, class B> std::vector<A> operator-(const std::vector<A>& a, const B& b)
 {
-  vector<A> tmp = a;
-  transform(tmp.begin(), tmp.end(), tmp.begin(), bind2nd(minus<A>(), b));
+  std::vector<A> tmp = a;
+  std::transform(tmp.begin(), tmp.end(), tmp.begin(), std::bind2nd(std::minus<A>(), b));
   return tmp;
 }
 
-template<class A, class B> vector<A> operator*(const vector<A>& a, const B& b)
+template<class A, class B> std::vector<A> operator*(const std::vector<A>& a, const B& b)
 {
-  vector<A> tmp = a;
-  transform(tmp.begin(), tmp.end(), tmp.begin(), bind2nd(multiplies<A>(), b));
+  std::vector<A> tmp = a;
+  std::transform(tmp.begin(), tmp.end(), tmp.begin(), std::bind2nd(std::multiplies<A>(), b));
   return tmp;
 }
 
-template<class A, class B> vector<A> operator/(const vector<A>& a, const B& b)
+template<class A, class B> std::vector<A> operator/(const std::vector<A>& a, const B& b)
 {
-  vector<A> tmp = a;
-  transform(tmp.begin(), tmp.end(), tmp.begin(), bind2nd(divides<A>(), b));
-  return tmp;
-}
-
-//-----------------------------------------------------------------------------
-// number + vector
-//-----------------------------------------------------------------------------
-
-template<class A, class B> vector<A> operator+(const B& b, const vector<A>& a)
-{
-  vector<A> tmp = a;
-  transform(tmp.begin(), tmp.end(), tmp.begin(), bind2nd(plus<A>(), b));
-  return tmp;
-}
-
-template<class A, class B> vector<A> operator-(const B& b, const vector<A>& a)
-{
-  vector<A> tmp(a.size(), b);
-  transform(tmp.begin(), tmp.end(), a.begin(), tmp.begin(), minus<A>());
-  return tmp;
-}
-
-template<class A, class B> vector<A> operator*(const B& b, const vector<A>& a)
-{
-  vector<A> tmp = a;
-  transform(tmp.begin(), tmp.end(), tmp.begin(), bind2nd(multiplies<A>(), b));
-  return tmp;
-}
-
-template<class A, class B> vector<A> operator/(const B& b, const vector<A>& a)
-{
-  vector<A> tmp(a.size(), b);
-  transform(tmp.begin(), tmp.end(), a.begin(), tmp.begin(), divides<A>());
+  std::vector<A> tmp = a;
+  std::transform(tmp.begin(), tmp.end(), tmp.begin(), std::bind2nd(std::divides<A>(), b));
   return tmp;
 }
 
 //-----------------------------------------------------------------------------
-// vector += number
+// number + std::vector
 //-----------------------------------------------------------------------------
 
-template<class A, class B> vector<A>& operator+=(vector<A>& a, const B& b)
+template<class A, class B> std::vector<A> operator+(const B& b, const std::vector<A>& a)
 {
-  transform(a.begin(), a.end(), a.begin(), bind2nd(plus<A>(), b));
+  std::vector<A> tmp = a;
+  std::transform(tmp.begin(), tmp.end(), tmp.begin(), std::bind2nd(std::plus<A>(), b));
+  return tmp;
+}
+
+template<class A, class B> std::vector<A> operator-(const B& b, const std::vector<A>& a)
+{
+  std::vector<A> tmp(a.size(), b);
+  std::transform(tmp.begin(), tmp.end(), a.begin(), tmp.begin(), std::minus<A>());
+  return tmp;
+}
+
+template<class A, class B> std::vector<A> operator*(const B& b, const std::vector<A>& a)
+{
+  std::vector<A> tmp = a;
+  std::transform(tmp.begin(), tmp.end(), tmp.begin(), bind2nd(std::multiplies<A>(), b));
+  return tmp;
+}
+
+template<class A, class B> std::vector<A> operator/(const B& b, const std::vector<A>& a)
+{
+  std::vector<A> tmp(a.size(), b);
+  std::transform(tmp.begin(), tmp.end(), a.begin(), tmp.begin(), std::divides<A>());
+  return tmp;
+}
+
+//-----------------------------------------------------------------------------
+// std::vector += number
+//-----------------------------------------------------------------------------
+
+template<class A, class B> std::vector<A>& operator+=(std::vector<A>& a, const B& b)
+{
+  std::transform(a.begin(), a.end(), a.begin(), std::bind2nd(std::plus<A>(), b));
   return a;
 }
 
-template<class A, class B> vector<A>& operator-=(vector<A>& a, const B& b)
+template<class A, class B> std::vector<A>& operator-=(std::vector<A>& a, const B& b)
 {
-  transform(a.begin(), a.end(), a.begin(), bind2nd(minus<A>(), b));
+  std::transform(a.begin(), a.end(), a.begin(), std::bind2nd(std::minus<A>(), b));
   return a;
 }
 
-template<class A, class B> vector<A>& operator*=(vector<A>& a, const B& b)
+template<class A, class B> std::vector<A>& operator*=(std::vector<A>& a, const B& b)
 {
-  transform(a.begin(), a.end(), a.begin(), bind2nd(multiplies<A>(), b));
+  std::transform(a.begin(), a.end(), a.begin(), std::bind2nd(std::multiplies<A>(), b));
   return a;
 }
 
-template<class A, class B> vector<A>& operator/=(vector<A>& a, const B& b)
+template<class A, class B> std::vector<A>& operator/=(std::vector<A>& a, const B& b)
 {
-  transform(a.begin(), a.end(), a.begin(), bind2nd(divides<A>(), b));
+  std::transform(a.begin(), a.end(), a.begin(), std::bind2nd(std::divides<A>(), b));
   return a;
 }
 
@@ -153,25 +153,25 @@ template<class A, class B> vector<A>& operator/=(vector<A>& a, const B& b)
 // I/O
 //-----------------------------------------------------------------------------
 
-template<class T> ostream& operator<<(ostream& os, const vector<T>& v)
+template<class T> std::ostream& operator<<(std::ostream& os, const std::vector<T>& v)
 {
   os << '<';
   if (v.size())
     {
-      copy(v.begin(), v.end() - 1, ostream_iterator<T>(os, " "));
+      std::copy(v.begin(), v.end() - 1, std::ostream_iterator<T>(os, " "));
       os << v.back();
     } 
   return os << '>';
 }
 
-template<class T> istream& operator>>(istream& is, vector<T>& v)
+template<class T> std::istream& operator>>(std::istream& is, std::vector<T>& v)
 {
   v.clear();
   
   char c;
   is >> c;
   if (!is || c != '<')
-    is.setstate(ios::failbit);
+    is.setstate(std::ios::failbit);
   else
     {
       T t;
@@ -194,8 +194,8 @@ template<class T> istream& operator>>(istream& is, vector<T>& v)
 // euclidean_distance
 //-----------------------------------------------------------------------------
 
-template<class T> T euclidean_distance(const vector<T>& v1, 
-				       const vector<T>& v2)
+template<class T> T euclidean_distance(const std::vector<T>& v1, 
+				       const std::vector<T>& v2)
 {
   T sum = 0, tmp;
   

@@ -19,7 +19,6 @@
 
 
 
-
 namespace mlp
 {
     using namespace std;
@@ -111,7 +110,7 @@ namespace mlp
 
     void perturb_num(double &num, double magnitude) {
        double scale = max(num, 0.05) * magnitude;
-       double perturbation = scale * (drand48() - 0.5);
+       double perturbation = scale * (rng.uniform() - 0.5);
        num += perturbation;
     }
 
@@ -119,9 +118,9 @@ namespace mlp
     {
 
       for (vector::iterator w = weight.begin(); w != weight.end(); ++w)
-	  if ( probability >= 1.0 || drand48() < probability)
+	  if ( probability >= 1.0 || rng.uniform() < probability)
 	      perturb_num(*w, magnitude);
-      if ( probability >= 1.0 || drand48() < probability)
+      if ( probability >= 1.0 || rng.uniform() < probability)
 	perturb_num(bias, magnitude);
     }
  };
