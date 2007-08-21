@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoBitOp.h
 // (c) GeNeura Team, 2000 - EEAAX 2000 - Maarten Keijzer 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
- CVS Info: $Date: 2003-06-06 10:29:13 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/ga/eoBitOp.h,v 1.17 2003-06-06 10:29:13 maartenkeijzer Exp $ $Author: maartenkeijzer $
+ CVS Info: $Date: 2007-08-21 14:52:50 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/ga/eoBitOp.h,v 1.18 2007-08-21 14:52:50 kuepper Exp $ $Author: kuepper $
  */
 //-----------------------------------------------------------------------------
 
@@ -108,7 +108,7 @@ template<class Chrom> class eoBitMutation: public eoMonOp<Chrom>
    * (Default) Constructor.
    * @param _rate Rate of mutation.
    */
-  eoBitMutation(const double& _rate = 0.01, bool _normalize=false): 
+  eoBitMutation(const double& _rate = 0.01, bool _normalize=false):
     rate(_rate), normalize(_normalize) {}
 
   /// The class name.
@@ -315,65 +315,59 @@ template<class Chrom> class eoUBitXover: public eoQuadOp<Chrom>
 \class eoNPtsBitXover eoBitOp.h ga/eoBitOp.h
 \ingroup bitstring
 */
-
-template<class Chrom> class eoNPtsBitXover: public eoQuadOp<Chrom>
+template<class Chrom> class eoNPtsBitXover : public eoQuadOp<Chrom>
 {
- public:
-  /// (Default) Constructor.
-  eoNPtsBitXover(const unsigned& _num_points = 2): num_points(_num_points)
-    {
-      if (num_points < 1)
-	std::runtime_error("NxOver --> invalid number of points");
+public:
+
+    /** (Default) Constructor. */
+    eoNPtsBitXover(const unsigned& _num_points = 2) : num_points(_num_points)
+        {
+            if (num_points < 1)
+                std::runtime_error("NxOver --> invalid number of points");
+        }
+
+    /** The class name */
+    virtual std::string className() const { return "eoNPtsBitXover"; }
+
+    /** n-point crossover for binary chromosomes.
+
+    @param chrom1 The first chromosome.
+    @param chrom2 The first chromosome.
+    */
+    bool operator()(Chrom& chrom1, Chrom& chrom2) {
+        unsigned max_size(std::min(chrom1.size(), chrom2.size()));
+        unsigned max_points(std::min(max_size - 1, num_points));
+        std::vector<bool> points(max_size, false);
+
+        // select ranges of bits to swap
+        do {
+            unsigned bit(eo::rng.random(max_size));
+            if(points[bit])
+                continue;
+            else {
+                points[bit] = true;
+                --max_points;
+            }
+        } while(max_points);
+
+        // swap bits between chromosomes
+        bool change(false);
+        for (unsigned bit = 1; bit < points.size(); bit++) {
+            if (points[bit])
+                change = !change;
+            if (change) {
+                typename Chrom::AtomType tmp = chrom1[bit];
+                chrom1[bit] = chrom2[bit];
+                chrom2[bit] = tmp;
+            }
+        }
+        return true;
     }
 
-  /// The class name.
-  virtual std::string className() const { return "eoNPtsBitXover"; }
+private:
 
-  /**
-   * n-point crossover for binary chromosomes.
-   * @param chrom1 The first chromosome.
-   * @param chrom2 The first chromosome.
-   */
-  bool operator()(Chrom& chrom1, Chrom& chrom2)
-    {
-      unsigned max_size = std::min(chrom1.size(), chrom2.size());
-      unsigned max_points = std::min(max_size - 1, num_points);
-
-      std::vector<bool> points(max_size, false);
-
-      // select ranges of bits to swap
-      do {
-	unsigned bit = eo::rng.random(max_size) + 1;
-	if (points[bit])
-	  continue;
-	else
-	  {
-	    points[bit] = true;
-	    max_points--;
-	  }
-      } while (max_points);
-
-
-      // swap bits between chromosomes
-      bool change = false;
-      for (unsigned bit = 1; bit < points.size(); bit++)
-	{
-	  if (points[bit])
-	    change = !change;
-
-	  if (change)
-	  {
-	  	typename Chrom::AtomType tmp= chrom1[bit];
-		chrom1[bit] = chrom2[bit];
-		chrom2[bit] = tmp;
-	  }
-	}
-
-    return true;
-    }
-
- private:
-  unsigned num_points;
+    /** @todo Document this data member */
+    unsigned num_points;
 };
 
 
@@ -412,10 +406,10 @@ template<class Chrom> class eoBitGxOver: public eoQuadOp<Chrom>
       unsigned cut_genes = std::min(max_genes, num_points);
 
       std::vector<bool> points(max_genes, false);
-      
+
       // selects genes to swap
       do {
-	unsigned bit = eo::rng.random(max_genes); 
+	unsigned bit = eo::rng.random(max_genes);
 	if (points[bit])
 	  continue;
 	else
@@ -424,12 +418,12 @@ template<class Chrom> class eoBitGxOver: public eoQuadOp<Chrom>
 	    cut_genes--;
 	  }
       } while (cut_genes);
-      
+
       // swaps genes
       for (unsigned i = 0; i < points.size(); i++)
 	if (points[i])
-	  std::swap_ranges(chrom1.begin() + i * gene_size, 
-		      chrom1.begin() + i * gene_size + gene_size, 
+	  std::swap_ranges(chrom1.begin() + i * gene_size,
+		      chrom1.begin() + i * gene_size + gene_size,
 		      chrom2.begin() + i * gene_size);
 
     return true;
