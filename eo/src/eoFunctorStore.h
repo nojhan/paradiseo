@@ -59,11 +59,12 @@ public:
 
 private :
 
-    /// no copying allowed
+    /** no copying allowed */
     eoFunctorStore(const eoFunctorStore&);
 
-    /// no copying allowed
+    /** no assignment allowed */
     eoFunctorStore operator=(const eoFunctorStore&);
+
     std::vector<eoFunctorBase*> vec;
 };
 

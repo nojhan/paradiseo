@@ -4,7 +4,6 @@
 #endif
 
 #include <eoFunctorStore.h>
-#include <eoFunctor.h>
 
 
 /// clears the memory
