@@ -178,7 +178,10 @@ public :
     */
     uint32_t random(uint32_t m)
         {
-            return uint32_t(uniform() * double(m));
+            // Make sure we always round towards zero, in order to get the
+            // half-open interval we want (as documented). The floor function
+            // does exactly this for the (always positive) values occuring here.
+            return uint32_t(floor(uniform() * double(m)));
         }
 
     /** Biased coin toss
