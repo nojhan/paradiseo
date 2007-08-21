@@ -161,7 +161,7 @@ public :
             initialize(s);
         }
 
-    /** Radnom number from unifom distribution
+    /** Random number from unifom distribution
 
     @param m Define interval for random number to [0, m)
     @return random number in the range [0, m)
@@ -171,7 +171,7 @@ public :
             return m * double(rand()) / double(1.0 + rand_max());
         }
 
-    /** Radnom integer number from unifom distribution
+    /** Random integer number from unifom distribution
 
     @param m Define interval for random number to [0, m)
     @return random integer in the range [0, m)
