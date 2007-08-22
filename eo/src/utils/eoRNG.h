@@ -178,10 +178,12 @@ public :
     */
     uint32_t random(uint32_t m)
         {
-            // Make sure we always round towards zero, in order to get the
-            // half-open interval we want (as documented). The floor function
-            // does exactly this for the (always positive) values occuring here.
-            return uint32_t(floor(uniform() * double(m)));
+            // C++ Standard (4.9 Floatingintegral conversions [conv.fpint])
+            // defines floating point to integer conversion as truncation
+            // ("rounding towards zero"): "An rvalue of a floating point type
+            // can be converted to an rvalue of an integer type. The conversion
+            // truncates; that is, the fractional part is discarded"
+            return uint32_t(uniform() * double(m));
         }
 
     /** Biased coin toss

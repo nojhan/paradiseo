@@ -1,3 +1,8 @@
+2007-08-22  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
+
+	* eoRNG.h (eoRng::random): Add comment on truncation as standard way of
+	floating point to integer conversion.
+
 2006-12-04  Jochen Küpper  <jochen@fhi-berlin.mpg.de>
 
 	* eoRNG.h (eoRng::normal(stdev)): Revert erroneous change.
