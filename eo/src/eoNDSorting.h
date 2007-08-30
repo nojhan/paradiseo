@@ -473,7 +473,7 @@ class eoNDSorting_II : public eoNDSorting<EOT>
       std::vector<double> nc(niche_count.size(), 0.0);
 
       for (i = 1; i < _cf.size()-1; ++i)
-      { // and yet another level of indirection
+      { // calculate distance
         nc[performance[i].second] = performance[i+1].first - performance[i-1].first;
       }
 
@@ -485,7 +485,7 @@ class eoNDSorting_II : public eoNDSorting<EOT>
 
       for (i = 0; i < nc.size(); ++i)
       {
-        niche_count[i] = (max_dist + 1 - nc[i]);
+        niche_count[i] += (max_dist + 1 - nc[i]); 
       }
     }
 
