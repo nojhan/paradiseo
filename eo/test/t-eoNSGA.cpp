@@ -2,9 +2,9 @@
 #include <eo>
 
 #include <moo/eoMOFitness.h>
-#include <moo/eoNSGA_I_Replacement.h>
-#include <moo/eoNSGA_II_Replacement.h>
-#include <moo/eoNSGA_IIa_Replacement.h>
+#include <moo/eoNSGA_I_Eval.h>
+#include <moo/eoNSGA_II_Eval.h>
+#include <moo/eoNSGA_IIa_Eval.h>
 
 using namespace std;
 
@@ -119,7 +119,7 @@ class Init : public eoInit<eoDouble>
 void the_main(int argc, char* argv[])
 {
   Init init;
-  Eval eval;
+  Eval simple_eval;
   Mutate mutate;
 
   eoParser parser(argc, argv);
@@ -128,6 +128,7 @@ void the_main(int argc, char* argv[])
   unsigned num_gen  = parser.createParam(unsigned(50), "num_gen", "number of generations to run", 'g').value();
   unsigned pop_size = parser.createParam(unsigned(100), "pop_size", "population size", 'p').value();
   bool use_nsga1     = parser.createParam(false, "nsga1", "Use nsga 1").value(); 
+  bool use_nsga2a     = parser.createParam(false, "nsga2a", "Use nsga 2a").value(); 
   
   eoPop<eoDouble> pop(pop_size, init);
 
@@ -142,9 +143,12 @@ void the_main(int argc, char* argv[])
   eoGeneralBreeder<eoDouble> breeder(select, opsel);
 
   // replacement
-  eoNSGA_IIa_Replacement<eoDouble> nsga1;
-  eoNSGA_II_Replacement<eoDouble> nsga2;
-  eoReplacement<eoDouble>& replace = use_nsga1 ? static_cast<eoReplacement<eoDouble>&>(nsga1) : static_cast<eoReplacement<eoDouble>&>(nsga2);
+  eoNSGA_IIa_Eval<eoDouble> nsga2a(simple_eval);
+  eoNSGA_II_Eval<eoDouble> nsga2(simple_eval);
+  eoNSGA_I_Eval<eoDouble> nsga1(0.1, simple_eval);
+  eoMOEval<eoDouble>& eval = use_nsga1 ? static_cast<eoMOEval<eoDouble>&>(nsga1) : (use_nsga2a? static_cast<eoMOEval<eoDouble>&>(nsga2a) : static_cast<eoMOEval<eoDouble>&>(nsga2));
+
+  eoPlusReplacement<eoDouble> replace;
 
   unsigned long generation = 0;
   eoGenContinue<eoDouble> gen(num_gen, generation);
@@ -172,11 +176,6 @@ void the_main(int argc, char* argv[])
     parser.printHelp(std::cout);
     return;
   }
-
-  apply<eoDouble>(eval, pop);
-  
-  eoPop<eoDouble> nothing;
-  replace(pop, nothing); // calculates worths
   
   ea(pop);
 }
