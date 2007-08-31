@@ -3,12 +3,12 @@
 ## Makefile.am for eo/test
 ##
 ###############################################################################
-
 LIBEO				= $(top_builddir)/src/libeo.a
 LIBEOUTILS			= $(top_builddir)/src/utils/libeoutils.a
 LIBES				= $(top_builddir)/src/es/libes.a
 LIBGA				= $(top_builddir)/src/ga/libga.a
 LIBCMA				= $(top_builddir)/src/es/libcma.a
+LIBMOO				= $(top_builddir)/src/moo/libeomoo.a
 
 # PLEASE don't break the line (see create_batch.sh)
 check_PROGRAMS 			= t-eoParetoFitness \
@@ -41,7 +41,9 @@ check_PROGRAMS 			= t-eoParetoFitness \
 				t-eoCMAES \
 				t-eoSecondsElapsedContinue\
 				t-eoRNG		\
-				t-eoEasyPSO
+				t-eoEasyPSO \
+				t-eoNSGA \
+				t-eoFrontSorter
 				
 TESTS				= $(check_PROGRAMS) \
 				run_tests # This script can be used to check command-line arguments
@@ -49,7 +51,7 @@ TESTS				= $(check_PROGRAMS) \
 noinst_HEADERS			= binary_value.h real_value.h RoyalRoad.h
 
 
-DEPS	 			= $(LIBGA) $(LIBES) $(LIBCMA) $(LIBEOUTILS) $(LIBEO) 
+DEPS	 			= $(LIBGA) $(LIBES) $(LIBCMA) $(LIBEOUTILS) $(LIBEO) $(LIBMOO)
 INCLUDES			= -I$(top_srcdir)/src -I$(srcdir)/../src 
 LIBS	 			= $(DEPS)
 
@@ -96,3 +98,6 @@ t_eoCMAES_SOURCES		= t-eoCMAES.cpp
 t_eoRNG_SOURCES 		= t-eoRNG.cpp
 t_eoSecondsElapsedContinue_SOURCES 		= t-eoSecondsElapsedContinue.cpp
 t_eoEasyPSO_SOURCES		= t-eoEasyPSO.cpp
+t_eoNSGA_SOURCES		= t-eoNSGA.cpp
+t_eoFrontSorter_SOURCES		= t-eoFrontSorter.cpp
+

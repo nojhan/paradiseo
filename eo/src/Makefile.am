@@ -1,6 +1,6 @@
 # Makefile.am for eo/src
 
-SUBDIRS 		= es ga gp do utils other
+SUBDIRS 		= es ga gp do utils other moo
 
 lib_LIBRARIES 		= libeo.a
 
