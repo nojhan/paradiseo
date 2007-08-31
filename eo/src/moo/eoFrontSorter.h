@@ -79,6 +79,23 @@ class eoFrontSorter : public eoUF< const eoPop<EOT>&, const std::vector< std::ve
         
         return fronts;
     }
+    
+    const std::vector<std::vector<detail::FitnessInfo> >& operator()(const std::vector<EOT*>& _pop)
+    {
+        fitness.resize(_pop.size());
+        for (unsigned i = 0; i < _pop.size(); ++i) {
+            std::vector<double> f;
+            
+            for (unsigned j = 0; j < Traits::nObjectives(); ++j) {
+                if (Traits::maximizing(j) != 0) f.push_back( Traits::maximizing(j) * _pop[i]->fitness()[j]);
+            }
+            fitness[i] = detail::FitnessInfo(f, i);
+        }
+
+        detail::front_sorter_impl(fitness, fronts);
+        
+        return fronts;
+    }
 };
 
 
