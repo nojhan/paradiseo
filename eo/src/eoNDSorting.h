@@ -480,8 +480,8 @@ class eoNDSorting_II : public eoNDSorting<EOT>
       double max_dist = *std::max_element(nc.begin(), nc.end());
 
       // set boundary at max_dist + 1 (so it will get chosen over all the others
-      nc[performance[0].second] = max_dist + 1;
-      nc[performance.back().second] = max_dist + 1;
+      nc[performance[0].second]     += max_dist + 1;
+      nc[performance.back().second] += max_dist + 1;
 
       for (i = 0; i < nc.size(); ++i)
       {
