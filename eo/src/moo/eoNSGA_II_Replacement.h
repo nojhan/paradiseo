@@ -10,9 +10,6 @@
   Non-Dominant Sorting Genetic Algorithm for MultiObjective
   Optimization: NSGA-II KanGAL Report No. 200001
 
-  Note that this class does not do the sorting per se, but the sorting
-  of it worth_std::vector will give the right order
-
 */
 template <class EOT>
 class eoNSGA_II_Replacement : public eoReplacement<EOT>

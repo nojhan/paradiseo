@@ -5,13 +5,8 @@
 #include <eoReplacement.h>
 
 /** @brief Fast Elitist Non-Dominant Sorting Genetic Algorithm
-
-  Adapted from Deb, Agrawal, Pratab and Meyarivan: A Fast Elitist
-  Non-Dominant Sorting Genetic Algorithm for MultiObjective
-  Optimization: NSGA-II KanGAL Report No. 200001
-
-  Note that this class does not do the sorting per se, but the sorting
-  of it worth_std::vector will give the right order
+    
+    Variant of the NSGA-II, where the ranking is based on a top-down distance based mechanism ( O(n^2)! )
 
 */
 template <class EOT>
