@@ -55,7 +55,7 @@ template <class EOT> class eoTruncate : public eoReduce<EOT>
 	if (_newgen.size() < _newsize)
 	  throw std::logic_error("eoTruncate: Cannot truncate to a larger size!\n");
 
-        _newgen.nth_element(_newsize);
+        sort(_newgen.begin(), _newgen.end());
         _newgen.resize(_newsize);
     }
 };
