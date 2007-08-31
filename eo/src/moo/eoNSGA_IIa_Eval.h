@@ -27,9 +27,8 @@ class eoNSGA_IIa_Eval : public eoMOEval<EOT>
         for (unsigned i = 0; i < offspring.size(); ++i) pop.push_back(&offspring[i]);
 
         typename eoFrontSorter<EOT>::front_t front = sorter(pop);
-
         
-        unsigned rank = parents.size();
+        unsigned rank = pop.size();
         for (unsigned i = 0; i < front.size(); ++i) {
             rank = assign_worths(front[i], rank, pop); 
         }

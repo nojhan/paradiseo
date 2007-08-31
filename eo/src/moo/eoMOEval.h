@@ -16,9 +16,9 @@ class eoMOEval : public eoPopEvalFunc<EOT> {
     
     private :
 
-    eoPopEvalFunc<EOT>& pop_eval;
-    eoPopLoopEval<EOT> default_loop;
     class eoDummyEval : public eoEvalFunc<EOT> {public: void operator()(EOT &) {} } dummy_eval;
+    eoPopLoopEval<EOT> default_loop;
+    eoPopEvalFunc<EOT>& pop_eval;
 
 };
 
