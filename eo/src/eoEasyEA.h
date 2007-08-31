@@ -172,7 +172,10 @@ public:
   virtual void operator()(eoPop<EOT>& _pop)
   {
     eoPop<EOT> offspring, empty_pop;
+
     popEval(empty_pop, _pop); // A first eval of pop.
+    replace(_pop, offspring); // set worths, scaling, etc.
+
     do
     {
       try
