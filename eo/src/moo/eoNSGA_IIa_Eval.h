@@ -18,7 +18,7 @@ class eoNSGA_IIa_Eval : public eoMOEval<EOT>
   eoNSGA_IIa_Eval(eoPopEvalFunc<EOT>& eval) : eoMOEval<EOT>(eval) {}
   
 
-  void operator()(eoPop<EOT>& parents, eoPop<EOT>& offspring) {
+  virtual void operator()(eoPop<EOT>& parents, eoPop<EOT>& offspring) {
         eval(parents, offspring);
 
         std::vector<EOT*> pop;

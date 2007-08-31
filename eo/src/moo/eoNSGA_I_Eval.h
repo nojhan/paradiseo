@@ -14,7 +14,7 @@ public :
   eoNSGA_I_Eval(double nicheWidth, eoEvalFunc<EOT>& eval)    : eoMOEval<EOT>(eval), nicheSize(nicheWidth) {}
   eoNSGA_I_Eval(double nicheWidth, eoPopEvalFunc<EOT>& eval) : eoMOEval<EOT>(eval), nicheSize(nicheWidth) {}
 
-  void operator()(eoPop<EOT>& parents, eoPop<EOT>& offspring) {
+  virutal void operator()(eoPop<EOT>& parents, eoPop<EOT>& offspring) {
         eval(parents, offspring);
 
         std::vector<EOT*> pop;
