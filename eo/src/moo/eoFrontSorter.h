@@ -43,7 +43,7 @@ namespace detail {
           FitnessInfo(const std::vector<double>& fitness_, unsigned index_) : fitness(fitness_), index(index_) {}
     };
     
-    extern void front_sorter_impl(std::vector<FitnessInfo>& fitness, std::vector< std::vector<FitnessInfo> >& fronts);
+    extern void front_sorter_impl(std::vector<FitnessInfo>& fitness, std::vector< std::vector<FitnessInfo> >& fronts, double tol);
 
 } // namespace detail
 
@@ -75,7 +75,7 @@ class eoFrontSorter : public eoUF< const eoPop<EOT>&, const std::vector< std::ve
             fitness[i] = detail::FitnessInfo(f, i);
         }
 
-        detail::front_sorter_impl(fitness, fronts);
+        detail::front_sorter_impl(fitness, fronts, Traits::tol());
         
         return fronts;
     }
@@ -92,7 +92,7 @@ class eoFrontSorter : public eoUF< const eoPop<EOT>&, const std::vector< std::ve
             fitness[i] = detail::FitnessInfo(f, i);
         }
 
-        detail::front_sorter_impl(fitness, fronts);
+        detail::front_sorter_impl(fitness, fronts, Traits::tol());
         
         return fronts;
     }

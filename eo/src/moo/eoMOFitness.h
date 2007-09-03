@@ -45,6 +45,7 @@ class eoMOFitnessTraits
 
   static unsigned nObjectives()          { return 2; }
   static double maximizing(int which) { return 1; } // by default: all are maximizing, zero will lead to ignored fitness, negative minimizes
+  static double tol() { return 1e-6; } // tolerance for distance calculations
 };
 
 /**
@@ -60,15 +61,15 @@ template <class FitnessTraits = eoMOFitnessTraits>
 class eoMOFitness : public std::vector<double>
 {
   double worth; // used for sorting and selection, by definition, bigger is better
-  bool validWorth;
+  bool worthValid;
 public :
 
   typedef FitnessTraits fitness_traits;
     
-  eoMOFitness(double def = 0.0) : std::vector<double>(FitnessTraits::nObjectives(),def), validWorth(false) {}
+  eoMOFitness(double def = 0.0) : std::vector<double>(FitnessTraits::nObjectives(),def), worthValid(false) {}
 
   // Ctr from a std::vector<double>
-  eoMOFitness(std::vector<double> & _v) : std::vector<double>(_v), validWorth(false) {}
+  eoMOFitness(std::vector<double> & _v) : std::vector<double>(_v), worthValid(false) {}
 
   /** access to the traits characteristics (so you don't have to write 
    * a lot of typedef's around
@@ -78,15 +79,18 @@ public :
 
   void setWorth(double worth_) {
         worth = worth_;
-        validWorth = true;
+        worthValid = true;
   }
 
   double getWorth() const {
-        if (!validWorth) {
+        if (!worthValid) {
            throw std::runtime_error("invalid worth"); 
         }
         return worth;
   }
+
+  bool validWorth() const { return worthValid; }
+  void invalidateWorth() { worthValid = false; }
 
   /// Partial order based on Pareto-dominance
   //bool operator<(const eoMOFitness<FitnessTraits>& _other) const
@@ -103,13 +107,13 @@ public :
       double aval = maxim * performance[i];
       double bval = maxim * otherperformance[i];
 
-      if (aval != bval)
+      if (fabs(aval-bval)>FitnessTraits::tol)
       {
         if (aval < bval)
         {
           return false; // cannot dominate
         }
-        // else aval < bval
+        // else aval > bval
         dom = true; // for the moment: goto next objective
       }
       //else they're equal in this objective, goto next
@@ -154,7 +158,7 @@ public :
       {
         os << fitness[i] << ' ';
       }
-      os << fitness.validWorth << ' ' << fitness.worth;
+      os << fitness.worthValid << ' ' << fitness.worth;
       return os;
     }
 
@@ -165,7 +169,7 @@ public :
       {
         is >> fitness[i];
       }
-      is >> fitness.validWorth >> fitness.worth;
+      is >> fitness.worthValid >> fitness.worth;
       return is;
     }
 

@@ -7,19 +7,20 @@ namespace detail {
 namespace {
     struct CompareOn {
         unsigned dim;
+        double tol;
 
-        CompareOn(unsigned d) : dim(d) {}
+        CompareOn(unsigned d, double t) : dim(d), tol(t) {}
 
         bool operator()(const FitnessInfo& a, const FitnessInfo& b) {
-            return  a.fitness[dim] > b.fitness[dim];
+            return  a.fitness[dim] > b.fitness[dim] && fabs(a.fitness[dim] - b.fitness[dim]) > tol;
         }
 
     };
 } // end anonymous namespace
 
-void one_objective(std::vector<FitnessInfo>& fitness, std::vector< std::vector<FitnessInfo> >& front)
+void one_objective(std::vector<FitnessInfo>& fitness, std::vector< std::vector<FitnessInfo> >& front, double tol)
 {
-    std::sort(fitness.begin(), fitness.end(), CompareOn(0));
+    std::sort(fitness.begin(), fitness.end(), CompareOn(0, tol));
     
     front.clear(); 
     front.resize(1);
@@ -40,9 +41,9 @@ void one_objective(std::vector<FitnessInfo>& fitness, std::vector< std::vector<F
  */
 
 
-void two_objectives(std::vector<FitnessInfo>& fitness, std::vector< std::vector<FitnessInfo> >& front)
+void two_objectives(std::vector<FitnessInfo>& fitness, std::vector< std::vector<FitnessInfo> >& front, double tol)
 {
-    std::sort(fitness.begin(), fitness.end(), CompareOn(0));
+    std::sort(fitness.begin(), fitness.end(), CompareOn(0, tol));
     
     front.clear();
     
@@ -51,7 +52,7 @@ void two_objectives(std::vector<FitnessInfo>& fitness, std::vector< std::vector<
     for (unsigned i = 0; i < fitness.size(); ++i) {
         
         // find front through binary search
-        vector<FitnessInfo>::iterator it = upper_bound( front_leader.begin(), front_leader.end(), fitness[i], CompareOn(1));
+        vector<FitnessInfo>::iterator it = upper_bound( front_leader.begin(), front_leader.end(), fitness[i], CompareOn(1, tol));
         
         if (it == front_leader.end()) {
             front_leader.push_back(fitness[i]); 
@@ -63,10 +64,12 @@ void two_objectives(std::vector<FitnessInfo>& fitness, std::vector< std::vector<
     }
 }
 
-bool dominates(const FitnessInfo& a, const FitnessInfo& b) {
+bool dominates(const FitnessInfo& a, const FitnessInfo& b, double tol) {
     bool better_on_one = false;
     
     for (unsigned i = 0; i < a.fitness.size(); ++i) {
+        if (fabs(a.fitness[i] - b.fitness[i]) < tol) continue;
+
         if (a.fitness[i] < b.fitness[i]) return false; // worse on at least one other objective
         if (a.fitness[i] > b.fitness[i]) better_on_one = true;
     }
@@ -74,7 +77,7 @@ bool dominates(const FitnessInfo& a, const FitnessInfo& b) {
     return better_on_one;
 }
 
-void m_objectives(std::vector<FitnessInfo>& fitness, std::vector< std::vector<FitnessInfo> >& front) {
+void m_objectives(std::vector<FitnessInfo>& fitness, std::vector< std::vector<FitnessInfo> >& front, double tol) {
       unsigned i;
 
       std::vector<std::vector<unsigned> > S(fitness.size()); // which individuals does guy i dominate
@@ -85,11 +88,11 @@ void m_objectives(std::vector<FitnessInfo>& fitness, std::vector< std::vector<Fi
       {
         for (j = 0; j < fitness.size(); ++j)
         {
-          if (  dominates(fitness[i], fitness[j])  )
+          if (  dominates(fitness[i], fitness[j], tol)  )
           { // i dominates j
             S[i].push_back(j); // add j to i's domination list
           }
-          else if (dominates(fitness[j], fitness[i]))
+          else if (dominates(fitness[j], fitness[i], tol))
           { // j dominates i, increment count for i, add i to the domination list of j
             n[i]++;
           }
@@ -132,22 +135,22 @@ void m_objectives(std::vector<FitnessInfo>& fitness, std::vector< std::vector<Fi
      front.pop_back(); // last front is empty;
 }
 
-void front_sorter_impl(std::vector<FitnessInfo>& fitness, std::vector< std::vector<FitnessInfo> >& front_indices) {
+void front_sorter_impl(std::vector<FitnessInfo>& fitness, std::vector< std::vector<FitnessInfo> >& front_indices, double tol) {
         switch (fitness[0].fitness.size())
 	{
 	    case 1:
 		{
-		    one_objective(fitness, front_indices);
+		    one_objective(fitness, front_indices, tol);
 		    return;
 		}
 	    case 2:
 		{
-		    two_objectives(fitness, front_indices);
+		    two_objectives(fitness, front_indices, tol);
 		    return;
 		}
 	    default :
 		{
-		    m_objectives(fitness, front_indices);
+		    m_objectives(fitness, front_indices, tol);
 		}
 	}
 }
