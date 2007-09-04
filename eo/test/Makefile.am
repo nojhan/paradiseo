@@ -43,7 +43,8 @@ check_PROGRAMS 			= t-eoParetoFitness \
 				t-eoRNG		\
 				t-eoEasyPSO \
 				t-eoNSGA \
-				t-eoFrontSorter
+				t-eoFrontSorter \
+				t-eoEpsMOEA
 				
 TESTS				= $(check_PROGRAMS) \
 				run_tests # This script can be used to check command-line arguments
@@ -100,4 +101,5 @@ t_eoSecondsElapsedContinue_SOURCES 		= t-eoSecondsElapsedContinue.cpp
 t_eoEasyPSO_SOURCES		= t-eoEasyPSO.cpp
 t_eoNSGA_SOURCES		= t-eoNSGA.cpp
 t_eoFrontSorter_SOURCES		= t-eoFrontSorter.cpp
+t_eoEpsMOEA_SOURCES		= t-eoEpsMOEA.cpp
 

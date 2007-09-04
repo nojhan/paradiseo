@@ -16,9 +16,9 @@ class MinimizingFitnessTraits : public eoParetoFitnessTraits
 
 typedef eoParetoFitness<MinimizingFitnessTraits> fitness_type;
 
-const unsigned chromsize=3;
-const double minval = -5;
-const double maxval = 5;
+const unsigned chromsize=5;
+const double minval = -15;
+const double maxval = 15;
 
 struct eoDouble : public EO<fitness_type>
 {
@@ -60,6 +60,26 @@ class Eval : public eoEvalFunc<eoDouble>
 
       f[1] += pow(fabs(x[i]), 0.8) + 5 * pow(sin(x[i]),3.);
     }
+
+    _eo.fitness(f);
+  }
+};
+
+class Eval2 : public eoEvalFunc<eoDouble>
+{
+  void operator()(eoDouble& _eo)
+  {
+    vector<double> x(_eo.value, _eo.value + chromsize);
+    fitness_type f;
+    
+    for (unsigned i = 0; i < chromsize; ++i)
+    {
+      f[0] += x[i] * x[i];
+    }
+    
+    f[1] = 
+        3 * x[0] + 2 * x[1] 
+        - x[2]/3 + 0.01*pow(x[3] - x[4], 3);
 
     _eo.fitness(f);
   }

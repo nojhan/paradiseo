@@ -1,10 +1,7 @@
 
 #include <eo>
 
-#include <moo/eoMOFitness.h>
-#include <moo/eoNSGA_I_Eval.h>
-#include <moo/eoNSGA_II_Eval.h>
-#include <moo/eoNSGA_IIa_Eval.h>
+#include <moo/eoEpsMOEA.h>
 
 using namespace std;
 
@@ -14,7 +11,11 @@ class MinimizingFitnessTraits
   static unsigned nObjectives()         { return 2; }
   static double direction(unsigned)     { return -1; }
   static double tol()                   { return 1e-9; }
+
+  static vector<double> eps;
 };
+
+vector<double> MinimizingFitnessTraits::eps(2, 0.1);
 
 typedef eoMOFitness<MinimizingFitnessTraits> fitness_type;
 
@@ -33,15 +34,16 @@ class Mutate : public eoMonOp<eoDouble>
   {
     for (unsigned i = 0; i < chromsize; ++i)
     {
-      if (rng.flip(1./chromsize))
-        _eo.value[i] += rng.normal() * 0.1 * _eo.value[i];
+      if (rng.flip(1./chromsize)) {
 
-      if (_eo.value[i] < minval)
-        _eo.value[i] = minval;
-      else if (_eo.value[i] > maxval)
-        _eo.value[i] = maxval;
+           _eo.value[i] += rng.normal() * 0.1 * _eo.value[i];
+
+          if (_eo.value[i] < minval)
+            _eo.value[i] = minval;
+          else if (_eo.value[i] > maxval)
+            _eo.value[i] = maxval;
+      }
     }
-
     return true;
   }
 };
@@ -135,17 +137,15 @@ class Init : public eoInit<eoDouble>
 void the_main(int argc, char* argv[])
 {
   Init init;
-  Eval simple_eval;
+  Eval eval;
   Mutate mutate;
-  Cross cross;
+    Cross cross;
 
   eoParser parser(argc, argv);
   eoState state;
 
   unsigned num_gen  = parser.createParam(unsigned(50), "num_gen", "number of generations to run", 'g').value();
   unsigned pop_size = parser.createParam(unsigned(100), "pop_size", "population size", 'p').value();
-  bool use_nsga1     = parser.createParam(false, "nsga1", "Use nsga 1").value(); 
-  bool use_nsga2a     = parser.createParam(false, "nsga2a", "Use nsga 2a").value(); 
   
   eoPop<eoDouble> pop(pop_size, init);
 
@@ -156,17 +156,6 @@ void the_main(int argc, char* argv[])
   eoProportionalOp<eoDouble> opsel;
   opsel.add(mutate, 1.0);
   opsel.add(cross, 1.0);
-
-  // the breeder
-  eoGeneralBreeder<eoDouble> breeder(select, opsel);
-
-  // replacement
-  eoNSGA_IIa_Eval<eoDouble> nsga2a(simple_eval);
-  eoNSGA_II_Eval<eoDouble> nsga2(simple_eval);
-  eoNSGA_I_Eval<eoDouble> nsga1(0.1, simple_eval);
-  eoMOEval<eoDouble>& eval = use_nsga1 ? static_cast<eoMOEval<eoDouble>&>(nsga1) : (use_nsga2a? static_cast<eoMOEval<eoDouble>&>(nsga2a) : static_cast<eoMOEval<eoDouble>&>(nsga2));
-
-  eoPlusReplacement<eoDouble> replace;
 
   unsigned long generation = 0;
   eoGenContinue<eoDouble> gen(num_gen, generation);
@@ -187,7 +176,7 @@ void the_main(int argc, char* argv[])
   snapshot.add(fitness1);
 
   // the algo
-  eoEasyEA<eoDouble> ea(cp, eval, breeder, replace);
+  eoEpsMOEA<eoDouble> ea(cp, eval, opsel, MinimizingFitnessTraits::eps );
 
   if (parser.userNeedsHelp())
   {
