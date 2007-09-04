@@ -41,7 +41,7 @@
     be minimized with a proper definition of the < operator. The fitness
     object must have, besides an void ctor, a copy ctor.
 */
-template<class F> class EO: public eoObject, public eoPersistent
+template<class F = double> class EO: public eoObject, public eoPersistent
 {
 public:
   typedef F Fitness;
@@ -64,7 +64,7 @@ public:
   }
 
   // Set fitness as invalid.
-  void invalidate() { invalidFitness = true; }
+  void invalidate() { invalidFitness = true; repFitness = Fitness(); }
 
   /** Set fitness. At the same time, validates it.
    *  @param _fitness New fitness value.
