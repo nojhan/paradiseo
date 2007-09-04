@@ -57,7 +57,7 @@ public:
   virtual ~EO() {};
 
   /// Return fitness value.
-  Fitness fitness() const {
+  const Fitness& fitness() const {
     if (invalid())
       throw std::runtime_error("invalid fitness");
     return repFitness;
