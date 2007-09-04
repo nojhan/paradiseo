@@ -63,6 +63,12 @@ public:
     return repFitness;
   }
 
+  /// Get fitness as reference, useful when fitness is set in a multi-stage way, e.g., MOFitness gets performance information, is subsequently ranked
+  Fitness& fitnessReference() {
+    if (invalid()) throw std::runtime_error("invalid fitness");
+    return repFitness;
+  }
+
   // Set fitness as invalid.
   void invalidate() { invalidFitness = true; repFitness = Fitness(); }
 
