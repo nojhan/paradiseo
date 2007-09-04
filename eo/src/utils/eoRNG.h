@@ -276,7 +276,7 @@ public :
     @return Uniformly chosen element from the vector.
     */
     template <typename TYPE>
-    const TYPE& choice(const std::vector<TYPE>& vec) const
+    const TYPE& choice(const std::vector<TYPE>& vec) 
         { return vec[random(vec.size())]; }
 
 
