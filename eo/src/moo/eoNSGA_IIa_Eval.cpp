@@ -3,7 +3,7 @@
 
 namespace nsga2a {
 
-double distance(const std::vector<double>& f1, const std::vector<double>& f2, const std::vector<double>& range) {
+double calc_distance(const std::vector<double>& f1, const std::vector<double>& f2) {
     double dist = 0;
     for (unsigned i = 0; i < f1.size(); ++i) {
         double d = (f1[i] - f2[i]);
@@ -40,20 +40,6 @@ for (unsigned i = 0; i < processed.size(); ++i) {
 }
 rank--;
 
-// calculate ranges
-std::vector<double> mins(nDim, std::numeric_limits<double>::infinity());
-for (unsigned dim = 0; dim < boundaries.size(); ++dim) {
-    for (unsigned i = 0; i < boundaries.size(); ++i) {
-        mins[dim] = std::min( mins[dim], boundaries[i].fitness[dim] );
-    }
-}
-
-std::vector<double> range(nDim);
-for (unsigned dim = 0; dim < nDim; ++dim) {
-    range[dim] = boundaries[dim].fitness[dim] - mins[dim];
-}
-
-
 // clean up processed (make unique) 
 sort(processed.begin(), processed.end()); // swap out last first
 for (unsigned i = 1; i < processed.size(); ++i) {
@@ -81,7 +67,7 @@ unsigned selected = 0;
 for (unsigned i = 0; i < front.size(); ++i) {
     
     for (unsigned k = 0; k < boundaries.size(); ++k) {
-        double d = distance( front[i].fitness, boundaries[k].fitness, range );
+        double d = calc_distance( front[i].fitness, boundaries[k].fitness);
         if (d < distances[i]) {
             distances[i] = d;
         }
@@ -111,7 +97,7 @@ while (!front.empty()) {
     selected = 0;
 
     for (unsigned i = 0; i < front.size(); ++i) {
-        double d = distance(front[i].fitness, last.fitness, range);
+        double d = calc_distance(front[i].fitness, last.fitness);
         
         if (d < distances[i]) {
             distances[i] = d;

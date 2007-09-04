@@ -67,12 +67,7 @@ class eoFrontSorter : public eoUF< const eoPop<EOT>&, const std::vector< std::ve
     {
         fitness.resize(_pop.size());
         for (unsigned i = 0; i < _pop.size(); ++i) {
-            std::vector<double> f;
-            
-            for (unsigned j = 0; j < Traits::nObjectives(); ++j) {
-                if (Traits::maximizing(j) != 0) f.push_back( Traits::maximizing(j) * _pop[i].fitness()[j]);
-            }
-            fitness[i] = detail::FitnessInfo(f, i);
+            fitness[i] = detail::FitnessInfo(_pop[i].fitness().normalized(), i);
         }
 
         detail::front_sorter_impl(fitness, fronts, Traits::tol());
@@ -84,12 +79,7 @@ class eoFrontSorter : public eoUF< const eoPop<EOT>&, const std::vector< std::ve
     {
         fitness.resize(_pop.size());
         for (unsigned i = 0; i < _pop.size(); ++i) {
-            std::vector<double> f;
-            
-            for (unsigned j = 0; j < Traits::nObjectives(); ++j) {
-                if (Traits::maximizing(j) != 0) f.push_back( Traits::maximizing(j) * _pop[i]->fitness()[j]);
-            }
-            fitness[i] = detail::FitnessInfo(f, i);
+            fitness[i] = detail::FitnessInfo(_pop[i]->fitness().normalized(), i);
         }
 
         detail::front_sorter_impl(fitness, fronts, Traits::tol());

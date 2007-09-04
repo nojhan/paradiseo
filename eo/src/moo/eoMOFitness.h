@@ -30,11 +30,11 @@
 #include <vector>
 #include <stdexcept>
 #include <iostream>
-
+#include <limits>
 
 /**
  * eoMOFitnessTraits: a traits class to specify 
- *           the number of objectives and which one are maximizing or not
+ *           the number of objectives and which one are direction or not
  * See test/t-eoParetoFitness for its use. 
  *
  * If you define your own, make sure you make the functions static!
@@ -43,10 +43,76 @@ class eoMOFitnessTraits
 {
   public :
 
+  /// Number of Objectives
   static unsigned nObjectives()          { return 2; }
-  static double maximizing(int which) { return 1; } // by default: all are maximizing, zero will lead to ignored fitness, negative minimizes
-  static double tol() { return 1e-6; } // tolerance for distance calculations
+  
+  /// by default: all are maximizing, zero will lead to ignored fitness, negative to minimization for that objective
+  static double direction(unsigned which)    { return 1; } 
+  
+  /// tolerance for dominance check (if within this tolerance objective values are considered equal)
+  static double tol() { return 1e-6; } 
+    
 };
+
+namespace dominance {
+    
+    template <class Traits>
+    inline double worst_possible_value(unsigned objective) {
+        double dir = Traits::direction(objective);
+        if (dir == 0.) return 0.0;
+        if (dir < 0.) return std::numeric_limits<double>::infinity();
+        return -std::numeric_limits<double>::infinity();
+    }
+
+    template <class Traits>
+    inline double best_possible_value(unsigned objective) {
+        return -worst_possible_value<Traits>(objective);
+    }
+
+    enum dominance_result { non_dominated_equal, first, second, non_dominated };
+
+    template <class FitnessDirectionTraits>
+    inline dominance_result check(const std::vector<double>& p1, const std::vector<double>& p2, double tolerance) {
+        
+        bool all_equal = true;
+        bool a_better_in_one = false;
+        bool b_better_in_one = false;
+
+        for (unsigned i = 0; i < p1.size(); ++i) {
+            
+            double maxim = FitnessDirectionTraits::direction(i);
+            double aval = maxim * p1[i];
+            double bval = maxim * p2[i];
+            
+            if ( fabs(aval-bval) > tolerance ) {
+                all_equal = false;
+                if (aval > bval) {
+                    a_better_in_one = true;
+
+                } else {
+                    b_better_in_one = true;
+                }
+                // check if we need to go on
+
+                if (a_better_in_one && b_better_in_one) return non_dominated;
+            }
+
+        }
+            
+        if (all_equal) return non_dominated_equal;
+         
+        if (a_better_in_one) return first;
+        // else b dominates a (check for non-dominance done above
+        return second;
+    }
+    
+    template <class FitnessTraits>
+    inline dominance_result check(const std::vector<double>& p1, const std::vector<double>& p2) {
+        return check<FitnessTraits>(p1, p2, FitnessTraits::tol());
+    }
+    
+
+} // namespace dominance
 
 /**
   eoMOFitness class: std::vector of doubles with overloaded comparison operators. Comparison is done
@@ -66,16 +132,22 @@ public :
 
   typedef FitnessTraits fitness_traits;
     
-  eoMOFitness(double def = 0.0) : std::vector<double>(FitnessTraits::nObjectives(),def), worthValid(false) {}
+  eoMOFitness() : std::vector<double>(FitnessTraits::nObjectives()), worthValid(false) { reset(); }
+  
+  eoMOFitness(double def) : std::vector<double>(FitnessTraits::nObjectives(),def), worthValid(false) {}
 
   // Ctr from a std::vector<double>
   eoMOFitness(std::vector<double> & _v) : std::vector<double>(_v), worthValid(false) {}
 
-  /** access to the traits characteristics (so you don't have to write 
-   * a lot of typedef's around
-   */
-  static void setUp(unsigned _n, std::vector<bool> & _b) {FitnessTraits::setUp(_n, _b);}
-  static bool maximizing(unsigned _i) { return FitnessTraits::maximizing(_i);}
+  void reset() {
+
+    for (unsigned i = 0; i < size(); ++i) {
+        this->operator[](i) = dominance::worst_possible_value<FitnessTraits>(i);
+    }
+  }
+
+  // Make the objective 'feasible' by setting it to the best possible value
+  void setFeasible(unsigned objective) { this->operator[](objective) = dominance::best_possible_value<FitnessTraits>(objective); }
 
   void setWorth(double worth_) {
         worth = worth_;
@@ -91,35 +163,30 @@ public :
 
   bool validWorth() const { return worthValid; }
   void invalidateWorth() { worthValid = false; }
+  
+  /// Check on dominance: returns 0 if non-dominated, 1 if this dominates other, -1 if other dominates this
+  int check_dominance(const eoMOFitness<FitnessTraits>& _other) const
+  {
+    dominance::dominance_result dom = dominance::check<FitnessTraits>(*this, _other);
 
-  /// Partial order based on Pareto-dominance
-  //bool operator<(const eoMOFitness<FitnessTraits>& _other) const
+    return dom == dominance::first? 1 : (dom == dominance::second? -1 : 0);
+  }
+
+  /// normalized fitness: all maximizing, removed the irrelevant ones
+  std::vector<double> normalized() const {
+        std::vector<double> f;
+        
+        for (unsigned j = 0; j < FitnessTraits::nObjectives(); ++j) {
+            if (FitnessTraits::direction(j) != 0) f.push_back( FitnessTraits::direction(j) * this->operator[](j));
+        }
+        
+        return f;
+  }
+
+  /// returns true if this dominates other
   bool dominates(const eoMOFitness<FitnessTraits>& _other) const
   {
-    bool dom = false;
-
-    const std::vector<double>& performance = *this;
-    const std::vector<double>& otherperformance = _other;
-
-    for (unsigned i = 0; i < FitnessTraits::nObjectives(); ++i)
-    {
-      double maxim = FitnessTraits::maximizing(i);
-      double aval = maxim * performance[i];
-      double bval = maxim * otherperformance[i];
-
-      if (fabs(aval-bval)>FitnessTraits::tol)
-      {
-        if (aval < bval)
-        {
-          return false; // cannot dominate
-        }
-        // else aval > bval
-        dom = true; // for the moment: goto next objective
-      }
-      //else they're equal in this objective, goto next
-    }
-
-    return dom;
+    return check_dominance(_other) == 1;
   }
 
   /// compare *not* on dominance, but on worth 
