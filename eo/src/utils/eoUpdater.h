@@ -32,6 +32,8 @@
 #include <utils/eoState.h>
 #include <utils/eoParam.h>
 
+template <class EOT> class eoCheckPoint;
+
 /**
     eoUpdater is a generic procudere for updating whatever you want.
     Yet again an empty name
@@ -41,6 +43,9 @@ class eoUpdater : public eoF<void>
 public:
   virtual void lastCall() {}
   virtual std::string className(void) const { return "eoUpdater"; }
+   
+   template <class EOT> 
+    eoUpdater& addTo(eoCheckPoint<EOT>& cp)        { cp.add(*this);  return *this; }
 };
 
 /**
