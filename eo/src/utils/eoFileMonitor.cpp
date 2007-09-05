@@ -62,8 +62,9 @@ eoMonitor& eoFileMonitor::operator()(void)
 
 eoMonitor& eoFileMonitor::operator()(std::ostream& os)
 {
+    
     iterator it = vec.begin();
-
+    
     os << (*it)->getValue();
     
     for(++it; it != vec.end(); ++it)

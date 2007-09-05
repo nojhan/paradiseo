@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
-CVS Info: $Date: 2004-06-15 07:09:57 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoMonitor.h,v 1.11 2004-06-15 07:09:57 evomarc Exp $ $Author: evomarc $ 
+CVS Info: $Date: 2007-09-05 11:36:44 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoMonitor.h,v 1.12 2007-09-05 11:36:44 maartenkeijzer Exp $ $Author: maartenkeijzer $ 
 
  */
 //-----------------------------------------------------------------------------
@@ -35,6 +35,7 @@ CVS Info: $Date: 2004-06-15 07:09:57 $ $Header: /home/nojhan/dev/eodev/eodev_cvs
 #include <eoFunctor.h>
 
 class eoParam;
+template <class EOT> class eoCheckPoint;
 
 /**
     The abstract monitor class is a std::vector of parameter pointers. Use
@@ -56,6 +57,9 @@ public :
   virtual void add(const eoParam& _param) { vec.push_back(&_param); }
 
   virtual std::string className(void) const { return "eoMonitor"; }
+
+  template <class EOT>
+  eoMonitor& addTo(eoCheckPoint<EOT>& cp) { cp.add(*this); return *this; }
 
 protected :
     typedef std::vector<const eoParam*>::iterator iterator;

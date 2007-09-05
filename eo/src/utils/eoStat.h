@@ -33,6 +33,8 @@
 #include <utils/eoParam.h>
 #include <eoPop.h>
 #include <eoParetoFitness.h>
+#include <utils/eoMonitor.h>
+#include <utils/eoCheckPoint.h>
 
 /**
   Base class for all statistics that need to be calculated
@@ -48,6 +50,9 @@ public:
   virtual void lastCall(const eoPop<EOT>&) {}
   virtual std::string className(void) const { return "eoStatBase"; }
 };
+
+
+template <class EOT> class eoCheckPoint;
 
 /**
   The actual class that will be used as base for all statistics
@@ -65,6 +70,10 @@ public:
 
     virtual std::string className(void) const
         { return "eoStat"; }
+
+    
+    eoStat<EOT, T>& addTo(eoCheckPoint<EOT>& cp)        { cp.add(*this);  return *this; }
+    eoStat<EOT, T>& addTo(eoMonitor& mon)               { mon.add(*this); return *this; }
 };
 
 
@@ -78,6 +87,7 @@ class eoSortedStatBase : public eoUF<const std::vector<const EOT*>&, void>
 public:
   virtual void lastCall(const std::vector<const EOT*>&) {}
   virtual std::string className(void) const { return "eoSortedStatBase"; }
+    
 };
 
 /**
@@ -91,6 +101,9 @@ class eoSortedStat : public eoSortedStatBase<EOT>, public eoValueParam<ParamType
 public :
   eoSortedStat(ParamType _value, std::string _desc) : eoValueParam<ParamType>(_value, _desc) {}
   virtual std::string className(void) const { return "eoSortedStat"; }
+    
+    eoSortedStat<EOT, ParamType>& addTo(eoCheckPoint<EOT>& cp)        { cp.add(*this);  return *this; }
+    eoSortedStat<EOT, ParamType>& addTo(eoMonitor& mon)               { mon.add(*this); return *this; }
 };
 
 /**

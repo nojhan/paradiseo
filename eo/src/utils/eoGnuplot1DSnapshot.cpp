@@ -10,8 +10,8 @@ eoMonitor& eoGnuplot1DSnapshot::operator()()
 {
     // update file using the eoFileMonitor method
     eoFileSnapshot::operator()();
-
 #ifdef HAVE_GNUPLOT
+
     // sends plot order to gnuplot
     std::ostringstream os;
     os << "set title 'Gen. " << getCounter() << "'; plot '"
