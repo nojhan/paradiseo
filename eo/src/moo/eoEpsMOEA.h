@@ -3,6 +3,8 @@
 
 #include <eoAlgo.h>
 #include <moo/eoEpsilonArchive.h>
+#include <utils/eoStat.h>
+
 
 template <class EOT>
 class eoEpsMOEA : public eoAlgo<EOT> {
@@ -13,14 +15,16 @@ class eoEpsMOEA : public eoAlgo<EOT> {
          eoContinue<EOT>& _continuator,
          eoEvalFunc<EOT>& _eval,
          eoGenOp<EOT>& _op,
-         const std::vector<double>& eps
+         const std::vector<double>& eps,
+         unsigned max_archive_size
      ) : continuator(_continuator),
 	 eval (_eval),
 	 loopEval(_eval),
 	 popEval(loopEval),
          op(_op),
-         archive(eps)
-         {}
+         archive(eps, max_archive_size)
+         {
+         }
 
    
     void operator()(eoPop<EOT>& pop) {
@@ -48,7 +52,11 @@ class eoEpsMOEA : public eoAlgo<EOT> {
                 }
             }
 
-        } while (continuator(pop));
+            // quite expensive to copy the entire archive time and time again, but this will make it work more seamlessly with the rest of EO
+            offspring.clear();
+            archive.appendTo(offspring);
+
+        } while (continuator(offspring)); // check archive
         
         // return archive
         pop.clear();
@@ -58,13 +66,23 @@ class eoEpsMOEA : public eoAlgo<EOT> {
     
     private :
     void update_pop(eoPop<EOT>& pop, const EOT& offspring) {
+        std::vector<unsigned> dominated;
+
         for (unsigned i = 0; i < pop.size(); ++i) {
             int dom = offspring.fitness().check_dominance(pop[i].fitness());
-            if (dom == 1) {
-                pop[i] = offspring;
-                return;
+            switch (dom) {
+                case 1 : // indy dominates this 
+                    dominated.push_back(i);
+                    break;
+                case -1 : // is dominated, do not insert
+                    return;
+                case 0: // incomparable
+                    break;
             }
-            if (dom == -1) return; //
+        }
+        
+        if (dominated.size()) {
+            pop[ dominated[ rng.random(dominated.size()) ] ] = offspring;
         }
 
         // non-dominated everywhere, overwrite random one
@@ -111,7 +129,7 @@ class eoEpsMOEA : public eoAlgo<EOT> {
   eoGenOp<EOT>& op;
 
   eoEpsilonArchive<EOT> archive;
-
+    
 };
 
 #endif

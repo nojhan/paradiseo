@@ -43,6 +43,18 @@ namespace detail {
           FitnessInfo(const std::vector<double>& fitness_, unsigned index_) : fitness(fitness_), index(index_) {}
     };
     
+    struct CompareOn {
+        unsigned dim;
+        double tol;
+
+        CompareOn(unsigned d, double t) : dim(d), tol(t) {}
+
+        bool operator()(const FitnessInfo& a, const FitnessInfo& b) {
+            return  a.fitness[dim] > b.fitness[dim] && fabs(a.fitness[dim] - b.fitness[dim]) > tol;
+        }
+
+    };
+    
     extern void front_sorter_impl(std::vector<FitnessInfo>& fitness, std::vector< std::vector<FitnessInfo> >& fronts, double tol);
 
 } // namespace detail

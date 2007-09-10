@@ -105,12 +105,44 @@ namespace dominance {
         // else b dominates a (check for non-dominance done above
         return second;
     }
+
+    template <class IntType>
+    inline dominance_result check_discrete(const std::vector<IntType>& a, const std::vector<IntType>& b) {
+
+        bool all_equal = true;
+        bool a_better_in_one = false;
+        bool b_better_in_one = false;
+
+        for (unsigned i = 0; i < a.size(); ++i) {
+        
+            if ( a[i] != b[i] ) {
+                all_equal = false;
+                if (a[i] > b[i]) {
+                    a_better_in_one = true;
+
+                } else {
+                    b_better_in_one = true;
+                }
+                // check if we need to go on
+
+                if (a_better_in_one && b_better_in_one) return non_dominated;
+            }
+
+        }
+        
+        if (all_equal) return non_dominated_equal;
+     
+        if (a_better_in_one) return first;
+        // else b dominates a (check for non-dominance done above
+        return second;
+    }
     
     template <class FitnessTraits>
     inline dominance_result check(const std::vector<double>& p1, const std::vector<double>& p2) {
         return check<FitnessTraits>(p1, p2, FitnessTraits::tol());
     }
     
+     
 
 } // namespace dominance
 
@@ -134,10 +166,22 @@ public :
     
   eoMOFitness() : std::vector<double>(FitnessTraits::nObjectives()), worthValid(false) { reset(); }
   
-  eoMOFitness(double def) : std::vector<double>(FitnessTraits::nObjectives(),def), worthValid(false) {}
+  explicit eoMOFitness(double def) : std::vector<double>(FitnessTraits::nObjectives(),def), worthValid(false) {}
 
   // Ctr from a std::vector<double>
-  eoMOFitness(std::vector<double> & _v) : std::vector<double>(_v), worthValid(false) {}
+  explicit eoMOFitness(std::vector<double> & _v) : std::vector<double>(_v), worthValid(false) {}
+
+  virtual ~eoMOFitness() {} // in case someone wants to subclass
+  eoMOFitness(const eoMOFitness<FitnessTraits>& org) { operator=(org); }
+
+  eoMOFitness<FitnessTraits>& operator=(const eoMOFitness<FitnessTraits>& org) {
+        
+        std::vector<double>::operator=(org);
+        worth = org.worth;
+        worthValid = org.worthValid;
+
+        return *this;
+  }
 
   void reset() {
 
@@ -177,7 +221,9 @@ public :
         std::vector<double> f;
         
         for (unsigned j = 0; j < FitnessTraits::nObjectives(); ++j) {
-            if (FitnessTraits::direction(j) != 0) f.push_back( FitnessTraits::direction(j) * this->operator[](j));
+            if (FitnessTraits::direction(j) != 0) {
+                f.push_back( FitnessTraits::direction(j) * this->operator[](j));
+            }
         }
         
         return f;
@@ -192,17 +238,17 @@ public :
   /// compare *not* on dominance, but on worth 
   bool operator<(const eoMOFitness<FitnessTraits>& _other) const
   {
-    return getWorth() > _other.getWorth();
+    return getWorth() < _other.getWorth();
   }
 
   bool operator>(const eoMOFitness<FitnessTraits>& _other) const
   {
-    return _other < *this;
+    return _other > *this;
   }
 
   bool operator<=(const eoMOFitness<FitnessTraits>& _other) const
   {
-    return getWorth() >= _other.getWorth();
+    return getWorth() <= _other.getWorth();
   }
 
   bool operator>=(const eoMOFitness<FitnessTraits>& _other) const
@@ -241,5 +287,12 @@ public :
     }
 
 };
+
+namespace dominance {
+    template <class FitnessTraits>
+    inline dominance_result check(const eoMOFitness<FitnessTraits>& p1, const eoMOFitness<FitnessTraits>& p2) {
+        return check<FitnessTraits>(p1, p2, FitnessTraits::tol());   
+    }
+}
 
 #endif

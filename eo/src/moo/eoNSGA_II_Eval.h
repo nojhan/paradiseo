@@ -34,15 +34,15 @@ class eoNSGA_II_Eval : public eoMOEval<EOT>
 
         typename eoFrontSorter<EOT>::front_t front = sorter(pop);
         
+        // calculate worths
         std::vector<double> worths(pop.size());
         for (unsigned i = 0; i < front.size(); ++i) {
             nsga2::assign_worths(front[i], front.size() - i, worths); 
         }
-
+         
+        // set worths
         for (unsigned i = 0; i < pop.size(); ++i) {
-            typename EOT::Fitness f = pop[i]->fitness();
-            f.setWorth(worths[i]);
-            pop[i]->fitness(f);
+            pop[i]->fitnessReference().setWorth( worths[i]);
         }
 
     }

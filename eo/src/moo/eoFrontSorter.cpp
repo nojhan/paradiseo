@@ -4,20 +4,6 @@ using namespace std;
 
 namespace detail {
 
-namespace {
-    struct CompareOn {
-        unsigned dim;
-        double tol;
-
-        CompareOn(unsigned d, double t) : dim(d), tol(t) {}
-
-        bool operator()(const FitnessInfo& a, const FitnessInfo& b) {
-            return  a.fitness[dim] > b.fitness[dim] && fabs(a.fitness[dim] - b.fitness[dim]) > tol;
-        }
-
-    };
-} // end anonymous namespace
-
 void one_objective(std::vector<FitnessInfo>& fitness, std::vector< std::vector<FitnessInfo> >& front, double tol)
 {
     std::sort(fitness.begin(), fitness.end(), CompareOn(0, tol));
@@ -136,6 +122,7 @@ void m_objectives(std::vector<FitnessInfo>& fitness, std::vector< std::vector<Fi
 }
 
 void front_sorter_impl(std::vector<FitnessInfo>& fitness, std::vector< std::vector<FitnessInfo> >& front_indices, double tol) {
+        
         switch (fitness[0].fitness.size())
 	{
 	    case 1:
