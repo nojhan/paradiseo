@@ -3,7 +3,7 @@
 # Script to create a completely new EO project from templates
 #
 # Originally by Marc Schoenauer
-# Copyright (C) 2006 Jochen Küpper <jochen@fhi-berlin.mpg.de>
+# Copyright (C) 2006 Jochen Kpper <jochen@fhi-berlin.mpg.de>
 
 if ($PWD:t != Templates) then
     echo "You must start this shell script from the EO Template directory"
@@ -23,7 +23,7 @@ echo " "
 if ($#argv == 1) then
     set TargetDir = /tmp/$1
 else
-    set TargetDir = /tmp/$2
+    set TargetDir = $2
 endif
 if ( -d $TargetDir ) then
     echo "Warning: The target directory does exist already."
@@ -55,6 +55,30 @@ echo "Creating build-support files for application $1 in $TargetDir"
 sed s/MyStruct/$1/g configure.ac.tmpl > $TargetDir/configure.ac
 sed s/MyStruct/$1/g Makefile.am.top-tmpl > $TargetDir/Makefile.am
 sed s/MyStruct/$1/g Makefile.am.src-tmpl > $TargetDir/src/Makefile.am
+
+
+##### Build a ready-to-use CMake config
+
+# need paths
+set eo_src_var = 'EO_SRC_DIR'
+echo "$PWD" > temp.txt
+sed -e "s/\//\\\//g" temp.txt > temp2.txt
+set safe_eo_path = `cat temp2.txt`
+set safe_eo_path = "$safe_eo_path\/..\/.."
+
+set eo_bin_var = 'EO_BIN_DIR'
+set eo_src_path = "$safe_eo_path"
+set eo_bin_path = "$safe_eo_path\/build"
+
+sed -e "s/MyStruct/$1/g" -e "s/$eo_src_var/$eo_src_path/g" -e "s/$eo_bin_var/$eo_bin_path/g" CMakeLists.txt.top-tmpl > $TargetDir/CMakeLists.txt
+sed -e "s/MyStruct/$1/g" CMakeLists.txt.src-tmpl > $TargetDir/src/CMakeLists.txt
+
+# remove temp dirs
+rm -f temp.txt temp2.txt
+
+#####
+
+
 sed s/MyStruct/$1/g README.tmpl > $TargetDir/README
 touch $TargetDir/AUTHORS
 touch $TargetDir/COPYING
@@ -67,12 +91,19 @@ echo "Start building the new project"
 
 
 # building new project
+#cd $TargetDir
+#aclocal  || exit
+#autoheader  || exit
+#automake --add-missing --copy  --gnu  || exit  ### forget uncompatible option: --force-missing 
+#autoconf  || exit
+#./configure  || exit
+#make  || exit
+
+# New: building new project using CMake
 cd $TargetDir
-aclocal  || exit
-autoheader  || exit
-automake --add-missing --copy --force-missing --gnu  || exit
-autoconf  || exit
-./configure  || exit
+#mkdir build
+#cd build
+cmake . || exit
 make  || exit
 
 
