@@ -90,11 +90,14 @@ echo "Successfully created project $1 in $TargetDir!"
 echo "Start building the new project"
 
 
-# building new project
+### building new project with the Autotools
 #cd $TargetDir
 #aclocal  || exit
 #autoheader  || exit
-#automake --add-missing --copy  --gnu  || exit  ### forget uncompatible option: --force-missing 
+#automake --add-missing --copy  --gnu  || exit 
+
+# !!!!! uncompatible option: --force-missing  for the latest version of automake
+
 #autoconf  || exit
 #./configure  || exit
 #make  || exit
