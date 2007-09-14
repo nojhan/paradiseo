@@ -1,66 +1,66 @@
-\section{moBestImprSelect$<$ M $>$ Class Template Reference}
+\section{mo\-Best\-Impr\-Select$<$ M $>$ Class Template Reference}
 \label{classmo_best_impr_select}\index{moBestImprSelect@{moBestImprSelect}}
-One of the possible \doxyref{moMoveSelect}{p.}{classmo_move_select}.  
+One of the possible \doxyref{mo\-Move\-Select}{p.}{classmo_move_select}.  
 
 
-{\tt \#include $<$moBestImprSelect.h$>$}
+{\tt \#include $<$mo\-Best\-Impr\-Select.h$>$}
 
-Inheritance diagram for moBestImprSelect$<$ M $>$::\begin{figure}[H]
+Inheritance diagram for mo\-Best\-Impr\-Select$<$ M $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=4cm]{classmo_best_impr_select}
+\includegraphics[height=2cm]{classmo_best_impr_select}
 \end{center}
 \end{figure}
 \subsection*{Public Types}
 \begin{CompactItemize}
 \item 
-typedef M::EOType::Fitness {\bf Fitness}\label{classmo_best_impr_select_c4ae17435221fb0a8e8acd285210cfcb}
+typedef M::EOType::Fitness \bf{Fitness}\label{classmo_best_impr_select_c4ae17435221fb0a8e8acd285210cfcb}
 
 \begin{CompactList}\small\item\em Alias for the fitness. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-void {\bf init} (const {\bf Fitness} \&\_\-\_\-fit)\label{classmo_best_impr_select_2d2abf9aa17dc77cbb4f41810ab7b956}
+void \bf{init} (const \bf{Fitness} \&\_\-\_\-fit)\label{classmo_best_impr_select_2d2abf9aa17dc77cbb4f41810ab7b956}
 
 \begin{CompactList}\small\item\em Procedure which initialise the exploration. \item\end{CompactList}\item 
-bool {\bf update} (const M \&\_\-\_\-move, const {\bf Fitness} \&\_\-\_\-fit)
+bool \bf{update} (const M \&\_\-\_\-move, const \bf{Fitness} \&\_\-\_\-fit)
 \begin{CompactList}\small\item\em Function that indicates if the current move has not improved the fitness. \item\end{CompactList}\item 
-void {\bf operator()} (M \&\_\-\_\-move, {\bf Fitness} \&\_\-\_\-fit)  throw (EmptySelection)
+void \bf{operator()} (M \&\_\-\_\-move, \bf{Fitness} \&\_\-\_\-fit)  throw (Empty\-Selection)
 \begin{CompactList}\small\item\em Procedure which saved the best move and fitness. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
 \begin{CompactItemize}
 \item 
-bool {\bf first\_\-time}\label{classmo_best_impr_select_352b14d206b0772eb9f40efb7beb0f13}
+bool \bf{first\_\-time}\label{classmo_best_impr_select_352b14d206b0772eb9f40efb7beb0f13}
 
 \begin{CompactList}\small\item\em Allowing to know if at least one move has been generated. \item\end{CompactList}\item 
-M {\bf best\_\-move}\label{classmo_best_impr_select_bd86f70519f954c07ff0d8a2a3a8ff6a}
+M \bf{best\_\-move}\label{classmo_best_impr_select_bd86f70519f954c07ff0d8a2a3a8ff6a}
 
 \begin{CompactList}\small\item\em The best move. \item\end{CompactList}\item 
-{\bf Fitness} {\bf best\_\-fit}\label{classmo_best_impr_select_dcac897424b5805f146bb1dbb429f2fe}
+\bf{Fitness} \bf{best\_\-fit}\label{classmo_best_impr_select_dcac897424b5805f146bb1dbb429f2fe}
 
 \begin{CompactList}\small\item\em The best fitness. \item\end{CompactList}\end{CompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class M$>$ class moBestImprSelect$<$ M $>$}
+\subsubsection*{template$<$class M$>$ class mo\-Best\-Impr\-Select$<$ M $>$}
 
-One of the possible \doxyref{moMoveSelect}{p.}{classmo_move_select}. 
+One of the possible \doxyref{mo\-Move\-Select}{p.}{classmo_move_select}. 
 
 All neighbors are considered, and the movement which enables the best improvement is selected. 
 
 
 
-Definition at line 22 of file moBestImprSelect.h.
+Definition at line 22 of file mo\-Best\-Impr\-Select.h.
 
 \subsection{Member Function Documentation}
-\index{moBestImprSelect@{moBestImprSelect}!update@{update}}
-\index{update@{update}!moBestImprSelect@{moBestImprSelect}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf moBestImprSelect}$<$ M $>$::update (const M \& {\em \_\-\_\-move}, const {\bf Fitness} \& {\em \_\-\_\-fit})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_best_impr_select_d10e3e6f8a0277731e95ef506d064d6d}
+\index{moBestImprSelect@{mo\-Best\-Impr\-Select}!update@{update}}
+\index{update@{update}!moBestImprSelect@{mo\-Best\-Impr\-Select}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool \bf{mo\-Best\-Impr\-Select}$<$ M $>$::update (const M \& {\em \_\-\_\-move}, const \bf{Fitness} \& {\em \_\-\_\-fit})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_best_impr_select_d10e3e6f8a0277731e95ef506d064d6d}
 
 
 Function that indicates if the current move has not improved the fitness. 
 
-If the given fitness enables an improvement, the move (\doxyref{moMove}{p.}{classmo_move}) and the fitness linked to this move are saved.
+If the given fitness enables an improvement, the move (\doxyref{mo\-Move}{p.}{classmo_move}) and the fitness linked to this move are saved.
 
 \begin{Desc}
 \item[Parameters:]
@@ -71,13 +71,13 @@ If the given fitness enables an improvement, the move (\doxyref{moMove}{p.}{clas
 \item[Returns:]TRUE if the move does not improve the fitness. \end{Desc}
 
 
-Implements {\bf moMoveSelect$<$ M $>$} \doxyref{}{p.}{classmo_move_select_7c157b6e64fd417acf6e900059204eb1}.
+Implements \bf{mo\-Move\-Select$<$ M $>$} \doxyref{p.}{classmo_move_select_7c157b6e64fd417acf6e900059204eb1}.
 
-Definition at line 47 of file moBestImprSelect.h.
+Definition at line 47 of file mo\-Best\-Impr\-Select.h.
 
-References moBestImprSelect$<$ M $>$::best\_\-fit, moBestImprSelect$<$ M $>$::best\_\-move, and moBestImprSelect$<$ M $>$::first\_\-time.\index{moBestImprSelect@{moBestImprSelect}!operator()@{operator()}}
-\index{operator()@{operator()}!moBestImprSelect@{moBestImprSelect}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void {\bf moBestImprSelect}$<$ M $>$::operator() (M \& {\em \_\-\_\-move}, {\bf Fitness} \& {\em \_\-\_\-fit})  throw ({\bf EmptySelection})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_best_impr_select_169773d4d127acd782cf379f758222da}
+References mo\-Best\-Impr\-Select$<$ M $>$::best\_\-fit, mo\-Best\-Impr\-Select$<$ M $>$::best\_\-move, and mo\-Best\-Impr\-Select$<$ M $>$::first\_\-time.\index{moBestImprSelect@{mo\-Best\-Impr\-Select}!operator()@{operator()}}
+\index{operator()@{operator()}!moBestImprSelect@{mo\-Best\-Impr\-Select}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void \bf{mo\-Best\-Impr\-Select}$<$ M $>$::operator() (M \& {\em \_\-\_\-move}, \bf{Fitness} \& {\em \_\-\_\-fit})  throw (\bf{Empty\-Selection})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_best_impr_select_169773d4d127acd782cf379f758222da}
 
 
 Procedure which saved the best move and fitness. 
@@ -90,16 +90,14 @@ Procedure which saved the best move and fitness.
 \begin{Desc}
 \item[Exceptions:]
 \begin{description}
-\item[{\em \doxyref{EmptySelection}{p.}{class_empty_selection}}]if no move has improved the fitness. \end{description}
+\item[{\em \doxyref{Empty\-Selection}{p.}{class_empty_selection}}]if no move has improved the fitness. \end{description}
 \end{Desc}
 
 
-Implements {\bf eoBF$<$ M \&, M::EOType::Fitness \&, void $>$}.
+Definition at line 65 of file mo\-Best\-Impr\-Select.h.
 
-Definition at line 65 of file moBestImprSelect.h.
-
-References moBestImprSelect$<$ M $>$::best\_\-fit, moBestImprSelect$<$ M $>$::best\_\-move, and moBestImprSelect$<$ M $>$::first\_\-time.
+References mo\-Best\-Impr\-Select$<$ M $>$::best\_\-fit, mo\-Best\-Impr\-Select$<$ M $>$::best\_\-move, and mo\-Best\-Impr\-Select$<$ M $>$::first\_\-time.
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 
-moBestImprSelect.h\end{CompactItemize}
+mo\-Best\-Impr\-Select.h\end{CompactItemize}
