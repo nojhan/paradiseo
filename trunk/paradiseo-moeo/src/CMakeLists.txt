@@ -4,7 +4,7 @@
 ######################################################################################
 
 INCLUDE_DIRECTORIES(${EO_SRC_DIR})
-INCLUDE_DIRECTORIES(${MOEO_SRC_DIR})
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################
 
@@ -18,15 +18,7 @@ SET(LIBRARY_OUTPUT_PATH ${MOEO_LIB_OUTPUT_PATH})
 
 SET (MOEO_SOURCES core/moeoObjectiveVectorTraits.cpp)
 
-# --> UNIX 
-IF(UNIX)   
-  ADD_LIBRARY(moeo STATIC ${MOEO_SOURCES})
-ENDIF(UNIX)
-		
-# --> WIN
-IF(WIN32)  
-  ADD_LIBRARY(moeo STATIC ${MOEO_SOURCES})
-ENDIF(WIN32)
+ADD_LIBRARY(moeo STATIC ${MOEO_SOURCES})
 
 ######################################################################################
 
@@ -35,7 +27,7 @@ ENDIF(WIN32)
 ### 3) Optionnal: define your target(s)'s version: no effect for windows
 ######################################################################################
 
-SET(MOEO_VERSION "1.0.beta")
+SET(MOEO_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(moeo PROPERTIES VERSION "${MOEO_VERSION}")
 ######################################################################################
 

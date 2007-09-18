@@ -3,40 +3,25 @@
 ### 1) Include the sources
 ######################################################################################
 
-INCLUDE_DIRECTORIES(${EO_SRC_DIR})
+INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/utils)
-INCLUDE_DIRECTORIES(${MOEO_SRC_DIR})
+INCLUDE_DIRECTORIES(${ParadisEO-MOEO_SOURCE_DIR}/src)
 ######################################################################################
 
 
 
 ######################################################################################
-### 2) Specify where CMake can find the libraries (mandatory: before 3) )
+### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-# --> UNIX 
-IF(UNIX)  
-  LINK_DIRECTORIES(${EO_SRC_DIR} ${EO_SRC_DIR}/utils ${ParadisEO-MOEO_BINARY_DIR}/lib)
-ENDIF(UNIX)
+IF(NOT WIN32 OR CYGWIN)  
+  LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-MOEO_BINARY_DIR}/lib)
+ENDIF(NOT WIN32 OR CYGWIN)
 
-# --> WIN
-IF(WIN32)  
-  # "CMAKE_BUILD_TYPE" supposed to be given on the command line, default=Debug
-  IF (NOT DEFINED CMAKE_BUILD_TYPE)
-    set (CMAKE_BUILD_TYPE Debug)
-  ENDIF (NOT DEFINED CMAKE_BUILD_TYPE)
- 
-  IF (CMAKE_BUILD_TYPE STREQUAL Debug)
-  	LINK_DIRECTORIES(${ParadisEO-MOEO_BINARY_DIR}\\lib\\debug)
-  	LINK_DIRECTORIES(${EO_LIB_DIR}\\debug)   		
-  ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
-  
-  IF(CMAKE_BUILD_TYPE STREQUAL Release)
-  	LINK_DIRECTORIES(${ParadisEO-MOEO_BINARY_DIR}\\lib\\release)
-  	LINK_DIRECTORIES(${EO_LIB_DIR}\\release)  
-  ENDIF(CMAKE_BUILD_TYPE STREQUAL Release)
-
-ENDIF(WIN32)
+# especially for Visual Studio
+IF(WIN32 AND NOT CYGWIN)  
+  	LINK_DIRECTORIES(${EO_BIN_DIR}\\lib\\${CMAKE_BUILD_TYPE} ${ParadisEO-MOEO_BINARY_DIR}\\lib\\${CMAKE_BUILD_TYPE})
+ENDIF(WIN32 AND NOT CYGWIN) 
 
 ######################################################################################
 
@@ -46,10 +31,8 @@ ENDIF(WIN32)
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
-# no matter what is the OS, hopefully
-ADD_EXECUTABLE(sch1 Sch1.cpp) 
-
-ADD_DEPENDENCIES(sch1 moeo)
+ADD_EXECUTABLE(Sch1 Sch1.cpp) 
+ADD_DEPENDENCIES(Sch1 moeo)
 ######################################################################################
 
 
@@ -58,8 +41,8 @@ ADD_DEPENDENCIES(sch1 moeo)
 ### 4) Optionnal: define your target(s)'s version: no effect for windows
 ######################################################################################
 
-SET(SCH1_VERSION "1.0.beta")
-SET_TARGET_PROPERTIES(sch1 PROPERTIES VERSION "${SCH1_VERSION}")
+SET(SCH1_VERSION ${GLOBAL_VERSION})
+SET_TARGET_PROPERTIES(Sch1 PROPERTIES VERSION "${SCH1_VERSION}")
 ######################################################################################
 
 
@@ -68,33 +51,9 @@ SET_TARGET_PROPERTIES(sch1 PROPERTIES VERSION "${SCH1_VERSION}")
 ### 5) Link the librairies for your target(s)
 ######################################################################################
 
-# --> UNIX 
-IF(UNIX)  
-  TARGET_LINK_LIBRARIES(sch1 moeo)
-  TARGET_LINK_LIBRARIES(sch1 eo)
-  TARGET_LINK_LIBRARIES(sch1 eoutils)
-ENDIF(UNIX)
 
-# --> WIN
-IF(WIN32)  
-  # "CMAKE_BUILD_TYPE" supposed to be given on the command line, default=Debug
-  IF (NOT DEFINED CMAKE_BUILD_TYPE)
-    set (CMAKE_BUILD_TYPE Debug)
-  ENDIF (NOT DEFINED CMAKE_BUILD_TYPE)
- 
-  IF (CMAKE_BUILD_TYPE STREQUAL Debug)
-  	TARGET_LINK_LIBRARIES(sch1 moeo)
-    TARGET_LINK_LIBRARIES(sch1 eod)
-    TARGET_LINK_LIBRARIES(sch1 eoutilsd)   
-  ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)  
-     
-  IF(CMAKE_BUILD_TYPE STREQUAL Release)
-  	TARGET_LINK_LIBRARIES(sch1 moeo)
-    TARGET_LINK_LIBRARIES(sch1 eo)
-    TARGET_LINK_LIBRARIES(sch1 eoutils)   
-  ENDIF(CMAKE_BUILD_TYPE STREQUAL Release)
+TARGET_LINK_LIBRARIES(Sch1 moeo eo eoutils)
 
-ENDIF(WIN32)
 ######################################################################################
 
 
