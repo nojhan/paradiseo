@@ -3,9 +3,9 @@
 #---------------------------------------------------------------------------
 # Project related configuration options
 #---------------------------------------------------------------------------
-PROJECT_NAME           = "ParadisEO-PEO - Lessons"
-PROJECT_NUMBER         = 0.1
-OUTPUT_DIRECTORY       = ../../docs/html/lsnshared
+PROJECT_NAME           = "@PACKAGE_NAME@ - Lessons"
+PROJECT_NUMBER         = @PACKAGE_VERSION@
+OUTPUT_DIRECTORY       = @CMAKE_BINARY_DIR@/doc/html/lsnshared
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
 USE_WINDOWS_ENCODING   = NO
@@ -25,7 +25,7 @@ ABBREVIATE_BRIEF       = "The $name class" \
 ALWAYS_DETAILED_SEC    = NO
 INLINE_INHERITED_MEMB  = NO
 FULL_PATH_NAMES        = NO
-STRIP_FROM_PATH        = 
+STRIP_FROM_PATH        = @CMAKE_SOURCE_DIR@
 STRIP_FROM_INC_PATH    = 
 SHORT_NAMES            = NO
 JAVADOC_AUTOBRIEF      = YES
@@ -76,13 +76,13 @@ QUIET                  = YES
 WARNINGS               = YES
 WARN_IF_UNDOCUMENTED   = YES
 WARN_IF_DOC_ERROR      = YES
-WARN_NO_PARAMDOC       = NO
+WARN_NO_PARAMDOC       = YES
 WARN_FORMAT            = "$file:$line: $text"
 WARN_LOGFILE           = 
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = .
+INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@
 FILE_PATTERNS          = *.cpp \
                          *.h \
                          NEWS \
@@ -200,10 +200,10 @@ SKIP_FUNCTION_MACROS   = YES
 #---------------------------------------------------------------------------
 # Configuration::additions related to external references   
 #---------------------------------------------------------------------------
-TAGFILES               = ../../../paradiseo-mo/docs/eo.doxytag=../../../../paradiseo-mo/docs/html	\
-                         ../../../paradiseo-mo/docs/mo.doxytag=../../../../paradiseo-mo/docs/html	\
-                         ../../docs/paradiseo-peo.doxytag=../../
-GENERATE_TAGFILE       = ../../docs/paradiseo-peo-lsn-shared.doxytag
+TAGFILES               = @EO_BIN_DIR@/doc/eo.doxytag=http://eodev.sourceforge.net/eo/doc/html	\
+                         @MO_BIN_DIR@/doc/mo.doxytag=@MO_BIN_DIR@/doc/html \
+                         @ParadisEO-PEO_BINARY_DIR@/doc/peo.doxytag=@ParadisEO-PEO_BINARY_DIR@/doc/html
+GENERATE_TAGFILE       = @CMAKE_BINARY_DIR@/doc/paradiseo-peo-lsn-shared.doxytag
 ALLEXTERNALS           = NO
 EXTERNAL_GROUPS        = YES
 PERL_PATH              = /usr/bin/perl

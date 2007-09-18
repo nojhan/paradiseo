@@ -16,7 +16,7 @@
 #include "two_opt_next.h"
 #include "two_opt_incr_eval.h"
 
-#include <paradiseo>
+#include <peo>
 
 #define POP_SIZE 10
 #define NUM_GEN 10

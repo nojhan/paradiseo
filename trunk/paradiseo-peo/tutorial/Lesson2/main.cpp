@@ -19,7 +19,7 @@
 #include "part_route_eval.h"
 
 
-#include <paradiseo>
+#include <peo>
 
 
 #define POP_SIZE 10

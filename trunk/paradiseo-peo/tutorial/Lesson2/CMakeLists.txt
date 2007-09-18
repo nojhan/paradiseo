@@ -21,6 +21,13 @@ ADD_CUSTOM_COMMAND(
     ARGS -E copy_if_different
       ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson2/schema.xml
       ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson2)
+ADD_CUSTOM_COMMAND(
+    TARGET install
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND}
+    ARGS -E copy_if_different
+      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson2/ParadisEO-PEO_Lesson2.pdf
+      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson2)
 ######################################################################################
 
 
@@ -28,23 +35,23 @@ ADD_CUSTOM_COMMAND(
 ### 1) Include the sources
 ######################################################################################
 
-INCLUDE_DIRECTORIES(${EO_SRC_DIR})
-INCLUDE_DIRECTORIES(${MO_SRC_DIR})
-INCLUDE_DIRECTORIES(${PEO_SRC_DIR})
-INCLUDE_DIRECTORIES(${TSP_SRC_DIR})
+INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src ${MO_SRC_DIR}/src ${ParadisEO-PEO_SOURCE_DIR}/src ${TSP_SRC_DIR})
 
 ######################################################################################
 
 
 ######################################################################################
-### 2) Specify where CMake can find the libraries (mandatory: before 3) )
+### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-LINK_DIRECTORIES(	${EO_SRC_DIR} 
-					${EO_SRC_DIR}/utils 
-					${ParadisEO-PEO_BINARY_DIR}/lib 
-					${TSP_BINARY_DIR}/lib)
-					
+IF(NOT WIN32 OR CYGWIN)  
+  LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DIR}/lib ${TSP_BINARY_DIR}/lib)
+ENDIF(NOT WIN32 OR CYGWIN)
+
+# especially for Visual Studio
+IF(WIN32 AND NOT CYGWIN)  
+  	LINK_DIRECTORIES(${EO_BIN_DIR}\\lib\\${CMAKE_BUILD_TYPE} ${ParadisEO-PEO_BINARY_DIR}\\lib\\${CMAKE_BUILD_TYPE} ${TSP_BINARY_DIR}\\lib\\${CMAKE_BUILD_TYPE})
+ENDIF(WIN32 AND NOT CYGWIN) 
 ######################################################################################
 
 
@@ -52,21 +59,16 @@ LINK_DIRECTORIES(	${EO_SRC_DIR}
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
-# no matter what is the OS, hopefully
 ADD_EXECUTABLE(tspExample main.cpp) 
-
-ADD_DEPENDENCIES(tspExample tsp)
-ADD_DEPENDENCIES(tspExample peo)
-ADD_DEPENDENCIES(tspExample rmc_mpi)
-
+ADD_DEPENDENCIES(tspExample tsp peo rmc_mpi)
 ######################################################################################
 
 
 ######################################################################################
-### 4) Optionnal: define your target(s)'s version: no effect for windows
+### 4) Optionnal: define properties
 ######################################################################################
 
-SET(LESSON2_VERSION "1.0.beta")
+SET(LESSON2_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(tspExample PROPERTIES VERSION "${LESSON2_VERSION}")
 ######################################################################################
 
@@ -75,16 +77,29 @@ SET_TARGET_PROPERTIES(tspExample PROPERTIES VERSION "${LESSON2_VERSION}")
 ### 5) Link the librairies
 ######################################################################################
 
-TARGET_LINK_LIBRARIES(tspExample ${XML2_LIBS}) # define in CMakeLists.txt at PEO root dir
-TARGET_LINK_LIBRARIES(tspExample tsp)
-TARGET_LINK_LIBRARIES(tspExample peo) 
-TARGET_LINK_LIBRARIES(tspExample rmc_mpi) 
-TARGET_LINK_LIBRARIES(tspExample eo)
-TARGET_LINK_LIBRARIES(tspExample eoutils)
+TARGET_LINK_LIBRARIES(tspExample ${XML2_LIBS} tsp peo rmc_mpi eo eoutils) 
 
 ######################################################################################
 
 
+######################################################################################
+### 6) Windows advanced config - especially for Microsoft Visual Studio 8
+######################################################################################
+
+  IF(CMAKE_CXX_COMPILER MATCHES cl)
+   IF(NOT WITH_SHARED_LIBS)
+     IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005")
+       SET(CMAKE_CXX_FLAGS "/nologo /W3 /Gy")
+       SET(CMAKE_CXX_FLAGS_DEBUG "/MTd /Z7 /Od")
+       SET(CMAKE_CXX_FLAGS_RELEASE "/MT /O2")
+       SET(CMAKE_CXX_FLAGS_MINSIZEREL "/MT /O2")
+       SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/MTd /Z7 /Od")
+       SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:CONSOLE")
+       
+     ENDIF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005")
+   ENDIF(NOT WITH_SHARED_LIBS)
+  ENDIF(CMAKE_CXX_COMPILER MATCHES cl)
+######################################################################################
 
 
 
