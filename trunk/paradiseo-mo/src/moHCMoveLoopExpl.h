@@ -64,31 +64,31 @@ moHCMoveLoopExpl (moMoveInit < M > &__move_init, moNextMove < M > &__next_move, 
     //
     move_init (move, __old_sol);	/* Restarting the exploration of 
 					   of the neighborhood ! */
-    
+
     move_select.init (__old_sol.fitness ());
-    
+
     while (move_select.update (move, incr_eval (move, __old_sol))
 	   && next_move (move, __old_sol));
-    
+
     try
-      {
-	
-	M best_move;
-	
-	Fitness best_move_fit;
-	
-	move_select (best_move, best_move_fit);
-	__new_sol.fitness (best_move_fit);
-	best_move (__new_sol);
-	
-      }
+    {
+
+      M best_move;
+
+      Fitness best_move_fit;
+
+      move_select (best_move, best_move_fit);
+      __new_sol.fitness (best_move_fit);
+      best_move (__new_sol);
+
+    }
     catch (EmptySelection & __ex)
-      {
-	
-	// ?
-      }
+    {
+
+      // ?
+    }
   }
-  
+
 private:
 
   //! Move initialiser.

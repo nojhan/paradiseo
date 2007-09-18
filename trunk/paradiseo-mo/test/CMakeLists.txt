@@ -1,3 +1,8 @@
+###############################################################################
+##
+## CMakeLists file for ParadisEO-MO/test
+##
+###############################################################################
 
 
 ######################################################################################
@@ -5,11 +10,10 @@
 ######################################################################################
 
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
-INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src/utils)
 INCLUDE_DIRECTORIES(${ParadisEO-MO_SOURCE_DIR}/src)
-INCLUDE_DIRECTORIES(${TSP_SRC_DIR})
-######################################################################################
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
+######################################################################################
 
 
 ######################################################################################
@@ -17,12 +21,14 @@ INCLUDE_DIRECTORIES(${TSP_SRC_DIR})
 ######################################################################################
 
 IF(NOT WIN32 OR CYGWIN)  
-  LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${TSP_BINARY_DIR}/lib)
+  LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-MO_BINARY_DIR}/lib)
 ENDIF(NOT WIN32 OR CYGWIN)
 
 # especially for Visual Studio
 IF(WIN32 AND NOT CYGWIN)  
-  	LINK_DIRECTORIES(${EO_BIN_DIR}\\lib\\${CMAKE_BUILD_TYPE})
+  	LINK_DIRECTORIES(${EO_BIN_DIR}\\lib\\${CMAKE_BUILD_TYPE}
+  					 ${ParadisEO-MO_BINARY_DIR}\\lib\\${CMAKE_BUILD_TYPE}
+  					)
 ENDIF(WIN32 AND NOT CYGWIN) 
 
 ######################################################################################
@@ -30,38 +36,36 @@ ENDIF(WIN32 AND NOT CYGWIN)
 
 
 ######################################################################################
-### 3) Define your target(s): just an executable here
+### 3) Define your targets and link the librairies
 ######################################################################################
 
-ADD_EXECUTABLE(hill_climbing hill_climbing.cpp) 
+SET (TEST_LIST  t-mo)
+				
+FOREACH (test ${TEST_LIST})
+	  SET ("T_${test}_SOURCES" "${test}.cpp")
+ENDFOREACH (test)
 
-ADD_DEPENDENCIES(hill_climbing tsp)
+
+IF(ENABLE_CMAKE_TESTING)
+	
+	# Add the tests
+	FOREACH (test ${TEST_LIST})
+		  ADD_EXECUTABLE(${test} ${T_${test}_SOURCES}) 
+		  ADD_TEST(${test} ${test}) 
+	ENDFOREACH (test)
+	
+	# Link the librairies
+	FOREACH (test ${TEST_LIST})
+	 TARGET_LINK_LIBRARIES(${test} ga es eoutils eo)
+	ENDFOREACH (test)
+	
+ENDIF(ENABLE_CMAKE_TESTING)
+
 ######################################################################################
-
-
-
-######################################################################################
-### 4) Optionnal: define your target(s)'s version: no effect for windows
-######################################################################################
-
-SET(HILLCLIMBING_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(hill_climbing PROPERTIES VERSION "${HILLCLIMBING_VERSION}")
-######################################################################################
-
-
-
-######################################################################################
-### 5) Link the librairies for your target(s)
-######################################################################################
-
-TARGET_LINK_LIBRARIES(hill_climbing tsp eo eoutils) 
-
-######################################################################################
-
 
 
 ######################################################################################
-### 6) Windows advanced config - especially for Microsoft Visual Studio 8
+### 5) Windows advanced config - especially for Microsoft Visual Studio 8
 ######################################################################################
 
   IF(CMAKE_CXX_COMPILER MATCHES cl)

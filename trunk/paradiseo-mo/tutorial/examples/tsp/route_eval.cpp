@@ -15,11 +15,11 @@
 void RouteEval :: operator () (Route & __route) 
 {
   
-  tspFitness len = 0 ;
+  float len = 0 ;
   
   for (unsigned int i = 0 ; i < Graph :: size () ; i ++)
     {
-      len = len + Graph :: distance (__route [i], __route [(i + 1) % Graph :: size ()]) ; 
+      len -= Graph :: distance (__route [i], __route [(i + 1) % Graph :: size ()]) ; 
     }
   
   __route.fitness (len) ;

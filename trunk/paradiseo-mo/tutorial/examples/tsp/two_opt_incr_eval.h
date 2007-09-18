@@ -20,7 +20,7 @@ class TwoOptIncrEval : public moMoveIncrEval <TwoOpt>
   
 public :
   
-  tspFitness operator () (const TwoOpt & __move, const Route & __route) ; 
+  float operator () (const TwoOpt & __move, const Route & __route) ; 
 
 } ;
 

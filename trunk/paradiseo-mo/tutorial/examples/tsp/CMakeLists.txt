@@ -19,8 +19,8 @@ ADD_CUSTOM_COMMAND(
 ### 1) Include the sources
 ######################################################################################
 
-INCLUDE_DIRECTORIES(${EO_SRC_DIR})
-INCLUDE_DIRECTORIES(${MO_SRC_DIR})
+INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
+INCLUDE_DIRECTORIES(${ParadisEO-MO_SOURCE_DIR}/src)
 
 ######################################################################################
 
@@ -47,16 +47,8 @@ SET (TSP_SOURCES 	graph.cpp
 					two_opt_incr_eval.cpp 
 					two_opt_tabu_list.cpp 
 					two_opt_rand.cpp)
-
-# --> UNIX 
-IF(UNIX)   
-  ADD_LIBRARY(tsp STATIC ${TSP_SOURCES})
-ENDIF(UNIX) 
-	
-# --> WIN
-IF(WIN32)  
-  ADD_LIBRARY(tsp STATIC ${TSP_SOURCES})
-ENDIF(WIN32)
+					
+ADD_LIBRARY(tsp STATIC ${TSP_SOURCES})
 
 ######################################################################################
 
@@ -66,7 +58,7 @@ ENDIF(WIN32)
 ### 3) Optionnal: define your target(s)'s version: no effect for windows
 ######################################################################################
 
-SET(TSP_VERSION "1.0.beta")
+SET(TSP_VERSION "${GLOBAL_VERSION}")
 SET_TARGET_PROPERTIES(tsp PROPERTIES VERSION "${TSP_VERSION}")
 ######################################################################################
 

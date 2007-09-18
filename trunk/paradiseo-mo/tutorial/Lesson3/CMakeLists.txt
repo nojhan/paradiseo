@@ -4,41 +4,26 @@
 ### 1) Include the sources
 ######################################################################################
 
-INCLUDE_DIRECTORIES(${EO_SRC_DIR})
-INCLUDE_DIRECTORIES(${EO_SRC_DIR}/utils)
-INCLUDE_DIRECTORIES(${MO_SRC_DIR})
+INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
+INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src/utils)
+INCLUDE_DIRECTORIES(${ParadisEO-MO_SOURCE_DIR}/src)
 INCLUDE_DIRECTORIES(${TSP_SRC_DIR})
 ######################################################################################
 
 
 
 ######################################################################################
-### 2) Specify where CMake can find the libraries (mandatory: before 3) )
+### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-# --> UNIX 
-IF(UNIX)  
-  LINK_DIRECTORIES(${EO_SRC_DIR} ${EO_SRC_DIR}/utils ${TSP_BINARY_DIR}/lib)
-ENDIF(UNIX)
+IF(NOT WIN32 OR CYGWIN)  
+  LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${TSP_BINARY_DIR}/lib)
+ENDIF(NOT WIN32 OR CYGWIN)
 
-# --> WIN
-IF(WIN32)  
-  # "CMAKE_BUILD_TYPE" supposed to be given on the command line, default=Debug
-  IF (NOT DEFINED CMAKE_BUILD_TYPE)
-    set (CMAKE_BUILD_TYPE Debug)
-  ENDIF (NOT DEFINED CMAKE_BUILD_TYPE)
- 
-  IF (CMAKE_BUILD_TYPE STREQUAL Debug)
-  	LINK_DIRECTORIES(${TSP_BINARY_DIR}\\debug)
-  	LINK_DIRECTORIES(${EO_LIB_DIR}\\debug)
-  ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
-  	
-  IF(CMAKE_BUILD_TYPE STREQUAL Release)
-  	LINK_DIRECTORIES(${TSP_BINARY_DIR}\\release)
-  	LINK_DIRECTORIES(${EO_LIB_DIR}\\release)  
-  ENDIF(CMAKE_BUILD_TYPE STREQUAL Release)
-
-ENDIF(WIN32)
+# especially for Visual Studio
+IF(WIN32 AND NOT CYGWIN)  
+  	LINK_DIRECTORIES(${EO_BIN_DIR}\\lib\\${CMAKE_BUILD_TYPE})
+ENDIF(WIN32 AND NOT CYGWIN) 
 
 ######################################################################################
 
@@ -48,7 +33,6 @@ ENDIF(WIN32)
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
-# no matter what is the OS, hopefully
 ADD_EXECUTABLE(simulated_annealing simulated_annealing.cpp) 
 
 ADD_DEPENDENCIES(simulated_annealing tsp)
@@ -60,7 +44,7 @@ ADD_DEPENDENCIES(simulated_annealing tsp)
 ### 4) Optionnal: define your target(s)'s version: no effect for windows
 ######################################################################################
 
-SET(SIMULATEDANNEALING_VERSION "1.0.beta")
+SET(SIMULATEDANNEALING_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(simulated_annealing PROPERTIES VERSION "${SIMULATEDANNEALING_VERSION}")
 ######################################################################################
 
@@ -70,33 +54,8 @@ SET_TARGET_PROPERTIES(simulated_annealing PROPERTIES VERSION "${SIMULATEDANNEALI
 ### 5) Link the librairies for your target(s)
 ######################################################################################
 
-# --> UNIX 
-IF(UNIX) 
-  TARGET_LINK_LIBRARIES(simulated_annealing tsp) 
-  TARGET_LINK_LIBRARIES(simulated_annealing eo)
-  TARGET_LINK_LIBRARIES(simulated_annealing eoutils)
-ENDIF(UNIX)
+TARGET_LINK_LIBRARIES(simulated_annealing tsp eo eoutils) 
 
-# --> WIN
-IF(WIN32)  
-  # "CMAKE_BUILD_TYPE" supposed to be given on the command line, default=Debug
-  IF (NOT DEFINED CMAKE_BUILD_TYPE)
-    set (CMAKE_BUILD_TYPE Debug)
-  ENDIF (NOT DEFINED CMAKE_BUILD_TYPE)
- 
-  IF (CMAKE_BUILD_TYPE STREQUAL Debug)
-  	TARGET_LINK_LIBRARIES(simulated_annealing tsp)
-    TARGET_LINK_LIBRARIES(simulated_annealing eod)
-    TARGET_LINK_LIBRARIES(simulated_annealing eoutilsd)    
-  ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
-     
-  IF(CMAKE_BUILD_TYPE STREQUAL Release)
-  	TARGET_LINK_LIBRARIES(simulated_annealing tsp)
-    TARGET_LINK_LIBRARIES(simulated_annealing eo)
-    TARGET_LINK_LIBRARIES(simulated_annealing eoutils)  
-  ENDIF(CMAKE_BUILD_TYPE STREQUAL Release)
-
-ENDIF(WIN32)
 ######################################################################################
 
 
@@ -119,6 +78,4 @@ ENDIF(WIN32)
    ENDIF(NOT WITH_SHARED_LIBS)
   ENDIF(CMAKE_CXX_COMPILER MATCHES cl)
 ######################################################################################
-
-
 

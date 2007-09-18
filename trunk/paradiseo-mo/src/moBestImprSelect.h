@@ -37,7 +37,7 @@ public:
 
   //!Function that indicates if the current move has not improved the fitness.
   /*!
-     If the given fitness enables an improvement,
+     If the given fitness enables an improvment,
      the move (moMove) and the fitness linked to this move are saved.
 
      \param __move a move.
@@ -46,13 +46,16 @@ public:
    */
   bool update (const M & __move, const Fitness & __fit)
   {
-    if ((first_time) || (__fit > best_fit))
+
+    if (first_time || __fit > best_fit)
       {
+
 	best_fit = __fit;
 	best_move = __move;
 
 	first_time = false;
       }
+
     return true;
   }
 
@@ -84,6 +87,7 @@ private:
 
   //! The best fitness.
   Fitness best_fit;
+
 };
 
 #endif
