@@ -1,50 +1,50 @@
-\section{mo\-TS$<$ M $>$ Class Template Reference}
+\section{moTS$<$ M $>$ Class Template Reference}
 \label{classmo_t_s}\index{moTS@{moTS}}
 Tabu Search (TS).  
 
 
-{\tt \#include $<$mo\-TS.h$>$}
+{\tt \#include $<$moTS.h$>$}
 
-Inheritance diagram for mo\-TS$<$ M $>$::\begin{figure}[H]
+Inheritance diagram for moTS$<$ M $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{classmo_t_s}
+\includegraphics[height=5cm]{classmo_t_s}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-\bf{mo\-TS} (\bf{mo\-Move\-Init}$<$ M $>$ \&\_\-\_\-move\_\-init, \bf{mo\-Next\-Move}$<$ M $>$ \&\_\-\_\-next\_\-move, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \&\_\-\_\-incr\_\-eval, \bf{mo\-Tabu\-List}$<$ M $>$ \&\_\-\_\-tabu\_\-list, \bf{mo\-Aspir\-Crit}$<$ M $>$ \&\_\-\_\-aspir\_\-crit, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \&\_\-\_\-cont, eo\-Eval\-Func$<$ \bf{EOT} $>$ \&\_\-\_\-full\_\-eval)
-\begin{CompactList}\small\item\em Constructor of a \doxyref{mo\-TS}{p.}{classmo_t_s} specifying all the boxes. \item\end{CompactList}\item 
-\bf{mo\-TS} (\bf{mo\-Move\-Expl}$<$ M $>$ \&\_\-\_\-move\_\-expl, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \&\_\-\_\-cont, eo\-Eval\-Func$<$ \bf{EOT} $>$ \&\_\-\_\-full\_\-eval)
+{\bf moTS} ({\bf moMoveInit}$<$ M $>$ \&\_\-\_\-move\_\-init, {\bf moNextMove}$<$ M $>$ \&\_\-\_\-next\_\-move, {\bf moMoveIncrEval}$<$ M $>$ \&\_\-\_\-incr\_\-eval, {\bf moTabuList}$<$ M $>$ \&\_\-\_\-tabu\_\-list, {\bf moAspirCrit}$<$ M $>$ \&\_\-\_\-aspir\_\-crit, {\bf moSolContinue}$<$ {\bf EOT} $>$ \&\_\-\_\-cont, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \&\_\-\_\-full\_\-eval)
+\begin{CompactList}\small\item\em Constructor of a \doxyref{moTS}{p.}{classmo_t_s} specifying all the boxes. \item\end{CompactList}\item 
+{\bf moTS} ({\bf moMoveExpl}$<$ M $>$ \&\_\-\_\-move\_\-expl, {\bf moSolContinue}$<$ {\bf EOT} $>$ \&\_\-\_\-cont, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \&\_\-\_\-full\_\-eval)
 \begin{CompactList}\small\item\em Constructor with less parameters. \item\end{CompactList}\item 
-bool \bf{operator()} (\bf{EOT} \&\_\-\_\-sol)
+bool {\bf operator()} ({\bf EOT} \&\_\-\_\-sol)
 \begin{CompactList}\small\item\em Function which launchs the Tabu Search. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Types}
 \begin{CompactItemize}
 \item 
-typedef M::EOType \bf{EOT}\label{classmo_t_s_90d19d468c12ab5bd796948ce1ce79b1}
+typedef M::EOType {\bf EOT}\label{classmo_t_s_90d19d468c12ab5bd796948ce1ce79b1}
 
 \begin{CompactList}\small\item\em Alias for the type. \item\end{CompactList}\item 
-typedef EOT::Fitness \bf{Fitness}\label{classmo_t_s_aa0eefbb17111422e495d1255f876fca}
+typedef EOT::Fitness {\bf Fitness}\label{classmo_t_s_aa0eefbb17111422e495d1255f876fca}
 
 \begin{CompactList}\small\item\em Alias for the fitness. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
 \begin{CompactItemize}
 \item 
-\bf{mo\-Move\-Expl}$<$ M $>$ \& \bf{move\_\-expl}\label{classmo_t_s_06914ddc90ca96e9158c8dbe182a7865}
+{\bf moMoveExpl}$<$ M $>$ \& {\bf move\_\-expl}\label{classmo_t_s_06914ddc90ca96e9158c8dbe182a7865}
 
 \begin{CompactList}\small\item\em Neighborhood explorer. \item\end{CompactList}\item 
-\bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \& \bf{cont}\label{classmo_t_s_969371cd2202f3d29cbb426f57ac7d3a}
+{\bf moSolContinue}$<$ {\bf EOT} $>$ \& {\bf cont}\label{classmo_t_s_969371cd2202f3d29cbb426f57ac7d3a}
 
 \begin{CompactList}\small\item\em Stop criterion. \item\end{CompactList}\item 
-eo\-Eval\-Func$<$ \bf{EOT} $>$ \& \bf{full\_\-eval}\label{classmo_t_s_fb67eddae5d0bfca4ed881995523231e}
+{\bf eoEvalFunc}$<$ {\bf EOT} $>$ \& {\bf full\_\-eval}\label{classmo_t_s_fb67eddae5d0bfca4ed881995523231e}
 
 \begin{CompactList}\small\item\em Full evaluation function. \item\end{CompactList}\end{CompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class M$>$ class mo\-TS$<$ M $>$}
+\subsubsection*{template$<$class M$>$ class moTS$<$ M $>$}
 
 Tabu Search (TS). 
 
@@ -52,17 +52,17 @@ Generic algorithm that describes a tabu search.
 
 
 
-Definition at line 29 of file mo\-TS.h.
+Definition at line 29 of file moTS.h.
 
 \subsection{Constructor \& Destructor Documentation}
-\index{moTS@{mo\-TS}!moTS@{moTS}}
-\index{moTS@{moTS}!moTS@{mo\-TS}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ \bf{mo\-TS}$<$ M $>$::\bf{mo\-TS} (\bf{mo\-Move\-Init}$<$ M $>$ \& {\em \_\-\_\-move\_\-init}, \bf{mo\-Next\-Move}$<$ M $>$ \& {\em \_\-\_\-next\_\-move}, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\em \_\-\_\-incr\_\-eval}, \bf{mo\-Tabu\-List}$<$ M $>$ \& {\em \_\-\_\-tabu\_\-list}, \bf{mo\-Aspir\-Crit}$<$ M $>$ \& {\em \_\-\_\-aspir\_\-crit}, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \& {\em \_\-\_\-cont}, eo\-Eval\-Func$<$ \bf{EOT} $>$ \& {\em \_\-\_\-full\_\-eval})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_t_s_2be23f4524733ee6f37b71310d76407e}
+\index{moTS@{moTS}!moTS@{moTS}}
+\index{moTS@{moTS}!moTS@{moTS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf moTS}$<$ M $>$::{\bf moTS} ({\bf moMoveInit}$<$ M $>$ \& {\em \_\-\_\-move\_\-init}, {\bf moNextMove}$<$ M $>$ \& {\em \_\-\_\-next\_\-move}, {\bf moMoveIncrEval}$<$ M $>$ \& {\em \_\-\_\-incr\_\-eval}, {\bf moTabuList}$<$ M $>$ \& {\em \_\-\_\-tabu\_\-list}, {\bf moAspirCrit}$<$ M $>$ \& {\em \_\-\_\-aspir\_\-crit}, {\bf moSolContinue}$<$ {\bf EOT} $>$ \& {\em \_\-\_\-cont}, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \& {\em \_\-\_\-full\_\-eval})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_t_s_2be23f4524733ee6f37b71310d76407e}
 
 
-Constructor of a \doxyref{mo\-TS}{p.}{classmo_t_s} specifying all the boxes. 
+Constructor of a \doxyref{moTS}{p.}{classmo_t_s} specifying all the boxes. 
 
-In this constructor, a \doxyref{mo\-TSMove\-Loop\-Expl}{p.}{classmo_t_s_move_loop_expl} is instanciated.
+In this constructor, a \doxyref{moTSMoveLoopExpl}{p.}{classmo_t_s_move_loop_expl} is instanciated.
 
 \begin{Desc}
 \item[Parameters:]
@@ -71,9 +71,9 @@ In this constructor, a \doxyref{mo\-TSMove\-Loop\-Expl}{p.}{classmo_t_s_move_loo
 \end{Desc}
 
 
-Definition at line 58 of file mo\-TS.h.\index{moTS@{mo\-TS}!moTS@{moTS}}
-\index{moTS@{moTS}!moTS@{mo\-TS}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ \bf{mo\-TS}$<$ M $>$::\bf{mo\-TS} (\bf{mo\-Move\-Expl}$<$ M $>$ \& {\em \_\-\_\-move\_\-expl}, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \& {\em \_\-\_\-cont}, eo\-Eval\-Func$<$ \bf{EOT} $>$ \& {\em \_\-\_\-full\_\-eval})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_t_s_508e675c4232cf2ca06dded931c90bab}
+Definition at line 58 of file moTS.h.\index{moTS@{moTS}!moTS@{moTS}}
+\index{moTS@{moTS}!moTS@{moTS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf moTS}$<$ M $>$::{\bf moTS} ({\bf moMoveExpl}$<$ M $>$ \& {\em \_\-\_\-move\_\-expl}, {\bf moSolContinue}$<$ {\bf EOT} $>$ \& {\em \_\-\_\-cont}, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \& {\em \_\-\_\-full\_\-eval})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_t_s_508e675c4232cf2ca06dded931c90bab}
 
 
 Constructor with less parameters. 
@@ -83,21 +83,21 @@ The explorer is given in the parameters.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em \_\-\_\-move\_\-expl}]the explorer (generally different that a \doxyref{mo\-TSMove\-Loop\-Expl}{p.}{classmo_t_s_move_loop_expl}) \item[{\em \_\-\_\-cont}]stop criterion \item[{\em \_\-\_\-full\_\-eval}]full evaluation function \end{description}
+\item[{\em \_\-\_\-move\_\-expl}]the explorer (generally different that a \doxyref{moTSMoveLoopExpl}{p.}{classmo_t_s_move_loop_expl}) \item[{\em \_\-\_\-cont}]stop criterion \item[{\em \_\-\_\-full\_\-eval}]full evaluation function \end{description}
 \end{Desc}
 
 
-Definition at line 71 of file mo\-TS.h.
+Definition at line 71 of file moTS.h.
 
 \subsection{Member Function Documentation}
-\index{moTS@{mo\-TS}!operator()@{operator()}}
-\index{operator()@{operator()}!moTS@{mo\-TS}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool \bf{mo\-TS}$<$ M $>$::operator() (\bf{EOT} \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_t_s_94d25a76fe1bc9ef0bbd0358ff55aceb}
+\index{moTS@{moTS}!operator()@{operator()}}
+\index{operator()@{operator()}!moTS@{moTS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf moTS}$<$ M $>$::operator() ({\bf EOT} \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_t_s_94d25a76fe1bc9ef0bbd0358ff55aceb}
 
 
 Function which launchs the Tabu Search. 
 
-Algorithm of the tabu search. As a \doxyref{mo\-SA}{p.}{classmo_s_a} or a \doxyref{mo\-HC}{p.}{classmo_h_c}, it can be used for HYBRIDATION in an evolutionary algorithm. For security a lock (pthread\_\-mutex\_\-t) is closed during the algorithm.
+Algorithm of the tabu search. As a \doxyref{moSA}{p.}{classmo_s_a} or a \doxyref{moHC}{p.}{classmo_h_c}, it can be used for HYBRIDATION in an evolutionary algorithm. For security a lock (pthread\_\-mutex\_\-t) is closed during the algorithm.
 
 \begin{Desc}
 \item[Parameters:]
@@ -108,10 +108,12 @@ Algorithm of the tabu search. As a \doxyref{mo\-SA}{p.}{classmo_s_a} or a \doxyr
 \item[Returns:]TRUE. \end{Desc}
 
 
-Definition at line 85 of file mo\-TS.h.
+Implements {\bf eoUF$<$ M::EOType \&, bool $>$}.
 
-References mo\-TS$<$ M $>$::cont, mo\-TS$<$ M $>$::full\_\-eval, and mo\-TS$<$ M $>$::move\_\-expl.
+Definition at line 85 of file moTS.h.
+
+References moTS$<$ M $>$::cont, moTS$<$ M $>$::full\_\-eval, and moTS$<$ M $>$::move\_\-expl.
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 
-mo\-TS.h\end{CompactItemize}
+moTS.h\end{CompactItemize}

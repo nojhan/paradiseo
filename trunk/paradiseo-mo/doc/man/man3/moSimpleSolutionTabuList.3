@@ -1,4 +1,4 @@
-.TH "moSimpleSolutionTabuList" 3 "14 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moSimpleSolutionTabuList" 3 "6 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -93,7 +93,7 @@ Definition at line 34 of file moSimpleSolutionTabuList.h.
 References moSimpleSolutionTabuList< M >::currentSize.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> bool \fBmoSimpleSolutionTabuList\fP< M >::operator() (const M & __move, const \fBEOT\fP & __sol)\fC [inline]\fP"
+.SS "template<class M> bool \fBmoSimpleSolutionTabuList\fP< M >::operator() (const M & __move, const \fBEOT\fP & __sol)\fC [inline, virtual]\fP"
 .PP
 Function that indicates if, in a given state, the _move is tabu or not. 
 .PP
@@ -110,6 +110,8 @@ true or false.
 .RE
 .PP
 
+.PP
+Implements \fBeoBF< const M &, const M::EOType &, bool >\fP.
 .PP
 Definition at line 45 of file moSimpleSolutionTabuList.h.
 .PP

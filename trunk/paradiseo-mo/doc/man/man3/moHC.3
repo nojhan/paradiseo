@@ -1,4 +1,4 @@
-.TH "moHC" 3 "14 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moHC" 3 "6 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -16,11 +16,11 @@ Inherits \fBmoAlgo< M::EOType >\fP.
 
 .in +1c
 .ti -1c
-.RI "\fBmoHC\fP (\fBmoMoveInit\fP< M > &__move_init, \fBmoNextMove\fP< M > &__next_move, \fBmoMoveIncrEval\fP< M > &__incr_eval, \fBmoMoveSelect\fP< M > &__move_select, eoEvalFunc< \fBEOT\fP > &__full_eval)"
+.RI "\fBmoHC\fP (\fBmoMoveInit\fP< M > &__move_init, \fBmoNextMove\fP< M > &__next_move, \fBmoMoveIncrEval\fP< M > &__incr_eval, \fBmoMoveSelect\fP< M > &__move_select, \fBeoEvalFunc\fP< \fBEOT\fP > &__full_eval)"
 .br
 .RI "\fIFull constructor. \fP"
 .ti -1c
-.RI "\fBmoHC\fP (\fBmoMoveExpl\fP< M > &__move_expl, eoEvalFunc< \fBEOT\fP > &__full_eval)"
+.RI "\fBmoHC\fP (\fBmoMoveExpl\fP< M > &__move_expl, \fBeoEvalFunc\fP< \fBEOT\fP > &__full_eval)"
 .br
 .RI "\fILight constructor. \fP"
 .ti -1c
@@ -48,7 +48,7 @@ Inherits \fBmoAlgo< M::EOType >\fP.
 .br
 .RI "\fIComplete exploration of the neighborhood. \fP"
 .ti -1c
-.RI "eoEvalFunc< \fBEOT\fP > & \fBfull_eval\fP"
+.RI "\fBeoEvalFunc\fP< \fBEOT\fP > & \fBfull_eval\fP"
 .br
 .RI "\fIA full evaluation function. \fP"
 .in -1c
@@ -63,7 +63,7 @@ Class which describes the algorithm for a hill climbing.
 Definition at line 26 of file moHC.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<class M> \fBmoHC\fP< M >::\fBmoHC\fP (\fBmoMoveInit\fP< M > & __move_init, \fBmoNextMove\fP< M > & __next_move, \fBmoMoveIncrEval\fP< M > & __incr_eval, \fBmoMoveSelect\fP< M > & __move_select, eoEvalFunc< \fBEOT\fP > & __full_eval)\fC [inline]\fP"
+.SS "template<class M> \fBmoHC\fP< M >::\fBmoHC\fP (\fBmoMoveInit\fP< M > & __move_init, \fBmoNextMove\fP< M > & __next_move, \fBmoMoveIncrEval\fP< M > & __incr_eval, \fBmoMoveSelect\fP< M > & __move_select, \fBeoEvalFunc\fP< \fBEOT\fP > & __full_eval)\fC [inline]\fP"
 .PP
 Full constructor. 
 .PP
@@ -85,7 +85,7 @@ All the boxes are given in order the HC to use a \fBmoHCMoveLoopExpl\fP.
 
 .PP
 Definition at line 53 of file moHC.h.
-.SS "template<class M> \fBmoHC\fP< M >::\fBmoHC\fP (\fBmoMoveExpl\fP< M > & __move_expl, eoEvalFunc< \fBEOT\fP > & __full_eval)\fC [inline]\fP"
+.SS "template<class M> \fBmoHC\fP< M >::\fBmoHC\fP (\fBmoMoveExpl\fP< M > & __move_expl, \fBeoEvalFunc\fP< \fBEOT\fP > & __full_eval)\fC [inline]\fP"
 .PP
 Light constructor. 
 .PP
@@ -103,7 +103,7 @@ This constructor allow to use another \fBmoMoveExpl\fP (generally not a \fBmoHCM
 Definition at line 67 of file moHC.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> bool \fBmoHC\fP< M >::operator() (\fBEOT\fP & __sol)\fC [inline]\fP"
+.SS "template<class M> bool \fBmoHC\fP< M >::operator() (\fBEOT\fP & __sol)\fC [inline, virtual]\fP"
 .PP
 Function which launches the HC. 
 .PP
@@ -120,6 +120,8 @@ TRUE.
 .RE
 .PP
 
+.PP
+Implements \fBeoUF< M::EOType &, bool >\fP.
 .PP
 Definition at line 82 of file moHC.h.
 .PP

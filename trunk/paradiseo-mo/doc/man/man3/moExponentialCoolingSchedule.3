@@ -1,4 +1,4 @@
-.TH "moExponentialCoolingSchedule" 3 "14 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moExponentialCoolingSchedule" 3 "6 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -18,7 +18,7 @@ Inherits \fBmoCoolingSchedule\fP.
 .ti -1c
 .RI "\fBmoExponentialCoolingSchedule\fP (double __threshold, double __ratio)"
 .br
-.RI "\fIBasic constructor. \fP"
+.RI "\fISimple constructor. \fP"
 .ti -1c
 .RI "bool \fBoperator()\fP (double &__temp)"
 .br
@@ -47,7 +47,7 @@ Definition at line 22 of file moExponentialCoolingSchedule.h.
 .PP 
 .SS "moExponentialCoolingSchedule::moExponentialCoolingSchedule (double __threshold, double __ratio)\fC [inline]\fP"
 .PP
-Basic constructor. 
+Simple constructor. 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -61,7 +61,7 @@ Basic constructor.
 Definition at line 31 of file moExponentialCoolingSchedule.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "bool moExponentialCoolingSchedule::operator() (double & __temp)\fC [inline]\fP"
+.SS "bool moExponentialCoolingSchedule::operator() (double & __temp)\fC [inline, virtual]\fP"
 .PP
 Function which proceeds to the cooling. 
 .PP
@@ -78,6 +78,8 @@ if the new temperature (current temperature * ratio) is greater than the thresho
 .RE
 .PP
 
+.PP
+Implements \fBeoUF< double &, bool >\fP.
 .PP
 Definition at line 41 of file moExponentialCoolingSchedule.h.
 .PP

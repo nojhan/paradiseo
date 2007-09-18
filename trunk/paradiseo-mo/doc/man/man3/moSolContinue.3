@@ -1,8 +1,8 @@
-.TH "moSolContinue" 3 "14 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moSolContinue" 3 "6 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-moSolContinue \- Class that describes a stopping criterion for a solution-based heuristic.  
+moSolContinue \- Class that describes a stop criterion for a solution-based heuristic.  
 
 .PP
 .SH SYNOPSIS
@@ -10,7 +10,9 @@ moSolContinue \- Class that describes a stopping criterion for a solution-based 
 .PP
 \fC#include <moSolContinue.h>\fP
 .PP
-Inherited by \fBmoFitSolContinue< EOT >\fP, \fBmoGenSolContinue< EOT >\fP, \fBmoNoFitImprSolContinue< EOT >\fP, and \fBmoSteadyFitSolContinue< EOT >\fP.
+Inherits \fBeoUF< const EOT &, bool >\fP.
+.PP
+Inherited by \fBmoGenSolContinue< EOT >\fP.
 .PP
 .SS "Public Member Functions"
 
@@ -18,26 +20,26 @@ Inherited by \fBmoFitSolContinue< EOT >\fP, \fBmoGenSolContinue< EOT >\fP, \fBmo
 .ti -1c
 .RI "virtual void \fBinit\fP ()=0"
 .br
-.RI "\fIProcedure which initialises all that the stopping criterion needs. \fP"
+.RI "\fIProcedure which initialises all that the stop criterion needs. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
 
 .SS "template<class EOT> class moSolContinue< EOT >"
-Class that describes a stopping criterion for a solution-based heuristic. 
+Class that describes a stop criterion for a solution-based heuristic. 
 
-It allows to add an initialisation procedure to an object that is a unary function (eoUF). 
+It allows to add an initialisation procedure to an object that is a unary function (\fBeoUF\fP). 
 .PP
 Definition at line 22 of file moSolContinue.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class EOT> virtual void \fBmoSolContinue\fP< EOT >::init ()\fC [pure virtual]\fP"
 .PP
-Procedure which initialises all that the stopping criterion needs. 
+Procedure which initialises all that the stop criterion needs. 
 .PP
 Generally, it allocates some data structures or initialises some counters. 
 .PP
-Implemented in \fBmoFitSolContinue< EOT >\fP, \fBmoGenSolContinue< EOT >\fP, \fBmoNoFitImprSolContinue< EOT >\fP, and \fBmoSteadyFitSolContinue< EOT >\fP.
+Implemented in \fBmoGenSolContinue< EOT >\fP.
 
 .SH "Author"
 .PP 
