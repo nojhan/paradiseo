@@ -33,7 +33,7 @@ ADD_LIBRARY(ga STATIC ${GA_SOURCES})
 ### 3) Optionnal
 ######################################################################################
 
-SET(GA_VERSION "1.0.1")
+SET(GA_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(ga PROPERTIES VERSION "${GA_VERSION}")
 
 ######################################################################################

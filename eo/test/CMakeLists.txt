@@ -10,14 +10,15 @@
 ######################################################################################
 
 INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src)
+INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/contrib)
+INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/contrib/MGE)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################
 
 
-
 ######################################################################################
-### 2) Specify where CMake can find the libraries (mandatory: before 3) )
+### 2) Specify where CMake can find the libraries
 ######################################################################################
 
 IF(NOT WIN32 OR CYGWIN)  
@@ -34,42 +35,70 @@ ENDIF(WIN32 AND NOT CYGWIN)
 
 
 ######################################################################################
-### 3) Define your target(s): just an executable here
+### 3) Define your targets and link the librairies
 ######################################################################################
 
-SET (T_EOSSGA_SOURCES t-eoSSGA.cpp)
+SET (TEST_LIST  t-eoParetoFitness 
+				t-eoPareto 
+				t-eofitness 
+				t-eoRandom 
+				t-eobin 
+				t-eoVirus 
+				t-MGE 
+				t-MGE1bit 
+				t-MGE-control 
+				t-eoStateAndParser 
+				t-eoCheckpointing 
+				t-eoSSGA 
+				t-eoExternalEO 
+				t-eoSymreg 
+				t-eo 
+				t-eoReplacement 
+				t-eoSelect 
+				t-eoGenOp 
+				t-eoGA 
+				t-eoReal 
+				t-eoVector 
+				t-eoESAll 
+				t-eoPBIL 
+				t-eoFitnessAssembled 
+				t-eoFitnessAssembledEA 
+				t-eoRoulette 
+				t-eoSharing 
+				t-eoCMAES 
+				t-eoSecondsElapsedContinue
+				t-eoRNG		
+				t-eoEasyPSO 
+				t-eoNSGA 
+				# t-eoFrontSorter 
+				# t-eoEpsMOEA
+				)
+				
+FOREACH (test ${TEST_LIST})
+	  SET ("T_${test}_SOURCES" "${test}.cpp")
+ENDFOREACH (test)
 
-# no matter what is the OS, hopefully
-ADD_EXECUTABLE(t-eoSSGA ${T_EOSSGA_SOURCES}) 
-                
-ADD_TEST(t-eoSSGA t-eoSSGA)             
-ADD_DEPENDENCIES(t-eoSSGA eo eoutils)
+
+IF(ENABLE_CMAKE_TESTING)
+	
+	# Add the tests
+	FOREACH (test ${TEST_LIST})
+		  ADD_EXECUTABLE(${test} ${T_${test}_SOURCES}) 
+		  ADD_TEST(${test} ${test}) 
+	ENDFOREACH (test)
+	
+	# Link the librairies
+	FOREACH (test ${TEST_LIST})
+	 TARGET_LINK_LIBRARIES(${test} ga es cma eoutils eo eomoo)
+	ENDFOREACH (test)
+	
+ENDIF(ENABLE_CMAKE_TESTING)
+
 ######################################################################################
 
 
-
 ######################################################################################
-### 4) Optionnal: define your target(s)'s version: no effect for windows
-######################################################################################
-
-SET(T_EOSSGA_VERSION "1.0")
-SET_TARGET_PROPERTIES(t-eoSSGA PROPERTIES VERSION "${T_EOSSGA_VERSION}")
-######################################################################################
-
-
-
-######################################################################################
-### 5) Link the librairies for your target(s)
-######################################################################################
-
-TARGET_LINK_LIBRARIES(t-eoSSGA eo eoutils es ga cma)
-
-######################################################################################
-
-
-
-######################################################################################
-### 6) Windows advanced config - especially for Microsoft Visual Studio 8
+### 5) Windows advanced config - especially for Microsoft Visual Studio 8
 ######################################################################################
 
   IF(CMAKE_CXX_COMPILER MATCHES cl)

@@ -28,7 +28,7 @@ ADD_LIBRARY(eoobsolete STATIC ${EOOBSOLETE_SOURCES})
 ### 3) Optionnal
 ######################################################################################
 
-SET(EOOBSOLETE_VERSION "1.0.1")
+SET(EOOBSOLETE_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(eoobsolete PROPERTIES VERSION "${EOOBSOLETE_VERSION}")
 
 ######################################################################################

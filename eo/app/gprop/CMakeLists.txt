@@ -47,7 +47,7 @@ ADD_DEPENDENCIES(gprop eoutils)
 ### 4) Optionnal: define your target(s)'s version: no effect for windows
 ######################################################################################
 
-SET(GPROP_VERSION "1.0")
+SET(GPROP_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(gprop PROPERTIES VERSION "${GPROP_VERSION}")
 ######################################################################################
 

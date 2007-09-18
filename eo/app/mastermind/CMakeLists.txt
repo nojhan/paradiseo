@@ -46,7 +46,7 @@ ADD_DEPENDENCIES(mastermind eo eoutils)
 ### 4) Optionnal: define your target(s)'s version: no effect for windows
 ######################################################################################
 
-SET(MASTERMIND_VERSION "1.0")
+SET(MASTERMIND_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(mastermind PROPERTIES VERSION "${MASTERMIND_VERSION}")
 ######################################################################################
 

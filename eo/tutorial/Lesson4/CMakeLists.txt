@@ -71,13 +71,13 @@ ADD_EXECUTABLE(ESEA ESEA.cpp)
 ### 4) Optionnal
 ######################################################################################
 
-SET(BITEA_VERSION "1.0.1")
+SET(BITEA_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(BitEA PROPERTIES VERSION "${BITEA_VERSION}")
 
-SET(REALEA_VERSION "1.0.1")
+SET(REALEA_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(RealEA PROPERTIES VERSION "${REALEA_VERSION}")
 
-SET(ESEA_VERSION "1.0.1")
+SET(ESEA_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(ESEA PROPERTIES VERSION "${ESEA_VERSION}")
 ######################################################################################
 

@@ -46,7 +46,7 @@ ADD_DEPENDENCIES(gpsymreg eo eoutils)
 ### 4) Optionnal: define your target(s)'s version: no effect for windows
 ######################################################################################
 
-SET(GPSYMREG_VERSION "1.0")
+SET(GPSYMREG_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(gpsymreg PROPERTIES VERSION "${GPSYMREG_VERSION}")
 ######################################################################################
 

@@ -49,10 +49,10 @@ ADD_LIBRARY(cma STATIC ${CMA_SOURCES})
 ### 3) Optionnal
 ######################################################################################
 
-SET(ES_VERSION "1.0.1")
+SET(ES_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(es PROPERTIES VERSION "${ES_VERSION}")
 
-SET(CMA_VERSION "1.0.1")
+SET(CMA_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(cma PROPERTIES VERSION "${CMA_VERSION}")
 ######################################################################################
 

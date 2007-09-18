@@ -34,7 +34,7 @@ ADD_LIBRARY(eo STATIC ${EO_SOURCES})
 ### 3) Optionnal: define your target(s)'s version: no effect for windows
 ######################################################################################
 
-SET(EO_VERSION "1.0.1")
+SET(EO_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(eo PROPERTIES VERSION "${EO_VERSION}")
 ######################################################################################
 
@@ -65,7 +65,7 @@ SET_TARGET_PROPERTIES(eo PROPERTIES VERSION "${EO_VERSION}")
 ### 5) Where must cmake go now ?
 ######################################################################################
 
-SUBDIRS(do es ga gp other utils) # forget pyeo for the moment
+SUBDIRS(do es ga gp moo other utils) # forget pyeo for the moment
 
 ######################################################################################
 

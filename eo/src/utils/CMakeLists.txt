@@ -41,7 +41,7 @@ ADD_LIBRARY(eoutils STATIC ${EOUTILS_SOURCES})
 ### 3) Optionnal
 ######################################################################################
 
-SET(EOUTILS_VERSION "1.0.1")
+SET(EOUTILS_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(eoutils PROPERTIES VERSION "${EOUTILS_VERSION}")
 
 ######################################################################################

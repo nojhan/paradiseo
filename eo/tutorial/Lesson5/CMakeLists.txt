@@ -45,10 +45,10 @@ ADD_DEPENDENCIES(OneMaxLibEA es ga eo eoutils)
 ### 4) Optionnal
 ######################################################################################
 
-SET(ONEMAXEA_VERSION "1.0.1")
+SET(ONEMAXEA_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(OneMaxEA PROPERTIES VERSION "${ONEMAXEA_VERSION}")
 
-SET(ONEMAXLIBEA_VERSION "1.0.1")
+SET(ONEMAXLIBEA_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(OneMaxLibEA PROPERTIES VERSION "${ONEMAXLIBEA_VERSION}")
 ######################################################################################
 

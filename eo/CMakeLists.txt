@@ -16,12 +16,13 @@ INCLUDE(eo-conf.cmake OPTIONAL)
 # set the project name and other variables
 PROJECT(EO)
 
-SET(PACKAGE_BUGREPORT "eodev-help@sourceforge.net")
-SET(PACKAGE_NAME "Evolving Objects")
-SET(PACKAGE_STRING "Evolving Objects 1.02-cvs1")
-SET(PACKAGE_TARNAME "eo")
-SET(PACKAGE_VERSION "1.02-cvs1")
-SET(VERSION "1.02")
+SET(PACKAGE_BUGREPORT "eodev-help@sourceforge.net" CACHE STRING "Package bug report" FORCE)
+SET(PACKAGE_NAME "Evolving Objects" CACHE STRING "Package name" FORCE)
+SET(PACKAGE_STRING "Evolving Objects 1.02-cvs1"CACHE STRING "Package string full name" FORCE)
+SET(PACKAGE_TARNAME "eo" CACHE STRING "Package tar name" FORCE)
+SET(PACKAGE_VERSION "1.02-cvs1" CACHE STRING "Package version" FORCE)
+SET(VERSION "1.02" CACHE STRING "Global version" FORCE)
+SET(GLOBAL_VERSION "${VERSION}")
 
 # check cmake version compatibility
 CMAKE_MINIMUM_REQUIRED(VERSION 2.4 FATAL_ERROR)
@@ -92,7 +93,7 @@ SUBDIRS(app contrib doc src test tutorial)
 ### 4) Test config
 ######################################################################################
 
-#SET(ENABLE_CMAKE_TESTING TRUE CACHE BOOL "Should we test using Dart")
+#SET(ENABLE_CMAKE_TESTING TRUE CACHE BOOL "Enable testing ?")
 
 IF (ENABLE_CMAKE_TESTING)
 	ENABLE_TESTING()
