@@ -34,37 +34,22 @@ ENDIF(WIN32 AND NOT CYGWIN)
 
 SET (GPROP_SOURCES gprop.cpp)
 
-# no matter what is the OS, hopefully
-ADD_EXECUTABLE(gprop ${GPROP_SOURCES}) 
-                             
-ADD_DEPENDENCIES(gprop eo)
-ADD_DEPENDENCIES(gprop eoutils)
-######################################################################################
-
-
-
-######################################################################################
-### 4) Optionnal: define your target(s)'s version: no effect for windows
-######################################################################################
-
-SET(GPROP_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(gprop PROPERTIES VERSION "${GPROP_VERSION}")
-######################################################################################
-
-
-
-######################################################################################
-### 5) Link the librairies for your target(s)
-######################################################################################
-
-TARGET_LINK_LIBRARIES(gprop eo eoutils) 
+# especially for Visual Studio
+IF(NOT WIN32 OR CYGWIN)  
+  	ADD_EXECUTABLE(gprop ${GPROP_SOURCES})                             
+    ADD_DEPENDENCIES(gprop eo eoutils)
+    
+    TARGET_LINK_LIBRARIES(gprop eo eoutils) 
+    
+    SET(GPROP_VERSION ${GLOBAL_VERSION})
+  SET_TARGET_PROPERTIES(gprop PROPERTIES VERSION "${GPROP_VERSION}")
+ENDIF(NOT WIN32 OR CYGWIN)
 
 ######################################################################################
 
 
-
 ######################################################################################
-### 6) Windows advanced config - especially for Microsoft Visual Studio 8
+### 4) Windows advanced config - especially for Microsoft Visual Studio 8
 ######################################################################################
 
   IF(CMAKE_CXX_COMPILER MATCHES cl)
