@@ -84,7 +84,7 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ### 3) Where must cmake go now ?
 ######################################################################################
 
-SUBDIRS(app contrib doc src test tutorial)
+SUBDIRS(app doc src test tutorial)
 
 ######################################################################################
 
