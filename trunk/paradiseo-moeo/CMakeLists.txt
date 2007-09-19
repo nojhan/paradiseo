@@ -97,7 +97,7 @@ ENDFOREACH (path ${REQUIRED_PATHS})
 #####################################################################################
 
 # the user should choose the build type on windows environments,excepted under cygwin (default=none)
-SET(CMAKE_DEFAULT_BUILD_TYPE None CACHE STRING "Variable that stores the default CMake build type" FORCE)
+SET(CMAKE_DEFAULT_BUILD_TYPE Debug CACHE STRING "Variable that stores the default CMake build type" FORCE)
 
 IF(WIN32 AND NOT CYGWIN)
   IF(NOT CMAKE_BUILD_TYPE)
