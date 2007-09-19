@@ -1,4 +1,8 @@
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <eo>
 
 //#include <utils/eoMOFitnessStat.h>
@@ -225,6 +229,7 @@ void the_main(int argc, char* argv[])
   cp.add(fitness0);
   cp.add(fitness1);
 
+#ifdef HAVE_GNUPLOT
   eoGnuplot1DSnapshot snapshot("pareto");
   //snapshot.with(eoGnuplot::Points(3));
 
@@ -232,6 +237,7 @@ void the_main(int argc, char* argv[])
 
   snapshot.add(fitness0);
   snapshot.add(fitness1);
+#endif
 
   // the algo
   eoEasyEA<eoDouble> ea(cp, eval, breeder, replace);

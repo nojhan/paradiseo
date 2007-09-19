@@ -1,4 +1,5 @@
 
+#include <limits>
 #include <moo/eoNSGA_IIa_Eval.h>
 
 namespace nsga2a {

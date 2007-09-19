@@ -24,7 +24,7 @@ double real_value (const Particle & _particle)
 }
 
 
-main()
+int main()
 {
     const unsigned int VEC_SIZE = 2;
     const unsigned int POP_SIZE = 20;

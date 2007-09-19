@@ -1,3 +1,5 @@
+
+#include <limits>
 #include <eoNSGA_II_Eval.h>
 
 namespace nsga2 {

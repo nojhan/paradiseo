@@ -30,6 +30,10 @@
 #ifndef _make_checkpoint_assembled_h
 #define _make_checkpoint_assembled_h
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <vector>
 #include <string>
 
@@ -143,9 +147,10 @@ eoCheckPoint<EOT>& do_make_checkpoint_assembled(eoParser& _parser, eoState& _sta
     eoScalarFitnessStat<EOT> *fitStat = new eoScalarFitnessStat<EOT>;
     _state.storeFunctor(fitStat);
     checkpoint->add(*fitStat);
-    // a gnuplot-based monitor for snapshots: needs a dir name
-    eoGnuplot1DSnapshot *fitSnapshot = new eoGnuplot1DSnapshot(dirName);
-    _state.storeFunctor(fitSnapshot);
+#ifdef HAVE_GNUPLOT	
+	// a gnuplot-based monitor for snapshots: needs a dir name
+     eoGnuplot1DSnapshot *fitSnapshot = new eoGnuplot1DSnapshot(dirName);
+     _state.storeFunctor(fitSnapshot);
     // add any stat that is a vector<double> to it
     fitSnapshot->add(*fitStat);
     // and of course add it to the checkpoint
@@ -161,7 +166,7 @@ eoCheckPoint<EOT>& do_make_checkpoint_assembled(eoParser& _parser, eoState& _sta
       gnumonitors[k]->add(*bestvals[k]);
       gnumonitors[k]->add(*avgvals[k]);
     }
-
+#endif
   }
 
   // WRITE STUFF TO FILE

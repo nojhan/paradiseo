@@ -1,4 +1,9 @@
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include <time.h>
 #include <eoSecondsElapsedContinue.h>
 #include <eoPop.h>
 #include <EO.h>
@@ -12,7 +17,7 @@ int main() {
     int s = 1;
     eoSecondsElapsedContinue<Dummy> cnt(1);
 
-    time_t start_time = time(0);
+	time_t start_time = time(0);
 
     while (cnt(pop)) {}
 

@@ -24,6 +24,10 @@
 
 /** test program for PBIL algorithm */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <iostream>
 #include <eo>
 #include <ga/make_ga.h>
@@ -33,6 +37,7 @@
 #include <ga/eoPBILOrg.h>
 #include <ga/eoPBILAdditive.h>
 #include <eoSimpleEDA.h>
+
 
 using namespace std;
 
@@ -97,6 +102,7 @@ int main(int argc, char* argv[])
                                                                  "Output - Graphical");
     if (plotDistribParam.value())
       {
+#ifdef HAVE_GNUPLOT
 	unsigned frequency=1;		// frequency of plots updates
 	eoGnuplot1DSnapshot *distribSnapshot = new eoGnuplot1DSnapshot(ptDirNameParam->value(),
                                                                        frequency, "distrib");
@@ -105,6 +111,7 @@ int main(int argc, char* argv[])
 	distribSnapshot->add(distrib);
 	// and of course add it to the checkpoint
 	checkpoint.add(*distribSnapshot);
+#endif
       }
 
   // the algorithm: EDA
