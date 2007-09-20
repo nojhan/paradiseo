@@ -87,7 +87,7 @@ public:
     cont(__continue), acceptance_criterion(__acceptance_criterion), perturbation(__perturbation), full_eval(__full_eval)
   {}
 
-  //! Constructor for using a moTS for the moAlgo
+  //! Constructor for using a moSA for the moAlgo
   /*!
     \param __move_rand The random move generator (for the moSA).
     \param __incr_eval The partial evaluation function (for the moSA).
