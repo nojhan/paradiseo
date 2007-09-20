@@ -1,0 +1,11 @@
+## miscallenous parameters
+
+--debug=false
+
+## deployment schema
+
+--schema=config/schemaC.xml
+
+## parameters
+
+--inst=../examples/tsp/benchs/eil101.tsp
