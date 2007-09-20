@@ -1,4 +1,4 @@
-.TH "moFirstImprSelect" 3 "6 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moFirstImprSelect" 3 "20 Sep 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -101,7 +101,7 @@ TRUE if the move does not improve the fitness.
 Definition at line 52 of file moFirstImprSelect.h.
 .PP
 References moFirstImprSelect< M >::best_fit, moFirstImprSelect< M >::best_move, moFirstImprSelect< M >::init_fit, and moFirstImprSelect< M >::valid.
-.SS "template<class M> void \fBmoFirstImprSelect\fP< M >::operator() (M & __move, \fBFitness\fP & __fit)  throw (\fBEmptySelection\fP)\fC [inline, virtual]\fP"
+.SS "template<class M> void \fBmoFirstImprSelect\fP< M >::operator() (M & __move, \fBFitness\fP & __fit)  throw (\fBEmptySelection\fP)\fC [inline]\fP"
 .PP
 Procedure which saved the best move and fitness. 
 .PP
@@ -119,12 +119,10 @@ Procedure which saved the best move and fitness.
 .PP
 
 .PP
-Implements \fBeoBF< M &, M::EOType::Fitness &, void >\fP.
-.PP
 Definition at line 76 of file moFirstImprSelect.h.
 .PP
 References moFirstImprSelect< M >::best_fit, moFirstImprSelect< M >::best_move, and moFirstImprSelect< M >::valid.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PARADISEO-MO from the source code.
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.

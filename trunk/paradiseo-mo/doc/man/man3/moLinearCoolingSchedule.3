@@ -1,4 +1,4 @@
-.TH "moLinearCoolingSchedule" 3 "6 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moLinearCoolingSchedule" 3 "20 Sep 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -61,7 +61,7 @@ Simple constructor.
 Definition at line 31 of file moLinearCoolingSchedule.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "bool moLinearCoolingSchedule::operator() (double & __temp)\fC [inline, virtual]\fP"
+.SS "bool moLinearCoolingSchedule::operator() (double & __temp)\fC [inline]\fP"
 .PP
 Function which proceeds to the cooling. 
 .PP
@@ -79,12 +79,10 @@ if the new temperature (current temperature - quantity) is greater than the thre
 .PP
 
 .PP
-Implements \fBeoUF< double &, bool >\fP.
-.PP
 Definition at line 41 of file moLinearCoolingSchedule.h.
 .PP
 References quantity, and threshold.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PARADISEO-MO from the source code.
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.

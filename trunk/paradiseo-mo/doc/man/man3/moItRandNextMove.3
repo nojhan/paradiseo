@@ -1,4 +1,4 @@
-.TH "moItRandNextMove" 3 "6 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moItRandNextMove" 3 "20 Sep 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -63,7 +63,7 @@ Definition at line 22 of file moItRandNextMove.h.
 .PP
 The constructor. 
 .PP
-\fBParameters\fP only for initialising the attributes.
+Parameters only for initialising the attributes.
 .PP
 \fBParameters:\fP
 .RS 4
@@ -77,7 +77,7 @@ The constructor.
 Definition at line 37 of file moItRandNextMove.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> bool \fBmoItRandNextMove\fP< M >::operator() (M & __move, const \fBEOT\fP & __sol)\fC [inline, virtual]\fP"
+.SS "template<class M> bool \fBmoItRandNextMove\fP< M >::operator() (M & __move, const \fBEOT\fP & __sol)\fC [inline]\fP"
 .PP
 Generation of a new move. 
 .PP
@@ -97,12 +97,10 @@ FALSE if the maximum number of iteration is reached, else TRUE.
 .PP
 
 .PP
-Implements \fBeoBF< M &, const M::EOType &, bool >\fP.
-.PP
 Definition at line 52 of file moItRandNextMove.h.
 .PP
 References moItRandNextMove< M >::max_iter, moItRandNextMove< M >::num_iter, and moItRandNextMove< M >::rand_move.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PARADISEO-MO from the source code.
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.

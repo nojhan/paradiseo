@@ -1,0 +1,1342 @@
+<?xml version='1.0' encoding='ISO-8859-1' standalone='yes' ?>
+<tagfile>
+  <compound kind="page">
+    <name>main</name>
+    <title>Welcome to PARADISEO-Moving Objects</title>
+    <filename>main</filename>
+    <docanchor file="main">intro</docanchor>
+    <docanchor file="main">tutorial</docanchor>
+    <docanchor file="main">install</docanchor>
+    <docanchor file="main">design</docanchor>
+  </compound>
+  <compound kind="class">
+    <name>EmptySelection</name>
+    <filename>class_empty_selection.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>moAlgo</name>
+    <filename>classmo_algo.html</filename>
+    <templarg>EOT</templarg>
+  </compound>
+  <compound kind="class">
+    <name>moAspirCrit</name>
+    <filename>classmo_aspir_crit.html</filename>
+    <templarg>M</templarg>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>init</name>
+      <anchorfile>classmo_aspir_crit.html</anchorfile>
+      <anchor>a8ce84510a5ec7c9078381e542c6d140</anchor>
+      <arglist>()=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moBestImprSelect</name>
+    <filename>classmo_best_impr_select.html</filename>
+    <templarg>M</templarg>
+    <base>moMoveSelect</base>
+    <member kind="typedef">
+      <type>M::EOType::Fitness</type>
+      <name>Fitness</name>
+      <anchorfile>classmo_best_impr_select.html</anchorfile>
+      <anchor>c4ae17435221fb0a8e8acd285210cfcb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classmo_best_impr_select.html</anchorfile>
+      <anchor>2d2abf9aa17dc77cbb4f41810ab7b956</anchor>
+      <arglist>(const Fitness &amp;__fit)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>update</name>
+      <anchorfile>classmo_best_impr_select.html</anchorfile>
+      <anchor>d10e3e6f8a0277731e95ef506d064d6d</anchor>
+      <arglist>(const M &amp;__move, const Fitness &amp;__fit)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>operator()</name>
+      <anchorfile>classmo_best_impr_select.html</anchorfile>
+      <anchor>169773d4d127acd782cf379f758222da</anchor>
+      <arglist>(M &amp;__move, Fitness &amp;__fit)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>first_time</name>
+      <anchorfile>classmo_best_impr_select.html</anchorfile>
+      <anchor>352b14d206b0772eb9f40efb7beb0f13</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>M</type>
+      <name>best_move</name>
+      <anchorfile>classmo_best_impr_select.html</anchorfile>
+      <anchor>bd86f70519f954c07ff0d8a2a3a8ff6a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Fitness</type>
+      <name>best_fit</name>
+      <anchorfile>classmo_best_impr_select.html</anchorfile>
+      <anchor>dcac897424b5805f146bb1dbb429f2fe</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moComparator</name>
+    <filename>classmo_comparator.html</filename>
+    <templarg>EOT</templarg>
+  </compound>
+  <compound kind="class">
+    <name>moCoolingSchedule</name>
+    <filename>classmo_cooling_schedule.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>moExponentialCoolingSchedule</name>
+    <filename>classmo_exponential_cooling_schedule.html</filename>
+    <base>moCoolingSchedule</base>
+    <member kind="function">
+      <type></type>
+      <name>moExponentialCoolingSchedule</name>
+      <anchorfile>classmo_exponential_cooling_schedule.html</anchorfile>
+      <anchor>b01930c1051c0940666c6325bfd036bc</anchor>
+      <arglist>(double __threshold, double __ratio)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_exponential_cooling_schedule.html</anchorfile>
+      <anchor>00642b03453b51612a10fcf2280543db</anchor>
+      <arglist>(double &amp;__temp)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>double</type>
+      <name>threshold</name>
+      <anchorfile>classmo_exponential_cooling_schedule.html</anchorfile>
+      <anchor>8d4327c0bb33b7121a322279eea97f84</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>double</type>
+      <name>ratio</name>
+      <anchorfile>classmo_exponential_cooling_schedule.html</anchorfile>
+      <anchor>e8f3f87417c1c7253efb938a740846fa</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moFirstImprSelect</name>
+    <filename>classmo_first_impr_select.html</filename>
+    <templarg>M</templarg>
+    <base>moMoveSelect</base>
+    <member kind="typedef">
+      <type>M::EOType::Fitness</type>
+      <name>Fitness</name>
+      <anchorfile>classmo_first_impr_select.html</anchorfile>
+      <anchor>64763ce3e6d2873266624382b407fa5a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>init</name>
+      <anchorfile>classmo_first_impr_select.html</anchorfile>
+      <anchor>4c5ce18ede46247a439c68f6954a4055</anchor>
+      <arglist>(const Fitness &amp;__fit)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>update</name>
+      <anchorfile>classmo_first_impr_select.html</anchorfile>
+      <anchor>7ba0882728daedc75c249647c070ccf0</anchor>
+      <arglist>(const M &amp;__move, const typename M::EOType::Fitness &amp;__fit)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>operator()</name>
+      <anchorfile>classmo_first_impr_select.html</anchorfile>
+      <anchor>3be12cf4cbaed00df7c4fa735b2c0a95</anchor>
+      <arglist>(M &amp;__move, Fitness &amp;__fit)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>valid</name>
+      <anchorfile>classmo_first_impr_select.html</anchorfile>
+      <anchor>a99c0586ba07449234705c17a258d58c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>M</type>
+      <name>best_move</name>
+      <anchorfile>classmo_first_impr_select.html</anchorfile>
+      <anchor>dfed419a608dd7c41f07fa1f1279cb8c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Fitness</type>
+      <name>init_fit</name>
+      <anchorfile>classmo_first_impr_select.html</anchorfile>
+      <anchor>ce7ba63e8cc3a9164f4e546477e98ca8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Fitness</type>
+      <name>best_fit</name>
+      <anchorfile>classmo_first_impr_select.html</anchorfile>
+      <anchor>e1190347b76ec6fe717be32354b4a9a9</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moFitComparator</name>
+    <filename>classmo_fit_comparator.html</filename>
+    <templarg>EOT</templarg>
+    <base>moComparator</base>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_fit_comparator.html</anchorfile>
+      <anchor>c920d5a49deb16710daf1e5fcde6b16c</anchor>
+      <arglist>(const EOT &amp;_solution1, const EOT &amp;_solution2)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moFitSolContinue</name>
+    <filename>classmo_fit_sol_continue.html</filename>
+    <templarg>EOT</templarg>
+    <base>moSolContinue</base>
+    <member kind="typedef">
+      <type>EOT::Fitness</type>
+      <name>Fitness</name>
+      <anchorfile>classmo_fit_sol_continue.html</anchorfile>
+      <anchor>369ed94a788d8bdc08d5554f7669376f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>moFitSolContinue</name>
+      <anchorfile>classmo_fit_sol_continue.html</anchorfile>
+      <anchor>b14f37ba88de4e12583b22f5aabeb682</anchor>
+      <arglist>(Fitness __fitness)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_fit_sol_continue.html</anchorfile>
+      <anchor>fa9f0a15f99c998115cae9b456403a27</anchor>
+      <arglist>(const EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classmo_fit_sol_continue.html</anchorfile>
+      <anchor>670bd895b4edfcd3aebb40d2295d7f7c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Fitness</type>
+      <name>fitness</name>
+      <anchorfile>classmo_fit_sol_continue.html</anchorfile>
+      <anchor>87d0ba8f2f76f61c89317eed5f094dfc</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moGenSolContinue</name>
+    <filename>classmo_gen_sol_continue.html</filename>
+    <templarg>EOT</templarg>
+    <base>moSolContinue</base>
+    <member kind="function">
+      <type></type>
+      <name>moGenSolContinue</name>
+      <anchorfile>classmo_gen_sol_continue.html</anchorfile>
+      <anchor>b56e890f1caa3f98e161c6512b59c95b</anchor>
+      <arglist>(unsigned int __maxNumGen)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_gen_sol_continue.html</anchorfile>
+      <anchor>457257cd73b474d6f7783d84d02c2e61</anchor>
+      <arglist>(const EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classmo_gen_sol_continue.html</anchorfile>
+      <anchor>6c5db8182157584b56507cc9075602d4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned int</type>
+      <name>maxNumGen</name>
+      <anchorfile>classmo_gen_sol_continue.html</anchorfile>
+      <anchor>30b9861e090578bdfa2374806600987a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned int</type>
+      <name>numGen</name>
+      <anchorfile>classmo_gen_sol_continue.html</anchorfile>
+      <anchor>630d9736a3a2c952540cdc211764258c</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moHC</name>
+    <filename>classmo_h_c.html</filename>
+    <templarg>M</templarg>
+    <base>moAlgo&lt; M::EOType &gt;</base>
+    <member kind="function">
+      <type></type>
+      <name>moHC</name>
+      <anchorfile>classmo_h_c.html</anchorfile>
+      <anchor>6cafe093f86a80c225827884cb9dc5b7</anchor>
+      <arglist>(moMoveInit&lt; M &gt; &amp;__move_init, moNextMove&lt; M &gt; &amp;__next_move, moMoveIncrEval&lt; M &gt; &amp;__incr_eval, moMoveSelect&lt; M &gt; &amp;__move_select, eoEvalFunc&lt; EOT &gt; &amp;__full_eval)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>moHC</name>
+      <anchorfile>classmo_h_c.html</anchorfile>
+      <anchor>45f27309792e584a27fa6dcb86ccda65</anchor>
+      <arglist>(moMoveExpl&lt; M &gt; &amp;__move_expl, eoEvalFunc&lt; EOT &gt; &amp;__full_eval)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_h_c.html</anchorfile>
+      <anchor>ed4e273c420efa6386c5975a696a5010</anchor>
+      <arglist>(EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>M::EOType</type>
+      <name>EOT</name>
+      <anchorfile>classmo_h_c.html</anchorfile>
+      <anchor>d219296ede03c679646bce2fe8ff96cb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>EOT::Fitness</type>
+      <name>Fitness</name>
+      <anchorfile>classmo_h_c.html</anchorfile>
+      <anchor>56487c97a7cf0c423cc879d1bbd45027</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moMoveExpl&lt; M &gt; &amp;</type>
+      <name>move_expl</name>
+      <anchorfile>classmo_h_c.html</anchorfile>
+      <anchor>f6bfb4553fb699f1e08f7d9c37d06103</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>eoEvalFunc&lt; EOT &gt; &amp;</type>
+      <name>full_eval</name>
+      <anchorfile>classmo_h_c.html</anchorfile>
+      <anchor>4b0d5cc70fc3d83f59a48b2bdea65736</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moHCMoveLoopExpl</name>
+    <filename>classmo_h_c_move_loop_expl.html</filename>
+    <templarg>M</templarg>
+    <base>moMoveLoopExpl</base>
+    <member kind="function">
+      <type></type>
+      <name>moHCMoveLoopExpl</name>
+      <anchorfile>classmo_h_c_move_loop_expl.html</anchorfile>
+      <anchor>11410d648d79746253e9dc249c4ec7b5</anchor>
+      <arglist>(moMoveInit&lt; M &gt; &amp;__move_init, moNextMove&lt; M &gt; &amp;__next_move, moMoveIncrEval&lt; M &gt; &amp;__incr_eval, moMoveSelect&lt; M &gt; &amp;__move_select)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>operator()</name>
+      <anchorfile>classmo_h_c_move_loop_expl.html</anchorfile>
+      <anchor>f48d5379caac7f6a165e9fe8840e6ccb</anchor>
+      <arglist>(const EOT &amp;__old_sol, EOT &amp;__new_sol)</arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>M::EOType</type>
+      <name>EOT</name>
+      <anchorfile>classmo_h_c_move_loop_expl.html</anchorfile>
+      <anchor>077befd4106c201eafd3ea22bcea2fe9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>M::EOType::Fitness</type>
+      <name>Fitness</name>
+      <anchorfile>classmo_h_c_move_loop_expl.html</anchorfile>
+      <anchor>f24871224316d5549b9013a2d27ab465</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moMoveInit&lt; M &gt; &amp;</type>
+      <name>move_init</name>
+      <anchorfile>classmo_h_c_move_loop_expl.html</anchorfile>
+      <anchor>6776fc51331c1b452d026b92448b4ffc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moNextMove&lt; M &gt; &amp;</type>
+      <name>next_move</name>
+      <anchorfile>classmo_h_c_move_loop_expl.html</anchorfile>
+      <anchor>f716c5271e0eba9275c585dc52768443</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moMoveIncrEval&lt; M &gt; &amp;</type>
+      <name>incr_eval</name>
+      <anchorfile>classmo_h_c_move_loop_expl.html</anchorfile>
+      <anchor>84a8fccba05ab30414281469bc8ee779</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moMoveSelect&lt; M &gt; &amp;</type>
+      <name>move_select</name>
+      <anchorfile>classmo_h_c_move_loop_expl.html</anchorfile>
+      <anchor>13bcd1322b2b97fd665be2f60c532fbb</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moILS</name>
+    <filename>classmo_i_l_s.html</filename>
+    <templarg>M</templarg>
+    <base>moAlgo&lt; M::EOType &gt;</base>
+    <member kind="function">
+      <type></type>
+      <name>moILS</name>
+      <anchorfile>classmo_i_l_s.html</anchorfile>
+      <anchor>f7f2fc1f905954d78edcec0e3ca53551</anchor>
+      <arglist>(moAlgo&lt; EOT &gt; &amp;__algo, moSolContinue&lt; EOT &gt; &amp;__continue, moComparator&lt; EOT &gt; &amp;__acceptance_criterion, eoMonOp&lt; EOT &gt; &amp;__perturbation, eoEvalFunc&lt; EOT &gt; &amp;__full_eval)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>moILS</name>
+      <anchorfile>classmo_i_l_s.html</anchorfile>
+      <anchor>c4ebdab294ee1085ddcb9bf2a6882cf0</anchor>
+      <arglist>(moMoveInit&lt; M &gt; &amp;__move_init, moNextMove&lt; M &gt; &amp;__next_move, moMoveIncrEval&lt; M &gt; &amp;__incr_eval, moMoveSelect&lt; M &gt; &amp;__move_select, moSolContinue&lt; EOT &gt; &amp;__continue, moComparator&lt; EOT &gt; &amp;__acceptance_criterion, eoMonOp&lt; EOT &gt; &amp;__perturbation, eoEvalFunc&lt; EOT &gt; &amp;__full_eval)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>moILS</name>
+      <anchorfile>classmo_i_l_s.html</anchorfile>
+      <anchor>d27e3435b8f6592091431fde6f185769</anchor>
+      <arglist>(moMoveInit&lt; M &gt; &amp;__move_init, moNextMove&lt; M &gt; &amp;__next_move, moMoveIncrEval&lt; M &gt; &amp;__incr_eval, moTabuList&lt; M &gt; &amp;__tabu_list, moAspirCrit&lt; M &gt; &amp;__aspir_crit, moSolContinue&lt; EOT &gt; &amp;__moTS_continue, moSolContinue&lt; EOT &gt; &amp;__continue, moComparator&lt; EOT &gt; &amp;__acceptance_criterion, eoMonOp&lt; EOT &gt; &amp;__perturbation, eoEvalFunc&lt; EOT &gt; &amp;__full_eval)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>moILS</name>
+      <anchorfile>classmo_i_l_s.html</anchorfile>
+      <anchor>292acc5218e8f148e8b174f183820696</anchor>
+      <arglist>(moRandMove&lt; M &gt; &amp;__move_rand, moMoveIncrEval&lt; M &gt; &amp;__incr_eval, moSolContinue&lt; EOT &gt; &amp;__moSA_continue, double __init_temp, moCoolingSchedule &amp;__cool_sched, moSolContinue&lt; EOT &gt; &amp;__continue, moComparator&lt; EOT &gt; &amp;__acceptance_criterion, eoMonOp&lt; EOT &gt; &amp;__perturbation, eoEvalFunc&lt; EOT &gt; &amp;__full_eval)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_i_l_s.html</anchorfile>
+      <anchor>b3954a77b43fee31122d2a210b2a82d7</anchor>
+      <arglist>(EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>M::EOType</type>
+      <name>EOT</name>
+      <anchorfile>classmo_i_l_s.html</anchorfile>
+      <anchor>c81bafc611e4d4fd44347cf7162198c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>EOT::Fitness</type>
+      <name>Fitness</name>
+      <anchorfile>classmo_i_l_s.html</anchorfile>
+      <anchor>8c464a9eae064a78eff75d4c722b619c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moAlgo&lt; EOT &gt; &amp;</type>
+      <name>algo</name>
+      <anchorfile>classmo_i_l_s.html</anchorfile>
+      <anchor>8373e40b60afdd761789a97b47adece9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moSolContinue&lt; EOT &gt; &amp;</type>
+      <name>cont</name>
+      <anchorfile>classmo_i_l_s.html</anchorfile>
+      <anchor>c3046ba0a31a35470391987ac37afd64</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moComparator&lt; EOT &gt; &amp;</type>
+      <name>acceptance_criterion</name>
+      <anchorfile>classmo_i_l_s.html</anchorfile>
+      <anchor>295f6d0342c67bd3dc4cb82e2adc26be</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>eoMonOp&lt; EOT &gt; &amp;</type>
+      <name>perturbation</name>
+      <anchorfile>classmo_i_l_s.html</anchorfile>
+      <anchor>f667a1bda06b6d221292df9aba3db8a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>eoEvalFunc&lt; EOT &gt; &amp;</type>
+      <name>full_eval</name>
+      <anchorfile>classmo_i_l_s.html</anchorfile>
+      <anchor>8000f02fac668d51026e458c9febce7c</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moImprBestFitAspirCrit</name>
+    <filename>classmo_impr_best_fit_aspir_crit.html</filename>
+    <templarg>M</templarg>
+    <base>moAspirCrit</base>
+    <member kind="typedef">
+      <type>M::EOType::Fitness</type>
+      <name>Fitness</name>
+      <anchorfile>classmo_impr_best_fit_aspir_crit.html</anchorfile>
+      <anchor>0bc1a8c9af99781e662570c04750cca8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>moImprBestFitAspirCrit</name>
+      <anchorfile>classmo_impr_best_fit_aspir_crit.html</anchorfile>
+      <anchor>e2c697a5cf3a7696e38bb52b6694a340</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classmo_impr_best_fit_aspir_crit.html</anchorfile>
+      <anchor>ffa451a14ff4ea86fb8bd9fdbc348630</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_impr_best_fit_aspir_crit.html</anchorfile>
+      <anchor>53f62fb56dcae3051a741f1fddb0204b</anchor>
+      <arglist>(const M &amp;__move, const Fitness &amp;__fit)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Fitness</type>
+      <name>best_fit</name>
+      <anchorfile>classmo_impr_best_fit_aspir_crit.html</anchorfile>
+      <anchor>9e52383f0af8013b4aff0942325e1bf3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>first_time</name>
+      <anchorfile>classmo_impr_best_fit_aspir_crit.html</anchorfile>
+      <anchor>2d5226c7dd661b33011402dbbbe78265</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moItRandNextMove</name>
+    <filename>classmo_it_rand_next_move.html</filename>
+    <templarg>M</templarg>
+    <base>moNextMove</base>
+    <member kind="function">
+      <type></type>
+      <name>moItRandNextMove</name>
+      <anchorfile>classmo_it_rand_next_move.html</anchorfile>
+      <anchor>2b61b3713d482ecf71db8d941551ff7a</anchor>
+      <arglist>(moRandMove&lt; M &gt; &amp;__rand_move, unsigned int __max_iter)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_it_rand_next_move.html</anchorfile>
+      <anchor>92a2fbbc02a20853b9a309e99018a102</anchor>
+      <arglist>(M &amp;__move, const EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>M::EOType</type>
+      <name>EOT</name>
+      <anchorfile>classmo_it_rand_next_move.html</anchorfile>
+      <anchor>ee666007fc494bf4a5f0cd065e5671cf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moRandMove&lt; M &gt; &amp;</type>
+      <name>rand_move</name>
+      <anchorfile>classmo_it_rand_next_move.html</anchorfile>
+      <anchor>ef9410ec5e7dfa7f002e05967931c459</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned int</type>
+      <name>max_iter</name>
+      <anchorfile>classmo_it_rand_next_move.html</anchorfile>
+      <anchor>dc67fa86677d7a4f982de8d8b1eba033</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned int</type>
+      <name>num_iter</name>
+      <anchorfile>classmo_it_rand_next_move.html</anchorfile>
+      <anchor>f43494b13931d8f76b5d9d5d6469e91b</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moLinearCoolingSchedule</name>
+    <filename>classmo_linear_cooling_schedule.html</filename>
+    <base>moCoolingSchedule</base>
+    <member kind="function">
+      <type></type>
+      <name>moLinearCoolingSchedule</name>
+      <anchorfile>classmo_linear_cooling_schedule.html</anchorfile>
+      <anchor>2fdde7b1520d5a41251627e81cc9c13d</anchor>
+      <arglist>(double __threshold, double __quantity)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_linear_cooling_schedule.html</anchorfile>
+      <anchor>814b109fdfd9426a92a5444b05014da3</anchor>
+      <arglist>(double &amp;__temp)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>double</type>
+      <name>threshold</name>
+      <anchorfile>classmo_linear_cooling_schedule.html</anchorfile>
+      <anchor>e7f539f986801ea71392c4a55ba08a76</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>double</type>
+      <name>quantity</name>
+      <anchorfile>classmo_linear_cooling_schedule.html</anchorfile>
+      <anchor>6159dc39ceda89b23ffdab3d6ce8d8ed</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moLSCheckPoint</name>
+    <filename>classmo_l_s_check_point.html</filename>
+    <templarg>M</templarg>
+    <member kind="function">
+      <type>void</type>
+      <name>operator()</name>
+      <anchorfile>classmo_l_s_check_point.html</anchorfile>
+      <anchor>2f9c1250279e3f49ec77a66c10029f1e</anchor>
+      <arglist>(const M &amp;__move, const typename M::EOType &amp;__sol)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>add</name>
+      <anchorfile>classmo_l_s_check_point.html</anchorfile>
+      <anchor>66be5fe2944bcdd752f1e58105e969a6</anchor>
+      <arglist>(eoBF&lt; const M &amp;, const typename M::EOType &amp;, void &gt; &amp;__f)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::vector&lt; eoBF&lt; const M &amp;, const typename M::EOType &amp;, void &gt; * &gt;</type>
+      <name>func</name>
+      <anchorfile>classmo_l_s_check_point.html</anchorfile>
+      <anchor>ff2a31ee5689a804bd9a572c51a36ca4</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moMove</name>
+    <filename>classmo_move.html</filename>
+    <templarg>EOT</templarg>
+    <member kind="typedef">
+      <type>EOT</type>
+      <name>EOType</name>
+      <anchorfile>classmo_move.html</anchorfile>
+      <anchor>7fb853a91ba1319530529e515380bbba</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moMoveExpl</name>
+    <filename>classmo_move_expl.html</filename>
+    <templarg>M</templarg>
+  </compound>
+  <compound kind="class">
+    <name>moMoveIncrEval</name>
+    <filename>classmo_move_incr_eval.html</filename>
+    <templarg>M</templarg>
+  </compound>
+  <compound kind="class">
+    <name>moMoveInit</name>
+    <filename>classmo_move_init.html</filename>
+    <templarg>M</templarg>
+  </compound>
+  <compound kind="class">
+    <name>moMoveLoopExpl</name>
+    <filename>classmo_move_loop_expl.html</filename>
+    <templarg>M</templarg>
+    <base>moMoveExpl</base>
+  </compound>
+  <compound kind="class">
+    <name>moMoveSelect</name>
+    <filename>classmo_move_select.html</filename>
+    <templarg>M</templarg>
+    <member kind="typedef">
+      <type>M::EOType::Fitness</type>
+      <name>Fitness</name>
+      <anchorfile>classmo_move_select.html</anchorfile>
+      <anchor>8148ccc0e6fbd209c3fe6829559895c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>init</name>
+      <anchorfile>classmo_move_select.html</anchorfile>
+      <anchor>bca4c43f13d26eca7163aeb272a4a52e</anchor>
+      <arglist>(const Fitness &amp;__fit)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>update</name>
+      <anchorfile>classmo_move_select.html</anchorfile>
+      <anchor>7c157b6e64fd417acf6e900059204eb1</anchor>
+      <arglist>(const M &amp;__move, const Fitness &amp;__fit)=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moNextMove</name>
+    <filename>classmo_next_move.html</filename>
+    <templarg>M</templarg>
+  </compound>
+  <compound kind="class">
+    <name>moNoAspirCrit</name>
+    <filename>classmo_no_aspir_crit.html</filename>
+    <templarg>M</templarg>
+    <base>moAspirCrit</base>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_no_aspir_crit.html</anchorfile>
+      <anchor>8a7180a8d5c25bfb6727d0b59551b0f8</anchor>
+      <arglist>(const M &amp;__move, const typename M::EOType::Fitness &amp;__sol)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classmo_no_aspir_crit.html</anchorfile>
+      <anchor>f3a286fc4c2d36bd390ba9a3074f3037</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moNoFitImprSolContinue</name>
+    <filename>classmo_no_fit_impr_sol_continue.html</filename>
+    <templarg>EOT</templarg>
+    <base>moSolContinue</base>
+    <member kind="typedef">
+      <type>EOT::Fitness</type>
+      <name>Fitness</name>
+      <anchorfile>classmo_no_fit_impr_sol_continue.html</anchorfile>
+      <anchor>64c184de66bb37d75d53aa600ac947b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>moNoFitImprSolContinue</name>
+      <anchorfile>classmo_no_fit_impr_sol_continue.html</anchorfile>
+      <anchor>a447aa0d8ed4ddf6fe47c805269cac6c</anchor>
+      <arglist>(unsigned int __maxNumberOfIterationWithoutImprovement)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_no_fit_impr_sol_continue.html</anchorfile>
+      <anchor>dbd663623cae56ec76ee504ecb226fed</anchor>
+      <arglist>(const EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classmo_no_fit_impr_sol_continue.html</anchorfile>
+      <anchor>21641c0a38a4501baae6133cbc591de4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned int</type>
+      <name>maxNumberOfIterationsWithoutImprovement</name>
+      <anchorfile>classmo_no_fit_impr_sol_continue.html</anchorfile>
+      <anchor>03612ffc3af9d943c1b1d2cde09d461b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>firstFitnessSaved</name>
+      <anchorfile>classmo_no_fit_impr_sol_continue.html</anchorfile>
+      <anchor>ca3591e47a075b59e0826f31234c71ef</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Fitness</type>
+      <name>fitness</name>
+      <anchorfile>classmo_no_fit_impr_sol_continue.html</anchorfile>
+      <anchor>3d3d2b43a4dd73e38689cc0018d44ee7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned int</type>
+      <name>counter</name>
+      <anchorfile>classmo_no_fit_impr_sol_continue.html</anchorfile>
+      <anchor>46fc008a8f7cd06dcaaeb4016b433adb</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moRandImprSelect</name>
+    <filename>classmo_rand_impr_select.html</filename>
+    <templarg>M</templarg>
+    <base>moMoveSelect</base>
+    <member kind="typedef">
+      <type>M::EOType::Fitness</type>
+      <name>Fitness</name>
+      <anchorfile>classmo_rand_impr_select.html</anchorfile>
+      <anchor>3bff2fdb963297430543c82ffb567a5c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classmo_rand_impr_select.html</anchorfile>
+      <anchor>a19726a1509cff874801615d63a3b5d9</anchor>
+      <arglist>(const Fitness &amp;__fit)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>update</name>
+      <anchorfile>classmo_rand_impr_select.html</anchorfile>
+      <anchor>60ae5548560caee7e28d5ed2446186c9</anchor>
+      <arglist>(const M &amp;__move, const Fitness &amp;__fit)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>operator()</name>
+      <anchorfile>classmo_rand_impr_select.html</anchorfile>
+      <anchor>5ee57f77a450c0a9ce50bfccf3ad2a55</anchor>
+      <arglist>(M &amp;__move, Fitness &amp;__fit)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Fitness</type>
+      <name>init_fit</name>
+      <anchorfile>classmo_rand_impr_select.html</anchorfile>
+      <anchor>d153c277a0a2ea95ac484210d445b40e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::vector&lt; Fitness &gt;</type>
+      <name>vect_better_fit</name>
+      <anchorfile>classmo_rand_impr_select.html</anchorfile>
+      <anchor>05c7c3b858e8a25632f2f5c86b0c97a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::vector&lt; M &gt;</type>
+      <name>vect_better_moves</name>
+      <anchorfile>classmo_rand_impr_select.html</anchorfile>
+      <anchor>2ace12bd179144fa71d56324694201f5</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moRandMove</name>
+    <filename>classmo_rand_move.html</filename>
+    <templarg>M</templarg>
+  </compound>
+  <compound kind="class">
+    <name>moSA</name>
+    <filename>classmo_s_a.html</filename>
+    <templarg>M</templarg>
+    <base>moAlgo&lt; M::EOType &gt;</base>
+    <member kind="function">
+      <type></type>
+      <name>moSA</name>
+      <anchorfile>classmo_s_a.html</anchorfile>
+      <anchor>01f6a44483e5a7abbce33eb480b6a9b9</anchor>
+      <arglist>(moRandMove&lt; M &gt; &amp;__move_rand, moMoveIncrEval&lt; M &gt; &amp;__incr_eval, moSolContinue&lt; EOT &gt; &amp;__cont, double __init_temp, moCoolingSchedule &amp;__cool_sched, eoEvalFunc&lt; EOT &gt; &amp;__full_eval)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_s_a.html</anchorfile>
+      <anchor>0e4c54b57bc13fcbd4763883b8f719e5</anchor>
+      <arglist>(EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>M::EOType</type>
+      <name>EOT</name>
+      <anchorfile>classmo_s_a.html</anchorfile>
+      <anchor>d5d64a8797bdedc7b3af7893aded0bd5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>EOT::Fitness</type>
+      <name>Fitness</name>
+      <anchorfile>classmo_s_a.html</anchorfile>
+      <anchor>97f1a40d5ab5a0b3f878d0347b34804b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moRandMove&lt; M &gt; &amp;</type>
+      <name>move_rand</name>
+      <anchorfile>classmo_s_a.html</anchorfile>
+      <anchor>71c49935b63a202d25888a5f86121fec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moMoveIncrEval&lt; M &gt; &amp;</type>
+      <name>incr_eval</name>
+      <anchorfile>classmo_s_a.html</anchorfile>
+      <anchor>4c3be32e9832e465b24e6d33559356bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moSolContinue&lt; EOT &gt; &amp;</type>
+      <name>cont</name>
+      <anchorfile>classmo_s_a.html</anchorfile>
+      <anchor>54484c8a514866ea496e0058c2e09716</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>double</type>
+      <name>init_temp</name>
+      <anchorfile>classmo_s_a.html</anchorfile>
+      <anchor>f1af7636b52aa5f6b381f8187b667bd4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moCoolingSchedule &amp;</type>
+      <name>cool_sched</name>
+      <anchorfile>classmo_s_a.html</anchorfile>
+      <anchor>11c7d0cab649b7d680dd85bb74cb4ff6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>eoEvalFunc&lt; EOT &gt; &amp;</type>
+      <name>full_eval</name>
+      <anchorfile>classmo_s_a.html</anchorfile>
+      <anchor>bcd6a940046f23dd741444c0b85edf2c</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moSimpleMoveTabuList</name>
+    <filename>classmo_simple_move_tabu_list.html</filename>
+    <templarg>M</templarg>
+    <base>moTabuList</base>
+    <member kind="typedef">
+      <type>M::EOType</type>
+      <name>EOT</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>91286ff3ba6b1e9e1db9e4fdade2edb7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>moSimpleMoveTabuList</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>12798ce0bc3a2ee031fb301290ed6d79</anchor>
+      <arglist>(unsigned int __size)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>bb7fe9da28617f56734af71c42c8265a</anchor>
+      <arglist>(const M &amp;__move, const EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>add</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>43c979a9ec876c5e5b591b1c422395ef</anchor>
+      <arglist>(const M &amp;__move, const EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>update</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>96cffc8118456ed762b07b9fc0e0679f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>b91ae9971be30769757d1ad92c6009dc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>removeMove</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>a3fa2bd19e09f1541878fa28e867d20f</anchor>
+      <arglist>(const M &amp;__move)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned int</type>
+      <name>maxSize</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>e48848e9e5c9c8435475cbdf21658e23</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned int</type>
+      <name>currentSize</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>f1f9524e62d48f3688aa58a6055ccceb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::list&lt; M &gt;</type>
+      <name>tabuList</name>
+      <anchorfile>classmo_simple_move_tabu_list.html</anchorfile>
+      <anchor>d91bc838361524720616b44eda9b2c3a</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moSimpleSolutionTabuList</name>
+    <filename>classmo_simple_solution_tabu_list.html</filename>
+    <templarg>M</templarg>
+    <base>moTabuList</base>
+    <member kind="typedef">
+      <type>M::EOType</type>
+      <name>EOT</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>881060871a6b49e5e8554c5df85176d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>moSimpleSolutionTabuList</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>8f8ce82b49ff49efbd934cedd3e34178</anchor>
+      <arglist>(unsigned int __size)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>e1f1cf258b55554d8be88fb5780a0047</anchor>
+      <arglist>(const M &amp;__move, const EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>add</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>fd6b3a1764121169650c969bba895615</anchor>
+      <arglist>(const M &amp;__move, const EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>update</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>91b8b01dba7ffea8b63765d931e56f56</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>d5645c39fec71a6110a2cbccbb08b816</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>removeSolution</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>7847a48f33c15e31298f3e715d754560</anchor>
+      <arglist>(const EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned int</type>
+      <name>maxSize</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>662e1f65fadff234692be009a2440845</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned int</type>
+      <name>currentSize</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>2aaf6e882d10495adddae94cb7a48fbf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::list&lt; EOT &gt;</type>
+      <name>tabuList</name>
+      <anchorfile>classmo_simple_solution_tabu_list.html</anchorfile>
+      <anchor>75df9cd683528d3722d02bac407b710b</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moSolContinue</name>
+    <filename>classmo_sol_continue.html</filename>
+    <templarg>EOT</templarg>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>init</name>
+      <anchorfile>classmo_sol_continue.html</anchorfile>
+      <anchor>064dc966a210f4ffb9515be3f03ca4c7</anchor>
+      <arglist>()=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moSteadyFitSolContinue</name>
+    <filename>classmo_steady_fit_sol_continue.html</filename>
+    <templarg>EOT</templarg>
+    <base>moSolContinue</base>
+    <member kind="typedef">
+      <type>EOT::Fitness</type>
+      <name>Fitness</name>
+      <anchorfile>classmo_steady_fit_sol_continue.html</anchorfile>
+      <anchor>c289721abbbafe50f6e3b8305dd31007</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>moSteadyFitSolContinue</name>
+      <anchorfile>classmo_steady_fit_sol_continue.html</anchorfile>
+      <anchor>5f50fb18e380230e37301f33319786a4</anchor>
+      <arglist>(unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_steady_fit_sol_continue.html</anchorfile>
+      <anchor>942e58ec00bb61000a83c80176e14bc3</anchor>
+      <arglist>(const EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classmo_steady_fit_sol_continue.html</anchorfile>
+      <anchor>87563493addc8e4b58982c55a67179b9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned int</type>
+      <name>maxNumberOfIterations</name>
+      <anchorfile>classmo_steady_fit_sol_continue.html</anchorfile>
+      <anchor>36b43c2a252887ad027165ac32393fe8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned int</type>
+      <name>maxNumberOfIterationsWithoutImprovement</name>
+      <anchorfile>classmo_steady_fit_sol_continue.html</anchorfile>
+      <anchor>cde593c09f497a5fa66ff62732544f40</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>maxNumberOfIterationsReached</name>
+      <anchorfile>classmo_steady_fit_sol_continue.html</anchorfile>
+      <anchor>7d88c0eb91b2a12121ba1c3ae9139887</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>firstFitnessSaved</name>
+      <anchorfile>classmo_steady_fit_sol_continue.html</anchorfile>
+      <anchor>025bf2789e470fdde989eee9121035c3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Fitness</type>
+      <name>fitness</name>
+      <anchorfile>classmo_steady_fit_sol_continue.html</anchorfile>
+      <anchor>a5c62e7049b36f6e71e92b559568c09e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>unsigned int</type>
+      <name>counter</name>
+      <anchorfile>classmo_steady_fit_sol_continue.html</anchorfile>
+      <anchor>245c9099a2c40dfc4f34b3ff216d13ce</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moTabuList</name>
+    <filename>classmo_tabu_list.html</filename>
+    <templarg>M</templarg>
+    <member kind="typedef">
+      <type>M::EOType</type>
+      <name>EOT</name>
+      <anchorfile>classmo_tabu_list.html</anchorfile>
+      <anchor>e219715cc3fdd5626764bc50ce6357df</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>add</name>
+      <anchorfile>classmo_tabu_list.html</anchorfile>
+      <anchor>d279d72cb486d812da1ad3d24a69c286</anchor>
+      <arglist>(const M &amp;__move, const EOT &amp;__sol)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>update</name>
+      <anchorfile>classmo_tabu_list.html</anchorfile>
+      <anchor>a2e5d1132f064093c8ed57046405f5ca</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>init</name>
+      <anchorfile>classmo_tabu_list.html</anchorfile>
+      <anchor>0a06c459d56e8e2b408a8f3c6aec4e57</anchor>
+      <arglist>()=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moTS</name>
+    <filename>classmo_t_s.html</filename>
+    <templarg>M</templarg>
+    <base>moAlgo&lt; M::EOType &gt;</base>
+    <member kind="function">
+      <type></type>
+      <name>moTS</name>
+      <anchorfile>classmo_t_s.html</anchorfile>
+      <anchor>2be23f4524733ee6f37b71310d76407e</anchor>
+      <arglist>(moMoveInit&lt; M &gt; &amp;__move_init, moNextMove&lt; M &gt; &amp;__next_move, moMoveIncrEval&lt; M &gt; &amp;__incr_eval, moTabuList&lt; M &gt; &amp;__tabu_list, moAspirCrit&lt; M &gt; &amp;__aspir_crit, moSolContinue&lt; EOT &gt; &amp;__cont, eoEvalFunc&lt; EOT &gt; &amp;__full_eval)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>moTS</name>
+      <anchorfile>classmo_t_s.html</anchorfile>
+      <anchor>508e675c4232cf2ca06dded931c90bab</anchor>
+      <arglist>(moMoveExpl&lt; M &gt; &amp;__move_expl, moSolContinue&lt; EOT &gt; &amp;__cont, eoEvalFunc&lt; EOT &gt; &amp;__full_eval)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchorfile>classmo_t_s.html</anchorfile>
+      <anchor>94d25a76fe1bc9ef0bbd0358ff55aceb</anchor>
+      <arglist>(EOT &amp;__sol)</arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>M::EOType</type>
+      <name>EOT</name>
+      <anchorfile>classmo_t_s.html</anchorfile>
+      <anchor>90d19d468c12ab5bd796948ce1ce79b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>EOT::Fitness</type>
+      <name>Fitness</name>
+      <anchorfile>classmo_t_s.html</anchorfile>
+      <anchor>aa0eefbb17111422e495d1255f876fca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moMoveExpl&lt; M &gt; &amp;</type>
+      <name>move_expl</name>
+      <anchorfile>classmo_t_s.html</anchorfile>
+      <anchor>06914ddc90ca96e9158c8dbe182a7865</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moSolContinue&lt; EOT &gt; &amp;</type>
+      <name>cont</name>
+      <anchorfile>classmo_t_s.html</anchorfile>
+      <anchor>969371cd2202f3d29cbb426f57ac7d3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>eoEvalFunc&lt; EOT &gt; &amp;</type>
+      <name>full_eval</name>
+      <anchorfile>classmo_t_s.html</anchorfile>
+      <anchor>fb67eddae5d0bfca4ed881995523231e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>moTSMoveLoopExpl</name>
+    <filename>classmo_t_s_move_loop_expl.html</filename>
+    <templarg>M</templarg>
+    <base>moMoveLoopExpl</base>
+    <member kind="function">
+      <type></type>
+      <name>moTSMoveLoopExpl</name>
+      <anchorfile>classmo_t_s_move_loop_expl.html</anchorfile>
+      <anchor>43306dae9df150a8d9dc0dec9cd6a381</anchor>
+      <arglist>(moMoveInit&lt; M &gt; &amp;__move_init, moNextMove&lt; M &gt; &amp;__next_move, moMoveIncrEval&lt; M &gt; &amp;__incr_eval, moTabuList&lt; M &gt; &amp;__tabu_list, moAspirCrit&lt; M &gt; &amp;__aspir_crit)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>operator()</name>
+      <anchorfile>classmo_t_s_move_loop_expl.html</anchorfile>
+      <anchor>f601bbd0ccc41d6fbe3df9fcd87ad9e7</anchor>
+      <arglist>(const EOT &amp;__old_sol, EOT &amp;__new_sol)</arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>M::EOType</type>
+      <name>EOT</name>
+      <anchorfile>classmo_t_s_move_loop_expl.html</anchorfile>
+      <anchor>47f42225e2ed096374b818bdb848a527</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>M::EOType::Fitness</type>
+      <name>Fitness</name>
+      <anchorfile>classmo_t_s_move_loop_expl.html</anchorfile>
+      <anchor>a1ba36c937b195ca2f7d1a24adaa7018</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moMoveInit&lt; M &gt; &amp;</type>
+      <name>move_init</name>
+      <anchorfile>classmo_t_s_move_loop_expl.html</anchorfile>
+      <anchor>6b23f99648902fb72ed17a4a6fa4e400</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moNextMove&lt; M &gt; &amp;</type>
+      <name>next_move</name>
+      <anchorfile>classmo_t_s_move_loop_expl.html</anchorfile>
+      <anchor>aeeff6666d26ff5c67acd9c153a5ae49</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moMoveIncrEval&lt; M &gt; &amp;</type>
+      <name>incr_eval</name>
+      <anchorfile>classmo_t_s_move_loop_expl.html</anchorfile>
+      <anchor>ee4443fc8e45d840697619678628c26c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moBestImprSelect&lt; M &gt;</type>
+      <name>move_select</name>
+      <anchorfile>classmo_t_s_move_loop_expl.html</anchorfile>
+      <anchor>35a3f3035fb8df875c281d9838904bf1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moTabuList&lt; M &gt; &amp;</type>
+      <name>tabu_list</name>
+      <anchorfile>classmo_t_s_move_loop_expl.html</anchorfile>
+      <anchor>0e5988a940ba218e87c53b7e56d79790</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>moAspirCrit&lt; M &gt; &amp;</type>
+      <name>aspir_crit</name>
+      <anchorfile>classmo_t_s_move_loop_expl.html</anchorfile>
+      <anchor>6786cf5422d17cbf872b07ae74ca6b0f</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+</tagfile>
