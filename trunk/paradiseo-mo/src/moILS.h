@@ -123,20 +123,17 @@ public:
     cont.init ();
 
     //some code has been duplicated in order to avoid one perturbation and one evaluation without adding a test in the loop.
+    // better than a do {} while; with a test in the loop.
 
-    //std::cout << "Before intensification: " << __sol.fitness() << std::endl; 
     algo(__sol);
-    //std::cout << "After intensification: " << __sol.fitness() << std::endl; 
-    
+        
     if(acceptance_criterion(__sol, __sol_saved))
       {
-	std::cout << "Accepted: " << __sol.fitness() << std::endl;
 	__sol_saved=__sol;
 	
       }
     else
       {
-	//std::cout << "Refused" << std::endl;
 	__sol=__sol_saved;
       }
     
@@ -145,18 +142,14 @@ public:
       perturbation(__sol);
       full_eval(__sol);
       
-      //std::cout << "Before intensification: " << __sol.fitness() << std::endl; 
       algo(__sol);
-      //std::cout << "After intensification: " << __sol.fitness() << std::endl; 
-      
+            
       if(acceptance_criterion(__sol, __sol_saved))
 	{
-	  std::cout << "Accepted: " << __sol.fitness() << std::endl;
 	  __sol_saved=__sol;
 	}
       else
 	{
-	  //std::cout << "Refused" << std::endl;
 	  __sol=__sol_saved;
 	}
     }

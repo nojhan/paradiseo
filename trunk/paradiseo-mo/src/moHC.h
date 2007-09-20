@@ -12,7 +12,6 @@
 #ifndef __moHC_h
 #define __moHC_h
 
-#include <eoOp.h>
 #include <eoEvalFunc.h>
 
 #include "moAlgo.h"

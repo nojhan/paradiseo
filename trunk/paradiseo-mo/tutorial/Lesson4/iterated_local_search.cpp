@@ -20,8 +20,6 @@
 #include <two_opt_init.h>
 #include <two_opt_next.h>
 #include <two_opt_incr_eval.h>
-#include <two_opt_tabu_list.h>
-#include <two_opt_rand.h>
 
 #include <city_swap.h>
 
@@ -46,46 +44,22 @@ main (int __argc, char * __argv [])
   
   std :: cout << "[From] " << route << std :: endl ;
   
-  /* Tools for an efficient (? :-))
-     local search ! */
-
   TwoOptInit two_opt_init ; // Init.
    
   TwoOptNext two_opt_next ; // Explorer.
   
   TwoOptIncrEval two_opt_incr_eval ; // Eff. eval.
   
-  moBestImprSelect <TwoOpt> two_opt_select ;
+  moBestImprSelect <TwoOpt> two_opt_select ; //Move selection
   
-  //moHC<TwoOpt> hill_climbing (two_opt_init, two_opt_next, two_opt_incr_eval, two_opt_select, full_eval) ;
-    
-  moGenSolContinue <Route> cont (1000) ; 
+  moGenSolContinue <Route> cont (1000) ; //Stopping criterion
   
-  moFitComparator<Route> comparator;
+  moFitComparator<Route> comparator; // Route comparator
 
-  CitySwap perturbation;
+  CitySwap perturbation; // Route perturbation
 
-  //moILS<TwoOpt> iterated_local_search (hill_climbing, cont, comparator, perturbation, full_eval) ;
-  //moILS<TwoOpt> iterated_local_search (two_opt_init, two_opt_next, two_opt_incr_eval, 
-  //			       two_opt_select, cont, comparator, perturbation, full_eval) ;
-  
-  moGenSolContinue <Route> ts_cont (100) ; 
-
-  TwoOptTabuList tabu_list ; // Tabu List
-  moNoAspirCrit <TwoOpt> aspir_crit ; // Aspiration Criterion
-
-  //moILS<TwoOpt> iterated_local_search (two_opt_init, two_opt_next, two_opt_incr_eval, tabu_list, aspir_crit, ts_cont, 
-  //				       cont, comparator, perturbation, full_eval) ;
-  
-  TwoOptRand two_opt_rand ; // Route Random. Gen.
-
-  moExponentialCoolingSchedule cool_sched (0.1, 0.98) ; // Exponential Cooling Schedule 
-  
-  moGenSolContinue <Route> sa_cont (100) ; 
-
-  moILS<TwoOpt> iterated_local_search (two_opt_rand, two_opt_incr_eval, sa_cont, 100, cool_sched,
+  moILS<TwoOpt> iterated_local_search (two_opt_init, two_opt_next, two_opt_incr_eval, two_opt_select, 
 				       cont, comparator, perturbation, full_eval) ;
-
   iterated_local_search(route) ;
 
   std :: cout << "[To] " << route << std :: endl ;
