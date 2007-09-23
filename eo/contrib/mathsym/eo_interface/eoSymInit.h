@@ -19,7 +19,7 @@
 #define EOSYMINIT_H
 
 #include <eoInit.h>
-#include <TreeBuilder.h>
+#include <gen/TreeBuilder.h>
 
 /** Default initializer, Koza style */
 template <class EoType>

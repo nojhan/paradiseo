@@ -21,6 +21,9 @@
 
 #include <eoSymCrossover.h>
 #include <utils/eoRNG.h>
+#include <vector>
+
+using namespace std;
 
 bool subtree_quad(Sym& a, Sym& b, NodeSelector& select) {
     NodeSelector::NodeSelection sel_a = select.select_node(a);
@@ -73,6 +76,48 @@ bool homologous_bin(Sym& a, const Sym& b) {
     Sym org = a;
     a = homologous_binimpl(a,b);
     return org != a;
+}
+
+void set_size_levels(Sym sym, vector<unsigned>& l, vector<unsigned>& s, unsigned level = 1) {
+    l.push_back(level);
+    s.push_back(sym.size());
+    
+    for (unsigned i = 0; i < sym.args().size(); ++i) {
+        set_size_levels(sym.args()[i], l, s, level+1);
+    }
+}
+
+
+bool size_level_xover(Sym& a, const Sym& b) {
+    
+    Sym org = a;
+        
+    vector<unsigned> levela;
+    vector<unsigned> sizesa;
+    vector<unsigned> levelb;
+    vector<unsigned> sizesb;
+
+    set_size_levels(a, levela, sizesa);
+    set_size_levels(b, levelb, sizesb);
+
+    unsigned p0;
+    unsigned p1;
+    
+    for (unsigned tries = 0;; ++tries) {
+        p0 = rng.random(a.size());
+        p1 = rng.random(b.size());
+        
+        if (tries < 5 && (sizesa[p0] != sizesb[p1] && levela[p0] != levelb[p1])) {
+            continue;   
+        }
+
+        break;
+    }
+
+    a = insert_subtree(a, p0, get_subtree(b, p1));
+
+    return org != a;
+    
 }
 
 

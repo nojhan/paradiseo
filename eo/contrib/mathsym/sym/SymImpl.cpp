@@ -47,7 +47,7 @@ SymArgs::SymArgs(const SymArgs& args) : pimpl(0), args_ptr(args.args_ptr) {
     } 
 }
 
-const SymArgs& SymArgs::operator=(const SymArgs& args) {
+SymArgs& SymArgs::operator=(const SymArgs& args) {
     if (args.pimpl && args.args_ptr == &args.pimpl->owned_args) {
 	pimpl = new SymArgsImpl(*args.pimpl);
 	args_ptr = &pimpl->owned_args;

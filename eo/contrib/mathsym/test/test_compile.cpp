@@ -109,7 +109,9 @@ int main() {
 	multi_function f = compile(pop);
 	compile_time = time(0);
 	vector<double> out(pop.size());
-	
+        
+        cout << "Compiled" << endl;
+        	
 	for (unsigned j = 0; j < dataset.n_records(); ++j) {
 	    f(&dataset.get_inputs(j)[0], &out[0]);
 	}

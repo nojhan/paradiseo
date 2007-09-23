@@ -18,8 +18,8 @@
 #ifndef SYMMUTATE_H
 #define SYMMUTATE_H
 
-#include <TreeBuilder.h>
-#include <NodeSelector.h>
+#include <gen/TreeBuilder.h>
+#include <gen/NodeSelector.h>
 
 #include <eoSym.h>
 #include <eoOp.h>

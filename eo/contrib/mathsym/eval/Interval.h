@@ -77,39 +77,6 @@ std::ostream& operator<<(std::ostream& os, const Interval& val) {
 }
 
 #ifdef TEST_INTERVAL
-using namespace std;
-using namespace boost::numeric;
-
-int main() {
-    Interval a(0, 10);
-    Interval b(-1.5, 2);
-    cout << "a       = " << a << endl;
-    cout << "b       = " << b << endl;
-    cout << "a + b   = " << a + b << endl;
-    cout << "a - b   = " << a - b << endl;
-    cout << "b - a   = " << b - a << endl;
-    cout << "-a      = " << -a << endl;
-    cout << "a * b   = " << a * b << endl;
-    cout << "b/(a+1) = " << b / (a + 1.0) << endl;
-    cout << "b * a   = " << b * a << endl;
-
-    cout << "b / a   = " << b/a << endl;
-    
-    cout << "cos(a)  = " << cos(a) << endl;
-    cout << "cos(b)  = " << cos(b) << endl;
-   
-    cout << "log(b)  = " << log(b) << endl;
-    
-    cout << "sqrt(b) = " << sqrt(b) << endl;
-    cout << "sqrt(a) = " << sqrt(a) << endl;
-    cout << "sqr(b)  = " << sqr(b) << endl;
-   
-    cout << "exp(b*a)= " << exp(b*a) << endl;
-   
-    cout << "atan(a) = " << atan(a) << endl;
-    cout << "cosh(b) = " << cosh(b) << endl;
-    
-}
 #endif
 
 #endif

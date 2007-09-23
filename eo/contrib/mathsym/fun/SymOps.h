@@ -18,7 +18,7 @@
 #ifndef SYMOPS_H
 #define SYMOPS_H
 
-#include "Sym.h"
+#include "sym/Sym.h"
 
 extern Sym operator+(Sym a, Sym b);
 extern Sym operator*(Sym a, Sym b);

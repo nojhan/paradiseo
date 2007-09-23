@@ -18,7 +18,7 @@
 #ifndef LANGUAGE_TABLE_H
 #define LANGUAGE_TABLE_H
 
-#include "token.h"
+#include <sym/token.h>
 
 class LanguageImpl;
 class Sym;

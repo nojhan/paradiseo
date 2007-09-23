@@ -63,11 +63,10 @@ bool mutate_constants(Sym& sym, double stdev) {
     }
     
     for (unsigned i = 0; i < values.size(); ++i) {
-	values[i] += rng.normal() * stdev;
+	values[i] += rng.normal() * stdev / values.size();
     }
     
     sym = set_constants(sym, values);
-
     return true;
 }
 

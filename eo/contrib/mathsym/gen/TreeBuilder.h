@@ -18,7 +18,7 @@
 #ifndef TREEBUILDER_H_
 #define TREEBUILDER_H_
 
-#include "Sym.h"
+#include "sym/Sym.h"
 #include "LanguageTable.h"
 
 class TreeBuilder {

@@ -38,6 +38,9 @@ struct UniqueNodeStats { virtual ~UniqueNodeStats(){} };
 #else
 #define USE_TR1 0
 #endif
+// TR1 is buggy at times
+#undef USE_TR1
+#define USE_TR1 0
 
 #if USE_TR1
 #include <tr1/unordered_map>

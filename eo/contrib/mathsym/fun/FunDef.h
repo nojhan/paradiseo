@@ -23,8 +23,8 @@
 #include <memory>
 #include <iostream>
 
-#include "Sym.h"
-#include "Interval.h"
+#include "sym/Sym.h"
+#include "eval/Interval.h"
 
 class FunDef {
     public:

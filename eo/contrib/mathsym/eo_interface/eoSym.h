@@ -19,8 +19,8 @@
 #define EOSYM_H_
 
 #include <EO.h>
-#include <Sym.h>
-#include <FunDef.h>
+#include <sym/Sym.h>
+#include <fun/FunDef.h>
 
 
 template <class Fitness>

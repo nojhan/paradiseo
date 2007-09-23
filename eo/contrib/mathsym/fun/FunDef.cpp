@@ -247,8 +247,6 @@ class Const : public FunDef {
 	}
 	
 	Interval eval(const vector<Interval>& _, const vector<Interval>& inputs) const { 
-	    // Profil/Bias seems to have a problem with 0 * inf when the Interval is exact zero (fpe)
-	    //if (value == 0.0) return Interval(-BiasEpsilon,BiasEpsilon);
 	    return Interval(value); 
 	}
 

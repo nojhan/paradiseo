@@ -47,7 +47,7 @@ class SymArgs {
     ~SymArgs();
 
     SymArgs(const SymArgs& args);
-    const SymArgs& SymArgs::operator=(const SymArgs& other);
+    SymArgs& operator=(const SymArgs& other);
 
     size_t len() const;
     const std::vector<Sym>& vec() const { return *args_ptr; }

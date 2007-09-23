@@ -115,7 +115,7 @@ int main(int argc, char* argv[]) {
     
     /* Population */
 
-    unsigned pop_size = parser.createParam(1500u, "population-size", "Population Size", 'p', string("Population")).value();
+    unsigned pop_size = parser.createParam(500u, "population-size", "Population Size", 'p', string("Population")).value();
   
     uint32_t seed = parser.createParam( uint32_t(time(0)), "random-seed", "Seed for rng", 'D').value();
 
@@ -274,7 +274,7 @@ int main(int argc, char* argv[]) {
     genetic_operator.add( submutate, subtree_mut_prob);
    
     // todo, make this parameter, etc
-    double std = 0.01;
+    double std = 1.0;
     eoSymConstantMutate<EoType> constmutate(std);
     genetic_operator.add(constmutate, constant_mut_prob);
     
@@ -285,7 +285,8 @@ int main(int argc, char* argv[]) {
 //    genetic_operator.add(lambda_mutate, lambda_mut_prob); // TODO: prob should be settable
     
     //eoQuadSubtreeCrossover<EoType> quad(node_selector);
-    eoBinSubtreeCrossover<EoType> bin(node_selector);
+    eoSizeLevelCrossover<EoType> bin;//(node_selector);
+    //eoBinSubtreeCrossover<EoType> bin(node_selector);
     genetic_operator.add(bin, subtree_xover_prob);
     
     eoBinHomologousCrossover<EoType> hom;
@@ -298,7 +299,7 @@ int main(int argc, char* argv[]) {
     eoSymPopEval<EoType> evaluator(check, measure, maximumSize);
     
     eoDetTournamentSelect<EoType> selectOne(tournamentsize);
-    eoGeneralBreeder<EoType> breeder(selectOne, genetic_operator);
+    eoGeneralBreeder<EoType> breeder(selectOne, genetic_operator,1);
     eoPlusReplacement<EoType> replace;
 
     // Terminators

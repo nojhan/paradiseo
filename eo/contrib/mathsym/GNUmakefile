@@ -19,7 +19,7 @@ CXXSOURCES=FunDef.cpp Sym.cpp SymImpl.cpp SymOps.cpp sym_compile.cpp TreeBuilder
 	Dataset.cpp ErrorMeasure.cpp Scaling.cpp TargetInfo.cpp BoundsCheck.cpp util.cpp NodeSelector.cpp\
 	eoSymCrossover.cpp sym_operations.cpp eoSymMutate.cpp eoSymLambdaMutate.cpp MultiFunction.cpp
 
-TESTPROGRAMS=test/test_compile test/testeo test/test_simplify test/test_diff test/test_lambda test/test_mf
+TESTPROGRAMS=test/test_compile test/testeo test/test_simplify test/test_diff test/test_lambda test/test_mf test/test_interval
 
 OBJS= $(CXXSOURCES:.cpp=.o) c_compile.o
 
@@ -40,7 +40,7 @@ libsym.a: $(OBJS)
 	rm libsym.a; ar cq $(SYMLIB) $(OBJS) 
 
 check: $(TESTPROGRAMS)
-	test/test_compile && test/testeo && test/test_simplify && test/test_diff && test/test_lambda && echo "all tests succeeded"
+	test/test_compile && test/test_interval && test/testeo && test/test_simplify && test/test_diff && test/test_lambda && echo "all tests succeeded"
 
 test/test_compile: test/test_compile.o ${SYMLIB}
 	$(CXX) -o test/test_compile test/test_compile.o $(SYMLIB) ${LIBS}
@@ -59,6 +59,10 @@ test/test_lambda: test/test_lambda.o $(SYMLIB)
 
 test/test_mf: test/test_mf.o $(SYMLIB)
 	$(CXX) -o test/test_mf test/test_mf.o  $(SYMLIB) ${LIBS}
+
+test/test_interval: test/test_interval.o
+	$(CXX) -o test/test_interval test/test_interval.o  $(SYMLIB) ${LIBS}
+
 
 # eo
 ../../src/libeo.a:

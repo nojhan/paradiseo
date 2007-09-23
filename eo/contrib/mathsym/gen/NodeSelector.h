@@ -18,7 +18,7 @@
 #ifndef NODESELECTOR_H
 #define NODESELECTOR_H
 
-#include <Sym.h>
+#include <sym/Sym.h>
 
 /** Base class for selecting nodes */
 class NodeSelector {

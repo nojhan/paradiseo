@@ -19,7 +19,7 @@
 #define SYMCOMPILE_H_
 
 #include <vector>
-
+#include <sym/Sym.h>
 
 typedef double (*single_function)(const double []);
 typedef double (*multi_function)(const double[], double[]);

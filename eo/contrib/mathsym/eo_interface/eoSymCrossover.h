@@ -60,5 +60,14 @@ class eoBinHomologousCrossover : public eoBinOp<EoType> {
 };
 
 
+extern bool size_level_xover(Sym& a, const Sym& b);
+template <class EoType>
+class eoSizeLevelCrossover : public eoBinOp<EoType> {
+    public:
+	bool operator()(EoType& a, const EoType& b) {
+	    return size_level_xover(a,b);
+	}
+};
+
 #endif
 
