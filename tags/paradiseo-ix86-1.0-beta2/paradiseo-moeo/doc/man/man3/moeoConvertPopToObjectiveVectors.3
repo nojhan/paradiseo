@@ -1,0 +1,47 @@
+.TH "moeoConvertPopToObjectiveVectors" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoConvertPopToObjectiveVectors \- Functor allowing to get a vector of objective vectors from a population.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoConvertPopToObjectiveVectors.h>\fP
+.PP
+Inherits \fBeoUF< A1, R >< eoPop< MOEOT >, std::vector< ObjectiveVector > >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "const std::vector< ObjectiveVector > \fBoperator()\fP (const \fBeoPop\fP< MOEOT > _pop)"
+.br
+.RI "\fIReturns a vector of the objective vectors from the population _pop. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT, class ObjectiveVector = typename MOEOT::ObjectiveVector> class moeoConvertPopToObjectiveVectors< MOEOT, ObjectiveVector >"
+Functor allowing to get a vector of objective vectors from a population. 
+.PP
+Definition at line 23 of file moeoConvertPopToObjectiveVectors.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT, class ObjectiveVector = typename MOEOT::ObjectiveVector> const std::vector< ObjectiveVector > \fBmoeoConvertPopToObjectiveVectors\fP< MOEOT, ObjectiveVector >::operator() (const \fBeoPop\fP< MOEOT > _pop)\fC [inline]\fP"
+.PP
+Returns a vector of the objective vectors from the population _pop. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Definition at line 31 of file moeoConvertPopToObjectiveVectors.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.

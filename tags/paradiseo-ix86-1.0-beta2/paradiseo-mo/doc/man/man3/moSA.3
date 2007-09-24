@@ -1,0 +1,130 @@
+.TH "moSA" 3 "5 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moSA \- Simulated Annealing (SA).  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moSA.h>\fP
+.PP
+Inherits \fBmoAlgo< M::EOType >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoSA\fP (\fBmoRandMove\fP< M > &__move_rand, \fBmoMoveIncrEval\fP< M > &__incr_eval, \fBmoSolContinue\fP< \fBEOT\fP > &__cont, double __init_temp, \fBmoCoolingSchedule\fP &__cool_sched, \fBeoEvalFunc\fP< \fBEOT\fP > &__full_eval)"
+.br
+.RI "\fISA constructor. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (\fBEOT\fP &__sol)"
+.br
+.RI "\fIfunction that launches the SA algorithm. \fP"
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "typedef M::EOType \fBEOT\fP"
+.br
+.RI "\fIAlias for the type. \fP"
+.ti -1c
+.RI "typedef EOT::Fitness \fBFitness\fP"
+.br
+.RI "\fIAlias for the fitness. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmoRandMove\fP< M > & \fBmove_rand\fP"
+.br
+.RI "\fIA move generator (generally randomly). \fP"
+.ti -1c
+.RI "\fBmoMoveIncrEval\fP< M > & \fBincr_eval\fP"
+.br
+.RI "\fIA (generally) efficient evaluation function. \fP"
+.ti -1c
+.RI "\fBmoSolContinue\fP< \fBEOT\fP > & \fBcont\fP"
+.br
+.RI "\fIStopping criterion before temperature update. \fP"
+.ti -1c
+.RI "double \fBinit_temp\fP"
+.br
+.RI "\fIInitial temperature. \fP"
+.ti -1c
+.RI "\fBmoCoolingSchedule\fP & \fBcool_sched\fP"
+.br
+.RI "\fIThe cooling schedule. \fP"
+.ti -1c
+.RI "\fBeoEvalFunc\fP< \fBEOT\fP > & \fBfull_eval\fP"
+.br
+.RI "\fIA full evaluation function. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class M> class moSA< M >"
+Simulated Annealing (SA). 
+
+Class that describes a Simulated Annealing algorithm. 
+.PP
+Definition at line 30 of file moSA.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class M> \fBmoSA\fP< M >::\fBmoSA\fP (\fBmoRandMove\fP< M > & __move_rand, \fBmoMoveIncrEval\fP< M > & __incr_eval, \fBmoSolContinue\fP< \fBEOT\fP > & __cont, double __init_temp, \fBmoCoolingSchedule\fP & __cool_sched, \fBeoEvalFunc\fP< \fBEOT\fP > & __full_eval)\fC [inline]\fP"
+.PP
+SA constructor. 
+.PP
+All the boxes used by a SA need to be given.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__move_rand\fP a move generator (generally randomly). 
+.br
+\fI__incr_eval\fP a (generaly) efficient evaluation function 
+.br
+\fI__cont\fP a stopping criterion. 
+.br
+\fI__init_temp\fP the initial temperature. 
+.br
+\fI__cool_sched\fP a cooling schedule, describes how the temperature is modified. 
+.br
+\fI__full_eval\fP a full evaluation function. 
+.RE
+.PP
+
+.PP
+Definition at line 58 of file moSA.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class M> bool \fBmoSA\fP< M >::operator() (\fBEOT\fP & __sol)\fC [inline, virtual]\fP"
+.PP
+function that launches the SA algorithm. 
+.PP
+As a \fBmoTS\fP or a \fBmoHC\fP, the SA can be used for HYBRIDATION in an evolutionary algorithm.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__sol\fP a solution to improve. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+TRUE. 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< M::EOType &, bool >\fP.
+.PP
+Definition at line 80 of file moSA.h.
+.PP
+References moSA< M >::cont, moSA< M >::cool_sched, moSA< M >::full_eval, moSA< M >::incr_eval, moSA< M >::init_temp, moSA< M >::move_rand, and eoRng::uniform().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PARADISEO-MO from the source code.

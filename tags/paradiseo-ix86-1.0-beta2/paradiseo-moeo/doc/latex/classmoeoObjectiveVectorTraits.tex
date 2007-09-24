@@ -1,0 +1,97 @@
+\section{moeo\-Objective\-Vector\-Traits Class Reference}
+\label{classmoeoObjectiveVectorTraits}\index{moeoObjectiveVectorTraits@{moeoObjectiveVectorTraits}}
+A traits class for \doxyref{moeo\-Objective\-Vector}{p.}{classmoeoObjectiveVector} to specify the number of objectives and which ones have to be minimized or maximized.  
+
+
+{\tt \#include $<$moeo\-Objective\-Vector\-Traits.h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{CompactItemize}
+\item 
+static void \bf{setup} (unsigned int \_\-n\-Objectives, std::vector$<$ bool $>$ \&\_\-b\-Objectives)
+\begin{CompactList}\small\item\em \doxyref{Parameters} setting. \item\end{CompactList}\item 
+static unsigned int \bf{n\-Objectives} ()\label{classmoeoObjectiveVectorTraits_5befa177fc91ead8234bac7ce9d1e587}
+
+\begin{CompactList}\small\item\em Returns the number of objectives. \item\end{CompactList}\item 
+static bool \bf{minimizing} (unsigned int \_\-i)
+\begin{CompactList}\small\item\em Returns true if the \_\-ith objective have to be minimized. \item\end{CompactList}\item 
+static bool \bf{maximizing} (unsigned int \_\-i)
+\begin{CompactList}\small\item\em Returns true if the \_\-ith objective have to be maximized. \item\end{CompactList}\item 
+static double \bf{tolerance} ()\label{classmoeoObjectiveVectorTraits_c1199e4f019ec88a0365db81e9ab8d1f}
+
+\begin{CompactList}\small\item\em Returns the tolerance value (to compare solutions). \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Private Attributes}
+\begin{CompactItemize}
+\item 
+static unsigned int \bf{n\-Obj}\label{classmoeoObjectiveVectorTraits_77b639889ffc6d306d4dfded5a160236}
+
+\begin{CompactList}\small\item\em The number of objectives. \item\end{CompactList}\item 
+static std::vector$<$ bool $>$ \bf{b\-Obj}\label{classmoeoObjectiveVectorTraits_db329d416c75711f671c9d7cffb06299}
+
+\begin{CompactList}\small\item\em The min/max vector. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+A traits class for \doxyref{moeo\-Objective\-Vector}{p.}{classmoeoObjectiveVector} to specify the number of objectives and which ones have to be minimized or maximized. 
+
+
+
+Definition at line 23 of file moeo\-Objective\-Vector\-Traits.h.
+
+\subsection{Member Function Documentation}
+\index{moeoObjectiveVectorTraits@{moeo\-Objective\-Vector\-Traits}!setup@{setup}}
+\index{setup@{setup}!moeoObjectiveVectorTraits@{moeo\-Objective\-Vector\-Traits}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}static void moeo\-Objective\-Vector\-Traits::setup (unsigned int {\em \_\-n\-Objectives}, std::vector$<$ bool $>$ \& {\em \_\-b\-Objectives})\hspace{0.3cm}{\tt  [inline, static]}}\label{classmoeoObjectiveVectorTraits_327c1994f1b5aa3d6b5c8cae0b971191}
+
+
+\doxyref{Parameters} setting. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-n\-Objectives}]the number of objectives \item[{\em \_\-b\-Objectives}]the min/max vector (true = min / false = max) \end{description}
+\end{Desc}
+
+
+Definition at line 32 of file moeo\-Objective\-Vector\-Traits.h.
+
+References b\-Obj, and n\-Obj.\index{moeoObjectiveVectorTraits@{moeo\-Objective\-Vector\-Traits}!minimizing@{minimizing}}
+\index{minimizing@{minimizing}!moeoObjectiveVectorTraits@{moeo\-Objective\-Vector\-Traits}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}static bool moeo\-Objective\-Vector\-Traits::minimizing (unsigned int {\em \_\-i})\hspace{0.3cm}{\tt  [inline, static]}}\label{classmoeoObjectiveVectorTraits_1478ae3006747619aa9ef3c016bdc831}
+
+
+Returns true if the \_\-ith objective have to be minimized. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-i}]the index \end{description}
+\end{Desc}
+
+
+Definition at line 67 of file moeo\-Objective\-Vector\-Traits.h.
+
+References b\-Obj.
+
+Referenced by maximizing().\index{moeoObjectiveVectorTraits@{moeo\-Objective\-Vector\-Traits}!maximizing@{maximizing}}
+\index{maximizing@{maximizing}!moeoObjectiveVectorTraits@{moeo\-Objective\-Vector\-Traits}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}static bool moeo\-Objective\-Vector\-Traits::maximizing (unsigned int {\em \_\-i})\hspace{0.3cm}{\tt  [inline, static]}}\label{classmoeoObjectiveVectorTraits_c8e1a93d8c8480c391a007969ae652df}
+
+
+Returns true if the \_\-ith objective have to be maximized. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-i}]the index \end{description}
+\end{Desc}
+
+
+Definition at line 80 of file moeo\-Objective\-Vector\-Traits.h.
+
+References minimizing().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+moeo\-Objective\-Vector\-Traits.h\item 
+moeo\-Objective\-Vector\-Traits.cpp\end{CompactItemize}

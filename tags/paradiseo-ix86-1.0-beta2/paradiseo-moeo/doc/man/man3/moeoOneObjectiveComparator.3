@@ -1,0 +1,79 @@
+.TH "moeoOneObjectiveComparator" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoOneObjectiveComparator \- Functor allowing to compare two solutions according to one objective.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoOneObjectiveComparator.h>\fP
+.PP
+Inherits \fBmoeoComparator< MOEOT >< MOEOT >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoOneObjectiveComparator\fP (unsigned int _obj)"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "const bool \fBoperator()\fP (const MOEOT &_moeo1, const MOEOT &_moeo2)"
+.br
+.RI "\fIReturns true if _moeo1 < _moeo2 on the obj objective. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBobj\fP"
+.br
+.RI "\fIthe index of objective \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT> class moeoOneObjectiveComparator< MOEOT >"
+Functor allowing to compare two solutions according to one objective. 
+.PP
+Definition at line 22 of file moeoOneObjectiveComparator.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class MOEOT> \fBmoeoOneObjectiveComparator\fP< MOEOT >::\fBmoeoOneObjectiveComparator\fP (unsigned int _obj)\fC [inline]\fP"
+.PP
+Ctor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_obj\fP the index of objective 
+.RE
+.PP
+
+.PP
+Definition at line 30 of file moeoOneObjectiveComparator.h.
+.PP
+References moeoOneObjectiveComparator< MOEOT >::obj.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT> const bool \fBmoeoOneObjectiveComparator\fP< MOEOT >::operator() (const MOEOT & _moeo1, const MOEOT & _moeo2)\fC [inline]\fP"
+.PP
+Returns true if _moeo1 < _moeo2 on the obj objective. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_moeo1\fP the first solution 
+.br
+\fI_moeo2\fP the second solution 
+.RE
+.PP
+
+.PP
+Definition at line 44 of file moeoOneObjectiveComparator.h.
+.PP
+References moeoOneObjectiveComparator< MOEOT >::obj.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO from the source code.
