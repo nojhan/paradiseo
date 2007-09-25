@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>ParadisEO-MOMovingObjects: moTabuList&lt; M &gt; Class Template Reference</title>
+<title>PARADISEO-MO: moTabuList&lt; M &gt; Class Template Reference</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -8,7 +8,6 @@
 <div class="tabs">
   <ul>
     <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
-    <li><a href="namespaces.html"><span>Namespaces</span></a></li>
     <li class="current"><a href="classes.html"><span>Classes</span></a></li>
     <li><a href="files.html"><span>Files</span></a></li>
     <li>
@@ -31,7 +30,7 @@
     <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
   </ul>
 </div>
-<h1>moTabuList&lt; M &gt; Class Template Reference</h1><!-- doxytag: class="moTabuList" -->Class describing a tabu list that a <a class="el" href="classmo_t_s.html" title="Tabu Search (TS).">moTS</a> uses.  
+<h1>moTabuList&lt; M &gt; Class Template Reference</h1><!-- doxytag: class="moTabuList" --><!-- doxytag: inherits="eoBF&lt; const M &amp;, const M::EOType &amp;, bool &gt;" -->Class describing a tabu list that a <a class="el" href="classmo_t_s.html" title="Tabu Search (TS).">moTS</a> uses.  
 <a href="#_details">More...</a>
 <p>
 <code>#include &lt;<a class="el" href="mo_tabu_list_8h-source.html">moTabuList.h</a>&gt;</code>
@@ -39,8 +38,10 @@
 <p>Inheritance diagram for moTabuList&lt; M &gt;:
 <p><center><img src="classmo_tabu_list.png" usemap="#moTabuList< M >_map" border="0" alt=""></center>
 <map name="moTabuList< M >_map">
-<area href="classmo_simple_move_tabu_list.html" alt="moSimpleMoveTabuList< M >" shape="rect" coords="0,56,192,80">
-<area href="classmo_simple_solution_tabu_list.html" alt="moSimpleSolutionTabuList< M >" shape="rect" coords="202,56,394,80">
+<area doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_b_f.html" alt="eoBF< const M &, const M::EOType &, bool >" shape="rect" coords="145,56,425,80">
+<area doxygen="eo.doxytag:../../../paradiseo-eo/doc/html/" href="../../../paradiseo-eo/doc/html/classeo_functor_base.html" alt="eoFunctorBase" shape="rect" coords="145,0,425,24">
+<area href="classmo_simple_move_tabu_list.html" alt="moSimpleMoveTabuList< M >" shape="rect" coords="0,168,280,192">
+<area href="classmo_simple_solution_tabu_list.html" alt="moSimpleSolutionTabuList< M >" shape="rect" coords="290,168,570,192">
 </map>
 <a href="classmo_tabu_list-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
@@ -135,7 +136,7 @@ Procedure that updates the tabu list content.
 <p>
 Generally, a counter associated to each saved move is decreased by one. 
 <p>
-Implemented in <a class="el" href="classmo_simple_move_tabu_list.html#96cffc8118456ed762b07b9fc0e0679f">moSimpleMoveTabuList&lt; M &gt;</a>, <a class="el" href="classmo_simple_solution_tabu_list.html#91b8b01dba7ffea8b63765d931e56f56">moSimpleSolutionTabuList&lt; M &gt;</a>, and <a class="el" href="class_two_opt_tabu_list.html#c460034b7debe7198c6df046855155da">TwoOptTabuList</a>.
+Implemented in <a class="el" href="classmo_simple_move_tabu_list.html#96cffc8118456ed762b07b9fc0e0679f">moSimpleMoveTabuList&lt; M &gt;</a>, and <a class="el" href="classmo_simple_solution_tabu_list.html#91b8b01dba7ffea8b63765d931e56f56">moSimpleSolutionTabuList&lt; M &gt;</a>.
 </div>
 </div><p>
 <a class="anchor" name="0a06c459d56e8e2b408a8f3c6aec4e57"></a><!-- doxytag: member="moTabuList::init" ref="0a06c459d56e8e2b408a8f3c6aec4e57" args="()=0" -->
@@ -160,12 +161,12 @@ Procedure which initialises the tabu list.
 <p>
 Can be useful if the data structure needs to be allocated before being used. 
 <p>
-Implemented in <a class="el" href="classmo_simple_move_tabu_list.html#b91ae9971be30769757d1ad92c6009dc">moSimpleMoveTabuList&lt; M &gt;</a>, <a class="el" href="classmo_simple_solution_tabu_list.html#d5645c39fec71a6110a2cbccbb08b816">moSimpleSolutionTabuList&lt; M &gt;</a>, and <a class="el" href="class_two_opt_tabu_list.html#2d3101e6045700b0e32f5e82672a175e">TwoOptTabuList</a>.
+Implemented in <a class="el" href="classmo_simple_move_tabu_list.html#b91ae9971be30769757d1ad92c6009dc">moSimpleMoveTabuList&lt; M &gt;</a>, and <a class="el" href="classmo_simple_solution_tabu_list.html#d5645c39fec71a6110a2cbccbb08b816">moSimpleSolutionTabuList&lt; M &gt;</a>.
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="mo_tabu_list_8h-source.html">moTabuList.h</a></ul>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Sep 20 11:30:29 2007 for ParadisEO-MOMovingObjects by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue Sep 25 16:25:47 2007 for PARADISEO-MO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.2 </small></address>
 </body>

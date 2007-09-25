@@ -1,4 +1,4 @@
-.TH "moBestImprSelect" 3 "20 Sep 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.TH "moBestImprSelect" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -30,7 +30,7 @@ Inherits \fBmoMoveSelect< M >< M >\fP.
 .ti -1c
 .RI "bool \fBupdate\fP (const M &__move, const \fBFitness\fP &__fit)"
 .br
-.RI "\fIFunction that indicates if the current move has not improved the fitness. \fP"
+.RI "\fI\fBFunction\fP that indicates if the current move has not improved the fitness. \fP"
 .ti -1c
 .RI "void \fBoperator()\fP (M &__move, \fBFitness\fP &__fit)  throw (EmptySelection)"
 .br
@@ -65,7 +65,7 @@ Definition at line 22 of file moBestImprSelect.h.
 .PP 
 .SS "template<class M> bool \fBmoBestImprSelect\fP< M >::update (const M & __move, const \fBFitness\fP & __fit)\fC [inline, virtual]\fP"
 .PP
-Function that indicates if the current move has not improved the fitness. 
+\fBFunction\fP that indicates if the current move has not improved the fitness. 
 .PP
 If the given fitness enables an improvment, the move (\fBmoMove\fP) and the fitness linked to this move are saved.
 .PP
@@ -88,7 +88,7 @@ Implements \fBmoMoveSelect< M >\fP.
 Definition at line 47 of file moBestImprSelect.h.
 .PP
 References moBestImprSelect< M >::best_fit, moBestImprSelect< M >::best_move, and moBestImprSelect< M >::first_time.
-.SS "template<class M> void \fBmoBestImprSelect\fP< M >::operator() (M & __move, \fBFitness\fP & __fit)  throw (\fBEmptySelection\fP)\fC [inline]\fP"
+.SS "template<class M> void \fBmoBestImprSelect\fP< M >::operator() (M & __move, \fBFitness\fP & __fit)  throw (\fBEmptySelection\fP)\fC [inline, virtual]\fP"
 .PP
 Procedure which saved the best move and fitness. 
 .PP
@@ -106,10 +106,12 @@ Procedure which saved the best move and fitness.
 .PP
 
 .PP
+Implements \fBeoBF< M &, M::EOType::Fitness &, void >\fP.
+.PP
 Definition at line 68 of file moBestImprSelect.h.
 .PP
 References moBestImprSelect< M >::best_fit, moBestImprSelect< M >::best_move, and moBestImprSelect< M >::first_time.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.
+Generated automatically by Doxygen for PARADISEO-MO from the source code.

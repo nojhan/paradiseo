@@ -1,4 +1,4 @@
-.TH "moTSMoveLoopExpl" 3 "20 Sep 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.TH "moTSMoveLoopExpl" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -99,7 +99,7 @@ Definition at line 49 of file moTSMoveLoopExpl.h.
 References moTSMoveLoopExpl< M >::aspir_crit, and moTSMoveLoopExpl< M >::tabu_list.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> void \fBmoTSMoveLoopExpl\fP< M >::operator() (const \fBEOT\fP & __old_sol, \fBEOT\fP & __new_sol)\fC [inline]\fP"
+.SS "template<class M> void \fBmoTSMoveLoopExpl\fP< M >::operator() (const \fBEOT\fP & __old_sol, \fBEOT\fP & __new_sol)\fC [inline, virtual]\fP"
 .PP
 Procedure which lauches the exploration. 
 .PP
@@ -114,10 +114,12 @@ The exploration continues while the chosen move is not in the tabu list or the a
 .PP
 
 .PP
+Implements \fBeoBF< const M::EOType &, M::EOType &, void >\fP.
+.PP
 Definition at line 69 of file moTSMoveLoopExpl.h.
 .PP
 References moTSMoveLoopExpl< M >::aspir_crit, moTSMoveLoopExpl< M >::incr_eval, moTSMoveLoopExpl< M >::move_init, moTSMoveLoopExpl< M >::move_select, moTSMoveLoopExpl< M >::next_move, and moTSMoveLoopExpl< M >::tabu_list.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.
+Generated automatically by Doxygen for PARADISEO-MO from the source code.

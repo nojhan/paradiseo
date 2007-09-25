@@ -1,4 +1,4 @@
-.TH "moSteadyFitSolContinue" 3 "20 Sep 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.TH "moSteadyFitSolContinue" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -30,7 +30,7 @@ Inherits \fBmoSolContinue< EOT >< EOT >\fP.
 .ti -1c
 .RI "bool \fBoperator()\fP (const EOT &__sol)"
 .br
-.RI "\fIFunction that activates the stopping criterion. \fP"
+.RI "\fI\fBFunction\fP that activates the stopping criterion. \fP"
 .ti -1c
 .RI "void \fBinit\fP ()"
 .br
@@ -91,9 +91,9 @@ Basic constructor.
 Definition at line 34 of file moSteadyFitSolContinue.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class EOT> bool \fBmoSteadyFitSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline]\fP"
+.SS "template<class EOT> bool \fBmoSteadyFitSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline, virtual]\fP"
 .PP
-Function that activates the stopping criterion. 
+\fBFunction\fP that activates the stopping criterion. 
 .PP
 Indicates if the fitness has not been improved since a number of iterations (after a minimum of iterations).
 .PP
@@ -108,6 +108,8 @@ true or false.
 .RE
 .PP
 
+.PP
+Implements \fBeoUF< const EOT &, bool >\fP.
 .PP
 Definition at line 46 of file moSteadyFitSolContinue.h.
 .PP
@@ -126,4 +128,4 @@ References moSteadyFitSolContinue< EOT >::counter, moSteadyFitSolContinue< EOT >
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.
+Generated automatically by Doxygen for PARADISEO-MO from the source code.

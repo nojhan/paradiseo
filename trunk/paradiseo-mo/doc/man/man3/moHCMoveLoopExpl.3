@@ -1,4 +1,4 @@
-.TH "moHCMoveLoopExpl" 3 "20 Sep 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.TH "moHCMoveLoopExpl" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -87,7 +87,7 @@ All the boxes have to be specified.
 Definition at line 43 of file moHCMoveLoopExpl.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> void \fBmoHCMoveLoopExpl\fP< M >::operator() (const \fBEOT\fP & __old_sol, \fBEOT\fP & __new_sol)\fC [inline]\fP"
+.SS "template<class M> void \fBmoHCMoveLoopExpl\fP< M >::operator() (const \fBEOT\fP & __old_sol, \fBEOT\fP & __new_sol)\fC [inline, virtual]\fP"
 .PP
 Procedure which launches the explorer. 
 .PP
@@ -102,10 +102,12 @@ The exploration starts from an old solution and provides a new solution.
 .PP
 
 .PP
+Implements \fBeoBF< const M::EOType &, M::EOType &, void >\fP.
+.PP
 Definition at line 59 of file moHCMoveLoopExpl.h.
 .PP
 References moHCMoveLoopExpl< M >::incr_eval, moHCMoveLoopExpl< M >::move_init, moHCMoveLoopExpl< M >::move_select, and moHCMoveLoopExpl< M >::next_move.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.
+Generated automatically by Doxygen for PARADISEO-MO from the source code.

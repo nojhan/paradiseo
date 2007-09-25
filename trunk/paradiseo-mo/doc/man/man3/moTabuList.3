@@ -1,4 +1,4 @@
-.TH "moTabuList" 3 "20 Sep 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.TH "moTabuList" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -9,6 +9,8 @@ moTabuList \- Class describing a tabu list that a \fBmoTS\fP uses.
 .br
 .PP
 \fC#include <moTabuList.h>\fP
+.PP
+Inherits \fBeoBF< const M &, const M::EOType &, bool >\fP.
 .PP
 Inherited by \fBmoSimpleMoveTabuList< M >\fP, and \fBmoSimpleSolutionTabuList< M >\fP.
 .PP
@@ -69,15 +71,15 @@ Procedure that updates the tabu list content.
 .PP
 Generally, a counter associated to each saved move is decreased by one. 
 .PP
-Implemented in \fBmoSimpleMoveTabuList< M >\fP, \fBmoSimpleSolutionTabuList< M >\fP, and \fBTwoOptTabuList\fP.
+Implemented in \fBmoSimpleMoveTabuList< M >\fP, and \fBmoSimpleSolutionTabuList< M >\fP.
 .SS "template<class M> virtual void \fBmoTabuList\fP< M >::init ()\fC [pure virtual]\fP"
 .PP
 Procedure which initialises the tabu list. 
 .PP
 Can be useful if the data structure needs to be allocated before being used. 
 .PP
-Implemented in \fBmoSimpleMoveTabuList< M >\fP, \fBmoSimpleSolutionTabuList< M >\fP, and \fBTwoOptTabuList\fP.
+Implemented in \fBmoSimpleMoveTabuList< M >\fP, and \fBmoSimpleSolutionTabuList< M >\fP.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.
+Generated automatically by Doxygen for PARADISEO-MO from the source code.

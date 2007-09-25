@@ -8,7 +8,7 @@ One of the possible \doxyref{moNextMove}{p.}{classmo_next_move}.
 Inheritance diagram for moItRandNextMove$<$ M $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{classmo_it_rand_next_move}
+\includegraphics[height=4cm]{classmo_it_rand_next_move}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -57,7 +57,7 @@ Definition at line 22 of file moItRandNextMove.h.
 
 The constructor. 
 
-Parameters only for initialising the attributes.
+{\bf Parameters} only for initialising the attributes.
 
 \begin{Desc}
 \item[Parameters:]
@@ -71,7 +71,7 @@ Definition at line 37 of file moItRandNextMove.h.
 \subsection{Member Function Documentation}
 \index{moItRandNextMove@{moItRandNextMove}!operator()@{operator()}}
 \index{operator()@{operator()}!moItRandNextMove@{moItRandNextMove}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf moItRandNextMove}$<$ M $>$::operator() (M \& {\em \_\-\_\-move}, const {\bf EOT} \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_it_rand_next_move_92a2fbbc02a20853b9a309e99018a102}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf moItRandNextMove}$<$ M $>$::operator() (M \& {\em \_\-\_\-move}, const {\bf EOT} \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_it_rand_next_move_92a2fbbc02a20853b9a309e99018a102}
 
 
 Generation of a new move. 
@@ -86,6 +86,8 @@ If the maximum number is not already reached, the current move is forgotten and 
 \begin{Desc}
 \item[Returns:]FALSE if the maximum number of iteration is reached, else TRUE. \end{Desc}
 
+
+Implements {\bf eoBF$<$ M \&, const M::EOType \&, bool $>$}.
 
 Definition at line 52 of file moItRandNextMove.h.
 

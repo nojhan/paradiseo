@@ -8,7 +8,7 @@ One possible stop criterion for a solution-based heuristic.
 Inheritance diagram for moFitSolContinue$<$ EOT $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{classmo_fit_sol_continue}
+\includegraphics[height=4cm]{classmo_fit_sol_continue}
 \end{center}
 \end{figure}
 \subsection*{Public Types}
@@ -23,7 +23,7 @@ typedef EOT::Fitness {\bf Fitness}\label{classmo_fit_sol_continue_369ed94a788d8b
 {\bf moFitSolContinue} ({\bf Fitness} \_\-\_\-fitness)
 \begin{CompactList}\small\item\em Basic constructor. \item\end{CompactList}\item 
 bool {\bf operator()} (const EOT \&\_\-\_\-sol)
-\begin{CompactList}\small\item\em Function that activates the stopping criterion. \item\end{CompactList}\item 
+\begin{CompactList}\small\item\em {\bf Function} that activates the stopping criterion. \item\end{CompactList}\item 
 void {\bf init} ()
 \begin{CompactList}\small\item\em Procedure which allows to initialise all the stuff needed. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
@@ -65,10 +65,10 @@ Definition at line 33 of file moFitSolContinue.h.
 \subsection{Member Function Documentation}
 \index{moFitSolContinue@{moFitSolContinue}!operator()@{operator()}}
 \index{operator()@{operator()}!moFitSolContinue@{moFitSolContinue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf moFitSolContinue}$<$ EOT $>$::operator() (const EOT \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_fit_sol_continue_fa9f0a15f99c998115cae9b456403a27}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf moFitSolContinue}$<$ EOT $>$::operator() (const EOT \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_fit_sol_continue_fa9f0a15f99c998115cae9b456403a27}
 
 
-Function that activates the stopping criterion. 
+{\bf Function} that activates the stopping criterion. 
 
 Indicates if the fitness threshold has not yet been reached.
 
@@ -80,6 +80,8 @@ Indicates if the fitness threshold has not yet been reached.
 \begin{Desc}
 \item[Returns:]true or false according to the value of the fitness. \end{Desc}
 
+
+Implements {\bf eoUF$<$ const EOT \&, bool $>$}.
 
 Definition at line 43 of file moFitSolContinue.h.
 

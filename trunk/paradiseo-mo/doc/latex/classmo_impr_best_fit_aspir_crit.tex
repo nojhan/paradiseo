@@ -8,7 +8,7 @@ One of the possible \doxyref{moAspirCrit}{p.}{classmo_aspir_crit}.
 Inheritance diagram for moImprBestFitAspirCrit$<$ M $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{classmo_impr_best_fit_aspir_crit}
+\includegraphics[height=4cm]{classmo_impr_best_fit_aspir_crit}
 \end{center}
 \end{figure}
 \subsection*{Public Types}
@@ -27,7 +27,7 @@ void {\bf init} ()\label{classmo_impr_best_fit_aspir_crit_ffa451a14ff4ea86fb8bd9
 
 \begin{CompactList}\small\item\em Initialisation procedure. \item\end{CompactList}\item 
 bool {\bf operator()} (const M \&\_\-\_\-move, const {\bf Fitness} \&\_\-\_\-fit)
-\begin{CompactList}\small\item\em Function that indicates if the fit is better that the already saved fit. \item\end{CompactList}\end{CompactItemize}
+\begin{CompactList}\small\item\em {\bf Function} that indicates if the fit is better that the already saved fit. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
 \begin{CompactItemize}
 \item 
@@ -53,10 +53,10 @@ Definition at line 22 of file moImprBestFitAspirCrit.h.
 \subsection{Member Function Documentation}
 \index{moImprBestFitAspirCrit@{moImprBestFitAspirCrit}!operator()@{operator()}}
 \index{operator()@{operator()}!moImprBestFitAspirCrit@{moImprBestFitAspirCrit}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf moImprBestFitAspirCrit}$<$ M $>$::operator() (const M \& {\em \_\-\_\-move}, const {\bf Fitness} \& {\em \_\-\_\-fit})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_impr_best_fit_aspir_crit_53f62fb56dcae3051a741f1fddb0204b}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf moImprBestFitAspirCrit}$<$ M $>$::operator() (const M \& {\em \_\-\_\-move}, const {\bf Fitness} \& {\em \_\-\_\-fit})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_impr_best_fit_aspir_crit_53f62fb56dcae3051a741f1fddb0204b}
 
 
-Function that indicates if the fit is better that the already saved fit. 
+{\bf Function} that indicates if the fit is better that the already saved fit. 
 
 The first time, the function only saved the current move and fitness.
 
@@ -68,6 +68,8 @@ The first time, the function only saved the current move and fitness.
 \begin{Desc}
 \item[Returns:]TRUE the first time and if \_\-\_\-fit $>$ best\_\-fit, else FALSE. \end{Desc}
 
+
+Implements {\bf eoBF$<$ const M \&, const M::EOType::Fitness \&, bool $>$}.
 
 Definition at line 52 of file moImprBestFitAspirCrit.h.
 
