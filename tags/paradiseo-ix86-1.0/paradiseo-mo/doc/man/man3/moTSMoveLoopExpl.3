@@ -1,4 +1,4 @@
-.TH "moTSMoveLoopExpl" 3 "5 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moTSMoveLoopExpl" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -72,7 +72,7 @@ Explorer for a Tabu Search algorithm.
 
 It is used by a \fBmoTS\fP. 
 .PP
-Definition at line 30 of file moTSMoveLoopExpl.h.
+Definition at line 53 of file moTSMoveLoopExpl.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class M> \fBmoTSMoveLoopExpl\fP< M >::\fBmoTSMoveLoopExpl\fP (\fBmoMoveInit\fP< M > & __move_init, \fBmoNextMove\fP< M > & __next_move, \fBmoMoveIncrEval\fP< M > & __incr_eval, \fBmoTabuList\fP< M > & __tabu_list, \fBmoAspirCrit\fP< M > & __aspir_crit)\fC [inline]\fP"
@@ -94,7 +94,7 @@ Constructor.
 .PP
 
 .PP
-Definition at line 49 of file moTSMoveLoopExpl.h.
+Definition at line 72 of file moTSMoveLoopExpl.h.
 .PP
 References moTSMoveLoopExpl< M >::aspir_crit, and moTSMoveLoopExpl< M >::tabu_list.
 .SH "Member Function Documentation"
@@ -116,7 +116,7 @@ The exploration continues while the chosen move is not in the tabu list or the a
 .PP
 Implements \fBeoBF< const M::EOType &, M::EOType &, void >\fP.
 .PP
-Definition at line 69 of file moTSMoveLoopExpl.h.
+Definition at line 92 of file moTSMoveLoopExpl.h.
 .PP
 References moTSMoveLoopExpl< M >::aspir_crit, moTSMoveLoopExpl< M >::incr_eval, moTSMoveLoopExpl< M >::move_init, moTSMoveLoopExpl< M >::move_select, moTSMoveLoopExpl< M >::next_move, and moTSMoveLoopExpl< M >::tabu_list.
 

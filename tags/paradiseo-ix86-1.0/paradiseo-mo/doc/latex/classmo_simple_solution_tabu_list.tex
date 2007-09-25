@@ -1,11 +1,11 @@
-\section{mo\-Simple\-Solution\-Tabu\-List$<$ M $>$ Class Template Reference}
+\section{moSimpleSolutionTabuList$<$ M $>$ Class Template Reference}
 \label{classmo_simple_solution_tabu_list}\index{moSimpleSolutionTabuList@{moSimpleSolutionTabuList}}
 Class describing a solution tabu list with limited length.  
 
 
-{\tt \#include $<$mo\-Simple\-Solution\-Tabu\-List.h$>$}
+{\tt \#include $<$moSimpleSolutionTabuList.h$>$}
 
-Inheritance diagram for mo\-Simple\-Solution\-Tabu\-List$<$ M $>$::\begin{figure}[H]
+Inheritance diagram for moSimpleSolutionTabuList$<$ M $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=4cm]{classmo_simple_solution_tabu_list}
@@ -14,54 +14,54 @@ Inheritance diagram for mo\-Simple\-Solution\-Tabu\-List$<$ M $>$::\begin{figure
 \subsection*{Public Types}
 \begin{CompactItemize}
 \item 
-typedef M::EOType \bf{EOT}\label{classmo_simple_solution_tabu_list_881060871a6b49e5e8554c5df85176d9}
+typedef M::EOType {\bf EOT}\label{classmo_simple_solution_tabu_list_881060871a6b49e5e8554c5df85176d9}
 
 \begin{CompactList}\small\item\em Alias for the type. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-\bf{mo\-Simple\-Solution\-Tabu\-List} (unsigned int \_\-\_\-size)
+{\bf moSimpleSolutionTabuList} (unsigned int \_\-\_\-size)
 \begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
-bool \bf{operator()} (const M \&\_\-\_\-move, const \bf{EOT} \&\_\-\_\-sol)
-\begin{CompactList}\small\item\em \doxyref{Function} that indicates if, in a given state, the \_\-move is tabu or not. \item\end{CompactList}\item 
-void \bf{add} (const M \&\_\-\_\-move, const \bf{EOT} \&\_\-\_\-sol)
+bool {\bf operator()} (const M \&\_\-\_\-move, const {\bf EOT} \&\_\-\_\-sol)
+\begin{CompactList}\small\item\em {\bf Function} that indicates if, in a given state, the \_\-move is tabu or not. \item\end{CompactList}\item 
+void {\bf add} (const M \&\_\-\_\-move, const {\bf EOT} \&\_\-\_\-sol)
 \begin{CompactList}\small\item\em Procedure to add a move in the tabu list. \item\end{CompactList}\item 
-void \bf{update} ()
+void {\bf update} ()
 \begin{CompactList}\small\item\em Procedure that updates the tabu list content. \item\end{CompactList}\item 
-void \bf{init} ()
+void {\bf init} ()
 \begin{CompactList}\small\item\em Procedure which initialises the tabu list. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Member Functions}
 \begin{CompactItemize}
 \item 
-void \bf{remove\-Solution} (const \bf{EOT} \&\_\-\_\-sol)
+void {\bf removeSolution} (const {\bf EOT} \&\_\-\_\-sol)
 \begin{CompactList}\small\item\em Procedure that removes a given solution from the tabu list (if it is into, else does nothing). \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
 \begin{CompactItemize}
 \item 
-unsigned int \bf{max\-Size}\label{classmo_simple_solution_tabu_list_662e1f65fadff234692be009a2440845}
+unsigned int {\bf maxSize}\label{classmo_simple_solution_tabu_list_662e1f65fadff234692be009a2440845}
 
 \begin{CompactList}\small\item\em The maximum size of the tabu list. \item\end{CompactList}\item 
-unsigned int \bf{current\-Size}\label{classmo_simple_solution_tabu_list_2aaf6e882d10495adddae94cb7a48fbf}
+unsigned int {\bf currentSize}\label{classmo_simple_solution_tabu_list_2aaf6e882d10495adddae94cb7a48fbf}
 
 \begin{CompactList}\small\item\em The current size of the tabu list. \item\end{CompactList}\item 
-std::list$<$ \bf{EOT} $>$ \bf{tabu\-List}\label{classmo_simple_solution_tabu_list_75df9cd683528d3722d02bac407b710b}
+std::list$<$ {\bf EOT} $>$ {\bf tabuList}\label{classmo_simple_solution_tabu_list_75df9cd683528d3722d02bac407b710b}
 
 \begin{CompactList}\small\item\em The solution tabu list. \item\end{CompactList}\end{CompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class M$>$ class mo\-Simple\-Solution\-Tabu\-List$<$ M $>$}
+\subsubsection*{template$<$class M$>$ class moSimpleSolutionTabuList$<$ M $>$}
 
 Class describing a solution tabu list with limited length. 
 
 
 
-Definition at line 22 of file mo\-Simple\-Solution\-Tabu\-List.h.
+Definition at line 45 of file moSimpleSolutionTabuList.h.
 
 \subsection{Constructor \& Destructor Documentation}
-\index{moSimpleSolutionTabuList@{mo\-Simple\-Solution\-Tabu\-List}!moSimpleSolutionTabuList@{moSimpleSolutionTabuList}}
-\index{moSimpleSolutionTabuList@{moSimpleSolutionTabuList}!moSimpleSolutionTabuList@{mo\-Simple\-Solution\-Tabu\-List}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ \bf{mo\-Simple\-Solution\-Tabu\-List}$<$ M $>$::\bf{mo\-Simple\-Solution\-Tabu\-List} (unsigned int {\em \_\-\_\-size})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_simple_solution_tabu_list_8f8ce82b49ff49efbd934cedd3e34178}
+\index{moSimpleSolutionTabuList@{moSimpleSolutionTabuList}!moSimpleSolutionTabuList@{moSimpleSolutionTabuList}}
+\index{moSimpleSolutionTabuList@{moSimpleSolutionTabuList}!moSimpleSolutionTabuList@{moSimpleSolutionTabuList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf moSimpleSolutionTabuList}$<$ M $>$::{\bf moSimpleSolutionTabuList} (unsigned int {\em \_\-\_\-size})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_simple_solution_tabu_list_8f8ce82b49ff49efbd934cedd3e34178}
 
 
 Constructor. 
@@ -73,32 +73,34 @@ Constructor.
 \end{Desc}
 
 
-Definition at line 34 of file mo\-Simple\-Solution\-Tabu\-List.h.
+Definition at line 57 of file moSimpleSolutionTabuList.h.
 
-References mo\-Simple\-Solution\-Tabu\-List$<$ M $>$::current\-Size.
+References moSimpleSolutionTabuList$<$ M $>$::currentSize.
 
 \subsection{Member Function Documentation}
-\index{moSimpleSolutionTabuList@{mo\-Simple\-Solution\-Tabu\-List}!operator()@{operator()}}
-\index{operator()@{operator()}!moSimpleSolutionTabuList@{mo\-Simple\-Solution\-Tabu\-List}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool \bf{mo\-Simple\-Solution\-Tabu\-List}$<$ M $>$::operator() (const M \& {\em \_\-\_\-move}, const \bf{EOT} \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_simple_solution_tabu_list_e1f1cf258b55554d8be88fb5780a0047}
+\index{moSimpleSolutionTabuList@{moSimpleSolutionTabuList}!operator()@{operator()}}
+\index{operator()@{operator()}!moSimpleSolutionTabuList@{moSimpleSolutionTabuList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf moSimpleSolutionTabuList}$<$ M $>$::operator() (const M \& {\em \_\-\_\-move}, const {\bf EOT} \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_simple_solution_tabu_list_e1f1cf258b55554d8be88fb5780a0047}
 
 
-\doxyref{Function} that indicates if, in a given state, the \_\-move is tabu or not. 
+{\bf Function} that indicates if, in a given state, the \_\-move is tabu or not. 
 
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em \_\-\_\-move}]A given \doxyref{mo\-Move}{p.}{classmo_move}. \item[{\em \_\-\_\-sol}]A solution. \end{description}
+\item[{\em \_\-\_\-move}]A given \doxyref{moMove}{p.}{classmo_move}. \item[{\em \_\-\_\-sol}]A solution. \end{description}
 \end{Desc}
 \begin{Desc}
 \item[Returns:]true or false. \end{Desc}
 
 
-Definition at line 45 of file mo\-Simple\-Solution\-Tabu\-List.h.
+Implements {\bf eoBF$<$ const M \&, const M::EOType \&, bool $>$}.
 
-References mo\-Simple\-Solution\-Tabu\-List$<$ M $>$::tabu\-List.\index{moSimpleSolutionTabuList@{mo\-Simple\-Solution\-Tabu\-List}!add@{add}}
-\index{add@{add}!moSimpleSolutionTabuList@{mo\-Simple\-Solution\-Tabu\-List}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void \bf{mo\-Simple\-Solution\-Tabu\-List}$<$ M $>$::add (const M \& {\em \_\-\_\-move}, const \bf{EOT} \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_simple_solution_tabu_list_fd6b3a1764121169650c969bba895615}
+Definition at line 68 of file moSimpleSolutionTabuList.h.
+
+References moSimpleSolutionTabuList$<$ M $>$::tabuList.\index{moSimpleSolutionTabuList@{moSimpleSolutionTabuList}!add@{add}}
+\index{add@{add}!moSimpleSolutionTabuList@{moSimpleSolutionTabuList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void {\bf moSimpleSolutionTabuList}$<$ M $>$::add (const M \& {\em \_\-\_\-move}, const {\bf EOT} \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_simple_solution_tabu_list_fd6b3a1764121169650c969bba895615}
 
 
 Procedure to add a move in the tabu list. 
@@ -112,35 +114,35 @@ The two parameters have not to be modified so they are constant parameters.
 \end{Desc}
 
 
-Implements \bf{mo\-Tabu\-List$<$ M $>$} \doxyref{p.}{classmo_tabu_list_d279d72cb486d812da1ad3d24a69c286}.
+Implements {\bf moTabuList$<$ M $>$} \doxyref{}{p.}{classmo_tabu_list_d279d72cb486d812da1ad3d24a69c286}.
 
-Definition at line 64 of file mo\-Simple\-Solution\-Tabu\-List.h.
+Definition at line 87 of file moSimpleSolutionTabuList.h.
 
-References mo\-Simple\-Solution\-Tabu\-List$<$ M $>$::current\-Size, mo\-Simple\-Solution\-Tabu\-List$<$ M $>$::max\-Size, mo\-Simple\-Solution\-Tabu\-List$<$ M $>$::remove\-Solution(), and mo\-Simple\-Solution\-Tabu\-List$<$ M $>$::tabu\-List.\index{moSimpleSolutionTabuList@{mo\-Simple\-Solution\-Tabu\-List}!update@{update}}
-\index{update@{update}!moSimpleSolutionTabuList@{mo\-Simple\-Solution\-Tabu\-List}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void \bf{mo\-Simple\-Solution\-Tabu\-List}$<$ M $>$::update ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_simple_solution_tabu_list_91b8b01dba7ffea8b63765d931e56f56}
+References moSimpleSolutionTabuList$<$ M $>$::currentSize, moSimpleSolutionTabuList$<$ M $>$::maxSize, moSimpleSolutionTabuList$<$ M $>$::removeSolution(), and moSimpleSolutionTabuList$<$ M $>$::tabuList.\index{moSimpleSolutionTabuList@{moSimpleSolutionTabuList}!update@{update}}
+\index{update@{update}!moSimpleSolutionTabuList@{moSimpleSolutionTabuList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void {\bf moSimpleSolutionTabuList}$<$ M $>$::update ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_simple_solution_tabu_list_91b8b01dba7ffea8b63765d931e56f56}
 
 
 Procedure that updates the tabu list content. 
 
 Generally, a counter associated to each saved move is decreased by one. 
 
-Implements \bf{mo\-Tabu\-List$<$ M $>$} \doxyref{p.}{classmo_tabu_list_a2e5d1132f064093c8ed57046405f5ca}.
+Implements {\bf moTabuList$<$ M $>$} \doxyref{}{p.}{classmo_tabu_list_a2e5d1132f064093c8ed57046405f5ca}.
 
-Definition at line 91 of file mo\-Simple\-Solution\-Tabu\-List.h.\index{moSimpleSolutionTabuList@{mo\-Simple\-Solution\-Tabu\-List}!init@{init}}
-\index{init@{init}!moSimpleSolutionTabuList@{mo\-Simple\-Solution\-Tabu\-List}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void \bf{mo\-Simple\-Solution\-Tabu\-List}$<$ M $>$::init ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_simple_solution_tabu_list_d5645c39fec71a6110a2cbccbb08b816}
+Definition at line 114 of file moSimpleSolutionTabuList.h.\index{moSimpleSolutionTabuList@{moSimpleSolutionTabuList}!init@{init}}
+\index{init@{init}!moSimpleSolutionTabuList@{moSimpleSolutionTabuList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void {\bf moSimpleSolutionTabuList}$<$ M $>$::init ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_simple_solution_tabu_list_d5645c39fec71a6110a2cbccbb08b816}
 
 
 Procedure which initialises the tabu list. 
 
 Can be useful if the data structure needs to be allocated before being used. 
 
-Implements \bf{mo\-Tabu\-List$<$ M $>$} \doxyref{p.}{classmo_tabu_list_0a06c459d56e8e2b408a8f3c6aec4e57}.
+Implements {\bf moTabuList$<$ M $>$} \doxyref{}{p.}{classmo_tabu_list_0a06c459d56e8e2b408a8f3c6aec4e57}.
 
-Definition at line 97 of file mo\-Simple\-Solution\-Tabu\-List.h.\index{moSimpleSolutionTabuList@{mo\-Simple\-Solution\-Tabu\-List}!removeSolution@{removeSolution}}
-\index{removeSolution@{removeSolution}!moSimpleSolutionTabuList@{mo\-Simple\-Solution\-Tabu\-List}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void \bf{mo\-Simple\-Solution\-Tabu\-List}$<$ M $>$::remove\-Solution (const \bf{EOT} \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline, private]}}\label{classmo_simple_solution_tabu_list_7847a48f33c15e31298f3e715d754560}
+Definition at line 120 of file moSimpleSolutionTabuList.h.\index{moSimpleSolutionTabuList@{moSimpleSolutionTabuList}!removeSolution@{removeSolution}}
+\index{removeSolution@{removeSolution}!moSimpleSolutionTabuList@{moSimpleSolutionTabuList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void {\bf moSimpleSolutionTabuList}$<$ M $>$::removeSolution (const {\bf EOT} \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [inline, private]}}\label{classmo_simple_solution_tabu_list_7847a48f33c15e31298f3e715d754560}
 
 
 Procedure that removes a given solution from the tabu list (if it is into, else does nothing). 
@@ -152,12 +154,12 @@ Procedure that removes a given solution from the tabu list (if it is into, else 
 \end{Desc}
 
 
-Definition at line 109 of file mo\-Simple\-Solution\-Tabu\-List.h.
+Definition at line 132 of file moSimpleSolutionTabuList.h.
 
-References mo\-Simple\-Solution\-Tabu\-List$<$ M $>$::tabu\-List.
+References moSimpleSolutionTabuList$<$ M $>$::tabuList.
 
-Referenced by mo\-Simple\-Solution\-Tabu\-List$<$ M $>$::add().
+Referenced by moSimpleSolutionTabuList$<$ M $>$::add().
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 
-mo\-Simple\-Solution\-Tabu\-List.h\end{CompactItemize}
+moSimpleSolutionTabuList.h\end{CompactItemize}

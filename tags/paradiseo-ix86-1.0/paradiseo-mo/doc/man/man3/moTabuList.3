@@ -1,4 +1,4 @@
-.TH "moTabuList" 3 "5 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moTabuList" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,7 +10,7 @@ moTabuList \- Class describing a tabu list that a \fBmoTS\fP uses.
 .PP
 \fC#include <moTabuList.h>\fP
 .PP
-Inherits \fBeoBF< A1, A2, R >< const const M &, M::EOType &, bool >\fP.
+Inherits \fBeoBF< const M &, const M::EOType &, bool >\fP.
 .PP
 Inherited by \fBmoSimpleMoveTabuList< M >\fP, and \fBmoSimpleSolutionTabuList< M >\fP.
 .PP
@@ -46,7 +46,7 @@ Class describing a tabu list that a \fBmoTS\fP uses.
 
 It is only a description, does nothing... A new object that herits from this class has to be defined in order to be used in a \fBmoTS\fP. 
 .PP
-Definition at line 22 of file moTabuList.h.
+Definition at line 45 of file moTabuList.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class M> virtual void \fBmoTabuList\fP< M >::add (const M & __move, const \fBEOT\fP & __sol)\fC [pure virtual]\fP"

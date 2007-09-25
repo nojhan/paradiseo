@@ -1,4 +1,4 @@
-.TH "moLinearCoolingSchedule" 3 "5 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moLinearCoolingSchedule" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -42,7 +42,7 @@ One of the possible \fBmoCoolingSchedule\fP.
 
 An another very simple cooling schedule, the temperature decrease according to a quantity while the temperature is greater than a threshold. 
 .PP
-Definition at line 22 of file moLinearCoolingSchedule.h.
+Definition at line 45 of file moLinearCoolingSchedule.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "moLinearCoolingSchedule::moLinearCoolingSchedule (double __threshold, double __quantity)\fC [inline]\fP"
@@ -58,7 +58,7 @@ Simple constructor.
 .PP
 
 .PP
-Definition at line 31 of file moLinearCoolingSchedule.h.
+Definition at line 54 of file moLinearCoolingSchedule.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "bool moLinearCoolingSchedule::operator() (double & __temp)\fC [inline, virtual]\fP"
@@ -81,7 +81,7 @@ if the new temperature (current temperature - quantity) is greater than the thre
 .PP
 Implements \fBeoUF< double &, bool >\fP.
 .PP
-Definition at line 41 of file moLinearCoolingSchedule.h.
+Definition at line 64 of file moLinearCoolingSchedule.h.
 .PP
 References quantity, and threshold.
 

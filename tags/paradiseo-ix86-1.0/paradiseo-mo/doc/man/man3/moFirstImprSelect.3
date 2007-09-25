@@ -1,4 +1,4 @@
-.TH "moFirstImprSelect" 3 "5 Jul 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moFirstImprSelect" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -64,7 +64,7 @@ One possible \fBmoMoveSelect\fP.
 
 The neighborhood is explored until a move enables an improvment of the current solution. 
 .PP
-Definition at line 23 of file moFirstImprSelect.h.
+Definition at line 46 of file moFirstImprSelect.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class M> virtual void \fBmoFirstImprSelect\fP< M >::init (const \fBFitness\fP & __fit)\fC [inline, virtual]\fP"
@@ -75,7 +75,7 @@ It save the current fitness as the initial value for the fitness.
 .PP
 Implements \fBmoMoveSelect< M >\fP.
 .PP
-Definition at line 35 of file moFirstImprSelect.h.
+Definition at line 58 of file moFirstImprSelect.h.
 .PP
 References moFirstImprSelect< M >::init_fit, and moFirstImprSelect< M >::valid.
 .SS "template<class M> bool \fBmoFirstImprSelect\fP< M >::update (const M & __move, const typename M::EOType::Fitness & __fit)\fC [inline]\fP"
@@ -98,7 +98,7 @@ TRUE if the move does not improve the fitness.
 .PP
 
 .PP
-Definition at line 52 of file moFirstImprSelect.h.
+Definition at line 75 of file moFirstImprSelect.h.
 .PP
 References moFirstImprSelect< M >::best_fit, moFirstImprSelect< M >::best_move, moFirstImprSelect< M >::init_fit, and moFirstImprSelect< M >::valid.
 .SS "template<class M> void \fBmoFirstImprSelect\fP< M >::operator() (M & __move, \fBFitness\fP & __fit)  throw (\fBEmptySelection\fP)\fC [inline, virtual]\fP"
@@ -121,7 +121,7 @@ Procedure which saved the best move and fitness.
 .PP
 Implements \fBeoBF< M &, M::EOType::Fitness &, void >\fP.
 .PP
-Definition at line 76 of file moFirstImprSelect.h.
+Definition at line 99 of file moFirstImprSelect.h.
 .PP
 References moFirstImprSelect< M >::best_fit, moFirstImprSelect< M >::best_move, and moFirstImprSelect< M >::valid.
 

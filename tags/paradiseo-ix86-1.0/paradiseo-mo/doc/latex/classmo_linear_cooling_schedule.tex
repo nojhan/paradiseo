@@ -1,11 +1,11 @@
-\section{mo\-Linear\-Cooling\-Schedule Class Reference}
+\section{moLinearCoolingSchedule Class Reference}
 \label{classmo_linear_cooling_schedule}\index{moLinearCoolingSchedule@{moLinearCoolingSchedule}}
-One of the possible \doxyref{mo\-Cooling\-Schedule}{p.}{classmo_cooling_schedule}.  
+One of the possible \doxyref{moCoolingSchedule}{p.}{classmo_cooling_schedule}.  
 
 
-{\tt \#include $<$mo\-Linear\-Cooling\-Schedule.h$>$}
+{\tt \#include $<$moLinearCoolingSchedule.h$>$}
 
-Inheritance diagram for mo\-Linear\-Cooling\-Schedule::\begin{figure}[H]
+Inheritance diagram for moLinearCoolingSchedule::\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=4cm]{classmo_linear_cooling_schedule}
@@ -14,34 +14,34 @@ Inheritance diagram for mo\-Linear\-Cooling\-Schedule::\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-\bf{mo\-Linear\-Cooling\-Schedule} (double \_\-\_\-threshold, double \_\-\_\-quantity)
+{\bf moLinearCoolingSchedule} (double \_\-\_\-threshold, double \_\-\_\-quantity)
 \begin{CompactList}\small\item\em Simple constructor. \item\end{CompactList}\item 
-bool \bf{operator()} (double \&\_\-\_\-temp)
-\begin{CompactList}\small\item\em \doxyref{Function} which proceeds to the cooling. \item\end{CompactList}\end{CompactItemize}
+bool {\bf operator()} (double \&\_\-\_\-temp)
+\begin{CompactList}\small\item\em {\bf Function} which proceeds to the cooling. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
 \begin{CompactItemize}
 \item 
-double \bf{threshold}\label{classmo_linear_cooling_schedule_e7f539f986801ea71392c4a55ba08a76}
+double {\bf threshold}\label{classmo_linear_cooling_schedule_e7f539f986801ea71392c4a55ba08a76}
 
 \begin{CompactList}\small\item\em The temperature threhold. \item\end{CompactList}\item 
-double \bf{quantity}\label{classmo_linear_cooling_schedule_6159dc39ceda89b23ffdab3d6ce8d8ed}
+double {\bf quantity}\label{classmo_linear_cooling_schedule_6159dc39ceda89b23ffdab3d6ce8d8ed}
 
 \begin{CompactList}\small\item\em The quantity that allows the temperature to decrease. \item\end{CompactList}\end{CompactItemize}
 
 
 \subsection{Detailed Description}
-One of the possible \doxyref{mo\-Cooling\-Schedule}{p.}{classmo_cooling_schedule}. 
+One of the possible \doxyref{moCoolingSchedule}{p.}{classmo_cooling_schedule}. 
 
 An another very simple cooling schedule, the temperature decrease according to a quantity while the temperature is greater than a threshold. 
 
 
 
-Definition at line 22 of file mo\-Linear\-Cooling\-Schedule.h.
+Definition at line 45 of file moLinearCoolingSchedule.h.
 
 \subsection{Constructor \& Destructor Documentation}
-\index{moLinearCoolingSchedule@{mo\-Linear\-Cooling\-Schedule}!moLinearCoolingSchedule@{moLinearCoolingSchedule}}
-\index{moLinearCoolingSchedule@{moLinearCoolingSchedule}!moLinearCoolingSchedule@{mo\-Linear\-Cooling\-Schedule}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}mo\-Linear\-Cooling\-Schedule::mo\-Linear\-Cooling\-Schedule (double {\em \_\-\_\-threshold}, double {\em \_\-\_\-quantity})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_linear_cooling_schedule_2fdde7b1520d5a41251627e81cc9c13d}
+\index{moLinearCoolingSchedule@{moLinearCoolingSchedule}!moLinearCoolingSchedule@{moLinearCoolingSchedule}}
+\index{moLinearCoolingSchedule@{moLinearCoolingSchedule}!moLinearCoolingSchedule@{moLinearCoolingSchedule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}moLinearCoolingSchedule::moLinearCoolingSchedule (double {\em \_\-\_\-threshold}, double {\em \_\-\_\-quantity})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_linear_cooling_schedule_2fdde7b1520d5a41251627e81cc9c13d}
 
 
 Simple constructor. 
@@ -53,15 +53,15 @@ Simple constructor.
 \end{Desc}
 
 
-Definition at line 31 of file mo\-Linear\-Cooling\-Schedule.h.
+Definition at line 54 of file moLinearCoolingSchedule.h.
 
 \subsection{Member Function Documentation}
-\index{moLinearCoolingSchedule@{mo\-Linear\-Cooling\-Schedule}!operator()@{operator()}}
-\index{operator()@{operator()}!moLinearCoolingSchedule@{mo\-Linear\-Cooling\-Schedule}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool mo\-Linear\-Cooling\-Schedule::operator() (double \& {\em \_\-\_\-temp})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_linear_cooling_schedule_814b109fdfd9426a92a5444b05014da3}
+\index{moLinearCoolingSchedule@{moLinearCoolingSchedule}!operator()@{operator()}}
+\index{operator()@{operator()}!moLinearCoolingSchedule@{moLinearCoolingSchedule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool moLinearCoolingSchedule::operator() (double \& {\em \_\-\_\-temp})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_linear_cooling_schedule_814b109fdfd9426a92a5444b05014da3}
 
 
-\doxyref{Function} which proceeds to the cooling. 
+{\bf Function} which proceeds to the cooling. 
 
 It decreases the temperature and indicates if it is greater than the threshold.
 
@@ -74,12 +74,12 @@ It decreases the temperature and indicates if it is greater than the threshold.
 \item[Returns:]if the new temperature (current temperature - quantity) is greater than the threshold. \end{Desc}
 
 
-Implements \bf{eo\-UF$<$ double \&, bool $>$}.
+Implements {\bf eoUF$<$ double \&, bool $>$}.
 
-Definition at line 41 of file mo\-Linear\-Cooling\-Schedule.h.
+Definition at line 64 of file moLinearCoolingSchedule.h.
 
 References quantity, and threshold.
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 
-mo\-Linear\-Cooling\-Schedule.h\end{CompactItemize}
+moLinearCoolingSchedule.h\end{CompactItemize}
