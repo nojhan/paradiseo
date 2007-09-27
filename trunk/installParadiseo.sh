@@ -670,7 +670,7 @@ function run_install_step()
 		
 		execute_cmd "cd $installKitPath/paradiseo-peo/build" "[$currentStepCounter-1] Go in Paradiseo-PEO dir"  $SPY 
 		RETURN=$?
-		execute_cmd "cmake ../ --Dconfig=$installKitPath/install.cmake" "[$currentStepCounter-2] Run CMake for ParadisEO-PEO"  $SPY
+		execute_cmd "cmake ../ -Dconfig=$installKitPath/install.cmake" "[$currentStepCounter-2] Run CMake for ParadisEO-PEO"  $SPY
 		RETURN=`expr $RETURN + $?`
 		execute_cmd "make" "[$currentStepCounter-3] Compile ParadisEO-PEO "  $SPY
 		RETURN=`expr $RETURN + $?`
