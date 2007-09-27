@@ -379,15 +379,13 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Installing Paradiseo-EO. Please wait ...'
 		
-		execute_cmd "mkdir $installKitPath/build" "[$currentStepCounter-1] Create build directory"  $SPY 	
-		RETURN=`expr $RETURN + $?`
-		execute_cmd "cd $installKitPath/build" "[$currentStepCounter-2] Go in Paradiseo-EO build dir"  $SPY 
+		execute_cmd "mkdir $installKitPath/paradiseo-eo/build" "[$currentStepCounter-1] Create build directory"  $SPY 	
+		
+		execute_cmd "cd $installKitPath/paradiseo-eo/build" "[$currentStepCounter-2] Go in Paradiseo-EO build dir"  $SPY 
 		RETURN=`expr $RETURN + $?`
 		execute_cmd "cmake ../ " "[$currentStepCounter-3] Run CMake"  $SPY
 		RETURN=`expr $RETURN + $?`
 		execute_cmd "make" "[$currentStepCounter-4] Compile ParadisEO-EO"  $SPY
-		RETURN=`expr $RETURN + $?`
-		execute_cmd "make install" "[$currentStepCounter-5] Make install of ParadisEO-EO"  $SPY
 		RETURN=`expr $RETURN + $?`
 
 		if [ ! $(($RETURN)) = 0 ]
