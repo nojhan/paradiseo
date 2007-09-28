@@ -30,6 +30,11 @@ public:
 
 	}
 
+	~peoParallelAlgorithmWrapper() {
+
+		delete algorithm;
+	}
+
 	void run() { algorithm->operator()(); }
 
 
