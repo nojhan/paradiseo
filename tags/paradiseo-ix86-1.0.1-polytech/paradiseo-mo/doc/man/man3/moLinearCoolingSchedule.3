@@ -1,0 +1,90 @@
+.TH "moLinearCoolingSchedule" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moLinearCoolingSchedule \- One of the possible \fBmoCoolingSchedule\fP.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moLinearCoolingSchedule.h>\fP
+.PP
+Inherits \fBmoCoolingSchedule\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoLinearCoolingSchedule\fP (double __threshold, double __quantity)"
+.br
+.RI "\fISimple constructor. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (double &__temp)"
+.br
+.RI "\fI\fBFunction\fP which proceeds to the cooling. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBthreshold\fP"
+.br
+.RI "\fIThe temperature threhold. \fP"
+.ti -1c
+.RI "double \fBquantity\fP"
+.br
+.RI "\fIThe quantity that allows the temperature to decrease. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+One of the possible \fBmoCoolingSchedule\fP. 
+
+An another very simple cooling schedule, the temperature decrease according to a quantity while the temperature is greater than a threshold. 
+.PP
+Definition at line 22 of file moLinearCoolingSchedule.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "moLinearCoolingSchedule::moLinearCoolingSchedule (double __threshold, double __quantity)\fC [inline]\fP"
+.PP
+Simple constructor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__threshold\fP the threshold. 
+.br
+\fI__quantity\fP the quantity used to descrease the temperature. 
+.RE
+.PP
+
+.PP
+Definition at line 31 of file moLinearCoolingSchedule.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "bool moLinearCoolingSchedule::operator() (double & __temp)\fC [inline, virtual]\fP"
+.PP
+\fBFunction\fP which proceeds to the cooling. 
+.PP
+It decreases the temperature and indicates if it is greater than the threshold.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__temp\fP the current temperature. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+if the new temperature (current temperature - quantity) is greater than the threshold. 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< double &, bool >\fP.
+.PP
+Definition at line 41 of file moLinearCoolingSchedule.h.
+.PP
+References quantity, and threshold.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PARADISEO-MO from the source code.
