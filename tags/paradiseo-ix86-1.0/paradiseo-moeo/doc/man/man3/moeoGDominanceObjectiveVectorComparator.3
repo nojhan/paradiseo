@@ -1,4 +1,4 @@
-.TH "moeoGDominanceObjectiveVectorComparator" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoGDominanceObjectiveVectorComparator" 3 "2 Oct 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -52,7 +52,7 @@ This functor class allows to compare 2 objective vectors according to g-dominanc
 
 The concept of g-dominance as been introduced in: J. Molina, L. V. Santana, A. G. Hernandez-Diaz, C. A. Coello Coello, R. Caballero, 'g-dominance: Reference point based dominance' (2007) 
 .PP
-Definition at line 25 of file moeoGDominanceObjectiveVectorComparator.h.
+Definition at line 48 of file moeoGDominanceObjectiveVectorComparator.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class ObjectiveVector> \fBmoeoGDominanceObjectiveVectorComparator\fP< ObjectiveVector >::\fBmoeoGDominanceObjectiveVectorComparator\fP (ObjectiveVector & _ref)\fC [inline]\fP"
@@ -66,7 +66,7 @@ Ctor.
 .PP
 
 .PP
-Definition at line 33 of file moeoGDominanceObjectiveVectorComparator.h.
+Definition at line 56 of file moeoGDominanceObjectiveVectorComparator.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class ObjectiveVector> const bool \fBmoeoGDominanceObjectiveVectorComparator\fP< ObjectiveVector >::operator() (const ObjectiveVector & _objectiveVector1, const ObjectiveVector & _objectiveVector2)\fC [inline]\fP"
@@ -82,7 +82,7 @@ Returns true if _objectiveVector1 is g-dominated by _objectiveVector2.
 .PP
 
 .PP
-Definition at line 42 of file moeoGDominanceObjectiveVectorComparator.h.
+Definition at line 65 of file moeoGDominanceObjectiveVectorComparator.h.
 .PP
 References moeoGDominanceObjectiveVectorComparator< ObjectiveVector >::flag(), and moeoGDominanceObjectiveVectorComparator< ObjectiveVector >::paretoComparator.
 .SS "template<class ObjectiveVector> unsigned int \fBmoeoGDominanceObjectiveVectorComparator\fP< ObjectiveVector >::flag (const ObjectiveVector & _objectiveVector)\fC [inline, private]\fP"
@@ -96,7 +96,7 @@ Returns the flag of _objectiveVector according to the reference point.
 .PP
 
 .PP
-Definition at line 76 of file moeoGDominanceObjectiveVectorComparator.h.
+Definition at line 99 of file moeoGDominanceObjectiveVectorComparator.h.
 .PP
 References moeoGDominanceObjectiveVectorComparator< ObjectiveVector >::ref.
 .PP

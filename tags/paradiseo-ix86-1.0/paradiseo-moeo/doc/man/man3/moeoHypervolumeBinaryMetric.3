@@ -1,4 +1,4 @@
-.TH "moeoHypervolumeBinaryMetric" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoHypervolumeBinaryMetric" 3 "2 Oct 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -52,7 +52,7 @@ Hypervolume binary metric allowing to compare two objective vectors as proposed 
 
 : Indicator-Based Selection in Multiobjective Search. In Parallel Problem Solving from Nature (PPSN VIII). Lecture Notes in Computer Science 3242, Springer, Birmingham, UK pp.832–842 (2004). This indicator is based on the hypervolume concept introduced in Zitzler, E., Thiele, L.: Multiobjective Optimization Using Evolutionary Algorithms - A Comparative Case Study. Parallel Problem Solving from Nature (PPSN-V), pp.292-301 (1998). 
 .PP
-Definition at line 29 of file moeoHypervolumeBinaryMetric.h.
+Definition at line 52 of file moeoHypervolumeBinaryMetric.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class ObjectiveVector> \fBmoeoHypervolumeBinaryMetric\fP< ObjectiveVector >::\fBmoeoHypervolumeBinaryMetric\fP (double _rho = \fC1.1\fP)\fC [inline]\fP"
@@ -66,7 +66,7 @@ Ctor.
 .PP
 
 .PP
-Definition at line 37 of file moeoHypervolumeBinaryMetric.h.
+Definition at line 60 of file moeoHypervolumeBinaryMetric.h.
 .PP
 References moeoHypervolumeBinaryMetric< ObjectiveVector >::rho.
 .SH "Member Function Documentation"
@@ -89,7 +89,7 @@ don't forget to set the bounds for every objective before the call of this funct
 .PP
 
 .PP
-Definition at line 63 of file moeoHypervolumeBinaryMetric.h.
+Definition at line 86 of file moeoHypervolumeBinaryMetric.h.
 .PP
 References moeoHypervolumeBinaryMetric< ObjectiveVector >::hypervolume(), and moeoHypervolumeBinaryMetric< ObjectiveVector >::paretoComparator.
 .SS "template<class ObjectiveVector> double \fBmoeoHypervolumeBinaryMetric\fP< ObjectiveVector >::hypervolume (const ObjectiveVector & _o1, const ObjectiveVector & _o2, const unsigned int _obj, const bool _flag = \fCfalse\fP)\fC [inline, private]\fP"
@@ -109,7 +109,7 @@ Returns the volume of the space that is dominated by _o2 but not by _o1 with res
 .PP
 
 .PP
-Definition at line 96 of file moeoHypervolumeBinaryMetric.h.
+Definition at line 119 of file moeoHypervolumeBinaryMetric.h.
 .PP
 References moeoNormalizedSolutionVsSolutionBinaryMetric< ObjectiveVector, double >::bounds, and moeoHypervolumeBinaryMetric< ObjectiveVector >::rho.
 .PP

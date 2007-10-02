@@ -1,4 +1,4 @@
-.TH "moeoObjectiveVectorTraits" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoObjectiveVectorTraits" 3 "2 Oct 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -50,7 +50,7 @@ moeoObjectiveVectorTraits \- A traits class for \fBmoeoObjectiveVector\fP to spe
 .PP 
 A traits class for \fBmoeoObjectiveVector\fP to specify the number of objectives and which ones have to be minimized or maximized. 
 .PP
-Definition at line 23 of file moeoObjectiveVectorTraits.h.
+Definition at line 46 of file moeoObjectiveVectorTraits.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "static void moeoObjectiveVectorTraits::setup (unsigned int _nObjectives, std::vector< bool > & _bObjectives)\fC [inline, static]\fP"
@@ -66,7 +66,7 @@ Definition at line 23 of file moeoObjectiveVectorTraits.h.
 .PP
 
 .PP
-Definition at line 32 of file moeoObjectiveVectorTraits.h.
+Definition at line 55 of file moeoObjectiveVectorTraits.h.
 .PP
 References bObj, and nObj.
 .SS "static bool moeoObjectiveVectorTraits::minimizing (unsigned int _i)\fC [inline, static]\fP"
@@ -80,7 +80,7 @@ Returns true if the _ith objective have to be minimized.
 .PP
 
 .PP
-Definition at line 67 of file moeoObjectiveVectorTraits.h.
+Definition at line 90 of file moeoObjectiveVectorTraits.h.
 .PP
 References bObj.
 .PP
@@ -96,7 +96,7 @@ Returns true if the _ith objective have to be maximized.
 .PP
 
 .PP
-Definition at line 80 of file moeoObjectiveVectorTraits.h.
+Definition at line 103 of file moeoObjectiveVectorTraits.h.
 .PP
 References minimizing().
 

@@ -1,4 +1,4 @@
-.TH "MOEO" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "MOEO" 3 "2 Oct 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -150,7 +150,7 @@ Base class allowing to represent a solution (an individual) for multi-objective 
 
 The template argument MOEOObjectiveVector allows to represent the solution in the objective space (it can be a \fBmoeoObjectiveVector\fP object). The template argument MOEOFitness is an object reflecting the quality of the solution in term of convergence (the fitness of a solution is always to be maximized). The template argument MOEODiversity is an object reflecting the quality of the solution in term of diversity (the diversity of a solution is always to be maximized). All template arguments must have a void and a copy constructor. Using some specific representations, you will have to define a copy constructor if the default one is not what you want. In the same cases, you will also have to define the affectation operator (operator=). Then, you will explicitly have to call the parent copy constructor and the parent affectation operator at the beginning of the corresponding implementation. Besides, note that, contrary to the mono-objective case (and to \fBEO\fP) where the fitness value of a solution is confused with its objective value, the fitness value differs of the objectives values in the multi-objective case. 
 .PP
-Definition at line 34 of file MOEO.h.
+Definition at line 57 of file MOEO.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity> void \fBMOEO\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::objectiveVector (const \fBObjectiveVector\fP & _objectiveVectorValue)\fC [inline]\fP"
@@ -164,7 +164,7 @@ Sets the objective vector of the current solution.
 .PP
 
 .PP
-Definition at line 85 of file MOEO.h.
+Definition at line 108 of file MOEO.h.
 .PP
 References MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::invalidObjectiveVectorValue, and MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::objectiveVectorValue.
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity> void \fBMOEO\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::fitness (const \fBFitness\fP & _fitnessValue)\fC [inline]\fP"
@@ -178,7 +178,7 @@ Sets the fitness value of the current solution.
 .PP
 
 .PP
-Definition at line 127 of file MOEO.h.
+Definition at line 150 of file MOEO.h.
 .PP
 References MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::fitnessValue, and MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::invalidFitnessValue.
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity> void \fBMOEO\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::diversity (const \fBDiversity\fP & _diversityValue)\fC [inline]\fP"
@@ -192,7 +192,7 @@ Sets the diversity value of the current solution.
 .PP
 
 .PP
-Definition at line 169 of file MOEO.h.
+Definition at line 192 of file MOEO.h.
 .PP
 References MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::diversityValue, and MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::invalidDiversityValue.
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity> bool \fBMOEO\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::operator< (const \fBMOEO\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity > & _other) const\fC [inline]\fP"
@@ -208,7 +208,7 @@ You should implement another function in the sub-class of \fBMOEO\fP to have ano
 .PP
 
 .PP
-Definition at line 220 of file MOEO.h.
+Definition at line 243 of file MOEO.h.
 .PP
 References MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::objectiveVector().
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity> virtual void \fBMOEO\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::printOn (std::ostream & _os) const\fC [inline, virtual]\fP"
@@ -226,7 +226,7 @@ Reimplemented from \fBEO< MOEOObjectiveVector >\fP.
 .PP
 Reimplemented in \fBmoeoBitVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity >\fP, \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >\fP, \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool >\fP, and \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, double >\fP.
 .PP
-Definition at line 239 of file MOEO.h.
+Definition at line 262 of file MOEO.h.
 .PP
 References MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::invalidObjectiveVector(), and MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::objectiveVectorValue.
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity> virtual void \fBMOEO\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::readFrom (std::istream & _is)\fC [inline, virtual]\fP"
@@ -244,7 +244,7 @@ Reimplemented from \fBEO< MOEOObjectiveVector >\fP.
 .PP
 Reimplemented in \fBmoeoBitVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity >\fP, \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >\fP, \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool >\fP, and \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, double >\fP.
 .PP
-Definition at line 256 of file MOEO.h.
+Definition at line 279 of file MOEO.h.
 .PP
 References MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::invalidateObjectiveVector(), MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::invalidObjectiveVectorValue, and MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::objectiveVectorValue.
 

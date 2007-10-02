@@ -1,4 +1,4 @@
-.TH "moeoFastNonDominatedSortingFitnessAssignment" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoFastNonDominatedSortingFitnessAssignment" 3 "2 Oct 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -88,7 +88,7 @@ Fitness assignment sheme based on Pareto-dominance count proposed in: N.
 
 Srinivas, K. Deb, 'Multiobjective Optimization Using Nondominated Sorting in Genetic Algorithms', Evolutionary Computation vol. 2, no. 3, pp. 221-248 (1994) and in: K. Deb, A. Pratap, S. Agarwal, T. Meyarivan, 'A Fast and Elitist Multi-Objective Genetic Algorithm: NSGA-II', IEEE Transactions on Evolutionary Computation, vol. 6, no. 2 (2002). This strategy is, for instance, used in NSGA and NSGA-II. 
 .PP
-Definition at line 32 of file moeoFastNonDominatedSortingFitnessAssignment.h.
+Definition at line 55 of file moeoFastNonDominatedSortingFitnessAssignment.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class MOEOT> \fBmoeoFastNonDominatedSortingFitnessAssignment\fP< MOEOT >::\fBmoeoFastNonDominatedSortingFitnessAssignment\fP (\fBmoeoObjectiveVectorComparator\fP< \fBObjectiveVector\fP > & _comparator)\fC [inline]\fP"
@@ -102,7 +102,7 @@ Ctor where you can choose your own way to compare objective vectors.
 .PP
 
 .PP
-Definition at line 51 of file moeoFastNonDominatedSortingFitnessAssignment.h.
+Definition at line 74 of file moeoFastNonDominatedSortingFitnessAssignment.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOT> void \fBmoeoFastNonDominatedSortingFitnessAssignment\fP< MOEOT >::operator() (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
@@ -118,7 +118,7 @@ Sets the fitness values for every solution contained in the population _pop.
 .PP
 Implements \fBeoUF< eoPop< MOEOT > &, void >\fP.
 .PP
-Definition at line 59 of file moeoFastNonDominatedSortingFitnessAssignment.h.
+Definition at line 82 of file moeoFastNonDominatedSortingFitnessAssignment.h.
 .PP
 References moeoFastNonDominatedSortingFitnessAssignment< MOEOT >::mObjectives(), and moeoFastNonDominatedSortingFitnessAssignment< MOEOT >::oneObjective().
 .SS "template<class MOEOT> void \fBmoeoFastNonDominatedSortingFitnessAssignment\fP< MOEOT >::updateByDeleting (\fBeoPop\fP< MOEOT > & _pop, \fBObjectiveVector\fP & _objVec)\fC [inline, virtual]\fP"
@@ -136,7 +136,7 @@ Updates the fitness values of the whole population _pop by taking the deletion o
 .PP
 Implements \fBmoeoFitnessAssignment< MOEOT >\fP.
 .PP
-Definition at line 101 of file moeoFastNonDominatedSortingFitnessAssignment.h.
+Definition at line 124 of file moeoFastNonDominatedSortingFitnessAssignment.h.
 .PP
 References moeoFastNonDominatedSortingFitnessAssignment< MOEOT >::comparator.
 .SS "template<class MOEOT> void \fBmoeoFastNonDominatedSortingFitnessAssignment\fP< MOEOT >::oneObjective (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, private]\fP"
@@ -150,7 +150,7 @@ Sets the fitness values for mono-objective problems.
 .PP
 
 .PP
-Definition at line 143 of file moeoFastNonDominatedSortingFitnessAssignment.h.
+Definition at line 166 of file moeoFastNonDominatedSortingFitnessAssignment.h.
 .PP
 References moeoFastNonDominatedSortingFitnessAssignment< MOEOT >::objComparator.
 .PP
@@ -166,7 +166,7 @@ Sets the fitness values for bi-objective problems with a complexity of O(n log n
 .PP
 
 .PP
-Definition at line 165 of file moeoFastNonDominatedSortingFitnessAssignment.h.
+Definition at line 188 of file moeoFastNonDominatedSortingFitnessAssignment.h.
 .SS "template<class MOEOT> void \fBmoeoFastNonDominatedSortingFitnessAssignment\fP< MOEOT >::mObjectives (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, private]\fP"
 .PP
 Sets the fitness values for problems with more than two objectives with a complexity of O(n² log n), where n stands for the population size. 
@@ -178,7 +178,7 @@ Sets the fitness values for problems with more than two objectives with a comple
 .PP
 
 .PP
-Definition at line 175 of file moeoFastNonDominatedSortingFitnessAssignment.h.
+Definition at line 198 of file moeoFastNonDominatedSortingFitnessAssignment.h.
 .PP
 References moeoFastNonDominatedSortingFitnessAssignment< MOEOT >::comparator.
 .PP

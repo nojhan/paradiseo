@@ -1,4 +1,4 @@
-.TH "moeoNSGAII" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoNSGAII" 3 "2 Oct 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -92,7 +92,7 @@ NSGA-II (Non-dominated Sorting Genetic Algorithm II) as described in: Deb, K., S
 
 Agrawal, A. Pratap, and T. Meyarivan : 'A fast elitist non-dominated sorting genetic algorithm for multi-objective optimization: NSGA-II'. In IEEE Transactions on Evolutionary Computation, Vol. 6, No 2, pp 182-197 (April 2002). This class builds the NSGA-II algorithm only by using the fine-grained components of the ParadisEO-MOEO framework. 
 .PP
-Definition at line 37 of file moeoNSGAII.h.
+Definition at line 60 of file moeoNSGAII.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class MOEOT> \fBmoeoNSGAII\fP< MOEOT >::\fBmoeoNSGAII\fP (unsigned int _maxGen, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBeoGenOp\fP< MOEOT > & _op)\fC [inline]\fP"
@@ -110,7 +110,7 @@ Simple ctor with a \fBeoGenOp\fP.
 .PP
 
 .PP
-Definition at line 47 of file moeoNSGAII.h.
+Definition at line 70 of file moeoNSGAII.h.
 .SS "template<class MOEOT> \fBmoeoNSGAII\fP< MOEOT >::\fBmoeoNSGAII\fP (unsigned int _maxGen, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBeoTransform\fP< MOEOT > & _op)\fC [inline]\fP"
 .PP
 Simple ctor with a \fBeoTransform\fP. 
@@ -126,7 +126,7 @@ Simple ctor with a \fBeoTransform\fP.
 .PP
 
 .PP
-Definition at line 59 of file moeoNSGAII.h.
+Definition at line 82 of file moeoNSGAII.h.
 .SS "template<class MOEOT> \fBmoeoNSGAII\fP< MOEOT >::\fBmoeoNSGAII\fP (unsigned int _maxGen, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBeoQuadOp\fP< MOEOT > & _crossover, double _pCross, \fBeoMonOp\fP< MOEOT > & _mutation, double _pMut)\fC [inline]\fP"
 .PP
 Ctor with a crossover, a mutation and their corresponding rates. 
@@ -148,7 +148,7 @@ Ctor with a crossover, a mutation and their corresponding rates.
 .PP
 
 .PP
-Definition at line 74 of file moeoNSGAII.h.
+Definition at line 97 of file moeoNSGAII.h.
 .SS "template<class MOEOT> \fBmoeoNSGAII\fP< MOEOT >::\fBmoeoNSGAII\fP (\fBeoContinue\fP< MOEOT > & _continuator, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBeoGenOp\fP< MOEOT > & _op)\fC [inline]\fP"
 .PP
 Ctor with a continuator (instead of _maxGen) and a \fBeoGenOp\fP. 
@@ -164,7 +164,7 @@ Ctor with a continuator (instead of _maxGen) and a \fBeoGenOp\fP.
 .PP
 
 .PP
-Definition at line 87 of file moeoNSGAII.h.
+Definition at line 110 of file moeoNSGAII.h.
 .SS "template<class MOEOT> \fBmoeoNSGAII\fP< MOEOT >::\fBmoeoNSGAII\fP (\fBeoContinue\fP< MOEOT > & _continuator, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBeoTransform\fP< MOEOT > & _op)\fC [inline]\fP"
 .PP
 Ctor with a continuator (instead of _maxGen) and a \fBeoTransform\fP. 
@@ -180,7 +180,7 @@ Ctor with a continuator (instead of _maxGen) and a \fBeoTransform\fP.
 .PP
 
 .PP
-Definition at line 99 of file moeoNSGAII.h.
+Definition at line 122 of file moeoNSGAII.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOT> virtual void \fBmoeoNSGAII\fP< MOEOT >::operator() (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
@@ -194,7 +194,7 @@ Apply a few generation of evolution to the population _pop until the stopping cr
 .PP
 
 .PP
-Definition at line 109 of file moeoNSGAII.h.
+Definition at line 132 of file moeoNSGAII.h.
 .PP
 References moeoNSGAII< MOEOT >::breed, moeoNSGAII< MOEOT >::continuator, moeoNSGAII< MOEOT >::diversityAssignment, moeoNSGAII< MOEOT >::fitnessAssignment, moeoNSGAII< MOEOT >::popEval, and moeoNSGAII< MOEOT >::replace.
 

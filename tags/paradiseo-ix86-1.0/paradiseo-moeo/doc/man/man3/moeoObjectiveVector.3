@@ -1,4 +1,4 @@
-.TH "moeoObjectiveVector" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoObjectiveVector" 3 "2 Oct 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -62,7 +62,7 @@ Abstract class allowing to represent a solution in the objective space (phenotyp
 
 The template argument ObjectiveVectorTraits defaults to \fBmoeoObjectiveVectorTraits\fP, but it can be replaced at will by any other class that implements the static functions defined therein. Some static funtions to access to the traits characteristics are re-defined in order not to write a lot of typedef's. 
 .PP
-Definition at line 25 of file moeoObjectiveVector.h.
+Definition at line 48 of file moeoObjectiveVector.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class ObjectiveVectorTraits, class ObjectiveVectorType> \fBmoeoObjectiveVector\fP< ObjectiveVectorTraits, ObjectiveVectorType >::\fBmoeoObjectiveVector\fP (std::vector< \fBType\fP > & _v)\fC [inline]\fP"
@@ -76,7 +76,7 @@ Ctor from a vector of Type.
 .PP
 
 .PP
-Definition at line 46 of file moeoObjectiveVector.h.
+Definition at line 69 of file moeoObjectiveVector.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class ObjectiveVectorTraits, class ObjectiveVectorType> static void \fBmoeoObjectiveVector\fP< ObjectiveVectorTraits, ObjectiveVectorType >::setup (unsigned int _nObjectives, std::vector< bool > & _bObjectives)\fC [inline, static]\fP"
@@ -92,7 +92,7 @@ Definition at line 46 of file moeoObjectiveVector.h.
 .PP
 
 .PP
-Definition at line 55 of file moeoObjectiveVector.h.
+Definition at line 78 of file moeoObjectiveVector.h.
 .SS "template<class ObjectiveVectorTraits, class ObjectiveVectorType> static bool \fBmoeoObjectiveVector\fP< ObjectiveVectorTraits, ObjectiveVectorType >::minimizing (unsigned int _i)\fC [inline, static]\fP"
 .PP
 Returns true if the _ith objective have to be minimized. 
@@ -104,7 +104,7 @@ Returns true if the _ith objective have to be minimized.
 .PP
 
 .PP
-Definition at line 74 of file moeoObjectiveVector.h.
+Definition at line 97 of file moeoObjectiveVector.h.
 .SS "template<class ObjectiveVectorTraits, class ObjectiveVectorType> static bool \fBmoeoObjectiveVector\fP< ObjectiveVectorTraits, ObjectiveVectorType >::maximizing (unsigned int _i)\fC [inline, static]\fP"
 .PP
 Returns true if the _ith objective have to be maximized. 
@@ -116,7 +116,7 @@ Returns true if the _ith objective have to be maximized.
 .PP
 
 .PP
-Definition at line 84 of file moeoObjectiveVector.h.
+Definition at line 107 of file moeoObjectiveVector.h.
 
 .SH "Author"
 .PP 

@@ -1,4 +1,4 @@
-.TH "moeoAggregativeComparator" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoAggregativeComparator" 3 "2 Oct 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -42,7 +42,7 @@ Inherits \fBmoeoComparator< MOEOT >< MOEOT >\fP.
 .SS "template<class MOEOT> class moeoAggregativeComparator< MOEOT >"
 Functor allowing to compare two solutions according to their fitness and diversity values, each according to its aggregative value. 
 .PP
-Definition at line 22 of file moeoAggregativeComparator.h.
+Definition at line 45 of file moeoAggregativeComparator.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class MOEOT> \fBmoeoAggregativeComparator\fP< MOEOT >::\fBmoeoAggregativeComparator\fP (double _weightFitness = \fC1.0\fP, double _weightDiversity = \fC1.0\fP)\fC [inline]\fP"
@@ -58,7 +58,7 @@ Ctor.
 .PP
 
 .PP
-Definition at line 31 of file moeoAggregativeComparator.h.
+Definition at line 54 of file moeoAggregativeComparator.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOT> const bool \fBmoeoAggregativeComparator\fP< MOEOT >::operator() (const MOEOT & _moeo1, const MOEOT & _moeo2)\fC [inline]\fP"
@@ -74,7 +74,7 @@ Returns true if _moeo1 < _moeo2 according to the aggregation of their fitness an
 .PP
 
 .PP
-Definition at line 40 of file moeoAggregativeComparator.h.
+Definition at line 63 of file moeoAggregativeComparator.h.
 .PP
 References moeoAggregativeComparator< MOEOT >::weightDiversity, and moeoAggregativeComparator< MOEOT >::weightFitness.
 

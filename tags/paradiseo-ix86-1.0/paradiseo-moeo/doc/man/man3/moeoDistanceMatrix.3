@@ -1,4 +1,4 @@
-.TH "moeoDistanceMatrix" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoDistanceMatrix" 3 "2 Oct 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -38,7 +38,7 @@ Inherits \fBeoUF< const eoPop< MOEOT > &, void >\fP.
 .SS "template<class MOEOT, class Type> class moeoDistanceMatrix< MOEOT, Type >"
 A matrix to compute distances between every pair of individuals contained in a population. 
 .PP
-Definition at line 24 of file moeoDistanceMatrix.h.
+Definition at line 47 of file moeoDistanceMatrix.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class MOEOT, class Type> \fBmoeoDistanceMatrix\fP< MOEOT, Type >::\fBmoeoDistanceMatrix\fP (unsigned int _size, \fBmoeoDistance\fP< MOEOT, Type > & _distance)\fC [inline]\fP"
@@ -54,7 +54,7 @@ Ctor.
 .PP
 
 .PP
-Definition at line 37 of file moeoDistanceMatrix.h.
+Definition at line 60 of file moeoDistanceMatrix.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOT, class Type> void \fBmoeoDistanceMatrix\fP< MOEOT, Type >::operator() (const \fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
@@ -70,7 +70,7 @@ Sets the distance between every pair of individuals contained in the population 
 .PP
 Implements \fBeoUF< const eoPop< MOEOT > &, void >\fP.
 .PP
-Definition at line 51 of file moeoDistanceMatrix.h.
+Definition at line 74 of file moeoDistanceMatrix.h.
 .PP
 References moeoDistanceMatrix< MOEOT, Type >::distance.
 

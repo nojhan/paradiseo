@@ -1,4 +1,4 @@
-.TH "moeoCrowdingDiversityAssignment" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoCrowdingDiversityAssignment" 3 "2 Oct 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -57,7 +57,7 @@ Diversity assignment sheme based on crowding proposed in: K.
 
 Deb, A. Pratap, S. Agarwal, T. Meyarivan, 'A Fast and Elitist Multi-Objective Genetic Algorithm: NSGA-II', IEEE Transactions on Evolutionary Computation, vol. 6, no. 2 (2002). 
 .PP
-Definition at line 25 of file moeoCrowdingDiversityAssignment.h.
+Definition at line 48 of file moeoCrowdingDiversityAssignment.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOT> void \fBmoeoCrowdingDiversityAssignment\fP< MOEOT >::operator() (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
@@ -73,7 +73,7 @@ Computes diversity values for every solution contained in the population _pop.
 .PP
 Implements \fBeoUF< eoPop< MOEOT > &, void >\fP.
 .PP
-Definition at line 55 of file moeoCrowdingDiversityAssignment.h.
+Definition at line 78 of file moeoCrowdingDiversityAssignment.h.
 .PP
 References moeoCrowdingDiversityAssignment< MOEOT >::inf(), and moeoCrowdingDiversityAssignment< MOEOT >::setDistances().
 .SS "template<class MOEOT> void \fBmoeoCrowdingDiversityAssignment\fP< MOEOT >::updateByDeleting (\fBeoPop\fP< MOEOT > & _pop, \fBObjectiveVector\fP & _objVec)\fC [inline, virtual]\fP"
@@ -101,7 +101,7 @@ Implements \fBmoeoDiversityAssignment< MOEOT >\fP.
 .PP
 Reimplemented in \fBmoeoFrontByFrontCrowdingDiversityAssignment< MOEOT >\fP.
 .PP
-Definition at line 78 of file moeoCrowdingDiversityAssignment.h.
+Definition at line 101 of file moeoCrowdingDiversityAssignment.h.
 .SS "template<class MOEOT> virtual void \fBmoeoCrowdingDiversityAssignment\fP< MOEOT >::setDistances (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, protected, virtual]\fP"
 .PP
 Sets the distance values. 
@@ -115,7 +115,7 @@ Sets the distance values.
 .PP
 Reimplemented in \fBmoeoFrontByFrontCrowdingDiversityAssignment< MOEOT >\fP.
 .PP
-Definition at line 90 of file moeoCrowdingDiversityAssignment.h.
+Definition at line 113 of file moeoCrowdingDiversityAssignment.h.
 .PP
 References moeoCrowdingDiversityAssignment< MOEOT >::inf().
 .PP

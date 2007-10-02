@@ -1,4 +1,4 @@
-.TH "moeoFastNonDominatedSortingFitnessAssignment::ObjectiveComparator" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoFastNonDominatedSortingFitnessAssignment::ObjectiveComparator" 3 "2 Oct 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -32,7 +32,7 @@ Inherits \fBmoeoComparator< MOEOT >< MOEOT >\fP.
 .SS "template<class MOEOT> class moeoFastNonDominatedSortingFitnessAssignment< MOEOT >::ObjectiveComparator"
 Functor allowing to compare two solutions according to their first objective value, then their second, and so on. 
 .PP
-Definition at line 121 of file moeoFastNonDominatedSortingFitnessAssignment.h.
+Definition at line 144 of file moeoFastNonDominatedSortingFitnessAssignment.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOT> const bool \fBmoeoFastNonDominatedSortingFitnessAssignment\fP< MOEOT >::ObjectiveComparator::operator() (const MOEOT & _moeo1, const MOEOT & _moeo2)\fC [inline]\fP"
@@ -48,7 +48,7 @@ Returns true if _moeo1 < _moeo2 on the first objective, then on the second, and 
 .PP
 
 .PP
-Definition at line 129 of file moeoFastNonDominatedSortingFitnessAssignment.h.
+Definition at line 152 of file moeoFastNonDominatedSortingFitnessAssignment.h.
 .PP
 References moeoFastNonDominatedSortingFitnessAssignment< MOEOT >::ObjectiveComparator::cmp.
 

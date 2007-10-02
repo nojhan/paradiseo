@@ -1,4 +1,4 @@
-.TH "moeoNormalizedDistance" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoNormalizedDistance" 3 "2 Oct 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -64,7 +64,7 @@ The base class for double distance computation with normalized objective values 
 
 between 0 and 1). 
 .PP
-Definition at line 24 of file moeoNormalizedDistance.h.
+Definition at line 47 of file moeoNormalizedDistance.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOT, class Type = double> virtual void \fBmoeoNormalizedDistance\fP< MOEOT, Type >::setup (const \fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
@@ -80,7 +80,7 @@ Sets the lower and the upper bounds for every objective using extremes values fo
 .PP
 Reimplemented from \fBmoeoDistance< MOEOT, Type >\fP.
 .PP
-Definition at line 59 of file moeoNormalizedDistance.h.
+Definition at line 82 of file moeoNormalizedDistance.h.
 .PP
 Referenced by moeoNormalizedDistance< MOEOT >::setup().
 .SS "template<class MOEOT, class Type = double> virtual void \fBmoeoNormalizedDistance\fP< MOEOT, Type >::setup (double _min, double _max, unsigned int _obj)\fC [inline, virtual]\fP"
@@ -100,7 +100,7 @@ Sets the lower bound (_min) and the upper bound (_max) for the objective _obj.
 .PP
 Reimplemented from \fBmoeoDistance< MOEOT, Type >\fP.
 .PP
-Definition at line 83 of file moeoNormalizedDistance.h.
+Definition at line 106 of file moeoNormalizedDistance.h.
 .SS "template<class MOEOT, class Type = double> virtual void \fBmoeoNormalizedDistance\fP< MOEOT, Type >::setup (\fBeoRealInterval\fP _realInterval, unsigned int _obj)\fC [inline, virtual]\fP"
 .PP
 Sets the lower bound and the upper bound for the objective _obj using a \fBeoRealInterval\fP object. 
@@ -116,7 +116,7 @@ Sets the lower bound and the upper bound for the objective _obj using a \fBeoRea
 .PP
 Reimplemented from \fBmoeoDistance< MOEOT, Type >\fP.
 .PP
-Definition at line 99 of file moeoNormalizedDistance.h.
+Definition at line 122 of file moeoNormalizedDistance.h.
 
 .SH "Author"
 .PP 

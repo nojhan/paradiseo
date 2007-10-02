@@ -1,4 +1,4 @@
-.TH "moeoFrontByFrontSharingDiversityAssignment" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoFrontByFrontSharingDiversityAssignment" 3 "2 Oct 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -49,7 +49,7 @@ Inherits \fBmoeoSharingDiversityAssignment< MOEOT >< MOEOT >\fP.
 .SS "template<class MOEOT> class moeoFrontByFrontSharingDiversityAssignment< MOEOT >"
 Sharing assignment scheme on the way it is used in NSGA. 
 .PP
-Definition at line 22 of file moeoFrontByFrontSharingDiversityAssignment.h.
+Definition at line 45 of file moeoFrontByFrontSharingDiversityAssignment.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class MOEOT> \fBmoeoFrontByFrontSharingDiversityAssignment\fP< MOEOT >::\fBmoeoFrontByFrontSharingDiversityAssignment\fP (\fBmoeoDistance\fP< MOEOT, double > & _distance, double _nicheSize = \fC0.5\fP, double _alpha = \fC2.0\fP)\fC [inline]\fP"
@@ -67,7 +67,7 @@ Ctor.
 .PP
 
 .PP
-Definition at line 36 of file moeoFrontByFrontSharingDiversityAssignment.h.
+Definition at line 59 of file moeoFrontByFrontSharingDiversityAssignment.h.
 .SS "template<class MOEOT> \fBmoeoFrontByFrontSharingDiversityAssignment\fP< MOEOT >::\fBmoeoFrontByFrontSharingDiversityAssignment\fP (double _nicheSize = \fC0.5\fP, double _alpha = \fC2.0\fP)\fC [inline]\fP"
 .PP
 Ctor with an euclidean distance (with normalized objective values) in the objective space is used as default. 
@@ -81,7 +81,7 @@ Ctor with an euclidean distance (with normalized objective values) in the object
 .PP
 
 .PP
-Definition at line 45 of file moeoFrontByFrontSharingDiversityAssignment.h.
+Definition at line 68 of file moeoFrontByFrontSharingDiversityAssignment.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOT> void \fBmoeoFrontByFrontSharingDiversityAssignment\fP< MOEOT >::updateByDeleting (\fBeoPop\fP< MOEOT > & _pop, \fBObjectiveVector\fP & _objVec)\fC [inline, virtual]\fP"
@@ -107,7 +107,7 @@ NOT IMPLEMENTED, DO NOTHING !
 .PP
 Reimplemented from \fBmoeoSharingDiversityAssignment< MOEOT >\fP.
 .PP
-Definition at line 56 of file moeoFrontByFrontSharingDiversityAssignment.h.
+Definition at line 79 of file moeoFrontByFrontSharingDiversityAssignment.h.
 .SS "template<class MOEOT> void \fBmoeoFrontByFrontSharingDiversityAssignment\fP< MOEOT >::setSimilarities (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, private, virtual]\fP"
 .PP
 Sets similarities FRONT BY FRONT for every solution contained in the population _pop. 
@@ -121,7 +121,7 @@ Sets similarities FRONT BY FRONT for every solution contained in the population 
 .PP
 Reimplemented from \fBmoeoSharingDiversityAssignment< MOEOT >\fP.
 .PP
-Definition at line 74 of file moeoFrontByFrontSharingDiversityAssignment.h.
+Definition at line 97 of file moeoFrontByFrontSharingDiversityAssignment.h.
 .PP
 References moeoSharingDiversityAssignment< MOEOT >::distance, moeoSharingDiversityAssignment< MOEOT >::nicheSize, and moeoSharingDiversityAssignment< MOEOT >::sh().
 

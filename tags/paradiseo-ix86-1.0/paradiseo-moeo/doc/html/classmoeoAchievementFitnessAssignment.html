@@ -94,7 +94,7 @@ Fitness assignment sheme based on the achievement scalarizing function propozed 
 <p>
 
 <p>
-Definition at line <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00024">24</a> of file <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html">moeoAchievementFitnessAssignment.h</a>.<hr><h2>Constructor &amp; Destructor Documentation</h2>
+Definition at line <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00047">47</a> of file <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html">moeoAchievementFitnessAssignment.h</a>.<hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="52ae7d8112e66813232172a26d03cbb8"></a><!-- doxytag: member="moeoAchievementFitnessAssignment::moeoAchievementFitnessAssignment" ref="52ae7d8112e66813232172a26d03cbb8" args="(ObjectiveVector &amp;_reference, std::vector&lt; double &gt; &amp;_lambdas, double _spn=0.0001)" -->
 <div class="memitem">
 <div class="memproto">
@@ -140,9 +140,9 @@ Default ctor.
 </dl>
 
 <p>
-Definition at line <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00038">38</a> of file <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html">moeoAchievementFitnessAssignment.h</a>.
+Definition at line <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00061">61</a> of file <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html">moeoAchievementFitnessAssignment.h</a>.
 <p>
-References <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00112">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::spn</a>.
+References <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00135">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::spn</a>.
 </div>
 </div><p>
 <a class="anchor" name="75d9668a256381ef764352d705dcf47a"></a><!-- doxytag: member="moeoAchievementFitnessAssignment::moeoAchievementFitnessAssignment" ref="75d9668a256381ef764352d705dcf47a" args="(ObjectiveVector &amp;_reference, double _spn=0.0001)" -->
@@ -183,9 +183,9 @@ Ctor with default values for lambdas (1/nObjectives).
 </dl>
 
 <p>
-Definition at line <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00054">54</a> of file <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html">moeoAchievementFitnessAssignment.h</a>.
+Definition at line <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00077">77</a> of file <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html">moeoAchievementFitnessAssignment.h</a>.
 <p>
-References <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00110">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::lambdas</a>, and <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00112">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::spn</a>.
+References <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00133">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::lambdas</a>, and <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00135">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::spn</a>.
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
@@ -219,9 +219,9 @@ Sets the fitness values for every solution contained in the population _pop.
 <p>
 Implements <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_u_f.html#786e028409366dc273e19104f17ba68a">eoUF&lt; eoPop&lt; MOEOT &gt; &amp;, void &gt;</a>.
 <p>
-Definition at line <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00075">75</a> of file <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html">moeoAchievementFitnessAssignment.h</a>.
+Definition at line <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00098">98</a> of file <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html">moeoAchievementFitnessAssignment.h</a>.
 <p>
-References <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00128">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::compute()</a>.
+References <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00151">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::compute()</a>.
 </div>
 </div><p>
 <a class="anchor" name="a6a2ae6c263dbcea3c16cde4c8a1e5fc"></a><!-- doxytag: member="moeoAchievementFitnessAssignment::updateByDeleting" ref="a6a2ae6c263dbcea3c16cde4c8a1e5fc" args="(eoPop&lt; MOEOT &gt; &amp;_pop, ObjectiveVector &amp;_objVec)" -->
@@ -264,7 +264,7 @@ Updates the fitness values of the whole population _pop by taking the deletion o
 <p>
 Implements <a class="el" href="classmoeoFitnessAssignment.html#4922629569eddc9be049b3ead1ab0269">moeoFitnessAssignment&lt; MOEOT &gt;</a>.
 <p>
-Definition at line <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00089">89</a> of file <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html">moeoAchievementFitnessAssignment.h</a>.
+Definition at line <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00112">112</a> of file <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html">moeoAchievementFitnessAssignment.h</a>.
 </div>
 </div><p>
 <a class="anchor" name="d200530e3fbdf847dca970ac2265d83d"></a><!-- doxytag: member="moeoAchievementFitnessAssignment::setReference" ref="d200530e3fbdf847dca970ac2265d83d" args="(const ObjectiveVector &amp;_reference)" -->
@@ -295,9 +295,9 @@ Sets the reference point.
 </dl>
 
 <p>
-Definition at line <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00099">99</a> of file <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html">moeoAchievementFitnessAssignment.h</a>.
+Definition at line <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00122">122</a> of file <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html">moeoAchievementFitnessAssignment.h</a>.
 <p>
-References <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00108">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::reference</a>.
+References <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00131">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::reference</a>.
 </div>
 </div><p>
 <a class="anchor" name="7c027540ed0d7f61559f636b6b8a4b29"></a><!-- doxytag: member="moeoAchievementFitnessAssignment::compute" ref="7c027540ed0d7f61559f636b6b8a4b29" args="(MOEOT &amp;_moeo)" -->
@@ -328,16 +328,16 @@ Computes the fitness value for a solution.
 </dl>
 
 <p>
-Definition at line <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00128">128</a> of file <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html">moeoAchievementFitnessAssignment.h</a>.
+Definition at line <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00151">151</a> of file <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html">moeoAchievementFitnessAssignment.h</a>.
 <p>
-References <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00118">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::inf()</a>, <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00110">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::lambdas</a>, <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00108">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::reference</a>, and <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00112">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::spn</a>.
+References <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00141">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::inf()</a>, <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00133">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::lambdas</a>, <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00131">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::reference</a>, and <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00135">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::spn</a>.
 <p>
-Referenced by <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00075">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::operator()()</a>.
+Referenced by <a class="el" href="moeoAchievementFitnessAssignment_8h-source.html#l00098">moeoAchievementFitnessAssignment&lt; MOEOT &gt;::operator()()</a>.
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="moeoAchievementFitnessAssignment_8h-source.html">moeoAchievementFitnessAssignment.h</a></ul>
-<hr size="1"><address style="align: right;"><small>Generated on Fri Jul 6 09:41:04 2007 for ParadisEO-MOEO by&nbsp;
+<hr size="1"><address style="align: right;"><small>Generated on Tue Oct 2 16:10:21 2007 for ParadisEO-MOEO by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

@@ -1,4 +1,4 @@
-.TH "moeoVector" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoVector" 3 "2 Oct 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -56,7 +56,7 @@ Base class for fixed length chromosomes, just derives from \fBMOEO\fP and std::v
 
 GeneType must have the following methods: void ctor (needed for the std::vector<>), copy ctor. 
 .PP
-Definition at line 25 of file moeoVector.h.
+Definition at line 48 of file moeoVector.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity, class GeneType> \fBmoeoVector\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >::\fBmoeoVector\fP (unsigned int _size = \fC0\fP, GeneType _value = \fCGeneType()\fP)\fC [inline]\fP"
@@ -72,7 +72,7 @@ Default ctor.
 .PP
 
 .PP
-Definition at line 47 of file moeoVector.h.
+Definition at line 70 of file moeoVector.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity, class GeneType> void \fBmoeoVector\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >::value (const std::vector< GeneType > & _v)\fC [inline]\fP"
@@ -86,7 +86,7 @@ We can't have a Ctor from a std::vector as it would create ambiguity with the co
 .PP
 
 .PP
-Definition at line 56 of file moeoVector.h.
+Definition at line 79 of file moeoVector.h.
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity, class GeneType> bool \fBmoeoVector\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >::operator< (const \fBmoeoVector\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType > & _moeo) const\fC [inline]\fP"
 .PP
 To avoid conflicts between \fBMOEO::operator<\fP and std::vector<GeneType>::operator<. 
@@ -98,7 +98,7 @@ To avoid conflicts between \fBMOEO::operator<\fP and std::vector<GeneType>::oper
 .PP
 
 .PP
-Definition at line 79 of file moeoVector.h.
+Definition at line 102 of file moeoVector.h.
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity, class GeneType> virtual void \fBmoeoVector\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >::printOn (std::ostream & _os) const\fC [inline, virtual]\fP"
 .PP
 Writing object. 
@@ -114,7 +114,7 @@ Reimplemented from \fBMOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >\fP
 .PP
 Reimplemented in \fBmoeoBitVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity >\fP.
 .PP
-Definition at line 89 of file moeoVector.h.
+Definition at line 112 of file moeoVector.h.
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity, class GeneType> virtual void \fBmoeoVector\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >::readFrom (std::istream & _is)\fC [inline, virtual]\fP"
 .PP
 Reading object. 
@@ -130,7 +130,7 @@ Reimplemented from \fBMOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >\fP
 .PP
 Reimplemented in \fBmoeoBitVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity >\fP.
 .PP
-Definition at line 102 of file moeoVector.h.
+Definition at line 125 of file moeoVector.h.
 
 .SH "Author"
 .PP 

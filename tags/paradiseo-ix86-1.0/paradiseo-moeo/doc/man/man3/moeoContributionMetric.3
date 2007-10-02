@@ -1,4 +1,4 @@
-.TH "moeoContributionMetric" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoContributionMetric" 3 "2 Oct 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -52,7 +52,7 @@ The contribution metric evaluates the proportion of non-dominated solutions give
 
 of the 2000 Congress on Evolutionary Computation, IEEE Press, pp. 317-324) 
 .PP
-Definition at line 24 of file moeoContributionMetric.h.
+Definition at line 47 of file moeoContributionMetric.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class ObjectiveVector> double \fBmoeoContributionMetric\fP< ObjectiveVector >::operator() (const std::vector< ObjectiveVector > & _set1, const std::vector< ObjectiveVector > & _set2)\fC [inline]\fP"
@@ -68,7 +68,7 @@ Returns the contribution of the Pareto set '_set1' relatively to the Pareto set 
 .PP
 
 .PP
-Definition at line 33 of file moeoContributionMetric.h.
+Definition at line 56 of file moeoContributionMetric.h.
 .PP
 References moeoContributionMetric< ObjectiveVector >::card_C(), moeoContributionMetric< ObjectiveVector >::card_N(), and moeoContributionMetric< ObjectiveVector >::card_W().
 .SS "template<class ObjectiveVector> unsigned int \fBmoeoContributionMetric\fP< ObjectiveVector >::card_C (const std::vector< ObjectiveVector > & _set1, const std::vector< ObjectiveVector > & _set2)\fC [inline, private]\fP"
@@ -84,7 +84,7 @@ Returns the number of solutions both in '_set1' and '_set2'.
 .PP
 
 .PP
-Definition at line 54 of file moeoContributionMetric.h.
+Definition at line 77 of file moeoContributionMetric.h.
 .PP
 Referenced by moeoContributionMetric< ObjectiveVector >::operator()().
 .SS "template<class ObjectiveVector> unsigned int \fBmoeoContributionMetric\fP< ObjectiveVector >::card_W (const std::vector< ObjectiveVector > & _set1, const std::vector< ObjectiveVector > & _set2)\fC [inline, private]\fP"
@@ -100,7 +100,7 @@ Returns the number of solutions in '_set1' dominating at least one solution of '
 .PP
 
 .PP
-Definition at line 71 of file moeoContributionMetric.h.
+Definition at line 94 of file moeoContributionMetric.h.
 .PP
 References moeoContributionMetric< ObjectiveVector >::paretoComparator.
 .PP
@@ -118,7 +118,7 @@ Returns the number of solutions in '_set1' having no relation of dominance with 
 .PP
 
 .PP
-Definition at line 89 of file moeoContributionMetric.h.
+Definition at line 112 of file moeoContributionMetric.h.
 .PP
 References moeoContributionMetric< ObjectiveVector >::paretoComparator.
 .PP
