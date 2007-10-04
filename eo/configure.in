@@ -4,6 +4,9 @@ dnl Change the version number here
 AC_INIT([Evolving Objects],[1.02-cvs1],[eodev-help@sourceforge.net],[eo])
 AC_PREREQ(2.60)
 
+dnl Autoconf 2.6 or higher compatibility
+AC_DEFUN([AC_DATAROOTDIR_CHECKED])
+
 dnl make sure we are compiling from the correct sources
 AC_CONFIG_SRCDIR(src/eoOp.h)
 
