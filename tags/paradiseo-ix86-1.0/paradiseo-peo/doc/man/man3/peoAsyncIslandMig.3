@@ -1,4 +1,4 @@
-.TH "peoAsyncIslandMig" 3 "5 Jul 2007" "Version 0.1" "ParadisEO-PEO" \" -*- nroff -*-
+.TH "peoAsyncIslandMig" 3 "4 Oct 2007" "Version 0.1" "ParadisEO-PEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -130,7 +130,7 @@ The source and the destination population for the migration object were specifie
 .PP
 The above steps only create an asynchronous migration object associated to an evolutionary algorithm. The creation of several islands requires the reiteration of the steps 2 through 4 for creating distinct algorithms, with distinct populations and the associated distinctly parametrized migration objects. The interconnecting element is the underlying topology, defined at step 1 (the same C++ migTopology object has to be passed as parameter for all the migration objects, in order to interconnect them). 
 .PP
-Definition at line 112 of file peoAsyncIslandMig.h.
+Definition at line 140 of file peoAsyncIslandMig.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class EOT> \fBpeoAsyncIslandMig\fP< EOT >::\fBpeoAsyncIslandMig\fP (\fBeoContinue\fP< EOT > & __cont, \fBeoSelect\fP< EOT > & __select, \fBeoReplacement\fP< EOT > & __replace, \fBTopology\fP & __topology, \fBeoPop\fP< EOT > & __source, \fBeoPop\fP< EOT > & __destination)"
@@ -154,7 +154,7 @@ Constructor for the \fBpeoAsyncIslandMig\fP class; the characteristics of the mi
 .PP
 
 .PP
-Definition at line 171 of file peoAsyncIslandMig.h.
+Definition at line 199 of file peoAsyncIslandMig.h.
 .PP
 References Topology::add().
 .SH "Member Function Documentation"
@@ -167,7 +167,7 @@ The emigrant individuals are selected from the source population and sent to the
 .PP
 Implements \fBeoF< void >\fP.
 .PP
-Definition at line 248 of file peoAsyncIslandMig.h.
+Definition at line 276 of file peoAsyncIslandMig.h.
 .PP
 References peoAsyncIslandMig< EOT >::cont, peoAsyncIslandMig< EOT >::emigrate(), peoAsyncIslandMig< EOT >::immigrate(), and peoAsyncIslandMig< EOT >::source.
 

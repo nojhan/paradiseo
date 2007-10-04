@@ -1,4 +1,4 @@
-.TH "peoSeqPopEval" 3 "5 Jul 2007" "Version 0.1" "ParadisEO-PEO" \" -*- nroff -*-
+.TH "peoSeqPopEval" 3 "4 Oct 2007" "Version 0.1" "ParadisEO-PEO" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -39,7 +39,7 @@ The \fBpeoSeqPopEval\fP class acts only as a ParadisEO specific sequential evalu
 
 The specified \fBEO\fP evaluation object is applyied in an iterative manner to each individual of a specified population. 
 .PP
-Definition at line 21 of file peoSeqPopEval.h.
+Definition at line 49 of file peoSeqPopEval.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class EOT> \fBpeoSeqPopEval\fP< EOT >::\fBpeoSeqPopEval\fP (\fBeoEvalFunc\fP< EOT > & __eval)"
@@ -53,7 +53,7 @@ Constructor function - it only sets an internal reference to point to the specif
 .PP
 
 .PP
-Definition at line 41 of file peoSeqPopEval.h.
+Definition at line 69 of file peoSeqPopEval.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class EOT> void \fBpeoSeqPopEval\fP< EOT >::operator() (\fBeoPop\fP< EOT > & __pop)\fC [virtual]\fP"
@@ -69,7 +69,7 @@ Operator for evaluating all the individuals of a given population - in a sequent
 .PP
 Implements \fBpeoPopEval< EOT >\fP.
 .PP
-Definition at line 46 of file peoSeqPopEval.h.
+Definition at line 74 of file peoSeqPopEval.h.
 .PP
 References peoSeqPopEval< EOT >::eval.
 
