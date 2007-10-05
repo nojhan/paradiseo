@@ -15,6 +15,15 @@ TAR_MSG=" "
 DIE=0
 PROG=ParadisEO
 
+# generator types available on Unix platforms
+P_UNIX_MAKEFILES=1
+P_KDEVELOP3_PROJECT=2
+G_UNIX_MAKEFILES="Unix Makefiles"
+G_KDEVELOP3_PROJECT="KDevelop3"
+
+# should we compile ParadisEO ?
+COMPILE_PARADISEO=1
+
 # install types to select in the main menu
 P_FULL_INSTALL=1
 P_BASIC_INSTALL=2
@@ -383,11 +392,18 @@ function run_install_step()
 		
 		execute_cmd "cd $installKitPath/paradiseo-eo/build" "[$currentStepCounter-2] Go in Paradiseo-EO build dir"  $SPY 
 		RETURN=`expr $RETURN + $?`
-		execute_cmd "cmake ../ " "[$currentStepCounter-3] Run CMake"  $SPY
-		RETURN=`expr $RETURN + $?`
-		execute_cmd "make" "[$currentStepCounter-4] Compile ParadisEO-EO"  $SPY
+		
+		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \" " "[$currentStepCounter-3] Run CMake using generator $BUILD_PROCESS_TYPE"  $SPY
+		
+		cmake ../  -G"$BUILD_PROCESS_TYPE" >> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`
 
+		if [ "$COMPILE_PARADISEO" -eq "1" ] 
+		then
+			execute_cmd "make" "[$currentStepCounter-4] Compile ParadisEO-EO"  $SPY
+			RETURN=`expr $RETURN + $?`
+		fi
+		
 		if [ ! $(($RETURN)) = 0 ]
 		then
 			echo ''
@@ -407,12 +423,19 @@ function run_install_step()
 	
 		execute_cmd "cd $installKitPath/paradiseo-mo/build" "[$currentStepCounter-1] Go in Paradiseo-MO dir"  $SPY 
 		RETURN=$?
-		execute_cmd "cmake ../ -Dconfig=$installKitPath/install.cmake" "[$currentStepCounter-2] Run CMake"  $SPY
+		
+		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \"  -DEOdir=$installKitPath/paradiseo-eo" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE"  $SPY
+		cmake ../ -G"$BUILD_PROCESS_TYPE" -DEOdir=$installKitPath/paradiseo-eo  >> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`
-		execute_cmd "make" "[$currentStepCounter-3] Compile ParadisEO-MO"  $SPY
-		RETURN=`expr $RETURN + $?`
-		execute_cmd "make install" "[$currentStepCounter-4] Make install of ParadisEO-MO"  $SPY
-		RETURN=`expr $RETURN + $?`
+		
+		if [ "$COMPILE_PARADISEO" -eq "1" ] 
+		then
+			execute_cmd "make" "[$currentStepCounter-3] Compile ParadisEO-MO"  $SPY
+			RETURN=`expr $RETURN + $?`
+			execute_cmd "make install" "[$currentStepCounter-4] Make install of ParadisEO-MO"  $SPY
+			RETURN=`expr $RETURN + $?`
+		fi
+		
 		if [ ! $(($RETURN)) = 0 ]
 		then
 			echo ''
@@ -432,12 +455,19 @@ function run_install_step()
 		
 		execute_cmd "cd $installKitPath/paradiseo-moeo/build" "[$currentStepCounter-1] Go in Paradiseo-MOEO dir"  $SPY 
 		RETURN=$?
-		execute_cmd "cmake ../ -Dconfig=$installKitPath/install.cmake" "[$currentStepCounter-2] Run CMake"  $SPY
-		RETURN=`expr $RETURN + $?`
-		execute_cmd "make" "[$currentStepCounter-3] Compile ParadisEO-MOEO"  $SPY
-		RETURN=`expr $RETURN + $?`
-		execute_cmd "make install" "[$currentStepCounter-4] Make install ParadisEO-MOEO"  $SPY
-		RETURN=`expr $RETURN + $?`
+		
+		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \"  -DEOdir=$installKitPath/paradiseo-eo" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE"  $SPY
+		cmake ../ -G"$BUILD_PROCESS_TYPE" -DEOdir=$installKitPath/paradiseo-eo  >> ${SPY} 2>> ${SPY}
+		RETURN=`expr $RETURN + $?`		
+		
+		if [ "$COMPILE_PARADISEO" -eq "1" ] 
+		then
+			execute_cmd "make" "[$currentStepCounter-3] Compile ParadisEO-MOEO"  $SPY
+			RETURN=`expr $RETURN + $?`
+			execute_cmd "make install" "[$currentStepCounter-4] Make install ParadisEO-MOEO"  $SPY
+			RETURN=`expr $RETURN + $?`
+		fi
+		
 		if [ ! $(($RETURN)) = 0 ]
 		then
 			echo ''
@@ -670,12 +700,19 @@ function run_install_step()
 		
 		execute_cmd "cd $installKitPath/paradiseo-peo/build" "[$currentStepCounter-1] Go in Paradiseo-PEO dir"  $SPY 
 		RETURN=$?
-		execute_cmd "cmake ../ -Dconfig=$installKitPath/install.cmake" "[$currentStepCounter-2] Run CMake for ParadisEO-PEO"  $SPY
+
+		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \"  -DEOdir=$installKitPath/paradiseo-eo -DMOdir=$installKitPath/paradiseo-mo" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE"  $SPY
+		cmake ../ -G"$BUILD_PROCESS_TYPE" -DEOdir=$installKitPath/paradiseo-eo -DMOdir=$installKitPath/paradiseo-mo  >> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`
-		execute_cmd "make" "[$currentStepCounter-3] Compile ParadisEO-PEO "  $SPY
-		RETURN=`expr $RETURN + $?`
-		execute_cmd "make install" "[$currentStepCounter-4] Make install ParadisEO-PEO "  $SPY
-		RETURN=`expr $RETURN + $?`
+		
+		if [ "$COMPILE_PARADISEO" -eq "1" ] 
+		then
+			execute_cmd "make" "[$currentStepCounter-3] Compile ParadisEO-PEO "  $SPY
+			RETURN=`expr $RETURN + $?`
+			execute_cmd "make install" "[$currentStepCounter-4] Make install ParadisEO-PEO "  $SPY
+			RETURN=`expr $RETURN + $?`
+		fi
+		
 		if [ ! $(($RETURN)) = 0 ]
 		then
 			echo ''
@@ -755,7 +792,10 @@ function run_install_step()
 		sleep 2
 		echo
 		echo
-		echo '=> ParadisEO install successful.To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr'
+		if [ ! "$COMPILE_PARADISEO" -eq "1" ] 
+		then
+			echo '=> ParadisEO  must now be compiled using the appropriate tool depending on the generator you've chosen'
+		fi
 		echo
 		return $SUCCESSFUL_STEP
 		;;
@@ -913,6 +953,38 @@ fi
 INSTALL_TREATENED=0
 INSTALL_PATH=$PWD
 
+# need the generator type
+BUILD_PROCESS_TYPE=0
+GENERATOR_TREATENED=0
+
+while [ ! "$GENERATOR_TREATENED" = "1" ]
+do	
+	case "$BUILD_PROCESS_TYPE" in
+	
+	$P_UNIX_MAKEFILES)
+		BUILD_PROCESS_TYPE="$G_UNIX_MAKEFILES"
+		GENERATOR_TREATENED=1		
+		;;
+	
+	$P_KDEVELOP3_PROJECT)
+		BUILD_PROCESS_TYPE="$G_KDEVELOP3_PROJECT"
+		GENERATOR_TREATENED=1
+		COMPILE_PARADISEO=0
+		echo " Note: For $P_KDEVELOP3_PROJECT (generator n°$G_KDEVELOP3_PROJECT), this script won't compile ParadisEO. You are to compile it using the appropriate tool."
+		;;
+		
+	*)
+		echo
+		echo -e ' \033[40m\033[1;33m### Please select the kind of "Makefile" you want to generate (available on UNIX platforms): ### \033[0m '
+		echo
+		echo "	 $P_UNIX_MAKEFILES : Unix Makefiles (standard Makefiles)"
+		echo "	 $P_KDEVELOP3_PROJECT : KDevelop3 project files"
+		read BUILD_PROCESS_TYPE
+	;;
+	esac
+done
+
+
 while [ ! "$INSTALL_TREATENED" = "1" ]
 do	
 	case "$INSTALL_TYPE" in
@@ -1007,7 +1079,7 @@ do
 	$P_EXIT_INSTALL)
 		INSTALL_TREATENED=1
 		;;
-
+		
 	*)
 		echo
 		echo -e ' \033[40m\033[1;33m### Please select your install for ParadisEO : ### \033[0m '
