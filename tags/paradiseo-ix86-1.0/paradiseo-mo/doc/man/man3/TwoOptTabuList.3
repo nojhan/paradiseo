@@ -1,0 +1,74 @@
+.TH "TwoOptTabuList" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TwoOptTabuList \- The table of tabu movements, i.e.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <two_opt_tabu_list.h>\fP
+.PP
+Inherits \fBmoTabuList< TwoOpt >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBoperator()\fP (const \fBTwoOpt\fP &__move, const \fBRoute\fP &__sol)"
+.br
+.ti -1c
+.RI "void \fBadd\fP (const \fBTwoOpt\fP &__move, const \fBRoute\fP &__sol)"
+.br
+.ti -1c
+.RI "void \fBupdate\fP ()"
+.br
+.RI "\fIProcedure that updates the tabu list content. \fP"
+.ti -1c
+.RI "void \fBinit\fP ()"
+.br
+.RI "\fIProcedure which initialises the tabu list. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< std::vector< unsigned > > \fBtabu_span\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The table of tabu movements, i.e. 
+
+forbidden edges 
+.PP
+Definition at line 45 of file two_opt_tabu_list.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "void TwoOptTabuList::update ()\fC [virtual]\fP"
+.PP
+Procedure that updates the tabu list content. 
+.PP
+Generally, a counter associated to each saved move is decreased by one. 
+.PP
+Implements \fBmoTabuList< TwoOpt >\fP.
+.PP
+Definition at line 71 of file two_opt_tabu_list.cpp.
+.PP
+References tabu_span.
+.SS "void TwoOptTabuList::init ()\fC [virtual]\fP"
+.PP
+Procedure which initialises the tabu list. 
+.PP
+Can be useful if the data structure needs to be allocated before being used. 
+.PP
+Implements \fBmoTabuList< TwoOpt >\fP.
+.PP
+Definition at line 42 of file two_opt_tabu_list.cpp.
+.PP
+References Graph::size(), and tabu_span.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.
