@@ -17,7 +17,7 @@ The basic installation procedure goes the following.
 
 To compile paradiseo-moeo in the default directory,
 go to paradiseo-moeo/build/ and run:
-    > cmake ../ -DEOdir=$(EO_SRC)
+    > cmake ../ -Dconfig=<path to the install.cmake file>
     > make
     // for an easy-use of the provided lessons
     > make install
@@ -25,15 +25,14 @@ go to paradiseo-moeo/build/ and run:
     > make doc
 
 To compile paradiseo-moeo anywhere else, simply run:
-    > cmake $(MOEO) -DEOdir=$(EO_SRC)
+    > cmake $(MOEO) -Dconfig=<path to the install.cmake file>
     > make
     // for an easy-use of the provided lessons
     > make install
     // optional (if the documentation is not already available)
     > make doc
 
-where $(EO_SRC) is the top-level source directory of PARADISEO-EO,
-and $(MOEO) is the top-level directory of PARADISEO-MOEO.
+where $(MOEO) is the top-level directory of PARADISEO-MOEO.
 
 To clean everything, simply run
     > make clean
