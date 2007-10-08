@@ -1,4 +1,4 @@
-.TH "peoSyncMultiStart" 3 "5 Jul 2007" "Version 0.1" "ParadisEO-PEO" \" -*- nroff -*-
+.TH "peoSyncMultiStart" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-PEOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -94,7 +94,7 @@ The \fBpeoSyncMultiStart\fP class provides the basis for implementing the synchr
 
 As a simple example, several hill climbing algorithms may be synchronously launched on the specified population, each algorithm acting upon one individual only, the final result being integrated back in the population. A \fBpeoSyncMultiStart\fP object can be specified as checkpoint object for a classic ParadisEO evolutionary algorithm thus allowing for simple hybridization schemes which combine the evolutionary approach with a local search approach, for example, executed at the end of each generation. 
 .PP
-Definition at line 36 of file peoSyncMultiStart.h.
+Definition at line 64 of file peoSyncMultiStart.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class EOT> \fBpeoSyncMultiStart\fP< EOT >::\fBpeoSyncMultiStart\fP (\fBeoContinue\fP< EOT > & __cont, \fBeoSelect\fP< EOT > & __select, \fBeoReplacement\fP< EOT > & __replace, \fBmoAlgo\fP< EOT > & __ls, \fBeoPop\fP< EOT > & __pop)"
@@ -116,7 +116,7 @@ Constructor function - several simple parameters are required for defining the c
 .PP
 
 .PP
-Definition at line 106 of file peoSyncMultiStart.h.
+Definition at line 134 of file peoSyncMultiStart.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class EOT> void \fBpeoSyncMultiStart\fP< EOT >::operator() ()\fC [virtual]\fP"
@@ -127,7 +127,7 @@ There is no need to explicitly call the operator - automatically called as check
 .PP
 Implements \fBeoF< void >\fP.
 .PP
-Definition at line 161 of file peoSyncMultiStart.h.
+Definition at line 189 of file peoSyncMultiStart.h.
 .PP
 References peoSyncMultiStart< EOT >::idx, peoSyncMultiStart< EOT >::impr_sel, peoSyncMultiStart< EOT >::num_term, peoSyncMultiStart< EOT >::pop, Service::requestResourceRequest(), peoSyncMultiStart< EOT >::sel, peoSyncMultiStart< EOT >::select, and Communicable::stop().
 .SS "template<class EOT> void \fBpeoSyncMultiStart\fP< EOT >::packData ()\fC [virtual]\fP"
@@ -138,7 +138,7 @@ There is no need to explicitly call the function.
 .PP
 Reimplemented from \fBService\fP.
 .PP
-Definition at line 120 of file peoSyncMultiStart.h.
+Definition at line 148 of file peoSyncMultiStart.h.
 .PP
 References peoSyncMultiStart< EOT >::idx, and peoSyncMultiStart< EOT >::sel.
 .SS "template<class EOT> void \fBpeoSyncMultiStart\fP< EOT >::unpackData ()\fC [virtual]\fP"
@@ -149,7 +149,7 @@ There is no need to explicitly call the function.
 .PP
 Reimplemented from \fBService\fP.
 .PP
-Definition at line 126 of file peoSyncMultiStart.h.
+Definition at line 154 of file peoSyncMultiStart.h.
 .PP
 References peoSyncMultiStart< EOT >::sol.
 .SS "template<class EOT> void \fBpeoSyncMultiStart\fP< EOT >::execute ()\fC [virtual]\fP"
@@ -160,7 +160,7 @@ There is no need to explicitly call the function.
 .PP
 Reimplemented from \fBService\fP.
 .PP
-Definition at line 132 of file peoSyncMultiStart.h.
+Definition at line 160 of file peoSyncMultiStart.h.
 .PP
 References peoSyncMultiStart< EOT >::ls, and peoSyncMultiStart< EOT >::sol.
 .SS "template<class EOT> void \fBpeoSyncMultiStart\fP< EOT >::packResult ()\fC [virtual]\fP"
@@ -171,7 +171,7 @@ There is no need to explicitly call the function.
 .PP
 Reimplemented from \fBService\fP.
 .PP
-Definition at line 138 of file peoSyncMultiStart.h.
+Definition at line 166 of file peoSyncMultiStart.h.
 .PP
 References peoSyncMultiStart< EOT >::sol.
 .SS "template<class EOT> void \fBpeoSyncMultiStart\fP< EOT >::unpackResult ()\fC [virtual]\fP"
@@ -182,7 +182,7 @@ There is no need to explicitly call the function.
 .PP
 Reimplemented from \fBService\fP.
 .PP
-Definition at line 144 of file peoSyncMultiStart.h.
+Definition at line 172 of file peoSyncMultiStart.h.
 .PP
 References Service::getOwner(), peoSyncMultiStart< EOT >::impr_sel, peoSyncMultiStart< EOT >::num_term, peoSyncMultiStart< EOT >::pop, peoSyncMultiStart< EOT >::replace, Communicable::resume(), peoSyncMultiStart< EOT >::sel, Thread::setActive(), and peoSyncMultiStart< EOT >::sol.
 .SS "template<class EOT> void \fBpeoSyncMultiStart\fP< EOT >::notifySendingData ()\fC [virtual]\fP"
@@ -193,7 +193,7 @@ There is no need to explicitly call the function.
 .PP
 Reimplemented from \fBService\fP.
 .PP
-Definition at line 172 of file peoSyncMultiStart.h.
+Definition at line 200 of file peoSyncMultiStart.h.
 .SS "template<class EOT> void \fBpeoSyncMultiStart\fP< EOT >::notifySendingAllResourceRequests ()\fC [virtual]\fP"
 .PP
 Auxiliary function for notifications between the process requesting the synchronous multi-start execution and the processes that performs the actual execution phase. 
@@ -202,10 +202,10 @@ There is no need to explicitly call the function.
 .PP
 Reimplemented from \fBService\fP.
 .PP
-Definition at line 177 of file peoSyncMultiStart.h.
+Definition at line 205 of file peoSyncMultiStart.h.
 .PP
 References Service::getOwner(), and Thread::setPassive().
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-PEO from the source code.
+Generated automatically by Doxygen for ParadisEO-PEOMovingObjects from the source code.

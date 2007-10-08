@@ -1,4 +1,4 @@
-.TH "peoSeqTransform" 3 "5 Jul 2007" "Version 0.1" "ParadisEO-PEO" \" -*- nroff -*-
+.TH "peoSeqTransform" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-PEOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -59,7 +59,7 @@ The \fBpeoSeqTransform\fP represent a wrapper for offering the possibility of us
 
 A minimal set of interface functions is also provided for creating the link with the parallel architecture of the ParadisEO framework. 
 .PP
-Definition at line 20 of file peoSeqTransform.h.
+Definition at line 48 of file peoSeqTransform.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class EOT> \fBpeoSeqTransform\fP< EOT >::\fBpeoSeqTransform\fP (\fBeoTransform\fP< EOT > & __trans)"
@@ -73,7 +73,7 @@ Constructor function - sets an internal reference towards the specified EO-deriv
 .PP
 
 .PP
-Definition at line 55 of file peoSeqTransform.h.
+Definition at line 83 of file peoSeqTransform.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class EOT> void \fBpeoSeqTransform\fP< EOT >::operator() (\fBeoPop\fP< EOT > & __pop)"
@@ -87,10 +87,10 @@ Operator for applying the specified transform operators on each individual of th
 .PP
 
 .PP
-Definition at line 60 of file peoSeqTransform.h.
+Definition at line 88 of file peoSeqTransform.h.
 .PP
 References peoSeqTransform< EOT >::trans.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-PEO from the source code.
+Generated automatically by Doxygen for ParadisEO-PEOMovingObjects from the source code.

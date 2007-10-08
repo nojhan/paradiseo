@@ -17,7 +17,7 @@ The basic installation procedure goes the following.
 
 To compile paradiseo-peo in the default directory,
 go to paradiseo-peo/build/ and run:
-    > cmake ../ -DEOdir=$(EO_SRC) -DMOdir=$(MO_SRC)
+    > cmake ../ -Dconfig=<path to the install.cmake file>
     > make
     // for an easy-use of the provided lessons
     > make install
@@ -25,15 +25,12 @@ go to paradiseo-peo/build/ and run:
     > make doc
 
 To compile paradiseo-peo anywhere else, simply run:
-    > cmake $(PEO) -DEOdir=$(EO_SRC) -DMOdir=$(MO_SRC)
+    > cmake $(PEO) -Dconfig=<path to the install.cmake file>
     > make
     // for an easy-use of the provided lessons
     > make install
     // optional (if the documentation is not already available)
     > make doc
-
-where $(EO_SRC) is the top-level source directory of PARADISEO-EO,
-and $(MO) is the top-level directory of PARADISEO-MO.
 
 To clean everything, simply run
     > make clean

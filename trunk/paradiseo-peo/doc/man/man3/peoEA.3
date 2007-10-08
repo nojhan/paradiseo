@@ -1,4 +1,4 @@
-.TH "peoEA" 3 "5 Jul 2007" "Version 0.1" "ParadisEO-PEO" \" -*- nroff -*-
+.TH "peoEA" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-PEOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -60,7 +60,7 @@ In addition, as compared with the algorithms provided by the \fBEO\fP framework,
 .PP
 ...      eoPop< EOT > population( POP_SIZE, popInitializer );   // creation of a population with POP_SIZE individuals - the popInitializer is a functor to be called for each individual       eoGenContinue< EOT > eaCont( NUM_GEN );   // number of generations for the evolutionary algorithm eoCheckPoint< EOT > eaCheckpointContinue( eaCont );   // checkpoint incorporating the continuation criterion - startpoint for adding other checkpoint objects       peoSeqPopEval< EOT > eaPopEval( evalFunction );   // sequential evaluation functor wrapper - evalFunction represents the actual evaluation functor        eoRankingSelect< EOT > selectionStrategy;   // selection strategy for creating the offspring population - a simple ranking selection in this case  eoSelectNumber< EOT > eaSelect( selectionStrategy, POP_SIZE );   // the number of individuals to be selected for creating the offspring population  eoRankingSelect< EOT > selectionStrategy;   // selection strategy for creating the offspring population - a simple ranking selection in this case        eoSGATransform< EOT > transform( crossover, CROSS_RATE, mutation, MUT_RATE );   // transformation operator - crossover and mutation operators with their associated probabilities  peoSeqTransform< EOT > eaTransform( transform );   // ParadisEO specific sequential operator - a parallel version may be specified in the same manner        eoPlusReplacement< EOT > eaReplace;   // replacement strategy - for integrating the offspring resulting individuals in the initial population        peoEA< EOT > eaAlg( eaCheckpointContinue, eaPopEval, eaSelect, eaTransform, eaReplace );   // ParadisEO evolutionary algorithm integrating the above defined objects  eaAlg( population );   // specifying the initial population for the algorithm  ...      
 .PP
-Definition at line 54 of file peoEA.h.
+Definition at line 82 of file peoEA.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class EOT> \fBpeoEA\fP< EOT >::\fBpeoEA\fP (\fBeoContinue\fP< EOT > & __cont, \fBpeoPopEval\fP< EOT > & __pop_eval, \fBeoSelect\fP< EOT > & __select, \fBpeoTransform\fP< EOT > & __trans, \fBeoReplacement\fP< EOT > & __replace)"
@@ -84,7 +84,7 @@ Depending on the requirements, a sequential or a parallel evaluation operator ma
 .PP
 
 .PP
-Definition at line 98 of file peoEA.h.
+Definition at line 126 of file peoEA.h.
 .PP
 References peoEA< EOT >::pop_eval, and peoEA< EOT >::trans.
 .SH "Member Function Documentation"
@@ -100,10 +100,10 @@ References peoEA< EOT >::pop_eval, and peoEA< EOT >::trans.
 .PP
 
 .PP
-Definition at line 114 of file peoEA.h.
+Definition at line 142 of file peoEA.h.
 .PP
 References peoEA< EOT >::pop.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-PEO from the source code.
+Generated automatically by Doxygen for ParadisEO-PEOMovingObjects from the source code.

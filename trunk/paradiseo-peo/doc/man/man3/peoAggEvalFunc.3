@@ -1,4 +1,4 @@
-.TH "peoAggEvalFunc" 3 "5 Jul 2007" "Version 0.1" "ParadisEO-PEO" \" -*- nroff -*-
+.TH "peoAggEvalFunc" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-PEOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -12,7 +12,7 @@ peoAggEvalFunc \- The \fBpeoAggEvalFunc\fP class offers only the interface for c
 .PP
 Inherits \fBeoBF< A1, A2, R >< const EOT &, EOT::Fitness &, void >\fP.
 .PP
-Inherited by \fBpeoNoAggEvalFunc< EOT >\fP.
+Inherited by \fBMergeRouteEval\fP, and \fBpeoNoAggEvalFunc< EOT >\fP.
 .PP
 .SH "Detailed Description"
 .PP 
@@ -26,8 +26,8 @@ void operator()( EOT& __eot, const typename EOT :: Fitness& __partial_fittness )
 .PP
 The aggregation object is called in an iterative manner for each of the results obtained by applying partial evaluation functions. 
 .PP
-Definition at line 25 of file peoAggEvalFunc.h.
+Definition at line 53 of file peoAggEvalFunc.h.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-PEO from the source code.
+Generated automatically by Doxygen for ParadisEO-PEOMovingObjects from the source code.
