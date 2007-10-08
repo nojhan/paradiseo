@@ -286,7 +286,8 @@
 //! standing as a <a href="lsnshared/html/index.html" target="new" style="text-decoration:none;">common shared source code base</a>. While not being
 //! part of the ParadisEO-PEO framework, it may represent a startpoint for a better understanding of the presented tutorials.
 //!
-//! \section LICENCE
+//!
+//! \section LICENSE
 //!
 //!
 //!This software is governed by the CeCILL license under French law and
