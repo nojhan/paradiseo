@@ -1,0 +1,225 @@
+.TH "moeoExpBinaryIndicatorBasedFitnessAssignment" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOEOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoExpBinaryIndicatorBasedFitnessAssignment \- Fitness assignment sheme based on an indicator proposed in: E.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoExpBinaryIndicatorBasedFitnessAssignment.h>\fP
+.PP
+Inherits \fBmoeoBinaryIndicatorBasedFitnessAssignment< MOEOT >< MOEOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef MOEOT::ObjectiveVector \fBObjectiveVector\fP"
+.br
+.RI "\fIThe type of objective vector. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoExpBinaryIndicatorBasedFitnessAssignment\fP (\fBmoeoNormalizedSolutionVsSolutionBinaryMetric\fP< \fBObjectiveVector\fP, double > &_metric, const double _kappa=0.05)"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (\fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fISets the fitness values for every solution contained in the population _pop. \fP"
+.ti -1c
+.RI "void \fBupdateByDeleting\fP (\fBeoPop\fP< MOEOT > &_pop, \fBObjectiveVector\fP &_objVec)"
+.br
+.RI "\fIUpdates the fitness values of the whole population _pop by taking the deletion of the objective vector _objVec into account. \fP"
+.ti -1c
+.RI "double \fBupdateByAdding\fP (\fBeoPop\fP< MOEOT > &_pop, \fBObjectiveVector\fP &_objVec)"
+.br
+.RI "\fIUpdates the fitness values of the whole population _pop by taking the adding of the objective vector _objVec into account and returns the fitness value of _objVec. \fP"
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBsetup\fP (const \fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fISets the bounds for every objective using the min and the max value for every objective vector of _pop. \fP"
+.ti -1c
+.RI "void \fBcomputeValues\fP (const \fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fICompute every indicator value in values (values[i] = I(_v[i], _o)). \fP"
+.ti -1c
+.RI "void \fBsetFitnesses\fP (\fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fISets the fitness value of the whple population. \fP"
+.ti -1c
+.RI "double \fBcomputeFitness\fP (const unsigned int _idx)"
+.br
+.RI "\fIReturns the fitness value of the _idx th individual of the population. \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoNormalizedSolutionVsSolutionBinaryMetric\fP< \fBObjectiveVector\fP, double > & \fBmetric\fP"
+.br
+.RI "\fIthe quality indicator \fP"
+.ti -1c
+.RI "double \fBkappa\fP"
+.br
+.RI "\fIthe scaling factor \fP"
+.ti -1c
+.RI "std::vector< std::vector< double > > \fBvalues\fP"
+.br
+.RI "\fIthe computed indicator values \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT> class moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >"
+Fitness assignment sheme based on an indicator proposed in: E. 
+
+Zitzler, S. Künzli, 'Indicator-Based Selection in Multiobjective Search', Proc. 8th International Conference on Parallel Problem Solving from Nature (PPSN VIII), pp. 832-842, Birmingham, UK (2004). This strategy is, for instance, used in IBEA. 
+.PP
+Definition at line 29 of file moeoExpBinaryIndicatorBasedFitnessAssignment.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class MOEOT> \fBmoeoExpBinaryIndicatorBasedFitnessAssignment\fP< MOEOT >::\fBmoeoExpBinaryIndicatorBasedFitnessAssignment\fP (\fBmoeoNormalizedSolutionVsSolutionBinaryMetric\fP< \fBObjectiveVector\fP, double > & _metric, const double _kappa = \fC0.05\fP)\fC [inline]\fP"
+.PP
+Ctor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_metric\fP the quality indicator 
+.br
+\fI_kappa\fP the scaling factor 
+.RE
+.PP
+
+.PP
+Definition at line 42 of file moeoExpBinaryIndicatorBasedFitnessAssignment.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT> void \fBmoeoExpBinaryIndicatorBasedFitnessAssignment\fP< MOEOT >::operator() (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
+.PP
+Sets the fitness values for every solution contained in the population _pop. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< eoPop< MOEOT > &, void >\fP.
+.PP
+Definition at line 50 of file moeoExpBinaryIndicatorBasedFitnessAssignment.h.
+.PP
+References moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >::computeValues(), moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >::setFitnesses(), and moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >::setup().
+.SS "template<class MOEOT> void \fBmoeoExpBinaryIndicatorBasedFitnessAssignment\fP< MOEOT >::updateByDeleting (\fBeoPop\fP< MOEOT > & _pop, \fBObjectiveVector\fP & _objVec)\fC [inline, virtual]\fP"
+.PP
+Updates the fitness values of the whole population _pop by taking the deletion of the objective vector _objVec into account. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.br
+\fI_objVec\fP the objective vector 
+.RE
+.PP
+
+.PP
+Implements \fBmoeoFitnessAssignment< MOEOT >\fP.
+.PP
+Definition at line 66 of file moeoExpBinaryIndicatorBasedFitnessAssignment.h.
+.PP
+References moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >::kappa, and moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >::metric.
+.SS "template<class MOEOT> double \fBmoeoExpBinaryIndicatorBasedFitnessAssignment\fP< MOEOT >::updateByAdding (\fBeoPop\fP< MOEOT > & _pop, \fBObjectiveVector\fP & _objVec)\fC [inline, virtual]\fP"
+.PP
+Updates the fitness values of the whole population _pop by taking the adding of the objective vector _objVec into account and returns the fitness value of _objVec. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.br
+\fI_objVec\fP the objective vector 
+.RE
+.PP
+
+.PP
+Implements \fBmoeoBinaryIndicatorBasedFitnessAssignment< MOEOT >\fP.
+.PP
+Definition at line 87 of file moeoExpBinaryIndicatorBasedFitnessAssignment.h.
+.PP
+References moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >::kappa, and moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >::metric.
+.SS "template<class MOEOT> void \fBmoeoExpBinaryIndicatorBasedFitnessAssignment\fP< MOEOT >::setup (const \fBeoPop\fP< MOEOT > & _pop)\fC [inline, protected]\fP"
+.PP
+Sets the bounds for every objective using the min and the max value for every objective vector of _pop. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Definition at line 130 of file moeoExpBinaryIndicatorBasedFitnessAssignment.h.
+.PP
+References moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >::metric, and moeoNormalizedSolutionVsSolutionBinaryMetric< ObjectiveVector, R >::setup().
+.PP
+Referenced by moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >::operator()().
+.SS "template<class MOEOT> void \fBmoeoExpBinaryIndicatorBasedFitnessAssignment\fP< MOEOT >::computeValues (const \fBeoPop\fP< MOEOT > & _pop)\fC [inline, protected]\fP"
+.PP
+Compute every indicator value in values (values[i] = I(_v[i], _o)). 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Definition at line 152 of file moeoExpBinaryIndicatorBasedFitnessAssignment.h.
+.PP
+References moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >::metric, and moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >::values.
+.PP
+Referenced by moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >::operator()().
+.SS "template<class MOEOT> void \fBmoeoExpBinaryIndicatorBasedFitnessAssignment\fP< MOEOT >::setFitnesses (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, protected]\fP"
+.PP
+Sets the fitness value of the whple population. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Definition at line 174 of file moeoExpBinaryIndicatorBasedFitnessAssignment.h.
+.PP
+References moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >::computeFitness().
+.PP
+Referenced by moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >::operator()().
+.SS "template<class MOEOT> double \fBmoeoExpBinaryIndicatorBasedFitnessAssignment\fP< MOEOT >::computeFitness (const unsigned int _idx)\fC [inline, protected]\fP"
+.PP
+Returns the fitness value of the _idx th individual of the population. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_idx\fP the index 
+.RE
+.PP
+
+.PP
+Definition at line 187 of file moeoExpBinaryIndicatorBasedFitnessAssignment.h.
+.PP
+References moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >::kappa, and moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >::values.
+.PP
+Referenced by moeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >::setFitnesses().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEOMovingObjects from the source code.

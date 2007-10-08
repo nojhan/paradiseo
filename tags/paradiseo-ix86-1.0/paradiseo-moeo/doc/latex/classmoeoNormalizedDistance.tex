@@ -1,0 +1,112 @@
+\section{moeo\-Normalized\-Distance$<$ MOEOT, Type $>$ Class Template Reference}
+\label{classmoeoNormalizedDistance}\index{moeoNormalizedDistance@{moeoNormalizedDistance}}
+The base class for double distance computation with normalized objective values (i.e.  
+
+
+{\tt \#include $<$moeo\-Normalized\-Distance.h$>$}
+
+Inheritance diagram for moeo\-Normalized\-Distance$<$ MOEOT, Type $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4cm]{classmoeoNormalizedDistance}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+typedef MOEOT::Objective\-Vector \bf{Objective\-Vector}\label{classmoeoNormalizedDistance_4009eb0c953bdc30b98dfc219774ce84}
+
+\begin{CompactList}\small\item\em the objective vector type of the solutions \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\bf{moeo\-Normalized\-Distance} ()\label{classmoeoNormalizedDistance_d3948169e6781aaf5f1b5de7ae09ba89}
+
+\begin{CompactList}\small\item\em Default ctr. \item\end{CompactList}\item 
+virtual void \bf{setup} (const \bf{eo\-Pop}$<$ MOEOT $>$ \&\_\-pop)
+\begin{CompactList}\small\item\em Sets the lower and the upper bounds for every objective using extremes values for solutions contained in the population \_\-pop. \item\end{CompactList}\item 
+virtual void \bf{setup} (double \_\-min, double \_\-max, unsigned int \_\-obj)
+\begin{CompactList}\small\item\em Sets the lower bound (\_\-min) and the upper bound (\_\-max) for the objective \_\-obj. \item\end{CompactList}\item 
+virtual void \bf{setup} (\bf{eo\-Real\-Interval} \_\-real\-Interval, unsigned int \_\-obj)
+\begin{CompactList}\small\item\em Sets the lower bound and the upper bound for the objective \_\-obj using a \doxyref{eo\-Real\-Interval} object. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{CompactItemize}
+\item 
+static double \bf{tiny} ()\label{classmoeoNormalizedDistance_3534fa0cebf35373baa77ce18cfe572a}
+
+\begin{CompactList}\small\item\em Returns a very small value that can be used to avoid extreme cases (where the min bound == the max bound). \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+std::vector$<$ \bf{eo\-Real\-Interval} $>$ \bf{bounds}\label{classmoeoNormalizedDistance_db85a478b20f9d8ec0f34f30a15e7bdd}
+
+\begin{CompactList}\small\item\em the bounds for every objective (bounds[i] = bounds for the objective i) \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class MOEOT, class Type = double$>$ class moeo\-Normalized\-Distance$<$ MOEOT, Type $>$}
+
+The base class for double distance computation with normalized objective values (i.e. 
+
+between 0 and 1). 
+
+
+
+Definition at line 24 of file moeo\-Normalized\-Distance.h.
+
+\subsection{Member Function Documentation}
+\index{moeoNormalizedDistance@{moeo\-Normalized\-Distance}!setup@{setup}}
+\index{setup@{setup}!moeoNormalizedDistance@{moeo\-Normalized\-Distance}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT, class Type = double$>$ virtual void \bf{moeo\-Normalized\-Distance}$<$ MOEOT, Type $>$::setup (const \bf{eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmoeoNormalizedDistance_b99ffed3c0ce6c9c10aef0a76d983bb1}
+
+
+Sets the lower and the upper bounds for every objective using extremes values for solutions contained in the population \_\-pop. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \end{description}
+\end{Desc}
+
+
+Reimplemented from \bf{moeo\-Distance$<$ MOEOT, Type $>$} \doxyref{p.}{classmoeoDistance_1834a67c2a7a96f0c9a3c408108a8f8c}.
+
+Definition at line 59 of file moeo\-Normalized\-Distance.h.
+
+Referenced by moeo\-Normalized\-Distance$<$ MOEOT $>$::setup().\index{moeoNormalizedDistance@{moeo\-Normalized\-Distance}!setup@{setup}}
+\index{setup@{setup}!moeoNormalizedDistance@{moeo\-Normalized\-Distance}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT, class Type = double$>$ virtual void \bf{moeo\-Normalized\-Distance}$<$ MOEOT, Type $>$::setup (double {\em \_\-min}, double {\em \_\-max}, unsigned int {\em \_\-obj})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmoeoNormalizedDistance_e58bbf9eb90a8d2704f88d774d3fe1e1}
+
+
+Sets the lower bound (\_\-min) and the upper bound (\_\-max) for the objective \_\-obj. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-min}]lower bound \item[{\em \_\-max}]upper bound \item[{\em \_\-obj}]the objective index \end{description}
+\end{Desc}
+
+
+Reimplemented from \bf{moeo\-Distance$<$ MOEOT, Type $>$} \doxyref{p.}{classmoeoDistance_341c4fa39652871761053e85914a16ad}.
+
+Definition at line 83 of file moeo\-Normalized\-Distance.h.\index{moeoNormalizedDistance@{moeo\-Normalized\-Distance}!setup@{setup}}
+\index{setup@{setup}!moeoNormalizedDistance@{moeo\-Normalized\-Distance}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT, class Type = double$>$ virtual void \bf{moeo\-Normalized\-Distance}$<$ MOEOT, Type $>$::setup (\bf{eo\-Real\-Interval} {\em \_\-real\-Interval}, unsigned int {\em \_\-obj})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmoeoNormalizedDistance_dda4f95d7f6cae9dd1f4bf6cd8fb7c1c}
+
+
+Sets the lower bound and the upper bound for the objective \_\-obj using a \doxyref{eo\-Real\-Interval} object. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-real\-Interval}]the \doxyref{eo\-Real\-Interval} object \item[{\em \_\-obj}]the objective index \end{description}
+\end{Desc}
+
+
+Reimplemented from \bf{moeo\-Distance$<$ MOEOT, Type $>$} \doxyref{p.}{classmoeoDistance_b08e7b8c1bedb2993669ec0315fb2b73}.
+
+Definition at line 99 of file moeo\-Normalized\-Distance.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-Normalized\-Distance.h\end{CompactItemize}

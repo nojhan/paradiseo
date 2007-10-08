@@ -1,0 +1,123 @@
+.TH "moeoNormalizedDistance" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOEOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoNormalizedDistance \- The base class for double distance computation with normalized objective values (i.e.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoNormalizedDistance.h>\fP
+.PP
+Inherits \fBmoeoDistance< MOEOT, Type >< MOEOT, Type >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef MOEOT::ObjectiveVector \fBObjectiveVector\fP"
+.br
+.RI "\fIthe objective vector type of the solutions \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoNormalizedDistance\fP ()"
+.br
+.RI "\fIDefault ctr. \fP"
+.ti -1c
+.RI "virtual void \fBsetup\fP (const \fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fISets the lower and the upper bounds for every objective using extremes values for solutions contained in the population _pop. \fP"
+.ti -1c
+.RI "virtual void \fBsetup\fP (double _min, double _max, unsigned int _obj)"
+.br
+.RI "\fISets the lower bound (_min) and the upper bound (_max) for the objective _obj. \fP"
+.ti -1c
+.RI "virtual void \fBsetup\fP (\fBeoRealInterval\fP _realInterval, unsigned int _obj)"
+.br
+.RI "\fISets the lower bound and the upper bound for the objective _obj using a \fBeoRealInterval\fP object. \fP"
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static double \fBtiny\fP ()"
+.br
+.RI "\fIReturns a very small value that can be used to avoid extreme cases (where the min bound == the max bound). \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< \fBeoRealInterval\fP > \fBbounds\fP"
+.br
+.RI "\fIthe bounds for every objective (bounds[i] = bounds for the objective i) \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT, class Type = double> class moeoNormalizedDistance< MOEOT, Type >"
+The base class for double distance computation with normalized objective values (i.e. 
+
+between 0 and 1). 
+.PP
+Definition at line 24 of file moeoNormalizedDistance.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT, class Type = double> virtual void \fBmoeoNormalizedDistance\fP< MOEOT, Type >::setup (const \fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
+.PP
+Sets the lower and the upper bounds for every objective using extremes values for solutions contained in the population _pop. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBmoeoDistance< MOEOT, Type >\fP.
+.PP
+Definition at line 59 of file moeoNormalizedDistance.h.
+.PP
+Referenced by moeoNormalizedDistance< MOEOT >::setup().
+.SS "template<class MOEOT, class Type = double> virtual void \fBmoeoNormalizedDistance\fP< MOEOT, Type >::setup (double _min, double _max, unsigned int _obj)\fC [inline, virtual]\fP"
+.PP
+Sets the lower bound (_min) and the upper bound (_max) for the objective _obj. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_min\fP lower bound 
+.br
+\fI_max\fP upper bound 
+.br
+\fI_obj\fP the objective index 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBmoeoDistance< MOEOT, Type >\fP.
+.PP
+Definition at line 83 of file moeoNormalizedDistance.h.
+.SS "template<class MOEOT, class Type = double> virtual void \fBmoeoNormalizedDistance\fP< MOEOT, Type >::setup (\fBeoRealInterval\fP _realInterval, unsigned int _obj)\fC [inline, virtual]\fP"
+.PP
+Sets the lower bound and the upper bound for the objective _obj using a \fBeoRealInterval\fP object. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_realInterval\fP the \fBeoRealInterval\fP object 
+.br
+\fI_obj\fP the objective index 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBmoeoDistance< MOEOT, Type >\fP.
+.PP
+Definition at line 99 of file moeoNormalizedDistance.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEOMovingObjects from the source code.

@@ -1,0 +1,65 @@
+.TH "moeoArchiveUpdater" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOEOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoArchiveUpdater \- This class allows to update the archive at each generation with newly found non-dominated solutions.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoArchiveUpdater.h>\fP
+.PP
+Inherits \fBeoUpdater\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoArchiveUpdater\fP (\fBmoeoArchive\fP< MOEOT > &_arch, const \fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP ()"
+.br
+.RI "\fIUpdates the archive with newly found non-dominated solutions contained in the main population. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoArchive\fP< MOEOT > & \fBarch\fP"
+.br
+.RI "\fIthe archive of non-dominated solutions \fP"
+.ti -1c
+.RI "const \fBeoPop\fP< MOEOT > & \fBpop\fP"
+.br
+.RI "\fIthe main population \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT> class moeoArchiveUpdater< MOEOT >"
+This class allows to update the archive at each generation with newly found non-dominated solutions. 
+.PP
+Definition at line 24 of file moeoArchiveUpdater.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class MOEOT> \fBmoeoArchiveUpdater\fP< MOEOT >::\fBmoeoArchiveUpdater\fP (\fBmoeoArchive\fP< MOEOT > & _arch, const \fBeoPop\fP< MOEOT > & _pop)\fC [inline]\fP"
+.PP
+Ctor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_arch\fP an archive of non-dominated solutions 
+.br
+\fI_pop\fP the main population 
+.RE
+.PP
+
+.PP
+Definition at line 33 of file moeoArchiveUpdater.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEOMovingObjects from the source code.

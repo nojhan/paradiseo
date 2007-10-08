@@ -1,0 +1,81 @@
+.TH "moeoFitnessAssignment" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOEOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoFitnessAssignment \- Functor that sets the fitness values of a whole population.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoFitnessAssignment.h>\fP
+.PP
+Inherits \fBeoUF< eoPop< MOEOT > &, void >\fP.
+.PP
+Inherited by \fBmoeoCriterionBasedFitnessAssignment< MOEOT >\fP, \fBmoeoDummyFitnessAssignment< MOEOT >\fP, \fBmoeoIndicatorBasedFitnessAssignment< MOEOT >\fP, \fBmoeoParetoBasedFitnessAssignment< MOEOT >\fP, \fBmoeoReferencePointIndicatorBasedFitnessAssignment< MOEOT >\fP, and \fBmoeoScalarFitnessAssignment< MOEOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef MOEOT::ObjectiveVector \fBObjectiveVector\fP"
+.br
+.RI "\fIThe type for objective vector. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBupdateByDeleting\fP (\fBeoPop\fP< MOEOT > &_pop, \fBObjectiveVector\fP &_objVec)=0"
+.br
+.RI "\fIUpdates the fitness values of the whole population _pop by taking the deletion of the objective vector _objVec into account. \fP"
+.ti -1c
+.RI "void \fBupdateByDeleting\fP (\fBeoPop\fP< MOEOT > &_pop, MOEOT &_moeo)"
+.br
+.RI "\fIUpdates the fitness values of the whole population _pop by taking the deletion of the individual _moeo into account. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT> class moeoFitnessAssignment< MOEOT >"
+Functor that sets the fitness values of a whole population. 
+.PP
+Definition at line 23 of file moeoFitnessAssignment.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT> virtual void \fBmoeoFitnessAssignment\fP< MOEOT >::updateByDeleting (\fBeoPop\fP< MOEOT > & _pop, \fBObjectiveVector\fP & _objVec)\fC [pure virtual]\fP"
+.PP
+Updates the fitness values of the whole population _pop by taking the deletion of the objective vector _objVec into account. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.br
+\fI_objVec\fP the objective vector 
+.RE
+.PP
+
+.PP
+Implemented in \fBmoeoAchievementFitnessAssignment< MOEOT >\fP, \fBmoeoDummyFitnessAssignment< MOEOT >\fP, \fBmoeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >\fP, \fBmoeoFastNonDominatedSortingFitnessAssignment< MOEOT >\fP, and \fBmoeoReferencePointIndicatorBasedFitnessAssignment< MOEOT >\fP.
+.PP
+Referenced by moeoFitnessAssignment< MOEOT >::updateByDeleting().
+.SS "template<class MOEOT> void \fBmoeoFitnessAssignment\fP< MOEOT >::updateByDeleting (\fBeoPop\fP< MOEOT > & _pop, MOEOT & _moeo)\fC [inline]\fP"
+.PP
+Updates the fitness values of the whole population _pop by taking the deletion of the individual _moeo into account. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.br
+\fI_moeo\fP the individual 
+.RE
+.PP
+
+.PP
+Definition at line 44 of file moeoFitnessAssignment.h.
+.PP
+References moeoFitnessAssignment< MOEOT >::updateByDeleting().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEOMovingObjects from the source code.
