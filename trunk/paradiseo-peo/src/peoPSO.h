@@ -24,16 +24,19 @@ template < class POT > class peoPSO : public Runner {
 
 public:
 
+
+  // Constructor for the Particle Swarm Optimization
   peoPSO(
 	 eoContinue< POT >& __cont,
 	 peoPopEval< POT >& __pop_eval,
 	 eoVelocity < POT > &_velocity,
 	 eoFlight < POT > &_flight);
 
-
+  // Particle Swarm Optimization function - a side effect of the fact that the class is derived from the Runner class
+  // thus requiring the existence of a run function, the algorithm being executed on a distinct thread.
 	void run();
 	
-
+  // Function operator for specifying the population to be associated with the algorithm.
 	void operator()( eoPop< POT >& __pop );
 
 private:
