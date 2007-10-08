@@ -72,7 +72,7 @@ The entropy gives an idea of the diversity of a Pareto set relatively to another
 
 of the 2002 Congress on Evolutionary Computation, IEEE Press, pp. 1155-1156) 
 .PP
-Definition at line 25 of file moeoEntropyMetric.h.
+Definition at line 50 of file moeoEntropyMetric.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class ObjectiveVector> double \fBmoeoEntropyMetric\fP< ObjectiveVector >::operator() (const std::vector< ObjectiveVector > & _set1, const std::vector< ObjectiveVector > & _set2)\fC [inline]\fP"
@@ -88,7 +88,7 @@ Returns the entropy of the Pareto set '_set1' relatively to the Pareto set '_set
 .PP
 
 .PP
-Definition at line 34 of file moeoEntropyMetric.h.
+Definition at line 59 of file moeoEntropyMetric.h.
 .PP
 References moeoEntropyMetric< ObjectiveVector >::computeUnion(), moeoEntropyMetric< ObjectiveVector >::howManyInNicheOf(), moeoEntropyMetric< ObjectiveVector >::normalize(), moeoEntropyMetric< ObjectiveVector >::prenormalize(), and moeoEntropyMetric< ObjectiveVector >::removeDominated().
 .SS "template<class ObjectiveVector> void \fBmoeoEntropyMetric\fP< ObjectiveVector >::removeDominated (std::vector< ObjectiveVector > & _f)\fC [inline, private]\fP"
@@ -102,7 +102,7 @@ Removes the dominated individuals contained in _f.
 .PP
 
 .PP
-Definition at line 85 of file moeoEntropyMetric.h.
+Definition at line 110 of file moeoEntropyMetric.h.
 .PP
 References moeoEntropyMetric< ObjectiveVector >::paretoComparator.
 .PP
@@ -118,7 +118,7 @@ Prenormalization.
 .PP
 
 .PP
-Definition at line 107 of file moeoEntropyMetric.h.
+Definition at line 132 of file moeoEntropyMetric.h.
 .PP
 References moeoEntropyMetric< ObjectiveVector >::vect_max_val, and moeoEntropyMetric< ObjectiveVector >::vect_min_val.
 .PP
@@ -134,7 +134,7 @@ Normalization.
 .PP
 
 .PP
-Definition at line 129 of file moeoEntropyMetric.h.
+Definition at line 154 of file moeoEntropyMetric.h.
 .PP
 References moeoEntropyMetric< ObjectiveVector >::vect_max_val, and moeoEntropyMetric< ObjectiveVector >::vect_min_val.
 .PP
@@ -154,7 +154,7 @@ Computation of the union of _f1 and _f2 in _f.
 .PP
 
 .PP
-Definition at line 142 of file moeoEntropyMetric.h.
+Definition at line 167 of file moeoEntropyMetric.h.
 .PP
 Referenced by moeoEntropyMetric< ObjectiveVector >::operator()().
 

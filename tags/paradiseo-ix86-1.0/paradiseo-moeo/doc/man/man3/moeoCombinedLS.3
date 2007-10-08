@@ -42,7 +42,7 @@ Inherits \fBmoeoLS< MOEOT, Type >< MOEOT, Type >\fP.
 .SS "template<class MOEOT, class Type> class moeoCombinedLS< MOEOT, Type >"
 This class allows to embed a set of local searches that are sequentially applied, and so working and updating the same archive of non-dominated solutions. 
 .PP
-Definition at line 25 of file moeoCombinedLS.h.
+Definition at line 50 of file moeoCombinedLS.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class MOEOT, class Type> \fBmoeoCombinedLS\fP< MOEOT, Type >::\fBmoeoCombinedLS\fP (\fBmoeoLS\fP< MOEOT, Type > & _first_mols)\fC [inline]\fP"
@@ -56,7 +56,7 @@ Ctor.
 .PP
 
 .PP
-Definition at line 33 of file moeoCombinedLS.h.
+Definition at line 58 of file moeoCombinedLS.h.
 .PP
 References moeoCombinedLS< MOEOT, Type >::combinedLS.
 .SH "Member Function Documentation"
@@ -72,7 +72,7 @@ Adds a new local search to combine.
 .PP
 
 .PP
-Definition at line 42 of file moeoCombinedLS.h.
+Definition at line 67 of file moeoCombinedLS.h.
 .PP
 References moeoCombinedLS< MOEOT, Type >::combinedLS.
 .SS "template<class MOEOT, class Type> void \fBmoeoCombinedLS\fP< MOEOT, Type >::operator() (Type _type, \fBmoeoArchive\fP< MOEOT > & _arch)\fC [inline, virtual]\fP"
@@ -92,7 +92,7 @@ The new non-dominated solutions are added to the archive
 .PP
 Implements \fBeoBF< Type, moeoArchive< MOEOT > &, void >\fP.
 .PP
-Definition at line 53 of file moeoCombinedLS.h.
+Definition at line 78 of file moeoCombinedLS.h.
 .PP
 References moeoCombinedLS< MOEOT, Type >::combinedLS.
 

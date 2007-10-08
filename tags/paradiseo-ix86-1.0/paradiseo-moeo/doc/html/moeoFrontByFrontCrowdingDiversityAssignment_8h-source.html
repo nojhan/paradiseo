@@ -21,118 +21,143 @@
       </form>
     </li>
   </ul></div>
-<h1>moeoFrontByFrontCrowdingDiversityAssignment.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-</span>
-<a name="l00002"></a>00002 
-<a name="l00003"></a>00003 <span class="comment">//-----------------------------------------------------------------------------</span>
-<a name="l00004"></a>00004 <span class="comment">// moeoFrontByFrontCrowdingDiversityAssignment.h</span>
-<a name="l00005"></a>00005 <span class="comment">// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007</span>
-<a name="l00006"></a>00006 <span class="comment">/*</span>
-<a name="l00007"></a>00007 <span class="comment">    This library...</span>
-<a name="l00008"></a>00008 <span class="comment"></span>
-<a name="l00009"></a>00009 <span class="comment">    Contact: paradiseo-help@lists.gforge.inria.fr, http://paradiseo.gforge.inria.fr</span>
-<a name="l00010"></a>00010 <span class="comment"> */</span>
-<a name="l00011"></a>00011 <span class="comment">//-----------------------------------------------------------------------------</span>
-<a name="l00012"></a>00012 
-<a name="l00013"></a>00013 <span class="preprocessor">#ifndef MOEOFRONTBYFRONTCROWDINGDIVERSITYASSIGNMENT_H_</span>
-<a name="l00014"></a>00014 <span class="preprocessor"></span><span class="preprocessor">#define MOEOFRONTBYFRONTCROWDINGDIVERSITYASSIGNMENT_H_</span>
-<a name="l00015"></a>00015 <span class="preprocessor"></span>
-<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;diversity/moeoCrowdingDiversityAssignment.h&gt;</span>
-<a name="l00017"></a>00017 <span class="preprocessor">#include &lt;comparator/moeoFitnessThenDiversityComparator.h&gt;</span>
-<a name="l00018"></a>00018 
-<a name="l00024"></a>00024 <span class="keyword">template</span> &lt; <span class="keyword">class</span> MOEOT &gt;
-<a name="l00025"></a><a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html">00025</a> <span class="keyword">class </span><a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html">moeoFrontByFrontCrowdingDiversityAssignment</a> : <span class="keyword">public</span> <a class="code" href="classmoeoCrowdingDiversityAssignment.html">moeoCrowdingDiversityAssignment</a> &lt; MOEOT &gt;
-<a name="l00026"></a>00026 {
-<a name="l00027"></a>00027 <span class="keyword">public</span>:
-<a name="l00028"></a>00028 
-<a name="l00030"></a><a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#aebd424133b426cf6a2ec7b20743bbaf">00030</a>     <span class="keyword">typedef</span> <span class="keyword">typename</span> MOEOT::ObjectiveVector <a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#aebd424133b426cf6a2ec7b20743bbaf">ObjectiveVector</a>;
-<a name="l00031"></a>00031 
-<a name="l00032"></a>00032 
-<a name="l00040"></a><a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#f73ff88bd29c49260e2ca859250e4b68">00040</a>     <span class="keywordtype">void</span> <a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#f73ff88bd29c49260e2ca859250e4b68">updateByDeleting</a>(eoPop &lt; MOEOT &gt; &amp; _pop, <a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#aebd424133b426cf6a2ec7b20743bbaf">ObjectiveVector</a> &amp; _objVec)
-<a name="l00041"></a>00041     {
-<a name="l00042"></a>00042         std::cout &lt;&lt; <span class="stringliteral">"WARNING : updateByDeleting not implemented in moeoFrontByFrontCrowdingDistanceDiversityAssignment"</span> &lt;&lt; std::endl;
-<a name="l00043"></a>00043     }
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="keyword">private</span>:
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048     <span class="keyword">using</span> moeoCrowdingDiversityAssignment &lt; MOEOT &gt;::inf;
-<a name="l00049"></a>00049     <span class="keyword">using</span> moeoCrowdingDiversityAssignment &lt; MOEOT &gt;::tiny;
-<a name="l00050"></a>00050 
-<a name="l00055"></a><a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#1aa0ec7b94fbbf952636bcc21e1a9d16">00055</a>     <span class="keywordtype">void</span> <a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#1aa0ec7b94fbbf952636bcc21e1a9d16">setDistances</a> (eoPop &lt; MOEOT &gt; &amp; _pop)
-<a name="l00056"></a>00056     {
-<a name="l00057"></a>00057         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> a,b;
-<a name="l00058"></a>00058         <span class="keywordtype">double</span> min, max, distance;
-<a name="l00059"></a>00059         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nObjectives = MOEOT::ObjectiveVector::nObjectives();
-<a name="l00060"></a>00060         <span class="comment">// set diversity to 0 for every individual</span>
-<a name="l00061"></a>00061         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=0; i&lt;_pop.size(); i++)
-<a name="l00062"></a>00062         {
-<a name="l00063"></a>00063             _pop[i].diversity(0.0);
-<a name="l00064"></a>00064         }
-<a name="l00065"></a>00065         <span class="comment">// sort the whole pop according to fitness values</span>
-<a name="l00066"></a>00066         moeoFitnessThenDiversityComparator &lt; MOEOT &gt; fitnessComparator;
-<a name="l00067"></a>00067         std::sort(_pop.begin(), _pop.end(), fitnessComparator);
-<a name="l00068"></a>00068         <span class="comment">// compute the crowding distance values for every individual "front" by "front" (front : from a to b)</span>
-<a name="l00069"></a>00069         a = 0;                                  <span class="comment">// the front starts at a</span>
-<a name="l00070"></a>00070         <span class="keywordflow">while</span> (a &lt; _pop.size())
-<a name="l00071"></a>00071         {
-<a name="l00072"></a>00072             b = <a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#ab8e153a4716375414ff2140fc3fa480">lastIndex</a>(_pop,a);      <span class="comment">// the front ends at b</span>
-<a name="l00073"></a>00073             <span class="comment">// if there is less than 2 individuals in the front...</span>
-<a name="l00074"></a>00074             <span class="keywordflow">if</span> ((b-a) &lt; 2)
-<a name="l00075"></a>00075             {
-<a name="l00076"></a>00076                 <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=a; i&lt;=b; i++)
-<a name="l00077"></a>00077                 {
-<a name="l00078"></a>00078                     _pop[i].diversity(<a class="code" href="classmoeoCrowdingDiversityAssignment.html#e7f5dbe11427a5c264e70fe4e036242f">inf</a>());
-<a name="l00079"></a>00079                 }
-<a name="l00080"></a>00080             }
-<a name="l00081"></a>00081             <span class="comment">// else...</span>
-<a name="l00082"></a>00082             <span class="keywordflow">else</span>
-<a name="l00083"></a>00083             {
-<a name="l00084"></a>00084                 <span class="comment">// for each objective</span>
-<a name="l00085"></a>00085                 <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> obj=0; obj&lt;nObjectives; obj++)
-<a name="l00086"></a>00086                 {
-<a name="l00087"></a>00087                     <span class="comment">// sort in the descending order using the values of the objective 'obj'</span>
-<a name="l00088"></a>00088                     moeoOneObjectiveComparator &lt; MOEOT &gt; objComp(obj);
-<a name="l00089"></a>00089                     std::sort(_pop.begin()+a, _pop.begin()+b+1, objComp);
-<a name="l00090"></a>00090                     <span class="comment">// min &amp; max</span>
-<a name="l00091"></a>00091                     min = _pop[b].objectiveVector()[obj];
-<a name="l00092"></a>00092                     max = _pop[a].objectiveVector()[obj];
-<a name="l00093"></a>00093                     <span class="comment">// avoid extreme case</span>
-<a name="l00094"></a>00094                     <span class="keywordflow">if</span> (min == max)
-<a name="l00095"></a>00095                     {
-<a name="l00096"></a>00096                         min -= <a class="code" href="classmoeoCrowdingDiversityAssignment.html#eb70be9c246dfa56b55a4ecc5454f778">tiny</a>();
-<a name="l00097"></a>00097                         max += <a class="code" href="classmoeoCrowdingDiversityAssignment.html#eb70be9c246dfa56b55a4ecc5454f778">tiny</a>();
-<a name="l00098"></a>00098                     }
-<a name="l00099"></a>00099                     <span class="comment">// set the diversity value to infiny for min and max</span>
-<a name="l00100"></a>00100                     _pop[a].diversity(<a class="code" href="classmoeoCrowdingDiversityAssignment.html#e7f5dbe11427a5c264e70fe4e036242f">inf</a>());
-<a name="l00101"></a>00101                     _pop[b].diversity(<a class="code" href="classmoeoCrowdingDiversityAssignment.html#e7f5dbe11427a5c264e70fe4e036242f">inf</a>());
-<a name="l00102"></a>00102                     <span class="comment">// set the diversity values for the other individuals</span>
-<a name="l00103"></a>00103                     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=a+1; i&lt;b; i++)
-<a name="l00104"></a>00104                     {
-<a name="l00105"></a>00105                         distance = (_pop[i-1].objectiveVector()[obj] - _pop[i+1].objectiveVector()[obj]) / (max-min);
-<a name="l00106"></a>00106                         _pop[i].diversity(_pop[i].diversity() + distance);
-<a name="l00107"></a>00107                     }
-<a name="l00108"></a>00108                 }
-<a name="l00109"></a>00109             }
-<a name="l00110"></a>00110             <span class="comment">// go to the next front</span>
-<a name="l00111"></a>00111             a = b+1;
-<a name="l00112"></a>00112         }
-<a name="l00113"></a>00113     }
-<a name="l00114"></a>00114 
-<a name="l00115"></a>00115 
-<a name="l00121"></a><a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#ab8e153a4716375414ff2140fc3fa480">00121</a>     <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#ab8e153a4716375414ff2140fc3fa480">lastIndex</a> (eoPop &lt; MOEOT &gt; &amp; _pop, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> _start)
-<a name="l00122"></a>00122     {
-<a name="l00123"></a>00123         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=_start;
-<a name="l00124"></a>00124         <span class="keywordflow">while</span> ( (i&lt;_pop.size()-1) &amp;&amp; (_pop[i].fitness()==_pop[i+1].fitness()) )
-<a name="l00125"></a>00125         {
-<a name="l00126"></a>00126             i++;
-<a name="l00127"></a>00127         }
-<a name="l00128"></a>00128         <span class="keywordflow">return</span> i;
-<a name="l00129"></a>00129     }
-<a name="l00130"></a>00130 
-<a name="l00131"></a>00131 };
-<a name="l00132"></a>00132 
-<a name="l00133"></a>00133 <span class="preprocessor">#endif </span><span class="comment">/*MOEOFRONTBYFRONTCROWDINGDIVERSITYASSIGNMENT_H_*/</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 10:35:51 2007 for ParadisEO-MOEOMovingObjects by&nbsp;
+<h1>moeoFrontByFrontCrowdingDiversityAssignment.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<a name="l00002"></a>00002 <span class="comment">* &lt;moeoFrontByFrontCrowdingDiversityAssignment.h&gt;</span>
+<a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
+<a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
+<a name="l00005"></a>00005 <span class="comment">*</span>
+<a name="l00006"></a>00006 <span class="comment">* Arnaud Liefooghe</span>
+<a name="l00007"></a>00007 <span class="comment">*</span>
+<a name="l00008"></a>00008 <span class="comment">* This software is governed by the CeCILL license under French law and</span>
+<a name="l00009"></a>00009 <span class="comment">* abiding by the rules of distribution of free software.  You can  use,</span>
+<a name="l00010"></a>00010 <span class="comment">* modify and/ or redistribute the software under the terms of the CeCILL</span>
+<a name="l00011"></a>00011 <span class="comment">* license as circulated by CEA, CNRS and INRIA at the following URL</span>
+<a name="l00012"></a>00012 <span class="comment">* "http://www.cecill.info".</span>
+<a name="l00013"></a>00013 <span class="comment">*</span>
+<a name="l00014"></a>00014 <span class="comment">* As a counterpart to the access to the source code and  rights to copy,</span>
+<a name="l00015"></a>00015 <span class="comment">* modify and redistribute granted by the license, users are provided only</span>
+<a name="l00016"></a>00016 <span class="comment">* with a limited warranty  and the software's author,  the holder of the</span>
+<a name="l00017"></a>00017 <span class="comment">* economic rights,  and the successive licensors  have only  limited liability.</span>
+<a name="l00018"></a>00018 <span class="comment">*</span>
+<a name="l00019"></a>00019 <span class="comment">* In this respect, the user's attention is drawn to the risks associated</span>
+<a name="l00020"></a>00020 <span class="comment">* with loading,  using,  modifying and/or developing or reproducing the</span>
+<a name="l00021"></a>00021 <span class="comment">* software by the user in light of its specific status of free software,</span>
+<a name="l00022"></a>00022 <span class="comment">* that may mean  that it is complicated to manipulate,  and  that  also</span>
+<a name="l00023"></a>00023 <span class="comment">* therefore means  that it is reserved for developers  and  experienced</span>
+<a name="l00024"></a>00024 <span class="comment">* professionals having in-depth computer knowledge. Users are therefore</span>
+<a name="l00025"></a>00025 <span class="comment">* encouraged to load and test the software's suitability as regards their</span>
+<a name="l00026"></a>00026 <span class="comment">* requirements in conditions enabling the security of their systems and/or</span>
+<a name="l00027"></a>00027 <span class="comment">* data to be ensured and,  more generally, to use and operate it in the</span>
+<a name="l00028"></a>00028 <span class="comment">* same conditions as regards security.</span>
+<a name="l00029"></a>00029 <span class="comment">* The fact that you are presently reading this means that you have had</span>
+<a name="l00030"></a>00030 <span class="comment">* knowledge of the CeCILL license and that you accept its terms.</span>
+<a name="l00031"></a>00031 <span class="comment">*</span>
+<a name="l00032"></a>00032 <span class="comment">* ParadisEO WebSite : http://paradiseo.gforge.inria.fr</span>
+<a name="l00033"></a>00033 <span class="comment">* Contact: paradiseo-help@lists.gforge.inria.fr</span>
+<a name="l00034"></a>00034 <span class="comment">*</span>
+<a name="l00035"></a>00035 <span class="comment">*/</span>
+<a name="l00036"></a>00036 <span class="comment">//-----------------------------------------------------------------------------</span>
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 <span class="preprocessor">#ifndef MOEOFRONTBYFRONTCROWDINGDIVERSITYASSIGNMENT_H_</span>
+<a name="l00039"></a>00039 <span class="preprocessor"></span><span class="preprocessor">#define MOEOFRONTBYFRONTCROWDINGDIVERSITYASSIGNMENT_H_</span>
+<a name="l00040"></a>00040 <span class="preprocessor"></span>
+<a name="l00041"></a>00041 <span class="preprocessor">#include &lt;diversity/moeoCrowdingDiversityAssignment.h&gt;</span>
+<a name="l00042"></a>00042 <span class="preprocessor">#include &lt;comparator/moeoFitnessThenDiversityComparator.h&gt;</span>
+<a name="l00043"></a>00043 
+<a name="l00049"></a>00049 <span class="keyword">template</span> &lt; <span class="keyword">class</span> MOEOT &gt;
+<a name="l00050"></a><a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html">00050</a> <span class="keyword">class </span><a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html">moeoFrontByFrontCrowdingDiversityAssignment</a> : <span class="keyword">public</span> <a class="code" href="classmoeoCrowdingDiversityAssignment.html">moeoCrowdingDiversityAssignment</a> &lt; MOEOT &gt;
+<a name="l00051"></a>00051 {
+<a name="l00052"></a>00052 <span class="keyword">public</span>:
+<a name="l00053"></a>00053 
+<a name="l00055"></a><a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#aebd424133b426cf6a2ec7b20743bbaf">00055</a>     <span class="keyword">typedef</span> <span class="keyword">typename</span> MOEOT::ObjectiveVector <a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#aebd424133b426cf6a2ec7b20743bbaf">ObjectiveVector</a>;
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 
+<a name="l00065"></a><a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#f73ff88bd29c49260e2ca859250e4b68">00065</a>     <span class="keywordtype">void</span> <a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#f73ff88bd29c49260e2ca859250e4b68">updateByDeleting</a>(eoPop &lt; MOEOT &gt; &amp; _pop, <a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#aebd424133b426cf6a2ec7b20743bbaf">ObjectiveVector</a> &amp; _objVec)
+<a name="l00066"></a>00066     {
+<a name="l00067"></a>00067         std::cout &lt;&lt; <span class="stringliteral">"WARNING : updateByDeleting not implemented in moeoFrontByFrontCrowdingDistanceDiversityAssignment"</span> &lt;&lt; std::endl;
+<a name="l00068"></a>00068     }
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071 <span class="keyword">private</span>:
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073     <span class="keyword">using</span> moeoCrowdingDiversityAssignment &lt; MOEOT &gt;::inf;
+<a name="l00074"></a>00074     <span class="keyword">using</span> moeoCrowdingDiversityAssignment &lt; MOEOT &gt;::tiny;
+<a name="l00075"></a>00075 
+<a name="l00080"></a><a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#1aa0ec7b94fbbf952636bcc21e1a9d16">00080</a>     <span class="keywordtype">void</span> <a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#1aa0ec7b94fbbf952636bcc21e1a9d16">setDistances</a> (eoPop &lt; MOEOT &gt; &amp; _pop)
+<a name="l00081"></a>00081     {
+<a name="l00082"></a>00082         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> a,b;
+<a name="l00083"></a>00083         <span class="keywordtype">double</span> min, max, distance;
+<a name="l00084"></a>00084         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nObjectives = MOEOT::ObjectiveVector::nObjectives();
+<a name="l00085"></a>00085         <span class="comment">// set diversity to 0 for every individual</span>
+<a name="l00086"></a>00086         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=0; i&lt;_pop.size(); i++)
+<a name="l00087"></a>00087         {
+<a name="l00088"></a>00088             _pop[i].diversity(0.0);
+<a name="l00089"></a>00089         }
+<a name="l00090"></a>00090         <span class="comment">// sort the whole pop according to fitness values</span>
+<a name="l00091"></a>00091         moeoFitnessThenDiversityComparator &lt; MOEOT &gt; fitnessComparator;
+<a name="l00092"></a>00092         std::sort(_pop.begin(), _pop.end(), fitnessComparator);
+<a name="l00093"></a>00093         <span class="comment">// compute the crowding distance values for every individual "front" by "front" (front : from a to b)</span>
+<a name="l00094"></a>00094         a = 0;                                  <span class="comment">// the front starts at a</span>
+<a name="l00095"></a>00095         <span class="keywordflow">while</span> (a &lt; _pop.size())
+<a name="l00096"></a>00096         {
+<a name="l00097"></a>00097             b = <a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#ab8e153a4716375414ff2140fc3fa480">lastIndex</a>(_pop,a);      <span class="comment">// the front ends at b</span>
+<a name="l00098"></a>00098             <span class="comment">// if there is less than 2 individuals in the front...</span>
+<a name="l00099"></a>00099             <span class="keywordflow">if</span> ((b-a) &lt; 2)
+<a name="l00100"></a>00100             {
+<a name="l00101"></a>00101                 <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=a; i&lt;=b; i++)
+<a name="l00102"></a>00102                 {
+<a name="l00103"></a>00103                     _pop[i].diversity(<a class="code" href="classmoeoCrowdingDiversityAssignment.html#e7f5dbe11427a5c264e70fe4e036242f">inf</a>());
+<a name="l00104"></a>00104                 }
+<a name="l00105"></a>00105             }
+<a name="l00106"></a>00106             <span class="comment">// else...</span>
+<a name="l00107"></a>00107             <span class="keywordflow">else</span>
+<a name="l00108"></a>00108             {
+<a name="l00109"></a>00109                 <span class="comment">// for each objective</span>
+<a name="l00110"></a>00110                 <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> obj=0; obj&lt;nObjectives; obj++)
+<a name="l00111"></a>00111                 {
+<a name="l00112"></a>00112                     <span class="comment">// sort in the descending order using the values of the objective 'obj'</span>
+<a name="l00113"></a>00113                     moeoOneObjectiveComparator &lt; MOEOT &gt; objComp(obj);
+<a name="l00114"></a>00114                     std::sort(_pop.begin()+a, _pop.begin()+b+1, objComp);
+<a name="l00115"></a>00115                     <span class="comment">// min &amp; max</span>
+<a name="l00116"></a>00116                     min = _pop[b].objectiveVector()[obj];
+<a name="l00117"></a>00117                     max = _pop[a].objectiveVector()[obj];
+<a name="l00118"></a>00118                     <span class="comment">// avoid extreme case</span>
+<a name="l00119"></a>00119                     <span class="keywordflow">if</span> (min == max)
+<a name="l00120"></a>00120                     {
+<a name="l00121"></a>00121                         min -= <a class="code" href="classmoeoCrowdingDiversityAssignment.html#eb70be9c246dfa56b55a4ecc5454f778">tiny</a>();
+<a name="l00122"></a>00122                         max += <a class="code" href="classmoeoCrowdingDiversityAssignment.html#eb70be9c246dfa56b55a4ecc5454f778">tiny</a>();
+<a name="l00123"></a>00123                     }
+<a name="l00124"></a>00124                     <span class="comment">// set the diversity value to infiny for min and max</span>
+<a name="l00125"></a>00125                     _pop[a].diversity(<a class="code" href="classmoeoCrowdingDiversityAssignment.html#e7f5dbe11427a5c264e70fe4e036242f">inf</a>());
+<a name="l00126"></a>00126                     _pop[b].diversity(<a class="code" href="classmoeoCrowdingDiversityAssignment.html#e7f5dbe11427a5c264e70fe4e036242f">inf</a>());
+<a name="l00127"></a>00127                     <span class="comment">// set the diversity values for the other individuals</span>
+<a name="l00128"></a>00128                     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=a+1; i&lt;b; i++)
+<a name="l00129"></a>00129                     {
+<a name="l00130"></a>00130                         distance = (_pop[i-1].objectiveVector()[obj] - _pop[i+1].objectiveVector()[obj]) / (max-min);
+<a name="l00131"></a>00131                         _pop[i].diversity(_pop[i].diversity() + distance);
+<a name="l00132"></a>00132                     }
+<a name="l00133"></a>00133                 }
+<a name="l00134"></a>00134             }
+<a name="l00135"></a>00135             <span class="comment">// go to the next front</span>
+<a name="l00136"></a>00136             a = b+1;
+<a name="l00137"></a>00137         }
+<a name="l00138"></a>00138     }
+<a name="l00139"></a>00139 
+<a name="l00140"></a>00140 
+<a name="l00146"></a><a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#ab8e153a4716375414ff2140fc3fa480">00146</a>     <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classmoeoFrontByFrontCrowdingDiversityAssignment.html#ab8e153a4716375414ff2140fc3fa480">lastIndex</a> (eoPop &lt; MOEOT &gt; &amp; _pop, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> _start)
+<a name="l00147"></a>00147     {
+<a name="l00148"></a>00148         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=_start;
+<a name="l00149"></a>00149         <span class="keywordflow">while</span> ( (i&lt;_pop.size()-1) &amp;&amp; (_pop[i].fitness()==_pop[i+1].fitness()) )
+<a name="l00150"></a>00150         {
+<a name="l00151"></a>00151             i++;
+<a name="l00152"></a>00152         }
+<a name="l00153"></a>00153         <span class="keywordflow">return</span> i;
+<a name="l00154"></a>00154     }
+<a name="l00155"></a>00155 
+<a name="l00156"></a>00156 };
+<a name="l00157"></a>00157 
+<a name="l00158"></a>00158 <span class="preprocessor">#endif </span><span class="comment">/*MOEOFRONTBYFRONTCROWDINGDIVERSITYASSIGNMENT_H_*/</span>
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 16:37:09 2007 for ParadisEO-MOEOMovingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

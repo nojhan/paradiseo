@@ -60,7 +60,7 @@ This class allows to represent a solution in the objective space (phenotypic rep
 
 that an objective value is represented using a double, and this for any objective. 
 .PP
-Definition at line 27 of file moeoRealObjectiveVector.h.
+Definition at line 52 of file moeoRealObjectiveVector.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class ObjectiveVectorTraits> \fBmoeoRealObjectiveVector\fP< ObjectiveVectorTraits >::\fBmoeoRealObjectiveVector\fP (std::vector< double > & _v)\fC [inline]\fP"
@@ -74,7 +74,7 @@ Ctor from a vector of doubles.
 .PP
 
 .PP
-Definition at line 45 of file moeoRealObjectiveVector.h.
+Definition at line 70 of file moeoRealObjectiveVector.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class ObjectiveVectorTraits> bool \fBmoeoRealObjectiveVector\fP< ObjectiveVectorTraits >::dominates (const \fBmoeoRealObjectiveVector\fP< ObjectiveVectorTraits > & _other) const\fC [inline]\fP"
@@ -88,7 +88,7 @@ Returns true if the current objective vector dominates _other according to the P
 .PP
 
 .PP
-Definition at line 54 of file moeoRealObjectiveVector.h.
+Definition at line 79 of file moeoRealObjectiveVector.h.
 .SS "template<class ObjectiveVectorTraits> bool \fBmoeoRealObjectiveVector\fP< ObjectiveVectorTraits >::operator== (const \fBmoeoRealObjectiveVector\fP< ObjectiveVectorTraits > & _other) const\fC [inline]\fP"
 .PP
 Returns true if the current objective vector is equal to _other (according to a tolerance value). 
@@ -100,7 +100,7 @@ Returns true if the current objective vector is equal to _other (according to a 
 .PP
 
 .PP
-Definition at line 65 of file moeoRealObjectiveVector.h.
+Definition at line 90 of file moeoRealObjectiveVector.h.
 .PP
 Referenced by moeoRealObjectiveVector< ObjectiveVectorTraits >::operator!=(), and moeoRealObjectiveVector< ObjectiveVectorTraits >::operator>=().
 .SS "template<class ObjectiveVectorTraits> bool \fBmoeoRealObjectiveVector\fP< ObjectiveVectorTraits >::operator!= (const \fBmoeoRealObjectiveVector\fP< ObjectiveVectorTraits > & _other) const\fC [inline]\fP"
@@ -114,7 +114,7 @@ Returns true if the current objective vector is different than _other (according
 .PP
 
 .PP
-Definition at line 82 of file moeoRealObjectiveVector.h.
+Definition at line 107 of file moeoRealObjectiveVector.h.
 .PP
 References moeoRealObjectiveVector< ObjectiveVectorTraits >::operator==().
 .SS "template<class ObjectiveVectorTraits> bool \fBmoeoRealObjectiveVector\fP< ObjectiveVectorTraits >::operator< (const \fBmoeoRealObjectiveVector\fP< ObjectiveVectorTraits > & _other) const\fC [inline]\fP"
@@ -128,7 +128,7 @@ Returns true if the current objective vector is smaller than _other on the first
 .PP
 
 .PP
-Definition at line 93 of file moeoRealObjectiveVector.h.
+Definition at line 118 of file moeoRealObjectiveVector.h.
 .PP
 Referenced by moeoRealObjectiveVector< ObjectiveVectorTraits >::operator<=().
 .SS "template<class ObjectiveVectorTraits> bool \fBmoeoRealObjectiveVector\fP< ObjectiveVectorTraits >::operator> (const \fBmoeoRealObjectiveVector\fP< ObjectiveVectorTraits > & _other) const\fC [inline]\fP"
@@ -142,7 +142,7 @@ Returns true if the current objective vector is greater than _other on the first
 .PP
 
 .PP
-Definition at line 105 of file moeoRealObjectiveVector.h.
+Definition at line 130 of file moeoRealObjectiveVector.h.
 .PP
 Referenced by moeoRealObjectiveVector< ObjectiveVectorTraits >::operator>=().
 .SS "template<class ObjectiveVectorTraits> bool \fBmoeoRealObjectiveVector\fP< ObjectiveVectorTraits >::operator<= (const \fBmoeoRealObjectiveVector\fP< ObjectiveVectorTraits > & _other) const\fC [inline]\fP"
@@ -156,7 +156,7 @@ Returns true if the current objective vector is smaller than or equal to _other 
 .PP
 
 .PP
-Definition at line 116 of file moeoRealObjectiveVector.h.
+Definition at line 141 of file moeoRealObjectiveVector.h.
 .PP
 References moeoRealObjectiveVector< ObjectiveVectorTraits >::operator<().
 .SS "template<class ObjectiveVectorTraits> bool \fBmoeoRealObjectiveVector\fP< ObjectiveVectorTraits >::operator>= (const \fBmoeoRealObjectiveVector\fP< ObjectiveVectorTraits > & _other) const\fC [inline]\fP"
@@ -170,7 +170,7 @@ Returns true if the current objective vector is greater than or equal to _other 
 .PP
 
 .PP
-Definition at line 127 of file moeoRealObjectiveVector.h.
+Definition at line 152 of file moeoRealObjectiveVector.h.
 .PP
 References moeoRealObjectiveVector< ObjectiveVectorTraits >::operator==(), and moeoRealObjectiveVector< ObjectiveVectorTraits >::operator>().
 

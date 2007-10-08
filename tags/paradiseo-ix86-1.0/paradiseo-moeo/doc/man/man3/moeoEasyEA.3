@@ -130,7 +130,7 @@ Inherits \fBmoeoEA< MOEOT >< MOEOT >\fP.
 .SS "template<class MOEOT> class moeoEasyEA< MOEOT >"
 An easy class to design multi-objective evolutionary algorithms. 
 .PP
-Definition at line 33 of file moeoEasyEA.h.
+Definition at line 58 of file moeoEasyEA.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class MOEOT> \fBmoeoEasyEA\fP< MOEOT >::\fBmoeoEasyEA\fP (\fBeoContinue\fP< MOEOT > & _continuator, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBeoBreed\fP< MOEOT > & _breed, \fBmoeoReplacement\fP< MOEOT > & _replace, \fBmoeoFitnessAssignment\fP< MOEOT > & _fitnessEval, \fBmoeoDiversityAssignment\fP< MOEOT > & _diversityEval, bool _evalFitAndDivBeforeSelection = \fCfalse\fP)\fC [inline]\fP"
@@ -156,7 +156,7 @@ Ctor taking a breed and merge.
 .PP
 
 .PP
-Definition at line 47 of file moeoEasyEA.h.
+Definition at line 72 of file moeoEasyEA.h.
 .SS "template<class MOEOT> \fBmoeoEasyEA\fP< MOEOT >::\fBmoeoEasyEA\fP (\fBeoContinue\fP< MOEOT > & _continuator, \fBeoPopEvalFunc\fP< MOEOT > & _popEval, \fBeoBreed\fP< MOEOT > & _breed, \fBmoeoReplacement\fP< MOEOT > & _replace, \fBmoeoFitnessAssignment\fP< MOEOT > & _fitnessEval, \fBmoeoDiversityAssignment\fP< MOEOT > & _diversityEval, bool _evalFitAndDivBeforeSelection = \fCfalse\fP)\fC [inline]\fP"
 .PP
 Ctor taking a breed, a merge and a eoPopEval. 
@@ -180,7 +180,7 @@ Ctor taking a breed, a merge and a eoPopEval.
 .PP
 
 .PP
-Definition at line 65 of file moeoEasyEA.h.
+Definition at line 90 of file moeoEasyEA.h.
 .SS "template<class MOEOT> \fBmoeoEasyEA\fP< MOEOT >::\fBmoeoEasyEA\fP (\fBeoContinue\fP< MOEOT > & _continuator, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBeoBreed\fP< MOEOT > & _breed, \fBeoMerge\fP< MOEOT > & _merge, \fBeoReduce\fP< MOEOT > & _reduce, \fBmoeoFitnessAssignment\fP< MOEOT > & _fitnessEval, \fBmoeoDiversityAssignment\fP< MOEOT > & _diversityEval, bool _evalFitAndDivBeforeSelection = \fCfalse\fP)\fC [inline]\fP"
 .PP
 Ctor taking a breed, a merge and a reduce. 
@@ -206,7 +206,7 @@ Ctor taking a breed, a merge and a reduce.
 .PP
 
 .PP
-Definition at line 84 of file moeoEasyEA.h.
+Definition at line 109 of file moeoEasyEA.h.
 .SS "template<class MOEOT> \fBmoeoEasyEA\fP< MOEOT >::\fBmoeoEasyEA\fP (\fBeoContinue\fP< MOEOT > & _continuator, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBeoSelect\fP< MOEOT > & _select, \fBeoTransform\fP< MOEOT > & _transform, \fBmoeoReplacement\fP< MOEOT > & _replace, \fBmoeoFitnessAssignment\fP< MOEOT > & _fitnessEval, \fBmoeoDiversityAssignment\fP< MOEOT > & _diversityEval, bool _evalFitAndDivBeforeSelection = \fCfalse\fP)\fC [inline]\fP"
 .PP
 Ctor taking a select, a transform and a replacement. 
@@ -232,7 +232,7 @@ Ctor taking a select, a transform and a replacement.
 .PP
 
 .PP
-Definition at line 103 of file moeoEasyEA.h.
+Definition at line 128 of file moeoEasyEA.h.
 .SS "template<class MOEOT> \fBmoeoEasyEA\fP< MOEOT >::\fBmoeoEasyEA\fP (\fBeoContinue\fP< MOEOT > & _continuator, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBeoSelect\fP< MOEOT > & _select, \fBeoTransform\fP< MOEOT > & _transform, \fBeoMerge\fP< MOEOT > & _merge, \fBeoReduce\fP< MOEOT > & _reduce, \fBmoeoFitnessAssignment\fP< MOEOT > & _fitnessEval, \fBmoeoDiversityAssignment\fP< MOEOT > & _diversityEval, bool _evalFitAndDivBeforeSelection = \fCfalse\fP)\fC [inline]\fP"
 .PP
 Ctor taking a select, a transform, a merge and a reduce. 
@@ -260,7 +260,7 @@ Ctor taking a select, a transform, a merge and a reduce.
 .PP
 
 .PP
-Definition at line 123 of file moeoEasyEA.h.
+Definition at line 148 of file moeoEasyEA.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOT> virtual void \fBmoeoEasyEA\fP< MOEOT >::operator() (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
@@ -274,7 +274,7 @@ Applies a few generation of evolution to the population _pop.
 .PP
 
 .PP
-Definition at line 135 of file moeoEasyEA.h.
+Definition at line 160 of file moeoEasyEA.h.
 .PP
 References moeoEasyEA< MOEOT >::breed, moeoEasyEA< MOEOT >::continuator, moeoEasyEA< MOEOT >::diversityEval, moeoEasyEA< MOEOT >::evalFitAndDivBeforeSelection, moeoEasyEA< MOEOT >::fitnessEval, moeoEasyEA< MOEOT >::popEval, and moeoEasyEA< MOEOT >::replace.
 

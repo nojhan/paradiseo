@@ -81,7 +81,7 @@ Sharing assignment scheme originally porposed by: D.
 
 E. Goldberg, 'Genetic Algorithms in Search, Optimization and Machine Learning', Addision-Wesley, MA, USA (1989). 
 .PP
-Definition at line 28 of file moeoSharingDiversityAssignment.h.
+Definition at line 53 of file moeoSharingDiversityAssignment.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class MOEOT> \fBmoeoSharingDiversityAssignment\fP< MOEOT >::\fBmoeoSharingDiversityAssignment\fP (\fBmoeoDistance\fP< MOEOT, double > & _distance, double _nicheSize = \fC0.5\fP, double _alpha = \fC1.0\fP)\fC [inline]\fP"
@@ -99,7 +99,7 @@ Ctor.
 .PP
 
 .PP
-Definition at line 42 of file moeoSharingDiversityAssignment.h.
+Definition at line 67 of file moeoSharingDiversityAssignment.h.
 .SS "template<class MOEOT> \fBmoeoSharingDiversityAssignment\fP< MOEOT >::\fBmoeoSharingDiversityAssignment\fP (double _nicheSize = \fC0.5\fP, double _alpha = \fC1.0\fP)\fC [inline]\fP"
 .PP
 Ctor with an euclidean distance (with normalized objective values) in the objective space is used as default. 
@@ -113,7 +113,7 @@ Ctor with an euclidean distance (with normalized objective values) in the object
 .PP
 
 .PP
-Definition at line 51 of file moeoSharingDiversityAssignment.h.
+Definition at line 76 of file moeoSharingDiversityAssignment.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOT> void \fBmoeoSharingDiversityAssignment\fP< MOEOT >::operator() (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
@@ -129,7 +129,7 @@ Sets diversity values for every solution contained in the population _pop.
 .PP
 Implements \fBeoUF< eoPop< MOEOT > &, void >\fP.
 .PP
-Definition at line 59 of file moeoSharingDiversityAssignment.h.
+Definition at line 84 of file moeoSharingDiversityAssignment.h.
 .PP
 References moeoSharingDiversityAssignment< MOEOT >::setSimilarities().
 .SS "template<class MOEOT> void \fBmoeoSharingDiversityAssignment\fP< MOEOT >::updateByDeleting (\fBeoPop\fP< MOEOT > & _pop, \fBObjectiveVector\fP & _objVec)\fC [inline, virtual]\fP"
@@ -157,7 +157,7 @@ Implements \fBmoeoDiversityAssignment< MOEOT >\fP.
 .PP
 Reimplemented in \fBmoeoFrontByFrontSharingDiversityAssignment< MOEOT >\fP.
 .PP
-Definition at line 80 of file moeoSharingDiversityAssignment.h.
+Definition at line 105 of file moeoSharingDiversityAssignment.h.
 .SS "template<class MOEOT> virtual void \fBmoeoSharingDiversityAssignment\fP< MOEOT >::setSimilarities (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, protected, virtual]\fP"
 .PP
 Sets similarities for every solution contained in the population _pop. 
@@ -171,7 +171,7 @@ Sets similarities for every solution contained in the population _pop.
 .PP
 Reimplemented in \fBmoeoFrontByFrontSharingDiversityAssignment< MOEOT >\fP.
 .PP
-Definition at line 102 of file moeoSharingDiversityAssignment.h.
+Definition at line 127 of file moeoSharingDiversityAssignment.h.
 .PP
 References moeoSharingDiversityAssignment< MOEOT >::distance, and moeoSharingDiversityAssignment< MOEOT >::sh().
 .PP
@@ -187,7 +187,7 @@ Sharing function.
 .PP
 
 .PP
-Definition at line 125 of file moeoSharingDiversityAssignment.h.
+Definition at line 150 of file moeoSharingDiversityAssignment.h.
 .PP
 References moeoSharingDiversityAssignment< MOEOT >::alpha, and moeoSharingDiversityAssignment< MOEOT >::nicheSize.
 .PP

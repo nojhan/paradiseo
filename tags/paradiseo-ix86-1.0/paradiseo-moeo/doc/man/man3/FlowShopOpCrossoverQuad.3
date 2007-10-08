@@ -36,7 +36,7 @@ Inherits \fBeoQuadOp< FlowShop >\fP.
 .PP 
 Quadratic crossover operator for flow-shop (modify the both genotypes). 
 .PP
-Definition at line 22 of file FlowShopOpCrossoverQuad.h.
+Definition at line 47 of file FlowShopOpCrossoverQuad.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "bool FlowShopOpCrossoverQuad::operator() (\fBFlowShop\fP & _flowshop1, \fBFlowShop\fP & _flowshop2)\fC [virtual]\fP"
@@ -56,7 +56,7 @@ _copies_ of the parents
 .PP
 Implements \fBeoBF< FlowShop &, FlowShop &, bool >\fP.
 .PP
-Definition at line 22 of file FlowShopOpCrossoverQuad.cpp.
+Definition at line 47 of file FlowShopOpCrossoverQuad.cpp.
 .PP
 References generateOffspring(), eoRng::random(), and moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >::value().
 .SS "\fBFlowShop\fP FlowShopOpCrossoverQuad::generateOffspring (const \fBFlowShop\fP & _parent1, const \fBFlowShop\fP & _parent2, unsigned int _point1, unsigned int _point2)\fC [private]\fP"
@@ -76,7 +76,7 @@ generation of an offspring by a 2 points crossover
 .PP
 
 .PP
-Definition at line 54 of file FlowShopOpCrossoverQuad.cpp.
+Definition at line 79 of file FlowShopOpCrossoverQuad.cpp.
 .PP
 Referenced by operator()().
 

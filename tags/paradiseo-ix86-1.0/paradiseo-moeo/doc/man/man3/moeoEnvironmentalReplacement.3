@@ -82,7 +82,7 @@ Inherits \fBmoeoReplacement< MOEOT >< MOEOT >\fP.
 .SS "template<class MOEOT> class moeoEnvironmentalReplacement< MOEOT >"
 Environmental replacement strategy that consists in keeping the N best individuals by deleting individuals 1 by 1 and by updating the fitness and diversity values after each deletion. 
 .PP
-Definition at line 26 of file moeoEnvironmentalReplacement.h.
+Definition at line 51 of file moeoEnvironmentalReplacement.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class MOEOT> \fBmoeoEnvironmentalReplacement\fP< MOEOT >::\fBmoeoEnvironmentalReplacement\fP (\fBmoeoFitnessAssignment\fP< MOEOT > & _fitnessAssignment, \fBmoeoDiversityAssignment\fP< MOEOT > & _diversityAssignment, \fBmoeoComparator\fP< MOEOT > & _comparator)\fC [inline]\fP"
@@ -100,7 +100,7 @@ Full constructor.
 .PP
 
 .PP
-Definition at line 40 of file moeoEnvironmentalReplacement.h.
+Definition at line 65 of file moeoEnvironmentalReplacement.h.
 .SS "template<class MOEOT> \fBmoeoEnvironmentalReplacement\fP< MOEOT >::\fBmoeoEnvironmentalReplacement\fP (\fBmoeoFitnessAssignment\fP< MOEOT > & _fitnessAssignment, \fBmoeoDiversityAssignment\fP< MOEOT > & _diversityAssignment)\fC [inline]\fP"
 .PP
 Constructor without comparator. 
@@ -116,7 +116,7 @@ A moeoFitThenDivComparator is used as default.
 .PP
 
 .PP
-Definition at line 50 of file moeoEnvironmentalReplacement.h.
+Definition at line 75 of file moeoEnvironmentalReplacement.h.
 .SS "template<class MOEOT> \fBmoeoEnvironmentalReplacement\fP< MOEOT >::\fBmoeoEnvironmentalReplacement\fP (\fBmoeoFitnessAssignment\fP< MOEOT > & _fitnessAssignment, \fBmoeoComparator\fP< MOEOT > & _comparator)\fC [inline]\fP"
 .PP
 Constructor without moeoDiversityAssignement. 
@@ -132,7 +132,7 @@ A dummy diversity is used as default.
 .PP
 
 .PP
-Definition at line 60 of file moeoEnvironmentalReplacement.h.
+Definition at line 85 of file moeoEnvironmentalReplacement.h.
 .SS "template<class MOEOT> \fBmoeoEnvironmentalReplacement\fP< MOEOT >::\fBmoeoEnvironmentalReplacement\fP (\fBmoeoFitnessAssignment\fP< MOEOT > & _fitnessAssignment)\fC [inline]\fP"
 .PP
 Constructor without moeoDiversityAssignement nor \fBmoeoComparator\fP. 
@@ -146,7 +146,7 @@ A moeoFitThenDivComparator and a dummy diversity are used as default.
 .PP
 
 .PP
-Definition at line 70 of file moeoEnvironmentalReplacement.h.
+Definition at line 95 of file moeoEnvironmentalReplacement.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOT> void \fBmoeoEnvironmentalReplacement\fP< MOEOT >::operator() (\fBeoPop\fP< MOEOT > & _parents, \fBeoPop\fP< MOEOT > & _offspring)\fC [inline]\fP"
@@ -162,7 +162,7 @@ Replaces the first population by adding the individuals of the second one, sorti
 .PP
 
 .PP
-Definition at line 80 of file moeoEnvironmentalReplacement.h.
+Definition at line 105 of file moeoEnvironmentalReplacement.h.
 .PP
 References moeoEnvironmentalReplacement< MOEOT >::comparator, moeoEnvironmentalReplacement< MOEOT >::diversityAssignment, and moeoEnvironmentalReplacement< MOEOT >::fitnessAssignment.
 

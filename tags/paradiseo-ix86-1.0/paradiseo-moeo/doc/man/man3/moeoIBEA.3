@@ -100,7 +100,7 @@ IBEA (Indicator-Based Evolutionary Algorithm) as described in: E.
 
 Zitzler, S. Künzli, 'Indicator-Based Selection in Multiobjective Search', Proc. 8th International Conference on Parallel Problem Solving from Nature (PPSN VIII), pp. 832-842, Birmingham, UK (2004). This class builds the IBEA algorithm only by using the fine-grained components of the ParadisEO-MOEO framework. 
 .PP
-Definition at line 38 of file moeoIBEA.h.
+Definition at line 63 of file moeoIBEA.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class MOEOT> \fBmoeoIBEA\fP< MOEOT >::\fBmoeoIBEA\fP (unsigned int _maxGen, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBeoGenOp\fP< MOEOT > & _op, \fBmoeoNormalizedSolutionVsSolutionBinaryMetric\fP< \fBObjectiveVector\fP, double > & _metric, const double _kappa = \fC0.05\fP)\fC [inline]\fP"
@@ -122,7 +122,7 @@ Simple ctor with a \fBeoGenOp\fP.
 .PP
 
 .PP
-Definition at line 54 of file moeoIBEA.h.
+Definition at line 79 of file moeoIBEA.h.
 .SS "template<class MOEOT> \fBmoeoIBEA\fP< MOEOT >::\fBmoeoIBEA\fP (unsigned int _maxGen, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBeoTransform\fP< MOEOT > & _op, \fBmoeoNormalizedSolutionVsSolutionBinaryMetric\fP< \fBObjectiveVector\fP, double > & _metric, const double _kappa = \fC0.05\fP)\fC [inline]\fP"
 .PP
 Simple ctor with a \fBeoTransform\fP. 
@@ -142,7 +142,7 @@ Simple ctor with a \fBeoTransform\fP.
 .PP
 
 .PP
-Definition at line 68 of file moeoIBEA.h.
+Definition at line 93 of file moeoIBEA.h.
 .SS "template<class MOEOT> \fBmoeoIBEA\fP< MOEOT >::\fBmoeoIBEA\fP (unsigned int _maxGen, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBeoQuadOp\fP< MOEOT > & _crossover, double _pCross, \fBeoMonOp\fP< MOEOT > & _mutation, double _pMut, \fBmoeoNormalizedSolutionVsSolutionBinaryMetric\fP< \fBObjectiveVector\fP, double > & _metric, const double _kappa = \fC0.05\fP)\fC [inline]\fP"
 .PP
 Ctor with a crossover, a mutation and their corresponding rates. 
@@ -168,7 +168,7 @@ Ctor with a crossover, a mutation and their corresponding rates.
 .PP
 
 .PP
-Definition at line 85 of file moeoIBEA.h.
+Definition at line 110 of file moeoIBEA.h.
 .SS "template<class MOEOT> \fBmoeoIBEA\fP< MOEOT >::\fBmoeoIBEA\fP (\fBeoContinue\fP< MOEOT > & _continuator, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBeoGenOp\fP< MOEOT > & _op, \fBmoeoNormalizedSolutionVsSolutionBinaryMetric\fP< \fBObjectiveVector\fP, double > & _metric, const double _kappa = \fC0.05\fP)\fC [inline]\fP"
 .PP
 Ctor with a continuator (instead of _maxGen) and a \fBeoGenOp\fP. 
@@ -188,7 +188,7 @@ Ctor with a continuator (instead of _maxGen) and a \fBeoGenOp\fP.
 .PP
 
 .PP
-Definition at line 100 of file moeoIBEA.h.
+Definition at line 125 of file moeoIBEA.h.
 .SS "template<class MOEOT> \fBmoeoIBEA\fP< MOEOT >::\fBmoeoIBEA\fP (\fBeoContinue\fP< MOEOT > & _continuator, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBeoTransform\fP< MOEOT > & _op, \fBmoeoNormalizedSolutionVsSolutionBinaryMetric\fP< \fBObjectiveVector\fP, double > & _metric, const double _kappa = \fC0.05\fP)\fC [inline]\fP"
 .PP
 Ctor with a continuator (instead of _maxGen) and a \fBeoTransform\fP. 
@@ -208,7 +208,7 @@ Ctor with a continuator (instead of _maxGen) and a \fBeoTransform\fP.
 .PP
 
 .PP
-Definition at line 114 of file moeoIBEA.h.
+Definition at line 139 of file moeoIBEA.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOT> virtual void \fBmoeoIBEA\fP< MOEOT >::operator() (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
@@ -222,7 +222,7 @@ Apply a few generation of evolution to the population _pop until the stopping cr
 .PP
 
 .PP
-Definition at line 124 of file moeoIBEA.h.
+Definition at line 149 of file moeoIBEA.h.
 .PP
 References moeoIBEA< MOEOT >::breed, moeoIBEA< MOEOT >::continuator, moeoIBEA< MOEOT >::dummyDiversityAssignment, moeoIBEA< MOEOT >::fitnessAssignment, moeoIBEA< MOEOT >::popEval, and moeoIBEA< MOEOT >::replace.
 

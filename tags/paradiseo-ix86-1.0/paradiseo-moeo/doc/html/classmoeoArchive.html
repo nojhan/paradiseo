@@ -90,7 +90,7 @@ An archive is a secondary population that stores non-dominated solutions.
 <p>
 
 <p>
-Definition at line <a class="el" href="moeoArchive_8h-source.html#l00024">24</a> of file <a class="el" href="moeoArchive_8h-source.html">moeoArchive.h</a>.<hr><h2>Constructor &amp; Destructor Documentation</h2>
+Definition at line <a class="el" href="moeoArchive_8h-source.html#l00049">49</a> of file <a class="el" href="moeoArchive_8h-source.html">moeoArchive.h</a>.<hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="a593ca2122484d255b5aa5a0463bd913"></a><!-- doxytag: member="moeoArchive::moeoArchive" ref="a593ca2122484d255b5aa5a0463bd913" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -113,7 +113,7 @@ Default ctor.
 <p>
 The <a class="el" href="classmoeoObjectiveVectorComparator.html">moeoObjectiveVectorComparator</a> used to compare solutions is based on Pareto dominance 
 <p>
-Definition at line <a class="el" href="moeoArchive_8h-source.html#l00044">44</a> of file <a class="el" href="moeoArchive_8h-source.html">moeoArchive.h</a>.
+Definition at line <a class="el" href="moeoArchive_8h-source.html#l00069">69</a> of file <a class="el" href="moeoArchive_8h-source.html">moeoArchive.h</a>.
 </div>
 </div><p>
 <a class="anchor" name="75e5fee339ca463405434f6f48497de0"></a><!-- doxytag: member="moeoArchive::moeoArchive" ref="75e5fee339ca463405434f6f48497de0" args="(moeoObjectiveVectorComparator&lt; ObjectiveVector &gt; &amp;_comparator)" -->
@@ -144,7 +144,7 @@ Ctor.
 </dl>
 
 <p>
-Definition at line <a class="el" href="moeoArchive_8h-source.html#l00052">52</a> of file <a class="el" href="moeoArchive_8h-source.html">moeoArchive.h</a>.
+Definition at line <a class="el" href="moeoArchive_8h-source.html#l00077">77</a> of file <a class="el" href="moeoArchive_8h-source.html">moeoArchive.h</a>.
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
@@ -176,9 +176,9 @@ Returns true if the current archive dominates _objectiveVector according to the 
 </dl>
 
 <p>
-Definition at line <a class="el" href="moeoArchive_8h-source.html#l00060">60</a> of file <a class="el" href="moeoArchive_8h-source.html">moeoArchive.h</a>.
+Definition at line <a class="el" href="moeoArchive_8h-source.html#l00085">85</a> of file <a class="el" href="moeoArchive_8h-source.html">moeoArchive.h</a>.
 <p>
-References <a class="el" href="moeoArchive_8h-source.html#l00174">moeoArchive&lt; MOEOT &gt;::comparator</a>.
+References <a class="el" href="moeoArchive_8h-source.html#l00199">moeoArchive&lt; MOEOT &gt;::comparator</a>.
 </div>
 </div><p>
 <a class="anchor" name="748d5c75d713075288257192be1986a9"></a><!-- doxytag: member="moeoArchive::contains" ref="748d5c75d713075288257192be1986a9" args="(const ObjectiveVector &amp;_objectiveVector) const " -->
@@ -209,9 +209,9 @@ Returns true if the current archive already contains a solution with the same ob
 </dl>
 
 <p>
-Definition at line <a class="el" href="moeoArchive_8h-source.html#l00078">78</a> of file <a class="el" href="moeoArchive_8h-source.html">moeoArchive.h</a>.
+Definition at line <a class="el" href="moeoArchive_8h-source.html#l00103">103</a> of file <a class="el" href="moeoArchive_8h-source.html">moeoArchive.h</a>.
 <p>
-Referenced by <a class="el" href="moeoArchive_8h-source.html#l00151">moeoArchive&lt; MOEOT &gt;::equals()</a>.
+Referenced by <a class="el" href="moeoArchive_8h-source.html#l00176">moeoArchive&lt; MOEOT &gt;::equals()</a>.
 </div>
 </div><p>
 <a class="anchor" name="6df0acd84cab4cb53682f2e6ca850e9a"></a><!-- doxytag: member="moeoArchive::update" ref="6df0acd84cab4cb53682f2e6ca850e9a" args="(const MOEOT &amp;_moeo)" -->
@@ -242,11 +242,11 @@ Updates the archive with a given individual _moeo.
 </dl>
 
 <p>
-Definition at line <a class="el" href="moeoArchive_8h-source.html#l00095">95</a> of file <a class="el" href="moeoArchive_8h-source.html">moeoArchive.h</a>.
+Definition at line <a class="el" href="moeoArchive_8h-source.html#l00120">120</a> of file <a class="el" href="moeoArchive_8h-source.html">moeoArchive.h</a>.
 <p>
-References <a class="el" href="moeoArchive_8h-source.html#l00174">moeoArchive&lt; MOEOT &gt;::comparator</a>.
+References <a class="el" href="moeoArchive_8h-source.html#l00199">moeoArchive&lt; MOEOT &gt;::comparator</a>.
 <p>
-Referenced by <a class="el" href="moeoIteratedIBMOLS_8h-source.html#l00086">moeoIteratedIBMOLS&lt; MOEOT, Move &gt;::operator()()</a>, <a class="el" href="moeoIBMOLS_8h-source.html#l00073">moeoIBMOLS&lt; MOEOT, Move &gt;::operator()()</a>, and <a class="el" href="moeoArchive_8h-source.html#l00138">moeoArchive&lt; MOEOT &gt;::update()</a>.
+Referenced by <a class="el" href="moeoArchive_8h-source.html#l00163">moeoArchive&lt; MOEOT &gt;::update()</a>.
 </div>
 </div><p>
 <a class="anchor" name="877bf4f0937f6be263e2686df4e77cf3"></a><!-- doxytag: member="moeoArchive::update" ref="877bf4f0937f6be263e2686df4e77cf3" args="(const eoPop&lt; MOEOT &gt; &amp;_pop)" -->
@@ -277,9 +277,9 @@ Updates the archive with a given population _pop.
 </dl>
 
 <p>
-Definition at line <a class="el" href="moeoArchive_8h-source.html#l00138">138</a> of file <a class="el" href="moeoArchive_8h-source.html">moeoArchive.h</a>.
+Definition at line <a class="el" href="moeoArchive_8h-source.html#l00163">163</a> of file <a class="el" href="moeoArchive_8h-source.html">moeoArchive.h</a>.
 <p>
-References <a class="el" href="moeoArchive_8h-source.html#l00095">moeoArchive&lt; MOEOT &gt;::update()</a>.
+References <a class="el" href="moeoArchive_8h-source.html#l00120">moeoArchive&lt; MOEOT &gt;::update()</a>.
 </div>
 </div><p>
 <a class="anchor" name="937088a6054ba1b50db651f50dda3a72"></a><!-- doxytag: member="moeoArchive::equals" ref="937088a6054ba1b50db651f50dda3a72" args="(const moeoArchive&lt; MOEOT &gt; &amp;_arch)" -->
@@ -310,16 +310,14 @@ Returns true if the current archive contains the same objective vectors than the
 </dl>
 
 <p>
-Definition at line <a class="el" href="moeoArchive_8h-source.html#l00151">151</a> of file <a class="el" href="moeoArchive_8h-source.html">moeoArchive.h</a>.
+Definition at line <a class="el" href="moeoArchive_8h-source.html#l00176">176</a> of file <a class="el" href="moeoArchive_8h-source.html">moeoArchive.h</a>.
 <p>
-References <a class="el" href="moeoArchive_8h-source.html#l00078">moeoArchive&lt; MOEOT &gt;::contains()</a>.
-<p>
-Referenced by <a class="el" href="moeoIBMOLS_8h-source.html#l00073">moeoIBMOLS&lt; MOEOT, Move &gt;::operator()()</a>.
+References <a class="el" href="moeoArchive_8h-source.html#l00103">moeoArchive&lt; MOEOT &gt;::contains()</a>.
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="moeoArchive_8h-source.html">moeoArchive.h</a></ul>
-<hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 10:35:52 2007 for ParadisEO-MOEOMovingObjects by&nbsp;
+<hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 16:37:09 2007 for ParadisEO-MOEOMovingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

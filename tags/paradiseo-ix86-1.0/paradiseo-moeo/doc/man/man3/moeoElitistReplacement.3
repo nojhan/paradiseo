@@ -74,7 +74,7 @@ Inherits \fBmoeoReplacement< MOEOT >< MOEOT >\fP.
 .SS "template<class MOEOT> class moeoElitistReplacement< MOEOT >"
 Elitist replacement strategy that consists in keeping the N best individuals. 
 .PP
-Definition at line 26 of file moeoElitistReplacement.h.
+Definition at line 51 of file moeoElitistReplacement.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class MOEOT> \fBmoeoElitistReplacement\fP< MOEOT >::\fBmoeoElitistReplacement\fP (\fBmoeoFitnessAssignment\fP< MOEOT > & _fitnessAssignment, \fBmoeoDiversityAssignment\fP< MOEOT > & _diversityAssignment, \fBmoeoComparator\fP< MOEOT > & _comparator)\fC [inline]\fP"
@@ -92,7 +92,7 @@ Full constructor.
 .PP
 
 .PP
-Definition at line 36 of file moeoElitistReplacement.h.
+Definition at line 61 of file moeoElitistReplacement.h.
 .SS "template<class MOEOT> \fBmoeoElitistReplacement\fP< MOEOT >::\fBmoeoElitistReplacement\fP (\fBmoeoFitnessAssignment\fP< MOEOT > & _fitnessAssignment, \fBmoeoDiversityAssignment\fP< MOEOT > & _diversityAssignment)\fC [inline]\fP"
 .PP
 Constructor without comparator. 
@@ -108,7 +108,7 @@ A moeoFitThenDivComparator is used as default.
 .PP
 
 .PP
-Definition at line 46 of file moeoElitistReplacement.h.
+Definition at line 71 of file moeoElitistReplacement.h.
 .SS "template<class MOEOT> \fBmoeoElitistReplacement\fP< MOEOT >::\fBmoeoElitistReplacement\fP (\fBmoeoFitnessAssignment\fP< MOEOT > & _fitnessAssignment, \fBmoeoComparator\fP< MOEOT > & _comparator)\fC [inline]\fP"
 .PP
 Constructor without moeoDiversityAssignement. 
@@ -124,7 +124,7 @@ A dummy diversity is used as default.
 .PP
 
 .PP
-Definition at line 56 of file moeoElitistReplacement.h.
+Definition at line 81 of file moeoElitistReplacement.h.
 .SS "template<class MOEOT> \fBmoeoElitistReplacement\fP< MOEOT >::\fBmoeoElitistReplacement\fP (\fBmoeoFitnessAssignment\fP< MOEOT > & _fitnessAssignment)\fC [inline]\fP"
 .PP
 Constructor without moeoDiversityAssignement nor \fBmoeoComparator\fP. 
@@ -138,7 +138,7 @@ A moeoFitThenDivComparator and a dummy diversity are used as default.
 .PP
 
 .PP
-Definition at line 66 of file moeoElitistReplacement.h.
+Definition at line 91 of file moeoElitistReplacement.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOT> void \fBmoeoElitistReplacement\fP< MOEOT >::operator() (\fBeoPop\fP< MOEOT > & _parents, \fBeoPop\fP< MOEOT > & _offspring)\fC [inline]\fP"
@@ -154,7 +154,7 @@ Replaces the first population by adding the individuals of the second one, sorti
 .PP
 
 .PP
-Definition at line 76 of file moeoElitistReplacement.h.
+Definition at line 101 of file moeoElitistReplacement.h.
 .PP
 References moeoElitistReplacement< MOEOT >::comparator, moeoElitistReplacement< MOEOT >::diversityAssignment, and moeoElitistReplacement< MOEOT >::fitnessAssignment.
 

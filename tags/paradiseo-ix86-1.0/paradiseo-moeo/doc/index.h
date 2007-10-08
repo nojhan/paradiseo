@@ -1,6 +1,6 @@
 /** @mainpage Welcome to ParadisEO-MOEO
 
-@section Introduction
+@section Introduction Introduction
 
 ParadisEO-MOEO is a white-box object-oriented generic framework dedicated to the flexible design of evolutionary multi-objective algorithms.
 This paradigm-free software embeds some features and techniques for Pareto-based resolution and 
@@ -16,7 +16,7 @@ using the whole version of ParadisEO.
 
 @section tutorials Tutorials
 
-Tutorials for ParadisEO-MOEO are available <a href="http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.UsersGuides">here</a>.
+Tutorials for ParadisEO-MOEO are available <a href="http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.Tutorials">here</a>.
 
 
 
@@ -33,7 +33,7 @@ For an introduction to the design of ParadisEO-MOEO,
 you can look at the <a href="http://paradiseo.gforge.inria.fr">ParadisEO website</a>.
 
 
-@section LICENCE
+@section LICENSE
 
  This software is governed by the CeCILL license under French law and
  abiding by the rules of distribution of free software.  You can  use,

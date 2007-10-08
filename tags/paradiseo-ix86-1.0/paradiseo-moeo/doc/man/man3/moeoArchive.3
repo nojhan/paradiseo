@@ -70,7 +70,7 @@ Inherits \fBeoPop< MOEOT >\fP.
 .SS "template<class MOEOT> class moeoArchive< MOEOT >"
 An archive is a secondary population that stores non-dominated solutions. 
 .PP
-Definition at line 24 of file moeoArchive.h.
+Definition at line 49 of file moeoArchive.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class MOEOT> \fBmoeoArchive\fP< MOEOT >::\fBmoeoArchive\fP ()\fC [inline]\fP"
@@ -79,7 +79,7 @@ Default ctor.
 .PP
 The \fBmoeoObjectiveVectorComparator\fP used to compare solutions is based on Pareto dominance 
 .PP
-Definition at line 44 of file moeoArchive.h.
+Definition at line 69 of file moeoArchive.h.
 .SS "template<class MOEOT> \fBmoeoArchive\fP< MOEOT >::\fBmoeoArchive\fP (\fBmoeoObjectiveVectorComparator\fP< \fBObjectiveVector\fP > & _comparator)\fC [inline]\fP"
 .PP
 Ctor. 
@@ -91,7 +91,7 @@ Ctor.
 .PP
 
 .PP
-Definition at line 52 of file moeoArchive.h.
+Definition at line 77 of file moeoArchive.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOT> bool \fBmoeoArchive\fP< MOEOT >::dominates (const \fBObjectiveVector\fP & _objectiveVector) const\fC [inline]\fP"
@@ -105,7 +105,7 @@ Returns true if the current archive dominates _objectiveVector according to the 
 .PP
 
 .PP
-Definition at line 60 of file moeoArchive.h.
+Definition at line 85 of file moeoArchive.h.
 .PP
 References moeoArchive< MOEOT >::comparator.
 .SS "template<class MOEOT> bool \fBmoeoArchive\fP< MOEOT >::contains (const \fBObjectiveVector\fP & _objectiveVector) const\fC [inline]\fP"
@@ -119,7 +119,7 @@ Returns true if the current archive already contains a solution with the same ob
 .PP
 
 .PP
-Definition at line 78 of file moeoArchive.h.
+Definition at line 103 of file moeoArchive.h.
 .PP
 Referenced by moeoArchive< MOEOT >::equals().
 .SS "template<class MOEOT> void \fBmoeoArchive\fP< MOEOT >::update (const MOEOT & _moeo)\fC [inline]\fP"
@@ -133,11 +133,11 @@ Updates the archive with a given individual _moeo.
 .PP
 
 .PP
-Definition at line 95 of file moeoArchive.h.
+Definition at line 120 of file moeoArchive.h.
 .PP
 References moeoArchive< MOEOT >::comparator.
 .PP
-Referenced by moeoIteratedIBMOLS< MOEOT, Move >::operator()(), moeoIBMOLS< MOEOT, Move >::operator()(), and moeoArchive< MOEOT >::update().
+Referenced by moeoArchive< MOEOT >::update().
 .SS "template<class MOEOT> void \fBmoeoArchive\fP< MOEOT >::update (const \fBeoPop\fP< MOEOT > & _pop)\fC [inline]\fP"
 .PP
 Updates the archive with a given population _pop. 
@@ -149,7 +149,7 @@ Updates the archive with a given population _pop.
 .PP
 
 .PP
-Definition at line 138 of file moeoArchive.h.
+Definition at line 163 of file moeoArchive.h.
 .PP
 References moeoArchive< MOEOT >::update().
 .SS "template<class MOEOT> bool \fBmoeoArchive\fP< MOEOT >::equals (const \fBmoeoArchive\fP< MOEOT > & _arch)\fC [inline]\fP"
@@ -163,11 +163,9 @@ Returns true if the current archive contains the same objective vectors than the
 .PP
 
 .PP
-Definition at line 151 of file moeoArchive.h.
+Definition at line 176 of file moeoArchive.h.
 .PP
 References moeoArchive< MOEOT >::contains().
-.PP
-Referenced by moeoIBMOLS< MOEOT, Move >::operator()().
 
 .SH "Author"
 .PP 

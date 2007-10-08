@@ -78,7 +78,7 @@ Inherits \fBmoeoScalarFitnessAssignment< MOEOT >< MOEOT >\fP.
 .SS "template<class MOEOT> class moeoAchievementFitnessAssignment< MOEOT >"
 Fitness assignment sheme based on the achievement scalarizing function propozed by Wiersbicki (1980). 
 .PP
-Definition at line 24 of file moeoAchievementFitnessAssignment.h.
+Definition at line 49 of file moeoAchievementFitnessAssignment.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class MOEOT> \fBmoeoAchievementFitnessAssignment\fP< MOEOT >::\fBmoeoAchievementFitnessAssignment\fP (\fBObjectiveVector\fP & _reference, std::vector< double > & _lambdas, double _spn = \fC0.0001\fP)\fC [inline]\fP"
@@ -96,7 +96,7 @@ Default ctor.
 .PP
 
 .PP
-Definition at line 38 of file moeoAchievementFitnessAssignment.h.
+Definition at line 63 of file moeoAchievementFitnessAssignment.h.
 .PP
 References moeoAchievementFitnessAssignment< MOEOT >::spn.
 .SS "template<class MOEOT> \fBmoeoAchievementFitnessAssignment\fP< MOEOT >::\fBmoeoAchievementFitnessAssignment\fP (\fBObjectiveVector\fP & _reference, double _spn = \fC0.0001\fP)\fC [inline]\fP"
@@ -112,7 +112,7 @@ Ctor with default values for lambdas (1/nObjectives).
 .PP
 
 .PP
-Definition at line 54 of file moeoAchievementFitnessAssignment.h.
+Definition at line 79 of file moeoAchievementFitnessAssignment.h.
 .PP
 References moeoAchievementFitnessAssignment< MOEOT >::lambdas, and moeoAchievementFitnessAssignment< MOEOT >::spn.
 .SH "Member Function Documentation"
@@ -130,7 +130,7 @@ Sets the fitness values for every solution contained in the population _pop.
 .PP
 Implements \fBeoUF< eoPop< MOEOT > &, void >\fP.
 .PP
-Definition at line 75 of file moeoAchievementFitnessAssignment.h.
+Definition at line 100 of file moeoAchievementFitnessAssignment.h.
 .PP
 References moeoAchievementFitnessAssignment< MOEOT >::compute().
 .SS "template<class MOEOT> void \fBmoeoAchievementFitnessAssignment\fP< MOEOT >::updateByDeleting (\fBeoPop\fP< MOEOT > & _pop, \fBObjectiveVector\fP & _objVec)\fC [inline, virtual]\fP"
@@ -148,7 +148,7 @@ Updates the fitness values of the whole population _pop by taking the deletion o
 .PP
 Implements \fBmoeoFitnessAssignment< MOEOT >\fP.
 .PP
-Definition at line 89 of file moeoAchievementFitnessAssignment.h.
+Definition at line 114 of file moeoAchievementFitnessAssignment.h.
 .SS "template<class MOEOT> void \fBmoeoAchievementFitnessAssignment\fP< MOEOT >::setReference (const \fBObjectiveVector\fP & _reference)\fC [inline]\fP"
 .PP
 Sets the reference point. 
@@ -160,7 +160,7 @@ Sets the reference point.
 .PP
 
 .PP
-Definition at line 99 of file moeoAchievementFitnessAssignment.h.
+Definition at line 124 of file moeoAchievementFitnessAssignment.h.
 .PP
 References moeoAchievementFitnessAssignment< MOEOT >::reference.
 .SS "template<class MOEOT> void \fBmoeoAchievementFitnessAssignment\fP< MOEOT >::compute (MOEOT & _moeo)\fC [inline, private]\fP"
@@ -174,7 +174,7 @@ Computes the fitness value for a solution.
 .PP
 
 .PP
-Definition at line 128 of file moeoAchievementFitnessAssignment.h.
+Definition at line 153 of file moeoAchievementFitnessAssignment.h.
 .PP
 References moeoAchievementFitnessAssignment< MOEOT >::inf(), moeoAchievementFitnessAssignment< MOEOT >::lambdas, moeoAchievementFitnessAssignment< MOEOT >::reference, and moeoAchievementFitnessAssignment< MOEOT >::spn.
 .PP

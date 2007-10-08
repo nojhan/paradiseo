@@ -38,7 +38,7 @@ Inherits \fBmoeoFitnessAssignment< MOEOT >< MOEOT >\fP.
 .SS "template<class MOEOT> class moeoDummyFitnessAssignment< MOEOT >"
 \fBmoeoDummyFitnessAssignment\fP is a \fBmoeoFitnessAssignment\fP that gives the value '0' as the individual's fitness for a whole population if it is invalid. 
 .PP
-Definition at line 22 of file moeoDummyFitnessAssignment.h.
+Definition at line 47 of file moeoDummyFitnessAssignment.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOT> void \fBmoeoDummyFitnessAssignment\fP< MOEOT >::operator() (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
@@ -54,7 +54,7 @@ Sets the fitness to '0' for every individuals of the population _pop if it is in
 .PP
 Implements \fBeoUF< eoPop< MOEOT > &, void >\fP.
 .PP
-Definition at line 34 of file moeoDummyFitnessAssignment.h.
+Definition at line 59 of file moeoDummyFitnessAssignment.h.
 .SS "template<class MOEOT> void \fBmoeoDummyFitnessAssignment\fP< MOEOT >::updateByDeleting (\fBeoPop\fP< MOEOT > & _pop, \fBObjectiveVector\fP & _objVec)\fC [inline, virtual]\fP"
 .PP
 Updates the fitness values of the whole population _pop by taking the deletion of the objective vector _objVec into account. 
@@ -70,7 +70,7 @@ Updates the fitness values of the whole population _pop by taking the deletion o
 .PP
 Implements \fBmoeoFitnessAssignment< MOEOT >\fP.
 .PP
-Definition at line 52 of file moeoDummyFitnessAssignment.h.
+Definition at line 77 of file moeoDummyFitnessAssignment.h.
 
 .SH "Author"
 .PP 

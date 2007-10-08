@@ -38,7 +38,7 @@ Inherits \fBmoeoDiversityAssignment< MOEOT >< MOEOT >\fP.
 .SS "template<class MOEOT> class moeoDummyDiversityAssignment< MOEOT >"
 \fBmoeoDummyDiversityAssignment\fP is a \fBmoeoDiversityAssignment\fP that gives the value '0' as the individual's diversity for a whole population if it is invalid. 
 .PP
-Definition at line 22 of file moeoDummyDiversityAssignment.h.
+Definition at line 47 of file moeoDummyDiversityAssignment.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOT> void \fBmoeoDummyDiversityAssignment\fP< MOEOT >::operator() (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
@@ -54,7 +54,7 @@ Sets the diversity to '0' for every individuals of the population _pop if it is 
 .PP
 Implements \fBeoUF< eoPop< MOEOT > &, void >\fP.
 .PP
-Definition at line 34 of file moeoDummyDiversityAssignment.h.
+Definition at line 59 of file moeoDummyDiversityAssignment.h.
 .SS "template<class MOEOT> void \fBmoeoDummyDiversityAssignment\fP< MOEOT >::updateByDeleting (\fBeoPop\fP< MOEOT > & _pop, \fBObjectiveVector\fP & _objVec)\fC [inline, virtual]\fP"
 .PP
 Updates the diversity values of the whole population _pop by taking the deletion of the objective vector _objVec into account. 
@@ -70,7 +70,7 @@ Updates the diversity values of the whole population _pop by taking the deletion
 .PP
 Implements \fBmoeoDiversityAssignment< MOEOT >\fP.
 .PP
-Definition at line 52 of file moeoDummyDiversityAssignment.h.
+Definition at line 77 of file moeoDummyDiversityAssignment.h.
 
 .SH "Author"
 .PP 

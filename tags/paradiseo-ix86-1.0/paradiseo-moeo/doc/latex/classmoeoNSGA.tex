@@ -70,7 +70,7 @@ Srinivas, K. Deb, \char`\"{}Multiobjective Optimization Using Nondominated Sorti
 
 
 
-Definition at line 37 of file moeo\-NSGA.h.
+Definition at line 62 of file moeo\-NSGA.h.
 
 \subsection{Constructor \& Destructor Documentation}
 \index{moeoNSGA@{moeo\-NSGA}!moeoNSGA@{moeoNSGA}}
@@ -87,7 +87,7 @@ Simple ctor with a \doxyref{eo\-Gen\-Op}.
 \end{Desc}
 
 
-Definition at line 48 of file moeo\-NSGA.h.\index{moeoNSGA@{moeo\-NSGA}!moeoNSGA@{moeoNSGA}}
+Definition at line 73 of file moeo\-NSGA.h.\index{moeoNSGA@{moeo\-NSGA}!moeoNSGA@{moeoNSGA}}
 \index{moeoNSGA@{moeoNSGA}!moeoNSGA@{moeo\-NSGA}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-NSGA}$<$ MOEOT $>$::\bf{moeo\-NSGA} (unsigned int {\em \_\-max\-Gen}, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \& {\em \_\-eval}, \bf{eo\-Transform}$<$ MOEOT $>$ \& {\em \_\-op}, double {\em \_\-niche\-Size} = {\tt 0.5})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoNSGA_177e825966d70e7f697a52be7819e830}
 
@@ -101,7 +101,7 @@ Simple ctor with a \doxyref{eo\-Transform}.
 \end{Desc}
 
 
-Definition at line 61 of file moeo\-NSGA.h.\index{moeoNSGA@{moeo\-NSGA}!moeoNSGA@{moeoNSGA}}
+Definition at line 86 of file moeo\-NSGA.h.\index{moeoNSGA@{moeo\-NSGA}!moeoNSGA@{moeoNSGA}}
 \index{moeoNSGA@{moeoNSGA}!moeoNSGA@{moeo\-NSGA}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-NSGA}$<$ MOEOT $>$::\bf{moeo\-NSGA} (unsigned int {\em \_\-max\-Gen}, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \& {\em \_\-eval}, \bf{eo\-Quad\-Op}$<$ MOEOT $>$ \& {\em \_\-crossover}, double {\em \_\-p\-Cross}, \bf{eo\-Mon\-Op}$<$ MOEOT $>$ \& {\em \_\-mutation}, double {\em \_\-p\-Mut}, double {\em \_\-niche\-Size} = {\tt 0.5})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoNSGA_7c7b4bb55b7ee74da780f20a943809fd}
 
@@ -115,7 +115,7 @@ Ctor with a crossover, a mutation and their corresponding rates.
 \end{Desc}
 
 
-Definition at line 77 of file moeo\-NSGA.h.\index{moeoNSGA@{moeo\-NSGA}!moeoNSGA@{moeoNSGA}}
+Definition at line 102 of file moeo\-NSGA.h.\index{moeoNSGA@{moeo\-NSGA}!moeoNSGA@{moeoNSGA}}
 \index{moeoNSGA@{moeoNSGA}!moeoNSGA@{moeo\-NSGA}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-NSGA}$<$ MOEOT $>$::\bf{moeo\-NSGA} (\bf{eo\-Continue}$<$ MOEOT $>$ \& {\em \_\-continuator}, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \& {\em \_\-eval}, \bf{eo\-Gen\-Op}$<$ MOEOT $>$ \& {\em \_\-op}, double {\em \_\-niche\-Size} = {\tt 0.5})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoNSGA_5f8a315499cb7e65911af0c7587144d8}
 
@@ -129,7 +129,7 @@ Ctor with a continuator (instead of \_\-max\-Gen) and a \doxyref{eo\-Gen\-Op}.
 \end{Desc}
 
 
-Definition at line 91 of file moeo\-NSGA.h.\index{moeoNSGA@{moeo\-NSGA}!moeoNSGA@{moeoNSGA}}
+Definition at line 116 of file moeo\-NSGA.h.\index{moeoNSGA@{moeo\-NSGA}!moeoNSGA@{moeoNSGA}}
 \index{moeoNSGA@{moeoNSGA}!moeoNSGA@{moeo\-NSGA}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-NSGA}$<$ MOEOT $>$::\bf{moeo\-NSGA} (\bf{eo\-Continue}$<$ MOEOT $>$ \& {\em \_\-continuator}, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \& {\em \_\-eval}, \bf{eo\-Transform}$<$ MOEOT $>$ \& {\em \_\-op}, double {\em \_\-niche\-Size} = {\tt 0.5})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoNSGA_eacee61268618c12d44d2f07cf7a796c}
 
@@ -143,7 +143,7 @@ Ctor with a continuator (instead of \_\-max\-Gen) and a \doxyref{eo\-Transform}.
 \end{Desc}
 
 
-Definition at line 104 of file moeo\-NSGA.h.
+Definition at line 129 of file moeo\-NSGA.h.
 
 \subsection{Member Function Documentation}
 \index{moeoNSGA@{moeo\-NSGA}!operator()@{operator()}}
@@ -160,7 +160,7 @@ Apply a few generation of evolution to the population \_\-pop until the stopping
 \end{Desc}
 
 
-Definition at line 114 of file moeo\-NSGA.h.
+Definition at line 139 of file moeo\-NSGA.h.
 
 References moeo\-NSGA$<$ MOEOT $>$::breed, moeo\-NSGA$<$ MOEOT $>$::continuator, moeo\-NSGA$<$ MOEOT $>$::diversity\-Assignment, moeo\-NSGA$<$ MOEOT $>$::fitness\-Assignment, moeo\-NSGA$<$ MOEOT $>$::pop\-Eval, and moeo\-NSGA$<$ MOEOT $>$::replace.
 

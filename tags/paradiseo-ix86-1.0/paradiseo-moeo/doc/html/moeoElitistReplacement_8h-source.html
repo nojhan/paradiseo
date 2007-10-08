@@ -21,93 +21,118 @@
       </form>
     </li>
   </ul></div>
-<h1>moeoElitistReplacement.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-</span>
-<a name="l00002"></a>00002 
-<a name="l00003"></a>00003 <span class="comment">//-----------------------------------------------------------------------------</span>
-<a name="l00004"></a>00004 <span class="comment">// moeoElitistReplacement.h</span>
-<a name="l00005"></a>00005 <span class="comment">// (c) OPAC Team (LIFL), Dolphin Project (INRIA), 2007</span>
-<a name="l00006"></a>00006 <span class="comment">/*</span>
-<a name="l00007"></a>00007 <span class="comment">    This library...</span>
-<a name="l00008"></a>00008 <span class="comment"></span>
-<a name="l00009"></a>00009 <span class="comment">    Contact: paradiseo-help@lists.gforge.inria.fr, http://paradiseo.gforge.inria.fr</span>
-<a name="l00010"></a>00010 <span class="comment"> */</span>
-<a name="l00011"></a>00011 <span class="comment">//-----------------------------------------------------------------------------</span>
-<a name="l00012"></a>00012 
-<a name="l00013"></a>00013 <span class="preprocessor">#ifndef MOEOELITISTREPLACEMENT_H_</span>
-<a name="l00014"></a>00014 <span class="preprocessor"></span><span class="preprocessor">#define MOEOELITISTREPLACEMENT_H_</span>
-<a name="l00015"></a>00015 <span class="preprocessor"></span>
-<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;comparator/moeoComparator.h&gt;</span>
-<a name="l00017"></a>00017 <span class="preprocessor">#include &lt;comparator/moeoFitnessThenDiversityComparator.h&gt;</span>
-<a name="l00018"></a>00018 <span class="preprocessor">#include &lt;diversity/moeoDiversityAssignment.h&gt;</span>
-<a name="l00019"></a>00019 <span class="preprocessor">#include &lt;diversity/moeoDummyDiversityAssignment.h&gt;</span>
-<a name="l00020"></a>00020 <span class="preprocessor">#include &lt;fitness/moeoFitnessAssignment.h&gt;</span>
-<a name="l00021"></a>00021 <span class="preprocessor">#include &lt;replacement/moeoReplacement.h&gt;</span>
-<a name="l00022"></a>00022 
-<a name="l00026"></a><a class="code" href="classmoeoElitistReplacement.html">00026</a> <span class="keyword">template</span> &lt; <span class="keyword">class</span> MOEOT &gt; <span class="keyword">class </span><a class="code" href="classmoeoElitistReplacement.html">moeoElitistReplacement</a>:<span class="keyword">public</span> <a class="code" href="classmoeoReplacement.html">moeoReplacement</a> &lt; MOEOT &gt;
-<a name="l00027"></a>00027 {
-<a name="l00028"></a>00028 <span class="keyword">public</span>:
-<a name="l00029"></a>00029 
-<a name="l00036"></a><a class="code" href="classmoeoElitistReplacement.html#1d91980f3f800833c8e9452cb450ae3e">00036</a>     <a class="code" href="classmoeoElitistReplacement.html#1d91980f3f800833c8e9452cb450ae3e">moeoElitistReplacement</a> (moeoFitnessAssignment &lt; MOEOT &gt; &amp; _fitnessAssignment, moeoDiversityAssignment &lt; MOEOT &gt; &amp; _diversityAssignment, moeoComparator &lt; MOEOT &gt; &amp; _comparator) :
-<a name="l00037"></a>00037             <a class="code" href="classmoeoElitistReplacement.html#ba390ae799848417dc41d0e71b010425">fitnessAssignment</a> (_fitnessAssignment), <a class="code" href="classmoeoElitistReplacement.html#7dff2c8d871e87a2ba326b69fd0c48d9">diversityAssignment</a> (_diversityAssignment), <a class="code" href="classmoeoElitistReplacement.html#4ef0a67b6f52c7238449522f4773ad60">comparator</a> (_comparator)
-<a name="l00038"></a>00038     {}
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040 
-<a name="l00046"></a><a class="code" href="classmoeoElitistReplacement.html#d7122be0519207c7496852284ed24514">00046</a>     <a class="code" href="classmoeoElitistReplacement.html#1d91980f3f800833c8e9452cb450ae3e">moeoElitistReplacement</a> (moeoFitnessAssignment &lt; MOEOT &gt; &amp; _fitnessAssignment, moeoDiversityAssignment &lt; MOEOT &gt; &amp; _diversityAssignment) :
-<a name="l00047"></a>00047             <a class="code" href="classmoeoElitistReplacement.html#ba390ae799848417dc41d0e71b010425">fitnessAssignment</a> (_fitnessAssignment), <a class="code" href="classmoeoElitistReplacement.html#7dff2c8d871e87a2ba326b69fd0c48d9">diversityAssignment</a> (_diversityAssignment), <a class="code" href="classmoeoElitistReplacement.html#4ef0a67b6f52c7238449522f4773ad60">comparator</a> (<a class="code" href="classmoeoElitistReplacement.html#e4b10eae9d1b048525737fbe47e34215">defaultComparator</a>)
-<a name="l00048"></a>00048     {}
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050 
-<a name="l00056"></a><a class="code" href="classmoeoElitistReplacement.html#81b7b8e0cac6cbed36e47688adf1466c">00056</a>     <a class="code" href="classmoeoElitistReplacement.html#1d91980f3f800833c8e9452cb450ae3e">moeoElitistReplacement</a> (moeoFitnessAssignment &lt; MOEOT &gt; &amp; _fitnessAssignment, moeoComparator &lt; MOEOT &gt; &amp; _comparator) :
-<a name="l00057"></a>00057             <a class="code" href="classmoeoElitistReplacement.html#ba390ae799848417dc41d0e71b010425">fitnessAssignment</a> (_fitnessAssignment), <a class="code" href="classmoeoElitistReplacement.html#7dff2c8d871e87a2ba326b69fd0c48d9">diversityAssignment</a> (<a class="code" href="classmoeoElitistReplacement.html#0a88fa6ae1cba0eb041b804f86e31ab2">defaultDiversity</a>), <a class="code" href="classmoeoElitistReplacement.html#4ef0a67b6f52c7238449522f4773ad60">comparator</a> (_comparator)
-<a name="l00058"></a>00058     {}
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060 
-<a name="l00066"></a><a class="code" href="classmoeoElitistReplacement.html#2ef7c199d779d473a9d35cee21556794">00066</a>     <a class="code" href="classmoeoElitistReplacement.html#1d91980f3f800833c8e9452cb450ae3e">moeoElitistReplacement</a> (moeoFitnessAssignment &lt; MOEOT &gt; &amp; _fitnessAssignment) :
-<a name="l00067"></a>00067             <a class="code" href="classmoeoElitistReplacement.html#ba390ae799848417dc41d0e71b010425">fitnessAssignment</a> (_fitnessAssignment), <a class="code" href="classmoeoElitistReplacement.html#7dff2c8d871e87a2ba326b69fd0c48d9">diversityAssignment</a> (<a class="code" href="classmoeoElitistReplacement.html#0a88fa6ae1cba0eb041b804f86e31ab2">defaultDiversity</a>), <a class="code" href="classmoeoElitistReplacement.html#4ef0a67b6f52c7238449522f4773ad60">comparator</a> (<a class="code" href="classmoeoElitistReplacement.html#e4b10eae9d1b048525737fbe47e34215">defaultComparator</a>)
-<a name="l00068"></a>00068     {}
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070 
-<a name="l00076"></a><a class="code" href="classmoeoElitistReplacement.html#0364c6ef9d16f7eb65caa9edfce69006">00076</a>     <span class="keywordtype">void</span> <a class="code" href="classmoeoElitistReplacement.html#0364c6ef9d16f7eb65caa9edfce69006">operator () </a>(eoPop &lt; MOEOT &gt; &amp;_parents, eoPop &lt; MOEOT &gt; &amp;_offspring)
-<a name="l00077"></a>00077     {
-<a name="l00078"></a>00078         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> sz = _parents.size ();
-<a name="l00079"></a>00079         <span class="comment">// merges offspring and parents into a global population</span>
-<a name="l00080"></a>00080         _parents.reserve (_parents.size () + _offspring.size ());
-<a name="l00081"></a>00081         std::copy (_offspring.begin (), _offspring.end (), back_inserter (_parents));
-<a name="l00082"></a>00082         <span class="comment">// evaluates the fitness and the diversity of this global population</span>
-<a name="l00083"></a>00083         <a class="code" href="classmoeoElitistReplacement.html#ba390ae799848417dc41d0e71b010425">fitnessAssignment</a> (_parents);
-<a name="l00084"></a>00084         <a class="code" href="classmoeoElitistReplacement.html#7dff2c8d871e87a2ba326b69fd0c48d9">diversityAssignment</a> (_parents);
-<a name="l00085"></a>00085         <span class="comment">// sorts the whole population according to the comparator</span>
-<a name="l00086"></a>00086         std::sort(_parents.begin(), _parents.end(), <a class="code" href="classmoeoElitistReplacement.html#4ef0a67b6f52c7238449522f4773ad60">comparator</a>);
-<a name="l00087"></a>00087         <span class="comment">// finally, resize this global population</span>
-<a name="l00088"></a>00088         _parents.resize (sz);
-<a name="l00089"></a>00089         <span class="comment">// and clear the offspring population</span>
-<a name="l00090"></a>00090         _offspring.clear ();
-<a name="l00091"></a>00091     }
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094 <span class="keyword">protected</span>:
+<h1>moeoElitistReplacement.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<a name="l00002"></a>00002 <span class="comment">* &lt;moeoElitistReplacement.h&gt;</span>
+<a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
+<a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
+<a name="l00005"></a>00005 <span class="comment">*</span>
+<a name="l00006"></a>00006 <span class="comment">* Arnaud Liefooghe</span>
+<a name="l00007"></a>00007 <span class="comment">*</span>
+<a name="l00008"></a>00008 <span class="comment">* This software is governed by the CeCILL license under French law and</span>
+<a name="l00009"></a>00009 <span class="comment">* abiding by the rules of distribution of free software.  You can  use,</span>
+<a name="l00010"></a>00010 <span class="comment">* modify and/ or redistribute the software under the terms of the CeCILL</span>
+<a name="l00011"></a>00011 <span class="comment">* license as circulated by CEA, CNRS and INRIA at the following URL</span>
+<a name="l00012"></a>00012 <span class="comment">* "http://www.cecill.info".</span>
+<a name="l00013"></a>00013 <span class="comment">*</span>
+<a name="l00014"></a>00014 <span class="comment">* As a counterpart to the access to the source code and  rights to copy,</span>
+<a name="l00015"></a>00015 <span class="comment">* modify and redistribute granted by the license, users are provided only</span>
+<a name="l00016"></a>00016 <span class="comment">* with a limited warranty  and the software's author,  the holder of the</span>
+<a name="l00017"></a>00017 <span class="comment">* economic rights,  and the successive licensors  have only  limited liability.</span>
+<a name="l00018"></a>00018 <span class="comment">*</span>
+<a name="l00019"></a>00019 <span class="comment">* In this respect, the user's attention is drawn to the risks associated</span>
+<a name="l00020"></a>00020 <span class="comment">* with loading,  using,  modifying and/or developing or reproducing the</span>
+<a name="l00021"></a>00021 <span class="comment">* software by the user in light of its specific status of free software,</span>
+<a name="l00022"></a>00022 <span class="comment">* that may mean  that it is complicated to manipulate,  and  that  also</span>
+<a name="l00023"></a>00023 <span class="comment">* therefore means  that it is reserved for developers  and  experienced</span>
+<a name="l00024"></a>00024 <span class="comment">* professionals having in-depth computer knowledge. Users are therefore</span>
+<a name="l00025"></a>00025 <span class="comment">* encouraged to load and test the software's suitability as regards their</span>
+<a name="l00026"></a>00026 <span class="comment">* requirements in conditions enabling the security of their systems and/or</span>
+<a name="l00027"></a>00027 <span class="comment">* data to be ensured and,  more generally, to use and operate it in the</span>
+<a name="l00028"></a>00028 <span class="comment">* same conditions as regards security.</span>
+<a name="l00029"></a>00029 <span class="comment">* The fact that you are presently reading this means that you have had</span>
+<a name="l00030"></a>00030 <span class="comment">* knowledge of the CeCILL license and that you accept its terms.</span>
+<a name="l00031"></a>00031 <span class="comment">*</span>
+<a name="l00032"></a>00032 <span class="comment">* ParadisEO WebSite : http://paradiseo.gforge.inria.fr</span>
+<a name="l00033"></a>00033 <span class="comment">* Contact: paradiseo-help@lists.gforge.inria.fr</span>
+<a name="l00034"></a>00034 <span class="comment">*</span>
+<a name="l00035"></a>00035 <span class="comment">*/</span>
+<a name="l00036"></a>00036 <span class="comment">//-----------------------------------------------------------------------------</span>
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 <span class="preprocessor">#ifndef MOEOELITISTREPLACEMENT_H_</span>
+<a name="l00039"></a>00039 <span class="preprocessor"></span><span class="preprocessor">#define MOEOELITISTREPLACEMENT_H_</span>
+<a name="l00040"></a>00040 <span class="preprocessor"></span>
+<a name="l00041"></a>00041 <span class="preprocessor">#include &lt;comparator/moeoComparator.h&gt;</span>
+<a name="l00042"></a>00042 <span class="preprocessor">#include &lt;comparator/moeoFitnessThenDiversityComparator.h&gt;</span>
+<a name="l00043"></a>00043 <span class="preprocessor">#include &lt;diversity/moeoDiversityAssignment.h&gt;</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#include &lt;diversity/moeoDummyDiversityAssignment.h&gt;</span>
+<a name="l00045"></a>00045 <span class="preprocessor">#include &lt;fitness/moeoFitnessAssignment.h&gt;</span>
+<a name="l00046"></a>00046 <span class="preprocessor">#include &lt;replacement/moeoReplacement.h&gt;</span>
+<a name="l00047"></a>00047 
+<a name="l00051"></a><a class="code" href="classmoeoElitistReplacement.html">00051</a> <span class="keyword">template</span> &lt; <span class="keyword">class</span> MOEOT &gt; <span class="keyword">class </span><a class="code" href="classmoeoElitistReplacement.html">moeoElitistReplacement</a>:<span class="keyword">public</span> <a class="code" href="classmoeoReplacement.html">moeoReplacement</a> &lt; MOEOT &gt;
+<a name="l00052"></a>00052 {
+<a name="l00053"></a>00053 <span class="keyword">public</span>:
+<a name="l00054"></a>00054 
+<a name="l00061"></a><a class="code" href="classmoeoElitistReplacement.html#1d91980f3f800833c8e9452cb450ae3e">00061</a>     <a class="code" href="classmoeoElitistReplacement.html#1d91980f3f800833c8e9452cb450ae3e">moeoElitistReplacement</a> (moeoFitnessAssignment &lt; MOEOT &gt; &amp; _fitnessAssignment, moeoDiversityAssignment &lt; MOEOT &gt; &amp; _diversityAssignment, moeoComparator &lt; MOEOT &gt; &amp; _comparator) :
+<a name="l00062"></a>00062             <a class="code" href="classmoeoElitistReplacement.html#ba390ae799848417dc41d0e71b010425">fitnessAssignment</a> (_fitnessAssignment), <a class="code" href="classmoeoElitistReplacement.html#7dff2c8d871e87a2ba326b69fd0c48d9">diversityAssignment</a> (_diversityAssignment), <a class="code" href="classmoeoElitistReplacement.html#4ef0a67b6f52c7238449522f4773ad60">comparator</a> (_comparator)
+<a name="l00063"></a>00063     {}
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065 
+<a name="l00071"></a><a class="code" href="classmoeoElitistReplacement.html#d7122be0519207c7496852284ed24514">00071</a>     <a class="code" href="classmoeoElitistReplacement.html#1d91980f3f800833c8e9452cb450ae3e">moeoElitistReplacement</a> (moeoFitnessAssignment &lt; MOEOT &gt; &amp; _fitnessAssignment, moeoDiversityAssignment &lt; MOEOT &gt; &amp; _diversityAssignment) :
+<a name="l00072"></a>00072             <a class="code" href="classmoeoElitistReplacement.html#ba390ae799848417dc41d0e71b010425">fitnessAssignment</a> (_fitnessAssignment), <a class="code" href="classmoeoElitistReplacement.html#7dff2c8d871e87a2ba326b69fd0c48d9">diversityAssignment</a> (_diversityAssignment), <a class="code" href="classmoeoElitistReplacement.html#4ef0a67b6f52c7238449522f4773ad60">comparator</a> (<a class="code" href="classmoeoElitistReplacement.html#e4b10eae9d1b048525737fbe47e34215">defaultComparator</a>)
+<a name="l00073"></a>00073     {}
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075 
+<a name="l00081"></a><a class="code" href="classmoeoElitistReplacement.html#81b7b8e0cac6cbed36e47688adf1466c">00081</a>     <a class="code" href="classmoeoElitistReplacement.html#1d91980f3f800833c8e9452cb450ae3e">moeoElitistReplacement</a> (moeoFitnessAssignment &lt; MOEOT &gt; &amp; _fitnessAssignment, moeoComparator &lt; MOEOT &gt; &amp; _comparator) :
+<a name="l00082"></a>00082             <a class="code" href="classmoeoElitistReplacement.html#ba390ae799848417dc41d0e71b010425">fitnessAssignment</a> (_fitnessAssignment), <a class="code" href="classmoeoElitistReplacement.html#7dff2c8d871e87a2ba326b69fd0c48d9">diversityAssignment</a> (<a class="code" href="classmoeoElitistReplacement.html#0a88fa6ae1cba0eb041b804f86e31ab2">defaultDiversity</a>), <a class="code" href="classmoeoElitistReplacement.html#4ef0a67b6f52c7238449522f4773ad60">comparator</a> (_comparator)
+<a name="l00083"></a>00083     {}
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 
+<a name="l00091"></a><a class="code" href="classmoeoElitistReplacement.html#2ef7c199d779d473a9d35cee21556794">00091</a>     <a class="code" href="classmoeoElitistReplacement.html#1d91980f3f800833c8e9452cb450ae3e">moeoElitistReplacement</a> (moeoFitnessAssignment &lt; MOEOT &gt; &amp; _fitnessAssignment) :
+<a name="l00092"></a>00092             <a class="code" href="classmoeoElitistReplacement.html#ba390ae799848417dc41d0e71b010425">fitnessAssignment</a> (_fitnessAssignment), <a class="code" href="classmoeoElitistReplacement.html#7dff2c8d871e87a2ba326b69fd0c48d9">diversityAssignment</a> (<a class="code" href="classmoeoElitistReplacement.html#0a88fa6ae1cba0eb041b804f86e31ab2">defaultDiversity</a>), <a class="code" href="classmoeoElitistReplacement.html#4ef0a67b6f52c7238449522f4773ad60">comparator</a> (<a class="code" href="classmoeoElitistReplacement.html#e4b10eae9d1b048525737fbe47e34215">defaultComparator</a>)
+<a name="l00093"></a>00093     {}
+<a name="l00094"></a>00094 
 <a name="l00095"></a>00095 
-<a name="l00097"></a><a class="code" href="classmoeoElitistReplacement.html#ba390ae799848417dc41d0e71b010425">00097</a>     moeoFitnessAssignment &lt; MOEOT &gt; &amp; <a class="code" href="classmoeoElitistReplacement.html#ba390ae799848417dc41d0e71b010425">fitnessAssignment</a>;
-<a name="l00099"></a><a class="code" href="classmoeoElitistReplacement.html#7dff2c8d871e87a2ba326b69fd0c48d9">00099</a>     moeoDiversityAssignment &lt; MOEOT &gt; &amp; <a class="code" href="classmoeoElitistReplacement.html#7dff2c8d871e87a2ba326b69fd0c48d9">diversityAssignment</a>;
-<a name="l00101"></a><a class="code" href="classmoeoElitistReplacement.html#0a88fa6ae1cba0eb041b804f86e31ab2">00101</a>     moeoDummyDiversityAssignment &lt; MOEOT &gt; <a class="code" href="classmoeoElitistReplacement.html#0a88fa6ae1cba0eb041b804f86e31ab2">defaultDiversity</a>;
-<a name="l00103"></a><a class="code" href="classmoeoElitistReplacement.html#e4b10eae9d1b048525737fbe47e34215">00103</a>     moeoFitnessThenDiversityComparator &lt; MOEOT &gt; <a class="code" href="classmoeoElitistReplacement.html#e4b10eae9d1b048525737fbe47e34215">defaultComparator</a>;
-<a name="l00105"></a><a class="code" href="classmoeoElitistReplacement_1_1Cmp.html">00105</a>     <span class="keyword">class </span><a class="code" href="classmoeoElitistReplacement_1_1Cmp.html">Cmp</a>
-<a name="l00106"></a>00106     {
-<a name="l00107"></a>00107     <span class="keyword">public</span>:
-<a name="l00112"></a><a class="code" href="classmoeoElitistReplacement_1_1Cmp.html#c9f21fe0df172dc601a13d6531c5ffd9">00112</a>         <a class="code" href="classmoeoElitistReplacement_1_1Cmp.html#c9f21fe0df172dc601a13d6531c5ffd9">Cmp</a>(moeoComparator &lt; MOEOT &gt; &amp; _comp) : <a class="code" href="classmoeoElitistReplacement_1_1Cmp.html#c7c0d0839bcbe86455d9f1064884219a">comp</a>(_comp)
-<a name="l00113"></a>00113         {}
-<a name="l00119"></a><a class="code" href="classmoeoElitistReplacement_1_1Cmp.html#2411b927dde02225114635e776ce863f">00119</a>         <span class="keywordtype">bool</span> <a class="code" href="classmoeoElitistReplacement_1_1Cmp.html#2411b927dde02225114635e776ce863f">operator()</a>(<span class="keyword">const</span> MOEOT &amp; _moeo1, <span class="keyword">const</span> MOEOT &amp; _moeo2)
-<a name="l00120"></a>00120         {
-<a name="l00121"></a>00121             <span class="keywordflow">return</span> <a class="code" href="classmoeoElitistReplacement_1_1Cmp.html#c7c0d0839bcbe86455d9f1064884219a">comp</a>(_moeo2,_moeo1);
-<a name="l00122"></a>00122         }
-<a name="l00123"></a>00123     <span class="keyword">private</span>:
-<a name="l00125"></a><a class="code" href="classmoeoElitistReplacement_1_1Cmp.html#c7c0d0839bcbe86455d9f1064884219a">00125</a>         moeoComparator &lt; MOEOT &gt; &amp; <a class="code" href="classmoeoElitistReplacement_1_1Cmp.html#c7c0d0839bcbe86455d9f1064884219a">comp</a>;
-<a name="l00126"></a>00126     } <a class="code" href="classmoeoElitistReplacement.html#4ef0a67b6f52c7238449522f4773ad60">comparator</a>;
-<a name="l00127"></a>00127 
-<a name="l00128"></a>00128 };
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130 <span class="preprocessor">#endif </span><span class="comment">/*MOEOELITISTREPLACEMENT_H_ */</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 10:35:51 2007 for ParadisEO-MOEOMovingObjects by&nbsp;
+<a name="l00101"></a><a class="code" href="classmoeoElitistReplacement.html#0364c6ef9d16f7eb65caa9edfce69006">00101</a>     <span class="keywordtype">void</span> <a class="code" href="classmoeoElitistReplacement.html#0364c6ef9d16f7eb65caa9edfce69006">operator () </a>(eoPop &lt; MOEOT &gt; &amp;_parents, eoPop &lt; MOEOT &gt; &amp;_offspring)
+<a name="l00102"></a>00102     {
+<a name="l00103"></a>00103         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> sz = _parents.size ();
+<a name="l00104"></a>00104         <span class="comment">// merges offspring and parents into a global population</span>
+<a name="l00105"></a>00105         _parents.reserve (_parents.size () + _offspring.size ());
+<a name="l00106"></a>00106         std::copy (_offspring.begin (), _offspring.end (), back_inserter (_parents));
+<a name="l00107"></a>00107         <span class="comment">// evaluates the fitness and the diversity of this global population</span>
+<a name="l00108"></a>00108         <a class="code" href="classmoeoElitistReplacement.html#ba390ae799848417dc41d0e71b010425">fitnessAssignment</a> (_parents);
+<a name="l00109"></a>00109         <a class="code" href="classmoeoElitistReplacement.html#7dff2c8d871e87a2ba326b69fd0c48d9">diversityAssignment</a> (_parents);
+<a name="l00110"></a>00110         <span class="comment">// sorts the whole population according to the comparator</span>
+<a name="l00111"></a>00111         std::sort(_parents.begin(), _parents.end(), <a class="code" href="classmoeoElitistReplacement.html#4ef0a67b6f52c7238449522f4773ad60">comparator</a>);
+<a name="l00112"></a>00112         <span class="comment">// finally, resize this global population</span>
+<a name="l00113"></a>00113         _parents.resize (sz);
+<a name="l00114"></a>00114         <span class="comment">// and clear the offspring population</span>
+<a name="l00115"></a>00115         _offspring.clear ();
+<a name="l00116"></a>00116     }
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118 
+<a name="l00119"></a>00119 <span class="keyword">protected</span>:
+<a name="l00120"></a>00120 
+<a name="l00122"></a><a class="code" href="classmoeoElitistReplacement.html#ba390ae799848417dc41d0e71b010425">00122</a>     moeoFitnessAssignment &lt; MOEOT &gt; &amp; <a class="code" href="classmoeoElitistReplacement.html#ba390ae799848417dc41d0e71b010425">fitnessAssignment</a>;
+<a name="l00124"></a><a class="code" href="classmoeoElitistReplacement.html#7dff2c8d871e87a2ba326b69fd0c48d9">00124</a>     moeoDiversityAssignment &lt; MOEOT &gt; &amp; <a class="code" href="classmoeoElitistReplacement.html#7dff2c8d871e87a2ba326b69fd0c48d9">diversityAssignment</a>;
+<a name="l00126"></a><a class="code" href="classmoeoElitistReplacement.html#0a88fa6ae1cba0eb041b804f86e31ab2">00126</a>     moeoDummyDiversityAssignment &lt; MOEOT &gt; <a class="code" href="classmoeoElitistReplacement.html#0a88fa6ae1cba0eb041b804f86e31ab2">defaultDiversity</a>;
+<a name="l00128"></a><a class="code" href="classmoeoElitistReplacement.html#e4b10eae9d1b048525737fbe47e34215">00128</a>     moeoFitnessThenDiversityComparator &lt; MOEOT &gt; <a class="code" href="classmoeoElitistReplacement.html#e4b10eae9d1b048525737fbe47e34215">defaultComparator</a>;
+<a name="l00130"></a><a class="code" href="classmoeoElitistReplacement_1_1Cmp.html">00130</a>     <span class="keyword">class </span><a class="code" href="classmoeoElitistReplacement_1_1Cmp.html">Cmp</a>
+<a name="l00131"></a>00131     {
+<a name="l00132"></a>00132     <span class="keyword">public</span>:
+<a name="l00137"></a><a class="code" href="classmoeoElitistReplacement_1_1Cmp.html#c9f21fe0df172dc601a13d6531c5ffd9">00137</a>         <a class="code" href="classmoeoElitistReplacement_1_1Cmp.html#c9f21fe0df172dc601a13d6531c5ffd9">Cmp</a>(moeoComparator &lt; MOEOT &gt; &amp; _comp) : <a class="code" href="classmoeoElitistReplacement_1_1Cmp.html#c7c0d0839bcbe86455d9f1064884219a">comp</a>(_comp)
+<a name="l00138"></a>00138         {}
+<a name="l00144"></a><a class="code" href="classmoeoElitistReplacement_1_1Cmp.html#2411b927dde02225114635e776ce863f">00144</a>         <span class="keywordtype">bool</span> <a class="code" href="classmoeoElitistReplacement_1_1Cmp.html#2411b927dde02225114635e776ce863f">operator()</a>(<span class="keyword">const</span> MOEOT &amp; _moeo1, <span class="keyword">const</span> MOEOT &amp; _moeo2)
+<a name="l00145"></a>00145         {
+<a name="l00146"></a>00146             <span class="keywordflow">return</span> <a class="code" href="classmoeoElitistReplacement_1_1Cmp.html#c7c0d0839bcbe86455d9f1064884219a">comp</a>(_moeo2,_moeo1);
+<a name="l00147"></a>00147         }
+<a name="l00148"></a>00148     <span class="keyword">private</span>:
+<a name="l00150"></a><a class="code" href="classmoeoElitistReplacement_1_1Cmp.html#c7c0d0839bcbe86455d9f1064884219a">00150</a>         moeoComparator &lt; MOEOT &gt; &amp; <a class="code" href="classmoeoElitistReplacement_1_1Cmp.html#c7c0d0839bcbe86455d9f1064884219a">comp</a>;
+<a name="l00151"></a>00151     } <a class="code" href="classmoeoElitistReplacement.html#4ef0a67b6f52c7238449522f4773ad60">comparator</a>;
+<a name="l00152"></a>00152 
+<a name="l00153"></a>00153 };
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155 <span class="preprocessor">#endif </span><span class="comment">/*MOEOELITISTREPLACEMENT_H_ */</span>
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 16:37:09 2007 for ParadisEO-MOEOMovingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

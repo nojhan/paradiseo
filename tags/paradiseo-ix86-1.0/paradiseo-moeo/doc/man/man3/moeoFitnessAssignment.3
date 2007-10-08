@@ -12,7 +12,7 @@ moeoFitnessAssignment \- Functor that sets the fitness values of a whole populat
 .PP
 Inherits \fBeoUF< eoPop< MOEOT > &, void >\fP.
 .PP
-Inherited by \fBmoeoCriterionBasedFitnessAssignment< MOEOT >\fP, \fBmoeoDummyFitnessAssignment< MOEOT >\fP, \fBmoeoIndicatorBasedFitnessAssignment< MOEOT >\fP, \fBmoeoParetoBasedFitnessAssignment< MOEOT >\fP, \fBmoeoReferencePointIndicatorBasedFitnessAssignment< MOEOT >\fP, and \fBmoeoScalarFitnessAssignment< MOEOT >\fP.
+Inherited by \fBmoeoCriterionBasedFitnessAssignment< MOEOT >\fP, \fBmoeoDummyFitnessAssignment< MOEOT >\fP, \fBmoeoIndicatorBasedFitnessAssignment< MOEOT >\fP, \fBmoeoParetoBasedFitnessAssignment< MOEOT >\fP, and \fBmoeoScalarFitnessAssignment< MOEOT >\fP.
 .PP
 .SS "Public Types"
 
@@ -40,7 +40,7 @@ Inherited by \fBmoeoCriterionBasedFitnessAssignment< MOEOT >\fP, \fBmoeoDummyFit
 .SS "template<class MOEOT> class moeoFitnessAssignment< MOEOT >"
 Functor that sets the fitness values of a whole population. 
 .PP
-Definition at line 23 of file moeoFitnessAssignment.h.
+Definition at line 48 of file moeoFitnessAssignment.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class MOEOT> virtual void \fBmoeoFitnessAssignment\fP< MOEOT >::updateByDeleting (\fBeoPop\fP< MOEOT > & _pop, \fBObjectiveVector\fP & _objVec)\fC [pure virtual]\fP"
@@ -56,7 +56,7 @@ Updates the fitness values of the whole population _pop by taking the deletion o
 .PP
 
 .PP
-Implemented in \fBmoeoAchievementFitnessAssignment< MOEOT >\fP, \fBmoeoDummyFitnessAssignment< MOEOT >\fP, \fBmoeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >\fP, \fBmoeoFastNonDominatedSortingFitnessAssignment< MOEOT >\fP, and \fBmoeoReferencePointIndicatorBasedFitnessAssignment< MOEOT >\fP.
+Implemented in \fBmoeoAchievementFitnessAssignment< MOEOT >\fP, \fBmoeoDummyFitnessAssignment< MOEOT >\fP, \fBmoeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >\fP, and \fBmoeoFastNonDominatedSortingFitnessAssignment< MOEOT >\fP.
 .PP
 Referenced by moeoFitnessAssignment< MOEOT >::updateByDeleting().
 .SS "template<class MOEOT> void \fBmoeoFitnessAssignment\fP< MOEOT >::updateByDeleting (\fBeoPop\fP< MOEOT > & _pop, MOEOT & _moeo)\fC [inline]\fP"
@@ -72,7 +72,7 @@ Updates the fitness values of the whole population _pop by taking the deletion o
 .PP
 
 .PP
-Definition at line 44 of file moeoFitnessAssignment.h.
+Definition at line 69 of file moeoFitnessAssignment.h.
 .PP
 References moeoFitnessAssignment< MOEOT >::updateByDeleting().
 

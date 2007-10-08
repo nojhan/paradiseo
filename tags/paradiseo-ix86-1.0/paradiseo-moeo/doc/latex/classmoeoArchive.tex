@@ -52,7 +52,7 @@ An archive is a secondary population that stores non-dominated solutions.
 
 
 
-Definition at line 24 of file moeo\-Archive.h.
+Definition at line 49 of file moeo\-Archive.h.
 
 \subsection{Constructor \& Destructor Documentation}
 \index{moeoArchive@{moeo\-Archive}!moeoArchive@{moeoArchive}}
@@ -64,7 +64,7 @@ Default ctor.
 
 The \doxyref{moeo\-Objective\-Vector\-Comparator}{p.}{classmoeoObjectiveVectorComparator} used to compare solutions is based on Pareto dominance 
 
-Definition at line 44 of file moeo\-Archive.h.\index{moeoArchive@{moeo\-Archive}!moeoArchive@{moeoArchive}}
+Definition at line 69 of file moeo\-Archive.h.\index{moeoArchive@{moeo\-Archive}!moeoArchive@{moeoArchive}}
 \index{moeoArchive@{moeoArchive}!moeoArchive@{moeo\-Archive}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-Archive}$<$ MOEOT $>$::\bf{moeo\-Archive} (\bf{moeo\-Objective\-Vector\-Comparator}$<$ \bf{Objective\-Vector} $>$ \& {\em \_\-comparator})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoArchive_75e5fee339ca463405434f6f48497de0}
 
@@ -78,7 +78,7 @@ Ctor.
 \end{Desc}
 
 
-Definition at line 52 of file moeo\-Archive.h.
+Definition at line 77 of file moeo\-Archive.h.
 
 \subsection{Member Function Documentation}
 \index{moeoArchive@{moeo\-Archive}!dominates@{dominates}}
@@ -95,7 +95,7 @@ Returns true if the current archive dominates \_\-objective\-Vector according to
 \end{Desc}
 
 
-Definition at line 60 of file moeo\-Archive.h.
+Definition at line 85 of file moeo\-Archive.h.
 
 References moeo\-Archive$<$ MOEOT $>$::comparator.\index{moeoArchive@{moeo\-Archive}!contains@{contains}}
 \index{contains@{contains}!moeoArchive@{moeo\-Archive}}
@@ -111,7 +111,7 @@ Returns true if the current archive already contains a solution with the same ob
 \end{Desc}
 
 
-Definition at line 78 of file moeo\-Archive.h.
+Definition at line 103 of file moeo\-Archive.h.
 
 Referenced by moeo\-Archive$<$ MOEOT $>$::equals().\index{moeoArchive@{moeo\-Archive}!update@{update}}
 \index{update@{update}!moeoArchive@{moeo\-Archive}}
@@ -127,11 +127,11 @@ Updates the archive with a given individual \_\-moeo.
 \end{Desc}
 
 
-Definition at line 95 of file moeo\-Archive.h.
+Definition at line 120 of file moeo\-Archive.h.
 
 References moeo\-Archive$<$ MOEOT $>$::comparator.
 
-Referenced by moeo\-Iterated\-IBMOLS$<$ MOEOT, Move $>$::operator()(), moeo\-IBMOLS$<$ MOEOT, Move $>$::operator()(), and moeo\-Archive$<$ MOEOT $>$::update().\index{moeoArchive@{moeo\-Archive}!update@{update}}
+Referenced by moeo\-Archive$<$ MOEOT $>$::update().\index{moeoArchive@{moeo\-Archive}!update@{update}}
 \index{update@{update}!moeoArchive@{moeo\-Archive}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ void \bf{moeo\-Archive}$<$ MOEOT $>$::update (const \bf{eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoArchive_877bf4f0937f6be263e2686df4e77cf3}
 
@@ -145,7 +145,7 @@ Updates the archive with a given population \_\-pop.
 \end{Desc}
 
 
-Definition at line 138 of file moeo\-Archive.h.
+Definition at line 163 of file moeo\-Archive.h.
 
 References moeo\-Archive$<$ MOEOT $>$::update().\index{moeoArchive@{moeo\-Archive}!equals@{equals}}
 \index{equals@{equals}!moeoArchive@{moeo\-Archive}}
@@ -161,11 +161,9 @@ Returns true if the current archive contains the same objective vectors than the
 \end{Desc}
 
 
-Definition at line 151 of file moeo\-Archive.h.
+Definition at line 176 of file moeo\-Archive.h.
 
 References moeo\-Archive$<$ MOEOT $>$::contains().
-
-Referenced by moeo\-IBMOLS$<$ MOEOT, Move $>$::operator()().
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 

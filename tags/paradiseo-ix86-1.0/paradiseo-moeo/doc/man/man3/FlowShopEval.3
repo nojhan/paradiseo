@@ -64,7 +64,7 @@ Inherits \fBmoeoEvalFunc< FlowShop >\fP.
 .PP 
 Evaluation of the objective vector a (multi-objective) \fBFlowShop\fP object. 
 .PP
-Definition at line 23 of file FlowShopEval.h.
+Definition at line 48 of file FlowShopEval.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "FlowShopEval::FlowShopEval (unsigned int _M, unsigned int _N, const std::vector< std::vector< unsigned int > > & _p, const std::vector< unsigned int > & _d)"
@@ -84,7 +84,7 @@ Ctor.
 .PP
 
 .PP
-Definition at line 16 of file FlowShopEval.cpp.
+Definition at line 41 of file FlowShopEval.cpp.
 .SH "Member Function Documentation"
 .PP 
 .SS "void FlowShopEval::operator() (\fBFlowShop\fP & _flowshop)"
@@ -98,7 +98,7 @@ computation of the multi-objective evaluation of a \fBFlowShop\fP object
 .PP
 
 .PP
-Definition at line 21 of file FlowShopEval.cpp.
+Definition at line 46 of file FlowShopEval.cpp.
 .PP
 References makespan(), MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::objectiveVector(), and tardiness().
 .SS "double FlowShopEval::makespan (const \fBFlowShop\fP & _flowshop)\fC [private]\fP"
@@ -112,7 +112,7 @@ computation of the makespan
 .PP
 
 .PP
-Definition at line 31 of file FlowShopEval.cpp.
+Definition at line 56 of file FlowShopEval.cpp.
 .PP
 References completionTime(), M, and N.
 .PP
@@ -128,7 +128,7 @@ computation of the tardiness
 .PP
 
 .PP
-Definition at line 40 of file FlowShopEval.cpp.
+Definition at line 65 of file FlowShopEval.cpp.
 .PP
 References completionTime(), d, M, and N.
 .PP
@@ -144,7 +144,7 @@ computation of the completion times of a scheduling (for each job on each machin
 .PP
 
 .PP
-Definition at line 53 of file FlowShopEval.cpp.
+Definition at line 78 of file FlowShopEval.cpp.
 .PP
 References M, N, and p.
 .PP
