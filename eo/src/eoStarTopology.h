@@ -77,7 +77,7 @@ public:
         }
     }
 
-    /*
+   /*
      * Update the best fitness of the given particle if it's better.
      * Also replace the global best by the given particle if it's better.
      * @param _po - The particle to update
@@ -88,7 +88,9 @@ public:
         // update the best fitness of the particle
         if (_po.fitness() > _po.best())
         {
-            _po.best(_po.fitness());
+	  _po.best(_po.fitness());
+	  for(unsigned i=0;i<_po.size();i++)
+	    _po.bestPositions[i]=_po[i];
         }
         // update the global best if the given particle is "better"
         if (_po.fitness() > neighborhood.best().fitness())
@@ -106,7 +108,7 @@ public:
     POT & best (unsigned  _indice) {return (neighborhood.best());}
 
 
-    /**
+   /**
      * Print the structure of the topology on the standard output.
      * @param
      * @return
@@ -118,6 +120,7 @@ public:
             std::cout << neighborhood.get(i) << " ";
         std::cout << "}" << std::endl;
     }
+
 
 
 protected:

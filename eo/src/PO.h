@@ -135,31 +135,13 @@ public:
     bool operator< (const PO & _po2) const { return fitness () < _po2.fitness ();}
     bool operator> (const PO & _po2) const { return !(fitness () <= _po2.fitness ());}
 
-    /**
+
+     /**
       * Write object. Called printOn since it prints the object _on_ a stream.
       * @param _os A std::ostream.
       */
-    virtual void printOn(std::ostream& _os) const {
+    virtual void printOn(std::ostream& _os) const { _os << bestFitness <<' ' ;}
 
-
-        // the latest version of the code. Very similar to the old code
-        if (invalid()) {
-            _os << "INVALID ";
-        }
-        else
-        {
-            _os << repFitness  << ' ' ;
-        }
-
-        if (invalidBest()) {
-            _os << "INVALID BEST";
-        }
-        else
-        {
-            _os << "best: " << bestFitness  ;
-        }
-
-    }
 
     /**
      * Read object.\\

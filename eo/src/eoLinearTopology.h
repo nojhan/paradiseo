@@ -128,17 +128,18 @@ public:
         return i;
     }
 
-
-    /**
+   /**
     * Update the neighborhood: update the particle's best fitness and the best particle 
     * of the corresponding neighborhood.
     */
     void updateNeighborhood(POT & _po,unsigned _indice)
-    {
+  {
         // update the best fitness of the particle
         if (_po.fitness() > _po.best())
         {
-            _po.best(_po.fitness());
+	  _po.best(_po.fitness());
+	  for(unsigned i=0;i<_po.size();i++)
+	    _po.bestPositions[i]=_po[i];
         }
 
         // update the best in its neighborhood
@@ -148,7 +149,6 @@ public:
             neighborhoods[theGoodNhbd].best(_po);
         }
     }
-
 
     /**
     * Return the best informative of a particle. Could be itself.

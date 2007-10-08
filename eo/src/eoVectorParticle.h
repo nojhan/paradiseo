@@ -120,6 +120,16 @@ public:
         velocities.resize (_size);
     }
 
+    /**
+    * Print-on a vector-particle
+    */
+    virtual void printOn(std::ostream& os) const
+    {
+	PO<FitT>::printOn(os);
+	os << ' ';
+	os << size() << ' ';
+	std::copy(bestPositions.begin(), bestPositions.end(), std::ostream_iterator<AtomType>(os, " "));
+     }
 
     /* public attributes */
     std::vector < PositionType > bestPositions;
