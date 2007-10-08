@@ -1,4 +1,4 @@
-.TH "moLSCheckPoint" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moLSCheckPoint" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,7 +10,7 @@ moLSCheckPoint \- Class which allows a checkpointing system.
 .PP
 \fC#include <moLSCheckPoint.h>\fP
 .PP
-Inherits \fBeoBF< const M &, const M::EOType &, void >\fP.
+Inherits \fBeoBF< A1, A2, R >< const const M &, M::EOType &, void >\fP.
 .PP
 .SS "Public Member Functions"
 
@@ -40,7 +40,7 @@ Class which allows a checkpointing system.
 
 Thanks to this class, at each iteration, additionnal function can be used (and not only one). 
 .PP
-Definition at line 21 of file moLSCheckPoint.h.
+Definition at line 46 of file moLSCheckPoint.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class M> void \fBmoLSCheckPoint\fP< M >::operator() (const M & __move, const typename M::EOType & __sol)\fC [inline]\fP"
@@ -58,7 +58,7 @@ Each saved function is used on the current move and the current solution.
 .PP
 
 .PP
-Definition at line 34 of file moLSCheckPoint.h.
+Definition at line 59 of file moLSCheckPoint.h.
 .PP
 References moLSCheckPoint< M >::func.
 .SS "template<class M> void \fBmoLSCheckPoint\fP< M >::add (\fBeoBF\fP< const M &, const typename M::EOType &, void > & __f)\fC [inline]\fP"
@@ -74,10 +74,10 @@ The new function is added at the end of the vector.
 .PP
 
 .PP
-Definition at line 49 of file moLSCheckPoint.h.
+Definition at line 74 of file moLSCheckPoint.h.
 .PP
 References moLSCheckPoint< M >::func.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PARADISEO-MO from the source code.
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.

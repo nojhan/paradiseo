@@ -1,4 +1,4 @@
-.TH "moHC" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moHC" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -60,7 +60,7 @@ Hill Climbing (HC).
 
 Class which describes the algorithm for a hill climbing. 
 .PP
-Definition at line 25 of file moHC.h.
+Definition at line 50 of file moHC.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class M> \fBmoHC\fP< M >::\fBmoHC\fP (\fBmoMoveInit\fP< M > & __move_init, \fBmoNextMove\fP< M > & __next_move, \fBmoMoveIncrEval\fP< M > & __incr_eval, \fBmoMoveSelect\fP< M > & __move_select, \fBeoEvalFunc\fP< \fBEOT\fP > & __full_eval)\fC [inline]\fP"
@@ -84,7 +84,7 @@ All the boxes are given in order the HC to use a \fBmoHCMoveLoopExpl\fP.
 .PP
 
 .PP
-Definition at line 52 of file moHC.h.
+Definition at line 77 of file moHC.h.
 .SS "template<class M> \fBmoHC\fP< M >::\fBmoHC\fP (\fBmoMoveExpl\fP< M > & __move_expl, \fBeoEvalFunc\fP< \fBEOT\fP > & __full_eval)\fC [inline]\fP"
 .PP
 Light constructor. 
@@ -100,7 +100,7 @@ This constructor allow to use another \fBmoMoveExpl\fP (generally not a \fBmoHCM
 .PP
 
 .PP
-Definition at line 66 of file moHC.h.
+Definition at line 91 of file moHC.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class M> bool \fBmoHC\fP< M >::operator() (\fBEOT\fP & __sol)\fC [inline, virtual]\fP"
@@ -123,10 +123,10 @@ TRUE.
 .PP
 Implements \fBeoUF< M::EOType &, bool >\fP.
 .PP
-Definition at line 81 of file moHC.h.
+Definition at line 106 of file moHC.h.
 .PP
 References moHC< M >::full_eval, and moHC< M >::move_expl.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PARADISEO-MO from the source code.
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.

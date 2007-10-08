@@ -1,4 +1,4 @@
-.TH "moSteadyFitSolContinue" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moSteadyFitSolContinue" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -72,7 +72,7 @@ One possible stopping criterion for a solution-based heuristic.
 
 The stop criterion corresponds to a maximum number of iterations without improvement (after a minimum number of iterations). 
 .PP
-Definition at line 21 of file moSteadyFitSolContinue.h.
+Definition at line 46 of file moSteadyFitSolContinue.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class EOT> \fBmoSteadyFitSolContinue\fP< EOT >::\fBmoSteadyFitSolContinue\fP (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement)\fC [inline]\fP"
@@ -88,7 +88,7 @@ Basic constructor.
 .PP
 
 .PP
-Definition at line 34 of file moSteadyFitSolContinue.h.
+Definition at line 59 of file moSteadyFitSolContinue.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class EOT> bool \fBmoSteadyFitSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline, virtual]\fP"
@@ -111,7 +111,7 @@ true or false.
 .PP
 Implements \fBeoUF< const EOT &, bool >\fP.
 .PP
-Definition at line 46 of file moSteadyFitSolContinue.h.
+Definition at line 71 of file moSteadyFitSolContinue.h.
 .PP
 References moSteadyFitSolContinue< EOT >::counter, moSteadyFitSolContinue< EOT >::firstFitnessSaved, moSteadyFitSolContinue< EOT >::fitness, moSteadyFitSolContinue< EOT >::maxNumberOfIterations, moSteadyFitSolContinue< EOT >::maxNumberOfIterationsReached, and moSteadyFitSolContinue< EOT >::maxNumberOfIterationsWithoutImprovement.
 .SS "template<class EOT> void \fBmoSteadyFitSolContinue\fP< EOT >::init ()\fC [inline, virtual]\fP"
@@ -122,10 +122,10 @@ It can be also used to reinitialize the counter all the needed things.
 .PP
 Implements \fBmoSolContinue< EOT >\fP.
 .PP
-Definition at line 90 of file moSteadyFitSolContinue.h.
+Definition at line 115 of file moSteadyFitSolContinue.h.
 .PP
 References moSteadyFitSolContinue< EOT >::counter, moSteadyFitSolContinue< EOT >::firstFitnessSaved, and moSteadyFitSolContinue< EOT >::maxNumberOfIterationsReached.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PARADISEO-MO from the source code.
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.

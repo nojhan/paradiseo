@@ -1,4 +1,4 @@
-.TH "moFitSolContinue" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moFitSolContinue" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -52,7 +52,7 @@ One possible stop criterion for a solution-based heuristic.
 
 The stop criterion corresponds to a fitness threshold gained. 
 .PP
-Definition at line 21 of file moFitSolContinue.h.
+Definition at line 46 of file moFitSolContinue.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class EOT> \fBmoFitSolContinue\fP< EOT >::\fBmoFitSolContinue\fP (\fBFitness\fP __fitness)\fC [inline]\fP"
@@ -66,7 +66,7 @@ Basic constructor.
 .PP
 
 .PP
-Definition at line 33 of file moFitSolContinue.h.
+Definition at line 58 of file moFitSolContinue.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class EOT> bool \fBmoFitSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline, virtual]\fP"
@@ -89,7 +89,7 @@ true or false according to the value of the fitness.
 .PP
 Implements \fBeoUF< const EOT &, bool >\fP.
 .PP
-Definition at line 43 of file moFitSolContinue.h.
+Definition at line 68 of file moFitSolContinue.h.
 .PP
 References moFitSolContinue< EOT >::fitness.
 .SS "template<class EOT> void \fBmoFitSolContinue\fP< EOT >::init ()\fC [inline, virtual]\fP"
@@ -100,8 +100,8 @@ It can be also used to reinitialize all the needed things.
 .PP
 Implements \fBmoSolContinue< EOT >\fP.
 .PP
-Definition at line 57 of file moFitSolContinue.h.
+Definition at line 82 of file moFitSolContinue.h.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PARADISEO-MO from the source code.
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.

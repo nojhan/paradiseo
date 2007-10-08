@@ -1,4 +1,4 @@
-.TH "moSimpleSolutionTabuList" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moSimpleSolutionTabuList" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -74,7 +74,7 @@ Inherits \fBmoTabuList< M >< M >\fP.
 .SS "template<class M> class moSimpleSolutionTabuList< M >"
 Class describing a solution tabu list with limited length. 
 .PP
-Definition at line 22 of file moSimpleSolutionTabuList.h.
+Definition at line 47 of file moSimpleSolutionTabuList.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class M> \fBmoSimpleSolutionTabuList\fP< M >::\fBmoSimpleSolutionTabuList\fP (unsigned int __size)\fC [inline]\fP"
@@ -88,12 +88,12 @@ Constructor.
 .PP
 
 .PP
-Definition at line 34 of file moSimpleSolutionTabuList.h.
+Definition at line 59 of file moSimpleSolutionTabuList.h.
 .PP
 References moSimpleSolutionTabuList< M >::currentSize.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> bool \fBmoSimpleSolutionTabuList\fP< M >::operator() (const M & __move, const \fBEOT\fP & __sol)\fC [inline, virtual]\fP"
+.SS "template<class M> bool \fBmoSimpleSolutionTabuList\fP< M >::operator() (const M & __move, const \fBEOT\fP & __sol)\fC [inline]\fP"
 .PP
 \fBFunction\fP that indicates if, in a given state, the _move is tabu or not. 
 .PP
@@ -111,9 +111,7 @@ true or false.
 .PP
 
 .PP
-Implements \fBeoBF< const M &, const M::EOType &, bool >\fP.
-.PP
-Definition at line 45 of file moSimpleSolutionTabuList.h.
+Definition at line 70 of file moSimpleSolutionTabuList.h.
 .PP
 References moSimpleSolutionTabuList< M >::tabuList.
 .SS "template<class M> void \fBmoSimpleSolutionTabuList\fP< M >::add (const M & __move, const \fBEOT\fP & __sol)\fC [inline, virtual]\fP"
@@ -133,7 +131,7 @@ The two parameters have not to be modified so they are constant parameters.
 .PP
 Implements \fBmoTabuList< M >\fP.
 .PP
-Definition at line 64 of file moSimpleSolutionTabuList.h.
+Definition at line 89 of file moSimpleSolutionTabuList.h.
 .PP
 References moSimpleSolutionTabuList< M >::currentSize, moSimpleSolutionTabuList< M >::maxSize, moSimpleSolutionTabuList< M >::removeSolution(), and moSimpleSolutionTabuList< M >::tabuList.
 .SS "template<class M> void \fBmoSimpleSolutionTabuList\fP< M >::update ()\fC [inline, virtual]\fP"
@@ -144,7 +142,7 @@ Generally, a counter associated to each saved move is decreased by one.
 .PP
 Implements \fBmoTabuList< M >\fP.
 .PP
-Definition at line 91 of file moSimpleSolutionTabuList.h.
+Definition at line 116 of file moSimpleSolutionTabuList.h.
 .SS "template<class M> void \fBmoSimpleSolutionTabuList\fP< M >::init ()\fC [inline, virtual]\fP"
 .PP
 Procedure which initialises the tabu list. 
@@ -153,7 +151,7 @@ Can be useful if the data structure needs to be allocated before being used.
 .PP
 Implements \fBmoTabuList< M >\fP.
 .PP
-Definition at line 97 of file moSimpleSolutionTabuList.h.
+Definition at line 122 of file moSimpleSolutionTabuList.h.
 .SS "template<class M> void \fBmoSimpleSolutionTabuList\fP< M >::removeSolution (const \fBEOT\fP & __sol)\fC [inline, private]\fP"
 .PP
 Procedure that removes a given solution from the tabu list (if it is into, else does nothing). 
@@ -165,7 +163,7 @@ Procedure that removes a given solution from the tabu list (if it is into, else 
 .PP
 
 .PP
-Definition at line 109 of file moSimpleSolutionTabuList.h.
+Definition at line 134 of file moSimpleSolutionTabuList.h.
 .PP
 References moSimpleSolutionTabuList< M >::tabuList.
 .PP
@@ -173,4 +171,4 @@ Referenced by moSimpleSolutionTabuList< M >::add().
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PARADISEO-MO from the source code.
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.

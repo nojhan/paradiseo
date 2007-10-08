@@ -1,4 +1,4 @@
-.TH "moNoFitImprSolContinue" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moNoFitImprSolContinue" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -64,7 +64,7 @@ One possible stop criterion for a solution-based heuristic.
 
 The stop criterion corresponds to a maximum number of iterations without improvement. 
 .PP
-Definition at line 21 of file moNoFitImprSolContinue.h.
+Definition at line 46 of file moNoFitImprSolContinue.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class EOT> \fBmoNoFitImprSolContinue\fP< EOT >::\fBmoNoFitImprSolContinue\fP (unsigned int __maxNumberOfIterationWithoutImprovement)\fC [inline]\fP"
@@ -78,7 +78,7 @@ Basic constructor.
 .PP
 
 .PP
-Definition at line 33 of file moNoFitImprSolContinue.h.
+Definition at line 58 of file moNoFitImprSolContinue.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class EOT> bool \fBmoNoFitImprSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline, virtual]\fP"
@@ -101,7 +101,7 @@ true or false.
 .PP
 Implements \fBeoUF< const EOT &, bool >\fP.
 .PP
-Definition at line 43 of file moNoFitImprSolContinue.h.
+Definition at line 68 of file moNoFitImprSolContinue.h.
 .PP
 References moNoFitImprSolContinue< EOT >::counter, moNoFitImprSolContinue< EOT >::firstFitnessSaved, moNoFitImprSolContinue< EOT >::fitness, and moNoFitImprSolContinue< EOT >::maxNumberOfIterationsWithoutImprovement.
 .SS "template<class EOT> void \fBmoNoFitImprSolContinue\fP< EOT >::init ()\fC [inline, virtual]\fP"
@@ -112,10 +112,10 @@ It can be also used to reinitialize all the needed things.
 .PP
 Implements \fBmoSolContinue< EOT >\fP.
 .PP
-Definition at line 77 of file moNoFitImprSolContinue.h.
+Definition at line 102 of file moNoFitImprSolContinue.h.
 .PP
 References moNoFitImprSolContinue< EOT >::counter, and moNoFitImprSolContinue< EOT >::firstFitnessSaved.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PARADISEO-MO from the source code.
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.

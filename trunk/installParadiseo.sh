@@ -433,7 +433,7 @@ function run_install_step()
 		RETURN=$?
 		
 		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \"  -DEOdir=$installKitPath/paradiseo-eo" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE"  $SPY
-		cmake ../ -G"$BUILD_PROCESS_TYPE" -DEOdir=$installKitPath/paradiseo-eo -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE >> ${SPY} 2>> ${SPY}
+		cmake ../ -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE"  >> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`
 		
 		if [ "$COMPILE_PARADISEO" = "1" ] 
@@ -465,7 +465,7 @@ function run_install_step()
 		RETURN=$?
 		
 		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \"  -DEOdir=$installKitPath/paradiseo-eo" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE"  $SPY
-		cmake ../ -G"$BUILD_PROCESS_TYPE" -DEOdir=$installKitPath/paradiseo-eo -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE >> ${SPY} 2>> ${SPY}
+		cmake ../ -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE"  >> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`		
 		
 		if [ "$COMPILE_PARADISEO" = "1" ] 
@@ -716,7 +716,7 @@ function run_install_step()
 		RETURN=$?
 
 		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \"  -DEOdir=$installKitPath/paradiseo-eo -DMOdir=$installKitPath/paradiseo-mo" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE"  $SPY
-		cmake ../ -G"$BUILD_PROCESS_TYPE" -DEOdir=$installKitPath/paradiseo-eo -DMOdir=$installKitPath/paradiseo-mo -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE >> ${SPY} 2>> ${SPY}
+		cmake ../  -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE"  >> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`
 		
 		if [ "$COMPILE_PARADISEO" = "1" ] 

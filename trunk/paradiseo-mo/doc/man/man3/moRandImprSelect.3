@@ -1,4 +1,4 @@
-.TH "moRandImprSelect" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moRandImprSelect" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -60,7 +60,7 @@ One of the possible \fBmoMove\fP selector (\fBmoMoveSelect\fP).
 
 All the neighbors are considered. One of them that enables an improvment of the objective function is choosen. 
 .PP
-Definition at line 25 of file moRandImprSelect.h.
+Definition at line 50 of file moRandImprSelect.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class M> void \fBmoRandImprSelect\fP< M >::init (const \fBFitness\fP & __fit)\fC [inline, virtual]\fP"
@@ -78,7 +78,7 @@ Give a value to the initialise fitness. Clean the move and fitness vectors.
 .PP
 Implements \fBmoMoveSelect< M >\fP.
 .PP
-Definition at line 40 of file moRandImprSelect.h.
+Definition at line 65 of file moRandImprSelect.h.
 .PP
 References moRandImprSelect< M >::init_fit, moRandImprSelect< M >::vect_better_fit, and moRandImprSelect< M >::vect_better_moves.
 .SS "template<class M> bool \fBmoRandImprSelect\fP< M >::update (const M & __move, const \fBFitness\fP & __fit)\fC [inline, virtual]\fP"
@@ -103,7 +103,7 @@ TRUE.
 .PP
 Implements \fBmoMoveSelect< M >\fP.
 .PP
-Definition at line 56 of file moRandImprSelect.h.
+Definition at line 81 of file moRandImprSelect.h.
 .PP
 References moRandImprSelect< M >::init_fit, moRandImprSelect< M >::vect_better_fit, and moRandImprSelect< M >::vect_better_moves.
 .SS "template<class M> void \fBmoRandImprSelect\fP< M >::operator() (M & __move, \fBFitness\fP & __fit)  throw (\fBEmptySelection\fP)\fC [inline, virtual]\fP"
@@ -128,10 +128,10 @@ One the saved move is randomly chosen.
 .PP
 Implements \fBeoBF< M &, M::EOType::Fitness &, void >\fP.
 .PP
-Definition at line 77 of file moRandImprSelect.h.
+Definition at line 102 of file moRandImprSelect.h.
 .PP
 References eoRng::random(), moRandImprSelect< M >::vect_better_fit, and moRandImprSelect< M >::vect_better_moves.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PARADISEO-MO from the source code.
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.

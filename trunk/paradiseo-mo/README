@@ -12,7 +12,7 @@ The basic installation procedure goes the following:
 
 To compile paradiseo-mo in the default directory,
 go to paradiseo-mo/build/ and run:
-    > cmake ../ -DEOdir=$(EO)
+    > cmake ../ -Dconfig=<path to the install.cmake file>
     > make
     // for an easy-use of the provided lessons
     > make install
@@ -20,15 +20,14 @@ go to paradiseo-mo/build/ and run:
     > make doc
 
 To compile paradiseo-mo anywhere else, simply run:
-    > cmake $(MO) -DEOdir=$(EO)
+    > cmake $(MO) -Dconfig=<path to the install.cmake file>
     > make
     // for an easy-use of the provided lessons
     > make install
     // optional (if the documentation is not already available)
     > make doc
 
-where $(EO) is the top-level directory of PARADISEO-EO,
-  and $(MO) is the top-level directory of PARADISEO-MO.
+where $(MO) is the top-level directory of PARADISEO-MO.
 
 To clean everything, simply run
     > make clean

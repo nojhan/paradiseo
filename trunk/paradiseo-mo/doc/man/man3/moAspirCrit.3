@@ -1,4 +1,4 @@
-.TH "moAspirCrit" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moAspirCrit" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,7 +10,7 @@ moAspirCrit \- Description of the conditions in which a tabu move could be accep
 .PP
 \fC#include <moAspirCrit.h>\fP
 .PP
-Inherits \fBeoBF< const M &, const M::EOType::Fitness &, bool >\fP.
+Inherits \fBeoBF< A1, A2, R >< const const M &, M::EOType::Fitness &, bool >\fP.
 .PP
 Inherited by \fBmoImprBestFitAspirCrit< M >\fP, and \fBmoNoAspirCrit< M >\fP.
 .PP
@@ -30,7 +30,7 @@ Description of the conditions in which a tabu move could be accepted.
 
 It is only a description... An object that herits from this class is needed to be used in a \fBmoTS\fP. See moNoAspriCrit for example. 
 .PP
-Definition at line 22 of file moAspirCrit.h.
+Definition at line 47 of file moAspirCrit.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class M> virtual void \fBmoAspirCrit\fP< M >::init ()\fC [pure virtual]\fP"
@@ -43,4 +43,4 @@ Implemented in \fBmoImprBestFitAspirCrit< M >\fP, and \fBmoNoAspirCrit< M >\fP.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PARADISEO-MO from the source code.
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.

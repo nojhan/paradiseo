@@ -1,4 +1,4 @@
-.TH "moTS" 3 "25 Sep 2007" "Version 0.1" "PARADISEO-MO" \" -*- nroff -*-
+.TH "moTS" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -64,7 +64,7 @@ Tabu Search (TS).
 
 Generic algorithm that describes a tabu search. 
 .PP
-Definition at line 29 of file moTS.h.
+Definition at line 54 of file moTS.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "template<class M> \fBmoTS\fP< M >::\fBmoTS\fP (\fBmoMoveInit\fP< M > & __move_init, \fBmoNextMove\fP< M > & __next_move, \fBmoMoveIncrEval\fP< M > & __incr_eval, \fBmoTabuList\fP< M > & __tabu_list, \fBmoAspirCrit\fP< M > & __aspir_crit, \fBmoSolContinue\fP< \fBEOT\fP > & __cont, \fBeoEvalFunc\fP< \fBEOT\fP > & __full_eval)\fC [inline]\fP"
@@ -92,7 +92,7 @@ In this constructor, a \fBmoTSMoveLoopExpl\fP is instanciated.
 .PP
 
 .PP
-Definition at line 58 of file moTS.h.
+Definition at line 83 of file moTS.h.
 .SS "template<class M> \fBmoTS\fP< M >::\fBmoTS\fP (\fBmoMoveExpl\fP< M > & __move_expl, \fBmoSolContinue\fP< \fBEOT\fP > & __cont, \fBeoEvalFunc\fP< \fBEOT\fP > & __full_eval)\fC [inline]\fP"
 .PP
 Constructor with less parameters. 
@@ -110,7 +110,7 @@ The explorer is given in the parameters.
 .PP
 
 .PP
-Definition at line 71 of file moTS.h.
+Definition at line 96 of file moTS.h.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class M> bool \fBmoTS\fP< M >::operator() (\fBEOT\fP & __sol)\fC [inline, virtual]\fP"
@@ -133,10 +133,10 @@ TRUE.
 .PP
 Implements \fBeoUF< M::EOType &, bool >\fP.
 .PP
-Definition at line 85 of file moTS.h.
+Definition at line 110 of file moTS.h.
 .PP
 References moTS< M >::cont, moTS< M >::full_eval, and moTS< M >::move_expl.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PARADISEO-MO from the source code.
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.
