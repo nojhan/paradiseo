@@ -17,7 +17,7 @@ It contains classes for almost any kind of one solution based heuristics.
 </TR>
 </TABLE>
 
-@section LICENCE
+@section LICENSE
 
  This software is governed by the CeCILL license under French law and
  abiding by the rules of distribution of free software.  You can  use,
