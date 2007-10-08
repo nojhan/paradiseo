@@ -17,9 +17,21 @@ structure:
 
 .../                        Installation directory (specified with ./installParadiseo.sh)
    |
+   |
+   +-- AUTHORS				  Author list 
+   |
+   |
+   +-- install.cmake			  ParadisEO main install config file
+   |
+   |
+   +-- installParadiseo.sh		  Install script
+   |
    +-- lib/
    |	   | +-- /libxml2-2.6.0.tar.bz2   LIBXML2 archive (required for ParadisEO)
    |	   | +-- /mpich2-1.0.3.tar.gz     MPICH2 archive (required for ParadisEO)
+   |
+   |
+   + LICENCE				   Licence contents
    |
    |
    +-- paradiseo-eo 			   paradiseo-eo dir
@@ -28,16 +40,16 @@ structure:
    +-- paradiseo-mo                        paradiseo-mo dir 
    |
    |
-   +-- paradiseo-moeo                     paradiseo-moeo  dir
+   +-- paradiseo-moeo                      paradiseo-moeo  dir
    |   
    |
-   +-- paradiseo-peo                      paradiseo-peo  dir
+   +-- paradiseo-peo                       paradiseo-peo  dir
    |
-   +-- README				  README file
+   +-- README				   README file
+   |   
    |
-   +-- installParadiseo.sh		  Install script
-   |
-   +-- .mpd.conf			  Paradiseo-peo config file
+   +-- .mpd.conf			   Paradiseo-peo config file
+
 
 ==========================================================================================
                        DIRECTORY STRUCTURE AFTER INSTALLATION
@@ -47,33 +59,43 @@ you should have the following structure :
 
 .../                        Installation directory (specified with ./installParadiseo.sh)
    |
+   |
+   +-- AUTHORS				  Author list 
+   |
+   |
+   +-- install.cmake			  ParadisEO main install config file
+   |
+   |
+   +-- installParadiseo.sh		  Install script
+   |
    +-- lib/
-   |	   | +-- /libxml2-2.6.0.tar.bz2   LIBXML2 archive (required for ParadisEO)
-   |	   | +-- /mpich2-1.0.3.tar.gz     MPICH2 archive (required for ParadisEO)
+   |	   | +-- /libxml2-2.6.0.tar.bz2   LIBXML2 archive (required for ParadisEO-PEO)
+   |	   | +-- /mpich2-1.0.3.tar.gz     MPICH2 archive (required for ParadisEO-PEO)
+   |
+   +-- libxml2				   Libxml2 install directory (required for ParadisEO-PEO)
+   |
+   + LICENCE				   Licence contents
    |
    |
-   +-- paradiseo-eo                     paradiseo-eo dir
+   +-- mpich2				   Mpich2 install directory (required for ParadisEO-PEO)
+   |
+   |
+   +-- paradiseo-eo 			   paradiseo-eo dir
+   |
+   |
+   +-- paradiseo-mo                        paradiseo-mo dir 
+   |
+   |
+   +-- paradiseo-moeo                      paradiseo-moeo  dir
    |   
-   |	
-   +-- paradiseo-mo                     paradiseo-mo dir 
    |
+   +-- paradiseo-peo                       paradiseo-peo  dir
    |
-   +-- paradiseo-moeo                   paradiseo-moeo  dir
+   +-- README				   README file
    |   
    |
-   +-- paradiseo-peo                    paradiseo-peo  dir
-   |   
-   |
-   +-- libxml2                          LIBXML2 dir (required for ParadisEO)
-   |   
-   |
-   +-- mpich2                           MPICH2 dir (required for ParadisEO)
-   |
-   +-- README				README file
-   |
-   +-- installParadiseo.sh		Install script
-   |
-   +-- .mpd.conf			Paradiseo-peo config file
+   +-- .mpd.conf			   Paradiseo-peo config file
+
 
 ==========================================================================================
               NOTES
