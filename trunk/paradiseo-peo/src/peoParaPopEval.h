@@ -120,20 +120,15 @@ template< class EOT > peoParaPopEval< EOT > :: peoParaPopEval(
 
 
 template< class EOT > void peoParaPopEval< EOT >::operator()( eoPop< EOT >& __pop ) {
-
-	for ( unsigned i = 0; i < __pop.size(); i++ ) {
-
-		__pop[ i ].fitness( typename EOT :: Fitness() );
-
+  for ( unsigned i = 0; i < __pop.size(); i++ ) {
+    __pop[ i ].fitness(typename EOT :: Fitness() );  	
 		progression[ &__pop[ i ] ].first = funcs.size() - 1;
 		progression[ &__pop[ i ] ].second = funcs.size();
-		
 		for ( unsigned j = 0; j < funcs.size(); j++ ) {
 			/* Queuing the 'invalid' solution and its associated owner */
 			tasks.push( &__pop[ i ] );
 		}
 	}
-	
 	total = funcs.size() * __pop.size();
 	requestResourceRequest( funcs.size() * __pop.size() );
 	stop();
@@ -141,7 +136,6 @@ template< class EOT > void peoParaPopEval< EOT >::operator()( eoPop< EOT >& __po
 
 
 template< class EOT > void peoParaPopEval< EOT > :: packData() {
-
 	//  printDebugMessage ("debut pakc data");
 	pack( progression[ tasks.front() ].first-- );
 	
@@ -155,7 +149,6 @@ template< class EOT > void peoParaPopEval< EOT > :: packData() {
 
 
 template< class EOT > void peoParaPopEval< EOT > :: unpackData() {
-
 	unpack( num_func );
 	/* Unpacking the solution */
 	unpack( sol );
@@ -165,15 +158,13 @@ template< class EOT > void peoParaPopEval< EOT > :: unpackData() {
 
 
 template< class EOT > void peoParaPopEval< EOT > :: execute() {
-
 	/* Computing the fitness of the solution */
-	funcs[ num_func ]->operator()( sol );
+  funcs[ num_func ]->operator()( sol );
 }
 
 
 template< class EOT > void peoParaPopEval< EOT > :: packResult() {
-
-	/* Packing the fitness of the solution */
+  /* Packing the fitness of the solution */
 	pack( sol.fitness() );
 	/* Packing the @ of the individual */
 	pack( ad_sol );
@@ -181,7 +172,6 @@ template< class EOT > void peoParaPopEval< EOT > :: packResult() {
 
 
 template< class EOT > void peoParaPopEval< EOT > :: unpackResult() {
-
 	typename EOT :: Fitness fit;
 	
 	/* Unpacking the computed fitness */
@@ -212,12 +202,10 @@ template< class EOT > void peoParaPopEval< EOT > :: unpackResult() {
 
 
 template< class EOT > void peoParaPopEval< EOT > :: notifySendingData() {
-
 }
 
 
 template< class EOT > void peoParaPopEval< EOT > :: notifySendingAllResourceRequests() {
-
 	getOwner()->setPassive();
 }
 

@@ -22,8 +22,8 @@
 #include <peo>
 
 
-#define POP_SIZE 10
-#define NUM_GEN 100
+#define POP_SIZE 2
+#define NUM_GEN 2
 #define CROSS_RATE 1.0
 #define MUT_RATE 0.01
 
@@ -33,7 +33,7 @@
 // by default, parallel evaluation of the population is performed;
 // for parallel fitness evaluation, uncomment the following line
 
-// #define PARALLEL_FIT_EVALUATION
+#define PARALLEL_FIT_EVALUATION
 
 
 int main( int __argc, char** __argv ) {
@@ -105,6 +105,7 @@ int main( int __argc, char** __argv ) {
 
 	peo :: run( );
 	peo :: finalize( );
+
 	// shutting down the ParadisEO-PEO environment
 
 	return 0;

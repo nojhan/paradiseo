@@ -57,7 +57,6 @@ void Communicable :: unlock () {
 }
 
 void Communicable :: stop () {
-
   sem_wait (& sem_stop);
 }
 

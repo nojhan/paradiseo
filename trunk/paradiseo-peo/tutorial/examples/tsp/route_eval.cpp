@@ -9,6 +9,6 @@
 #include "route_eval.h"
 
 void RouteEval :: operator () (Route & __route) {
-    
+  std::cout<<"\nICI";
   __route.fitness (- (int) length (__route)); 
 }

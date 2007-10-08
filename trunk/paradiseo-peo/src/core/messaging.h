@@ -54,9 +54,10 @@ template <class U, class V> void pack (const std :: pair <U, V> & __pair) {
   pack (__pair.second);
 }
 
+
 //
 
-/* Float */
+/* Char */
 extern void unpack (char & __c); 
 
 /* Float */
@@ -100,5 +101,6 @@ template <class U, class V> void unpack (std :: pair <U, V> & __pair) {
   unpack (__pair.first);
   unpack (__pair.second);
 }
+
 
 #endif
