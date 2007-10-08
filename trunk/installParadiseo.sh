@@ -14,6 +14,7 @@ resourceKitPath=$PWD
 TAR_MSG=" "
 DIE=0
 PROG=ParadisEO
+CMAKE_PRIMARY_CONFIG_FILE=install.cmake
 
 # generator types available on Unix platforms
 P_UNIX_MAKEFILES=1
@@ -83,9 +84,10 @@ RM_PREVIOUS_INSTALL="$S_REMOVE_INSTALL"
 
 #others
 LIBS_PATH=lib
-LIBXML2_ARCHIVE=libxml2-2.6.0.tar.bz2
-MPICH2_ARCHIVE=mpich2-1.0.3.tar.gz
-
+LIBXML2_ARCHIVE=libxml2-2.6.0
+LIBXML2_ARCHIVE_SUFFIX=.tar.bz2
+MPICH2_ARCHIVE=mpich2-1.0.3
+MPICH2_ARCHIVE_SUFFIX=.tar.gz
 # errors
 SUCCESSFUL_STEP=0
 EO_UNPACKING_ERROR=100
@@ -350,7 +352,10 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Unpacking libxml2 (required for ParadisEO) ...'
 		
-		execute_cmd "tar xvjf $resourceKitPath/$LIBS_PATH/$LIBXML2_ARCHIVE  --directory $installKitPath" "[$currentStepCounter] Unpack Libxml2" $SPY
+		execute_cmd "rm -Rf $installKitPath/$LIBXML2_ARCHIVE_SUFFIX" "[$currentStepCounter-1] Remove potential existing dir $installKitPath/$LIBXML2_ARCHIVE"  $SPY 
+		RETURN=$?
+
+		execute_cmd "tar xvjf $resourceKitPath/$LIBS_PATH/$LIBXML2_ARCHIVE$LIBXML2_ARCHIVE_SUFFIX  --directory $installKitPath" "[$currentStepCounter-2] Unpack Libxml2" $SPY
 		if [ ! "$?" = "0" ]
 		then
 			echo ''
@@ -369,7 +374,10 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Unpacking mpich2 (required for ParadisEO) ...'
 		
-		execute_cmd "tar xzvf $resourceKitPath/$LIBS_PATH/$MPICH2_ARCHIVE --directory $installKitPath" "[3] Unpack Mpich2" $SPY
+		execute_cmd "rm -Rf $installKitPath/$MPICH2_ARCHIVE" "[$currentStepCounter-1] Remove potential existing dir $installKitPath/$MPICH2_ARCHIVE"  $SPY 
+		RETURN=$?
+
+		execute_cmd "tar xzvf $resourceKitPath/$LIBS_PATH/$MPICH2_ARCHIVE$MPICH2_ARCHIVE_SUFFIX --directory $installKitPath" "[$currentStepCounter-2] Unpack Mpich2" $SPY
 		if [ ! "$?" = "0" ]
 		then
 			echo ''
@@ -398,7 +406,7 @@ function run_install_step()
 		cmake ../  -G"$BUILD_PROCESS_TYPE" >> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`
 
-		if [ "$COMPILE_PARADISEO" -eq "1" ] 
+		if [ "$COMPILE_PARADISEO" = "1" ] 
 		then
 			execute_cmd "make" "[$currentStepCounter-4] Compile ParadisEO-EO"  $SPY
 			RETURN=`expr $RETURN + $?`
@@ -424,11 +432,11 @@ function run_install_step()
 		execute_cmd "cd $installKitPath/paradiseo-mo/build" "[$currentStepCounter-1] Go in Paradiseo-MO dir"  $SPY 
 		RETURN=$?
 		
-		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \"  -DEOdir=$installKitPath/paradiseo-eo" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE"  $SPY
-		cmake ../ -G"$BUILD_PROCESS_TYPE" -DEOdir=$installKitPath/paradiseo-eo  >> ${SPY} 2>> ${SPY}
+		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \"  -DEOdir=$installKitPath/paradiseo-eo" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE"  $SPY
+		cmake ../ -G"$BUILD_PROCESS_TYPE" -DEOdir=$installKitPath/paradiseo-eo -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE >> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`
 		
-		if [ "$COMPILE_PARADISEO" -eq "1" ] 
+		if [ "$COMPILE_PARADISEO" = "1" ] 
 		then
 			execute_cmd "make" "[$currentStepCounter-3] Compile ParadisEO-MO"  $SPY
 			RETURN=`expr $RETURN + $?`
@@ -456,11 +464,11 @@ function run_install_step()
 		execute_cmd "cd $installKitPath/paradiseo-moeo/build" "[$currentStepCounter-1] Go in Paradiseo-MOEO dir"  $SPY 
 		RETURN=$?
 		
-		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \"  -DEOdir=$installKitPath/paradiseo-eo" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE"  $SPY
-		cmake ../ -G"$BUILD_PROCESS_TYPE" -DEOdir=$installKitPath/paradiseo-eo  >> ${SPY} 2>> ${SPY}
+		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \"  -DEOdir=$installKitPath/paradiseo-eo" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE"  $SPY
+		cmake ../ -G"$BUILD_PROCESS_TYPE" -DEOdir=$installKitPath/paradiseo-eo -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE >> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`		
 		
-		if [ "$COMPILE_PARADISEO" -eq "1" ] 
+		if [ "$COMPILE_PARADISEO" = "1" ] 
 		then
 			execute_cmd "make" "[$currentStepCounter-3] Compile ParadisEO-MOEO"  $SPY
 			RETURN=`expr $RETURN + $?`
@@ -485,6 +493,9 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Installing libxml2. Please wait ...'
 		
+		execute_cmd "rm -Rf $installKitPath/libxml2" "[$currentStepCounter-0] Remove potential existing dir $installKitPath/libxml2"  $SPY 
+		RETURN=$?
+
 		execute_cmd "mkdir $installKitPath/libxml2" "[$currentStepCounter-1] Create libxml2 dir"  $SPY 
 		RETURN=$?
 		execute_cmd "cd $installKitPath/libxml2-2.6.0/" "[$currentStepCounter-2] Go in libxml2-2.6.0 dir"  $SPY
@@ -512,6 +523,9 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Installing mpich2. Please wait ...'
 		
+		execute_cmd "rm -Rf $installKitPath/mpich2" "[$currentStepCounter-0] Remove potential existing dir $installKitPath/mpich2"  $SPY 
+		RETURN=$?
+
 		execute_cmd "mkdir $installKitPath/mpich2" "[$currentStepCounter-1] Create mpich2 dir"  $SPY 
 		RETURN=$?
 		execute_cmd "cd $installKitPath/mpich2-1.0.3/" "[$currentStepCounter-2] Go in mpich2-1.0.3 dir"  $SPY
@@ -701,11 +715,11 @@ function run_install_step()
 		execute_cmd "cd $installKitPath/paradiseo-peo/build" "[$currentStepCounter-1] Go in Paradiseo-PEO dir"  $SPY 
 		RETURN=$?
 
-		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \"  -DEOdir=$installKitPath/paradiseo-eo -DMOdir=$installKitPath/paradiseo-mo" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE"  $SPY
-		cmake ../ -G"$BUILD_PROCESS_TYPE" -DEOdir=$installKitPath/paradiseo-eo -DMOdir=$installKitPath/paradiseo-mo  >> ${SPY} 2>> ${SPY}
+		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \"  -DEOdir=$installKitPath/paradiseo-eo -DMOdir=$installKitPath/paradiseo-mo" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE"  $SPY
+		cmake ../ -G"$BUILD_PROCESS_TYPE" -DEOdir=$installKitPath/paradiseo-eo -DMOdir=$installKitPath/paradiseo-mo -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE >> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`
 		
-		if [ "$COMPILE_PARADISEO" -eq "1" ] 
+		if [ "$COMPILE_PARADISEO" = "1" ] 
 		then
 			execute_cmd "make" "[$currentStepCounter-3] Compile ParadisEO-PEO "  $SPY
 			RETURN=`expr $RETURN + $?`
@@ -794,7 +808,7 @@ function run_install_step()
 		echo
 		if [ ! "$COMPILE_PARADISEO" -eq "1" ] 
 		then
-			echo '=> ParadisEO  must now be compiled using the appropriate tool depending on the generator you've chosen'
+			echo "=> ParadisEO  must now be compiled using the appropriate tool depending on the generator you've chosen."
 		fi
 		echo
 		return $SUCCESSFUL_STEP
@@ -970,7 +984,7 @@ do
 		BUILD_PROCESS_TYPE="$G_KDEVELOP3_PROJECT"
 		GENERATOR_TREATENED=1
 		COMPILE_PARADISEO=0
-		echo " Note: For $P_KDEVELOP3_PROJECT (generator n°$G_KDEVELOP3_PROJECT), this script won't compile ParadisEO. You are to compile it using the appropriate tool."
+		echo " Note: For $P_KDEVELOP3_PROJECT (generator n°$G_KDEVELOP3_PROJECT), this script won't compile ParadisEO. You are to compile using the appropriate tool."
 		;;
 		
 	*)
