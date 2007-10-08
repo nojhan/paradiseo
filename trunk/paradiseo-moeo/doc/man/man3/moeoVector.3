@@ -1,4 +1,4 @@
-.TH "moeoVector" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "moeoVector" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOEOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -11,6 +11,8 @@ moeoVector \- Base class for fixed length chromosomes, just derives from \fBMOEO
 \fC#include <moeoVector.h>\fP
 .PP
 Inherits \fBMOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >< MOEOObjectiveVector, MOEOFitness, MOEODiversity >\fP.
+.PP
+Inherited by \fBFlowShop\fP.
 .PP
 .SS "Public Types"
 
@@ -87,6 +89,8 @@ We can't have a Ctor from a std::vector as it would create ambiguity with the co
 
 .PP
 Definition at line 56 of file moeoVector.h.
+.PP
+Referenced by FlowShopOpMutationShift::operator()(), FlowShopOpMutationExchange::operator()(), FlowShopOpCrossoverQuad::operator()(), and FlowShopInit::operator()().
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity, class GeneType> bool \fBmoeoVector\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >::operator< (const \fBmoeoVector\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType > & _moeo) const\fC [inline]\fP"
 .PP
 To avoid conflicts between \fBMOEO::operator<\fP and std::vector<GeneType>::operator<. 
@@ -134,4 +138,4 @@ Definition at line 102 of file moeoVector.h.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-MOEO from the source code.
+Generated automatically by Doxygen for ParadisEO-MOEOMovingObjects from the source code.

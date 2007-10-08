@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-MOEO: moeoParetoObjectiveVectorComparator.h Source File</title>
+<title>ParadisEO-MOEOMovingObjects: moeoParetoObjectiveVectorComparator.h Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -66,7 +66,7 @@
 <a name="l00051"></a>00051                 <span class="comment">// if the ith objective have to be maximized...</span>
 <a name="l00052"></a>00052                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (ObjectiveVector::maximizing(i))
 <a name="l00053"></a>00053                 {
-<a name="l00054"></a>00054                     <span class="keywordflow">if</span> (_objectiveVector1[i] &gt; _objectiveVector2[i])
+<a name="l00054"></a>00054                     <span class="keywordflow">if</span> (_objectiveVector1[i] &lt; _objectiveVector2[i])
 <a name="l00055"></a>00055                     {
 <a name="l00056"></a>00056                         dom = <span class="keyword">true</span>;             <span class="comment">//_objectiveVector1[i] is not better than _objectiveVector2[i]</span>
 <a name="l00057"></a>00057                     }
@@ -83,7 +83,7 @@
 <a name="l00068"></a>00068 };
 <a name="l00069"></a>00069 
 <a name="l00070"></a>00070 <span class="preprocessor">#endif </span><span class="comment">/*MOEOPARETOOBJECTIVEVECTORCOMPARATOR_H_*/</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Jul 6 09:41:04 2007 for ParadisEO-MOEO by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 10:35:52 2007 for ParadisEO-MOEOMovingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

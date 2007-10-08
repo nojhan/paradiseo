@@ -1,5 +1,13 @@
-\section{Paradis\-EO-MOEO Class List}
+\section{Paradis\-EO-MOEOMoving\-Objects Class List}
 Here are the classes, structs, unions and interfaces with brief descriptions:\begin{CompactList}
+\item\contentsline{section}{\bf{Flow\-Shop} (Structure of the genotype for the flow-shop scheduling problem: a vector of unsigned int int )}{\pageref{classFlowShop}}{}
+\item\contentsline{section}{\bf{Flow\-Shop\-Benchmark\-Parser} (Class to handle parameters of a flow-shop instance from a benchmark file )}{\pageref{classFlowShopBenchmarkParser}}{}
+\item\contentsline{section}{\bf{Flow\-Shop\-Eval} (Evaluation of the objective vector a (multi-objective) \doxyref{Flow\-Shop}{p.}{classFlowShop} object )}{\pageref{classFlowShopEval}}{}
+\item\contentsline{section}{\bf{Flow\-Shop\-Init} (Initialization of a random genotype built by the default constructor of the \doxyref{Flow\-Shop}{p.}{classFlowShop} class )}{\pageref{classFlowShopInit}}{}
+\item\contentsline{section}{\bf{Flow\-Shop\-Objective\-Vector\-Traits} (Definition of the objective vector traits for multi-objective flow-shop problems )}{\pageref{classFlowShopObjectiveVectorTraits}}{}
+\item\contentsline{section}{\bf{Flow\-Shop\-Op\-Crossover\-Quad} (Quadratic crossover operator for flow-shop (modify the both genotypes) )}{\pageref{classFlowShopOpCrossoverQuad}}{}
+\item\contentsline{section}{\bf{Flow\-Shop\-Op\-Mutation\-Exchange} (Exchange mutation operator for the flow-shop )}{\pageref{classFlowShopOpMutationExchange}}{}
+\item\contentsline{section}{\bf{Flow\-Shop\-Op\-Mutation\-Shift} (Shift mutation operator for flow-shop )}{\pageref{classFlowShopOpMutationShift}}{}
 \item\contentsline{section}{\bf{MOEO$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity $>$} (Base class allowing to represent a solution (an individual) for multi-objective optimization )}{\pageref{classMOEO}}{}
 \item\contentsline{section}{\bf{moeo\-Achievement\-Fitness\-Assignment$<$ MOEOT $>$} (Fitness assignment sheme based on the achievement scalarizing function propozed by Wiersbicki (1980) )}{\pageref{classmoeoAchievementFitnessAssignment}}{}
 \item\contentsline{section}{\bf{moeo\-Additive\-Epsilon\-Binary\-Metric$<$ Objective\-Vector $>$} (Additive epsilon binary metric allowing to compare two objective vectors as proposed in Zitzler E., Thiele L., Laumanns M., Fonseca C )}{\pageref{classmoeoAdditiveEpsilonBinaryMetric}}{}
@@ -49,10 +57,14 @@ Here are the classes, structs, unions and interfaces with brief descriptions:\be
 \item\contentsline{section}{\bf{moeo\-Hybrid\-LS$<$ MOEOT $>$} (This class allows to apply a multi-objective local search to a number of selected individuals contained in the archive at every generation until a stopping criteria is verified )}{\pageref{classmoeoHybridLS}}{}
 \item\contentsline{section}{\bf{moeo\-Hypervolume\-Binary\-Metric$<$ Objective\-Vector $>$} (Hypervolume binary metric allowing to compare two objective vectors as proposed in Zitzler E., K\~{A}¼nzli S )}{\pageref{classmoeoHypervolumeBinaryMetric}}{}
 \item\contentsline{section}{\bf{moeo\-IBEA$<$ MOEOT $>$} (IBEA (Indicator-Based Evolutionary Algorithm) as described in: E )}{\pageref{classmoeoIBEA}}{}
+\item\contentsline{section}{\bf{moeo\-IBMOLS$<$ MOEOT, Move $>$} (Indicator-Based Multi-Objective Local Search (IBMOLS) as described in Basseur M., Burke K )}{\pageref{classmoeoIBMOLS}}{}
+\item\contentsline{section}{\bf{moeo\-IBMOLS$<$ MOEOT, Move $>$::One\-Objective\-Comparator} }{\pageref{classmoeoIBMOLS_1_1OneObjectiveComparator}}{}
 \item\contentsline{section}{\bf{moeo\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$} (Moeo\-Indicator\-Based\-Fitness\-Assignment is a \doxyref{moeo\-Fitness\-Assignment}{p.}{classmoeoFitnessAssignment} for Indicator-based strategies )}{\pageref{classmoeoIndicatorBasedFitnessAssignment}}{}
+\item\contentsline{section}{\bf{moeo\-Iterated\-IBMOLS$<$ MOEOT, Move $>$} (Iterated version of IBMOLS as described in Basseur M., Burke K )}{\pageref{classmoeoIteratedIBMOLS}}{}
 \item\contentsline{section}{\bf{moeo\-LS$<$ MOEOT, Type $>$} (Abstract class for local searches applied to multi-objective optimization )}{\pageref{classmoeoLS}}{}
 \item\contentsline{section}{\bf{moeo\-Manhattan\-Distance$<$ MOEOT $>$} (A class allowing to compute the Manhattan distance between two solutions in the objective space normalized objective values (i.e )}{\pageref{classmoeoManhattanDistance}}{}
 \item\contentsline{section}{\bf{moeo\-Metric} (Base class for performance metrics (also known as quality indicators) )}{\pageref{classmoeoMetric}}{}
+\item\contentsline{section}{\bf{moeo\-Move\-Incr\-Eval$<$ Move $>$} }{\pageref{classmoeoMoveIncrEval}}{}
 \item\contentsline{section}{\bf{moeo\-Normalized\-Distance$<$ MOEOT, Type $>$} (The base class for double distance computation with normalized objective values (i.e )}{\pageref{classmoeoNormalizedDistance}}{}
 \item\contentsline{section}{\bf{moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric$<$ Objective\-Vector, R $>$} (Base class for binary metrics dedicated to the performance comparison between two solutions's objective vectors using normalized values )}{\pageref{classmoeoNormalizedSolutionVsSolutionBinaryMetric}}{}
 \item\contentsline{section}{\bf{moeo\-NSGA$<$ MOEOT $>$} (NSGA (Non-dominated Sorting Genetic Algorithm) as described in: N )}{\pageref{classmoeoNSGA}}{}
@@ -67,6 +79,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:\be
 \item\contentsline{section}{\bf{moeo\-Random\-Select$<$ MOEOT $>$} (Selection strategy that selects only one element randomly from a whole population )}{\pageref{classmoeoRandomSelect}}{}
 \item\contentsline{section}{\bf{moeo\-Real\-Objective\-Vector$<$ Objective\-Vector\-Traits $>$} (This class allows to represent a solution in the objective space (phenotypic representation) by a std::vector of real values, i.e )}{\pageref{classmoeoRealObjectiveVector}}{}
 \item\contentsline{section}{\bf{moeo\-Real\-Vector$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity $>$} (This class is an implementation of a simple double-valued \doxyref{moeo\-Vector}{p.}{classmoeoVector} )}{\pageref{classmoeoRealVector}}{}
+\item\contentsline{section}{\bf{moeo\-Reference\-Point\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$} (Fitness assignment sheme based a Reference Point and a Quality Indicator )}{\pageref{classmoeoReferencePointIndicatorBasedFitnessAssignment}}{}
 \item\contentsline{section}{\bf{moeo\-Replacement$<$ MOEOT $>$} (Replacement strategy for multi-objective optimization )}{\pageref{classmoeoReplacement}}{}
 \item\contentsline{section}{\bf{moeo\-Roulette\-Select$<$ MOEOT $>$} (Selection strategy that selects ONE individual by using roulette wheel process )}{\pageref{classmoeoRouletteSelect}}{}
 \item\contentsline{section}{\bf{moeo\-Scalar\-Fitness\-Assignment$<$ MOEOT $>$} (Moeo\-Scalar\-Fitness\-Assignment is a \doxyref{moeo\-Fitness\-Assignment}{p.}{classmoeoFitnessAssignment} for scalar strategies )}{\pageref{classmoeoScalarFitnessAssignment}}{}
@@ -81,4 +94,8 @@ Here are the classes, structs, unions and interfaces with brief descriptions:\be
 \item\contentsline{section}{\bf{moeo\-Vector$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, Gene\-Type $>$} (Base class for fixed length chromosomes, just derives from \doxyref{MOEO}{p.}{classMOEO} and std::vector and redirects the smaller than operator to MOEO (objective vector based comparison) )}{\pageref{classmoeoVector}}{}
 \item\contentsline{section}{\bf{moeo\-Vector\-Unary\-Metric$<$ Objective\-Vector, R $>$} (Base class for unary metrics dedicated to the performance evaluation of a Pareto set (a vector of objective vectors) )}{\pageref{classmoeoVectorUnaryMetric}}{}
 \item\contentsline{section}{\bf{moeo\-Vector\-Vs\-Vector\-Binary\-Metric$<$ Objective\-Vector, R $>$} (Base class for binary metrics dedicated to the performance comparison between two Pareto sets (two vectors of objective vectors) )}{\pageref{classmoeoVectorVsVectorBinaryMetric}}{}
+\item\contentsline{section}{\bf{peo\-EA$<$ EOT $>$} (The \doxyref{peo\-EA}{p.}{classpeoEA} class offers an elementary evolutionary algorithm implementation )}{\pageref{classpeoEA}}{}
+\item\contentsline{section}{\bf{Sch1} }{\pageref{classSch1}}{}
+\item\contentsline{section}{\bf{Sch1Eval} }{\pageref{classSch1Eval}}{}
+\item\contentsline{section}{\bf{Sch1Objective\-Vector\-Traits} }{\pageref{classSch1ObjectiveVectorTraits}}{}
 \end{CompactList}

@@ -1,4 +1,4 @@
-\section{Paradis\-EO-MOEO Class Hierarchy}
+\section{Paradis\-EO-MOEOMoving\-Objects Class Hierarchy}
 This inheritance list is sorted roughly, but not completely, alphabetically:\begin{CompactList}
 \item eo\-Functor\-Base{\tt  [external]}\begin{CompactList}
 \item eo\-BF$<$ A1, A2, R $>${\tt  [external]}\begin{CompactList}
@@ -45,6 +45,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \item \contentsline{section}{moeo\-Diversity\-Then\-Fitness\-Comparator$<$ MOEOT $>$}{\pageref{classmoeoDiversityThenFitnessComparator}}{}
 \item \contentsline{section}{moeo\-Fast\-Non\-Dominated\-Sorting\-Fitness\-Assignment$<$ MOEOT $>$::Objective\-Comparator}{\pageref{classmoeoFastNonDominatedSortingFitnessAssignment_1_1ObjectiveComparator}}{}
 \item \contentsline{section}{moeo\-Fitness\-Then\-Diversity\-Comparator$<$ MOEOT $>$}{\pageref{classmoeoFitnessThenDiversityComparator}}{}
+\item \contentsline{section}{moeo\-IBMOLS$<$ MOEOT, Move $>$::One\-Objective\-Comparator}{\pageref{classmoeoIBMOLS_1_1OneObjectiveComparator}}{}
 \item \contentsline{section}{moeo\-One\-Objective\-Comparator$<$ MOEOT $>$}{\pageref{classmoeoOneObjectiveComparator}}{}
 \end{CompactList}
 \item \contentsline{section}{moeo\-Distance$<$ MOEOT, Type $>$}{\pageref{classmoeoDistance}}{}
@@ -59,6 +60,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \item \contentsline{section}{moeo\-Manhattan\-Distance$<$ MOEOT $>$}{\pageref{classmoeoManhattanDistance}}{}
 \end{CompactList}
 \end{CompactList}
+\item \contentsline{section}{moeo\-Move\-Incr\-Eval$<$ Move $>$}{\pageref{classmoeoMoveIncrEval}}{}
 \item \contentsline{section}{moeo\-Objective\-Vector\-Comparator$<$ Objective\-Vector $>$}{\pageref{classmoeoObjectiveVectorComparator}}{}
 \begin{CompactList}
 \item \contentsline{section}{moeo\-GDominance\-Objective\-Vector\-Comparator$<$ Objective\-Vector $>$}{\pageref{classmoeoGDominanceObjectiveVectorComparator}}{}
@@ -77,6 +79,18 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \end{CompactList}
 \item eo\-BF$<$ const const std::vector$<$ Objective\-Vector $>$ \&, std::vector$<$ Objective\-Vector $>$ \&, R $>${\tt  [external]}\begin{CompactList}
 \item \contentsline{section}{moeo\-Binary\-Metric$<$ const const std::vector$<$ Objective\-Vector $>$ \&, std::vector$<$ Objective\-Vector $>$ \&, R $>$}{\pageref{classmoeoBinaryMetric}}{}
+\end{CompactList}
+\item eo\-BF$<$ eo\-Pop$<$ MOEOT $>$ \&, moeo\-Archive$<$ MOEOT $>$ \&, void $>${\tt  [external]}\begin{CompactList}
+\item \contentsline{section}{moeo\-LS$<$ MOEOT, eo\-Pop$<$ MOEOT $>$ \& $>$}{\pageref{classmoeoLS}}{}
+\begin{CompactList}
+\item \contentsline{section}{moeo\-IBMOLS$<$ MOEOT, Move $>$}{\pageref{classmoeoIBMOLS}}{}
+\item \contentsline{section}{moeo\-Iterated\-IBMOLS$<$ MOEOT, Move $>$}{\pageref{classmoeoIteratedIBMOLS}}{}
+\end{CompactList}
+\end{CompactList}
+\item eo\-BF$<$ EOType \&, EOType \&, bool $>${\tt  [external]}\item eo\-BF$<$ Flow\-Shop \&, Flow\-Shop \&, bool $>${\tt  [external]}\begin{CompactList}
+\item eo\-Quad\-Op$<$ Flow\-Shop $>${\tt  [external]}\begin{CompactList}
+\item \contentsline{section}{Flow\-Shop\-Op\-Crossover\-Quad}{\pageref{classFlowShopOpCrossoverQuad}}{}
+\end{CompactList}
 \end{CompactList}
 \item eo\-BF$<$ Type, moeo\-Archive$<$ MOEOT $>$ \&, void $>${\tt  [external]}\begin{CompactList}
 \item \contentsline{section}{moeo\-LS$<$ MOEOT, Type $>$}{\pageref{classmoeoLS}}{}
@@ -102,9 +116,24 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \item \contentsline{section}{moeo\-NSGAII$<$ MOEOT $>$}{\pageref{classmoeoNSGAII}}{}
 \end{CompactList}
 \end{CompactList}
+\item eo\-Eval\-Func$<$ Flow\-Shop $>${\tt  [external]}\begin{CompactList}
+\item \contentsline{section}{moeo\-Eval\-Func$<$ Flow\-Shop $>$}{\pageref{classmoeoEvalFunc}}{}
+\begin{CompactList}
+\item \contentsline{section}{Flow\-Shop\-Eval}{\pageref{classFlowShopEval}}{}
+\end{CompactList}
+\end{CompactList}
 \item eo\-Eval\-Func$<$ MOEOT $>${\tt  [external]}\begin{CompactList}
 \item \contentsline{section}{moeo\-Easy\-EA$<$ MOEOT $>$::eo\-Dummy\-Eval}{\pageref{classmoeoEasyEA_1_1eoDummyEval}}{}
 \item \contentsline{section}{moeo\-Eval\-Func$<$ MOEOT $>$}{\pageref{classmoeoEvalFunc}}{}
+\end{CompactList}
+\item eo\-Eval\-Func$<$ Sch1 $>${\tt  [external]}\begin{CompactList}
+\item \contentsline{section}{moeo\-Eval\-Func$<$ Sch1 $>$}{\pageref{classmoeoEvalFunc}}{}
+\begin{CompactList}
+\item \contentsline{section}{Sch1Eval}{\pageref{classSch1Eval}}{}
+\end{CompactList}
+\end{CompactList}
+\item eo\-Init$<$ Flow\-Shop $>${\tt  [external]}\begin{CompactList}
+\item \contentsline{section}{Flow\-Shop\-Init}{\pageref{classFlowShopInit}}{}
 \end{CompactList}
 \item eo\-Select\-One$<$ EOT, Worth\-T $>${\tt  [external]}\begin{CompactList}
 \item eo\-Random\-Select$<$ MOEOT $>${\tt  [external]}\begin{CompactList}
@@ -173,10 +202,17 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \begin{CompactList}
 \item \contentsline{section}{moeo\-Fast\-Non\-Dominated\-Sorting\-Fitness\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoFastNonDominatedSortingFitnessAssignment}}{}
 \end{CompactList}
+\item \contentsline{section}{moeo\-Reference\-Point\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoReferencePointIndicatorBasedFitnessAssignment}}{}
 \item \contentsline{section}{moeo\-Scalar\-Fitness\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoScalarFitnessAssignment}}{}
 \begin{CompactList}
 \item \contentsline{section}{moeo\-Achievement\-Fitness\-Assignment$<$ MOEOT $>$}{\pageref{classmoeoAchievementFitnessAssignment}}{}
 \end{CompactList}
+\end{CompactList}
+\end{CompactList}
+\item eo\-UF$<$ EOType \&, bool $>${\tt  [external]}\item eo\-UF$<$ Flow\-Shop \&, bool $>${\tt  [external]}\begin{CompactList}
+\item eo\-Mon\-Op$<$ Flow\-Shop $>${\tt  [external]}\begin{CompactList}
+\item \contentsline{section}{Flow\-Shop\-Op\-Mutation\-Exchange}{\pageref{classFlowShopOpMutationExchange}}{}
+\item \contentsline{section}{Flow\-Shop\-Op\-Mutation\-Shift}{\pageref{classFlowShopOpMutationShift}}{}
 \end{CompactList}
 \end{CompactList}
 \item \contentsline{section}{moeo\-Metric}{\pageref{classmoeoMetric}}{}
@@ -196,6 +232,9 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \item \contentsline{section}{MOEO$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity $>$}{\pageref{classMOEO}}{}
 \begin{CompactList}
 \item \contentsline{section}{moeo\-Vector$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, Gene\-Type $>$}{\pageref{classmoeoVector}}{}
+\begin{CompactList}
+\item \contentsline{section}{Flow\-Shop}{\pageref{classFlowShop}}{}
+\end{CompactList}
 \item \contentsline{section}{moeo\-Vector$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, bool $>$}{\pageref{classmoeoVector}}{}
 \begin{CompactList}
 \item \contentsline{section}{moeo\-Bit\-Vector$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity $>$}{\pageref{classmoeoBitVector}}{}
@@ -203,6 +242,24 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \item \contentsline{section}{moeo\-Vector$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, double $>$}{\pageref{classmoeoVector}}{}
 \begin{CompactList}
 \item \contentsline{section}{moeo\-Real\-Vector$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity $>$}{\pageref{classmoeoRealVector}}{}
+\begin{CompactList}
+\item \contentsline{section}{Sch1}{\pageref{classSch1}}{}
+\end{CompactList}
+\end{CompactList}
+\end{CompactList}
+\end{CompactList}
+\item EO$<$ moeo\-Real\-Objective\-Vector$<$ Flow\-Shop\-Objective\-Vector\-Traits $>$ $>${\tt  [external]}\begin{CompactList}
+\item \contentsline{section}{MOEO$<$ moeo\-Real\-Objective\-Vector$<$ Flow\-Shop\-Objective\-Vector\-Traits $>$, double, double $>$}{\pageref{classMOEO}}{}
+\begin{CompactList}
+\item \contentsline{section}{moeo\-Vector$<$ moeo\-Real\-Objective\-Vector$<$ Flow\-Shop\-Objective\-Vector\-Traits $>$, double, double, unsigned int $>$}{\pageref{classmoeoVector}}{}
+\end{CompactList}
+\end{CompactList}
+\item EO$<$ moeo\-Real\-Objective\-Vector$<$ Sch1Objective\-Vector\-Traits $>$ $>${\tt  [external]}\begin{CompactList}
+\item \contentsline{section}{MOEO$<$ moeo\-Real\-Objective\-Vector$<$ Sch1Objective\-Vector\-Traits $>$, double, double $>$}{\pageref{classMOEO}}{}
+\begin{CompactList}
+\item \contentsline{section}{moeo\-Vector$<$ moeo\-Real\-Objective\-Vector$<$ Sch1Objective\-Vector\-Traits $>$, double, double, double $>$}{\pageref{classmoeoVector}}{}
+\begin{CompactList}
+\item \contentsline{section}{moeo\-Real\-Vector$<$ moeo\-Real\-Objective\-Vector$<$ Sch1Objective\-Vector\-Traits $>$, double, double $>$}{\pageref{classmoeoRealVector}}{}
 \end{CompactList}
 \end{CompactList}
 \end{CompactList}
@@ -210,14 +267,18 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \item \contentsline{section}{moeo\-Archive$<$ MOEOT $>$}{\pageref{classmoeoArchive}}{}
 \end{CompactList}
 \end{CompactList}
+\item eo\-Op$<$ EOType $>${\tt  [external]}\begin{CompactList}
+\item eo\-Mon\-Op$<$ Flow\-Shop $>${\tt  [external]}\item eo\-Quad\-Op$<$ Flow\-Shop $>${\tt  [external]}\end{CompactList}
 \item eo\-Printable{\tt  [external]}\begin{CompactList}
 \item eo\-Persistent{\tt  [external]}\begin{CompactList}
-\item EO$<$ MOEOObjective\-Vector $>${\tt  [external]}\item eo\-Pop$<$ MOEOT $>${\tt  [external]}\end{CompactList}
+\item EO$<$ MOEOObjective\-Vector $>${\tt  [external]}\item EO$<$ moeo\-Real\-Objective\-Vector$<$ Flow\-Shop\-Objective\-Vector\-Traits $>$ $>${\tt  [external]}\item EO$<$ moeo\-Real\-Objective\-Vector$<$ Sch1Objective\-Vector\-Traits $>$ $>${\tt  [external]}\item eo\-Pop$<$ MOEOT $>${\tt  [external]}\end{CompactList}
 \end{CompactList}
+\item \contentsline{section}{Flow\-Shop\-Benchmark\-Parser}{\pageref{classFlowShopBenchmarkParser}}{}
 \item \contentsline{section}{moeo\-Algo}{\pageref{classmoeoAlgo}}{}
 \begin{CompactList}
 \item \contentsline{section}{moeo\-EA$<$ MOEOT $>$}{\pageref{classmoeoEA}}{}
 \item \contentsline{section}{moeo\-LS$<$ MOEOT, Type $>$}{\pageref{classmoeoLS}}{}
+\item \contentsline{section}{moeo\-LS$<$ MOEOT, eo\-Pop$<$ MOEOT $>$ \& $>$}{\pageref{classmoeoLS}}{}
 \end{CompactList}
 \item \contentsline{section}{moeo\-Elitist\-Replacement$<$ MOEOT $>$::Cmp}{\pageref{classmoeoElitistReplacement_1_1Cmp}}{}
 \item \contentsline{section}{moeo\-Environmental\-Replacement$<$ MOEOT $>$::Cmp}{\pageref{classmoeoEnvironmentalReplacement_1_1Cmp}}{}
@@ -227,4 +288,9 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \item \contentsline{section}{moeo\-Real\-Objective\-Vector$<$ Objective\-Vector\-Traits $>$}{\pageref{classmoeoRealObjectiveVector}}{}
 \end{CompactList}
 \item \contentsline{section}{moeo\-Objective\-Vector\-Traits}{\pageref{classmoeoObjectiveVectorTraits}}{}
+\begin{CompactList}
+\item \contentsline{section}{Flow\-Shop\-Objective\-Vector\-Traits}{\pageref{classFlowShopObjectiveVectorTraits}}{}
+\item \contentsline{section}{Sch1Objective\-Vector\-Traits}{\pageref{classSch1ObjectiveVectorTraits}}{}
+\end{CompactList}
+\item \contentsline{section}{peo\-EA$<$ EOT $>$}{\pageref{classpeoEA}}{}
 \end{CompactList}

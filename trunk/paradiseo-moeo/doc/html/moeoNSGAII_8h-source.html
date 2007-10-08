@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-MOEO: moeoNSGAII.h Source File</title>
+<title>ParadisEO-MOEOMovingObjects: moeoNSGAII.h Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -50,78 +50,87 @@
 <a name="l00027"></a>00027 <span class="preprocessor">#include &lt;replacement/moeoElitistReplacement.h&gt;</span>
 <a name="l00028"></a>00028 <span class="preprocessor">#include &lt;selection/moeoDetTournamentSelect.h&gt;</span>
 <a name="l00029"></a>00029 
-<a name="l00036"></a>00036 <span class="keyword">template</span> &lt; <span class="keyword">class</span> MOEOT &gt;
-<a name="l00037"></a><a class="code" href="classmoeoNSGAII.html">00037</a> <span class="keyword">class </span><a class="code" href="classmoeoNSGAII.html">moeoNSGAII</a>: <span class="keyword">public</span> <a class="code" href="classmoeoEA.html">moeoEA</a> &lt; MOEOT &gt;
-<a name="l00038"></a>00038 {
-<a name="l00039"></a>00039 <span class="keyword">public</span>:
-<a name="l00040"></a>00040 
-<a name="l00047"></a><a class="code" href="classmoeoNSGAII.html#a13ddb75d60e2956905a9eacca2e0b2e">00047</a>     <a class="code" href="classmoeoNSGAII.html#a13ddb75d60e2956905a9eacca2e0b2e">moeoNSGAII</a> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> _maxGen, eoEvalFunc &lt; MOEOT &gt; &amp; _eval, eoGenOp &lt; MOEOT &gt; &amp; _op) :
-<a name="l00048"></a>00048             <a class="code" href="classmoeoNSGAII.html#2bc5adbd55a32faead1c4ac0cbac3b35">defaultGenContinuator</a>(_maxGen), <a class="code" href="classmoeoNSGAII.html#7eb1e36631eebbe3216167b1077e3a53">continuator</a>(<a class="code" href="classmoeoNSGAII.html#2bc5adbd55a32faead1c4ac0cbac3b35">defaultGenContinuator</a>), <a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">popEval</a>(_eval), <a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>(2),
-<a name="l00049"></a>00049             <a class="code" href="classmoeoNSGAII.html#75bc4b735c5de2a6fc93b2f2b63c7251">replace</a>(<a class="code" href="classmoeoNSGAII.html#2cf7c853cc4213664b0654b1e5a8862a">fitnessAssignment</a>, <a class="code" href="classmoeoNSGAII.html#4abf4583668c6f145f4dbb0a24d2dae0">diversityAssignment</a>), <a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>(<a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>, _op), <a class="code" href="classmoeoNSGAII.html#17954849435e579d74bf37ed7b9063fc">breed</a>(<a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>)
-<a name="l00050"></a>00050     {}
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 
-<a name="l00059"></a><a class="code" href="classmoeoNSGAII.html#56a2b2ab62b2a4025f1d122e3cfa2aa2">00059</a>     <a class="code" href="classmoeoNSGAII.html#a13ddb75d60e2956905a9eacca2e0b2e">moeoNSGAII</a> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> _maxGen, eoEvalFunc &lt; MOEOT &gt; &amp; _eval, eoTransform &lt; MOEOT &gt; &amp; _op) :
-<a name="l00060"></a>00060             <a class="code" href="classmoeoNSGAII.html#2bc5adbd55a32faead1c4ac0cbac3b35">defaultGenContinuator</a>(_maxGen), <a class="code" href="classmoeoNSGAII.html#7eb1e36631eebbe3216167b1077e3a53">continuator</a>(<a class="code" href="classmoeoNSGAII.html#2bc5adbd55a32faead1c4ac0cbac3b35">defaultGenContinuator</a>), <a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">popEval</a>(_eval), <a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>(2),
-<a name="l00061"></a>00061             <a class="code" href="classmoeoNSGAII.html#75bc4b735c5de2a6fc93b2f2b63c7251">replace</a>(<a class="code" href="classmoeoNSGAII.html#2cf7c853cc4213664b0654b1e5a8862a">fitnessAssignment</a>, <a class="code" href="classmoeoNSGAII.html#4abf4583668c6f145f4dbb0a24d2dae0">diversityAssignment</a>), <a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>(<a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>, _op), <a class="code" href="classmoeoNSGAII.html#17954849435e579d74bf37ed7b9063fc">breed</a>(<a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>)
-<a name="l00062"></a>00062     {}
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064 
-<a name="l00074"></a><a class="code" href="classmoeoNSGAII.html#996e1b2683378ae1880b7520814aa9c9">00074</a>     <a class="code" href="classmoeoNSGAII.html#a13ddb75d60e2956905a9eacca2e0b2e">moeoNSGAII</a> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> _maxGen, eoEvalFunc &lt; MOEOT &gt; &amp; _eval, eoQuadOp &lt; MOEOT &gt; &amp; _crossover, <span class="keywordtype">double</span> _pCross, eoMonOp &lt; MOEOT &gt; &amp; _mutation, <span class="keywordtype">double</span> _pMut) :
-<a name="l00075"></a>00075             <a class="code" href="classmoeoNSGAII.html#2bc5adbd55a32faead1c4ac0cbac3b35">defaultGenContinuator</a>(_maxGen), <a class="code" href="classmoeoNSGAII.html#7eb1e36631eebbe3216167b1077e3a53">continuator</a>(<a class="code" href="classmoeoNSGAII.html#2bc5adbd55a32faead1c4ac0cbac3b35">defaultGenContinuator</a>), <a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">popEval</a>(_eval), <a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a> (2),
-<a name="l00076"></a>00076             <a class="code" href="classmoeoNSGAII.html#75bc4b735c5de2a6fc93b2f2b63c7251">replace</a> (<a class="code" href="classmoeoNSGAII.html#2cf7c853cc4213664b0654b1e5a8862a">fitnessAssignment</a>, <a class="code" href="classmoeoNSGAII.html#4abf4583668c6f145f4dbb0a24d2dae0">diversityAssignment</a>), <a class="code" href="classmoeoNSGAII.html#a2050440184979533f2c403bb044c064">defaultSGAGenOp</a>(_crossover, _pCross, _mutation, _pMut),
-<a name="l00077"></a>00077             <a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a> (<a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>, <a class="code" href="classmoeoNSGAII.html#a2050440184979533f2c403bb044c064">defaultSGAGenOp</a>), <a class="code" href="classmoeoNSGAII.html#17954849435e579d74bf37ed7b9063fc">breed</a> (<a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>)
-<a name="l00078"></a>00078     {}
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080 
-<a name="l00087"></a><a class="code" href="classmoeoNSGAII.html#1797f01afde01d155e559522df12ae05">00087</a>     <a class="code" href="classmoeoNSGAII.html#a13ddb75d60e2956905a9eacca2e0b2e">moeoNSGAII</a> (eoContinue &lt; MOEOT &gt; &amp; _continuator, eoEvalFunc &lt; MOEOT &gt; &amp; _eval, eoGenOp &lt; MOEOT &gt; &amp; _op) :
-<a name="l00088"></a>00088             <a class="code" href="classmoeoNSGAII.html#7eb1e36631eebbe3216167b1077e3a53">continuator</a>(_continuator), <a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">popEval</a>(_eval), <a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>(2),
-<a name="l00089"></a>00089             <a class="code" href="classmoeoNSGAII.html#75bc4b735c5de2a6fc93b2f2b63c7251">replace</a>(<a class="code" href="classmoeoNSGAII.html#2cf7c853cc4213664b0654b1e5a8862a">fitnessAssignment</a>, <a class="code" href="classmoeoNSGAII.html#4abf4583668c6f145f4dbb0a24d2dae0">diversityAssignment</a>), <a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>(<a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>, _op), <a class="code" href="classmoeoNSGAII.html#17954849435e579d74bf37ed7b9063fc">breed</a>(<a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>)
-<a name="l00090"></a>00090     {}
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092 
-<a name="l00099"></a><a class="code" href="classmoeoNSGAII.html#a2b8d5b2ca7e7fd5845c6cda896b75c6">00099</a>     <a class="code" href="classmoeoNSGAII.html#a13ddb75d60e2956905a9eacca2e0b2e">moeoNSGAII</a> (eoContinue &lt; MOEOT &gt; &amp; _continuator, eoEvalFunc &lt; MOEOT &gt; &amp; _eval, eoTransform &lt; MOEOT &gt; &amp; _op) :
-<a name="l00100"></a>00100             <a class="code" href="classmoeoNSGAII.html#7eb1e36631eebbe3216167b1077e3a53">continuator</a>(_continuator), <a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">popEval</a>(_eval), <a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>(2),
-<a name="l00101"></a>00101             <a class="code" href="classmoeoNSGAII.html#75bc4b735c5de2a6fc93b2f2b63c7251">replace</a>(<a class="code" href="classmoeoNSGAII.html#2cf7c853cc4213664b0654b1e5a8862a">fitnessAssignment</a>, <a class="code" href="classmoeoNSGAII.html#4abf4583668c6f145f4dbb0a24d2dae0">diversityAssignment</a>), <a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>(<a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>, _op), <a class="code" href="classmoeoNSGAII.html#17954849435e579d74bf37ed7b9063fc">breed</a>(<a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>)
-<a name="l00102"></a>00102     {}
-<a name="l00103"></a>00103 
-<a name="l00104"></a>00104 
-<a name="l00109"></a><a class="code" href="classmoeoNSGAII.html#60ba3ed4287efe81e1ff66b22e1d2e14">00109</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classmoeoNSGAII.html#60ba3ed4287efe81e1ff66b22e1d2e14">operator () </a>(eoPop &lt; MOEOT &gt; &amp;_pop)
-<a name="l00110"></a>00110     {
-<a name="l00111"></a>00111         eoPop &lt; MOEOT &gt; offspring, empty_pop;
-<a name="l00112"></a>00112         <a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">popEval</a> (empty_pop, _pop);      <span class="comment">// a first eval of _pop</span>
-<a name="l00113"></a>00113         <span class="comment">// evaluate fitness and diversity</span>
-<a name="l00114"></a>00114         <a class="code" href="classmoeoNSGAII.html#2cf7c853cc4213664b0654b1e5a8862a">fitnessAssignment</a>(_pop);
-<a name="l00115"></a>00115         <a class="code" href="classmoeoNSGAII.html#4abf4583668c6f145f4dbb0a24d2dae0">diversityAssignment</a>(_pop);
-<a name="l00116"></a>00116         <span class="keywordflow">do</span>
-<a name="l00117"></a>00117         {
-<a name="l00118"></a>00118             <span class="comment">// generate offspring, worths are recalculated if necessary</span>
-<a name="l00119"></a>00119             <a class="code" href="classmoeoNSGAII.html#17954849435e579d74bf37ed7b9063fc">breed</a> (_pop, offspring);
-<a name="l00120"></a>00120             <span class="comment">// eval of offspring</span>
-<a name="l00121"></a>00121             <a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">popEval</a> (_pop, offspring);
-<a name="l00122"></a>00122             <span class="comment">// after replace, the new pop is in _pop. Worths are recalculated if necessary</span>
-<a name="l00123"></a>00123             <a class="code" href="classmoeoNSGAII.html#75bc4b735c5de2a6fc93b2f2b63c7251">replace</a> (_pop, offspring);
-<a name="l00124"></a>00124         } <span class="keywordflow">while</span> (<a class="code" href="classmoeoNSGAII.html#7eb1e36631eebbe3216167b1077e3a53">continuator</a> (_pop));
-<a name="l00125"></a>00125     }
-<a name="l00126"></a>00126 
-<a name="l00127"></a>00127 
-<a name="l00128"></a>00128 <span class="keyword">protected</span>:
-<a name="l00129"></a>00129 
-<a name="l00131"></a><a class="code" href="classmoeoNSGAII.html#2bc5adbd55a32faead1c4ac0cbac3b35">00131</a>     eoGenContinue &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#2bc5adbd55a32faead1c4ac0cbac3b35">defaultGenContinuator</a>;
-<a name="l00133"></a><a class="code" href="classmoeoNSGAII.html#7eb1e36631eebbe3216167b1077e3a53">00133</a>     eoContinue &lt; MOEOT &gt; &amp; <a class="code" href="classmoeoNSGAII.html#7eb1e36631eebbe3216167b1077e3a53">continuator</a>;
-<a name="l00135"></a><a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">00135</a>     eoPopLoopEval &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">popEval</a>;
-<a name="l00137"></a><a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">00137</a>     moeoDetTournamentSelect &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>;
-<a name="l00139"></a><a class="code" href="classmoeoNSGAII.html#2cf7c853cc4213664b0654b1e5a8862a">00139</a>     moeoFastNonDominatedSortingFitnessAssignment &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#2cf7c853cc4213664b0654b1e5a8862a">fitnessAssignment</a>;
-<a name="l00141"></a><a class="code" href="classmoeoNSGAII.html#4abf4583668c6f145f4dbb0a24d2dae0">00141</a>     moeoFrontByFrontCrowdingDiversityAssignment  &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#4abf4583668c6f145f4dbb0a24d2dae0">diversityAssignment</a>;
-<a name="l00143"></a><a class="code" href="classmoeoNSGAII.html#75bc4b735c5de2a6fc93b2f2b63c7251">00143</a>     moeoElitistReplacement &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#75bc4b735c5de2a6fc93b2f2b63c7251">replace</a>;
-<a name="l00145"></a><a class="code" href="classmoeoNSGAII.html#a2050440184979533f2c403bb044c064">00145</a>     eoSGAGenOp &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#a2050440184979533f2c403bb044c064">defaultSGAGenOp</a>;
-<a name="l00147"></a><a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">00147</a>     eoGeneralBreeder &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>;
-<a name="l00149"></a><a class="code" href="classmoeoNSGAII.html#17954849435e579d74bf37ed7b9063fc">00149</a>     eoBreed &lt; MOEOT &gt; &amp; <a class="code" href="classmoeoNSGAII.html#17954849435e579d74bf37ed7b9063fc">breed</a>;
-<a name="l00150"></a>00150 
-<a name="l00151"></a>00151 };
-<a name="l00152"></a>00152 
-<a name="l00153"></a>00153 <span class="preprocessor">#endif </span><span class="comment">/*MOEONSGAII_H_*/</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Jul 6 09:41:04 2007 for ParadisEO-MOEO by&nbsp;
+<a name="l00030"></a>00030 
+<a name="l00031"></a>00031 <span class="preprocessor">#include &lt;eoCloneOps.h&gt;</span>
+<a name="l00032"></a>00032 
+<a name="l00039"></a>00039 <span class="keyword">template</span> &lt; <span class="keyword">class</span> MOEOT &gt;
+<a name="l00040"></a><a class="code" href="classmoeoNSGAII.html">00040</a> <span class="keyword">class </span><a class="code" href="classmoeoNSGAII.html">moeoNSGAII</a>: <span class="keyword">public</span> <a class="code" href="classmoeoEA.html">moeoEA</a> &lt; MOEOT &gt;
+<a name="l00041"></a>00041 {
+<a name="l00042"></a>00042 <span class="keyword">public</span>:
+<a name="l00043"></a>00043 
+<a name="l00050"></a><a class="code" href="classmoeoNSGAII.html#a13ddb75d60e2956905a9eacca2e0b2e">00050</a>     <a class="code" href="classmoeoNSGAII.html#a13ddb75d60e2956905a9eacca2e0b2e">moeoNSGAII</a> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> _maxGen, eoEvalFunc &lt; MOEOT &gt; &amp; _eval, eoGenOp &lt; MOEOT &gt; &amp; _op) :
+<a name="l00051"></a>00051             <a class="code" href="classmoeoNSGAII.html#2bc5adbd55a32faead1c4ac0cbac3b35">defaultGenContinuator</a>(_maxGen), <a class="code" href="classmoeoNSGAII.html#7eb1e36631eebbe3216167b1077e3a53">continuator</a>(<a class="code" href="classmoeoNSGAII.html#2bc5adbd55a32faead1c4ac0cbac3b35">defaultGenContinuator</a>), <a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">popEval</a>(_eval), <a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>(2),
+<a name="l00052"></a>00052             <a class="code" href="classmoeoNSGAII.html#75bc4b735c5de2a6fc93b2f2b63c7251">replace</a>(<a class="code" href="classmoeoNSGAII.html#2cf7c853cc4213664b0654b1e5a8862a">fitnessAssignment</a>, <a class="code" href="classmoeoNSGAII.html#4abf4583668c6f145f4dbb0a24d2dae0">diversityAssignment</a>), <a class="code" href="classmoeoNSGAII.html#a2050440184979533f2c403bb044c064">defaultSGAGenOp</a>(<a class="code" href="classmoeoNSGAII.html#21e98772db6326a94d44a7f9a27d36f0">defaultQuadOp</a>, 0.0, <a class="code" href="classmoeoNSGAII.html#81f823297f146b3b6ce7460cb043e25e">defaultMonOp</a>, 0.0),
+<a name="l00053"></a>00053             <a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>(<a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>, _op), <a class="code" href="classmoeoNSGAII.html#17954849435e579d74bf37ed7b9063fc">breed</a>(<a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>)
+<a name="l00054"></a>00054     {}
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 
+<a name="l00063"></a><a class="code" href="classmoeoNSGAII.html#56a2b2ab62b2a4025f1d122e3cfa2aa2">00063</a>     <a class="code" href="classmoeoNSGAII.html#a13ddb75d60e2956905a9eacca2e0b2e">moeoNSGAII</a> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> _maxGen, eoEvalFunc &lt; MOEOT &gt; &amp; _eval, eoTransform &lt; MOEOT &gt; &amp; _op) :
+<a name="l00064"></a>00064             <a class="code" href="classmoeoNSGAII.html#2bc5adbd55a32faead1c4ac0cbac3b35">defaultGenContinuator</a>(_maxGen), <a class="code" href="classmoeoNSGAII.html#7eb1e36631eebbe3216167b1077e3a53">continuator</a>(<a class="code" href="classmoeoNSGAII.html#2bc5adbd55a32faead1c4ac0cbac3b35">defaultGenContinuator</a>), <a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">popEval</a>(_eval), <a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>(2),
+<a name="l00065"></a>00065             <a class="code" href="classmoeoNSGAII.html#75bc4b735c5de2a6fc93b2f2b63c7251">replace</a>(<a class="code" href="classmoeoNSGAII.html#2cf7c853cc4213664b0654b1e5a8862a">fitnessAssignment</a>, <a class="code" href="classmoeoNSGAII.html#4abf4583668c6f145f4dbb0a24d2dae0">diversityAssignment</a>), <a class="code" href="classmoeoNSGAII.html#a2050440184979533f2c403bb044c064">defaultSGAGenOp</a>(<a class="code" href="classmoeoNSGAII.html#21e98772db6326a94d44a7f9a27d36f0">defaultQuadOp</a>, 0.0, <a class="code" href="classmoeoNSGAII.html#81f823297f146b3b6ce7460cb043e25e">defaultMonOp</a>, 0.0),
+<a name="l00066"></a>00066             <a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>(<a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>, _op), <a class="code" href="classmoeoNSGAII.html#17954849435e579d74bf37ed7b9063fc">breed</a>(<a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>)
+<a name="l00067"></a>00067     {}
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069 
+<a name="l00079"></a><a class="code" href="classmoeoNSGAII.html#996e1b2683378ae1880b7520814aa9c9">00079</a>     <a class="code" href="classmoeoNSGAII.html#a13ddb75d60e2956905a9eacca2e0b2e">moeoNSGAII</a> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> _maxGen, eoEvalFunc &lt; MOEOT &gt; &amp; _eval, eoQuadOp &lt; MOEOT &gt; &amp; _crossover, <span class="keywordtype">double</span> _pCross, eoMonOp &lt; MOEOT &gt; &amp; _mutation, <span class="keywordtype">double</span> _pMut) :
+<a name="l00080"></a>00080             <a class="code" href="classmoeoNSGAII.html#2bc5adbd55a32faead1c4ac0cbac3b35">defaultGenContinuator</a>(_maxGen), <a class="code" href="classmoeoNSGAII.html#7eb1e36631eebbe3216167b1077e3a53">continuator</a>(<a class="code" href="classmoeoNSGAII.html#2bc5adbd55a32faead1c4ac0cbac3b35">defaultGenContinuator</a>), <a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">popEval</a>(_eval), <a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a> (2),
+<a name="l00081"></a>00081             <a class="code" href="classmoeoNSGAII.html#75bc4b735c5de2a6fc93b2f2b63c7251">replace</a> (<a class="code" href="classmoeoNSGAII.html#2cf7c853cc4213664b0654b1e5a8862a">fitnessAssignment</a>, <a class="code" href="classmoeoNSGAII.html#4abf4583668c6f145f4dbb0a24d2dae0">diversityAssignment</a>), <a class="code" href="classmoeoNSGAII.html#a2050440184979533f2c403bb044c064">defaultSGAGenOp</a>(_crossover, _pCross, _mutation, _pMut),
+<a name="l00082"></a>00082             <a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a> (<a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>, <a class="code" href="classmoeoNSGAII.html#a2050440184979533f2c403bb044c064">defaultSGAGenOp</a>), <a class="code" href="classmoeoNSGAII.html#17954849435e579d74bf37ed7b9063fc">breed</a> (<a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>)
+<a name="l00083"></a>00083     {}
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 
+<a name="l00092"></a><a class="code" href="classmoeoNSGAII.html#1797f01afde01d155e559522df12ae05">00092</a>     <a class="code" href="classmoeoNSGAII.html#a13ddb75d60e2956905a9eacca2e0b2e">moeoNSGAII</a> (eoContinue &lt; MOEOT &gt; &amp; _continuator, eoEvalFunc &lt; MOEOT &gt; &amp; _eval, eoGenOp &lt; MOEOT &gt; &amp; _op) :
+<a name="l00093"></a>00093             <a class="code" href="classmoeoNSGAII.html#2bc5adbd55a32faead1c4ac0cbac3b35">defaultGenContinuator</a>(0), <a class="code" href="classmoeoNSGAII.html#7eb1e36631eebbe3216167b1077e3a53">continuator</a>(_continuator), <a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">popEval</a>(_eval), <a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>(2),
+<a name="l00094"></a>00094             <a class="code" href="classmoeoNSGAII.html#75bc4b735c5de2a6fc93b2f2b63c7251">replace</a>(<a class="code" href="classmoeoNSGAII.html#2cf7c853cc4213664b0654b1e5a8862a">fitnessAssignment</a>, <a class="code" href="classmoeoNSGAII.html#4abf4583668c6f145f4dbb0a24d2dae0">diversityAssignment</a>), <a class="code" href="classmoeoNSGAII.html#a2050440184979533f2c403bb044c064">defaultSGAGenOp</a>(<a class="code" href="classmoeoNSGAII.html#21e98772db6326a94d44a7f9a27d36f0">defaultQuadOp</a>, 1.0, <a class="code" href="classmoeoNSGAII.html#81f823297f146b3b6ce7460cb043e25e">defaultMonOp</a>, 1.0),
+<a name="l00095"></a>00095             <a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>(<a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>, _op), <a class="code" href="classmoeoNSGAII.html#17954849435e579d74bf37ed7b9063fc">breed</a>(<a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>)
+<a name="l00096"></a>00096     {}
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098 
+<a name="l00105"></a><a class="code" href="classmoeoNSGAII.html#a2b8d5b2ca7e7fd5845c6cda896b75c6">00105</a>     <a class="code" href="classmoeoNSGAII.html#a13ddb75d60e2956905a9eacca2e0b2e">moeoNSGAII</a> (eoContinue &lt; MOEOT &gt; &amp; _continuator, eoEvalFunc &lt; MOEOT &gt; &amp; _eval, eoTransform &lt; MOEOT &gt; &amp; _op) :
+<a name="l00106"></a>00106             <a class="code" href="classmoeoNSGAII.html#7eb1e36631eebbe3216167b1077e3a53">continuator</a>(_continuator), <a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">popEval</a>(_eval), <a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>(2),
+<a name="l00107"></a>00107             <a class="code" href="classmoeoNSGAII.html#75bc4b735c5de2a6fc93b2f2b63c7251">replace</a>(<a class="code" href="classmoeoNSGAII.html#2cf7c853cc4213664b0654b1e5a8862a">fitnessAssignment</a>, <a class="code" href="classmoeoNSGAII.html#4abf4583668c6f145f4dbb0a24d2dae0">diversityAssignment</a>), <a class="code" href="classmoeoNSGAII.html#a2050440184979533f2c403bb044c064">defaultSGAGenOp</a>(<a class="code" href="classmoeoNSGAII.html#21e98772db6326a94d44a7f9a27d36f0">defaultQuadOp</a>, 0.0, <a class="code" href="classmoeoNSGAII.html#81f823297f146b3b6ce7460cb043e25e">defaultMonOp</a>, 0.0),
+<a name="l00108"></a>00108             <a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>(<a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>, _op), <a class="code" href="classmoeoNSGAII.html#17954849435e579d74bf37ed7b9063fc">breed</a>(<a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>)
+<a name="l00109"></a>00109     {}
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 
+<a name="l00116"></a><a class="code" href="classmoeoNSGAII.html#60ba3ed4287efe81e1ff66b22e1d2e14">00116</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classmoeoNSGAII.html#60ba3ed4287efe81e1ff66b22e1d2e14">operator () </a>(eoPop &lt; MOEOT &gt; &amp;_pop)
+<a name="l00117"></a>00117     {
+<a name="l00118"></a>00118         eoPop &lt; MOEOT &gt; offspring, empty_pop;
+<a name="l00119"></a>00119         <a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">popEval</a> (empty_pop, _pop);      <span class="comment">// a first eval of _pop</span>
+<a name="l00120"></a>00120         <span class="comment">// evaluate fitness and diversity</span>
+<a name="l00121"></a>00121         <a class="code" href="classmoeoNSGAII.html#2cf7c853cc4213664b0654b1e5a8862a">fitnessAssignment</a>(_pop);
+<a name="l00122"></a>00122         <a class="code" href="classmoeoNSGAII.html#4abf4583668c6f145f4dbb0a24d2dae0">diversityAssignment</a>(_pop);
+<a name="l00123"></a>00123         <span class="keywordflow">do</span>
+<a name="l00124"></a>00124         {
+<a name="l00125"></a>00125             <span class="comment">// generate offspring, worths are recalculated if necessary</span>
+<a name="l00126"></a>00126             <a class="code" href="classmoeoNSGAII.html#17954849435e579d74bf37ed7b9063fc">breed</a> (_pop, offspring);
+<a name="l00127"></a>00127             <span class="comment">// eval of offspring</span>
+<a name="l00128"></a>00128             <a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">popEval</a> (_pop, offspring);
+<a name="l00129"></a>00129             <span class="comment">// after replace, the new pop is in _pop. Worths are recalculated if necessary</span>
+<a name="l00130"></a>00130             <a class="code" href="classmoeoNSGAII.html#75bc4b735c5de2a6fc93b2f2b63c7251">replace</a> (_pop, offspring);
+<a name="l00131"></a>00131         } <span class="keywordflow">while</span> (<a class="code" href="classmoeoNSGAII.html#7eb1e36631eebbe3216167b1077e3a53">continuator</a> (_pop));
+<a name="l00132"></a>00132     }
+<a name="l00133"></a>00133 
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135 <span class="keyword">protected</span>:
+<a name="l00136"></a>00136 
+<a name="l00138"></a><a class="code" href="classmoeoNSGAII.html#2bc5adbd55a32faead1c4ac0cbac3b35">00138</a>     eoGenContinue &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#2bc5adbd55a32faead1c4ac0cbac3b35">defaultGenContinuator</a>;
+<a name="l00140"></a><a class="code" href="classmoeoNSGAII.html#7eb1e36631eebbe3216167b1077e3a53">00140</a>     eoContinue &lt; MOEOT &gt; &amp; <a class="code" href="classmoeoNSGAII.html#7eb1e36631eebbe3216167b1077e3a53">continuator</a>;
+<a name="l00142"></a><a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">00142</a>     eoPopLoopEval &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#5b042567e51f014b3fe841346d9830a0">popEval</a>;
+<a name="l00144"></a><a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">00144</a>     moeoDetTournamentSelect &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#6134c5baa1c6921aaacd67f6f452871a">select</a>;
+<a name="l00146"></a><a class="code" href="classmoeoNSGAII.html#2cf7c853cc4213664b0654b1e5a8862a">00146</a>     moeoFastNonDominatedSortingFitnessAssignment &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#2cf7c853cc4213664b0654b1e5a8862a">fitnessAssignment</a>;
+<a name="l00148"></a><a class="code" href="classmoeoNSGAII.html#4abf4583668c6f145f4dbb0a24d2dae0">00148</a>     moeoFrontByFrontCrowdingDiversityAssignment  &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#4abf4583668c6f145f4dbb0a24d2dae0">diversityAssignment</a>;
+<a name="l00150"></a><a class="code" href="classmoeoNSGAII.html#75bc4b735c5de2a6fc93b2f2b63c7251">00150</a>     moeoElitistReplacement &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#75bc4b735c5de2a6fc93b2f2b63c7251">replace</a>;
+<a name="l00152"></a><a class="code" href="classmoeoNSGAII.html#21e98772db6326a94d44a7f9a27d36f0">00152</a>     eoQuadCloneOp &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#21e98772db6326a94d44a7f9a27d36f0">defaultQuadOp</a>;
+<a name="l00154"></a><a class="code" href="classmoeoNSGAII.html#81f823297f146b3b6ce7460cb043e25e">00154</a>     eoMonCloneOp &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#81f823297f146b3b6ce7460cb043e25e">defaultMonOp</a>;
+<a name="l00156"></a><a class="code" href="classmoeoNSGAII.html#a2050440184979533f2c403bb044c064">00156</a>     eoSGAGenOp &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#a2050440184979533f2c403bb044c064">defaultSGAGenOp</a>;
+<a name="l00158"></a><a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">00158</a>     eoGeneralBreeder &lt; MOEOT &gt; <a class="code" href="classmoeoNSGAII.html#2099c3069a7da12485578fc66ff71ff1">genBreed</a>;
+<a name="l00160"></a><a class="code" href="classmoeoNSGAII.html#17954849435e579d74bf37ed7b9063fc">00160</a>     eoBreed &lt; MOEOT &gt; &amp; <a class="code" href="classmoeoNSGAII.html#17954849435e579d74bf37ed7b9063fc">breed</a>;
+<a name="l00161"></a>00161 
+<a name="l00162"></a>00162 };
+<a name="l00163"></a>00163 
+<a name="l00164"></a>00164 <span class="preprocessor">#endif </span><span class="comment">/*MOEONSGAII_H_*/</span>
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 10:35:51 2007 for ParadisEO-MOEOMovingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

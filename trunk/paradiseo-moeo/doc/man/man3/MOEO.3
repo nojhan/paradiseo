@@ -1,4 +1,4 @@
-.TH "MOEO" 3 "6 Jul 2007" "Version 1.0-beta" "ParadisEO-MOEO" \" -*- nroff -*-
+.TH "MOEO" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOEOMovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -165,8 +165,6 @@ Sets the objective vector of the current solution.
 
 .PP
 Definition at line 85 of file MOEO.h.
-.PP
-References MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::invalidObjectiveVectorValue, and MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::objectiveVectorValue.
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity> void \fBMOEO\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::fitness (const \fBFitness\fP & _fitnessValue)\fC [inline]\fP"
 .PP
 Sets the fitness value of the current solution. 
@@ -179,8 +177,6 @@ Sets the fitness value of the current solution.
 
 .PP
 Definition at line 127 of file MOEO.h.
-.PP
-References MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::fitnessValue, and MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::invalidFitnessValue.
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity> void \fBMOEO\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::diversity (const \fBDiversity\fP & _diversityValue)\fC [inline]\fP"
 .PP
 Sets the diversity value of the current solution. 
@@ -193,8 +189,6 @@ Sets the diversity value of the current solution.
 
 .PP
 Definition at line 169 of file MOEO.h.
-.PP
-References MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::diversityValue, and MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::invalidDiversityValue.
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity> bool \fBMOEO\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::operator< (const \fBMOEO\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity > & _other) const\fC [inline]\fP"
 .PP
 Returns true if the objective vector of the current solution is smaller than the objective vector of _other on the first objective, then on the second, and so on (can be usefull for sorting/printing). 
@@ -209,8 +203,6 @@ You should implement another function in the sub-class of \fBMOEO\fP to have ano
 
 .PP
 Definition at line 220 of file MOEO.h.
-.PP
-References MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::objectiveVector().
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity> virtual void \fBMOEO\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::printOn (std::ostream & _os) const\fC [inline, virtual]\fP"
 .PP
 Writing object. 
@@ -224,11 +216,9 @@ Writing object.
 .PP
 Reimplemented from \fBEO< MOEOObjectiveVector >\fP.
 .PP
-Reimplemented in \fBmoeoBitVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity >\fP, \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >\fP, \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool >\fP, and \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, double >\fP.
+Reimplemented in \fBmoeoBitVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity >\fP, \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >\fP, \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool >\fP, \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, double >\fP, \fBmoeoVector< moeoRealObjectiveVector< FlowShopObjectiveVectorTraits >, double, double, unsigned int >\fP, and \fBmoeoVector< moeoRealObjectiveVector< Sch1ObjectiveVectorTraits >, double, double, double >\fP.
 .PP
 Definition at line 239 of file MOEO.h.
-.PP
-References MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::invalidObjectiveVector(), and MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::objectiveVectorValue.
 .SS "template<class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity> virtual void \fBMOEO\fP< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::readFrom (std::istream & _is)\fC [inline, virtual]\fP"
 .PP
 Reading object. 
@@ -242,12 +232,10 @@ Reading object.
 .PP
 Reimplemented from \fBEO< MOEOObjectiveVector >\fP.
 .PP
-Reimplemented in \fBmoeoBitVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity >\fP, \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >\fP, \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool >\fP, and \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, double >\fP.
+Reimplemented in \fBmoeoBitVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity >\fP, \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >\fP, \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool >\fP, \fBmoeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, double >\fP, \fBmoeoVector< moeoRealObjectiveVector< FlowShopObjectiveVectorTraits >, double, double, unsigned int >\fP, and \fBmoeoVector< moeoRealObjectiveVector< Sch1ObjectiveVectorTraits >, double, double, double >\fP.
 .PP
 Definition at line 256 of file MOEO.h.
-.PP
-References MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::invalidateObjectiveVector(), MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::invalidObjectiveVectorValue, and MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::objectiveVectorValue.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-MOEO from the source code.
+Generated automatically by Doxygen for ParadisEO-MOEOMovingObjects from the source code.
