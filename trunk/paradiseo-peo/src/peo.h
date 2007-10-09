@@ -339,4 +339,8 @@
 /* Synchronous multi-start model */
 #include "peoSyncMultiStart.h"
 
+/* Parallel PSO */
+#include "peoPSO.h"
+#include "peoEvalFuncPSO.h"
+
 #endif
