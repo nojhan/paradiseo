@@ -1,0 +1,123 @@
+.TH "moeoObjectiveVector" 3 "9 Oct 2007" "Version 1.0" "ParadisEO-MOEOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoObjectiveVector \- Abstract class allowing to represent a solution in the objective space (phenotypic representation).  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoObjectiveVector.h>\fP
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef ObjectiveVectorTraits \fBTraits\fP"
+.br
+.RI "\fIThe traits of objective vectors. \fP"
+.ti -1c
+.RI "typedef ObjectiveVectorType \fBType\fP"
+.br
+.RI "\fIThe type of an objective value. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoObjectiveVector\fP (\fBType\fP _value=\fBType\fP())"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "\fBmoeoObjectiveVector\fP (std::vector< \fBType\fP > &_v)"
+.br
+.RI "\fICtor from a vector of Type. \fP"
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static void \fBsetup\fP (unsigned int _nObjectives, std::vector< bool > &_bObjectives)"
+.br
+.RI "\fI\fBParameters\fP setting (for the objective vector of any solution). \fP"
+.ti -1c
+.RI "static unsigned int \fBnObjectives\fP ()"
+.br
+.RI "\fIReturns the number of objectives. \fP"
+.ti -1c
+.RI "static bool \fBminimizing\fP (unsigned int _i)"
+.br
+.RI "\fIReturns true if the _ith objective have to be minimized. \fP"
+.ti -1c
+.RI "static bool \fBmaximizing\fP (unsigned int _i)"
+.br
+.RI "\fIReturns true if the _ith objective have to be maximized. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class ObjectiveVectorTraits, class ObjectiveVectorType> class moeoObjectiveVector< ObjectiveVectorTraits, ObjectiveVectorType >"
+Abstract class allowing to represent a solution in the objective space (phenotypic representation). 
+
+The template argument ObjectiveVectorTraits defaults to \fBmoeoObjectiveVectorTraits\fP, but it can be replaced at will by any other class that implements the static functions defined therein. Some static funtions to access to the traits characteristics are re-defined in order not to write a lot of typedef's. 
+.PP
+Definition at line 50 of file moeoObjectiveVector.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class ObjectiveVectorTraits, class ObjectiveVectorType> \fBmoeoObjectiveVector\fP< ObjectiveVectorTraits, ObjectiveVectorType >::\fBmoeoObjectiveVector\fP (std::vector< \fBType\fP > & _v)\fC [inline]\fP"
+.PP
+Ctor from a vector of Type. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_v\fP the std::vector < Type > 
+.RE
+.PP
+
+.PP
+Definition at line 71 of file moeoObjectiveVector.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class ObjectiveVectorTraits, class ObjectiveVectorType> static void \fBmoeoObjectiveVector\fP< ObjectiveVectorTraits, ObjectiveVectorType >::setup (unsigned int _nObjectives, std::vector< bool > & _bObjectives)\fC [inline, static]\fP"
+.PP
+\fBParameters\fP setting (for the objective vector of any solution). 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_nObjectives\fP the number of objectives 
+.br
+\fI_bObjectives\fP the min/max vector (true = min / false = max) 
+.RE
+.PP
+
+.PP
+Definition at line 80 of file moeoObjectiveVector.h.
+.SS "template<class ObjectiveVectorTraits, class ObjectiveVectorType> static bool \fBmoeoObjectiveVector\fP< ObjectiveVectorTraits, ObjectiveVectorType >::minimizing (unsigned int _i)\fC [inline, static]\fP"
+.PP
+Returns true if the _ith objective have to be minimized. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_i\fP the index 
+.RE
+.PP
+
+.PP
+Definition at line 99 of file moeoObjectiveVector.h.
+.SS "template<class ObjectiveVectorTraits, class ObjectiveVectorType> static bool \fBmoeoObjectiveVector\fP< ObjectiveVectorTraits, ObjectiveVectorType >::maximizing (unsigned int _i)\fC [inline, static]\fP"
+.PP
+Returns true if the _ith objective have to be maximized. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_i\fP the index 
+.RE
+.PP
+
+.PP
+Definition at line 109 of file moeoObjectiveVector.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEOMovingObjects from the source code.

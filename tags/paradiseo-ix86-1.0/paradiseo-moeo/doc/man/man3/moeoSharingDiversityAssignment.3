@@ -1,0 +1,198 @@
+.TH "moeoSharingDiversityAssignment" 3 "9 Oct 2007" "Version 1.0" "ParadisEO-MOEOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoSharingDiversityAssignment \- Sharing assignment scheme originally porposed by: D.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoSharingDiversityAssignment.h>\fP
+.PP
+Inherits \fBmoeoDiversityAssignment< MOEOT >< MOEOT >\fP.
+.PP
+Inherited by \fBmoeoFrontByFrontSharingDiversityAssignment< MOEOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef MOEOT::ObjectiveVector \fBObjectiveVector\fP"
+.br
+.RI "\fIthe objective vector type of the solutions \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoSharingDiversityAssignment\fP (\fBmoeoDistance\fP< MOEOT, double > &_distance, double _nicheSize=0.5, double _alpha=1.0)"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "\fBmoeoSharingDiversityAssignment\fP (double _nicheSize=0.5, double _alpha=1.0)"
+.br
+.RI "\fICtor with an euclidean distance (with normalized objective values) in the objective space is used as default. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (\fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fISets diversity values for every solution contained in the population _pop. \fP"
+.ti -1c
+.RI "void \fBupdateByDeleting\fP (\fBeoPop\fP< MOEOT > &_pop, \fBObjectiveVector\fP &_objVec)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBsetSimilarities\fP (\fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fISets similarities for every solution contained in the population _pop. \fP"
+.ti -1c
+.RI "double \fBsh\fP (double _dist)"
+.br
+.RI "\fISharing function. \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoDistance\fP< MOEOT, double > & \fBdistance\fP"
+.br
+.RI "\fIthe distance used to compute the neighborhood of solutions \fP"
+.ti -1c
+.RI "\fBmoeoEuclideanDistance\fP< MOEOT > \fBdefaultDistance\fP"
+.br
+.RI "\fIeuclidean distancein the objective space (can be used as default) \fP"
+.ti -1c
+.RI "double \fBnicheSize\fP"
+.br
+.RI "\fIneighborhood size in terms of radius distance \fP"
+.ti -1c
+.RI "double \fBalpha\fP"
+.br
+.RI "\fIparameter used to regulate the shape of the sharing function \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT> class moeoSharingDiversityAssignment< MOEOT >"
+Sharing assignment scheme originally porposed by: D. 
+
+E. Goldberg, 'Genetic Algorithms in Search, Optimization and Machine Learning', Addision-Wesley, MA, USA (1989). 
+.PP
+Definition at line 53 of file moeoSharingDiversityAssignment.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class MOEOT> \fBmoeoSharingDiversityAssignment\fP< MOEOT >::\fBmoeoSharingDiversityAssignment\fP (\fBmoeoDistance\fP< MOEOT, double > & _distance, double _nicheSize = \fC0.5\fP, double _alpha = \fC1.0\fP)\fC [inline]\fP"
+.PP
+Ctor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_distance\fP the distance used to compute the neighborhood of solutions (can be related to the decision space or the objective space) 
+.br
+\fI_nicheSize\fP neighborhood size in terms of radius distance (closely related to the way the distances are computed) 
+.br
+\fI_alpha\fP parameter used to regulate the shape of the sharing function 
+.RE
+.PP
+
+.PP
+Definition at line 67 of file moeoSharingDiversityAssignment.h.
+.SS "template<class MOEOT> \fBmoeoSharingDiversityAssignment\fP< MOEOT >::\fBmoeoSharingDiversityAssignment\fP (double _nicheSize = \fC0.5\fP, double _alpha = \fC1.0\fP)\fC [inline]\fP"
+.PP
+Ctor with an euclidean distance (with normalized objective values) in the objective space is used as default. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_nicheSize\fP neighborhood size in terms of radius distance (closely related to the way the distances are computed) 
+.br
+\fI_alpha\fP parameter used to regulate the shape of the sharing function 
+.RE
+.PP
+
+.PP
+Definition at line 76 of file moeoSharingDiversityAssignment.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT> void \fBmoeoSharingDiversityAssignment\fP< MOEOT >::operator() (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
+.PP
+Sets diversity values for every solution contained in the population _pop. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< eoPop< MOEOT > &, void >\fP.
+.PP
+Definition at line 84 of file moeoSharingDiversityAssignment.h.
+.PP
+References moeoSharingDiversityAssignment< MOEOT >::setSimilarities().
+.SS "template<class MOEOT> void \fBmoeoSharingDiversityAssignment\fP< MOEOT >::updateByDeleting (\fBeoPop\fP< MOEOT > & _pop, \fBObjectiveVector\fP & _objVec)\fC [inline, virtual]\fP"
+.PP
+\fBWarning:\fP
+.RS 4
+NOT IMPLEMENTED, DO NOTHING ! Updates the diversity values of the whole population _pop by taking the deletion of the objective vector _objVec into account. 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.br
+\fI_objVec\fP the objective vector 
+.RE
+.PP
+\fBWarning:\fP
+.RS 4
+NOT IMPLEMENTED, DO NOTHING ! 
+.RE
+.PP
+
+.PP
+Implements \fBmoeoDiversityAssignment< MOEOT >\fP.
+.PP
+Reimplemented in \fBmoeoFrontByFrontSharingDiversityAssignment< MOEOT >\fP.
+.PP
+Definition at line 105 of file moeoSharingDiversityAssignment.h.
+.SS "template<class MOEOT> virtual void \fBmoeoSharingDiversityAssignment\fP< MOEOT >::setSimilarities (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, protected, virtual]\fP"
+.PP
+Sets similarities for every solution contained in the population _pop. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBmoeoFrontByFrontSharingDiversityAssignment< MOEOT >\fP.
+.PP
+Definition at line 127 of file moeoSharingDiversityAssignment.h.
+.PP
+References moeoSharingDiversityAssignment< MOEOT >::distance, and moeoSharingDiversityAssignment< MOEOT >::sh().
+.PP
+Referenced by moeoSharingDiversityAssignment< MOEOT >::operator()().
+.SS "template<class MOEOT> double \fBmoeoSharingDiversityAssignment\fP< MOEOT >::sh (double _dist)\fC [inline, protected]\fP"
+.PP
+Sharing function. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_dist\fP the distance value 
+.RE
+.PP
+
+.PP
+Definition at line 150 of file moeoSharingDiversityAssignment.h.
+.PP
+References moeoSharingDiversityAssignment< MOEOT >::alpha, and moeoSharingDiversityAssignment< MOEOT >::nicheSize.
+.PP
+Referenced by moeoSharingDiversityAssignment< MOEOT >::setSimilarities(), and moeoFrontByFrontSharingDiversityAssignment< MOEOT >::setSimilarities().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEOMovingObjects from the source code.

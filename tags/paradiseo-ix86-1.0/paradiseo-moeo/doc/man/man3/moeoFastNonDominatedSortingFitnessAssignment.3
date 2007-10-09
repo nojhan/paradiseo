@@ -1,0 +1,189 @@
+.TH "moeoFastNonDominatedSortingFitnessAssignment" 3 "9 Oct 2007" "Version 1.0" "ParadisEO-MOEOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoFastNonDominatedSortingFitnessAssignment \- Fitness assignment sheme based on Pareto-dominance count proposed in: N.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoFastNonDominatedSortingFitnessAssignment.h>\fP
+.PP
+Inherits \fBmoeoParetoBasedFitnessAssignment< MOEOT >< MOEOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef MOEOT::ObjectiveVector \fBObjectiveVector\fP"
+.br
+.RI "\fIthe objective vector type of the solutions \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoFastNonDominatedSortingFitnessAssignment\fP ()"
+.br
+.RI "\fIDefault ctor. \fP"
+.ti -1c
+.RI "\fBmoeoFastNonDominatedSortingFitnessAssignment\fP (\fBmoeoObjectiveVectorComparator\fP< \fBObjectiveVector\fP > &_comparator)"
+.br
+.RI "\fICtor where you can choose your own way to compare objective vectors. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (\fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fISets the fitness values for every solution contained in the population _pop. \fP"
+.ti -1c
+.RI "void \fBupdateByDeleting\fP (\fBeoPop\fP< MOEOT > &_pop, \fBObjectiveVector\fP &_objVec)"
+.br
+.RI "\fIUpdates the fitness values of the whole population _pop by taking the deletion of the objective vector _objVec into account. \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBoneObjective\fP (\fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fISets the fitness values for mono-objective problems. \fP"
+.ti -1c
+.RI "void \fBtwoObjectives\fP (\fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fISets the fitness values for bi-objective problems with a complexity of O(n log n), where n stands for the population size. \fP"
+.ti -1c
+.RI "void \fBmObjectives\fP (\fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fISets the fitness values for problems with more than two objectives with a complexity of O(n² log n), where n stands for the population size. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoObjectiveVectorComparator\fP< \fBObjectiveVector\fP > & \fBcomparator\fP"
+.br
+.RI "\fIFunctor to compare two objective vectors. \fP"
+.ti -1c
+.RI "\fBmoeoParetoObjectiveVectorComparator\fP< \fBObjectiveVector\fP > \fBparetoComparator\fP"
+.br
+.RI "\fIFunctor to compare two objective vectors according to Pareto dominance relation. \fP"
+.ti -1c
+.RI "\fBmoeoFastNonDominatedSortingFitnessAssignment::ObjectiveComparator\fP \fBobjComparator\fP"
+.br
+.RI "\fIFunctor allowing to compare two solutions according to their first objective value, then their second, and so on. \fP"
+.in -1c
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBObjectiveComparator\fP"
+.br
+.RI "\fIFunctor allowing to compare two solutions according to their first objective value, then their second, and so on. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT> class moeoFastNonDominatedSortingFitnessAssignment< MOEOT >"
+Fitness assignment sheme based on Pareto-dominance count proposed in: N. 
+
+Srinivas, K. Deb, 'Multiobjective Optimization Using Nondominated Sorting in Genetic Algorithms', Evolutionary Computation vol. 2, no. 3, pp. 221-248 (1994) and in: K. Deb, A. Pratap, S. Agarwal, T. Meyarivan, 'A Fast and Elitist Multi-Objective Genetic Algorithm: NSGA-II', IEEE Transactions on Evolutionary Computation, vol. 6, no. 2 (2002). This strategy is, for instance, used in NSGA and NSGA-II. 
+.PP
+Definition at line 57 of file moeoFastNonDominatedSortingFitnessAssignment.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class MOEOT> \fBmoeoFastNonDominatedSortingFitnessAssignment\fP< MOEOT >::\fBmoeoFastNonDominatedSortingFitnessAssignment\fP (\fBmoeoObjectiveVectorComparator\fP< \fBObjectiveVector\fP > & _comparator)\fC [inline]\fP"
+.PP
+Ctor where you can choose your own way to compare objective vectors. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_comparator\fP the functor used to compare objective vectors 
+.RE
+.PP
+
+.PP
+Definition at line 76 of file moeoFastNonDominatedSortingFitnessAssignment.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT> void \fBmoeoFastNonDominatedSortingFitnessAssignment\fP< MOEOT >::operator() (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
+.PP
+Sets the fitness values for every solution contained in the population _pop. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< eoPop< MOEOT > &, void >\fP.
+.PP
+Definition at line 84 of file moeoFastNonDominatedSortingFitnessAssignment.h.
+.PP
+References moeoFastNonDominatedSortingFitnessAssignment< MOEOT >::mObjectives(), and moeoFastNonDominatedSortingFitnessAssignment< MOEOT >::oneObjective().
+.SS "template<class MOEOT> void \fBmoeoFastNonDominatedSortingFitnessAssignment\fP< MOEOT >::updateByDeleting (\fBeoPop\fP< MOEOT > & _pop, \fBObjectiveVector\fP & _objVec)\fC [inline, virtual]\fP"
+.PP
+Updates the fitness values of the whole population _pop by taking the deletion of the objective vector _objVec into account. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.br
+\fI_objVec\fP the objective vector 
+.RE
+.PP
+
+.PP
+Implements \fBmoeoFitnessAssignment< MOEOT >\fP.
+.PP
+Definition at line 126 of file moeoFastNonDominatedSortingFitnessAssignment.h.
+.PP
+References moeoFastNonDominatedSortingFitnessAssignment< MOEOT >::comparator.
+.SS "template<class MOEOT> void \fBmoeoFastNonDominatedSortingFitnessAssignment\fP< MOEOT >::oneObjective (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, private]\fP"
+.PP
+Sets the fitness values for mono-objective problems. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Definition at line 168 of file moeoFastNonDominatedSortingFitnessAssignment.h.
+.PP
+References moeoFastNonDominatedSortingFitnessAssignment< MOEOT >::objComparator.
+.PP
+Referenced by moeoFastNonDominatedSortingFitnessAssignment< MOEOT >::operator()().
+.SS "template<class MOEOT> void \fBmoeoFastNonDominatedSortingFitnessAssignment\fP< MOEOT >::twoObjectives (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, private]\fP"
+.PP
+Sets the fitness values for bi-objective problems with a complexity of O(n log n), where n stands for the population size. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Definition at line 190 of file moeoFastNonDominatedSortingFitnessAssignment.h.
+.SS "template<class MOEOT> void \fBmoeoFastNonDominatedSortingFitnessAssignment\fP< MOEOT >::mObjectives (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, private]\fP"
+.PP
+Sets the fitness values for problems with more than two objectives with a complexity of O(n² log n), where n stands for the population size. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Definition at line 200 of file moeoFastNonDominatedSortingFitnessAssignment.h.
+.PP
+References moeoFastNonDominatedSortingFitnessAssignment< MOEOT >::comparator.
+.PP
+Referenced by moeoFastNonDominatedSortingFitnessAssignment< MOEOT >::operator()().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEOMovingObjects from the source code.

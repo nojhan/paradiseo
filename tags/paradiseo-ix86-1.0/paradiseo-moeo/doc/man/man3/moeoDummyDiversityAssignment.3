@@ -1,0 +1,77 @@
+.TH "moeoDummyDiversityAssignment" 3 "9 Oct 2007" "Version 1.0" "ParadisEO-MOEOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoDummyDiversityAssignment \- \fBmoeoDummyDiversityAssignment\fP is a \fBmoeoDiversityAssignment\fP that gives the value '0' as the individual's diversity for a whole population if it is invalid.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoDummyDiversityAssignment.h>\fP
+.PP
+Inherits \fBmoeoDiversityAssignment< MOEOT >< MOEOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef MOEOT::ObjectiveVector \fBObjectiveVector\fP"
+.br
+.RI "\fIThe type for objective vector. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBoperator()\fP (\fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fISets the diversity to '0' for every individuals of the population _pop if it is invalid. \fP"
+.ti -1c
+.RI "void \fBupdateByDeleting\fP (\fBeoPop\fP< MOEOT > &_pop, \fBObjectiveVector\fP &_objVec)"
+.br
+.RI "\fIUpdates the diversity values of the whole population _pop by taking the deletion of the objective vector _objVec into account. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT> class moeoDummyDiversityAssignment< MOEOT >"
+\fBmoeoDummyDiversityAssignment\fP is a \fBmoeoDiversityAssignment\fP that gives the value '0' as the individual's diversity for a whole population if it is invalid. 
+.PP
+Definition at line 47 of file moeoDummyDiversityAssignment.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT> void \fBmoeoDummyDiversityAssignment\fP< MOEOT >::operator() (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
+.PP
+Sets the diversity to '0' for every individuals of the population _pop if it is invalid. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< eoPop< MOEOT > &, void >\fP.
+.PP
+Definition at line 59 of file moeoDummyDiversityAssignment.h.
+.SS "template<class MOEOT> void \fBmoeoDummyDiversityAssignment\fP< MOEOT >::updateByDeleting (\fBeoPop\fP< MOEOT > & _pop, \fBObjectiveVector\fP & _objVec)\fC [inline, virtual]\fP"
+.PP
+Updates the diversity values of the whole population _pop by taking the deletion of the objective vector _objVec into account. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.br
+\fI_objVec\fP the objective vector 
+.RE
+.PP
+
+.PP
+Implements \fBmoeoDiversityAssignment< MOEOT >\fP.
+.PP
+Definition at line 77 of file moeoDummyDiversityAssignment.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEOMovingObjects from the source code.

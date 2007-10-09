@@ -1,0 +1,79 @@
+.TH "moeoDistanceMatrix" 3 "9 Oct 2007" "Version 1.0" "ParadisEO-MOEOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoDistanceMatrix \- A matrix to compute distances between every pair of individuals contained in a population.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoDistanceMatrix.h>\fP
+.PP
+Inherits \fBeoUF< const eoPop< MOEOT > &, void >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoDistanceMatrix\fP (unsigned int _size, \fBmoeoDistance\fP< MOEOT, Type > &_distance)"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (const \fBeoPop\fP< MOEOT > &_pop)"
+.br
+.RI "\fISets the distance between every pair of individuals contained in the population _pop. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoDistance\fP< MOEOT, Type > & \fBdistance\fP"
+.br
+.RI "\fIthe distance to use \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT, class Type> class moeoDistanceMatrix< MOEOT, Type >"
+A matrix to compute distances between every pair of individuals contained in a population. 
+.PP
+Definition at line 49 of file moeoDistanceMatrix.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class MOEOT, class Type> \fBmoeoDistanceMatrix\fP< MOEOT, Type >::\fBmoeoDistanceMatrix\fP (unsigned int _size, \fBmoeoDistance\fP< MOEOT, Type > & _distance)\fC [inline]\fP"
+.PP
+Ctor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_size\fP size for every dimension of the matrix 
+.br
+\fI_distance\fP the distance to use 
+.RE
+.PP
+
+.PP
+Definition at line 62 of file moeoDistanceMatrix.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT, class Type> void \fBmoeoDistanceMatrix\fP< MOEOT, Type >::operator() (const \fBeoPop\fP< MOEOT > & _pop)\fC [inline, virtual]\fP"
+.PP
+Sets the distance between every pair of individuals contained in the population _pop. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< const eoPop< MOEOT > &, void >\fP.
+.PP
+Definition at line 76 of file moeoDistanceMatrix.h.
+.PP
+References moeoDistanceMatrix< MOEOT, Type >::distance.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEOMovingObjects from the source code.
