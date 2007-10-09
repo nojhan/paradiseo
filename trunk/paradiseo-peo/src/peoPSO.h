@@ -46,7 +46,7 @@
 #include "core/runner.h" 
 #include "core/peo_debug.h" 
 
-/! Class providing an elementary ParadisEO evolutionary algorithm.
+//! Class providing an elementary ParadisEO evolutionary algorithm.
 
 //! The peoPSO class offers an elementary Particle Swarm Optimization implementation. In addition, as compared
 //! with the algorithms provided by the EO framework, the peoPSO class has the underlying necessary structure
