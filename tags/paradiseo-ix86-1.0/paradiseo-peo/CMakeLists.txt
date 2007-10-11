@@ -40,7 +40,7 @@ INCLUDE(peo-conf.cmake OPTIONAL)
 PROJECT(ParadisEO-PEO)
 
 SET(PACKAGE_BUGREPORT "paradiseo-help@lists.gforge.inria.fr" CACHE STRING "Package bug report" FORCE)
-SET(PACKAGE_NAME "ParadisEO-PEO Moving Objects" CACHE STRING "Package name" FORCE)
+SET(PACKAGE_NAME "ParadisEO-PEO: Parallel and Distributed Evolving Objects" CACHE STRING "Package name" FORCE)
 SET(PACKAGE_STRING "ParadisEO-PEO 1.0" CACHE STRING "Package string full name" FORCE)
 SET(PACKAGE_VERSION "1.0" CACHE STRING "Package version" FORCE)
 SET(GLOBAL_VERSION "1.0" CACHE STRING "Global version" FORCE)

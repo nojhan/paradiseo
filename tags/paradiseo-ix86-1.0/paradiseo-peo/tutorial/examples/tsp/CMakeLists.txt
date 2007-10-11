@@ -1,6 +1,6 @@
 
 ######################################################################################
-### 0) Copy the "benchs" directory in the build directory to easily run the lessons
+### 0) Copy the "benchs" directory and manage the documentation
 ######################################################################################
 
 ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/tutorial/examples/tsp/benchs)
@@ -11,6 +11,29 @@ ADD_CUSTOM_COMMAND(
     ARGS -E copy_directory 
       ${ParadisEO-PEO_SOURCE_DIR}/tutorial/examples/tsp/benchs
       ${ParadisEO-PEO_BINARY_DIR}/tutorial/examples/tsp/benchs)
+
+IF (DOXYGEN_FOUND)
+        #SET(DOC_DIR ${CMAKE_BINARY_DIR}/doc CACHE PATH "PEO TSP documentation directory")
+        SET(PEO_TSP_DOC_CONFIG_FILE "paradiseo-peo-lsn-shared.doxyfile" CACHE PATH "PEO TSP documentation configuration file")
+                # define the doc target
+        IF (DOXYGEN_EXECUTABLE)
+                ADD_CUSTOM_TARGET(doc
+                COMMAND ${DOXYGEN_EXECUTABLE} ${PEO_TSP_DOC_CONFIG_FILE}
+                WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+            )
+        ENDIF (DOXYGEN_EXECUTABLE)
+
+        # configure doxyfile file
+        CONFIGURE_FILE("${CMAKE_SOURCE_DIR}/tutorial/examples/tsp/${PEO_TSP_DOC_CONFIG_FILE}.cmake"
+                       "${CMAKE_BINARY_DIR}/tutorial/examples/tsp/${PEO_TSP_DOC_CONFIG_FILE}")
+
+ELSE (DOXYGEN_FOUND)
+        MESSAGE(STATUS "Unable to generate the documentation, Doxygen package not found")
+ENDIF (DOXYGEN_FOUND)
+
+##########################################################################################
+
+
 
 ######################################################################################
 

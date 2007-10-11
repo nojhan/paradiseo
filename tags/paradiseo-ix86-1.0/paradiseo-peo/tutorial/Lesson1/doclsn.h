@@ -78,7 +78,7 @@
 //!		<br/>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eoContinue< EOT >& __cont,
 //!		<br/>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; peoPopEval< EOT >& __pop_eval,
 //!		<br/>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eoSelect< EOT >& __select,
-//!		<br/>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; peoTransform< EOT >& __trans,
+//!		<br/>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; peoTransform<EOT>& __trans,
 //!		<br/>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eoReplacement< EOT >& __replace 
 //!		<br/>&nbsp;&nbsp;&nbsp;&nbsp; );
 //!	</td>

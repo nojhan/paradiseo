@@ -82,7 +82,7 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = @CMAKE_SOURCE_DIR@/src  @CMAKE_SOURCE_DIR@/doc @CMAKE_SOURCE_DIR@/tutorial
+INPUT                  = @CMAKE_SOURCE_DIR@/src  @CMAKE_SOURCE_DIR@/doc
 FILE_PATTERNS          = *.cpp \
                          *.h \
                          NEWS \
