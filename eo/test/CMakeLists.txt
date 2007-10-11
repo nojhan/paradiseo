@@ -70,6 +70,12 @@ SET (TEST_LIST  t-eoParetoFitness
 				t-eoRNG		
 				t-eoEasyPSO 
 				t-eoNSGA 
+				t-eoInt
+				t-eoInitPermutation
+				t-eoSwapMutation
+				t-eoShiftMutation
+				t-eoTwoOptMutation
+				t-eoRingTopology
 				# t-eoFrontSorter 
 				# t-eoEpsMOEA
 				)

@@ -44,8 +44,14 @@ check_PROGRAMS 			= t-eoParetoFitness \
 				t-eoEasyPSO \
 				t-eoNSGA \
 				t-eoFrontSorter \
-				t-eoEpsMOEA
-				
+				t-eoEpsMOEA \
+				t-eoInt \
+				t-eoInitPermutation \
+				t-eoSwapMutation \
+				t-eoShiftMutation \
+				t-eoTwoOptMutation \
+				t-eoRingTopology
+
 TESTS				= $(check_PROGRAMS) \
 				run_tests # This script can be used to check command-line arguments
 
