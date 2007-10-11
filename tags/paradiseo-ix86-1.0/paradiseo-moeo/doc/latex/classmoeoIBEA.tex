@@ -1,0 +1,175 @@
+\section{moeo\-IBEA$<$ MOEOT $>$ Class Template Reference}
+\label{classmoeoIBEA}\index{moeoIBEA@{moeoIBEA}}
+IBEA (Indicator-Based Evolutionary Algorithm) as described in: E.  
+
+
+{\tt \#include $<$moeo\-IBEA.h$>$}
+
+Inheritance diagram for moeo\-IBEA$<$ MOEOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5cm]{classmoeoIBEA}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+typedef MOEOT::Objective\-Vector \bf{Objective\-Vector}\label{classmoeoIBEA_220d16bade11304306f124f6014dc4b8}
+
+\begin{CompactList}\small\item\em The type of objective vector. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\bf{moeo\-IBEA} (unsigned int \_\-max\-Gen, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \&\_\-eval, \bf{eo\-Gen\-Op}$<$ MOEOT $>$ \&\_\-op, \bf{moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric}$<$ \bf{Objective\-Vector}, double $>$ \&\_\-metric, const double \_\-kappa=0.05)
+\begin{CompactList}\small\item\em Simple ctor with a \doxyref{eo\-Gen\-Op}. \item\end{CompactList}\item 
+\bf{moeo\-IBEA} (unsigned int \_\-max\-Gen, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \&\_\-eval, \bf{eo\-Transform}$<$ MOEOT $>$ \&\_\-op, \bf{moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric}$<$ \bf{Objective\-Vector}, double $>$ \&\_\-metric, const double \_\-kappa=0.05)
+\begin{CompactList}\small\item\em Simple ctor with a \doxyref{eo\-Transform}. \item\end{CompactList}\item 
+\bf{moeo\-IBEA} (unsigned int \_\-max\-Gen, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \&\_\-eval, \bf{eo\-Quad\-Op}$<$ MOEOT $>$ \&\_\-crossover, double \_\-p\-Cross, \bf{eo\-Mon\-Op}$<$ MOEOT $>$ \&\_\-mutation, double \_\-p\-Mut, \bf{moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric}$<$ \bf{Objective\-Vector}, double $>$ \&\_\-metric, const double \_\-kappa=0.05)
+\begin{CompactList}\small\item\em Ctor with a crossover, a mutation and their corresponding rates. \item\end{CompactList}\item 
+\bf{moeo\-IBEA} (\bf{eo\-Continue}$<$ MOEOT $>$ \&\_\-continuator, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \&\_\-eval, \bf{eo\-Gen\-Op}$<$ MOEOT $>$ \&\_\-op, \bf{moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric}$<$ \bf{Objective\-Vector}, double $>$ \&\_\-metric, const double \_\-kappa=0.05)
+\begin{CompactList}\small\item\em Ctor with a continuator (instead of \_\-max\-Gen) and a \doxyref{eo\-Gen\-Op}. \item\end{CompactList}\item 
+\bf{moeo\-IBEA} (\bf{eo\-Continue}$<$ MOEOT $>$ \&\_\-continuator, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \&\_\-eval, \bf{eo\-Transform}$<$ MOEOT $>$ \&\_\-op, \bf{moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric}$<$ \bf{Objective\-Vector}, double $>$ \&\_\-metric, const double \_\-kappa=0.05)
+\begin{CompactList}\small\item\em Ctor with a continuator (instead of \_\-max\-Gen) and a \doxyref{eo\-Transform}. \item\end{CompactList}\item 
+virtual void \bf{operator()} (\bf{eo\-Pop}$<$ MOEOT $>$ \&\_\-pop)
+\begin{CompactList}\small\item\em Apply a few generation of evolution to the population \_\-pop until the stopping criteria is verified. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+\bf{eo\-Gen\-Continue}$<$ MOEOT $>$ \bf{default\-Gen\-Continuator}\label{classmoeoIBEA_70ecf0f84e1d4ba33b20fdfb2a3b3d02}
+
+\begin{CompactList}\small\item\em a continuator based on the number of generations (used as default) \item\end{CompactList}\item 
+\bf{eo\-Continue}$<$ MOEOT $>$ \& \bf{continuator}\label{classmoeoIBEA_d3772c044b41ea51f7aef80c0e12a75b}
+
+\begin{CompactList}\small\item\em stopping criteria \item\end{CompactList}\item 
+\bf{eo\-Pop\-Loop\-Eval}$<$ MOEOT $>$ \bf{pop\-Eval}\label{classmoeoIBEA_a3fa636bc571c43a43eadddf5817da73}
+
+\begin{CompactList}\small\item\em evaluation function used to evaluate the whole population \item\end{CompactList}\item 
+\bf{moeo\-Det\-Tournament\-Select}$<$ MOEOT $>$ \bf{select}\label{classmoeoIBEA_0b3ef8b89b356b575ae3bad1636b5faa}
+
+\begin{CompactList}\small\item\em binary tournament selection \item\end{CompactList}\item 
+\bf{moeo\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$ \bf{fitness\-Assignment}\label{classmoeoIBEA_fed3304c930a10d27b0ec7e0c7974e40}
+
+\begin{CompactList}\small\item\em fitness assignment used in IBEA \item\end{CompactList}\item 
+\bf{moeo\-Dummy\-Diversity\-Assignment}$<$ MOEOT $>$ \bf{dummy\-Diversity\-Assignment}\label{classmoeoIBEA_f31b1a42c2c3db0201ac7c5ed2c016f0}
+
+\begin{CompactList}\small\item\em dummy diversity assignment \item\end{CompactList}\item 
+\bf{moeo\-Environmental\-Replacement}$<$ MOEOT $>$ \bf{replace}\label{classmoeoIBEA_074ac1d52fa02e8f77b75ad46f0193f8}
+
+\begin{CompactList}\small\item\em elitist replacement \item\end{CompactList}\item 
+\bf{eo\-SGAGen\-Op}$<$ MOEOT $>$ \bf{default\-SGAGen\-Op}\label{classmoeoIBEA_eb9d41ac2c472683a32b302bc518094d}
+
+\begin{CompactList}\small\item\em an object for genetic operators (used as default) \item\end{CompactList}\item 
+\bf{eo\-General\-Breeder}$<$ MOEOT $>$ \bf{gen\-Breed}\label{classmoeoIBEA_33582dd65d7c5b90868d6719183a721e}
+
+\begin{CompactList}\small\item\em general breeder \item\end{CompactList}\item 
+\bf{eo\-Breed}$<$ MOEOT $>$ \& \bf{breed}\label{classmoeoIBEA_670490da376ec266458d509354a7e101}
+
+\begin{CompactList}\small\item\em breeder \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class MOEOT$>$ class moeo\-IBEA$<$ MOEOT $>$}
+
+IBEA (Indicator-Based Evolutionary Algorithm) as described in: E. 
+
+Zitzler, S. K\~{A}¼nzli, \char`\"{}Indicator-Based Selection in Multiobjective Search\char`\"{}, Proc. 8th International Conference on Parallel Problem Solving from Nature (PPSN VIII), pp. 832-842, Birmingham, UK (2004). This class builds the IBEA algorithm only by using the fine-grained components of the Paradis\-EO-MOEO framework. 
+
+
+
+Definition at line 63 of file moeo\-IBEA.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{moeoIBEA@{moeo\-IBEA}!moeoIBEA@{moeoIBEA}}
+\index{moeoIBEA@{moeoIBEA}!moeoIBEA@{moeo\-IBEA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-IBEA}$<$ MOEOT $>$::\bf{moeo\-IBEA} (unsigned int {\em \_\-max\-Gen}, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \& {\em \_\-eval}, \bf{eo\-Gen\-Op}$<$ MOEOT $>$ \& {\em \_\-op}, \bf{moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric}$<$ \bf{Objective\-Vector}, double $>$ \& {\em \_\-metric}, const double {\em \_\-kappa} = {\tt 0.05})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoIBEA_ff425ab40d782131dc2fea3485bf20df}
+
+
+Simple ctor with a \doxyref{eo\-Gen\-Op}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-max\-Gen}]number of generations before stopping \item[{\em \_\-eval}]evaluation function \item[{\em \_\-op}]variation operator \item[{\em \_\-metric}]metric \item[{\em \_\-kappa}]scaling factor kappa \end{description}
+\end{Desc}
+
+
+Definition at line 79 of file moeo\-IBEA.h.\index{moeoIBEA@{moeo\-IBEA}!moeoIBEA@{moeoIBEA}}
+\index{moeoIBEA@{moeoIBEA}!moeoIBEA@{moeo\-IBEA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-IBEA}$<$ MOEOT $>$::\bf{moeo\-IBEA} (unsigned int {\em \_\-max\-Gen}, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \& {\em \_\-eval}, \bf{eo\-Transform}$<$ MOEOT $>$ \& {\em \_\-op}, \bf{moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric}$<$ \bf{Objective\-Vector}, double $>$ \& {\em \_\-metric}, const double {\em \_\-kappa} = {\tt 0.05})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoIBEA_cbc97868f6eb817d95127c43231c7540}
+
+
+Simple ctor with a \doxyref{eo\-Transform}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-max\-Gen}]number of generations before stopping \item[{\em \_\-eval}]evaluation function \item[{\em \_\-op}]variation operator \item[{\em \_\-metric}]metric \item[{\em \_\-kappa}]scaling factor kappa \end{description}
+\end{Desc}
+
+
+Definition at line 93 of file moeo\-IBEA.h.\index{moeoIBEA@{moeo\-IBEA}!moeoIBEA@{moeoIBEA}}
+\index{moeoIBEA@{moeoIBEA}!moeoIBEA@{moeo\-IBEA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-IBEA}$<$ MOEOT $>$::\bf{moeo\-IBEA} (unsigned int {\em \_\-max\-Gen}, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \& {\em \_\-eval}, \bf{eo\-Quad\-Op}$<$ MOEOT $>$ \& {\em \_\-crossover}, double {\em \_\-p\-Cross}, \bf{eo\-Mon\-Op}$<$ MOEOT $>$ \& {\em \_\-mutation}, double {\em \_\-p\-Mut}, \bf{moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric}$<$ \bf{Objective\-Vector}, double $>$ \& {\em \_\-metric}, const double {\em \_\-kappa} = {\tt 0.05})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoIBEA_b0c051de75326b11a391aaacdb324dac}
+
+
+Ctor with a crossover, a mutation and their corresponding rates. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-max\-Gen}]number of generations before stopping \item[{\em \_\-eval}]evaluation function \item[{\em \_\-crossover}]crossover \item[{\em \_\-p\-Cross}]crossover probability \item[{\em \_\-mutation}]mutation \item[{\em \_\-p\-Mut}]mutation probability \item[{\em \_\-metric}]metric \item[{\em \_\-kappa}]scaling factor kappa \end{description}
+\end{Desc}
+
+
+Definition at line 110 of file moeo\-IBEA.h.\index{moeoIBEA@{moeo\-IBEA}!moeoIBEA@{moeoIBEA}}
+\index{moeoIBEA@{moeoIBEA}!moeoIBEA@{moeo\-IBEA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-IBEA}$<$ MOEOT $>$::\bf{moeo\-IBEA} (\bf{eo\-Continue}$<$ MOEOT $>$ \& {\em \_\-continuator}, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \& {\em \_\-eval}, \bf{eo\-Gen\-Op}$<$ MOEOT $>$ \& {\em \_\-op}, \bf{moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric}$<$ \bf{Objective\-Vector}, double $>$ \& {\em \_\-metric}, const double {\em \_\-kappa} = {\tt 0.05})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoIBEA_9b59ebf11f896198264ab5594dbaaefd}
+
+
+Ctor with a continuator (instead of \_\-max\-Gen) and a \doxyref{eo\-Gen\-Op}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-continuator}]stopping criteria \item[{\em \_\-eval}]evaluation function \item[{\em \_\-op}]variation operator \item[{\em \_\-metric}]metric \item[{\em \_\-kappa}]scaling factor kappa \end{description}
+\end{Desc}
+
+
+Definition at line 125 of file moeo\-IBEA.h.\index{moeoIBEA@{moeo\-IBEA}!moeoIBEA@{moeoIBEA}}
+\index{moeoIBEA@{moeoIBEA}!moeoIBEA@{moeo\-IBEA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-IBEA}$<$ MOEOT $>$::\bf{moeo\-IBEA} (\bf{eo\-Continue}$<$ MOEOT $>$ \& {\em \_\-continuator}, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \& {\em \_\-eval}, \bf{eo\-Transform}$<$ MOEOT $>$ \& {\em \_\-op}, \bf{moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric}$<$ \bf{Objective\-Vector}, double $>$ \& {\em \_\-metric}, const double {\em \_\-kappa} = {\tt 0.05})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoIBEA_654c67d0bd74ea798580ec4c81435f92}
+
+
+Ctor with a continuator (instead of \_\-max\-Gen) and a \doxyref{eo\-Transform}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-continuator}]stopping criteria \item[{\em \_\-eval}]evaluation function \item[{\em \_\-op}]variation operator \item[{\em \_\-metric}]metric \item[{\em \_\-kappa}]scaling factor kappa \end{description}
+\end{Desc}
+
+
+Definition at line 139 of file moeo\-IBEA.h.
+
+\subsection{Member Function Documentation}
+\index{moeoIBEA@{moeo\-IBEA}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoIBEA@{moeo\-IBEA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ virtual void \bf{moeo\-IBEA}$<$ MOEOT $>$::operator() (\bf{eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmoeoIBEA_34e98caf16795ac05d2977f8d20151cd}
+
+
+Apply a few generation of evolution to the population \_\-pop until the stopping criteria is verified. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \end{description}
+\end{Desc}
+
+
+Definition at line 149 of file moeo\-IBEA.h.
+
+References moeo\-IBEA$<$ MOEOT $>$::breed, moeo\-IBEA$<$ MOEOT $>$::continuator, moeo\-IBEA$<$ MOEOT $>$::dummy\-Diversity\-Assignment, moeo\-IBEA$<$ MOEOT $>$::fitness\-Assignment, moeo\-IBEA$<$ MOEOT $>$::pop\-Eval, and moeo\-IBEA$<$ MOEOT $>$::replace.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-IBEA.h\end{CompactItemize}

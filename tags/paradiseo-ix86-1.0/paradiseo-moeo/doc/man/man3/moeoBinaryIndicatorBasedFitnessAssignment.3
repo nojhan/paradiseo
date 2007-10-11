@@ -1,0 +1,59 @@
+.TH "moeoBinaryIndicatorBasedFitnessAssignment" 3 "11 Oct 2007" "Version 1.0" "ParadisEO-MOEO:MultiObjectiveEvolvingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoBinaryIndicatorBasedFitnessAssignment \- \fBmoeoIndicatorBasedFitnessAssignment\fP for binary indicators.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoBinaryIndicatorBasedFitnessAssignment.h>\fP
+.PP
+Inherits \fBmoeoIndicatorBasedFitnessAssignment< MOEOT >< MOEOT >\fP.
+.PP
+Inherited by \fBmoeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef MOEOT::ObjectiveVector \fBObjectiveVector\fP"
+.br
+.RI "\fIThe type for objective vector. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual double \fBupdateByAdding\fP (\fBeoPop\fP< MOEOT > &_pop, \fBObjectiveVector\fP &_objVec)=0"
+.br
+.RI "\fIUpdates the fitness values of the whole population _pop by taking the new objective vector _objVec into account and returns the fitness value of _objVec. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT> class moeoBinaryIndicatorBasedFitnessAssignment< MOEOT >"
+\fBmoeoIndicatorBasedFitnessAssignment\fP for binary indicators. 
+.PP
+Definition at line 47 of file moeoBinaryIndicatorBasedFitnessAssignment.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT> virtual double \fBmoeoBinaryIndicatorBasedFitnessAssignment\fP< MOEOT >::updateByAdding (\fBeoPop\fP< MOEOT > & _pop, \fBObjectiveVector\fP & _objVec)\fC [pure virtual]\fP"
+.PP
+Updates the fitness values of the whole population _pop by taking the new objective vector _objVec into account and returns the fitness value of _objVec. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the population 
+.br
+\fI_objVec\fP the objective vector 
+.RE
+.PP
+
+.PP
+Implemented in \fBmoeoExpBinaryIndicatorBasedFitnessAssignment< MOEOT >\fP.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO:MultiObjectiveEvolvingObjects from the source code.

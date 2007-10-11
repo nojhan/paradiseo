@@ -1,0 +1,98 @@
+\section{moeo\-Combined\-LS$<$ MOEOT, Type $>$ Class Template Reference}
+\label{classmoeoCombinedLS}\index{moeoCombinedLS@{moeoCombinedLS}}
+This class allows to embed a set of local searches that are sequentially applied, and so working and updating the same archive of non-dominated solutions.  
+
+
+{\tt \#include $<$moeo\-Combined\-LS.h$>$}
+
+Inheritance diagram for moeo\-Combined\-LS$<$ MOEOT, Type $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.69637cm]{classmoeoCombinedLS}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\bf{moeo\-Combined\-LS} (\bf{moeo\-LS}$<$ MOEOT, Type $>$ \&\_\-first\_\-mols)
+\begin{CompactList}\small\item\em Ctor. \item\end{CompactList}\item 
+void \bf{add} (\bf{moeo\-LS}$<$ MOEOT, Type $>$ \&\_\-mols)
+\begin{CompactList}\small\item\em Adds a new local search to combine. \item\end{CompactList}\item 
+void \bf{operator()} (Type \_\-type, \bf{moeo\-Archive}$<$ MOEOT $>$ \&\_\-arch)
+\begin{CompactList}\small\item\em Gives a new solution in order to explore the neigborhood. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+std::vector$<$ \bf{moeo\-LS}$<$ MOEOT, Type $>$ $\ast$ $>$ \bf{combined\-LS}\label{classmoeoCombinedLS_3cf36ae7ada10d2837b60df01210d92a}
+
+\begin{CompactList}\small\item\em the vector that contains the combined LS \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class MOEOT, class Type$>$ class moeo\-Combined\-LS$<$ MOEOT, Type $>$}
+
+This class allows to embed a set of local searches that are sequentially applied, and so working and updating the same archive of non-dominated solutions. 
+
+
+
+Definition at line 50 of file moeo\-Combined\-LS.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{moeoCombinedLS@{moeo\-Combined\-LS}!moeoCombinedLS@{moeoCombinedLS}}
+\index{moeoCombinedLS@{moeoCombinedLS}!moeoCombinedLS@{moeo\-Combined\-LS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT, class Type$>$ \bf{moeo\-Combined\-LS}$<$ MOEOT, Type $>$::\bf{moeo\-Combined\-LS} (\bf{moeo\-LS}$<$ MOEOT, Type $>$ \& {\em \_\-first\_\-mols})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoCombinedLS_5d09220b47bac67bd332dc0f93226ae1}
+
+
+Ctor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-first\_\-mols}]the first multi-objective local search to add \end{description}
+\end{Desc}
+
+
+Definition at line 58 of file moeo\-Combined\-LS.h.
+
+References moeo\-Combined\-LS$<$ MOEOT, Type $>$::combined\-LS.
+
+\subsection{Member Function Documentation}
+\index{moeoCombinedLS@{moeo\-Combined\-LS}!add@{add}}
+\index{add@{add}!moeoCombinedLS@{moeo\-Combined\-LS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT, class Type$>$ void \bf{moeo\-Combined\-LS}$<$ MOEOT, Type $>$::add (\bf{moeo\-LS}$<$ MOEOT, Type $>$ \& {\em \_\-mols})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoCombinedLS_1637b4dcf2dd694cc9ffbad605b2bf13}
+
+
+Adds a new local search to combine. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-mols}]the multi-objective local search to add \end{description}
+\end{Desc}
+
+
+Definition at line 67 of file moeo\-Combined\-LS.h.
+
+References moeo\-Combined\-LS$<$ MOEOT, Type $>$::combined\-LS.\index{moeoCombinedLS@{moeo\-Combined\-LS}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoCombinedLS@{moeo\-Combined\-LS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT, class Type$>$ void \bf{moeo\-Combined\-LS}$<$ MOEOT, Type $>$::operator() (Type {\em \_\-type}, \bf{moeo\-Archive}$<$ MOEOT $>$ \& {\em \_\-arch})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmoeoCombinedLS_634d7fa3092fe8f88a1b54cacfdc35fd}
+
+
+Gives a new solution in order to explore the neigborhood. 
+
+The new non-dominated solutions are added to the archive \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-type}]the object to apply the local search to \item[{\em \_\-arch}]the archive of non-dominated solutions \end{description}
+\end{Desc}
+
+
+Implements \bf{eo\-BF$<$ Type, moeo\-Archive$<$ MOEOT $>$ \&, void $>$}.
+
+Definition at line 78 of file moeo\-Combined\-LS.h.
+
+References moeo\-Combined\-LS$<$ MOEOT, Type $>$::combined\-LS.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-Combined\-LS.h\end{CompactItemize}

@@ -1,0 +1,181 @@
+\section{moeo\-Real\-Objective\-Vector$<$ Objective\-Vector\-Traits $>$ Class Template Reference}
+\label{classmoeoRealObjectiveVector}\index{moeoRealObjectiveVector@{moeoRealObjectiveVector}}
+This class allows to represent a solution in the objective space (phenotypic representation) by a std::vector of real values, i.e.  
+
+
+{\tt \#include $<$moeo\-Real\-Objective\-Vector.h$>$}
+
+Inheritance diagram for moeo\-Real\-Objective\-Vector$<$ Objective\-Vector\-Traits $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classmoeoRealObjectiveVector}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\bf{moeo\-Real\-Objective\-Vector} (double \_\-value=0.0)\label{classmoeoRealObjectiveVector_07b6df71c6ca3b50a0a0379838233525}
+
+\begin{CompactList}\small\item\em Ctor. \item\end{CompactList}\item 
+\bf{moeo\-Real\-Objective\-Vector} (std::vector$<$ double $>$ \&\_\-v)
+\begin{CompactList}\small\item\em Ctor from a vector of doubles. \item\end{CompactList}\item 
+bool \bf{dominates} (const \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$ \&\_\-other) const 
+\begin{CompactList}\small\item\em Returns true if the current objective vector dominates \_\-other according to the Pareto dominance relation (but it's better to use a \doxyref{moeo\-Objective\-Vector\-Comparator}{p.}{classmoeoObjectiveVectorComparator} object to compare solutions). \item\end{CompactList}\item 
+bool \bf{operator==} (const \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$ \&\_\-other) const 
+\begin{CompactList}\small\item\em Returns true if the current objective vector is equal to \_\-other (according to a tolerance value). \item\end{CompactList}\item 
+bool \bf{operator!=} (const \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$ \&\_\-other) const 
+\begin{CompactList}\small\item\em Returns true if the current objective vector is different than \_\-other (according to a tolerance value). \item\end{CompactList}\item 
+bool \bf{operator$<$} (const \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$ \&\_\-other) const 
+\begin{CompactList}\small\item\em Returns true if the current objective vector is smaller than \_\-other on the first objective, then on the second, and so on (can be usefull for sorting/printing). \item\end{CompactList}\item 
+bool \bf{operator$>$} (const \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$ \&\_\-other) const 
+\begin{CompactList}\small\item\em Returns true if the current objective vector is greater than \_\-other on the first objective, then on the second, and so on (can be usefull for sorting/printing). \item\end{CompactList}\item 
+bool \bf{operator$<$=} (const \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$ \&\_\-other) const 
+\begin{CompactList}\small\item\em Returns true if the current objective vector is smaller than or equal to \_\-other on the first objective, then on the second, and so on (can be usefull for sorting/printing). \item\end{CompactList}\item 
+bool \bf{operator$>$=} (const \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$ \&\_\-other) const 
+\begin{CompactList}\small\item\em Returns true if the current objective vector is greater than or equal to \_\-other on the first objective, then on the second, and so on (can be usefull for sorting/printing). \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Objective\-Vector\-Traits$>$ class moeo\-Real\-Objective\-Vector$<$ Objective\-Vector\-Traits $>$}
+
+This class allows to represent a solution in the objective space (phenotypic representation) by a std::vector of real values, i.e. 
+
+that an objective value is represented using a double, and this for any objective. 
+
+
+
+Definition at line 52 of file moeo\-Real\-Objective\-Vector.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{moeoRealObjectiveVector@{moeo\-Real\-Objective\-Vector}!moeoRealObjectiveVector@{moeoRealObjectiveVector}}
+\index{moeoRealObjectiveVector@{moeoRealObjectiveVector}!moeoRealObjectiveVector@{moeo\-Real\-Objective\-Vector}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class Objective\-Vector\-Traits$>$ \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$::\bf{moeo\-Real\-Objective\-Vector} (std::vector$<$ double $>$ \& {\em \_\-v})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoRealObjectiveVector_59083142c6a1766f0df30f2457fff34c}
+
+
+Ctor from a vector of doubles. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-v}]the std::vector $<$ double $>$ \end{description}
+\end{Desc}
+
+
+Definition at line 70 of file moeo\-Real\-Objective\-Vector.h.
+
+\subsection{Member Function Documentation}
+\index{moeoRealObjectiveVector@{moeo\-Real\-Objective\-Vector}!dominates@{dominates}}
+\index{dominates@{dominates}!moeoRealObjectiveVector@{moeo\-Real\-Objective\-Vector}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class Objective\-Vector\-Traits$>$ bool \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$::dominates (const \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$ \& {\em \_\-other}) const\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoRealObjectiveVector_403a1b537d7accba53ecc939dbe5b829}
+
+
+Returns true if the current objective vector dominates \_\-other according to the Pareto dominance relation (but it's better to use a \doxyref{moeo\-Objective\-Vector\-Comparator}{p.}{classmoeoObjectiveVectorComparator} object to compare solutions). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-other}]the other \doxyref{moeo\-Real\-Objective\-Vector}{p.}{classmoeoRealObjectiveVector} object to compare with \end{description}
+\end{Desc}
+
+
+Definition at line 79 of file moeo\-Real\-Objective\-Vector.h.\index{moeoRealObjectiveVector@{moeo\-Real\-Objective\-Vector}!operator==@{operator==}}
+\index{operator==@{operator==}!moeoRealObjectiveVector@{moeo\-Real\-Objective\-Vector}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class Objective\-Vector\-Traits$>$ bool \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$::operator== (const \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$ \& {\em \_\-other}) const\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoRealObjectiveVector_e2f1665239fac279784a7c2d4e030a0a}
+
+
+Returns true if the current objective vector is equal to \_\-other (according to a tolerance value). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-other}]the other \doxyref{moeo\-Real\-Objective\-Vector}{p.}{classmoeoRealObjectiveVector} object to compare with \end{description}
+\end{Desc}
+
+
+Definition at line 90 of file moeo\-Real\-Objective\-Vector.h.
+
+Referenced by moeo\-Real\-Objective\-Vector$<$ Objective\-Vector\-Traits $>$::operator!=(), and moeo\-Real\-Objective\-Vector$<$ Objective\-Vector\-Traits $>$::operator$>$=().\index{moeoRealObjectiveVector@{moeo\-Real\-Objective\-Vector}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!moeoRealObjectiveVector@{moeo\-Real\-Objective\-Vector}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class Objective\-Vector\-Traits$>$ bool \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$::operator!= (const \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$ \& {\em \_\-other}) const\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoRealObjectiveVector_7300c03310d45932f3de8b54f7079c61}
+
+
+Returns true if the current objective vector is different than \_\-other (according to a tolerance value). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-other}]the other \doxyref{moeo\-Real\-Objective\-Vector}{p.}{classmoeoRealObjectiveVector} object to compare with \end{description}
+\end{Desc}
+
+
+Definition at line 107 of file moeo\-Real\-Objective\-Vector.h.
+
+References moeo\-Real\-Objective\-Vector$<$ Objective\-Vector\-Traits $>$::operator==().\index{moeoRealObjectiveVector@{moeo\-Real\-Objective\-Vector}!operator<@{operator$<$}}
+\index{operator<@{operator$<$}!moeoRealObjectiveVector@{moeo\-Real\-Objective\-Vector}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class Objective\-Vector\-Traits$>$ bool \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$::operator$<$ (const \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$ \& {\em \_\-other}) const\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoRealObjectiveVector_2113937b8a097943278f471255f2da28}
+
+
+Returns true if the current objective vector is smaller than \_\-other on the first objective, then on the second, and so on (can be usefull for sorting/printing). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-other}]the other \doxyref{moeo\-Real\-Objective\-Vector}{p.}{classmoeoRealObjectiveVector} object to compare with \end{description}
+\end{Desc}
+
+
+Definition at line 118 of file moeo\-Real\-Objective\-Vector.h.
+
+Referenced by moeo\-Real\-Objective\-Vector$<$ Objective\-Vector\-Traits $>$::operator$<$=().\index{moeoRealObjectiveVector@{moeo\-Real\-Objective\-Vector}!operator>@{operator$>$}}
+\index{operator>@{operator$>$}!moeoRealObjectiveVector@{moeo\-Real\-Objective\-Vector}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class Objective\-Vector\-Traits$>$ bool \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$::operator$>$ (const \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$ \& {\em \_\-other}) const\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoRealObjectiveVector_6f3b3f40139f9a6ede18297b6eff3189}
+
+
+Returns true if the current objective vector is greater than \_\-other on the first objective, then on the second, and so on (can be usefull for sorting/printing). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-other}]the other \doxyref{moeo\-Real\-Objective\-Vector}{p.}{classmoeoRealObjectiveVector} object to compare with \end{description}
+\end{Desc}
+
+
+Definition at line 130 of file moeo\-Real\-Objective\-Vector.h.
+
+Referenced by moeo\-Real\-Objective\-Vector$<$ Objective\-Vector\-Traits $>$::operator$>$=().\index{moeoRealObjectiveVector@{moeo\-Real\-Objective\-Vector}!operator<=@{operator$<$=}}
+\index{operator<=@{operator$<$=}!moeoRealObjectiveVector@{moeo\-Real\-Objective\-Vector}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class Objective\-Vector\-Traits$>$ bool \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$::operator$<$= (const \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$ \& {\em \_\-other}) const\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoRealObjectiveVector_f7ea79ab6b2a6672df9a5725e7d842a0}
+
+
+Returns true if the current objective vector is smaller than or equal to \_\-other on the first objective, then on the second, and so on (can be usefull for sorting/printing). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-other}]the other \doxyref{moeo\-Real\-Objective\-Vector}{p.}{classmoeoRealObjectiveVector} object to compare with \end{description}
+\end{Desc}
+
+
+Definition at line 141 of file moeo\-Real\-Objective\-Vector.h.
+
+References moeo\-Real\-Objective\-Vector$<$ Objective\-Vector\-Traits $>$::operator$<$().\index{moeoRealObjectiveVector@{moeo\-Real\-Objective\-Vector}!operator>=@{operator$>$=}}
+\index{operator>=@{operator$>$=}!moeoRealObjectiveVector@{moeo\-Real\-Objective\-Vector}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class Objective\-Vector\-Traits$>$ bool \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$::operator$>$= (const \bf{moeo\-Real\-Objective\-Vector}$<$ Objective\-Vector\-Traits $>$ \& {\em \_\-other}) const\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoRealObjectiveVector_1aadf971866abb81a35fadbe650c9701}
+
+
+Returns true if the current objective vector is greater than or equal to \_\-other on the first objective, then on the second, and so on (can be usefull for sorting/printing). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-other}]the other \doxyref{moeo\-Real\-Objective\-Vector}{p.}{classmoeoRealObjectiveVector} object to compare with \end{description}
+\end{Desc}
+
+
+Definition at line 152 of file moeo\-Real\-Objective\-Vector.h.
+
+References moeo\-Real\-Objective\-Vector$<$ Objective\-Vector\-Traits $>$::operator==(), and moeo\-Real\-Objective\-Vector$<$ Objective\-Vector\-Traits $>$::operator$>$().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-Real\-Objective\-Vector.h\end{CompactItemize}

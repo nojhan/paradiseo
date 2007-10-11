@@ -1,0 +1,81 @@
+.TH "moeoArchiveObjectiveVectorSavingUpdater" 3 "11 Oct 2007" "Version 1.0" "ParadisEO-MOEO:MultiObjectiveEvolvingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoArchiveObjectiveVectorSavingUpdater \- This class allows to save the objective vectors of the solutions contained in an archive into a file at each generation.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoArchiveObjectiveVectorSavingUpdater.h>\fP
+.PP
+Inherits \fBeoUpdater\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoArchiveObjectiveVectorSavingUpdater\fP (\fBmoeoArchive\fP< MOEOT > &_arch, const std::string &_filename, bool _count=false, int _id=-1)"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP ()"
+.br
+.RI "\fISaves the fitness of the archive's members into the file. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoArchive\fP< MOEOT > & \fBarch\fP"
+.br
+.RI "\fIlocal archive \fP"
+.ti -1c
+.RI "std::string \fBfilename\fP"
+.br
+.RI "\fItarget filename \fP"
+.ti -1c
+.RI "bool \fBcount\fP"
+.br
+.RI "\fIthis variable is set to true if a new file have to be created each time () is called and to false if the file only HAVE to be updated \fP"
+.ti -1c
+.RI "unsigned int \fBcounter\fP"
+.br
+.RI "\fIcounter \fP"
+.ti -1c
+.RI "int \fBid\fP"
+.br
+.RI "\fIown ID \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT> class moeoArchiveObjectiveVectorSavingUpdater< MOEOT >"
+This class allows to save the objective vectors of the solutions contained in an archive into a file at each generation. 
+.PP
+Definition at line 53 of file moeoArchiveObjectiveVectorSavingUpdater.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class MOEOT> \fBmoeoArchiveObjectiveVectorSavingUpdater\fP< MOEOT >::\fBmoeoArchiveObjectiveVectorSavingUpdater\fP (\fBmoeoArchive\fP< MOEOT > & _arch, const std::string & _filename, bool _count = \fCfalse\fP, int _id = \fC-1\fP)\fC [inline]\fP"
+.PP
+Ctor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_arch\fP local archive 
+.br
+\fI_filename\fP target filename 
+.br
+\fI_count\fP put this variable to true if you want a new file to be created each time () is called and to false if you only want the file to be updated 
+.br
+\fI_id\fP own ID 
+.RE
+.PP
+
+.PP
+Definition at line 64 of file moeoArchiveObjectiveVectorSavingUpdater.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO:MultiObjectiveEvolvingObjects from the source code.
