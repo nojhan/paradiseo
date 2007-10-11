@@ -33,7 +33,7 @@ For an introduction to the design of ParadisEO-MOEO,
 you can look at the <a href="http://paradiseo.gforge.inria.fr">ParadisEO website</a>.
 
 
-@section LICENSE
+@section licence LICENSE
 
  This software is governed by the CeCILL license under French law and
  abiding by the rules of distribution of free software.  You can  use,
