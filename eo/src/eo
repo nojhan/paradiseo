@@ -177,6 +177,7 @@
 #include <eoTopology.h>
 #include <eoStarTopology.h>
 #include <eoLinearTopology.h>
+#include <eoRingTopology.h>
 #include <eoNeighborhood.h>  
 #include <eoSocialNeighborhood.h> 
   
