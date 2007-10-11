@@ -1,0 +1,117 @@
+.TH "peoSynchronousMultiStart" 3 "11 Oct 2007" "Version 1.0" "ParadisEO-PEO:ParallelandDistributedEvolvingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+peoSynchronousMultiStart \- 
+.SH SYNOPSIS
+.br
+.PP
+Inherits \fBService\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename AlgorithmType> \fBpeoSynchronousMultiStart\fP (AlgorithmType &externalAlgorithm)"
+.br
+.ti -1c
+.RI "template<typename AlgorithmType, typename AggregationFunctionType> \fBpeoSynchronousMultiStart\fP (std::vector< AlgorithmType * > &externalAlgorithms, AggregationFunctionType &externalAggregationFunction)"
+.br
+.ti -1c
+.RI "\fB~peoSynchronousMultiStart\fP ()"
+.br
+.ti -1c
+.RI "template<typename Type> void \fBoperator()\fP (Type &externalData)"
+.br
+.ti -1c
+.RI "template<typename Type> void \fBoperator()\fP (const Type &externalDataBegin, const Type &externalDataEnd)"
+.br
+.ti -1c
+.RI "void \fBpackData\fP ()"
+.br
+.ti -1c
+.RI "void \fBunpackData\fP ()"
+.br
+.ti -1c
+.RI "void \fBexecute\fP ()"
+.br
+.ti -1c
+.RI "void \fBpackResult\fP ()"
+.br
+.ti -1c
+.RI "void \fBunpackResult\fP ()"
+.br
+.ti -1c
+.RI "void \fBnotifySendingData\fP ()"
+.br
+.ti -1c
+.RI "void \fBnotifySendingAllResourceRequests\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBAbstractAlgorithm\fP * \fBsingularAlgorithm\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBAbstractAlgorithm\fP * > \fBalgorithms\fP"
+.br
+.ti -1c
+.RI "\fBAbstractAggregationAlgorithm\fP * \fBaggregationFunction\fP"
+.br
+.ti -1c
+.RI "EntityType \fBentityTypeInstance\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBAbstractDataType\fP * > \fBdata\fP"
+.br
+.ti -1c
+.RI "unsigned \fBidx\fP"
+.br
+.ti -1c
+.RI "unsigned \fBnum_term\fP"
+.br
+.ti -1c
+.RI "unsigned \fBdataIndex\fP"
+.br
+.ti -1c
+.RI "unsigned \fBfunctionIndex\fP"
+.br
+.in -1c
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBAbstractAggregationAlgorithm\fP"
+.br
+.ti -1c
+.RI "struct \fBAbstractAlgorithm\fP"
+.br
+.ti -1c
+.RI "struct \fBAbstractDataType\fP"
+.br
+.ti -1c
+.RI "struct \fBAggregationAlgorithm\fP"
+.br
+.ti -1c
+.RI "struct \fBAlgorithm\fP"
+.br
+.ti -1c
+.RI "struct \fBDataType\fP"
+.br
+.ti -1c
+.RI "struct \fBNoAggregationFunction\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename EntityType> class peoSynchronousMultiStart< EntityType >"
+
+.PP
+Definition at line 45 of file peoSynchronousMultiStart.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-PEO:ParallelandDistributedEvolvingObjects from the source code.
