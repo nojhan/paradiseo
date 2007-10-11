@@ -28,6 +28,24 @@ ADD_CUSTOM_COMMAND(
     ARGS -E copy_if_different
       ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson2/ParadisEO-PEO_Lesson2.pdf
       ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson2)
+
+IF (DOXYGEN_FOUND)
+        SET(PEO_LESSON2_DOC_CONFIG_FILE "paradiseo-peo-lsn2.doxyfile" CACHE PATH "PEO tutorial lesson2 documentation configuration file")
+                # define the doc target
+        IF (DOXYGEN_EXECUTABLE)
+                ADD_CUSTOM_TARGET(doc
+                COMMAND ${DOXYGEN_EXECUTABLE} ${PEO_LESSON2_DOC_CONFIG_FILE}
+                WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+            )
+        ENDIF (DOXYGEN_EXECUTABLE)
+
+        # configure doxyfile file
+        CONFIGURE_FILE("${CMAKE_SOURCE_DIR}/tutorial/Lesson2/${PEO_LESSON2_DOC_CONFIG_FILE}.cmake"
+                       "${CMAKE_BINARY_DIR}/tutorial/Lesson2/${PEO_LESSON2_DOC_CONFIG_FILE}")
+
+ELSE (DOXYGEN_FOUND)
+        MESSAGE(STATUS "Unable to generate the documentation, Doxygen package not found")
+ENDIF (DOXYGEN_FOUND)
 ######################################################################################
 
 

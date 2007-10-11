@@ -30,7 +30,6 @@ ADD_CUSTOM_COMMAND(
       ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson1)
 
 IF (DOXYGEN_FOUND)
-        #SET(DOC_DIR ${CMAKE_BINARY_DIR}/doc CACHE PATH "PEO TSP documentation directory")
         SET(PEO_LESSON1_DOC_CONFIG_FILE "paradiseo-peo-lsn1.doxyfile" CACHE PATH "PEO tutorial lesson1 documentation configuration file")
                 # define the doc target
         IF (DOXYGEN_EXECUTABLE)
