@@ -2,7 +2,7 @@
 
 //-----------------------------------------------------------------------------
 // eoSigBinaryFlight.h
-// (c) OPAC 2007
+// (c) OPAC 2007, INRIA Futurs DOLPHIN
 /*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -19,6 +19,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: thomas.legrand@lifl.fr
+    		 clive.canape@inria.fr
  */
 //-----------------------------------------------------------------------------
 
@@ -47,7 +48,8 @@ public:
     /**
      * Constructor.
      */
-    eoSigBinaryFlight (){}
+    eoSigBinaryFlight (){slope = 1;}
+    eoSigBinaryFlight (unsigned _slope){slope = _slope;}
 
 
     /**
@@ -55,7 +57,7 @@ public:
      */
     double sigmoid( double _value)
     {
-        return(1/(1+ exp(- _value)));
+        return(1/(1+ exp(- _value/slope)));
 
     }
 
@@ -79,6 +81,10 @@ public:
         // invalidate the fitness because the positions have changed
         _po.invalidate();
     }
+
+private :
+	unsigned slope; 
+   
 };
 
 
