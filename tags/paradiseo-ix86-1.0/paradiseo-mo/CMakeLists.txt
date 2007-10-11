@@ -16,7 +16,7 @@ INCLUDE(mo-conf.cmake OPTIONAL)
 PROJECT(ParadisEO-MO)
 
 SET(PACKAGE_BUGREPORT "paradiseo-help@lists.gforge.inria.fr" CACHE STRING "Package bug report" FORCE)
-SET(PACKAGE_NAME "ParadisEO-MO Moving Objects" CACHE STRING "Package name" FORCE)
+SET(PACKAGE_NAME "ParadisEO-MO: Moving Objects" CACHE STRING "Package name" FORCE)
 SET(PACKAGE_STRING "ParadisEO-MO 1.0" CACHE STRING "Package string full name" FORCE)
 SET(PACKAGE_VERSION "1.0" CACHE STRING "Package version" FORCE)
 SET(GLOBAL_VERSION "1.0" CACHE STRING "Global version" FORCE)

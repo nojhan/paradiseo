@@ -49,12 +49,11 @@ It contains classes for almost any kind of one solution based heuristics.
 
 @section Paradiseo Home Page
 
-<A href=http://paradiseo.gforge.inria.fr>http://paradiseo.gforge.inria.fr</A>
+<a href="http://paradiseo.gforge.inria.fr">http://paradiseo.gforge.inria.fr</a>
 
 @section Installation
 
-The installation procedure of the package is detailed in the 
-<a href="../../README">README</a> file in the top-directory of the source-tree.
+The installation procedure of the package is detailed in the README file in the top-directory of the source-tree.
 
 */
 
