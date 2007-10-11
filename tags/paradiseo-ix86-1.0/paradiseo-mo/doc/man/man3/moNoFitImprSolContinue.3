@@ -1,0 +1,121 @@
+.TH "moNoFitImprSolContinue" 3 "11 Oct 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moNoFitImprSolContinue \- One possible stop criterion for a solution-based heuristic.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moNoFitImprSolContinue.h>\fP
+.PP
+Inherits \fBmoSolContinue< EOT >< EOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOT::Fitness \fBFitness\fP"
+.br
+.RI "\fIAlias for the fitness. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoNoFitImprSolContinue\fP (unsigned int __maxNumberOfIterationWithoutImprovement)"
+.br
+.RI "\fIBasic constructor. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (const EOT &__sol)"
+.br
+.RI "\fI\fBFunction\fP that activates the stopping criterion. \fP"
+.ti -1c
+.RI "void \fBinit\fP ()"
+.br
+.RI "\fIProcedure which allows to initialise all the stuff needed. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBmaxNumberOfIterationsWithoutImprovement\fP"
+.br
+.RI "\fIMaximum number of iterations without improvement allowed. \fP"
+.ti -1c
+.RI "bool \fBfirstFitnessSaved\fP"
+.br
+.RI "\fIFlag that this is the first time that the fitness is used. \fP"
+.ti -1c
+.RI "\fBFitness\fP \fBfitness\fP"
+.br
+.RI "\fICurrent Fitness. \fP"
+.ti -1c
+.RI "unsigned int \fBcounter\fP"
+.br
+.RI "\fIThe iteration couter. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class moNoFitImprSolContinue< EOT >"
+One possible stop criterion for a solution-based heuristic. 
+
+The stop criterion corresponds to a maximum number of iterations without improvement. 
+.PP
+Definition at line 46 of file moNoFitImprSolContinue.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBmoNoFitImprSolContinue\fP< EOT >::\fBmoNoFitImprSolContinue\fP (unsigned int __maxNumberOfIterationWithoutImprovement)\fC [inline]\fP"
+.PP
+Basic constructor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__maxNumberOfIterationWithoutImprovement\fP The number of iterations without fitness improvement to reach for stop. 
+.RE
+.PP
+
+.PP
+Definition at line 58 of file moNoFitImprSolContinue.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> bool \fBmoNoFitImprSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline, virtual]\fP"
+.PP
+\fBFunction\fP that activates the stopping criterion. 
+.PP
+Indicates if the fitness has not been improved since a given number of iterations (after a minimum of iterations). 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__sol\fP the current solution. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true or false. 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< const EOT &, bool >\fP.
+.PP
+Definition at line 68 of file moNoFitImprSolContinue.h.
+.PP
+References moNoFitImprSolContinue< EOT >::counter, moNoFitImprSolContinue< EOT >::firstFitnessSaved, moNoFitImprSolContinue< EOT >::fitness, and moNoFitImprSolContinue< EOT >::maxNumberOfIterationsWithoutImprovement.
+.SS "template<class EOT> void \fBmoNoFitImprSolContinue\fP< EOT >::init ()\fC [inline, virtual]\fP"
+.PP
+Procedure which allows to initialise all the stuff needed. 
+.PP
+It can be also used to reinitialize all the needed things. 
+.PP
+Implements \fBmoSolContinue< EOT >\fP.
+.PP
+Definition at line 102 of file moNoFitImprSolContinue.h.
+.PP
+References moNoFitImprSolContinue< EOT >::counter, and moNoFitImprSolContinue< EOT >::firstFitnessSaved.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.
