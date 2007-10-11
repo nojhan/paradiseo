@@ -1,0 +1,121 @@
+
+==========================================================================================
+                      BUILDING PARADISEO FULL PACKAGE ON UNIX/MAC platforms
+==========================================================================================
+The basic installation procedure must be done in the directory 
+which contains the extracted archive.
+
+ --> Example : source installParadiseo.sh
+
+Please try source installParadiseo.sh --help  for further information
+
+==========================================================================================
+                       DIRECTORY STRUCTURE
+==========================================================================================
+After unpacking the archive file, you should end up with the following
+structure:
+
+.../                        Installation directory (specified with ./installParadiseo.sh)
+   |
+   |
+   +-- AUTHORS				  Author list 
+   |
+   |
+   +-- install.cmake			  ParadisEO main install config file
+   |
+   |
+   +-- installParadiseo.sh		  Install script
+   |
+   +-- lib/
+   |	   | +-- /libxml2-2.6.0.tar.bz2   LIBXML2 archive (required for ParadisEO)
+   |	   | +-- /mpich2-1.0.3.tar.gz     MPICH2 archive (required for ParadisEO)
+   |
+   |
+   + LICENCE				   Licence contents
+   |
+   |
+   +-- paradiseo-eo 			   paradiseo-eo dir
+   |
+   |
+   +-- paradiseo-mo                        paradiseo-mo dir 
+   |
+   |
+   +-- paradiseo-moeo                      paradiseo-moeo  dir
+   |   
+   |
+   +-- paradiseo-peo                       paradiseo-peo  dir
+   |
+   +-- README				   README file
+   |   
+   |
+   +-- .mpd.conf			   Paradiseo-peo config file
+
+
+==========================================================================================
+                       DIRECTORY STRUCTURE AFTER INSTALLATION
+==========================================================================================
+After running the script "installParadiseo.sh" and if the process is successful,
+you should have the following structure :
+
+.../                        Installation directory (specified with ./installParadiseo.sh)
+   |
+   |
+   +-- AUTHORS				  Author list 
+   |
+   |
+   +-- install.cmake			  ParadisEO main install config file
+   |
+   |
+   +-- installParadiseo.sh		  Install script
+   |
+   +-- lib/
+   |	   | +-- /libxml2-2.6.0.tar.bz2   LIBXML2 archive (required for ParadisEO-PEO)
+   |	   | +-- /mpich2-1.0.3.tar.gz     MPICH2 archive (required for ParadisEO-PEO)
+   |
+   +-- libxml2				   Libxml2 install directory (required for ParadisEO-PEO)
+   |
+   + LICENCE				   Licence contents
+   |
+   |
+   +-- mpich2				   Mpich2 install directory (required for ParadisEO-PEO)
+   |
+   |
+   +-- paradiseo-eo 			   paradiseo-eo dir
+   |
+   |
+   +-- paradiseo-mo                        paradiseo-mo dir 
+   |
+   |
+   +-- paradiseo-moeo                      paradiseo-moeo  dir
+   |   
+   |
+   +-- paradiseo-peo                       paradiseo-peo  dir
+   |
+   +-- README				   README file
+   |   
+   |
+   +-- .mpd.conf			   Paradiseo-peo config file
+
+
+==========================================================================================
+              NOTES
+==========================================================================================
+
+ParadisEO uses EO, a templates-based, ANSI-C++ compliant evolutionary computation library. 
+It contains classes for almost any kind of evolutionary computation you might come up to - at 
+least for the ones we could think of.
+
+EO Website:
+	 http://eodev.sourceforge.net/.
+EO is distributed under the GNU Lesser General Public License: 
+	http://www.gnu.org/copyleft/lesser.html
+
+Please read README file of each extracted directory if you have
+problems for the installation.
+
+==========================================================================================
+              CONTACT
+==========================================================================================
+For further information about ParadisEO, help or to report any
+problem : paradiseo-help@lists.gforge.inria.fr
+
