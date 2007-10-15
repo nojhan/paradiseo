@@ -11,6 +11,6 @@ SET(TSP_BINARY_DIR ${ParadisEO-PEO_BINARY_DIR}/tutorial/examples/tsp)
 ### 2) Where must cmake go now ?
 ######################################################################################
 
-SUBDIRS(examples Lesson1 Lesson2 Lesson3 Walkthrough)
+SUBDIRS(examples Lesson1 Lesson2 Lesson3 Lesson4 Walkthrough)
 
 ######################################################################################
