@@ -5,6 +5,7 @@
 ###############################################################################
 
 
+
 ######################################################################################
 ### 1) Include the sources
 ######################################################################################
@@ -13,7 +14,24 @@ INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${MO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${ParadisEO-PEO_SOURCE_DIR}/src)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+INCLUDE(CheckLibraryExists)
 
+SET (CMAKE_CXX_COMPILER mpicxx)
+ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/test/lesson.param ${ParadisEO-PEO_SOURCE_DIR}/test/schema.xml)
+ADD_CUSTOM_COMMAND(
+    TARGET install
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND}
+    ARGS -E copy_if_different
+      ${ParadisEO-PEO_SOURCE_DIR}/test/lesson.param
+      ${ParadisEO-PEO_BINARY_DIR}/test)
+ADD_CUSTOM_COMMAND(
+    TARGET install
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND}
+    ARGS -E copy_if_different
+      ${ParadisEO-PEO_SOURCE_DIR}/test/schema.xml
+      ${ParadisEO-PEO_BINARY_DIR}/test)
 ######################################################################################
 
 
@@ -22,7 +40,7 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 ######################################################################################
 
 IF(NOT WIN32 OR CYGWIN)  
-  LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DIR}/lib)
+  LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DIR}/lib )
 ENDIF(NOT WIN32 OR CYGWIN)
 
 # especially for Visual Studio
@@ -39,9 +57,14 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
-SET (TEST_LIST t-peo)
+SET (TEST_LIST t-peo
+			   t-peoPSO
+			    )
+			    
+SET (TEST_LIBRARY t-peoPSOPara)
+			    
 				
-FOREACH (test ${TEST_LIST})
+FOREACH (test ${TEST_LIST} ${TEST_LIBRARY})
 	  SET ("T_${test}_SOURCES" "${test}.cpp")
 ENDFOREACH (test)
 
@@ -49,14 +72,17 @@ ENDFOREACH (test)
 IF(ENABLE_CMAKE_TESTING)
 	
 	# Add the tests
+	FOREACH (test ${TEST_LIST} ${TEST_LIBRARY})
+		  ADD_EXECUTABLE(${test} ${T_${test}_SOURCES})  
+	ENDFOREACH (test)
+	
 	FOREACH (test ${TEST_LIST})
-		  ADD_EXECUTABLE(${test} ${T_${test}_SOURCES}) 
-		  ADD_TEST(${test} ${test}) 
+		  ADD_TEST(${test} ${test})
 	ENDFOREACH (test)
 	
 	# Link the librairies
-	FOREACH (test ${TEST_LIST})
-	 TARGET_LINK_LIBRARIES(${test} peo rmc_mpi ga es eoutils eo)
+	FOREACH (test ${TEST_LIST} ${TEST_LIBRARY})
+	 TARGET_LINK_LIBRARIES(${test} peo ${XML2_LIBS} rmc_mpi ga es eoutils eo)
 	ENDFOREACH (test)
 	
 ENDIF(ENABLE_CMAKE_TESTING)
