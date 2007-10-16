@@ -69,6 +69,8 @@ structure:
        |
        +-- Lesson3       Example of an asynchronous insular model including two evolutionary algorithms.
        |
+       +-- Lesson4       Example of a parallel pso
+       |
        +-- Walkthrough   Walkthrough ParadisEO-PEO features - EA+LS hybridization, parallelization, insular model.
 
 ===================================================================
