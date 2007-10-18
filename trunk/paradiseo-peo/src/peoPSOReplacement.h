@@ -63,13 +63,9 @@ class peoPSOReplacement : public eoReplacement<POT>
   				}
   			if(_dest[ind].best() < _source[0].best())
   			{
-  				_dest[ind].fitness(_source[0].best());
   				_dest[ind].best(_source[0].best());
 	 			for(unsigned j=0;j<_dest[ind].size();j++)
-	 			{
-	 				_dest[ind][j]=_source[0].bestPositions[j];
 	    			_dest[ind].bestPositions[j]=_source[0].bestPositions[j];
-	 			}
   			}			
         }
 };
