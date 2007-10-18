@@ -342,5 +342,7 @@
 /* Parallel PSO */
 #include "peoPSO.h"
 #include "peoEvalFuncPSO.h"
+#include "peoPSOSelect.h"
+#include "peoPSOReplacement.h"
 
 #endif
