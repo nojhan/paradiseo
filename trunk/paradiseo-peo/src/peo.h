@@ -344,5 +344,6 @@
 #include "peoEvalFuncPSO.h"
 #include "peoPSOSelect.h"
 #include "peoPSOReplacement.h"
+#include "peoPSOVelocity.h"
 
 #endif
