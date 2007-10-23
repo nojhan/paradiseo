@@ -1,0 +1,81 @@
+\section{moTabuList$<$ M $>$ Class Template Reference}
+\label{classmo_tabu_list}\index{moTabuList@{moTabuList}}
+Class describing a tabu list that a \doxyref{moTS}{p.}{classmo_t_s} uses.  
+
+
+{\tt \#include $<$moTabuList.h$>$}
+
+Inheritance diagram for moTabuList$<$ M $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.88889cm]{classmo_tabu_list}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+typedef M::EOType {\bf EOT}\label{classmo_tabu_list_e219715cc3fdd5626764bc50ce6357df}
+
+\begin{CompactList}\small\item\em Alias for the type. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+virtual void {\bf add} (const M \&\_\-\_\-move, const {\bf EOT} \&\_\-\_\-sol)=0
+\begin{CompactList}\small\item\em Procedure to add a move in the tabu list. \item\end{CompactList}\item 
+virtual void {\bf update} ()=0
+\begin{CompactList}\small\item\em Procedure that updates the tabu list content. \item\end{CompactList}\item 
+virtual void {\bf init} ()=0
+\begin{CompactList}\small\item\em Procedure which initialises the tabu list. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class M$>$ class moTabuList$<$ M $>$}
+
+Class describing a tabu list that a \doxyref{moTS}{p.}{classmo_t_s} uses. 
+
+It is only a description, does nothing... A new object that herits from this class has to be defined in order to be used in a \doxyref{moTS}{p.}{classmo_t_s}. 
+
+
+
+Definition at line 47 of file moTabuList.h.
+
+\subsection{Member Function Documentation}
+\index{moTabuList@{moTabuList}!add@{add}}
+\index{add@{add}!moTabuList@{moTabuList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ virtual void {\bf moTabuList}$<$ M $>$::add (const M \& {\em \_\-\_\-move}, const {\bf EOT} \& {\em \_\-\_\-sol})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classmo_tabu_list_d279d72cb486d812da1ad3d24a69c286}
+
+
+Procedure to add a move in the tabu list. 
+
+The two parameters have not to be modified so they are constant parameters.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-\_\-move}]a new tabu move. \item[{\em \_\-\_\-sol}]the origianl solution associated to this move. \end{description}
+\end{Desc}
+
+
+Implemented in {\bf moSimpleMoveTabuList$<$ M $>$} \doxyref{}{p.}{classmo_simple_move_tabu_list_43c979a9ec876c5e5b591b1c422395ef}, and {\bf moSimpleSolutionTabuList$<$ M $>$} \doxyref{}{p.}{classmo_simple_solution_tabu_list_fd6b3a1764121169650c969bba895615}.\index{moTabuList@{moTabuList}!update@{update}}
+\index{update@{update}!moTabuList@{moTabuList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ virtual void {\bf moTabuList}$<$ M $>$::update ()\hspace{0.3cm}{\tt  [pure virtual]}}\label{classmo_tabu_list_a2e5d1132f064093c8ed57046405f5ca}
+
+
+Procedure that updates the tabu list content. 
+
+Generally, a counter associated to each saved move is decreased by one. 
+
+Implemented in {\bf moSimpleMoveTabuList$<$ M $>$} \doxyref{}{p.}{classmo_simple_move_tabu_list_96cffc8118456ed762b07b9fc0e0679f}, and {\bf moSimpleSolutionTabuList$<$ M $>$} \doxyref{}{p.}{classmo_simple_solution_tabu_list_91b8b01dba7ffea8b63765d931e56f56}.\index{moTabuList@{moTabuList}!init@{init}}
+\index{init@{init}!moTabuList@{moTabuList}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ virtual void {\bf moTabuList}$<$ M $>$::init ()\hspace{0.3cm}{\tt  [pure virtual]}}\label{classmo_tabu_list_0a06c459d56e8e2b408a8f3c6aec4e57}
+
+
+Procedure which initialises the tabu list. 
+
+Can be useful if the data structure needs to be allocated before being used. 
+
+Implemented in {\bf moSimpleMoveTabuList$<$ M $>$} \doxyref{}{p.}{classmo_simple_move_tabu_list_b91ae9971be30769757d1ad92c6009dc}, and {\bf moSimpleSolutionTabuList$<$ M $>$} \doxyref{}{p.}{classmo_simple_solution_tabu_list_d5645c39fec71a6110a2cbccbb08b816}.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moTabuList.h\end{CompactItemize}

@@ -1,0 +1,131 @@
+.TH "moSteadyFitSolContinue" 3 "23 Oct 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moSteadyFitSolContinue \- One possible stopping criterion for a solution-based heuristic.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moSteadyFitSolContinue.h>\fP
+.PP
+Inherits \fBmoSolContinue< EOT >< EOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOT::Fitness \fBFitness\fP"
+.br
+.RI "\fIAlias for the fitness. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoSteadyFitSolContinue\fP (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement)"
+.br
+.RI "\fIBasic constructor. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (const EOT &__sol)"
+.br
+.RI "\fI\fBFunction\fP that activates the stopping criterion. \fP"
+.ti -1c
+.RI "void \fBinit\fP ()"
+.br
+.RI "\fIProcedure which allows to initialise the stuff needed. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBmaxNumberOfIterations\fP"
+.br
+.RI "\fIMaximum number of iterations before considering the fitness. \fP"
+.ti -1c
+.RI "unsigned int \fBmaxNumberOfIterationsWithoutImprovement\fP"
+.br
+.RI "\fIMaximum number of iterations without improvement allowed. \fP"
+.ti -1c
+.RI "bool \fBmaxNumberOfIterationsReached\fP"
+.br
+.RI "\fIFlag that indicates that the maxNumberIteration have been reached. \fP"
+.ti -1c
+.RI "bool \fBfirstFitnessSaved\fP"
+.br
+.RI "\fIFlag that this is the first time that the fitness is used. \fP"
+.ti -1c
+.RI "\fBFitness\fP \fBfitness\fP"
+.br
+.RI "\fICurrent Fitness. \fP"
+.ti -1c
+.RI "unsigned int \fBcounter\fP"
+.br
+.RI "\fIThe iteration couter. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class moSteadyFitSolContinue< EOT >"
+One possible stopping criterion for a solution-based heuristic. 
+
+The stop criterion corresponds to a maximum number of iterations without improvement (after a minimum number of iterations). 
+.PP
+Definition at line 46 of file moSteadyFitSolContinue.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBmoSteadyFitSolContinue\fP< EOT >::\fBmoSteadyFitSolContinue\fP (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement)\fC [inline]\fP"
+.PP
+Basic constructor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__maxNumberOfIterations\fP The number of iterations to reach before looking for the fitness. 
+.br
+\fI__maxNumberOfIterationWithoutImprovement\fP The number of iterations without fitness improvement to reach for stop. 
+.RE
+.PP
+
+.PP
+Definition at line 59 of file moSteadyFitSolContinue.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> bool \fBmoSteadyFitSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline, virtual]\fP"
+.PP
+\fBFunction\fP that activates the stopping criterion. 
+.PP
+Indicates if the fitness has not been improved since a number of iterations (after a minimum of iterations).
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__sol\fP the current solution. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true or false. 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< const EOT &, bool >\fP.
+.PP
+Definition at line 71 of file moSteadyFitSolContinue.h.
+.PP
+References moSteadyFitSolContinue< EOT >::counter, moSteadyFitSolContinue< EOT >::firstFitnessSaved, moSteadyFitSolContinue< EOT >::fitness, moSteadyFitSolContinue< EOT >::maxNumberOfIterations, moSteadyFitSolContinue< EOT >::maxNumberOfIterationsReached, and moSteadyFitSolContinue< EOT >::maxNumberOfIterationsWithoutImprovement.
+.SS "template<class EOT> void \fBmoSteadyFitSolContinue\fP< EOT >::init ()\fC [inline, virtual]\fP"
+.PP
+Procedure which allows to initialise the stuff needed. 
+.PP
+It can be also used to reinitialize the counter all the needed things. 
+.PP
+Implements \fBmoSolContinue< EOT >\fP.
+.PP
+Definition at line 115 of file moSteadyFitSolContinue.h.
+.PP
+References moSteadyFitSolContinue< EOT >::counter, moSteadyFitSolContinue< EOT >::firstFitnessSaved, and moSteadyFitSolContinue< EOT >::maxNumberOfIterationsReached.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.

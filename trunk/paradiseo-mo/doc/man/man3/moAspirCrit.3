@@ -1,0 +1,46 @@
+.TH "moAspirCrit" 3 "23 Oct 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moAspirCrit \- Description of the conditions in which a tabu move could be accepted.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moAspirCrit.h>\fP
+.PP
+Inherits \fBeoBF< const M &, const M::EOType::Fitness &, bool >\fP.
+.PP
+Inherited by \fBmoImprBestFitAspirCrit< M >\fP, and \fBmoNoAspirCrit< M >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBinit\fP ()=0"
+.br
+.RI "\fIProcedure which initialises all that needs a aspiration criterion. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class M> class moAspirCrit< M >"
+Description of the conditions in which a tabu move could be accepted. 
+
+It is only a description... An object that herits from this class is needed to be used in a \fBmoTS\fP. See moNoAspriCrit for example. 
+.PP
+Definition at line 47 of file moAspirCrit.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class M> virtual void \fBmoAspirCrit\fP< M >::init ()\fC [pure virtual]\fP"
+.PP
+Procedure which initialises all that needs a aspiration criterion. 
+.PP
+It can be possible that this procedure do nothing... 
+.PP
+Implemented in \fBmoImprBestFitAspirCrit< M >\fP, and \fBmoNoAspirCrit< M >\fP.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.

@@ -1,0 +1,55 @@
+\section{moFitComparator$<$ EOT $>$ Class Template Reference}
+\label{classmo_fit_comparator}\index{moFitComparator@{moFitComparator}}
+Comparison according to the fitness.  
+
+
+{\tt \#include $<$moFitComparator.h$>$}
+
+Inheritance diagram for moFitComparator$<$ EOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4cm]{classmo_fit_comparator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+bool {\bf operator()} (const EOT \&\_\-solution1, const EOT \&\_\-solution2)
+\begin{CompactList}\small\item\em {\bf Function} which makes the comparison and gives the result. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class EOT$>$ class moFitComparator$<$ EOT $>$}
+
+Comparison according to the fitness. 
+
+An EOT is better than an other if its fitness is better. 
+
+
+
+Definition at line 45 of file moFitComparator.h.
+
+\subsection{Member Function Documentation}
+\index{moFitComparator@{moFitComparator}!operator()@{operator()}}
+\index{operator()@{operator()}!moFitComparator@{moFitComparator}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf moFitComparator}$<$ EOT $>$::operator() (const EOT \& {\em \_\-solution1}, const EOT \& {\em \_\-solution2})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_fit_comparator_c920d5a49deb16710daf1e5fcde6b16c}
+
+
+{\bf Function} which makes the comparison and gives the result. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-solution1}]The first solution. \item[{\em \_\-solution2}]The second solution. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if the fitness of the first solution is better than the second solution, false else. \end{Desc}
+
+
+Implements {\bf eoBF$<$ const EOT \&, const EOT \&, bool $>$}.
+
+Definition at line 55 of file moFitComparator.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moFitComparator.h\end{CompactItemize}

@@ -1,0 +1,107 @@
+.TH "moFitSolContinue" 3 "23 Oct 2007" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moFitSolContinue \- One possible stop criterion for a solution-based heuristic.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moFitSolContinue.h>\fP
+.PP
+Inherits \fBmoSolContinue< EOT >< EOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EOT::Fitness \fBFitness\fP"
+.br
+.RI "\fIAlias for the fitness. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoFitSolContinue\fP (\fBFitness\fP __fitness)"
+.br
+.RI "\fIBasic constructor. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (const EOT &__sol)"
+.br
+.RI "\fI\fBFunction\fP that activates the stopping criterion. \fP"
+.ti -1c
+.RI "void \fBinit\fP ()"
+.br
+.RI "\fIProcedure which allows to initialise all the stuff needed. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBFitness\fP \fBfitness\fP"
+.br
+.RI "\fIFitness target. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class moFitSolContinue< EOT >"
+One possible stop criterion for a solution-based heuristic. 
+
+The stop criterion corresponds to a fitness threshold gained. 
+.PP
+Definition at line 46 of file moFitSolContinue.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBmoFitSolContinue\fP< EOT >::\fBmoFitSolContinue\fP (\fBFitness\fP __fitness)\fC [inline]\fP"
+.PP
+Basic constructor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__fitness\fP The fitness to reach. 
+.RE
+.PP
+
+.PP
+Definition at line 58 of file moFitSolContinue.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> bool \fBmoFitSolContinue\fP< EOT >::operator() (const EOT & __sol)\fC [inline, virtual]\fP"
+.PP
+\fBFunction\fP that activates the stopping criterion. 
+.PP
+Indicates if the fitness threshold has not yet been reached.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI__sol\fP the current solution. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true or false according to the value of the fitness. 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< const EOT &, bool >\fP.
+.PP
+Definition at line 68 of file moFitSolContinue.h.
+.PP
+References moFitSolContinue< EOT >::fitness.
+.SS "template<class EOT> void \fBmoFitSolContinue\fP< EOT >::init ()\fC [inline, virtual]\fP"
+.PP
+Procedure which allows to initialise all the stuff needed. 
+.PP
+It can be also used to reinitialize all the needed things. 
+.PP
+Implements \fBmoSolContinue< EOT >\fP.
+.PP
+Definition at line 82 of file moFitSolContinue.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.
