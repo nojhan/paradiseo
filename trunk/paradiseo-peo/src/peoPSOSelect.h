@@ -39,24 +39,21 @@
 #include <utils/eoRNG.h>
 #include <eoSelectOne.h>
 
-template <class EOT> class peoPSOSelect: public eoSelectOne<EOT>
+template <class POT> class peoPSOSelect: public eoSelectOne<POT>
 {
  public:
  
- typedef typename PO < EOT >::Fitness Fitness;
+ peoPSOSelect(eoTopology < POT > & _topology):topology(_topology){}
+ 
+ typedef typename PO < POT >::Fitness Fitness;
 
-  virtual const EOT& operator()(const eoPop<EOT>& _pop)
+  virtual const POT& operator()(const eoPop<POT>& _pop)
   {
-  	unsigned ind=0;
-  	double best=_pop[0].best();
-  	for(unsigned i=1;i<_pop.size();i++)
-  		if(_pop[i].best() > best)
-  		{
-  			ind=i;
-  			best=_pop[i].best();
-  		}
-  	return _pop[ind];
+  	return topology.globalBest(_pop);
   }
+  
+  private:
+  	eoTopology < POT > & topology;
 };
 
 #endif
