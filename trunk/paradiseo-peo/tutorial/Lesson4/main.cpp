@@ -115,12 +115,14 @@ int main (int __argc, char *__argv[])
     eoSyncEasyPSO < Indi > psa(checkpoint, eval, velocity, flight);
     psa (pop); 
     pop.sort (); 
+    std::cout << "Final population :\n" << pop << std::endl;
 #else
 //Parallel algorithm
     peoPSO < Indi > psa(checkpoint, eval, velocity, flight);
     psa(pop);    
     peo :: run(); 
     peo :: finalize();
+    if(getNodeRank()==1)
+		std::cout << "Final population :\n" << pop << std::endl;
 #endif
-    std::cout << "Final population :\n" << pop << std::endl;
 }
