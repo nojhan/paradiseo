@@ -9,19 +9,8 @@
    Contact:  paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <mo.h>
-
-#include <graph.h>
-#include <route.h>
-#include <route_eval.h>
-#include <route_init.h>
-
-#include <two_opt.h>
-#include <two_opt_init.h>
-#include <two_opt_next.h>
-#include <two_opt_incr_eval.h>
-
-#include <city_swap.h>
+#include <mo>
+#include <tsp>
 
 int
 main (int __argc, char * __argv []) 
