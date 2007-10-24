@@ -103,5 +103,8 @@ int main( int __argc, char** __argv ) {
 	peo :: finalize( );
 	// shutting down the ParadisEO-PEO environment
 
+	if(getNodeRank()==1)
+		std::cout<<"\n\nPopulation :\n"<<population;
+
 	return 0;
 }

@@ -182,6 +182,12 @@ int main( int __argc, char** __argv ) {
 
 	peo :: run( );
 	peo :: finalize( );
+	
+	if(getNodeRank()==1)
+    {
+    	std::cout << "Population 1 :\n" << population << std::endl;
+    	std::cout << "Population 2 :\n" << population2 << std::endl;
+    }
 	// shutting down the ParadisEO-PEO environment
 
 	return 0;

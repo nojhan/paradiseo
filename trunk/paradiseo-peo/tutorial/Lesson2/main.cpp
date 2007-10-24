@@ -50,8 +50,8 @@
 #include <peo>
 
 
-#define POP_SIZE 2
-#define NUM_GEN 2
+#define POP_SIZE 10
+#define NUM_GEN 100
 #define CROSS_RATE 1.0
 #define MUT_RATE 0.01
 
@@ -133,6 +133,9 @@ int main( int __argc, char** __argv ) {
 
 	peo :: run( );
 	peo :: finalize( );
+	
+	if(getNodeRank()==1)
+		std::cout<<"\n\nPopulation :\n"<<population;
 
 	// shutting down the ParadisEO-PEO environment
 
