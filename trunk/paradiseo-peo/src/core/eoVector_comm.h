@@ -43,7 +43,14 @@
 
 template <class F, class T> void pack (const eoVector <F, T> & __v) {
 
-  pack (__v.fitness ()) ;
+
+  if ( !__v.invalid() ) 
+  {
+	  pack( (unsigned int) 1 );
+      pack (__v.fitness ()) ;
+  }
+  else
+      pack( (unsigned int) 0 );
   unsigned len = __v.size ();
   pack (len);
   for (unsigned i = 0 ; i < len; i ++)
@@ -53,9 +60,15 @@ template <class F, class T> void pack (const eoVector <F, T> & __v) {
 template <class F, class T> void unpack (eoVector <F, T> & __v) {
 
   F fit; 
-  unpack (fit);
-  __v.fitness (fit);
-
+  unsigned int vfit;
+  unpack( vfit );
+  if ( vfit ) 
+  {
+  	  unpack (fit);
+      __v.fitness (fit);
+  }
+  else 
+      __v.invalidate();
   unsigned len;
   unpack (len);
   __v.resize (len);

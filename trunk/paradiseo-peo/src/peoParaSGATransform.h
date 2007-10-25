@@ -149,8 +149,8 @@ template< class EOT > void peoParaSGATransform< EOT > :: unpackResult() {
 	 :: unpack( pop->operator[]( sidx++ ) );
 	 :: unpack( pop->operator[]( sidx ) );
 	num_term += 2;
-	
-	if( num_term == pop->size() ) {
+	// Can be used with a odd size 
+	if( num_term == 2*(pop->size()/2) ) {
 
 		getOwner()->setActive();
 		resume();
