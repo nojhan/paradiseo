@@ -59,9 +59,11 @@ ENDIF(WIN32 AND NOT CYGWIN)
 
 SET (TEST_LIST t-peo
 			   t-peoPSO
+			   t-peoInsularPSO
 			    )
 			    
-SET (TEST_LIBRARY t-peoPSOPara)
+SET (TEST_LIBRARY t-peoPSOPara
+				  t-peoPSOParaIsland)
 			    
 				
 FOREACH (test ${TEST_LIST} ${TEST_LIBRARY})
