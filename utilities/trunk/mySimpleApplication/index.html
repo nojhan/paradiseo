@@ -247,19 +247,21 @@
 </div><div class='indent'>- Compile it somewhere else in order to have on one hand the source files, on the other the rest (makefiles of configuration file, ".o" files, the executable itself). This way is called <strong><em> out-source-build</em></strong> and is highly recommended.
 </div><p class='vspace'>Moreover, you should know in advance the kind of generator you want <span class='wikiword'>CMake</span> to use.
 </p>
-<p class='vspace'>For an "out-source-build", let's suppose your application's source file is located in <span  style='color: green;'> <strong>/home/john/mySimpleApplication</strong></span> and you want to build it in <span  style='color: red;'> <strong>/home/john/work/result</strong></span> for <strong><span  style='color: blue;'>Visual Studio 8 2005 </span></strong> :
+<p class='vspace'>For an "out-source-build", let's suppose your application's source file is located in <span  style='color: green;'> <strong>/home/john/mySimpleApplication</strong></span> and you want to build it in <span  style='color: red;'> <strong>/home/john/mySimpleApplication/build</strong></span> for <strong><span  style='color: blue;'>Visual Studio 8 2005 </span></strong> :
 </p>
-<p class='vspace'>From any directory, simply run (from a terminal/console)
+<p class='vspace'>(<em>Note: The "build" directory exists if the archive, we would advise you to build your program in it</em>.)
+</p>
+<p class='vspace'>From <strong><span  style='color: red;'>/home/john/mySimpleApplication/build</span></strong>, simply run (from a terminal/console)
 </p><div  style='color: black; font-size: 8pt; background-color: #ffffcc;' > 
-<dl><dd><dl><dd><div class='indent'><strong>cmake <span  style='color: green;'>/home/john/mySimpleApplication</span> <span  style='color: red;'> /home/john/work/result</span> -G<span  style='color: blue;'>"Visual Studio 8 2005"</span></strong>
+<dl><dd><dl><dd><div class='indent'><strong>cmake <span  style='color: green;'>/home/john/mySimpleApplication</span> -G<span  style='color: blue;'>"Visual Studio 8 2005"</span></strong>
 </div></dd></dl></dd></dl></div>
 <p class='vspace'>The generic call for <span class='wikiword'>CMake</span> is:
 </p><div  style='color: black; font-size: 8pt; background-color: #ffffcc;' > 
-<dl><dd><dl><dd><div class='indent'><strong>cmake <span  style='color: green;'>&lt;path to the sources&gt; </span> <span  style='color: red;'> &lt;target build path&gt;</span> -G<span  style='color: blue;'>"&lt;generator name&gt;"</span></strong>
+<dl><dd><dl><dd><div class='indent'><strong>cmake <span  style='color: green;'>&lt;path to the sources&gt; </span> -G<span  style='color: blue;'>"&lt;generator name&gt;"</span></strong>
 </div></dd></dl></dd></dl></div>
 <p class='vspace'>Then :
 </p>
-<p class='vspace'>- Go in <span  style='color: red;'> <strong><em>/home/john/work/result</em></strong></span>
+<p class='vspace'>- Go in <strong><span  style='color: red;'>/home/john/mySimpleApplication/build</span></strong>
 <br  />- Compile your program using the appropriate tool. Examples:
 </p><dl><dd><dl><dd><div class='indent'>--&gt; If you chose the Unix Makefiles generator, enter "make"
 </div><div class='indent'>--&gt; If you chose Visual Studio generator, open the generated solution/project and compile
