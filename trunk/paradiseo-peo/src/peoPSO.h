@@ -63,6 +63,7 @@ public:
   //! @param eoVelocity< POT >& __velocity - velocity operator;
   //! @param eoFlight< POT >& __flight - flight operator;
   peoPSO(
+  	 eoInitializerBase <POT> & _Init,
 	 eoContinue< POT >& __cont,
 	 peoPopEval< POT >& __pop_eval,
 	 eoVelocity < POT > &_velocity,
@@ -77,6 +78,7 @@ public:
 
 private:
 
+	eoInitializerBase <POT> & Init;
 	eoContinue< POT >& cont;
 	peoPopEval< POT >& pop_eval;
 	eoPop< POT >* pop;
@@ -86,12 +88,12 @@ private:
 
 
 template < class POT > peoPSO< POT > :: peoPSO( 
-
+				eoInitializerBase <POT> & _Init,
 				eoContinue< POT >& __cont, 
 				peoPopEval< POT >& __pop_eval, 
 				eoVelocity < POT > &__velocity,
 				eoFlight < POT > &__flight
-				) : cont( __cont ), pop_eval(__pop_eval ),velocity( __velocity),flight( __flight)
+				) : Init(_Init),cont( __cont ), pop_eval(__pop_eval ),velocity( __velocity),flight( __flight)
 {
 	pop_eval.setOwner( *this );
 }
@@ -106,8 +108,10 @@ template< class POT > void peoPSO< POT > :: operator ()( eoPop< POT >& __pop ) {
 template< class POT > void peoPSO< POT > :: run() {
 
 	printDebugMessage( "Performing the first evaluation of the population." );
+	Init();
+	velocity.getTopology().setup(*pop);
 	do {	
-     	        printDebugMessage( "Performing the velocity evaluation." );
+     	printDebugMessage( "Performing the velocity evaluation." );
 		velocity.apply ( *pop );
 		printDebugMessage( "Performing the flight." );
 		flight.apply ( *pop );

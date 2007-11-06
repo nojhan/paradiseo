@@ -1,5 +1,5 @@
 /* 
-* <peoEvalFuncPSO.h>
+* <peoInitializer.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, INRIA, 2007
 *
@@ -34,35 +34,65 @@
 *
 */
 
+#ifndef _peoInitializer_H
+#define _peoInitializer_H
 
-#ifndef PEOEVALFUNCPSO_H
-#define PEOEVALFUNCPSO_H
+/**
+	Base (name) class for parallel initialization of algorithm PSO
 
-#include <eoEvalFunc.h>
+	@see eoInitializerBase
+*/
 
-//! peoEvalFuncPSO: This class
-//! takes an existing function pointer and converts it into a evaluation
-//! function class. 
+template <class POT> class peoInitializer : public eoInitializerBase <POT>
+{
+	public:
+	
 
-#ifdef _MSC_VER
-template< class POT, class FitT = POT::Fitness, class FunctionArg = const POT& >
-#else
-template< class POT, class FitT = typename POT::Fitness, class FunctionArg = const POT& >
-#endif
-struct peoEvalFuncPSO: public eoEvalFunc<POT> {
-
-  peoEvalFuncPSO( FitT (* _eval)( FunctionArg ) )
-    : eoEvalFunc<POT>(), evalFunc( _eval ) {};
-  
-    //!Applies the evaluation function to a PEO
-  virtual void operator() ( POT & _peo ) 
-  {
-      _peo.fitness((*evalFunc)( _peo ));
-  };
+	//!	Constructor
+	//! @param _proc Evaluation function
+	//! @param _initVelo Initialization of the velocity
+	//! @param _initBest Initialization of the best
+	//! @param _pop Population 
+	peoInitializer(
+					peoPopEval< POT >& _proc,
+					eoVelocityInit < POT > &_initVelo, 
+					eoParticleBestInit <POT> &_initBest,
+					eoPop < POT > &_pop
+				 ) : proc(_proc), initVelo(_initVelo), initBest(_initBest)
+	{
+		pop = &_pop;
+	}
+	
+	//! Give the name of the class
+	//! @return The name of the class
+	virtual std::string className (void) const
+    {
+        return "peoInitializer";
+    }
     
-  private:
-    FitT (* evalFunc )( FunctionArg );
+    //! void operator ()
+	//! Parallel initialization of the population
+	virtual void operator()()
+	{
+		proc(*pop);
+		apply < POT > (initVelo, *pop);
+    	apply < POT > (initBest, *pop);
+	}
+	
+	private :
+	
+	/*
+		@param proc First evaluation
+		@param initVelo Initialization of the velocity
+		@param initBest Initialization of the best
+		@param pop Population		
+	*/
+	peoPopEval< POT >& proc;
+	eoVelocityInit < POT > & initVelo;
+	eoParticleBestInit <POT> & initBest;
+	eoPop <POT> * pop;
 };
-
 #endif
 
+	
+	

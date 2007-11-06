@@ -340,6 +340,7 @@
 #include "peoSyncMultiStart.h"
 
 /* Parallel PSO */
+#include "peoInitializer.h"
 #include "peoPSO.h"
 #include "peoEvalFuncPSO.h"
 #include "peoPSOSelect.h"
