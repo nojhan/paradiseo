@@ -5,7 +5,7 @@
 #########################################################################################################
 
 #  Here, just specify PARADISEO_DIR : the directory where ParadisEO has been installed
-SET(PARADISEO_DIR "/opt/paradiseo-ix86-1.0" CACHE PATH "ParadisEO directory" FORCE)
+SET(PARADISEO_DIR "myDirectory" CACHE PATH "ParadisEO directory" FORCE)
 
 #########################################################################################################
  
