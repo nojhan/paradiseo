@@ -57,21 +57,19 @@ structure:
    |   +- man            Unix man format documentation.
    |
    |
-   +-- tutorial          APPLICATIONS - one directory per separate application.
+   +-- tutorial          APPLICATIONS
        |
-       +-- examples      Examples repository including source code shared by all or most of the included lessons.
-       |   |
-       |   +- tsp        A Traveling Salesman Problem (TSP) example with benchmarks, the main operators, definitions, etc.
+       +-- Introduction  Technical introduction
        |
-       +-- Lesson1       A simple ParadisEO-PEO evolutionary algorithm example using the peoEA class.
+       +-- Lesson1       Parallel evaluation for EA and PSO
        |
-       +-- Lesson2       Example of an EA featuring a parallel evaluation of the population/parallel fitness function evaluation.
+       +-- Lesson2       Parallel transformation (crossover + mutation) for EA
        |
-       +-- Lesson3       Example of an asynchronous insular model including two evolutionary algorithms.
+       +-- Lesson3       Insular model for PSO and EA
        |
-       +-- Lesson4       Example of a parallel pso
+       +-- Lesson4       PSO and EA completely parallel
        |
-       +-- Walkthrough   Walkthrough ParadisEO-PEO features - EA+LS hybridization, parallelization, insular model.
+       +-- Lesson5       Multi-start : several local searches
 
 ===================================================================
               NOTES
