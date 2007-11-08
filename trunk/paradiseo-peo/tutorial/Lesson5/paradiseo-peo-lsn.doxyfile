@@ -3,9 +3,9 @@
 #---------------------------------------------------------------------------
 # Project related configuration options
 #---------------------------------------------------------------------------
-PROJECT_NAME           = "ParadisEO-PEO Lesson2"
+PROJECT_NAME           = "ParadisEO-PEO Lesson5"
 PROJECT_NUMBER         = 0.1
-OUTPUT_DIRECTORY       = ../../../doc/html/lesson2
+OUTPUT_DIRECTORY       = ../../../doc/html/lesson5
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
 USE_WINDOWS_ENCODING   = NO
@@ -239,3 +239,4 @@ DOT_CLEANUP            = YES
 # Configuration::additions related to the search engine   
 #---------------------------------------------------------------------------
 SEARCHENGINE           = YES
+

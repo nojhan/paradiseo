@@ -5,14 +5,14 @@
 
 SET (CMAKE_CXX_COMPILER mpicxx)
 
-ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/lesson.param ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/schema.xml)
+ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/param ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/schema.xml)
 
 ADD_CUSTOM_COMMAND(
     TARGET install
     POST_BUILD
     COMMAND ${CMAKE_COMMAND}
     ARGS -E copy_if_different
-      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/lesson.param
+      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/param
       ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson1)
 ADD_CUSTOM_COMMAND(
     TARGET install
@@ -21,13 +21,7 @@ ADD_CUSTOM_COMMAND(
     ARGS -E copy_if_different
       ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/schema.xml
       ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson1)
-ADD_CUSTOM_COMMAND(
-    TARGET install
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND}
-    ARGS -E copy_if_different
-      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/ParadisEO-PEO_Lesson1.pdf
-      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson1)
+
 ######################################################################################
 
 
@@ -35,7 +29,7 @@ ADD_CUSTOM_COMMAND(
 ### 1) Include the sources
 ######################################################################################
 
-INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src ${MO_SRC_DIR}/src ${ParadisEO-PEO_SOURCE_DIR}/src ${TSP_SRC_DIR})
+INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src ${MO_SRC_DIR}/src ${ParadisEO-PEO_SOURCE_DIR}/src)
 
 ######################################################################################
 
@@ -45,12 +39,12 @@ INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src ${MO_SRC_DIR}/src ${ParadisEO-PEO_SOURCE_D
 ######################################################################################
 
 IF(NOT WIN32 OR CYGWIN)  
-  LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DIR}/lib ${TSP_BINARY_DIR}/lib)
+  LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DIR}/lib)
 ENDIF(NOT WIN32 OR CYGWIN)
 
 # especially for Visual Studio
 IF(WIN32 AND NOT CYGWIN)  
-  	LINK_DIRECTORIES(${EO_BIN_DIR}\\lib\\${CMAKE_BUILD_TYPE} ${ParadisEO-PEO_BINARY_DIR}\\lib\\${CMAKE_BUILD_TYPE} ${TSP_BINARY_DIR}\\lib\\${CMAKE_BUILD_TYPE})
+  	LINK_DIRECTORIES(${EO_BIN_DIR}\\lib\\${CMAKE_BUILD_TYPE} ${ParadisEO-PEO_BINARY_DIR}\\lib\\${CMAKE_BUILD_TYPE})
 ENDIF(WIN32 AND NOT CYGWIN) 
 ######################################################################################
 
@@ -59,8 +53,10 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
-ADD_EXECUTABLE(tspExample main.cpp) 
-ADD_DEPENDENCIES(tspExample tsp peo rmc_mpi)
+ADD_EXECUTABLE(pso mainPSO.cpp)
+ADD_DEPENDENCIES(pso peo rmc_mpi) 
+ADD_EXECUTABLE(ea mainEA.cpp)
+ADD_DEPENDENCIES(ea peo rmc_mpi)
 ######################################################################################
 
 
@@ -69,7 +65,8 @@ ADD_DEPENDENCIES(tspExample tsp peo rmc_mpi)
 ######################################################################################
 
 SET(LESSON1_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(tspExample PROPERTIES VERSION "${LESSON1_VERSION}")
+SET_TARGET_PROPERTIES(pso PROPERTIES VERSION "${LESSON1_VERSION}")
+SET_TARGET_PROPERTIES(ea PROPERTIES VERSION "${LESSON1_VERSION}")
 ######################################################################################
 
 
@@ -77,7 +74,8 @@ SET_TARGET_PROPERTIES(tspExample PROPERTIES VERSION "${LESSON1_VERSION}")
 ### 5) Link the librairies
 ######################################################################################
 
-TARGET_LINK_LIBRARIES(tspExample ${XML2_LIBS} tsp peo rmc_mpi eo eoutils) 
+TARGET_LINK_LIBRARIES(pso ${XML2_LIBS} peo rmc_mpi eo eoutils) 
+TARGET_LINK_LIBRARIES(ea ${XML2_LIBS} peo rmc_mpi eo eoutils)
 
 ######################################################################################
 

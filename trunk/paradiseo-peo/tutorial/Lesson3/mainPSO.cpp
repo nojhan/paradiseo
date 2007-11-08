@@ -1,7 +1,7 @@
 /* 
 * <main.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
+* (C) OPAC Team, INRIA, 2007
 *
 * Clive Canape
 *
@@ -31,136 +31,122 @@
 *
 * ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 * Contact: paradiseo-help@lists.gforge.inria.fr
-*          clive.canape@inria.fr
+*          
 */
 
 #include <peo>
 
-// You can choose : a replacement or an affectation on the velocity
-#define REPLAC
-
 typedef eoRealParticle < double >Indi;
 
-
-//Evaluation function
 double f (const Indi & _indi)
 {  
-    //Levy function f* = -21.502356 x*=(1,1,1,-9.752356 ) for vector size = 4
-    
-    const double PI = 4.0 * atan(1.0);
-    double sum=0.;
-    for (unsigned i = 0; i < _indi.size()-1; i++)
-    	sum+=pow((_indi[i]-1),2)*(1+pow(sin(3*PI*_indi[i+1]),2));
-    sum+=pow(sin(3*PI*_indi[0]),2);
-    sum+=(_indi[_indi.size()-1]-1)*(1+pow(sin(2*PI*_indi[_indi.size()-1]),2));
+    double sum;
+    sum=_indi[1]-pow(_indi[0],2);
+    sum=100*pow(sum,2);
+    sum+=pow((1-_indi[0]),2);
     return (-sum);
 }
 
 int main (int __argc, char *__argv[])
 {
 
-//Initialization
-  peo :: init( __argc, __argv );
-//Parameters
- 
-	const unsigned int  MIG_FREQ = 10; // 1 or 2 for peoPSOVelocity ...
-    const unsigned int VEC_SIZE = 4;        
-    const unsigned int POP_SIZE = 10;        
-    const unsigned int NEIGHBORHOOD_SIZE= 5; 
-    const unsigned int MAX_GEN = 100;
-    const double INIT_POSITION_MIN = -10.0;
-    const double INIT_POSITION_MAX = 1.0;
-    const double INIT_VELOCITY_MIN = -1;
-    const double INIT_VELOCITY_MAX = 1;
-    const double C1 = 1; 
-    const double C2 = 0.5;
-// c3 is used to calculate of an affectation on the velocity
-    const double C3 = 2;
+// In this lesson, we define two algorithms of the PSO witch represente two islands.
+// Obviously, you can define more algorithms. 
+  
+ // The parameters are commun between the two algorithms.
+ /*****************************************************************************************/
+    peo :: init( __argc, __argv );
+    const unsigned int VEC_SIZE = 2;  
+    const unsigned int POP_SIZE = 20; 
+    const unsigned int NEIGHBORHOOD_SIZE= 6; 
+    const unsigned int MAX_GEN = 150;
+    const double INIT_POSITION_MIN = -2.0;  
+    const double INIT_POSITION_MAX = 2.0;   
+    const double INIT_VELOCITY_MIN = -1.;  
+    const double INIT_VELOCITY_MAX = 1.;    
+    const double C1 = 0.5;   
+    const double C2 = 2.;   
+ // C3 is used for the calculation of one of the strategies of the island model.
+    const double C3 = 2.;
+ // MIG_FREQ define the frequence of the migration.
+    const unsigned int  MIG_FREQ = 10; // The optimal value is 1 or 2 for the component peoPSOVelocity.
     rng.reseed (time(0));
-
-	peoEvalFuncPSO<Indi, double, const Indi& > plainEval(f);
+    /*****************************************************************************************/
+    
+ // Define the topology of your island model
+ 	RingTopology topologyMig;
+  
+ // First algorithm   
+ /*****************************************************************************************/     
+    peoEvalFuncPSO<Indi, double, const Indi& > plainEval(f);
+    peoSeqPopEval< Indi > eval(plainEval);   	// Here, the evaluation is sequential !             
     eoUniformGenerator < double >uGen (INIT_POSITION_MIN, INIT_POSITION_MAX);
-	eoInitFixedLength < Indi > random (VEC_SIZE, uGen);
+    eoInitFixedLength < Indi > random (VEC_SIZE, uGen);    
     eoUniformGenerator < double >sGen (INIT_VELOCITY_MIN, INIT_VELOCITY_MAX);
-    eoVelocityInitFixedLength < Indi > veloRandom (VEC_SIZE, sGen);
+    eoVelocityInitFixedLength < Indi > veloRandom (VEC_SIZE, sGen); 
     eoFirstIsBestInit < Indi > localInit;
     eoRealVectorBounds bndsFlight(VEC_SIZE,INIT_POSITION_MIN,INIT_POSITION_MAX);
-    eoStandardFlight < Indi > flight(bndsFlight); 
-    eoEvalFuncCounter < Indi > evalSeq (plainEval); 
-    peoParaPopEval< Indi > eval(plainEval);  
+    eoStandardFlight < Indi > flight(bndsFlight);     
     eoPop < Indi > pop;
-    pop.append (POP_SIZE, random);    
-    apply(evalSeq, pop);
-    apply < Indi > (veloRandom, pop);
-    apply < Indi > (localInit, pop);
+    pop.append (POP_SIZE, random);   
+    peoInitializer <Indi> init(eval,veloRandom,localInit,pop);
     eoLinearTopology<Indi> topology(NEIGHBORHOOD_SIZE);
-    topology.setup(pop);
     eoRealVectorBounds bnds(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
     eoStandardVelocity < Indi > velocity (topology,C1,C2,bnds);
     eoGenContinue < Indi > genContPara (MAX_GEN);
     eoCheckPoint<Indi> checkpoint(genContPara); 
-    RingTopology topologyMig;
- /*******************************************************************/  
-    eoPeriodicContinue< Indi > mig_cont( MIG_FREQ );
+ // Specific implementation for the island model
+	eoPeriodicContinue< Indi > mig_cont( MIG_FREQ );
     peoPSOSelect<Indi> mig_selec(topology); 
 	eoSelectNumber< Indi > mig_select(mig_selec);
-#ifndef REPLAC
-	peoPSOVelocity<Indi> mig_replace(C3,velocity);
-#else
+ // If you want to use a replacement stategy : peoPSOReplacement<Indi> mig_replace;
+ // If you want to use a consideration of the migration in the calculation of the velocity : peoPSOVelocity<Indi> mig_replace(C3,velocity);
 	peoPSOReplacement<Indi> mig_replace;
-#endif
-/*****************************************************************/	
-    
-    
+/*****************************************************************************************/
+ 
+ // Second algorithm (on the same model but with others names)
+/*****************************************************************************************/     
     peoEvalFuncPSO<Indi, double, const Indi& > plainEval2(f);
+    peoSeqPopEval< Indi > eval2(plainEval2);            
     eoUniformGenerator < double >uGen2 (INIT_POSITION_MIN, INIT_POSITION_MAX);
-	eoInitFixedLength < Indi > random2 (VEC_SIZE, uGen);
+    eoInitFixedLength < Indi > random2 (VEC_SIZE, uGen2);    
     eoUniformGenerator < double >sGen2 (INIT_VELOCITY_MIN, INIT_VELOCITY_MAX);
-    eoVelocityInitFixedLength < Indi > veloRandom2 (VEC_SIZE, sGen2);
+    eoVelocityInitFixedLength < Indi > veloRandom2 (VEC_SIZE, sGen2); 
     eoFirstIsBestInit < Indi > localInit2;
     eoRealVectorBounds bndsFlight2(VEC_SIZE,INIT_POSITION_MIN,INIT_POSITION_MAX);
-    eoStandardFlight < Indi > flight2(bndsFlight2); 
-    eoEvalFuncCounter < Indi > evalSeq2 (plainEval2); 
-    peoParaPopEval< Indi > eval2(plainEval2);  
+    eoStandardFlight < Indi > flight2(bndsFlight2);     
     eoPop < Indi > pop2;
-    pop2.append (POP_SIZE, random2);    
-    apply(evalSeq2, pop2);
-    apply < Indi > (veloRandom2, pop2);
-    apply < Indi > (localInit2, pop2);
+    pop2.append (POP_SIZE, random2);   
+    peoInitializer <Indi> init2(eval2,veloRandom2,localInit2,pop2);
     eoLinearTopology<Indi> topology2(NEIGHBORHOOD_SIZE);
-    topology2.setup(pop2);
     eoRealVectorBounds bnds2(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
     eoStandardVelocity < Indi > velocity2 (topology2,C1,C2,bnds2);
     eoGenContinue < Indi > genContPara2 (MAX_GEN);
     eoCheckPoint<Indi> checkpoint2(genContPara2); 
- /*******************************************************************/  
-    eoPeriodicContinue< Indi > mig_cont2( MIG_FREQ );
+	eoPeriodicContinue< Indi > mig_cont2( MIG_FREQ );
     peoPSOSelect<Indi> mig_selec2(topology2); 
 	eoSelectNumber< Indi > mig_select2(mig_selec2);
-#ifndef REPLAC
-	peoPSOVelocity<Indi> mig_replace2(C3,velocity2);
-#else
 	peoPSOReplacement<Indi> mig_replace2;
-#endif
-/*******************************************************************/	
+/*****************************************************************************************/
 
-	peoAsyncIslandMig< Indi > mig( mig_cont, mig_select, mig_replace, topologyMig, pop, pop2);
+ // Define the communication between the islands
+	peoAsyncIslandMig< Indi > mig( mig_cont, mig_select, mig_replace, topologyMig, pop, pop);
 	checkpoint.add( mig );
-	peoAsyncIslandMig< Indi > mig2( mig_cont2, mig_select2, mig_replace2, topologyMig, pop2, pop);
-	checkpoint.add( mig2 );
-
-    peoPSO < Indi > psa(checkpoint, eval, velocity, flight);
+	peoAsyncIslandMig< Indi > mig2( mig_cont2, mig_select2, mig_replace2, topologyMig, pop2, pop2);
+	checkpoint2.add( mig2 );
+ // Initialization of the algorithms
+	peoPSO < Indi > psa(init,checkpoint, eval, velocity, flight);
     mig.setOwner( psa );
     psa(pop);  
-    peoPSO < Indi > psa2(checkpoint2, eval2, velocity2, flight2);
+    peoPSO < Indi > psa2(init2,checkpoint2, eval2, velocity2, flight2);
     mig2.setOwner( psa2 );
     psa2(pop2);
-       
+     
     peo :: run(); 
     peo :: finalize();
     if(getNodeRank()==1)
     {
-    	std::cout << "Population 1 :\n" << pop << std::endl;
+		std::cout << "Population 1 :\n" << pop << std::endl;
     	std::cout << "Population 2 :\n" << pop2 << std::endl;
     }
 }

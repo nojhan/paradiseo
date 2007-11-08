@@ -6,7 +6,4 @@
 
 --schema=schema.xml
 
-## parameters
-
---inst=../examples/tsp/benchs/eil101.tsp
 
