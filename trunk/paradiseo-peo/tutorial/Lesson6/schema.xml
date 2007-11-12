@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<schema>
+  <group scheduler="0">
+    <node name="0" num_workers="0">
+    </node>    
+    <node name="1" num_workers="0">
+      <runner>1</runner>
+      <runner>2</runner>
+      <runner>3</runner>
+      <runner>4</runner>
+      <runner>5</runner>
+    </node>    
+    <node name="2" num_workers="1">
+    </node>    
+    <node name="3" num_workers="1">
+    </node>    
+    </group>
+</schema>
