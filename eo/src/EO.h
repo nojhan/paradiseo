@@ -47,11 +47,8 @@ public:
   typedef F Fitness;
 
   /** Default constructor.
-      Fitness must have a ctor which takes 0 as a value; we can not use void
-      ctors here since default types like float have no void initializer.
-      VC++ allows it, but gcc does not
   */
-  EO(): repFitness(Fitness()), invalidFitness(true) {}
+  EO(): repFitness(Fitness()), invalidFitness(true) { }
 
   /// Virtual dtor
   virtual ~EO() {};

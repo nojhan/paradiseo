@@ -51,7 +51,7 @@
  */
 
 template<class EOT>
-class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent 
+class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent
 {
 
  public:
@@ -294,7 +294,6 @@ class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent
     for (unsigned i=0; i<size(); i++)
       this->operator[](i).invalidate();
   }
-
 
  protected:
 

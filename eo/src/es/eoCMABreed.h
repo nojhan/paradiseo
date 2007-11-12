@@ -47,7 +47,9 @@ class eoCMABreed : public eoBreed< eoVector<FitT, double> > {
 	
 	// two temporary arrays of pointers to store the sorted population
 	std::vector<const EOT*> sorted(parents.size());
-	std::vector<const std::vector<double>* > mu(parents.size());
+	
+        // mu stores population as vector (instead of eoPop)
+        std::vector<const std::vector<double>* > mu(parents.size());
 	
 	parents.sort(sorted);
 	for (unsigned i = 0; i < sorted.size(); ++i) {
@@ -55,7 +57,6 @@ class eoCMABreed : public eoBreed< eoVector<FitT, double> > {
 	}
 	
 	// learn
-	
 	state.reestimate(mu, sorted[0]->fitness(), sorted.back()->fitness());
 	
 	if (!state.updateEigenSystem(10)) {

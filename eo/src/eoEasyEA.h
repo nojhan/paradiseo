@@ -185,7 +185,7 @@ public:
          breed(_pop, offspring);
 
          popEval(_pop, offspring); // eval of parents + offspring if necessary
-
+         
          replace(_pop, offspring); // after replace, the new pop. is in _pop
 
          if (pSize > _pop.size())

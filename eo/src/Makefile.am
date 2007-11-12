@@ -143,6 +143,7 @@ pkginclude_HEADERS 	= eo \
 			eoWeightUpdater.h \
 			es.h \
 			ga.h \
-			PO.h
+			PO.h \
+			eoTimeContinue.h
 
 AM_CXXFLAGS		= -I$(top_srcdir)/src

@@ -2,6 +2,7 @@
 #include <eo>
 
 #include <moo/eoEpsMOEA.h>
+#include <utils/eoFuncPtrStat.h>
 
 using namespace std;
 
@@ -133,6 +134,17 @@ class Init : public eoInit<eoDouble>
   }
 };
 
+template <class EOT>
+unsigned get_size(const eoPop<EOT>& pop) { 
+    return pop.size(); 
+}
+
+template <class EOT>
+unsigned counter(const eoPop<EOT>& pop) { 
+    static unsigned c = 0; 
+    return c++; 
+}
+
 // Test pareto dominance and perf2worth, and while you're at it, test the eoGnuPlot monitor as well
 void the_main(int argc, char* argv[])
 {
@@ -174,7 +186,20 @@ void the_main(int argc, char* argv[])
 
   snapshot.add(fitness0);
   snapshot.add(fitness1);
+    
+  eoGnuplot1DMonitor monitor("sizemon");
+    
+  cp.add(monitor);
+ 
+  eoFuncPtrStat<eoDouble, unsigned> size(get_size<eoDouble>);
+  eoFuncPtrStat<eoDouble, unsigned> counterStat(counter<eoDouble>);
+  
+  monitor.add(counterStat);
+  monitor.add(size);
 
+  cp.add(size);
+  cp.add(counterStat);
+    
   // the algo
   eoEpsMOEA<eoDouble> ea(cp, eval, opsel, MinimizingFitnessTraits::eps );
 

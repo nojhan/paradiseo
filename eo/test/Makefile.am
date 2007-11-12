@@ -108,4 +108,10 @@ t_eoEasyPSO_SOURCES		= t-eoEasyPSO.cpp
 t_eoNSGA_SOURCES		= t-eoNSGA.cpp
 t_eoFrontSorter_SOURCES		= t-eoFrontSorter.cpp
 t_eoEpsMOEA_SOURCES		= t-eoEpsMOEA.cpp
+t_eoInt_SOURCES			= t-eoInt.cpp
+t_eoInitPermutation_SOURCES	= t-eoInitPermutation.cpp
+t_eoSwapMutation_SOURCES        = t-eoSwapMutation.cpp
+t_eoShiftMutation_SOURCES	= t-eoShiftMutation.cpp
+t_eoTwoOptMutation_SOURCES	= t-eoTwoOptMutation.cpp
+t_eoRingTopology_SOURCES	= t-eoRingTopology.cpp
 

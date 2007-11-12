@@ -94,7 +94,7 @@ To add two values, do
 
 Sym sym = var + const;
 
-This will create a tree with tree nodes. All other operations work identically.
+This will create a tree with three nodes. Other operators are overloaded similarily.
 
 === Evaluation (eval/) ===
 

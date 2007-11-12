@@ -114,26 +114,6 @@ exitLoop:
             }
         }
         
-        /*
-        static unsigned counter = 0;
-        if (++counter % 500 == 0) {
-            std::vector<long> mins(archive[0].discretized.size(), std::numeric_limits<long>::max());
-            std::vector<long> maxs(archive[0].discretized.size(), std::numeric_limits<long>::min());
-            for (unsigned i = 0; i < archive.size(); ++i) {
-                for (unsigned dim = 0; dim < archive[i].discretized.size(); ++dim) {
-                    mins[dim] = std::min( mins[dim], archive[i].discretized[dim] );
-                    maxs[dim] = std::max( maxs[dim], archive[i].discretized[dim] );
-                }
-            }
-            
-            std::cout << "Range ";
-            for (unsigned dim = 0; dim < mins.size(); ++dim) {
-                std::cout << (maxs[dim] - mins[dim]) << ' ';
-            }
-            std::cout << archive.size() << std::endl;
-
-        }*/
-
         if (archive.size() > max_size) {
             unsigned idx = rng.random(archive.size());
             if (idx != archive.size()-1) std::swap(archive[idx], archive.back());

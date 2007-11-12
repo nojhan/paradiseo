@@ -16,7 +16,7 @@ class eoEpsMOEA : public eoAlgo<EOT> {
          eoEvalFunc<EOT>& _eval,
          eoGenOp<EOT>& _op,
          const std::vector<double>& eps,
-         unsigned max_archive_size
+         unsigned max_archive_size = std::numeric_limits<unsigned>::max()
      ) : continuator(_continuator),
 	 eval (_eval),
 	 loopEval(_eval),

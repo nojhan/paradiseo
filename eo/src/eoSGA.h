@@ -89,7 +89,7 @@ public :
       }
 	  }
 
-	for (i=0; i < _pop.size(); i++)
+	for (i=0; i < offspring.size(); i++)
 	  {
 	    if (rng.flip(mutationRate) )
 	    {
