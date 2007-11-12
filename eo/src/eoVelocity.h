@@ -29,6 +29,7 @@
 #include <eoFunctor.h>
 #include <utils/eoRNG.h>
 #include <eoPop.h>
+#include <eoTopology.h>
 //-----------------------------------------------------------------------------
 
 /**
@@ -38,7 +39,6 @@
 template < class POT > class eoVelocity:public eoBF < POT &,unsigned , void >
 {
 public:
-
     /**
      * Apply the velocity computation to a whole given population.
      * Used for synchronous PSO.
@@ -69,6 +69,10 @@ public:
         }
 
     }
+    
+   
+   virtual eoTopology<POT> & getTopology () = 0;
+
 };
 
 #endif /*EOVELOCITY_H_H */

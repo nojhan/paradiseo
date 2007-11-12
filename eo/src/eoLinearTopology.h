@@ -19,6 +19,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: thomas.legrand@lifl.fr
+             clive.canape@inria.fr
  */
 //-----------------------------------------------------------------------------
 
@@ -161,6 +162,28 @@ public:
         return (neighborhoods[theGoodNhbd].best());
     }
 
+	/*
+	 * Return the global best of the topology
+	 */
+	 
+	 virtual POT & globalBest(const eoPop<POT>& _pop)
+    {
+    	unsigned howManyNeighborhood=_pop.size()/ neighborhoodSize;
+    	POT globalBest,tmp;
+    	unsigned indGlobalBest=0;
+    	globalBest=neighborhoods[0].best();
+    	for(unsigned i=1;i<howManyNeighborhood;i++)
+    	{
+    		tmp=neighborhoods[i].best();
+    		if(globalBest.best() < tmp.best())
+    		{
+    			globalBest=tmp;
+    			indGlobalBest=i;
+    		}
+    			
+    	}
+    	return neighborhoods[indGlobalBest].best();
+    }
 
     /**
      * Print the structure of the topology on the standrad output.

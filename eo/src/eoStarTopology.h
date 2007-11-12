@@ -19,6 +19,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: thomas.legrand@lifl.fr
+             clive.canape@inria.fr
  */
 //-----------------------------------------------------------------------------
 
@@ -106,6 +107,15 @@ public:
      * @return POT & - The best particle in the neighborhood of the particle whose indice is _indice
      */
     POT & best (unsigned  _indice) {return (neighborhood.best());}
+    
+    /*
+	 * Return the global best of the topology
+	 */
+	 
+	 virtual POT & globalBest(const eoPop<POT>& _pop)
+    {
+    	return neighborhood.best();
+    }
 
 
    /**

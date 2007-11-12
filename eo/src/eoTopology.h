@@ -19,6 +19,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: thomas.legrand@lifl.fr
+             clive.canape@inria.fr
  */
 //-----------------------------------------------------------------------------
 
@@ -63,6 +64,28 @@ public:
      * Build the neighborhoods contained in the topology.
      */
     virtual POT & best (unsigned ) = 0;
+    
+    /*
+     * Return the global best
+     */
+    
+    virtual POT & globalBest(const eoPop<POT>& _pop)
+    {
+    	POT globalBest,tmp;
+    	unsigned indGlobalBest=0;
+    	globalBest=best(0);
+    	for(unsigned i=1;i<_pop.size();i++)
+    	{
+    		tmp=best(i);
+    		if(globalBest.best() < tmp.best())
+    		{
+    			globalBest=tmp;
+    			indGlobalBest=i;
+    		}
+    			
+    	}
+    	return best(indGlobalBest);
+    }
 
     /**
      * Build the neighborhoods contained in the topology.

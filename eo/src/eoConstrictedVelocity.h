@@ -19,6 +19,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
     Contact: thomas.legrand@lifl.fr
+             clive.canape@inria.fr
  */
 //-----------------------------------------------------------------------------
 
@@ -170,7 +171,13 @@ public:
         topology.updateNeighborhood(_po,_indice);
     }
 
+	//! eoTopology<POT> getTopology
+    //! @return topology
 
+	eoTopology<POT> & getTopology ()
+	{
+		return topology;
+	}
 
 protected:
     eoTopology < POT > & topology;
