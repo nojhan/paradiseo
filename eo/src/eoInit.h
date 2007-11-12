@@ -32,6 +32,7 @@
 #include <eoOp.h>
 #include <eoSTLFunctor.h>
 #include <utils/eoRndGenerators.h>
+#include <utils/rnd_generators.h>  // for shuffle method
 
 /**
 	Base (name) class for Initialization of chromosomes, used in a population
@@ -145,6 +146,36 @@ private :
   unsigned extent;
   eoInit<AtomType> & init;
 };
+
+
+/**
+    Initializer for permutation (integer-based) representations.
+*/
+template <class EOT>
+class eoInitPermutation: public eoInit<EOT>
+{
+    public:
+
+    typedef typename EOT::AtomType AtomType;
+
+        eoInitPermutation(unsigned _chromSize)
+            : chromSize(_chromSize){}
+
+        virtual void operator()(EOT& chrom)
+        {
+            chrom.resize(chromSize);            
+            for(unsigned idx=0;idx <chrom.size();idx++)
+            	chrom[idx]=idx+1;           	
+            	
+            std::random_shuffle(chrom.begin(), chrom.end(),gen);            
+            chrom.invalidate();
+        }
+
+    private :
+        unsigned chromSize;
+        UF_random_generator<unsigned int> gen;
+};
+
 
 /**
     eoInitAdaptor changes the place in the hierarchy
