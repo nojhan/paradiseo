@@ -156,6 +156,7 @@
 
 // initialization
 #include <eoParticleBestInit.h>
+#include <eoInitializer.h>
 
 // velocities
 #include <eoVelocity.h>
