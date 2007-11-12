@@ -20,7 +20,7 @@
 
     Contact: clive.canape@inria.fr
 
-             
+
  */
 //-----------------------------------------------------------------------------
 
@@ -38,11 +38,11 @@
  */
 template <class POT> class eoInitializerBase : public eoFunctorBase
 {
-	public :
+public :
 
-		virtual ~eoInitializerBase() {}
+    virtual ~eoInitializerBase() {}
 
-		virtual void operator()(){};
+    virtual void operator()(){};
 };
 
 /**
@@ -52,45 +52,45 @@ template <class POT> class eoInitializerBase : public eoFunctorBase
 */
 template <class POT> class eoInitializer : public eoInitializerBase <POT>
 {
-	public:
+public:
 
-	//!	Constructor
-	//! @param _proc Evaluation function
-	//! @param _initVelo Initialization of the velocity
-	//! @param _initBest Initialization of the best
-	//! @param _pop Population 
-	eoInitializer(
-					eoUF<POT&, void>& _proc,
-					eoVelocityInit < POT > &_initVelo, 
-					eoParticleBestInit <POT> &_initBest,
-					eoPop < POT > &_pop
-				 ) : proc(_proc), initVelo(_initVelo), initBest(_initBest)
-	{
-		apply(proc, _pop);
+    //!	Constructor
+    //! @param _proc Evaluation function
+    //! @param _initVelo Initialization of the velocity
+    //! @param _initBest Initialization of the best
+    //! @param _pop Population
+    eoInitializer(
+        eoUF<POT&, void>& _proc,
+        eoVelocityInit < POT > &_initVelo,
+        eoParticleBestInit <POT> &_initBest,
+        eoPop < POT > &_pop
+    ) : proc(_proc), initVelo(_initVelo), initBest(_initBest)
+    {
+        apply(proc, _pop);
         apply < POT > (initVelo, _pop);
-    	apply < POT > (initBest, _pop);
-	}
-	
-	//! Give the name of the class
-	//! @return The name of the class
-	virtual std::string className (void) const
+        apply < POT > (initBest, _pop);
+    }
+
+    //! Give the name of the class
+    //! @return The name of the class
+    virtual std::string className (void) const
     {
         return "eoInitializer";
     }
-	
-	private :
-	
-	/*
-		@param proc First evaluation
-		@param initVelo Initialization of the velocity
-		@param initBest Initialization of the best
-		
-	*/
-	eoUF<POT&, void>& proc;
-	eoVelocityInit < POT > & initVelo;
-	eoParticleBestInit <POT> & initBest;
+
+private :
+
+    /*
+    	@param proc First evaluation
+    	@param initVelo Initialization of the velocity
+    	@param initBest Initialization of the best
+    	
+    */
+    eoUF<POT&, void>& proc;
+    eoVelocityInit < POT > & initVelo;
+    eoParticleBestInit <POT> & initBest;
 };
 #endif
 
-	
-	
+
+
