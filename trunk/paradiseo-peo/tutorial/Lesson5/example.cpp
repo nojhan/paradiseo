@@ -3,7 +3,7 @@
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
-* Sebastien Cahon, Alexandru-Adrian Tantar
+* Sebastien Cahon, Alexandru-Adrian Tantar, Clive Canape
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -33,14 +33,14 @@
 * Contact: paradiseo-help@lists.gforge.inria.fr
 *
 */
-// (c) OPAC Team, LIFL, July 2007
+// (c) OPAC Team, LIFL, 2007
 //
 // Contact: paradiseo-help@lists.gforge.inria.fr
 
+// Libraries of problem
 #include "param.h"
 #include "route_init.h"
 #include "route_eval.h"
-
 #include "order_xover.h"
 #include "edge_xover.h"
 #include "partial_mapped_xover.h"
@@ -60,6 +60,8 @@
 
 
 int main (int __argc, char * * __argv) {
+	
+	// Example of a problem (TSP) with an hybridization
 
   peo :: init (__argc, __argv);
 

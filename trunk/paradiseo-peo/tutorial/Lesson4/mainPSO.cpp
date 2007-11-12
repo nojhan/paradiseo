@@ -50,8 +50,8 @@ double f (const Indi & _indi)
 int main (int __argc, char *__argv[])
 {
 
-// In this lesson, we can see an exemple of a PSO with three islands.
-// The stategy of migration is the replacement.
+// In this lesson, we can see an example of a PSO with three islands.
+// The strategy of migration is the replacement.
 // The evaluation is parallel. 
   
  	peo :: init( __argc, __argv );

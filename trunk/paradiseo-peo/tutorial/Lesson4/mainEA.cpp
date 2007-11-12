@@ -51,7 +51,7 @@ double f (const Indi & _indi)
 int main (int __argc, char *__argv[])
 {
 
-// In this lesson, we can see an exemple of an evolutionary algorithms with three islands.
+// In this lesson, we can see an example of an evolutionary algorithms with three islands.
 // The evaluation is parallel.
 // The transformation is parallel.
 

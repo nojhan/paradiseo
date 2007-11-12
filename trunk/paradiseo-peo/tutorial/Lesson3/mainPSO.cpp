@@ -50,10 +50,10 @@ double f (const Indi & _indi)
 int main (int __argc, char *__argv[])
 {
 
-// In this lesson, we define two algorithms of the PSO witch represente two islands.
+// In this lesson, we define two algorithms of the PSO witch represents two islands.
 // Obviously, you can define more algorithms. 
   
- // The parameters are commun between the two algorithms.
+ // The parameters are common between the two algorithms.
  /*****************************************************************************************/
     peo :: init( __argc, __argv );
     const unsigned int VEC_SIZE = 2;  
@@ -68,7 +68,7 @@ int main (int __argc, char *__argv[])
     const double C2 = 2.;   
  // C3 is used for the calculation of one of the strategies of the island model.
     const double C3 = 2.;
- // MIG_FREQ define the frequence of the migration.
+ // MIG_FREQ define the frequency of the migration.
     const unsigned int  MIG_FREQ = 10; // The optimal value is 1 or 2 for the component peoPSOVelocity.
     rng.reseed (time(0));
     /*****************************************************************************************/

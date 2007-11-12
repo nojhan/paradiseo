@@ -17,7 +17,7 @@
 * economic rights,  and the successive licensors  have only  limited liability.
 *
 * In this respect, the user's attention is drawn to the risks associated
-* with loading,  using,  modifying and/or developing or reproducing the
+* with loading,  using,  modifying and/syncor developing or reproducing the
 * software by the user in light of its specific status of free software,
 * that may mean  that it is complicated to manipulate,  and  that  also
 * therefore means  that it is reserved for developers  and  experienced
@@ -60,7 +60,7 @@ int main (int __argc, char *__argv[])
     const float CROSS_RATE = 0.8; 
     const double EPSILON = 0.01;  
     const float MUT_RATE = 0.3; 
- // MIG_FREQ define the frequence of the migration. 
+ // MIG_FREQ define the frequency of the migration. 
     const unsigned int  MIG_FREQ = 10;
  // MIG_SIZE define the size of each migration.
     const unsigned int  MIG_SIZE = 5;
@@ -122,9 +122,9 @@ int main (int __argc, char *__argv[])
 
 // You can choose between :
 //
-//      - Synchrone communication : peoSyncIslandMig<Indi> mig(MIG_FREQ,mig_select,mig_replace,topology,pop,pop);
-//      - Asynchrone communication : peoAsyncIslandMig<Indi> mig(mig_cont,mig_select,mig_replace,topology,pop,pop);
-// With a grid, you should use an asynchrone communication
+//      - Synchronous communication : peoSyncIslandMig<Indi> mig(MIG_FREQ,mig_select,mig_replace,topology,pop,pop);
+//      - Asynchronous communication : peoAsyncIslandMig<Indi> mig(mig_cont,mig_select,mig_replace,topology,pop,pop);
+// With a grid, you should use an asynchronous communication
 	peoAsyncIslandMig<Indi> mig(mig_cont,mig_select,mig_replace,topology,pop,pop2);
 	checkpoint.add(mig);
 	peoAsyncIslandMig<Indi> mig2(mig_cont2,mig_select2,mig_replace2,topology,pop2,pop);
