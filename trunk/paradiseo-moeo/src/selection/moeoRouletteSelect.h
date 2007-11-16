@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoRouletteSelect.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -47,8 +47,8 @@
  */
 template < class MOEOT >
 class moeoRouletteSelect:public moeoSelectOne < MOEOT >
-{
-public:
+  {
+  public:
 
     /**
      * Ctor.
@@ -56,12 +56,12 @@ public:
      */
     moeoRouletteSelect (unsigned int _tSize = 2) : tSize (_tSize)
     {
-        // consistency check
-        if (tSize < 2)
+      // consistency check
+      if (tSize < 2)
         {
-            std::
-            cout << "Warning, Tournament size should be >= 2\nAdjusted to 2\n";
-            tSize = 2;
+          std::
+          cout << "Warning, Tournament size should be >= 2\nAdjusted to 2\n";
+          tSize = 2;
         }
     }
 
@@ -72,16 +72,16 @@ public:
      */
     const MOEOT & operator  () (const eoPop < MOEOT > & _pop)
     {
-        // use the selector
-        return mo_roulette_wheel(_pop,tSize);
+      // use the selector
+      return mo_roulette_wheel(_pop,tSize);
     }
 
 
-protected:
+  protected:
 
     /** size */
     double & tSize;
 
-};
+  };
 
 #endif /*MOEOROULETTESELECT_H_ */

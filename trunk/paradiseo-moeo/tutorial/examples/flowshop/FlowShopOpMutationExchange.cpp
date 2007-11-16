@@ -1,4 +1,4 @@
-/* 
+/*
 * <FlowShopOpMutationExchange.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -39,37 +39,38 @@
 
 
 std::string FlowShopOpMutationExchange::className() const
-{
+  {
     return "FlowShopOpMutationExchange";
-}
+  }
 
 
 bool FlowShopOpMutationExchange::operator()(FlowShop & _flowshop)
 {
-    bool isModified;
-    FlowShop result = _flowshop;
-    // computation of the 2 random points
-    unsigned int point1, point2;
-    do
+  bool isModified;
+  FlowShop result = _flowshop;
+  // computation of the 2 random points
+  unsigned int point1, point2;
+  do
     {
-        point1 = rng.random(result.size());
-        point2 = rng.random(result.size());
-    } while (point1 == point2);
-    // swap
-    std::swap (result[point1], result[point2]);
-    // update (if necessary)
-    if (result != _flowshop)
-    {
-        // update
-        _flowshop.value(result);
-        // the genotype has been modified
-        isModified = true;
+      point1 = rng.random(result.size());
+      point2 = rng.random(result.size());
     }
-    else
+  while (point1 == point2);
+  // swap
+  std::swap (result[point1], result[point2]);
+  // update (if necessary)
+  if (result != _flowshop)
     {
-        // the genotype has not been modified
-        isModified = false;
+      // update
+      _flowshop.value(result);
+      // the genotype has been modified
+      isModified = true;
     }
-    // return 'true' if the genotype has been modified
-    return isModified;
+  else
+    {
+      // the genotype has not been modified
+      isModified = false;
+    }
+  // return 'true' if the genotype has been modified
+  return isModified;
 }

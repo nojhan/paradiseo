@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoLS.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -47,6 +47,7 @@
  * Starting from a Type (i.e.: an individual, a pop, an archive...), it produces a set of new non-dominated solutions.
  */
 template < class MOEOT, class Type >
-class moeoLS: public moeoAlgo, public eoBF < Type, moeoArchive < MOEOT > &, void > {};
+class moeoLS: public moeoAlgo, public eoBF < Type, moeoArchive < MOEOT > &, void >
+  {};
 
 #endif /*MOEOLS_H_*/

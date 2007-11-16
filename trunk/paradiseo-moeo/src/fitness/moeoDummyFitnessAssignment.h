@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoDummyFitnessAssignment.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,8 +45,8 @@
  */
 template < class MOEOT >
 class moeoDummyFitnessAssignment : public moeoFitnessAssignment < MOEOT >
-{
-public:
+  {
+  public:
 
     /** The type for objective vector */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -58,12 +58,12 @@ public:
      */
     void operator () (eoPop < MOEOT > & _pop)
     {
-        for (unsigned int idx = 0; idx<_pop.size (); idx++)
+      for (unsigned int idx = 0; idx<_pop.size (); idx++)
         {
-            if (_pop[idx].invalidFitness())
+          if (_pop[idx].invalidFitness())
             {
-                // set the diversity to 0
-                _pop[idx].fitness(0.0);
+              // set the diversity to 0
+              _pop[idx].fitness(0.0);
             }
         }
     }
@@ -76,9 +76,9 @@ public:
      */
     void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
     {
-        // nothing to do...  ;-)
+      // nothing to do...  ;-)
     }
 
-};
+  };
 
 #endif /*MOEODUMMYFITNESSASSIGNMENT_H_*/

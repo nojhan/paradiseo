@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoCrowdingDiversityAssignment.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -48,8 +48,8 @@
  */
 template < class MOEOT >
 class moeoCrowdingDiversityAssignment : public moeoDiversityAssignment < MOEOT >
-{
-public:
+  {
+  public:
 
     /** the objective vector type of the solutions */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -59,18 +59,18 @@ public:
      * Returns a big value (regarded as infinite)
      */
     double inf() const
-    {
+      {
         return std::numeric_limits<double>::max();
-    }
+      }
 
 
     /**
      * Returns a very small value that can be used to avoid extreme cases (where the min bound == the max bound)
      */
     double tiny() const
-    {
+      {
         return 1e-6;
-    }
+      }
 
 
     /**
@@ -79,16 +79,16 @@ public:
      */
     void operator()(eoPop < MOEOT > & _pop)
     {
-        if (_pop.size() <= 2)
+      if (_pop.size() <= 2)
         {
-            for (unsigned int i=0; i<_pop.size(); i++)
+          for (unsigned int i=0; i<_pop.size(); i++)
             {
-                _pop[i].diversity(inf());
+              _pop[i].diversity(inf());
             }
         }
-        else
+      else
         {
-            setDistances(_pop);
+          setDistances(_pop);
         }
     }
 
@@ -102,11 +102,11 @@ public:
      */
     void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
     {
-        std::cout << "WARNING : updateByDeleting not implemented in moeoCrowdingDiversityAssignment" << std::endl;
+      std::cout << "WARNING : updateByDeleting not implemented in moeoCrowdingDiversityAssignment" << std::endl;
     }
 
 
-protected:
+  protected:
 
     /**
      * Sets the distance values
@@ -114,34 +114,34 @@ protected:
      */
     virtual void setDistances (eoPop < MOEOT > & _pop)
     {
-        double min, max, distance;
-        unsigned int nObjectives = MOEOT::ObjectiveVector::nObjectives();
-        // set diversity to 0
-        for (unsigned int i=0; i<_pop.size(); i++)
+      double min, max, distance;
+      unsigned int nObjectives = MOEOT::ObjectiveVector::nObjectives();
+      // set diversity to 0
+      for (unsigned int i=0; i<_pop.size(); i++)
         {
-            _pop[i].diversity(0);
+          _pop[i].diversity(0);
         }
-        // for each objective
-        for (unsigned int obj=0; obj<nObjectives; obj++)
+      // for each objective
+      for (unsigned int obj=0; obj<nObjectives; obj++)
         {
-            // comparator
-            moeoOneObjectiveComparator < MOEOT > objComp(obj);
-            // sort
-            std::sort(_pop.begin(), _pop.end(), objComp);
-            // min & max
-            min = _pop[0].objectiveVector()[obj];
-            max = _pop[_pop.size()-1].objectiveVector()[obj];
-            // set the diversity value to infiny for min and max
-            _pop[0].diversity(inf());
-            _pop[_pop.size()-1].diversity(inf());
-            for (unsigned int i=1; i<_pop.size()-1; i++)
+          // comparator
+          moeoOneObjectiveComparator < MOEOT > objComp(obj);
+          // sort
+          std::sort(_pop.begin(), _pop.end(), objComp);
+          // min & max
+          min = _pop[0].objectiveVector()[obj];
+          max = _pop[_pop.size()-1].objectiveVector()[obj];
+          // set the diversity value to infiny for min and max
+          _pop[0].diversity(inf());
+          _pop[_pop.size()-1].diversity(inf());
+          for (unsigned int i=1; i<_pop.size()-1; i++)
             {
-                distance = (_pop[i+1].objectiveVector()[obj] - _pop[i-1].objectiveVector()[obj]) / (max-min);
-                _pop[i].diversity(_pop[i].diversity() + distance);
+              distance = (_pop[i+1].objectiveVector()[obj] - _pop[i-1].objectiveVector()[obj]) / (max-min);
+              _pop[i].diversity(_pop[i].diversity() + distance);
             }
         }
     }
 
-};
+  };
 
 #endif /*MOEOCROWDINGDIVERSITYASSIGNMENT_H_*/

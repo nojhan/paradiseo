@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoEA.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,6 +45,7 @@
  * Abstract class for multi-objective evolutionary algorithms.
  */
 template < class MOEOT >
-class moeoEA : public moeoAlgo, public eoAlgo < MOEOT > {};
+class moeoEA : public moeoAlgo, public eoAlgo < MOEOT >
+  {};
 
 #endif /*MOEOEA_H_*/

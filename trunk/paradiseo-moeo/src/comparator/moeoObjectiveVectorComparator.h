@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoObjectiveVectorComparator.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -46,6 +46,7 @@
  * The template argument ObjectiveVector have to be a moeoObjectiveVector.
  */
 template < class ObjectiveVector >
-class moeoObjectiveVectorComparator : public eoBF < const ObjectiveVector &, const ObjectiveVector &, const bool > {};
+class moeoObjectiveVectorComparator : public eoBF < const ObjectiveVector &, const ObjectiveVector &, const bool >
+  {};
 
 #endif /*MOEOOBJECTIVEVECTORCOMPARATOR_H_*/

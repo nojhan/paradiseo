@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoParetoBasedFitnessAssignment.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,6 +44,7 @@
  * moeoParetoBasedFitnessAssignment is a moeoFitnessAssignment for Pareto-based strategies.
  */
 template < class MOEOT >
-class moeoParetoBasedFitnessAssignment : public moeoFitnessAssignment < MOEOT > {};
-    
+class moeoParetoBasedFitnessAssignment : public moeoFitnessAssignment < MOEOT >
+  {};
+
 #endif /*MOEOPARETOBASEDFITNESSASSIGNMENT_H_*/

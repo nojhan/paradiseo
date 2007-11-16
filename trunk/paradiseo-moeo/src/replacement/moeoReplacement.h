@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoReplacement.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,6 +44,7 @@
  * Replacement strategy for multi-objective optimization.
  */
 template < class MOEOT >
-class moeoReplacement : public eoReplacement < MOEOT > {};
+class moeoReplacement : public eoReplacement < MOEOT >
+  {};
 
 #endif /*MOEOREPLACEMENT_H_*/

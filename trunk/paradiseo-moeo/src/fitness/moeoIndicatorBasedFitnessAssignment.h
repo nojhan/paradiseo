@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoIndicatorBasedFitnessAssignment.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,6 +44,7 @@
  * moeoIndicatorBasedFitnessAssignment is a moeoFitnessAssignment for Indicator-based strategies.
  */
 template < class MOEOT >
-class moeoIndicatorBasedFitnessAssignment : public moeoFitnessAssignment < MOEOT > {};
+class moeoIndicatorBasedFitnessAssignment : public moeoFitnessAssignment < MOEOT >
+  {};
 
 #endif /*MOEOINDICATORBASEDFITNESSASSIGNMENT_H_*/

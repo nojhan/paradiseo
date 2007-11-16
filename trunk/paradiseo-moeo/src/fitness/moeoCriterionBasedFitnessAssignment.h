@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoCriterionBasedFitnessAssignment.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,6 +44,7 @@
  * moeoCriterionBasedFitnessAssignment is a moeoFitnessAssignment for criterion-based strategies.
  */
 template < class MOEOT >
-class moeoCriterionBasedFitnessAssignment : public moeoFitnessAssignment < MOEOT > {};
+class moeoCriterionBasedFitnessAssignment : public moeoFitnessAssignment < MOEOT >
+  {};
 
 #endif /*MOEOCRITERIONBASEDFITNESSASSIGNMENT_H_*/

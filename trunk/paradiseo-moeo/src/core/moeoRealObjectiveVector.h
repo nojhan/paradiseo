@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoRealObjectiveVector.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -50,8 +50,8 @@
  */
 template < class ObjectiveVectorTraits >
 class moeoRealObjectiveVector : public moeoObjectiveVector < ObjectiveVectorTraits, double >
-{
-public:
+  {
+  public:
 
     using moeoObjectiveVector < ObjectiveVectorTraits, double >::size;
     using moeoObjectiveVector < ObjectiveVectorTraits, double >::operator[];
@@ -77,10 +77,10 @@ public:
      * @param _other the other moeoRealObjectiveVector object to compare with
      */
     bool dominates(const moeoRealObjectiveVector < ObjectiveVectorTraits > & _other) const
-    {
+      {
         moeoParetoObjectiveVectorComparator < moeoRealObjectiveVector<ObjectiveVectorTraits> > comparator;
         return comparator(_other, *this);
-    }
+      }
 
 
     /**
@@ -88,16 +88,16 @@ public:
      * @param _other the other moeoRealObjectiveVector object to compare with
      */
     bool operator==(const moeoRealObjectiveVector < ObjectiveVectorTraits > & _other) const
-    {
+      {
         for (unsigned int i=0; i < size(); i++)
-        {
+          {
             if ( fabs(operator[](i) - _other[i]) > ObjectiveVectorTraits::tolerance() )
-            {
+              {
                 return false;
-            }
-        }
+              }
+          }
         return true;
-    }
+      }
 
 
     /**
@@ -105,9 +105,9 @@ public:
      * @param _other the other moeoRealObjectiveVector object to compare with 
      */
     bool operator!=(const moeoRealObjectiveVector < ObjectiveVectorTraits > & _other) const
-    {
+      {
         return ! operator==(_other);
-    }
+      }
 
 
     /**
@@ -116,10 +116,10 @@ public:
      * @param _other the other moeoRealObjectiveVector object to compare with
      */
     bool operator<(const moeoRealObjectiveVector < ObjectiveVectorTraits > & _other) const
-    {
+      {
         moeoObjectiveObjectiveVectorComparator < moeoRealObjectiveVector < ObjectiveVectorTraits > > cmp;
         return cmp(*this, _other);
-    }
+      }
 
 
     /**
@@ -128,9 +128,9 @@ public:
      * @param _other the other moeoRealObjectiveVector object to compare with
      */
     bool operator>(const moeoRealObjectiveVector < ObjectiveVectorTraits > & _other) const
-    {
+      {
         return _other < *this;
-    }
+      }
 
 
     /**
@@ -139,9 +139,9 @@ public:
      * @param _other the other moeoRealObjectiveVector object to compare with
      */
     bool operator<=(const moeoRealObjectiveVector < ObjectiveVectorTraits > & _other) const
-    {
+      {
         return operator==(_other) || operator<(_other);
-    }
+      }
 
 
     /**
@@ -150,11 +150,11 @@ public:
      * @param _other the other moeoRealObjectiveVector object to compare with
      */
     bool operator>=(const moeoRealObjectiveVector < ObjectiveVectorTraits > & _other) const
-    {
+      {
         return operator==(_other) || operator>(_other);
-    }
+      }
 
-};
+  };
 
 
 /**
@@ -165,11 +165,11 @@ public:
 template < class ObjectiveVectorTraits >
 std::ostream & operator<<(std::ostream & _os, const moeoRealObjectiveVector < ObjectiveVectorTraits > & _objectiveVector)
 {
-    for (unsigned int i=0; i<_objectiveVector.size(); i++)
+  for (unsigned int i=0; i<_objectiveVector.size(); i++)
     {
-        _os << _objectiveVector[i] << '\t';
+      _os << _objectiveVector[i] << '\t';
     }
-    return _os;
+  return _os;
 }
 
 /**
@@ -180,12 +180,12 @@ std::ostream & operator<<(std::ostream & _os, const moeoRealObjectiveVector < Ob
 template < class ObjectiveVectorTraits >
 std::istream & operator>>(std::istream & _is, moeoRealObjectiveVector < ObjectiveVectorTraits > & _objectiveVector)
 {
-    _objectiveVector = moeoRealObjectiveVector < ObjectiveVectorTraits > ();
-    for (unsigned int i=0; i<_objectiveVector.size(); i++)
+  _objectiveVector = moeoRealObjectiveVector < ObjectiveVectorTraits > ();
+  for (unsigned int i=0; i<_objectiveVector.size(); i++)
     {
-        _is >> _objectiveVector[i];
+      _is >> _objectiveVector[i];
     }
-    return _is;
+  return _is;
 }
 
 #endif /*MOEOREALOBJECTIVEVECTOR_H_*/

@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoNormalizedDistance.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -47,8 +47,8 @@
  */
 template < class MOEOT , class Type = double >
 class moeoNormalizedDistance : public moeoDistance < MOEOT , Type >
-{
-public:
+  {
+  public:
 
     /** the objective vector type of the solutions */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -59,11 +59,11 @@ public:
      */
     moeoNormalizedDistance()
     {
-        bounds.resize(ObjectiveVector::Traits::nObjectives());
-        // initialize bounds in case someone does not want to use them
-        for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
+      bounds.resize(ObjectiveVector::Traits::nObjectives());
+      // initialize bounds in case someone does not want to use them
+      for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
         {
-            bounds[i] = eoRealInterval(0,1);
+          bounds[i] = eoRealInterval(0,1);
         }
     }
 
@@ -73,7 +73,7 @@ public:
      */
     static double tiny()
     {
-        return 1e-6;
+      return 1e-6;
     }
 
 
@@ -83,18 +83,18 @@ public:
      */
     virtual void setup(const eoPop < MOEOT > & _pop)
     {
-        double min, max;
-        for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
+      double min, max;
+      for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
         {
-            min = _pop[0].objectiveVector()[i];
-            max = _pop[0].objectiveVector()[i];
-            for (unsigned int j=1; j<_pop.size(); j++)
+          min = _pop[0].objectiveVector()[i];
+          max = _pop[0].objectiveVector()[i];
+          for (unsigned int j=1; j<_pop.size(); j++)
             {
-                min = std::min(min, _pop[j].objectiveVector()[i]);
-                max = std::max(max, _pop[j].objectiveVector()[i]);
+              min = std::min(min, _pop[j].objectiveVector()[i]);
+              max = std::max(max, _pop[j].objectiveVector()[i]);
             }
-            // setting of the bounds for the objective i
-            setup(min, max, i);
+          // setting of the bounds for the objective i
+          setup(min, max, i);
         }
     }
 
@@ -107,12 +107,12 @@ public:
      */
     virtual void setup(double _min, double _max, unsigned int _obj)
     {
-        if (_min == _max)
+      if (_min == _max)
         {
-            _min -= tiny();
-            _max += tiny();
+          _min -= tiny();
+          _max += tiny();
         }
-        bounds[_obj] = eoRealInterval(_min, _max);
+      bounds[_obj] = eoRealInterval(_min, _max);
     }
 
 
@@ -123,15 +123,15 @@ public:
      */
     virtual void setup(eoRealInterval _realInterval, unsigned int _obj)
     {
-        bounds[_obj] = _realInterval;
+      bounds[_obj] = _realInterval;
     }
 
 
-protected:
+  protected:
 
     /** the bounds for every objective (bounds[i] = bounds for the objective i) */
     std::vector < eoRealInterval > bounds;
 
-};
+  };
 
 #endif /*MOEONORMALIZEDDISTANCE_H_*/

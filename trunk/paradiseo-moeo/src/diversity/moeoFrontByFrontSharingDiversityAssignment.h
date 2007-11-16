@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoFrontByFrontSharingDiversityAssignment.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,8 +45,8 @@
  */
 template < class MOEOT >
 class moeoFrontByFrontSharingDiversityAssignment : public moeoSharingDiversityAssignment < MOEOT >
-{
-public:
+  {
+  public:
 
     /** the objective vector type of the solutions */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -80,11 +80,11 @@ public:
      */
     void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
     {
-        std::cout << "WARNING : updateByDeleting not implemented in moeoSharingDiversityAssignment" << std::endl;
+      std::cout << "WARNING : updateByDeleting not implemented in moeoSharingDiversityAssignment" << std::endl;
     }
 
 
-private:
+  private:
 
     using moeoSharingDiversityAssignment < MOEOT >::distance;
     using moeoSharingDiversityAssignment < MOEOT >::nicheSize;
@@ -98,34 +98,34 @@ private:
      */
     void setSimilarities(eoPop < MOEOT > & _pop)
     {
-        // compute distances between every individuals
-        moeoDistanceMatrix < MOEOT , double > dMatrix (_pop.size(), distance);
-        dMatrix(_pop);
-        // sets the distance to bigger than the niche size for every couple of solutions that do not belong to the same front
-        for (unsigned int i=0; i<_pop.size(); i++)
+      // compute distances between every individuals
+      moeoDistanceMatrix < MOEOT , double > dMatrix (_pop.size(), distance);
+      dMatrix(_pop);
+      // sets the distance to bigger than the niche size for every couple of solutions that do not belong to the same front
+      for (unsigned int i=0; i<_pop.size(); i++)
         {
-            for (unsigned int j=0; j<i; j++)
+          for (unsigned int j=0; j<i; j++)
             {
-                if (_pop[i].fitness() != _pop[j].fitness())
+              if (_pop[i].fitness() != _pop[j].fitness())
                 {
-                    dMatrix[i][j] = nicheSize;
-                    dMatrix[j][i] = nicheSize;
+                  dMatrix[i][j] = nicheSize;
+                  dMatrix[j][i] = nicheSize;
                 }
             }
         }
-        // compute similarities
-        double sum;
-        for (unsigned int i=0; i<_pop.size(); i++)
+      // compute similarities
+      double sum;
+      for (unsigned int i=0; i<_pop.size(); i++)
         {
-            sum = 0.0;
-            for (unsigned int j=0; j<_pop.size(); j++)
+          sum = 0.0;
+          for (unsigned int j=0; j<_pop.size(); j++)
             {
-                sum += sh(dMatrix[i][j]);
+              sum += sh(dMatrix[i][j]);
             }
-            _pop[i].diversity(sum);
+          _pop[i].diversity(sum);
         }
     }
 
-};
+  };
 
 #endif /*MOEOFRONTBYFRONTSHARINGDIVERSITYASSIGNMENT_H_*/

@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoConvertPopToObjectiveVectors.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -46,8 +46,8 @@
  */
 template < class MOEOT, class ObjectiveVector = typename MOEOT::ObjectiveVector >
 class moeoConvertPopToObjectiveVectors : public eoUF < const eoPop < MOEOT >, const std::vector < ObjectiveVector > >
-{
-public:
+  {
+  public:
 
     /**
      * Returns a vector of the objective vectors from the population _pop
@@ -55,15 +55,15 @@ public:
      */
     const std::vector < ObjectiveVector > operator()(const eoPop < MOEOT > _pop)
     {
-        std::vector < ObjectiveVector > result;
-        result.resize(_pop.size());
-        for (unsigned int i=0; i<_pop.size(); i++)
+      std::vector < ObjectiveVector > result;
+      result.resize(_pop.size());
+      for (unsigned int i=0; i<_pop.size(); i++)
         {
-            result.push_back(_pop[i].objectiveVector());
+          result.push_back(_pop[i].objectiveVector());
         }
-        return result;
+      return result;
     }
 
-};
+  };
 
 #endif /*MOEOPOPTOOBJECTIVEVECTORS_H_*/

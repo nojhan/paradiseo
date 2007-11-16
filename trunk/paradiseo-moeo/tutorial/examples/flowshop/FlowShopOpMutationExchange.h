@@ -1,4 +1,4 @@
-/* 
+/*
 * <FlowShopOpMutationExchange.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,8 +45,8 @@
  * Exchange mutation operator for the flow-shop
  */
 class FlowShopOpMutationExchange : public eoMonOp<FlowShop>
-{
-public:
+  {
+  public:
 
     /**
      * the class name (used to display statistics)
@@ -60,6 +60,6 @@ public:
      */
     bool operator()(FlowShop & _flowshop);
 
-};
+  };
 
 #endif /*FLOWSHOPOPMUTATIONEXCHANGE_H_*/

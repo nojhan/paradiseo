@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoFrontByFrontCrowdingDiversityAssignment.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -48,8 +48,8 @@
  */
 template < class MOEOT >
 class moeoFrontByFrontCrowdingDiversityAssignment : public moeoCrowdingDiversityAssignment < MOEOT >
-{
-public:
+  {
+  public:
 
     /** the objective vector type of the solutions */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -64,11 +64,11 @@ public:
      */
     void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
     {
-        std::cout << "WARNING : updateByDeleting not implemented in moeoFrontByFrontCrowdingDistanceDiversityAssignment" << std::endl;
+      std::cout << "WARNING : updateByDeleting not implemented in moeoFrontByFrontCrowdingDistanceDiversityAssignment" << std::endl;
     }
 
 
-private:
+  private:
 
     using moeoCrowdingDiversityAssignment < MOEOT >::inf;
     using moeoCrowdingDiversityAssignment < MOEOT >::tiny;
@@ -79,61 +79,61 @@ private:
      */
     void setDistances (eoPop < MOEOT > & _pop)
     {
-        unsigned int a,b;
-        double min, max, distance;
-        unsigned int nObjectives = MOEOT::ObjectiveVector::nObjectives();
-        // set diversity to 0 for every individual
-        for (unsigned int i=0; i<_pop.size(); i++)
+      unsigned int a,b;
+      double min, max, distance;
+      unsigned int nObjectives = MOEOT::ObjectiveVector::nObjectives();
+      // set diversity to 0 for every individual
+      for (unsigned int i=0; i<_pop.size(); i++)
         {
-            _pop[i].diversity(0.0);
+          _pop[i].diversity(0.0);
         }
-        // sort the whole pop according to fitness values
-        moeoFitnessThenDiversityComparator < MOEOT > fitnessComparator;
-        std::sort(_pop.begin(), _pop.end(), fitnessComparator);
-        // compute the crowding distance values for every individual "front" by "front" (front : from a to b)
-        a = 0;	        			// the front starts at a
-        while (a < _pop.size())
+      // sort the whole pop according to fitness values
+      moeoFitnessThenDiversityComparator < MOEOT > fitnessComparator;
+      std::sort(_pop.begin(), _pop.end(), fitnessComparator);
+      // compute the crowding distance values for every individual "front" by "front" (front : from a to b)
+      a = 0;	        			// the front starts at a
+      while (a < _pop.size())
         {
-            b = lastIndex(_pop,a);	// the front ends at b
-            // if there is less than 2 individuals in the front...
-            if ((b-a) < 2)
+          b = lastIndex(_pop,a);	// the front ends at b
+          // if there is less than 2 individuals in the front...
+          if ((b-a) < 2)
             {
-                for (unsigned int i=a; i<=b; i++)
+              for (unsigned int i=a; i<=b; i++)
                 {
-                    _pop[i].diversity(inf());
+                  _pop[i].diversity(inf());
                 }
             }
-            // else...
-            else
+          // else...
+          else
             {
-                // for each objective
-                for (unsigned int obj=0; obj<nObjectives; obj++)
+              // for each objective
+              for (unsigned int obj=0; obj<nObjectives; obj++)
                 {
-                    // sort in the descending order using the values of the objective 'obj'
-                    moeoOneObjectiveComparator < MOEOT > objComp(obj);
-                    std::sort(_pop.begin()+a, _pop.begin()+b+1, objComp);
-                    // min & max
-                    min = _pop[b].objectiveVector()[obj];
-                    max = _pop[a].objectiveVector()[obj];
-                    // avoid extreme case
-                    if (min == max)
+                  // sort in the descending order using the values of the objective 'obj'
+                  moeoOneObjectiveComparator < MOEOT > objComp(obj);
+                  std::sort(_pop.begin()+a, _pop.begin()+b+1, objComp);
+                  // min & max
+                  min = _pop[b].objectiveVector()[obj];
+                  max = _pop[a].objectiveVector()[obj];
+                  // avoid extreme case
+                  if (min == max)
                     {
-                        min -= tiny();
-                        max += tiny();
+                      min -= tiny();
+                      max += tiny();
                     }
-                    // set the diversity value to infiny for min and max
-                    _pop[a].diversity(inf());
-                    _pop[b].diversity(inf());
-                    // set the diversity values for the other individuals
-                    for (unsigned int i=a+1; i<b; i++)
+                  // set the diversity value to infiny for min and max
+                  _pop[a].diversity(inf());
+                  _pop[b].diversity(inf());
+                  // set the diversity values for the other individuals
+                  for (unsigned int i=a+1; i<b; i++)
                     {
-                        distance = (_pop[i-1].objectiveVector()[obj] - _pop[i+1].objectiveVector()[obj]) / (max-min);
-                        _pop[i].diversity(_pop[i].diversity() + distance);
+                      distance = (_pop[i-1].objectiveVector()[obj] - _pop[i+1].objectiveVector()[obj]) / (max-min);
+                      _pop[i].diversity(_pop[i].diversity() + distance);
                     }
                 }
             }
-            // go to the next front
-            a = b+1;
+          // go to the next front
+          a = b+1;
         }
     }
 
@@ -145,14 +145,14 @@ private:
      */
     unsigned int lastIndex (eoPop < MOEOT > & _pop, unsigned int _start)
     {
-        unsigned int i=_start;
-        while ( (i<_pop.size()-1) && (_pop[i].fitness()==_pop[i+1].fitness()) )
+      unsigned int i=_start;
+      while ( (i<_pop.size()-1) && (_pop[i].fitness()==_pop[i+1].fitness()) )
         {
-            i++;
+          i++;
         }
-        return i;
+      return i;
     }
 
-};
+  };
 
 #endif /*MOEOFRONTBYFRONTCROWDINGDIVERSITYASSIGNMENT_H_*/

@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoEasyEA.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -56,8 +56,8 @@
  */
 template < class MOEOT >
 class moeoEasyEA: public moeoEA < MOEOT >
-{
-public:
+  {
+  public:
 
     /**
      * Ctor taking a breed and merge.
@@ -71,9 +71,9 @@ public:
      */
     moeoEasyEA(eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoBreed < MOEOT > & _breed, moeoReplacement < MOEOT > & _replace,
                moeoFitnessAssignment < MOEOT > & _fitnessEval, moeoDiversityAssignment < MOEOT > & _diversityEval, bool _evalFitAndDivBeforeSelection = false)
-            :
-            continuator(_continuator), eval (_eval), loopEval(_eval), popEval(loopEval), selectTransform(dummySelect, dummyTransform), breed(_breed), mergeReduce(dummyMerge, dummyReduce), replace(_replace),
-            fitnessEval(_fitnessEval), diversityEval(_diversityEval), evalFitAndDivBeforeSelection(_evalFitAndDivBeforeSelection)
+        :
+        continuator(_continuator), eval (_eval), loopEval(_eval), popEval(loopEval), selectTransform(dummySelect, dummyTransform), breed(_breed), mergeReduce(dummyMerge, dummyReduce), replace(_replace),
+        fitnessEval(_fitnessEval), diversityEval(_diversityEval), evalFitAndDivBeforeSelection(_evalFitAndDivBeforeSelection)
     {}
 
 
@@ -89,9 +89,9 @@ public:
      */
     moeoEasyEA(eoContinue < MOEOT > & _continuator, eoPopEvalFunc < MOEOT > & _popEval, eoBreed < MOEOT > & _breed, moeoReplacement < MOEOT > & _replace,
                moeoFitnessAssignment < MOEOT > & _fitnessEval, moeoDiversityAssignment < MOEOT > & _diversityEval, bool _evalFitAndDivBeforeSelection = false)
-            :
-            continuator(_continuator), eval (dummyEval), loopEval(dummyEval), popEval(_popEval), selectTransform(dummySelect, dummyTransform), breed(_breed), mergeReduce(dummyMerge, dummyReduce), replace(_replace),
-            fitnessEval(_fitnessEval), diversityEval(_diversityEval), evalFitAndDivBeforeSelection(_evalFitAndDivBeforeSelection)
+        :
+        continuator(_continuator), eval (dummyEval), loopEval(dummyEval), popEval(_popEval), selectTransform(dummySelect, dummyTransform), breed(_breed), mergeReduce(dummyMerge, dummyReduce), replace(_replace),
+        fitnessEval(_fitnessEval), diversityEval(_diversityEval), evalFitAndDivBeforeSelection(_evalFitAndDivBeforeSelection)
     {}
 
 
@@ -108,9 +108,9 @@ public:
      */
     moeoEasyEA(eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoBreed < MOEOT > & _breed, eoMerge < MOEOT > & _merge, eoReduce< MOEOT > & _reduce,
                moeoFitnessAssignment < MOEOT > & _fitnessEval, moeoDiversityAssignment < MOEOT > & _diversityEval, bool _evalFitAndDivBeforeSelection = false)
-            :
-            continuator(_continuator), eval(_eval), loopEval(_eval), popEval(loopEval), selectTransform(dummySelect, dummyTransform), breed(_breed), mergeReduce(_merge,_reduce), replace(mergeReduce),
-            fitnessEval(_fitnessEval), diversityEval(_diversityEval), evalFitAndDivBeforeSelection(_evalFitAndDivBeforeSelection)
+        :
+        continuator(_continuator), eval(_eval), loopEval(_eval), popEval(loopEval), selectTransform(dummySelect, dummyTransform), breed(_breed), mergeReduce(_merge,_reduce), replace(mergeReduce),
+        fitnessEval(_fitnessEval), diversityEval(_diversityEval), evalFitAndDivBeforeSelection(_evalFitAndDivBeforeSelection)
     {}
 
 
@@ -127,9 +127,9 @@ public:
      */
     moeoEasyEA(eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoSelect < MOEOT > & _select, eoTransform < MOEOT > & _transform, moeoReplacement < MOEOT > & _replace,
                moeoFitnessAssignment < MOEOT > & _fitnessEval, moeoDiversityAssignment < MOEOT > & _diversityEval, bool _evalFitAndDivBeforeSelection = false)
-            :
-            continuator(_continuator), eval(_eval), loopEval(_eval), popEval(loopEval), selectTransform(_select, _transform), breed(selectTransform), mergeReduce(dummyMerge, dummyReduce), replace(_replace),
-            fitnessEval(_fitnessEval), diversityEval(_diversityEval), evalFitAndDivBeforeSelection(_evalFitAndDivBeforeSelection)
+        :
+        continuator(_continuator), eval(_eval), loopEval(_eval), popEval(loopEval), selectTransform(_select, _transform), breed(selectTransform), mergeReduce(dummyMerge, dummyReduce), replace(_replace),
+        fitnessEval(_fitnessEval), diversityEval(_diversityEval), evalFitAndDivBeforeSelection(_evalFitAndDivBeforeSelection)
     {}
 
 
@@ -147,9 +147,9 @@ public:
      */
     moeoEasyEA(eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoSelect < MOEOT > & _select, eoTransform < MOEOT > & _transform, eoMerge < MOEOT > & _merge, eoReduce< MOEOT > & _reduce,
                moeoFitnessAssignment < MOEOT > & _fitnessEval, moeoDiversityAssignment < MOEOT > & _diversityEval, bool _evalFitAndDivBeforeSelection = false)
-            :
-            continuator(_continuator), eval(_eval), loopEval(_eval), popEval(loopEval), selectTransform(_select, _transform), breed(selectTransform), mergeReduce(_merge,_reduce), replace(mergeReduce),
-            fitnessEval(_fitnessEval), diversityEval(_diversityEval), evalFitAndDivBeforeSelection(_evalFitAndDivBeforeSelection)
+        :
+        continuator(_continuator), eval(_eval), loopEval(_eval), popEval(loopEval), selectTransform(_select, _transform), breed(selectTransform), mergeReduce(_merge,_reduce), replace(mergeReduce),
+        fitnessEval(_fitnessEval), diversityEval(_diversityEval), evalFitAndDivBeforeSelection(_evalFitAndDivBeforeSelection)
     {}
 
 
@@ -159,45 +159,46 @@ public:
      */
     virtual void operator()(eoPop < MOEOT > & _pop)
     {
-        eoPop < MOEOT > offspring, empty_pop;
-        popEval(empty_pop, _pop); // A first eval of pop.
-        bool firstTime = true;
-        do
+      eoPop < MOEOT > offspring, empty_pop;
+      popEval(empty_pop, _pop); // A first eval of pop.
+      bool firstTime = true;
+      do
         {
-            try
+          try
             {
-                unsigned int pSize = _pop.size();
-                offspring.clear(); // new offspring
-                // fitness and diversity assignment (if you want to or if it is the first generation)
-                if (evalFitAndDivBeforeSelection || firstTime)
+              unsigned int pSize = _pop.size();
+              offspring.clear(); // new offspring
+              // fitness and diversity assignment (if you want to or if it is the first generation)
+              if (evalFitAndDivBeforeSelection || firstTime)
                 {
-                    firstTime = false;
-                    fitnessEval(_pop);
-                    diversityEval(_pop);
+                  firstTime = false;
+                  fitnessEval(_pop);
+                  diversityEval(_pop);
                 }
-                breed(_pop, offspring);
-                popEval(_pop, offspring); // eval of parents + offspring if necessary
-                replace(_pop, offspring); // after replace, the new pop. is in _pop
-                if (pSize > _pop.size())
+              breed(_pop, offspring);
+              popEval(_pop, offspring); // eval of parents + offspring if necessary
+              replace(_pop, offspring); // after replace, the new pop. is in _pop
+              if (pSize > _pop.size())
                 {
-                    throw std::runtime_error("Population shrinking!");
+                  throw std::runtime_error("Population shrinking!");
                 }
-                else if (pSize < _pop.size())
+              else if (pSize < _pop.size())
                 {
-                    throw std::runtime_error("Population growing!");
+                  throw std::runtime_error("Population growing!");
                 }
             }
-            catch (std::exception& e)
+          catch (std::exception& e)
             {
-                std::string s = e.what();
-                s.append( " in moeoEasyEA");
-                throw std::runtime_error( s );
+              std::string s = e.what();
+              s.append( " in moeoEasyEA");
+              throw std::runtime_error( s );
             }
-        } while (continuator(_pop));
+        }
+      while (continuator(_pop));
     }
 
 
-protected:
+  protected:
 
     /** the stopping criteria */
     eoContinue < MOEOT > & continuator;
@@ -222,22 +223,34 @@ protected:
     /** if this parameter is set to 'true', the fitness and the diversity of the whole population will be re-evaluated before the selection process */
     bool evalFitAndDivBeforeSelection;
     /** a dummy eval */
-    class eoDummyEval : public eoEvalFunc < MOEOT >
-    { public: /** the dummy functor */
-    	void operator()(MOEOT &) {}} dummyEval;
+  class eoDummyEval : public eoEvalFunc < MOEOT >
+      {
+      public: /** the dummy functor */
+        void operator()(MOEOT &)
+        {}
+      }
+    dummyEval;
     /** a dummy select */
-    class eoDummySelect : public eoSelect < MOEOT >
-    { public: /** the dummy functor */
-    	void operator()(const eoPop < MOEOT > &, eoPop < MOEOT > &) {} } dummySelect;
+  class eoDummySelect : public eoSelect < MOEOT >
+      {
+      public: /** the dummy functor */
+        void operator()(const eoPop < MOEOT > &, eoPop < MOEOT > &)
+        {}
+      }
+    dummySelect;
     /** a dummy transform */
-    class eoDummyTransform : public eoTransform < MOEOT >
-    { public: /** the dummy functor */
-    	void operator()(eoPop < MOEOT > &) {} } dummyTransform;
+  class eoDummyTransform : public eoTransform < MOEOT >
+      {
+      public: /** the dummy functor */
+        void operator()(eoPop < MOEOT > &)
+        {}
+      }
+    dummyTransform;
     /** a dummy merge */
     eoNoElitism < MOEOT > dummyMerge;
     /** a dummy reduce */
     eoTruncate < MOEOT > dummyReduce;
 
-};
+  };
 
 #endif /*MOEOEASYEA_H_*/

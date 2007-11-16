@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoIBMOLS.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -56,8 +56,8 @@
  */
 template < class MOEOT, class Move >
 class moeoIBMOLS : public moeoLS < MOEOT, eoPop < MOEOT > & >
-{
-public:
+  {
+  public:
 
     /** The type of objective vector */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -73,19 +73,19 @@ public:
      * @param _continuator the stopping criteria
      */
     moeoIBMOLS(
-        moMoveInit < Move > & _moveInit,
-        moNextMove < Move > & _nextMove,
-        eoEvalFunc < MOEOT > & _eval,
-        moeoMoveIncrEval < Move > & _moveIncrEval,
-        moeoBinaryIndicatorBasedFitnessAssignment < MOEOT > & _fitnessAssignment,
-        eoContinue < MOEOT > & _continuator
+      moMoveInit < Move > & _moveInit,
+      moNextMove < Move > & _nextMove,
+      eoEvalFunc < MOEOT > & _eval,
+      moeoMoveIncrEval < Move > & _moveIncrEval,
+      moeoBinaryIndicatorBasedFitnessAssignment < MOEOT > & _fitnessAssignment,
+      eoContinue < MOEOT > & _continuator
     ) :
-            moveInit(_moveInit),
-            nextMove(_nextMove),
-            eval(_eval),
-            moveIncrEval(_moveIncrEval),
-            fitnessAssignment (_fitnessAssignment),
-            continuator (_continuator)
+        moveInit(_moveInit),
+        nextMove(_nextMove),
+        eval(_eval),
+        moveIncrEval(_moveIncrEval),
+        fitnessAssignment (_fitnessAssignment),
+        continuator (_continuator)
     {}
 
 
@@ -97,32 +97,33 @@ public:
      */
     void operator() (eoPop < MOEOT > & _pop, moeoArchive < MOEOT > & _arch)
     {
-        // evaluation of the objective values
-        /*
-                for (unsigned int i=0; i<_pop.size(); i++)
-                {
-                    eval(_pop[i]);
-                }
-        */
-        // fitness assignment for the whole population
-        fitnessAssignment(_pop);
-        // creation of a local archive
-        moeoArchive < MOEOT > archive;
-        // creation of another local archive (for the stopping criteria)
-        moeoArchive < MOEOT > previousArchive;
-        // update the archive with the initial population
-        archive.update(_pop);
-        do
+      // evaluation of the objective values
+      /*
+              for (unsigned int i=0; i<_pop.size(); i++)
+              {
+                  eval(_pop[i]);
+              }
+      */
+      // fitness assignment for the whole population
+      fitnessAssignment(_pop);
+      // creation of a local archive
+      moeoArchive < MOEOT > archive;
+      // creation of another local archive (for the stopping criteria)
+      moeoArchive < MOEOT > previousArchive;
+      // update the archive with the initial population
+      archive.update(_pop);
+      do
         {
-            previousArchive.update(archive);
-            oneStep(_pop);
-            archive.update(_pop);
-        } while ( (! archive.equals(previousArchive)) && (continuator(_arch)) );
-        _arch.update(archive);
+          previousArchive.update(archive);
+          oneStep(_pop);
+          archive.update(_pop);
+        }
+      while ( (! archive.equals(previousArchive)) && (continuator(_arch)) );
+      _arch.update(archive);
     }
 
 
-private:
+  private:
 
     /** the move initializer */
     moMoveInit < Move > & moveInit;
@@ -144,162 +145,162 @@ private:
      */
     void oneStep (eoPop < MOEOT > & _pop)
     {
-        // the move
-        Move move;
-        // the objective vector and the fitness of the current solution
-        ObjectiveVector x_objVec;
-        double x_fitness;
-        // the index, the objective vector and the fitness of the worst solution in the population (-1 implies that the worst is the newly created one)
-        int worst_idx;
-        ObjectiveVector worst_objVec;
-        double worst_fitness;
-////////////////////////////////////////////       
-        // the indexes and the objective vectors of the extreme non-dominated points
-        int ext_0_idx, ext_1_idx;
-        ObjectiveVector ext_0_objVec, ext_1_objVec;
-        unsigned int ind;   
+      // the move
+      Move move;
+      // the objective vector and the fitness of the current solution
+      ObjectiveVector x_objVec;
+      double x_fitness;
+      // the index, the objective vector and the fitness of the worst solution in the population (-1 implies that the worst is the newly created one)
+      int worst_idx;
+      ObjectiveVector worst_objVec;
+      double worst_fitness;
 ////////////////////////////////////////////
-        // the index of the current solution to be explored
-        unsigned int i=0;
-        // initilization of the move for the first individual
-        moveInit(move, _pop[i]);
-        while (i<_pop.size() && continuator(_pop))
+      // the indexes and the objective vectors of the extreme non-dominated points
+      int ext_0_idx, ext_1_idx;
+      ObjectiveVector ext_0_objVec, ext_1_objVec;
+      unsigned int ind;
+////////////////////////////////////////////
+      // the index of the current solution to be explored
+      unsigned int i=0;
+      // initilization of the move for the first individual
+      moveInit(move, _pop[i]);
+      while (i<_pop.size() && continuator(_pop))
         {
-            // x = one neigbour of pop[i]
-            // evaluate x in the objective space
-            x_objVec = moveIncrEval(move, _pop[i]);
-            // update every fitness values to take x into account and compute the fitness of x
-            x_fitness = fitnessAssignment.updateByAdding(_pop, x_objVec);
+          // x = one neigbour of pop[i]
+          // evaluate x in the objective space
+          x_objVec = moveIncrEval(move, _pop[i]);
+          // update every fitness values to take x into account and compute the fitness of x
+          x_fitness = fitnessAssignment.updateByAdding(_pop, x_objVec);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			// extreme solutions (min only!)
-            ext_0_idx = -1;
-            ext_0_objVec = x_objVec;
-            ext_1_idx = -1;
-            ext_1_objVec = x_objVec;
-            for (unsigned int k=0; k<_pop.size(); k++)
+          // extreme solutions (min only!)
+          ext_0_idx = -1;
+          ext_0_objVec = x_objVec;
+          ext_1_idx = -1;
+          ext_1_objVec = x_objVec;
+          for (unsigned int k=0; k<_pop.size(); k++)
             {
-                // ext_0
-                if (_pop[k].objectiveVector()[0] < ext_0_objVec[0])
+              // ext_0
+              if (_pop[k].objectiveVector()[0] < ext_0_objVec[0])
                 {
-                    ext_0_idx = k;
-                    ext_0_objVec = _pop[k].objectiveVector();
+                  ext_0_idx = k;
+                  ext_0_objVec = _pop[k].objectiveVector();
                 }
-                else if ( (_pop[k].objectiveVector()[0] == ext_0_objVec[0]) && (_pop[k].objectiveVector()[1] < ext_0_objVec[1]) )
+              else if ( (_pop[k].objectiveVector()[0] == ext_0_objVec[0]) && (_pop[k].objectiveVector()[1] < ext_0_objVec[1]) )
                 {
-                    ext_0_idx = k;
-                    ext_0_objVec = _pop[k].objectiveVector();
+                  ext_0_idx = k;
+                  ext_0_objVec = _pop[k].objectiveVector();
                 }
-                // ext_1
-                else if (_pop[k].objectiveVector()[1] < ext_1_objVec[1])
+              // ext_1
+              else if (_pop[k].objectiveVector()[1] < ext_1_objVec[1])
                 {
-                    ext_1_idx = k;
-                    ext_1_objVec = _pop[k].objectiveVector();
+                  ext_1_idx = k;
+                  ext_1_objVec = _pop[k].objectiveVector();
                 }
-                else if ( (_pop[k].objectiveVector()[1] == ext_1_objVec[1]) && (_pop[k].objectiveVector()[0] < ext_1_objVec[0]) )
+              else if ( (_pop[k].objectiveVector()[1] == ext_1_objVec[1]) && (_pop[k].objectiveVector()[0] < ext_1_objVec[0]) )
                 {
-                    ext_1_idx = k;
-                    ext_1_objVec = _pop[k].objectiveVector();
+                  ext_1_idx = k;
+                  ext_1_objVec = _pop[k].objectiveVector();
                 }
             }
-			// worst init
-            if (ext_0_idx == -1)
+          // worst init
+          if (ext_0_idx == -1)
             {
-                ind = 0;
-                while (ind == ext_1_idx)
+              ind = 0;
+              while (ind == ext_1_idx)
                 {
-                    ind++;
+                  ind++;
                 }
-                worst_idx = ind;
-                worst_objVec = _pop[ind].objectiveVector();
-                worst_fitness = _pop[ind].fitness();
+              worst_idx = ind;
+              worst_objVec = _pop[ind].objectiveVector();
+              worst_fitness = _pop[ind].fitness();
             }
-            else if (ext_1_idx == -1)
+          else if (ext_1_idx == -1)
             {
-                ind = 0;
-                while (ind == ext_0_idx)
+              ind = 0;
+              while (ind == ext_0_idx)
                 {
-                    ind++;
+                  ind++;
                 }
-                worst_idx = ind;
-                worst_objVec = _pop[ind].objectiveVector();
-                worst_fitness = _pop[ind].fitness();
+              worst_idx = ind;
+              worst_objVec = _pop[ind].objectiveVector();
+              worst_fitness = _pop[ind].fitness();
             }
-            else
+          else
             {
-                worst_idx = -1;
-                worst_objVec = x_objVec;
-                worst_fitness = x_fitness;
+              worst_idx = -1;
+              worst_objVec = x_objVec;
+              worst_fitness = x_fitness;
             }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            // who is the worst ?
-            for (unsigned int j=0; j<_pop.size(); j++)
+          // who is the worst ?
+          for (unsigned int j=0; j<_pop.size(); j++)
             {
-                if ( (j!=ext_0_idx) && (j!=ext_1_idx) )
+              if ( (j!=ext_0_idx) && (j!=ext_1_idx) )
                 {
-                    if (_pop[j].fitness() < worst_fitness)
+                  if (_pop[j].fitness() < worst_fitness)
                     {
-                        worst_idx = j;
-                        worst_objVec = _pop[j].objectiveVector();
-                        worst_fitness = _pop[j].fitness();
+                      worst_idx = j;
+                      worst_objVec = _pop[j].objectiveVector();
+                      worst_fitness = _pop[j].fitness();
                     }
                 }
             }
-            // if the worst solution is the new one
-            if (worst_idx == -1)
+          // if the worst solution is the new one
+          if (worst_idx == -1)
             {
-                // if all its neighbours have been explored,
-                // let's explore the neighborhoud of the next individual
-                if (! nextMove(move, _pop[i]))
+              // if all its neighbours have been explored,
+              // let's explore the neighborhoud of the next individual
+              if (! nextMove(move, _pop[i]))
                 {
-                    i++;
-                    if (i<_pop.size())
+                  i++;
+                  if (i<_pop.size())
                     {
-                        // initilization of the move for the next individual
-                        moveInit(move, _pop[i]);
+                      // initilization of the move for the next individual
+                      moveInit(move, _pop[i]);
                     }
                 }
             }
-            // if the worst solution is located before _pop[i]
-            else if (worst_idx <= i)
+          // if the worst solution is located before _pop[i]
+          else if (worst_idx <= i)
             {
-                // the new solution takes place insteed of _pop[worst_idx]
-                _pop[worst_idx] = _pop[i];
-                move(_pop[worst_idx]);
-                _pop[worst_idx].objectiveVector(x_objVec);
-                _pop[worst_idx].fitness(x_fitness);
-                // let's explore the neighborhoud of the next individual
-                i++;
-                if (i<_pop.size())
+              // the new solution takes place insteed of _pop[worst_idx]
+              _pop[worst_idx] = _pop[i];
+              move(_pop[worst_idx]);
+              _pop[worst_idx].objectiveVector(x_objVec);
+              _pop[worst_idx].fitness(x_fitness);
+              // let's explore the neighborhoud of the next individual
+              i++;
+              if (i<_pop.size())
                 {
-                    // initilization of the move for the next individual
-                    moveInit(move, _pop[i]);
+                  // initilization of the move for the next individual
+                  moveInit(move, _pop[i]);
                 }
             }
-            // if the worst solution is located after _pop[i]
-            else if (worst_idx > i)
+          // if the worst solution is located after _pop[i]
+          else if (worst_idx > i)
             {
-                // the new solution takes place insteed of _pop[i+1] and _pop[worst_idx] is deleted
-                _pop[worst_idx] = _pop[i+1];
-                _pop[i+1] = _pop[i];
-                move(_pop[i+1]);
-                _pop[i+1].objectiveVector(x_objVec);
-                _pop[i+1].fitness(x_fitness);
-                // let's explore the neighborhoud of the individual _pop[i+2]
-                i += 2;
-                if (i<_pop.size())
+              // the new solution takes place insteed of _pop[i+1] and _pop[worst_idx] is deleted
+              _pop[worst_idx] = _pop[i+1];
+              _pop[i+1] = _pop[i];
+              move(_pop[i+1]);
+              _pop[i+1].objectiveVector(x_objVec);
+              _pop[i+1].fitness(x_fitness);
+              // let's explore the neighborhoud of the individual _pop[i+2]
+              i += 2;
+              if (i<_pop.size())
                 {
-                    // initilization of the move for the next individual
-                    moveInit(move, _pop[i]);
+                  // initilization of the move for the next individual
+                  moveInit(move, _pop[i]);
                 }
             }
-            // update fitness values
-            fitnessAssignment.updateByDeleting(_pop, worst_objVec);
+          // update fitness values
+          fitnessAssignment.updateByDeleting(_pop, worst_objVec);
         }
     }
 
@@ -328,153 +329,153 @@ private:
      */
     void new_oneStep (eoPop < MOEOT > & _pop)
     {
-        // the move
-        Move move;
-        // the objective vector and the fitness of the current solution
-        ObjectiveVector x_objVec;
-        double x_fitness;
-        // the index, the objective vector and the fitness of the worst solution in the population (-1 implies that the worst is the newly created one)
-        int worst_idx;
-        ObjectiveVector worst_objVec;
-        double worst_fitness;
-////////////////////////////////////////////       
-        // the index of the extreme non-dominated points
-        int ext_0_idx, ext_1_idx;
-        unsigned int ind;   
+      // the move
+      Move move;
+      // the objective vector and the fitness of the current solution
+      ObjectiveVector x_objVec;
+      double x_fitness;
+      // the index, the objective vector and the fitness of the worst solution in the population (-1 implies that the worst is the newly created one)
+      int worst_idx;
+      ObjectiveVector worst_objVec;
+      double worst_fitness;
 ////////////////////////////////////////////
-        // the index current of the current solution to be explored
-        unsigned int i=0;
-        // initilization of the move for the first individual
-        moveInit(move, _pop[i]);
-        while (i<_pop.size() && continuator(_pop))
+      // the index of the extreme non-dominated points
+      int ext_0_idx, ext_1_idx;
+      unsigned int ind;
+////////////////////////////////////////////
+      // the index current of the current solution to be explored
+      unsigned int i=0;
+      // initilization of the move for the first individual
+      moveInit(move, _pop[i]);
+      while (i<_pop.size() && continuator(_pop))
         {
-            // x = one neigbour of pop[i]
-            // evaluate x in the objective space
-            x_objVec = moveIncrEval(move, _pop[i]);
-            // update every fitness values to take x into account and compute the fitness of x
-            x_fitness = fitnessAssignment.updateByAdding(_pop, x_objVec);
+          // x = one neigbour of pop[i]
+          // evaluate x in the objective space
+          x_objVec = moveIncrEval(move, _pop[i]);
+          // update every fitness values to take x into account and compute the fitness of x
+          x_fitness = fitnessAssignment.updateByAdding(_pop, x_objVec);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			// extremes solutions
-            OneObjectiveComparator comp0(0);
-            ext_0_idx = std::min_element(_pop.begin(), _pop.end(), comp0) - _pop.begin();
-            OneObjectiveComparator comp1(1);
-            ext_1_idx = std::min_element(_pop.begin(), _pop.end(), comp1) - _pop.begin();
-			// new = extreme ?
-            if (x_objVec[0] < _pop[ext_0_idx].objectiveVector()[0])
+          // extremes solutions
+          OneObjectiveComparator comp0(0);
+          ext_0_idx = std::min_element(_pop.begin(), _pop.end(), comp0) - _pop.begin();
+          OneObjectiveComparator comp1(1);
+          ext_1_idx = std::min_element(_pop.begin(), _pop.end(), comp1) - _pop.begin();
+          // new = extreme ?
+          if (x_objVec[0] < _pop[ext_0_idx].objectiveVector()[0])
             {
-                ext_0_idx = -1;
+              ext_0_idx = -1;
             }
-            else if ( (x_objVec[0] == _pop[ext_0_idx].objectiveVector()[0]) && (x_objVec[1] < _pop[ext_0_idx].objectiveVector()[1]) )
+          else if ( (x_objVec[0] == _pop[ext_0_idx].objectiveVector()[0]) && (x_objVec[1] < _pop[ext_0_idx].objectiveVector()[1]) )
             {
-                ext_0_idx = -1;
+              ext_0_idx = -1;
             }
-            else if (x_objVec[1] < _pop[ext_1_idx].objectiveVector()[1])
+          else if (x_objVec[1] < _pop[ext_1_idx].objectiveVector()[1])
             {
-                ext_1_idx = -1;
+              ext_1_idx = -1;
             }
-            else if ( (x_objVec[1] == _pop[ext_1_idx].objectiveVector()[1]) && (x_objVec[0] < _pop[ext_1_idx].objectiveVector()[0]) )
+          else if ( (x_objVec[1] == _pop[ext_1_idx].objectiveVector()[1]) && (x_objVec[0] < _pop[ext_1_idx].objectiveVector()[0]) )
             {
-                ext_1_idx = -1;
+              ext_1_idx = -1;
             }
-            // worst init
-            if (ext_0_idx == -1)
+          // worst init
+          if (ext_0_idx == -1)
             {
-                ind = 0;
-                while (ind == ext_1_idx)
+              ind = 0;
+              while (ind == ext_1_idx)
                 {
-                    ind++;
+                  ind++;
                 }
-                worst_idx = ind;
-               	worst_objVec = _pop[ind].objectiveVector();
-                worst_fitness = _pop[ind].fitness();
+              worst_idx = ind;
+              worst_objVec = _pop[ind].objectiveVector();
+              worst_fitness = _pop[ind].fitness();
             }
-            else if (ext_1_idx == -1)
+          else if (ext_1_idx == -1)
             {
-                ind = 0;
-                while (ind == ext_0_idx)
+              ind = 0;
+              while (ind == ext_0_idx)
                 {
-                    ind++;
+                  ind++;
                 }
-                worst_idx = ind;
-               	worst_objVec = _pop[ind].objectiveVector();
-                worst_fitness = _pop[ind].fitness();
+              worst_idx = ind;
+              worst_objVec = _pop[ind].objectiveVector();
+              worst_fitness = _pop[ind].fitness();
             }
-            else
+          else
             {
-                worst_idx = -1;
-               	worst_objVec = x_objVec;
-                worst_fitness = x_fitness;
+              worst_idx = -1;
+              worst_objVec = x_objVec;
+              worst_fitness = x_fitness;
             }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            // who is the worst ?
-            for (unsigned int j=0; j<_pop.size(); j++)
+          // who is the worst ?
+          for (unsigned int j=0; j<_pop.size(); j++)
             {
-                if ( (j!=ext_0_idx) && (j!=ext_1_idx) )
+              if ( (j!=ext_0_idx) && (j!=ext_1_idx) )
                 {
-                    if (_pop[j].fitness() < worst_fitness)
+                  if (_pop[j].fitness() < worst_fitness)
                     {
-                        worst_idx = j;
-                        worst_objVec = _pop[j].objectiveVector();
-                        worst_fitness = _pop[j].fitness();
+                      worst_idx = j;
+                      worst_objVec = _pop[j].objectiveVector();
+                      worst_fitness = _pop[j].fitness();
                     }
                 }
             }
-            // if the worst solution is the new one
-            if (worst_idx == -1)
+          // if the worst solution is the new one
+          if (worst_idx == -1)
             {
-                // if all its neighbours have been explored,
-                // let's explore the neighborhoud of the next individual
-                if (! nextMove(move, _pop[i]))
+              // if all its neighbours have been explored,
+              // let's explore the neighborhoud of the next individual
+              if (! nextMove(move, _pop[i]))
                 {
-                    i++;
-                    if (i<_pop.size())
+                  i++;
+                  if (i<_pop.size())
                     {
-                        // initilization of the move for the next individual
-                        moveInit(move, _pop[i]);
+                      // initilization of the move for the next individual
+                      moveInit(move, _pop[i]);
                     }
                 }
             }
-            // if the worst solution is located before _pop[i]
-            else if (worst_idx <= i)
+          // if the worst solution is located before _pop[i]
+          else if (worst_idx <= i)
             {
-                // the new solution takes place insteed of _pop[worst_idx]
-                _pop[worst_idx] = _pop[i];
-                move(_pop[worst_idx]);
-                _pop[worst_idx].objectiveVector(x_objVec);
-                _pop[worst_idx].fitness(x_fitness);
-                // let's explore the neighborhoud of the next individual
-                i++;
-                if (i<_pop.size())
+              // the new solution takes place insteed of _pop[worst_idx]
+              _pop[worst_idx] = _pop[i];
+              move(_pop[worst_idx]);
+              _pop[worst_idx].objectiveVector(x_objVec);
+              _pop[worst_idx].fitness(x_fitness);
+              // let's explore the neighborhoud of the next individual
+              i++;
+              if (i<_pop.size())
                 {
-                    // initilization of the move for the next individual
-                    moveInit(move, _pop[i]);
+                  // initilization of the move for the next individual
+                  moveInit(move, _pop[i]);
                 }
             }
-            // if the worst solution is located after _pop[i]
-            else if (worst_idx > i)
+          // if the worst solution is located after _pop[i]
+          else if (worst_idx > i)
             {
-                // the new solution takes place insteed of _pop[i+1] and _pop[worst_idx] is deleted
-                _pop[worst_idx] = _pop[i+1];
-                _pop[i+1] = _pop[i];
-                move(_pop[i+1]);
-                _pop[i+1].objectiveVector(x_objVec);
-                _pop[i+1].fitness(x_fitness);
-                // let's explore the neighborhoud of the individual _pop[i+2]
-                i += 2;
-                if (i<_pop.size())
+              // the new solution takes place insteed of _pop[i+1] and _pop[worst_idx] is deleted
+              _pop[worst_idx] = _pop[i+1];
+              _pop[i+1] = _pop[i];
+              move(_pop[i+1]);
+              _pop[i+1].objectiveVector(x_objVec);
+              _pop[i+1].fitness(x_fitness);
+              // let's explore the neighborhoud of the individual _pop[i+2]
+              i += 2;
+              if (i<_pop.size())
                 {
-                    // initilization of the move for the next individual
-                    moveInit(move, _pop[i]);
+                  // initilization of the move for the next individual
+                  moveInit(move, _pop[i]);
                 }
             }
-            // update fitness values
-            fitnessAssignment.updateByDeleting(_pop, worst_objVec);
+          // update fitness values
+          fitnessAssignment.updateByDeleting(_pop, worst_objVec);
         }
     }
 
@@ -484,35 +485,35 @@ private:
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
-class OneObjectiveComparator : public moeoComparator < MOEOT >
-    {
-    public:
+  class OneObjectiveComparator : public moeoComparator < MOEOT >
+      {
+      public:
         OneObjectiveComparator(unsigned int _obj) : obj(_obj)
         {
-            if (obj > MOEOT::ObjectiveVector::nObjectives())
+          if (obj > MOEOT::ObjectiveVector::nObjectives())
             {
-                throw std::runtime_error("Problem with the index of objective in OneObjectiveComparator");
+              throw std::runtime_error("Problem with the index of objective in OneObjectiveComparator");
             }
         }
         const bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
         {
-            if (_moeo1.objectiveVector()[obj] < _moeo2.objectiveVector()[obj])
+          if (_moeo1.objectiveVector()[obj] < _moeo2.objectiveVector()[obj])
             {
-                return true;
+              return true;
             }
-            else
+          else
             {
-                return (_moeo1.objectiveVector()[obj] == _moeo2.objectiveVector()[obj]) && (_moeo1.objectiveVector()[(obj+1)%2] < _moeo2.objectiveVector()[(obj+1)%2]);
+              return (_moeo1.objectiveVector()[obj] == _moeo2.objectiveVector()[obj]) && (_moeo1.objectiveVector()[(obj+1)%2] < _moeo2.objectiveVector()[(obj+1)%2]);
             }
         }
-    private:
+      private:
         unsigned int obj;
-    };
+      };
 //////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 
-};
+  };
 
 #endif /*MOEOIBMOLS_H_*/

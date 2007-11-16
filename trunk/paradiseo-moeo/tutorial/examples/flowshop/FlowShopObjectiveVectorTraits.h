@@ -1,4 +1,4 @@
-/* 
+/*
 * <FlowShopObjectiveVectorTraits.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,8 +44,8 @@
  * Definition of the objective vector traits for multi-objective flow-shop problems
  */
 class FlowShopObjectiveVectorTraits : public moeoObjectiveVectorTraits
-{
-public:
+  {
+  public:
 
     /**
      * Returns true if the _ith objective have to be minimzed
@@ -66,6 +66,6 @@ public:
      */
     static unsigned int nObjectives ();
 
-};
+  };
 
 #endif /*FLOWSHOPOBJECTIVEVECTORTRAITS_H_*/

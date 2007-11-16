@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoNSGAII.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -63,8 +63,8 @@
  */
 template < class MOEOT >
 class moeoNSGAII: public moeoEA < MOEOT >
-{
-public:
+  {
+  public:
 
     /**
      * Simple ctor with a eoGenOp.
@@ -73,9 +73,9 @@ public:
      * @param _op variation operator
     */
     moeoNSGAII (unsigned int _maxGen, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op) :
-            defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select(2),
-            replace(fitnessAssignment, diversityAssignment), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0),
-            genBreed(select, _op), breed(genBreed)
+        defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select(2),
+        replace(fitnessAssignment, diversityAssignment), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0),
+        genBreed(select, _op), breed(genBreed)
     {}
 
 
@@ -86,9 +86,9 @@ public:
      * @param _op variation operator
     */
     moeoNSGAII (unsigned int _maxGen, eoEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _op) :
-            defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select(2),
-            replace(fitnessAssignment, diversityAssignment), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0),
-            genBreed(select, _op), breed(genBreed)
+        defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select(2),
+        replace(fitnessAssignment, diversityAssignment), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0),
+        genBreed(select, _op), breed(genBreed)
     {}
 
 
@@ -102,9 +102,9 @@ public:
     * @param _pMut mutation probability
      */
     moeoNSGAII (unsigned int _maxGen, eoEvalFunc < MOEOT > & _eval, eoQuadOp < MOEOT > & _crossover, double _pCross, eoMonOp < MOEOT > & _mutation, double _pMut) :
-            defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select (2),
-            replace (fitnessAssignment, diversityAssignment), defaultSGAGenOp(_crossover, _pCross, _mutation, _pMut),
-            genBreed (select, defaultSGAGenOp), breed (genBreed)
+        defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select (2),
+        replace (fitnessAssignment, diversityAssignment), defaultSGAGenOp(_crossover, _pCross, _mutation, _pMut),
+        genBreed (select, defaultSGAGenOp), breed (genBreed)
     {}
 
 
@@ -115,9 +115,9 @@ public:
         * @param _op variation operator
        */
     moeoNSGAII (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op) :
-            defaultGenContinuator(0), continuator(_continuator), popEval(_eval), select(2),
-            replace(fitnessAssignment, diversityAssignment), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0),
-            genBreed(select, _op), breed(genBreed)
+        defaultGenContinuator(0), continuator(_continuator), popEval(_eval), select(2),
+        replace(fitnessAssignment, diversityAssignment), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0),
+        genBreed(select, _op), breed(genBreed)
     {}
 
 
@@ -128,9 +128,9 @@ public:
      * @param _op variation operator
     */
     moeoNSGAII (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _op) :
-            continuator(_continuator), popEval(_eval), select(2),
-            replace(fitnessAssignment, diversityAssignment), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0),
-            genBreed(select, _op), breed(genBreed)
+        continuator(_continuator), popEval(_eval), select(2),
+        replace(fitnessAssignment, diversityAssignment), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0),
+        genBreed(select, _op), breed(genBreed)
     {}
 
 
@@ -140,24 +140,25 @@ public:
      */
     virtual void operator () (eoPop < MOEOT > &_pop)
     {
-        eoPop < MOEOT > offspring, empty_pop;
-        popEval (empty_pop, _pop);	// a first eval of _pop
-        // evaluate fitness and diversity
-        fitnessAssignment(_pop);
-        diversityAssignment(_pop);
-        do
+      eoPop < MOEOT > offspring, empty_pop;
+      popEval (empty_pop, _pop);	// a first eval of _pop
+      // evaluate fitness and diversity
+      fitnessAssignment(_pop);
+      diversityAssignment(_pop);
+      do
         {
-            // generate offspring, worths are recalculated if necessary
-            breed (_pop, offspring);
-            // eval of offspring
-            popEval (_pop, offspring);
-            // after replace, the new pop is in _pop. Worths are recalculated if necessary
-            replace (_pop, offspring);
-        } while (continuator (_pop));
+          // generate offspring, worths are recalculated if necessary
+          breed (_pop, offspring);
+          // eval of offspring
+          popEval (_pop, offspring);
+          // after replace, the new pop is in _pop. Worths are recalculated if necessary
+          replace (_pop, offspring);
+        }
+      while (continuator (_pop));
     }
 
 
-protected:
+  protected:
 
     /** a continuator based on the number of generations (used as default) */
     eoGenContinue < MOEOT > defaultGenContinuator;
@@ -184,6 +185,6 @@ protected:
     /** breeder */
     eoBreed < MOEOT > & breed;
 
-};
+  };
 
 #endif /*MOEONSGAII_H_*/

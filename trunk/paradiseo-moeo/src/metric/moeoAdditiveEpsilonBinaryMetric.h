@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoAdditiveEpsilonBinaryMetric.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -47,8 +47,8 @@
  */
 template < class ObjectiveVector >
 class moeoAdditiveEpsilonBinaryMetric : public moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double >
-{
-public:
+  {
+  public:
 
     /**
      * Returns the minimal distance by which the objective vector _o1 must be translated in all objectives 
@@ -59,21 +59,21 @@ public:
      */
     double operator()(const ObjectiveVector & _o1, const ObjectiveVector & _o2)
     {
-        // computation of the epsilon value for the first objective
-        double result = epsilon(_o1, _o2, 0);
-        // computation of the epsilon value for the other objectives
-        double tmp;
-        for (unsigned int i=1; i<ObjectiveVector::Traits::nObjectives(); i++)
+      // computation of the epsilon value for the first objective
+      double result = epsilon(_o1, _o2, 0);
+      // computation of the epsilon value for the other objectives
+      double tmp;
+      for (unsigned int i=1; i<ObjectiveVector::Traits::nObjectives(); i++)
         {
-            tmp = epsilon(_o1, _o2, i);
-            result = std::max(result, tmp);
+          tmp = epsilon(_o1, _o2, i);
+          result = std::max(result, tmp);
         }
-        // returns the maximum epsilon value
-        return result;
+      // returns the maximum epsilon value
+      return result;
     }
 
 
-private:
+  private:
 
     /** the bounds for every objective */
     using moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > :: bounds;
@@ -88,22 +88,22 @@ private:
      */
     double epsilon(const ObjectiveVector & _o1, const ObjectiveVector & _o2, const unsigned int _obj)
     {
-        double result;
-        // if the objective _obj have to be minimized
-        if (ObjectiveVector::Traits::minimizing(_obj))
+      double result;
+      // if the objective _obj have to be minimized
+      if (ObjectiveVector::Traits::minimizing(_obj))
         {
-            // _o1[_obj] - _o2[_obj]
-            result = ( (_o1[_obj] - bounds[_obj].minimum()) / bounds[_obj].range() ) - ( (_o2[_obj] - bounds[_obj].minimum()) / bounds[_obj].range() );
+          // _o1[_obj] - _o2[_obj]
+          result = ( (_o1[_obj] - bounds[_obj].minimum()) / bounds[_obj].range() ) - ( (_o2[_obj] - bounds[_obj].minimum()) / bounds[_obj].range() );
         }
-        // if the objective _obj have to be maximized
-        else
+      // if the objective _obj have to be maximized
+      else
         {
-            // _o2[_obj] - _o1[_obj]
-            result = ( (_o2[_obj] - bounds[_obj].minimum()) / bounds[_obj].range() ) - ( (_o1[_obj] - bounds[_obj].minimum()) / bounds[_obj].range() );
+          // _o2[_obj] - _o1[_obj]
+          result = ( (_o2[_obj] - bounds[_obj].minimum()) / bounds[_obj].range() ) - ( (_o1[_obj] - bounds[_obj].minimum()) / bounds[_obj].range() );
         }
-        return result;
+      return result;
     }
 
-};
+  };
 
 #endif /*MOEOADDITIVEEPSILONBINARYMETRIC_H_*/

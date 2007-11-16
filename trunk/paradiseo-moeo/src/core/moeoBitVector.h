@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoBitVector.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,8 +45,8 @@
  */
 template < class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity >
 class moeoBitVector : public moeoVector < MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool >
-{
-public:
+  {
+  public:
 
     using moeoVector < MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool > :: begin;
     using moeoVector < MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool > :: end;
@@ -67,22 +67,22 @@ public:
      * Returns the class name as a std::string
      */
     virtual std::string className() const
-    {
-    	return "moeoBitVector";
-    }
-    
-    
+      {
+        return "moeoBitVector";
+      }
+
+
     /**
      * Writing object
      * @param _os output stream
      */
     virtual void printOn(std::ostream & _os) const
-    {
+      {
         MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity >::printOn(_os);
         _os << ' ';
         _os << size() << ' ';
         std::copy(begin(), end(), std::ostream_iterator<bool>(_os));
-    }
+      }
 
 
     /**
@@ -91,18 +91,18 @@ public:
     */
     virtual void readFrom(std::istream & _is)
     {
-        MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity >::readFrom(_is);
-        unsigned int s;
-        _is >> s;
-        std::string bits;
-        _is >> bits;
-        if (_is)
+      MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity >::readFrom(_is);
+      unsigned int s;
+      _is >> s;
+      std::string bits;
+      _is >> bits;
+      if (_is)
         {
-            resize(bits.size());
-            std::transform(bits.begin(), bits.end(), begin(), std::bind2nd(std::equal_to<char>(), '1'));
+          resize(bits.size());
+          std::transform(bits.begin(), bits.end(), begin(), std::bind2nd(std::equal_to<char>(), '1'));
         }
     }
 
-};
+  };
 
 #endif /*MOEOBITVECTOR_H_*/

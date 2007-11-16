@@ -1,4 +1,4 @@
-/* 
+/*
 * <FlowShopEval.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -46,8 +46,8 @@
  * Evaluation of the objective vector a (multi-objective) FlowShop object
  */
 class FlowShopEval : public moeoEvalFunc<FlowShop>
-{
-public:
+  {
+  public:
 
     /**
      * Ctor
@@ -66,7 +66,7 @@ public:
     void operator()(FlowShop & _flowshop);
 
 
-private:
+  private:
 
     /** number of machines */
     unsigned int M;
@@ -99,6 +99,6 @@ private:
      */
     std::vector< std::vector<unsigned int> > completionTime (const FlowShop & _flowshop);
 
-};
+  };
 
 #endif /*FLOWSHOPEVAL_H_*/

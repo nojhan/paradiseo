@@ -1,4 +1,4 @@
-/* 
+/*
 * <FlowShopInit.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,21 +44,21 @@ FlowShopInit::FlowShopInit(unsigned int _N) : N(_N)
 
 void FlowShopInit::operator()(FlowShop & _flowshop)
 {
-    // scheduling vector
-    std::vector<unsigned int> scheduling(N);
-    // initialisation of possible values
-    std::vector<unsigned int> possibles(N);
-    for (unsigned int i=0 ; i<N ; i++)
-        possibles[i] = i;
-    // random initialization
-    unsigned int rInd;     // random index
-    for (unsigned int i=0; i<N; i++)
+  // scheduling vector
+  std::vector<unsigned int> scheduling(N);
+  // initialisation of possible values
+  std::vector<unsigned int> possibles(N);
+  for (unsigned int i=0 ; i<N ; i++)
+    possibles[i] = i;
+  // random initialization
+  unsigned int rInd;     // random index
+  for (unsigned int i=0; i<N; i++)
     {
-        rInd = (unsigned int) rng.uniform(N-i);
-        scheduling[i] = possibles[rInd];
-        possibles[rInd] = possibles[N-i-1];
+      rInd = (unsigned int) rng.uniform(N-i);
+      scheduling[i] = possibles[rInd];
+      possibles[rInd] = possibles[N-i-1];
     }
-    _flowshop.resize(N);
-    _flowshop.value(scheduling);
-    _flowshop.invalidate();	   // IMPORTANT in case the _genotype is old
+  _flowshop.resize(N);
+  _flowshop.value(scheduling);
+  _flowshop.invalidate();	   // IMPORTANT in case the _genotype is old
 }

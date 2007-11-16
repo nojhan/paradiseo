@@ -1,4 +1,4 @@
-/* 
+/*
 * <make_ls_moeo.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -67,80 +67,81 @@
  */
 template < class MOEOT, class Move >
 moeoLS < MOEOT, eoPop<MOEOT> & > & do_make_ls_moeo	(
-    eoParser & _parser,
-    eoState & _state,
-    eoEvalFunc < MOEOT > & _eval,
-    moeoMoveIncrEval < Move > & _moveIncrEval,
-    eoContinue < MOEOT > & _continue,
-    eoMonOp < MOEOT > & _op,
-    eoMonOp < MOEOT > & _opInit,
-    moMoveInit < Move > & _moveInit,
-    moNextMove < Move > & _nextMove,
-    moeoArchive < MOEOT > & _archive
+  eoParser & _parser,
+  eoState & _state,
+  eoEvalFunc < MOEOT > & _eval,
+  moeoMoveIncrEval < Move > & _moveIncrEval,
+  eoContinue < MOEOT > & _continue,
+  eoMonOp < MOEOT > & _op,
+  eoMonOp < MOEOT > & _opInit,
+  moMoveInit < Move > & _moveInit,
+  moNextMove < Move > & _nextMove,
+  moeoArchive < MOEOT > & _archive
 )
 {
-    /* the objective vector type */
-    typedef typename MOEOT::ObjectiveVector ObjectiveVector;
-    /* the fitness assignment strategy */
-    std::string & fitnessParam = _parser.getORcreateParam(std::string("IndicatorBased"), "fitness",
-                            "Fitness assignment strategy parameter: IndicatorBased...", 'F',
-                            "Evolution Engine").value();
-    std::string & indicatorParam = _parser.getORcreateParam(std::string("Epsilon"), "indicator",
-                              "Binary indicator to use with the IndicatorBased assignment: Epsilon, Hypervolume", 'i',
-                              "Evolution Engine").value();
-    double rho = _parser.getORcreateParam(1.1, "rho", "reference point for the hypervolume indicator",
-                                          'r', "Evolution Engine").value();
-    double kappa = _parser.getORcreateParam(0.05, "kappa", "Scaling factor kappa for IndicatorBased",
-                                            'k', "Evolution Engine").value();
-    moeoBinaryIndicatorBasedFitnessAssignment < MOEOT > * fitnessAssignment;
-    if (fitnessParam == std::string("IndicatorBased"))
+  /* the objective vector type */
+  typedef typename MOEOT::ObjectiveVector ObjectiveVector;
+  /* the fitness assignment strategy */
+  std::string & fitnessParam = _parser.getORcreateParam(std::string("IndicatorBased"), "fitness",
+                               "Fitness assignment strategy parameter: IndicatorBased...", 'F',
+                               "Evolution Engine").value();
+  std::string & indicatorParam = _parser.getORcreateParam(std::string("Epsilon"), "indicator",
+                                 "Binary indicator to use with the IndicatorBased assignment: Epsilon, Hypervolume", 'i',
+                                 "Evolution Engine").value();
+  double rho = _parser.getORcreateParam(1.1, "rho", "reference point for the hypervolume indicator",
+                                        'r', "Evolution Engine").value();
+  double kappa = _parser.getORcreateParam(0.05, "kappa", "Scaling factor kappa for IndicatorBased",
+                                          'k', "Evolution Engine").value();
+  moeoBinaryIndicatorBasedFitnessAssignment < MOEOT > * fitnessAssignment;
+  if (fitnessParam == std::string("IndicatorBased"))
     {
-        // metric
-        moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > *metric;
-        if (indicatorParam == std::string("Epsilon"))
+      // metric
+      moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > *metric;
+      if (indicatorParam == std::string("Epsilon"))
         {
-            metric = new moeoAdditiveEpsilonBinaryMetric < ObjectiveVector >;
+          metric = new moeoAdditiveEpsilonBinaryMetric < ObjectiveVector >;
         }
-        else if (indicatorParam == std::string("Hypervolume"))
+      else if (indicatorParam == std::string("Hypervolume"))
         {
-            metric = new moeoHypervolumeBinaryMetric < ObjectiveVector > (rho);
+          metric = new moeoHypervolumeBinaryMetric < ObjectiveVector > (rho);
         }
-        else
+      else
         {
-            std::string stmp = std::string("Invalid binary quality indicator: ") + indicatorParam;
-            throw std::runtime_error(stmp.c_str());
+          std::string stmp = std::string("Invalid binary quality indicator: ") + indicatorParam;
+          throw std::runtime_error(stmp.c_str());
         }
-        fitnessAssignment = new moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT> (*metric, kappa);
+      fitnessAssignment = new moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT> (*metric, kappa);
     }
-    else
+  else
     {
-        std::string stmp = std::string("Invalid fitness assignment strategy: ") + fitnessParam;
-        throw std::runtime_error(stmp.c_str());
+      std::string stmp = std::string("Invalid fitness assignment strategy: ") + fitnessParam;
+      throw std::runtime_error(stmp.c_str());
     }
-    _state.storeFunctor(fitnessAssignment);
-    // number of iterations
-    unsigned int n = _parser.getORcreateParam(1, "n", "Number of iterations for population Initialization", 'n', "Evolution Engine").value();
-    // LS
-    std::string & lsParam = _parser.getORcreateParam(std::string("I-IBMOLS"), "ls",
-                       "Local Search: IBMOLS, I-IBMOLS (Iterated-IBMOLS)...", 'L',
-                       "Evolution Engine").value();
-    moeoLS < MOEOT, eoPop<MOEOT> & > * ls;
-    if (lsParam == std::string("IBMOLS"))
+  _state.storeFunctor(fitnessAssignment);
+  // number of iterations
+  unsigned int n = _parser.getORcreateParam(1, "n", "Number of iterations for population Initialization", 'n', "Evolution Engine").value();
+  // LS
+  std::string & lsParam = _parser.getORcreateParam(std::string("I-IBMOLS"), "ls",
+                          "Local Search: IBMOLS, I-IBMOLS (Iterated-IBMOLS)...", 'L',
+                          "Evolution Engine").value();
+  moeoLS < MOEOT, eoPop<MOEOT> & > * ls;
+  if (lsParam == std::string("IBMOLS"))
     {
-        ls = new moeoIBMOLS < MOEOT, Move > (_moveInit, _nextMove, _eval, _moveIncrEval, *fitnessAssignment, _continue);;
+      ls = new moeoIBMOLS < MOEOT, Move > (_moveInit, _nextMove, _eval, _moveIncrEval, *fitnessAssignment, _continue);
+      ;
     }
-    else if (lsParam == std::string("I-IBMOLS"))
+  else if (lsParam == std::string("I-IBMOLS"))
     {
-        ls = new moeoIteratedIBMOLS < MOEOT, Move > (_moveInit, _nextMove, _eval, _moveIncrEval, *fitnessAssignment, _continue, _op, _opInit, n);
+      ls = new moeoIteratedIBMOLS < MOEOT, Move > (_moveInit, _nextMove, _eval, _moveIncrEval, *fitnessAssignment, _continue, _op, _opInit, n);
     }
-    else
+  else
     {
-        std::string stmp = std::string("Invalid fitness assignment strategy: ") + fitnessParam;
-        throw std::runtime_error(stmp.c_str());
+      std::string stmp = std::string("Invalid fitness assignment strategy: ") + fitnessParam;
+      throw std::runtime_error(stmp.c_str());
     }
-    _state.storeFunctor(ls);
-    // that's it !
-    return *ls;
+  _state.storeFunctor(ls);
+  // that's it !
+  return *ls;
 }
 
 #endif /*MAKE_LS_MOEO_H_*/

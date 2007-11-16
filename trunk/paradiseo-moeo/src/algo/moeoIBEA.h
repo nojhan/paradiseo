@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoIBEA.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -61,8 +61,8 @@
  */
 template < class MOEOT >
 class moeoIBEA : public moeoEA < MOEOT >
-{
-public:
+  {
+  public:
 
     /** The type of objective vector */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -77,8 +77,8 @@ public:
      * @param _kappa scaling factor kappa
      */
     moeoIBEA (unsigned int _maxGen, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
-            defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select(2),
-            fitnessAssignment(_metric, _kappa), replace(fitnessAssignment, dummyDiversityAssignment), genBreed(select, _op), breed(genBreed)
+        defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select(2),
+        fitnessAssignment(_metric, _kappa), replace(fitnessAssignment, dummyDiversityAssignment), genBreed(select, _op), breed(genBreed)
     {}
 
 
@@ -91,8 +91,8 @@ public:
      * @param _kappa scaling factor kappa
      */
     moeoIBEA (unsigned int _maxGen, eoEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _op, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
-            defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select(2),
-            fitnessAssignment(_metric, _kappa), replace(fitnessAssignment, dummyDiversityAssignment), genBreed(select, _op), breed(genBreed)
+        defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select(2),
+        fitnessAssignment(_metric, _kappa), replace(fitnessAssignment, dummyDiversityAssignment), genBreed(select, _op), breed(genBreed)
     {}
 
 
@@ -108,9 +108,9 @@ public:
      * @param _kappa scaling factor kappa
      */
     moeoIBEA (unsigned int _maxGen, eoEvalFunc < MOEOT > & _eval, eoQuadOp < MOEOT > & _crossover, double _pCross, eoMonOp < MOEOT > & _mutation, double _pMut, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
-            defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select (2),
-            fitnessAssignment(_metric, _kappa), replace (fitnessAssignment, dummyDiversityAssignment), defaultSGAGenOp(_crossover, _pCross, _mutation, _pMut),
-            genBreed (select, defaultSGAGenOp), breed (genBreed)
+        defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select (2),
+        fitnessAssignment(_metric, _kappa), replace (fitnessAssignment, dummyDiversityAssignment), defaultSGAGenOp(_crossover, _pCross, _mutation, _pMut),
+        genBreed (select, defaultSGAGenOp), breed (genBreed)
     {}
 
 
@@ -123,8 +123,8 @@ public:
      * @param _kappa scaling factor kappa
      */
     moeoIBEA (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
-            continuator(_continuator), popEval(_eval), select(2),
-            fitnessAssignment(_metric, _kappa), replace(fitnessAssignment, dummyDiversityAssignment), genBreed(select, _op), breed(genBreed)
+        continuator(_continuator), popEval(_eval), select(2),
+        fitnessAssignment(_metric, _kappa), replace(fitnessAssignment, dummyDiversityAssignment), genBreed(select, _op), breed(genBreed)
     {}
 
 
@@ -137,8 +137,8 @@ public:
      * @param _kappa scaling factor kappa
      */
     moeoIBEA (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _op, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
-            continuator(_continuator), popEval(_eval), select(2),
-            fitnessAssignment(_metric, _kappa), replace(fitnessAssignment, dummyDiversityAssignment), genBreed(select, _op), breed(genBreed)
+        continuator(_continuator), popEval(_eval), select(2),
+        fitnessAssignment(_metric, _kappa), replace(fitnessAssignment, dummyDiversityAssignment), genBreed(select, _op), breed(genBreed)
     {}
 
 
@@ -148,24 +148,25 @@ public:
      */
     virtual void operator () (eoPop < MOEOT > &_pop)
     {
-        eoPop < MOEOT > offspring, empty_pop;
-        popEval (empty_pop, _pop);	// a first eval of _pop
-        // evaluate fitness and diversity
-        fitnessAssignment(_pop);
-        dummyDiversityAssignment(_pop);
-        do
+      eoPop < MOEOT > offspring, empty_pop;
+      popEval (empty_pop, _pop);	// a first eval of _pop
+      // evaluate fitness and diversity
+      fitnessAssignment(_pop);
+      dummyDiversityAssignment(_pop);
+      do
         {
-            // generate offspring, worths are recalculated if necessary
-            breed (_pop, offspring);
-            // eval of offspring
-            popEval (_pop, offspring);
-            // after replace, the new pop is in _pop. Worths are recalculated if necessary
-            replace (_pop, offspring);
-        } while (continuator (_pop));
+          // generate offspring, worths are recalculated if necessary
+          breed (_pop, offspring);
+          // eval of offspring
+          popEval (_pop, offspring);
+          // after replace, the new pop is in _pop. Worths are recalculated if necessary
+          replace (_pop, offspring);
+        }
+      while (continuator (_pop));
     }
 
 
-protected:
+  protected:
 
     /** a continuator based on the number of generations (used as default) */
     eoGenContinue < MOEOT > defaultGenContinuator;
@@ -188,6 +189,6 @@ protected:
     /** breeder */
     eoBreed < MOEOT > & breed;
 
-};
+  };
 
 #endif /*MOEOIBEA_H_*/

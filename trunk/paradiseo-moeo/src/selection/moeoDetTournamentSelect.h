@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoDetTournamentSelect.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -47,8 +47,8 @@
  * Selection strategy that selects ONE individual by deterministic tournament.
  */
 template < class MOEOT > class moeoDetTournamentSelect:public moeoSelectOne < MOEOT >
-{
-public:
+  {
+  public:
 
     /**
      * Full Ctor.
@@ -57,12 +57,12 @@ public:
      */
     moeoDetTournamentSelect (moeoComparator < MOEOT > & _comparator, unsigned int _tSize = 2) : comparator (_comparator), tSize (_tSize)
     {
-        // consistency check
-        if (tSize < 2)
+      // consistency check
+      if (tSize < 2)
         {
-            std::
-            cout << "Warning, Tournament size should be >= 2\nAdjusted to 2\n";
-            tSize = 2;
+          std::
+          cout << "Warning, Tournament size should be >= 2\nAdjusted to 2\n";
+          tSize = 2;
         }
     }
 
@@ -73,12 +73,12 @@ public:
      */
     moeoDetTournamentSelect (unsigned int _tSize = 2) : comparator (defaultComparator), tSize (_tSize)
     {
-        // consistency check
-        if (tSize < 2)
+      // consistency check
+      if (tSize < 2)
         {
-            std::
-            cout << "Warning, Tournament size should be >= 2\nAdjusted to 2\n";
-            tSize = 2;
+          std::
+          cout << "Warning, Tournament size should be >= 2\nAdjusted to 2\n";
+          tSize = 2;
         }
     }
 
@@ -89,12 +89,12 @@ public:
      */
     const MOEOT & operator() (const eoPop < MOEOT > &_pop)
     {
-        // use the selector
-        return mo_deterministic_tournament (_pop, tSize, comparator);
+      // use the selector
+      return mo_deterministic_tournament (_pop, tSize, comparator);
     }
 
 
-protected:
+  protected:
 
     /** the comparator (used to compare 2 individuals) */
     moeoComparator < MOEOT > & comparator;
@@ -103,6 +103,6 @@ protected:
     /** the number of individuals in the tournament */
     unsigned int tSize;
 
-};
+  };
 
 #endif /*MOEODETTOURNAMENTSELECT_H_ */

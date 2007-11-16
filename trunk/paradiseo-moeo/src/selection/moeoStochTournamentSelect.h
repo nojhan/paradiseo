@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoStochTournamentSelect.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -47,8 +47,8 @@
  *  Selection strategy that selects ONE individual by stochastic tournament.
  */
 template < class MOEOT > class moeoStochTournamentSelect:public moeoSelectOne <MOEOT>
-{
-public:
+  {
+  public:
 
     /**
      * Full Ctor
@@ -57,19 +57,19 @@ public:
      */
     moeoStochTournamentSelect (moeoComparator < MOEOT > & _comparator, double _tRate = 1.0) : comparator (_comparator), tRate (_tRate)
     {
-        // consistency checks
-        if (tRate < 0.5)
+      // consistency checks
+      if (tRate < 0.5)
         {
-            std::cerr << "Warning, Tournament rate should be > 0.5\nAdjusted to 0.55\n";
-            tRate = 0.55;
+          std::cerr << "Warning, Tournament rate should be > 0.5\nAdjusted to 0.55\n";
+          tRate = 0.55;
         }
-        if (tRate > 1)
+      if (tRate > 1)
         {
-            std::cerr << "Warning, Tournament rate should be < 1\nAdjusted to 1\n";
-            tRate = 1;
+          std::cerr << "Warning, Tournament rate should be < 1\nAdjusted to 1\n";
+          tRate = 1;
         }
     }
-    
+
 
     /**
      * Ctor without comparator. A moeoFitnessThenDiversityComparator is used as default.
@@ -77,16 +77,16 @@ public:
      */
     moeoStochTournamentSelect (double _tRate = 1.0) : comparator (defaultComparator), tRate (_tRate)
     {
-        // consistency checks
-        if (tRate < 0.5)
+      // consistency checks
+      if (tRate < 0.5)
         {
-            std::cerr << "Warning, Tournament rate should be > 0.5\nAdjusted to 0.55\n";
-            tRate = 0.55;
+          std::cerr << "Warning, Tournament rate should be > 0.5\nAdjusted to 0.55\n";
+          tRate = 0.55;
         }
-        if (tRate > 1)
+      if (tRate > 1)
         {
-            std::cerr << "Warning, Tournament rate should be < 1\nAdjusted to 1\n";
-            tRate = 1;
+          std::cerr << "Warning, Tournament rate should be < 1\nAdjusted to 1\n";
+          tRate = 1;
         }
     }
 
@@ -97,12 +97,12 @@ public:
      */
     const MOEOT & operator() (const eoPop < MOEOT > &_pop)
     {
-        // use the selector
-        return mo_stochastic_tournament(_pop,tRate,comparator);
+      // use the selector
+      return mo_stochastic_tournament(_pop,tRate,comparator);
     }
 
 
-protected:
+  protected:
 
     /** the comparator (used to compare 2 individuals) */
     moeoComparator < MOEOT > & comparator;
@@ -111,6 +111,6 @@ protected:
     /** the tournament rate */
     double tRate;
 
-};
+  };
 
 #endif /*MOEOSTOCHTOURNAMENTSELECT_H_ */

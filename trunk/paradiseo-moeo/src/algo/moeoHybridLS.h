@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoHybridLS.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -51,8 +51,8 @@
  */
 template < class MOEOT >
 class moeoHybridLS : public eoUpdater
-{
-public:
+  {
+  public:
 
     /**
      * Ctor
@@ -62,7 +62,7 @@ public:
      * @param _arch the archive
      */
     moeoHybridLS (eoContinue < MOEOT > & _term, eoSelect < MOEOT > & _select, moeoLS < MOEOT, MOEOT > & _mols, moeoArchive < MOEOT > & _arch) :
-            term(_term), select(_select), mols(_mols), arch(_arch)
+        term(_term), select(_select), mols(_mols), arch(_arch)
     {}
 
 
@@ -71,21 +71,21 @@ public:
      */
     void operator () ()
     {
-        if (! term (arch))
+      if (! term (arch))
         {
-            // selection of solutions
-            eoPop < MOEOT > selectedSolutions;
-            select(arch, selectedSolutions);
-            // apply the local search to every selected solution
-            for (unsigned int i=0; i<selectedSolutions.size(); i++)
+          // selection of solutions
+          eoPop < MOEOT > selectedSolutions;
+          select(arch, selectedSolutions);
+          // apply the local search to every selected solution
+          for (unsigned int i=0; i<selectedSolutions.size(); i++)
             {
-                mols(selectedSolutions[i], arch);
+              mols(selectedSolutions[i], arch);
             }
         }
     }
 
 
-private:
+  private:
 
     /** stopping criteria */
     eoContinue < MOEOT > & term;
@@ -96,6 +96,6 @@ private:
     /** archive */
     moeoArchive < MOEOT > & arch;
 
-};
+  };
 
 #endif /*MOEOHYBRIDLS_H_*/

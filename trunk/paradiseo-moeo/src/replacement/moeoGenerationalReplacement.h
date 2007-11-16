@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoGenerationalReplacement.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -46,8 +46,8 @@
  */
 template < class MOEOT >
 class moeoGenerationalReplacement : public moeoReplacement < MOEOT >, public eoGenerationalReplacement < MOEOT >
-{
-public:
+  {
+  public:
 
     /**
      * Swaps _parents and _offspring
@@ -56,9 +56,9 @@ public:
      */
     void operator()(eoPop < MOEOT > & _parents, eoPop < MOEOT > & _offspring)
     {
-        eoGenerationalReplacement < MOEOT >::operator ()(_parents, _offspring);
+      eoGenerationalReplacement < MOEOT >::operator ()(_parents, _offspring);
     }
 
-};
+  };
 
 #endif /*MOEOGENERATIONALREPLACEMENT_H_*/

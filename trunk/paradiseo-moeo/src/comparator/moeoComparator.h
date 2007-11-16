@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoComparator.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,6 +44,7 @@
  * Functor allowing to compare two solutions.
  */
 template < class MOEOT >
-class moeoComparator : public eoBF < const MOEOT &, const MOEOT &, const bool > {};
+class moeoComparator : public eoBF < const MOEOT &, const MOEOT &, const bool >
+  {};
 
 #endif /*MOEOCOMPARATOR_H_*/

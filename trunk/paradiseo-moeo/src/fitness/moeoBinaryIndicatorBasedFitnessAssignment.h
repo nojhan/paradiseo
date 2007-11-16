@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoBinaryIndicatorBasedFitnessAssignment.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,8 +45,8 @@
  */
 template < class MOEOT >
 class moeoBinaryIndicatorBasedFitnessAssignment : public moeoIndicatorBasedFitnessAssignment < MOEOT >
-{
-public:
+  {
+  public:
 
     /** The type for objective vector */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -60,6 +60,6 @@ public:
      */
     virtual double updateByAdding(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec) = 0;
 
-};
+  };
 
 #endif /*MOEOINDICATORBASEDFITNESSASSIGNMENT_H_*/

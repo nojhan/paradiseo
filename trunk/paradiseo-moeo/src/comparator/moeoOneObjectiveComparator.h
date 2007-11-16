@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoOneObjectiveComparator.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,8 +45,8 @@
  */
 template < class MOEOT >
 class moeoOneObjectiveComparator : public moeoComparator < MOEOT >
-{
-public:
+  {
+  public:
 
     /**
      * Ctor.
@@ -54,9 +54,9 @@ public:
      */
     moeoOneObjectiveComparator(unsigned int _obj) : obj(_obj)
     {
-        if (obj > MOEOT::ObjectiveVector::nObjectives())
+      if (obj > MOEOT::ObjectiveVector::nObjectives())
         {
-            throw std::runtime_error("Problem with the index of objective in moeoOneObjectiveComparator");
+          throw std::runtime_error("Problem with the index of objective in moeoOneObjectiveComparator");
         }
     }
 
@@ -68,15 +68,15 @@ public:
      */
     const bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
     {
-        return _moeo1.objectiveVector()[obj] < _moeo2.objectiveVector()[obj];
+      return _moeo1.objectiveVector()[obj] < _moeo2.objectiveVector()[obj];
     }
 
 
-private:
+  private:
 
     /** the index of objective */
     unsigned int obj;
 
-};
+  };
 
 #endif /*MOEOONEOBJECTIVECOMPARATOR_H_*/

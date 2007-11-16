@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoSelectOne.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,6 +44,7 @@
  * Selection strategy for multi-objective optimization that selects only one element from a whole population.
  */
 template < class MOEOT >
-class moeoSelectOne : public eoSelectOne < MOEOT > {};
+class moeoSelectOne : public eoSelectOne < MOEOT >
+  {};
 
 #endif /*MOEOSELECTONE_H_*/

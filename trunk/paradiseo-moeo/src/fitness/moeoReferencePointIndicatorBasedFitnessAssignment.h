@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoReferencePointIndicatorBasedFitnessAssignment.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -48,8 +48,8 @@
  */
 template < class MOEOT >
 class moeoReferencePointIndicatorBasedFitnessAssignment : public moeoFitnessAssignment < MOEOT >
-{
-public:
+  {
+  public:
 
     /** The type of objective vector */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -60,7 +60,7 @@ public:
      * @param _metric the quality indicator
      */
     moeoReferencePointIndicatorBasedFitnessAssignment (ObjectiveVector & _refPoint, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric) :
-            refPoint(_refPoint), metric(_metric)
+        refPoint(_refPoint), metric(_metric)
     {}
 
 
@@ -70,10 +70,10 @@ public:
      */
     void operator()(eoPop < MOEOT > & _pop)
     {
-        // 1 - setting of the bounds
-        setup(_pop);
-        // 2 - setting fitnesses
-        setFitnesses(_pop);
+      // 1 - setting of the bounds
+      setup(_pop);
+      // 2 - setting fitnesses
+      setFitnesses(_pop);
     }
 
 
@@ -84,11 +84,11 @@ public:
      */
     void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
     {
-        // nothing to do  ;-)
+      // nothing to do  ;-)
     }
 
 
-protected:
+  protected:
 
     /** the reference point */
     ObjectiveVector & refPoint;
@@ -102,18 +102,18 @@ protected:
      */
     void setup(const eoPop < MOEOT > & _pop)
     {
-        double min, max;
-        for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
+      double min, max;
+      for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
         {
-            min = refPoint[i];
-            max = refPoint[i];
-            for (unsigned int j=0; j<_pop.size(); j++)
+          min = refPoint[i];
+          max = refPoint[i];
+          for (unsigned int j=0; j<_pop.size(); j++)
             {
-                min = std::min(min, _pop[j].objectiveVector()[i]);
-                max = std::max(max, _pop[j].objectiveVector()[i]);
+              min = std::min(min, _pop[j].objectiveVector()[i]);
+              max = std::max(max, _pop[j].objectiveVector()[i]);
             }
-            // setting of the bounds for the objective i
-            metric.setup(min, max, i);
+          // setting of the bounds for the objective i
+          metric.setup(min, max, i);
         }
     }
 
@@ -123,12 +123,12 @@ protected:
      */
     void setFitnesses(eoPop < MOEOT > & _pop)
     {
-        for (unsigned int i=0; i<_pop.size(); i++)
+      for (unsigned int i=0; i<_pop.size(); i++)
         {
-            _pop[i].fitness(- metric(_pop[i].objectiveVector(), refPoint) );
+          _pop[i].fitness(- metric(_pop[i].objectiveVector(), refPoint) );
         }
     }
 
-};
+  };
 
 #endif /*MOEOREFERENCEPOINTINDICATORBASEDFITNESSASSIGNMENT_H_*/

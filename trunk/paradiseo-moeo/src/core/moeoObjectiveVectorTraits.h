@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoObjectiveVectorTraits.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -46,8 +46,8 @@
  * A traits class for moeoObjectiveVector to specify the number of objectives and which ones have to be minimized or maximized.
  */
 class moeoObjectiveVectorTraits
-{
-public:
+  {
+  public:
 
     /**
      * Parameters setting
@@ -56,20 +56,21 @@ public:
      */
     static void setup(unsigned int _nObjectives, std::vector < bool > & _bObjectives)
     {
-        // in case the number of objectives was already set to a different value
-        if ( nObj && (nObj != _nObjectives) ) {
-            std::cout << "WARNING\n";
-            std::cout << "WARNING : the number of objectives are changing\n";
-            std::cout << "WARNING : Make sure all existing objects are destroyed\n";
-            std::cout << "WARNING\n";
+      // in case the number of objectives was already set to a different value
+      if ( nObj && (nObj != _nObjectives) )
+        {
+          std::cout << "WARNING\n";
+          std::cout << "WARNING : the number of objectives are changing\n";
+          std::cout << "WARNING : Make sure all existing objects are destroyed\n";
+          std::cout << "WARNING\n";
         }
-        // number of objectives
-        nObj = _nObjectives;
-        // min/max vector
-        bObj = _bObjectives;
-        // in case the number of objectives and the min/max vector size don't match
-        if (nObj != bObj.size())
-            throw std::runtime_error("Number of objectives and min/max size don't match in moeoObjectiveVectorTraits::setup");
+      // number of objectives
+      nObj = _nObjectives;
+      // min/max vector
+      bObj = _bObjectives;
+      // in case the number of objectives and the min/max vector size don't match
+      if (nObj != bObj.size())
+        throw std::runtime_error("Number of objectives and min/max size don't match in moeoObjectiveVectorTraits::setup");
     }
 
 
@@ -78,10 +79,10 @@ public:
      */
     static unsigned int nObjectives()
     {
-        // in case the number of objectives would not be assigned yet
-        if (! nObj)
-            throw std::runtime_error("Number of objectives not assigned in moeoObjectiveVectorTraits");
-        return nObj;
+      // in case the number of objectives would not be assigned yet
+      if (! nObj)
+        throw std::runtime_error("Number of objectives not assigned in moeoObjectiveVectorTraits");
+      return nObj;
     }
 
 
@@ -91,10 +92,10 @@ public:
      */
     static bool minimizing(unsigned int _i)
     {
-        // in case there would be a wrong index
-        if (_i >= bObj.size())
-            throw std::runtime_error("Wrong index in moeoObjectiveVectorTraits");
-        return bObj[_i];
+      // in case there would be a wrong index
+      if (_i >= bObj.size())
+        throw std::runtime_error("Wrong index in moeoObjectiveVectorTraits");
+      return bObj[_i];
     }
 
 
@@ -102,8 +103,9 @@ public:
      * Returns true if the _ith objective have to be maximized
      * @param _i  the index
      */
-    static bool maximizing(unsigned int _i) {
-        return (! minimizing(_i));
+    static bool maximizing(unsigned int _i)
+    {
+      return (! minimizing(_i));
     }
 
 
@@ -112,17 +114,17 @@ public:
      */
     static double tolerance()
     {
-        return 1e-6;
+      return 1e-6;
     }
 
 
-private:
+  private:
 
     /** The number of objectives */
     static unsigned int nObj;
     /** The min/max vector */
     static std::vector < bool > bObj;
 
-};
+  };
 
 #endif /*MOEOOBJECTIVEVECTORTRAITS_H_*/

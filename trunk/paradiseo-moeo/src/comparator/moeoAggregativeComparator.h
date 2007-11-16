@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoAggregativeComparator.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,8 +45,8 @@
  */
 template < class MOEOT >
 class moeoAggregativeComparator : public moeoComparator < MOEOT >
-{
-public:
+  {
+  public:
 
     /**
      * Ctor.
@@ -64,17 +64,17 @@ public:
      */
     const bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
     {
-        return ( weightFitness * _moeo1.fitness() + weightDiversity * _moeo1.diversity() ) < ( weightFitness * _moeo2.fitness() + weightDiversity * _moeo2.diversity() );
+      return ( weightFitness * _moeo1.fitness() + weightDiversity * _moeo1.diversity() ) < ( weightFitness * _moeo2.fitness() + weightDiversity * _moeo2.diversity() );
     }
 
 
-private:
+  private:
 
     /** the weight for fitness */
     double weightFitness;
     /** the weight for diversity */
     double weightDiversity;
 
-};
+  };
 
 #endif /*MOEOAGGREGATIVECOMPARATOR_H_*/

@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoEnvironmentalReplacement.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -49,8 +49,8 @@
  * and by updating the fitness and diversity values after each deletion.
  */
 template < class MOEOT > class moeoEnvironmentalReplacement:public moeoReplacement < MOEOT >
-{
-public:
+  {
+  public:
 
     /** The type for objective vector */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -63,7 +63,7 @@ public:
      * @param _comparator the comparator (used to compare 2 individuals)
      */
     moeoEnvironmentalReplacement (moeoFitnessAssignment < MOEOT > & _fitnessAssignment, moeoDiversityAssignment < MOEOT > & _diversityAssignment, moeoComparator < MOEOT > & _comparator) :
-            fitnessAssignment (_fitnessAssignment), diversityAssignment (_diversityAssignment), comparator (_comparator)
+        fitnessAssignment (_fitnessAssignment), diversityAssignment (_diversityAssignment), comparator (_comparator)
     {}
 
 
@@ -73,7 +73,7 @@ public:
      * @param _diversityAssignment the diversity assignment strategy
      */
     moeoEnvironmentalReplacement (moeoFitnessAssignment < MOEOT > & _fitnessAssignment, moeoDiversityAssignment < MOEOT > & _diversityAssignment) :
-            fitnessAssignment (_fitnessAssignment), diversityAssignment (_diversityAssignment), comparator (defaultComparator)
+        fitnessAssignment (_fitnessAssignment), diversityAssignment (_diversityAssignment), comparator (defaultComparator)
     {}
 
 
@@ -83,7 +83,7 @@ public:
      * @param _comparator the comparator (used to compare 2 individuals)
      */
     moeoEnvironmentalReplacement (moeoFitnessAssignment < MOEOT > & _fitnessAssignment, moeoComparator < MOEOT > & _comparator) :
-            fitnessAssignment (_fitnessAssignment), diversityAssignment (defaultDiversity), comparator (_comparator)
+        fitnessAssignment (_fitnessAssignment), diversityAssignment (defaultDiversity), comparator (_comparator)
     {}
 
 
@@ -93,7 +93,7 @@ public:
      * @param _fitnessAssignment the fitness assignment strategy
      */
     moeoEnvironmentalReplacement (moeoFitnessAssignment < MOEOT > & _fitnessAssignment) :
-            fitnessAssignment (_fitnessAssignment), diversityAssignment (defaultDiversity), comparator (defaultComparator)
+        fitnessAssignment (_fitnessAssignment), diversityAssignment (defaultDiversity), comparator (defaultComparator)
     {}
 
 
@@ -104,35 +104,35 @@ public:
      */
     void operator () (eoPop < MOEOT > &_parents, eoPop < MOEOT > &_offspring)
     {
-        unsigned int sz = _parents.size();
-        // merges offspring and parents into a global population
-        _parents.reserve (_parents.size() + _offspring.size());
-        std::copy (_offspring.begin(), _offspring.end(), back_inserter(_parents));
-        // evaluates the fitness and the diversity of this global population
-        fitnessAssignment (_parents);
-        diversityAssignment (_parents);
-        // remove individuals 1 by 1 and update the fitness values
-        unsigned int worstIdx;
-        ObjectiveVector worstObjVec;
-        while (_parents.size() > sz)
+      unsigned int sz = _parents.size();
+      // merges offspring and parents into a global population
+      _parents.reserve (_parents.size() + _offspring.size());
+      std::copy (_offspring.begin(), _offspring.end(), back_inserter(_parents));
+      // evaluates the fitness and the diversity of this global population
+      fitnessAssignment (_parents);
+      diversityAssignment (_parents);
+      // remove individuals 1 by 1 and update the fitness values
+      unsigned int worstIdx;
+      ObjectiveVector worstObjVec;
+      while (_parents.size() > sz)
         {
-            // the individual to delete
-            worstIdx = std::min_element(_parents.begin(), _parents.end(), comparator) - _parents.begin();
-            worstObjVec = _parents[worstIdx].objectiveVector();
-            // remove the woorst individual
-            _parents[worstIdx] = _parents.back();
-            _parents.pop_back();
-            // update of the fitness and diversity values
-            fitnessAssignment.updateByDeleting(_parents, worstObjVec);
-            diversityAssignment.updateByDeleting(_parents, worstObjVec);
+          // the individual to delete
+          worstIdx = std::min_element(_parents.begin(), _parents.end(), comparator) - _parents.begin();
+          worstObjVec = _parents[worstIdx].objectiveVector();
+          // remove the woorst individual
+          _parents[worstIdx] = _parents.back();
+          _parents.pop_back();
+          // update of the fitness and diversity values
+          fitnessAssignment.updateByDeleting(_parents, worstObjVec);
+          diversityAssignment.updateByDeleting(_parents, worstObjVec);
 
         }
-        // clear the offspring population
-        _offspring.clear ();
+      // clear the offspring population
+      _offspring.clear ();
     }
 
 
-protected:
+  protected:
 
     /** the fitness assignment strategy */
     moeoFitnessAssignment < MOEOT > & fitnessAssignment;
@@ -144,8 +144,8 @@ protected:
     moeoFitnessThenDiversityComparator < MOEOT > defaultComparator;
     /** this object is used to compare solutions in order to sort the population */
     class Cmp
-    {
-    public:
+      {
+      public:
         /**
          * Ctor.
          * @param _comp the comparator
@@ -159,13 +159,14 @@ protected:
          */
         bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
         {
-            return comp(_moeo1,_moeo2);
+          return comp(_moeo1,_moeo2);
         }
-    private:
+      private:
         /** the comparator */
         moeoComparator < MOEOT > & comp;
-    } comparator;
+      }
+    comparator;
 
-};
+  };
 
 #endif /*MOEOENVIRONMENTALREPLACEMENT_H_ */

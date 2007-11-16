@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoEvalFunc.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,6 +44,7 @@
  * Functor that evaluates one MOEO by setting all its objective values.
  */
 template < class MOEOT >
-class moeoEvalFunc : public eoEvalFunc< MOEOT > {};
+class moeoEvalFunc : public eoEvalFunc< MOEOT >
+  {};
 
 #endif /*MOEOEVALFUNC_H_*/

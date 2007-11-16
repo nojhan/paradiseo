@@ -1,4 +1,4 @@
-/* 
+/*
 * <make_ea_moeo.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -88,209 +88,209 @@ template < class MOEOT >
 moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalFunc < MOEOT > & _eval, eoContinue < MOEOT > & _continue, eoGenOp < MOEOT > & _op, moeoArchive < MOEOT > & _archive)
 {
 
-    /* the objective vector type */
-    typedef typename MOEOT::ObjectiveVector ObjectiveVector;
+  /* the objective vector type */
+  typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 
 
-    /* the fitness assignment strategy */
-    std::string & fitnessParam = _parser.createParam(std::string("FastNonDominatedSorting"), "fitness",
-                            "Fitness assignment scheme: Dummy, FastNonDominatedSorting or IndicatorBased", 'F',
-                            "Evolution Engine").value();
-    std::string & indicatorParam = _parser.createParam(std::string("Epsilon"), "indicator",
-                              "Binary indicator for IndicatorBased: Epsilon, Hypervolume", 'i',
-                              "Evolution Engine").value();
-    double rho = _parser.createParam(1.1, "rho", "reference point for the hypervolume indicator", 'r',
+  /* the fitness assignment strategy */
+  std::string & fitnessParam = _parser.createParam(std::string("FastNonDominatedSorting"), "fitness",
+                               "Fitness assignment scheme: Dummy, FastNonDominatedSorting or IndicatorBased", 'F',
+                               "Evolution Engine").value();
+  std::string & indicatorParam = _parser.createParam(std::string("Epsilon"), "indicator",
+                                 "Binary indicator for IndicatorBased: Epsilon, Hypervolume", 'i',
+                                 "Evolution Engine").value();
+  double rho = _parser.createParam(1.1, "rho", "reference point for the hypervolume indicator", 'r',
+                                   "Evolution Engine").value();
+  double kappa = _parser.createParam(0.05, "kappa", "Scaling factor kappa for IndicatorBased", 'k',
                                      "Evolution Engine").value();
-    double kappa = _parser.createParam(0.05, "kappa", "Scaling factor kappa for IndicatorBased", 'k',
-                                       "Evolution Engine").value();
-    moeoFitnessAssignment < MOEOT > * fitnessAssignment;
-    if (fitnessParam == std::string("Dummy"))
+  moeoFitnessAssignment < MOEOT > * fitnessAssignment;
+  if (fitnessParam == std::string("Dummy"))
     {
-        fitnessAssignment = new moeoDummyFitnessAssignment < MOEOT> ();
+      fitnessAssignment = new moeoDummyFitnessAssignment < MOEOT> ();
     }
-    else if (fitnessParam == std::string("FastNonDominatedSorting"))
+  else if (fitnessParam == std::string("FastNonDominatedSorting"))
     {
-        fitnessAssignment = new moeoFastNonDominatedSortingFitnessAssignment < MOEOT> ();
+      fitnessAssignment = new moeoFastNonDominatedSortingFitnessAssignment < MOEOT> ();
     }
-    else if (fitnessParam == std::string("IndicatorBased"))
+  else if (fitnessParam == std::string("IndicatorBased"))
     {
-        // metric
-        moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > *metric;
-        if (indicatorParam == std::string("Epsilon"))
+      // metric
+      moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > *metric;
+      if (indicatorParam == std::string("Epsilon"))
         {
-            metric = new moeoAdditiveEpsilonBinaryMetric < ObjectiveVector >;
+          metric = new moeoAdditiveEpsilonBinaryMetric < ObjectiveVector >;
         }
-        else if (indicatorParam == std::string("Hypervolume"))
+      else if (indicatorParam == std::string("Hypervolume"))
         {
-            metric = new moeoHypervolumeBinaryMetric < ObjectiveVector > (rho);
+          metric = new moeoHypervolumeBinaryMetric < ObjectiveVector > (rho);
         }
-        else
+      else
         {
-            std::string stmp = std::string("Invalid binary quality indicator: ") + indicatorParam;
-            throw std::runtime_error(stmp.c_str());
+          std::string stmp = std::string("Invalid binary quality indicator: ") + indicatorParam;
+          throw std::runtime_error(stmp.c_str());
         }
-        fitnessAssignment = new moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT > (*metric, kappa);
+      fitnessAssignment = new moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT > (*metric, kappa);
     }
-    else
+  else
     {
-        std::string stmp = std::string("Invalid fitness assignment strategy: ") + fitnessParam;
-        throw std::runtime_error(stmp.c_str());
+      std::string stmp = std::string("Invalid fitness assignment strategy: ") + fitnessParam;
+      throw std::runtime_error(stmp.c_str());
     }
-    _state.storeFunctor(fitnessAssignment);
+  _state.storeFunctor(fitnessAssignment);
 
 
-    /* the diversity assignment strategy */
-    eoValueParam<eoParamParamType> & diversityParam = _parser.createParam(eoParamParamType("Dummy"), "diversity",
-            "Diversity assignment scheme: Dummy, Sharing(nicheSize) or Crowding", 'D', "Evolution Engine");
-    eoParamParamType & diversityParamValue = diversityParam.value();
-    moeoDiversityAssignment < MOEOT > * diversityAssignment;
-    if (diversityParamValue.first == std::string("Dummy"))
+  /* the diversity assignment strategy */
+  eoValueParam<eoParamParamType> & diversityParam = _parser.createParam(eoParamParamType("Dummy"), "diversity",
+      "Diversity assignment scheme: Dummy, Sharing(nicheSize) or Crowding", 'D', "Evolution Engine");
+  eoParamParamType & diversityParamValue = diversityParam.value();
+  moeoDiversityAssignment < MOEOT > * diversityAssignment;
+  if (diversityParamValue.first == std::string("Dummy"))
     {
-        diversityAssignment = new moeoDummyDiversityAssignment < MOEOT> ();
+      diversityAssignment = new moeoDummyDiversityAssignment < MOEOT> ();
     }
-    else if (diversityParamValue.first == std::string("Sharing"))
+  else if (diversityParamValue.first == std::string("Sharing"))
     {
-        double nicheSize;
-        if (!diversityParamValue.second.size())   // no parameter added
+      double nicheSize;
+      if (!diversityParamValue.second.size())   // no parameter added
         {
-            std::cerr << "WARNING, no niche size given for Sharing, using 0.5" << std::endl;
-            nicheSize = 0.5;
-            diversityParamValue.second.push_back(std::string("0.5"));
+          std::cerr << "WARNING, no niche size given for Sharing, using 0.5" << std::endl;
+          nicheSize = 0.5;
+          diversityParamValue.second.push_back(std::string("0.5"));
         }
-        else
+      else
         {
-            nicheSize = atoi(diversityParamValue.second[0].c_str());
+          nicheSize = atoi(diversityParamValue.second[0].c_str());
         }
-        diversityAssignment = new moeoFrontByFrontSharingDiversityAssignment < MOEOT> (nicheSize);
+      diversityAssignment = new moeoFrontByFrontSharingDiversityAssignment < MOEOT> (nicheSize);
     }
-    else if (diversityParamValue.first == std::string("Crowding"))
+  else if (diversityParamValue.first == std::string("Crowding"))
     {
-        diversityAssignment = new moeoFrontByFrontCrowdingDiversityAssignment < MOEOT> ();
+      diversityAssignment = new moeoFrontByFrontCrowdingDiversityAssignment < MOEOT> ();
     }
-    else
+  else
     {
-        std::string stmp = std::string("Invalid diversity assignment strategy: ") + diversityParamValue.first;
-        throw std::runtime_error(stmp.c_str());
+      std::string stmp = std::string("Invalid diversity assignment strategy: ") + diversityParamValue.first;
+      throw std::runtime_error(stmp.c_str());
     }
-    _state.storeFunctor(diversityAssignment);
+  _state.storeFunctor(diversityAssignment);
 
 
-    /* the comparator strategy */
-    std::string & comparatorParam = _parser.createParam(std::string("FitnessThenDiversity"), "comparator",
-                               "Comparator scheme: FitnessThenDiversity, DiversityThenFitness or Aggregative", 'C', "Evolution Engine").value();
-    moeoComparator < MOEOT > * comparator;
-    if (comparatorParam == std::string("FitnessThenDiversity"))
+  /* the comparator strategy */
+  std::string & comparatorParam = _parser.createParam(std::string("FitnessThenDiversity"), "comparator",
+                                  "Comparator scheme: FitnessThenDiversity, DiversityThenFitness or Aggregative", 'C', "Evolution Engine").value();
+  moeoComparator < MOEOT > * comparator;
+  if (comparatorParam == std::string("FitnessThenDiversity"))
     {
-        comparator = new moeoFitnessThenDiversityComparator < MOEOT> ();
+      comparator = new moeoFitnessThenDiversityComparator < MOEOT> ();
     }
-    else if (comparatorParam == std::string("DiversityThenFitness"))
+  else if (comparatorParam == std::string("DiversityThenFitness"))
     {
-        comparator = new moeoDiversityThenFitnessComparator < MOEOT> ();
+      comparator = new moeoDiversityThenFitnessComparator < MOEOT> ();
     }
-    else if (comparatorParam == std::string("Aggregative"))
+  else if (comparatorParam == std::string("Aggregative"))
     {
-        comparator = new moeoAggregativeComparator < MOEOT> ();
+      comparator = new moeoAggregativeComparator < MOEOT> ();
     }
-    else
+  else
     {
-        std::string stmp = std::string("Invalid comparator strategy: ") + comparatorParam;
-        throw std::runtime_error(stmp.c_str());
+      std::string stmp = std::string("Invalid comparator strategy: ") + comparatorParam;
+      throw std::runtime_error(stmp.c_str());
     }
-    _state.storeFunctor(comparator);
+  _state.storeFunctor(comparator);
 
 
-    /* the selection strategy */
-    eoValueParam < eoParamParamType > & selectionParam = _parser.createParam(eoParamParamType("DetTour(2)"), "selection",
-            "Selection scheme: DetTour(T), StochTour(t) or Random", 'S', "Evolution Engine");
-    eoParamParamType & ppSelect = selectionParam.value();
-    moeoSelectOne < MOEOT > * select;
-    if (ppSelect.first == std::string("DetTour"))
+  /* the selection strategy */
+  eoValueParam < eoParamParamType > & selectionParam = _parser.createParam(eoParamParamType("DetTour(2)"), "selection",
+      "Selection scheme: DetTour(T), StochTour(t) or Random", 'S', "Evolution Engine");
+  eoParamParamType & ppSelect = selectionParam.value();
+  moeoSelectOne < MOEOT > * select;
+  if (ppSelect.first == std::string("DetTour"))
     {
-        unsigned int tSize;
-        if (!ppSelect.second.size()) // no parameter added
+      unsigned int tSize;
+      if (!ppSelect.second.size()) // no parameter added
         {
-            std::cerr << "WARNING, no parameter passed to DetTour, using 2" << std::endl;
-            tSize = 2;
-            // put back 2 in parameter for consistency (and status file)
-            ppSelect.second.push_back(std::string("2"));
+          std::cerr << "WARNING, no parameter passed to DetTour, using 2" << std::endl;
+          tSize = 2;
+          // put back 2 in parameter for consistency (and status file)
+          ppSelect.second.push_back(std::string("2"));
         }
-        else // parameter passed by user as DetTour(T)
+      else // parameter passed by user as DetTour(T)
         {
-            tSize = atoi(ppSelect.second[0].c_str());
+          tSize = atoi(ppSelect.second[0].c_str());
         }
-        select = new moeoDetTournamentSelect < MOEOT > (*comparator, tSize);
+      select = new moeoDetTournamentSelect < MOEOT > (*comparator, tSize);
     }
-    else if (ppSelect.first == std::string("StochTour"))
+  else if (ppSelect.first == std::string("StochTour"))
     {
-        double tRate;
-        if (!ppSelect.second.size()) // no parameter added
+      double tRate;
+      if (!ppSelect.second.size()) // no parameter added
         {
-            std::cerr << "WARNING, no parameter passed to StochTour, using 1" << std::endl;
-            tRate = 1;
-            // put back 1 in parameter for consistency (and status file)
-            ppSelect.second.push_back(std::string("1"));
+          std::cerr << "WARNING, no parameter passed to StochTour, using 1" << std::endl;
+          tRate = 1;
+          // put back 1 in parameter for consistency (and status file)
+          ppSelect.second.push_back(std::string("1"));
         }
-        else // parameter passed by user as StochTour(T)
+      else // parameter passed by user as StochTour(T)
         {
-            tRate = atof(ppSelect.second[0].c_str());
+          tRate = atof(ppSelect.second[0].c_str());
         }
-        select = new moeoStochTournamentSelect < MOEOT > (*comparator, tRate);
+      select = new moeoStochTournamentSelect < MOEOT > (*comparator, tRate);
     }
-    /*
-    else if (ppSelect.first == string("Roulette"))
+  /*
+  else if (ppSelect.first == string("Roulette"))
+  {
+      // TO DO !
+      // ...
+  }
+  */
+  else if (ppSelect.first == std::string("Random"))
     {
-        // TO DO !
-        // ...
+      select = new moeoRandomSelect <MOEOT > ();
     }
-    */
-    else if (ppSelect.first == std::string("Random"))
+  else
     {
-        select = new moeoRandomSelect <MOEOT > ();
+      std::string stmp = std::string("Invalid selection strategy: ") + ppSelect.first;
+      throw std::runtime_error(stmp.c_str());
     }
-    else
-    {
-        std::string stmp = std::string("Invalid selection strategy: ") + ppSelect.first;
-        throw std::runtime_error(stmp.c_str());
-    }
-    _state.storeFunctor(select);
+  _state.storeFunctor(select);
 
 
-    /* the replacement strategy */
-    std::string & replacementParam = _parser.createParam(std::string("Elitist"), "replacement",
-                                "Replacement scheme: Elitist, Environmental or Generational", 'R', "Evolution Engine").value();
-    moeoReplacement < MOEOT > * replace;
-    if (replacementParam == std::string("Elitist"))
+  /* the replacement strategy */
+  std::string & replacementParam = _parser.createParam(std::string("Elitist"), "replacement",
+                                   "Replacement scheme: Elitist, Environmental or Generational", 'R', "Evolution Engine").value();
+  moeoReplacement < MOEOT > * replace;
+  if (replacementParam == std::string("Elitist"))
     {
-        replace = new moeoElitistReplacement < MOEOT> (*fitnessAssignment, *diversityAssignment, *comparator);
+      replace = new moeoElitistReplacement < MOEOT> (*fitnessAssignment, *diversityAssignment, *comparator);
     }
-    else if (replacementParam == std::string("Environmental"))
+  else if (replacementParam == std::string("Environmental"))
     {
-        replace = new moeoEnvironmentalReplacement < MOEOT> (*fitnessAssignment, *diversityAssignment, *comparator);
+      replace = new moeoEnvironmentalReplacement < MOEOT> (*fitnessAssignment, *diversityAssignment, *comparator);
     }
-    else if (replacementParam == std::string("Generational"))
+  else if (replacementParam == std::string("Generational"))
     {
-        replace = new moeoGenerationalReplacement < MOEOT> ();
+      replace = new moeoGenerationalReplacement < MOEOT> ();
     }
-    else
+  else
     {
-        std::string stmp = std::string("Invalid replacement strategy: ") + replacementParam;
-        throw std::runtime_error(stmp.c_str());
+      std::string stmp = std::string("Invalid replacement strategy: ") + replacementParam;
+      throw std::runtime_error(stmp.c_str());
     }
-    _state.storeFunctor(replace);
+  _state.storeFunctor(replace);
 
 
-    /* the number of offspring  */
-    eoValueParam < eoHowMany > & offspringRateParam = _parser.createParam(eoHowMany(1.0), "nbOffspring",
-            "Number of offspring (percentage or absolute)", 'O', "Evolution Engine");
+  /* the number of offspring  */
+  eoValueParam < eoHowMany > & offspringRateParam = _parser.createParam(eoHowMany(1.0), "nbOffspring",
+      "Number of offspring (percentage or absolute)", 'O', "Evolution Engine");
 
 
-    // the general breeder
-    eoGeneralBreeder < MOEOT > * breed = new eoGeneralBreeder < MOEOT > (*select, _op, offspringRateParam.value());
-    _state.storeFunctor(breed);
-    // the eoEasyEA
-    moeoEA < MOEOT > * algo = new moeoEasyEA < MOEOT > (_continue, _eval, *breed, *replace, *fitnessAssignment, *diversityAssignment);
-    _state.storeFunctor(algo);
-    return *algo;
+  // the general breeder
+  eoGeneralBreeder < MOEOT > * breed = new eoGeneralBreeder < MOEOT > (*select, _op, offspringRateParam.value());
+  _state.storeFunctor(breed);
+  // the eoEasyEA
+  moeoEA < MOEOT > * algo = new moeoEasyEA < MOEOT > (_continue, _eval, *breed, *replace, *fitnessAssignment, *diversityAssignment);
+  _state.storeFunctor(algo);
+  return *algo;
 
 }
 

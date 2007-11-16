@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoIteratedIBMOLS.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -64,8 +64,8 @@
  */
 template < class MOEOT, class Move >
 class moeoIteratedIBMOLS : public moeoLS < MOEOT, eoPop < MOEOT > & >
-{
-public:
+  {
+  public:
 
     /** The type of objective vector */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -84,22 +84,22 @@ public:
      * @param _nNoiseIterations the number of iterations to apply the random noise
      */
     moeoIteratedIBMOLS(
-        moMoveInit < Move > & _moveInit,
-        moNextMove < Move > & _nextMove,
-        eoEvalFunc < MOEOT > & _eval,
-        moeoMoveIncrEval < Move > & _moveIncrEval,
-        moeoBinaryIndicatorBasedFitnessAssignment < MOEOT > & _fitnessAssignment,
-        eoContinue < MOEOT > & _continuator,
-        eoMonOp < MOEOT > & _monOp,
-        eoMonOp < MOEOT > & _randomMonOp,
-        unsigned int _nNoiseIterations=1
+      moMoveInit < Move > & _moveInit,
+      moNextMove < Move > & _nextMove,
+      eoEvalFunc < MOEOT > & _eval,
+      moeoMoveIncrEval < Move > & _moveIncrEval,
+      moeoBinaryIndicatorBasedFitnessAssignment < MOEOT > & _fitnessAssignment,
+      eoContinue < MOEOT > & _continuator,
+      eoMonOp < MOEOT > & _monOp,
+      eoMonOp < MOEOT > & _randomMonOp,
+      unsigned int _nNoiseIterations=1
     ) :
-            ibmols(_moveInit, _nextMove, _eval, _moveIncrEval, _fitnessAssignment, _continuator),
-            eval(_eval),
-            continuator(_continuator),
-            monOp(_monOp),
-            randomMonOp(_randomMonOp),
-            nNoiseIterations(_nNoiseIterations)
+        ibmols(_moveInit, _nextMove, _eval, _moveIncrEval, _fitnessAssignment, _continuator),
+        eval(_eval),
+        continuator(_continuator),
+        monOp(_monOp),
+        randomMonOp(_randomMonOp),
+        nNoiseIterations(_nNoiseIterations)
     {}
 
 
@@ -110,19 +110,19 @@ public:
      */
     void operator() (eoPop < MOEOT > & _pop, moeoArchive < MOEOT > & _arch)
     {
-        _arch.update(_pop);
-        ibmols(_pop, _arch);
-        while (continuator(_arch))
+      _arch.update(_pop);
+      ibmols(_pop, _arch);
+      while (continuator(_arch))
         {
-            // generate new solutions from the archive
-            generateNewSolutions(_pop, _arch);
-            // apply the local search (the global archive is updated in the sub-function)
-            ibmols(_pop, _arch);
+          // generate new solutions from the archive
+          generateNewSolutions(_pop, _arch);
+          // apply the local search (the global archive is updated in the sub-function)
+          ibmols(_pop, _arch);
         }
     }
 
 
-private:
+  private:
 
     /** the local search to iterate */
     moeoIBMOLS < MOEOT, Move > ibmols;
@@ -145,38 +145,38 @@ private:
      */
     void generateNewSolutions(eoPop < MOEOT > & _pop, const moeoArchive < MOEOT > & _arch)
     {
-        // shuffle vector for the random selection of individuals
-        vector<unsigned int> shuffle;
-        shuffle.resize(std::max(_pop.size(), _arch.size()));
-        // init shuffle
-        for (unsigned int i=0; i<shuffle.size(); i++)
+      // shuffle vector for the random selection of individuals
+      vector<unsigned int> shuffle;
+      shuffle.resize(std::max(_pop.size(), _arch.size()));
+      // init shuffle
+      for (unsigned int i=0; i<shuffle.size(); i++)
         {
-            shuffle[i] = i;
+          shuffle[i] = i;
         }
-        // randomize shuffle
-        UF_random_generator <unsigned int> gen;
-        std::random_shuffle(shuffle.begin(), shuffle.end(), gen);
-        // start the creation of new solutions
-        for (unsigned int i=0; i<_pop.size(); i++)
+      // randomize shuffle
+      UF_random_generator <unsigned int> gen;
+      std::random_shuffle(shuffle.begin(), shuffle.end(), gen);
+      // start the creation of new solutions
+      for (unsigned int i=0; i<_pop.size(); i++)
         {
-            if (shuffle[i] < _arch.size()) // the given archive contains the individual i
+          if (shuffle[i] < _arch.size()) // the given archive contains the individual i
             {
-                // add it to the resulting pop
-                _pop[i] = _arch[shuffle[i]];
-                // apply noise
-                for (unsigned int j=0; j<nNoiseIterations; j++)
+              // add it to the resulting pop
+              _pop[i] = _arch[shuffle[i]];
+              // apply noise
+              for (unsigned int j=0; j<nNoiseIterations; j++)
                 {
-                    monOp(_pop[i]);
+                  monOp(_pop[i]);
                 }
             }
-            else // a random solution needs to be added
+          else // a random solution needs to be added
             {
-                // random initialization
-                randomMonOp(_pop[i]);
+              // random initialization
+              randomMonOp(_pop[i]);
             }
-            // evaluation of the new individual
-            _pop[i].invalidate();
-            eval(_pop[i]);
+          // evaluation of the new individual
+          _pop[i].invalidate();
+          eval(_pop[i]);
         }
     }
 
@@ -233,6 +233,6 @@ private:
 
 
 
-};
+  };
 
 #endif /*MOEOITERATEDIBMOLS_H_*/

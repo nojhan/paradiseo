@@ -1,4 +1,4 @@
-/* 
+/*
 * <make_genotype_FlowShop.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -51,23 +51,24 @@
  */
 eoInit<FlowShop> & do_make_genotype(eoParser& _parser, eoState& _state)
 {
-    // benchmark file name
-    std::string benchmarkFileName = _parser.getORcreateParam(std::string(), "BenchmarkFile", "Benchmark file name (benchmarks are available at www.lifl.fr/~liefooga/benchmarks/)", 'B',"Representation", true).value();
-    if (benchmarkFileName == "") {
-        std::string stmp = "*** Missing name of the benchmark file\n";
-        stmp += "   Type '-B=the_benchmark_file_name' or '--BenchmarkFile=the_benchmark_file_name'\n";
-        stmp += "   Benchmarks files are available at www.lifl.fr/~liefooga/benchmarks";
-        throw std::runtime_error(stmp.c_str());
+  // benchmark file name
+  std::string benchmarkFileName = _parser.getORcreateParam(std::string(), "BenchmarkFile", "Benchmark file name (benchmarks are available at www.lifl.fr/~liefooga/benchmarks/)", 'B',"Representation", true).value();
+  if (benchmarkFileName == "")
+    {
+      std::string stmp = "*** Missing name of the benchmark file\n";
+      stmp += "   Type '-B=the_benchmark_file_name' or '--BenchmarkFile=the_benchmark_file_name'\n";
+      stmp += "   Benchmarks files are available at www.lifl.fr/~liefooga/benchmarks";
+      throw std::runtime_error(stmp.c_str());
     }
-    // reading of number of jobs to schedule contained in the benchmark file
-    FlowShopBenchmarkParser fParser(benchmarkFileName);
-    unsigned int N = fParser.getN();
-    // build of the initializer (a pointer, stored in the eoState)
-    eoInit<FlowShop>* init = new FlowShopInit(N);
-    // store in state
-    _state.storeFunctor(init);
-    // and return a reference
-    return *init;
+  // reading of number of jobs to schedule contained in the benchmark file
+  FlowShopBenchmarkParser fParser(benchmarkFileName);
+  unsigned int N = fParser.getN();
+  // build of the initializer (a pointer, stored in the eoState)
+  eoInit<FlowShop>* init = new FlowShopInit(N);
+  // store in state
+  _state.storeFunctor(init);
+  // and return a reference
+  return *init;
 }
 
 #endif /*MAKE_GENOTYPE_FLOWSHOP_H_*/

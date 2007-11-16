@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoObjectiveVector.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -48,8 +48,8 @@
  */
 template < class ObjectiveVectorTraits, class ObjectiveVectorType >
 class moeoObjectiveVector : public std::vector < ObjectiveVectorType >
-{
-public:
+  {
+  public:
 
     /** The traits of objective vectors */
     typedef ObjectiveVectorTraits Traits;
@@ -79,7 +79,7 @@ public:
      */
     static void setup(unsigned int _nObjectives, std::vector < bool > & _bObjectives)
     {
-        ObjectiveVectorTraits::setup(_nObjectives, _bObjectives);
+      ObjectiveVectorTraits::setup(_nObjectives, _bObjectives);
     }
 
 
@@ -88,7 +88,7 @@ public:
      */
     static unsigned int nObjectives()
     {
-        return ObjectiveVectorTraits::nObjectives();
+      return ObjectiveVectorTraits::nObjectives();
     }
 
 
@@ -98,7 +98,7 @@ public:
      */
     static bool minimizing(unsigned int _i)
     {
-        return ObjectiveVectorTraits::minimizing(_i);
+      return ObjectiveVectorTraits::minimizing(_i);
     }
 
 
@@ -108,9 +108,9 @@ public:
      */
     static bool maximizing(unsigned int _i)
     {
-        return ObjectiveVectorTraits::maximizing(_i);
+      return ObjectiveVectorTraits::maximizing(_i);
     }
 
-};
+  };
 
 #endif /*MOEOOBJECTIVEVECTOR_H_*/

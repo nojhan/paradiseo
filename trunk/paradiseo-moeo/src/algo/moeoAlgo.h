@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoAlgo.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,6 +41,7 @@
 /**
  * Abstract class for multi-objective algorithms.
  */
-class moeoAlgo {};
+class moeoAlgo
+  {};
 
 #endif /*MOEOALGO_H_*/

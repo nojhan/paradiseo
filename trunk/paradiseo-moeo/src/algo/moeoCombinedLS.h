@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoCombinedLS.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -48,8 +48,8 @@
  */
 template < class MOEOT, class Type >
 class moeoCombinedLS : public moeoLS < MOEOT, Type >
-{
-public:
+  {
+  public:
 
     /**
      * Ctor
@@ -57,7 +57,7 @@ public:
      */
     moeoCombinedLS(moeoLS < MOEOT, Type > & _first_mols)
     {
-        combinedLS.push_back (& _first_mols);
+      combinedLS.push_back (& _first_mols);
     }
 
     /**
@@ -65,9 +65,9 @@ public:
      * @param _mols the multi-objective local search to add
      */
     void add(moeoLS < MOEOT, Type > & _mols)
-    {
+      {
         combinedLS.push_back(& _mols);
-    }
+      }
 
     /**
      * Gives a new solution in order to explore the neigborhood. 
@@ -77,16 +77,16 @@ public:
      */
     void operator () (Type _type, moeoArchive < MOEOT > & _arch)
     {
-        for (unsigned int i=0; i<combinedLS.size(); i++)
-            combinedLS[i] -> operator()(_type, _arch);
+      for (unsigned int i=0; i<combinedLS.size(); i++)
+        combinedLS[i] -> operator()(_type, _arch);
     }
 
 
-private:
+  private:
 
     /** the vector that contains the combined LS */
     std::vector< moeoLS < MOEOT, Type > * >  combinedLS;
 
-};
+  };
 
 #endif /*MOEOCOMBINEDLS_H_*/

@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoBinaryMetricSavingUpdater.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -51,8 +51,8 @@
  */
 template < class MOEOT >
 class moeoBinaryMetricSavingUpdater : public eoUpdater
-{
-public:
+  {
+  public:
 
     /** The objective vector type of a solution */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -65,37 +65,41 @@ public:
      * @param _filename the target filename
      */
     moeoBinaryMetricSavingUpdater (moeoVectorVsVectorBinaryMetric < ObjectiveVector, double > & _metric, const eoPop < MOEOT > & _pop, std::string _filename) :
-            metric(_metric), pop(_pop), filename(_filename), counter(1)
+        metric(_metric), pop(_pop), filename(_filename), counter(1)
     {}
 
 
     /**
      * Saves the metric's value for the current generation
      */
-    void operator()() {
-        if (pop.size()) {
-            if (firstGen) {
-                firstGen = false;
+    void operator()()
+    {
+      if (pop.size())
+        {
+          if (firstGen)
+            {
+              firstGen = false;
             }
-            else {
-                // creation of the two Pareto sets
-                std::vector < ObjectiveVector > from;
-                std::vector < ObjectiveVector > to;
-                for (unsigned int i=0; i<pop.size(); i++)
-                    from.push_back(pop[i].objectiveVector());
-                for (unsigned int i=0 ; i<oldPop.size(); i++)
-                    to.push_back(oldPop[i].objectiveVector());
-                // writing the result into the file
-                std::ofstream f (filename.c_str(), std::ios::app);
-                f << counter++ << ' ' << metric(from,to) << std::endl;
-                f.close();
+          else
+            {
+              // creation of the two Pareto sets
+              std::vector < ObjectiveVector > from;
+              std::vector < ObjectiveVector > to;
+              for (unsigned int i=0; i<pop.size(); i++)
+                from.push_back(pop[i].objectiveVector());
+              for (unsigned int i=0 ; i<oldPop.size(); i++)
+                to.push_back(oldPop[i].objectiveVector());
+              // writing the result into the file
+              std::ofstream f (filename.c_str(), std::ios::app);
+              f << counter++ << ' ' << metric(from,to) << std::endl;
+              f.close();
             }
-            oldPop = pop;
+          oldPop = pop;
         }
     }
 
 
-private:
+  private:
 
     /** binary metric comparing two Pareto sets */
     moeoVectorVsVectorBinaryMetric < ObjectiveVector, double > & metric;
@@ -110,6 +114,6 @@ private:
     /** counter */
     unsigned int counter;
 
-};
+  };
 
 #endif /*MOEOBINARYMETRICSAVINGUPDATER_H_*/

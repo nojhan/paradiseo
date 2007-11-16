@@ -1,4 +1,4 @@
-/* 
+/*
 * <FlowShopBenchmarkParser.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -46,8 +46,8 @@
  * Class to handle parameters of a flow-shop instance from a benchmark file
  */
 class FlowShopBenchmarkParser
-{
-public:
+  {
+  public:
 
     /**
      * Ctor
@@ -86,7 +86,7 @@ public:
     void printOn(std::ostream & _os) const;
 
 
-private:
+  private:
 
     /** number of machines */
     unsigned int M;
@@ -104,6 +104,6 @@ private:
      */
     void init(const std::string _benchmarkFileName);
 
-};
+  };
 
 #endif /*FLOWSHOPBENCHMARKPARSER_H_*/

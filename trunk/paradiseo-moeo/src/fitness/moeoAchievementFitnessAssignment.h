@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoAchievementFitnessAssignment.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -47,8 +47,8 @@
  */
 template < class MOEOT >
 class moeoAchievementFitnessAssignment : public moeoScalarFitnessAssignment < MOEOT >
-{
-public:
+  {
+  public:
 
     /** the objective vector type of the solutions */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -62,11 +62,11 @@ public:
      */
     moeoAchievementFitnessAssignment(ObjectiveVector & _reference, std::vector < double > & _lambdas, double _spn=0.0001) : reference(_reference), lambdas(_lambdas), spn(_spn)
     {
-        // consistency check
-        if ((spn < 0.0) || (spn > 1.0))
+      // consistency check
+      if ((spn < 0.0) || (spn > 1.0))
         {
-            std::cout << "Warning, the arbitrary small positive number should be > 0 and <<1, adjusted to 0.0001\n";
-            spn = 0.0001;
+          std::cout << "Warning, the arbitrary small positive number should be > 0 and <<1, adjusted to 0.0001\n";
+          spn = 0.0001;
         }
     }
 
@@ -78,17 +78,17 @@ public:
      */
     moeoAchievementFitnessAssignment(ObjectiveVector & _reference, double _spn=0.0001) : reference(_reference), spn(_spn)
     {
-        // compute the default values for lambdas
-        lambdas  = std::vector < double > (ObjectiveVector::nObjectives());
-        for (unsigned int i=0 ; i<lambdas.size(); i++)
+      // compute the default values for lambdas
+      lambdas  = std::vector < double > (ObjectiveVector::nObjectives());
+      for (unsigned int i=0 ; i<lambdas.size(); i++)
         {
-            lambdas[i] = 1.0 / ObjectiveVector::nObjectives();
+          lambdas[i] = 1.0 / ObjectiveVector::nObjectives();
         }
-        // consistency check
-        if ((spn < 0.0) || (spn > 1.0))
+      // consistency check
+      if ((spn < 0.0) || (spn > 1.0))
         {
-            std::cout << "Warning, the arbitrary small positive number should be > 0 and <<1, adjusted to 0.0001\n";
-            spn = 0.0001;
+          std::cout << "Warning, the arbitrary small positive number should be > 0 and <<1, adjusted to 0.0001\n";
+          spn = 0.0001;
         }
     }
 
@@ -99,9 +99,9 @@ public:
      */
     virtual void operator()(eoPop < MOEOT > & _pop)
     {
-        for (unsigned int i=0; i<_pop.size() ; i++)
+      for (unsigned int i=0; i<_pop.size() ; i++)
         {
-            compute(_pop[i]);
+          compute(_pop[i]);
         }
     }
 
@@ -113,7 +113,7 @@ public:
      */
     void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
     {
-        // nothing to do ;-)
+      // nothing to do ;-)
     }
 
 
@@ -123,11 +123,11 @@ public:
      */
     void setReference(const ObjectiveVector & _reference)
     {
-        reference = _reference;
+      reference = _reference;
     }
 
 
-private:
+  private:
 
     /** the reference point */
     ObjectiveVector reference;
@@ -141,9 +141,9 @@ private:
      * Returns a big value (regarded as infinite)
      */
     double inf() const
-    {
+      {
         return std::numeric_limits<double>::max();
-    }
+      }
 
 
     /**
@@ -152,19 +152,19 @@ private:
      */
     void compute(MOEOT & _moeo)
     {
-        unsigned int nobj = MOEOT::ObjectiveVector::nObjectives();
-        double temp;
-        double min = inf();
-        double sum = 0;
-        for (unsigned int obj=0; obj<nobj; obj++)
+      unsigned int nobj = MOEOT::ObjectiveVector::nObjectives();
+      double temp;
+      double min = inf();
+      double sum = 0;
+      for (unsigned int obj=0; obj<nobj; obj++)
         {
-            temp = lambdas[obj] * (reference[obj] - _moeo.objectiveVector()[obj]);
-            min = std::min(min, temp);
-            sum += temp;
+          temp = lambdas[obj] * (reference[obj] - _moeo.objectiveVector()[obj]);
+          min = std::min(min, temp);
+          sum += temp;
         }
-        _moeo.fitness(min + spn*sum);
+      _moeo.fitness(min + spn*sum);
     }
 
-};
+  };
 
 #endif /*MOEOACHIEVEMENTFITNESSASSIGNMENT_H_*/

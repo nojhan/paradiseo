@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoNormalizedSolutionVsSolutionBinaryMetric.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -49,19 +49,19 @@
  */
 template < class ObjectiveVector, class R >
 class moeoNormalizedSolutionVsSolutionBinaryMetric : public moeoSolutionVsSolutionBinaryMetric < ObjectiveVector, R >
-{
-public:
+  {
+  public:
 
     /**
      * Default ctr for any moeoNormalizedSolutionVsSolutionBinaryMetric object
      */
     moeoNormalizedSolutionVsSolutionBinaryMetric()
     {
-        bounds.resize(ObjectiveVector::Traits::nObjectives());
-        // initialize bounds in case someone does not want to use them
-        for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
+      bounds.resize(ObjectiveVector::Traits::nObjectives());
+      // initialize bounds in case someone does not want to use them
+      for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
         {
-            bounds[i] = eoRealInterval(0,1);
+          bounds[i] = eoRealInterval(0,1);
         }
     }
 
@@ -74,12 +74,12 @@ public:
      */
     void setup(double _min, double _max, unsigned int _obj)
     {
-        if (_min == _max)
+      if (_min == _max)
         {
-            _min -= tiny();
-            _max += tiny();
+          _min -= tiny();
+          _max += tiny();
         }
-        bounds[_obj] = eoRealInterval(_min, _max);
+      bounds[_obj] = eoRealInterval(_min, _max);
     }
 
 
@@ -90,7 +90,7 @@ public:
      */
     virtual void setup(eoRealInterval _realInterval, unsigned int _obj)
     {
-        bounds[_obj] = _realInterval;
+      bounds[_obj] = _realInterval;
     }
 
 
@@ -99,15 +99,15 @@ public:
      */
     static double tiny()
     {
-        return 1e-6;
+      return 1e-6;
     }
 
 
-protected:
+  protected:
 
     /** the bounds for every objective (bounds[i] = bounds for the objective i) */
     std::vector < eoRealInterval > bounds;
 
-};
+  };
 
 #endif /*MOEONORMALIZEDSOLUTIONVSSOLUTIONBINARYMETRIC_H_*/

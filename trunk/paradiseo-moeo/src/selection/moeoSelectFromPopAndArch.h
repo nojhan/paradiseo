@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoSelectFromPopAndArch.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -49,8 +49,8 @@
  */
 template < class MOEOT >
 class moeoSelectFromPopAndArch : public moeoSelectOne < MOEOT >
-{
-public:
+  {
+  public:
 
     /**
      * Ctor
@@ -60,7 +60,7 @@ public:
      * @param _ratioFromPop the ratio of selected individuals from the population
      */
     moeoSelectFromPopAndArch (moeoSelectOne < MOEOT > & _popSelectOne, moeoSelectOne < MOEOT > _archSelectOne, moeoArchive < MOEOT > & _arch, double _ratioFromPop=0.5)
-            : popSelectOne(_popSelectOne), archSelectOne(_archSelectOne), arch(_arch), ratioFromPop(_ratioFromPop)
+        : popSelectOne(_popSelectOne), archSelectOne(_archSelectOne), arch(_arch), ratioFromPop(_ratioFromPop)
     {}
 
 
@@ -71,7 +71,7 @@ public:
      * @param _ratioFromPop the ratio of selected individuals from the population
      */
     moeoSelectFromPopAndArch (moeoSelectOne < MOEOT > & _popSelectOne, moeoArchive < MOEOT > & _arch, double _ratioFromPop=0.5)
-            : popSelectOne(_popSelectOne), archSelectOne(randomSelectOne), arch(_arch), ratioFromPop(_ratioFromPop)
+        : popSelectOne(_popSelectOne), archSelectOne(randomSelectOne), arch(_arch), ratioFromPop(_ratioFromPop)
     {}
 
 
@@ -80,13 +80,13 @@ public:
      */
     virtual const MOEOT & operator () (const eoPop < MOEOT > & pop)
     {
-        if (arch.size() > 0)
-            if (rng.flip(ratioFromPop))
-                return popSelectOne(pop);
-            else
-                return archSelectOne(arch);
+      if (arch.size() > 0)
+        if (rng.flip(ratioFromPop))
+          return popSelectOne(pop);
         else
-            return popSelectOne(pop);
+          return archSelectOne(arch);
+      else
+        return popSelectOne(pop);
     }
 
 
@@ -95,11 +95,11 @@ public:
      */
     virtual void setup (const eoPop < MOEOT > & _pop)
     {
-        popSelectOne.setup(_pop);
+      popSelectOne.setup(_pop);
     }
 
 
-private:
+  private:
 
     /** The population's selection operator */
     moeoSelectOne < MOEOT > & popSelectOne;
@@ -112,6 +112,6 @@ private:
     /** A random selection operator (used as default for archSelectOne) */
     moeoRandomSelect < MOEOT > randomSelectOne;
 
-};
+  };
 
 #endif /*MOEOSELECTONEFROMPOPANDARCH_H_*/

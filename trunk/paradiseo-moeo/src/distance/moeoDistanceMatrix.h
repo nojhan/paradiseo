@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoDistanceMatrix.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -47,8 +47,8 @@
  */
 template < class MOEOT , class Type >
 class moeoDistanceMatrix : public eoUF < const eoPop < MOEOT > &, void > , public std::vector< std::vector < Type > >
-{
-public:
+  {
+  public:
 
     using std::vector< std::vector < Type > > :: size;
     using std::vector< std::vector < Type > > :: operator[];
@@ -61,10 +61,10 @@ public:
      */
     moeoDistanceMatrix (unsigned int _size, moeoDistance < MOEOT , Type > & _distance) : distance(_distance)
     {
-        this->resize(_size);
-        for (unsigned int i=0; i<_size; i++)
+      this->resize(_size);
+      for (unsigned int i=0; i<_size; i++)
         {
-            this->operator[](i).resize(_size);
+          this->operator[](i).resize(_size);
         }
     }
 
@@ -75,27 +75,27 @@ public:
      */
     void operator()(const eoPop < MOEOT > & _pop)
     {
-        // 1 - setup the bounds (if necessary)
-        distance.setup(_pop);
-        // 2 - compute distances
-        this->operator[](0).operator[](0) = Type();
-        for (unsigned int i=0; i<size(); i++)
+      // 1 - setup the bounds (if necessary)
+      distance.setup(_pop);
+      // 2 - compute distances
+      this->operator[](0).operator[](0) = Type();
+      for (unsigned int i=0; i<size(); i++)
         {
-            this->operator[](i).operator[](i) = Type();
-            for (unsigned int j=0; j<i; j++)
+          this->operator[](i).operator[](i) = Type();
+          for (unsigned int j=0; j<i; j++)
             {
-                this->operator[](i).operator[](j) = distance(_pop[i], _pop[j]);
-                this->operator[](j).operator[](i) = this->operator[](i).operator[](j);
+              this->operator[](i).operator[](j) = distance(_pop[i], _pop[j]);
+              this->operator[](j).operator[](i) = this->operator[](i).operator[](j);
             }
         }
     }
 
 
-private:
+  private:
 
     /** the distance to use */
     moeoDistance < MOEOT , Type > & distance;
 
-};
+  };
 
 #endif /*MOEODISTANCEMATRIX_H_*/

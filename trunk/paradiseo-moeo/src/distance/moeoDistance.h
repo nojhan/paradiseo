@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoDistance.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,8 +45,8 @@
  */
 template < class MOEOT , class Type >
 class moeoDistance : public eoBF < const MOEOT &, const MOEOT &, const Type >
-{
-public:
+  {
+  public:
 
     /**
      * Nothing to do
@@ -74,6 +74,6 @@ public:
     virtual void setup(eoRealInterval _realInterval, unsigned int _obj)
     {}
 
-};
+  };
 
 #endif /*MOEODISTANCE_H_*/

@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoObjectiveObjectiveVectorComparator.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,8 +45,8 @@
  */
 template < class ObjectiveVector >
 class moeoObjectiveObjectiveVectorComparator : public moeoObjectiveVectorComparator < ObjectiveVector >
-{
-public:
+  {
+  public:
 
     /**
      * Returns true if _objectiveVector1 < _objectiveVector2 on the first objective, then on the second, and so on
@@ -55,23 +55,23 @@ public:
      */
     const bool operator()(const ObjectiveVector & _objectiveVector1, const ObjectiveVector & _objectiveVector2)
     {
-        for (unsigned int i=0; i<ObjectiveVector::nObjectives(); i++)
+      for (unsigned int i=0; i<ObjectiveVector::nObjectives(); i++)
         {
-            if ( fabs(_objectiveVector1[i] - _objectiveVector2[i]) > ObjectiveVector::Traits::tolerance() )
+          if ( fabs(_objectiveVector1[i] - _objectiveVector2[i]) > ObjectiveVector::Traits::tolerance() )
             {
-                if (_objectiveVector1[i] < _objectiveVector2[i])
+              if (_objectiveVector1[i] < _objectiveVector2[i])
                 {
-                    return true;
+                  return true;
                 }
-                else
+              else
                 {
-                    return false;
+                  return false;
                 }
             }
         }
-        return false;
+      return false;
     }
 
-};
+  };
 
 #endif /*MOEOOBJECTIVEOBJECTIVEVECTORCOMPARATOR_H_*/

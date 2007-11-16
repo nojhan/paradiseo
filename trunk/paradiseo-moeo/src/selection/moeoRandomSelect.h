@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoRandomSelect.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -46,13 +46,14 @@
  * Selection strategy that selects only one element randomly from a whole population.
  */
 template < class MOEOT > class moeoRandomSelect:public moeoSelectOne < MOEOT >, public eoRandomSelect <MOEOT >
-{
-public:
+  {
+  public:
 
     /**
      * Ctor.
      */
-    moeoRandomSelect(){}
+    moeoRandomSelect()
+    {}
 
 
     /**
@@ -60,9 +61,9 @@ public:
      */
     const MOEOT & operator () (const eoPop < MOEOT > &_pop)
     {
-        return eoRandomSelect < MOEOT >::operator ()(_pop);
+      return eoRandomSelect < MOEOT >::operator ()(_pop);
     }
 
-};
+  };
 
 #endif /*MOEORANDOMSELECT_H_ */

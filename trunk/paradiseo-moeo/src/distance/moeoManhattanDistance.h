@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoManhattanDistance.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -47,8 +47,8 @@
  */
 template < class MOEOT >
 class moeoManhattanDistance : public moeoNormalizedDistance < MOEOT >
-{
-public:
+  {
+  public:
 
     /** the objective vector type of the solutions */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -61,23 +61,23 @@ public:
      */
     const double operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
     {
-        double result = 0.0;
-        double tmp1, tmp2;
-        for (unsigned int i=0; i<ObjectiveVector::nObjectives(); i++)
+      double result = 0.0;
+      double tmp1, tmp2;
+      for (unsigned int i=0; i<ObjectiveVector::nObjectives(); i++)
         {
-            tmp1 = (_moeo1.objectiveVector()[i] - bounds[i].minimum()) / bounds[i].range();
-            tmp2 = (_moeo2.objectiveVector()[i] - bounds[i].minimum()) / bounds[i].range();
-            result += fabs(tmp1-tmp2);
+          tmp1 = (_moeo1.objectiveVector()[i] - bounds[i].minimum()) / bounds[i].range();
+          tmp2 = (_moeo2.objectiveVector()[i] - bounds[i].minimum()) / bounds[i].range();
+          result += fabs(tmp1-tmp2);
         }
-        return result;
+      return result;
     }
 
 
-private:
+  private:
 
     /** the bounds for every objective */
     using moeoNormalizedDistance < MOEOT > :: bounds;
 
-};
+  };
 
 #endif /*MOEOMANHATTANDISTANCE_H_*/

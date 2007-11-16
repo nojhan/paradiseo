@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoDummyDiversityAssignment.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,8 +45,8 @@
  */
 template < class MOEOT >
 class moeoDummyDiversityAssignment : public moeoDiversityAssignment < MOEOT >
-{
-public:
+  {
+  public:
 
     /** The type for objective vector */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -58,12 +58,12 @@ public:
      */
     void operator () (eoPop < MOEOT > & _pop)
     {
-        for (unsigned int idx = 0; idx<_pop.size (); idx++)
+      for (unsigned int idx = 0; idx<_pop.size (); idx++)
         {
-            if (_pop[idx].invalidDiversity())
+          if (_pop[idx].invalidDiversity())
             {
-                // set the diversity to 0
-                _pop[idx].diversity(0.0);
+              // set the diversity to 0
+              _pop[idx].diversity(0.0);
             }
         }
     }
@@ -76,9 +76,9 @@ public:
      */
     void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
     {
-        // nothing to do...  ;-)
+      // nothing to do...  ;-)
     }
 
-};
+  };
 
 #endif /*MOEODUMMYDIVERSITYASSIGNMENT_H_*/

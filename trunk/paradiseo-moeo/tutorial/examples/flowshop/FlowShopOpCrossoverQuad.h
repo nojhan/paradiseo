@@ -1,4 +1,4 @@
-/* 
+/*
 * <FlowShopOpCrossoverQuad.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,8 +45,8 @@
  * Quadratic crossover operator for flow-shop (modify the both genotypes)
  */
 class FlowShopOpCrossoverQuad : public eoQuadOp < FlowShop >
-{
-public:
+  {
+  public:
 
     /**
      * the class name (used to display statistics)
@@ -62,7 +62,7 @@ public:
     bool operator()(FlowShop & _flowshop1, FlowShop & _flowshop2);
 
 
-private:
+  private:
 
     /**
      * generation of an offspring by a 2 points crossover
@@ -73,6 +73,6 @@ private:
      */
     FlowShop generateOffspring(const FlowShop & _parent1, const FlowShop & _parent2, unsigned int _point1, unsigned int _point2);
 
-};
+  };
 
 #endif /*FLOWSHOPOPCROSSOVERQUAD_H_*/

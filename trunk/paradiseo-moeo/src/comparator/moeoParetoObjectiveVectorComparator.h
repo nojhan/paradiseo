@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoParetoObjectiveVectorComparator.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,8 +45,8 @@
  */
 template < class ObjectiveVector >
 class moeoParetoObjectiveVectorComparator : public moeoObjectiveVectorComparator < ObjectiveVector >
-{
-public:
+  {
+  public:
 
     /**
      * Returns true if _objectiveVector1 is dominated by _objectiveVector2
@@ -55,41 +55,41 @@ public:
      */
     const bool operator()(const ObjectiveVector & _objectiveVector1, const ObjectiveVector & _objectiveVector2)
     {
-        bool dom = false;
-        for (unsigned int i=0; i<ObjectiveVector::nObjectives(); i++)
+      bool dom = false;
+      for (unsigned int i=0; i<ObjectiveVector::nObjectives(); i++)
         {
-            // first, we have to check if the 2 objective values are not equal for the ith objective
-            if ( fabs(_objectiveVector1[i] - _objectiveVector2[i]) > ObjectiveVector::Traits::tolerance() )
+          // first, we have to check if the 2 objective values are not equal for the ith objective
+          if ( fabs(_objectiveVector1[i] - _objectiveVector2[i]) > ObjectiveVector::Traits::tolerance() )
             {
-                // if the ith objective have to be minimized...
-                if (ObjectiveVector::minimizing(i))
+              // if the ith objective have to be minimized...
+              if (ObjectiveVector::minimizing(i))
                 {
-                    if (_objectiveVector1[i] > _objectiveVector2[i])
+                  if (_objectiveVector1[i] > _objectiveVector2[i])
                     {
-                        dom = true;		//_objectiveVector1[i] is not better than _objectiveVector2[i]
+                      dom = true;		//_objectiveVector1[i] is not better than _objectiveVector2[i]
                     }
-                    else
+                  else
                     {
-                        return false;	//_objectiveVector2 cannot dominate _objectiveVector1
+                      return false;	//_objectiveVector2 cannot dominate _objectiveVector1
                     }
                 }
-                // if the ith objective have to be maximized...
-                else if (ObjectiveVector::maximizing(i))
+              // if the ith objective have to be maximized...
+              else if (ObjectiveVector::maximizing(i))
                 {
-                    if (_objectiveVector1[i] < _objectiveVector2[i])
+                  if (_objectiveVector1[i] < _objectiveVector2[i])
                     {
-                        dom = true;		//_objectiveVector1[i] is not better than _objectiveVector2[i]
+                      dom = true;		//_objectiveVector1[i] is not better than _objectiveVector2[i]
                     }
-                    else
+                  else
                     {
-                        return false;	//_objectiveVector2 cannot dominate _objectiveVector1
+                      return false;	//_objectiveVector2 cannot dominate _objectiveVector1
                     }
                 }
             }
         }
-        return dom;
+      return dom;
     }
 
-};
+  };
 
 #endif /*MOEOPARETOOBJECTIVEVECTORCOMPARATOR_H_*/

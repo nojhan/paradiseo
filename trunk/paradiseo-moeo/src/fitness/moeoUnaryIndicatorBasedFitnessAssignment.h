@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoUnaryIndicatorBasedFitnessAssignment.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,6 +44,7 @@
  * moeoIndicatorBasedFitnessAssignment for unary indicators.
  */
 template < class MOEOT >
-class moeoUnaryIndicatorBasedFitnessAssignment : public moeoIndicatorBasedFitnessAssignment < MOEOT > {};
+class moeoUnaryIndicatorBasedFitnessAssignment : public moeoIndicatorBasedFitnessAssignment < MOEOT >
+  {};
 
 #endif /*MOEOINDICATORBASEDFITNESSASSIGNMENT_H_*/

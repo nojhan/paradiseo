@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoArchiveObjectiveVectorSavingUpdater.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -51,8 +51,8 @@
  */
 template < class MOEOT >
 class moeoArchiveObjectiveVectorSavingUpdater : public eoUpdater
-{
-public:
+  {
+  public:
 
     /**
      * Ctor
@@ -62,46 +62,47 @@ public:
      * @param _id own ID
      */
     moeoArchiveObjectiveVectorSavingUpdater (moeoArchive<MOEOT> & _arch, const std::string & _filename, bool _count = false, int _id = -1) :
-            arch(_arch), filename(_filename), count(_count), counter(0), id(_id)
+        arch(_arch), filename(_filename), count(_count), counter(0), id(_id)
     {}
 
 
     /**
      * Saves the fitness of the archive's members into the file
      */
-    void operator()() {
-        char buff[MAX_BUFFER_SIZE];
-        if (count)
+    void operator()()
+    {
+      char buff[MAX_BUFFER_SIZE];
+      if (count)
         {
-            if (id == -1)
+          if (id == -1)
             {
-                sprintf (buff, "%s.%u", filename.c_str(), counter ++);
+              sprintf (buff, "%s.%u", filename.c_str(), counter ++);
             }
-            else
+          else
             {
-                sprintf (buff, "%s.%u.%u", filename.c_str(), id, counter ++);
+              sprintf (buff, "%s.%u.%u", filename.c_str(), id, counter ++);
             }
         }
-        else
+      else
         {
-            if (id == -1)
+          if (id == -1)
             {
-                sprintf (buff, "%s", filename.c_str());
+              sprintf (buff, "%s", filename.c_str());
             }
-            else
+          else
             {
-                sprintf (buff, "%s.%u", filename.c_str(), id);
+              sprintf (buff, "%s.%u", filename.c_str(), id);
             }
-            counter ++;
+          counter ++;
         }
-        std::ofstream f(buff);
-        for (unsigned int i = 0; i < arch.size (); i++)
-            f << arch[i].objectiveVector() << std::endl;
-        f.close ();
+      std::ofstream f(buff);
+      for (unsigned int i = 0; i < arch.size (); i++)
+        f << arch[i].objectiveVector() << std::endl;
+      f.close ();
     }
 
 
-private:
+  private:
 
     /** local archive */
     moeoArchive<MOEOT> & arch;
@@ -114,6 +115,6 @@ private:
     /** own ID */
     int id;
 
-};
+  };
 
 #endif /*MOEOARCHIVEOBJECTIVEVECTORSAVINGUPDATER_H_*/

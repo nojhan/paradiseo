@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoFitnessThenDiversityComparator.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,8 +45,8 @@
  */
 template < class MOEOT >
 class moeoFitnessThenDiversityComparator : public moeoComparator < MOEOT >
-{
-public:
+  {
+  public:
 
     /**
      * Returns true if _moeo1 < _moeo2 according to their fitness values, then according to their diversity values	
@@ -55,16 +55,16 @@ public:
      */
     const bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
     {
-        if (_moeo1.fitness() == _moeo2.fitness())
+      if (_moeo1.fitness() == _moeo2.fitness())
         {
-            return _moeo1.diversity() < _moeo2.diversity();
+          return _moeo1.diversity() < _moeo2.diversity();
         }
-        else
+      else
         {
-            return _moeo1.fitness() < _moeo2.fitness();
+          return _moeo1.fitness() < _moeo2.fitness();
         }
     }
 
-};
+  };
 
 #endif /*MOEOFITNESSTHENDIVERSITYCOMPARATOR_H_*/

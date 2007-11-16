@@ -1,4 +1,4 @@
-/* 
+/*
 * <FlowShop.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,14 +45,14 @@
  *  Structure of the genotype for the flow-shop scheduling problem: a vector of unsigned int int.
  */
 class FlowShop: public moeoVector < FlowShopObjectiveVector , double , double , unsigned int >
-{
-public:
+  {
+  public:
 
     /**
      * class name
      */
     std::string className() const;
 
-};
+  };
 
 #endif /*FLOWSHOP_H_*/

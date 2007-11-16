@@ -1,4 +1,4 @@
-/* 
+/*
 * <FlowShopInit.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,8 +45,8 @@
  *  Initialization of a random genotype built by the default constructor of the FlowShop class
  */
 class FlowShopInit : public eoInit<FlowShop>
-{
-public:
+  {
+  public:
 
     /**
      * Ctor
@@ -62,11 +62,11 @@ public:
     void operator()(FlowShop & _flowshop);
 
 
-private:
+  private:
 
     /** the number of jobs (size of a scheduling vector) */
     unsigned int N;
 
-};
+  };
 
 #endif /*FLOWSHOPINIT_H_*/

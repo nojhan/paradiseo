@@ -1,4 +1,4 @@
-/* 
+/*
 * <FlowShopObjectiveVectorTraits.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -40,18 +40,18 @@
 
 bool FlowShopObjectiveVectorTraits::minimizing (int _i)
 {
-    // minimizing both
-    return true;
+  // minimizing both
+  return true;
 }
 
 bool FlowShopObjectiveVectorTraits::maximizing (int _i)
 {
-    // minimizing both
-    return false;
+  // minimizing both
+  return false;
 }
 
 unsigned int FlowShopObjectiveVectorTraits::nObjectives ()
 {
-    // 2 objectives
-    return 2;
+  // 2 objectives
+  return 2;
 }

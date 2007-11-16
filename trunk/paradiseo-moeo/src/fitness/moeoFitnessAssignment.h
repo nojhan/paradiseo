@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoFitnessAssignment.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -46,8 +46,8 @@
  */
 template < class MOEOT >
 class moeoFitnessAssignment : public eoUF < eoPop < MOEOT > &, void >
-{
-public:
+  {
+  public:
 
     /** The type for objective vector */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -68,9 +68,9 @@ public:
      */
     void updateByDeleting(eoPop < MOEOT > & _pop, MOEOT & _moeo)
     {
-        updateByDeleting(_pop, _moeo.objectiveVector());
+      updateByDeleting(_pop, _moeo.objectiveVector());
     }
 
-};
+  };
 
 #endif /*MOEOFITNESSASSIGNMENT_H_*/

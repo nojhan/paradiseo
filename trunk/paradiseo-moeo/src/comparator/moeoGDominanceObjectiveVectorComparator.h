@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoGDominanceObjectiveVectorComparator.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -48,8 +48,8 @@
  */
 template < class ObjectiveVector >
 class moeoGDominanceObjectiveVectorComparator : public moeoObjectiveVectorComparator < ObjectiveVector >
-{
-public:
+  {
+  public:
 
     /**
      * Ctor.
@@ -66,27 +66,27 @@ public:
      */
     const bool operator()(const ObjectiveVector & _objectiveVector1, const ObjectiveVector & _objectiveVector2)
     {
-        unsigned int flag1 = flag(_objectiveVector1);
-        unsigned int flag2 = flag(_objectiveVector2);
-        if (flag2==0)
+      unsigned int flag1 = flag(_objectiveVector1);
+      unsigned int flag2 = flag(_objectiveVector2);
+      if (flag2==0)
         {
-            // cannot dominate
-            return false;
+          // cannot dominate
+          return false;
         }
-        else if ( (flag2==1) && (flag1==0) )
+      else if ( (flag2==1) && (flag1==0) )
         {
-            // is dominated
-            return true;
+          // is dominated
+          return true;
         }
-        else // (flag1==1) && (flag2==1)
+      else // (flag1==1) && (flag2==1)
         {
-            // both are on the good region, so let's use the classical Pareto dominance
-            return paretoComparator(_objectiveVector1, _objectiveVector2);
+          // both are on the good region, so let's use the classical Pareto dominance
+          return paretoComparator(_objectiveVector1, _objectiveVector2);
         }
     }
 
 
-private:
+  private:
 
     /** the reference point */
     ObjectiveVector & ref;
@@ -100,28 +100,28 @@ private:
      */
     unsigned int flag(const ObjectiveVector & _objectiveVector)
     {
-        unsigned int result=1;
-        for (unsigned int i=0; i<ref.nObjectives(); i++)
+      unsigned int result=1;
+      for (unsigned int i=0; i<ref.nObjectives(); i++)
         {
-            if (_objectiveVector[i] > ref[i])
+          if (_objectiveVector[i] > ref[i])
             {
-                result=0;
+              result=0;
             }
         }
-        if (result==0)
+      if (result==0)
         {
-            result=1;
-            for (unsigned int i=0; i<ref.nObjectives(); i++)
+          result=1;
+          for (unsigned int i=0; i<ref.nObjectives(); i++)
             {
-                if (_objectiveVector[i] < ref[i])
+              if (_objectiveVector[i] < ref[i])
                 {
-                    result=0;
+                  result=0;
                 }
             }
         }
-        return result;
+      return result;
     }
 
-};
+  };
 
 #endif /*MOEOGDOMINANCEOBJECTIVEVECTORCOMPARATOR_H_*/

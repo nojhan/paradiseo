@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoElitistReplacement.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -49,8 +49,8 @@
  * Elitist replacement strategy that consists in keeping the N best individuals.
  */
 template < class MOEOT > class moeoElitistReplacement:public moeoReplacement < MOEOT >
-{
-public:
+  {
+  public:
 
     /**
      * Full constructor.
@@ -59,7 +59,7 @@ public:
      * @param _comparator the comparator (used to compare 2 individuals)
      */
     moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _fitnessAssignment, moeoDiversityAssignment < MOEOT > & _diversityAssignment, moeoComparator < MOEOT > & _comparator) :
-            fitnessAssignment (_fitnessAssignment), diversityAssignment (_diversityAssignment), comparator (_comparator)
+        fitnessAssignment (_fitnessAssignment), diversityAssignment (_diversityAssignment), comparator (_comparator)
     {}
 
 
@@ -69,7 +69,7 @@ public:
      * @param _diversityAssignment the diversity assignment strategy
      */
     moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _fitnessAssignment, moeoDiversityAssignment < MOEOT > & _diversityAssignment) :
-            fitnessAssignment (_fitnessAssignment), diversityAssignment (_diversityAssignment), comparator (defaultComparator)
+        fitnessAssignment (_fitnessAssignment), diversityAssignment (_diversityAssignment), comparator (defaultComparator)
     {}
 
 
@@ -79,7 +79,7 @@ public:
      * @param _comparator the comparator (used to compare 2 individuals)
      */
     moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _fitnessAssignment, moeoComparator < MOEOT > & _comparator) :
-            fitnessAssignment (_fitnessAssignment), diversityAssignment (defaultDiversity), comparator (_comparator)
+        fitnessAssignment (_fitnessAssignment), diversityAssignment (defaultDiversity), comparator (_comparator)
     {}
 
 
@@ -89,7 +89,7 @@ public:
      * @param _fitnessAssignment the fitness assignment strategy
      */
     moeoElitistReplacement (moeoFitnessAssignment < MOEOT > & _fitnessAssignment) :
-            fitnessAssignment (_fitnessAssignment), diversityAssignment (defaultDiversity), comparator (defaultComparator)
+        fitnessAssignment (_fitnessAssignment), diversityAssignment (defaultDiversity), comparator (defaultComparator)
     {}
 
 
@@ -100,23 +100,23 @@ public:
      */
     void operator () (eoPop < MOEOT > &_parents, eoPop < MOEOT > &_offspring)
     {
-        unsigned int sz = _parents.size ();
-        // merges offspring and parents into a global population
-        _parents.reserve (_parents.size () + _offspring.size ());
-        std::copy (_offspring.begin (), _offspring.end (), back_inserter (_parents));
-        // evaluates the fitness and the diversity of this global population
-        fitnessAssignment (_parents);
-        diversityAssignment (_parents);
-        // sorts the whole population according to the comparator
-        std::sort(_parents.begin(), _parents.end(), comparator);
-        // finally, resize this global population
-        _parents.resize (sz);
-        // and clear the offspring population
-        _offspring.clear ();
+      unsigned int sz = _parents.size ();
+      // merges offspring and parents into a global population
+      _parents.reserve (_parents.size () + _offspring.size ());
+      std::copy (_offspring.begin (), _offspring.end (), back_inserter (_parents));
+      // evaluates the fitness and the diversity of this global population
+      fitnessAssignment (_parents);
+      diversityAssignment (_parents);
+      // sorts the whole population according to the comparator
+      std::sort(_parents.begin(), _parents.end(), comparator);
+      // finally, resize this global population
+      _parents.resize (sz);
+      // and clear the offspring population
+      _offspring.clear ();
     }
 
 
-protected:
+  protected:
 
     /** the fitness assignment strategy */
     moeoFitnessAssignment < MOEOT > & fitnessAssignment;
@@ -128,8 +128,8 @@ protected:
     moeoFitnessThenDiversityComparator < MOEOT > defaultComparator;
     /** this object is used to compare solutions in order to sort the population */
     class Cmp
-    {
-    public:
+      {
+      public:
         /**
          * Ctor.
          * @param _comp the comparator
@@ -143,13 +143,14 @@ protected:
          */
         bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
         {
-            return comp(_moeo2,_moeo1);
+          return comp(_moeo2,_moeo1);
         }
-    private:
+      private:
         /** the comparator */
         moeoComparator < MOEOT > & comp;
-    } comparator;
+      }
+    comparator;
 
-};
+  };
 
 #endif /*MOEOELITISTREPLACEMENT_H_ */

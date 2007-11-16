@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoScalarFitnessAssignment.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,6 +44,7 @@
  * moeoScalarFitnessAssignment is a moeoFitnessAssignment for scalar strategies.
  */
 template < class MOEOT >
-class moeoScalarFitnessAssignment : public moeoFitnessAssignment < MOEOT > {};
-    
+class moeoScalarFitnessAssignment : public moeoFitnessAssignment < MOEOT >
+  {};
+
 #endif /*MOEOSCALARFITNESSASSIGNMENT_H_*/

@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoArchiveUpdater.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -47,8 +47,8 @@
  */
 template < class MOEOT >
 class moeoArchiveUpdater : public eoUpdater
-{
-public:
+  {
+  public:
 
     /**
      * Ctor
@@ -62,18 +62,19 @@ public:
     /**
      * Updates the archive with newly found non-dominated solutions contained in the main population
      */
-    void operator()() {
-        arch.update(pop);
+    void operator()()
+    {
+      arch.update(pop);
     }
 
 
-private:
+  private:
 
     /** the archive of non-dominated solutions */
     moeoArchive < MOEOT > & arch;
     /** the main population */
     const eoPop < MOEOT > & pop;
 
-};
+  };
 
 #endif /*MOEOARCHIVEUPDATER_H_*/

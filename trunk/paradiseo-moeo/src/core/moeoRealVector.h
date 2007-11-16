@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoRealVector.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,8 +45,8 @@
  */
 template < class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity >
 class moeoRealVector : public moeoVector < MOEOObjectiveVector, MOEOFitness, MOEODiversity, double >
-{
-public:
+  {
+  public:
 
     /**
      * Ctor
@@ -55,16 +55,16 @@ public:
      */
     moeoRealVector(unsigned int _size = 0, double _value = 0.0) : moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, double >(_size, _value)
     {}
-    
-    
+
+
     /**
      * Returns the class name as a std::string
      */
     virtual std::string className() const
-    {
-    	return "moeoRealVector";
-    }
-    
-};
+      {
+        return "moeoRealVector";
+      }
+
+  };
 
 #endif /*MOEOREALVECTOR_H_*/

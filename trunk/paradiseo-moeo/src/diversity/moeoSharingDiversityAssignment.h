@@ -1,4 +1,4 @@
-/* 
+/*
 * <moeoSharingDiversityAssignment.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -51,8 +51,8 @@
  */
 template < class MOEOT >
 class moeoSharingDiversityAssignment : public moeoDiversityAssignment < MOEOT >
-{
-public:
+  {
+  public:
 
     /** the objective vector type of the solutions */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
@@ -83,14 +83,14 @@ public:
      */
     void operator()(eoPop < MOEOT > & _pop)
     {
-        // 1 - set simuilarities
-        setSimilarities(_pop);
-        // 2 - a higher diversity is better, so the values need to be inverted
-        moeoDiversityThenFitnessComparator < MOEOT > divComparator;
-        double max = std::max_element(_pop.begin(), _pop.end(), divComparator)->diversity();
-        for (unsigned int i=0 ; i<_pop.size() ; i++)
+      // 1 - set simuilarities
+      setSimilarities(_pop);
+      // 2 - a higher diversity is better, so the values need to be inverted
+      moeoDiversityThenFitnessComparator < MOEOT > divComparator;
+      double max = std::max_element(_pop.begin(), _pop.end(), divComparator)->diversity();
+      for (unsigned int i=0 ; i<_pop.size() ; i++)
         {
-            _pop[i].diversity(max - _pop[i].diversity());
+          _pop[i].diversity(max - _pop[i].diversity());
         }
     }
 
@@ -104,11 +104,11 @@ public:
      */
     void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
     {
-        std::cout << "WARNING : updateByDeleting not implemented in moeoSharingDiversityAssignment" << std::endl;
+      std::cout << "WARNING : updateByDeleting not implemented in moeoSharingDiversityAssignment" << std::endl;
     }
 
 
-protected:
+  protected:
 
     /** the distance used to compute the neighborhood of solutions */
     moeoDistance < MOEOT , double > & distance;
@@ -126,19 +126,19 @@ protected:
      */
     virtual void setSimilarities(eoPop < MOEOT > & _pop)
     {
-        // compute distances between every individuals
-        moeoDistanceMatrix < MOEOT , double > dMatrix (_pop.size(), distance);
-        dMatrix(_pop);
-        // compute similarities
-        double sum;
-        for (unsigned int i=0; i<_pop.size(); i++)
+      // compute distances between every individuals
+      moeoDistanceMatrix < MOEOT , double > dMatrix (_pop.size(), distance);
+      dMatrix(_pop);
+      // compute similarities
+      double sum;
+      for (unsigned int i=0; i<_pop.size(); i++)
         {
-            sum = 0.0;
-            for (unsigned int j=0; j<_pop.size(); j++)
+          sum = 0.0;
+          for (unsigned int j=0; j<_pop.size(); j++)
             {
-                sum += sh(dMatrix[i][j]);
+              sum += sh(dMatrix[i][j]);
             }
-            _pop[i].diversity(sum);
+          _pop[i].diversity(sum);
         }
     }
 
@@ -149,19 +149,19 @@ protected:
      */
     double sh(double _dist)
     {
-        double result;
-        if (_dist < nicheSize)
+      double result;
+      if (_dist < nicheSize)
         {
-            result = 1.0 - pow(_dist / nicheSize, alpha);
+          result = 1.0 - pow(_dist / nicheSize, alpha);
         }
-        else
+      else
         {
-            result = 0.0;
+          result = 0.0;
         }
-        return result;
+      return result;
     }
 
-};
+  };
 
 
 #endif /*MOEOSHARINGDIVERSITYASSIGNMENT_H_*/
