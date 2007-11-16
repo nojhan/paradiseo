@@ -1,4 +1,4 @@
-/* 
+/*
 * <moGenSolContinue.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,51 +44,49 @@
   The stop criterion corresponds to a maximum number of iteration.
  */
 template < class EOT > class moGenSolContinue:public moSolContinue < EOT >
-{
-
-public:
-
-  //! Simple constructor.
-  /*!
-     \param __maxNumGen the maximum number of generation.
-   */
-  moGenSolContinue (unsigned int __maxNumGen):maxNumGen (__maxNumGen), numGen (0)
   {
 
-  }
+  public:
 
-  //! Function that activates the stop criterion.
-  /*!
-     Increments the counter and returns TRUE if the
-     current number of iteration is lower than the given
-     maximum number of iterations.
+    //! Simple constructor.
+    /*!
+       \param __maxNumGen the maximum number of generation.
+     */
+    moGenSolContinue (unsigned int __maxNumGen):maxNumGen (__maxNumGen), numGen (0)
+    {}
 
-     \param __sol the current solution.
-     \return TRUE or FALSE according to the current generation number.
-   */
-  bool operator   () (const EOT & __sol)
-  {
+    //! Function that activates the stop criterion.
+    /*!
+       Increments the counter and returns TRUE if the
+       current number of iteration is lower than the given
+       maximum number of iterations.
 
-    return (++numGen < maxNumGen);
-  }
+       \param __sol the current solution.
+       \return TRUE or FALSE according to the current generation number.
+     */
+    bool operator   () (const EOT & __sol)
+    {
 
-  //! Procedure which allows to initialise the generation counter.
-  /*!
-     It can also be used to reset the iteration counter.
-   */
-  void init ()
-  {
+      return (++numGen < maxNumGen);
+    }
 
-    numGen = 0;
-  }
+    //! Procedure which allows to initialise the generation counter.
+    /*!
+       It can also be used to reset the iteration counter.
+     */
+    void init ()
+    {
 
-private:
+      numGen = 0;
+    }
 
-  //! Iteration maximum number.
-  unsigned int maxNumGen;
+  private:
 
-  //! Iteration current number.
-  unsigned int numGen;
-};
+    //! Iteration maximum number.
+    unsigned int maxNumGen;
+
+    //! Iteration current number.
+    unsigned int numGen;
+  };
 
 #endif

@@ -1,4 +1,4 @@
-/* 
+/*
 * <part_two_opt_next.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,13 +41,13 @@
 #include "two_opt.h"
 
 /** It updates a couple of edges */
-class PartTwoOptNext : public moNextMove <TwoOpt> 
-{
-  
-public :
-  
-  bool operator () (TwoOpt & __move, const Route & __route) ;
-  
-} ;
+class PartTwoOptNext : public moNextMove <TwoOpt>
+  {
+
+  public :
+
+    bool operator () (TwoOpt & __move, const Route & __route) ;
+
+  } ;
 
 #endif

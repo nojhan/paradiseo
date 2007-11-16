@@ -1,4 +1,4 @@
-/* 
+/*
 * <moBestImprSelect.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,74 +45,74 @@
   which enables the best improvement is selected.
 */
 template < class M > class moBestImprSelect:public moMoveSelect < M >
-{
-
-public:
-
-  //! Alias for the fitness.
-  typedef typename M::EOType::Fitness Fitness;
-
-  //! Procedure which initialise the exploration
-  void init (const Fitness & __fit)
   {
 
-    first_time = true;
-  }
+  public:
+
+    //! Alias for the fitness.
+    typedef typename M::EOType::Fitness Fitness;
+
+    //! Procedure which initialise the exploration
+    void init (const Fitness & __fit)
+    {
+
+      first_time = true;
+    }
 
 
-  //!Function that indicates if the current move has not improved the fitness.
-  /*!
-     If the given fitness enables an improvment,
-     the move (moMove) and the fitness linked to this move are saved.
+    //!Function that indicates if the current move has not improved the fitness.
+    /*!
+       If the given fitness enables an improvment,
+       the move (moMove) and the fitness linked to this move are saved.
 
-     \param __move a move.
-     \param __fit a fitness linked to the move.
-     \return TRUE if the move does not improve the fitness.
-   */
-  bool update (const M & __move, const Fitness & __fit)
-  {
+       \param __move a move.
+       \param __fit a fitness linked to the move.
+       \return TRUE if the move does not improve the fitness.
+     */
+    bool update (const M & __move, const Fitness & __fit)
+    {
 
-    if (first_time || __fit > best_fit)
-      {
+      if (first_time || __fit > best_fit)
+        {
 
-	best_fit = __fit;
-	best_move = __move;
+          best_fit = __fit;
+          best_move = __move;
 
-	first_time = false;
-      }
+          first_time = false;
+        }
 
-    return true;
-  }
+      return true;
+    }
 
-  //! Procedure which saved the best move and fitness.
-  /*!
-     \param __move the current move (result of the procedure).
-     \param __fit the current fitness (result of the procedure).
-     \throws EmptySelection if no move has improved the fitness.
-   */
-  void operator   () (M & __move, Fitness & __fit) throw (EmptySelection)
-  {
+    //! Procedure which saved the best move and fitness.
+    /*!
+       \param __move the current move (result of the procedure).
+       \param __fit the current fitness (result of the procedure).
+       \throws EmptySelection if no move has improved the fitness.
+     */
+    void operator   () (M & __move, Fitness & __fit) throw (EmptySelection)
+    {
 
-    if (!first_time)
-      {
-	__move = best_move;
-	__fit = best_fit;
-      }
-    else
-      throw EmptySelection ();
-  }
+      if (!first_time)
+        {
+          __move = best_move;
+          __fit = best_fit;
+        }
+      else
+        throw EmptySelection ();
+    }
 
-private:
+  private:
 
-  //! Allowing to know if at least one move has been generated. 
-  bool first_time;
+    //! Allowing to know if at least one move has been generated.
+    bool first_time;
 
-  //! The best move.
-  M best_move;
+    //! The best move.
+    M best_move;
 
-  //! The best fitness.
-  Fitness best_fit;
+    //! The best fitness.
+    Fitness best_fit;
 
-};
+  };
 
 #endif

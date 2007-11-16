@@ -1,4 +1,4 @@
-/* 
+/*
 * <moAlgo.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,8 +44,6 @@
   moHC, moTS and moSA are 3 examples of algorithm of the paradiseo-mo library.
  */
 template < class EOT > class moAlgo:public eoMonOp < EOT >
-{
-
-};
+  {};
 
 #endif

@@ -1,4 +1,4 @@
-/* 
+/*
 * <moItRandNextMove.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,65 +45,63 @@
   This class is a move (moMove) generator with a bound for the maximum number of iterations.
 */
 template < class M > class moItRandNextMove:public moNextMove < M >
-{
-
-  //! Alias for the type.
-  typedef typename M::EOType EOT;
-
-public:
-
-  //! The constructor.
-  /*!
-     Parameters only for initialising the attributes.
-
-     \param __rand_move the random move generator.
-     \param __max_iter the iteration maximum number.
-   */
-  moItRandNextMove (moRandMove < M > &__rand_move,
-		    unsigned int __max_iter):rand_move (__rand_move),
-    max_iter (__max_iter), num_iter (0)
   {
 
-  }
+    //! Alias for the type.
+    typedef typename M::EOType EOT;
 
-  //! Generation of a new move
-  /*!
-     If the maximum number is not already reached, the current move is forgotten and remplaced by another one.
+  public:
 
-     \param __move the current move.
-     \param __sol the current solution.
-     \return FALSE if the maximum number of iteration is reached, else TRUE.
-   */
-  bool operator   () (M & __move, const EOT & __sol)
-  {
+    //! The constructor.
+    /*!
+       Parameters only for initialising the attributes.
 
-    if (num_iter++ > max_iter)
-      {
+       \param __rand_move the random move generator.
+       \param __max_iter the iteration maximum number.
+     */
+    moItRandNextMove (moRandMove < M > &__rand_move,
+                      unsigned int __max_iter):rand_move (__rand_move),
+        max_iter (__max_iter), num_iter (0)
+    {}
 
-	num_iter = 0;
-	return false;
-      }
-    else
-      {
+    //! Generation of a new move
+    /*!
+       If the maximum number is not already reached, the current move is forgotten and remplaced by another one.
 
-	/* The given solution is discarded here */
-	rand_move (__move);
-	num_iter++;
-	return true;
-      }
-  }
+       \param __move the current move.
+       \param __sol the current solution.
+       \return FALSE if the maximum number of iteration is reached, else TRUE.
+     */
+    bool operator   () (M & __move, const EOT & __sol)
+    {
 
-private:
+      if (num_iter++ > max_iter)
+        {
 
-  //! A move generator (generally randomly).
-  moRandMove < M > &rand_move;
+          num_iter = 0;
+          return false;
+        }
+      else
+        {
 
-  //! Iteration maximum number.
-  unsigned int max_iter;
+          /* The given solution is discarded here */
+          rand_move (__move);
+          num_iter++;
+          return true;
+        }
+    }
 
-  //! Iteration current number.
-  unsigned int num_iter;
+  private:
 
-};
+    //! A move generator (generally randomly).
+    moRandMove < M > &rand_move;
+
+    //! Iteration maximum number.
+    unsigned int max_iter;
+
+    //! Iteration current number.
+    unsigned int num_iter;
+
+  };
 
 #endif

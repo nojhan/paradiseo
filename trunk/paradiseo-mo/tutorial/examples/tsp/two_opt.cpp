@@ -1,4 +1,4 @@
-/* 
+/*
 * <two_opt.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -36,24 +36,24 @@
 
 #include "two_opt.h"
 
-TwoOpt TwoOpt :: operator ! () const 
-{
-  TwoOpt move = * this ;
-  std :: swap (move.first, move.second) ;
-  
-  return move ;
-}
+TwoOpt TwoOpt :: operator ! () const
+  {
+    TwoOpt move = * this ;
+    std :: swap (move.first, move.second) ;
 
-void TwoOpt :: operator () (Route & __route) 
+    return move ;
+  }
+
+void TwoOpt :: operator () (Route & __route)
 {
-  
+
   std :: vector <unsigned int> seq_cities ;
-  
+
   for (unsigned int i = second ; i > first ; i --)
     {
       seq_cities.push_back (__route [i]) ;
     }
-  
+
   unsigned int j = 0 ;
   for (unsigned int i = first + 1 ; i < second + 1 ; i ++)
     {
@@ -61,12 +61,12 @@ void TwoOpt :: operator () (Route & __route)
     }
 }
 
-void TwoOpt :: readFrom (std :: istream & __is) 
+void TwoOpt :: readFrom (std :: istream & __is)
 {
   __is >> first >> second ;
 }
 
-void TwoOpt :: printOn (std :: ostream & __os) const 
-{
-  __os << first << ' ' << second ;
-}
+void TwoOpt :: printOn (std :: ostream & __os) const
+  {
+    __os << first << ' ' << second ;
+  }

@@ -1,4 +1,4 @@
-/* 
+/*
 * <moRandMove.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,11 +41,9 @@
 
 //! Random move generator
 /*!
-  Only a description... An object that herits from this class needs to be designed in order to use a moSA. 
+  Only a description... An object that herits from this class needs to be designed in order to use a moSA.
  */
 template < class M > class moRandMove:public eoUF < M &, void >
-{
-
-};
+  {};
 
 #endif

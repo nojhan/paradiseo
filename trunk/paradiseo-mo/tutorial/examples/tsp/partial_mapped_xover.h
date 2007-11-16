@@ -1,4 +1,4 @@
-/* 
+/*
 * <partial_mapped_xover.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -42,15 +42,16 @@
 #include "route.h"
 
 /** Partial Mapped Crossover */
-class PartialMappedXover : public eoQuadOp <Route> {
-  
-public :
-  
-  bool operator () (Route & __route1, Route & __route2) ;
+class PartialMappedXover : public eoQuadOp <Route>
+  {
 
-private :
-  
-  void repair (Route & __route, unsigned __cut1, unsigned __cut2) ;
-} ;
+  public :
+
+    bool operator () (Route & __route1, Route & __route2) ;
+
+  private :
+
+    void repair (Route & __route, unsigned __cut1, unsigned __cut2) ;
+  } ;
 
 #endif

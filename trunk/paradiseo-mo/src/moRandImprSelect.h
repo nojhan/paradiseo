@@ -1,4 +1,4 @@
-/* 
+/*
 * <moRandImprSelect.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,86 +44,86 @@
 
 //! One of the possible moMove selector (moMoveSelect)
 /*!
-  All the neighbors are considered. 
+  All the neighbors are considered.
   One of them that enables an improvment of the objective function is choosen.
 */
 template < class M > class moRandImprSelect:public moMoveSelect < M >
-{
-
-public:
-
-  //! Alias for the fitness
-  typedef typename M::EOType::Fitness Fitness;
-
-  //!Procedure which all that needs a moRandImprSelect
-  /*!
-     Give a value to the initialise fitness.
-     Clean the move and fitness vectors.
-
-     \param __fit the current best fitness
-   */
-  void init (const Fitness & __fit)
-  {
-    init_fit = __fit;
-    vect_better_fit.clear ();
-    vect_better_moves.clear ();
-  }
-
-  //! Function that updates the fitness and move vectors
-  /*!
-     if a move give a better fitness than the initial fitness, 
-     it is saved and the fitness too.
-
-     \param __move a new move.
-     \param __fit a new fitness associated to the new move.
-     \return TRUE.
-   */
-  bool update (const M & __move, const Fitness & __fit)
   {
 
-    if (__fit > init_fit)
-      {
+  public:
 
-	vect_better_fit.push_back (__fit);
-	vect_better_moves.push_back (__move);
-      }
+    //! Alias for the fitness
+    typedef typename M::EOType::Fitness Fitness;
 
-    return true;
-  }
+    //!Procedure which all that needs a moRandImprSelect
+    /*!
+       Give a value to the initialise fitness.
+       Clean the move and fitness vectors.
 
-  //! The move selection
-  /*!
-     One the saved move is randomly chosen.
+       \param __fit the current best fitness
+     */
+    void init (const Fitness & __fit)
+    {
+      init_fit = __fit;
+      vect_better_fit.clear ();
+      vect_better_moves.clear ();
+    }
 
-     \param __move the reference of the move that can be initialised by the function.
-     \param __fit the reference of the fitness that can be initialised by the function.
-     \throws EmptySelection If no move which improves the current fitness are found.
-   */
-  void operator   () (M & __move, Fitness & __fit) throw (EmptySelection)
-  {
+    //! Function that updates the fitness and move vectors
+    /*!
+       if a move give a better fitness than the initial fitness, 
+       it is saved and the fitness too.
 
-    if (!vect_better_fit.empty ())
-      {
+       \param __move a new move.
+       \param __fit a new fitness associated to the new move.
+       \return TRUE.
+     */
+    bool update (const M & __move, const Fitness & __fit)
+    {
 
-	unsigned n = rng.random (vect_better_fit.size ());
+      if (__fit > init_fit)
+        {
 
-	__move = vect_better_moves[n];
-	__fit = vect_better_fit[n];
-      }
-    else
-      throw EmptySelection ();
-  }
+          vect_better_fit.push_back (__fit);
+          vect_better_moves.push_back (__move);
+        }
 
-private:
+      return true;
+    }
 
-  //! Fitness of the current solution.
-  Fitness init_fit;
+    //! The move selection
+    /*!
+       One the saved move is randomly chosen.
 
-  //! Candidate fitnesse vector.
-  std::vector < Fitness > vect_better_fit;
+       \param __move the reference of the move that can be initialised by the function.
+       \param __fit the reference of the fitness that can be initialised by the function.
+       \throws EmptySelection If no move which improves the current fitness are found.
+     */
+    void operator   () (M & __move, Fitness & __fit) throw (EmptySelection)
+    {
 
-  //! Candidate move vector.
-  std::vector < M > vect_better_moves;
-};
+      if (!vect_better_fit.empty ())
+        {
+
+          unsigned n = rng.random (vect_better_fit.size ());
+
+          __move = vect_better_moves[n];
+          __fit = vect_better_fit[n];
+        }
+      else
+        throw EmptySelection ();
+    }
+
+  private:
+
+    //! Fitness of the current solution.
+    Fitness init_fit;
+
+    //! Candidate fitnesse vector.
+    std::vector < Fitness > vect_better_fit;
+
+    //! Candidate move vector.
+    std::vector < M > vect_better_moves;
+  };
 
 #endif

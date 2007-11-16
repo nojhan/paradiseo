@@ -1,4 +1,4 @@
-/* 
+/*
 * <moLinearCoolingSchedule.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,36 +45,36 @@
   the temperature is greater than a threshold.
  */
 class moLinearCoolingSchedule: public moCoolingSchedule
-{
-
-public:
-  //! Simple constructor
-  /*!
-     \param __threshold the threshold.
-     \param __quantity the quantity used to descrease the temperature.
-   */
-  moLinearCoolingSchedule (double __threshold, double __quantity):threshold (__threshold), quantity (__quantity)
-  {}
-
-  //! Function which proceeds to the cooling.
-  /*!
-     It decreases the temperature and indicates if it is greater than the threshold.
-
-     \param __temp the current temperature.
-     \return if the new temperature (current temperature - quantity) is greater than the threshold.
-   */
-  bool operator() (double &__temp)
   {
-    return (__temp -= quantity) > threshold;
-  }
 
-private:
+  public:
+    //! Simple constructor
+    /*!
+       \param __threshold the threshold.
+       \param __quantity the quantity used to descrease the temperature.
+     */
+    moLinearCoolingSchedule (double __threshold, double __quantity):threshold (__threshold), quantity (__quantity)
+    {}
 
-  //! The temperature threhold.
-  double threshold;
+    //! Function which proceeds to the cooling.
+    /*!
+       It decreases the temperature and indicates if it is greater than the threshold.
 
-  //! The quantity that allows the temperature to decrease.
-  double quantity;
-};
+       \param __temp the current temperature.
+       \return if the new temperature (current temperature - quantity) is greater than the threshold.
+     */
+    bool operator() (double &__temp)
+    {
+      return (__temp -= quantity) > threshold;
+    }
+
+  private:
+
+    //! The temperature threhold.
+    double threshold;
+
+    //! The quantity that allows the temperature to decrease.
+    double quantity;
+  };
 
 #endif

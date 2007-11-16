@@ -1,4 +1,4 @@
-/* 
+/*
 * <route_init.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -39,25 +39,25 @@
 #include "route_init.h"
 #include "graph.h"
 
-void RouteInit :: operator () (Route & __route) 
+void RouteInit :: operator () (Route & __route)
 {
-  
+
   // Init.
   __route.clear () ;
   for (unsigned int i = 0 ; i < Graph :: size () ; i ++)
     {
       __route.push_back (i) ;
     }
-  
+
   // Swap. cities
 
-  for (unsigned int i = 0 ; i < Graph :: size () ; i ++) 
+  for (unsigned int i = 0 ; i < Graph :: size () ; i ++)
     {
       //unsigned int j = rng.random (Graph :: size ()) ;
-      
+
       unsigned int j = (unsigned int) (Graph :: size () * (rand () / (RAND_MAX + 1.0))) ;
       unsigned int city = __route [i] ;
       __route [i] = __route [j] ;
       __route [j] = city ;
-    }   
+    }
 }

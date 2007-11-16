@@ -1,4 +1,4 @@
-/* 
+/*
 * <moNoAspirCrit.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,30 +44,29 @@
   The simplest : never satisfied.
  */
 template < class M > class moNoAspirCrit:public moAspirCrit < M >
-{
-
-  //! Function which describes the aspiration criterion behaviour
-  /*!
-     Does nothing.
-
-     \param __move a move.
-     \param __sol a fitness.
-     \return FALSE.
-   */
-  bool operator   () (const M & __move,
-		      const typename M::EOType::Fitness & __sol)
   {
 
-    return false;
-  }
+    //! Function which describes the aspiration criterion behaviour
+    /*!
+       Does nothing.
 
-  //! Procedure which initialises all that needs a moNoAspirCrit
-  /*!
-     Nothing...
-   */
-  void init ()
-  {
-  }
-};
+       \param __move a move.
+       \param __sol a fitness.
+       \return FALSE.
+     */
+    bool operator   () (const M & __move,
+                        const typename M::EOType::Fitness & __sol)
+    {
+
+      return false;
+    }
+
+    //! Procedure which initialises all that needs a moNoAspirCrit
+    /*!
+       Nothing...
+     */
+    void init ()
+    {}
+  };
 
 #endif

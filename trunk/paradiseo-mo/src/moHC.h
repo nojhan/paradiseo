@@ -1,4 +1,4 @@
-/* 
+/*
 * <moHC.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -48,110 +48,106 @@
   Class which describes the algorithm for a hill climbing.
  */
 template < class M > class moHC:public moAlgo < typename M::EOType >
-{
+  {
 
-  //! Alias for the type.
-  typedef
+    //! Alias for the type.
+    typedef
     typename
     M::EOType
     EOT;
 
-  //! Alias for the fitness.
-  typedef
+    //! Alias for the fitness.
+    typedef
     typename
     EOT::Fitness
     Fitness;
 
-public:
+  public:
 
-  //! Full constructor.
-  /*!
-     All the boxes are given in order the HC to use a moHCMoveLoopExpl.
+    //! Full constructor.
+    /*!
+       All the boxes are given in order the HC to use a moHCMoveLoopExpl.
 
-     \param __move_init a move initialiser.
-     \param __next_move a neighborhood explorer.
-     \param __incr_eval a (generally) efficient evaluation function.
-     \param __move_select a move selector.
-     \param __full_eval a full evaluation function.
-   */
-moHC (moMoveInit < M > &__move_init, moNextMove < M > &__next_move, moMoveIncrEval < M > &__incr_eval, moMoveSelect < M > &__move_select, eoEvalFunc < EOT > &__full_eval):move_expl (*new moHCMoveLoopExpl < M >
-	     (__move_init, __next_move, __incr_eval, __move_select)),
-    full_eval (__full_eval)
-  {
+       \param __move_init a move initialiser.
+       \param __next_move a neighborhood explorer.
+       \param __incr_eval a (generally) efficient evaluation function.
+       \param __move_select a move selector.
+       \param __full_eval a full evaluation function.
+     */
+    moHC (moMoveInit < M > &__move_init, moNextMove < M > &__next_move, moMoveIncrEval < M > &__incr_eval, moMoveSelect < M > &__move_select, eoEvalFunc < EOT > &__full_eval):move_expl (*new moHCMoveLoopExpl < M >
+            (__move_init, __next_move, __incr_eval, __move_select)),
+        full_eval (__full_eval)
+    {}
 
-  }
+    //! Light constructor.
+    /*!
+       This constructor allow to use another moMoveExpl (generally not a moHCMoveLoopExpl).
 
-  //! Light constructor.
-  /*!
-     This constructor allow to use another moMoveExpl (generally not a moHCMoveLoopExpl).
+       \param __move_expl a complete explorer.
+       \param __full_eval a full evaluation function.
+     */
+    moHC (moMoveExpl < M > &__move_expl, eoEvalFunc < EOT > &__full_eval):move_expl (__move_expl),
+        full_eval
+        (__full_eval)
+    {}
 
-     \param __move_expl a complete explorer.
-     \param __full_eval a full evaluation function.
-   */
-moHC (moMoveExpl < M > &__move_expl, eoEvalFunc < EOT > &__full_eval):move_expl (__move_expl),
-    full_eval
-    (__full_eval)
-  {
+    //! Function which launches the HC
+    /*!
+       The HC has to improve a current solution.
+       As the moSA and the mo TS, it can be used for HYBRIDATION in an evolutionnary algorithm.
 
-  }
+       \param __sol a current solution to improve.
+       \return TRUE.
+     */
+    bool operator   ()(EOT & __sol)
+    {
 
-  //! Function which launches the HC
-  /*!
-     The HC has to improve a current solution.
-     As the moSA and the mo TS, it can be used for HYBRIDATION in an evolutionnary algorithm.
+      if (__sol.invalid ())
+        {
+          full_eval (__sol);
+        }
 
-     \param __sol a current solution to improve.
-     \return TRUE.
-   */
-  bool operator   ()(EOT & __sol)
-  {
+      EOT new_sol;
 
-    if (__sol.invalid ())
-      {
-	full_eval (__sol);
-      }
+      do
+        {
 
-    EOT new_sol;
+          new_sol = __sol;
 
-    do
-      {
+          try
+            {
 
-	new_sol = __sol;
+              move_expl (__sol, new_sol);
 
-	try
-	{
+            }
+          catch (EmptySelection & __ex)
+            {
 
-	  move_expl (__sol, new_sol);
+              break;
+            }
 
-	}
-	catch (EmptySelection & __ex)
-	{
+          if (new_sol.fitness () > __sol.fitness ())
+            {
+              __sol = new_sol;
+            }
+          else
+            {
+              break;
+            }
 
-	  break;
-	}
+        }
+      while (true);
 
-	if (new_sol.fitness () > __sol.fitness ())
-	  {
-	    __sol = new_sol;
-	  }
-	else
-	  {
-	    break;
-	  }
+      return true;
+    }
 
-      }
-    while (true);
+  private:
 
-    return true;
-  }
+    //! Complete exploration of the neighborhood.
+    moMoveExpl < M > &move_expl;
 
-private:
-
-  //! Complete exploration of the neighborhood.
-  moMoveExpl < M > &move_expl;
-
-  //! A full evaluation function.
-  eoEvalFunc < EOT > &full_eval;
-};
+    //! A full evaluation function.
+    eoEvalFunc < EOT > &full_eval;
+  };
 
 #endif

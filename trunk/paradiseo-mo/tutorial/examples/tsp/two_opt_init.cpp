@@ -1,4 +1,4 @@
-/* 
+/*
 * <two_opt_init.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -36,7 +36,7 @@
 
 #include "two_opt_init.h"
 
-void TwoOptInit :: operator () (TwoOpt & __move, const Route & __route) 
+void TwoOptInit :: operator () (TwoOpt & __move, const Route & __route)
 {
   __move.first = 0 ;
   __move.second = 2 ;

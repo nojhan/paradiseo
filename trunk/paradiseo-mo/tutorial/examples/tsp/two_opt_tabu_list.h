@@ -1,4 +1,4 @@
-/* 
+/*
 * <two_opt_tabu_list.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -42,22 +42,22 @@
 #include "route.h"
 
 /** The table of tabu movements, i.e. forbidden edges */
-class TwoOptTabuList : public moTabuList <TwoOpt> 
-{
-public :
-  
-  bool operator () (const TwoOpt & __move, const Route & __sol) ;
-  
-  void add (const TwoOpt & __move, const Route & __sol) ;
-  
-  void update () ;
-  
-  void init () ;
-  
-private :
-  
-  std :: vector <std :: vector <unsigned> > tabu_span ;
-  
-} ;
+class TwoOptTabuList : public moTabuList <TwoOpt>
+  {
+  public :
+
+    bool operator () (const TwoOpt & __move, const Route & __sol) ;
+
+    void add (const TwoOpt & __move, const Route & __sol) ;
+
+    void update () ;
+
+    void init () ;
+
+  private :
+
+    std :: vector <std :: vector <unsigned> > tabu_span ;
+
+  } ;
 
 #endif

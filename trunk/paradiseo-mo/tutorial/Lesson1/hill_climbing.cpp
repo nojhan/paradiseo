@@ -1,4 +1,4 @@
-/* 
+/*
 * <hill_climbing.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -38,37 +38,38 @@
 #include <tsp>
 
 int
-main (int __argc, char * __argv []) 
+main (int __argc, char * __argv [])
 {
-  if (__argc != 2) {
-    
-    std :: cerr << "Usage : ./hill_climbing [instance]" << std :: endl ;
-    return 1 ;
-  }
+  if (__argc != 2)
+    {
+
+      std :: cerr << "Usage : ./hill_climbing [instance]" << std :: endl ;
+      return 1 ;
+    }
 
   srand (1000) ;
 
   Graph :: load (__argv [1]) ; // Instance
 
   Route route ; // Solution
-  
+
   RouteInit init ; // Sol. Random Init.
   init (route) ;
 
   RouteEval full_eval ; // Full. Eval.
   full_eval (route) ;
-  
+
   std :: cout << "[From] " << route << std :: endl ;
 
   /* Tools for an efficient (? :-))
      local search ! */
-  
+
   TwoOptInit two_opt_init ; // Init.
-   
+
   TwoOptNext two_opt_next ; // Explorer.
-  
+
   TwoOptIncrEval two_opt_incr_eval ; // Eff. eval.
-  
+
   //moFirstImprSelect <TwoOpt> two_opt_select ;
   moBestImprSelect <TwoOpt> two_opt_select ;
   //moRandImprSelect <TwoOpt> two_opt_select ;

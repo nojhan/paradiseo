@@ -1,4 +1,4 @@
-/* 
+/*
 * <moSteadyFitSolContinue.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,100 +44,100 @@
   The stop criterion corresponds to a maximum number of iterations without improvement (after a minimum number of iterations).
  */
 template < class EOT > class moSteadyFitSolContinue:public moSolContinue < EOT >
-{
-
-public:
-
-  //! Alias for the fitness.
-  typedef typename EOT::Fitness Fitness;
-
-  //! Basic constructor.
-  /*!
-     \param __maxNumberOfIterations The number of iterations to reach before looking for the fitness.
-     \param __maxNumberOfIterationWithoutImprovement The number of iterations without fitness improvement to reach for stop.
-   */
-  moSteadyFitSolContinue (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement)
-    : maxNumberOfIterations (__maxNumberOfIterations), maxNumberOfIterationsWithoutImprovement(__maxNumberOfIterationWithoutImprovement),
-      maxNumberOfIterationsReached(false), firstFitnessSaved(true), counter(0) 
-  {}
-
-  //! Function that activates the stopping criterion.
-  /*!
-    Indicates if the fitness has not been improved since a number of iterations (after a minimum of iterations).
-
-     \param __sol the current solution.
-     \return true or false.
-   */
-  bool operator   () (const EOT & __sol)
   {
-    if(!maxNumberOfIterationsReached)
-      {
-	maxNumberOfIterationsReached=((++counter)==maxNumberOfIterations);
-	if(maxNumberOfIterationsReached)
-	  {
-	    std::cout << "moSteadyFitSolContinue: Done the minimum number of iterations [" << counter << "]." << std::endl;
-	  }
-	return true;
-      }
 
-    if(__sol.invalid())
-      {
-	return true;
-      }
+  public:
 
-    if(firstFitnessSaved)
-      {
-	fitness=__sol.fitness();
-	counter=0;
-	firstFitnessSaved=false;
-	return true;
-      }
-    
-    counter++;
+    //! Alias for the fitness.
+    typedef typename EOT::Fitness Fitness;
 
-    if( __sol.fitness() > fitness )
-      {
-	fitness=__sol.fitness();
-	counter=0;
-      }
-  
-    if(counter==maxNumberOfIterationsWithoutImprovement)
-      {
-	std::cout << "moSteadyFitSolContinue: Done [" << counter  << "] iterations without improvement." << std::endl;
-      }
-    return counter!=maxNumberOfIterationsWithoutImprovement;
-  }
+    //! Basic constructor.
+    /*!
+       \param __maxNumberOfIterations The number of iterations to reach before looking for the fitness.
+       \param __maxNumberOfIterationWithoutImprovement The number of iterations without fitness improvement to reach for stop.
+     */
+    moSteadyFitSolContinue (unsigned int __maxNumberOfIterations, unsigned int __maxNumberOfIterationWithoutImprovement)
+        : maxNumberOfIterations (__maxNumberOfIterations), maxNumberOfIterationsWithoutImprovement(__maxNumberOfIterationWithoutImprovement),
+        maxNumberOfIterationsReached(false), firstFitnessSaved(true), counter(0)
+    {}
 
-  //! Procedure which allows to initialise the stuff needed.
-  /*!
-    It can be also used to reinitialize the counter all the needed things.
-  */
-  void init ()
-  {
-    maxNumberOfIterationsReached=false;
-    counter=0;
-    firstFitnessSaved=true;
-  }
+    //! Function that activates the stopping criterion.
+    /*!
+      Indicates if the fitness has not been improved since a number of iterations (after a minimum of iterations).
 
-private:
+       \param __sol the current solution.
+       \return true or false.
+     */
+    bool operator   () (const EOT & __sol)
+    {
+      if (!maxNumberOfIterationsReached)
+        {
+          maxNumberOfIterationsReached=((++counter)==maxNumberOfIterations);
+          if (maxNumberOfIterationsReached)
+            {
+              std::cout << "moSteadyFitSolContinue: Done the minimum number of iterations [" << counter << "]." << std::endl;
+            }
+          return true;
+        }
 
-  //! Maximum number of iterations before considering the fitness.
-  unsigned int maxNumberOfIterations;
+      if (__sol.invalid())
+        {
+          return true;
+        }
 
-   //! Maximum number of iterations without improvement allowed.
-  unsigned int maxNumberOfIterationsWithoutImprovement;
+      if (firstFitnessSaved)
+        {
+          fitness=__sol.fitness();
+          counter=0;
+          firstFitnessSaved=false;
+          return true;
+        }
 
-  //! Flag that indicates that the maxNumberIteration have been reached.
-  bool maxNumberOfIterationsReached;
+      counter++;
 
-  //! Flag that this is the first time that the fitness is used.
-  bool firstFitnessSaved;
+      if ( __sol.fitness() > fitness )
+        {
+          fitness=__sol.fitness();
+          counter=0;
+        }
 
-  //! Current Fitness.
-  Fitness fitness;
+      if (counter==maxNumberOfIterationsWithoutImprovement)
+        {
+          std::cout << "moSteadyFitSolContinue: Done [" << counter  << "] iterations without improvement." << std::endl;
+        }
+      return counter!=maxNumberOfIterationsWithoutImprovement;
+    }
 
-  //! The iteration couter.
-  unsigned int counter;
-};
+    //! Procedure which allows to initialise the stuff needed.
+    /*!
+      It can be also used to reinitialize the counter all the needed things.
+    */
+    void init ()
+    {
+      maxNumberOfIterationsReached=false;
+      counter=0;
+      firstFitnessSaved=true;
+    }
+
+  private:
+
+    //! Maximum number of iterations before considering the fitness.
+    unsigned int maxNumberOfIterations;
+
+    //! Maximum number of iterations without improvement allowed.
+    unsigned int maxNumberOfIterationsWithoutImprovement;
+
+    //! Flag that indicates that the maxNumberIteration have been reached.
+    bool maxNumberOfIterationsReached;
+
+    //! Flag that this is the first time that the fitness is used.
+    bool firstFitnessSaved;
+
+    //! Current Fitness.
+    Fitness fitness;
+
+    //! The iteration couter.
+    unsigned int counter;
+  };
 
 #endif

@@ -1,4 +1,4 @@
-/* 
+/*
 * <moAspirCrit.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,18 +45,18 @@
   See moNoAspriCrit for example.
  */
 template < class M > class moAspirCrit:public eoBF < const M &, const typename
-  M::EOType::Fitness &,
-  bool >
-{
+      M::EOType::Fitness &,
+      bool >
+  {
 
-public:
-  //! Procedure which initialises all that needs a aspiration criterion.
-  /*!
-     It can be possible that this procedure do nothing...
-   */
-  virtual void
-  init () = 0;
+  public:
+    //! Procedure which initialises all that needs a aspiration criterion.
+    /*!
+       It can be possible that this procedure do nothing...
+     */
+    virtual void
+    init () = 0;
 
-};
+  };
 
 #endif

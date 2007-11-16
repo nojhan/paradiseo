@@ -1,4 +1,4 @@
-/* 
+/*
 * <moComparator.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -38,13 +38,12 @@
 #define __moComparator_h
 
 
-//! Template for classes which need to compare two EOT and indicate if the first is "better" than the second. 
+//! Template for classes which need to compare two EOT and indicate if the first is "better" than the second.
 /*!
   The objects that extend this template describe how an EOT is "better" than an other.
  */
 template<class EOT>
 class moComparator: public eoBF<const EOT&, const EOT&, bool>
-{
-};
+  {};
 
 #endif

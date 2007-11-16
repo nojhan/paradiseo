@@ -1,4 +1,4 @@
-/* 
+/*
 * <moExponentialCoolingSchedule.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,36 +45,36 @@
   the temperature is greater than a given threshold.
  */
 class moExponentialCoolingSchedule: public moCoolingSchedule
-{
-
-public:
-  //! Simple constructor
-  /*!
-     \param __threshold the threshold.
-     \param __ratio the ratio used to descrease the temperature.
-   */
-  moExponentialCoolingSchedule (double __threshold, double __ratio):threshold (__threshold), ratio (__ratio)
-  {}
-
-  //! Function which proceeds to the cooling.
-  /*!
-     It decreases the temperature and indicates if it is greater than the threshold.
-
-     \param __temp the current temperature.
-     \return if the new temperature (current temperature * ratio) is greater than the threshold.
-   */
-  bool operator() (double &__temp)
   {
-    return (__temp *= ratio) > threshold;
-  }
 
-private:
+  public:
+    //! Simple constructor
+    /*!
+       \param __threshold the threshold.
+       \param __ratio the ratio used to descrease the temperature.
+     */
+    moExponentialCoolingSchedule (double __threshold, double __ratio):threshold (__threshold), ratio (__ratio)
+    {}
 
-  //! The temperature threhold.
-  double threshold;
+    //! Function which proceeds to the cooling.
+    /*!
+       It decreases the temperature and indicates if it is greater than the threshold.
 
-  //! The decreasing factor of the temperature.
-  double ratio;
-};
+       \param __temp the current temperature.
+       \return if the new temperature (current temperature * ratio) is greater than the threshold.
+     */
+    bool operator() (double &__temp)
+    {
+      return (__temp *= ratio) > threshold;
+    }
+
+  private:
+
+    //! The temperature threhold.
+    double threshold;
+
+    //! The decreasing factor of the temperature.
+    double ratio;
+  };
 
 #endif

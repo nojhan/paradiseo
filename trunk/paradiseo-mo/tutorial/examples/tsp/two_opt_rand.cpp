@@ -1,4 +1,4 @@
-/* 
+/*
 * <two_opt_rand.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -38,7 +38,7 @@
 #include "graph.h"
 #include <utils/eoRNG.h>
 
-void TwoOptRand :: operator () (TwoOpt & __move) 
+void TwoOptRand :: operator () (TwoOpt & __move)
 {
   __move.first = rng.random (Graph :: size () - 3) ;
   __move.second = __move.first + 2 + rng.random (Graph :: size () - __move.first - 3) ;

@@ -1,4 +1,4 @@
-/* 
+/*
 * <moNextMove.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,10 +45,8 @@
   Does nothing... An object that herits from this class needs to be designed for being used.
  */
 template < class M > class moNextMove:public eoBF < M &, const typename
-  M::EOType &,
-  bool >
-{
-
-};
+      M::EOType &,
+      bool >
+  {};
 
 #endif

@@ -1,4 +1,4 @@
-/* 
+/*
 * <moFitComparator.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -37,25 +37,25 @@
 #ifndef __moFitComparator_h
 #define __moFitComparator_h
 
-//! Comparison according to the fitness. 
+//! Comparison according to the fitness.
 /*!
   An EOT is better than an other if its fitness is better.
  */
 template<class EOT>
 class moFitComparator: public moComparator<EOT>
-{
- public:
-  
-  //! Function which makes the comparison and gives the result.
-  /*!
-     \param _solution1 The first solution.
-     \param _solution2 The second solution.
-     \return true if the fitness of the first solution is better than the second solution, false else.
-   */
-  bool operator()(const EOT& _solution1, const EOT& _solution2)
   {
-    return _solution1.fitness()>_solution2.fitness();
-  }
-};
+  public:
+
+    //! Function which makes the comparison and gives the result.
+    /*!
+       \param _solution1 The first solution.
+       \param _solution2 The second solution.
+       \return true if the fitness of the first solution is better than the second solution, false else.
+     */
+    bool operator()(const EOT& _solution1, const EOT& _solution2)
+    {
+      return _solution1.fitness()>_solution2.fitness();
+    }
+  };
 
 #endif

@@ -13,46 +13,46 @@
 #include <tsp>
 
 int
-main (int __argc, char * __argv []) 
+main (int __argc, char * __argv [])
 {
-  if (__argc != 2) 
+  if (__argc != 2)
     {
       std :: cerr << "Usage : ./iterated_local_search [instance]" << std :: endl ;
       return 1 ;
     }
-  
+
   Graph :: load (__argv [1]) ; // Instance
 
   Route route ; // Solution
-  
+
   RouteInit init ; // Sol. Random Init.
   init (route) ;
 
   RouteEval full_eval ; // Full. Eval.
   full_eval (route) ;
-  
+
   std :: cout << "[From] " << route << std :: endl ;
-  
+
   TwoOptInit two_opt_init ; // Init.
-   
+
   TwoOptNext two_opt_next ; // Explorer.
-  
+
   TwoOptIncrEval two_opt_incr_eval ; // Eff. eval.
-  
+
   moBestImprSelect <TwoOpt> two_opt_select ; //Move selection
-  
+
   moGenSolContinue <Route> cont (1000) ; //Stopping criterion
-  
+
   moFitComparator<Route> comparator; // Route comparator
 
   CitySwap perturbation; // Route perturbation
 
-  moILS<TwoOpt> iterated_local_search (two_opt_init, two_opt_next, two_opt_incr_eval, two_opt_select, 
-				       cont, comparator, perturbation, full_eval) ;
+  moILS<TwoOpt> iterated_local_search (two_opt_init, two_opt_next, two_opt_incr_eval, two_opt_select,
+                                       cont, comparator, perturbation, full_eval) ;
   iterated_local_search(route) ;
 
   std :: cout << "[To] " << route << std :: endl ;
-  
+
   return 0 ;
 }
 

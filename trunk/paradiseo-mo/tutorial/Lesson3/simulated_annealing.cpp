@@ -1,4 +1,4 @@
-/* 
+/*
 * <simulated_annealing.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -38,47 +38,47 @@
 #include <tsp>
 
 int
-main (int __argc, char * __argv []) 
+main (int __argc, char * __argv [])
 {
-  if (__argc != 2) 
+  if (__argc != 2)
     {
       std :: cerr << "Usage : ./simulated_annealing [instance]" << std :: endl ;
       return 1 ;
     }
-  
+
   Graph :: load (__argv [1]) ; // Instance
 
   Route route ; // Solution
-  
+
   RouteInit init ; // Sol. Random Init.
   init (route) ;
 
   RouteEval full_eval ; // Full. Eval.
   full_eval (route) ;
-  
+
   std :: cout << "[From] " << route << std :: endl ;
-  
+
   /* Tools for an efficient (? :-))
      local search ! */
-  
+
   TwoOptRand two_opt_rand ; // Route Random. Gen.
-     
+
   TwoOptIncrEval two_opt_incr_eval ; // Eff. eval.
-  
+
   TwoOpt move ;
-  
-  moExponentialCoolingSchedule cool_sched (0.1, 0.98) ; // Exponential Cooling Schedule 
-  //moLinearCoolingSchedule cool_sched (0.1, 0.5) ; // Linear Cooling Schedule 
-  
+
+  moExponentialCoolingSchedule cool_sched (0.1, 0.98) ; // Exponential Cooling Schedule
+  //moLinearCoolingSchedule cool_sched (0.1, 0.5) ; // Linear Cooling Schedule
+
   moGenSolContinue <Route> cont (1000) ; /* Temperature Descreasing
-					    will occur each 1000
-					    iterations */ 
-  
+  					    will occur each 1000
+  					    iterations */
+
   moSA <TwoOpt> simulated_annealing (two_opt_rand, two_opt_incr_eval, cont, 1000, cool_sched, full_eval) ;
   simulated_annealing (route) ;
 
   std :: cout << "[To] " << route << std :: endl ;
-  
+
   return 0 ;
 }
 

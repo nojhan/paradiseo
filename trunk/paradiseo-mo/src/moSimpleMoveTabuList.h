@@ -1,4 +1,4 @@
-/* 
+/*
 * <moSimpleMoveTabuList.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,107 +45,107 @@
 //! Class describing a move tabu list with a limited memory.
 template <class M>
 class moSimpleMoveTabuList: public moTabuList < M >
-{
-  
-public:
-  
-  //! Alias for the type
-  typedef typename M::EOType EOT;
+  {
 
-  //! Constructor
-  /*
-    \param __size The maximum size of the move tabu list.
-   */
-  moSimpleMoveTabuList(unsigned int __size): maxSize(__size)
-  {
-    currentSize=0;
-  }
+  public:
 
-  //! Function that indicates if, in a given state, the _move is tabu or not.
-  /*!
-    \param __move A given moMove.
-    \param __sol A solution.
-    \return true or false.
-  */
-  bool
-  operator () (const M & __move, const EOT & __sol) 
-  {
-    typename std::list<M>::iterator it;
-    
-    it=tabuList.begin();
-    while(it!=tabuList.end()&&(!((*it)==__move)))
-      {
-	it++;
-      }
-    
-    return it!=tabuList.end();
-  }
-  
-  void
-  add (const M & __move, const EOT & __sol)
-  {
-    if(currentSize!=0)
-      {
-	// Useful in the case of a move has been kept thanks to the moAspirCrit.
-	// In this case, the move can already be in the tabuList.
-	removeMove(__move);
-      }
+    //! Alias for the type
+    typedef typename M::EOType EOT;
 
-    tabuList.push_back(__move);
-    
-    if(currentSize==maxSize)
-      {
-	tabuList.erase(tabuList.begin());
-      }
-    else
-      {
-	currentSize++;
-      }
-  }
-  
-  void
-  update ()
-  {
-    //nothing to do
-  }
+    //! Constructor
+    /*
+      \param __size The maximum size of the move tabu list.
+     */
+    moSimpleMoveTabuList(unsigned int __size): maxSize(__size)
+    {
+      currentSize=0;
+    }
 
-  void
-  init ()
-  {
-    //nothing to do
-  }
+    //! Function that indicates if, in a given state, the _move is tabu or not.
+    /*!
+      \param __move A given moMove.
+      \param __sol A solution.
+      \return true or false.
+    */
+    bool
+    operator () (const M & __move, const EOT & __sol)
+    {
+      typename std::list<M>::iterator it;
 
-private:
-  
-  //! Procedure that removes a given move from the tabu list (if it is into, else do nothing).
-  /*!
-    \param __move A given moMove.
-  */
-  void
-  removeMove(const M & __move)
-  {
-    typename std::list<M>::iterator it;
-    
-    it=tabuList.begin();
-    while(it!=tabuList.end()&&(!((*it)==__move)))
+      it=tabuList.begin();
+      while (it!=tabuList.end()&&(!((*it)==__move)))
+        {
+          it++;
+        }
+
+      return it!=tabuList.end();
+    }
+
+    void
+    add (const M & __move, const EOT & __sol)
       {
-	it++;
+        if (currentSize!=0)
+          {
+            // Useful in the case of a move has been kept thanks to the moAspirCrit.
+            // In this case, the move can already be in the tabuList.
+            removeMove(__move);
+          }
+
+        tabuList.push_back(__move);
+
+        if (currentSize==maxSize)
+          {
+            tabuList.erase(tabuList.begin());
+          }
+        else
+          {
+            currentSize++;
+          }
       }
 
-    if(it!=tabuList.end())
-      {
-	tabuList.erase(it);
-      }
-  }
+    void
+    update ()
+    {
+      //nothing to do
+    }
 
-  //! The maximum size of the tabu list.
-  unsigned int maxSize;
+    void
+    init ()
+    {
+      //nothing to do
+    }
 
-  //! The current size of the tabu list.
-  unsigned int currentSize;
-  
-  //! The move tabu list.
-  std::list<M> tabuList;
-};
+  private:
+
+    //! Procedure that removes a given move from the tabu list (if it is into, else do nothing).
+    /*!
+      \param __move A given moMove.
+    */
+    void
+    removeMove(const M & __move)
+    {
+      typename std::list<M>::iterator it;
+
+      it=tabuList.begin();
+      while (it!=tabuList.end()&&(!((*it)==__move)))
+        {
+          it++;
+        }
+
+      if (it!=tabuList.end())
+        {
+          tabuList.erase(it);
+        }
+    }
+
+    //! The maximum size of the tabu list.
+    unsigned int maxSize;
+
+    //! The current size of the tabu list.
+    unsigned int currentSize;
+
+    //! The move tabu list.
+    std::list<M> tabuList;
+  };
 
 #endif

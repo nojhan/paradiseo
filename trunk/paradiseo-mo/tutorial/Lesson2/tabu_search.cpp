@@ -1,4 +1,4 @@
-/* 
+/*
 * <tabu_search.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -38,33 +38,33 @@
 #include <tsp>
 
 int
-main (int __argc, char * __argv []) 
+main (int __argc, char * __argv [])
 {
-  if (__argc != 2) 
+  if (__argc != 2)
     {
       std :: cerr << "Usage : ./tabu_search [instance]" << std :: endl ;
       return 1 ;
     }
-  
+
   Graph :: load (__argv [1]) ; // Instance
-  
+
   Route route ; // Solution
-  
+
   RouteInit init ; // Sol. Random Init.
   init (route) ;
-  
+
   RouteEval full_eval ; // Full. Eval.
   full_eval (route) ;
-  
+
   std :: cout << "[From] " << route << std :: endl ;
 
   /* Tools for an efficient (? :-))
      local search ! */
-  
+
   TwoOptInit two_opt_init ; // Init.
-   
+
   TwoOptNext two_opt_next ; // Explorer.
-  
+
   TwoOptIncrEval two_opt_incr_eval ; // Eff. eval.
 
   TwoOptTabuList tabu_list ; // Tabu List
@@ -77,9 +77,9 @@ main (int __argc, char * __argv [])
 
   moTS <TwoOpt> tabu_search (two_opt_init, two_opt_next, two_opt_incr_eval, tabu_list, aspir_crit, cont, full_eval) ;
   tabu_search (route) ;
-  
+
   std :: cout << "[To] " << route << std :: endl ;
-  
+
   return 0 ;
 }
 

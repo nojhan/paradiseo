@@ -1,4 +1,4 @@
-/* 
+/*
 * <moMove.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -46,12 +46,12 @@
   It describes how a solution can be modified to another one.
 */
 template < class EOT > class moMove:public eoUF < EOT &, void >
-{
+  {
 
-public:
-  //! Alias for the type
-  typedef EOT EOType;
+  public:
+    //! Alias for the type
+    typedef EOT EOType;
 
-};
+  };
 
 #endif

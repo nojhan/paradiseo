@@ -53,7 +53,7 @@ It contains classes for almost any kind of one solution based heuristics.
 
 @section Installation
 
-The installation procedure of the package is detailed in the 
+The installation procedure of the package is detailed in the
 <a href="../../README">README</a> file in the top-directory of the source-tree.
 
 */

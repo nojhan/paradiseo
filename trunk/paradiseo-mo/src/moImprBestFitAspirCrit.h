@@ -1,4 +1,4 @@
-/* 
+/*
 * <moImprBestFitAspirCrit.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,65 +45,65 @@
   is the best ever considered.
 */
 template < class M > class moImprBestFitAspirCrit:public moAspirCrit < M >
-{
-
-public:
-
-  //! Alias for the fitness  
-  typedef typename M::EOType::Fitness Fitness;
-
-  //! Contructor
-  moImprBestFitAspirCrit ()
   {
 
-    first_time = true;
-  }
+  public:
 
-  //! Initialisation procedure
-  void init ()
-  {
+    //! Alias for the fitness
+    typedef typename M::EOType::Fitness Fitness;
 
-    first_time = true;
-  }
+    //! Contructor
+    moImprBestFitAspirCrit ()
+    {
 
-  //! Function that indicates if the fit is better that the already saved fit
-  /*!
-     The first time, the function only saved the current move and fitness.
+      first_time = true;
+    }
 
-     \param __move a move.
-     \param __fit a fitnes linked to the move.
-     \return TRUE the first time and if __fit > best_fit, else FALSE.
-   */
-  bool operator   () (const M & __move, const Fitness & __fit)
-  {
+    //! Initialisation procedure
+    void init ()
+    {
 
-    if (first_time)
-      {
+      first_time = true;
+    }
 
-	best_fit = __fit;
-	first_time = false;
+    //! Function that indicates if the fit is better that the already saved fit
+    /*!
+       The first time, the function only saved the current move and fitness.
 
-	return true;
-      }
-    else if (__fit < best_fit)
-      return false;
+       \param __move a move.
+       \param __fit a fitnes linked to the move.
+       \return TRUE the first time and if __fit > best_fit, else FALSE.
+     */
+    bool operator   () (const M & __move, const Fitness & __fit)
+    {
 
-    else
-      {
+      if (first_time)
+        {
 
-	best_fit = __fit;
+          best_fit = __fit;
+          first_time = false;
 
-	return true;
-      }
-  }
+          return true;
+        }
+      else if (__fit < best_fit)
+        return false;
 
-private:
+      else
+        {
 
-  //! Best fitness found until now
-  Fitness best_fit;
+          best_fit = __fit;
 
-  //! Indicates that a fitness has been already saved or not
-  bool first_time;
-};
+          return true;
+        }
+    }
+
+  private:
+
+    //! Best fitness found until now
+    Fitness best_fit;
+
+    //! Indicates that a fitness has been already saved or not
+    bool first_time;
+  };
 
 #endif

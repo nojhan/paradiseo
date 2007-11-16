@@ -1,4 +1,4 @@
-/* 
+/*
 * <edge_xover.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,28 +45,28 @@
 #include "route.h"
 
 /** Edge Crossover */
-class EdgeXover : public eoQuadOp <Route> 
-{
-  
-public :
-  
-  bool operator () (Route & __route1, Route & __route2) ;
+class EdgeXover : public eoQuadOp <Route>
+  {
 
-private :
-  
-  void cross (const Route & __par1, const Route & __par2, Route & __child) ; /* Binary */
+  public :
 
-  void remove_entry (unsigned int __vertex, std :: vector <std :: set <unsigned> > & __map) ;
-  /* Updating the map of entries */
+    bool operator () (Route & __route1, Route & __route2) ;
 
-  void build_map (const Route & __par1, const Route & __par2) ;
+  private :
 
-  void add_vertex (unsigned int __vertex, Route & __child) ;
+    void cross (const Route & __par1, const Route & __par2, Route & __child) ; /* Binary */
 
-  std :: vector <std :: set <unsigned int> > _map ; /* The handled map */
+    void remove_entry (unsigned int __vertex, std :: vector <std :: set <unsigned> > & __map) ;
+    /* Updating the map of entries */
 
-  std :: vector <bool> visited ; /* Vertices that are already visited */
+    void build_map (const Route & __par1, const Route & __par2) ;
 
-} ;
+    void add_vertex (unsigned int __vertex, Route & __child) ;
+
+    std :: vector <std :: set <unsigned int> > _map ; /* The handled map */
+
+    std :: vector <bool> visited ; /* Vertices that are already visited */
+
+  } ;
 
 #endif

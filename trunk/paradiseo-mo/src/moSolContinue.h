@@ -1,4 +1,4 @@
-/* 
+/*
 * <moSolContinue.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,18 +41,18 @@
 
 //! Class that describes a stop criterion for a solution-based heuristic
 
-/*! 
+/*!
   It allows to add an initialisation procedure to an object that is a unary function (eoUF).
 */
 template < class EOT > class moSolContinue:public eoUF < const EOT &, bool >
-{
+  {
 
-public:
-  //! Procedure which initialises all that the stop criterion needs
-  /*!
-     Generally, it allocates some data structures or initialises some counters.
-   */
-  virtual void init () = 0;
-};
+  public:
+    //! Procedure which initialises all that the stop criterion needs
+    /*!
+       Generally, it allocates some data structures or initialises some counters.
+     */
+    virtual void init () = 0;
+  };
 
 #endif

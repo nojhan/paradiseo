@@ -1,4 +1,4 @@
-/* 
+/*
 * <route_valid.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -38,31 +38,31 @@
 
 #include <vector>
 
-bool valid (Route & __route) 
+bool valid (Route & __route)
 {
-  
+
   std::vector<unsigned int> t;
   t.resize(__route.size());
-  
+
   for (unsigned int i = 0 ; i < __route.size () ; i ++)
     {
       t [i] = 0 ;
     }
-  
+
   for (unsigned int i = 0 ; i < __route.size () ; i ++)
     {
       t [__route [i]] ++ ;
     }
-  
+
   for (unsigned int i = 0 ; i < __route.size () ; i ++)
     {
       if (t [i] != 1)
-	{
-	  t.clear();
-	  return false ;
-	}
+        {
+          t.clear();
+          return false ;
+        }
     }
-  
+
   t.clear();
   return true ; // OK.
 }

@@ -1,4 +1,4 @@
-/* 
+/*
 * <mix.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -39,9 +39,9 @@
 
 #include <utils/eoRNG.h>
 
-template <class T> void mix (std :: vector <T> & __vect) 
+template <class T> void mix (std :: vector <T> & __vect)
 {
-  for (unsigned int i = 0 ; i < __vect.size () ; i ++)   
+  for (unsigned int i = 0 ; i < __vect.size () ; i ++)
     {
       std :: swap (__vect [i], __vect [rng.random (__vect.size ())]) ;
     }

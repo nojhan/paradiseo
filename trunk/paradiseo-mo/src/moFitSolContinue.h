@@ -1,4 +1,4 @@
-/* 
+/*
 * <moFitSolContinue.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,48 +44,48 @@
   The stop criterion corresponds to a fitness threshold gained.
  */
 template < class EOT > class moFitSolContinue:public moSolContinue < EOT >
-{
-
-public:
-
-  //! Alias for the fitness.
-  typedef typename EOT::Fitness Fitness;
-
-  //! Basic constructor.
-  /*!
-     \param __fitness The fitness to reach.
-   */
-  moFitSolContinue (Fitness __fitness): fitness (__fitness)
-  {}
-
-  //! Function that activates the stopping criterion.
-  /*!
-    Indicates if the fitness threshold has not yet been reached.
-
-     \param __sol the current solution.
-     \return true or false according to the value of the fitness.
-   */
-  bool operator   () (const EOT & __sol)
   {
-    if(__sol.invalid())
-      {
-	return true;
-      }
 
-    return __sol.fitness() < fitness;
-  }
+  public:
 
-  //! Procedure which allows to initialise all the stuff needed.
-  /*!
-    It can be also used to reinitialize all the needed things.
-  */
-  void init ()
-  {}
+    //! Alias for the fitness.
+    typedef typename EOT::Fitness Fitness;
 
-private:
+    //! Basic constructor.
+    /*!
+       \param __fitness The fitness to reach.
+     */
+    moFitSolContinue (Fitness __fitness): fitness (__fitness)
+    {}
 
-  //! Fitness target.
-  Fitness fitness;
-};
+    //! Function that activates the stopping criterion.
+    /*!
+      Indicates if the fitness threshold has not yet been reached.
+
+       \param __sol the current solution.
+       \return true or false according to the value of the fitness.
+     */
+    bool operator   () (const EOT & __sol)
+    {
+      if (__sol.invalid())
+        {
+          return true;
+        }
+
+      return __sol.fitness() < fitness;
+    }
+
+    //! Procedure which allows to initialise all the stuff needed.
+    /*!
+      It can be also used to reinitialize all the needed things.
+    */
+    void init ()
+    {}
+
+  private:
+
+    //! Fitness target.
+    Fitness fitness;
+  };
 
 #endif

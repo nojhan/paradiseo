@@ -1,4 +1,4 @@
-/* 
+/*
 * <moMoveIncrEval.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -47,11 +47,9 @@
   the solution if this one is updated.
 */
 template < class M > class moMoveIncrEval:public eoBF < const M &, const typename
-  M::EOType &,
-  typename
-  M::EOType::Fitness >
-{
-
-};
+      M::EOType &,
+      typename
+      M::EOType::Fitness >
+  {};
 
 #endif

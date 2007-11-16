@@ -1,4 +1,4 @@
-/* 
+/*
 * <moLSCheckPoint.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,48 +44,48 @@
   Thanks to this class, at each iteration, additionnal function can be used (and not only one).
 */
 template < class M > class moLSCheckPoint:public eoBF < const M &, const typename
-  M::EOType &, void >
-{
-
-public:
-  //! Function which launches the checkpointing
-  /*!
-     Each saved function is used on the current move and the current solution.
-
-     \param __move a move.
-     \param __sol a solution.
-   */
-  void
-  operator   () (const M & __move, const typename M::EOType & __sol)
+      M::EOType &, void >
   {
 
-    for (unsigned int i = 0; i < func.size (); i++)
+  public:
+    //! Function which launches the checkpointing
+    /*!
+       Each saved function is used on the current move and the current solution.
+
+       \param __move a move.
+       \param __sol a solution.
+     */
+    void
+    operator   () (const M & __move, const typename M::EOType & __sol)
+    {
+
+      for (unsigned int i = 0; i < func.size (); i++)
+        {
+          func[i]->operator   ()(__move, __sol);
+        }
+    }
+
+    //! Procedure which add a new function to the function vector
+    /*!
+       The new function is added at the end of the vector.
+       \param __f a new function to add.
+     */
+    void
+    add (eoBF < const M &, const typename M::EOType &, void >&__f)
       {
-	func[i]->operator   ()(__move, __sol);
+
+        func.push_back (&__f);
       }
-  }
 
-  //! Procedure which add a new function to the function vector
-  /*!
-     The new function is added at the end of the vector.
-     \param __f a new function to add.
-   */
-  void
-  add (eoBF < const M &, const typename M::EOType &, void >&__f)
-  {
+  private:
 
-    func.push_back (&__f);
-  }
-
-private:
-
-  //! vector of function
-  std::vector < eoBF < const
+    //! vector of function
+    std::vector < eoBF < const
     M &, const
     typename
-  M::EOType &, void >*>
+    M::EOType &, void >*>
     func;
 
-};
+  };
 
 #endif

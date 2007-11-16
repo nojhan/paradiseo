@@ -1,4 +1,4 @@
-/* 
+/*
 * <moMoveLoopExpl.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,8 +44,6 @@
   Only a description... moHCMoveLoopExpl and moTSMoveLoopExpl are exemples of class that are a moMoveLoopExpl.
  */
 template < class M > class moMoveLoopExpl:public moMoveExpl < M >
-{
-
-};
+  {};
 
 #endif

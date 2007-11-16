@@ -1,4 +1,4 @@
-/* 
+/*
 * <two_opt.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,18 +44,18 @@
 
 #include "route.h"
 
-class TwoOpt : public moMove <Route>, public std :: pair <unsigned, unsigned>, public eoPersistent 
-{
-  
-public :
-  
-  TwoOpt operator ! () const ;
-  
-  void operator () (Route & __route) ;
-  
-  void readFrom (std :: istream & __is) ;
-  
-  void printOn (std :: ostream & __os) const ;
-} ;
+class TwoOpt : public moMove <Route>, public std :: pair <unsigned, unsigned>, public eoPersistent
+  {
+
+  public :
+
+    TwoOpt operator ! () const ;
+
+    void operator () (Route & __route) ;
+
+    void readFrom (std :: istream & __is) ;
+
+    void printOn (std :: ostream & __os) const ;
+  } ;
 
 #endif

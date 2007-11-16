@@ -1,4 +1,4 @@
-/* 
+/*
 * <moCoolingSchedule.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,8 +45,6 @@
   See moExponentialCoolingSchedule or moLinearCoolingSchedule for example.
 */
 class moCoolingSchedule:public eoUF < double &, bool >
-{
-
-};
+  {};
 
 #endif

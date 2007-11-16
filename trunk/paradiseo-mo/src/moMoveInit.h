@@ -1,4 +1,4 @@
-/* 
+/*
 * <moMoveInit.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,9 +45,7 @@
   Only a description... An object that herits from this class needs to be designed to be used.
  */
 template < class M > class moMoveInit:public eoBF < M &, const typename
-M::EOType &, void >
-{
-
-};
+      M::EOType &, void >
+  {};
 
 #endif

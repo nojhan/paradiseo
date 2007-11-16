@@ -1,4 +1,4 @@
-/* 
+/*
 * <graph.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -40,13 +40,13 @@
 #include <vector>
 #include <utility>
 
-namespace Graph 
-{
+namespace Graph
+  {
   void load (const char * __file_name) ;
   /* Loading cities
      (expressed by their coordinates)
-     from the given file name */  
-  
+     from the given file name */
+
   float distance (unsigned int __from, unsigned int __to) ;
 
   unsigned int size () ; // How many cities ?

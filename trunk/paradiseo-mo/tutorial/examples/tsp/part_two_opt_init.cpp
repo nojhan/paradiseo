@@ -1,4 +1,4 @@
-/* 
+/*
 * <part_two_opt_init.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -38,7 +38,7 @@
 
 #include "part_two_opt_init.h"
 
-void PartTwoOptInit :: operator () (TwoOpt & __move, const Route & __route) 
+void PartTwoOptInit :: operator () (TwoOpt & __move, const Route & __route)
 {
   __move.first = rng.random (__route.size () - 6) ;
   __move.second = __move.first + 2 ;

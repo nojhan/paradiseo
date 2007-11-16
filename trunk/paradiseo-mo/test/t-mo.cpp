@@ -1,4 +1,4 @@
-/* 
+/*
 * <t-mo.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -51,7 +51,7 @@ int main()
   Chrom chrom1, chrom2;
 
   std::cout << "chrom1 = " << chrom1 << std::endl
-       << "chrom2 = " << chrom2 << std::endl;
+  << "chrom2 = " << chrom2 << std::endl;
 
   return 0;
 }
