@@ -1,4 +1,4 @@
-/* 
+/*
 * <param.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -38,7 +38,8 @@
 
 #include "schema.h"
 
-void loadRMCParameters (int & __argc, char * * & __argv) {
+void loadRMCParameters (int & __argc, char * * & __argv)
+{
 
   eoParser parser (__argc, __argv);
 

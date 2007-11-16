@@ -1,4 +1,4 @@
-/* 
+/*
 * <peoTransform.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,9 +45,8 @@
 
 //! The peoTransform class acts only as an interface for creating transform operators - for an example
 //! please refer to the <b>peoSeqTransform</b> and the <b>peoParaSGATransform</b> classes.
-template< class EOT > class peoTransform : public Service, public eoTransform< EOT > {
-
-};
+template< class EOT > class peoTransform : public Service, public eoTransform< EOT >
+  {};
 
 
 #endif

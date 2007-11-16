@@ -1,4 +1,4 @@
-/* 
+/*
 * <two_opt_init.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,12 +41,13 @@
 
 #include "two_opt.h"
 
-class TwoOptInit : public moMoveInit <TwoOpt> {
-  
-public :
-  
-  void operator () (TwoOpt & __move, const Route & __route) ;
-  
-} ;
+class TwoOptInit : public moMoveInit <TwoOpt>
+  {
+
+  public :
+
+    void operator () (TwoOpt & __move, const Route & __route) ;
+
+  } ;
 
 #endif

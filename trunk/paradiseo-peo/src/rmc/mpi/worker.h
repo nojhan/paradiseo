@@ -1,4 +1,4 @@
-/* 
+/*
 * <worker.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,37 +41,38 @@
 #include "../../core/reac_thread.h"
 #include "../../core/service.h"
 
-typedef unsigned WORKER_ID; 
+typedef unsigned WORKER_ID;
 
-class Worker : public Communicable, public ReactiveThread {
+class Worker : public Communicable, public ReactiveThread
+  {
 
-public : 
+  public :
 
-  Worker ();
+    Worker ();
 
-  void start ();
+    void start ();
 
-  void packResult ();
+    void packResult ();
 
-  void unpackData ();
+    void unpackData ();
 
-  void packTaskDone (); 
+    void packTaskDone ();
 
-  void notifySendingResult ();
+    void notifySendingResult ();
 
-  void notifySendingTaskDone ();
-  
-  void setSource (int __rank);
-  
-private :
+    void notifySendingTaskDone ();
 
-  WORKER_ID id;
-  SERVICE_ID serv_id;
-  Service * serv;
-  int src;
+    void setSource (int __rank);
 
-  bool toto;
-};
+  private :
+
+    WORKER_ID id;
+    SERVICE_ID serv_id;
+    Service * serv;
+    int src;
+
+    bool toto;
+  };
 
 extern Worker * getWorker (WORKER_ID __key);
 

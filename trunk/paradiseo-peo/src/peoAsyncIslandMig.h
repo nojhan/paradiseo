@@ -1,4 +1,4 @@
-/* 
+/*
 * <peoAsyncIslandMig.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -74,7 +74,7 @@
 //!	<tr><td>} <b>while</b> ( eaCheckpointContinue( population ) ); &nbsp;</td> <td>// checkpoint operators are applied on the current population, including the migration operator, if any specified </td></tr>
 //!	</table>
 //!
-//! Constructing an asynchronous island migration model requires having defined (1) a topological migration model, 
+//! Constructing an asynchronous island migration model requires having defined (1) a topological migration model,
 //! (2) the control parameters of the migration process, (3) a checkpoint object associated with an evolutionary algorithm,
 //! and (4) an owner object must be set. The owner object must be derived from the <b>Runner</b> class (for example
 //! a peoEA object represents a possible owner).
@@ -82,14 +82,14 @@
 //!
 //!	<ol>
 //!		<li> topological model to be followed when performing migrations: <br/>
-//!		<br/> 
+//!		<br/>
 //!		<table style="border:none; border-spacing:0px;text-align:left; vertical-align:top; font-size:8pt;" border="0">
 //!		<tr><td>RingTopology migTopology; &nbsp;</td> <td>// a simple ring topological model - each island communicates with two other islands</td></tr>
 //!		</table>
 //!		</li>
 //!
 //!		<li> the continuation criterion, selection and replacement strategy etc. are defined: <br/>
-//!		<br/> 
+//!		<br/>
 //!		<table style="border:none; border-spacing:0px; font-size:8pt;" border="0">
 //!		<tr><td>eoPop< EOT > population( POP_SIZE, popInitializer ); &nbsp;</td> <td>// population of individuals to be used for the evolutionary algorithm</td></tr>
 //!		<tr><td> &nbsp; </td> <td> &nbsp; </td></tr>
@@ -98,16 +98,16 @@
 //!		<tr><td>eoSelectNumber< EOT > migSelect( migSelectStrategy, MIG_SIZE ); &nbsp;</td> <td>// number of individuals to be selected using the specified strategy</td></tr>
 //!		<tr><td>eoPlusReplacement< EOT > migReplace; &nbsp;</td> <td>// immigration strategy - the worse individuals in the destination population are replaced by the immigrant individuals</td></tr>
 //!		<tr><td> &nbsp; </td> <td> &nbsp; </td></tr>
-//!		<tr><td>peoAsyncIslandMig< EOT > asyncMigration( 
+//!		<tr><td>peoAsyncIslandMig< EOT > asyncMigration(
 //!			<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; migCont, migSelect, migReplace, migTopology,
 //!			<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; population, population
-//!			<br/> ); &nbsp; </td> 
+//!			<br/> ); &nbsp; </td>
 //!			<td>// asynchronous migration object - the emigrant individuals are selected from the same from population in which the immigrant individuals are being integrated </td></tr>
 //!		</table>
 //!		</li>
 //!
 //!		<li> creation of a checkpoint object as part of the definition of an evolutionary algoritm (details of th EA not given as being out of scope): <br/>
-//!		<br/> 
+//!		<br/>
 //!		<table style="border:none; border-spacing:0px;text-align:left; vertical-align:top; font-size:8pt;" border="0">
 //!		<tr><td>... &nbsp;</td> <td> &nbsp; </td></tr>
 //!		<tr><td>eoGenContinue< EOT > eaCont( NUM_GEN ); &nbsp;</td> <td>// the evolutionary algorithm will stop after NUM_GEN generations</td></tr>
@@ -119,7 +119,7 @@
 //!		</li>
 //!
 //!		<li> definition of an owner evolutionary algorithm (an object inheriting the <b>Runner</b> class): <br/>
-//!		<br/> 
+//!		<br/>
 //!		<table style="border:none; border-spacing:0px;text-align:left; vertical-align:top; font-size:8pt;" border="0">
 //!		<tr><td>peoEA< EOT > eaAlg( eaCheckpointContinue, eaPopEval, eaSelect, eaTransform, eaReplace); &nbsp;</td> <td>// evolutionary algorithm having as checkpoint the eaCheckpointContinue object defined above </td></tr>
 //!		<tr><td>asyncMigration.setOwner( eaAlg ); &nbsp;</td> <td>// setting the evolutionary algorithm as owner of the migration object </td></tr>
@@ -137,149 +137,157 @@
 //! islands requires the reiteration of the steps 2 through 4 for creating distinct algorithms, with distinct populations and
 //! the associated distinctly parametrized migration objects. The interconnecting element is the underlying topology, defined at step 1
 //! (the same C++ migTopology object has to be passed as parameter for all the migration objects, in order to interconnect them).
-template< class EOT > class peoAsyncIslandMig : public Cooperative, public eoUpdater {
+template< class EOT > class peoAsyncIslandMig : public Cooperative, public eoUpdater
+  {
 
-public:
+  public:
 
-	//! Constructor for the peoAsyncIslandMig class; the characteristics of the migration model are defined
-	//! through the specified parameters - out of the box objects provided in EO, etc., or custom, derived objects may be passed as parameters.
-	//!
-	//! @param eoContinue< EOT >& __cont - continuation criterion specifying whether the migration is performed or not;
-	//! @param eoSelect< EOT >& __select - selection strategy to be applied for constructing a list of emigrant individuals out of the source population;
-	//! @param eoReplacement< EOT >& __replace - replacement strategy used for integrating the immigrant individuals in the destination population;
-	//! @param Topology& __topology - topological model to be followed when performing migrations;
-	//! @param eoPop< EOT >& __source - source population from which the emigrant individuals are selected;
-	//! @param eoPop< EOT >& __destination - destination population in which the immigrant population are integrated.
-	peoAsyncIslandMig( 
-				eoContinue< EOT >& __cont,
-				eoSelect< EOT >& __select,
-				eoReplacement< EOT >& __replace,
-				Topology& __topology,
-				eoPop< EOT >& __source,
-				eoPop< EOT >& __destination 
-	);
+    //! Constructor for the peoAsyncIslandMig class; the characteristics of the migration model are defined
+    //! through the specified parameters - out of the box objects provided in EO, etc., or custom, derived objects may be passed as parameters.
+    //!
+    //! @param eoContinue< EOT >& __cont - continuation criterion specifying whether the migration is performed or not;
+    //! @param eoSelect< EOT >& __select - selection strategy to be applied for constructing a list of emigrant individuals out of the source population;
+    //! @param eoReplacement< EOT >& __replace - replacement strategy used for integrating the immigrant individuals in the destination population;
+    //! @param Topology& __topology - topological model to be followed when performing migrations;
+    //! @param eoPop< EOT >& __source - source population from which the emigrant individuals are selected;
+    //! @param eoPop< EOT >& __destination - destination population in which the immigrant population are integrated.
+    peoAsyncIslandMig(
+      eoContinue< EOT >& __cont,
+      eoSelect< EOT >& __select,
+      eoReplacement< EOT >& __replace,
+      Topology& __topology,
+      eoPop< EOT >& __source,
+      eoPop< EOT >& __destination
+    );
 
-	//! Function operator to be called as checkpoint for performing the migration step. The emigrant individuals are selected
-	//! from the source population and sent to the next island (defined by the topology object) while the immigrant 
-	//! individuals are integrated in the destination population. There is no need to explicitly call the function - the
-	//! wrapper checkpoint object (please refer to the above example) will perform the call when required.
-	void operator()();
-	
-	//! Auxiliary function dealing with sending the emigrant individuals. There is no need to explicitly call the function.
-	void pack();
-	//! Auxiliary function dealing with receiving immigrant individuals. There is no need to explicitly call the function.
-	void unpack();
+    //! Function operator to be called as checkpoint for performing the migration step. The emigrant individuals are selected
+    //! from the source population and sent to the next island (defined by the topology object) while the immigrant
+    //! individuals are integrated in the destination population. There is no need to explicitly call the function - the
+    //! wrapper checkpoint object (please refer to the above example) will perform the call when required.
+    void operator()();
 
-
-private:
-
-	void emigrate();
-	void immigrate();
+    //! Auxiliary function dealing with sending the emigrant individuals. There is no need to explicitly call the function.
+    void pack();
+    //! Auxiliary function dealing with receiving immigrant individuals. There is no need to explicitly call the function.
+    void unpack();
 
 
-private:
+  private:
 
-	eoContinue< EOT >& cont;	// continuator
-	eoSelect< EOT >& select;	// the selection strategy
-	eoReplacement< EOT >& replace;	// the replacement strategy
-	Topology& topology;		// the neighboring topology
-	
-	// source and destination populations
-	eoPop< EOT >& source;
-	eoPop< EOT >& destination;
-	
-	// immigrants & emigrants in the queue
-	std :: queue< eoPop< EOT > > imm;
-	std :: queue< eoPop< EOT > > em;
-	
-	std :: queue< Cooperative* > coop_em;
-};
+    void emigrate();
+    void immigrate();
+
+
+  private:
+
+    eoContinue< EOT >& cont;	// continuator
+    eoSelect< EOT >& select;	// the selection strategy
+    eoReplacement< EOT >& replace;	// the replacement strategy
+    Topology& topology;		// the neighboring topology
+
+    // source and destination populations
+    eoPop< EOT >& source;
+    eoPop< EOT >& destination;
+
+    // immigrants & emigrants in the queue
+    std :: queue< eoPop< EOT > > imm;
+    std :: queue< eoPop< EOT > > em;
+
+    std :: queue< Cooperative* > coop_em;
+  };
 
 
 template< class EOT > peoAsyncIslandMig< EOT > :: peoAsyncIslandMig(
 
-		eoContinue< EOT >& __cont,
-		eoSelect< EOT >& __select,
-		eoReplacement< EOT >& __replace,
-		Topology& __topology,
-		eoPop< EOT >& __source,
-		eoPop< EOT >& __destination
+  eoContinue< EOT >& __cont,
+  eoSelect< EOT >& __select,
+  eoReplacement< EOT >& __replace,
+  Topology& __topology,
+  eoPop< EOT >& __source,
+  eoPop< EOT >& __destination
 
-	) : cont( __cont ), select( __select ), replace( __replace ), topology( __topology ), source( __source ), destination( __destination )
+) : cont( __cont ), select( __select ), replace( __replace ), topology( __topology ), source( __source ), destination( __destination )
 {
 
-	__topology.add( *this );
+  __topology.add( *this );
 }
 
 
 template< class EOT > void peoAsyncIslandMig< EOT > :: pack()
 {
 
-	lock(); {
+  lock ();
+  {
 
-		 :: pack( coop_em.front()->getKey() );
-		 :: pack( em.front() );
-		coop_em.pop();
-		em.pop();
-	}
-	unlock();
+    :: pack( coop_em.front()->getKey() );
+    :: pack( em.front() );
+    coop_em.pop();
+    em.pop();
+  }
+  unlock();
 }
 
 
 template< class EOT > void peoAsyncIslandMig< EOT > :: unpack()
 {
 
-	lock(); {
+  lock ();
+  {
 
-		eoPop< EOT > mig;
-		 :: unpack( mig );
-		imm.push( mig );
-	}
-	unlock();
+    eoPop< EOT > mig;
+    :: unpack( mig );
+    imm.push( mig );
+  }
+  unlock();
 }
 
 
 template< class EOT > void peoAsyncIslandMig< EOT > :: emigrate()
 {
 
-	std :: vector< Cooperative* >in, out;
-	topology.setNeighbors( this, in, out );
+  std :: vector< Cooperative* >in, out;
+  topology.setNeighbors( this, in, out );
 
-	for ( unsigned i = 0; i < out.size(); i++ ) {
-	
-		eoPop< EOT > mig;
-		select( source, mig );
-		em.push( mig );
-		coop_em.push( out[i] );
-		send( out[i] );
-		printDebugMessage( "sending some emigrants." );
-	}
+  for ( unsigned i = 0; i < out.size(); i++ )
+    {
+
+      eoPop< EOT > mig;
+      select( source, mig );
+      em.push( mig );
+      coop_em.push( out[i] );
+      send( out[i] );
+      printDebugMessage( "sending some emigrants." );
+    }
 }
 
 
 template< class EOT > void peoAsyncIslandMig< EOT > :: immigrate()
 {
 
-	lock(); {
+  lock ();
+  {
 
-		while ( !imm.empty() ) {
+    while ( !imm.empty() )
+      {
 
-			replace( destination, imm.front() );
-			imm.pop();
-			printDebugMessage( "receiving some immigrants." );
-		}
-	}
-	unlock();
+        replace( destination, imm.front() );
+        imm.pop();
+        printDebugMessage( "receiving some immigrants." );
+      }
+  }
+  unlock();
 }
 
 
-template< class EOT > void peoAsyncIslandMig< EOT > :: operator()() {
+template< class EOT > void peoAsyncIslandMig< EOT > :: operator()()
+{
 
-	if ( !cont( source ) ) {
+  if ( !cont( source ) )
+    {
 
-		emigrate();	// sending emigrants
-		immigrate();	// receiving immigrants
-	}
+      emigrate();	// sending emigrants
+      immigrate();	// receiving immigrants
+    }
 }
 
 

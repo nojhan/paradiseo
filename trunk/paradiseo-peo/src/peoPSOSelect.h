@@ -3,7 +3,7 @@
 *  (c) OPAC Team, October 2007
 *
 * Clive Canape
-* 
+*
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
 * modify and/ or redistribute the software under the terms of the CeCILL
@@ -29,7 +29,7 @@
 * knowledge of the CeCILL license and that you accept its terms.
 *
 * ParadisEO WebSite : http://paradiseo.gforge.inria.fr
-* Contact: paradiseo-help@lists.gforge.inria.fr 
+* Contact: paradiseo-help@lists.gforge.inria.fr
 *   Contact: clive.canape@inria.fr
 */
 
@@ -40,21 +40,22 @@
 #include <eoSelectOne.h>
 
 template <class POT> class peoPSOSelect: public eoSelectOne<POT>
-{
- public:
- 
- peoPSOSelect(eoTopology < POT > & _topology):topology(_topology){}
- 
- typedef typename PO < POT >::Fitness Fitness;
-
-  virtual const POT& operator()(const eoPop<POT>& _pop)
   {
-  	return topology.globalBest(_pop);
-  }
-  
+  public:
+
+    peoPSOSelect(eoTopology < POT > & _topology):topology(_topology)
+    {}
+
+    typedef typename PO < POT >::Fitness Fitness;
+
+    virtual const POT& operator()(const eoPop<POT>& _pop)
+    {
+      return topology.globalBest(_pop);
+    }
+
   private:
-  	eoTopology < POT > & topology;
-};
+    eoTopology < POT > & topology;
+  };
 
 #endif
 

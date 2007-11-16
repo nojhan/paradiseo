@@ -1,4 +1,4 @@
-/* 
+/*
 * <peoPopEval.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,13 +44,14 @@
 //! The <b>peoPopEval</b> class provides the interface for constructing ParadisEO specific evaluation functors.
 //! The derived classes may be used as wrappers for <b>EO</b>-derived evaluation functors. In order to have an example,
 //! please refer to the implementation of the <b>peoSeqPopEval</b> and <b>peoParaPopEval</b> classes.
-template< class EOT > class peoPopEval : public Service {
+template< class EOT > class peoPopEval : public Service
+  {
 
-public:
+  public:
 
-	//! Interface function providing the signature for constructing an evaluation functor.
-	virtual void operator()( eoPop< EOT >& __pop ) = 0;
-};
+    //! Interface function providing the signature for constructing an evaluation functor.
+    virtual void operator()( eoPop< EOT >& __pop ) = 0;
+  };
 
 
 #endif

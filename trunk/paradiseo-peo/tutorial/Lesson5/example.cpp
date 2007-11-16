@@ -1,4 +1,4 @@
-/* 
+/*
 * <example.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -59,20 +59,21 @@
 #define MUT_RATE 0.01
 
 
-int main (int __argc, char * * __argv) {
-	
-	// Example of a problem (TSP) with an hybridization
+int main (int __argc, char * * __argv)
+{
+
+  // Example of a problem (TSP) with an hybridization
 
   peo :: init (__argc, __argv);
 
-  
-  loadParameters (__argc, __argv); /* Processing some parameters relative to the tackled
-				      problem (TSP) */
 
-  RouteInit route_init; /* Its builds random routes */  
+  loadParameters (__argc, __argv); /* Processing some parameters relative to the tackled
+  				      problem (TSP) */
+
+  RouteInit route_init; /* Its builds random routes */
   RouteEval full_eval; /* Full route evaluator */
 
-  
+
   OrderXover order_cross; /* Recombination */
   PartialMappedXover pm_cross;
   EdgeXover edge_cross;
@@ -88,30 +89,30 @@ int main (int __argc, char * * __argv) {
 
   /** The EA */
   eoPop <Route> ox_pop (POP_SIZE, route_init);  /* Population */
-  
-  eoGenContinue <Route> ox_cont (NUM_GEN); /* A fixed number of iterations */  
+
+  eoGenContinue <Route> ox_cont (NUM_GEN); /* A fixed number of iterations */
   eoCheckPoint <Route> ox_checkpoint (ox_cont); /* Checkpoint */
-  peoSeqPopEval <Route> ox_pop_eval (full_eval);  
+  peoSeqPopEval <Route> ox_pop_eval (full_eval);
   eoStochTournamentSelect <Route> ox_select_one;
   eoSelectNumber <Route> ox_select (ox_select_one, POP_SIZE);
   eoSGATransform <Route> ox_transform (order_cross, CROSS_RATE, city_swap_mut, MUT_RATE);
-  peoSeqTransform <Route> ox_para_transform (ox_transform);    
+  peoSeqTransform <Route> ox_para_transform (ox_transform);
   eoEPReplacement <Route> ox_replace (2);
 
   peoEA <Route> ox_ea (ox_checkpoint, ox_pop_eval, ox_select, ox_para_transform, ox_replace);
-  
+
   ox_ea (ox_pop);   /* Application to the given population */
-    
-    
+
+
   peo :: run ();
   peo :: finalize (); /* Termination */
-  
-  if(getNodeRank()==1)
-  	std :: cout << "\nResult : "<<ox_pop[ 0 ].fitness();
-  hc( ox_pop[ 0 ] );
-  if(getNodeRank()==1)
-  	std :: cout << "\n\nAfter an hybridization : " << ox_pop[ 0 ].fitness() << std :: endl;
 
-  
+  if (getNodeRank()==1)
+    std :: cout << "\nResult : "<<ox_pop[ 0 ].fitness();
+  hc( ox_pop[ 0 ] );
+  if (getNodeRank()==1)
+    std :: cout << "\n\nAfter an hybridization : " << ox_pop[ 0 ].fitness() << std :: endl;
+
+
   return 0;
 }

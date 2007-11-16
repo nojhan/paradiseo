@@ -1,4 +1,4 @@
-/* 
+/*
 * <peoParaSGATransform.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -46,39 +46,40 @@
 extern int getNodeRank();
 
 
-template< class EOT > class peoParaSGATransform : public peoTransform< EOT > {
+template< class EOT > class peoParaSGATransform : public peoTransform< EOT >
+  {
 
-public:
+  public:
 
-	using peoTransform< EOT > :: requestResourceRequest;
-	using peoTransform< EOT > :: resume;
-	using peoTransform< EOT > :: stop;
-	using peoTransform< EOT > :: getOwner;
+    using peoTransform< EOT > :: requestResourceRequest;
+    using peoTransform< EOT > :: resume;
+    using peoTransform< EOT > :: stop;
+    using peoTransform< EOT > :: getOwner;
 
-	peoParaSGATransform( 
+    peoParaSGATransform(
 
-				eoQuadOp< EOT >& __cross,
-				double __cross_rate,
-				eoMonOp< EOT >& __mut, 
-				double __mut_rate 
-	);
+      eoQuadOp< EOT >& __cross,
+      double __cross_rate,
+      eoMonOp< EOT >& __mut,
+      double __mut_rate
+    );
 
-	void operator()( eoPop< EOT >& __pop );
-	
-	void packData();
-	
-	void unpackData();
-	
-	void execute();
-	
-	void packResult();
-	
-	void unpackResult();
-	
-	void notifySendingData();
-	void notifySendingAllResourceRequests();
+    void operator()( eoPop< EOT >& __pop );
 
-private:
+    void packData();
+
+    void unpackData();
+
+    void execute();
+
+    void packResult();
+
+    void unpackResult();
+
+    void notifySendingData();
+    void notifySendingAllResourceRequests();
+
+  private:
 
     eoQuadOp< EOT >& cross;
     double cross_rate;
@@ -93,90 +94,95 @@ private:
     EOT father, mother;
 
     unsigned num_term;
-};
+  };
 
-template< class EOT > peoParaSGATransform< EOT > :: peoParaSGATransform( 
+template< class EOT > peoParaSGATransform< EOT > :: peoParaSGATransform(
 
-				eoQuadOp< EOT >& __cross,
-				double __cross_rate,
-				eoMonOp < EOT >& __mut,
-				double __mut_rate 
+  eoQuadOp< EOT >& __cross,
+  double __cross_rate,
+  eoMonOp < EOT >& __mut,
+  double __mut_rate
 
-		) : cross( __cross ), cross_rate( __cross_rate ), mut( __mut ), mut_rate( __mut_rate )
+) : cross( __cross ), cross_rate( __cross_rate ), mut( __mut ), mut_rate( __mut_rate )
+{}
+
+
+template< class EOT > void peoParaSGATransform< EOT > :: packData()
 {
 
+  pack( idx );
+  :: pack( pop->operator[]( idx++ ) );
+  :: pack( pop->operator[]( idx++ ) );
 }
 
 
-template< class EOT > void peoParaSGATransform< EOT > :: packData() {
+template< class EOT > void peoParaSGATransform< EOT > :: unpackData()
+{
 
-	pack( idx );
-	 :: pack( pop->operator[]( idx++ ) );
-	 :: pack( pop->operator[]( idx++ ) );
+  unpack( idx );
+  :: unpack( father );
+  :: unpack( mother );
 }
 
 
-template< class EOT > void peoParaSGATransform< EOT > :: unpackData() {
+template< class EOT > void peoParaSGATransform< EOT > :: execute()
+{
 
-	unpack( idx );
-	 :: unpack( father );
-	 :: unpack( mother );
+  if ( rng.uniform() < cross_rate ) cross( mother, father );
+
+  if ( rng.uniform() < mut_rate ) mut( mother );
+  if ( rng.uniform() < mut_rate ) mut( father );
 }
 
 
-template< class EOT > void peoParaSGATransform< EOT > :: execute() {
+template< class EOT > void peoParaSGATransform< EOT > :: packResult()
+{
 
-	if( rng.uniform() < cross_rate ) cross( mother, father );
-
-	if( rng.uniform() < mut_rate ) mut( mother );
-	if( rng.uniform() < mut_rate ) mut( father );
+  pack( idx );
+  :: pack( father );
+  :: pack( mother );
 }
 
 
-template< class EOT > void peoParaSGATransform< EOT > :: packResult() {
+template< class EOT > void peoParaSGATransform< EOT > :: unpackResult()
+{
 
-	pack( idx );
-	 :: pack( father );
-	 :: pack( mother );
+  unsigned sidx;
+
+  unpack( sidx );
+  :: unpack( pop->operator[]( sidx++ ) );
+  :: unpack( pop->operator[]( sidx ) );
+  num_term += 2;
+  // Can be used with a odd size
+  if ( num_term == 2*(pop->size()/2) )
+    {
+
+      getOwner()->setActive();
+      resume();
+    }
 }
 
 
-template< class EOT > void peoParaSGATransform< EOT > :: unpackResult() {
+template< class EOT > void peoParaSGATransform< EOT > :: operator()( eoPop < EOT >& __pop )
+{
 
-	unsigned sidx;
-	
-	unpack( sidx );
-	 :: unpack( pop->operator[]( sidx++ ) );
-	 :: unpack( pop->operator[]( sidx ) );
-	num_term += 2;
-	// Can be used with a odd size 
-	if( num_term == 2*(pop->size()/2) ) {
-
-		getOwner()->setActive();
-		resume();
-	}
+  printDebugMessage( "performing the parallel transformation step." );
+  pop = &__pop;
+  idx = 0;
+  num_term = 0;
+  requestResourceRequest( __pop.size() / 2 );
+  stop();
 }
 
 
-template< class EOT > void peoParaSGATransform< EOT > :: operator()( eoPop < EOT >& __pop ) {
-
-	printDebugMessage( "performing the parallel transformation step." );
-	pop = &__pop;
-	idx = 0;
-	num_term = 0;
-	requestResourceRequest( __pop.size() / 2 );
-	stop();
-}
+template< class EOT > void peoParaSGATransform< EOT > :: notifySendingData()
+{}
 
 
-template< class EOT > void peoParaSGATransform< EOT > :: notifySendingData() {
+template< class EOT > void peoParaSGATransform< EOT > :: notifySendingAllResourceRequests()
+{
 
-}
-
-
-template< class EOT > void peoParaSGATransform< EOT > :: notifySendingAllResourceRequests() {
-
-	getOwner()->setPassive();
+  getOwner()->setPassive();
 }
 
 

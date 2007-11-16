@@ -1,4 +1,4 @@
-/* 
+/*
 * <part_route_eval.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -38,21 +38,22 @@
 #include "node.h"
 
 PartRouteEval :: PartRouteEval (float __from,
-				float __to
-				) : from (__from),
-				    to (__to) {
-  
+                                float __to
+                               ) : from (__from),
+    to (__to)
+{
 }
 
-void PartRouteEval :: operator () (Route & __route) {
-  
-  
+void PartRouteEval :: operator () (Route & __route)
+{
+
+
   unsigned len = 0 ;
-  
+
   for (unsigned i = (unsigned) (__route.size () * from) ;
        i < (unsigned) (__route.size () * to) ;
        i ++)
     len += distance (__route [i], __route [(i + 1) % numNodes]) ;
-  
+
   __route.fitness (- (int) len) ;
 }

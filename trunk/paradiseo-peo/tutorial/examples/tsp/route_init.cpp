@@ -1,4 +1,4 @@
-/* 
+/*
 * <route_init.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -39,13 +39,14 @@
 #include "route_init.h"
 #include "node.h"
 
-void RouteInit :: operator () (Route & __route) {
+void RouteInit :: operator () (Route & __route)
+{
 
   __route.clear ();
-  
+
   for (unsigned i = 0 ; i < numNodes ; i ++)
     __route.push_back (i);
-  
-  for (unsigned i = 0 ; i < numNodes ; i ++)    
+
+  for (unsigned i = 0 ; i < numNodes ; i ++)
     std :: swap (__route [i], __route [rng.random (numNodes)]);
 }

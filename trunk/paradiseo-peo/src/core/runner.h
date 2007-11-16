@@ -1,4 +1,4 @@
-/* 
+/*
 * <runner.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,40 +44,41 @@
 
 typedef unsigned RUNNER_ID;
 
-class Runner : public Communicable, public Thread {
+class Runner : public Communicable, public Thread
+  {
 
-public :
+  public :
 
-  Runner ();
+    Runner ();
 
-  void start ();
+    void start ();
 
-  void waitStarting ();
+    void waitStarting ();
 
-  bool isLocal ();
+    bool isLocal ();
 
-  void terminate ();
+    void terminate ();
 
-  virtual void run () = 0;
-  
-  RUNNER_ID getID (); 
+    virtual void run () = 0;
 
-  void packTermination ();
+    RUNNER_ID getID ();
 
-  void notifySendingTermination ();
+    void packTermination ();
 
-private :
+    void notifySendingTermination ();
 
-  sem_t sem_start;
+  private :
 
-  unsigned id;
-};
+    sem_t sem_start;
+
+    unsigned id;
+  };
 
 extern bool atLeastOneActiveRunner ();
 
 extern void unpackTerminationOfRunner ();
 
-extern Runner * getRunner (RUNNER_ID __key); 
+extern Runner * getRunner (RUNNER_ID __key);
 
 extern void startRunners ();
 

@@ -1,4 +1,4 @@
-/* 
+/*
 * <rmc.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -43,16 +43,18 @@
 
 static std :: vector <pthread_t *> ll_threads; /* Low level threads */
 
-void runRMC () {
+void runRMC ()
+{
 
   /* Worker(s) ? */
-  for (unsigned i = 0; i < my_node -> num_workers; i ++) 
+  for (unsigned i = 0; i < my_node -> num_workers; i ++)
     addThread (new Worker, ll_threads);
 
   wakeUpCommunicator ();
 }
 
-void initRMC (int & __argc, char * * & __argv) {
+void initRMC (int & __argc, char * * & __argv)
+{
 
   /* Communication */
   initCommunication ();
@@ -67,7 +69,8 @@ void initRMC (int & __argc, char * * & __argv) {
   ///
 }
 
-void finalizeRMC () {
+void finalizeRMC ()
+{
 
   printDebugMessage ("before join threads RMC");
   joinThreads (ll_threads);

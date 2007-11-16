@@ -1,4 +1,4 @@
-/* 
+/*
 * <node.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -39,7 +39,7 @@
 
 #include <stdio.h>
 
-typedef unsigned Node; 
+typedef unsigned Node;
 
 extern double X_min, X_max, Y_min, Y_max;
 

@@ -1,4 +1,4 @@
-/* 
+/*
 * <two_opt.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -36,13 +36,15 @@
 
 #include "two_opt.h"
 
-void TwoOpt :: operator () (Route & __route) {
-  
-  unsigned i = 0; 
+void TwoOpt :: operator () (Route & __route)
+{
 
-  while ((2 * i) < (second - first)) {
-    
-    std :: swap (__route [first + i], __route [second - i]);
-    i ++;
-  }
+  unsigned i = 0;
+
+  while ((2 * i) < (second - first))
+    {
+
+      std :: swap (__route [first + i], __route [second - i]);
+      i ++;
+    }
 }

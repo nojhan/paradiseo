@@ -1,4 +1,4 @@
-/* 
+/*
 * <route_init.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,11 +41,12 @@
 
 #include "route.h"
 
-class RouteInit : public eoInit <Route> {
-  
-public :
-  
-  void operator () (Route & __route);  
-} ;
+class RouteInit : public eoInit <Route>
+  {
+
+  public :
+
+    void operator () (Route & __route);
+  } ;
 
 #endif

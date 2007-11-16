@@ -1,4 +1,4 @@
-/* 
+/*
 * <peoEvalFuncPSO.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, INRIA, 2007
@@ -42,27 +42,29 @@
 
 //! peoEvalFuncPSO: This class
 //! takes an existing function pointer and converts it into a evaluation
-//! function class. 
+//! function class.
 
 #ifdef _MSC_VER
 template< class POT, class FitT = POT::Fitness, class FunctionArg = const POT& >
 #else
 template< class POT, class FitT = typename POT::Fitness, class FunctionArg = const POT& >
 #endif
-struct peoEvalFuncPSO: public eoEvalFunc<POT> {
-
-  peoEvalFuncPSO( FitT (* _eval)( FunctionArg ) )
-    : eoEvalFunc<POT>(), evalFunc( _eval ) {};
-  
-    //!Applies the evaluation function to a PEO
-  virtual void operator() ( POT & _peo ) 
+struct peoEvalFuncPSO: public eoEvalFunc<POT>
   {
+
+    peoEvalFuncPSO( FitT (* _eval)( FunctionArg ) )
+        : eoEvalFunc<POT>(), evalFunc( _eval )
+    {};
+
+    //!Applies the evaluation function to a PEO
+    virtual void operator() ( POT & _peo )
+    {
       _peo.fitness((*evalFunc)( _peo ));
-  };
-    
-  private:
+    };
+
+private:
     FitT (* evalFunc )( FunctionArg );
-};
+  };
 
 #endif
 

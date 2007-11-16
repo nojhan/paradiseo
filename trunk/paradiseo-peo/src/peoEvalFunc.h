@@ -1,4 +1,4 @@
-/* 
+/*
 * <peoEvalFunc.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, INRIA, 2007
@@ -42,19 +42,21 @@ template< class EOT, class FitT = EOT::Fitness, class FunctionArg = const EOT& >
 #else
 template< class EOT, class FitT = typename EOT::Fitness, class FunctionArg = const EOT& >
 #endif
-struct peoEvalFunc: public eoEvalFunc<EOT> {
-
-  peoEvalFunc( FitT (* _eval)( FunctionArg ) )
-    : eoEvalFunc<EOT>(), evalFunc( _eval ) {};
-
-  virtual void operator() ( EOT & _peo ) 
+struct peoEvalFunc: public eoEvalFunc<EOT>
   {
-        _peo.fitness((*evalFunc)( _peo ));
-  };
-    
-  private:
+
+    peoEvalFunc( FitT (* _eval)( FunctionArg ) )
+        : eoEvalFunc<EOT>(), evalFunc( _eval )
+    {};
+
+    virtual void operator() ( EOT & _peo )
+    {
+      _peo.fitness((*evalFunc)( _peo ));
+    };
+
+private:
     FitT (* evalFunc )( FunctionArg );
-};
+  };
 
 #endif
 

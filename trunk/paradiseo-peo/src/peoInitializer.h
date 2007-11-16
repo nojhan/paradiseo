@@ -1,4 +1,4 @@
-/* 
+/*
 * <peoInitializer.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, INRIA, 2007
@@ -44,55 +44,55 @@
 */
 
 template <class POT> class peoInitializer : public eoInitializerBase <POT>
-{
-	public:
-	
+  {
+  public:
 
-	//!	Constructor
-	//! @param _proc Evaluation function
-	//! @param _initVelo Initialization of the velocity
-	//! @param _initBest Initialization of the best
-	//! @param _pop Population 
-	peoInitializer(
-					peoPopEval< POT >& _proc,
-					eoVelocityInit < POT > &_initVelo, 
-					eoParticleBestInit <POT> &_initBest,
-					eoPop < POT > &_pop
-				 ) : proc(_proc), initVelo(_initVelo), initBest(_initBest)
-	{
-		pop = &_pop;
-	}
-	
-	//! Give the name of the class
-	//! @return The name of the class
-	virtual std::string className (void) const
+
+    //!	Constructor
+    //! @param _proc Evaluation function
+    //! @param _initVelo Initialization of the velocity
+    //! @param _initBest Initialization of the best
+    //! @param _pop Population
+    peoInitializer(
+      peoPopEval< POT >& _proc,
+      eoVelocityInit < POT > &_initVelo,
+      eoParticleBestInit <POT> &_initBest,
+      eoPop < POT > &_pop
+    ) : proc(_proc), initVelo(_initVelo), initBest(_initBest)
     {
-        return "peoInitializer";
+      pop = &_pop;
     }
-    
+
+    //! Give the name of the class
+    //! @return The name of the class
+    virtual std::string className (void) const
+      {
+        return "peoInitializer";
+      }
+
     //! void operator ()
-	//! Parallel initialization of the population
-	virtual void operator()()
-	{
-		proc(*pop);
-		apply < POT > (initVelo, *pop);
-    	apply < POT > (initBest, *pop);
-	}
-	
-	private :
-	
-	/*
-		@param proc First evaluation
-		@param initVelo Initialization of the velocity
-		@param initBest Initialization of the best
-		@param pop Population		
-	*/
-	peoPopEval< POT >& proc;
-	eoVelocityInit < POT > & initVelo;
-	eoParticleBestInit <POT> & initBest;
-	eoPop <POT> * pop;
-};
+    //! Parallel initialization of the population
+    virtual void operator()()
+    {
+      proc(*pop);
+      apply < POT > (initVelo, *pop);
+      apply < POT > (initBest, *pop);
+    }
+
+  private :
+
+    /*
+    	@param proc First evaluation
+    	@param initVelo Initialization of the velocity
+    	@param initBest Initialization of the best
+    	@param pop Population	
+    */
+    peoPopEval< POT >& proc;
+    eoVelocityInit < POT > & initVelo;
+    eoParticleBestInit <POT> & initBest;
+    eoPop <POT> * pop;
+  };
 #endif
 
-	
-	
+
+

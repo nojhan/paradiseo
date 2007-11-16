@@ -1,4 +1,4 @@
-/* 
+/*
 * <peoSeqTransform.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,49 +45,55 @@
 //! The peoSeqTransform represent a wrapper for offering the possibility of using EO derived transform operators
 //! along with the ParadisEO evolutionary algorithms. A minimal set of interface functions is also provided for creating the
 //! link with the parallel architecture of the ParadisEO framework.
-template< class EOT > class peoSeqTransform : public peoTransform< EOT > {
+template< class EOT > class peoSeqTransform : public peoTransform< EOT >
+  {
 
-public:
+  public:
 
-	//! Constructor function - sets an internal reference towards the specified EO-derived transform object.
-	//!
-	//! @param eoTransform< EOT >& __trans - EO-derived transform object including crossover and mutation operators.
-	peoSeqTransform( eoTransform< EOT >& __trans );
-	
-	//! Operator for applying the specified transform operators on each individual of the given population.
-	//!
-	//! @param eoPop< EOT >& __pop - population to be transformed by applying the crossover and mutation operators.
-	void operator()( eoPop< EOT >& __pop );
-	
-	//! Interface function for providing a link with the parallel architecture of the ParadisEO framework.
-	virtual void packData() { }
+    //! Constructor function - sets an internal reference towards the specified EO-derived transform object.
+    //!
+    //! @param eoTransform< EOT >& __trans - EO-derived transform object including crossover and mutation operators.
+    peoSeqTransform( eoTransform< EOT >& __trans );
 
-	//! Interface function for providing a link with the parallel architecture of the ParadisEO framework.
-	virtual void unpackData() { }
-	
-	//! Interface function for providing a link with the parallel architecture of the ParadisEO framework.
-	virtual void execute() { }
-	
-	//! Interface function for providing a link with the parallel architecture of the ParadisEO framework.
-	virtual void packResult() { }
+    //! Operator for applying the specified transform operators on each individual of the given population.
+    //!
+    //! @param eoPop< EOT >& __pop - population to be transformed by applying the crossover and mutation operators.
+    void operator()( eoPop< EOT >& __pop );
 
-	//! Interface function for providing a link with the parallel architecture of the ParadisEO framework.
-	virtual void unpackResult() { }
+    //! Interface function for providing a link with the parallel architecture of the ParadisEO framework.
+    virtual void packData()
+    { }
 
-private:
+    //! Interface function for providing a link with the parallel architecture of the ParadisEO framework.
+    virtual void unpackData()
+    { }
 
-	eoTransform< EOT >& trans;
-};
+    //! Interface function for providing a link with the parallel architecture of the ParadisEO framework.
+    virtual void execute()
+    { }
+
+    //! Interface function for providing a link with the parallel architecture of the ParadisEO framework.
+    virtual void packResult()
+    { }
+
+    //! Interface function for providing a link with the parallel architecture of the ParadisEO framework.
+    virtual void unpackResult()
+    { }
+
+  private:
+
+    eoTransform< EOT >& trans;
+  };
 
 
-template< class EOT > peoSeqTransform< EOT > :: peoSeqTransform( eoTransform< EOT >& __trans ) : trans( __trans ) {
+template< class EOT > peoSeqTransform< EOT > :: peoSeqTransform( eoTransform< EOT >& __trans ) : trans( __trans )
+{}
 
-}
 
+template< class EOT > void peoSeqTransform< EOT > :: operator()( eoPop< EOT >& __pop )
+{
 
-template< class EOT > void peoSeqTransform< EOT > :: operator()( eoPop< EOT >& __pop ) {
-
-	trans( __pop );
+  trans( __pop );
 }
 
 

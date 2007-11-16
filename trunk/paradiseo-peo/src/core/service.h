@@ -1,4 +1,4 @@
-/* 
+/*
 * <service.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -42,37 +42,38 @@
 
 typedef unsigned SERVICE_ID;
 
-class Service : public Communicable {
+class Service : public Communicable
+  {
 
-public :
+  public :
 
-  void setOwner (Thread & __owner);
-  
-  Thread * getOwner (); 
+    void setOwner (Thread & __owner);
 
-  void requestResourceRequest (unsigned __how_many = 1);
-  void packResourceRequest ();
+    Thread * getOwner ();
 
-  virtual void packData ();
-  virtual void unpackData ();
+    void requestResourceRequest (unsigned __how_many = 1);
+    void packResourceRequest ();
 
-  virtual void execute ();
-  
-  virtual void packResult ();
-  virtual void unpackResult ();
+    virtual void packData ();
+    virtual void unpackData ();
 
-  virtual void notifySendingData ();
-  virtual void notifySendingResourceRequest ();
-  virtual void notifySendingAllResourceRequests ();
+    virtual void execute ();
 
-private :
+    virtual void packResult ();
+    virtual void unpackResult ();
 
-  Thread * owner; /* Owner thread (i.e. 'uses' that service) */ 
+    virtual void notifySendingData ();
+    virtual void notifySendingResourceRequest ();
+    virtual void notifySendingAllResourceRequests ();
 
-  unsigned num_sent_rr; /* Number of RR not really sent (i.e. still in the sending queue)*/
+  private :
 
-};
+    Thread * owner; /* Owner thread (i.e. 'uses' that service) */
 
-extern Service * getService (SERVICE_ID __key); 
+    unsigned num_sent_rr; /* Number of RR not really sent (i.e. still in the sending queue)*/
+
+  };
+
+extern Service * getService (SERVICE_ID __key);
 
 #endif

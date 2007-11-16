@@ -1,4 +1,4 @@
-/* 
+/*
 * <reac_thread.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -40,25 +40,29 @@ static bool the_end = false;
 
 static std :: vector <ReactiveThread *> reac_threads;
 
-ReactiveThread :: ReactiveThread () {
+ReactiveThread :: ReactiveThread ()
+{
 
   reac_threads.push_back (this);
   sem_init (& sem, 0, 0);
 }
 
-void ReactiveThread :: sleep () {
+void ReactiveThread :: sleep ()
+{
 
-  sem_wait (& sem);	
+  sem_wait (& sem);
 }
 
-void ReactiveThread :: wakeUp () {
+void ReactiveThread :: wakeUp ()
+{
 
-  sem_post (& sem);	
+  sem_post (& sem);
 }
 
-void stopReactiveThreads () {
+void stopReactiveThreads ()
+{
 
   the_end = true;
   for (unsigned i = 0; i < reac_threads.size (); i ++)
-    reac_threads [i] -> wakeUp  ();	
+    reac_threads [i] -> wakeUp  ();
 }

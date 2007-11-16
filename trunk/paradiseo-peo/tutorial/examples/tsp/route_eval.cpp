@@ -1,4 +1,4 @@
-/* 
+/*
 * <route_eval.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -36,6 +36,7 @@
 
 #include "route_eval.h"
 
-void RouteEval :: operator () (Route & __route) {
-  __route.fitness (- (int) length (__route)); 
+void RouteEval :: operator () (Route & __route)
+{
+  __route.fitness (- (int) length (__route));
 }

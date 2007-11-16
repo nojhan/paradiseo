@@ -3,7 +3,7 @@
 *  (c) OPAC Team, October 2007
 *
 * Clive Canape
-* 
+*
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
 * modify and/ or redistribute the software under the terms of the CeCILL
@@ -29,7 +29,7 @@
 * knowledge of the CeCILL license and that you accept its terms.
 *
 * ParadisEO WebSite : http://paradiseo.gforge.inria.fr
-* Contact: paradiseo-help@lists.gforge.inria.fr 
+* Contact: paradiseo-help@lists.gforge.inria.fr
 *   Contact: clive.canape@inria.fr
 */
 
@@ -48,33 +48,34 @@
 
 template <class POT>
 class peoPSOVelocity : public eoReplacement<POT>
-{
-    public:
-    
-    	typedef typename POT::ParticleVelocityType VelocityType;
-    
-        peoPSOVelocity(	const double & _c3,
-        				eoVelocity < POT > &_velocity):
-        				c3 (_c3),
-        				velocity (_velocity){}
+  {
+  public:
 
-        void operator()(eoPop<POT>& _dest, eoPop<POT>& _source)
-        {
-        	
-        	VelocityType newVelocity,r3;
-        	r3 =  (VelocityType) rng.uniform (1) * c3;
-        	for(unsigned i=0;i<_dest.size();i++)
-        		for(unsigned j=0;j<_dest[i].size();j++)
-        		{
-        			newVelocity=  _dest[i].velocities[j] + r3 * (_source[0].bestPositions[j] - _dest[i][j]);
-            		_dest[i].velocities[j]=newVelocity;
-        		}  
-        		     
-        }
-        
-    protected:
-    	const double & c3;
-    	eoVelocity < POT > & velocity;
-};
+    typedef typename POT::ParticleVelocityType VelocityType;
+
+    peoPSOVelocity(	const double & _c3,
+                    eoVelocity < POT > &_velocity):
+        c3 (_c3),
+        velocity (_velocity)
+    {}
+
+    void operator()(eoPop<POT>& _dest, eoPop<POT>& _source)
+    {
+
+      VelocityType newVelocity,r3;
+      r3 =  (VelocityType) rng.uniform (1) * c3;
+      for (unsigned i=0;i<_dest.size();i++)
+        for (unsigned j=0;j<_dest[i].size();j++)
+          {
+            newVelocity=  _dest[i].velocities[j] + r3 * (_source[0].bestPositions[j] - _dest[i][j]);
+            _dest[i].velocities[j]=newVelocity;
+          }
+
+    }
+
+  protected:
+    const double & c3;
+    eoVelocity < POT > & velocity;
+  };
 #endif
 

@@ -1,4 +1,4 @@
-/* 
+/*
 * <two_opt_next.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -37,19 +37,22 @@
 #include "two_opt_next.h"
 #include "node.h"
 
-bool TwoOptNext :: operator () (TwoOpt & __move, const Route & __route) {
+bool TwoOptNext :: operator () (TwoOpt & __move, const Route & __route)
+{
 
   if (__move.first == numNodes - 1 && __move.second == numNodes - 1)
     return false;
-  
-  else {
-    
-    __move.second ++;
-    if (__move.second == numNodes) {
-      
-      __move.first ++;
-      __move.second = __move.first;
+
+  else
+    {
+
+      __move.second ++;
+      if (__move.second == numNodes)
+        {
+
+          __move.first ++;
+          __move.second = __move.first;
+        }
+      return true ;
     }
-    return true ;
-  }
 }

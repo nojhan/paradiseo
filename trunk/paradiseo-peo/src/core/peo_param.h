@@ -1,4 +1,4 @@
-/* 
+/*
 * <peo_param.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -37,8 +37,9 @@
 #ifndef __peo_param_h
 #define __peo_param_h
 
-namespace peo {
-  
+namespace peo
+  {
+
   extern void loadParameters (int & __argc, char * * & __argv);
 }
 

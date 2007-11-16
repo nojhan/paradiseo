@@ -59,6 +59,8 @@ structure:
    |
    +-- tutorial          APPLICATIONS
        |
+       +-- examples      TSP
+       |
        +-- Introduction  Technical introduction
        |
        +-- Lesson1       Parallel evaluation for EA and PSO
@@ -69,7 +71,9 @@ structure:
        |
        +-- Lesson4       PSO and EA completely parallel
        |
-       +-- Lesson5       Multi-start : several local searches
+       +-- Lesson5       Hybridization
+       |
+       +-- Lesson6       Multi-start : several local searches
 
 ===================================================================
               NOTES

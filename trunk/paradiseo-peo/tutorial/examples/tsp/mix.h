@@ -1,4 +1,4 @@
-/* 
+/*
 * <mix.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,8 +41,9 @@
 
 #include <utils/eoRNG.h>
 
-template <class T> void mix (std :: vector <T> & __v) {
-  
+template <class T> void mix (std :: vector <T> & __v)
+{
+
   unsigned len = __v.size () ;
 
   for (unsigned i = 0 ; i < len ; i ++)

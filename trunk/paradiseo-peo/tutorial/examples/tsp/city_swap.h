@@ -1,4 +1,4 @@
-/* 
+/*
 * <city_swap.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -43,12 +43,13 @@
 
 /** Its swaps two vertices
     randomly choosen */
-class CitySwap : public eoMonOp <Route> {
-  
-public :
-  
-  bool operator () (Route & __route) ;
-    
-} ;
+class CitySwap : public eoMonOp <Route>
+  {
+
+  public :
+
+    bool operator () (Route & __route) ;
+
+  } ;
 
 #endif

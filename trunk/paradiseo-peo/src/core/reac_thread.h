@@ -1,4 +1,4 @@
-/* 
+/*
 * <reac_thread.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,22 +41,23 @@
 
 #include "thread.h"
 
-class ReactiveThread : public Thread {
-	
-public:
+class ReactiveThread : public Thread
+  {
 
-  /* Ctor */
-  ReactiveThread ();
+  public:
 
-  void sleep ();
-  
-  void wakeUp ();
-    
-private:
+    /* Ctor */
+    ReactiveThread ();
 
-  sem_t sem;
-   
-};
+    void sleep ();
+
+    void wakeUp ();
+
+  private:
+
+    sem_t sem;
+
+  };
 
 extern void stopReactiveThreads ();
 

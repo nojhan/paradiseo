@@ -1,4 +1,4 @@
-/* 
+/*
 * <display_best_route.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -43,18 +43,19 @@
 
 #include "route.h"
 
-class DisplayBestRoute : public eoUpdater {
-  
-public :
+class DisplayBestRoute : public eoUpdater
+  {
 
-  DisplayBestRoute (eoPop <Route> & __pop);
-  
-  void operator () ();
+  public :
 
-private :
-  
-  eoPop <Route> & pop;
+    DisplayBestRoute (eoPop <Route> & __pop);
 
-};
+    void operator () ();
+
+  private :
+
+    eoPop <Route> & pop;
+
+  };
 
 #endif

@@ -1,4 +1,4 @@
-/* 
+/*
 * <peo.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -114,7 +114,7 @@
 //!	for nonlinear numerical optimization). Whereas some time-out detection can be used to
 //!	address the former issue, the latter one can be partially overcome if the grain is set to very
 //!	small values, as individuals will be sent out for evaluations upon request of the workers.</li>
-//!	
+//!
 //!	<li> <i>Distributed evaluation of a single solution</i>. The quality of each solution is evaluated in
 //!	a parallel centralized way. That model is particularly interesting when the evaluation
 //!	function can be itself parallelized as it is CPU time-consuming and/or IO intensive. In
@@ -146,11 +146,11 @@
 //! <ul>
 //!	<li><i>Parallel exploration of neighboring candidates</i>. It is a low-level Farmer-Worker model
 //!	that does not alter the behavior of the heuristic. A sequential search computes the same
-//!	results slower.At the beginning of each iteration, the farmer duplicates the current solution 
+//!	results slower.At the beginning of each iteration, the farmer duplicates the current solution
 //!	between distributed nodes. Each one manages some candidates and the results are returned to the farmer.
-//!	The model is efficient if the evaluation of a each solution is time-consuming and/or there are a great 
-//!	deal of candidate neighbors to evaluate. This is obviously not applicable to SA since only one candidate 
-//!	is evaluated at each iteration. Likewise, the efficiency of the model for HC is not always guaranteed as 
+//!	The model is efficient if the evaluation of a each solution is time-consuming and/or there are a great
+//!	deal of candidate neighbors to evaluate. This is obviously not applicable to SA since only one candidate
+//!	is evaluated at each iteration. Likewise, the efficiency of the model for HC is not always guaranteed as
 //!	the number of neighboring solutions to process before finding one that improves the current objective function may
 //!	be highly variable.</li>
 //!
@@ -278,7 +278,7 @@
 //!
 //! The basisc of the ParadisEO framework philosophy are exposed in a few simple tutorials:
 //! <ul>
-//!	<li> 
+//!	<li>
 //!		<a href="lesson1/html/main.html" style="text-decoration:none;"> creating a simple ParadisEO evolutionary algorithm</a>;
 //!	</li>
 //! </ul>

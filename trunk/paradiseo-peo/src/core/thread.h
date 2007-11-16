@@ -1,4 +1,4 @@
-/* 
+/*
 * <thread.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,27 +41,28 @@
 
 /* A high-level thread */
 
-class Thread {
-	
-public:
+class Thread
+  {
 
-  /* Ctor */
-  Thread ();
+  public:
 
-  /* Dtor */
-  virtual ~ Thread ();
-  
-  /* Go ! */
-  virtual void start () = 0;
+    /* Ctor */
+    Thread ();
 
-  void setActive ();/* It means the current process is going to send messages soon */
-  void setPassive ();/* The current process is not going to perform send operations
-			(but it may receive messages) */
+    /* Dtor */
+    virtual ~ Thread ();
 
-private :
-  
-  bool act;
-};
+    /* Go ! */
+    virtual void start () = 0;
+
+    void setActive ();/* It means the current process is going to send messages soon */
+    void setPassive ();/* The current process is not going to perform send operations
+    			(but it may receive messages) */
+
+  private :
+
+    bool act;
+  };
 
 extern void addThread (Thread * __hl_thread, std :: vector <pthread_t *> & __ll_threads);
 
@@ -69,7 +70,7 @@ extern void joinThreads (std :: vector <pthread_t *> & __ll_threads);
 
 extern bool atLeastOneActiveThread (); /* It returns 'true' iff at least one process is going
 				      to send messages */
-  
+
 extern unsigned numberOfActiveThreads ();
 
 

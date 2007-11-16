@@ -3,7 +3,7 @@
 *  (c) OPAC Team, October 2007
 *
 * Clive Canape
-* 
+*
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
 * modify and/ or redistribute the software under the terms of the CeCILL
@@ -29,7 +29,7 @@
 * knowledge of the CeCILL license and that you accept its terms.
 *
 * ParadisEO WebSite : http://paradiseo.gforge.inria.fr
-* Contact: paradiseo-help@lists.gforge.inria.fr 
+* Contact: paradiseo-help@lists.gforge.inria.fr
 *   Contact: clive.canape@inria.fr
 */
 
@@ -47,27 +47,28 @@
 
 template <class POT>
 class peoPSOReplacement : public eoReplacement<POT>
-{
-    public:
-        peoPSOReplacement(){}
+  {
+  public:
+    peoPSOReplacement()
+    {}
 
-        void operator()(eoPop<POT>& _dest, eoPop<POT>& _source)
+    void operator()(eoPop<POT>& _dest, eoPop<POT>& _source)
+    {
+      unsigned ind=0;
+      double best=_dest[0].best();
+      for (unsigned j=1;j<_dest.size();j++)
+        if (_dest[j].best() < best)
+          {
+            ind=j;
+            best=_dest[j].best();
+          }
+      if (_dest[ind].best() < _source[0].best())
         {
-            unsigned ind=0;
-  			double best=_dest[0].best();
-  			for(unsigned j=1;j<_dest.size();j++)
-  				if(_dest[j].best() < best)
-  				{
-  					ind=j;
-  					best=_dest[j].best();
-  				}
-  			if(_dest[ind].best() < _source[0].best())
-  			{
-  				_dest[ind].best(_source[0].best());
-	 			for(unsigned j=0;j<_dest[ind].size();j++)
-	    			_dest[ind].bestPositions[j]=_source[0].bestPositions[j];
-  			}			
+          _dest[ind].best(_source[0].best());
+          for (unsigned j=0;j<_dest[ind].size();j++)
+            _dest[ind].bestPositions[j]=_source[0].bestPositions[j];
         }
-};
+    }
+  };
 #endif
 

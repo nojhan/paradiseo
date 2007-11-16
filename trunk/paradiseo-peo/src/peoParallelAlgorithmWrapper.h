@@ -1,4 +1,4 @@
-/* 
+/*
 * <peoParallelAlgorithmWrapper.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,70 +44,82 @@
 
 
 
-class peoParallelAlgorithmWrapper : public Runner {
+class peoParallelAlgorithmWrapper : public Runner
+  {
 
-public:
+  public:
 
-	template< typename AlgorithmType > peoParallelAlgorithmWrapper( AlgorithmType& externalAlgorithm ) 
-		: algorithm( new Algorithm< AlgorithmType, void >( externalAlgorithm ) ) {
+    template< typename AlgorithmType > peoParallelAlgorithmWrapper( AlgorithmType& externalAlgorithm )
+        : algorithm( new Algorithm< AlgorithmType, void >( externalAlgorithm ) )
+    {}
 
-	}
+    template< typename AlgorithmType, typename AlgorithmDataType > peoParallelAlgorithmWrapper( AlgorithmType& externalAlgorithm, AlgorithmDataType& externalData )
+        : algorithm( new Algorithm< AlgorithmType, AlgorithmDataType >( externalAlgorithm, externalData ) )
+    {}
 
-	template< typename AlgorithmType, typename AlgorithmDataType > peoParallelAlgorithmWrapper( AlgorithmType& externalAlgorithm, AlgorithmDataType& externalData ) 
-		: algorithm( new Algorithm< AlgorithmType, AlgorithmDataType >( externalAlgorithm, externalData ) ) {
+    ~peoParallelAlgorithmWrapper()
+    {
 
-	}
+      delete algorithm;
+    }
 
-	~peoParallelAlgorithmWrapper() {
-
-		delete algorithm;
-	}
-
-	void run() { algorithm->operator()(); }
-
-
-private:
-
-        struct AbstractAlgorithm {
-
-		// virtual destructor as we will be using inheritance and polymorphism
-		virtual ~AbstractAlgorithm() { }
-
-		// operator to be called for executing the algorithm
-		virtual void operator()() { } 
-        };
+    void run()
+    {
+      algorithm->operator()();
+    }
 
 
-        template< typename AlgorithmType, typename AlgorithmDataType > struct Algorithm : public AbstractAlgorithm {
+  private:
 
-		Algorithm( AlgorithmType& externalAlgorithm, AlgorithmDataType& externalData ) 
-			: algorithm( externalAlgorithm ), algorithmData( externalData ) {
+    struct AbstractAlgorithm
+      {
 
-		}
+        // virtual destructor as we will be using inheritance and polymorphism
+        virtual ~AbstractAlgorithm()
+        { }
 
-		virtual void operator()() { algorithm( algorithmData ); } 
-
-		AlgorithmType& algorithm;
-		AlgorithmDataType& algorithmData;
-        };
-
-
-        template< typename AlgorithmType > struct Algorithm< AlgorithmType, void >  : public AbstractAlgorithm {
-
-		Algorithm( AlgorithmType& externalAlgorithm ) : algorithm( externalAlgorithm ) {
-
-		}
-
-		virtual void operator()() { algorithm(); } 
-
-		AlgorithmType& algorithm;
-        };
+        // operator to be called for executing the algorithm
+        virtual void operator()()
+        { }
+      };
 
 
-private:
+  template< typename AlgorithmType, typename AlgorithmDataType > struct Algorithm : public AbstractAlgorithm
+      {
 
-	AbstractAlgorithm* algorithm;
-};
+        Algorithm( AlgorithmType& externalAlgorithm, AlgorithmDataType& externalData )
+            : algorithm( externalAlgorithm ), algorithmData( externalData )
+        {}
+
+        virtual void operator()()
+        {
+          algorithm( algorithmData );
+        }
+
+        AlgorithmType& algorithm;
+        AlgorithmDataType& algorithmData;
+      };
+
+
+  template< typename AlgorithmType > struct Algorithm< AlgorithmType, void >  : public AbstractAlgorithm
+      {
+
+        Algorithm( AlgorithmType& externalAlgorithm ) : algorithm( externalAlgorithm )
+        {}
+
+        virtual void operator()()
+        {
+          algorithm();
+        }
+
+        AlgorithmType& algorithm;
+      };
+
+
+  private:
+
+    AbstractAlgorithm* algorithm;
+  };
 
 
 #endif

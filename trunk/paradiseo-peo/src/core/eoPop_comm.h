@@ -1,4 +1,4 @@
-/* 
+/*
 * <eoPop_comm.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,17 +41,19 @@
 
 #include "messaging.h"
 
-template <class EOT> void pack (const eoPop <EOT> & __pop) {
+template <class EOT> void pack (const eoPop <EOT> & __pop)
+{
 
   pack ((unsigned) __pop.size ());
   for (unsigned i = 0; i < __pop.size (); i ++)
     pack (__pop [i]);
 }
 
-template <class EOT> void unpack (eoPop <EOT> & __pop) {
+template <class EOT> void unpack (eoPop <EOT> & __pop)
+{
 
   unsigned n;
-  
+
   unpack (n);
   __pop.resize (n);
   for (unsigned i = 0; i < n; i ++)

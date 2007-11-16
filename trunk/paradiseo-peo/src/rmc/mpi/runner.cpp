@@ -1,4 +1,4 @@
-/* 
+/*
 * <runner.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,7 +41,8 @@
 #include "tags.h"
 #include "schema.h"
 
-bool Runner :: isLocal () {
+bool Runner :: isLocal ()
+{
 
   for (unsigned i = 0; i < my_node -> id_run.size (); i ++)
     if (my_node -> id_run [i] == id)
@@ -49,13 +50,15 @@ bool Runner :: isLocal () {
   return false;
 }
 
-void Runner :: packTermination () {
+void Runner :: packTermination ()
+{
 
   pack (id);
 }
 
-void Runner :: terminate () {
+void Runner :: terminate ()
+{
 
-  sendToAll (this, RUNNER_STOP_TAG);     
+  sendToAll (this, RUNNER_STOP_TAG);
 }
 

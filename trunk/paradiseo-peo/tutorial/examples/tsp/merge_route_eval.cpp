@@ -1,4 +1,4 @@
-/* 
+/*
 * <merge_route_eval.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -36,10 +36,11 @@
 
 #include "merge_route_eval.h"
 
-void MergeRouteEval :: operator () (Route & __route, const int & __part_fit) {
+void MergeRouteEval :: operator () (Route & __route, const int & __part_fit)
+{
 
   int len = __route.fitness ();
   len += __part_fit;
   __route.fitness (len);
 }
-  
+

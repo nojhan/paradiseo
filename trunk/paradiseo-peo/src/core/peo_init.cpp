@@ -1,4 +1,4 @@
-/* 
+/*
 * <peo_init.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,24 +41,26 @@
 #include "peo_debug.h"
 #include "rmc.h"
 
-namespace peo {
+namespace peo
+  {
 
   int * argc;
-  
+
   char * * * argv;
 
-  void init (int & __argc, char * * & __argv) {
+  void init (int & __argc, char * * & __argv)
+  {
 
     argc = & __argc;
-    
+
     argv = & __argv;
-    
+
     /* Initializing the the Resource Management and Communication */
     initRMC (__argc, __argv);
 
-    /* Loading the common parameters */ 
+    /* Loading the common parameters */
     loadParameters (__argc, __argv);
-    
+
     /* */
     initDebugging ();
   }

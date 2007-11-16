@@ -1,4 +1,4 @@
-/* 
+/*
 * <route_eval.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,11 +41,12 @@
 
 #include "route.h"
 
-class RouteEval : public eoEvalFunc <Route> {
-  
-public :
-    
-  void operator () (Route & __route) ;  
-} ;
+class RouteEval : public eoEvalFunc <Route>
+  {
+
+  public :
+
+    void operator () (Route & __route) ;
+  } ;
 
 #endif

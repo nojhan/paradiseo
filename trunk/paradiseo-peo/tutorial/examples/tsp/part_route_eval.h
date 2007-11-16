@@ -1,4 +1,4 @@
-/* 
+/*
 * <part_route_eval.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -42,20 +42,21 @@
 #include "route.h"
 
 /** Route Evaluator */
-class PartRouteEval : public eoEvalFunc <Route> {
-  
-public :
+class PartRouteEval : public eoEvalFunc <Route>
+  {
 
-  /** Constructor */
-  PartRouteEval (float __from, float __to) ;
-    
-  void operator () (Route & __route) ;
-  
-private :
+  public :
 
-  float from, to ;
+    /** Constructor */
+    PartRouteEval (float __from, float __to) ;
 
-} ;
+    void operator () (Route & __route) ;
+
+  private :
+
+    float from, to ;
+
+  } ;
 
 
 #endif

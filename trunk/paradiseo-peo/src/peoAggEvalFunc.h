@@ -1,4 +1,4 @@
-/* 
+/*
 * <peoAggEvalFunc.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -50,9 +50,8 @@
 //!		</table>
 //!
 //! The aggregation object is called in an iterative manner for each of the results obtained by applying partial evaluation functions.
-template< class EOT > class peoAggEvalFunc : public eoBF< EOT&, const typename EOT :: Fitness&, void > {
-
-};
+template< class EOT > class peoAggEvalFunc : public eoBF< EOT&, const typename EOT :: Fitness&, void >
+  {};
 
 
 #endif

@@ -1,4 +1,4 @@
-/* 
+/*
 * <two_opt_incr_eval.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -40,12 +40,13 @@
 #include <moMoveIncrEval.h>
 #include "two_opt.h"
 
-class TwoOptIncrEval : public moMoveIncrEval <TwoOpt> {
+class TwoOptIncrEval : public moMoveIncrEval <TwoOpt>
+  {
 
-public :
-  
-  int operator () (const TwoOpt & __move, const Route & __route) ; 
+  public :
 
-} ;
+    int operator () (const TwoOpt & __move, const Route & __route) ;
+
+  } ;
 
 #endif

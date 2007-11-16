@@ -1,4 +1,4 @@
-/* 
+/*
 * <merge_route_eval.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,12 +41,13 @@
 
 #include "route.h"
 
-class MergeRouteEval : public peoAggEvalFunc <Route> {
-  
-public :
+class MergeRouteEval : public peoAggEvalFunc <Route>
+  {
 
-  void operator () (Route & __route, const int & __part_fit) ;
-  
-};
+  public :
+
+    void operator () (Route & __route, const int & __part_fit) ;
+
+  };
 
 #endif

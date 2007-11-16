@@ -1,4 +1,4 @@
-/* 
+/*
 * <worker.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -46,76 +46,88 @@
 
 static std :: vector <Worker *> key_to_worker (1); /* Vector of registered workers */
 
-Worker * getWorker (WORKER_ID __key) {
+Worker * getWorker (WORKER_ID __key)
+{
 
-  return key_to_worker [__key];  
+  return key_to_worker [__key];
 }
 
-Worker :: Worker () {
-  
+Worker :: Worker ()
+{
+
   toto = false;
   id = key_to_worker.size ();
   key_to_worker.push_back (this);
 }
 
-void Worker :: packResult () {
-  
+void Worker :: packResult ()
+{
+
   pack (serv_id);
-  serv -> packResult ();    
+  serv -> packResult ();
 }
 
-void Worker :: unpackData () {
+void Worker :: unpackData ()
+{
 
   printDebugMessage ("unpacking the ID. of the service.");
   unpack (serv_id);
-  serv = getService (serv_id); 
+  serv = getService (serv_id);
   printDebugMessage ("found the service.");
-  serv -> unpackData (); 
+  serv -> unpackData ();
   printDebugMessage ("unpacking the data.");
   setActive ();
 }
 
-void Worker :: packTaskDone () {
+void Worker :: packTaskDone ()
+{
 
   pack (getNodeRank ());
   pack (id);
 }
 
-void Worker :: notifySendingResult () {
+void Worker :: notifySendingResult ()
+{
 
   /* Notifying the scheduler of the termination */
   toto = true;
   wakeUp ();
 }
 
-void Worker :: notifySendingTaskDone () {
+void Worker :: notifySendingTaskDone ()
+{
 
   setPassive ();
 }
-  
-void Worker :: setSource (int __rank) {
+
+void Worker :: setSource (int __rank)
+{
 
   src = __rank;
 }
 
-void Worker :: start () {
+void Worker :: start ()
+{
 
-  while (true) {
-    
-    sleep (); 
+  while (true)
+    {
 
-    if (! atLeastOneActiveRunner ())
-      break;
-    
-    if (toto) {
-      send (this, my_node -> rk_sched, TASK_DONE_TAG);  
-      toto = false;
+      sleep ();
+
+      if (! atLeastOneActiveRunner ())
+        break;
+
+      if (toto)
+        {
+          send (this, my_node -> rk_sched, TASK_DONE_TAG);
+          toto = false;
+        }
+      else
+        {
+
+          printDebugMessage ("executing the task.");
+          serv -> execute ();
+          send (this, src, TASK_RESULT_TAG);
+        }
     }
-    else {
-
-      printDebugMessage ("executing the task.");
-      serv -> execute ();   
-      send (this, src, TASK_RESULT_TAG);    
-    }
-  }
 }

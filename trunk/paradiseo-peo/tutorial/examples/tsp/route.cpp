@@ -1,4 +1,4 @@
-/* 
+/*
 * <route.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -36,13 +36,14 @@
 
 #include "route.h"
 
-unsigned length (const Route & __route) {
+unsigned length (const Route & __route)
+{
 
   unsigned len = 0 ;
-  
+
   for (unsigned i = 0; i < numNodes; i ++)
-    len += distance (__route [i], __route [(i + 1) % numNodes]) ; 
-  
+    len += distance (__route [i], __route [(i + 1) % numNodes]) ;
+
   return len;
 }
 

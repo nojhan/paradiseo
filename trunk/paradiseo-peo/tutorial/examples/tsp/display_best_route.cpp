@@ -1,4 +1,4 @@
-/* 
+/*
 * <display_best_route.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -38,13 +38,14 @@
 #include "display.h"
 
 DisplayBestRoute :: DisplayBestRoute (eoPop <Route> & __pop
-				      ) : pop (__pop) {
-  
-  
+                                     ) : pop (__pop)
+{
+
 }
-  
-void DisplayBestRoute :: operator () () {
-  
+
+void DisplayBestRoute :: operator () ()
+{
+
   displayRoute (pop.best_element ());
 }
 

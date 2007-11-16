@@ -1,4 +1,4 @@
-/* 
+/*
 * <main.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, INRIA, 2007
@@ -31,7 +31,7 @@
 *
 * ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 * Contact: paradiseo-help@lists.gforge.inria.fr
-*          
+*
 */
 
 
@@ -50,56 +50,56 @@
 
 int main( int __argc, char** __argv )
 {
-	
-/* In this lesson you will learn to use a multi-start.
- * 
- * Thanks to this method, you can use several local searches together !!! 
- *
- */
-	
+
+  /* In this lesson you will learn to use a multi-start.
+   *
+   * Thanks to this method, you can use several local searches together !!!
+   *
+   */
+
 // Parameter
-	const unsigned int POP_SIZE = 10;
-	srand( time(NULL) );
+  const unsigned int POP_SIZE = 10;
+  srand( time(NULL) );
 
 // Initializing the ParadisEO-PEO environment
-	peo :: init( __argc, __argv );
+  peo :: init( __argc, __argv );
 // Processing the command line specified parameters
-	loadParameters( __argc, __argv );
+  loadParameters( __argc, __argv );
 
 // Define a Hill Climbing (you can choose an other local search)
 // ie Lessons of ParadisEO - MO
-	Route route;
-	RouteInit init;
-	init(route);
-	RouteEval eval; 
-	eval(route);
-	TwoOptInit initHC;
-	TwoOptNext nextHC;
-	TwoOptIncrEval incrHC;
-	moBestImprSelect< TwoOpt > selectHC;
-	moHC< TwoOpt > hc(initHC, nextHC, incrHC, selectHC, eval);
+  Route route;
+  RouteInit init;
+  init(route);
+  RouteEval eval;
+  eval(route);
+  TwoOptInit initHC;
+  TwoOptNext nextHC;
+  TwoOptIncrEval incrHC;
+  moBestImprSelect< TwoOpt > selectHC;
+  moHC< TwoOpt > hc(initHC, nextHC, incrHC, selectHC, eval);
 
 // Define a population
-	RouteInit initPop;	// Creates random Route objects
-	RouteEval evalPop;	// Offers a fitness value for a specified Route object
-	eoPop < Route > pop(POP_SIZE, initPop);
-	for ( unsigned int index = 0; index < POP_SIZE; index++ )
-		evalPop( pop[ index ] );
+  RouteInit initPop;	// Creates random Route objects
+  RouteEval evalPop;	// Offers a fitness value for a specified Route object
+  eoPop < Route > pop(POP_SIZE, initPop);
+  for ( unsigned int index = 0; index < POP_SIZE; index++ )
+    evalPop( pop[ index ] );
 
 // Setting up the parallel wrapper
-	peoSynchronousMultiStart< Route > parallelHC(hc);
-	peoParallelAlgorithmWrapper WrapHC (parallelHC, pop);
-	parallelHC.setOwner( WrapHC );
+  peoSynchronousMultiStart< Route > parallelHC(hc);
+  peoParallelAlgorithmWrapper WrapHC (parallelHC, pop);
+  parallelHC.setOwner( WrapHC );
 
-	peo :: run( );
-	peo :: finalize( );
-	if ( getNodeRank() == 1 ) 
-	{
+  peo :: run( );
+  peo :: finalize( );
+  if ( getNodeRank() == 1 )
+    {
 
-		std :: cout << "\n\nBefore : \n" << route;
-		std :: cout << "\n\nWith the synchronous Multi-Start HCs:";
-		for ( unsigned int index = 0; index < POP_SIZE; index++ ) 
-			std::cout <<"\n"<< pop[ index ];
-	}
+      std :: cout << "\n\nBefore : \n" << route;
+      std :: cout << "\n\nWith the synchronous Multi-Start HCs:";
+      for ( unsigned int index = 0; index < POP_SIZE; index++ )
+        std::cout <<"\n"<< pop[ index ];
+    }
 
 }

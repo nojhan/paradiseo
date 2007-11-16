@@ -1,4 +1,4 @@
-/* 
+/*
 * <eoVector_comm.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,34 +41,36 @@
 
 #include "messaging.h"
 
-template <class F, class T> void pack (const eoVector <F, T> & __v) {
+template <class F, class T> void pack (const eoVector <F, T> & __v)
+{
 
 
-  if ( !__v.invalid() ) 
-  {
-	  pack( (unsigned int) 1 );
+  if ( !__v.invalid() )
+    {
+      pack( (unsigned int) 1 );
       pack (__v.fitness ()) ;
-  }
+    }
   else
-      pack( (unsigned int) 0 );
+    pack( (unsigned int) 0 );
   unsigned len = __v.size ();
   pack (len);
   for (unsigned i = 0 ; i < len; i ++)
-    pack (__v [i]);  
+    pack (__v [i]);
 }
 
-template <class F, class T> void unpack (eoVector <F, T> & __v) {
+template <class F, class T> void unpack (eoVector <F, T> & __v)
+{
 
-  F fit; 
+  F fit;
   unsigned int vfit;
   unpack( vfit );
-  if ( vfit ) 
-  {
-  	  unpack (fit);
+  if ( vfit )
+    {
+      unpack (fit);
       __v.fitness (fit);
-  }
-  else 
-      __v.invalidate();
+    }
+  else
+    __v.invalidate();
   unsigned len;
   unpack (len);
   __v.resize (len);
@@ -76,21 +78,23 @@ template <class F, class T> void unpack (eoVector <F, T> & __v) {
     unpack (__v [i]);
 }
 
-template <class F, class T, class V> void pack (const eoVectorParticle <F, T, V> & __v) {
+template <class F, class T, class V> void pack (const eoVectorParticle <F, T, V> & __v)
+{
 
   pack (__v.fitness ()) ;
   pack (__v.best());
   unsigned len = __v.size ();
   pack (len);
   for (unsigned i = 0 ; i < len; i ++)
-    pack (__v [i]);  
+    pack (__v [i]);
   for (unsigned i = 0 ; i < len; i ++)
-    pack (__v.bestPositions[i]); 
+    pack (__v.bestPositions[i]);
   for (unsigned i = 0 ; i < len; i ++)
-    pack (__v.velocities[i]);  
+    pack (__v.velocities[i]);
 }
 
-template <class F, class T, class V> void unpack (eoVectorParticle <F, T, V> & __v) {
+template <class F, class T, class V> void unpack (eoVectorParticle <F, T, V> & __v)
+{
 
   F fit;
   unpack(fit);
@@ -101,11 +105,11 @@ template <class F, class T, class V> void unpack (eoVectorParticle <F, T, V> & _
   unpack (len);
   __v.resize (len);
   for (unsigned i = 0 ; i < len; i ++)
-    unpack (__v [i]);  
+    unpack (__v [i]);
   for (unsigned i = 0 ; i < len; i ++)
-    unpack (__v.bestPositions[i]); 
+    unpack (__v.bestPositions[i]);
   for (unsigned i = 0 ; i < len; i ++)
-    unpack (__v.velocities[i]);  
+    unpack (__v.velocities[i]);
 }
 
 #endif
