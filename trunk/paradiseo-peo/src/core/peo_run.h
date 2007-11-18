@@ -1,4 +1,4 @@
-/*
+/* 
 * <peo_run.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -37,9 +37,8 @@
 #ifndef __peo_run_h
 #define __peo_run_h
 
-namespace peo
-  {
-
+namespace peo {
+  
   extern void run ();
 }
 

@@ -1,4 +1,4 @@
-/*
+/* 
 * <comm.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -51,48 +51,45 @@ static sem_t sem_comm_init;
 
 static Communicator * the_thread;
 
-Communicator :: Communicator (int * __argc, char * * * __argv)
-{
+Communicator :: Communicator (int * __argc, char * * * __argv) {
 
-  the_thread = this;
+  the_thread = this;  
   initNode  (__argc, __argv);
-  loadRMCParameters (* __argc, * __argv);
+  loadRMCParameters (* __argc, * __argv);  
   sem_post (& sem_comm_init);
 }
 
-void Communicator :: start ()
-{
+void Communicator :: start () {
 
-  while (true)
-    {
+  while (true) {
 
-      /* Zzz Zzz Zzz :-))) */
-      sleep ();
-      sendMessages ();
+    /* Zzz Zzz Zzz :-))) */
+    sleep ();
 
-      if (! atLeastOneActiveRunner ())
-        break;
-      receiveMessages ();
-    }
-  waitBuffers ();
+    sendMessages ();
+
+    if (! atLeastOneActiveRunner ())     
+      break;
+
+    receiveMessages ();
+  }
+
+  waitBuffers ();  
   printDebugMessage ("finalizing");
-  MPI_Finalize ();
+  MPI_Finalize ();  
 }
 
-void initCommunication ()
-{
+void initCommunication () {
 
   sem_init (& sem_comm_init, 0, 0);
 }
 
-void waitNodeInitialization ()
-{
+void waitNodeInitialization () {
 
   sem_wait (& sem_comm_init);
 }
 
-void wakeUpCommunicator ()
-{
+void wakeUpCommunicator () {
 
   the_thread -> wakeUp ();
 }

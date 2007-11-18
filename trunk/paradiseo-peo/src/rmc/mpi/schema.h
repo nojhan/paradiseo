@@ -1,4 +1,4 @@
-/*
+/* 
 * <schema.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -45,15 +45,15 @@
 
 typedef int RANK_ID;
 
-struct Node
-  {
-
-    RANK_ID rk; /* Rank */
-    std :: string name; /* Host name */
-    unsigned num_workers; /* Number of parallel workers */
-    int rk_sched; /* rank of the scheduler */
-    std :: vector <RUNNER_ID> id_run; /* List of runners */
-  };
+struct Node {
+  
+  RANK_ID rk; /* Rank */
+  std :: string name; /* Host name */
+  unsigned num_workers; /* Number of parallel workers */
+  int rk_sched; /* rank of the scheduler */
+  std :: vector <RUNNER_ID> id_run; /* List of runner def. IDs */
+  std :: vector <RUNNER_ID> execution_id_run; /* List of runtime execution runner IDs */
+};
 
 extern std :: vector <Node> the_schema;
 

@@ -1,4 +1,4 @@
-/*
+/* 
 * <service.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,16 +41,14 @@
 #include "send.h"
 #include "scheduler.h"
 
-void Service :: requestResourceRequest (unsigned __how_many)
-{
+void Service :: requestResourceRequest (unsigned __how_many) {
 
   num_sent_rr = __how_many;
   for (unsigned i = 0; i < __how_many; i ++)
     send (this, my_node -> rk_sched, SCHED_REQUEST_TAG);
 }
 
-void Service :: packResourceRequest ()
-{
+void Service :: packResourceRequest () {
 
   SCHED_REQUEST req;
   req.first = getNodeRank ();

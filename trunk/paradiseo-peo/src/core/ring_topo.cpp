@@ -1,4 +1,4 @@
-/*
+/* 
 * <ring_topo.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -37,19 +37,17 @@
 #include "ring_topo.h"
 
 void RingTopology :: setNeighbors (Cooperative * __mig,
-                                   std :: vector <Cooperative *> & __from,
-                                   std :: vector <Cooperative *> & __to)
-{
+				   std :: vector <Cooperative *> & __from,
+				   std :: vector <Cooperative *> & __to) {
   __from.clear () ;
   __to.clear () ;
 
-  int len = mig.size () ;
-
-  for (int i = 0 ; i < len ; i ++)
-    if (mig [i] == __mig)
-      {
-        __from.push_back (mig [(i - 1 + len) % len]) ;
-        __to.push_back (mig [(i + 1) % len]) ;
-        break;
+    int len = mig.size () ;
+    
+    for (int i = 0 ; i < len ; i ++)      
+      if (mig [i] == __mig) {	
+	__from.push_back (mig [(i - 1 + len) % len]) ;
+	__to.push_back (mig [(i + 1) % len]) ;	
+	break;
       }
 }

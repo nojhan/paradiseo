@@ -1,4 +1,4 @@
-/*
+/* 
 * <topology.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,22 +41,21 @@
 
 #include "cooperative.h"
 
-class Topology
-  {
+class Topology {
 
-  public:
+public:
 
-    virtual ~Topology ();
+	virtual ~Topology ();
 
-    void add (Cooperative & __mig);
+	void add (Cooperative & __mig); 
 
-    virtual void setNeighbors (Cooperative * __mig,
-                               std :: vector <Cooperative *> & __from,
-                               std :: vector <Cooperative *> & __to) = 0;
+	virtual void setNeighbors (Cooperative * __mig,
+				std :: vector <Cooperative *> & __from,
+				std :: vector <Cooperative *> & __to) = 0;
 
-  protected:
+protected:
 
-    std :: vector <Cooperative *> mig ;
-  };
+	std :: vector <Cooperative *> mig ;  
+};
 
 #endif

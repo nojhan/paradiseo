@@ -147,7 +147,7 @@ template< class EOT > peoSyncMultiStart< EOT > :: peoSyncMultiStart(
 template< class EOT > void peoSyncMultiStart< EOT > :: packData()
 {
 
-  :: pack( sel[ idx++ ] );
+  pack( sel[ idx++ ] );
 }
 
 

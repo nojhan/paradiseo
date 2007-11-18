@@ -1,4 +1,4 @@
-/*
+/* 
 * <runner.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -42,46 +42,60 @@
 #include "communicable.h"
 #include "thread.h"
 
+
 typedef unsigned RUNNER_ID;
 
-class Runner : public Communicable, public Thread
-  {
 
-  public :
+class Runner : public Communicable, public Thread {
 
-    Runner ();
+public :
 
-    void start ();
+  Runner ();
 
-    void waitStarting ();
+  RUNNER_ID getDefinitionID ();
 
-    bool isLocal ();
+  RUNNER_ID getExecutionID ();
 
-    void terminate ();
+  bool isAssignedLocally ();
 
-    virtual void run () = 0;
+  void waitStarting ();
 
-    RUNNER_ID getID ();
+  void waitContextInitialization ();
 
-    void packTermination ();
+  void start ();
 
-    void notifySendingTermination ();
+  virtual void run () = 0;
 
-  private :
+  void terminate ();
 
-    sem_t sem_start;
+  void notifyContextInitialized ();
 
-    unsigned id;
-  };
+  void notifySendingTermination ();
 
-extern bool atLeastOneActiveRunner ();
+  void packTermination ();
 
-extern void unpackTerminationOfRunner ();
+private :
 
-extern Runner * getRunner (RUNNER_ID __key);
+  sem_t sem_start;
+  sem_t sem_cntxt;
+
+  unsigned def_id;
+};
+
+
+extern Runner * getRunner (RUNNER_ID __key); 
+
+extern void initializeContext ();
 
 extern void startRunners ();
 
 extern void joinRunners ();
+
+extern bool atLeastOneActiveRunner ();
+
+extern unsigned numberOfActiveRunners ();
+
+extern void unpackTerminationOfRunner ();
+
 
 #endif

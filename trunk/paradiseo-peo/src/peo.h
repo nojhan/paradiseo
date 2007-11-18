@@ -315,17 +315,19 @@
 //!
 //!ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 //!Contact: paradiseo-help@lists.gforge.inria.fr
-//!
 
 #include "core/peo_init.h"
 #include "core/peo_run.h"
 #include "core/peo_fin.h"
 
-#include "core/eoVector_comm.h"
+#include "core/messaging.h"
+#include "core/eoPop_mesg.h"
+#include "core/eoVector_mesg.h"
 
 #include "peoEA.h"
+#include "peoParallelAlgorithmWrapper.h"
 
-/* Parallel steps of the E.A. */
+/* <------- components for parallel algorithms -------> */
 #include "peoSeqTransform.h"
 #include "peoParaSGATransform.h"
 #include "peoSeqPopEval.h"
@@ -334,13 +336,13 @@
 
 /* Cooperative island model */
 #include "core/ring_topo.h"
-#include "peoAsyncIslandMig.h"
 #include "peoSyncIslandMig.h"
+#include "peoAsyncIslandMig.h"
 
 /* Synchronous multi-start model */
 #include "peoSyncMultiStart.h"
-#include "peoParallelAlgorithmWrapper.h"
 #include "peoSynchronousMultiStart.h"
+/* <------- components for parallel algorithms -------> */
 
 /* Parallel PSO */
 #include "peoInitializer.h"

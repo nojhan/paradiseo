@@ -232,9 +232,9 @@ template < typename EntityType > class peoSynchronousMultiStart : public Service
 template < typename EntityType > void peoSynchronousMultiStart< EntityType >::packData()
 {
 
-  ::pack( functionIndex );
-  ::pack( idx );
-  ::pack( ( EntityType& ) *data[ idx++ ]  );
+  pack( functionIndex );
+  pack( idx );
+  pack( ( EntityType& ) *data[ idx++ ]  );
 
   // done with functionIndex for the entire data set - moving to another
   //  function/algorithm starting all over with the entire data set ( idx is set to 0 )
@@ -249,9 +249,9 @@ template < typename EntityType > void peoSynchronousMultiStart< EntityType >::pa
 template < typename EntityType > void peoSynchronousMultiStart< EntityType >::unpackData()
 {
 
-  ::unpack( functionIndex );
-  ::unpack( dataIndex );
-  ::unpack( entityTypeInstance );
+  unpack( functionIndex );
+  unpack( dataIndex );
+  unpack( entityTypeInstance );
 }
 
 template < typename EntityType > void peoSynchronousMultiStart< EntityType >::execute()
@@ -268,15 +268,15 @@ template < typename EntityType > void peoSynchronousMultiStart< EntityType >::ex
 template < typename EntityType > void peoSynchronousMultiStart< EntityType >::packResult()
 {
 
-  ::pack( dataIndex );
-  ::pack( entityTypeInstance );
+  pack( dataIndex );
+  pack( entityTypeInstance );
 }
 
 template < typename EntityType > void peoSynchronousMultiStart< EntityType >::unpackResult()
 {
 
-  ::unpack( dataIndex );
-  ::unpack( entityTypeInstance );
+  unpack( dataIndex );
+  unpack( entityTypeInstance );
 
   // wrapping the unpacked data - the definition of an abstract algorithm imposes
   // that its internal function operator acts only on abstract data types

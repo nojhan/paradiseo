@@ -1,4 +1,4 @@
-/*
+/* 
 * <service.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -36,55 +36,51 @@
 
 #include "service.h"
 
-void Service :: setOwner (Thread & __owner)
-{
+void Service :: setOwner (Thread & __owner) {
 
   owner = & __owner;
 }
-
-Thread * Service :: getOwner ()
-{
+  
+Thread * Service :: getOwner () {
 
   return owner;
 }
 
-Service * getService (SERVICE_ID __key)
-{
+Service * getService (SERVICE_ID __key) {
 
   return dynamic_cast <Service *> (getCommunicable (__key));
 }
 
-void Service :: notifySendingData ()
-{
+void Service :: notifySendingData () {
+
 }
-void Service :: notifySendingResourceRequest ()
-{
+void Service :: notifySendingResourceRequest () {
 
   num_sent_rr --;
   if (! num_sent_rr)
     notifySendingAllResourceRequests ();
 }
 
-void Service :: notifySendingAllResourceRequests ()
-{
+void Service :: notifySendingAllResourceRequests () {
+
 }
 
-void Service :: packData ()
-{
+void Service :: packData () {
+
 }
 
-void Service :: unpackData ()
-{
+void Service :: unpackData () {
+
 }
 
-void Service :: execute ()
-{
+void Service :: execute () {
+
+}
+  
+void Service :: packResult () {
+
 }
 
-void Service :: packResult ()
-{
-}
+void Service :: unpackResult () {
 
-void Service :: unpackResult ()
-{
 }

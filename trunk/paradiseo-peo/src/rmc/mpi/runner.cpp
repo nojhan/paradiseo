@@ -1,4 +1,4 @@
-/*
+/* 
 * <runner.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -37,28 +37,26 @@
 #include "../../core/messaging.h"
 #include "../../core/runner.h"
 #include "node.h"
+#include "mess.h"
 #include "send.h"
 #include "tags.h"
 #include "schema.h"
 
-bool Runner :: isLocal ()
-{
+
+bool Runner :: isAssignedLocally () {
 
   for (unsigned i = 0; i < my_node -> id_run.size (); i ++)
-    if (my_node -> id_run [i] == id)
+    if (my_node -> id_run [i] == def_id)
       return true;
   return false;
 }
 
-void Runner :: packTermination ()
-{
-
-  pack (id);
-}
-
-void Runner :: terminate ()
-{
+void Runner :: terminate () {
 
   sendToAll (this, RUNNER_STOP_TAG);
 }
 
+void Runner :: packTermination () {
+
+  pack (def_id);
+}

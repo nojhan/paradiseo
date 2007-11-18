@@ -1,4 +1,4 @@
-/*
+/* 
 * <mess.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -54,6 +54,8 @@ extern void waitBuffers ();
 extern bool probeMessage (int & __src, int & __tag);
 
 extern void waitMessage ();
+
+extern void synchronizeNodes ();
 
 #endif
 

@@ -111,8 +111,8 @@ template< class EOT > void peoParaSGATransform< EOT > :: packData()
 {
 
   pack( idx );
-  :: pack( pop->operator[]( idx++ ) );
-  :: pack( pop->operator[]( idx++ ) );
+  pack( pop->operator[]( idx++ ) );
+  pack( pop->operator[]( idx++ ) );
 }
 
 
@@ -120,8 +120,8 @@ template< class EOT > void peoParaSGATransform< EOT > :: unpackData()
 {
 
   unpack( idx );
-  :: unpack( father );
-  :: unpack( mother );
+  unpack( father );
+  unpack( mother );
 }
 
 
@@ -139,8 +139,8 @@ template< class EOT > void peoParaSGATransform< EOT > :: packResult()
 {
 
   pack( idx );
-  :: pack( father );
-  :: pack( mother );
+  pack( father );
+  pack( mother );
 }
 
 
@@ -150,10 +150,11 @@ template< class EOT > void peoParaSGATransform< EOT > :: unpackResult()
   unsigned sidx;
 
   unpack( sidx );
-  :: unpack( pop->operator[]( sidx++ ) );
-  :: unpack( pop->operator[]( sidx ) );
+  unpack( pop->operator[]( sidx++ ) );
+  unpack( pop->operator[]( sidx ) );
   num_term += 2;
-  // Can be used with a odd size
+
+  // Can be used with an odd size
   if ( num_term == 2*(pop->size()/2) )
     {
 

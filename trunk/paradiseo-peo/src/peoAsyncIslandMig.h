@@ -47,9 +47,13 @@
 #include <eoReplacement.h>
 #include <eoPop.h>
 
+#include "core/messaging.h"
+#include "core/eoPop_mesg.h"
+#include "core/eoVector_mesg.h"
+
 #include "core/topology.h"
+#include "core/thread.h"
 #include "core/cooperative.h"
-#include "core/eoPop_comm.h"
 #include "core/peo_debug.h"
 
 
@@ -217,13 +221,12 @@ template< class EOT > void peoAsyncIslandMig< EOT > :: pack()
 {
 
   lock ();
-  {
 
-    :: pack( coop_em.front()->getKey() );
-    :: pack( em.front() );
-    coop_em.pop();
-    em.pop();
-  }
+  ::pack( coop_em.front()->getKey() );
+  ::pack( em.front() );
+  coop_em.pop();
+  em.pop();
+
   unlock();
 }
 
@@ -232,12 +235,11 @@ template< class EOT > void peoAsyncIslandMig< EOT > :: unpack()
 {
 
   lock ();
-  {
 
-    eoPop< EOT > mig;
-    :: unpack( mig );
-    imm.push( mig );
-  }
+  eoPop< EOT > mig;
+  ::unpack( mig );
+  imm.push( mig );
+
   unlock();
 }
 

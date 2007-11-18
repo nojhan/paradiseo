@@ -1,4 +1,4 @@
-/*
+/* 
 * <peo_fin.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -39,8 +39,8 @@
 #include "runner.h"
 #include "rmc.h"
 
-void peo :: finalize ()
-{
+
+void peo :: finalize () {
 
   printDebugMessage ("waiting for the termination of all threads");
 

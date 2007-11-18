@@ -1,4 +1,4 @@
-/*
+/* 
 * <tags.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -36,6 +36,8 @@
 
 #ifndef __tags_h
 #define __tags_h
+
+#define EXECUTION_CONTEXT_TAG 1000
 
 #define RUNNER_STOP_TAG 13
 

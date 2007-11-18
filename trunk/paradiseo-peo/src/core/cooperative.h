@@ -1,4 +1,4 @@
-/*
+/* 
 * <cooperative.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -42,29 +42,28 @@
 
 typedef unsigned COOP_ID;
 
-class Cooperative : public Communicable
-  {
+class Cooperative : public Communicable {
 
-  public :
+public :
 
-    Runner * getOwner ();
+  Runner * getOwner ();
 
-    void setOwner (Runner & __runner);
+  void setOwner (Runner & __runner);
 
-    virtual void pack () = 0;
+  virtual void pack () = 0;
+  
+  virtual void unpack () = 0;
 
-    virtual void unpack () = 0;
+  void send (Cooperative * __coop); 
 
-    void send (Cooperative * __coop);
+  virtual void notifySending ();
 
-    virtual void notifySending ();
+private :
 
-  private :
+  Runner * owner;
 
-    Runner * owner;
+};
 
-  };
-
-extern Cooperative * getCooperative (COOP_ID __key);
+extern Cooperative * getCooperative (COOP_ID __key); 
 
 #endif
