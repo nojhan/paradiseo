@@ -98,7 +98,7 @@ int main (int __argc, char *__argv[])
    */
 
 // For a parallel evaluation
-  peoEvalFuncPSO<Indi, double, const Indi& > plainEval(f);
+  peoEvalFunc<Indi, double, const Indi& > plainEval(f);
   peoParaPopEval< Indi > eval(plainEval);
 
 

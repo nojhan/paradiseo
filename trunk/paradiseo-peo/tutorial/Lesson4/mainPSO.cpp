@@ -69,7 +69,7 @@ int main (int __argc, char *__argv[])
   const unsigned int  MIG_FREQ = 10;
   rng.reseed (time(0));
   RingTopology topologyMig;
-  peoEvalFuncPSO<Indi, double, const Indi& > plainEval(f);
+  peoEvalFunc<Indi, double, const Indi& > plainEval(f);
   peoParaPopEval< Indi > eval(plainEval);
   eoUniformGenerator < double >uGen (INIT_POSITION_MIN, INIT_POSITION_MAX);
   eoInitFixedLength < Indi > random (VEC_SIZE, uGen);
@@ -90,7 +90,7 @@ int main (int __argc, char *__argv[])
   peoPSOSelect<Indi> mig_selec(topology);
   eoSelectNumber< Indi > mig_select(mig_selec);
   peoPSOReplacement<Indi> mig_replace;
-  peoEvalFuncPSO<Indi, double, const Indi& > plainEval2(f);
+  peoEvalFunc<Indi, double, const Indi& > plainEval2(f);
   peoParaPopEval< Indi > eval2(plainEval2);
   eoUniformGenerator < double >uGen2 (INIT_POSITION_MIN, INIT_POSITION_MAX);
   eoInitFixedLength < Indi > random2 (VEC_SIZE, uGen2);
@@ -111,7 +111,7 @@ int main (int __argc, char *__argv[])
   peoPSOSelect<Indi> mig_selec2(topology2);
   eoSelectNumber< Indi > mig_select2(mig_selec2);
   peoPSOReplacement<Indi> mig_replace2;
-  peoEvalFuncPSO<Indi, double, const Indi& > plainEval3(f);
+  peoEvalFunc<Indi, double, const Indi& > plainEval3(f);
   peoParaPopEval< Indi > eval3(plainEval3);
   eoUniformGenerator < double >uGen3 (INIT_POSITION_MIN, INIT_POSITION_MAX);
   eoInitFixedLength < Indi > random3 (VEC_SIZE, uGen3);

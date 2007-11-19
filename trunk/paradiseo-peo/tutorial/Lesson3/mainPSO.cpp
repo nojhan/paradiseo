@@ -78,7 +78,7 @@ int main (int __argc, char *__argv[])
 
 // First algorithm
   /*****************************************************************************************/
-  peoEvalFuncPSO<Indi, double, const Indi& > plainEval(f);
+  peoEvalFunc<Indi, double, const Indi& > plainEval(f);
   peoSeqPopEval< Indi > eval(plainEval);   	// Here, the evaluation is sequential !
   eoUniformGenerator < double >uGen (INIT_POSITION_MIN, INIT_POSITION_MAX);
   eoInitFixedLength < Indi > random (VEC_SIZE, uGen);
@@ -106,7 +106,7 @@ int main (int __argc, char *__argv[])
 
 // Second algorithm (on the same model but with others names)
   /*****************************************************************************************/
-  peoEvalFuncPSO<Indi, double, const Indi& > plainEval2(f);
+  peoEvalFunc<Indi, double, const Indi& > plainEval2(f);
   peoSeqPopEval< Indi > eval2(plainEval2);
   eoUniformGenerator < double >uGen2 (INIT_POSITION_MIN, INIT_POSITION_MAX);
   eoInitFixedLength < Indi > random2 (VEC_SIZE, uGen2);
