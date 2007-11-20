@@ -122,9 +122,9 @@ template < class M > class moTSMoveLoopExpl:public moMoveLoopExpl < M >
 
       move_select (best_move, best_move_fit);
 
-      __new_sol.fitness (best_move_fit);
       best_move (__new_sol);
-
+      __new_sol.fitness (best_move_fit);
+      
       /* Removing moves that are
          no more tabu */
       tabu_list.update ();

@@ -101,8 +101,8 @@ template < class M > class moHCMoveLoopExpl:public moMoveLoopExpl < M >
           Fitness best_move_fit;
 
           move_select (best_move, best_move_fit);
-          __new_sol.fitness (best_move_fit);
-          best_move (__new_sol);
+	  best_move (__new_sol);
+	  __new_sol.fitness (best_move_fit);
 
         }
       catch (EmptySelection & __ex)
