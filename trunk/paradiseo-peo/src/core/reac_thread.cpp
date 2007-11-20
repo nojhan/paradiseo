@@ -56,9 +56,18 @@ void ReactiveThread :: wakeUp () {
   sem_post (& sem);	
 }
 
+void initReactiveThreadsEnv () {
+
+  the_end = false;
+  reac_threads.clear ();
+}
+
 void stopReactiveThreads () {
 
   the_end = true;
   for (unsigned i = 0; i < reac_threads.size (); i ++)
-    reac_threads [i] -> wakeUp  ();	
+    reac_threads [i] -> wakeUp  ();
+  reac_threads.clear ();
 }
+
+bool theEnd () { return the_end; }

@@ -93,5 +93,9 @@ void Communicable :: resume () {
   sem_post (& sem_stop);
 }
 
+void initCommunicableEnv () {
 
-
+  key_to_comm.resize (1);
+  comm_to_key.clear ();
+  Communicable :: num_comm = 0;
+}

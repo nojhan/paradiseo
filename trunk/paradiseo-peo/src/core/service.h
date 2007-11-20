@@ -40,6 +40,7 @@
 #include "communicable.h"
 #include "thread.h"
 
+
 typedef unsigned SERVICE_ID;
 
 class Service : public Communicable {

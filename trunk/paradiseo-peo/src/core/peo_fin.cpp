@@ -39,7 +39,6 @@
 #include "runner.h"
 #include "rmc.h"
 
-
 void peo :: finalize () {
 
   printDebugMessage ("waiting for the termination of all threads");

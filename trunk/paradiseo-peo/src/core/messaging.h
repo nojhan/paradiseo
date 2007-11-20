@@ -83,7 +83,6 @@ template <class U, class V> void pack (const std :: pair <U, V> & __pair) {
 }
 
 
-//
 
 /* Char */
 extern void unpack (char & __c); 

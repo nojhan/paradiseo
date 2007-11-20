@@ -43,6 +43,7 @@
 
 #include "../../core/runner.h"
 
+
 typedef int RANK_ID;
 
 struct Node {

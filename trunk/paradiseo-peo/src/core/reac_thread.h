@@ -41,6 +41,7 @@
 
 #include "thread.h"
 
+
 class ReactiveThread : public Thread {
 	
 public:
@@ -51,13 +52,16 @@ public:
   void sleep ();
   
   void wakeUp ();
-    
+
 private:
 
   sem_t sem;
-   
 };
+
+extern void initReactiveThreadsEnv ();
 
 extern void stopReactiveThreads ();
 
-#endif /*THREAD_H_*/
+extern bool theEnd ();
+
+#endif /*REAC_THREAD_H_*/

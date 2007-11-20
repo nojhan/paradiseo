@@ -41,6 +41,7 @@
 #include "../../core/reac_thread.h"
 #include "../../core/service.h"
 
+
 typedef unsigned WORKER_ID; 
 
 class Worker : public Communicable, public ReactiveThread {
@@ -70,8 +71,10 @@ private :
   Service * serv;
   int src;
 
-  bool toto;
+  bool recvAndCompleted;
 };
+
+extern void initWorkersEnv ();
 
 extern Worker * getWorker (WORKER_ID __key);
 

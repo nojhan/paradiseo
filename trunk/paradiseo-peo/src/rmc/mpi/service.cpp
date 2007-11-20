@@ -53,6 +53,6 @@ void Service :: packResourceRequest () {
   SCHED_REQUEST req;
   req.first = getNodeRank ();
   req.second = getKey ();
-  //  printf ("demande de ressource pour %d\n", req.second);
+
   :: pack (req);
 }

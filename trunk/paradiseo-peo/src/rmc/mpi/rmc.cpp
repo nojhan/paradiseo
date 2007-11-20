@@ -42,12 +42,16 @@
 #include "../../core/peo_debug.h"
 
 static std :: vector <pthread_t *> ll_threads; /* Low level threads */
+static std :: vector <Worker *> worker_threads; /* Worker threads */
+static Communicator* communicator_thread = NULL; /* Communicator thread */
 
 void runRMC () {
 
   /* Worker(s) ? */
-  for (unsigned i = 0; i < my_node -> num_workers; i ++) 
-    addThread (new Worker, ll_threads);
+  for (unsigned i = 0; i < my_node -> num_workers; i ++) {
+    worker_threads.push_back (new Worker);
+    addThread (worker_threads.back(), ll_threads);
+  }
 
   wakeUpCommunicator ();
 }
@@ -56,20 +60,26 @@ void initRMC (int & __argc, char * * & __argv) {
 
   /* Communication */
   initCommunication ();
-  addThread (new Communicator (& __argc, & __argv), ll_threads);
+  communicator_thread = new Communicator (& __argc, & __argv);
+  addThread (communicator_thread, ll_threads);
   waitNodeInitialization ();
   initSending ();
 
   /* Scheduler */
   if (isScheduleNode ())
     initScheduler ();
-
-  ///
 }
 
 void finalizeRMC () {
 
   printDebugMessage ("before join threads RMC");
+
   joinThreads (ll_threads);
+  for (unsigned i = 0; i < worker_threads.size(); i++ ) {
+    delete worker_threads [i];
+  }
+  worker_threads.clear ();
+  delete communicator_thread;
+
   printDebugMessage ("after join threads RMC");
 }

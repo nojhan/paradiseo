@@ -48,11 +48,15 @@ static std :: queue <SCHED_REQUEST> requests; /* Requests */
 static unsigned initNumberOfRes = 0;
 
 void initScheduler () {
-  
+
+  resources = std :: queue <SCHED_RESOURCE> ();
+  requests = std :: queue <SCHED_REQUEST> ();
+  initNumberOfRes = 0;
+
   for (unsigned i = 0; i < the_schema.size (); i ++) {
-    
+
     const Node & node = the_schema [i];
-    
+
     if (node.rk_sched == my_node -> rk)      
       for (unsigned j = 0; j < node.num_workers; j ++)
 	resources.push (std :: pair <RANK_ID, WORKER_ID> (i, j + 1));    

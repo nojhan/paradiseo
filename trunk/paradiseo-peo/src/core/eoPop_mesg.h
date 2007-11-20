@@ -41,6 +41,7 @@
 
 #include "messaging.h"
 
+
 template <class EOT> void pack (const eoPop <EOT> & __pop) {
 
   pack ((unsigned) __pop.size ());
@@ -57,4 +58,5 @@ template <class EOT> void unpack (eoPop <EOT> & __pop) {
   for (unsigned i = 0; i < n; i ++)
     unpack (__pop [i]);
 }
+
 #endif

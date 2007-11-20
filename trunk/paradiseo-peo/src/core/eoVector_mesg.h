@@ -41,6 +41,7 @@
 
 #include "messaging.h"
 
+
 template <class F, class T> void pack (const eoVector <F, T> & __v) {
 
   pack (__v.fitness ()) ;

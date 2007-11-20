@@ -44,6 +44,9 @@
 #include "../rmc/mpi/mess.h"
 #include "../rmc/mpi/tags.h"
 
+#include "../rmc/mpi/node.h"
+#include "../rmc/mpi/schema.h"
+
 
 static std :: vector <pthread_t *> ll_threads; /* Low-level runner threads */ 
 
@@ -63,8 +66,11 @@ extern int getNumberOfNodes ();
 
 Runner :: Runner () {
 
+  exec_id = 0;
   def_id = ++ num_def_runners;
+
   the_runners.push_back (this);
+
   sem_init (& sem_start, 0, 0);
   sem_init (& sem_cntxt, 0, 0);
 }
@@ -76,7 +82,12 @@ RUNNER_ID Runner :: getDefinitionID () {
 
 RUNNER_ID Runner :: getExecutionID () {
 
-  return def_id;
+  return exec_id;
+}
+
+void Runner :: setExecutionID (const RUNNER_ID& execution_id) {
+
+  exec_id = execution_id;
 }
 
 Runner * getRunner (RUNNER_ID __key) {
@@ -101,7 +112,6 @@ void unpackExecutionContext () {
 
 void initializeContext () {
 
-
   initMessage ();
   packExecutionContext ();
   sendMessageToAll (EXECUTION_CONTEXT_TAG);
@@ -121,6 +131,13 @@ void initializeContext () {
 
   cleanBuffers ();
 
+  // setting up the execution IDs
+  for (unsigned i = 0; i < the_runners.size (); i ++)
+    the_runners [i] -> setExecutionID ( my_node -> execution_id_run[ i ] );
+
+
+  // synchronizing - all the nodes have to finish initializing
+  // the context before actually executing the runners
   synchronizeNodes ();
 
   for (unsigned i = 0; i < the_runners.size (); i ++)
@@ -163,6 +180,7 @@ void startRunners () {
 void joinRunners () {
 
   joinThreads (ll_threads);
+  the_runners.clear();
 }
 
 bool atLeastOneActiveRunner () {
@@ -200,4 +218,14 @@ void unpackTerminationOfRunner () {
     printDebugMessage ("All the runners have terminated - now stopping the reactive threads.");
     stopReactiveThreads ();
   }
+}
+
+void initRunnersEnv () {
+
+  ll_threads.clear ();
+  the_runners.clear ();
+
+  num_def_runners = 0;
+  num_local_exec_runners = 0;
+  num_exec_runners = 0;
 }

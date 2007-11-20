@@ -55,7 +55,8 @@ Communicator :: Communicator (int * __argc, char * * * __argv) {
 
   the_thread = this;  
   initNode  (__argc, __argv);
-  loadRMCParameters (* __argc, * __argv);  
+  loadRMCParameters (* __argc, * __argv);
+
   sem_post (& sem_comm_init);
 }
 
@@ -68,15 +69,18 @@ void Communicator :: start () {
 
     sendMessages ();
 
-    if (! atLeastOneActiveRunner ())     
+    if (theEnd() || ! atLeastOneActiveRunner ())     
       break;
 
     receiveMessages ();
   }
 
-  waitBuffers ();  
+  waitBuffers ();
+  sem_destroy(& sem_comm_init);
+
   printDebugMessage ("finalizing");
-  MPI_Finalize ();  
+
+  synchronizeNodes ();
 }
 
 void initCommunication () {

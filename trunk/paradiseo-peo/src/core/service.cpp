@@ -51,9 +51,8 @@ Service * getService (SERVICE_ID __key) {
   return dynamic_cast <Service *> (getCommunicable (__key));
 }
 
-void Service :: notifySendingData () {
+void Service :: notifySendingData () { }
 
-}
 void Service :: notifySendingResourceRequest () {
 
   num_sent_rr --;
@@ -61,26 +60,14 @@ void Service :: notifySendingResourceRequest () {
     notifySendingAllResourceRequests ();
 }
 
-void Service :: notifySendingAllResourceRequests () {
+void Service :: notifySendingAllResourceRequests () { }
 
-}
+void Service :: packData () {}
 
-void Service :: packData () {
+void Service :: unpackData () {}
 
-}
+void Service :: execute () {}
 
-void Service :: unpackData () {
+void Service :: packResult () {}
 
-}
-
-void Service :: execute () {
-
-}
-  
-void Service :: packResult () {
-
-}
-
-void Service :: unpackResult () {
-
-}
+void Service :: unpackResult () {}

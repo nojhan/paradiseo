@@ -73,6 +73,12 @@ void Thread :: setPassive () {
   } 
 }
 
+void initThreadsEnv () {
+
+  threads.clear ();
+  num_act = 0;
+}
+
 bool atLeastOneActiveThread () {
 
   return num_act;
@@ -95,6 +101,9 @@ void addThread (Thread * __hl_thread, std :: vector <pthread_t *> & __ll_threads
 
 void joinThreads (std :: vector <pthread_t *> & __threads) {
 
-  for (unsigned i = 0; i < __threads.size (); i ++)    
-    pthread_join (* __threads [i], 0);  
+  for (unsigned i = 0; i < __threads.size (); i ++) {
+    pthread_join (* __threads [i], 0);
+    delete __threads [i];
+  }
+  __threads.clear();
 }

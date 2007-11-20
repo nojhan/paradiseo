@@ -61,9 +61,24 @@ static std :: queue <SEND_REQUEST> mess;
 
 static sem_t sem_send;
 
+static bool contextInitialized = false;
+
 void initSending () {
 
-  sem_init (& sem_send, 0, 1);
+  static bool initializedSem = false;
+
+  mess = std :: queue <SEND_REQUEST> ();
+
+  if (! initializedSem) {
+    sem_init (& sem_send, 0, 1);
+    initializedSem = true;
+  }
+  else {
+    sem_destroy(& sem_send);
+    sem_init (& sem_send, 0, 1);
+  }
+
+  contextInitialized = false;
 }
 
 void send (Communicable * __comm, int __to, int __tag) {
@@ -90,17 +105,15 @@ void sendMessages () {
 
   sem_wait (& sem_send);
 
-  static bool contextInitialized = false;
-
   if (! contextInitialized) {
     contextInitialized = true;
     initializeContext();
   }
 
   while (! mess.empty ()) {
-    
+
     SEND_REQUEST req = mess.front ();
-    
+
     Communicable * comm = req.comm;
 
     initMessage ();
@@ -131,12 +144,12 @@ void sendMessages () {
       dynamic_cast <Worker *> (comm) -> packTaskDone ();
       dynamic_cast <Worker *> (comm) -> notifySendingTaskDone ();
       break;
-      
+
     default :
       break;
 
     };
-    
+
     if (req.to == TO_ALL)
       sendMessageToAll (req.tag);
     else

@@ -56,6 +56,8 @@ public :
 
   RUNNER_ID getExecutionID ();
 
+  void setExecutionID (const RUNNER_ID& execution_id);
+
   bool isAssignedLocally ();
 
   void waitStarting ();
@@ -80,8 +82,11 @@ private :
   sem_t sem_cntxt;
 
   unsigned def_id;
+  unsigned exec_id;
 };
 
+
+extern void initRunnersEnv ();
 
 extern Runner * getRunner (RUNNER_ID __key); 
 
@@ -96,6 +101,5 @@ extern bool atLeastOneActiveRunner ();
 extern unsigned numberOfActiveRunners ();
 
 extern void unpackTerminationOfRunner ();
-
 
 #endif

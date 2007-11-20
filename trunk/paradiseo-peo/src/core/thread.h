@@ -39,8 +39,8 @@
 
 #include <vector>
 
-/* A high-level thread */
 
+/* A high-level thread */
 class Thread {
 	
 public:
@@ -62,6 +62,8 @@ private :
   
   bool act;
 };
+
+extern void initThreadsEnv ();
 
 extern void addThread (Thread * __hl_thread, std :: vector <pthread_t *> & __ll_threads);
 

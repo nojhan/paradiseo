@@ -230,8 +230,8 @@ template< class EOT > void peoSyncIslandMig< EOT > :: pack()
 
   lock ();
 
-  pack( coop_em.front()->getKey() );
-  pack( em.front() );
+  ::pack( coop_em.front()->getKey() );
+  ::pack( em.front() );
   coop_em.pop();
   em.pop();
 
@@ -245,7 +245,7 @@ template< class EOT > void peoSyncIslandMig< EOT > :: unpack()
   lock ();
 
   eoPop< EOT > mig;
-  unpack( mig );
+  ::unpack( mig );
   imm.push( mig );
 
   unlock();

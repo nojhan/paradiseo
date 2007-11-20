@@ -54,18 +54,18 @@ static std :: vector <MPI_Request *> act_req; /* Active requests */
 void cleanBuffers () {
 
   for (unsigned i = 0; i < act_req.size ();) {
-       
+
     MPI_Status stat ;
     int flag ;
     MPI_Test (act_req [i], & flag, & stat) ;
     if (flag) {
-      
+
       delete[] act_buf [i] ;
       delete act_req [i] ;
 	
       act_buf [i] = act_buf.back () ;
       act_buf.pop_back () ;
-      
+
       act_req [i] = act_req.back () ;
       act_req.pop_back () ;
     }

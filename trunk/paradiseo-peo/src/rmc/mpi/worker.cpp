@@ -53,7 +53,7 @@ Worker * getWorker (WORKER_ID __key) {
 
 Worker :: Worker () {
   
-  toto = false;
+  recvAndCompleted = false;
   id = key_to_worker.size ();
   key_to_worker.push_back (this);
 }
@@ -84,7 +84,7 @@ void Worker :: packTaskDone () {
 void Worker :: notifySendingResult () {
 
   /* Notifying the scheduler of the termination */
-  toto = true;
+  recvAndCompleted = true;
   wakeUp ();
 }
 
@@ -101,15 +101,15 @@ void Worker :: setSource (int __rank) {
 void Worker :: start () {
 
   while (true) {
-    
+
     sleep (); 
 
     if (! atLeastOneActiveRunner ())
       break;
-    
-    if (toto) {
+
+    if (recvAndCompleted) {
       send (this, my_node -> rk_sched, TASK_DONE_TAG);  
-      toto = false;
+      recvAndCompleted = false;
     }
     else {
 
@@ -118,4 +118,9 @@ void Worker :: start () {
       send (this, src, TASK_RESULT_TAG);    
     }
   }
+}
+
+void initWorkersEnv () {
+
+  key_to_worker.resize (1);
 }

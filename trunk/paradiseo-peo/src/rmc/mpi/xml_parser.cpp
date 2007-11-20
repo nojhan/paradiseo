@@ -83,7 +83,6 @@ std :: string getNextNode () {
     xmlTextReaderRead (reader);
     name = xmlTextReaderName (reader);
     value = xmlTextReaderValue (reader);
-    //    printf ("value = %s\n", value);
   } while (! strcmp ((char *) name, "#text") && isSep (value));
 
   std :: string str;

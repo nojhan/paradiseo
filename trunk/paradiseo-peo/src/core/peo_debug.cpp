@@ -78,24 +78,28 @@ void endDebugging () {
   for (unsigned i = 0; i < files.size (); i ++)
     if (files [i] != stdout)
       fclose (files [i]);
+  files.clear();
 }
 
 void printDebugMessage (const char * __mess) {
-  return;
+
   if (debug) {
 
     char buff [MAX_BUFF_SIZE];
+    char localTime [MAX_BUFF_SIZE];
     time_t t = time (0);
 
     /* Date */
-    sprintf (buff, "[%s][%s: ", host, ctime (& t));
-    * strchr (buff, '\n') = ']';
+    strcpy( localTime, ctime (& t) ); 
+    localTime[ strlen( localTime )-1 ] = ']';
+    sprintf (buff, "[%s][%s: ", host, localTime );
+
     for (unsigned i = 0; i < files.size (); i ++)
       fprintf (files [i], buff);
 
     /* Message */
     sprintf (buff, "%s", __mess);
-    
+
     for (unsigned i = 0; i < files.size (); i ++) {
       fputs (buff, files [i]);
       fputs ("\n", files [i]);

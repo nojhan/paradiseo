@@ -41,6 +41,27 @@
 #include "peo_debug.h"
 #include "rmc.h"
 
+
+extern void initCommunicableEnv ();
+
+extern void initThreadsEnv ();
+extern void initReactiveThreadsEnv ();
+
+extern void initRunnersEnv ();
+extern void initWorkersEnv ();
+
+
+static void initExecutionEnv() {
+
+  initCommunicableEnv ();
+
+  initThreadsEnv ();
+  initReactiveThreadsEnv ();
+
+  initRunnersEnv ();
+  initWorkersEnv ();
+}
+
 namespace peo {
 
   int * argc;
@@ -52,13 +73,16 @@ namespace peo {
     argc = & __argc;
     
     argv = & __argv;
-    
+
+    /* Initializing the execution environment */
+    initExecutionEnv();
+
     /* Initializing the the Resource Management and Communication */
     initRMC (__argc, __argv);
 
     /* Loading the common parameters */ 
     loadParameters (__argc, __argv);
-    
+
     /* */
     initDebugging ();
   }

@@ -38,7 +38,7 @@
 #define __peo_finalize_h
 
 namespace peo {
-  
+
   extern void finalize ();
 }
 

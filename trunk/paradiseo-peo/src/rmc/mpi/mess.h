@@ -58,4 +58,3 @@ extern void waitMessage ();
 extern void synchronizeNodes ();
 
 #endif
-

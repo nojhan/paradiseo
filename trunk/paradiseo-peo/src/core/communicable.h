@@ -39,6 +39,7 @@
 
 #include <semaphore.h>
 
+
 typedef unsigned COMM_ID;
 
 class Communicable {
@@ -56,7 +57,11 @@ public :
 
   void stop (); /* It suspends the current process */
   void resume (); /* It resumes ___________ */
-  
+
+public :
+
+  static unsigned num_comm;
+
 protected :
 
   COMM_ID key;
@@ -64,9 +69,9 @@ protected :
   sem_t sem_lock;
   
   sem_t sem_stop;
-
-  static unsigned num_comm;
 };
+
+extern void initCommunicableEnv ();
 
 extern Communicable * getCommunicable (COMM_ID __key); 
 

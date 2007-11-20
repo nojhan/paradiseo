@@ -34,9 +34,8 @@
 *
 */
 
-#include <iostream>
 #include <set>
-#include <assert.h>
+#include <cassert>
 
 #include "schema.h"
 #include "xml_parser.h"
@@ -131,8 +130,8 @@ void loadSchema (const char * __filename) {
   name = getNextNode ();
   assert (name == "schema");
 
+  the_schema.clear();
   maxSpecifiedRunnerID = 0;
-
 
   while (true) {
 
