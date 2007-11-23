@@ -24,6 +24,7 @@
 #define WizardMainImage="E:\software\paradisEO\repository\utilities\trunk\windows\img\paradiseo.bmp"
 #define SkipParadiseoFiles="lib,installParadisEO.sh,paradiseo-peo,.mpd.conf"
 #define LicenceFile="E:\software\paradisEO\repository\trunk\LICENSE"
+#define FinalInstructions="E:\software\paradisEO\repository\utilities\trunk\windows\final_instructions.txt"
 
 // additionnal info
 #define Company="INRIA"
@@ -58,7 +59,8 @@ VersionInfoVersion={#Version}
 VersionInfoCompany={#Company}
 VersionInfoDescription={#ApplicationName}
 VersionInfoTextVersion={#ApplicationName}
-
+InfoAfterFile={#FinalInstructions}
+ 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
@@ -137,34 +139,49 @@ begin
             Generator:='Visual Studio 8 2005' ;
             exit;
     end;
-     if GeneratorBox.Checked[2] then
+    if GeneratorBox.Checked[2] then
     begin
-            Generator:='Visual Studio 7 .NET 2003' ;
+            Generator:='Visual Studio 8 2005 Win64' ;
             exit;
     end;
      if GeneratorBox.Checked[3] then
     begin
-            Generator:='NMake'       ;
+            Generator:='Visual Studio 7 .NET 2003' ;
             exit;
     end;
      if GeneratorBox.Checked[4] then
     begin
-            Generator:='MinGW' ;
+            Generator:='Visual Studio 7' ;
             exit;
     end;
      if GeneratorBox.Checked[5] then
     begin
-            Generator:='Borland'  ;
+            Generator:='Visual Studio 6' ;
             exit;
     end;
-     if GeneratorBox.Checked[6] then
+    if GeneratorBox.Checked[6] then
     begin
-            Generator:='MSYS'   ;
+            Generator:='NMake Makefiles' ;
             exit;
     end;
-     if GeneratorBox.Checked[7] then
+    if GeneratorBox.Checked[7] then
     begin
-            Generator:='WMake'   ;
+            Generator:='MinGW Makefiles' ;
+            exit;
+    end;
+    if GeneratorBox.Checked[8] then
+    begin
+            Generator:='Borland Makefiles' ;
+            exit;
+    end;
+     if GeneratorBox.Checked[9] then
+    begin
+            Generator:='MSYS Makefiles' ;
+            exit;
+    end;
+     if GeneratorBox.Checked[10] then
+    begin
+            Generator:='Watcom WMake'   ;
             exit;
     end;
 end;
@@ -332,7 +349,7 @@ begin
   GeneratorBox := TNewCheckListBox.Create(GeneratorPage);
   GeneratorBox.Top :=  ScaleY(0);
   GeneratorBox.Width := GeneratorPage.SurfaceWidth;
-  GeneratorBox.Height := ScaleY(180);
+  GeneratorBox.Height := ScaleY(250);
   GeneratorBox.BorderStyle := bsNone;
   GeneratorBox.ParentColor := True;
   GeneratorBox.MinItemHeight := WizardForm.TasksList.MinItemHeight;
@@ -341,12 +358,15 @@ begin
   GeneratorBox.Parent := GeneratorPage.Surface;
   GeneratorBox.AddGroup(CustomMessage('SelectCompiler'), '', 0, nil);
   GeneratorBox.AddRadioButton('Visual Studio 8 2005', '', 0, True, True, nil);
+  GeneratorBox.AddRadioButton('Visual Studio 8 2005 Win64', '', 0, False, True, nil);
   GeneratorBox.AddRadioButton('Visual Studio 7 .NET 2003', '', 0, False, True, nil);
+  GeneratorBox.AddRadioButton('Visual Studio 7', '', 0, False, True, nil);
+  GeneratorBox.AddRadioButton('Visual Studio 6', '', 0, False, True, nil);
   GeneratorBox.AddRadioButton('NMake', '', 0, False, True, nil);
   GeneratorBox.AddRadioButton('MinGW', '', 0, False, True, nil);
   GeneratorBox.AddRadioButton('Borland', '', 0, False, True, nil);
   GeneratorBox.AddRadioButton('MSYS', '', 0, False, True, nil);
-  GeneratorBox.AddRadioButton('WMake', '', 0, False, True, nil);
+  GeneratorBox.AddRadioButton('Watcom WMake', '', 0, False, True, nil);
   
   BuildProcessPage := CreateCustomPage({#launchBuildWizardPageIndex},CustomMessage('GenCMakeFiles'),CustomMessage('BuildProcess'));
 
