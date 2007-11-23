@@ -4,30 +4,60 @@
 #define generatorWizardPageIndex= 7
 #define launchBuildWizardPageIndex= 12
 
+//***************************************************************************************//
+//********** ParadisEO Specific strategy - The rest of the code is generic ************* //
+//***************************************************************************************//
+
+// where will the installer be created ?
+#define OutputPath="E:\software\paradisEO\windows installer\compiler output"
+
+// installer source info
+#define ParadiseoSourceTag="E:\software\paradisEO\repository\tags\paradiseo-ix86-1.0\*"
+#define EoTag="E:\software\eo\repository\tag_v_peo_1_0\*"
+
+// installer description info
+#define Version="1.0"
+#define VersionMain="ParadisEO-ix86-1.0"
+#define InstallerName="paradiseo-1.0-win32-preinstaller"
+#define ApplicationName="ParadisEO"
+#define SetupIconPath="E:\software\paradisEO\repository\utilities\trunk\windows\img\paradiseo.ico"
+#define WizardMainImage="E:\software\paradisEO\repository\utilities\trunk\windows\img\paradiseo.bmp"
+#define SkipParadiseoFiles="lib,installParadisEO.sh,paradiseo-peo,.mpd.conf"
+#define LicenceFile="E:\software\paradisEO\repository\trunk\LICENSE"
+
+// additionnal info
+#define Company="INRIA"
+#define AboutUS="INRIA Futurs Dolphin Project-team"
+#define PublisherURL="http://paradiseo.gforge.inria.fr"
+#define SupportURL="http://paradiseo.gforge.inria.fr"
+#define UpdatesURL="http://paradiseo.gforge.inria.fr"
+
+//***************************************************************************************//
+
 [Setup]
-AppName=ParadisEO
-AppVerName=ParadisEO-ix86-1.0
-AppPublisher=INRIA Futurs Dolphin Project-team
-AppPublisherURL=http://paradiseo.gforge.inria.fr
-AppSupportURL=http://paradiseo.gforge.inria.fr
-AppUpdatesURL=http://paradiseo.gforge.inria.fr
-DefaultDirName={pf}\ParadisEO
-DefaultGroupName=ParadisEO
-LicenseFile=E:\software\paradisEO\repository\trunk\LICENSE
-OutputDir=E:\software\paradisEO\windows installer\compiler output
-OutputBaseFilename=paradiseo-1.0-win32-preinstaller
+AppName={#ApplicationName}
+AppVerName={#VersionMain}
+AppPublisher={#AboutUS}
+AppPublisherURL={#PublisherURL}
+AppSupportURL={#SupportURL}
+AppUpdatesURL={#UpdatesURL}
+DefaultDirName={pf}\{#ApplicationName}
+DefaultGroupName={#ApplicationName}
+LicenseFile={#LicenceFile}
+OutputDir={#OutputPath}
+OutputBaseFilename={#InstallerName}
 Compression=lzma/max
 SolidCompression=yes
-WizardImageFile=E:\software\paradisEO\repository\utilities\trunk\windows\img\paradiseo.bmp
-SetupIconFile=E:\software\paradisEO\repository\utilities\trunk\windows\img\paradiseo.ico
-UninstallDisplayName=ParadisEO
+WizardImageFile={#WizardMainImage}
+SetupIconFile={#SetupIconPath}
+UninstallDisplayName={#ApplicationName}
 WindowVisible=False
 RestartIfNeededByRun=False
 ShowTasksTreeLines=True
-VersionInfoVersion=1.0
-VersionInfoCompany=INRIA
-VersionInfoDescription=ParadisEO
-VersionInfoTextVersion=ParadisEO
+VersionInfoVersion={#Version}
+VersionInfoCompany={#Company}
+VersionInfoDescription={#ApplicationName}
+VersionInfoTextVersion={#ApplicationName}
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -86,8 +116,8 @@ Name: mo; Description:{cm:MoDescription}; Types: full custom;
 Name: moeo; Description: {cm:MoeoDescription}; Types: full custom;
 
 [Files]
-Source: "E:\software\paradisEO\repository\tags\paradiseo-ix86-1.0\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-
+Source: {#ParadiseoSourceTag}; DestDir: "{app}"; Excludes: {#SkipParadiseoFiles} ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: {#EoTag}; DestDir: "{app}";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Code]
 var
@@ -251,7 +281,7 @@ begin
          if (isError(launchEOBuildProcess())) then
           begin
            ProgressPage.SetText(CustomMessage('Error'), CustomMessage('ErrorAbort'));
-           MsgBox(CustomMessage('CannotCompleteInstall')+'ParadisEO-EO' , mbCriticalError, mb_Ok);
+           MsgBox(CustomMessage('CannotCompleteInstall')+' ParadisEO-EO' , mbCriticalError, mb_Ok);
            ProgressPage.Hide;
            Result := True;
            exit;
@@ -263,7 +293,7 @@ begin
          if (isError(launchMOBuildProcess())) then
           begin
           ProgressPage.SetText(CustomMessage('Error'), CustomMessage('ErrorAbort'));
-            MsgBox(CustomMessage('CannotCompleteInstall')+'ParadisEO-MO' , mbCriticalError, mb_Ok);
+            MsgBox(CustomMessage('CannotCompleteInstall')+' ParadisEO-MO' , mbCriticalError, mb_Ok);
            ProgressPage.Hide;
            Result := True;
            exit;
@@ -276,7 +306,7 @@ begin
         if (isError(launchMOEOBuildProcess())) then
          begin
          ProgressPage.SetText(CustomMessage('Error'), CustomMessage('ErrorAbort'));
-           MsgBox(CustomMessage('CannotCompleteInstall')+'ParadisEO-MOEO' , mbCriticalError, mb_Ok);
+           MsgBox(CustomMessage('CannotCompleteInstall')+' ParadisEO-MOEO' , mbCriticalError, mb_Ok);
           ProgressPage.Hide;
           Result := True;
           exit;
@@ -286,7 +316,6 @@ begin
 
        ProgressPage.SetText(CustomMessage('BPFinished'), CustomMessage('BPSuccessfull'));
        sleep(2000);
-       ProgressPage.SetText('Fin','Vous devez maintenant compiler');
        ProgressPage.Hide;
   end;
    Result := True;
