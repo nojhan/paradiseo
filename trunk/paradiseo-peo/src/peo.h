@@ -347,7 +347,6 @@
 /* Parallel PSO */
 #include "peoInitializer.h"
 #include "peoPSO.h"
-#include "peoEvalFuncPSO.h"
 #include "peoPSOSelect.h"
 #include "peoPSOReplacement.h"
 #include "peoPSOVelocity.h"
