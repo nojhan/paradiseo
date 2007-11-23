@@ -57,4 +57,6 @@ extern void unpackTaskDone ();
 
 extern bool allResourcesFree ();
 
+extern unsigned numResourcesFree ();
+
 #endif

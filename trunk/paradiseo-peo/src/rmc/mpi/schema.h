@@ -47,7 +47,7 @@
 typedef int RANK_ID;
 
 struct Node {
-  
+
   RANK_ID rk; /* Rank */
   std :: string name; /* Host name */
   unsigned num_workers; /* Number of parallel workers */

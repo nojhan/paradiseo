@@ -43,14 +43,14 @@
 
 
 class ReactiveThread : public Thread {
-	
+
 public:
 
   /* Ctor */
   ReactiveThread ();
 
   void sleep ();
-  
+
   void wakeUp ();
 
 private:
@@ -61,7 +61,5 @@ private:
 extern void initReactiveThreadsEnv ();
 
 extern void stopReactiveThreads ();
-
-extern bool theEnd ();
 
 #endif /*REAC_THREAD_H_*/

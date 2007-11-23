@@ -42,8 +42,9 @@ static std :: vector <Thread *> threads;
 
 unsigned num_act = 0;
 
+
 Thread :: Thread () {
-	
+
   threads.push_back (this);
   act = false;
 }
@@ -52,8 +53,6 @@ Thread :: ~ Thread () {
 
   /* Nothing ! */
 }
-
-extern int getNodeRank ();
 
 void Thread :: setActive () {
 
@@ -70,7 +69,7 @@ void Thread :: setPassive () {
 
     act = false;
     num_act --;
-  } 
+  }
 }
 
 void initThreadsEnv () {

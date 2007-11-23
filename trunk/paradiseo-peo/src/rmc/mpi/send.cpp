@@ -49,6 +49,7 @@
 
 #define TO_ALL -1
 
+
 typedef struct {
 
   Communicable * comm;
@@ -56,27 +57,27 @@ typedef struct {
   int tag;
 
 } SEND_REQUEST;
-	
+
+
 static std :: queue <SEND_REQUEST> mess;
 
 static sem_t sem_send;
 
 static bool contextInitialized = false;
 
+
 void initSending () {
 
-  static bool initializedSem = false;
+  static bool initializedSemaphore = false;
 
   mess = std :: queue <SEND_REQUEST> ();
 
-  if (! initializedSem) {
-    sem_init (& sem_send, 0, 1);
-    initializedSem = true;
-  }
-  else {
+  if (initializedSemaphore) {
     sem_destroy(& sem_send);
-    sem_init (& sem_send, 0, 1);
   }
+
+  sem_init (& sem_send, 0, 1);
+  initializedSemaphore = true;
 
   contextInitialized = false;
 }
@@ -103,12 +104,12 @@ extern void initializeContext ();
 
 void sendMessages () {
 
-  sem_wait (& sem_send);
-
   if (! contextInitialized) {
     contextInitialized = true;
     initializeContext();
   }
+
+  sem_wait (& sem_send);
 
   while (! mess.empty ()) {
 
@@ -132,7 +133,7 @@ void sendMessages () {
 
     case SCHED_REQUEST_TAG:
       dynamic_cast <Service *> (comm) -> packResourceRequest ();
-      dynamic_cast <Service *> (comm) -> notifySendingResourceRequest ();            
+      dynamic_cast <Service *> (comm) -> notifySendingResourceRequest ();
       break;
 
     case TASK_RESULT_TAG:
@@ -157,5 +158,5 @@ void sendMessages () {
     mess.pop ();
   }
 
-  sem_post (& sem_send);  
+  sem_post (& sem_send);
 }

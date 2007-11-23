@@ -46,6 +46,7 @@ static std :: map <const Communicable *, unsigned> comm_to_key; /* Map of regist
 
 unsigned Communicable :: num_comm = 0;
 
+
 Communicable :: Communicable () {
 
   comm_to_key [this] = key = ++ num_comm;
@@ -70,7 +71,7 @@ Communicable * getCommunicable (COMM_ID __key) {
 }
 
 COMM_ID getKey (const Communicable * __comm) {
-  
+
   return comm_to_key [__comm];
 }
 

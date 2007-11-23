@@ -67,7 +67,7 @@ class peoParallelAlgorithmWrapper : public Runner
 
   ~peoParallelAlgorithmWrapper()
     {
-      
+
       delete algorithm;
     }
 
@@ -76,12 +76,12 @@ class peoParallelAlgorithmWrapper : public Runner
     algorithm->operator()();
   }
 
-  
+
  private:
 
   struct AbstractAlgorithm
   {
-	
+
     // virtual destructor as we will be using inheritance and polymorphism
     virtual ~AbstractAlgorithm()
     { }
@@ -90,7 +90,7 @@ class peoParallelAlgorithmWrapper : public Runner
     virtual void operator()()
     { }
   };
-  
+
   template< typename AlgorithmType, typename AlgorithmDataType > struct Algorithm : public AbstractAlgorithm
   {
 
@@ -117,7 +117,7 @@ class peoParallelAlgorithmWrapper : public Runner
     {
       algorithm();
     }
-    
+
     AlgorithmType& algorithm;
   };
 
@@ -127,7 +127,7 @@ class peoParallelAlgorithmWrapper : public Runner
   FunctionAlgorithm( AlgorithmReturnType (*externalAlgorithm)( AlgorithmDataType& ), AlgorithmDataType& externalData )
     : algorithm( externalAlgorithm ), algorithmData( externalData )
     {}
-    
+
     virtual void operator()()
     {
       algorithm( algorithmData );
@@ -136,22 +136,22 @@ class peoParallelAlgorithmWrapper : public Runner
     AlgorithmReturnType (*algorithm)( AlgorithmDataType& );
     AlgorithmDataType& algorithmData;
   };
-  
+
   template< typename AlgorithmReturnType > struct FunctionAlgorithm< AlgorithmReturnType, void > : public AbstractAlgorithm
   {
 
   FunctionAlgorithm( AlgorithmReturnType (*externalAlgorithm)() )
     : algorithm( externalAlgorithm )
     {}
-    
+
     virtual void operator()()
     {
       algorithm();
     }
-    
+
     AlgorithmReturnType (*algorithm)();
   };
-  
+
  private:
 
   AbstractAlgorithm* algorithm;

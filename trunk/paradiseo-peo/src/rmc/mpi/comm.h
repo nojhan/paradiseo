@@ -43,7 +43,7 @@
 class Communicator : public ReactiveThread {
 
 public :
-  
+
   /* Ctor */
   Communicator (int * __argc, char * * * __argv);
 

@@ -80,48 +80,48 @@
 //!	<tr><td>... &nbsp;</td> <td> &nbsp; </td></tr>
 //!	</table>
 template < class EOT > class peoEA : public Runner
-  {
+{
 
-  public:
+public:
 
-    //! Constructor for the evolutionary algorithm object - several basic parameters have to be specified,
-    //! allowing for different levels of parallelism. Depending on the requirements, a sequential or a parallel
-    //! evaluation operator may be specified or, in the same manner, a sequential or a parallel transformation
-    //! operator may be given as parameter. Out of the box objects may be provided, from the EO package, for example,
-    //! or custom defined ones may be specified, provided that they are derived from the correct base classes.
-    //!
-    //! @param eoContinue< EOT >& __cont - continuation criterion specifying whether the algorithm should continue or not;
-    //! @param peoPopEval< EOT >& __pop_eval - evaluation operator; it allows the specification of parallel evaluation operators, aggregate evaluation functions, etc.;
-    //! @param eoSelect< EOT >& __select - selection strategy to be applied for constructing a list of offspring individuals;
-    //! @param peoTransform< EOT >& __trans - transformation operator, i.e. crossover and mutation; allows for sequential or parallel transform;
-    //! @param eoReplacement< EOT >& __replace - replacement strategy for integrating the offspring individuals in the initial population;
-    peoEA(
-      eoContinue< EOT >& __cont,
-      peoPopEval< EOT >& __pop_eval,
-      eoSelect< EOT >& __select,
-      peoTransform< EOT >& __trans,
-      eoReplacement< EOT >& __replace
-    );
+  //! Constructor for the evolutionary algorithm object - several basic parameters have to be specified,
+  //! allowing for different levels of parallelism. Depending on the requirements, a sequential or a parallel
+  //! evaluation operator may be specified or, in the same manner, a sequential or a parallel transformation
+  //! operator may be given as parameter. Out of the box objects may be provided, from the EO package, for example,
+  //! or custom defined ones may be specified, provided that they are derived from the correct base classes.
+  //!
+  //! @param eoContinue< EOT >& __cont - continuation criterion specifying whether the algorithm should continue or not;
+  //! @param peoPopEval< EOT >& __pop_eval - evaluation operator; it allows the specification of parallel evaluation operators, aggregate evaluation functions, etc.;
+  //! @param eoSelect< EOT >& __select - selection strategy to be applied for constructing a list of offspring individuals;
+  //! @param peoTransform< EOT >& __trans - transformation operator, i.e. crossover and mutation; allows for sequential or parallel transform;
+  //! @param eoReplacement< EOT >& __replace - replacement strategy for integrating the offspring individuals in the initial population;
+  peoEA(
+    eoContinue< EOT >& __cont,
+    peoPopEval< EOT >& __pop_eval,
+    eoSelect< EOT >& __select,
+    peoTransform< EOT >& __trans,
+    eoReplacement< EOT >& __replace
+  );
 
-    //! Evolutionary algorithm function - a side effect of the fact that the class is derived from the <b>Runner</b> class,
-    //! thus requiring the existence of a <i>run</i> function, the algorithm being executed on a distinct thread.
-    void run();
+  //! Evolutionary algorithm function - a side effect of the fact that the class is derived from the <b>Runner</b> class,
+  //! thus requiring the existence of a <i>run</i> function, the algorithm being executed on a distinct thread.
+  void run();
 
-    //! Function operator for specifying the population to be associated with the algorithm.
-    //!
-    //! @param eoPop< EOT >& __pop - initial population of the algorithm, to be iteratively evolved;
-    void operator()( eoPop< EOT >& __pop );
-
-  private:
+  //! Function operator for specifying the population to be associated with the algorithm.
+  //!
+  //! @param eoPop< EOT >& __pop - initial population of the algorithm, to be iteratively evolved;
+  void operator()( eoPop< EOT >& __pop );
 
 
-    eoContinue< EOT >& cont;
-    peoPopEval< EOT >& pop_eval;
-    eoSelect< EOT >& select;
-    peoTransform< EOT >& trans;
-    eoReplacement< EOT >& replace;
-    eoPop< EOT >* pop;
-  };
+private:
+
+  eoContinue< EOT >& cont;
+  peoPopEval< EOT >& pop_eval;
+  eoSelect< EOT >& select;
+  peoTransform< EOT >& trans;
+  eoReplacement< EOT >& replace;
+  eoPop< EOT >* pop;
+};
 
 
 template < class EOT > peoEA< EOT > :: peoEA(
@@ -150,30 +150,29 @@ template< class EOT > void peoEA< EOT > :: operator ()( eoPop< EOT >& __pop )
 template< class EOT > void peoEA< EOT > :: run()
 {
 
-  printDebugMessage( "performing the first evaluation of the population." );
+  printDebugMessage( "peoEA: performing the first evaluation of the population." );
   pop_eval( *pop );
 
   do
-    {
+  {
 
-      eoPop< EOT > off;
+    eoPop< EOT > off;
 
-      printDebugMessage( "performing the selection step." );
-      select( *pop, off );
-      trans( off );
+    printDebugMessage( "peoEA: performing the selection step." );
+    select( *pop, off );
+    trans( off );
 
-      printDebugMessage( "performing the evaluation of the population." );
+    printDebugMessage( "peoEA: performing the evaluation of the population." );
 
-      pop_eval( off );
+    pop_eval( off );
 
-      printDebugMessage( "performing the replacement of the population." );
-      replace( *pop, off );
+    printDebugMessage( "peoEA: performing the replacement of the population." );
+    replace( *pop, off );
 
-      printDebugMessage( "deciding of the continuation." );
+    printDebugMessage( "peoEA: deciding of the continuation." );
 
-    }
+  }
   while ( cont( *pop ) );
 }
-
 
 #endif

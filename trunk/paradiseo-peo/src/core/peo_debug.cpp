@@ -50,11 +50,13 @@
 
 #define DEBUG_PATH "./log/"
 
+
 static bool debug = true;
 
 static char host [MAX_BUFF_SIZE];
 
 std :: vector <FILE *> files;
+
 
 void setDebugMode (bool __dbg) {
 
@@ -65,7 +67,7 @@ void setDebugMode (bool __dbg) {
 extern int getNodeRank ();
 
 void initDebugging () {
-  
+
   mkdir (DEBUG_PATH, S_IRWXU);
   //  files.push_back (stdout);
   char buff [MAX_BUFF_SIZE];

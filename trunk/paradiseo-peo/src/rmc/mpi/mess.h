@@ -47,6 +47,8 @@ extern void sendMessageToAll (int __tag);
 
 extern void receiveMessage (int __from, int __tag);
 
+extern void initBuffers ();
+
 extern void cleanBuffers ();
 
 extern void waitBuffers ();

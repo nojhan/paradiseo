@@ -40,7 +40,6 @@
 #include "peo_debug.h"
 
 
-
 void peo :: loadParameters (int & __argc, char * * & __argv) {
 
   eoParser parser (__argc, __argv);

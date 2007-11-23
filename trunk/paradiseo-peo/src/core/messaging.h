@@ -71,13 +71,13 @@ extern void pack (const char * __str);
 
 /* Pointer */
 template <class T> void pack (const T * __ptr) {
-  
+
   pack ((unsigned long) __ptr); 
 }
 
 /* Pair */
 template <class U, class V> void pack (const std :: pair <U, V> & __pair) {
-  
+
   pack (__pair.first);
   pack (__pair.second);
 }
@@ -116,7 +116,7 @@ extern void unpack (char * __str);
 
 /* Pointer */
 template <class T> void unpack (T * & __ptr) {
-  
+
   unsigned long p;
   unpack (p);
   __ptr = (T *) p;
@@ -124,10 +124,9 @@ template <class T> void unpack (T * & __ptr) {
 
 /* Pair */
 template <class U, class V> void unpack (std :: pair <U, V> & __pair) {
-  
+
   unpack (__pair.first);
   unpack (__pair.second);
 }
-
 
 #endif

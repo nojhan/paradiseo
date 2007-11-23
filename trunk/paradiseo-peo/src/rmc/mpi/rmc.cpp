@@ -45,6 +45,7 @@ static std :: vector <pthread_t *> ll_threads; /* Low level threads */
 static std :: vector <Worker *> worker_threads; /* Worker threads */
 static Communicator* communicator_thread = NULL; /* Communicator thread */
 
+
 void runRMC () {
 
   /* Worker(s) ? */

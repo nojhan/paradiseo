@@ -45,11 +45,18 @@
 	
 static char mpi_buf [MPI_BUF_SIZE];
 	
-static int pos_buf ;
+static int pos_buf;
 
 static std :: vector <char *> act_buf; /* Active buffers */
 
 static std :: vector <MPI_Request *> act_req; /* Active requests */
+
+void initBuffers () {
+
+  pos_buf = 0;
+  act_buf.clear ();
+  act_req.clear ();
+}
 
 void cleanBuffers () {
 
@@ -57,6 +64,7 @@ void cleanBuffers () {
 
     MPI_Status stat ;
     int flag ;
+
     MPI_Test (act_req [i], & flag, & stat) ;
     if (flag) {
 
@@ -71,7 +79,7 @@ void cleanBuffers () {
     }
     else
       i ++;
-  } 
+  }
 }
 
 void waitBuffers () {
@@ -79,14 +87,14 @@ void waitBuffers () {
   printDebugMessage ("waiting the termination of the asynchronous operations to complete");
 
   for (unsigned i = 0; i < act_req.size (); i ++) {
-       
+
     MPI_Status stat ;
 
     MPI_Wait (act_req [i], & stat) ;
-      
+
     delete[] act_buf [i] ;
     delete act_req [i] ;
-  } 
+  }
 }
 
 bool probeMessage (int & __src, int & __tag) {
@@ -111,17 +119,17 @@ void waitMessage () {
 }
 
 void initMessage () {
-  
+
   pos_buf = 0;
 }
 
 void sendMessage (int __to, int __tag) {
 
-  cleanBuffers ();  
+  cleanBuffers ();
   act_buf.push_back (new char [pos_buf]);
-  act_req.push_back (new MPI_Request);  
-  memcpy (act_buf.back (), mpi_buf, pos_buf);  
-  MPI_Isend (act_buf.back (), pos_buf, MPI_PACKED, __to, __tag, MPI_COMM_WORLD, act_req.back ()); 
+  act_req.push_back (new MPI_Request);
+  memcpy (act_buf.back (), mpi_buf, pos_buf);
+  MPI_Isend (act_buf.back (), pos_buf, MPI_PACKED, __to, __tag, MPI_COMM_WORLD, act_req.back ());
 }
 
 void sendMessageToAll (int __tag) {
@@ -131,8 +139,8 @@ void sendMessageToAll (int __tag) {
 }
 
 void receiveMessage (int __from, int __tag) {
-  
-  MPI_Status stat;  
+
+  MPI_Status stat;
   MPI_Request req;
 
   MPI_Irecv (mpi_buf, MPI_BUF_SIZE, MPI_PACKED, __from, __tag, MPI_COMM_WORLD, & req);
@@ -200,7 +208,7 @@ void pack (const unsigned long & __ul, int __nitem) {
 
 /* String */
 void pack (const char * __str) {
-  
+
   int len = strlen (__str) + 1;
   MPI_Pack (& len, 1, MPI_INT, mpi_buf, MPI_BUF_SIZE, & pos_buf, MPI_COMM_WORLD);
   MPI_Pack ((void *) __str, len, MPI_CHAR, mpi_buf, MPI_BUF_SIZE, & pos_buf, MPI_COMM_WORLD);
@@ -267,4 +275,3 @@ void unpack (char * __str) {
   MPI_Unpack (mpi_buf, MPI_BUF_SIZE, & pos_buf, & len, 1, MPI_INT, MPI_COMM_WORLD);
   MPI_Unpack (mpi_buf, MPI_BUF_SIZE, & pos_buf, __str, len, MPI_CHAR, MPI_COMM_WORLD);    
 }
-

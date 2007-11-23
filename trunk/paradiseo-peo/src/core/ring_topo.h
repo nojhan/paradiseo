@@ -40,9 +40,9 @@
 #include "topology.h"
 
 class RingTopology : public Topology {
-  
+
 public :
-   
+
   void setNeighbors (Cooperative * __mig,
 		     std :: vector <Cooperative *> & __from,
 		     std :: vector <Cooperative *> & __to);

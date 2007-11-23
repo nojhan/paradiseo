@@ -40,9 +40,9 @@
 namespace peo {
 
   extern int * argc;
-  
+
   extern char * * * argv;
-  
+
   extern void init (int & __argc, char * * & __argv);
 }
 

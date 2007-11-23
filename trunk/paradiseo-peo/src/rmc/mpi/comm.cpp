@@ -51,6 +51,7 @@ static sem_t sem_comm_init;
 
 static Communicator * the_thread;
 
+
 Communicator :: Communicator (int * __argc, char * * * __argv) {
 
   the_thread = this;  
@@ -69,23 +70,28 @@ void Communicator :: start () {
 
     sendMessages ();
 
-    if (theEnd() || ! atLeastOneActiveRunner ())     
+    if (! atLeastOneActiveRunner () && ! atLeastOneActiveThread() && allResourcesFree ())
       break;
 
     receiveMessages ();
   }
 
   waitBuffers ();
-  sem_destroy(& sem_comm_init);
-
   printDebugMessage ("finalizing");
 
-  synchronizeNodes ();
+  //synchronizeNodes ();
 }
 
 void initCommunication () {
 
+  static bool initializedSemaphore = false;
+
+  if (initializedSemaphore) {
+    sem_destroy(& sem_comm_init);
+  }
+
   sem_init (& sem_comm_init, 0, 0);
+  initializedSemaphore = true;
 }
 
 void waitNodeInitialization () {
@@ -97,6 +103,3 @@ void wakeUpCommunicator () {
 
   the_thread -> wakeUp ();
 }
-
-
-

@@ -51,7 +51,7 @@ public :
   void setOwner (Runner & __runner);
 
   virtual void pack () = 0;
-  
+
   virtual void unpack () = 0;
 
   void send (Cooperative * __coop); 

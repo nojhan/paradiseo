@@ -46,26 +46,32 @@
 
 static std :: vector <Worker *> key_to_worker (1); /* Vector of registered workers */
 
+extern void wakeUpCommunicator ();
+
 Worker * getWorker (WORKER_ID __key) {
 
-  return key_to_worker [__key];  
+  return key_to_worker [__key];
 }
 
 Worker :: Worker () {
-  
+
   recvAndCompleted = false;
+  taskAssigned = 0;
   id = key_to_worker.size ();
   key_to_worker.push_back (this);
+
+  sem_init( &sem_task_done, 0, 0 );
 }
 
 void Worker :: packResult () {
-  
+
   pack (serv_id);
-  serv -> packResult ();    
+  serv -> packResult ();
 }
 
 void Worker :: unpackData () {
 
+  taskAssigned ++;
   printDebugMessage ("unpacking the ID. of the service.");
   unpack (serv_id);
   serv = getService (serv_id); 
@@ -90,9 +96,10 @@ void Worker :: notifySendingResult () {
 
 void Worker :: notifySendingTaskDone () {
 
+  sem_post(&sem_task_done);
   setPassive ();
 }
-  
+
 void Worker :: setSource (int __rank) {
 
   src = __rank;
@@ -102,22 +109,28 @@ void Worker :: start () {
 
   while (true) {
 
-    sleep (); 
+    sleep ();
 
-    if (! atLeastOneActiveRunner ())
+    if (! atLeastOneActiveRunner () && ! taskAssigned)
       break;
 
     if (recvAndCompleted) {
       send (this, my_node -> rk_sched, TASK_DONE_TAG);  
       recvAndCompleted = false;
+      sem_wait(&sem_task_done);
+      taskAssigned --;
     }
     else {
 
-      printDebugMessage ("executing the task.");
-      serv -> execute ();   
-      send (this, src, TASK_RESULT_TAG);    
+      serv -> execute ();
+      send (this, src, TASK_RESULT_TAG);
     }
   }
+
+  printDebugMessage ("Worker finished execution.");
+  setPassive ();
+
+  wakeUpCommunicator();
 }
 
 void initWorkersEnv () {

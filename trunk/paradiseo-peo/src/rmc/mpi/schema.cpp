@@ -76,7 +76,7 @@ static void loadNode (int __rk_sched) {
 
     /* TAG: <runner> | </node> */
     std :: string name = getNextNode ();
-    assert (name == "runner" || name == "node");    
+    assert (name == "runner" || name == "node");
     if (name == "runner") {
       /* TAG: </node> */
       node.id_run.push_back (atoi (getNextNode ().c_str ()));
@@ -105,7 +105,7 @@ static void loadGroup () {
 
     /* TAG: <node> | </group> */
     name = getNextNode ();
-    assert (name == "node" || name == "group");    
+    assert (name == "node" || name == "group");
     if (name == "node")
       /* TAG: <node> */
       loadNode (rk_sched);
@@ -173,7 +173,7 @@ void loadSchema (const char * __filename) {
   printDebugMessage (mess);
 
   if (isScheduleNode ())
-    printDebugMessage ("I'am a scheduler");  
+    printDebugMessage ("I'am a scheduler");
 
   for (unsigned i = 0; i < my_node -> id_run.size (); i ++) {
     sprintf (mess, "I manage the runner %d", my_node -> id_run [i]);

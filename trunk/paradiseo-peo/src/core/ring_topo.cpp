@@ -43,7 +43,7 @@ void RingTopology :: setNeighbors (Cooperative * __mig,
   __to.clear () ;
 
     int len = mig.size () ;
-    
+
     for (int i = 0 ; i < len ; i ++)      
       if (mig [i] == __mig) {	
 	__from.push_back (mig [(i - 1 + len) % len]) ;

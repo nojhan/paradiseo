@@ -40,6 +40,8 @@
 #include <string>
 #include <cassert>
 
+#include "mess.h"
+
 
 class MPIThreadedEnv {
 
@@ -63,7 +65,7 @@ public:
 
 private:
 
-  /* No instance of this class can be created outside its domain */
+  /* No instance of this class can be created outside its domain! */
   MPIThreadedEnv ( int * __argc, char * * * __argv ) {
 
     static bool MPIThreadedEnvInitialized = false;
@@ -72,6 +74,7 @@ private:
     if (! MPIThreadedEnvInitialized) {
 
       MPI_Init_thread (__argc, __argv, MPI_THREAD_FUNNELED, & provided);  
+
       assert (provided == MPI_THREAD_FUNNELED); /* The MPI implementation must be multi-threaded.
 					       Yet, only one thread performs the comm.
 					       operations */
@@ -92,6 +95,7 @@ static std :: map <std :: string, int> name_to_rk;
 
 static std :: vector <std :: string> rk_to_name;
 
+
 int getNodeRank () {
 
   return rk;
@@ -100,6 +104,11 @@ int getNodeRank () {
 int getNumberOfNodes () {
 
   return sz;
+}
+
+void collectiveCountOfRunners ( unsigned int* num_local_exec_runners, unsigned int* num_exec_runners ) {
+
+  MPI_Allreduce( num_local_exec_runners, num_exec_runners, 1, MPI_UNSIGNED, MPI_SUM, MPI_COMM_WORLD );
 }
 
 int getRankFromName (const std :: string & __name) {
@@ -112,9 +121,8 @@ void initNode (int * __argc, char * * * __argv) {
   rk_to_name.clear ();
   name_to_rk.clear ();
 
-
   MPIThreadedEnv :: init ( __argc, __argv );
-
+  //synchronizeNodes();
 
   MPI_Comm_rank (MPI_COMM_WORLD, & rk);   /* Who ? */
   MPI_Comm_size (MPI_COMM_WORLD, & sz);    /* How many ? */

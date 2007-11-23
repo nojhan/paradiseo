@@ -42,7 +42,7 @@
 
 /* A high-level thread */
 class Thread {
-	
+
 public:
 
   /* Ctor */
@@ -50,7 +50,7 @@ public:
 
   /* Dtor */
   virtual ~ Thread ();
-  
+
   /* Go ! */
   virtual void start () = 0;
 
@@ -59,7 +59,7 @@ public:
 			(but it may receive messages) */
 
 private :
-  
+
   bool act;
 };
 

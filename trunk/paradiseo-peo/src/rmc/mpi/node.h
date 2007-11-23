@@ -44,6 +44,8 @@ extern int getNodeRank (); /* It gives the rank of the calling process */
 
 extern int getNumberOfNodes (); /* It gives the size of the environment (Total number of nodes) */
 
+extern void collectiveCountOfRunners ( unsigned int* num_local_exec_runners, unsigned int* num_exec_runners );
+
 extern int getRankFromName (const std :: string & __name); /* It gives the rank of the process
 							      expressed by its name */
 

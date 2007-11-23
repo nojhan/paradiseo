@@ -40,6 +40,7 @@ static bool the_end = false;
 
 static std :: vector <ReactiveThread *> reac_threads;
 
+
 ReactiveThread :: ReactiveThread () {
 
   reac_threads.push_back (this);

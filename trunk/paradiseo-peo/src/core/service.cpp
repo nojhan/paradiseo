@@ -40,7 +40,7 @@ void Service :: setOwner (Thread & __owner) {
 
   owner = & __owner;
 }
-  
+
 Thread * Service :: getOwner () {
 
   return owner;

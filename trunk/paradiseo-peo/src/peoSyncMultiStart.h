@@ -62,74 +62,74 @@ extern int getNodeRank();
 //! thus allowing for simple hybridization schemes which combine the evolutionary approach with a local search approach,
 //! for example, executed at the end of each generation.
 template< class EOT > class peoSyncMultiStart : public Service, public eoUpdater
-  {
+{
 
-  public:
+public:
 
-    //! Constructor function - several simple parameters are required for defining the characteristics of the multi-start model.
-    //!
-    //! @param eoContinue< EOT >& __cont - defined for including further functionality - no semantics associated at this time;
-    //! @param eoSelect< EOT >& __select - selection strategy for obtaining a subset of the initial population on which to apply the specified algorithm;
-    //! @param eoReplacement< EOT >& __replace - replacement strategy for integrating the resulting individuals in the initial population;
-    //! @param moAlgo< EOT >& __ls - algorithm to be applied on each of the selected individuals - a <b>moAlgo< EOT ></b>-derived object must be specified;
-    //! @param eoPop< EOT >& __pop - the initial population from which the individuals are selected for applying the specified algorithm.
-    peoSyncMultiStart(
+  //! Constructor function - several simple parameters are required for defining the characteristics of the multi-start model.
+  //!
+  //! @param eoContinue< EOT >& __cont - defined for including further functionality - no semantics associated at this time;
+  //! @param eoSelect< EOT >& __select - selection strategy for obtaining a subset of the initial population on which to apply the specified algorithm;
+  //! @param eoReplacement< EOT >& __replace - replacement strategy for integrating the resulting individuals in the initial population;
+  //! @param moAlgo< EOT >& __ls - algorithm to be applied on each of the selected individuals - a <b>moAlgo< EOT ></b>-derived object must be specified;
+  //! @param eoPop< EOT >& __pop - the initial population from which the individuals are selected for applying the specified algorithm.
+  peoSyncMultiStart(
 
-      eoContinue< EOT >& __cont,
-      eoSelect< EOT >& __select,
-      eoReplacement< EOT >& __replace,
-      moAlgo< EOT >& __ls,
-      eoPop< EOT >& __pop
-    );
+    eoContinue< EOT >& __cont,
+    eoSelect< EOT >& __select,
+    eoReplacement< EOT >& __replace,
+    moAlgo< EOT >& __ls,
+    eoPop< EOT >& __pop
+  );
 
-    //! Operator which synchronously executes the specified	algorithm on the individuals selected from the initial population.
-    //! There is no need to explicitly call the operator - automatically called as checkpoint operator.
-    void operator()();
+  //! Operator which synchronously executes the specified	algorithm on the individuals selected from the initial population.
+  //! There is no need to explicitly call the operator - automatically called as checkpoint operator.
+  void operator()();
 
-    //! Auxiliary function for transferring data between the process requesting the synchronous execution of the specified
-    //! algorithm and the process which actually executes the algorithm. There is no need to explicitly call the function.
-    void packData();
+  //! Auxiliary function for transferring data between the process requesting the synchronous execution of the specified
+  //! algorithm and the process which actually executes the algorithm. There is no need to explicitly call the function.
+  void packData();
 
-    //! Auxiliary function for transferring data between the process requesting the synchronous execution of the specified
-    //! algorithm and the process which actually executes the algorithm. There is no need to explicitly call the function.
-    void unpackData();
+  //! Auxiliary function for transferring data between the process requesting the synchronous execution of the specified
+  //! algorithm and the process which actually executes the algorithm. There is no need to explicitly call the function.
+  void unpackData();
 
-    //! Auxiliary function for actually executing the specified algorithm on one assigned individual. There is no need to
-    //! explicitly call the function.
-    void execute();
+  //! Auxiliary function for actually executing the specified algorithm on one assigned individual. There is no need to
+  //! explicitly call the function.
+  void execute();
 
-    //! Auxiliary function for transferring data between the process requesting the synchronous execution of the specified
-    //! algorithm and the process which actually executes the algorithm. There is no need to explicitly call the function.
-    void packResult();
+  //! Auxiliary function for transferring data between the process requesting the synchronous execution of the specified
+  //! algorithm and the process which actually executes the algorithm. There is no need to explicitly call the function.
+  void packResult();
 
-    //! Auxiliary function for transferring data between the process requesting the synchronous execution of the specified
-    //! algorithm and the process which actually executes the algorithm. There is no need to explicitly call the function.
-    void unpackResult();
+  //! Auxiliary function for transferring data between the process requesting the synchronous execution of the specified
+  //! algorithm and the process which actually executes the algorithm. There is no need to explicitly call the function.
+  void unpackResult();
 
-    //! Auxiliary function for notifications between the process requesting the synchronous multi-start execution
-    //! and the processes that performs the actual execution phase. There is no need to explicitly call the function.
-    void notifySendingData();
+  //! Auxiliary function for notifications between the process requesting the synchronous multi-start execution
+  //! and the processes that performs the actual execution phase. There is no need to explicitly call the function.
+  void notifySendingData();
 
-    //! Auxiliary function for notifications between the process requesting the synchronous multi-start execution
-    //! and the processes that performs the actual execution phase. There is no need to explicitly call the function.
-    void notifySendingAllResourceRequests();
+  //! Auxiliary function for notifications between the process requesting the synchronous multi-start execution
+  //! and the processes that performs the actual execution phase. There is no need to explicitly call the function.
+  void notifySendingAllResourceRequests();
 
-  private:
+private:
 
-    eoContinue< EOT >& cont;
-    eoSelect< EOT >& select;
-    eoReplacement< EOT >& replace;
+  eoContinue< EOT >& cont;
+  eoSelect< EOT >& select;
+  eoReplacement< EOT >& replace;
 
-    moAlgo< EOT >& ls;
+  moAlgo< EOT >& ls;
 
-    eoPop< EOT >& pop;
-    eoPop< EOT > sel;
-    eoPop< EOT > impr_sel;
+  eoPop< EOT >& pop;
+  eoPop< EOT > sel;
+  eoPop< EOT > impr_sel;
 
-    EOT sol;
-    unsigned idx;
-    unsigned num_term;
-  };
+  EOT sol;
+  unsigned idx;
+  unsigned num_term;
+};
 
 
 template< class EOT > peoSyncMultiStart< EOT > :: peoSyncMultiStart(
@@ -180,14 +180,14 @@ template< class EOT > void peoSyncMultiStart< EOT > :: unpackResult()
   num_term++;
 
   if ( num_term == sel.size() )
-    {
+  {
 
-      getOwner()->setActive();
-      replace( pop, impr_sel );
+    getOwner()->setActive();
+    replace( pop, impr_sel );
 
-      printDebugMessage( "replacing the improved individuals in the population." );
-      resume();
-    }
+    printDebugMessage( "replacing the improved individuals in the population." );
+    resume();
+  }
 }
 
 

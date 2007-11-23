@@ -45,13 +45,12 @@
 //! The derived classes may be used as wrappers for <b>EO</b>-derived evaluation functors. In order to have an example,
 //! please refer to the implementation of the <b>peoSeqPopEval</b> and <b>peoParaPopEval</b> classes.
 template< class EOT > class peoPopEval : public Service
-  {
+{
 
-  public:
+public:
 
-    //! Interface function providing the signature for constructing an evaluation functor.
-    virtual void operator()( eoPop< EOT >& __pop ) = 0;
-  };
-
+  //! Interface function providing the signature for constructing an evaluation functor.
+  virtual void operator()( eoPop< EOT >& __pop ) = 0;
+};
 
 #endif

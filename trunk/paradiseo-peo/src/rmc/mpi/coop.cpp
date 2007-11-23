@@ -53,7 +53,7 @@ void Cooperative :: setOwner (Runner & __runner) {
 
 void Cooperative :: send (Cooperative * __coop) {
 
-  :: send (this, getRankOfRunner (__coop -> getOwner () -> getDefinitionID ()), COOP_TAG);   
+  :: send (this, getRankOfRunner (__coop -> getOwner () -> getDefinitionID ()), COOP_TAG);
   //  stop ();
 }
 

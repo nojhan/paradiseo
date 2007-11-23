@@ -44,7 +44,6 @@ void peo :: finalize () {
   printDebugMessage ("waiting for the termination of all threads");
 
   joinRunners ();
-
   finalizeRMC ();
 
   printDebugMessage ("this is the end");

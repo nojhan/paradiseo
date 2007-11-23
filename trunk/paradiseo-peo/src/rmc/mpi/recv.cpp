@@ -130,7 +130,5 @@ void receiveMessages () {
       };
     }
 
-  } while ( ! atLeastOneActiveThread () && atLeastOneActiveRunner () /*&& ! allResourcesFree ()*/);
-
-  cleanBuffers ();
+  } while ( ! atLeastOneActiveThread () && atLeastOneActiveRunner () /*&& ! allResourcesFree ()*/ );
 }

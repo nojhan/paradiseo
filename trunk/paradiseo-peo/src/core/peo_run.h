@@ -38,7 +38,7 @@
 #define __peo_run_h
 
 namespace peo {
-  
+
   extern void run ();
 }
 

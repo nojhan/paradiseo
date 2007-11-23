@@ -38,7 +38,7 @@
 #define __peo_param_h
 
 namespace peo {
-  
+
   extern void loadParameters (int & __argc, char * * & __argv);
 }
 

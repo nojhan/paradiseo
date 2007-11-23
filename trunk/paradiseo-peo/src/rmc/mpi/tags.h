@@ -48,6 +48,4 @@
 #define TASK_RESULT_TAG 19
 #define TASK_DONE_TAG 20
 
-#define EXECUTION_CONTEXT_TAG 1000
-
 #endif

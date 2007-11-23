@@ -47,10 +47,10 @@ class Communicable {
 public :
 
   Communicable ();
-  
+
   virtual ~ Communicable ();
 
-  COMM_ID getKey ();  
+  COMM_ID getKey ();
 
   void lock (); /* It suspends the current process if the semaphore is locked */
   void unlock (); /* It unlocks the shared semaphore */
@@ -67,14 +67,12 @@ protected :
   COMM_ID key;
 
   sem_t sem_lock;
-  
+
   sem_t sem_stop;
 };
 
 extern void initCommunicableEnv ();
 
 extern Communicable * getCommunicable (COMM_ID __key); 
-
-//extern COMM_ID getKey (const Communicable * __comm);
 
 #endif

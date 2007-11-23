@@ -95,50 +95,19 @@ Runner * getRunner (RUNNER_ID __key) {
   return dynamic_cast <Runner *> (getCommunicable (__key));
 }
 
-void packExecutionContext () {
-
-  num_local_exec_runners = 0;
-  for (unsigned i = 0; i < the_runners.size (); i ++)
-    if (the_runners [i] -> isAssignedLocally ()) num_local_exec_runners ++;
-  pack(num_local_exec_runners);
-}
-
-void unpackExecutionContext () {
-
-  unsigned num_remote_runners;
-  unpack(num_remote_runners);
-  num_exec_runners += num_remote_runners;
-}
-
 void initializeContext () {
 
-  initMessage ();
-  packExecutionContext ();
-  sendMessageToAll (EXECUTION_CONTEXT_TAG);
+  num_local_exec_runners = 0;
 
-  int src, tag;
-  for (unsigned i = 0; i < getNumberOfNodes(); i ++) {
-
-    cleanBuffers ();
-    waitMessage ();
-
-    probeMessage ( src, tag );
-    receiveMessage( src, tag );
-
-    initMessage ();
-    unpackExecutionContext ();
+  // setting up the execution IDs & counting the number of local exec. runners
+  for (unsigned i = 0; i < the_runners.size (); i ++) {
+    the_runners [i] -> setExecutionID ( my_node -> execution_id_run[ i ] );
+    if (the_runners [i] -> isAssignedLocally ()) num_local_exec_runners ++;
   }
 
-  cleanBuffers ();
+  collectiveCountOfRunners( &num_local_exec_runners, &num_exec_runners );
 
-  // setting up the execution IDs
-  for (unsigned i = 0; i < the_runners.size (); i ++)
-    the_runners [i] -> setExecutionID ( my_node -> execution_id_run[ i ] );
-
-
-  // synchronizing - all the nodes have to finish initializing
-  // the context before actually executing the runners
-  synchronizeNodes ();
+  // synchronizeNodes ();
 
   for (unsigned i = 0; i < the_runners.size (); i ++)
     if (the_runners [i] -> isAssignedLocally ()) the_runners [i] -> notifyContextInitialized ();
@@ -217,6 +186,7 @@ void unpackTerminationOfRunner () {
 
     printDebugMessage ("All the runners have terminated - now stopping the reactive threads.");
     stopReactiveThreads ();
+    printDebugMessage ("Reactive threads stopped!");
   }
 }
 

@@ -46,7 +46,7 @@ typedef unsigned WORKER_ID;
 
 class Worker : public Communicable, public ReactiveThread {
 
-public : 
+public :
 
   Worker ();
 
@@ -56,14 +56,14 @@ public :
 
   void unpackData ();
 
-  void packTaskDone (); 
+  void packTaskDone ();
 
   void notifySendingResult ();
 
   void notifySendingTaskDone ();
-  
+
   void setSource (int __rank);
-  
+
 private :
 
   WORKER_ID id;
@@ -72,6 +72,10 @@ private :
   int src;
 
   bool recvAndCompleted;
+  unsigned taskAssigned;
+
+  sem_t sem_task_done;
+  sem_t sem_task_asgn;
 };
 
 extern void initWorkersEnv ();

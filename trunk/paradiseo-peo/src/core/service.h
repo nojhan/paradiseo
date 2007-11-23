@@ -48,7 +48,7 @@ class Service : public Communicable {
 public :
 
   void setOwner (Thread & __owner);
-  
+
   Thread * getOwner (); 
 
   void requestResourceRequest (unsigned __how_many = 1);
@@ -58,7 +58,7 @@ public :
   virtual void unpackData ();
 
   virtual void execute ();
-  
+
   virtual void packResult ();
   virtual void unpackResult ();
 
