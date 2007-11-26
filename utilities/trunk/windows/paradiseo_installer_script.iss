@@ -121,6 +121,14 @@ Name: moeo; Description: {cm:MoeoDescription}; Types: full custom;
 Source: {#ParadiseoSourceTag}; DestDir: "{app}"; Excludes: {#SkipParadiseoFiles} ; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: {#EoTag}; DestDir: "{app}";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
 
+; SPECIFIC CORRECTION - EO TAG NOT MODIFIED, USED TRUNK SOURCES
+Source: E:\software\eo\repository\paradiseo-eo\CMakeLists.txt ; DestDir: "{app}\paradiseo-eo";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\paradiseo-eo\src\utils\pipecom.h; DestDir: "{app}\paradiseo-eo\src\utils";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\paradiseo-eo\src\utils\pipecom.cpp; DestDir: "{app}\paradiseo-eo\src\utils";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\paradiseo-eo\src\eoCtrlCContinue.h; DestDir: "{app}\paradiseo-eo\src";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\paradiseo-eo\src\eoCtrlCContinue.cpp; DestDir: "{app}\paradiseo-eo\src";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+
+
 [Code]
 var
   GeneratorPage: TWizardPage;
