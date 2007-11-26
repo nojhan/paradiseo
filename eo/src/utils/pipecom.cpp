@@ -14,7 +14,7 @@
 #include <config.h>
 #endif
 
-#ifndef _MSC_VER
+#ifndef _WINDOWS
 
 #include <cstdlib>
 #include <cstring>

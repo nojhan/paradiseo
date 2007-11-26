@@ -25,7 +25,7 @@
 //-----------------------------------------------------------------------------
 // the same thing can probably be done in MS environement, but I hoave no way
 // to test it so at the moment it is commented out when in MSVC
-#ifndef _MSC_VER
+
 
 #ifndef eoCtrlCContinue_h
 #define eoCtrlCContinue_h
@@ -52,9 +52,15 @@ public:
     // First checks that no other eoCtrlCContinue does exist
     if (existCtrlCContinue)
       throw std::runtime_error("A signal handler for Ctrl C is already defined!\n");
-    signal( SIGINT, signal_handler );
-    signal( SIGQUIT, signal_handler );
-    existCtrlCContinue = true;
+      
+    #ifndef _WINDOWS
+      #ifdef SIGQUIT
+        signal( SIGINT, signal_handler );
+        signal( SIGQUIT, signal_handler );
+        existCtrlCContinue = true;
+      #endif
+    #endif
+    
   }
  
   /** Returns false when Ctrl C has been typed in
@@ -72,5 +78,4 @@ public:
 
 #endif
 
-#endif
  // of MSVC comment-out

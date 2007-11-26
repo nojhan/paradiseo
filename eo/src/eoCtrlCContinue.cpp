@@ -42,11 +42,13 @@ void signal_handler( int sig )
 // ---------------------------
 {
     // --- On veut la paix, jusqu'a la fin ---
-#ifdef SIGQUIT
-    signal( SIGINT, SIG_IGN );
-    signal( SIGQUIT, SIG_IGN );
-    std::cerr << "Ctrl C entered ... closing down" << std::endl ;
-    arret_demande = true;
+#ifndef _WINDOWS
+  #ifdef SIGQUIT
+      signal( SIGINT, SIG_IGN );
+      signal( SIGQUIT, SIG_IGN );
+      std::cerr << "Ctrl C entered ... closing down" << std::endl ;
+      arret_demande = true;
+  #endif
 #endif
 }
 

@@ -53,6 +53,10 @@ INCLUDE(ConfigureChecks.cmake)
 # now create config headers
 configure_file(config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h )
 
+# Set a special flag if the environment is windows
+IF (WIN32)
+	ADD_DEFINITIONS(-D_WINDOWS=1)
+ENDIF (WIN32)
 ######################################################################################
 
 
@@ -61,7 +65,7 @@ configure_file(config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h )
 #####################################################################################
 
 # the user should choose the build type on windows environments,excepted under cygwin (default=none)
-SET(CMAKE_DEFAULT_BUILD_TYPE None CACHE STRING "Variable that stores the default CMake build type" FORCE)
+SET(CMAKE_DEFAULT_BUILD_TYPE "" CACHE STRING "Variable that stores the default CMake build type" FORCE)
 
 IF(WIN32 AND NOT CYGWIN)
   IF(NOT CMAKE_BUILD_TYPE)
@@ -100,5 +104,4 @@ IF (ENABLE_CMAKE_TESTING)
 ENDIF (ENABLE_CMAKE_TESTING)
 
 ######################################################################################
-
 
