@@ -38,7 +38,11 @@
 #define route_h
 
 #include <eoVector.h>
+#include <eoScalarFitness.h>
 
-typedef eoVector <float, unsigned int> Route ; // [Fitness (- length), Gene (city)]
+// A float that has to be minimized.
+typedef eoScalarFitness< float, std::greater<float> > tspFitness ;
+
+typedef eoVector <tspFitness, unsigned int> Route ; // [Fitness (length), Gene (city)]
 
 #endif

@@ -42,10 +42,9 @@
 
 class TwoOptIncrEval : public moMoveIncrEval <TwoOpt>
   {
-
   public :
 
-    float operator () (const TwoOpt & __move, const Route & __route) ;
+    tspFitness  operator () (const TwoOpt & __move, const Route & __route) ;
 
   } ;
 

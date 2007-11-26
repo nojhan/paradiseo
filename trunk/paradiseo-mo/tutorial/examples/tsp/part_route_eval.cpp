@@ -46,7 +46,7 @@ void PartRouteEval :: operator () (Route & __route)
 
   for (unsigned int i = (unsigned int) (__route.size () * from) ; i < (unsigned int ) (__route.size () * to) ; i ++)
     {
-      len -= Graph :: distance (__route [i], __route [(i + 1) % Graph :: size ()]) ;
+      len += Graph :: distance (__route [i], __route [(i + 1) % Graph :: size ()]) ;
     }
 
   __route.fitness (len) ;

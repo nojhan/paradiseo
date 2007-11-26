@@ -56,16 +56,10 @@ template < class M > class moSA:public moAlgo < typename M::EOType >
   {
 
     //! Alias for the type
-    typedef
-    typename
-    M::EOType
-    EOT;
+    typedef typename M::EOType EOT;
 
     //! Alias for the fitness
-    typedef
-    typename
-    EOT::Fitness
-    Fitness;
+    typedef typename EOT::Fitness Fitness;
 
   public:
 
@@ -123,18 +117,26 @@ template < class M > class moSA:public moAlgo < typename M::EOType >
 
               move_rand (move);
 
-              Fitness delta_fit = incr_eval (move, __sol) - __sol.fitness ();
+	      Fitness incremental_fitness = incr_eval (move, __sol);
 
-              if (delta_fit > 0 || rng.uniform () < exp (delta_fit / temp))
+              Fitness delta_fit = incremental_fitness - __sol.fitness ();
+
+	      if((__sol.fitness() > incremental_fitness ) && (exp (delta_fit / temp) > 1.0))
+		{
+		  delta_fit = -delta_fit;
+		}
+
+              if (incremental_fitness > __sol.fitness() || rng.uniform () < exp (delta_fit / temp))
                 {
-
-                  __sol.fitness (incr_eval (move, __sol));
+                  __sol.fitness (incremental_fitness);
                   move (__sol);
 
                   /* Updating the best solution found
                      until now ? */
                   if (__sol.fitness () > best_sol.fitness ())
-                    best_sol = __sol;
+		    {
+		      best_sol = __sol;
+		    }
                 }
 
             }
