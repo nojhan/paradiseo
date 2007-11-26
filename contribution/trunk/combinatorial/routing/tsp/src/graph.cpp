@@ -1,9 +1,9 @@
-/* 
+/*
 * <graph.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
-* Sébastien Cahon, Thomas Legrand
+* Sébastien Cahon, Jean-Charles Boisson
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -40,65 +40,170 @@
 
 #include "graph.h"
 
-namespace Graph {
+namespace Graph
+  {
 
   static std :: vector <std :: pair <double, double> > vectCoord ; // Coordinates
-  
-  static std :: vector <std :: vector <unsigned> > dist ; // Distances Mat.
 
-  unsigned size () {
-    
+  static std :: vector <std :: vector <unsigned int> > dist ; // Distances Mat.
+
+  unsigned size ()
+  {
     return dist.size () ;
   }
 
-  void computeDistances () {
-  
+  void computeDistances ()
+  {
+
     // Dim.
-    unsigned numCities = vectCoord.size () ;
+    unsigned int numCities = vectCoord.size () ;
     dist.resize (numCities) ;
-    for (unsigned i = 0 ; i < dist.size () ; i ++)
-      dist [i].resize (numCities) ;
-    
+    for (unsigned int i = 0 ; i < dist.size () ; i ++)
+      {
+        dist [i].resize (numCities) ;
+      }
+
     // Computations.
-    for (unsigned i = 0 ; i < dist.size () ; i ++)
-      for (unsigned j = i + 1 ; j < dist.size () ; j ++) {
-	double distX = vectCoord [i].first - vectCoord [j].first ;
-	double distY = vectCoord [i].second - vectCoord [j].second ;
-	dist [i] [j] = dist [j] [i] = (unsigned) (sqrt ((float) (distX * distX + distY * distY)) + 0.5) ;
+    for (unsigned int i = 0 ; i < dist.size () ; i ++)
+      {
+        for (unsigned int j = i + 1 ; j < dist.size () ; j ++)
+          {
+            double distX = (double)(vectCoord [i].first - vectCoord [j].first) ;
+            double distY = (double)(vectCoord [i].second - vectCoord [j].second) ;
+            dist [i] [j] = dist [j] [i] = (unsigned) (sqrt ((float) (distX * distX + distY * distY)) + 0.5) ;
+          }
       }
   }
 
-  void load (const char * __fileName) {
-  
-    std :: ifstream f (__fileName) ;
-  
-    std :: cout << ">> Loading [" << __fileName << "]" << std :: endl ;
-    
-    if (f) {
-    
-      unsigned num_vert ; 
-      
-      f >> num_vert ;
-      vectCoord.resize (num_vert) ;
+  void load (const char * __fileName)
+  {
+    unsigned int i, dimension;
 
-      for (unsigned i = 0 ; i < num_vert ; i ++)	
-	f >> vectCoord [i].first >> vectCoord [i].second ;
-                  
-      f.close () ;
-      
-      computeDistances () ;
-    }
-    else {
-      
-      std :: cout << __fileName << " doesn't exist !!!" << std :: endl ;
-      // Bye !!!
-      exit (1) ;
-    }
+    std::string string_read, buffer;
+
+    std :: ifstream file (__fileName) ;
+
+    std :: cout << ">> Loading [" << __fileName << "]" << std :: endl ;
+
+    if (file)
+      {
+	// Read NAME:
+	file >> string_read;
+	if (string_read.compare("NAME:")!=0)
+	  {
+	    std::cout << "ERROR: \'NAME:\' espected, \'" << string_read << "\' found" << std::endl;
+	    exit(1);
+	  }
+	// Read instance name
+	file >> string_read;
+	std::cout << "\t Instance Name = " << string_read << std::endl;
+	// Read TYPE:
+	file >> string_read;
+	if (string_read.compare("TYPE:")!=0)
+	  {
+	    std::cout << "ERROR: \'TYPE:\' espected, \'" << string_read << "\' found" << std::endl;
+	    exit(1);
+	  }
+	// Read instance type;
+	file >> string_read;
+	std::cout << "\t Instance type = " << string_read << std::endl;
+	if (string_read.compare("TSP")!=0)
+	  {
+	    std::cout << "ERROR: only TSP type instance can be loaded" << std::endl;
+	    exit(1);
+	  }
+	// Read COMMENT:
+	file >> string_read;
+	if (string_read.compare("COMMENT:")!=0)
+	  {
+	    std::cout << "ERROR: \'COMMENT:\' espected, \'" << string_read << "\' found" << std::endl;
+	    exit(1);
+	  }
+	// Read comments
+	std::cout << "\t Instance comments = ";
+	file >> string_read;
+	buffer = string_read+"_first";
+	while((string_read.compare("DIMENSION:")!=0) && (string_read.compare(buffer)!=0))
+	  {
+	    if(string_read.compare("COMMENT:")!=0)
+	      {
+		std::cout << string_read << " ";
+	      }
+	    else
+	      {
+		std::cout << std::endl << "\t                     ";
+	      }
+	    buffer = string_read;
+	    file >> string_read;
+	  }
+
+	std::cout << std::endl;
+
+	// Read dimension;
+	file >> dimension ;
+        std::cout << "\t Instance dimension = " << dimension << std::endl;
+	vectCoord.resize (dimension) ;
+
+	// Read EDGE_WEIGHT_TYPE
+	file >> string_read;
+	if (string_read.compare("EDGE_WEIGHT_TYPE:")!=0)
+	  {
+	    std::cout << "ERROR: \'EDGE_WEIGHT_TYPE:\' espected, \'" << string_read << "\' found" << std::endl;
+	    exit(1);
+	  }
+
+	// Read edge weight type
+	file >> string_read;
+	std::cout << "\t Instance edge weight type = " << string_read << std::endl;
+	if (string_read.compare("EUC_2D")!=0)
+	  {
+	    std::cout << "ERROR: only EUC_2D edge weight type instance can be loaded" << std::endl;
+	    exit(1);
+	  }
+
+	// Read NODE_COORD_SECTION
+	file >> string_read;
+	if (string_read.compare("NODE_COORD_SECTION")!=0)
+	  {
+	    std::cout << "ERROR: \'NODE_COORD_SECTION\' espected, \'" << string_read << "\' found" << std::endl;
+	    exit(1);
+	  }
+
+	// Read coordonates.
+	for(i=0;i<dimension;i++)
+	  {
+	    // Read index
+	    file >> string_read;
+	    //Read Coordinate
+	    file >> vectCoord [i].first >> vectCoord [i].second ;
+	  }
+
+	// Read EOF
+	file >> string_read;
+	if(string_read.compare("EOF")!=0)
+	  {
+	    std::cout << "ERROR: \'EOF\' espected, \'" << string_read << "\' found" << std::endl;
+	    exit(1);
+	  }
+
+	std::cout << std::endl;
+	
+	file.close () ;
+
+        computeDistances () ;
+      }
+    else
+      {
+
+        std :: cout << __fileName << " does not exist !!!" << std :: endl ;
+        // Bye !!!
+        exit (1) ;
+      }
   }
 
-  float distance (unsigned __from, unsigned __to) {
-    
-    return dist [__from] [__to] ;
+  float distance (unsigned int __from, unsigned int __to)
+  {
+    return (float)(dist [__from] [__to]) ;
   }
 }
 
