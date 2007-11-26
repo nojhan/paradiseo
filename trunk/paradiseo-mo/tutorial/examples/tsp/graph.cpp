@@ -77,31 +77,125 @@ namespace Graph
 
   void load (const char * __fileName)
   {
+    unsigned int i, dimension;
 
-    std :: ifstream f (__fileName) ;
+    std::string string_read, buffer;
+
+    std :: ifstream file (__fileName) ;
 
     std :: cout << ">> Loading [" << __fileName << "]" << std :: endl ;
 
-    if (f)
+    if (file)
       {
-        unsigned int num_vert ;
+	// Read NAME:
+	file >> string_read;
+	if (string_read.compare("NAME:")!=0)
+	  {
+	    std::cout << "ERROR: \'NAME:\' espected, \'" << string_read << "\' found" << std::endl;
+	    exit(1);
+	  }
+	// Read instance name
+	file >> string_read;
+	std::cout << "\t Instance Name = " << string_read << std::endl;
+	// Read TYPE:
+	file >> string_read;
+	if (string_read.compare("TYPE:")!=0)
+	  {
+	    std::cout << "ERROR: \'TYPE:\' espected, \'" << string_read << "\' found" << std::endl;
+	    exit(1);
+	  }
+	// Read instance type;
+	file >> string_read;
+	std::cout << "\t Instance type = " << string_read << std::endl;
+	if (string_read.compare("TSP")!=0)
+	  {
+	    std::cout << "ERROR: only TSP type instance can be loaded" << std::endl;
+	    exit(1);
+	  }
+	// Read COMMENT:
+	file >> string_read;
+	if (string_read.compare("COMMENT:")!=0)
+	  {
+	    std::cout << "ERROR: \'COMMENT:\' espected, \'" << string_read << "\' found" << std::endl;
+	    exit(1);
+	  }
+	// Read comments
+	std::cout << "\t Instance comments = ";
+	file >> string_read;
+	buffer = string_read+"_first";
+	while((string_read.compare("DIMENSION:")!=0) && (string_read.compare(buffer)!=0))
+	  {
+	    if(string_read.compare("COMMENT:")!=0)
+	      {
+		std::cout << string_read << " ";
+	      }
+	    else
+	      {
+		std::cout << std::endl << "\t                     ";
+	      }
+	    buffer = string_read;
+	    file >> string_read;
+	  }
 
-        f >> num_vert ;
-        vectCoord.resize (num_vert) ;
+	std::cout << std::endl;
 
-        for (unsigned int i = 0 ; i < num_vert ; i ++)
-          {
-            f >> vectCoord [i].first >> vectCoord [i].second ;
-          }
+	// Read dimension;
+	file >> dimension ;
+        std::cout << "\t Instance dimension = " << dimension << std::endl;
+	vectCoord.resize (dimension) ;
 
-        f.close () ;
+	// Read EDGE_WEIGHT_TYPE
+	file >> string_read;
+	if (string_read.compare("EDGE_WEIGHT_TYPE:")!=0)
+	  {
+	    std::cout << "ERROR: \'EDGE_WEIGHT_TYPE:\' espected, \'" << string_read << "\' found" << std::endl;
+	    exit(1);
+	  }
+
+	// Read edge weight type
+	file >> string_read;
+	std::cout << "\t Instance edge weight type = " << string_read << std::endl;
+	if (string_read.compare("EUC_2D")!=0)
+	  {
+	    std::cout << "ERROR: only EUC_2D edge weight type instance can be loaded" << std::endl;
+	    exit(1);
+	  }
+
+	// Read NODE_COORD_SECTION
+	file >> string_read;
+	if (string_read.compare("NODE_COORD_SECTION")!=0)
+	  {
+	    std::cout << "ERROR: \'NODE_COORD_SECTION\' espected, \'" << string_read << "\' found" << std::endl;
+	    exit(1);
+	  }
+
+	// Read coordonates.
+	for(i=0;i<dimension;i++)
+	  {
+	    // Read index
+	    file >> string_read;
+	    //Read Coordinate
+	    file >> vectCoord [i].first >> vectCoord [i].second ;
+	  }
+
+	// Read EOF
+	file >> string_read;
+	if(string_read.compare("EOF")!=0)
+	  {
+	    std::cout << "ERROR: \'EOF\' espected, \'" << string_read << "\' found" << std::endl;
+	    exit(1);
+	  }
+
+	std::cout << std::endl;
+	
+	file.close () ;
 
         computeDistances () ;
       }
     else
       {
 
-        std :: cout << __fileName << " doesn't exist !!!" << std :: endl ;
+        std :: cout << __fileName << " does not exist !!!" << std :: endl ;
         // Bye !!!
         exit (1) ;
       }
