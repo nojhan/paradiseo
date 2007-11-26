@@ -1,9 +1,9 @@
-/* 
+/*
 * <route.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
-* Sébastien Cahon, Thomas Legrand
+* Sébastien Cahon, Jean-Charles Boisson
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -38,7 +38,11 @@
 #define route_h
 
 #include <eoVector.h>
+#include <eoScalarFitness.h>
 
-typedef eoVector <float, unsigned> Route ; // [Fitness (- length), Gene (city)]
+// A float that has to be minimized.
+typedef eoScalarFitness< float, std::greater<float> > tspFitness ;
+
+typedef eoVector <tspFitness, unsigned int> Route ; // [Fitness (length), Gene (city)]
 
 #endif

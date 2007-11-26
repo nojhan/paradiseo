@@ -1,9 +1,9 @@
-/* 
+/*
 * <part_route_eval.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
-* Sébastien Cahon, Thomas Legrand
+* Sébastien Cahon, Jean-Charles Boisson
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -37,22 +37,17 @@
 #include "part_route_eval.h"
 #include "graph.h"
 
-PartRouteEval :: PartRouteEval (float __from,
-				float __to
-				) : from (__from),
-				    to (__to) {
-  
-}
+PartRouteEval :: PartRouteEval (float __from, float __to) : from (__from), to (__to)
+{}
 
-void PartRouteEval :: operator () (Route & __route) {
-  
-  
+void PartRouteEval :: operator () (Route & __route)
+{
   float len = 0 ;
-  
-  for (unsigned i = (unsigned) (__route.size () * from) ;
-       i < (unsigned) (__route.size () * to) ;
-       i ++)
-    len -= Graph :: distance (__route [i], __route [(i + 1) % Graph :: size ()]) ;
-  
+
+  for (unsigned int i = (unsigned int) (__route.size () * from) ; i < (unsigned int ) (__route.size () * to) ; i ++)
+    {
+      len += Graph :: distance (__route [i], __route [(i + 1) % Graph :: size ()]) ;
+    }
+
   __route.fitness (len) ;
 }

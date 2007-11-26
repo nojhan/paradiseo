@@ -1,9 +1,9 @@
-/* 
+/*
 * <route_eval.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
-* Sébastien Cahon, Thomas Legrand
+* Sébastien Cahon, Jean-Charles Boisson
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -37,12 +37,15 @@
 #include "route_eval.h"
 #include "graph.h"
 
-void RouteEval :: operator () (Route & __route) {
-  
-  float len = 0 ;
-  
-  for (unsigned i = 0 ; i < Graph :: size () ; i ++)
-    len -= Graph :: distance (__route [i], __route [(i + 1) % Graph :: size ()]) ; 
-  
+void RouteEval :: operator () (Route & __route)
+{
+
+  float len = 0.0 ;
+
+  for (unsigned int i = 0 ; i < Graph :: size () ; i ++)
+    {
+      len += Graph :: distance (__route [i], __route [(i + 1) % Graph :: size ()]) ;
+    }
+
   __route.fitness (len) ;
 }
