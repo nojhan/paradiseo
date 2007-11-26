@@ -6,7 +6,7 @@
 INCLUDE(eo-conf.cmake OPTIONAL)
 
 ######################################################################################
-
+ 
 
 
 ######################################################################################
@@ -53,7 +53,7 @@ INCLUDE(ConfigureChecks.cmake)
 # now create config headers
 configure_file(config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h )
 
-# Set a special flag if the environment is windows
+# Set a special flag if the environment is windows (should do the same in a config.g file)
 IF (WIN32)
 	ADD_DEFINITIONS(-D_WINDOWS=1)
 ENDIF (WIN32)
