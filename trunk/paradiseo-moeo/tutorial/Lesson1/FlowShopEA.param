@@ -39,7 +39,7 @@
 --maxGen=100                               # -G : Maximum number of generations (0 = none)
 --maxEval=0                                # -E : Maximum number of evaluations (0 = none)
 --maxTime=0                                # -T : Maximum running time in seconds (0 = none)
---CtrlC=1                                  # -C : Terminate current generation upon Ctrl C
+#--CtrlC=1                                  # -C : Terminate current generation upon Ctrl C (only available on Unix platforms)
 
 ######    Variation Operators     ######
 --crossRate=1                              # Relative rate for the only crossover
