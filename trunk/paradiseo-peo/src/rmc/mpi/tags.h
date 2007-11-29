@@ -48,4 +48,7 @@
 #define TASK_RESULT_TAG 19
 #define TASK_DONE_TAG 20
 
+#define SYNCHRONIZE_REQ_TAG 1000
+#define SYNCHRONIZED_TAG 1001
+
 #endif

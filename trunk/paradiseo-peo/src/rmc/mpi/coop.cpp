@@ -57,6 +57,10 @@ void Cooperative :: send (Cooperative * __coop) {
   //  stop ();
 }
 
+void Cooperative :: synchronizeCoopEx () {
+  :: send (this, my_node -> rk_sched, SYNCHRONIZE_REQ_TAG);
+}
+
 Cooperative * getCooperative (COOP_ID __key) {
 
   return dynamic_cast <Cooperative *> (getCommunicable (__key));
@@ -66,4 +70,13 @@ void Cooperative :: notifySending () {
 
   //getOwner -> setPassive ();
   //  resume ();
+}
+
+void Cooperative :: notifyReceiving () {
+}
+
+void Cooperative :: notifySendingSyncReq () {
+}
+
+void Cooperative :: notifySynchronized () {
 }

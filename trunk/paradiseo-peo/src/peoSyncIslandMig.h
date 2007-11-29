@@ -59,6 +59,8 @@
 #include "core/cooperative.h"
 #include "core/peo_debug.h"
 
+#include "rmc/mpi/synchron.h"
+
 
 //! Class providing the basis for the synchronous island migration model.
 
@@ -176,9 +178,20 @@ public:
   void pack();
   //! Auxiliary function dealing with receiving immigrant individuals. There is no need to explicitly call the function.
   void unpack();
+  //! Auxiliary function dealing with the packing of synchronization requests. There is no need to explicitly call the function.
+  void packSynchronizeReq();
 
   //! Auxiliary function dealing with migration notifications. There is no need to explicitly call the function.
   void notifySending();
+
+  //! Auxiliary function dealing with migration notifications. There is no need to explicitly call the function.
+  void notifyReceiving();
+
+  //! Auxiliary function dealing with synchronizing runners for migrations. There is no need to explicitly call the function.
+  void notifySendingSyncReq();
+
+  //! Auxiliary function for notifying the synchronization of the runners involved in migration.
+  void notifySynchronized();
 
 
 private:
@@ -205,6 +218,11 @@ private:
   std :: queue< Cooperative* > coop_em;
 
   sem_t sync;
+
+  bool explicitPassive;
+  bool standbyMigration;
+
+  std :: vector< Cooperative* > in, out, all;
 };
 
 
@@ -227,38 +245,27 @@ template< class EOT > peoSyncIslandMig< EOT > :: peoSyncIslandMig(
 
 template< class EOT > void peoSyncIslandMig< EOT > :: pack()
 {
-
-  lock ();
-
   ::pack( coop_em.front()->getKey() );
   ::pack( em.front() );
   coop_em.pop();
   em.pop();
-
-  unlock();
 }
-
 
 template< class EOT > void peoSyncIslandMig< EOT > :: unpack()
 {
-
-  lock ();
-
   eoPop< EOT > mig;
   ::unpack( mig );
   imm.push( mig );
-
-  unlock();
-
-  sem_post( &sync );
+  explicitPassive = true;
 }
 
+template< class EOT > void peoSyncIslandMig< EOT > :: packSynchronizeReq() {
+
+  packSynchronRequest( all );
+}
 
 template< class EOT > void peoSyncIslandMig< EOT > :: emigrate()
 {
-
-  std :: vector< Cooperative* > in, out;
-  topology.setNeighbors( this, in, out );
 
   for ( unsigned i = 0; i < out.size(); i ++ )
   {
@@ -272,57 +279,55 @@ template< class EOT > void peoSyncIslandMig< EOT > :: emigrate()
   }
 }
 
-
 template< class EOT > void peoSyncIslandMig< EOT > :: immigrate()
 {
-
-  lock ();
-  {
-
     assert( imm.size() );
     replace( destination, imm.front() ) ;
     imm.pop();
     printDebugMessage( "peoSyncIslandMig: receiving some immigrants." );
-  }
-  unlock();
 }
-
 
 template< class EOT > void peoSyncIslandMig< EOT > :: operator()()
 {
 
   if ( !cont( source ) )
   {
+    explicitPassive = standbyMigration = false;
+    topology.setNeighbors( this, in, out ); all = topology;
+
+    synchronizeCoopEx(); stop();
 
     // sending emigrants
     emigrate();
-    stop();
-
     // synchronizing
     sem_wait( &sync );
-    getOwner()->setActive();
-
     // receiving immigrants
     immigrate();
+
+    synchronizeCoopEx(); stop();
   }
 }
 
-
 template< class EOT > void peoSyncIslandMig< EOT > :: notifySending()
 {
-
-  lock ();
-  {
-
-    if ( imm.empty() )
-    {
-
-      printDebugMessage( "peoSyncIslandMig: entering pasive mode\n" );
-      getOwner()->setPassive();
-    }
+  if ( !explicitPassive ) getOwner()->setPassive();
 }
-unlock();
 
+template< class EOT > void peoSyncIslandMig< EOT > :: notifyReceiving()
+{
+  if ( standbyMigration ) getOwner()->setActive();
+  sem_post( &sync );
+}
+
+template< class EOT > void peoSyncIslandMig< EOT > :: notifySendingSyncReq () {
+
+  getOwner()->setPassive();
+}
+
+template< class EOT > void peoSyncIslandMig< EOT > :: notifySynchronized () {
+
+  standbyMigration = true;
+  getOwner()->setActive();
   resume();
 }
 

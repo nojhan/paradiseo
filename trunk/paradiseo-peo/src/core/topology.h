@@ -53,9 +53,11 @@ public:
 				std :: vector <Cooperative *> & __from,
 				std :: vector <Cooperative *> & __to) = 0;
 
+	operator std :: vector <Cooperative *>& ();
+
 protected:
 
-	std :: vector <Cooperative *> mig ;  
+	std :: vector <Cooperative *> mig;
 };
 
 #endif

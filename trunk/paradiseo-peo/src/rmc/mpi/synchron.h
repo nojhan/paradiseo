@@ -1,5 +1,5 @@
 /* 
-* <schema.h>
+* <synchron.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
@@ -34,25 +34,52 @@
 *
 */
 
-#ifndef __schema_h
-#define __schema_h
+#ifndef __synchron_h
+#define __synchron_h
 
-#include <string>
+#include <set>
 #include <vector>
-#include <cassert>
+#include <utility>
 
-#include "node.h"
 #include "../../core/runner.h"
+#include "../../core/cooperative.h"
 
+struct SyncEntry {
 
-extern Node * my_node;
+  RUNNER_ID runner;
+  COOP_ID coop;
+};
 
-extern bool isScheduleNode ();
+struct SyncCompare {
 
-extern RANK_ID getRankOfRunner (RUNNER_ID __key);
+  bool operator()( const std::pair< std::vector< SyncEntry >, unsigned >& A, const std::pair< std::vector< SyncEntry >, unsigned >& B ) {
 
-extern std :: vector <Node> the_schema;
+    const std::vector< SyncEntry >& syncA = A.first;
+    const std::vector< SyncEntry >& syncB = B.first;
 
-extern void loadSchema (const char * __filename);
+    if ( syncA.size() == syncB.size() ) {
+      std::vector< SyncEntry >::const_iterator itA = syncA.begin();
+      std::vector< SyncEntry >::const_iterator itB = syncB.begin();
+
+      while ( (*itA).runner < (*itB).runner && itA != syncA.end() ) { itA++; itB++; }
+
+      return itA == syncA.end();
+    }
+
+    return syncA.size() < syncB.size();
+  }
+};
+
+typedef std::vector< SyncEntry > SYNC_RUNNERS;
+typedef std::set< std::pair< SYNC_RUNNERS, unsigned >, SyncCompare > SYNC;
+
+/* Initializing the list of runners to be synchronized */
+extern void initSynchron ();
+
+/* packing a synchronization request from a service */
+extern void packSynchronRequest ( const std :: vector <Cooperative *>& coops );
+
+/* Processing a synchronization request from a service */
+extern void unpackSynchronRequest ();
 
 #endif

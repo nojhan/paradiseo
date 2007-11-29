@@ -40,7 +40,27 @@
 #include <string>
 #include <cassert>
 
+#include "../../core/runner.h"
+
+typedef int RANK_ID;
+
+struct Node {
+
+  RANK_ID rk; /* Rank */
+  std :: string name; /* Host name */
+  unsigned num_workers; /* Number of parallel workers */
+  int rk_sched; /* rank of the scheduler */
+  std :: vector <RUNNER_ID> id_run; /* List of runner def. IDs */
+  std :: vector <RUNNER_ID> execution_id_run; /* List of runtime execution runner IDs */
+};
+
+extern Node * my_node;
+
+extern bool isScheduleNode ();
+
 extern int getNodeRank (); /* It gives the rank of the calling process */
+
+extern RANK_ID getRankOfRunner (RUNNER_ID __key);
 
 extern int getNumberOfNodes (); /* It gives the size of the environment (Total number of nodes) */
 

@@ -37,6 +37,7 @@
 #ifndef __cooperative_h
 #define __cooperative_h
 
+#include <vector>
 #include "communicable.h"
 #include "runner.h"
 
@@ -54,9 +55,19 @@ public :
 
   virtual void unpack () = 0;
 
-  void send (Cooperative * __coop); 
+  virtual void packSynchronizeReq () = 0;
+
+  void send (Cooperative * __coop);
+
+  void synchronizeCoopEx ();
 
   virtual void notifySending ();
+
+  virtual void notifyReceiving ();
+
+  virtual void notifySendingSyncReq ();
+
+  virtual void notifySynchronized ();
 
 private :
 

@@ -54,6 +54,7 @@ extern void initRunnersEnv ();
 extern void initWorkersEnv ();
 
 extern void initScheduler ();
+extern void initSynchron ();
 
 
 static void initExecutionEnv() {
@@ -61,6 +62,7 @@ static void initExecutionEnv() {
   initCommunicableEnv ();
   initBuffers ();
   initScheduler();
+  initSynchron ();
 
   initThreadsEnv ();
   initReactiveThreadsEnv ();

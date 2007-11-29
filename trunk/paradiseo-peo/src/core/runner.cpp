@@ -63,6 +63,8 @@ extern int getNodeRank ();
 
 extern int getNumberOfNodes ();
 
+extern void wakeUpCommunicator ();
+
 
 Runner :: Runner () {
 
@@ -188,6 +190,8 @@ void unpackTerminationOfRunner () {
     stopReactiveThreads ();
     printDebugMessage ("Reactive threads stopped!");
   }
+
+  wakeUpCommunicator ();
 }
 
 void initRunnersEnv () {

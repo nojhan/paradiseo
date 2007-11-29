@@ -38,12 +38,12 @@
 #include "tags.h"
 #include "worker.h"
 #include "scheduler.h"
+#include "synchron.h"
 #include "mess.h"
 #include "node.h"
 #include "../../core/runner.h"
 #include "../../core/cooperative.h"
 #include "../../core/peo_debug.h"
-
 
 void receiveMessages () {
 
@@ -66,14 +66,30 @@ void receiveMessages () {
       switch (tag) {
 
       case RUNNER_STOP_TAG:
-        unpackTerminationOfRunner ();	
-        wakeUpCommunicator ();
+        unpackTerminationOfRunner ();
         break;
+
+      case SYNCHRONIZE_REQ_TAG:
+        unpackSynchronRequest ();
+        break;
+
+      case SYNCHRONIZED_TAG:
+        {
+          RUNNER_ID runner_id;
+          unpack (runner_id);
+
+          COOP_ID coop_id;
+          unpack (coop_id);
+
+          getCooperative (coop_id) -> notifySynchronized ();
+          break;
+        }
 
       case COOP_TAG:
         COOP_ID coop_id;
         unpack (coop_id);
         getCooperative (coop_id) -> unpack ();
+        getCooperative (coop_id) -> notifyReceiving ();
         break;
 
       case SCHED_REQUEST_TAG:	

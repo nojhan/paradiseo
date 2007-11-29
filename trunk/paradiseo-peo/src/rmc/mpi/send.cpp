@@ -131,6 +131,11 @@ void sendMessages () {
       dynamic_cast <Cooperative *> (comm) -> notifySending ();
       break;
 
+    case SYNCHRONIZE_REQ_TAG:
+      dynamic_cast <Cooperative *> (comm) -> packSynchronizeReq ();
+      dynamic_cast <Cooperative *> (comm) -> notifySendingSyncReq ();
+      break;
+
     case SCHED_REQUEST_TAG:
       dynamic_cast <Service *> (comm) -> packResourceRequest ();
       dynamic_cast <Service *> (comm) -> notifySendingResourceRequest ();
@@ -155,6 +160,7 @@ void sendMessages () {
       sendMessageToAll (req.tag);
     else
       sendMessage (req.to, req.tag);
+
     mess.pop ();
   }
 

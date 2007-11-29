@@ -1,3 +1,9 @@
+SET(CMAKE_DEFAULT_BUILD_TYPE Debug CACHE STRING "Variable that stores the default CMake build type" FORCE)
+SET(CMAKE_CXX_FLAGS "-O0 -g")
+SET(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
+SET(CMAKE_CXX_FLAGS_RELEASE "-O0 -g")
+SET(CMAKE_CXX_FLAGS_MINSIZEREL "-O0 -g")
+SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O0 -g")
 
 ######################################################################################
 ### 0) Set the compiler
@@ -29,10 +35,11 @@ SET(LIBRARY_OUTPUT_PATH ${RMC_MPI_LIB_OUTPUT_PATH})
 SET (RMC_MPI_SOURCES node.cpp 
 					param.cpp 
 					comm.cpp 
-					coop.cpp 
+					cooperative.cpp 
 					mess.cpp 
 					rmc.cpp 
 					scheduler.cpp
+					synchron.cpp
 					worker.cpp 
 					send.cpp 
 					recv.cpp 

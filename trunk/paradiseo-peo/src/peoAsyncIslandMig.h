@@ -174,6 +174,8 @@ template< class EOT > class peoAsyncIslandMig : public Cooperative, public eoUpd
     void pack();
     //! Auxiliary function dealing with receiving immigrant individuals. There is no need to explicitly call the function.
     void unpack();
+    //! Auxiliary function dealing with the packing of synchronization requests - not the case.
+    void packSynchronizeReq();
 
 
   private:
@@ -243,6 +245,8 @@ template< class EOT > void peoAsyncIslandMig< EOT > :: unpack()
   unlock();
 }
 
+template< class EOT > void peoAsyncIslandMig< EOT > :: packSynchronizeReq() {
+}
 
 template< class EOT > void peoAsyncIslandMig< EOT > :: emigrate()
 {

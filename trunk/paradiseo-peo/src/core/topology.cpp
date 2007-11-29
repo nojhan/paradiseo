@@ -45,3 +45,8 @@ void Topology :: add (Cooperative & __mig) {
 
   mig.push_back (& __mig) ;
 }
+
+Topology :: operator std :: vector <Cooperative *>& () {
+
+  return mig;
+}
