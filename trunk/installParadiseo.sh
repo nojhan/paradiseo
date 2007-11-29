@@ -391,11 +391,18 @@ function run_install_step()
 		fi 
 		;;
 
+
 	$S_INSTALL_EO)
 		########## installing paradiseo-eo ##########
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Installing Paradiseo-EO. Please wait ...'
-		
+
+		if [ ! "$installKitPath" = "$resourceKitPath" ]
+		    then
+		    cp  -Rf $resourceKitPath/paradiseo-eo/ $installKitPath/
+		    rm -Rf $installKitPath/paradiseo-eo/build
+		fi
+
 		execute_cmd "mkdir $installKitPath/paradiseo-eo/build" "[$currentStepCounter-1] Create build directory"  $SPY 	
 		
 		execute_cmd "cd $installKitPath/paradiseo-eo/build" "[$currentStepCounter-2] Go in Paradiseo-EO build dir"  $SPY 
@@ -429,6 +436,13 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Installing Paradiseo-MO. Please wait ...'
 	
+		if [ ! "$installKitPath" = "$resourceKitPath" ]
+		    then
+		    cp  -Rf $resourceKitPath/paradiseo-mo/ $installKitPath/
+		    cp $resourceKitPath/install.cmake $installKitPath/
+		    rm -Rf $installKitPath/paradiseo-mo/build/*
+		fi
+
 		execute_cmd "cd $installKitPath/paradiseo-mo/build" "[$currentStepCounter-1] Go in Paradiseo-MO dir"  $SPY 
 		RETURN=$?
 		
@@ -461,6 +475,12 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Installing Paradiseo-MOEO. Please wait ...'
 		
+		if [ ! "$installKitPath" = "$resourceKitPath" ]
+		    then
+		    cp  -Rf $resourceKitPath/paradiseo-moeo/ $installKitPath/
+		    rm -Rf $installKitPath/paradiseo-moeo/build/*
+		fi
+
 		execute_cmd "cd $installKitPath/paradiseo-moeo/build" "[$currentStepCounter-1] Go in Paradiseo-MOEO dir"  $SPY 
 		RETURN=$?
 		
@@ -712,6 +732,12 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Installing Paradiseo-PEO. Please wait ...'
 		
+		if [ ! "$installKitPath" = "$resourceKitPath" ]
+		    then
+		    cp  -Rf $resourceKitPath/paradiseo-peo/ $installKitPath/
+		    rm -Rf $installKitPath/paradiseo-peo/build/*
+		fi
+
 		execute_cmd "cd $installKitPath/paradiseo-peo/build" "[$currentStepCounter-1] Go in Paradiseo-PEO dir"  $SPY 
 		RETURN=$?
 
@@ -944,6 +970,8 @@ then
 	echo 'Use : ./installParadiseo.sh <HOME path> to give your HOME path'
 	echo 'Example: ./installParadiseo.sh /usr/home/me'
 	echo
+	echo 'Use : ./installParadiseo.sh --prefix=<Install Directory>
+	echo
 	echo '=> For further help, please contact paradiseo-help@lists.gforge.inria.fr'
 	echo
 	exit
@@ -966,6 +994,15 @@ fi
 # simple menu
 INSTALL_TREATENED=0
 INSTALL_PATH=$PWD
+for i in $*
+do
+  if [ "${i%=*}" = "--prefix" ]
+      then
+      INSTALL_PATH=${i#*=}
+  fi
+done
+
+
 
 # need the generator type
 BUILD_PROCESS_TYPE=0
