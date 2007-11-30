@@ -223,6 +223,7 @@ private:
   bool standbyMigration;
 
   std :: vector< Cooperative* > in, out, all;
+  unsigned nbMigrations;
 };
 
 
@@ -281,10 +282,14 @@ template< class EOT > void peoSyncIslandMig< EOT > :: emigrate()
 
 template< class EOT > void peoSyncIslandMig< EOT > :: immigrate()
 {
-    assert( imm.size() );
+  assert( imm.size() );
+
+  while ( imm.size() ) {
     replace( destination, imm.front() ) ;
     imm.pop();
-    printDebugMessage( "peoSyncIslandMig: receiving some immigrants." );
+  }
+
+  printDebugMessage( "peoSyncIslandMig: receiving some immigrants." );
 }
 
 template< class EOT > void peoSyncIslandMig< EOT > :: operator()()
@@ -294,6 +299,7 @@ template< class EOT > void peoSyncIslandMig< EOT > :: operator()()
   {
     explicitPassive = standbyMigration = false;
     topology.setNeighbors( this, in, out ); all = topology;
+    nbMigrations = 0;
 
     synchronizeCoopEx(); stop();
 
@@ -315,8 +321,13 @@ template< class EOT > void peoSyncIslandMig< EOT > :: notifySending()
 
 template< class EOT > void peoSyncIslandMig< EOT > :: notifyReceiving()
 {
-  if ( standbyMigration ) getOwner()->setActive();
-  sem_post( &sync );
+  nbMigrations++;
+
+  if ( nbMigrations == in.size() ) {
+
+    if ( standbyMigration ) getOwner()->setActive();
+    sem_post( &sync );
+  }
 }
 
 template< class EOT > void peoSyncIslandMig< EOT > :: notifySendingSyncReq () {
