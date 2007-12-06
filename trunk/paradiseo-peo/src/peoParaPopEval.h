@@ -76,7 +76,8 @@ template< class EOT > class peoParaPopEval : public peoPopEval< EOT >
     //! Operator for applying the evaluation functor (direct or aggregate) for each individual of the specified population.
     //!
     //! @param eoPop< EOT >& __pop - population to be evaluated by applying the evaluation functor specified in the constructor.
-    void operator()( eoPop< EOT >& __pop );
+    void operator()(eoPop< EOT >& __pop);
+    void operator()( eoPop< EOT >& __dummy, eoPop< EOT >& __pop );
 
     //! Auxiliary function for transferring data between the process requesting an evaluation operation and the process that
     //! performs the actual evaluation phase. There is no need to explicitly call the function.
@@ -145,8 +146,12 @@ template< class EOT > peoParaPopEval< EOT > :: peoParaPopEval(
 ) : funcs( __funcs ), merge_eval( __merge_eval )
 {}
 
+template< class EOT > void peoParaPopEval< EOT >::operator()(eoPop< EOT >& __dummy, eoPop< EOT >& __pop )
+{
+	this->operator()(__pop);
+}
 
-template< class EOT > void peoParaPopEval< EOT >::operator()( eoPop< EOT >& __pop )
+template< class EOT > void peoParaPopEval< EOT >::operator()(eoPop< EOT >& __pop )
 {
   for ( unsigned i = 0; i < __pop.size(); i++ )
     {
@@ -166,7 +171,7 @@ template< class EOT > void peoParaPopEval< EOT >::operator()( eoPop< EOT >& __po
 
 
 template< class EOT > void peoParaPopEval< EOT > :: packData()
-{
+{	
   //  printDebugMessage ("debut pakc data");
   pack( progression[ tasks.front() ].first-- );
 
@@ -180,7 +185,7 @@ template< class EOT > void peoParaPopEval< EOT > :: packData()
 
 
 template< class EOT > void peoParaPopEval< EOT > :: unpackData()
-{
+{	
   unpack( num_func );
   /* Unpacking the solution */
   unpack( sol );
@@ -191,13 +196,14 @@ template< class EOT > void peoParaPopEval< EOT > :: unpackData()
 
 template< class EOT > void peoParaPopEval< EOT > :: execute()
 {
+	
   /* Computing the fitness of the solution */
   funcs[ num_func ]->operator()( sol );
 }
 
 
 template< class EOT > void peoParaPopEval< EOT > :: packResult()
-{
+{	
   /* Packing the fitness of the solution */
   pack( sol.fitness() );
   /* Packing the @ of the individual */
@@ -206,7 +212,7 @@ template< class EOT > void peoParaPopEval< EOT > :: packResult()
 
 
 template< class EOT > void peoParaPopEval< EOT > :: unpackResult()
-{
+{	
   typename EOT :: Fitness fit;
 
   /* Unpacking the computed fitness */
@@ -243,7 +249,7 @@ template< class EOT > void peoParaPopEval< EOT > :: notifySendingData()
 
 
 template< class EOT > void peoParaPopEval< EOT > :: notifySendingAllResourceRequests()
-{
+{	
   getOwner()->setPassive();
 }
 

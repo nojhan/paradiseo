@@ -150,8 +150,9 @@ template< class EOT > void peoEA< EOT > :: operator ()( eoPop< EOT >& __pop )
 template< class EOT > void peoEA< EOT > :: run()
 {
 
+  eoPop< EOT > dummy;
   printDebugMessage( "peoEA: performing the first evaluation of the population." );
-  pop_eval( *pop );
+  pop_eval(dummy, *pop );
 
   do
   {
@@ -164,7 +165,7 @@ template< class EOT > void peoEA< EOT > :: run()
 
     printDebugMessage( "peoEA: performing the evaluation of the population." );
 
-    pop_eval( off );
+    pop_eval(dummy, off );
 
     printDebugMessage( "peoEA: performing the replacement of the population." );
     replace( *pop, off );

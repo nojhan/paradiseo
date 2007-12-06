@@ -109,7 +109,7 @@ template< class POT > void peoPSO< POT > :: operator ()( eoPop< POT >& __pop )
 
 template< class POT > void peoPSO< POT > :: run()
 {
-
+  eoPop< POT > dummy;
   printDebugMessage( "Performing the first evaluation of the population." );
   Init();
   velocity.getTopology().setup(*pop);
@@ -120,7 +120,7 @@ template< class POT > void peoPSO< POT > :: run()
       printDebugMessage( "Performing the flight." );
       flight.apply ( *pop );
       printDebugMessage( "Performing the evaluation." );
-      pop_eval(*pop);
+      pop_eval(dummy,*pop);
       velocity.updateNeighborhood( *pop );
     }
   while ( cont( *pop ) );

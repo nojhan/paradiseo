@@ -74,7 +74,7 @@ template <class POT> class peoInitializer : public eoInitializerBase <POT>
     //! Parallel initialization of the population
     virtual void operator()()
     {
-      proc(*pop);
+      proc(dummyPop,*pop);
       apply < POT > (initVelo, *pop);
       apply < POT > (initBest, *pop);
     }
@@ -91,6 +91,7 @@ template <class POT> class peoInitializer : public eoInitializerBase <POT>
     eoVelocityInit < POT > & initVelo;
     eoParticleBestInit <POT> & initBest;
     eoPop <POT> * pop;
+    eoPop< POT > dummyPop;
   };
 #endif
 

@@ -60,6 +60,7 @@ template< class EOT > class peoSeqPopEval : public peoPopEval< EOT >
     //!
     //! @param eoPop< EOT >& __pop - population to be evaluated.
     void operator()( eoPop< EOT >& __pop );
+    void operator()( eoPop< EOT > &__dummy,eoPop< EOT >&__pop);
 
   private:
 
@@ -70,6 +71,10 @@ template< class EOT > class peoSeqPopEval : public peoPopEval< EOT >
 template< class EOT > peoSeqPopEval< EOT > :: peoSeqPopEval( eoEvalFunc< EOT >& __eval ) : eval( __eval )
 {}
 
+template< class EOT > void peoSeqPopEval< EOT > :: operator()( eoPop< EOT >& __dummy,eoPop< EOT >& __pop )
+{
+	this->operator()(__pop);
+}
 
 template< class EOT > void peoSeqPopEval< EOT > :: operator()( eoPop< EOT >& __pop )
 {

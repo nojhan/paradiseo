@@ -80,8 +80,15 @@ template <class F, class T> void unpack (eoVector <F, T> & __v) {
 
 template <class F, class T, class V> void pack (const eoVectorParticle <F, T, V> & __v) {
 
-  pack (__v.fitness ()) ;
-  pack (__v.best());
+  if (__v.invalid()) {
+    pack((unsigned)0);
+  }
+  else {
+    pack((unsigned)1); 
+    pack (__v.fitness ());
+    pack (__v.best());
+  }
+
   unsigned len = __v.size ();
   pack (len);
   for (unsigned i = 0 ; i < len; i ++)
@@ -94,11 +101,19 @@ template <class F, class T, class V> void pack (const eoVectorParticle <F, T, V>
 
 template <class F, class T, class V> void unpack (eoVectorParticle <F, T, V> & __v) {
 
-  F fit;
-  unpack(fit);
-  __v.fitness (fit);
-  unpack(fit);
+unsigned valid; unpack(valid);
+
+  if (! valid) {
+    __v.invalidate();
+  }
+  else {
+    F fit; 
+    unpack (fit);
+    __v.fitness (fit);
+      unpack(fit);
   __v.best(fit);
+    
+  }
   unsigned len;
   unpack (len);
   __v.resize (len);
