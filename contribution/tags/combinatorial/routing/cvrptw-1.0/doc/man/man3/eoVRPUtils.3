@@ -1,0 +1,200 @@
+.TH "eoVRPUtils" 3 "7 Dec 2007" "Version 1.0" "CVRP-TW" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoVRPUtils \- A set of structures and utility functions for the VRP-TW problem.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBClientData\fP"
+.br
+.RI "\fIInformation regarding each client in the dataset. \fP"
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBeoVRPUtils::ClientData\fP \fBClientDataT\fP"
+.br
+.RI "\fIRenaming of struct \fBClientData\fP. \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBcomputeDistances\fP ()"
+.br
+.RI "\fIComputes the distance between two clients. \fP"
+.ti -1c
+.RI "void \fBgetTimeWindow\fP (unsigned _client, double &_readyTime, double &_dueTime, double &_serviceTime)"
+.br
+.RI "\fIReturns the time window information of a given client. \fP"
+.ti -1c
+.RI "float \fBdistance\fP (unsigned _from, unsigned _to)"
+.br
+.RI "\fIA function to get the distance between two clients. \fP"
+.ti -1c
+.RI "float \fBpolarAngle\fP (unsigned _from, unsigned _to)"
+.br
+.RI "\fIComputes de polar angle between clients. \fP"
+.ti -1c
+.RI "void \fBload\fP (const char *_fileName)"
+.br
+.RI "\fILoads the problem data from a given file. \fP"
+.ti -1c
+.RI "void \fBprintRoute\fP (const Route &_route)"
+.br
+.RI "\fIPrints a route to the standard output. \fP"
+.ti -1c
+.RI "void \fBprintRoutes\fP (Routes &_routes)"
+.br
+.RI "\fIPrints a set of routes to the standard output. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "static std::vector< \fBClientDataT\fP > \fBclients\fP"
+.br
+.RI "\fIVector to store clients's information. \fP"
+.ti -1c
+.RI "static std::vector< std::vector< double > > \fBdist\fP"
+.br
+.RI "\fIDistance matrix. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+A set of structures and utility functions for the VRP-TW problem. 
+.SH "Function Documentation"
+.PP 
+.SS "void eoVRPUtils::computeDistances ()"
+.PP
+Computes the distance between two clients. 
+.PP
+The computed distances will be stored in dist. 
+.PP
+Definition at line 108 of file eoVRPUtils.h.
+.PP
+References clients, and dist.
+.PP
+Referenced by load().
+.SS "void eoVRPUtils::getTimeWindow (unsigned _client, double & _readyTime, double & _dueTime, double & _serviceTime)"
+.PP
+Returns the time window information of a given client. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_client\fP The client whose information we want to know. 
+.br
+\fI_readyTime\fP Return value. The beginning of the client's time window. 
+.br
+\fI_dueTime\fP Return value. The end of the client's time window. 
+.br
+\fI_serviceTime\fP Return value. The client's service time. 
+.RE
+.PP
+
+.PP
+Definition at line 139 of file eoVRPUtils.h.
+.PP
+References clients.
+.PP
+Referenced by eoVRP::decode(), and eoVRPInit::evaluateInsertion().
+.SS "float eoVRPUtils::distance (unsigned _from, unsigned _to)"
+.PP
+A function to get the distance between two clients. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_from\fP The first client. 
+.br
+\fI_to\fP The second client. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The distance between _from and _to. 
+.RE
+.PP
+
+.PP
+Definition at line 157 of file eoVRPUtils.h.
+.PP
+References clients, and dist.
+.PP
+Referenced by eoVRP::decode(), eoVRPInit::evaluateInsertion(), eoVRPInit::selectBestClientAsSeed(), eoVRPInit::selectCheapestClient(), and eoVRPInit::selectFarthestClientAsSeed().
+.SS "float eoVRPUtils::polarAngle (unsigned _from, unsigned _to)"
+.PP
+Computes de polar angle between clients. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_from\fP The first client. 
+.br
+\fI_to\fP The second client. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The polar angle between _from and _to. 
+.RE
+.PP
+
+.PP
+Definition at line 174 of file eoVRPUtils.h.
+.PP
+References clients.
+.PP
+Referenced by eoVRPInit::selectCheapestClient().
+.SS "void eoVRPUtils::load (const char * _fileName)"
+.PP
+Loads the problem data from a given file. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_fileName\fP The file to load data from. 
+.RE
+.PP
+\fBWarning:\fP
+.RS 4
+No error check is performed! 
+.RE
+.PP
+
+.PP
+Definition at line 199 of file eoVRPUtils.h.
+.PP
+References clients, and computeDistances().
+.SS "void eoVRPUtils::printRoute (const Route & _route)"
+.PP
+Prints a route to the standard output. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_route\fP The route to print. 
+.RE
+.PP
+
+.PP
+Definition at line 241 of file eoVRPUtils.h.
+.SS "void eoVRPUtils::printRoutes (Routes & _routes)"
+.PP
+Prints a set of routes to the standard output. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_routes\fP The set of routes to print. 
+.RE
+.PP
+
+.PP
+Definition at line 264 of file eoVRPUtils.h.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CVRP-TW from the source code.

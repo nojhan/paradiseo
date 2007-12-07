@@ -1,0 +1,28 @@
+
+==========================================================================================
+                      INSTALL THE CVRP-TW PACKAGE
+==========================================================================================
+
+The basic installation procedure goes the following:
+
+To compile the cvrp-tw package in the default directory,
+go to cvrptw/build/ and run:
+    > cmake ../
+    > make
+    // for an easy-use of the provided lessons
+    > make install
+    // optional (if the documentation is not already available)
+    > make doc
+
+To clean everything, simply run
+    > make clean
+
+
+==========================================================================================
+              CONTACT
+==========================================================================================
+
+For any question or for help, please write us at: paradiseo-help@lists.gforge.inria.fr.
+
+
+==========================================================================================

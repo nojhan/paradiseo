@@ -1,0 +1,360 @@
+.TH "eoVRP" 3 "7 Dec 2007" "Version 1.0" "CVRP-TW" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoVRP \- Defines the getoype used to solve the VRP-TW problem.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoVRP.h>\fP
+.PP
+Inherits \fBeoVector< eoMinimizingFitness, int >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoVRP\fP ()"
+.br
+.RI "\fIDefault constructor: initializes variables to safe values. \fP"
+.ti -1c
+.RI "\fBeoVRP\fP (const \fBeoVRP\fP &_orig)"
+.br
+.RI "\fICopy contructor: creates a new individual from a given one. \fP"
+.ti -1c
+.RI "virtual \fB~eoVRP\fP ()"
+.br
+.RI "\fIDefault destructor: nothing to do here. \fP"
+.ti -1c
+.RI "\fBeoVRP\fP & \fBoperator=\fP (const \fBeoVRP\fP &_orig)"
+.br
+.RI "\fIPerforms a copy from the invidual passed as argument. \fP"
+.ti -1c
+.RI "virtual std::string \fBclassName\fP () const "
+.br
+.RI "\fIReturns a string containing the name of the class. \fP"
+.ti -1c
+.RI "void \fBprintOn\fP (std::ostream &_os) const "
+.br
+.RI "\fIPrints the individual to a given stream. \fP"
+.ti -1c
+.RI "void \fBprintAllOn\fP (std::ostream &_os) const "
+.br
+.RI "\fIPrints a detailed version of the individual (decoding information, unsatisfied contraints, etc. \fP"
+.ti -1c
+.RI "void \fBreadFrom\fP (std::istream &_is)"
+.br
+.RI "\fIReads an individual from a given stream. \fP"
+.ti -1c
+.RI "const Routes & \fBroutes\fP ()"
+.br
+.RI "\fIReturns a reference to the decoded individual. \fP"
+.ti -1c
+.RI "double \fBlength\fP ()"
+.br
+.RI "\fIReturns the total cost (length) of traveling all the routes. \fP"
+.ti -1c
+.RI "void \fBprintRoutes\fP (std::ostream &_os) const "
+.br
+.RI "\fIAux. \fP"
+.ti -1c
+.RI "void \fBprintRoute\fP (std::ostream &_os, unsigned _p) const "
+.br
+.RI "\fIAux. \fP"
+.ti -1c
+.RI "bool \fBclean\fP ()"
+.br
+.RI "\fICleans the individual (the vector of clients and also the decoding information). \fP"
+.ti -1c
+.RI "bool \fBcleanRoutes\fP ()"
+.br
+.RI "\fIInvalidates the decoding information (usually after crossover or mutation). \fP"
+.ti -1c
+.RI "bool \fBdecoded\fP () const "
+.br
+.RI "\fIHas this individual been decoded? \fP"
+.ti -1c
+.RI "bool \fBencode\fP (Routes &_routes)"
+.br
+.RI "\fIEncodes an individual from a set of routes (usually used within crossover). \fP"
+.ti -1c
+.RI "double \fBdecode\fP ()"
+.br
+.RI "\fIDecodes an individual in a set of routes and calculates its cost (length) of traveling. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "Routes \fBmRoutes\fP"
+.br
+.RI "\fIA set of routes containing the decoding information of the individual. \fP"
+.ti -1c
+.RI "double \fBmLength\fP"
+.br
+.RI "\fICached cost (length) of traveling the set of routes defined by the individual. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Defines the getoype used to solve the VRP-TW problem. 
+.PP
+Definition at line 50 of file eoVRP.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "eoVRP::eoVRP (const \fBeoVRP\fP & _orig)\fC [inline]\fP"
+.PP
+Copy contructor: creates a new individual from a given one. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_orig\fP The individual used to create the new one. 
+.RE
+.PP
+
+.PP
+Definition at line 68 of file eoVRP.h.
+.PP
+References operator=().
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBeoVRP\fP& eoVRP::operator= (const \fBeoVRP\fP & _orig)\fC [inline]\fP"
+.PP
+Performs a copy from the invidual passed as argument. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_orig\fP The individual to copy from. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A reference to this. 
+.RE
+.PP
+
+.PP
+Definition at line 90 of file eoVRP.h.
+.PP
+References clean(), mLength, and mRoutes.
+.PP
+Referenced by eoVRP().
+.SS "virtual std::string eoVRP::className (void) const\fC [inline, virtual]\fP"
+.PP
+Returns a string containing the name of the class. 
+.PP
+\fBReturns:\fP
+.RS 4
+The string containing the name of the class. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBEO< F >\fP.
+.PP
+Definition at line 117 of file eoVRP.h.
+.SS "void eoVRP::printOn (std::ostream & _os) const\fC [inline, virtual]\fP"
+.PP
+Prints the individual to a given stream. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_os\fP The stream to print to. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBeoVector< eoMinimizingFitness, int >\fP.
+.PP
+Definition at line 129 of file eoVRP.h.
+.PP
+References eoVector< FitT, GeneType >::printOn().
+.PP
+Referenced by decode().
+.SS "void eoVRP::printAllOn (std::ostream & _os) const\fC [inline]\fP"
+.PP
+Prints a detailed version of the individual (decoding information, unsatisfied contraints, etc. 
+.PP
+) to a given stream. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_os\fP The stream to print to. 
+.RE
+.PP
+
+.PP
+Definition at line 146 of file eoVRP.h.
+.PP
+References decoded(), EO< F >::fitness(), eoVector< FitT, GeneType >::printOn(), and printRoutes().
+.SS "void eoVRP::readFrom (std::istream & _is)\fC [inline, virtual]\fP"
+.PP
+Reads an individual from a given stream. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_is\fP The stream to read from. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBeoVector< eoMinimizingFitness, int >\fP.
+.PP
+Definition at line 177 of file eoVRP.h.
+.PP
+References eoVector< FitT, GeneType >::readFrom().
+.SS "const Routes& eoVRP::routes ()\fC [inline]\fP"
+.PP
+Returns a reference to the decoded individual. 
+.PP
+\fBReturns:\fP
+.RS 4
+A reference to the decoded individual. 
+.RE
+.PP
+
+.PP
+Definition at line 190 of file eoVRP.h.
+.PP
+References mRoutes.
+.PP
+Referenced by eoVRPGenericCrossover::operator()().
+.SS "double eoVRP::length ()\fC [inline]\fP"
+.PP
+Returns the total cost (length) of traveling all the routes. 
+.PP
+\fBReturns:\fP
+.RS 4
+The total cost (length) of traveling all the routes. 
+.RE
+.PP
+
+.PP
+Definition at line 205 of file eoVRP.h.
+.PP
+References mLength.
+.PP
+Referenced by eoVRPEvalFunc::operator()().
+.SS "void eoVRP::printRoutes (std::ostream & _os) const\fC [inline]\fP"
+.PP
+Aux. 
+.PP
+method to print a structure of routes. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_os\fP The stream to print to. 
+.RE
+.PP
+
+.PP
+Definition at line 217 of file eoVRP.h.
+.PP
+References mRoutes, and printRoute().
+.PP
+Referenced by printAllOn().
+.SS "void eoVRP::printRoute (std::ostream & _os, unsigned _p) const\fC [inline]\fP"
+.PP
+Aux. 
+.PP
+method to print only one route. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_os\fP The stream to print to. 
+.br
+\fI_p\fP The route to print. 
+.RE
+.PP
+
+.PP
+Definition at line 244 of file eoVRP.h.
+.PP
+References mRoutes.
+.PP
+Referenced by printRoutes().
+.SS "bool eoVRP::clean ()\fC [inline]\fP"
+.PP
+Cleans the individual (the vector of clients and also the decoding information). 
+.PP
+\fBReturns:\fP
+.RS 4
+True if the operation finishes correctly. False otherwise. 
+.RE
+.PP
+
+.PP
+Definition at line 267 of file eoVRP.h.
+.PP
+References mLength, and mRoutes.
+.PP
+Referenced by encode(), eoVRPEdgeCrossover::operator()(), and operator=().
+.SS "bool eoVRP::cleanRoutes ()\fC [inline]\fP"
+.PP
+Invalidates the decoding information (usually after crossover or mutation). 
+.PP
+\fBReturns:\fP
+.RS 4
+True if the operation finishes correctly. False otherwise. 
+.RE
+.PP
+
+.PP
+Definition at line 283 of file eoVRP.h.
+.PP
+References mLength, and mRoutes.
+.PP
+Referenced by decode(), eoVRPOnePointCrossover::operator()(), and eoVRPMutation::operator()().
+.SS "bool eoVRP::decoded () const\fC [inline]\fP"
+.PP
+Has this individual been decoded? 
+.PP
+\fBReturns:\fP
+.RS 4
+True if has decoding information. False otherwise. 
+.RE
+.PP
+
+.PP
+Definition at line 298 of file eoVRP.h.
+.PP
+References mRoutes.
+.PP
+Referenced by eoVRPEvalFunc::operator()(), and printAllOn().
+.SS "bool eoVRP::encode (Routes & _routes)\fC [inline]\fP"
+.PP
+Encodes an individual from a set of routes (usually used within crossover). 
+.PP
+\fBReturns:\fP
+.RS 4
+True if the operation finishes correctly. False otherwise. 
+.RE
+.PP
+
+.PP
+Definition at line 313 of file eoVRP.h.
+.PP
+References clean().
+.PP
+Referenced by eoVRPGenericCrossover::operator()().
+.SS "double eoVRP::decode ()\fC [inline]\fP"
+.PP
+Decodes an individual in a set of routes and calculates its cost (length) of traveling. 
+.PP
+\fBReturns:\fP
+.RS 4
+The cost (length) of traveling the set of routes. 
+.RE
+.PP
+
+.PP
+Definition at line 334 of file eoVRP.h.
+.PP
+References cleanRoutes(), eoVRPUtils::clients, eoVRPUtils::distance(), eoVRPUtils::getTimeWindow(), mLength, mRoutes, and printOn().
+.PP
+Referenced by eoVRPEvalFunc::operator()().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CVRP-TW from the source code.
