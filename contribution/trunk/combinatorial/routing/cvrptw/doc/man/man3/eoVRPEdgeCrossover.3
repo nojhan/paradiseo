@@ -1,0 +1,159 @@
+.TH "eoVRPEdgeCrossover" 3 "7 Dec 2007" "Version 1.0" "CVRP-TW" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoVRPEdgeCrossover \- Implementation of the classic Edge Crossover from the TSP.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoVRPQuadCrossover.h>\fP
+.PP
+Inherits \fBeoQuadOp< eoVRP >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoVRPEdgeCrossover\fP ()"
+.br
+.RI "\fIDeafult constructor. \fP"
+.ti -1c
+.RI "std::string \fBclassName\fP () const "
+.br
+.RI "\fIReturns a string containing the name of the class. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (\fBeoVRP\fP &_genotype1, \fBeoVRP\fP &_genotype2)"
+.br
+.RI "\fIBoth parameters are the parents and the (future) children of the crossover. \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBEdgeCrossover\fP (\fBeoVRP\fP &_genotype1, \fBeoVRP\fP &_genotype2, \fBeoVRP\fP &_child)"
+.br
+.RI "\fIActually performs the edge crossover. \fP"
+.ti -1c
+.RI "void \fBremove_entry\fP (unsigned _vertex, std::vector< std::set< unsigned > > &_map)"
+.br
+.RI "\fIRemoves a vertex from all his neighbours. \fP"
+.ti -1c
+.RI "void \fBadd_vertex\fP (unsigned _vertex, std::vector< bool > &_visited, std::vector< std::set< unsigned > > &_map, \fBeoVRP\fP &_child)"
+.br
+.RI "\fIAdds a vertex to a child and erases it from the list of available vertices. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Implementation of the classic Edge Crossover from the TSP. 
+.PP
+Definition at line 240 of file eoVRPQuadCrossover.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "std::string eoVRPEdgeCrossover::className (void) const\fC [inline, virtual]\fP"
+.PP
+Returns a string containing the name of the class. 
+.PP
+Used to display statistics. 
+.PP
+\fBReturns:\fP
+.RS 4
+The string containing the name of the class. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBeoQuadOp< eoVRP >\fP.
+.PP
+Definition at line 258 of file eoVRPQuadCrossover.h.
+.SS "bool eoVRPEdgeCrossover::operator() (\fBeoVRP\fP & _genotype1, \fBeoVRP\fP & _genotype2)\fC [inline, virtual]\fP"
+.PP
+Both parameters are the parents and the (future) children of the crossover. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_genotype1\fP The first parent. 
+.br
+\fI_genotype2\fP The second parent. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+True if any of the parents was modified. False otherwise. 
+.RE
+.PP
+
+.PP
+Implements \fBeoBF< eoVRP &, eoVRP &, bool >\fP.
+.PP
+Definition at line 272 of file eoVRPQuadCrossover.h.
+.PP
+References eoVRP::clean(), and EdgeCrossover().
+.SS "bool eoVRPEdgeCrossover::EdgeCrossover (\fBeoVRP\fP & _genotype1, \fBeoVRP\fP & _genotype2, \fBeoVRP\fP & _child)\fC [inline, private]\fP"
+.PP
+Actually performs the edge crossover. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_genotype1\fP First parent. 
+.br
+\fI_genotype2\fP Second parent. 
+.br
+\fI_child\fP Child. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+True if the second parent was modified. False otherwise. 
+.RE
+.PP
+
+.PP
+Definition at line 301 of file eoVRPQuadCrossover.h.
+.PP
+References add_vertex(), and eoRng::random().
+.PP
+Referenced by operator()().
+.SS "void eoVRPEdgeCrossover::remove_entry (unsigned _vertex, std::vector< std::set< unsigned > > & _map)\fC [inline, private]\fP"
+.PP
+Removes a vertex from all his neighbours. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_vertex\fP The vertex being erased. 
+.br
+\fI_map\fP The structure containing the neighbourhood relationship. 
+.RE
+.PP
+
+.PP
+Definition at line 380 of file eoVRPQuadCrossover.h.
+.PP
+Referenced by add_vertex().
+.SS "void eoVRPEdgeCrossover::add_vertex (unsigned _vertex, std::vector< bool > & _visited, std::vector< std::set< unsigned > > & _map, \fBeoVRP\fP & _child)\fC [inline, private]\fP"
+.PP
+Adds a vertex to a child and erases it from the list of available vertices. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_vertex\fP The vertex being added to the child. 
+.br
+\fI_visited\fP The vector of visited vertices. 
+.br
+\fI_map\fP The structure containing the neighbourhood relationship. 
+.br
+\fI_child\fP The child where we add the vertex. 
+.RE
+.PP
+
+.PP
+Definition at line 398 of file eoVRPQuadCrossover.h.
+.PP
+References remove_entry().
+.PP
+Referenced by EdgeCrossover().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CVRP-TW from the source code.

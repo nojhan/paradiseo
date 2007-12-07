@@ -1,0 +1,194 @@
+.TH "eoVRPMutation" 3 "7 Dec 2007" "Version 1.0" "CVRP-TW" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoVRPMutation \- Implementation of variations of the four mutation operators for the VRP-TW defined by Tavares et al.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <eoVRPMutation.h>\fP
+.PP
+Inherits \fBeoMonOp< eoVRP >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoVRPMutation\fP ()"
+.br
+.RI "\fIDefault constructor: nothing to do here. \fP"
+.ti -1c
+.RI "std::string \fBclassName\fP () const "
+.br
+.RI "\fIReturns a string containing the name of the class. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (\fBeoVRP\fP &_genotype)"
+.br
+.RI "\fIFunctor operator. \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBswapMutation\fP (\fBeoVRP\fP &_genotype)"
+.br
+.RI "\fIIt exhanges the positions of two clients within the individual. \fP"
+.ti -1c
+.RI "bool \fBinversionMutation\fP (\fBeoVRP\fP &_genotype)"
+.br
+.RI "\fIIt selects two positions in the genotype and inverts the clients between them. \fP"
+.ti -1c
+.RI "bool \fBinsertionMutation\fP (\fBeoVRP\fP &_genotype)"
+.br
+.RI "\fIIt selects and individual, erases it from its original position and inserts it somewhere else. \fP"
+.ti -1c
+.RI "bool \fBDisplacementMutation\fP (\fBeoVRP\fP &_genotype)"
+.br
+.RI "\fIIt selects a set of clients, erases them from their original position and inserts them somewhere else. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Implementation of variations of the four mutation operators for the VRP-TW defined by Tavares et al. 
+
+These four operators should be separated in different classes and their probabilities made parameterizable. 
+.PP
+Definition at line 52 of file eoVRPMutation.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "std::string eoVRPMutation::className (void) const\fC [inline, virtual]\fP"
+.PP
+Returns a string containing the name of the class. 
+.PP
+Used to display statistics. 
+.PP
+\fBReturns:\fP
+.RS 4
+The string containing the name of the class. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBeoMonOp< eoVRP >\fP.
+.PP
+Definition at line 70 of file eoVRPMutation.h.
+.SS "bool eoVRPMutation::operator() (\fBeoVRP\fP & _genotype)\fC [inline, virtual]\fP"
+.PP
+Functor operator. 
+.PP
+Applies one of the four mutation operators available, each of them with a predefined (hard-coded) probability. These operators should be separated in different classes and their probabilities made parameterizable to do it in a more 'paradisEO' way. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_genotype\fP The genotype being mutated (it will be probably modified). 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+True if the individual has been modified. False otherwise. 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< eoVRP &, bool >\fP.
+.PP
+Definition at line 86 of file eoVRPMutation.h.
+.PP
+References eoVRP::cleanRoutes(), DisplacementMutation(), insertionMutation(), inversionMutation(), swapMutation(), and eoRng::uniform().
+.SS "bool eoVRPMutation::swapMutation (\fBeoVRP\fP & _genotype)\fC [inline, private]\fP"
+.PP
+It exhanges the positions of two clients within the individual. 
+.PP
+Clients may or may not be in the same route. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_genotype\fP The genotype being mutated (it will be probably modified). 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+True if the individual has been modified. False otherwise. 
+.RE
+.PP
+
+.PP
+Definition at line 119 of file eoVRPMutation.h.
+.PP
+References eoRng::random().
+.PP
+Referenced by operator()().
+.SS "bool eoVRPMutation::inversionMutation (\fBeoVRP\fP & _genotype)\fC [inline, private]\fP"
+.PP
+It selects two positions in the genotype and inverts the clients between them. 
+.PP
+Clients may or may not be in the same route. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_genotype\fP The genotype being mutated (it will be probably modified). 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+True if the individual has been modified. False otherwise. 
+.RE
+.PP
+
+.PP
+Definition at line 142 of file eoVRPMutation.h.
+.PP
+References eoRng::random().
+.PP
+Referenced by operator()().
+.SS "bool eoVRPMutation::insertionMutation (\fBeoVRP\fP & _genotype)\fC [inline, private]\fP"
+.PP
+It selects and individual, erases it from its original position and inserts it somewhere else. 
+.PP
+The insertion may or may not be within the same route. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_genotype\fP The genotype being mutated (it will be probably modified). 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+True if the individual has been modified. False otherwise. 
+.RE
+.PP
+
+.PP
+Definition at line 170 of file eoVRPMutation.h.
+.PP
+References eoRng::random().
+.PP
+Referenced by operator()().
+.SS "bool eoVRPMutation::DisplacementMutation (\fBeoVRP\fP & _genotype)\fC [inline, private]\fP"
+.PP
+It selects a set of clients, erases them from their original position and inserts them somewhere else. 
+.PP
+The selected set of clients may cover different routes. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_genotype\fP The genotype being mutated (it will be probably modified). 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+True if the individual has been modified. False otherwise. 
+.RE
+.PP
+
+.PP
+Definition at line 199 of file eoVRPMutation.h.
+.PP
+References eoRng::random().
+.PP
+Referenced by operator()().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CVRP-TW from the source code.
