@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
   eoEvalFuncPtr<Indi, double> mainEval( binary_value<Indi>);
   eoEvalFuncCounter<Indi> eval(mainEval);
 
-  // COnstruction of the distribution
+  // Construction of the distribution
   eoPBILDistrib<Indi> & distrib = make_PBILdistrib(parser, state, Indi());
   // and the update rule
   eoDistribUpdater<Indi> & update = make_PBILupdate(parser, state, Indi());

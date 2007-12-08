@@ -205,6 +205,6 @@ std::vector<double> rates;
 };
 
 
-// for General Ops, it's another story - see eoOpCOntainer
+// for General Ops, it's another story - see eoOpContainer
 #endif
 

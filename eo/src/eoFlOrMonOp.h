@@ -31,7 +31,7 @@
 #include <eoInit.h>
 
 /** Base classes for generic mutations on fixed length chromosomes.
- *  COntains 2 classes that both use an atomic mutation
+ *  Contains 2 classes that both use an atomic mutation
  *      eoFlOrAllMutation applies the atom mutation to all components with given rate
  *      eoFlOrKMutation applies the atom mutation to a fixed nb of components
  *
