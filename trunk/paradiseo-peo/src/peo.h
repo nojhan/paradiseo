@@ -324,8 +324,7 @@
 #include "core/eoPop_mesg.h"
 #include "core/eoVector_mesg.h"
 
-#include "peoEA.h"
-#include "peoParallelAlgorithmWrapper.h"
+#include "peoWrapper.h"
 
 /* <------- components for parallel algorithms -------> */
 #include "peoSeqTransform.h"
@@ -340,15 +339,12 @@
 #include "peoAsyncIslandMig.h"
 
 /* Synchronous multi-start model */
-#include "peoSyncMultiStart.h"
-#include "peoSynchronousMultiStart.h"
+#include "peoMultiStart.h"
 /* <------- components for parallel algorithms -------> */
 
 /* Parallel PSO */
-#include "peoInitializer.h"
-#include "peoPSO.h"
 #include "peoPSOSelect.h"
-#include "peoPSOReplacement.h"
-#include "peoPSOVelocity.h"
+#include "peoWorstPositionReplacement.h"
+#include "peoGlobalBestVelocity.h"
 
 #endif

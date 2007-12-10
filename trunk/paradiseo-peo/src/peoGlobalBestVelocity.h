@@ -1,7 +1,6 @@
-/*
-* <peoInitializer.h>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, INRIA, 2007
+/* <peoGlobalBestVelocity.h>
+*
+*  (c) OPAC Team, October 2007
 *
 * Clive Canape
 *
@@ -30,70 +29,53 @@
 * knowledge of the CeCILL license and that you accept its terms.
 *
 * ParadisEO WebSite : http://paradiseo.gforge.inria.fr
-* Contact: clive.canape@inria.fr
-*
+* Contact: paradiseo-help@lists.gforge.inria.fr
+*   Contact: clive.canape@inria.fr
 */
 
-#ifndef _peoInitializer_H
-#define _peoInitializer_H
+#ifndef _peoGlobalBestVelocity_h
+#define _peoGlobalBestVelocity_h
 
-/**
-	Base (name) class for parallel initialization of algorithm PSO
 
-	@see eoInitializerBase
-*/
+//-----------------------------------------------------------------------------
+#include <eoPop.h>
+#include <utils/eoRNG.h>
+#include <eoFunctor.h>
+#include <eoMerge.h>
+#include <eoReduce.h>
+#include <eoReplacement.h>
+#include <utils/eoHowMany.h>
 
-template <class POT> class peoInitializer : public eoInitializerBase <POT>
+template <class POT>
+class peoGlobalBestVelocity : public eoReplacement<POT>
   {
   public:
 
+    typedef typename POT::ParticleVelocityType VelocityType;
 
-    //!	Constructor
-    //! @param _proc Evaluation function
-    //! @param _initVelo Initialization of the velocity
-    //! @param _initBest Initialization of the best
-    //! @param _pop Population
-    peoInitializer(
-      peoPopEval< POT >& _proc,
-      eoVelocityInit < POT > &_initVelo,
-      eoParticleBestInit <POT> &_initBest,
-      eoPop < POT > &_pop
-    ) : proc(_proc), initVelo(_initVelo), initBest(_initBest)
+    peoGlobalBestVelocity(	const double & _c3,
+                    eoVelocity < POT > &_velocity):
+        c3 (_c3),
+        velocity (_velocity)
+    {}
+
+    void operator()(eoPop<POT>& _dest, eoPop<POT>& _source)
     {
-      pop = &_pop;
+
+      VelocityType newVelocity,r3;
+      r3 =  (VelocityType) rng.uniform (1) * c3;
+      for (unsigned i=0;i<_dest.size();i++)
+        for (unsigned j=0;j<_dest[i].size();j++)
+          {
+            newVelocity=  _dest[i].velocities[j] + r3 * (_source[0].bestPositions[j] - _dest[i][j]);
+            _dest[i].velocities[j]=newVelocity;
+          }
+
     }
 
-    //! Give the name of the class
-    //! @return The name of the class
-    virtual std::string className (void) const
-      {
-        return "peoInitializer";
-      }
-
-    //! void operator ()
-    //! Parallel initialization of the population
-    virtual void operator()()
-    {
-      proc(dummyPop,*pop);
-      apply < POT > (initVelo, *pop);
-      apply < POT > (initBest, *pop);
-    }
-
-  private :
-
-    /*
-    	@param proc First evaluation
-    	@param initVelo Initialization of the velocity
-    	@param initBest Initialization of the best
-    	@param pop Population	
-    */
-    peoPopEval< POT >& proc;
-    eoVelocityInit < POT > & initVelo;
-    eoParticleBestInit <POT> & initBest;
-    eoPop <POT> * pop;
-    eoPop< POT > dummyPop;
+  protected:
+    const double & c3;
+    eoVelocity < POT > & velocity;
   };
 #endif
-
-
 

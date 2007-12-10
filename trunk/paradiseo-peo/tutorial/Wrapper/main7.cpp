@@ -42,8 +42,8 @@ int main( int __argc, char** __argv )
   
   eoPop < Indi > pop(POP_SIZE);
   eoInitFixedLength < Indi > randomSeq (VEC_SIZE, uGen);
-  peoSynchronousMultiStart <Indi> initRandom (randomSeq);
-  peoParallelAlgorithmWrapper random (initRandom,pop);
+  peoMultiStart <Indi> initRandom (randomSeq);
+  peoWrapper random (initRandom,pop);
   initRandom.setOwner(random);
   peo :: run( );
   peo :: finalize( );  
@@ -55,7 +55,7 @@ int main( int __argc, char** __argv )
   peoParaPopEval< Indi > eval(plainEval);
   eoInitializer <Indi> init(eval,veloRandom,localInit,topology,pop);
   eoSyncEasyPSO <Indi> psa(init,checkpoint,eval, velocity, flight);
-  peoParallelAlgorithmWrapper parallelPSO( psa, pop);
+  peoWrapper parallelPSO( psa, pop);
   eval.setOwner(parallelPSO);
   peo :: run();
   peo :: finalize();

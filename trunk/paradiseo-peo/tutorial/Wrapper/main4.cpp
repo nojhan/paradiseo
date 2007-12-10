@@ -58,7 +58,7 @@ int main( int __argc, char** __argv )
   eoPeriodicContinue< Indi > mig_cont( MIG_FREQ );
   peoPSOSelect<Indi> mig_selec(topology);
   eoSelectNumber< Indi > mig_select(mig_selec);
-  peoPSOReplacement<Indi> mig_replace;
+  peoWorstPositionReplacement<Indi> mig_replace;
 
 
 // Second
@@ -87,7 +87,7 @@ int main( int __argc, char** __argv )
   eoPeriodicContinue< Indi > mig_cont2( MIG_FREQ );
   peoPSOSelect<Indi> mig_selec2(topology2);
   eoSelectNumber< Indi > mig_select2(mig_selec2);
-  peoPSOReplacement<Indi> mig_replace2;
+  peoWorstPositionReplacement<Indi> mig_replace2;
 
 
 
@@ -102,11 +102,11 @@ int main( int __argc, char** __argv )
 // Parallel algorithm
 
   eoSyncEasyPSO <Indi> psa(init,checkpoint,eval, velocity, flight);
-  peoParallelAlgorithmWrapper parallelPSO( psa, pop);
+  peoWrapper parallelPSO( psa, pop);
   eval.setOwner(parallelPSO);
   mig.setOwner(parallelPSO);
   eoSyncEasyPSO <Indi> psa2(init2,checkpoint2,eval2, velocity2, flight2);
-  peoParallelAlgorithmWrapper parallelPSO2( psa2, pop2);
+  peoWrapper parallelPSO2( psa2, pop2);
   eval2.setOwner(parallelPSO2);
   mig2.setOwner(parallelPSO2);
   peo :: run();

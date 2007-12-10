@@ -1,5 +1,5 @@
 /*
-* <peoSynchronousMultiStart.h>
+* <peoMultiStart.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
@@ -33,8 +33,8 @@
 * Contact: paradiseo-help@lists.gforge.inria.fr
 *
 */
-#ifndef __peoSynchronousMultiStart_h
-#define __peoSynchronousMultiStart_h
+#ifndef __peoMultiStart_h
+#define __peoMultiStart_h
 
 #include <vector>
 
@@ -42,12 +42,12 @@
 #include "core/messaging.h"
 
 
-template < typename EntityType > class peoSynchronousMultiStart : public Service
+template < typename EntityType > class peoMultiStart : public Service
 {
 
  public:
 
-  template < typename AlgorithmType > peoSynchronousMultiStart( AlgorithmType& externalAlgorithm )
+  template < typename AlgorithmType > peoMultiStart( AlgorithmType& externalAlgorithm )
   {
 
     singularAlgorithm = new Algorithm< AlgorithmType >( externalAlgorithm );
@@ -56,7 +56,7 @@ template < typename EntityType > class peoSynchronousMultiStart : public Service
     aggregationFunction = new NoAggregationFunction();
   }
 
-  template < typename AlgorithmReturnType, typename AlgorithmDataType > peoSynchronousMultiStart( AlgorithmReturnType (*externalAlgorithm)( AlgorithmDataType& ) )
+  template < typename AlgorithmReturnType, typename AlgorithmDataType > peoMultiStart( AlgorithmReturnType (*externalAlgorithm)( AlgorithmDataType& ) )
   {
 
     singularAlgorithm = new FunctionAlgorithm< AlgorithmReturnType, AlgorithmDataType >( externalAlgorithm );
@@ -65,7 +65,7 @@ template < typename EntityType > class peoSynchronousMultiStart : public Service
     aggregationFunction = new NoAggregationFunction();
   }
 
-  template < typename AlgorithmType, typename AggregationFunctionType > peoSynchronousMultiStart( std::vector< AlgorithmType* >& externalAlgorithms, AggregationFunctionType& externalAggregationFunction )
+  template < typename AlgorithmType, typename AggregationFunctionType > peoMultiStart( std::vector< AlgorithmType* >& externalAlgorithms, AggregationFunctionType& externalAggregationFunction )
   {
 
     for ( unsigned int index = 0; index < externalAlgorithms.size(); index++ )
@@ -78,7 +78,7 @@ template < typename EntityType > class peoSynchronousMultiStart : public Service
   }
 
   template < typename AlgorithmReturnType, typename AlgorithmDataType, typename AggregationFunctionType > 
-    peoSynchronousMultiStart( std::vector< AlgorithmReturnType (*)( AlgorithmDataType& ) >& externalAlgorithms, 
+    peoMultiStart( std::vector< AlgorithmReturnType (*)( AlgorithmDataType& ) >& externalAlgorithms, 
 			      AggregationFunctionType& externalAggregationFunction )
   {
 
@@ -91,7 +91,7 @@ template < typename EntityType > class peoSynchronousMultiStart : public Service
     aggregationFunction = new AggregationAlgorithm< AggregationFunctionType >( externalAggregationFunction );
   }
 
-  ~peoSynchronousMultiStart()
+  ~peoMultiStart()
   {
 
     for ( unsigned int index = 0; index < data.size(); index++ ) delete data[ index ];
@@ -264,7 +264,7 @@ template < typename EntityType > class peoSynchronousMultiStart : public Service
 };
 
 
-template < typename EntityType > void peoSynchronousMultiStart< EntityType >::packData()
+template < typename EntityType > void peoMultiStart< EntityType >::packData()
 {
 
   pack( functionIndex );
@@ -281,7 +281,7 @@ template < typename EntityType > void peoSynchronousMultiStart< EntityType >::pa
   }
 }
 
-template < typename EntityType > void peoSynchronousMultiStart< EntityType >::unpackData()
+template < typename EntityType > void peoMultiStart< EntityType >::unpackData()
 {
 
   unpack( functionIndex );
@@ -289,7 +289,7 @@ template < typename EntityType > void peoSynchronousMultiStart< EntityType >::un
   unpack( entityTypeInstance );
 }
 
-template < typename EntityType > void peoSynchronousMultiStart< EntityType >::execute()
+template < typename EntityType > void peoMultiStart< EntityType >::execute()
 {
 
   // wrapping the unpacked data - the definition of an abstract algorithm imposes
@@ -300,14 +300,14 @@ template < typename EntityType > void peoSynchronousMultiStart< EntityType >::ex
   delete entityWrapper;
 }
 
-template < typename EntityType > void peoSynchronousMultiStart< EntityType >::packResult()
+template < typename EntityType > void peoMultiStart< EntityType >::packResult()
 {
 
   pack( dataIndex );
   pack( entityTypeInstance );
 }
 
-template < typename EntityType > void peoSynchronousMultiStart< EntityType >::unpackResult()
+template < typename EntityType > void peoMultiStart< EntityType >::unpackResult()
 {
 
   unpack( dataIndex );
@@ -329,10 +329,10 @@ template < typename EntityType > void peoSynchronousMultiStart< EntityType >::un
   }
 }
 
-template < typename EntityType > void peoSynchronousMultiStart< EntityType >::notifySendingData()
+template < typename EntityType > void peoMultiStart< EntityType >::notifySendingData()
 {}
 
-template < typename EntityType > void peoSynchronousMultiStart< EntityType >::notifySendingAllResourceRequests()
+template < typename EntityType > void peoMultiStart< EntityType >::notifySendingAllResourceRequests()
 {
 
   getOwner()->setPassive();

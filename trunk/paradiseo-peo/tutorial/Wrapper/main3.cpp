@@ -51,7 +51,7 @@ int main( int __argc, char** __argv )
 // Parallel algorithm
 
   eoSyncEasyPSO <Indi> psa(init,checkpoint,eval, velocity, flight);
-  peoParallelAlgorithmWrapper parallelPSO( psa, pop);
+  peoWrapper parallelPSO( psa, pop);
   eval.setOwner(parallelPSO);
   peo :: run();
   peo :: finalize();

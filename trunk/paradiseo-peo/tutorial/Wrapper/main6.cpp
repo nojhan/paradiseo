@@ -38,8 +38,8 @@ int main (int __argc, char * * __argv)
   moBestImprSelect <TwoOpt> pmx_two_opt_move_select;
   moHC <TwoOpt> hc (pmx_two_opt_init, pmx_two_opt_next, pmx_two_opt_incr_eval, pmx_two_opt_move_select, full_eval);
   eoPop <Route> pop (POP_SIZE, route_init);
-  peoSynchronousMultiStart <Route> initParallelHC (hc);
-  peoParallelAlgorithmWrapper parallelHC (initParallelHC, pop);
+  peoMultiStart <Route> initParallelHC (hc);
+  peoWrapper parallelHC (initParallelHC, pop);
   initParallelHC.setOwner(parallelHC);
   peo :: run( );
   peo :: finalize( );
@@ -63,7 +63,7 @@ int main (int __argc, char * * __argv)
   peoSeqTransform <Route> para_transform (transform);
   eoEPReplacement <Route> replace (2);
   eoEasyEA< Route > eaAlg( checkpoint, eval, select, para_transform, replace );
-  peoParallelAlgorithmWrapper parallelEA( eaAlg, pop);
+  peoWrapper parallelEA( eaAlg, pop);
   peo :: run ();
   peo :: finalize (); 
 

@@ -1,5 +1,5 @@
 /*
-* <peoParallelAlgorithmWrapper.h>
+* <peoWrapper.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
@@ -44,28 +44,28 @@
 
 
 
-class peoParallelAlgorithmWrapper : public Runner
+class peoWrapper : public Runner
 {
 
  public:
 
-  template< typename AlgorithmType > peoParallelAlgorithmWrapper( AlgorithmType& externalAlgorithm )
+  template< typename AlgorithmType > peoWrapper( AlgorithmType& externalAlgorithm )
     : algorithm( new Algorithm< AlgorithmType, void >( externalAlgorithm ) )
     {}
 
-  template< typename AlgorithmType, typename AlgorithmDataType > peoParallelAlgorithmWrapper( AlgorithmType& externalAlgorithm, AlgorithmDataType& externalData )
+  template< typename AlgorithmType, typename AlgorithmDataType > peoWrapper( AlgorithmType& externalAlgorithm, AlgorithmDataType& externalData )
     : algorithm( new Algorithm< AlgorithmType, AlgorithmDataType >( externalAlgorithm, externalData ) )
     {}
 
-  template< typename AlgorithmReturnType > peoParallelAlgorithmWrapper( AlgorithmReturnType& (*externalAlgorithm)() )
+  template< typename AlgorithmReturnType > peoWrapper( AlgorithmReturnType& (*externalAlgorithm)() )
     : algorithm( new FunctionAlgorithm< AlgorithmReturnType, void >( externalAlgorithm ) )
     {}
 
-  template< typename AlgorithmReturnType, typename AlgorithmDataType > peoParallelAlgorithmWrapper( AlgorithmReturnType& (*externalAlgorithm)( AlgorithmDataType& ), AlgorithmDataType& externalData )
+  template< typename AlgorithmReturnType, typename AlgorithmDataType > peoWrapper( AlgorithmReturnType& (*externalAlgorithm)( AlgorithmDataType& ), AlgorithmDataType& externalData )
     : algorithm( new FunctionAlgorithm< AlgorithmReturnType, AlgorithmDataType >( externalAlgorithm, externalData ) )
     {}
 
-  ~peoParallelAlgorithmWrapper()
+  ~peoWrapper()
     {
 
       delete algorithm;

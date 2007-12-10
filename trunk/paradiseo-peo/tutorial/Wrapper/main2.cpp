@@ -53,7 +53,7 @@ int main( int __argc, char** __argv )
 // Population*/
   eoPop < Indi > pop;
   pop.append (POP_SIZE, random);
-  peoParallelAlgorithmWrapper parallelEA( eaAlg, pop);
+  peoWrapper parallelEA( eaAlg, pop);
   eval.setOwner(parallelEA);
   transform.setOwner(parallelEA);
   peo :: run();

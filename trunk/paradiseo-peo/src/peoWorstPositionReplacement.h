@@ -1,4 +1,4 @@
-/* <peoPSOVelocity.h>
+/* <peoWorstPositionReplacement.h>
 *
 *  (c) OPAC Team, October 2007
 *
@@ -33,13 +33,12 @@
 *   Contact: clive.canape@inria.fr
 */
 
-#ifndef _peoPSOVelocity_h
-#define _peoPSOVelocity_h
+#ifndef _peoWorstPositionReplacement_h
+#define _peoWorstPositionReplacement_h
 
 
 //-----------------------------------------------------------------------------
 #include <eoPop.h>
-#include <utils/eoRNG.h>
 #include <eoFunctor.h>
 #include <eoMerge.h>
 #include <eoReduce.h>
@@ -47,35 +46,29 @@
 #include <utils/eoHowMany.h>
 
 template <class POT>
-class peoPSOVelocity : public eoReplacement<POT>
+class peoWorstPositionReplacement : public eoReplacement<POT>
   {
   public:
-
-    typedef typename POT::ParticleVelocityType VelocityType;
-
-    peoPSOVelocity(	const double & _c3,
-                    eoVelocity < POT > &_velocity):
-        c3 (_c3),
-        velocity (_velocity)
+    peoWorstPositionReplacement()
     {}
 
     void operator()(eoPop<POT>& _dest, eoPop<POT>& _source)
     {
-
-      VelocityType newVelocity,r3;
-      r3 =  (VelocityType) rng.uniform (1) * c3;
-      for (unsigned i=0;i<_dest.size();i++)
-        for (unsigned j=0;j<_dest[i].size();j++)
+      unsigned ind=0;
+      double best=_dest[0].best();
+      for (unsigned j=1;j<_dest.size();j++)
+        if (_dest[j].best() < best)
           {
-            newVelocity=  _dest[i].velocities[j] + r3 * (_source[0].bestPositions[j] - _dest[i][j]);
-            _dest[i].velocities[j]=newVelocity;
+            ind=j;
+            best=_dest[j].best();
           }
-
+      if (_dest[ind].best() < _source[0].best())
+        {
+          _dest[ind].best(_source[0].best());
+          for (unsigned j=0;j<_dest[ind].size();j++)
+            _dest[ind].bestPositions[j]=_source[0].bestPositions[j];
+        }
     }
-
-  protected:
-    const double & c3;
-    eoVelocity < POT > & velocity;
   };
 #endif
 

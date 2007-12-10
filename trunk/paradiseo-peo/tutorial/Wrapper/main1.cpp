@@ -52,7 +52,7 @@ int main( int __argc, char** __argv )
   pop.append (POP_SIZE, random);
 
 // Wrapper 
-  peoParallelAlgorithmWrapper parallelEA( eaAlg, pop);
+  peoWrapper parallelEA( eaAlg, pop);
   peo :: run();
   peo :: finalize();
   if (getNodeRank()==1)
@@ -83,7 +83,7 @@ int main( int __argc, char** __argv )
 
 // Wrapper
   peo :: init( __argc, __argv );
-  peoParallelAlgorithmWrapper parallelEA2( eaAlg2, pop2);
+  peoWrapper parallelEA2( eaAlg2, pop2);
   peo :: run();
   peo :: finalize();
   if (getNodeRank()==1)
