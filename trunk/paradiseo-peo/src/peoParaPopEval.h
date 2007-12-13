@@ -51,15 +51,10 @@
 //! The peoParaPopEval represents a wrapper for creating a functor capable of applying in parallel
 //! an EO-derived evaluation functor. The class offers the possibility of chosing between a single-function evaluation
 //! and an aggregate evaluation function, including several sub-evalution functions.
-template< class EOT > class peoParaPopEval : public peoPopEval< EOT >
+template< class EOT > class peoParaPopEval : public Service, public eoPopEvalFunc<EOT>
   {
 
   public:
-
-    using peoPopEval< EOT > :: requestResourceRequest;
-    using peoPopEval< EOT > :: resume;
-    using peoPopEval< EOT > :: stop;
-    using peoPopEval< EOT > :: getOwner;
 
     //! Constructor function - an EO-derived evaluation functor has to be specified; an internal reference
     //! is set towards the specified evaluation functor.

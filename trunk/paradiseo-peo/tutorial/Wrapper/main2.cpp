@@ -31,8 +31,6 @@ int main( int __argc, char** __argv )
   eoCombinedContinue <Indi> continuatorPara (genContPara);
   eoCheckPoint<Indi> checkpoint(continuatorPara);
   
-  //eoEvalFuncPtr< Indi > mainEval( f );    
-  //eoEvalFuncCounter< Indi > eval(mainEval);
   peoEvalFunc<Indi> mainEval( f );
   peoParaPopEval <Indi> eval(mainEval);
   
@@ -43,8 +41,6 @@ int main( int __argc, char** __argv )
   eoSegmentCrossover<Indi> crossover;
   eoUniformMutation<Indi>  mutation(EPSILON);  
   
-  //eoSGATransform<Indi> transform(crossover,CROSS_RATE,mutation,MUT_RATE);
-  //peoSeqTransform<Indi> eaTransform(transform);
   peoParaSGATransform<Indi> transform(crossover,CROSS_RATE,mutation,MUT_RATE);
     
   eoPlusReplacement<Indi> replace;

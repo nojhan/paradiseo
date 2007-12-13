@@ -42,13 +42,12 @@ int main (int __argc, char * * __argv)
   eoPop <Route> pop (POP_SIZE, route_init);
   eoGenContinue <Route> cont (NUM_GEN); 
   eoCheckPoint <Route> checkpoint (cont);
-  peoSeqPopEval <Route> eval (full_eval);
+  eoEvalFuncCounter< Route > eval(full_eval);
   eoStochTournamentSelect <Route> select_one;
   eoSelectNumber <Route> select (select_one, POP_SIZE);
   eoSGATransform <Route> transform (order_cross, CROSS_RATE, city_swap_mut, MUT_RATE);
-  peoSeqTransform <Route> para_transform (transform);
   eoEPReplacement <Route> replace (2);
-  eoEasyEA< Route > eaAlg( checkpoint, eval, select, para_transform, replace );
+  eoEasyEA< Route > eaAlg( checkpoint, eval, select, transform, replace );
   peoWrapper parallelEA( eaAlg, pop);
   peo :: run ();
   peo :: finalize (); 
