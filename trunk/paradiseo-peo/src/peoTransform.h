@@ -1,5 +1,5 @@
 /*
-* <peoParaSGATransform.h>
+* <peoTransform.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
@@ -34,8 +34,8 @@
 *
 */
 
-#ifndef __peoParaSGATransform_h
-#define __peoParaSGATransform_h
+#ifndef __peoTransform_h
+#define __peoTransform_h
 
 #include "core/thread.h"
 #include "core/messaging.h"
@@ -46,12 +46,12 @@
 extern int getNodeRank();
 
 
-template< class EOT > class peoParaSGATransform : public Service, public eoTransform< EOT >
+template< class EOT > class peoTransform : public Service, public eoTransform< EOT >
 {
 
 public:
 
-  peoParaSGATransform(
+  peoTransform(
 
     eoQuadOp< EOT >& __cross,
     double __cross_rate,
@@ -91,7 +91,7 @@ private:
   unsigned num_term;
 };
 
-template< class EOT > peoParaSGATransform< EOT > :: peoParaSGATransform(
+template< class EOT > peoTransform< EOT > :: peoTransform(
 
   eoQuadOp< EOT >& __cross,
   double __cross_rate,
@@ -102,7 +102,7 @@ template< class EOT > peoParaSGATransform< EOT > :: peoParaSGATransform(
 {}
 
 
-template< class EOT > void peoParaSGATransform< EOT > :: packData()
+template< class EOT > void peoTransform< EOT > :: packData()
 {
 
   pack( idx );
@@ -111,7 +111,7 @@ template< class EOT > void peoParaSGATransform< EOT > :: packData()
 }
 
 
-template< class EOT > void peoParaSGATransform< EOT > :: unpackData()
+template< class EOT > void peoTransform< EOT > :: unpackData()
 {
 
   unpack( idx );
@@ -120,7 +120,7 @@ template< class EOT > void peoParaSGATransform< EOT > :: unpackData()
 }
 
 
-template< class EOT > void peoParaSGATransform< EOT > :: execute()
+template< class EOT > void peoTransform< EOT > :: execute()
 {
 
   if ( rng.uniform() < cross_rate ) cross( mother, father );
@@ -130,7 +130,7 @@ template< class EOT > void peoParaSGATransform< EOT > :: execute()
 }
 
 
-template< class EOT > void peoParaSGATransform< EOT > :: packResult()
+template< class EOT > void peoTransform< EOT > :: packResult()
 {
 
   pack( idx );
@@ -139,7 +139,7 @@ template< class EOT > void peoParaSGATransform< EOT > :: packResult()
 }
 
 
-template< class EOT > void peoParaSGATransform< EOT > :: unpackResult()
+template< class EOT > void peoTransform< EOT > :: unpackResult()
 {
 
   unsigned sidx;
@@ -159,10 +159,10 @@ template< class EOT > void peoParaSGATransform< EOT > :: unpackResult()
 }
 
 
-template< class EOT > void peoParaSGATransform< EOT > :: operator()( eoPop < EOT >& __pop )
+template< class EOT > void peoTransform< EOT > :: operator()( eoPop < EOT >& __pop )
 {
 
-  printDebugMessage( "peoParaSGATransform: performing the parallel transformation step." );
+  printDebugMessage( "peoTransform: performing the parallel transformation step." );
   pop = &__pop;
   idx = 0;
   num_term = 0;
@@ -171,11 +171,11 @@ template< class EOT > void peoParaSGATransform< EOT > :: operator()( eoPop < EOT
 }
 
 
-template< class EOT > void peoParaSGATransform< EOT > :: notifySendingData()
+template< class EOT > void peoTransform< EOT > :: notifySendingData()
 {}
 
 
-template< class EOT > void peoParaSGATransform< EOT > :: notifySendingAllResourceRequests()
+template< class EOT > void peoTransform< EOT > :: notifySendingAllResourceRequests()
 {
 
   getOwner()->setPassive();

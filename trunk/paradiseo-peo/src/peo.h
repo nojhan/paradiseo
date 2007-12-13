@@ -327,7 +327,7 @@
 #include "peoWrapper.h"
 
 /* <------- components for parallel algorithms -------> */
-#include "peoParaSGATransform.h"
+#include "peoTransform.h"
 #include "peoEvalFunc.h"
 #include "peoPopEval.h"
 

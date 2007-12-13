@@ -41,7 +41,7 @@ int main( int __argc, char** __argv )
   eoSegmentCrossover<Indi> crossover;
   eoUniformMutation<Indi>  mutation(EPSILON);  
   
-  peoParaSGATransform<Indi> transform(crossover,CROSS_RATE,mutation,MUT_RATE);
+  peoTransform<Indi> transform(crossover,CROSS_RATE,mutation,MUT_RATE);
     
   eoPlusReplacement<Indi> replace;
   eoEasyEA< Indi > eaAlg( checkpoint, eval, select, transform, replace );  
