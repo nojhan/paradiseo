@@ -37,24 +37,19 @@
 #ifndef __peoParaSGATransform_h
 #define __peoParaSGATransform_h
 
-#include "peoTransform.h"
 #include "core/thread.h"
 #include "core/messaging.h"
 #include "core/peo_debug.h"
+#include "core/service.h"
 
 
 extern int getNodeRank();
 
 
-template< class EOT > class peoParaSGATransform : public peoTransform< EOT >
+template< class EOT > class peoParaSGATransform : public Service, public eoTransform< EOT >
 {
 
 public:
-
-  using peoTransform< EOT > :: requestResourceRequest;
-  using peoTransform< EOT > :: resume;
-  using peoTransform< EOT > :: stop;
-  using peoTransform< EOT > :: getOwner;
 
   peoParaSGATransform(
 
