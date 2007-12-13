@@ -52,6 +52,7 @@ int main( int __argc, char** __argv )
 
 // Wrapper 
   peoWrapper parallelEA( eaAlg, pop);
+  eval.setOwner(parallelEA);
   peo :: run();
   peo :: finalize();
   if (getNodeRank()==1)
