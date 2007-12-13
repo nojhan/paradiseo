@@ -32,7 +32,7 @@ int main( int __argc, char** __argv )
   eoCheckPoint<Indi> checkpoint(continuatorPara);
   
   peoEvalFunc<Indi, double, const Indi& > plainEval(f);
-  peoParaPopEval< Indi > eval(plainEval);
+  peoPopEval< Indi > eval(plainEval);
   
   eoUniformGenerator < double >uGen (INIT_POSITION_MIN, INIT_POSITION_MAX);
   eoInitFixedLength < Indi > random (VEC_SIZE, uGen);

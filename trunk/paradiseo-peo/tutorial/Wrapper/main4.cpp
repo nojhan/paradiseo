@@ -38,7 +38,7 @@ int main( int __argc, char** __argv )
   eoCombinedContinue <Indi> continuatorPara (genContPara);
   eoCheckPoint<Indi> checkpoint(continuatorPara);
   peoEvalFunc<Indi, double, const Indi& > plainEval(f);
-  peoParaPopEval< Indi > eval(plainEval);
+  peoPopEval< Indi > eval(plainEval);
   eoUniformGenerator < double >uGen (INIT_POSITION_MIN, INIT_POSITION_MAX);
   eoInitFixedLength < Indi > random (VEC_SIZE, uGen);
   eoUniformGenerator < double >sGen (INIT_VELOCITY_MIN, INIT_VELOCITY_MAX);
@@ -67,7 +67,7 @@ int main( int __argc, char** __argv )
   eoCombinedContinue <Indi> continuatorPara2 (genContPara2);
   eoCheckPoint<Indi> checkpoint2(continuatorPara2);
   peoEvalFunc<Indi, double, const Indi& > plainEval2(f);
-  peoParaPopEval< Indi > eval2(plainEval2);
+  peoPopEval< Indi > eval2(plainEval2);
   eoUniformGenerator < double >uGen2 (INIT_POSITION_MIN, INIT_POSITION_MAX);
   eoInitFixedLength < Indi > random2 (VEC_SIZE, uGen2);
   eoUniformGenerator < double >sGen2 (INIT_VELOCITY_MIN, INIT_VELOCITY_MAX);

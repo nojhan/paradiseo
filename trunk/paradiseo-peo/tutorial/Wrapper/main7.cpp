@@ -52,7 +52,7 @@ int main( int __argc, char** __argv )
 
   peo :: init (__argc, __argv);
   peoEvalFunc<Indi, double, const Indi& > plainEval(f);
-  peoParaPopEval< Indi > eval(plainEval);
+  peoPopEval< Indi > eval(plainEval);
   eoInitializer <Indi> init(eval,veloRandom,localInit,topology,pop);
   eoSyncEasyPSO <Indi> psa(init,checkpoint,eval, velocity, flight);
   peoWrapper parallelPSO( psa, pop);

@@ -35,7 +35,7 @@ int main( int __argc, char** __argv )
   eoCombinedContinue <Indi> continuatorPara (genContPara);
   eoCheckPoint<Indi> checkpoint(continuatorPara);
   peoEvalFunc<Indi> mainEval( f );
-  peoParaPopEval <Indi> eval(mainEval);
+  peoPopEval <Indi> eval(mainEval);
   eoUniformGenerator < double >uGen (INIT_POSITION_MIN, INIT_POSITION_MAX);
   eoInitFixedLength < Indi > random (VEC_SIZE, uGen);
   eoRankingSelect<Indi> selectionStrategy;

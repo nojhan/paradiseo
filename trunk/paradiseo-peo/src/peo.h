@@ -329,7 +329,7 @@
 /* <------- components for parallel algorithms -------> */
 #include "peoParaSGATransform.h"
 #include "peoEvalFunc.h"
-#include "peoParaPopEval.h"
+#include "peoPopEval.h"
 
 /* Cooperative island model */
 #include "core/ring_topo.h"
