@@ -38,6 +38,7 @@
 #define __eoVector_mesg_h
 
 #include <eoVector.h>
+#include <core/moeoVector.h>
 
 #include "messaging.h"
 
@@ -123,6 +124,81 @@ unsigned valid; unpack(valid);
     unpack (__v.bestPositions[i]); 
   for (unsigned i = 0 ; i < len; i ++)
     unpack (__v.velocities[i]);  
+}
+
+template <class F, class T, class V, class W> void unpack (moeoVector <F,T,V,W> &_v) 
+{
+	unsigned valid;
+	unpack(valid);
+    if (! valid)
+    	_v.invalidate();
+    else 
+    {
+  		T fit; 
+    	unpack (fit);
+    	_v.fitness (fit);
+  	}
+  	unpack(valid);
+    if (! valid)
+    	_v.invalidateDiversity();
+    else 
+    {
+  		V diver;
+  		unpack(diver);
+  		_v.diversity(diver);
+    }
+  	unsigned len;
+    unpack (len);
+    _v.resize (len);
+    for (unsigned i = 0 ; i < len; i ++)
+    	unpack (_v [i]);
+    unpack(valid);
+    if (! valid)
+    	_v.invalidateObjectiveVector();
+    else 
+    {
+    	F object;
+    	unpack (len);
+    	object.resize(len);
+    	for (unsigned i = 0 ; i < len; i ++)
+    		unpack (object[i]);
+    	_v.objectiveVector(object);
+    }
+}
+
+
+template <class F, class T, class V, class W> void pack (moeoVector <F,T,V,W> &_v) 
+{
+	if (_v.invalid())
+    	pack((unsigned)0);
+    else
+    {
+    	pack((unsigned)1); 
+    	pack (_v.fitness ());
+    }
+    if (_v.invalidDiversity())
+    	pack((unsigned)0);
+    else
+    {
+    	pack((unsigned)1);
+    	pack(_v.diversity());
+    }
+    unsigned len = _v.size ();
+    pack (len);
+    for (unsigned i = 0 ; i < len; i ++)
+    	pack (_v[i]);
+    if (_v.invalidObjectiveVector())
+    	pack((unsigned)0);
+    else
+    {
+    	pack((unsigned)1); 
+    	F object;
+    	object=_v.objectiveVector();
+    	len=object.nObjectives();
+    	pack (len);
+    	for (unsigned i = 0 ; i < len; i ++)
+    		pack (object[i]);	
+    }
 }
 
 #endif

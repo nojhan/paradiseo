@@ -39,6 +39,7 @@
 
 #include <eo>
 #include <mo>
+#include <moeo>
 
 
 //! \mainpage The ParadisEO-PEO Framework
@@ -330,6 +331,8 @@
 #include "peoTransform.h"
 #include "peoEvalFunc.h"
 #include "peoPopEval.h"
+#include "peoMoeoPopEval.h"
+
 
 /* Cooperative island model */
 #include "core/ring_topo.h"
