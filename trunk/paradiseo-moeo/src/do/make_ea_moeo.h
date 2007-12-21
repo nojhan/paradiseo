@@ -99,7 +99,7 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
   std::string & indicatorParam = _parser.createParam(std::string("Epsilon"), "indicator",
                                  "Binary indicator for IndicatorBased: Epsilon, Hypervolume", 'i',
                                  "Evolution Engine").value();
-  double rho = _parser.createParam(1.1, "rho", "reference point for the hypervolume indicator", 'r',
+  double rho = _parser.createParam(1.1, "rho", "reference point for the hypervolume indicator", '\0',
                                    "Evolution Engine").value();
   double kappa = _parser.createParam(0.05, "kappa", "Scaling factor kappa for IndicatorBased", 'k',
                                      "Evolution Engine").value();
@@ -177,7 +177,7 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
 
   /* the comparator strategy */
   std::string & comparatorParam = _parser.createParam(std::string("FitnessThenDiversity"), "comparator",
-                                  "Comparator scheme: FitnessThenDiversity, DiversityThenFitness or Aggregative", 'C', "Evolution Engine").value();
+                                  "Comparator scheme: FitnessThenDiversity, DiversityThenFitness or Aggregative", 'c', "Evolution Engine").value();
   moeoComparator < MOEOT > * comparator;
   if (comparatorParam == std::string("FitnessThenDiversity"))
     {

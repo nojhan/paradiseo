@@ -110,7 +110,7 @@ eoContinue<MOEOT> & do_make_continue_moeo(eoParser& _parser, eoState& _state, eo
   // the CtrlC interception (Linux only I'm afraid)
   eoCtrlCContinue<MOEOT> *ctrlCCont;
   eoValueParam<bool>& ctrlCParam = _parser.createParam(true, "CtrlC", "Terminate current generation upon Ctrl C",'C', "Stopping criterion");
-  if (_parser.isItThere(ctrlCParam))
+  if (ctrlCParam.value())
     {
       ctrlCCont = new eoCtrlCContinue<MOEOT>;
       // store
