@@ -1,0 +1,105 @@
+==========================================================================================
+              INFORMATION
+==========================================================================================
+
+PARADISEO (PARallel and DIStributed Evolving Objects) is a white-box object-oriented
+framework dedicated to the flexible design of metaheursitics. This package contains 
+many convenient classes to solve a bi-objective flow-shop scheduling problem within ParadisEO-EO and ParadisEO-MOEO.
+An example using a multi-objective evolutionary algorithm is also provided.
+
+
+==========================================================================================
+              INSTRUCTIONS
+==========================================================================================
+
+To install the package, simply follow these steps:
+
+* Edit the "install.cmake" file and replace "myDirectory" by the absolute path to ParadisEO
+	=> Example: 
+			SET(PARADISEO_DIR "myDirectory" CACHE PATH "ParadisEO directory" FORCE)
+		replaced by:
+			SET(PARADISEO_DIR "/opt/paradiseo-ix86-1.0" CACHE PATH "ParadisEO directory" FORCE)
+
+* Go in the "build" directory
+
+* Run (in a terminal/console): cmake .. -G"<generator type>"
+	(Several generators exist: see http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.CmakeGenerators)
+
+* Compile using the appropriate tool (run "make" if you choose the "Unix Makefiles" generator)
+
+
+==========================================================================================
+              RELEASE
+==========================================================================================
+
+The current release of the bi-objective flow-shop package is 1.0.
+
+
+==========================================================================================
+              LINKS
+==========================================================================================
+
+You can find the package at:
+	http://paradiseo.gforge.inria.fr/index.php?n=Contributions.FlowShopMO
+
+For any new submission, please visit:
+	http://paradiseo.gforge.inria.fr/index.php?n=Contributions.Submission
+	
+	
+==========================================================================================
+              BUGS
+==========================================================================================
+
+You can find the ParadisEO's bug tracker at:
+
+	http://gforge.inria.fr/tracker/?atid=663&group_id=145&func=browse
+
+
+==========================================================================================
+              CONTACT
+==========================================================================================
+
+For any question or for help, please write us at: paradiseo-help@lists.gforge.inria.fr.
+
+
+==========================================================================================
+              DEPENDENCIES
+==========================================================================================
+
+ParadisEO uses EO, a templates-based, ANSI-C++ compliant evolutionary computation library. 
+It contains classes for almost any kind of evolutionary computation you might come up to - at 
+least for the ones we could think of.
+EO Website:
+	 http://eodev.sourceforge.net/.
+EO is distributed under the GNU Lesser General Public License: 
+	http://www.gnu.org/copyleft/lesser.html
+
+
+==========================================================================================
+              LICENSE
+==========================================================================================
+
+ ParadisEO is governed by the CeCILL license under French law and
+ abiding by the rules of distribution of free software.  You can  use,
+ modify and/ or redistribute the software under the terms of the CeCILL
+ license as circulated by CEA, CNRS and INRIA at the following URL
+ "http://www.cecill.info".
+
+ As a counterpart to the access to the source code and  rights to copy,
+ modify and redistribute granted by the license, users are provided only
+ with a limited warranty  and the software's author,  the holder of the
+ economic rights,  and the successive licensors  have only  limited liability.
+
+ In this respect, the user's attention is drawn to the risks associated
+ with loading,  using,  modifying and/or developing or reproducing the
+ software by the user in light of its specific status of free software,
+ that may mean  that it is complicated to manipulate,  and  that  also
+ therefore means  that it is reserved for developers  and  experienced
+ professionals having in-depth computer knowledge. Users are therefore
+ encouraged to load and test the software's suitability as regards their
+ requirements in conditions enabling the security of their systems and/or
+ data to be ensured and,  more generally, to use and operate it in the
+ same conditions as regards security.
+ The fact that you are presently reading this means that you have had
+ knowledge of the CeCILL license and that you accept its terms.
+
