@@ -970,7 +970,7 @@ then
 	echo 'Use : ./installParadiseo.sh <HOME path> to give your HOME path'
 	echo 'Example: ./installParadiseo.sh /usr/home/me'
 	echo
-	echo 'Use : ./installParadiseo.sh --prefix=<Install Directory>
+	echo 'Use : ./installParadiseo.sh --prefix=<Install Directory>'
 	echo
 	echo '=> For further help, please contact paradiseo-help@lists.gforge.inria.fr'
 	echo
