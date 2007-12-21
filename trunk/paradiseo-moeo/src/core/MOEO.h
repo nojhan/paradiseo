@@ -229,7 +229,7 @@ class MOEO : public EO < MOEOObjectiveVector >
 
 
     /**
-     * Returns true if the fitness value is invalid, false otherwise
+     * Returns true if the objective values are invalid, false otherwise
      */
     bool invalid() const
       {
