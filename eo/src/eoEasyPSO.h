@@ -47,6 +47,7 @@ template < class POT > class eoEasyPSO:public eoPSO < POT >
 public:
 
     /** Full constructor
+    * @param _init - An eoInitializer that initializes the topology, velocity, best particle(s)
     * @param _continuator - An eoContinue that manages the stopping criterion and the checkpointing system
     * @param _eval - An eoEvalFunc: the evaluation performer
     * @param _velocity - An eoVelocity that defines how to compute the velocities
@@ -54,37 +55,44 @@ public:
     * to modify the positions according to the velocities
     */
     eoEasyPSO (
+        eoInitializer <POT> &_init,
         eoContinue < POT > &_continuator,
         eoEvalFunc < POT > &_eval,
         eoVelocity < POT > &_velocity,
         eoFlight < POT > &_flight):
+            init(_init),
             continuator (_continuator),
             eval (_eval),
             velocity (_velocity),
-            flight (_flight){}
+            flight (_flight)
+    {}
 
 
     /** Constructor without eoFlight. For special cases when the flight is performed withing the velocity.
+       * @param _init - An eoInitializer that initializes the topology, velocity, best particle(s)
        * @param _continuator - An eoContinue that manages the stopping criterion and the checkpointing system
        * @param _eval - An eoEvalFunc: the evaluation performer
        * @param _velocity - An eoVelocity that defines how to compute the velocities
     */
     eoEasyPSO (
+        eoInitializer <POT> &_init,
         eoContinue < POT > &_continuator,
         eoEvalFunc < POT > &_eval,
         eoVelocity < POT > &_velocity):
+            init(_init),
             continuator (_continuator),
             eval (_eval),
             velocity (_velocity),
-            flight (dummyFlight){}
-
-
+            flight (dummyFlight)
+    {}
 
     /// Apply a few iteration of flight to the population (=swarm).
     virtual void operator  () (eoPop < POT > &_pop)
     {
         try
         {
+            // initializes the topology, velocity, best particle(s)
+            init();
             do
             {
                 // loop over all the particles for the current iteration
@@ -103,7 +111,8 @@ public:
                     velocity.updateNeighborhood(_pop[idx],idx);
                 }
 
-            }while (continuator (_pop));
+            }
+            while (continuator (_pop));
 
         }
         catch (std::exception & e)
@@ -116,6 +125,7 @@ public:
     }
 
 private:
+    eoInitializer <POT> &init;
     eoContinue < POT > &continuator;
     eoEvalFunc < POT > &eval;
     eoVelocity < POT > &velocity;
