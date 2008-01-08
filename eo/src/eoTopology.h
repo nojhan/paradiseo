@@ -18,7 +18,7 @@
     License along with this library; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-    Contact: thomas.legrand@lifl.fr
+    Contact: thomas.legrand@inria.fr
              clive.canape@inria.fr
  */
 //-----------------------------------------------------------------------------
@@ -32,43 +32,46 @@
 
 
 /**
- * Define the interface for a swarm optimization topology.
+ * Defines the interface of a swarm topology. Can be static (usually the case for the social topologies)
+ * or dynamic. It's the same interface for both social and physical topologies. ("social" topology means 
+ * social-neighborhood-based toplogy and so on ...)
  */
 template < class POT > class eoTopology:public eoPop < POT >
 {
 public:
 
     /**
-     * Build the neighborhoods contained in the topology.
+     * Builds the neighborhoods contained in the topology.
      */
     virtual void setup(const eoPop<POT> &)=0;
 
     /**
-     * Update the neighborhood of the given particle and its indice in the population
+     * Updates the neighborhood of the given particle and its indice in the population
      */
     virtual void updateNeighborhood(POT & ,unsigned)=0;
 
 
     /**
-      * Update the neighborhood of the given particle thanks to a whole population (used for distributed or synchronous PSO)
+      * Updates the neighborhood of the given particle thanks to a whole population (used for distributed or synchronous PSO)
       */
     virtual void updateNeighborhood(eoPop < POT > &_pop)
     {
         for (unsigned i = 0; i < _pop.size (); i++)
-        {
             updateNeighborhood(_pop[i],i);
-        }
     }
 
     /**
-     * Build the neighborhoods contained in the topology.
+     * Builds the neighborhoods contained in the topology.
      */
     virtual POT & best (unsigned ) = 0;
     
-    /*
-     * Return the global best
-     */
     
+    /*
+     * Returns the global best particle of the given population.
+     * Even if the extended topology does not define a global best,
+     * it should always be possible to get it by searching in all the neighborhoods.
+     * This method is virtual in order not to have to define it in all the extended topologies.
+     */    
     virtual POT & globalBest(const eoPop<POT>& _pop)
     {
     	POT globalBest,tmp;
@@ -88,8 +91,7 @@ public:
     }
 
     /**
-     * Build the neighborhoods contained in the topology.
-     * @param _pop - The population ton share between the neighborhood(s)
+     * Prints the neighborhoods contained in the topology.
      */
     virtual void printOn(){}
 };

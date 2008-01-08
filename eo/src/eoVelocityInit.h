@@ -44,16 +44,14 @@ public:
 
 
 /**
-*  Provide a particle initialized thanks to the eoVelocityInit object given.
+*  Provides a particle initialized thanks to the eoVelocityInit object given.
 */
 template < class POT > class eoVelocityInitGenerator:public eoF < POT >
 {
 public:
 
     /** Ctor from a plain eoVelocityInit */
-    eoVelocityInitGenerator (eoVelocityInit < POT > &_init):init (_init)
-    {
-    }
+    eoVelocityInitGenerator (eoVelocityInit < POT > &_init):init (_init){}
 
     virtual POT operator  () ()
     {
@@ -61,6 +59,7 @@ public:
         init (p);
         return (p);
     }
+    
 private:
     eoVelocityInit < POT > &init;
 };

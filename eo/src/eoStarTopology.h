@@ -35,7 +35,7 @@
 /**
  * Topology dedicated to "globest best" strategy for particle swarm optimization.
  * All the particles of the swarm belong to the same and only social neighborhood.
- * The global best is stored as a protected member and updated by using the "updateNeighborhood" method.
+ * The global best is stored and updated using the eoSocialNeighborhood.
  */
 template < class POT > class eoStarTopology:public eoTopology <POT>
 {

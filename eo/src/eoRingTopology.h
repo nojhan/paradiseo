@@ -5,7 +5,8 @@
 // (c) INRIA Futurs DOLPHIN 2007
 /* 
     Clive Canape
-
+	Thomas Legrand
+	
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -34,9 +35,10 @@
 
 
 /**
- * Topology dedicated to "globest best" strategy for particle swarm optimization.
- * All the particles of the swarm belong to the same and only social neighborhood.
- * The global best is stored as a protected member and updated by using the "updateNeighborhood" method.
+ * Static ring topology for particle swarm optimization.
+ * The neighborhoods are built using a ring based on each particle's indice and
+ * do not change for all the time steps. Only the best particle in each neighborhood is
+ * potentially updated thanks to the "updateNeighborhood" method.
  */
 template < class POT > class eoRingTopology:public eoTopology <POT>
 {
@@ -44,14 +46,15 @@ template < class POT > class eoRingTopology:public eoTopology <POT>
 public:
 
     /**
-     * The only Ctor. No parameter required.
+     * The only Ctor. 
+     * @param _neighborhoodSize - The size of each neighborhood.
      */
     eoRingTopology (unsigned _neighborhoodSize):neighborhoodSize (_neighborhoodSize),isSetup(false){}
 
 
     /**
-     * Builds the only neighborhood that contains all the particles of the given population.
-     * Also initializes the global best particle with the best particle of the given population.
+     * Builds the neighborhoods using a ring strategy based on the particle indices.
+     * Also initializes the best particle of each neighborhood.
      * @param _pop - The population used to build the only neighborhood.
      * @return
      */
@@ -87,7 +90,7 @@ public:
     }
     
     /**
-     * Retrieve the neighboorhood of a particle.
+     * Retrieves the neighboorhood of a particle.
      * @return _indice - The particle indice (in the population)
      */
     unsigned retrieveNeighborhoodByIndice(unsigned _indice)
@@ -97,8 +100,8 @@ public:
 
 
     /**
-     * Update the best fitness of the given particle if it's better.
-     * Also replace the global best by the given particle if it's better.
+     * Updates the best fitness of the given particle and
+     * potentially replaces the local best the given particle it's better.
      * @param _po - The particle to update
      * @param _indice - The indice of the given particle in the population
      */
@@ -123,7 +126,7 @@ public:
 
 
     /**
-     * Return the global best particle.
+     * Returns the best particle belonging to the neighborhood of the given particle.
      * @param _indice - The indice of a particle in the population
      * @return POT & - The best particle in the neighborhood of the particle whose indice is _indice
      */

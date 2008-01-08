@@ -1,7 +1,7 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// eoInitializer.h
+// eoParticleFullInitializer.h
 // (c) OPAC Team, INRIA, 2007
 /*
     This library is free software; you can redistribute it and/or
@@ -24,8 +24,8 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef _eoInitializer_H
-#define _eoInitializer_H
+#ifndef _eoParticleFullInitializer_H
+#define _eoParticleFullInitializer_H
 
 #include <utils/eoRealVectorBounds.h>
 #include <eoVelocityInit.h>
@@ -53,7 +53,7 @@ template <class POT> class eoInitializerBase : public eoFunctorBase
 
 	@see eoInitializerBase eoUF apply
 */
-template <class POT> class eoInitializer : public eoInitializerBase <POT>
+template <class POT> class eoParticleInitializer : public eoInitializerBase <POT>
   {
   public:
 
@@ -62,26 +62,21 @@ template <class POT> class eoInitializer : public eoInitializerBase <POT>
     //! @param _initVelo Initialization of the velocity
     //! @param _initBest Initialization of the best
     //! @param _pop Population
-    eoInitializer(
+    eoParticleFullInitializer(
       eoUF<POT&, void>& _proc,
       eoVelocityInit < POT > &_initVelo,
       eoParticleBestInit <POT> &_initBest,
       eoTopology <POT> &_topology,
       eoPop < POT > &_pop
-    ) : proc(_proc), procPara(dummyEval), initVelo(_initVelo), initBest(_initBest), topology(_topology), pop(_pop)
-    {
-     /* apply(proc, _pop);
-      apply < POT > (initVelo, _pop);
-      apply < POT > (initBest, _pop);
-      topology.setup(_pop);*/
-    }
+    ) : proc(_proc), procPara(dummyEval), initVelo(_initVelo), initBest(_initBest), topology(_topology), pop(_pop) {}
+
 
     //!	Constructor for parallel evaluation
     //! @param _proc Evaluation function
     //! @param _initVelo Initialization of the velocity
     //! @param _initBest Initialization of the best
     //! @param _pop Population
-    eoInitializer(
+    eoParticleFullInitializer(
       eoPopEvalFunc <POT>& _proc,
       eoVelocityInit < POT > &_initVelo,
       eoParticleBestInit <POT> &_initBest,
@@ -100,13 +95,21 @@ template <class POT> class eoInitializer : public eoInitializerBase <POT>
     
     
       
-    virtual void operator  () (/*eoPop < POT > &_pop*/)
+    virtual void operator  () ()
     {
 		eoPop<POT> empty_pop;
+		
+		// evaluates using either the "sequential" evaluator ...
 		apply(proc, pop);
+		
+		// ... or the parallel one
     	procPara(empty_pop, pop);
+    	
+    	// no matter what is the eval operator, initializes the velocities and the particle's best
         apply < POT > (initVelo, pop);
         apply < POT > (initBest, pop);
+        
+        // finally setup the topology. We have now all we need to do so.
     	topology.setup(pop);
     }
 
@@ -140,7 +143,7 @@ template <class POT> class eoInitializer : public eoInitializerBase <POT>
     }
     dummy;    
   };
-#endif
+#endif /*_eoParticleFullInitializer_H*/
 
 
 

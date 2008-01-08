@@ -44,8 +44,8 @@
 *    	-- update the neighborhoods
 */
 template < class POT > class eoSyncEasyPSO:public eoPSO < POT >
-{
-public:
+  {
+  public:
 
     /** Full constructor
     * @param _continuator - An eoContinue that manages the stopping criterion and the checkpointing system
@@ -55,16 +55,19 @@ public:
     * to modify the positions according to the velocities
     */
     eoSyncEasyPSO (
-        eoContinue < POT > &_continuator,
-        eoEvalFunc < POT > &_eval,
-        eoVelocity < POT > &_velocity,
-        eoFlight < POT > &_flight):
-            continuator (_continuator),
-            eval (_eval),
-            loopEval(_eval),
-            popEval(loopEval),
-            velocity (_velocity),
-            flight (_flight){}
+      eoInitializer <POT> &_init,
+      eoContinue < POT > &_continuator,
+      eoEvalFunc < POT > &_eval,
+      eoVelocity < POT > &_velocity,
+      eoFlight < POT > &_flight):
+        init(_init),
+        continuator (_continuator),
+        eval (_eval),
+        loopEval(_eval),
+        popEval(loopEval),
+        velocity (_velocity),
+        flight (_flight)
+    {}
 
 
     /** Constructor without eoFlight. For special cases when the flight is performed withing the velocity.
@@ -73,54 +76,82 @@ public:
        * @param _velocity - An eoVelocity that defines how to compute the velocities
     */
     eoSyncEasyPSO (
-        eoContinue < POT > &_continuator,
-        eoEvalFunc < POT > &_eval,
-        eoVelocity < POT > &_velocity):
-            continuator (_continuator),
-            eval (_eval),
-            loopEval(_eval),
-            popEval(loopEval),
-            velocity (_velocity),
-            flight (dummyFlight){}
-
+      eoInitializer <POT> &_init,
+      eoContinue < POT > &_continuator,
+      eoEvalFunc < POT > &_eval,
+      eoVelocity < POT > &_velocity):
+        init(_init),
+        continuator (_continuator),
+        eval (_eval),
+        loopEval(_eval),
+        popEval(loopEval),
+        velocity (_velocity),
+        flight (dummyFlight)
+    {} 
+    
+    /** Full constructor - Can be used in parallel
+       * @param _continuator - An eoContinue that manages the stopping criterion and the checkpointing system
+       * @param _eval - An eoPopEvalFunc
+       * @param _velocity - An eoVelocity that defines how to compute the velocities
+       * @param _flight - An eoFlight
+    */
+    eoSyncEasyPSO (
+      eoInitializer <POT> &_init,
+      eoContinue < POT > &_continuator,
+      eoPopEvalFunc < POT > &_eval,
+      eoVelocity < POT > &_velocity,
+      eoFlight <POT> &_flight):
+        init(_init),
+        continuator (_continuator),
+        eval (dummyEval),
+        loopEval(dummyEval),
+        popEval(_eval),
+        velocity (_velocity),
+        flight (_flight)
+    {} 
 
 
     /// Apply a few iteration of flight to the population (=swarm).
     virtual void operator  () (eoPop < POT > &_pop)
     {
-        try
+
+      try
         {
-            // just to use a loop eval
-            eoPop<POT> empty_pop;
+		  init();
+          // just to use a loop eval
+          eoPop<POT> empty_pop;
 
-            do
+          do
             {
-                // perform velocity evaluation
-                velocity.apply (_pop);
 
-                // apply the flight
-                flight.apply (_pop);
+              // perform velocity evaluation
+              velocity.apply (_pop);
 
-                // evaluate the position (with a loop eval, empty_swarm IS USELESS)
-                loopEval(empty_pop,_pop);
+              // apply the flight
+              flight.apply (_pop);
 
-                // update the topology (particle and local/global best(s))
-                velocity.updateNeighborhood(_pop);
+              // evaluate the position (with a loop eval, empty_swarm IS USELESS)
+              popEval(empty_pop,_pop);
 
+              // update the topology (particle and local/global best(s))
+              velocity.updateNeighborhood(_pop);
 
-            }while (continuator (_pop));
+            }
+          while (continuator (_pop));
 
         }
-        catch (std::exception & e)
+      catch (std::exception & e)
         {
-            std::string s = e.what ();
-            s.append (" in eoSyncEasyPSO");
-            throw std::runtime_error (s);
+          std::string s = e.what ();
+          s.append (" in eoSyncEasyPSO");
+          throw std::runtime_error (s);
         }
 
     }
 
-private:
+  private:
+  
+    eoInitializer <POT> &init;
     eoContinue < POT > &continuator;
 
     eoEvalFunc < POT > &eval;
@@ -132,7 +163,17 @@ private:
 
     // if the flight does not need to be used, use the dummy flight instance
     eoDummyFlight<POT> dummyFlight;
-};
+    
+    // if the eval does not need to be used, use the dummy eval instance
+      class eoDummyEval : public eoEvalFunc<POT>
+      {
+      public:
+        void operator()(POT &)
+        {}
+      }
+    dummyEval;
+    
+  };
 
 
 #endif /*_EOSYNCEASYPSO_H*/

@@ -69,7 +69,7 @@ int main()
     eoRealVectorBounds bnds(VEC_SIZE,-1.5,1.5);
 
     // velocity
-    eoStandardVelocity <Particle> velocity (topology,1.6,2,bnds);
+    eoStandardVelocity <Particle> velocity (topology,1,1.6,2,bnds);
 
     // flight
     eoStandardFlight <Particle> flight;
