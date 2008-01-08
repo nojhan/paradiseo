@@ -77,9 +77,11 @@ int main()
     // Terminators
     eoGenContinue <Particle> genCont (50);
 
-
+    // the full initializer
+    eoInitializer <Particle> init(eval,veloRandom,localInit,topology,pop);
+    
     // PS flight
-    eoEasyPSO<Particle> pso(genCont, eval, velocity, flight);
+    eoEasyPSO<Particle> pso(init,genCont, eval, velocity, flight);
 
 
     // flight
