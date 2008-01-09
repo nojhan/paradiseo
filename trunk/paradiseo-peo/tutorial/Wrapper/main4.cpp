@@ -25,6 +25,7 @@ int main( int __argc, char** __argv )
   const double INIT_VELOCITY_MIN = -1.;
   const double INIT_VELOCITY_MAX = 1.;
   const unsigned int  MIG_FREQ = 10;
+  const double omega = 1;
   const double C1 = 0.5;
   const double C2 = 2.; 
   rng.reseed (time(0));
@@ -50,7 +51,7 @@ int main( int __argc, char** __argv )
   pop.append (POP_SIZE, random);
   eoLinearTopology<Indi> topology(NEIGHBORHOOD_SIZE);
   eoRealVectorBounds bnds(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
-  eoStandardVelocity < Indi > velocity (topology,C1,C2,bnds);
+  eoStandardVelocity < Indi > velocity (topology,omega,C1,C2,bnds);
   eoInitializer <Indi> init(eval,veloRandom,localInit,topology,pop);
 
 // Island model
@@ -79,7 +80,7 @@ int main( int __argc, char** __argv )
   pop2.append (POP_SIZE, random2);
   eoLinearTopology<Indi> topology2(NEIGHBORHOOD_SIZE);
   eoRealVectorBounds bnds2(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
-  eoStandardVelocity < Indi > velocity2 (topology2,C1,C2,bnds2);
+  eoStandardVelocity < Indi > velocity2 (topology2,omega,C1,C2,bnds2);
   eoInitializer <Indi> init2(eval2,veloRandom2,localInit2,topology2,pop2);
   
 // Island model

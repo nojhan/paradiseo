@@ -12,6 +12,26 @@ double f (const Indi & _indi)
   return (-sum);
 }
 
+template <class EOT>
+class eoResizerInit: public eoInit<EOT>
+{
+    public:
+
+    typedef typename EOT::AtomType AtomType;
+
+        eoResizerInit(unsigned _size)
+            : size(_size){}
+
+        virtual void operator()(EOT& chrom)
+        {
+            chrom.resize(size);
+            chrom.invalidate();
+        }
+    private :
+        unsigned size;
+};
+
+
 int main( int __argc, char** __argv )
 {
 	
@@ -24,6 +44,7 @@ int main( int __argc, char** __argv )
   const double INIT_POSITION_MAX = 2.0; 
   const double INIT_VELOCITY_MIN = -1.;
   const double INIT_VELOCITY_MAX = 1.;
+  const double omega = 1;  
   const double C1 = 0.5;
   const double C2 = 2.; 
   rng.reseed (time(0));
@@ -38,9 +59,11 @@ int main( int __argc, char** __argv )
   eoStandardFlight < Indi > flight(bndsFlight);
   eoLinearTopology<Indi> topology(NEIGHBORHOOD_SIZE);
   eoRealVectorBounds bnds(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
-  eoStandardVelocity < Indi > velocity (topology,C1,C2,bnds);
+  eoStandardVelocity < Indi > velocity (topology,omega,C1,C2,bnds);
   
-  eoPop < Indi > pop(POP_SIZE);
+  eoResizerInit<Indi> sizeInit(VEC_SIZE);
+  // need at least a size initialization
+  eoPop < Indi > pop(POP_SIZE,sizeInit);
   eoInitFixedLength < Indi > randomSeq (VEC_SIZE, uGen);
   peoMultiStart <Indi> initRandom (randomSeq);
   peoWrapper random (initRandom,pop);

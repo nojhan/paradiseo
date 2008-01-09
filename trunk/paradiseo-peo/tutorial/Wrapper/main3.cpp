@@ -24,6 +24,7 @@ int main( int __argc, char** __argv )
   const double INIT_POSITION_MAX = 2.0; 
   const double INIT_VELOCITY_MIN = -1.;
   const double INIT_VELOCITY_MAX = 1.;
+  const double weight = 1;
   const double C1 = 0.5;
   const double C2 = 2.; 
   rng.reseed (time(0));
@@ -45,7 +46,7 @@ int main( int __argc, char** __argv )
   pop.append (POP_SIZE, random);
   eoLinearTopology<Indi> topology(NEIGHBORHOOD_SIZE);
   eoRealVectorBounds bnds(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
-  eoStandardVelocity < Indi > velocity (topology,C1,C2,bnds);
+  eoStandardVelocity < Indi > velocity (topology,weight,C1,C2,bnds);
   eoInitializer <Indi> init(eval,veloRandom,localInit,topology,pop);
 
 // Parallel algorithm
