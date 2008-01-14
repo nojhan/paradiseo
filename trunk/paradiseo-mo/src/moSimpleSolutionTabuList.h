@@ -89,7 +89,7 @@ class moSimpleSolutionTabuList: public moTabuList < M >
     add (const M & __move, const EOT & __sol)
       {
         M _move=(M)__move;
-        EOT _sol=(EOT) _sol;
+        EOT _sol=(EOT) __sol;
 
         _move(_sol);
 
