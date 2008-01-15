@@ -1,157 +1,158 @@
 /*
-* <moTSMoveLoopExpl.h>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
-*
-* Sébastien Cahon, Jean-Charles Boisson (Jean-Charles.Boisson@lifl.fr)
-*
-* This software is governed by the CeCILL license under French law and
-* abiding by the rules of distribution of free software.  You can  use,
-* modify and/ or redistribute the software under the terms of the CeCILL
-* license as circulated by CEA, CNRS and INRIA at the following URL
-* "http://www.cecill.info".
-*
-* As a counterpart to the access to the source code and  rights to copy,
-* modify and redistribute granted by the license, users are provided only
-* with a limited warranty  and the software's author,  the holder of the
-* economic rights,  and the successive licensors  have only  limited liability.
-*
-* In this respect, the user's attention is drawn to the risks associated
-* with loading,  using,  modifying and/or developing or reproducing the
-* software by the user in light of its specific status of free software,
-* that may mean  that it is complicated to manipulate,  and  that  also
-* therefore means  that it is reserved for developers  and  experienced
-* professionals having in-depth computer knowledge. Users are therefore
-* encouraged to load and test the software's suitability as regards their
-* requirements in conditions enabling the security of their systems and/or
-* data to be ensured and,  more generally, to use and operate it in the
-* same conditions as regards security.
-* The fact that you are presently reading this means that you have had
-* knowledge of the CeCILL license and that you accept its terms.
-*
-* ParadisEO WebSite : http://paradiseo.gforge.inria.fr
-* Contact: paradiseo-help@lists.gforge.inria.fr
-*
+  <moTSMoveLoopExpl.h>
+  Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
+  (C) OPAC Team, LIFL, 2002-2008
+ 
+  Sébastien Cahon, Jean-Charles Boisson (Jean-Charles.Boisson@lifl.fr)
+ 
+  This software is governed by the CeCILL license under French law and
+  abiding by the rules of distribution of free software.  You can  use,
+  modify and/ or redistribute the software under the terms of the CeCILL
+  license as circulated by CEA, CNRS and INRIA at the following URL
+  "http://www.cecill.info".
+ 
+  As a counterpart to the access to the source code and  rights to copy,
+  modify and redistribute granted by the license, users are provided only
+  with a limited warranty  and the software's author,  the holder of the
+  economic rights,  and the successive licensors  have only  limited liability.
+ 
+  In this respect, the user's attention is drawn to the risks associated
+  with loading,  using,  modifying and/or developing or reproducing the
+  software by the user in light of its specific status of free software,
+  that may mean  that it is complicated to manipulate,  and  that  also
+  therefore means  that it is reserved for developers  and  experienced
+  professionals having in-depth computer knowledge. Users are therefore
+  encouraged to load and test the software's suitability as regards their
+  requirements in conditions enabling the security of their systems and/or
+  data to be ensured and,  more generally, to use and operate it in the
+  same conditions as regards security.
+  The fact that you are presently reading this means that you have had
+  knowledge of the CeCILL license and that you accept its terms.
+ 
+  ParadisEO WebSite : http://paradiseo.gforge.inria.fr
+  Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef __moTSMoveLoopExpl_h
-#define __moTSMoveLoopExpl_h
+#ifndef _moTSMoveLoopExpl_h
+#define _moTSMoveLoopExpl_h
 
-#include "moMoveLoopExpl.h"
-
-#include "moMoveInit.h"
-#include "moNextMove.h"
-#include "moMoveIncrEval.h"
-#include "moMoveSelect.h"
-
-#include "moTabuList.h"
-#include "moAspirCrit.h"
-#include "moBestImprSelect.h"
+#include <moMoveLoopExpl.h>
+#include <moMoveInit.h>
+#include <moNextMove.h>
+#include <moMoveIncrEval.h>
+#include <moMoveSelect.h>
+#include <moTabuList.h>
+#include <moAspirCrit.h>
+#include <moBestImprSelect.h>
 
 //! Explorer for a Tabu Search algorithm
 /*!
   It is used by a moTS.
- */
-template < class M > class moTSMoveLoopExpl:public moMoveLoopExpl < M >
+*/
+template < class M >
+class moTSMoveLoopExpl:public moMoveLoopExpl < M >
+{
+  //!Alias for the type
+  typedef typename M::EOType EOT;
+
+  //!Alias for the fitness
+  typedef typename M::EOType::Fitness Fitness;
+
+ public:
+
+  //!Constructor
+  /*!
+    \param _move_initializer The move initializer.
+    \param _next_move_generator The neighbourhood explorer.
+    \param _incremental_evaluation A (generally) efficient evaluation.
+    \param _tabu_list The tabu list.
+    \param _aspiration_criterion An aspiration criterion.
+  */
+  moTSMoveLoopExpl (moMoveInit < M > & _move_initializer, moNextMove < M > & _next_move_generator,
+		    moMoveIncrEval < M > & _incremental_evaluation, moTabuList < M > & _tabu_list, 
+		    moAspirCrit < M > & _aspiration_criterion):
+  move_initializer(_move_initializer), next_move_generator(_next_move_generator), incremental_evaluation(_incremental_evaluation),
+    tabu_list(_tabu_list), aspiration_criterion(_aspiration_criterion)
   {
+    tabu_list.init ();
+    aspiration_criterion.init ();
+  }
+  
+  //!Procedure which lauches the exploration
+  /*!
+    The exploration continues while the chosen move is not in the tabu list 
+    or the aspiration criterion is true. If these 2 conditions are not true, the
+    exploration stops if the move selector update function returns false.
 
-    //!Alias for the type
-    typedef typename M::EOType EOT;
+    \param _old_solution the initial solution
+    \param _new_solution the new solution
+  */
+  void operator () (const EOT & _old_solution, EOT & _new_solution)
+  {
+    M move, best_move;
+    Fitness fitness, best_move_fitness;
 
-    //!Alias for the fitness
-    typedef typename M::EOType::Fitness Fitness;
+    bool move_is_tabu, aspiration_criterion_is_verified, selection_update_is_ok, has_next_move;
+    
+    //At the begining, the new solution is equivalent to the old one.
+    _new_solution=(EOT)_old_solution;
 
-  public:
+    // Restarting the exploration of  of the neighborhood !
+    move_initializer (move, _old_solution);	
 
-    //!Constructor
-    /*!
-       \param __move_init move initialisation
-       \param __next_move neighborhood explorer
-       \param __incr_eval efficient evaluation
-       \param __tabu_list tabu list
-       \param __aspir_crit aspiration criterion
-     */
-    moTSMoveLoopExpl (moMoveInit < M > &__move_init, moNextMove < M > &__next_move, moMoveIncrEval < M > &__incr_eval, moTabuList < M > &__tabu_list, moAspirCrit < M > &__aspir_crit):
-        move_init (__move_init),
-        next_move (__next_move),
-        incr_eval (__incr_eval),
-        tabu_list (__tabu_list), aspir_crit (__aspir_crit)
-    {
+    move_selection.init( _old_solution.fitness() );
 
-      tabu_list.init ();
-      aspir_crit.init ();
-    }
+    do
+      {
+	fitness = incremental_evaluation(move, _old_solution);
 
-    //!Procedure which lauches the exploration
-    /*!
-       The exploration continues while the chosen move is not in the tabu list 
-       or the aspiration criterion is true. If these 2 conditions are not true, the
-       exploration stops if the move selector update function returns false.
+	move_is_tabu = tabu_list(move, _old_solution);
 
-       \param __old_sol the initial solution
-       \param __new_sol the new solution
-     */
-    void operator   () (const EOT & __old_sol, EOT & __new_sol)
-    {
+	aspiration_criterion_is_verified = aspiration_criterion(move, fitness);
 
-      M move;
+	if( !move_is_tabu || aspiration_criterion_is_verified )
+	  {
+	    selection_update_is_ok = move_selection.update(move, fitness);
+	  }
 
+	has_next_move = next_move_generator(move, _old_solution);
+      }
+    while( has_next_move && selection_update_is_ok );
 
-      move_init (move, __old_sol);	/* Restarting the exploration of
-            					   of the neighborhood ! */
+    move_selection(best_move, best_move_fitness);
 
-      move_select.init (__old_sol.fitness ());
-
-      do
-        {
-
-          Fitness fit = incr_eval (move, __old_sol);
-
-          if (!tabu_list (move, __old_sol) || aspir_crit (move, fit))
-            {
-              if (!move_select.update (move, fit))
-                break;
-            }
-
-        }
-      while (next_move (move, __old_sol));
-
-      M best_move;
-
-      Fitness best_move_fit;
-
-      move_select (best_move, best_move_fit);
-
-      best_move (__new_sol);
-      __new_sol.fitness (best_move_fit);
+    // Apply the best move.
+    best_move(_new_solution);
+    
+    // The fitness is set to avoid an additionnal fitness computation.
+    _new_solution.fitness(best_move_fitness);
       
-      /* Removing moves that are
-         no more tabu */
-      tabu_list.update ();
+    // Removing moves that are no more tabu.
+    tabu_list.update ();
+    
+    // Updating the tabu list
+    tabu_list.add(best_move, _new_solution);
+  }
 
-      // Updating the tabu list
-      tabu_list.add (best_move, __new_sol);
-    }
+ private:
 
-  private:
+  //! Move initialisation
+  moMoveInit < M > & move_initializer;
 
-    //!Move initialisation
-    moMoveInit < M > &move_init;
+  //! Neighborhood explorer
+  moNextMove < M > & next_move_generator;
 
-    //!Neighborhood explorer
-    moNextMove < M > &next_move;
+  //! Efficient evaluation
+  moMoveIncrEval < M > & incremental_evaluation;
 
-    //!Efficient evaluation
-    moMoveIncrEval < M > &incr_eval;
+  //! Move selector
+  moBestImprSelect < M > move_selection;
 
-    //!Move selector
-    moBestImprSelect < M > move_select;
+  //! Tabu list
+  moTabuList < M > & tabu_list;
 
-    //!Tabu list
-    moTabuList < M > &tabu_list;
-
-    //!Aspiration criterion
-    moAspirCrit < M > &aspir_crit;
-  };
+  //! Aspiration criterion
+  moAspirCrit < M > & aspiration_criterion;
+};
 
 #endif
