@@ -1,0 +1,113 @@
+.TH "moHCMoveLoopExpl" 3 "15 Jan 2008" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moHCMoveLoopExpl \- Iterative explorer used by a \fBmoHC\fP.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moHCMoveLoopExpl.h>\fP
+.PP
+Inherits \fBmoMoveLoopExpl< M >< M >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoHCMoveLoopExpl\fP (\fBmoMoveInit\fP< M > &_move_initializer, \fBmoNextMove\fP< M > &_next_move_generator, \fBmoMoveIncrEval\fP< M > &_incremental_evaluation, \fBmoMoveSelect\fP< M > &_move_selection)"
+.br
+.RI "\fIConstructor. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (const \fBEOT\fP &_old_solution, \fBEOT\fP &_new_solution)"
+.br
+.RI "\fIProcedure which launches the explorer. \fP"
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "typedef M::EOType \fBEOT\fP"
+.br
+.RI "\fIAlias for the type. \fP"
+.ti -1c
+.RI "typedef M::EOType::Fitness \fBFitness\fP"
+.br
+.RI "\fIAlias for the fitness. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmoMoveInit\fP< M > & \fBmove_initializer\fP"
+.br
+.RI "\fIMove initialiser. \fP"
+.ti -1c
+.RI "\fBmoNextMove\fP< M > & \fBnext_move_generator\fP"
+.br
+.RI "\fINeighborhood explorer. \fP"
+.ti -1c
+.RI "\fBmoMoveIncrEval\fP< M > & \fBincremental_evaluation\fP"
+.br
+.RI "\fI(generally) Efficient evaluation. \fP"
+.ti -1c
+.RI "\fBmoMoveSelect\fP< M > & \fBmove_selection\fP"
+.br
+.RI "\fIMove selector. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class M> class moHCMoveLoopExpl< M >"
+Iterative explorer used by a \fBmoHC\fP. 
+.PP
+Definition at line 47 of file moHCMoveLoopExpl.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class M> \fBmoHCMoveLoopExpl\fP< M >::\fBmoHCMoveLoopExpl\fP (\fBmoMoveInit\fP< M > & _move_initializer, \fBmoNextMove\fP< M > & _next_move_generator, \fBmoMoveIncrEval\fP< M > & _incremental_evaluation, \fBmoMoveSelect\fP< M > & _move_selection)\fC [inline]\fP"
+.PP
+Constructor. 
+.PP
+All the boxes have to be specified.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_move_initializer\fP The move initialiser. 
+.br
+\fI_next_move_generator\fP The neighbourhood explorer. 
+.br
+\fI_incremental_evaluation\fP (generally) Efficient evaluation function. 
+.br
+\fI_move_selection\fP The move selector. 
+.RE
+.PP
+
+.PP
+Definition at line 66 of file moHCMoveLoopExpl.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class M> void \fBmoHCMoveLoopExpl\fP< M >::operator() (const \fBEOT\fP & _old_solution, \fBEOT\fP & _new_solution)\fC [inline, virtual]\fP"
+.PP
+Procedure which launches the explorer. 
+.PP
+The exploration starts from an old solution and provides a new solution.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_old_solution\fP The current solution. 
+.br
+\fI_new_solution\fP The new solution (result of the procedure). 
+.RE
+.PP
+
+.PP
+Implements \fBeoBF< const M::EOType &, M::EOType &, void >\fP.
+.PP
+Definition at line 79 of file moHCMoveLoopExpl.h.
+.PP
+References moHCMoveLoopExpl< M >::incremental_evaluation, moHCMoveLoopExpl< M >::move_initializer, moHCMoveLoopExpl< M >::move_selection, and moHCMoveLoopExpl< M >::next_move_generator.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.
