@@ -169,15 +169,15 @@ public:
 	 virtual POT & globalBest(const eoPop<POT>& _pop)
     {
     	unsigned howManyNeighborhood=_pop.size()/ neighborhoodSize;
-    	POT globalBest,tmp;
+    	POT gBest,tmp;
     	unsigned indGlobalBest=0;
-    	globalBest=neighborhoods[0].best();
+    	gBest=neighborhoods[0].best();
     	for(unsigned i=1;i<howManyNeighborhood;i++)
     	{
     		tmp=neighborhoods[i].best();
-    		if(globalBest.best() < tmp.best())
+    		if(gBest.best() < tmp.best())
     		{
-    			globalBest=tmp;
+    			gBest=tmp;
     			indGlobalBest=i;
     		}
     			

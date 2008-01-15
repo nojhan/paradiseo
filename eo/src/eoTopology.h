@@ -74,15 +74,15 @@ public:
      */    
     virtual POT & globalBest(const eoPop<POT>& _pop)
     {
-    	POT globalBest,tmp;
+    	POT gBest,tmp;
     	unsigned indGlobalBest=0;
-    	globalBest=best(0);
+    	gBest=best(0);
     	for(unsigned i=1;i<_pop.size();i++)
     	{
     		tmp=best(i);
-    		if(globalBest.best() < tmp.best())
+    		if(gBest.best() < tmp.best())
     		{
-    			globalBest=tmp;
+    			gBest=tmp;
     			indGlobalBest=i;
     		}
     			
