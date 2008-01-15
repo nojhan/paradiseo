@@ -63,7 +63,7 @@ phenotype eoChromEvaluator(const Chrom& chrom)
 
   //  return black * points_per_black + white * points_per_white;
   return black * chrom.size() + white;
-};
+}
 
 const unsigned default_length = 8;
 const unsigned default_colors = 8;

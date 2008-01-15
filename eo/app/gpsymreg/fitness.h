@@ -58,7 +58,7 @@ double sextic_polynomial(double x)
 	double result=0;
 	result = pow(x,6) - (2*pow(x,4)) + pow(x,2);
 	return result;
-};
+}
 
 // we use the following functions for the basic math functions
 
@@ -158,7 +158,7 @@ void init(vector<Node> &initSequence)
 		initSequence.push_back( OpDIVIDE );
 
 
-};
+}
 
 
 

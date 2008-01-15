@@ -228,7 +228,7 @@ phenotype eoChromEvaluator(const Chrom& chrom)
   p.mse_error = mse::error(chrom, *val_set);
 
   return p;
-};
+}
 
 //-----------------------------------------------------------------------------
 

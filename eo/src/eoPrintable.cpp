@@ -16,7 +16,7 @@
 std::ostream & operator << ( std::ostream& _os, const eoPrintable& _o ) {
 	_o.printOn(_os);
 	return _os;
-};
+}
 
 //-----------------------------------------------------------------------------
 
