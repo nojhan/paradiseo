@@ -93,6 +93,11 @@ class moTSMoveLoopExpl:public moMoveLoopExpl < M >
     Fitness fitness, best_move_fitness;
 
     bool move_is_tabu, aspiration_criterion_is_verified, selection_update_is_ok, has_next_move;
+
+    if( _old_solution.invalid() )
+      {
+	throw std::runtime_error("[moTSMoveLoopExpl.h]: The current solution has not been evaluated.");
+      }
     
     //At the begining, the new solution is equivalent to the old one.
     _new_solution=(EOT)_old_solution;
