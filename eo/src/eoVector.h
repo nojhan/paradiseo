@@ -55,8 +55,8 @@ public:
     @param size Length of vector (default is 0)
     @param value Initial value of all elements (default is default value of type GeneType)
     */
-    eoVector(unsigned size = 0, GeneType value = GeneType())
-        : EO<FitT>(), std::vector<GeneType>(size, value)
+    eoVector(unsigned _size = 0, GeneType _value = GeneType())
+        : EO<FitT>(), std::vector<GeneType>(_size, _value)
         {}
 
     /// copy ctor abstracting from the FitT

@@ -64,8 +64,8 @@ public:
     *  @param velocity
     *  @param  bestPositions
     */
-    eoVectorParticle (unsigned _size = 0,PositionType position = PositionType (), VelocityType velocity = VelocityType (), PositionType bestPositions = PositionType ()):PO < FitT > (),std::vector < PositionType > (_size, position), bestPositions (_size, bestPositions), velocities (_size,
-                    velocity)
+    eoVectorParticle (unsigned _size = 0,PositionType _position = PositionType (), VelocityType _velocity = VelocityType (), PositionType _bestPositions = PositionType ()):PO < FitT > (),std::vector < PositionType > (_size, _position), bestPositions (_size, _bestPositions), velocities (_size,
+                    _velocity)
     {
     }
 
