@@ -52,6 +52,7 @@ double f (const Indi & _indi)
 
 double peoPSOSeq ()
 {
+	/*
   clock_t	beginSeq,endSeq;
   double timeSeq;
   const unsigned int VEC_SIZE = 2;
@@ -98,6 +99,7 @@ double peoPSOSeq ()
   endSeq=clock();
   timeSeq = endSeq-beginSeq;
   return timeSeq;
+  */
 }
 
 void peoPSOPara(long int arg)

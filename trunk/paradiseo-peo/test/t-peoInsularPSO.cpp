@@ -71,7 +71,7 @@ template < class POT > class eoPrint : public eoContinue <POT>
 
 void peoPSOSeq ()
 {
-
+/*
   const unsigned int VEC_SIZE = 4;
   const unsigned int POP_SIZE = 10;
   const unsigned int NEIGHBORHOOD_SIZE= 5;
@@ -80,6 +80,7 @@ void peoPSOSeq ()
   const double INIT_POSITION_MAX = 50.0;
   const double INIT_VELOCITY_MIN = -1;
   const double INIT_VELOCITY_MAX = 1;
+  const double omega = 1.0;
   const double C1 = 0.5;
   const double C2 = 2;
   rng.reseed (44);
@@ -102,7 +103,7 @@ void peoPSOSeq ()
   eoLinearTopology<Indi> topologySeq(NEIGHBORHOOD_SIZE);
   topologySeq.setup(popSeq);
   eoRealVectorBounds bndsSeq(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
-  eoStandardVelocity < Indi > velocitySeq (topologySeq,C1,C2,bndsSeq);
+  eoStandardVelocity < Indi > velocitySeq (topologySeq,omega,C1,C2,bndsSeq);
   eoGenContinue < Indi > genContSeq (MAX_GEN);
   eoPrint <Indi>  printSeq;
   eoCombinedContinue <Indi> continuatorSeq(genContSeq);
@@ -111,6 +112,7 @@ void peoPSOSeq ()
   eoSyncEasyPSO < Indi > psaSeq(checkpointSeq, evalSeq, velocitySeq, flight);
   psaSeq (popSeq);
   popSeq.sort ();
+  */
 }
 
 void peoPSOPara()
