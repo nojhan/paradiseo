@@ -120,7 +120,7 @@ ENDFOREACH (path ${REQUIRED_PATHS})
 #####################################################################################
 
 # the user should choose the build type on windows environments,excepted under cygwin (default=none)
-SET(CMAKE_DEFAULT_BUILD_TYPE Debug CACHE STRING "Variable that stores the default CMake build type" FORCE)
+SET(CMAKE_DEFAULT_BUILD_TYPE "Release" CACHE STRING "Variable that stores the default CMake build type" FORCE)
 
 IF(WIN32 AND NOT CYGWIN)
   IF(NOT CMAKE_BUILD_TYPE)
@@ -129,12 +129,15 @@ IF(WIN32 AND NOT CYGWIN)
           "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel." 
            FORCE)
   ENDIF(NOT CMAKE_BUILD_TYPE)  
-  MESSAGE(STATUS "")
-  MESSAGE(STATUS "Warning: The type of build is: ${CMAKE_BUILD_TYPE}.")
-  MESSAGE(STATUS "The available types are: None Debug Release RelWithDebInfo MinSizeRel.")
-  MESSAGE(STATUS "You can choose it with: cmake <path-to-source> -D<build-type>")
-  MESSAGE(STATUS "")
+ELSE(WIN32 AND NOT CYGWIN)
+   IF(CMAKE_COMPILER_IS_GNUCXX)
+       SET(CMAKE_CXX_FLAGS_DEBUG  "-Wall -Wextra -Wno-import -Winit-self  -Wmissing-include-dirs -Wunused-parameter -Wundef  -Wshadow  -Wunsafe-loop-optimizations -Wcast-align -Wconversion -Wsign-compare -Winline -Wdisabled-optimization")                       
+  ENDIF(CMAKE_COMPILER_IS_GNUCXX)       
 ENDIF(WIN32 AND NOT CYGWIN)
+
+IF(CMAKE_BUILD_TYPE MATCHES Debug)
+    ADD_DEFINITIONS(-DCMAKE_VERBOSE_MAKEFILE=ON)
+ENDIF(CMAKE_BUILD_TYPE MATCHES Debug)
 
 #####################################################################################
 
