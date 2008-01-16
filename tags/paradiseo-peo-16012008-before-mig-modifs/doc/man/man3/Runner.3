@@ -1,0 +1,57 @@
+.TH "Runner" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-PEOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Runner \- 
+.SH SYNOPSIS
+.br
+.PP
+Inherits \fBCommunicable\fP, and \fBThread\fP.
+.PP
+Inherited by \fBpeoEA< EOT >\fP, and \fBpeoParallelAlgorithmWrapper\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRunner\fP ()"
+.br
+.ti -1c
+.RI "void \fBstart\fP ()"
+.br
+.ti -1c
+.RI "void \fBwaitStarting\fP ()"
+.br
+.ti -1c
+.RI "bool \fBisLocal\fP ()"
+.br
+.ti -1c
+.RI "void \fBterminate\fP ()"
+.br
+.ti -1c
+.RI "RUNNER_ID \fBgetID\fP ()"
+.br
+.ti -1c
+.RI "void \fBpackTermination\fP ()"
+.br
+.ti -1c
+.RI "void \fBnotifySendingTermination\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "sem_t \fBsem_start\fP"
+.br
+.ti -1c
+.RI "unsigned \fBid\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 47 of file runner.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-PEOMovingObjects from the source code.
