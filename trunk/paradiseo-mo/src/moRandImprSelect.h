@@ -103,7 +103,7 @@ class moRandImprSelect: public moMoveSelect < M >
 
     if( (better_fitnesses.size()==0) || (better_moves.size()==0) )
       {
-	std::cout << "[moRandImprSelect.h]: no move or/and no fitness already saved, update has to be called first." << std::endl;
+	throw std::runtime_error("[moRandImprSelect.h]: no move or/and no fitness already saved, update has to be called first.");
       }
 
     index = rng.random (better_fitnesses.size ());
