@@ -190,21 +190,13 @@ template< class EOT, class TYPE > class peoAsyncIslandMig : public Cooperative, 
   private:
 
     continuator & cont;	// continuator
-
     eoSelect< EOT >& select;	// the selection strategy
     eoReplacement< EOT >& replace;	// the replacement strategy
     Topology& topology;		// the neighboring topology
-
-    // source and destination populations
     peoData & source;
     peoData & destination;
-
-    // immigrants & emigrants in the queue
-    std :: queue< peoData* > imm;
-    std :: queue< peoData* > em;
-
-	 std :: vector< TYPE > vect;
-	 
+    std :: queue< TYPE > imm;
+    std :: queue< TYPE > em;
     std :: queue< Cooperative* > coop_em;
   };
 
@@ -227,35 +219,21 @@ template< class EOT , class TYPE> peoAsyncIslandMig< EOT, TYPE > :: peoAsyncIsla
 
 template< class EOT , class TYPE> void peoAsyncIslandMig< EOT, TYPE > :: pack()
 {
-
-	std::cout << "[peoAsyncIslandMig] [pack] [begin]"  << std::endl ;
   lock ();
-
   ::pack( coop_em.front()->getKey() );
-  //::pack(em.front());
-  
-  //coop_em.front()->getKey().pack();
- //std::cout << em.front() << std::endl ;
-  em.front()->pack();
-  
+  em.front().pack();
   coop_em.pop();
   em.pop();
-
   unlock();
-  std::cout << "[peoAsyncIslandMig] [pack] [end]"  << std::endl ;
 }
 
 
 template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: unpack()
 {
-
   lock ();
-
-  peoData mig;
-  //::unpack( mig );
+  TYPE mig;
   mig.unpack();
-  imm.push( &mig );
-
+  imm.push( mig );
   unlock();
 }
 
@@ -264,7 +242,6 @@ template< class EOT , class TYPE> void peoAsyncIslandMig< EOT, TYPE > :: packSyn
 
 template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: emigrate()
 {
-	std::cout << "[peoAsyncIslandMig] [emigrate] [begin]"  << std::endl ;
   std :: vector< Cooperative* >in, out;
   topology.setNeighbors( this, in, out );
 	
@@ -272,23 +249,18 @@ template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: emigrat
     {
 
       TYPE mig;
-      vect.push_back(mig);
       	//select( source, mig );
-      	//em.push( &mig );
-      	
-      em.push(&(vect[vect.size()-1]));
-      
+ 	  em.push( mig );
       coop_em.push( out[i] );
       send( out[i] );
       printDebugMessage( "sending some emigrants." );
     }
-    std::cout << "[peoAsyncIslandMig] [emigrate] [end]"  << std::endl ;
 }
 
 
 template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: immigrate()
 {
-
+  
   lock ();
   {
 
