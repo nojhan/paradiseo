@@ -24,7 +24,7 @@
 * professionals having in-depth computer knowledge. Users are therefore
 * encouraged to load and test the software's suitability as regards their
 * requirements in conditions enabling the security of their systems and/or
-* data to be ensured and,  more generally, to use and operate it in the
+* peoData to be ensured and,  more generally, to use and operate it in the
 * same conditions as regards security.
 * The fact that you are presently reading this means that you have had
 * knowledge of the CeCILL license and that you accept its terms.
@@ -41,19 +41,18 @@
 #include <queue>
 
 #include <utils/eoUpdater.h>
-
 #include <eoContinue.h>
 #include <eoSelect.h>
 #include <eoReplacement.h>
 #include <eoPop.h>
 
-#include <data.h>
+#include <peoData.h>
 #include <continuator.h>
+
 
 #include "core/messaging.h"
 #include "core/eoPop_mesg.h"
 #include "core/eoVector_mesg.h"
-
 #include "core/topology.h"
 #include "core/thread.h"
 #include "core/cooperative.h"
@@ -159,13 +158,14 @@ template< class EOT, class TYPE > class peoAsyncIslandMig : public Cooperative, 
     //! @param eoPop< EOT >& __source - source population from which the emigrant individuals are selected;
     //! @param eoPop< EOT >& __destination - destination population in which the immigrant population are integrated.
     peoAsyncIslandMig(
-      //continuator< EOT, data < EOT >,bool > & __cont,
+      continuator & __cont,
       eoSelect< EOT >& __select,
       eoReplacement< EOT >& __replace,
       Topology& __topology,
-      data & __source,
-      data & __destination
+      peoData & __source,
+      peoData & __destination
     );
+    
 
     //! Function operator to be called as checkpoint for performing the migration step. The emigrant individuals are selected
     //! from the source population and sent to the next island (defined by the topology object) while the immigrant
@@ -189,18 +189,19 @@ template< class EOT, class TYPE > class peoAsyncIslandMig : public Cooperative, 
 
   private:
 
-    //continuator< EOT, data < EOT >,bool> & cont;	// continuator
+    continuator & cont;	// continuator
+
     eoSelect< EOT >& select;	// the selection strategy
     eoReplacement< EOT >& replace;	// the replacement strategy
     Topology& topology;		// the neighboring topology
 
     // source and destination populations
-    data & source;
-    data & destination;
+    peoData & source;
+    peoData & destination;
 
     // immigrants & emigrants in the queue
-    std :: queue< data* > imm;
-    std :: queue< data* > em;
+    std :: queue< peoData* > imm;
+    std :: queue< peoData* > em;
 
 	 std :: vector< TYPE > vect;
 	 
@@ -210,14 +211,14 @@ template< class EOT, class TYPE > class peoAsyncIslandMig : public Cooperative, 
 
 template< class EOT , class TYPE> peoAsyncIslandMig< EOT, TYPE > :: peoAsyncIslandMig(
 
- // continuator< EOT, data < EOT >,bool> & __cont,
+  continuator & __cont,
   eoSelect< EOT >& __select,
   eoReplacement< EOT >& __replace,
   Topology& __topology,
-  data & __source,
-  data & __destination
+  peoData & __source,
+  peoData & __destination
 
-) : select( __select ), replace( __replace ), topology( __topology ), source( __source ), destination( __destination )
+) : select( __select ), replace( __replace ), topology( __topology ), source( __source ), destination( __destination ), cont(__cont)
 {
 
   __topology.add( *this );
@@ -250,7 +251,7 @@ template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: unpack(
 
   lock ();
 
-  data mig;
+  peoData mig;
   //::unpack( mig );
   mig.unpack();
   imm.push( &mig );
@@ -305,14 +306,21 @@ template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: immigra
 
 template< class EOT , class TYPE> void peoAsyncIslandMig< EOT, TYPE > :: operator()()
 {
-
- // if ( !cont( source ) )
-  //  {
+  /*
+  if ( !cont( source ) && ! eocont(source) )
+    {
 
       emigrate();	// sending emigrants
       immigrate();	// receiving immigrants
-  //  }
+    }
+    */
     
+    if (cont.check())
+    {
+
+      emigrate();	// sending emigrants
+      immigrate();	// receiving immigrants
+    }
 }
 
 

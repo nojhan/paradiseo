@@ -3,6 +3,8 @@
 
 #include <peoPop.h>
 
+#include <continuator.h>
+
 typedef eoRealParticle < double >Indi;
 
 double f (const Indi & _indi)
@@ -96,11 +98,12 @@ int main( int __argc, char** __argv )
 
 
 // Island model
-  peoAsyncIslandMig< Indi, peoPop<Indi> > mig(mig_select, mig_replace, topologyMig, pop, pop);
+  eoContinuator<Indi> cont(mig_cont, pop);
+  peoAsyncIslandMig< Indi, peoPop<Indi> > mig(cont,mig_select, mig_replace, topologyMig, pop, pop);
   checkpoint.add( mig );
   
-  
-  peoAsyncIslandMig< Indi, peoPop<Indi> > mig2(mig_select2, mig_replace2, topologyMig, pop2, pop2);
+  eoContinuator<Indi> cont2(mig_cont2,pop2);
+  peoAsyncIslandMig< Indi, peoPop<Indi> > mig2(cont2,mig_select2, mig_replace2, topologyMig, pop2, pop2);
   checkpoint2.add( mig2 );
   
 

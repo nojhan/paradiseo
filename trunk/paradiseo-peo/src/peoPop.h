@@ -25,6 +25,7 @@
 #ifndef _peoPop_H
 #define _peoPop_H
 
+#include <peoData.h>
 #include <algorithm>
 #include <iostream>
 #include <iterator> // needed for GCC 3.2
@@ -36,60 +37,32 @@
 #include <eoInit.h>
 #include <utils/rnd_generators.h>  // for shuffle method
 
-#include <data.h>
-
-//#include "core/eoPop_mesg.h"
-
 #include "core/eoVector_mesg.h"
 #include "core/messaging.h"
 
 
 template<class EOT>
-class peoPop: public data, public eoPop<EOT>
+class peoPop: public eoPop<EOT>, public peoData
 {
 public:
 
   virtual void pack () 
   {
-  	std::cout << "[peoPop][pack]" << std::endl;
-  	
-  	//::pack((*this));  
   	 ::pack ((unsigned) this->size ());
-  for (unsigned i = 0; i < this->size (); i ++)
-    ::pack ((*this)[i]);
+ 	 for (unsigned i = 0; i < this->size (); i ++)
+    	::pack ((*this)[i]);
   }
 
   virtual void unpack () 
   {
-  	// ::unpack((*this));
-  	 
-  	  unsigned n;
-
-  ::unpack (n);
-  this->resize (n);
-  for (unsigned i = 0; i < n; i ++)
-   ::unpack ((*this)[i]);
+	  unsigned n;
+	  ::unpack (n);
+	  this->resize (n);
+	  for (unsigned i = 0; i < n; i ++)
+	  ::unpack ((*this)[i]);
   }
 
 };
 
-/*
-template <class EOT> void pack (const peoPop <EOT> & __pop) {
-
-  pack ((unsigned) __pop.size ());
-  for (unsigned i = 0; i < __pop.size (); i ++)
-    pack (__pop [i]);
-}
-
-template <class EOT> void unpack (peoPop <EOT> & __pop) {
-
-  unsigned n;
-
-  unpack (n);
-  __pop.resize (n);
-  for (unsigned i = 0; i < n; i ++)
-    unpack (__pop [i]);
-}
-*/
 #endif
 
