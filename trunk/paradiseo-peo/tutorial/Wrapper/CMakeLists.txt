@@ -54,20 +54,21 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
-ADD_EXECUTABLE(example1 main1.cpp)
-ADD_DEPENDENCIES(example1 peo rmc_mpi)
-ADD_EXECUTABLE(example2 main2.cpp)
-ADD_DEPENDENCIES(example2 peo rmc_mpi)
-ADD_EXECUTABLE(example3 main3.cpp)
-ADD_DEPENDENCIES(example3 peo rmc_mpi)
+#ADD_EXECUTABLE(example1 main1.cpp)
+#ADD_DEPENDENCIES(example1 peo rmc_mpi)
+#ADD_EXECUTABLE(example2 main2.cpp)
+#ADD_DEPENDENCIES(example2 peo rmc_mpi)
+#ADD_EXECUTABLE(example3 main3.cpp)
+#ADD_DEPENDENCIES(example3 peo rmc_mpi)
+
 ADD_EXECUTABLE(example4 main4.cpp)
 ADD_DEPENDENCIES(example4 peo rmc_mpi)
-ADD_EXECUTABLE(example5 main5.cpp)
-ADD_DEPENDENCIES(example5 tsp peo rmc_mpi)
-ADD_EXECUTABLE(example6 main6.cpp)
-ADD_DEPENDENCIES(example6 tsp peo rmc_mpi)
-ADD_EXECUTABLE(example7 main7.cpp)
-ADD_DEPENDENCIES(example7 peo rmc_mpi)
+#ADD_EXECUTABLE(example5 main5.cpp)
+#ADD_DEPENDENCIES(example5 tsp peo rmc_mpi)
+#ADD_EXECUTABLE(example6 main6.cpp)
+#ADD_DEPENDENCIES(example6 tsp peo rmc_mpi)
+#ADD_EXECUTABLE(example7 main7.cpp)
+#ADD_DEPENDENCIES(example7 peo rmc_mpi)
 
 ######################################################################################
 
@@ -84,12 +85,12 @@ ADD_DEPENDENCIES(example7 peo rmc_mpi)
 ### 5) Link the librairies
 ######################################################################################
 
-TARGET_LINK_LIBRARIES(example1 ${XML2_LIBS} peo rmc_mpi eo eoutils)
-TARGET_LINK_LIBRARIES(example2 ${XML2_LIBS} peo rmc_mpi eo eoutils)
-TARGET_LINK_LIBRARIES(example3 ${XML2_LIBS} peo rmc_mpi eo eoutils)
+#TARGET_LINK_LIBRARIES(example1 ${XML2_LIBS} peo rmc_mpi eo eoutils)
+#TARGET_LINK_LIBRARIES(example2 ${XML2_LIBS} peo rmc_mpi eo eoutils)
+#TARGET_LINK_LIBRARIES(example3 ${XML2_LIBS} peo rmc_mpi eo eoutils)
 TARGET_LINK_LIBRARIES(example4 ${XML2_LIBS} peo rmc_mpi eo eoutils)
-TARGET_LINK_LIBRARIES(example5 ${XML2_LIBS} tsp peo rmc_mpi eo eoutils)
-TARGET_LINK_LIBRARIES(example6 ${XML2_LIBS} tsp peo rmc_mpi eo eoutils)
-TARGET_LINK_LIBRARIES(example7 ${XML2_LIBS} tsp peo rmc_mpi eo eoutils)
+#TARGET_LINK_LIBRARIES(example5 ${XML2_LIBS} tsp peo rmc_mpi eo eoutils)
+#TARGET_LINK_LIBRARIES(example6 ${XML2_LIBS} tsp peo rmc_mpi eo eoutils)
+#TARGET_LINK_LIBRARIES(example7 ${XML2_LIBS} tsp peo rmc_mpi eo eoutils)
 
 ######################################################################################

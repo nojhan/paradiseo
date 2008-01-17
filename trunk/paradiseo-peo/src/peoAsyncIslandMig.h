@@ -47,6 +47,9 @@
 #include <eoReplacement.h>
 #include <eoPop.h>
 
+#include <data.h>
+#include <continuator.h>
+
 #include "core/messaging.h"
 #include "core/eoPop_mesg.h"
 #include "core/eoVector_mesg.h"
@@ -141,7 +144,7 @@
 //! islands requires the reiteration of the steps 2 through 4 for creating distinct algorithms, with distinct populations and
 //! the associated distinctly parametrized migration objects. The interconnecting element is the underlying topology, defined at step 1
 //! (the same C++ migTopology object has to be passed as parameter for all the migration objects, in order to interconnect them).
-template< class EOT > class peoAsyncIslandMig : public Cooperative, public eoUpdater
+template< class EOT, class TYPE > class peoAsyncIslandMig : public Cooperative, public eoUpdater
   {
 
   public:
@@ -156,12 +159,12 @@ template< class EOT > class peoAsyncIslandMig : public Cooperative, public eoUpd
     //! @param eoPop< EOT >& __source - source population from which the emigrant individuals are selected;
     //! @param eoPop< EOT >& __destination - destination population in which the immigrant population are integrated.
     peoAsyncIslandMig(
-      eoContinue< EOT >& __cont,
+      //continuator< EOT, data < EOT >,bool > & __cont,
       eoSelect< EOT >& __select,
       eoReplacement< EOT >& __replace,
       Topology& __topology,
-      eoPop< EOT >& __source,
-      eoPop< EOT >& __destination
+      data & __source,
+      data & __destination
     );
 
     //! Function operator to be called as checkpoint for performing the migration step. The emigrant individuals are selected
@@ -186,88 +189,103 @@ template< class EOT > class peoAsyncIslandMig : public Cooperative, public eoUpd
 
   private:
 
-    eoContinue< EOT >& cont;	// continuator
+    //continuator< EOT, data < EOT >,bool> & cont;	// continuator
     eoSelect< EOT >& select;	// the selection strategy
     eoReplacement< EOT >& replace;	// the replacement strategy
     Topology& topology;		// the neighboring topology
 
     // source and destination populations
-    eoPop< EOT >& source;
-    eoPop< EOT >& destination;
+    data & source;
+    data & destination;
 
     // immigrants & emigrants in the queue
-    std :: queue< eoPop< EOT > > imm;
-    std :: queue< eoPop< EOT > > em;
+    std :: queue< data* > imm;
+    std :: queue< data* > em;
 
+	 std :: vector< TYPE > vect;
+	 
     std :: queue< Cooperative* > coop_em;
   };
 
 
-template< class EOT > peoAsyncIslandMig< EOT > :: peoAsyncIslandMig(
+template< class EOT , class TYPE> peoAsyncIslandMig< EOT, TYPE > :: peoAsyncIslandMig(
 
-  eoContinue< EOT >& __cont,
+ // continuator< EOT, data < EOT >,bool> & __cont,
   eoSelect< EOT >& __select,
   eoReplacement< EOT >& __replace,
   Topology& __topology,
-  eoPop< EOT >& __source,
-  eoPop< EOT >& __destination
+  data & __source,
+  data & __destination
 
-) : cont( __cont ), select( __select ), replace( __replace ), topology( __topology ), source( __source ), destination( __destination )
+) : select( __select ), replace( __replace ), topology( __topology ), source( __source ), destination( __destination )
 {
 
   __topology.add( *this );
 }
 
 
-template< class EOT > void peoAsyncIslandMig< EOT > :: pack()
+template< class EOT , class TYPE> void peoAsyncIslandMig< EOT, TYPE > :: pack()
 {
 
+	std::cout << "[peoAsyncIslandMig] [pack] [begin]"  << std::endl ;
   lock ();
 
   ::pack( coop_em.front()->getKey() );
-  ::pack( em.front() );
+  //::pack(em.front());
+  
+  //coop_em.front()->getKey().pack();
+ //std::cout << em.front() << std::endl ;
+  em.front()->pack();
+  
   coop_em.pop();
   em.pop();
 
   unlock();
+  std::cout << "[peoAsyncIslandMig] [pack] [end]"  << std::endl ;
 }
 
 
-template< class EOT > void peoAsyncIslandMig< EOT > :: unpack()
+template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: unpack()
 {
 
   lock ();
 
-  eoPop< EOT > mig;
-  ::unpack( mig );
-  imm.push( mig );
+  data mig;
+  //::unpack( mig );
+  mig.unpack();
+  imm.push( &mig );
 
   unlock();
 }
 
-template< class EOT > void peoAsyncIslandMig< EOT > :: packSynchronizeReq() {
+template< class EOT , class TYPE> void peoAsyncIslandMig< EOT, TYPE > :: packSynchronizeReq() {
 }
 
-template< class EOT > void peoAsyncIslandMig< EOT > :: emigrate()
+template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: emigrate()
 {
-
+	std::cout << "[peoAsyncIslandMig] [emigrate] [begin]"  << std::endl ;
   std :: vector< Cooperative* >in, out;
   topology.setNeighbors( this, in, out );
-
+	
   for ( unsigned i = 0; i < out.size(); i++ )
     {
 
-      eoPop< EOT > mig;
-      select( source, mig );
-      em.push( mig );
+      TYPE mig;
+      vect.push_back(mig);
+      	//select( source, mig );
+      	//em.push( &mig );
+      	
+      em.push(&(vect[vect.size()-1]));
+      
       coop_em.push( out[i] );
       send( out[i] );
       printDebugMessage( "sending some emigrants." );
     }
+    std::cout << "[peoAsyncIslandMig] [emigrate] [end]"  << std::endl ;
 }
 
 
-template< class EOT > void peoAsyncIslandMig< EOT > :: immigrate()
+template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: immigrate()
 {
 
   lock ();
@@ -276,7 +294,7 @@ template< class EOT > void peoAsyncIslandMig< EOT > :: immigrate()
     while ( !imm.empty() )
       {
 
-        replace( destination, imm.front() );
+       // replace( destination, imm.front() );
         imm.pop();
         printDebugMessage( "receiving some immigrants." );
       }
@@ -285,15 +303,16 @@ template< class EOT > void peoAsyncIslandMig< EOT > :: immigrate()
 }
 
 
-template< class EOT > void peoAsyncIslandMig< EOT > :: operator()()
+template< class EOT , class TYPE> void peoAsyncIslandMig< EOT, TYPE > :: operator()()
 {
 
-  if ( !cont( source ) )
-    {
+ // if ( !cont( source ) )
+  //  {
 
       emigrate();	// sending emigrants
       immigrate();	// receiving immigrants
-    }
+  //  }
+    
 }
 
 

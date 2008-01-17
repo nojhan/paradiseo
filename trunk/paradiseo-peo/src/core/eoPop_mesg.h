@@ -37,19 +37,19 @@
 #ifndef __eoPop_mesg_h
 #define __eoPop_mesg_h
 
-#include <eoPop.h>
+#include "peoPop.h"
 
 #include "messaging.h"
 
-
-template <class EOT> void pack (const eoPop <EOT> & __pop) {
+/*
+template <class EOT> void pack (const peoPop <EOT> & __pop) {
 
   pack ((unsigned) __pop.size ());
   for (unsigned i = 0; i < __pop.size (); i ++)
     pack (__pop [i]);
 }
 
-template <class EOT> void unpack (eoPop <EOT> & __pop) {
+template <class EOT> void unpack (peoPop <EOT> & __pop) {
 
   unsigned n;
 
@@ -58,5 +58,5 @@ template <class EOT> void unpack (eoPop <EOT> & __pop) {
   for (unsigned i = 0; i < n; i ++)
     unpack (__pop [i]);
 }
-
+*/
 #endif

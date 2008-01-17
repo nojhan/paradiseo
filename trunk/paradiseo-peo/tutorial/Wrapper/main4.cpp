@@ -1,6 +1,8 @@
 #include <peo>
 #include <es.h>
 
+#include <peoPop.h>
+
 typedef eoRealParticle < double >Indi;
 
 double f (const Indi & _indi)
@@ -47,7 +49,7 @@ int main( int __argc, char** __argv )
   eoFirstIsBestInit < Indi > localInit;
   eoRealVectorBounds bndsFlight(VEC_SIZE,INIT_POSITION_MIN,INIT_POSITION_MAX);
   eoStandardFlight < Indi > flight(bndsFlight);
-  eoPop < Indi > pop;
+  peoPop < Indi > pop;
   pop.append (POP_SIZE, random);
   eoLinearTopology<Indi> topology(NEIGHBORHOOD_SIZE);
   eoRealVectorBounds bnds(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
@@ -76,7 +78,7 @@ int main( int __argc, char** __argv )
   eoFirstIsBestInit < Indi > localInit2;
   eoRealVectorBounds bndsFlight2(VEC_SIZE,INIT_POSITION_MIN,INIT_POSITION_MAX);
   eoStandardFlight < Indi > flight2(bndsFlight2);
-  eoPop < Indi > pop2;
+  peoPop < Indi > pop2;
   pop2.append (POP_SIZE, random2);
   eoLinearTopology<Indi> topology2(NEIGHBORHOOD_SIZE);
   eoRealVectorBounds bnds2(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
@@ -85,6 +87,7 @@ int main( int __argc, char** __argv )
   
 // Island model
 
+ 
   eoPeriodicContinue< Indi > mig_cont2( MIG_FREQ );
   peoPSOSelect<Indi> mig_selec2(topology2);
   eoSelectNumber< Indi > mig_select2(mig_selec2);
@@ -93,10 +96,11 @@ int main( int __argc, char** __argv )
 
 
 // Island model
-
-  peoAsyncIslandMig< Indi > mig( mig_cont, mig_select, mig_replace, topologyMig, pop, pop);
+  peoAsyncIslandMig< Indi, peoPop<Indi> > mig(mig_select, mig_replace, topologyMig, pop, pop);
   checkpoint.add( mig );
-  peoAsyncIslandMig< Indi > mig2( mig_cont2, mig_select2, mig_replace2, topologyMig, pop2, pop2);
+  
+  
+  peoAsyncIslandMig< Indi, peoPop<Indi> > mig2(mig_select2, mig_replace2, topologyMig, pop2, pop2);
   checkpoint2.add( mig2 );
   
 
@@ -117,4 +121,5 @@ int main( int __argc, char** __argv )
     std::cout << "Final population :\n" << pop << std::endl;
     std::cout << "Final population :\n" << pop2	 << std::endl;
   }
+  
 }
