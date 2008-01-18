@@ -30,7 +30,7 @@
 #include <data.h>
 
 #include <eoContinue.h>
-
+#include <eoSelectOne.h>
 
 /**
  * Continue interface
@@ -56,6 +56,28 @@ protected:
 	const eoPop<EOT> & pop;
 };
 
+
+
+template < class TYPE>  class selector
+{
+public: 	
+	virtual const TYPE & select()=0;
+};
+
+
+template < class EOT> class eoSelector : public selector<EOT>{
+public:
+	
+	eoSelector(eoSelectOne<EOT> & _select, const eoPop<EOT> & _pop): selector (_select), pop(_pop){}
+	
+	virtual const EOT & select(){
+		return select(pop);	
+	}
+
+protected:
+	eoSelectOne<EOT> & selector ;
+	const eoPop<EOT> & pop;
+};
 
 #endif
 
