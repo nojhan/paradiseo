@@ -46,9 +46,6 @@
 #include <eoReplacement.h>
 #include <eoPop.h>
 
-#include <peoData.h>
-#include <continuator.h>
-
 
 #include "core/messaging.h"
 #include "core/eoPop_mesg.h"
@@ -159,8 +156,8 @@ template< class EOT, class TYPE > class peoAsyncIslandMig : public Cooperative, 
     //! @param eoPop< EOT >& __destination - destination population in which the immigrant population are integrated.
     peoAsyncIslandMig(
       continuator & __cont,
-      eoSelect< EOT >& __select,
-      eoReplacement< EOT >& __replace,
+      selector <TYPE> & __select,
+      replacement <TYPE> & __replace,
       Topology& __topology,
       peoData & __source,
       peoData & __destination
@@ -190,8 +187,8 @@ template< class EOT, class TYPE > class peoAsyncIslandMig : public Cooperative, 
   private:
 
     continuator & cont;	// continuator
-    eoSelect< EOT >& select;	// the selection strategy
-    eoReplacement< EOT >& replace;	// the replacement strategy
+    selector <TYPE> & select;	// the selection strategy
+    replacement <TYPE> & replace;	// the replacement strategy
     Topology& topology;		// the neighboring topology
     peoData & source;
     peoData & destination;
@@ -204,8 +201,8 @@ template< class EOT, class TYPE > class peoAsyncIslandMig : public Cooperative, 
 template< class EOT , class TYPE> peoAsyncIslandMig< EOT, TYPE > :: peoAsyncIslandMig(
 
   continuator & __cont,
-  eoSelect< EOT >& __select,
-  eoReplacement< EOT >& __replace,
+  selector <TYPE> & __select,
+  replacement <TYPE> & __replace,
   Topology& __topology,
   peoData & __source,
   peoData & __destination
@@ -249,7 +246,7 @@ template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: emigrat
     {
 
       TYPE mig;
-      	//select( source, mig );
+      select(mig);
  	  em.push( mig );
       coop_em.push( out[i] );
       send( out[i] );
@@ -266,8 +263,7 @@ template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: immigra
 
     while ( !imm.empty() )
       {
-
-       // replace( destination, imm.front() );
+		replace(imm.front() );
         imm.pop();
         printDebugMessage( "receiving some immigrants." );
       }
@@ -278,14 +274,6 @@ template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: immigra
 
 template< class EOT , class TYPE> void peoAsyncIslandMig< EOT, TYPE > :: operator()()
 {
-  /*
-  if ( !cont( source ) && ! eocont(source) )
-    {
-
-      emigrate();	// sending emigrants
-      immigrate();	// receiving immigrants
-    }
-    */
     
     if (cont.check())
     {

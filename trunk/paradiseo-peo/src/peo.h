@@ -333,9 +333,9 @@
 #include "peoPopEval.h"
 #include "peoMoeoPopEval.h"
 
-
 /* Cooperative island model */
 #include "core/ring_topo.h"
+#include "peoData.h"
 #include "peoSyncIslandMig.h"
 #include "peoAsyncIslandMig.h"
 

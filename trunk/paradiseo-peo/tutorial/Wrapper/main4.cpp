@@ -1,9 +1,6 @@
 #include <peo>
 #include <es.h>
 
-#include <peoPop.h>
-
-#include <continuator.h>
 
 typedef eoRealParticle < double >Indi;
 
@@ -62,8 +59,11 @@ int main( int __argc, char** __argv )
 
   eoPeriodicContinue< Indi > mig_cont( MIG_FREQ );
   peoPSOSelect<Indi> mig_selec(topology);
-  eoSelectNumber< Indi > mig_select(mig_selec);
-  peoWorstPositionReplacement<Indi> mig_replace;
+  peoWorstPositionReplacement<Indi> mig_replac;
+  
+  eoContinuator<Indi> cont(mig_cont, pop);
+  eoSelector <Indi, peoPop<Indi> > mig_select (mig_selec,1,pop);
+  eoReplace <Indi, peoPop<Indi> > mig_replace (mig_replac,pop);
 
 
 // Second
@@ -89,20 +89,18 @@ int main( int __argc, char** __argv )
   
 // Island model
 
- 
   eoPeriodicContinue< Indi > mig_cont2( MIG_FREQ );
+  eoContinuator<Indi> cont2(mig_cont2,pop2);
   peoPSOSelect<Indi> mig_selec2(topology2);
-  eoSelectNumber< Indi > mig_select2(mig_selec2);
-  peoWorstPositionReplacement<Indi> mig_replace2;
-
+  eoSelector <Indi, peoPop<Indi> > mig_select2 (mig_selec2,1,pop2);
+  peoWorstPositionReplacement<Indi> mig_replac2;
+  eoReplace <Indi, peoPop<Indi> > mig_replace2 (mig_replac2,pop2);
 
 
 // Island model
-  eoContinuator<Indi> cont(mig_cont, pop);
+  
   peoAsyncIslandMig< Indi, peoPop<Indi> > mig(cont,mig_select, mig_replace, topologyMig, pop, pop);
   checkpoint.add( mig );
-  
-  eoContinuator<Indi> cont2(mig_cont2,pop2);
   peoAsyncIslandMig< Indi, peoPop<Indi> > mig2(cont2,mig_select2, mig_replace2, topologyMig, pop2, pop2);
   checkpoint2.add( mig2 );
   
