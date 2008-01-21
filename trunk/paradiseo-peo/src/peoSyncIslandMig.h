@@ -49,6 +49,7 @@
 #include <eoSelect.h>
 #include <eoReplacement.h>
 #include <eoPop.h>
+#include "peoData.h"
 
 #include "core/messaging.h"
 #include "core/eoPop_mesg.h"
@@ -145,7 +146,7 @@
 //! islands requires the reiteration of the steps 2 through 4 for creating distinct algorithms, with distinct populations and
 //! the associated distinctly parametrized migration objects. The interconnecting element is the underlying topology, defined at step 1
 //! (the same C++ migTopology object has to be passed as parameter for all the migration objects, in order to interconnect them).
-template< class EOT > class peoSyncIslandMig : public Cooperative, public eoUpdater
+template< class EOT, class TYPE  > class peoSyncIslandMig : public Cooperative, public eoUpdater
 {
 
 public:
@@ -161,11 +162,11 @@ public:
   //! @param eoPop< EOT >& __destination - destination population in which the immigrant population are integrated.
   peoSyncIslandMig(
     unsigned __frequency,
-    eoSelect< EOT >& __select,
-    eoReplacement< EOT >& __replace,
+    selector <TYPE> & __select,
+    replacement <TYPE> & __replace,
     Topology& __topology,
-    eoPop< EOT >& __source,
-    eoPop< EOT >& __destination
+    peoData & __source,
+    peoData & __destination
   );
 
   //! Function operator to be called as checkpoint for performing the migration step. The emigrant individuals are selected
@@ -202,20 +203,15 @@ private:
 
 private:
 
-  eoPeriodicContinue< EOT > cont;
-  eoSelect< EOT >& select; 		// selection strategy
-  eoReplacement< EOT >& replace;	// replacement strategy
-  Topology& topology; 			// neighboring topology
-
-  // source and target populations
-  eoPop< EOT >& source;
-  eoPop< EOT >& destination;
-
-  // immigrants & emigrants in the queue
-  std :: queue< eoPop< EOT > > imm;
-  std :: queue< eoPop< EOT > > em;
-
-  std :: queue< Cooperative* > coop_em;
+    eoSyncContinue cont;	// continuator
+    selector <TYPE> & select;	// the selection strategy
+    replacement <TYPE> & replace;	// the replacement strategy
+    Topology& topology;		// the neighboring topology
+    peoData & source;
+    peoData & destination;
+    std :: queue< TYPE > imm;
+    std :: queue< TYPE > em;
+    std :: queue< Cooperative* > coop_em;
 
   sem_t sync;
 
@@ -227,14 +223,14 @@ private:
 };
 
 
-template< class EOT > peoSyncIslandMig< EOT > :: peoSyncIslandMig(
+template< class EOT, class TYPE > peoSyncIslandMig< EOT,TYPE > :: peoSyncIslandMig(
 
   unsigned __frequency,
-  eoSelect< EOT >& __select,
-  eoReplacement< EOT >& __replace,
+  selector <TYPE> & __select,
+  replacement <TYPE> & __replace,
   Topology& __topology,
-  eoPop< EOT >& __source,
-  eoPop< EOT >& __destination
+  peoData & __source,
+  peoData & __destination
 
 ) : cont( __frequency ), select( __select ), replace( __replace ), topology( __topology ), source( __source ), destination( __destination )
 {
@@ -244,35 +240,35 @@ template< class EOT > peoSyncIslandMig< EOT > :: peoSyncIslandMig(
 }
 
 
-template< class EOT > void peoSyncIslandMig< EOT > :: pack()
+template< class EOT, class TYPE > void peoSyncIslandMig< EOT, TYPE > :: pack()
 {
   ::pack( coop_em.front()->getKey() );
-  ::pack( em.front() );
+   em.front().pack();
   coop_em.pop();
   em.pop();
 }
 
-template< class EOT > void peoSyncIslandMig< EOT > :: unpack()
+template< class EOT, class TYPE > void peoSyncIslandMig< EOT, TYPE > :: unpack()
 {
-  eoPop< EOT > mig;
-  ::unpack( mig );
+  TYPE mig;
+  mig.unpack();
   imm.push( mig );
   explicitPassive = true;
 }
 
-template< class EOT > void peoSyncIslandMig< EOT > :: packSynchronizeReq() {
+template< class EOT, class TYPE > void peoSyncIslandMig< EOT,TYPE > :: packSynchronizeReq() {
 
   packSynchronRequest( all );
 }
 
-template< class EOT > void peoSyncIslandMig< EOT > :: emigrate()
+template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: emigrate()
 {
 
   for ( unsigned i = 0; i < out.size(); i ++ )
   {
 
-    eoPop< EOT > mig;
-    select( source, mig );
+    TYPE mig;
+    select( mig );
     em.push( mig );
     coop_em.push( out[ i ] );
     send( out[ i ] );
@@ -280,46 +276,43 @@ template< class EOT > void peoSyncIslandMig< EOT > :: emigrate()
   }
 }
 
-template< class EOT > void peoSyncIslandMig< EOT > :: immigrate()
+template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: immigrate()
 {
   assert( imm.size() );
 
   while ( imm.size() ) {
-    replace( destination, imm.front() ) ;
+    replace( imm.front() ) ;
     imm.pop();
   }
 
   printDebugMessage( "peoSyncIslandMig: receiving some immigrants." );
 }
 
-template< class EOT > void peoSyncIslandMig< EOT > :: operator()()
+template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: operator()()
 {
 
-  if ( !cont( source ) )
+  if ( cont.check() )
   {
     explicitPassive = standbyMigration = false;
     topology.setNeighbors( this, in, out ); all = topology;
     nbMigrations = 0;
-
     synchronizeCoopEx(); stop();
-
     // sending emigrants
     emigrate();
     // synchronizing
     sem_wait( &sync );
     // receiving immigrants
     immigrate();
-
     synchronizeCoopEx(); stop();
   }
 }
 
-template< class EOT > void peoSyncIslandMig< EOT > :: notifySending()
+template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: notifySending()
 {
   if ( !explicitPassive ) getOwner()->setPassive();
 }
 
-template< class EOT > void peoSyncIslandMig< EOT > :: notifyReceiving()
+template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: notifyReceiving()
 {
   nbMigrations++;
 
@@ -330,12 +323,12 @@ template< class EOT > void peoSyncIslandMig< EOT > :: notifyReceiving()
   }
 }
 
-template< class EOT > void peoSyncIslandMig< EOT > :: notifySendingSyncReq () {
+template< class EOT, class TYPE > void peoSyncIslandMig< EOT, TYPE > :: notifySendingSyncReq () {
 
   getOwner()->setPassive();
 }
 
-template< class EOT > void peoSyncIslandMig< EOT > :: notifySynchronized () {
+template< class EOT, class TYPE > void peoSyncIslandMig< EOT, TYPE > :: notifySynchronized () {
 
   standbyMigration = true;
   getOwner()->setActive();

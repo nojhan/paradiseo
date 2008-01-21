@@ -61,6 +61,8 @@ int main( int __argc, char** __argv )
   peoPSOSelect<Indi> mig_selec(topology);
   peoWorstPositionReplacement<Indi> mig_replac;
   
+ // Specific implementation (peoData.h)
+ 
   eoContinuator<Indi> cont(mig_cont, pop);
   eoSelector <Indi, peoPop<Indi> > mig_select (mig_selec,1,pop);
   eoReplace <Indi, peoPop<Indi> > mig_replace (mig_replac,pop);
@@ -90,12 +92,15 @@ int main( int __argc, char** __argv )
 // Island model
 
   eoPeriodicContinue< Indi > mig_cont2( MIG_FREQ );
-  eoContinuator<Indi> cont2(mig_cont2,pop2);
   peoPSOSelect<Indi> mig_selec2(topology2);
-  eoSelector <Indi, peoPop<Indi> > mig_select2 (mig_selec2,1,pop2);
   peoWorstPositionReplacement<Indi> mig_replac2;
-  eoReplace <Indi, peoPop<Indi> > mig_replace2 (mig_replac2,pop2);
 
+// Specific implementation (peoData.h)
+
+  eoContinuator<Indi> cont2(mig_cont2,pop2);
+  eoSelector <Indi, peoPop<Indi> > mig_select2 (mig_selec2,1,pop2);
+  eoReplace <Indi, peoPop<Indi> > mig_replace2 (mig_replac2,pop2);
+  
 
 // Island model
   

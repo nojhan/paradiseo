@@ -40,8 +40,9 @@
 #include "core/eoVector_mesg.h"
 #include "core/messaging.h"
 
-
+/**************************************************************************************/
 /**************************  DEFINE A DATA   ******************************************/
+/**************************************************************************************/
 
 class peoData {
 public:
@@ -50,6 +51,9 @@ public:
   virtual void unpack () {}
   
 };
+
+
+// Specific implementation : migration of a population
 
 template<class EOT>
 class peoPop: public eoPop<EOT>, public peoData
@@ -75,7 +79,9 @@ public:
 };
 
 
-/**************************  DEFINE A CONTINUATOR   ******************************************/
+/**************************************************************************************/
+/**************************  DEFINE A CONTINUATOR   ***********************************/
+/**************************************************************************************/
 
 class continuator
 {
@@ -83,6 +89,8 @@ public:
 	virtual bool check()=0;
 };
 
+
+// Specific implementation : migration of a population
 
 template < class EOT> class eoContinuator : public continuator{
 public:
@@ -99,7 +107,9 @@ protected:
 };
 
 
-/**************************  DEFINE A SELECTOR   ******************************************/
+/**************************************************************************************/
+/**************************  DEFINE A SELECTOR   **************************************/
+/**************************************************************************************/
 
 template < class TYPE>  class selector
 {
@@ -107,6 +117,8 @@ public:
 	virtual void operator()(TYPE &)=0;
 };
 
+
+// Specific implementation : migration of a population
 
 template < class EOT, class TYPE> class eoSelector : public selector< TYPE >{
 public:
@@ -128,13 +140,18 @@ protected:
 };
 
 
-/**************************  DEFINE A REPLACEMENT   ******************************************/
+/**************************************************************************************/
+/**************************  DEFINE A REPLACEMENT   ***********************************/
+/**************************************************************************************/
 
 template < class TYPE>  class replacement
 {
 public: 	
 	virtual void operator()(TYPE &)=0;
 };
+
+
+// Specific implementation : migration of a population
 
 template < class EOT, class TYPE> class eoReplace : public replacement< TYPE >{
 public:
@@ -150,4 +167,32 @@ protected:
 	TYPE & destination;
 };
 
+
+/**************************************************************************************/
+/************************  Continuator for synchrone migartion ************************/
+/**************************************************************************************/
+
+class eoSyncContinue: public continuator
+{
+
+public:
+    
+  eoSyncContinue (unsigned __period, unsigned __init_counter = 0): period (__period),counter (__init_counter) {}
+   
+  virtual bool check()
+  {
+  	return ((++ counter) % period) != 0 ;
+  }
+  
+     
+private:
+
+  unsigned period;
+  
+  unsigned counter;
+
+};
+
+
 #endif
+
