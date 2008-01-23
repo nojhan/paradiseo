@@ -38,9 +38,13 @@
 #define __mess_h
 
 #include <utility>
+#include <string>
 
 /* Char */
-extern void pack (const char & __c); 
+extern void pack (const char & __c);
+
+/* Boolean */
+extern void pack (const bool & __b, int __nitem = 1);
 
 /* Float */
 extern void pack (const float & __f, int __nitem = 1); 
@@ -67,7 +71,8 @@ extern void pack (const long & __l, int __nitem = 1);
 extern void pack (const unsigned long & __ul, int __nitem = 1); 
 
 /* String */
-extern void pack (const char * __str); 
+extern void pack (const char * __str);
+extern void pack (const std::string & __str);
 
 /* Pointer */
 template <class T> void pack (const T * __ptr) {
@@ -86,6 +91,9 @@ template <class U, class V> void pack (const std :: pair <U, V> & __pair) {
 
 /* Char */
 extern void unpack (char & __c); 
+
+/* Boolean */
+extern void unpack (bool & __b, int __nitem = 1);
 
 /* Float */
 extern void unpack (float & __f, int __nitem = 1); 
@@ -113,6 +121,7 @@ extern void unpack (unsigned long & __ul, int __nitem = 1);
 
 /* String */
 extern void unpack (char * __str); 
+extern void unpack (std::string & __str);
 
 /* Pointer */
 template <class T> void unpack (T * & __ptr) {

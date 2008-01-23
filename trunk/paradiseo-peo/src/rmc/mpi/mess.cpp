@@ -158,6 +158,12 @@ void pack (const char & __c) {
   MPI_Pack ((void *) & __c, 1, MPI_CHAR, mpi_buf, MPI_BUF_SIZE, & pos_buf, MPI_COMM_WORLD);
 }
 
+/* Boolean */
+void pack (const bool & __b, int __nitem){
+
+  MPI_Pack ((void *) & __b, __nitem, MPI_INT, mpi_buf, MPI_BUF_SIZE, & pos_buf, MPI_COMM_WORLD);
+}
+
 /* Float */
 void pack (const float & __f, int __nitem) {
 
@@ -214,10 +220,25 @@ void pack (const char * __str) {
   MPI_Pack ((void *) __str, len, MPI_CHAR, mpi_buf, MPI_BUF_SIZE, & pos_buf, MPI_COMM_WORLD);
 }
 
+void pack (const std::string & __str) {
+
+  size_t size = __str.size() + 1;
+  char * buffer = new char[ size ];
+  strncpy( buffer, __str.c_str(), size );
+  pack (buffer);
+  delete [] buffer;
+}
+
 /* Char */
 void unpack (char & __c) {
 
   MPI_Unpack (mpi_buf, MPI_BUF_SIZE, & pos_buf, & __c, 1, MPI_CHAR, MPI_COMM_WORLD);
+}
+
+/* Boolean */
+extern void unpack (bool & __b, int __nitem ){
+
+  MPI_Unpack (mpi_buf, MPI_BUF_SIZE, & pos_buf, & __b, __nitem, MPI_INT, MPI_COMM_WORLD);
 }
 
 /* Float */
@@ -275,3 +296,13 @@ void unpack (char * __str) {
   MPI_Unpack (mpi_buf, MPI_BUF_SIZE, & pos_buf, & len, 1, MPI_INT, MPI_COMM_WORLD);
   MPI_Unpack (mpi_buf, MPI_BUF_SIZE, & pos_buf, __str, len, MPI_CHAR, MPI_COMM_WORLD);    
 }
+void unpack (std::string & __str) {
+	 
+  char * buffer;
+  int len;
+  MPI_Unpack (mpi_buf, MPI_BUF_SIZE, & pos_buf, & len, 1, MPI_INT, MPI_COMM_WORLD);
+  MPI_Unpack (mpi_buf, MPI_BUF_SIZE, & pos_buf, buffer, len, MPI_CHAR, MPI_COMM_WORLD); 
+  __str.assign( buffer );  
+  
+}
+
