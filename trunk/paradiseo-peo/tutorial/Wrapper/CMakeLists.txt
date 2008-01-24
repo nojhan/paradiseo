@@ -60,7 +60,6 @@ ADD_EXECUTABLE(example2 main2.cpp)
 ADD_DEPENDENCIES(example2 peo rmc_mpi)
 ADD_EXECUTABLE(example3 main3.cpp)
 ADD_DEPENDENCIES(example3 peo rmc_mpi)
-
 ADD_EXECUTABLE(example4 main4.cpp)
 ADD_DEPENDENCIES(example4 peo rmc_mpi)
 ADD_EXECUTABLE(example5 main5.cpp)

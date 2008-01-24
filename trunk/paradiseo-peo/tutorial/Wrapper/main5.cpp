@@ -54,6 +54,7 @@ int main (int __argc, char * * __argv)
 
   if (getNodeRank()==1)
   {
+  	pop.sort();
     std :: cout << "\nResult before the local search\n";
     for(unsigned i=0;i<pop.size();i++)
     	std::cout<<"\n"<<pop[i].fitness();
@@ -70,6 +71,7 @@ int main (int __argc, char * * __argv)
   if (getNodeRank()==1)
   {
     std :: cout << "\nResult after the local search\n";
+    pop.sort();
     for(unsigned i=0;i<pop.size();i++)
     	std::cout<<"\n"<<pop[i].fitness();
   }

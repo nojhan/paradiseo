@@ -124,6 +124,8 @@ int main( int __argc, char** __argv )
   peo :: finalize();
   if (getNodeRank()==1)
   {
+  	pop.sort();
+  	pop2.sort();
     std::cout << "Final population :\n" << pop << std::endl;
     std::cout << "Final population :\n" << pop2	 << std::endl;
   }

@@ -47,6 +47,7 @@ int main (int __argc, char * * __argv)
   if (getNodeRank()==1)
   {
     std :: cout << "\nResult before the EA\n";
+    pop.sort();
     for(unsigned i=0;i<pop.size();i++)
     	std::cout<<"\n"<<pop[i].fitness();
     std :: cout << "\n\n";
@@ -69,6 +70,7 @@ int main (int __argc, char * * __argv)
   if (getNodeRank()==1)
   {
     std :: cout << "\nResult after the EA\n";
+    pop.sort();
     for(unsigned i=0;i<pop.size();i++)
     	std::cout<<"\n"<<pop[i].fitness();
     std :: cout << "\n\n";

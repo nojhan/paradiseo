@@ -83,5 +83,8 @@ int main( int __argc, char** __argv )
   peo :: run();
   peo :: finalize();
   if (getNodeRank()==1)
+  {
+  	pop.sort();
     std::cout << "Final population :\n" << pop << std::endl;
+  }
 }
