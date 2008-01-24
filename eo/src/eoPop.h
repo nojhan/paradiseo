@@ -125,6 +125,16 @@ class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent
           bool operator()(const EOT* a, const EOT* b) const
             { return b->operator<(*a); }
       };
+  /// helper struct for comparing (EA or PSO) 
+      struct Cmp2 
+	  {
+		bool operator()(const EOT & a,const EOT & b) const
+    	{
+    		return b.operator<(a);	
+    	}
+	  };
+      
+      
 
     /**
     sort the population. Use this member to sort in order
@@ -132,7 +142,7 @@ class eoPop: public std::vector<EOT>, public eoObject, public eoPersistent
    */
   void sort(void)
   {
-      std::sort(begin(), end(), std::greater<EOT>());
+      std::sort(begin(), end(), Cmp2());
   }
 
   /** creates a std::vector<EOT*> pointing to the individuals in descending order */

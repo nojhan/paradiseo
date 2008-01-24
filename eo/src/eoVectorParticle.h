@@ -119,6 +119,15 @@ public:
     {
         velocities.resize (_size);
     }
+    
+    /// to avoid conflicts between EA and PSO
+    bool operator<(const eoVectorParticle<FitT, PositionType, VelocityType >& _eo) const
+        {
+        	if (_eo.best() > this->best())
+    			return true;
+    		else
+    			return false;
+        }
 
     /**
     * Print-on a vector-particle
