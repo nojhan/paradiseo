@@ -71,12 +71,11 @@ int main (int __argc, char *__argv[])
 
   const double INIT_POSITION_MIN = -2.0;  // For initialize x
   const double INIT_POSITION_MAX = 2.0;   // In the case of the Rosenbrock function : -2 < x[i] < 2
-
-  const double INIT_VELOCITY_MIN = -1.;   // For initialize PSO's velocity
-  const double INIT_VELOCITY_MAX = 1.;    // ie Lesson 6 of ParadisEO-EO
-
-  const double C1 = 0.5;   // For calculate the velocity
-  const double C2 = 2.;    // ie Lesson 6 of ParadisEO-EO
+  const double INIT_VELOCITY_MIN = -1.;  
+  const double INIT_VELOCITY_MAX = 1.;    
+  const double weight = 1;
+  const double C1 = 0.5; 
+  const double C2 = 2.;    
   rng.reseed (time(0));
 
 // Stopping
@@ -85,38 +84,22 @@ int main (int __argc, char *__argv[])
   eoCheckPoint<Indi> checkpoint(continuatorPara);
 
 
-
-
-  /* In this lesson, you should define a peoEvalFuncPSO witch will allow to initialize :
-   * 
-   *    - peoSeqPopEval : using to the sequential evaluation
-   * 
-   *   OR
-   * 
-   *    - peoParaPopEval : using to the parallel evaluation
-   * 
-   */
-
 // For a parallel evaluation
   peoEvalFunc<Indi, double, const Indi& > plainEval(f);
-  peoParaPopEval< Indi > eval(plainEval);
-
-
-
-
+  peoPopEval< Indi > eval(plainEval);
 
 // Initialization
   eoUniformGenerator < double >uGen (INIT_POSITION_MIN, INIT_POSITION_MAX);
   eoInitFixedLength < Indi > random (VEC_SIZE, uGen);
 
-// Velocity (ie Lesson 6 of ParadisEO-PEO)
+// Velocity 
   eoUniformGenerator < double >sGen (INIT_VELOCITY_MIN, INIT_VELOCITY_MAX);
   eoVelocityInitFixedLength < Indi > veloRandom (VEC_SIZE, sGen);
 
-// Initializing the best (ie Lesson 6 of ParadisEO-PEO)
+// Initializing the best 
   eoFirstIsBestInit < Indi > localInit;
 
-// Flight (ie Lesson 6 of ParadisEO-PEO)
+// Flight 
   eoRealVectorBounds bndsFlight(VEC_SIZE,INIT_POSITION_MIN,INIT_POSITION_MAX);
   eoStandardFlight < Indi > flight(bndsFlight);
 
@@ -124,19 +107,24 @@ int main (int __argc, char *__argv[])
   eoPop < Indi > pop;
   pop.append (POP_SIZE, random);
 
-// Initialization
-  peoInitializer <Indi> init(eval,veloRandom,localInit,pop);
-
 // Topology (ie Lesson 6 of ParadisEO-PEO)
   eoLinearTopology<Indi> topology(NEIGHBORHOOD_SIZE);
   eoRealVectorBounds bnds(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
-  eoStandardVelocity < Indi > velocity (topology,C1,C2,bnds);
-
+  eoStandardVelocity < Indi > velocity (topology,weight,C1,C2,bnds);
+  
+// Initialization
+  eoInitializer <Indi> init(eval,veloRandom,localInit,topology,pop);
+  
 //Parallel algorithm
-  peoPSO < Indi > psa(init,checkpoint, eval, velocity, flight);
-  psa(pop);
+  eoSyncEasyPSO <Indi> psa(init,checkpoint,eval, velocity, flight);
+  peoWrapper parallelPSO( psa, pop);
+  eval.setOwner(parallelPSO);
+  
   peo :: run();
   peo :: finalize();
   if (getNodeRank()==1)
+  {
+  	pop.sort();
     std::cout << "Final population :\n" << pop << std::endl;
+  }
 }

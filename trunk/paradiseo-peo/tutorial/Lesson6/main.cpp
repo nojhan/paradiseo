@@ -34,72 +34,34 @@
 *
 */
 
-
 #include <peo>
-
-// Specific libraries (TSP)
-#include <param.h>
-#include <route.h>
-#include <route_eval.h>
-#include <route_init.h>
-#include <two_opt.h>
-#include <two_opt_init.h>
-#include <two_opt_next.h>
-#include <two_opt_incr_eval.h>
+#include <moeo>
+#include <make_library.h>
+#include <FlowShop.h>
 
 
-int main( int __argc, char** __argv )
+
+int main(int argc, char* argv[])
 {
 
-  /* In this lesson you will learn to use a multi-start.
-   *
-   * Thanks to this method, you can use several local searches together !!!
-   *
-   */
-
-// Parameter
-  const unsigned int POP_SIZE = 10;
-  srand( time(NULL) );
-
-// Initializing the ParadisEO-PEO environment
-  peo :: init( __argc, __argv );
-// Processing the command line specified parameters
-  loadParameters( __argc, __argv );
-
-// Define a Hill Climbing (you can choose an other local search)
-// ie Lessons of ParadisEO - MO
-  Route route;
-  RouteInit init;
-  init(route);
-  RouteEval eval;
-  eval(route);
-  TwoOptInit initHC;
-  TwoOptNext nextHC;
-  TwoOptIncrEval incrHC;
-  moBestImprSelect< TwoOpt > selectHC;
-  moHC< TwoOpt > hc(initHC, nextHC, incrHC, selectHC, eval);
-
-// Define a population
-  RouteInit initPop;	// Creates random Route objects
-  RouteEval evalPop;	// Offers a fitness value for a specified Route object
-  eoPop < Route > pop(POP_SIZE, initPop);
-  for ( unsigned int index = 0; index < POP_SIZE; index++ )
-    evalPop( pop[ index ] );
-
-// Setting up the parallel wrapper
-  peoSynchronousMultiStart< Route > parallelHC(hc);
-  peoParallelAlgorithmWrapper WrapHC (parallelHC, pop);
-  parallelHC.setOwner( WrapHC );
-
-  peo :: run( );
-  peo :: finalize( );
-  if ( getNodeRank() == 1 )
-    {
-
-      std :: cout << "\n\nBefore : \n" << route;
-      std :: cout << "\n\nWith the synchronous Multi-Start HCs:";
-      for ( unsigned int index = 0; index < POP_SIZE; index++ )
-        std::cout <<"\n"<< pop[ index ];
-    }
-
+	  peo :: init( argc,argv );
+      eoParser parser(argc, argv);  
+      eoState state;                
+      peoMoeoPopEval<FlowShop>& eval = do_make_para_eval(parser, state);
+      eoInit<FlowShop>& init = do_make_genotype(parser, state);
+      eoGenOp<FlowShop>& op = do_make_op(parser, state);
+      eoPop<FlowShop>& pop = do_make_pop(parser, state, init);
+      moeoArchive<FlowShop> arch;
+      eoContinue<FlowShop>& term = do_make_continue_moeo(parser, state, eval);
+      eoCheckPoint<FlowShop>& checkpoint = do_make_checkpoint_moeo(parser, state, eval, term, pop, arch);
+      eoAlgo<FlowShop>& algo = do_make_ea_moeo(parser, state, eval, checkpoint, op, arch);
+      peoWrapper parallelMOEO( algo, pop);
+      eval.setOwner(parallelMOEO);
+      peo :: run();
+      peo :: finalize();
+      if (getNodeRank()==1)
+      {
+      	pop.sort();
+   	  	std::cout << "Final population :\n" << pop << std::endl;
+      }
 }

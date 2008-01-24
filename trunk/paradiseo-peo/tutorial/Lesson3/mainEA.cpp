@@ -71,77 +71,72 @@ int main (int __argc, char *__argv[])
 
 // First algorithm
   /*****************************************************************************************/
+  
   eoGenContinue < Indi > genContPara (MAX_GEN);
   eoCombinedContinue <Indi> continuatorPara (genContPara);
   eoCheckPoint<Indi> checkpoint(continuatorPara);
-  peoEvalFunc<Indi> plainEval(f);
-  peoSeqPopEval< Indi > eval(plainEval);  // Here, the evaluation is sequential
+  peoEvalFunc<Indi> mainEval( f );
+  peoPopEval <Indi> eval(mainEval);
   eoUniformGenerator < double >uGen (INIT_POSITION_MIN, INIT_POSITION_MAX);
   eoInitFixedLength < Indi > random (VEC_SIZE, uGen);
   eoRankingSelect<Indi> selectionStrategy;
   eoSelectNumber<Indi> select(selectionStrategy,POP_SIZE);
   eoSegmentCrossover<Indi> crossover;
-  eoUniformMutation<Indi>  mutation(EPSILON);
-  eoSGATransform<Indi> transform(crossover,CROSS_RATE,mutation,MUT_RATE);
-  peoSeqTransform<Indi> eaTransform(transform); // Here, the transformation is sequential
+  eoUniformMutation<Indi>  mutation(EPSILON);  
+  peoTransform<Indi> transform(crossover,CROSS_RATE,mutation,MUT_RATE); 
+  peoPop < Indi > pop;
+  pop.append (POP_SIZE, random); 
   eoPlusReplacement<Indi> replace;
-  eoPop < Indi > pop;
-  pop.append (POP_SIZE, random);
-
-  eoPeriodicContinue <Indi> mig_cont( MIG_FREQ );  // Migration occurs periodically
-  eoRandomSelect<Indi> mig_select_one; 		// Emigrants are randomly selected
-  eoSelectNumber<Indi> mig_select (mig_select_one,MIG_SIZE);
-  eoPlusReplacement<Indi> mig_replace; 		// Immigrants replace the worse individuals
+  eoRandomSelect<Indi> mig_select_one;
+  eoSelector <Indi, peoPop<Indi> > mig_select (mig_select_one,MIG_SIZE,pop);
+  eoReplace <Indi, peoPop<Indi> > mig_replace (replace,pop);
+  peoSyncIslandMig<Indi, peoPop<Indi> > mig(MIG_FREQ,mig_select,mig_replace,topology,pop,pop);
+  checkpoint.add(mig);
+  eoEasyEA< Indi > eaAlg( checkpoint, eval, select, transform, replace );
+  peoWrapper parallelEA( eaAlg, pop);
+  eval.setOwner(parallelEA);
+  transform.setOwner(parallelEA);
+  mig.setOwner(parallelEA);
 
   /*****************************************************************************************/
 
 // Second algorithm (on the same model but with others names)
   /*****************************************************************************************/
+  
   eoGenContinue < Indi > genContPara2 (MAX_GEN);
   eoCombinedContinue <Indi> continuatorPara2 (genContPara2);
   eoCheckPoint<Indi> checkpoint2(continuatorPara2);
-  peoEvalFunc<Indi> plainEval2(f);
-  peoSeqPopEval< Indi > eval2(plainEval2);
+  peoEvalFunc<Indi> mainEval2( f );
+  peoPopEval <Indi> eval2(mainEval2);
   eoUniformGenerator < double >uGen2 (INIT_POSITION_MIN, INIT_POSITION_MAX);
   eoInitFixedLength < Indi > random2 (VEC_SIZE, uGen2);
   eoRankingSelect<Indi> selectionStrategy2;
   eoSelectNumber<Indi> select2(selectionStrategy2,POP_SIZE);
   eoSegmentCrossover<Indi> crossover2;
-  eoUniformMutation<Indi>  mutation2(EPSILON);
-  eoSGATransform<Indi> transform2(crossover2,CROSS_RATE,mutation2,MUT_RATE);
-  peoSeqTransform<Indi> eaTransform2(transform2);
+  eoUniformMutation<Indi>  mutation2(EPSILON);  
+  peoTransform<Indi> transform2(crossover2,CROSS_RATE,mutation2,MUT_RATE); 
+  peoPop < Indi > pop2;
+  pop2.append (POP_SIZE, random2); 
   eoPlusReplacement<Indi> replace2;
-  eoPop < Indi > pop2;
-  pop2.append (POP_SIZE, random2);
-  eoPeriodicContinue <Indi> mig_cont2( MIG_FREQ );
   eoRandomSelect<Indi> mig_select_one2;
-  eoSelectNumber<Indi> mig_select2 (mig_select_one2,MIG_SIZE);
-  eoPlusReplacement<Indi> mig_replace2;
+  eoSelector <Indi, peoPop<Indi> > mig_select2 (mig_select_one2,MIG_SIZE,pop2);
+  eoReplace <Indi, peoPop<Indi> > mig_replace2 (replace2,pop2);
+  peoSyncIslandMig<Indi, peoPop<Indi> > mig2(MIG_FREQ,mig_select2,mig_replace2,topology,pop2,pop2);
+  checkpoint2.add(mig2);
+  eoEasyEA< Indi > eaAlg2( checkpoint2, eval2, select2, transform2, replace2 );
+  peoWrapper parallelEA2( eaAlg2, pop2);
+  eval2.setOwner(parallelEA2);
+  transform2.setOwner(parallelEA2);
+  mig2.setOwner(parallelEA2);
 
   /*****************************************************************************************/
-
-// You can choose between :
-//
-//      - Synchronous communication : peoSyncIslandMig<Indi> mig(MIG_FREQ,mig_select,mig_replace,topology,pop,pop);
-//      - Asynchronous communication : peoAsyncIslandMig<Indi> mig(mig_cont,mig_select,mig_replace,topology,pop,pop);
-// With a grid, you should use an asynchronous communication
-  peoAsyncIslandMig<Indi> mig(mig_cont,mig_select,mig_replace,topology,pop,pop2);
-  checkpoint.add(mig);
-  peoAsyncIslandMig<Indi> mig2(mig_cont2,mig_select2,mig_replace2,topology,pop2,pop);
-  checkpoint2.add(mig2);
-
-// Initialization of the algorithms
-  peoEA<Indi> Algo(checkpoint,eval,select,eaTransform,replace);
-  mig.setOwner(Algo);
-  Algo(pop);
-  peoEA<Indi> Algo2(checkpoint2,eval2,select2,eaTransform2,replace2);
-  mig2.setOwner(Algo2);
-  Algo2(pop2);
 
   peo :: run();
   peo :: finalize();
   if (getNodeRank()==1)
     {
+      pop.sort();
+      pop2.sort();
       std::cout << "Final population 1 :\n" << pop << std::endl;
       std::cout << "Final population 2 :\n" << pop2 << std::endl;
     }

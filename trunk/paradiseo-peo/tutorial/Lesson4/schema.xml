@@ -7,8 +7,6 @@
 		
 		<node name="1" num_workers="0">
 		<runner>1</runner>
-		<runner>2</runner>
-		<runner>3</runner>
 		</node>
 		
 		<node name="2" num_workers="1">

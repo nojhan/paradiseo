@@ -37,15 +37,10 @@
 #include <peo>
 #include <es.h>
 
-typedef eoReal<double> Indi;
-
-//Evaluation function
+typedef eoRealParticle < double >Indi;
 
 double f (const Indi & _indi)
 {
-  // Rosenbrock function f(x) = 100*(x[1]-x[0]^2)^2+(1-x[0])^2
-  // => optimal : f* = 0 , with x* =(1,1)
-
   double sum;
   sum=_indi[1]-pow(_indi[0],2);
   sum=100*pow(sum,2);
@@ -53,63 +48,74 @@ double f (const Indi & _indi)
   return (-sum);
 }
 
-int main (int __argc, char *__argv[])
+template <class EOT>
+class eoResizerInit: public eoInit<EOT>
 {
+    public:
+
+    typedef typename EOT::AtomType AtomType;
+
+        eoResizerInit(unsigned _size)
+            : size(_size){}
+
+        virtual void operator()(EOT& chrom)
+        {
+            chrom.resize(size);
+            chrom.invalidate();
+        }
+    private :
+        unsigned size;
+};
 
 
-// Initialization of the parallel environment : thanks this instruction, ParadisEO-PEO can initialize himself
+int main( int __argc, char** __argv )
+{
+	
   peo :: init( __argc, __argv );
-
-//Parameters
-
-  const unsigned int VEC_SIZE = 2;  // Don't change this parameter when you are resolving the Rosenbrock function
-  const unsigned int POP_SIZE = 20; // As with a sequential algorithm, you change the size of the population
-  const unsigned int MAX_GEN = 300; // Define the number of maximal generation
-  const double INIT_POSITION_MIN = -2.0;  // For initialize x
-  const double INIT_POSITION_MAX = 2.0;   // In the case of the Rosenbrock function : -2 < x[i] < 2
-  const float CROSS_RATE = 0.8; // Crossover rate
-  const double EPSILON = 0.01;  // Range for real uniform mutation
-  const float MUT_RATE = 0.3;   // Mutation rate
+  const unsigned int VEC_SIZE = 2;  
+  const unsigned int POP_SIZE = 20; 
+  const unsigned int NEIGHBORHOOD_SIZE= 6;
+  const unsigned int MAX_GEN = 300; 
+  const double INIT_POSITION_MIN = -2.0;
+  const double INIT_POSITION_MAX = 2.0; 
+  const double INIT_VELOCITY_MIN = -1.;
+  const double INIT_VELOCITY_MAX = 1.;
+  const double omega = 1;  
+  const double C1 = 0.5;
+  const double C2 = 2.; 
   rng.reseed (time(0));
-
-// Stopping
   eoGenContinue < Indi > genContPara (MAX_GEN);
   eoCombinedContinue <Indi> continuatorPara (genContPara);
   eoCheckPoint<Indi> checkpoint(continuatorPara);
-
-// For a parallel evaluation
-  
-  peoEvalFunc<Indi> plainEval(f);
-  peoPopEval <Indi> eval(plainEval);
-
-
-// Initialization
   eoUniformGenerator < double >uGen (INIT_POSITION_MIN, INIT_POSITION_MAX);
-  eoInitFixedLength < Indi > random (VEC_SIZE, uGen);
-
-// Selection
-  eoRankingSelect<Indi> selectionStrategy;
-  eoSelectNumber<Indi> select(selectionStrategy,POP_SIZE);
-
-// Transformation
-  eoSegmentCrossover<Indi> crossover; // Crossover
-  eoUniformMutation<Indi>  mutation(EPSILON);  // Mutation
-  eoSGATransform<Indi> transform(crossover,CROSS_RATE,mutation,MUT_RATE);
+  eoUniformGenerator < double >sGen (INIT_VELOCITY_MIN, INIT_VELOCITY_MAX);
+  eoVelocityInitFixedLength < Indi > veloRandom (VEC_SIZE, sGen);
+  eoFirstIsBestInit < Indi > localInit;
+  eoRealVectorBounds bndsFlight(VEC_SIZE,INIT_POSITION_MIN,INIT_POSITION_MAX);
+  eoStandardFlight < Indi > flight(bndsFlight);
+  eoLinearTopology<Indi> topology(NEIGHBORHOOD_SIZE);
+  eoRealVectorBounds bnds(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
+  eoStandardVelocity < Indi > velocity (topology,omega,C1,C2,bnds);
   
-// Replacement
-  eoPlusReplacement<Indi> replace;
+  eoResizerInit<Indi> sizeInit(VEC_SIZE);
+  // need at least a size initialization
+  eoPop < Indi > pop(POP_SIZE,sizeInit);
+  eoInitFixedLength < Indi > randomSeq (VEC_SIZE, uGen);
+  peoMultiStart <Indi> initRandom (randomSeq);
+  peoWrapper random (initRandom,pop);
+  initRandom.setOwner(random);
+  peo :: run( );
+  peo :: finalize( );  
 
-// Creation of the population
-  eoPop < Indi > pop;
-  pop.append (POP_SIZE, random);
-  
-// Algorithm
-  eoEasyEA< Indi > eaAlg( checkpoint, eval, select, transform, replace );
+// Parallel algorithm
 
-//Parallel algorithm
-  peoWrapper parallelEA( eaAlg, pop);
-  eval.setOwner(parallelEA);
-  
+  peo :: init (__argc, __argv);
+  peoEvalFunc<Indi, double, const Indi& > plainEval(f);
+  peoPopEval< Indi > eval(plainEval);
+  eoInitializer <Indi> init(eval,veloRandom,localInit,topology,pop);
+  eoSyncEasyPSO <Indi> psa(init,checkpoint,eval, velocity, flight);
+  peoWrapper parallelPSO( psa, pop);
+  eval.setOwner(parallelPSO);
   peo :: run();
   peo :: finalize();
   if (getNodeRank()==1)
