@@ -55,6 +55,39 @@
  * Besides, note that, contrary to the mono-objective case (and to EO) where the fitness value of a solution is confused with its objective value,
  * the fitness value differs of the objectives values in the multi-objective case.
  */
+
+/*
+ template < typename DataType, typename DataTypeEx > struct Wrapper {
+
+	Wrapper() {}
+
+	Wrapper( const DataType& data )
+		: embededData( data ) {}
+
+	Wrapper( const Wrapper& wrapper )
+		: embededData( wrapper.embededData ), embededDataEx( wrapper.embededDataEx ) {}
+
+	operator const DataType& () const { return embededData; }
+
+	Wrapper& operator= ( const Wrapper& wrapper ) {
+
+		embededData = wrapper.embededData;
+		embededDataEx = wrapper.embededDataEx;
+		return *this;
+	}
+
+	Wrapper& operator= ( const DataType& data ) {
+
+		embededData = data;
+		return *this;
+	}
+
+	DataType embededData;
+	DataTypeEx embededDataEx;
+};
+ **/
+
+
 template < class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity >
 class MOEO : public EO < MOEOObjectiveVector >
   {
@@ -65,6 +98,7 @@ class MOEO : public EO < MOEOObjectiveVector >
 
     /** the fitness type of a solution */
     typedef MOEOFitness Fitness;
+//	typedef Wrapper< MOEOFitness, MOEOObjectiveVector > Fitness;
 
     /** the diversity type of a solution */
     typedef MOEODiversity Diversity;
@@ -142,6 +176,8 @@ class MOEO : public EO < MOEOObjectiveVector >
           {
             throw std::runtime_error("invalid fitness in MOEO");
           }
+//         const_cast< Fitness& >( fitnessValue ).embededDataEx = objectiveVectorValue;
+
         return fitnessValue;
       }
 
@@ -313,5 +349,7 @@ class MOEO : public EO < MOEOObjectiveVector >
     bool invalidDiversityValue;
 
   };
+
+
 
 #endif /*MOEO_H_*/
