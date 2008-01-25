@@ -41,8 +41,7 @@ PartRouteEval :: PartRouteEval (float __from,
                                 float __to
                                ) : from (__from),
     to (__to)
-{
-}
+{}
 
 void PartRouteEval :: operator () (Route & __route)
 {

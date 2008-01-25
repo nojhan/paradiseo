@@ -1,4 +1,4 @@
-/* 
+/*
 * <rmc.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -46,18 +46,21 @@ static std :: vector <Worker *> worker_threads; /* Worker threads */
 static Communicator* communicator_thread = NULL; /* Communicator thread */
 
 
-void runRMC () {
+void runRMC ()
+{
 
   /* Worker(s) ? */
-  for (unsigned i = 0; i < my_node -> num_workers; i ++) {
-    worker_threads.push_back (new Worker);
-    addThread (worker_threads.back(), ll_threads);
-  }
+  for (unsigned i = 0; i < my_node -> num_workers; i ++)
+    {
+      worker_threads.push_back (new Worker);
+      addThread (worker_threads.back(), ll_threads);
+    }
 
   wakeUpCommunicator ();
 }
 
-void initRMC (int & __argc, char * * & __argv) {
+void initRMC (int & __argc, char * * & __argv)
+{
 
   /* Communication */
   initCommunication ();
@@ -71,14 +74,16 @@ void initRMC (int & __argc, char * * & __argv) {
     initScheduler ();
 }
 
-void finalizeRMC () {
+void finalizeRMC ()
+{
 
   printDebugMessage ("before join threads RMC");
 
   joinThreads (ll_threads);
-  for (unsigned i = 0; i < worker_threads.size(); i++ ) {
-    delete worker_threads [i];
-  }
+  for (unsigned i = 0; i < worker_threads.size(); i++ )
+    {
+      delete worker_threads [i];
+    }
   worker_threads.clear ();
   delete communicator_thread;
 

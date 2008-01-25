@@ -1,4 +1,4 @@
-/* 
+/*
 * <runner.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -48,7 +48,7 @@
 #include "../rmc/mpi/schema.h"
 
 
-static std :: vector <pthread_t *> ll_threads; /* Low-level runner threads */ 
+static std :: vector <pthread_t *> ll_threads; /* Low-level runner threads */
 
 static std :: vector <Runner *> the_runners;
 
@@ -66,7 +66,8 @@ extern int getNumberOfNodes ();
 extern void wakeUpCommunicator ();
 
 
-Runner :: Runner () {
+Runner :: Runner ()
+{
 
   exec_id = 0;
   def_id = ++ num_def_runners;
@@ -77,35 +78,41 @@ Runner :: Runner () {
   sem_init (& sem_cntxt, 0, 0);
 }
 
-RUNNER_ID Runner :: getDefinitionID () {
+RUNNER_ID Runner :: getDefinitionID ()
+{
 
   return def_id;
 }
 
-RUNNER_ID Runner :: getExecutionID () {
+RUNNER_ID Runner :: getExecutionID ()
+{
 
   return exec_id;
 }
 
-void Runner :: setExecutionID (const RUNNER_ID& execution_id) {
+void Runner :: setExecutionID (const RUNNER_ID& execution_id)
+{
 
   exec_id = execution_id;
 }
 
-Runner * getRunner (RUNNER_ID __key) {
+Runner * getRunner (RUNNER_ID __key)
+{
 
   return dynamic_cast <Runner *> (getCommunicable (__key));
 }
 
-void initializeContext () {
+void initializeContext ()
+{
 
   num_local_exec_runners = 0;
 
   // setting up the execution IDs & counting the number of local exec. runners
-  for (unsigned i = 0; i < the_runners.size (); i ++) {
-    the_runners [i] -> setExecutionID ( my_node -> execution_id_run[ i ] );
-    if (the_runners [i] -> isAssignedLocally ()) num_local_exec_runners ++;
-  }
+  for (unsigned i = 0; i < the_runners.size (); i ++)
+    {
+      the_runners [i] -> setExecutionID ( my_node -> execution_id_run[ i ] );
+      if (the_runners [i] -> isAssignedLocally ()) num_local_exec_runners ++;
+    }
 
   collectiveCountOfRunners( &num_local_exec_runners, &num_exec_runners );
 
@@ -115,17 +122,20 @@ void initializeContext () {
     if (the_runners [i] -> isAssignedLocally ()) the_runners [i] -> notifyContextInitialized ();
 }
 
-void Runner :: waitStarting () {
+void Runner :: waitStarting ()
+{
 
   sem_wait (& sem_start);
 }
 
-void Runner :: waitContextInitialization () {
+void Runner :: waitContextInitialization ()
+{
 
   sem_wait (& sem_cntxt);
 }
 
-void Runner :: start () {
+void Runner :: start ()
+{
 
   setActive ();
 
@@ -136,46 +146,54 @@ void Runner :: start () {
   terminate ();
 }
 
-void startRunners () {
+void startRunners ()
+{
 
   /* Runners */
   for (unsigned i = 0; i < the_runners.size (); i ++)
-    if (the_runners [i] -> isAssignedLocally ()) {
-      addThread (the_runners [i], ll_threads);
-      the_runners [i] -> waitStarting ();
-    }
+    if (the_runners [i] -> isAssignedLocally ())
+      {
+        addThread (the_runners [i], ll_threads);
+        the_runners [i] -> waitStarting ();
+      }
 
   printDebugMessage ("launched the parallel runners");
 }
 
-void joinRunners () {
+void joinRunners ()
+{
 
   joinThreads (ll_threads);
   the_runners.clear();
 }
 
-bool atLeastOneActiveRunner () {
+bool atLeastOneActiveRunner ()
+{
 
   return num_exec_runners;
 }
 
-unsigned numberOfActiveRunners () {
+unsigned numberOfActiveRunners ()
+{
 
   return num_exec_runners;
 }
 
-void Runner :: notifyContextInitialized () {
+void Runner :: notifyContextInitialized ()
+{
 
   sem_post (& sem_cntxt);
 }
 
-void Runner :: notifySendingTermination () {
+void Runner :: notifySendingTermination ()
+{
 
   printDebugMessage ("I am informed that everyone received my termination notification.");
   setPassive ();
 }
 
-void unpackTerminationOfRunner () {
+void unpackTerminationOfRunner ()
+{
 
   RUNNER_ID finished_id;
   unpack (finished_id);
@@ -184,17 +202,19 @@ void unpackTerminationOfRunner () {
 
   printDebugMessage ("I'm noticed of the termination of a runner");
 
-  if (!num_exec_runners) {
+  if (!num_exec_runners)
+    {
 
-    printDebugMessage ("All the runners have terminated - now stopping the reactive threads.");
-    stopReactiveThreads ();
-    printDebugMessage ("Reactive threads stopped!");
-  }
+      printDebugMessage ("All the runners have terminated - now stopping the reactive threads.");
+      stopReactiveThreads ();
+      printDebugMessage ("Reactive threads stopped!");
+    }
 
   wakeUpCommunicator ();
 }
 
-void initRunnersEnv () {
+void initRunnersEnv ()
+{
 
   ll_threads.clear ();
   the_runners.clear ();

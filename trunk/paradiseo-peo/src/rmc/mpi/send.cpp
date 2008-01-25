@@ -1,4 +1,4 @@
-/* 
+/*
 * <send.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -50,13 +50,15 @@
 #define TO_ALL -1
 
 
-typedef struct {
+typedef struct
+  {
 
-  Communicable * comm;
-  int to;
-  int tag;
+    Communicable * comm;
+    int to;
+    int tag;
 
-} SEND_REQUEST;
+  }
+SEND_REQUEST;
 
 
 static std :: queue <SEND_REQUEST> mess;
@@ -66,15 +68,17 @@ static sem_t sem_send;
 static bool contextInitialized = false;
 
 
-void initSending () {
+void initSending ()
+{
 
   static bool initializedSemaphore = false;
 
   mess = std :: queue <SEND_REQUEST> ();
 
-  if (initializedSemaphore) {
-    sem_destroy(& sem_send);
-  }
+  if (initializedSemaphore)
+    {
+      sem_destroy(& sem_send);
+    }
 
   sem_init (& sem_send, 0, 1);
   initializedSemaphore = true;
@@ -82,9 +86,10 @@ void initSending () {
   contextInitialized = false;
 }
 
-void send (Communicable * __comm, int __to, int __tag) {
+void send (Communicable * __comm, int __to, int __tag)
+{
 
-  SEND_REQUEST req;  
+  SEND_REQUEST req;
   req.comm = __comm;
   req.to = __to;
   req.tag = __tag;
@@ -95,74 +100,79 @@ void send (Communicable * __comm, int __to, int __tag) {
   wakeUpCommunicator ();
 }
 
-void sendToAll (Communicable * __comm, int __tag) {
+void sendToAll (Communicable * __comm, int __tag)
+{
 
   send (__comm, TO_ALL, __tag);
 }
 
 extern void initializeContext ();
 
-void sendMessages () {
+void sendMessages ()
+{
 
-  if (! contextInitialized) {
-    contextInitialized = true;
-    initializeContext();
-  }
+  if (! contextInitialized)
+    {
+      contextInitialized = true;
+      initializeContext();
+    }
 
   sem_wait (& sem_send);
 
-  while (! mess.empty ()) {
+  while (! mess.empty ())
+    {
 
-    SEND_REQUEST req = mess.front ();
+      SEND_REQUEST req = mess.front ();
 
-    Communicable * comm = req.comm;
+      Communicable * comm = req.comm;
 
-    initMessage ();
+      initMessage ();
 
-    switch (req.tag) {
+      switch (req.tag)
+        {
 
-    case RUNNER_STOP_TAG:
-      dynamic_cast <Runner *> (comm) -> packTermination ();
-      dynamic_cast <Runner *> (comm) -> notifySendingTermination ();
-      break;
+        case RUNNER_STOP_TAG:
+          dynamic_cast <Runner *> (comm) -> packTermination ();
+          dynamic_cast <Runner *> (comm) -> notifySendingTermination ();
+          break;
 
-    case COOP_TAG:
-      dynamic_cast <Cooperative *> (comm) -> pack ();
-      dynamic_cast <Cooperative *> (comm) -> notifySending ();
-      break;
+        case COOP_TAG:
+          dynamic_cast <Cooperative *> (comm) -> pack ();
+          dynamic_cast <Cooperative *> (comm) -> notifySending ();
+          break;
 
-    case SYNCHRONIZE_REQ_TAG:
-      dynamic_cast <Cooperative *> (comm) -> packSynchronizeReq ();
-      dynamic_cast <Cooperative *> (comm) -> notifySendingSyncReq ();
-      break;
+        case SYNCHRONIZE_REQ_TAG:
+          dynamic_cast <Cooperative *> (comm) -> packSynchronizeReq ();
+          dynamic_cast <Cooperative *> (comm) -> notifySendingSyncReq ();
+          break;
 
-    case SCHED_REQUEST_TAG:
-      dynamic_cast <Service *> (comm) -> packResourceRequest ();
-      dynamic_cast <Service *> (comm) -> notifySendingResourceRequest ();
-      break;
+        case SCHED_REQUEST_TAG:
+          dynamic_cast <Service *> (comm) -> packResourceRequest ();
+          dynamic_cast <Service *> (comm) -> notifySendingResourceRequest ();
+          break;
 
-    case TASK_RESULT_TAG:
-      dynamic_cast <Worker *> (comm) -> packResult ();
-      dynamic_cast <Worker *> (comm) -> notifySendingResult ();
-      break;
+        case TASK_RESULT_TAG:
+          dynamic_cast <Worker *> (comm) -> packResult ();
+          dynamic_cast <Worker *> (comm) -> notifySendingResult ();
+          break;
 
-    case TASK_DONE_TAG:
-      dynamic_cast <Worker *> (comm) -> packTaskDone ();
-      dynamic_cast <Worker *> (comm) -> notifySendingTaskDone ();
-      break;
+        case TASK_DONE_TAG:
+          dynamic_cast <Worker *> (comm) -> packTaskDone ();
+          dynamic_cast <Worker *> (comm) -> notifySendingTaskDone ();
+          break;
 
-    default :
-      break;
+        default :
+          break;
 
-    };
+        };
 
-    if (req.to == TO_ALL)
-      sendMessageToAll (req.tag);
-    else
-      sendMessage (req.to, req.tag);
+      if (req.to == TO_ALL)
+        sendMessageToAll (req.tag);
+      else
+        sendMessage (req.to, req.tag);
 
-    mess.pop ();
-  }
+      mess.pop ();
+    }
 
   sem_post (& sem_send);
 }

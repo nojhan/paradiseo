@@ -1,4 +1,4 @@
-/* 
+/*
 * <node.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -43,50 +43,57 @@
 #include "mess.h"
 
 
-class MPIThreadedEnv {
+class MPIThreadedEnv
+  {
 
-public:
+  public:
 
-  static void init ( int * __argc, char * * * __argv ) {
+    static void init ( int * __argc, char * * * __argv )
+    {
 
-    static MPIThreadedEnv mpiThreadedEnv( __argc, __argv );
-  }
-
-  static void finalize () {
-
-    static bool finalizedEnvironment = false;
-
-    if (! finalizedEnvironment ) {
-
-      MPI_Finalize ();
-      finalizedEnvironment = true;
+      static MPIThreadedEnv mpiThreadedEnv( __argc, __argv );
     }
-  }
 
-private:
+    static void finalize ()
+    {
 
-  /* No instance of this class can be created outside its domain! */
-  MPIThreadedEnv ( int * __argc, char * * * __argv ) {
+      static bool finalizedEnvironment = false;
 
-    static bool MPIThreadedEnvInitialized = false;
-    int provided = 1;
+      if (! finalizedEnvironment )
+        {
 
-    if (! MPIThreadedEnvInitialized) {
-
-      MPI_Init_thread (__argc, __argv, MPI_THREAD_FUNNELED, & provided);  
-
-      assert (provided == MPI_THREAD_FUNNELED); /* The MPI implementation must be multi-threaded.
-					       Yet, only one thread performs the comm.
-					       operations */
-      MPIThreadedEnvInitialized = true;
+          MPI_Finalize ();
+          finalizedEnvironment = true;
+        }
     }
-  }
 
-  ~MPIThreadedEnv() {
+  private:
 
-    finalize ();
-  }
-};
+    /* No instance of this class can be created outside its domain! */
+    MPIThreadedEnv ( int * __argc, char * * * __argv )
+    {
+
+      static bool MPIThreadedEnvInitialized = false;
+      int provided = 1;
+
+      if (! MPIThreadedEnvInitialized)
+        {
+
+          MPI_Init_thread (__argc, __argv, MPI_THREAD_FUNNELED, & provided);
+
+          assert (provided == MPI_THREAD_FUNNELED); /* The MPI implementation must be multi-threaded.
+          					       Yet, only one thread performs the comm.
+          					       operations */
+          MPIThreadedEnvInitialized = true;
+        }
+    }
+
+    ~MPIThreadedEnv()
+    {
+
+      finalize ();
+    }
+  };
 
 
 static int rk, sz; /* Rank & size */
@@ -96,27 +103,32 @@ static std :: map <std :: string, int> name_to_rk;
 static std :: vector <std :: string> rk_to_name;
 
 
-int getNodeRank () {
+int getNodeRank ()
+{
 
   return rk;
 }
 
-int getNumberOfNodes () {
+int getNumberOfNodes ()
+{
 
   return sz;
 }
 
-void collectiveCountOfRunners ( unsigned int* num_local_exec_runners, unsigned int* num_exec_runners ) {
+void collectiveCountOfRunners ( unsigned int* num_local_exec_runners, unsigned int* num_exec_runners )
+{
 
   MPI_Allreduce( num_local_exec_runners, num_exec_runners, 1, MPI_UNSIGNED, MPI_SUM, MPI_COMM_WORLD );
 }
 
-int getRankFromName (const std :: string & __name) {
+int getRankFromName (const std :: string & __name)
+{
 
-  return atoi (__name.c_str ());  
+  return atoi (__name.c_str ());
 }
 
-void initNode (int * __argc, char * * * __argv) {
+void initNode (int * __argc, char * * * __argv)
+{
 
   rk_to_name.clear ();
   name_to_rk.clear ();
@@ -130,12 +142,13 @@ void initNode (int * __argc, char * * * __argv) {
   char names [sz] [MPI_MAX_PROCESSOR_NAME];
   int len;
 
-  /* Processor names */ 
-  MPI_Get_processor_name (names [0], & len);   /* Me */  
+  /* Processor names */
+  MPI_Get_processor_name (names [0], & len);   /* Me */
   MPI_Allgather (names, MPI_MAX_PROCESSOR_NAME, MPI_CHAR, names, MPI_MAX_PROCESSOR_NAME, MPI_CHAR, MPI_COMM_WORLD); /* Broadcast */
 
-  for (int i = 0; i < sz; i ++) {
-    rk_to_name.push_back (names [i]);
-    name_to_rk [names [i]] = i;
-  }
+  for (int i = 0; i < sz; i ++)
+    {
+      rk_to_name.push_back (names [i]);
+      name_to_rk [names [i]] = i;
+    }
 }

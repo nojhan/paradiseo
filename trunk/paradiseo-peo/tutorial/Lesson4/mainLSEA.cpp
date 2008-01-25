@@ -58,13 +58,13 @@ int main (int __argc, char * * __argv)
 {
 
   peo :: init (__argc, __argv);
-  loadParameters (__argc, __argv); 
+  loadParameters (__argc, __argv);
   RouteInit route_init;
   RouteEval full_eval;
-  OrderXover order_cross; 
+  OrderXover order_cross;
   PartialMappedXover pm_cross;
   EdgeXover edge_cross;
-  CitySwap city_swap_mut;  
+  CitySwap city_swap_mut;
 
 // Local search
   TwoOptInit pmx_two_opt_init;
@@ -80,17 +80,17 @@ int main (int __argc, char * * __argv)
   peo :: finalize( );
 
   if (getNodeRank()==1)
-  {
-    std :: cout << "\nResult before the EA\n";
-    pop.sort();
-    for(unsigned i=0;i<pop.size();i++)
-    	std::cout<<"\n"<<pop[i].fitness();
-    std :: cout << "\n\n";
-  }
+    {
+      std :: cout << "\nResult before the EA\n";
+      pop.sort();
+      for (unsigned i=0;i<pop.size();i++)
+        std::cout<<"\n"<<pop[i].fitness();
+      std :: cout << "\n\n";
+    }
 
 // EA
   peo :: init (__argc, __argv);
-  eoGenContinue <Route> cont (NUM_GEN); 
+  eoGenContinue <Route> cont (NUM_GEN);
   eoCheckPoint <Route> checkpoint (cont);
   eoEvalFuncCounter< Route > eval(full_eval);
   eoStochTournamentSelect <Route> select_one;
@@ -100,14 +100,14 @@ int main (int __argc, char * * __argv)
   eoEasyEA< Route > eaAlg( checkpoint, eval, select, transform, replace );
   peoWrapper parallelEA( eaAlg, pop);
   peo :: run ();
-  peo :: finalize (); 
+  peo :: finalize ();
 
   if (getNodeRank()==1)
-  {
-    std :: cout << "\nResult after the EA\n";
-    pop.sort();
-    for(unsigned i=0;i<pop.size();i++)
-    	std::cout<<"\n"<<pop[i].fitness();
-    std :: cout << "\n\n";
-  }
+    {
+      std :: cout << "\nResult after the EA\n";
+      pop.sort();
+      for (unsigned i=0;i<pop.size();i++)
+        std::cout<<"\n"<<pop[i].fitness();
+      std :: cout << "\n\n";
+    }
 }

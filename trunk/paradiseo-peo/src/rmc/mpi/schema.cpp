@@ -1,4 +1,4 @@
-/* 
+/*
 * <schema.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -51,17 +51,19 @@ Node * my_node;
 static unsigned maxSpecifiedRunnerID = 0;
 
 
-RANK_ID getRankOfRunner (RUNNER_ID __key) {
+RANK_ID getRankOfRunner (RUNNER_ID __key)
+{
 
   for (unsigned i = 0; i < the_schema.size (); i ++)
     for (unsigned j = 0; j < the_schema [i].id_run.size (); j ++)
       if (the_schema [i].id_run [j] == __key)
         return the_schema [i].rk;
   assert (false);
-  return 0; 
+  return 0;
 }
 
-static void loadNode (int __rk_sched) {
+static void loadNode (int __rk_sched)
+{
 
   Node node;
 
@@ -72,55 +74,62 @@ static void loadNode (int __rk_sched) {
   /* ATT: num_workers */
   node.num_workers = atoi (getAttributeValue ("num_workers").c_str ());
 
-  while (true) {
+  while (true)
+    {
 
-    /* TAG: <runner> | </node> */
-    std :: string name = getNextNode ();
-    assert (name == "runner" || name == "node");
-    if (name == "runner") {
-      /* TAG: </node> */
-      node.id_run.push_back (atoi (getNextNode ().c_str ()));
-      if ( node.id_run.back() > maxSpecifiedRunnerID )
-        maxSpecifiedRunnerID = node.id_run.back();
-      /* TAG: </runner> */
-      assert (getNextNode () == "runner");
+      /* TAG: <runner> | </node> */
+      std :: string name = getNextNode ();
+      assert (name == "runner" || name == "node");
+      if (name == "runner")
+        {
+          /* TAG: </node> */
+          node.id_run.push_back (atoi (getNextNode ().c_str ()));
+          if ( node.id_run.back() > maxSpecifiedRunnerID )
+            maxSpecifiedRunnerID = node.id_run.back();
+          /* TAG: </runner> */
+          assert (getNextNode () == "runner");
+        }
+      else
+        {
+          /* TAG: </node> */
+          node.execution_id_run = node.id_run;
+          the_schema.push_back (node);
+          break;
+        }
     }
-    else {
-      /* TAG: </node> */
-      node.execution_id_run = node.id_run;
-      the_schema.push_back (node); 
-      break;
-    }
-  }
 }
 
-static void loadGroup () {
+static void loadGroup ()
+{
 
   std :: string name;
 
   /* ATT: scheduler*/
   int rk_sched = getRankFromName (getAttributeValue ("scheduler"));
 
-  while (true) {
+  while (true)
+    {
 
-    /* TAG: <node> | </group> */
-    name = getNextNode ();
-    assert (name == "node" || name == "group");
-    if (name == "node")
-      /* TAG: <node> */
-      loadNode (rk_sched);
-    else
-      /* TAG: </group> */
-      break;
-  }
+      /* TAG: <node> | </group> */
+      name = getNextNode ();
+      assert (name == "node" || name == "group");
+      if (name == "node")
+        /* TAG: <node> */
+        loadNode (rk_sched);
+      else
+        /* TAG: </group> */
+        break;
+    }
 }
 
-bool isScheduleNode () {
+bool isScheduleNode ()
+{
 
   return my_node -> rk == my_node -> rk_sched;
 }
 
-void loadSchema (const char * __filename) {
+void loadSchema (const char * __filename)
+{
 
   openXMLDocument (__filename);
 
@@ -133,37 +142,43 @@ void loadSchema (const char * __filename) {
   the_schema.clear();
   maxSpecifiedRunnerID = 0;
 
-  while (true) {
+  while (true)
+    {
 
-    /* TAG: <group> | </schema> */
-    name = getNextNode ();
-    assert (name == "group" || name == "schema");
-    if (name == "group")
-      /* TAG: <group> */
-      loadGroup ();
-    else
-      /* TAG: </schema> */
-      break;
-  }
-
-
-  std :: set<unsigned> uniqueRunnerIDs; unsigned nbUniqueIDs = 0;
-  for (unsigned i = 0; i < the_schema.size (); i ++) {
-    for (unsigned j = 0; j < the_schema [i].id_run.size(); j ++) {
-      uniqueRunnerIDs.insert( the_schema [i].id_run[j] );
-      /* In case a duplicate ID has been found */
-      if ( uniqueRunnerIDs.size() == nbUniqueIDs ) {
-        the_schema [i].execution_id_run[j] = ++maxSpecifiedRunnerID;
-      }
-      nbUniqueIDs = uniqueRunnerIDs.size();
+      /* TAG: <group> | </schema> */
+      name = getNextNode ();
+      assert (name == "group" || name == "schema");
+      if (name == "group")
+        /* TAG: <group> */
+        loadGroup ();
+      else
+        /* TAG: </schema> */
+        break;
     }
-  }
+
+
+  std :: set<unsigned> uniqueRunnerIDs;
+  unsigned nbUniqueIDs = 0;
+  for (unsigned i = 0; i < the_schema.size (); i ++)
+    {
+      for (unsigned j = 0; j < the_schema [i].id_run.size(); j ++)
+        {
+          uniqueRunnerIDs.insert( the_schema [i].id_run[j] );
+          /* In case a duplicate ID has been found */
+          if ( uniqueRunnerIDs.size() == nbUniqueIDs )
+            {
+              the_schema [i].execution_id_run[j] = ++maxSpecifiedRunnerID;
+            }
+          nbUniqueIDs = uniqueRunnerIDs.size();
+        }
+    }
 
   /* Looking for my node */
-  for (unsigned i = 0; i < the_schema.size (); i ++) {
-    if (the_schema [i].rk == getNodeRank ())
-      my_node = & (the_schema [i]);
-  }
+  for (unsigned i = 0; i < the_schema.size (); i ++)
+    {
+      if (the_schema [i].rk == getNodeRank ())
+        my_node = & (the_schema [i]);
+    }
 
 
   /* About me */
@@ -175,16 +190,18 @@ void loadSchema (const char * __filename) {
   if (isScheduleNode ())
     printDebugMessage ("I'am a scheduler");
 
-  for (unsigned i = 0; i < my_node -> id_run.size (); i ++) {
-    sprintf (mess, "I manage the runner %d", my_node -> id_run [i]);
-    printDebugMessage (mess);
-  }
+  for (unsigned i = 0; i < my_node -> id_run.size (); i ++)
+    {
+      sprintf (mess, "I manage the runner %d", my_node -> id_run [i]);
+      printDebugMessage (mess);
+    }
 
-  if (my_node -> num_workers) {
+  if (my_node -> num_workers)
+    {
 
-    sprintf (mess, "I manage %d worker(s)", my_node -> num_workers);
-    printDebugMessage (mess);
-  }
+      sprintf (mess, "I manage %d worker(s)", my_node -> num_workers);
+      printDebugMessage (mess);
+    }
 
   closeXMLDocument ();
 }

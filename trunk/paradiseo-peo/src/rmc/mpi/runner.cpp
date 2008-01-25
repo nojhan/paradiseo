@@ -1,4 +1,4 @@
-/* 
+/*
 * <runner.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -43,7 +43,8 @@
 #include "schema.h"
 
 
-bool Runner :: isAssignedLocally () {
+bool Runner :: isAssignedLocally ()
+{
 
   for (unsigned i = 0; i < my_node -> id_run.size (); i ++)
     if (my_node -> id_run [i] == def_id)
@@ -51,12 +52,14 @@ bool Runner :: isAssignedLocally () {
   return false;
 }
 
-void Runner :: terminate () {
+void Runner :: terminate ()
+{
 
   sendToAll (this, RUNNER_STOP_TAG);
 }
 
-void Runner :: packTermination () {
+void Runner :: packTermination ()
+{
 
   pack (def_id);
 }

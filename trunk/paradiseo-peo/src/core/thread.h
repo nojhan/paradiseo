@@ -1,4 +1,4 @@
-/* 
+/*
 * <thread.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,27 +41,28 @@
 
 
 /* A high-level thread */
-class Thread {
+class Thread
+  {
 
-public:
+  public:
 
-  /* Ctor */
-  Thread ();
+    /* Ctor */
+    Thread ();
 
-  /* Dtor */
-  virtual ~ Thread ();
+    /* Dtor */
+    virtual ~ Thread ();
 
-  /* Go ! */
-  virtual void start () = 0;
+    /* Go ! */
+    virtual void start () = 0;
 
-  void setActive ();/* It means the current process is going to send messages soon */
-  void setPassive ();/* The current process is not going to perform send operations
-			(but it may receive messages) */
+    void setActive ();/* It means the current process is going to send messages soon */
+    void setPassive ();/* The current process is not going to perform send operations
+    			(but it may receive messages) */
 
-private :
+  private :
 
-  bool act;
-};
+    bool act;
+  };
 
 extern void initThreadsEnv ();
 

@@ -43,225 +43,225 @@
 
 
 template < typename EntityType > class peoMultiStart : public Service
-{
-
- public:
-
-  template < typename AlgorithmType > peoMultiStart( AlgorithmType& externalAlgorithm )
   {
 
-    singularAlgorithm = new Algorithm< AlgorithmType >( externalAlgorithm );
-    algorithms.push_back( singularAlgorithm );
+  public:
 
-    aggregationFunction = new NoAggregationFunction();
-  }
+    template < typename AlgorithmType > peoMultiStart( AlgorithmType& externalAlgorithm )
+    {
 
-  template < typename AlgorithmReturnType, typename AlgorithmDataType > peoMultiStart( AlgorithmReturnType (*externalAlgorithm)( AlgorithmDataType& ) )
-  {
+      singularAlgorithm = new Algorithm< AlgorithmType >( externalAlgorithm );
+      algorithms.push_back( singularAlgorithm );
 
-    singularAlgorithm = new FunctionAlgorithm< AlgorithmReturnType, AlgorithmDataType >( externalAlgorithm );
-    algorithms.push_back( singularAlgorithm );
+      aggregationFunction = new NoAggregationFunction();
+    }
 
-    aggregationFunction = new NoAggregationFunction();
-  }
+    template < typename AlgorithmReturnType, typename AlgorithmDataType > peoMultiStart( AlgorithmReturnType (*externalAlgorithm)( AlgorithmDataType& ) )
+    {
 
-  template < typename AlgorithmType, typename AggregationFunctionType > peoMultiStart( std::vector< AlgorithmType* >& externalAlgorithms, AggregationFunctionType& externalAggregationFunction )
-  {
+      singularAlgorithm = new FunctionAlgorithm< AlgorithmReturnType, AlgorithmDataType >( externalAlgorithm );
+      algorithms.push_back( singularAlgorithm );
 
-    for ( unsigned int index = 0; index < externalAlgorithms.size(); index++ )
+      aggregationFunction = new NoAggregationFunction();
+    }
+
+    template < typename AlgorithmType, typename AggregationFunctionType > peoMultiStart( std::vector< AlgorithmType* >& externalAlgorithms, AggregationFunctionType& externalAggregationFunction )
+    {
+
+      for ( unsigned int index = 0; index < externalAlgorithms.size(); index++ )
+        {
+
+          algorithms.push_back( new Algorithm< AlgorithmType >( *externalAlgorithms[ index ] ) );
+        }
+
+      aggregationFunction = new AggregationAlgorithm< AggregationFunctionType >( externalAggregationFunction );
+    }
+
+    template < typename AlgorithmReturnType, typename AlgorithmDataType, typename AggregationFunctionType >
+    peoMultiStart( std::vector< AlgorithmReturnType (*)( AlgorithmDataType& ) >& externalAlgorithms,
+                   AggregationFunctionType& externalAggregationFunction )
+    {
+
+      for ( unsigned int index = 0; index < externalAlgorithms.size(); index++ )
+        {
+
+          algorithms.push_back( new FunctionAlgorithm< AlgorithmReturnType, AlgorithmDataType >( externalAlgorithms[ index ] ) );
+        }
+
+      aggregationFunction = new AggregationAlgorithm< AggregationFunctionType >( externalAggregationFunction );
+    }
+
+    ~peoMultiStart()
+    {
+
+      for ( unsigned int index = 0; index < data.size(); index++ ) delete data[ index ];
+      for ( unsigned int index = 0; index < algorithms.size(); index++ ) delete algorithms[ index ];
+
+      delete aggregationFunction;
+    }
+
+
+    template < typename Type > void operator()( Type& externalData )
+    {
+
+      for ( typename Type::iterator externalDataIterator = externalData.begin(); externalDataIterator != externalData.end(); externalDataIterator++ )
+        {
+
+          data.push_back( new DataType< EntityType >( *externalDataIterator ) );
+        }
+
+      functionIndex = dataIndex = idx = num_term = 0;
+      requestResourceRequest( data.size() * algorithms.size() );
+      stop();
+    }
+
+
+    template < typename Type > void operator()( const Type& externalDataBegin, const Type& externalDataEnd )
+    {
+
+      for ( Type externalDataIterator = externalDataBegin; externalDataIterator != externalDataEnd; externalDataIterator++ )
+        {
+
+          data.push_back( new DataType< EntityType >( *externalDataIterator ) );
+        }
+
+      functionIndex = dataIndex = idx = num_term = 0;
+      requestResourceRequest( data.size() * algorithms.size() );
+      stop();
+    }
+
+
+    void packData();
+
+    void unpackData();
+
+    void execute();
+
+    void packResult();
+
+    void unpackResult();
+
+    void notifySendingData();
+
+    void notifySendingAllResourceRequests();
+
+
+  private:
+
+    template < typename Type > struct DataType;
+
+    struct AbstractDataType
       {
 
-	algorithms.push_back( new Algorithm< AlgorithmType >( *externalAlgorithms[ index ] ) );
-      }
+        virtual ~AbstractDataType()
+        { }
 
-    aggregationFunction = new AggregationAlgorithm< AggregationFunctionType >( externalAggregationFunction );
-  }
+        template < typename Type > operator Type& ()
+        {
 
-  template < typename AlgorithmReturnType, typename AlgorithmDataType, typename AggregationFunctionType > 
-    peoMultiStart( std::vector< AlgorithmReturnType (*)( AlgorithmDataType& ) >& externalAlgorithms, 
-			      AggregationFunctionType& externalAggregationFunction )
-  {
-
-    for ( unsigned int index = 0; index < externalAlgorithms.size(); index++ )
-      {
-
-	algorithms.push_back( new FunctionAlgorithm< AlgorithmReturnType, AlgorithmDataType >( externalAlgorithms[ index ] ) );
-      }
-
-    aggregationFunction = new AggregationAlgorithm< AggregationFunctionType >( externalAggregationFunction );
-  }
-
-  ~peoMultiStart()
-  {
-
-    for ( unsigned int index = 0; index < data.size(); index++ ) delete data[ index ];
-    for ( unsigned int index = 0; index < algorithms.size(); index++ ) delete algorithms[ index ];
-
-    delete aggregationFunction;
-  }
-
-
-  template < typename Type > void operator()( Type& externalData )
-  {
-
-    for ( typename Type::iterator externalDataIterator = externalData.begin(); externalDataIterator != externalData.end(); externalDataIterator++ )
-    {
-
-      data.push_back( new DataType< EntityType >( *externalDataIterator ) );
-    }
-
-    functionIndex = dataIndex = idx = num_term = 0;
-    requestResourceRequest( data.size() * algorithms.size() );
-    stop();
-  }
-
-
-  template < typename Type > void operator()( const Type& externalDataBegin, const Type& externalDataEnd )
-  {
-
-    for ( Type externalDataIterator = externalDataBegin; externalDataIterator != externalDataEnd; externalDataIterator++ )
-    {
-
-      data.push_back( new DataType< EntityType >( *externalDataIterator ) );
-    }
-
-    functionIndex = dataIndex = idx = num_term = 0;
-    requestResourceRequest( data.size() * algorithms.size() );
-    stop();
-  }
-
-
-  void packData();
-
-  void unpackData();
-
-  void execute();
-
-  void packResult();
-
-  void unpackResult();
-
-  void notifySendingData();
-
-  void notifySendingAllResourceRequests();
-
-
- private:
-
-  template < typename Type > struct DataType;
-
-  struct AbstractDataType
-  {
-
-    virtual ~AbstractDataType()
-    { }
-
-    template < typename Type > operator Type& ()
-    {
-
-      return ( dynamic_cast< DataType< Type >& >( *this ) ).data;
-    }
-  };
+          return ( dynamic_cast< DataType< Type >& >( *this ) ).data;
+        }
+      };
 
   template < typename Type > struct DataType : public AbstractDataType
-  {
+      {
 
-  DataType( Type& externalData ) : data( externalData )
-    { }
+        DataType( Type& externalData ) : data( externalData )
+        { }
 
-    Type& data;
-  };
+        Type& data;
+      };
 
-  struct AbstractAlgorithm
-  {
+    struct AbstractAlgorithm
+      {
 
-    virtual ~AbstractAlgorithm()
-    { }
+        virtual ~AbstractAlgorithm()
+        { }
 
-    virtual void operator()( AbstractDataType& dataTypeInstance )
-    {}
-  };
+        virtual void operator()( AbstractDataType& dataTypeInstance )
+        {}
+      };
 
   template < typename AlgorithmType > struct Algorithm : public AbstractAlgorithm
-  {
+      {
 
-    Algorithm( AlgorithmType& externalAlgorithm ) : algorithm( externalAlgorithm )
-      { }
+        Algorithm( AlgorithmType& externalAlgorithm ) : algorithm( externalAlgorithm )
+        { }
 
-    void operator()( AbstractDataType& dataTypeInstance )
-    {
-      algorithm( dataTypeInstance );
-    }
+        void operator()( AbstractDataType& dataTypeInstance )
+        {
+          algorithm( dataTypeInstance );
+        }
 
-    AlgorithmType& algorithm;
-  };
+        AlgorithmType& algorithm;
+      };
 
 
   template < typename AlgorithmReturnType, typename AlgorithmDataType > struct FunctionAlgorithm : public AbstractAlgorithm
-  {
+      {
 
-    FunctionAlgorithm( AlgorithmReturnType (*externalAlgorithm)( AlgorithmDataType& ) ) : algorithm( externalAlgorithm )
-      { }
+        FunctionAlgorithm( AlgorithmReturnType (*externalAlgorithm)( AlgorithmDataType& ) ) : algorithm( externalAlgorithm )
+        { }
 
-    void operator()( AbstractDataType& dataTypeInstance )
-    {
-      algorithm( dataTypeInstance );
-    }
+        void operator()( AbstractDataType& dataTypeInstance )
+        {
+          algorithm( dataTypeInstance );
+        }
 
-    AlgorithmReturnType (*algorithm)( AlgorithmDataType& );
-  };
+        AlgorithmReturnType (*algorithm)( AlgorithmDataType& );
+      };
 
-  struct AbstractAggregationAlgorithm
-  {
+    struct AbstractAggregationAlgorithm
+      {
 
-    virtual ~AbstractAggregationAlgorithm()
-    { }
+        virtual ~AbstractAggregationAlgorithm()
+        { }
 
-    virtual void operator()( AbstractDataType& dataTypeInstanceA, AbstractDataType& dataTypeInstanceB )
-    {};
-  };
+        virtual void operator()( AbstractDataType& dataTypeInstanceA, AbstractDataType& dataTypeInstanceB )
+        {};
+      };
 
   template < typename AggregationAlgorithmType > struct AggregationAlgorithm : public AbstractAggregationAlgorithm
-  { 
+      {
 
-    AggregationAlgorithm( AggregationAlgorithmType& externalAggregationAlgorithm ) : aggregationAlgorithm( externalAggregationAlgorithm )
-      { }
+        AggregationAlgorithm( AggregationAlgorithmType& externalAggregationAlgorithm ) : aggregationAlgorithm( externalAggregationAlgorithm )
+        { }
 
-    void operator()( AbstractDataType& dataTypeInstanceA, AbstractDataType& dataTypeInstanceB )
-    {
+        void operator()( AbstractDataType& dataTypeInstanceA, AbstractDataType& dataTypeInstanceB )
+        {
 
-      aggregationAlgorithm( dataTypeInstanceA, dataTypeInstanceB );
-    }
+          aggregationAlgorithm( dataTypeInstanceA, dataTypeInstanceB );
+        }
 
-    AggregationAlgorithmType& aggregationAlgorithm;
-  };
+        AggregationAlgorithmType& aggregationAlgorithm;
+      };
 
   struct NoAggregationFunction : public AbstractAggregationAlgorithm
-  {
+      {
 
-    void operator()( AbstractDataType& dataTypeInstanceA, AbstractDataType& dataTypeInstanceB )
-    {
+        void operator()( AbstractDataType& dataTypeInstanceA, AbstractDataType& dataTypeInstanceB )
+        {
 
-      static_cast< EntityType& >( dataTypeInstanceA ) = static_cast< EntityType& >( dataTypeInstanceB );
-    }
+          static_cast< EntityType& >( dataTypeInstanceA ) = static_cast< EntityType& >( dataTypeInstanceB );
+        }
+      };
+
+
+
+    AbstractAlgorithm* singularAlgorithm;
+
+    std::vector< AbstractAlgorithm* > algorithms;
+    AbstractAggregationAlgorithm* aggregationFunction;
+
+
+    EntityType entityTypeInstance;
+    std::vector< AbstractDataType* > data;
+
+    unsigned idx;
+    unsigned num_term;
+    unsigned dataIndex;
+    unsigned functionIndex;
   };
-
-
-
-  AbstractAlgorithm* singularAlgorithm;
-
-  std::vector< AbstractAlgorithm* > algorithms;
-  AbstractAggregationAlgorithm* aggregationFunction;
-
-
-  EntityType entityTypeInstance;
-  std::vector< AbstractDataType* > data;
-
-  unsigned idx;
-  unsigned num_term;
-  unsigned dataIndex;
-  unsigned functionIndex;
-};
 
 
 template < typename EntityType > void peoMultiStart< EntityType >::packData()
@@ -274,11 +274,11 @@ template < typename EntityType > void peoMultiStart< EntityType >::packData()
   // done with functionIndex for the entire data set - moving to another
   //  function/algorithm starting all over with the entire data set ( idx is set to 0 )
   if ( idx == data.size() )
-  {
+    {
 
-    ++functionIndex;
-    idx = 0;
-  }
+      ++functionIndex;
+      idx = 0;
+    }
 }
 
 template < typename EntityType > void peoMultiStart< EntityType >::unpackData()
@@ -322,11 +322,11 @@ template < typename EntityType > void peoMultiStart< EntityType >::unpackResult(
   num_term++;
 
   if ( num_term == data.size() * algorithms.size() )
-  {
+    {
 
-    getOwner()->setActive();
-    resume();
-  }
+      getOwner()->setActive();
+      resume();
+    }
 }
 
 template < typename EntityType > void peoMultiStart< EntityType >::notifySendingData()

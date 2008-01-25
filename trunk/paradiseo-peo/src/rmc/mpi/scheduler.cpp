@@ -1,4 +1,4 @@
-/* 
+/*
 * <scheduler.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -49,52 +49,59 @@ static unsigned initNumberOfRes = 0;
 
 extern void wakeUpCommunicator();
 
-void initScheduler () {
+void initScheduler ()
+{
 
   resources = std :: queue <SCHED_RESOURCE> ();
   requests = std :: queue <SCHED_REQUEST> ();
   initNumberOfRes = 0;
 
-  for (unsigned i = 0; i < the_schema.size (); i ++) {
+  for (unsigned i = 0; i < the_schema.size (); i ++)
+    {
 
-    const Node & node = the_schema [i];
+      const Node & node = the_schema [i];
 
-    if (node.rk_sched == my_node -> rk)
-      for (unsigned j = 0; j < node.num_workers; j ++)
-        resources.push (std :: pair <RANK_ID, WORKER_ID> (i, j + 1));
-  }
+      if (node.rk_sched == my_node -> rk)
+        for (unsigned j = 0; j < node.num_workers; j ++)
+          resources.push (std :: pair <RANK_ID, WORKER_ID> (i, j + 1));
+    }
   initNumberOfRes = resources.size ();
 }
 
-bool allResourcesFree () {
+bool allResourcesFree ()
+{
   return resources.size () == initNumberOfRes;
 }
 
-unsigned numResourcesFree () {
+unsigned numResourcesFree ()
+{
   return resources.size ();
 }
 
-static void update () {
+static void update ()
+{
 
   unsigned num_alloc = std :: min (resources.size (), requests.size ());
 
-  for (unsigned i = 0; i < num_alloc; i ++) {
+  for (unsigned i = 0; i < num_alloc; i ++)
+    {
 
-    SCHED_REQUEST req = requests.front ();
-    requests.pop ();
+      SCHED_REQUEST req = requests.front ();
+      requests.pop ();
 
-    SCHED_RESOURCE res = resources.front ();
-    resources.pop ();
+      SCHED_RESOURCE res = resources.front ();
+      resources.pop ();
 
-    printDebugMessage ("allocating a resource.");
-    initMessage ();
-    pack (req.second);
-    pack (res);
-    sendMessage (req.first, SCHED_RESULT_TAG);
-  }
+      printDebugMessage ("allocating a resource.");
+      initMessage ();
+      pack (req.second);
+      pack (res);
+      sendMessage (req.first, SCHED_RESULT_TAG);
+    }
 }
 
-void unpackResourceRequest () {
+void unpackResourceRequest ()
+{
 
   printDebugMessage ("queuing a resource request.");
   SCHED_REQUEST req;
@@ -103,7 +110,8 @@ void unpackResourceRequest () {
   update ();
 }
 
-void unpackTaskDone () {
+void unpackTaskDone ()
+{
 
   printDebugMessage ("I'm notified a worker is now idle.");
   SCHED_RESOURCE res;

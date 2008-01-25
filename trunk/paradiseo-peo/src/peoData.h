@@ -44,39 +44,42 @@
 /**************************  DEFINE A DATA   ******************************************/
 /**************************************************************************************/
 
-class peoData {
-public:
+class peoData
+  {
+  public:
 
-  virtual void pack () {}
-  virtual void unpack () {}
-  
-};
+    virtual void pack ()
+    {}
+    virtual void unpack ()
+    {}
+
+  };
 
 
 // Specific implementation : migration of a population
 
 template<class EOT>
 class peoPop: public eoPop<EOT>, public peoData
-{
-public:
-
-  virtual void pack () 
   {
-  	 ::pack ((unsigned) this->size ());
- 	 for (unsigned i = 0; i < this->size (); i ++)
-    	::pack ((*this)[i]);
-  }
+  public:
 
-  virtual void unpack () 
-  {
-	  unsigned n;
-	  ::unpack (n);
-	  this->resize (n);
-	  for (unsigned i = 0; i < n; i ++)
-	  ::unpack ((*this)[i]);
-  }
+    virtual void pack ()
+    {
+      ::pack ((unsigned) this->size ());
+      for (unsigned i = 0; i < this->size (); i ++)
+        ::pack ((*this)[i]);
+    }
 
-};
+    virtual void unpack ()
+    {
+      unsigned n;
+      ::unpack (n);
+      this->resize (n);
+      for (unsigned i = 0; i < n; i ++)
+        ::unpack ((*this)[i]);
+    }
+
+  };
 
 
 /**************************************************************************************/
@@ -84,27 +87,30 @@ public:
 /**************************************************************************************/
 
 class continuator
-{
-public: 	
-	virtual bool check()=0;
-};
+  {
+  public:
+    virtual bool check()=0;
+  };
 
 
 // Specific implementation : migration of a population
 
-template < class EOT> class eoContinuator : public continuator{
-public:
-	
-	eoContinuator(eoContinue<EOT> & _cont, const eoPop<EOT> & _pop): cont (_cont), pop(_pop){}
-	
-	virtual bool check(){
-		return cont(pop);	
-	}
+template < class EOT> class eoContinuator : public continuator
+  {
+  public:
 
-protected:
-	eoContinue<EOT> & cont ;
-	const eoPop<EOT> & pop;
-};
+    eoContinuator(eoContinue<EOT> & _cont, const eoPop<EOT> & _pop): cont (_cont), pop(_pop)
+    {}
+
+    virtual bool check()
+    {
+      return cont(pop);
+    }
+
+  protected:
+    eoContinue<EOT> & cont ;
+    const eoPop<EOT> & pop;
+  };
 
 
 /**************************************************************************************/
@@ -112,32 +118,34 @@ protected:
 /**************************************************************************************/
 
 template < class TYPE>  class selector
-{
-public: 	
-	virtual void operator()(TYPE &)=0;
-};
+  {
+  public:
+    virtual void operator()(TYPE &)=0;
+  };
 
 
 // Specific implementation : migration of a population
 
-template < class EOT, class TYPE> class eoSelector : public selector< TYPE >{
-public:
-	
-	eoSelector(eoSelectOne<EOT> & _select, unsigned _nb_select, const TYPE & _source): selector (_select), nb_select(_nb_select), source(_source){}
-	
-	virtual void operator()(TYPE & _dest)
-  	{
-    	size_t target = static_cast<size_t>(nb_select);
-    	_dest.resize(target);
-       	for (size_t i = 0; i < _dest.size(); ++i)
-      		_dest[i] = selector(source);
-  	}
+template < class EOT, class TYPE> class eoSelector : public selector< TYPE >
+  {
+  public:
 
-protected:
-	eoSelectOne<EOT> & selector ;
-	unsigned nb_select;
-	const TYPE & source;
-};
+    eoSelector(eoSelectOne<EOT> & _select, unsigned _nb_select, const TYPE & _source): selector (_select), nb_select(_nb_select), source(_source)
+    {}
+
+    virtual void operator()(TYPE & _dest)
+    {
+      size_t target = static_cast<size_t>(nb_select);
+      _dest.resize(target);
+      for (size_t i = 0; i < _dest.size(); ++i)
+        _dest[i] = selector(source);
+    }
+
+  protected:
+    eoSelectOne<EOT> & selector ;
+    unsigned nb_select;
+    const TYPE & source;
+  };
 
 
 /**************************************************************************************/
@@ -145,27 +153,29 @@ protected:
 /**************************************************************************************/
 
 template < class TYPE>  class replacement
-{
-public: 	
-	virtual void operator()(TYPE &)=0;
-};
+  {
+  public:
+    virtual void operator()(TYPE &)=0;
+  };
 
 
 // Specific implementation : migration of a population
 
-template < class EOT, class TYPE> class eoReplace : public replacement< TYPE >{
-public:
-	eoReplace(eoReplacement<EOT> & _replace, TYPE & _destination): replace(_replace), destination(_destination){} 
-	
-	virtual void operator()(TYPE & _source)
-  	{
-    	replace(destination, _source);
-  	}
+template < class EOT, class TYPE> class eoReplace : public replacement< TYPE >
+  {
+  public:
+    eoReplace(eoReplacement<EOT> & _replace, TYPE & _destination): replace(_replace), destination(_destination)
+    {}
 
-protected:
-	eoReplacement<EOT> & replace;
-	TYPE & destination;
-};
+    virtual void operator()(TYPE & _source)
+    {
+      replace(destination, _source);
+    }
+
+  protected:
+    eoReplacement<EOT> & replace;
+    TYPE & destination;
+  };
 
 
 /**************************************************************************************/
@@ -173,25 +183,26 @@ protected:
 /**************************************************************************************/
 
 class eoSyncContinue: public continuator
-{
-
-public:
-    
-  eoSyncContinue (unsigned __period, unsigned __init_counter = 0): period (__period),counter (__init_counter) {}
-   
-  virtual bool check()
   {
-  	return ((++ counter) % period) != 0 ;
-  }
-  
-     
-private:
 
-  unsigned period;
-  
-  unsigned counter;
+  public:
 
-};
+    eoSyncContinue (unsigned __period, unsigned __init_counter = 0): period (__period),counter (__init_counter)
+    {}
+
+    virtual bool check()
+    {
+      return ((++ counter) % period) != 0 ;
+    }
+
+
+  private:
+
+    unsigned period;
+
+    unsigned counter;
+
+  };
 
 
 #endif

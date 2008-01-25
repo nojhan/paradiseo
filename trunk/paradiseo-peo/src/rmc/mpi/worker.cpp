@@ -1,4 +1,4 @@
-/* 
+/*
 * <worker.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -48,12 +48,14 @@ static std :: vector <Worker *> key_to_worker (1); /* Vector of registered worke
 
 extern void wakeUpCommunicator ();
 
-Worker * getWorker (WORKER_ID __key) {
+Worker * getWorker (WORKER_ID __key)
+{
 
   return key_to_worker [__key];
 }
 
-Worker :: Worker () {
+Worker :: Worker ()
+{
 
   recvAndCompleted = false;
   taskAssigned = 0;
@@ -63,69 +65,79 @@ Worker :: Worker () {
   sem_init( &sem_task_done, 0, 0 );
 }
 
-void Worker :: packResult () {
+void Worker :: packResult ()
+{
 
   pack (serv_id);
   serv -> packResult ();
 }
 
-void Worker :: unpackData () {
+void Worker :: unpackData ()
+{
 
   taskAssigned ++;
   printDebugMessage ("unpacking the ID. of the service.");
   unpack (serv_id);
-  serv = getService (serv_id); 
+  serv = getService (serv_id);
   printDebugMessage ("found the service.");
-  serv -> unpackData (); 
+  serv -> unpackData ();
   printDebugMessage ("unpacking the data.");
   setActive ();
 }
 
-void Worker :: packTaskDone () {
+void Worker :: packTaskDone ()
+{
 
   pack (getNodeRank ());
   pack (id);
 }
 
-void Worker :: notifySendingResult () {
+void Worker :: notifySendingResult ()
+{
 
   /* Notifying the scheduler of the termination */
   recvAndCompleted = true;
   wakeUp ();
 }
 
-void Worker :: notifySendingTaskDone () {
+void Worker :: notifySendingTaskDone ()
+{
 
   sem_post(&sem_task_done);
   setPassive ();
 }
 
-void Worker :: setSource (int __rank) {
+void Worker :: setSource (int __rank)
+{
 
   src = __rank;
 }
 
-void Worker :: start () {
+void Worker :: start ()
+{
 
-  while (true) {
+  while (true)
+    {
 
-    sleep ();
+      sleep ();
 
-    if (! atLeastOneActiveRunner () && ! taskAssigned)
-      break;
+      if (! atLeastOneActiveRunner () && ! taskAssigned)
+        break;
 
-    if (recvAndCompleted) {
-      send (this, my_node -> rk_sched, TASK_DONE_TAG);  
-      recvAndCompleted = false;
-      sem_wait(&sem_task_done);
-      taskAssigned --;
+      if (recvAndCompleted)
+        {
+          send (this, my_node -> rk_sched, TASK_DONE_TAG);
+          recvAndCompleted = false;
+          sem_wait(&sem_task_done);
+          taskAssigned --;
+        }
+      else
+        {
+
+          serv -> execute ();
+          send (this, src, TASK_RESULT_TAG);
+        }
     }
-    else {
-
-      serv -> execute ();
-      send (this, src, TASK_RESULT_TAG);
-    }
-  }
 
   printDebugMessage ("Worker finished execution.");
   setPassive ();
@@ -133,7 +145,8 @@ void Worker :: start () {
   wakeUpCommunicator();
 }
 
-void initWorkersEnv () {
+void initWorkersEnv ()
+{
 
   key_to_worker.resize (1);
 }

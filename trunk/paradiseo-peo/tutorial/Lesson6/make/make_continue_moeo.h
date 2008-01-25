@@ -88,13 +88,13 @@ eoContinue<MOEOT> & do_make_continue_moeo(eoParser& _parser, eoState& _state, eo
     }
   // maxEval
   eoValueParam<unsigned long>& maxEvalParam = _parser.getORcreateParam((unsigned long)(0), "maxEval", "Maximum number of evaluations (0 = none)", 'E', "Stopping criterion");
- /* if (maxEvalParam.value())
-    {
-      eoEvalContinue<MOEOT> *evalCont = new eoEvalContinue<MOEOT>(_eval, maxEvalParam.value());
-      _state.storeFunctor(evalCont);
-      // and "add" to combined
-      continuator = make_combinedContinue<MOEOT>(continuator, evalCont);
-    }*/
+  /* if (maxEvalParam.value())
+     {
+       eoEvalContinue<MOEOT> *evalCont = new eoEvalContinue<MOEOT>(_eval, maxEvalParam.value());
+       _state.storeFunctor(evalCont);
+       // and "add" to combined
+       continuator = make_combinedContinue<MOEOT>(continuator, evalCont);
+     }*/
   // maxTime
   eoValueParam<unsigned long>& maxTimeParam = _parser.getORcreateParam((unsigned long)(0), "maxTime", "Maximum running time in seconds (0 = none)", 'T', "Stopping criterion");
   if (maxTimeParam.value()) // positive: -> define and store

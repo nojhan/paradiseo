@@ -52,14 +52,14 @@ int main (int __argc, char *__argv[])
 {
 
   peo :: init( __argc, __argv );
-  const unsigned int VEC_SIZE = 2;  
-  const unsigned int POP_SIZE = 20; 
-  const unsigned int MAX_GEN = 300; 
+  const unsigned int VEC_SIZE = 2;
+  const unsigned int POP_SIZE = 20;
+  const unsigned int MAX_GEN = 300;
   const double INIT_POSITION_MIN = -2.0;
-  const double INIT_POSITION_MAX = 2.0; 
-  const float CROSS_RATE = 0.8; 
-  const double EPSILON = 0.01;  
-  const float MUT_RATE = 0.3;   
+  const double INIT_POSITION_MAX = 2.0;
+  const float CROSS_RATE = 0.8;
+  const double EPSILON = 0.01;
+  const float MUT_RATE = 0.3;
   rng.reseed (time(0));
   eoGenContinue < Indi > genContPara (MAX_GEN);
   eoCombinedContinue <Indi> continuatorPara (genContPara);
@@ -70,9 +70,9 @@ int main (int __argc, char *__argv[])
   eoInitFixedLength < Indi > random (VEC_SIZE, uGen);
   eoRankingSelect<Indi> selectionStrategy;
   eoSelectNumber<Indi> select(selectionStrategy,POP_SIZE);
-  eoSegmentCrossover<Indi> crossover; 
+  eoSegmentCrossover<Indi> crossover;
   eoUniformMutation<Indi>  mutation(EPSILON);
-  
+
   peoTransform<Indi> transform(crossover,CROSS_RATE,mutation,MUT_RATE);
 
   eoPlusReplacement<Indi> replace;
@@ -81,14 +81,14 @@ int main (int __argc, char *__argv[])
   eoEasyEA< Indi > eaAlg( checkpoint, eval, select, transform, replace );
   peoWrapper parallelEA( eaAlg, pop);
   eval.setOwner(parallelEA);
-  
+
   transform.setOwner (parallelEA);
-  
+
   peo :: run();
   peo :: finalize();
   if (getNodeRank()==1)
-  {
-  	pop.sort();
-    std::cout << "Final population :\n" << pop << std::endl;
-  }
+    {
+      pop.sort();
+      std::cout << "Final population :\n" << pop << std::endl;
+    }
 }

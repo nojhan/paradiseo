@@ -50,39 +50,40 @@ double f (const Indi & _indi)
 
 template <class EOT>
 class eoResizerInit: public eoInit<EOT>
-{
-    public:
+  {
+  public:
 
     typedef typename EOT::AtomType AtomType;
 
-        eoResizerInit(unsigned _size)
-            : size(_size){}
+    eoResizerInit(unsigned _size)
+        : size(_size)
+    {}
 
-        virtual void operator()(EOT& chrom)
-        {
-            chrom.resize(size);
-            chrom.invalidate();
-        }
-    private :
-        unsigned size;
-};
+    virtual void operator()(EOT& chrom)
+    {
+      chrom.resize(size);
+      chrom.invalidate();
+    }
+  private :
+    unsigned size;
+  };
 
 
 int main( int __argc, char** __argv )
 {
-	
+
   peo :: init( __argc, __argv );
-  const unsigned int VEC_SIZE = 2;  
-  const unsigned int POP_SIZE = 20; 
+  const unsigned int VEC_SIZE = 2;
+  const unsigned int POP_SIZE = 20;
   const unsigned int NEIGHBORHOOD_SIZE= 6;
-  const unsigned int MAX_GEN = 300; 
+  const unsigned int MAX_GEN = 300;
   const double INIT_POSITION_MIN = -2.0;
-  const double INIT_POSITION_MAX = 2.0; 
+  const double INIT_POSITION_MAX = 2.0;
   const double INIT_VELOCITY_MIN = -1.;
   const double INIT_VELOCITY_MAX = 1.;
-  const double omega = 1;  
+  const double omega = 1;
   const double C1 = 0.5;
-  const double C2 = 2.; 
+  const double C2 = 2.;
   rng.reseed (time(0));
   eoGenContinue < Indi > genContPara (MAX_GEN);
   eoCombinedContinue <Indi> continuatorPara (genContPara);
@@ -96,7 +97,7 @@ int main( int __argc, char** __argv )
   eoLinearTopology<Indi> topology(NEIGHBORHOOD_SIZE);
   eoRealVectorBounds bnds(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
   eoStandardVelocity < Indi > velocity (topology,omega,C1,C2,bnds);
-  
+
   eoResizerInit<Indi> sizeInit(VEC_SIZE);
   // need at least a size initialization
   eoPop < Indi > pop(POP_SIZE,sizeInit);
@@ -105,7 +106,7 @@ int main( int __argc, char** __argv )
   peoWrapper random (initRandom,pop);
   initRandom.setOwner(random);
   peo :: run( );
-  peo :: finalize( );  
+  peo :: finalize( );
 
 // Parallel algorithm
 
@@ -119,8 +120,8 @@ int main( int __argc, char** __argv )
   peo :: run();
   peo :: finalize();
   if (getNodeRank()==1)
-  {
-  	pop.sort();
-    std::cout << "Final population :\n" << pop << std::endl;
-  }
+    {
+      pop.sort();
+      std::cout << "Final population :\n" << pop << std::endl;
+    }
 }

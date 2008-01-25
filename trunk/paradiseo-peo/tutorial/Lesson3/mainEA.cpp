@@ -71,7 +71,7 @@ int main (int __argc, char *__argv[])
 
 // First algorithm
   /*****************************************************************************************/
-  
+
   eoGenContinue < Indi > genContPara (MAX_GEN);
   eoCombinedContinue <Indi> continuatorPara (genContPara);
   eoCheckPoint<Indi> checkpoint(continuatorPara);
@@ -82,10 +82,10 @@ int main (int __argc, char *__argv[])
   eoRankingSelect<Indi> selectionStrategy;
   eoSelectNumber<Indi> select(selectionStrategy,POP_SIZE);
   eoSegmentCrossover<Indi> crossover;
-  eoUniformMutation<Indi>  mutation(EPSILON);  
-  peoTransform<Indi> transform(crossover,CROSS_RATE,mutation,MUT_RATE); 
+  eoUniformMutation<Indi>  mutation(EPSILON);
+  peoTransform<Indi> transform(crossover,CROSS_RATE,mutation,MUT_RATE);
   peoPop < Indi > pop;
-  pop.append (POP_SIZE, random); 
+  pop.append (POP_SIZE, random);
   eoPlusReplacement<Indi> replace;
   eoRandomSelect<Indi> mig_select_one;
   eoSelector <Indi, peoPop<Indi> > mig_select (mig_select_one,MIG_SIZE,pop);
@@ -102,7 +102,7 @@ int main (int __argc, char *__argv[])
 
 // Second algorithm (on the same model but with others names)
   /*****************************************************************************************/
-  
+
   eoGenContinue < Indi > genContPara2 (MAX_GEN);
   eoCombinedContinue <Indi> continuatorPara2 (genContPara2);
   eoCheckPoint<Indi> checkpoint2(continuatorPara2);
@@ -113,10 +113,10 @@ int main (int __argc, char *__argv[])
   eoRankingSelect<Indi> selectionStrategy2;
   eoSelectNumber<Indi> select2(selectionStrategy2,POP_SIZE);
   eoSegmentCrossover<Indi> crossover2;
-  eoUniformMutation<Indi>  mutation2(EPSILON);  
-  peoTransform<Indi> transform2(crossover2,CROSS_RATE,mutation2,MUT_RATE); 
+  eoUniformMutation<Indi>  mutation2(EPSILON);
+  peoTransform<Indi> transform2(crossover2,CROSS_RATE,mutation2,MUT_RATE);
   peoPop < Indi > pop2;
-  pop2.append (POP_SIZE, random2); 
+  pop2.append (POP_SIZE, random2);
   eoPlusReplacement<Indi> replace2;
   eoRandomSelect<Indi> mig_select_one2;
   eoSelector <Indi, peoPop<Indi> > mig_select2 (mig_select_one2,MIG_SIZE,pop2);

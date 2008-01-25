@@ -1,4 +1,4 @@
-/* 
+/*
 * <scheduler.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -53,7 +53,7 @@ extern void initScheduler ();
 extern void unpackResourceRequest ();
 
 /* Being known a worker is now idle :-) */
-extern void unpackTaskDone (); 
+extern void unpackTaskDone ();
 
 extern bool allResourcesFree ();
 

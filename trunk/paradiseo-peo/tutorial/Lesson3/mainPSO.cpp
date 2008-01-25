@@ -50,24 +50,24 @@ double f (const Indi & _indi)
 int main (int __argc, char *__argv[])
 {
   peo :: init( __argc, __argv );
-  const unsigned int VEC_SIZE = 2;  
-  const unsigned int POP_SIZE = 20; 
+  const unsigned int VEC_SIZE = 2;
+  const unsigned int POP_SIZE = 20;
   const unsigned int NEIGHBORHOOD_SIZE= 6;
-  const unsigned int MAX_GEN = 100; 
+  const unsigned int MAX_GEN = 100;
   const double INIT_POSITION_MIN = -2.0;
-  const double INIT_POSITION_MAX = 2.0; 
+  const double INIT_POSITION_MAX = 2.0;
   const double INIT_VELOCITY_MIN = -1.;
   const double INIT_VELOCITY_MAX = 1.;
   const unsigned int  MIG_FREQ = 10;
   const double omega = 1;
   const double C1 = 0.5;
-  const double C2 = 2.; 
+  const double C2 = 2.;
   rng.reseed (time(0));
 
 // Island model
 
   RingTopology topologyMig;
-  
+
 // First
   eoGenContinue < Indi > genContPara (MAX_GEN);
   eoCombinedContinue <Indi> continuatorPara (genContPara);
@@ -93,9 +93,9 @@ int main (int __argc, char *__argv[])
   eoPeriodicContinue< Indi > mig_cont( MIG_FREQ );
   peoPSOSelect<Indi> mig_selec(topology);
   peoWorstPositionReplacement<Indi> mig_replac;
-  
- // Specific implementation (peoData.h)
- 
+
+// Specific implementation (peoData.h)
+
   eoContinuator<Indi> cont(mig_cont, pop);
   eoSelector <Indi, peoPop<Indi> > mig_select (mig_selec,1,pop);
   eoReplace <Indi, peoPop<Indi> > mig_replace (mig_replac,pop);
@@ -121,7 +121,7 @@ int main (int __argc, char *__argv[])
   eoRealVectorBounds bnds2(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
   eoStandardVelocity < Indi > velocity2 (topology2,omega,C1,C2,bnds2);
   eoInitializer <Indi> init2(eval2,veloRandom2,localInit2,topology2,pop2);
-  
+
 // Island model
 
   eoPeriodicContinue< Indi > mig_cont2( MIG_FREQ );
@@ -133,15 +133,15 @@ int main (int __argc, char *__argv[])
   eoContinuator<Indi> cont2(mig_cont2,pop2);
   eoSelector <Indi, peoPop<Indi> > mig_select2 (mig_selec2,1,pop2);
   eoReplace <Indi, peoPop<Indi> > mig_replace2 (mig_replac2,pop2);
-  
+
 
 // Island model
-  
+
   peoAsyncIslandMig< Indi, peoPop<Indi> > mig(cont,mig_select, mig_replace, topologyMig, pop, pop);
   checkpoint.add( mig );
   peoAsyncIslandMig< Indi, peoPop<Indi> > mig2(cont2,mig_select2, mig_replace2, topologyMig, pop2, pop2);
   checkpoint2.add( mig2 );
-  
+
 
 // Parallel algorithm
 
@@ -156,10 +156,10 @@ int main (int __argc, char *__argv[])
   peo :: run();
   peo :: finalize();
   if (getNodeRank()==1)
-  {
-  	pop.sort();
-  	pop2.sort();
-    std::cout << "Final population :\n" << pop << std::endl;
-    std::cout << "Final population :\n" << pop2	 << std::endl;
-  }
+    {
+      pop.sort();
+      pop2.sort();
+      std::cout << "Final population :\n" << pop << std::endl;
+      std::cout << "Final population :\n" << pop2	 << std::endl;
+    }
 }

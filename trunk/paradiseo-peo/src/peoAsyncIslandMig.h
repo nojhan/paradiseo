@@ -162,7 +162,7 @@ template< class EOT, class TYPE > class peoAsyncIslandMig : public Cooperative, 
       peoData & __source,
       peoData & __destination
     );
-    
+
 
     //! Function operator to be called as checkpoint for performing the migration step. The emigrant individuals are selected
     //! from the source population and sent to the next island (defined by the topology object) while the immigrant
@@ -234,20 +234,20 @@ template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: unpack(
   unlock();
 }
 
-template< class EOT , class TYPE> void peoAsyncIslandMig< EOT, TYPE > :: packSynchronizeReq() {
-}
+template< class EOT , class TYPE> void peoAsyncIslandMig< EOT, TYPE > :: packSynchronizeReq()
+{}
 
 template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: emigrate()
 {
   std :: vector< Cooperative* >in, out;
   topology.setNeighbors( this, in, out );
-	
+
   for ( unsigned i = 0; i < out.size(); i++ )
     {
 
       TYPE mig;
       select(mig);
- 	  em.push( mig );
+      em.push( mig );
       coop_em.push( out[i] );
       send( out[i] );
       printDebugMessage( "sending some emigrants." );
@@ -257,13 +257,13 @@ template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: emigrat
 
 template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: immigrate()
 {
-  
+
   lock ();
   {
 
     while ( !imm.empty() )
       {
-		replace(imm.front() );
+        replace(imm.front() );
         imm.pop();
         printDebugMessage( "receiving some immigrants." );
       }
@@ -274,8 +274,8 @@ template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: immigra
 
 template< class EOT , class TYPE> void peoAsyncIslandMig< EOT, TYPE > :: operator()()
 {
-    
-    if (cont.check())
+
+  if (cont.check())
     {
 
       emigrate();	// sending emigrants

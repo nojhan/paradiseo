@@ -71,7 +71,7 @@ static int screen;
 /*
 gdk_gc_set_line_attributes (gc, 2,  GDK_LINE_ON_OFF_DASH, GDK_CAP_NOT_LAST, GDK_JOIN_MITER) ;
 
-gdk_gc_set_foreground  (gc, & color_green) ;  
+gdk_gc_set_foreground  (gc, & color_green) ;
 
 for (int i = 0 ; i < (int) numNodes ; i ++) {
 
@@ -80,7 +80,7 @@ for (int i = 0 ; i < (int) numNodes ; i ++) {
    Y_new_coord [opt_route [i]],
    X_new_coord [opt_route [(i + 1) % numNodes]],
    Y_new_coord [opt_route [(i + 1) % numNodes]]);
-  
+
    }*/
 
 void openMainWindow (const char * __filename)

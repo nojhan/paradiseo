@@ -1,4 +1,4 @@
-/* 
+/*
 * <peo_init.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -57,7 +57,8 @@ extern void initScheduler ();
 extern void initSynchron ();
 
 
-static void initExecutionEnv() {
+static void initExecutionEnv()
+{
 
   initCommunicableEnv ();
   initBuffers ();
@@ -72,13 +73,15 @@ static void initExecutionEnv() {
 }
 
 
-namespace peo {
+namespace peo
+  {
 
   int * argc;
 
   char * * * argv;
 
-  void init (int & __argc, char * * & __argv) {
+  void init (int & __argc, char * * & __argv)
+  {
 
     argc = & __argc;
 
@@ -87,7 +90,7 @@ namespace peo {
     /* Initializing the execution environment */
     initExecutionEnv();
 
-    /* Loading the common parameters */ 
+    /* Loading the common parameters */
     loadParameters (__argc, __argv);
 
     /* Initializing the the Resource Management and Communication */

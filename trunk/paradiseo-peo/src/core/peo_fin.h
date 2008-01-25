@@ -1,4 +1,4 @@
-/* 
+/*
 * <peo_fin.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -37,7 +37,8 @@
 #ifndef __peo_finalize_h
 #define __peo_finalize_h
 
-namespace peo {
+namespace peo
+  {
 
   extern void finalize ();
 }

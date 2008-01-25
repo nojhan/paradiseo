@@ -52,54 +52,54 @@ double f (const Indi & _indi)
 
 double peoPSOSeq ()
 {
-	/*
-  clock_t	beginSeq,endSeq;
-  double timeSeq;
-  const unsigned int VEC_SIZE = 2;
-  const unsigned int POP_SIZE = 10;
-  const unsigned int NEIGHBORHOOD_SIZE= 5;
-  const unsigned int MAX_GEN = 5000;
-  const double FIT_CONT = -1e-6;
-  const double INIT_POSITION_MIN = -5.0;
-  const double INIT_POSITION_MAX = 5.0;
-  const double INIT_VELOCITY_MIN = -1;
-  const double INIT_VELOCITY_MAX = 1;
-  const double C1 = 2;
-  const double C2 = 2;
-  rng.reseed (36);
-  beginSeq=clock();
-  eoEvalFuncPtr<Indi, double, const Indi& > plainEvalSeq(f);
-  eoEvalFuncCounter < Indi > evalSeq (plainEvalSeq);
-  eoUniformGenerator < double >uGen (INIT_POSITION_MIN, INIT_POSITION_MAX);
-  eoInitFixedLength < Indi > random (VEC_SIZE, uGen);
-  eoUniformGenerator < double >sGen (INIT_VELOCITY_MIN, INIT_VELOCITY_MAX);
-  eoVelocityInitFixedLength < Indi > veloRandom (VEC_SIZE, sGen);
-  eoFirstIsBestInit < Indi > localInit;
-  eoRealVectorBounds bndsFlight(VEC_SIZE,INIT_POSITION_MIN,INIT_POSITION_MAX);
-  eoStandardFlight < Indi > flight(bndsFlight);
-  eoPop < Indi > popSeq;
-  popSeq.append (POP_SIZE, random);
-  apply(evalSeq, popSeq);
-  ;
-  apply < Indi > (veloRandom, popSeq);
-  apply < Indi > (localInit, popSeq);
-  eoLinearTopology<Indi> topologySeq(NEIGHBORHOOD_SIZE);
-  topologySeq.setup(popSeq);
-  eoRealVectorBounds bndsSeq(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
-  eoStandardVelocity < Indi > velocitySeq (topologySeq,C1,C2,bndsSeq);
-  eoGenContinue < Indi > genContSeq (MAX_GEN);
-  eoFitContinue < Indi > fitContSeq (FIT_CONT);
-  eoCombinedContinue <Indi> continuatorSeq (genContSeq);
-  continuatorSeq.add(fitContSeq);
-  eoCheckPoint<Indi> checkpointSeq(continuatorSeq);
-  eoSyncEasyPSO < Indi > psaSeq(checkpointSeq, evalSeq, velocitySeq, flight);
-//Sequential
-  psaSeq (popSeq);
-  popSeq.sort ();
-  endSeq=clock();
-  timeSeq = endSeq-beginSeq;
-  return timeSeq;
-  */
+  /*
+   clock_t	beginSeq,endSeq;
+   double timeSeq;
+   const unsigned int VEC_SIZE = 2;
+   const unsigned int POP_SIZE = 10;
+   const unsigned int NEIGHBORHOOD_SIZE= 5;
+   const unsigned int MAX_GEN = 5000;
+   const double FIT_CONT = -1e-6;
+   const double INIT_POSITION_MIN = -5.0;
+   const double INIT_POSITION_MAX = 5.0;
+   const double INIT_VELOCITY_MIN = -1;
+   const double INIT_VELOCITY_MAX = 1;
+   const double C1 = 2;
+   const double C2 = 2;
+   rng.reseed (36);
+   beginSeq=clock();
+   eoEvalFuncPtr<Indi, double, const Indi& > plainEvalSeq(f);
+   eoEvalFuncCounter < Indi > evalSeq (plainEvalSeq);
+   eoUniformGenerator < double >uGen (INIT_POSITION_MIN, INIT_POSITION_MAX);
+   eoInitFixedLength < Indi > random (VEC_SIZE, uGen);
+   eoUniformGenerator < double >sGen (INIT_VELOCITY_MIN, INIT_VELOCITY_MAX);
+   eoVelocityInitFixedLength < Indi > veloRandom (VEC_SIZE, sGen);
+   eoFirstIsBestInit < Indi > localInit;
+   eoRealVectorBounds bndsFlight(VEC_SIZE,INIT_POSITION_MIN,INIT_POSITION_MAX);
+   eoStandardFlight < Indi > flight(bndsFlight);
+   eoPop < Indi > popSeq;
+   popSeq.append (POP_SIZE, random);
+   apply(evalSeq, popSeq);
+   ;
+   apply < Indi > (veloRandom, popSeq);
+   apply < Indi > (localInit, popSeq);
+   eoLinearTopology<Indi> topologySeq(NEIGHBORHOOD_SIZE);
+   topologySeq.setup(popSeq);
+   eoRealVectorBounds bndsSeq(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
+   eoStandardVelocity < Indi > velocitySeq (topologySeq,C1,C2,bndsSeq);
+   eoGenContinue < Indi > genContSeq (MAX_GEN);
+   eoFitContinue < Indi > fitContSeq (FIT_CONT);
+   eoCombinedContinue <Indi> continuatorSeq (genContSeq);
+   continuatorSeq.add(fitContSeq);
+   eoCheckPoint<Indi> checkpointSeq(continuatorSeq);
+   eoSyncEasyPSO < Indi > psaSeq(checkpointSeq, evalSeq, velocitySeq, flight);
+  //Sequential
+   psaSeq (popSeq);
+   popSeq.sort ();
+   endSeq=clock();
+   timeSeq = endSeq-beginSeq;
+   return timeSeq;
+   */
 }
 
 void peoPSOPara(long int arg)

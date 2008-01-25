@@ -1,4 +1,4 @@
-/* 
+/*
 * <topology.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -36,17 +36,20 @@
 
 #include "topology.h"
 
-Topology :: ~ Topology () {
+Topology :: ~ Topology ()
+{
 
   /* Nothing ! */
 }
 
-void Topology :: add (Cooperative & __mig) {
+void Topology :: add (Cooperative & __mig)
+  {
 
-  mig.push_back (& __mig) ;
-}
+    mig.push_back (& __mig) ;
+  }
 
-Topology :: operator std :: vector <Cooperative *>& () {
+Topology :: operator std :: vector <Cooperative *>& ()
+{
 
   return mig;
 }

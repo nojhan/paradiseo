@@ -47,49 +47,49 @@ extern int getNodeRank();
 
 
 template< class EOT > class peoTransform : public Service, public eoTransform< EOT >
-{
+  {
 
-public:
+  public:
 
-  peoTransform(
+    peoTransform(
 
-    eoQuadOp< EOT >& __cross,
-    double __cross_rate,
-    eoMonOp< EOT >& __mut,
-    double __mut_rate
-  );
+      eoQuadOp< EOT >& __cross,
+      double __cross_rate,
+      eoMonOp< EOT >& __mut,
+      double __mut_rate
+    );
 
-  void operator()( eoPop< EOT >& __pop );
+    void operator()( eoPop< EOT >& __pop );
 
-  void packData();
+    void packData();
 
-  void unpackData();
+    void unpackData();
 
-  void execute();
+    void execute();
 
-  void packResult();
+    void packResult();
 
-  void unpackResult();
+    void unpackResult();
 
-  void notifySendingData();
-  void notifySendingAllResourceRequests();
+    void notifySendingData();
+    void notifySendingAllResourceRequests();
 
-private:
+  private:
 
-  eoQuadOp< EOT >& cross;
-  double cross_rate;
+    eoQuadOp< EOT >& cross;
+    double cross_rate;
 
-  eoMonOp< EOT >& mut;
-  double mut_rate;
+    eoMonOp< EOT >& mut;
+    double mut_rate;
 
-  unsigned idx;
+    unsigned idx;
 
-  eoPop< EOT >* pop;
+    eoPop< EOT >* pop;
 
-  EOT father, mother;
+    EOT father, mother;
 
-  unsigned num_term;
-};
+    unsigned num_term;
+  };
 
 template< class EOT > peoTransform< EOT > :: peoTransform(
 
@@ -151,11 +151,11 @@ template< class EOT > void peoTransform< EOT > :: unpackResult()
 
   // Can be used with an odd size
   if ( num_term == 2*(pop->size()/2) )
-  {
+    {
 
-    getOwner()->setActive();
-    resume();
-  }
+      getOwner()->setActive();
+      resume();
+    }
 }
 
 

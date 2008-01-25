@@ -1,4 +1,4 @@
-/* 
+/*
 * <worker.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -42,41 +42,42 @@
 #include "../../core/service.h"
 
 
-typedef unsigned WORKER_ID; 
+typedef unsigned WORKER_ID;
 
-class Worker : public Communicable, public ReactiveThread {
+class Worker : public Communicable, public ReactiveThread
+  {
 
-public :
+  public :
 
-  Worker ();
+    Worker ();
 
-  void start ();
+    void start ();
 
-  void packResult ();
+    void packResult ();
 
-  void unpackData ();
+    void unpackData ();
 
-  void packTaskDone ();
+    void packTaskDone ();
 
-  void notifySendingResult ();
+    void notifySendingResult ();
 
-  void notifySendingTaskDone ();
+    void notifySendingTaskDone ();
 
-  void setSource (int __rank);
+    void setSource (int __rank);
 
-private :
+  private :
 
-  WORKER_ID id;
-  SERVICE_ID serv_id;
-  Service * serv;
-  int src;
+    WORKER_ID id;
+    SERVICE_ID serv_id;
+    Service * serv;
+    int src;
 
-  bool recvAndCompleted;
-  unsigned taskAssigned;
+    bool recvAndCompleted;
+    unsigned taskAssigned;
 
-  sem_t sem_task_done;
-  sem_t sem_task_asgn;
-};
+    sem_t sem_task_done;
+    sem_t sem_task_asgn;
+  };
 
 extern void initWorkersEnv ();
 

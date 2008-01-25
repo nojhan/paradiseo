@@ -78,7 +78,7 @@ int main (int __argc, char *__argv[])
   eoCheckPoint<Indi> checkpoint(continuatorPara);
 
 // For a parallel evaluation
-  
+
   peoEvalFunc<Indi> plainEval(f);
   peoPopEval <Indi> eval(plainEval);
 
@@ -95,26 +95,26 @@ int main (int __argc, char *__argv[])
   eoSegmentCrossover<Indi> crossover; // Crossover
   eoUniformMutation<Indi>  mutation(EPSILON);  // Mutation
   eoSGATransform<Indi> transform(crossover,CROSS_RATE,mutation,MUT_RATE);
-  
+
 // Replacement
   eoPlusReplacement<Indi> replace;
 
 // Creation of the population
   eoPop < Indi > pop;
   pop.append (POP_SIZE, random);
-  
+
 // Algorithm
   eoEasyEA< Indi > eaAlg( checkpoint, eval, select, transform, replace );
 
 //Parallel algorithm
   peoWrapper parallelEA( eaAlg, pop);
   eval.setOwner(parallelEA);
-  
+
   peo :: run();
   peo :: finalize();
   if (getNodeRank()==1)
-  {
-  	pop.sort();
-    std::cout << "Final population :\n" << pop << std::endl;
-  }
+    {
+      pop.sort();
+      std::cout << "Final population :\n" << pop << std::endl;
+    }
 }

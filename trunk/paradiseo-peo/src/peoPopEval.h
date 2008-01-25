@@ -143,7 +143,7 @@ template< class EOT > peoPopEval< EOT > :: peoPopEval(
 
 template< class EOT > void peoPopEval< EOT >::operator()(eoPop< EOT >& __dummy, eoPop< EOT >& __pop )
 {
-	this->operator()(__pop);
+  this->operator()(__pop);
 }
 
 template< class EOT > void peoPopEval< EOT >::operator()(eoPop< EOT >& __pop )
@@ -166,7 +166,7 @@ template< class EOT > void peoPopEval< EOT >::operator()(eoPop< EOT >& __pop )
 
 
 template< class EOT > void peoPopEval< EOT > :: packData()
-{	
+{
   //  printDebugMessage ("debut pakc data");
   pack( progression[ tasks.front() ].first-- );
 
@@ -180,7 +180,7 @@ template< class EOT > void peoPopEval< EOT > :: packData()
 
 
 template< class EOT > void peoPopEval< EOT > :: unpackData()
-{	
+{
   unpack( num_func );
   /* Unpacking the solution */
   unpack( sol );
@@ -191,14 +191,14 @@ template< class EOT > void peoPopEval< EOT > :: unpackData()
 
 template< class EOT > void peoPopEval< EOT > :: execute()
 {
-	
+
   /* Computing the fitness of the solution */
   funcs[ num_func ]->operator()( sol );
 }
 
 
 template< class EOT > void peoPopEval< EOT > :: packResult()
-{	
+{
   /* Packing the fitness of the solution */
   pack( sol.fitness() );
   /* Packing the @ of the individual */
@@ -207,7 +207,7 @@ template< class EOT > void peoPopEval< EOT > :: packResult()
 
 
 template< class EOT > void peoPopEval< EOT > :: unpackResult()
-{	
+{
   typename EOT :: Fitness fit;
 
   /* Unpacking the computed fitness */
@@ -244,7 +244,7 @@ template< class EOT > void peoPopEval< EOT > :: notifySendingData()
 
 
 template< class EOT > void peoPopEval< EOT > :: notifySendingAllResourceRequests()
-{	
+{
   getOwner()->setPassive();
 }
 

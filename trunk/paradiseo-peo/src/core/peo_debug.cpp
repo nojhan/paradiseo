@@ -1,4 +1,4 @@
-/* 
+/*
 * <peo_debug.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -58,7 +58,8 @@ static char host [MAX_BUFF_SIZE];
 std :: vector <FILE *> files;
 
 
-void setDebugMode (bool __dbg) {
+void setDebugMode (bool __dbg)
+{
 
   debug = __dbg;
   gethostname (host, MAX_BUFF_SIZE);
@@ -66,7 +67,8 @@ void setDebugMode (bool __dbg) {
 
 extern int getNodeRank ();
 
-void initDebugging () {
+void initDebugging ()
+{
 
   mkdir (DEBUG_PATH, S_IRWXU);
   //  files.push_back (stdout);
@@ -75,7 +77,8 @@ void initDebugging () {
   files.push_back (fopen (buff, "w"));
 }
 
-void endDebugging () {
+void endDebugging ()
+{
 
   for (unsigned i = 0; i < files.size (); i ++)
     if (files [i] != stdout)
@@ -83,29 +86,32 @@ void endDebugging () {
   files.clear();
 }
 
-void printDebugMessage (const char * __mess) {
+void printDebugMessage (const char * __mess)
+{
 
-  if (debug) {
+  if (debug)
+    {
 
-    char buff [MAX_BUFF_SIZE];
-    char localTime [MAX_BUFF_SIZE];
-    time_t t = time (0);
+      char buff [MAX_BUFF_SIZE];
+      char localTime [MAX_BUFF_SIZE];
+      time_t t = time (0);
 
-    /* Date */
-    strcpy( localTime, ctime (& t) ); 
-    localTime[ strlen( localTime )-1 ] = ']';
-    sprintf (buff, "[%s][%s: ", host, localTime );
+      /* Date */
+      strcpy( localTime, ctime (& t) );
+      localTime[ strlen( localTime )-1 ] = ']';
+      sprintf (buff, "[%s][%s: ", host, localTime );
 
-    for (unsigned i = 0; i < files.size (); i ++)
-      fprintf (files [i], buff);
+      for (unsigned i = 0; i < files.size (); i ++)
+        fprintf (files [i], buff);
 
-    /* Message */
-    sprintf (buff, "%s", __mess);
+      /* Message */
+      sprintf (buff, "%s", __mess);
 
-    for (unsigned i = 0; i < files.size (); i ++) {
-      fputs (buff, files [i]);
-      fputs ("\n", files [i]);
-      fflush (files [i]);
+      for (unsigned i = 0; i < files.size (); i ++)
+        {
+          fputs (buff, files [i]);
+          fputs ("\n", files [i]);
+          fflush (files [i]);
+        }
     }
-  }
 }

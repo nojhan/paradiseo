@@ -1,4 +1,4 @@
-/* 
+/*
 * <comm.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -40,15 +40,16 @@
 #include "../../core/communicable.h"
 #include "../../core/reac_thread.h"
 
-class Communicator : public ReactiveThread {
+class Communicator : public ReactiveThread
+  {
 
-public :
+  public :
 
-  /* Ctor */
-  Communicator (int * __argc, char * * * __argv);
+    /* Ctor */
+    Communicator (int * __argc, char * * * __argv);
 
-  void start ();
-};
+    void start ();
+  };
 
 extern void initCommunication ();
 

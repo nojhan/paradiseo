@@ -1,4 +1,4 @@
-/* 
+/*
 * <rmc.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -39,7 +39,7 @@
 
 extern void initRMC (int & __argc, char * * & __argv);
 
-extern void runRMC (); /* Resource Management and Communication */ 
+extern void runRMC (); /* Resource Management and Communication */
 
 extern void finalizeRMC ();
 

@@ -1,4 +1,4 @@
-/* 
+/*
 * <communicable.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -47,7 +47,8 @@ static std :: map <const Communicable *, unsigned> comm_to_key; /* Map of regist
 unsigned Communicable :: num_comm = 0;
 
 
-Communicable :: Communicable () {
+Communicable :: Communicable ()
+{
 
   comm_to_key [this] = key = ++ num_comm;
   key_to_comm.push_back (this);
@@ -55,46 +56,54 @@ Communicable :: Communicable () {
   sem_init (& sem_stop, 0, 0);
 }
 
-Communicable :: ~ Communicable () {
-
+Communicable :: ~ Communicable ()
+{
 }
 
-COMM_ID Communicable :: getKey () {
+COMM_ID Communicable :: getKey ()
+{
 
   return key;
 }
 
-Communicable * getCommunicable (COMM_ID __key) {
+Communicable * getCommunicable (COMM_ID __key)
+{
 
   assert (__key < key_to_comm.size ());
-  return key_to_comm [__key];  
+  return key_to_comm [__key];
 }
 
-COMM_ID getKey (const Communicable * __comm) {
+COMM_ID getKey (const Communicable * __comm)
+{
 
   return comm_to_key [__comm];
 }
 
-void Communicable :: lock () {
+void Communicable :: lock ()
+  {
 
-  sem_wait (& sem_lock);
-}
+    sem_wait (& sem_lock);
+  }
 
-void Communicable :: unlock () {
+void Communicable :: unlock ()
+{
 
   sem_post (& sem_lock);
 }
 
-void Communicable :: stop () {
+void Communicable :: stop ()
+{
   sem_wait (& sem_stop);
 }
 
-void Communicable :: resume () {
+void Communicable :: resume ()
+{
 
   sem_post (& sem_stop);
 }
 
-void initCommunicableEnv () {
+void initCommunicableEnv ()
+{
 
   key_to_comm.resize (1);
   comm_to_key.clear ();

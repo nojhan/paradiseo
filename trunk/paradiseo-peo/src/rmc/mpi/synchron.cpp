@@ -1,4 +1,4 @@
-/* 
+/*
 * <scheduler.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -50,26 +50,30 @@ extern void wakeUpCommunicator();
 extern RANK_ID getRankOfRunner (RUNNER_ID __key);
 
 /* Initializing the list of runners to be synchronized */
-void initSynchron () {
+void initSynchron ()
+{
 
   syncRunners = SYNC();
 }
 
 /* packing a synchronization request from a service */
-void packSynchronRequest ( const std :: vector <Cooperative *>& coops ) {
+void packSynchronRequest ( const std :: vector <Cooperative *>& coops )
+{
 
   /* Number of coops to synchronize */
   pack( (unsigned)( coops.size() ) );
 
   /* Coops to synchronize */
-  for (unsigned i = 0; i < coops.size(); i ++) {
-    pack( coops[ i ]->getOwner()->getDefinitionID() );
-    pack( coops[ i ]->getKey() );
-  }
+  for (unsigned i = 0; i < coops.size(); i ++)
+    {
+      pack( coops[ i ]->getOwner()->getDefinitionID() );
+      pack( coops[ i ]->getKey() );
+    }
 }
 
 /* Processing a synchronization request from a service */
-void unpackSynchronRequest () {
+void unpackSynchronRequest ()
+{
 
   unsigned req_num_entries;
   unpack (req_num_entries);
@@ -79,45 +83,50 @@ void unpackSynchronRequest () {
 
   /* Adding entries for each of the runners to be synchronized */
   SyncEntry req_entry;
-  for (unsigned i = 0; i < req_num_entries; i ++) {
+  for (unsigned i = 0; i < req_num_entries; i ++)
+    {
 
-    unpack (req_entry.runner);
-    unpack (req_entry.coop);
+      unpack (req_entry.runner);
+      unpack (req_entry.coop);
 
-    req_sync.first.push_back (req_entry);
-  }
+      req_sync.first.push_back (req_entry);
+    }
 
   /* Looking for the sync vector */
   SYNC::iterator sync_it = syncRunners.find (req_sync);
 
   /* The vector does not exist - insert a new sync */
-  if (sync_it == syncRunners.end ()) {
-    req_sync.second = 1;
-    syncRunners.insert (req_sync);
-  }
-  else {
-
-    /* The vector exists - updating the entry */
-    std::pair< SYNC_RUNNERS, unsigned >& sync_req_entry = const_cast< std::pair< SYNC_RUNNERS, unsigned >& > (*sync_it);
-    sync_req_entry.second ++;
-
-    /* All the runners to be synchronized sent the SYNC_REQUEST signal */
-    if (sync_req_entry.second == sync_req_entry.first.size()) {
-
-      /* Remove the entry */
-      syncRunners.erase (sync_it); 
-
-      /* Send SYNCHRONIZED signals to all the coop objects */
-      for (unsigned i = 0; i < req_sync.first.size(); i ++) {
-
-        initMessage ();
-
-        pack (req_sync.first [i].runner);
-        pack (req_sync.first [i].coop);
-
-        RANK_ID dest_rank = getRankOfRunner (req_sync.first [i].runner);
-        sendMessage (dest_rank, SYNCHRONIZED_TAG);
-      }
+  if (sync_it == syncRunners.end ())
+    {
+      req_sync.second = 1;
+      syncRunners.insert (req_sync);
     }
-  }
+  else
+    {
+
+      /* The vector exists - updating the entry */
+      std::pair< SYNC_RUNNERS, unsigned >& sync_req_entry = const_cast< std::pair< SYNC_RUNNERS, unsigned >& > (*sync_it);
+      sync_req_entry.second ++;
+
+      /* All the runners to be synchronized sent the SYNC_REQUEST signal */
+      if (sync_req_entry.second == sync_req_entry.first.size())
+        {
+
+          /* Remove the entry */
+          syncRunners.erase (sync_it);
+
+          /* Send SYNCHRONIZED signals to all the coop objects */
+          for (unsigned i = 0; i < req_sync.first.size(); i ++)
+            {
+
+              initMessage ();
+
+              pack (req_sync.first [i].runner);
+              pack (req_sync.first [i].coop);
+
+              RANK_ID dest_rank = getRankOfRunner (req_sync.first [i].runner);
+              sendMessage (dest_rank, SYNCHRONIZED_TAG);
+            }
+        }
+    }
 }

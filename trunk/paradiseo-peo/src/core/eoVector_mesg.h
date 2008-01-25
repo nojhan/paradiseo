@@ -1,4 +1,4 @@
-/* 
+/*
 * <eoVector_comm.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -43,34 +43,41 @@
 #include "messaging.h"
 
 
-template <class F, class T> void pack (const eoVector <F, T> & __v) {
+template <class F, class T> void pack (const eoVector <F, T> & __v)
+{
 
-  if (__v.invalid()) {
-    pack((unsigned)0);
-  }
-  else {
-    pack((unsigned)1); 
-    pack (__v.fitness ());
-  }
+  if (__v.invalid())
+    {
+      pack((unsigned)0);
+    }
+  else
+    {
+      pack((unsigned)1);
+      pack (__v.fitness ());
+    }
 
   unsigned len = __v.size ();
   pack (len);
   for (unsigned i = 0 ; i < len; i ++)
-    pack (__v [i]);  
+    pack (__v [i]);
 }
 
-template <class F, class T> void unpack (eoVector <F, T> & __v) {
+template <class F, class T> void unpack (eoVector <F, T> & __v)
+{
 
-  unsigned valid; unpack(valid);
+  unsigned valid;
+  unpack(valid);
 
-  if (! valid) {
-    __v.invalidate();
-  }
-  else {
-    F fit; 
-    unpack (fit);
-    __v.fitness (fit);
-  }
+  if (! valid)
+    {
+      __v.invalidate();
+    }
+  else
+    {
+      F fit;
+      unpack (fit);
+      __v.fitness (fit);
+    }
 
   unsigned len;
   unpack (len);
@@ -79,125 +86,132 @@ template <class F, class T> void unpack (eoVector <F, T> & __v) {
     unpack (__v [i]);
 }
 
-template <class F, class T, class V> void pack (const eoVectorParticle <F, T, V> & __v) {
+template <class F, class T, class V> void pack (const eoVectorParticle <F, T, V> & __v)
+{
 
-  if (__v.invalid()) {
-    pack((unsigned)0);
-  }
-  else {
-    pack((unsigned)1); 
-    pack (__v.fitness ());
-    pack (__v.best());
-  }
+  if (__v.invalid())
+    {
+      pack((unsigned)0);
+    }
+  else
+    {
+      pack((unsigned)1);
+      pack (__v.fitness ());
+      pack (__v.best());
+    }
 
   unsigned len = __v.size ();
   pack (len);
   for (unsigned i = 0 ; i < len; i ++)
-    pack (__v [i]);  
+    pack (__v [i]);
   for (unsigned i = 0 ; i < len; i ++)
-    pack (__v.bestPositions[i]); 
+    pack (__v.bestPositions[i]);
   for (unsigned i = 0 ; i < len; i ++)
-    pack (__v.velocities[i]);  
+    pack (__v.velocities[i]);
 }
 
-template <class F, class T, class V> void unpack (eoVectorParticle <F, T, V> & __v) {
+template <class F, class T, class V> void unpack (eoVectorParticle <F, T, V> & __v)
+{
 
-unsigned valid; unpack(valid);
+  unsigned valid;
+  unpack(valid);
 
-  if (! valid) {
-    __v.invalidate();
-  }
-  else {
-    F fit; 
-    unpack (fit);
-    __v.fitness (fit);
+  if (! valid)
+    {
+      __v.invalidate();
+    }
+  else
+    {
+      F fit;
+      unpack (fit);
+      __v.fitness (fit);
       unpack(fit);
-  __v.best(fit);
-    
-  }
+      __v.best(fit);
+
+    }
   unsigned len;
   unpack (len);
   __v.resize (len);
   for (unsigned i = 0 ; i < len; i ++)
-    unpack (__v [i]);  
+    unpack (__v [i]);
   for (unsigned i = 0 ; i < len; i ++)
-    unpack (__v.bestPositions[i]); 
+    unpack (__v.bestPositions[i]);
   for (unsigned i = 0 ; i < len; i ++)
-    unpack (__v.velocities[i]);  
+    unpack (__v.velocities[i]);
 }
 
-template <class F, class T, class V, class W> void unpack (moeoVector <F,T,V,W> &_v) 
+template <class F, class T, class V, class W> void unpack (moeoVector <F,T,V,W> &_v)
 {
-	unsigned valid;
-	unpack(valid);
-    if (! valid)
-    	_v.invalidate();
-    else 
+  unsigned valid;
+  unpack(valid);
+  if (! valid)
+    _v.invalidate();
+  else
     {
-  		T fit; 
-    	unpack (fit);
-    	_v.fitness (fit);
-  	}
-  	unpack(valid);
-    if (! valid)
-    	_v.invalidateDiversity();
-    else 
-    {
-  		V diver;
-  		unpack(diver);
-  		_v.diversity(diver);
+      T fit;
+      unpack (fit);
+      _v.fitness (fit);
     }
-  	unsigned len;
-    unpack (len);
-    _v.resize (len);
-    for (unsigned i = 0 ; i < len; i ++)
-    	unpack (_v [i]);
-    unpack(valid);
-    if (! valid)
-    	_v.invalidateObjectiveVector();
-    else 
+  unpack(valid);
+  if (! valid)
+    _v.invalidateDiversity();
+  else
     {
-    	F object;
-    	unpack (len);
-    	object.resize(len);
-    	for (unsigned i = 0 ; i < len; i ++)
-    		unpack (object[i]);
-    	_v.objectiveVector(object);
+      V diver;
+      unpack(diver);
+      _v.diversity(diver);
+    }
+  unsigned len;
+  unpack (len);
+  _v.resize (len);
+  for (unsigned i = 0 ; i < len; i ++)
+    unpack (_v [i]);
+  unpack(valid);
+  if (! valid)
+    _v.invalidateObjectiveVector();
+  else
+    {
+      F object;
+      unpack (len);
+      object.resize(len);
+      for (unsigned i = 0 ; i < len; i ++)
+        unpack (object[i]);
+      _v.objectiveVector(object);
     }
 }
 
 
-template <class F, class T, class V, class W> void pack (moeoVector <F,T,V,W> &_v) 
+template <class F, class T, class V, class W> void pack (moeoVector <F,T,V,W> &_v)
 {
-	if (_v.invalid())
-    	pack((unsigned)0);
-    else
+  if (_v.invalid())
+    pack((unsigned)0);
+  else
     {
-    	pack((unsigned)1); 
-    	pack (_v.fitness ());
+      pack((unsigned)1);
+      pack (_v.fitness ());
     }
-    if (_v.invalidDiversity())
-    	pack((unsigned)0);
-    else
+  if (_v.invalidDiversity())
+    pack((unsigned)0);
+  else
     {
-    	pack((unsigned)1);
-    	pack(_v.diversity());
+      pack((unsigned)1);
+      pack(_v.diversity());
     }
-    unsigned len = _v.size ();
-    pack (len);
-    for (unsigned i = 0 ; i < len; i ++)
-    	pack (_v[i]);
-    if (_v.invalidObjectiveVector())
-    	pack((unsigned)0);
-    else
+  unsigned len = _v.size ();
+  pack (len);
+  for (unsigned i = 0 ; i < len; i ++)
+    pack (_v[i]);
+  if (_v.invalidObjectiveVector())
+    pack((unsigned)0);
+  else
     {
-    	pack((unsigned)1); 
-    	F object;
-    	object=_v.objectiveVector();
-    	len=object.nObjectives();
-    	pack (len);
-    	for (unsigned i = 0 ; i < len; i ++)
-    		pack (object[i]);	
+      pack((unsigned)1);
+      F object;
+      object=_v.objectiveVector();
+      len=object.nObjectives();
+      pack (len);
+      for (unsigned i = 0 ; i < len; i ++)
+        pack (object[i]);
     }
 }
 

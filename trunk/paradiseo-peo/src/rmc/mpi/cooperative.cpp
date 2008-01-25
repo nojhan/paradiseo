@@ -1,4 +1,4 @@
-/* 
+/*
 * <coop.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -41,42 +41,48 @@
 #include "mess.h"
 #include "../../core/peo_debug.h"
 
-Runner * Cooperative :: getOwner () {
+Runner * Cooperative :: getOwner ()
+{
 
   return owner;
 }
 
-void Cooperative :: setOwner (Runner & __runner) {
+void Cooperative :: setOwner (Runner & __runner)
+{
 
   owner = & __runner;
 }
 
-void Cooperative :: send (Cooperative * __coop) {
+void Cooperative :: send (Cooperative * __coop)
+{
 
   :: send (this, getRankOfRunner (__coop -> getOwner () -> getDefinitionID ()), COOP_TAG);
   //  stop ();
 }
 
-void Cooperative :: synchronizeCoopEx () {
+void Cooperative :: synchronizeCoopEx ()
+{
   :: send (this, my_node -> rk_sched, SYNCHRONIZE_REQ_TAG);
 }
 
-Cooperative * getCooperative (COOP_ID __key) {
+Cooperative * getCooperative (COOP_ID __key)
+{
 
   return dynamic_cast <Cooperative *> (getCommunicable (__key));
 }
 
-void Cooperative :: notifySending () {
+void Cooperative :: notifySending ()
+{
 
   //getOwner -> setPassive ();
   //  resume ();
 }
 
-void Cooperative :: notifyReceiving () {
-}
+void Cooperative :: notifyReceiving ()
+{}
 
-void Cooperative :: notifySendingSyncReq () {
-}
+void Cooperative :: notifySendingSyncReq ()
+{}
 
-void Cooperative :: notifySynchronized () {
-}
+void Cooperative :: notifySynchronized ()
+{}

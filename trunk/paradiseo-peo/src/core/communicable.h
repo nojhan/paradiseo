@@ -1,4 +1,4 @@
-/* 
+/*
 * <communicable.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -42,37 +42,38 @@
 
 typedef unsigned COMM_ID;
 
-class Communicable {
+class Communicable
+  {
 
-public :
+  public :
 
-  Communicable ();
+    Communicable ();
 
-  virtual ~ Communicable ();
+    virtual ~ Communicable ();
 
-  COMM_ID getKey ();
+    COMM_ID getKey ();
 
-  void lock (); /* It suspends the current process if the semaphore is locked */
-  void unlock (); /* It unlocks the shared semaphore */
+    void lock (); /* It suspends the current process if the semaphore is locked */
+    void unlock (); /* It unlocks the shared semaphore */
 
-  void stop (); /* It suspends the current process */
-  void resume (); /* It resumes ___________ */
+    void stop (); /* It suspends the current process */
+    void resume (); /* It resumes ___________ */
 
-public :
+  public :
 
-  static unsigned num_comm;
+    static unsigned num_comm;
 
-protected :
+  protected :
 
-  COMM_ID key;
+    COMM_ID key;
 
-  sem_t sem_lock;
+    sem_t sem_lock;
 
-  sem_t sem_stop;
-};
+    sem_t sem_stop;
+  };
 
 extern void initCommunicableEnv ();
 
-extern Communicable * getCommunicable (COMM_ID __key); 
+extern Communicable * getCommunicable (COMM_ID __key);
 
 #endif

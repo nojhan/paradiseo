@@ -45,13 +45,13 @@
 //! The class is provided as a mean of declaring that no aggregation is required for the evaluation function - the fitness
 //! value is explicitly specified.
 template< class EOT > class peoNoAggEvalFunc : public peoAggEvalFunc< EOT >
-{
+  {
 
-public :
+  public :
 
-  //! Operator which sets as fitness the <b>__fit</b> value for the <b>__sol</b> individual
-  void operator()( EOT& __sol, const typename EOT :: Fitness& __fit );
-};
+    //! Operator which sets as fitness the <b>__fit</b> value for the <b>__sol</b> individual
+    void operator()( EOT& __sol, const typename EOT :: Fitness& __fit );
+  };
 
 
 template< class EOT > void peoNoAggEvalFunc< EOT > :: operator()( EOT& __sol, const typename EOT :: Fitness& __fit )

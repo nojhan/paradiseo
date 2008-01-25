@@ -45,117 +45,117 @@
 
 
 class peoWrapper : public Runner
-{
+  {
 
- public:
+  public:
 
-  template< typename AlgorithmType > peoWrapper( AlgorithmType& externalAlgorithm )
-    : algorithm( new Algorithm< AlgorithmType, void >( externalAlgorithm ) )
+    template< typename AlgorithmType > peoWrapper( AlgorithmType& externalAlgorithm )
+        : algorithm( new Algorithm< AlgorithmType, void >( externalAlgorithm ) )
     {}
 
-  template< typename AlgorithmType, typename AlgorithmDataType > peoWrapper( AlgorithmType& externalAlgorithm, AlgorithmDataType& externalData )
-    : algorithm( new Algorithm< AlgorithmType, AlgorithmDataType >( externalAlgorithm, externalData ) )
+    template< typename AlgorithmType, typename AlgorithmDataType > peoWrapper( AlgorithmType& externalAlgorithm, AlgorithmDataType& externalData )
+        : algorithm( new Algorithm< AlgorithmType, AlgorithmDataType >( externalAlgorithm, externalData ) )
     {}
 
-  template< typename AlgorithmReturnType > peoWrapper( AlgorithmReturnType& (*externalAlgorithm)() )
-    : algorithm( new FunctionAlgorithm< AlgorithmReturnType, void >( externalAlgorithm ) )
+    template< typename AlgorithmReturnType > peoWrapper( AlgorithmReturnType& (*externalAlgorithm)() )
+        : algorithm( new FunctionAlgorithm< AlgorithmReturnType, void >( externalAlgorithm ) )
     {}
 
-  template< typename AlgorithmReturnType, typename AlgorithmDataType > peoWrapper( AlgorithmReturnType& (*externalAlgorithm)( AlgorithmDataType& ), AlgorithmDataType& externalData )
-    : algorithm( new FunctionAlgorithm< AlgorithmReturnType, AlgorithmDataType >( externalAlgorithm, externalData ) )
+    template< typename AlgorithmReturnType, typename AlgorithmDataType > peoWrapper( AlgorithmReturnType& (*externalAlgorithm)( AlgorithmDataType& ), AlgorithmDataType& externalData )
+        : algorithm( new FunctionAlgorithm< AlgorithmReturnType, AlgorithmDataType >( externalAlgorithm, externalData ) )
     {}
 
-  ~peoWrapper()
+    ~peoWrapper()
     {
 
       delete algorithm;
     }
 
-  void run()
-  {
-    algorithm->operator()();
-  }
+    void run()
+    {
+      algorithm->operator()();
+    }
 
 
- private:
+  private:
 
-  struct AbstractAlgorithm
-  {
+    struct AbstractAlgorithm
+      {
 
-    // virtual destructor as we will be using inheritance and polymorphism
-    virtual ~AbstractAlgorithm()
-    { }
+        // virtual destructor as we will be using inheritance and polymorphism
+        virtual ~AbstractAlgorithm()
+        { }
 
-    // operator to be called for executing the algorithm
-    virtual void operator()()
-    { }
-  };
+        // operator to be called for executing the algorithm
+        virtual void operator()()
+        { }
+      };
 
   template< typename AlgorithmType, typename AlgorithmDataType > struct Algorithm : public AbstractAlgorithm
-  {
+      {
 
-  Algorithm( AlgorithmType& externalAlgorithm, AlgorithmDataType& externalData )
-    : algorithm( externalAlgorithm ), algorithmData( externalData )
-    {}
+        Algorithm( AlgorithmType& externalAlgorithm, AlgorithmDataType& externalData )
+            : algorithm( externalAlgorithm ), algorithmData( externalData )
+        {}
 
-    virtual void operator()()
-    {
-      algorithm( algorithmData );
-    }
+        virtual void operator()()
+        {
+          algorithm( algorithmData );
+        }
 
-    AlgorithmType& algorithm;
-    AlgorithmDataType& algorithmData;
-  };
+        AlgorithmType& algorithm;
+        AlgorithmDataType& algorithmData;
+      };
 
   template< typename AlgorithmType > struct Algorithm< AlgorithmType, void >  : public AbstractAlgorithm
-  {
+      {
 
-  Algorithm( AlgorithmType& externalAlgorithm ) : algorithm( externalAlgorithm )
-    {}
+        Algorithm( AlgorithmType& externalAlgorithm ) : algorithm( externalAlgorithm )
+        {}
 
-    virtual void operator()()
-    {
-      algorithm();
-    }
+        virtual void operator()()
+        {
+          algorithm();
+        }
 
-    AlgorithmType& algorithm;
-  };
+        AlgorithmType& algorithm;
+      };
 
   template< typename AlgorithmReturnType, typename AlgorithmDataType > struct FunctionAlgorithm : public AbstractAlgorithm
-  {
+      {
 
-  FunctionAlgorithm( AlgorithmReturnType (*externalAlgorithm)( AlgorithmDataType& ), AlgorithmDataType& externalData )
-    : algorithm( externalAlgorithm ), algorithmData( externalData )
-    {}
+        FunctionAlgorithm( AlgorithmReturnType (*externalAlgorithm)( AlgorithmDataType& ), AlgorithmDataType& externalData )
+            : algorithm( externalAlgorithm ), algorithmData( externalData )
+        {}
 
-    virtual void operator()()
-    {
-      algorithm( algorithmData );
-    }
+        virtual void operator()()
+        {
+          algorithm( algorithmData );
+        }
 
-    AlgorithmReturnType (*algorithm)( AlgorithmDataType& );
-    AlgorithmDataType& algorithmData;
-  };
+        AlgorithmReturnType (*algorithm)( AlgorithmDataType& );
+        AlgorithmDataType& algorithmData;
+      };
 
   template< typename AlgorithmReturnType > struct FunctionAlgorithm< AlgorithmReturnType, void > : public AbstractAlgorithm
-  {
+      {
 
-  FunctionAlgorithm( AlgorithmReturnType (*externalAlgorithm)() )
-    : algorithm( externalAlgorithm )
-    {}
+        FunctionAlgorithm( AlgorithmReturnType (*externalAlgorithm)() )
+            : algorithm( externalAlgorithm )
+        {}
 
-    virtual void operator()()
-    {
-      algorithm();
-    }
+        virtual void operator()()
+        {
+          algorithm();
+        }
 
-    AlgorithmReturnType (*algorithm)();
+        AlgorithmReturnType (*algorithm)();
+      };
+
+  private:
+
+    AbstractAlgorithm* algorithm;
   };
-
- private:
-
-  AbstractAlgorithm* algorithm;
-};
 
 
 #endif

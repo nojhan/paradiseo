@@ -54,7 +54,7 @@ class peoGlobalBestVelocity : public eoReplacement<POT>
     typedef typename POT::ParticleVelocityType VelocityType;
 
     peoGlobalBestVelocity(	const double & _c3,
-                    eoVelocity < POT > &_velocity):
+                           eoVelocity < POT > &_velocity):
         c3 (_c3),
         velocity (_velocity)
     {}

@@ -40,7 +40,6 @@
 DisplayBestRoute :: DisplayBestRoute (eoPop <Route> & __pop
                                      ) : pop (__pop)
 {
-
 }
 
 void DisplayBestRoute :: operator () ()

@@ -1,4 +1,4 @@
-/* 
+/*
 * <thread.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -43,66 +43,78 @@ static std :: vector <Thread *> threads;
 unsigned num_act = 0;
 
 
-Thread :: Thread () {
+Thread :: Thread ()
+{
 
   threads.push_back (this);
   act = false;
 }
 
-Thread :: ~ Thread () {
+Thread :: ~ Thread ()
+{
 
   /* Nothing ! */
 }
 
-void Thread :: setActive () {
+void Thread :: setActive ()
+{
 
-  if (! act) {
+  if (! act)
+    {
 
-    act = true;
-    num_act ++;
-  }
+      act = true;
+      num_act ++;
+    }
 }
 
-void Thread :: setPassive () {
+void Thread :: setPassive ()
+{
 
-  if (act) {
+  if (act)
+    {
 
-    act = false;
-    num_act --;
-  }
+      act = false;
+      num_act --;
+    }
 }
 
-void initThreadsEnv () {
+void initThreadsEnv ()
+{
 
   threads.clear ();
   num_act = 0;
 }
 
-bool atLeastOneActiveThread () {
+bool atLeastOneActiveThread ()
+{
 
   return num_act;
 }
 
-static void * launch (void * __arg) {
+static void * launch (void * __arg)
+{
 
-  Thread * thr = (Thread *) __arg;  
+  Thread * thr = (Thread *) __arg;
   thr -> start ();
 
   return 0;
 }
 
-void addThread (Thread * __hl_thread, std :: vector <pthread_t *> & __ll_threads) {
+void addThread (Thread * __hl_thread, std :: vector <pthread_t *> & __ll_threads)
+{
 
   pthread_t * ll_thr = new pthread_t;
   __ll_threads.push_back (ll_thr);
-  pthread_create (ll_thr, 0, launch, __hl_thread); 
+  pthread_create (ll_thr, 0, launch, __hl_thread);
 }
 
-void joinThreads (std :: vector <pthread_t *> & __threads) {
+void joinThreads (std :: vector <pthread_t *> & __threads)
+{
 
-  for (unsigned i = 0; i < __threads.size (); i ++) {
-    pthread_join (* __threads [i], 0);
-    delete __threads [i];
-  }
+  for (unsigned i = 0; i < __threads.size (); i ++)
+    {
+      pthread_join (* __threads [i], 0);
+      delete __threads [i];
+    }
   __threads.clear();
 }

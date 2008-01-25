@@ -143,7 +143,7 @@ template< class EOT > peoMoeoPopEval< EOT > :: peoMoeoPopEval(
 
 template< class EOT > void peoMoeoPopEval< EOT >::operator()(eoPop< EOT >& __dummy, eoPop< EOT >& __pop )
 {
-	this->operator()(__pop);
+  this->operator()(__pop);
 }
 
 template< class EOT > void peoMoeoPopEval< EOT >::operator()(eoPop< EOT >& __pop )
@@ -166,7 +166,7 @@ template< class EOT > void peoMoeoPopEval< EOT >::operator()(eoPop< EOT >& __pop
 
 
 template< class EOT > void peoMoeoPopEval< EOT > :: packData()
-{	
+{
   //  printDebugMessage ("debut pakc data");
   pack( progression[ tasks.front() ].first-- );
 
@@ -180,7 +180,7 @@ template< class EOT > void peoMoeoPopEval< EOT > :: packData()
 
 
 template< class EOT > void peoMoeoPopEval< EOT > :: unpackData()
-{	
+{
   unpack( num_func );
   /* Unpacking the solution */
   unpack( sol );
@@ -191,28 +191,28 @@ template< class EOT > void peoMoeoPopEval< EOT > :: unpackData()
 
 template< class EOT > void peoMoeoPopEval< EOT > :: execute()
 {
-	
+
   /* Computing the fitness of the solution */
   funcs[ num_func ]->operator()( sol );
 }
 
 
 template< class EOT > void peoMoeoPopEval< EOT > :: packResult()
-{	
+{
 //	std::cout<<"\nD";
   /* Packing the fitness of the solution */
- /* typedef typename PO < F >::Fitness Fitness;
-  MOEOObjectiveVector ObjectiveVector;*/
+  /* typedef typename PO < F >::Fitness Fitness;
+   MOEOObjectiveVector ObjectiveVector;*/
   std::vector < double > object;
   unsigned len;
   object=sol.objectiveVector();
   len=object.size();
   pack (len);
   for (unsigned i = 0 ; i < len; i ++)
-  	pack (object[i]);
-  
-  
-  
+    pack (object[i]);
+
+
+
 //  pack( sol.fitness() );
   /* Packing the @ of the individual */
   pack( ad_sol );
@@ -221,25 +221,25 @@ template< class EOT > void peoMoeoPopEval< EOT > :: packResult()
 
 
 template< class EOT > void peoMoeoPopEval< EOT > :: unpackResult()
-{	
+{
 //  typename EOT :: Fitness fit;
 
   /* Unpacking the computed fitness */
 //  unpack( fit );
-unsigned len;
-std::vector < double > object;
+  unsigned len;
+  std::vector < double > object;
 
-unpack(len);
-object.resize(len);
-for (unsigned i = 0 ; i < len; i ++)
-  	unpack (object[i]);
+  unpack(len);
+  object.resize(len);
+  for (unsigned i = 0 ; i < len; i ++)
+    unpack (object[i]);
   /* Unpacking the @ of the associated individual */
   unpack( ad_sol );
 
 
   /* Associating the fitness the local solution */
 //  merge_eval( *ad_sol, object );
-ad_sol->objectiveVector(object);
+  ad_sol->objectiveVector(object);
   progression[ ad_sol ].second--;
 
   /* Notifying the container of the termination of the evaluation */
@@ -265,7 +265,7 @@ template< class EOT > void peoMoeoPopEval< EOT > :: notifySendingData()
 
 
 template< class EOT > void peoMoeoPopEval< EOT > :: notifySendingAllResourceRequests()
-{	
+{
   getOwner()->setPassive();
 }
 

@@ -1,4 +1,4 @@
-/* 
+/*
 * <peo_debug.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007

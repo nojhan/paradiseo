@@ -1,4 +1,4 @@
-/* 
+/*
 * <synchron.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
@@ -44,31 +44,39 @@
 #include "../../core/runner.h"
 #include "../../core/cooperative.h"
 
-struct SyncEntry {
+struct SyncEntry
+  {
 
-  RUNNER_ID runner;
-  COOP_ID coop;
-};
+    RUNNER_ID runner;
+    COOP_ID coop;
+  };
 
-struct SyncCompare {
+struct SyncCompare
+  {
 
-  bool operator()( const std::pair< std::vector< SyncEntry >, unsigned >& A, const std::pair< std::vector< SyncEntry >, unsigned >& B ) {
+    bool operator()( const std::pair< std::vector< SyncEntry >, unsigned >& A, const std::pair< std::vector< SyncEntry >, unsigned >& B )
+    {
 
-    const std::vector< SyncEntry >& syncA = A.first;
-    const std::vector< SyncEntry >& syncB = B.first;
+      const std::vector< SyncEntry >& syncA = A.first;
+      const std::vector< SyncEntry >& syncB = B.first;
 
-    if ( syncA.size() == syncB.size() ) {
-      std::vector< SyncEntry >::const_iterator itA = syncA.begin();
-      std::vector< SyncEntry >::const_iterator itB = syncB.begin();
+      if ( syncA.size() == syncB.size() )
+        {
+          std::vector< SyncEntry >::const_iterator itA = syncA.begin();
+          std::vector< SyncEntry >::const_iterator itB = syncB.begin();
 
-      while ( (*itA).runner < (*itB).runner && itA != syncA.end() ) { itA++; itB++; }
+          while ( (*itA).runner < (*itB).runner && itA != syncA.end() )
+            {
+              itA++;
+              itB++;
+            }
 
-      return itA == syncA.end();
+          return itA == syncA.end();
+        }
+
+      return syncA.size() < syncB.size();
     }
-
-    return syncA.size() < syncB.size();
-  }
-};
+  };
 
 typedef std::vector< SyncEntry > SYNC_RUNNERS;
 typedef std::set< std::pair< SYNC_RUNNERS, unsigned >, SyncCompare > SYNC;

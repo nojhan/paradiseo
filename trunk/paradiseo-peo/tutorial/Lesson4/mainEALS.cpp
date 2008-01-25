@@ -59,13 +59,13 @@ int main (int __argc, char * * __argv)
 {
 
   peo :: init (__argc, __argv);
-  loadParameters (__argc, __argv); 
+  loadParameters (__argc, __argv);
   RouteInit route_init;
   RouteEval full_eval;
-  OrderXover order_cross; 
+  OrderXover order_cross;
   PartialMappedXover pm_cross;
   EdgeXover edge_cross;
-  CitySwap city_swap_mut;  
+  CitySwap city_swap_mut;
 
 // Initialization of the local search
   TwoOptInit pmx_two_opt_init;
@@ -76,7 +76,7 @@ int main (int __argc, char * * __argv)
 
 // EA
   eoPop <Route> pop (POP_SIZE, route_init);
-  eoGenContinue <Route> cont (NUM_GEN); 
+  eoGenContinue <Route> cont (NUM_GEN);
   eoCheckPoint <Route> checkpoint (cont);
   eoEvalFuncCounter< Route > eval(full_eval);
   eoStochTournamentSelect <Route> select_one;
@@ -86,16 +86,16 @@ int main (int __argc, char * * __argv)
   eoEasyEA< Route > eaAlg( checkpoint, eval, select, transform, replace );
   peoWrapper parallelEA( eaAlg, pop);
   peo :: run ();
-  peo :: finalize (); 
+  peo :: finalize ();
 
   if (getNodeRank()==1)
-  {
-  	pop.sort();
-    std :: cout << "\nResult before the local search\n";
-    for(unsigned i=0;i<pop.size();i++)
-    	std::cout<<"\n"<<pop[i].fitness();
-  }
-  
+    {
+      pop.sort();
+      std :: cout << "\nResult before the local search\n";
+      for (unsigned i=0;i<pop.size();i++)
+        std::cout<<"\n"<<pop[i].fitness();
+    }
+
 // Local search
   peo :: init (__argc, __argv);
   peoMultiStart <Route> initParallelHC (hc);
@@ -105,10 +105,10 @@ int main (int __argc, char * * __argv)
   peo :: finalize( );
 
   if (getNodeRank()==1)
-  {
-    std :: cout << "\nResult after the local search\n";
-    pop.sort();
-    for(unsigned i=0;i<pop.size();i++)
-    	std::cout<<"\n"<<pop[i].fitness();
-  }
+    {
+      std :: cout << "\nResult after the local search\n";
+      pop.sort();
+      for (unsigned i=0;i<pop.size();i++)
+        std::cout<<"\n"<<pop[i].fitness();
+    }
 }

@@ -147,61 +147,61 @@
 //! the associated distinctly parametrized migration objects. The interconnecting element is the underlying topology, defined at step 1
 //! (the same C++ migTopology object has to be passed as parameter for all the migration objects, in order to interconnect them).
 template< class EOT, class TYPE  > class peoSyncIslandMig : public Cooperative, public eoUpdater
-{
+  {
 
-public:
+  public:
 
-  //! Constructor for the peoSyncIslandMig class; the characteristics of the migration model are defined
-  //! through the specified parameters - out of the box objects provided in EO, etc., or custom, derived objects may be passed as parameters.
-  //!
-  //! @param unsigned __frequency - frequency of the migrations - the migrations occur periodically;
-  //! @param eoSelect< EOT >& __select - selection strategy to be applied for constructing a list of emigrant individuals out of the source population;
-  //! @param eoReplacement< EOT >& __replace - replacement strategy used for integrating the immigrant individuals in the destination population;
-  //! @param Topology& __topology - topological model to be followed when performing migrations;
-  //! @param eoPop< EOT >& __source - source population from which the emigrant individuals are selected;
-  //! @param eoPop< EOT >& __destination - destination population in which the immigrant population are integrated.
-  peoSyncIslandMig(
-    unsigned __frequency,
-    selector <TYPE> & __select,
-    replacement <TYPE> & __replace,
-    Topology& __topology,
-    peoData & __source,
-    peoData & __destination
-  );
+    //! Constructor for the peoSyncIslandMig class; the characteristics of the migration model are defined
+    //! through the specified parameters - out of the box objects provided in EO, etc., or custom, derived objects may be passed as parameters.
+    //!
+    //! @param unsigned __frequency - frequency of the migrations - the migrations occur periodically;
+    //! @param eoSelect< EOT >& __select - selection strategy to be applied for constructing a list of emigrant individuals out of the source population;
+    //! @param eoReplacement< EOT >& __replace - replacement strategy used for integrating the immigrant individuals in the destination population;
+    //! @param Topology& __topology - topological model to be followed when performing migrations;
+    //! @param eoPop< EOT >& __source - source population from which the emigrant individuals are selected;
+    //! @param eoPop< EOT >& __destination - destination population in which the immigrant population are integrated.
+    peoSyncIslandMig(
+      unsigned __frequency,
+      selector <TYPE> & __select,
+      replacement <TYPE> & __replace,
+      Topology& __topology,
+      peoData & __source,
+      peoData & __destination
+    );
 
-  //! Function operator to be called as checkpoint for performing the migration step. The emigrant individuals are selected
-  //! from the source population and sent to the next island (defined by the topology object) while the immigrant
-  //! individuals are integrated in the destination population. There is no need to explicitly call the function - the
-  //! wrapper checkpoint object (please refer to the above example) will perform the call when required.
-  void operator()();
+    //! Function operator to be called as checkpoint for performing the migration step. The emigrant individuals are selected
+    //! from the source population and sent to the next island (defined by the topology object) while the immigrant
+    //! individuals are integrated in the destination population. There is no need to explicitly call the function - the
+    //! wrapper checkpoint object (please refer to the above example) will perform the call when required.
+    void operator()();
 
-  //! Auxiliary function dealing with sending the emigrant individuals. There is no need to explicitly call the function.
-  void pack();
-  //! Auxiliary function dealing with receiving immigrant individuals. There is no need to explicitly call the function.
-  void unpack();
-  //! Auxiliary function dealing with the packing of synchronization requests. There is no need to explicitly call the function.
-  void packSynchronizeReq();
+    //! Auxiliary function dealing with sending the emigrant individuals. There is no need to explicitly call the function.
+    void pack();
+    //! Auxiliary function dealing with receiving immigrant individuals. There is no need to explicitly call the function.
+    void unpack();
+    //! Auxiliary function dealing with the packing of synchronization requests. There is no need to explicitly call the function.
+    void packSynchronizeReq();
 
-  //! Auxiliary function dealing with migration notifications. There is no need to explicitly call the function.
-  void notifySending();
+    //! Auxiliary function dealing with migration notifications. There is no need to explicitly call the function.
+    void notifySending();
 
-  //! Auxiliary function dealing with migration notifications. There is no need to explicitly call the function.
-  void notifyReceiving();
+    //! Auxiliary function dealing with migration notifications. There is no need to explicitly call the function.
+    void notifyReceiving();
 
-  //! Auxiliary function dealing with synchronizing runners for migrations. There is no need to explicitly call the function.
-  void notifySendingSyncReq();
+    //! Auxiliary function dealing with synchronizing runners for migrations. There is no need to explicitly call the function.
+    void notifySendingSyncReq();
 
-  //! Auxiliary function for notifying the synchronization of the runners involved in migration.
-  void notifySynchronized();
-
-
-private:
-
-  void emigrate();
-  void immigrate();
+    //! Auxiliary function for notifying the synchronization of the runners involved in migration.
+    void notifySynchronized();
 
 
-private:
+  private:
+
+    void emigrate();
+    void immigrate();
+
+
+  private:
 
     eoSyncContinue cont;	// continuator
     selector <TYPE> & select;	// the selection strategy
@@ -213,14 +213,14 @@ private:
     std :: queue< TYPE > em;
     std :: queue< Cooperative* > coop_em;
 
-  sem_t sync;
+    sem_t sync;
 
-  bool explicitPassive;
-  bool standbyMigration;
+    bool explicitPassive;
+    bool standbyMigration;
 
-  std :: vector< Cooperative* > in, out, all;
-  unsigned nbMigrations;
-};
+    std :: vector< Cooperative* > in, out, all;
+    unsigned nbMigrations;
+  };
 
 
 template< class EOT, class TYPE > peoSyncIslandMig< EOT,TYPE > :: peoSyncIslandMig(
@@ -243,7 +243,7 @@ template< class EOT, class TYPE > peoSyncIslandMig< EOT,TYPE > :: peoSyncIslandM
 template< class EOT, class TYPE > void peoSyncIslandMig< EOT, TYPE > :: pack()
 {
   ::pack( coop_em.front()->getKey() );
-   em.front().pack();
+  em.front().pack();
   coop_em.pop();
   em.pop();
 }
@@ -256,7 +256,8 @@ template< class EOT, class TYPE > void peoSyncIslandMig< EOT, TYPE > :: unpack()
   explicitPassive = true;
 }
 
-template< class EOT, class TYPE > void peoSyncIslandMig< EOT,TYPE > :: packSynchronizeReq() {
+template< class EOT, class TYPE > void peoSyncIslandMig< EOT,TYPE > :: packSynchronizeReq()
+{
 
   packSynchronRequest( all );
 }
@@ -265,25 +266,26 @@ template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: emigrat
 {
 
   for ( unsigned i = 0; i < out.size(); i ++ )
-  {
+    {
 
-    TYPE mig;
-    select( mig );
-    em.push( mig );
-    coop_em.push( out[ i ] );
-    send( out[ i ] );
-    printDebugMessage( "peoSyncIslandMig: sending some emigrants." );
-  }
+      TYPE mig;
+      select( mig );
+      em.push( mig );
+      coop_em.push( out[ i ] );
+      send( out[ i ] );
+      printDebugMessage( "peoSyncIslandMig: sending some emigrants." );
+    }
 }
 
 template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: immigrate()
 {
   assert( imm.size() );
 
-  while ( imm.size() ) {
-    replace( imm.front() ) ;
-    imm.pop();
-  }
+  while ( imm.size() )
+    {
+      replace( imm.front() ) ;
+      imm.pop();
+    }
 
   printDebugMessage( "peoSyncIslandMig: receiving some immigrants." );
 }
@@ -292,19 +294,22 @@ template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: operato
 {
 
   if ( cont.check() )
-  {
-    explicitPassive = standbyMigration = false;
-    topology.setNeighbors( this, in, out ); all = topology;
-    nbMigrations = 0;
-    synchronizeCoopEx(); stop();
-    // sending emigrants
-    emigrate();
-    // synchronizing
-    sem_wait( &sync );
-    // receiving immigrants
-    immigrate();
-    synchronizeCoopEx(); stop();
-  }
+    {
+      explicitPassive = standbyMigration = false;
+      topology.setNeighbors( this, in, out );
+      all = topology;
+      nbMigrations = 0;
+      synchronizeCoopEx();
+      stop();
+      // sending emigrants
+      emigrate();
+      // synchronizing
+      sem_wait( &sync );
+      // receiving immigrants
+      immigrate();
+      synchronizeCoopEx();
+      stop();
+    }
 }
 
 template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: notifySending()
@@ -316,19 +321,22 @@ template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: notifyR
 {
   nbMigrations++;
 
-  if ( nbMigrations == in.size() ) {
+  if ( nbMigrations == in.size() )
+    {
 
-    if ( standbyMigration ) getOwner()->setActive();
-    sem_post( &sync );
-  }
+      if ( standbyMigration ) getOwner()->setActive();
+      sem_post( &sync );
+    }
 }
 
-template< class EOT, class TYPE > void peoSyncIslandMig< EOT, TYPE > :: notifySendingSyncReq () {
+template< class EOT, class TYPE > void peoSyncIslandMig< EOT, TYPE > :: notifySendingSyncReq ()
+{
 
   getOwner()->setPassive();
 }
 
-template< class EOT, class TYPE > void peoSyncIslandMig< EOT, TYPE > :: notifySynchronized () {
+template< class EOT, class TYPE > void peoSyncIslandMig< EOT, TYPE > :: notifySynchronized ()
+{
 
   standbyMigration = true;
   getOwner()->setActive();
