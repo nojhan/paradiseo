@@ -45,13 +45,21 @@
 #include <eoReplacement.h>
 #include <utils/eoHowMany.h>
 
-template <class POT>
-class peoWorstPositionReplacement : public eoReplacement<POT>
+//! @class peoWorstPositionReplacement
+//! @brief Specific class for a replacement of a population of a PSO
+//! @see eoReplacement
+//! @version 1.1
+//! @date october 2007
+template <class POT> class peoWorstPositionReplacement : public eoReplacement<POT>
   {
   public:
+  	//! @brief constructor
     peoWorstPositionReplacement()
     {}
 
+	//! @brief operator
+	//! @param eoPop<POT>& _dest
+	//! @param eoPop<POT>& _source
     void operator()(eoPop<POT>& _dest, eoPop<POT>& _source)
     {
       unsigned ind=0;

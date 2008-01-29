@@ -45,49 +45,63 @@
 
 extern int getNodeRank();
 
-
+//! @class peoTransform
+//! @brief Class for a parallel transform
+//! @see Service eoTransform
+//! @version 1.1
+//! @date january 2008
 template< class EOT > class peoTransform : public Service, public eoTransform< EOT >
   {
 
   public:
 
+	//! @brief Constructor
+	//! @param eoQuadOp< EOT >& __cross
+	//! @param double __cross_rate
+	//! @param eoMonOp< EOT >& __mut
+	//! @param double __mut_rate
     peoTransform(
-
       eoQuadOp< EOT >& __cross,
       double __cross_rate,
       eoMonOp< EOT >& __mut,
       double __mut_rate
     );
 
+	//! @brief Operator
+  	//! @param eoPop< EOT >& __pop
     void operator()( eoPop< EOT >& __pop );
-
+	//! @brief Function realizing packages of data
     void packData();
-
+	//! @brief Function reconstituting packages of data
     void unpackData();
-
+	//! @brief Function which executes the algorithm
     void execute();
-
+	//! @brief Function realizing packages of the result
     void packResult();
-
+	//! @brief Function reconstituting packages of result
     void unpackResult();
-
+	//! @brief Function notifySendingData
     void notifySendingData();
+    //! @brief Function notifySendingAllResourceRequests
     void notifySendingAllResourceRequests();
 
   private:
-
+	//! @param eoQuadOp< EOT >& cross
+	//! @param double cross_rate
+	//! @param eoMonOp< EOT >& mut
+	//! @param double mut_rate
+	//! @param unsigned idx
+	//! @param eoPop< EOT >* pop
+	//! @param EOT father
+	//! @param mother
+	//! @param unsigned num_term
     eoQuadOp< EOT >& cross;
     double cross_rate;
-
     eoMonOp< EOT >& mut;
     double mut_rate;
-
     unsigned idx;
-
     eoPop< EOT >* pop;
-
     EOT father, mother;
-
     unsigned num_term;
   };
 

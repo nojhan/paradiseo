@@ -46,19 +46,28 @@
 #include <eoReplacement.h>
 #include <utils/eoHowMany.h>
 
+//! @class peoGlobalBestVelocity
+//! @brief Specific class for a replacement thanks to the velocity migration of a population of a PSO
+//! @see eoReplacement
+//! @version 1.1
+//! @date october 2007
 template <class POT>
 class peoGlobalBestVelocity : public eoReplacement<POT>
   {
   public:
 
+	//! @brief typedef : creation of VelocityType
     typedef typename POT::ParticleVelocityType VelocityType;
 
-    peoGlobalBestVelocity(	const double & _c3,
-                           eoVelocity < POT > &_velocity):
-        c3 (_c3),
-        velocity (_velocity)
+	//! @brief Constructor
+	//! @param double & _c3
+	//! @param eoVelocity < POT > &_velocity
+    peoGlobalBestVelocity(	const double & _c3, eoVelocity < POT > &_velocity): c3 (_c3),velocity (_velocity)
     {}
 
+	//! @brief Virtual operator 
+	//! @param eoPop<POT>& _dest
+	//! @param eoPop<POT>& _source
     void operator()(eoPop<POT>& _dest, eoPop<POT>& _source)
     {
 
@@ -74,6 +83,8 @@ class peoGlobalBestVelocity : public eoReplacement<POT>
     }
 
   protected:
+  	//! @param double & c3
+  	//! @param eoVelocity < POT > & velocity
     const double & c3;
     eoVelocity < POT > & velocity;
   };

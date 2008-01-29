@@ -39,21 +39,33 @@
 #include <utils/eoRNG.h>
 #include <eoSelectOne.h>
 
+//! @class peoPSOSelect
+//! @brief Specific class for a selection of a population of a PSO
+//! @see eoSelectOne
+//! @version 1.1
+//! @date october 2007
 template <class POT> class peoPSOSelect: public eoSelectOne<POT>
   {
   public:
 
+	//! @brief Constructor
+	//! @param eoTopology < POT > & _topology
     peoPSOSelect(eoTopology < POT > & _topology):topology(_topology)
     {}
 
+	//! @brief typedef : creation of Fitness
     typedef typename PO < POT >::Fitness Fitness;
 
+	//! @brief Virtual operator 
+	//! @param eoPop<POT>& _pop
+	//! @return POT&
     virtual const POT& operator()(const eoPop<POT>& _pop)
     {
       return topology.globalBest(_pop);
     }
 
   private:
+  	//! @param eoTopology < POT > & topology
     eoTopology < POT > & topology;
   };
 

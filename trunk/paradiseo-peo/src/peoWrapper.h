@@ -1,7 +1,7 @@
 /*
 * <peoWrapper.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
+* (C) OPAC Team, LIFL, 2002-2008
 *
 * Sebastien Cahon, Alexandru-Adrian Tantar
 *
@@ -41,36 +41,49 @@
 #include "core/runner.h"
 #include "core/peo_debug.h"
 
-
-
-
+//! @class peoWrapper
+//! @brief Specific class for wrapping
+//! @see Runner
+//! @version 1.1
+//! @date december 2007
 class peoWrapper : public Runner
   {
 
   public:
 
+	//! @brief constructor
+	//! @param AlgorithmType& externalAlgorithm
     template< typename AlgorithmType > peoWrapper( AlgorithmType& externalAlgorithm )
         : algorithm( new Algorithm< AlgorithmType, void >( externalAlgorithm ) )
     {}
 
+	//! @brief constructor
+	//! @param AlgorithmType& externalAlgorithm
+	//! @param AlgorithmDataType& externalData
     template< typename AlgorithmType, typename AlgorithmDataType > peoWrapper( AlgorithmType& externalAlgorithm, AlgorithmDataType& externalData )
         : algorithm( new Algorithm< AlgorithmType, AlgorithmDataType >( externalAlgorithm, externalData ) )
     {}
 
+	//! @brief constructor
+	//! @param AlgorithmReturnType& (*externalAlgorithm)()
     template< typename AlgorithmReturnType > peoWrapper( AlgorithmReturnType& (*externalAlgorithm)() )
         : algorithm( new FunctionAlgorithm< AlgorithmReturnType, void >( externalAlgorithm ) )
     {}
 
+	//! @brief constructor
+	//! @param AlgorithmReturnType& (*externalAlgorithm)( AlgorithmDataType& )
+	//! @param AlgorithmDataType& externalData
     template< typename AlgorithmReturnType, typename AlgorithmDataType > peoWrapper( AlgorithmReturnType& (*externalAlgorithm)( AlgorithmDataType& ), AlgorithmDataType& externalData )
         : algorithm( new FunctionAlgorithm< AlgorithmReturnType, AlgorithmDataType >( externalAlgorithm, externalData ) )
     {}
-
+    
+	//! @brief destructor
     ~peoWrapper()
     {
-
       delete algorithm;
     }
 
+	//! @brief function run
     void run()
     {
       algorithm->operator()();
@@ -153,7 +166,7 @@ class peoWrapper : public Runner
       };
 
   private:
-
+	//! @param AbstractAlgorithm* algorithm
     AbstractAlgorithm* algorithm;
   };
 

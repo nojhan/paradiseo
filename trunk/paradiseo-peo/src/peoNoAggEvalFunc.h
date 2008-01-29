@@ -1,9 +1,9 @@
 /*
 * <peoNoAggEvalFunc.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
+* (C) OPAC Team, LIFL, 2002-2008
 *
-* Sebastien Cahon, Alexandru-Adrian Tantar
+* Sebastien Cahon, Alexandru-Adrian Tantar, Clive Canape
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -50,6 +50,8 @@ template< class EOT > class peoNoAggEvalFunc : public peoAggEvalFunc< EOT >
   public :
 
     //! Operator which sets as fitness the <b>__fit</b> value for the <b>__sol</b> individual
+    //! @param EOT& __sol
+    //! @param typename EOT :: Fitness& __fit
     void operator()( EOT& __sol, const typename EOT :: Fitness& __fit );
   };
 

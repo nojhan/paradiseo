@@ -1,9 +1,9 @@
 /*
 * <peoPopEval.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
+* (C) OPAC Team, LIFL, 2002-2008
 *
-* Sebastien Cahon, Alexandru-Adrian Tantar
+* Sebastien Cahon, Alexandru-Adrian Tantar, Clive Canape
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -45,12 +45,11 @@
 #include "peoAggEvalFunc.h"
 #include "peoNoAggEvalFunc.h"
 
-
-//! Parallel evaluation functor wrapper.
-
-//! The peoPopEval represents a wrapper for creating a functor capable of applying in parallel
-//! an EO-derived evaluation functor. The class offers the possibility of chosing between a single-function evaluation
-//! and an aggregate evaluation function, including several sub-evalution functions.
+//! @class peoPopEval
+//! @brief Parallel evaluation functor wrapper
+//! @see Service eoPopEvalFunc
+//! @version 1.2
+//! @date 2006
 template< class EOT > class peoPopEval : public Service, public eoPopEvalFunc<EOT>
   {
 
@@ -72,6 +71,10 @@ template< class EOT > class peoPopEval : public Service, public eoPopEvalFunc<EO
     //!
     //! @param eoPop< EOT >& __pop - population to be evaluated by applying the evaluation functor specified in the constructor.
     void operator()(eoPop< EOT >& __pop);
+    
+    //! @brief Operator ()( eoPop< EOT >& __dummy, eoPop< EOT >& __pop )
+  	//! @param eoPop< EOT >& __dummy
+  	//! @param eoPop< EOT >& __pop
     void operator()( eoPop< EOT >& __dummy, eoPop< EOT >& __pop );
 
     //! Auxiliary function for transferring data between the process requesting an evaluation operation and the process that
@@ -103,23 +106,25 @@ template< class EOT > class peoPopEval : public Service, public eoPopEvalFunc<EO
 
   private:
 
-
+	//! @param std :: vector< eoEvalFunc < EOT >* >& funcs
+	//! @param std :: vector< eoEvalFunc < EOT >* > one_func
+	//! @param peoAggEvalFunc< EOT >& merge_eval
+	//! @param peoNoAggEvalFunc< EOT > no_merge_eval
+	//! @param std :: queue< EOT* >tasks
+	//! @param std :: map< EOT*, std :: pair< unsigned, unsigned > > progression
+	//! @param unsigned num_func
+	//! @param EOT sol
+	//! @param EOT *ad_sol
+	//! @param unsigned total
     const std :: vector< eoEvalFunc < EOT >* >& funcs;
     std :: vector< eoEvalFunc < EOT >* > one_func;
-
     peoAggEvalFunc< EOT >& merge_eval;
     peoNoAggEvalFunc< EOT > no_merge_eval;
-
     std :: queue< EOT* >tasks;
-
     std :: map< EOT*, std :: pair< unsigned, unsigned > > progression;
-
     unsigned num_func;
-
     EOT sol;
-
     EOT *ad_sol;
-
     unsigned total;
   };
 

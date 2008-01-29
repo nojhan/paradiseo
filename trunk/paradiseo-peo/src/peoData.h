@@ -1,7 +1,7 @@
 /*
 * <peoData.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
+* (C) OPAC Team, LIFL, 2002-2008
 *
 * Clive Canape, Thomas Legrand
 *
@@ -44,25 +44,35 @@
 /**************************  DEFINE A DATA   ******************************************/
 /**************************************************************************************/
 
+//! @class peoData
+//! @brief Abstract class for a data exchanged by migration
+//! @version 1.0
+//! @date january 2008
 class peoData
   {
   public:
-
+  
+	//! @brief Function realizing packages
     virtual void pack ()
     {}
+    
+	//! @brief Function reconstituting packages
     virtual void unpack ()
     {}
 
   };
 
-
-// Specific implementation : migration of a population
-
+//! @class peoPop
+//! @brief Specific class for a migration of a population
+//! @see peoData eoPop
+//! @version 1.0
+//! @date january 2008
 template<class EOT>
 class peoPop: public eoPop<EOT>, public peoData
   {
   public:
 
+	//! @brief Function realizing packages
     virtual void pack ()
     {
       ::pack ((unsigned) this->size ());
@@ -70,6 +80,7 @@ class peoPop: public eoPop<EOT>, public peoData
         ::pack ((*this)[i]);
     }
 
+	//! @brief Function reconstituting packages
     virtual void unpack ()
     {
       unsigned n;
@@ -86,28 +97,45 @@ class peoPop: public eoPop<EOT>, public peoData
 /**************************  DEFINE A CONTINUATOR   ***********************************/
 /**************************************************************************************/
 
+//! @class continuator
+//! @brief Abstract class for a continuator within the exchange of data by migration
+//! @version 1.0
+//! @date january 2008
 class continuator
   {
   public:
+  
+	 //! @brief Virtual function of check
+	 //! @return true if the algorithm must continue
     virtual bool check()=0;
   };
 
 
-// Specific implementation : migration of a population
-
+//! @class eoContinuator
+//! @brief Specific class for a continuator within the exchange of migration of a population
+//! @see continuator
+//! @version 1.0
+//! @date january 2008
 template < class EOT> class eoContinuator : public continuator
   {
   public:
 
+	//! @brief Constructor
+	//! @param eoContinue<EOT> & 
+	//! @param eoPop<EOT> & 
     eoContinuator(eoContinue<EOT> & _cont, const eoPop<EOT> & _pop): cont (_cont), pop(_pop)
     {}
 
+	//! @brief Virtual function of check
+	//! @return true if the algorithm must continue
     virtual bool check()
     {
       return cont(pop);
     }
 
   protected:
+  	 //! @param eoContinue<EOT> &
+  	 //! @param eoPop<EOT> &
     eoContinue<EOT> & cont ;
     const eoPop<EOT> & pop;
   };
@@ -117,23 +145,39 @@ template < class EOT> class eoContinuator : public continuator
 /**************************  DEFINE A SELECTOR   **************************************/
 /**************************************************************************************/
 
+//! @class selector
+//! @brief Abstract class for a selector within the exchange of data by migration
+//! @version 1.0
+//! @date january 2008
 template < class TYPE>  class selector
   {
   public:
+  	
+  	//! @brief Virtual operator on the template type 
+  	//! @param TYPE &
     virtual void operator()(TYPE &)=0;
   };
 
 
-// Specific implementation : migration of a population
-
+//! @class eoSelector
+//! @brief Specific class for a selector within the exchange of migration of a population
+//! @see selector
+//! @version 1.0
+//! @date january 2008
 template < class EOT, class TYPE> class eoSelector : public selector< TYPE >
   {
   public:
 
+	//! @brief Constructor
+	//! @param eoSelectOne<EOT> &
+	//! @param unsigned _nb_select
+	//! @param TYPE & _source (with TYPE which is the template type)
     eoSelector(eoSelectOne<EOT> & _select, unsigned _nb_select, const TYPE & _source): selector (_select), nb_select(_nb_select), source(_source)
     {}
-
-    virtual void operator()(TYPE & _dest)
+    
+	//! @brief Virtual operator on the template type
+	//! @param TYPE & _dest
+	virtual void operator()(TYPE & _dest)
     {
       size_t target = static_cast<size_t>(nb_select);
       _dest.resize(target);
@@ -142,6 +186,9 @@ template < class EOT, class TYPE> class eoSelector : public selector< TYPE >
     }
 
   protected:
+  	//! @param eoSelectOne<EOT> &
+  	//! @param unsigned nb_select
+  	//! @param TYPE & source
     eoSelectOne<EOT> & selector ;
     unsigned nb_select;
     const TYPE & source;
@@ -152,27 +199,43 @@ template < class EOT, class TYPE> class eoSelector : public selector< TYPE >
 /**************************  DEFINE A REPLACEMENT   ***********************************/
 /**************************************************************************************/
 
+//! @class replacement
+//! @brief Abstract class for a replacement within the exchange of data by migration
+//! @version 1.0
+//! @date january 2008
 template < class TYPE>  class replacement
   {
   public:
+  	//! @brief Virtual operator on the template type 
+  	//! @param TYPE &
     virtual void operator()(TYPE &)=0;
   };
 
 
-// Specific implementation : migration of a population
-
+//! @class eoReplace
+//! @brief Specific class for a replacement within the exchange of migration of a population
+//! @see replacement
+//! @version 1.0
+//! @date january 2008
 template < class EOT, class TYPE> class eoReplace : public replacement< TYPE >
   {
   public:
+  	//! @brief Constructor
+	//! @param eoReplacement<EOT> &
+	//! @param TYPE & _destination (with TYPE which is the template type)
     eoReplace(eoReplacement<EOT> & _replace, TYPE & _destination): replace(_replace), destination(_destination)
     {}
 
+	//! @brief Virtual operator on the template type
+	//! @param TYPE & _source
     virtual void operator()(TYPE & _source)
     {
       replace(destination, _source);
     }
 
   protected:
+  	//! @param eoReplacement<EOT> &
+  	//! @param TYPE & destination
     eoReplacement<EOT> & replace;
     TYPE & destination;
   };
@@ -182,14 +245,23 @@ template < class EOT, class TYPE> class eoReplace : public replacement< TYPE >
 /************************  Continuator for synchrone migartion ************************/
 /**************************************************************************************/
 
+//! @class eoSyncContinue
+//! @brief Class for a continuator within the exchange of data by synchrone migration
+//! @see continuator
+//! @version 1.0
+//! @date january 2008
 class eoSyncContinue: public continuator
   {
 
   public:
-
+	//! @brief Constructor
+	//! @param unsigned __period
+	//! @param unsigned __init_counter
     eoSyncContinue (unsigned __period, unsigned __init_counter = 0): period (__period),counter (__init_counter)
     {}
 
+	//! @brief Virtual function of check
+	//! @return true if the algorithm must continue
     virtual bool check()
     {
       return ((++ counter) % period) != 0 ;
@@ -197,11 +269,10 @@ class eoSyncContinue: public continuator
 
 
   private:
-
+	//! @param unsigned period
+	//! @param unsigned counter
     unsigned period;
-
     unsigned counter;
-
   };
 
 

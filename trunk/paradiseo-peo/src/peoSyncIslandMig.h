@@ -3,7 +3,7 @@
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
-* Sebastien Cahon, Alexandru-Adrian Tantar
+* Sebastien Cahon, Alexandru-Adrian Tantar, Clive Canape
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -63,103 +63,23 @@
 #include "rmc/mpi/synchron.h"
 
 
-//! Class providing the basis for the synchronous island migration model.
-
-//! The peoSyncIslandMig class offers the elementary basis for implementating a
-//! synchronous island migration model - requires the specification of several basic
-//! parameters, i.e. frequency of the migrations, selection and replacement strategies,
-//! a topological model and the source and destination population for the migrating individuals.
-//! The main difference as opposed to the asynchronous migration model is the synchronization step
-//! performed after selecting and sending the emigrant individuals.
-//!
-//! The migration operator is called at the end of each generation of an evolutionary algorithms
-//! as a checkpoint object - the following code exposes the structure of a classic evolutionary algorithm:
-//!
-//!	<table style="border:none; border-spacing:0px;text-align:left; vertical-align:top; font-size:8pt;" border="0">
-//!	<tr><td><b>do</b> { &nbsp;</td> <td> &nbsp; </td></tr>
-//!	<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select( population, offsprings ); &nbsp;</td> <td>// select the offsprings from the current population</td></tr>
-//!	<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform( offsprings ); &nbsp;</td> <td>// crossover and mutation operators are applied on the selected offsprings</td></tr>
-//!	<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; evaluate( offsprings ); &nbsp;</td> <td>// evaluation step of the resulting offspring</td></tr>
-//!	<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; replace( population, offsprings ); &nbsp;</td> <td>// replace the individuals in the current population whith individuals from the offspring population, according to a specified replacement strategy</td></tr>
-//!	<tr><td>} <b>while</b> ( eaCheckpointContinue( population ) ); &nbsp;</td> <td>// checkpoint operators are applied on the current population, including the migration operator, if any specified </td></tr>
-//!	</table>
-//!
-//! Constructing a synchronous island migration model requires having defined (1) a topological migration model,
-//! (2) the control parameters of the migration process, (3) a checkpoint object associated with an evolutionary algorithm,
-//! and (4) an owner object must be set. The owner object must be derived from the <b>Runner</b> class (for example
-//! a peoEA object represents a possible owner).
-//! A simple example is offered bellow:
-//!
-//!	<ol>
-//!		<li> topological model to be followed when performing migrations: <br/>
-//!		<br/>
-//!		<table style="border:none; border-spacing:0px;text-align:left; vertical-align:top; font-size:8pt;" border="0">
-//!		<tr><td>RingTopology migTopology; &nbsp;</td> <td>// a simple ring topological model - each island communicates with two other islands</td></tr>
-//!		</table>
-//!		</li>
-//!
-//!		<li> the continuation criterion, selection and replacement strategy etc. are defined: <br/>
-//!		<br/>
-//!		<table style="border:none; border-spacing:0px; font-size:8pt;" border="0">
-//!		<tr><td>eoPop< EOT > population( POP_SIZE, popInitializer ); &nbsp;</td> <td>// population of individuals to be used for the evolutionary algorithm</td></tr>
-//!		<tr><td> &nbsp; </td> <td> &nbsp; </td></tr>
-//!		<tr><td>eoRandomSelect< EOT > migSelectStrategy; &nbsp;</td> <td>// selection strategy - in this case a random selection is applied</td></tr>
-//!		<tr><td>eoSelectNumber< EOT > migSelect( migSelectStrategy, MIG_SIZE ); &nbsp;</td> <td>// number of individuals to be selected using the specified strategy</td></tr>
-//!		<tr><td>eoPlusReplacement< EOT > migReplace; &nbsp;</td> <td>// immigration strategy - the worse individuals in the destination population are replaced by the immigrant individuals</td></tr>
-//!		<tr><td> &nbsp; </td> <td> &nbsp; </td></tr>
-//!		<tr><td>peoSyncIslandMig< EOT > syncMigration(
-//!			<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MIG_FREQ, migSelect, migReplace, migTopology,
-//!			<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; population, population
-//!			<br/> ); &nbsp; </td>
-//!			<td>// synchronous migration object - the emigrant individuals are selected from the same from population in which the immigrant individuals are being integrated </td></tr>
-//!		</table>
-//!		</li>
-//!
-//!		<li> creation of a checkpoint object as part of the definition of an evolutionary algoritm (details of th EA not given as being out of scope): <br/>
-//!		<br/>
-//!		<table style="border:none; border-spacing:0px;text-align:left; vertical-align:top; font-size:8pt;" border="0">
-//!		<tr><td>... &nbsp;</td> <td> &nbsp; </td></tr>
-//!		<tr><td>eoGenContinue< EOT > eaCont( NUM_GEN ); &nbsp;</td> <td>// the evolutionary algorithm will stop after NUM_GEN generations</td></tr>
-//!		<tr><td>eoCheckPoint< EOT > eaCheckpointContinue( eaCont ); &nbsp;</td> <td>// number of individuals to be selected using the specified strategy</td></tr>
-//!		<tr><td>... &nbsp;</td> <td> &nbsp; </td></tr>
-//!		<tr><td>eaCheckpointContinue.add( syncMigration ); &nbsp;</td> <td>// adding the migration operator as checkpoint element</td></tr>
-//!		<tr><td>... &nbsp;</td> <td> &nbsp; </td></tr>
-//!		</table>
-//!		</li>
-//!
-//!		<li> definition of an owner evolutionary algorithm (an object inheriting the <b>Runner</b> class): <br/>
-//!		<br/>
-//!		<table style="border:none; border-spacing:0px;text-align:left; vertical-align:top; font-size:8pt;" border="0">
-//!		<tr><td>peoEA< EOT > eaAlg( eaCheckpointContinue, eaPopEval, eaSelect, eaTransform, eaReplace); &nbsp;</td> <td>// evolutionary algorithm having as checkpoint the eaCheckpointContinue object defined above </td></tr>
-//!		<tr><td>syncMigration.setOwner( eaAlg ); &nbsp;</td> <td>// setting the evolutionary algorithm as owner of the migration object </td></tr>
-//!		<tr><td>eaAlg( population ); &nbsp;</td> <td>// applying the evolutionary algorithm on a given population </td></tr>
-//!		</table>
-//!		</li>
-//!	</ol>
-//!
-//! The source and the destination population for the migration object were specified as being the same, in step no. 2,
-//! as we are usually interested in selecting the emigrants and integrating the immigrant individuals from and in, respectively, one unique
-//! population, iteratively evolved by an evolutionary algorithm. There is no restriction in having two distinct populations
-//! as source and destination for the emigrant and immigrant individuals respectively.
-//!
-//! The above steps only create a synchronous migration object associated to an evolutionary algorithm. The creation of several
-//! islands requires the reiteration of the steps 2 through 4 for creating distinct algorithms, with distinct populations and
-//! the associated distinctly parametrized migration objects. The interconnecting element is the underlying topology, defined at step 1
-//! (the same C++ migTopology object has to be passed as parameter for all the migration objects, in order to interconnect them).
+//! @class peoSyncIslandMig
+//! @brief Specific class for a synchronous migration 
+//! @see Cooperative eoUpdater
+//! @version 2.0
+//! @date january 2008
 template< class EOT, class TYPE  > class peoSyncIslandMig : public Cooperative, public eoUpdater
   {
 
   public:
 
-    //! Constructor for the peoSyncIslandMig class; the characteristics of the migration model are defined
-    //! through the specified parameters - out of the box objects provided in EO, etc., or custom, derived objects may be passed as parameters.
-    //!
-    //! @param unsigned __frequency - frequency of the migrations - the migrations occur periodically;
-    //! @param eoSelect< EOT >& __select - selection strategy to be applied for constructing a list of emigrant individuals out of the source population;
-    //! @param eoReplacement< EOT >& __replace - replacement strategy used for integrating the immigrant individuals in the destination population;
-    //! @param Topology& __topology - topological model to be followed when performing migrations;
-    //! @param eoPop< EOT >& __source - source population from which the emigrant individuals are selected;
-    //! @param eoPop< EOT >& __destination - destination population in which the immigrant population are integrated.
+    //! @brief Constructor
+	//! @param unsigned __frequency
+	//! @param selector <TYPE> & __select 
+	//! @param replacement <TYPE> & __replace
+	//! @param Topology& __topology
+	//! @param peoData & __source
+	//! @param eoData & __destination
     peoSyncIslandMig(
       unsigned __frequency,
       selector <TYPE> & __select,
@@ -169,31 +89,22 @@ template< class EOT, class TYPE  > class peoSyncIslandMig : public Cooperative, 
       peoData & __destination
     );
 
-    //! Function operator to be called as checkpoint for performing the migration step. The emigrant individuals are selected
-    //! from the source population and sent to the next island (defined by the topology object) while the immigrant
-    //! individuals are integrated in the destination population. There is no need to explicitly call the function - the
-    //! wrapper checkpoint object (please refer to the above example) will perform the call when required.
+    //! @brief operator
     void operator()();
-
-    //! Auxiliary function dealing with sending the emigrant individuals. There is no need to explicitly call the function.
+	//! @brief Function realizing packages
     void pack();
-    //! Auxiliary function dealing with receiving immigrant individuals. There is no need to explicitly call the function.
+    //! @brief Function reconstituting packages
     void unpack();
-    //! Auxiliary function dealing with the packing of synchronization requests. There is no need to explicitly call the function.
+    //! @brief Function packSynchronizeReq
     void packSynchronizeReq();
-
-    //! Auxiliary function dealing with migration notifications. There is no need to explicitly call the function.
+	//! @brief Function notifySending
     void notifySending();
-
-    //! Auxiliary function dealing with migration notifications. There is no need to explicitly call the function.
+	//! @brief Function notifyReceiving
     void notifyReceiving();
-
-    //! Auxiliary function dealing with synchronizing runners for migrations. There is no need to explicitly call the function.
+	//! @brief notifySendingSyncReq
     void notifySendingSyncReq();
-
-    //! Auxiliary function for notifying the synchronization of the runners involved in migration.
+	//! @brief notifySynchronized
     void notifySynchronized();
-
 
   private:
 
@@ -202,22 +113,32 @@ template< class EOT, class TYPE  > class peoSyncIslandMig : public Cooperative, 
 
 
   private:
-
-    eoSyncContinue cont;	// continuator
-    selector <TYPE> & select;	// the selection strategy
-    replacement <TYPE> & replace;	// the replacement strategy
-    Topology& topology;		// the neighboring topology
+	//! @param eoSyncContinue cont
+	//! @param selector <TYPE> & select
+	//! @param replacement <TYPE> & replace
+	//! @param Topology& topology
+	//! @param peoData & source
+	//! @param peoData & destination
+	//! @param std :: queue< TYPE > imm
+	//! @param std :: queue< TYPE > em
+	//! @param std :: queue< Cooperative* > coop_em
+	//! @param sem_t sync
+	//! @param bool explicitPassive
+	//! @param bool standbyMigration
+	//! @param std :: vector< Cooperative* > in, out, all
+	//! @param unsigned nbMigrations
+    eoSyncContinue cont;	
+    selector <TYPE> & select;	
+    replacement <TYPE> & replace;	
+    Topology& topology;		
     peoData & source;
     peoData & destination;
     std :: queue< TYPE > imm;
     std :: queue< TYPE > em;
     std :: queue< Cooperative* > coop_em;
-
     sem_t sync;
-
     bool explicitPassive;
     bool standbyMigration;
-
     std :: vector< Cooperative* > in, out, all;
     unsigned nbMigrations;
   };
