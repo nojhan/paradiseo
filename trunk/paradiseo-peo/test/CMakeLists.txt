@@ -19,13 +19,13 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 INCLUDE(CheckLibraryExists)
 
 SET (CMAKE_CXX_COMPILER mpicxx)
-ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/test/lesson.param ${ParadisEO-PEO_SOURCE_DIR}/test/schema.xml)
+ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/test/param ${ParadisEO-PEO_SOURCE_DIR}/test/schema.xml)
 ADD_CUSTOM_COMMAND(
     TARGET install
     POST_BUILD
     COMMAND ${CMAKE_COMMAND}
     ARGS -E copy_if_different
-      ${ParadisEO-PEO_SOURCE_DIR}/test/lesson.param
+      ${ParadisEO-PEO_SOURCE_DIR}/test/param
       ${ParadisEO-PEO_BINARY_DIR}/test)
 ADD_CUSTOM_COMMAND(
     TARGET install
@@ -60,12 +60,10 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ######################################################################################
 
 SET (TEST_LIST t-peo
-			   t-peoPSO
-			   t-peoInsularPSO
 			    )
 			    
-SET (TEST_LIBRARY t-peoPSOPara
-				  t-peoPSOParaIsland)
+SET (TEST_LIBRARY t-EAParaEval
+				)
 			    
 				
 FOREACH (test ${TEST_LIST} ${TEST_LIBRARY})
