@@ -344,8 +344,6 @@
 /* <------- components for parallel algorithms -------> */
 
 /* Parallel PSO */
-#include "peoPSOSelect.h"
-#include "peoWorstPositionReplacement.h"
-#include "peoGlobalBestVelocity.h"
+#include "peoPSO.h"
 
 #endif

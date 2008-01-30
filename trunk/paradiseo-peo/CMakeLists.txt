@@ -155,7 +155,7 @@ SUBDIRS(doc src test tutorial)
 ### 7) Test config
 ######################################################################################
 
-#SET(ENABLE_CMAKE_TESTING TRUE CACHE BOOL "Should we test using Dart")
+SET(ENABLE_CMAKE_TESTING TRUE CACHE BOOL "Should we test using Dart")
 
 IF (ENABLE_CMAKE_TESTING)
 	ENABLE_TESTING()

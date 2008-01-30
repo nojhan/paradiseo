@@ -62,7 +62,9 @@ ENDIF(WIN32 AND NOT CYGWIN)
 SET (TEST_LIST t-peo
 			    )
 			    
-SET (TEST_LIBRARY t-EAParaEval
+SET (TEST_LIBRARY t-ParallelEval
+				  t-ParallelTransform
+				  t-MultiStart
 				)
 			    
 				

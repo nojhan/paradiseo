@@ -1,4 +1,4 @@
-/* <peoGlobalBestVelocity.h>
+/* <peoPSO.h>
 *
 *  (c) OPAC Team, October 2007
 *
@@ -33,11 +33,9 @@
 *   Contact: clive.canape@inria.fr
 */
 
-#ifndef _peoGlobalBestVelocity_h
-#define _peoGlobalBestVelocity_h
+#ifndef peoPSO_h
+#define peoPSO_h
 
-
-//-----------------------------------------------------------------------------
 #include <eoPop.h>
 #include <utils/eoRNG.h>
 #include <eoFunctor.h>
@@ -45,7 +43,39 @@
 #include <eoReduce.h>
 #include <eoReplacement.h>
 #include <utils/eoHowMany.h>
+#include <eoSelectOne.h>
 
+
+//! @class peoPSOSelect
+//! @brief Specific class for a selection of a population of a PSO
+//! @see eoSelectOne
+//! @version 1.1
+//! @date october 2007
+template <class POT> class peoPSOSelect: public eoSelectOne<POT>
+  {
+  public:
+
+	//! @brief Constructor
+	//! @param eoTopology < POT > & _topology
+    peoPSOSelect(eoTopology < POT > & _topology):topology(_topology)
+    {}
+
+	//! @brief typedef : creation of Fitness
+    typedef typename PO < POT >::Fitness Fitness;
+
+	//! @brief Virtual operator 
+	//! @param eoPop<POT>& _pop
+	//! @return POT&
+    virtual const POT& operator()(const eoPop<POT>& _pop)
+    {
+      return topology.globalBest(_pop);
+    }
+
+  private:
+  	//! @param eoTopology < POT > & topology
+    eoTopology < POT > & topology;
+  };
+  
 //! @class peoGlobalBestVelocity
 //! @brief Specific class for a replacement thanks to the velocity migration of a population of a PSO
 //! @see eoReplacement
@@ -88,5 +118,39 @@ class peoGlobalBestVelocity : public eoReplacement<POT>
     const double & c3;
     eoVelocity < POT > & velocity;
   };
-#endif
+  
+//! @class peoWorstPositionReplacement
+//! @brief Specific class for a replacement of a population of a PSO
+//! @see eoReplacement
+//! @version 1.1
+//! @date october 2007
+template <class POT> class peoWorstPositionReplacement : public eoReplacement<POT>
+  {
+  public:
+  	//! @brief constructor
+    peoWorstPositionReplacement()
+    {}
 
+	//! @brief operator
+	//! @param eoPop<POT>& _dest
+	//! @param eoPop<POT>& _source
+    void operator()(eoPop<POT>& _dest, eoPop<POT>& _source)
+    {
+      unsigned ind=0;
+      double best=_dest[0].best();
+      for (unsigned j=1;j<_dest.size();j++)
+        if (_dest[j].best() < best)
+          {
+            ind=j;
+            best=_dest[j].best();
+          }
+      if (_dest[ind].best() < _source[0].best())
+        {
+          _dest[ind].best(_source[0].best());
+          for (unsigned j=0;j<_dest[ind].size();j++)
+            _dest[ind].bestPositions[j]=_source[0].bestPositions[j];
+        }
+    }
+  };
+
+#endif
