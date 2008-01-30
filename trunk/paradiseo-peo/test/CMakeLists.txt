@@ -59,12 +59,23 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
-SET (TEST_LIST t-peo
-			    )
-			    
-SET (TEST_LIBRARY t-ParallelEval
+SET (TEST_LIST    t-ParallelEval
 				  t-ParallelTransform
 				  t-MultiStart
+				  t-PSOSelect
+				  t-EAAsyncIsland
+				  t-EASyncIsland
+				  t-PSOGlobalBest
+				  t-PSOWorstPosition
+			    )
+			    
+SET (TEST_LIBRARY t-ParallelEvalLib
+				  t-ParallelTransformLib
+				  t-MultiStartLib
+				  t-EAAsyncIslandLib
+				  t-EASyncIslandLib
+				  t-PSOGlobalBestLib
+				  t-PSOWorstPositionLib
 				)
 			    
 				
