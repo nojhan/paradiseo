@@ -1,0 +1,55 @@
+\section{Flow\-Shop\-Op\-Mutation\-Exchange Class Reference}
+\label{classFlowShopOpMutationExchange}\index{FlowShopOpMutationExchange@{FlowShopOpMutationExchange}}
+Exchange mutation operator for the flow-shop.  
+
+
+{\tt \#include $<$Flow\-Shop\-Op\-Mutation\-Exchange.h$>$}
+
+Inheritance diagram for Flow\-Shop\-Op\-Mutation\-Exchange::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4cm]{classFlowShopOpMutationExchange}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+std::string \bf{class\-Name} () const \label{classFlowShopOpMutationExchange_36a926c9fe21346db26fadf1d50c1c7a}
+
+\begin{CompactList}\small\item\em the class name (used to display statistics) \item\end{CompactList}\item 
+bool \bf{operator()} (\bf{Flow\-Shop} \&\_\-flowshop)
+\begin{CompactList}\small\item\em modifies the parent with an exchange mutation \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Exchange mutation operator for the flow-shop. 
+
+
+
+Definition at line 22 of file Flow\-Shop\-Op\-Mutation\-Exchange.h.
+
+\subsection{Member Function Documentation}
+\index{FlowShopOpMutationExchange@{Flow\-Shop\-Op\-Mutation\-Exchange}!operator()@{operator()}}
+\index{operator()@{operator()}!FlowShopOpMutationExchange@{Flow\-Shop\-Op\-Mutation\-Exchange}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool Flow\-Shop\-Op\-Mutation\-Exchange::operator() (\bf{Flow\-Shop} \& {\em \_\-flowshop})\hspace{0.3cm}{\tt  [virtual]}}\label{classFlowShopOpMutationExchange_bdb2e1d937d788c50f04226265c848bd}
+
+
+modifies the parent with an exchange mutation 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-flowshop}]the parent genotype (will be modified) \end{description}
+\end{Desc}
+
+
+Implements \bf{eo\-UF$<$ Flow\-Shop \&, bool $>$}.
+
+Definition at line 22 of file Flow\-Shop\-Op\-Mutation\-Exchange.cpp.
+
+References eo\-Rng::random(), and moeo\-Vector$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, Gene\-Type $>$::value().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+Flow\-Shop\-Op\-Mutation\-Exchange.h\item 
+Flow\-Shop\-Op\-Mutation\-Exchange.cpp\end{CompactItemize}

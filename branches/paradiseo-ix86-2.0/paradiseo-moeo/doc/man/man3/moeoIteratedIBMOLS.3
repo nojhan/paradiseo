@@ -1,0 +1,151 @@
+.TH "moeoIteratedIBMOLS" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOEOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoIteratedIBMOLS \- Iterated version of IBMOLS as described in Basseur M., Burke K.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoIteratedIBMOLS.h>\fP
+.PP
+Inherits \fBmoeoLS< MOEOT, eoPop< MOEOT > & >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef MOEOT::ObjectiveVector \fBObjectiveVector\fP"
+.br
+.RI "\fIThe type of objective vector. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoIteratedIBMOLS\fP (moMoveInit< Move > &_moveInit, moNextMove< Move > &_nextMove, \fBeoEvalFunc\fP< MOEOT > &_eval, \fBmoeoMoveIncrEval\fP< Move > &_moveIncrEval, \fBmoeoBinaryIndicatorBasedFitnessAssignment\fP< MOEOT > &_fitnessAssignment, \fBeoContinue\fP< MOEOT > &_continuator, \fBeoMonOp\fP< MOEOT > &_monOp, \fBeoMonOp\fP< MOEOT > &_randomMonOp, unsigned int _nNoiseIterations=1)"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (\fBeoPop\fP< MOEOT > &_pop, \fBmoeoArchive\fP< MOEOT > &_arch)"
+.br
+.RI "\fIApply the local search iteratively until the stopping criteria is met. \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBgenerateNewSolutions\fP (\fBeoPop\fP< MOEOT > &_pop, const \fBmoeoArchive\fP< MOEOT > &_arch)"
+.br
+.RI "\fICreates new population randomly initialized and/or initialized from the archive _arch. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmoeoIBMOLS\fP< MOEOT, Move > \fBibmols\fP"
+.br
+.RI "\fIthe local search to iterate \fP"
+.ti -1c
+.RI "\fBeoEvalFunc\fP< MOEOT > & \fBeval\fP"
+.br
+.RI "\fIthe full evaluation \fP"
+.ti -1c
+.RI "\fBeoContinue\fP< MOEOT > & \fBcontinuator\fP"
+.br
+.RI "\fIthe stopping criteria \fP"
+.ti -1c
+.RI "\fBeoMonOp\fP< MOEOT > & \fBmonOp\fP"
+.br
+.RI "\fIthe monary operator \fP"
+.ti -1c
+.RI "\fBeoMonOp\fP< MOEOT > & \fBrandomMonOp\fP"
+.br
+.RI "\fIthe random monary operator (or random initializer) \fP"
+.ti -1c
+.RI "unsigned int \fBnNoiseIterations\fP"
+.br
+.RI "\fIthe number of iterations to apply the random noise \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT, class Move> class moeoIteratedIBMOLS< MOEOT, Move >"
+Iterated version of IBMOLS as described in Basseur M., Burke K. 
+
+: 'Indicator-Based Multi-Objective Local Search' (2007). 
+.PP
+Definition at line 41 of file moeoIteratedIBMOLS.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class MOEOT, class Move> \fBmoeoIteratedIBMOLS\fP< MOEOT, Move >::\fBmoeoIteratedIBMOLS\fP (moMoveInit< Move > & _moveInit, moNextMove< Move > & _nextMove, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBmoeoMoveIncrEval\fP< Move > & _moveIncrEval, \fBmoeoBinaryIndicatorBasedFitnessAssignment\fP< MOEOT > & _fitnessAssignment, \fBeoContinue\fP< MOEOT > & _continuator, \fBeoMonOp\fP< MOEOT > & _monOp, \fBeoMonOp\fP< MOEOT > & _randomMonOp, unsigned int _nNoiseIterations = \fC1\fP)\fC [inline]\fP"
+.PP
+Ctor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_moveInit\fP the move initializer 
+.br
+\fI_nextMove\fP the neighborhood explorer 
+.br
+\fI_eval\fP the full evaluation 
+.br
+\fI_moveIncrEval\fP the incremental evaluation 
+.br
+\fI_fitnessAssignment\fP the fitness assignment strategy 
+.br
+\fI_continuator\fP the stopping criteria 
+.br
+\fI_monOp\fP the monary operator 
+.br
+\fI_randomMonOp\fP the random monary operator (or random initializer) 
+.br
+\fI_nNoiseIterations\fP the number of iterations to apply the random noise 
+.RE
+.PP
+
+.PP
+Definition at line 61 of file moeoIteratedIBMOLS.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT, class Move> void \fBmoeoIteratedIBMOLS\fP< MOEOT, Move >::operator() (\fBeoPop\fP< MOEOT > & _pop, \fBmoeoArchive\fP< MOEOT > & _arch)\fC [inline, virtual]\fP"
+.PP
+Apply the local search iteratively until the stopping criteria is met. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the initial population 
+.br
+\fI_arch\fP the (updated) archive 
+.RE
+.PP
+
+.PP
+Implements \fBeoBF< eoPop< MOEOT > &, moeoArchive< MOEOT > &, void >\fP.
+.PP
+Definition at line 86 of file moeoIteratedIBMOLS.h.
+.PP
+References moeoIteratedIBMOLS< MOEOT, Move >::continuator, moeoIteratedIBMOLS< MOEOT, Move >::generateNewSolutions(), moeoIteratedIBMOLS< MOEOT, Move >::ibmols, and moeoArchive< MOEOT >::update().
+.SS "template<class MOEOT, class Move> void \fBmoeoIteratedIBMOLS\fP< MOEOT, Move >::generateNewSolutions (\fBeoPop\fP< MOEOT > & _pop, const \fBmoeoArchive\fP< MOEOT > & _arch)\fC [inline, private]\fP"
+.PP
+Creates new population randomly initialized and/or initialized from the archive _arch. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_pop\fP the output population 
+.br
+\fI_arch\fP the archive 
+.RE
+.PP
+
+.PP
+Definition at line 121 of file moeoIteratedIBMOLS.h.
+.PP
+References moeoIteratedIBMOLS< MOEOT, Move >::eval, eoPop< EOT >::invalidate(), moeoIteratedIBMOLS< MOEOT, Move >::monOp, moeoIteratedIBMOLS< MOEOT, Move >::nNoiseIterations, and moeoIteratedIBMOLS< MOEOT, Move >::randomMonOp.
+.PP
+Referenced by moeoIteratedIBMOLS< MOEOT, Move >::operator()().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEOMovingObjects from the source code.

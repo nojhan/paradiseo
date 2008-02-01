@@ -1,0 +1,55 @@
+\section{Flow\-Shop\-Op\-Mutation\-Shift Class Reference}
+\label{classFlowShopOpMutationShift}\index{FlowShopOpMutationShift@{FlowShopOpMutationShift}}
+Shift mutation operator for flow-shop.  
+
+
+{\tt \#include $<$Flow\-Shop\-Op\-Mutation\-Shift.h$>$}
+
+Inheritance diagram for Flow\-Shop\-Op\-Mutation\-Shift::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4cm]{classFlowShopOpMutationShift}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+std::string \bf{class\-Name} () const \label{classFlowShopOpMutationShift_dd1d710568978d1d4bb8c6f3925da4c6}
+
+\begin{CompactList}\small\item\em the class name (used to display statistics) \item\end{CompactList}\item 
+bool \bf{operator()} (\bf{Flow\-Shop} \&\_\-flowshop)
+\begin{CompactList}\small\item\em modifies the parent with a shift mutation \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Shift mutation operator for flow-shop. 
+
+
+
+Definition at line 22 of file Flow\-Shop\-Op\-Mutation\-Shift.h.
+
+\subsection{Member Function Documentation}
+\index{FlowShopOpMutationShift@{Flow\-Shop\-Op\-Mutation\-Shift}!operator()@{operator()}}
+\index{operator()@{operator()}!FlowShopOpMutationShift@{Flow\-Shop\-Op\-Mutation\-Shift}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool Flow\-Shop\-Op\-Mutation\-Shift::operator() (\bf{Flow\-Shop} \& {\em \_\-flowshop})\hspace{0.3cm}{\tt  [virtual]}}\label{classFlowShopOpMutationShift_c000b017e75ddee3b6fe9db8ea5ddd5b}
+
+
+modifies the parent with a shift mutation 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-flowshop}]the parent genotype (will be modified) \end{description}
+\end{Desc}
+
+
+Implements \bf{eo\-UF$<$ Flow\-Shop \&, bool $>$}.
+
+Definition at line 22 of file Flow\-Shop\-Op\-Mutation\-Shift.cpp.
+
+References eo\-Rng::random(), and moeo\-Vector$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, Gene\-Type $>$::value().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+Flow\-Shop\-Op\-Mutation\-Shift.h\item 
+Flow\-Shop\-Op\-Mutation\-Shift.cpp\end{CompactItemize}
