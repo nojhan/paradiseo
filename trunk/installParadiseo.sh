@@ -828,7 +828,18 @@ function run_install_step()
 		fi
 		;;
 	$S_END)
-		echo -e "\033[40m\033[1;33m### Now please run \"source $homePath/.bashrc\" to save the context ### \033[0m"
+		echo -e "\033[40m\033[1;33m### 
+			The file \".bashrc\" file located in your directory $homePath has been MODIFIED.
+			The following lines have been added at the end:
+			
+				LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$installKitPath/libxml2/lib: 
+				PATH=$PATH:$installKitPath/libxml2/bin:$installKitPath/mpich2/bin
+			
+			These variables are necessary to compile any program using ParadisEO-PEO. If
+			you want to keep them in your environment in order not to have to set them each time you compile, enter  \"source $homePath/.bashrc\".
+
+			If you don't want to use these variables, please remove them from $homePath/.bashrc. ### \033[0m"
+
 		sleep 2
 		echo
 		echo
