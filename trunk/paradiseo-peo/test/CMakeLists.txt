@@ -59,15 +59,16 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
-SET (TEST_LIST    t-ParallelEval
-				  t-ParallelTransform
-				  t-MultiStart
-				  t-PSOSelect
-				  t-EAAsyncIsland
-				  t-EASyncIsland
-				  t-PSOGlobalBest
-				  t-PSOWorstPosition
-			    )
+SET (TEST_LIST     t-EAAsyncIslandLib)
+
+    #              t-ParallelEval
+    #				  t-ParallelTransform
+	#			  t-MultiStart
+	#			  t-PSOSelect
+	#			  t-EAAsyncIsland
+	#			  t-EASyncIsland
+	#			  t-PSOGlobalBest
+	#			  t-PSOWorstPosition
 			    
 SET (TEST_LIBRARY t-ParallelEvalLib
 				  t-ParallelTransformLib
@@ -92,7 +93,7 @@ IF(ENABLE_CMAKE_TESTING)
 	ENDFOREACH (test)
 	
 	FOREACH (test ${TEST_LIST})
-		  ADD_TEST(${test} ${test})
+		  ADD_TEST(${test} "mpiexec" "-n" "4" "${CMAKE_CURRENT_BINARY_DIR}/${test}" "@param")
 	ENDFOREACH (test)
 	
 	# Link the librairies
