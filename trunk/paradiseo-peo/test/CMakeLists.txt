@@ -59,18 +59,22 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
-SET (TEST_LIST    t-Mpdboot
-				  t-ParallelEvalLib
-				  t-ParallelTransformLib
-				  t-MultiStartLib
+SET (TEST_RUN    t-Mpdboot)
+					  
+
+SET (TEST_LIST	  t-ParallelEval
+				  t-ParallelTransform
+				  t-MultiStart
 				  t-PSOSelect
-				  t-EAAsyncIslandLib
-				  t-EASyncIslandLib
-				  t-PSOGlobalBestLib
-				  t-PSOWorstPositionLib
+				  t-EAAsyncIsland
+				  t-EASyncIsland
+				  t-PSOGlobalBest
+				  t-PSOWorstPosition
 				  t-Mpdallexit)
+				  
+SET (TEST_STOP    t-Mpdallexit)
 	
-FOREACH (test ${TEST_LIST})
+FOREACH (test ${TEST_LIST} ${TEST_RUN} ${TEST_STOP})
 	  SET ("T_${test}_SOURCES" "${test}.cpp")
 ENDFOREACH (test)
 
@@ -78,12 +82,20 @@ ENDFOREACH (test)
 IF(ENABLE_CMAKE_TESTING)
 	
 	# Add the tests
-	FOREACH (test ${TEST_LIST})
+	FOREACH (test ${TEST_LIST} ${TEST_RUN} ${TEST_STOP})
 		  ADD_EXECUTABLE(${test} ${T_${test}_SOURCES})  
+	ENDFOREACH (test)
+	
+	FOREACH (test ${TEST_RUN})
+		  ADD_TEST(${test} ${test})
 	ENDFOREACH (test)
 	
 	FOREACH (test ${TEST_LIST})
 		  ADD_TEST(${test} "mpiexec" "-n" "4" "${CMAKE_CURRENT_BINARY_DIR}/${test}" "@param")
+	ENDFOREACH (test)
+	
+	FOREACH (test ${TEST_STOP})
+		  ADD_TEST(${test} ${test})
 	ENDFOREACH (test)
 	
 	# Link the librairies
