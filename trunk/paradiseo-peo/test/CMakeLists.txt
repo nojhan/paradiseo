@@ -59,28 +59,18 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
-SET (TEST_LIST     t-EAAsyncIslandLib)
-
-    #              t-ParallelEval
-    #				  t-ParallelTransform
-	#			  t-MultiStart
-	#			  t-PSOSelect
-	#			  t-EAAsyncIsland
-	#			  t-EASyncIsland
-	#			  t-PSOGlobalBest
-	#			  t-PSOWorstPosition
-			    
-SET (TEST_LIBRARY t-ParallelEvalLib
+SET (TEST_LIST    t-Mpdboot
+				  t-ParallelEvalLib
 				  t-ParallelTransformLib
 				  t-MultiStartLib
+				  t-PSOSelect
 				  t-EAAsyncIslandLib
 				  t-EASyncIslandLib
 				  t-PSOGlobalBestLib
 				  t-PSOWorstPositionLib
-				)
-			    
-				
-FOREACH (test ${TEST_LIST} ${TEST_LIBRARY})
+				  t-Mpdallexit)
+	
+FOREACH (test ${TEST_LIST})
 	  SET ("T_${test}_SOURCES" "${test}.cpp")
 ENDFOREACH (test)
 
@@ -88,7 +78,7 @@ ENDFOREACH (test)
 IF(ENABLE_CMAKE_TESTING)
 	
 	# Add the tests
-	FOREACH (test ${TEST_LIST} ${TEST_LIBRARY})
+	FOREACH (test ${TEST_LIST})
 		  ADD_EXECUTABLE(${test} ${T_${test}_SOURCES})  
 	ENDFOREACH (test)
 	
@@ -97,7 +87,7 @@ IF(ENABLE_CMAKE_TESTING)
 	ENDFOREACH (test)
 	
 	# Link the librairies
-	FOREACH (test ${TEST_LIST} ${TEST_LIBRARY})
+	FOREACH (test ${TEST_LIST})
 	 TARGET_LINK_LIBRARIES(${test} peo ${XML2_LIBS} rmc_mpi ga es eoutils eo)
 	ENDFOREACH (test)
 	
