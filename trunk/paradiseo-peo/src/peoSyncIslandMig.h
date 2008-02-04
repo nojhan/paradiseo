@@ -78,15 +78,11 @@ template< class EOT, class TYPE  > class peoSyncIslandMig : public Cooperative, 
 	//! @param selector <TYPE> & __select 
 	//! @param replacement <TYPE> & __replace
 	//! @param Topology& __topology
-	//! @param peoData & __source
-	//! @param eoData & __destination
     peoSyncIslandMig(
       unsigned __frequency,
       selector <TYPE> & __select,
       replacement <TYPE> & __replace,
-      Topology& __topology,
-      peoData & __source,
-      peoData & __destination
+      Topology& __topology
     );
 
     //! @brief operator
@@ -117,8 +113,6 @@ template< class EOT, class TYPE  > class peoSyncIslandMig : public Cooperative, 
 	//! @param selector <TYPE> & select
 	//! @param replacement <TYPE> & replace
 	//! @param Topology& topology
-	//! @param peoData & source
-	//! @param peoData & destination
 	//! @param std :: queue< TYPE > imm
 	//! @param std :: queue< TYPE > em
 	//! @param std :: queue< Cooperative* > coop_em
@@ -131,8 +125,6 @@ template< class EOT, class TYPE  > class peoSyncIslandMig : public Cooperative, 
     selector <TYPE> & select;	
     replacement <TYPE> & replace;	
     Topology& topology;		
-    peoData & source;
-    peoData & destination;
     std :: queue< TYPE > imm;
     std :: queue< TYPE > em;
     std :: queue< Cooperative* > coop_em;
@@ -149,11 +141,8 @@ template< class EOT, class TYPE > peoSyncIslandMig< EOT,TYPE > :: peoSyncIslandM
   unsigned __frequency,
   selector <TYPE> & __select,
   replacement <TYPE> & __replace,
-  Topology& __topology,
-  peoData & __source,
-  peoData & __destination
-
-) : cont( __frequency ), select( __select ), replace( __replace ), topology( __topology ), source( __source ), destination( __destination )
+  Topology& __topology
+) : cont( __frequency ), select( __select ), replace( __replace ), topology( __topology )
 {
 
   __topology.add( *this );
