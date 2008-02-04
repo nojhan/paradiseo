@@ -51,6 +51,7 @@ class moeoArchive : public eoPop < MOEOT >
   public:
 
     using eoPop < MOEOT > :: size;
+    using eoPop < MOEOT > :: resize;
     using eoPop < MOEOT > :: operator[];
     using eoPop < MOEOT > :: back;
     using eoPop < MOEOT > :: pop_back;
