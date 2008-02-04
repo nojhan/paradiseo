@@ -137,9 +137,9 @@ int main (int __argc, char *__argv[])
 
 // Island model
 
-  peoAsyncIslandMig< Indi, peoPop<Indi> > mig(cont,mig_select, mig_replace, topologyMig);
+  peoAsyncIslandMig< peoPop<Indi>, peoPop<Indi> > mig(cont,mig_select, mig_replace, topologyMig);
   checkpoint.add( mig );
-  peoAsyncIslandMig< Indi, peoPop<Indi> > mig2(cont2,mig_select2, mig_replace2, topologyMig);
+  peoAsyncIslandMig< peoPop<Indi>, peoPop<Indi> > mig2(cont2,mig_select2, mig_replace2, topologyMig);
   checkpoint2.add( mig2 );
 
 

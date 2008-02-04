@@ -90,7 +90,7 @@ int main (int __argc, char *__argv[])
   eoRandomSelect<Indi> mig_select_one;
   eoSelector <Indi, peoPop<Indi> > mig_select (mig_select_one,MIG_SIZE,pop);
   eoReplace <Indi, peoPop<Indi> > mig_replace (replace,pop);
-  peoSyncIslandMig<Indi, peoPop<Indi> > mig(MIG_FREQ,mig_select,mig_replace,topology);
+  peoSyncIslandMig<peoPop<Indi>, peoPop<Indi> > mig(MIG_FREQ,mig_select,mig_replace,topology);
   checkpoint.add(mig);
   eoEasyEA< Indi > eaAlg( checkpoint, eval, select, transform, replace );
   peoWrapper parallelEA( eaAlg, pop);
@@ -121,7 +121,7 @@ int main (int __argc, char *__argv[])
   eoRandomSelect<Indi> mig_select_one2;
   eoSelector <Indi, peoPop<Indi> > mig_select2 (mig_select_one2,MIG_SIZE,pop2);
   eoReplace <Indi, peoPop<Indi> > mig_replace2 (replace2,pop2);
-  peoSyncIslandMig<Indi, peoPop<Indi> > mig2(MIG_FREQ,mig_select2,mig_replace2,topology);
+  peoSyncIslandMig<peoPop<Indi>, peoPop<Indi> > mig2(MIG_FREQ,mig_select2,mig_replace2,topology);
   checkpoint2.add(mig2);
   eoEasyEA< Indi > eaAlg2( checkpoint2, eval2, select2, transform2, replace2 );
   peoWrapper parallelEA2( eaAlg2, pop2);

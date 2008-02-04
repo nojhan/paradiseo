@@ -61,7 +61,7 @@
 //! @see Cooperative eoUpdater
 //! @version 2.0
 //! @date january 2008
-template< class EOT, class TYPE > class peoAsyncIslandMig : public Cooperative, public eoUpdater
+template< class TYPESELECT, class TYPEREPLACE > class peoAsyncIslandMig : public Cooperative, public eoUpdater
   {
 
   public:
@@ -73,8 +73,8 @@ template< class EOT, class TYPE > class peoAsyncIslandMig : public Cooperative, 
 	//! @param Topology& __topology
 	peoAsyncIslandMig(
       continuator & __cont,
-      selector <TYPE> & __select,
-      replacement <TYPE> & __replace,
+      selector <TYPESELECT> & __select,
+      replacement <TYPEREPLACE> & __replace,
       Topology& __topology
     );
 
@@ -95,27 +95,27 @@ template< class EOT, class TYPE > class peoAsyncIslandMig : public Cooperative, 
 
   private:
   	//! @param continuator & cont
-  	//! @param selector <TYPE> & select
-  	//! @param replacement <TYPE> & replace
+  	//! @param selector <TYPESELECT> & select
+  	//! @param replacement <TYPEREPLACE> & replace
   	//! @param Topology& topology
-  	//! @param std :: queue< TYPE > imm
-  	//! @param std :: queue< TYPE > em
+  	//! @param std :: queue< TYPEREPLACE > imm
+  	//! @param std :: queue< TYPESELECT > em
   	//! @param std :: queue< Cooperative* > coop_em
     continuator & cont;	
-    selector <TYPE> & select;	
-    replacement <TYPE> & replace;	
+    selector <TYPESELECT> & select;	
+    replacement <TYPEREPLACE> & replace;	
     Topology& topology;		
-    std :: queue< TYPE > imm;
-    std :: queue< TYPE > em;
+    std :: queue< TYPEREPLACE > imm;
+    std :: queue< TYPESELECT > em;
     std :: queue< Cooperative* > coop_em;
   };
 
 
-template< class EOT , class TYPE> peoAsyncIslandMig< EOT, TYPE > :: peoAsyncIslandMig(
+template< class TYPESELECT , class TYPEREPLACE> peoAsyncIslandMig< TYPESELECT, TYPEREPLACE > :: peoAsyncIslandMig(
 
   continuator & __cont,
-  selector <TYPE> & __select,
-  replacement <TYPE> & __replace,
+  selector <TYPESELECT> & __select,
+  replacement <TYPEREPLACE> & __replace,
   Topology& __topology
 
 ) : select( __select ), replace( __replace ), topology( __topology ), cont(__cont)
@@ -125,7 +125,7 @@ template< class EOT , class TYPE> peoAsyncIslandMig< EOT, TYPE > :: peoAsyncIsla
 }
 
 
-template< class EOT , class TYPE> void peoAsyncIslandMig< EOT, TYPE > :: pack()
+template< class TYPESELECT , class TYPEREPLACE> void peoAsyncIslandMig< TYPESELECT, TYPEREPLACE > :: pack()
 {
   lock ();
   ::pack( coop_em.front()->getKey() );
@@ -136,19 +136,19 @@ template< class EOT , class TYPE> void peoAsyncIslandMig< EOT, TYPE > :: pack()
 }
 
 
-template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: unpack()
+template< class  TYPESELECT, class TYPEREPLACE> void peoAsyncIslandMig< TYPESELECT , TYPEREPLACE> :: unpack()
 {
   lock ();
-  TYPE mig;
+  TYPEREPLACE mig;
   mig.unpack();
   imm.push( mig );
   unlock();
 }
 
-template< class EOT , class TYPE> void peoAsyncIslandMig< EOT, TYPE > :: packSynchronizeReq()
+template< class TYPESELECT , class TYPEREPLACE> void peoAsyncIslandMig< TYPESELECT, TYPEREPLACE > :: packSynchronizeReq()
 {}
 
-template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: emigrate()
+template< class TYPESELECT , class TYPEREPLACE> void peoAsyncIslandMig< TYPESELECT , TYPEREPLACE> :: emigrate()
 {
   std :: vector< Cooperative* >in, out;
   topology.setNeighbors( this, in, out );
@@ -156,7 +156,7 @@ template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: emigrat
   for ( unsigned i = 0; i < out.size(); i++ )
     {
 
-      TYPE mig;
+      TYPESELECT mig;
       select(mig);
       em.push( mig );
       coop_em.push( out[i] );
@@ -166,7 +166,7 @@ template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: emigrat
 }
 
 
-template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: immigrate()
+template< class  TYPESELECT, class TYPEREPLACE> void peoAsyncIslandMig< TYPESELECT , TYPEREPLACE> :: immigrate()
 {
 
   lock ();
@@ -183,7 +183,7 @@ template< class EOT , class TYPE> void peoAsyncIslandMig< EOT , TYPE> :: immigra
 }
 
 
-template< class EOT , class TYPE> void peoAsyncIslandMig< EOT, TYPE > :: operator()()
+template< class TYPESELECT , class TYPEREPLACE> void peoAsyncIslandMig< TYPESELECT , TYPEREPLACE > :: operator()()
 {
 
   if (cont.check())

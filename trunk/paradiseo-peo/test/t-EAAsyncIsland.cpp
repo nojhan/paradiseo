@@ -35,7 +35,7 @@ int main (int __argc, char *__argv[])
   eoReplace <Indi, peoPop<Indi> > mig_replace (replace,pop);
   eoPeriodicContinue< Indi > mig_cont( 2 );
   eoContinuator<Indi> cont(mig_cont, pop);
-  peoAsyncIslandMig<Indi, peoPop<Indi> > mig(cont,mig_select,mig_replace,topology);
+  peoAsyncIslandMig<peoPop<Indi>, peoPop<Indi> > mig(cont,mig_select,mig_replace,topology);
   checkpoint.add(mig);
   eoEasyEA< Indi > eaAlg( checkpoint, eval, select, transform, replace );
   peoWrapper parallelEA( eaAlg, pop);
@@ -62,7 +62,7 @@ int main (int __argc, char *__argv[])
   eoReplace <Indi, peoPop<Indi> > mig_replace2 (replace2,pop2);
   eoPeriodicContinue< Indi > mig_cont2( 2 );
   eoContinuator<Indi> cont2(mig_cont2, pop2);
-  peoAsyncIslandMig<Indi, peoPop<Indi> > mig2(cont2,mig_select2,mig_replace2,topology);
+  peoAsyncIslandMig<peoPop<Indi>, peoPop<Indi> > mig2(cont2,mig_select2,mig_replace2,topology);
   checkpoint2.add(mig2);
   eoEasyEA< Indi > eaAlg2( checkpoint2, eval2, select2, transform2, replace2 );
   peoWrapper parallelEA2( eaAlg2, pop2);

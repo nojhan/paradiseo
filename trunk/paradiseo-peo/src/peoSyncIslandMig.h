@@ -68,20 +68,20 @@
 //! @see Cooperative eoUpdater
 //! @version 2.0
 //! @date january 2008
-template< class EOT, class TYPE  > class peoSyncIslandMig : public Cooperative, public eoUpdater
+template< class TYPESELECT, class TYPEREPLACE  > class peoSyncIslandMig : public Cooperative, public eoUpdater
   {
 
   public:
 
     //! @brief Constructor
 	//! @param unsigned __frequency
-	//! @param selector <TYPE> & __select 
-	//! @param replacement <TYPE> & __replace
+	//! @param selector <TYPESELECT> & __select 
+	//! @param replacement <TYPEREPLACE> & __replace
 	//! @param Topology& __topology
     peoSyncIslandMig(
       unsigned __frequency,
-      selector <TYPE> & __select,
-      replacement <TYPE> & __replace,
+      selector <TYPESELECT> & __select,
+      replacement <TYPEREPLACE> & __replace,
       Topology& __topology
     );
 
@@ -110,11 +110,11 @@ template< class EOT, class TYPE  > class peoSyncIslandMig : public Cooperative, 
 
   private:
 	//! @param eoSyncContinue cont
-	//! @param selector <TYPE> & select
-	//! @param replacement <TYPE> & replace
+	//! @param selector <TYPESELECT> & select
+	//! @param replacement <TYPEREPLACE> & replace
 	//! @param Topology& topology
-	//! @param std :: queue< TYPE > imm
-	//! @param std :: queue< TYPE > em
+	//! @param std :: queue< TYPEREPLACE > imm
+	//! @param std :: queue< TYPESELECT > em
 	//! @param std :: queue< Cooperative* > coop_em
 	//! @param sem_t sync
 	//! @param bool explicitPassive
@@ -122,11 +122,11 @@ template< class EOT, class TYPE  > class peoSyncIslandMig : public Cooperative, 
 	//! @param std :: vector< Cooperative* > in, out, all
 	//! @param unsigned nbMigrations
     eoSyncContinue cont;	
-    selector <TYPE> & select;	
-    replacement <TYPE> & replace;	
+    selector <TYPESELECT> & select;	
+    replacement <TYPEREPLACE> & replace;	
     Topology& topology;		
-    std :: queue< TYPE > imm;
-    std :: queue< TYPE > em;
+    std :: queue< TYPEREPLACE > imm;
+    std :: queue< TYPESELECT > em;
     std :: queue< Cooperative* > coop_em;
     sem_t sync;
     bool explicitPassive;
@@ -136,11 +136,11 @@ template< class EOT, class TYPE  > class peoSyncIslandMig : public Cooperative, 
   };
 
 
-template< class EOT, class TYPE > peoSyncIslandMig< EOT,TYPE > :: peoSyncIslandMig(
+template< class TYPESELECT, class TYPEREPLACE > peoSyncIslandMig< TYPESELECT,TYPEREPLACE > :: peoSyncIslandMig(
 
   unsigned __frequency,
-  selector <TYPE> & __select,
-  replacement <TYPE> & __replace,
+  selector <TYPESELECT> & __select,
+  replacement <TYPEREPLACE> & __replace,
   Topology& __topology
 ) : cont( __frequency ), select( __select ), replace( __replace ), topology( __topology )
 {
@@ -150,7 +150,7 @@ template< class EOT, class TYPE > peoSyncIslandMig< EOT,TYPE > :: peoSyncIslandM
 }
 
 
-template< class EOT, class TYPE > void peoSyncIslandMig< EOT, TYPE > :: pack()
+template< class TYPESELECT, class TYPEREPLACE > void peoSyncIslandMig< TYPESELECT, TYPEREPLACE > :: pack()
 {
   ::pack( coop_em.front()->getKey() );
   em.front().pack();
@@ -158,27 +158,27 @@ template< class EOT, class TYPE > void peoSyncIslandMig< EOT, TYPE > :: pack()
   em.pop();
 }
 
-template< class EOT, class TYPE > void peoSyncIslandMig< EOT, TYPE > :: unpack()
+template< class TYPESELECT, class TYPEREPLACE > void peoSyncIslandMig< TYPESELECT, TYPEREPLACE > :: unpack()
 {
-  TYPE mig;
+  TYPEREPLACE mig;
   mig.unpack();
   imm.push( mig );
   explicitPassive = true;
 }
 
-template< class EOT, class TYPE > void peoSyncIslandMig< EOT,TYPE > :: packSynchronizeReq()
+template< class TYPESELECT, class TYPEREPLACE > void peoSyncIslandMig< TYPESELECT,TYPEREPLACE > :: packSynchronizeReq()
 {
 
   packSynchronRequest( all );
 }
 
-template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: emigrate()
+template< class TYPESELECT, class TYPEREPLACE > void peoSyncIslandMig< TYPESELECT , TYPEREPLACE > :: emigrate()
 {
 
   for ( unsigned i = 0; i < out.size(); i ++ )
     {
 
-      TYPE mig;
+      TYPESELECT mig;
       select( mig );
       em.push( mig );
       coop_em.push( out[ i ] );
@@ -187,7 +187,7 @@ template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: emigrat
     }
 }
 
-template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: immigrate()
+template< class TYPESELECT, class TYPEREPLACE > void peoSyncIslandMig< TYPESELECT , TYPEREPLACE > :: immigrate()
 {
   assert( imm.size() );
 
@@ -200,7 +200,7 @@ template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: immigra
   printDebugMessage( "peoSyncIslandMig: receiving some immigrants." );
 }
 
-template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: operator()()
+template< class TYPESELECT, class TYPEREPLACE > void peoSyncIslandMig< TYPESELECT , TYPEREPLACE > :: operator()()
 {
 
   if ( cont.check() )
@@ -222,12 +222,12 @@ template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: operato
     }
 }
 
-template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: notifySending()
+template< class TYPESELECT, class TYPEREPLACE > void peoSyncIslandMig< TYPESELECT , TYPEREPLACE > :: notifySending()
 {
   if ( !explicitPassive ) getOwner()->setPassive();
 }
 
-template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: notifyReceiving()
+template< class TYPESELECT, class TYPEREPLACE > void peoSyncIslandMig< TYPESELECT , TYPEREPLACE > :: notifyReceiving()
 {
   nbMigrations++;
 
@@ -239,13 +239,13 @@ template< class EOT, class TYPE > void peoSyncIslandMig< EOT , TYPE > :: notifyR
     }
 }
 
-template< class EOT, class TYPE > void peoSyncIslandMig< EOT, TYPE > :: notifySendingSyncReq ()
+template< class TYPESELECT, class TYPE > void peoSyncIslandMig< TYPESELECT, TYPE > :: notifySendingSyncReq ()
 {
 
   getOwner()->setPassive();
 }
 
-template< class EOT, class TYPE > void peoSyncIslandMig< EOT, TYPE > :: notifySynchronized ()
+template< class TYPESELECT, class TYPE > void peoSyncIslandMig< TYPESELECT, TYPE > :: notifySynchronized ()
 {
 
   standbyMigration = true;
