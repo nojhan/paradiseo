@@ -41,59 +41,6 @@
 #include "core/messaging.h"
 
 /**************************************************************************************/
-/**************************  DEFINE A DATA   ******************************************/
-/**************************************************************************************/
-
-//! @class peoData
-//! @brief Abstract class for a data exchanged by migration
-//! @version 1.0
-//! @date january 2008
-class peoData
-  {
-  public:
-  
-	//! @brief Function realizing packages
-    virtual void pack ()
-    {}
-    
-	//! @brief Function reconstituting packages
-    virtual void unpack ()
-    {}
-
-  };
-
-//! @class peoPop
-//! @brief Specific class for a migration of a population
-//! @see peoData eoPop
-//! @version 1.0
-//! @date january 2008
-template<class EOT>
-class peoPop: public eoPop<EOT>, public peoData
-  {
-  public:
-
-	//! @brief Function realizing packages
-    virtual void pack ()
-    {
-      ::pack ((unsigned) this->size ());
-      for (unsigned i = 0; i < this->size (); i ++)
-        ::pack ((*this)[i]);
-    }
-
-	//! @brief Function reconstituting packages
-    virtual void unpack ()
-    {
-      unsigned n;
-      ::unpack (n);
-      this->resize (n);
-      for (unsigned i = 0; i < n; i ++)
-        ::unpack ((*this)[i]);
-    }
-
-  };
-
-
-/**************************************************************************************/
 /**************************  DEFINE A CONTINUATOR   ***********************************/
 /**************************************************************************************/
 

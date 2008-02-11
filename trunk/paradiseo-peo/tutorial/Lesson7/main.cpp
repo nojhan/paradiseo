@@ -39,7 +39,7 @@ int main (int __argc, char *__argv[])
   eoPopLoopEval < Indi > evalArchive(firstEval);
   eoUniformGenerator < double > uGenArchive (INIT_POSITION_MIN, INIT_POSITION_MAX);
   eoInitFixedLength < Indi > randomArchive (VEC_SIZE, uGenArchive);
-  peoPop < Indi > empty_pop,archive;
+  eoPop < Indi > empty_pop,archive;
   archive.append(POP_SIZE, randomArchive);
   evalArchive (empty_pop,archive);
   archive.sort();
@@ -65,24 +65,24 @@ int main (int __argc, char *__argv[])
   eoSegmentCrossover<Indi> crossover;
   eoUniformMutation<Indi>  mutation(EPSILON);
   peoTransform<Indi> transform(crossover,CROSS_RATE,mutation,MUT_RATE);
-  peoPop < Indi > pop;
+  eoPop < Indi > pop;
   pop.append (POP_SIZE, random);
   eoPlusReplacement<Indi> replace;
   eoBestSelect <Indi> mig_select_one;
-  eoSelector <Indi, peoPop<Indi> > mig_select (mig_select_one,MIG_SIZE,pop);
-  eoReplace <Indi, peoPop<Indi> > mig_replace (replace,pop);
+  eoSelector <Indi, eoPop<Indi> > mig_select (mig_select_one,MIG_SIZE,pop);
+  eoReplace <Indi, eoPop<Indi> > mig_replace (replace,pop);
   eoPeriodicContinue< Indi > mig_cont( MIG_FREQ );
   eoContinuator<Indi> cont(mig_cont, pop);
-  peoAsyncIslandMig< peoPop<Indi>, peoPop<Indi> > mig(cont,mig_select, mig_replace, topology);
+  peoAsyncIslandMig< eoPop<Indi>, eoPop<Indi> > mig(cont,mig_select, mig_replace, topology);
   checkpoint.add(mig);
 
  
   eoRandomSelect<Indi> mig_select_oneArchive;
-  eoSelector <Indi, peoPop<Indi> > mig_selectArchive (mig_select_oneArchive,MIG_SIZE,archive);
-  eoReplace <Indi, peoPop<Indi> > mig_replaceArchive (replace,archive);
+  eoSelector <Indi, eoPop<Indi> > mig_selectArchive (mig_select_oneArchive,MIG_SIZE,archive);
+  eoReplace <Indi, eoPop<Indi> > mig_replaceArchive (replace,archive);
   eoPeriodicContinue< Indi > mig_contArchive( MIG_FREQ );
   eoContinuator<Indi> contArchive(mig_contArchive, pop);
-  peoAsyncIslandMig< peoPop<Indi>, peoPop<Indi> > migArchive(contArchive,mig_selectArchive, mig_replaceArchive, topology);
+  peoAsyncIslandMig< eoPop<Indi>, eoPop<Indi> > migArchive(contArchive,mig_selectArchive, mig_replaceArchive, topology);
   checkpoint.add(migArchive);
   
   eoEasyEA< Indi > eaAlg( checkpoint, eval, select, transform, replace );
@@ -107,24 +107,24 @@ int main (int __argc, char *__argv[])
   eoSegmentCrossover<Indi> crossover2;
   eoUniformMutation<Indi>  mutation2(EPSILON);
   peoTransform<Indi> transform2(crossover2,CROSS_RATE,mutation2,MUT_RATE);
-  peoPop < Indi > pop2;
+  eoPop < Indi > pop2;
   pop2.append (POP_SIZE, random2);
   eoPlusReplacement<Indi> replace2;
   eoBestSelect <Indi> mig_select_one2;
-  eoSelector <Indi, peoPop<Indi> > mig_select2 (mig_select_one2,MIG_SIZE,pop2);
-  eoReplace <Indi, peoPop<Indi> > mig_replace2 (replace2,pop2);
+  eoSelector <Indi, eoPop<Indi> > mig_select2 (mig_select_one2,MIG_SIZE,pop2);
+  eoReplace <Indi, eoPop<Indi> > mig_replace2 (replace2,pop2);
   eoPeriodicContinue< Indi > mig_cont2( MIG_FREQ );
   eoContinuator<Indi> cont2(mig_cont2, pop2);
-  peoAsyncIslandMig< peoPop<Indi>, peoPop<Indi> > mig2(cont2,mig_select2, mig_replace2, topology);
+  peoAsyncIslandMig< eoPop<Indi>, eoPop<Indi> > mig2(cont2,mig_select2, mig_replace2, topology);
   checkpoint2.add(mig2);
 
  
   eoRandomSelect<Indi> mig_select_oneArchive2;
-  eoSelector <Indi, peoPop<Indi> > mig_selectArchive2 (mig_select_oneArchive2,MIG_SIZE,archive);
-  eoReplace <Indi, peoPop<Indi> > mig_replaceArchive2 (replace2,archive);
+  eoSelector <Indi, eoPop<Indi> > mig_selectArchive2 (mig_select_oneArchive2,MIG_SIZE,archive);
+  eoReplace <Indi, eoPop<Indi> > mig_replaceArchive2 (replace2,archive);
   eoPeriodicContinue< Indi > mig_contArchive2( MIG_FREQ );
   eoContinuator<Indi> contArchive2(mig_contArchive2, pop2);
-  peoAsyncIslandMig< peoPop<Indi>, peoPop<Indi> > migArchive2(contArchive2,mig_selectArchive2, mig_replaceArchive2, topology);
+  peoAsyncIslandMig< eoPop<Indi>, eoPop<Indi> > migArchive2(contArchive2,mig_selectArchive2, mig_replaceArchive2, topology);
   checkpoint2.add(migArchive2);
   
   

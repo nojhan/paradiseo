@@ -25,7 +25,7 @@ int main (int __argc, char *__argv[])
   eoFirstIsBestInit < Indi > localInit;
   eoRealVectorBounds bndsFlight(2,0,1.);
   eoStandardFlight < Indi > flight(bndsFlight);
-  peoPop < Indi > pop;
+  eoPop < Indi > pop;
   pop.append (10, random);
   eoLinearTopology<Indi> topology(2);
   eoRealVectorBounds bnds(2,-1.,1.);
@@ -35,8 +35,8 @@ int main (int __argc, char *__argv[])
   peoPSOSelect<Indi> mig_selec(topology);
   peoWorstPositionReplacement<Indi> mig_replac;
   eoContinuator<Indi> cont(mig_cont, pop);
-  eoSelector <Indi, peoPop<Indi> > mig_select (mig_selec,1,pop);
-  eoReplace <Indi, peoPop<Indi> > mig_replace (mig_replac,pop);
+  eoSelector <Indi, eoPop<Indi> > mig_select (mig_selec,1,pop);
+  eoReplace <Indi, eoPop<Indi> > mig_replace (mig_replac,pop);
   eoGenContinue < Indi > genContPara2 (10);
   eoCombinedContinue <Indi> continuatorPara2 (genContPara2);
   eoCheckPoint<Indi> checkpoint2(continuatorPara2);
@@ -49,7 +49,7 @@ int main (int __argc, char *__argv[])
   eoFirstIsBestInit < Indi > localInit2;
   eoRealVectorBounds bndsFlight2(2,0,1.);
   eoStandardFlight < Indi > flight2(bndsFlight2);
-  peoPop < Indi > pop2;
+  eoPop < Indi > pop2;
   pop2.append (10, random2);
   eoLinearTopology<Indi> topology2(2);
   eoRealVectorBounds bnds2(2,-1.,1.);
@@ -59,11 +59,11 @@ int main (int __argc, char *__argv[])
   peoPSOSelect<Indi> mig_selec2(topology2);
   peoWorstPositionReplacement<Indi> mig_replac2;
   eoContinuator<Indi> cont2(mig_cont2,pop2);
-  eoSelector <Indi, peoPop<Indi> > mig_select2 (mig_selec2,1,pop2);
-  eoReplace <Indi, peoPop<Indi> > mig_replace2 (mig_replac2,pop2);
-  peoAsyncIslandMig< peoPop<Indi>, peoPop<Indi> > mig(cont,mig_select, mig_replace, topologyMig);
+  eoSelector <Indi, eoPop<Indi> > mig_select2 (mig_selec2,1,pop2);
+  eoReplace <Indi, eoPop<Indi> > mig_replace2 (mig_replac2,pop2);
+  peoAsyncIslandMig< eoPop<Indi>, eoPop<Indi> > mig(cont,mig_select, mig_replace, topologyMig);
   checkpoint.add( mig );
-  peoAsyncIslandMig< peoPop<Indi>, peoPop<Indi> > mig2(cont2,mig_select2, mig_replace2, topologyMig);
+  peoAsyncIslandMig< eoPop<Indi>, eoPop<Indi> > mig2(cont2,mig_select2, mig_replace2, topologyMig);
   checkpoint2.add( mig2 );
   eoSyncEasyPSO <Indi> psa(init,checkpoint,eval, velocity, flight);
   peoWrapper parallelPSO( psa, pop);

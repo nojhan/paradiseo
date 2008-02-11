@@ -129,7 +129,7 @@ template< class TYPESELECT , class TYPEREPLACE> void peoAsyncIslandMig< TYPESELE
 {
   lock ();
   ::pack( coop_em.front()->getKey() );
-  em.front().pack();
+  ::pack(em.front());
   coop_em.pop();
   em.pop();
   unlock();
@@ -140,7 +140,7 @@ template< class  TYPESELECT, class TYPEREPLACE> void peoAsyncIslandMig< TYPESELE
 {
   lock ();
   TYPEREPLACE mig;
-  mig.unpack();
+  ::unpack(mig);
   imm.push( mig );
   unlock();
 }

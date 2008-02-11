@@ -153,7 +153,7 @@ template< class TYPESELECT, class TYPEREPLACE > peoSyncIslandMig< TYPESELECT,TYP
 template< class TYPESELECT, class TYPEREPLACE > void peoSyncIslandMig< TYPESELECT, TYPEREPLACE > :: pack()
 {
   ::pack( coop_em.front()->getKey() );
-  em.front().pack();
+  ::pack(em.front());
   coop_em.pop();
   em.pop();
 }
@@ -161,7 +161,7 @@ template< class TYPESELECT, class TYPEREPLACE > void peoSyncIslandMig< TYPESELEC
 template< class TYPESELECT, class TYPEREPLACE > void peoSyncIslandMig< TYPESELECT, TYPEREPLACE > :: unpack()
 {
   TYPEREPLACE mig;
-  mig.unpack();
+  ::unpack(mig);
   imm.push( mig );
   explicitPassive = true;
 }

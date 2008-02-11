@@ -42,7 +42,7 @@
 #include "messaging.h"
 
 
-template <class EOT> void pack (const eoPop <EOT> & __pop)
+template <class EOT> void pack (eoPop <EOT> & __pop)
 {
 
   pack ((unsigned) __pop.size ());
@@ -51,6 +51,25 @@ template <class EOT> void pack (const eoPop <EOT> & __pop)
 }
 
 template <class EOT> void unpack (eoPop <EOT> & __pop)
+{
+
+  unsigned n;
+
+  unpack (n);
+  __pop.resize (n);
+  for (unsigned i = 0; i < n; i ++)
+    unpack (__pop [i]);
+}
+
+template <class MOEOT> void pack (moeoArchive < MOEOT > & __pop)
+{
+
+  pack ((unsigned) __pop.size ());
+  for (unsigned i = 0; i < __pop.size (); i ++)
+    pack (__pop [i]);
+}
+
+template <class MOEOT> void unpack (moeoArchive < MOEOT > & __pop)
 {
 
   unsigned n;

@@ -81,7 +81,7 @@ int main (int __argc, char *__argv[])
   eoFirstIsBestInit < Indi > localInit;
   eoRealVectorBounds bndsFlight(VEC_SIZE,INIT_POSITION_MIN,INIT_POSITION_MAX);
   eoStandardFlight < Indi > flight(bndsFlight);
-  peoPop < Indi > pop;
+  eoPop < Indi > pop;
   pop.append (POP_SIZE, random);
   eoLinearTopology<Indi> topology(NEIGHBORHOOD_SIZE);
   eoRealVectorBounds bnds(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
@@ -97,8 +97,8 @@ int main (int __argc, char *__argv[])
 // Specific implementation (peoData.h)
 
   eoContinuator<Indi> cont(mig_cont, pop);
-  eoSelector <Indi, peoPop<Indi> > mig_select (mig_selec,1,pop);
-  eoReplace <Indi, peoPop<Indi> > mig_replace (mig_replac,pop);
+  eoSelector <Indi, eoPop<Indi> > mig_select (mig_selec,1,pop);
+  eoReplace <Indi, eoPop<Indi> > mig_replace (mig_replac,pop);
 
 
 // Second
@@ -115,7 +115,7 @@ int main (int __argc, char *__argv[])
   eoFirstIsBestInit < Indi > localInit2;
   eoRealVectorBounds bndsFlight2(VEC_SIZE,INIT_POSITION_MIN,INIT_POSITION_MAX);
   eoStandardFlight < Indi > flight2(bndsFlight2);
-  peoPop < Indi > pop2;
+  eoPop < Indi > pop2;
   pop2.append (POP_SIZE, random2);
   eoLinearTopology<Indi> topology2(NEIGHBORHOOD_SIZE);
   eoRealVectorBounds bnds2(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
@@ -131,15 +131,15 @@ int main (int __argc, char *__argv[])
 // Specific implementation (peoData.h)
 
   eoContinuator<Indi> cont2(mig_cont2,pop2);
-  eoSelector <Indi, peoPop<Indi> > mig_select2 (mig_selec2,1,pop2);
-  eoReplace <Indi, peoPop<Indi> > mig_replace2 (mig_replac2,pop2);
+  eoSelector <Indi, eoPop<Indi> > mig_select2 (mig_selec2,1,pop2);
+  eoReplace <Indi, eoPop<Indi> > mig_replace2 (mig_replac2,pop2);
 
 
 // Island model
 
-  peoAsyncIslandMig< peoPop<Indi>, peoPop<Indi> > mig(cont,mig_select, mig_replace, topologyMig);
+  peoAsyncIslandMig< eoPop<Indi>, eoPop<Indi> > mig(cont,mig_select, mig_replace, topologyMig);
   checkpoint.add( mig );
-  peoAsyncIslandMig< peoPop<Indi>, peoPop<Indi> > mig2(cont2,mig_select2, mig_replace2, topologyMig);
+  peoAsyncIslandMig< eoPop<Indi>, eoPop<Indi> > mig2(cont2,mig_select2, mig_replace2, topologyMig);
   checkpoint2.add( mig2 );
 
 
