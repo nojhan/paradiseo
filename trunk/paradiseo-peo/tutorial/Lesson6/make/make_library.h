@@ -5,3 +5,4 @@
 #include <make_continue_moeo.h>
 #include <make_ea_moeo.h>
 #include <make_para_eval.h>
+#include <make_checkpoint_moeo.h>
