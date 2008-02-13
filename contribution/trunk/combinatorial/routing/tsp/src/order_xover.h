@@ -1,9 +1,9 @@
-/* 
+/*
 * <order_xover.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
-* Sébastien Cahon, Thomas Legrand
+* Sébastien Cahon, Jean-Charles Boisson
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -42,15 +42,16 @@
 #include "route.h"
 
 /** Order Crossover */
-class OrderXover : public eoQuadOp <Route> {
-  
-public :
-  
-  bool operator () (Route & __route1, Route & __route2) ;
+class OrderXover : public eoQuadOp <Route>
+  {
 
-private :
-  
-  void cross (const Route & __par1, const Route & __par2, Route & __child) ;
-} ;
+  public :
+
+    bool operator () (Route & __route1, Route & __route2) ;
+
+  private :
+
+    void cross (const Route & __par1, const Route & __par2, Route & __child) ;
+  } ;
 
 #endif

@@ -1,9 +1,9 @@
-/* 
+/*
 * <order_xover.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
-* Sébastien Cahon, Thomas Legrand
+* Sébastien Cahon, Jean-Charles Boisson
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -35,66 +35,80 @@
 */
 
 #include <assert.h>
+#include <vector>
 
 #include <utils/eoRNG.h>
 
 #include "order_xover.h"
 #include "route_valid.h"
 
-void OrderXover :: cross (const Route & __par1, const Route & __par2, Route & __child) {
-  
-  
-  unsigned cut = rng.random (__par1.size ()) ;
-      
+void OrderXover :: cross (const Route & __par1, const Route & __par2, Route & __child)
+{
+
+  unsigned int cut = rng.random (__par1.size ()) ;
+
   /* To store vertices that have
      already been crossed */
-  bool v [__par1.size ()] ;
-  for (unsigned i = 0 ; i < __par1.size () ; i ++)
-    v [i] = false ;
+  std::vector<bool> v;
+  v.resize(__par1.size());
+
+  for (unsigned int i = 0 ; i < __par1.size () ; i ++)
+    {
+      v [i] = false ;
+    }
 
   /* Copy of the left partial
-     route of the first parent */ 
-  for (unsigned i = 0 ; i < cut ; i ++) {
-    __child [i] = __par1 [i] ; 
-    v [__par1 [i]] = true ;
-  }
-   
+     route of the first parent */
+  for (unsigned int i = 0 ; i < cut ; i ++)
+    {
+      __child [i] = __par1 [i] ;
+      v [__par1 [i]] = true ;
+    }
+
   /* Searching the vertex of the second path, that ended
      the previous first one */
-  unsigned from = 0 ;
-  for (unsigned i = 0 ; i < __par2.size () ; i ++)
-    if (__par2 [i] == __child [cut - 1]) {
-      from = i ;
-      break ;
+  unsigned int from = 0 ;
+  for (unsigned int i = 0 ; i < __par2.size () ; i ++)
+    {
+      if (__par2 [i] == __child [cut - 1])
+        {
+          from = i ;
+          break ;
+        }
     }
-  
+
   /* Selecting a direction
      Left or Right */
   char direct = rng.flip () ? 1 : -1 ;
-    
+
   /* Copy of the left vertices from
      the second parent path */
-  unsigned l = cut ;
-  
-  for (unsigned i = 0 ; i < __par2.size () ; i ++) {
-    unsigned bidule /* :-) */ = (direct * i + from + __par2.size ()) % __par2.size () ;
-    if (! v [__par2 [bidule]]) {
-      __child [l ++] = __par2 [bidule] ;
-      v [__par2 [bidule]] = true ;
-    }
-  }
-} 
+  unsigned int l = cut ;
 
-bool OrderXover :: operator () (Route & __route1, Route & __route2) {
-  
+  for (unsigned int i = 0 ; i < __par2.size () ; i ++)
+    {
+      unsigned int bidule /* :-) */ = (direct * i + from + __par2.size ()) % __par2.size () ;
+      if (! v [__par2 [bidule]])
+        {
+          __child [l ++] = __par2 [bidule] ;
+          v [__par2 [bidule]] = true ;
+        }
+    }
+
+  v.clear();
+}
+
+bool OrderXover :: operator () (Route & __route1, Route & __route2)
+{
+
   // Init. copy
   Route par [2] ;
   par [0] = __route1 ;
   par [1] = __route2 ;
-  
+
   cross (par [0], par [1], __route1) ;
   cross (par [1], par [0], __route2) ;
-  
+
   assert (valid (__route1)) ;
   assert (valid (__route2)) ;
 

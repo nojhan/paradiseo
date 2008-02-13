@@ -1,9 +1,9 @@
-/* 
+/*
 * <route_init.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
-* Sébastien Cahon, Thomas Legrand
+* Sébastien Cahon, Jean-Charles Boisson
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -39,21 +39,25 @@
 #include "route_init.h"
 #include "graph.h"
 
-void RouteInit :: operator () (Route & __route) {
+void RouteInit :: operator () (Route & __route)
+{
 
   // Init.
   __route.clear () ;
-  for (unsigned i = 0 ; i < Graph :: size () ; i ++)
-    __route.push_back (i) ;
-  
+  for (unsigned int i = 0 ; i < Graph :: size () ; i ++)
+    {
+      __route.push_back (i) ;
+    }
+
   // Swap. cities
 
-  for (unsigned i = 0 ; i < Graph :: size () ; i ++) {
-    //unsigned j = rng.random (Graph :: size ()) ;
-    
-    unsigned j = (unsigned) (Graph :: size () * (rand () / (RAND_MAX + 1.0))) ;
-    unsigned city = __route [i] ;
-    __route [i] = __route [j] ;
-    __route [j] = city ;
-  }   
+  for (unsigned int i = 0 ; i < Graph :: size () ; i ++)
+    {
+      //unsigned int j = rng.random (Graph :: size ()) ;
+
+      unsigned int j = (unsigned int) (Graph :: size () * (rand () / (RAND_MAX + 1.0))) ;
+      unsigned int city = __route [i] ;
+      __route [i] = __route [j] ;
+      __route [j] = city ;
+    }
 }
