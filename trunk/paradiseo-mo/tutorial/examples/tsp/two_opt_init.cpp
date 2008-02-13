@@ -36,8 +36,10 @@
 
 #include "two_opt_init.h"
 
-void TwoOptInit :: operator () (TwoOpt & __move, const Route & __route)
+void TwoOptInit :: operator () (TwoOpt & _move, const Route & _route)
 {
-  __move.first = 0 ;
-  __move.second = 2 ;
+  Route route=_route;
+
+  _move.first = 0 ;
+  _move.second = 2 ;
 }

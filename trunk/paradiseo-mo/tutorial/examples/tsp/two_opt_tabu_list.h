@@ -46,9 +46,9 @@ class TwoOptTabuList : public moTabuList <TwoOpt>
   {
   public :
 
-    bool operator () (const TwoOpt & __move, const Route & __sol) ;
+    bool operator () (const TwoOpt & _move, const Route & _route) ;
 
-    void add (const TwoOpt & __move, const Route & __sol) ;
+    void add (const TwoOpt & _move, const Route & _route) ;
 
     void update () ;
 

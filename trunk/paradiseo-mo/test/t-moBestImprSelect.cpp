@@ -1,9 +1,9 @@
 /*
-* <two_opt_init.h>
+* <t-moBestImprSelect.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
+* (C) OPAC Team, LIFL, 2002-2008
 *
-* Sébastien Cahon, Jean-Charles Boisson
+* Sébastien Cahon, Jean-Charles Boisson (Jean-Charles.Boisson@lifl.fr)
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -33,22 +33,69 @@
 * Contact: paradiseo-help@lists.gforge.inria.fr
 *
 */
+//-----------------------------------------------------------------------------
+// t-moBestImprSelect.cpp
+//-----------------------------------------------------------------------------
 
-#ifndef two_opt_init_h
-#define two_opt_init_h
+#include <eo>  // EO
+#include <mo>  // MO
 
-#include <moMoveInit.h>
+using std::cout;
+using std::endl;
 
-#include "two_opt.h"
+//-----------------------------------------------------------------------------
 
-/** It sets the first couple of edges */
-class TwoOptInit : public moMoveInit <TwoOpt>
+typedef EO<unsigned int> solution;
+
+class testMove : public moMove <solution>
+{
+public :
+  void operator () (solution & _solution)
   {
+    _solution=_solution;
+  }
+} ;
 
-  public :
+//-----------------------------------------------------------------------------
 
-    void operator () (TwoOpt & _move, const Route & _route) ;
+int
+main()
+{
+  unsigned int i, fitness;
 
-  } ;
+  moBestImprSelect<testMove> selection;
 
-#endif
+  solution sol;
+  
+  testMove move;
+
+  cout << "[ moBestImprSelect             ] ==> ";
+
+  i=fitness=0;
+
+  selection.init(0);
+
+  for(i=1;i<10;i++)
+    {
+      if(! selection.update(move, i) )
+	{
+	  cout << "KO" << endl;
+	  cout << "update is false" << endl;
+	  return EXIT_FAILURE;
+	}
+    }
+
+  selection(move, fitness);
+
+  if(fitness!=9)
+    {
+      cout << "KO" << endl;
+      cout << "fitness = " << fitness << endl;
+      return EXIT_FAILURE;
+    }
+  
+  cout << "OK" << endl;
+  return EXIT_SUCCESS;
+}
+
+//-----------------------------------------------------------------------------

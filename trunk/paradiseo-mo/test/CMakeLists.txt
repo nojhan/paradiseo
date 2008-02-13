@@ -39,7 +39,28 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
-SET (TEST_LIST  t-mo)
+SET (TEST_LIST  t-moBestImprSelect 
+    		t-moExponentialCoolingSchedule 
+		t-moFirstImprSelect 
+		t-moFitComparator 
+		t-moFitSolContinue 
+		t-moGenSolContinue 
+		t-moHC 
+		t-moHCMoveLoopExpl 
+		t-moILS 
+		t-moImprBestFitAspirCrit 
+		t-moItRandNextMove 
+    		t-moLinearCoolingSchedule 
+		t-moLSCheckPoint 
+		t-moNoAspirCrit 
+		t-moNoFitImprSolContinue
+		t-moRandImprSelect 
+		t-moSA  
+		t-moSimpleMoveTabuList 
+		t-moSimpleSolutionTabuList 
+		t-moSteadyFitSolContinue 
+		t-moTS 
+		t-moTSMoveLoopExpl )
 				
 FOREACH (test ${TEST_LIST})
 	  SET ("T_${test}_SOURCES" "${test}.cpp")

@@ -46,7 +46,7 @@ class TwoOptNext : public moNextMove <TwoOpt>
 
   public :
 
-    bool operator () (TwoOpt & __move, const Route & __route) ;
+    bool operator () (TwoOpt & _move, const Route & _route) ;
 
   } ;
 

@@ -1,7 +1,7 @@
 /*
-* <t-mo.cpp>
+* <t-moLSCheckPoint.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
+* (C) OPAC Team, LIFL, 2002-2008
 *
 * Sébastien Cahon, Jean-Charles Boisson (Jean-Charles.Boisson@lifl.fr)
 *
@@ -34,26 +34,81 @@
 *
 */
 //-----------------------------------------------------------------------------
-// t-mo.cpp
+// t-moLSCheckPoint.cpp
 //-----------------------------------------------------------------------------
 
 #include <eo>  // EO
-#include <mo.h>  // MO
+#include <mo>  // MO
+
+using std::cout;
+using std::endl;
 
 //-----------------------------------------------------------------------------
 
-typedef EO<float> Chrom;
+typedef EO<unsigned int> solution;
 
-//-----------------------------------------------------------------------------
-
-int main()
+class testMove : public moMove <solution>
 {
-  Chrom chrom1, chrom2;
+public :
+  void operator () (solution & _solution)
+  {
+    _solution=_solution;
+  }
+} ;
 
-  std::cout << "chrom1 = " << chrom1 << std::endl
-  << "chrom2 = " << chrom2 << std::endl;
+class testBF : public eoBF<const testMove & , const testMove::EOType &, void>
+{
+  void operator () (const testMove & _move, const testMove::EOType & _solution)
+  {
+    const testMove move(_move);
+    const testMove::EOType sol(_solution);
+    std::ofstream os("test.txt");
+    os << "OK" << endl;
+  }
+};
 
-  return 0;
+//-----------------------------------------------------------------------------
+
+int
+main()
+{
+  unsigned int i;
+  std::string result;
+
+  testBF test;
+  moLSCheckPoint<testMove> checkpoint;
+
+  solution sol;
+  
+  testMove move;
+
+  cout << "[ moLSCheckPoint               ] ==> ";
+
+  i=0;
+
+  checkpoint.add(test);
+  checkpoint(move, sol);
+
+  std::ifstream is("test.txt");
+
+  if(!is.is_open())
+    {
+      cout << "KO" << endl;
+      cout << "test.txt does not exist" << endl;
+      return EXIT_FAILURE;
+    }
+
+  is >> result;
+
+  if(result.compare("OK")!=0)
+    {
+      cout << "KO" << endl;
+      cout << "result = " << result << endl;
+      return EXIT_FAILURE;
+    }
+  
+  cout << "OK" << endl;
+  return EXIT_SUCCESS;
 }
 
 //-----------------------------------------------------------------------------

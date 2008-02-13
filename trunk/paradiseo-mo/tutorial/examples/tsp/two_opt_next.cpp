@@ -37,19 +37,21 @@
 #include "two_opt_next.h"
 #include "graph.h"
 
-bool TwoOptNext :: operator () (TwoOpt & __move, const Route & __route)
+bool TwoOptNext :: operator () (TwoOpt & _move, const Route & _route)
 {
-  if (__move.first == Graph :: size () - 4 && __move.second == __move.first + 2)
+  Route route=_route;
+
+  if (_move.first == Graph :: size () - 4 && _move.second == _move.first + 2)
     {
       return false ;
     }
   else
     {
-      __move.second ++ ;
-      if (__move.second == Graph :: size () - 1)
+      _move.second ++ ;
+      if (_move.second == Graph :: size () - 1)
         {
-          __move.first ++ ;
-          __move.second = __move.first + 2 ;
+          _move.first ++ ;
+          _move.second = _move.first + 2 ;
         }
 
       return true ;

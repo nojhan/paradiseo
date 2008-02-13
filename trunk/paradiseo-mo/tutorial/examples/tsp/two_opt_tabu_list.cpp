@@ -39,7 +39,8 @@
 
 #define TABU_LENGTH 10
 
-void TwoOptTabuList :: init ()
+void
+TwoOptTabuList :: init ()
 {
   // Size (eventually)
   tabu_span.resize (Graph :: size ()) ;
@@ -58,23 +59,32 @@ void TwoOptTabuList :: init ()
     }
 }
 
-bool TwoOptTabuList :: operator () (const TwoOpt & __move, const Route & __sol)
+bool
+TwoOptTabuList :: operator () (const TwoOpt & _move, const Route & _route)
 {
-  return tabu_span [__move.first] [__move.second] > 0 ;
+  Route route=_route;
+
+  return tabu_span [_move.first] [_move.second] > 0 ;
 }
 
-void TwoOptTabuList :: add (const TwoOpt & __move, const Route & __sol)
+void
+TwoOptTabuList :: add (const TwoOpt & _move, const Route & _route)
   {
-    tabu_span [__move.first] [__move.second] = tabu_span [__move.second] [__move.first] = TABU_LENGTH ;
+    Route route=_route;
+
+    tabu_span [_move.first] [_move.second] = tabu_span [_move.second] [_move.first] = TABU_LENGTH ;
   }
 
-void TwoOptTabuList :: update ()
+void
+TwoOptTabuList :: update ()
 {
-  for (unsigned int i = 0 ; i < tabu_span.size () ; i ++)
+  unsigned int i,j;
+
+  for (i = 0 ; i < tabu_span.size () ; i ++)
     {
-      for (unsigned int j = 0 ; j < tabu_span [i].size () ; j ++)
+      for (j = 0 ; j < tabu_span [i].size () ; j ++)
         {
-          if (tabu_span [i] [j] > 0)
+          if ( tabu_span [i] [j] > 0 )
             {
               tabu_span [i] [j] -- ;
             }

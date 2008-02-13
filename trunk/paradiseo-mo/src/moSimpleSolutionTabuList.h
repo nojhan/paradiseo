@@ -68,10 +68,10 @@ class moSimpleSolutionTabuList: public moTabuList < M >
   */
   bool operator () (const M & _move, const EOT & _solution)
   {
-    solutionIterator it;
+    M move((M)_move);
+    EOT solution((EOT)_solution);
 
-    M move=(M)_move;
-    EOT solution=(EOT) _solution;
+    solutionIterator it;
 
     move(solution);
 

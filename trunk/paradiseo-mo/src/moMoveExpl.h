@@ -42,8 +42,8 @@
 /*!
   Only a description...See moMoveLoopExpl.
 */
-template < class M > class 
-moMoveExpl : public eoBF < const typename M::EOType &, typename M::EOType &, void > 
+template < class M >
+class moMoveExpl : public eoBF < const typename M::EOType &, typename M::EOType &, void > 
 {};
 
 #endif

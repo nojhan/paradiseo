@@ -58,7 +58,8 @@ class moBestImprSelect:public moMoveSelect < M >
   void init (const Fitness & _fitness)
   {
     //Code only used to avoid warning because _fitness is not used in this procedure.
-    Fitness fitness=(Fitness)_fitness;
+    Fitness fitness;
+    fitness=(Fitness)_fitness;
 
     first_time = true;
   }

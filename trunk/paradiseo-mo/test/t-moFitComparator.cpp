@@ -1,9 +1,9 @@
 /*
-* <two_opt_init.h>
+* <t-moFitComparator.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
+* (C) OPAC Team, LIFL, 2002-2008
 *
-* Sébastien Cahon, Jean-Charles Boisson
+* Sébastien Cahon, Jean-Charles Boisson (Jean-Charles.Boisson@lifl.fr)
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -33,22 +33,42 @@
 * Contact: paradiseo-help@lists.gforge.inria.fr
 *
 */
+//-----------------------------------------------------------------------------
+// t-moFitComparator.cpp
+//-----------------------------------------------------------------------------
 
-#ifndef two_opt_init_h
-#define two_opt_init_h
+#include <eo>  // EO
+#include <mo>  // MO
 
-#include <moMoveInit.h>
+using std::cout;
+using std::endl;
 
-#include "two_opt.h"
+//-----------------------------------------------------------------------------
 
-/** It sets the first couple of edges */
-class TwoOptInit : public moMoveInit <TwoOpt>
-  {
+typedef EO<unsigned int> solution;
 
-  public :
+//-----------------------------------------------------------------------------
 
-    void operator () (TwoOpt & _move, const Route & _route) ;
+int
+main()
+{
+  solution sol1, sol2;
 
-  } ;
+  moFitComparator<solution> comparator;
 
-#endif
+  sol1.fitness(0);
+  sol2.fitness(1);
+
+  cout << "[ moFitComparator              ] ==> ";
+
+  if( comparator(sol1,sol2) )
+    {
+      cout << "KO" << endl;
+      return EXIT_FAILURE;
+    }
+  
+  cout << "OK" << endl;
+  return EXIT_SUCCESS;
+}
+
+//-----------------------------------------------------------------------------

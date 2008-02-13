@@ -53,10 +53,8 @@ class moImprBestFitAspirCrit:public moAspirCrit < M >
   typedef typename M::EOType::Fitness Fitness;
 
   //! Contructor
-  moImprBestFitAspirCrit ()
-    {
-      first_time = true;
-    }
+  moImprBestFitAspirCrit (): first_time(true)
+    {}
 
   //! Initialisation procedure
   void init ()
@@ -74,6 +72,9 @@ class moImprBestFitAspirCrit:public moAspirCrit < M >
   */
   bool operator () (const M & _move, const Fitness & _fitness)
   {
+    //code only used for avoiding warning because _move is not used in this function.
+    const M move(_move);
+
     if (first_time)
       {
 	best_fitness = _fitness;

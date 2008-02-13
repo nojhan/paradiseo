@@ -1,9 +1,9 @@
 /*
-* <two_opt_init.h>
+* <t-moItRandNextMove.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
+* (C) OPAC Team, LIFL, 2002-2008
 *
-* Sébastien Cahon, Jean-Charles Boisson
+* Sébastien Cahon, Jean-Charles Boisson (Jean-Charles.Boisson@lifl.fr)
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -33,22 +33,82 @@
 * Contact: paradiseo-help@lists.gforge.inria.fr
 *
 */
+//-----------------------------------------------------------------------------
+// t-moItRandNextMove.cpp
+//-----------------------------------------------------------------------------
 
-#ifndef two_opt_init_h
-#define two_opt_init_h
+#include <eo>  // EO
+#include <mo>  // MO
 
-#include <moMoveInit.h>
+using std::cout;
+using std::endl;
 
-#include "two_opt.h"
+//-----------------------------------------------------------------------------
 
-/** It sets the first couple of edges */
-class TwoOptInit : public moMoveInit <TwoOpt>
+typedef EO<unsigned int> solution;
+
+class testMove : public moMove <solution>
+{
+public :
+  void operator () (solution & _solution)
   {
+    _solution=_solution;
+  }
+} ;
 
-  public :
+class testRandMove : public moRandMove<testMove>
+{
+public :
+  void operator () (testMove & _move)
+  {
+    _move=_move;
+  }
+};
 
-    void operator () (TwoOpt & _move, const Route & _route) ;
+//-----------------------------------------------------------------------------
 
-  } ;
+int
+main()
+{
+  unsigned int i;
 
-#endif
+  testMove move;
+  solution sol;
+
+  testRandMove rand;
+  
+  moItRandNextMove<testMove> next(rand, 10);
+
+  cout << "[ moItRandNextMove             ] ==> ";
+
+  i=0;
+  while( next(move, sol) && i<15 )
+    {
+      i++;
+    }
+
+  if(i!=11)
+    {
+      cout << "KO" << endl;
+      cout << "First time, i = " << i << endl;
+      return EXIT_FAILURE;
+    }
+
+  i=0;
+  while( next(move, sol) && i<15 )
+    {
+      i++;
+    }
+
+  if(i!=11)
+    {
+      cout << "KO" << endl;
+      cout << "Second time, i = " << i << endl;
+      return EXIT_FAILURE;
+    }
+  
+  cout << "OK" << endl;
+  return EXIT_SUCCESS;
+}
+
+//-----------------------------------------------------------------------------

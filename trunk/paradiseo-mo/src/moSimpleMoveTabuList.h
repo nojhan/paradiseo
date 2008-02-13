@@ -86,7 +86,7 @@ class moSimpleMoveTabuList: public moTabuList < M >
   void add(const M & _move, const EOT & _solution)
   {
     //code only used to avoid warning because _solution is not used in this function.
-    EOT solution=(EOT)_solution;
+    const EOT solution(_solution);
 
     if (memory_size!=0)
       {
