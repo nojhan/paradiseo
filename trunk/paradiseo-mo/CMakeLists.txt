@@ -48,6 +48,10 @@ INCLUDE(FindGnuplot)
 # check for some functions
 INCLUDE(CheckLibraryExists)
 
+INCLUDE(Dart OPTIONNAL)         
+                           
+# the project can have a DartConfig.cmake file
+INCLUDE(DartConfig.cmake OPTIONNAL)
 ######################################################################################
 
 
@@ -99,17 +103,37 @@ ENDFOREACH (path ${REQUIRED_PATHS})
 # the user should choose the build type on windows environments,excepted under cygwin (default=none)
 SET(CMAKE_DEFAULT_BUILD_TYPE "Release" CACHE STRING "Variable that stores the default CMake build type" FORCE)
 
-IF(WIN32 AND NOT CYGWIN)
-  IF(NOT CMAKE_BUILD_TYPE)
+FIND_PROGRAM(MEMORYCHECK_COMMAND
+    NAMES purify valgrind
+    PATHS
+    "/usr/local/bin /usr/bin [HKEY_LOCAL_MACHINE\\SOFTWARE\\Rational Software\\Purify\\Setup;InstallFolder]"
+    DOC "Path to the memory checking command, used for memory error detection.")    
+IF(NOT CMAKE_BUILD_TYPE)
      SET( CMAKE_BUILD_TYPE 
           ${CMAKE_DEFAULT_BUILD_TYPE} CACHE STRING 
-          "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel." 
+          "Choose the type of build, options are: Debug Release RelWithDebInfo MinSizeRel." 
            FORCE)
-  ENDIF(NOT CMAKE_BUILD_TYPE)  
+ENDIF(NOT CMAKE_BUILD_TYPE)  
+  
+IF(WIN32 AND NOT CYGWIN)
+  IF(CMAKE_CXX_COMPILER MATCHES cl)
+   IF(NOT WITH_SHARED_LIBS)
+     IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005")
+       SET(CMAKE_CXX_FLAGS "/nologo /W3 /Gy")
+       SET(CMAKE_CXX_FLAGS_DEBUG "/MTd /Z7 /Od")
+       SET(CMAKE_CXX_FLAGS_RELEASE "/MT /O2")
+       SET(CMAKE_CXX_FLAGS_MINSIZEREL "/MT /O2")
+       SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/MTd /Z7 /Od")
+       SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:CONSOLE")  
+     ENDIF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005")
+   ENDIF(NOT WITH_SHARED_LIBS)
+  ENDIF(CMAKE_CXX_COMPILER MATCHES cl)  
 ELSE(WIN32 AND NOT CYGWIN)
-   IF(CMAKE_COMPILER_IS_GNUCXX)
-       SET(CMAKE_CXX_FLAGS_DEBUG  "-Wall -pedantic -Wextra -Wno-import -Winit-self  -Wmissing-include-dirs -Wunused-parameter -Wundef  -Wshadow  -Wunsafe-loop-optimizations -Wcast-align -Wconversion -Wsign-compare -Winline -Wdisabled-optimization")                       
-  ENDIF(CMAKE_COMPILER_IS_GNUCXX)       
+    IF(CMAKE_COMPILER_IS_GNUCXX)
+       SET(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g -Wall -pedantic -Wextra -Wno-import -Winit-self  -Wmissing-include-dirs -Wunused-parameter -Wundef  -Wshadow  -Wunsafe-loop-optimizations -Wcast-align -Wconversion -Wsign-compare -Winline -Wdisabled-optimization")                       
+       SET(CMAKE_CXX_FLAGS_RELEASE  "${CMAKE_CXX_FLAGS_RELEASE} -O2")
+       SET(CMAKE_CXX_FLAGS_MINSIZEREL "${CMAKE_CXX_FLAGS_MINSIZEREL} -O6")       
+    ENDIF(CMAKE_COMPILER_IS_GNUCXX)  
 ENDIF(WIN32 AND NOT CYGWIN)
 
 IF(CMAKE_BUILD_TYPE MATCHES Debug)
