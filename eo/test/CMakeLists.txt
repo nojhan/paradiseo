@@ -85,11 +85,12 @@ FOREACH (test ${TEST_LIST})
 ENDFOREACH (test)
 
 # Add the tests
-FOREACH (test ${TEST_LIST})
-    ADD_EXECUTABLE(${test} ${T_${test}_SOURCES}) 
-    ADD_TEST(${test} ${test}) 
-    TARGET_LINK_LIBRARIES(${test} ga es cma eoutils eo eomoo)
-ENDFOREACH (test)
-
+IF(ENABLE_CMAKE_TESTING)
+    FOREACH (test ${TEST_LIST})
+        ADD_EXECUTABLE(${test} ${T_${test}_SOURCES}) 
+        ADD_TEST(${test} ${test}) 
+        TARGET_LINK_LIBRARIES(${test} ga es cma eoutils eo eomoo)
+    ENDFOREACH (test)
+ENDIF(ENABLE_CMAKE_TESTING)
 ######################################################################################
 
