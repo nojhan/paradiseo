@@ -37,50 +37,124 @@
 #include <eo>
 #include <tsp>
 
-int main (int __argc, char * __argv []) {
+void manage_configuration_file(eoParser & _parser);
+
+int
+main (int _argc, char* _argv [])
+{
+  std::string instancePath, crossoverType;
+  unsigned int seed, populationSize, maxIterations, selectedParentNumber;
+  double crossoverRate, mutationRate, elitismRate, tournamentRate;
+
+  eoParser parser(_argc, _argv); 
+
+  manage_configuration_file(parser);
+
+  seed=atoi( (parser.getParamWithLongName("seed")->getValue()).c_str() );
+  instancePath=parser.getParamWithLongName("instancePath")->getValue();
+  populationSize=atoi( (parser.getParamWithLongName("popSize")->getValue()).c_str() );
+  maxIterations=atoi( (parser.getParamWithLongName("maxIter")->getValue()).c_str() );
+  crossoverRate=atof( (parser.getParamWithLongName("crossRate")->getValue()).c_str() );
+  mutationRate=atof( (parser.getParamWithLongName("mutRate")->getValue()).c_str() );
+  selectedParentNumber=atoi( (parser.getParamWithLongName("nbSelPar")->getValue()).c_str() );
+  elitismRate=atof( (parser.getParamWithLongName("elitismRate")->getValue()).c_str() );
+  tournamentRate=atof( (parser.getParamWithLongName("tournRate")->getValue()).c_str() );
+  crossoverType=parser.getParamWithLongName("crossType")->getValue();
+
+  srand (seed);
+  Graph::load(instancePath.c_str());
+
+  RouteInit init ;
   
-  if (__argc != 2) {
-    
-    std :: cerr << "Usage : ./tsp [instance]" << std :: endl ;
-    std :: cerr << "=> info: You can copy the benchs in the current directory by using 'make install'." << std :: endl ;
-    return 1 ;
-  }
-
-  Graph :: load (__argv [1]) ; // Instance
-
-  RouteInit init ; // Sol. Random Init.
-
-  RouteEval full_eval ; // Full Evaluator
+  RouteEval full_eval ;
    
-  eoPop <Route> pop (100, init) ; // Population
+  eoPop <Route> pop (populationSize, init) ;
   apply <Route> (full_eval, pop) ;
 
   std :: cout << "[From] " << pop.best_element () << std :: endl ;
   
-  eoGenContinue <Route> cont (1000) ; /* Continuator (A fixed number of
-					 1000 iterations */
+  eoGenContinue <Route> continu (maxIterations) ;
  
-  eoStochTournamentSelect <Route> select_one ; // Selector
+  eoStochTournamentSelect <Route> select_one ;
 
-  eoSelectNumber <Route> select (select_one, 100) ;
+  eoSelectNumber <Route> select (select_one, selectedParentNumber) ;
 
-  //  OrderXover cross ; // Order Crossover
-  PartialMappedXover cross ;
+  eoQuadOp <Route>*crossover;
 
-  CitySwap mut ; // City Swap Mutator
+  if(crossoverType.compare("Partial")==0)
+    {
+      crossover=new PartialMappedXover();
+    }
+  else if (crossoverType.compare("Order")==0)
+    {
+      crossover=new OrderXover();
+    }
+  else if (crossoverType.compare("Edge")==0)
+    {
+      crossover=new EdgeXover();
+    }
+  else
+    {
+      throw std::runtime_error("[tsp.cpp]: the crossover type '"+crossoverType+"' is not correct.");
+    }
   
-  eoSGATransform <Route> transform (cross, 1, mut, 0.01) ; 
+  CitySwap mutation ;
   
-  eoElitism <Route> merge (1) ; // Use of Elistism
+  eoSGATransform <Route> transform (*crossover, crossoverRate, mutation, mutationRate) ; 
   
-  eoStochTournamentTruncate <Route> reduce (0.7) ; // Stoch. Replacement
+  eoElitism <Route> merge (elitismRate) ;
   
-  eoEasyEA <Route> ea (cont, full_eval, select, transform, merge, reduce) ;
+  eoStochTournamentTruncate <Route> reduce (tournamentRate) ;
+  
+  eoEasyEA <Route> ea (continu, full_eval, select, transform, merge, reduce) ;
   
   ea (pop) ;
   
   std :: cout << "[To] " << pop.best_element () << std :: endl ;
     
-  return 0 ;
+  delete(crossover);
+
+  return EXIT_SUCCESS;
 }
 
+void
+manage_configuration_file(eoParser & _parser)
+{
+  std::ofstream os;
+
+  _parser.getORcreateParam(std::string("benchs/berlin52.tsp"), "instancePath", "Path to the instance.", 
+			   0, "Configuration", false);
+  _parser.getORcreateParam((unsigned int)time(0), "seed", "Seed for rand.", 0, "Configuration", false);
+
+  _parser.getORcreateParam((unsigned int)100, "popSize", "Size of the population.", 0, "Configuration", false);
+
+  _parser.getORcreateParam((unsigned int)1000, "maxIter", "Maximum number of iterations.", 0, "Configuration", false);
+  
+  _parser.getORcreateParam((double)1.0, "crossRate", "Probability of crossover.", 0, "Configuration", false);
+  
+  _parser.getORcreateParam((double)0.01, "mutRate", "Probability of mutation.", 0, "Configuration", false);
+
+  _parser.getORcreateParam((unsigned int)100, "nbSelPar", "Number of selected parents.", 0, "Configuration", false);
+
+  _parser.getORcreateParam((double)1.0, "elitismRate", "Percentage of the best individuals kept.", 0, "Configuration", false);
+
+  _parser.getORcreateParam((double)0.7, "tournRate", "Percentage of the individuals used during the tournament.", 
+			   0, "Configuration", false);
+
+  _parser.getORcreateParam(std::string("Partial"), "crossType", "Crossover to use, it can be 'Partial', 'Order' or 'Edge'.", 
+			   0, "Configuration", false);
+
+  if (_parser.userNeedsHelp())
+    {
+      _parser.printHelp(std::cout);
+      exit(EXIT_FAILURE);
+    }
+  
+  os.open("current_param");
+  if(!os.is_open())
+    {
+      throw std::runtime_error("[tsp.cpp]: the file current_param cannot be created.");
+    }
+  os <<_parser;
+  os.close();
+}
