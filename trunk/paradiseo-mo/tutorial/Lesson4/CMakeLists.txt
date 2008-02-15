@@ -10,7 +10,15 @@ INCLUDE_DIRECTORIES(${ParadisEO-MO_SOURCE_DIR}/src)
 INCLUDE_DIRECTORIES(${TSP_SRC_DIR})
 ######################################################################################
 
+ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-MO_SOURCE_DIR}/tutorial/Lesson4/param )
 
+ADD_CUSTOM_COMMAND(
+    TARGET install
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND}
+    ARGS -E copy_if_different
+      ${ParadisEO-MO_SOURCE_DIR}/tutorial/Lesson4/param
+      ${ParadisEO-MO_BINARY_DIR}/tutorial/Lesson4)
 
 ######################################################################################
 ### 2) Specify where CMake can find the libraries
@@ -36,6 +44,7 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ADD_EXECUTABLE(iterated_local_search iterated_local_search.cpp) 
 
 ADD_DEPENDENCIES(iterated_local_search tsp)
+
 ######################################################################################
 
 
