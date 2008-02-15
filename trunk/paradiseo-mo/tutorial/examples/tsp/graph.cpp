@@ -40,6 +40,9 @@
 
 #include "graph.h"
 
+using std::cout;
+using std::endl;
+
 namespace Graph
   {
 
@@ -70,103 +73,103 @@ namespace Graph
           {
             double distX = (double)(vectCoord [i].first - vectCoord [j].first) ;
             double distY = (double)(vectCoord [i].second - vectCoord [j].second) ;
-            dist [i] [j] = dist [j] [i] = (unsigned) (sqrt ((float) (distX * distX + distY * distY)) + 0.5) ;
+            dist [i] [j] = dist [j] [i] = (unsigned int) (sqrt ((float) (distX * distX + distY * distY)) + 0.5) ;
           }
       }
   }
 
-  void load (const char * __fileName)
+  void load (const char * _fileName)
   {
     unsigned int i, dimension;
 
     std::string string_read, buffer;
 
-    std :: ifstream file (__fileName) ;
+    std :: ifstream file (_fileName) ;
 
-    std :: cout << ">> Loading [" << __fileName << "]" << std :: endl ;
+    cout << endl << "\tLoading [" << _fileName << "]" << endl << endl;
 
-    if (file)
+    if( file.is_open() )
       {
 	// Read NAME:
 	file >> string_read;
 	if (string_read.compare("NAME:")!=0)
 	  {
-	    std::cout << "ERROR: \'NAME:\' espected, \'" << string_read << "\' found" << std::endl;
-	    exit(1);
+	    cout << "ERROR: \'NAME:\' espected, \'" << string_read << "\' found" << endl;
+	    exit(EXIT_FAILURE);
 	  }
 	// Read instance name
 	file >> string_read;
-	std::cout << "\t Instance Name = " << string_read << std::endl;
+	cout << "\t\tInstance Name             = " << string_read << endl;
 	// Read TYPE:
 	file >> string_read;
 	if (string_read.compare("TYPE:")!=0)
 	  {
-	    std::cout << "ERROR: \'TYPE:\' espected, \'" << string_read << "\' found" << std::endl;
-	    exit(1);
+	    cout << "ERROR: \'TYPE:\' espected, \'" << string_read << "\' found" << endl;
+	    exit(EXIT_FAILURE);
 	  }
 	// Read instance type;
 	file >> string_read;
-	std::cout << "\t Instance type = " << string_read << std::endl;
+	cout << "\t\tInstance type             = " << string_read << endl;
 	if (string_read.compare("TSP")!=0)
 	  {
-	    std::cout << "ERROR: only TSP type instance can be loaded" << std::endl;
-	    exit(1);
+	    cout << "ERROR: only TSP type instance can be loaded" << endl;
+	    exit(EXIT_FAILURE);
 	  }
 	// Read COMMENT:
 	file >> string_read;
 	if (string_read.compare("COMMENT:")!=0)
 	  {
-	    std::cout << "ERROR: \'COMMENT:\' espected, \'" << string_read << "\' found" << std::endl;
-	    exit(1);
+	    cout << "ERROR: \'COMMENT:\' espected, \'" << string_read << "\' found" << endl;
+	    exit(EXIT_FAILURE);
 	  }
 	// Read comments
-	std::cout << "\t Instance comments = ";
+	cout << "\t\tInstance comments         = ";
 	file >> string_read;
 	buffer = string_read+"_first";
 	while((string_read.compare("DIMENSION:")!=0) && (string_read.compare(buffer)!=0))
 	  {
 	    if(string_read.compare("COMMENT:")!=0)
 	      {
-		std::cout << string_read << " ";
+		cout << string_read << " ";
 	      }
 	    else
 	      {
-		std::cout << std::endl << "\t                     ";
+		cout << endl << "\t                     ";
 	      }
 	    buffer = string_read;
 	    file >> string_read;
 	  }
 
-	std::cout << std::endl;
+	cout << endl;
 
 	// Read dimension;
 	file >> dimension ;
-        std::cout << "\t Instance dimension = " << dimension << std::endl;
+        cout << "\t\tInstance dimension        = " << dimension << endl;
 	vectCoord.resize (dimension) ;
 
 	// Read EDGE_WEIGHT_TYPE
 	file >> string_read;
 	if (string_read.compare("EDGE_WEIGHT_TYPE:")!=0)
 	  {
-	    std::cout << "ERROR: \'EDGE_WEIGHT_TYPE:\' espected, \'" << string_read << "\' found" << std::endl;
-	    exit(1);
+	    cout << "ERROR: \'EDGE_WEIGHT_TYPE:\' espected, \'" << string_read << "\' found" << endl;
+	    exit(EXIT_FAILURE);
 	  }
 
 	// Read edge weight type
 	file >> string_read;
-	std::cout << "\t Instance edge weight type = " << string_read << std::endl;
+	cout << "\t\tInstance edge weight type = " << string_read << endl;
 	if (string_read.compare("EUC_2D")!=0)
 	  {
-	    std::cout << "ERROR: only EUC_2D edge weight type instance can be loaded" << std::endl;
-	    exit(1);
+	    cout << "ERROR: only EUC_2D edge weight type instance can be loaded" << endl;
+	    exit(EXIT_FAILURE);
 	  }
 
 	// Read NODE_COORD_SECTION
 	file >> string_read;
 	if (string_read.compare("NODE_COORD_SECTION")!=0)
 	  {
-	    std::cout << "ERROR: \'NODE_COORD_SECTION\' espected, \'" << string_read << "\' found" << std::endl;
-	    exit(1);
+	    cout << "ERROR: \'NODE_COORD_SECTION\' espected, \'" << string_read << "\' found" << endl;
+	    exit(EXIT_FAILURE);
 	  }
 
 	// Read coordonates.
@@ -182,11 +185,11 @@ namespace Graph
 	file >> string_read;
 	if(string_read.compare("EOF")!=0)
 	  {
-	    std::cout << "ERROR: \'EOF\' espected, \'" << string_read << "\' found" << std::endl;
-	    exit(1);
+	    cout << "ERROR: \'EOF\' espected, \'" << string_read << "\' found" << endl;
+	    exit(EXIT_FAILURE);
 	  }
 
-	std::cout << std::endl;
+	cout << endl;
 	
 	file.close () ;
 
@@ -194,16 +197,14 @@ namespace Graph
       }
     else
       {
-
-        std :: cout << __fileName << " does not exist !!!" << std :: endl ;
-        // Bye !!!
-        exit (1) ;
+        cout << _fileName << " does not exist !!!" << endl ;
+        exit(EXIT_FAILURE) ;
       }
   }
 
-  float distance (unsigned int __from, unsigned int __to)
+  float distance (unsigned int _from, unsigned int _to)
   {
-    return (float)(dist [__from] [__to]) ;
+    return (float)(dist [_from] [_to]) ;
   }
 }
 

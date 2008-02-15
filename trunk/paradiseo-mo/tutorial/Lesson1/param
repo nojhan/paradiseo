@@ -1,0 +1,8 @@
+
+######                 General    ######
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+
+######    Configuration           ######
+# --instancePath=../examples/tsp/benchs/berlin52.tsp # Path to the instance
+# --seed=1202916317                        # Seed for rand

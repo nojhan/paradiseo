@@ -33,19 +33,34 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
+#include <eo>
 #include <mo>
 #include <tsp>
+
+void manage_configuration_file(eoParser & _parser);
 
 int
 main (int _argc, char* _argv [])
 {
-  if (_argc != 2)
-    {
-      std :: cerr << "Usage : ./simulated_annealing [instance]" << std :: endl;
-      return EXIT_FAILURE;
-    }
+  std::string instancePath, value;
+  unsigned int seed, maxIterations;
+  double threshold, exponentialRatio, linearRatio, initialTemperature;
 
-  Graph::load (_argv [1]);
+  eoParser parser(_argc, _argv); 
+
+  manage_configuration_file(parser);
+
+  seed=atoi( (parser.getParamWithLongName("seed")->getValue()).c_str() );
+  instancePath=parser.getParamWithLongName("instancePath")->getValue();
+  maxIterations=atoi( (parser.getParamWithLongName("maxIter")->getValue()).c_str() );
+  initialTemperature=atof( (parser.getParamWithLongName("initialTemp")->getValue()).c_str() );
+  threshold=atof( (parser.getParamWithLongName("threshold")->getValue()).c_str() );
+  exponentialRatio=atof( (parser.getParamWithLongName("expoRatio")->getValue()).c_str() );
+  linearRatio=atof( (parser.getParamWithLongName("lineaRatio")->getValue()).c_str() );
+  value=parser.getParamWithLongName("coolSchedType")->getValue();
+
+  srand (seed);
+  Graph::load(instancePath.c_str());
 
   Route solution;
 
@@ -66,19 +81,67 @@ main (int _argc, char* _argv [])
 
   TwoOpt move;
 
-  moExponentialCoolingSchedule cooling_schedule (0.1, 0.98);
-  //moLinearCoolingSchedule cooling_schedule (0.1, 0.5);
+  moCoolingSchedule* coolingSchedule;
 
-  moGenSolContinue <Route> continu (1000); /* Temperature Descreasing
-					      will occur each 1000
-					      iterations */
+  if(value.compare("Expo")==0)
+    {
+      coolingSchedule=new moExponentialCoolingSchedule(threshold, exponentialRatio);
+    }
+  else if (value.compare("Linear")==0)
+    {
+      coolingSchedule=new moLinearCoolingSchedule(threshold, linearRatio);
+    }
+  else
+    {
+      throw std::runtime_error("[simulated_annealing.cpp]: the type of cooling schedule '"+value+"' is not correct.");
+    }
+
+  moGenSolContinue <Route> continu (maxIterations);
 
   moSA <TwoOpt> simulated_annealing (two_opt_random_move_generator, two_opt_incremental_evaluation,
-				     continu, 1000, cooling_schedule, full_evaluation);
+				     continu, initialTemperature, *coolingSchedule, full_evaluation);
   simulated_annealing (solution);
 
   std :: cout << "[To] " << solution << std :: endl;
 
+  delete(coolingSchedule);
+
   return EXIT_SUCCESS ;
 }
 
+void
+manage_configuration_file(eoParser & _parser)
+{
+  std::ofstream os;
+
+  _parser.getORcreateParam(std::string("../examples/tsp/benchs/berlin52.tsp"), "instancePath", "Path to the instance.", 
+			   0, "Configuration", false);
+  _parser.getORcreateParam((unsigned int)time(0), "seed", "Seed for rand.", 0, "Configuration", false);
+
+  _parser.getORcreateParam((unsigned int)1000, "maxIter", "Maximum number of iterations.", 0, "Configuration", false);
+
+  _parser.getORcreateParam((double)1000, "initialTemp", "Initial temperature.", 0, "Configuration", false);
+
+  _parser.getORcreateParam((double)0.1, "threshold", "Minimum temperature allowed.", 0, "Configuration", false);
+
+  _parser.getORcreateParam((double)0.98, "expoRatio", "Ratio used if exponential cooling schedule is chosen.", 0, "Configuration", false);
+
+  _parser.getORcreateParam((double)0.5, "lineaRatio", "Ratio used if linear cooling schedule is chosen.", 0, "Configuration", false);
+
+  _parser.getORcreateParam(std::string("Expo"), "coolSchedType", "Type the cooling schedule: 'Expo' or 'Linear'.", 
+			   0, "Configuration", false);
+  
+  if (_parser.userNeedsHelp())
+    {
+      _parser.printHelp(std::cout);
+      exit(EXIT_FAILURE);
+    }
+  
+  os.open("current_param");
+  if(!os.is_open())
+    {
+      throw std::runtime_error("[simulated_annealing.cpp]: the file current_param cannot be created.");
+    }
+  os <<_parser;
+  os.close();
+}

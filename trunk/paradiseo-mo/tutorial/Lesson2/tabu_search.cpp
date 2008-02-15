@@ -34,19 +34,30 @@
 
 */
 
+#include <eo>
 #include <mo>
 #include <tsp>
+
+void manage_configuration_file(eoParser & _parser);
 
 int
 main (int _argc, char* _argv [])
 {
-  if (_argc != 2)
-    {
-      std :: cerr << "Usage : ./tabu_search [instance]" << std :: endl ;
-      return 1 ;
-    }
+  std::string instancePath, value;
+  unsigned int seed, maxIterations, tabuListSize;
 
-  Graph::load (_argv [1]);
+  eoParser parser(_argc, _argv); 
+  
+  manage_configuration_file(parser);
+  
+  seed=atoi( (parser.getParamWithLongName("seed")->getValue()).c_str() );
+  maxIterations=atoi( (parser.getParamWithLongName("maxIter")->getValue()).c_str() );
+  tabuListSize=atoi( (parser.getParamWithLongName("tabuListSize")->getValue()).c_str() );
+  instancePath=parser.getParamWithLongName("instancePath")->getValue();
+  value=parser.getParamWithLongName("tabuListType")->getValue();
+  
+  srand (seed);
+  Graph::load(instancePath.c_str());
 
   Route solution;
 
@@ -67,20 +78,67 @@ main (int _argc, char* _argv [])
 
   TwoOptIncrEval two_opt_incremental_evaluation;
 
-  TwoOptTabuList tabu_list;
-  //moSimpleMoveTabuList<TwoOpt> tabu_list(10);
-  //moSimpleSolutionTabuList<TwoOpt> tabu_list(10);
+  moTabuList<TwoOpt> *tabuList;
+
+  if(value.compare("TwoOpt")==0)
+    {
+      tabuList=new TwoOptTabuList();
+    }
+  else if (value.compare("SimpleMove")==0)
+    {
+      tabuList=new moSimpleMoveTabuList<TwoOpt>(tabuListSize);
+    }
+  else if (value.compare("SimpleSolution")==0)
+    {
+      tabuList=new moSimpleSolutionTabuList<TwoOpt>(tabuListSize);
+    }
+  else
+    {
+      throw std::runtime_error("[tabu_search.cpp]: the type of tabu list '"+value+"' is not correct.");
+    }
 
   moNoAspirCrit <TwoOpt> aspiration_criterion;
 
-  moGenSolContinue <Route> continu (10000);
+  moGenSolContinue <Route> continu (maxIterations);
   
   moTS <TwoOpt> tabu_search (two_opt_initializer, two_opt_next_move_generator, 
-			     two_opt_incremental_evaluation, tabu_list, aspiration_criterion, continu, full_evaluation);
+			     two_opt_incremental_evaluation, *tabuList, aspiration_criterion, continu, full_evaluation);
   tabu_search(solution);
 
   std :: cout << "[To] " << solution << std :: endl;
 
+  delete(tabuList);
+
   return EXIT_SUCCESS;
 }
 
+void
+manage_configuration_file(eoParser & _parser)
+{
+  std::ofstream os;
+
+  _parser.getORcreateParam(std::string("../examples/tsp/benchs/berlin52.tsp"), "instancePath", "Path to the instance.", 
+			   0, "Configuration", false);
+  _parser.getORcreateParam((unsigned int)time(0), "seed", "Seed for rand.", 0, "Configuration", false);
+
+  _parser.getORcreateParam((unsigned int)10, "tabuListSize", "Size of the tabu list.", 0, "Configuration", false);
+
+  _parser.getORcreateParam((unsigned int)1000, "maxIter", "Maximum number of iterations.", 0, "Configuration", false);
+
+  _parser.getORcreateParam(std::string("TwoOpt"), "tabuListType", "Type of the tabu list: 'TwoOpt', 'SimpleMove' or 'SimpleSolution'.", 
+			   0, "Configuration", false);
+
+  if (_parser.userNeedsHelp())
+    {
+      _parser.printHelp(std::cout);
+      exit(EXIT_FAILURE);
+    }
+  
+  os.open("current_param");
+  if(!os.is_open())
+    {
+      throw std::runtime_error("[tabu_search.cpp]: the file current_param cannot be created.");
+    }
+  os <<_parser;
+  os.close();
+}

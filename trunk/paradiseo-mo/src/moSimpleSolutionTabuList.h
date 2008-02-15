@@ -91,7 +91,7 @@ class moSimpleSolutionTabuList: public moTabuList < M >
     M move=(M)_move;
     EOT solution=(EOT) _solution;
 
-    _move(_solution);
+    move(solution);
 
     if (memory_size!=0)
       {

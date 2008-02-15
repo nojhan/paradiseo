@@ -33,19 +33,28 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
+#include <eo>
 #include <mo>
 #include <tsp>
+
+void manage_configuration_file(eoParser & _parser);
 
 int
 main (int _argc, char* _argv [])
 {
-  if (_argc != 2)
-    {
-      std :: cerr << "Usage : ./iterated_local_search [instance]" << std :: endl ;
-      return EXIT_FAILURE;
-    }
+  std::string instancePath;
+  unsigned int seed, maxIterations;
 
-  Graph::load (_argv [1]);
+  eoParser parser(_argc, _argv); 
+
+  manage_configuration_file(parser);
+
+  seed=atoi( (parser.getParamWithLongName("seed")->getValue()).c_str() );
+  instancePath=parser.getParamWithLongName("instancePath")->getValue();
+  maxIterations=atoi( (parser.getParamWithLongName("maxIter")->getValue()).c_str() );
+
+  srand(seed);
+  Graph::load (instancePath.c_str());
 
   Route solution;
 
@@ -65,7 +74,7 @@ main (int _argc, char* _argv [])
 
   moBestImprSelect <TwoOpt> two_opt_selection;
 
-  moGenSolContinue <Route> continu(1000);
+  moGenSolContinue <Route> continu(maxIterations);
 
   moFitComparator<Route> comparator;
 
@@ -80,3 +89,28 @@ main (int _argc, char* _argv [])
   return EXIT_SUCCESS;
 }
 
+void
+manage_configuration_file(eoParser & _parser)
+{
+  std::ofstream os;
+
+  _parser.getORcreateParam(std::string("../examples/tsp/benchs/berlin52.tsp"), "instancePath", "Path to the instance.", 
+			   0, "Configuration", false);
+  _parser.getORcreateParam((unsigned int)time(0), "seed", "Seed for rand.", 0, "Configuration", false);
+
+  _parser.getORcreateParam((unsigned int)1000, "maxIter", "Maximum number of iterations.", 0, "Configuration", false);
+
+  if (_parser.userNeedsHelp())
+    {
+      _parser.printHelp(std::cout);
+      exit(EXIT_FAILURE);
+    }
+  
+  os.open("current_param");
+  if(!os.is_open())
+    {
+      throw std::runtime_error("[iterated_local_search.cpp]: the file current_param cannot be created.");
+    }
+  os <<_parser;
+  os.close();
+}
