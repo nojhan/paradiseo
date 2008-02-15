@@ -9,8 +9,8 @@ ADD_CUSTOM_COMMAND(
     POST_BUILD
     COMMAND ${CMAKE_COMMAND}
     ARGS -E copy_if_different
-      ${ParadisEO-MOEO_SOURCE_DIR}/tutorial/Lesson1/FlowShopEA.param
-      ${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson1)
+      ${ParadisEO-MOEO_SOURCE_DIR}/tutorial/Lesson3/FlowShopEA.param
+      ${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson3)
 ######################################################################################
 
 
