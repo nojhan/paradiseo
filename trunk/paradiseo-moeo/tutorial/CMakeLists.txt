@@ -13,6 +13,6 @@ SET(FLOWSHOP_BINARY_DIR ${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop)
 ### 2) Where must cmake go now ?
 ######################################################################################
 
-SUBDIRS(examples Lesson1 Lesson2)
+SUBDIRS(examples Lesson1 Lesson3)
 
 ######################################################################################
