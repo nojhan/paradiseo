@@ -158,21 +158,24 @@ class eoInitPermutation: public eoInit<EOT>
 
     typedef typename EOT::AtomType AtomType;
 
-        eoInitPermutation(unsigned _chromSize)
-            : chromSize(_chromSize){}
+        eoInitPermutation(unsigned _chromSize, bool _isOneIndexed=true)
+            : chromSize(_chromSize), isOneIndexed(_isOneIndexed){}
 
         virtual void operator()(EOT& chrom)
         {
             chrom.resize(chromSize);            
             for(unsigned idx=0;idx <chrom.size();idx++)
-            	chrom[idx]=idx+1;           	
-            	
+            	if(isOneIndexed)
+            		chrom[idx]=idx+1;           	
+            	else
+            		chrom[idx]=idx;  
             std::random_shuffle(chrom.begin(), chrom.end(),gen);            
             chrom.invalidate();
         }
 
     private :
         unsigned chromSize;
+        bool isOneIndexed;
         UF_random_generator<unsigned int> gen;
 };
 
