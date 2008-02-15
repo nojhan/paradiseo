@@ -3,7 +3,7 @@
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
-* Abdelhakim Deneche
+* Abdelhakim Deneche, Arnaud Liefooghe
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -44,21 +44,21 @@ using namespace std;
 
 // the moeoObjectiveVectorTraits : minimizing 2 objectives
 class Sch1ObjectiveVectorTraits : public moeoObjectiveVectorTraits
-  {
-  public:
+{
+public:
     static bool minimizing (int i)
     {
-      return true;
+        return true;
     }
     static bool maximizing (int i)
     {
-      return false;
+        return false;
     }
     static unsigned int nObjectives ()
     {
-      return 2;
+        return 2;
     }
-  };
+};
 
 
 // objective vector of real values
@@ -67,67 +67,73 @@ typedef moeoRealObjectiveVector < Sch1ObjectiveVectorTraits > Sch1ObjectiveVecto
 
 // multi-objective evolving object for the Sch1 problem
 class Sch1 : public moeoRealVector < Sch1ObjectiveVector, double, double >
-  {
-  public:
+{
+public:
     Sch1() : moeoRealVector < Sch1ObjectiveVector, double, double > (1)
     {}
-  };
+};
 
 
 // evaluation of objective functions
 class Sch1Eval : public moeoEvalFunc < Sch1 >
-  {
-  public:
+{
+public:
     void operator () (Sch1 & _sch1)
     {
-      if (_sch1.invalidObjectiveVector())
+        if (_sch1.invalidObjectiveVector())
         {
-          Sch1ObjectiveVector objVec;
-          double x = _sch1[0];
-          objVec[0] = x * x;
-          objVec[1] = (x - 2.0) * (x - 2.0);
-          _sch1.objectiveVector(objVec);
+            Sch1ObjectiveVector objVec;
+            double x = _sch1[0];
+            objVec[0] = x * x;
+            objVec[1] = (x - 2.0) * (x - 2.0);
+            _sch1.objectiveVector(objVec);
         }
     }
-  };
+};
 
 
 // main
 int main (int argc, char *argv[])
 {
-  // parameters
-  unsigned int POP_SIZE = 20;
-  unsigned int MAX_GEN = 100;
-  double M_EPSILON = 0.01;
-  double P_CROSS = 0.25;
-  double P_MUT = 0.35;
+    eoParser parser(argc, argv);  // for user-parameter reading
+    eoState state;                // to keep all things allocated
 
-  // objective functions evaluation
-  Sch1Eval eval;
+    // parameters
+    unsigned int POP_SIZE = parser.createParam((unsigned int)(100), "popSize", "Population size",'P',"Param").value();
+    unsigned int MAX_GEN = parser.createParam((unsigned int)(100), "maxGen", "Maximum number of generations",'G',"Param").value();
+    double M_EPSILON = parser.createParam(0.01, "mutEpsilon", "epsilon for mutation",'e',"Param").value();
+    double P_CROSS = parser.createParam(0.25, "pCross", "Crossover probability",'C',"Param").value();
+    double P_MUT = parser.createParam(0.35, "pMut", "Mutation probability",'M',"Param").value();
 
-  // crossover and mutation
-  eoQuadCloneOp < Sch1 > xover;
-  eoUniformMutation < Sch1 > mutation (M_EPSILON);
+    // objective functions evaluation
+    Sch1Eval eval;
 
-  // generate initial population
-  eoRealVectorBounds bounds (1, 0.0, 2.0);	// [0, 2]
-  eoRealInitBounded < Sch1 > init (bounds);
-  eoPop < Sch1 > pop (POP_SIZE, init);
+    // crossover and mutation
+    eoQuadCloneOp < Sch1 > xover;
+    eoUniformMutation < Sch1 > mutation (M_EPSILON);
 
-  // build NSGA-II
-  moeoNSGAII < Sch1 > nsgaII (MAX_GEN, eval, xover, P_CROSS, mutation, P_MUT);
+    // generate initial population
+    eoRealVectorBounds bounds (1, 0.0, 2.0);	// [0, 2]
+    eoRealInitBounded < Sch1 > init (bounds);
+    eoPop < Sch1 > pop (POP_SIZE, init);
 
-  // run the algo
-  nsgaII (pop);
+    // build NSGA-II
+    moeoNSGAII < Sch1 > nsgaII (MAX_GEN, eval, xover, P_CROSS, mutation, P_MUT);
 
-  // extract first front of the final population using an moeoArchive (this is the output of nsgaII)
-  moeoArchive < Sch1 > arch;
-  arch.update (pop);
+    // help ?
+    make_help(parser);
 
-  // printing of the final archive
-  cout << "Final Archive" << endl;
-  arch.sortedPrintOn (cout);
-  cout << endl;
+    // run the algo
+    nsgaII (pop);
 
-  return EXIT_SUCCESS;
+    // extract first front of the final population using an moeoArchive (this is the output of nsgaII)
+    moeoArchive < Sch1 > arch;
+    arch.update (pop);
+
+    // printing of the final archive
+    cout << "Final Archive" << endl;
+    arch.sortedPrintOn (cout);
+    cout << endl;
+
+    return EXIT_SUCCESS;
 }
