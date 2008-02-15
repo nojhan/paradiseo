@@ -3,7 +3,7 @@
 ### 0) Copy the FlowShop.param file in the build path for an easy use.
 ######################################################################################
 
-ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-MOEO_SOURCE_DIR}/tutorial/Lesson1/FlowShopEA.param)
+ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-MOEO_SOURCE_DIR}/tutorial/Lesson3/FlowShopEA.param)
 ADD_CUSTOM_COMMAND(
     TARGET install
     POST_BUILD

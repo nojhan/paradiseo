@@ -31,7 +31,7 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
-ADD_EXECUTABLE(Sch1 Sch1.cpp) 
+ADD_EXECUTABLE(Sch1 Sch1.cpp)
 ADD_DEPENDENCIES(Sch1 moeo)
 ######################################################################################
 
