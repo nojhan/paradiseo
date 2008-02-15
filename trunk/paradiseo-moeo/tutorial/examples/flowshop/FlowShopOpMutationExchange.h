@@ -38,28 +38,12 @@
 #ifndef FLOWSHOPOPMUTATIONEXCHANGE_H_
 #define FLOWSHOPOPMUTATIONEXCHANGE_H_
 
-#include <eoOp.h>
+#include <eoSwapMutation.h>
 #include <FlowShop.h>
 
 /**
  * Exchange mutation operator for the flow-shop
  */
-class FlowShopOpMutationExchange : public eoMonOp<FlowShop>
-  {
-  public:
-
-    /**
-     * the class name (used to display statistics)
-     */
-    std::string className() const;
-
-
-    /**
-     * modifies the parent with an exchange mutation
-     * @param _flowshop the parent genotype (will be modified)
-     */
-    bool operator()(FlowShop & _flowshop);
-
-  };
+typedef eoSwapMutation<FlowShop> FlowShopOpMutationExchange;
 
 #endif /*FLOWSHOPOPMUTATIONEXCHANGE_H_*/

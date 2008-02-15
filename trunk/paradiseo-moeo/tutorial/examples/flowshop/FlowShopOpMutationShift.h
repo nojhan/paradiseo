@@ -38,28 +38,12 @@
 #ifndef FLOWSHOPOPMUTATIONSHIFT_H_
 #define FLOWSHOPOPMUTATIONSHIFT_H_
 
-#include <eoOp.h>
+#include <eoShiftMutation.h>
 #include <FlowShop.h>
 
 /**
  * Shift mutation operator for flow-shop
  */
-class FlowShopOpMutationShift : public eoMonOp < FlowShop >
-  {
-  public:
-
-    /**
-     * the class name (used to display statistics)
-     */
-    std::string className() const;
-
-
-    /**
-     * modifies the parent with a shift mutation
-     * @param _flowshop the parent genotype (will be modified)
-     */
-    bool operator()(FlowShop & _flowshop);
-
-  };
+typedef eoShiftMutation<FlowShop> FlowShopOpMutationShift;
 
 #endif /*FLOWSHOPOPMUTATIONSHIFT_H_*/

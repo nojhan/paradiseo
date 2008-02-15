@@ -50,13 +50,10 @@ SET(FLOWSHOP_LIB_OUTPUT_PATH ${FLOWSHOP_BINARY_DIR}/lib)
 SET(LIBRARY_OUTPUT_PATH ${FLOWSHOP_LIB_OUTPUT_PATH})
 
 SET (FLOWSHOP_SOURCES   FlowShopBenchmarkParser.cpp 
-						FlowShopEval.cpp 
-						FlowShopInit.cpp 
-						FlowShopObjectiveVectorTraits.cpp 
-						FlowShopOpCrossoverQuad.cpp 
-						FlowShopOpMutationExchange.cpp 
-						FlowShopOpMutationShift.cpp 
-						FlowShop.cpp)
+			FlowShopEval.cpp 
+			FlowShopObjectiveVectorTraits.cpp 
+			FlowShopOpCrossoverQuad.cpp 
+			FlowShop.cpp)
 
 ADD_LIBRARY(flowshop STATIC ${FLOWSHOP_SOURCES})
 ADD_DEPENDENCIES(flowshop moeo)
