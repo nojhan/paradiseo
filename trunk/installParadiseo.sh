@@ -15,6 +15,7 @@ TAR_MSG=" "
 DIE=0
 PROG=ParadisEO
 CMAKE_PRIMARY_CONFIG_FILE=install.cmake
+HOME_PATH=$HOME
 
 # generator types available on Unix platforms
 P_UNIX_MAKEFILES=1
@@ -24,6 +25,14 @@ G_KDEVELOP3_PROJECT="KDevelop3"
 
 # should we compile ParadisEO ?
 COMPILE_PARADISEO=1
+
+# Build types
+DEFAULT_BUILD_TYPE=Release
+BUILD_TYPE=$DEFAULT_BUILD_TYPE
+
+# CMake/CTest/Dart flags
+CTEST_DEFAULT_CONFIG="-D ExperimentalStart -D ExperimentalBuild -D ExperimentalCoverage"
+CTEST_CONFIG=$CTEST_DEFAULT_CONFIG
 
 # install types to select in the main menu
 P_FULL_INSTALL=1
@@ -55,6 +64,8 @@ S_CONFIGURE_MPD=1013
 S_PEO_CHECK=1014
 S_REMOVE_INSTALL=1015
 S_END=1016
+S_END_WITHOUT_INFO=1017
+
 
 #### define what are the possible installs and their content
 
@@ -65,7 +76,7 @@ FULL_INSTALL_WITHOUT_LIBXML2="$S_INTRODUCTION $S_UNPACK_MPICH $S_INSTALL_EO $S_I
 
 FULL_INSTALL_WITHOUT_MPICH2="$S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_CONFIGURE_LIBXML2_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
 
-FULL_INSTALL_WITHOUT_LIBXML2_MPICH2="$S_INTRODUCTION $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
+FULL_INSTALL_WITHOUT_LIBXML2_MPICH2="$S_INTRODUCTION $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END_WITHOUT_INFO"
 
 # basic install
 BASIC_INSTALL="$S_INTRODUCTION $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_END"
@@ -77,7 +88,7 @@ PARALLEL_INSTALL_WITHOUT_LIBXML2="$S_PEO_CHECK $S_INTRODUCTION  $S_UNPACK_MPICH 
 
 PARALLEL_INSTALL_WITHOUT_MPICH2="$S_PEO_CHECK $S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_CONFIGURE_LIBXML2_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
 
-PARALLEL_INSTALL_WITHOUT_LIBXML2_MPICH2="$S_PEO_CHECK $S_INTRODUCTION $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
+PARALLEL_INSTALL_WITHOUT_LIBXML2_MPICH2="$S_PEO_CHECK $S_INTRODUCTION $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END_WITHOUT_INFO"
 
 # remove a previous install
 RM_PREVIOUS_INSTALL="$S_REMOVE_INSTALL"
@@ -108,6 +119,7 @@ PEO_CHECK_ERROR=118
 RM_PARADISEO_EO_ERROR=119
 RM_UTIL_ERROR=120
 BASIC_INSTALL_MISSING_ERROR=121
+DART_SUBMISSION_ERROR=64
 
 #Date
 DATE=`/bin/date '+%Y%m%d%H%M%S'`
@@ -155,7 +167,7 @@ function execute_cmd
 	echo "${COMMAND}" >> ${FIC_ESP}
 	
 	${COMMAND} >> ${FIC_OUT} 2>> ${FIC_ERR}
-	
+
 	RETURN_CODE=$?
 	echo "RETURN_CODE : ${RETURN_CODE}" >> ${FIC_ESP}
 	
@@ -166,7 +178,7 @@ function execute_cmd
 		return 0
 	else
 		echo "     $ERROR_TAG ${COMMENT} NOK" >> ${FIC_ESP}
-		return 1
+		return ${RETURN_CODE}
 	fi
 }
 
@@ -320,31 +332,11 @@ function run_install_step()
 		echo ""
 		echo -e ' \033[40m\033[1;33m### ParadisEO install starting .... ### \033[0m '
 		echo
-		echo "Installing the environment for ParadisEO...Note that the librairies \"libxml2\" ans \"mpich2\" required for ParadisEO are provided with this package."
-		sleep 3
-	
+		echo "Installing the environment for ParadisEO...Note that the librairies \"libxml2\" ans \"mpich2\" required for ParadisEO are provided with this package. To avoid build and test reports to be sent to our repository, please stop the program and restart it using the --skipdart option."
+		sleep 5	
 		echo
 		echo
 		return $SUCCESSFUL_STEP
-		;;
-
-	$S_UNPACK_EO)
-		##########  unpacking paradiseo-eo ##########
-		echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
-		echo '		--> Unpacking Paradiseo-EO (Evolving Objects) ...'
-	
-		execute_cmd "tar xvf $resourceKitPath/$LIBS_PATH/$PARADISEO_EO_ARCHIVE --directory $installKitPath" "[$currentStepCounter] Unpack Paradiseo-EO" $SPY
-		if [ ! "$?" = "0" ]
-		then
-			echo ''
-			echo "		--> Error when unpacking Paradiseo-EO"
-			echo -e ' \033[40m\033[1;33m### END ### \033[0m '
-			return $EO_UNPACKING_ERROR
-		else
-			echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter OK \033[0m"
-			echo
-			return $SUCCESSFUL_STEP
-		fi
 		;;
 
 	$S_UNPACK_LIBXML)
@@ -410,15 +402,20 @@ function run_install_step()
 		
 		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \" " "[$currentStepCounter-3] Run CMake using generator $BUILD_PROCESS_TYPE"  $SPY
 		
-		cmake ../  -G"$BUILD_PROCESS_TYPE" >> ${SPY} 2>> ${SPY}
+		cmake ../  -G"$BUILD_PROCESS_TYPE"  -DCMAKE_BUILD_TYPE=$BUILD_TYPE >> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`
 
 		if [ "$COMPILE_PARADISEO" = "1" ] 
 		then
-			execute_cmd "make" "[$currentStepCounter-4] Compile ParadisEO-EO"  $SPY
-			RETURN=`expr $RETURN + $?`
+			execute_cmd "ctest $CTEST_CONFIG" "[$currentStepCounter-4] Compile ParadisEO-EO using CTest"  $SPY
+			LAST_RETURN=$?
+			# don't consider a submission error as a "right error"
+			if [ ! "$LAST_RETURN" = "$DART_SUBMISSION_ERROR" ]
+			then
+				RETURN=`expr $RETURN + $LAST_RETURN`
+			fi			
 		fi
-		
+				
 		if [ ! $(($RETURN)) = 0 ]
 		then
 			echo ''
@@ -446,17 +443,20 @@ function run_install_step()
 		execute_cmd "cd $installKitPath/paradiseo-mo/build" "[$currentStepCounter-1] Go in Paradiseo-MO dir"  $SPY 
 		RETURN=$?
 		
-		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \"  -DEOdir=$installKitPath/paradiseo-eo" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE"  $SPY
-		cmake ../ -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE"  >> ${SPY} 2>> ${SPY}
+		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \"  cmake ../ -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G\"$BUILD_PROCESS_TYPE\" -DCMAKE_BUILD_TYPE=$BUILD_TYPE " "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE"  $SPY
+		cmake ../ -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE" -DCMAKE_BUILD_TYPE=$BUILD_TYPE >> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`
 		
 		if [ "$COMPILE_PARADISEO" = "1" ] 
 		then
-			execute_cmd "make" "[$currentStepCounter-3] Compile ParadisEO-MO"  $SPY
+			execute_cmd "ctest $CTEST_CONFIG" "[$currentStepCounter-3] Compile ParadisEO-MO using CTest"  $SPY
 			RETURN=`expr $RETURN + $?`
 			execute_cmd "make install" "[$currentStepCounter-4] Make install of ParadisEO-MO"  $SPY
 			RETURN=`expr $RETURN + $?`
 		fi
+		
+		# Make link  with the install.cmake (at the top level)
+		#execute_cmd "ln -s $installKitPath/install.cmake $installKitPath/paradiseo-mo/install.cmake" "[$currentStepCounter-5] Create link to install.cmake for MO"  $SPY 	
 		
 		if [ ! $(($RETURN)) = 0 ]
 		then
@@ -485,16 +485,19 @@ function run_install_step()
 		RETURN=$?
 		
 		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \"  -DEOdir=$installKitPath/paradiseo-eo" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE"  $SPY
-		cmake ../ -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE"  >> ${SPY} 2>> ${SPY}
+		cmake ../ -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE" -DCMAKE_BUILD_TYPE=$BUILD_TYPE >> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`		
 		
 		if [ "$COMPILE_PARADISEO" = "1" ] 
 		then
-			execute_cmd "make" "[$currentStepCounter-3] Compile ParadisEO-MOEO"  $SPY
+			execute_cmd "ctest $CTEST_CONFIG" "[$currentStepCounter-3] Compile ParadisEO-MOEO using CTest"  $SPY
 			RETURN=`expr $RETURN + $?`
 			execute_cmd "make install" "[$currentStepCounter-4] Make install ParadisEO-MOEO"  $SPY
 			RETURN=`expr $RETURN + $?`
 		fi
+		
+		# Make link  with the install.cmake (at the top level)
+		#execute_cmd "ln -s $installKitPath/install.cmake $installKitPath/paradiseo-moeo/install.cmake" "[$currentStepCounter-5] Create link to install.cmake for MOEO"  $SPY 
 		
 		if [ ! $(($RETURN)) = 0 ]
 		then
@@ -742,16 +745,19 @@ function run_install_step()
 		RETURN=$?
 
 		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE \"  -DEOdir=$installKitPath/paradiseo-eo -DMOdir=$installKitPath/paradiseo-mo" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE"  $SPY
-		cmake ../  -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE"  >> ${SPY} 2>> ${SPY}
+		cmake ../  -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE" -DCMAKE_BUILD_TYPE=$BUILD_TYPE >> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`
 		
 		if [ "$COMPILE_PARADISEO" = "1" ] 
 		then
-			execute_cmd "make" "[$currentStepCounter-3] Compile ParadisEO-PEO "  $SPY
+			execute_cmd "ctest $CTEST_CONFIG" "[$currentStepCounter-3] Compile ParadisEO-PEO using CTest"  $SPY
 			RETURN=`expr $RETURN + $?`
 			execute_cmd "make install" "[$currentStepCounter-4] Make install ParadisEO-PEO "  $SPY
 			RETURN=`expr $RETURN + $?`
 		fi
+		
+		# Make link  with the install.cmake (at the top level)
+		#execute_cmd "ln -s $installKitPath/install.cmake $installKitPath/paradiseo-peo/install.cmake" "[$currentStepCounter-5] Create link to install.cmake for PEO"  $SPY 
 		
 		if [ ! $(($RETURN)) = 0 ]
 		then
@@ -827,26 +833,21 @@ function run_install_step()
 			return $BASIC_INSTALL_MISSING_ERROR	
 		fi
 		;;
+	$S_END_WITHOUT_INFO)
+		echo
+		echo -e "	\033[40m\033[1;34m#  Successfull installation. \033[0m"
+		echo
+		return $SUCCESSFUL_STEP
+		;;
 	$S_END)
-		echo -e "\033[40m\033[1;33m### 
-			The file \".bashrc\" file located in your directory $homePath has been MODIFIED.
-			The following lines have been added at the end:
-			
-				LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$installKitPath/libxml2/lib: 
-				PATH=$PATH:$installKitPath/libxml2/bin:$installKitPath/mpich2/bin
-			
-			These variables are necessary to compile any program using ParadisEO-PEO. If
-			you want to keep them in your environment in order not to have to set them each time you compile, enter  \"source $homePath/.bashrc\".
-
-			If you don't want to use these variables, please remove them from $homePath/.bashrc. ### \033[0m"
-
+		echo -e "The file \".bashrc\" file located in your directory $HOME has been MODIFIED. The following variables have been modified at the end:"
+		echo -e " LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:$installKitPath/libxml2/lib: "
+		echo -e " PATH=\$PATH:$installKitPath/libxml2/bin:$installKitPath/mpich2/bin"
+		echo -e "These variables are necessary to compile any program using ParadisEO-PEO.\033[40m\033[1;33m If you want to keep them in your environment in order not to have to set them each time you compile, enter  \"source $homePath/.bashrc\" \033[0m. If you don't want to use these variables, please remove them from $HOME/.bashrc."
 		sleep 2
 		echo
 		echo
-		if [ ! "$COMPILE_PARADISEO" -eq "1" ] 
-		then
-			echo "=> ParadisEO  must now be compiled using the appropriate tool depending on the generator you've chosen."
-		fi
+		echo -e "	\033[40m\033[1;34m#  Successfull installation. \033[0m"
 		echo
 		return $SUCCESSFUL_STEP
 		;;
@@ -964,58 +965,107 @@ function check_utils_install
     DIE=1
 }
 
-
-
 if [ "$DIE" = "1" ] 
 then
     exit 1
 fi
 
 
-# main
-if [ "$1" = "--help" ]
-then
-	echo
-	echo 'Use : ./installParadiseo.sh for standard install'
-	echo
-	echo 'Use : ./installParadiseo.sh <HOME path> to give your HOME path'
-	echo 'Example: ./installParadiseo.sh /usr/home/me'
-	echo
-	echo 'Use : ./installParadiseo.sh --prefix=<Install Directory>'
-	echo
-	echo '=> For further help, please contact paradiseo-help@lists.gforge.inria.fr'
-	echo
-	exit
-fi
 
-# do we have a valid path ?
-if [ ! -d $HOME ]
-then
-	if [ "$1" = "" ]
-	then
-		echo " Please give a valid path for your home directory (use ./installParadiseo.sh --help for further information)"
-	else
-		homePath=$1
-	fi
-else
-	homePath=$HOME
-fi
+########################################################################
+# Simple menu
+# The options are :
+#  --prefix
+#  --debug
+#  --skipdart
+#  --help
+#######################################################################
 
-
-# simple menu
 INSTALL_TREATENED=0
 INSTALL_PATH=$PWD
 for i in $*
 do
+  if [ "${i%=*}" = "--help" ] || [ "${i%=*}" = "-h" ]
+  then
+  		clear
+  		echo "installParadiseo.sh"
+		echo
+		echo -e "\033[1mNAME\033[0m"
+		echo '	installParadiseo.sh  - Install ParadisEO'
+		echo
+		echo -e "\033[1mSYNOPSIS\033[0m"
+		echo -e '	\033[1m./installParadiseo.sh\033[0m  or \033[1mbash installParadiseo.sh\033[0m'
+		echo -e '	[\033[1m--prefix=\033[0m\033[4mPATH\033[0m] [\033[1m--debug\033[0m] [\033[1m--skipdart\033[0m] [\033[1m--home=\033[0m\033[4mHOME\033[0m] [\033[1m-h\033[0m] [\033[1m--help\033[0m]'
+		echo
+		echo -e "\033[1mDESCRIPTION\033[0m"
+		echo -e "	\033[1m--prefix=\033[0m\033[4mPATH\033[0m"
+		echo -e "		ParadisEO will be installed in the directory \033[0m\033[4mPATH\033[0m. The current directory is used by default."
+		echo
+		echo -e "	\033[1m--debug\033[0m"
+		echo '		Debug mode, set warning compiler flags and run tests.'
+		echo
+		echo -e "	\033[1m--skipdart\033[0m"
+		echo '		Use this option to avoid build/test report submission to our Dart server.'
+		echo		
+		echo -e "	\033[1m--home=\033[0m\033[4mHOME\033[0m"
+		echo -e "		Using \033[0m\033[4mHOME\033[0m as your home directory. Should be used when ~ doesnt reference your home. "
+		echo			
+		echo -e "	\033[1m-h, --help\033[0m"
+		echo '		Print these useful lines.'
+		echo	
+		echo -e "\033[1mAUTHOR\033[0m"
+		echo  "	Written by Thomas Legrand."
+		echo
+		echo -e "\033[1mBUGS\033[0m"
+		echo  "	Report bugs to paradiseo-bugs@lists.gforge.inria.fr."
+		echo
+		echo -e "\033[1mCOPYRIGHT\033[0m"
+		echo "	This software is governed by the CeCILL license under French law and"
+		echo "	abiding by the rules of distribution of free software.  You can  use,"
+		echo "	modify and/ or redistribute the software under the terms of the CeCILL"
+		echo "	license as circulated by CEA, CNRS and INRIA at the following URL"
+		echo "	http://www.cecill.info. "
+		echo
+		echo -e "\033[1mSEE ALSO\033[0m"		
+		echo  "	For further help, please contact paradiseo-help@lists.gforge.inria.fr."	
+		echo
+		exit
+  fi
   if [ "${i%=*}" = "--prefix" ]
-      then
+   then
       INSTALL_PATH=${i#*=}
   fi
+  if [ "${i%=*}" = "--debug" ]
+   then
+      BUILD_TYPE=Debug
+      CTEST_CONFIG="$CTEST_CONFIG -D ExperimentalTest -D ExperimentalMemCheck"
+  fi
+  if [ "${i%=*}" = "--skipdart" ]
+   then
+  	  SKIP_DART="1"
+  fi
+  if [ "${i%=*}" = "--home" ]
+   then
+  	 HOME_PATH=${i#*=}
+  fi
 done
+#######################################################################
+
+### Do we have a valid home path ?
+if [ ! -d $HOME_PATH ]
+then
+	echo " Please give a valid path for your home directory (use --help for further information)"
+fi
 
 
-
-# need the generator type
+### Add a CTest flag depending on the "skipdart" option.
+if [ ! "$SKIP_DART" = "1" ]
+then
+  	  CTEST_CONFIG="$CTEST_CONFIG -D ExperimentalSubmit"
+fi
+  
+ 
+### Need the generator
 BUILD_PROCESS_TYPE=0
 GENERATOR_TREATENED=0
 
