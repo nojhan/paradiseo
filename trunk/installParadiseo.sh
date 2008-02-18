@@ -648,10 +648,10 @@ function run_install_step()
 		execute_cmd "export PATH=$PATH:`xml2-config --prefix`/bin:$installKitPath/mpich2/bin" "[$currentStepCounter-2] Export PATH variable" $SPY 
 		idx=$?	
 
-		execute_cmd "echo export PATH=$PATH:$installKitPath/mpich2/bin" "[$currentStepCounter-4] Export PATH variable into env" $SPY $homePath/.bashrc
+		execute_cmd "echo export PATH=$PATH:$installKitPath/mpich2/bin" "[$currentStepCounter-4] Export PATH variable into env" $SPY $HOME/.bashrc
 		idx=`expr $idx + $?`
 
-		execute_cmd "source $homePath/.bashrc" "[$currentStepCounter-5] Export variables for mpich2" $SPY
+		execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Export variables for mpich2" $SPY
 		idx=`expr $idx + $?`
 
 		if [ ! $(($idx)) = 0 ]
@@ -679,13 +679,13 @@ function run_install_step()
 		execute_cmd "export LD_LIBRARY_PATH=`xml2-config --prefix`/lib:" "[$currentStepCounter-2] Export LD_LIBRARY_PATH variable" $SPY
 		idx=$?	 
 		
-		execute_cmd "echo export LD_LIBRARY_PATH=$`xml2-config --prefix`/lib" "[$currentStepCounter-3] Export LD_LIBRARY_PATH variable into env" $SPY $homePath/.bashrc
+		execute_cmd "echo export LD_LIBRARY_PATH=$`xml2-config --prefix`/lib" "[$currentStepCounter-3] Export LD_LIBRARY_PATH variable into env" $SPY $HOME/.bashrc
 		idx=$?	 
 
-		execute_cmd "echo export PATH=$PATH:`xml2-config --prefix`/bin" "[$currentStepCounter-4] Export PATH variable into env" $SPY $homePath/.bashrc
+		execute_cmd "echo export PATH=$PATH:`xml2-config --prefix`/bin" "[$currentStepCounter-4] Export PATH variable into env" $SPY $HOME/.bashrc
 		idx=`expr $idx + $?`
 
-		execute_cmd "source $homePath/.bashrc" "[$currentStepCounter-5] Export variables for libxml2" $SPY
+		execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Export variables for libxml2" $SPY
 		idx=`expr $idx + $?`
 
 		if [ ! $(($idx)) = 0 ]
@@ -709,13 +709,13 @@ function run_install_step()
 		idx=$?	 
 		execute_cmd "export PATH=$PATH:$installKitPath/libxml2/bin:$installKitPath/mpich2/bin" "[$currentStepCounter-2] Export PATH variable" $SPY 
 	
-		execute_cmd "echo export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$installKitPath/libxml2/lib" "[$currentStepCounter-3] Export LD_LIBRARY_PATH variable into env" $SPY $homePath/.bashrc
+		execute_cmd "echo export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$installKitPath/libxml2/lib" "[$currentStepCounter-3] Export LD_LIBRARY_PATH variable into env" $SPY $HOME/.bashrc
 		idx=$?	 
 
-		execute_cmd "echo export PATH=$PATH:$installKitPath/libxml2/bin:$installKitPath/mpich2/bin" "[$currentStepCounter-4] Export PATH variable into env" $SPY $homePath/.bashrc
+		execute_cmd "echo export PATH=$PATH:$installKitPath/libxml2/bin:$installKitPath/mpich2/bin" "[$currentStepCounter-4] Export PATH variable into env" $SPY $HOME/.bashrc
 		idx=`expr $idx + $?`
 
-		execute_cmd "source $homePath/.bashrc" "[$currentStepCounter-5] Export variables" $SPY
+		execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Export variables" $SPY
 		idx=`expr $idx + $?`
 
 		if [ ! $(($idx)) = 0 ]
@@ -835,7 +835,7 @@ function run_install_step()
 		;;
 	$S_END_WITHOUT_INFO)
 		echo
-		echo -e "	\033[40m\033[1;34m#  Successfull installation. \033[0m"
+		echo -e "	\033[40m\033[1;34m#  SUCCESSFULL INSTALLATION. \033[0m"
 		echo
 		return $SUCCESSFUL_STEP
 		;;
@@ -843,11 +843,11 @@ function run_install_step()
 		echo -e "The file \".bashrc\" file located in your directory $HOME has been MODIFIED. The following variables have been modified at the end:"
 		echo -e " LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:$installKitPath/libxml2/lib: "
 		echo -e " PATH=\$PATH:$installKitPath/libxml2/bin:$installKitPath/mpich2/bin"
-		echo -e "These variables are necessary to compile any program using ParadisEO-PEO.\033[40m\033[1;33m If you want to keep them in your environment in order not to have to set them each time you compile, enter  \"source $homePath/.bashrc\" \033[0m. If you don't want to use these variables, please remove them from $HOME/.bashrc."
+		echo -e "These variables are necessary to compile any program using ParadisEO-PEO.\033[40m\033[1;33m If you want to keep them in your environment in order not to have to set them each time you compile, enter  \"source $HOME/.bashrc\" \033[0m. If you don't want to use these variables, please remove them from $HOME/.bashrc."
 		sleep 2
 		echo
 		echo
-		echo -e "	\033[40m\033[1;34m#  Successfull installation. \033[0m"
+		echo -e "	\033[40m\033[1;34m#  SUCCESSFULL INSTALLATION. \033[0m"
 		echo
 		return $SUCCESSFUL_STEP
 		;;
