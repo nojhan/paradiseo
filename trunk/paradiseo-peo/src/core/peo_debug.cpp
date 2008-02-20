@@ -51,7 +51,7 @@
 #define DEBUG_PATH "./log/"
 
 
-static bool debug = true;
+static bool debug = false;
 
 static char host [MAX_BUFF_SIZE];
 
