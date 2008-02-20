@@ -3,7 +3,7 @@
 TEST_DIR=/opt/paradiseo/project-management/test/build/nightly
 
 CMAKE_INSTALL_CONFIG=/opt/paradiseo/project-management/test/work-copy/nightly/trunk/install.cmake
-PARADISEO_EO_DIR=/opt/paradiseo/project-management/test/work-copy/nightly/paradiseo-eo
+PARADISEO_EO_DIR=/opt/paradiseo/project-management/test/work-copy/nightly/trunk/paradiseo-eo
 PARADISEO_MO_DIR=/opt/paradiseo/project-management/test/work-copy/nightly/trunk/paradiseo-mo
 PARADISEO_MOEO_DIR=/opt/paradiseo/project-management/test/work-copy/nightly/trunk/paradiseo-moeo
 PARADISEO_PEO_DIR=/opt/paradiseo/project-management/test/work-copy/nightly/trunk/paradiseo-peo
