@@ -65,6 +65,7 @@ class moRandImprSelect: public moMoveSelect < M >
     initial_fitness = _fitness;
     better_fitnesses.clear();
     better_moves.clear();
+    firstTime=true;
   }
 
   //! Function that updates the fitness and move vectors
@@ -78,14 +79,13 @@ class moRandImprSelect: public moMoveSelect < M >
   */
   bool update (const M & _move, const Fitness & _fitness)
   {
+    firstTime=false;
 
     if (_fitness > initial_fitness)
       {
 	better_fitnesses.push_back(_fitness);
 	better_moves.push_back(_move);
       }
-
-    return true;
   }
 
   //! The move selection
@@ -100,10 +100,14 @@ class moRandImprSelect: public moMoveSelect < M >
     unsigned int index;
     
     index=0;
-
+    
     if( (better_fitnesses.size()==0) || (better_moves.size()==0) )
       {
-	throw std::runtime_error("[moRandImprSelect.h]: no move or/and no fitness already saved, update has to be called first.");
+	if(firstTime)
+	  {
+	    throw std::runtime_error("[moRandImprSelect.h]: no move or/and no fitness already saved, update has to be called first.");
+	  }
+	return;
       }
 
     index = rng.random (better_fitnesses.size ());
@@ -122,6 +126,9 @@ class moRandImprSelect: public moMoveSelect < M >
 
   //! Candidate move vector.
   std::vector < M > better_moves;
+
+  //! Indicate if update has been called or not.
+  bool firstTime;
 };
 
 #endif

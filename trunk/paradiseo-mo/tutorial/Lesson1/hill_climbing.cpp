@@ -42,7 +42,7 @@ void manage_configuration_file(eoParser & _parser);
 int
 main (int _argc, char* _argv [])
 {
-  std::string instancePath;
+  std::string instancePath, selectionType;
   unsigned int seed;
 
   eoParser parser(_argc, _argv); 
@@ -51,6 +51,7 @@ main (int _argc, char* _argv [])
 
   seed=atoi( (parser.getParamWithLongName("seed")->getValue()).c_str() );
   instancePath=parser.getParamWithLongName("instancePath")->getValue();
+  selectionType=parser.getParamWithLongName("selectionType")->getValue();
 
   srand (seed);
   Graph::load(instancePath.c_str());
@@ -74,16 +75,33 @@ main (int _argc, char* _argv [])
 
   TwoOptIncrEval two_opt_incremental_evaluation;
 
-  //moFirstImprSelect <TwoOpt> two_opt_selection;
-  moBestImprSelect <TwoOpt> two_opt_selection;
-  //moRandImprSelect <TwoOpt> two_opt_selection;
+  moMoveSelect<TwoOpt>* two_opt_selection;
+
+  if(selectionType.compare("Best")==0)
+    {
+      two_opt_selection= new moBestImprSelect<TwoOpt>();
+    }
+  else if (selectionType.compare("First")==0)
+    {
+      two_opt_selection= new moFirstImprSelect<TwoOpt>();
+    }
+  else if (selectionType.compare("Random")==0)
+    {
+      two_opt_selection= new moRandImprSelect<TwoOpt>();
+    }
+  else
+    {
+      throw std::runtime_error("[hill_climbing.cpp]: the type of selection '"+selectionType+"' is not correct.");
+    }
 
   moHC <TwoOpt> hill_climbing (two_opt_initializer, two_opt_next_move_generator, two_opt_incremental_evaluation, 
-			       two_opt_selection, full_evaluation);
+			       *two_opt_selection, full_evaluation);
   hill_climbing (solution) ;
   
   std :: cout << "[To] " << solution << std :: endl;
   
+  delete(two_opt_selection);
+
   return EXIT_SUCCESS;
 }
 
@@ -95,6 +113,9 @@ manage_configuration_file(eoParser & _parser)
   _parser.getORcreateParam(std::string("../examples/tsp/benchs/berlin52.tsp"), "instancePath", "Path to the instance.", 
 			   0, "Configuration", false);
   _parser.getORcreateParam((unsigned int)time(0), "seed", "Seed for rand.", 0, "Configuration", false);
+
+  _parser.getORcreateParam(std::string("Best"), "selectionType", "Type of the selection: 'Best', 'First' or 'Random'.", 
+			   0, "Configuration", false);
 
   if (_parser.userNeedsHelp())
     {
