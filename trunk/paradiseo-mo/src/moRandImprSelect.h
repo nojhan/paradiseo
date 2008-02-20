@@ -86,6 +86,8 @@ class moRandImprSelect: public moMoveSelect < M >
 	better_fitnesses.push_back(_fitness);
 	better_moves.push_back(_move);
       }
+    
+    return true;
   }
 
   //! The move selection

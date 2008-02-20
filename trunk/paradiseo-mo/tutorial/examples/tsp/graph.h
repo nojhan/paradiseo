@@ -37,8 +37,13 @@
 #ifndef graph_h
 #define graph_h
 
+#include <string>
 #include <vector>
 #include <utility>
+#include <fstream>
+#include <iostream>
+#include <math.h>
+
 
 namespace Graph
 {
