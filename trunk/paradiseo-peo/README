@@ -61,19 +61,13 @@ structure:
        |
        +-- examples      TSP
        |
-       +-- Introduction  Technical introduction
-       |
        +-- Lesson1       Parallel evaluation for EA and PSO
        |
        +-- Lesson2       Parallel transformation (crossover + mutation) for EA
        |
        +-- Lesson3       Insular model for PSO and EA
        |
-       +-- Lesson4       PSO and EA completely parallel
-       |
-       +-- Lesson5       Hybridization
-       |
-       +-- Lesson6       Multi-start : several local searches
+       +-- Lesson4       Hybridization
 
 ===================================================================
               NOTES

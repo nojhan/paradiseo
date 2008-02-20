@@ -74,7 +74,7 @@ SET_TARGET_PROPERTIES(ea PROPERTIES VERSION "${LESSON1_VERSION}")
 ### 5) Link the librairies
 ######################################################################################
 
-TARGET_LINK_LIBRARIES(pso ${XML2_LIBS} peo rmc_mpi eo eoutils) 
-TARGET_LINK_LIBRARIES(ea ${XML2_LIBS} peo rmc_mpi eo eoutils)
+TARGET_LINK_LIBRARIES(pso ${XML2_LIBS} peo rmc_mpi eo eoutils peo) 
+TARGET_LINK_LIBRARIES(ea ${XML2_LIBS} peo rmc_mpi eo eoutils peo)
 
 ######################################################################################

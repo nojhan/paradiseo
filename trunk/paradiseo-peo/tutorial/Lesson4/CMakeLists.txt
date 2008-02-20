@@ -54,8 +54,6 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
-ADD_EXECUTABLE(lsea mainLSEA.cpp)
-ADD_DEPENDENCIES(lsea tsp peo rmc_mpi)
 ADD_EXECUTABLE(eals mainEALS.cpp)
 ADD_DEPENDENCIES(eals tsp peo rmc_mpi)
 
@@ -67,7 +65,6 @@ ADD_DEPENDENCIES(eals tsp peo rmc_mpi)
 ######################################################################################
 
 SET(LESSON4_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(lsea PROPERTIES VERSION "${LESSON4_VERSION}")
 SET_TARGET_PROPERTIES(eals PROPERTIES VERSION "${LESSON4_VERSION}")
 
 ######################################################################################
@@ -77,7 +74,6 @@ SET_TARGET_PROPERTIES(eals PROPERTIES VERSION "${LESSON4_VERSION}")
 ### 5) Link the librairies
 ######################################################################################
 
-TARGET_LINK_LIBRARIES(lsea ${XML2_LIBS} tsp peo rmc_mpi eo eoutils)
-TARGET_LINK_LIBRARIES(eals ${XML2_LIBS} tsp peo rmc_mpi eo eoutils)
+TARGET_LINK_LIBRARIES(eals ${XML2_LIBS} tsp peo rmc_mpi eo eoutils peo)
 
 ######################################################################################
