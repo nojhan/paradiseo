@@ -41,7 +41,7 @@ do
 		cd $PARADISEO_MO_DIR/build
 		
 		# Launch CTest for MO
-		cmake .. -Dconfig=$CMAKE_INSTALL_CONFIG -G$gen -DCMAKE_BUILD_TYPE=$MO_BUILD_TYPE -DENABLE_CMAKE_TESTING=TRUE >> $SPY
+		cmake .. -Dconfig=$CMAKE_INSTALL_CONFIG -G"$gen" -DCMAKE_BUILD_TYPE=$MO_BUILD_TYPE -DENABLE_CMAKE_TESTING=TRUE >> $SPY
 		ctest -D ContinuousUpdate -D ContinuousStart -D ContinuousBuild -D ContinuousCoverage  -D ContinuousTest -D ContinuousMemCheck -D ContinuousSubmit >> $SPY
 		
 		
@@ -51,7 +51,7 @@ do
 		cd $PARADISEO_MOEO_DIR/build
 		
 		# Launch CTest for MOEO
-		cmake .. -Dconfig=$CMAKE_INSTALL_CONFIG -G$gen -DCMAKE_BUILD_TYPE=$MOEO_BUILD_TYPE -DENABLE_CMAKE_TESTING=TRUE >> $SPY
+		cmake .. -Dconfig=$CMAKE_INSTALL_CONFIG -G"$gen" -DCMAKE_BUILD_TYPE=$MOEO_BUILD_TYPE -DENABLE_CMAKE_TESTING=TRUE >> $SPY
 		ctest -D ContinuousUpdate -D ContinuousStart -D ContinuousBuild -D ContinuousCoverage  -D ContinuousTest -D ContinuousMemCheck -D ContinuousSubmit >> $SPY
 		
 		
@@ -61,7 +61,7 @@ do
 		cd $PARADISEO_PEO_DIR/build
 		
 		# Launch CTest for PEO
-		cmake .. -Dconfig=$CMAKE_INSTALL_CONFIG -G$gen -DCMAKE_BUILD_TYPE=$PEO_BUILD_TYPE -DENABLE_CMAKE_TESTING=TRUE >> $SPY
+		cmake .. -Dconfig=$CMAKE_INSTALL_CONFIG -G"$gen" -DCMAKE_BUILD_TYPE=$PEO_BUILD_TYPE -DENABLE_CMAKE_TESTING=TRUE >> $SPY
 		ctest -D ContinuousUpdate -D ContinuousStart -D ContinuousBuild -D ContinuousCoverage  -D ContinuousTest -D ContinuousMemCheck -D ContinuousSubmit >> $SPY
 
 
