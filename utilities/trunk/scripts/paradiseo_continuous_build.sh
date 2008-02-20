@@ -17,6 +17,10 @@ GENERATOR_LIST="Unix_Makefiles KDevelop3"
 
 SLEEP_TIME=5400
 
+# export the ssh-agent variables
+export SSH_AUTH_SOCK=/tmp/ssh-NFkaL18206/agent.18206
+export SSH_AGENT_PID=18207
+
 while (true)
 do
 	for gen in $GENERATOR_LIST	
@@ -33,7 +37,7 @@ do
 		
 		# Launch CTest for EO
 		cmake .. -G"$gen" -DCMAKE_BUILD_TYPE=$EO_BUILD_TYPE -DENABLE_CMAKE_TESTING=TRUE >> $SPY
-		ctest -D ContinuousUpdate -D ContinuousStart -D ContinuousBuild -D ContinuousCoverage  -D ContinuousTest -D ContinuousMemCheck -D ContinuousSubmit >> $SPY
+		ctest -D ContinuousUpdate -D ContinuousStart -D ContinuousBuild -D ContinuousCoverage  -D ContinuousTest -D ContinuousMemCheck -D ContinuousSubmit -VV >> $SPY
 		
 
 		################  MO ##################################################
@@ -42,7 +46,7 @@ do
 		
 		# Launch CTest for MO
 		cmake .. -Dconfig=$CMAKE_INSTALL_CONFIG -G"$gen" -DCMAKE_BUILD_TYPE=$MO_BUILD_TYPE -DENABLE_CMAKE_TESTING=TRUE >> $SPY
-		ctest -D ContinuousUpdate -D ContinuousStart -D ContinuousBuild -D ContinuousCoverage  -D ContinuousTest -D ContinuousMemCheck -D ContinuousSubmit >> $SPY
+		ctest -D ContinuousUpdate -D ContinuousStart -D ContinuousBuild -D ContinuousCoverage  -D ContinuousTest -D ContinuousMemCheck -D ContinuousSubmit -VV >> $SPY
 		
 		
 		
@@ -52,7 +56,7 @@ do
 		
 		# Launch CTest for MOEO
 		cmake .. -Dconfig=$CMAKE_INSTALL_CONFIG -G"$gen" -DCMAKE_BUILD_TYPE=$MOEO_BUILD_TYPE -DENABLE_CMAKE_TESTING=TRUE >> $SPY
-		ctest -D ContinuousUpdate -D ContinuousStart -D ContinuousBuild -D ContinuousCoverage  -D ContinuousTest -D ContinuousMemCheck -D ContinuousSubmit >> $SPY
+		ctest -D ContinuousUpdate -D ContinuousStart -D ContinuousBuild -D ContinuousCoverage  -D ContinuousTest -D ContinuousMemCheck -D ContinuousSubmit -VV >> $SPY
 		
 		
 		
@@ -62,7 +66,7 @@ do
 		
 		# Launch CTest for PEO
 		cmake .. -Dconfig=$CMAKE_INSTALL_CONFIG -G"$gen" -DCMAKE_BUILD_TYPE=$PEO_BUILD_TYPE -DENABLE_CMAKE_TESTING=TRUE >> $SPY
-		ctest -D ContinuousUpdate -D ContinuousStart -D ContinuousBuild -D ContinuousCoverage  -D ContinuousTest -D ContinuousMemCheck -D ContinuousSubmit >> $SPY
+		ctest -D ContinuousUpdate -D ContinuousStart -D ContinuousBuild -D ContinuousCoverage  -D ContinuousTest -D ContinuousMemCheck -D ContinuousSubmit -VV >> $SPY
 
 
 		echo "*** END Generator=$gen" >> $SPY
