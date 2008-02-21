@@ -1,8 +1,13 @@
 ; ParadisEO install script
 ; Author: Thomas Legrand
 
-#define generatorWizardPageIndex= 7
+#define cmakeLookupWizardPageIndex= 8
+#define generatorWizardPageIndex= 8
+#define buildModeWizardPageIndex= 9
 #define launchBuildWizardPageIndex= 12
+
+#define ctestMemCheckDummyError= 16
+#define dartSubmissionError= 64
 
 //***************************************************************************************//
 //********** ParadisEO Specific strategy - The rest of the code is generic ************* //
@@ -12,13 +17,15 @@
 #define OutputPath="E:\software\paradisEO\windows installer\compiler output"
 
 // installer source info
-#define ParadiseoSourceTag="E:\software\paradisEO\repository\tags\paradiseo-ix86-1.0\*"
-#define EoTag="E:\software\eo\repository\tag_v_peo_1_0\*"
+//#define ParadiseoSourceTag="E:\software\paradisEO\repository\tags\paradiseo-ix86-1.0\*"
+//#define EoTag="E:\software\eo\repository\tag_v_peo_1_0\*"
+#define ParadiseoSourceTag="E:\software\paradisEO\repository\trunk\*"
+#define EoTag="E:\software\eo\repository\eo-ROOT\*"
 
 // installer description info
-#define Version="1.0"
-#define VersionMain="ParadisEO-ix86-1.0"
-#define InstallerName="paradiseo-1.0-win32-preinstaller"
+#define Version="1.1"
+#define VersionMain="ParadisEO-ix86-1.1"
+#define InstallerName="paradiseo-1.1-win32-preinstaller"
 #define ApplicationName="ParadisEO"
 #define SetupIconPath="E:\software\paradisEO\repository\utilities\trunk\windows\img\paradiseo.ico"
 #define WizardMainImage="E:\software\paradisEO\repository\utilities\trunk\windows\img\paradiseo.bmp"
@@ -60,7 +67,7 @@ VersionInfoCompany={#Company}
 VersionInfoDescription={#ApplicationName}
 VersionInfoTextVersion={#ApplicationName}
 InfoAfterFile={#FinalInstructions}
- 
+
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
@@ -73,19 +80,35 @@ english.EoDescription=EO: Evolving Objects: Library for evolutionnary computatio
 english.MoDescription=MO: Moving Objects: Single based metaheuristics computation
 english.MoeoDescription=MOEO: Multi Objective Evolving Objects
 english.ErrorOccured=An error has occured
-english.LaunchingBuildProcess=Launching CMake build process...
+english.LaunchingBuildProcess=Launching CMake build process and the compilation...
+english.LaunchingEOBuildProcess=Configuring ParadisEO-EO...
+english.LaunchingMOBuildProcess=Configuring ParadisEO-MO...
+english.LaunchingMOEOBuildProcess=Configuring ParadisEO-MOEO...
+english.LaunchingEOCompilation=Compiling ParadisEO-EO...
+english.LaunchingMOCompilation=Compiling ParadisEO-MO...
+english.LaunchingMOEOCompilation=Compiling ParadisEO-MOEO...
 english.error=Error
 english.ErrorAbort=Error,abort.
 english.CannotCompleteInstall=Impossible to complete the install of
 english.BPFinished=Finished
 english.BPSuccessfull=The build process has been successfully performed.
 english.SelectCompiler=Select the program you want to use to compile:
-english.ChooseGenerator=ParadisEO can be compiled using several generators.
-english.GenCMakeFiles=Generate CMake configuration files
-english.BuildProcess=
-english.NextGenCaption=Click on the 'Next' button to launch the build process and generate the configuration files
-english.ProcessingCMake=Generating the configuration files...
-english.DolphinMsg=ParadisEO: An INRIA Dolphin Team project - 2007
+english.ChooseGeneratorTitle=ParadisEO compilation
+english.ChooseGeneratorSubtitle=Compiler selection
+english.GenCMakeFiles=CMake configuration
+english.BuildProcess=CMake configuration files generation and compilation
+english.NextGenCaption=Click on the 'Next' button to launch CMake and compile ...
+english.ProcessingCMake=Configuration and compilation
+english.DolphinMsg=ParadisEO: An INRIA Dolphin Team project - Program developped by Thomas Legrand
+english.BuildMode=Build and compilation mode.
+english.SelectBuildMode=Please select the build and compilation mode:
+english.Recommended=(recommended)
+english.AcceptSendReport=I agree that the installation report will be sent to the DOLPHIN Team.
+english.NoInfoSend1=Neither personal information nor data refering your computer will be sent.
+english.NoInfoSend2=I could get a personalized and adapted support.
+english.PathToCMakeTitle=Path to CMake
+english.PathToCMakeSubTitle=CMake has not been found by the assistant. Please select the directory when CMake is installed on your computer
+english.CMakeNotFound=The CMake binaries cannot be found in this directory
 
 french.CMakeMissing=CMake n'a pas été détecté sur votre ordinateur. CMake doit être installé pour utiliser ParadisEO.
 french.FullInstall=Installation complète
@@ -94,19 +117,35 @@ french.EoDescription= EO: Evolving Objects: Librairie dédiée aux méthodes évolut
 french.MoDescription= MO: Moving Objects: Métaheuristiques à base de solutions uniques
 french.MoeoDescription= MOEO: Multi Objective Evolving Objects: Module multi-objectif
 french.ErrorOccured=Une erreur est survenue
-french.LaunchingBuildProcess=Construction des fichiers de configuration (build process)...
+french.LaunchingBuildProcess=Construction des fichiers de configuration...
+french.LaunchingEOBuildProcess=Configuration de ParadisEO-EO...
+french.LaunchingMOBuildProcess=Configuration de ParadisEO-MO...
+french.LaunchingMOEOBuildProcess=Configuration de ParadisEO-MOEO...
+french.LaunchingEOCompilation=Compilation de ParadisEO-EO...
+french.LaunchingMOCompilation=Compilation de ParadisEO-MO...
+french.LaunchingMOEOCompilation=Compilation de ParadisEO-MOEO..
 french.error=Erreur
 french.ErrorAbort=Une erreur est survenue, installation annulée.
 french.CannotCompleteInstall=Impossible de terminer l'installation de
 french.BPFinished=Fin de la construction des fichiers de configuration
 french.BPSuccessfull=Succès.
 french.SelectCompiler=Sélectionnez le programme que vous souhaitez utiliser pour compiler:
-french.ChooseGenerator=ParadisEO peut être compiler par plusieurs programmes.
-french.GenCMakeFiles=Générer les fichiers de configuration CMake
-french.BuildProcess=
-french.NextGenCaption=Cliquez sur le bouton 'Suivant' pour lancer CMake et générer les fichiers de configuration
-french.ProcessingCMake=Génération des fichiers de configuration en cours...
-french.DolphinMsg=ParadisEO: Un projet de l'équipe INRIA Dolphin - 2007
+french.ChooseGeneratorTitle=Compilation de ParadisEO
+french.ChooseGeneratorSubtitle=Selection du compilateur à utiliser
+french.GenCMakeFiles=Configuration CMake
+french.BuildProcess=Génération des fichiers de configuration CMake et compilation
+french.NextGenCaption=Cliquez sur le bouton 'Suivant' pour lancer CMake et compiler ...
+french.ProcessingCMake=Configuration et compilation
+french.DolphinMsg=ParadisEO: Un projet de l'équipe INRIA Dolphin - Programme réalisé par Thomas Legrand
+french.BuildMode=Choix du mode de compilation.
+french.SelectBuildMode=Veuillez sélectionner le type de compilation :
+french.Recommended=(recommandé)
+french.AcceptSendReport=Je souhaite que le rapport d'installation soit envoyé à l'équipe DOLPHIN.
+french.NoInfoSend1=Aucune information personnelle ou liée à mon poste de travail ne sera transmise.
+french.NoInfoSend2=Je pourrais bénéficier d'un support personnalisé et adapté.
+french.PathToCMakeTitle=Chemin vers CMake
+french.PathToCMakeSubTitle=CMake n'a pas été trouvé par l'assistant. Veuillez sélectionner le répertoire d'installation de CMake sur votre ordinateur
+french.CMakeNotFound=Les exécutables CMake sont introuvables dans ce répertoire
 
 [Types]
 Name: "custom"; Description: {cm:CustomInstall}; Flags: iscustom
@@ -122,23 +161,32 @@ Source: {#ParadiseoSourceTag}; DestDir: "{app}"; Excludes: {#SkipParadiseoFiles}
 Source: {#EoTag}; DestDir: "{app}";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
 
 ; SPECIFIC CORRECTION - EO TAG NOT MODIFIED, USED TRUNK SOURCES
-Source: E:\software\eo\repository\paradiseo-eo\CMakeLists.txt ; DestDir: "{app}\paradiseo-eo";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: E:\software\eo\repository\paradiseo-eo\src\utils\pipecom.h; DestDir: "{app}\paradiseo-eo\src\utils";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: E:\software\eo\repository\paradiseo-eo\src\utils\pipecom.cpp; DestDir: "{app}\paradiseo-eo\src\utils";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: E:\software\eo\repository\paradiseo-eo\src\eoCtrlCContinue.h; DestDir: "{app}\paradiseo-eo\src";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: E:\software\eo\repository\paradiseo-eo\src\eoCtrlCContinue.cpp; DestDir: "{app}\paradiseo-eo\src";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\eo-ROOT\paradiseo-eo\CMakeLists.txt ; DestDir: "{app}\paradiseo-eo";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\eo-ROOT\paradiseo-eo\src\utils\pipecom.h; DestDir: "{app}\paradiseo-eo\src\utils";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\eo-ROOT\paradiseo-eo\src\utils\pipecom.cpp; DestDir: "{app}\paradiseo-eo\src\utils";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\eo-ROOT\paradiseo-eo\src\eoCtrlCContinue.h; DestDir: "{app}\paradiseo-eo\src";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\eo-ROOT\paradiseo-eo\src\eoCtrlCContinue.cpp; DestDir: "{app}\paradiseo-eo\src";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
 
 
 [Code]
 var
   GeneratorPage: TWizardPage;
+  BuildModePage: TWizardPage;
   BuildProcessPage: TWizardPage;
+  CMakeLookupPage: TWizardPage;
   ProgressPage: TOutputProgressWizardPage;
   GeneratorBox: TNewCheckListBox;
+  BuildModeBox: TNewCheckListBox;
+  SendReportBox: TCheckBox;
   Generator: String;
+  CTestConfig: String;
+  CMakeBinDir: String;
   ProgressBarLabel: TLabel;
   ProgressBar: TNewProgressBar;
-
+  FolderTreeView: TFolderTreeView;
+  ConfigBitmapImage: TBitmapImage;
+  BitmapFileName: String;
+  CMakeAdditionalTags: String;
   
 procedure SetCmakeGenerator();
 begin
@@ -195,28 +243,61 @@ begin
 end;
 
 
-function isError(ErrorCode: Integer): Boolean;
+procedure SetCTestConfig();
+var
+  MinConfig: String;
+begin
+    MinConfig:=' -D ExperimentalStart -D ExperimentalBuild' ;
+
+     if BuildModeBox.Checked[1] then
+    begin
+            CTestConfig:= MinConfig;
+            CMakeAdditionalTags:= ' -DENABLE_CMAKE_TESTING=FALSE ';
+            exit;
+    end;
+    if BuildModeBox.Checked[2] then
+    begin
+            CTestConfig:=MinConfig + ' -D ExperimentalTest -D ExperimentalCoverage -D ExperimentalMemCheck' ;
+            CMakeAdditionalTags:= ' -DENABLE_CMAKE_TESTING=TRUE ';
+            exit;
+    end;
+    if SendReportBox.Checked then
+    begin
+            CTestConfig:=CTestConfig + ' -D ExperimentalSubmit' ;
+            exit;
+    end;
+end;
+
+function isError(ErrorCode: Integer; PrintMsgBox: Boolean): Boolean;
 begin
         if not (ErrorCode = 0) then
         begin
-          MsgBox(CustomMessage('ErrorOccured') + ': [code='+ IntToStr(ErrorCode) + ']' , mbCriticalError, mb_Ok);
+           if(ErrorCode = {#ctestMemCheckDummyError}) then begin
+            Result:= false;
+            exit;
+          end;
+           if(ErrorCode = {#dartSubmissionError}) then begin
+            Result:= false;
+            exit;
+          end;
+          
+          if(PrintMsgBox) then begin
+            MsgBox(CustomMessage('ErrorOccured') + ': [code='+ IntToStr(ErrorCode) + ']' , mbCriticalError, mb_Ok);
+          end;
           Result:= true;
+          
         end else begin
           Result:= false;
         end;
 end;
 
 
-function checkCMakeAvailable(): Integer;
+function checkCMakeAvailable(Path: String): Integer;
 var
   ErrorCode: Integer;
-  FilePath: String;
 begin
-    // Need the app path
-    FilePath := ExpandConstant('{app}');
-
    // launch CMake for MOEO
-   ShellExec('open', 'cmake.exe','','', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+   ShellExec('open', Path + 'cmake.exe','','', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
 
    Result:=  ErrorCode;
 end;
@@ -230,11 +311,24 @@ begin
     FilePath := ExpandConstant('{app}');
 
    // launch CMake for EO
-   ShellExec('open', 'cmake.exe', ' ..\' + ' -G"' + Generator + '"', FilePath +'\paradiseo-eo\build', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+   ShellExec('open', CMakeBinDir + 'cmake.exe', ' ..\' + ' -G"' + Generator + '"' + CMakeAdditionalTags, FilePath +'\paradiseo-eo\build', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
 
    Result:=  ErrorCode;
 end;
 
+function LaunchEOCompilation():Integer;
+var
+  ErrorCode: Integer;
+  FilePath: String;
+begin
+  // Need the app path
+    FilePath := ExpandConstant('{app}');
+
+   // launch CTest for EO
+   ShellExec('open', CMakeBinDir + 'ctest.exe',CTestConfig, FilePath +'\paradiseo-eo\build', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+
+   Result:=  ErrorCode;
+end;
 
 function LaunchMOBuildProcess(): Integer;
 var
@@ -244,8 +338,23 @@ begin
   // Need the app path
     FilePath := ExpandConstant('{app}');
 
-   // launch CMake for MOEO
-   ShellExec('open', 'cmake.exe', ' ..\' + ' -G"' + Generator + '"  -Dconfig="'+FilePath + '\install.cmake"', FilePath +'\paradiseo-mo\build', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+   // launch CMake for MO
+   ShellExec('open', CMakeBinDir + 'cmake.exe', ' ..\' + ' -G"' + Generator + '"  -Dconfig="'+FilePath + '\install.cmake"' + CMakeAdditionalTags, FilePath +'\paradiseo-mo\build', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+
+   Result:=  ErrorCode;
+end;
+
+
+function LaunchMOCompilation():Integer;
+var
+  ErrorCode: Integer;
+  FilePath: String;
+begin
+  // Need the app path
+    FilePath := ExpandConstant('{app}');
+
+   // launch CTest for MO
+   ShellExec('open', CMakeBinDir + 'ctest.exe',CTestConfig, FilePath +'\paradiseo-mo\build', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
 
    Result:=  ErrorCode;
 end;
@@ -260,11 +369,25 @@ begin
     FilePath := ExpandConstant('{app}');
 
    // launch CMake for MOEO
-   ShellExec('open', 'cmake.exe', ' ..\' + ' -G"' + Generator + '"  -Dconfig="'+FilePath + '\install.cmake"', FilePath +'\paradiseo-moeo\build', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+   ShellExec('open', CMakeBinDir + 'cmake.exe', ' ..\' + ' -G"' + Generator + '"  -Dconfig="'+FilePath + '\install.cmake"' + CMakeAdditionalTags, FilePath +'\paradiseo-moeo\build', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
 
    Result:=  ErrorCode;
 end;
 
+
+function LaunchMOEOCompilation():Integer;
+var
+  ErrorCode: Integer;
+  FilePath: String;
+begin
+  // Need the app path
+    FilePath := ExpandConstant('{app}');
+
+   // launch CTest for MOEO
+   ShellExec('open', CMakeBinDir +  'ctest.exe',CTestConfig, FilePath +'\paradiseo-moeo\build', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+
+   Result:=  ErrorCode;
+end;
 
 
 procedure updateProgressBar(StartFrom: Integer;ProgressPurcentage: Integer);
@@ -281,29 +404,21 @@ begin
 end;
 
 
-procedure CurStepChanged(CurStep: TSetupStep);
-begin
-  if CurStep = ssInstall then begin
-     if (isError(checkCMakeAvailable()))   then begin
-          MsgBox(CustomMessage('CMakeMissing'), mbCriticalError, mb_Ok);
-          Abort;
-    end;
-  end;
-end;
-
 function NextButtonClick(CurPageID: Integer): Boolean;
-var
-  I: Integer;
 begin
-  if (CurPageID = BuildProcessPage.ID)  then begin
+
+  if (CurPageID = BuildProcessPage.ID)  then
+  begin
        ProgressPage.SetText('',CustomMessage('LaunchingBuildProcess'));
        updateProgressBar(0,0);
        ProgressPage.Show;
 
        SetCmakeGenerator();
+       SetCTestConfig();
        updateProgressBar(0,5);
-
-         if (isError(launchEOBuildProcess())) then
+       //***************** EO *************************
+         ProgressPage.SetText('',CustomMessage('LaunchingEOBuildProcess'));
+         if (isError(launchEOBuildProcess(),true)) then
           begin
            ProgressPage.SetText(CustomMessage('Error'), CustomMessage('ErrorAbort'));
            MsgBox(CustomMessage('CannotCompleteInstall')+' ParadisEO-EO' , mbCriticalError, mb_Ok);
@@ -311,49 +426,110 @@ begin
            Result := True;
            exit;
          end;
-       updateProgressBar(5,50);
+       updateProgressBar(5,20);
 
-        if IsComponentSelected('mo') then
-         begin
-         if (isError(launchMOBuildProcess())) then
+        ProgressPage.SetText('',CustomMessage('LaunchingEOCompilation'));
+       if (isError(LaunchEOCompilation(),true)) then
           begin
-          ProgressPage.SetText(CustomMessage('Error'), CustomMessage('ErrorAbort'));
-            MsgBox(CustomMessage('CannotCompleteInstall')+' ParadisEO-MO' , mbCriticalError, mb_Ok);
+           ProgressPage.SetText(CustomMessage('Error'), CustomMessage('ErrorAbort'));
+           MsgBox(CustomMessage('CannotCompleteInstall')+' ParadisEO-EO' , mbCriticalError, mb_Ok);
            ProgressPage.Hide;
            Result := True;
            exit;
          end;
-        end;
-       updateProgressBar(50,80);
-
-       if IsComponentSelected('moeo') then
-        begin
-        if (isError(launchMOEOBuildProcess())) then
+       updateProgressBar(20,50);
+       
+       
+        //***************** MO *************************
+        if IsComponentSelected('mo') then
          begin
-         ProgressPage.SetText(CustomMessage('Error'), CustomMessage('ErrorAbort'));
-           MsgBox(CustomMessage('CannotCompleteInstall')+' ParadisEO-MOEO' , mbCriticalError, mb_Ok);
-          ProgressPage.Hide;
-          Result := True;
-          exit;
-        end;
-       end;
-       updateProgressBar(80,100);
+          ProgressPage.SetText('',CustomMessage('LaunchingMOBuildProcess'));
+          if (isError(launchMOBuildProcess(),true)) then
+           begin
+           ProgressPage.SetText(CustomMessage('Error'), CustomMessage('ErrorAbort'));
+             MsgBox(CustomMessage('CannotCompleteInstall')+' ParadisEO-MO' , mbCriticalError, mb_Ok);
+            ProgressPage.Hide;
+            Result := True;
+            exit;
+          end;
+          updateProgressBar(50,60);
 
-       ProgressPage.SetText(CustomMessage('BPFinished'), CustomMessage('BPSuccessfull'));
-       sleep(2000);
-       ProgressPage.Hide;
+           ProgressPage.SetText('',CustomMessage('LaunchingMOCompilation'));
+           if (isError(LaunchMOCompilation(),true)) then
+            begin
+             ProgressPage.SetText(CustomMessage('Error'), CustomMessage('ErrorAbort'));
+             MsgBox(CustomMessage('CannotCompleteInstall')+' ParadisEO-MO' , mbCriticalError, mb_Ok);
+             ProgressPage.Hide;
+             Result := True;
+             exit;
+           end;
+           updateProgressBar(60,80);
+         end else
+            updateProgressBar(50,60);
+            
+      //***************** MOEO *************************
+        if IsComponentSelected('moeo') then
+         begin
+          ProgressPage.SetText('',CustomMessage('LaunchingMOEOBuildProcess'));
+          if (isError(launchMOEOBuildProcess(),true)) then
+           begin
+           ProgressPage.SetText(CustomMessage('Error'), CustomMessage('ErrorAbort'));
+             MsgBox(CustomMessage('CannotCompleteInstall')+' ParadisEO-MOEO' , mbCriticalError, mb_Ok);
+            ProgressPage.Hide;
+            Result := True;
+            exit;
+          end;
+          updateProgressBar(60,75);
+
+           ProgressPage.SetText('',CustomMessage('LaunchingMOEOCompilation'));
+           if (isError(LaunchMOEOCompilation(),true)) then
+            begin
+             ProgressPage.SetText(CustomMessage('Error'), CustomMessage('ErrorAbort'));
+             MsgBox(CustomMessage('CannotCompleteInstall')+' ParadisEO-MOEO' , mbCriticalError, mb_Ok);
+             ProgressPage.Hide;
+             Result := True;
+             exit;
+           end;
+           updateProgressBar(75,100);
+         end else
+            updateProgressBar(60,100);
+            
+      ProgressPage.SetText(CustomMessage('BPFinished'), CustomMessage('BPSuccessfull'));
+      sleep(2000);
+      ProgressPage.Hide;
   end;
    Result := True;
 end;
 
 
+function Skeleton_NextButtonClick(Page: TWizardPage): Boolean;
+begin
+    { Get the Cmake directory provided by the user }
+     CMakeBinDir:= FolderTreeView.Directory + '\';
+     if isError(checkCMakeAvailable(CMakeBinDir),false) then  begin
+        MsgBox(CustomMessage('CMakeNotFound'), mbCriticalError, mb_Ok);
+        Result := False;
+     end else
+        Result := True;
+end;
 
 
 procedure CreateTheWizardPages;
 var
-   Lbl: TLabel;
+   Lbl1,Lbl2,Lbl3: TLabel;
 begin
-  GeneratorPage := CreateCustomPage({#generatorWizardPageIndex}, CustomMessage('ChooseGenerator'), '');
+
+  if (isError(checkCMakeAvailable(' '),False))   then begin
+       CMakeLookupPage := CreateCustomPage({#cmakeLookupWizardPageIndex},CustomMessage('PathToCMakeTitle'),CustomMessage('PathToCMakeSubtitle'));
+       FolderTreeView := TFolderTreeView.Create(CMakeLookupPage);
+       FolderTreeView.Width := CMakeLookupPage.SurfaceWidth;
+       FolderTreeView.Height := CMakeLookupPage.SurfaceHeight;
+       FolderTreeView.Parent := CMakeLookupPage.Surface;
+       FolderTreeView.Directory := '';
+       CMakeLookupPage.OnNextButtonClick := @Skeleton_NextButtonClick;
+  end;
+  
+  GeneratorPage := CreateCustomPage({#generatorWizardPageIndex}, CustomMessage('ChooseGeneratorTitle'), CustomMessage('ChooseGeneratorSubtitle'));
   GeneratorBox := TNewCheckListBox.Create(GeneratorPage);
   GeneratorBox.Top :=  ScaleY(0);
   GeneratorBox.Width := GeneratorPage.SurfaceWidth;
@@ -375,14 +551,55 @@ begin
   GeneratorBox.AddRadioButton('Borland', '', 0, False, True, nil);
   GeneratorBox.AddRadioButton('MSYS', '', 0, False, True, nil);
   GeneratorBox.AddRadioButton('Watcom WMake', '', 0, False, True, nil);
-  
+
+
   BuildProcessPage := CreateCustomPage({#launchBuildWizardPageIndex},CustomMessage('GenCMakeFiles'),CustomMessage('BuildProcess'));
 
-  Lbl := TLabel.Create(BuildProcessPage);
-  Lbl.Top := ScaleY(20);
-  Lbl.Caption :=CustomMessage('NextGenCaption');
-  Lbl.AutoSize := True;
-  Lbl.Parent := BuildProcessPage.Surface;
+  BuildModePage := CreateCustomPage({#buildModeWizardPageIndex}, CustomMessage('BuildMode'), '');
+  BuildModeBox := TNewCheckListBox.Create(BuildModePage);
+  BuildModeBox.Top :=  ScaleY(0);
+  BuildModeBox.Width := BuildModePage.SurfaceWidth;
+  BuildModeBox.Height := ScaleY(80);
+  BuildModeBox.BorderStyle := bsNone;
+  BuildModeBox.ParentColor := True;
+  BuildModeBox.MinItemHeight := WizardForm.TasksList.MinItemHeight;
+  BuildModeBox.ShowLines := False;
+  BuildModeBox.WantTabs := True;
+  BuildModeBox.Parent := BuildModePage.Surface;
+  BuildModeBox.AddGroup(CustomMessage('SelectBuildMode'), '', 0, nil);
+  BuildModeBox.AddRadioButton('Normal = Release ' + CustomMessage('Recommended'), '', 0, True, True, nil);
+  BuildModeBox.AddRadioButton('Debug', '', 0, False, True, nil);
+
+  SendReportBox := TCheckBox.Create(BuildModePage);
+  SendReportBox.Top :=  BuildModeBox.Top + BuildModeBox.Height + ScaleY(90);
+  SendReportBox.Width := BuildModePage.SurfaceWidth;
+  SendReportBox.Height := ScaleY(15);
+  SendReportBox.Caption := CustomMessage('AcceptSendReport');
+  SendReportBox.Checked := True;
+  SendReportBox.Parent := BuildModePage.Surface;
+  SendReportBox.Font.Size := 7;
+  
+  Lbl1 := TLabel.Create(BuildModePage);
+  Lbl1.Top := SendReportBox.Top + SendReportBox.Height + ScaleY(5);
+  Lbl1.Caption := CustomMessage('NoInfoSend1');
+  Lbl1.AutoSize := True;
+  Lbl1.Parent := BuildModePage.Surface;
+  Lbl1.Font.Size := 7 ;
+  Lbl1.Left := 15;
+  
+  Lbl2 := TLabel.Create(BuildModePage);
+  Lbl2.Top := Lbl1.Top + Lbl1.Height + ScaleY(5);
+  Lbl2.Caption := CustomMessage('NoInfoSend2');
+  Lbl2.AutoSize := True;
+  Lbl2.Parent := BuildModePage.Surface;
+  Lbl2.Font.Size := 7 ;
+  Lbl2.Left := 15;
+  
+  Lbl3 := TLabel.Create(BuildProcessPage);
+  Lbl3.Top := ScaleY(20);
+  Lbl3.Caption :=CustomMessage('NextGenCaption');
+  Lbl3.AutoSize := True;
+  Lbl3.Parent := BuildProcessPage.Surface;
 
   ProgressPage := CreateOutputProgressPage(CustomMessage('ProcessingCMake'),CustomMessage('BuildProcess'));
 end;
@@ -405,8 +622,6 @@ procedure InitializeWizard();
 var
   AboutButton, CancelButton: TButton;
   URLLabel: TNewStaticText;
-  BackgroundBitmapImage: TBitmapImage;
-  BackgroundBitmapText: TNewStaticText;
 begin
   CreateTheWizardPages;
   CancelButton := WizardForm.CancelButton;
