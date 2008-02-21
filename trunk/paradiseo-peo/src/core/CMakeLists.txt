@@ -26,7 +26,10 @@ SET (CORE_SOURCES 	peo_init.cpp
 					runner.cpp 
 					communicable.cpp 
 					topology.cpp 
-					ring_topo.cpp)
+					ring_topo.cpp
+					star_topo.cpp
+					random_topo.cpp
+					complete_topo.cpp)
 
 
 

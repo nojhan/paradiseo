@@ -335,6 +335,9 @@
 
 /* Cooperative island model */
 #include "core/ring_topo.h"
+#include "core/star_topo.h"
+#include "core/random_topo.h"
+#include "core/complete_topo.h"
 #include "peoData.h"
 #include "peoSyncIslandMig.h"
 #include "peoAsyncIslandMig.h"
