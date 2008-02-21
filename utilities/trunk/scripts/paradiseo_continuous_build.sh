@@ -76,7 +76,7 @@ do
 			touch ~/.mpd.conf >> $SPY
 			echo "MPD_SECRETWORD=hello-paradiseo" > ~/.mpd.conf
 			echo "secretword=kiss-paradiseo" >> ~/.mpd.conf 
-			chmod 600 >> $SPY
+			chmod 600 ~/.mpd.conf >> $SPY
 		fi	
 
 		# Launch CTest for PEO
