@@ -70,6 +70,15 @@ do
 		# Launch CMake for PEO
 		cd $PARADISEO_PEO_DIR/build
 		
+		if [ ! -f ~/.mpd.conf ] 
+		then
+			echo "No mpd.conf file in ~ . Goind to create one ..." >> $SPY
+			touch ~/.mpd.conf >> $SPY
+			echo "MPD_SECRETWORD=hello-paradiseo" > ~/.mpd.conf
+			echo "secretword=kiss-paradiseo" >> ~/.mpd.conf 
+			chmod 600 >> $SPY
+		fi	
+
 		# Launch CTest for PEO
 		cmake .. -Dconfig=$CMAKE_INSTALL_CONFIG -G"$gen" -DCMAKE_BUILD_TYPE=$PEO_BUILD_TYPE -DENABLE_CMAKE_TESTING=TRUE >> $SPY
 		ctest -D ContinuousUpdate -D ContinuousStart -D ContinuousBuild -D ContinuousCoverage  -D ContinuousTest -D ContinuousMemCheck -D ContinuousSubmit -VV >> $SPY
