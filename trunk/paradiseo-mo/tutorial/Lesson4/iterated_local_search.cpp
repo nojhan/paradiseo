@@ -94,8 +94,14 @@ manage_configuration_file(eoParser & _parser)
 {
   std::ofstream os;
 
-  _parser.getORcreateParam(std::string("../examples/tsp/benchs/berlin52.tsp"), "instancePath", "Path to the instance.", 
+#ifdef _MSVC
+  _parser.createParam(std::string("..\examples\tsp\benchs\berlin52.tsp"), "instancePath", "Path to the instance.", 
 			   0, "Configuration", false);
+#else
+  _parser.createParam(std::string("../examples/tsp/benchs/berlin52.tsp"), "instancePath", "Path to the instance.", 
+			   0, "Configuration", false);      
+#endif
+  
   _parser.getORcreateParam((unsigned int)time(0), "seed", "Seed for rand.", 0, "Configuration", false);
 
   _parser.getORcreateParam((unsigned int)1000, "maxIter", "Maximum number of iterations.", 0, "Configuration", false);

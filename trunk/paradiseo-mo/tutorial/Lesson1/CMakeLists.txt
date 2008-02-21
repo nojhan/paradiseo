@@ -30,7 +30,7 @@ ENDIF(NOT WIN32 OR CYGWIN)
 
 # especially for Visual Studio
 IF(WIN32 AND NOT CYGWIN)  
-  	LINK_DIRECTORIES(${EO_BIN_DIR}\\lib\\${CMAKE_BUILD_TYPE})
+  LINK_DIRECTORIES(${EO_BIN_DIR}\\lib\\${CMAKE_BUILD_TYPE})
 ENDIF(WIN32 AND NOT CYGWIN) 
 
 ######################################################################################

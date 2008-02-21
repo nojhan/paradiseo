@@ -12,7 +12,7 @@ INCLUDE_DIRECTORIES(${TSP_SRC_DIR})
 
 ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-MO_SOURCE_DIR}/tutorial/Lesson4/param )
 
-ADD_CUSTOM_COMMAND(
+  ADD_CUSTOM_COMMAND(
     TARGET install
     POST_BUILD
     COMMAND ${CMAKE_COMMAND}
@@ -30,7 +30,7 @@ ENDIF(NOT WIN32 OR CYGWIN)
 
 # especially for Visual Studio
 IF(WIN32 AND NOT CYGWIN)  
-  	LINK_DIRECTORIES(${EO_BIN_DIR}\\lib\\${CMAKE_BUILD_TYPE})
+  LINK_DIRECTORIES(${EO_BIN_DIR}\\lib\\${CMAKE_BUILD_TYPE})
 ENDIF(WIN32 AND NOT CYGWIN) 
 
 ######################################################################################

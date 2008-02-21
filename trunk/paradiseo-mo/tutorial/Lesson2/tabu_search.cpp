@@ -117,15 +117,21 @@ manage_configuration_file(eoParser & _parser)
 {
   std::ofstream os;
 
-  _parser.getORcreateParam(std::string("../examples/tsp/benchs/berlin52.tsp"), "instancePath", "Path to the instance.", 
+#ifdef _MSVC
+  _parser.createParam(std::string("..\examples\tsp\benchs\berlin52.tsp"), "instancePath", "Path to the instance.", 
 			   0, "Configuration", false);
-  _parser.getORcreateParam((unsigned int)time(0), "seed", "Seed for rand.", 0, "Configuration", false);
+#else
+  _parser.createParam(std::string("../examples/tsp/benchs/berlin52.tsp"), "instancePath", "Path to the instance.", 
+			   0, "Configuration", false);      
+#endif
 
-  _parser.getORcreateParam((unsigned int)10, "tabuListSize", "Size of the tabu list.", 0, "Configuration", false);
+  _parser.createParam((unsigned int)time(0), "seed", "Seed for rand.", 0, "Configuration", false);
 
-  _parser.getORcreateParam((unsigned int)1000, "maxIter", "Maximum number of iterations.", 0, "Configuration", false);
+  _parser.createParam((unsigned int)10, "tabuListSize", "Size of the tabu list.", 0, "Configuration", false);
 
-  _parser.getORcreateParam(std::string("TwoOpt"), "tabuListType", "Type of the tabu list: 'TwoOpt', 'SimpleMove' or 'SimpleSolution'.", 
+  _parser.createParam((unsigned int)1000, "maxIter", "Maximum number of iterations.", 0, "Configuration", false);
+
+  _parser.createParam(std::string("TwoOpt"), "tabuListType", "Type of the tabu list: 'TwoOpt', 'SimpleMove' or 'SimpleSolution'.", 
 			   0, "Configuration", false);
 
   if (_parser.userNeedsHelp())
