@@ -1,11 +1,4 @@
-SET(CMAKE_DEFAULT_BUILD_TYPE Debug CACHE STRING "Variable that stores the default CMake build type" FORCE)
-SET(CMAKE_CXX_FLAGS "-O0 -g")
-SET(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
-SET(CMAKE_CXX_FLAGS_RELEASE "-O0 -g")
-SET(CMAKE_CXX_FLAGS_MINSIZEREL "-O0 -g")
-SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O0 -g")
 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XML2_CFLAGS}")
 ######################################################################################
 ### 0) Set the compiler
 ######################################################################################
@@ -20,10 +13,9 @@ SET (CMAKE_CXX_COMPILER mpicxx)
 ######################################################################################
 
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
-#INCLUDE_DIRECTORIES(${XML2_CFLAGS_WITH_WHITESPACE})
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${XML2_CFLAGS}")
 
 ######################################################################################
-
 
 
 ######################################################################################
@@ -54,21 +46,11 @@ ADD_DEPENDENCIES(rmc_mpi peo)
 ######################################################################################
 
 
-
 ######################################################################################
 ### 3) Optionnal: define your lib version: 
 ######################################################################################
 
 SET(RMC_MPI_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(rmc_mpi PROPERTIES VERSION "${RMC_MPI_VERSION}")
-######################################################################################
-
-
-######################################################################################
-### 4) Link the librairies for your target(s)
-######################################################################################
-
-# No library required
-
 ######################################################################################
 
