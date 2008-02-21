@@ -31,6 +31,12 @@ do
 		gen=`echo "$gen" | sed s/_/\ /g`
 		echo "*** BEGIN Generator=$gen" >> $SPY
 
+		### Remove build dirs content #########################################
+		rm -Rf $PARADISEO_EO_DIR/build/CMakeCache.txt
+		rm -Rf $PARADISEO_MO_DIR/build/CMakeCache.txt
+		rm -Rf $PARADISEO_MOEO_DIR/build/CMakeCache.txt
+		rm -Rf $PARADISEO_PEO_DIR/build/CMakeCache.txt
+
 		################  EO ##################################################
 		# Launch CMake for EO
 		cd $PARADISEO_EO_DIR/build
