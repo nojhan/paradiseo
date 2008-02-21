@@ -186,7 +186,7 @@ template< class  TYPESELECT, class TYPEREPLACE> void peoAsyncIslandMig< TYPESELE
 template< class TYPESELECT , class TYPEREPLACE> void peoAsyncIslandMig< TYPESELECT , TYPEREPLACE > :: operator()()
 {
 
-  if (cont.check())
+  if (! cont.check())
     {
 
       emigrate();	

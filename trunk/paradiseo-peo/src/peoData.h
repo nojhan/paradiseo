@@ -74,7 +74,7 @@ template < class EOT> class eoContinuator : public continuator
     {}
 
 	//! @brief Virtual function of check
-	//! @return true if the algorithm must continue
+	//! @return false if the algorithm must continue
     virtual bool check()
     {
       return cont(pop);

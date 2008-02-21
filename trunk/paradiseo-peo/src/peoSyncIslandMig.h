@@ -203,7 +203,7 @@ template< class TYPESELECT, class TYPEREPLACE > void peoSyncIslandMig< TYPESELEC
 template< class TYPESELECT, class TYPEREPLACE > void peoSyncIslandMig< TYPESELECT , TYPEREPLACE > :: operator()()
 {
 
-  if ( cont.check() )
+  if (! cont.check() )
     {
       explicitPassive = standbyMigration = false;
       topology.setNeighbors( this, in, out );
