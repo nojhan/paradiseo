@@ -37,18 +37,23 @@
 #ifndef graph_h
 #define graph_h
 
+#include <string>
 #include <vector>
 #include <utility>
+#include <fstream>
+#include <iostream>
+#include <math.h>
+
 
 namespace Graph
-  {
-  void load (const char * __file_name) ;
+{
+  void load (const char * _file_name) ;
   /* Loading cities
      (expressed by their coordinates)
      from the given file name */
-
-  float distance (unsigned int __from, unsigned int __to) ;
-
+  
+  float distance (unsigned int _from, unsigned int _to) ;
+  
   unsigned int size () ; // How many cities ?
 }
 

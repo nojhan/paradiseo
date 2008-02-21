@@ -34,10 +34,6 @@
 *
 */
 
-#include <fstream>
-#include <iostream>
-#include <math.h>
-
 #include "graph.h"
 
 using std::cout;
