@@ -15,6 +15,10 @@ PEO_BUILD_TYPE=Debug
 
 GENERATOR_LIST="Unix_Makefiles KDevelop3"
 
+# export the ssh-agent variables
+export SSH_AUTH_SOCK=/tmp/ssh-NFkaL18206/agent.18206
+export SSH_AGENT_PID=18207
+
 for gen in $GENERATOR_LIST	
 do
 	DATE=`/bin/date '+%Y%m%d%H%M%S'`
@@ -23,6 +27,13 @@ do
 	gen=`echo "$gen" | sed s/_/\ /g`
 	echo "*** BEGIN Generator=$gen" >> $SPY
 	
+
+	### Remove build dirs content #########################################
+	rm -Rf $PARADISEO_EO_DIR/build/CMakeCache.txt
+	rm -Rf $PARADISEO_MO_DIR/build/CMakeCache.txt
+	rm -Rf $PARADISEO_MOEO_DIR/build/CMakeCache.txt
+	rm -Rf $PARADISEO_PEO_DIR/build/CMakeCache.txt
+
 	################  EO ##################################################
 	# Launch CMake for EO
 	cd $PARADISEO_EO_DIR/build
