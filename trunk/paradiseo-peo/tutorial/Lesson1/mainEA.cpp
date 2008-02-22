@@ -1,7 +1,7 @@
 /*
 * <main.cpp>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, INRIA, 2007
+* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
+* (C) OPAC Team, INRIA, 2008
 *
 * Clive Canape
 *
@@ -40,7 +40,6 @@
 typedef eoReal<double> Indi;
 
 //Evaluation function
-
 double f (const Indi & _indi)
 {
   // Rosenbrock function f(x) = 100*(x[1]-x[0]^2)^2+(1-x[0])^2
@@ -56,20 +55,19 @@ double f (const Indi & _indi)
 int main (int __argc, char *__argv[])
 {
 
-
 // Initialization of the parallel environment : thanks this instruction, ParadisEO-PEO can initialize himself
   peo :: init( __argc, __argv );
 
 //Parameters
-
-  const unsigned int VEC_SIZE = 2;  // Don't change this parameter when you are resolving the Rosenbrock function
-  const unsigned int POP_SIZE = 20; // As with a sequential algorithm, you change the size of the population
-  const unsigned int MAX_GEN = 300; // Define the number of maximal generation
-  const double INIT_POSITION_MIN = -2.0;  // For initialize x
-  const double INIT_POSITION_MAX = 2.0;   // In the case of the Rosenbrock function : -2 < x[i] < 2
-  const float CROSS_RATE = 0.8; // Crossover rate
-  const double EPSILON = 0.01;  // Range for real uniform mutation
-  const float MUT_RATE = 0.3;   // Mutation rate
+  eoParser parser(__argc, __argv);
+  unsigned int POP_SIZE = parser.createParam((unsigned int)(20), "popSize", "Population size",'P',"Param").value();
+  unsigned int MAX_GEN = parser.createParam((unsigned int)(100), "maxGen", "Maximum number of generations",'G',"Param").value();
+  double EPSILON = parser.createParam(0.01, "mutEpsilon", "epsilon for mutation",'e',"Param").value();
+  double CROSS_RATE = parser.createParam(0.25, "pCross", "Crossover probability",'C',"Param").value();
+  double MUT_RATE = parser.createParam(0.35, "pMut", "Mutation probability",'M',"Param").value();
+  unsigned int VEC_SIZE = parser.createParam((unsigned int)(2), "vecSize", "Vector size",'V',"Param").value();  
+  double INIT_POSITION_MIN = parser.createParam(-2.0, "pMin", "Init position min",'N',"Param").value();
+  double INIT_POSITION_MAX = parser.createParam(2.0, "pMax", "Init position max",'X',"Param").value();
   rng.reseed (time(0));
 
 // Stopping
@@ -78,10 +76,8 @@ int main (int __argc, char *__argv[])
   eoCheckPoint<Indi> checkpoint(continuatorPara);
 
 // For a parallel evaluation
-
   peoEvalFunc<Indi> plainEval(f);
   peoPopEval <Indi> eval(plainEval);
-
 
 // Initialization
   eoUniformGenerator < double >uGen (INIT_POSITION_MIN, INIT_POSITION_MAX);
@@ -92,8 +88,8 @@ int main (int __argc, char *__argv[])
   eoSelectNumber<Indi> select(selectionStrategy,POP_SIZE);
 
 // Transformation
-  eoSegmentCrossover<Indi> crossover; // Crossover
-  eoUniformMutation<Indi>  mutation(EPSILON);  // Mutation
+  eoSegmentCrossover<Indi> crossover; 
+  eoUniformMutation<Indi>  mutation(EPSILON);
   eoSGATransform<Indi> transform(crossover,CROSS_RATE,mutation,MUT_RATE);
 
 // Replacement

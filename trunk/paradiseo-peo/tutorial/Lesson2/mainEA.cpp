@@ -1,7 +1,7 @@
 /*
 * <main.cpp>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, INRIA, 2007
+* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
+* (C) OPAC Team, INRIA, 2008
 *
 * Clive Canape
 *
@@ -52,14 +52,15 @@ int main (int __argc, char *__argv[])
 {
 
   peo :: init( __argc, __argv );
-  const unsigned int VEC_SIZE = 2;
-  const unsigned int POP_SIZE = 20;
-  const unsigned int MAX_GEN = 300;
-  const double INIT_POSITION_MIN = -2.0;
-  const double INIT_POSITION_MAX = 2.0;
-  const float CROSS_RATE = 0.8;
-  const double EPSILON = 0.01;
-  const float MUT_RATE = 0.3;
+  eoParser parser(__argc, __argv);
+  unsigned int POP_SIZE = parser.createParam((unsigned int)(20), "popSize", "Population size",'P',"Param").value();
+  unsigned int MAX_GEN = parser.createParam((unsigned int)(100), "maxGen", "Maximum number of generations",'G',"Param").value();
+  double EPSILON = parser.createParam(0.01, "mutEpsilon", "epsilon for mutation",'e',"Param").value();
+  double CROSS_RATE = parser.createParam(0.25, "pCross", "Crossover probability",'C',"Param").value();
+  double MUT_RATE = parser.createParam(0.35, "pMut", "Mutation probability",'M',"Param").value();
+  unsigned int VEC_SIZE = parser.createParam((unsigned int)(2), "vecSize", "Vector size",'V',"Param").value();  
+  double INIT_POSITION_MIN = parser.createParam(-2.0, "pMin", "Init position min",'N',"Param").value();
+  double INIT_POSITION_MAX = parser.createParam(2.0, "pMax", "Init position max",'X',"Param").value();
   rng.reseed (time(0));
   eoGenContinue < Indi > genContPara (MAX_GEN);
   eoCombinedContinue <Indi> continuatorPara (genContPara);
@@ -73,6 +74,7 @@ int main (int __argc, char *__argv[])
   eoSegmentCrossover<Indi> crossover;
   eoUniformMutation<Indi>  mutation(EPSILON);
 
+// Parallel transformation
   peoTransform<Indi> transform(crossover,CROSS_RATE,mutation,MUT_RATE);
 
   eoPlusReplacement<Indi> replace;
@@ -82,6 +84,7 @@ int main (int __argc, char *__argv[])
   peoWrapper parallelEA( eaAlg, pop);
   eval.setOwner(parallelEA);
 
+// setOwner
   transform.setOwner (parallelEA);
 
   peo :: run();

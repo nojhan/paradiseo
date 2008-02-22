@@ -1,7 +1,7 @@
 /*
 * <main.cpp>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, INRIA, 2007
+* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
+* (C) OPAC Team, INRIA, 2008
 *
 * Clive Canape
 *
@@ -39,7 +39,6 @@
 typedef eoRealParticle < double >Indi;
 
 //Evaluation function
-
 double f (const Indi & _indi)
 {
   // Rosenbrock function f(x) = 100*(x[1]-x[0]^2)^2+(1-x[0])^2
@@ -55,34 +54,28 @@ double f (const Indi & _indi)
 int main (int __argc, char *__argv[])
 {
 
-
 // Initialization of the parallel environment : thanks this instruction, ParadisEO-PEO can initialize himself
   peo :: init( __argc, __argv );
 
 //Parameters
-
-  const unsigned int VEC_SIZE = 2;  // Don't change this parameter when you are resolving the Rosenbrock function
-
-  const unsigned int POP_SIZE = 20; // As with a sequential algorithm, you change the size of the population
-
-  const unsigned int NEIGHBORHOOD_SIZE= 6; // This parameter define the neighborhoods in the PSO's topology
-
-  const unsigned int MAX_GEN = 150; // Define the number of maximal generation
-
-  const double INIT_POSITION_MIN = -2.0;  // For initialize x
-  const double INIT_POSITION_MAX = 2.0;   // In the case of the Rosenbrock function : -2 < x[i] < 2
-  const double INIT_VELOCITY_MIN = -1.;
-  const double INIT_VELOCITY_MAX = 1.;
-  const double weight = 1;
-  const double C1 = 0.5;
-  const double C2 = 2.;
+  eoParser parser(__argc, __argv);
+  unsigned int POP_SIZE = parser.createParam((unsigned int)(20), "popSize", "Population size",'P',"Param").value();
+  unsigned int MAX_GEN = parser.createParam((unsigned int)(100), "maxGen", "Maximum number of generations",'G',"Param").value();
+  unsigned int VEC_SIZE = parser.createParam((unsigned int)(2), "vecSize", "Vector size",'V',"Param").value();  
+  double INIT_POSITION_MIN = parser.createParam(-2.0, "pMin", "Init position min",'N',"Param").value();
+  double INIT_POSITION_MAX = parser.createParam(2.0, "pMax", "Init position max",'X',"Param").value();
+  double INIT_VELOCITY_MIN = parser.createParam(-1.0, "vMin", "Init velocity min",'n',"Param").value();
+  double INIT_VELOCITY_MAX = parser.createParam(1.0, "vMax", "Init velocity max",'x',"Param").value();
+  double weight = parser.createParam(1.0, "weight", "Weight",'w',"Param").value();
+  double C1 = parser.createParam(0.5, "c1", "C1",'1',"Param").value();
+  double C2 = parser.createParam(2.0, "c2t", "C2",'2',"Param").value();
+  unsigned int NEIGHBORHOOD_SIZE = parser.createParam((unsigned int)(6), "neighSize", "Neighborhood size",'H',"Param").value();
   rng.reseed (time(0));
 
 // Stopping
   eoGenContinue < Indi > genContPara (MAX_GEN);
   eoCombinedContinue <Indi> continuatorPara (genContPara);
   eoCheckPoint<Indi> checkpoint(continuatorPara);
-
 
 // For a parallel evaluation
   peoEvalFunc<Indi, double, const Indi& > plainEval(f);
@@ -107,7 +100,7 @@ int main (int __argc, char *__argv[])
   eoPop < Indi > pop;
   pop.append (POP_SIZE, random);
 
-// Topology (ie Lesson 6 of ParadisEO-PEO)
+// Topology
   eoLinearTopology<Indi> topology(NEIGHBORHOOD_SIZE);
   eoRealVectorBounds bnds(VEC_SIZE,INIT_VELOCITY_MIN,INIT_VELOCITY_MAX);
   eoStandardVelocity < Indi > velocity (topology,weight,C1,C2,bnds);
