@@ -25,7 +25,7 @@
 // installer description info
 #define Version="1.1"
 #define VersionMain="ParadisEO-ix86-1.1"
-#define InstallerName="paradiseo-1.1-win32-preinstaller"
+#define InstallerName="paradiseo-1.1-win32-installer"
 #define ApplicationName="ParadisEO"
 #define SetupIconPath="E:\software\paradisEO\repository\utilities\trunk\windows\img\paradiseo.ico"
 #define WizardMainImage="E:\software\paradisEO\repository\utilities\trunk\windows\img\paradiseo.bmp"
@@ -66,7 +66,6 @@ VersionInfoVersion={#Version}
 VersionInfoCompany={#Company}
 VersionInfoDescription={#ApplicationName}
 VersionInfoTextVersion={#ApplicationName}
-InfoAfterFile={#FinalInstructions}
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -184,8 +183,6 @@ var
   ProgressBarLabel: TLabel;
   ProgressBar: TNewProgressBar;
   FolderTreeView: TFolderTreeView;
-  ConfigBitmapImage: TBitmapImage;
-  BitmapFileName: String;
   CMakeAdditionalTags: String;
   
 procedure SetCmakeGenerator();
@@ -282,7 +279,7 @@ begin
           end;
           
           if(PrintMsgBox) then begin
-            MsgBox(CustomMessage('ErrorOccured') + ': [code='+ IntToStr(ErrorCode) + ']' , mbCriticalError, mb_Ok);
+            MsgBox(CustomMessage('ErrorOccured') + ': [code='+ IntToStr(ErrorCode) + ']' + ' [' + SysErrorMessage(ErrorCode) + ']' , mbCriticalError, mb_Ok);
           end;
           Result:= true;
           
@@ -297,10 +294,12 @@ var
   ErrorCode: Integer;
 begin
    // launch CMake for MOEO
-   ShellExec('open', Path + 'cmake.exe','','', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+   ShellExec('open', Path + 'cmake.exe','','', SW_SHOWMINIMIZED, ewWaitUntilTerminated, ErrorCode);
 
    Result:=  ErrorCode;
 end;
+
+
 
 function LaunchEOBuildProcess():Integer;
 var
@@ -507,6 +506,14 @@ begin
     { Get the Cmake directory provided by the user }
      CMakeBinDir:= FolderTreeView.Directory + '\';
      if isError(checkCMakeAvailable(CMakeBinDir),false) then  begin
+          CMakeBinDir:= FolderTreeView.Directory + '\' + 'bin\';
+          if isError(checkCMakeAvailable(CMakeBinDir),false) then  begin
+             MsgBox(CustomMessage('CMakeNotFound'), mbCriticalError, mb_Ok);
+             Result := False;
+             exit;
+         end else
+             Result := True;   exit;
+        
         MsgBox(CustomMessage('CMakeNotFound'), mbCriticalError, mb_Ok);
         Result := False;
      end else
@@ -519,7 +526,7 @@ var
    Lbl1,Lbl2,Lbl3: TLabel;
 begin
 
-  if (isError(checkCMakeAvailable(' '),False))   then begin
+  if (isError(checkCMakeAvailable(''),False))   then begin
        CMakeLookupPage := CreateCustomPage({#cmakeLookupWizardPageIndex},CustomMessage('PathToCMakeTitle'),CustomMessage('PathToCMakeSubtitle'));
        FolderTreeView := TFolderTreeView.Create(CMakeLookupPage);
        FolderTreeView.Width := CMakeLookupPage.SurfaceWidth;
