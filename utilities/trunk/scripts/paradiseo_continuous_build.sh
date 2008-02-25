@@ -15,8 +15,6 @@ PEO_BUILD_TYPE=Debug
 
 GENERATOR_LIST="Unix_Makefiles KDevelop3"
 
-SLEEP_TIME=5400
-
 # export the ssh-agent variables
 export SSH_AUTH_SOCK=/tmp/ssh-NFkaL18206/agent.18206
 export SSH_AGENT_PID=18207
@@ -87,6 +85,5 @@ do
 		echo "*** END Generator=$gen" >> $SPY
 	done
 
-	sleep $SLEEP_TIME
 done
 
