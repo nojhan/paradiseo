@@ -1,0 +1,7 @@
+
+
+PARADISEO (PARallel and DIStributed Evolving Objects) is a white-box object-oriented framework dedicated to the flexible design of metaheursitics. Based on EO, this template-based, ANSI-C++ compliant computation library is portable across both Windows system and sequential platforms (Unix, Linux, MacOS, etc.).
+
+WEBSITE: http://paradiseo.gforge.inria.fr
+
+

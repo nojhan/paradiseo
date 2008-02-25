@@ -1,0 +1,89 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage{epsf}
+\usepackage{amssymb}
+\usepackage{here}
+\usepackage{comment}
+\usepackage{graphicx}
+
+\topmargin -2.5cm
+\textheight 25,5cm
+\textwidth 16cm
+\oddsidemargin 0cm
+\evensidemargin 0cm
+
+
+
+\begin{document}
+
+\textbf{ParadisEO Practices}  {\copyright Franck Seynhaeve,
+Jean-Charles Boisson, Thomas Legrand} \Large{\textbf{\\\\
+Lesson 4: Implement a simulated annealing using ParadisEO}}
+
+\normalsize
+
+\vspace{-0,3cm}
+
+\section{Example}
+
+    The archive {\tt paradiseo\_practices\_0208.tgz} installed
+    on your computer contains a simulated annealing implemented using ParadisEO-MO~
+    (see {\tt simulated\_annealing} in the {\bf build/lesson4} directory).
+
+    \medskip
+    To run it, please go in {\bf build/lesson4} and start the program {\tt simulated\_annealing} by giving
+    one of the TSP instances located in {\bf tsp/benchs}.
+
+
+    \medskip
+    When entering {\tt ./simulated\_annealing ../../tsp/benchs/berlin52.tsp}, you should end up with the
+    following outputs:
+
+    \smallskip
+    \noindent
+    \texttt{>> Loading [../tsp/benchs/berlin52.tsp]}\\
+    \texttt{[From] -29414  52 1 20 40 48 9 27 13 22 5 28 24 29 21 26 44 38 33 37 45 31 42 18 12 3 14}\\
+    \texttt{36 30 6 51 32 17 11 0 34 4 10 4350 16 2 23 35 19 46 49 39 25 15 41 8 7 47}\\
+    \texttt{[To] -8724  52 1 6 41 29 22 19 49 15 28 46 13 51 12 25 26 27 11 10 50 32 42 9 8 7 40 18}\\
+    \texttt{44 2 16 20 30 17 21 0 31 48 35 3438 39 37 36 33 43 45 24 3 5 4 14 23
+    47} \\
+
+    The printed-out results show for the initial best solution and the final one~:
+    \\ \hspace*{1cm}-the length of the route
+    \\ \hspace*{1cm}-the number of cities
+    \\ \hspace*{1cm}-the route itself (notice that the city index starts from 0).
+
+
+\section{Study the simulated annealing dedicated components}
+
+    Study the {\tt simulated\_annealing.cpp} file located in the {\bf lesson4} directory
+    using~:
+    \begin{itemize}
+       \item[$\bullet$] the ParadisEO-MO API documentation available at~:
+
+       \hspace{1cm}http$\,:$//paradiseo.gforge.inria.fr/addon/paradiseo-mo/doc/index.html
+       \item[$\bullet$] the source files located in the {\bf tsp/src/} directory
+    \end{itemize}
+
+\section{Customize the simulated annealing}
+
+   Make a backup (copy) of the cpp file {\tt simulated\_annealing.cpp}. You can now modify the
+   original {\tt simulated\_annealing.cpp} and use the existing makefiles to compile it.
+
+     Edit and modify the {\tt simulated\_annealing.cpp} file~:
+    \begin{itemize}
+       \item[$\bullet$] Change the cooling schedule components and parameters.
+       \item[$\bullet$] Customize the temperature decrease process and try to obtain another good solution.
+    \end{itemize}
+
+    \smallskip
+    To compile {\tt simulated\_annealing.cpp},you should use the
+    command {\tt make} from {\bf build/lesson4}.
+
+    \medskip
+    Finally, test your modifications on several TSP instances ({\tt berlin52},
+    {\tt eil101} ...) and compare the results you get.
+
+
+\end{document}

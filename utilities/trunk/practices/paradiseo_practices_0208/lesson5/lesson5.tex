@@ -1,0 +1,93 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage{epsf}
+\usepackage{amssymb}
+\usepackage{here}
+\usepackage{comment}
+\usepackage{graphicx}
+
+\topmargin -2.5cm
+\textheight 25,5cm
+\textwidth 16cm
+\oddsidemargin 0cm
+\evensidemargin 0cm
+
+
+\begin{document}
+
+\textbf{ParadisEO Practices}  {\copyright Franck Seynhaeve,
+Jean-Charles Boisson, Thomas Legrand} \Large{\textbf{\\\\
+Lesson 5: Implement a genetic algorithm using ParadisEO}}
+
+\normalsize
+
+ \vspace{-0,3cm}
+
+\section{Example}
+
+    The archive {\tt paradiseo\_practices\_0208.tgz} installed
+    on your computer contains a genetic algorithm implemented using ParadisEO-EO~
+    (see {\tt gen\_algo} in the {\bf build/lesson5} directory).
+
+    \medskip
+    To run it, please go in {\bf build/lesson5} and start the program {\tt gen\_algo} by giving
+    one of the TSP instances located in {\bf tsp/benchs}.
+
+    \medskip
+    When entering {\tt ./gen\_algo ../../tsp/benchs/berlin52.tsp}, you should end up with the
+    following outputs:
+
+    \smallskip
+    \noindent
+    \texttt{>> Loading [../tsp/benchs/berlin52.tsp]}\\
+    \texttt{[From] -26461  52 39 12 29 44 2 26 13 40 7 35 14 28 25 41 6 51 10 50 45 19 0 38 15}\\
+    \texttt{33 42 21 18 32 37 9 5 20 34 43 16 30 1 23 22 4 27 36 4946 47 48 11 17 8 31 24 3}\\
+    \texttt{STOP in eoGenContinue: Reached maximum number of generations [1000/1000]}\\
+    \texttt{[To] -13068  52 45 24 28 22 19 21 30 17 31 36 46 25 13 12 26 27 51 10 14 37 23 4 15 49}\\
+    \texttt{20 2 8 42 50 11 47 39 38 35 34 44 18 40 9 7 32 3 5 33 16 41 6 1 29 0 48
+    43} \\
+
+    \medskip
+
+    The printed-out results show for the initial best solution and the final one~:
+    \\ \hspace*{1cm}-the length of the route
+    \\ \hspace*{1cm}-the number of cities
+    \\ \hspace*{1cm}-the route itself (notice that the city index starts from 0).
+
+
+\section{Study the genetic algorithm dedicated components}
+
+    Study the {\tt gen\_algo.cpp} file located in the {\bf lesson5} directory
+    using~:
+    \begin{itemize}
+       \item[$\bullet$] the ParadisEO-EO API documentation available at~:
+
+       \hspace{1cm}http$\,:$//eodev.sourceforge.net/eo/doc/html/index.html
+
+       \item[$\bullet$] the source files located in the {\bf tsp/src/} directory
+    \end{itemize}
+
+
+\section{Customize the GA}
+
+    Make a backup (copy) of the cpp file {\tt gen\_algo.cpp}. You can now modify the
+    original {\tt gen\_algo.cpp} and use the existing makefiles to compile it.
+
+    Edit and modify the {\tt gen\_algo.cpp} file~:
+    \begin{itemize}
+       \item[$\bullet$] Try to tune a few parameters of the GA
+       (selection criteria, stopping criteria ...).
+       \item[$\bullet$] Then, try to change the initialization of the population
+       by applying one of the local searches on each individual.
+    \end{itemize}
+
+    \smallskip
+    To compile {\tt gen\_algo.cpp},you should use the
+    command {\tt make} from {\bf build/lesson5}.
+
+    \medskip
+    Finally, test your modifications on several TSP instances ({\tt berlin52},
+    {\tt eil101} ...) and compare the results you get.
+
+\end{document}
