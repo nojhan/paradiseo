@@ -65,16 +65,16 @@ S_PEO_CHECK=1014
 S_REMOVE_INSTALL=1015
 S_END=1016
 S_END_WITHOUT_INFO=1017
-
+S_CHECK_AUTOTOOLS=1018
 
 #### define what are the possible installs and their content
 
 # full install
-FULL_INSTALL="$S_INTRODUCTION $S_UNPACK_LIBXML $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
+FULL_INSTALL="$S_INTRODUCTION $S_UNPACK_LIBXML $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_CHECK_AUTOTOOLS $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
 
-FULL_INSTALL_WITHOUT_LIBXML2="$S_INTRODUCTION $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_MPICH_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
+FULL_INSTALL_WITHOUT_LIBXML2="$S_INTRODUCTION $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_CHECK_AUTOTOOLS $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_MPICH_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
 
-FULL_INSTALL_WITHOUT_MPICH2="$S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_CONFIGURE_LIBXML2_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
+FULL_INSTALL_WITHOUT_MPICH2="$S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_CHECK_AUTOTOOLS $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_CONFIGURE_LIBXML2_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
 
 FULL_INSTALL_WITHOUT_LIBXML2_MPICH2="$S_INTRODUCTION $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END_WITHOUT_INFO"
 
@@ -82,11 +82,11 @@ FULL_INSTALL_WITHOUT_LIBXML2_MPICH2="$S_INTRODUCTION $S_INSTALL_EO $S_INSTALL_MO
 BASIC_INSTALL="$S_INTRODUCTION $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_END"
 
 # install only paradiseo-peo
-PARALLEL_INSTALL="$S_PEO_CHECK $S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_UNPACK_MPICH $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
+PARALLEL_INSTALL="$S_PEO_CHECK $S_INTRODUCTION $S_UNPACK_LIBXML $S_CHECK_AUTOTOOLS $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_UNPACK_MPICH $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
 
-PARALLEL_INSTALL_WITHOUT_LIBXML2="$S_PEO_CHECK $S_INTRODUCTION  $S_UNPACK_MPICH $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_MPICH_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
+PARALLEL_INSTALL_WITHOUT_LIBXML2="$S_PEO_CHECK $S_INTRODUCTION  $S_UNPACK_MPICH $S_CHECK_AUTOTOOLS $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_MPICH_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
 
-PARALLEL_INSTALL_WITHOUT_MPICH2="$S_PEO_CHECK $S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_CONFIGURE_LIBXML2_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
+PARALLEL_INSTALL_WITHOUT_MPICH2="$S_PEO_CHECK $S_INTRODUCTION $S_CHECK_AUTOTOOLS $S_UNPACK_LIBXML $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_CONFIGURE_LIBXML2_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
 
 PARALLEL_INSTALL_WITHOUT_LIBXML2_MPICH2="$S_PEO_CHECK $S_INTRODUCTION $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END_WITHOUT_INFO"
 
@@ -120,6 +120,7 @@ RM_PARADISEO_EO_ERROR=119
 RM_UTIL_ERROR=120
 BASIC_INSTALL_MISSING_ERROR=121
 DART_SUBMISSION_ERROR=64
+CHECK_AUTOTOOLS_ERROR=122
 
 #Date
 DATE=`/bin/date '+%Y%m%d%H%M%S'`
@@ -253,6 +254,13 @@ function on_error()
 		echo 
 		kill $$;;
 
+	$CHECK_AUTOTOOLS_ERROR)
+		echo
+		echo "  An error has occured : cannot find the Autotools. See $SPY for more details" 
+		echo " => To report any problem or for help, please contact paradiseo-help@lists.gforge.inria.fr and join $SPY"
+		echo 
+		kill $$;;
+	
 	$LIBXML_INSTALL_ERROR)
 		echo
 		echo "  An error has occured : impossible to install libxml2. See $SPY for more details" 
@@ -332,8 +340,8 @@ function run_install_step()
 		echo ""
 		echo -e ' \033[40m\033[1;33m### ParadisEO install starting .... ### \033[0m '
 		echo
-		echo "Installing the environment for ParadisEO...Note that the librairies \"libxml2\" ans \"mpich2\" required for ParadisEO are provided with this package. To avoid build and test reports to be sent to our repository, please stop the program and restart it using the --skipdart option."
-		sleep 5	
+		echo "Installing the environment for ParadisEO...Note that the librairies \"libxml2\" and \"mpich2\" required for ParadisEO are provided with this package. To avoid build and test reports to be sent to our repository, please stop the program and restart it using the --skipdart option."
+		sleep 6	
 		echo
 		echo
 		return $SUCCESSFUL_STEP
@@ -511,6 +519,37 @@ function run_install_step()
 			return $SUCCESSFUL_STEP
 		fi 
 		;;
+		
+	$S_CHECK_AUTOTOOLS)
+		########## Check if we can user Autogen & Autoconf (only for libxml2 & mpich2 installation) ##########
+		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
+		echo '		--> Looking for the Autotools (Autogen & Autoconf, required to install libxml2 and mpich2)'
+		
+		(autoconf --version) < /dev/null > /dev/null 2>&1 ||
+		{
+			echo ''
+			echo "		--> Error when checking for Autoconf"
+		    echo "		You must have Autoconf installed to compile $PROG. Please update your system to get it before installing $PROG."
+		    execute_cmd "autoconf --version" "[$currentStepCounter-1] Check Autoconf" $SPY    
+		   	echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+		    return $CHECK_AUTOTOOLS_ERROR
+		}
+		
+		(automake --version) < /dev/null > /dev/null 2>&1 ||
+		{
+			echo ''
+			echo "		--> Error when checking for Automake"
+		    echo "		You must have Automake installed to compile $PROG. Please update your system to get it before installing $PROG."
+		    execute_cmd "automake --version" "[$currentStepCounter-2] Check Automake" $SPY 
+		    echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+		    return $CHECK_AUTOTOOLS_ERROR
+		}
+	
+		echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter OK \033[0m"
+		echo
+		return $SUCCESSFUL_STEP
+		;;
+		
 	$S_INSTALL_LIBXML)
 		########## installing LIBXML2 ##########
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
@@ -939,24 +978,9 @@ function check_utils_install
 
 
 ########################################################
-######### 		BODY 			########
+######### 		BODY 							########
 #########################################################
 
-
-#check if we have all we need
-(autoconf --version) < /dev/null > /dev/null 2>&1 ||
-{
-    echo "You must have autoconf installed to compile $PROG. Please update your system to get it before installing $PROG."
-    execute_cmd "echo \"You must have autoconf installed to compile $PROG. Please update your system to get it before installing $PROG.\"" "[0-1] Check autoconf" $SPY    
-    DIE=1
-}
-
-(automake --version) < /dev/null > /dev/null 2>&1 ||
-{
-    echo "You must have automake installed to compile $PROG. Please update your system to get it before installing $PROG."
-    execute_cmd "echo \"You must have automake installed to compile $PROG. Please update your system to get it before installing $PROG.\"" "[0-2] Check autoconf" $SPY 
-    DIE=1
-}
 
 (cmake --version) < /dev/null > /dev/null 2>&1 ||
 {
