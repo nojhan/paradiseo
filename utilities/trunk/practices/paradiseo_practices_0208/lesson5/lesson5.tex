@@ -38,22 +38,27 @@ Lesson 5: Implement a genetic algorithm using ParadisEO}}
     When entering {\tt ./gen\_algo ../../tsp/benchs/berlin52.tsp}, you should end up with the
     following outputs:
 
-    \smallskip
-    \noindent
-    \texttt{>> Loading [../tsp/benchs/berlin52.tsp]}\\
-    \texttt{[From] -26461  52 39 12 29 44 2 26 13 40 7 35 14 28 25 41 6 51 10 50 45 19 0 38 15}\\
-    \texttt{33 42 21 18 32 37 9 5 20 34 43 16 30 1 23 22 4 27 36 4946 47 48 11 17 8 31 24 3}\\
-    \texttt{STOP in eoGenContinue: Reached maximum number of generations [1000/1000]}\\
-    \texttt{[To] -13068  52 45 24 28 22 19 21 30 17 31 36 46 25 13 12 26 27 51 10 14 37 23 4 15 49}\\
-    \texttt{20 2 8 42 50 11 47 39 38 35 34 44 18 40 9 7 32 3 5 33 16 41 6 1 29 0 48
-    43} \\
+    \texttt{>> Loading [../../tsp/benchs/eil101.tsp]}\\
+    \texttt{[From] -3176  101 5 72 27 77 20 82 23 14 91 17 60 50 43 99 18 34 69}\\
+    \texttt{76 22 38 25 88 36 40 7 55 74 42 67 53 11 62 61 92 58 93 19 70 33 32}\\
+    \texttt{86 48 47 4 97 73 95 79 85 66 65 24 13 89 8 26 96 56 28 39 80 37 49}\\
+    \texttt{78 12 1 98 46 31 57 10 30 90 71 75 81 16 45 29 41 100 51 21 52 59 15}\\
+    \texttt{64 44 94 54 9 6 3 0 87 63 2 84 83 35 68 STOP in eoGenContinue:}\\
+    \texttt{Reached maximum number of generations [1000/1000]}\\
+    \texttt{[To] -1564  101 60}\\
+    \texttt{17 81 59 5 94 43 42 14 40 13 15 82 45 46 35 51 26 100 74 38 24 22 21}\\
+    \texttt{54 23 66 86 99 44 87 64 34 57 25 32 75 80 29 79 67 53 3 1 58 95 97}\\
+    \texttt{90 85 37 83 16 92 91 36 41 96 93 52 56 12 33 77 70 30 88 39 20 72 71}\\
+    \texttt{ 31 62 89 61 49 2 8 18 6 10 9 0 68 78 28 27 76 11 73 55 50 65 19 69}\\
+    \texttt{48 63 47 7 4 98 84}\\
+
 
     \medskip
 
     The printed-out results show for the initial best solution and the final one~:
-    \\ \hspace*{1cm}-the length of the route
-    \\ \hspace*{1cm}-the number of cities
-    \\ \hspace*{1cm}-the route itself (notice that the city index starts from 0).
+    \\ \hspace*{0.5cm}-the length of the route
+    \\ \hspace*{0.5cm}-the number of cities
+    \\ \hspace*{0.5cm}-the route itself (notice that the city index starts from 0).
 
 
 \section{Study the genetic algorithm dedicated components}
