@@ -153,20 +153,23 @@ template< class EOT > void peoPopEval< EOT >::operator()(eoPop< EOT >& __dummy, 
 
 template< class EOT > void peoPopEval< EOT >::operator()(eoPop< EOT >& __pop )
 {
-  for ( unsigned i = 0; i < __pop.size(); i++ )
-    {
-      __pop[ i ].fitness(typename EOT :: Fitness() );
-      progression[ &__pop[ i ] ].first = funcs.size() - 1;
-      progression[ &__pop[ i ] ].second = funcs.size();
-      for ( unsigned j = 0; j < funcs.size(); j++ )
-        {
-          /* Queuing the 'invalid' solution and its associated owner */
-          tasks.push( &__pop[ i ] );
-        }
-    }
-  total = funcs.size() * __pop.size();
-  requestResourceRequest( funcs.size() * __pop.size() );
-  stop();
+	if ( __pop.size() && (funcs.size() * __pop.size()) )
+	{
+		for ( unsigned i = 0; i < __pop.size(); i++ )
+		{	
+			__pop[ i ].fitness(typename EOT :: Fitness() );
+			progression[ &__pop[ i ] ].first = funcs.size() - 1;
+			progression[ &__pop[ i ] ].second = funcs.size();
+			for ( unsigned j = 0; j < funcs.size(); j++ )
+			{
+				/* Queuing the 'invalid' solution and its associated owner */
+				tasks.push( &__pop[ i ] );
+			}
+		}
+		total = funcs.size() * __pop.size();
+		requestResourceRequest( funcs.size() * __pop.size() );
+		stop();
+	}
 }
 
 
