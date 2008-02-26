@@ -263,7 +263,7 @@ public :
             }
             double fortune = uniform() * total;
             int i = 0;
-            while (fortune > 0)
+            while (fortune >= 0)
             {
                 fortune -= vec[i++];
             }
