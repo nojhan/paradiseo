@@ -50,7 +50,7 @@ void StarTopology :: setNeighbors (Cooperative * __mig,
 
   if ( __mig == center ) {
 
-    for (int i = 0; i < mig.size (); i ++) {
+    for (unsigned i = 0; i < mig.size (); i ++) {
       if (mig [i] != center) {
 	__from.push_back (mig [i]);
 	__to.push_back (mig [i]);

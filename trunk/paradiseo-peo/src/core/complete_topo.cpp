@@ -44,7 +44,7 @@ void CompleteTopology :: setNeighbors (Cooperative * __mig,
   __from.clear () ;
   __to.clear () ;
 
-    for (int i = 0; i < mig.size (); i ++) {
+    for (unsigned i = 0; i < mig.size (); i ++) {
       if (mig [i] != __mig) {
 	__from.push_back (mig [i]);
 	__to.push_back (mig [i]);

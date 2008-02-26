@@ -207,7 +207,7 @@ template < typename EntityType > class peoMultiStart : public Service
         virtual ~AbstractAggregationAlgorithm()
         { }
         virtual void operator()( AbstractDataType& dataTypeInstanceA, AbstractDataType& dataTypeInstanceB )
-        {};
+        {}
       };
 
   template < typename AggregationAlgorithmType > struct AggregationAlgorithm : public AbstractAggregationAlgorithm

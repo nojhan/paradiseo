@@ -52,9 +52,11 @@ class continuator
   {
   public:
   
-	 //! @brief Virtual function of check
-	 //! @return true if the algorithm must continue
+	//! @brief Virtual function of check
+	//! @return true if the algorithm must continue
     virtual bool check()=0;
+    //! @brief Virtual destructor
+    virtual ~continuator(){}
   };
 
 
@@ -103,6 +105,8 @@ template < class TYPE>  class selector
   	//! @brief Virtual operator on the template type 
   	//! @param TYPE &
     virtual void operator()(TYPE &)=0;
+    //! @brief Virtual destructor
+    virtual ~selector(){}
   };
 
 
@@ -156,6 +160,8 @@ template < class TYPE>  class replacement
   	//! @brief Virtual operator on the template type 
   	//! @param TYPE &
     virtual void operator()(TYPE &)=0;
+    //! @brief Virtual destructor
+    virtual ~replacement(){}
   };
 
 
