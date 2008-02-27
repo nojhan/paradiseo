@@ -206,13 +206,6 @@ function on_error()
 		kill $$;;
 
 
-	$EDIT_BASH_VARIABLES)
-		 echo
-		 echo " "	
-	
-		kill $$;;
-
-
 	$MPICH_UNPACKING_ERROR) 
 		echo
 		echo "  An error has occured : impossible to unpack mpich2 archive.See $SPY for more details" 
