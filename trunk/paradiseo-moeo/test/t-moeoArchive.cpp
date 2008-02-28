@@ -102,7 +102,7 @@ int main()
     if (arch.size() != 3)
     {
         std::cout << "ERROR (too much solutions)" << std::endl;
-        //return EXIT_FAILURE;
+        return EXIT_FAILURE;
     }
     // obj0 must be in
     if (! arch.contains(obj0))
