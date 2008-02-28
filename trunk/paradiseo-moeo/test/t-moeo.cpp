@@ -37,18 +37,45 @@
 // t-moeo.cpp
 //-----------------------------------------------------------------------------
 
-#include <core/MOEO.h>  // MOEO
+#include <eo>
+#include <moeo>
 
 //-----------------------------------------------------------------------------
 
+class ObjectiveVectorTraits : public moeoObjectiveVectorTraits
+{
+public:
+    static bool minimizing (int i)
+    {
+        return true;
+    }
+    static bool maximizing (int i)
+    {
+        return false;
+    }
+    static unsigned int nObjectives ()
+    {
+        return 2;
+    }
+};
+
+typedef moeoRealObjectiveVector < ObjectiveVectorTraits > ObjectiveVector;
+
+typedef MOEO < ObjectiveVector, double, double > Solution;
 
 //-----------------------------------------------------------------------------
 
 int main()
 {
-    std::cout << "Please fill the test" << std::endl;
 
-    return 0;
+    std::cout << "[MOEO]\t=>\t";
+
+    // solutions
+    Solution sol1, sol2;
+
+    std::cout << "OK" << std::endl;
+    return EXIT_SUCCESS;
+
 }
 
 //-----------------------------------------------------------------------------
