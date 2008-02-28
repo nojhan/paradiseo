@@ -46,9 +46,9 @@
 
 int main()
 {
-  std::cout << "Please fill the test" << std::endl;
+    std::cout << "Please fill the test" << std::endl;
 
-  return 0;
+    return 0;
 }
 
 //-----------------------------------------------------------------------------
