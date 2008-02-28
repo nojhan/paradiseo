@@ -49,7 +49,7 @@
 #include <eoSGAGenOp.h>
 #include <algo/moeoEA.h>
 #include <diversity/moeoDummyDiversityAssignment.h>
-#include <fitness/moeoIndicatorBasedFitnessAssignment.h>
+#include <fitness/moeoExpBinaryIndicatorBasedFitnessAssignment.h>
 #include <metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h>
 #include <replacement/moeoEnvironmentalReplacement.h>
 #include <selection/moeoDetTournamentSelect.h>
@@ -177,7 +177,7 @@ class moeoIBEA : public moeoEA < MOEOT >
     /** binary tournament selection */
     moeoDetTournamentSelect < MOEOT > select;
     /** fitness assignment used in IBEA */
-    moeoIndicatorBasedFitnessAssignment < MOEOT > fitnessAssignment;
+    moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT > fitnessAssignment;
     /** dummy diversity assignment */
     moeoDummyDiversityAssignment < MOEOT > dummyDiversityAssignment;
     /** elitist replacement */
