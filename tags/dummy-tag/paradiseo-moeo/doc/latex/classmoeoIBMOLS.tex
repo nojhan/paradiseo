@@ -8,7 +8,7 @@ Indicator-Based Multi-Objective Local Search (IBMOLS) as described in Basseur M.
 Inheritance diagram for moeo\-IBMOLS$<$ MOEOT, Move $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.83544cm]{classmoeoIBMOLS}
+\includegraphics[height=3cm]{classmoeoIBMOLS}
 \end{center}
 \end{figure}
 \subsection*{Public Types}
@@ -20,16 +20,16 @@ typedef MOEOT::Objective\-Vector \bf{Objective\-Vector}\label{classmoeoIBMOLS_d3
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-\bf{moeo\-IBMOLS} (mo\-Move\-Init$<$ Move $>$ \&\_\-move\-Init, mo\-Next\-Move$<$ Move $>$ \&\_\-next\-Move, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \&\_\-eval, \bf{moeo\-Move\-Incr\-Eval}$<$ Move $>$ \&\_\-move\-Incr\-Eval, \bf{moeo\-Binary\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$ \&\_\-fitness\-Assignment, \bf{eo\-Continue}$<$ MOEOT $>$ \&\_\-continuator)
+\bf{moeo\-IBMOLS} (mo\-Move\-Init$<$ Move $>$ \&\_\-move\-Init, mo\-Next\-Move$<$ Move $>$ \&\_\-next\-Move, eo\-Eval\-Func$<$ MOEOT $>$ \&\_\-eval, \bf{moeo\-Move\-Incr\-Eval}$<$ Move $>$ \&\_\-move\-Incr\-Eval, \bf{moeo\-Binary\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$ \&\_\-fitness\-Assignment, eo\-Continue$<$ MOEOT $>$ \&\_\-continuator)
 \begin{CompactList}\small\item\em Ctor. \item\end{CompactList}\item 
-void \bf{operator()} (\bf{eo\-Pop}$<$ MOEOT $>$ \&\_\-pop, \bf{moeo\-Archive}$<$ MOEOT $>$ \&\_\-arch)
+void \bf{operator()} (eo\-Pop$<$ MOEOT $>$ \&\_\-pop, \bf{moeo\-Archive}$<$ MOEOT $>$ \&\_\-arch)
 \begin{CompactList}\small\item\em Apply the local search until a local archive does not change or another stopping criteria is met and update the archive \_\-arch with new non-dominated solutions. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Member Functions}
 \begin{CompactItemize}
 \item 
-void \bf{one\-Step} (\bf{eo\-Pop}$<$ MOEOT $>$ \&\_\-pop)
+void \bf{one\-Step} (eo\-Pop$<$ MOEOT $>$ \&\_\-pop)
 \begin{CompactList}\small\item\em Apply one step of the local search to the population \_\-pop. \item\end{CompactList}\item 
-void \bf{new\_\-one\-Step} (\bf{eo\-Pop}$<$ MOEOT $>$ \&\_\-pop)
+void \bf{new\_\-one\-Step} (eo\-Pop$<$ MOEOT $>$ \&\_\-pop)
 \begin{CompactList}\small\item\em Apply one step of the local search to the population \_\-pop. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
 \begin{CompactItemize}
@@ -40,7 +40,7 @@ mo\-Move\-Init$<$ Move $>$ \& \bf{move\-Init}\label{classmoeoIBMOLS_b4b4908b893e
 mo\-Next\-Move$<$ Move $>$ \& \bf{next\-Move}\label{classmoeoIBMOLS_8b8ebbd6eb6c82caa796160b4be2a86b}
 
 \begin{CompactList}\small\item\em the neighborhood explorer \item\end{CompactList}\item 
-\bf{eo\-Eval\-Func}$<$ MOEOT $>$ \& \bf{eval}\label{classmoeoIBMOLS_e9acda4b2f61f8960109a8c6fd52551e}
+eo\-Eval\-Func$<$ MOEOT $>$ \& \bf{eval}\label{classmoeoIBMOLS_e9acda4b2f61f8960109a8c6fd52551e}
 
 \begin{CompactList}\small\item\em the full evaluation \item\end{CompactList}\item 
 \bf{moeo\-Move\-Incr\-Eval}$<$ Move $>$ \& \bf{move\-Incr\-Eval}\label{classmoeoIBMOLS_6c38636061bd03c4be809277e2dc257a}
@@ -49,7 +49,7 @@ mo\-Next\-Move$<$ Move $>$ \& \bf{next\-Move}\label{classmoeoIBMOLS_8b8ebbd6eb6c
 \bf{moeo\-Binary\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$ \& \bf{fitness\-Assignment}\label{classmoeoIBMOLS_0c858da33922736b74d9875766cec9d7}
 
 \begin{CompactList}\small\item\em the fitness assignment strategy \item\end{CompactList}\item 
-\bf{eo\-Continue}$<$ MOEOT $>$ \& \bf{continuator}\label{classmoeoIBMOLS_c15985c0bb5d9ba835f35d99d7c42b14}
+eo\-Continue$<$ MOEOT $>$ \& \bf{continuator}\label{classmoeoIBMOLS_c15985c0bb5d9ba835f35d99d7c42b14}
 
 \begin{CompactList}\small\item\em the stopping criteria \item\end{CompactList}\end{CompactItemize}
 \subsection*{Classes}
@@ -68,12 +68,12 @@ Indicator-Based Multi-Objective Local Search (IBMOLS) as described in Basseur M.
 
 
 
-Definition at line 33 of file moeo\-IBMOLS.h.
+Definition at line 58 of file moeo\-IBMOLS.h.
 
 \subsection{Constructor \& Destructor Documentation}
 \index{moeoIBMOLS@{moeo\-IBMOLS}!moeoIBMOLS@{moeoIBMOLS}}
 \index{moeoIBMOLS@{moeoIBMOLS}!moeoIBMOLS@{moeo\-IBMOLS}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT, class Move$>$ \bf{moeo\-IBMOLS}$<$ MOEOT, Move $>$::\bf{moeo\-IBMOLS} (mo\-Move\-Init$<$ Move $>$ \& {\em \_\-move\-Init}, mo\-Next\-Move$<$ Move $>$ \& {\em \_\-next\-Move}, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \& {\em \_\-eval}, \bf{moeo\-Move\-Incr\-Eval}$<$ Move $>$ \& {\em \_\-move\-Incr\-Eval}, \bf{moeo\-Binary\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$ \& {\em \_\-fitness\-Assignment}, \bf{eo\-Continue}$<$ MOEOT $>$ \& {\em \_\-continuator})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoIBMOLS_6d6a39ad3d5e4c298d450d801098e274}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT, class Move$>$ \bf{moeo\-IBMOLS}$<$ MOEOT, Move $>$::\bf{moeo\-IBMOLS} (mo\-Move\-Init$<$ Move $>$ \& {\em \_\-move\-Init}, mo\-Next\-Move$<$ Move $>$ \& {\em \_\-next\-Move}, eo\-Eval\-Func$<$ MOEOT $>$ \& {\em \_\-eval}, \bf{moeo\-Move\-Incr\-Eval}$<$ Move $>$ \& {\em \_\-move\-Incr\-Eval}, \bf{moeo\-Binary\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$ \& {\em \_\-fitness\-Assignment}, eo\-Continue$<$ MOEOT $>$ \& {\em \_\-continuator})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoIBMOLS_6d6a39ad3d5e4c298d450d801098e274}
 
 
 Ctor. 
@@ -85,12 +85,12 @@ Ctor.
 \end{Desc}
 
 
-Definition at line 50 of file moeo\-IBMOLS.h.
+Definition at line 75 of file moeo\-IBMOLS.h.
 
 \subsection{Member Function Documentation}
 \index{moeoIBMOLS@{moeo\-IBMOLS}!operator()@{operator()}}
 \index{operator()@{operator()}!moeoIBMOLS@{moeo\-IBMOLS}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT, class Move$>$ void \bf{moeo\-IBMOLS}$<$ MOEOT, Move $>$::operator() (\bf{eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop}, \bf{moeo\-Archive}$<$ MOEOT $>$ \& {\em \_\-arch})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmoeoIBMOLS_fd788bbc4f956dec932dba2a4d4479b6}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT, class Move$>$ void \bf{moeo\-IBMOLS}$<$ MOEOT, Move $>$::operator() (eo\-Pop$<$ MOEOT $>$ \& {\em \_\-pop}, \bf{moeo\-Archive}$<$ MOEOT $>$ \& {\em \_\-arch})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoIBMOLS_fd788bbc4f956dec932dba2a4d4479b6}
 
 
 Apply the local search until a local archive does not change or another stopping criteria is met and update the archive \_\-arch with new non-dominated solutions. 
@@ -102,13 +102,11 @@ Apply the local search until a local archive does not change or another stopping
 \end{Desc}
 
 
-Implements \bf{eo\-BF$<$ eo\-Pop$<$ MOEOT $>$ \&, moeo\-Archive$<$ MOEOT $>$ \&, void $>$}.
-
-Definition at line 73 of file moeo\-IBMOLS.h.
+Definition at line 98 of file moeo\-IBMOLS.h.
 
 References moeo\-IBMOLS$<$ MOEOT, Move $>$::continuator, moeo\-Archive$<$ MOEOT $>$::equals(), moeo\-IBMOLS$<$ MOEOT, Move $>$::fitness\-Assignment, moeo\-IBMOLS$<$ MOEOT, Move $>$::one\-Step(), and moeo\-Archive$<$ MOEOT $>$::update().\index{moeoIBMOLS@{moeo\-IBMOLS}!oneStep@{oneStep}}
 \index{oneStep@{oneStep}!moeoIBMOLS@{moeo\-IBMOLS}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT, class Move$>$ void \bf{moeo\-IBMOLS}$<$ MOEOT, Move $>$::one\-Step (\bf{eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, private]}}\label{classmoeoIBMOLS_fce770398602972b5d67c52638687d43}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT, class Move$>$ void \bf{moeo\-IBMOLS}$<$ MOEOT, Move $>$::one\-Step (eo\-Pop$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, private]}}\label{classmoeoIBMOLS_fce770398602972b5d67c52638687d43}
 
 
 Apply one step of the local search to the population \_\-pop. 
@@ -120,13 +118,13 @@ Apply one step of the local search to the population \_\-pop.
 \end{Desc}
 
 
-Definition at line 120 of file moeo\-IBMOLS.h.
+Definition at line 146 of file moeo\-IBMOLS.h.
 
 References moeo\-IBMOLS$<$ MOEOT, Move $>$::continuator, moeo\-IBMOLS$<$ MOEOT, Move $>$::fitness\-Assignment, moeo\-IBMOLS$<$ MOEOT, Move $>$::move\-Incr\-Eval, moeo\-IBMOLS$<$ MOEOT, Move $>$::move\-Init, and moeo\-IBMOLS$<$ MOEOT, Move $>$::next\-Move.
 
 Referenced by moeo\-IBMOLS$<$ MOEOT, Move $>$::operator()().\index{moeoIBMOLS@{moeo\-IBMOLS}!new_oneStep@{new\_\-oneStep}}
 \index{new_oneStep@{new\_\-oneStep}!moeoIBMOLS@{moeo\-IBMOLS}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT, class Move$>$ void \bf{moeo\-IBMOLS}$<$ MOEOT, Move $>$::new\_\-one\-Step (\bf{eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, private]}}\label{classmoeoIBMOLS_9d811733d8e7508a7c48615c8ff0f990}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT, class Move$>$ void \bf{moeo\-IBMOLS}$<$ MOEOT, Move $>$::new\_\-one\-Step (eo\-Pop$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, private]}}\label{classmoeoIBMOLS_9d811733d8e7508a7c48615c8ff0f990}
 
 
 Apply one step of the local search to the population \_\-pop. 
@@ -138,7 +136,7 @@ Apply one step of the local search to the population \_\-pop.
 \end{Desc}
 
 
-Definition at line 304 of file moeo\-IBMOLS.h.
+Definition at line 330 of file moeo\-IBMOLS.h.
 
 References moeo\-IBMOLS$<$ MOEOT, Move $>$::continuator, moeo\-IBMOLS$<$ MOEOT, Move $>$::fitness\-Assignment, moeo\-IBMOLS$<$ MOEOT, Move $>$::move\-Incr\-Eval, moeo\-IBMOLS$<$ MOEOT, Move $>$::move\-Init, and moeo\-IBMOLS$<$ MOEOT, Move $>$::next\-Move.
 

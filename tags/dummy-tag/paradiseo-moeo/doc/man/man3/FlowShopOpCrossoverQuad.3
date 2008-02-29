@@ -1,4 +1,4 @@
-.TH "FlowShopOpCrossoverQuad" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOEOMovingObjects" \" -*- nroff -*-
+.TH "FlowShopOpCrossoverQuad" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-MOEO-MultiObjectiveEvolvingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -9,8 +9,6 @@ FlowShopOpCrossoverQuad \- Quadratic crossover operator for flow-shop (modify th
 .br
 .PP
 \fC#include <FlowShopOpCrossoverQuad.h>\fP
-.PP
-Inherits \fBeoQuadOp< FlowShop >\fP.
 .PP
 .SS "Public Member Functions"
 
@@ -36,10 +34,10 @@ Inherits \fBeoQuadOp< FlowShop >\fP.
 .PP 
 Quadratic crossover operator for flow-shop (modify the both genotypes). 
 .PP
-Definition at line 22 of file FlowShopOpCrossoverQuad.h.
+Definition at line 47 of file FlowShopOpCrossoverQuad.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "bool FlowShopOpCrossoverQuad::operator() (\fBFlowShop\fP & _flowshop1, \fBFlowShop\fP & _flowshop2)\fC [virtual]\fP"
+.SS "bool FlowShopOpCrossoverQuad::operator() (\fBFlowShop\fP & _flowshop1, \fBFlowShop\fP & _flowshop2)"
 .PP
 eoQuad crossover - _flowshop1 and _flowshop2 are the (future) offspring, i.e. 
 .PP
@@ -54,11 +52,9 @@ _copies_ of the parents
 .PP
 
 .PP
-Implements \fBeoBF< FlowShop &, FlowShop &, bool >\fP.
+Definition at line 47 of file FlowShopOpCrossoverQuad.cpp.
 .PP
-Definition at line 22 of file FlowShopOpCrossoverQuad.cpp.
-.PP
-References generateOffspring(), eoRng::random(), and moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >::value().
+References generateOffspring(), and moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >::value().
 .SS "\fBFlowShop\fP FlowShopOpCrossoverQuad::generateOffspring (const \fBFlowShop\fP & _parent1, const \fBFlowShop\fP & _parent2, unsigned int _point1, unsigned int _point2)\fC [private]\fP"
 .PP
 generation of an offspring by a 2 points crossover 
@@ -76,10 +72,10 @@ generation of an offspring by a 2 points crossover
 .PP
 
 .PP
-Definition at line 54 of file FlowShopOpCrossoverQuad.cpp.
+Definition at line 80 of file FlowShopOpCrossoverQuad.cpp.
 .PP
 Referenced by operator()().
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-MOEOMovingObjects from the source code.
+Generated automatically by Doxygen for ParadisEO-MOEO-MultiObjectiveEvolvingObjects from the source code.

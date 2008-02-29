@@ -24,8 +24,8 @@
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 6 def
-/cols 2 def
+/rows 3 def
+/cols 1 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
 
@@ -176,10 +176,6 @@ boxfont setfont
 (FlowShop) cw
 (moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >) cw
 (MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >) cw
-(EO< MOEOObjectiveVector >) cw
-(eoObject) cw
-(eoPersistent) cw
-(eoPrintable) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
 /yspacing boxheight disty add def
@@ -191,37 +187,17 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (FlowShop) 0.5 0 box
- (moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >) 0.5 1 box
- (MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >) 0.5 2 box
- (EO< MOEOObjectiveVector >) 0.5 3 box
- (eoObject) 0 4 box
- (eoPersistent) 1 4 box
- (eoPrintable) 1 5 box
+ (FlowShop) 0 0 box
+ (moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >) 0 1 box
+ (MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >) 0 2 box
 
 % ----- relations -----
 
 solid
-0 0.5 0 out
+0 0 0 out
 solid
-1 0.5 1 in
+1 0 1 in
 solid
-0 0.5 1 out
+0 0 1 out
 solid
-1 0.5 2 in
-solid
-0 0.5 2 out
-solid
-1 0.5 3 in
-solid
-0 0.5 3 out
-solid
-0 1 4 conn
-solid
-1 0 4 in
-solid
-1 1 4 in
-solid
-0 1 4 out
-solid
-1 1 5 in
+1 0 2 in
