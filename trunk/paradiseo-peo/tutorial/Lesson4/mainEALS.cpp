@@ -1,7 +1,7 @@
 /*
-* <main.cpp>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, INRIA, 2007
+* <mainEALS.cpp>
+* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
+* (C) OPAC Team, INRIA, 2008
 *
 * Clive Canape
 *

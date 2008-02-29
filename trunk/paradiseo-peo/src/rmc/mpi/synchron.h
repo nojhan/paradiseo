@@ -1,9 +1,9 @@
 /*
 * <synchron.h>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
+* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
+* (C) OPAC Team, LIFL, 2002-2008
 *
-* Sebastien Cahon, Alexandru-Adrian Tantar
+* Sebastien Cahon, Alexandru-Adrian Tantar, Clive Canape
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -65,14 +65,10 @@ struct SyncCompare
           std::vector< SyncEntry >::const_iterator itA = syncA.begin();
           std::vector< SyncEntry >::const_iterator itB = syncB.begin();
 
-          while ( (*itA).runner < (*itB).runner && itA != syncA.end() )
-            {
-              itA++;
-              itB++;
-            }
+          while ( itA != syncA.end() && (*itA).runner == (*itB).runner ) { itA++; itB++; }
 
-          return itA == syncA.end();
-        }
+                return ( (itA == syncA.end()) ) ? false : ( (*itA).runner < (*itB).runner );
+              }
 
       return syncA.size() < syncB.size();
     }

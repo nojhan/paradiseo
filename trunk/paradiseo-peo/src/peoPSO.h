@@ -1,6 +1,6 @@
 /* <peoPSO.h>
 *
-*  (c) OPAC Team, October 2007
+*  (c) OPAC Team, October 2008
 *
 * Clive Canape
 *

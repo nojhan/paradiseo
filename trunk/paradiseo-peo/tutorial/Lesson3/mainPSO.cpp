@@ -1,5 +1,5 @@
 /*
-* <main.cpp>
+* <mainPSO.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
 * (C) OPAC Team, INRIA, 2008
 *

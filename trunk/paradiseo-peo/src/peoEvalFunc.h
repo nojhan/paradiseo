@@ -1,6 +1,6 @@
 /*
 * <peoEvalFunc.h>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
+* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
 * (C) OPAC Team, INRIA, 2008
 *
 * Clive Canape

@@ -1,6 +1,6 @@
 /*
 * <peoAggEvalFunc.h>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
+* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
 *
 * Sebastien Cahon, Alexandru-Adrian Tantar, Clive Canape
