@@ -1,52 +1,54 @@
-\section{moFitSolContinue$<$ EOT $>$ Class Template Reference}
+\section{mo\-Fit\-Sol\-Continue$<$ EOT $>$ Class Template Reference}
 \label{classmo_fit_sol_continue}\index{moFitSolContinue@{moFitSolContinue}}
 One possible stop criterion for a solution-based heuristic.  
 
 
-{\tt \#include $<$moFitSolContinue.h$>$}
+{\tt \#include $<$mo\-Fit\-Sol\-Continue.h$>$}
 
-Inheritance diagram for moFitSolContinue$<$ EOT $>$::\begin{figure}[H]
+Inheritance diagram for mo\-Fit\-Sol\-Continue$<$ EOT $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=4cm]{classmo_fit_sol_continue}
+\includegraphics[height=2cm]{classmo_fit_sol_continue}
 \end{center}
 \end{figure}
 \subsection*{Public Types}
 \begin{CompactItemize}
 \item 
-typedef EOT::Fitness {\bf Fitness}\label{classmo_fit_sol_continue_369ed94a788d8bdc08d5554f7669376f}
+typedef EOT::Fitness \bf{Fitness}\label{classmo_fit_sol_continue_369ed94a788d8bdc08d5554f7669376f}
 
 \begin{CompactList}\small\item\em Alias for the fitness. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-{\bf moFitSolContinue} ({\bf Fitness} \_\-fitness)
+\bf{mo\-Fit\-Sol\-Continue} (\bf{Fitness} \_\-fitness)
 \begin{CompactList}\small\item\em Basic constructor. \item\end{CompactList}\item 
-bool {\bf operator()} (const EOT \&\_\-solution)
-\begin{CompactList}\small\item\em {\bf Function} that activates the stopping criterion. \item\end{CompactList}\item 
-void {\bf init} ()
+bool \bf{operator()} (const EOT \&\_\-solution)
+\begin{CompactList}\small\item\em Function that activates the stopping criterion. \item\end{CompactList}\item 
+void \bf{init} ()
 \begin{CompactList}\small\item\em Procedure which allows to initialise all the stuff needed. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
 \begin{CompactItemize}
 \item 
-{\bf Fitness} {\bf fitness}\label{classmo_fit_sol_continue_87d0ba8f2f76f61c89317eed5f094dfc}
+\bf{Fitness} \bf{fitness}\label{classmo_fit_sol_continue_87d0ba8f2f76f61c89317eed5f094dfc}
 
 \begin{CompactList}\small\item\em Fitness target. \item\end{CompactList}\end{CompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class EOT$>$ class moFitSolContinue$<$ EOT $>$}
+\subsubsection*{template$<$class EOT$>$ class mo\-Fit\-Sol\-Continue$<$ EOT $>$}
 
 One possible stop criterion for a solution-based heuristic. 
 
 The stop criterion corresponds to a fitness threshold gained. 
 
-Definition at line 46 of file moFitSolContinue.h.
+
+
+Definition at line 46 of file mo\-Fit\-Sol\-Continue.h.
 
 \subsection{Constructor \& Destructor Documentation}
-\index{moFitSolContinue@{moFitSolContinue}!moFitSolContinue@{moFitSolContinue}}
-\index{moFitSolContinue@{moFitSolContinue}!moFitSolContinue@{moFitSolContinue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf moFitSolContinue}$<$ EOT $>$::{\bf moFitSolContinue} ({\bf Fitness} {\em \_\-fitness})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_fit_sol_continue_5f0dc5e529e8cd307ff4a1ae982d5b84}
+\index{moFitSolContinue@{mo\-Fit\-Sol\-Continue}!moFitSolContinue@{moFitSolContinue}}
+\index{moFitSolContinue@{moFitSolContinue}!moFitSolContinue@{mo\-Fit\-Sol\-Continue}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ \bf{mo\-Fit\-Sol\-Continue}$<$ EOT $>$::\bf{mo\-Fit\-Sol\-Continue} (\bf{Fitness} {\em \_\-fitness})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_fit_sol_continue_5f0dc5e529e8cd307ff4a1ae982d5b84}
 
 
 Basic constructor. 
@@ -58,15 +60,15 @@ Basic constructor.
 \end{Desc}
 
 
-Definition at line 57 of file moFitSolContinue.h.
+Definition at line 57 of file mo\-Fit\-Sol\-Continue.h.
 
 \subsection{Member Function Documentation}
-\index{moFitSolContinue@{moFitSolContinue}!operator()@{operator()}}
-\index{operator()@{operator()}!moFitSolContinue@{moFitSolContinue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf moFitSolContinue}$<$ EOT $>$::operator() (const EOT \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_fit_sol_continue_ce4e02895c13bfd131fc759adf83798f}
+\index{moFitSolContinue@{mo\-Fit\-Sol\-Continue}!operator()@{operator()}}
+\index{operator()@{operator()}!moFitSolContinue@{mo\-Fit\-Sol\-Continue}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool \bf{mo\-Fit\-Sol\-Continue}$<$ EOT $>$::operator() (const EOT \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_fit_sol_continue_ce4e02895c13bfd131fc759adf83798f}
 
 
-{\bf Function} that activates the stopping criterion. 
+Function that activates the stopping criterion. 
 
 Indicates if the fitness threshold has not yet been reached.
 
@@ -79,23 +81,21 @@ Indicates if the fitness threshold has not yet been reached.
 \item[Returns:]true or false according to the value of the fitness. \end{Desc}
 
 
-Implements {\bf eoUF$<$ const EOT \&, bool $>$}.
+Definition at line 67 of file mo\-Fit\-Sol\-Continue.h.
 
-Definition at line 67 of file moFitSolContinue.h.
-
-References moFitSolContinue$<$ EOT $>$::fitness.\index{moFitSolContinue@{moFitSolContinue}!init@{init}}
-\index{init@{init}!moFitSolContinue@{moFitSolContinue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void {\bf moFitSolContinue}$<$ EOT $>$::init ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_fit_sol_continue_670bd895b4edfcd3aebb40d2295d7f7c}
+References mo\-Fit\-Sol\-Continue$<$ EOT $>$::fitness.\index{moFitSolContinue@{mo\-Fit\-Sol\-Continue}!init@{init}}
+\index{init@{init}!moFitSolContinue@{mo\-Fit\-Sol\-Continue}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \bf{mo\-Fit\-Sol\-Continue}$<$ EOT $>$::init ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_fit_sol_continue_670bd895b4edfcd3aebb40d2295d7f7c}
 
 
 Procedure which allows to initialise all the stuff needed. 
 
 It can be also used to reinitialize all the needed things. 
 
-Implements {\bf moSolContinue$<$ EOT $>$} \doxyref{}{p.}{classmo_sol_continue_064dc966a210f4ffb9515be3f03ca4c7}.
+Implements \bf{mo\-Sol\-Continue$<$ EOT $>$} \doxyref{p.}{classmo_sol_continue_064dc966a210f4ffb9515be3f03ca4c7}.
 
-Definition at line 81 of file moFitSolContinue.h.
+Definition at line 81 of file mo\-Fit\-Sol\-Continue.h.
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 
-moFitSolContinue.h\end{CompactItemize}
+mo\-Fit\-Sol\-Continue.h\end{CompactItemize}

@@ -1,59 +1,59 @@
-\section{moHC$<$ M $>$ Class Template Reference}
+\section{mo\-HC$<$ M $>$ Class Template Reference}
 \label{classmo_h_c}\index{moHC@{moHC}}
 Hill Climbing (HC).  
 
 
-{\tt \#include $<$moHC.h$>$}
-
-Inherits {\bf moAlgo$<$ M::EOType $>$}.
+{\tt \#include $<$mo\-HC.h$>$}
 
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-{\bf moHC} ({\bf moMoveInit}$<$ M $>$ \&\_\-move\_\-initializer, {\bf moNextMove}$<$ M $>$ \&\_\-next\_\-move\_\-generator, {\bf moMoveIncrEval}$<$ M $>$ \&\_\-incremental\_\-evaluation, {\bf moMoveSelect}$<$ M $>$ \&\_\-move\_\-selection, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \&\_\-full\_\-evaluation)
+\bf{mo\-HC} (\bf{mo\-Move\-Init}$<$ M $>$ \&\_\-move\_\-initializer, \bf{mo\-Next\-Move}$<$ M $>$ \&\_\-next\_\-move\_\-generator, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \&\_\-incremental\_\-evaluation, \bf{mo\-Move\-Select}$<$ M $>$ \&\_\-move\_\-selection, eo\-Eval\-Func$<$ \bf{EOT} $>$ \&\_\-full\_\-evaluation)
 \begin{CompactList}\small\item\em Full constructor. \item\end{CompactList}\item 
-{\bf moHC} ({\bf moMoveExpl}$<$ M $>$ \&\_\-move\_\-explorer, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \&\_\-full\_\-evaluation)
+\bf{mo\-HC} (\bf{mo\-Move\-Expl}$<$ M $>$ \&\_\-move\_\-explorer, eo\-Eval\-Func$<$ \bf{EOT} $>$ \&\_\-full\_\-evaluation)
 \begin{CompactList}\small\item\em Light constructor. \item\end{CompactList}\item 
-bool {\bf operator()} ({\bf EOT} \&\_\-solution)
-\begin{CompactList}\small\item\em {\bf Function} which launches the HC. \item\end{CompactList}\end{CompactItemize}
+bool \bf{operator()} (\bf{EOT} \&\_\-solution)
+\begin{CompactList}\small\item\em Function which launches the HC. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Types}
 \begin{CompactItemize}
 \item 
-typedef M::EOType {\bf EOT}\label{classmo_h_c_d219296ede03c679646bce2fe8ff96cb}
+typedef M::EOType \bf{EOT}\label{classmo_h_c_d219296ede03c679646bce2fe8ff96cb}
 
 \begin{CompactList}\small\item\em Alias for the type. \item\end{CompactList}\item 
-typedef EOT::Fitness {\bf Fitness}\label{classmo_h_c_56487c97a7cf0c423cc879d1bbd45027}
+typedef EOT::Fitness \bf{Fitness}\label{classmo_h_c_56487c97a7cf0c423cc879d1bbd45027}
 
 \begin{CompactList}\small\item\em Alias for the fitness. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
 \begin{CompactItemize}
 \item 
-{\bf moMoveExpl}$<$ M $>$ \& {\bf move\_\-explorer}\label{classmo_h_c_ec4e702a6ec240f40ff9d262c36d080b}
+\bf{mo\-Move\-Expl}$<$ M $>$ \& \bf{move\_\-explorer}\label{classmo_h_c_ec4e702a6ec240f40ff9d262c36d080b}
 
 \begin{CompactList}\small\item\em Complete exploration of the neighborhood. \item\end{CompactList}\item 
-{\bf eoEvalFunc}$<$ {\bf EOT} $>$ \& {\bf full\_\-evaluation}\label{classmo_h_c_1175c588c19d3658cfc690d5f3f8d825}
+eo\-Eval\-Func$<$ \bf{EOT} $>$ \& \bf{full\_\-evaluation}\label{classmo_h_c_1175c588c19d3658cfc690d5f3f8d825}
 
 \begin{CompactList}\small\item\em A full evaluation function. \item\end{CompactList}\end{CompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class M$>$ class moHC$<$ M $>$}
+\subsubsection*{template$<$class M$>$ class mo\-HC$<$ M $>$}
 
 Hill Climbing (HC). 
 
 Class which describes the algorithm for a hill climbing. 
 
-Definition at line 49 of file moHC.h.
+
+
+Definition at line 49 of file mo\-HC.h.
 
 \subsection{Constructor \& Destructor Documentation}
-\index{moHC@{moHC}!moHC@{moHC}}
-\index{moHC@{moHC}!moHC@{moHC}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf moHC}$<$ M $>$::{\bf moHC} ({\bf moMoveInit}$<$ M $>$ \& {\em \_\-move\_\-initializer}, {\bf moNextMove}$<$ M $>$ \& {\em \_\-next\_\-move\_\-generator}, {\bf moMoveIncrEval}$<$ M $>$ \& {\em \_\-incremental\_\-evaluation}, {\bf moMoveSelect}$<$ M $>$ \& {\em \_\-move\_\-selection}, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_h_c_44a35bd30df6e79cff95a31b84889bd7}
+\index{moHC@{mo\-HC}!moHC@{moHC}}
+\index{moHC@{moHC}!moHC@{mo\-HC}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ \bf{mo\-HC}$<$ M $>$::\bf{mo\-HC} (\bf{mo\-Move\-Init}$<$ M $>$ \& {\em \_\-move\_\-initializer}, \bf{mo\-Next\-Move}$<$ M $>$ \& {\em \_\-next\_\-move\_\-generator}, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\em \_\-incremental\_\-evaluation}, \bf{mo\-Move\-Select}$<$ M $>$ \& {\em \_\-move\_\-selection}, eo\-Eval\-Func$<$ \bf{EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_h_c_44a35bd30df6e79cff95a31b84889bd7}
 
 
 Full constructor. 
 
-All the boxes are given in order the HC to use a \doxyref{moHCMoveLoopExpl}{p.}{classmo_h_c_move_loop_expl}.
+All the boxes are given in order the HC to use a \doxyref{mo\-HCMove\-Loop\-Expl}{p.}{classmo_h_c_move_loop_expl}.
 
 \begin{Desc}
 \item[Parameters:]
@@ -62,14 +62,14 @@ All the boxes are given in order the HC to use a \doxyref{moHCMoveLoopExpl}{p.}{
 \end{Desc}
 
 
-Definition at line 69 of file moHC.h.\index{moHC@{moHC}!moHC@{moHC}}
-\index{moHC@{moHC}!moHC@{moHC}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf moHC}$<$ M $>$::{\bf moHC} ({\bf moMoveExpl}$<$ M $>$ \& {\em \_\-move\_\-explorer}, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_h_c_5002f969ef0a4d959610158fc62f137a}
+Definition at line 69 of file mo\-HC.h.\index{moHC@{mo\-HC}!moHC@{moHC}}
+\index{moHC@{moHC}!moHC@{mo\-HC}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ \bf{mo\-HC}$<$ M $>$::\bf{mo\-HC} (\bf{mo\-Move\-Expl}$<$ M $>$ \& {\em \_\-move\_\-explorer}, eo\-Eval\-Func$<$ \bf{EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_h_c_5002f969ef0a4d959610158fc62f137a}
 
 
 Light constructor. 
 
-This constructor allow to use another \doxyref{moMoveExpl}{p.}{classmo_move_expl} (generally not a \doxyref{moHCMoveLoopExpl}{p.}{classmo_h_c_move_loop_expl}).
+This constructor allow to use another \doxyref{mo\-Move\-Expl}{p.}{classmo_move_expl} (generally not a \doxyref{mo\-HCMove\-Loop\-Expl}{p.}{classmo_h_c_move_loop_expl}).
 
 \begin{Desc}
 \item[Parameters:]
@@ -78,17 +78,17 @@ This constructor allow to use another \doxyref{moMoveExpl}{p.}{classmo_move_expl
 \end{Desc}
 
 
-Definition at line 82 of file moHC.h.
+Definition at line 82 of file mo\-HC.h.
 
 \subsection{Member Function Documentation}
-\index{moHC@{moHC}!operator()@{operator()}}
-\index{operator()@{operator()}!moHC@{moHC}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf moHC}$<$ M $>$::operator() ({\bf EOT} \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_h_c_b739f9586b647e32bf31605066f984ad}
+\index{moHC@{mo\-HC}!operator()@{operator()}}
+\index{operator()@{operator()}!moHC@{mo\-HC}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool \bf{mo\-HC}$<$ M $>$::operator() (\bf{EOT} \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_h_c_b739f9586b647e32bf31605066f984ad}
 
 
-{\bf Function} which launches the HC. 
+Function which launches the HC. 
 
-The HC has to improve a current solution. As the \doxyref{moSA}{p.}{classmo_s_a} and the mo TS, it can be used for HYBRIDATION in an evolutionnary algorithm.
+The HC has to improve a current solution. As the \doxyref{mo\-SA}{p.}{classmo_s_a} and the mo TS, it can be used for HYBRIDATION in an evolutionnary algorithm.
 
 \begin{Desc}
 \item[Parameters:]
@@ -99,12 +99,10 @@ The HC has to improve a current solution. As the \doxyref{moSA}{p.}{classmo_s_a}
 \item[Returns:]true. \end{Desc}
 
 
-Implements {\bf eoUF$<$ M::EOType \&, bool $>$}.
+Definition at line 94 of file mo\-HC.h.
 
-Definition at line 94 of file moHC.h.
-
-References moHC$<$ M $>$::full\_\-evaluation, and moHC$<$ M $>$::move\_\-explorer.
+References mo\-HC$<$ M $>$::full\_\-evaluation, and mo\-HC$<$ M $>$::move\_\-explorer.
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 
-moHC.h\end{CompactItemize}
+mo\-HC.h\end{CompactItemize}

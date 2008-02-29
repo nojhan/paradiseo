@@ -1,4 +1,4 @@
-.TH "moLSCheckPoint" 3 "16 Jan 2008" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.TH "moLSCheckPoint" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,17 +10,15 @@ moLSCheckPoint \- Class which allows a checkpointing system.
 .PP
 \fC#include <moLSCheckPoint.h>\fP
 .PP
-Inherits \fBeoBF< A1, A2, R >< const const M &, M::EOType &, void >\fP.
-.PP
 .SS "Public Member Functions"
 
 .in +1c
 .ti -1c
 .RI "void \fBoperator()\fP (const M &_move, const typename M::EOType &_solution)"
 .br
-.RI "\fI\fBFunction\fP which launches the checkpointing. \fP"
+.RI "\fIFunction which launches the checkpointing. \fP"
 .ti -1c
-.RI "void \fBadd\fP (\fBeoBF\fP< const M &, const typename M::EOType &, void > &_function)"
+.RI "void \fBadd\fP (eoBF< const M &, const typename M::EOType &, void > &_function)"
 .br
 .RI "\fIProcedure which add a new function to the function vector. \fP"
 .in -1c
@@ -28,7 +26,7 @@ Inherits \fBeoBF< A1, A2, R >< const const M &, M::EOType &, void >\fP.
 
 .in +1c
 .ti -1c
-.RI "std::vector< \fBeoBF\fP< const M &, const typename M::EOType &, void > * > \fBfunctions\fP"
+.RI "std::vector< eoBF< const M &, const typename M::EOType &, void > * > \fBfunctions\fP"
 .br
 .RI "\fIVector of functions. \fP"
 .in -1c
@@ -45,7 +43,7 @@ Definition at line 46 of file moLSCheckPoint.h.
 .PP 
 .SS "template<class M> void \fBmoLSCheckPoint\fP< M >::operator() (const M & _move, const typename M::EOType & _solution)\fC [inline]\fP"
 .PP
-\fBFunction\fP which launches the checkpointing. 
+Function which launches the checkpointing. 
 .PP
 Each saved function is used on the current move and the current solution.
 .PP
@@ -61,7 +59,7 @@ Each saved function is used on the current move and the current solution.
 Definition at line 57 of file moLSCheckPoint.h.
 .PP
 References moLSCheckPoint< M >::functions.
-.SS "template<class M> void \fBmoLSCheckPoint\fP< M >::add (\fBeoBF\fP< const M &, const typename M::EOType &, void > & _function)\fC [inline]\fP"
+.SS "template<class M> void \fBmoLSCheckPoint\fP< M >::add (eoBF< const M &, const typename M::EOType &, void > & _function)\fC [inline]\fP"
 .PP
 Procedure which add a new function to the function vector. 
 .PP
@@ -80,4 +78,4 @@ References moLSCheckPoint< M >::functions.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.
+Generated automatically by Doxygen for ParadisEO-MO-MovingObjects from the source code.

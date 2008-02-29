@@ -1,4 +1,4 @@
-.TH "moExponentialCoolingSchedule" 3 "16 Jan 2008" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.TH "moExponentialCoolingSchedule" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -22,7 +22,7 @@ Inherits \fBmoCoolingSchedule\fP.
 .ti -1c
 .RI "bool \fBoperator()\fP (double &_temperature)"
 .br
-.RI "\fI\fBFunction\fP which proceeds to the cooling. \fP"
+.RI "\fIFunction which proceeds to the cooling. \fP"
 .in -1c
 .SS "Private Attributes"
 
@@ -61,9 +61,9 @@ Simple constructor.
 Definition at line 55 of file moExponentialCoolingSchedule.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "bool moExponentialCoolingSchedule::operator() (double & _temperature)\fC [inline, virtual]\fP"
+.SS "bool moExponentialCoolingSchedule::operator() (double & _temperature)\fC [inline]\fP"
 .PP
-\fBFunction\fP which proceeds to the cooling. 
+Function which proceeds to the cooling. 
 .PP
 It decreases the temperature and indicates if it is greater than the threshold.
 .PP
@@ -79,12 +79,10 @@ if the new temperature (current temperature * ratio) is greater than the thresho
 .PP
 
 .PP
-Implements \fBeoUF< double &, bool >\fP.
-.PP
 Definition at line 65 of file moExponentialCoolingSchedule.h.
 .PP
 References ratio, and threshold.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.
+Generated automatically by Doxygen for ParadisEO-MO-MovingObjects from the source code.
