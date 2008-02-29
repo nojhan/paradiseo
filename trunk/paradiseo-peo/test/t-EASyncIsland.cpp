@@ -49,7 +49,7 @@ int main (int __argc, char *__argv[])
 {
   peo :: init( __argc, __argv );
   if (getNodeRank()==1)
-  	std::cout<<"\n\nTest : Synchronous island with EA\n\n";
+    std::cout<<"\n\nTest : Synchronous island with EA\n\n";
   rng.reseed (10);
   RingTopology topology;
   eoGenContinue < Indi > genContPara (10);

@@ -44,35 +44,35 @@ double f (const Indi & _indi)
   double sum=_indi[0]+_indi[1];
   return (-sum);
 }
-struct Algorithm 
-{
-	Algorithm( eoEvalFunc < Indi > & _eval, eoSelect < Indi > & _select, peoTransform < Indi > & _transform): 
-		loopEval(_eval),
+struct Algorithm
+  {
+    Algorithm( eoEvalFunc < Indi > & _eval, eoSelect < Indi > & _select, peoTransform < Indi > & _transform):
+        loopEval(_eval),
         eval(loopEval),
-		selectTransform( _select, _transform),
-		breed(selectTransform) {}
-		
-	void operator()(eoPop < Indi > & _pop) 
-	{
-		eoPop < Indi > offspring, empty_pop;
-        eval(empty_pop, _pop);
-        eval(empty_pop, offspring);
-        std::cout<<"\n\nBefore :\n"<<offspring;
-        breed(_pop, offspring);
-        eval(empty_pop, offspring);
-        std::cout<<"\n\nAfter :\n"<<offspring;
-	}
-	eoPopLoopEval < Indi > loopEval;
+        selectTransform( _select, _transform),
+        breed(selectTransform) {}
+
+    void operator()(eoPop < Indi > & _pop)
+    {
+      eoPop < Indi > offspring, empty_pop;
+      eval(empty_pop, _pop);
+      eval(empty_pop, offspring);
+      std::cout<<"\n\nBefore :\n"<<offspring;
+      breed(_pop, offspring);
+      eval(empty_pop, offspring);
+      std::cout<<"\n\nAfter :\n"<<offspring;
+    }
+    eoPopLoopEval < Indi > loopEval;
     eoPopEvalFunc < Indi > & eval;
-	eoSelectTransform < Indi > selectTransform;
+    eoSelectTransform < Indi > selectTransform;
     eoBreed < Indi > & breed;
-};
+  };
 
 int main (int __argc, char *__argv[])
 {
   peo :: init( __argc, __argv );
   if (getNodeRank()==1)
-  	std::cout<<"\n\nTest : parallel transform\n\n";
+    std::cout<<"\n\nTest : parallel transform\n\n";
   rng.reseed (10);
   eoEvalFuncPtr < Indi > plainEval(f);
   eoEvalFuncCounter < Indi > eval(plainEval);

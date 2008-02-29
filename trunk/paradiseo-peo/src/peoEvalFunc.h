@@ -50,21 +50,21 @@ template< class EOT, class FitT = typename EOT::Fitness, class FunctionArg = con
 struct peoEvalFunc: public eoEvalFunc<EOT>
   {
 
-	//! @brief Constructor
-	//! @param FitT (* _eval)( FunctionArg )
+    //! @brief Constructor
+    //! @param FitT (* _eval)( FunctionArg )
     peoEvalFunc( FitT (* _eval)( FunctionArg ) )
         : eoEvalFunc<EOT>(), evalFunc( _eval )
     {};
 
-	//! @brief Virtual operator 
-	//! @param EOT & _peo
+    //! @brief Virtual operator
+    //! @param EOT & _peo
     virtual void operator() ( EOT & _peo )
     {
       _peo.fitness((*evalFunc)( _peo ));
     };
 
 private:
-	//! @param FitT (* evalFunc )( FunctionArg )
+    //! @param FitT (* evalFunc )( FunctionArg )
     FitT (* evalFunc )( FunctionArg );
   };
 

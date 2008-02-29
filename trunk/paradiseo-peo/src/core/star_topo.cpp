@@ -1,4 +1,4 @@
-/* 
+/*
 * <star_topo.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
@@ -40,30 +40,36 @@
 StarTopology :: StarTopology () : center( NULL ) {}
 
 void StarTopology :: setNeighbors (Cooperative * __mig,
-				   std :: vector <Cooperative *> & __from,
-				   std :: vector <Cooperative *> & __to) {
+                                   std :: vector <Cooperative *> & __from,
+                                   std :: vector <Cooperative *> & __to)
+{
 
   assert( center != NULL );
 
   __from.clear () ;
   __to.clear () ;
 
-  if ( __mig == center ) {
+  if ( __mig == center )
+    {
 
-    for (unsigned i = 0; i < mig.size (); i ++) {
-      if (mig [i] != center) {
-	__from.push_back (mig [i]);
-	__to.push_back (mig [i]);
-      }
+      for (unsigned i = 0; i < mig.size (); i ++)
+        {
+          if (mig [i] != center)
+            {
+              __from.push_back (mig [i]);
+              __to.push_back (mig [i]);
+            }
+        }
     }
-  }
-  else {
-    __from.push_back (center);
-    __to.push_back (center);
-  }
+  else
+    {
+      __from.push_back (center);
+      __to.push_back (center);
+    }
 }
 
-void StarTopology :: setCenter (Cooperative& __center) {
+void StarTopology :: setCenter (Cooperative& __center)
+{
 
   center = &__center;
 }

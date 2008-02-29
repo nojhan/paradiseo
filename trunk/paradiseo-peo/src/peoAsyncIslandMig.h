@@ -57,7 +57,7 @@
 
 
 //! @class peoAsyncIslandMig
-//! @brief Specific class for a asynchronous migration 
+//! @brief Specific class for a asynchronous migration
 //! @see Cooperative eoUpdater
 //! @version 2.0
 //! @date january 2008
@@ -67,18 +67,18 @@ template< class TYPESELECT, class TYPEREPLACE > class peoAsyncIslandMig : public
   public:
 
     //! @brief Constructor
-	//! @param continuator & __cont
-	//! @param selector <TYPE> & __select 
-	//! @param replacement <TYPE> & __replace
-	//! @param Topology& __topology
-	peoAsyncIslandMig(
+    //! @param continuator & __cont
+    //! @param selector <TYPE> & __select
+    //! @param replacement <TYPE> & __replace
+    //! @param Topology& __topology
+    peoAsyncIslandMig(
       continuator & __cont,
       selector <TYPESELECT> & __select,
       replacement <TYPEREPLACE> & __replace,
       Topology& __topology
     );
 
-	//! @brief operator
+    //! @brief operator
     void operator()();
     //! @brief Function realizing packages
     void pack();
@@ -88,23 +88,23 @@ template< class TYPESELECT, class TYPEREPLACE > class peoAsyncIslandMig : public
     void packSynchronizeReq();
 
   private:
-	//! @brief Function which sends some emigrants
+    //! @brief Function which sends some emigrants
     void emigrate();
     //! @brief Function which receives some immigrants
     void immigrate();
 
   private:
-  	//! @param continuator & cont
-  	//! @param selector <TYPESELECT> & select
-  	//! @param replacement <TYPEREPLACE> & replace
-  	//! @param Topology& topology
-  	//! @param std :: queue< TYPEREPLACE > imm
-  	//! @param std :: queue< TYPESELECT > em
-  	//! @param std :: queue< Cooperative* > coop_em
-    continuator & cont;	
-    selector <TYPESELECT> & select;	
-    replacement <TYPEREPLACE> & replace;	
-    Topology& topology;		
+    //! @param continuator & cont
+    //! @param selector <TYPESELECT> & select
+    //! @param replacement <TYPEREPLACE> & replace
+    //! @param Topology& topology
+    //! @param std :: queue< TYPEREPLACE > imm
+    //! @param std :: queue< TYPESELECT > em
+    //! @param std :: queue< Cooperative* > coop_em
+    continuator & cont;
+    selector <TYPESELECT> & select;
+    replacement <TYPEREPLACE> & replace;
+    Topology& topology;
     std :: queue< TYPEREPLACE > imm;
     std :: queue< TYPESELECT > em;
     std :: queue< Cooperative* > coop_em;
@@ -189,8 +189,8 @@ template< class TYPESELECT , class TYPEREPLACE> void peoAsyncIslandMig< TYPESELE
   if (! cont.check())
     {
 
-      emigrate();	
-      immigrate();	
+      emigrate();
+      immigrate();
     }
 }
 

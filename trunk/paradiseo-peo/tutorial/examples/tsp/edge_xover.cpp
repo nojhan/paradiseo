@@ -63,16 +63,16 @@ void EdgeXover :: build_map (const Route & __par1, const Route & __par2)
 }
 
 void EdgeXover :: remove_entry (unsigned __vertex, std :: vector <std :: set <unsigned> > & __map)
-  {
+{
 
-    std :: set <unsigned> & neigh = __map [__vertex] ;
+  std :: set <unsigned> & neigh = __map [__vertex] ;
 
-    for (std :: set <unsigned> :: iterator it = neigh.begin () ;
-           it != neigh.end () ;
-           it ++)
-        __map [* it].erase (__vertex) ;
+  for (std :: set <unsigned> :: iterator it = neigh.begin () ;
+       it != neigh.end () ;
+       it ++)
+    __map [* it].erase (__vertex) ;
 
-  }
+}
 
 void EdgeXover :: add_vertex (unsigned __vertex, Route & __child)
 {
@@ -104,24 +104,24 @@ void EdgeXover :: cross (const Route & __par1, const Route & __par2, Route & __c
       std :: set <unsigned> & neigh = _map [cur_vertex] ;
 
       for (std :: set <unsigned> :: iterator it = neigh.begin () ;
-             it != neigh.end () ;
-             it ++)
-          {
-            unsigned l = _map [* it].size () ;
-            if (len_min_entry > l)
-              len_min_entry = l ;
-          }
+           it != neigh.end () ;
+           it ++)
+        {
+          unsigned l = _map [* it].size () ;
+          if (len_min_entry > l)
+            len_min_entry = l ;
+        }
 
       std :: vector <unsigned> cand ; /* Candidates */
 
       for (std :: set <unsigned> :: iterator it = neigh.begin () ;
-             it != neigh.end () ;
-             it ++)
-          {
-            unsigned l = _map [* it].size () ;
-            if (len_min_entry == l)
-              cand.push_back (* it) ;
-          }
+           it != neigh.end () ;
+           it ++)
+        {
+          unsigned l = _map [* it].size () ;
+          if (len_min_entry == l)
+            cand.push_back (* it) ;
+        }
 
       if (! cand.size ())
         {

@@ -58,7 +58,7 @@ int main (int __argc, char *__argv[])
   double EPSILON = parser.createParam(0.01, "mutEpsilon", "epsilon for mutation",'e',"Param").value();
   double CROSS_RATE = parser.createParam(0.25, "pCross", "Crossover probability",'C',"Param").value();
   double MUT_RATE = parser.createParam(0.35, "pMut", "Mutation probability",'M',"Param").value();
-  unsigned int VEC_SIZE = parser.createParam((unsigned int)(2), "vecSize", "Vector size",'V',"Param").value();  
+  unsigned int VEC_SIZE = parser.createParam((unsigned int)(2), "vecSize", "Vector size",'V',"Param").value();
   double INIT_POSITION_MIN = parser.createParam(-2.0, "pMin", "Init position min",'N',"Param").value();
   double INIT_POSITION_MAX = parser.createParam(2.0, "pMax", "Init position max",'X',"Param").value();
   rng.reseed (time(0));

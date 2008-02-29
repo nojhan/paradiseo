@@ -1,4 +1,4 @@
-/* 
+/*
 * <random_topo.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
@@ -39,13 +39,14 @@
 
 #include "topology.h"
 
-class RandomTopology : public Topology {
+class RandomTopology : public Topology
+  {
 
-public :
+  public :
 
-  void setNeighbors (Cooperative * __mig,
-		     std :: vector <Cooperative *> & __from,
-		     std :: vector <Cooperative *> & __to);
-};
+    void setNeighbors (Cooperative * __mig,
+                       std :: vector <Cooperative *> & __from,
+                       std :: vector <Cooperative *> & __to);
+  };
 
 #endif

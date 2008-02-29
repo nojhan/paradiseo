@@ -65,10 +65,14 @@ struct SyncCompare
           std::vector< SyncEntry >::const_iterator itA = syncA.begin();
           std::vector< SyncEntry >::const_iterator itB = syncB.begin();
 
-          while ( itA != syncA.end() && (*itA).runner == (*itB).runner ) { itA++; itB++; }
+          while ( itA != syncA.end() && (*itA).runner == (*itB).runner )
+            {
+              itA++;
+              itB++;
+            }
 
-                return ( (itA == syncA.end()) ) ? false : ( (*itA).runner < (*itB).runner );
-              }
+          return ( (itA == syncA.end()) ) ? false : ( (*itA).runner < (*itB).runner );
+        }
 
       return syncA.size() < syncB.size();
     }

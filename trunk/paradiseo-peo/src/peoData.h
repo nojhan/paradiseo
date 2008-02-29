@@ -51,9 +51,9 @@
 class continuator
   {
   public:
-  
-	//! @brief Virtual function of check
-	//! @return true if the algorithm must continue
+
+    //! @brief Virtual function of check
+    //! @return true if the algorithm must continue
     virtual bool check()=0;
     //! @brief Virtual destructor
     virtual ~continuator(){}
@@ -69,22 +69,22 @@ template < class EOT> class eoContinuator : public continuator
   {
   public:
 
-	//! @brief Constructor
-	//! @param eoContinue<EOT> & 
-	//! @param eoPop<EOT> & 
+    //! @brief Constructor
+    //! @param eoContinue<EOT> &
+    //! @param eoPop<EOT> &
     eoContinuator(eoContinue<EOT> & _cont, const eoPop<EOT> & _pop): cont (_cont), pop(_pop)
     {}
 
-	//! @brief Virtual function of check
-	//! @return false if the algorithm must continue
+    //! @brief Virtual function of check
+    //! @return false if the algorithm must continue
     virtual bool check()
     {
       return cont(pop);
     }
 
   protected:
-  	 //! @param eoContinue<EOT> &
-  	 //! @param eoPop<EOT> &
+    //! @param eoContinue<EOT> &
+    //! @param eoPop<EOT> &
     eoContinue<EOT> & cont ;
     const eoPop<EOT> & pop;
   };
@@ -101,9 +101,9 @@ template < class EOT> class eoContinuator : public continuator
 template < class TYPE>  class selector
   {
   public:
-  	
-  	//! @brief Virtual operator on the template type 
-  	//! @param TYPE &
+
+    //! @brief Virtual operator on the template type
+    //! @param TYPE &
     virtual void operator()(TYPE &)=0;
     //! @brief Virtual destructor
     virtual ~selector(){}
@@ -119,16 +119,16 @@ template < class EOT, class TYPE> class eoSelector : public selector< TYPE >
   {
   public:
 
-	//! @brief Constructor
-	//! @param eoSelectOne<EOT> &
-	//! @param unsigned _nb_select
-	//! @param TYPE & _source (with TYPE which is the template type)
+    //! @brief Constructor
+    //! @param eoSelectOne<EOT> &
+    //! @param unsigned _nb_select
+    //! @param TYPE & _source (with TYPE which is the template type)
     eoSelector(eoSelectOne<EOT> & _select, unsigned _nb_select, const TYPE & _source): selector (_select), nb_select(_nb_select), source(_source)
     {}
-    
-	//! @brief Virtual operator on the template type
-	//! @param TYPE & _dest
-	virtual void operator()(TYPE & _dest)
+
+    //! @brief Virtual operator on the template type
+    //! @param TYPE & _dest
+    virtual void operator()(TYPE & _dest)
     {
       size_t target = static_cast<size_t>(nb_select);
       _dest.resize(target);
@@ -137,9 +137,9 @@ template < class EOT, class TYPE> class eoSelector : public selector< TYPE >
     }
 
   protected:
-  	//! @param eoSelectOne<EOT> &
-  	//! @param unsigned nb_select
-  	//! @param TYPE & source
+    //! @param eoSelectOne<EOT> &
+    //! @param unsigned nb_select
+    //! @param TYPE & source
     eoSelectOne<EOT> & selector ;
     unsigned nb_select;
     const TYPE & source;
@@ -157,8 +157,8 @@ template < class EOT, class TYPE> class eoSelector : public selector< TYPE >
 template < class TYPE>  class replacement
   {
   public:
-  	//! @brief Virtual operator on the template type 
-  	//! @param TYPE &
+    //! @brief Virtual operator on the template type
+    //! @param TYPE &
     virtual void operator()(TYPE &)=0;
     //! @brief Virtual destructor
     virtual ~replacement(){}
@@ -173,22 +173,22 @@ template < class TYPE>  class replacement
 template < class EOT, class TYPE> class eoReplace : public replacement< TYPE >
   {
   public:
-  	//! @brief Constructor
-	//! @param eoReplacement<EOT> &
-	//! @param TYPE & _destination (with TYPE which is the template type)
+    //! @brief Constructor
+    //! @param eoReplacement<EOT> &
+    //! @param TYPE & _destination (with TYPE which is the template type)
     eoReplace(eoReplacement<EOT> & _replace, TYPE & _destination): replace(_replace), destination(_destination)
     {}
 
-	//! @brief Virtual operator on the template type
-	//! @param TYPE & _source
+    //! @brief Virtual operator on the template type
+    //! @param TYPE & _source
     virtual void operator()(TYPE & _source)
     {
       replace(destination, _source);
     }
 
   protected:
-  	//! @param eoReplacement<EOT> &
-  	//! @param TYPE & destination
+    //! @param eoReplacement<EOT> &
+    //! @param TYPE & destination
     eoReplacement<EOT> & replace;
     TYPE & destination;
   };
@@ -207,14 +207,14 @@ class eoSyncContinue: public continuator
   {
 
   public:
-	//! @brief Constructor
-	//! @param unsigned __period
-	//! @param unsigned __init_counter
+    //! @brief Constructor
+    //! @param unsigned __period
+    //! @param unsigned __init_counter
     eoSyncContinue (unsigned __period, unsigned __init_counter = 0): period (__period),counter (__init_counter)
     {}
 
-	//! @brief Virtual function of check
-	//! @return true if the algorithm must continue
+    //! @brief Virtual function of check
+    //! @return true if the algorithm must continue
     virtual bool check()
     {
       return ((++ counter) % period) != 0 ;
@@ -222,8 +222,8 @@ class eoSyncContinue: public continuator
 
 
   private:
-	//! @param unsigned period
-	//! @param unsigned counter
+    //! @param unsigned period
+    //! @param unsigned counter
     unsigned period;
     unsigned counter;
   };

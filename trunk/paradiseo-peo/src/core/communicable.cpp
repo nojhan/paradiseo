@@ -80,10 +80,10 @@ COMM_ID getKey (const Communicable * __comm)
 }
 
 void Communicable :: lock ()
-  {
+{
 
-    sem_wait (& sem_lock);
-  }
+  sem_wait (& sem_lock);
+}
 
 void Communicable :: unlock ()
 {

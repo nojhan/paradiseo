@@ -48,7 +48,7 @@ int main (int __argc, char *__argv[])
 {
   peo :: init( __argc, __argv );
   if (getNodeRank()==1)
-  	std::cout<<"\n\nTest : Asynchronous island with EA\n\n";
+    std::cout<<"\n\nTest : Asynchronous island with EA\n\n";
   rng.reseed (10);
   RingTopology topology;
   eoGenContinue < Indi > genContPara (10);
@@ -63,7 +63,8 @@ int main (int __argc, char *__argv[])
   eoSegmentCrossover<Indi> crossover;
   eoUniformMutation<Indi>  mutation(0.01);
   peoTransform<Indi> transform(crossover,0.8,mutation,0.3);
-  /*p*/eoPop < Indi > pop;
+  /*p*/
+  eoPop < Indi > pop;
   pop.append (10, random);
   eoPlusReplacement<Indi> replace;
   eoRandomSelect<Indi> mig_select_one;
@@ -90,7 +91,8 @@ int main (int __argc, char *__argv[])
   eoSegmentCrossover<Indi> crossover2;
   eoUniformMutation<Indi>  mutation2(0.01);
   peoTransform<Indi> transform2(crossover2,0.8,mutation2,0.3);
-  /*p*/eoPop < Indi > pop2;
+  /*p*/
+  eoPop < Indi > pop2;
   pop2.append (10, random2);
   eoPlusReplacement<Indi> replace2;
   eoRandomSelect<Indi> mig_select_one2;

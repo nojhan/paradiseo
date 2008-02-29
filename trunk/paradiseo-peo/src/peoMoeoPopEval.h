@@ -71,10 +71,10 @@ template< class EOT > class peoMoeoPopEval : public Service, public eoPopEvalFun
     //!
     //! @param eoPop< EOT >& __pop - population to be evaluated by applying the evaluation functor specified in the constructor.
     void operator()(eoPop< EOT >& __pop);
-    
+
     //! @brief Operator ()( eoPop< EOT >& __dummy, eoPop< EOT >& __pop )
-  	//! @param eoPop< EOT >& __dummy
-  	//! @param eoPop< EOT >& __pop
+    //! @param eoPop< EOT >& __dummy
+    //! @param eoPop< EOT >& __pop
     void operator()( eoPop< EOT >& __dummy, eoPop< EOT >& __pop );
 
     //! Auxiliary function for transferring data between the process requesting an evaluation operation and the process that
@@ -105,16 +105,16 @@ template< class EOT > class peoMoeoPopEval : public Service, public eoPopEvalFun
     void notifySendingAllResourceRequests();
 
   private:
-	//! @param std :: vector< eoEvalFunc < EOT >* >& funcs
-	//! @param std :: vector< eoEvalFunc < EOT >* > one_func
-	//! @param peoAggEvalFunc< EOT >& merge_eval
-	//! @param peoNoAggEvalFunc< EOT > no_merge_eval
-	//! @param std :: queue< EOT* >tasks
-	//! @param std :: map< EOT*, std :: pair< unsigned, unsigned > > progression
-	//! @param unsigned num_func
-	//! @param EOT sol
-	//! @param EOT *ad_sol
-	//! @param unsigned total
+    //! @param std :: vector< eoEvalFunc < EOT >* >& funcs
+    //! @param std :: vector< eoEvalFunc < EOT >* > one_func
+    //! @param peoAggEvalFunc< EOT >& merge_eval
+    //! @param peoNoAggEvalFunc< EOT > no_merge_eval
+    //! @param std :: queue< EOT* >tasks
+    //! @param std :: map< EOT*, std :: pair< unsigned, unsigned > > progression
+    //! @param unsigned num_func
+    //! @param EOT sol
+    //! @param EOT *ad_sol
+    //! @param unsigned total
     const std :: vector< eoEvalFunc < EOT >* >& funcs;
     std :: vector< eoEvalFunc < EOT >* > one_func;
     peoAggEvalFunc< EOT >& merge_eval;

@@ -1,4 +1,4 @@
-/* 
+/*
 * <random_topo.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
@@ -40,16 +40,19 @@
 #include <utils/eoRNG.h>
 
 void RandomTopology :: setNeighbors (Cooperative * __mig,
-				   std :: vector <Cooperative *> & __from,
-				   std :: vector <Cooperative *> & __to) {
+                                     std :: vector <Cooperative *> & __from,
+                                     std :: vector <Cooperative *> & __to)
+{
 
   __from.clear () ;
   __to.clear () ;
 
-    for (unsigned i = 0; i < mig.size (); i ++) {
-      if (mig [i] != __mig && rng.uniform() < 0.5 ) {
-	__from.push_back (mig [i]);
-	__to.push_back (mig [i]);
-      }
+  for (unsigned i = 0; i < mig.size (); i ++)
+    {
+      if (mig [i] != __mig && rng.uniform() < 0.5 )
+        {
+          __from.push_back (mig [i]);
+          __to.push_back (mig [i]);
+        }
     }
 }

@@ -64,7 +64,7 @@
 
 
 //! @class peoSyncIslandMig
-//! @brief Specific class for a synchronous migration 
+//! @brief Specific class for a synchronous migration
 //! @see Cooperative eoUpdater
 //! @version 2.0
 //! @date january 2008
@@ -74,10 +74,10 @@ template< class TYPESELECT, class TYPEREPLACE  > class peoSyncIslandMig : public
   public:
 
     //! @brief Constructor
-	//! @param unsigned __frequency
-	//! @param selector <TYPESELECT> & __select 
-	//! @param replacement <TYPEREPLACE> & __replace
-	//! @param Topology& __topology
+    //! @param unsigned __frequency
+    //! @param selector <TYPESELECT> & __select
+    //! @param replacement <TYPEREPLACE> & __replace
+    //! @param Topology& __topology
     peoSyncIslandMig(
       unsigned __frequency,
       selector <TYPESELECT> & __select,
@@ -87,19 +87,19 @@ template< class TYPESELECT, class TYPEREPLACE  > class peoSyncIslandMig : public
 
     //! @brief operator
     void operator()();
-	//! @brief Function realizing packages
+    //! @brief Function realizing packages
     void pack();
     //! @brief Function reconstituting packages
     void unpack();
     //! @brief Function packSynchronizeReq
     void packSynchronizeReq();
-	//! @brief Function notifySending
+    //! @brief Function notifySending
     void notifySending();
-	//! @brief Function notifyReceiving
+    //! @brief Function notifyReceiving
     void notifyReceiving();
-	//! @brief notifySendingSyncReq
+    //! @brief notifySendingSyncReq
     void notifySendingSyncReq();
-	//! @brief notifySynchronized
+    //! @brief notifySynchronized
     void notifySynchronized();
 
   private:
@@ -109,22 +109,22 @@ template< class TYPESELECT, class TYPEREPLACE  > class peoSyncIslandMig : public
 
 
   private:
-	//! @param eoSyncContinue cont
-	//! @param selector <TYPESELECT> & select
-	//! @param replacement <TYPEREPLACE> & replace
-	//! @param Topology& topology
-	//! @param std :: queue< TYPEREPLACE > imm
-	//! @param std :: queue< TYPESELECT > em
-	//! @param std :: queue< Cooperative* > coop_em
-	//! @param sem_t sync
-	//! @param bool explicitPassive
-	//! @param bool standbyMigration
-	//! @param std :: vector< Cooperative* > in, out, all
-	//! @param unsigned nbMigrations
-    eoSyncContinue cont;	
-    selector <TYPESELECT> & select;	
-    replacement <TYPEREPLACE> & replace;	
-    Topology& topology;		
+    //! @param eoSyncContinue cont
+    //! @param selector <TYPESELECT> & select
+    //! @param replacement <TYPEREPLACE> & replace
+    //! @param Topology& topology
+    //! @param std :: queue< TYPEREPLACE > imm
+    //! @param std :: queue< TYPESELECT > em
+    //! @param std :: queue< Cooperative* > coop_em
+    //! @param sem_t sync
+    //! @param bool explicitPassive
+    //! @param bool standbyMigration
+    //! @param std :: vector< Cooperative* > in, out, all
+    //! @param unsigned nbMigrations
+    eoSyncContinue cont;
+    selector <TYPESELECT> & select;
+    replacement <TYPEREPLACE> & replace;
+    Topology& topology;
     std :: queue< TYPEREPLACE > imm;
     std :: queue< TYPESELECT > em;
     std :: queue< Cooperative* > coop_em;

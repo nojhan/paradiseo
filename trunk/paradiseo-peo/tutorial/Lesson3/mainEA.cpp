@@ -58,7 +58,7 @@ int main (int __argc, char *__argv[])
   double EPSILON = parser.createParam(0.01, "mutEpsilon", "epsilon for mutation",'e',"Param").value();
   double CROSS_RATE = parser.createParam(0.25, "pCross", "Crossover probability",'C',"Param").value();
   double MUT_RATE = parser.createParam(0.35, "pMut", "Mutation probability",'M',"Param").value();
-  unsigned int VEC_SIZE = parser.createParam((unsigned int)(2), "vecSize", "Vector size",'V',"Param").value();  
+  unsigned int VEC_SIZE = parser.createParam((unsigned int)(2), "vecSize", "Vector size",'V',"Param").value();
   double INIT_POSITION_MIN = parser.createParam(-2.0, "pMin", "Init position min",'N',"Param").value();
   double INIT_POSITION_MAX = parser.createParam(2.0, "pMax", "Init position max",'X',"Param").value();
   unsigned int MIG_FREQ = parser.createParam((unsigned int)(10), "migFreq", "Migration frequency",'F',"Param").value();
@@ -85,9 +85,9 @@ int main (int __argc, char *__argv[])
   peoTransform<Indi> transform(crossover,CROSS_RATE,mutation,MUT_RATE);
   eoPop < Indi > pop;
   pop.append (POP_SIZE, random);
-  
+
 // Define a synchronous island
-  
+
   // Seclection
   eoRandomSelect<Indi> mig_select_one;
   eoSelector <Indi, eoPop<Indi> > mig_select (mig_select_one,MIG_SIZE,pop);
@@ -97,7 +97,7 @@ int main (int __argc, char *__argv[])
   // Island
   peoSyncIslandMig<eoPop<Indi>, eoPop<Indi> > mig(MIG_FREQ,mig_select,mig_replace,topology);
   checkpoint.add(mig);
-  
+
   eoEasyEA< Indi > eaAlg( checkpoint, eval, select, transform, replace );
   peoWrapper parallelEA( eaAlg, pop);
   eval.setOwner(parallelEA);
