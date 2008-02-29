@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: rmc.cpp Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: rmc.cpp Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,7 +22,7 @@
       </form>
     </li>
   </ul></div>
-<h1>rmc.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>rmc.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;rmc.cpp&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
 <a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
@@ -66,37 +66,54 @@
 <a name="l00042"></a>00042 <span class="preprocessor">#include "../../core/peo_debug.h"</span>
 <a name="l00043"></a>00043 
 <a name="l00044"></a>00044 <span class="keyword">static</span> std :: vector &lt;pthread_t *&gt; ll_threads; <span class="comment">/* Low level threads */</span>
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="keywordtype">void</span> runRMC () {
+<a name="l00045"></a>00045 <span class="keyword">static</span> std :: vector &lt;Worker *&gt; worker_threads; <span class="comment">/* Worker threads */</span>
+<a name="l00046"></a>00046 <span class="keyword">static</span> <a class="code" href="classCommunicator.html">Communicator</a>* communicator_thread = NULL; <span class="comment">/* Communicator thread */</span>
 <a name="l00047"></a>00047 
-<a name="l00048"></a>00048   <span class="comment">/* Worker(s) ? */</span>
-<a name="l00049"></a>00049   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; my_node -&gt; num_workers; i ++) 
-<a name="l00050"></a>00050     addThread (<span class="keyword">new</span> <a class="code" href="classWorker.html">Worker</a>, ll_threads);
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 <span class="keywordtype">void</span> runRMC ()
+<a name="l00050"></a>00050 {
 <a name="l00051"></a>00051 
-<a name="l00052"></a>00052   wakeUpCommunicator ();
-<a name="l00053"></a>00053 }
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055 <span class="keywordtype">void</span> initRMC (<span class="keywordtype">int</span> &amp; __argc, <span class="keywordtype">char</span> * * &amp; __argv) {
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057   <span class="comment">/* Communication */</span>
-<a name="l00058"></a>00058   initCommunication ();
-<a name="l00059"></a>00059   addThread (<span class="keyword">new</span> <a class="code" href="classCommunicator.html">Communicator</a> (&amp; __argc, &amp; __argv), ll_threads);
-<a name="l00060"></a>00060   waitNodeInitialization ();
-<a name="l00061"></a>00061   initSending ();
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063   <span class="comment">/* Scheduler */</span>
-<a name="l00064"></a>00064   <span class="keywordflow">if</span> (isScheduleNode ())
-<a name="l00065"></a>00065     initScheduler ();
-<a name="l00066"></a>00066 
-<a name="l00068"></a>00068 }
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070 <span class="keywordtype">void</span> finalizeRMC () {
+<a name="l00052"></a>00052   <span class="comment">/* Worker(s) ? */</span>
+<a name="l00053"></a>00053   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; my_node -&gt; num_workers; i ++)
+<a name="l00054"></a>00054     {
+<a name="l00055"></a>00055       worker_threads.push_back (<span class="keyword">new</span> <a class="code" href="classWorker.html">Worker</a>);
+<a name="l00056"></a>00056       addThread (worker_threads.back(), ll_threads);
+<a name="l00057"></a>00057     }
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059   wakeUpCommunicator ();
+<a name="l00060"></a>00060 }
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 <span class="keywordtype">void</span> initRMC (<span class="keywordtype">int</span> &amp; __argc, <span class="keywordtype">char</span> * * &amp; __argv)
+<a name="l00063"></a>00063 {
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065   <span class="comment">/* Communication */</span>
+<a name="l00066"></a>00066   initCommunication ();
+<a name="l00067"></a>00067   communicator_thread = <span class="keyword">new</span> <a class="code" href="classCommunicator.html">Communicator</a> (&amp; __argc, &amp; __argv);
+<a name="l00068"></a>00068   addThread (communicator_thread, ll_threads);
+<a name="l00069"></a>00069   waitNodeInitialization ();
+<a name="l00070"></a>00070   initSending ();
 <a name="l00071"></a>00071 
-<a name="l00072"></a>00072   printDebugMessage (<span class="stringliteral">"before join threads RMC"</span>);
-<a name="l00073"></a>00073   joinThreads (ll_threads);
-<a name="l00074"></a>00074   printDebugMessage (<span class="stringliteral">"after join threads RMC"</span>);
+<a name="l00072"></a>00072   <span class="comment">/* Scheduler */</span>
+<a name="l00073"></a>00073   <span class="keywordflow">if</span> (isScheduleNode ())
+<a name="l00074"></a>00074     initScheduler ();
 <a name="l00075"></a>00075 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:46 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077 <span class="keywordtype">void</span> finalizeRMC ()
+<a name="l00078"></a>00078 {
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080   printDebugMessage (<span class="stringliteral">"before join threads RMC"</span>);
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082   joinThreads (ll_threads);
+<a name="l00083"></a>00083   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; worker_threads.size(); i++ )
+<a name="l00084"></a>00084     {
+<a name="l00085"></a>00085       <span class="keyword">delete</span> worker_threads [i];
+<a name="l00086"></a>00086     }
+<a name="l00087"></a>00087   worker_threads.clear ();
+<a name="l00088"></a>00088   <span class="keyword">delete</span> communicator_thread;
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090   printDebugMessage (<span class="stringliteral">"after join threads RMC"</span>);
+<a name="l00091"></a>00091 }
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

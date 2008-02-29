@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: reac_thread.cpp Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: reac_thread.cpp Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,7 +22,7 @@
       </form>
     </li>
   </ul></div>
-<h1>reac_thread.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>reac_thread.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;reac_thread.cpp&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
 <a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
@@ -64,29 +64,47 @@
 <a name="l00040"></a>00040 
 <a name="l00041"></a>00041 <span class="keyword">static</span> std :: vector &lt;ReactiveThread *&gt; reac_threads;
 <a name="l00042"></a>00042 
-<a name="l00043"></a><a class="code" href="classReactiveThread.html#77381649429941c99a3e3d568113d6cf">00043</a> <a class="code" href="classReactiveThread.html#77381649429941c99a3e3d568113d6cf">ReactiveThread :: ReactiveThread</a> () {
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045   reac_threads.push_back (<span class="keyword">this</span>);
-<a name="l00046"></a>00046   sem_init (&amp; <a class="code" href="classReactiveThread.html#915e5a42dc8cb1bcf6738d5fe883a4e7">sem</a>, 0, 0);
-<a name="l00047"></a>00047 }
-<a name="l00048"></a>00048 
-<a name="l00049"></a><a class="code" href="classReactiveThread.html#8263c2a32d8c99a49a05f1a7717d4262">00049</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveThread.html#8263c2a32d8c99a49a05f1a7717d4262">ReactiveThread :: sleep</a> () {
+<a name="l00043"></a>00043 
+<a name="l00044"></a><a class="code" href="classReactiveThread.html#77381649429941c99a3e3d568113d6cf">00044</a> <a class="code" href="classReactiveThread.html#77381649429941c99a3e3d568113d6cf">ReactiveThread :: ReactiveThread</a> ()
+<a name="l00045"></a>00045 {
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047   reac_threads.push_back (<span class="keyword">this</span>);
+<a name="l00048"></a>00048   sem_init (&amp; <a class="code" href="classReactiveThread.html#915e5a42dc8cb1bcf6738d5fe883a4e7">sem</a>, 0, 0);
+<a name="l00049"></a>00049 }
 <a name="l00050"></a>00050 
-<a name="l00051"></a>00051   sem_wait (&amp; <a class="code" href="classReactiveThread.html#915e5a42dc8cb1bcf6738d5fe883a4e7">sem</a>);     
-<a name="l00052"></a>00052 }
+<a name="l00051"></a><a class="code" href="classReactiveThread.html#8263c2a32d8c99a49a05f1a7717d4262">00051</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveThread.html#8263c2a32d8c99a49a05f1a7717d4262">ReactiveThread :: sleep</a> ()
+<a name="l00052"></a>00052 {
 <a name="l00053"></a>00053 
-<a name="l00054"></a><a class="code" href="classReactiveThread.html#a724a54575de10f09cc03ab7aa4e59ce">00054</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveThread.html#a724a54575de10f09cc03ab7aa4e59ce">ReactiveThread :: wakeUp</a> () {
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056   sem_post (&amp; <a class="code" href="classReactiveThread.html#915e5a42dc8cb1bcf6738d5fe883a4e7">sem</a>);     
-<a name="l00057"></a>00057 }
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059 <span class="keywordtype">void</span> stopReactiveThreads () {
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061   the_end = <span class="keyword">true</span>;
-<a name="l00062"></a>00062   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; reac_threads.size (); i ++)
-<a name="l00063"></a>00063     reac_threads [i] -&gt; wakeUp  ();     
-<a name="l00064"></a>00064 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:46 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00054"></a>00054   sem_wait (&amp; <a class="code" href="classReactiveThread.html#915e5a42dc8cb1bcf6738d5fe883a4e7">sem</a>);
+<a name="l00055"></a>00055 }
+<a name="l00056"></a>00056 
+<a name="l00057"></a><a class="code" href="classReactiveThread.html#a724a54575de10f09cc03ab7aa4e59ce">00057</a> <span class="keywordtype">void</span> <a class="code" href="classReactiveThread.html#a724a54575de10f09cc03ab7aa4e59ce">ReactiveThread :: wakeUp</a> ()
+<a name="l00058"></a>00058 {
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060   sem_post (&amp; <a class="code" href="classReactiveThread.html#915e5a42dc8cb1bcf6738d5fe883a4e7">sem</a>);
+<a name="l00061"></a>00061 }
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063 <span class="keywordtype">void</span> initReactiveThreadsEnv ()
+<a name="l00064"></a>00064 {
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066   the_end = <span class="keyword">false</span>;
+<a name="l00067"></a>00067   reac_threads.clear ();
+<a name="l00068"></a>00068 }
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 <span class="keywordtype">void</span> stopReactiveThreads ()
+<a name="l00071"></a>00071 {
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073   the_end = <span class="keyword">true</span>;
+<a name="l00074"></a>00074   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; reac_threads.size (); i ++)
+<a name="l00075"></a>00075     reac_threads [i] -&gt; wakeUp  ();
+<a name="l00076"></a>00076   reac_threads.clear ();
+<a name="l00077"></a>00077 }
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079 <span class="keywordtype">bool</span> theEnd ()
+<a name="l00080"></a>00080 {
+<a name="l00081"></a>00081   <span class="keywordflow">return</span> the_end;
+<a name="l00082"></a>00082 }
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

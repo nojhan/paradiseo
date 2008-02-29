@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: cooperative.h Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: cooperative.h Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,7 +22,7 @@
       </form>
     </li>
   </ul></div>
-<h1>cooperative.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>cooperative.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;cooperative.h&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
 <a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
@@ -61,37 +61,49 @@
 <a name="l00037"></a>00037 <span class="preprocessor">#ifndef __cooperative_h</span>
 <a name="l00038"></a>00038 <span class="preprocessor"></span><span class="preprocessor">#define __cooperative_h</span>
 <a name="l00039"></a>00039 <span class="preprocessor"></span>
-<a name="l00040"></a>00040 <span class="preprocessor">#include "communicable.h"</span>
-<a name="l00041"></a>00041 <span class="preprocessor">#include "runner.h"</span>
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043 <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> COOP_ID;
-<a name="l00044"></a>00044 
-<a name="l00045"></a><a class="code" href="classCooperative.html">00045</a> <span class="keyword">class </span><a class="code" href="classCooperative.html">Cooperative</a> : <span class="keyword">public</span> <a class="code" href="classCommunicable.html">Communicable</a> {
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047 <span class="keyword">public</span> :
+<a name="l00040"></a>00040 <span class="preprocessor">#include &lt;vector&gt;</span>
+<a name="l00041"></a>00041 <span class="preprocessor">#include "communicable.h"</span>
+<a name="l00042"></a>00042 <span class="preprocessor">#include "runner.h"</span>
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044 <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> COOP_ID;
+<a name="l00045"></a>00045 
+<a name="l00046"></a><a class="code" href="classCooperative.html">00046</a> <span class="keyword">class </span><a class="code" href="classCooperative.html">Cooperative</a> : <span class="keyword">public</span> <a class="code" href="classCommunicable.html">Communicable</a>
+<a name="l00047"></a>00047   {
 <a name="l00048"></a>00048 
-<a name="l00049"></a>00049   <a class="code" href="classRunner.html">Runner</a> * <a class="code" href="classCooperative.html#4012b4e8329e87d26ee266491e1a883e">getOwner</a> ();
+<a name="l00049"></a>00049   <span class="keyword">public</span> :
 <a name="l00050"></a>00050 
-<a name="l00051"></a>00051   <span class="keywordtype">void</span> <a class="code" href="classCooperative.html#fe7b022567174c8305bc78d8c5749b12">setOwner</a> (<a class="code" href="classRunner.html">Runner</a> &amp; __runner);
+<a name="l00051"></a>00051     <a class="code" href="classRunner.html">Runner</a> * <a class="code" href="classCooperative.html#4012b4e8329e87d26ee266491e1a883e">getOwner</a> ();
 <a name="l00052"></a>00052 
-<a name="l00053"></a>00053   <span class="keyword">virtual</span> <span class="keywordtype">void</span> pack () = 0;
-<a name="l00054"></a>00054   
-<a name="l00055"></a>00055   <span class="keyword">virtual</span> <span class="keywordtype">void</span> unpack () = 0;
+<a name="l00053"></a>00053     <span class="keywordtype">void</span> <a class="code" href="classCooperative.html#fe7b022567174c8305bc78d8c5749b12">setOwner</a> (<a class="code" href="classRunner.html">Runner</a> &amp; __runner);
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055     <span class="keyword">virtual</span> <span class="keywordtype">void</span> pack () = 0;
 <a name="l00056"></a>00056 
-<a name="l00057"></a>00057   <span class="keywordtype">void</span> <a class="code" href="classCooperative.html#c609f2a1200da7d1ac96005602515fc6">send</a> (<a class="code" href="classCooperative.html">Cooperative</a> * __coop); 
+<a name="l00057"></a>00057     <span class="keyword">virtual</span> <span class="keywordtype">void</span> unpack () = 0;
 <a name="l00058"></a>00058 
-<a name="l00059"></a>00059   <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCooperative.html#4439ddeaa1246a2e44c003bfb781739b">notifySending</a> ();
+<a name="l00059"></a>00059     <span class="keyword">virtual</span> <span class="keywordtype">void</span> packSynchronizeReq () = 0;
 <a name="l00060"></a>00060 
-<a name="l00061"></a>00061 <span class="keyword">private</span> :
+<a name="l00061"></a>00061     <span class="keywordtype">void</span> <a class="code" href="classCooperative.html#c609f2a1200da7d1ac96005602515fc6">send</a> (<a class="code" href="classCooperative.html">Cooperative</a> * __coop);
 <a name="l00062"></a>00062 
-<a name="l00063"></a><a class="code" href="classCooperative.html#7604f094479d08154ede4996a45bf79e">00063</a>   <a class="code" href="classRunner.html">Runner</a> * <a class="code" href="classCooperative.html#7604f094479d08154ede4996a45bf79e">owner</a>;
+<a name="l00063"></a>00063     <span class="keywordtype">void</span> <a class="code" href="classCooperative.html#a08615f1fb5a71bb6eb8ea53ef7d1c69">synchronizeCoopEx</a> ();
 <a name="l00064"></a>00064 
-<a name="l00065"></a>00065 };
+<a name="l00065"></a>00065     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCooperative.html#4439ddeaa1246a2e44c003bfb781739b">notifySending</a> ();
 <a name="l00066"></a>00066 
-<a name="l00067"></a>00067 <span class="keyword">extern</span> <a class="code" href="classCooperative.html">Cooperative</a> * getCooperative (COOP_ID __key); 
+<a name="l00067"></a>00067     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCooperative.html#b75a33c5735799076e01b125e47e3bbc">notifyReceiving</a> ();
 <a name="l00068"></a>00068 
-<a name="l00069"></a>00069 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:45 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00069"></a>00069     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCooperative.html#38f28f9155deac5e48edcaf935a2263b">notifySendingSyncReq</a> ();
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCooperative.html#6cc64e571944783b8f697f7c2299cc8d">notifySynchronized</a> ();
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073   <span class="keyword">private</span> :
+<a name="l00074"></a>00074 
+<a name="l00075"></a><a class="code" href="classCooperative.html#7604f094479d08154ede4996a45bf79e">00075</a>     <a class="code" href="classRunner.html">Runner</a> * <a class="code" href="classCooperative.html#7604f094479d08154ede4996a45bf79e">owner</a>;
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077   };
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079 <span class="keyword">extern</span> <a class="code" href="classCooperative.html">Cooperative</a> * getCooperative (COOP_ID __key);
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081 <span class="preprocessor">#endif</span>
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

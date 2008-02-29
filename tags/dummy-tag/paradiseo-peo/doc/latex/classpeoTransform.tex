@@ -2,7 +2,7 @@
 \section{peo\-Transform$<$ EOT $>$ Class Template Reference}
 \label{classpeoTransform}\index{peoTransform@{peoTransform}}
 }
-The \hyperlink{classpeoTransform}{peo\-Transform} class acts only as an interface for creating transform operators - for an example please refer to the {\bf \hyperlink{classpeoSeqTransform}{peo\-Seq\-Transform}} and the {\bf \hyperlink{classpeoParaSGATransform}{peo\-Para\-SGATransform}} classes.  
+Class for a parallel transform.  
 
 
 {\tt \#include $<$peo\-Transform.h$>$}
@@ -10,19 +10,173 @@ The \hyperlink{classpeoTransform}{peo\-Transform} class acts only as an interfac
 Inheritance diagram for peo\-Transform$<$ EOT $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=5cm]{classpeoTransform}
+\includegraphics[height=3cm]{classpeoTransform}
 \end{center}
 \end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classpeoTransform_755989a2d080903d0cade75643de0788}{peo\-Transform} (eo\-Quad\-Op$<$ EOT $>$ \&\_\-\_\-cross, double \_\-\_\-cross\_\-rate, eo\-Mon\-Op$<$ EOT $>$ \&\_\-\_\-mut, double \_\-\_\-mut\_\-rate)
+\begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
+void \hyperlink{classpeoTransform_9322aa28ad272289132e342624a0adb4}{operator()} (eo\-Pop$<$ EOT $>$ \&\_\-\_\-pop)
+\begin{CompactList}\small\item\em Operator. \item\end{CompactList}\item 
+\hypertarget{classpeoTransform_c1101d10a36ce4255b874bcd9725021e}{
+void \hyperlink{classpeoTransform_c1101d10a36ce4255b874bcd9725021e}{pack\-Data} ()}
+\label{classpeoTransform_c1101d10a36ce4255b874bcd9725021e}
+
+\begin{CompactList}\small\item\em Function realizing packages of data. \item\end{CompactList}\item 
+\hypertarget{classpeoTransform_a804631492e08053162a196877587aef}{
+void \hyperlink{classpeoTransform_a804631492e08053162a196877587aef}{unpack\-Data} ()}
+\label{classpeoTransform_a804631492e08053162a196877587aef}
+
+\begin{CompactList}\small\item\em Function reconstituting packages of data. \item\end{CompactList}\item 
+\hypertarget{classpeoTransform_85c2cbc76f803b2b5cb2bc8cbc214136}{
+void \hyperlink{classpeoTransform_85c2cbc76f803b2b5cb2bc8cbc214136}{execute} ()}
+\label{classpeoTransform_85c2cbc76f803b2b5cb2bc8cbc214136}
+
+\begin{CompactList}\small\item\em Function which executes the algorithm. \item\end{CompactList}\item 
+\hypertarget{classpeoTransform_bdae056027406ba9f489e2bef115fd08}{
+void \hyperlink{classpeoTransform_bdae056027406ba9f489e2bef115fd08}{pack\-Result} ()}
+\label{classpeoTransform_bdae056027406ba9f489e2bef115fd08}
+
+\begin{CompactList}\small\item\em Function realizing packages of the result. \item\end{CompactList}\item 
+\hypertarget{classpeoTransform_e0244425e846c5679c901b61e4252814}{
+void \hyperlink{classpeoTransform_e0244425e846c5679c901b61e4252814}{unpack\-Result} ()}
+\label{classpeoTransform_e0244425e846c5679c901b61e4252814}
+
+\begin{CompactList}\small\item\em Function reconstituting packages of result. \item\end{CompactList}\item 
+\hypertarget{classpeoTransform_77508f186476181ec2c6a8230961eede}{
+void \hyperlink{classpeoTransform_77508f186476181ec2c6a8230961eede}{notify\-Sending\-Data} ()}
+\label{classpeoTransform_77508f186476181ec2c6a8230961eede}
+
+\begin{CompactList}\small\item\em Function notify\-Sending\-Data. \item\end{CompactList}\item 
+\hypertarget{classpeoTransform_19990af963b6604d1175290fe6725335}{
+void \hyperlink{classpeoTransform_19990af963b6604d1175290fe6725335}{notify\-Sending\-All\-Resource\-Requests} ()}
+\label{classpeoTransform_19990af963b6604d1175290fe6725335}
+
+\begin{CompactList}\small\item\em Function notify\-Sending\-All\-Resource\-Requests. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+eo\-Quad\-Op$<$ EOT $>$ \& \hyperlink{classpeoTransform_d2fce5199b61f599fd89cf54d6fcd312}{cross}
+\item 
+\hypertarget{classpeoTransform_3336251fb3433a8405ea75f3a8bed04d}{
+double \hyperlink{classpeoTransform_3336251fb3433a8405ea75f3a8bed04d}{cross\_\-rate}}
+\label{classpeoTransform_3336251fb3433a8405ea75f3a8bed04d}
+
+\item 
+\hypertarget{classpeoTransform_3d1ea5c8a6aa95bf051051361908a9c6}{
+eo\-Mon\-Op$<$ EOT $>$ \& \hyperlink{classpeoTransform_3d1ea5c8a6aa95bf051051361908a9c6}{mut}}
+\label{classpeoTransform_3d1ea5c8a6aa95bf051051361908a9c6}
+
+\item 
+\hypertarget{classpeoTransform_0b0802dfc4a3ec664c8fccf10bb1842a}{
+double \hyperlink{classpeoTransform_0b0802dfc4a3ec664c8fccf10bb1842a}{mut\_\-rate}}
+\label{classpeoTransform_0b0802dfc4a3ec664c8fccf10bb1842a}
+
+\item 
+\hypertarget{classpeoTransform_0acac288337aec3d0d853565924a365d}{
+unsigned \hyperlink{classpeoTransform_0acac288337aec3d0d853565924a365d}{idx}}
+\label{classpeoTransform_0acac288337aec3d0d853565924a365d}
+
+\item 
+\hypertarget{classpeoTransform_0916042d3500452082ad19fd5ce5e161}{
+eo\-Pop$<$ EOT $>$ $\ast$ \hyperlink{classpeoTransform_0916042d3500452082ad19fd5ce5e161}{pop}}
+\label{classpeoTransform_0916042d3500452082ad19fd5ce5e161}
+
+\item 
+\hypertarget{classpeoTransform_88c563f77e5c25b70b6cb619ec97185f}{
+EOT \hyperlink{classpeoTransform_88c563f77e5c25b70b6cb619ec97185f}{father}}
+\label{classpeoTransform_88c563f77e5c25b70b6cb619ec97185f}
+
+\item 
+\hypertarget{classpeoTransform_5c754343fa9a3580632d6b9e8f1bafaa}{
+EOT \hyperlink{classpeoTransform_5c754343fa9a3580632d6b9e8f1bafaa}{mother}}
+\label{classpeoTransform_5c754343fa9a3580632d6b9e8f1bafaa}
+
+\item 
+\hypertarget{classpeoTransform_6a02c2c2de16c5825058e06d146c5cd9}{
+unsigned \hyperlink{classpeoTransform_6a02c2c2de16c5825058e06d146c5cd9}{num\_\-term}}
+\label{classpeoTransform_6a02c2c2de16c5825058e06d146c5cd9}
+
+\end{CompactItemize}
 
 
 \subsection{Detailed Description}
 \subsubsection*{template$<$class EOT$>$ class peo\-Transform$<$ EOT $>$}
 
-The \hyperlink{classpeoTransform}{peo\-Transform} class acts only as an interface for creating transform operators - for an example please refer to the {\bf \hyperlink{classpeoSeqTransform}{peo\-Seq\-Transform}} and the {\bf \hyperlink{classpeoParaSGATransform}{peo\-Para\-SGATransform}} classes. 
+Class for a parallel transform. 
+
+\begin{Desc}
+\item[See also:]\hyperlink{classService}{Service} eo\-Transform \end{Desc}
+\begin{Desc}
+\item[Version:]1.1 \end{Desc}
+\begin{Desc}
+\item[Date:]january 2008 \end{Desc}
 
 
 
-Definition at line 48 of file peo\-Transform.h.
+
+Definition at line 53 of file peo\-Transform.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classpeoTransform_755989a2d080903d0cade75643de0788}{
+\index{peoTransform@{peo\-Transform}!peoTransform@{peoTransform}}
+\index{peoTransform@{peoTransform}!peoTransform@{peo\-Transform}}
+\subsubsection[peoTransform]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ \hyperlink{classpeoTransform}{peo\-Transform}$<$ EOT $>$::\hyperlink{classpeoTransform}{peo\-Transform} (eo\-Quad\-Op$<$ EOT $>$ \& {\em \_\-\_\-cross}, double {\em \_\-\_\-cross\_\-rate}, eo\-Mon\-Op$<$ EOT $>$ \& {\em \_\-\_\-mut}, double {\em \_\-\_\-mut\_\-rate})}}
+\label{classpeoTransform_755989a2d080903d0cade75643de0788}
+
+
+Constructor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em eo\-Quad\-Op$<$}]EOT $>$\& \_\-\_\-cross \item[{\em double}]\_\-\_\-cross\_\-rate \item[{\em eo\-Mon\-Op$<$}]EOT $>$\& \_\-\_\-mut \item[{\em double}]\_\-\_\-mut\_\-rate \end{description}
+\end{Desc}
+
+
+Definition at line 108 of file peo\-Transform.h.
+
+\subsection{Member Function Documentation}
+\hypertarget{classpeoTransform_9322aa28ad272289132e342624a0adb4}{
+\index{peoTransform@{peo\-Transform}!operator()@{operator()}}
+\index{operator()@{operator()}!peoTransform@{peo\-Transform}}
+\subsubsection[operator()]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \hyperlink{classpeoTransform}{peo\-Transform}$<$ EOT $>$::operator() (eo\-Pop$<$ EOT $>$ \& {\em \_\-\_\-pop})}}
+\label{classpeoTransform_9322aa28ad272289132e342624a0adb4}
+
+
+Operator. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em eo\-Pop$<$}]EOT $>$\& \_\-\_\-pop \end{description}
+\end{Desc}
+
+
+Definition at line 176 of file peo\-Transform.h.
+
+References peo\-Transform$<$ EOT $>$::idx, peo\-Transform$<$ EOT $>$::num\_\-term, peo\-Transform$<$ EOT $>$::pop, Service::request\-Resource\-Request(), and Communicable::stop().
+
+\subsection{Member Data Documentation}
+\hypertarget{classpeoTransform_d2fce5199b61f599fd89cf54d6fcd312}{
+\index{peoTransform@{peo\-Transform}!cross@{cross}}
+\index{cross@{cross}!peoTransform@{peo\-Transform}}
+\subsubsection[cross]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ eo\-Quad\-Op$<$ EOT $>$\& \hyperlink{classpeoTransform}{peo\-Transform}$<$ EOT $>$::\hyperlink{classpeoTransform_d2fce5199b61f599fd89cf54d6fcd312}{cross}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classpeoTransform_d2fce5199b61f599fd89cf54d6fcd312}
+
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em eo\-Quad\-Op$<$}]EOT $>$\& cross \item[{\em double}]cross\_\-rate \item[{\em eo\-Mon\-Op$<$}]EOT $>$\& mut \item[{\em double}]mut\_\-rate \item[{\em unsigned}]idx \item[{\em eo\-Pop$<$}]EOT $>$$\ast$ pop \item[{\em EOT}]father \item[{\em mother}]\item[{\em unsigned}]num\_\-term \end{description}
+\end{Desc}
+
+
+Definition at line 98 of file peo\-Transform.h.
+
+Referenced by peo\-Transform$<$ EOT $>$::execute().
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 

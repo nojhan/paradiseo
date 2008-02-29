@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: Class Members - Functions</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: Class Members - Functions</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -34,17 +34,21 @@
     <li><a href="functions.html"><span>All</span></a></li>
     <li id="current"><a href="functions_func.html"><span>Functions</span></a></li>
     <li><a href="functions_vars.html"><span>Variables</span></a></li>
+    <li><a href="functions_type.html"><span>Typedefs</span></a></li>
   </ul>
 </div>
 <div class="tabs">
   <ul>
     <li><a href="#index_a"><span>a</span></a></li>
+    <li><a href="#index_b"><span>b</span></a></li>
     <li><a href="#index_c"><span>c</span></a></li>
     <li><a href="#index_d"><span>d</span></a></li>
     <li><a href="#index_e"><span>e</span></a></li>
+    <li><a href="#index_f"><span>f</span></a></li>
     <li><a href="#index_g"><span>g</span></a></li>
     <li><a href="#index_i"><span>i</span></a></li>
     <li><a href="#index_l"><span>l</span></a></li>
+    <li><a href="#index_m"><span>m</span></a></li>
     <li><a href="#index_n"><span>n</span></a></li>
     <li><a href="#index_o"><span>o</span></a></li>
     <li><a href="#index_p"><span>p</span></a></li>
@@ -62,83 +66,115 @@
 <p>
 <h3><a class="anchor" name="index_a">- a -</a></h3><ul>
 <li>add()
-: <a class="el" href="classTopology.html#62bc46d8c20fdc71dad9e7c7a0d7aded">Topology</a><li>AggregationAlgorithm()
-: <a class="el" href="structpeoSynchronousMultiStart_1_1AggregationAlgorithm.html#1e03bf7728d19f4649366238962ca365">peoSynchronousMultiStart&lt; EntityType &gt;::AggregationAlgorithm&lt; AggregationAlgorithmType &gt;</a><li>Algorithm()
-: <a class="el" href="structpeoSynchronousMultiStart_1_1Algorithm.html#8ba4ac2674ca61a8e6b0af2e8e25ba66">peoSynchronousMultiStart&lt; EntityType &gt;::Algorithm&lt; AlgorithmType &gt;</a>, <a class="el" href="structpeoParallelAlgorithmWrapper_1_1Algorithm_3_01AlgorithmType_00_01void_01_4.html#c44d45b69accab079e1fb30d7ddf6b4e">peoParallelAlgorithmWrapper::Algorithm&lt; AlgorithmType, void &gt;</a>, <a class="el" href="structpeoParallelAlgorithmWrapper_1_1Algorithm.html#bdd2048610a35f525d7cef9a9041caba">peoParallelAlgorithmWrapper::Algorithm&lt; AlgorithmType, AlgorithmDataType &gt;</a></ul>
+: <a class="el" href="classTopology.html#62bc46d8c20fdc71dad9e7c7a0d7aded">Topology</a><li>add_vertex()
+: <a class="el" href="classEdgeXover.html#2d3045ef503d8b16a27e11fdc23ca11c">EdgeXover</a><li>AggregationAlgorithm()
+: <a class="el" href="structpeoMultiStart_1_1AggregationAlgorithm.html#2465c461bfcd70c60db220b848ef76da">peoMultiStart&lt; EntityType &gt;::AggregationAlgorithm&lt; AggregationAlgorithmType &gt;</a><li>Algorithm()
+: <a class="el" href="structAlgorithm.html#1df7f2cdc9cbe367f07741382c66eef6">Algorithm</a>, <a class="el" href="structpeoWrapper_1_1Algorithm_3_01AlgorithmType_00_01void_01_4.html#a1223438f15e954880a0a9833890dd91">peoWrapper::Algorithm&lt; AlgorithmType, void &gt;</a>, <a class="el" href="structpeoWrapper_1_1Algorithm.html#6b615c46939bba8ff8d1c7f35b5d47b8">peoWrapper::Algorithm&lt; AlgorithmType, AlgorithmDataType &gt;</a>, <a class="el" href="structpeoMultiStart_1_1Algorithm.html#39f0818e387b39c70432a96f512482ec">peoMultiStart&lt; EntityType &gt;::Algorithm&lt; AlgorithmType &gt;</a></ul>
+<h3><a class="anchor" name="index_b">- b -</a></h3><ul>
+<li>build_map()
+: <a class="el" href="classEdgeXover.html#04de96aa1016836e0ba5f4b952a5fa16">EdgeXover</a></ul>
 <h3><a class="anchor" name="index_c">- c -</a></h3><ul>
-<li>Communicable()
+<li>check()
+: <a class="el" href="classeoSyncContinue.html#417078233f768debb14b5a90f6412b3c">eoSyncContinue</a>, <a class="el" href="classeoContinuator.html#4e599bd4db85a57b44f9b94580eee178">eoContinuator&lt; EOT &gt;</a>, <a class="el" href="classcontinuator.html#30601b037ab27b40610af1b979ec3d5b">continuator</a><li>Communicable()
 : <a class="el" href="classCommunicable.html#8ae1827ecf7569b3db1ed386c7d8ad78">Communicable</a><li>Communicator()
-: <a class="el" href="classCommunicator.html#7c9dce4ea92bd04d01d53f80c0ef08ee">Communicator</a></ul>
+: <a class="el" href="classCommunicator.html#7c9dce4ea92bd04d01d53f80c0ef08ee">Communicator</a><li>cross()
+: <a class="el" href="classOrderXover.html#d2bf90b5f46ac4a344777e17bc5f364d">OrderXover</a>, <a class="el" href="classEdgeXover.html#88c2d4c9a878454a32d56010f3dddc27">EdgeXover</a>, <a class="el" href="classpeoTransform.html#d2fce5199b61f599fd89cf54d6fcd312">peoTransform&lt; EOT &gt;</a></ul>
 <h3><a class="anchor" name="index_d">- d -</a></h3><ul>
 <li>DataType()
-: <a class="el" href="structpeoSynchronousMultiStart_1_1DataType.html#cf5b9add5416139738e152b461008a89">peoSynchronousMultiStart&lt; EntityType &gt;::DataType&lt; Type &gt;</a><li>DisplayBestRoute()
+: <a class="el" href="structpeoMultiStart_1_1DataType.html#58e7f3b359440b8b1e10d8ca04dbb294">peoMultiStart&lt; EntityType &gt;::DataType&lt; Type &gt;</a><li>DisplayBestRoute()
 : <a class="el" href="classDisplayBestRoute.html#db263e38f1e82174f811bf62f323f87f">DisplayBestRoute</a></ul>
 <h3><a class="anchor" name="index_e">- e -</a></h3><ul>
 <li>emigrate()
-: <a class="el" href="classpeoSyncIslandMig.html#4c8416e3acce1a6e4c3b0a442d94b063">peoSyncIslandMig&lt; EOT &gt;</a>, <a class="el" href="classpeoAsyncIslandMig.html#87a4ef7d4bd30d349a801bf0f9e87c82">peoAsyncIslandMig&lt; EOT &gt;</a><li>execute()
-: <a class="el" href="classpeoSyncMultiStart.html#a4d1c2943c290de540800087b54dc49b">peoSyncMultiStart&lt; EOT &gt;</a>, <a class="el" href="classpeoSynchronousMultiStart.html#da98ee86056eca293b3f08c89584b701">peoSynchronousMultiStart&lt; EntityType &gt;</a>, <a class="el" href="classpeoSeqTransform.html#0294a2f9d6b44ec74d22eaceccdffc2b">peoSeqTransform&lt; EOT &gt;</a>, <a class="el" href="classpeoParaSGATransform.html#c9de2100fb897177a401c634002f6dd9">peoParaSGATransform&lt; EOT &gt;</a>, <a class="el" href="classpeoParaPopEval.html#3af76378611eac5a36da9a0a00aeeb6c">peoParaPopEval&lt; EOT &gt;</a>, <a class="el" href="classService.html#e4f2894e6121e60f38d41cfbd7447ae4">Service</a></ul>
+: <a class="el" href="classpeoSyncIslandMig.html#3ab202cb311f67fdc827078b3bdfddf4">peoSyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a>, <a class="el" href="classpeoAsyncIslandMig.html#2470f8ee04bc762c010c7ebb2392831d">peoAsyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a><li>eoContinuator()
+: <a class="el" href="classeoContinuator.html#771e03f6ba647b2777dca2b8792fd317">eoContinuator&lt; EOT &gt;</a><li>eoReplace()
+: <a class="el" href="classeoReplace.html#816081d8c7e8342d254402c5185efcbb">eoReplace&lt; EOT, TYPE &gt;</a><li>eoSelector()
+: <a class="el" href="classeoSelector.html#29942b726f94d10091e056c9f3076f27">eoSelector&lt; EOT, TYPE &gt;</a><li>eoSyncContinue()
+: <a class="el" href="classeoSyncContinue.html#a1f0cb0e380ffffd964031c4aa0f7086">eoSyncContinue</a><li>execute()
+: <a class="el" href="classpeoTransform.html#85c2cbc76f803b2b5cb2bc8cbc214136">peoTransform&lt; EOT &gt;</a>, <a class="el" href="classpeoPopEval.html#05a85a265971d4b12f2f0014d33f705c">peoPopEval&lt; EOT &gt;</a>, <a class="el" href="classpeoMultiStart.html#ea05cda1b93b07bbb34e121e2fbf7f1d">peoMultiStart&lt; EntityType &gt;</a>, <a class="el" href="classpeoMoeoPopEval.html#fb614d2cff879674ef802e19f0b281cc">peoMoeoPopEval&lt; EOT &gt;</a>, <a class="el" href="classService.html#e4f2894e6121e60f38d41cfbd7447ae4">Service</a></ul>
+<h3><a class="anchor" name="index_f">- f -</a></h3><ul>
+<li>finalize()
+: <a class="el" href="classMPIThreadedEnv.html#6be33c401734f7359724895c1c21ecd2">MPIThreadedEnv</a><li>FunctionAlgorithm()
+: <a class="el" href="structpeoWrapper_1_1FunctionAlgorithm_3_01AlgorithmReturnType_00_01void_01_4.html#feb7c5fbc9915b33765ccc8e228f3d6d">peoWrapper::FunctionAlgorithm&lt; AlgorithmReturnType, void &gt;</a>, <a class="el" href="structpeoWrapper_1_1FunctionAlgorithm.html#9d3994238a3f015dd0b3778ac37f7ea8">peoWrapper::FunctionAlgorithm&lt; AlgorithmReturnType, AlgorithmDataType &gt;</a>, <a class="el" href="structpeoMultiStart_1_1FunctionAlgorithm.html#e17b79bb29dd4f6f2f827970c5aba5fd">peoMultiStart&lt; EntityType &gt;::FunctionAlgorithm&lt; AlgorithmReturnType, AlgorithmDataType &gt;</a></ul>
 <h3><a class="anchor" name="index_g">- g -</a></h3><ul>
-<li>getID()
-: <a class="el" href="classRunner.html#5026c74eec184e3a15cb3c0ec4200a57">Runner</a><li>getKey()
+<li>getDefinitionID()
+: <a class="el" href="classRunner.html#f055608a382a32c6a889b0407e228312">Runner</a><li>getExecutionID()
+: <a class="el" href="classRunner.html#95c5e10928221a6140557e2ca6af5434">Runner</a><li>getKey()
 : <a class="el" href="classCommunicable.html#db4307b69b9ccacff55fdbf84b8f50e4">Communicable</a><li>getOwner()
 : <a class="el" href="classService.html#0dae00309c51a7b7069788142aed799f">Service</a>, <a class="el" href="classCooperative.html#4012b4e8329e87d26ee266491e1a883e">Cooperative</a></ul>
 <h3><a class="anchor" name="index_i">- i -</a></h3><ul>
 <li>immigrate()
-: <a class="el" href="classpeoSyncIslandMig.html#38dd72312a3d16808af1aa7beb9ed4a7">peoSyncIslandMig&lt; EOT &gt;</a>, <a class="el" href="classpeoAsyncIslandMig.html#5a9a64ba51a696e45f91b362c39c9a64">peoAsyncIslandMig&lt; EOT &gt;</a><li>isLocal()
-: <a class="el" href="classRunner.html#40adbfb7d6944189b4fff60b02e669ca">Runner</a></ul>
+: <a class="el" href="classpeoSyncIslandMig.html#baed2215bf06f96aacf06b5abff79f28">peoSyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a>, <a class="el" href="classpeoAsyncIslandMig.html#75a6592d63879773b39c9594b94fb942">peoAsyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a><li>init()
+: <a class="el" href="classMPIThreadedEnv.html#ce2a77c94cd4304117d8241e97050b96">MPIThreadedEnv</a><li>isAssignedLocally()
+: <a class="el" href="classRunner.html#1ec095cb08373aaebbce6fe6418cd53c">Runner</a></ul>
 <h3><a class="anchor" name="index_l">- l -</a></h3><ul>
 <li>lock()
 : <a class="el" href="classCommunicable.html#e1f8bd1ee810fd73d44315c95998d19d">Communicable</a></ul>
+<h3><a class="anchor" name="index_m">- m -</a></h3><ul>
+<li>MPIThreadedEnv()
+: <a class="el" href="classMPIThreadedEnv.html#b499d64e6e095f4bfebd91604d0d6d5c">MPIThreadedEnv</a></ul>
 <h3><a class="anchor" name="index_n">- n -</a></h3><ul>
-<li>notifySending()
-: <a class="el" href="classpeoSyncIslandMig.html#8c427b3f91c19ff85f86930366b96008">peoSyncIslandMig&lt; EOT &gt;</a>, <a class="el" href="classCooperative.html#4439ddeaa1246a2e44c003bfb781739b">Cooperative</a><li>notifySendingAllResourceRequests()
-: <a class="el" href="classpeoSyncMultiStart.html#fc90282cc4e93cdea8f82fd52dd78fb0">peoSyncMultiStart&lt; EOT &gt;</a>, <a class="el" href="classpeoSynchronousMultiStart.html#e328547d97849bfc85f2a7356e5e7927">peoSynchronousMultiStart&lt; EntityType &gt;</a>, <a class="el" href="classpeoParaSGATransform.html#8a0316e33897c395a81787f59ea7a1c8">peoParaSGATransform&lt; EOT &gt;</a>, <a class="el" href="classpeoParaPopEval.html#b77031fc4807921ffaf7cf6b669a7665">peoParaPopEval&lt; EOT &gt;</a>, <a class="el" href="classService.html#f94cc8a5c2665d4574041737e61e9ffc">Service</a><li>notifySendingData()
-: <a class="el" href="classpeoSyncMultiStart.html#32ec0d01d3fd8a9932abd68f4781fc94">peoSyncMultiStart&lt; EOT &gt;</a>, <a class="el" href="classpeoSynchronousMultiStart.html#de581c634fa9f952d571f9ed0a6611ed">peoSynchronousMultiStart&lt; EntityType &gt;</a>, <a class="el" href="classpeoParaSGATransform.html#4e19dfc22b6f69fa8b93537226551866">peoParaSGATransform&lt; EOT &gt;</a>, <a class="el" href="classpeoParaPopEval.html#1f78c3cec2940af08a059cc1aa96a9c8">peoParaPopEval&lt; EOT &gt;</a>, <a class="el" href="classService.html#81ad4d6ebb50045b8977e2ab74826f30">Service</a><li>notifySendingResourceRequest()
+<li>notifyContextInitialized()
+: <a class="el" href="classRunner.html#2cce5433184ec8f89e06531c23acbcf8">Runner</a><li>notifyReceiving()
+: <a class="el" href="classpeoSyncIslandMig.html#75aacd3f7ffbc302c69addc342f45b8f">peoSyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a>, <a class="el" href="classCooperative.html#b75a33c5735799076e01b125e47e3bbc">Cooperative</a><li>notifySending()
+: <a class="el" href="classpeoSyncIslandMig.html#5f403428cea887b07caf27ab265ebe03">peoSyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a>, <a class="el" href="classCooperative.html#4439ddeaa1246a2e44c003bfb781739b">Cooperative</a><li>notifySendingAllResourceRequests()
+: <a class="el" href="classpeoTransform.html#19990af963b6604d1175290fe6725335">peoTransform&lt; EOT &gt;</a>, <a class="el" href="classpeoPopEval.html#b1e33394ba9797237cb8c7c1f410bd67">peoPopEval&lt; EOT &gt;</a>, <a class="el" href="classpeoMultiStart.html#4baa5a616d1b48ce31834e749aa99431">peoMultiStart&lt; EntityType &gt;</a>, <a class="el" href="classpeoMoeoPopEval.html#a2d5a9b2d6cc1ec51b94b35a14f79cee">peoMoeoPopEval&lt; EOT &gt;</a>, <a class="el" href="classService.html#f94cc8a5c2665d4574041737e61e9ffc">Service</a><li>notifySendingData()
+: <a class="el" href="classpeoTransform.html#77508f186476181ec2c6a8230961eede">peoTransform&lt; EOT &gt;</a>, <a class="el" href="classpeoPopEval.html#9708f67fc813d397de3d13830ed09820">peoPopEval&lt; EOT &gt;</a>, <a class="el" href="classpeoMultiStart.html#afddf0cc852dbd6dc3a642393ec45207">peoMultiStart&lt; EntityType &gt;</a>, <a class="el" href="classpeoMoeoPopEval.html#106411d12c58dabec836f258c96c65eb">peoMoeoPopEval&lt; EOT &gt;</a>, <a class="el" href="classService.html#81ad4d6ebb50045b8977e2ab74826f30">Service</a><li>notifySendingResourceRequest()
 : <a class="el" href="classService.html#94e2012e76aaae3aa8199250f558d503">Service</a><li>notifySendingResult()
-: <a class="el" href="classWorker.html#e2f487014766a73c5788bdcfd58ad863">Worker</a><li>notifySendingTaskDone()
+: <a class="el" href="classWorker.html#e2f487014766a73c5788bdcfd58ad863">Worker</a><li>notifySendingSyncReq()
+: <a class="el" href="classpeoSyncIslandMig.html#92fef53496f935fe450589f90aec7d72">peoSyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a>, <a class="el" href="classCooperative.html#38f28f9155deac5e48edcaf935a2263b">Cooperative</a><li>notifySendingTaskDone()
 : <a class="el" href="classWorker.html#13efd6a8e275745329a4a8e23a0eb0bb">Worker</a><li>notifySendingTermination()
-: <a class="el" href="classRunner.html#3591be473e0fcee1105fb57319b529aa">Runner</a></ul>
+: <a class="el" href="classRunner.html#3591be473e0fcee1105fb57319b529aa">Runner</a><li>notifySynchronized()
+: <a class="el" href="classpeoSyncIslandMig.html#0abd0c5872195cea0cab4988f9a4ea4e">peoSyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a>, <a class="el" href="classCooperative.html#6cc64e571944783b8f697f7c2299cc8d">Cooperative</a></ul>
 <h3><a class="anchor" name="index_o">- o -</a></h3><ul>
-<li>operator Type &amp;()
-: <a class="el" href="structpeoSynchronousMultiStart_1_1AbstractDataType.html#a4addfca8a9acecadb4c786deed36934">peoSynchronousMultiStart&lt; EntityType &gt;::AbstractDataType</a><li>operator()()
-: <a class="el" href="structRandomExplorationAlgorithm.html#3a7b3cc174726fff45985854c3d1b812">RandomExplorationAlgorithm</a>, <a class="el" href="classMergeRouteEval.html#29cb0028ac0df4b2cee3a809c8f35dea">MergeRouteEval</a>, <a class="el" href="classDisplayBestRoute.html#ee879344a6d8b81a04d4eabbed2c7a04">DisplayBestRoute</a>, <a class="el" href="classpeoSyncMultiStart.html#76385b33fe514f91cb83f0fbecbeb3c2">peoSyncMultiStart&lt; EOT &gt;</a>, <a class="el" href="classpeoSyncIslandMig.html#178476fd276f78b73607b33d19522c36">peoSyncIslandMig&lt; EOT &gt;</a>, <a class="el" href="structpeoSynchronousMultiStart_1_1NoAggregationFunction.html#d094bb3cca92a48de0afadf576cda044">peoSynchronousMultiStart&lt; EntityType &gt;::NoAggregationFunction</a>, <a class="el" href="structpeoSynchronousMultiStart_1_1AggregationAlgorithm.html#f8abe94db942aa42f0e3d9c1657db581">peoSynchronousMultiStart&lt; EntityType &gt;::AggregationAlgorithm&lt; AggregationAlgorithmType &gt;</a>, <a class="el" href="structpeoSynchronousMultiStart_1_1AbstractAggregationAlgorithm.html#cf9b3275e26f24984c9bb839e7f07ba6">peoSynchronousMultiStart&lt; EntityType &gt;::AbstractAggregationAlgorithm</a>, <a class="el" href="structpeoSynchronousMultiStart_1_1Algorithm.html#d8902e501b61a8d5727589a5a106bb10">peoSynchronousMultiStart&lt; EntityType &gt;::Algorithm&lt; AlgorithmType &gt;</a>, <a class="el" href="structpeoSynchronousMultiStart_1_1AbstractAlgorithm.html#a5f7790ac2b99e798e4e84f2d5a5f78c">peoSynchronousMultiStart&lt; EntityType &gt;::AbstractAlgorithm</a>, <a class="el" href="classpeoSynchronousMultiStart.html#45372c26ac5b979d29458815debceff8">peoSynchronousMultiStart&lt; EntityType &gt;</a>, <a class="el" href="classpeoSeqTransform.html#1ba63536abb6c4e1c369e0b7e066872e">peoSeqTransform&lt; EOT &gt;</a>, <a class="el" href="classpeoSeqPopEval.html#b2c88b9a3ad9091949acf741844eb02f">peoSeqPopEval&lt; EOT &gt;</a>, <a class="el" href="classpeoPopEval.html#2f208067a5e39c3b26c1234050a41e8f">peoPopEval&lt; EOT &gt;</a>, <a class="el" href="classpeoParaSGATransform.html#669de7f7c6316fa745a15b909efb6527">peoParaSGATransform&lt; EOT &gt;</a>, <a class="el" href="classpeoParaPopEval.html#aeaa4fca4f8650e453e308838b4a2cb5">peoParaPopEval&lt; EOT &gt;</a>, <a class="el" href="structpeoParallelAlgorithmWrapper_1_1Algorithm_3_01AlgorithmType_00_01void_01_4.html#27b5bd346932e7f3ba9dd8c9e0dd952b">peoParallelAlgorithmWrapper::Algorithm&lt; AlgorithmType, void &gt;</a>, <a class="el" href="structpeoParallelAlgorithmWrapper_1_1Algorithm.html#a54fa5366a7663491608399ab21ea092">peoParallelAlgorithmWrapper::Algorithm&lt; AlgorithmType, AlgorithmDataType &gt;</a>, <a class="el" href="structpeoParallelAlgorithmWrapper_1_1AbstractAlgorithm.html#32e08b3810cef49d0b8751645ef79b6f">peoParallelAlgorithmWrapper::AbstractAlgorithm</a>, <a class="el" href="classpeoNoAggEvalFunc.html#1a69ee1af8745ac75c864bf884436de5">peoNoAggEvalFunc&lt; EOT &gt;</a>, <a class="el" href="classpeoEA.html#3c709e3b2491147d26fee36138644613">peoEA&lt; EOT &gt;</a>, <a class="el" href="classpeoAsyncIslandMig.html#13581e54425727a7f785ca8a6df527b5">peoAsyncIslandMig&lt; EOT &gt;</a></ul>
+<li>operator std::vector()
+: <a class="el" href="classTopology.html#5b48abce5d58230f944e95f3fe4f2727">Topology</a><li>operator Type &amp;()
+: <a class="el" href="structpeoMultiStart_1_1AbstractDataType.html#e5fe4d7fa98c492bc748176780790d93">peoMultiStart&lt; EntityType &gt;::AbstractDataType</a><li>operator()()
+: <a class="el" href="classTwoOptRand.html#e2f362f359517c027f6f22fba0aab375">TwoOptRand</a>, <a class="el" href="classTwoOptNext.html#baf229b2e056f39ab971cf2ac66a833e">TwoOptNext</a>, <a class="el" href="classTwoOptInit.html#5bf6af064d37ebd955ffb5a623e78e1b">TwoOptInit</a>, <a class="el" href="classTwoOptIncrEval.html#48500077e651c4c6152daef8a396be39">TwoOptIncrEval</a>, <a class="el" href="classTwoOpt.html#ff87d1649a33d42a6d64e8d314ed1af0">TwoOpt</a>, <a class="el" href="classRouteInit.html#b65a7137e114458faadb6a5510c001f7">RouteInit</a>, <a class="el" href="classRouteEval.html#e10bbe6f792e6f44405953de4f703901">RouteEval</a>, <a class="el" href="classPartialMappedXover.html#1cda6ea86ca36e5de0125f4ba5cfc695">PartialMappedXover</a>, <a class="el" href="classPartRouteEval.html#965fab875fb601f17934a6ece761beae">PartRouteEval</a>, <a class="el" href="classOrderXover.html#0ff6aada669eb8173322ed68cda1ac61">OrderXover</a>, <a class="el" href="classMergeRouteEval.html#29cb0028ac0df4b2cee3a809c8f35dea">MergeRouteEval</a>, <a class="el" href="classEdgeXover.html#cb1c0a103106a4d3319540cb23163a79">EdgeXover</a>, <a class="el" href="classDisplayBestRoute.html#ee879344a6d8b81a04d4eabbed2c7a04">DisplayBestRoute</a>, <a class="el" href="classCitySwap.html#7e6958b62048c89604cbf046b86bdf2d">CitySwap</a>, <a class="el" href="structAlgorithm.html#5b7cae07912e409b213ed46fc08cbf0f">Algorithm</a>, <a class="el" href="structSyncCompare.html#26ba03de10f15ad5e3fcb81c2a4244c0">SyncCompare</a>, <a class="el" href="structpeoWrapper_1_1FunctionAlgorithm_3_01AlgorithmReturnType_00_01void_01_4.html#f9803766fab40ae9dc5930b70ffbadc4">peoWrapper::FunctionAlgorithm&lt; AlgorithmReturnType, void &gt;</a>, <a class="el" href="structpeoWrapper_1_1FunctionAlgorithm.html#8dcef2d1fcf6147762a2809748ff6170">peoWrapper::FunctionAlgorithm&lt; AlgorithmReturnType, AlgorithmDataType &gt;</a>, <a class="el" href="structpeoWrapper_1_1Algorithm_3_01AlgorithmType_00_01void_01_4.html#c6fe207372bb3b53c7ccecf6d596c4e5">peoWrapper::Algorithm&lt; AlgorithmType, void &gt;</a>, <a class="el" href="structpeoWrapper_1_1Algorithm.html#8db189b4456bcf056b327ecbf000de7b">peoWrapper::Algorithm&lt; AlgorithmType, AlgorithmDataType &gt;</a>, <a class="el" href="structpeoWrapper_1_1AbstractAlgorithm.html#a9aa8c613ea6c944b296cf3ba5f6f95b">peoWrapper::AbstractAlgorithm</a>, <a class="el" href="classpeoTransform.html#9322aa28ad272289132e342624a0adb4">peoTransform&lt; EOT &gt;</a>, <a class="el" href="classpeoSyncIslandMig.html#0fd5b3b4e467ee33ae0186c0ae9d58ef">peoSyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a>, <a class="el" href="classpeoWorstPositionReplacement.html#3771416291c82aca15f9175f36552669">peoWorstPositionReplacement&lt; POT &gt;</a>, <a class="el" href="classpeoGlobalBestVelocity.html#9d8f24594227b59523b4cea4347247b7">peoGlobalBestVelocity&lt; POT &gt;</a>, <a class="el" href="classpeoPSOSelect.html#13484074385f8896545dcbc72ba56d1c">peoPSOSelect&lt; POT &gt;</a>, <a class="el" href="classpeoPopEval.html#fd942c2b66f31c7d12a9ad48f1529a16">peoPopEval&lt; EOT &gt;</a>, <a class="el" href="classpeoNoAggEvalFunc.html#1a69ee1af8745ac75c864bf884436de5">peoNoAggEvalFunc&lt; EOT &gt;</a>, <a class="el" href="structpeoMultiStart_1_1NoAggregationFunction.html#985f527d01dcc73e2c600b7293ace1c7">peoMultiStart&lt; EntityType &gt;::NoAggregationFunction</a>, <a class="el" href="structpeoMultiStart_1_1AggregationAlgorithm.html#5c095e1e53c6803e7e1fd8b749ec9758">peoMultiStart&lt; EntityType &gt;::AggregationAlgorithm&lt; AggregationAlgorithmType &gt;</a>, <a class="el" href="structpeoMultiStart_1_1AbstractAggregationAlgorithm.html#3122e126ba11de97e98563400482ae68">peoMultiStart&lt; EntityType &gt;::AbstractAggregationAlgorithm</a>, <a class="el" href="structpeoMultiStart_1_1FunctionAlgorithm.html#134a61668ce76ed36c5d1d454c6b3b43">peoMultiStart&lt; EntityType &gt;::FunctionAlgorithm&lt; AlgorithmReturnType, AlgorithmDataType &gt;</a>, <a class="el" href="structpeoMultiStart_1_1Algorithm.html#73dc7bef0b4e1430910383ba51a3c4d4">peoMultiStart&lt; EntityType &gt;::Algorithm&lt; AlgorithmType &gt;</a>, <a class="el" href="structpeoMultiStart_1_1AbstractAlgorithm.html#3832720a3e6869784fc906c7bda2313c">peoMultiStart&lt; EntityType &gt;::AbstractAlgorithm</a>, <a class="el" href="classpeoMultiStart.html#90ba0e411cafa47b9a306e71319c8365">peoMultiStart&lt; EntityType &gt;</a>, <a class="el" href="classpeoMoeoPopEval.html#e6c3f530297ed2cb90a1cea884c0f851">peoMoeoPopEval&lt; EOT &gt;</a>, <a class="el" href="structpeoEvalFunc.html#c9b1903cca26f12905a6e12d1753c7cd">peoEvalFunc&lt; EOT, FitT, FunctionArg &gt;</a>, <a class="el" href="classeoReplace.html#786659edbd9907000138aa29caf46065">eoReplace&lt; EOT, TYPE &gt;</a>, <a class="el" href="classreplacement.html#2c21feaad602bb9d691f0081ac4363b1">replacement&lt; TYPE &gt;</a>, <a class="el" href="classeoSelector.html#2f32b10e23e68654e4459bb682aaa4ff">eoSelector&lt; EOT, TYPE &gt;</a>, <a class="el" href="classselector.html#3ca409d57262f397263541753c7fcc28">selector&lt; TYPE &gt;</a>, <a class="el" href="classpeoAsyncIslandMig.html#d56e189f269dde8d68a4b007f05edaff">peoAsyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a></ul>
 <h3><a class="anchor" name="index_p">- p -</a></h3><ul>
 <li>pack()
-: <a class="el" href="classpeoSyncIslandMig.html#e334188141eeba9f7b78bc6716f819ad">peoSyncIslandMig&lt; EOT &gt;</a>, <a class="el" href="classpeoAsyncIslandMig.html#6d790a5d0b6ac510cac4f61a1c0d8f16">peoAsyncIslandMig&lt; EOT &gt;</a><li>packData()
-: <a class="el" href="classpeoSyncMultiStart.html#8becfab1922b64708dca5a53e2932a5a">peoSyncMultiStart&lt; EOT &gt;</a>, <a class="el" href="classpeoSynchronousMultiStart.html#c73358b4f04f258c55f631660a7992fb">peoSynchronousMultiStart&lt; EntityType &gt;</a>, <a class="el" href="classpeoSeqTransform.html#c4bf2724e9f6055f12bd169fad893be3">peoSeqTransform&lt; EOT &gt;</a>, <a class="el" href="classpeoParaSGATransform.html#fd278bcde58d29c9a343d5cbead81a1e">peoParaSGATransform&lt; EOT &gt;</a>, <a class="el" href="classpeoParaPopEval.html#fea632bd645ab11182782fd3c038d6d8">peoParaPopEval&lt; EOT &gt;</a>, <a class="el" href="classService.html#aea4b8f7f8fb88e83862ee4bfd9ab207">Service</a><li>packResourceRequest()
+: <a class="el" href="classpeoSyncIslandMig.html#2daadf9928b8075ea469ca3cc49ddc88">peoSyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a>, <a class="el" href="classpeoAsyncIslandMig.html#0f5f1700920f9ced71ef63b0576e3f14">peoAsyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a><li>packData()
+: <a class="el" href="classpeoTransform.html#c1101d10a36ce4255b874bcd9725021e">peoTransform&lt; EOT &gt;</a>, <a class="el" href="classpeoPopEval.html#95351dcd81d1bf878d839e52a02a902d">peoPopEval&lt; EOT &gt;</a>, <a class="el" href="classpeoMultiStart.html#7e2feab3d514259e8c77387b92023f38">peoMultiStart&lt; EntityType &gt;</a>, <a class="el" href="classpeoMoeoPopEval.html#da9cfc2ff16faf73166cf0f954061744">peoMoeoPopEval&lt; EOT &gt;</a>, <a class="el" href="classService.html#aea4b8f7f8fb88e83862ee4bfd9ab207">Service</a><li>packResourceRequest()
 : <a class="el" href="classService.html#c4289f98d1cd9ed53e850efbb6a947bd">Service</a><li>packResult()
-: <a class="el" href="classWorker.html#83780920118e6c2b67d9477bdf8be248">Worker</a>, <a class="el" href="classpeoSyncMultiStart.html#6c48eb0dae741cff7203b65e226f9616">peoSyncMultiStart&lt; EOT &gt;</a>, <a class="el" href="classpeoSynchronousMultiStart.html#0a5e0e1c1db5af61351e201e019f5a89">peoSynchronousMultiStart&lt; EntityType &gt;</a>, <a class="el" href="classpeoSeqTransform.html#4861c61f9e46d83964ea8a156a9a3ee0">peoSeqTransform&lt; EOT &gt;</a>, <a class="el" href="classpeoParaSGATransform.html#ba08e224ceaa4149e8e1a88694a2ccf2">peoParaSGATransform&lt; EOT &gt;</a>, <a class="el" href="classpeoParaPopEval.html#24bb4ae84b0b9f64e7170e3d2b0e1223">peoParaPopEval&lt; EOT &gt;</a>, <a class="el" href="classService.html#e5e4f90b2315e15c2a2913bd370f4cf5">Service</a><li>packTaskDone()
+: <a class="el" href="classWorker.html#83780920118e6c2b67d9477bdf8be248">Worker</a>, <a class="el" href="classpeoTransform.html#bdae056027406ba9f489e2bef115fd08">peoTransform&lt; EOT &gt;</a>, <a class="el" href="classpeoPopEval.html#9d0d10865d677c1ec84f496bed62a8c6">peoPopEval&lt; EOT &gt;</a>, <a class="el" href="classpeoMultiStart.html#82fcf2bf33e420eb69cb07ec80debd5d">peoMultiStart&lt; EntityType &gt;</a>, <a class="el" href="classpeoMoeoPopEval.html#f479014d4dbb6955bd7e9fc8bd82d086">peoMoeoPopEval&lt; EOT &gt;</a>, <a class="el" href="classService.html#e5e4f90b2315e15c2a2913bd370f4cf5">Service</a><li>packSynchronizeReq()
+: <a class="el" href="classpeoSyncIslandMig.html#956f56110bccff8c8fae4b05aa804d32">peoSyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a>, <a class="el" href="classpeoAsyncIslandMig.html#0a0524a90d0b31bc4c8bfa4f39708b0f">peoAsyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a><li>packTaskDone()
 : <a class="el" href="classWorker.html#60d2e8eba85b9ef403d94be54c391640">Worker</a><li>packTermination()
-: <a class="el" href="classRunner.html#2ad6d199d684d6f34347fc202ffe2fa3">Runner</a><li>peoAsyncIslandMig()
-: <a class="el" href="classpeoAsyncIslandMig.html#e0f706cbf4148d3ca327227a5c7a9fdf">peoAsyncIslandMig&lt; EOT &gt;</a><li>peoEA()
-: <a class="el" href="classpeoEA.html#dbfc4f8907bef234602149229f132371">peoEA&lt; EOT &gt;</a><li>peoParallelAlgorithmWrapper()
-: <a class="el" href="classpeoParallelAlgorithmWrapper.html#1ebfe70e6826002f6280aba01e141ad5">peoParallelAlgorithmWrapper</a><li>peoParaPopEval()
-: <a class="el" href="classpeoParaPopEval.html#1cc13a1ec366f95d219d682eccb455bc">peoParaPopEval&lt; EOT &gt;</a><li>peoParaSGATransform()
-: <a class="el" href="classpeoParaSGATransform.html#2052bca82fbbfe5455bf6f69246d4dbf">peoParaSGATransform&lt; EOT &gt;</a><li>peoSeqPopEval()
-: <a class="el" href="classpeoSeqPopEval.html#a41f91ab4b2aeb325ff75feb66d4e003">peoSeqPopEval&lt; EOT &gt;</a><li>peoSeqTransform()
-: <a class="el" href="classpeoSeqTransform.html#3b8e4ed19d9458938eb669d83a53c626">peoSeqTransform&lt; EOT &gt;</a><li>peoSynchronousMultiStart()
-: <a class="el" href="classpeoSynchronousMultiStart.html#689374232ff67f266ddaa5d309ea54ac">peoSynchronousMultiStart&lt; EntityType &gt;</a><li>peoSyncIslandMig()
-: <a class="el" href="classpeoSyncIslandMig.html#96b7b6de20b5e318a8b1cde76842305c">peoSyncIslandMig&lt; EOT &gt;</a><li>peoSyncMultiStart()
-: <a class="el" href="classpeoSyncMultiStart.html#d29f94aad3c1f443bfffc8b6aee0704c">peoSyncMultiStart&lt; EOT &gt;</a></ul>
+: <a class="el" href="classRunner.html#2ad6d199d684d6f34347fc202ffe2fa3">Runner</a><li>PartRouteEval()
+: <a class="el" href="classPartRouteEval.html#a331566b29bc3227f377004232f05491">PartRouteEval</a><li>peoAsyncIslandMig()
+: <a class="el" href="classpeoAsyncIslandMig.html#e40ddd54734b018ab4e5c3f2bbd5a49c">peoAsyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a><li>peoEvalFunc()
+: <a class="el" href="structpeoEvalFunc.html#e4168d7266c801802fba855d019e6733">peoEvalFunc&lt; EOT, FitT, FunctionArg &gt;</a><li>peoGlobalBestVelocity()
+: <a class="el" href="classpeoGlobalBestVelocity.html#e43dda9caca16d2aefec72d5d79befe4">peoGlobalBestVelocity&lt; POT &gt;</a><li>peoMoeoPopEval()
+: <a class="el" href="classpeoMoeoPopEval.html#d38f49c4c186f9e45b75072585759f6f">peoMoeoPopEval&lt; EOT &gt;</a><li>peoMultiStart()
+: <a class="el" href="classpeoMultiStart.html#81b0be145ca12aec6e75ffd2313bfeab">peoMultiStart&lt; EntityType &gt;</a><li>peoPopEval()
+: <a class="el" href="classpeoPopEval.html#088822da7a0c92bc21574358d2e5f87c">peoPopEval&lt; EOT &gt;</a><li>peoPSOSelect()
+: <a class="el" href="classpeoPSOSelect.html#28c6552766e7ac08d2697a5c69c9b671">peoPSOSelect&lt; POT &gt;</a><li>peoSyncIslandMig()
+: <a class="el" href="classpeoSyncIslandMig.html#24f4d1ea8bb63c09b9d6cd8476014082">peoSyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a><li>peoTransform()
+: <a class="el" href="classpeoTransform.html#755989a2d080903d0cade75643de0788">peoTransform&lt; EOT &gt;</a><li>peoWorstPositionReplacement()
+: <a class="el" href="classpeoWorstPositionReplacement.html#8d6eeb59dbcf71e681a122e2650901f8">peoWorstPositionReplacement&lt; POT &gt;</a><li>peoWrapper()
+: <a class="el" href="classpeoWrapper.html#b4a2e26d0806791847db1695ec46cce1">peoWrapper</a></ul>
 <h3><a class="anchor" name="index_r">- r -</a></h3><ul>
-<li>RandomExplorationAlgorithm()
-: <a class="el" href="structRandomExplorationAlgorithm.html#ed4847c164759fbb1168948d3620037c">RandomExplorationAlgorithm</a><li>ReactiveThread()
-: <a class="el" href="classReactiveThread.html#77381649429941c99a3e3d568113d6cf">ReactiveThread</a><li>requestResourceRequest()
+<li>ReactiveThread()
+: <a class="el" href="classReactiveThread.html#77381649429941c99a3e3d568113d6cf">ReactiveThread</a><li>remove_entry()
+: <a class="el" href="classEdgeXover.html#1b3a4c75dd9a034c81af6d89d85d30f5">EdgeXover</a><li>repair()
+: <a class="el" href="classPartialMappedXover.html#b6d4035544aff3b2b3fe4b0eeea185a2">PartialMappedXover</a><li>requestResourceRequest()
 : <a class="el" href="classService.html#7e2ae35a9070a05dcd46488df649896d">Service</a><li>resume()
 : <a class="el" href="classCommunicable.html#3306a9adb11a0ab5af342c0db9f7bb2a">Communicable</a><li>run()
-: <a class="el" href="classpeoParallelAlgorithmWrapper.html#4b10b46b4ea2e3f66c660c15f3c98e6c">peoParallelAlgorithmWrapper</a>, <a class="el" href="classpeoEA.html#6ab8c321d29350634143a2a01cf2ad24">peoEA&lt; EOT &gt;</a><li>Runner()
+: <a class="el" href="classpeoWrapper.html#ed88d78762dcd6489ff725a4aa2b81a7">peoWrapper</a><li>Runner()
 : <a class="el" href="classRunner.html#7acb8258c21da9daa62f9a177a2e5acd">Runner</a></ul>
 <h3><a class="anchor" name="index_s">- s -</a></h3><ul>
 <li>send()
 : <a class="el" href="classCooperative.html#c609f2a1200da7d1ac96005602515fc6">Cooperative</a><li>setActive()
-: <a class="el" href="classThread.html#e197c46f8f62ecce6d2a7fe95bdc5b38">Thread</a><li>setNeighbors()
-: <a class="el" href="classRingTopology.html#292a7746993788f96042f2f628cfcbc5">RingTopology</a><li>setOwner()
+: <a class="el" href="classThread.html#e197c46f8f62ecce6d2a7fe95bdc5b38">Thread</a><li>setCenter()
+: <a class="el" href="classStarTopology.html#a7d8dfebd83b70cd1962b475fd0f5d8d">StarTopology</a><li>setExecutionID()
+: <a class="el" href="classRunner.html#5262b394f0f0899b85316136941df42c">Runner</a><li>setNeighbors()
+: <a class="el" href="classStarTopology.html#e9e129ce442849474d660add8fd96993">StarTopology</a>, <a class="el" href="classRingTopology.html#292a7746993788f96042f2f628cfcbc5">RingTopology</a>, <a class="el" href="classRandomTopology.html#f68ae9feb34a8e654ab4181153803ed1">RandomTopology</a>, <a class="el" href="classCompleteTopology.html#9ccbb45bf0cc00aff89fa8594746338c">CompleteTopology</a><li>setOwner()
 : <a class="el" href="classService.html#33b149b98498c0e7e401b0f0839d7f0d">Service</a>, <a class="el" href="classCooperative.html#fe7b022567174c8305bc78d8c5749b12">Cooperative</a><li>setPassive()
 : <a class="el" href="classThread.html#20632ffe9ddfa2a478afb0c84dc1096b">Thread</a><li>setSource()
 : <a class="el" href="classWorker.html#5dab4ea663546b5a49d9398d7a624d27">Worker</a><li>sleep()
 : <a class="el" href="classReactiveThread.html#8263c2a32d8c99a49a05f1a7717d4262">ReactiveThread</a><li>start()
-: <a class="el" href="classWorker.html#abcbbace05c6113f1959c494b3577291">Worker</a>, <a class="el" href="classCommunicator.html#142fae13b16b166519315f248a513c62">Communicator</a>, <a class="el" href="classRunner.html#7dc4419051fcc5cc9dadd54ecc9cd47d">Runner</a><li>stop()
-: <a class="el" href="classCommunicable.html#cb53e6534b947bc889aa181d9dbbd13b">Communicable</a></ul>
+: <a class="el" href="classWorker.html#abcbbace05c6113f1959c494b3577291">Worker</a>, <a class="el" href="classCommunicator.html#142fae13b16b166519315f248a513c62">Communicator</a>, <a class="el" href="classRunner.html#7dc4419051fcc5cc9dadd54ecc9cd47d">Runner</a><li>StarTopology()
+: <a class="el" href="classStarTopology.html#76868b70acc93be7c53a57678674b833">StarTopology</a><li>stop()
+: <a class="el" href="classCommunicable.html#cb53e6534b947bc889aa181d9dbbd13b">Communicable</a><li>synchronizeCoopEx()
+: <a class="el" href="classCooperative.html#a08615f1fb5a71bb6eb8ea53ef7d1c69">Cooperative</a></ul>
 <h3><a class="anchor" name="index_t">- t -</a></h3><ul>
 <li>terminate()
 : <a class="el" href="classRunner.html#0f133e75c28fb8264549814f80608e68">Runner</a><li>Thread()
@@ -146,25 +182,27 @@
 <h3><a class="anchor" name="index_u">- u -</a></h3><ul>
 <li>unlock()
 : <a class="el" href="classCommunicable.html#caa814847192e71f434fbf9479ede862">Communicable</a><li>unpack()
-: <a class="el" href="classpeoSyncIslandMig.html#85777bd9f709c5d4107799e8619948d1">peoSyncIslandMig&lt; EOT &gt;</a>, <a class="el" href="classpeoAsyncIslandMig.html#455501aee5db2bbfbae15779c8429369">peoAsyncIslandMig&lt; EOT &gt;</a><li>unpackData()
-: <a class="el" href="classWorker.html#bff2bdcd64fe5400156cc78704c64953">Worker</a>, <a class="el" href="classpeoSyncMultiStart.html#2903a441b77cded266b5fb651e17a5b5">peoSyncMultiStart&lt; EOT &gt;</a>, <a class="el" href="classpeoSynchronousMultiStart.html#9881b3f05c9f90bcb3c3ec0af8109ccc">peoSynchronousMultiStart&lt; EntityType &gt;</a>, <a class="el" href="classpeoSeqTransform.html#24e6cf15ef230ed538031b522ddd4ae6">peoSeqTransform&lt; EOT &gt;</a>, <a class="el" href="classpeoParaSGATransform.html#a43a487a6e81791c8bbf6ce30f4336ab">peoParaSGATransform&lt; EOT &gt;</a>, <a class="el" href="classpeoParaPopEval.html#410bf4c173e2f36df82251cb16ce1b05">peoParaPopEval&lt; EOT &gt;</a>, <a class="el" href="classService.html#3bd87b444710813d30fd754d4d0b4df3">Service</a><li>unpackResult()
-: <a class="el" href="classpeoSyncMultiStart.html#c3cbd1f10a89d1915c5ccf82a2c34a1d">peoSyncMultiStart&lt; EOT &gt;</a>, <a class="el" href="classpeoSynchronousMultiStart.html#976b78c11073ee3be09c1aed7826411a">peoSynchronousMultiStart&lt; EntityType &gt;</a>, <a class="el" href="classpeoSeqTransform.html#5dd029fc011eb2a810ca1140025129b1">peoSeqTransform&lt; EOT &gt;</a>, <a class="el" href="classpeoParaSGATransform.html#257663dcdc6cc95b6183d472ffba1b2f">peoParaSGATransform&lt; EOT &gt;</a>, <a class="el" href="classpeoParaPopEval.html#fd7f0afe9cba30be39269d16097e190e">peoParaPopEval&lt; EOT &gt;</a>, <a class="el" href="classService.html#45c06344edbfa482b91f68e2035a6099">Service</a></ul>
+: <a class="el" href="classpeoSyncIslandMig.html#25bc1a03cc49e17dda34b6647df1f9c5">peoSyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a>, <a class="el" href="classpeoAsyncIslandMig.html#c32a27e387bcd8ce383a4cb1732dbed8">peoAsyncIslandMig&lt; TYPESELECT, TYPEREPLACE &gt;</a><li>unpackData()
+: <a class="el" href="classWorker.html#bff2bdcd64fe5400156cc78704c64953">Worker</a>, <a class="el" href="classpeoTransform.html#a804631492e08053162a196877587aef">peoTransform&lt; EOT &gt;</a>, <a class="el" href="classpeoPopEval.html#cb256d94000a47af06d3e8a3f7ab0eff">peoPopEval&lt; EOT &gt;</a>, <a class="el" href="classpeoMultiStart.html#c8da1b8ae55ee6622fbb9be4f01ee318">peoMultiStart&lt; EntityType &gt;</a>, <a class="el" href="classpeoMoeoPopEval.html#4af28a55c0b9946b1125be8e93729923">peoMoeoPopEval&lt; EOT &gt;</a>, <a class="el" href="classService.html#3bd87b444710813d30fd754d4d0b4df3">Service</a><li>unpackResult()
+: <a class="el" href="classpeoTransform.html#e0244425e846c5679c901b61e4252814">peoTransform&lt; EOT &gt;</a>, <a class="el" href="classpeoPopEval.html#f64aa1322e8e26f39143e1a6395206b6">peoPopEval&lt; EOT &gt;</a>, <a class="el" href="classpeoMultiStart.html#4b92ac458ea435e6433e482e8262ba18">peoMultiStart&lt; EntityType &gt;</a>, <a class="el" href="classpeoMoeoPopEval.html#17e3f73283b31683a353aae47902b46d">peoMoeoPopEval&lt; EOT &gt;</a>, <a class="el" href="classService.html#45c06344edbfa482b91f68e2035a6099">Service</a></ul>
 <h3><a class="anchor" name="index_w">- w -</a></h3><ul>
-<li>waitStarting()
+<li>waitContextInitialization()
+: <a class="el" href="classRunner.html#756ad5e211d4818a88d53fa9ac272f68">Runner</a><li>waitStarting()
 : <a class="el" href="classRunner.html#5bc239db2be753b77369fa9a038769fd">Runner</a><li>wakeUp()
 : <a class="el" href="classReactiveThread.html#a724a54575de10f09cc03ab7aa4e59ce">ReactiveThread</a><li>Worker()
 : <a class="el" href="classWorker.html#3754817df06ffe220f7f0d903c78ccac">Worker</a></ul>
 <h3><a class="anchor" name="index_~">- ~ -</a></h3><ul>
 <li>~AbstractAggregationAlgorithm()
-: <a class="el" href="structpeoSynchronousMultiStart_1_1AbstractAggregationAlgorithm.html#d5bb9f3712564b788bb7c6da71ef2d3f">peoSynchronousMultiStart&lt; EntityType &gt;::AbstractAggregationAlgorithm</a><li>~AbstractAlgorithm()
-: <a class="el" href="structpeoSynchronousMultiStart_1_1AbstractAlgorithm.html#c77be114590c79c1b96d3afbe73596e0">peoSynchronousMultiStart&lt; EntityType &gt;::AbstractAlgorithm</a>, <a class="el" href="structpeoParallelAlgorithmWrapper_1_1AbstractAlgorithm.html#af530b7731cb212f8dd74e5a57484a9e">peoParallelAlgorithmWrapper::AbstractAlgorithm</a><li>~AbstractDataType()
-: <a class="el" href="structpeoSynchronousMultiStart_1_1AbstractDataType.html#4d868a93f8e97621ec5c7b6a2e28b265">peoSynchronousMultiStart&lt; EntityType &gt;::AbstractDataType</a><li>~Communicable()
-: <a class="el" href="classCommunicable.html#2280b0dfa0d3a515fccf62c2a9fd5f41">Communicable</a><li>~peoParallelAlgorithmWrapper()
-: <a class="el" href="classpeoParallelAlgorithmWrapper.html#0e64f517afe790db467750a6980e1666">peoParallelAlgorithmWrapper</a><li>~peoSynchronousMultiStart()
-: <a class="el" href="classpeoSynchronousMultiStart.html#f9ec55d67f5f45f5a737064fae569277">peoSynchronousMultiStart&lt; EntityType &gt;</a><li>~Thread()
+: <a class="el" href="structpeoMultiStart_1_1AbstractAggregationAlgorithm.html#58cbddc4a83735f15ff617a0a3121439">peoMultiStart&lt; EntityType &gt;::AbstractAggregationAlgorithm</a><li>~AbstractAlgorithm()
+: <a class="el" href="structpeoWrapper_1_1AbstractAlgorithm.html#30a579ba96072332f60989f92de669e9">peoWrapper::AbstractAlgorithm</a>, <a class="el" href="structpeoMultiStart_1_1AbstractAlgorithm.html#0371e92bf1c07a89d9fd1534cc74e63e">peoMultiStart&lt; EntityType &gt;::AbstractAlgorithm</a><li>~AbstractDataType()
+: <a class="el" href="structpeoMultiStart_1_1AbstractDataType.html#d1ff4bf7da5330c7f4395f9e3c9c29bd">peoMultiStart&lt; EntityType &gt;::AbstractDataType</a><li>~Communicable()
+: <a class="el" href="classCommunicable.html#2280b0dfa0d3a515fccf62c2a9fd5f41">Communicable</a><li>~MPIThreadedEnv()
+: <a class="el" href="classMPIThreadedEnv.html#9fc0c3ae7f4599d34cdb3a541f7b24fa">MPIThreadedEnv</a><li>~peoMultiStart()
+: <a class="el" href="classpeoMultiStart.html#16a9c5eae2c8ec925738b84bf62b3809">peoMultiStart&lt; EntityType &gt;</a><li>~peoWrapper()
+: <a class="el" href="classpeoWrapper.html#756a0ee6b6b3edb98516e8eef707808c">peoWrapper</a><li>~Thread()
 : <a class="el" href="classThread.html#37d9edd3a1a776cbc27dedff949c9726">Thread</a><li>~Topology()
 : <a class="el" href="classTopology.html#3e447669757c8311c7f6f8edc705abf2">Topology</a></ul>
-<hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:46 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

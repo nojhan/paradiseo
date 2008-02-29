@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: two_opt_incr_eval.cpp Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: two_opt_incr_eval.cpp Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,7 +22,7 @@
       </form>
     </li>
   </ul></div>
-<h1>two_opt_incr_eval.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>two_opt_incr_eval.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;two_opt_incr_eval.cpp&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
 <a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
@@ -61,20 +61,21 @@
 <a name="l00037"></a>00037 <span class="preprocessor">#include "two_opt_incr_eval.h"</span>
 <a name="l00038"></a>00038 <span class="preprocessor">#include "node.h"</span>
 <a name="l00039"></a>00039 
-<a name="l00040"></a>00040 <span class="keywordtype">int</span> <a class="codeRef" doxygen="mo.doxytag:/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/" href="/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/class_two_opt_incr_eval.html#4574d0b22065be5b59b88791e2b61138">TwoOptIncrEval :: operator () </a>(<span class="keyword">const</span> <a class="codeRef" doxygen="mo.doxytag:/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/" href="/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/class_two_opt.html">TwoOpt</a> &amp; __move, <span class="keyword">const</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route) {
-<a name="l00041"></a>00041   
-<a name="l00042"></a>00042   <span class="comment">/* From */</span>
-<a name="l00043"></a>00043   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">Node</a> v1 = __route [__move.first], v1_left = __route [(__move.first - 1 + numNodes) % numNodes];
-<a name="l00044"></a>00044   
-<a name="l00045"></a>00045   <span class="comment">/* To */</span>
-<a name="l00046"></a>00046   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">Node</a> v2 = __route [__move.second], v2_right = __route [(__move.second + 1) % numNodes];
-<a name="l00047"></a>00047  
-<a name="l00048"></a>00048   <span class="keywordflow">if</span> (v1 == v2 || v2_right == v1)
-<a name="l00049"></a>00049     <span class="keywordflow">return</span> __route.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_e_o.html#57d5610c9296eb927816a2f06bd00a08">fitness</a> ();
-<a name="l00050"></a>00050   <span class="keywordflow">else</span> 
-<a name="l00051"></a>00051     <span class="keywordflow">return</span> __route.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_e_o.html#57d5610c9296eb927816a2f06bd00a08">fitness</a> () - <a class="codeRef" doxygen="mo.doxytag:/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/" href="/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/namespace_graph.html#510a8b9e849ec2c3241a09cac9d45cc6">distance</a> (v1_left, v2) - <a class="codeRef" doxygen="mo.doxytag:/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/" href="/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/namespace_graph.html#510a8b9e849ec2c3241a09cac9d45cc6">distance</a> (v1, v2_right) + <a class="codeRef" doxygen="mo.doxytag:/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/" href="/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/namespace_graph.html#510a8b9e849ec2c3241a09cac9d45cc6">distance</a> (v1_left, v1) + <a class="codeRef" doxygen="mo.doxytag:/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/" href="/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/namespace_graph.html#510a8b9e849ec2c3241a09cac9d45cc6">distance</a> (v2, v2_right);
-<a name="l00052"></a>00052 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:46 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00040"></a><a class="code" href="classTwoOptIncrEval.html#48500077e651c4c6152daef8a396be39">00040</a> <span class="keywordtype">int</span> <a class="code" href="classTwoOptIncrEval.html#48500077e651c4c6152daef8a396be39">TwoOptIncrEval :: operator () </a>(<span class="keyword">const</span> <a class="code" href="classTwoOpt.html">TwoOpt</a> &amp; __move, <span class="keyword">const</span> Route &amp; __route)
+<a name="l00041"></a>00041 {
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043   <span class="comment">/* From */</span>
+<a name="l00044"></a>00044   <a class="code" href="structNode.html">Node</a> v1 = __route [__move.first], v1_left = __route [(__move.first - 1 + numNodes) % numNodes];
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046   <span class="comment">/* To */</span>
+<a name="l00047"></a>00047   <a class="code" href="structNode.html">Node</a> v2 = __route [__move.second], v2_right = __route [(__move.second + 1) % numNodes];
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049   <span class="keywordflow">if</span> (v1 == v2 || v2_right == v1)
+<a name="l00050"></a>00050     <span class="keywordflow">return</span> __route.fitness ();
+<a name="l00051"></a>00051   <span class="keywordflow">else</span>
+<a name="l00052"></a>00052     <span class="keywordflow">return</span> __route.fitness () - distance (v1_left, v2) - distance (v1, v2_right) + distance (v1_left, v1) + distance (v2, v2_right);
+<a name="l00053"></a>00053 }
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

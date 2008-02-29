@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: comm.cpp Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: comm.cpp Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,7 +22,7 @@
       </form>
     </li>
   </ul></div>
-<h1>comm.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>comm.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;comm.cpp&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
 <a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
@@ -75,49 +75,66 @@
 <a name="l00051"></a>00051 
 <a name="l00052"></a>00052 <span class="keyword">static</span> <a class="code" href="classCommunicator.html">Communicator</a> * the_thread;
 <a name="l00053"></a>00053 
-<a name="l00054"></a><a class="code" href="classCommunicator.html#7c9dce4ea92bd04d01d53f80c0ef08ee">00054</a> <a class="code" href="classCommunicator.html#7c9dce4ea92bd04d01d53f80c0ef08ee">Communicator :: Communicator</a> (<span class="keywordtype">int</span> * __argc, <span class="keywordtype">char</span> * * * __argv) {
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056   the_thread = <span class="keyword">this</span>;  
-<a name="l00057"></a>00057   initNode  (__argc, __argv);
-<a name="l00058"></a>00058   loadRMCParameters (* __argc, * __argv);  
-<a name="l00059"></a>00059   sem_post (&amp; sem_comm_init);
-<a name="l00060"></a>00060 }
+<a name="l00054"></a>00054 
+<a name="l00055"></a><a class="code" href="classCommunicator.html#7c9dce4ea92bd04d01d53f80c0ef08ee">00055</a> <a class="code" href="classCommunicator.html#7c9dce4ea92bd04d01d53f80c0ef08ee">Communicator :: Communicator</a> (<span class="keywordtype">int</span> * __argc, <span class="keywordtype">char</span> * * * __argv)
+<a name="l00056"></a>00056 {
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058   the_thread = <span class="keyword">this</span>;
+<a name="l00059"></a>00059   initNode  (__argc, __argv);
+<a name="l00060"></a>00060   loadRMCParameters (* __argc, * __argv);
 <a name="l00061"></a>00061 
-<a name="l00062"></a><a class="code" href="classCommunicator.html#142fae13b16b166519315f248a513c62">00062</a> <span class="keywordtype">void</span> <a class="code" href="classCommunicator.html#142fae13b16b166519315f248a513c62">Communicator :: start</a> () {
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064   <span class="keywordflow">while</span> (<span class="keyword">true</span>) {
-<a name="l00065"></a>00065     
-<a name="l00066"></a>00066     <span class="comment">/* Zzz Zzz Zzz :-))) */</span>
-<a name="l00067"></a>00067     <a class="code" href="classReactiveThread.html#8263c2a32d8c99a49a05f1a7717d4262">sleep</a> ();
-<a name="l00068"></a>00068     sendMessages ();
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070     <span class="keywordflow">if</span> (! atLeastOneActiveRunner ())     
-<a name="l00071"></a>00071       <span class="keywordflow">break</span>;
-<a name="l00072"></a>00072     receiveMessages ();    
-<a name="l00073"></a>00073   }
-<a name="l00074"></a>00074   waitBuffers ();  
-<a name="l00075"></a>00075   printDebugMessage (<span class="stringliteral">"finalizing"</span>);
-<a name="l00076"></a>00076   MPI_Finalize ();  
-<a name="l00077"></a>00077 }
+<a name="l00062"></a>00062   sem_post (&amp; sem_comm_init);
+<a name="l00063"></a>00063 }
+<a name="l00064"></a>00064 
+<a name="l00065"></a><a class="code" href="classCommunicator.html#142fae13b16b166519315f248a513c62">00065</a> <span class="keywordtype">void</span> <a class="code" href="classCommunicator.html#142fae13b16b166519315f248a513c62">Communicator :: start</a> ()
+<a name="l00066"></a>00066 {
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068   <span class="keywordflow">while</span> (<span class="keyword">true</span>)
+<a name="l00069"></a>00069     {
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071       <span class="comment">/* Zzz Zzz Zzz :-))) */</span>
+<a name="l00072"></a>00072       <a class="code" href="classReactiveThread.html#8263c2a32d8c99a49a05f1a7717d4262">sleep</a> ();
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074       sendMessages ();
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076       <span class="keywordflow">if</span> (! atLeastOneActiveRunner () &amp;&amp; ! atLeastOneActiveThread() &amp;&amp; allResourcesFree ())
+<a name="l00077"></a>00077         <span class="keywordflow">break</span>;
 <a name="l00078"></a>00078 
-<a name="l00079"></a>00079 <span class="keywordtype">void</span> initCommunication () {
-<a name="l00080"></a>00080 
-<a name="l00081"></a>00081   sem_init (&amp; sem_comm_init, 0, 0);
-<a name="l00082"></a>00082 }
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084 <span class="keywordtype">void</span> waitNodeInitialization () {
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086   sem_wait (&amp; sem_comm_init);
-<a name="l00087"></a>00087 }
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089 <span class="keywordtype">void</span> wakeUpCommunicator () {
+<a name="l00079"></a>00079       receiveMessages ();
+<a name="l00080"></a>00080     }
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082   waitBuffers ();
+<a name="l00083"></a>00083   printDebugMessage (<span class="stringliteral">"finalizing"</span>);
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085   <span class="comment">//synchronizeNodes ();</span>
+<a name="l00086"></a>00086 }
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088 <span class="keywordtype">void</span> initCommunication ()
+<a name="l00089"></a>00089 {
 <a name="l00090"></a>00090 
-<a name="l00091"></a>00091   the_thread -&gt; wakeUp ();
-<a name="l00092"></a>00092 }
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095 
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:45 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00091"></a>00091   <span class="keyword">static</span> <span class="keywordtype">bool</span> initializedSemaphore = <span class="keyword">false</span>;
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093   <span class="keywordflow">if</span> (initializedSemaphore)
+<a name="l00094"></a>00094     {
+<a name="l00095"></a>00095       sem_destroy(&amp; sem_comm_init);
+<a name="l00096"></a>00096     }
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098   sem_init (&amp; sem_comm_init, 0, 0);
+<a name="l00099"></a>00099   initializedSemaphore = <span class="keyword">true</span>;
+<a name="l00100"></a>00100 }
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102 <span class="keywordtype">void</span> waitNodeInitialization ()
+<a name="l00103"></a>00103 {
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105   sem_wait (&amp; sem_comm_init);
+<a name="l00106"></a>00106 }
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108 <span class="keywordtype">void</span> wakeUpCommunicator ()
+<a name="l00109"></a>00109 {
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111   the_thread -&gt; wakeUp ();
+<a name="l00112"></a>00112 }
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

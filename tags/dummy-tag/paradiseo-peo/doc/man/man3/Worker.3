@@ -1,4 +1,4 @@
-.TH "Worker" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-PEOMovingObjects" \" -*- nroff -*-
+.TH "Worker" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-PEO-ParallelanddistributedEvolvingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -52,13 +52,22 @@ Inherits \fBCommunicable\fP, and \fBReactiveThread\fP.
 .RI "int \fBsrc\fP"
 .br
 .ti -1c
-.RI "bool \fBtoto\fP"
+.RI "bool \fBrecvAndCompleted\fP"
+.br
+.ti -1c
+.RI "unsigned \fBtaskAssigned\fP"
+.br
+.ti -1c
+.RI "sem_t \fBsem_task_done\fP"
+.br
+.ti -1c
+.RI "sem_t \fBsem_task_asgn\fP"
 .br
 .in -1c
 .SH "Detailed Description"
 .PP 
-Definition at line 46 of file worker.h.
+Definition at line 47 of file worker.h.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-PEOMovingObjects from the source code.
+Generated automatically by Doxygen for ParadisEO-PEO-ParallelanddistributedEvolvingObjects from the source code.

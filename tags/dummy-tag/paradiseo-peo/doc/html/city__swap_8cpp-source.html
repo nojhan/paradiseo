@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: city_swap.cpp Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: city_swap.cpp Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,7 +22,7 @@
       </form>
     </li>
   </ul></div>
-<h1>city_swap.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>city_swap.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;city_swap.cpp&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
 <a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
@@ -62,16 +62,17 @@
 <a name="l00038"></a>00038 
 <a name="l00039"></a>00039 <span class="preprocessor">#include "city_swap.h"</span>
 <a name="l00040"></a>00040 
-<a name="l00041"></a>00041 <span class="keywordtype">bool</span> <a class="codeRef" doxygen="mo.doxytag:/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/" href="/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/class_city_swap.html#7e6958b62048c89604cbf046b86bdf2d">CitySwap :: operator () </a>(<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route) {
-<a name="l00042"></a>00042   
-<a name="l00043"></a>00043   std :: swap (__route [<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/namespaceeo.html#2727d901e79a00930492730539e3b644">rng</a>.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">random</a> (__route.size ())],
-<a name="l00044"></a>00044                __route [<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/namespaceeo.html#2727d901e79a00930492730539e3b644">rng</a>.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">random</a> (__route.size ())]) ;
-<a name="l00045"></a>00045     
-<a name="l00046"></a>00046   __route.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_e_o.html#f57e9b0b1772446b12f97abfc0d64a59">invalidate</a> () ;
-<a name="l00047"></a>00047   
-<a name="l00048"></a>00048   <span class="keywordflow">return</span> true ;
-<a name="l00049"></a>00049 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:45 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00041"></a><a class="code" href="classCitySwap.html#7e6958b62048c89604cbf046b86bdf2d">00041</a> <span class="keywordtype">bool</span> <a class="code" href="classCitySwap.html#7e6958b62048c89604cbf046b86bdf2d">CitySwap :: operator () </a>(Route &amp; __route)
+<a name="l00042"></a>00042 {
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044   std :: swap (__route [rng.random (__route.size ())],
+<a name="l00045"></a>00045                __route [rng.random (__route.size ())]) ;
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047   __route.invalidate () ;
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049   <span class="keywordflow">return</span> true ;
+<a name="l00050"></a>00050 }
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: Worker Class Reference</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: Worker Class Reference</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -76,8 +76,17 @@ SERVICE_ID&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="895c3ebc198018ea3391c09bc802d2f6"></a><!-- doxytag: member="Worker::src" ref="895c3ebc198018ea3391c09bc802d2f6" args="" -->
 int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWorker.html#895c3ebc198018ea3391c09bc802d2f6">src</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7ba5a18b2918cf9e704536b763be37f7"></a><!-- doxytag: member="Worker::toto" ref="7ba5a18b2918cf9e704536b763be37f7" args="" -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWorker.html#7ba5a18b2918cf9e704536b763be37f7">toto</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1bcc1e66cc2021cc9cc5e79d0eea563d"></a><!-- doxytag: member="Worker::recvAndCompleted" ref="1bcc1e66cc2021cc9cc5e79d0eea563d" args="" -->
+bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWorker.html#1bcc1e66cc2021cc9cc5e79d0eea563d">recvAndCompleted</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3bb2faa8e6350cb0ab13534069dcc96d"></a><!-- doxytag: member="Worker::taskAssigned" ref="3bb2faa8e6350cb0ab13534069dcc96d" args="" -->
+unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWorker.html#3bb2faa8e6350cb0ab13534069dcc96d">taskAssigned</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="173ce84a3c7ee9f73c691c39c68ca711"></a><!-- doxytag: member="Worker::sem_task_done" ref="173ce84a3c7ee9f73c691c39c68ca711" args="" -->
+sem_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWorker.html#173ce84a3c7ee9f73c691c39c68ca711">sem_task_done</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="995391e66dacedffe1e2b4754296b455"></a><!-- doxytag: member="Worker::sem_task_asgn" ref="995391e66dacedffe1e2b4754296b455" args="" -->
+sem_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWorker.html#995391e66dacedffe1e2b4754296b455">sem_task_asgn</a></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -85,9 +94,9 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>
 
 <p>
-Definition at line <a class="el" href="worker_8h-source.html#l00046">46</a> of file <a class="el" href="worker_8h-source.html">worker.h</a>.<hr>The documentation for this class was generated from the following files:<ul>
+Definition at line <a class="el" href="worker_8h-source.html#l00047">47</a> of file <a class="el" href="worker_8h-source.html">worker.h</a>.<hr>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="worker_8h-source.html">worker.h</a><li><a class="el" href="worker_8cpp-source.html">worker.cpp</a></ul>
-<hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:50 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:09 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

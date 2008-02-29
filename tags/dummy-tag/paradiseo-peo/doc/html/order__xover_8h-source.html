@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: order_xover.h Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: order_xover.h Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,7 +22,7 @@
       </form>
     </li>
   </ul></div>
-<h1>order_xover.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>order_xover.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;order_xover.h&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
 <a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
@@ -65,19 +65,20 @@
 <a name="l00041"></a>00041 
 <a name="l00042"></a>00042 <span class="preprocessor">#include "route.h"</span>
 <a name="l00043"></a>00043 
-<a name="l00045"></a>00045 <span class="keyword">class </span><a class="codeRef" doxygen="mo.doxytag:/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/" href="/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/class_order_xover.html">OrderXover</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_quad_op.html">eoQuadOp</a> &lt;Route&gt; {
-<a name="l00046"></a>00046   
-<a name="l00047"></a>00047 <span class="keyword">public</span> :
-<a name="l00048"></a>00048   
-<a name="l00049"></a>00049   <span class="keywordtype">bool</span> <a class="codeRef" doxygen="mo.doxytag:/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/" href="/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/class_order_xover.html#0ff6aada669eb8173322ed68cda1ac61">operator () </a>(<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route1, <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route2) ;
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 <span class="keyword">private</span> :
-<a name="l00052"></a>00052   
-<a name="l00053"></a>00053   <span class="keywordtype">void</span> <a class="codeRef" doxygen="mo.doxytag:/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/" href="/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/class_order_xover.html#d2bf90b5f46ac4a344777e17bc5f364d">cross</a> (<span class="keyword">const</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __par1, <span class="keyword">const</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __par2, <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __child) ;
-<a name="l00054"></a>00054 } ;
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:45 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00045"></a><a class="code" href="classOrderXover.html">00045</a> <span class="keyword">class </span><a class="code" href="classOrderXover.html">OrderXover</a> : <span class="keyword">public</span> eoQuadOp &lt;Route&gt;
+<a name="l00046"></a>00046   {
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048   <span class="keyword">public</span> :
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050     <span class="keywordtype">bool</span> <a class="code" href="classOrderXover.html#0ff6aada669eb8173322ed68cda1ac61">operator () </a>(Route &amp; __route1, Route &amp; __route2) ;
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052   <span class="keyword">private</span> :
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054     <span class="keywordtype">void</span> <a class="code" href="classOrderXover.html#d2bf90b5f46ac4a344777e17bc5f364d">cross</a> (<span class="keyword">const</span> Route &amp; __par1, <span class="keyword">const</span> Route &amp; __par2, Route &amp; __child) ;
+<a name="l00055"></a>00055   } ;
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 <span class="preprocessor">#endif</span>
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

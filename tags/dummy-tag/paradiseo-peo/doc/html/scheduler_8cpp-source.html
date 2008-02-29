@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: scheduler.cpp Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: scheduler.cpp Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,7 +22,7 @@
       </form>
     </li>
   </ul></div>
-<h1>scheduler.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>scheduler.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;scheduler.cpp&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
 <a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
@@ -71,64 +71,82 @@
 <a name="l00047"></a>00047 
 <a name="l00048"></a>00048 <span class="keyword">static</span> <span class="keywordtype">unsigned</span> initNumberOfRes = 0;
 <a name="l00049"></a>00049 
-<a name="l00050"></a>00050 <span class="keywordtype">void</span> initScheduler () {
-<a name="l00051"></a>00051   
-<a name="l00052"></a>00052   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; the_schema.size (); i ++) {
-<a name="l00053"></a>00053     
-<a name="l00054"></a>00054     <span class="keyword">const</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">Node</a> &amp; node = the_schema [i];
-<a name="l00055"></a>00055     
-<a name="l00056"></a>00056     <span class="keywordflow">if</span> (node.rk_sched == my_node -&gt; rk)      
-<a name="l00057"></a>00057       <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; node.num_workers; j ++)
-<a name="l00058"></a>00058         resources.push (std :: pair &lt;RANK_ID, WORKER_ID&gt; (i, j + 1));    
-<a name="l00059"></a>00059   }  
-<a name="l00060"></a>00060   initNumberOfRes = resources.size ();
-<a name="l00061"></a>00061 }
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063 <span class="keywordtype">bool</span> allResourcesFree () {
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065   <span class="keywordflow">return</span> resources.size () == initNumberOfRes;
-<a name="l00066"></a>00066 }
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068 <span class="keyword">static</span> <span class="keywordtype">void</span> update () {
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070   <span class="keywordtype">unsigned</span> num_alloc = std :: min (resources.size (), requests.size ());
-<a name="l00071"></a>00071   
-<a name="l00072"></a>00072   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; num_alloc; i ++) {
-<a name="l00073"></a>00073     
-<a name="l00074"></a>00074     SCHED_REQUEST req = requests.front ();
-<a name="l00075"></a>00075     requests.pop ();
-<a name="l00076"></a>00076     
-<a name="l00077"></a>00077     SCHED_RESOURCE res = resources.front ();
-<a name="l00078"></a>00078     resources.pop ();
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080     printDebugMessage (<span class="stringliteral">"allocating a resource."</span>);    
-<a name="l00081"></a>00081     initMessage ();
-<a name="l00082"></a>00082     pack (req.second);
-<a name="l00083"></a>00083     pack (res);
-<a name="l00084"></a>00084     sendMessage (req.first, SCHED_RESULT_TAG);
-<a name="l00085"></a>00085   }  
-<a name="l00086"></a>00086 }
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088 <span class="keywordtype">void</span> unpackResourceRequest () {
-<a name="l00089"></a>00089 
-<a name="l00090"></a>00090   printDebugMessage (<span class="stringliteral">"queuing a resource request."</span>);
-<a name="l00091"></a>00091   SCHED_REQUEST req;
-<a name="l00092"></a>00092   unpack (req);
-<a name="l00093"></a>00093   requests.push (req);
-<a name="l00094"></a>00094   update ();
-<a name="l00095"></a>00095 }
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097 <span class="keywordtype">void</span> unpackTaskDone () {
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099   printDebugMessage (<span class="stringliteral">"I'm notified a worker is now idle."</span>);
-<a name="l00100"></a>00100   SCHED_RESOURCE res;
-<a name="l00101"></a>00101   unpack (res);
-<a name="l00102"></a>00102   resources.push (res);
-<a name="l00103"></a>00103   <span class="keywordflow">if</span> (resources.size () == initNumberOfRes)
-<a name="l00104"></a>00104     printDebugMessage (<span class="stringliteral">"all the resources are now free."</span>);
-<a name="l00105"></a>00105   update ();
-<a name="l00106"></a>00106 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:46 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00050"></a>00050 <span class="keyword">extern</span> <span class="keywordtype">void</span> wakeUpCommunicator();
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052 <span class="keywordtype">void</span> initScheduler ()
+<a name="l00053"></a>00053 {
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055   resources = std :: queue &lt;SCHED_RESOURCE&gt; ();
+<a name="l00056"></a>00056   requests = std :: queue &lt;SCHED_REQUEST&gt; ();
+<a name="l00057"></a>00057   initNumberOfRes = 0;
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; the_schema.size (); i ++)
+<a name="l00060"></a>00060     {
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062       <span class="keyword">const</span> <a class="code" href="structNode.html">Node</a> &amp; node = the_schema [i];
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064       <span class="keywordflow">if</span> (node.rk_sched == my_node -&gt; rk)
+<a name="l00065"></a>00065         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; node.num_workers; j ++)
+<a name="l00066"></a>00066           resources.push (std :: pair &lt;RANK_ID, WORKER_ID&gt; (i, j + 1));
+<a name="l00067"></a>00067     }
+<a name="l00068"></a>00068   initNumberOfRes = resources.size ();
+<a name="l00069"></a>00069 }
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071 <span class="keywordtype">bool</span> allResourcesFree ()
+<a name="l00072"></a>00072 {
+<a name="l00073"></a>00073   <span class="keywordflow">return</span> resources.size () == initNumberOfRes;
+<a name="l00074"></a>00074 }
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076 <span class="keywordtype">unsigned</span> numResourcesFree ()
+<a name="l00077"></a>00077 {
+<a name="l00078"></a>00078   <span class="keywordflow">return</span> resources.size ();
+<a name="l00079"></a>00079 }
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081 <span class="keyword">static</span> <span class="keywordtype">void</span> update ()
+<a name="l00082"></a>00082 {
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084   <span class="keywordtype">unsigned</span> num_alloc = std :: min (resources.size (), requests.size ());
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; num_alloc; i ++)
+<a name="l00087"></a>00087     {
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089       SCHED_REQUEST req = requests.front ();
+<a name="l00090"></a>00090       requests.pop ();
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092       SCHED_RESOURCE res = resources.front ();
+<a name="l00093"></a>00093       resources.pop ();
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095       printDebugMessage (<span class="stringliteral">"allocating a resource."</span>);
+<a name="l00096"></a>00096       initMessage ();
+<a name="l00097"></a>00097       pack (req.second);
+<a name="l00098"></a>00098       pack (res);
+<a name="l00099"></a>00099       sendMessage (req.first, SCHED_RESULT_TAG);
+<a name="l00100"></a>00100     }
+<a name="l00101"></a>00101 }
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 <span class="keywordtype">void</span> unpackResourceRequest ()
+<a name="l00104"></a>00104 {
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106   printDebugMessage (<span class="stringliteral">"queuing a resource request."</span>);
+<a name="l00107"></a>00107   SCHED_REQUEST req;
+<a name="l00108"></a>00108   unpack (req);
+<a name="l00109"></a>00109   requests.push (req);
+<a name="l00110"></a>00110   update ();
+<a name="l00111"></a>00111 }
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113 <span class="keywordtype">void</span> unpackTaskDone ()
+<a name="l00114"></a>00114 {
+<a name="l00115"></a>00115 
+<a name="l00116"></a>00116   printDebugMessage (<span class="stringliteral">"I'm notified a worker is now idle."</span>);
+<a name="l00117"></a>00117   SCHED_RESOURCE res;
+<a name="l00118"></a>00118   unpack (res);
+<a name="l00119"></a>00119   resources.push (res);
+<a name="l00120"></a>00120   <span class="keywordflow">if</span> (resources.size () == initNumberOfRes)
+<a name="l00121"></a>00121     printDebugMessage (<span class="stringliteral">"all the resources are now free."</span>);
+<a name="l00122"></a>00122   update ();
+<a name="l00123"></a>00123   wakeUpCommunicator();
+<a name="l00124"></a>00124 }
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

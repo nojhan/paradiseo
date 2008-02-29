@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: Communicable Class Reference</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: Communicable Class Reference</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -32,18 +32,17 @@
 <h1>Communicable Class Reference</h1><!-- doxytag: class="Communicable" --><p>Inheritance diagram for Communicable:
 <p><center><img src="classCommunicable.png" usemap="#Communicable_map" border="0" alt=""></center>
 <map name="Communicable_map">
-<area href="classCooperative.html" alt="Cooperative" shape="rect" coords="0,56,244,80">
-<area href="classRunner.html" alt="Runner" shape="rect" coords="508,56,752,80">
-<area href="classService.html" alt="Service" shape="rect" coords="1016,56,1260,80">
-<area href="classWorker.html" alt="Worker" shape="rect" coords="1270,56,1514,80">
-<area href="classpeoAsyncIslandMig.html" alt="peoAsyncIslandMig< EOT >" shape="rect" coords="254,112,498,136">
-<area href="classpeoSyncIslandMig.html" alt="peoSyncIslandMig< EOT >" shape="rect" coords="254,168,498,192">
-<area href="classpeoEA.html" alt="peoEA< EOT >" shape="rect" coords="762,112,1006,136">
-<area href="classpeoParallelAlgorithmWrapper.html" alt="peoParallelAlgorithmWrapper" shape="rect" coords="762,168,1006,192">
-<area href="classpeoPopEval.html" alt="peoPopEval< EOT >" shape="rect" coords="1270,112,1514,136">
-<area href="classpeoSynchronousMultiStart.html" alt="peoSynchronousMultiStart< EntityType >" shape="rect" coords="1270,168,1514,192">
-<area href="classpeoSyncMultiStart.html" alt="peoSyncMultiStart< EOT >" shape="rect" coords="1270,224,1514,248">
-<area href="classpeoTransform.html" alt="peoTransform< EOT >" shape="rect" coords="1270,280,1514,304">
+<area href="classCooperative.html" alt="Cooperative" shape="rect" coords="167,56,491,80">
+<area href="classRunner.html" alt="Runner" shape="rect" coords="668,56,992,80">
+<area href="classService.html" alt="Service" shape="rect" coords="1503,56,1827,80">
+<area href="classWorker.html" alt="Worker" shape="rect" coords="1837,56,2161,80">
+<area href="classpeoAsyncIslandMig.html" alt="peoAsyncIslandMig< TYPESELECT, TYPEREPLACE >" shape="rect" coords="0,112,324,136">
+<area href="classpeoSyncIslandMig.html" alt="peoSyncIslandMig< TYPESELECT, TYPEREPLACE >" shape="rect" coords="334,112,658,136">
+<area href="classpeoWrapper.html" alt="peoWrapper" shape="rect" coords="668,112,992,136">
+<area href="classpeoMoeoPopEval.html" alt="peoMoeoPopEval< EOT >" shape="rect" coords="1002,112,1326,136">
+<area href="classpeoMultiStart.html" alt="peoMultiStart< EntityType >" shape="rect" coords="1336,112,1660,136">
+<area href="classpeoPopEval.html" alt="peoPopEval< EOT >" shape="rect" coords="1670,112,1994,136">
+<area href="classpeoTransform.html" alt="peoTransform< EOT >" shape="rect" coords="2004,112,2328,136">
 </map>
 <a href="classCommunicable-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
@@ -69,6 +68,10 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3306a9adb11a0ab5af342c0db9f7bb2a"></a><!-- doxytag: member="Communicable::resume" ref="3306a9adb11a0ab5af342c0db9f7bb2a" args="()" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommunicable.html#3306a9adb11a0ab5af342c0db9f7bb2a">resume</a> ()</td></tr>
 
+<tr><td colspan="2"><br><h2>Static Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7a6acfdc781a67c9c0ec4f17893f86c3"></a><!-- doxytag: member="Communicable::num_comm" ref="7a6acfdc781a67c9c0ec4f17893f86c3" args="" -->
+static unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommunicable.html#7a6acfdc781a67c9c0ec4f17893f86c3">num_comm</a> = 0</td></tr>
+
 <tr><td colspan="2"><br><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="605b0efeffe81326f216c9903f5bbf4c"></a><!-- doxytag: member="Communicable::key" ref="605b0efeffe81326f216c9903f5bbf4c" args="" -->
 COMM_ID&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommunicable.html#605b0efeffe81326f216c9903f5bbf4c">key</a></td></tr>
@@ -79,19 +82,15 @@ sem_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="29c53b9191348e0505e3bcba6d8b82b1"></a><!-- doxytag: member="Communicable::sem_stop" ref="29c53b9191348e0505e3bcba6d8b82b1" args="" -->
 sem_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommunicable.html#29c53b9191348e0505e3bcba6d8b82b1">sem_stop</a></td></tr>
 
-<tr><td colspan="2"><br><h2>Static Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7a6acfdc781a67c9c0ec4f17893f86c3"></a><!-- doxytag: member="Communicable::num_comm" ref="7a6acfdc781a67c9c0ec4f17893f86c3" args="" -->
-static unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommunicable.html#7a6acfdc781a67c9c0ec4f17893f86c3">num_comm</a> = 0</td></tr>
-
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 
 <p>
 
 <p>
-Definition at line <a class="el" href="communicable_8h-source.html#l00044">44</a> of file <a class="el" href="communicable_8h-source.html">communicable.h</a>.<hr>The documentation for this class was generated from the following files:<ul>
+Definition at line <a class="el" href="communicable_8h-source.html#l00045">45</a> of file <a class="el" href="communicable_8h-source.html">communicable.h</a>.<hr>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="communicable_8h-source.html">communicable.h</a><li><a class="el" href="communicable_8cpp-source.html">communicable.cpp</a></ul>
-<hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:46 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

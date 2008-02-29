@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: thread.cpp Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: thread.cpp Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,7 +22,7 @@
       </form>
     </li>
   </ul></div>
-<h1>thread.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>thread.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;thread.cpp&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
 <a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
@@ -66,72 +66,83 @@
 <a name="l00042"></a>00042 
 <a name="l00043"></a>00043 <span class="keywordtype">unsigned</span> num_act = 0;
 <a name="l00044"></a>00044 
-<a name="l00045"></a><a class="code" href="classThread.html#95c703fb8f2f27cb64f475a8c940864a">00045</a> <a class="code" href="classThread.html#95c703fb8f2f27cb64f475a8c940864a">Thread :: Thread</a> () {
-<a name="l00046"></a>00046         
-<a name="l00047"></a>00047   threads.push_back (<span class="keyword">this</span>);
-<a name="l00048"></a>00048   <a class="code" href="classThread.html#1b155d63bca3096ac4a1d039aea83c7c">act</a> = <span class="keyword">false</span>;
-<a name="l00049"></a>00049 }
-<a name="l00050"></a>00050 
-<a name="l00051"></a><a class="code" href="classThread.html#37d9edd3a1a776cbc27dedff949c9726">00051</a> <a class="code" href="classThread.html#37d9edd3a1a776cbc27dedff949c9726">Thread :: ~ Thread</a> () {
+<a name="l00045"></a>00045 
+<a name="l00046"></a><a class="code" href="classThread.html#95c703fb8f2f27cb64f475a8c940864a">00046</a> <a class="code" href="classThread.html#95c703fb8f2f27cb64f475a8c940864a">Thread :: Thread</a> ()
+<a name="l00047"></a>00047 {
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049   threads.push_back (<span class="keyword">this</span>);
+<a name="l00050"></a>00050   <a class="code" href="classThread.html#1b155d63bca3096ac4a1d039aea83c7c">act</a> = <span class="keyword">false</span>;
+<a name="l00051"></a>00051 }
 <a name="l00052"></a>00052 
-<a name="l00053"></a>00053   <span class="comment">/* Nothing ! */</span>
-<a name="l00054"></a>00054 }
+<a name="l00053"></a><a class="code" href="classThread.html#37d9edd3a1a776cbc27dedff949c9726">00053</a> <a class="code" href="classThread.html#37d9edd3a1a776cbc27dedff949c9726">Thread :: ~ Thread</a> ()
+<a name="l00054"></a>00054 {
 <a name="l00055"></a>00055 
-<a name="l00056"></a>00056 <span class="keyword">extern</span> <span class="keywordtype">int</span> getNodeRank ();
-<a name="l00057"></a>00057 
-<a name="l00058"></a><a class="code" href="classThread.html#e197c46f8f62ecce6d2a7fe95bdc5b38">00058</a> <span class="keywordtype">void</span> <a class="code" href="classThread.html#e197c46f8f62ecce6d2a7fe95bdc5b38">Thread :: setActive</a> () {
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060   <span class="keywordflow">if</span> (! <a class="code" href="classThread.html#1b155d63bca3096ac4a1d039aea83c7c">act</a> ) {
+<a name="l00056"></a>00056   <span class="comment">/* Nothing ! */</span>
+<a name="l00057"></a>00057 }
+<a name="l00058"></a>00058 
+<a name="l00059"></a><a class="code" href="classThread.html#e197c46f8f62ecce6d2a7fe95bdc5b38">00059</a> <span class="keywordtype">void</span> <a class="code" href="classThread.html#e197c46f8f62ecce6d2a7fe95bdc5b38">Thread :: setActive</a> ()
+<a name="l00060"></a>00060 {
 <a name="l00061"></a>00061 
-<a name="l00062"></a>00062     <a class="code" href="classThread.html#1b155d63bca3096ac4a1d039aea83c7c">act</a> = <span class="keyword">true</span>;
-<a name="l00063"></a>00063     num_act ++;
-<a name="l00064"></a>00064     <span class="comment">//    if (getNodeRank () == 1)      </span>
-<a name="l00065"></a>00065     <span class="comment">//   printf ("On passe a %d\n", num_act);</span>
-<a name="l00066"></a>00066   }
-<a name="l00067"></a>00067 }
-<a name="l00068"></a>00068 
-<a name="l00069"></a><a class="code" href="classThread.html#20632ffe9ddfa2a478afb0c84dc1096b">00069</a> <span class="keywordtype">void</span> <a class="code" href="classThread.html#20632ffe9ddfa2a478afb0c84dc1096b">Thread :: setPassive</a> () {
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071   <span class="keywordflow">if</span> (<a class="code" href="classThread.html#1b155d63bca3096ac4a1d039aea83c7c">act</a>) {
+<a name="l00062"></a>00062   <span class="keywordflow">if</span> (! <a class="code" href="classThread.html#1b155d63bca3096ac4a1d039aea83c7c">act</a>)
+<a name="l00063"></a>00063     {
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065       <a class="code" href="classThread.html#1b155d63bca3096ac4a1d039aea83c7c">act</a> = <span class="keyword">true</span>;
+<a name="l00066"></a>00066       num_act ++;
+<a name="l00067"></a>00067     }
+<a name="l00068"></a>00068 }
+<a name="l00069"></a>00069 
+<a name="l00070"></a><a class="code" href="classThread.html#20632ffe9ddfa2a478afb0c84dc1096b">00070</a> <span class="keywordtype">void</span> <a class="code" href="classThread.html#20632ffe9ddfa2a478afb0c84dc1096b">Thread :: setPassive</a> ()
+<a name="l00071"></a>00071 {
 <a name="l00072"></a>00072 
-<a name="l00073"></a>00073    <a class="code" href="classThread.html#1b155d63bca3096ac4a1d039aea83c7c">act</a> = <span class="keyword">false</span>;
-<a name="l00074"></a>00074     num_act --;
-<a name="l00075"></a>00075     <span class="comment">//    if (getNodeRank () == 1)      </span>
-<a name="l00076"></a>00076     <span class="comment">//  printf ("On passe a %d\n", num_act);</span>
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078   } 
+<a name="l00073"></a>00073   <span class="keywordflow">if</span> (<a class="code" href="classThread.html#1b155d63bca3096ac4a1d039aea83c7c">act</a>)
+<a name="l00074"></a>00074     {
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076       <a class="code" href="classThread.html#1b155d63bca3096ac4a1d039aea83c7c">act</a> = <span class="keyword">false</span>;
+<a name="l00077"></a>00077       num_act --;
+<a name="l00078"></a>00078     }
 <a name="l00079"></a>00079 }
 <a name="l00080"></a>00080 
-<a name="l00081"></a>00081 <span class="keywordtype">bool</span> atLeastOneActiveThread () {
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083   <span class="keywordflow">return</span> num_act;
-<a name="l00084"></a>00084 }
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086 <span class="keywordtype">unsigned</span> numberOfActiveThreads () {
+<a name="l00081"></a>00081 <span class="keywordtype">void</span> initThreadsEnv ()
+<a name="l00082"></a>00082 {
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084   threads.clear ();
+<a name="l00085"></a>00085   num_act = 0;
+<a name="l00086"></a>00086 }
 <a name="l00087"></a>00087 
-<a name="l00088"></a>00088   <span class="keywordflow">return</span> num_act;
-<a name="l00089"></a>00089 }
+<a name="l00088"></a>00088 <span class="keywordtype">bool</span> atLeastOneActiveThread ()
+<a name="l00089"></a>00089 {
 <a name="l00090"></a>00090 
-<a name="l00091"></a>00091 <span class="keyword">static</span> <span class="keywordtype">void</span> * launch (<span class="keywordtype">void</span> * __arg) {
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093   <a class="code" href="classThread.html">Thread</a> * thr = (<a class="code" href="classThread.html">Thread</a> *) __arg;  
-<a name="l00094"></a>00094   thr -&gt; start ();
-<a name="l00095"></a>00095   <span class="keywordflow">return</span> 0;
-<a name="l00096"></a>00096 }
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098 <span class="keywordtype">void</span> addThread (<a class="code" href="classThread.html">Thread</a> * __hl_thread, std :: vector &lt;pthread_t *&gt; &amp; __ll_threads) {
+<a name="l00091"></a>00091   <span class="keywordflow">return</span> num_act;
+<a name="l00092"></a>00092 }
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094 <span class="keyword">static</span> <span class="keywordtype">void</span> * launch (<span class="keywordtype">void</span> * __arg)
+<a name="l00095"></a>00095 {
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097   <a class="code" href="classThread.html">Thread</a> * thr = (<a class="code" href="classThread.html">Thread</a> *) __arg;
+<a name="l00098"></a>00098   thr -&gt; start ();
 <a name="l00099"></a>00099 
-<a name="l00100"></a>00100   pthread_t * ll_thr = <span class="keyword">new</span> pthread_t;
-<a name="l00101"></a>00101   __ll_threads.push_back (ll_thr);
-<a name="l00102"></a>00102   pthread_create (ll_thr, 0, launch, __hl_thread); 
-<a name="l00103"></a>00103 }
-<a name="l00104"></a>00104 
-<a name="l00105"></a>00105 <span class="keywordtype">void</span> joinThreads (std :: vector &lt;pthread_t *&gt; &amp; __threads) {
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; __threads.size (); i ++)    
-<a name="l00108"></a>00108     pthread_join (* __threads [i], 0);  
+<a name="l00100"></a>00100   <span class="keywordflow">return</span> 0;
+<a name="l00101"></a>00101 }
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 <span class="keywordtype">void</span> addThread (<a class="code" href="classThread.html">Thread</a> * __hl_thread, std :: vector &lt;pthread_t *&gt; &amp; __ll_threads)
+<a name="l00104"></a>00104 {
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106   pthread_t * ll_thr = <span class="keyword">new</span> pthread_t;
+<a name="l00107"></a>00107   __ll_threads.push_back (ll_thr);
+<a name="l00108"></a>00108   pthread_create (ll_thr, 0, launch, __hl_thread);
 <a name="l00109"></a>00109 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:46 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 <span class="keywordtype">void</span> joinThreads (std :: vector &lt;pthread_t *&gt; &amp; __threads)
+<a name="l00112"></a>00112 {
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; __threads.size (); i ++)
+<a name="l00115"></a>00115     {
+<a name="l00116"></a>00116       pthread_join (* __threads [i], 0);
+<a name="l00117"></a>00117       <span class="keyword">delete</span> __threads [i];
+<a name="l00118"></a>00118     }
+<a name="l00119"></a>00119   __threads.clear();
+<a name="l00120"></a>00120 }
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

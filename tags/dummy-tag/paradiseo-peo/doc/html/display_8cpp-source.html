@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: display.cpp Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: display.cpp Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,7 +22,7 @@
       </form>
     </li>
   </ul></div>
-<h1>display.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>display.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;display.cpp&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
 <a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
@@ -80,7 +80,7 @@
 <a name="l00056"></a>00056 
 <a name="l00057"></a>00057 <span class="comment">/* this variable will contain the handle to the returned graphics context. */</span>
 <a name="l00058"></a>00058 <span class="keyword">static</span> GC gc;
-<a name="l00059"></a>00059   
+<a name="l00059"></a>00059 
 <a name="l00060"></a>00060 <span class="comment">/* this variable will contain the pointer to the Display structure */</span>
 <a name="l00061"></a>00061 <span class="keyword">static</span> Display* disp;
 <a name="l00062"></a>00062 
@@ -91,83 +91,87 @@
 <a name="l00067"></a>00067 
 <a name="l00068"></a>00068 <span class="comment">/* Create a new backing pixmap of the appropriate size */</span>
 <a name="l00069"></a>00069 
-<a name="l00070"></a>00070   <span class="comment">/* Best tour */</span>
-<a name="l00071"></a>00071   <span class="comment">/*</span>
-<a name="l00072"></a>00072 <span class="comment">  gdk_gc_set_line_attributes (gc, 2,  GDK_LINE_ON_OFF_DASH, GDK_CAP_NOT_LAST, GDK_JOIN_MITER) ;</span>
+<a name="l00070"></a>00070 <span class="comment">/* Best tour */</span>
+<a name="l00071"></a>00071 <span class="comment">/*</span>
+<a name="l00072"></a>00072 <span class="comment">gdk_gc_set_line_attributes (gc, 2,  GDK_LINE_ON_OFF_DASH, GDK_CAP_NOT_LAST, GDK_JOIN_MITER) ;</span>
 <a name="l00073"></a>00073 <span class="comment"></span>
-<a name="l00074"></a>00074 <span class="comment">  gdk_gc_set_foreground  (gc, &amp; color_green) ;      </span>
+<a name="l00074"></a>00074 <span class="comment">gdk_gc_set_foreground  (gc, &amp; color_green) ;</span>
 <a name="l00075"></a>00075 <span class="comment"></span>
-<a name="l00076"></a>00076 <span class="comment">  for (int i = 0 ; i &lt; (int) numNodes ; i ++) {</span>
+<a name="l00076"></a>00076 <span class="comment">for (int i = 0 ; i &lt; (int) numNodes ; i ++) {</span>
 <a name="l00077"></a>00077 <span class="comment"></span>
-<a name="l00078"></a>00078 <span class="comment">    gdk_draw_line (pixmap, gc,</span>
-<a name="l00079"></a>00079 <span class="comment">                   X_new_coord [opt_route [i]],</span>
-<a name="l00080"></a>00080 <span class="comment">                   Y_new_coord [opt_route [i]],</span>
-<a name="l00081"></a>00081 <span class="comment">                   X_new_coord [opt_route [(i + 1) % numNodes]],</span>
-<a name="l00082"></a>00082 <span class="comment">                   Y_new_coord [opt_route [(i + 1) % numNodes]]);</span>
-<a name="l00083"></a>00083 <span class="comment">    </span>
-<a name="l00084"></a>00084 <span class="comment">                   }*/</span>
+<a name="l00078"></a>00078 <span class="comment">  gdk_draw_line (pixmap, gc,</span>
+<a name="l00079"></a>00079 <span class="comment">   X_new_coord [opt_route [i]],</span>
+<a name="l00080"></a>00080 <span class="comment">   Y_new_coord [opt_route [i]],</span>
+<a name="l00081"></a>00081 <span class="comment">   X_new_coord [opt_route [(i + 1) % numNodes]],</span>
+<a name="l00082"></a>00082 <span class="comment">   Y_new_coord [opt_route [(i + 1) % numNodes]]);</span>
+<a name="l00083"></a>00083 <span class="comment"></span>
+<a name="l00084"></a>00084 <span class="comment">   }*/</span>
 <a name="l00085"></a>00085 
-<a name="l00086"></a>00086 <span class="keywordtype">void</span> openMainWindow (<span class="keyword">const</span> <span class="keywordtype">char</span> * __filename) {
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088   filename = __filename;
-<a name="l00089"></a>00089 
-<a name="l00090"></a>00090   <span class="comment">/* Map */</span>
-<a name="l00091"></a>00091   <span class="keywordtype">int</span> map_width = (int) (X_max - X_min);
-<a name="l00092"></a>00092   <span class="keywordtype">int</span> map_height = (int) (Y_max - Y_min);
-<a name="l00093"></a>00093   <span class="keywordtype">int</span> map_side = std :: max (map_width, map_height);
-<a name="l00094"></a>00094   
-<a name="l00095"></a>00095   <span class="comment">/* Calculate the window's width and height. */</span>
-<a name="l00096"></a>00096   <span class="keywordtype">int</span> win_width = (int) (screen_width * RATIO * map_width / map_side);
-<a name="l00097"></a>00097   <span class="keywordtype">int</span> win_height = (int) (screen_height * RATIO * map_height / map_side);
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099   <span class="comment">/* Computing the coordinates */</span>
-<a name="l00100"></a>00100   X_new_coord = <span class="keyword">new</span> <span class="keywordtype">unsigned</span> [numNodes];
-<a name="l00101"></a>00101   Y_new_coord = <span class="keyword">new</span> <span class="keywordtype">unsigned</span> [numNodes];
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; numNodes; i ++) {
-<a name="l00104"></a>00104     X_new_coord [i] = (<span class="keywordtype">unsigned</span>) (win_width * (1.0 - (X_coord [i] - X_min) / map_width) + BORDER);
-<a name="l00105"></a>00105     Y_new_coord [i] = (unsigned) (win_height * (1.0 - (Y_coord [i] - Y_min) / map_height) + BORDER);
-<a name="l00106"></a>00106   }
-<a name="l00107"></a>00107   
-<a name="l00108"></a>00108   <span class="comment">/* Initialisation */</span>
-<a name="l00109"></a>00109   XGCValues val ;
-<a name="l00110"></a>00110   
-<a name="l00111"></a>00111   disp = XOpenDisplay (NULL) ;
-<a name="l00112"></a>00112   screen = DefaultScreen (disp) ;
-<a name="l00113"></a>00113   win = XCreateSimpleWindow (disp, RootWindow (disp, screen), 0, 0, win_width + 2 * BORDER, win_height + 2 * BORDER, 2, BlackPixel (disp, screen), WhitePixel (disp, screen)) ;
-<a name="l00114"></a>00114   val.foreground = BlackPixel(disp, screen) ;
-<a name="l00115"></a>00115   val.background = WhitePixel(disp, screen) ;
-<a name="l00116"></a>00116   gc = XCreateGC (disp, win, GCForeground | GCBackground, &amp; val) ; 
-<a name="l00117"></a>00117 
-<a name="l00118"></a>00118   XMapWindow (disp, win) ;
-<a name="l00119"></a>00119   XFlush (disp) ;
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121   <span class="keywordflow">while</span> (<span class="keyword">true</span>) {
-<a name="l00122"></a>00122     XClearWindow (disp, win) ;
-<a name="l00123"></a>00123 
-<a name="l00124"></a>00124     <span class="comment">/* Vertices as circles */</span>
-<a name="l00125"></a>00125     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 1 ; i &lt; numNodes ; i ++)
-<a name="l00126"></a>00126       XDrawArc (disp, win, gc, X_new_coord [i] - 1, Y_new_coord [i] - 1, 3, 3, 0, 364 * 64) ;
-<a name="l00127"></a>00127     
-<a name="l00128"></a>00128     <span class="comment">/* New tour */</span>
-<a name="l00129"></a>00129     std :: ifstream f (filename);
-<a name="l00130"></a>00130     <span class="keywordflow">if</span> (f) {
-<a name="l00131"></a>00131       <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> route;
-<a name="l00132"></a>00132       f &gt;&gt; route;
-<a name="l00133"></a>00133       f.close ();
-<a name="l00134"></a>00134       
-<a name="l00135"></a>00135       <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (int) numNodes; i ++) 
-<a name="l00136"></a>00136         XDrawLine (disp, win, gc,     
-<a name="l00137"></a>00137                    X_new_coord [route [i]],
-<a name="l00138"></a>00138                  Y_new_coord [route [i]],
-<a name="l00139"></a>00139                    X_new_coord [route [(i + 1) % numNodes]],
-<a name="l00140"></a>00140                    Y_new_coord [route [(i + 1) % numNodes]]);  
-<a name="l00141"></a>00141     }
-<a name="l00142"></a>00142     XFlush (disp) ;    
-<a name="l00143"></a>00143     sleep (1) ;
-<a name="l00144"></a>00144   }
-<a name="l00145"></a>00145 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:45 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00086"></a>00086 <span class="keywordtype">void</span> openMainWindow (<span class="keyword">const</span> <span class="keywordtype">char</span> * __filename)
+<a name="l00087"></a>00087 {
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089   filename = __filename;
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091   <span class="comment">/* Map */</span>
+<a name="l00092"></a>00092   <span class="keywordtype">int</span> map_width = (int) (X_max - X_min);
+<a name="l00093"></a>00093   <span class="keywordtype">int</span> map_height = (int) (Y_max - Y_min);
+<a name="l00094"></a>00094   <span class="keywordtype">int</span> map_side = std :: max (map_width, map_height);
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096   <span class="comment">/* Calculate the window's width and height. */</span>
+<a name="l00097"></a>00097   <span class="keywordtype">int</span> win_width = (int) (screen_width * RATIO * map_width / map_side);
+<a name="l00098"></a>00098   <span class="keywordtype">int</span> win_height = (int) (screen_height * RATIO * map_height / map_side);
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100   <span class="comment">/* Computing the coordinates */</span>
+<a name="l00101"></a>00101   X_new_coord = <span class="keyword">new</span> <span class="keywordtype">unsigned</span> [numNodes];
+<a name="l00102"></a>00102   Y_new_coord = <span class="keyword">new</span> <span class="keywordtype">unsigned</span> [numNodes];
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; numNodes; i ++)
+<a name="l00105"></a>00105     {
+<a name="l00106"></a>00106       X_new_coord [i] = (<span class="keywordtype">unsigned</span>) (win_width * (1.0 - (X_coord [i] - X_min) / map_width) + BORDER);
+<a name="l00107"></a>00107       Y_new_coord [i] = (unsigned) (win_height * (1.0 - (Y_coord [i] - Y_min) / map_height) + BORDER);
+<a name="l00108"></a>00108     }
+<a name="l00109"></a>00109 
+<a name="l00110"></a>00110   <span class="comment">/* Initialisation */</span>
+<a name="l00111"></a>00111   XGCValues val ;
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113   disp = XOpenDisplay (NULL) ;
+<a name="l00114"></a>00114   screen = DefaultScreen (disp) ;
+<a name="l00115"></a>00115   win = XCreateSimpleWindow (disp, RootWindow (disp, screen), 0, 0, win_width + 2 * BORDER, win_height + 2 * BORDER, 2, BlackPixel (disp, screen), WhitePixel (disp, screen)) ;
+<a name="l00116"></a>00116   val.foreground = BlackPixel(disp, screen) ;
+<a name="l00117"></a>00117   val.background = WhitePixel(disp, screen) ;
+<a name="l00118"></a>00118   gc = XCreateGC (disp, win, GCForeground | GCBackground, &amp; val) ;
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120   XMapWindow (disp, win) ;
+<a name="l00121"></a>00121   XFlush (disp) ;
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123   <span class="keywordflow">while</span> (<span class="keyword">true</span>)
+<a name="l00124"></a>00124     {
+<a name="l00125"></a>00125       XClearWindow (disp, win) ;
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127       <span class="comment">/* Vertices as circles */</span>
+<a name="l00128"></a>00128       <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 1 ; i &lt; numNodes ; i ++)
+<a name="l00129"></a>00129         XDrawArc (disp, win, gc, X_new_coord [i] - 1, Y_new_coord [i] - 1, 3, 3, 0, 364 * 64) ;
+<a name="l00130"></a>00130 
+<a name="l00131"></a>00131       <span class="comment">/* New tour */</span>
+<a name="l00132"></a>00132       std :: ifstream f (filename);
+<a name="l00133"></a>00133       <span class="keywordflow">if</span> (f)
+<a name="l00134"></a>00134         {
+<a name="l00135"></a>00135           Route route;
+<a name="l00136"></a>00136           f &gt;&gt; route;
+<a name="l00137"></a>00137           f.close ();
+<a name="l00138"></a>00138 
+<a name="l00139"></a>00139           <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; (int) numNodes; i ++)
+<a name="l00140"></a>00140             XDrawLine (disp, win, gc,
+<a name="l00141"></a>00141                        X_new_coord [route [i]],
+<a name="l00142"></a>00142                        Y_new_coord [route [i]],
+<a name="l00143"></a>00143                        X_new_coord [route [(i + 1) % numNodes]],
+<a name="l00144"></a>00144                        Y_new_coord [route [(i + 1) % numNodes]]);
+<a name="l00145"></a>00145         }
+<a name="l00146"></a>00146       XFlush (disp) ;
+<a name="l00147"></a>00147       sleep (1) ;
+<a name="l00148"></a>00148     }
+<a name="l00149"></a>00149 }
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

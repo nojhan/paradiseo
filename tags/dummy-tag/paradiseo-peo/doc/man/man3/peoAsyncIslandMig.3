@@ -1,8 +1,8 @@
-.TH "peoAsyncIslandMig" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-PEOMovingObjects" \" -*- nroff -*-
+.TH "peoAsyncIslandMig" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-PEO-ParallelanddistributedEvolvingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-peoAsyncIslandMig \- The \fBpeoAsyncIslandMig\fP class offers the elementary basis for implementating an asynchronous island migration model - requires the specification of several basic parameters, i.e.  
+peoAsyncIslandMig \- Specific class for a asynchronous migration.  
 
 .PP
 .SH SYNOPSIS
@@ -10,27 +10,30 @@ peoAsyncIslandMig \- The \fBpeoAsyncIslandMig\fP class offers the elementary bas
 .PP
 \fC#include <peoAsyncIslandMig.h>\fP
 .PP
-Inherits \fBCooperative\fP, and \fBeoUpdater\fP.
+Inherits \fBCooperative\fP.
 .PP
 .SS "Public Member Functions"
 
 .in +1c
 .ti -1c
-.RI "\fBpeoAsyncIslandMig\fP (\fBeoContinue\fP< EOT > &__cont, \fBeoSelect\fP< EOT > &__select, \fBeoReplacement\fP< EOT > &__replace, \fBTopology\fP &__topology, \fBeoPop\fP< EOT > &__source, \fBeoPop\fP< EOT > &__destination)"
+.RI "\fBpeoAsyncIslandMig\fP (\fBcontinuator\fP &__cont, \fBselector\fP< TYPESELECT > &__select, \fBreplacement\fP< TYPEREPLACE > &__replace, \fBTopology\fP &__topology)"
 .br
-.RI "\fIConstructor for the \fBpeoAsyncIslandMig\fP class; the characteristics of the migration model are defined through the specified parameters - out of the box objects provided in \fBEO\fP, etc., or custom, derived objects may be passed as parameters. \fP"
 .ti -1c
 .RI "void \fBoperator()\fP ()"
 .br
-.RI "\fI\fBFunction\fP operator to be called as checkpoint for performing the migration step. \fP"
+.RI "\fIoperator \fP"
 .ti -1c
 .RI "void \fBpack\fP ()"
 .br
-.RI "\fIAuxiliary function dealing with sending the emigrant individuals. There is no need to explicitly call the function. \fP"
+.RI "\fIFunction realizing packages. \fP"
 .ti -1c
 .RI "void \fBunpack\fP ()"
 .br
-.RI "\fIAuxiliary function dealing with receiving immigrant individuals. There is no need to explicitly call the function. \fP"
+.RI "\fIFunction reconstituting packages. \fP"
+.ti -1c
+.RI "void \fBpackSynchronizeReq\fP ()"
+.br
+.RI "\fIFunction packSynchronizeReq. \fP"
 .in -1c
 .SS "Private Member Functions"
 
@@ -38,36 +41,32 @@ Inherits \fBCooperative\fP, and \fBeoUpdater\fP.
 .ti -1c
 .RI "void \fBemigrate\fP ()"
 .br
+.RI "\fIFunction which sends some emigrants. \fP"
 .ti -1c
 .RI "void \fBimmigrate\fP ()"
 .br
+.RI "\fIFunction which receives some immigrants. \fP"
 .in -1c
 .SS "Private Attributes"
 
 .in +1c
 .ti -1c
-.RI "\fBeoContinue\fP< EOT > & \fBcont\fP"
+.RI "\fBcontinuator\fP & \fBcont\fP"
 .br
 .ti -1c
-.RI "\fBeoSelect\fP< EOT > & \fBselect\fP"
+.RI "\fBselector\fP< TYPESELECT > & \fBselect\fP"
 .br
 .ti -1c
-.RI "\fBeoReplacement\fP< EOT > & \fBreplace\fP"
+.RI "\fBreplacement\fP< TYPEREPLACE > & \fBreplace\fP"
 .br
 .ti -1c
 .RI "\fBTopology\fP & \fBtopology\fP"
 .br
 .ti -1c
-.RI "\fBeoPop\fP< EOT > & \fBsource\fP"
+.RI "std::queue< TYPEREPLACE > \fBimm\fP"
 .br
 .ti -1c
-.RI "\fBeoPop\fP< EOT > & \fBdestination\fP"
-.br
-.ti -1c
-.RI "std::queue< \fBeoPop\fP< EOT > > \fBimm\fP"
-.br
-.ti -1c
-.RI "std::queue< \fBeoPop\fP< EOT > > \fBem\fP"
+.RI "std::queue< TYPESELECT > \fBem\fP"
 .br
 .ti -1c
 .RI "std::queue< \fBCooperative\fP * > \fBcoop_em\fP"
@@ -76,101 +75,74 @@ Inherits \fBCooperative\fP, and \fBeoUpdater\fP.
 .SH "Detailed Description"
 .PP 
 
-.SS "template<class EOT> class peoAsyncIslandMig< EOT >"
-The \fBpeoAsyncIslandMig\fP class offers the elementary basis for implementating an asynchronous island migration model - requires the specification of several basic parameters, i.e. 
+.SS "template<class TYPESELECT, class TYPEREPLACE> class peoAsyncIslandMig< TYPESELECT, TYPEREPLACE >"
+Specific class for a asynchronous migration. 
 
-continuation criterion, selection and replacement strategies, a topological model and the source and destination population for the migrating individuals. As opposed to the synchronous migration model, in the asynchronous migration approach, there is no synchronization step between islands after performing the emigration phase.
-.PP
-The migration operator is called at the end of each generation of an evolutionary algorithms as a checkpoint object - the following code exposes the structure of a classic evolutionary algorithm:
-.PP
-\fBdo\fP {               select( population, offsprings );   // select the offsprings from the current population          transform( offsprings );   // crossover and mutation operators are applied on the selected offsprings          evaluate( offsprings );   // evaluation step of the resulting offsprings          replace( population, offsprings );   // replace the individuals in the current population whith individuals from the offspring population, according to a specified replacement strategy } \fBwhile\fP ( eaCheckpointContinue( population ) );   // checkpoint operators are applied on the current population, including the migration operator, if any specified  
-.PP
-Constructing an asynchronous island migration model requires having defined (1) a topological migration model, (2) the control parameters of the migration process, (3) a checkpoint object associated with an evolutionary algorithm, and (4) an owner object must be set. The owner object must be derived from the \fB\fBRunner\fP\fP class (for example a \fBpeoEA\fP object represents a possible owner). A simple example is offered bellow:
-.PP
-.PD 0
-.IP "1." 4
-topological model to be followed when performing migrations: 
-.br
- 
-.br
- \fBRingTopology\fP migTopology;   // a simple ring topological model - each island communicates with two other islands 
-.PP
-
-.IP "2." 4
-the continuation criterion, selection and replacement strategy etc. are defined: 
-.br
- 
-.br
- eoPop< EOT > population( POP_SIZE, popInitializer );   // population of individuals to be used for the evolutionary algorithm       eoPeriodicContinue< EOT > migCont( MIG_FREQ );   // migrations occur periodically at MIG_FREQ iterations eoRandomSelect< EOT > migSelectStrategy;   // selection strategy - in this case a random selection is applied eoSelectNumber< EOT > migSelect( migSelectStrategy, MIG_SIZE );   // number of individuals to be selected using the specified strategy eoPlusReplacement< EOT > migReplace;   // immigration strategy - the worse individuals in the destination population are replaced by the immigrant individuals       peoAsyncIslandMig< EOT > asyncMigration( 
-.br
-          migCont, migSelect, migReplace, migTopology, 
-.br
-          population, population 
-.br
- );    // asynchronous migration object - the emigrant individuals are selected from the same from population in which the immigrant individuals are being integrated  
-.PP
-
-.IP "3." 4
-creation of a checkpoint object as part of the definition of an evolutionary algoritm (details of th EA not given as being out of scope): 
-.br
- 
-.br
- ...      eoGenContinue< EOT > eaCont( NUM_GEN );   // the evolutionary algorithm will stop after NUM_GEN generations eoCheckPoint< EOT > eaCheckpointContinue( eaCont );   // number of individuals to be selected using the specified strategy ...      eaCheckpointContinue.add( asyncMigration );   // adding the migration operator as checkpoint element ...      
-.PP
-
-.IP "4." 4
-definition of an owner evolutionary algorithm (an object inheriting the \fB\fBRunner\fP\fP class): 
-.br
- 
-.br
- peoEA< EOT > eaAlg( eaCheckpointContinue, eaPopEval, eaSelect, eaTransform, eaReplace);   // evolutionary algorithm having as checkpoint the eaCheckpointContinue object defined above  asyncMigration.setOwner( eaAlg );   // setting the evolutionary algorithm as owner of the migration object  eaAlg( population );   // applying the evolutionary algorithm on a given population  
-.PP
-.PP
-The source and the destination population for the migration object were specified as being the same, in step no. 2, as we are usually interested in selecting the emigrants and integrating the immigrant individuals from and in, respectively, one unique population, iteratively evolved by an evolutionary algorithm. There is no restriction in having two distinct populations as source and destination for the emigrant and immigrant individuals respectively.
-.PP
-The above steps only create an asynchronous migration object associated to an evolutionary algorithm. The creation of several islands requires the reiteration of the steps 2 through 4 for creating distinct algorithms, with distinct populations and the associated distinctly parametrized migration objects. The interconnecting element is the underlying topology, defined at step 1 (the same C++ migTopology object has to be passed as parameter for all the migration objects, in order to interconnect them). 
-.PP
-Definition at line 140 of file peoAsyncIslandMig.h.
-.SH "Constructor & Destructor Documentation"
-.PP 
-.SS "template<class EOT> \fBpeoAsyncIslandMig\fP< EOT >::\fBpeoAsyncIslandMig\fP (\fBeoContinue\fP< EOT > & __cont, \fBeoSelect\fP< EOT > & __select, \fBeoReplacement\fP< EOT > & __replace, \fBTopology\fP & __topology, \fBeoPop\fP< EOT > & __source, \fBeoPop\fP< EOT > & __destination)"
-.PP
-Constructor for the \fBpeoAsyncIslandMig\fP class; the characteristics of the migration model are defined through the specified parameters - out of the box objects provided in \fBEO\fP, etc., or custom, derived objects may be passed as parameters. 
-.PP
-\fBParameters:\fP
+\fBSee also:\fP
 .RS 4
-\fIeoContinue<\fP EOT >& __cont - continuation criterion specifying whether the migration is performed or not; 
-.br
-\fIeoSelect<\fP EOT >& __select - selection strategy to be applied for constructing a list of emigrant individuals out of the source population; 
-.br
-\fIeoReplacement<\fP EOT >& __replace - replacement strategy used for integrating the immigrant individuals in the destination population; 
-.br
-\fITopology&\fP __topology - topological model to be followed when performing migrations; 
-.br
-\fIeoPop<\fP EOT >& __source - source population from which the emigrant individuals are selected; 
-.br
-\fIeoPop<\fP EOT >& __destination - destination population in which the immigrant population are integrated. 
+\fBCooperative\fP eoUpdater 
+.RE
+.PP
+\fBVersion:\fP
+.RS 4
+2.0 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+january 2008 
 .RE
 .PP
 
 .PP
-Definition at line 199 of file peoAsyncIslandMig.h.
+Definition at line 64 of file peoAsyncIslandMig.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class TYPESELECT, class TYPEREPLACE> \fBpeoAsyncIslandMig\fP< TYPESELECT, TYPEREPLACE >::\fBpeoAsyncIslandMig\fP (\fBcontinuator\fP & __cont, \fBselector\fP< TYPESELECT > & __select, \fBreplacement\fP< TYPEREPLACE > & __replace, \fBTopology\fP & __topology)"
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcontinuator\fP & __cont 
+.br
+\fIselector\fP <TYPE> & __select 
+.br
+\fIreplacement\fP <TYPE> & __replace 
+.br
+\fITopology&\fP __topology 
+.RE
+.PP
+
+.PP
+Definition at line 114 of file peoAsyncIslandMig.h.
 .PP
 References Topology::add().
-.SH "Member Function Documentation"
+.SH "Member Data Documentation"
 .PP 
-.SS "template<class EOT> void \fBpeoAsyncIslandMig\fP< EOT >::operator() ()\fC [virtual]\fP"
+.SS "template<class TYPESELECT, class TYPEREPLACE> \fBcontinuator\fP& \fBpeoAsyncIslandMig\fP< TYPESELECT, TYPEREPLACE >::\fBcont\fP\fC [private]\fP"
 .PP
-\fBFunction\fP operator to be called as checkpoint for performing the migration step. 
+\fBParameters:\fP
+.RS 4
+\fIcontinuator\fP & cont 
+.br
+\fIselector\fP <TYPESELECT> & select 
+.br
+\fIreplacement\fP <TYPEREPLACE> & replace 
+.br
+\fITopology&\fP topology 
+.br
+\fIstd\fP :: queue< TYPEREPLACE > imm 
+.br
+\fIstd\fP :: queue< TYPESELECT > em 
+.br
+\fIstd\fP :: queue< Cooperative* > coop_em 
+.RE
 .PP
-The emigrant individuals are selected from the source population and sent to the next island (defined by the topology object) while the immigrant individuals are integrated in the destination population. There is no need to explicitly call the function - the wrapper checkpoint object (please refer to the above example) will perform the call when required. 
+
 .PP
-Implements \fBeoF< void >\fP.
+Definition at line 104 of file peoAsyncIslandMig.h.
 .PP
-Definition at line 276 of file peoAsyncIslandMig.h.
-.PP
-References peoAsyncIslandMig< EOT >::cont, peoAsyncIslandMig< EOT >::emigrate(), peoAsyncIslandMig< EOT >::immigrate(), and peoAsyncIslandMig< EOT >::source.
+Referenced by peoAsyncIslandMig< TYPESELECT, TYPEREPLACE >::operator()().
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-PEOMovingObjects from the source code.
+Generated automatically by Doxygen for ParadisEO-PEO-ParallelanddistributedEvolvingObjects from the source code.

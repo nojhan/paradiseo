@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: partial_mapped_xover.cpp Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: partial_mapped_xover.cpp Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,7 +22,7 @@
       </form>
     </li>
   </ul></div>
-<h1>partial_mapped_xover.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>partial_mapped_xover.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;partial_mapped_xover.cpp&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
 <a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
@@ -65,53 +65,56 @@
 <a name="l00041"></a>00041 <span class="preprocessor">#include "partial_mapped_xover.h"</span>
 <a name="l00042"></a>00042 <span class="preprocessor">#include "mix.h"</span>
 <a name="l00043"></a>00043 
-<a name="l00044"></a>00044 <span class="keywordtype">void</span> <a class="codeRef" doxygen="mo.doxytag:/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/" href="/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/class_partial_mapped_xover.html#b6d4035544aff3b2b3fe4b0eeea185a2">PartialMappedXover :: repair</a> (<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route, <span class="keywordtype">unsigned</span> __cut1, <span class="keywordtype">unsigned</span> __cut2) {
-<a name="l00045"></a>00045   
-<a name="l00046"></a>00046   <span class="keywordtype">unsigned</span> v [__route.size ()] ; <span class="comment">// Number of times a cities are visited ...</span>
-<a name="l00047"></a>00047   
-<a name="l00048"></a>00048   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0 ; i &lt; __route.size () ; i ++)
-<a name="l00049"></a>00049     v [i] = 0 ;
-<a name="l00050"></a>00050   
-<a name="l00051"></a>00051   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0 ; i &lt; __route.size () ; i ++)
-<a name="l00052"></a>00052     v [__route [i]] ++ ;
-<a name="l00053"></a>00053   
-<a name="l00054"></a>00054   std :: vector &lt;unsigned&gt; vert ;
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0 ; i &lt; __route.size () ; i ++)
-<a name="l00057"></a>00057     <span class="keywordflow">if</span> (! v [i])
-<a name="l00058"></a>00058       vert.push_back (i) ;
-<a name="l00059"></a>00059   
-<a name="l00060"></a>00060   mix (vert) ;
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0 ; i &lt; __route.size () ; i ++)
-<a name="l00063"></a>00063     <span class="keywordflow">if</span> (i &lt; __cut1 || i &gt;= __cut2)
-<a name="l00064"></a>00064       <span class="keywordflow">if</span> (v [__route [i]] &gt; 1) {
-<a name="l00065"></a>00065         __route [i] = vert.back () ;
-<a name="l00066"></a>00066         vert.pop_back () ;
-<a name="l00067"></a>00067       }
-<a name="l00068"></a>00068 }
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070 <span class="keywordtype">bool</span> <a class="codeRef" doxygen="mo.doxytag:/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/" href="/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/class_partial_mapped_xover.html#1cda6ea86ca36e5de0125f4ba5cfc695">PartialMappedXover :: operator () </a>(<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route1, <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route2) {
-<a name="l00071"></a>00071     
-<a name="l00072"></a>00072   <span class="keywordtype">unsigned</span> cut1 = <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/namespaceeo.html#2727d901e79a00930492730539e3b644">rng</a>.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">random</a> (__route1.size ()), cut2 = <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/namespaceeo.html#2727d901e79a00930492730539e3b644">rng</a>.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">random</a> (__route2.size ()) ;
-<a name="l00073"></a>00073   
-<a name="l00074"></a>00074   <span class="keywordflow">if</span> (cut2 &lt; cut1)
-<a name="l00075"></a>00075     std :: swap (cut1, cut2) ;
-<a name="l00076"></a>00076   
-<a name="l00077"></a>00077   <span class="comment">// Between the cuts</span>
-<a name="l00078"></a>00078   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = cut1 ; i &lt; cut2 ; i ++)
-<a name="l00079"></a>00079     std :: swap (__route1 [i], __route2 [i]) ;
-<a name="l00080"></a>00080   
-<a name="l00081"></a>00081   <span class="comment">// Outside the cuts</span>
-<a name="l00082"></a>00082   repair (__route1, cut1, cut2) ;
-<a name="l00083"></a>00083   repair (__route2, cut1, cut2) ;
-<a name="l00084"></a>00084   
-<a name="l00085"></a>00085   __route1.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_e_o.html#f57e9b0b1772446b12f97abfc0d64a59">invalidate</a> () ;
-<a name="l00086"></a>00086   __route2.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_e_o.html#f57e9b0b1772446b12f97abfc0d64a59">invalidate</a> () ;
+<a name="l00044"></a><a class="code" href="classPartialMappedXover.html#b6d4035544aff3b2b3fe4b0eeea185a2">00044</a> <span class="keywordtype">void</span> <a class="code" href="classPartialMappedXover.html#b6d4035544aff3b2b3fe4b0eeea185a2">PartialMappedXover :: repair</a> (Route &amp; __route, <span class="keywordtype">unsigned</span> __cut1, <span class="keywordtype">unsigned</span> __cut2)
+<a name="l00045"></a>00045 {
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047   <span class="keywordtype">unsigned</span> v [__route.size ()] ; <span class="comment">// Number of times a cities are visited ...</span>
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0 ; i &lt; __route.size () ; i ++)
+<a name="l00050"></a>00050     v [i] = 0 ;
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0 ; i &lt; __route.size () ; i ++)
+<a name="l00053"></a>00053     v [__route [i]] ++ ;
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055   std :: vector &lt;unsigned&gt; vert ;
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0 ; i &lt; __route.size () ; i ++)
+<a name="l00058"></a>00058     <span class="keywordflow">if</span> (! v [i])
+<a name="l00059"></a>00059       vert.push_back (i) ;
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061   mix (vert) ;
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0 ; i &lt; __route.size () ; i ++)
+<a name="l00064"></a>00064     <span class="keywordflow">if</span> (i &lt; __cut1 || i &gt;= __cut2)
+<a name="l00065"></a>00065       <span class="keywordflow">if</span> (v [__route [i]] &gt; 1)
+<a name="l00066"></a>00066         {
+<a name="l00067"></a>00067           __route [i] = vert.back () ;
+<a name="l00068"></a>00068           vert.pop_back () ;
+<a name="l00069"></a>00069         }
+<a name="l00070"></a>00070 }
+<a name="l00071"></a>00071 
+<a name="l00072"></a><a class="code" href="classPartialMappedXover.html#1cda6ea86ca36e5de0125f4ba5cfc695">00072</a> <span class="keywordtype">bool</span> <a class="code" href="classPartialMappedXover.html#1cda6ea86ca36e5de0125f4ba5cfc695">PartialMappedXover :: operator () </a>(Route &amp; __route1, Route &amp; __route2)
+<a name="l00073"></a>00073 {
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075   <span class="keywordtype">unsigned</span> cut1 = rng.random (__route1.size ()), cut2 = rng.random (__route2.size ()) ;
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077   <span class="keywordflow">if</span> (cut2 &lt; cut1)
+<a name="l00078"></a>00078     std :: swap (cut1, cut2) ;
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080   <span class="comment">// Between the cuts</span>
+<a name="l00081"></a>00081   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = cut1 ; i &lt; cut2 ; i ++)
+<a name="l00082"></a>00082     std :: swap (__route1 [i], __route2 [i]) ;
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084   <span class="comment">// Outside the cuts</span>
+<a name="l00085"></a>00085   <a class="code" href="classPartialMappedXover.html#b6d4035544aff3b2b3fe4b0eeea185a2">repair</a> (__route1, cut1, cut2) ;
+<a name="l00086"></a>00086   <a class="code" href="classPartialMappedXover.html#b6d4035544aff3b2b3fe4b0eeea185a2">repair</a> (__route2, cut1, cut2) ;
 <a name="l00087"></a>00087 
-<a name="l00088"></a>00088   <span class="keywordflow">return</span> true ;
-<a name="l00089"></a>00089 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:45 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00088"></a>00088   __route1.invalidate () ;
+<a name="l00089"></a>00089   __route2.invalidate () ;
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091   <span class="keywordflow">return</span> true ;
+<a name="l00092"></a>00092 }
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

@@ -1,4 +1,4 @@
-.TH "Cooperative" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-PEOMovingObjects" \" -*- nroff -*-
+.TH "Cooperative" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-PEO-ParallelanddistributedEvolvingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -8,7 +8,7 @@ Cooperative \-
 .PP
 Inherits \fBCommunicable\fP.
 .PP
-Inherited by \fBpeoAsyncIslandMig< EOT >\fP, and \fBpeoSyncIslandMig< EOT >\fP.
+Inherited by \fBpeoAsyncIslandMig< TYPESELECT, TYPEREPLACE >\fP, and \fBpeoSyncIslandMig< TYPESELECT, TYPEREPLACE >\fP.
 .PP
 .SS "Public Member Functions"
 
@@ -23,7 +23,19 @@ Inherited by \fBpeoAsyncIslandMig< EOT >\fP, and \fBpeoSyncIslandMig< EOT >\fP.
 .RI "void \fBsend\fP (\fBCooperative\fP *__coop)"
 .br
 .ti -1c
+.RI "void \fBsynchronizeCoopEx\fP ()"
+.br
+.ti -1c
 .RI "virtual void \fBnotifySending\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBnotifyReceiving\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBnotifySendingSyncReq\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBnotifySynchronized\fP ()"
 .br
 .in -1c
 .SS "Private Attributes"
@@ -35,8 +47,8 @@ Inherited by \fBpeoAsyncIslandMig< EOT >\fP, and \fBpeoSyncIslandMig< EOT >\fP.
 .in -1c
 .SH "Detailed Description"
 .PP 
-Definition at line 45 of file cooperative.h.
+Definition at line 46 of file cooperative.h.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-PEOMovingObjects from the source code.
+Generated automatically by Doxygen for ParadisEO-PEO-ParallelanddistributedEvolvingObjects from the source code.
