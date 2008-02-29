@@ -28,23 +28,29 @@
     <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
     <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
   </ul></div>
-<h1>moLSCheckPoint&lt; M &gt; Class Template Reference</h1><!-- doxytag: class="moLSCheckPoint" -->Class which allows a checkpointing system.  
+<h1>moLSCheckPoint&lt; M &gt; Class Template Reference</h1><!-- doxytag: class="moLSCheckPoint" --><!-- doxytag: inherits="eoBF" -->Class which allows a checkpointing system.  
 <a href="#_details">More...</a>
 <p>
 <code>#include &lt;<a class="el" href="mo_l_s_check_point_8h-source.html">moLSCheckPoint.h</a>&gt;</code>
 <p>
+<p>Inheritance diagram for moLSCheckPoint&lt; M &gt;:
+<p><center><img src="classmo_l_s_check_point.png" usemap="#moLSCheckPoint< M >_map" border="0" alt=""></center>
+<map name="moLSCheckPoint< M >_map">
+<area doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_b_f.html" alt="eoBF< A1, A2, R >" shape="rect" coords="0,56,142,80">
+<area doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_functor_base.html" alt="eoFunctorBase" shape="rect" coords="0,0,142,24">
+</map>
 <a href="classmo_l_s_check_point-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_l_s_check_point.html#e9b9d41e40dd7bab648327686b2b938d">operator()</a> (const M &amp;_move, const typename M::EOType &amp;_solution)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Function which launches the checkpointing.  <a href="#e9b9d41e40dd7bab648327686b2b938d"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_l_s_check_point.html#f95f2dc556cdfbdc81688562ca95202d">add</a> (eoBF&lt; const M &amp;, const typename M::EOType &amp;, void &gt; &amp;_function)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/struct_function.html">Function</a> which launches the checkpointing.  <a href="#e9b9d41e40dd7bab648327686b2b938d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_l_s_check_point.html#f95f2dc556cdfbdc81688562ca95202d">add</a> (<a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_b_f.html">eoBF</a>&lt; const M &amp;, const typename M::EOType &amp;, void &gt; &amp;_function)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Procedure which add a new function to the function vector.  <a href="#f95f2dc556cdfbdc81688562ca95202d"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="56a7427a6aebac7955c22bab302c050a"></a><!-- doxytag: member="moLSCheckPoint::functions" ref="56a7427a6aebac7955c22bab302c050a" args="" -->
-std::vector&lt; eoBF&lt; const M &amp;,<br>
+std::vector&lt; <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_b_f.html">eoBF</a>&lt; const M &amp;,<br>
  const typename M::EOType &amp;,<br>
  void &gt; * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_l_s_check_point.html#56a7427a6aebac7955c22bab302c050a">functions</a></td></tr>
 
@@ -89,7 +95,7 @@ template&lt;class M&gt; </div>
 <div class="memdoc">
 
 <p>
-Function which launches the checkpointing. 
+<a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/struct_function.html">Function</a> which launches the checkpointing. 
 <p>
 Each saved function is used on the current move and the current solution.<p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
@@ -114,7 +120,7 @@ template&lt;class M&gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classmo_l_s_check_point.html">moLSCheckPoint</a>&lt; M &gt;::add           </td>
           <td>(</td>
-          <td class="paramtype">eoBF&lt; const M &amp;, const typename M::EOType &amp;, void &gt; &amp;&nbsp;</td>
+          <td class="paramtype"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_b_f.html">eoBF</a>&lt; const M &amp;, const typename M::EOType &amp;, void &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>_function</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td width="100%"><code> [inline]</code></td>
@@ -140,7 +146,7 @@ References <a class="el" href="mo_l_s_check_point_8h-source.html#l00080">moLSChe
 </div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="mo_l_s_check_point_8h-source.html">moLSCheckPoint.h</a></ul>
-<hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 16:32:25 2008 for ParadisEO-MO-MovingObjects by&nbsp;
+<hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:03:44 2008 for ParadisEO-MO-MovingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

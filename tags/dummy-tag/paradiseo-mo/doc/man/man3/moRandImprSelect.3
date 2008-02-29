@@ -30,7 +30,7 @@ Inherits \fBmoMoveSelect< M >< M >\fP.
 .ti -1c
 .RI "bool \fBupdate\fP (const M &_move, const \fBFitness\fP &_fitness)"
 .br
-.RI "\fIFunction that updates the fitness and move vectors. \fP"
+.RI "\fI\fBFunction\fP that updates the fitness and move vectors. \fP"
 .ti -1c
 .RI "void \fBoperator()\fP (M &_move, \fBFitness\fP &_fitness)"
 .br
@@ -87,7 +87,7 @@ Definition at line 63 of file moRandImprSelect.h.
 References moRandImprSelect< M >::better_fitnesses, moRandImprSelect< M >::better_moves, moRandImprSelect< M >::firstTime, and moRandImprSelect< M >::initial_fitness.
 .SS "template<class M> bool \fBmoRandImprSelect\fP< M >::update (const M & _move, const \fBFitness\fP & _fitness)\fC [inline, virtual]\fP"
 .PP
-Function that updates the fitness and move vectors. 
+\fBFunction\fP that updates the fitness and move vectors. 
 .PP
 if a move give a better fitness than the initial fitness, it is saved and the fitness too.
 .PP
@@ -110,7 +110,7 @@ Implements \fBmoMoveSelect< M >\fP.
 Definition at line 80 of file moRandImprSelect.h.
 .PP
 References moRandImprSelect< M >::better_fitnesses, moRandImprSelect< M >::better_moves, moRandImprSelect< M >::firstTime, and moRandImprSelect< M >::initial_fitness.
-.SS "template<class M> void \fBmoRandImprSelect\fP< M >::operator() (M & _move, \fBFitness\fP & _fitness)\fC [inline]\fP"
+.SS "template<class M> void \fBmoRandImprSelect\fP< M >::operator() (M & _move, \fBFitness\fP & _fitness)\fC [inline, virtual]\fP"
 .PP
 The move selection. 
 .PP
@@ -125,9 +125,11 @@ One the saved move is randomly chosen.
 .PP
 
 .PP
+Implements \fBeoBF< M &, M::EOType::Fitness &, void >\fP.
+.PP
 Definition at line 100 of file moRandImprSelect.h.
 .PP
-References moRandImprSelect< M >::better_fitnesses, moRandImprSelect< M >::better_moves, and moRandImprSelect< M >::firstTime.
+References moRandImprSelect< M >::better_fitnesses, moRandImprSelect< M >::better_moves, moRandImprSelect< M >::firstTime, and eoRng::random().
 
 .SH "Author"
 .PP 

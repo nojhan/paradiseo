@@ -10,6 +10,8 @@ moMoveSelect \- Class that describes a move selector (\fBmoMove\fP).
 .PP
 \fC#include <moMoveSelect.h>\fP
 .PP
+Inherits \fBeoBF< M &, M::EOType::Fitness &, void >\fP.
+.PP
 Inherited by \fBmoBestImprSelect< M >\fP, \fBmoFirstImprSelect< M >\fP, and \fBmoRandImprSelect< M >\fP.
 .PP
 .SS "Public Types"
@@ -30,7 +32,7 @@ Inherited by \fBmoBestImprSelect< M >\fP, \fBmoFirstImprSelect< M >\fP, and \fBm
 .ti -1c
 .RI "virtual bool \fBupdate\fP (const M &_move, const \fBFitness\fP &_fitness)=0"
 .br
-.RI "\fIFunction which updates the best solutions. \fP"
+.RI "\fI\fBFunction\fP which updates the best solutions. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -59,7 +61,7 @@ In order to know the fitness of the solution, for which the neighborhood will be
 Implemented in \fBmoBestImprSelect< M >\fP, \fBmoFirstImprSelect< M >\fP, and \fBmoRandImprSelect< M >\fP.
 .SS "template<class M> virtual bool \fBmoMoveSelect\fP< M >::update (const M & _move, const \fBFitness\fP & _fitness)\fC [pure virtual]\fP"
 .PP
-Function which updates the best solutions. 
+\fBFunction\fP which updates the best solutions. 
 .PP
 \fBParameters:\fP
 .RS 4

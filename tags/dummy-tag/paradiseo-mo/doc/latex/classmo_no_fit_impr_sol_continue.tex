@@ -8,7 +8,7 @@ One possible stop criterion for a solution-based heuristic.
 Inheritance diagram for mo\-No\-Fit\-Impr\-Sol\-Continue$<$ EOT $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{classmo_no_fit_impr_sol_continue}
+\includegraphics[height=4cm]{classmo_no_fit_impr_sol_continue}
 \end{center}
 \end{figure}
 \subsection*{Public Types}
@@ -23,7 +23,7 @@ typedef EOT::Fitness \bf{Fitness}\label{classmo_no_fit_impr_sol_continue_64c184d
 \bf{mo\-No\-Fit\-Impr\-Sol\-Continue} (unsigned int \_\-max\-Number\-Of\-Iteration\-Without\-Improvement)
 \begin{CompactList}\small\item\em Basic constructor. \item\end{CompactList}\item 
 bool \bf{operator()} (const EOT \&\_\-solution)
-\begin{CompactList}\small\item\em Function that activates the stopping criterion. \item\end{CompactList}\item 
+\begin{CompactList}\small\item\em \doxyref{Function} that activates the stopping criterion. \item\end{CompactList}\item 
 void \bf{init} ()
 \begin{CompactList}\small\item\em Procedure which allows to initialise all the stuff needed. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
@@ -74,10 +74,10 @@ Definition at line 57 of file mo\-No\-Fit\-Impr\-Sol\-Continue.h.
 \subsection{Member Function Documentation}
 \index{moNoFitImprSolContinue@{mo\-No\-Fit\-Impr\-Sol\-Continue}!operator()@{operator()}}
 \index{operator()@{operator()}!moNoFitImprSolContinue@{mo\-No\-Fit\-Impr\-Sol\-Continue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool \bf{mo\-No\-Fit\-Impr\-Sol\-Continue}$<$ EOT $>$::operator() (const EOT \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_no_fit_impr_sol_continue_d8966c73cbe625644df9061377f7221a}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool \bf{mo\-No\-Fit\-Impr\-Sol\-Continue}$<$ EOT $>$::operator() (const EOT \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_no_fit_impr_sol_continue_d8966c73cbe625644df9061377f7221a}
 
 
-Function that activates the stopping criterion. 
+\doxyref{Function} that activates the stopping criterion. 
 
 Indicates if the fitness has not been improved since a given number of iterations (after a minimum of iterations). \begin{Desc}
 \item[Parameters:]
@@ -87,6 +87,8 @@ Indicates if the fitness has not been improved since a given number of iteration
 \begin{Desc}
 \item[Returns:]true or false. \end{Desc}
 
+
+Implements \bf{eo\-UF$<$ const EOT \&, bool $>$}.
 
 Definition at line 67 of file mo\-No\-Fit\-Impr\-Sol\-Continue.h.
 

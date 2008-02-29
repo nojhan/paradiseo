@@ -8,16 +8,16 @@ Iterated Local Search (ILS).
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-\bf{mo\-ILS} (\bf{mo\-Algo}$<$ \bf{EOT} $>$ \&\_\-algorithm, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \&\_\-continue, \bf{mo\-Comparator}$<$ \bf{EOT} $>$ \&\_\-acceptance\_\-criterion, eo\-Mon\-Op$<$ \bf{EOT} $>$ \&\_\-perturbation, eo\-Eval\-Func$<$ \bf{EOT} $>$ \&\_\-full\_\-evaluation)
+\bf{mo\-ILS} (\bf{mo\-Algo}$<$ \bf{EOT} $>$ \&\_\-algorithm, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \&\_\-continue, \bf{mo\-Comparator}$<$ \bf{EOT} $>$ \&\_\-acceptance\_\-criterion, \bf{eo\-Mon\-Op}$<$ \bf{EOT} $>$ \&\_\-perturbation, \bf{eo\-Eval\-Func}$<$ \bf{EOT} $>$ \&\_\-full\_\-evaluation)
 \begin{CompactList}\small\item\em Generic constructor. \item\end{CompactList}\item 
-\bf{mo\-ILS} (\bf{mo\-Move\-Init}$<$ M $>$ \&\_\-move\_\-initializer, \bf{mo\-Next\-Move}$<$ M $>$ \&\_\-next\_\-move\_\-generator, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \&\_\-incremental\_\-evaluation, \bf{mo\-Move\-Select}$<$ M $>$ \&\_\-move\_\-selection, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \&\_\-continue, \bf{mo\-Comparator}$<$ \bf{EOT} $>$ \&\_\-acceptance\_\-criterion, eo\-Mon\-Op$<$ \bf{EOT} $>$ \&\_\-perturbation, eo\-Eval\-Func$<$ \bf{EOT} $>$ \&\_\-full\_\-evaluation)
+\bf{mo\-ILS} (\bf{mo\-Move\-Init}$<$ M $>$ \&\_\-move\_\-initializer, \bf{mo\-Next\-Move}$<$ M $>$ \&\_\-next\_\-move\_\-generator, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \&\_\-incremental\_\-evaluation, \bf{mo\-Move\-Select}$<$ M $>$ \&\_\-move\_\-selection, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \&\_\-continue, \bf{mo\-Comparator}$<$ \bf{EOT} $>$ \&\_\-acceptance\_\-criterion, \bf{eo\-Mon\-Op}$<$ \bf{EOT} $>$ \&\_\-perturbation, \bf{eo\-Eval\-Func}$<$ \bf{EOT} $>$ \&\_\-full\_\-evaluation)
 \begin{CompactList}\small\item\em Constructor for using a \doxyref{mo\-HC}{p.}{classmo_h_c} for the \doxyref{mo\-Algo}{p.}{classmo_algo}. \item\end{CompactList}\item 
-\bf{mo\-ILS} (\bf{mo\-Move\-Init}$<$ M $>$ \&\_\-move\_\-initializer, \bf{mo\-Next\-Move}$<$ M $>$ \&\_\-next\_\-move\_\-generator, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \&\_\-incremental\_\-evaluation, \bf{mo\-Tabu\-List}$<$ M $>$ \&\_\-tabu\_\-list, \bf{mo\-Aspir\-Crit}$<$ M $>$ \&\_\-aspiration\_\-criterion, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \&\_\-mo\-TS\_\-continue, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \&\_\-continue, \bf{mo\-Comparator}$<$ \bf{EOT} $>$ \&\_\-acceptance\_\-criterion, eo\-Mon\-Op$<$ \bf{EOT} $>$ \&\_\-perturbation, eo\-Eval\-Func$<$ \bf{EOT} $>$ \&\_\-full\_\-evaluation)
+\bf{mo\-ILS} (\bf{mo\-Move\-Init}$<$ M $>$ \&\_\-move\_\-initializer, \bf{mo\-Next\-Move}$<$ M $>$ \&\_\-next\_\-move\_\-generator, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \&\_\-incremental\_\-evaluation, \bf{mo\-Tabu\-List}$<$ M $>$ \&\_\-tabu\_\-list, \bf{mo\-Aspir\-Crit}$<$ M $>$ \&\_\-aspiration\_\-criterion, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \&\_\-mo\-TS\_\-continue, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \&\_\-continue, \bf{mo\-Comparator}$<$ \bf{EOT} $>$ \&\_\-acceptance\_\-criterion, \bf{eo\-Mon\-Op}$<$ \bf{EOT} $>$ \&\_\-perturbation, \bf{eo\-Eval\-Func}$<$ \bf{EOT} $>$ \&\_\-full\_\-evaluation)
 \begin{CompactList}\small\item\em Constructor for using a \doxyref{mo\-TS}{p.}{classmo_t_s} for the \doxyref{mo\-Algo}{p.}{classmo_algo}. \item\end{CompactList}\item 
-\bf{mo\-ILS} (\bf{mo\-Rand\-Move}$<$ M $>$ \&\_\-random\_\-move\_\-generator, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \&\_\-incremental\_\-evaluation, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \&\_\-mo\-SA\_\-continue, double \_\-initial\_\-temperature, \bf{mo\-Cooling\-Schedule} \&\_\-cooling\_\-schedule, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \&\_\-continue, \bf{mo\-Comparator}$<$ \bf{EOT} $>$ \&\_\-acceptance\_\-criterion, eo\-Mon\-Op$<$ \bf{EOT} $>$ \&\_\-perturbation, eo\-Eval\-Func$<$ \bf{EOT} $>$ \&\_\-full\_\-evaluation)
+\bf{mo\-ILS} (\bf{mo\-Rand\-Move}$<$ M $>$ \&\_\-random\_\-move\_\-generator, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \&\_\-incremental\_\-evaluation, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \&\_\-mo\-SA\_\-continue, double \_\-initial\_\-temperature, \bf{mo\-Cooling\-Schedule} \&\_\-cooling\_\-schedule, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \&\_\-continue, \bf{mo\-Comparator}$<$ \bf{EOT} $>$ \&\_\-acceptance\_\-criterion, \bf{eo\-Mon\-Op}$<$ \bf{EOT} $>$ \&\_\-perturbation, \bf{eo\-Eval\-Func}$<$ \bf{EOT} $>$ \&\_\-full\_\-evaluation)
 \begin{CompactList}\small\item\em Constructor for using a \doxyref{mo\-SA}{p.}{classmo_s_a} for the \doxyref{mo\-Algo}{p.}{classmo_algo}. \item\end{CompactList}\item 
 bool \bf{operator()} (\bf{EOT} \&\_\-solution)
-\begin{CompactList}\small\item\em Function which launches the ILS. \item\end{CompactList}\end{CompactItemize}
+\begin{CompactList}\small\item\em \doxyref{Function} which launches the ILS. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Types}
 \begin{CompactItemize}
 \item 
@@ -39,10 +39,10 @@ typedef EOT::Fitness \bf{Fitness}\label{classmo_i_l_s_8c464a9eae064a78eff75d4c72
 \bf{mo\-Comparator}$<$ \bf{EOT} $>$ \& \bf{acceptance\_\-criterion}\label{classmo_i_l_s_295f6d0342c67bd3dc4cb82e2adc26be}
 
 \begin{CompactList}\small\item\em The acceptance criterion. \item\end{CompactList}\item 
-eo\-Mon\-Op$<$ \bf{EOT} $>$ \& \bf{perturbation}\label{classmo_i_l_s_f667a1bda06b6d221292df9aba3db8a2}
+\bf{eo\-Mon\-Op}$<$ \bf{EOT} $>$ \& \bf{perturbation}\label{classmo_i_l_s_f667a1bda06b6d221292df9aba3db8a2}
 
 \begin{CompactList}\small\item\em The perturbation generator. \item\end{CompactList}\item 
-eo\-Eval\-Func$<$ \bf{EOT} $>$ \& \bf{full\_\-evaluation}\label{classmo_i_l_s_8e8c383ac6ec34aaf071fa18bb54be67}
+\bf{eo\-Eval\-Func}$<$ \bf{EOT} $>$ \& \bf{full\_\-evaluation}\label{classmo_i_l_s_8e8c383ac6ec34aaf071fa18bb54be67}
 
 \begin{CompactList}\small\item\em The full evaluation function. \item\end{CompactList}\end{CompactItemize}
 
@@ -61,7 +61,7 @@ Definition at line 50 of file mo\-ILS.h.
 \subsection{Constructor \& Destructor Documentation}
 \index{moILS@{mo\-ILS}!moILS@{moILS}}
 \index{moILS@{moILS}!moILS@{mo\-ILS}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ \bf{mo\-ILS}$<$ M $>$::\bf{mo\-ILS} (\bf{mo\-Algo}$<$ \bf{EOT} $>$ \& {\em \_\-algorithm}, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \& {\em \_\-continue}, \bf{mo\-Comparator}$<$ \bf{EOT} $>$ \& {\em \_\-acceptance\_\-criterion}, eo\-Mon\-Op$<$ \bf{EOT} $>$ \& {\em \_\-perturbation}, eo\-Eval\-Func$<$ \bf{EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_i_l_s_c83f81ba0836ae262305efa15eeb3da2}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ \bf{mo\-ILS}$<$ M $>$::\bf{mo\-ILS} (\bf{mo\-Algo}$<$ \bf{EOT} $>$ \& {\em \_\-algorithm}, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \& {\em \_\-continue}, \bf{mo\-Comparator}$<$ \bf{EOT} $>$ \& {\em \_\-acceptance\_\-criterion}, \bf{eo\-Mon\-Op}$<$ \bf{EOT} $>$ \& {\em \_\-perturbation}, \bf{eo\-Eval\-Func}$<$ \bf{EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_i_l_s_c83f81ba0836ae262305efa15eeb3da2}
 
 
 Generic constructor. 
@@ -77,7 +77,7 @@ Generic constructor using a \doxyref{mo\-Algo}{p.}{classmo_algo}
 
 Definition at line 70 of file mo\-ILS.h.\index{moILS@{mo\-ILS}!moILS@{moILS}}
 \index{moILS@{moILS}!moILS@{mo\-ILS}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ \bf{mo\-ILS}$<$ M $>$::\bf{mo\-ILS} (\bf{mo\-Move\-Init}$<$ M $>$ \& {\em \_\-move\_\-initializer}, \bf{mo\-Next\-Move}$<$ M $>$ \& {\em \_\-next\_\-move\_\-generator}, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\em \_\-incremental\_\-evaluation}, \bf{mo\-Move\-Select}$<$ M $>$ \& {\em \_\-move\_\-selection}, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \& {\em \_\-continue}, \bf{mo\-Comparator}$<$ \bf{EOT} $>$ \& {\em \_\-acceptance\_\-criterion}, eo\-Mon\-Op$<$ \bf{EOT} $>$ \& {\em \_\-perturbation}, eo\-Eval\-Func$<$ \bf{EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_i_l_s_6d684a1d13ad224a911c8b0277812297}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ \bf{mo\-ILS}$<$ M $>$::\bf{mo\-ILS} (\bf{mo\-Move\-Init}$<$ M $>$ \& {\em \_\-move\_\-initializer}, \bf{mo\-Next\-Move}$<$ M $>$ \& {\em \_\-next\_\-move\_\-generator}, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\em \_\-incremental\_\-evaluation}, \bf{mo\-Move\-Select}$<$ M $>$ \& {\em \_\-move\_\-selection}, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \& {\em \_\-continue}, \bf{mo\-Comparator}$<$ \bf{EOT} $>$ \& {\em \_\-acceptance\_\-criterion}, \bf{eo\-Mon\-Op}$<$ \bf{EOT} $>$ \& {\em \_\-perturbation}, \bf{eo\-Eval\-Func}$<$ \bf{EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_i_l_s_6d684a1d13ad224a911c8b0277812297}
 
 
 Constructor for using a \doxyref{mo\-HC}{p.}{classmo_h_c} for the \doxyref{mo\-Algo}{p.}{classmo_algo}. 
@@ -91,7 +91,7 @@ Constructor for using a \doxyref{mo\-HC}{p.}{classmo_h_c} for the \doxyref{mo\-A
 
 Definition at line 87 of file mo\-ILS.h.\index{moILS@{mo\-ILS}!moILS@{moILS}}
 \index{moILS@{moILS}!moILS@{mo\-ILS}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ \bf{mo\-ILS}$<$ M $>$::\bf{mo\-ILS} (\bf{mo\-Move\-Init}$<$ M $>$ \& {\em \_\-move\_\-initializer}, \bf{mo\-Next\-Move}$<$ M $>$ \& {\em \_\-next\_\-move\_\-generator}, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\em \_\-incremental\_\-evaluation}, \bf{mo\-Tabu\-List}$<$ M $>$ \& {\em \_\-tabu\_\-list}, \bf{mo\-Aspir\-Crit}$<$ M $>$ \& {\em \_\-aspiration\_\-criterion}, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \& {\em \_\-mo\-TS\_\-continue}, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \& {\em \_\-continue}, \bf{mo\-Comparator}$<$ \bf{EOT} $>$ \& {\em \_\-acceptance\_\-criterion}, eo\-Mon\-Op$<$ \bf{EOT} $>$ \& {\em \_\-perturbation}, eo\-Eval\-Func$<$ \bf{EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_i_l_s_740ac81a0d06eb471592ba0861d3a6d7}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ \bf{mo\-ILS}$<$ M $>$::\bf{mo\-ILS} (\bf{mo\-Move\-Init}$<$ M $>$ \& {\em \_\-move\_\-initializer}, \bf{mo\-Next\-Move}$<$ M $>$ \& {\em \_\-next\_\-move\_\-generator}, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\em \_\-incremental\_\-evaluation}, \bf{mo\-Tabu\-List}$<$ M $>$ \& {\em \_\-tabu\_\-list}, \bf{mo\-Aspir\-Crit}$<$ M $>$ \& {\em \_\-aspiration\_\-criterion}, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \& {\em \_\-mo\-TS\_\-continue}, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \& {\em \_\-continue}, \bf{mo\-Comparator}$<$ \bf{EOT} $>$ \& {\em \_\-acceptance\_\-criterion}, \bf{eo\-Mon\-Op}$<$ \bf{EOT} $>$ \& {\em \_\-perturbation}, \bf{eo\-Eval\-Func}$<$ \bf{EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_i_l_s_740ac81a0d06eb471592ba0861d3a6d7}
 
 
 Constructor for using a \doxyref{mo\-TS}{p.}{classmo_t_s} for the \doxyref{mo\-Algo}{p.}{classmo_algo}. 
@@ -105,7 +105,7 @@ Constructor for using a \doxyref{mo\-TS}{p.}{classmo_t_s} for the \doxyref{mo\-A
 
 Definition at line 108 of file mo\-ILS.h.\index{moILS@{mo\-ILS}!moILS@{moILS}}
 \index{moILS@{moILS}!moILS@{mo\-ILS}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ \bf{mo\-ILS}$<$ M $>$::\bf{mo\-ILS} (\bf{mo\-Rand\-Move}$<$ M $>$ \& {\em \_\-random\_\-move\_\-generator}, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\em \_\-incremental\_\-evaluation}, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \& {\em \_\-mo\-SA\_\-continue}, double {\em \_\-initial\_\-temperature}, \bf{mo\-Cooling\-Schedule} \& {\em \_\-cooling\_\-schedule}, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \& {\em \_\-continue}, \bf{mo\-Comparator}$<$ \bf{EOT} $>$ \& {\em \_\-acceptance\_\-criterion}, eo\-Mon\-Op$<$ \bf{EOT} $>$ \& {\em \_\-perturbation}, eo\-Eval\-Func$<$ \bf{EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_i_l_s_36bab16abf36957dac36c467b86385bc}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ \bf{mo\-ILS}$<$ M $>$::\bf{mo\-ILS} (\bf{mo\-Rand\-Move}$<$ M $>$ \& {\em \_\-random\_\-move\_\-generator}, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\em \_\-incremental\_\-evaluation}, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \& {\em \_\-mo\-SA\_\-continue}, double {\em \_\-initial\_\-temperature}, \bf{mo\-Cooling\-Schedule} \& {\em \_\-cooling\_\-schedule}, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \& {\em \_\-continue}, \bf{mo\-Comparator}$<$ \bf{EOT} $>$ \& {\em \_\-acceptance\_\-criterion}, \bf{eo\-Mon\-Op}$<$ \bf{EOT} $>$ \& {\em \_\-perturbation}, \bf{eo\-Eval\-Func}$<$ \bf{EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_i_l_s_36bab16abf36957dac36c467b86385bc}
 
 
 Constructor for using a \doxyref{mo\-SA}{p.}{classmo_s_a} for the \doxyref{mo\-Algo}{p.}{classmo_algo}. 
@@ -122,10 +122,10 @@ Definition at line 130 of file mo\-ILS.h.
 \subsection{Member Function Documentation}
 \index{moILS@{mo\-ILS}!operator()@{operator()}}
 \index{operator()@{operator()}!moILS@{mo\-ILS}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool \bf{mo\-ILS}$<$ M $>$::operator() (\bf{EOT} \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_i_l_s_3f6b950e5a6c363f04b8d4c259502488}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool \bf{mo\-ILS}$<$ M $>$::operator() (\bf{EOT} \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_i_l_s_3f6b950e5a6c363f04b8d4c259502488}
 
 
-Function which launches the ILS. 
+\doxyref{Function} which launches the ILS. 
 
 The ILS has to improve a current solution. As the \doxyref{mo\-SA}{p.}{classmo_s_a}, the \doxyref{mo\-TS}{p.}{classmo_t_s} and the \doxyref{mo\-HC}{p.}{classmo_h_c}, it can be used for HYBRIDATION in an evolutionnary algorithm.
 
@@ -137,6 +137,8 @@ The ILS has to improve a current solution. As the \doxyref{mo\-SA}{p.}{classmo_s
 \begin{Desc}
 \item[Returns:]true. \end{Desc}
 
+
+Implements \bf{eo\-UF$<$ M::EOType \&, bool $>$}.
 
 Definition at line 146 of file mo\-ILS.h.
 

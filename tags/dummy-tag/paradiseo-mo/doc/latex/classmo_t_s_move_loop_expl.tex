@@ -8,7 +8,7 @@ Explorer for a Tabu Search algorithm.
 Inheritance diagram for mo\-TSMove\-Loop\-Expl$<$ M $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3cm]{classmo_t_s_move_loop_expl}
+\includegraphics[height=5cm]{classmo_t_s_move_loop_expl}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -83,7 +83,7 @@ References mo\-TSMove\-Loop\-Expl$<$ M $>$::aspiration\_\-criterion, and mo\-TSM
 \subsection{Member Function Documentation}
 \index{moTSMoveLoopExpl@{mo\-TSMove\-Loop\-Expl}!operator()@{operator()}}
 \index{operator()@{operator()}!moTSMoveLoopExpl@{mo\-TSMove\-Loop\-Expl}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void \bf{mo\-TSMove\-Loop\-Expl}$<$ M $>$::operator() (const \bf{EOT} \& {\em \_\-old\_\-solution}, \bf{EOT} \& {\em \_\-new\_\-solution})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_t_s_move_loop_expl_853743f2e21def3ea129556f47fafa55}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void \bf{mo\-TSMove\-Loop\-Expl}$<$ M $>$::operator() (const \bf{EOT} \& {\em \_\-old\_\-solution}, \bf{EOT} \& {\em \_\-new\_\-solution})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_t_s_move_loop_expl_853743f2e21def3ea129556f47fafa55}
 
 
 Procedure which lauches the exploration. 
@@ -96,6 +96,8 @@ The exploration continues while the chosen move is not in the tabu list or the a
 \item[{\em \_\-old\_\-solution}]the initial solution \item[{\em \_\-new\_\-solution}]the new solution \end{description}
 \end{Desc}
 
+
+Implements \bf{eo\-BF$<$ const M::EOType \&, M::EOType \&, void $>$}.
 
 Definition at line 90 of file mo\-TSMove\-Loop\-Expl.h.
 

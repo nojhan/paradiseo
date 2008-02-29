@@ -8,7 +8,7 @@ Simulated Annealing (SA).
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-\bf{mo\-SA} (\bf{mo\-Rand\-Move}$<$ M $>$ \&\_\-random\_\-move\_\-generator, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \&\_\-incremental\_\-evaluation, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \&\_\-continue, double \_\-initial\_\-temperature, \bf{mo\-Cooling\-Schedule} \&\_\-cooling\_\-schedule, eo\-Eval\-Func$<$ \bf{EOT} $>$ \&\_\-full\_\-evaluation)
+\bf{mo\-SA} (\bf{mo\-Rand\-Move}$<$ M $>$ \&\_\-random\_\-move\_\-generator, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \&\_\-incremental\_\-evaluation, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \&\_\-continue, double \_\-initial\_\-temperature, \bf{mo\-Cooling\-Schedule} \&\_\-cooling\_\-schedule, \bf{eo\-Eval\-Func}$<$ \bf{EOT} $>$ \&\_\-full\_\-evaluation)
 \begin{CompactList}\small\item\em SA constructor. \item\end{CompactList}\item 
 bool \bf{operator()} (\bf{EOT} \&\_\-solution)
 \begin{CompactList}\small\item\em function that launches the SA algorithm. \item\end{CompactList}\end{CompactItemize}
@@ -39,7 +39,7 @@ double \bf{initial\_\-temperature}\label{classmo_s_a_e07bf4ca64248e94ab85e8a1ba3
 \bf{mo\-Cooling\-Schedule} \& \bf{cooling\_\-schedule}\label{classmo_s_a_f514ae01cdfc67bf0b87d5389b3792e5}
 
 \begin{CompactList}\small\item\em The cooling schedule. \item\end{CompactList}\item 
-eo\-Eval\-Func$<$ \bf{EOT} $>$ \& \bf{full\_\-evaluation}\label{classmo_s_a_ace30095ffc4924d84e14a0e59f7746f}
+\bf{eo\-Eval\-Func}$<$ \bf{EOT} $>$ \& \bf{full\_\-evaluation}\label{classmo_s_a_ace30095ffc4924d84e14a0e59f7746f}
 
 \begin{CompactList}\small\item\em A full evaluation function. \item\end{CompactList}\end{CompactItemize}
 
@@ -58,7 +58,7 @@ Definition at line 53 of file mo\-SA.h.
 \subsection{Constructor \& Destructor Documentation}
 \index{moSA@{mo\-SA}!moSA@{moSA}}
 \index{moSA@{moSA}!moSA@{mo\-SA}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ \bf{mo\-SA}$<$ M $>$::\bf{mo\-SA} (\bf{mo\-Rand\-Move}$<$ M $>$ \& {\em \_\-random\_\-move\_\-generator}, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\em \_\-incremental\_\-evaluation}, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \& {\em \_\-continue}, double {\em \_\-initial\_\-temperature}, \bf{mo\-Cooling\-Schedule} \& {\em \_\-cooling\_\-schedule}, eo\-Eval\-Func$<$ \bf{EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_s_a_12e7da3a56b82daa29a30d1254da5823}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ \bf{mo\-SA}$<$ M $>$::\bf{mo\-SA} (\bf{mo\-Rand\-Move}$<$ M $>$ \& {\em \_\-random\_\-move\_\-generator}, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\em \_\-incremental\_\-evaluation}, \bf{mo\-Sol\-Continue}$<$ \bf{EOT} $>$ \& {\em \_\-continue}, double {\em \_\-initial\_\-temperature}, \bf{mo\-Cooling\-Schedule} \& {\em \_\-cooling\_\-schedule}, \bf{eo\-Eval\-Func}$<$ \bf{EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_s_a_12e7da3a56b82daa29a30d1254da5823}
 
 
 SA constructor. 
@@ -77,7 +77,7 @@ Definition at line 74 of file mo\-SA.h.
 \subsection{Member Function Documentation}
 \index{moSA@{mo\-SA}!operator()@{operator()}}
 \index{operator()@{operator()}!moSA@{mo\-SA}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool \bf{mo\-SA}$<$ M $>$::operator() (\bf{EOT} \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_s_a_bea8176b0c05a96696b2ab29d3f3c544}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool \bf{mo\-SA}$<$ M $>$::operator() (\bf{EOT} \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_s_a_bea8176b0c05a96696b2ab29d3f3c544}
 
 
 function that launches the SA algorithm. 
@@ -93,9 +93,11 @@ As a \doxyref{mo\-TS}{p.}{classmo_t_s} or a \doxyref{mo\-HC}{p.}{classmo_h_c}, t
 \item[Returns:]TRUE. \end{Desc}
 
 
+Implements \bf{eo\-UF$<$ M::EOType \&, bool $>$}.
+
 Definition at line 89 of file mo\-SA.h.
 
-References mo\-SA$<$ M $>$::continu, mo\-SA$<$ M $>$::cooling\_\-schedule, mo\-SA$<$ M $>$::full\_\-evaluation, mo\-SA$<$ M $>$::incremental\_\-evaluation, mo\-SA$<$ M $>$::initial\_\-temperature, and mo\-SA$<$ M $>$::random\_\-move\_\-generator.
+References mo\-SA$<$ M $>$::continu, mo\-SA$<$ M $>$::cooling\_\-schedule, mo\-SA$<$ M $>$::full\_\-evaluation, mo\-SA$<$ M $>$::incremental\_\-evaluation, mo\-SA$<$ M $>$::initial\_\-temperature, mo\-SA$<$ M $>$::random\_\-move\_\-generator, and eo\-Rng::uniform().
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 

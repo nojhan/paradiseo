@@ -99,7 +99,7 @@ Definition at line 71 of file moTSMoveLoopExpl.h.
 References moTSMoveLoopExpl< M >::aspiration_criterion, and moTSMoveLoopExpl< M >::tabu_list.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> void \fBmoTSMoveLoopExpl\fP< M >::operator() (const \fBEOT\fP & _old_solution, \fBEOT\fP & _new_solution)\fC [inline]\fP"
+.SS "template<class M> void \fBmoTSMoveLoopExpl\fP< M >::operator() (const \fBEOT\fP & _old_solution, \fBEOT\fP & _new_solution)\fC [inline, virtual]\fP"
 .PP
 Procedure which lauches the exploration. 
 .PP
@@ -113,6 +113,8 @@ The exploration continues while the chosen move is not in the tabu list or the a
 .RE
 .PP
 
+.PP
+Implements \fBeoBF< const M::EOType &, M::EOType &, void >\fP.
 .PP
 Definition at line 90 of file moTSMoveLoopExpl.h.
 .PP

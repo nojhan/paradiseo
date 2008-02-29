@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 194.175
+%%BoundingBox: 0 0 500 388.35
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,12 +19,12 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 2.575 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 1.2875 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 2 def
+/rows 4 def
 /cols 1 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
@@ -175,6 +175,8 @@ boxfont setfont
 1 boundaspect scale
 (moSteadyFitSolContinue< EOT >) cw
 (moSolContinue< EOT >) cw
+(eoUF< const EOT &, bool >) cw
+(eoFunctorBase) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
 /yspacing boxheight disty add def
@@ -188,6 +190,8 @@ boundx scalefactor div boundy scalefactor div scale
 
  (moSteadyFitSolContinue< EOT >) 0 0 box
  (moSolContinue< EOT >) 0 1 box
+ (eoUF< const EOT &, bool >) 0 2 box
+ (eoFunctorBase) 0 3 box
 
 % ----- relations -----
 
@@ -195,3 +199,11 @@ solid
 0 0 0 out
 solid
 1 0 1 in
+solid
+0 0 1 out
+solid
+1 0 2 in
+solid
+0 0 2 out
+solid
+1 0 3 in

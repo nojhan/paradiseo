@@ -22,7 +22,7 @@ Inherits \fBmoCoolingSchedule\fP.
 .ti -1c
 .RI "bool \fBoperator()\fP (double &_temperature)"
 .br
-.RI "\fIFunction which proceeds to the cooling. \fP"
+.RI "\fI\fBFunction\fP which proceeds to the cooling. \fP"
 .in -1c
 .SS "Private Attributes"
 
@@ -61,9 +61,9 @@ Simple constructor.
 Definition at line 55 of file moExponentialCoolingSchedule.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "bool moExponentialCoolingSchedule::operator() (double & _temperature)\fC [inline]\fP"
+.SS "bool moExponentialCoolingSchedule::operator() (double & _temperature)\fC [inline, virtual]\fP"
 .PP
-Function which proceeds to the cooling. 
+\fBFunction\fP which proceeds to the cooling. 
 .PP
 It decreases the temperature and indicates if it is greater than the threshold.
 .PP
@@ -78,6 +78,8 @@ if the new temperature (current temperature * ratio) is greater than the thresho
 .RE
 .PP
 
+.PP
+Implements \fBeoUF< double &, bool >\fP.
 .PP
 Definition at line 65 of file moExponentialCoolingSchedule.h.
 .PP

@@ -22,7 +22,7 @@ Inherits \fBmoSolContinue< EOT >< EOT >\fP.
 .ti -1c
 .RI "bool \fBoperator()\fP (const EOT &_solution)"
 .br
-.RI "\fIFunction that activates the stop criterion. \fP"
+.RI "\fI\fBFunction\fP that activates the stop criterion. \fP"
 .ti -1c
 .RI "void \fBinit\fP ()"
 .br
@@ -65,9 +65,9 @@ Simple constructor.
 Definition at line 54 of file moGenSolContinue.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class EOT> bool \fBmoGenSolContinue\fP< EOT >::operator() (const EOT & _solution)\fC [inline]\fP"
+.SS "template<class EOT> bool \fBmoGenSolContinue\fP< EOT >::operator() (const EOT & _solution)\fC [inline, virtual]\fP"
 .PP
-Function that activates the stop criterion. 
+\fBFunction\fP that activates the stop criterion. 
 .PP
 Increments the counter and returns TRUE if the current number of iteration is lower than the given maximum number of iterations.
 .PP
@@ -82,6 +82,8 @@ true or false according to the current generation number.
 .RE
 .PP
 
+.PP
+Implements \fBeoUF< const EOT &, bool >\fP.
 .PP
 Definition at line 66 of file moGenSolContinue.h.
 .PP

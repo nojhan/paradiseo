@@ -36,7 +36,9 @@
 <p>Inheritance diagram for moRandImprSelect&lt; M &gt;:
 <p><center><img src="classmo_rand_impr_select.png" usemap="#moRandImprSelect< M >_map" border="0" alt=""></center>
 <map name="moRandImprSelect< M >_map">
-<area href="classmo_move_select.html" alt="moMoveSelect< M >" shape="rect" coords="0,0,151,24">
+<area href="classmo_move_select.html" alt="moMoveSelect< M >" shape="rect" coords="0,112,256,136">
+<area doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_b_f.html" alt="eoBF< M &, M::EOType::Fitness &, void >" shape="rect" coords="0,56,256,80">
+<area doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_functor_base.html" alt="eoFunctorBase" shape="rect" coords="0,0,256,24">
 </map>
 <a href="classmo_rand_impr_select-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
@@ -51,7 +53,7 @@ typedef M::EOType::Fitness&nbsp;</td><td class="memItemRight" valign="bottom"><a
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Procedure which all that needs a <a class="el" href="classmo_rand_impr_select.html">moRandImprSelect</a>.  <a href="#7af99966b31aa387ecef74fd307a42e8"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_rand_impr_select.html#b20cfd0164266aa75960cba3c1673f69">update</a> (const M &amp;_move, const <a class="el" href="classmo_rand_impr_select.html#3bff2fdb963297430543c82ffb567a5c">Fitness</a> &amp;_fitness)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Function that updates the fitness and move vectors.  <a href="#b20cfd0164266aa75960cba3c1673f69"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/struct_function.html">Function</a> that updates the fitness and move vectors.  <a href="#b20cfd0164266aa75960cba3c1673f69"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_rand_impr_select.html#1bc88f10830960c1d88e22e444c4e670">operator()</a> (M &amp;_move, <a class="el" href="classmo_rand_impr_select.html#3bff2fdb963297430543c82ffb567a5c">Fitness</a> &amp;_fitness)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The move selection.  <a href="#1bc88f10830960c1d88e22e444c4e670"></a><br></td></tr>
@@ -148,7 +150,7 @@ template&lt;class M&gt; </div>
 <div class="memdoc">
 
 <p>
-Function that updates the fitness and move vectors. 
+<a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/struct_function.html">Function</a> that updates the fitness and move vectors. 
 <p>
 if a move give a better fitness than the initial fitness, it is saved and the fitness too.<p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
@@ -188,7 +190,7 @@ template&lt;class M&gt; </div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td width="100%"><code> [inline]</code></td>
+          <td></td><td></td><td width="100%"><code> [inline, virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -206,14 +208,16 @@ One the saved move is randomly chosen.<p>
 </dl>
 
 <p>
+Implements <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_b_f.html#a03c40b95210569b826df79a2237a0d0">eoBF&lt; M &amp;, M::EOType::Fitness &amp;, void &gt;</a>.
+<p>
 Definition at line <a class="el" href="mo_rand_impr_select_8h-source.html#l00100">100</a> of file <a class="el" href="mo_rand_impr_select_8h-source.html">moRandImprSelect.h</a>.
 <p>
-References <a class="el" href="mo_rand_impr_select_8h-source.html#l00127">moRandImprSelect&lt; M &gt;::better_fitnesses</a>, <a class="el" href="mo_rand_impr_select_8h-source.html#l00130">moRandImprSelect&lt; M &gt;::better_moves</a>, and <a class="el" href="mo_rand_impr_select_8h-source.html#l00133">moRandImprSelect&lt; M &gt;::firstTime</a>.
+References <a class="el" href="mo_rand_impr_select_8h-source.html#l00127">moRandImprSelect&lt; M &gt;::better_fitnesses</a>, <a class="el" href="mo_rand_impr_select_8h-source.html#l00130">moRandImprSelect&lt; M &gt;::better_moves</a>, <a class="el" href="mo_rand_impr_select_8h-source.html#l00133">moRandImprSelect&lt; M &gt;::firstTime</a>, and <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">eoRng::random()</a>.
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="mo_rand_impr_select_8h-source.html">moRandImprSelect.h</a></ul>
-<hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 16:32:25 2008 for ParadisEO-MO-MovingObjects by&nbsp;
+<hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:03:44 2008 for ParadisEO-MO-MovingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

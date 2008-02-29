@@ -36,7 +36,9 @@
 <p>Inheritance diagram for moLinearCoolingSchedule:
 <p><center><img src="classmo_linear_cooling_schedule.png" usemap="#moLinearCoolingSchedule_map" border="0" alt=""></center>
 <map name="moLinearCoolingSchedule_map">
-<area href="classmo_cooling_schedule.html" alt="moCoolingSchedule" shape="rect" coords="0,0,160,24">
+<area href="classmo_cooling_schedule.html" alt="moCoolingSchedule" shape="rect" coords="0,112,160,136">
+<area doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_u_f.html" alt="eoUF< double &, bool >" shape="rect" coords="0,56,160,80">
+<area doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_functor_base.html" alt="eoFunctorBase" shape="rect" coords="0,0,160,24">
 </map>
 <a href="classmo_linear_cooling_schedule-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
@@ -46,7 +48,7 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Simple constructor.  <a href="#420939ebf57f01d242cbe4eb668dffde"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_linear_cooling_schedule.html#b0a1886aaa7ee2a0c8e929e55ca321ce">operator()</a> (double &amp;_current_temperature)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Function which proceeds to the cooling.  <a href="#b0a1886aaa7ee2a0c8e929e55ca321ce"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/struct_function.html">Function</a> which proceeds to the cooling.  <a href="#b0a1886aaa7ee2a0c8e929e55ca321ce"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e7f539f986801ea71392c4a55ba08a76"></a><!-- doxytag: member="moLinearCoolingSchedule::threshold" ref="e7f539f986801ea71392c4a55ba08a76" args="" -->
 double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmo_linear_cooling_schedule.html#e7f539f986801ea71392c4a55ba08a76">threshold</a></td></tr>
@@ -115,14 +117,14 @@ Definition at line <a class="el" href="mo_linear_cooling_schedule_8h-source.html
           <td class="paramtype">double &amp;&nbsp;</td>
           <td class="paramname"> <em>_current_temperature</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [inline]</code></td>
+          <td width="100%"><code> [inline, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-Function which proceeds to the cooling. 
+<a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/struct_function.html">Function</a> which proceeds to the cooling. 
 <p>
 It decreases the temperature and indicates if it is greater than the threshold.<p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
@@ -133,6 +135,8 @@ It decreases the temperature and indicates if it is greater than the threshold.<
 <dl compact><dt><b>Returns:</b></dt><dd>true if the new temperature (current temperature - quantity) is greater than the threshold, false otherwise. </dd></dl>
 
 <p>
+Implements <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_u_f.html#786e028409366dc273e19104f17ba68a">eoUF&lt; double &amp;, bool &gt;</a>.
+<p>
 Definition at line <a class="el" href="mo_linear_cooling_schedule_8h-source.html#l00065">65</a> of file <a class="el" href="mo_linear_cooling_schedule_8h-source.html">moLinearCoolingSchedule.h</a>.
 <p>
 References <a class="el" href="mo_linear_cooling_schedule_8h-source.html#l00076">quantity</a>, and <a class="el" href="mo_linear_cooling_schedule_8h-source.html#l00073">threshold</a>.
@@ -140,7 +144,7 @@ References <a class="el" href="mo_linear_cooling_schedule_8h-source.html#l00076"
 </div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="mo_linear_cooling_schedule_8h-source.html">moLinearCoolingSchedule.h</a></ul>
-<hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 16:32:25 2008 for ParadisEO-MO-MovingObjects by&nbsp;
+<hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:03:44 2008 for ParadisEO-MO-MovingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

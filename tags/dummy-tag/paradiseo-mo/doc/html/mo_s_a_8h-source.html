@@ -121,7 +121,7 @@
 <a name="l00119"></a>00119                 delta_fit = -delta_fit;
 <a name="l00120"></a>00120               }
 <a name="l00121"></a>00121 
-<a name="l00122"></a>00122             <span class="keywordflow">if</span> ( (incremental_fitness &gt; _solution.fitness()) || (rng.uniform () &lt; exp (delta_fit / temperature)) )
+<a name="l00122"></a>00122             <span class="keywordflow">if</span> ( (incremental_fitness &gt; _solution.fitness()) || (rng.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#50dfb052f11ae50326e552cb223d88e4">uniform</a> () &lt; exp (delta_fit / temperature)) )
 <a name="l00123"></a>00123               {
 <a name="l00124"></a>00124                 move(_solution);
 <a name="l00125"></a>00125                 _solution.fitness(incremental_fitness);
@@ -159,7 +159,7 @@
 <a name="l00163"></a>00163 };
 <a name="l00164"></a>00164 
 <a name="l00165"></a>00165 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 16:32:25 2008 for ParadisEO-MO-MovingObjects by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:03:44 2008 for ParadisEO-MO-MovingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

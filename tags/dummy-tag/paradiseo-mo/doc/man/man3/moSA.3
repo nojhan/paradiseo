@@ -16,7 +16,7 @@ Inherits \fBmoAlgo< M::EOType >\fP.
 
 .in +1c
 .ti -1c
-.RI "\fBmoSA\fP (\fBmoRandMove\fP< M > &_random_move_generator, \fBmoMoveIncrEval\fP< M > &_incremental_evaluation, \fBmoSolContinue\fP< \fBEOT\fP > &_continue, double _initial_temperature, \fBmoCoolingSchedule\fP &_cooling_schedule, eoEvalFunc< \fBEOT\fP > &_full_evaluation)"
+.RI "\fBmoSA\fP (\fBmoRandMove\fP< M > &_random_move_generator, \fBmoMoveIncrEval\fP< M > &_incremental_evaluation, \fBmoSolContinue\fP< \fBEOT\fP > &_continue, double _initial_temperature, \fBmoCoolingSchedule\fP &_cooling_schedule, \fBeoEvalFunc\fP< \fBEOT\fP > &_full_evaluation)"
 .br
 .RI "\fISA constructor. \fP"
 .ti -1c
@@ -60,7 +60,7 @@ Inherits \fBmoAlgo< M::EOType >\fP.
 .br
 .RI "\fIThe cooling schedule. \fP"
 .ti -1c
-.RI "eoEvalFunc< \fBEOT\fP > & \fBfull_evaluation\fP"
+.RI "\fBeoEvalFunc\fP< \fBEOT\fP > & \fBfull_evaluation\fP"
 .br
 .RI "\fIA full evaluation function. \fP"
 .in -1c
@@ -75,7 +75,7 @@ Class that describes a Simulated Annealing algorithm.
 Definition at line 53 of file moSA.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<class M> \fBmoSA\fP< M >::\fBmoSA\fP (\fBmoRandMove\fP< M > & _random_move_generator, \fBmoMoveIncrEval\fP< M > & _incremental_evaluation, \fBmoSolContinue\fP< \fBEOT\fP > & _continue, double _initial_temperature, \fBmoCoolingSchedule\fP & _cooling_schedule, eoEvalFunc< \fBEOT\fP > & _full_evaluation)\fC [inline]\fP"
+.SS "template<class M> \fBmoSA\fP< M >::\fBmoSA\fP (\fBmoRandMove\fP< M > & _random_move_generator, \fBmoMoveIncrEval\fP< M > & _incremental_evaluation, \fBmoSolContinue\fP< \fBEOT\fP > & _continue, double _initial_temperature, \fBmoCoolingSchedule\fP & _cooling_schedule, \fBeoEvalFunc\fP< \fBEOT\fP > & _full_evaluation)\fC [inline]\fP"
 .PP
 SA constructor. 
 .PP
@@ -101,7 +101,7 @@ All the boxes used by a SA need to be given.
 Definition at line 74 of file moSA.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> bool \fBmoSA\fP< M >::operator() (\fBEOT\fP & _solution)\fC [inline]\fP"
+.SS "template<class M> bool \fBmoSA\fP< M >::operator() (\fBEOT\fP & _solution)\fC [inline, virtual]\fP"
 .PP
 function that launches the SA algorithm. 
 .PP
@@ -119,9 +119,11 @@ TRUE.
 .PP
 
 .PP
+Implements \fBeoUF< M::EOType &, bool >\fP.
+.PP
 Definition at line 89 of file moSA.h.
 .PP
-References moSA< M >::continu, moSA< M >::cooling_schedule, moSA< M >::full_evaluation, moSA< M >::incremental_evaluation, moSA< M >::initial_temperature, and moSA< M >::random_move_generator.
+References moSA< M >::continu, moSA< M >::cooling_schedule, moSA< M >::full_evaluation, moSA< M >::incremental_evaluation, moSA< M >::initial_temperature, moSA< M >::random_move_generator, and eoRng::uniform().
 
 .SH "Author"
 .PP 
