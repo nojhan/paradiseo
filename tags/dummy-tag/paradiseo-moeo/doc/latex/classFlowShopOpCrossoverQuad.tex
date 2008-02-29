@@ -5,6 +5,12 @@ Quadratic crossover operator for flow-shop (modify the both genotypes).
 
 {\tt \#include $<$Flow\-Shop\-Op\-Crossover\-Quad.h$>$}
 
+Inheritance diagram for Flow\-Shop\-Op\-Crossover\-Quad::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4cm]{classFlowShopOpCrossoverQuad}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
@@ -30,7 +36,7 @@ Definition at line 47 of file Flow\-Shop\-Op\-Crossover\-Quad.h.
 \subsection{Member Function Documentation}
 \index{FlowShopOpCrossoverQuad@{Flow\-Shop\-Op\-Crossover\-Quad}!operator()@{operator()}}
 \index{operator()@{operator()}!FlowShopOpCrossoverQuad@{Flow\-Shop\-Op\-Crossover\-Quad}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool Flow\-Shop\-Op\-Crossover\-Quad::operator() (\bf{Flow\-Shop} \& {\em \_\-flowshop1}, \bf{Flow\-Shop} \& {\em \_\-flowshop2})}\label{classFlowShopOpCrossoverQuad_92f70807bea24d3c233af580e2c55e3a}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool Flow\-Shop\-Op\-Crossover\-Quad::operator() (\bf{Flow\-Shop} \& {\em \_\-flowshop1}, \bf{Flow\-Shop} \& {\em \_\-flowshop2})\hspace{0.3cm}{\tt  [virtual]}}\label{classFlowShopOpCrossoverQuad_92f70807bea24d3c233af580e2c55e3a}
 
 
 eo\-Quad crossover - \_\-flowshop1 and \_\-flowshop2 are the (future) offspring, i.e. 
@@ -42,9 +48,11 @@ eo\-Quad crossover - \_\-flowshop1 and \_\-flowshop2 are the (future) offspring,
 \end{Desc}
 
 
+Implements \bf{eo\-BF$<$ Flow\-Shop \&, Flow\-Shop \&, bool $>$}.
+
 Definition at line 47 of file Flow\-Shop\-Op\-Crossover\-Quad.cpp.
 
-References generate\-Offspring(), and moeo\-Vector$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, Gene\-Type $>$::value().\index{FlowShopOpCrossoverQuad@{Flow\-Shop\-Op\-Crossover\-Quad}!generateOffspring@{generateOffspring}}
+References generate\-Offspring(), eo\-Rng::random(), and moeo\-Vector$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, Gene\-Type $>$::value().\index{FlowShopOpCrossoverQuad@{Flow\-Shop\-Op\-Crossover\-Quad}!generateOffspring@{generateOffspring}}
 \index{generateOffspring@{generateOffspring}!FlowShopOpCrossoverQuad@{Flow\-Shop\-Op\-Crossover\-Quad}}
 \subsubsection{\setlength{\rightskip}{0pt plus 5cm}\bf{Flow\-Shop} Flow\-Shop\-Op\-Crossover\-Quad::generate\-Offspring (const \bf{Flow\-Shop} \& {\em \_\-parent1}, const \bf{Flow\-Shop} \& {\em \_\-parent2}, unsigned int {\em \_\-point1}, unsigned int {\em \_\-point2})\hspace{0.3cm}{\tt  [private]}}\label{classFlowShopOpCrossoverQuad_cbc2f344a0a29861900f4846597564c3}
 

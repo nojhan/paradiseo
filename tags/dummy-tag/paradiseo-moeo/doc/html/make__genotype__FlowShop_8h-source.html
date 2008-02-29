@@ -10,7 +10,6 @@
     <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
     <li><a href="classes.html"><span>Classes</span></a></li>
     <li id="current"><a href="files.html"><span>Files</span></a></li>
-    <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
     <li>
       <form action="search.php" method="get">
         <table cellspacing="0" cellpadding="0" border="0">
@@ -73,10 +72,10 @@
 <a name="l00049"></a>00049 <span class="comment"> * @param eoParser&amp; _parser  to get user parameters</span>
 <a name="l00050"></a>00050 <span class="comment"> * @param eoState&amp; _state  to store the memory</span>
 <a name="l00051"></a>00051 <span class="comment"> */</span>
-<a name="l00052"></a>00052 eoInit&lt;FlowShop&gt; &amp; do_make_genotype(eoParser&amp; _parser, eoState&amp; _state)
+<a name="l00052"></a>00052 <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_init.html">eoInit&lt;FlowShop&gt;</a> &amp; do_make_genotype(<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_parser.html">eoParser</a>&amp; _parser, <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_state.html">eoState</a>&amp; _state)
 <a name="l00053"></a>00053 {
 <a name="l00054"></a>00054   <span class="comment">// benchmark file name</span>
-<a name="l00055"></a>00055   std::string benchmarkFileName = _parser.getORcreateParam(std::string(), <span class="stringliteral">"BenchmarkFile"</span>, <span class="stringliteral">"Benchmark file name (benchmarks are available at www.lifl.fr/~liefooga/benchmarks/)"</span>, <span class="charliteral">'B'</span>,<span class="stringliteral">"Representation"</span>, <span class="keyword">true</span>).value();
+<a name="l00055"></a>00055   std::string benchmarkFileName = _parser.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_parser.html#7541d5d17a95b01409856895741c7bb3">getORcreateParam</a>(std::string(), <span class="stringliteral">"BenchmarkFile"</span>, <span class="stringliteral">"Benchmark file name (benchmarks are available at www.lifl.fr/~liefooga/benchmarks/)"</span>, <span class="charliteral">'B'</span>,<span class="stringliteral">"Representation"</span>, <span class="keyword">true</span>).value();
 <a name="l00056"></a>00056   <span class="keywordflow">if</span> (benchmarkFileName == <span class="stringliteral">""</span>)
 <a name="l00057"></a>00057     {
 <a name="l00058"></a>00058       std::string stmp = <span class="stringliteral">"*** Missing name of the benchmark file\n"</span>;
@@ -88,15 +87,15 @@
 <a name="l00064"></a>00064   <a class="code" href="classFlowShopBenchmarkParser.html">FlowShopBenchmarkParser</a> fParser(benchmarkFileName);
 <a name="l00065"></a>00065   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> N = fParser.getN();
 <a name="l00066"></a>00066   <span class="comment">// build of the initializer (a pointer, stored in the eoState)</span>
-<a name="l00067"></a>00067   eoInit&lt;FlowShop&gt;* init = <span class="keyword">new</span> FlowShopInit(N);
+<a name="l00067"></a>00067   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_init.html">eoInit&lt;FlowShop&gt;</a>* init = <span class="keyword">new</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_init_permutation.html">FlowShopInit</a>(N);
 <a name="l00068"></a>00068   <span class="comment">// store in state</span>
-<a name="l00069"></a>00069   _state.storeFunctor(init);
+<a name="l00069"></a>00069   _state.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_functor_store.html#2f7c33b862229e23ddb0502b5b6a30f7">storeFunctor</a>(init);
 <a name="l00070"></a>00070   <span class="comment">// and return a reference</span>
 <a name="l00071"></a>00071   <span class="keywordflow">return</span> *init;
 <a name="l00072"></a>00072 }
 <a name="l00073"></a>00073 
 <a name="l00074"></a>00074 <span class="preprocessor">#endif </span><span class="comment">/*MAKE_GENOTYPE_FLOWSHOP_H_*/</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:04:16 2008 for ParadisEO-MOEO-MultiObjectiveEvolvingObjects by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:19:47 2008 for ParadisEO-MOEO-MultiObjectiveEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

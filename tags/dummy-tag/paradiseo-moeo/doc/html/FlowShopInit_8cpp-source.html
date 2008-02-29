@@ -10,7 +10,6 @@
     <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
     <li><a href="classes.html"><span>Classes</span></a></li>
     <li id="current"><a href="files.html"><span>Files</span></a></li>
-    <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
     <li>
       <form action="search.php" method="get">
         <table cellspacing="0" cellpadding="0" border="0">
@@ -66,19 +65,19 @@
 <a name="l00042"></a>00042 {}
 <a name="l00043"></a>00043 
 <a name="l00044"></a>00044 
-<a name="l00045"></a>00045 <span class="keywordtype">void</span> FlowShopInit::operator()(<a class="code" href="classFlowShop.html">FlowShop</a> &amp; _flowshop)
+<a name="l00045"></a>00045 <span class="keywordtype">void</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_init_permutation.html#1a9e87eb88c39aeeacd933b4a6b74488">FlowShopInit::operator()</a>(<a class="code" href="classFlowShop.html">FlowShop</a> &amp; _flowshop)
 <a name="l00046"></a>00046 {
 <a name="l00047"></a>00047   <span class="comment">// scheduling vector</span>
-<a name="l00048"></a>00048   std::vector&lt;unsigned int&gt; scheduling(<a class="code" href="classFlowShopEval.html#48c4a108b54c2c949cb649e470c9e8c4">N</a>);
+<a name="l00048"></a>00048   std::vector&lt;unsigned int&gt; scheduling(N);
 <a name="l00049"></a>00049   <span class="comment">// initialisation of possible values</span>
-<a name="l00050"></a>00050   std::vector&lt;unsigned int&gt; possibles(<a class="code" href="classFlowShopEval.html#48c4a108b54c2c949cb649e470c9e8c4">N</a>);
-<a name="l00051"></a>00051   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=0 ; i&lt;<a class="code" href="classFlowShopEval.html#48c4a108b54c2c949cb649e470c9e8c4">N</a> ; i++)
+<a name="l00050"></a>00050   std::vector&lt;unsigned int&gt; possibles(N);
+<a name="l00051"></a>00051   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=0 ; i&lt;N ; i++)
 <a name="l00052"></a>00052     possibles[i] = i;
 <a name="l00053"></a>00053   <span class="comment">// random initialization</span>
 <a name="l00054"></a>00054   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> rInd;     <span class="comment">// random index</span>
 <a name="l00055"></a>00055   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=0; i&lt;N; i++)
 <a name="l00056"></a>00056     {
-<a name="l00057"></a>00057       rInd = (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>) rng.uniform(N-i);
+<a name="l00057"></a>00057       rInd = (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>) <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/namespaceeo.html#2727d901e79a00930492730539e3b644">rng</a>.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#50dfb052f11ae50326e552cb223d88e4">uniform</a>(N-i);
 <a name="l00058"></a>00058       scheduling[i] = possibles[rInd];
 <a name="l00059"></a>00059       possibles[rInd] = possibles[N-i-1];
 <a name="l00060"></a>00060     }
@@ -86,7 +85,7 @@
 <a name="l00062"></a>00062   _flowshop.<a class="code" href="classmoeoVector.html#a7fadd876fe492717815510f68a921c5">value</a>(scheduling);
 <a name="l00063"></a>00063   _flowshop.<a class="code" href="classMOEO.html#1069501a40e07071d78c067c46b696ee">invalidate</a>();          <span class="comment">// IMPORTANT in case the _genotype is old</span>
 <a name="l00064"></a>00064 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:04:16 2008 for ParadisEO-MOEO-MultiObjectiveEvolvingObjects by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:19:47 2008 for ParadisEO-MOEO-MultiObjectiveEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

@@ -24,11 +24,11 @@ Inherits \fBmoeoLS< MOEOT, eoPop< MOEOT > & >\fP.
 
 .in +1c
 .ti -1c
-.RI "\fBmoeoIBMOLS\fP (moMoveInit< Move > &_moveInit, moNextMove< Move > &_nextMove, eoEvalFunc< MOEOT > &_eval, \fBmoeoMoveIncrEval\fP< Move > &_moveIncrEval, \fBmoeoBinaryIndicatorBasedFitnessAssignment\fP< MOEOT > &_fitnessAssignment, eoContinue< MOEOT > &_continuator)"
+.RI "\fBmoeoIBMOLS\fP (moMoveInit< Move > &_moveInit, moNextMove< Move > &_nextMove, \fBeoEvalFunc\fP< MOEOT > &_eval, \fBmoeoMoveIncrEval\fP< Move > &_moveIncrEval, \fBmoeoBinaryIndicatorBasedFitnessAssignment\fP< MOEOT > &_fitnessAssignment, \fBeoContinue\fP< MOEOT > &_continuator)"
 .br
 .RI "\fICtor. \fP"
 .ti -1c
-.RI "void \fBoperator()\fP (eoPop< MOEOT > &_pop, \fBmoeoArchive\fP< MOEOT > &_arch)"
+.RI "void \fBoperator()\fP (\fBeoPop\fP< MOEOT > &_pop, \fBmoeoArchive\fP< MOEOT > &_arch)"
 .br
 .RI "\fIApply the local search until a local archive does not change or another stopping criteria is met and update the archive _arch with new non-dominated solutions. \fP"
 .in -1c
@@ -36,11 +36,11 @@ Inherits \fBmoeoLS< MOEOT, eoPop< MOEOT > & >\fP.
 
 .in +1c
 .ti -1c
-.RI "void \fBoneStep\fP (eoPop< MOEOT > &_pop)"
+.RI "void \fBoneStep\fP (\fBeoPop\fP< MOEOT > &_pop)"
 .br
 .RI "\fIApply one step of the local search to the population _pop. \fP"
 .ti -1c
-.RI "void \fBnew_oneStep\fP (eoPop< MOEOT > &_pop)"
+.RI "void \fBnew_oneStep\fP (\fBeoPop\fP< MOEOT > &_pop)"
 .br
 .RI "\fIApply one step of the local search to the population _pop. \fP"
 .in -1c
@@ -56,7 +56,7 @@ Inherits \fBmoeoLS< MOEOT, eoPop< MOEOT > & >\fP.
 .br
 .RI "\fIthe neighborhood explorer \fP"
 .ti -1c
-.RI "eoEvalFunc< MOEOT > & \fBeval\fP"
+.RI "\fBeoEvalFunc\fP< MOEOT > & \fBeval\fP"
 .br
 .RI "\fIthe full evaluation \fP"
 .ti -1c
@@ -68,7 +68,7 @@ Inherits \fBmoeoLS< MOEOT, eoPop< MOEOT > & >\fP.
 .br
 .RI "\fIthe fitness assignment strategy \fP"
 .ti -1c
-.RI "eoContinue< MOEOT > & \fBcontinuator\fP"
+.RI "\fBeoContinue\fP< MOEOT > & \fBcontinuator\fP"
 .br
 .RI "\fIthe stopping criteria \fP"
 .in -1c
@@ -90,7 +90,7 @@ Indicator-Based Multi-Objective Local Search (IBMOLS) as described in Basseur M.
 Definition at line 58 of file moeoIBMOLS.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<class MOEOT, class Move> \fBmoeoIBMOLS\fP< MOEOT, Move >::\fBmoeoIBMOLS\fP (moMoveInit< Move > & _moveInit, moNextMove< Move > & _nextMove, eoEvalFunc< MOEOT > & _eval, \fBmoeoMoveIncrEval\fP< Move > & _moveIncrEval, \fBmoeoBinaryIndicatorBasedFitnessAssignment\fP< MOEOT > & _fitnessAssignment, eoContinue< MOEOT > & _continuator)\fC [inline]\fP"
+.SS "template<class MOEOT, class Move> \fBmoeoIBMOLS\fP< MOEOT, Move >::\fBmoeoIBMOLS\fP (moMoveInit< Move > & _moveInit, moNextMove< Move > & _nextMove, \fBeoEvalFunc\fP< MOEOT > & _eval, \fBmoeoMoveIncrEval\fP< Move > & _moveIncrEval, \fBmoeoBinaryIndicatorBasedFitnessAssignment\fP< MOEOT > & _fitnessAssignment, \fBeoContinue\fP< MOEOT > & _continuator)\fC [inline]\fP"
 .PP
 Ctor. 
 .PP
@@ -114,7 +114,7 @@ Ctor.
 Definition at line 75 of file moeoIBMOLS.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class MOEOT, class Move> void \fBmoeoIBMOLS\fP< MOEOT, Move >::operator() (eoPop< MOEOT > & _pop, \fBmoeoArchive\fP< MOEOT > & _arch)\fC [inline]\fP"
+.SS "template<class MOEOT, class Move> void \fBmoeoIBMOLS\fP< MOEOT, Move >::operator() (\fBeoPop\fP< MOEOT > & _pop, \fBmoeoArchive\fP< MOEOT > & _arch)\fC [inline, virtual]\fP"
 .PP
 Apply the local search until a local archive does not change or another stopping criteria is met and update the archive _arch with new non-dominated solutions. 
 .PP
@@ -127,10 +127,12 @@ Apply the local search until a local archive does not change or another stopping
 .PP
 
 .PP
+Implements \fBeoBF< eoPop< MOEOT > &, moeoArchive< MOEOT > &, void >\fP.
+.PP
 Definition at line 98 of file moeoIBMOLS.h.
 .PP
 References moeoIBMOLS< MOEOT, Move >::continuator, moeoArchive< MOEOT >::equals(), moeoIBMOLS< MOEOT, Move >::fitnessAssignment, moeoIBMOLS< MOEOT, Move >::oneStep(), and moeoArchive< MOEOT >::update().
-.SS "template<class MOEOT, class Move> void \fBmoeoIBMOLS\fP< MOEOT, Move >::oneStep (eoPop< MOEOT > & _pop)\fC [inline, private]\fP"
+.SS "template<class MOEOT, class Move> void \fBmoeoIBMOLS\fP< MOEOT, Move >::oneStep (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, private]\fP"
 .PP
 Apply one step of the local search to the population _pop. 
 .PP
@@ -146,7 +148,7 @@ Definition at line 146 of file moeoIBMOLS.h.
 References moeoIBMOLS< MOEOT, Move >::continuator, moeoIBMOLS< MOEOT, Move >::fitnessAssignment, moeoIBMOLS< MOEOT, Move >::moveIncrEval, moeoIBMOLS< MOEOT, Move >::moveInit, and moeoIBMOLS< MOEOT, Move >::nextMove.
 .PP
 Referenced by moeoIBMOLS< MOEOT, Move >::operator()().
-.SS "template<class MOEOT, class Move> void \fBmoeoIBMOLS\fP< MOEOT, Move >::new_oneStep (eoPop< MOEOT > & _pop)\fC [inline, private]\fP"
+.SS "template<class MOEOT, class Move> void \fBmoeoIBMOLS\fP< MOEOT, Move >::new_oneStep (\fBeoPop\fP< MOEOT > & _pop)\fC [inline, private]\fP"
 .PP
 Apply one step of the local search to the population _pop. 
 .PP

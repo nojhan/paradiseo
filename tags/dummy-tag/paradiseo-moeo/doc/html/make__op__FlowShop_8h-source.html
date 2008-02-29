@@ -10,7 +10,6 @@
     <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
     <li><a href="classes.html"><span>Classes</span></a></li>
     <li id="current"><a href="files.html"><span>Files</span></a></li>
-    <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
     <li>
       <form action="search.php" method="get">
         <table cellspacing="0" cellpadding="0" border="0">
@@ -78,7 +77,7 @@
 <a name="l00054"></a>00054 <span class="comment"> * @param eoParameterLoader&amp; _parser to get user parameters</span>
 <a name="l00055"></a>00055 <span class="comment"> * @param eoState&amp; _state to store the memory</span>
 <a name="l00056"></a>00056 <span class="comment"> */</span>
-<a name="l00057"></a>00057 eoGenOp&lt;FlowShop&gt; &amp; do_make_op(eoParameterLoader&amp; _parser, eoState&amp; _state)
+<a name="l00057"></a>00057 <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_gen_op.html">eoGenOp&lt;FlowShop&gt;</a> &amp; do_make_op(<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_parameter_loader.html">eoParameterLoader</a>&amp; _parser, <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_state.html">eoState</a>&amp; _state)
 <a name="l00058"></a>00058 {
 <a name="l00059"></a>00059 
 <a name="l00061"></a>00061   <span class="comment">// Variation operators</span>
@@ -86,70 +85,70 @@
 <a name="l00064"></a>00064   <span class="comment">// the crossover</span>
 <a name="l00066"></a>00066 <span class="comment"></span>
 <a name="l00067"></a>00067   <span class="comment">// a first crossover</span>
-<a name="l00068"></a>00068   eoQuadOp&lt;FlowShop&gt; *cross = <span class="keyword">new</span> <a class="code" href="classFlowShopOpCrossoverQuad.html">FlowShopOpCrossoverQuad</a>;
+<a name="l00068"></a>00068   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_quad_op.html">eoQuadOp&lt;FlowShop&gt;</a> *cross = <span class="keyword">new</span> <a class="code" href="classFlowShopOpCrossoverQuad.html">FlowShopOpCrossoverQuad</a>;
 <a name="l00069"></a>00069   <span class="comment">// store in the state</span>
-<a name="l00070"></a>00070   _state.storeFunctor(cross);
+<a name="l00070"></a>00070   _state.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_functor_store.html#2f7c33b862229e23ddb0502b5b6a30f7">storeFunctor</a>(cross);
 <a name="l00071"></a>00071 
 <a name="l00072"></a>00072   <span class="comment">// relative rate in the combination</span>
-<a name="l00073"></a>00073   <span class="keywordtype">double</span> cross1Rate = _parser.createParam(1.0, <span class="stringliteral">"crossRate"</span>, <span class="stringliteral">"Relative rate for the only crossover"</span>, 0, <span class="stringliteral">"Variation Operators"</span>).value();
+<a name="l00073"></a>00073   <span class="keywordtype">double</span> cross1Rate = _parser.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_parameter_loader.html#7a8d6d8abfe4e67af6bd4818a77ec78c">createParam</a>(1.0, <span class="stringliteral">"crossRate"</span>, <span class="stringliteral">"Relative rate for the only crossover"</span>, 0, <span class="stringliteral">"Variation Operators"</span>).value();
 <a name="l00074"></a>00074   <span class="comment">// creation of the combined operator with this one</span>
-<a name="l00075"></a>00075   eoPropCombinedQuadOp&lt;FlowShop&gt; *propXover = <span class="keyword">new</span> eoPropCombinedQuadOp&lt;FlowShop&gt;(*cross, cross1Rate);
+<a name="l00075"></a>00075   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_prop_combined_quad_op.html">eoPropCombinedQuadOp&lt;FlowShop&gt;</a> *propXover = <span class="keyword">new</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_prop_combined_quad_op.html">eoPropCombinedQuadOp&lt;FlowShop&gt;</a>(*cross, cross1Rate);
 <a name="l00076"></a>00076   <span class="comment">// store in the state</span>
-<a name="l00077"></a>00077   _state.storeFunctor(propXover);
+<a name="l00077"></a>00077   _state.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_functor_store.html#2f7c33b862229e23ddb0502b5b6a30f7">storeFunctor</a>(propXover);
 <a name="l00078"></a>00078 
 <a name="l00079"></a>00079 
 <a name="l00080"></a>00080   <span class="comment">// the mutation</span>
 <a name="l00082"></a>00082 <span class="comment"></span>
 <a name="l00083"></a>00083   <span class="comment">// a first mutation : the shift mutation</span>
-<a name="l00084"></a>00084   eoMonOp&lt;FlowShop&gt; *mut = <span class="keyword">new</span> FlowShopOpMutationShift;
-<a name="l00085"></a>00085   _state.storeFunctor(mut);
+<a name="l00084"></a>00084   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_mon_op.html">eoMonOp&lt;FlowShop&gt;</a> *mut = <span class="keyword">new</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_shift_mutation.html">FlowShopOpMutationShift</a>;
+<a name="l00085"></a>00085   _state.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_functor_store.html#2f7c33b862229e23ddb0502b5b6a30f7">storeFunctor</a>(mut);
 <a name="l00086"></a>00086   <span class="comment">// its relative rate in the combination</span>
-<a name="l00087"></a>00087   <span class="keywordtype">double</span> mut1Rate = _parser.createParam(0.5, <span class="stringliteral">"shiftMutRate"</span>, <span class="stringliteral">"Relative rate for shift mutation"</span>, 0, <span class="stringliteral">"Variation Operators"</span>).value();
+<a name="l00087"></a>00087   <span class="keywordtype">double</span> mut1Rate = _parser.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_parameter_loader.html#7a8d6d8abfe4e67af6bd4818a77ec78c">createParam</a>(0.5, <span class="stringliteral">"shiftMutRate"</span>, <span class="stringliteral">"Relative rate for shift mutation"</span>, 0, <span class="stringliteral">"Variation Operators"</span>).value();
 <a name="l00088"></a>00088   <span class="comment">// creation of the combined operator with this one</span>
-<a name="l00089"></a>00089   eoPropCombinedMonOp&lt;FlowShop&gt; *propMutation = <span class="keyword">new</span> eoPropCombinedMonOp&lt;FlowShop&gt;(*mut, mut1Rate);
-<a name="l00090"></a>00090   _state.storeFunctor(propMutation);
+<a name="l00089"></a>00089   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_prop_combined_mon_op.html">eoPropCombinedMonOp&lt;FlowShop&gt;</a> *propMutation = <span class="keyword">new</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_prop_combined_mon_op.html">eoPropCombinedMonOp&lt;FlowShop&gt;</a>(*mut, mut1Rate);
+<a name="l00090"></a>00090   _state.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_functor_store.html#2f7c33b862229e23ddb0502b5b6a30f7">storeFunctor</a>(propMutation);
 <a name="l00091"></a>00091 
 <a name="l00092"></a>00092   <span class="comment">// a second mutation : the exchange mutation</span>
-<a name="l00093"></a>00093   mut = <span class="keyword">new</span> FlowShopOpMutationExchange;
-<a name="l00094"></a>00094   _state.storeFunctor(mut);
+<a name="l00093"></a>00093   mut = <span class="keyword">new</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_swap_mutation.html">FlowShopOpMutationExchange</a>;
+<a name="l00094"></a>00094   _state.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_functor_store.html#2f7c33b862229e23ddb0502b5b6a30f7">storeFunctor</a>(mut);
 <a name="l00095"></a>00095   <span class="comment">// its relative rate in the combination</span>
-<a name="l00096"></a>00096   <span class="keywordtype">double</span> mut2Rate = _parser.createParam(0.5, <span class="stringliteral">"exchangeMutRate"</span>, <span class="stringliteral">"Relative rate for exchange mutation"</span>, 0, <span class="stringliteral">"Variation Operators"</span>).value();
+<a name="l00096"></a>00096   <span class="keywordtype">double</span> mut2Rate = _parser.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_parameter_loader.html#7a8d6d8abfe4e67af6bd4818a77ec78c">createParam</a>(0.5, <span class="stringliteral">"exchangeMutRate"</span>, <span class="stringliteral">"Relative rate for exchange mutation"</span>, 0, <span class="stringliteral">"Variation Operators"</span>).value();
 <a name="l00097"></a>00097   <span class="comment">// addition of this one to the combined operator</span>
 <a name="l00098"></a>00098   propMutation -&gt; add(*mut, mut2Rate);
 <a name="l00099"></a>00099 
 <a name="l00100"></a>00100   <span class="comment">// end of crossover and mutation definitions</span>
 <a name="l00102"></a>00102 <span class="comment"></span>
 <a name="l00103"></a>00103   <span class="comment">// First read the individual level parameters</span>
-<a name="l00104"></a>00104   eoValueParam&lt;double&gt;&amp; pCrossParam = _parser.createParam(0.25, <span class="stringliteral">"pCross"</span>, <span class="stringliteral">"Probability of Crossover"</span>, <span class="charliteral">'c'</span>, <span class="stringliteral">"Variation Operators"</span> );
+<a name="l00104"></a>00104   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_value_param.html">eoValueParam&lt;double&gt;</a>&amp; pCrossParam = _parser.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_parameter_loader.html#7a8d6d8abfe4e67af6bd4818a77ec78c">createParam</a>(0.25, <span class="stringliteral">"pCross"</span>, <span class="stringliteral">"Probability of Crossover"</span>, <span class="charliteral">'c'</span>, <span class="stringliteral">"Variation Operators"</span> );
 <a name="l00105"></a>00105   <span class="comment">// minimum check</span>
-<a name="l00106"></a>00106   <span class="keywordflow">if</span> ( (pCrossParam.value() &lt; 0) || (pCrossParam.value() &gt; 1) )
+<a name="l00106"></a>00106   <span class="keywordflow">if</span> ( (pCrossParam.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_value_param.html#d0e91aa4f66711e52fca9be470ce21b7">value</a>() &lt; 0) || (pCrossParam.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_value_param.html#d0e91aa4f66711e52fca9be470ce21b7">value</a>() &gt; 1) )
 <a name="l00107"></a>00107     <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">"Invalid pCross"</span>);
 <a name="l00108"></a>00108 
-<a name="l00109"></a>00109   eoValueParam&lt;double&gt;&amp; pMutParam = _parser.createParam(0.35, <span class="stringliteral">"pMut"</span>, <span class="stringliteral">"Probability of Mutation"</span>, <span class="charliteral">'m'</span>, <span class="stringliteral">"Variation Operators"</span> );
+<a name="l00109"></a>00109   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_value_param.html">eoValueParam&lt;double&gt;</a>&amp; pMutParam = _parser.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_parameter_loader.html#7a8d6d8abfe4e67af6bd4818a77ec78c">createParam</a>(0.35, <span class="stringliteral">"pMut"</span>, <span class="stringliteral">"Probability of Mutation"</span>, <span class="charliteral">'m'</span>, <span class="stringliteral">"Variation Operators"</span> );
 <a name="l00110"></a>00110   <span class="comment">// minimum check</span>
-<a name="l00111"></a>00111   <span class="keywordflow">if</span> ( (pMutParam.value() &lt; 0) || (pMutParam.value() &gt; 1) )
+<a name="l00111"></a>00111   <span class="keywordflow">if</span> ( (pMutParam.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_value_param.html#d0e91aa4f66711e52fca9be470ce21b7">value</a>() &lt; 0) || (pMutParam.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_value_param.html#d0e91aa4f66711e52fca9be470ce21b7">value</a>() &gt; 1) )
 <a name="l00112"></a>00112     <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">"Invalid pMut"</span>);
 <a name="l00113"></a>00113 
 <a name="l00114"></a>00114   <span class="comment">// the crossover - with probability pCross</span>
-<a name="l00115"></a>00115   eoProportionalOp&lt;FlowShop&gt; * propOp = <span class="keyword">new</span> eoProportionalOp&lt;FlowShop&gt; ;
-<a name="l00116"></a>00116   _state.storeFunctor(propOp);
-<a name="l00117"></a>00117   eoQuadOp&lt;FlowShop&gt; *ptQuad = <span class="keyword">new</span> eoQuadCloneOp&lt;FlowShop&gt;;
-<a name="l00118"></a>00118   _state.storeFunctor(ptQuad);
-<a name="l00119"></a>00119   propOp -&gt; add(*propXover, pCrossParam.value()); <span class="comment">// crossover, with proba pcross</span>
-<a name="l00120"></a>00120   propOp -&gt; add(*ptQuad, 1-pCrossParam.value()); <span class="comment">// nothing, with proba 1-pcross</span>
+<a name="l00115"></a>00115   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_proportional_op.html">eoProportionalOp&lt;FlowShop&gt;</a> * propOp = <span class="keyword">new</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_proportional_op.html">eoProportionalOp&lt;FlowShop&gt;</a> ;
+<a name="l00116"></a>00116   _state.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_functor_store.html#2f7c33b862229e23ddb0502b5b6a30f7">storeFunctor</a>(propOp);
+<a name="l00117"></a>00117   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_quad_op.html">eoQuadOp&lt;FlowShop&gt;</a> *ptQuad = <span class="keyword">new</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_quad_clone_op.html">eoQuadCloneOp&lt;FlowShop&gt;</a>;
+<a name="l00118"></a>00118   _state.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_functor_store.html#2f7c33b862229e23ddb0502b5b6a30f7">storeFunctor</a>(ptQuad);
+<a name="l00119"></a>00119   propOp -&gt; add(*propXover, pCrossParam.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_value_param.html#d0e91aa4f66711e52fca9be470ce21b7">value</a>()); <span class="comment">// crossover, with proba pcross</span>
+<a name="l00120"></a>00120   propOp -&gt; add(*ptQuad, 1-pCrossParam.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_value_param.html#d0e91aa4f66711e52fca9be470ce21b7">value</a>()); <span class="comment">// nothing, with proba 1-pcross</span>
 <a name="l00121"></a>00121 
 <a name="l00122"></a>00122   <span class="comment">// now the sequential</span>
-<a name="l00123"></a>00123   eoSequentialOp&lt;FlowShop&gt; *op = <span class="keyword">new</span> eoSequentialOp&lt;FlowShop&gt;;
-<a name="l00124"></a>00124   _state.storeFunctor(op);
+<a name="l00123"></a>00123   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_sequential_op.html">eoSequentialOp&lt;FlowShop&gt;</a> *op = <span class="keyword">new</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_sequential_op.html">eoSequentialOp&lt;FlowShop&gt;</a>;
+<a name="l00124"></a>00124   _state.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_functor_store.html#2f7c33b862229e23ddb0502b5b6a30f7">storeFunctor</a>(op);
 <a name="l00125"></a>00125   op -&gt; add(*propOp, 1.0);       <span class="comment">// always do combined crossover</span>
-<a name="l00126"></a>00126   op -&gt; add(*propMutation, pMutParam.value()); <span class="comment">// then mutation, with proba pmut</span>
+<a name="l00126"></a>00126   op -&gt; add(*propMutation, pMutParam.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_value_param.html#d0e91aa4f66711e52fca9be470ce21b7">value</a>()); <span class="comment">// then mutation, with proba pmut</span>
 <a name="l00127"></a>00127 
 <a name="l00128"></a>00128   <span class="comment">// return a reference</span>
 <a name="l00129"></a>00129   <span class="keywordflow">return</span> *op;
 <a name="l00130"></a>00130 }
 <a name="l00131"></a>00131 
 <a name="l00132"></a>00132 <span class="preprocessor">#endif </span><span class="comment">/*MAKE_OP_FLOWSHOP_H_*/</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:04:16 2008 for ParadisEO-MOEO-MultiObjectiveEvolvingObjects by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:19:47 2008 for ParadisEO-MOEO-MultiObjectiveEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

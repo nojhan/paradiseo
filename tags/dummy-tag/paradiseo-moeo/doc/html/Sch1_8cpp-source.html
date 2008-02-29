@@ -10,7 +10,6 @@
     <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
     <li><a href="classes.html"><span>Classes</span></a></li>
     <li id="current"><a href="files.html"><span>Files</span></a></li>
-    <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
     <li>
       <form action="search.php" method="get">
         <table cellspacing="0" cellpadding="0" border="0">
@@ -119,8 +118,8 @@
 <a name="l00095"></a>00095 <span class="comment">// main</span>
 <a name="l00096"></a>00096 <span class="keywordtype">int</span> main (<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])
 <a name="l00097"></a>00097 {
-<a name="l00098"></a>00098     eoParser parser(argc, argv);  <span class="comment">// for user-parameter reading</span>
-<a name="l00099"></a>00099     eoState state;                <span class="comment">// to keep all things allocated</span>
+<a name="l00098"></a>00098     <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_parser.html">eoParser</a> parser(argc, argv);  <span class="comment">// for user-parameter reading</span>
+<a name="l00099"></a>00099     <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_state.html">eoState</a> state;                <span class="comment">// to keep all things allocated</span>
 <a name="l00100"></a>00100 
 <a name="l00101"></a>00101     <span class="comment">// parameters</span>
 <a name="l00102"></a>00102     <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> POP_SIZE = parser.createParam((<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)(100), <span class="stringliteral">"popSize"</span>, <span class="stringliteral">"Population size"</span>,<span class="charliteral">'P'</span>,<span class="stringliteral">"Param"</span>).value();
@@ -137,7 +136,7 @@
 <a name="l00113"></a>00113     eoUniformMutation &lt; Sch1 &gt; mutation (M_EPSILON);
 <a name="l00114"></a>00114 
 <a name="l00115"></a>00115     <span class="comment">// generate initial population</span>
-<a name="l00116"></a>00116     eoRealVectorBounds bounds (1, 0.0, 2.0);    <span class="comment">// [0, 2]</span>
+<a name="l00116"></a>00116     <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_real_vector_bounds.html">eoRealVectorBounds</a> bounds (1, 0.0, 2.0);    <span class="comment">// [0, 2]</span>
 <a name="l00117"></a>00117     eoRealInitBounded &lt; Sch1 &gt; init (bounds);
 <a name="l00118"></a>00118     eoPop &lt; Sch1 &gt; pop (POP_SIZE, init);
 <a name="l00119"></a>00119 
@@ -156,12 +155,12 @@
 <a name="l00132"></a>00132 
 <a name="l00133"></a>00133     <span class="comment">// printing of the final archive</span>
 <a name="l00134"></a>00134     cout &lt;&lt; <span class="stringliteral">"Final Archive"</span> &lt;&lt; endl;
-<a name="l00135"></a>00135     arch.sortedPrintOn (cout);
+<a name="l00135"></a>00135     arch.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_pop.html#b6572898562eebe5bab105c4475a9a64">sortedPrintOn</a> (cout);
 <a name="l00136"></a>00136     cout &lt;&lt; endl;
 <a name="l00137"></a>00137 
 <a name="l00138"></a>00138     <span class="keywordflow">return</span> EXIT_SUCCESS;
 <a name="l00139"></a>00139 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:04:16 2008 for ParadisEO-MOEO-MultiObjectiveEvolvingObjects by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:19:48 2008 for ParadisEO-MOEO-MultiObjectiveEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

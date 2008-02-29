@@ -10,7 +10,6 @@
     <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
     <li><a href="classes.html"><span>Classes</span></a></li>
     <li id="current"><a href="files.html"><span>Files</span></a></li>
-    <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
     <li>
       <form action="search.php" method="get">
         <table cellspacing="0" cellpadding="0" border="0">
@@ -75,8 +74,8 @@
 <a name="l00051"></a>00051   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> point1, point2;
 <a name="l00052"></a>00052   <span class="keywordflow">do</span>
 <a name="l00053"></a>00053     {
-<a name="l00054"></a>00054       point1 =  rng.random(std::min(_flowshop1.size(), _flowshop2.size()));
-<a name="l00055"></a>00055       point2 =  rng.random(std::min(_flowshop1.size(), _flowshop2.size()));
+<a name="l00054"></a>00054       point1 =  rng.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">random</a>(std::min(_flowshop1.size(), _flowshop2.size()));
+<a name="l00055"></a>00055       point2 =  rng.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">random</a>(std::min(_flowshop1.size(), _flowshop2.size()));
 <a name="l00056"></a>00056     }
 <a name="l00057"></a>00057   <span class="keywordflow">while</span> (fabs((<span class="keywordtype">double</span>) point1-point2) &lt;= 2);
 <a name="l00058"></a>00058   <span class="comment">// computation of the offspring</span>
@@ -132,7 +131,7 @@
 <a name="l00108"></a>00108     }
 <a name="l00109"></a>00109   <span class="keywordflow">return</span> result;
 <a name="l00110"></a>00110 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:04:16 2008 for ParadisEO-MOEO-MultiObjectiveEvolvingObjects by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:19:47 2008 for ParadisEO-MOEO-MultiObjectiveEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

@@ -10,6 +10,8 @@ FlowShopOpCrossoverQuad \- Quadratic crossover operator for flow-shop (modify th
 .PP
 \fC#include <FlowShopOpCrossoverQuad.h>\fP
 .PP
+Inherits \fBeoQuadOp< FlowShop >\fP.
+.PP
 .SS "Public Member Functions"
 
 .in +1c
@@ -37,7 +39,7 @@ Quadratic crossover operator for flow-shop (modify the both genotypes).
 Definition at line 47 of file FlowShopOpCrossoverQuad.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "bool FlowShopOpCrossoverQuad::operator() (\fBFlowShop\fP & _flowshop1, \fBFlowShop\fP & _flowshop2)"
+.SS "bool FlowShopOpCrossoverQuad::operator() (\fBFlowShop\fP & _flowshop1, \fBFlowShop\fP & _flowshop2)\fC [virtual]\fP"
 .PP
 eoQuad crossover - _flowshop1 and _flowshop2 are the (future) offspring, i.e. 
 .PP
@@ -52,9 +54,11 @@ _copies_ of the parents
 .PP
 
 .PP
+Implements \fBeoBF< FlowShop &, FlowShop &, bool >\fP.
+.PP
 Definition at line 47 of file FlowShopOpCrossoverQuad.cpp.
 .PP
-References generateOffspring(), and moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >::value().
+References generateOffspring(), eoRng::random(), and moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >::value().
 .SS "\fBFlowShop\fP FlowShopOpCrossoverQuad::generateOffspring (const \fBFlowShop\fP & _parent1, const \fBFlowShop\fP & _parent2, unsigned int _point1, unsigned int _point2)\fC [private]\fP"
 .PP
 generation of an offspring by a 2 points crossover 

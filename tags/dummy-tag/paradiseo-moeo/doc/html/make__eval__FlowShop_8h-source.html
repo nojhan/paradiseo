@@ -10,7 +10,6 @@
     <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
     <li><a href="classes.html"><span>Classes</span></a></li>
     <li id="current"><a href="files.html"><span>Files</span></a></li>
-    <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
     <li>
       <form action="search.php" method="get">
         <table cellspacing="0" cellpadding="0" border="0">
@@ -75,10 +74,10 @@
 <a name="l00051"></a>00051 <span class="comment"> * @param eoParser&amp; _parser  to get user parameters</span>
 <a name="l00052"></a>00052 <span class="comment"> * @param eoState&amp; _state  to store the memory</span>
 <a name="l00053"></a>00053 <span class="comment"> */</span>
-<a name="l00054"></a>00054 eoEvalFuncCounter&lt;FlowShop&gt; &amp; do_make_eval(eoParser&amp; _parser, eoState&amp; _state)
+<a name="l00054"></a>00054 <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_eval_func_counter.html">eoEvalFuncCounter&lt;FlowShop&gt;</a> &amp; do_make_eval(<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_parser.html">eoParser</a>&amp; _parser, <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_state.html">eoState</a>&amp; _state)
 <a name="l00055"></a>00055 {
 <a name="l00056"></a>00056   <span class="comment">// benchmark file name</span>
-<a name="l00057"></a>00057   std::string benchmarkFileName = _parser.getORcreateParam(std::string(), <span class="stringliteral">"BenchmarkFile"</span>, <span class="stringliteral">"Benchmark file name (benchmarks are available at www.lifl.fr/~liefooga/benchmarks)"</span>, <span class="charliteral">'B'</span>,<span class="stringliteral">"Representation"</span>, <span class="keyword">true</span>).value();
+<a name="l00057"></a>00057   std::string benchmarkFileName = _parser.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_parser.html#7541d5d17a95b01409856895741c7bb3">getORcreateParam</a>(std::string(), <span class="stringliteral">"BenchmarkFile"</span>, <span class="stringliteral">"Benchmark file name (benchmarks are available at www.lifl.fr/~liefooga/benchmarks)"</span>, <span class="charliteral">'B'</span>,<span class="stringliteral">"Representation"</span>, <span class="keyword">true</span>).value();
 <a name="l00058"></a>00058   <span class="keywordflow">if</span> (benchmarkFileName == <span class="stringliteral">""</span>)
 <a name="l00059"></a>00059     {
 <a name="l00060"></a>00060       std::string stmp = <span class="stringliteral">"*** Missing name of the benchmark file\n"</span>;
@@ -95,15 +94,15 @@
 <a name="l00071"></a>00071   <span class="comment">// build of the initializer (a pointer, stored in the eoState)</span>
 <a name="l00072"></a>00072   <a class="code" href="classFlowShopEval.html">FlowShopEval</a>* plainEval = <span class="keyword">new</span> <a class="code" href="classFlowShopEval.html">FlowShopEval</a>(M, N, p, d);
 <a name="l00073"></a>00073   <span class="comment">// turn that object into an evaluation counter</span>
-<a name="l00074"></a>00074   eoEvalFuncCounter&lt;FlowShop&gt;* eval = <span class="keyword">new</span> eoEvalFuncCounter&lt;FlowShop&gt; (* plainEval);
+<a name="l00074"></a>00074   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_eval_func_counter.html">eoEvalFuncCounter&lt;FlowShop&gt;</a>* eval = <span class="keyword">new</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_eval_func_counter.html">eoEvalFuncCounter&lt;FlowShop&gt;</a> (* plainEval);
 <a name="l00075"></a>00075   <span class="comment">// store in state</span>
-<a name="l00076"></a>00076   _state.storeFunctor(eval);
+<a name="l00076"></a>00076   _state.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_functor_store.html#2f7c33b862229e23ddb0502b5b6a30f7">storeFunctor</a>(eval);
 <a name="l00077"></a>00077   <span class="comment">// and return a reference</span>
 <a name="l00078"></a>00078   <span class="keywordflow">return</span> *eval;
 <a name="l00079"></a>00079 }
 <a name="l00080"></a>00080 
 <a name="l00081"></a>00081 <span class="preprocessor">#endif </span><span class="comment">/*MAKE_EVAL_FLOWSHOP_H_*/</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:04:16 2008 for ParadisEO-MOEO-MultiObjectiveEvolvingObjects by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:19:47 2008 for ParadisEO-MOEO-MultiObjectiveEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>
