@@ -38,8 +38,26 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
-SET (TEST_LIST  t-moeo)
-				
+SET (TEST_LIST
+		t-moeo
+		t-moeoBitVector
+		t-moeoRealVector
+		t-moeoArchive
+		t-moeoParetoObjectiveVectorComparator
+		t-moeoAggregativeComparator
+		t-moeoDiversityThenFitnessComparator
+		t-moeoFitnessThenDiversityComparator
+		t-moeoAchievementFitnessAssignment
+		t-moeoExpBinaryIndicatorBasedFitnessAssignment
+		t-moeoFastNonDominatedSortingFitnessAssignment
+		t-moeoCrowdingDiversityAssignment
+		t-moeoSharingDiversityAssignment
+		t-moeoIBEA
+		t-moeoNSGA
+		t-moeoNSGAII
+		t-moeoEasyEA
+)
+
 FOREACH (test ${TEST_LIST})
 	  SET ("T_${test}_SOURCES" "${test}.cpp")
 ENDFOREACH (test)
