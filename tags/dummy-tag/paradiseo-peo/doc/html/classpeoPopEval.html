@@ -29,7 +29,7 @@
     <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
     <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
   </ul></div>
-<h1>peoPopEval&lt; EOT &gt; Class Template Reference</h1><!-- doxytag: class="peoPopEval" --><!-- doxytag: inherits="Service" -->Parallel evaluation functor wrapper with MOEO.  
+<h1>peoPopEval&lt; EOT &gt; Class Template Reference</h1><!-- doxytag: class="peoPopEval" --><!-- doxytag: inherits="Service,eoPopEvalFunc" -->Parallel evaluation functor wrapper with MOEO.  
 <a href="#_details">More...</a>
 <p>
 <code>#include &lt;<a class="el" href="peoMoeoPopEval_8h-source.html">peoMoeoPopEval.h</a>&gt;</code>
@@ -37,22 +37,25 @@
 <p>Inheritance diagram for peoPopEval&lt; EOT &gt;:
 <p><center><img src="classpeoPopEval.png" usemap="#peoPopEval< EOT >_map" border="0" alt=""></center>
 <map name="peoPopEval< EOT >_map">
-<area href="classService.html" alt="Service" shape="rect" coords="0,56,129,80">
-<area href="classCommunicable.html" alt="Communicable" shape="rect" coords="0,0,129,24">
+<area href="classService.html" alt="Service" shape="rect" coords="0,112,151,136">
+<area doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_pop_eval_func.html" alt="eoPopEvalFunc< EOT >" shape="rect" coords="161,112,312,136">
+<area href="classCommunicable.html" alt="Communicable" shape="rect" coords="0,56,151,80">
+<area doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_b_f.html" alt="eoBF< A1, A2, R >" shape="rect" coords="161,56,312,80">
+<area doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_functor_base.html" alt="eoFunctorBase" shape="rect" coords="161,0,312,24">
 </map>
 <a href="classpeoPopEval-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoPopEval.html#878297ba0de14593bd9cc03b2daf52df">peoPopEval</a> (eoEvalFunc&lt; EOT &gt; &amp;__eval_func)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoPopEval.html#878297ba0de14593bd9cc03b2daf52df">peoPopEval</a> (<a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_eval_func.html">eoEvalFunc</a>&lt; EOT &gt; &amp;__eval_func)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor function - an EO-derived evaluation functor has to be specified; an internal reference is set towards the specified evaluation functor.  <a href="#878297ba0de14593bd9cc03b2daf52df"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoPopEval.html#088822da7a0c92bc21574358d2e5f87c">peoPopEval</a> (const std::vector&lt; eoEvalFunc&lt; EOT &gt; * &gt; &amp;__funcs, <a class="el" href="classpeoAggEvalFunc.html">peoAggEvalFunc</a>&lt; EOT &gt; &amp;__merge_eval)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoPopEval.html#088822da7a0c92bc21574358d2e5f87c">peoPopEval</a> (const std::vector&lt; <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_eval_func.html">eoEvalFunc</a>&lt; EOT &gt; * &gt; &amp;__funcs, <a class="el" href="classpeoAggEvalFunc.html">peoAggEvalFunc</a>&lt; EOT &gt; &amp;__merge_eval)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor function - a vector of EO-derived evaluation functors has to be specified as well as an aggregation function.  <a href="#088822da7a0c92bc21574358d2e5f87c"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoPopEval.html#593dd60fc004edea8994d5575bf66e05">operator()</a> (eoPop&lt; EOT &gt; &amp;__pop)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoPopEval.html#593dd60fc004edea8994d5575bf66e05">operator()</a> (<a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_pop.html">eoPop</a>&lt; EOT &gt; &amp;__pop)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Operator for applying the evaluation functor (direct or aggregate) for each individual of the specified population.  <a href="#593dd60fc004edea8994d5575bf66e05"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoPopEval.html#fd942c2b66f31c7d12a9ad48f1529a16">operator()</a> (eoPop&lt; EOT &gt; &amp;__dummy, eoPop&lt; EOT &gt; &amp;__pop)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoPopEval.html#fd942c2b66f31c7d12a9ad48f1529a16">operator()</a> (<a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_pop.html">eoPop</a>&lt; EOT &gt; &amp;__dummy, <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_pop.html">eoPop</a>&lt; EOT &gt; &amp;__pop)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoPopEval.html#95351dcd81d1bf878d839e52a02a902d">packData</a> ()</td></tr>
 
@@ -77,11 +80,11 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Auxiliary function for notifications between the process requesting an evaluation operation and the processes that performs the actual evaluation phase.  <a href="#b1e33394ba9797237cb8c7c1f410bd67"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">const std::vector&lt; eoEvalFunc&lt;<br>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">const std::vector&lt; <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_eval_func.html">eoEvalFunc</a>&lt;<br>
  EOT &gt; * &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoPopEval.html#5862b3661c5b0531d55870b5f3881d1e">funcs</a></td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4c563a67b776d97b25a05013ddc99921"></a><!-- doxytag: member="peoPopEval::one_func" ref="4c563a67b776d97b25a05013ddc99921" args="" -->
-std::vector&lt; eoEvalFunc&lt; EOT &gt; * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoPopEval.html#4c563a67b776d97b25a05013ddc99921">one_func</a></td></tr>
+std::vector&lt; <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_eval_func.html">eoEvalFunc</a>&lt; EOT &gt; * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoPopEval.html#4c563a67b776d97b25a05013ddc99921">one_func</a></td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="765f1941fcb630b6ed5c4cf0e1e845f9"></a><!-- doxytag: member="peoPopEval::merge_eval" ref="765f1941fcb630b6ed5c4cf0e1e845f9" args="" -->
 <a class="el" href="classpeoAggEvalFunc.html">peoAggEvalFunc</a>&lt; EOT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoPopEval.html#765f1941fcb630b6ed5c4cf0e1e845f9">merge_eval</a></td></tr>
@@ -115,7 +118,7 @@ unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 
 Parallel evaluation functor wrapper with MOEO. 
 <p>
-<dl compact><dt><b>See also:</b></dt><dd><a class="el" href="classService.html">Service</a> eoPopEvalFunc </dd></dl>
+<dl compact><dt><b>See also:</b></dt><dd><a class="el" href="classService.html">Service</a> <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_pop_eval_func.html">eoPopEvalFunc</a> </dd></dl>
 <dl compact><dt><b>Version:</b></dt><dd>1.0 </dd></dl>
 <dl compact><dt><b>Date:</b></dt><dd>2008 </dd></dl>
 
@@ -132,7 +135,7 @@ template&lt;class EOT&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classpeoPopEval.html">peoPopEval</a>&lt; EOT &gt;::<a class="el" href="classpeoPopEval.html">peoPopEval</a>           </td>
           <td>(</td>
-          <td class="paramtype">eoEvalFunc&lt; EOT &gt; &amp;&nbsp;</td>
+          <td class="paramtype"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_eval_func.html">eoEvalFunc</a>&lt; EOT &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>__eval_func</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td width="100%"></td>
@@ -165,7 +168,7 @@ template&lt;class EOT&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classpeoPopEval.html">peoPopEval</a>&lt; EOT &gt;::<a class="el" href="classpeoPopEval.html">peoPopEval</a>           </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; eoEvalFunc&lt; EOT &gt; * &gt; &amp;&nbsp;</td>
+          <td class="paramtype">const std::vector&lt; <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_eval_func.html">eoEvalFunc</a>&lt; EOT &gt; * &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>__funcs</em>, </td>
         </tr>
         <tr>
@@ -188,7 +191,7 @@ Constructor function - a vector of EO-derived evaluation functors has to be spec
 <p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>const</em>&nbsp;</td><td>std :: vector&lt; eoEvalFunc &lt; EOT &gt;* &gt;&amp; __funcs - vector of EO-derived partial evaluation functors; </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>const</em>&nbsp;</td><td>std :: vector&lt; <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_eval_func.html">eoEvalFunc</a> &lt; EOT &gt;* &gt;&amp; __funcs - vector of EO-derived partial evaluation functors; </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>peoAggEvalFunc&lt;</em>&nbsp;</td><td>EOT &gt;&amp; __merge_eval - aggregation functor for creating a fitness value out of the partial fitness values. </td></tr>
   </table>
 </dl>
@@ -207,7 +210,7 @@ template&lt;class EOT&gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classpeoPopEval.html">peoPopEval</a>&lt; EOT &gt;::operator()           </td>
           <td>(</td>
-          <td class="paramtype">eoPop&lt; EOT &gt; &amp;&nbsp;</td>
+          <td class="paramtype"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_pop.html">eoPop</a>&lt; EOT &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>__pop</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td width="100%"></td>
@@ -242,13 +245,13 @@ template&lt;class EOT&gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classpeoPopEval.html">peoPopEval</a>&lt; EOT &gt;::operator()           </td>
           <td>(</td>
-          <td class="paramtype">eoPop&lt; EOT &gt; &amp;&nbsp;</td>
+          <td class="paramtype"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_pop.html">eoPop</a>&lt; EOT &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>__dummy</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">eoPop&lt; EOT &gt; &amp;&nbsp;</td>
+          <td class="paramtype"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_pop.html">eoPop</a>&lt; EOT &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>__pop</em></td><td>&nbsp;</td>
         </tr>
         <tr>
@@ -454,7 +457,7 @@ References <a class="el" href="core_2service_8cpp-source.html#l00045">Service::g
 template&lt;class EOT&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const std :: vector&lt; eoEvalFunc &lt; EOT &gt;* &gt;&amp; <a class="el" href="classpeoPopEval.html">peoPopEval</a>&lt; EOT &gt;::<a class="el" href="classpeoPopEval.html#5862b3661c5b0531d55870b5f3881d1e">funcs</a><code> [private]</code>          </td>
+          <td class="memname">const std :: vector&lt; <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_eval_func.html">eoEvalFunc</a> &lt; EOT &gt;* &gt;&amp; <a class="el" href="classpeoPopEval.html">peoPopEval</a>&lt; EOT &gt;::<a class="el" href="classpeoPopEval.html#5862b3661c5b0531d55870b5f3881d1e">funcs</a><code> [private]</code>          </td>
         </tr>
       </table>
 </div>
@@ -463,8 +466,8 @@ template&lt;class EOT&gt; </div>
 <p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>std</em>&nbsp;</td><td>:: vector&lt; eoEvalFunc &lt; EOT &gt;* &gt;&amp; funcs </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>std</em>&nbsp;</td><td>:: vector&lt; eoEvalFunc &lt; EOT &gt;* &gt; one_func </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>std</em>&nbsp;</td><td>:: vector&lt; <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_eval_func.html">eoEvalFunc</a> &lt; EOT &gt;* &gt;&amp; funcs </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>std</em>&nbsp;</td><td>:: vector&lt; <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_eval_func.html">eoEvalFunc</a> &lt; EOT &gt;* &gt; one_func </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>peoAggEvalFunc&lt;</em>&nbsp;</td><td>EOT &gt;&amp; merge_eval </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>peoNoAggEvalFunc&lt;</em>&nbsp;</td><td>EOT &gt; no_merge_eval </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>std</em>&nbsp;</td><td>:: queue&lt; EOT* &gt;tasks </td></tr>
@@ -484,7 +487,7 @@ Referenced by <a class="el" href="peoPopEval_8h-source.html#l00197">peoPopEval&l
 </div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="peoPopEval_8h-source.html">peoPopEval.h</a></ul>
-<hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:07 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
+<hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:20:38 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

@@ -68,18 +68,18 @@
 <a name="l00044"></a>00044 
 <a name="l00045"></a>00045 <span class="keyword">typedef</span> <span class="keywordtype">int</span> RANK_ID;
 <a name="l00046"></a>00046 
-<a name="l00047"></a><a class="code" href="structNode.html">00047</a> <span class="keyword">struct </span><a class="code" href="structNode.html">Node</a>
+<a name="l00047"></a>00047 <span class="keyword">struct </span><a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">Node</a>
 <a name="l00048"></a>00048   {
 <a name="l00049"></a>00049 
-<a name="l00050"></a><a class="code" href="structNode.html#7de6f254b6b8c3f9f8287af0bb742e9b">00050</a>     RANK_ID <a class="code" href="structNode.html#7de6f254b6b8c3f9f8287af0bb742e9b">rk</a>; <span class="comment">/* Rank */</span>
-<a name="l00051"></a><a class="code" href="structNode.html#3c4318d71ca9a44fe33edcf8b7f26863">00051</a>     std :: string <a class="code" href="structNode.html#3c4318d71ca9a44fe33edcf8b7f26863">name</a>; <span class="comment">/* Host name */</span>
-<a name="l00052"></a><a class="code" href="structNode.html#01fec86d75332858b158c810d57caee3">00052</a>     <span class="keywordtype">unsigned</span> <a class="code" href="structNode.html#01fec86d75332858b158c810d57caee3">num_workers</a>; <span class="comment">/* Number of parallel workers */</span>
-<a name="l00053"></a><a class="code" href="structNode.html#98deed2036c3dd8fc0f4fe8dacf56a92">00053</a>     <span class="keywordtype">int</span> <a class="code" href="structNode.html#98deed2036c3dd8fc0f4fe8dacf56a92">rk_sched</a>; <span class="comment">/* rank of the scheduler */</span>
-<a name="l00054"></a><a class="code" href="structNode.html#a90013b890888d3d252a71cb4fe48934">00054</a>     std :: vector &lt;RUNNER_ID&gt; <a class="code" href="structNode.html#a90013b890888d3d252a71cb4fe48934">id_run</a>; <span class="comment">/* List of runner def. IDs */</span>
-<a name="l00055"></a><a class="code" href="structNode.html#fc0bde29836bcf5ea44aaca86c814521">00055</a>     std :: vector &lt;RUNNER_ID&gt; <a class="code" href="structNode.html#fc0bde29836bcf5ea44aaca86c814521">execution_id_run</a>; <span class="comment">/* List of runtime execution runner IDs */</span>
+<a name="l00050"></a>00050     RANK_ID rk; <span class="comment">/* Rank */</span>
+<a name="l00051"></a>00051     std :: string name; <span class="comment">/* Host name */</span>
+<a name="l00052"></a>00052     <span class="keywordtype">unsigned</span> num_workers; <span class="comment">/* Number of parallel workers */</span>
+<a name="l00053"></a>00053     <span class="keywordtype">int</span> rk_sched; <span class="comment">/* rank of the scheduler */</span>
+<a name="l00054"></a>00054     std :: vector &lt;RUNNER_ID&gt; id_run; <span class="comment">/* List of runner def. IDs */</span>
+<a name="l00055"></a>00055     std :: vector &lt;RUNNER_ID&gt; execution_id_run; <span class="comment">/* List of runtime execution runner IDs */</span>
 <a name="l00056"></a>00056   };
 <a name="l00057"></a>00057 
-<a name="l00058"></a>00058 <span class="keyword">extern</span> <a class="code" href="structNode.html">Node</a> * my_node;
+<a name="l00058"></a>00058 <span class="keyword">extern</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">Node</a> * my_node;
 <a name="l00059"></a>00059 
 <a name="l00060"></a>00060 <span class="keyword">extern</span> <span class="keywordtype">bool</span> isScheduleNode ();
 <a name="l00061"></a>00061 
@@ -97,7 +97,7 @@
 <a name="l00073"></a>00073 <span class="keyword">extern</span> <span class="keywordtype">void</span> initNode (<span class="keywordtype">int</span> * __argc, <span class="keywordtype">char</span> * * * __argv);
 <a name="l00074"></a>00074 
 <a name="l00075"></a>00075 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:20:35 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

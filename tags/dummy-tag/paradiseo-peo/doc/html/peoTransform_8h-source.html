@@ -69,19 +69,19 @@
 <a name="l00045"></a>00045 
 <a name="l00046"></a>00046 <span class="keyword">extern</span> <span class="keywordtype">int</span> getNodeRank();
 <a name="l00047"></a>00047 
-<a name="l00053"></a><a class="code" href="classpeoTransform.html">00053</a> <span class="keyword">template</span>&lt; <span class="keyword">class</span> EOT &gt; <span class="keyword">class </span><a class="code" href="classpeoTransform.html">peoTransform</a> : <span class="keyword">public</span> <a class="code" href="classService.html">Service</a>, <span class="keyword">public</span> eoTransform&lt; EOT &gt;
+<a name="l00053"></a><a class="code" href="classpeoTransform.html">00053</a> <span class="keyword">template</span>&lt; <span class="keyword">class</span> EOT &gt; <span class="keyword">class </span><a class="code" href="classpeoTransform.html">peoTransform</a> : <span class="keyword">public</span> <a class="code" href="classService.html">Service</a>, <span class="keyword">public</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_transform.html">eoTransform</a>&lt; EOT &gt;
 <a name="l00054"></a>00054   {
 <a name="l00055"></a>00055 
 <a name="l00056"></a>00056   <span class="keyword">public</span>:
 <a name="l00057"></a>00057 
 <a name="l00063"></a>00063     <a class="code" href="classpeoTransform.html#755989a2d080903d0cade75643de0788">peoTransform</a>(
-<a name="l00064"></a>00064       eoQuadOp&lt; EOT &gt;&amp; __cross,
+<a name="l00064"></a>00064       <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_quad_op.html">eoQuadOp&lt; EOT &gt;</a>&amp; __cross,
 <a name="l00065"></a>00065       <span class="keywordtype">double</span> __cross_rate,
-<a name="l00066"></a>00066       eoMonOp&lt; EOT &gt;&amp; __mut,
+<a name="l00066"></a>00066       <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_mon_op.html">eoMonOp&lt; EOT &gt;</a>&amp; __mut,
 <a name="l00067"></a>00067       <span class="keywordtype">double</span> __mut_rate
 <a name="l00068"></a>00068     );
 <a name="l00069"></a>00069 
-<a name="l00072"></a>00072     <span class="keywordtype">void</span> <a class="code" href="classpeoTransform.html#9322aa28ad272289132e342624a0adb4">operator()</a>( eoPop&lt; EOT &gt;&amp; __pop );
+<a name="l00072"></a>00072     <span class="keywordtype">void</span> <a class="code" href="classpeoTransform.html#9322aa28ad272289132e342624a0adb4">operator()</a>( <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_pop.html">eoPop&lt; EOT &gt;</a>&amp; __pop );
 <a name="l00074"></a>00074     <span class="keywordtype">void</span> <a class="code" href="classpeoTransform.html#c1101d10a36ce4255b874bcd9725021e">packData</a>();
 <a name="l00076"></a>00076     <span class="keywordtype">void</span> <a class="code" href="classpeoTransform.html#a804631492e08053162a196877587aef">unpackData</a>();
 <a name="l00078"></a>00078     <span class="keywordtype">void</span> <a class="code" href="classpeoTransform.html#85c2cbc76f803b2b5cb2bc8cbc214136">execute</a>();
@@ -91,19 +91,19 @@
 <a name="l00086"></a>00086     <span class="keywordtype">void</span> <a class="code" href="classpeoTransform.html#19990af963b6604d1175290fe6725335">notifySendingAllResourceRequests</a>();
 <a name="l00087"></a>00087 
 <a name="l00088"></a>00088   <span class="keyword">private</span>:
-<a name="l00098"></a><a class="code" href="classpeoTransform.html#d2fce5199b61f599fd89cf54d6fcd312">00098</a>     eoQuadOp&lt; EOT &gt;&amp; <a class="code" href="classpeoTransform.html#d2fce5199b61f599fd89cf54d6fcd312">cross</a>;
+<a name="l00098"></a><a class="code" href="classpeoTransform.html#d2fce5199b61f599fd89cf54d6fcd312">00098</a>     <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_quad_op.html">eoQuadOp&lt; EOT &gt;</a>&amp; <a class="code" href="classpeoTransform.html#d2fce5199b61f599fd89cf54d6fcd312">cross</a>;
 <a name="l00099"></a><a class="code" href="classpeoTransform.html#3336251fb3433a8405ea75f3a8bed04d">00099</a>     <span class="keywordtype">double</span> <a class="code" href="classpeoTransform.html#3336251fb3433a8405ea75f3a8bed04d">cross_rate</a>;
-<a name="l00100"></a><a class="code" href="classpeoTransform.html#3d1ea5c8a6aa95bf051051361908a9c6">00100</a>     eoMonOp&lt; EOT &gt;&amp; <a class="code" href="classpeoTransform.html#3d1ea5c8a6aa95bf051051361908a9c6">mut</a>;
+<a name="l00100"></a><a class="code" href="classpeoTransform.html#3d1ea5c8a6aa95bf051051361908a9c6">00100</a>     <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_mon_op.html">eoMonOp&lt; EOT &gt;</a>&amp; <a class="code" href="classpeoTransform.html#3d1ea5c8a6aa95bf051051361908a9c6">mut</a>;
 <a name="l00101"></a><a class="code" href="classpeoTransform.html#0b0802dfc4a3ec664c8fccf10bb1842a">00101</a>     <span class="keywordtype">double</span> <a class="code" href="classpeoTransform.html#0b0802dfc4a3ec664c8fccf10bb1842a">mut_rate</a>;
 <a name="l00102"></a><a class="code" href="classpeoTransform.html#0acac288337aec3d0d853565924a365d">00102</a>     <span class="keywordtype">unsigned</span> <a class="code" href="classpeoTransform.html#0acac288337aec3d0d853565924a365d">idx</a>;
-<a name="l00103"></a><a class="code" href="classpeoTransform.html#0916042d3500452082ad19fd5ce5e161">00103</a>     eoPop&lt; EOT &gt;* <a class="code" href="classpeoTransform.html#0916042d3500452082ad19fd5ce5e161">pop</a>;
+<a name="l00103"></a><a class="code" href="classpeoTransform.html#0916042d3500452082ad19fd5ce5e161">00103</a>     <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_pop.html">eoPop&lt; EOT &gt;</a>* <a class="code" href="classpeoTransform.html#0916042d3500452082ad19fd5ce5e161">pop</a>;
 <a name="l00104"></a><a class="code" href="classpeoTransform.html#5c754343fa9a3580632d6b9e8f1bafaa">00104</a>     EOT <a class="code" href="classpeoTransform.html#88c563f77e5c25b70b6cb619ec97185f">father</a>, <a class="code" href="classpeoTransform.html#5c754343fa9a3580632d6b9e8f1bafaa">mother</a>;
 <a name="l00105"></a><a class="code" href="classpeoTransform.html#6a02c2c2de16c5825058e06d146c5cd9">00105</a>     <span class="keywordtype">unsigned</span> <a class="code" href="classpeoTransform.html#6a02c2c2de16c5825058e06d146c5cd9">num_term</a>;
 <a name="l00106"></a>00106   };
 <a name="l00107"></a>00107 
 <a name="l00108"></a><a class="code" href="classpeoTransform.html#755989a2d080903d0cade75643de0788">00108</a> <span class="keyword">template</span>&lt; <span class="keyword">class</span> EOT &gt; <a class="code" href="classpeoTransform.html#755989a2d080903d0cade75643de0788">peoTransform&lt; EOT &gt; :: peoTransform</a>(
 <a name="l00109"></a>00109 
-<a name="l00110"></a>00110   eoQuadOp&lt; EOT &gt;&amp; __cross,
+<a name="l00110"></a>00110   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_quad_op.html">eoQuadOp&lt; EOT &gt;</a>&amp; __cross,
 <a name="l00111"></a>00111   <span class="keywordtype">double</span> __cross_rate,
 <a name="l00112"></a>00112   eoMonOp &lt; EOT &gt;&amp; __mut,
 <a name="l00113"></a>00113   <span class="keywordtype">double</span> __mut_rate
@@ -133,10 +133,10 @@
 <a name="l00137"></a><a class="code" href="classpeoTransform.html#85c2cbc76f803b2b5cb2bc8cbc214136">00137</a> <span class="keyword">template</span>&lt; <span class="keyword">class</span> EOT &gt; <span class="keywordtype">void</span> <a class="code" href="classpeoTransform.html#85c2cbc76f803b2b5cb2bc8cbc214136">peoTransform&lt; EOT &gt; :: execute</a>()
 <a name="l00138"></a>00138 {
 <a name="l00139"></a>00139 
-<a name="l00140"></a>00140   <span class="keywordflow">if</span> ( rng.uniform() &lt; <a class="code" href="classpeoTransform.html#3336251fb3433a8405ea75f3a8bed04d">cross_rate</a> ) <a class="code" href="classpeoTransform.html#d2fce5199b61f599fd89cf54d6fcd312">cross</a>( <a class="code" href="classpeoTransform.html#5c754343fa9a3580632d6b9e8f1bafaa">mother</a>, <a class="code" href="classpeoTransform.html#88c563f77e5c25b70b6cb619ec97185f">father</a> );
+<a name="l00140"></a>00140   <span class="keywordflow">if</span> ( rng.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#50dfb052f11ae50326e552cb223d88e4">uniform</a>() &lt; <a class="code" href="classpeoTransform.html#3336251fb3433a8405ea75f3a8bed04d">cross_rate</a> ) <a class="code" href="classpeoTransform.html#d2fce5199b61f599fd89cf54d6fcd312">cross</a>( <a class="code" href="classpeoTransform.html#5c754343fa9a3580632d6b9e8f1bafaa">mother</a>, <a class="code" href="classpeoTransform.html#88c563f77e5c25b70b6cb619ec97185f">father</a> );
 <a name="l00141"></a>00141 
-<a name="l00142"></a>00142   <span class="keywordflow">if</span> ( rng.uniform() &lt; <a class="code" href="classpeoTransform.html#0b0802dfc4a3ec664c8fccf10bb1842a">mut_rate</a> ) <a class="code" href="classpeoTransform.html#3d1ea5c8a6aa95bf051051361908a9c6">mut</a>( <a class="code" href="classpeoTransform.html#5c754343fa9a3580632d6b9e8f1bafaa">mother</a> );
-<a name="l00143"></a>00143   <span class="keywordflow">if</span> ( rng.uniform() &lt; <a class="code" href="classpeoTransform.html#0b0802dfc4a3ec664c8fccf10bb1842a">mut_rate</a> ) <a class="code" href="classpeoTransform.html#3d1ea5c8a6aa95bf051051361908a9c6">mut</a>( <a class="code" href="classpeoTransform.html#88c563f77e5c25b70b6cb619ec97185f">father</a> );
+<a name="l00142"></a>00142   <span class="keywordflow">if</span> ( rng.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#50dfb052f11ae50326e552cb223d88e4">uniform</a>() &lt; <a class="code" href="classpeoTransform.html#0b0802dfc4a3ec664c8fccf10bb1842a">mut_rate</a> ) <a class="code" href="classpeoTransform.html#3d1ea5c8a6aa95bf051051361908a9c6">mut</a>( <a class="code" href="classpeoTransform.html#5c754343fa9a3580632d6b9e8f1bafaa">mother</a> );
+<a name="l00143"></a>00143   <span class="keywordflow">if</span> ( rng.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#50dfb052f11ae50326e552cb223d88e4">uniform</a>() &lt; <a class="code" href="classpeoTransform.html#0b0802dfc4a3ec664c8fccf10bb1842a">mut_rate</a> ) <a class="code" href="classpeoTransform.html#3d1ea5c8a6aa95bf051051361908a9c6">mut</a>( <a class="code" href="classpeoTransform.html#88c563f77e5c25b70b6cb619ec97185f">father</a> );
 <a name="l00144"></a>00144 }
 <a name="l00145"></a>00145 
 <a name="l00146"></a>00146 
@@ -193,7 +193,7 @@
 <a name="l00197"></a>00197 
 <a name="l00198"></a>00198 
 <a name="l00199"></a>00199 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:20:35 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

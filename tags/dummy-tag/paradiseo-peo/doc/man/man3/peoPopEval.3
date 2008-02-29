@@ -10,25 +10,25 @@ peoPopEval \- Parallel evaluation functor wrapper with MOEO.
 .PP
 \fC#include <peoMoeoPopEval.h>\fP
 .PP
-Inherits \fBService\fP.
+Inherits \fBService\fP, and \fBeoPopEvalFunc< EOT >< EOT >\fP.
 .PP
 .SS "Public Member Functions"
 
 .in +1c
 .ti -1c
-.RI "\fBpeoPopEval\fP (eoEvalFunc< EOT > &__eval_func)"
+.RI "\fBpeoPopEval\fP (\fBeoEvalFunc\fP< EOT > &__eval_func)"
 .br
 .RI "\fIConstructor function - an EO-derived evaluation functor has to be specified; an internal reference is set towards the specified evaluation functor. \fP"
 .ti -1c
-.RI "\fBpeoPopEval\fP (const std::vector< eoEvalFunc< EOT > * > &__funcs, \fBpeoAggEvalFunc\fP< EOT > &__merge_eval)"
+.RI "\fBpeoPopEval\fP (const std::vector< \fBeoEvalFunc\fP< EOT > * > &__funcs, \fBpeoAggEvalFunc\fP< EOT > &__merge_eval)"
 .br
 .RI "\fIConstructor function - a vector of EO-derived evaluation functors has to be specified as well as an aggregation function. \fP"
 .ti -1c
-.RI "void \fBoperator()\fP (eoPop< EOT > &__pop)"
+.RI "void \fBoperator()\fP (\fBeoPop\fP< EOT > &__pop)"
 .br
 .RI "\fIOperator for applying the evaluation functor (direct or aggregate) for each individual of the specified population. \fP"
 .ti -1c
-.RI "void \fBoperator()\fP (eoPop< EOT > &__dummy, eoPop< EOT > &__pop)"
+.RI "void \fBoperator()\fP (\fBeoPop\fP< EOT > &__dummy, \fBeoPop\fP< EOT > &__pop)"
 .br
 .ti -1c
 .RI "void \fBpackData\fP ()"
@@ -63,10 +63,10 @@ Inherits \fBService\fP.
 
 .in +1c
 .ti -1c
-.RI "const std::vector< eoEvalFunc< EOT > * > & \fBfuncs\fP"
+.RI "const std::vector< \fBeoEvalFunc\fP< EOT > * > & \fBfuncs\fP"
 .br
 .ti -1c
-.RI "std::vector< eoEvalFunc< EOT > * > \fBone_func\fP"
+.RI "std::vector< \fBeoEvalFunc\fP< EOT > * > \fBone_func\fP"
 .br
 .ti -1c
 .RI "\fBpeoAggEvalFunc\fP< EOT > & \fBmerge_eval\fP"
@@ -101,7 +101,7 @@ Parallel evaluation functor wrapper with MOEO.
 
 \fBSee also:\fP
 .RS 4
-\fBService\fP eoPopEvalFunc 
+\fBService\fP \fBeoPopEvalFunc\fP 
 .RE
 .PP
 \fBVersion:\fP
@@ -119,7 +119,7 @@ Parallel evaluation functor wrapper with MOEO.
 Definition at line 53 of file peoPopEval.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<class EOT> \fBpeoPopEval\fP< EOT >::\fBpeoPopEval\fP (eoEvalFunc< EOT > & __eval_func)"
+.SS "template<class EOT> \fBpeoPopEval\fP< EOT >::\fBpeoPopEval\fP (\fBeoEvalFunc\fP< EOT > & __eval_func)"
 .PP
 Constructor function - an EO-derived evaluation functor has to be specified; an internal reference is set towards the specified evaluation functor. 
 .PP
@@ -133,13 +133,13 @@ Constructor function - an EO-derived evaluation functor has to be specified; an 
 Definition at line 132 of file peoPopEval.h.
 .PP
 References peoPopEval< EOT >::one_func.
-.SS "template<class EOT> \fBpeoPopEval\fP< EOT >::\fBpeoPopEval\fP (const std::vector< eoEvalFunc< EOT > * > & __funcs, \fBpeoAggEvalFunc\fP< EOT > & __merge_eval)"
+.SS "template<class EOT> \fBpeoPopEval\fP< EOT >::\fBpeoPopEval\fP (const std::vector< \fBeoEvalFunc\fP< EOT > * > & __funcs, \fBpeoAggEvalFunc\fP< EOT > & __merge_eval)"
 .PP
 Constructor function - a vector of EO-derived evaluation functors has to be specified as well as an aggregation function. 
 .PP
 \fBParameters:\fP
 .RS 4
-\fIconst\fP std :: vector< eoEvalFunc < EOT >* >& __funcs - vector of EO-derived partial evaluation functors; 
+\fIconst\fP std :: vector< \fBeoEvalFunc\fP < EOT >* >& __funcs - vector of EO-derived partial evaluation functors; 
 .br
 \fIpeoAggEvalFunc<\fP EOT >& __merge_eval - aggregation functor for creating a fitness value out of the partial fitness values. 
 .RE
@@ -149,7 +149,7 @@ Constructor function - a vector of EO-derived evaluation functors has to be spec
 Definition at line 141 of file peoPopEval.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class EOT> void \fBpeoPopEval\fP< EOT >::operator() (eoPop< EOT > & __pop)"
+.SS "template<class EOT> void \fBpeoPopEval\fP< EOT >::operator() (\fBeoPop\fP< EOT > & __pop)"
 .PP
 Operator for applying the evaluation functor (direct or aggregate) for each individual of the specified population. 
 .PP
@@ -165,7 +165,7 @@ Definition at line 154 of file peoPopEval.h.
 References peoPopEval< EOT >::funcs, peoPopEval< EOT >::progression, Service::requestResourceRequest(), Communicable::stop(), peoPopEval< EOT >::tasks, and peoPopEval< EOT >::total.
 .PP
 Referenced by peoPopEval< EOT >::operator()().
-.SS "template<class EOT> void \fBpeoPopEval\fP< EOT >::operator() (eoPop< EOT > & __dummy, eoPop< EOT > & __pop)"
+.SS "template<class EOT> void \fBpeoPopEval\fP< EOT >::operator() (\fBeoPop\fP< EOT > & __dummy, \fBeoPop\fP< EOT > & __pop)"
 .PP
 \fBParameters:\fP
 .RS 4
@@ -245,13 +245,13 @@ Definition at line 251 of file peoPopEval.h.
 References Service::getOwner(), and Thread::setPassive().
 .SH "Member Data Documentation"
 .PP 
-.SS "template<class EOT> const std :: vector< eoEvalFunc < EOT >* >& \fBpeoPopEval\fP< EOT >::\fBfuncs\fP\fC [private]\fP"
+.SS "template<class EOT> const std :: vector< \fBeoEvalFunc\fP < EOT >* >& \fBpeoPopEval\fP< EOT >::\fBfuncs\fP\fC [private]\fP"
 .PP
 \fBParameters:\fP
 .RS 4
-\fIstd\fP :: vector< eoEvalFunc < EOT >* >& funcs 
+\fIstd\fP :: vector< \fBeoEvalFunc\fP < EOT >* >& funcs 
 .br
-\fIstd\fP :: vector< eoEvalFunc < EOT >* > one_func 
+\fIstd\fP :: vector< \fBeoEvalFunc\fP < EOT >* > one_func 
 .br
 \fIpeoAggEvalFunc<\fP EOT >& merge_eval 
 .br

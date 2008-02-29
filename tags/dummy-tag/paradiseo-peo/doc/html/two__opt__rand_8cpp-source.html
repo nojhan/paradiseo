@@ -63,16 +63,16 @@
 <a name="l00039"></a>00039 <span class="preprocessor">#include "two_opt_rand.h"</span>
 <a name="l00040"></a>00040 <span class="preprocessor">#include "node.h"</span>
 <a name="l00041"></a>00041 
-<a name="l00042"></a><a class="code" href="classTwoOptRand.html#e2f362f359517c027f6f22fba0aab375">00042</a> <span class="keywordtype">void</span> <a class="code" href="classTwoOptRand.html#e2f362f359517c027f6f22fba0aab375">TwoOptRand :: operator () </a>(<a class="code" href="classTwoOpt.html">TwoOpt</a> &amp; __move, <span class="keyword">const</span> Route &amp; __route)
+<a name="l00042"></a><a class="code" href="classTwoOptRand.html#e2f362f359517c027f6f22fba0aab375">00042</a> <span class="keywordtype">void</span> <a class="code" href="classTwoOptRand.html#e2f362f359517c027f6f22fba0aab375">TwoOptRand :: operator () </a>(<a class="code" href="classTwoOpt.html">TwoOpt</a> &amp; __move, <span class="keyword">const</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route)
 <a name="l00043"></a>00043 {
 <a name="l00044"></a>00044 
-<a name="l00045"></a>00045   __move.second = rng.random (numNodes);
+<a name="l00045"></a>00045   __move.second = rng.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">random</a> (numNodes);
 <a name="l00046"></a>00046 
-<a name="l00047"></a>00047   __move.first = rng.random (__move.second);
+<a name="l00047"></a>00047   __move.first = rng.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">random</a> (__move.second);
 <a name="l00048"></a>00048 }
 <a name="l00049"></a>00049 
 <a name="l00050"></a>00050 
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:20:35 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

@@ -70,7 +70,7 @@
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 std :: vector &lt;Node&gt; the_schema;
 <a name="l00048"></a>00048 
-<a name="l00049"></a>00049 <a class="code" href="structNode.html">Node</a> * my_node;
+<a name="l00049"></a>00049 <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">Node</a> * my_node;
 <a name="l00050"></a>00050 
 <a name="l00051"></a>00051 <span class="keyword">static</span> <span class="keywordtype">unsigned</span> maxSpecifiedRunnerID = 0;
 <a name="l00052"></a>00052 
@@ -89,14 +89,14 @@
 <a name="l00065"></a>00065 <span class="keyword">static</span> <span class="keywordtype">void</span> loadNode (<span class="keywordtype">int</span> __rk_sched)
 <a name="l00066"></a>00066 {
 <a name="l00067"></a>00067 
-<a name="l00068"></a>00068   <a class="code" href="structNode.html">Node</a> node;
+<a name="l00068"></a>00068   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">Node</a> node;
 <a name="l00069"></a>00069 
-<a name="l00070"></a>00070   node.<a class="code" href="structNode.html#98deed2036c3dd8fc0f4fe8dacf56a92">rk_sched</a> = __rk_sched;
+<a name="l00070"></a>00070   node.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">rk_sched</a> = __rk_sched;
 <a name="l00071"></a>00071 
 <a name="l00072"></a>00072   <span class="comment">/* ATT: name*/</span>
-<a name="l00073"></a>00073   node.<a class="code" href="structNode.html#7de6f254b6b8c3f9f8287af0bb742e9b">rk</a> = getRankFromName (getAttributeValue (<span class="stringliteral">"name"</span>));
+<a name="l00073"></a>00073   node.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">rk</a> = getRankFromName (getAttributeValue (<span class="stringliteral">"name"</span>));
 <a name="l00074"></a>00074   <span class="comment">/* ATT: num_workers */</span>
-<a name="l00075"></a>00075   node.<a class="code" href="structNode.html#01fec86d75332858b158c810d57caee3">num_workers</a> = atoi (getAttributeValue (<span class="stringliteral">"num_workers"</span>).c_str ());
+<a name="l00075"></a>00075   node.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">num_workers</a> = atoi (getAttributeValue (<span class="stringliteral">"num_workers"</span>).c_str ());
 <a name="l00076"></a>00076 
 <a name="l00077"></a>00077   <span class="keywordflow">while</span> (<span class="keyword">true</span>)
 <a name="l00078"></a>00078     {
@@ -107,16 +107,16 @@
 <a name="l00083"></a>00083       <span class="keywordflow">if</span> (name == <span class="stringliteral">"runner"</span>)
 <a name="l00084"></a>00084         {
 <a name="l00085"></a>00085           <span class="comment">/* TAG: &lt;/node&gt; */</span>
-<a name="l00086"></a>00086           node.<a class="code" href="structNode.html#a90013b890888d3d252a71cb4fe48934">id_run</a>.push_back (atoi (getNextNode ().c_str ()));
-<a name="l00087"></a>00087           <span class="keywordflow">if</span> ( node.<a class="code" href="structNode.html#a90013b890888d3d252a71cb4fe48934">id_run</a>.back() &gt; maxSpecifiedRunnerID )
-<a name="l00088"></a>00088             maxSpecifiedRunnerID = node.<a class="code" href="structNode.html#a90013b890888d3d252a71cb4fe48934">id_run</a>.back();
+<a name="l00086"></a>00086           node.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">id_run</a>.push_back (atoi (getNextNode ().c_str ()));
+<a name="l00087"></a>00087           <span class="keywordflow">if</span> ( node.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">id_run</a>.back() &gt; maxSpecifiedRunnerID )
+<a name="l00088"></a>00088             maxSpecifiedRunnerID = node.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">id_run</a>.back();
 <a name="l00089"></a>00089           <span class="comment">/* TAG: &lt;/runner&gt; */</span>
 <a name="l00090"></a>00090           assert (getNextNode () == <span class="stringliteral">"runner"</span>);
 <a name="l00091"></a>00091         }
 <a name="l00092"></a>00092       <span class="keywordflow">else</span>
 <a name="l00093"></a>00093         {
 <a name="l00094"></a>00094           <span class="comment">/* TAG: &lt;/node&gt; */</span>
-<a name="l00095"></a>00095           node.<a class="code" href="structNode.html#fc0bde29836bcf5ea44aaca86c814521">execution_id_run</a> = node.<a class="code" href="structNode.html#a90013b890888d3d252a71cb4fe48934">id_run</a>;
+<a name="l00095"></a>00095           node.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">execution_id_run</a> = node.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">id_run</a>;
 <a name="l00096"></a>00096           the_schema.push_back (node);
 <a name="l00097"></a>00097           <span class="keywordflow">break</span>;
 <a name="l00098"></a>00098         }
@@ -229,7 +229,7 @@
 <a name="l00205"></a>00205 
 <a name="l00206"></a>00206   closeXMLDocument ();
 <a name="l00207"></a>00207 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:20:35 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

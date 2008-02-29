@@ -10,59 +10,59 @@ peoTransform \- Class for a parallel transform.
 .PP
 \fC#include <peoTransform.h>\fP
 .PP
-Inherits \fBService\fP.
+Inherits \fBService\fP, and \fBeoTransform< EOT >< EOT >\fP.
 .PP
 .SS "Public Member Functions"
 
 .in +1c
 .ti -1c
-.RI "\fBpeoTransform\fP (eoQuadOp< EOT > &__cross, double __cross_rate, eoMonOp< EOT > &__mut, double __mut_rate)"
+.RI "\fBpeoTransform\fP (\fBeoQuadOp\fP< EOT > &__cross, double __cross_rate, \fBeoMonOp\fP< EOT > &__mut, double __mut_rate)"
 .br
 .RI "\fIConstructor. \fP"
 .ti -1c
-.RI "void \fBoperator()\fP (eoPop< EOT > &__pop)"
+.RI "void \fBoperator()\fP (\fBeoPop\fP< EOT > &__pop)"
 .br
 .RI "\fIOperator. \fP"
 .ti -1c
 .RI "void \fBpackData\fP ()"
 .br
-.RI "\fIFunction realizing packages of data. \fP"
+.RI "\fI\fBFunction\fP realizing packages of data. \fP"
 .ti -1c
 .RI "void \fBunpackData\fP ()"
 .br
-.RI "\fIFunction reconstituting packages of data. \fP"
+.RI "\fI\fBFunction\fP reconstituting packages of data. \fP"
 .ti -1c
 .RI "void \fBexecute\fP ()"
 .br
-.RI "\fIFunction which executes the algorithm. \fP"
+.RI "\fI\fBFunction\fP which executes the algorithm. \fP"
 .ti -1c
 .RI "void \fBpackResult\fP ()"
 .br
-.RI "\fIFunction realizing packages of the result. \fP"
+.RI "\fI\fBFunction\fP realizing packages of the result. \fP"
 .ti -1c
 .RI "void \fBunpackResult\fP ()"
 .br
-.RI "\fIFunction reconstituting packages of result. \fP"
+.RI "\fI\fBFunction\fP reconstituting packages of result. \fP"
 .ti -1c
 .RI "void \fBnotifySendingData\fP ()"
 .br
-.RI "\fIFunction notifySendingData. \fP"
+.RI "\fI\fBFunction\fP notifySendingData. \fP"
 .ti -1c
 .RI "void \fBnotifySendingAllResourceRequests\fP ()"
 .br
-.RI "\fIFunction notifySendingAllResourceRequests. \fP"
+.RI "\fI\fBFunction\fP notifySendingAllResourceRequests. \fP"
 .in -1c
 .SS "Private Attributes"
 
 .in +1c
 .ti -1c
-.RI "eoQuadOp< EOT > & \fBcross\fP"
+.RI "\fBeoQuadOp\fP< EOT > & \fBcross\fP"
 .br
 .ti -1c
 .RI "double \fBcross_rate\fP"
 .br
 .ti -1c
-.RI "eoMonOp< EOT > & \fBmut\fP"
+.RI "\fBeoMonOp\fP< EOT > & \fBmut\fP"
 .br
 .ti -1c
 .RI "double \fBmut_rate\fP"
@@ -71,7 +71,7 @@ Inherits \fBService\fP.
 .RI "unsigned \fBidx\fP"
 .br
 .ti -1c
-.RI "eoPop< EOT > * \fBpop\fP"
+.RI "\fBeoPop\fP< EOT > * \fBpop\fP"
 .br
 .ti -1c
 .RI "EOT \fBfather\fP"
@@ -91,7 +91,7 @@ Class for a parallel transform.
 
 \fBSee also:\fP
 .RS 4
-\fBService\fP eoTransform 
+\fBService\fP \fBeoTransform\fP 
 .RE
 .PP
 \fBVersion:\fP
@@ -109,7 +109,7 @@ january 2008
 Definition at line 53 of file peoTransform.h.
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "template<class EOT> \fBpeoTransform\fP< EOT >::\fBpeoTransform\fP (eoQuadOp< EOT > & __cross, double __cross_rate, eoMonOp< EOT > & __mut, double __mut_rate)"
+.SS "template<class EOT> \fBpeoTransform\fP< EOT >::\fBpeoTransform\fP (\fBeoQuadOp\fP< EOT > & __cross, double __cross_rate, \fBeoMonOp\fP< EOT > & __mut, double __mut_rate)"
 .PP
 Constructor. 
 .PP
@@ -129,7 +129,7 @@ Constructor.
 Definition at line 108 of file peoTransform.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class EOT> void \fBpeoTransform\fP< EOT >::operator() (eoPop< EOT > & __pop)"
+.SS "template<class EOT> void \fBpeoTransform\fP< EOT >::operator() (\fBeoPop\fP< EOT > & __pop)"
 .PP
 Operator. 
 .PP
@@ -145,7 +145,7 @@ Definition at line 176 of file peoTransform.h.
 References peoTransform< EOT >::idx, peoTransform< EOT >::num_term, peoTransform< EOT >::pop, Service::requestResourceRequest(), and Communicable::stop().
 .SH "Member Data Documentation"
 .PP 
-.SS "template<class EOT> eoQuadOp< EOT >& \fBpeoTransform\fP< EOT >::\fBcross\fP\fC [private]\fP"
+.SS "template<class EOT> \fBeoQuadOp\fP< EOT >& \fBpeoTransform\fP< EOT >::\fBcross\fP\fC [private]\fP"
 .PP
 \fBParameters:\fP
 .RS 4

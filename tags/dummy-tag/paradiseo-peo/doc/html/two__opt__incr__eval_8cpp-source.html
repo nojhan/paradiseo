@@ -61,21 +61,21 @@
 <a name="l00037"></a>00037 <span class="preprocessor">#include "two_opt_incr_eval.h"</span>
 <a name="l00038"></a>00038 <span class="preprocessor">#include "node.h"</span>
 <a name="l00039"></a>00039 
-<a name="l00040"></a><a class="code" href="classTwoOptIncrEval.html#48500077e651c4c6152daef8a396be39">00040</a> <span class="keywordtype">int</span> <a class="code" href="classTwoOptIncrEval.html#48500077e651c4c6152daef8a396be39">TwoOptIncrEval :: operator () </a>(<span class="keyword">const</span> <a class="code" href="classTwoOpt.html">TwoOpt</a> &amp; __move, <span class="keyword">const</span> Route &amp; __route)
+<a name="l00040"></a><a class="code" href="classTwoOptIncrEval.html#48500077e651c4c6152daef8a396be39">00040</a> <span class="keywordtype">int</span> <a class="code" href="classTwoOptIncrEval.html#48500077e651c4c6152daef8a396be39">TwoOptIncrEval :: operator () </a>(<span class="keyword">const</span> <a class="code" href="classTwoOpt.html">TwoOpt</a> &amp; __move, <span class="keyword">const</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route)
 <a name="l00041"></a>00041 {
 <a name="l00042"></a>00042 
 <a name="l00043"></a>00043   <span class="comment">/* From */</span>
-<a name="l00044"></a>00044   <a class="code" href="structNode.html">Node</a> v1 = __route [__move.first], v1_left = __route [(__move.first - 1 + numNodes) % numNodes];
+<a name="l00044"></a>00044   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">Node</a> v1 = __route [__move.first], v1_left = __route [(__move.first - 1 + numNodes) % numNodes];
 <a name="l00045"></a>00045 
 <a name="l00046"></a>00046   <span class="comment">/* To */</span>
-<a name="l00047"></a>00047   <a class="code" href="structNode.html">Node</a> v2 = __route [__move.second], v2_right = __route [(__move.second + 1) % numNodes];
+<a name="l00047"></a>00047   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">Node</a> v2 = __route [__move.second], v2_right = __route [(__move.second + 1) % numNodes];
 <a name="l00048"></a>00048 
 <a name="l00049"></a>00049   <span class="keywordflow">if</span> (v1 == v2 || v2_right == v1)
-<a name="l00050"></a>00050     <span class="keywordflow">return</span> __route.fitness ();
+<a name="l00050"></a>00050     <span class="keywordflow">return</span> __route.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_e_o.html#57d5610c9296eb927816a2f06bd00a08">fitness</a> ();
 <a name="l00051"></a>00051   <span class="keywordflow">else</span>
-<a name="l00052"></a>00052     <span class="keywordflow">return</span> __route.fitness () - distance (v1_left, v2) - distance (v1, v2_right) + distance (v1_left, v1) + distance (v2, v2_right);
+<a name="l00052"></a>00052     <span class="keywordflow">return</span> __route.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_e_o.html#57d5610c9296eb927816a2f06bd00a08">fitness</a> () - distance (v1_left, v2) - distance (v1, v2_right) + distance (v1_left, v1) + distance (v2, v2_right);
 <a name="l00053"></a>00053 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:20:35 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

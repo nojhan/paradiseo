@@ -10,7 +10,7 @@ peoSyncIslandMig \- Specific class for a synchronous migration.
 .PP
 \fC#include <peoSyncIslandMig.h>\fP
 .PP
-Inherits \fBCooperative\fP.
+Inherits \fBCooperative\fP, and \fBeoUpdater\fP.
 .PP
 .SS "Public Member Functions"
 
@@ -25,23 +25,23 @@ Inherits \fBCooperative\fP.
 .ti -1c
 .RI "void \fBpack\fP ()"
 .br
-.RI "\fIFunction realizing packages. \fP"
+.RI "\fI\fBFunction\fP realizing packages. \fP"
 .ti -1c
 .RI "void \fBunpack\fP ()"
 .br
-.RI "\fIFunction reconstituting packages. \fP"
+.RI "\fI\fBFunction\fP reconstituting packages. \fP"
 .ti -1c
 .RI "void \fBpackSynchronizeReq\fP ()"
 .br
-.RI "\fIFunction packSynchronizeReq. \fP"
+.RI "\fI\fBFunction\fP packSynchronizeReq. \fP"
 .ti -1c
 .RI "void \fBnotifySending\fP ()"
 .br
-.RI "\fIFunction notifySending. \fP"
+.RI "\fI\fBFunction\fP notifySending. \fP"
 .ti -1c
 .RI "void \fBnotifyReceiving\fP ()"
 .br
-.RI "\fIFunction notifyReceiving. \fP"
+.RI "\fI\fBFunction\fP notifyReceiving. \fP"
 .ti -1c
 .RI "void \fBnotifySendingSyncReq\fP ()"
 .br
@@ -115,7 +115,7 @@ Specific class for a synchronous migration.
 
 \fBSee also:\fP
 .RS 4
-\fBCooperative\fP eoUpdater 
+\fBCooperative\fP \fBeoUpdater\fP 
 .RE
 .PP
 \fBVersion:\fP

@@ -90,7 +90,7 @@
 <a name="l00066"></a>00066 
 <a name="l00067"></a>00067   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; numNodes; i ++)
 <a name="l00068"></a>00068     {
-<a name="l00069"></a>00069       <a class="code" href="structNode.html">Node</a> node;
+<a name="l00069"></a>00069       <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">Node</a> node;
 <a name="l00070"></a>00070       fscanf (__f, <span class="stringliteral">"%u"</span>, &amp; node);
 <a name="l00071"></a>00071       opt_route.push_back (node - 1);
 <a name="l00072"></a>00072     }
@@ -149,23 +149,23 @@
 <a name="l00125"></a>00125     }
 <a name="l00126"></a>00126 }
 <a name="l00127"></a>00127 
-<a name="l00128"></a>00128 <span class="keywordtype">void</span> loadOptimumRoute (eoParser &amp; __parser)
+<a name="l00128"></a>00128 <span class="keywordtype">void</span> loadOptimumRoute (<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_parser.html">eoParser</a> &amp; __parser)
 <a name="l00129"></a>00129 {
 <a name="l00130"></a>00130 
 <a name="l00131"></a>00131   <span class="comment">/* Getting the path of the instance */</span>
 <a name="l00132"></a>00132 
 <a name="l00133"></a>00133   eoValueParam &lt;std :: string&gt; param (<span class="stringliteral">""</span>, <span class="stringliteral">"optimumTour"</span>, <span class="stringliteral">"Optimum tour"</span>) ;
-<a name="l00134"></a>00134   __parser.processParam (param) ;
+<a name="l00134"></a>00134   __parser.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_parser.html#3e39518c3f01abbb776b8813a81598de">processParam</a> (param) ;
 <a name="l00135"></a>00135   <span class="keywordflow">if</span> (strlen (param.value ().c_str ()))
 <a name="l00136"></a>00136     loadOptimumRoute (param.value ().c_str ());
 <a name="l00137"></a>00137   <span class="keywordflow">else</span>
-<a name="l00138"></a>00138     opt_route.fitness (0);
+<a name="l00138"></a>00138     opt_route.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_e_o.html#57d5610c9296eb927816a2f06bd00a08">fitness</a> (0);
 <a name="l00139"></a>00139 }
 <a name="l00140"></a>00140 
-<a name="l00141"></a>00141 Route opt_route; <span class="comment">/* Optimum route */</span>
+<a name="l00141"></a>00141 <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> opt_route; <span class="comment">/* Optimum route */</span>
 <a name="l00142"></a>00142 
 <a name="l00143"></a>00143 
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:20:35 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

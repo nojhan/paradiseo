@@ -64,11 +64,11 @@
 <a name="l00040"></a>00040 
 <a name="l00041"></a>00041 <span class="preprocessor">#include "order_xover.h"</span>
 <a name="l00042"></a>00042 
-<a name="l00043"></a><a class="code" href="classOrderXover.html#d2bf90b5f46ac4a344777e17bc5f364d">00043</a> <span class="keywordtype">void</span> <a class="code" href="classOrderXover.html#d2bf90b5f46ac4a344777e17bc5f364d">OrderXover :: cross</a> (<span class="keyword">const</span> Route &amp; __par1, <span class="keyword">const</span> Route &amp; __par2, Route &amp; __child)
+<a name="l00043"></a><a class="code" href="classOrderXover.html#d2bf90b5f46ac4a344777e17bc5f364d">00043</a> <span class="keywordtype">void</span> <a class="code" href="classOrderXover.html#d2bf90b5f46ac4a344777e17bc5f364d">OrderXover :: cross</a> (<span class="keyword">const</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __par1, <span class="keyword">const</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __par2, <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __child)
 <a name="l00044"></a>00044 {
 <a name="l00045"></a>00045 
-<a name="l00046"></a>00046   <span class="keywordtype">unsigned</span> cut2 = 1 + rng.random (numNodes) ;
-<a name="l00047"></a>00047   <span class="keywordtype">unsigned</span> cut1 = rng.random (cut2);
+<a name="l00046"></a>00046   <span class="keywordtype">unsigned</span> cut2 = 1 + rng.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">random</a> (numNodes) ;
+<a name="l00047"></a>00047   <span class="keywordtype">unsigned</span> cut1 = rng.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">random</a> (cut2);
 <a name="l00048"></a>00048   <span class="keywordtype">unsigned</span> l = 0;
 <a name="l00049"></a>00049 
 <a name="l00050"></a>00050   <span class="comment">/* To store vertices that have already been crossed */</span>
@@ -91,7 +91,7 @@
 <a name="l00067"></a>00067       }
 <a name="l00068"></a>00068 
 <a name="l00069"></a>00069   <span class="comment">/* Selecting a direction (Left or Right) */</span>
-<a name="l00070"></a>00070   <span class="keywordtype">char</span> direct = rng.flip () ? 1 : -1 ;
+<a name="l00070"></a>00070   <span class="keywordtype">char</span> direct = rng.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#a59557f718b17c2dda8a633f9862aff4">flip</a> () ? 1 : -1 ;
 <a name="l00071"></a>00071 
 <a name="l00072"></a>00072   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; numNodes + 1; i ++)
 <a name="l00073"></a>00073     {
@@ -104,23 +104,23 @@
 <a name="l00080"></a>00080     }
 <a name="l00081"></a>00081 }
 <a name="l00082"></a>00082 
-<a name="l00083"></a><a class="code" href="classOrderXover.html#0ff6aada669eb8173322ed68cda1ac61">00083</a> <span class="keywordtype">bool</span> <a class="code" href="classOrderXover.html#0ff6aada669eb8173322ed68cda1ac61">OrderXover :: operator () </a>(Route &amp; __route1, Route &amp; __route2)
+<a name="l00083"></a><a class="code" href="classOrderXover.html#0ff6aada669eb8173322ed68cda1ac61">00083</a> <span class="keywordtype">bool</span> <a class="code" href="classOrderXover.html#0ff6aada669eb8173322ed68cda1ac61">OrderXover :: operator () </a>(<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route1, <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route2)
 <a name="l00084"></a>00084 {
 <a name="l00085"></a>00085 
 <a name="l00086"></a>00086   <span class="comment">// Init. copy</span>
-<a name="l00087"></a>00087   Route par [2] ;
+<a name="l00087"></a>00087   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> par [2] ;
 <a name="l00088"></a>00088   par [0] = __route1 ;
 <a name="l00089"></a>00089   par [1] = __route2 ;
 <a name="l00090"></a>00090 
 <a name="l00091"></a>00091   <a class="code" href="classOrderXover.html#d2bf90b5f46ac4a344777e17bc5f364d">cross</a> (par [0], par [1], __route1) ;
 <a name="l00092"></a>00092   <a class="code" href="classOrderXover.html#d2bf90b5f46ac4a344777e17bc5f364d">cross</a> (par [1], par [0], __route2) ;
 <a name="l00093"></a>00093 
-<a name="l00094"></a>00094   __route1.invalidate () ;
-<a name="l00095"></a>00095   __route2.invalidate () ;
+<a name="l00094"></a>00094   __route1.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_e_o.html#f57e9b0b1772446b12f97abfc0d64a59">invalidate</a> () ;
+<a name="l00095"></a>00095   __route2.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_e_o.html#f57e9b0b1772446b12f97abfc0d64a59">invalidate</a> () ;
 <a name="l00096"></a>00096 
 <a name="l00097"></a>00097   <span class="keywordflow">return</span> true ;
 <a name="l00098"></a>00098 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:20:35 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

@@ -1,7 +1,6 @@
 \section{Paradis\-EO-PEO-Parallelanddistributed\-Evolving\-Objects Class Hierarchy}
 This inheritance list is sorted roughly, but not completely, alphabetically:\begin{CompactList}
 \item \contentsline{section}{Algorithm}{\pageref{structAlgorithm}}{}
-\item \contentsline{section}{City\-Swap}{\pageref{classCitySwap}}{}
 \item \contentsline{section}{Communicable}{\pageref{classCommunicable}}{}
 \begin{CompactList}
 \item \contentsline{section}{Cooperative}{\pageref{classCooperative}}{}
@@ -27,21 +26,76 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \item \contentsline{section}{eo\-Continuator$<$ EOT $>$}{\pageref{classeoContinuator}}{}
 \item \contentsline{section}{eo\-Sync\-Continue}{\pageref{classeoSyncContinue}}{}
 \end{CompactList}
-\item \contentsline{section}{Display\-Best\-Route}{\pageref{classDisplayBestRoute}}{}
-\item \contentsline{section}{Edge\-Xover}{\pageref{classEdgeXover}}{}
-\item \contentsline{section}{MPIThreaded\-Env}{\pageref{classMPIThreadedEnv}}{}
-\item \contentsline{section}{Node}{\pageref{structNode}}{}
-\item \contentsline{section}{Order\-Xover}{\pageref{classOrderXover}}{}
-\item \contentsline{section}{Partial\-Mapped\-Xover}{\pageref{classPartialMappedXover}}{}
-\item \contentsline{section}{Part\-Route\-Eval}{\pageref{classPartRouteEval}}{}
+\item eo\-Functor\-Base{\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item eo\-BF$<$ A1, A2, R $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item eo\-Pop\-Eval\-Func$<$ EOT $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item \contentsline{section}{peo\-Moeo\-Pop\-Eval$<$ EOT $>$}{\pageref{classpeoMoeoPopEval}}{}
+\item \contentsline{section}{peo\-Pop\-Eval$<$ EOT $>$}{\pageref{classpeoPopEval}}{}
+\end{CompactList}
+\item eo\-Replacement$<$ POT $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item \contentsline{section}{peo\-Global\-Best\-Velocity$<$ POT $>$}{\pageref{classpeoGlobalBestVelocity}}{}
+\item \contentsline{section}{peo\-Worst\-Position\-Replacement$<$ POT $>$}{\pageref{classpeoWorstPositionReplacement}}{}
+\end{CompactList}
+\item mo\-Move\-Incr\-Eval$<$ Two\-Opt $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item \contentsline{section}{Two\-Opt\-Incr\-Eval}{\pageref{classTwoOptIncrEval}}{}
+\end{CompactList}
+\item mo\-Move\-Init$<$ Two\-Opt $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item \contentsline{section}{Two\-Opt\-Init}{\pageref{classTwoOptInit}}{}
+\end{CompactList}
+\item mo\-Next\-Move$<$ Two\-Opt $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item \contentsline{section}{Two\-Opt\-Next}{\pageref{classTwoOptNext}}{}
+\end{CompactList}
 \item \contentsline{section}{peo\-Agg\-Eval\-Func$<$ EOT $>$}{\pageref{classpeoAggEvalFunc}}{}
 \begin{CompactList}
 \item \contentsline{section}{Merge\-Route\-Eval}{\pageref{classMergeRouteEval}}{}
 \item \contentsline{section}{peo\-No\-Agg\-Eval\-Func$<$ EOT $>$}{\pageref{classpeoNoAggEvalFunc}}{}
 \end{CompactList}
 \item \contentsline{section}{peo\-Agg\-Eval\-Func$<$ eo\-Vector$<$ int, Node $>$ $>$}{\pageref{classpeoAggEvalFunc}}{}
+\end{CompactList}
+\item eo\-BF$<$ EOType \&, EOType \&, bool $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item eo\-Quad\-Op$<$ EOType $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item \contentsline{section}{Edge\-Xover}{\pageref{classEdgeXover}}{}
+\item \contentsline{section}{Order\-Xover}{\pageref{classOrderXover}}{}
+\item \contentsline{section}{Partial\-Mapped\-Xover}{\pageref{classPartialMappedXover}}{}
+\end{CompactList}
+\end{CompactList}
+\item eo\-F$<$ void $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item eo\-Updater{\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item \contentsline{section}{Display\-Best\-Route}{\pageref{classDisplayBestRoute}}{}
+\item \contentsline{section}{peo\-Async\-Island\-Mig$<$ TYPESELECT, TYPEREPLACE $>$}{\pageref{classpeoAsyncIslandMig}}{}
+\item \contentsline{section}{peo\-Sync\-Island\-Mig$<$ TYPESELECT, TYPEREPLACE $>$}{\pageref{classpeoSyncIslandMig}}{}
+\end{CompactList}
+\end{CompactList}
+\item eo\-UF$<$ A1, R $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item eo\-Eval\-Func$<$ EOT $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item \contentsline{section}{Part\-Route\-Eval}{\pageref{classPartRouteEval}}{}
 \item \contentsline{section}{peo\-Eval\-Func$<$ EOT, Fit\-T, Function\-Arg $>$}{\pageref{structpeoEvalFunc}}{}
-\item \contentsline{section}{peo\-Global\-Best\-Velocity$<$ POT $>$}{\pageref{classpeoGlobalBestVelocity}}{}
+\item \contentsline{section}{Route\-Eval}{\pageref{classRouteEval}}{}
+\end{CompactList}
+\item eo\-Init$<$ EOT $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item \contentsline{section}{Route\-Init}{\pageref{classRouteInit}}{}
+\end{CompactList}
+\item eo\-Select\-One$<$ POT $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item \contentsline{section}{peo\-PSOSelect$<$ POT $>$}{\pageref{classpeoPSOSelect}}{}
+\end{CompactList}
+\item eo\-Transform$<$ EOT $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item \contentsline{section}{peo\-Transform$<$ EOT $>$}{\pageref{classpeoTransform}}{}
+\end{CompactList}
+\end{CompactList}
+\item eo\-UF$<$ EOT \&, void $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item mo\-Move$<$ EOT $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item \contentsline{section}{Two\-Opt}{\pageref{classTwoOpt}}{}
+\end{CompactList}
+\end{CompactList}
+\item eo\-UF$<$ EOType \&, bool $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item eo\-Mon\-Op$<$ EOType $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item \contentsline{section}{City\-Swap}{\pageref{classCitySwap}}{}
+\end{CompactList}
+\end{CompactList}
+\end{CompactList}
+\item eo\-Op$<$ EOType $>${\tt  \mbox{[}external\mbox{]}}\begin{CompactList}
+\item eo\-Mon\-Op$<$ EOType $>${\tt  \mbox{[}external\mbox{]}}\item eo\-Quad\-Op$<$ EOType $>${\tt  \mbox{[}external\mbox{]}}\end{CompactList}
+\item \contentsline{section}{MPIThreaded\-Env}{\pageref{classMPIThreadedEnv}}{}
 \item \contentsline{section}{peo\-Multi\-Start$<$ Entity\-Type $>$::Abstract\-Aggregation\-Algorithm}{\pageref{structpeoMultiStart_1_1AbstractAggregationAlgorithm}}{}
 \begin{CompactList}
 \item \contentsline{section}{peo\-Multi\-Start$<$ Entity\-Type $>$::Aggregation\-Algorithm$<$ Aggregation\-Algorithm\-Type $>$}{\pageref{structpeoMultiStart_1_1AggregationAlgorithm}}{}
@@ -56,8 +110,6 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \begin{CompactList}
 \item \contentsline{section}{peo\-Multi\-Start$<$ Entity\-Type $>$::Data\-Type$<$ Type $>$}{\pageref{structpeoMultiStart_1_1DataType}}{}
 \end{CompactList}
-\item \contentsline{section}{peo\-PSOSelect$<$ POT $>$}{\pageref{classpeoPSOSelect}}{}
-\item \contentsline{section}{peo\-Worst\-Position\-Replacement$<$ POT $>$}{\pageref{classpeoWorstPositionReplacement}}{}
 \item \contentsline{section}{peo\-Wrapper::Abstract\-Algorithm}{\pageref{structpeoWrapper_1_1AbstractAlgorithm}}{}
 \begin{CompactList}
 \item \contentsline{section}{peo\-Wrapper::Algorithm$<$ Algorithm\-Type, Algorithm\-Data\-Type $>$}{\pageref{structpeoWrapper_1_1Algorithm}}{}
@@ -69,8 +121,6 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \begin{CompactList}
 \item \contentsline{section}{eo\-Replace$<$ EOT, TYPE $>$}{\pageref{classeoReplace}}{}
 \end{CompactList}
-\item \contentsline{section}{Route\-Eval}{\pageref{classRouteEval}}{}
-\item \contentsline{section}{Route\-Init}{\pageref{classRouteInit}}{}
 \item \contentsline{section}{selector$<$ TYPE $>$}{\pageref{classselector}}{}
 \begin{CompactList}
 \item \contentsline{section}{eo\-Selector$<$ EOT, TYPE $>$}{\pageref{classeoSelector}}{}
@@ -94,9 +144,5 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \item \contentsline{section}{Ring\-Topology}{\pageref{classRingTopology}}{}
 \item \contentsline{section}{Star\-Topology}{\pageref{classStarTopology}}{}
 \end{CompactList}
-\item \contentsline{section}{Two\-Opt}{\pageref{classTwoOpt}}{}
-\item \contentsline{section}{Two\-Opt\-Incr\-Eval}{\pageref{classTwoOptIncrEval}}{}
-\item \contentsline{section}{Two\-Opt\-Init}{\pageref{classTwoOptInit}}{}
-\item \contentsline{section}{Two\-Opt\-Next}{\pageref{classTwoOptNext}}{}
 \item \contentsline{section}{Two\-Opt\-Rand}{\pageref{classTwoOptRand}}{}
 \end{CompactList}

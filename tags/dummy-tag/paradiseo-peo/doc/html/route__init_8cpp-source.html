@@ -63,7 +63,7 @@
 <a name="l00039"></a>00039 <span class="preprocessor">#include "route_init.h"</span>
 <a name="l00040"></a>00040 <span class="preprocessor">#include "node.h"</span>
 <a name="l00041"></a>00041 
-<a name="l00042"></a><a class="code" href="classRouteInit.html#b65a7137e114458faadb6a5510c001f7">00042</a> <span class="keywordtype">void</span> <a class="code" href="classRouteInit.html#b65a7137e114458faadb6a5510c001f7">RouteInit :: operator () </a>(Route &amp; __route)
+<a name="l00042"></a><a class="code" href="classRouteInit.html#b65a7137e114458faadb6a5510c001f7">00042</a> <span class="keywordtype">void</span> <a class="code" href="classRouteInit.html#b65a7137e114458faadb6a5510c001f7">RouteInit :: operator () </a>(<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route)
 <a name="l00043"></a>00043 {
 <a name="l00044"></a>00044 
 <a name="l00045"></a>00045   __route.clear ();
@@ -72,9 +72,9 @@
 <a name="l00048"></a>00048     __route.push_back (i);
 <a name="l00049"></a>00049 
 <a name="l00050"></a>00050   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0 ; i &lt; numNodes ; i ++)
-<a name="l00051"></a>00051     std :: swap (__route [i], __route [rng.random (numNodes)]);
+<a name="l00051"></a>00051     std :: swap (__route [i], __route [rng.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">random</a> (numNodes)]);
 <a name="l00052"></a>00052 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:05 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:20:35 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

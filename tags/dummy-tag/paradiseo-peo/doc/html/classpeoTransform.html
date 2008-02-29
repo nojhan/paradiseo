@@ -29,7 +29,7 @@
     <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
     <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
   </ul></div>
-<h1>peoTransform&lt; EOT &gt; Class Template Reference</h1><!-- doxytag: class="peoTransform" --><!-- doxytag: inherits="Service" -->Class for a parallel transform.  
+<h1>peoTransform&lt; EOT &gt; Class Template Reference</h1><!-- doxytag: class="peoTransform" --><!-- doxytag: inherits="Service,eoTransform" -->Class for a parallel transform.  
 <a href="#_details">More...</a>
 <p>
 <code>#include &lt;<a class="el" href="peoTransform_8h-source.html">peoTransform.h</a>&gt;</code>
@@ -37,54 +37,57 @@
 <p>Inheritance diagram for peoTransform&lt; EOT &gt;:
 <p><center><img src="classpeoTransform.png" usemap="#peoTransform< EOT >_map" border="0" alt=""></center>
 <map name="peoTransform< EOT >_map">
-<area href="classService.html" alt="Service" shape="rect" coords="0,56,139,80">
-<area href="classCommunicable.html" alt="Communicable" shape="rect" coords="0,0,139,24">
+<area href="classService.html" alt="Service" shape="rect" coords="0,112,139,136">
+<area doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_transform.html" alt="eoTransform< EOT >" shape="rect" coords="149,112,288,136">
+<area href="classCommunicable.html" alt="Communicable" shape="rect" coords="0,56,139,80">
+<area doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_u_f.html" alt="eoUF< A1, R >" shape="rect" coords="149,56,288,80">
+<area doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_functor_base.html" alt="eoFunctorBase" shape="rect" coords="149,0,288,24">
 </map>
 <a href="classpeoTransform-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#755989a2d080903d0cade75643de0788">peoTransform</a> (eoQuadOp&lt; EOT &gt; &amp;__cross, double __cross_rate, eoMonOp&lt; EOT &gt; &amp;__mut, double __mut_rate)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#755989a2d080903d0cade75643de0788">peoTransform</a> (<a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_quad_op.html">eoQuadOp</a>&lt; EOT &gt; &amp;__cross, double __cross_rate, <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_mon_op.html">eoMonOp</a>&lt; EOT &gt; &amp;__mut, double __mut_rate)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#755989a2d080903d0cade75643de0788"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#9322aa28ad272289132e342624a0adb4">operator()</a> (eoPop&lt; EOT &gt; &amp;__pop)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#9322aa28ad272289132e342624a0adb4">operator()</a> (<a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_pop.html">eoPop</a>&lt; EOT &gt; &amp;__pop)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Operator.  <a href="#9322aa28ad272289132e342624a0adb4"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c1101d10a36ce4255b874bcd9725021e"></a><!-- doxytag: member="peoTransform::packData" ref="c1101d10a36ce4255b874bcd9725021e" args="()" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#c1101d10a36ce4255b874bcd9725021e">packData</a> ()</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Function realizing packages of data. <br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/struct_function.html">Function</a> realizing packages of data. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a804631492e08053162a196877587aef"></a><!-- doxytag: member="peoTransform::unpackData" ref="a804631492e08053162a196877587aef" args="()" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#a804631492e08053162a196877587aef">unpackData</a> ()</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Function reconstituting packages of data. <br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/struct_function.html">Function</a> reconstituting packages of data. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="85c2cbc76f803b2b5cb2bc8cbc214136"></a><!-- doxytag: member="peoTransform::execute" ref="85c2cbc76f803b2b5cb2bc8cbc214136" args="()" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#85c2cbc76f803b2b5cb2bc8cbc214136">execute</a> ()</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Function which executes the algorithm. <br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/struct_function.html">Function</a> which executes the algorithm. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bdae056027406ba9f489e2bef115fd08"></a><!-- doxytag: member="peoTransform::packResult" ref="bdae056027406ba9f489e2bef115fd08" args="()" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#bdae056027406ba9f489e2bef115fd08">packResult</a> ()</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Function realizing packages of the result. <br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/struct_function.html">Function</a> realizing packages of the result. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e0244425e846c5679c901b61e4252814"></a><!-- doxytag: member="peoTransform::unpackResult" ref="e0244425e846c5679c901b61e4252814" args="()" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#e0244425e846c5679c901b61e4252814">unpackResult</a> ()</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Function reconstituting packages of result. <br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/struct_function.html">Function</a> reconstituting packages of result. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="77508f186476181ec2c6a8230961eede"></a><!-- doxytag: member="peoTransform::notifySendingData" ref="77508f186476181ec2c6a8230961eede" args="()" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#77508f186476181ec2c6a8230961eede">notifySendingData</a> ()</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Function notifySendingData. <br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/struct_function.html">Function</a> notifySendingData. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="19990af963b6604d1175290fe6725335"></a><!-- doxytag: member="peoTransform::notifySendingAllResourceRequests" ref="19990af963b6604d1175290fe6725335" args="()" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#19990af963b6604d1175290fe6725335">notifySendingAllResourceRequests</a> ()</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Function notifySendingAllResourceRequests. <br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/struct_function.html">Function</a> notifySendingAllResourceRequests. <br></td></tr>
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">eoQuadOp&lt; EOT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#d2fce5199b61f599fd89cf54d6fcd312">cross</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_quad_op.html">eoQuadOp</a>&lt; EOT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#d2fce5199b61f599fd89cf54d6fcd312">cross</a></td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3336251fb3433a8405ea75f3a8bed04d"></a><!-- doxytag: member="peoTransform::cross_rate" ref="3336251fb3433a8405ea75f3a8bed04d" args="" -->
 double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#3336251fb3433a8405ea75f3a8bed04d">cross_rate</a></td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3d1ea5c8a6aa95bf051051361908a9c6"></a><!-- doxytag: member="peoTransform::mut" ref="3d1ea5c8a6aa95bf051051361908a9c6" args="" -->
-eoMonOp&lt; EOT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#3d1ea5c8a6aa95bf051051361908a9c6">mut</a></td></tr>
+<a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_mon_op.html">eoMonOp</a>&lt; EOT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#3d1ea5c8a6aa95bf051051361908a9c6">mut</a></td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0b0802dfc4a3ec664c8fccf10bb1842a"></a><!-- doxytag: member="peoTransform::mut_rate" ref="0b0802dfc4a3ec664c8fccf10bb1842a" args="" -->
 double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#0b0802dfc4a3ec664c8fccf10bb1842a">mut_rate</a></td></tr>
@@ -93,7 +96,7 @@ double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#0acac288337aec3d0d853565924a365d">idx</a></td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0916042d3500452082ad19fd5ce5e161"></a><!-- doxytag: member="peoTransform::pop" ref="0916042d3500452082ad19fd5ce5e161" args="" -->
-eoPop&lt; EOT &gt; *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#0916042d3500452082ad19fd5ce5e161">pop</a></td></tr>
+<a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_pop.html">eoPop</a>&lt; EOT &gt; *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#0916042d3500452082ad19fd5ce5e161">pop</a></td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="88c563f77e5c25b70b6cb619ec97185f"></a><!-- doxytag: member="peoTransform::father" ref="88c563f77e5c25b70b6cb619ec97185f" args="" -->
 EOT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeoTransform.html#88c563f77e5c25b70b6cb619ec97185f">father</a></td></tr>
@@ -111,7 +114,7 @@ unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 
 Class for a parallel transform. 
 <p>
-<dl compact><dt><b>See also:</b></dt><dd><a class="el" href="classService.html">Service</a> eoTransform </dd></dl>
+<dl compact><dt><b>See also:</b></dt><dd><a class="el" href="classService.html">Service</a> <a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_transform.html">eoTransform</a> </dd></dl>
 <dl compact><dt><b>Version:</b></dt><dd>1.1 </dd></dl>
 <dl compact><dt><b>Date:</b></dt><dd>january 2008 </dd></dl>
 
@@ -128,7 +131,7 @@ template&lt;class EOT&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classpeoTransform.html">peoTransform</a>&lt; EOT &gt;::<a class="el" href="classpeoTransform.html">peoTransform</a>           </td>
           <td>(</td>
-          <td class="paramtype">eoQuadOp&lt; EOT &gt; &amp;&nbsp;</td>
+          <td class="paramtype"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_quad_op.html">eoQuadOp</a>&lt; EOT &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>__cross</em>, </td>
         </tr>
         <tr>
@@ -140,7 +143,7 @@ template&lt;class EOT&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">eoMonOp&lt; EOT &gt; &amp;&nbsp;</td>
+          <td class="paramtype"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_mon_op.html">eoMonOp</a>&lt; EOT &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>__mut</em>, </td>
         </tr>
         <tr>
@@ -184,7 +187,7 @@ template&lt;class EOT&gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classpeoTransform.html">peoTransform</a>&lt; EOT &gt;::operator()           </td>
           <td>(</td>
-          <td class="paramtype">eoPop&lt; EOT &gt; &amp;&nbsp;</td>
+          <td class="paramtype"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_pop.html">eoPop</a>&lt; EOT &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>__pop</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td width="100%"></td>
@@ -216,7 +219,7 @@ References <a class="el" href="peoTransform_8h-source.html#l00102">peoTransform&
 template&lt;class EOT&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">eoQuadOp&lt; EOT &gt;&amp; <a class="el" href="classpeoTransform.html">peoTransform</a>&lt; EOT &gt;::<a class="el" href="classpeoTransform.html#d2fce5199b61f599fd89cf54d6fcd312">cross</a><code> [private]</code>          </td>
+          <td class="memname"><a class="elRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_quad_op.html">eoQuadOp</a>&lt; EOT &gt;&amp; <a class="el" href="classpeoTransform.html">peoTransform</a>&lt; EOT &gt;::<a class="el" href="classpeoTransform.html#d2fce5199b61f599fd89cf54d6fcd312">cross</a><code> [private]</code>          </td>
         </tr>
       </table>
 </div>
@@ -245,7 +248,7 @@ Referenced by <a class="el" href="peoTransform_8h-source.html#l00137">peoTransfo
 </div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="peoTransform_8h-source.html">peoTransform.h</a></ul>
-<hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:05:07 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
+<hr size="1"><address style="align: right;"><small>Generated on Fri Feb 29 17:20:39 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

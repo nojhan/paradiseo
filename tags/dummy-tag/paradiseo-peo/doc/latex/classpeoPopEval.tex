@@ -10,19 +10,19 @@ Parallel evaluation functor wrapper with MOEO.
 Inheritance diagram for peo\-Pop\-Eval$<$ EOT $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3cm]{classpeoPopEval}
+\includegraphics[height=4cm]{classpeoPopEval}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-\hyperlink{classpeoPopEval_878297ba0de14593bd9cc03b2daf52df}{peo\-Pop\-Eval} (eo\-Eval\-Func$<$ EOT $>$ \&\_\-\_\-eval\_\-func)
+\hyperlink{classpeoPopEval_878297ba0de14593bd9cc03b2daf52df}{peo\-Pop\-Eval} (\bf{eo\-Eval\-Func}$<$ EOT $>$ \&\_\-\_\-eval\_\-func)
 \begin{CompactList}\small\item\em Constructor function - an EO-derived evaluation functor has to be specified; an internal reference is set towards the specified evaluation functor. \item\end{CompactList}\item 
-\hyperlink{classpeoPopEval_088822da7a0c92bc21574358d2e5f87c}{peo\-Pop\-Eval} (const std::vector$<$ eo\-Eval\-Func$<$ EOT $>$ $\ast$ $>$ \&\_\-\_\-funcs, \hyperlink{classpeoAggEvalFunc}{peo\-Agg\-Eval\-Func}$<$ EOT $>$ \&\_\-\_\-merge\_\-eval)
+\hyperlink{classpeoPopEval_088822da7a0c92bc21574358d2e5f87c}{peo\-Pop\-Eval} (const std::vector$<$ \bf{eo\-Eval\-Func}$<$ EOT $>$ $\ast$ $>$ \&\_\-\_\-funcs, \hyperlink{classpeoAggEvalFunc}{peo\-Agg\-Eval\-Func}$<$ EOT $>$ \&\_\-\_\-merge\_\-eval)
 \begin{CompactList}\small\item\em Constructor function - a vector of EO-derived evaluation functors has to be specified as well as an aggregation function. \item\end{CompactList}\item 
-void \hyperlink{classpeoPopEval_593dd60fc004edea8994d5575bf66e05}{operator()} (eo\-Pop$<$ EOT $>$ \&\_\-\_\-pop)
+void \hyperlink{classpeoPopEval_593dd60fc004edea8994d5575bf66e05}{operator()} (\bf{eo\-Pop}$<$ EOT $>$ \&\_\-\_\-pop)
 \begin{CompactList}\small\item\em Operator for applying the evaluation functor (direct or aggregate) for each individual of the specified population. \item\end{CompactList}\item 
-void \hyperlink{classpeoPopEval_fd942c2b66f31c7d12a9ad48f1529a16}{operator()} (eo\-Pop$<$ EOT $>$ \&\_\-\_\-dummy, eo\-Pop$<$ EOT $>$ \&\_\-\_\-pop)
+void \hyperlink{classpeoPopEval_fd942c2b66f31c7d12a9ad48f1529a16}{operator()} (\bf{eo\-Pop}$<$ EOT $>$ \&\_\-\_\-dummy, \bf{eo\-Pop}$<$ EOT $>$ \&\_\-\_\-pop)
 \item 
 void \hyperlink{classpeoPopEval_95351dcd81d1bf878d839e52a02a902d}{pack\-Data} ()
 \begin{CompactList}\small\item\em Auxiliary function for transferring data between the process requesting an evaluation operation and the process that performs the actual evaluation phase. \item\end{CompactList}\item 
@@ -44,10 +44,10 @@ void \hyperlink{classpeoPopEval_b1e33394ba9797237cb8c7c1f410bd67}{notify\-Sendin
 \subsection*{Private Attributes}
 \begin{CompactItemize}
 \item 
-const std::vector$<$ eo\-Eval\-Func$<$ EOT $>$ $\ast$ $>$ \& \hyperlink{classpeoPopEval_5862b3661c5b0531d55870b5f3881d1e}{funcs}
+const std::vector$<$ \bf{eo\-Eval\-Func}$<$ EOT $>$ $\ast$ $>$ \& \hyperlink{classpeoPopEval_5862b3661c5b0531d55870b5f3881d1e}{funcs}
 \item 
 \hypertarget{classpeoPopEval_4c563a67b776d97b25a05013ddc99921}{
-std::vector$<$ eo\-Eval\-Func$<$ EOT $>$ $\ast$ $>$ \hyperlink{classpeoPopEval_4c563a67b776d97b25a05013ddc99921}{one\_\-func}}
+std::vector$<$ \bf{eo\-Eval\-Func}$<$ EOT $>$ $\ast$ $>$ \hyperlink{classpeoPopEval_4c563a67b776d97b25a05013ddc99921}{one\_\-func}}
 \label{classpeoPopEval_4c563a67b776d97b25a05013ddc99921}
 
 \item 
@@ -99,7 +99,7 @@ unsigned \hyperlink{classpeoPopEval_83b38d0977e5c8666c5aa5293c53bb3e}{total}}
 Parallel evaluation functor wrapper with MOEO. 
 
 \begin{Desc}
-\item[See also:]\hyperlink{classService}{Service} eo\-Pop\-Eval\-Func \end{Desc}
+\item[See also:]\hyperlink{classService}{Service} \doxyref{eo\-Pop\-Eval\-Func} \end{Desc}
 \begin{Desc}
 \item[Version:]1.0 \end{Desc}
 \begin{Desc}
@@ -114,7 +114,7 @@ Definition at line 53 of file peo\-Pop\-Eval.h.
 \hypertarget{classpeoPopEval_878297ba0de14593bd9cc03b2daf52df}{
 \index{peoPopEval@{peo\-Pop\-Eval}!peoPopEval@{peoPopEval}}
 \index{peoPopEval@{peoPopEval}!peoPopEval@{peo\-Pop\-Eval}}
-\subsubsection[peoPopEval]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::\hyperlink{classpeoPopEval}{peo\-Pop\-Eval} (eo\-Eval\-Func$<$ EOT $>$ \& {\em \_\-\_\-eval\_\-func})}}
+\subsubsection[peoPopEval]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::\hyperlink{classpeoPopEval}{peo\-Pop\-Eval} (\bf{eo\-Eval\-Func}$<$ EOT $>$ \& {\em \_\-\_\-eval\_\-func})}}
 \label{classpeoPopEval_878297ba0de14593bd9cc03b2daf52df}
 
 
@@ -132,7 +132,7 @@ Definition at line 132 of file peo\-Pop\-Eval.h.
 References peo\-Pop\-Eval$<$ EOT $>$::one\_\-func.\hypertarget{classpeoPopEval_088822da7a0c92bc21574358d2e5f87c}{
 \index{peoPopEval@{peo\-Pop\-Eval}!peoPopEval@{peoPopEval}}
 \index{peoPopEval@{peoPopEval}!peoPopEval@{peo\-Pop\-Eval}}
-\subsubsection[peoPopEval]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::\hyperlink{classpeoPopEval}{peo\-Pop\-Eval} (const std::vector$<$ eo\-Eval\-Func$<$ EOT $>$ $\ast$ $>$ \& {\em \_\-\_\-funcs}, \hyperlink{classpeoAggEvalFunc}{peo\-Agg\-Eval\-Func}$<$ EOT $>$ \& {\em \_\-\_\-merge\_\-eval})}}
+\subsubsection[peoPopEval]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::\hyperlink{classpeoPopEval}{peo\-Pop\-Eval} (const std::vector$<$ \bf{eo\-Eval\-Func}$<$ EOT $>$ $\ast$ $>$ \& {\em \_\-\_\-funcs}, \hyperlink{classpeoAggEvalFunc}{peo\-Agg\-Eval\-Func}$<$ EOT $>$ \& {\em \_\-\_\-merge\_\-eval})}}
 \label{classpeoPopEval_088822da7a0c92bc21574358d2e5f87c}
 
 
@@ -141,7 +141,7 @@ Constructor function - a vector of EO-derived evaluation functors has to be spec
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em const}]std :: vector$<$ eo\-Eval\-Func $<$ EOT $>$$\ast$ $>$\& \_\-\_\-funcs - vector of EO-derived partial evaluation functors; \item[{\em peo\-Agg\-Eval\-Func$<$}]EOT $>$\& \_\-\_\-merge\_\-eval - aggregation functor for creating a fitness value out of the partial fitness values. \end{description}
+\item[{\em const}]std :: vector$<$ \doxyref{eo\-Eval\-Func} $<$ EOT $>$$\ast$ $>$\& \_\-\_\-funcs - vector of EO-derived partial evaluation functors; \item[{\em peo\-Agg\-Eval\-Func$<$}]EOT $>$\& \_\-\_\-merge\_\-eval - aggregation functor for creating a fitness value out of the partial fitness values. \end{description}
 \end{Desc}
 
 
@@ -151,7 +151,7 @@ Definition at line 141 of file peo\-Pop\-Eval.h.
 \hypertarget{classpeoPopEval_593dd60fc004edea8994d5575bf66e05}{
 \index{peoPopEval@{peo\-Pop\-Eval}!operator()@{operator()}}
 \index{operator()@{operator()}!peoPopEval@{peo\-Pop\-Eval}}
-\subsubsection[operator()]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::operator() (eo\-Pop$<$ EOT $>$ \& {\em \_\-\_\-pop})}}
+\subsubsection[operator()]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::operator() (\bf{eo\-Pop}$<$ EOT $>$ \& {\em \_\-\_\-pop})}}
 \label{classpeoPopEval_593dd60fc004edea8994d5575bf66e05}
 
 
@@ -171,7 +171,7 @@ References peo\-Pop\-Eval$<$ EOT $>$::funcs, peo\-Pop\-Eval$<$ EOT $>$::progress
 Referenced by peo\-Pop\-Eval$<$ EOT $>$::operator()().\hypertarget{classpeoPopEval_fd942c2b66f31c7d12a9ad48f1529a16}{
 \index{peoPopEval@{peo\-Pop\-Eval}!operator()@{operator()}}
 \index{operator()@{operator()}!peoPopEval@{peo\-Pop\-Eval}}
-\subsubsection[operator()]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::operator() (eo\-Pop$<$ EOT $>$ \& {\em \_\-\_\-dummy}, eo\-Pop$<$ EOT $>$ \& {\em \_\-\_\-pop})}}
+\subsubsection[operator()]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::operator() (\bf{eo\-Pop}$<$ EOT $>$ \& {\em \_\-\_\-dummy}, \bf{eo\-Pop}$<$ EOT $>$ \& {\em \_\-\_\-pop})}}
 \label{classpeoPopEval_fd942c2b66f31c7d12a9ad48f1529a16}
 
 
@@ -278,14 +278,14 @@ References Service::get\-Owner(), and Thread::set\-Passive().
 \hypertarget{classpeoPopEval_5862b3661c5b0531d55870b5f3881d1e}{
 \index{peoPopEval@{peo\-Pop\-Eval}!funcs@{funcs}}
 \index{funcs@{funcs}!peoPopEval@{peo\-Pop\-Eval}}
-\subsubsection[funcs]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ const std :: vector$<$ eo\-Eval\-Func $<$ EOT $>$$\ast$ $>$\& \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::\hyperlink{classpeoPopEval_5862b3661c5b0531d55870b5f3881d1e}{funcs}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\subsubsection[funcs]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ const std :: vector$<$ \bf{eo\-Eval\-Func} $<$ EOT $>$$\ast$ $>$\& \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::\hyperlink{classpeoPopEval_5862b3661c5b0531d55870b5f3881d1e}{funcs}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
 \label{classpeoPopEval_5862b3661c5b0531d55870b5f3881d1e}
 
 
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em std}]:: vector$<$ eo\-Eval\-Func $<$ EOT $>$$\ast$ $>$\& funcs \item[{\em std}]:: vector$<$ eo\-Eval\-Func $<$ EOT $>$$\ast$ $>$ one\_\-func \item[{\em peo\-Agg\-Eval\-Func$<$}]EOT $>$\& merge\_\-eval \item[{\em peo\-No\-Agg\-Eval\-Func$<$}]EOT $>$ no\_\-merge\_\-eval \item[{\em std}]:: queue$<$ EOT$\ast$ $>$tasks \item[{\em std}]:: map$<$ EOT$\ast$, std :: pair$<$ unsigned, unsigned $>$ $>$ progression \item[{\em unsigned}]num\_\-func \item[{\em EOT}]sol \item[{\em EOT}]$\ast$ad\_\-sol \item[{\em unsigned}]total \end{description}
+\item[{\em std}]:: vector$<$ \doxyref{eo\-Eval\-Func} $<$ EOT $>$$\ast$ $>$\& funcs \item[{\em std}]:: vector$<$ \doxyref{eo\-Eval\-Func} $<$ EOT $>$$\ast$ $>$ one\_\-func \item[{\em peo\-Agg\-Eval\-Func$<$}]EOT $>$\& merge\_\-eval \item[{\em peo\-No\-Agg\-Eval\-Func$<$}]EOT $>$ no\_\-merge\_\-eval \item[{\em std}]:: queue$<$ EOT$\ast$ $>$tasks \item[{\em std}]:: map$<$ EOT$\ast$, std :: pair$<$ unsigned, unsigned $>$ $>$ progression \item[{\em unsigned}]num\_\-func \item[{\em EOT}]sol \item[{\em EOT}]$\ast$ad\_\-sol \item[{\em unsigned}]total \end{description}
 \end{Desc}
 
 
