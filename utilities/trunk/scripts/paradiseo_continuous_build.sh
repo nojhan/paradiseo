@@ -27,10 +27,16 @@ export SSH_AUTH_SOCK=$1
 export SSH_AGENT_PID=$2
 
 
+# create a daily dir for the logs
+DAY=`/bin/date '+%Y%m%d'`
+if [ ! -d $TEST_DIR/logs/$DAY ] then
+	mkdir $TEST_DIR/logs/$DAY
+fi
+
 for gen in $GENERATOR_LIST	
 	do
 		DATE=`/bin/date '+%Y%m%d%H%M%S'`
-		SPY=$TEST_DIR/logs/continuous.${DATE}.log
+		SPY=$TEST_DIR/logs/$DAY/continuous.${DATE}.log
 		
 		gen=`echo "$gen" | sed s/_/\ /g`
 		echo "*** BEGIN Generator=$gen" >> $SPY
