@@ -15,13 +15,19 @@ PEO_BUILD_TYPE=Debug
 
 GENERATOR_LIST="Unix_Makefiles KDevelop3"
 
-# export the ssh-agent variables
-export SSH_AUTH_SOCK=/tmp/ssh-NFkaL18206/agent.18206
-export SSH_AGENT_PID=18207
+if [ $# -lt 2 ]
+then
+	echo
+        echo "=ERR=> Usage : $0 <SSH_AUTH_SOCK> <SSH_AGENT_PID>"
+        exit 1
+fi
 
-while (true)
-do
-	for gen in $GENERATOR_LIST	
+# export the ssh-agent variables
+export SSH_AUTH_SOCK=$1
+export SSH_AGENT_PID=$2
+
+
+for gen in $GENERATOR_LIST	
 	do
 		DATE=`/bin/date '+%Y%m%d%H%M%S'`
 		SPY=$TEST_DIR/logs/continuous.${DATE}.log
@@ -83,7 +89,7 @@ do
 
 
 		echo "*** END Generator=$gen" >> $SPY
-	done
-
 done
+
+
 
