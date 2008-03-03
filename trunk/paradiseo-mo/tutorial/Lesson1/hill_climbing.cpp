@@ -42,98 +42,98 @@ void manage_configuration_file(eoParser & _parser);
 int
 main (int _argc, char* _argv [])
 {
-  std::string instancePath, selectionType;
-  unsigned int seed;
+    std::string instancePath, selectionType;
+    unsigned int seed;
 
-  eoParser parser(_argc, _argv); 
+    eoParser parser(_argc, _argv);
 
-  manage_configuration_file(parser);
+    manage_configuration_file(parser);
 
-  seed=atoi( (parser.getParamWithLongName("seed")->getValue()).c_str() );
-  instancePath=parser.getParamWithLongName("instancePath")->getValue();
-  selectionType=parser.getParamWithLongName("selectionType")->getValue();
+    seed=atoi( (parser.getParamWithLongName("seed")->getValue()).c_str() );
+    instancePath=parser.getParamWithLongName("instancePath")->getValue();
+    selectionType=parser.getParamWithLongName("selectionType")->getValue();
 
-  srand (seed);
-  Graph::load(instancePath.c_str());
+    srand (seed);
+    Graph::load(instancePath.c_str());
 
-  Route solution;
+    Route solution;
 
-  RouteInit initializer;
-  initializer (solution);
+    RouteInit initializer;
+    initializer (solution);
 
-  RouteEval full_evaluation;
-  full_evaluation (solution);
+    RouteEval full_evaluation;
+    full_evaluation (solution);
 
-  std :: cout << "[From] " << solution << std :: endl;
+    std :: cout << "[From] " << solution << std :: endl;
 
-  /* Tools for an efficient (? :-))
-     local search ! */
+    /* Tools for an efficient (? :-))
+       local search ! */
 
-  TwoOptInit two_opt_initializer;
+    TwoOptInit two_opt_initializer;
 
-  TwoOptNext two_opt_next_move_generator;
+    TwoOptNext two_opt_next_move_generator;
 
-  TwoOptIncrEval two_opt_incremental_evaluation;
+    TwoOptIncrEval two_opt_incremental_evaluation;
 
-  moMoveSelect<TwoOpt>* two_opt_selection;
+    moMoveSelect<TwoOpt>* two_opt_selection;
 
-  if(selectionType.compare("Best")==0)
+    if (selectionType.compare("Best")==0)
     {
-      two_opt_selection= new moBestImprSelect<TwoOpt>();
+        two_opt_selection= new moBestImprSelect<TwoOpt>();
     }
-  else if (selectionType.compare("First")==0)
+    else if (selectionType.compare("First")==0)
     {
-      two_opt_selection= new moFirstImprSelect<TwoOpt>();
+        two_opt_selection= new moFirstImprSelect<TwoOpt>();
     }
-  else if (selectionType.compare("Random")==0)
+    else if (selectionType.compare("Random")==0)
     {
-      two_opt_selection= new moRandImprSelect<TwoOpt>();
+        two_opt_selection= new moRandImprSelect<TwoOpt>();
     }
-  else
+    else
     {
-      throw std::runtime_error("[hill_climbing.cpp]: the type of selection '"+selectionType+"' is not correct.");
+        throw std::runtime_error("[hill_climbing.cpp]: the type of selection '"+selectionType+"' is not correct.");
     }
 
-  moHC <TwoOpt> hill_climbing (two_opt_initializer, two_opt_next_move_generator, two_opt_incremental_evaluation, 
-			       *two_opt_selection, full_evaluation);
-  hill_climbing (solution) ;
-  
-  std :: cout << "[To] " << solution << std :: endl;
-  
-  delete(two_opt_selection);
+    moHC <TwoOpt> hill_climbing (two_opt_initializer, two_opt_next_move_generator, two_opt_incremental_evaluation,
+                                 *two_opt_selection, full_evaluation);
+    hill_climbing (solution) ;
 
-  return EXIT_SUCCESS;
+    std :: cout << "[To] " << solution << std :: endl;
+
+    delete(two_opt_selection);
+
+    return EXIT_SUCCESS;
 }
 
 void
 manage_configuration_file(eoParser & _parser)
 {
-  std::ofstream os;
+    std::ofstream os;
 
 #ifdef _MSVC
-  _parser.createParam(std::string("..\examples\tsp\benchs\berlin52.tsp"), "instancePath", "Path to the instance.", 
-			   0, "Configuration", false);
+    _parser.createParam(std::string("..\examples\tsp\benchs\berlin52.tsp"), "instancePath", "Path to the instance.",
+                        0, "Configuration", false);
 #else
-  _parser.createParam(std::string("../examples/tsp/benchs/berlin52.tsp"), "instancePath", "Path to the instance.", 
-			   0, "Configuration", false);      
+    _parser.createParam(std::string("../examples/tsp/benchs/berlin52.tsp"), "instancePath", "Path to the instance.",
+                        0, "Configuration", false);
 #endif
 
-  _parser.createParam((unsigned int)time(0), "seed", "Seed for rand.", 0, "Configuration", false);
+    _parser.createParam((unsigned int)time(0), "seed", "Seed for rand.", 0, "Configuration", false);
 
-  _parser.createParam(std::string("Best"), "selectionType", "Type of the selection: 'Best', 'First' or 'Random'.", 
-			   0, "Configuration", false);
+    _parser.createParam(std::string("Best"), "selectionType", "Type of the selection: 'Best', 'First' or 'Random'.",
+                        0, "Configuration", false);
 
-  if (_parser.userNeedsHelp())
+    if (_parser.userNeedsHelp())
     {
-      _parser.printHelp(std::cout);
-      exit(EXIT_FAILURE);
+        _parser.printHelp(std::cout);
+        exit(EXIT_FAILURE);
     }
-  
-  os.open("current_param");
-  if(!os.is_open())
+
+    os.open("current_param");
+    if (!os.is_open())
     {
-      throw std::runtime_error("[hill_climbing.cpp]: the file current_param cannot be created.");
+        throw std::runtime_error("[hill_climbing.cpp]: the file current_param cannot be created.");
     }
-  os <<_parser;
-  os.close();
+    os <<_parser;
+    os.close();
 }
