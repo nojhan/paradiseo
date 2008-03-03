@@ -1,4 +1,4 @@
-.TH "moFitComparator" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
+.TH "moFitComparator" 3 "3 Mar 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -18,7 +18,7 @@ Inherits \fBmoComparator< EOT >< EOT >\fP.
 .ti -1c
 .RI "bool \fBoperator()\fP (const EOT &_solution1, const EOT &_solution2)"
 .br
-.RI "\fI\fBFunction\fP which makes the comparison and gives the result. \fP"
+.RI "\fIFunction which makes the comparison and gives the result. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -31,9 +31,9 @@ An EOT is better than an other if its fitness is better.
 Definition at line 46 of file moFitComparator.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class EOT> bool \fBmoFitComparator\fP< EOT >::operator() (const EOT & _solution1, const EOT & _solution2)\fC [inline]\fP"
+.SS "template<class EOT> bool \fBmoFitComparator\fP< EOT >::operator() (const EOT & _solution1, const EOT & _solution2)\fC [inline, virtual]\fP"
 .PP
-\fBFunction\fP which makes the comparison and gives the result. 
+Function which makes the comparison and gives the result. 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -48,6 +48,8 @@ true if the fitness of the first solution is better than the second solution, fa
 .RE
 .PP
 
+.PP
+Implements \fBeoBF< const EOT &, const EOT &, bool >\fP.
 .PP
 Definition at line 56 of file moFitComparator.h.
 

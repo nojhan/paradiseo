@@ -1,4 +1,4 @@
-.TH "moSimpleMoveTabuList" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
+.TH "moSimpleMoveTabuList" 3 "3 Mar 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -34,7 +34,7 @@ Inherits \fBmoTabuList< M >< M >\fP.
 .ti -1c
 .RI "bool \fBoperator()\fP (const M &_move, const \fBEOT\fP &_solution)"
 .br
-.RI "\fI\fBFunction\fP that indicates if, in a given state, the _move is tabu or not. \fP"
+.RI "\fIFunction that indicates if, in a given state, the _move is tabu or not. \fP"
 .ti -1c
 .RI "void \fBadd\fP (const M &_move, const \fBEOT\fP &_solution)"
 .br
@@ -83,7 +83,7 @@ Definition at line 46 of file moSimpleMoveTabuList.h.
 .PP 
 .SS "template<class M> bool \fBmoSimpleMoveTabuList\fP< M >::operator() (const M & _move, const \fBEOT\fP & _solution)\fC [inline]\fP"
 .PP
-\fBFunction\fP that indicates if, in a given state, the _move is tabu or not. 
+Function that indicates if, in a given state, the _move is tabu or not. 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -101,7 +101,7 @@ true or false.
 .PP
 Definition at line 69 of file moSimpleMoveTabuList.h.
 .PP
-References moSimpleMoveTabuList< M >::tabuList.
+References moSimpleMoveTabuList< M >::EOT, moSimpleMoveTabuList< M >::moveIterator, and moSimpleMoveTabuList< M >::tabuList.
 .SS "template<class M> void \fBmoSimpleMoveTabuList\fP< M >::add (const M & _move, const \fBEOT\fP & _solution)\fC [inline, virtual]\fP"
 .PP
 Procedure to add a move in the tabu list. 
@@ -121,7 +121,7 @@ Implements \fBmoTabuList< M >\fP.
 .PP
 Definition at line 86 of file moSimpleMoveTabuList.h.
 .PP
-References moSimpleMoveTabuList< M >::memory_maximum_size, moSimpleMoveTabuList< M >::memory_size, moSimpleMoveTabuList< M >::removeMove(), and moSimpleMoveTabuList< M >::tabuList.
+References moSimpleMoveTabuList< M >::EOT, moSimpleMoveTabuList< M >::memory_size, moSimpleMoveTabuList< M >::removeMove(), and moSimpleMoveTabuList< M >::tabuList.
 .SS "template<class M> void \fBmoSimpleMoveTabuList\fP< M >::update ()\fC [inline, virtual]\fP"
 .PP
 Procedure that updates the tabu list content. 
@@ -153,7 +153,7 @@ Procedure that removes a given move from the tabu list (if it is into, else do n
 .PP
 Definition at line 126 of file moSimpleMoveTabuList.h.
 .PP
-References moSimpleMoveTabuList< M >::tabuList.
+References moSimpleMoveTabuList< M >::moveIterator, and moSimpleMoveTabuList< M >::tabuList.
 .PP
 Referenced by moSimpleMoveTabuList< M >::add().
 

@@ -1,4 +1,4 @@
-.TH "moGenSolContinue" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
+.TH "moGenSolContinue" 3 "3 Mar 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -22,7 +22,7 @@ Inherits \fBmoSolContinue< EOT >< EOT >\fP.
 .ti -1c
 .RI "bool \fBoperator()\fP (const EOT &_solution)"
 .br
-.RI "\fI\fBFunction\fP that activates the stop criterion. \fP"
+.RI "\fIFunction that activates the stop criterion. \fP"
 .ti -1c
 .RI "void \fBinit\fP ()"
 .br
@@ -63,11 +63,13 @@ Simple constructor.
 
 .PP
 Definition at line 54 of file moGenSolContinue.h.
+.PP
+References moGenSolContinue< EOT >::generationMaximumNumber, and moGenSolContinue< EOT >::generationNumber.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class EOT> bool \fBmoGenSolContinue\fP< EOT >::operator() (const EOT & _solution)\fC [inline, virtual]\fP"
 .PP
-\fBFunction\fP that activates the stop criterion. 
+Function that activates the stop criterion. 
 .PP
 Increments the counter and returns TRUE if the current number of iteration is lower than the given maximum number of iterations.
 .PP
@@ -87,7 +89,7 @@ Implements \fBeoUF< const EOT &, bool >\fP.
 .PP
 Definition at line 66 of file moGenSolContinue.h.
 .PP
-References moGenSolContinue< EOT >::generationMaximumNumber, and moGenSolContinue< EOT >::generationNumber.
+References moGenSolContinue< EOT >::generationNumber.
 .SS "template<class EOT> void \fBmoGenSolContinue\fP< EOT >::init ()\fC [inline, virtual]\fP"
 .PP
 Procedure which allows to initialise the generation counter. 

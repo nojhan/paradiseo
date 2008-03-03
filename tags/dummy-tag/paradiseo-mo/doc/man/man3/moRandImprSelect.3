@@ -1,4 +1,4 @@
-.TH "moRandImprSelect" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
+.TH "moRandImprSelect" 3 "3 Mar 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -26,11 +26,11 @@ Inherits \fBmoMoveSelect< M >< M >\fP.
 .ti -1c
 .RI "void \fBinit\fP (const \fBFitness\fP &_fitness)"
 .br
-.RI "\fIProcedure which all that needs a \fBmoRandImprSelect\fP. \fP"
+.RI "\fIProcedure which all that needs a moRandImprSelect. \fP"
 .ti -1c
 .RI "bool \fBupdate\fP (const M &_move, const \fBFitness\fP &_fitness)"
 .br
-.RI "\fI\fBFunction\fP that updates the fitness and move vectors. \fP"
+.RI "\fIFunction that updates the fitness and move vectors. \fP"
 .ti -1c
 .RI "void \fBoperator()\fP (M &_move, \fBFitness\fP &_fitness)"
 .br
@@ -69,7 +69,7 @@ Definition at line 49 of file moRandImprSelect.h.
 .PP 
 .SS "template<class M> void \fBmoRandImprSelect\fP< M >::init (const \fBFitness\fP & _fitness)\fC [inline, virtual]\fP"
 .PP
-Procedure which all that needs a \fBmoRandImprSelect\fP. 
+Procedure which all that needs a moRandImprSelect. 
 .PP
 Give a value to the initialise fitness. Clean the move and fitness vectors.
 .PP
@@ -87,7 +87,7 @@ Definition at line 63 of file moRandImprSelect.h.
 References moRandImprSelect< M >::better_fitnesses, moRandImprSelect< M >::better_moves, moRandImprSelect< M >::firstTime, and moRandImprSelect< M >::initial_fitness.
 .SS "template<class M> bool \fBmoRandImprSelect\fP< M >::update (const M & _move, const \fBFitness\fP & _fitness)\fC [inline, virtual]\fP"
 .PP
-\fBFunction\fP that updates the fitness and move vectors. 
+Function that updates the fitness and move vectors. 
 .PP
 if a move give a better fitness than the initial fitness, it is saved and the fitness too.
 .PP
@@ -109,8 +109,8 @@ Implements \fBmoMoveSelect< M >\fP.
 .PP
 Definition at line 80 of file moRandImprSelect.h.
 .PP
-References moRandImprSelect< M >::better_fitnesses, moRandImprSelect< M >::better_moves, moRandImprSelect< M >::firstTime, and moRandImprSelect< M >::initial_fitness.
-.SS "template<class M> void \fBmoRandImprSelect\fP< M >::operator() (M & _move, \fBFitness\fP & _fitness)\fC [inline, virtual]\fP"
+References moRandImprSelect< M >::better_fitnesses, moRandImprSelect< M >::better_moves, and moRandImprSelect< M >::firstTime.
+.SS "template<class M> void \fBmoRandImprSelect\fP< M >::operator() (M & _move, \fBFitness\fP & _fitness)\fC [inline]\fP"
 .PP
 The move selection. 
 .PP
@@ -125,11 +125,9 @@ One the saved move is randomly chosen.
 .PP
 
 .PP
-Implements \fBeoBF< M &, M::EOType::Fitness &, void >\fP.
-.PP
 Definition at line 100 of file moRandImprSelect.h.
 .PP
-References moRandImprSelect< M >::better_fitnesses, moRandImprSelect< M >::better_moves, moRandImprSelect< M >::firstTime, and eoRng::random().
+References moRandImprSelect< M >::better_fitnesses, and moRandImprSelect< M >::better_moves.
 
 .SH "Author"
 .PP 

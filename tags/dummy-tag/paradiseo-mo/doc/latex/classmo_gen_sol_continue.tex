@@ -14,19 +14,19 @@ Inheritance diagram for mo\-Gen\-Sol\-Continue$<$ EOT $>$::\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-\bf{mo\-Gen\-Sol\-Continue} (unsigned int \_\-generation\-Maximum\-Number)
+{\bf mo\-Gen\-Sol\-Continue} (unsigned int \_\-generation\-Maximum\-Number)
 \begin{CompactList}\small\item\em Simple constructor. \item\end{CompactList}\item 
-bool \bf{operator()} (const EOT \&\_\-solution)
-\begin{CompactList}\small\item\em \doxyref{Function} that activates the stop criterion. \item\end{CompactList}\item 
-void \bf{init} ()
+bool {\bf operator()} (const EOT \&\_\-solution)
+\begin{CompactList}\small\item\em Function that activates the stop criterion. \item\end{CompactList}\item 
+void {\bf init} ()
 \begin{CompactList}\small\item\em Procedure which allows to initialise the generation counter. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
 \begin{CompactItemize}
 \item 
-unsigned int \bf{generation\-Maximum\-Number}\label{classmo_gen_sol_continue_c838d923436b71c584891c1cbe3f47ba}
+unsigned int {\bf generation\-Maximum\-Number}\label{classmo_gen_sol_continue_r0}
 
 \begin{CompactList}\small\item\em Iteration maximum number. \item\end{CompactList}\item 
-unsigned int \bf{generation\-Number}\label{classmo_gen_sol_continue_af0b3e5ca3ceee0d843670955c8f1e58}
+unsigned int {\bf generation\-Number}\label{classmo_gen_sol_continue_r1}
 
 \begin{CompactList}\small\item\em Iteration current number. \item\end{CompactList}\end{CompactItemize}
 
@@ -45,7 +45,7 @@ Definition at line 46 of file mo\-Gen\-Sol\-Continue.h.
 \subsection{Constructor \& Destructor Documentation}
 \index{moGenSolContinue@{mo\-Gen\-Sol\-Continue}!moGenSolContinue@{moGenSolContinue}}
 \index{moGenSolContinue@{moGenSolContinue}!moGenSolContinue@{mo\-Gen\-Sol\-Continue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ \bf{mo\-Gen\-Sol\-Continue}$<$ EOT $>$::\bf{mo\-Gen\-Sol\-Continue} (unsigned int {\em \_\-generation\-Maximum\-Number})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_gen_sol_continue_8e2456421b641d38e3f800f3bbe45159}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf mo\-Gen\-Sol\-Continue}$<$ EOT $>$::{\bf mo\-Gen\-Sol\-Continue} (unsigned int {\em \_\-generation\-Maximum\-Number})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_gen_sol_continue_a0}
 
 
 Simple constructor. 
@@ -59,13 +59,15 @@ Simple constructor.
 
 Definition at line 54 of file mo\-Gen\-Sol\-Continue.h.
 
+References mo\-Gen\-Sol\-Continue$<$ EOT $>$::generation\-Maximum\-Number, and mo\-Gen\-Sol\-Continue$<$ EOT $>$::generation\-Number.
+
 \subsection{Member Function Documentation}
 \index{moGenSolContinue@{mo\-Gen\-Sol\-Continue}!operator()@{operator()}}
 \index{operator()@{operator()}!moGenSolContinue@{mo\-Gen\-Sol\-Continue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool \bf{mo\-Gen\-Sol\-Continue}$<$ EOT $>$::operator() (const EOT \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_gen_sol_continue_2fd5f2f10b6d6208412582578fad48ea}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf mo\-Gen\-Sol\-Continue}$<$ EOT $>$::operator() (const EOT \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_gen_sol_continue_a1}
 
 
-\doxyref{Function} that activates the stop criterion. 
+Function that activates the stop criterion. 
 
 Increments the counter and returns TRUE if the current number of iteration is lower than the given maximum number of iterations.
 
@@ -78,20 +80,20 @@ Increments the counter and returns TRUE if the current number of iteration is lo
 \item[Returns:]true or false according to the current generation number. \end{Desc}
 
 
-Implements \bf{eo\-UF$<$ const EOT \&, bool $>$}.
+Implements {\bf eo\-UF$<$ const EOT \&, bool $>$}.
 
 Definition at line 66 of file mo\-Gen\-Sol\-Continue.h.
 
-References mo\-Gen\-Sol\-Continue$<$ EOT $>$::generation\-Maximum\-Number, and mo\-Gen\-Sol\-Continue$<$ EOT $>$::generation\-Number.\index{moGenSolContinue@{mo\-Gen\-Sol\-Continue}!init@{init}}
+References mo\-Gen\-Sol\-Continue$<$ EOT $>$::generation\-Number.\index{moGenSolContinue@{mo\-Gen\-Sol\-Continue}!init@{init}}
 \index{init@{init}!moGenSolContinue@{mo\-Gen\-Sol\-Continue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \bf{mo\-Gen\-Sol\-Continue}$<$ EOT $>$::init ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_gen_sol_continue_6c5db8182157584b56507cc9075602d4}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void {\bf mo\-Gen\-Sol\-Continue}$<$ EOT $>$::init ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_gen_sol_continue_a2}
 
 
 Procedure which allows to initialise the generation counter. 
 
 It can also be used to reset the iteration counter. 
 
-Implements \bf{mo\-Sol\-Continue$<$ EOT $>$} \doxyref{p.}{classmo_sol_continue_064dc966a210f4ffb9515be3f03ca4c7}.
+Implements {\bf mo\-Sol\-Continue$<$ EOT $>$} {\rm (p.\,\pageref{classmo_sol_continue_a0})}.
 
 Definition at line 78 of file mo\-Gen\-Sol\-Continue.h.
 

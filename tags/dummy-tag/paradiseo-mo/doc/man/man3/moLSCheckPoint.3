@@ -1,4 +1,4 @@
-.TH "moLSCheckPoint" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
+.TH "moLSCheckPoint" 3 "3 Mar 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,7 +10,7 @@ moLSCheckPoint \- Class which allows a checkpointing system.
 .PP
 \fC#include <moLSCheckPoint.h>\fP
 .PP
-Inherits \fBeoBF< A1, A2, R >< const const M &, M::EOType &, void >\fP.
+Inherits \fBeoBF< const M &, const M::EOType &, void >\fP.
 .PP
 .SS "Public Member Functions"
 
@@ -18,7 +18,7 @@ Inherits \fBeoBF< A1, A2, R >< const const M &, M::EOType &, void >\fP.
 .ti -1c
 .RI "void \fBoperator()\fP (const M &_move, const typename M::EOType &_solution)"
 .br
-.RI "\fI\fBFunction\fP which launches the checkpointing. \fP"
+.RI "\fIFunction which launches the checkpointing. \fP"
 .ti -1c
 .RI "void \fBadd\fP (\fBeoBF\fP< const M &, const typename M::EOType &, void > &_function)"
 .br
@@ -45,7 +45,7 @@ Definition at line 46 of file moLSCheckPoint.h.
 .PP 
 .SS "template<class M> void \fBmoLSCheckPoint\fP< M >::operator() (const M & _move, const typename M::EOType & _solution)\fC [inline]\fP"
 .PP
-\fBFunction\fP which launches the checkpointing. 
+Function which launches the checkpointing. 
 .PP
 Each saved function is used on the current move and the current solution.
 .PP

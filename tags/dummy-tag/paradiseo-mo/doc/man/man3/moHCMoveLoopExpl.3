@@ -1,4 +1,4 @@
-.TH "moHCMoveLoopExpl" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
+.TH "moHCMoveLoopExpl" 3 "3 Mar 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -85,9 +85,11 @@ All the boxes have to be specified.
 
 .PP
 Definition at line 66 of file moHCMoveLoopExpl.h.
+.PP
+References moHCMoveLoopExpl< M >::incremental_evaluation, moHCMoveLoopExpl< M >::move_initializer, moHCMoveLoopExpl< M >::move_selection, and moHCMoveLoopExpl< M >::next_move_generator.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> void \fBmoHCMoveLoopExpl\fP< M >::operator() (const \fBEOT\fP & _old_solution, \fBEOT\fP & _new_solution)\fC [inline, virtual]\fP"
+.SS "template<class M> void \fBmoHCMoveLoopExpl\fP< M >::operator() (const \fBEOT\fP & _old_solution, \fBEOT\fP & _new_solution)\fC [inline]\fP"
 .PP
 Procedure which launches the explorer. 
 .PP
@@ -102,11 +104,9 @@ The exploration starts from an old solution and provides a new solution.
 .PP
 
 .PP
-Implements \fBeoBF< const M::EOType &, M::EOType &, void >\fP.
-.PP
 Definition at line 79 of file moHCMoveLoopExpl.h.
 .PP
-References moHCMoveLoopExpl< M >::incremental_evaluation, moHCMoveLoopExpl< M >::move_initializer, moHCMoveLoopExpl< M >::move_selection, and moHCMoveLoopExpl< M >::next_move_generator.
+References moHCMoveLoopExpl< M >::Fitness, moHCMoveLoopExpl< M >::incremental_evaluation, moHCMoveLoopExpl< M >::move_initializer, moHCMoveLoopExpl< M >::move_selection, and moHCMoveLoopExpl< M >::next_move_generator.
 
 .SH "Author"
 .PP 

@@ -1,4 +1,4 @@
-.TH "moBestImprSelect" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
+.TH "moBestImprSelect" 3 "3 Mar 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -30,7 +30,7 @@ Inherits \fBmoMoveSelect< M >< M >\fP.
 .ti -1c
 .RI "bool \fBupdate\fP (const M &_move, const \fBFitness\fP &_fitness)"
 .br
-.RI "\fI\fBFunction\fP that indicates if the current move has not improved the fitness. \fP"
+.RI "\fIFunction that indicates if the current move has not improved the fitness. \fP"
 .ti -1c
 .RI "void \fBoperator()\fP (M &_move, \fBFitness\fP &_fitness)"
 .br
@@ -78,10 +78,10 @@ Implements \fBmoMoveSelect< M >\fP.
 .PP
 Definition at line 58 of file moBestImprSelect.h.
 .PP
-References moBestImprSelect< M >::first_time.
+References moBestImprSelect< M >::first_time, and moBestImprSelect< M >::Fitness.
 .SS "template<class M> bool \fBmoBestImprSelect\fP< M >::update (const M & _move, const \fBFitness\fP & _fitness)\fC [inline, virtual]\fP"
 .PP
-\fBFunction\fP that indicates if the current move has not improved the fitness. 
+Function that indicates if the current move has not improved the fitness. 
 .PP
 If the given fitness enables an improvment, the move (\fBmoMove\fP) and the fitness linked to this move are saved.
 .PP
@@ -104,7 +104,7 @@ Implements \fBmoMoveSelect< M >\fP.
 Definition at line 77 of file moBestImprSelect.h.
 .PP
 References moBestImprSelect< M >::best_fitness, moBestImprSelect< M >::best_move, and moBestImprSelect< M >::first_time.
-.SS "template<class M> void \fBmoBestImprSelect\fP< M >::operator() (M & _move, \fBFitness\fP & _fitness)\fC [inline, virtual]\fP"
+.SS "template<class M> void \fBmoBestImprSelect\fP< M >::operator() (M & _move, \fBFitness\fP & _fitness)\fC [inline]\fP"
 .PP
 Procedure which saved the best move and fitness. 
 .PP
@@ -117,11 +117,7 @@ Procedure which saved the best move and fitness.
 .PP
 
 .PP
-Implements \fBeoBF< M &, M::EOType::Fitness &, void >\fP.
-.PP
 Definition at line 95 of file moBestImprSelect.h.
-.PP
-References moBestImprSelect< M >::best_fitness, moBestImprSelect< M >::best_move, and moBestImprSelect< M >::first_time.
 
 .SH "Author"
 .PP 

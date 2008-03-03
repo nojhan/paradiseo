@@ -1,4 +1,4 @@
-.TH "moSimpleSolutionTabuList" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
+.TH "moSimpleSolutionTabuList" 3 "3 Mar 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -34,7 +34,7 @@ Inherits \fBmoTabuList< M >< M >\fP.
 .ti -1c
 .RI "bool \fBoperator()\fP (const M &_move, const \fBEOT\fP &_solution)"
 .br
-.RI "\fI\fBFunction\fP that indicates if, in a given state, the _move is tabu or not. \fP"
+.RI "\fIFunction that indicates if, in a given state, the _move is tabu or not. \fP"
 .ti -1c
 .RI "void \fBadd\fP (const M &_move, const \fBEOT\fP &_solution)"
 .br
@@ -93,11 +93,13 @@ Constructor.
 
 .PP
 Definition at line 60 of file moSimpleSolutionTabuList.h.
+.PP
+References moSimpleSolutionTabuList< M >::memory_maximum_size, and moSimpleSolutionTabuList< M >::memory_size.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class M> bool \fBmoSimpleSolutionTabuList\fP< M >::operator() (const M & _move, const \fBEOT\fP & _solution)\fC [inline]\fP"
 .PP
-\fBFunction\fP that indicates if, in a given state, the _move is tabu or not. 
+Function that indicates if, in a given state, the _move is tabu or not. 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -115,7 +117,7 @@ true or false.
 .PP
 Definition at line 69 of file moSimpleSolutionTabuList.h.
 .PP
-References moSimpleSolutionTabuList< M >::tabuList.
+References moSimpleSolutionTabuList< M >::EOT, moSimpleSolutionTabuList< M >::solutionIterator, and moSimpleSolutionTabuList< M >::tabuList.
 .SS "template<class M> void \fBmoSimpleSolutionTabuList\fP< M >::add (const M & _move, const \fBEOT\fP & _solution)\fC [inline, virtual]\fP"
 .PP
 Procedure to add a move in the tabu list. 
@@ -135,7 +137,7 @@ Implements \fBmoTabuList< M >\fP.
 .PP
 Definition at line 89 of file moSimpleSolutionTabuList.h.
 .PP
-References moSimpleSolutionTabuList< M >::memory_maximum_size, moSimpleSolutionTabuList< M >::memory_size, moSimpleSolutionTabuList< M >::removeSolution(), and moSimpleSolutionTabuList< M >::tabuList.
+References moSimpleSolutionTabuList< M >::EOT, moSimpleSolutionTabuList< M >::memory_size, moSimpleSolutionTabuList< M >::removeSolution(), and moSimpleSolutionTabuList< M >::tabuList.
 .SS "template<class M> void \fBmoSimpleSolutionTabuList\fP< M >::update ()\fC [inline, virtual]\fP"
 .PP
 Procedure that updates the tabu list content. 
@@ -167,7 +169,7 @@ Procedure that removes a given solution from the tabu list (if it is into, else 
 .PP
 Definition at line 131 of file moSimpleSolutionTabuList.h.
 .PP
-References moSimpleSolutionTabuList< M >::tabuList.
+References moSimpleSolutionTabuList< M >::solutionIterator, and moSimpleSolutionTabuList< M >::tabuList.
 .PP
 Referenced by moSimpleSolutionTabuList< M >::add().
 

@@ -1,4 +1,4 @@
-.TH "moFitSolContinue" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
+.TH "moFitSolContinue" 3 "3 Mar 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -30,7 +30,7 @@ Inherits \fBmoSolContinue< EOT >< EOT >\fP.
 .ti -1c
 .RI "bool \fBoperator()\fP (const EOT &_solution)"
 .br
-.RI "\fI\fBFunction\fP that activates the stopping criterion. \fP"
+.RI "\fIFunction that activates the stopping criterion. \fP"
 .ti -1c
 .RI "void \fBinit\fP ()"
 .br
@@ -67,11 +67,13 @@ Basic constructor.
 
 .PP
 Definition at line 57 of file moFitSolContinue.h.
+.PP
+References moFitSolContinue< EOT >::fitness.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class EOT> bool \fBmoFitSolContinue\fP< EOT >::operator() (const EOT & _solution)\fC [inline, virtual]\fP"
 .PP
-\fBFunction\fP that activates the stopping criterion. 
+Function that activates the stopping criterion. 
 .PP
 Indicates if the fitness threshold has not yet been reached.
 .PP

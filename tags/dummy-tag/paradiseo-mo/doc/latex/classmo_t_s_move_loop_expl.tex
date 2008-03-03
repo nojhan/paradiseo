@@ -14,38 +14,38 @@ Inheritance diagram for mo\-TSMove\-Loop\-Expl$<$ M $>$::\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-\bf{mo\-TSMove\-Loop\-Expl} (\bf{mo\-Move\-Init}$<$ M $>$ \&\_\-move\_\-initializer, \bf{mo\-Next\-Move}$<$ M $>$ \&\_\-next\_\-move\_\-generator, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \&\_\-incremental\_\-evaluation, \bf{mo\-Tabu\-List}$<$ M $>$ \&\_\-tabu\_\-list, \bf{mo\-Aspir\-Crit}$<$ M $>$ \&\_\-aspiration\_\-criterion)
+{\bf mo\-TSMove\-Loop\-Expl} ({\bf mo\-Move\-Init}$<$ M $>$ \&\_\-move\_\-initializer, {\bf mo\-Next\-Move}$<$ M $>$ \&\_\-next\_\-move\_\-generator, {\bf mo\-Move\-Incr\-Eval}$<$ M $>$ \&\_\-incremental\_\-evaluation, {\bf mo\-Tabu\-List}$<$ M $>$ \&\_\-tabu\_\-list, {\bf mo\-Aspir\-Crit}$<$ M $>$ \&\_\-aspiration\_\-criterion)
 \begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
-void \bf{operator()} (const \bf{EOT} \&\_\-old\_\-solution, \bf{EOT} \&\_\-new\_\-solution)
+void {\bf operator()} (const {\bf EOT} \&\_\-old\_\-solution, {\bf EOT} \&\_\-new\_\-solution)
 \begin{CompactList}\small\item\em Procedure which lauches the exploration. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Types}
 \begin{CompactItemize}
 \item 
-typedef M::EOType \bf{EOT}\label{classmo_t_s_move_loop_expl_47f42225e2ed096374b818bdb848a527}
+typedef M::EOType {\bf EOT}\label{classmo_t_s_move_loop_expl_y0}
 
 \begin{CompactList}\small\item\em Alias for the type. \item\end{CompactList}\item 
-typedef M::EOType::Fitness \bf{Fitness}\label{classmo_t_s_move_loop_expl_a1ba36c937b195ca2f7d1a24adaa7018}
+typedef M::EOType::Fitness {\bf Fitness}\label{classmo_t_s_move_loop_expl_y1}
 
 \begin{CompactList}\small\item\em Alias for the fitness. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
 \begin{CompactItemize}
 \item 
-\bf{mo\-Move\-Init}$<$ M $>$ \& \bf{move\_\-initializer}\label{classmo_t_s_move_loop_expl_cd680d22382b9941d2c34133a641d443}
+{\bf mo\-Move\-Init}$<$ M $>$ \& {\bf move\_\-initializer}\label{classmo_t_s_move_loop_expl_r0}
 
 \begin{CompactList}\small\item\em Move initialisation. \item\end{CompactList}\item 
-\bf{mo\-Next\-Move}$<$ M $>$ \& \bf{next\_\-move\_\-generator}\label{classmo_t_s_move_loop_expl_a2bbb593af2beefb05a307277c22b3d5}
+{\bf mo\-Next\-Move}$<$ M $>$ \& {\bf next\_\-move\_\-generator}\label{classmo_t_s_move_loop_expl_r1}
 
 \begin{CompactList}\small\item\em Neighborhood explorer. \item\end{CompactList}\item 
-\bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \& \bf{incremental\_\-evaluation}\label{classmo_t_s_move_loop_expl_491fa46e1cb7935cb515b27b85bf8765}
+{\bf mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\bf incremental\_\-evaluation}\label{classmo_t_s_move_loop_expl_r2}
 
 \begin{CompactList}\small\item\em Efficient evaluation. \item\end{CompactList}\item 
-\bf{mo\-Best\-Impr\-Select}$<$ M $>$ \bf{move\_\-selection}\label{classmo_t_s_move_loop_expl_1caa6939fbe65ec4255e9e6dc3ce333b}
+{\bf mo\-Best\-Impr\-Select}$<$ M $>$ {\bf move\_\-selection}\label{classmo_t_s_move_loop_expl_r3}
 
 \begin{CompactList}\small\item\em Move selector. \item\end{CompactList}\item 
-\bf{mo\-Tabu\-List}$<$ M $>$ \& \bf{tabu\_\-list}\label{classmo_t_s_move_loop_expl_0e5988a940ba218e87c53b7e56d79790}
+{\bf mo\-Tabu\-List}$<$ M $>$ \& {\bf tabu\_\-list}\label{classmo_t_s_move_loop_expl_r4}
 
 \begin{CompactList}\small\item\em Tabu list. \item\end{CompactList}\item 
-\bf{mo\-Aspir\-Crit}$<$ M $>$ \& \bf{aspiration\_\-criterion}\label{classmo_t_s_move_loop_expl_bdfc8efb22599c150b3c3d44cd416b09}
+{\bf mo\-Aspir\-Crit}$<$ M $>$ \& {\bf aspiration\_\-criterion}\label{classmo_t_s_move_loop_expl_r5}
 
 \begin{CompactList}\small\item\em Aspiration criterion. \item\end{CompactList}\end{CompactItemize}
 
@@ -55,7 +55,7 @@ typedef M::EOType::Fitness \bf{Fitness}\label{classmo_t_s_move_loop_expl_a1ba36c
 
 Explorer for a Tabu Search algorithm. 
 
-It is used by a \doxyref{mo\-TS}{p.}{classmo_t_s}. 
+It is used by a {\bf mo\-TS}{\rm (p.\,\pageref{classmo_t_s})}. 
 
 
 
@@ -64,7 +64,7 @@ Definition at line 53 of file mo\-TSMove\-Loop\-Expl.h.
 \subsection{Constructor \& Destructor Documentation}
 \index{moTSMoveLoopExpl@{mo\-TSMove\-Loop\-Expl}!moTSMoveLoopExpl@{moTSMoveLoopExpl}}
 \index{moTSMoveLoopExpl@{moTSMoveLoopExpl}!moTSMoveLoopExpl@{mo\-TSMove\-Loop\-Expl}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ \bf{mo\-TSMove\-Loop\-Expl}$<$ M $>$::\bf{mo\-TSMove\-Loop\-Expl} (\bf{mo\-Move\-Init}$<$ M $>$ \& {\em \_\-move\_\-initializer}, \bf{mo\-Next\-Move}$<$ M $>$ \& {\em \_\-next\_\-move\_\-generator}, \bf{mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\em \_\-incremental\_\-evaluation}, \bf{mo\-Tabu\-List}$<$ M $>$ \& {\em \_\-tabu\_\-list}, \bf{mo\-Aspir\-Crit}$<$ M $>$ \& {\em \_\-aspiration\_\-criterion})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_t_s_move_loop_expl_be5cf0853777718c3bbcbef456b50bc7}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf mo\-TSMove\-Loop\-Expl}$<$ M $>$::{\bf mo\-TSMove\-Loop\-Expl} ({\bf mo\-Move\-Init}$<$ M $>$ \& {\em \_\-move\_\-initializer}, {\bf mo\-Next\-Move}$<$ M $>$ \& {\em \_\-next\_\-move\_\-generator}, {\bf mo\-Move\-Incr\-Eval}$<$ M $>$ \& {\em \_\-incremental\_\-evaluation}, {\bf mo\-Tabu\-List}$<$ M $>$ \& {\em \_\-tabu\_\-list}, {\bf mo\-Aspir\-Crit}$<$ M $>$ \& {\em \_\-aspiration\_\-criterion})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_t_s_move_loop_expl_a0}
 
 
 Constructor. 
@@ -78,12 +78,12 @@ Constructor.
 
 Definition at line 71 of file mo\-TSMove\-Loop\-Expl.h.
 
-References mo\-TSMove\-Loop\-Expl$<$ M $>$::aspiration\_\-criterion, and mo\-TSMove\-Loop\-Expl$<$ M $>$::tabu\_\-list.
+References mo\-TSMove\-Loop\-Expl$<$ M $>$::aspiration\_\-criterion, mo\-TSMove\-Loop\-Expl$<$ M $>$::incremental\_\-evaluation, mo\-TSMove\-Loop\-Expl$<$ M $>$::move\_\-initializer, mo\-TSMove\-Loop\-Expl$<$ M $>$::next\_\-move\_\-generator, and mo\-TSMove\-Loop\-Expl$<$ M $>$::tabu\_\-list.
 
 \subsection{Member Function Documentation}
 \index{moTSMoveLoopExpl@{mo\-TSMove\-Loop\-Expl}!operator()@{operator()}}
 \index{operator()@{operator()}!moTSMoveLoopExpl@{mo\-TSMove\-Loop\-Expl}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void \bf{mo\-TSMove\-Loop\-Expl}$<$ M $>$::operator() (const \bf{EOT} \& {\em \_\-old\_\-solution}, \bf{EOT} \& {\em \_\-new\_\-solution})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_t_s_move_loop_expl_853743f2e21def3ea129556f47fafa55}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void {\bf mo\-TSMove\-Loop\-Expl}$<$ M $>$::operator() (const {\bf EOT} \& {\em \_\-old\_\-solution}, {\bf EOT} \& {\em \_\-new\_\-solution})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_t_s_move_loop_expl_a1}
 
 
 Procedure which lauches the exploration. 
@@ -97,11 +97,9 @@ The exploration continues while the chosen move is not in the tabu list or the a
 \end{Desc}
 
 
-Implements \bf{eo\-BF$<$ const M::EOType \&, M::EOType \&, void $>$}.
-
 Definition at line 90 of file mo\-TSMove\-Loop\-Expl.h.
 
-References mo\-TSMove\-Loop\-Expl$<$ M $>$::aspiration\_\-criterion, mo\-TSMove\-Loop\-Expl$<$ M $>$::incremental\_\-evaluation, mo\-TSMove\-Loop\-Expl$<$ M $>$::move\_\-initializer, mo\-TSMove\-Loop\-Expl$<$ M $>$::move\_\-selection, mo\-TSMove\-Loop\-Expl$<$ M $>$::next\_\-move\_\-generator, and mo\-TSMove\-Loop\-Expl$<$ M $>$::tabu\_\-list.
+References mo\-TSMove\-Loop\-Expl$<$ M $>$::aspiration\_\-criterion, mo\-TSMove\-Loop\-Expl$<$ M $>$::Fitness, mo\-TSMove\-Loop\-Expl$<$ M $>$::incremental\_\-evaluation, mo\-TSMove\-Loop\-Expl$<$ M $>$::move\_\-initializer, mo\-TSMove\-Loop\-Expl$<$ M $>$::move\_\-selection, mo\-TSMove\-Loop\-Expl$<$ M $>$::next\_\-move\_\-generator, and mo\-TSMove\-Loop\-Expl$<$ M $>$::tabu\_\-list.
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 

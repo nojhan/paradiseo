@@ -1,4 +1,4 @@
-.TH "moItRandNextMove" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
+.TH "moItRandNextMove" 3 "3 Mar 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -63,7 +63,7 @@ Definition at line 47 of file moItRandNextMove.h.
 .PP
 The constructor. 
 .PP
-\fBParameters\fP only for initialising the attributes.
+Parameters only for initialising the attributes.
 .PP
 \fBParameters:\fP
 .RS 4
@@ -75,6 +75,8 @@ The constructor.
 
 .PP
 Definition at line 61 of file moItRandNextMove.h.
+.PP
+References moItRandNextMove< M >::iteration_maximum_number, moItRandNextMove< M >::iteration_number, and moItRandNextMove< M >::random_move_generator.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class M> bool \fBmoItRandNextMove\fP< M >::operator() (M & _move, const \fBEOT\fP & _solution)\fC [inline]\fP"
@@ -99,7 +101,7 @@ false if the maximum number of iteration is reached, else true.
 .PP
 Definition at line 73 of file moItRandNextMove.h.
 .PP
-References moItRandNextMove< M >::iteration_maximum_number, moItRandNextMove< M >::iteration_number, and moItRandNextMove< M >::random_move_generator.
+References moItRandNextMove< M >::EOT, moItRandNextMove< M >::iteration_number, and moItRandNextMove< M >::random_move_generator.
 
 .SH "Author"
 .PP 

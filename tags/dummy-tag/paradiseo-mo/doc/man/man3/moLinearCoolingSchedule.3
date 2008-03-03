@@ -1,4 +1,4 @@
-.TH "moLinearCoolingSchedule" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
+.TH "moLinearCoolingSchedule" 3 "3 Mar 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -22,7 +22,7 @@ Inherits \fBmoCoolingSchedule\fP.
 .ti -1c
 .RI "bool \fBoperator()\fP (double &_current_temperature)"
 .br
-.RI "\fI\fBFunction\fP which proceeds to the cooling. \fP"
+.RI "\fIFunction which proceeds to the cooling. \fP"
 .in -1c
 .SS "Private Attributes"
 
@@ -59,11 +59,13 @@ Simple constructor.
 
 .PP
 Definition at line 55 of file moLinearCoolingSchedule.h.
+.PP
+References quantity, and threshold.
 .SH "Member Function Documentation"
 .PP 
 .SS "bool moLinearCoolingSchedule::operator() (double & _current_temperature)\fC [inline, virtual]\fP"
 .PP
-\fBFunction\fP which proceeds to the cooling. 
+Function which proceeds to the cooling. 
 .PP
 It decreases the temperature and indicates if it is greater than the threshold.
 .PP
@@ -82,8 +84,6 @@ true if the new temperature (current temperature - quantity) is greater than the
 Implements \fBeoUF< double &, bool >\fP.
 .PP
 Definition at line 65 of file moLinearCoolingSchedule.h.
-.PP
-References quantity, and threshold.
 
 .SH "Author"
 .PP 

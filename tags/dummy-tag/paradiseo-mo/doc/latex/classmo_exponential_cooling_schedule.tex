@@ -1,6 +1,6 @@
 \section{mo\-Exponential\-Cooling\-Schedule Class Reference}
 \label{classmo_exponential_cooling_schedule}\index{moExponentialCoolingSchedule@{moExponentialCoolingSchedule}}
-One of the possible \doxyref{mo\-Cooling\-Schedule}{p.}{classmo_cooling_schedule}.  
+One of the possible {\bf mo\-Cooling\-Schedule}{\rm (p.\,\pageref{classmo_cooling_schedule})}.  
 
 
 {\tt \#include $<$mo\-Exponential\-Cooling\-Schedule.h$>$}
@@ -14,23 +14,23 @@ Inheritance diagram for mo\-Exponential\-Cooling\-Schedule::\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-\bf{mo\-Exponential\-Cooling\-Schedule} (double \_\-threshold, double \_\-ratio)
+{\bf mo\-Exponential\-Cooling\-Schedule} (double \_\-threshold, double \_\-ratio)
 \begin{CompactList}\small\item\em Simple constructor. \item\end{CompactList}\item 
-bool \bf{operator()} (double \&\_\-temperature)
-\begin{CompactList}\small\item\em \doxyref{Function} which proceeds to the cooling. \item\end{CompactList}\end{CompactItemize}
+bool {\bf operator()} (double \&\_\-temperature)
+\begin{CompactList}\small\item\em Function which proceeds to the cooling. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
 \begin{CompactItemize}
 \item 
-double \bf{threshold}\label{classmo_exponential_cooling_schedule_8d4327c0bb33b7121a322279eea97f84}
+double {\bf threshold}\label{classmo_exponential_cooling_schedule_r0}
 
 \begin{CompactList}\small\item\em The temperature threhold. \item\end{CompactList}\item 
-double \bf{ratio}\label{classmo_exponential_cooling_schedule_e8f3f87417c1c7253efb938a740846fa}
+double {\bf ratio}\label{classmo_exponential_cooling_schedule_r1}
 
 \begin{CompactList}\small\item\em The decreasing factor of the temperature. \item\end{CompactList}\end{CompactItemize}
 
 
 \subsection{Detailed Description}
-One of the possible \doxyref{mo\-Cooling\-Schedule}{p.}{classmo_cooling_schedule}. 
+One of the possible {\bf mo\-Cooling\-Schedule}{\rm (p.\,\pageref{classmo_cooling_schedule})}. 
 
 An other very simple cooling schedule, the temperature decrease according to a ratio while the temperature is greater than a given threshold. 
 
@@ -41,7 +41,7 @@ Definition at line 46 of file mo\-Exponential\-Cooling\-Schedule.h.
 \subsection{Constructor \& Destructor Documentation}
 \index{moExponentialCoolingSchedule@{mo\-Exponential\-Cooling\-Schedule}!moExponentialCoolingSchedule@{moExponentialCoolingSchedule}}
 \index{moExponentialCoolingSchedule@{moExponentialCoolingSchedule}!moExponentialCoolingSchedule@{mo\-Exponential\-Cooling\-Schedule}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}mo\-Exponential\-Cooling\-Schedule::mo\-Exponential\-Cooling\-Schedule (double {\em \_\-threshold}, double {\em \_\-ratio})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_exponential_cooling_schedule_e60ce9eb5e632f4758ea96ae92a52774}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}mo\-Exponential\-Cooling\-Schedule::mo\-Exponential\-Cooling\-Schedule (double {\em \_\-threshold}, double {\em \_\-ratio})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_exponential_cooling_schedule_a0}
 
 
 Simple constructor. 
@@ -55,13 +55,15 @@ Simple constructor.
 
 Definition at line 55 of file mo\-Exponential\-Cooling\-Schedule.h.
 
+References ratio, and threshold.
+
 \subsection{Member Function Documentation}
 \index{moExponentialCoolingSchedule@{mo\-Exponential\-Cooling\-Schedule}!operator()@{operator()}}
 \index{operator()@{operator()}!moExponentialCoolingSchedule@{mo\-Exponential\-Cooling\-Schedule}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool mo\-Exponential\-Cooling\-Schedule::operator() (double \& {\em \_\-temperature})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_exponential_cooling_schedule_95b075e9786a5cc984ef1bb59a2107e4}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bool mo\-Exponential\-Cooling\-Schedule::operator() (double \& {\em \_\-temperature})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_exponential_cooling_schedule_a1}
 
 
-\doxyref{Function} which proceeds to the cooling. 
+Function which proceeds to the cooling. 
 
 It decreases the temperature and indicates if it is greater than the threshold.
 
@@ -74,11 +76,9 @@ It decreases the temperature and indicates if it is greater than the threshold.
 \item[Returns:]if the new temperature (current temperature $\ast$ ratio) is greater than the threshold. \end{Desc}
 
 
-Implements \bf{eo\-UF$<$ double \&, bool $>$}.
+Implements {\bf eo\-UF$<$ double \&, bool $>$}.
 
 Definition at line 65 of file mo\-Exponential\-Cooling\-Schedule.h.
-
-References ratio, and threshold.
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 

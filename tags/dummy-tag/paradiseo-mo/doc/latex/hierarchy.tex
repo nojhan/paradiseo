@@ -1,27 +1,30 @@
 \section{Paradis\-EO-MO-Moving\-Objects Class Hierarchy}
 This inheritance list is sorted roughly, but not completely, alphabetically:\begin{CompactList}
 \item eo\-Functor\-Base{\tt  [external]}\begin{CompactList}
-\item eo\-BF$<$ A1, A2, R $>${\tt  [external]}\begin{CompactList}
-\item \contentsline{section}{mo\-Aspir\-Crit$<$ M $>$}{\pageref{classmo_aspir_crit}}{}
-\begin{CompactList}
-\item \contentsline{section}{mo\-Impr\-Best\-Fit\-Aspir\-Crit$<$ M $>$}{\pageref{classmo_impr_best_fit_aspir_crit}}{}
-\item \contentsline{section}{mo\-No\-Aspir\-Crit$<$ M $>$}{\pageref{classmo_no_aspir_crit}}{}
-\end{CompactList}
+\item eo\-BF$<$ const EOT \&, const EOT \&, bool $>${\tt  [external]}\begin{CompactList}
 \item \contentsline{section}{mo\-Comparator$<$ EOT $>$}{\pageref{classmo_comparator}}{}
 \begin{CompactList}
 \item \contentsline{section}{mo\-Fit\-Comparator$<$ EOT $>$}{\pageref{classmo_fit_comparator}}{}
 \end{CompactList}
-\item \contentsline{section}{mo\-LSCheck\-Point$<$ M $>$}{\pageref{classmo_l_s_check_point}}{}
-\item \contentsline{section}{mo\-Move\-Incr\-Eval$<$ M $>$}{\pageref{classmo_move_incr_eval}}{}
-\item \contentsline{section}{mo\-Move\-Init$<$ M $>$}{\pageref{classmo_move_init}}{}
-\item \contentsline{section}{mo\-Next\-Move$<$ M $>$}{\pageref{classmo_next_move}}{}
-\begin{CompactList}
-\item \contentsline{section}{mo\-It\-Rand\-Next\-Move$<$ M $>$}{\pageref{classmo_it_rand_next_move}}{}
 \end{CompactList}
+\item eo\-BF$<$ const M \&, const M::EOType \&, bool $>${\tt  [external]}\begin{CompactList}
 \item \contentsline{section}{mo\-Tabu\-List$<$ M $>$}{\pageref{classmo_tabu_list}}{}
 \begin{CompactList}
 \item \contentsline{section}{mo\-Simple\-Move\-Tabu\-List$<$ M $>$}{\pageref{classmo_simple_move_tabu_list}}{}
 \item \contentsline{section}{mo\-Simple\-Solution\-Tabu\-List$<$ M $>$}{\pageref{classmo_simple_solution_tabu_list}}{}
+\end{CompactList}
+\end{CompactList}
+\item eo\-BF$<$ const M \&, const M::EOType \&, M::EOType::Fitness $>${\tt  [external]}\begin{CompactList}
+\item \contentsline{section}{mo\-Move\-Incr\-Eval$<$ M $>$}{\pageref{classmo_move_incr_eval}}{}
+\end{CompactList}
+\item eo\-BF$<$ const M \&, const M::EOType \&, void $>${\tt  [external]}\begin{CompactList}
+\item \contentsline{section}{mo\-LSCheck\-Point$<$ M $>$}{\pageref{classmo_l_s_check_point}}{}
+\end{CompactList}
+\item eo\-BF$<$ const M \&, const M::EOType::Fitness \&, bool $>${\tt  [external]}\begin{CompactList}
+\item \contentsline{section}{mo\-Aspir\-Crit$<$ M $>$}{\pageref{classmo_aspir_crit}}{}
+\begin{CompactList}
+\item \contentsline{section}{mo\-Impr\-Best\-Fit\-Aspir\-Crit$<$ M $>$}{\pageref{classmo_impr_best_fit_aspir_crit}}{}
+\item \contentsline{section}{mo\-No\-Aspir\-Crit$<$ M $>$}{\pageref{classmo_no_aspir_crit}}{}
 \end{CompactList}
 \end{CompactList}
 \item eo\-BF$<$ const M::EOType \&, M::EOType \&, void $>${\tt  [external]}\begin{CompactList}
@@ -33,6 +36,15 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \item \contentsline{section}{mo\-TSMove\-Loop\-Expl$<$ M $>$}{\pageref{classmo_t_s_move_loop_expl}}{}
 \end{CompactList}
 \end{CompactList}
+\end{CompactList}
+\item eo\-BF$<$ M \&, const M::EOType \&, bool $>${\tt  [external]}\begin{CompactList}
+\item \contentsline{section}{mo\-Next\-Move$<$ M $>$}{\pageref{classmo_next_move}}{}
+\begin{CompactList}
+\item \contentsline{section}{mo\-It\-Rand\-Next\-Move$<$ M $>$}{\pageref{classmo_it_rand_next_move}}{}
+\end{CompactList}
+\end{CompactList}
+\item eo\-BF$<$ M \&, const M::EOType \&, void $>${\tt  [external]}\begin{CompactList}
+\item \contentsline{section}{mo\-Move\-Init$<$ M $>$}{\pageref{classmo_move_init}}{}
 \end{CompactList}
 \item eo\-BF$<$ M \&, M::EOType::Fitness \&, void $>${\tt  [external]}\begin{CompactList}
 \item \contentsline{section}{mo\-Move\-Select$<$ M $>$}{\pageref{classmo_move_select}}{}
@@ -70,12 +82,17 @@ This inheritance list is sorted roughly, but not completely, alphabetically:\beg
 \item \contentsline{section}{mo\-Rand\-Move$<$ M $>$}{\pageref{classmo_rand_move}}{}
 \end{CompactList}
 \item eo\-UF$<$ M::EOType \&, bool $>${\tt  [external]}\begin{CompactList}
-\item eo\-Mon\-Op$<$ M::EOType $>${\tt  [external]}\end{CompactList}
-\end{CompactList}
-\item eo\-Op$<$ EOType $>${\tt  [external]}\begin{CompactList}
-\item eo\-Mon\-Op$<$ EOT $>${\tt  [external]}\item eo\-Mon\-Op$<$ M::EOType $>${\tt  [external]}\end{CompactList}
+\item eo\-Mon\-Op$<$ M::EOType $>${\tt  [external]}\begin{CompactList}
+\item \contentsline{section}{mo\-Algo$<$ M::EOType $>$}{\pageref{classmo_algo}}{}
+\begin{CompactList}
 \item \contentsline{section}{mo\-HC$<$ M $>$}{\pageref{classmo_h_c}}{}
 \item \contentsline{section}{mo\-ILS$<$ M $>$}{\pageref{classmo_i_l_s}}{}
 \item \contentsline{section}{mo\-SA$<$ M $>$}{\pageref{classmo_s_a}}{}
 \item \contentsline{section}{mo\-TS$<$ M $>$}{\pageref{classmo_t_s}}{}
+\end{CompactList}
+\end{CompactList}
+\end{CompactList}
+\end{CompactList}
+\item eo\-Op$<$ EOType $>${\tt  [external]}\begin{CompactList}
+\item eo\-Mon\-Op$<$ EOT $>${\tt  [external]}\item eo\-Mon\-Op$<$ M::EOType $>${\tt  [external]}\end{CompactList}
 \end{CompactList}

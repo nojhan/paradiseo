@@ -1,4 +1,4 @@
-.TH "moNoFitImprSolContinue" 3 "29 Feb 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
+.TH "moNoFitImprSolContinue" 3 "3 Mar 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -30,7 +30,7 @@ Inherits \fBmoSolContinue< EOT >< EOT >\fP.
 .ti -1c
 .RI "bool \fBoperator()\fP (const EOT &_solution)"
 .br
-.RI "\fI\fBFunction\fP that activates the stopping criterion. \fP"
+.RI "\fIFunction that activates the stopping criterion. \fP"
 .ti -1c
 .RI "void \fBinit\fP ()"
 .br
@@ -79,11 +79,13 @@ Basic constructor.
 
 .PP
 Definition at line 57 of file moNoFitImprSolContinue.h.
+.PP
+References moNoFitImprSolContinue< EOT >::counter, moNoFitImprSolContinue< EOT >::firstFitnessSaved, and moNoFitImprSolContinue< EOT >::maxNumberOfIterationsWithoutImprovement.
 .SH "Member Function Documentation"
 .PP 
 .SS "template<class EOT> bool \fBmoNoFitImprSolContinue\fP< EOT >::operator() (const EOT & _solution)\fC [inline, virtual]\fP"
 .PP
-\fBFunction\fP that activates the stopping criterion. 
+Function that activates the stopping criterion. 
 .PP
 Indicates if the fitness has not been improved since a given number of iterations (after a minimum of iterations). 
 .PP
@@ -103,7 +105,7 @@ Implements \fBeoUF< const EOT &, bool >\fP.
 .PP
 Definition at line 67 of file moNoFitImprSolContinue.h.
 .PP
-References moNoFitImprSolContinue< EOT >::counter, moNoFitImprSolContinue< EOT >::firstFitnessSaved, moNoFitImprSolContinue< EOT >::fitness, and moNoFitImprSolContinue< EOT >::maxNumberOfIterationsWithoutImprovement.
+References moNoFitImprSolContinue< EOT >::counter, moNoFitImprSolContinue< EOT >::firstFitnessSaved, and moNoFitImprSolContinue< EOT >::fitness.
 .SS "template<class EOT> void \fBmoNoFitImprSolContinue\fP< EOT >::init ()\fC [inline, virtual]\fP"
 .PP
 Procedure which allows to initialise all the stuff needed. 
