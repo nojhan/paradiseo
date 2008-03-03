@@ -13,6 +13,8 @@ MO_BUILD_TYPE=Debug
 MOEO_BUILD_TYPE=Debug
 PEO_BUILD_TYPE=Debug
 
+SLEEP_DELAY=120
+
 GENERATOR_LIST="Unix_Makefiles KDevelop3"
 
 if [ $# -lt 2 ]
@@ -89,6 +91,7 @@ do
 	ctest -D NightlyUpdate -D NightlyStart -D NightlyBuild -D NightlyCoverage  -D NightlyTest -D NightlyMemCheck -D NightlySubmit >> $SPY
 
 	echo "*** END Generator=$gen" >> $SPY
+	sleep $SLEEP_DELAY
 done
 
 
