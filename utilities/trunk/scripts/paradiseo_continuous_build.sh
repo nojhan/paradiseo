@@ -15,6 +15,8 @@ PEO_BUILD_TYPE=Debug
 
 GENERATOR_LIST="Unix_Makefiles KDevelop3"
 
+SLEEP_DELAY=120
+
 if [ $# -lt 2 ]
 then
 	echo
@@ -28,8 +30,9 @@ export SSH_AGENT_PID=$2
 
 
 # create a daily dir for the logs
-DAY=`/bin/date '+%Y%m%d'`
-if [ ! -d $TEST_DIR/logs/$DAY ] then
+DAY=`/bin/date '+%Y-%m-%d'`
+if [ ! -d $TEST_DIR/logs/$DAY ] 
+then
 	mkdir $TEST_DIR/logs/$DAY
 fi
 
@@ -95,6 +98,7 @@ for gen in $GENERATOR_LIST
 
 
 		echo "*** END Generator=$gen" >> $SPY
+		sleep $SLEEP_DELAY
 done
 
 
