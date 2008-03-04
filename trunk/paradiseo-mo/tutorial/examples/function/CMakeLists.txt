@@ -15,12 +15,12 @@ INCLUDE_DIRECTORIES(${ParadisEO-MO_SOURCE_DIR}/src)
 SET(FUNCTION_LIB_OUTPUT_PATH ${FUNCTION_BINARY_DIR}/lib)
 SET(LIBRARY_OUTPUT_PATH ${FUNCTION_LIB_OUTPUT_PATH})
 
-SET (FUNCTION_SOURCES 	affectation_eval.cpp 
-    			affectation_init.cpp
-    			deviation.cpp
-			deviation_init.cpp
-			deviation_next.cpp
-			deviation_incr_eval.cpp )
+SET (FUNCTION_SOURCES affectation_eval.cpp 
+    		      affectation_init.cpp
+		      deviation.cpp
+		      deviation_init.cpp
+		      deviation_next.cpp
+		      deviation_incr_eval.cpp )
 					
 ADD_LIBRARY(function STATIC ${FUNCTION_SOURCES})
 
