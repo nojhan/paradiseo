@@ -12,13 +12,14 @@ INCLUDE_DIRECTORIES(${TSP_SRC_DIR})
 
 ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-MO_SOURCE_DIR}/tutorial/Lesson3/param )
 
-  ADD_CUSTOM_COMMAND(
+ADD_CUSTOM_COMMAND(
     TARGET install
     POST_BUILD
     COMMAND ${CMAKE_COMMAND}
     ARGS -E copy_if_different
       ${ParadisEO-MO_SOURCE_DIR}/tutorial/Lesson3/param
       ${ParadisEO-MO_BINARY_DIR}/tutorial/Lesson3)
+
 
 ######################################################################################
 ### 2) Specify where CMake can find the libraries
@@ -30,7 +31,7 @@ ENDIF(NOT WIN32 OR CYGWIN)
 
 # especially for Visual Studio
 IF(WIN32 AND NOT CYGWIN)  
-  LINK_DIRECTORIES(${EO_BIN_DIR}\\lib\\${CMAKE_BUILD_TYPE})
+  	LINK_DIRECTORIES(${EO_BIN_DIR}\\lib\\${CMAKE_BUILD_TYPE})
 ENDIF(WIN32 AND NOT CYGWIN) 
 
 ######################################################################################
@@ -41,9 +42,9 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
-ADD_EXECUTABLE(simulated_annealing simulated_annealing.cpp) 
+ADD_EXECUTABLE(tabu_search tabu_search.cpp) 
 
-ADD_DEPENDENCIES(simulated_annealing tsp)
+ADD_DEPENDENCIES(tabu_search tsp)
 ######################################################################################
 
 
@@ -52,8 +53,8 @@ ADD_DEPENDENCIES(simulated_annealing tsp)
 ### 4) Optionnal: define your target(s)'s version: no effect for windows
 ######################################################################################
 
-SET(SIMULATEDANNEALING_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(simulated_annealing PROPERTIES VERSION "${SIMULATEDANNEALING_VERSION}")
+SET(TABUSEARCH_VERSION ${GLOBAL_VERSION})
+SET_TARGET_PROPERTIES(tabu_search PROPERTIES VERSION "${TABUSEARCH_VERSION}")
 ######################################################################################
 
 
@@ -62,7 +63,7 @@ SET_TARGET_PROPERTIES(simulated_annealing PROPERTIES VERSION "${SIMULATEDANNEALI
 ### 5) Link the librairies for your target(s)
 ######################################################################################
 
-TARGET_LINK_LIBRARIES(simulated_annealing tsp eo eoutils) 
+TARGET_LINK_LIBRARIES(tabu_search tsp eo eoutils) 
 
 ######################################################################################
 

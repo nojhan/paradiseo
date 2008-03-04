@@ -4,6 +4,7 @@
 # --stopOnUnknownParam=1                   # Stop if unkown param entered
 
 ######    Configuration           ######
-# --instancePath=../examples/tsp/benchs/berlin52.tsp # Path to the instance.
-# --seed=1203517190                        # Seed for rand.
-# --selectionType=Best                     # Type of the selection: 'Best', 'First' or 'Random'.
+# --initialBound=1                         # Bound for the initial affectation.
+# --searchBound=1                          # Bound for neighbourhood exploration.
+# --searchStep=0.5                         # Step between two values during the neighbourhood exploration.
+# --selectionType=First                    # Type of the selection: 'Best', 'First' or 'Random'.

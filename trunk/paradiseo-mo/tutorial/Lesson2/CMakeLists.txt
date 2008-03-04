@@ -12,7 +12,7 @@ INCLUDE_DIRECTORIES(${TSP_SRC_DIR})
 
 ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-MO_SOURCE_DIR}/tutorial/Lesson2/param )
 
- ADD_CUSTOM_COMMAND(
+ADD_CUSTOM_COMMAND(
     TARGET install
     POST_BUILD
     COMMAND ${CMAKE_COMMAND}
@@ -30,7 +30,7 @@ ENDIF(NOT WIN32 OR CYGWIN)
 
 # especially for Visual Studio
 IF(WIN32 AND NOT CYGWIN)  
-  LINK_DIRECTORIES(${EO_BIN_DIR}\\lib\\${CMAKE_BUILD_TYPE})
+  	LINK_DIRECTORIES(${EO_BIN_DIR}\\lib\\${CMAKE_BUILD_TYPE})
 ENDIF(WIN32 AND NOT CYGWIN) 
 
 ######################################################################################
@@ -41,9 +41,9 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
-ADD_EXECUTABLE(tabu_search tabu_search.cpp) 
+ADD_EXECUTABLE(hill_climbing hill_climbing.cpp) 
 
-ADD_DEPENDENCIES(tabu_search tsp)
+ADD_DEPENDENCIES(hill_climbing tsp)
 ######################################################################################
 
 
@@ -52,8 +52,8 @@ ADD_DEPENDENCIES(tabu_search tsp)
 ### 4) Optionnal: define your target(s)'s version: no effect for windows
 ######################################################################################
 
-SET(TABUSEARCH_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(tabu_search PROPERTIES VERSION "${TABUSEARCH_VERSION}")
+SET(HILLCLIMBING_VERSION ${GLOBAL_VERSION})
+SET_TARGET_PROPERTIES(hill_climbing PROPERTIES VERSION "${HILLCLIMBING_VERSION}")
 ######################################################################################
 
 
@@ -62,7 +62,7 @@ SET_TARGET_PROPERTIES(tabu_search PROPERTIES VERSION "${TABUSEARCH_VERSION}")
 ### 5) Link the librairies for your target(s)
 ######################################################################################
 
-TARGET_LINK_LIBRARIES(tabu_search tsp eo eoutils) 
+TARGET_LINK_LIBRARIES(hill_climbing tsp eo eoutils) 
 
 ######################################################################################
 

@@ -1,5 +1,5 @@
 /*
-  <simulated_annealing.cpp>
+  <iterated_local_search.cpp>
   Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
   (C) OPAC Team, LIFL, 2002-2008
 
@@ -42,9 +42,8 @@ void manage_configuration_file(eoParser & _parser);
 int
 main (int _argc, char* _argv [])
 {
-  std::string instancePath, value;
+  std::string instancePath;
   unsigned int seed, maxIterations;
-  double threshold, exponentialRatio, linearRatio, initialTemperature;
 
   eoParser parser(_argc, _argv); 
 
@@ -53,14 +52,9 @@ main (int _argc, char* _argv [])
   seed=atoi( (parser.getParamWithLongName("seed")->getValue()).c_str() );
   instancePath=parser.getParamWithLongName("instancePath")->getValue();
   maxIterations=atoi( (parser.getParamWithLongName("maxIter")->getValue()).c_str() );
-  initialTemperature=atof( (parser.getParamWithLongName("initialTemp")->getValue()).c_str() );
-  threshold=atof( (parser.getParamWithLongName("threshold")->getValue()).c_str() );
-  exponentialRatio=atof( (parser.getParamWithLongName("expoRatio")->getValue()).c_str() );
-  linearRatio=atof( (parser.getParamWithLongName("lineaRatio")->getValue()).c_str() );
-  value=parser.getParamWithLongName("coolSchedType")->getValue();
 
-  srand (seed);
-  Graph::load(instancePath.c_str());
+  srand(seed);
+  Graph::load (instancePath.c_str());
 
   Route solution;
 
@@ -72,71 +66,56 @@ main (int _argc, char* _argv [])
 
   std :: cout << "[From] " << solution << std :: endl;
 
-  /* Tools for an efficient (? :-))
-     local search ! */
+  TwoOptInit two_opt_initializer;
 
-  TwoOptRand two_opt_random_move_generator;
+  TwoOptNext two_opt_next_move_generator;
 
   TwoOptIncrEval two_opt_incremental_evaluation;
 
-  TwoOpt move;
+  moBestImprSelect <TwoOpt> two_opt_selection;
 
-  moCoolingSchedule* coolingSchedule;
+  moGenSolContinue <Route> continu(maxIterations);
 
-  if(value.compare("Expo")==0)
-    {
-      coolingSchedule=new moExponentialCoolingSchedule(threshold, exponentialRatio);
-    }
-  else if (value.compare("Linear")==0)
-    {
-      coolingSchedule=new moLinearCoolingSchedule(threshold, linearRatio);
-    }
-  else
-    {
-      throw std::runtime_error("[simulated_annealing.cpp]: the type of cooling schedule '"+value+"' is not correct.");
-    }
+  moFitComparator<Route> comparator;
 
-  moGenSolContinue <Route> continu (maxIterations);
+  CitySwap perturbation;
 
-  moSA <TwoOpt> simulated_annealing (two_opt_random_move_generator, two_opt_incremental_evaluation,
-				     continu, initialTemperature, *coolingSchedule, full_evaluation);
-  simulated_annealing (solution);
+  moILS<TwoOpt> iterated_local_search (two_opt_initializer, two_opt_next_move_generator, two_opt_incremental_evaluation,
+				       two_opt_selection, continu, comparator, perturbation, full_evaluation) ;
+  iterated_local_search(solution);
 
   std :: cout << "[To] " << solution << std :: endl;
 
-  delete(coolingSchedule);
-
-  return EXIT_SUCCESS ;
+  return EXIT_SUCCESS;
 }
 
 void
 manage_configuration_file(eoParser & _parser)
 {
   std::ofstream os;
-
+  
 #ifdef _MSVC
-  _parser.createParam(std::string("..\examples\tsp\benchs\berlin52.tsp"), "instancePath", "Path to the instance.", 
-			   0, "Configuration", false);
+  os.open("..\examples\tsp\benchs\berlin52.tsp");
+  if(os.is_open())
+    {
+      _parser.createParam(std::string("..\examples\tsp\benchs\berlin52.tsp"), "instancePath", "Path to the instance.",
+			  0, "Configuration", false);
+    }
+  else
+    {
+      _parser.createParam(std::string("..\..\examples\tsp\benchs\berlin52.tsp"), "instancePath", "Path to the instance.",
+			  0, "Configuration", false);
+    }
+  os.close();
 #else
-  _parser.createParam(std::string("../examples/tsp/benchs/berlin52.tsp"), "instancePath", "Path to the instance.", 
-			   0, "Configuration", false);      
+  _parser.createParam(std::string("../examples/tsp/benchs/berlin52.tsp"), "instancePath", "Path to the instance.",
+		      0, "Configuration", false);
 #endif
 
   _parser.getORcreateParam((unsigned int)time(0), "seed", "Seed for rand.", 0, "Configuration", false);
 
   _parser.getORcreateParam((unsigned int)1000, "maxIter", "Maximum number of iterations.", 0, "Configuration", false);
 
-  _parser.getORcreateParam((double)1000, "initialTemp", "Initial temperature.", 0, "Configuration", false);
-
-  _parser.getORcreateParam((double)0.1, "threshold", "Minimum temperature allowed.", 0, "Configuration", false);
-
-  _parser.getORcreateParam((double)0.98, "expoRatio", "Ratio used if exponential cooling schedule is chosen.", 0, "Configuration", false);
-
-  _parser.getORcreateParam((double)0.5, "lineaRatio", "Ratio used if linear cooling schedule is chosen.", 0, "Configuration", false);
-
-  _parser.getORcreateParam(std::string("Expo"), "coolSchedType", "Type the cooling schedule: 'Expo' or 'Linear'.", 
-			   0, "Configuration", false);
-  
   if (_parser.userNeedsHelp())
     {
       _parser.printHelp(std::cout);
@@ -146,7 +125,7 @@ manage_configuration_file(eoParser & _parser)
   os.open("current_param");
   if(!os.is_open())
     {
-      throw std::runtime_error("[simulated_annealing.cpp]: the file current_param cannot be created.");
+      throw std::runtime_error("[iterated_local_search.cpp]: the file current_param cannot be created.");
     }
   os <<_parser;
   os.close();

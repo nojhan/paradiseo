@@ -10,16 +10,15 @@ INCLUDE_DIRECTORIES(${ParadisEO-MO_SOURCE_DIR}/src)
 INCLUDE_DIRECTORIES(${TSP_SRC_DIR})
 ######################################################################################
 
-ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-MO_SOURCE_DIR}/tutorial/Lesson4/param )
+ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-MO_SOURCE_DIR}/tutorial/Lesson5/param )
 
 ADD_CUSTOM_COMMAND(
     TARGET install
     POST_BUILD
     COMMAND ${CMAKE_COMMAND}
     ARGS -E copy_if_different
-      ${ParadisEO-MO_SOURCE_DIR}/tutorial/Lesson4/param
-      ${ParadisEO-MO_BINARY_DIR}/tutorial/Lesson4)
-
+      ${ParadisEO-MO_SOURCE_DIR}/tutorial/Lesson5/param
+      ${ParadisEO-MO_BINARY_DIR}/tutorial/Lesson5)
 
 ######################################################################################
 ### 2) Specify where CMake can find the libraries
@@ -42,9 +41,10 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
-ADD_EXECUTABLE(simulated_annealing simulated_annealing.cpp) 
+ADD_EXECUTABLE(iterated_local_search iterated_local_search.cpp) 
 
-ADD_DEPENDENCIES(simulated_annealing tsp)
+ADD_DEPENDENCIES(iterated_local_search tsp)
+
 ######################################################################################
 
 
@@ -53,8 +53,8 @@ ADD_DEPENDENCIES(simulated_annealing tsp)
 ### 4) Optionnal: define your target(s)'s version: no effect for windows
 ######################################################################################
 
-SET(SIMULATEDANNEALING_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(simulated_annealing PROPERTIES VERSION "${SIMULATEDANNEALING_VERSION}")
+SET(ITERATEDLOCALSEARCH_VERSION ${GLOBAL_VERSION})
+SET_TARGET_PROPERTIES(iterated_local_search PROPERTIES VERSION "${ITERATEDLOCALSEARCH_VERSION}")
 ######################################################################################
 
 
@@ -63,7 +63,6 @@ SET_TARGET_PROPERTIES(simulated_annealing PROPERTIES VERSION "${SIMULATEDANNEALI
 ### 5) Link the librairies for your target(s)
 ######################################################################################
 
-TARGET_LINK_LIBRARIES(simulated_annealing tsp eo eoutils) 
+TARGET_LINK_LIBRARIES(iterated_local_search tsp eo eoutils) 
 
 ######################################################################################
-
