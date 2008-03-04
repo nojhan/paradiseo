@@ -59,6 +59,8 @@ structure:
    |
    +-- tutorial          APPLICATIONS
        |
+       +-- examples      TSP
+       |
        +-- Lesson1       Parallel evaluation for EA and PSO
        |
        +-- Lesson2       Parallel transformation (crossover + mutation) for EA
