@@ -42,6 +42,7 @@
 
 using namespace std;
 
+
 // the moeoObjectiveVectorTraits : minimizing 2 objectives
 class Sch1ObjectiveVectorTraits : public moeoObjectiveVectorTraits
 {
