@@ -89,7 +89,6 @@ class moeoFrontByFrontSharingDiversityAssignment : public moeoSharingDiversityAs
     using moeoSharingDiversityAssignment < MOEOT >::distance;
     using moeoSharingDiversityAssignment < MOEOT >::nicheSize;
     using moeoSharingDiversityAssignment < MOEOT >::sh;
-    using moeoSharingDiversityAssignment < MOEOT >::operator();
 
 
     /**
