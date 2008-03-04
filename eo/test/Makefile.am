@@ -50,7 +50,8 @@ check_PROGRAMS 			= t-eoParetoFitness \
 				t-eoSwapMutation \
 				t-eoShiftMutation \
 				t-eoTwoOptMutation \
-				t-eoRingTopology
+				t-eoRingTopology	\
+				t-eoSyncEasyPSO
 
 TESTS				= $(check_PROGRAMS) \
 				run_tests # This script can be used to check command-line arguments
@@ -114,4 +115,4 @@ t_eoSwapMutation_SOURCES        = t-eoSwapMutation.cpp
 t_eoShiftMutation_SOURCES	= t-eoShiftMutation.cpp
 t_eoTwoOptMutation_SOURCES	= t-eoTwoOptMutation.cpp
 t_eoRingTopology_SOURCES	= t-eoRingTopology.cpp
-
+t_eoSyncEasyPSO_SOURCES	= t-eoSyncEasyPSO.cpp

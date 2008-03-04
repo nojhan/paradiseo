@@ -140,7 +140,7 @@ public:
       * Write object. Called printOn since it prints the object _on_ a stream.
       * @param _os A std::ostream.
       */
-    virtual void printOn(std::ostream& _os) const { _os << bestFitness <<' ' ;}
+    virtual void printOn(std::ostream& _os) const { _os << bestFitness << ' ' ;}
 
 
     /**

@@ -111,13 +111,14 @@ private :
     	@param proc First evaluation
     	@param initVelo Initialization of the velocity
     	@param initBest Initialization of the best    
-    */
-    eoPop < POT > & pop;
+    */   
     eoUF<POT&, void>& proc;
-    eoPopEvalFunc <POT>& procPara;
     eoVelocityInit < POT > & initVelo;
     eoParticleBestInit <POT> & initBest;
+    eoPopEvalFunc <POT>& procPara;   
     eoTopology <POT> & topology;
+    eoPop < POT > & pop;
+    
 class eoDummyEval : public eoPopEvalFunc<POT>
     {
     public:

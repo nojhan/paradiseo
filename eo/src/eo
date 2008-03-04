@@ -172,7 +172,6 @@
 #include <eoFlight.h>
 #include <eoStandardFlight.h>      
 #include <eoVelocityInit.h>
-#include <eoDummyFlight.h> 
 #include <eoBinaryFlight.h> 
 #include <eoSigBinaryFlight.h>   
 

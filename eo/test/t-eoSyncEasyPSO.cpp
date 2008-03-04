@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// t-eoEasyPSO.cpp
+// t-eoEasySyncPSO.cpp
 //-----------------------------------------------------------------------------
 
 #ifndef __GNUG__
@@ -73,20 +73,20 @@ int main()
 	eoGenContinue <Particle> genCont2 (50);
 	
     // PS flight
-    eoEasyPSO<Particle> pso1(genCont1, eval, velocity, flight);
+    eoSyncEasyPSO<Particle> pso1(genCont1, eval, velocity, flight);
 
-	eoEasyPSO<Particle> pso2(init,genCont2, eval, velocity, flight);
+	eoSyncEasyPSO<Particle> pso2(init,genCont2, eval, velocity, flight);
     
     // flight
     try
     {
         pso1(pop);
-        std::cout << "FINAL POPULATION AFTER PSO n°1:" << std::endl;
+        std::cout << "FINAL POPULATION AFTER SYNC PSO n°1:" << std::endl;
     	for (i = 0; i < pop.size(); ++i)
         	std::cout << "\t" <<  pop[i] << " " << pop[i].fitness() << std::endl;
         
         pso2(pop);
-         std::cout << "FINAL POPULATION AFTER PSO n°2:" << std::endl;
+         std::cout << "FINAL POPULATION AFTER SYNC PSO n°2:" << std::endl;
     	for (i = 0; i < pop.size(); ++i)
         	std::cout << "\t" <<  pop[i] << " " << pop[i].fitness() << std::endl;
     }

@@ -76,6 +76,7 @@ SET (TEST_LIST  t-eoParetoFitness
 				t-eoShiftMutation
 				t-eoTwoOptMutation
 				t-eoRingTopology
+				t-eoSyncEasyPSO
 				# t-eoFrontSorter 
 				# t-eoEpsMOEA
 				)
