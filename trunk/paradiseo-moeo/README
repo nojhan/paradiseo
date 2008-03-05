@@ -69,9 +69,11 @@ structure:
        |       |
        |       +-- benchs  Benchmark suites for the flow-shop.
        |
-       +-- Lesson1         A bi-objective flow-shop problem example solved using main MOEAs.
+       +-- Lesson1         NSGA-II to solve the SCH1 problem.
        |
-       +-- Lesson2         NSGA-II to solve the SCH1 problem.
+       +-- Lesson2         A bi-objective flow-shop scheduling problem solved using main MOEAs.
+       |
+       +-- Lesson3         A bi-objective flow-shop scheduling problem solved using main MOEAs thanks to a parameter file.
 
 =======================================================================
                                  NOTES
