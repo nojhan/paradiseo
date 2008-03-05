@@ -40,8 +40,8 @@
 #include <eoScalarFitness.h>
 #include <EO.h>
 
-// A float that has to be minimized.
-typedef eoScalarFitness< float, std::greater<double> > functionFitness ;
+// A double that has to be minimized.
+typedef eoScalarFitness< double, std::greater<double> > functionFitness ;
 
 class Affectation : public EO<functionFitness>, public std::pair<double, double>
 {};
