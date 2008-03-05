@@ -23,7 +23,7 @@ P_KDEVELOP3_PROJECT=2
 P_XCODE_PROJECT=3
 G_UNIX_MAKEFILES="Unix Makefiles"
 G_KDEVELOP3_PROJECT="KDevelop3"
-G_XCODE_PROJECT="Xcode Projects"
+G_XCODE_PROJECT="Xcode"
 
 # should we compile ParadisEO ?
 COMPILE_PARADISEO=1
@@ -1115,7 +1115,7 @@ do
 		echo
 		echo "	 $P_UNIX_MAKEFILES : Unix Makefiles (standard Makefiles)"
 		echo "	 $P_KDEVELOP3_PROJECT : KDevelop3 project files"
-		echo "	 $P_XCODE_PROJECT : XCode project files"
+		echo "	 $P_XCODE_PROJECT : Xcode Project files"
 		read BUILD_PROCESS_TYPE
 	;;
 	esac
