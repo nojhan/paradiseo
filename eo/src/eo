@@ -185,9 +185,7 @@
   
 // PS algorithms    
 #include <eoPSO.h>               
-#include <eoEasyPSO.h>                            
-#include <eoLSPSO.h>                    
-#include <eoSSPSO.h>          
+#include <eoEasyPSO.h>                               
 #include <eoSyncEasyPSO.h> 
 
 // utils
