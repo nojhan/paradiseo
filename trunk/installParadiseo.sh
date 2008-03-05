@@ -20,8 +20,10 @@ HOME_PATH=$HOME
 # generator types available on Unix platforms
 P_UNIX_MAKEFILES=1
 P_KDEVELOP3_PROJECT=2
+P_XCODE_PROJECT=3
 G_UNIX_MAKEFILES="Unix Makefiles"
 G_KDEVELOP3_PROJECT="KDevelop3"
+G_XCODE_PROJECT="XCode"
 
 # should we compile ParadisEO ?
 COMPILE_PARADISEO=1
@@ -1100,15 +1102,20 @@ do
 		BUILD_PROCESS_TYPE="$G_KDEVELOP3_PROJECT"
 		GENERATOR_TREATENED=1
 		COMPILE_PARADISEO=0
-		echo " Note: For $P_KDEVELOP3_PROJECT (generator n°$G_KDEVELOP3_PROJECT), this script won't compile ParadisEO. You are to compile using the appropriate tool."
 		;;
-		
+	
+	$P_XCODE_PROJECT)
+		BUILD_PROCESS_TYPE="$G_XCODE_PROJECT"
+		GENERATOR_TREATENED=1
+		COMPILE_PARADISEO=0
+		;;
 	*)
 		echo
 		echo -e ' \033[40m\033[1;33m### Please select the kind of "Makefile" you want to generate (available on UNIX platforms): ### \033[0m '
 		echo
 		echo "	 $P_UNIX_MAKEFILES : Unix Makefiles (standard Makefiles)"
 		echo "	 $P_KDEVELOP3_PROJECT : KDevelop3 project files"
+		echo "	 $P_XCODE_PROJECT : XCode project files"
 		read BUILD_PROCESS_TYPE
 	;;
 	esac
