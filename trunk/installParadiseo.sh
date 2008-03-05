@@ -1111,11 +1111,11 @@ do
 		;;
 	*)
 		echo
-		echo -e ' \033[40m\033[1;33m### Please select the kind of "Makefile" you want to generate (available on UNIX platforms): ### \033[0m '
+		echo -e ' \033[40m\033[1;33m### Please select the kind of "Makefile" you want to generate: ### \033[0m '
 		echo
 		echo "	 $P_UNIX_MAKEFILES : Unix Makefiles (standard Makefiles)"
 		echo "	 $P_KDEVELOP3_PROJECT : KDevelop3 project files"
-		echo "	 $P_XCODE_PROJECT : Xcode Project files"
+		echo "	 $P_XCODE_PROJECT : Xcode project files"
 		read BUILD_PROCESS_TYPE
 	;;
 	esac
