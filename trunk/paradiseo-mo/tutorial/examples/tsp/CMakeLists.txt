@@ -1,26 +1,9 @@
-
-######################################################################################
-### 0) Copy the "benchs" directory in the build directory to easily run the lessons
-######################################################################################
-
-ADD_CUSTOM_TARGET(install DEPENDS  ${ParadisEO-MO_SOURCE_DIR}/tutorial/examples/tsp/benchs)
-ADD_CUSTOM_COMMAND(
-    TARGET install
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND}
-    ARGS -E copy_directory 
-      ${ParadisEO-MO_SOURCE_DIR}/tutorial/examples/tsp/benchs
-      ${ParadisEO-MO_BINARY_DIR}/tutorial/examples/tsp/benchs)
-
-######################################################################################
-
-
 ######################################################################################
 ### 1) Include the sources
 ######################################################################################
 
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
-INCLUDE_DIRECTORIES(${ParadisEO-MO_SOURCE_DIR}/src)
+INCLUDE_DIRECTORIES(${MO_SRC_DIR}/src)
 
 ######################################################################################
 
@@ -29,7 +12,7 @@ INCLUDE_DIRECTORIES(${ParadisEO-MO_SOURCE_DIR}/src)
 ### 2) Define your target(s): just the tsp here
 ######################################################################################
 
-SET(TSP_LIB_OUTPUT_PATH ${TSP_BINARY_DIR}/lib)
+SET(TSP_LIB_OUTPUT_PATH ${TSP_BIN_DIR}/lib)
 SET(LIBRARY_OUTPUT_PATH ${TSP_LIB_OUTPUT_PATH})
 
 SET (TSP_SOURCES graph.cpp 

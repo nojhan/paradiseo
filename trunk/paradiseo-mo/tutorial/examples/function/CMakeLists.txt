@@ -3,7 +3,7 @@
 ######################################################################################
 
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
-INCLUDE_DIRECTORIES(${ParadisEO-MO_SOURCE_DIR}/src)
+INCLUDE_DIRECTORIES(${MO_SRC_DIR}/src)
 
 ######################################################################################
 
@@ -12,7 +12,7 @@ INCLUDE_DIRECTORIES(${ParadisEO-MO_SOURCE_DIR}/src)
 ### 1) Define your target(s): just the tsp here
 ######################################################################################
 
-SET(FUNCTION_LIB_OUTPUT_PATH ${FUNCTION_BINARY_DIR}/lib)
+SET(FUNCTION_LIB_OUTPUT_PATH ${FUNCTION_BIN_DIR}/lib)
 SET(LIBRARY_OUTPUT_PATH ${FUNCTION_LIB_OUTPUT_PATH})
 
 SET (FUNCTION_SOURCES affectation_eval.cpp 

@@ -6,5 +6,5 @@
 ######    Configuration           ######
 # --initialBound=1                         # Bound for the initial affectation.
 # --searchBound=1                          # Bound for neighbourhood exploration.
-# --searchStep=0.5                         # Step between two values during the neighbourhood exploration.
+# --searchStep=1                           # Step between two values during the neighbourhood exploration.
 # --selectionType=First                    # Type of the selection: 'Best', 'First' or 'Random'.

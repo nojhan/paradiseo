@@ -44,7 +44,7 @@ class DeviationIncrEval : public moMoveIncrEval <Deviation>
   {
   public :
 
-    functionFitness  operator () (const Deviation & _move, const Affectation & _route) ;
+    functionFitness  operator () (const Deviation & _move, const Affectation & _affectation);
 
   } ;
 

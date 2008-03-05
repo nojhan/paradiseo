@@ -50,7 +50,7 @@ class AffectationInit : public eoInit <Affectation>
 
     void operator () (Affectation & _affectation) ;
 
-    //! A bound for the initial value for the deviations
+    //! A bound for the initial value for the affectation
     double bound;
 
   } ;

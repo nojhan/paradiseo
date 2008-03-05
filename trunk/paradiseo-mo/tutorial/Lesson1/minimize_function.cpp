@@ -114,7 +114,7 @@ manage_configuration_file(eoParser & _parser)
   
   _parser.createParam((double)1, "searchBound", "Bound for neighbourhood exploration.", 0, "Configuration", false);
 
-  _parser.createParam((double)0.5, "searchStep", "Step between two values during the neighbourhood exploration.", 
+  _parser.createParam((double)1, "searchStep", "Step between two values during the neighbourhood exploration.", 
 		      0, "Configuration", false);
 
   _parser.createParam(std::string("First"), "selectionType", "Type of the selection: 'Best', 'First' or 'Random'.", 

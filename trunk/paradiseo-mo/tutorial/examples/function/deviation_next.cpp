@@ -40,21 +40,21 @@ DeviationNext::DeviationNext(double _bound, double _step): bound(_bound), step(_
 {
   if(bound<0.0)
     {
-      std::cout << "[affectation_next.cpp][DeviationNext]: bound is negative, " << bound << " is tranformed to ";
+      std::cout << "[deviation_next.cpp][DeviationNext]: bound is negative, " << bound << " is tranformed to ";
       bound=-bound;
       std::cout << bound << "." << std::endl;
     }
 
   if(step<0.0)
     {
-      std::cout << "[affectation_next.cpp][DeviationNext]: step is negative, " << step << " is tranformed to ";
+      std::cout << "[deviation_next.cpp][DeviationNext]: step is negative, " << step << " is tranformed to ";
       step=-step;
       std::cout << step << "." << std::endl;
     }
 
   if(step>bound)
     {
-      std::cout << "[affectation_next.cpp][DeviationNext]: step is higher than bound, " << step << " is tranformed to ";
+      std::cout << "[deviation_next.cpp][DeviationNext]: step is higher than bound, " << step << " is tranformed to ";
       step = bound / 2;
       std::cout << step << "." << std::endl;
     }
@@ -71,12 +71,12 @@ bool DeviationNext::operator () (Deviation & _move, const Affectation & _affecta
 
   //std::cout << "deltaX1 = " << deltaX1 << ", deltaX2 = " << deltaX2 << std::endl;
 
-  if( (deltaX1>=bound) && (deltaX2)>=bound )
+  if( (deltaX1 >= bound) && (deltaX2 > bound) )
     {
       return false;
     }
 
-  if(deltaX2 >= bound)
+  if(deltaX2 > bound)
     {
       deltaX1+=step;
       deltaX2=-bound;

@@ -46,10 +46,6 @@ functionFitness DeviationIncrEval :: operator () (const Deviation & _move, const
   deltaX1=_move.first;
   deltaX2=_move.second;
 
-  /*std::cout << (_affectation.fitness() 
-	   + ( 2*deltaX1*deltaX1 ) + ( deltaX2*deltaX2 ) + ( deltaX1*deltaX2 ) - ( 2*deltaX1 ) - deltaX2
-	   + ( deltaX1 * ( (4*x1) + x2 ) ) + ( x2*deltaX1 )) << std::endl;*/
-
   return _affectation.fitness() 
     + ( 2*deltaX1*deltaX1 ) + ( deltaX2*deltaX2 ) + ( deltaX1*deltaX2 ) - ( 2*deltaX1 ) - deltaX2
     + ( deltaX1 * ( (4*x1) + x2 ) ) + ( x2*deltaX1 );
