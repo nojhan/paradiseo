@@ -127,7 +127,7 @@ CHECK_AUTOTOOLS_ERROR=122
 #Date
 DATE=`/bin/date '+%Y%m%d%H%M%S'`
 # create log file
-SPY=$PWD/install-paradiseo.${DATE}.log
+SPY=$PWD/logs/install-paradiseo.${DATE}.log
 
 #------------------------------------------------------#
 #-- FUNCTION   :  execute_cmd		            ---#
