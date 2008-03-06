@@ -171,7 +171,6 @@ template< class EOT > void peoMoeoPopEval< EOT >::operator()(eoPop< EOT >& __pop
 
 template< class EOT > void peoMoeoPopEval< EOT > :: packData()
 {
-  //  printDebugMessage ("debut pakc data");
   pack( progression[ tasks.front() ].first-- );
 
   /* Packing the contents :-) of the solution */
@@ -203,10 +202,7 @@ template< class EOT > void peoMoeoPopEval< EOT > :: execute()
 
 template< class EOT > void peoMoeoPopEval< EOT > :: packResult()
 {
-//	std::cout<<"\nD";
   /* Packing the fitness of the solution */
-  /* typedef typename PO < F >::Fitness Fitness;
-   MOEOObjectiveVector ObjectiveVector;*/
   std::vector < double > object;
   unsigned len;
   object=sol.objectiveVector();
@@ -215,21 +211,14 @@ template< class EOT > void peoMoeoPopEval< EOT > :: packResult()
   for (unsigned i = 0 ; i < len; i ++)
     pack (object[i]);
 
-
-
-//  pack( sol.fitness() );
   /* Packing the @ of the individual */
   pack( ad_sol );
-//  std::cout<<"\nF";
 }
 
 
 template< class EOT > void peoMoeoPopEval< EOT > :: unpackResult()
 {
-//  typename EOT :: Fitness fit;
-
   /* Unpacking the computed fitness */
-//  unpack( fit );
   unsigned len;
   std::vector < double > object;
 
@@ -242,7 +231,6 @@ template< class EOT > void peoMoeoPopEval< EOT > :: unpackResult()
 
 
   /* Associating the fitness the local solution */
-//  merge_eval( *ad_sol, object );
   ad_sol->objectiveVector(object);
   progression[ ad_sol ].second--;
 
