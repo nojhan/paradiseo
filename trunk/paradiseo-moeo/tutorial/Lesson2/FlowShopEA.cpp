@@ -116,7 +116,7 @@ int main(int argc, char* argv[])
         // help ?
         make_help(parser);
 
-        // first evalution
+        // first evalution (for printing)
         apply<FlowShop>(eval, pop);
 
         // printing of the initial population
@@ -125,7 +125,7 @@ int main(int argc, char* argv[])
         cout << endl;
 
         // run the algo
-        do_run(algo, pop);
+        algo(pop);
 
         // printing of the final population
         cout << "Final Population\n";
