@@ -341,6 +341,8 @@
 #include "peoData.h"
 #include "peoSyncIslandMig.h"
 #include "peoAsyncIslandMig.h"
+#include "peoAsyncDataTransfer.h"
+#include "peoSyncDataTransfer.h"
 
 /* Synchronous multi-start model */
 #include "peoMultiStart.h"

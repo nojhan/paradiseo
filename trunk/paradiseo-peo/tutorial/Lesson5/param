@@ -1,0 +1,13 @@
+######    Param                   ######
+--maxGen=1                             
+--select=0.8
+
+## miscallenous parameters
+
+--debug=false
+
+## deployment schema
+
+--schema=schema.xml
+
+
