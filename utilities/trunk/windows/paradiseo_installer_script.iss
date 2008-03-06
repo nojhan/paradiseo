@@ -40,6 +40,9 @@
 #define SupportURL="http://paradiseo.gforge.inria.fr"
 #define UpdatesURL="http://paradiseo.gforge.inria.fr"
 
+// logger
+#define InstallLogger="logger "
+
 //***************************************************************************************//
 
 [Setup]
@@ -66,6 +69,7 @@ VersionInfoVersion={#Version}
 VersionInfoCompany={#Company}
 VersionInfoDescription={#ApplicationName}
 VersionInfoTextVersion={#ApplicationName}
+SetupLogging=yes
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -90,7 +94,7 @@ english.error=Error
 english.ErrorAbort=Error,abort.
 english.CannotCompleteInstall=Impossible to complete the install of
 english.BPFinished=Finished
-english.BPSuccessfull=The build process has been successfully performed.
+english.BPSuccessfull=The installation has been successfully performed.
 english.SelectCompiler=Select the program you want to use to compile:
 english.ChooseGeneratorTitle=ParadisEO compilation
 english.ChooseGeneratorSubtitle=Compiler selection
@@ -106,8 +110,10 @@ english.AcceptSendReport=I agree that the installation report will be sent to th
 english.NoInfoSend1=Neither personal information nor data refering your computer will be sent.
 english.NoInfoSend2=I could get a personalized and adapted support.
 english.PathToCMakeTitle=Path to CMake
-english.PathToCMakeSubTitle=CMake has not been found by the assistant. Please select the directory when CMake is installed on your computer
+english.PathToCMakeSubTitle=CMake has not been found by the assistant. Please select the directory where CMake is installed on your computer
 english.CMakeNotFound=The CMake binaries cannot be found in this directory
+english.CMakeDownloadMsg=CMake available for download at:
+english.NextGenCaptionPgmBegin= Notice that the generator you chose must be installed on your computer.
 
 french.CMakeMissing=CMake n'a pas été détecté sur votre ordinateur. CMake doit être installé pour utiliser ParadisEO.
 french.FullInstall=Installation complète
@@ -126,14 +132,14 @@ french.LaunchingMOEOCompilation=Compilation de ParadisEO-MOEO..
 french.error=Erreur
 french.ErrorAbort=Une erreur est survenue, installation annulée.
 french.CannotCompleteInstall=Impossible de terminer l'installation de
-french.BPFinished=Fin de la construction des fichiers de configuration
+french.BPFinished=Fin de l'installation
 french.BPSuccessfull=Succès.
 french.SelectCompiler=Sélectionnez le programme que vous souhaitez utiliser pour compiler:
 french.ChooseGeneratorTitle=Compilation de ParadisEO
 french.ChooseGeneratorSubtitle=Selection du compilateur à utiliser
 french.GenCMakeFiles=Configuration CMake
 french.BuildProcess=Génération des fichiers de configuration CMake et compilation
-french.NextGenCaption=Cliquez sur le bouton 'Suivant' pour lancer CMake et compiler ...
+french.NextGenCaption=Cliquez sur le bouton 'Suivant' pour lancer CMake et compiler.
 french.ProcessingCMake=Configuration et compilation
 french.DolphinMsg=ParadisEO: Un projet de l'équipe INRIA Dolphin - Programme réalisé par Thomas Legrand
 french.BuildMode=Choix du mode de compilation.
@@ -145,6 +151,9 @@ french.NoInfoSend2=Je pourrais bénéficier d'un support personnalisé et adapté.
 french.PathToCMakeTitle=Chemin vers CMake
 french.PathToCMakeSubTitle=CMake n'a pas été trouvé par l'assistant. Veuillez sélectionner le répertoire d'installation de CMake sur votre ordinateur
 french.CMakeNotFound=Les exécutables CMake sont introuvables dans ce répertoire
+french.CMakeDownloadMsg=CMake téléchargeable à l'adresse:
+french.NextGenCaptionPgmBegin= Notez que le générateur que vous avez sélectionné doit être installé sur votre ordinateur.
+
 
 [Types]
 Name: "custom"; Description: {cm:CustomInstall}; Flags: iscustom
@@ -154,6 +163,7 @@ Name: "full"; Description: {cm:FullInstall}
 Name: eo; Description: {cm:EoDescription}; Types: full custom; Flags: fixed
 Name: mo; Description:{cm:MoDescription}; Types: full custom;
 Name: moeo; Description: {cm:MoeoDescription}; Types: full custom;
+
 
 [Files]
 Source: {#ParadiseoSourceTag}; DestDir: "{app}"; Excludes: {#SkipParadiseoFiles} ; Flags: ignoreversion recursesubdirs createallsubdirs
@@ -166,6 +176,8 @@ Source: E:\software\eo\repository\eo-ROOT\paradiseo-eo\src\utils\pipecom.cpp; De
 Source: E:\software\eo\repository\eo-ROOT\paradiseo-eo\src\eoCtrlCContinue.h; DestDir: "{app}\paradiseo-eo\src";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: E:\software\eo\repository\eo-ROOT\paradiseo-eo\src\eoCtrlCContinue.cpp; DestDir: "{app}\paradiseo-eo\src";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
 
+[Dirs]
+Name: {app}\logs
 
 [Code]
 var
@@ -184,55 +196,82 @@ var
   ProgressBar: TNewProgressBar;
   FolderTreeView: TFolderTreeView;
   CMakeAdditionalTags: String;
-  
+  OkToCopyLog : Boolean;
+  TodaysName  : String;
+
+
+function GetToday : String;
+begin
+  Result := GetDateTimeString ('yyyy/mm/dd', '-', #0);
+end;
+
+function GetTodaysName (Param: String): String;
+begin
+  if ('' = TodaysName) then
+  begin
+    TodaysName := GetToday ();
+    end;
+    Result := TodaysName;
+end;
+
 procedure SetCmakeGenerator();
 begin
      if GeneratorBox.Checked[1] then
     begin
-            Generator:='Visual Studio 8 2005' ;
+            Generator:='Visual Studio 9 2008' ;
             exit;
     end;
     if GeneratorBox.Checked[2] then
     begin
-            Generator:='Visual Studio 8 2005 Win64' ;
+            Generator:='Visual Studio 9 2008 Win64' ;
             exit;
     end;
      if GeneratorBox.Checked[3] then
     begin
-            Generator:='Visual Studio 7 .NET 2003' ;
+            Generator:='Visual Studio 8 2005' ;
             exit;
     end;
-     if GeneratorBox.Checked[4] then
+    if GeneratorBox.Checked[4] then
     begin
-            Generator:='Visual Studio 7' ;
+            Generator:='Visual Studio 8 2005 Win64' ;
             exit;
     end;
      if GeneratorBox.Checked[5] then
     begin
+            Generator:='Visual Studio 7 .NET 2003' ;
+            exit;
+    end;
+     if GeneratorBox.Checked[6] then
+    begin
+            Generator:='Visual Studio 7' ;
+            exit;
+    end;
+     if GeneratorBox.Checked[7] then
+    begin
             Generator:='Visual Studio 6' ;
-            exit;
-    end;
-    if GeneratorBox.Checked[6] then
-    begin
-            Generator:='NMake Makefiles' ;
-            exit;
-    end;
-    if GeneratorBox.Checked[7] then
-    begin
-            Generator:='MinGW Makefiles' ;
             exit;
     end;
     if GeneratorBox.Checked[8] then
     begin
+            Generator:='NMake Makefiles' ;
+            exit;
+    end;
+    if GeneratorBox.Checked[9] then
+    begin
+            Generator:='MinGW Makefiles' ;
+            exit;
+    end;
+    if GeneratorBox.Checked[10] then
+    begin
             Generator:='Borland Makefiles' ;
             exit;
     end;
-     if GeneratorBox.Checked[9] then
+     if GeneratorBox.Checked[11] then
     begin
             Generator:='MSYS Makefiles' ;
             exit;
     end;
-     if GeneratorBox.Checked[10] then
+     if GeneratorBox.Checked[12] then
     begin
             Generator:='Watcom WMake'   ;
             exit;
@@ -246,21 +285,20 @@ var
 begin
     MinConfig:=' -D ExperimentalStart -D ExperimentalBuild' ;
 
+    if SendReportBox.Checked then
+    begin
+            CTestConfig:= MinConfig + ' -D ExperimentalSubmit' ;
+    end;
+
      if BuildModeBox.Checked[1] then
     begin
-            CTestConfig:= MinConfig;
             CMakeAdditionalTags:= ' -DENABLE_CMAKE_TESTING=FALSE ';
             exit;
     end;
     if BuildModeBox.Checked[2] then
     begin
-            CTestConfig:=MinConfig + ' -D ExperimentalTest -D ExperimentalCoverage -D ExperimentalMemCheck' ;
+            CTestConfig:=CTestConfig + ' -D ExperimentalTest -D ExperimentalCoverage -D ExperimentalMemCheck' ;
             CMakeAdditionalTags:= ' -DENABLE_CMAKE_TESTING=TRUE ';
-            exit;
-    end;
-    if SendReportBox.Checked then
-    begin
-            CTestConfig:=CTestConfig + ' -D ExperimentalSubmit' ;
             exit;
     end;
 end;
@@ -277,7 +315,6 @@ begin
             Result:= false;
             exit;
           end;
-          
           if(PrintMsgBox) then begin
             MsgBox(CustomMessage('ErrorOccured') + ': [code='+ IntToStr(ErrorCode) + ']' + ' [' + SysErrorMessage(ErrorCode) + ']' , mbCriticalError, mb_Ok);
           end;
@@ -306,41 +343,59 @@ var
   ErrorCode: Integer;
   FilePath: String;
 begin
+   Log('[LaunchEOBuildProcess] [begin]');
+     
   // Need the app path
     FilePath := ExpandConstant('{app}');
 
    // launch CMake for EO
-   ShellExec('open', CMakeBinDir + 'cmake.exe', ' ..\' + ' -G"' + Generator + '"' + CMakeAdditionalTags, FilePath +'\paradiseo-eo\build', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
-
-   Result:=  ErrorCode;
+   Log('[LaunchEOBuildProcess] Launching: ' + CMakeBinDir + 'cmake.exe' + ' ..\' + ' -G"' + Generator + '"' + CMakeAdditionalTags);
+   Log('[LaunchEOBuildProcess] From:  ' + FilePath +'\paradiseo-eo\build');
+   ShellExec ('open',CMakeBinDir + 'cmake.exe',' ..\' + ' -G"' + Generator + '"' + CMakeAdditionalTags, FilePath +'\paradiseo-eo\build', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+   Log('[LaunchEOBuildProcess] Error code=' + IntToStr(ErrorCode));
+   Log('[LaunchEOBuildProcess] [End]');
+   Result:= ErrorCode;
 end;
+
 
 function LaunchEOCompilation():Integer;
 var
   ErrorCode: Integer;
   FilePath: String;
 begin
-  // Need the app path
+   Log('[LaunchEOCompilation] [begin]');
+
+   // Need the app path
     FilePath := ExpandConstant('{app}');
 
    // launch CTest for EO
-   ShellExec('open', CMakeBinDir + 'ctest.exe',CTestConfig, FilePath +'\paradiseo-eo\build', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
-
-   Result:=  ErrorCode;
+   Log('[LaunchEOCompilation] Launching: ' + CMakeBinDir + ' ctest.exe ' + CTestConfig);
+   Log('[LaunchEOCompilation] From:  ' + FilePath +'\paradiseo-eo\build');
+   Exec(ExpandConstant ('{sys}\CMD.EXE'), ' /C ' +  '"' + CMakeBinDir +  'ctest.exe' + ' "' + CTestConfig + ' > build-eo-' + GetTodaysName ('') + '.log',FilePath +'\paradiseo-eo\build', SW_SHOWNORMAL, ewWaitUntilTerminated,ErrorCode);
+   FileCopy (FilePath +'\paradiseo-eo\build\build-eo-' + GetTodaysName ('') + '.log', ExpandConstant ('{app}\logs\build-eo-') + GetTodaysName ('') + '.log' , FALSE);
+   Log('[LaunchEOCompilation] Error code=' + IntToStr(ErrorCode));
+   Log('[LaunchEOCompilation] [End]');
+   Result:= ErrorCode;
 end;
+
 
 function LaunchMOBuildProcess(): Integer;
 var
   ErrorCode: Integer;
   FilePath: String;
 begin
+   Log('[LaunchMOBuildProcess] [begin]');
+
   // Need the app path
     FilePath := ExpandConstant('{app}');
 
    // launch CMake for MO
-   ShellExec('open', CMakeBinDir + 'cmake.exe', ' ..\' + ' -G"' + Generator + '"  -Dconfig="'+FilePath + '\install.cmake"' + CMakeAdditionalTags, FilePath +'\paradiseo-mo\build', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
-
-   Result:=  ErrorCode;
+   Log('[LaunchMOBuildProcess] Launching: ' + CMakeBinDir + 'cmake.exe' + ' ..\' + ' -G"' + Generator + '" -Dconfig="'+FilePath + '\install.cmake"' + CMakeAdditionalTags);
+   Log('[LaunchMOBuildProcess] From:  ' + FilePath +'\paradiseo-mo\build');
+   ShellExec('open',CMakeBinDir+ 'cmake.exe ',' ..\' + ' -G"' + Generator + '" -Dconfig="'+FilePath + '\install.cmake"' + CMakeAdditionalTags,FilePath +'\paradiseo-mo\build', SW_SHOWNORMAL, ewWaitUntilTerminated, Errorcode);
+   Log('[LaunchMOBuildProcess] Error code=' + IntToStr(ErrorCode));
+   Log('[LaunchMOBuildProcess] [End]');
+   Result:= ErrorCode;
 end;
 
 
@@ -349,13 +404,19 @@ var
   ErrorCode: Integer;
   FilePath: String;
 begin
-  // Need the app path
+   Log('[LaunchMOCompilation] [begin]');
+
+   // Need the app path
     FilePath := ExpandConstant('{app}');
 
    // launch CTest for MO
-   ShellExec('open', CMakeBinDir + 'ctest.exe',CTestConfig, FilePath +'\paradiseo-mo\build', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
-
-   Result:=  ErrorCode;
+   Log('[LaunchMOCompilation] Launching: ' + CMakeBinDir + ' ctest.exe ' + CTestConfig);
+   Log('[LaunchMOCompilation] From:  ' + FilePath +'\paradiseo-mo\build');
+   Exec(ExpandConstant ('{sys}\CMD.EXE'), ' /C ' +  '"' + CMakeBinDir +  'ctest.exe' + ' "' + CTestConfig + ' > build-mo-' + GetTodaysName ('') + '.log',FilePath +'\paradiseo-mo\build', SW_SHOWNORMAL, ewWaitUntilTerminated,ErrorCode);
+   FileCopy (FilePath +'\paradiseo-mo\build\build-mo-' + GetTodaysName ('') + '.log', ExpandConstant ('{app}\logs\build-mo-') + GetTodaysName ('') + '.log' , FALSE);
+   Log('[LaunchMOCompilation] Error code=' + IntToStr(ErrorCode));
+   Log('[LaunchMOCompilation] [End]');
+   Result:= ErrorCode;
 end;
 
 
@@ -368,8 +429,12 @@ begin
     FilePath := ExpandConstant('{app}');
 
    // launch CMake for MOEO
+   Log('[LaunchMOEOBuildProcess] Launching: ' + CMakeBinDir + 'cmake.exe' + ' ..\' + ' -G"' + Generator + '" -Dconfig="'+FilePath + '\install.cmake"' + CMakeAdditionalTags);
+   Log('[LaunchMOEOBuildProcess] From:  ' + FilePath +'\paradiseo-moeo\build');
    ShellExec('open', CMakeBinDir + 'cmake.exe', ' ..\' + ' -G"' + Generator + '"  -Dconfig="'+FilePath + '\install.cmake"' + CMakeAdditionalTags, FilePath +'\paradiseo-moeo\build', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
-
+   Log('[LaunchMOEOBuildProcess] Error code=' + IntToStr(ErrorCode));
+   Log('[LaunchMOEOBuildProcess] [End]');
+   Result:= ErrorCode;
    Result:=  ErrorCode;
 end;
 
@@ -379,13 +444,19 @@ var
   ErrorCode: Integer;
   FilePath: String;
 begin
-  // Need the app path
+   Log('[LaunchMOEOCompilation] [begin]');
+
+   // Need the app path
     FilePath := ExpandConstant('{app}');
 
    // launch CTest for MOEO
-   ShellExec('open', CMakeBinDir +  'ctest.exe',CTestConfig, FilePath +'\paradiseo-moeo\build', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
-
-   Result:=  ErrorCode;
+   Log('[LaunchMOEOCompilation] Launching: ' + CMakeBinDir + ' ctest.exe ' + CTestConfig);
+   Log('[LaunchMOEOCompilation] From:  ' + FilePath +'\paradiseo-moeo\build');
+   Exec(ExpandConstant ('{sys}\CMD.EXE'), ' /C ' +  '"' + CMakeBinDir +  'ctest.exe' + ' "' + CTestConfig + ' > build-moeo-' + GetTodaysName ('') + '.log',FilePath +'\paradiseo-moeo\build', SW_SHOWNORMAL, ewWaitUntilTerminated,ErrorCode);
+   FileCopy (FilePath +'\paradiseo-moeo\build\build-moeo-' + GetTodaysName ('') + '.log', ExpandConstant ('{app}\logs\build-moeo-') + GetTodaysName ('') + '.log' , FALSE);
+   Log('[LaunchMOEOCompilation] Error code=' + IntToStr(ErrorCode));
+   Log('[LaunchMOEOCompilation] [End]');
+   Result:= ErrorCode;
 end;
 
 
@@ -414,6 +485,7 @@ begin
 
        SetCmakeGenerator();
        SetCTestConfig();
+
        updateProgressBar(0,5);
        //***************** EO *************************
          ProgressPage.SetText('',CustomMessage('LaunchingEOBuildProcess'));
@@ -504,7 +576,7 @@ end;
 function Skeleton_NextButtonClick(Page: TWizardPage): Boolean;
 begin
     { Get the Cmake directory provided by the user }
-     CMakeBinDir:= FolderTreeView.Directory + '\';
+     CMakeBinDir:= '"' + FolderTreeView.Directory + '\';
      if isError(checkCMakeAvailable(CMakeBinDir),false) then  begin
           CMakeBinDir:= FolderTreeView.Directory + '\' + 'bin\';
           if isError(checkCMakeAvailable(CMakeBinDir),false) then  begin
@@ -521,18 +593,49 @@ begin
 end;
 
 
+Procedure CMakeURLLabelOnClick(Sender: TObject);
+var
+  ErrorCode: Integer;
+begin
+  ShellExec('open', 'http://www.cmake.org/HTML/Download.html', '', '', SW_SHOWNORMAL, ewNoWait, ErrorCode);
+end;
+
+
+
 procedure CreateTheWizardPages;
 var
-   Lbl1,Lbl2,Lbl3: TLabel;
+   Lbl1,Lbl2,Lbl3,Lbl4,Lbl5,Lbl6: TLabel;
+   CMakeURLLabel: TNewStaticText;
 begin
 
   if (isError(checkCMakeAvailable(''),False))   then begin
        CMakeLookupPage := CreateCustomPage({#cmakeLookupWizardPageIndex},CustomMessage('PathToCMakeTitle'),CustomMessage('PathToCMakeSubtitle'));
        FolderTreeView := TFolderTreeView.Create(CMakeLookupPage);
+       FolderTreeView.Top := ScaleY(40)
        FolderTreeView.Width := CMakeLookupPage.SurfaceWidth;
        FolderTreeView.Height := CMakeLookupPage.SurfaceHeight;
        FolderTreeView.Parent := CMakeLookupPage.Surface;
        FolderTreeView.Directory := '';
+
+       Lbl4 := TLabel.Create(CMakeLookupPage);
+       Lbl4.Top := ScaleY(20);
+       Lbl4.Caption := CustomMessage('CMakeDownloadMsg');
+       Lbl4.AutoSize := True;
+       Lbl4.Parent := CMakeLookupPage.Surface;
+       Lbl4.Font.Size := 8 ;
+       Lbl4.Top := ScaleY(0);
+       Lbl4.Left := ScaleX(5);
+       
+       CMakeURLLabel := TNewStaticText.Create(CMakeLookupPage);
+       CMakeURLLabel.Caption := 'http://www.cmake.org/HTML/Download.html';
+       CMakeURLLabel.Cursor := crHand;
+       CMakeURLLabel.OnClick:= @CMakeURLLabelOnClick;
+       CMakeURLLabel.Parent := CMakeLookupPage.Surface;
+       CMakeURLLabel.Font.Style := CMakeURLLabel.Font.Style + [fsUnderline];
+       CMakeURLLabel.Font.Color := clBlue;
+       CMakeURLLabel.Top := ScaleY(0);
+       CMakeURLLabel.Left := ScaleX(170);
+       
        CMakeLookupPage.OnNextButtonClick := @Skeleton_NextButtonClick;
   end;
   
@@ -548,7 +651,9 @@ begin
   GeneratorBox.WantTabs := True;
   GeneratorBox.Parent := GeneratorPage.Surface;
   GeneratorBox.AddGroup(CustomMessage('SelectCompiler'), '', 0, nil);
-  GeneratorBox.AddRadioButton('Visual Studio 8 2005', '', 0, True, True, nil);
+  GeneratorBox.AddRadioButton('Visual Studio 9 2008', '', 0, True, True, nil);
+  GeneratorBox.AddRadioButton('Visual Studio 9 2008 Win64', '', 0, False, True, nil);
+  GeneratorBox.AddRadioButton('Visual Studio 8 2005', '', 0, False, True, nil);
   GeneratorBox.AddRadioButton('Visual Studio 8 2005 Win64', '', 0, False, True, nil);
   GeneratorBox.AddRadioButton('Visual Studio 7 .NET 2003', '', 0, False, True, nil);
   GeneratorBox.AddRadioButton('Visual Studio 7', '', 0, False, True, nil);
@@ -608,6 +713,13 @@ begin
   Lbl3.AutoSize := True;
   Lbl3.Parent := BuildProcessPage.Surface;
 
+  Lbl5 := TLabel.Create(BuildProcessPage);
+  Lbl5.Top := ScaleY(40);
+  Lbl5.Left := ScaleX(-3);
+  Lbl5.Caption :=CustomMessage('NextGenCaptionPgmBegin');
+  Lbl5.AutoSize := True;
+  Lbl5.Parent := BuildProcessPage.Surface;
+  
   ProgressPage := CreateOutputProgressPage(CustomMessage('ProcessingCMake'),CustomMessage('BuildProcess'));
 end;
 
@@ -653,9 +765,21 @@ begin
   URLLabel.Left := AboutButton.Left + AboutButton.Width + ScaleX(10);
 end;
 
+procedure CurStepChanged(CurStep: TSetupStep);
+begin
+  if CurStep = ssDone then
+    OkToCopyLog := True;
+end;
+
+
+procedure DeinitializeSetup();
+begin
+  if OkToCopyLog then
+    FileCopy (ExpandConstant ('{log}'), ExpandConstant ('{app}\logs\install-') + GetTodaysName ('') + '.log' , FALSE);
+  RestartReplace (ExpandConstant ('{log}'), '');
+end;
+
 
 [UninstallDelete]
 Type: files; Name: "{app}\*"
 Type: filesandordirs; Name: "{app}\*"
-
-
