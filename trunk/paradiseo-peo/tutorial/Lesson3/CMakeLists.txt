@@ -38,14 +38,8 @@ INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src ${MOEO_SRC_DIR}/src ${MO_SRC_DIR}/src ${Pa
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-IF(NOT WIN32 OR CYGWIN)  
-  LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DIR}/lib)
-ENDIF(NOT WIN32 OR CYGWIN)
+LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DIR}/lib)
 
-# especially for Visual Studio
-IF(WIN32 AND NOT CYGWIN)  
-  	LINK_DIRECTORIES(${EO_BIN_DIR}\\lib\\${CMAKE_BUILD_TYPE} ${ParadisEO-PEO_BINARY_DIR}\\lib\\${CMAKE_BUILD_TYPE})
-ENDIF(WIN32 AND NOT CYGWIN) 
 ######################################################################################
 
 
