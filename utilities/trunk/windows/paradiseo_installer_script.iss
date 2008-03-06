@@ -292,13 +292,13 @@ begin
 
      if BuildModeBox.Checked[1] then
     begin
-            CMakeAdditionalTags:= ' -DENABLE_CMAKE_TESTING=FALSE ';
+            CMakeAdditionalTags:= ' -DENABLE_CMAKE_TESTING=FALSE';
             exit;
     end;
     if BuildModeBox.Checked[2] then
     begin
             CTestConfig:=CTestConfig + ' -D ExperimentalTest -D ExperimentalCoverage -D ExperimentalMemCheck' ;
-            CMakeAdditionalTags:= ' -DENABLE_CMAKE_TESTING=TRUE ';
+            CMakeAdditionalTags:= ' -DENABLE_CMAKE_TESTING=TRUE';
             exit;
     end;
 end;
