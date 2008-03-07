@@ -28,6 +28,10 @@ G_XCODE_PROJECT="Xcode"
 # should we compile ParadisEO ?
 COMPILE_PARADISEO=1
 
+# Build types
+DEFAULT_BUILD_TYPE=Release
+BUILD_TYPE=$DEFAULT_BUILD_TYPE
+
 # CMake/CTest/Dart flags
 CTEST_DEFAULT_CONFIG="-D ExperimentalStart -D ExperimentalBuild -D ExperimentalCoverage"
 CTEST_CONFIG=$CTEST_DEFAULT_CONFIG
@@ -401,7 +405,7 @@ function run_install_step()
 		
 		execute_cmd " echo \"cmake ../  -G$BUILD_PROCESS_TYPE $OPTIONNAL_CMAKE_FLAGS\" " "[$currentStepCounter-3] Run CMake using generator $BUILD_PROCESS_TYPE"  $SPY
 		
-		cmake ../  -G"$BUILD_PROCESS_TYPE" $OPTIONNAL_CMAKE_FLAGS >> ${SPY} 2>> ${SPY}
+		cmake ../  -G"$BUILD_PROCESS_TYPE"  -DCMAKE_BUILD_TYPE=$BUILD_TYPE $OPTIONNAL_CMAKE_FLAGS >> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`
 
 		if [ "$COMPILE_PARADISEO" = "1" ] 
@@ -442,8 +446,8 @@ function run_install_step()
 		execute_cmd "cd $installKitPath/paradiseo-mo/build" "[$currentStepCounter-1] Go in Paradiseo-MO dir"  $SPY 
 		RETURN=$?
 		
-		execute_cmd " echo \"cmake ../ -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G\"$BUILD_PROCESS_TYPE\" $OPTIONNAL_CMAKE_FLAGS\" " "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE"  $SPY
-		cmake ../ -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE" $OPTIONNAL_CMAKE_FLAGS>> ${SPY} 2>> ${SPY}
+		execute_cmd " echo \"cmake ../ -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G\"$BUILD_PROCESS_TYPE\" $OPTIONNAL_CMAKE_FLAGS -DCMAKE_BUILD_TYPE=$BUILD_TYPE\" " "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE"  $SPY
+		cmake ../ -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE" -DCMAKE_BUILD_TYPE=$BUILD_TYPE $OPTIONNAL_CMAKE_FLAGS>> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`
 		
 		if [ "$COMPILE_PARADISEO" = "1" ] 
@@ -483,8 +487,8 @@ function run_install_step()
 		execute_cmd "cd $installKitPath/paradiseo-moeo/build" "[$currentStepCounter-1] Go in Paradiseo-MOEO dir"  $SPY 
 		RETURN=$?
 		
-		execute_cmd " echo \"cmake ../ -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G\"$BUILD_PROCESS_TYPE\" $OPTIONNAL_CMAKE_FLAGS \"" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE"  $SPY
-		cmake ../ -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE" $OPTIONNAL_CMAKE_FLAGS >> ${SPY} 2>> ${SPY}
+		execute_cmd " echo \"cmake ../ -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G\"$BUILD_PROCESS_TYPE\" -DCMAKE_BUILD_TYPE=$BUILD_TYPE $OPTIONNAL_CMAKE_FLAGS \"" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE"  $SPY
+		cmake ../ -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE" -DCMAKE_BUILD_TYPE=$BUILD_TYPE $OPTIONNAL_CMAKE_FLAGS >> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`		
 		
 		if [ "$COMPILE_PARADISEO" = "1" ] 
@@ -775,7 +779,7 @@ function run_install_step()
 		RETURN=$?
 
 		execute_cmd " echo \"cmake ../  -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G\"$BUILD_PROCESS_TYPE\" $OPTIONNAL_CMAKE_FLAGS \"" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE"  $SPY
-		cmake ../  -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE" $OPTIONNAL_CMAKE_FLAGS >> ${SPY} 2>> ${SPY}
+		cmake ../  -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE" $OPTIONNAL_CMAKE_FLAGS -DCMAKE_BUILD_TYPE=$BUILD_TYPE >> ${SPY} 2>> ${SPY}
 		RETURN=`expr $RETURN + $?`
 		
 		if [ "$COMPILE_PARADISEO" = "1" ] 
@@ -1052,6 +1056,7 @@ do
   fi
   if [ "${i%=*}" = "--debug" ]
    then
+      BUILD_TYPE=Debug
       OPTIONNAL_CMAKE_FLAGS='-DENABLE_CMAKE_TESTING=TRUE'
       CTEST_CONFIG="$CTEST_CONFIG -D ExperimentalTest -D ExperimentalMemCheck"
   fi
