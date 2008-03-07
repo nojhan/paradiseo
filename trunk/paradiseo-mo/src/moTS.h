@@ -73,9 +73,9 @@ class moTS:public moAlgo < typename M::EOType >
 	moMoveIncrEval < M > & _incremental_evaluation, moTabuList < M > & _tabu_list, 
 	moAspirCrit < M > & _aspiration_criterion, moSolContinue < EOT > & _continue, 
 	eoEvalFunc < EOT > & _full_evaluation): 
-  move_explorer ( *new moTSMoveLoopExpl < M >(_move_initializer, _next_move_generator, _incremental_evaluation,
+  move_explorer (new moTSMoveLoopExpl < M >(_move_initializer, _next_move_generator, _incremental_evaluation,
 					      _tabu_list,_aspiration_criterion) ),
-    continu (_continue), full_evaluation (_full_evaluation)
+    continu (_continue), full_evaluation (_full_evaluation), move_explorer_memory_allocation(true)
   {}
   
   //! Constructor with less parameters
@@ -87,8 +87,17 @@ class moTS:public moAlgo < typename M::EOType >
     \param _full_evaluation A full evaluation function.
   */
   moTS (moMoveExpl < M > & _move_explorer, moSolContinue < EOT > & _continue, eoEvalFunc < EOT > & _full_evaluation):
-  move_explorer (_move_explorer), continu (_continue), full_evaluation (_full_evaluation)
+  move_explorer (_move_explorer), continu (_continue), full_evaluation (_full_evaluation), move_explorer_memory_allocation(false)
   {}
+
+  //! Destructor
+  ~moTS()
+    {
+      if(move_explorer_memory_allocation)
+	{
+	  delete(move_explorer);
+	}
+    }
   
   //! Function which launchs the Tabu Search
   /*!
@@ -119,7 +128,7 @@ class moTS:public moAlgo < typename M::EOType >
 
     do
       {
-	move_explorer (_solution, new_solution);
+	(*move_explorer) (_solution, new_solution);
 	
 	// Updating the best solution found until now ?
 	if (new_solution.fitness() > _solution.fitness())
@@ -139,13 +148,16 @@ class moTS:public moAlgo < typename M::EOType >
  private:
 
   //! Neighborhood explorer
-  moMoveExpl < M > & move_explorer;
+  moMoveExpl < M > * move_explorer;
 
   //! Stop criterion
   moSolContinue < EOT > & continu;
 
   //! Full evaluation function
   eoEvalFunc < EOT > & full_evaluation;
+
+  //! Indicate if the memory has been allocated for the move_explorer.
+  bool move_explorer_memory_allocation;
 };
 
 #endif

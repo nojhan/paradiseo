@@ -68,8 +68,8 @@ class moHC:public moAlgo < typename M::EOType >
   */
   moHC (moMoveInit < M > & _move_initializer, moNextMove < M > & _next_move_generator, 
 	moMoveIncrEval < M > & _incremental_evaluation, moMoveSelect < M > & _move_selection, eoEvalFunc < EOT > & _full_evaluation) : 
-  move_explorer ( *new moHCMoveLoopExpl < M > (_move_initializer, _next_move_generator, _incremental_evaluation, _move_selection) ),
-    full_evaluation (_full_evaluation)
+  move_explorer(new moHCMoveLoopExpl<M>(_move_initializer, _next_move_generator, _incremental_evaluation, _move_selection)), 
+    full_evaluation (_full_evaluation), move_explorer_memory_allocation(true)
   {}
   
   //! Light constructor.
@@ -80,9 +80,18 @@ class moHC:public moAlgo < typename M::EOType >
     \param _full_evaluation a full evaluation function.
   */
   moHC (moMoveExpl < M > & _move_explorer, eoEvalFunc < EOT > & _full_evaluation): 
-  move_explorer (_move_explorer), full_evaluation (_full_evaluation)
+  move_explorer (_move_explorer), full_evaluation (_full_evaluation), move_explorer_memory_allocation(false)
   {}
   
+  //! Destructor
+  ~moHC()
+    {
+      if(move_explorer_memory_allocation)
+	{
+	  delete(move_explorer);
+	}
+    }
+
   //! Function which launches the HC
   /*!
     The HC has to improve a current solution.
@@ -105,7 +114,7 @@ class moHC:public moAlgo < typename M::EOType >
     do
       {
 	_solution=new_solution;
-	move_explorer (_solution, new_solution);
+	(*move_explorer) (_solution, new_solution);
       }
     while ( new_solution.fitness() > _solution.fitness() );
     
@@ -115,10 +124,13 @@ class moHC:public moAlgo < typename M::EOType >
  private:
 
   //! Complete exploration of the neighborhood.
-  moMoveExpl < M > & move_explorer;
+  moMoveExpl < M > * move_explorer;
 
   //! A full evaluation function.
   eoEvalFunc < EOT > & full_evaluation;
+
+  //! Indicate if the memory has been allocated for the move_explorer.
+  bool move_explorer_memory_allocation;
 };
 
 #endif
