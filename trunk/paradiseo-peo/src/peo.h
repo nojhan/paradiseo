@@ -331,7 +331,6 @@
 #include "peoTransform.h"
 #include "peoEvalFunc.h"
 #include "peoPopEval.h"
-#include "peoMoeoPopEval.h"
 
 /* Cooperative island model */
 #include "core/ring_topo.h"
@@ -341,8 +340,6 @@
 #include "peoData.h"
 #include "peoSyncIslandMig.h"
 #include "peoAsyncIslandMig.h"
-#include "peoAsyncDataTransfer.h"
-#include "peoSyncDataTransfer.h"
 
 /* Synchronous multi-start model */
 #include "peoMultiStart.h"
