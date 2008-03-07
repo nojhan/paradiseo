@@ -1055,7 +1055,7 @@ do
    then
       BUILD_TYPE=Debug
       OPTIONNAL_CMAKE_FLAGS='-DENABLE_CMAKE_TESTING=TRUE'
-      CTEST_CONFIG="$CTEST_CONFIG -D ExperimentalTest -D ExperimentalMemCheck"
+      CTEST_CONFIG="$CTEST_CONFIG -D ExperimentalTest -D ExperimentalCoverage -D ExperimentalMemCheck"
   fi
   if [ "${i%=*}" = "--skipdart" ]
    then
