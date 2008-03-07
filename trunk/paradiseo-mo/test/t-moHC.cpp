@@ -139,8 +139,6 @@ main()
   
   solution sol;
 
-  sol.fitness(0);
-
   testMoveInit init;
   testMoveNext next;
   testMoveIncrEval incrEval;

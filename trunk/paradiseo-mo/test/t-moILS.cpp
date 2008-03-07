@@ -56,76 +56,13 @@ public :
   }
 } ;
 
-class testMoveInit : public moMoveInit <testMove>
+class solutionAlgo : public moAlgo <solution>
 {
 public :
-  void operator () (testMove & _move, const solution & _solution)
-  {
-    testMove move=_move;
-    const solution sol(_solution);
-  }
-} ;
-
-class testMoveNext : public moNextMove <testMove>
-{
-public :
-  bool operator () (testMove & _move, const solution & _solution)
-  {
-    testMove move=_move;
-    const solution sol(_solution);
-
-    return false;
-  }
-} ;
-
-class testMoveIncrEval : public moMoveIncrEval <testMove>
-{
-public :
-  unsigned int operator () (const testMove & _move, const solution & _solution)
-  {
-    const testMove move(_move);
-    const solution solution(_solution);
-
-    return 2;
-  }
-} ;
-
-class testMoveSelect : public moMoveSelect <testMove>
-{
-public :
-  void operator () (testMove & _move, unsigned int & _fitness)
-  {
-    testMove move;
-    
-    move=_move;
-    
-    _fitness=2;
-  }
-
-  void init(const unsigned int & _fitness)
-  {
-    unsigned int fitness;
-    fitness=(unsigned int)_fitness;
-  }
-
-  bool update(const testMove & _move, const unsigned int & _fitness)
-  {
-    testMove move;
-    unsigned int fitness;
-    
-    move=(testMove)_move;
-    fitness=(unsigned int)_fitness;
-
-    return true;
-  }
-} ;
-
-class solutionEval : public eoEvalFunc <solution>
-{
-public :
-  void operator () (solution & _solution)
+  bool operator () (solution & _solution)
   {
     _solution.fitness(2);
+    return true;
   }
 } ;
 
@@ -166,6 +103,15 @@ public :
   }
 } ;
 
+class solutionEval : public eoEvalFunc <solution>
+{
+public :
+  void operator () (solution & _solution)
+  {
+    _solution.fitness(0);
+  }
+} ;
+
 //-----------------------------------------------------------------------------
 
 int
@@ -177,19 +123,13 @@ main()
 
   sol.fitness(0);
 
-  testMoveInit init;
-  testMoveNext next;
-  testMoveIncrEval incrEval;
-  testMoveSelect select;
-  solutionEval eval;
-
-  moHC<testMove> hc(init, next, incrEval, select, eval);
-
+  solutionAlgo algorithm;
   solutionContinue continu;
   solutionComparator comparator;
   solutionPerturbation perturbation;
+  solutionEval eval;
 
-  moILS<testMove> ils(hc, continu, comparator, perturbation, eval);
+  moILS<testMove> ils(algorithm, continu, comparator, perturbation, eval);
 
   ils(sol);
 

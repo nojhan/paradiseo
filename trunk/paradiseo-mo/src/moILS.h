@@ -69,8 +69,8 @@ class moILS:public moAlgo < typename M::EOType >
   */
   moILS (moAlgo<EOT> & _algorithm, moSolContinue <EOT> & _continue, moComparator<EOT> & _acceptance_criterion, 
 	 eoMonOp<EOT> & _perturbation, eoEvalFunc<EOT> & _full_evaluation):
-  algorithm(_algorithm), continu(_continue), acceptance_criterion(_acceptance_criterion), 
-    perturbation(_perturbation), full_evaluation(_full_evaluation)
+  algorithm(& _algorithm), continu(_continue), acceptance_criterion(_acceptance_criterion), 
+    perturbation(_perturbation), full_evaluation(_full_evaluation), algorithm_memory_allocation(false)
   {}
 
   //! Constructor for using a moHC for the moAlgo
@@ -88,8 +88,9 @@ class moILS:public moAlgo < typename M::EOType >
 	 moMoveIncrEval < M > & _incremental_evaluation, moMoveSelect < M > & _move_selection,
 	 moSolContinue <EOT> & _continue, moComparator<EOT> & _acceptance_criterion,
 	 eoMonOp<EOT> & _perturbation, eoEvalFunc<EOT> & _full_evaluation):
-  algorithm( *new moHC<M>(_move_initializer, _next_move_generator, _incremental_evaluation, _move_selection, _full_evaluation) ),
-    continu(_continue), acceptance_criterion(_acceptance_criterion), perturbation(_perturbation), full_evaluation(_full_evaluation)
+  algorithm(new moHC<M>(_move_initializer, _next_move_generator, _incremental_evaluation, _move_selection, _full_evaluation) ),
+    continu(_continue), acceptance_criterion(_acceptance_criterion), perturbation(_perturbation), full_evaluation(_full_evaluation),
+    algorithm_memory_allocation(true)
   {}
 
   //! Constructor for using a moTS for the moAlgo
@@ -110,9 +111,10 @@ class moILS:public moAlgo < typename M::EOType >
 	 moAspirCrit <M> & _aspiration_criterion, moSolContinue <EOT> & _moTS_continue,
 	 moSolContinue <EOT> & _continue, moComparator<EOT> & _acceptance_criterion, eoMonOp<EOT> & _perturbation,
 	 eoEvalFunc<EOT> & _full_evaluation):
-  algorithm( *new moTS<M>(_move_initializer, _next_move_generator, _incremental_evaluation, _tabu_list, _aspiration_criterion, 
+  algorithm(new moTS<M>(_move_initializer, _next_move_generator, _incremental_evaluation, _tabu_list, _aspiration_criterion, 
 		     _moTS_continue, _full_evaluation) ),
-    continu(_continue), acceptance_criterion(_acceptance_criterion), perturbation(_perturbation), full_evaluation(_full_evaluation)
+    continu(_continue), acceptance_criterion(_acceptance_criterion), perturbation(_perturbation), full_evaluation(_full_evaluation),
+    algorithm_memory_allocation(true)
   {}
   
   //! Constructor for using a moSA for the moAlgo
@@ -130,10 +132,20 @@ class moILS:public moAlgo < typename M::EOType >
   moILS (moRandMove<M> & _random_move_generator, moMoveIncrEval <M> & _incremental_evaluation, moSolContinue <EOT> & _moSA_continue, 
 	 double _initial_temperature, moCoolingSchedule & _cooling_schedule, moSolContinue <EOT> & _continue, 
 	 moComparator<EOT> & _acceptance_criterion, eoMonOp<EOT> & _perturbation, eoEvalFunc<EOT> & _full_evaluation):
-  algorithm( *new moSA<M>(_random_move_generator, _incremental_evaluation, _moSA_continue, _initial_temperature,
+  algorithm(new moSA<M>(_random_move_generator, _incremental_evaluation, _moSA_continue, _initial_temperature,
 		     _cooling_schedule, _full_evaluation) ),
-    continu(_continue), acceptance_criterion(_acceptance_criterion), perturbation(_perturbation), full_evaluation(_full_evaluation)
+    continu(_continue), acceptance_criterion(_acceptance_criterion), perturbation(_perturbation), full_evaluation(_full_evaluation),
+    algorithm_memory_allocation(true)
   {}
+
+  //! Destructor
+  ~moILS()
+    {
+      if(algorithm_memory_allocation)
+	{
+	  delete(algorithm);
+	}
+    }
 
   //! Function which launches the ILS
   /*!
@@ -152,7 +164,7 @@ class moILS:public moAlgo < typename M::EOType >
     // some code has been duplicated in order to avoid one perturbation and one evaluation without adding a test in the loop.
     // better than a do {} while; with a test in the loop.
     
-    algorithm(_solution);
+    (*algorithm)(_solution);
 
     if ( acceptance_criterion(_solution, _solution_saved) )
       {
@@ -169,7 +181,7 @@ class moILS:public moAlgo < typename M::EOType >
 	perturbation(_solution);
 	full_evaluation(_solution);
 
-	algorithm(_solution);
+	(*algorithm)(_solution);
 
 	if ( acceptance_criterion(_solution, _solution_saved) )
 	  {
@@ -187,7 +199,7 @@ class moILS:public moAlgo < typename M::EOType >
  private:
 
   //! The solution based heuristic.
-  moAlgo<EOT> & algorithm;
+  moAlgo<EOT> * algorithm;
 
   //! The stopping criterion.
   moSolContinue<EOT> & continu;
@@ -200,6 +212,9 @@ class moILS:public moAlgo < typename M::EOType >
 
   //! The full evaluation function
   eoEvalFunc<EOT> & full_evaluation;
+
+  //! Indicate if the memory has been allocated for the algorithm.
+  bool algorithm_memory_allocation;
 };
 
 #endif

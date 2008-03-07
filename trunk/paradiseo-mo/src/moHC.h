@@ -80,7 +80,7 @@ class moHC:public moAlgo < typename M::EOType >
     \param _full_evaluation a full evaluation function.
   */
   moHC (moMoveExpl < M > & _move_explorer, eoEvalFunc < EOT > & _full_evaluation): 
-  move_explorer (_move_explorer), full_evaluation (_full_evaluation), move_explorer_memory_allocation(false)
+  move_explorer (&_move_explorer), full_evaluation (_full_evaluation), move_explorer_memory_allocation(false)
   {}
   
   //! Destructor

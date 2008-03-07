@@ -45,7 +45,7 @@ using std::endl;
 
 //-----------------------------------------------------------------------------
 
-typedef EO<unsigned int> solution;
+typedef EO<int> solution;
 
 class testMove : public moMove <solution>
 {
@@ -68,7 +68,7 @@ public :
 class testMoveIncrEval : public moMoveIncrEval <testMove>
 {
 public :
-  unsigned int operator () (const testMove & _move, const solution & _solution)
+  int operator () (const testMove & _move, const solution & _solution)
   {
     const testMove move(_move);
     const solution solution(_solution);

@@ -87,7 +87,7 @@ class moTS:public moAlgo < typename M::EOType >
     \param _full_evaluation A full evaluation function.
   */
   moTS (moMoveExpl < M > & _move_explorer, moSolContinue < EOT > & _continue, eoEvalFunc < EOT > & _full_evaluation):
-  move_explorer (_move_explorer), continu (_continue), full_evaluation (_full_evaluation), move_explorer_memory_allocation(false)
+  move_explorer (&_move_explorer), continu (_continue), full_evaluation (_full_evaluation), move_explorer_memory_allocation(false)
   {}
 
   //! Destructor

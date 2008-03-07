@@ -37,8 +37,12 @@ SET (TEST_LIST  t-moBestImprSelect
     		t-moFitSolContinue 
     		t-moGenSolContinue 
     		t-moHC 
+		t-moHC_2
     		t-moHCMoveLoopExpl 
-    		t-moILS 
+    		t-moILS
+		t-moILS_HC
+		t-moILS_TS
+		t-moILS_SA
     		t-moImprBestFitAspirCrit 
     		t-moItRandNextMove 
         	t-moLinearCoolingSchedule 
@@ -51,6 +55,7 @@ SET (TEST_LIST  t-moBestImprSelect
     		t-moSimpleSolutionTabuList 
     	        t-moSteadyFitSolContinue 
     		t-moTS 
+		t-moTS_2
     		t-moTSMoveLoopExpl )
 				
 FOREACH (test ${TEST_LIST})
