@@ -458,9 +458,6 @@ function run_install_step()
 			RETURN=`expr $RETURN + $?`
 		fi
 		
-		# Make link  with the install.cmake (at the top level)
-		#execute_cmd "ln -s $installKitPath/install.cmake $installKitPath/paradiseo-mo/install.cmake" "[$currentStepCounter-5] Create link to install.cmake for MO"  $SPY 	
-		
 		if [ ! $(($RETURN)) = 0 ]
 		then
 			echo ''
