@@ -61,12 +61,12 @@ SET (TEST_LIST	  t-ParallelEval
 				  t-EAAsyncIsland
 				  t-EASyncIsland
 				  t-PSOGlobalBest
-				  t-PSOWorstPosition
-				  t-Mpdallexit)
+				  t-PSOWorstPosition)
+
 				  
 SET (TEST_STOP    t-Mpdallexit)
 	
-FOREACH (test ${TEST_LIST} ${TEST_RUN} ${TEST_STOP})
+FOREACH (test ${TEST_RUN} ${TEST_LIST} ${TEST_STOP})
 	  SET ("T_${test}_SOURCES" "${test}.cpp")
 ENDFOREACH (test)
 
@@ -74,7 +74,7 @@ ENDFOREACH (test)
 IF(ENABLE_CMAKE_TESTING)
 	
 	# Add the tests
-	FOREACH (test ${TEST_LIST} ${TEST_RUN} ${TEST_STOP})
+	FOREACH (test ${TEST_RUN} ${TEST_LIST} ${TEST_STOP})
 		  ADD_EXECUTABLE(${test} ${T_${test}_SOURCES})  
 	ENDFOREACH (test)
 	
@@ -91,8 +91,8 @@ IF(ENABLE_CMAKE_TESTING)
 	ENDFOREACH (test)
 	
 	# Link the librairies
-	FOREACH (test ${TEST_LIST})
-	 TARGET_LINK_LIBRARIES(${test} peo ${XML2_LIBS} rmc_mpi ga es eoutils eo)
+	FOREACH (test ${TEST_RUN} ${TEST_LIST} ${TEST_STOP})
+	 TARGET_LINK_LIBRARIES(${test} peo ${XML2_LIBS} rmc_mpi ga es eoutils eo peo)
 	ENDFOREACH (test)
 	
 ENDIF(ENABLE_CMAKE_TESTING)
