@@ -33,7 +33,7 @@ DEFAULT_BUILD_TYPE=Release
 BUILD_TYPE=$DEFAULT_BUILD_TYPE
 
 # CMake/CTest/Dart flags
-CTEST_DEFAULT_CONFIG="-D ExperimentalStart -D ExperimentalBuild -D ExperimentalCoverage"
+CTEST_DEFAULT_CONFIG="-D ExperimentalStart -D ExperimentalBuild"
 CTEST_CONFIG=$CTEST_DEFAULT_CONFIG
 
 # install types to select in the main menu
