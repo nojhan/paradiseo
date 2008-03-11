@@ -669,13 +669,13 @@ function run_install_step()
 		fi
 		idx=`expr $idx + $?`
 
-		execute_cmd "rm -Rf $installKitPath/paradiseo-eo/build/*" "[$currentStepCounter] Remove $installKitPath/paradiseo-eo/build/* $SPY 
+		execute_cmd "rm -Rf $installKitPath/paradiseo-eo/build/*" "[$currentStepCounter] Remove $installKitPath/paradiseo-eo/build/*" $SPY 
 		idx=`expr $idx + $?`
-		execute_cmd "rm -Rf $installKitPath/paradiseo-mo/build/*" "[$currentStepCounter] Remove $installKitPath/paradiseo-mo/build/* $SPY 
+		execute_cmd "rm -Rf $installKitPath/paradiseo-mo/build/*" "[$currentStepCounter] Remove $installKitPath/paradiseo-mo/build/*" $SPY 
 		idx=`expr $idx + $?`
-		execute_cmd "rm -Rf $installKitPath/paradiseo-moeo/build/*" "[$currentStepCounter] Remove $installKitPath/paradiseo-moeo/build/* $SPY 
+		execute_cmd "rm -Rf $installKitPath/paradiseo-moeo/build/*" "[$currentStepCounter] Remove $installKitPath/paradiseo-moeo/build/*" $SPY 
 		idx=`expr $idx + $?`
-		execute_cmd "rm -Rf $installKitPath/paradiseo-peo/build/*" "[$currentStepCounter] Remove $installKitPath/paradiseo-peo/build/* $SPY 
+		execute_cmd "rm -Rf $installKitPath/paradiseo-peo/build/*" "[$currentStepCounter] Remove $installKitPath/paradiseo-peo/build/*" $SPY 
 		idx=`expr $idx + $?`
 		
 		if [ ! $(($idx)) = 0 ]
