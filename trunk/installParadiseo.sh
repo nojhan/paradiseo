@@ -452,8 +452,14 @@ function run_install_step()
 		
 		if [ "$COMPILE_PARADISEO" = "1" ] 
 		then
-			execute_cmd "ctest $CTEST_CONFIG" "[$currentStepCounter-3] Compile ParadisEO-MO using CTest"  $SPY
-			RETURN=`expr $RETURN + $?`
+			execute_cmd "ctest $CTEST_CONFIG" "[$currentStepCounter-3] Compile ParadisEO-MO using CTest"  $SPY	
+			LAST_RETURN=$?
+			# don't consider a submission error as a "right error"
+			if [ ! "$LAST_RETURN" = "$DART_SUBMISSION_ERROR" ]
+			then
+				RETURN=`expr $RETURN + $LAST_RETURN`
+			fi			
+			
 			execute_cmd "make install" "[$currentStepCounter-4] Make install of ParadisEO-MO"  $SPY
 			RETURN=`expr $RETURN + $?`
 		fi
@@ -491,7 +497,10 @@ function run_install_step()
 		if [ "$COMPILE_PARADISEO" = "1" ] 
 		then
 			execute_cmd "ctest $CTEST_CONFIG" "[$currentStepCounter-3] Compile ParadisEO-MOEO using CTest"  $SPY
-			RETURN=`expr $RETURN + $?`
+			if [ ! "$LAST_RETURN" = "$DART_SUBMISSION_ERROR" ]
+			then
+				RETURN=`expr $RETURN + $LAST_RETURN`
+			fi	
 			execute_cmd "make install" "[$currentStepCounter-4] Make install ParadisEO-MOEO"  $SPY
 			RETURN=`expr $RETURN + $?`
 		fi
@@ -782,7 +791,10 @@ function run_install_step()
 		if [ "$COMPILE_PARADISEO" = "1" ] 
 		then
 			execute_cmd "ctest $CTEST_CONFIG" "[$currentStepCounter-3] Compile ParadisEO-PEO using CTest"  $SPY
-			RETURN=`expr $RETURN + $?`
+			if [ ! "$LAST_RETURN" = "$DART_SUBMISSION_ERROR" ]
+			then
+				RETURN=`expr $RETURN + $LAST_RETURN`
+			fi	
 			execute_cmd "make install" "[$currentStepCounter-4] Make install ParadisEO-PEO "  $SPY
 			RETURN=`expr $RETURN + $?`
 		fi
@@ -1055,7 +1067,7 @@ do
    then
       BUILD_TYPE=Debug
       OPTIONNAL_CMAKE_FLAGS='-DENABLE_CMAKE_TESTING=TRUE'
-      CTEST_CONFIG="$CTEST_CONFIG -D ExperimentalTest -D ExperimentalCoverage -D ExperimentalMemCheck"
+      CTEST_CONFIG="$CTEST_CONFIG -D ExperimentalTest"
   fi
   if [ "${i%=*}" = "--skipdart" ]
    then
