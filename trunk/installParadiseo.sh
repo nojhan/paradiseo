@@ -497,6 +497,8 @@ function run_install_step()
 		if [ "$COMPILE_PARADISEO" = "1" ] 
 		then
 			execute_cmd "ctest $CTEST_CONFIG" "[$currentStepCounter-3] Compile ParadisEO-MOEO using CTest"  $SPY
+			LAST_RETURN=$?
+			# don't consider a submission error as a "right error"
 			if [ ! "$LAST_RETURN" = "$DART_SUBMISSION_ERROR" ]
 			then
 				RETURN=`expr $RETURN + $LAST_RETURN`
@@ -667,10 +669,19 @@ function run_install_step()
 		fi
 		idx=`expr $idx + $?`
 
+		execute_cmd "rm -Rf $installKitPath/paradiseo-eo/build/*" "[$currentStepCounter] Remove $installKitPath/paradiseo-eo/build/* $SPY 
+		idx=`expr $idx + $?`
+		execute_cmd "rm -Rf $installKitPath/paradiseo-mo/build/*" "[$currentStepCounter] Remove $installKitPath/paradiseo-mo/build/* $SPY 
+		idx=`expr $idx + $?`
+		execute_cmd "rm -Rf $installKitPath/paradiseo-moeo/build/*" "[$currentStepCounter] Remove $installKitPath/paradiseo-moeo/build/* $SPY 
+		idx=`expr $idx + $?`
+		execute_cmd "rm -Rf $installKitPath/paradiseo-peo/build/*" "[$currentStepCounter] Remove $installKitPath/paradiseo-peo/build/* $SPY 
+		idx=`expr $idx + $?`
+		
 		if [ ! $(($idx)) = 0 ]
 		then
 			echo ''
-			echo "		--> Error when removing previous install of libxml2 and mpich2"
+			echo "		--> Error when removing previous install of ParadisEO"
 			echo -e ' \033[40m\033[1;33m### END ### \033[0m '
 			return $RM_UTIL_ERROR
 		else
@@ -791,6 +802,8 @@ function run_install_step()
 		if [ "$COMPILE_PARADISEO" = "1" ] 
 		then
 			execute_cmd "ctest $CTEST_CONFIG" "[$currentStepCounter-3] Compile ParadisEO-PEO using CTest"  $SPY
+			LAST_RETURN=$?
+			# don't consider a submission error as a "right error"
 			if [ ! "$LAST_RETURN" = "$DART_SUBMISSION_ERROR" ]
 			then
 				RETURN=`expr $RETURN + $LAST_RETURN`
