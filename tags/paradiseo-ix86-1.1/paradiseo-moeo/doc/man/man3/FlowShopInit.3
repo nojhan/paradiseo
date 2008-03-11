@@ -1,0 +1,73 @@
+.TH "FlowShopInit" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOEOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+FlowShopInit \- Initialization of a random genotype built by the default constructor of the \fBFlowShop\fP class.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <FlowShopInit.h>\fP
+.PP
+Inherits \fBeoInit< FlowShop >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBFlowShopInit\fP (unsigned int _N)"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (\fBFlowShop\fP &_flowshop)"
+.br
+.RI "\fIbuilds a random genotype \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBN\fP"
+.br
+.RI "\fIthe number of jobs (size of a scheduling vector) \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Initialization of a random genotype built by the default constructor of the \fBFlowShop\fP class. 
+.PP
+Definition at line 22 of file FlowShopInit.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "FlowShopInit::FlowShopInit (unsigned int _N)"
+.PP
+Ctor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_N\fP the number of jobs to schedule 
+.RE
+.PP
+
+.PP
+Definition at line 16 of file FlowShopInit.cpp.
+.SH "Member Function Documentation"
+.PP 
+.SS "void FlowShopInit::operator() (\fBFlowShop\fP & _flowshop)"
+.PP
+builds a random genotype 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_flowshop\fP a genotype that has been default-constructed 
+.RE
+.PP
+
+.PP
+Definition at line 20 of file FlowShopInit.cpp.
+.PP
+References MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::invalidate(), N, eoRng::uniform(), and moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >::value().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEOMovingObjects from the source code.

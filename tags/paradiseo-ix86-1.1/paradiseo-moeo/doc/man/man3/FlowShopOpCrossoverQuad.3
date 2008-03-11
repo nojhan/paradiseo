@@ -1,0 +1,85 @@
+.TH "FlowShopOpCrossoverQuad" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-MOEOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+FlowShopOpCrossoverQuad \- Quadratic crossover operator for flow-shop (modify the both genotypes).  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <FlowShopOpCrossoverQuad.h>\fP
+.PP
+Inherits \fBeoQuadOp< FlowShop >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBclassName\fP () const "
+.br
+.RI "\fIthe class name (used to display statistics) \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (\fBFlowShop\fP &_flowshop1, \fBFlowShop\fP &_flowshop2)"
+.br
+.RI "\fIeoQuad crossover - _flowshop1 and _flowshop2 are the (future) offspring, i.e. \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBFlowShop\fP \fBgenerateOffspring\fP (const \fBFlowShop\fP &_parent1, const \fBFlowShop\fP &_parent2, unsigned int _point1, unsigned int _point2)"
+.br
+.RI "\fIgeneration of an offspring by a 2 points crossover \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Quadratic crossover operator for flow-shop (modify the both genotypes). 
+.PP
+Definition at line 22 of file FlowShopOpCrossoverQuad.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "bool FlowShopOpCrossoverQuad::operator() (\fBFlowShop\fP & _flowshop1, \fBFlowShop\fP & _flowshop2)\fC [virtual]\fP"
+.PP
+eoQuad crossover - _flowshop1 and _flowshop2 are the (future) offspring, i.e. 
+.PP
+_copies_ of the parents 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_flowshop1\fP the first parent 
+.br
+\fI_flowshop2\fP the second parent 
+.RE
+.PP
+
+.PP
+Implements \fBeoBF< FlowShop &, FlowShop &, bool >\fP.
+.PP
+Definition at line 22 of file FlowShopOpCrossoverQuad.cpp.
+.PP
+References generateOffspring(), eoRng::random(), and moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType >::value().
+.SS "\fBFlowShop\fP FlowShopOpCrossoverQuad::generateOffspring (const \fBFlowShop\fP & _parent1, const \fBFlowShop\fP & _parent2, unsigned int _point1, unsigned int _point2)\fC [private]\fP"
+.PP
+generation of an offspring by a 2 points crossover 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_parent1\fP the first parent 
+.br
+\fI_parent2\fP the second parent 
+.br
+\fI_point1\fP the first point 
+.br
+\fI_point2\fP the second point 
+.RE
+.PP
+
+.PP
+Definition at line 54 of file FlowShopOpCrossoverQuad.cpp.
+.PP
+Referenced by operator()().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEOMovingObjects from the source code.

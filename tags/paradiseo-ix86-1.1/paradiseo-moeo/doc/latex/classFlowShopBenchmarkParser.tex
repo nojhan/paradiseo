@@ -1,0 +1,110 @@
+\section{Flow\-Shop\-Benchmark\-Parser Class Reference}
+\label{classFlowShopBenchmarkParser}\index{FlowShopBenchmarkParser@{FlowShopBenchmarkParser}}
+Class to handle parameters of a flow-shop instance from a benchmark file.  
+
+
+{\tt \#include $<$Flow\-Shop\-Benchmark\-Parser.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\bf{Flow\-Shop\-Benchmark\-Parser} (const std::string \_\-benchmark\-File\-Name)
+\begin{CompactList}\small\item\em Ctor. \item\end{CompactList}\item 
+const unsigned int \bf{get\-M} ()\label{classFlowShopBenchmarkParser_8d5042c2f8727e235f94c947b2ba00a5}
+
+\begin{CompactList}\small\item\em the number of machines \item\end{CompactList}\item 
+const unsigned int \bf{get\-N} ()\label{classFlowShopBenchmarkParser_fe16df4df5104aee3d792e60bb32a66d}
+
+\begin{CompactList}\small\item\em the number of jobs \item\end{CompactList}\item 
+const std::vector$<$ std::vector$<$ unsigned int $>$ $>$ \bf{get\-P} ()\label{classFlowShopBenchmarkParser_2df87bf8a18a55266729ab105955d7bf}
+
+\begin{CompactList}\small\item\em the processing times \item\end{CompactList}\item 
+const std::vector$<$ unsigned int $>$ \bf{get\-D} ()\label{classFlowShopBenchmarkParser_b362d0042273be436c55637828d8582d}
+
+\begin{CompactList}\small\item\em the due-dates \item\end{CompactList}\item 
+void \bf{print\-On} (std::ostream \&\_\-os) const 
+\begin{CompactList}\small\item\em printing. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+void \bf{init} (const std::string \_\-benchmark\-File\-Name)
+\begin{CompactList}\small\item\em Initialisation of the parameters with the data contained in the benchmark file. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+unsigned int \bf{M}\label{classFlowShopBenchmarkParser_4cc02556c751afe32e8800544160c7c7}
+
+\begin{CompactList}\small\item\em number of machines \item\end{CompactList}\item 
+unsigned int \bf{N}\label{classFlowShopBenchmarkParser_fb220e40e9f94e3c1d3a7eb437aeffce}
+
+\begin{CompactList}\small\item\em number of jobs \item\end{CompactList}\item 
+std::vector$<$ std::vector$<$ unsigned int $>$ $>$ \bf{p}\label{classFlowShopBenchmarkParser_4c1ce3d710b6605ddcc723101b808de5}
+
+\begin{CompactList}\small\item\em p[i][j] = processing time of job j on machine i \item\end{CompactList}\item 
+std::vector$<$ unsigned int $>$ \bf{d}\label{classFlowShopBenchmarkParser_8898519f54465b2d23a846053363bf4b}
+
+\begin{CompactList}\small\item\em d[j] = due-date of the job j \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Class to handle parameters of a flow-shop instance from a benchmark file. 
+
+
+
+Definition at line 23 of file Flow\-Shop\-Benchmark\-Parser.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{FlowShopBenchmarkParser@{Flow\-Shop\-Benchmark\-Parser}!FlowShopBenchmarkParser@{FlowShopBenchmarkParser}}
+\index{FlowShopBenchmarkParser@{FlowShopBenchmarkParser}!FlowShopBenchmarkParser@{Flow\-Shop\-Benchmark\-Parser}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Flow\-Shop\-Benchmark\-Parser::Flow\-Shop\-Benchmark\-Parser (const std::string {\em \_\-benchmark\-File\-Name})}\label{classFlowShopBenchmarkParser_2787b88a1be9d4d37438c557bf32f137}
+
+
+Ctor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-benchmark\-File\-Name}]the name of the benchmark file \end{description}
+\end{Desc}
+
+
+Definition at line 16 of file Flow\-Shop\-Benchmark\-Parser.cpp.
+
+References init().
+
+\subsection{Member Function Documentation}
+\index{FlowShopBenchmarkParser@{Flow\-Shop\-Benchmark\-Parser}!printOn@{printOn}}
+\index{printOn@{printOn}!FlowShopBenchmarkParser@{Flow\-Shop\-Benchmark\-Parser}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Flow\-Shop\-Benchmark\-Parser::print\-On (std::ostream \& {\em \_\-os}) const}\label{classFlowShopBenchmarkParser_69c9ba47e774da4b06424a724573265d}
+
+
+printing. 
+
+.. 
+
+Definition at line 46 of file Flow\-Shop\-Benchmark\-Parser.cpp.
+
+References d, M, N, and p.\index{FlowShopBenchmarkParser@{Flow\-Shop\-Benchmark\-Parser}!init@{init}}
+\index{init@{init}!FlowShopBenchmarkParser@{Flow\-Shop\-Benchmark\-Parser}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void Flow\-Shop\-Benchmark\-Parser::init (const std::string {\em \_\-benchmark\-File\-Name})\hspace{0.3cm}{\tt  [private]}}\label{classFlowShopBenchmarkParser_4e6de6a0ec2859e1a2fb758fb06dc915}
+
+
+Initialisation of the parameters with the data contained in the benchmark file. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-benchmark\-File\-Name}]the name of the benchmark file \end{description}
+\end{Desc}
+
+
+Definition at line 64 of file Flow\-Shop\-Benchmark\-Parser.cpp.
+
+References d, M, N, and p.
+
+Referenced by Flow\-Shop\-Benchmark\-Parser().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+Flow\-Shop\-Benchmark\-Parser.h\item 
+Flow\-Shop\-Benchmark\-Parser.cpp\end{CompactItemize}
