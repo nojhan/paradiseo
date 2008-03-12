@@ -65,41 +65,42 @@
 <a name="l00041"></a>00041 <span class="preprocessor">#include &lt;mo&gt;</span>
 <a name="l00042"></a>00042 <span class="preprocessor">#include &lt;moeo&gt;</span>
 <a name="l00043"></a>00043 
-<a name="l00044"></a>00044 
-<a name="l00319"></a>00319 
-<a name="l00320"></a>00320 <span class="preprocessor">#include "core/peo_init.h"</span>
-<a name="l00321"></a>00321 <span class="preprocessor">#include "core/peo_run.h"</span>
-<a name="l00322"></a>00322 <span class="preprocessor">#include "core/peo_fin.h"</span>
-<a name="l00323"></a>00323 
-<a name="l00324"></a>00324 <span class="preprocessor">#include "core/messaging.h"</span>
-<a name="l00325"></a>00325 <span class="preprocessor">#include "core/eoPop_mesg.h"</span>
-<a name="l00326"></a>00326 <span class="preprocessor">#include "core/eoVector_mesg.h"</span>
-<a name="l00327"></a>00327 
-<a name="l00328"></a>00328 <span class="preprocessor">#include "peoWrapper.h"</span>
-<a name="l00329"></a>00329 
-<a name="l00330"></a>00330 <span class="comment">/* &lt;------- components for parallel algorithms -------&gt; */</span>
-<a name="l00331"></a>00331 <span class="preprocessor">#include "peoTransform.h"</span>
-<a name="l00332"></a>00332 <span class="preprocessor">#include "peoEvalFunc.h"</span>
-<a name="l00333"></a>00333 <span class="preprocessor">#include "peoPopEval.h"</span>
-<a name="l00334"></a>00334 
-<a name="l00335"></a>00335 <span class="comment">/* Cooperative island model */</span>
-<a name="l00336"></a>00336 <span class="preprocessor">#include "core/ring_topo.h"</span>
-<a name="l00337"></a>00337 <span class="preprocessor">#include "core/star_topo.h"</span>
-<a name="l00338"></a>00338 <span class="preprocessor">#include "core/random_topo.h"</span>
-<a name="l00339"></a>00339 <span class="preprocessor">#include "core/complete_topo.h"</span>
-<a name="l00340"></a>00340 <span class="preprocessor">#include "peoData.h"</span>
-<a name="l00341"></a>00341 <span class="preprocessor">#include "peoSyncIslandMig.h"</span>
-<a name="l00342"></a>00342 <span class="preprocessor">#include "peoAsyncIslandMig.h"</span>
-<a name="l00343"></a>00343 
-<a name="l00344"></a>00344 <span class="comment">/* Synchronous multi-start model */</span>
-<a name="l00345"></a>00345 <span class="preprocessor">#include "peoMultiStart.h"</span>
-<a name="l00346"></a>00346 <span class="comment">/* &lt;------- components for parallel algorithms -------&gt; */</span>
-<a name="l00347"></a>00347 
-<a name="l00348"></a>00348 <span class="comment">/* Parallel PSO */</span>
-<a name="l00349"></a>00349 <span class="preprocessor">#include "peoPSO.h"</span>
-<a name="l00350"></a>00350 
-<a name="l00351"></a>00351 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Wed Mar 12 15:23:42 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
+<a name="l00106"></a>00106 <span class="preprocessor">#include "core/peo_init.h"</span>
+<a name="l00107"></a>00107 <span class="preprocessor">#include "core/peo_run.h"</span>
+<a name="l00108"></a>00108 <span class="preprocessor">#include "core/peo_fin.h"</span>
+<a name="l00109"></a>00109 
+<a name="l00110"></a>00110 <span class="preprocessor">#include "core/messaging.h"</span>
+<a name="l00111"></a>00111 <span class="preprocessor">#include "core/eoPop_mesg.h"</span>
+<a name="l00112"></a>00112 <span class="preprocessor">#include "core/eoVector_mesg.h"</span>
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114 <span class="preprocessor">#include "peoWrapper.h"</span>
+<a name="l00115"></a>00115 
+<a name="l00116"></a>00116 <span class="comment">/* &lt;------- components for parallel algorithms -------&gt; */</span>
+<a name="l00117"></a>00117 <span class="preprocessor">#include "peoTransform.h"</span>
+<a name="l00118"></a>00118 <span class="preprocessor">#include "peoEvalFunc.h"</span>
+<a name="l00119"></a>00119 <span class="preprocessor">#include "peoPopEval.h"</span>
+<a name="l00120"></a>00120 <span class="preprocessor">#include "peoMoeoPopEval.h"</span>
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122 <span class="comment">/* Cooperative island model */</span>
+<a name="l00123"></a>00123 <span class="preprocessor">#include "core/ring_topo.h"</span>
+<a name="l00124"></a>00124 <span class="preprocessor">#include "core/star_topo.h"</span>
+<a name="l00125"></a>00125 <span class="preprocessor">#include "core/random_topo.h"</span>
+<a name="l00126"></a>00126 <span class="preprocessor">#include "core/complete_topo.h"</span>
+<a name="l00127"></a>00127 <span class="preprocessor">#include "peoData.h"</span>
+<a name="l00128"></a>00128 <span class="preprocessor">#include "peoSyncIslandMig.h"</span>
+<a name="l00129"></a>00129 <span class="preprocessor">#include "peoAsyncIslandMig.h"</span>
+<a name="l00130"></a>00130 <span class="preprocessor">#include "peoAsyncDataTransfer.h"</span>
+<a name="l00131"></a>00131 <span class="preprocessor">#include "peoSyncDataTransfer.h"</span>
+<a name="l00132"></a>00132 
+<a name="l00133"></a>00133 <span class="comment">/* Synchronous multi-start model */</span>
+<a name="l00134"></a>00134 <span class="preprocessor">#include "peoMultiStart.h"</span>
+<a name="l00135"></a>00135 <span class="comment">/* &lt;------- components for parallel algorithms -------&gt; */</span>
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137 <span class="comment">/* Parallel PSO */</span>
+<a name="l00138"></a>00138 <span class="preprocessor">#include "peoPSO.h"</span>
+<a name="l00139"></a>00139 
+<a name="l00140"></a>00140 <span class="preprocessor">#endif</span>
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Wed Mar 12 17:17:13 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>
