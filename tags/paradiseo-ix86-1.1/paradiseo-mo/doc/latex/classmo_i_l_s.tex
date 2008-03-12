@@ -1,0 +1,149 @@
+\section{moILS$<$ M $>$ Class Template Reference}
+\label{classmo_i_l_s}\index{moILS@{moILS}}
+Iterated Local Search (ILS).  
+
+
+{\tt \#include $<$moILS.h$>$}
+
+Inherits {\bf moAlgo$<$ M::EOType $>$}.
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf moILS} ({\bf moAlgo}$<$ {\bf EOT} $>$ \&\_\-algorithm, {\bf moSolContinue}$<$ {\bf EOT} $>$ \&\_\-continue, {\bf moComparator}$<$ {\bf EOT} $>$ \&\_\-acceptance\_\-criterion, {\bf eoMonOp}$<$ {\bf EOT} $>$ \&\_\-perturbation, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \&\_\-full\_\-evaluation)
+\begin{CompactList}\small\item\em Generic constructor. \item\end{CompactList}\item 
+{\bf moILS} ({\bf moMoveInit}$<$ M $>$ \&\_\-move\_\-initializer, {\bf moNextMove}$<$ M $>$ \&\_\-next\_\-move\_\-generator, {\bf moMoveIncrEval}$<$ M $>$ \&\_\-incremental\_\-evaluation, {\bf moMoveSelect}$<$ M $>$ \&\_\-move\_\-selection, {\bf moSolContinue}$<$ {\bf EOT} $>$ \&\_\-continue, {\bf moComparator}$<$ {\bf EOT} $>$ \&\_\-acceptance\_\-criterion, {\bf eoMonOp}$<$ {\bf EOT} $>$ \&\_\-perturbation, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \&\_\-full\_\-evaluation)
+\begin{CompactList}\small\item\em Constructor for using a \doxyref{moHC}{p.}{classmo_h_c} for the \doxyref{moAlgo}{p.}{classmo_algo}. \item\end{CompactList}\item 
+{\bf moILS} ({\bf moMoveInit}$<$ M $>$ \&\_\-move\_\-initializer, {\bf moNextMove}$<$ M $>$ \&\_\-next\_\-move\_\-generator, {\bf moMoveIncrEval}$<$ M $>$ \&\_\-incremental\_\-evaluation, {\bf moTabuList}$<$ M $>$ \&\_\-tabu\_\-list, {\bf moAspirCrit}$<$ M $>$ \&\_\-aspiration\_\-criterion, {\bf moSolContinue}$<$ {\bf EOT} $>$ \&\_\-moTS\_\-continue, {\bf moSolContinue}$<$ {\bf EOT} $>$ \&\_\-continue, {\bf moComparator}$<$ {\bf EOT} $>$ \&\_\-acceptance\_\-criterion, {\bf eoMonOp}$<$ {\bf EOT} $>$ \&\_\-perturbation, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \&\_\-full\_\-evaluation)
+\begin{CompactList}\small\item\em Constructor for using a \doxyref{moTS}{p.}{classmo_t_s} for the \doxyref{moAlgo}{p.}{classmo_algo}. \item\end{CompactList}\item 
+{\bf moILS} ({\bf moRandMove}$<$ M $>$ \&\_\-random\_\-move\_\-generator, {\bf moMoveIncrEval}$<$ M $>$ \&\_\-incremental\_\-evaluation, {\bf moSolContinue}$<$ {\bf EOT} $>$ \&\_\-moSA\_\-continue, double \_\-initial\_\-temperature, {\bf moCoolingSchedule} \&\_\-cooling\_\-schedule, {\bf moSolContinue}$<$ {\bf EOT} $>$ \&\_\-continue, {\bf moComparator}$<$ {\bf EOT} $>$ \&\_\-acceptance\_\-criterion, {\bf eoMonOp}$<$ {\bf EOT} $>$ \&\_\-perturbation, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \&\_\-full\_\-evaluation)
+\begin{CompactList}\small\item\em Constructor for using a \doxyref{moSA}{p.}{classmo_s_a} for the \doxyref{moAlgo}{p.}{classmo_algo}. \item\end{CompactList}\item 
+bool {\bf operator()} ({\bf EOT} \&\_\-solution)
+\begin{CompactList}\small\item\em {\bf Function} which launches the ILS. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Types}
+\begin{CompactItemize}
+\item 
+typedef M::EOType {\bf EOT}\label{classmo_i_l_s_c81bafc611e4d4fd44347cf7162198c7}
+
+\begin{CompactList}\small\item\em Alias for the type. \item\end{CompactList}\item 
+typedef EOT::Fitness {\bf Fitness}\label{classmo_i_l_s_8c464a9eae064a78eff75d4c722b619c}
+
+\begin{CompactList}\small\item\em Alias for the fitness. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+{\bf moAlgo}$<$ {\bf EOT} $>$ \& {\bf algorithm}\label{classmo_i_l_s_5651a4d94b59d523d341d5d6e24ca311}
+
+\begin{CompactList}\small\item\em The solution based heuristic. \item\end{CompactList}\item 
+{\bf moSolContinue}$<$ {\bf EOT} $>$ \& {\bf continu}\label{classmo_i_l_s_30edab439401d7ec04fd8d37b4513d94}
+
+\begin{CompactList}\small\item\em The stopping criterion. \item\end{CompactList}\item 
+{\bf moComparator}$<$ {\bf EOT} $>$ \& {\bf acceptance\_\-criterion}\label{classmo_i_l_s_295f6d0342c67bd3dc4cb82e2adc26be}
+
+\begin{CompactList}\small\item\em The acceptance criterion. \item\end{CompactList}\item 
+{\bf eoMonOp}$<$ {\bf EOT} $>$ \& {\bf perturbation}\label{classmo_i_l_s_f667a1bda06b6d221292df9aba3db8a2}
+
+\begin{CompactList}\small\item\em The perturbation generator. \item\end{CompactList}\item 
+{\bf eoEvalFunc}$<$ {\bf EOT} $>$ \& {\bf full\_\-evaluation}\label{classmo_i_l_s_8e8c383ac6ec34aaf071fa18bb54be67}
+
+\begin{CompactList}\small\item\em The full evaluation function. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class M$>$ class moILS$<$ M $>$}
+
+Iterated Local Search (ILS). 
+
+Class which describes the algorithm for a iterated local search. 
+
+Definition at line 50 of file moILS.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{moILS@{moILS}!moILS@{moILS}}
+\index{moILS@{moILS}!moILS@{moILS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf moILS}$<$ M $>$::{\bf moILS} ({\bf moAlgo}$<$ {\bf EOT} $>$ \& {\em \_\-algorithm}, {\bf moSolContinue}$<$ {\bf EOT} $>$ \& {\em \_\-continue}, {\bf moComparator}$<$ {\bf EOT} $>$ \& {\em \_\-acceptance\_\-criterion}, {\bf eoMonOp}$<$ {\bf EOT} $>$ \& {\em \_\-perturbation}, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_i_l_s_c83f81ba0836ae262305efa15eeb3da2}
+
+
+Generic constructor. 
+
+Generic constructor using a \doxyref{moAlgo}{p.}{classmo_algo}
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-algorithm}]The solution based heuristic to use. \item[{\em \_\-continue}]The stopping criterion. \item[{\em \_\-acceptance\_\-criterion}]The acceptance criterion. \item[{\em \_\-perturbation}]The pertubation generator. \item[{\em \_\-full\_\-evaluation}]The evaluation function. \end{description}
+\end{Desc}
+
+
+Definition at line 70 of file moILS.h.\index{moILS@{moILS}!moILS@{moILS}}
+\index{moILS@{moILS}!moILS@{moILS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf moILS}$<$ M $>$::{\bf moILS} ({\bf moMoveInit}$<$ M $>$ \& {\em \_\-move\_\-initializer}, {\bf moNextMove}$<$ M $>$ \& {\em \_\-next\_\-move\_\-generator}, {\bf moMoveIncrEval}$<$ M $>$ \& {\em \_\-incremental\_\-evaluation}, {\bf moMoveSelect}$<$ M $>$ \& {\em \_\-move\_\-selection}, {\bf moSolContinue}$<$ {\bf EOT} $>$ \& {\em \_\-continue}, {\bf moComparator}$<$ {\bf EOT} $>$ \& {\em \_\-acceptance\_\-criterion}, {\bf eoMonOp}$<$ {\bf EOT} $>$ \& {\em \_\-perturbation}, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_i_l_s_6d684a1d13ad224a911c8b0277812297}
+
+
+Constructor for using a \doxyref{moHC}{p.}{classmo_h_c} for the \doxyref{moAlgo}{p.}{classmo_algo}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-move\_\-initializer}]The move initialisation (for the \doxyref{moHC}{p.}{classmo_h_c}). \item[{\em \_\-next\_\-move\_\-generator}]The move generator (for the \doxyref{moHC}{p.}{classmo_h_c}). \item[{\em \_\-incremental\_\-evaluation}]The partial evaluation function (for the \doxyref{moHC}{p.}{classmo_h_c}). \item[{\em \_\-move\_\-selection}]The move selection strategy (for the \doxyref{moHC}{p.}{classmo_h_c}). \item[{\em \_\-continue}]The stopping criterion. \item[{\em \_\-acceptance\_\-criterion}]The acceptance criterion. \item[{\em \_\-perturbation}]The pertubation generator. \item[{\em \_\-full\_\-evaluation}]The evaluation function. \end{description}
+\end{Desc}
+
+
+Definition at line 87 of file moILS.h.\index{moILS@{moILS}!moILS@{moILS}}
+\index{moILS@{moILS}!moILS@{moILS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf moILS}$<$ M $>$::{\bf moILS} ({\bf moMoveInit}$<$ M $>$ \& {\em \_\-move\_\-initializer}, {\bf moNextMove}$<$ M $>$ \& {\em \_\-next\_\-move\_\-generator}, {\bf moMoveIncrEval}$<$ M $>$ \& {\em \_\-incremental\_\-evaluation}, {\bf moTabuList}$<$ M $>$ \& {\em \_\-tabu\_\-list}, {\bf moAspirCrit}$<$ M $>$ \& {\em \_\-aspiration\_\-criterion}, {\bf moSolContinue}$<$ {\bf EOT} $>$ \& {\em \_\-moTS\_\-continue}, {\bf moSolContinue}$<$ {\bf EOT} $>$ \& {\em \_\-continue}, {\bf moComparator}$<$ {\bf EOT} $>$ \& {\em \_\-acceptance\_\-criterion}, {\bf eoMonOp}$<$ {\bf EOT} $>$ \& {\em \_\-perturbation}, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_i_l_s_740ac81a0d06eb471592ba0861d3a6d7}
+
+
+Constructor for using a \doxyref{moTS}{p.}{classmo_t_s} for the \doxyref{moAlgo}{p.}{classmo_algo}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-move\_\-initializer}]The move initialisation (for the \doxyref{moTS}{p.}{classmo_t_s}). \item[{\em \_\-next\_\-move\_\-generator}]The move generator (for the \doxyref{moTS}{p.}{classmo_t_s}). \item[{\em \_\-incremental\_\-evaluation}]The partial evaluation function (for the \doxyref{moTS}{p.}{classmo_t_s}). \item[{\em \_\-tabu\_\-list}]The tabu list (for the \doxyref{moTS}{p.}{classmo_t_s} !!!!). \item[{\em \_\-aspiration\_\-criterion}]The aspiration criterion (for the \doxyref{moTS}{p.}{classmo_t_s}). \item[{\em \_\-moTS\_\-continue}]The stopping criterion (for the \doxyref{moTS}{p.}{classmo_t_s}). \item[{\em \_\-continue}]The stopping criterion. \item[{\em \_\-acceptance\_\-criterion}]The acceptance criterion. \item[{\em \_\-perturbation}]The pertubation generator. \item[{\em \_\-full\_\-evaluation}]The evaluation function. \end{description}
+\end{Desc}
+
+
+Definition at line 108 of file moILS.h.\index{moILS@{moILS}!moILS@{moILS}}
+\index{moILS@{moILS}!moILS@{moILS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ {\bf moILS}$<$ M $>$::{\bf moILS} ({\bf moRandMove}$<$ M $>$ \& {\em \_\-random\_\-move\_\-generator}, {\bf moMoveIncrEval}$<$ M $>$ \& {\em \_\-incremental\_\-evaluation}, {\bf moSolContinue}$<$ {\bf EOT} $>$ \& {\em \_\-moSA\_\-continue}, double {\em \_\-initial\_\-temperature}, {\bf moCoolingSchedule} \& {\em \_\-cooling\_\-schedule}, {\bf moSolContinue}$<$ {\bf EOT} $>$ \& {\em \_\-continue}, {\bf moComparator}$<$ {\bf EOT} $>$ \& {\em \_\-acceptance\_\-criterion}, {\bf eoMonOp}$<$ {\bf EOT} $>$ \& {\em \_\-perturbation}, {\bf eoEvalFunc}$<$ {\bf EOT} $>$ \& {\em \_\-full\_\-evaluation})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_i_l_s_36bab16abf36957dac36c467b86385bc}
+
+
+Constructor for using a \doxyref{moSA}{p.}{classmo_s_a} for the \doxyref{moAlgo}{p.}{classmo_algo}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-random\_\-move\_\-generator}]The random move generator (for the \doxyref{moSA}{p.}{classmo_s_a}). \item[{\em \_\-incremental\_\-evaluation}]The partial evaluation function (for the \doxyref{moSA}{p.}{classmo_s_a}). \item[{\em \_\-moSA\_\-continue}]The stopping criterion (for the \doxyref{moSA}{p.}{classmo_s_a}). \item[{\em \_\-initial\_\-temperature}]The initial temperature (for the \doxyref{moSA}{p.}{classmo_s_a}). \item[{\em \_\-cooling\_\-schedule}]The cooling schedule (for the \doxyref{moSA}{p.}{classmo_s_a}). \item[{\em \_\-continue}]The stopping criterion. \item[{\em \_\-acceptance\_\-criterion}]The acceptance criterion. \item[{\em \_\-perturbation}]The pertubation generator. \item[{\em \_\-full\_\-evaluation}]The evaluation function. \end{description}
+\end{Desc}
+
+
+Definition at line 130 of file moILS.h.
+
+\subsection{Member Function Documentation}
+\index{moILS@{moILS}!operator()@{operator()}}
+\index{operator()@{operator()}!moILS@{moILS}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf moILS}$<$ M $>$::operator() ({\bf EOT} \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_i_l_s_3f6b950e5a6c363f04b8d4c259502488}
+
+
+{\bf Function} which launches the ILS. 
+
+The ILS has to improve a current solution. As the \doxyref{moSA}{p.}{classmo_s_a}, the \doxyref{moTS}{p.}{classmo_t_s} and the \doxyref{moHC}{p.}{classmo_h_c}, it can be used for HYBRIDATION in an evolutionnary algorithm.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-solution}]a current solution to improve. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true. \end{Desc}
+
+
+Implements {\bf eoUF$<$ M::EOType \&, bool $>$}.
+
+Definition at line 146 of file moILS.h.
+
+References moILS$<$ M $>$::acceptance\_\-criterion, moILS$<$ M $>$::algorithm, moILS$<$ M $>$::continu, moILS$<$ M $>$::full\_\-evaluation, and moILS$<$ M $>$::perturbation.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moILS.h\end{CompactItemize}
