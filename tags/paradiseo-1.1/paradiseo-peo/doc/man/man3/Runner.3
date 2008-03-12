@@ -1,4 +1,4 @@
-.TH "Runner" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-PEOMovingObjects" \" -*- nroff -*-
+.TH "Runner" 3 "12 Mar 2008" "Version 1.1" "ParadisEO-PEO-ParallelanddistributedEvolvingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -8,7 +8,7 @@ Runner \-
 .PP
 Inherits \fBCommunicable\fP, and \fBThread\fP.
 .PP
-Inherited by \fBpeoEA< EOT >\fP, and \fBpeoParallelAlgorithmWrapper\fP.
+Inherited by \fBpeoWrapper\fP.
 .PP
 .SS "Public Member Functions"
 
@@ -17,25 +17,37 @@ Inherited by \fBpeoEA< EOT >\fP, and \fBpeoParallelAlgorithmWrapper\fP.
 .RI "\fBRunner\fP ()"
 .br
 .ti -1c
-.RI "void \fBstart\fP ()"
+.RI "RUNNER_ID \fBgetDefinitionID\fP ()"
+.br
+.ti -1c
+.RI "RUNNER_ID \fBgetExecutionID\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetExecutionID\fP (const RUNNER_ID &execution_id)"
+.br
+.ti -1c
+.RI "bool \fBisAssignedLocally\fP ()"
 .br
 .ti -1c
 .RI "void \fBwaitStarting\fP ()"
 .br
 .ti -1c
-.RI "bool \fBisLocal\fP ()"
+.RI "void \fBwaitContextInitialization\fP ()"
+.br
+.ti -1c
+.RI "void \fBstart\fP ()"
 .br
 .ti -1c
 .RI "void \fBterminate\fP ()"
 .br
 .ti -1c
-.RI "RUNNER_ID \fBgetID\fP ()"
-.br
-.ti -1c
-.RI "void \fBpackTermination\fP ()"
+.RI "void \fBnotifyContextInitialized\fP ()"
 .br
 .ti -1c
 .RI "void \fBnotifySendingTermination\fP ()"
+.br
+.ti -1c
+.RI "void \fBpackTermination\fP ()"
 .br
 .in -1c
 .SS "Private Attributes"
@@ -45,13 +57,19 @@ Inherited by \fBpeoEA< EOT >\fP, and \fBpeoParallelAlgorithmWrapper\fP.
 .RI "sem_t \fBsem_start\fP"
 .br
 .ti -1c
-.RI "unsigned \fBid\fP"
+.RI "sem_t \fBsem_cntxt\fP"
+.br
+.ti -1c
+.RI "unsigned \fBdef_id\fP"
+.br
+.ti -1c
+.RI "unsigned \fBexec_id\fP"
 .br
 .in -1c
 .SH "Detailed Description"
 .PP 
-Definition at line 47 of file runner.h.
+Definition at line 49 of file runner.h.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-PEOMovingObjects from the source code.
+Generated automatically by Doxygen for ParadisEO-PEO-ParallelanddistributedEvolvingObjects from the source code.

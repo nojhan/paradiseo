@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: node.h Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: node.h Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,12 +22,12 @@
       </form>
     </li>
   </ul></div>
-<h1>node.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>node.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;node.h&gt;</span>
-<a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
-<a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
+<a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008</span>
+<a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2008</span>
 <a name="l00005"></a>00005 <span class="comment">*</span>
-<a name="l00006"></a>00006 <span class="comment">* Sebastien Cahon, Alexandru-Adrian Tantar</span>
+<a name="l00006"></a>00006 <span class="comment">* Sebastien Cahon, Alexandru-Adrian Tantar, Clive Canape</span>
 <a name="l00007"></a>00007 <span class="comment">*</span>
 <a name="l00008"></a>00008 <span class="comment">* This software is governed by the CeCILL license under French law and</span>
 <a name="l00009"></a>00009 <span class="comment">* abiding by the rules of distribution of free software.  You can  use,</span>
@@ -64,17 +64,40 @@
 <a name="l00040"></a>00040 <span class="preprocessor">#include &lt;string&gt;</span>
 <a name="l00041"></a>00041 <span class="preprocessor">#include &lt;cassert&gt;</span>
 <a name="l00042"></a>00042 
-<a name="l00043"></a>00043 <span class="keyword">extern</span> <span class="keywordtype">int</span> getNodeRank (); <span class="comment">/* It gives the rank of the calling process */</span>
+<a name="l00043"></a>00043 <span class="preprocessor">#include "../../core/runner.h"</span>
 <a name="l00044"></a>00044 
-<a name="l00045"></a>00045 <span class="keyword">extern</span> <span class="keywordtype">int</span> getNumberOfNodes (); <span class="comment">/* It gives the size of the environment (Total number of nodes) */</span>
+<a name="l00045"></a>00045 <span class="keyword">typedef</span> <span class="keywordtype">int</span> RANK_ID;
 <a name="l00046"></a>00046 
-<a name="l00047"></a>00047 <span class="keyword">extern</span> <span class="keywordtype">int</span> getRankFromName (<span class="keyword">const</span> std :: string &amp; __name); <span class="comment">/* It gives the rank of the process</span>
-<a name="l00048"></a>00048 <span class="comment">                                                              expressed by its name */</span>
+<a name="l00047"></a>00047 <span class="keyword">struct </span><a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">Node</a>
+<a name="l00048"></a>00048   {
 <a name="l00049"></a>00049 
-<a name="l00050"></a>00050 <span class="keyword">extern</span> <span class="keywordtype">void</span> initNode (<span class="keywordtype">int</span> * __argc, <span class="keywordtype">char</span> * * * __argv);
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:45 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00050"></a>00050     RANK_ID rk; <span class="comment">/* Rank */</span>
+<a name="l00051"></a>00051     std :: string name; <span class="comment">/* Host name */</span>
+<a name="l00052"></a>00052     <span class="keywordtype">unsigned</span> num_workers; <span class="comment">/* Number of parallel workers */</span>
+<a name="l00053"></a>00053     <span class="keywordtype">int</span> rk_sched; <span class="comment">/* rank of the scheduler */</span>
+<a name="l00054"></a>00054     std :: vector &lt;RUNNER_ID&gt; id_run; <span class="comment">/* List of runner def. IDs */</span>
+<a name="l00055"></a>00055     std :: vector &lt;RUNNER_ID&gt; execution_id_run; <span class="comment">/* List of runtime execution runner IDs */</span>
+<a name="l00056"></a>00056   };
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058 <span class="keyword">extern</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_node.html">Node</a> * my_node;
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060 <span class="keyword">extern</span> <span class="keywordtype">bool</span> isScheduleNode ();
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 <span class="keyword">extern</span> <span class="keywordtype">int</span> getNodeRank (); <span class="comment">/* It gives the rank of the calling process */</span>
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064 <span class="keyword">extern</span> RANK_ID getRankOfRunner (RUNNER_ID __key);
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066 <span class="keyword">extern</span> <span class="keywordtype">int</span> getNumberOfNodes (); <span class="comment">/* It gives the size of the environment (Total number of nodes) */</span>
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068 <span class="keyword">extern</span> <span class="keywordtype">void</span> collectiveCountOfRunners ( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>* num_local_exec_runners, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>* num_exec_runners );
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 <span class="keyword">extern</span> <span class="keywordtype">int</span> getRankFromName (<span class="keyword">const</span> std :: string &amp; __name); <span class="comment">/* It gives the rank of the process</span>
+<a name="l00071"></a>00071 <span class="comment">                                                              expressed by its name */</span>
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073 <span class="keyword">extern</span> <span class="keywordtype">void</span> initNode (<span class="keywordtype">int</span> * __argc, <span class="keywordtype">char</span> * * * __argv);
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075 <span class="preprocessor">#endif</span>
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Wed Mar 12 15:23:42 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

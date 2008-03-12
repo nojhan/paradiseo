@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: part_route_eval.cpp Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: part_route_eval.cpp Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,7 +22,7 @@
       </form>
     </li>
   </ul></div>
-<h1>part_route_eval.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>part_route_eval.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;part_route_eval.cpp&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
 <a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
@@ -61,26 +61,26 @@
 <a name="l00037"></a>00037 <span class="preprocessor">#include "part_route_eval.h"</span>
 <a name="l00038"></a>00038 <span class="preprocessor">#include "node.h"</span>
 <a name="l00039"></a>00039 
-<a name="l00040"></a>00040 <a class="codeRef" doxygen="mo.doxytag:/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/" href="/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/class_part_route_eval.html#a331566b29bc3227f377004232f05491">PartRouteEval :: PartRouteEval</a> (<span class="keywordtype">float</span> __from,
+<a name="l00040"></a><a class="code" href="classPartRouteEval.html#a331566b29bc3227f377004232f05491">00040</a> <a class="code" href="classPartRouteEval.html#a331566b29bc3227f377004232f05491">PartRouteEval :: PartRouteEval</a> (<span class="keywordtype">float</span> __from,
 <a name="l00041"></a>00041                                 <span class="keywordtype">float</span> __to
-<a name="l00042"></a>00042                                 ) : from (__from),
-<a name="l00043"></a>00043                                     to (__to) {
-<a name="l00044"></a>00044   
-<a name="l00045"></a>00045 }
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047 <span class="keywordtype">void</span> <a class="codeRef" doxygen="mo.doxytag:/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/" href="/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/class_part_route_eval.html#965fab875fb601f17934a6ece761beae">PartRouteEval :: operator () </a>(<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route) {
-<a name="l00048"></a>00048   
-<a name="l00049"></a>00049   
+<a name="l00042"></a>00042                                ) : from (__from),
+<a name="l00043"></a>00043     to (__to)
+<a name="l00044"></a>00044 {}
+<a name="l00045"></a>00045 
+<a name="l00046"></a><a class="code" href="classPartRouteEval.html#965fab875fb601f17934a6ece761beae">00046</a> <span class="keywordtype">void</span> <a class="code" href="classPartRouteEval.html#965fab875fb601f17934a6ece761beae">PartRouteEval :: operator () </a>(<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route)
+<a name="l00047"></a>00047 {
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 
 <a name="l00050"></a>00050   <span class="keywordtype">unsigned</span> len = 0 ;
-<a name="l00051"></a>00051   
-<a name="l00052"></a>00052   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = (<span class="keywordtype">unsigned</span>) (__route.size () * from) ;
-<a name="l00053"></a>00053        i &lt; (unsigned) (__route.size () * to) ;
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = (<span class="keywordtype">unsigned</span>) (__route.size () * <a class="code" href="classPartRouteEval.html#5bde722e66378b2570ae6c4b4f8df58e">from</a>) ;
+<a name="l00053"></a>00053        i &lt; (unsigned) (__route.size () * <a class="code" href="classPartRouteEval.html#de53cc919faa498663f327b72c357da3">to</a>) ;
 <a name="l00054"></a>00054        i ++)
 <a name="l00055"></a>00055     len += distance (__route [i], __route [(i + 1) % numNodes]) ;
-<a name="l00056"></a>00056   
+<a name="l00056"></a>00056 
 <a name="l00057"></a>00057   __route.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_e_o.html#57d5610c9296eb927816a2f06bd00a08">fitness</a> (- (<span class="keywordtype">int</span>) len) ;
 <a name="l00058"></a>00058 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:45 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Wed Mar 12 15:23:42 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

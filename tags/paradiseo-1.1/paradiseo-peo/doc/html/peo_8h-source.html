@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: peo.h Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: peo.h Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,12 +22,12 @@
       </form>
     </li>
   </ul></div>
-<h1>peo.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>peo.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;peo.h&gt;</span>
-<a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
-<a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
+<a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008</span>
+<a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2008</span>
 <a name="l00005"></a>00005 <span class="comment">*</span>
-<a name="l00006"></a>00006 <span class="comment">* Sebastien Cahon, Alexandru-Adrian Tantar</span>
+<a name="l00006"></a>00006 <span class="comment">* Sebastien Cahon, Alexandru-Adrian Tantar, Clive Canape</span>
 <a name="l00007"></a>00007 <span class="comment">*</span>
 <a name="l00008"></a>00008 <span class="comment">* This software is governed by the CeCILL license under French law and</span>
 <a name="l00009"></a>00009 <span class="comment">* abiding by the rules of distribution of free software.  You can  use,</span>
@@ -63,33 +63,43 @@
 <a name="l00039"></a>00039 <span class="preprocessor"></span>
 <a name="l00040"></a>00040 <span class="preprocessor">#include &lt;eo&gt;</span>
 <a name="l00041"></a>00041 <span class="preprocessor">#include &lt;mo&gt;</span>
-<a name="l00042"></a>00042 
+<a name="l00042"></a>00042 <span class="preprocessor">#include &lt;moeo&gt;</span>
 <a name="l00043"></a>00043 
+<a name="l00044"></a>00044 
 <a name="l00319"></a>00319 
 <a name="l00320"></a>00320 <span class="preprocessor">#include "core/peo_init.h"</span>
 <a name="l00321"></a>00321 <span class="preprocessor">#include "core/peo_run.h"</span>
 <a name="l00322"></a>00322 <span class="preprocessor">#include "core/peo_fin.h"</span>
 <a name="l00323"></a>00323 
-<a name="l00324"></a>00324 <span class="preprocessor">#include "core/eoVector_comm.h"</span>
-<a name="l00325"></a>00325 
-<a name="l00326"></a>00326 <span class="preprocessor">#include "peoEA.h"</span>
+<a name="l00324"></a>00324 <span class="preprocessor">#include "core/messaging.h"</span>
+<a name="l00325"></a>00325 <span class="preprocessor">#include "core/eoPop_mesg.h"</span>
+<a name="l00326"></a>00326 <span class="preprocessor">#include "core/eoVector_mesg.h"</span>
 <a name="l00327"></a>00327 
-<a name="l00328"></a>00328 <span class="comment">/* Parallel steps of the E.A. */</span>
-<a name="l00329"></a>00329 <span class="preprocessor">#include "peoSeqTransform.h"</span>
-<a name="l00330"></a>00330 <span class="preprocessor">#include "peoParaSGATransform.h"</span>
-<a name="l00331"></a>00331 <span class="preprocessor">#include "peoSeqPopEval.h"</span>
-<a name="l00332"></a>00332 <span class="preprocessor">#include "peoParaPopEval.h"</span>
-<a name="l00333"></a>00333 
-<a name="l00334"></a>00334 <span class="comment">/* Cooperative island model */</span>
-<a name="l00335"></a>00335 <span class="preprocessor">#include "core/ring_topo.h"</span>
-<a name="l00336"></a>00336 <span class="preprocessor">#include "peoAsyncIslandMig.h"</span>
-<a name="l00337"></a>00337 <span class="preprocessor">#include "peoSyncIslandMig.h"</span>
-<a name="l00338"></a>00338 
-<a name="l00339"></a>00339 <span class="comment">/* Synchronous multi-start model */</span>
-<a name="l00340"></a>00340 <span class="preprocessor">#include "peoSyncMultiStart.h"</span>
-<a name="l00341"></a>00341 
-<a name="l00342"></a>00342 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:46 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00328"></a>00328 <span class="preprocessor">#include "peoWrapper.h"</span>
+<a name="l00329"></a>00329 
+<a name="l00330"></a>00330 <span class="comment">/* &lt;------- components for parallel algorithms -------&gt; */</span>
+<a name="l00331"></a>00331 <span class="preprocessor">#include "peoTransform.h"</span>
+<a name="l00332"></a>00332 <span class="preprocessor">#include "peoEvalFunc.h"</span>
+<a name="l00333"></a>00333 <span class="preprocessor">#include "peoPopEval.h"</span>
+<a name="l00334"></a>00334 
+<a name="l00335"></a>00335 <span class="comment">/* Cooperative island model */</span>
+<a name="l00336"></a>00336 <span class="preprocessor">#include "core/ring_topo.h"</span>
+<a name="l00337"></a>00337 <span class="preprocessor">#include "core/star_topo.h"</span>
+<a name="l00338"></a>00338 <span class="preprocessor">#include "core/random_topo.h"</span>
+<a name="l00339"></a>00339 <span class="preprocessor">#include "core/complete_topo.h"</span>
+<a name="l00340"></a>00340 <span class="preprocessor">#include "peoData.h"</span>
+<a name="l00341"></a>00341 <span class="preprocessor">#include "peoSyncIslandMig.h"</span>
+<a name="l00342"></a>00342 <span class="preprocessor">#include "peoAsyncIslandMig.h"</span>
+<a name="l00343"></a>00343 
+<a name="l00344"></a>00344 <span class="comment">/* Synchronous multi-start model */</span>
+<a name="l00345"></a>00345 <span class="preprocessor">#include "peoMultiStart.h"</span>
+<a name="l00346"></a>00346 <span class="comment">/* &lt;------- components for parallel algorithms -------&gt; */</span>
+<a name="l00347"></a>00347 
+<a name="l00348"></a>00348 <span class="comment">/* Parallel PSO */</span>
+<a name="l00349"></a>00349 <span class="preprocessor">#include "peoPSO.h"</span>
+<a name="l00350"></a>00350 
+<a name="l00351"></a>00351 <span class="preprocessor">#endif</span>
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Wed Mar 12 15:23:42 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

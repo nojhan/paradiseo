@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: order_xover.cpp Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: order_xover.cpp Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,7 +22,7 @@
       </form>
     </li>
   </ul></div>
-<h1>order_xover.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>order_xover.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;order_xover.cpp&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
 <a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
@@ -64,57 +64,63 @@
 <a name="l00040"></a>00040 
 <a name="l00041"></a>00041 <span class="preprocessor">#include "order_xover.h"</span>
 <a name="l00042"></a>00042 
-<a name="l00043"></a>00043 <span class="keywordtype">void</span> <a class="codeRef" doxygen="mo.doxytag:/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/" href="/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/class_order_xover.html#d2bf90b5f46ac4a344777e17bc5f364d">OrderXover :: cross</a> (<span class="keyword">const</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __par1, <span class="keyword">const</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __par2, <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __child) {
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045   <span class="keywordtype">unsigned</span> cut2 = 1 + <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/namespaceeo.html#2727d901e79a00930492730539e3b644">rng</a>.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">random</a> (numNodes) ;    
-<a name="l00046"></a>00046   <span class="keywordtype">unsigned</span> cut1 = <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/namespaceeo.html#2727d901e79a00930492730539e3b644">rng</a>.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">random</a> (cut2);
-<a name="l00047"></a>00047   <span class="keywordtype">unsigned</span> l = 0;
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049   <span class="comment">/* To store vertices that have already been crossed */</span>
-<a name="l00050"></a>00050   std :: vector &lt;bool&gt; v (numNodes, <span class="keyword">false</span>);
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052   <span class="comment">/* Copy of the left partial route of the first parent */</span> 
-<a name="l00053"></a>00053   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = cut1 ; i &lt; cut2 ; i ++) {
-<a name="l00054"></a>00054     __child [l ++] = __par1 [i] ; 
-<a name="l00055"></a>00055     v [__par1 [i]] = true ;
-<a name="l00056"></a>00056   }
-<a name="l00057"></a>00057    
-<a name="l00058"></a>00058   <span class="comment">/* Searching the vertex of the second path, that ended the previous first one */</span>
-<a name="l00059"></a>00059   <span class="keywordtype">unsigned</span> from = 0 ;
-<a name="l00060"></a>00060   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; numNodes; i ++)
-<a name="l00061"></a>00061     <span class="keywordflow">if</span> (__par2 [i] == __child [cut2 - 1]) { 
-<a name="l00062"></a>00062       from = i ;
-<a name="l00063"></a>00063       break ;
-<a name="l00064"></a>00064     }
-<a name="l00065"></a>00065   
-<a name="l00066"></a>00066   <span class="comment">/* Selecting a direction (Left or Right) */</span>
-<a name="l00067"></a>00067   <span class="keywordtype">char</span> direct = <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/namespaceeo.html#2727d901e79a00930492730539e3b644">rng</a>.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#a59557f718b17c2dda8a633f9862aff4">flip</a> () ? 1 : -1 ;
-<a name="l00068"></a>00068       
-<a name="l00069"></a>00069   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; numNodes + 1; i ++) {
-<a name="l00070"></a>00070     <span class="keywordtype">unsigned</span> bidule = (direct * i + from + numNodes) % numNodes;
-<a name="l00071"></a>00071     <span class="keywordflow">if</span> (! v [__par2 [bidule]]) {
-<a name="l00072"></a>00072       __child [l ++] = __par2 [bidule] ;
-<a name="l00073"></a>00073       v [__par2 [bidule]] = true ;
-<a name="l00074"></a>00074     }
-<a name="l00075"></a>00075   }
-<a name="l00076"></a>00076 } 
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 <span class="keywordtype">bool</span> <a class="codeRef" doxygen="mo.doxytag:/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/" href="/data/OPAC/software/paradisEO/repository/paradiseo/trunk/paradiseo-peo/build/../../paradiseo-mo/build/doc/html/class_order_xover.html#0ff6aada669eb8173322ed68cda1ac61">OrderXover :: operator () </a>(<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route1, <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route2) {
-<a name="l00079"></a>00079   
-<a name="l00080"></a>00080   <span class="comment">// Init. copy</span>
-<a name="l00081"></a>00081   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> par [2] ;
-<a name="l00082"></a>00082   par [0] = __route1 ;
-<a name="l00083"></a>00083   par [1] = __route2 ;
-<a name="l00084"></a>00084   
-<a name="l00085"></a>00085   cross (par [0], par [1], __route1) ;
-<a name="l00086"></a>00086   cross (par [1], par [0], __route2) ;
-<a name="l00087"></a>00087   
-<a name="l00088"></a>00088   __route1.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_e_o.html#f57e9b0b1772446b12f97abfc0d64a59">invalidate</a> () ;
-<a name="l00089"></a>00089   __route2.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_e_o.html#f57e9b0b1772446b12f97abfc0d64a59">invalidate</a> () ;
+<a name="l00043"></a><a class="code" href="classOrderXover.html#d2bf90b5f46ac4a344777e17bc5f364d">00043</a> <span class="keywordtype">void</span> <a class="code" href="classOrderXover.html#d2bf90b5f46ac4a344777e17bc5f364d">OrderXover :: cross</a> (<span class="keyword">const</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __par1, <span class="keyword">const</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __par2, <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __child)
+<a name="l00044"></a>00044 {
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046   <span class="keywordtype">unsigned</span> cut2 = 1 + rng.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">random</a> (numNodes) ;
+<a name="l00047"></a>00047   <span class="keywordtype">unsigned</span> cut1 = rng.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">random</a> (cut2);
+<a name="l00048"></a>00048   <span class="keywordtype">unsigned</span> l = 0;
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050   <span class="comment">/* To store vertices that have already been crossed */</span>
+<a name="l00051"></a>00051   std :: vector &lt;bool&gt; v (numNodes, <span class="keyword">false</span>);
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053   <span class="comment">/* Copy of the left partial route of the first parent */</span>
+<a name="l00054"></a>00054   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = cut1 ; i &lt; cut2 ; i ++)
+<a name="l00055"></a>00055     {
+<a name="l00056"></a>00056       __child [l ++] = __par1 [i] ;
+<a name="l00057"></a>00057       v [__par1 [i]] = true ;
+<a name="l00058"></a>00058     }
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060   <span class="comment">/* Searching the vertex of the second path, that ended the previous first one */</span>
+<a name="l00061"></a>00061   <span class="keywordtype">unsigned</span> from = 0 ;
+<a name="l00062"></a>00062   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; numNodes; i ++)
+<a name="l00063"></a>00063     <span class="keywordflow">if</span> (__par2 [i] == __child [cut2 - 1])
+<a name="l00064"></a>00064       {
+<a name="l00065"></a>00065         from = i ;
+<a name="l00066"></a>00066         break ;
+<a name="l00067"></a>00067       }
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069   <span class="comment">/* Selecting a direction (Left or Right) */</span>
+<a name="l00070"></a>00070   <span class="keywordtype">char</span> direct = rng.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#a59557f718b17c2dda8a633f9862aff4">flip</a> () ? 1 : -1 ;
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; numNodes + 1; i ++)
+<a name="l00073"></a>00073     {
+<a name="l00074"></a>00074       <span class="keywordtype">unsigned</span> bidule = (direct * i + from + numNodes) % numNodes;
+<a name="l00075"></a>00075       <span class="keywordflow">if</span> (! v [__par2 [bidule]])
+<a name="l00076"></a>00076         {
+<a name="l00077"></a>00077           __child [l ++] = __par2 [bidule] ;
+<a name="l00078"></a>00078           v [__par2 [bidule]] = true ;
+<a name="l00079"></a>00079         }
+<a name="l00080"></a>00080     }
+<a name="l00081"></a>00081 }
+<a name="l00082"></a>00082 
+<a name="l00083"></a><a class="code" href="classOrderXover.html#0ff6aada669eb8173322ed68cda1ac61">00083</a> <span class="keywordtype">bool</span> <a class="code" href="classOrderXover.html#0ff6aada669eb8173322ed68cda1ac61">OrderXover :: operator () </a>(<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route1, <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> &amp; __route2)
+<a name="l00084"></a>00084 {
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086   <span class="comment">// Init. copy</span>
+<a name="l00087"></a>00087   <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_vector.html">Route</a> par [2] ;
+<a name="l00088"></a>00088   par [0] = __route1 ;
+<a name="l00089"></a>00089   par [1] = __route2 ;
 <a name="l00090"></a>00090 
-<a name="l00091"></a>00091   <span class="keywordflow">return</span> true ;
-<a name="l00092"></a>00092 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:45 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00091"></a>00091   <a class="code" href="classOrderXover.html#d2bf90b5f46ac4a344777e17bc5f364d">cross</a> (par [0], par [1], __route1) ;
+<a name="l00092"></a>00092   <a class="code" href="classOrderXover.html#d2bf90b5f46ac4a344777e17bc5f364d">cross</a> (par [1], par [0], __route2) ;
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094   __route1.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_e_o.html#f57e9b0b1772446b12f97abfc0d64a59">invalidate</a> () ;
+<a name="l00095"></a>00095   __route2.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/class_e_o.html#f57e9b0b1772446b12f97abfc0d64a59">invalidate</a> () ;
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097   <span class="keywordflow">return</span> true ;
+<a name="l00098"></a>00098 }
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Wed Mar 12 15:23:42 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

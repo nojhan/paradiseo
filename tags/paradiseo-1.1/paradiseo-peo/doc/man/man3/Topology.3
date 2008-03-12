@@ -1,4 +1,4 @@
-.TH "Topology" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-PEOMovingObjects" \" -*- nroff -*-
+.TH "Topology" 3 "12 Mar 2008" "Version 1.1" "ParadisEO-PEO-ParallelanddistributedEvolvingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -6,7 +6,7 @@ Topology \-
 .SH SYNOPSIS
 .br
 .PP
-Inherited by \fBRingTopology\fP.
+Inherited by \fBCompleteTopology\fP, \fBRandomTopology\fP, \fBRingTopology\fP, and \fBStarTopology\fP.
 .PP
 .SS "Public Member Functions"
 
@@ -16,6 +16,9 @@ Inherited by \fBRingTopology\fP.
 .br
 .ti -1c
 .RI "void \fBadd\fP (\fBCooperative\fP &__mig)"
+.br
+.ti -1c
+.RI "\fBoperator std::vector\fP ()"
 .br
 .in -1c
 .SS "Protected Attributes"
@@ -31,4 +34,4 @@ Definition at line 44 of file topology.h.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-PEOMovingObjects from the source code.
+Generated automatically by Doxygen for ParadisEO-PEO-ParallelanddistributedEvolvingObjects from the source code.

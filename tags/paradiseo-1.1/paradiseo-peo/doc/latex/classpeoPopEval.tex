@@ -2,7 +2,7 @@
 \section{peo\-Pop\-Eval$<$ EOT $>$ Class Template Reference}
 \label{classpeoPopEval}\index{peoPopEval@{peoPopEval}}
 }
-The {\bf \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}} class provides the interface for constructing Paradis\-EO specific evaluation functors.  
+Parallel evaluation functor wrapper.  
 
 
 {\tt \#include $<$peo\-Pop\-Eval.h$>$}
@@ -16,23 +16,284 @@ Inheritance diagram for peo\-Pop\-Eval$<$ EOT $>$::\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-\hypertarget{classpeoPopEval_2f208067a5e39c3b26c1234050a41e8f}{
-virtual void \hyperlink{classpeoPopEval_2f208067a5e39c3b26c1234050a41e8f}{operator()} (\bf{eo\-Pop}$<$ EOT $>$ \&\_\-\_\-pop)=0}
-\label{classpeoPopEval_2f208067a5e39c3b26c1234050a41e8f}
+\hyperlink{classpeoPopEval_878297ba0de14593bd9cc03b2daf52df}{peo\-Pop\-Eval} (\bf{eo\-Eval\-Func}$<$ EOT $>$ \&\_\-\_\-eval\_\-func)
+\begin{CompactList}\small\item\em Constructor function - an EO-derived evaluation functor has to be specified; an internal reference is set towards the specified evaluation functor. \item\end{CompactList}\item 
+\hyperlink{classpeoPopEval_088822da7a0c92bc21574358d2e5f87c}{peo\-Pop\-Eval} (const std::vector$<$ \bf{eo\-Eval\-Func}$<$ EOT $>$ $\ast$ $>$ \&\_\-\_\-funcs, \hyperlink{classpeoAggEvalFunc}{peo\-Agg\-Eval\-Func}$<$ EOT $>$ \&\_\-\_\-merge\_\-eval)
+\begin{CompactList}\small\item\em Constructor function - a vector of EO-derived evaluation functors has to be specified as well as an aggregation function. \item\end{CompactList}\item 
+void \hyperlink{classpeoPopEval_593dd60fc004edea8994d5575bf66e05}{operator()} (\bf{eo\-Pop}$<$ EOT $>$ \&\_\-\_\-pop)
+\begin{CompactList}\small\item\em Operator for applying the evaluation functor (direct or aggregate) for each individual of the specified population. \item\end{CompactList}\item 
+void \hyperlink{classpeoPopEval_fd942c2b66f31c7d12a9ad48f1529a16}{operator()} (\bf{eo\-Pop}$<$ EOT $>$ \&\_\-\_\-dummy, \bf{eo\-Pop}$<$ EOT $>$ \&\_\-\_\-pop)
+\begin{CompactList}\small\item\em Operator ()( eo\-Pop$<$ EOT $>$\& \_\-\_\-dummy, eo\-Pop$<$ EOT $>$\& \_\-\_\-pop ). \item\end{CompactList}\item 
+void \hyperlink{classpeoPopEval_95351dcd81d1bf878d839e52a02a902d}{pack\-Data} ()
+\begin{CompactList}\small\item\em Auxiliary function for transferring data between the process requesting an evaluation operation and the process that performs the actual evaluation phase. \item\end{CompactList}\item 
+void \hyperlink{classpeoPopEval_cb256d94000a47af06d3e8a3f7ab0eff}{unpack\-Data} ()
+\begin{CompactList}\small\item\em Auxiliary function for transferring data between the process requesting an evaluation operation and the process that performs the actual evaluation phase. \item\end{CompactList}\item 
+\hypertarget{classpeoPopEval_05a85a265971d4b12f2f0014d33f705c}{
+void \hyperlink{classpeoPopEval_05a85a265971d4b12f2f0014d33f705c}{execute} ()}
+\label{classpeoPopEval_05a85a265971d4b12f2f0014d33f705c}
 
-\begin{CompactList}\small\item\em Interface function providing the signature for constructing an evaluation functor. \item\end{CompactList}\end{CompactItemize}
+\begin{CompactList}\small\item\em Auxiliary function - it calls the specified evaluation functor(s). There is no need to explicitly call the function. \item\end{CompactList}\item 
+void \hyperlink{classpeoPopEval_9d0d10865d677c1ec84f496bed62a8c6}{pack\-Result} ()
+\begin{CompactList}\small\item\em Auxiliary function for transferring data between the process requesting an evaluation operation and the process that performs the actual evaluation phase. \item\end{CompactList}\item 
+void \hyperlink{classpeoPopEval_f64aa1322e8e26f39143e1a6395206b6}{unpack\-Result} ()
+\begin{CompactList}\small\item\em Auxiliary function for transferring data between the process requesting an evaluation operation and the process that performs the actual evaluation phase. \item\end{CompactList}\item 
+void \hyperlink{classpeoPopEval_9708f67fc813d397de3d13830ed09820}{notify\-Sending\-Data} ()
+\begin{CompactList}\small\item\em Auxiliary function for notifications between the process requesting an evaluation operation and the processes that performs the actual evaluation phase. \item\end{CompactList}\item 
+void \hyperlink{classpeoPopEval_b1e33394ba9797237cb8c7c1f410bd67}{notify\-Sending\-All\-Resource\-Requests} ()
+\begin{CompactList}\small\item\em Auxiliary function for notifications between the process requesting an evaluation operation and the processes that performs the actual evaluation phase. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+const std::vector$<$ \bf{eo\-Eval\-Func}$<$ EOT $>$ $\ast$ $>$ \& \hyperlink{classpeoPopEval_5862b3661c5b0531d55870b5f3881d1e}{funcs}
+\item 
+\hypertarget{classpeoPopEval_4c563a67b776d97b25a05013ddc99921}{
+std::vector$<$ \bf{eo\-Eval\-Func}$<$ EOT $>$ $\ast$ $>$ \hyperlink{classpeoPopEval_4c563a67b776d97b25a05013ddc99921}{one\_\-func}}
+\label{classpeoPopEval_4c563a67b776d97b25a05013ddc99921}
+
+\item 
+\hypertarget{classpeoPopEval_765f1941fcb630b6ed5c4cf0e1e845f9}{
+\hyperlink{classpeoAggEvalFunc}{peo\-Agg\-Eval\-Func}$<$ EOT $>$ \& \hyperlink{classpeoPopEval_765f1941fcb630b6ed5c4cf0e1e845f9}{merge\_\-eval}}
+\label{classpeoPopEval_765f1941fcb630b6ed5c4cf0e1e845f9}
+
+\item 
+\hypertarget{classpeoPopEval_8558f626aca54bdc3bbeb78c774ca4ef}{
+\hyperlink{classpeoNoAggEvalFunc}{peo\-No\-Agg\-Eval\-Func}$<$ EOT $>$ \hyperlink{classpeoPopEval_8558f626aca54bdc3bbeb78c774ca4ef}{no\_\-merge\_\-eval}}
+\label{classpeoPopEval_8558f626aca54bdc3bbeb78c774ca4ef}
+
+\item 
+\hypertarget{classpeoPopEval_fc1e9fba1a220550c332c70250f775cc}{
+std::queue$<$ EOT $\ast$ $>$ \hyperlink{classpeoPopEval_fc1e9fba1a220550c332c70250f775cc}{tasks}}
+\label{classpeoPopEval_fc1e9fba1a220550c332c70250f775cc}
+
+\item 
+\hypertarget{classpeoPopEval_25646d6ec0df9f281b17d96956d2201f}{
+std::map$<$ EOT $\ast$, std::pair$<$ unsigned, unsigned $>$ $>$ \hyperlink{classpeoPopEval_25646d6ec0df9f281b17d96956d2201f}{progression}}
+\label{classpeoPopEval_25646d6ec0df9f281b17d96956d2201f}
+
+\item 
+\hypertarget{classpeoPopEval_a6753e36522ece615fb44f91b2986dc6}{
+unsigned \hyperlink{classpeoPopEval_a6753e36522ece615fb44f91b2986dc6}{num\_\-func}}
+\label{classpeoPopEval_a6753e36522ece615fb44f91b2986dc6}
+
+\item 
+\hypertarget{classpeoPopEval_d2bb78c4092b2f57a70fa6f90354ea91}{
+EOT \hyperlink{classpeoPopEval_d2bb78c4092b2f57a70fa6f90354ea91}{sol}}
+\label{classpeoPopEval_d2bb78c4092b2f57a70fa6f90354ea91}
+
+\item 
+\hypertarget{classpeoPopEval_140a0ffb2a481238dde05e7f0324d516}{
+EOT $\ast$ \hyperlink{classpeoPopEval_140a0ffb2a481238dde05e7f0324d516}{ad\_\-sol}}
+\label{classpeoPopEval_140a0ffb2a481238dde05e7f0324d516}
+
+\item 
+\hypertarget{classpeoPopEval_83b38d0977e5c8666c5aa5293c53bb3e}{
+unsigned \hyperlink{classpeoPopEval_83b38d0977e5c8666c5aa5293c53bb3e}{total}}
+\label{classpeoPopEval_83b38d0977e5c8666c5aa5293c53bb3e}
+
+\end{CompactItemize}
 
 
 \subsection{Detailed Description}
 \subsubsection*{template$<$class EOT$>$ class peo\-Pop\-Eval$<$ EOT $>$}
 
-The {\bf \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}} class provides the interface for constructing Paradis\-EO specific evaluation functors. 
+Parallel evaluation functor wrapper. 
 
-The derived classes may be used as wrappers for {\bf \doxyref{EO}}-derived evaluation functors. In order to have an example, please refer to the implementation of the {\bf \hyperlink{classpeoSeqPopEval}{peo\-Seq\-Pop\-Eval}} and {\bf \hyperlink{classpeoParaPopEval}{peo\-Para\-Pop\-Eval}} classes. 
+\begin{Desc}
+\item[See also:]\hyperlink{classService}{Service} \doxyref{eo\-Pop\-Eval\-Func} \end{Desc}
+\begin{Desc}
+\item[Version:]1.2 \end{Desc}
+\begin{Desc}
+\item[Date:]2006 \end{Desc}
 
 
 
-Definition at line 47 of file peo\-Pop\-Eval.h.
+
+Definition at line 53 of file peo\-Pop\-Eval.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classpeoPopEval_878297ba0de14593bd9cc03b2daf52df}{
+\index{peoPopEval@{peo\-Pop\-Eval}!peoPopEval@{peoPopEval}}
+\index{peoPopEval@{peoPopEval}!peoPopEval@{peo\-Pop\-Eval}}
+\subsubsection[peoPopEval]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::\hyperlink{classpeoPopEval}{peo\-Pop\-Eval} (\bf{eo\-Eval\-Func}$<$ EOT $>$ \& {\em \_\-\_\-eval\_\-func})}}
+\label{classpeoPopEval_878297ba0de14593bd9cc03b2daf52df}
+
+
+Constructor function - an EO-derived evaluation functor has to be specified; an internal reference is set towards the specified evaluation functor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em eo\-Eval\-Func$<$}]EOT $>$\& \_\-\_\-eval\_\-func - EO-derived evaluation functor to be applied in parallel on each individual of a specified population \end{description}
+\end{Desc}
+
+
+Definition at line 132 of file peo\-Pop\-Eval.h.
+
+References peo\-Pop\-Eval$<$ EOT $>$::one\_\-func.\hypertarget{classpeoPopEval_088822da7a0c92bc21574358d2e5f87c}{
+\index{peoPopEval@{peo\-Pop\-Eval}!peoPopEval@{peoPopEval}}
+\index{peoPopEval@{peoPopEval}!peoPopEval@{peo\-Pop\-Eval}}
+\subsubsection[peoPopEval]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::\hyperlink{classpeoPopEval}{peo\-Pop\-Eval} (const std::vector$<$ \bf{eo\-Eval\-Func}$<$ EOT $>$ $\ast$ $>$ \& {\em \_\-\_\-funcs}, \hyperlink{classpeoAggEvalFunc}{peo\-Agg\-Eval\-Func}$<$ EOT $>$ \& {\em \_\-\_\-merge\_\-eval})}}
+\label{classpeoPopEval_088822da7a0c92bc21574358d2e5f87c}
+
+
+Constructor function - a vector of EO-derived evaluation functors has to be specified as well as an aggregation function. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em const}]std :: vector$<$ \doxyref{eo\-Eval\-Func} $<$ EOT $>$$\ast$ $>$\& \_\-\_\-funcs - vector of EO-derived partial evaluation functors; \item[{\em peo\-Agg\-Eval\-Func$<$}]EOT $>$\& \_\-\_\-merge\_\-eval - aggregation functor for creating a fitness value out of the partial fitness values. \end{description}
+\end{Desc}
+
+
+Definition at line 141 of file peo\-Pop\-Eval.h.
+
+\subsection{Member Function Documentation}
+\hypertarget{classpeoPopEval_593dd60fc004edea8994d5575bf66e05}{
+\index{peoPopEval@{peo\-Pop\-Eval}!operator()@{operator()}}
+\index{operator()@{operator()}!peoPopEval@{peo\-Pop\-Eval}}
+\subsubsection[operator()]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::operator() (\bf{eo\-Pop}$<$ EOT $>$ \& {\em \_\-\_\-pop})}}
+\label{classpeoPopEval_593dd60fc004edea8994d5575bf66e05}
+
+
+Operator for applying the evaluation functor (direct or aggregate) for each individual of the specified population. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em eo\-Pop$<$}]EOT $>$\& \_\-\_\-pop - population to be evaluated by applying the evaluation functor specified in the constructor. \end{description}
+\end{Desc}
+
+
+Definition at line 154 of file peo\-Pop\-Eval.h.
+
+References peo\-Pop\-Eval$<$ EOT $>$::funcs, peo\-Pop\-Eval$<$ EOT $>$::progression, Service::request\-Resource\-Request(), Communicable::stop(), peo\-Pop\-Eval$<$ EOT $>$::tasks, and peo\-Pop\-Eval$<$ EOT $>$::total.
+
+Referenced by peo\-Pop\-Eval$<$ EOT $>$::operator()().\hypertarget{classpeoPopEval_fd942c2b66f31c7d12a9ad48f1529a16}{
+\index{peoPopEval@{peo\-Pop\-Eval}!operator()@{operator()}}
+\index{operator()@{operator()}!peoPopEval@{peo\-Pop\-Eval}}
+\subsubsection[operator()]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::operator() (\bf{eo\-Pop}$<$ EOT $>$ \& {\em \_\-\_\-dummy}, \bf{eo\-Pop}$<$ EOT $>$ \& {\em \_\-\_\-pop})}}
+\label{classpeoPopEval_fd942c2b66f31c7d12a9ad48f1529a16}
+
+
+Operator ()( eo\-Pop$<$ EOT $>$\& \_\-\_\-dummy, eo\-Pop$<$ EOT $>$\& \_\-\_\-pop ). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em eo\-Pop$<$}]EOT $>$\& \_\-\_\-dummy \item[{\em eo\-Pop$<$}]EOT $>$\& \_\-\_\-pop \end{description}
+\end{Desc}
+
+
+Definition at line 149 of file peo\-Pop\-Eval.h.
+
+References peo\-Pop\-Eval$<$ EOT $>$::operator()().\hypertarget{classpeoPopEval_95351dcd81d1bf878d839e52a02a902d}{
+\index{peoPopEval@{peo\-Pop\-Eval}!packData@{packData}}
+\index{packData@{packData}!peoPopEval@{peo\-Pop\-Eval}}
+\subsubsection[packData]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::pack\-Data ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classpeoPopEval_95351dcd81d1bf878d839e52a02a902d}
+
+
+Auxiliary function for transferring data between the process requesting an evaluation operation and the process that performs the actual evaluation phase. 
+
+There is no need to explicitly call the function. 
+
+Reimplemented from \hyperlink{classService_aea4b8f7f8fb88e83862ee4bfd9ab207}{Service}.
+
+Definition at line 176 of file peo\-Pop\-Eval.h.
+
+References peo\-Pop\-Eval$<$ EOT $>$::progression, and peo\-Pop\-Eval$<$ EOT $>$::tasks.\hypertarget{classpeoPopEval_cb256d94000a47af06d3e8a3f7ab0eff}{
+\index{peoPopEval@{peo\-Pop\-Eval}!unpackData@{unpackData}}
+\index{unpackData@{unpackData}!peoPopEval@{peo\-Pop\-Eval}}
+\subsubsection[unpackData]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::unpack\-Data ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classpeoPopEval_cb256d94000a47af06d3e8a3f7ab0eff}
+
+
+Auxiliary function for transferring data between the process requesting an evaluation operation and the process that performs the actual evaluation phase. 
+
+There is no need to explicitly call the function. 
+
+Reimplemented from \hyperlink{classService_3bd87b444710813d30fd754d4d0b4df3}{Service}.
+
+Definition at line 190 of file peo\-Pop\-Eval.h.
+
+References peo\-Pop\-Eval$<$ EOT $>$::ad\_\-sol, peo\-Pop\-Eval$<$ EOT $>$::num\_\-func, and peo\-Pop\-Eval$<$ EOT $>$::sol.\hypertarget{classpeoPopEval_9d0d10865d677c1ec84f496bed62a8c6}{
+\index{peoPopEval@{peo\-Pop\-Eval}!packResult@{packResult}}
+\index{packResult@{packResult}!peoPopEval@{peo\-Pop\-Eval}}
+\subsubsection[packResult]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::pack\-Result ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classpeoPopEval_9d0d10865d677c1ec84f496bed62a8c6}
+
+
+Auxiliary function for transferring data between the process requesting an evaluation operation and the process that performs the actual evaluation phase. 
+
+There is no need to explicitly call the function. 
+
+Reimplemented from \hyperlink{classService_e5e4f90b2315e15c2a2913bd370f4cf5}{Service}.
+
+Definition at line 208 of file peo\-Pop\-Eval.h.
+
+References peo\-Pop\-Eval$<$ EOT $>$::ad\_\-sol, and peo\-Pop\-Eval$<$ EOT $>$::sol.\hypertarget{classpeoPopEval_f64aa1322e8e26f39143e1a6395206b6}{
+\index{peoPopEval@{peo\-Pop\-Eval}!unpackResult@{unpackResult}}
+\index{unpackResult@{unpackResult}!peoPopEval@{peo\-Pop\-Eval}}
+\subsubsection[unpackResult]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::unpack\-Result ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classpeoPopEval_f64aa1322e8e26f39143e1a6395206b6}
+
+
+Auxiliary function for transferring data between the process requesting an evaluation operation and the process that performs the actual evaluation phase. 
+
+There is no need to explicitly call the function. 
+
+Reimplemented from \hyperlink{classService_45c06344edbfa482b91f68e2035a6099}{Service}.
+
+Definition at line 217 of file peo\-Pop\-Eval.h.
+
+References peo\-Pop\-Eval$<$ EOT $>$::ad\_\-sol, Service::get\-Owner(), peo\-Pop\-Eval$<$ EOT $>$::merge\_\-eval, peo\-Pop\-Eval$<$ EOT $>$::progression, Communicable::resume(), Thread::set\-Active(), and peo\-Pop\-Eval$<$ EOT $>$::total.\hypertarget{classpeoPopEval_9708f67fc813d397de3d13830ed09820}{
+\index{peoPopEval@{peo\-Pop\-Eval}!notifySendingData@{notifySendingData}}
+\index{notifySendingData@{notifySendingData}!peoPopEval@{peo\-Pop\-Eval}}
+\subsubsection[notifySendingData]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::notify\-Sending\-Data ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classpeoPopEval_9708f67fc813d397de3d13830ed09820}
+
+
+Auxiliary function for notifications between the process requesting an evaluation operation and the processes that performs the actual evaluation phase. 
+
+There is no need to explicitly call the function. 
+
+Reimplemented from \hyperlink{classService_81ad4d6ebb50045b8977e2ab74826f30}{Service}.
+
+Definition at line 250 of file peo\-Pop\-Eval.h.\hypertarget{classpeoPopEval_b1e33394ba9797237cb8c7c1f410bd67}{
+\index{peoPopEval@{peo\-Pop\-Eval}!notifySendingAllResourceRequests@{notifySendingAllResourceRequests}}
+\index{notifySendingAllResourceRequests@{notifySendingAllResourceRequests}!peoPopEval@{peo\-Pop\-Eval}}
+\subsubsection[notifySendingAllResourceRequests]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::notify\-Sending\-All\-Resource\-Requests ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classpeoPopEval_b1e33394ba9797237cb8c7c1f410bd67}
+
+
+Auxiliary function for notifications between the process requesting an evaluation operation and the processes that performs the actual evaluation phase. 
+
+There is no need to explicitly call the function. 
+
+Reimplemented from \hyperlink{classService_f94cc8a5c2665d4574041737e61e9ffc}{Service}.
+
+Definition at line 254 of file peo\-Pop\-Eval.h.
+
+References Service::get\-Owner(), and Thread::set\-Passive().
+
+\subsection{Member Data Documentation}
+\hypertarget{classpeoPopEval_5862b3661c5b0531d55870b5f3881d1e}{
+\index{peoPopEval@{peo\-Pop\-Eval}!funcs@{funcs}}
+\index{funcs@{funcs}!peoPopEval@{peo\-Pop\-Eval}}
+\subsubsection[funcs]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ const std :: vector$<$ \bf{eo\-Eval\-Func} $<$ EOT $>$$\ast$ $>$\& \hyperlink{classpeoPopEval}{peo\-Pop\-Eval}$<$ EOT $>$::\hyperlink{classpeoPopEval_5862b3661c5b0531d55870b5f3881d1e}{funcs}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classpeoPopEval_5862b3661c5b0531d55870b5f3881d1e}
+
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em std}]:: vector$<$ \doxyref{eo\-Eval\-Func} $<$ EOT $>$$\ast$ $>$\& funcs \item[{\em std}]:: vector$<$ \doxyref{eo\-Eval\-Func} $<$ EOT $>$$\ast$ $>$ one\_\-func \item[{\em peo\-Agg\-Eval\-Func$<$}]EOT $>$\& merge\_\-eval \item[{\em peo\-No\-Agg\-Eval\-Func$<$}]EOT $>$ no\_\-merge\_\-eval \item[{\em std}]:: queue$<$ EOT$\ast$ $>$tasks \item[{\em std}]:: map$<$ EOT$\ast$, std :: pair$<$ unsigned, unsigned $>$ $>$ progression \item[{\em unsigned}]num\_\-func \item[{\em EOT}]sol \item[{\em EOT}]$\ast$ad\_\-sol \item[{\em unsigned}]total \end{description}
+\end{Desc}
+
+
+Definition at line 119 of file peo\-Pop\-Eval.h.
+
+Referenced by peo\-Pop\-Eval$<$ EOT $>$::execute(), and peo\-Pop\-Eval$<$ EOT $>$::operator()().
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 

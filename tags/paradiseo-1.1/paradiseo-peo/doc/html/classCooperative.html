@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: Cooperative Class Reference</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: Cooperative Class Reference</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -32,9 +32,9 @@
 <h1>Cooperative Class Reference</h1><!-- doxytag: class="Cooperative" --><!-- doxytag: inherits="Communicable" --><p>Inheritance diagram for Cooperative:
 <p><center><img src="classCooperative.png" usemap="#Cooperative_map" border="0" alt=""></center>
 <map name="Cooperative_map">
-<area href="classCommunicable.html" alt="Communicable" shape="rect" coords="91,0,263,24">
-<area href="classpeoAsyncIslandMig.html" alt="peoAsyncIslandMig< EOT >" shape="rect" coords="0,112,172,136">
-<area href="classpeoSyncIslandMig.html" alt="peoSyncIslandMig< EOT >" shape="rect" coords="182,112,354,136">
+<area href="classCommunicable.html" alt="Communicable" shape="rect" coords="167,0,491,24">
+<area href="classpeoAsyncIslandMig.html" alt="peoAsyncIslandMig< TYPESELECT, TYPEREPLACE >" shape="rect" coords="0,112,324,136">
+<area href="classpeoSyncIslandMig.html" alt="peoSyncIslandMig< TYPESELECT, TYPEREPLACE >" shape="rect" coords="334,112,658,136">
 </map>
 <a href="classCooperative-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
@@ -48,8 +48,20 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c609f2a1200da7d1ac96005602515fc6"></a><!-- doxytag: member="Cooperative::send" ref="c609f2a1200da7d1ac96005602515fc6" args="(Cooperative *__coop)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCooperative.html#c609f2a1200da7d1ac96005602515fc6">send</a> (<a class="el" href="classCooperative.html">Cooperative</a> *__coop)</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a08615f1fb5a71bb6eb8ea53ef7d1c69"></a><!-- doxytag: member="Cooperative::synchronizeCoopEx" ref="a08615f1fb5a71bb6eb8ea53ef7d1c69" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCooperative.html#a08615f1fb5a71bb6eb8ea53ef7d1c69">synchronizeCoopEx</a> ()</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4439ddeaa1246a2e44c003bfb781739b"></a><!-- doxytag: member="Cooperative::notifySending" ref="4439ddeaa1246a2e44c003bfb781739b" args="()" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCooperative.html#4439ddeaa1246a2e44c003bfb781739b">notifySending</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b75a33c5735799076e01b125e47e3bbc"></a><!-- doxytag: member="Cooperative::notifyReceiving" ref="b75a33c5735799076e01b125e47e3bbc" args="()" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCooperative.html#b75a33c5735799076e01b125e47e3bbc">notifyReceiving</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="38f28f9155deac5e48edcaf935a2263b"></a><!-- doxytag: member="Cooperative::notifySendingSyncReq" ref="38f28f9155deac5e48edcaf935a2263b" args="()" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCooperative.html#38f28f9155deac5e48edcaf935a2263b">notifySendingSyncReq</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6cc64e571944783b8f697f7c2299cc8d"></a><!-- doxytag: member="Cooperative::notifySynchronized" ref="6cc64e571944783b8f697f7c2299cc8d" args="()" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCooperative.html#6cc64e571944783b8f697f7c2299cc8d">notifySynchronized</a> ()</td></tr>
 
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7604f094479d08154ede4996a45bf79e"></a><!-- doxytag: member="Cooperative::owner" ref="7604f094479d08154ede4996a45bf79e" args="" -->
@@ -61,9 +73,9 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>
 
 <p>
-Definition at line <a class="el" href="cooperative_8h-source.html#l00045">45</a> of file <a class="el" href="cooperative_8h-source.html">cooperative.h</a>.<hr>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="cooperative_8h-source.html">cooperative.h</a><li><a class="el" href="coop_8cpp-source.html">coop.cpp</a></ul>
-<hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:46 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+Definition at line <a class="el" href="cooperative_8h-source.html#l00046">46</a> of file <a class="el" href="cooperative_8h-source.html">cooperative.h</a>.<hr>The documentation for this class was generated from the following files:<ul>
+<li><a class="el" href="cooperative_8h-source.html">cooperative.h</a><li><a class="el" href="cooperative_8cpp-source.html">cooperative.cpp</a></ul>
+<hr size="1"><address style="align: right;"><small>Generated on Wed Mar 12 15:23:43 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

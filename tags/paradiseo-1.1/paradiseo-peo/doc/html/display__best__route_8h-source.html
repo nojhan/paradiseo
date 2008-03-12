@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: display_best_route.h Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: display_best_route.h Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,7 +22,7 @@
       </form>
     </li>
   </ul></div>
-<h1>display_best_route.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>display_best_route.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;display_best_route.h&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
 <a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
@@ -67,22 +67,23 @@
 <a name="l00043"></a>00043 
 <a name="l00044"></a>00044 <span class="preprocessor">#include "route.h"</span>
 <a name="l00045"></a>00045 
-<a name="l00046"></a><a class="code" href="classDisplayBestRoute.html">00046</a> <span class="keyword">class </span><a class="code" href="classDisplayBestRoute.html">DisplayBestRoute</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_updater.html">eoUpdater</a> {
-<a name="l00047"></a>00047   
-<a name="l00048"></a>00048 <span class="keyword">public</span> :
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050   <a class="code" href="classDisplayBestRoute.html#db263e38f1e82174f811bf62f323f87f">DisplayBestRoute</a> (eoPop &lt;Route&gt; &amp; __pop);
-<a name="l00051"></a>00051   
-<a name="l00052"></a>00052   <span class="keywordtype">void</span> <a class="code" href="classDisplayBestRoute.html#ee879344a6d8b81a04d4eabbed2c7a04">operator () </a>();
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 <span class="keyword">private</span> :
-<a name="l00055"></a>00055   
-<a name="l00056"></a><a class="code" href="classDisplayBestRoute.html#5270aabbf294d2deca9878934216eb89">00056</a>   eoPop &lt;Route&gt; &amp; <a class="code" href="classDisplayBestRoute.html#5270aabbf294d2deca9878934216eb89">pop</a>;
-<a name="l00057"></a>00057 
-<a name="l00058"></a>00058 };
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:45 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00046"></a><a class="code" href="classDisplayBestRoute.html">00046</a> <span class="keyword">class </span><a class="code" href="classDisplayBestRoute.html">DisplayBestRoute</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_updater.html">eoUpdater</a>
+<a name="l00047"></a>00047   {
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049   <span class="keyword">public</span> :
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051     <a class="code" href="classDisplayBestRoute.html#db263e38f1e82174f811bf62f323f87f">DisplayBestRoute</a> (eoPop &lt;Route&gt; &amp; __pop);
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053     <span class="keywordtype">void</span> <a class="code" href="classDisplayBestRoute.html#ee879344a6d8b81a04d4eabbed2c7a04">operator () </a>();
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055   <span class="keyword">private</span> :
+<a name="l00056"></a>00056 
+<a name="l00057"></a><a class="code" href="classDisplayBestRoute.html#5270aabbf294d2deca9878934216eb89">00057</a>     eoPop &lt;Route&gt; &amp; <a class="code" href="classDisplayBestRoute.html#5270aabbf294d2deca9878934216eb89">pop</a>;
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059   };
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061 <span class="preprocessor">#endif</span>
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Wed Mar 12 15:23:42 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

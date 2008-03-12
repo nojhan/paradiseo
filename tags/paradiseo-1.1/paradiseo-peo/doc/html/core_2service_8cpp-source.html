@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: service.cpp Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: service.cpp Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,12 +22,12 @@
       </form>
     </li>
   </ul></div>
-<h1>service.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>service.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;service.cpp&gt;</span>
-<a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
-<a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
+<a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008</span>
+<a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2008</span>
 <a name="l00005"></a>00005 <span class="comment">*</span>
-<a name="l00006"></a>00006 <span class="comment">* Sebastien Cahon, Alexandru-Adrian Tantar</span>
+<a name="l00006"></a>00006 <span class="comment">* Sebastien Cahon, Alexandru-Adrian Tantar, Clive Canape</span>
 <a name="l00007"></a>00007 <span class="comment">*</span>
 <a name="l00008"></a>00008 <span class="comment">* This software is governed by the CeCILL license under French law and</span>
 <a name="l00009"></a>00009 <span class="comment">* abiding by the rules of distribution of free software.  You can  use,</span>
@@ -60,55 +60,53 @@
 <a name="l00036"></a>00036 
 <a name="l00037"></a>00037 <span class="preprocessor">#include "service.h"</span>
 <a name="l00038"></a>00038 
-<a name="l00039"></a><a class="code" href="classService.html#33b149b98498c0e7e401b0f0839d7f0d">00039</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#33b149b98498c0e7e401b0f0839d7f0d">Service :: setOwner</a> (<a class="code" href="classThread.html">Thread</a> &amp; __owner) {
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041   <a class="code" href="classService.html#8b615c65c876f342fe8209eb7e36d7b2">owner</a> = &amp; __owner;
-<a name="l00042"></a>00042 }
-<a name="l00043"></a>00043   
-<a name="l00044"></a><a class="code" href="classService.html#0dae00309c51a7b7069788142aed799f">00044</a> <a class="code" href="classThread.html">Thread</a> * <a class="code" href="classService.html#0dae00309c51a7b7069788142aed799f">Service :: getOwner</a> () {
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046   <span class="keywordflow">return</span> <a class="code" href="classService.html#8b615c65c876f342fe8209eb7e36d7b2">owner</a>;
-<a name="l00047"></a>00047 }
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049 <a class="code" href="classService.html">Service</a> * getService (SERVICE_ID __key) {
+<a name="l00039"></a><a class="code" href="classService.html#33b149b98498c0e7e401b0f0839d7f0d">00039</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#33b149b98498c0e7e401b0f0839d7f0d">Service :: setOwner</a> (<a class="code" href="classThread.html">Thread</a> &amp; __owner)
+<a name="l00040"></a>00040 {
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042   <a class="code" href="classService.html#8b615c65c876f342fe8209eb7e36d7b2">owner</a> = &amp; __owner;
+<a name="l00043"></a>00043 }
+<a name="l00044"></a>00044 
+<a name="l00045"></a><a class="code" href="classService.html#0dae00309c51a7b7069788142aed799f">00045</a> <a class="code" href="classThread.html">Thread</a> * <a class="code" href="classService.html#0dae00309c51a7b7069788142aed799f">Service :: getOwner</a> ()
+<a name="l00046"></a>00046 {
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048   <span class="keywordflow">return</span> <a class="code" href="classService.html#8b615c65c876f342fe8209eb7e36d7b2">owner</a>;
+<a name="l00049"></a>00049 }
 <a name="l00050"></a>00050 
-<a name="l00051"></a>00051   <span class="keywordflow">return</span> dynamic_cast &lt;Service *&gt; (getCommunicable (__key));
-<a name="l00052"></a>00052 }
+<a name="l00051"></a>00051 <a class="code" href="classService.html">Service</a> * getService (SERVICE_ID __key)
+<a name="l00052"></a>00052 {
 <a name="l00053"></a>00053 
-<a name="l00054"></a><a class="code" href="classService.html#81ad4d6ebb50045b8977e2ab74826f30">00054</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#81ad4d6ebb50045b8977e2ab74826f30">Service :: notifySendingData</a> () {
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 }
-<a name="l00057"></a><a class="code" href="classService.html#94e2012e76aaae3aa8199250f558d503">00057</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#94e2012e76aaae3aa8199250f558d503">Service :: notifySendingResourceRequest</a> () {
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059   <a class="code" href="classService.html#a5b2ad9520bb3710b54348b99acebd58">num_sent_rr</a> --;
-<a name="l00060"></a>00060   <span class="keywordflow">if</span> (! <a class="code" href="classService.html#a5b2ad9520bb3710b54348b99acebd58">num_sent_rr</a>)
-<a name="l00061"></a>00061     <a class="code" href="classService.html#f94cc8a5c2665d4574041737e61e9ffc">notifySendingAllResourceRequests</a> ();
-<a name="l00062"></a>00062 }
-<a name="l00063"></a>00063 
-<a name="l00064"></a><a class="code" href="classService.html#f94cc8a5c2665d4574041737e61e9ffc">00064</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#f94cc8a5c2665d4574041737e61e9ffc">Service :: notifySendingAllResourceRequests</a> () {
-<a name="l00065"></a>00065 
+<a name="l00054"></a>00054   <span class="keywordflow">return</span> dynamic_cast &lt;Service *&gt; (getCommunicable (__key));
+<a name="l00055"></a>00055 }
+<a name="l00056"></a>00056 
+<a name="l00057"></a><a class="code" href="classService.html#81ad4d6ebb50045b8977e2ab74826f30">00057</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#81ad4d6ebb50045b8977e2ab74826f30">Service :: notifySendingData</a> ()
+<a name="l00058"></a>00058 { }
+<a name="l00059"></a>00059 
+<a name="l00060"></a><a class="code" href="classService.html#94e2012e76aaae3aa8199250f558d503">00060</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#94e2012e76aaae3aa8199250f558d503">Service :: notifySendingResourceRequest</a> ()
+<a name="l00061"></a>00061 {
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063   <a class="code" href="classService.html#a5b2ad9520bb3710b54348b99acebd58">num_sent_rr</a> --;
+<a name="l00064"></a>00064   <span class="keywordflow">if</span> (! <a class="code" href="classService.html#a5b2ad9520bb3710b54348b99acebd58">num_sent_rr</a>)
+<a name="l00065"></a>00065     <a class="code" href="classService.html#f94cc8a5c2665d4574041737e61e9ffc">notifySendingAllResourceRequests</a> ();
 <a name="l00066"></a>00066 }
 <a name="l00067"></a>00067 
-<a name="l00068"></a><a class="code" href="classService.html#aea4b8f7f8fb88e83862ee4bfd9ab207">00068</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#aea4b8f7f8fb88e83862ee4bfd9ab207">Service :: packData</a> () {
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070 }
-<a name="l00071"></a>00071 
-<a name="l00072"></a><a class="code" href="classService.html#3bd87b444710813d30fd754d4d0b4df3">00072</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#3bd87b444710813d30fd754d4d0b4df3">Service :: unpackData</a> () {
+<a name="l00068"></a><a class="code" href="classService.html#f94cc8a5c2665d4574041737e61e9ffc">00068</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#f94cc8a5c2665d4574041737e61e9ffc">Service :: notifySendingAllResourceRequests</a> ()
+<a name="l00069"></a>00069 { }
+<a name="l00070"></a>00070 
+<a name="l00071"></a><a class="code" href="classService.html#aea4b8f7f8fb88e83862ee4bfd9ab207">00071</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#aea4b8f7f8fb88e83862ee4bfd9ab207">Service :: packData</a> ()
+<a name="l00072"></a>00072 {}
 <a name="l00073"></a>00073 
-<a name="l00074"></a>00074 }
-<a name="l00075"></a>00075 
-<a name="l00076"></a><a class="code" href="classService.html#e4f2894e6121e60f38d41cfbd7447ae4">00076</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#e4f2894e6121e60f38d41cfbd7447ae4">Service :: execute</a> () {
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 }
-<a name="l00079"></a>00079   
-<a name="l00080"></a><a class="code" href="classService.html#e5e4f90b2315e15c2a2913bd370f4cf5">00080</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#e5e4f90b2315e15c2a2913bd370f4cf5">Service :: packResult</a> () {
-<a name="l00081"></a>00081 
-<a name="l00082"></a>00082 }
-<a name="l00083"></a>00083 
-<a name="l00084"></a><a class="code" href="classService.html#45c06344edbfa482b91f68e2035a6099">00084</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#45c06344edbfa482b91f68e2035a6099">Service :: unpackResult</a> () {
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086 }
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:46 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00074"></a><a class="code" href="classService.html#3bd87b444710813d30fd754d4d0b4df3">00074</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#3bd87b444710813d30fd754d4d0b4df3">Service :: unpackData</a> ()
+<a name="l00075"></a>00075 {}
+<a name="l00076"></a>00076 
+<a name="l00077"></a><a class="code" href="classService.html#e4f2894e6121e60f38d41cfbd7447ae4">00077</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#e4f2894e6121e60f38d41cfbd7447ae4">Service :: execute</a> ()
+<a name="l00078"></a>00078 {}
+<a name="l00079"></a>00079 
+<a name="l00080"></a><a class="code" href="classService.html#e5e4f90b2315e15c2a2913bd370f4cf5">00080</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#e5e4f90b2315e15c2a2913bd370f4cf5">Service :: packResult</a> ()
+<a name="l00081"></a>00081 {}
+<a name="l00082"></a>00082 
+<a name="l00083"></a><a class="code" href="classService.html#45c06344edbfa482b91f68e2035a6099">00083</a> <span class="keywordtype">void</span> <a class="code" href="classService.html#45c06344edbfa482b91f68e2035a6099">Service :: unpackResult</a> ()
+<a name="l00084"></a>00084 {}
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Wed Mar 12 15:23:42 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

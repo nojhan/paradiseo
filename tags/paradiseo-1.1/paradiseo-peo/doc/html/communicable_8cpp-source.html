@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: communicable.cpp Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: communicable.cpp Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,12 +22,12 @@
       </form>
     </li>
   </ul></div>
-<h1>communicable.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>communicable.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;communicable.cpp&gt;</span>
-<a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
-<a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
+<a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008</span>
+<a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2008</span>
 <a name="l00005"></a>00005 <span class="comment">*</span>
-<a name="l00006"></a>00006 <span class="comment">* Sebastien Cahon, Alexandru-Adrian Tantar</span>
+<a name="l00006"></a>00006 <span class="comment">* Sebastien Cahon, Alexandru-Adrian Tantar, Clive Canape</span>
 <a name="l00007"></a>00007 <span class="comment">*</span>
 <a name="l00008"></a>00008 <span class="comment">* This software is governed by the CeCILL license under French law and</span>
 <a name="l00009"></a>00009 <span class="comment">* abiding by the rules of distribution of free software.  You can  use,</span>
@@ -70,57 +70,70 @@
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 <span class="keywordtype">unsigned</span> <a class="code" href="classCommunicable.html#7a6acfdc781a67c9c0ec4f17893f86c3">Communicable :: num_comm</a> = 0;
 <a name="l00048"></a>00048 
-<a name="l00049"></a><a class="code" href="classCommunicable.html#8ae1827ecf7569b3db1ed386c7d8ad78">00049</a> <a class="code" href="classCommunicable.html#8ae1827ecf7569b3db1ed386c7d8ad78">Communicable :: Communicable</a> () {
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051   comm_to_key [<span class="keyword">this</span>] = <a class="code" href="classCommunicable.html#605b0efeffe81326f216c9903f5bbf4c">key</a> = ++ <a class="code" href="classCommunicable.html#7a6acfdc781a67c9c0ec4f17893f86c3">num_comm</a>;
-<a name="l00052"></a>00052   key_to_comm.push_back (<span class="keyword">this</span>);
-<a name="l00053"></a>00053   sem_init (&amp; <a class="code" href="classCommunicable.html#cf9639312f71a2f348bc1e7789ccbd9d">sem_lock</a>, 0, 1);
-<a name="l00054"></a>00054   sem_init (&amp; <a class="code" href="classCommunicable.html#29c53b9191348e0505e3bcba6d8b82b1">sem_stop</a>, 0, 0);
-<a name="l00055"></a>00055 }
-<a name="l00056"></a>00056 
-<a name="l00057"></a><a class="code" href="classCommunicable.html#2280b0dfa0d3a515fccf62c2a9fd5f41">00057</a> <a class="code" href="classCommunicable.html#2280b0dfa0d3a515fccf62c2a9fd5f41">Communicable :: ~ Communicable</a> () {
+<a name="l00049"></a>00049 
+<a name="l00050"></a><a class="code" href="classCommunicable.html#8ae1827ecf7569b3db1ed386c7d8ad78">00050</a> <a class="code" href="classCommunicable.html#8ae1827ecf7569b3db1ed386c7d8ad78">Communicable :: Communicable</a> ()
+<a name="l00051"></a>00051 {
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053   comm_to_key [<span class="keyword">this</span>] = <a class="code" href="classCommunicable.html#605b0efeffe81326f216c9903f5bbf4c">key</a> = ++ <a class="code" href="classCommunicable.html#7a6acfdc781a67c9c0ec4f17893f86c3">num_comm</a>;
+<a name="l00054"></a>00054   key_to_comm.push_back (<span class="keyword">this</span>);
+<a name="l00055"></a>00055   sem_init (&amp; <a class="code" href="classCommunicable.html#cf9639312f71a2f348bc1e7789ccbd9d">sem_lock</a>, 0, 1);
+<a name="l00056"></a>00056   sem_init (&amp; <a class="code" href="classCommunicable.html#29c53b9191348e0505e3bcba6d8b82b1">sem_stop</a>, 0, 0);
+<a name="l00057"></a>00057 }
 <a name="l00058"></a>00058 
-<a name="l00059"></a>00059 }
-<a name="l00060"></a>00060 
-<a name="l00061"></a><a class="code" href="classCommunicable.html#db4307b69b9ccacff55fdbf84b8f50e4">00061</a> COMM_ID <a class="code" href="classCommunicable.html#db4307b69b9ccacff55fdbf84b8f50e4">Communicable :: getKey</a> () {
+<a name="l00059"></a><a class="code" href="classCommunicable.html#2280b0dfa0d3a515fccf62c2a9fd5f41">00059</a> <a class="code" href="classCommunicable.html#2280b0dfa0d3a515fccf62c2a9fd5f41">Communicable :: ~ Communicable</a> ()
+<a name="l00060"></a>00060 {
+<a name="l00061"></a>00061 }
 <a name="l00062"></a>00062 
-<a name="l00063"></a>00063   <span class="keywordflow">return</span> <a class="code" href="classCommunicable.html#605b0efeffe81326f216c9903f5bbf4c">key</a>;
-<a name="l00064"></a>00064 }
+<a name="l00063"></a><a class="code" href="classCommunicable.html#db4307b69b9ccacff55fdbf84b8f50e4">00063</a> COMM_ID <a class="code" href="classCommunicable.html#db4307b69b9ccacff55fdbf84b8f50e4">Communicable :: getKey</a> ()
+<a name="l00064"></a>00064 {
 <a name="l00065"></a>00065 
-<a name="l00066"></a>00066 <a class="code" href="classCommunicable.html">Communicable</a> * getCommunicable (COMM_ID __key) {
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068   assert (__key &lt; key_to_comm.size ());
-<a name="l00069"></a>00069   <span class="keywordflow">return</span> key_to_comm [__key];  
-<a name="l00070"></a>00070 }
+<a name="l00066"></a>00066   <span class="keywordflow">return</span> <a class="code" href="classCommunicable.html#605b0efeffe81326f216c9903f5bbf4c">key</a>;
+<a name="l00067"></a>00067 }
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069 <a class="code" href="classCommunicable.html">Communicable</a> * getCommunicable (COMM_ID __key)
+<a name="l00070"></a>00070 {
 <a name="l00071"></a>00071 
-<a name="l00072"></a>00072 COMM_ID getKey (<span class="keyword">const</span> <a class="code" href="classCommunicable.html">Communicable</a> * __comm) {
-<a name="l00073"></a>00073   
-<a name="l00074"></a>00074   <span class="keywordflow">return</span> comm_to_key [__comm];
-<a name="l00075"></a>00075 }
-<a name="l00076"></a>00076 
-<a name="l00077"></a><a class="code" href="classCommunicable.html#e1f8bd1ee810fd73d44315c95998d19d">00077</a> <span class="keywordtype">void</span> <a class="code" href="classCommunicable.html#e1f8bd1ee810fd73d44315c95998d19d">Communicable :: lock</a> () {
+<a name="l00072"></a>00072   assert (__key &lt; key_to_comm.size ());
+<a name="l00073"></a>00073   <span class="keywordflow">return</span> key_to_comm [__key];
+<a name="l00074"></a>00074 }
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076 COMM_ID getKey (<span class="keyword">const</span> <a class="code" href="classCommunicable.html">Communicable</a> * __comm)
+<a name="l00077"></a>00077 {
 <a name="l00078"></a>00078 
-<a name="l00079"></a>00079   sem_wait (&amp; <a class="code" href="classCommunicable.html#cf9639312f71a2f348bc1e7789ccbd9d">sem_lock</a>);
+<a name="l00079"></a>00079   <span class="keywordflow">return</span> comm_to_key [__comm];
 <a name="l00080"></a>00080 }
 <a name="l00081"></a>00081 
-<a name="l00082"></a><a class="code" href="classCommunicable.html#caa814847192e71f434fbf9479ede862">00082</a> <span class="keywordtype">void</span> <a class="code" href="classCommunicable.html#caa814847192e71f434fbf9479ede862">Communicable :: unlock</a> () {
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084   sem_post (&amp; <a class="code" href="classCommunicable.html#cf9639312f71a2f348bc1e7789ccbd9d">sem_lock</a>);
-<a name="l00085"></a>00085 }
-<a name="l00086"></a>00086 
-<a name="l00087"></a><a class="code" href="classCommunicable.html#cb53e6534b947bc889aa181d9dbbd13b">00087</a> <span class="keywordtype">void</span> <a class="code" href="classCommunicable.html#cb53e6534b947bc889aa181d9dbbd13b">Communicable :: stop</a> () {
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089   sem_wait (&amp; <a class="code" href="classCommunicable.html#29c53b9191348e0505e3bcba6d8b82b1">sem_stop</a>);
-<a name="l00090"></a>00090 }
-<a name="l00091"></a>00091 
-<a name="l00092"></a><a class="code" href="classCommunicable.html#3306a9adb11a0ab5af342c0db9f7bb2a">00092</a> <span class="keywordtype">void</span> <a class="code" href="classCommunicable.html#3306a9adb11a0ab5af342c0db9f7bb2a">Communicable :: resume</a> () {
+<a name="l00082"></a><a class="code" href="classCommunicable.html#e1f8bd1ee810fd73d44315c95998d19d">00082</a> <span class="keywordtype">void</span> <a class="code" href="classCommunicable.html#e1f8bd1ee810fd73d44315c95998d19d">Communicable :: lock</a> ()
+<a name="l00083"></a>00083 {
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085   sem_wait (&amp; <a class="code" href="classCommunicable.html#cf9639312f71a2f348bc1e7789ccbd9d">sem_lock</a>);
+<a name="l00086"></a>00086 }
+<a name="l00087"></a>00087 
+<a name="l00088"></a><a class="code" href="classCommunicable.html#caa814847192e71f434fbf9479ede862">00088</a> <span class="keywordtype">void</span> <a class="code" href="classCommunicable.html#caa814847192e71f434fbf9479ede862">Communicable :: unlock</a> ()
+<a name="l00089"></a>00089 {
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091   sem_post (&amp; <a class="code" href="classCommunicable.html#cf9639312f71a2f348bc1e7789ccbd9d">sem_lock</a>);
+<a name="l00092"></a>00092 }
 <a name="l00093"></a>00093 
-<a name="l00094"></a>00094   sem_post (&amp; <a class="code" href="classCommunicable.html#29c53b9191348e0505e3bcba6d8b82b1">sem_stop</a>);
-<a name="l00095"></a>00095 }
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097 
+<a name="l00094"></a><a class="code" href="classCommunicable.html#cb53e6534b947bc889aa181d9dbbd13b">00094</a> <span class="keywordtype">void</span> <a class="code" href="classCommunicable.html#cb53e6534b947bc889aa181d9dbbd13b">Communicable :: stop</a> ()
+<a name="l00095"></a>00095 {
+<a name="l00096"></a>00096   sem_wait (&amp; <a class="code" href="classCommunicable.html#29c53b9191348e0505e3bcba6d8b82b1">sem_stop</a>);
+<a name="l00097"></a>00097 }
 <a name="l00098"></a>00098 
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:45 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00099"></a><a class="code" href="classCommunicable.html#3306a9adb11a0ab5af342c0db9f7bb2a">00099</a> <span class="keywordtype">void</span> <a class="code" href="classCommunicable.html#3306a9adb11a0ab5af342c0db9f7bb2a">Communicable :: resume</a> ()
+<a name="l00100"></a>00100 {
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102   sem_post (&amp; <a class="code" href="classCommunicable.html#29c53b9191348e0505e3bcba6d8b82b1">sem_stop</a>);
+<a name="l00103"></a>00103 }
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105 <span class="keywordtype">void</span> initCommunicableEnv ()
+<a name="l00106"></a>00106 {
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108   key_to_comm.resize (1);
+<a name="l00109"></a>00109   comm_to_key.clear ();
+<a name="l00110"></a>00110   <a class="code" href="classCommunicable.html#7a6acfdc781a67c9c0ec4f17893f86c3">Communicable :: num_comm</a> = 0;
+<a name="l00111"></a>00111 }
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Wed Mar 12 15:23:42 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

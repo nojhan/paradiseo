@@ -1,4 +1,4 @@
-.TH "peoNoAggEvalFunc" 3 "8 Oct 2007" "Version 1.0" "ParadisEO-PEOMovingObjects" \" -*- nroff -*-
+.TH "peoNoAggEvalFunc" 3 "12 Mar 2008" "Version 1.1" "ParadisEO-PEO-ParallelanddistributedEvolvingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -29,7 +29,23 @@ The \fBpeoNoAggEvalFunc\fP class does nothing more than an association between a
 The class is provided as a mean of declaring that no aggregation is required for the evaluation function - the fitness value is explicitly specified. 
 .PP
 Definition at line 47 of file peoNoAggEvalFunc.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> void \fBpeoNoAggEvalFunc\fP< EOT >::operator() (EOT & __sol, const typename EOT::Fitness & __fit)"
+.PP
+Operator which sets as fitness the \fB__fit\fP value for the \fB__sol\fP individual. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIEOT&\fP __sol 
+.br
+\fItypename\fP EOT :: Fitness& __fit 
+.RE
+.PP
+
+.PP
+Definition at line 59 of file peoNoAggEvalFunc.h.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-PEOMovingObjects from the source code.
+Generated automatically by Doxygen for ParadisEO-PEO-ParallelanddistributedEvolvingObjects from the source code.

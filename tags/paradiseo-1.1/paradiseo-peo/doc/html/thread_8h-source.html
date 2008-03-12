@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: thread.h Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: thread.h Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,12 +22,12 @@
       </form>
     </li>
   </ul></div>
-<h1>thread.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>thread.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;thread.h&gt;</span>
-<a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
-<a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
+<a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008</span>
+<a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2008</span>
 <a name="l00005"></a>00005 <span class="comment">*</span>
-<a name="l00006"></a>00006 <span class="comment">* Sebastien Cahon, Alexandru-Adrian Tantar</span>
+<a name="l00006"></a>00006 <span class="comment">* Sebastien Cahon, Alexandru-Adrian Tantar, Clive Canape</span>
 <a name="l00007"></a>00007 <span class="comment">*</span>
 <a name="l00008"></a>00008 <span class="comment">* This software is governed by the CeCILL license under French law and</span>
 <a name="l00009"></a>00009 <span class="comment">* abiding by the rules of distribution of free software.  You can  use,</span>
@@ -63,42 +63,42 @@
 <a name="l00039"></a>00039 <span class="preprocessor"></span>
 <a name="l00040"></a>00040 <span class="preprocessor">#include &lt;vector&gt;</span>
 <a name="l00041"></a>00041 
-<a name="l00042"></a>00042 <span class="comment">/* A high-level thread */</span>
-<a name="l00043"></a>00043 
-<a name="l00044"></a><a class="code" href="classThread.html">00044</a> <span class="keyword">class </span><a class="code" href="classThread.html">Thread</a> {
-<a name="l00045"></a>00045         
-<a name="l00046"></a>00046 <span class="keyword">public</span>:
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048   <span class="comment">/* Ctor */</span>
-<a name="l00049"></a>00049   <a class="code" href="classThread.html#95c703fb8f2f27cb64f475a8c940864a">Thread</a> ();
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051   <span class="comment">/* Dtor */</span>
-<a name="l00052"></a>00052   <span class="keyword">virtual</span> <a class="code" href="classThread.html#37d9edd3a1a776cbc27dedff949c9726">~ Thread</a> ();
-<a name="l00053"></a>00053   
-<a name="l00054"></a>00054   <span class="comment">/* Go ! */</span>
-<a name="l00055"></a>00055   <span class="keyword">virtual</span> <span class="keywordtype">void</span> start () = 0;
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057   <span class="keywordtype">void</span> <a class="code" href="classThread.html#e197c46f8f62ecce6d2a7fe95bdc5b38">setActive</a> ();<span class="comment">/* It means the current process is going to send messages soon */</span>
-<a name="l00058"></a>00058   <span class="keywordtype">void</span> <a class="code" href="classThread.html#20632ffe9ddfa2a478afb0c84dc1096b">setPassive</a> ();<span class="comment">/* The current process is not going to perform send operations</span>
-<a name="l00059"></a>00059 <span class="comment">                        (but it may receive messages) */</span>
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061 <span class="keyword">private</span> :
-<a name="l00062"></a>00062   
-<a name="l00063"></a><a class="code" href="classThread.html#1b155d63bca3096ac4a1d039aea83c7c">00063</a>   <span class="keywordtype">bool</span> <a class="code" href="classThread.html#1b155d63bca3096ac4a1d039aea83c7c">act</a>;
-<a name="l00064"></a>00064 };
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066 <span class="keyword">extern</span> <span class="keywordtype">void</span> addThread (<a class="code" href="classThread.html">Thread</a> * __hl_thread, std :: vector &lt;pthread_t *&gt; &amp; __ll_threads);
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068 <span class="keyword">extern</span> <span class="keywordtype">void</span> joinThreads (std :: vector &lt;pthread_t *&gt; &amp; __ll_threads);
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070 <span class="keyword">extern</span> <span class="keywordtype">bool</span> atLeastOneActiveThread (); <span class="comment">/* It returns 'true' iff at least one process is going</span>
-<a name="l00071"></a>00071 <span class="comment">                                      to send messages */</span>
-<a name="l00072"></a>00072   
-<a name="l00073"></a>00073 <span class="keyword">extern</span> <span class="keywordtype">unsigned</span> numberOfActiveThreads ();
-<a name="l00074"></a>00074 
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043 <span class="comment">/* A high-level thread */</span>
+<a name="l00044"></a><a class="code" href="classThread.html">00044</a> <span class="keyword">class </span><a class="code" href="classThread.html">Thread</a>
+<a name="l00045"></a>00045   {
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047   <span class="keyword">public</span>:
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049     <span class="comment">/* Ctor */</span>
+<a name="l00050"></a>00050     <a class="code" href="classThread.html#95c703fb8f2f27cb64f475a8c940864a">Thread</a> ();
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052     <span class="comment">/* Dtor */</span>
+<a name="l00053"></a>00053     <span class="keyword">virtual</span> <a class="code" href="classThread.html#37d9edd3a1a776cbc27dedff949c9726">~ Thread</a> ();
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055     <span class="comment">/* Go ! */</span>
+<a name="l00056"></a>00056     <span class="keyword">virtual</span> <span class="keywordtype">void</span> start () = 0;
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058     <span class="keywordtype">void</span> <a class="code" href="classThread.html#e197c46f8f62ecce6d2a7fe95bdc5b38">setActive</a> ();<span class="comment">/* It means the current process is going to send messages soon */</span>
+<a name="l00059"></a>00059     <span class="keywordtype">void</span> <a class="code" href="classThread.html#20632ffe9ddfa2a478afb0c84dc1096b">setPassive</a> ();<span class="comment">/* The current process is not going to perform send operations</span>
+<a name="l00060"></a>00060 <span class="comment">                        (but it may receive messages) */</span>
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062   <span class="keyword">private</span> :
+<a name="l00063"></a>00063 
+<a name="l00064"></a><a class="code" href="classThread.html#1b155d63bca3096ac4a1d039aea83c7c">00064</a>     <span class="keywordtype">bool</span> <a class="code" href="classThread.html#1b155d63bca3096ac4a1d039aea83c7c">act</a>;
+<a name="l00065"></a>00065   };
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067 <span class="keyword">extern</span> <span class="keywordtype">void</span> initThreadsEnv ();
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069 <span class="keyword">extern</span> <span class="keywordtype">void</span> addThread (<a class="code" href="classThread.html">Thread</a> * __hl_thread, std :: vector &lt;pthread_t *&gt; &amp; __ll_threads);
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071 <span class="keyword">extern</span> <span class="keywordtype">void</span> joinThreads (std :: vector &lt;pthread_t *&gt; &amp; __ll_threads);
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073 <span class="keyword">extern</span> <span class="keywordtype">bool</span> atLeastOneActiveThread (); <span class="comment">/* It returns 'true' iff at least one process is going</span>
+<a name="l00074"></a>00074 <span class="comment">                                      to send messages */</span>
 <a name="l00075"></a>00075 
 <a name="l00076"></a>00076 <span class="preprocessor">#endif </span><span class="comment">/*THREAD_H_*/</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:46 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Wed Mar 12 15:23:42 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

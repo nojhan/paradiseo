@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: mix.h Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: mix.h Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,7 +22,7 @@
       </form>
     </li>
   </ul></div>
-<h1>mix.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>mix.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;mix.h&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
 <a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
@@ -65,16 +65,17 @@
 <a name="l00041"></a>00041 
 <a name="l00042"></a>00042 <span class="preprocessor">#include &lt;utils/eoRNG.h&gt;</span>
 <a name="l00043"></a>00043 
-<a name="l00044"></a>00044 <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> mix (std :: vector &lt;T&gt; &amp; __v) {
-<a name="l00045"></a>00045   
-<a name="l00046"></a>00046   <span class="keywordtype">unsigned</span> len = __v.size () ;
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0 ; i &lt; len ; i ++)
-<a name="l00049"></a>00049     std :: swap (__v [i], __v [<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/namespaceeo.html#2727d901e79a00930492730539e3b644">rng</a>.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">random</a> (len)]) ;
-<a name="l00050"></a>00050 }
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:45 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00044"></a>00044 <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> mix (std :: vector &lt;T&gt; &amp; __v)
+<a name="l00045"></a>00045 {
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047   <span class="keywordtype">unsigned</span> len = __v.size () ;
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0 ; i &lt; len ; i ++)
+<a name="l00050"></a>00050     std :: swap (__v [i], __v [<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/namespaceeo.html#2727d901e79a00930492730539e3b644">rng</a>.<a class="codeRef" doxygen="eo.doxytag:http://eodev.sourceforge.net/eo/doc/html/" href="http://eodev.sourceforge.net/eo/doc/html/classeo_rng.html#f0829d258c74cdc3a8f6cd72c0287cb4">random</a> (len)]) ;
+<a name="l00051"></a>00051 }
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053 <span class="preprocessor">#endif</span>
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Wed Mar 12 15:23:42 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>

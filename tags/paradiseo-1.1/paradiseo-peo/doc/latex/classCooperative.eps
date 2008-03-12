@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 166.667
+%%BoundingBox: 0 0 500 90.3614
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,7 +19,7 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 3 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 5.53333 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
@@ -175,8 +175,8 @@ boxfont setfont
 1 boundaspect scale
 (Cooperative) cw
 (Communicable) cw
-(peoAsyncIslandMig< EOT >) cw
-(peoSyncIslandMig< EOT >) cw
+(peoAsyncIslandMig< TYPESELECT, TYPEREPLACE >) cw
+(peoSyncIslandMig< TYPESELECT, TYPEREPLACE >) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
 /yspacing boxheight disty add def
@@ -190,8 +190,8 @@ boundx scalefactor div boundy scalefactor div scale
 
  (Cooperative) 0.5 1 box
  (Communicable) 0.5 2 box
- (peoAsyncIslandMig< EOT >) 0 0 box
- (peoSyncIslandMig< EOT >) 1 0 box
+ (peoAsyncIslandMig< TYPESELECT, TYPEREPLACE >) 0 0 box
+ (peoSyncIslandMig< TYPESELECT, TYPEREPLACE >) 1 0 box
 
 % ----- relations -----
 

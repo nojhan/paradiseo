@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
-<title>ParadisEO-PEOMovingObjects: xml_parser.cpp Source File</title>
+<title>ParadisEO-PEO-ParallelanddistributedEvolvingObjects: xml_parser.cpp Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -22,12 +22,12 @@
       </form>
     </li>
   </ul></div>
-<h1>xml_parser.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/* </span>
+<h1>xml_parser.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">* &lt;xml_parser.cpp&gt;</span>
-<a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007</span>
-<a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2007</span>
+<a name="l00003"></a>00003 <span class="comment">* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008</span>
+<a name="l00004"></a>00004 <span class="comment">* (C) OPAC Team, LIFL, 2002-2008</span>
 <a name="l00005"></a>00005 <span class="comment">*</span>
-<a name="l00006"></a>00006 <span class="comment">* Sebastien Cahon, Alexandru-Adrian Tantar</span>
+<a name="l00006"></a>00006 <span class="comment">* Sebastien Cahon, Alexandru-Adrian Tantar, Clive Canape</span>
 <a name="l00007"></a>00007 <span class="comment">*</span>
 <a name="l00008"></a>00008 <span class="comment">* This software is governed by the CeCILL license under French law and</span>
 <a name="l00009"></a>00009 <span class="comment">* abiding by the rules of distribution of free software.  You can  use,</span>
@@ -64,68 +64,74 @@
 <a name="l00040"></a>00040 
 <a name="l00041"></a>00041 <span class="keyword">static</span> xmlTextReaderPtr reader;
 <a name="l00042"></a>00042 
-<a name="l00043"></a>00043 <span class="keywordtype">void</span> openXMLDocument (<span class="keyword">const</span> <span class="keywordtype">char</span> * __filename) {
-<a name="l00044"></a>00044   
-<a name="l00045"></a>00045   reader = xmlNewTextReaderFilename (__filename);
-<a name="l00046"></a>00046   
-<a name="l00047"></a>00047   <span class="keywordflow">if</span> (! reader) {
-<a name="l00048"></a>00048     
-<a name="l00049"></a>00049     fprintf (stderr, <span class="stringliteral">"unable to open '%s'.\n"</span>, __filename);
-<a name="l00050"></a>00050     exit (1);
-<a name="l00051"></a>00051   }
-<a name="l00052"></a>00052 }
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 <span class="keywordtype">void</span> closeXMLDocument () {
+<a name="l00043"></a>00043 <span class="keywordtype">void</span> openXMLDocument (<span class="keyword">const</span> <span class="keywordtype">char</span> * __filename)
+<a name="l00044"></a>00044 {
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046   reader = xmlNewTextReaderFilename (__filename);
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048   <span class="keywordflow">if</span> (! reader)
+<a name="l00049"></a>00049     {
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051       fprintf (stderr, <span class="stringliteral">"unable to open '%s'.\n"</span>, __filename);
+<a name="l00052"></a>00052       exit (1);
+<a name="l00053"></a>00053     }
+<a name="l00054"></a>00054 }
 <a name="l00055"></a>00055 
-<a name="l00056"></a>00056   xmlFreeTextReader (reader);
-<a name="l00057"></a>00057 }
+<a name="l00056"></a>00056 <span class="keywordtype">void</span> closeXMLDocument ()
+<a name="l00057"></a>00057 {
 <a name="l00058"></a>00058 
-<a name="l00059"></a>00059 std :: string getAttributeValue (<span class="keyword">const</span> std :: string &amp; __attr) {
-<a name="l00060"></a>00060   
-<a name="l00061"></a>00061   xmlChar * value = xmlTextReaderGetAttribute (reader, (<span class="keyword">const</span> xmlChar *) __attr.c_str ());
-<a name="l00062"></a>00062   
-<a name="l00063"></a>00063   std :: string str ((<span class="keyword">const</span> <span class="keywordtype">char</span> *) value);
-<a name="l00064"></a>00064   
-<a name="l00065"></a>00065   xmlFree (value);
-<a name="l00066"></a>00066   
-<a name="l00067"></a>00067   <span class="keywordflow">return</span> str;
-<a name="l00068"></a>00068 }
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070 <span class="keyword">static</span> <span class="keywordtype">bool</span> isSep (<span class="keyword">const</span> xmlChar * __text) {
-<a name="l00071"></a>00071   
-<a name="l00072"></a>00072   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; strlen ((<span class="keywordtype">char</span> *) __text); i ++)
-<a name="l00073"></a>00073     <span class="keywordflow">if</span> (__text [i] != <span class="charliteral">' '</span> &amp;&amp; __text [i] != <span class="charliteral">'\t'</span> &amp;&amp; __text [i] != <span class="charliteral">'\n'</span>)
-<a name="l00074"></a>00074       <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00075"></a>00075   <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00076"></a>00076 }
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 std :: string getNextNode () {
-<a name="l00079"></a>00079   
-<a name="l00080"></a>00080   xmlChar * name, * value;
-<a name="l00081"></a>00081 
-<a name="l00082"></a>00082   <span class="keywordflow">do</span> {
-<a name="l00083"></a>00083     xmlTextReaderRead (reader);
-<a name="l00084"></a>00084     name = xmlTextReaderName (reader);
-<a name="l00085"></a>00085     value = xmlTextReaderValue (reader);
-<a name="l00086"></a>00086     <span class="comment">//    printf ("value = %s\n", value);</span>
-<a name="l00087"></a>00087   } <span class="keywordflow">while</span> (! strcmp ((<span class="keywordtype">char</span> *) name, <span class="stringliteral">"#text"</span>) &amp;&amp; isSep (value));
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089   std :: string str;
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091   <span class="keywordflow">if</span> (strcmp ((<span class="keywordtype">char</span> *) name, <span class="stringliteral">"#text"</span>))
-<a name="l00092"></a>00092     str.assign ((<span class="keywordtype">char</span> *) name);
-<a name="l00093"></a>00093   <span class="keywordflow">else</span>
-<a name="l00094"></a>00094     str.assign ((<span class="keywordtype">char</span> *) value);
-<a name="l00095"></a>00095   
-<a name="l00096"></a>00096   <span class="keywordflow">if</span> (name)
-<a name="l00097"></a>00097     xmlFree (name);
-<a name="l00098"></a>00098   <span class="keywordflow">if</span> (value)
-<a name="l00099"></a>00099     xmlFree (value);
-<a name="l00100"></a>00100     
-<a name="l00101"></a>00101   <span class="keywordflow">return</span> str;
-<a name="l00102"></a>00102 }
-<a name="l00103"></a>00103 
-</pre></div><hr size="1"><address style="align: right;"><small>Generated on Mon Oct 8 11:16:46 2007 for ParadisEO-PEOMovingObjects by&nbsp;
+<a name="l00059"></a>00059   xmlFreeTextReader (reader);
+<a name="l00060"></a>00060 }
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 std :: string getAttributeValue (<span class="keyword">const</span> std :: string &amp; __attr)
+<a name="l00063"></a>00063 {
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065   xmlChar * value = xmlTextReaderGetAttribute (reader, (<span class="keyword">const</span> xmlChar *) __attr.c_str ());
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067   std :: string str ((<span class="keyword">const</span> <span class="keywordtype">char</span> *) value);
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069   xmlFree (value);
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071   <span class="keywordflow">return</span> str;
+<a name="l00072"></a>00072 }
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074 <span class="keyword">static</span> <span class="keywordtype">bool</span> isSep (<span class="keyword">const</span> xmlChar * __text)
+<a name="l00075"></a>00075 {
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; strlen ((<span class="keywordtype">char</span> *) __text); i ++)
+<a name="l00078"></a>00078     <span class="keywordflow">if</span> (__text [i] != <span class="charliteral">' '</span> &amp;&amp; __text [i] != <span class="charliteral">'\t'</span> &amp;&amp; __text [i] != <span class="charliteral">'\n'</span>)
+<a name="l00079"></a>00079       <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00080"></a>00080   <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00081"></a>00081 }
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 std :: string getNextNode ()
+<a name="l00084"></a>00084 {
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086   xmlChar * name, * value;
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088   <span class="keywordflow">do</span>
+<a name="l00089"></a>00089     {
+<a name="l00090"></a>00090       xmlTextReaderRead (reader);
+<a name="l00091"></a>00091       name = xmlTextReaderName (reader);
+<a name="l00092"></a>00092       value = xmlTextReaderValue (reader);
+<a name="l00093"></a>00093     }
+<a name="l00094"></a>00094   <span class="keywordflow">while</span> (! strcmp ((<span class="keywordtype">char</span> *) name, <span class="stringliteral">"#text"</span>) &amp;&amp; isSep (value));
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096   std :: string str;
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098   <span class="keywordflow">if</span> (strcmp ((<span class="keywordtype">char</span> *) name, <span class="stringliteral">"#text"</span>))
+<a name="l00099"></a>00099     str.assign ((<span class="keywordtype">char</span> *) name);
+<a name="l00100"></a>00100   <span class="keywordflow">else</span>
+<a name="l00101"></a>00101     str.assign ((<span class="keywordtype">char</span> *) value);
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103   <span class="keywordflow">if</span> (name)
+<a name="l00104"></a>00104     xmlFree (name);
+<a name="l00105"></a>00105   <span class="keywordflow">if</span> (value)
+<a name="l00106"></a>00106     xmlFree (value);
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108   <span class="keywordflow">return</span> str;
+<a name="l00109"></a>00109 }
+</pre></div><hr size="1"><address style="align: right;"><small>Generated on Wed Mar 12 15:23:42 2008 for ParadisEO-PEO-ParallelanddistributedEvolvingObjects by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.4.7 </small></address>
 </body>
