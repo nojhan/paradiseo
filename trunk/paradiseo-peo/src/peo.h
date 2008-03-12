@@ -41,7 +41,7 @@
 #include <mo>
 #include <moeo>
 
-/** @mainpage Welcome to Paradiseo-Moving ObjectsPEO
+/** @mainpage Welcome to Paradiseo-PEO
 
     @section Introduction
 
