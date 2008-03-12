@@ -52,9 +52,9 @@ Conference on Artificial Evolution</em></a>.
 
 <h1>ParadisEO</h1>
 
-<a href="http://www.lifl.fr/~cahon/paradisEO">ParadisEO</a> is a project to
+<a href="http://paradiseo.gforge.inria.fr">ParadisEO</a> is a project to
 extend EO to make use of dedicated parallel or distributed computing
-environments by <a href="http://www.lifl.fr/~cahon">Sébastien Cahon</a>.
+environments by <a href="http://www.inria.fr/recherche/equipes_ur/dolphin.en.html">the INRIA Dolphin project-team</a>.
 */
 
 

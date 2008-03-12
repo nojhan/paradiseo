@@ -36,9 +36,8 @@ where $(SRCDIR) is the top-level source directory of EO, i.e. where
 the sources where unpacked.
 
 Run "$(SRCDIR)/configure --help" for possible options. You can specify
-to not build example applications, the tutorial, or to build the
-ParadisEO tutorial. You may also change the installation directory
-that way.
+to not build example applications, the tutorial. 
+You may also change the installation directory that way.
 
 Now you should probably go to the tutorial and start learning about EO
 features and programming.
