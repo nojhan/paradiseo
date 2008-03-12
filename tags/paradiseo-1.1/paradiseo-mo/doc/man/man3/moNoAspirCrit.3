@@ -1,4 +1,4 @@
-.TH "moNoAspirCrit" 3 "16 Jan 2008" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.TH "moNoAspirCrit" 3 "12 Mar 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -12,7 +12,7 @@ moNoAspirCrit \- One of the possible aspiration criterion (\fBmoAspirCrit\fP).
 .PP
 Inherits \fBmoAspirCrit< M >< M >\fP.
 .PP
-.SS "Private Member Functions"
+.SS "Public Member Functions"
 
 .in +1c
 .ti -1c
@@ -35,7 +35,7 @@ The simplest : never satisfied.
 Definition at line 47 of file moNoAspirCrit.h.
 .SH "Member Function Documentation"
 .PP 
-.SS "template<class M> bool \fBmoNoAspirCrit\fP< M >::operator() (const M & _move, const typename M::EOType::Fitness & _fitness)\fC [inline, private]\fP"
+.SS "template<class M> bool \fBmoNoAspirCrit\fP< M >::operator() (const M & _move, const typename M::EOType::Fitness & _fitness)\fC [inline]\fP"
 .PP
 \fBFunction\fP which describes the aspiration criterion behaviour. 
 .PP
@@ -55,8 +55,8 @@ false.
 .PP
 
 .PP
-Definition at line 57 of file moNoAspirCrit.h.
-.SS "template<class M> void \fBmoNoAspirCrit\fP< M >::init ()\fC [inline, private, virtual]\fP"
+Definition at line 59 of file moNoAspirCrit.h.
+.SS "template<class M> void \fBmoNoAspirCrit\fP< M >::init ()\fC [inline, virtual]\fP"
 .PP
 Procedure which initialises all that needs a \fBmoNoAspirCrit\fP. 
 .PP
@@ -64,8 +64,8 @@ Nothing...
 .PP
 Implements \fBmoAspirCrit< M >\fP.
 .PP
-Definition at line 66 of file moNoAspirCrit.h.
+Definition at line 73 of file moNoAspirCrit.h.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.
+Generated automatically by Doxygen for ParadisEO-MO-MovingObjects from the source code.

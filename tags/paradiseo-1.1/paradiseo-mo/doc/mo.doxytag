@@ -305,6 +305,13 @@
       <arglist>(moMoveExpl&lt; M &gt; &amp;_move_explorer, eoEvalFunc&lt; EOT &gt; &amp;_full_evaluation)</arglist>
     </member>
     <member kind="function">
+      <type></type>
+      <name>~moHC</name>
+      <anchorfile>classmo_h_c.html</anchorfile>
+      <anchor>e71fec6f2f806e221de301e1322c23f7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>bool</type>
       <name>operator()</name>
       <anchorfile>classmo_h_c.html</anchorfile>
@@ -326,10 +333,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>moMoveExpl&lt; M &gt; &amp;</type>
+      <type>moMoveExpl&lt; M &gt; *</type>
       <name>move_explorer</name>
       <anchorfile>classmo_h_c.html</anchorfile>
-      <anchor>ec4e702a6ec240f40ff9d262c36d080b</anchor>
+      <anchor>aab67547ab030e8cbe51fb6c60f18a7d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -337,6 +344,13 @@
       <name>full_evaluation</name>
       <anchorfile>classmo_h_c.html</anchorfile>
       <anchor>1175c588c19d3658cfc690d5f3f8d825</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>move_explorer_memory_allocation</name>
+      <anchorfile>classmo_h_c.html</anchorfile>
+      <anchor>19d3af1b0456004913236d6eaf3f9c2b</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -436,6 +450,13 @@
       <arglist>(moRandMove&lt; M &gt; &amp;_random_move_generator, moMoveIncrEval&lt; M &gt; &amp;_incremental_evaluation, moSolContinue&lt; EOT &gt; &amp;_moSA_continue, double _initial_temperature, moCoolingSchedule &amp;_cooling_schedule, moSolContinue&lt; EOT &gt; &amp;_continue, moComparator&lt; EOT &gt; &amp;_acceptance_criterion, eoMonOp&lt; EOT &gt; &amp;_perturbation, eoEvalFunc&lt; EOT &gt; &amp;_full_evaluation)</arglist>
     </member>
     <member kind="function">
+      <type></type>
+      <name>~moILS</name>
+      <anchorfile>classmo_i_l_s.html</anchorfile>
+      <anchor>bdda129a342e18dfb677cdacc3903a7b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>bool</type>
       <name>operator()</name>
       <anchorfile>classmo_i_l_s.html</anchorfile>
@@ -457,10 +478,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>moAlgo&lt; EOT &gt; &amp;</type>
+      <type>moAlgo&lt; EOT &gt; *</type>
       <name>algorithm</name>
       <anchorfile>classmo_i_l_s.html</anchorfile>
-      <anchor>5651a4d94b59d523d341d5d6e24ca311</anchor>
+      <anchor>57cafea501826575da64fe0216bc75ca</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -489,6 +510,13 @@
       <name>full_evaluation</name>
       <anchorfile>classmo_i_l_s.html</anchorfile>
       <anchor>8e8c383ac6ec34aaf071fa18bb54be67</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>algorithm_memory_allocation</name>
+      <anchorfile>classmo_i_l_s.html</anchorfile>
+      <anchor>5317acfe1a8c98d3a8a236f5521a8b5b</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -723,14 +751,14 @@
     <filename>classmo_no_aspir_crit.html</filename>
     <templarg>M</templarg>
     <base>moAspirCrit</base>
-    <member kind="function" protection="private">
+    <member kind="function">
       <type>bool</type>
       <name>operator()</name>
       <anchorfile>classmo_no_aspir_crit.html</anchorfile>
       <anchor>289aac56f03c4651fcbcec4a91fb6fd6</anchor>
       <arglist>(const M &amp;_move, const typename M::EOType::Fitness &amp;_fitness)</arglist>
     </member>
-    <member kind="function" protection="private">
+    <member kind="function">
       <type>void</type>
       <name>init</name>
       <anchorfile>classmo_no_aspir_crit.html</anchorfile>
@@ -852,6 +880,13 @@
       <name>better_moves</name>
       <anchorfile>classmo_rand_impr_select.html</anchorfile>
       <anchor>8a2e7bd7d7a74d7f7402ef25737b09e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>firstTime</name>
+      <anchorfile>classmo_rand_impr_select.html</anchorfile>
+      <anchor>18f21c5ec337b45f634aaa094ad698ae</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -1246,6 +1281,13 @@
       <arglist>(moMoveExpl&lt; M &gt; &amp;_move_explorer, moSolContinue&lt; EOT &gt; &amp;_continue, eoEvalFunc&lt; EOT &gt; &amp;_full_evaluation)</arglist>
     </member>
     <member kind="function">
+      <type></type>
+      <name>~moTS</name>
+      <anchorfile>classmo_t_s.html</anchorfile>
+      <anchor>0855b0db1dd8231b720ae6a5423b444e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>bool</type>
       <name>operator()</name>
       <anchorfile>classmo_t_s.html</anchorfile>
@@ -1267,10 +1309,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>moMoveExpl&lt; M &gt; &amp;</type>
+      <type>moMoveExpl&lt; M &gt; *</type>
       <name>move_explorer</name>
       <anchorfile>classmo_t_s.html</anchorfile>
-      <anchor>9fd948a2c586f1991f5a1eee927af8a6</anchor>
+      <anchor>43018b8f7d8a167c77f1da9f56cbaadd</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -1285,6 +1327,13 @@
       <name>full_evaluation</name>
       <anchorfile>classmo_t_s.html</anchorfile>
       <anchor>f44bb408007e2bff99f7a201842e8e48</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>move_explorer_memory_allocation</name>
+      <anchorfile>classmo_t_s.html</anchorfile>
+      <anchor>c3066f3be91338fd9b1f9e3626d9f80c</anchor>
       <arglist></arglist>
     </member>
   </compound>

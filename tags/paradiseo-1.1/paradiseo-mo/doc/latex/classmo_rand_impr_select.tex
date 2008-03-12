@@ -1,11 +1,11 @@
-\section{moRandImprSelect$<$ M $>$ Class Template Reference}
+\section{mo\-Rand\-Impr\-Select$<$ M $>$ Class Template Reference}
 \label{classmo_rand_impr_select}\index{moRandImprSelect@{moRandImprSelect}}
-One of the possible \doxyref{moMove}{p.}{classmo_move} selector (\doxyref{moMoveSelect}{p.}{classmo_move_select}).  
+One of the possible \doxyref{mo\-Move}{p.}{classmo_move} selector (\doxyref{mo\-Move\-Select}{p.}{classmo_move_select}).  
 
 
-{\tt \#include $<$moRandImprSelect.h$>$}
+{\tt \#include $<$mo\-Rand\-Impr\-Select.h$>$}
 
-Inheritance diagram for moRandImprSelect$<$ M $>$::\begin{figure}[H]
+Inheritance diagram for mo\-Rand\-Impr\-Select$<$ M $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=4cm]{classmo_rand_impr_select}
@@ -14,48 +14,53 @@ Inheritance diagram for moRandImprSelect$<$ M $>$::\begin{figure}[H]
 \subsection*{Public Types}
 \begin{CompactItemize}
 \item 
-typedef M::EOType::Fitness {\bf Fitness}\label{classmo_rand_impr_select_3bff2fdb963297430543c82ffb567a5c}
+typedef M::EOType::Fitness \bf{Fitness}\label{classmo_rand_impr_select_3bff2fdb963297430543c82ffb567a5c}
 
 \begin{CompactList}\small\item\em Alias for the fitness. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-void {\bf init} (const {\bf Fitness} \&\_\-fitness)
-\begin{CompactList}\small\item\em Procedure which all that needs a \doxyref{moRandImprSelect}{p.}{classmo_rand_impr_select}. \item\end{CompactList}\item 
-bool {\bf update} (const M \&\_\-move, const {\bf Fitness} \&\_\-fitness)
-\begin{CompactList}\small\item\em {\bf Function} that updates the fitness and move vectors. \item\end{CompactList}\item 
-void {\bf operator()} (M \&\_\-move, {\bf Fitness} \&\_\-fitness)
+void \bf{init} (const \bf{Fitness} \&\_\-fitness)
+\begin{CompactList}\small\item\em Procedure which all that needs a \doxyref{mo\-Rand\-Impr\-Select}{p.}{classmo_rand_impr_select}. \item\end{CompactList}\item 
+bool \bf{update} (const M \&\_\-move, const \bf{Fitness} \&\_\-fitness)
+\begin{CompactList}\small\item\em \doxyref{Function} that updates the fitness and move vectors. \item\end{CompactList}\item 
+void \bf{operator()} (M \&\_\-move, \bf{Fitness} \&\_\-fitness)
 \begin{CompactList}\small\item\em The move selection. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
 \begin{CompactItemize}
 \item 
-{\bf Fitness} {\bf initial\_\-fitness}\label{classmo_rand_impr_select_d566fa23689861b1d04257e53c71ae20}
+\bf{Fitness} \bf{initial\_\-fitness}\label{classmo_rand_impr_select_d566fa23689861b1d04257e53c71ae20}
 
 \begin{CompactList}\small\item\em Fitness of the current solution. \item\end{CompactList}\item 
-std::vector$<$ {\bf Fitness} $>$ {\bf better\_\-fitnesses}\label{classmo_rand_impr_select_220d6e3db838b11938e59bc7b29a0db6}
+std::vector$<$ \bf{Fitness} $>$ \bf{better\_\-fitnesses}\label{classmo_rand_impr_select_220d6e3db838b11938e59bc7b29a0db6}
 
 \begin{CompactList}\small\item\em Candidate fitnesse vector. \item\end{CompactList}\item 
-std::vector$<$ M $>$ {\bf better\_\-moves}\label{classmo_rand_impr_select_8a2e7bd7d7a74d7f7402ef25737b09e1}
+std::vector$<$ M $>$ \bf{better\_\-moves}\label{classmo_rand_impr_select_8a2e7bd7d7a74d7f7402ef25737b09e1}
 
-\begin{CompactList}\small\item\em Candidate move vector. \item\end{CompactList}\end{CompactItemize}
+\begin{CompactList}\small\item\em Candidate move vector. \item\end{CompactList}\item 
+bool \bf{first\-Time}\label{classmo_rand_impr_select_18f21c5ec337b45f634aaa094ad698ae}
+
+\begin{CompactList}\small\item\em Indicate if update has been called or not. \item\end{CompactList}\end{CompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class M$>$ class moRandImprSelect$<$ M $>$}
+\subsubsection*{template$<$class M$>$ class mo\-Rand\-Impr\-Select$<$ M $>$}
 
-One of the possible \doxyref{moMove}{p.}{classmo_move} selector (\doxyref{moMoveSelect}{p.}{classmo_move_select}). 
+One of the possible \doxyref{mo\-Move}{p.}{classmo_move} selector (\doxyref{mo\-Move\-Select}{p.}{classmo_move_select}). 
 
 All the neighbors are considered. One of them that enables an improvment of the objective function is choosen. 
 
-Definition at line 49 of file moRandImprSelect.h.
+
+
+Definition at line 49 of file mo\-Rand\-Impr\-Select.h.
 
 \subsection{Member Function Documentation}
-\index{moRandImprSelect@{moRandImprSelect}!init@{init}}
-\index{init@{init}!moRandImprSelect@{moRandImprSelect}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void {\bf moRandImprSelect}$<$ M $>$::init (const {\bf Fitness} \& {\em \_\-fitness})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_rand_impr_select_7af99966b31aa387ecef74fd307a42e8}
+\index{moRandImprSelect@{mo\-Rand\-Impr\-Select}!init@{init}}
+\index{init@{init}!moRandImprSelect@{mo\-Rand\-Impr\-Select}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void \bf{mo\-Rand\-Impr\-Select}$<$ M $>$::init (const \bf{Fitness} \& {\em \_\-fitness})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_rand_impr_select_7af99966b31aa387ecef74fd307a42e8}
 
 
-Procedure which all that needs a \doxyref{moRandImprSelect}{p.}{classmo_rand_impr_select}. 
+Procedure which all that needs a \doxyref{mo\-Rand\-Impr\-Select}{p.}{classmo_rand_impr_select}. 
 
 Give a value to the initialise fitness. Clean the move and fitness vectors.
 
@@ -66,16 +71,16 @@ Give a value to the initialise fitness. Clean the move and fitness vectors.
 \end{Desc}
 
 
-Implements {\bf moMoveSelect$<$ M $>$} \doxyref{}{p.}{classmo_move_select_58038bd859632c1bd022d23d9792bdca}.
+Implements \bf{mo\-Move\-Select$<$ M $>$} \doxyref{p.}{classmo_move_select_58038bd859632c1bd022d23d9792bdca}.
 
-Definition at line 63 of file moRandImprSelect.h.
+Definition at line 63 of file mo\-Rand\-Impr\-Select.h.
 
-References moRandImprSelect$<$ M $>$::better\_\-fitnesses, moRandImprSelect$<$ M $>$::better\_\-moves, and moRandImprSelect$<$ M $>$::initial\_\-fitness.\index{moRandImprSelect@{moRandImprSelect}!update@{update}}
-\index{update@{update}!moRandImprSelect@{moRandImprSelect}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf moRandImprSelect}$<$ M $>$::update (const M \& {\em \_\-move}, const {\bf Fitness} \& {\em \_\-fitness})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_rand_impr_select_b20cfd0164266aa75960cba3c1673f69}
+References mo\-Rand\-Impr\-Select$<$ M $>$::better\_\-fitnesses, mo\-Rand\-Impr\-Select$<$ M $>$::better\_\-moves, mo\-Rand\-Impr\-Select$<$ M $>$::first\-Time, and mo\-Rand\-Impr\-Select$<$ M $>$::initial\_\-fitness.\index{moRandImprSelect@{mo\-Rand\-Impr\-Select}!update@{update}}
+\index{update@{update}!moRandImprSelect@{mo\-Rand\-Impr\-Select}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool \bf{mo\-Rand\-Impr\-Select}$<$ M $>$::update (const M \& {\em \_\-move}, const \bf{Fitness} \& {\em \_\-fitness})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_rand_impr_select_b20cfd0164266aa75960cba3c1673f69}
 
 
-{\bf Function} that updates the fitness and move vectors. 
+\doxyref{Function} that updates the fitness and move vectors. 
 
 if a move give a better fitness than the initial fitness, it is saved and the fitness too.
 
@@ -88,13 +93,13 @@ if a move give a better fitness than the initial fitness, it is saved and the fi
 \item[Returns:]true. \end{Desc}
 
 
-Implements {\bf moMoveSelect$<$ M $>$} \doxyref{}{p.}{classmo_move_select_5b4d3b2f030cca80c563c3db0c4af404}.
+Implements \bf{mo\-Move\-Select$<$ M $>$} \doxyref{p.}{classmo_move_select_5b4d3b2f030cca80c563c3db0c4af404}.
 
-Definition at line 79 of file moRandImprSelect.h.
+Definition at line 80 of file mo\-Rand\-Impr\-Select.h.
 
-References moRandImprSelect$<$ M $>$::better\_\-fitnesses, moRandImprSelect$<$ M $>$::better\_\-moves, and moRandImprSelect$<$ M $>$::initial\_\-fitness.\index{moRandImprSelect@{moRandImprSelect}!operator()@{operator()}}
-\index{operator()@{operator()}!moRandImprSelect@{moRandImprSelect}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void {\bf moRandImprSelect}$<$ M $>$::operator() (M \& {\em \_\-move}, {\bf Fitness} \& {\em \_\-fitness})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_rand_impr_select_1bc88f10830960c1d88e22e444c4e670}
+References mo\-Rand\-Impr\-Select$<$ M $>$::better\_\-fitnesses, mo\-Rand\-Impr\-Select$<$ M $>$::better\_\-moves, mo\-Rand\-Impr\-Select$<$ M $>$::first\-Time, and mo\-Rand\-Impr\-Select$<$ M $>$::initial\_\-fitness.\index{moRandImprSelect@{mo\-Rand\-Impr\-Select}!operator()@{operator()}}
+\index{operator()@{operator()}!moRandImprSelect@{mo\-Rand\-Impr\-Select}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void \bf{mo\-Rand\-Impr\-Select}$<$ M $>$::operator() (M \& {\em \_\-move}, \bf{Fitness} \& {\em \_\-fitness})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_rand_impr_select_1bc88f10830960c1d88e22e444c4e670}
 
 
 The move selection. 
@@ -108,12 +113,12 @@ One the saved move is randomly chosen.
 \end{Desc}
 
 
-Implements {\bf eoBF$<$ M \&, M::EOType::Fitness \&, void $>$}.
+Implements \bf{eo\-BF$<$ M \&, M::EOType::Fitness \&, void $>$}.
 
-Definition at line 98 of file moRandImprSelect.h.
+Definition at line 100 of file mo\-Rand\-Impr\-Select.h.
 
-References moRandImprSelect$<$ M $>$::better\_\-fitnesses, moRandImprSelect$<$ M $>$::better\_\-moves, and eoRng::random().
+References mo\-Rand\-Impr\-Select$<$ M $>$::better\_\-fitnesses, mo\-Rand\-Impr\-Select$<$ M $>$::better\_\-moves, mo\-Rand\-Impr\-Select$<$ M $>$::first\-Time, and eo\-Rng::random().
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 
-moRandImprSelect.h\end{CompactItemize}
+mo\-Rand\-Impr\-Select.h\end{CompactItemize}

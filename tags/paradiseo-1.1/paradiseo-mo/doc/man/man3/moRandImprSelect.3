@@ -1,4 +1,4 @@
-.TH "moRandImprSelect" 3 "16 Jan 2008" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.TH "moRandImprSelect" 3 "12 Mar 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -51,6 +51,10 @@ Inherits \fBmoMoveSelect< M >< M >\fP.
 .RI "std::vector< M > \fBbetter_moves\fP"
 .br
 .RI "\fICandidate move vector. \fP"
+.ti -1c
+.RI "bool \fBfirstTime\fP"
+.br
+.RI "\fIIndicate if update has been called or not. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -80,7 +84,7 @@ Implements \fBmoMoveSelect< M >\fP.
 .PP
 Definition at line 63 of file moRandImprSelect.h.
 .PP
-References moRandImprSelect< M >::better_fitnesses, moRandImprSelect< M >::better_moves, and moRandImprSelect< M >::initial_fitness.
+References moRandImprSelect< M >::better_fitnesses, moRandImprSelect< M >::better_moves, moRandImprSelect< M >::firstTime, and moRandImprSelect< M >::initial_fitness.
 .SS "template<class M> bool \fBmoRandImprSelect\fP< M >::update (const M & _move, const \fBFitness\fP & _fitness)\fC [inline, virtual]\fP"
 .PP
 \fBFunction\fP that updates the fitness and move vectors. 
@@ -103,9 +107,9 @@ true.
 .PP
 Implements \fBmoMoveSelect< M >\fP.
 .PP
-Definition at line 79 of file moRandImprSelect.h.
+Definition at line 80 of file moRandImprSelect.h.
 .PP
-References moRandImprSelect< M >::better_fitnesses, moRandImprSelect< M >::better_moves, and moRandImprSelect< M >::initial_fitness.
+References moRandImprSelect< M >::better_fitnesses, moRandImprSelect< M >::better_moves, moRandImprSelect< M >::firstTime, and moRandImprSelect< M >::initial_fitness.
 .SS "template<class M> void \fBmoRandImprSelect\fP< M >::operator() (M & _move, \fBFitness\fP & _fitness)\fC [inline, virtual]\fP"
 .PP
 The move selection. 
@@ -123,10 +127,10 @@ One the saved move is randomly chosen.
 .PP
 Implements \fBeoBF< M &, M::EOType::Fitness &, void >\fP.
 .PP
-Definition at line 98 of file moRandImprSelect.h.
+Definition at line 100 of file moRandImprSelect.h.
 .PP
-References moRandImprSelect< M >::better_fitnesses, moRandImprSelect< M >::better_moves, and eoRng::random().
+References moRandImprSelect< M >::better_fitnesses, moRandImprSelect< M >::better_moves, moRandImprSelect< M >::firstTime, and eoRng::random().
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.
+Generated automatically by Doxygen for ParadisEO-MO-MovingObjects from the source code.

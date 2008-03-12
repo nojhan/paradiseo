@@ -1,4 +1,4 @@
-.TH "moHC" 3 "16 Jan 2008" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.TH "moHC" 3 "12 Mar 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -24,6 +24,10 @@ Inherits \fBmoAlgo< M::EOType >\fP.
 .br
 .RI "\fILight constructor. \fP"
 .ti -1c
+.RI "\fB~moHC\fP ()"
+.br
+.RI "\fIDestructor. \fP"
+.ti -1c
 .RI "bool \fBoperator()\fP (\fBEOT\fP &_solution)"
 .br
 .RI "\fI\fBFunction\fP which launches the HC. \fP"
@@ -44,13 +48,17 @@ Inherits \fBmoAlgo< M::EOType >\fP.
 
 .in +1c
 .ti -1c
-.RI "\fBmoMoveExpl\fP< M > & \fBmove_explorer\fP"
+.RI "\fBmoMoveExpl\fP< M > * \fBmove_explorer\fP"
 .br
 .RI "\fIComplete exploration of the neighborhood. \fP"
 .ti -1c
 .RI "\fBeoEvalFunc\fP< \fBEOT\fP > & \fBfull_evaluation\fP"
 .br
 .RI "\fIA full evaluation function. \fP"
+.ti -1c
+.RI "bool \fBmove_explorer_memory_allocation\fP"
+.br
+.RI "\fIIndicate if the memory has been allocated for the move_explorer. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -123,10 +131,10 @@ true.
 .PP
 Implements \fBeoUF< M::EOType &, bool >\fP.
 .PP
-Definition at line 94 of file moHC.h.
+Definition at line 103 of file moHC.h.
 .PP
-References moHC< M >::full_evaluation, and moHC< M >::move_explorer.
+References moHC< M >::full_evaluation.
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.
+Generated automatically by Doxygen for ParadisEO-MO-MovingObjects from the source code.

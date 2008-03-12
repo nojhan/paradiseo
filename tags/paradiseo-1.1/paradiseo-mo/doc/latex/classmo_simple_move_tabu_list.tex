@@ -1,11 +1,11 @@
-\section{moSimpleMoveTabuList$<$ M $>$ Class Template Reference}
+\section{mo\-Simple\-Move\-Tabu\-List$<$ M $>$ Class Template Reference}
 \label{classmo_simple_move_tabu_list}\index{moSimpleMoveTabuList@{moSimpleMoveTabuList}}
 Class describing a move tabu list with a limited memory.  
 
 
-{\tt \#include $<$moSimpleMoveTabuList.h$>$}
+{\tt \#include $<$mo\-Simple\-Move\-Tabu\-List.h$>$}
 
-Inheritance diagram for moSimpleMoveTabuList$<$ M $>$::\begin{figure}[H]
+Inheritance diagram for mo\-Simple\-Move\-Tabu\-List$<$ M $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=4cm]{classmo_simple_move_tabu_list}
@@ -14,74 +14,76 @@ Inheritance diagram for moSimpleMoveTabuList$<$ M $>$::\begin{figure}[H]
 \subsection*{Public Types}
 \begin{CompactItemize}
 \item 
-typedef M::EOType {\bf EOT}\label{classmo_simple_move_tabu_list_91286ff3ba6b1e9e1db9e4fdade2edb7}
+typedef M::EOType \bf{EOT}\label{classmo_simple_move_tabu_list_91286ff3ba6b1e9e1db9e4fdade2edb7}
 
 \begin{CompactList}\small\item\em Alias for the type. \item\end{CompactList}\item 
-typedef std::list$<$ M $>$::iterator {\bf moveIterator}\label{classmo_simple_move_tabu_list_4ca9387c0a20bb9f4142682cbfee26bf}
+typedef std::list$<$ M $>$::iterator \bf{move\-Iterator}\label{classmo_simple_move_tabu_list_4ca9387c0a20bb9f4142682cbfee26bf}
 
 \begin{CompactList}\small\item\em Alias for an iterator of a move list. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-{\bf moSimpleMoveTabuList} (unsigned int \_\-memory\_\-maximum\_\-size)\label{classmo_simple_move_tabu_list_c27e7fabe1370ea65f56981c5cbc1769}
+\bf{mo\-Simple\-Move\-Tabu\-List} (unsigned int \_\-memory\_\-maximum\_\-size)\label{classmo_simple_move_tabu_list_c27e7fabe1370ea65f56981c5cbc1769}
 
 \begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
-bool {\bf operator()} (const M \&\_\-move, const {\bf EOT} \&\_\-solution)
-\begin{CompactList}\small\item\em {\bf Function} that indicates if, in a given state, the \_\-move is tabu or not. \item\end{CompactList}\item 
-void {\bf add} (const M \&\_\-move, const {\bf EOT} \&\_\-solution)
+bool \bf{operator()} (const M \&\_\-move, const \bf{EOT} \&\_\-solution)
+\begin{CompactList}\small\item\em \doxyref{Function} that indicates if, in a given state, the \_\-move is tabu or not. \item\end{CompactList}\item 
+void \bf{add} (const M \&\_\-move, const \bf{EOT} \&\_\-solution)
 \begin{CompactList}\small\item\em Procedure to add a move in the tabu list. \item\end{CompactList}\item 
-void {\bf update} ()
+void \bf{update} ()
 \begin{CompactList}\small\item\em Procedure that updates the tabu list content. \item\end{CompactList}\item 
-void {\bf init} ()
+void \bf{init} ()
 \begin{CompactList}\small\item\em Procedure which initialises the tabu list. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Member Functions}
 \begin{CompactItemize}
 \item 
-void {\bf removeMove} (const M \&\_\-move)
+void \bf{remove\-Move} (const M \&\_\-move)
 \begin{CompactList}\small\item\em Procedure that removes a given move from the tabu list (if it is into, else do nothing). \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
 \begin{CompactItemize}
 \item 
-unsigned int {\bf memory\_\-maximum\_\-size}\label{classmo_simple_move_tabu_list_fea7fe7c62a6da9b8f087a2732f44251}
+unsigned int \bf{memory\_\-maximum\_\-size}\label{classmo_simple_move_tabu_list_fea7fe7c62a6da9b8f087a2732f44251}
 
 \begin{CompactList}\small\item\em The maximum size of the tabu list. \item\end{CompactList}\item 
-unsigned int {\bf memory\_\-size}\label{classmo_simple_move_tabu_list_defd20fe6d0d51fdaedbc5b95018aea7}
+unsigned int \bf{memory\_\-size}\label{classmo_simple_move_tabu_list_defd20fe6d0d51fdaedbc5b95018aea7}
 
 \begin{CompactList}\small\item\em The current size of the tabu list. \item\end{CompactList}\item 
-std::list$<$ M $>$ {\bf tabuList}\label{classmo_simple_move_tabu_list_d91bc838361524720616b44eda9b2c3a}
+std::list$<$ M $>$ \bf{tabu\-List}\label{classmo_simple_move_tabu_list_d91bc838361524720616b44eda9b2c3a}
 
 \begin{CompactList}\small\item\em The move tabu list. \item\end{CompactList}\end{CompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class M$>$ class moSimpleMoveTabuList$<$ M $>$}
+\subsubsection*{template$<$class M$>$ class mo\-Simple\-Move\-Tabu\-List$<$ M $>$}
 
 Class describing a move tabu list with a limited memory. 
 
-Definition at line 46 of file moSimpleMoveTabuList.h.
+
+
+Definition at line 46 of file mo\-Simple\-Move\-Tabu\-List.h.
 
 \subsection{Member Function Documentation}
-\index{moSimpleMoveTabuList@{moSimpleMoveTabuList}!operator()@{operator()}}
-\index{operator()@{operator()}!moSimpleMoveTabuList@{moSimpleMoveTabuList}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool {\bf moSimpleMoveTabuList}$<$ M $>$::operator() (const M \& {\em \_\-move}, const {\bf EOT} \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_simple_move_tabu_list_8d38f296f3d7721025820f16f25fcf7e}
+\index{moSimpleMoveTabuList@{mo\-Simple\-Move\-Tabu\-List}!operator()@{operator()}}
+\index{operator()@{operator()}!moSimpleMoveTabuList@{mo\-Simple\-Move\-Tabu\-List}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ bool \bf{mo\-Simple\-Move\-Tabu\-List}$<$ M $>$::operator() (const M \& {\em \_\-move}, const \bf{EOT} \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_simple_move_tabu_list_8d38f296f3d7721025820f16f25fcf7e}
 
 
-{\bf Function} that indicates if, in a given state, the \_\-move is tabu or not. 
+\doxyref{Function} that indicates if, in a given state, the \_\-move is tabu or not. 
 
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em \_\-move}]A given \doxyref{moMove}{p.}{classmo_move}. \item[{\em \_\-solution}]A solution. \end{description}
+\item[{\em \_\-move}]A given \doxyref{mo\-Move}{p.}{classmo_move}. \item[{\em \_\-solution}]A solution. \end{description}
 \end{Desc}
 \begin{Desc}
 \item[Returns:]true or false. \end{Desc}
 
 
-Definition at line 69 of file moSimpleMoveTabuList.h.
+Definition at line 69 of file mo\-Simple\-Move\-Tabu\-List.h.
 
-References moSimpleMoveTabuList$<$ M $>$::tabuList.\index{moSimpleMoveTabuList@{moSimpleMoveTabuList}!add@{add}}
-\index{add@{add}!moSimpleMoveTabuList@{moSimpleMoveTabuList}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void {\bf moSimpleMoveTabuList}$<$ M $>$::add (const M \& {\em \_\-move}, const {\bf EOT} \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_simple_move_tabu_list_e6c0835fbfab2bdc63097cf2fd5328aa}
+References mo\-Simple\-Move\-Tabu\-List$<$ M $>$::tabu\-List.\index{moSimpleMoveTabuList@{mo\-Simple\-Move\-Tabu\-List}!add@{add}}
+\index{add@{add}!moSimpleMoveTabuList@{mo\-Simple\-Move\-Tabu\-List}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void \bf{mo\-Simple\-Move\-Tabu\-List}$<$ M $>$::add (const M \& {\em \_\-move}, const \bf{EOT} \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_simple_move_tabu_list_e6c0835fbfab2bdc63097cf2fd5328aa}
 
 
 Procedure to add a move in the tabu list. 
@@ -95,35 +97,35 @@ The two parameters have not to be modified so they are constant parameters.
 \end{Desc}
 
 
-Implements {\bf moTabuList$<$ M $>$} \doxyref{}{p.}{classmo_tabu_list_55204939b6d67b6d37b4af725d70cf6d}.
+Implements \bf{mo\-Tabu\-List$<$ M $>$} \doxyref{p.}{classmo_tabu_list_55204939b6d67b6d37b4af725d70cf6d}.
 
-Definition at line 86 of file moSimpleMoveTabuList.h.
+Definition at line 86 of file mo\-Simple\-Move\-Tabu\-List.h.
 
-References moSimpleMoveTabuList$<$ M $>$::memory\_\-maximum\_\-size, moSimpleMoveTabuList$<$ M $>$::memory\_\-size, moSimpleMoveTabuList$<$ M $>$::removeMove(), and moSimpleMoveTabuList$<$ M $>$::tabuList.\index{moSimpleMoveTabuList@{moSimpleMoveTabuList}!update@{update}}
-\index{update@{update}!moSimpleMoveTabuList@{moSimpleMoveTabuList}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void {\bf moSimpleMoveTabuList}$<$ M $>$::update ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_simple_move_tabu_list_96cffc8118456ed762b07b9fc0e0679f}
+References mo\-Simple\-Move\-Tabu\-List$<$ M $>$::memory\_\-maximum\_\-size, mo\-Simple\-Move\-Tabu\-List$<$ M $>$::memory\_\-size, mo\-Simple\-Move\-Tabu\-List$<$ M $>$::remove\-Move(), and mo\-Simple\-Move\-Tabu\-List$<$ M $>$::tabu\-List.\index{moSimpleMoveTabuList@{mo\-Simple\-Move\-Tabu\-List}!update@{update}}
+\index{update@{update}!moSimpleMoveTabuList@{mo\-Simple\-Move\-Tabu\-List}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void \bf{mo\-Simple\-Move\-Tabu\-List}$<$ M $>$::update ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_simple_move_tabu_list_96cffc8118456ed762b07b9fc0e0679f}
 
 
 Procedure that updates the tabu list content. 
 
 Generally, a counter associated to each saved move is decreased by one. 
 
-Implements {\bf moTabuList$<$ M $>$} \doxyref{}{p.}{classmo_tabu_list_a2e5d1132f064093c8ed57046405f5ca}.
+Implements \bf{mo\-Tabu\-List$<$ M $>$} \doxyref{p.}{classmo_tabu_list_a2e5d1132f064093c8ed57046405f5ca}.
 
-Definition at line 110 of file moSimpleMoveTabuList.h.\index{moSimpleMoveTabuList@{moSimpleMoveTabuList}!init@{init}}
-\index{init@{init}!moSimpleMoveTabuList@{moSimpleMoveTabuList}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void {\bf moSimpleMoveTabuList}$<$ M $>$::init ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_simple_move_tabu_list_b91ae9971be30769757d1ad92c6009dc}
+Definition at line 110 of file mo\-Simple\-Move\-Tabu\-List.h.\index{moSimpleMoveTabuList@{mo\-Simple\-Move\-Tabu\-List}!init@{init}}
+\index{init@{init}!moSimpleMoveTabuList@{mo\-Simple\-Move\-Tabu\-List}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void \bf{mo\-Simple\-Move\-Tabu\-List}$<$ M $>$::init ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_simple_move_tabu_list_b91ae9971be30769757d1ad92c6009dc}
 
 
 Procedure which initialises the tabu list. 
 
 Can be useful if the data structure needs to be allocated before being used. 
 
-Implements {\bf moTabuList$<$ M $>$} \doxyref{}{p.}{classmo_tabu_list_0a06c459d56e8e2b408a8f3c6aec4e57}.
+Implements \bf{mo\-Tabu\-List$<$ M $>$} \doxyref{p.}{classmo_tabu_list_0a06c459d56e8e2b408a8f3c6aec4e57}.
 
-Definition at line 115 of file moSimpleMoveTabuList.h.\index{moSimpleMoveTabuList@{moSimpleMoveTabuList}!removeMove@{removeMove}}
-\index{removeMove@{removeMove}!moSimpleMoveTabuList@{moSimpleMoveTabuList}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void {\bf moSimpleMoveTabuList}$<$ M $>$::removeMove (const M \& {\em \_\-move})\hspace{0.3cm}{\tt  [inline, private]}}\label{classmo_simple_move_tabu_list_922ac2e3c45cbb94698517265be95de5}
+Definition at line 115 of file mo\-Simple\-Move\-Tabu\-List.h.\index{moSimpleMoveTabuList@{mo\-Simple\-Move\-Tabu\-List}!removeMove@{removeMove}}
+\index{removeMove@{removeMove}!moSimpleMoveTabuList@{mo\-Simple\-Move\-Tabu\-List}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ void \bf{mo\-Simple\-Move\-Tabu\-List}$<$ M $>$::remove\-Move (const M \& {\em \_\-move})\hspace{0.3cm}{\tt  [inline, private]}}\label{classmo_simple_move_tabu_list_922ac2e3c45cbb94698517265be95de5}
 
 
 Procedure that removes a given move from the tabu list (if it is into, else do nothing). 
@@ -131,16 +133,16 @@ Procedure that removes a given move from the tabu list (if it is into, else do n
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em \_\-move}]A given \doxyref{moMove}{p.}{classmo_move}. \end{description}
+\item[{\em \_\-move}]A given \doxyref{mo\-Move}{p.}{classmo_move}. \end{description}
 \end{Desc}
 
 
-Definition at line 126 of file moSimpleMoveTabuList.h.
+Definition at line 126 of file mo\-Simple\-Move\-Tabu\-List.h.
 
-References moSimpleMoveTabuList$<$ M $>$::tabuList.
+References mo\-Simple\-Move\-Tabu\-List$<$ M $>$::tabu\-List.
 
-Referenced by moSimpleMoveTabuList$<$ M $>$::add().
+Referenced by mo\-Simple\-Move\-Tabu\-List$<$ M $>$::add().
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 
-moSimpleMoveTabuList.h\end{CompactItemize}
+mo\-Simple\-Move\-Tabu\-List.h\end{CompactItemize}

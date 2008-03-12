@@ -1,11 +1,11 @@
-\section{moSteadyFitSolContinue$<$ EOT $>$ Class Template Reference}
+\section{mo\-Steady\-Fit\-Sol\-Continue$<$ EOT $>$ Class Template Reference}
 \label{classmo_steady_fit_sol_continue}\index{moSteadyFitSolContinue@{moSteadyFitSolContinue}}
 One possible stopping criterion for a solution-based heuristic.  
 
 
-{\tt \#include $<$moSteadyFitSolContinue.h$>$}
+{\tt \#include $<$mo\-Steady\-Fit\-Sol\-Continue.h$>$}
 
-Inheritance diagram for moSteadyFitSolContinue$<$ EOT $>$::\begin{figure}[H]
+Inheritance diagram for mo\-Steady\-Fit\-Sol\-Continue$<$ EOT $>$::\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=4cm]{classmo_steady_fit_sol_continue}
@@ -14,54 +14,56 @@ Inheritance diagram for moSteadyFitSolContinue$<$ EOT $>$::\begin{figure}[H]
 \subsection*{Public Types}
 \begin{CompactItemize}
 \item 
-typedef EOT::Fitness {\bf Fitness}\label{classmo_steady_fit_sol_continue_c289721abbbafe50f6e3b8305dd31007}
+typedef EOT::Fitness \bf{Fitness}\label{classmo_steady_fit_sol_continue_c289721abbbafe50f6e3b8305dd31007}
 
 \begin{CompactList}\small\item\em Alias for the fitness. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-{\bf moSteadyFitSolContinue} (unsigned int \_\-maxNumberOfIterations, unsigned int \_\-maxNumberOfIterationWithoutImprovement)
+\bf{mo\-Steady\-Fit\-Sol\-Continue} (unsigned int \_\-max\-Number\-Of\-Iterations, unsigned int \_\-max\-Number\-Of\-Iteration\-Without\-Improvement)
 \begin{CompactList}\small\item\em Basic constructor. \item\end{CompactList}\item 
-bool {\bf operator()} (const EOT \&\_\-solution)
-\begin{CompactList}\small\item\em {\bf Function} that activates the stopping criterion. \item\end{CompactList}\item 
-void {\bf init} ()
+bool \bf{operator()} (const EOT \&\_\-solution)
+\begin{CompactList}\small\item\em \doxyref{Function} that activates the stopping criterion. \item\end{CompactList}\item 
+void \bf{init} ()
 \begin{CompactList}\small\item\em Procedure which allows to initialise the stuff needed. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Private Attributes}
 \begin{CompactItemize}
 \item 
-unsigned int {\bf maxNumberOfIterations}\label{classmo_steady_fit_sol_continue_36b43c2a252887ad027165ac32393fe8}
+unsigned int \bf{max\-Number\-Of\-Iterations}\label{classmo_steady_fit_sol_continue_36b43c2a252887ad027165ac32393fe8}
 
 \begin{CompactList}\small\item\em Maximum number of iterations before considering the fitness. \item\end{CompactList}\item 
-unsigned int {\bf maxNumberOfIterationsWithoutImprovement}\label{classmo_steady_fit_sol_continue_cde593c09f497a5fa66ff62732544f40}
+unsigned int \bf{max\-Number\-Of\-Iterations\-Without\-Improvement}\label{classmo_steady_fit_sol_continue_cde593c09f497a5fa66ff62732544f40}
 
 \begin{CompactList}\small\item\em Maximum number of iterations without improvement allowed. \item\end{CompactList}\item 
-bool {\bf maxNumberOfIterationsReached}\label{classmo_steady_fit_sol_continue_7d88c0eb91b2a12121ba1c3ae9139887}
+bool \bf{max\-Number\-Of\-Iterations\-Reached}\label{classmo_steady_fit_sol_continue_7d88c0eb91b2a12121ba1c3ae9139887}
 
-\begin{CompactList}\small\item\em Flag that indicates that the maxNumberIteration have been reached. \item\end{CompactList}\item 
-bool {\bf firstFitnessSaved}\label{classmo_steady_fit_sol_continue_025bf2789e470fdde989eee9121035c3}
+\begin{CompactList}\small\item\em Flag that indicates that the max\-Number\-Iteration have been reached. \item\end{CompactList}\item 
+bool \bf{first\-Fitness\-Saved}\label{classmo_steady_fit_sol_continue_025bf2789e470fdde989eee9121035c3}
 
 \begin{CompactList}\small\item\em Flag that this is the first time that the fitness is used. \item\end{CompactList}\item 
-{\bf Fitness} {\bf fitness}\label{classmo_steady_fit_sol_continue_a5c62e7049b36f6e71e92b559568c09e}
+\bf{Fitness} \bf{fitness}\label{classmo_steady_fit_sol_continue_a5c62e7049b36f6e71e92b559568c09e}
 
 \begin{CompactList}\small\item\em Current Fitness. \item\end{CompactList}\item 
-unsigned int {\bf counter}\label{classmo_steady_fit_sol_continue_245c9099a2c40dfc4f34b3ff216d13ce}
+unsigned int \bf{counter}\label{classmo_steady_fit_sol_continue_245c9099a2c40dfc4f34b3ff216d13ce}
 
 \begin{CompactList}\small\item\em The iteration couter. \item\end{CompactList}\end{CompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class EOT$>$ class moSteadyFitSolContinue$<$ EOT $>$}
+\subsubsection*{template$<$class EOT$>$ class mo\-Steady\-Fit\-Sol\-Continue$<$ EOT $>$}
 
 One possible stopping criterion for a solution-based heuristic. 
 
 The stop criterion corresponds to a maximum number of iterations without improvement (after a minimum number of iterations). 
 
-Definition at line 46 of file moSteadyFitSolContinue.h.
+
+
+Definition at line 46 of file mo\-Steady\-Fit\-Sol\-Continue.h.
 
 \subsection{Constructor \& Destructor Documentation}
-\index{moSteadyFitSolContinue@{moSteadyFitSolContinue}!moSteadyFitSolContinue@{moSteadyFitSolContinue}}
-\index{moSteadyFitSolContinue@{moSteadyFitSolContinue}!moSteadyFitSolContinue@{moSteadyFitSolContinue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf moSteadyFitSolContinue}$<$ EOT $>$::{\bf moSteadyFitSolContinue} (unsigned int {\em \_\-maxNumberOfIterations}, unsigned int {\em \_\-maxNumberOfIterationWithoutImprovement})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_steady_fit_sol_continue_c5e0e998b73e3a48ca3e87f4f816569b}
+\index{moSteadyFitSolContinue@{mo\-Steady\-Fit\-Sol\-Continue}!moSteadyFitSolContinue@{moSteadyFitSolContinue}}
+\index{moSteadyFitSolContinue@{moSteadyFitSolContinue}!moSteadyFitSolContinue@{mo\-Steady\-Fit\-Sol\-Continue}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ \bf{mo\-Steady\-Fit\-Sol\-Continue}$<$ EOT $>$::\bf{mo\-Steady\-Fit\-Sol\-Continue} (unsigned int {\em \_\-max\-Number\-Of\-Iterations}, unsigned int {\em \_\-max\-Number\-Of\-Iteration\-Without\-Improvement})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_steady_fit_sol_continue_c5e0e998b73e3a48ca3e87f4f816569b}
 
 
 Basic constructor. 
@@ -69,19 +71,19 @@ Basic constructor.
 \begin{Desc}
 \item[Parameters:]
 \begin{description}
-\item[{\em \_\-maxNumberOfIterations}]The number of iterations to reach before looking for the fitness. \item[{\em \_\-maxNumberOfIterationWithoutImprovement}]The number of iterations without fitness improvement to reach for stop. \end{description}
+\item[{\em \_\-max\-Number\-Of\-Iterations}]The number of iterations to reach before looking for the fitness. \item[{\em \_\-max\-Number\-Of\-Iteration\-Without\-Improvement}]The number of iterations without fitness improvement to reach for stop. \end{description}
 \end{Desc}
 
 
-Definition at line 58 of file moSteadyFitSolContinue.h.
+Definition at line 58 of file mo\-Steady\-Fit\-Sol\-Continue.h.
 
 \subsection{Member Function Documentation}
-\index{moSteadyFitSolContinue@{moSteadyFitSolContinue}!operator()@{operator()}}
-\index{operator()@{operator()}!moSteadyFitSolContinue@{moSteadyFitSolContinue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf moSteadyFitSolContinue}$<$ EOT $>$::operator() (const EOT \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_steady_fit_sol_continue_f7432bccb768d50a2fef248c2b174904}
+\index{moSteadyFitSolContinue@{mo\-Steady\-Fit\-Sol\-Continue}!operator()@{operator()}}
+\index{operator()@{operator()}!moSteadyFitSolContinue@{mo\-Steady\-Fit\-Sol\-Continue}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool \bf{mo\-Steady\-Fit\-Sol\-Continue}$<$ EOT $>$::operator() (const EOT \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_steady_fit_sol_continue_f7432bccb768d50a2fef248c2b174904}
 
 
-{\bf Function} that activates the stopping criterion. 
+\doxyref{Function} that activates the stopping criterion. 
 
 Indicates if the fitness has not been improved since a number of iterations (after a minimum of iterations).
 
@@ -94,25 +96,25 @@ Indicates if the fitness has not been improved since a number of iterations (aft
 \item[Returns:]true or false. \end{Desc}
 
 
-Implements {\bf eoUF$<$ const EOT \&, bool $>$}.
+Implements \bf{eo\-UF$<$ const EOT \&, bool $>$}.
 
-Definition at line 70 of file moSteadyFitSolContinue.h.
+Definition at line 70 of file mo\-Steady\-Fit\-Sol\-Continue.h.
 
-References moSteadyFitSolContinue$<$ EOT $>$::counter, moSteadyFitSolContinue$<$ EOT $>$::firstFitnessSaved, moSteadyFitSolContinue$<$ EOT $>$::fitness, moSteadyFitSolContinue$<$ EOT $>$::maxNumberOfIterations, moSteadyFitSolContinue$<$ EOT $>$::maxNumberOfIterationsReached, and moSteadyFitSolContinue$<$ EOT $>$::maxNumberOfIterationsWithoutImprovement.\index{moSteadyFitSolContinue@{moSteadyFitSolContinue}!init@{init}}
-\index{init@{init}!moSteadyFitSolContinue@{moSteadyFitSolContinue}}
-\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void {\bf moSteadyFitSolContinue}$<$ EOT $>$::init ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_steady_fit_sol_continue_87563493addc8e4b58982c55a67179b9}
+References mo\-Steady\-Fit\-Sol\-Continue$<$ EOT $>$::counter, mo\-Steady\-Fit\-Sol\-Continue$<$ EOT $>$::first\-Fitness\-Saved, mo\-Steady\-Fit\-Sol\-Continue$<$ EOT $>$::fitness, mo\-Steady\-Fit\-Sol\-Continue$<$ EOT $>$::max\-Number\-Of\-Iterations, mo\-Steady\-Fit\-Sol\-Continue$<$ EOT $>$::max\-Number\-Of\-Iterations\-Reached, and mo\-Steady\-Fit\-Sol\-Continue$<$ EOT $>$::max\-Number\-Of\-Iterations\-Without\-Improvement.\index{moSteadyFitSolContinue@{mo\-Steady\-Fit\-Sol\-Continue}!init@{init}}
+\index{init@{init}!moSteadyFitSolContinue@{mo\-Steady\-Fit\-Sol\-Continue}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \bf{mo\-Steady\-Fit\-Sol\-Continue}$<$ EOT $>$::init ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_steady_fit_sol_continue_87563493addc8e4b58982c55a67179b9}
 
 
 Procedure which allows to initialise the stuff needed. 
 
 It can be also used to reinitialize the counter all the needed things. 
 
-Implements {\bf moSolContinue$<$ EOT $>$} \doxyref{}{p.}{classmo_sol_continue_064dc966a210f4ffb9515be3f03ca4c7}.
+Implements \bf{mo\-Sol\-Continue$<$ EOT $>$} \doxyref{p.}{classmo_sol_continue_064dc966a210f4ffb9515be3f03ca4c7}.
 
-Definition at line 114 of file moSteadyFitSolContinue.h.
+Definition at line 114 of file mo\-Steady\-Fit\-Sol\-Continue.h.
 
-References moSteadyFitSolContinue$<$ EOT $>$::counter, moSteadyFitSolContinue$<$ EOT $>$::firstFitnessSaved, and moSteadyFitSolContinue$<$ EOT $>$::maxNumberOfIterationsReached.
+References mo\-Steady\-Fit\-Sol\-Continue$<$ EOT $>$::counter, mo\-Steady\-Fit\-Sol\-Continue$<$ EOT $>$::first\-Fitness\-Saved, and mo\-Steady\-Fit\-Sol\-Continue$<$ EOT $>$::max\-Number\-Of\-Iterations\-Reached.
 
 The documentation for this class was generated from the following file:\begin{CompactItemize}
 \item 
-moSteadyFitSolContinue.h\end{CompactItemize}
+mo\-Steady\-Fit\-Sol\-Continue.h\end{CompactItemize}
