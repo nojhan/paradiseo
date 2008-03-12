@@ -12,7 +12,12 @@ GFORGE=gforge.inria.fr
 WEB_SITE_DOC_PATH='/home/groups/paradiseo/htdocs/addon/test'
 MODULE_LIST="mo moeo peo"
  
-EO_CVS_GETTER="-z3 -d:pserver:anonymous@eodev.cvs.sourceforge.net:/cvsroot/eodev co -P eo"
+EO_REPOSITORY='eodev.cvs.sourceforge.net'
+EO_SHARED_MODULE_PATH='/cvsroot/eodev'
+EO_REPOSITORY_CONNECTION_MODE='pserver'
+EO_REPOSITORY_LOGIN='anonymous'
+EO_MODULE_NAME='eo'
+
 
 PID=$$
 #Date
@@ -44,12 +49,14 @@ VERSION_SYNTAX_ERROR=-3
 
 # argument
 USER_LOGIN=$1
-SVN_PATH=$2
+EO_CVS_TAG=$2
+SVN_PATH=$3
 
-if [ $# -lt 1 ]
+
+if [ $# -lt 3 ]
 then
 	echo
-        echo "=ERR=> Usage : $0 <user login> [paradiseo svn tag]"
+        echo "=ERR=> Usage : $0 <user login> <eo cvs tag> <paradiseo svn tag>"
         exit 1
 fi
 
@@ -82,9 +89,12 @@ then
 fi 
 echo "Been in $TEMP_ROOT_DIR/$TEMP_DIR_NAME" >> ${SPY} 2>> ${SPY}
 
+echo "cvs -z3  -d:$EO_REPOSITORY_CONNECTION_MODE:$EO_REPOSITORY_LOGIN@$EO_REPOSITORY:$EO_SHARED_MODULE_PATH checkout -r $EO_CVS_TAG $EO_MODULE_NAME"
+
+exit
 
 # get the eo sources
-cvs $EO_CVS_GETTER >> ${SPY} 2>> ${SPY}
+cvs -z3  -d:$EO_REPOSITORY_CONNECTION_MODE:$EO_REPOSITORY_LOGIN@$EO_REPOSITORY:$EO_SHARED_MODULE_PATH checkout -r$EO_CVS_TAG $EO_MODULE_NAME >> ${SPY} 2>> ${SPY}
 if [ ! "$?" = "0" ]
 then
 	echo ''
@@ -139,8 +149,8 @@ cmake .. -G"Unix Makefiles" >> ${SPY} 2>> ${SPY}
 if [ ! "$?" = "0" ]
 then
 	echo ''
-	echo "	Cannot go in run CMake: cmake .."
-	echo "	Cannot go in run CMake: cmake .." >> ${SPY} 2>> ${SPY}
+	echo "	Cannot run CMake: cmake .."
+	echo "	Cannot run CMake: cmake .." >> ${SPY} 2>> ${SPY}
 	echo -e ' \033[40m\033[1;33m### END ### \033[0m '
 	exit $GLOBAL_ERROR
 fi 
@@ -234,9 +244,9 @@ for MODULE in $MODULE_LIST; do
 	cmake .. -G"Unix Makefiles" -Dconfig=$TEMP_ROOT_DIR/$TEMP_DIR_NAME/install.cmake >> ${SPY} 2>> ${SPY}
 	if [ ! "$?" = "0" ]
 	then
-		echo ''
-		echo "	Cannot go in run CMake: cmake .. -Dconfig=$TEMP_ROOT_DIR/$TEMP_DIR_NAME/install.cmake"
-		echo "	Cannot go in run CMake: cmake .. -Dconfig=$TEMP_ROOT_DIR/$TEMP_DIR_NAME/install.cmake" >> ${SPY} 2>> ${SPY}
+		echo 
+		echo "	Cannot  run CMake: cmake .. -Dconfig=$TEMP_ROOT_DIR/$TEMP_DIR_NAME/install.cmake"
+		echo "	Cannot  run CMake: cmake .. -Dconfig=$TEMP_ROOT_DIR/$TEMP_DIR_NAME/install.cmake" >> ${SPY} 2>> ${SPY}
 		echo -e ' \033[40m\033[1;33m### END ### \033[0m '
 		exit $GLOBAL_ERROR
 	fi 
@@ -247,7 +257,7 @@ for MODULE in $MODULE_LIST; do
 	cd $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/build/doc >> ${SPY} 2>> ${SPY}
 	if [ ! "$?" = "0" ]
 	then
-		echo ''
+		echo
 		echo "	Cannot go in $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/build/doc"
 		echo " Cannot go in $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/build/doc" >> ${SPY} 2>> ${SPY}
 		echo -e ' \033[40m\033[1;33m### END ### \033[0m '
