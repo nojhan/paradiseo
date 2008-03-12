@@ -61,7 +61,7 @@ class solutionAlgo : public moAlgo <solution>
 public :
   bool operator () (solution & _solution)
   {
-    _solution.fitness(2);
+    solution solution(_solution);
     return true;
   }
 } ;
@@ -69,27 +69,49 @@ public :
 class solutionContinue : public moSolContinue<solution>
 {
 public :
+  solutionContinue(): counter(0)
+  {}
+
   bool operator () (const solution & _solution)
   {
     const solution sol(_solution);
     
+    if(counter<2)
+      {
+	counter++;
+	return true;
+      }
     return false;
   }
 
   void init()
   {}
+private :
+  unsigned int counter;
 } ;
 
 class solutionComparator : public moComparator<solution>
 {
 public :
+  
+  solutionComparator() : counter(0)
+  {}
+
   bool operator () (const solution & _solution1 , const solution & _solution2)
   {
     const solution sol1(_solution1);
     const solution sol2(_solution2);
 
+    if(counter<2)
+      {
+	counter++;
+	return false;
+      }
+
     return true;
   }
+private :
+  unsigned int counter;
 } ;
 
 class solutionPerturbation : public eoMonOp<solution>
@@ -97,7 +119,7 @@ class solutionPerturbation : public eoMonOp<solution>
 public :
   bool operator () (solution & _solution)
   {
-    solution sol(_solution);
+    _solution.fitness(2);
 
     return true;
   }
@@ -108,7 +130,7 @@ class solutionEval : public eoEvalFunc <solution>
 public :
   void operator () (solution & _solution)
   {
-    _solution.fitness(0);
+    solution solution(_solution);
   }
 } ;
 
@@ -117,30 +139,30 @@ public :
 int
 main()
 {
-  cout << "[ moILS                        ] ==> ";
+  std::string test_result;
+  int return_value;
+
+  solution solution;
   
-  solution sol;
-
-  sol.fitness(0);
-
   solutionAlgo algorithm;
   solutionContinue continu;
   solutionComparator comparator;
   solutionPerturbation perturbation;
   solutionEval eval;
-
+  
   moILS<testMove> ils(algorithm, continu, comparator, perturbation, eval);
 
-  ils(sol);
-
-  if(sol.fitness()!=2)
-    {
-      cout << "KO" << endl;
-      return EXIT_FAILURE;
-    }
+  cout << "[ moILS                        ] ==> ";
   
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  solution.fitness(0);
+
+  ils(solution);
+
+  test_result=((solution.fitness()!=2)?"KO":"OK");
+  return_value=((test_result.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

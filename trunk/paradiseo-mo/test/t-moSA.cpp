@@ -68,27 +68,50 @@ public :
 class testMoveIncrEval : public moMoveIncrEval <testMove>
 {
 public :
+  
+  testMoveIncrEval() : counter(0)
+  {}
+
   int operator () (const testMove & _move, const solution & _solution)
   {
     const testMove move(_move);
     const solution solution(_solution);
 
-    return 2;
+    if(counter==0)
+      {
+	counter++;
+	return 2;
+      }
+    return 0;
   }
+private :
+  unsigned int counter;
 } ;
 
 class solutionContinue : public moSolContinue<solution>
 {
 public :
+
+  solutionContinue() : counter(0)
+  {}
+  
   bool operator () (const solution & _solution)
   {
     const solution sol(_solution);
-    
+  
+    if(counter==0)
+      {
+	counter++;
+	return true;
+      }
+  
     return false;
   }
 
   void init()
   {}
+private :
+  unsigned int counter;
 } ;
 
 class testCooling : public moCoolingSchedule
@@ -108,7 +131,7 @@ class solutionEval : public eoEvalFunc <solution>
 public :
   void operator () (solution & _solution)
   {
-    _solution.fitness(2);
+    _solution.fitness(0);
   }
 } ;
 
@@ -118,30 +141,28 @@ public :
 int
 main()
 {
-  cout << "[ moSA                         ] ==> ";
+  std::string test_result;
+  int return_value;
+
+  solution solution;
   
-  solution sol;
-
-  sol.fitness(0);
-
   testRandMove rand;
   testMoveIncrEval incrEval;
   solutionContinue continu;
   testCooling cooling;
   solutionEval eval;
-
-  moSA<testMove> sa(rand, incrEval, continu, 10.0, cooling, eval);
-
-  sa(sol);
-
-  if(sol.fitness()!=2)
-    {
-      cout << "KO" << endl;
-      return EXIT_FAILURE;
-    }
   
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  moSA<testMove> sa(rand, incrEval, continu, 10.0, cooling, eval);
+  
+  cout << "[ moSA                         ] ==> ";
+  
+  sa(solution);
+
+  test_result=((solution.fitness()!=2)?"KO":"OK");
+  return_value=((test_result.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

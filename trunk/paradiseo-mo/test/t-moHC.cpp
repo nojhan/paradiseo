@@ -135,9 +135,10 @@ public :
 int
 main()
 {
-  cout << "[ moHC                         ] ==> ";
-  
-  solution sol;
+  std::string test_result;
+  int return_value;
+
+  solution solution;
 
   testMoveInit init;
   testMoveNext next;
@@ -147,16 +148,15 @@ main()
 
   moHC<testMove> hc(init, next, incrEval, select, eval);
 
-  hc(sol);
-
-  if(sol.fitness()!=2)
-    {
-      cout << "KO" << endl;
-      return EXIT_FAILURE;
-    }
+  cout << "[ moHC                         ] ==> ";
   
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  hc(solution);
+  
+  test_result=((solution.fitness()!=2)?"KO":"OK");
+  return_value=((test_result.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

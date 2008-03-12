@@ -61,6 +61,7 @@ class testMoveExplorer : public moMoveExpl<testMove>
 public :
   void operator () (const solution & _solution_1, solution & _solution_2)
   {
+    const solution solution(_solution_1);
     _solution_2.fitness(2);
   }
 };
@@ -94,26 +95,29 @@ public :
 int
 main()
 {
-  cout << "[ moTS_2                       ] ==> ";
-  
-  solution sol;
+  std::string test_result;
+  int return_value;
+
+  solution solution;
 
   testMoveExplorer explorer;
   solutionContinue continu;
   solutionEval eval;
+  testMove move;
 
   moTS<testMove> ts(explorer, continu, eval);
 
-  ts(sol);
+  cout << "[ moTS_2                       ] ==> ";
 
-  if(sol.fitness()!=2)
-    {
-      cout << "KO" << endl;
-      return EXIT_FAILURE;
-    }
-  
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  ts(solution);
+
+  move(solution);
+
+  test_result=((solution.fitness()!=2)?"KO":"OK");
+  return_value=((test_result.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

@@ -52,30 +52,50 @@ typedef EO<unsigned int> solution;
 int
 main()
 {
+  std::string test_result, test_1, test_2;
+  int return_value, value_1, value_2;
+
+
   unsigned int i;
-  solution sol;
 
   moNoFitImprSolContinue<solution> continu(10);
+  
+  solution solution;
 
   cout << "[ moNoFitImprSolContinue       ] ==> ";
 
-  sol.fitness(2);
+  continu.init();
 
-  i=0;
-  while( continu(sol) )
+  test_1="KO";
+
+  try
     {
-      i++;
+      continu(solution);
     }
-
-  if(i!=10)
+  catch(std::runtime_error e)
     {
-      cout << "KO" << endl;
-      cout << "i = " << i << endl;
-      return EXIT_FAILURE;
+      test_1="OK";
     }
   
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  value_1=((test_1.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  solution.fitness(0);
+
+  i=0;
+  while( continu(solution) )
+    {
+      i++;
+      solution.fitness(2);
+    }
+
+  test_2=((i!=11)?"KO":"OK");
+  value_2=((test_2.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+  
+  test_result=(((test_1.compare("OK")==0)&&(test_2.compare("OK")==0))?"OK":"KO");
+  return_value=(((value_1==EXIT_SUCCESS)&&(value_2==EXIT_SUCCESS))?EXIT_SUCCESS:EXIT_FAILURE);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

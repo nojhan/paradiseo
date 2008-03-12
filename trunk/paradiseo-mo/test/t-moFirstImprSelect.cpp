@@ -61,11 +61,13 @@ public :
 int
 main()
 {
+  std::string test_result;
+  int return_value;
   unsigned int i, fitness;
 
   moFirstImprSelect<testMove> selection;
 
-  solution sol;
+  solution solution;
   
   testMove move;
 
@@ -82,15 +84,13 @@ main()
 
   selection(move, fitness);
 
-  if(fitness!=11)
-    {
-      cout << "KO" << endl;
-      cout << "fitness = " << fitness << endl;
-      return EXIT_FAILURE;
-    }
-  
-  cout << "OK" << std::endl;
-  return EXIT_SUCCESS;
+  move(solution);
+
+  test_result=((fitness!=11)?"KO":"OK");
+  return_value=((test_result.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

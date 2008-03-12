@@ -52,6 +52,9 @@ typedef EO<unsigned int> solution;
 int
 main()
 {
+  std::string test_result, test_1, test_2;
+  int value_1, value_2, return_value;
+
   unsigned int i;
   solution sol;
 
@@ -65,12 +68,8 @@ main()
       i++;
     }
 
-  if(i!=9)
-    {
-      cout << "KO" << endl;
-      cout << "before init: i = " << i << endl;
-      return EXIT_FAILURE;
-    }
+  test_1=((i!=9)?"KO":"OK");
+  value_1=((test_1.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
 
   continu.init();
 
@@ -79,16 +78,15 @@ main()
     {
       i++;
     }
+
+  test_2=((i!=9)?"KO":"OK");
+  value_2=((test_2.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  test_result=(((test_1.compare("OK")==0)&&(test_2.compare("OK")==0))?"OK":"KO");
+  return_value=(((value_1==EXIT_SUCCESS)&&(value_2==EXIT_SUCCESS))?EXIT_SUCCESS:EXIT_FAILURE);
   
-  if(i!=9)
-    {
-      cout << "KO" << endl;
-      cout << "after init: i = " << i << endl;
-      return EXIT_FAILURE;
-    }
-  
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

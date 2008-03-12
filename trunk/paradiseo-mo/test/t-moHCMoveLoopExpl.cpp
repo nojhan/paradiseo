@@ -125,30 +125,46 @@ public :
 int
 main()
 {
-  cout << "[ moHCMoveLoopExpl             ] ==> ";
+  std::string test_result, test_1, test_2;
+  int return_value, value_1, value_2;
   
-  solution sol1, sol2;
-
-  sol1.fitness(0);
-  sol2.fitness(0);
+  solution solution_1, solution_2;
 
   testMoveInit init;
   testMoveNext next;
   testMoveIncrEval incrEval;
   testMoveSelect select;
-
-  moHCMoveLoopExpl<testMove> explorer(init, next, incrEval, select);
-
-  explorer(sol1, sol2);
-
-  if(sol2.fitness()!=2)
-    {
-      cout << "KO" << endl;
-      return EXIT_FAILURE;
-    }
   
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  moHCMoveLoopExpl<testMove> explorer(init, next, incrEval, select);
+  
+  cout << "[ moHCMoveLoopExpl             ] ==> ";
+  
+  test_1="KO";
+  
+  try
+    {
+      explorer(solution_1, solution_2);
+    }
+  catch(std::runtime_error e)
+    {
+      test_1="OK";
+    }
+
+  value_1=((test_1.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  solution_1.fitness(0);
+  solution_2.fitness(0);
+
+  explorer(solution_1, solution_2);
+
+  test_2=((solution_2.fitness()!=2)?"KO":"OK");
+  value_2=((test_2.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  test_result=(((test_1.compare("OK")==0)&&(test_2.compare("OK")==0))?"OK":"KO");
+  return_value=(((value_1==EXIT_SUCCESS)&&(value_2==EXIT_SUCCESS))?EXIT_SUCCESS:EXIT_FAILURE);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

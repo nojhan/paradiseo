@@ -132,15 +132,25 @@ public :
 class solutionContinue : public moSolContinue<solution>
 {
 public :
+  solutionContinue(): counter(0)
+  {}
+  
   bool operator () (const solution & _solution)
   {
     const solution sol(_solution);
     
+    if(counter==0)
+      {
+	counter++;
+	return true;
+      }
     return false;
   }
 
   void init()
   {}
+private :
+  unsigned int counter;
 } ;
 
 class solutionComparator : public moComparator<solution>
@@ -160,7 +170,7 @@ class solutionPerturbation : public eoMonOp<solution>
 public :
   bool operator () (solution & _solution)
   {
-    solution sol(_solution);
+    _solution.fitness(2);
 
     return true;
   }
@@ -171,34 +181,31 @@ public :
 int
 main()
 {
-  cout << "[ moILS_HC                     ] ==> ";
-  
-  solution sol;
+  std::string test_result;
+  int return_value;
 
+  solution solution;
+  
   testMoveInit init;
   testMoveNext next;
   testMoveIncrEval incrEval;
   testMoveSelect select;
   solutionEval eval;
-
-  moHC<testMove> hc(init, next, incrEval, select, eval);
-
   solutionContinue continu;
   solutionComparator comparator;
   solutionPerturbation perturbation;
 
-  moILS<testMove> ils(hc, continu, comparator, perturbation, eval);
-
-  ils(sol);
-
-  if(sol.fitness()!=2)
-    {
-      cout << "KO" << endl;
-      return EXIT_FAILURE;
-    }
+  moILS<testMove> ils(init, next, incrEval, select, continu, comparator, perturbation, eval);
   
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  cout << "[ moILS_HC                     ] ==> ";
+  
+  ils(solution);
+
+  test_result=((solution.fitness()!=2)?"KO":"OK");
+  return_value=((test_result.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

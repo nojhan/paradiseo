@@ -70,10 +70,13 @@ public :
 int
 main()
 {
+  std::string test_result, test_1, test_2;
+  int value_1, value_2, return_value;
+
   unsigned int i;
 
   testMove move;
-  solution sol;
+  solution solution;
 
   testRandMove rand;
   
@@ -82,33 +85,30 @@ main()
   cout << "[ moItRandNextMove             ] ==> ";
 
   i=0;
-  while( next(move, sol) && i<15 )
+  while( next(move, solution) && i<15 )
     {
       i++;
     }
 
-  if(i!=11)
-    {
-      cout << "KO" << endl;
-      cout << "First time, i = " << i << endl;
-      return EXIT_FAILURE;
-    }
+  test_1=((i!=11)?"KO":"OK");
+  value_1=((test_1.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
 
   i=0;
-  while( next(move, sol) && i<15 )
+  while( next(move, solution) && i<15 )
     {
       i++;
     }
 
-  if(i!=11)
-    {
-      cout << "KO" << endl;
-      cout << "Second time, i = " << i << endl;
-      return EXIT_FAILURE;
-    }
-  
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  move(solution);
+
+  test_2=((i!=11)?"KO":"OK");
+  value_2=((test_2.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  test_result=(((test_1.compare("OK")==0)&&(test_2.compare("OK")==0))?"OK":"KO");
+  return_value=(((value_1==EXIT_SUCCESS)&&(value_2==EXIT_SUCCESS))?EXIT_SUCCESS:EXIT_FAILURE);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

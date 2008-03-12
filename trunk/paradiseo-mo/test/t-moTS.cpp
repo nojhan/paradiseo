@@ -159,11 +159,10 @@ public :
 int
 main()
 {
-  cout << "[ moTS                         ] ==> ";
-  
-  solution sol;
+  std::string test_result;
+  int return_value;
 
-  sol.fitness(0);
+  solution solution;
 
   testMoveInit init;
   testMoveNext next;
@@ -174,17 +173,16 @@ main()
   solutionEval eval;
 
   moTS<testMove> ts(init, next, incrEval, tabuList, aspirCrit, continu, eval);
-
-  ts(sol);
-
-  if(sol.fitness()!=2)
-    {
-      cout << "KO" << endl;
-      return EXIT_FAILURE;
-    }
   
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  cout << "[ moTS                         ] ==> ";
+
+  ts(solution);
+
+  test_result=((solution.fitness()!=2)?"KO":"OK");
+  return_value=((test_result.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

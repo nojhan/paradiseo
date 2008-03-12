@@ -50,6 +50,9 @@ typedef EO<unsigned int> solution;
 class testMove : public moMove <solution>
 {
 public :
+  testMove(unsigned int _value): value(_value)
+  {}
+
   void operator () (solution & _solution)
   {
     _solution=_solution;
@@ -57,11 +60,10 @@ public :
 
   bool operator == (const testMove & _move)
   {
-    testMove move;
-    move=(testMove)_move;
-
-    return true;
+    return (value==_move.value);
   }
+private :
+  unsigned int value;
 } ;
 
 //-----------------------------------------------------------------------------
@@ -69,24 +71,34 @@ public :
 int
 main()
 {
+  std::string test_result;
+  int return_value;
+
   moSimpleMoveTabuList<testMove> tabuList(1);
 
-  solution sol;
+  solution solution;
   
-  testMove move;
+  testMove move_1(1), move_2(2);
 
   cout << "[ moSimpleMoveTabuList         ] ==> ";
 
-  tabuList.add(move, sol);
+  tabuList.init();
+  tabuList.update();
 
-  if( !tabuList(move, sol) )
-    {
-      cout << "KO" << endl;
-      return EXIT_FAILURE;
-    }
-  
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  tabuList.add(move_1, solution);
+
+  tabuList(move_2, solution); 
+
+  move_1(solution);
+
+  tabuList.add(move_2, solution);
+  tabuList.add(move_2, solution);
+
+  test_result=((tabuList(move_1, solution))?"KO":"OK");
+  return_value=((test_result.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

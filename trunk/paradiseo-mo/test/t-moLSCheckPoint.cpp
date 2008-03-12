@@ -72,43 +72,45 @@ class testBF : public eoBF<const testMove & , const testMove::EOType &, void>
 int
 main()
 {
+  std::string test_result, test_1, test_2;
+  int value_1, value_2, return_value;
+
   unsigned int i;
   std::string result;
 
   testBF test;
   moLSCheckPoint<testMove> checkpoint;
 
-  solution sol;
+  solution solution;
   
   testMove move;
+
+  std::ifstream is;
 
   cout << "[ moLSCheckPoint               ] ==> ";
 
   i=0;
 
   checkpoint.add(test);
-  checkpoint(move, sol);
+  checkpoint(move, solution);
 
-  std::ifstream is("test.txt");
+  move(solution);
 
-  if(!is.is_open())
-    {
-      cout << "KO" << endl;
-      cout << "test.txt does not exist" << endl;
-      return EXIT_FAILURE;
-    }
+  is.open("test.txt");
+  
+  test_1=((!is.is_open())?"KO":"OK");
+  value_1=((test_1.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
 
   is >> result;
 
-  if(result.compare("OK")!=0)
-    {
-      cout << "KO" << endl;
-      cout << "result = " << result << endl;
-      return EXIT_FAILURE;
-    }
+  test_2=((result.compare("OK")!=0)?"KO":"OK");
+  value_2=((test_2.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  test_result=(((test_1.compare("OK")==0)&&(test_2.compare("OK")==0))?"OK":"KO");
+  return_value=(((value_1==EXIT_SUCCESS)&&(value_2==EXIT_SUCCESS))?EXIT_SUCCESS:EXIT_FAILURE);
   
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

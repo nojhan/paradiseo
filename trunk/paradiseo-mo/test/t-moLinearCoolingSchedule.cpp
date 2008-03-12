@@ -51,14 +51,17 @@ using std::endl;
 int
 main()
 {
+  std::string test_result;
+  int return_value;
+
   unsigned int i;
   double temperature;
 
   moLinearCoolingSchedule coolingSchedule( 1.0, 0.5 );
 
-  temperature=2.0;
-
   cout << "[ moLinearCoolingSchedule      ] ==> ";
+
+  temperature=2.0;
 
   i=0;
   while( coolingSchedule(temperature) )
@@ -66,15 +69,11 @@ main()
       i++;
     }
 
-  if(i!=1)
-    {
-      cout << "KO" << endl;
-      cout << "i = " << i << endl;
-      return EXIT_FAILURE;
-    }
-  
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  test_result=((i!=1)?"KO":"OK");
+  return_value=((test_result.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

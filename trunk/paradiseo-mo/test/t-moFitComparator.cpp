@@ -52,6 +52,9 @@ typedef EO<unsigned int> solution;
 int
 main()
 {
+  std::string test_result;
+  int return_value;
+
   solution sol1, sol2;
 
   moFitComparator<solution> comparator;
@@ -61,14 +64,11 @@ main()
 
   cout << "[ moFitComparator              ] ==> ";
 
-  if( comparator(sol1,sol2) )
-    {
-      cout << "KO" << endl;
-      return EXIT_FAILURE;
-    }
-  
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  test_result=((comparator(sol1,sol2))?"KO":"OK");
+  return_value=((test_result.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

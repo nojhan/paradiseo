@@ -61,20 +61,25 @@ public :
 int
 main()
 {
+  std::string test_result;
+  int return_value;
+
   unsigned int i;
   moNoAspirCrit<testMove> aspirCriterion;
   testMove move;
+  solution solution;
 
   cout << "[ moNoAspirCrit                ] ==> ";
-
-  if( aspirCriterion(move, i) ) 
-    {
-      cout << "KO" << endl;
-      return EXIT_FAILURE;
-    }
   
-  cout << "OK" << std::endl;
-  return EXIT_SUCCESS;
+  move(solution);
+
+  aspirCriterion.init();
+
+  test_result=((aspirCriterion(move, i))?"KO":"OK");
+  return_value=((test_result.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

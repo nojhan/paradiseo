@@ -81,7 +81,7 @@ class moSteadyFitSolContinue:public moSolContinue < EOT >
     
     if (_solution.invalid())
       {
-	return true;
+	throw std::runtime_error("[moSteadyFitSolContinue.h]: The current solution has not been evaluated.");
       }
     
     if (firstFitnessSaved)

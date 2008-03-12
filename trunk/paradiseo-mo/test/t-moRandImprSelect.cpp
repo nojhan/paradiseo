@@ -61,43 +61,55 @@ public :
 int
 main()
 {
-  unsigned int i, fitness;
+  std::string test_result, test_1, test_2, test_3;
+  int value_1, value_2, value_3, return_value;
+  
+  unsigned int i;
 
   moRandImprSelect<testMove> selection;
 
-  solution sol;
+  solution solution;
   
   testMove move;
 
   cout << "[ moRandImprSelect             ] ==> ";
 
-  i=fitness=0;
+  selection.init(0);
 
-  selection.init(5);
+  test_1="KO";
+  
+  i=0;
 
-  for(i=1;i<10;i++)
+  try
     {
-      if(! selection.update(move, i) )
-	{
-	  cout << "KO" << endl;
-	  cout << "update is false" << endl;
-	  return EXIT_FAILURE;
-	}
+      selection(move, i);
     }
-
-  for(i=0;i<10;i++)
+  catch(std::runtime_error e)
     {
-      selection(move, fitness);
-      if(fitness<=5)
-	{
-	  cout << "KO" << endl;
-	  cout << "fitness = " << fitness << endl;
-	  return EXIT_FAILURE;
-	}
+      test_1="OK";
     }
   
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  value_1=((test_1.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  move(solution);
+
+  test_2=((!selection.update(move, i))?"KO":"OK");
+  value_2=((test_2.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+  
+  selection(move, i);
+
+  i++;
+
+  test_3=((!selection.update(move, i))?"KO":"OK");
+  value_3=((test_3.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  selection(move, i);
+
+  test_result=(((test_1.compare("OK")==0)&&(test_2.compare("OK")==0)&&(test_3.compare("OK")==0))?"OK":"KO");
+  return_value=(((value_1==EXIT_SUCCESS)&&(value_2==EXIT_SUCCESS)&&(value_3==EXIT_SUCCESS))?EXIT_SUCCESS:EXIT_FAILURE);
+  
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

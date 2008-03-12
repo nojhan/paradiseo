@@ -143,6 +143,7 @@ class moSimpleSolutionTabuList: public moTabuList < M >
     if (it!=tabuList.end())
       {
 	tabuList.erase(it);
+	memory_size--;
       }
   }
 

@@ -52,33 +52,57 @@ typedef EO<unsigned int> solution;
 int
 main()
 {
+  std::string test_result, test_1, test_2;
+  int return_value, value_1, value_2;
+
   unsigned int i;
-  solution sol;
+  solution solution_1, solution_2;
 
   moSteadyFitSolContinue<solution> continu(10,10);
 
   cout << "[ moSteadyFitSolContinue       ] ==> ";
 
+  continu.init();
+
   i=0;
-  sol.fitness(i);
-  while( continu(sol) && i<50)
+  solution_1.fitness(i);
+  while( continu(solution_1) && i<50)
     {
       i++;
+
       if(i<11)
 	{
-	  sol.fitness(i);
+	  solution_1.fitness(i);
+	}
+      
+      if(i==11)
+	{
+	  test_1="KO";
+	  try
+	    {
+	      continu(solution_2);
+	    }
+	  catch(std::runtime_error e)
+	    {
+	      test_1="OK";
+	    }
+	  value_1=((test_1.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+	}
+      
+      if(i==15)
+	{
+	  solution_1.fitness(i);
 	}
     }
 
-  if(i!=20)
-    {
-      cout << "KO" << endl;
-      cout << "i = " << i << endl;
-      return EXIT_FAILURE;
-    }
-  
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  test_2=((i!=25)?"KO":"OK");
+  value_2=((test_2.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  test_result=(((test_1.compare("OK")==0)&&(test_2.compare("OK")==0))?"OK":"KO");
+  return_value=(((value_1==EXIT_SUCCESS)&&(value_2==EXIT_SUCCESS))?EXIT_SUCCESS:EXIT_FAILURE);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

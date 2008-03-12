@@ -133,10 +133,10 @@ class moILS:public moAlgo < typename M::EOType >
 	 double _initial_temperature, moCoolingSchedule & _cooling_schedule, moSolContinue <EOT> & _continue, 
 	 moComparator<EOT> & _acceptance_criterion, eoMonOp<EOT> & _perturbation, eoEvalFunc<EOT> & _full_evaluation):
   algorithm(new moSA<M>(_random_move_generator, _incremental_evaluation, _moSA_continue, _initial_temperature,
-		     _cooling_schedule, _full_evaluation) ),
+			_cooling_schedule, _full_evaluation) ),
     continu(_continue), acceptance_criterion(_acceptance_criterion), perturbation(_perturbation), full_evaluation(_full_evaluation),
     algorithm_memory_allocation(true)
-  {}
+      {}
 
   //! Destructor
   ~moILS()

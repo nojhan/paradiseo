@@ -45,48 +45,62 @@ using std::endl;
 
 //-----------------------------------------------------------------------------
 
-typedef EO<unsigned int> solution;
+class solution : public EO<unsigned int>
+{
+public:
+  solution(unsigned int _value): value(_value)
+  {}
+
+  bool operator == (const solution & _solution)
+  {
+    return (value==_solution.value);
+  }
+
+private:
+  unsigned int value;
+};
 
 class testMove : public moMove <solution>
 {
 public :
   void operator () (solution & _solution)
   {
-    _solution=_solution;
+    solution solution(_solution);
   }
-
-  bool operator == (const testMove & _move)
-  {
-    testMove move;
-    move=(testMove)_move;
-
-    return true;
-  }
-} ;
+};
 
 //-----------------------------------------------------------------------------
 
 int
 main()
 {
-  moSimpleMoveTabuList<testMove> tabuList(1);
+  std::string test_result;
+  int return_value;
 
-  solution sol;
+  moSimpleSolutionTabuList<testMove> tabuList(1);
+
+  solution solution_1(1), solution_2(2);
   
   testMove move;
 
   cout << "[ moSimpleSolutionTabuList     ] ==> ";
 
-  tabuList.add(move, sol);
+  tabuList.init();
+  tabuList.update();
 
-  if( !tabuList(move, sol) )
-    {
-      cout << "KO" << endl;
-      return EXIT_FAILURE;
-    }
-  
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  tabuList.add(move, solution_1);
+
+  move(solution_1);
+
+  tabuList.add(move, solution_2);
+
+  tabuList.add(move, solution_2);
+
+  test_result=((tabuList(move, solution_1))?"KO":"OK");
+  return_value=((test_result.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

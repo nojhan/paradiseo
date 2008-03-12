@@ -51,6 +51,9 @@ using std::endl;
 int
 main()
 {
+  int return_value;
+  std::string test_result;
+
   unsigned int i;
   double temperature;
 
@@ -66,15 +69,11 @@ main()
       i++;
     }
 
-  if(i!=1)
-    {
-      cout << "KO" << endl;
-      cout << "i = " << i << endl;
-      return EXIT_FAILURE;
-    }
-  
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  test_result=((i!=1)?"KO":"OK");
+  return_value=((test_result.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

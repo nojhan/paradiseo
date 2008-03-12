@@ -61,6 +61,11 @@ public :
 int
 main()
 {
+  std::string test_result, test_1, test_2;
+  int return_value, value_1, value_2;
+
+  solution solution;
+
   unsigned int i;
 
   moImprBestFitAspirCrit<testMove> aspirCriterion;
@@ -77,12 +82,8 @@ main()
       i++;
     }
 
-  if(i!=10)
-    {
-      cout << "KO" << endl;
-      cout << "before init, i = " << i << endl;
-      return EXIT_FAILURE;
-    }
+  test_1=((i!=10)?"KO":"OK");
+  value_1=((test_1.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
 
   aspirCriterion.init();
   aspirCriterion(move, i);
@@ -93,15 +94,16 @@ main()
       i++;
     }
 
-  if(i!=10)
-    {
-      cout << "KO" << endl;
-      cout << "after init, i = " << i << endl;
-      return EXIT_FAILURE;
-    }
-  
-  cout << "OK" << std::endl;
-  return EXIT_SUCCESS;
+  move(solution);
+
+  test_2=((i!=10)?"KO":"OK");
+  value_2=((test_2.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  test_result=(((test_1.compare("OK")==0)&&(test_2.compare("OK")==0))?"OK":"KO");
+  return_value=(((value_1==EXIT_SUCCESS)&&(value_2==EXIT_SUCCESS))?EXIT_SUCCESS:EXIT_FAILURE);
+
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------

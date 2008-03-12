@@ -61,11 +61,14 @@ public :
 int
 main()
 {
+  std::string test_result, test_1, test_2;
+  int return_value, value_1, value_2;
+
   unsigned int i, fitness;
 
   moBestImprSelect<testMove> selection;
 
-  solution sol;
+  solution solution;
   
   testMove move;
 
@@ -75,27 +78,31 @@ main()
 
   selection.init(0);
 
-  for(i=1;i<10;i++)
+  test_1="KO";
+
+  try
     {
-      if(! selection.update(move, i) )
-	{
-	  cout << "KO" << endl;
-	  cout << "update is false" << endl;
-	  return EXIT_FAILURE;
-	}
+      selection(move, fitness);
     }
+  catch(std::runtime_error e)
+    {
+      test_1="OK";
+    }
+  
+  value_1=((test_1.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
+
+  test_2=((!selection.update(move, i))?"KO":"OK");
+  value_2=((test_2.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
 
   selection(move, fitness);
 
-  if(fitness!=9)
-    {
-      cout << "KO" << endl;
-      cout << "fitness = " << fitness << endl;
-      return EXIT_FAILURE;
-    }
+  move(solution);
+
+  test_result=(((test_1.compare("OK")==0)&&(test_2.compare("OK")==0))?"OK":"KO");
+  return_value=(((value_1==EXIT_SUCCESS)&&(value_2==EXIT_SUCCESS))?EXIT_SUCCESS:EXIT_FAILURE);
   
-  cout << "OK" << endl;
-  return EXIT_SUCCESS;
+  cout << test_result << endl;
+  return return_value;
 }
 
 //-----------------------------------------------------------------------------
