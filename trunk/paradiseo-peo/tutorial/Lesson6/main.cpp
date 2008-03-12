@@ -18,82 +18,89 @@
 #define MUT_RATE 0.01
 
 
-struct CoSearch 
+struct CoSearch
+  {
+
+    CoSearch(
+      eoPop< Route >& A, eoPop< Route >& B,
+      peoAsyncDataTransfer& asyncTransferA, peoAsyncDataTransfer& asyncTransferB
+    )
+        : transferA( A ), transferB( B ),
+        asyncDataTransferA( asyncTransferA ), asyncDataTransferB( asyncTransferB )
+    {
+    }
+
+    void operator()()
+    {
+
+      for ( unsigned int index = 0; index < 100; index++ )
+        {
+
+          asyncDataTransferA();
+          asyncDataTransferB();
+
+          eoPop< Route > intermed;
+          intermed = transferA;
+          transferA = transferB;
+          transferB = intermed;
+        }
+    }
+
+    eoPop< Route >& transferA;
+    eoPop< Route >& transferB;
+
+    peoAsyncDataTransfer& asyncDataTransferA;
+    peoAsyncDataTransfer& asyncDataTransferB;
+  };
+
+
+struct PushBackAggregation
+  {
+
+    void operator()( eoPop< Route >& A, eoPop< Route >& B )
+    {
+
+      for ( unsigned int index = 0; index < B.size(); index++ )
+        {
+
+          A.push_back( B[ index ] );
+        }
+    }
+  };
+
+int main( int __argc, char** __argv )
 {
-
-  CoSearch( 
-	   eoPop< Route >& A, eoPop< Route >& B, 
-	   peoAsyncDataTransfer& asyncTransferA, peoAsyncDataTransfer& asyncTransferB 
-	    )
-    : transferA( A ), transferB( B ),
-      asyncDataTransferA( asyncTransferA ), asyncDataTransferB( asyncTransferB ) {
-  }
-  
-  void operator()() {
-
-    for ( unsigned int index = 0; index < 100; index++ ) {
-
-      asyncDataTransferA();
-      asyncDataTransferB();
-
-      eoPop< Route > intermed;
-      intermed = transferA;
-      transferA = transferB;
-      transferB = intermed;
-    }
-  }
-
-  eoPop< Route >& transferA;
-  eoPop< Route >& transferB;
-  
-  peoAsyncDataTransfer& asyncDataTransferA;
-  peoAsyncDataTransfer& asyncDataTransferB;
-};
-
-
-struct PushBackAggregation {
-
-  void operator()( eoPop< Route >& A, eoPop< Route >& B ) {
-
-    for ( unsigned int index = 0; index < B.size(); index++ ) {
-
-      A.push_back( B[ index ] );
-    }
-  }
-};
-
-int main( int __argc, char** __argv ) {
 
   peo :: init( __argc, __argv );
 
   loadParameters( __argc, __argv );
-  
-  RouteInit route_init;	
-  RouteEval full_eval;	
+
+  RouteInit route_init;
+  RouteEval full_eval;
   OrderXover crossover;
-  CitySwap mutation;	
-  eoPop< Route > population( POP_SIZE, route_init );	
-  eoGenContinue< Route > eaCont( NUM_GEN );		
+  CitySwap mutation;
+  eoPop< Route > population( POP_SIZE, route_init );
+  eoGenContinue< Route > eaCont( NUM_GEN );
   eoCheckPoint< Route > eaCheckpointContinue( eaCont );
-  eoRankingSelect< Route > selectionStrategy;	
+  eoRankingSelect< Route > selectionStrategy;
   eoSelectNumber< Route > eaSelect( selectionStrategy, POP_SIZE );
   eoSGATransform< Route > transformA( crossover, CROSS_RATE, mutation, MUT_RATE );
-  eoPlusReplacement< Route > eaReplace;			
+  eoPlusReplacement< Route > eaReplace;
   RingTopology ring;
-  eoPlusReplacement< Route > transferReplace;			
+  eoPlusReplacement< Route > transferReplace;
   peoAsyncDataTransfer asyncEAEndPoint( population, population, ring, transferReplace );
   eaCheckpointContinue.add( asyncEAEndPoint );
   eoEasyEA< Route > eaAlg( eaCheckpointContinue, full_eval, eaSelect, transformA, eaReplace );
   peoWrapper paraEAAlg( eaAlg, population );
   asyncEAEndPoint.setOwner( paraEAAlg );
 
-  eoPop< Route > populationB( POP_SIZE, route_init );	
-  eoGenContinue< Route > eaContB( NUM_GEN );		
-  eoCheckPoint< Route > eaCheckpointContinueB( eaContB );	
+  eoPop< Route > populationB( POP_SIZE, route_init );
+  eoGenContinue< Route > eaContB( NUM_GEN );
+  eoCheckPoint< Route > eaCheckpointContinueB( eaContB );
   eoRankingSelect< Route > selectionStrategyB;
   eoSelectNumber< Route > eaSelectB( selectionStrategyB, POP_SIZE );
   RingTopology ringB;
-  eoPlusReplacement< Route > transferReplaceB;			
+  eoPlusReplacement< Route > transferReplaceB;
   peoAsyncDataTransfer asyncEAEndPointB( populationB, populationB, ringB, transferReplaceB );
   eaCheckpointContinueB.add( asyncEAEndPointB );
   eoSGATransform< Route > transformB	( crossover, CROSS_RATE, mutation, MUT_RATE );
@@ -107,7 +114,7 @@ int main( int __argc, char** __argv ) {
 
   peoAsyncDataTransfer coSearchEndPointA( A, A, ring, pushBackA );
   peoAsyncDataTransfer coSearchEndPointB( B, B, ringB, pushBackB );
-  
+
   CoSearch coSearch( A, B, coSearchEndPointA, coSearchEndPointB );
   peoWrapper paraCoSearch( coSearch );
   coSearchEndPointA.setOwner( paraCoSearch );

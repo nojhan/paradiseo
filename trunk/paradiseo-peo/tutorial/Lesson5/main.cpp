@@ -11,118 +11,143 @@
 #define MIGRATIONS_AT_N_GENERATIONS 5
 #define NUMBER_OF_MIGRANTS 10
 
-struct Representation : public eoVector< eoMinimizingFitness, double > {
+struct Representation : public eoVector< eoMinimizingFitness, double >
+  {
 
-  Representation() { resize( SIZE ); }
-};
-
-struct Init : public eoInit< Representation > {
-
-  void operator()( Representation& rep ) {
-
-    for ( int i = 0; i < SIZE; i++ ) {
-      rep[ i ] = (rng.uniform() - 0.5) * DEF_DOMAIN;
+    Representation()
+    {
+      resize( SIZE );
     }
-  }
-};
+  };
 
-struct Eval : public eoEvalFunc< Representation > {
+struct Init : public eoInit< Representation >
+  {
 
-  void operator()( Representation& rep ) {
+    void operator()( Representation& rep )
+    {
 
-    double fitnessValue = 0.0;
-    for ( int i = 0; i < SIZE; i++ ) {
-
-      fitnessValue += pow( rep[ i ], 2.0 );
+      for ( int i = 0; i < SIZE; i++ )
+        {
+          rep[ i ] = (rng.uniform() - 0.5) * DEF_DOMAIN;
+        }
     }
+  };
 
-    rep.fitness( fitnessValue );
-  }
-};
+struct Eval : public eoEvalFunc< Representation >
+  {
 
-struct MutationOp : public eoMonOp< Representation > {
+    void operator()( Representation& rep )
+    {
 
-  bool operator()( Representation& rep ) {
+      double fitnessValue = 0.0;
+      for ( int i = 0; i < SIZE; i++ )
+        {
 
-    unsigned int pos = (unsigned int)( rng.uniform() * SIZE );
-    rep[ pos ] = (rng.uniform() - 0.5) * DEF_DOMAIN;
+          fitnessValue += pow( rep[ i ], 2.0 );
+        }
 
-    rep.invalidate();
-
-    return true;
-  }
-};
-
-struct XoverOp : public eoQuadOp< Representation > {
-
-  bool operator()( Representation& repA, Representation& repB ) {
-
-    static Representation offA, offB;
-    double lambda = rng.uniform();
-
-    for ( int i = 0; i < SIZE; i++ ) {
-
-      offA[ i ] = lambda * repA[ i ] + ( 1.0 - lambda ) * repB[ i ];
-      offB[ i ] = lambda * repB[ i ] + ( 1.0 - lambda ) * repA[ i ];
+      rep.fitness( fitnessValue );
     }
- 
-    repA = offA; repB = offB;
+  };
 
-    repA.invalidate();
-    repB.invalidate();
-   
-    return true;
-  }
-};
+struct MutationOp : public eoMonOp< Representation >
+  {
+
+    bool operator()( Representation& rep )
+    {
+
+      unsigned int pos = (unsigned int)( rng.uniform() * SIZE );
+      rep[ pos ] = (rng.uniform() - 0.5) * DEF_DOMAIN;
+
+      rep.invalidate();
+
+      return true;
+    }
+  };
+
+struct XoverOp : public eoQuadOp< Representation >
+  {
+
+    bool operator()( Representation& repA, Representation& repB )
+    {
+
+      static Representation offA, offB;
+      double lambda = rng.uniform();
+
+      for ( int i = 0; i < SIZE; i++ )
+        {
+
+          offA[ i ] = lambda * repA[ i ] + ( 1.0 - lambda ) * repB[ i ];
+          offB[ i ] = lambda * repB[ i ] + ( 1.0 - lambda ) * repA[ i ];
+        }
+
+      repA = offA;
+      repB = offB;
+
+      repA.invalidate();
+      repB.invalidate();
+
+      return true;
+    }
+  };
 
 
 
-void pack( const Representation& rep ) {
+void pack( const Representation& rep )
+{
 
   if ( rep.invalid() ) ::pack( (unsigned int)0 );
-  else {
-        ::pack( (unsigned int)1 );
-        ::pack( (double)(rep.fitness()) );
-  }
+  else
+    {
+      ::pack( (unsigned int)1 );
+      ::pack( (double)(rep.fitness()) );
+    }
 
-  for ( unsigned int index = 0; index < SIZE; index++ ) {
-    ::pack( (double)rep[ index ] );
-  }
+  for ( unsigned int index = 0; index < SIZE; index++ )
+    {
+      ::pack( (double)rep[ index ] );
+    }
 }
 
-void unpack( Representation& rep ) {
+void unpack( Representation& rep )
+{
 
   eoScalarFitness<double, std::greater<double> > fitness;
   unsigned int validFitness;
 
   unpack( validFitness );
-  if ( validFitness ) {
+  if ( validFitness )
+    {
 
-        double fitnessValue; ::unpack( fitnessValue );
-        rep.fitness( fitnessValue );
-  }
-  else {
-        rep.invalidate();
-  }
+      double fitnessValue;
+      ::unpack( fitnessValue );
+      rep.fitness( fitnessValue );
+    }
+  else
+    {
+      rep.invalidate();
+    }
 
   double value;
-  for ( unsigned int index = 0; index < SIZE; index++ ) {
-    ::unpack( value );
-    rep[ index ] = value;
-  }
+  for ( unsigned int index = 0; index < SIZE; index++ )
+    {
+      ::unpack( value );
+      rep[ index ] = value;
+    }
 }
 
-int main( int __argc, char** __argv ) {
+int main( int __argc, char** __argv )
+{
 
 
   rng.reseed( time( NULL ) );
   srand( time( NULL ) );
-  
+
   peo::init( __argc,  __argv );
-  
-  
+
+
   eoParser parser ( __argc, __argv );
-  
+
   eoValueParam < unsigned int > nbGenerations( NB_GEN, "maxGen");
   parser.processParam ( nbGenerations );
 
@@ -131,7 +156,7 @@ int main( int __argc, char** __argv ) {
 
 
   RingTopology ring,topo;
-  unsigned int dataA, dataB, dataC; 
+  unsigned int dataA, dataB, dataC;
 
   dataA = 1;
   dataB = 5;
@@ -156,12 +181,12 @@ int main( int __argc, char** __argv ) {
   eoCheckPoint< Representation > checkpoint( cont );
   eoEasyEA< Representation > algo( checkpoint, eval, selectN, transform, elitReplace );
 
-  
+
 
   //-------------------------------------------------------------------------------------------------------------
   // MIGRATION CONTEXT DEFINITION
-  
-  eoPeriodicContinue< Representation > mig_conti(  MIGRATIONS_AT_N_GENERATIONS ); 
+
+  eoPeriodicContinue< Representation > mig_conti(  MIGRATIONS_AT_N_GENERATIONS );
   eoContinuator<Representation> mig_cont(mig_conti,pop);
   eoRandomSelect<Representation> mig_select_one;
   eoSelector <Representation, eoPop<Representation> > mig_select (mig_select_one,NUMBER_OF_MIGRANTS,pop);
@@ -185,7 +210,7 @@ int main( int __argc, char** __argv ) {
   //-------------------------------------------------------------------------------------------------------------
   // MIGRATION CONTEXT DEFINITION
 
-  eoPeriodicContinue< Representation > mig_conti2(  MIGRATIONS_AT_N_GENERATIONS ); 
+  eoPeriodicContinue< Representation > mig_conti2(  MIGRATIONS_AT_N_GENERATIONS );
   eoContinuator<Representation> mig_cont2(mig_conti2,pop2);
   eoRandomSelect<Representation> mig_select_one2;
   eoSelector <Representation, eoPop<Representation> > mig_select2 (mig_select_one2,NUMBER_OF_MIGRANTS,pop2);
@@ -208,7 +233,7 @@ int main( int __argc, char** __argv ) {
 
   //-------------------------------------------------------------------------------------------------------------
   // MIGRATION CONTEXT DEFINITION
-  
+
   eoPeriodicContinue< Representation > mig_conti3(  MIGRATIONS_AT_N_GENERATIONS );
   eoContinuator<Representation> mig_cont3(mig_conti3,pop3);
   eoRandomSelect<Representation> mig_select_one3;
@@ -217,7 +242,7 @@ int main( int __argc, char** __argv ) {
   eoReplace <Representation, eoPop<Representation> > mig_replace3 (replace_one3,pop3);
 //  peoSyncIslandMig< eoPop< Representation >, eoPop< Representation > > mig3(MIGRATIONS_AT_N_GENERATIONS,mig_select3,mig_replace3,topo);
   peoAsyncIslandMig< eoPop< Representation >, eoPop< Representation > > mig3(mig_cont3,mig_select3,mig_replace3,topo);
-  
+
   checkpoint3.add( mig3 );
   //-------------------------------------------------------------------------------------------------------------
 
@@ -237,11 +262,11 @@ int main( int __argc, char** __argv ) {
   mig3.setOwner( algoPar3 );
   checkpoint3.add( dataTransferc );
   dataTransferc.setOwner( algoPar3 );
-    
+
   peo::run();
   peo::finalize();
 
-  if ( getNodeRank() == 1 ) 
+  if ( getNodeRank() == 1 )
     std::cout << "A: " << dataA << std::endl;
   if ( getNodeRank() == 2 )
     std::cout << "B: " << dataB << std::endl;
