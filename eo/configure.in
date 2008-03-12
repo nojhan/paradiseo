@@ -71,6 +71,7 @@ AC_CONFIG_FILES([Makefile \
           tutorial/Lesson3/Makefile \
           tutorial/Lesson4/Makefile \
           tutorial/Lesson5/Makefile \
+	  tutorial/Lesson6/Makefile \
           tutorial/Templates/Makefile \
           tutorial/pdf/Makefile \
           win/Makefile])
