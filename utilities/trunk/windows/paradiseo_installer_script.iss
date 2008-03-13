@@ -17,15 +17,13 @@
 #define OutputPath="E:\software\paradisEO\windows installer\compiler output"
 
 // installer source info
-//#define ParadiseoSourceTag="E:\software\paradisEO\repository\tags\paradiseo-ix86-1.0\*"
-//#define EoTag="E:\software\eo\repository\tag_v_peo_1_0\*"
-#define ParadiseoSourceTag="E:\software\paradisEO\repository\trunk\*"
-#define EoTag="E:\software\eo\repository\eo-ROOT\*"
+#define ParadiseoSourceTag="E:\software\paradisEO\repository\tags\paradiseo-1.1\*"
+#define EoTag="E:\software\eo\repository\*"
 
 // installer description info
 #define Version="1.1"
-#define VersionMain="ParadisEO-ix86-1.1"
-#define InstallerName="paradiseo-1.1-win32-installer"
+#define VersionMain="ParadisEO-1.1"
+#define InstallerName="paradiseo-1.1-installer"
 #define ApplicationName="ParadisEO"
 #define SetupIconPath="E:\software\paradisEO\repository\utilities\trunk\windows\img\paradiseo.ico"
 #define WizardMainImage="E:\software\paradisEO\repository\utilities\trunk\windows\img\paradiseo.bmp"
@@ -115,11 +113,11 @@ english.CMakeNotFound=The CMake binaries cannot be found in this directory
 english.CMakeDownloadMsg=CMake available for download at:
 english.NextGenCaptionPgmBegin= Notice that the generator you chose must be installed on your computer.
 
-french.CMakeMissing=CMake n'a pas ï¿½tï¿½ dï¿½tectï¿½ sur votre ordinateur. CMake doit ï¿½tre installï¿½ pour utiliser ParadisEO.
-french.FullInstall=Installation complï¿½te
-french.CustomInstall=Installation personnalisï¿½e
-french.EoDescription= EO: Evolving Objects: Librairie dï¿½diï¿½e aux mï¿½thodes ï¿½volutionnaires
-french.MoDescription= MO: Moving Objects: Mï¿½taheuristiques ï¿½ base de solutions uniques
+french.CMakeMissing=CMake n'a pas été détecté sur votre ordinateur. CMake doit être installé pour utiliser ParadisEO.
+french.FullInstall=Installation complète
+french.CustomInstall=Installation personnalisée
+french.EoDescription= EO: Evolving Objects: Librairie dédiée aux méthodes évolutionnaires
+french.MoDescription= MO: Moving Objects: Métaheuristiques à base de solutions uniques
 french.MoeoDescription= MOEO: Multi Objective Evolving Objects: Module multi-objectif
 french.ErrorOccured=Une erreur est survenue
 french.LaunchingBuildProcess=Construction des fichiers de configuration...
@@ -130,29 +128,29 @@ french.LaunchingEOCompilation=Compilation de ParadisEO-EO...
 french.LaunchingMOCompilation=Compilation de ParadisEO-MO...
 french.LaunchingMOEOCompilation=Compilation de ParadisEO-MOEO..
 french.error=Erreur
-french.ErrorAbort=Une erreur est survenue, installation annulï¿½e.
+french.ErrorAbort=Une erreur est survenue, installation annulée.
 french.CannotCompleteInstall=Impossible de terminer l'installation de
 french.BPFinished=Fin de l'installation
-french.BPSuccessfull=Succï¿½s.
-french.SelectCompiler=Sï¿½lectionnez le programme que vous souhaitez utiliser pour compiler:
+french.BPSuccessfull=Succès.
+french.SelectCompiler=Sélectionnez le programme que vous souhaitez utiliser pour compiler:
 french.ChooseGeneratorTitle=Compilation de ParadisEO
-french.ChooseGeneratorSubtitle=Selection du compilateur ï¿½ utiliser
+french.ChooseGeneratorSubtitle=Selection du compilateur à utiliser
 french.GenCMakeFiles=Configuration CMake
-french.BuildProcess=Gï¿½nï¿½ration des fichiers de configuration CMake et compilation
+french.BuildProcess=Génération des fichiers de configuration CMake et compilation
 french.NextGenCaption=Cliquez sur le bouton 'Suivant' pour lancer CMake et compiler.
 french.ProcessingCMake=Configuration et compilation
-french.DolphinMsg=ParadisEO: Un projet de l'ï¿½quipe INRIA Dolphin - Programme rï¿½alisï¿½ par Thomas Legrand
+french.DolphinMsg=ParadisEO: Un projet de l'équipe INRIA Dolphin - Programme réalisé par Thomas Legrand
 french.BuildMode=Choix du mode de compilation.
-french.SelectBuildMode=Veuillez sï¿½lectionner le type de compilation :
-french.Recommended=(recommandï¿½)
-french.AcceptSendReport=Je souhaite que le rapport d'installation soit envoyï¿½ ï¿½ l'ï¿½quipe DOLPHIN.
-french.NoInfoSend1=Aucune information personnelle ou liï¿½e ï¿½ mon poste de travail ne sera transmise.
-french.NoInfoSend2=Je pourrais bï¿½nï¿½ficier d'un support personnalisï¿½ et adaptï¿½.
+french.SelectBuildMode=Veuillez sélectionner le type de compilation :
+french.Recommended=(recommandé)
+french.AcceptSendReport=Je souhaite que le rapport d'installation soit envoyé à l'équipe DOLPHIN.
+french.NoInfoSend1=Aucune information personnelle ou liée à mon poste de travail ne sera transmise.
+french.NoInfoSend2=Je pourrais bénéficier d'un support personnalisé et adapté.
 french.PathToCMakeTitle=Chemin vers CMake
-french.PathToCMakeSubTitle=CMake n'a pas ï¿½tï¿½ trouvï¿½ par l'assistant. Veuillez sï¿½lectionner le rï¿½pertoire d'installation de CMake sur votre ordinateur
-french.CMakeNotFound=Les exï¿½cutables CMake sont introuvables dans ce rï¿½pertoire
-french.CMakeDownloadMsg=CMake tï¿½lï¿½chargeable ï¿½ l'adresse:
-french.NextGenCaptionPgmBegin= Notez que le gï¿½nï¿½rateur que vous avez sï¿½lectionnï¿½ doit ï¿½tre installï¿½ sur votre ordinateur.
+french.PathToCMakeSubTitle=CMake n'a pas été trouvé par l'assistant. Veuillez sélectionner le répertoire d'installation de CMake sur votre ordinateur
+french.CMakeNotFound=Les exécutables CMake sont introuvables dans ce répertoire
+french.CMakeDownloadMsg=CMake téléchargeable à l'adresse:
+french.NextGenCaptionPgmBegin= Notez que le générateur que vous avez sélectionné doit être installé sur votre ordinateur.
 
 
 [Types]
@@ -170,11 +168,11 @@ Source: {#ParadiseoSourceTag}; DestDir: "{app}"; Excludes: {#SkipParadiseoFiles}
 Source: {#EoTag}; DestDir: "{app}";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
 
 ; SPECIFIC CORRECTION - EO TAG NOT MODIFIED, USED TRUNK SOURCES
-Source: E:\software\eo\repository\eo-ROOT\paradiseo-eo\CMakeLists.txt ; DestDir: "{app}\paradiseo-eo";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: E:\software\eo\repository\eo-ROOT\paradiseo-eo\src\utils\pipecom.h; DestDir: "{app}\paradiseo-eo\src\utils";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: E:\software\eo\repository\eo-ROOT\paradiseo-eo\src\utils\pipecom.cpp; DestDir: "{app}\paradiseo-eo\src\utils";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: E:\software\eo\repository\eo-ROOT\paradiseo-eo\src\eoCtrlCContinue.h; DestDir: "{app}\paradiseo-eo\src";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: E:\software\eo\repository\eo-ROOT\paradiseo-eo\src\eoCtrlCContinue.cpp; DestDir: "{app}\paradiseo-eo\src";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\paradiseo-eo\CMakeLists.txt ; DestDir: "{app}\paradiseo-eo";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\paradiseo-eo\src\utils\pipecom.h; DestDir: "{app}\paradiseo-eo\src\utils";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\paradiseo-eo\src\utils\pipecom.cpp; DestDir: "{app}\paradiseo-eo\src\utils";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\paradiseo-eo\src\eoCtrlCContinue.h; DestDir: "{app}\paradiseo-eo\src";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\paradiseo-eo\src\eoCtrlCContinue.cpp; DestDir: "{app}\paradiseo-eo\src";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Dirs]
 Name: {app}\logs
@@ -330,9 +328,7 @@ function checkCMakeAvailable(Path: String): Integer;
 var
   ErrorCode: Integer;
 begin
-   // launch CMake for MOEO
    ShellExec('open', Path + 'cmake.exe','','', SW_SHOWMINIMIZED, ewWaitUntilTerminated, ErrorCode);
-
    Result:=  ErrorCode;
 end;
 
@@ -576,7 +572,7 @@ end;
 function Skeleton_NextButtonClick(Page: TWizardPage): Boolean;
 begin
     { Get the Cmake directory provided by the user }
-     CMakeBinDir:= '"' + FolderTreeView.Directory + '\';
+     CMakeBinDir:= FolderTreeView.Directory + '\';
      if isError(checkCMakeAvailable(CMakeBinDir),false) then  begin
           CMakeBinDir:= FolderTreeView.Directory + '\' + 'bin\';
           if isError(checkCMakeAvailable(CMakeBinDir),false) then  begin
