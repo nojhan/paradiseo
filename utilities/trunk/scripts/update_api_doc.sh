@@ -9,7 +9,7 @@
 
 PARADISEO_REPOSITORY='scm.gforge.inria.fr/svn/paradiseo'
 GFORGE=gforge.inria.fr
-WEB_SITE_DOC_PATH='/home/groups/paradiseo/htdocs/addon/test'
+WEB_SITE_DOC_PATH='/home/groups/paradiseo/htdocs/addon'
 MODULE_LIST="mo moeo peo"
  
 EO_REPOSITORY='eodev.cvs.sourceforge.net'
@@ -179,12 +179,7 @@ echo "Doc generated" >> ${SPY} 2>> ${SPY}
 #############################################################################################
 
 
-
-
-####### ParadisEO's module part ##################################################################
-for MODULE in $MODULE_LIST; do
-	
-	# go in the last subdir
+# go in the last subdir
 	cd $TEMP_ROOT_DIR/$TEMP_DIR_NAME >> ${SPY} 2>> ${SPY}
 	if [ ! "$?" = "0" ]
 	then
@@ -223,6 +218,10 @@ for MODULE in $MODULE_LIST; do
 		echo "svn checkout of $SVN/$SVN_PATH DONE" >> ${SPY} 2>> ${SPY} 
 	fi
 
+
+####### ParadisEO's module part ##################################################################
+for MODULE in $MODULE_LIST; do
+	
 	# Go in the module's dir
 	cd $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/build >> ${SPY} 2>> ${SPY}
 	if [ ! "$?" = "0" ]
@@ -323,6 +322,7 @@ for MODULE in $MODULE_LIST; do
 
 	# Copy the doc to the web site
 	scp $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/build/doc/html/* $USER_LOGIN@$GFORGE:$WEB_SITE_DOC_PATH/paradiseo-$MODULE/doc >> ${SPY} 2>> ${SPY}
+
 	if [ ! "$?" = "0" ]
 	then
 		echo ''
@@ -331,7 +331,7 @@ for MODULE in $MODULE_LIST; do
 		echo -e ' \033[40m\033[1;33m### END ### \033[0m '
 		exit $GLOBAL_ERROR
 	fi 
-	echo "Doc generated" >> ${SPY} 2>> ${SPY}
+	echo "Doc generated for module=paradiseo-$MODULE/" >> ${SPY} 2>> ${SPY}
 
 done
 
