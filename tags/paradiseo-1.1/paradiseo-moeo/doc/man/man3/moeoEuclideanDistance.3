@@ -1,0 +1,61 @@
+.TH "moeoEuclideanDistance" 3 "13 Mar 2008" "Version 1.1" "ParadisEO-MOEO-MultiObjectiveEvolvingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoEuclideanDistance \- A class allowing to compute an euclidian distance between two solutions in the objective space with normalized objective values (i.e.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoEuclideanDistance.h>\fP
+.PP
+Inherits \fBmoeoNormalizedDistance< MOEOT >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef MOEOT::ObjectiveVector \fBObjectiveVector\fP"
+.br
+.RI "\fIthe objective vector type of the solutions \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "const double \fBoperator()\fP (const MOEOT &_moeo1, const MOEOT &_moeo2)"
+.br
+.RI "\fIReturns the euclidian distance between _moeo1 and _moeo2 in the objective space. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MOEOT> class moeoEuclideanDistance< MOEOT >"
+A class allowing to compute an euclidian distance between two solutions in the objective space with normalized objective values (i.e. 
+
+between 0 and 1). A distance value then lies between 0 and sqrt(nObjectives). 
+.PP
+Definition at line 49 of file moeoEuclideanDistance.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MOEOT> const double \fBmoeoEuclideanDistance\fP< MOEOT >::operator() (const MOEOT & _moeo1, const MOEOT & _moeo2)\fC [inline]\fP"
+.PP
+Returns the euclidian distance between _moeo1 and _moeo2 in the objective space. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_moeo1\fP the first solution 
+.br
+\fI_moeo2\fP the second solution 
+.RE
+.PP
+
+.PP
+Definition at line 62 of file moeoEuclideanDistance.h.
+.PP
+References moeoNormalizedDistance< MOEOT >::bounds, and moeoObjectiveVector< ObjectiveVectorTraits, double >::nObjectives().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO-MultiObjectiveEvolvingObjects from the source code.

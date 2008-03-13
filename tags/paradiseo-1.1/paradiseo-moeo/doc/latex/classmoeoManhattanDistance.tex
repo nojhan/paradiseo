@@ -1,0 +1,59 @@
+\section{moeo\-Manhattan\-Distance$<$ MOEOT $>$ Class Template Reference}
+\label{classmoeoManhattanDistance}\index{moeoManhattanDistance@{moeoManhattanDistance}}
+A class allowing to compute the Manhattan distance between two solutions in the objective space normalized objective values (i.e.  
+
+
+{\tt \#include $<$moeo\-Manhattan\-Distance.h$>$}
+
+Inheritance diagram for moeo\-Manhattan\-Distance$<$ MOEOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5cm]{classmoeoManhattanDistance}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+typedef MOEOT::Objective\-Vector \bf{Objective\-Vector}\label{classmoeoManhattanDistance_44fa512b80d2eee94e876a95babc9913}
+
+\begin{CompactList}\small\item\em the objective vector type of the solutions \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+const double \bf{operator()} (const MOEOT \&\_\-moeo1, const MOEOT \&\_\-moeo2)
+\begin{CompactList}\small\item\em Returns the Manhattan distance between \_\-moeo1 and \_\-moeo2 in the objective space. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class MOEOT$>$ class moeo\-Manhattan\-Distance$<$ MOEOT $>$}
+
+A class allowing to compute the Manhattan distance between two solutions in the objective space normalized objective values (i.e. 
+
+between 0 and 1). A distance value then lies between 0 and n\-Objectives. 
+
+
+
+Definition at line 49 of file moeo\-Manhattan\-Distance.h.
+
+\subsection{Member Function Documentation}
+\index{moeoManhattanDistance@{moeo\-Manhattan\-Distance}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoManhattanDistance@{moeo\-Manhattan\-Distance}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ const double \bf{moeo\-Manhattan\-Distance}$<$ MOEOT $>$::operator() (const MOEOT \& {\em \_\-moeo1}, const MOEOT \& {\em \_\-moeo2})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoManhattanDistance_dcabb2bddb46439a47cd1af5dd124f92}
+
+
+Returns the Manhattan distance between \_\-moeo1 and \_\-moeo2 in the objective space. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-moeo1}]the first solution \item[{\em \_\-moeo2}]the second solution \end{description}
+\end{Desc}
+
+
+Definition at line 62 of file moeo\-Manhattan\-Distance.h.
+
+References moeo\-Normalized\-Distance$<$ MOEOT $>$::bounds, and moeo\-Objective\-Vector$<$ Objective\-Vector\-Traits, double $>$::n\-Objectives().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-Manhattan\-Distance.h\end{CompactItemize}

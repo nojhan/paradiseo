@@ -1,0 +1,102 @@
+\section{moeo\-Det\-Tournament\-Select$<$ MOEOT $>$ Class Template Reference}
+\label{classmoeoDetTournamentSelect}\index{moeoDetTournamentSelect@{moeoDetTournamentSelect}}
+Selection strategy that selects ONE individual by deterministic tournament.  
+
+
+{\tt \#include $<$moeo\-Det\-Tournament\-Select.h$>$}
+
+Inheritance diagram for moeo\-Det\-Tournament\-Select$<$ MOEOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5cm]{classmoeoDetTournamentSelect}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\bf{moeo\-Det\-Tournament\-Select} (\bf{moeo\-Comparator}$<$ MOEOT $>$ \&\_\-comparator, unsigned int \_\-t\-Size=2)
+\begin{CompactList}\small\item\em Full Ctor. \item\end{CompactList}\item 
+\bf{moeo\-Det\-Tournament\-Select} (unsigned int \_\-t\-Size=2)
+\begin{CompactList}\small\item\em Ctor without comparator. \item\end{CompactList}\item 
+const MOEOT \& \bf{operator()} (const \bf{eo\-Pop}$<$ MOEOT $>$ \&\_\-pop)
+\begin{CompactList}\small\item\em Apply the tournament to the given population. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+\bf{moeo\-Comparator}$<$ MOEOT $>$ \& \bf{comparator}\label{classmoeoDetTournamentSelect_f31a46190da0fe561d748133456907c9}
+
+\begin{CompactList}\small\item\em the comparator (used to compare 2 individuals) \item\end{CompactList}\item 
+\bf{moeo\-Fitness\-Then\-Diversity\-Comparator}$<$ MOEOT $>$ \bf{default\-Comparator}\label{classmoeoDetTournamentSelect_dde5fc82ffff52056aab75632f779825}
+
+\begin{CompactList}\small\item\em a fitness then diversity comparator can be used as default \item\end{CompactList}\item 
+unsigned int \bf{t\-Size}\label{classmoeoDetTournamentSelect_061c191c2df365cf4325e0093aae2ae6}
+
+\begin{CompactList}\small\item\em the number of individuals in the tournament \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class MOEOT$>$ class moeo\-Det\-Tournament\-Select$<$ MOEOT $>$}
+
+Selection strategy that selects ONE individual by deterministic tournament. 
+
+
+
+Definition at line 49 of file moeo\-Det\-Tournament\-Select.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{moeoDetTournamentSelect@{moeo\-Det\-Tournament\-Select}!moeoDetTournamentSelect@{moeoDetTournamentSelect}}
+\index{moeoDetTournamentSelect@{moeoDetTournamentSelect}!moeoDetTournamentSelect@{moeo\-Det\-Tournament\-Select}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-Det\-Tournament\-Select}$<$ MOEOT $>$::\bf{moeo\-Det\-Tournament\-Select} (\bf{moeo\-Comparator}$<$ MOEOT $>$ \& {\em \_\-comparator}, unsigned int {\em \_\-t\-Size} = {\tt 2})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoDetTournamentSelect_106e44d01bbf2775b483104639c6556e}
+
+
+Full Ctor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-comparator}]the comparator (used to compare 2 individuals) \item[{\em \_\-t\-Size}]the number of individuals in the tournament (default: 2) \end{description}
+\end{Desc}
+
+
+Definition at line 58 of file moeo\-Det\-Tournament\-Select.h.
+
+References moeo\-Det\-Tournament\-Select$<$ MOEOT $>$::t\-Size.\index{moeoDetTournamentSelect@{moeo\-Det\-Tournament\-Select}!moeoDetTournamentSelect@{moeoDetTournamentSelect}}
+\index{moeoDetTournamentSelect@{moeoDetTournamentSelect}!moeoDetTournamentSelect@{moeo\-Det\-Tournament\-Select}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-Det\-Tournament\-Select}$<$ MOEOT $>$::\bf{moeo\-Det\-Tournament\-Select} (unsigned int {\em \_\-t\-Size} = {\tt 2})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoDetTournamentSelect_f17a16c1b0f688832e7143e55d0f767d}
+
+
+Ctor without comparator. 
+
+A \doxyref{moeo\-Fitness\-Then\-Diversity\-Comparator}{p.}{classmoeoFitnessThenDiversityComparator} is used as default. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-t\-Size}]the number of individuals in the tournament (default: 2) \end{description}
+\end{Desc}
+
+
+Definition at line 74 of file moeo\-Det\-Tournament\-Select.h.
+
+References moeo\-Det\-Tournament\-Select$<$ MOEOT $>$::t\-Size.
+
+\subsection{Member Function Documentation}
+\index{moeoDetTournamentSelect@{moeo\-Det\-Tournament\-Select}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoDetTournamentSelect@{moeo\-Det\-Tournament\-Select}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ const MOEOT\& \bf{moeo\-Det\-Tournament\-Select}$<$ MOEOT $>$::operator() (const \bf{eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoDetTournamentSelect_0d7051a48570e5dcbe9a19b90e4be3bf}
+
+
+Apply the tournament to the given population. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \end{description}
+\end{Desc}
+
+
+Definition at line 90 of file moeo\-Det\-Tournament\-Select.h.
+
+References moeo\-Det\-Tournament\-Select$<$ MOEOT $>$::comparator, and moeo\-Det\-Tournament\-Select$<$ MOEOT $>$::t\-Size.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-Det\-Tournament\-Select.h\end{CompactItemize}

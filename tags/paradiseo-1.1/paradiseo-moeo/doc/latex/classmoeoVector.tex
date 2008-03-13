@@ -1,0 +1,137 @@
+\section{moeo\-Vector$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, Gene\-Type $>$ Class Template Reference}
+\label{classmoeoVector}\index{moeoVector@{moeoVector}}
+Base class for fixed length chromosomes, just derives from \doxyref{MOEO}{p.}{classMOEO} and std::vector and redirects the smaller than operator to MOEO (objective vector based comparison).  
+
+
+{\tt \#include $<$moeo\-Vector.h$>$}
+
+Inheritance diagram for moeo\-Vector$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, Gene\-Type $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.3871cm]{classmoeoVector}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+typedef Gene\-Type \bf{Atom\-Type}\label{classmoeoVector_9d4400084dec28c37e392bb8b0a0b452}
+
+\begin{CompactList}\small\item\em the atomic type \item\end{CompactList}\item 
+typedef std::vector$<$ Gene\-Type $>$ \bf{Container\-Type}\label{classmoeoVector_b0fb83132e1f2c8b8258013a01aeb364}
+
+\begin{CompactList}\small\item\em the container type \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\bf{moeo\-Vector} (unsigned int \_\-size=0, Gene\-Type \_\-value=Gene\-Type())
+\begin{CompactList}\small\item\em Default ctor. \item\end{CompactList}\item 
+void \bf{value} (const std::vector$<$ Gene\-Type $>$ \&\_\-v)
+\begin{CompactList}\small\item\em We can't have a Ctor from a std::vector as it would create ambiguity with the copy Ctor. \item\end{CompactList}\item 
+bool \bf{operator$<$} (const \bf{moeo\-Vector}$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, Gene\-Type $>$ \&\_\-moeo) const 
+\begin{CompactList}\small\item\em To avoid conflicts between \doxyref{MOEO::operator$<$}{p.}{classMOEO_119ef916de4955298febaf3e1c8ad705} and std::vector$<$Gene\-Type$>$::operator$<$. \item\end{CompactList}\item 
+virtual void \bf{print\-On} (std::ostream \&\_\-os) const 
+\begin{CompactList}\small\item\em Writing object. \item\end{CompactList}\item 
+virtual void \bf{read\-From} (std::istream \&\_\-is)
+\begin{CompactList}\small\item\em Reading object. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class MOEOObjective\-Vector, class MOEOFitness, class MOEODiversity, class Gene\-Type$>$ class moeo\-Vector$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, Gene\-Type $>$}
+
+Base class for fixed length chromosomes, just derives from \doxyref{MOEO}{p.}{classMOEO} and std::vector and redirects the smaller than operator to MOEO (objective vector based comparison). 
+
+Gene\-Type must have the following methods: void ctor (needed for the std::vector$<$$>$), copy ctor. 
+
+
+
+Definition at line 50 of file moeo\-Vector.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{moeoVector@{moeo\-Vector}!moeoVector@{moeoVector}}
+\index{moeoVector@{moeoVector}!moeoVector@{moeo\-Vector}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOObjective\-Vector, class MOEOFitness, class MOEODiversity, class Gene\-Type$>$ \bf{moeo\-Vector}$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, Gene\-Type $>$::\bf{moeo\-Vector} (unsigned int {\em \_\-size} = {\tt 0}, Gene\-Type {\em \_\-value} = {\tt GeneType()})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoVector_b109dd4d5ae93cdc4d039eb3c3b07664}
+
+
+Default ctor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-size}]Length of vector (default is 0) \item[{\em \_\-value}]Initial value of all elements (default is default value of type Gene\-Type) \end{description}
+\end{Desc}
+
+
+Definition at line 72 of file moeo\-Vector.h.
+
+\subsection{Member Function Documentation}
+\index{moeoVector@{moeo\-Vector}!value@{value}}
+\index{value@{value}!moeoVector@{moeo\-Vector}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOObjective\-Vector, class MOEOFitness, class MOEODiversity, class Gene\-Type$>$ void \bf{moeo\-Vector}$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, Gene\-Type $>$::value (const std::vector$<$ Gene\-Type $>$ \& {\em \_\-v})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoVector_a7fadd876fe492717815510f68a921c5}
+
+
+We can't have a Ctor from a std::vector as it would create ambiguity with the copy Ctor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-v}]a vector of Gene\-Type \end{description}
+\end{Desc}
+
+
+Definition at line 81 of file moeo\-Vector.h.
+
+Referenced by Flow\-Shop\-Op\-Crossover\-Quad::operator()().\index{moeoVector@{moeo\-Vector}!operator<@{operator$<$}}
+\index{operator<@{operator$<$}!moeoVector@{moeo\-Vector}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOObjective\-Vector, class MOEOFitness, class MOEODiversity, class Gene\-Type$>$ bool \bf{moeo\-Vector}$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, Gene\-Type $>$::operator$<$ (const \bf{moeo\-Vector}$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, Gene\-Type $>$ \& {\em \_\-moeo}) const\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoVector_d7a5feff640f00e5d6a29c3ebd11e90b}
+
+
+To avoid conflicts between \doxyref{MOEO::operator$<$}{p.}{classMOEO_119ef916de4955298febaf3e1c8ad705} and std::vector$<$Gene\-Type$>$::operator$<$. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-moeo}]the object to compare with \end{description}
+\end{Desc}
+
+
+Definition at line 104 of file moeo\-Vector.h.\index{moeoVector@{moeo\-Vector}!printOn@{printOn}}
+\index{printOn@{printOn}!moeoVector@{moeo\-Vector}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOObjective\-Vector, class MOEOFitness, class MOEODiversity, class Gene\-Type$>$ virtual void \bf{moeo\-Vector}$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, Gene\-Type $>$::print\-On (std::ostream \& {\em \_\-os}) const\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmoeoVector_d0a92cb26483ffab754ac4a0efb76308}
+
+
+Writing object. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-os}]output stream \end{description}
+\end{Desc}
+
+
+Reimplemented from \bf{MOEO$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity $>$} \doxyref{p.}{classMOEO_a3b6074b3289585bf4dc6998e8397e24}.
+
+Reimplemented in \bf{moeo\-Bit\-Vector$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity $>$} \doxyref{p.}{classmoeoBitVector_78f821c548cf46d8bcd30aa8a52ffb7c}.
+
+Definition at line 114 of file moeo\-Vector.h.\index{moeoVector@{moeo\-Vector}!readFrom@{readFrom}}
+\index{readFrom@{readFrom}!moeoVector@{moeo\-Vector}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOObjective\-Vector, class MOEOFitness, class MOEODiversity, class Gene\-Type$>$ virtual void \bf{moeo\-Vector}$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity, Gene\-Type $>$::read\-From (std::istream \& {\em \_\-is})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmoeoVector_cd8ee0fe79bb9515b29e2a4d3fee5ab9}
+
+
+Reading object. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-is}]input stream \end{description}
+\end{Desc}
+
+
+Reimplemented from \bf{MOEO$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity $>$} \doxyref{p.}{classMOEO_1bbd9cb1a7709592bf4bc29dff8c5273}.
+
+Reimplemented in \bf{moeo\-Bit\-Vector$<$ MOEOObjective\-Vector, MOEOFitness, MOEODiversity $>$} \doxyref{p.}{classmoeoBitVector_31cd3f894615d0a27dd116a5c8082521}.
+
+Definition at line 127 of file moeo\-Vector.h.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-Vector.h\end{CompactItemize}

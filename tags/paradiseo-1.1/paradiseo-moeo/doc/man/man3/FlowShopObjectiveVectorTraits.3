@@ -1,0 +1,65 @@
+.TH "FlowShopObjectiveVectorTraits" 3 "13 Mar 2008" "Version 1.1" "ParadisEO-MOEO-MultiObjectiveEvolvingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+FlowShopObjectiveVectorTraits \- Definition of the objective vector traits for multi-objective flow-shop problems.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <FlowShopObjectiveVectorTraits.h>\fP
+.PP
+Inherits \fBmoeoObjectiveVectorTraits\fP.
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static bool \fBminimizing\fP (int _i)"
+.br
+.RI "\fIReturns true if the _ith objective have to be minimzed. \fP"
+.ti -1c
+.RI "static bool \fBmaximizing\fP (int _i)"
+.br
+.RI "\fIReturns true if the _ith objective have to be maximzed. \fP"
+.ti -1c
+.RI "static unsigned int \fBnObjectives\fP ()"
+.br
+.RI "\fIReturns the number of objectives. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition of the objective vector traits for multi-objective flow-shop problems. 
+.PP
+Definition at line 46 of file FlowShopObjectiveVectorTraits.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "bool FlowShopObjectiveVectorTraits::minimizing (int _i)\fC [static]\fP"
+.PP
+Returns true if the _ith objective have to be minimzed. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_i\fP index of the objective 
+.RE
+.PP
+
+.PP
+Definition at line 41 of file FlowShopObjectiveVectorTraits.cpp.
+.SS "bool FlowShopObjectiveVectorTraits::maximizing (int _i)\fC [static]\fP"
+.PP
+Returns true if the _ith objective have to be maximzed. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_i\fP index of the objective 
+.RE
+.PP
+
+.PP
+Definition at line 47 of file FlowShopObjectiveVectorTraits.cpp.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO-MultiObjectiveEvolvingObjects from the source code.

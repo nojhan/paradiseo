@@ -1,0 +1,163 @@
+.TH "moeoEntropyMetric" 3 "13 Mar 2008" "Version 1.1" "ParadisEO-MOEO-MultiObjectiveEvolvingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moeoEntropyMetric \- The entropy gives an idea of the diversity of a Pareto set relatively to another (Basseur, Seynhaeve, Talbi: 'Design of Multi-objective Evolutionary Algorithms: Application to the Flow-shop Scheduling Problem', in Proc.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moeoEntropyMetric.h>\fP
+.PP
+Inherits \fBmoeoVectorVsVectorBinaryMetric< ObjectiveVector, R >< moeoRealObjectiveVector< ObjectiveVectorTraits >, double >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "double \fBoperator()\fP (const std::vector< \fBObjectiveVector\fP > &_set1, const std::vector< \fBObjectiveVector\fP > &_set2)"
+.br
+.RI "\fIReturns the entropy of the Pareto set '_set1' relatively to the Pareto set '_set2'. \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBremoveDominated\fP (std::vector< \fBObjectiveVector\fP > &_f)"
+.br
+.RI "\fIRemoves the dominated individuals contained in _f. \fP"
+.ti -1c
+.RI "void \fBprenormalize\fP (const std::vector< \fBObjectiveVector\fP > &_f)"
+.br
+.RI "\fIPrenormalization. \fP"
+.ti -1c
+.RI "void \fBnormalize\fP (std::vector< \fBObjectiveVector\fP > &_f)"
+.br
+.RI "\fINormalization. \fP"
+.ti -1c
+.RI "void \fBcomputeUnion\fP (const std::vector< \fBObjectiveVector\fP > &_f1, const std::vector< \fBObjectiveVector\fP > &_f2, std::vector< \fBObjectiveVector\fP > &_f)"
+.br
+.RI "\fIComputation of the union of _f1 and _f2 in _f. \fP"
+.ti -1c
+.RI "unsigned int \fBhowManyInNicheOf\fP (const std::vector< \fBObjectiveVector\fP > &_f, const \fBObjectiveVector\fP &_s, unsigned int _size)"
+.br
+.RI "\fIHow many in niche. \fP"
+.ti -1c
+.RI "double \fBeuclidianDistance\fP (const \fBObjectiveVector\fP &_set1, const \fBObjectiveVector\fP &_to, unsigned int _deg=2)"
+.br
+.RI "\fIEuclidian distance. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< double > \fBvect_min_val\fP"
+.br
+.RI "\fIvector of min values \fP"
+.ti -1c
+.RI "std::vector< double > \fBvect_max_val\fP"
+.br
+.RI "\fIvector of max values \fP"
+.ti -1c
+.RI "\fBmoeoParetoObjectiveVectorComparator\fP< \fBObjectiveVector\fP > \fBparetoComparator\fP"
+.br
+.RI "\fIFunctor to compare two objective vectors according to Pareto dominance relation. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class ObjectiveVector> class moeoEntropyMetric< ObjectiveVector >"
+The entropy gives an idea of the diversity of a Pareto set relatively to another (Basseur, Seynhaeve, Talbi: 'Design of Multi-objective Evolutionary Algorithms: Application to the Flow-shop Scheduling Problem', in Proc. 
+
+of the 2002 Congress on Evolutionary Computation, IEEE Press, pp. 1155-1156) 
+.PP
+Definition at line 50 of file moeoEntropyMetric.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class ObjectiveVector> double \fBmoeoEntropyMetric\fP< \fBObjectiveVector\fP >::operator() (const std::vector< \fBObjectiveVector\fP > & _set1, const std::vector< \fBObjectiveVector\fP > & _set2)\fC [inline]\fP"
+.PP
+Returns the entropy of the Pareto set '_set1' relatively to the Pareto set '_set2'. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_set1\fP the first Pareto set 
+.br
+\fI_set2\fP the second Pareto set 
+.RE
+.PP
+
+.PP
+Definition at line 59 of file moeoEntropyMetric.h.
+.PP
+References moeoEntropyMetric< ObjectiveVector >::computeUnion(), moeoEntropyMetric< ObjectiveVector >::howManyInNicheOf(), moeoEntropyMetric< ObjectiveVector >::normalize(), moeoEntropyMetric< ObjectiveVector >::prenormalize(), and moeoEntropyMetric< ObjectiveVector >::removeDominated().
+.SS "template<class ObjectiveVector> void \fBmoeoEntropyMetric\fP< \fBObjectiveVector\fP >::removeDominated (std::vector< \fBObjectiveVector\fP > & _f)\fC [inline, private]\fP"
+.PP
+Removes the dominated individuals contained in _f. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_f\fP a Pareto set 
+.RE
+.PP
+
+.PP
+Definition at line 113 of file moeoEntropyMetric.h.
+.PP
+References moeoEntropyMetric< ObjectiveVector >::paretoComparator.
+.PP
+Referenced by moeoEntropyMetric< ObjectiveVector >::operator()().
+.SS "template<class ObjectiveVector> void \fBmoeoEntropyMetric\fP< \fBObjectiveVector\fP >::prenormalize (const std::vector< \fBObjectiveVector\fP > & _f)\fC [inline, private]\fP"
+.PP
+Prenormalization. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_f\fP a Pareto set 
+.RE
+.PP
+
+.PP
+Definition at line 138 of file moeoEntropyMetric.h.
+.PP
+References moeoObjectiveVector< ObjectiveVectorTraits, double >::nObjectives(), moeoEntropyMetric< ObjectiveVector >::vect_max_val, and moeoEntropyMetric< ObjectiveVector >::vect_min_val.
+.PP
+Referenced by moeoEntropyMetric< ObjectiveVector >::operator()().
+.SS "template<class ObjectiveVector> void \fBmoeoEntropyMetric\fP< \fBObjectiveVector\fP >::normalize (std::vector< \fBObjectiveVector\fP > & _f)\fC [inline, private]\fP"
+.PP
+Normalization. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_f\fP a Pareto set 
+.RE
+.PP
+
+.PP
+Definition at line 163 of file moeoEntropyMetric.h.
+.PP
+References moeoObjectiveVector< ObjectiveVectorTraits, double >::nObjectives(), moeoEntropyMetric< ObjectiveVector >::vect_max_val, and moeoEntropyMetric< ObjectiveVector >::vect_min_val.
+.PP
+Referenced by moeoEntropyMetric< ObjectiveVector >::operator()().
+.SS "template<class ObjectiveVector> void \fBmoeoEntropyMetric\fP< \fBObjectiveVector\fP >::computeUnion (const std::vector< \fBObjectiveVector\fP > & _f1, const std::vector< \fBObjectiveVector\fP > & _f2, std::vector< \fBObjectiveVector\fP > & _f)\fC [inline, private]\fP"
+.PP
+Computation of the union of _f1 and _f2 in _f. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_f1\fP the first Pareto set 
+.br
+\fI_f2\fP the second Pareto set 
+.br
+\fI_f\fP the final Pareto set 
+.RE
+.PP
+
+.PP
+Definition at line 177 of file moeoEntropyMetric.h.
+.PP
+Referenced by moeoEntropyMetric< ObjectiveVector >::operator()().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO-MultiObjectiveEvolvingObjects from the source code.
