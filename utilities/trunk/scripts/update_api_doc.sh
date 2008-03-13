@@ -284,6 +284,44 @@ for MODULE in $MODULE_LIST; do
 	fi 
 	echo "Doc archive made for paradiseo-$MODULE" >> ${SPY} 2>> ${SPY}
 
+	# Delete the old html doc
+	svn delete $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc/html >> ${SPY} 2>> ${SPY}
+	if [ ! "$?" = "0" ]
+	then
+		echo ''
+		echo "	svn delete $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc/html"
+		echo "  svn delete $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc/html" >> ${SPY} 2>> ${SPY}
+		echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+		exit $GLOBAL_ERROR
+	fi 
+	echo "Svn delete of $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc/html done" >> ${SPY} 2>> ${SPY}
+
+
+	# Delete the old latex doc
+	svn delete $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc/latex >> ${SPY} 2>> ${SPY}
+	if [ ! "$?" = "0" ]
+	then
+		echo ''
+		echo "	svn delete $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc/latex"
+		echo "  svn delete $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc/latex" >> ${SPY} 2>> ${SPY}
+		echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+		exit $GLOBAL_ERROR
+	fi 
+	echo "Svn delete of $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc/latex done" >> ${SPY} 2>> ${SPY}
+
+	# Delete the old man doc
+	svn delete $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc/man >> ${SPY} 2>> ${SPY}
+	if [ ! "$?" = "0" ]
+	then
+		echo ''
+		echo "	svn delete $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc/man"
+		echo "  svn delete $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc/man" >> ${SPY} 2>> ${SPY}
+		echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+		exit $GLOBAL_ERROR
+	fi 
+	echo "Svn delete of $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc/man done" >> ${SPY} 2>> ${SPY}
+
+
 	# Copy build/doc to source/doc
 	cp -Rf $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/build/doc/* $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc >> ${SPY} 2>> ${SPY}
 	if [ ! "$?" = "0" ]
@@ -295,7 +333,21 @@ for MODULE in $MODULE_LIST; do
 		exit $GLOBAL_ERROR
 	fi 
 	echo "Copied build doc $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/build/doc to source doc dir $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE" >> ${SPY} 2>> ${SPY}
-	
+
+
+	# Add the new doc
+	cd $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc && svn add ./html ./latex ./man >> ${SPY} 2>> ${SPY}
+	if [ ! "$?" = "0" ]
+	then
+		echo ''
+		echo "	cd $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc && svn add ./html ./latex ./man"
+		echo "  cd $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc && svn add ./html ./latex ./man" >> ${SPY} 2>> ${SPY}
+		echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+		exit $GLOBAL_ERROR
+	fi 
+	echo "Svn add of $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc/html + man + latex done" >> ${SPY} 2>> ${SPY}
+
+
 	# Commit the generated doc into the tag/svn path
 	svn commit -m "Doc script updates API documentation module=paradiseo-$MODULE SPY=$SPY" $TEMP_ROOT_DIR/$TEMP_DIR_NAME/paradiseo-$MODULE/doc >> ${SPY} 2>> ${SPY}
 	if [ ! "$?" = "0" ]
