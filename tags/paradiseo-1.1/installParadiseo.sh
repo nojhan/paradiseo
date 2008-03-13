@@ -459,8 +459,6 @@ function run_install_step()
 			then
 				RETURN=`expr $RETURN + $LAST_RETURN`
 			fi			
-			
-			RETURN=`expr $RETURN + $?`
 		fi
 		
 		if [ ! $(($RETURN)) = 0 ]
