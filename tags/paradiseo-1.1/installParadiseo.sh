@@ -460,7 +460,6 @@ function run_install_step()
 				RETURN=`expr $RETURN + $LAST_RETURN`
 			fi			
 			
-			execute_cmd "make install" "[$currentStepCounter-4] Make install of ParadisEO-MO"  $SPY
 			RETURN=`expr $RETURN + $?`
 		fi
 		
@@ -506,9 +505,6 @@ function run_install_step()
 			execute_cmd "make install" "[$currentStepCounter-4] Make install ParadisEO-MOEO"  $SPY
 			RETURN=`expr $RETURN + $?`
 		fi
-		
-		# Make link  with the install.cmake (at the top level)
-		#execute_cmd "ln -s $installKitPath/install.cmake $installKitPath/paradiseo-moeo/install.cmake" "[$currentStepCounter-5] Create link to install.cmake for MOEO"  $SPY 
 		
 		if [ ! $(($RETURN)) = 0 ]
 		then
@@ -808,13 +804,8 @@ function run_install_step()
 			then
 				RETURN=`expr $RETURN + $LAST_RETURN`
 			fi	
-			execute_cmd "make install" "[$currentStepCounter-4] Make install ParadisEO-PEO "  $SPY
-			RETURN=`expr $RETURN + $?`
-		fi
-		
-		# Make link  with the install.cmake (at the top level)
-		#execute_cmd "ln -s $installKitPath/install.cmake $installKitPath/paradiseo-peo/install.cmake" "[$currentStepCounter-5] Create link to install.cmake for PEO"  $SPY 
-		
+		fi		
+	
 		if [ ! $(($RETURN)) = 0 ]
 		then
 			echo ''
