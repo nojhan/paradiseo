@@ -502,8 +502,6 @@ function run_install_step()
 			then
 				RETURN=`expr $RETURN + $LAST_RETURN`
 			fi	
-			execute_cmd "make install" "[$currentStepCounter-4] Make install ParadisEO-MOEO"  $SPY
-			RETURN=`expr $RETURN + $?`
 		fi
 		
 		if [ ! $(($RETURN)) = 0 ]
