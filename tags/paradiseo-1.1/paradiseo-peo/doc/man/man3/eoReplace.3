@@ -1,0 +1,114 @@
+.TH "eoReplace" 3 "13 Mar 2008" "Version 1.1" "ParadisEO-PEO-ParallelanddistributedEvolvingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoReplace \- Specific class for a replacement within the exchange of migration of a population.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <peoData.h>\fP
+.PP
+Inherits \fBreplacement< TYPE >< TYPE >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoReplace\fP (\fBeoReplacement\fP< EOT > &_replace, TYPE &_destination)"
+.br
+.RI "\fIConstructor. \fP"
+.ti -1c
+.RI "virtual void \fBoperator()\fP (TYPE &_source)"
+.br
+.RI "\fIVirtual operator on the template type. \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoReplacement\fP< EOT > & \fBreplace\fP"
+.br
+.ti -1c
+.RI "TYPE & \fBdestination\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT, class TYPE> class eoReplace< EOT, TYPE >"
+Specific class for a replacement within the exchange of migration of a population. 
+
+\fBSee also:\fP
+.RS 4
+\fBreplacement\fP 
+.RE
+.PP
+\fBVersion:\fP
+.RS 4
+1.0 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+january 2008 
+.RE
+.PP
+
+.PP
+Definition at line 173 of file peoData.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT, class TYPE> \fBeoReplace\fP< EOT, TYPE >::\fBeoReplace\fP (\fBeoReplacement\fP< EOT > & _replace, TYPE & _destination)\fC [inline]\fP"
+.PP
+Constructor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIeoReplacement<EOT>\fP & 
+.br
+\fITYPE\fP & _destination (with TYPE which is the template type) 
+.RE
+.PP
+
+.PP
+Definition at line 179 of file peoData.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT, class TYPE> virtual void \fBeoReplace\fP< EOT, TYPE >::operator() (TYPE & _source)\fC [inline, virtual]\fP"
+.PP
+Virtual operator on the template type. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fITYPE\fP & _source 
+.RE
+.PP
+
+.PP
+Implements \fBreplacement< TYPE >\fP.
+.PP
+Definition at line 184 of file peoData.h.
+.PP
+References eoReplace< EOT, TYPE >::destination, and eoReplace< EOT, TYPE >::replace.
+.SH "Member Data Documentation"
+.PP 
+.SS "template<class EOT, class TYPE> \fBeoReplacement\fP<EOT>& \fBeoReplace\fP< EOT, TYPE >::\fBreplace\fP\fC [protected]\fP"
+.PP
+\fBParameters:\fP
+.RS 4
+\fIeoReplacement<EOT>\fP & 
+.br
+\fITYPE\fP & destination 
+.RE
+.PP
+
+.PP
+Definition at line 192 of file peoData.h.
+.PP
+Referenced by eoReplace< EOT, TYPE >::operator()().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-PEO-ParallelanddistributedEvolvingObjects from the source code.

@@ -1,0 +1,114 @@
+.TH "eoContinuator" 3 "13 Mar 2008" "Version 1.1" "ParadisEO-PEO-ParallelanddistributedEvolvingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+eoContinuator \- Specific class for a continuator within the exchange of migration of a population.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <peoData.h>\fP
+.PP
+Inherits \fBcontinuator\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBeoContinuator\fP (\fBeoContinue\fP< EOT > &_cont, const \fBeoPop\fP< EOT > &_pop)"
+.br
+.RI "\fIConstructor. \fP"
+.ti -1c
+.RI "virtual bool \fBcheck\fP ()"
+.br
+.RI "\fIVirtual function of check. \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeoContinue\fP< EOT > & \fBcont\fP"
+.br
+.ti -1c
+.RI "const \fBeoPop\fP< EOT > & \fBpop\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EOT> class eoContinuator< EOT >"
+Specific class for a continuator within the exchange of migration of a population. 
+
+\fBSee also:\fP
+.RS 4
+\fBcontinuator\fP 
+.RE
+.PP
+\fBVersion:\fP
+.RS 4
+1.0 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+january 2008 
+.RE
+.PP
+
+.PP
+Definition at line 68 of file peoData.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EOT> \fBeoContinuator\fP< EOT >::\fBeoContinuator\fP (\fBeoContinue\fP< EOT > & _cont, const \fBeoPop\fP< EOT > & _pop)\fC [inline]\fP"
+.PP
+Constructor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIeoContinue<EOT>\fP & 
+.br
+\fIeoPop<EOT>\fP & 
+.RE
+.PP
+
+.PP
+Definition at line 75 of file peoData.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EOT> virtual bool \fBeoContinuator\fP< EOT >::check ()\fC [inline, virtual]\fP"
+.PP
+Virtual function of check. 
+.PP
+\fBReturns:\fP
+.RS 4
+false if the algorithm must continue 
+.RE
+.PP
+
+.PP
+Implements \fBcontinuator\fP.
+.PP
+Definition at line 80 of file peoData.h.
+.PP
+References eoContinuator< EOT >::cont, and eoContinuator< EOT >::pop.
+.SH "Member Data Documentation"
+.PP 
+.SS "template<class EOT> \fBeoContinue\fP<EOT>& \fBeoContinuator\fP< EOT >::\fBcont\fP\fC [protected]\fP"
+.PP
+\fBParameters:\fP
+.RS 4
+\fIeoContinue<EOT>\fP & 
+.br
+\fIeoPop<EOT>\fP & 
+.RE
+.PP
+
+.PP
+Definition at line 88 of file peoData.h.
+.PP
+Referenced by eoContinuator< EOT >::check().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-PEO-ParallelanddistributedEvolvingObjects from the source code.
