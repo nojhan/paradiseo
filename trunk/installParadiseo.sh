@@ -800,8 +800,8 @@ function run_install_step()
 			then
 				RETURN=`expr $RETURN + $LAST_RETURN`
 			fi	
-		fi
-		
+		fi		
+	
 		if [ ! $(($RETURN)) = 0 ]
 		then
 			echo ''
