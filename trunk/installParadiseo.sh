@@ -413,7 +413,7 @@ function run_install_step()
 
 		if [ "$COMPILE_PARADISEO" = "1" ] 
 		then
-			execute_cmd "ctest $CTEST_CONFIG -R $EO_MIN_UNIT_TEST" "[$currentStepCounter-4] Compile ParadisEO-EO using CTest"  $SPY
+			execute_cmd "ctest $CTEST_CONFIG" "[$currentStepCounter-4] Compile ParadisEO-EO using CTest"  $SPY
 			LAST_RETURN=$?
 			# don't consider a submission error as a "right error"
 			if [ ! "$LAST_RETURN" = "$DART_SUBMISSION_ERROR" ]
@@ -455,7 +455,7 @@ function run_install_step()
 		
 		if [ "$COMPILE_PARADISEO" = "1" ] 
 		then
-			execute_cmd "ctest $CTEST_CONFIG -R $MO_MIN_UNIT_TEST" "[$currentStepCounter-3] Compile ParadisEO-MO using CTest"  $SPY	
+			execute_cmd "ctest $CTEST_CONFIG" "[$currentStepCounter-3] Compile ParadisEO-MO using CTest"  $SPY	
 			LAST_RETURN=$?
 			# don't consider a submission error as a "right error"
 			if [ ! "$LAST_RETURN" = "$DART_SUBMISSION_ERROR" ]
@@ -496,7 +496,7 @@ function run_install_step()
 		
 		if [ "$COMPILE_PARADISEO" = "1" ] 
 		then
-			execute_cmd "ctest $CTEST_CONFIG -R $MOEO_MIN_UNIT_TEST" "[$currentStepCounter-3] Compile ParadisEO-MOEO using CTest"  $SPY
+			execute_cmd "ctest $CTEST_CONFIG" "[$currentStepCounter-3] Compile ParadisEO-MOEO using CTest"  $SPY
 			LAST_RETURN=$?
 			# don't consider a submission error as a "right error"
 			if [ ! "$LAST_RETURN" = "$DART_SUBMISSION_ERROR" ]
@@ -796,7 +796,7 @@ function run_install_step()
 		
 		if [ "$COMPILE_PARADISEO" = "1" ] 
 		then
-			execute_cmd "ctest $CTEST_CONFIG -R $PEO_MIN_UNIT_TEST" "[$currentStepCounter-3] Compile ParadisEO-PEO using CTest"  $SPY
+			execute_cmd "ctest $CTEST_CONFIG" "[$currentStepCounter-3] Compile ParadisEO-PEO using CTest"  $SPY
 			LAST_RETURN=$?
 			# don't consider a submission error as a "right error"
 			if [ ! "$LAST_RETURN" = "$DART_SUBMISSION_ERROR" ]
