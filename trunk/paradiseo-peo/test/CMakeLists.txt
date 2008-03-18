@@ -71,9 +71,24 @@ FOREACH (test ${TEST_RUN} ${TEST_LIST} ${TEST_STOP})
 ENDFOREACH (test)
 
 
-IF(ENABLE_CMAKE_TESTING)
-	
-	# Add the tests
+IF(ENABLE_MINIMAL_CMAKE_TESTING)
+
+    SET (MIN_TEST_LIST t-MultiStart)
+    FOREACH (test ${TEST_RUN})
+		  ADD_TEST(${test} ${test})
+	ENDFOREACH (test)				
+    FOREACH (mintest ${MIN_TEST_LIST})
+    	  SET ("T_${mintest}_SOURCES" "${mintest}.cpp")
+    	  ADD_EXECUTABLE(${mintest} ${T_${mintest}_SOURCES}) 
+		  ADD_TEST(${mintest} ${mintest}) 
+		  TARGET_LINK_LIBRARIES(${test} peo ${XML2_LIBS} rmc_mpi ga es eoutils eo peo)
+    ENDFOREACH (mintest)
+    FOREACH (test ${TEST_STOP})
+		  ADD_TEST(${test} ${test})
+	ENDFOREACH (test)
+   
+ELSEIF(ENABLE_CMAKE_TESTING)
+
 	FOREACH (test ${TEST_RUN} ${TEST_LIST} ${TEST_STOP})
 		  ADD_EXECUTABLE(${test} ${T_${test}_SOURCES})  
 	ENDFOREACH (test)
@@ -93,9 +108,10 @@ IF(ENABLE_CMAKE_TESTING)
 	# Link the librairies
 	FOREACH (test ${TEST_RUN} ${TEST_LIST} ${TEST_STOP})
 	 TARGET_LINK_LIBRARIES(${test} peo ${XML2_LIBS} rmc_mpi ga es eoutils eo peo)
-	ENDFOREACH (test)
+	ENDFOREACH (test)	
 	
-ENDIF(ENABLE_CMAKE_TESTING)
+ENDIF(ENABLE_MINIMAL_CMAKE_TESTING)
+
 
 ######################################################################################
 
