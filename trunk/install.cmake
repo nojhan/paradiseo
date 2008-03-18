@@ -95,7 +95,7 @@ ENDIF(CMAKE_BUILD_TYPE MATCHES Debug)
 
 IF (ENABLE_CMAKE_TESTING)  
         ENABLE_TESTING()     
-        SET(BUILDNAME "${CMAKE_PROJECT_NAME}-${CMAKE_SYSTEM}-${CMAKE_CXX_COMPILER}" CACHE STRING "Name of the build on the dashboard")
+        SET(BUILDNAME "${CMAKE_PROJECT_NAME}-${CMAKE_SYSTEM}-${CMAKE_CXX_COMPILER}" CACHE STRING "Name of the build on the dashboard" FORCE)
         MARK_AS_ADVANCED(BUILDNAME)     
 ENDIF (ENABLE_CMAKE_TESTING)
 ######################################################################################
