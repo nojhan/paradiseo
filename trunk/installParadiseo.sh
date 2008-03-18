@@ -1072,7 +1072,6 @@ do
   if [ "${i%=*}" = "--debug" ]
    then
       BUILD_TYPE=Debug
-      OPTIONNAL_CMAKE_FLAGS='-DENABLE_CMAKE_TESTING=TRUE'
       CTEST_CONFIG="$CTEST_CONFIG -D ExperimentalTest"
   fi
   if [ "${i%=*}" = "--skipdart" ]
@@ -1099,7 +1098,9 @@ then
   	  CTEST_CONFIG="$CTEST_CONFIG -D ExperimentalSubmit"
 fi
   
- 
+### Set the optional flags for the modules
+OPTIONNAL_CMAKE_FLAGS='-DENABLE_CMAKE_TESTING=TRUE'
+
 ### Need the generator
 BUILD_PROCESS_TYPE=0
 GENERATOR_TREATENED=0
