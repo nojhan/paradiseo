@@ -37,10 +37,10 @@ CTEST_DEFAULT_CONFIG="-D ExperimentalStart -D ExperimentalBuild -D ExperimentalT
 CTEST_CONFIG=$CTEST_DEFAULT_CONFIG
 
 # What are the tests that should be always run ?
-EO_MIN_UNIT_TEST=t-eoEasyEA
-MO_MIN_UNIT_TEST=t-moHC
-MOEO_MIN_UNIT_TEST=t-moeoEasyEA
-PEO_MIN_UNIT_TEST=t-Mpdboot  t-ParallelEval
+EO_MIN_UNIT_TEST='t-eoEasyEA'
+MO_MIN_UNIT_TEST='t-moHC'
+MOEO_MIN_UNIT_TEST='t-moeoEasyEA'
+PEO_MIN_UNIT_TEST='t-Mpdboot  t-ParallelEval'
 
 # install types to select in the main menu
 P_FULL_INSTALL=1
