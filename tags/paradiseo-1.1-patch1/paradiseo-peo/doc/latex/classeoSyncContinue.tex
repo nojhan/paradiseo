@@ -1,0 +1,112 @@
+\hypertarget{classeoSyncContinue}{
+\section{eo\-Sync\-Continue Class Reference}
+\label{classeoSyncContinue}\index{eoSyncContinue@{eoSyncContinue}}
+}
+Class for a continuator within the exchange of data by synchrone migration.  
+
+
+{\tt \#include $<$peo\-Data.h$>$}
+
+Inheritance diagram for eo\-Sync\-Continue::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classeoSyncContinue}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classeoSyncContinue_a1f0cb0e380ffffd964031c4aa0f7086}{eo\-Sync\-Continue} (unsigned \_\-\_\-period, unsigned \_\-\_\-init\_\-counter=0)
+\begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
+virtual bool \hyperlink{classeoSyncContinue_417078233f768debb14b5a90f6412b3c}{check} ()
+\begin{CompactList}\small\item\em Virtual function of check. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+unsigned \hyperlink{classeoSyncContinue_966a94a44db2f84c7df0ef3d4694e37c}{period}
+\item 
+\hypertarget{classeoSyncContinue_c2e6e2b929884e370b16f2cccda9cd17}{
+unsigned \hyperlink{classeoSyncContinue_c2e6e2b929884e370b16f2cccda9cd17}{counter}}
+\label{classeoSyncContinue_c2e6e2b929884e370b16f2cccda9cd17}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Class for a continuator within the exchange of data by synchrone migration. 
+
+\begin{Desc}
+\item[See also:]\hyperlink{classcontinuator}{continuator} \end{Desc}
+\begin{Desc}
+\item[Version:]1.0 \end{Desc}
+\begin{Desc}
+\item[Date:]january 2008 \end{Desc}
+
+
+
+
+Definition at line 206 of file peo\-Data.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classeoSyncContinue_a1f0cb0e380ffffd964031c4aa0f7086}{
+\index{eoSyncContinue@{eo\-Sync\-Continue}!eoSyncContinue@{eoSyncContinue}}
+\index{eoSyncContinue@{eoSyncContinue}!eoSyncContinue@{eo\-Sync\-Continue}}
+\subsubsection[eoSyncContinue]{\setlength{\rightskip}{0pt plus 5cm}eo\-Sync\-Continue::eo\-Sync\-Continue (unsigned {\em \_\-\_\-period}, unsigned {\em \_\-\_\-init\_\-counter} = {\tt 0})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classeoSyncContinue_a1f0cb0e380ffffd964031c4aa0f7086}
+
+
+Constructor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em unsigned}]\_\-\_\-period \item[{\em unsigned}]\_\-\_\-init\_\-counter \end{description}
+\end{Desc}
+
+
+Definition at line 213 of file peo\-Data.h.
+
+\subsection{Member Function Documentation}
+\hypertarget{classeoSyncContinue_417078233f768debb14b5a90f6412b3c}{
+\index{eoSyncContinue@{eo\-Sync\-Continue}!check@{check}}
+\index{check@{check}!eoSyncContinue@{eo\-Sync\-Continue}}
+\subsubsection[check]{\setlength{\rightskip}{0pt plus 5cm}virtual bool eo\-Sync\-Continue::check ()\hspace{0.3cm}{\tt  \mbox{[}inline, virtual\mbox{]}}}}
+\label{classeoSyncContinue_417078233f768debb14b5a90f6412b3c}
+
+
+Virtual function of check. 
+
+\begin{Desc}
+\item[Returns:]true if the algorithm must continue \end{Desc}
+
+
+Implements \hyperlink{classcontinuator_30601b037ab27b40610af1b979ec3d5b}{continuator}.
+
+Definition at line 218 of file peo\-Data.h.
+
+References counter, and period.
+
+Referenced by peo\-Sync\-Island\-Mig$<$ TYPESELECT, TYPEREPLACE $>$::operator()().
+
+\subsection{Member Data Documentation}
+\hypertarget{classeoSyncContinue_966a94a44db2f84c7df0ef3d4694e37c}{
+\index{eoSyncContinue@{eo\-Sync\-Continue}!period@{period}}
+\index{period@{period}!eoSyncContinue@{eo\-Sync\-Continue}}
+\subsubsection[period]{\setlength{\rightskip}{0pt plus 5cm}unsigned \hyperlink{classeoSyncContinue_966a94a44db2f84c7df0ef3d4694e37c}{eo\-Sync\-Continue::period}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classeoSyncContinue_966a94a44db2f84c7df0ef3d4694e37c}
+
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em unsigned}]period \item[{\em unsigned}]counter \end{description}
+\end{Desc}
+
+
+Definition at line 227 of file peo\-Data.h.
+
+Referenced by check().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+peo\-Data.h\end{CompactItemize}

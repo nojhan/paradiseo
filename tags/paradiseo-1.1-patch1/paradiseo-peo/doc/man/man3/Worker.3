@@ -1,0 +1,73 @@
+.TH "Worker" 3 "13 Mar 2008" "Version 1.1" "ParadisEO-PEO-ParallelanddistributedEvolvingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Worker \- 
+.SH SYNOPSIS
+.br
+.PP
+Inherits \fBCommunicable\fP, and \fBReactiveThread\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBWorker\fP ()"
+.br
+.ti -1c
+.RI "void \fBstart\fP ()"
+.br
+.ti -1c
+.RI "void \fBpackResult\fP ()"
+.br
+.ti -1c
+.RI "void \fBunpackData\fP ()"
+.br
+.ti -1c
+.RI "void \fBpackTaskDone\fP ()"
+.br
+.ti -1c
+.RI "void \fBnotifySendingResult\fP ()"
+.br
+.ti -1c
+.RI "void \fBnotifySendingTaskDone\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetSource\fP (int __rank)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "WORKER_ID \fBid\fP"
+.br
+.ti -1c
+.RI "SERVICE_ID \fBserv_id\fP"
+.br
+.ti -1c
+.RI "\fBService\fP * \fBserv\fP"
+.br
+.ti -1c
+.RI "int \fBsrc\fP"
+.br
+.ti -1c
+.RI "bool \fBrecvAndCompleted\fP"
+.br
+.ti -1c
+.RI "unsigned \fBtaskAssigned\fP"
+.br
+.ti -1c
+.RI "sem_t \fBsem_task_done\fP"
+.br
+.ti -1c
+.RI "sem_t \fBsem_task_asgn\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 47 of file worker.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-PEO-ParallelanddistributedEvolvingObjects from the source code.

@@ -1,0 +1,169 @@
+\section{moeo\-NSGA$<$ MOEOT $>$ Class Template Reference}
+\label{classmoeoNSGA}\index{moeoNSGA@{moeoNSGA}}
+NSGA (Non-dominated Sorting Genetic Algorithm) as described in: N.  
+
+
+{\tt \#include $<$moeo\-NSGA.h$>$}
+
+Inheritance diagram for moeo\-NSGA$<$ MOEOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5cm]{classmoeoNSGA}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\bf{moeo\-NSGA} (unsigned int \_\-max\-Gen, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \&\_\-eval, \bf{eo\-Gen\-Op}$<$ MOEOT $>$ \&\_\-op, double \_\-niche\-Size=0.5)
+\begin{CompactList}\small\item\em Simple ctor with a \doxyref{eo\-Gen\-Op}. \item\end{CompactList}\item 
+\bf{moeo\-NSGA} (unsigned int \_\-max\-Gen, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \&\_\-eval, \bf{eo\-Transform}$<$ MOEOT $>$ \&\_\-op, double \_\-niche\-Size=0.5)
+\begin{CompactList}\small\item\em Simple ctor with a \doxyref{eo\-Transform}. \item\end{CompactList}\item 
+\bf{moeo\-NSGA} (unsigned int \_\-max\-Gen, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \&\_\-eval, \bf{eo\-Quad\-Op}$<$ MOEOT $>$ \&\_\-crossover, double \_\-p\-Cross, \bf{eo\-Mon\-Op}$<$ MOEOT $>$ \&\_\-mutation, double \_\-p\-Mut, double \_\-niche\-Size=0.5)
+\begin{CompactList}\small\item\em Ctor with a crossover, a mutation and their corresponding rates. \item\end{CompactList}\item 
+\bf{moeo\-NSGA} (\bf{eo\-Continue}$<$ MOEOT $>$ \&\_\-continuator, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \&\_\-eval, \bf{eo\-Gen\-Op}$<$ MOEOT $>$ \&\_\-op, double \_\-niche\-Size=0.5)
+\begin{CompactList}\small\item\em Ctor with a continuator (instead of \_\-max\-Gen) and a \doxyref{eo\-Gen\-Op}. \item\end{CompactList}\item 
+\bf{moeo\-NSGA} (\bf{eo\-Continue}$<$ MOEOT $>$ \&\_\-continuator, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \&\_\-eval, \bf{eo\-Transform}$<$ MOEOT $>$ \&\_\-op, double \_\-niche\-Size=0.5)
+\begin{CompactList}\small\item\em Ctor with a continuator (instead of \_\-max\-Gen) and a \doxyref{eo\-Transform}. \item\end{CompactList}\item 
+virtual void \bf{operator()} (\bf{eo\-Pop}$<$ MOEOT $>$ \&\_\-pop)
+\begin{CompactList}\small\item\em Apply a few generation of evolution to the population \_\-pop until the stopping criteria is verified. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+\bf{eo\-Gen\-Continue}$<$ MOEOT $>$ \bf{default\-Gen\-Continuator}\label{classmoeoNSGA_6dbb57c19ff00085df8397cebcce066d}
+
+\begin{CompactList}\small\item\em a continuator based on the number of generations (used as default) \item\end{CompactList}\item 
+\bf{eo\-Continue}$<$ MOEOT $>$ \& \bf{continuator}\label{classmoeoNSGA_ef67320e3820548b333577b33430fcbe}
+
+\begin{CompactList}\small\item\em stopping criteria \item\end{CompactList}\item 
+\bf{eo\-Pop\-Loop\-Eval}$<$ MOEOT $>$ \bf{pop\-Eval}\label{classmoeoNSGA_b54adef108d8b4c5a7c0da1e2065ac85}
+
+\begin{CompactList}\small\item\em evaluation function used to evaluate the whole population \item\end{CompactList}\item 
+\bf{moeo\-Det\-Tournament\-Select}$<$ MOEOT $>$ \bf{select}\label{classmoeoNSGA_ffd95fab4aed24fc866334c28e77a666}
+
+\begin{CompactList}\small\item\em binary tournament selection \item\end{CompactList}\item 
+\bf{moeo\-Fast\-Non\-Dominated\-Sorting\-Fitness\-Assignment}$<$ MOEOT $>$ \bf{fitness\-Assignment}\label{classmoeoNSGA_2c13f9fa53c29d93af39cca083ccb10d}
+
+\begin{CompactList}\small\item\em fitness assignment used in NSGA-II \item\end{CompactList}\item 
+\bf{moeo\-Front\-By\-Front\-Sharing\-Diversity\-Assignment}$<$ MOEOT $>$ \bf{diversity\-Assignment}\label{classmoeoNSGA_e361fa8aed173619e2aae64dba0c504a}
+
+\begin{CompactList}\small\item\em diversity assignment used in NSGA-II \item\end{CompactList}\item 
+\bf{moeo\-Elitist\-Replacement}$<$ MOEOT $>$ \bf{replace}\label{classmoeoNSGA_8470efa1ef87b6448f081ec802858a8c}
+
+\begin{CompactList}\small\item\em elitist replacement \item\end{CompactList}\item 
+\bf{eo\-SGAGen\-Op}$<$ MOEOT $>$ \bf{default\-SGAGen\-Op}\label{classmoeoNSGA_879b4451e77b627705280373ff0a26ab}
+
+\begin{CompactList}\small\item\em an object for genetic operators (used as default) \item\end{CompactList}\item 
+\bf{eo\-General\-Breeder}$<$ MOEOT $>$ \bf{gen\-Breed}\label{classmoeoNSGA_3ee7a5ea8ed71859ea544741de9989f2}
+
+\begin{CompactList}\small\item\em general breeder \item\end{CompactList}\item 
+\bf{eo\-Breed}$<$ MOEOT $>$ \& \bf{breed}\label{classmoeoNSGA_1538e7c32062d9d9c634b9948ca28000}
+
+\begin{CompactList}\small\item\em breeder \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class MOEOT$>$ class moeo\-NSGA$<$ MOEOT $>$}
+
+NSGA (Non-dominated Sorting Genetic Algorithm) as described in: N. 
+
+Srinivas, K. Deb, \char`\"{}Multiobjective Optimization Using Nondominated Sorting in Genetic Algorithms\char`\"{}. Evolutionary Computation, Vol. 2(3), No 2, pp. 221-248 (1994). This class builds the NSGA algorithm only by using the fine-grained components of the Paradis\-EO-MOEO framework. 
+
+
+
+Definition at line 62 of file moeo\-NSGA.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{moeoNSGA@{moeo\-NSGA}!moeoNSGA@{moeoNSGA}}
+\index{moeoNSGA@{moeoNSGA}!moeoNSGA@{moeo\-NSGA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-NSGA}$<$ MOEOT $>$::\bf{moeo\-NSGA} (unsigned int {\em \_\-max\-Gen}, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \& {\em \_\-eval}, \bf{eo\-Gen\-Op}$<$ MOEOT $>$ \& {\em \_\-op}, double {\em \_\-niche\-Size} = {\tt 0.5})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoNSGA_3f5d288a5f3bdeb8c35dfcefbaf0dd43}
+
+
+Simple ctor with a \doxyref{eo\-Gen\-Op}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-max\-Gen}]number of generations before stopping \item[{\em \_\-eval}]evaluation function \item[{\em \_\-op}]variation operator \item[{\em \_\-niche\-Size}]niche size \end{description}
+\end{Desc}
+
+
+Definition at line 73 of file moeo\-NSGA.h.\index{moeoNSGA@{moeo\-NSGA}!moeoNSGA@{moeoNSGA}}
+\index{moeoNSGA@{moeoNSGA}!moeoNSGA@{moeo\-NSGA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-NSGA}$<$ MOEOT $>$::\bf{moeo\-NSGA} (unsigned int {\em \_\-max\-Gen}, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \& {\em \_\-eval}, \bf{eo\-Transform}$<$ MOEOT $>$ \& {\em \_\-op}, double {\em \_\-niche\-Size} = {\tt 0.5})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoNSGA_177e825966d70e7f697a52be7819e830}
+
+
+Simple ctor with a \doxyref{eo\-Transform}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-max\-Gen}]number of generations before stopping \item[{\em \_\-eval}]evaluation function \item[{\em \_\-op}]variation operator \item[{\em \_\-niche\-Size}]niche size \end{description}
+\end{Desc}
+
+
+Definition at line 86 of file moeo\-NSGA.h.\index{moeoNSGA@{moeo\-NSGA}!moeoNSGA@{moeoNSGA}}
+\index{moeoNSGA@{moeoNSGA}!moeoNSGA@{moeo\-NSGA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-NSGA}$<$ MOEOT $>$::\bf{moeo\-NSGA} (unsigned int {\em \_\-max\-Gen}, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \& {\em \_\-eval}, \bf{eo\-Quad\-Op}$<$ MOEOT $>$ \& {\em \_\-crossover}, double {\em \_\-p\-Cross}, \bf{eo\-Mon\-Op}$<$ MOEOT $>$ \& {\em \_\-mutation}, double {\em \_\-p\-Mut}, double {\em \_\-niche\-Size} = {\tt 0.5})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoNSGA_7c7b4bb55b7ee74da780f20a943809fd}
+
+
+Ctor with a crossover, a mutation and their corresponding rates. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-max\-Gen}]number of generations before stopping \item[{\em \_\-eval}]evaluation function \item[{\em \_\-crossover}]crossover \item[{\em \_\-p\-Cross}]crossover probability \item[{\em \_\-mutation}]mutation \item[{\em \_\-p\-Mut}]mutation probability \item[{\em \_\-niche\-Size}]niche size \end{description}
+\end{Desc}
+
+
+Definition at line 102 of file moeo\-NSGA.h.\index{moeoNSGA@{moeo\-NSGA}!moeoNSGA@{moeoNSGA}}
+\index{moeoNSGA@{moeoNSGA}!moeoNSGA@{moeo\-NSGA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-NSGA}$<$ MOEOT $>$::\bf{moeo\-NSGA} (\bf{eo\-Continue}$<$ MOEOT $>$ \& {\em \_\-continuator}, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \& {\em \_\-eval}, \bf{eo\-Gen\-Op}$<$ MOEOT $>$ \& {\em \_\-op}, double {\em \_\-niche\-Size} = {\tt 0.5})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoNSGA_5f8a315499cb7e65911af0c7587144d8}
+
+
+Ctor with a continuator (instead of \_\-max\-Gen) and a \doxyref{eo\-Gen\-Op}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-continuator}]stopping criteria \item[{\em \_\-eval}]evaluation function \item[{\em \_\-op}]variation operator \item[{\em \_\-niche\-Size}]niche size \end{description}
+\end{Desc}
+
+
+Definition at line 116 of file moeo\-NSGA.h.\index{moeoNSGA@{moeo\-NSGA}!moeoNSGA@{moeoNSGA}}
+\index{moeoNSGA@{moeoNSGA}!moeoNSGA@{moeo\-NSGA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-NSGA}$<$ MOEOT $>$::\bf{moeo\-NSGA} (\bf{eo\-Continue}$<$ MOEOT $>$ \& {\em \_\-continuator}, \bf{eo\-Eval\-Func}$<$ MOEOT $>$ \& {\em \_\-eval}, \bf{eo\-Transform}$<$ MOEOT $>$ \& {\em \_\-op}, double {\em \_\-niche\-Size} = {\tt 0.5})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoNSGA_eacee61268618c12d44d2f07cf7a796c}
+
+
+Ctor with a continuator (instead of \_\-max\-Gen) and a \doxyref{eo\-Transform}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-continuator}]stopping criteria \item[{\em \_\-eval}]evaluation function \item[{\em \_\-op}]variation operator \item[{\em \_\-niche\-Size}]niche size \end{description}
+\end{Desc}
+
+
+Definition at line 129 of file moeo\-NSGA.h.
+
+\subsection{Member Function Documentation}
+\index{moeoNSGA@{moeo\-NSGA}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoNSGA@{moeo\-NSGA}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ virtual void \bf{moeo\-NSGA}$<$ MOEOT $>$::operator() (\bf{eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmoeoNSGA_632676ceb299f3318c116b2b2b386b0d}
+
+
+Apply a few generation of evolution to the population \_\-pop until the stopping criteria is verified. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \end{description}
+\end{Desc}
+
+
+Definition at line 139 of file moeo\-NSGA.h.
+
+References moeo\-NSGA$<$ MOEOT $>$::breed, moeo\-NSGA$<$ MOEOT $>$::continuator, moeo\-NSGA$<$ MOEOT $>$::diversity\-Assignment, moeo\-NSGA$<$ MOEOT $>$::fitness\-Assignment, moeo\-NSGA$<$ MOEOT $>$::pop\-Eval, and moeo\-NSGA$<$ MOEOT $>$::replace.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-NSGA.h\end{CompactItemize}

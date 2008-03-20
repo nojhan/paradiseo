@@ -1,0 +1,151 @@
+.TH "peoAsyncIslandMig" 3 "13 Mar 2008" "Version 1.1" "ParadisEO-PEO-ParallelanddistributedEvolvingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+peoAsyncIslandMig \- Specific class for a asynchronous migration.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <peoAsyncIslandMig.h>\fP
+.PP
+Inherits \fBCooperative\fP, and \fBeoUpdater\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBpeoAsyncIslandMig\fP (\fBcontinuator\fP &__cont, \fBselector\fP< TYPESELECT > &__select, \fBreplacement\fP< TYPEREPLACE > &__replace, \fBTopology\fP &__topology)"
+.br
+.RI "\fIConstructor. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP ()"
+.br
+.RI "\fIoperator \fP"
+.ti -1c
+.RI "void \fBpack\fP ()"
+.br
+.RI "\fI\fBFunction\fP realizing packages. \fP"
+.ti -1c
+.RI "void \fBunpack\fP ()"
+.br
+.RI "\fI\fBFunction\fP reconstituting packages. \fP"
+.ti -1c
+.RI "void \fBpackSynchronizeReq\fP ()"
+.br
+.RI "\fI\fBFunction\fP packSynchronizeReq. \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBemigrate\fP ()"
+.br
+.RI "\fI\fBFunction\fP which sends some emigrants. \fP"
+.ti -1c
+.RI "void \fBimmigrate\fP ()"
+.br
+.RI "\fI\fBFunction\fP which receives some immigrants. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBcontinuator\fP & \fBcont\fP"
+.br
+.ti -1c
+.RI "\fBselector\fP< TYPESELECT > & \fBselect\fP"
+.br
+.ti -1c
+.RI "\fBreplacement\fP< TYPEREPLACE > & \fBreplace\fP"
+.br
+.ti -1c
+.RI "\fBTopology\fP & \fBtopology\fP"
+.br
+.ti -1c
+.RI "std::queue< TYPEREPLACE > \fBimm\fP"
+.br
+.ti -1c
+.RI "std::queue< TYPESELECT > \fBem\fP"
+.br
+.ti -1c
+.RI "std::queue< \fBCooperative\fP * > \fBcoop_em\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class TYPESELECT, class TYPEREPLACE> class peoAsyncIslandMig< TYPESELECT, TYPEREPLACE >"
+Specific class for a asynchronous migration. 
+
+\fBSee also:\fP
+.RS 4
+\fBCooperative\fP \fBeoUpdater\fP 
+.RE
+.PP
+\fBVersion:\fP
+.RS 4
+2.0 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+january 2008 
+.RE
+.PP
+
+.PP
+Definition at line 64 of file peoAsyncIslandMig.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class TYPESELECT, class TYPEREPLACE> \fBpeoAsyncIslandMig\fP< TYPESELECT, TYPEREPLACE >::\fBpeoAsyncIslandMig\fP (\fBcontinuator\fP & __cont, \fBselector\fP< TYPESELECT > & __select, \fBreplacement\fP< TYPEREPLACE > & __replace, \fBTopology\fP & __topology)"
+.PP
+Constructor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcontinuator\fP & __cont 
+.br
+\fIselector\fP <TYPE> & __select 
+.br
+\fIreplacement\fP <TYPE> & __replace 
+.br
+\fITopology&\fP __topology 
+.RE
+.PP
+
+.PP
+Definition at line 114 of file peoAsyncIslandMig.h.
+.PP
+References Topology::add().
+.SH "Member Data Documentation"
+.PP 
+.SS "template<class TYPESELECT, class TYPEREPLACE> \fBcontinuator\fP& \fBpeoAsyncIslandMig\fP< TYPESELECT, TYPEREPLACE >::\fBcont\fP\fC [private]\fP"
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcontinuator\fP & cont 
+.br
+\fIselector\fP <TYPESELECT> & select 
+.br
+\fIreplacement\fP <TYPEREPLACE> & replace 
+.br
+\fITopology&\fP topology 
+.br
+\fIstd\fP :: queue< TYPEREPLACE > imm 
+.br
+\fIstd\fP :: queue< TYPESELECT > em 
+.br
+\fIstd\fP :: queue< Cooperative* > coop_em 
+.RE
+.PP
+
+.PP
+Definition at line 104 of file peoAsyncIslandMig.h.
+.PP
+Referenced by peoAsyncIslandMig< TYPESELECT, TYPEREPLACE >::operator()().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-PEO-ParallelanddistributedEvolvingObjects from the source code.

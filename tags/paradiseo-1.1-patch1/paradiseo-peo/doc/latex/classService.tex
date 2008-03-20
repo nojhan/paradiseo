@@ -1,0 +1,100 @@
+\hypertarget{classService}{
+\section{Service Class Reference}
+\label{classService}\index{Service@{Service}}
+}
+Inheritance diagram for Service::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{classService}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hypertarget{classService_33b149b98498c0e7e401b0f0839d7f0d}{
+void \hyperlink{classService_33b149b98498c0e7e401b0f0839d7f0d}{set\-Owner} (\hyperlink{classThread}{Thread} \&\_\-\_\-owner)}
+\label{classService_33b149b98498c0e7e401b0f0839d7f0d}
+
+\item 
+\hypertarget{classService_0dae00309c51a7b7069788142aed799f}{
+\hyperlink{classThread}{Thread} $\ast$ \hyperlink{classService_0dae00309c51a7b7069788142aed799f}{get\-Owner} ()}
+\label{classService_0dae00309c51a7b7069788142aed799f}
+
+\item 
+\hypertarget{classService_7e2ae35a9070a05dcd46488df649896d}{
+void \hyperlink{classService_7e2ae35a9070a05dcd46488df649896d}{request\-Resource\-Request} (unsigned \_\-\_\-how\_\-many=1)}
+\label{classService_7e2ae35a9070a05dcd46488df649896d}
+
+\item 
+\hypertarget{classService_c4289f98d1cd9ed53e850efbb6a947bd}{
+void \hyperlink{classService_c4289f98d1cd9ed53e850efbb6a947bd}{pack\-Resource\-Request} ()}
+\label{classService_c4289f98d1cd9ed53e850efbb6a947bd}
+
+\item 
+\hypertarget{classService_aea4b8f7f8fb88e83862ee4bfd9ab207}{
+virtual void \hyperlink{classService_aea4b8f7f8fb88e83862ee4bfd9ab207}{pack\-Data} ()}
+\label{classService_aea4b8f7f8fb88e83862ee4bfd9ab207}
+
+\item 
+\hypertarget{classService_3bd87b444710813d30fd754d4d0b4df3}{
+virtual void \hyperlink{classService_3bd87b444710813d30fd754d4d0b4df3}{unpack\-Data} ()}
+\label{classService_3bd87b444710813d30fd754d4d0b4df3}
+
+\item 
+\hypertarget{classService_e4f2894e6121e60f38d41cfbd7447ae4}{
+virtual void \hyperlink{classService_e4f2894e6121e60f38d41cfbd7447ae4}{execute} ()}
+\label{classService_e4f2894e6121e60f38d41cfbd7447ae4}
+
+\item 
+\hypertarget{classService_e5e4f90b2315e15c2a2913bd370f4cf5}{
+virtual void \hyperlink{classService_e5e4f90b2315e15c2a2913bd370f4cf5}{pack\-Result} ()}
+\label{classService_e5e4f90b2315e15c2a2913bd370f4cf5}
+
+\item 
+\hypertarget{classService_45c06344edbfa482b91f68e2035a6099}{
+virtual void \hyperlink{classService_45c06344edbfa482b91f68e2035a6099}{unpack\-Result} ()}
+\label{classService_45c06344edbfa482b91f68e2035a6099}
+
+\item 
+\hypertarget{classService_81ad4d6ebb50045b8977e2ab74826f30}{
+virtual void \hyperlink{classService_81ad4d6ebb50045b8977e2ab74826f30}{notify\-Sending\-Data} ()}
+\label{classService_81ad4d6ebb50045b8977e2ab74826f30}
+
+\item 
+\hypertarget{classService_94e2012e76aaae3aa8199250f558d503}{
+virtual void \hyperlink{classService_94e2012e76aaae3aa8199250f558d503}{notify\-Sending\-Resource\-Request} ()}
+\label{classService_94e2012e76aaae3aa8199250f558d503}
+
+\item 
+\hypertarget{classService_f94cc8a5c2665d4574041737e61e9ffc}{
+virtual void \hyperlink{classService_f94cc8a5c2665d4574041737e61e9ffc}{notify\-Sending\-All\-Resource\-Requests} ()}
+\label{classService_f94cc8a5c2665d4574041737e61e9ffc}
+
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hypertarget{classService_8b615c65c876f342fe8209eb7e36d7b2}{
+\hyperlink{classThread}{Thread} $\ast$ \hyperlink{classService_8b615c65c876f342fe8209eb7e36d7b2}{owner}}
+\label{classService_8b615c65c876f342fe8209eb7e36d7b2}
+
+\item 
+\hypertarget{classService_a5b2ad9520bb3710b54348b99acebd58}{
+unsigned \hyperlink{classService_a5b2ad9520bb3710b54348b99acebd58}{num\_\-sent\_\-rr}}
+\label{classService_a5b2ad9520bb3710b54348b99acebd58}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+Definition at line 46 of file service.h.
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+service.h\item 
+core/service.cpp\item 
+rmc/mpi/service.cpp\end{CompactItemize}

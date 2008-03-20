@@ -1,0 +1,125 @@
+.TH "moTSMoveLoopExpl" 3 "13 Mar 2008" "Version 1.1" "ParadisEO-MO-MovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moTSMoveLoopExpl \- Explorer for a Tabu Search algorithm.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moTSMoveLoopExpl.h>\fP
+.PP
+Inherits \fBmoMoveLoopExpl< M >< M >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoTSMoveLoopExpl\fP (\fBmoMoveInit\fP< M > &_move_initializer, \fBmoNextMove\fP< M > &_next_move_generator, \fBmoMoveIncrEval\fP< M > &_incremental_evaluation, \fBmoTabuList\fP< M > &_tabu_list, \fBmoAspirCrit\fP< M > &_aspiration_criterion)"
+.br
+.RI "\fIConstructor. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (const \fBEOT\fP &_old_solution, \fBEOT\fP &_new_solution)"
+.br
+.RI "\fIProcedure which lauches the exploration. \fP"
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "typedef M::EOType \fBEOT\fP"
+.br
+.RI "\fIAlias for the type. \fP"
+.ti -1c
+.RI "typedef M::EOType::Fitness \fBFitness\fP"
+.br
+.RI "\fIAlias for the fitness. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmoMoveInit\fP< M > & \fBmove_initializer\fP"
+.br
+.RI "\fIMove initialisation. \fP"
+.ti -1c
+.RI "\fBmoNextMove\fP< M > & \fBnext_move_generator\fP"
+.br
+.RI "\fINeighborhood explorer. \fP"
+.ti -1c
+.RI "\fBmoMoveIncrEval\fP< M > & \fBincremental_evaluation\fP"
+.br
+.RI "\fIEfficient evaluation. \fP"
+.ti -1c
+.RI "\fBmoBestImprSelect\fP< M > \fBmove_selection\fP"
+.br
+.RI "\fIMove selector. \fP"
+.ti -1c
+.RI "\fBmoTabuList\fP< M > & \fBtabu_list\fP"
+.br
+.RI "\fITabu list. \fP"
+.ti -1c
+.RI "\fBmoAspirCrit\fP< M > & \fBaspiration_criterion\fP"
+.br
+.RI "\fIAspiration criterion. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class M> class moTSMoveLoopExpl< M >"
+Explorer for a Tabu Search algorithm. 
+
+It is used by a \fBmoTS\fP. 
+.PP
+Definition at line 53 of file moTSMoveLoopExpl.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class M> \fBmoTSMoveLoopExpl\fP< M >::\fBmoTSMoveLoopExpl\fP (\fBmoMoveInit\fP< M > & _move_initializer, \fBmoNextMove\fP< M > & _next_move_generator, \fBmoMoveIncrEval\fP< M > & _incremental_evaluation, \fBmoTabuList\fP< M > & _tabu_list, \fBmoAspirCrit\fP< M > & _aspiration_criterion)\fC [inline]\fP"
+.PP
+Constructor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_move_initializer\fP The move initializer. 
+.br
+\fI_next_move_generator\fP The neighbourhood explorer. 
+.br
+\fI_incremental_evaluation\fP A (generally) efficient evaluation. 
+.br
+\fI_tabu_list\fP The tabu list. 
+.br
+\fI_aspiration_criterion\fP An aspiration criterion. 
+.RE
+.PP
+
+.PP
+Definition at line 71 of file moTSMoveLoopExpl.h.
+.PP
+References moTSMoveLoopExpl< M >::aspiration_criterion, and moTSMoveLoopExpl< M >::tabu_list.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class M> void \fBmoTSMoveLoopExpl\fP< M >::operator() (const \fBEOT\fP & _old_solution, \fBEOT\fP & _new_solution)\fC [inline, virtual]\fP"
+.PP
+Procedure which lauches the exploration. 
+.PP
+The exploration continues while the chosen move is not in the tabu list or the aspiration criterion is true. If these 2 conditions are not true, the exploration stops if the move selector update function returns false.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_old_solution\fP the initial solution 
+.br
+\fI_new_solution\fP the new solution 
+.RE
+.PP
+
+.PP
+Implements \fBeoBF< const M::EOType &, M::EOType &, void >\fP.
+.PP
+Definition at line 90 of file moTSMoveLoopExpl.h.
+.PP
+References moTSMoveLoopExpl< M >::aspiration_criterion, moTSMoveLoopExpl< M >::incremental_evaluation, moTSMoveLoopExpl< M >::move_initializer, moTSMoveLoopExpl< M >::move_selection, moTSMoveLoopExpl< M >::next_move_generator, and moTSMoveLoopExpl< M >::tabu_list.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MO-MovingObjects from the source code.

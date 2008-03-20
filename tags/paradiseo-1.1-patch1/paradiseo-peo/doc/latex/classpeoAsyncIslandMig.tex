@@ -1,0 +1,150 @@
+\hypertarget{classpeoAsyncIslandMig}{
+\section{peo\-Async\-Island\-Mig$<$ TYPESELECT, TYPEREPLACE $>$ Class Template Reference}
+\label{classpeoAsyncIslandMig}\index{peoAsyncIslandMig@{peoAsyncIslandMig}}
+}
+Specific class for a asynchronous migration.  
+
+
+{\tt \#include $<$peo\-Async\-Island\-Mig.h$>$}
+
+Inheritance diagram for peo\-Async\-Island\-Mig$<$ TYPESELECT, TYPEREPLACE $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.37349cm]{classpeoAsyncIslandMig}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classpeoAsyncIslandMig_e40ddd54734b018ab4e5c3f2bbd5a49c}{peo\-Async\-Island\-Mig} (\hyperlink{classcontinuator}{continuator} \&\_\-\_\-cont, \hyperlink{classselector}{selector}$<$ TYPESELECT $>$ \&\_\-\_\-select, \hyperlink{classreplacement}{replacement}$<$ TYPEREPLACE $>$ \&\_\-\_\-replace, \hyperlink{classTopology}{Topology} \&\_\-\_\-topology)
+\begin{CompactList}\small\item\em Constructor. \item\end{CompactList}\item 
+\hypertarget{classpeoAsyncIslandMig_d56e189f269dde8d68a4b007f05edaff}{
+void \hyperlink{classpeoAsyncIslandMig_d56e189f269dde8d68a4b007f05edaff}{operator()} ()}
+\label{classpeoAsyncIslandMig_d56e189f269dde8d68a4b007f05edaff}
+
+\begin{CompactList}\small\item\em operator \item\end{CompactList}\item 
+\hypertarget{classpeoAsyncIslandMig_0f5f1700920f9ced71ef63b0576e3f14}{
+void \hyperlink{classpeoAsyncIslandMig_0f5f1700920f9ced71ef63b0576e3f14}{pack} ()}
+\label{classpeoAsyncIslandMig_0f5f1700920f9ced71ef63b0576e3f14}
+
+\begin{CompactList}\small\item\em \doxyref{Function} realizing packages. \item\end{CompactList}\item 
+\hypertarget{classpeoAsyncIslandMig_c32a27e387bcd8ce383a4cb1732dbed8}{
+void \hyperlink{classpeoAsyncIslandMig_c32a27e387bcd8ce383a4cb1732dbed8}{unpack} ()}
+\label{classpeoAsyncIslandMig_c32a27e387bcd8ce383a4cb1732dbed8}
+
+\begin{CompactList}\small\item\em \doxyref{Function} reconstituting packages. \item\end{CompactList}\item 
+\hypertarget{classpeoAsyncIslandMig_0a0524a90d0b31bc4c8bfa4f39708b0f}{
+void \hyperlink{classpeoAsyncIslandMig_0a0524a90d0b31bc4c8bfa4f39708b0f}{pack\-Synchronize\-Req} ()}
+\label{classpeoAsyncIslandMig_0a0524a90d0b31bc4c8bfa4f39708b0f}
+
+\begin{CompactList}\small\item\em \doxyref{Function} pack\-Synchronize\-Req. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+\hypertarget{classpeoAsyncIslandMig_2470f8ee04bc762c010c7ebb2392831d}{
+void \hyperlink{classpeoAsyncIslandMig_2470f8ee04bc762c010c7ebb2392831d}{emigrate} ()}
+\label{classpeoAsyncIslandMig_2470f8ee04bc762c010c7ebb2392831d}
+
+\begin{CompactList}\small\item\em \doxyref{Function} which sends some emigrants. \item\end{CompactList}\item 
+\hypertarget{classpeoAsyncIslandMig_75a6592d63879773b39c9594b94fb942}{
+void \hyperlink{classpeoAsyncIslandMig_75a6592d63879773b39c9594b94fb942}{immigrate} ()}
+\label{classpeoAsyncIslandMig_75a6592d63879773b39c9594b94fb942}
+
+\begin{CompactList}\small\item\em \doxyref{Function} which receives some immigrants. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hyperlink{classcontinuator}{continuator} \& \hyperlink{classpeoAsyncIslandMig_b7a4049f66f99f9e7ec5c785042ee06a}{cont}
+\item 
+\hypertarget{classpeoAsyncIslandMig_57d9ed6da844aa67a8a3328dfbbd03e0}{
+\hyperlink{classselector}{selector}$<$ TYPESELECT $>$ \& \hyperlink{classpeoAsyncIslandMig_57d9ed6da844aa67a8a3328dfbbd03e0}{select}}
+\label{classpeoAsyncIslandMig_57d9ed6da844aa67a8a3328dfbbd03e0}
+
+\item 
+\hypertarget{classpeoAsyncIslandMig_2013056fed65e4f0bb55a7334c261c50}{
+\hyperlink{classreplacement}{replacement}$<$ TYPEREPLACE $>$ \& \hyperlink{classpeoAsyncIslandMig_2013056fed65e4f0bb55a7334c261c50}{replace}}
+\label{classpeoAsyncIslandMig_2013056fed65e4f0bb55a7334c261c50}
+
+\item 
+\hypertarget{classpeoAsyncIslandMig_e70e843ec1fc9e2fc6a124588fbc08d5}{
+\hyperlink{classTopology}{Topology} \& \hyperlink{classpeoAsyncIslandMig_e70e843ec1fc9e2fc6a124588fbc08d5}{topology}}
+\label{classpeoAsyncIslandMig_e70e843ec1fc9e2fc6a124588fbc08d5}
+
+\item 
+\hypertarget{classpeoAsyncIslandMig_3fa5d4df0bdd4a3c58a9f1bd38d628f9}{
+std::queue$<$ TYPEREPLACE $>$ \hyperlink{classpeoAsyncIslandMig_3fa5d4df0bdd4a3c58a9f1bd38d628f9}{imm}}
+\label{classpeoAsyncIslandMig_3fa5d4df0bdd4a3c58a9f1bd38d628f9}
+
+\item 
+\hypertarget{classpeoAsyncIslandMig_04c6a5767efe3e4deb914a6a8ceb3fd2}{
+std::queue$<$ TYPESELECT $>$ \hyperlink{classpeoAsyncIslandMig_04c6a5767efe3e4deb914a6a8ceb3fd2}{em}}
+\label{classpeoAsyncIslandMig_04c6a5767efe3e4deb914a6a8ceb3fd2}
+
+\item 
+\hypertarget{classpeoAsyncIslandMig_9ead40772ef2fabea02fe93d1814f0a5}{
+std::queue$<$ \hyperlink{classCooperative}{Cooperative} $\ast$ $>$ \hyperlink{classpeoAsyncIslandMig_9ead40772ef2fabea02fe93d1814f0a5}{coop\_\-em}}
+\label{classpeoAsyncIslandMig_9ead40772ef2fabea02fe93d1814f0a5}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class TYPESELECT, class TYPEREPLACE$>$ class peo\-Async\-Island\-Mig$<$ TYPESELECT, TYPEREPLACE $>$}
+
+Specific class for a asynchronous migration. 
+
+\begin{Desc}
+\item[See also:]\hyperlink{classCooperative}{Cooperative} \doxyref{eo\-Updater} \end{Desc}
+\begin{Desc}
+\item[Version:]2.0 \end{Desc}
+\begin{Desc}
+\item[Date:]january 2008 \end{Desc}
+
+
+
+
+Definition at line 64 of file peo\-Async\-Island\-Mig.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classpeoAsyncIslandMig_e40ddd54734b018ab4e5c3f2bbd5a49c}{
+\index{peoAsyncIslandMig@{peo\-Async\-Island\-Mig}!peoAsyncIslandMig@{peoAsyncIslandMig}}
+\index{peoAsyncIslandMig@{peoAsyncIslandMig}!peoAsyncIslandMig@{peo\-Async\-Island\-Mig}}
+\subsubsection[peoAsyncIslandMig]{\setlength{\rightskip}{0pt plus 5cm}template$<$class TYPESELECT, class TYPEREPLACE$>$ \hyperlink{classpeoAsyncIslandMig}{peo\-Async\-Island\-Mig}$<$ TYPESELECT, TYPEREPLACE $>$::\hyperlink{classpeoAsyncIslandMig}{peo\-Async\-Island\-Mig} (\hyperlink{classcontinuator}{continuator} \& {\em \_\-\_\-cont}, \hyperlink{classselector}{selector}$<$ TYPESELECT $>$ \& {\em \_\-\_\-select}, \hyperlink{classreplacement}{replacement}$<$ TYPEREPLACE $>$ \& {\em \_\-\_\-replace}, \hyperlink{classTopology}{Topology} \& {\em \_\-\_\-topology})}}
+\label{classpeoAsyncIslandMig_e40ddd54734b018ab4e5c3f2bbd5a49c}
+
+
+Constructor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em continuator}]\& \_\-\_\-cont \item[{\em selector}]$<$TYPE$>$ \& \_\-\_\-select \item[{\em replacement}]$<$TYPE$>$ \& \_\-\_\-replace \item[{\em Topology\&}]\_\-\_\-topology \end{description}
+\end{Desc}
+
+
+Definition at line 114 of file peo\-Async\-Island\-Mig.h.
+
+References Topology::add().
+
+\subsection{Member Data Documentation}
+\hypertarget{classpeoAsyncIslandMig_b7a4049f66f99f9e7ec5c785042ee06a}{
+\index{peoAsyncIslandMig@{peo\-Async\-Island\-Mig}!cont@{cont}}
+\index{cont@{cont}!peoAsyncIslandMig@{peo\-Async\-Island\-Mig}}
+\subsubsection[cont]{\setlength{\rightskip}{0pt plus 5cm}template$<$class TYPESELECT, class TYPEREPLACE$>$ \hyperlink{classcontinuator}{continuator}\& \hyperlink{classpeoAsyncIslandMig}{peo\-Async\-Island\-Mig}$<$ TYPESELECT, TYPEREPLACE $>$::\hyperlink{classpeoAsyncIslandMig_b7a4049f66f99f9e7ec5c785042ee06a}{cont}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classpeoAsyncIslandMig_b7a4049f66f99f9e7ec5c785042ee06a}
+
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em continuator}]\& cont \item[{\em selector}]$<$TYPESELECT$>$ \& select \item[{\em replacement}]$<$TYPEREPLACE$>$ \& replace \item[{\em Topology\&}]topology \item[{\em std}]:: queue$<$ TYPEREPLACE $>$ imm \item[{\em std}]:: queue$<$ TYPESELECT $>$ em \item[{\em std}]:: queue$<$ Cooperative$\ast$ $>$ coop\_\-em \end{description}
+\end{Desc}
+
+
+Definition at line 104 of file peo\-Async\-Island\-Mig.h.
+
+Referenced by peo\-Async\-Island\-Mig$<$ TYPESELECT, TYPEREPLACE $>$::operator()().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+peo\-Async\-Island\-Mig.h\end{CompactItemize}

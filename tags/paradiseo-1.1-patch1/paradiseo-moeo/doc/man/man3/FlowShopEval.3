@@ -1,0 +1,155 @@
+.TH "FlowShopEval" 3 "13 Mar 2008" "Version 1.1" "ParadisEO-MOEO-MultiObjectiveEvolvingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+FlowShopEval \- Evaluation of the objective vector a (multi-objective) \fBFlowShop\fP object.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <FlowShopEval.h>\fP
+.PP
+Inherits \fBmoeoEvalFunc< FlowShop >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBFlowShopEval\fP (unsigned int _M, unsigned int _N, const std::vector< std::vector< unsigned int > > &_p, const std::vector< unsigned int > &_d)"
+.br
+.RI "\fICtor. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (\fBFlowShop\fP &_flowshop)"
+.br
+.RI "\fIcomputation of the multi-objective evaluation of a \fBFlowShop\fP object \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "double \fBmakespan\fP (const \fBFlowShop\fP &_flowshop)"
+.br
+.RI "\fIcomputation of the makespan \fP"
+.ti -1c
+.RI "double \fBtardiness\fP (const \fBFlowShop\fP &_flowshop)"
+.br
+.RI "\fIcomputation of the tardiness \fP"
+.ti -1c
+.RI "std::vector< std::vector< unsigned int > > \fBcompletionTime\fP (const \fBFlowShop\fP &_flowshop)"
+.br
+.RI "\fIcomputation of the completion times of a scheduling (for each job on each machine) C[i][j] = completion of the jth job of the scheduling on the ith machine \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBM\fP"
+.br
+.RI "\fInumber of machines \fP"
+.ti -1c
+.RI "unsigned int \fBN\fP"
+.br
+.RI "\fInumber of jobs \fP"
+.ti -1c
+.RI "std::vector< std::vector< unsigned int > > \fBp\fP"
+.br
+.RI "\fIp[i][j] = processing time of job j on machine i \fP"
+.ti -1c
+.RI "std::vector< unsigned int > \fBd\fP"
+.br
+.RI "\fId[j] = due-date of the job j \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Evaluation of the objective vector a (multi-objective) \fBFlowShop\fP object. 
+.PP
+Definition at line 48 of file FlowShopEval.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "FlowShopEval::FlowShopEval (unsigned int _M, unsigned int _N, const std::vector< std::vector< unsigned int > > & _p, const std::vector< unsigned int > & _d)"
+.PP
+Ctor. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_M\fP the number of machines 
+.br
+\fI_N\fP the number of jobs to schedule 
+.br
+\fI_p\fP the processing times 
+.br
+\fI_d\fP the due dates 
+.RE
+.PP
+
+.PP
+Definition at line 41 of file FlowShopEval.cpp.
+.SH "Member Function Documentation"
+.PP 
+.SS "void FlowShopEval::operator() (\fBFlowShop\fP & _flowshop)"
+.PP
+computation of the multi-objective evaluation of a \fBFlowShop\fP object 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_flowshop\fP the \fBFlowShop\fP object to evaluate 
+.RE
+.PP
+
+.PP
+Definition at line 46 of file FlowShopEval.cpp.
+.PP
+References makespan(), MOEO< MOEOObjectiveVector, MOEOFitness, MOEODiversity >::objectiveVector(), and tardiness().
+.SS "double FlowShopEval::makespan (const \fBFlowShop\fP & _flowshop)\fC [private]\fP"
+.PP
+computation of the makespan 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_flowshop\fP the genotype to evaluate 
+.RE
+.PP
+
+.PP
+Definition at line 56 of file FlowShopEval.cpp.
+.PP
+References completionTime(), M, and N.
+.PP
+Referenced by operator()().
+.SS "double FlowShopEval::tardiness (const \fBFlowShop\fP & _flowshop)\fC [private]\fP"
+.PP
+computation of the tardiness 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_flowshop\fP the genotype to evaluate 
+.RE
+.PP
+
+.PP
+Definition at line 65 of file FlowShopEval.cpp.
+.PP
+References completionTime(), d, M, and N.
+.PP
+Referenced by operator()().
+.SS "std::vector< std::vector< unsigned int > > FlowShopEval::completionTime (const \fBFlowShop\fP & _flowshop)\fC [private]\fP"
+.PP
+computation of the completion times of a scheduling (for each job on each machine) C[i][j] = completion of the jth job of the scheduling on the ith machine 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_flowshop\fP the genotype to evaluate 
+.RE
+.PP
+
+.PP
+Definition at line 78 of file FlowShopEval.cpp.
+.PP
+References M, N, and p.
+.PP
+Referenced by makespan(), and tardiness().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOEO-MultiObjectiveEvolvingObjects from the source code.

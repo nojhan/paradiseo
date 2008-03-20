@@ -1,0 +1,215 @@
+\section{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$ Class Template Reference}
+\label{classmoeoExpBinaryIndicatorBasedFitnessAssignment}\index{moeoExpBinaryIndicatorBasedFitnessAssignment@{moeoExpBinaryIndicatorBasedFitnessAssignment}}
+Fitness assignment sheme based on an indicator proposed in: E.  
+
+
+{\tt \#include $<$moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment.h$>$}
+
+Inheritance diagram for moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=6cm]{classmoeoExpBinaryIndicatorBasedFitnessAssignment}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+typedef MOEOT::Objective\-Vector \bf{Objective\-Vector}\label{classmoeoExpBinaryIndicatorBasedFitnessAssignment_e519691e807af18ea11b7d8c17d2b9b4}
+
+\begin{CompactList}\small\item\em The type of objective vector. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\bf{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment} (\bf{moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric}$<$ \bf{Objective\-Vector}, double $>$ \&\_\-metric, const double \_\-kappa=0.05)
+\begin{CompactList}\small\item\em Ctor. \item\end{CompactList}\item 
+void \bf{operator()} (\bf{eo\-Pop}$<$ MOEOT $>$ \&\_\-pop)
+\begin{CompactList}\small\item\em Sets the fitness values for every solution contained in the population \_\-pop. \item\end{CompactList}\item 
+void \bf{update\-By\-Deleting} (\bf{eo\-Pop}$<$ MOEOT $>$ \&\_\-pop, \bf{Objective\-Vector} \&\_\-obj\-Vec)
+\begin{CompactList}\small\item\em Updates the fitness values of the whole population \_\-pop by taking the deletion of the objective vector \_\-obj\-Vec into account. \item\end{CompactList}\item 
+double \bf{update\-By\-Adding} (\bf{eo\-Pop}$<$ MOEOT $>$ \&\_\-pop, \bf{Objective\-Vector} \&\_\-obj\-Vec)
+\begin{CompactList}\small\item\em Updates the fitness values of the whole population \_\-pop by taking the adding of the objective vector \_\-obj\-Vec into account and returns the fitness value of \_\-obj\-Vec. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void \bf{setup} (const \bf{eo\-Pop}$<$ MOEOT $>$ \&\_\-pop)
+\begin{CompactList}\small\item\em Sets the bounds for every objective using the min and the max value for every objective vector of \_\-pop. \item\end{CompactList}\item 
+void \bf{compute\-Values} (const \bf{eo\-Pop}$<$ MOEOT $>$ \&\_\-pop)
+\begin{CompactList}\small\item\em Compute every indicator value in values (values[i] = I(\_\-v[i], \_\-o)). \item\end{CompactList}\item 
+void \bf{set\-Fitnesses} (\bf{eo\-Pop}$<$ MOEOT $>$ \&\_\-pop)
+\begin{CompactList}\small\item\em Sets the fitness value of the whple population. \item\end{CompactList}\item 
+double \bf{compute\-Fitness} (const unsigned int \_\-idx)
+\begin{CompactList}\small\item\em Returns the fitness value of the \_\-idx th individual of the population. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+\bf{moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric}$<$ \bf{Objective\-Vector}, double $>$ \& \bf{metric}\label{classmoeoExpBinaryIndicatorBasedFitnessAssignment_98008d8346524381bee9c26a2e600f24}
+
+\begin{CompactList}\small\item\em the quality indicator \item\end{CompactList}\item 
+double \bf{kappa}\label{classmoeoExpBinaryIndicatorBasedFitnessAssignment_22d049e40f87f505259b69e7a55a8339}
+
+\begin{CompactList}\small\item\em the scaling factor \item\end{CompactList}\item 
+std::vector$<$ std::vector$<$ double $>$ $>$ \bf{values}\label{classmoeoExpBinaryIndicatorBasedFitnessAssignment_872dc1802f45c8ed0a93d5ee6b1e4d2a}
+
+\begin{CompactList}\small\item\em the computed indicator values \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class MOEOT$>$ class moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$}
+
+Fitness assignment sheme based on an indicator proposed in: E. 
+
+Zitzler, S. K\~{A}¼nzli, \char`\"{}Indicator-Based Selection in Multiobjective Search\char`\"{}, Proc. 8th International Conference on Parallel Problem Solving from Nature (PPSN VIII), pp. 832-842, Birmingham, UK (2004). This strategy is, for instance, used in IBEA. 
+
+
+
+Definition at line 54 of file moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{moeoExpBinaryIndicatorBasedFitnessAssignment@{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}!moeoExpBinaryIndicatorBasedFitnessAssignment@{moeoExpBinaryIndicatorBasedFitnessAssignment}}
+\index{moeoExpBinaryIndicatorBasedFitnessAssignment@{moeoExpBinaryIndicatorBasedFitnessAssignment}!moeoExpBinaryIndicatorBasedFitnessAssignment@{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ \bf{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$::\bf{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment} (\bf{moeo\-Normalized\-Solution\-Vs\-Solution\-Binary\-Metric}$<$ \bf{Objective\-Vector}, double $>$ \& {\em \_\-metric}, const double {\em \_\-kappa} = {\tt 0.05})\hspace{0.3cm}{\tt  [inline]}}\label{classmoeoExpBinaryIndicatorBasedFitnessAssignment_226214378bbf6ebc7fea813a62a5c66e}
+
+
+Ctor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-metric}]the quality indicator \item[{\em \_\-kappa}]the scaling factor \end{description}
+\end{Desc}
+
+
+Definition at line 67 of file moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment.h.
+
+\subsection{Member Function Documentation}
+\index{moeoExpBinaryIndicatorBasedFitnessAssignment@{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}!operator()@{operator()}}
+\index{operator()@{operator()}!moeoExpBinaryIndicatorBasedFitnessAssignment@{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ void \bf{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$::operator() (\bf{eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmoeoExpBinaryIndicatorBasedFitnessAssignment_fde913bb1d456edd82d4a2d000f705ae}
+
+
+Sets the fitness values for every solution contained in the population \_\-pop. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \end{description}
+\end{Desc}
+
+
+Implements \bf{eo\-UF$<$ eo\-Pop$<$ MOEOT $>$ \&, void $>$}.
+
+Definition at line 75 of file moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment.h.
+
+References moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::compute\-Values(), moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::set\-Fitnesses(), and moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::setup().\index{moeoExpBinaryIndicatorBasedFitnessAssignment@{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}!updateByDeleting@{updateByDeleting}}
+\index{updateByDeleting@{updateByDeleting}!moeoExpBinaryIndicatorBasedFitnessAssignment@{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ void \bf{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$::update\-By\-Deleting (\bf{eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop}, \bf{Objective\-Vector} \& {\em \_\-obj\-Vec})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmoeoExpBinaryIndicatorBasedFitnessAssignment_1ad61bf146d3b24b41ef0575360f664b}
+
+
+Updates the fitness values of the whole population \_\-pop by taking the deletion of the objective vector \_\-obj\-Vec into account. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \item[{\em \_\-obj\-Vec}]the objective vector \end{description}
+\end{Desc}
+
+
+Implements \bf{moeo\-Fitness\-Assignment$<$ MOEOT $>$} \doxyref{p.}{classmoeoFitnessAssignment_4922629569eddc9be049b3ead1ab0269}.
+
+Definition at line 91 of file moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment.h.
+
+References moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::kappa, and moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::metric.\index{moeoExpBinaryIndicatorBasedFitnessAssignment@{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}!updateByAdding@{updateByAdding}}
+\index{updateByAdding@{updateByAdding}!moeoExpBinaryIndicatorBasedFitnessAssignment@{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ double \bf{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$::update\-By\-Adding (\bf{eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop}, \bf{Objective\-Vector} \& {\em \_\-obj\-Vec})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmoeoExpBinaryIndicatorBasedFitnessAssignment_f94d9d4dee8dde20cda67e84643aae50}
+
+
+Updates the fitness values of the whole population \_\-pop by taking the adding of the objective vector \_\-obj\-Vec into account and returns the fitness value of \_\-obj\-Vec. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \item[{\em \_\-obj\-Vec}]the objective vector \end{description}
+\end{Desc}
+
+
+Implements \bf{moeo\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$} \doxyref{p.}{classmoeoBinaryIndicatorBasedFitnessAssignment_809b25abb9756c53525e3006e0ae2c70}.
+
+Definition at line 112 of file moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment.h.
+
+References moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::kappa, and moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::metric.\index{moeoExpBinaryIndicatorBasedFitnessAssignment@{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}!setup@{setup}}
+\index{setup@{setup}!moeoExpBinaryIndicatorBasedFitnessAssignment@{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ void \bf{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$::setup (const \bf{eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, protected]}}\label{classmoeoExpBinaryIndicatorBasedFitnessAssignment_ebdbaaf036ca944319b9f8706602382f}
+
+
+Sets the bounds for every objective using the min and the max value for every objective vector of \_\-pop. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \end{description}
+\end{Desc}
+
+
+Definition at line 155 of file moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment.h.
+
+References moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::metric, and moeo\-Objective\-Vector$<$ Objective\-Vector\-Traits, double $>$::n\-Objectives().
+
+Referenced by moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::operator()().\index{moeoExpBinaryIndicatorBasedFitnessAssignment@{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}!computeValues@{computeValues}}
+\index{computeValues@{computeValues}!moeoExpBinaryIndicatorBasedFitnessAssignment@{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ void \bf{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$::compute\-Values (const \bf{eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, protected]}}\label{classmoeoExpBinaryIndicatorBasedFitnessAssignment_20cf29102b848f7ce342dbbb17e9636b}
+
+
+Compute every indicator value in values (values[i] = I(\_\-v[i], \_\-o)). 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \end{description}
+\end{Desc}
+
+
+Definition at line 177 of file moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment.h.
+
+References moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::metric, and moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::values.
+
+Referenced by moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::operator()().\index{moeoExpBinaryIndicatorBasedFitnessAssignment@{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}!setFitnesses@{setFitnesses}}
+\index{setFitnesses@{setFitnesses}!moeoExpBinaryIndicatorBasedFitnessAssignment@{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ void \bf{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$::set\-Fitnesses (\bf{eo\-Pop}$<$ MOEOT $>$ \& {\em \_\-pop})\hspace{0.3cm}{\tt  [inline, protected]}}\label{classmoeoExpBinaryIndicatorBasedFitnessAssignment_063741218c8aa82f53845f9230cb0693}
+
+
+Sets the fitness value of the whple population. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-pop}]the population \end{description}
+\end{Desc}
+
+
+Definition at line 199 of file moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment.h.
+
+References moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::compute\-Fitness().
+
+Referenced by moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::operator()().\index{moeoExpBinaryIndicatorBasedFitnessAssignment@{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}!computeFitness@{computeFitness}}
+\index{computeFitness@{computeFitness}!moeoExpBinaryIndicatorBasedFitnessAssignment@{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class MOEOT$>$ double \bf{moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment}$<$ MOEOT $>$::compute\-Fitness (const unsigned int {\em \_\-idx})\hspace{0.3cm}{\tt  [inline, protected]}}\label{classmoeoExpBinaryIndicatorBasedFitnessAssignment_d2fd41b9b356d1f1f87ce0f44907336f}
+
+
+Returns the fitness value of the \_\-idx th individual of the population. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-idx}]the index \end{description}
+\end{Desc}
+
+
+Definition at line 212 of file moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment.h.
+
+References moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::kappa, and moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::values.
+
+Referenced by moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment$<$ MOEOT $>$::set\-Fitnesses().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moeo\-Exp\-Binary\-Indicator\-Based\-Fitness\-Assignment.h\end{CompactItemize}
