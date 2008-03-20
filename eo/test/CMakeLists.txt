@@ -78,13 +78,22 @@ FOREACH (test ${TEST_LIST})
 	  SET ("T_${test}_SOURCES" "${test}.cpp")
 ENDFOREACH (test)
 
-# Add the tests
-IF(ENABLE_CMAKE_TESTING)
-    FOREACH (test ${TEST_LIST})
+
+IF(ENABLE_MINIMAL_CMAKE_TESTING)
+    SET (MIN_TEST_LIST t-eoEasyPSO)				
+    FOREACH (mintest ${MIN_TEST_LIST})
+    	  SET ("T_${mintest}_SOURCES" "${mintest}.cpp")
+    	  ADD_EXECUTABLE(${mintest} ${T_${mintest}_SOURCES}) 
+		  ADD_TEST(${mintest} ${mintest}) 
+		  TARGET_LINK_LIBRARIES(${mintest} ga es cma eoutils eo eomoo)
+    ENDFOREACH (mintest)
+   
+ELSEIF(ENABLE_CMAKE_TESTING)	
+	 FOREACH (test ${TEST_LIST})
         ADD_EXECUTABLE(${test} ${T_${test}_SOURCES}) 
         ADD_TEST(${test} ${test}) 
         TARGET_LINK_LIBRARIES(${test} ga es cma eoutils eo eomoo)
     ENDFOREACH (test)
-ENDIF(ENABLE_CMAKE_TESTING)
+ENDIF(ENABLE_MINIMAL_CMAKE_TESTING)
 ######################################################################################
 
