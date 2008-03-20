@@ -56,9 +56,18 @@ FOREACH (test ${TEST_LIST})
 ENDFOREACH (test)
 
 
-IF(ENABLE_CMAKE_TESTING)
+
+IF(ENABLE_MINIMAL_CMAKE_TESTING)
+    SET (MIN_TEST_LIST t-moeoEasyEA)				
+    FOREACH (mintest ${MIN_TEST_LIST})
+    	  SET ("T_${mintest}_SOURCES" "${mintest}.cpp")
+    	  ADD_EXECUTABLE(${mintest} ${T_${mintest}_SOURCES}) 
+		  ADD_TEST(${mintest} ${mintest}) 
+          TARGET_LINK_LIBRARIES(${mintest} moeo ga es eoutils eo)
+    ENDFOREACH (mintest)
+   
+ELSEIF(ENABLE_CMAKE_TESTING)
 	
-	# Add the tests
 	FOREACH (test ${TEST_LIST})
 		  ADD_EXECUTABLE(${test} ${T_${test}_SOURCES}) 
 		  ADD_TEST(${test} ${test}) 
@@ -69,7 +78,7 @@ IF(ENABLE_CMAKE_TESTING)
 	 TARGET_LINK_LIBRARIES(${test} moeo ga es eoutils eo)
 	ENDFOREACH (test)
 	
-ENDIF(ENABLE_CMAKE_TESTING)
+ENDIF(ENABLE_MINIMAL_CMAKE_TESTING)
 
 ######################################################################################
 

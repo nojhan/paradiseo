@@ -71,9 +71,24 @@ FOREACH (test ${TEST_RUN} ${TEST_LIST} ${TEST_STOP})
 ENDFOREACH (test)
 
 
-IF(ENABLE_CMAKE_TESTING)
-	
-	# Add the tests
+IF(ENABLE_MINIMAL_CMAKE_TESTING)
+
+    SET (MIN_TEST_LIST t-MultiStart)
+    FOREACH (test ${TEST_RUN})
+		  ADD_TEST(${test} ${test})
+	ENDFOREACH (test)				
+    FOREACH (mintest ${MIN_TEST_LIST})
+    	  SET ("T_${mintest}_SOURCES" "${mintest}.cpp")
+    	  ADD_EXECUTABLE(${mintest} ${T_${mintest}_SOURCES}) 
+		  ADD_TEST(${mintest} "mpiexec" "-n" "4" "${CMAKE_CURRENT_BINARY_DIR}/${mintest}" "@param") 
+		  TARGET_LINK_LIBRARIES(${mintest} peo ${XML2_LIBS} rmc_mpi ga es eoutils eo peo)
+    ENDFOREACH (mintest)
+    FOREACH (test ${TEST_STOP})
+		  ADD_TEST(${test} ${test})
+	ENDFOREACH (test)
+   
+ELSEIF(ENABLE_CMAKE_TESTING)
+
 	FOREACH (test ${TEST_RUN} ${TEST_LIST} ${TEST_STOP})
 		  ADD_EXECUTABLE(${test} ${T_${test}_SOURCES})  
 	ENDFOREACH (test)
@@ -93,31 +108,8 @@ IF(ENABLE_CMAKE_TESTING)
 	# Link the librairies
 	FOREACH (test ${TEST_RUN} ${TEST_LIST} ${TEST_STOP})
 	 TARGET_LINK_LIBRARIES(${test} peo ${XML2_LIBS} rmc_mpi ga es eoutils eo peo)
-	ENDFOREACH (test)
+	ENDFOREACH (test)	
 	
-ENDIF(ENABLE_CMAKE_TESTING)
+ENDIF(ENABLE_MINIMAL_CMAKE_TESTING)
 
 ######################################################################################
-
-
-######################################################################################
-### 5) Windows advanced config - especially for Microsoft Visual Studio 8
-######################################################################################
-
-  IF(CMAKE_CXX_COMPILER MATCHES cl)
-   IF(NOT WITH_SHARED_LIBS)
-     IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005")
-       SET(CMAKE_CXX_FLAGS "/nologo /W3 /Gy")
-       SET(CMAKE_CXX_FLAGS_DEBUG "/MTd /Z7 /Od")
-       SET(CMAKE_CXX_FLAGS_RELEASE "/MT /O2")
-       SET(CMAKE_CXX_FLAGS_MINSIZEREL "/MT /O2")
-       SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/MTd /Z7 /Od")
-       SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:CONSOLE")
-       
-     ENDIF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005")
-   ENDIF(NOT WITH_SHARED_LIBS)
-  ENDIF(CMAKE_CXX_COMPILER MATCHES cl)
-######################################################################################
-
-
-
