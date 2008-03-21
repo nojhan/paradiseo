@@ -3,13 +3,13 @@
 ### 0) Copy the FlowShop.param file in the build path for an easy use.
 ######################################################################################
 
-ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-MOEO_SOURCE_DIR}/tutorial/Lesson3/FlowShopEA.param)
+ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-MOEO_SOURCE_DIR}/tutorial/Lesson3/FlowShopEA2.param)
 ADD_CUSTOM_COMMAND(
     TARGET install
     POST_BUILD
     COMMAND ${CMAKE_COMMAND}
     ARGS -E copy_if_different
-      ${ParadisEO-MOEO_SOURCE_DIR}/tutorial/Lesson3/FlowShopEA.param
+      ${ParadisEO-MOEO_SOURCE_DIR}/tutorial/Lesson3/FlowShopEA2.param
       ${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson3)
 ######################################################################################
 
@@ -41,8 +41,8 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-MOEO_BINARY_DIR}/lib ${FLOWSHOP_B
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
-ADD_EXECUTABLE(FlowShopEA FlowShopEA.cpp) 
-ADD_DEPENDENCIES(FlowShopEA flowshop moeo)
+ADD_EXECUTABLE(FlowShopEA2 FlowShopEA2.cpp) 
+ADD_DEPENDENCIES(FlowShopEA2 flowshop moeo)
 ######################################################################################
 
 
@@ -51,8 +51,8 @@ ADD_DEPENDENCIES(FlowShopEA flowshop moeo)
 ### 4) Optionnal: define your target(s)'s version: no effect for windows
 ######################################################################################
 
-SET(FLOWSHOPEA_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(FlowShopEA PROPERTIES VERSION "${FLOWSHOPEA_VERSION}")
+SET(FlowShopEA2_VERSION ${GLOBAL_VERSION})
+SET_TARGET_PROPERTIES(FlowShopEA2 PROPERTIES VERSION "${FlowShopEA2_VERSION}")
 ######################################################################################
 
 
@@ -62,6 +62,6 @@ SET_TARGET_PROPERTIES(FlowShopEA PROPERTIES VERSION "${FLOWSHOPEA_VERSION}")
 ######################################################################################
 
 
-TARGET_LINK_LIBRARIES(FlowShopEA moeo flowshop eo eoutils)
+TARGET_LINK_LIBRARIES(FlowShopEA2 moeo flowshop eo eoutils)
 
 ######################################################################################
