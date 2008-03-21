@@ -17,8 +17,8 @@
 #define OutputPath="E:\software\paradisEO\windows installer\compiler output"
 
 // installer source info
-#define ParadiseoSourceTag="E:\software\paradisEO\repository\tags\paradiseo-1.1\*"
-#define EoTag="E:\software\eo\repository\*"
+#define ParadiseoSourceTag="E:\software\paradisEO\repository\tags\paradiseo-1.1-patch1\*"
+#define EoTag="E:\software\eo\repository\tag-1.1-patch1\*"
 
 // installer description info
 #define Version="1.1"
@@ -168,11 +168,11 @@ Source: {#ParadiseoSourceTag}; DestDir: "{app}"; Excludes: {#SkipParadiseoFiles}
 Source: {#EoTag}; DestDir: "{app}";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
 
 ; SPECIFIC CORRECTION - EO TAG NOT MODIFIED, USED TRUNK SOURCES
-Source: E:\software\eo\repository\paradiseo-eo\CMakeLists.txt ; DestDir: "{app}\paradiseo-eo";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: E:\software\eo\repository\paradiseo-eo\src\utils\pipecom.h; DestDir: "{app}\paradiseo-eo\src\utils";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: E:\software\eo\repository\paradiseo-eo\src\utils\pipecom.cpp; DestDir: "{app}\paradiseo-eo\src\utils";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: E:\software\eo\repository\paradiseo-eo\src\eoCtrlCContinue.h; DestDir: "{app}\paradiseo-eo\src";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: E:\software\eo\repository\paradiseo-eo\src\eoCtrlCContinue.cpp; DestDir: "{app}\paradiseo-eo\src";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\tag-1.1-patch1\paradiseo-eo\CMakeLists.txt ; DestDir: "{app}\paradiseo-eo";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\tag-1.1-patch1\paradiseo-eo\src\utils\pipecom.h; DestDir: "{app}\paradiseo-eo\src\utils";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\tag-1.1-patch1\paradiseo-eo\src\utils\pipecom.cpp; DestDir: "{app}\paradiseo-eo\src\utils";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\tag-1.1-patch1\paradiseo-eo\src\eoCtrlCContinue.h; DestDir: "{app}\paradiseo-eo\src";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: E:\software\eo\repository\tag-1.1-patch1\paradiseo-eo\src\eoCtrlCContinue.cpp; DestDir: "{app}\paradiseo-eo\src";  Excludes: "*.~*" ; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Dirs]
 Name: {app}\logs
@@ -281,7 +281,7 @@ procedure SetCTestConfig();
 var
   MinConfig: String;
 begin
-    MinConfig:=' -D ExperimentalStart -D ExperimentalBuild' ;
+    MinConfig:=' -D ExperimentalStart -D ExperimentalBuild -D ExperimentalTest' ;
 
     if SendReportBox.Checked then
     begin
@@ -290,13 +290,12 @@ begin
 
      if BuildModeBox.Checked[1] then
     begin
-            CMakeAdditionalTags:= ' -DENABLE_CMAKE_TESTING=FALSE';
+            CMakeAdditionalTags:= ' -DENABLE_MINIMAL_CMAKE_TESTING=TRUE -DENABLE_CMAKE_TESTING=FALSE';
             exit;
     end;
     if BuildModeBox.Checked[2] then
     begin
-            CTestConfig:=CTestConfig + ' -D ExperimentalTest' ;
-            CMakeAdditionalTags:= ' -DENABLE_CMAKE_TESTING=TRUE';
+            CMakeAdditionalTags:= ' -DENABLE_CMAKE_TESTING=TRUE -DENABLE_MINIMAL_CMAKE_TESTING=FALSE';
             exit;
     end;
 end;
