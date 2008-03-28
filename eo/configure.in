@@ -1,11 +1,8 @@
 dnl Process this file with autoconf to produce a configure script.
 dnl
 dnl Change the version number here
-AC_INIT([Evolving Objects],[1.02-cvs1],[eodev-help@sourceforge.net],[eo])
-AC_PREREQ(2.60)
-
-dnl Autoconf 2.6 or higher compatibility
-AC_DEFUN([AC_DATAROOTDIR_CHECKED])
+AC_INIT([Evolving Objects], [1.0.1], [eodev-help@sourceforge.net], [eo])
+AC_PREREQ(2.53)
 
 dnl make sure we are compiling from the correct sources
 AC_CONFIG_SRCDIR(src/eoOp.h)
@@ -17,7 +14,7 @@ AC_CANONICAL_TARGET
 
 dnl automake initialization
 AM_INIT_AUTOMAKE([gnu dist-bzip2 dist-zip])
-AC_CONFIG_HEADERS([config.h])
+AM_CONFIG_HEADER(config.h)
 
 dnl Checks for programs.
 AC_PROG_CC
@@ -48,7 +45,7 @@ AC_GNUPLOT
 AC_TUTORIAL
 
 dnl create makefiles
-AC_CONFIG_FILES([Makefile \
+AC_OUTPUT(Makefile \
           app/Makefile \
           app/mastermind/Makefile \
           app/gprop/Makefile \
@@ -62,7 +59,6 @@ AC_CONFIG_FILES([Makefile \
           src/ga/Makefile \
           src/other/Makefile \
           src/utils/Makefile \
-          src/moo/Makefile \
           test/Makefile \
           tutorial/Makefile \
           tutorial/html/Makefile \
@@ -71,8 +67,6 @@ AC_CONFIG_FILES([Makefile \
           tutorial/Lesson3/Makefile \
           tutorial/Lesson4/Makefile \
           tutorial/Lesson5/Makefile \
-	  tutorial/Lesson6/Makefile \
           tutorial/Templates/Makefile \
           tutorial/pdf/Makefile \
-          win/Makefile])
-AC_OUTPUT
+          win/Makefile)

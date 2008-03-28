@@ -1,1 +1,6 @@
 Makefile.in
+.deps
+FirstBitGA
+Makefile
+exercise1.3
+FirstRealGA
