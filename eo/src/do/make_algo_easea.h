@@ -57,7 +57,6 @@
 #include <utils/eoParser.h>
 #include <utils/eoState.h>
 
-
 /*
  * This function builds the algorithm (i.e. selection and replacement)
  *      from existing continue (or checkpoint) and operators
@@ -72,7 +71,7 @@
 */
 
 template <class EOT>
-eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<EOT>& _eval, eoContinue<EOT>& _continue, eoGenOp<EOT>& _op)
+eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoPopEvalFunc<EOT>& _popeval, eoContinue<EOT>& _continue, eoGenOp<EOT>& _op)
 {
   // the selection
   eoValueParam<eoParamParamType>& selectionParam = _parser.createParam(eoParamParamType("DetTour(2)"), "selection", "Selection: Roulette, Ranking(p,e), DetTour(T), StochTour(t), Sequential(ordered/unordered) or EliteSequentialSelect", 'S', "Evolution Engine");
@@ -359,10 +358,30 @@ eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc
   ///////////////////////////////
   // now the eoEasyEA
   ///////////////////////////////
-  eoAlgo<EOT> *algo = new eoEasyEA<EOT>(_continue, _eval, *breed, *ptReplace);
+  eoAlgo<EOT> *algo = new eoEasyEA<EOT>(_continue, _popeval, *breed, *ptReplace);
   _state.storeFunctor(algo);
   // that's it!
   return *algo;
 }
+
+/*
+ * This function builds the algorithm (i.e. selection and replacement)
+ *      from existing continue (or checkpoint) and operators
+ *
+ * It uses a parser (to get user parameters) and a state (to store the memory)
+ * the last argument is an individual, needed for 2 reasons
+ *     it disambiguates the call after instanciations
+ *     some operator might need some private information about the indis
+ *
+ * This is why the template is the complete EOT even though only the fitness
+ * is actually templatized here
+*/
+template <class EOT>
+eoAlgo<EOT> & do_make_algo_scalar(eoParser& _parser, eoState& _state, eoEvalFunc<EOT>& _eval, eoContinue<EOT>& _continue, eoGenOp<EOT>& _op)
+{
+	 do_make_algo_scalar( _parser, _state, *(new eoPopLoopEval<EOT>(_eval)), _continue, _op); 
+}
+
+
 
 #endif
