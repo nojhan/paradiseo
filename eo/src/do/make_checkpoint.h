@@ -238,7 +238,7 @@ eoCheckPoint<EOT>& do_make_checkpoint(eoParser& _parser, eoState& _state, eoValu
 
     eoSecondMomentStats<EOT> *secondStat = NULL;
 
-    if ( printBestParam.value() ) // we need it for sreen output
+	if ( printBestParam.value() || fileBestParam.value() ) // we need it for screen output or file output
 
       {
 
