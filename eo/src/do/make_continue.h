@@ -59,6 +59,7 @@ eoCombinedContinue<Indi> * make_combinedContinue(eoCombinedContinue<Indi> *_comb
   return _combined;
 }
 
+
 template <class Indi>
 eoContinue<Indi> & do_make_continue(eoParser& _parser, eoState& _state, eoEvalFuncCounter<Indi> & _eval)
 {
