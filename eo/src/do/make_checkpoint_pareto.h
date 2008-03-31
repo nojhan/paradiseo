@@ -27,7 +27,8 @@
 #ifndef _make_checkpoint_pareto_h
 #define _make_checkpoint_pareto_h
 
-#include <stdlib.h>
+#include <climits>
+#include <cstdlib>
 #include <sstream>
 
 #include "EO.h"

@@ -34,6 +34,7 @@
 #include <config.h>
 #endif
 
+#include <climits>
 #include <vector>
 #include <string>
 
@@ -147,7 +148,7 @@ eoCheckPoint<EOT>& do_make_checkpoint_assembled(eoParser& _parser, eoState& _sta
     eoScalarFitnessStat<EOT> *fitStat = new eoScalarFitnessStat<EOT>;
     _state.storeFunctor(fitStat);
     checkpoint->add(*fitStat);
-#ifdef HAVE_GNUPLOT	
+#ifdef HAVE_GNUPLOT
 	// a gnuplot-based monitor for snapshots: needs a dir name
      eoGnuplot1DSnapshot *fitSnapshot = new eoGnuplot1DSnapshot(dirName);
      _state.storeFunctor(fitSnapshot);
