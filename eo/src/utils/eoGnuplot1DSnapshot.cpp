@@ -11,7 +11,6 @@ eoMonitor& eoGnuplot1DSnapshot::operator()()
     // update file using the eoFileMonitor method
     eoFileSnapshot::operator()();
 #ifdef HAVE_GNUPLOT
-
     // sends plot order to gnuplot
     std::ostringstream os;
     os << "set title 'Gen. " << getCounter() << "'; plot '"
@@ -25,8 +24,10 @@ eoMonitor& eoGnuplot1DSnapshot::operator()()
 }
 
 
-
 // Local Variables:
+// coding: iso-8859-1
+// mode: C++
+// c-file-offsets: ((c . 0))
 // c-file-style: "Stroustrup"
 // fill-column: 80
 // End:

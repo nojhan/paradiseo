@@ -68,7 +68,7 @@ public:
         eoParticleBestInit <POT> &_initBest,
         eoTopology <POT> &_topology,
         eoPop < POT > &_pop
-    ) : proc(_proc), procPara(dummyEval), initVelo(_initVelo), initBest(_initBest), topology(_topology), pop(_pop)
+    ) : proc(_proc), initVelo(_initVelo), procPara(dummyEval), initBest(_initBest), topology(_topology), pop(_pop)
     {}
 
     //!	Constructor for parallel evaluation
@@ -110,15 +110,15 @@ private :
     /*
     	@param proc First evaluation
     	@param initVelo Initialization of the velocity
-    	@param initBest Initialization of the best    
-    */   
+    	@param initBest Initialization of the best
+    */
     eoUF<POT&, void>& proc;
     eoVelocityInit < POT > & initVelo;
     eoParticleBestInit <POT> & initBest;
-    eoPopEvalFunc <POT>& procPara;   
+    eoPopEvalFunc <POT>& procPara;
     eoTopology <POT> & topology;
     eoPop < POT > & pop;
-    
+
 class eoDummyEval : public eoPopEvalFunc<POT>
     {
     public:

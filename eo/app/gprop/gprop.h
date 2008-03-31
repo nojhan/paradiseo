@@ -52,12 +52,12 @@ struct phenotype
 
   friend bool operator<(const phenotype& a, const phenotype& b)
   {
-    return a.val_ok < b.val_ok || !(b.val_ok < a.val_ok) && b.mse_error < a.mse_error;
+      return (a.val_ok < b.val_ok) || (!(b.val_ok < a.val_ok)) && (b.mse_error < a.mse_error);
   }
 
   friend bool operator==(const phenotype& a, const phenotype& b)
   {
-    return a.val_ok == b.val_ok && b.mse_error == a.mse_error;
+      return (a.val_ok == b.val_ok) && (b.mse_error == a.mse_error);
   }
 
   friend bool operator>=(const phenotype& a, const phenotype& b)
@@ -69,9 +69,9 @@ struct phenotype
   {
     return (!(a == b)) && (!(a < b));
   }
-  
-  
-  
+
+
+
   friend std::ostream& operator<<(std::ostream& os, const phenotype& p)
   {
     return os << p.trn_ok << "/" << p.trn_max << " "
@@ -79,7 +79,7 @@ struct phenotype
 	      << p.tst_ok << "/" << p.tst_max << " "
 	      << p.mse_error;
   }
-  
+
   friend std::istream& operator>>(std::istream& is, phenotype& p)
   {
     return is; // complete me
@@ -111,14 +111,14 @@ public:
 
   std::string className() const { return "Chrom"; }
 
-  void printOn (std::ostream& os) const 
-  { 
-    os << std::setprecision(3) << static_cast<genotype>(*this) << "  \t" 
-       << fitness(); 
+  void printOn (std::ostream& os) const
+  {
+    os << std::setprecision(3) << static_cast<genotype>(*this) << "  \t"
+       << fitness();
     // os << fitness();
   }
-  
-  void readFrom (std::istream& is) 
+
+  void readFrom (std::istream& is)
   {
     invalidate(); // complete me
   }
@@ -201,16 +201,16 @@ public:
 int correct(const mlp::net& net, const mlp::set& set)
 {
   int sum = 0;
-  
+
   for (mlp::set::const_iterator s = set.begin(); s != set.end(); ++s)
     {
       unsigned partial = 0;
-      
+
       for (unsigned i = 0; i < s->output.size(); ++i)
         if (s->output[i] < 0.5 && net(s->input)[i] < 0.5 ||
             s->output[i] > 0.5 && net(s->input)[i] > 0.5)
           ++partial;
-      
+
       if (partial == s->output.size())
         ++sum;
     }
@@ -234,6 +234,6 @@ phenotype eoChromEvaluator(const Chrom& chrom)
 
 #endif // gprop_h
 
-// Local Variables: 
-// mode:C++ 
+// Local Variables:
+// mode:C++
 // End:

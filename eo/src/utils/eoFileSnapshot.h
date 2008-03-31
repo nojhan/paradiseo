@@ -1,5 +1,3 @@
-// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
-
 //-----------------------------------------------------------------------------
 // eoFileSnapshot.h
 // (c) Marc Schoenauer, Maarten Keijzer and GeNeura Team, 2001
@@ -27,8 +25,10 @@
 #ifndef _eoFileSnapshot_h
 #define _eoFileSnapshot_h
 
-#include <string>
+#include <cstdlib>
 #include <fstream>
+#include <string>
+
 #include <utils/eoParam.h>
 #include <utils/eoMonitor.h>
 #include <eoObject.h>
@@ -188,3 +188,12 @@ private :
 };
 
 #endif
+
+
+// Local Variables:
+// coding: iso-8859-1
+// mode: C++
+// c-file-offsets: ((c . 0))
+// c-file-style: "Stroustrup"
+// fill-column: 80
+// End:

@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // eoFitContinue.h
 // (c) Maarten Keijzer, GeNeura Team, 1999, 2000
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -27,8 +27,8 @@
 
 #include <eoContinue.h>
 
-/** 
-Fitness continuation: 
+/**
+Fitness continuation:
 
   Continues until the maximum fitness level is reached.
 */
@@ -39,18 +39,17 @@ public:
     /// Define Fitness
     typedef typename EOT::Fitness FitnessType;
 
-	/// Ctor
+    /// Ctor
     eoFitContinue( const FitnessType _maximum)
-		: eoContinue<EOT> (), maximum( _maximum ) {};
+        : eoContinue<EOT> (), maximum( _maximum ) {};
 
-	/** Returns false when a fitness criterium is
-	* reached. Assumes pop is not sorted! */
-	virtual bool operator() ( const eoPop<EOT>& _pop ) 
+    /** Returns false when a fitness criterium is reached. Assumes pop is not sorted! */
+    virtual bool operator() ( const eoPop<EOT>& _pop )
     {
     FitnessType bestCurrentFitness = _pop.nth_element_fitness(0);
-    if (bestCurrentFitness >= maximum) 
+    if (bestCurrentFitness >= maximum)
       {
-	std::cout << "STOP in eoFitContinue: Best fitness has reached " << 
+	std::cout << "STOP in eoFitContinue: Best fitness has reached " <<
 	  bestCurrentFitness << "\n";
 	return false;
       }

@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 
 #include <stdlib.h>                // EXIT_SUCCESS EXIT_FAILURE
-#include <stdexcept>               // exception 
+#include <stdexcept>               // exception
 #include <iostream>                // cerr cout
 #include <fstream>                 // ifstream
 #include <string>                  // string
@@ -35,7 +35,7 @@ eoValueParam<unsigned> hiddenp(0, "hidden", "number of neurons in hidden layer",
 //-----------------------------------------------------------------------------
 
 void arg(int argc, char** argv);
-void load_file(mlp::set& s, const string& s);
+void load_file(mlp::set& s1, const string& s2);
 void ga();
 
 //-----------------------------------------------------------------------------
@@ -65,7 +65,7 @@ int main(int argc, char** argv)
 void arg(int argc, char** argv)
 {
   eoParser parser(argc, argv);
-  
+
   parser.processParam(pop_size,    "genetic operators");
   parser.processParam(generations, "genetic operators");
   parser.processParam(mut_rate,    "genetic operators");
@@ -82,7 +82,7 @@ void arg(int argc, char** argv)
   load_file(train, "trn");
   load_file(validate, "val");
   load_file(test, "tst");
-    
+
   phenotype::trn_max = train.size();
   phenotype::val_max = validate.size();
   phenotype::tst_max = test.size();
@@ -104,8 +104,8 @@ void load_file(mlp::set& set, const string& ext)
     {
       cerr << "can't open file \"" << filename << "\"" << endl;
       exit(EXIT_FAILURE);
-    } 
-  
+    }
+
   ifs >> set;
 
   if (set.size() == 0)
@@ -122,18 +122,18 @@ void ga()
   // create population
   eoInitChrom init;
   eoPop<Chrom> pop(pop_size.value(), init);
-  
+
   // evaluate population
   eoEvalFuncPtr<Chrom> evaluator(eoChromEvaluator);
   apply<Chrom>(evaluator, pop);
-  
+
   // selector
   eoStochTournamentSelect<Chrom> select;
 
   // genetic operators
   eoChromMutation mutation;
   eoChromXover xover;
-  
+
   // stop condition
   eoGenContinue<Chrom> continuator1(generations.value());
   phenotype p; p.val_ok = validate.size() - 1; p.mse_error = 0;
@@ -142,23 +142,23 @@ void ga()
 
   // checkpoint
   eoCheckPoint<Chrom> checkpoint(continuator);
-  
+
   // monitor
   eoStdoutMonitor monitor;
   checkpoint.add(monitor);
-  
+
   // statistics
   eoBestFitnessStat<Chrom> stats;
   checkpoint.add(stats);
   monitor.add(stats);
-  
+
   // genetic algorithm
   eoSGA<Chrom> sga(select,
-		   xover, xover_rate.value(), 
-		   mutation, mut_rate.value(), 
-		   evaluator, 
+		   xover, xover_rate.value(),
+		   mutation, mut_rate.value(),
+		   evaluator,
 		   checkpoint);
- 
+
   sga(pop);
 
   cout << "best: " << *max_element(pop.begin(), pop.end()) << endl;
@@ -166,6 +166,6 @@ void ga()
 
 //-----------------------------------------------------------------------------
 
-// Local Variables: 
+// Local Variables:
 // mode:C++
 // End:

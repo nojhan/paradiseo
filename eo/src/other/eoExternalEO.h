@@ -41,7 +41,7 @@ class eoExternalEO : public EO<Fit>, virtual public External
 public :
 
     eoExternalEO()
-        : EO<Fit>(), External()
+        : External(), EO<Fit>()
         {}
 
     /** Init externalEo with the struct itself and set fitness to zero */

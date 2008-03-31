@@ -1,9 +1,7 @@
-// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
-
 //-----------------------------------------------------------------------------
 // make_help.h
 // (c) Maarten Keijzer, Marc Schoenauer and GeNeura Team, 2001
-/* 
+/*
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
@@ -26,11 +24,13 @@
 #ifdef _MSC_VER
 // to avoid long name warnings
 #pragma warning(disable:4786)
-#endif 
+#endif
 
-#include <utils/eoParser.h>
+#include <cstdlib>
 #include <fstream>
 #include <stdexcept>
+
+#include <utils/eoParser.h>
 
 using namespace std;
 
@@ -38,7 +38,7 @@ using namespace std;
  *
  * MUST be called after ALL parameters have been read in order to list them
  *
- * Warning: this is a plain .cpp file and shoudl NOT be included anywhere, 
+ * Warning: this is a plain .cpp file and shoudl NOT be included anywhere,
  * but compiled separately and stored in a library.
  *
  * It is declared in all make_xxx.h files in representation-dependent dirs
@@ -63,15 +63,15 @@ void make_help(eoParser & _parser)
     if (_parser.userNeedsHelp())
       {
         _parser.printHelp(cout);
-	cout << "You can use an edited copy of file " << statusParam.value() 
+	cout << "You can use an edited copy of file " << statusParam.value()
 	     << " as parameter file" << endl;
         exit(1);
       }
 }
 
-/** test a dir. 
+/** test a dir.
  *  Creates it if does not exist
- *  If exists, throws an exception or erase everything there, 
+ *  If exists, throws an exception or erase everything there,
  *     depending on last parameter
  *
  * Always return true (for code easy writing on the other side :-)
@@ -107,3 +107,12 @@ bool testDirRes(std::string _dirName, bool _erase=true)
   throw runtime_error(s);
   return true;
 }
+
+
+// Local Variables:
+// coding: iso-8859-1
+// mode: C++
+// c-file-offsets: ((c . 0))
+// c-file-style: "Stroustrup"
+// fill-column: 80
+// End:

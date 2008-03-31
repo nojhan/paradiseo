@@ -1,13 +1,11 @@
-//-----------------------------------------------------------------------------
-
 // to avoid long name warnings
 #ifdef _MSC_VER
 #pragma warning(disable:4786)
 #endif
 
-#include <stdexcept>  // runtime_error
+#include <cstring>
+#include <stdexcept>
 
-// general
 #include <eo>
 
 //-----------------------------------------------------------------------------
