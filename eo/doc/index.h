@@ -72,6 +72,8 @@ algorithms, evaluators. Try to adapt most well-know algorithms to EO
 @todo (old) Integrate the gTK interface seamlessly in the library.
 
 @todo Complete documentation.
+
+@todo (for release 1.1) Update README, INSTALL, ... for cmake based build system.
 */
 
 

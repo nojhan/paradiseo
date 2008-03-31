@@ -1,3 +1,7 @@
+* release 1.1 (not yet released)
+  - provide cmake build system
+  - GCC 4.3 compatibility
+
 * release 1.0.1 (23. Jan. 2006)
   - Templates/ improvements
 
