@@ -6,6 +6,7 @@
 
 #include <eoInt.h>
 #include <eoShiftMutation.h>
+#include <set>
 
 //-----------------------------------------------------------------------------
 
@@ -23,19 +24,19 @@ double real_value(const Chrom & _chrom)
 }
 
 // Return true if the given chromosome corresponds to a permutation
-// There must be an nicer way to do it (set?) ...
-bool check_permutation(const Chrom & _chrom)
-{
-	for (unsigned i = 0; i < _chrom.size(); ++i)
-		for (unsigned j = 0; j < _chrom.size(); ++j)
-			if(i!=j)
-				if(_chrom[i]==_chrom[j]){
-						 std::cout << " Error: Wrong permutation !" << std::endl;
-						 std::string s;
-						 s.append( " Wrong permutation in t-eoShiftMutation");
-	    				 throw std::runtime_error( s );	
-				}
-	return true;				
+bool check_permutation(const Chrom& _chrom){
+	unsigned size= _chrom.size();
+	std::set<unsigned> verif;
+	for(unsigned i=0; i< size; i++){
+		if(verif.insert(_chrom[i]).second==false){
+			std::cout << " Error: Wrong permutation !" << std::endl;
+			std::string s;
+			s.append( " Wrong permutation in t-eoShiftMutation");
+			throw std::runtime_error( s );
+			return false;
+		}
+	}
+	return true;
 }
 
 
