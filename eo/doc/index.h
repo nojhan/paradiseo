@@ -52,9 +52,10 @@ Conference on Artificial Evolution</em></a>.
 
 <h1>ParadisEO</h1>
 
-<a href="http://paradiseo.gforge.inria.fr">ParadisEO</a> is a project to
-extend EO to make use of dedicated parallel or distributed computing
-environments by <a href="http://www.inria.fr/recherche/equipes_ur/dolphin.en.html">the INRIA Dolphin project-team</a>.
+<a href="http://paradiseo.gforge.inria.fr">ParadisEO</a> is a project that
+extends EO for the flexible design of single solution-based metaheuristics,
+metaheuristics for multi objective optimization as well as hybrid, parallel and distributed
+metaheuristics.
 */
 
 
