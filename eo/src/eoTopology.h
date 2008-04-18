@@ -59,36 +59,19 @@ public:
         for (unsigned i = 0; i < _pop.size (); i++)
             updateNeighborhood(_pop[i],i);
     }
+    
 
     /**
      * Builds the neighborhoods contained in the topology.
      */
-    virtual POT & best (unsigned ) = 0;
-    
-    
-    /*
-     * Returns the global best particle of the given population.
-     * Even if the extended topology does not define a global best,
-     * it should always be possible to get it by searching in all the neighborhoods.
-     * This method is virtual in order not to have to define it in all the extended topologies.
-     */    
-    virtual POT & globalBest(const eoPop<POT>& _pop)
-    {
-    	POT gBest,tmp;
-    	unsigned indGlobalBest=0;
-    	gBest=best(0);
-    	for(unsigned i=1;i<_pop.size();i++)
-    	{
-    		tmp=best(i);
-    		if(gBest.best() < tmp.best())
-    		{
-    			gBest=tmp;
-    			indGlobalBest=i;
-    		}
-    			
-    	}
-    	return best(indGlobalBest);
-    }
+    virtual POT & best (unsigned ) = 0;    
+
+
+  	/*
+	 * Return the global best of the topology
+	 */	
+    virtual POT & globalBest(){}
+
 
     /**
      * Prints the neighborhoods contained in the topology.

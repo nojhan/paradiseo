@@ -162,17 +162,19 @@ public:
         return (neighborhoods[theGoodNhbd].best());
     }
 
-	/*
+
+    /*
 	 * Return the global best of the topology
-	 */
-	 
-	 virtual POT & globalBest(const eoPop<POT>& _pop)
+	 */	 
+	virtual POT & globalBest()
     {
-    	unsigned howManyNeighborhood=_pop.size()/ neighborhoodSize;
     	POT gBest,tmp;
-    	unsigned indGlobalBest=0;
+    	unsigned indGlobalBest=0;    	
+    	if(neighborhoods.size()==1)
+    		return neighborhoods[0].best();
+    		
     	gBest=neighborhoods[0].best();
-    	for(unsigned i=1;i<howManyNeighborhood;i++)
+    	for(unsigned i=1;i<neighborhoods.size();i++)
     	{
     		tmp=neighborhoods[i].best();
     		if(gBest.best() < tmp.best())

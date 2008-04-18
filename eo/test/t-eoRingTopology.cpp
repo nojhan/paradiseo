@@ -16,7 +16,7 @@ double f (const Indi & _indi)
     return (-sum);
 }
 
-int the_main(int argc, char **argv)
+int main_function(int argc, char **argv)
 {
 	//Parameters
     const unsigned int VEC_SIZE = 2;        
@@ -31,7 +31,6 @@ int the_main(int argc, char **argv)
     eoUniformGenerator < double >sGen (-1., 1.);
     eoVelocityInitFixedLength < Indi > veloRandom (VEC_SIZE, sGen);
     eoFirstIsBestInit < Indi > localInit;
-    eoStandardFlight < Indi > flight; 
     eoPop < Indi > pop;
     pop.append (POP_SIZE, random);
     apply(eval, pop);
@@ -58,11 +57,11 @@ int main(int argc, char **argv)
 {
     try
     {
-        the_main(argc, argv);
+        main_function(argc, argv);
     }
     catch(std::exception& e)
     {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "Exception: " << e.what() << " in t-eoRingTopology" << std::endl;
     }
 
 }

@@ -71,6 +71,7 @@ SET (TEST_LIST  t-eoParetoFitness
 				t-eoRingTopology
 				t-eoSyncEasyPSO
 				t-eoOrderXover
+				t-eoExtendedVelocity
 				# t-eoFrontSorter 
 				# t-eoEpsMOEA
 				)

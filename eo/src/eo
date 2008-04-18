@@ -161,7 +161,8 @@
 
 // velocities
 #include <eoVelocity.h>
-#include <eoStandardVelocity.h> 
+#include <eoStandardVelocity.h>
+#include <eoExtendedVelocity.h>  
 #include <eoIntegerVelocity.h> 
 #include <eoConstrictedVelocity.h>
 #include <eoFixedInertiaWeightedVelocity.h>
