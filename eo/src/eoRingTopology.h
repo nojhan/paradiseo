@@ -74,7 +74,7 @@ public:
             		if(_pop[(_pop.size()+i-k+j)%_pop.size()].fitness() > currentNghd.best().fitness())
                         currentNghd.best(_pop[(_pop.size()+i-k+j)%_pop.size()]);
                 }
-            	neighborhood.push_back(currentNghd);
+            	neighborhoods.push_back(currentNghd);
             }	
             isSetup=true;
         }
@@ -119,8 +119,8 @@ public:
         for (unsigned i=-neighborhoodSize+1; i < neighborhoodSize; i++)
             	{
             		unsigned indi = (_po.size()+_indice+i)%_po.size();
-            		if (_po.fitness() > neighborhood[indi].best().fitness())
-            			neighborhood[indi].best(_po);
+            		if (_po.fitness() > neighborhoods[indi].best().fitness())
+            			neighborhoods[indi].best(_po);
                 }
      }
 
@@ -134,7 +134,7 @@ public:
     {
     	unsigned theGoodNhbd= retrieveNeighborhoodByIndice(_indice);
 
-        return (neighborhood[theGoodNhbd].best());
+        return (neighborhoods[theGoodNhbd].best());
     }
 
 
@@ -145,20 +145,44 @@ public:
      */
     void printOn()
     {
-        for (unsigned i=0;i< neighborhood.size();i++)
+        for (unsigned i=0;i< neighborhoods.size();i++)
         {
             std::cout << "{ " ;
-            for (unsigned j=0;j< neighborhood[i].size();j++)
+            for (unsigned j=0;j< neighborhoods[i].size();j++)
             {
-                std::cout << neighborhood[i].get(j) << " ";
+                std::cout << neighborhoods[i].get(j) << " ";
             }
             std::cout << "}" << std::endl;
         }
     }
+    
+    /*
+	 * Return the global best of the topology
+	 */	 
+	virtual POT & globalBest()
+    {
+    	POT gBest,tmp;
+    	unsigned indGlobalBest=0;    	
+    	if(neighborhoods.size()==1)
+    		return neighborhoods[0].best();
+    		
+    	gBest=neighborhoods[0].best();
+    	for(unsigned i=1;i<neighborhoods.size();i++)
+    	{
+    		tmp=neighborhoods[i].best();
+    		if(gBest.best() < tmp.best())
+    		{
+    			gBest=tmp;
+    			indGlobalBest=i;
+    		}
+    			
+    	}
+    	return neighborhoods[indGlobalBest].best();
+    }
 
 
 protected:
-    std::vector<eoSocialNeighborhood<POT> >  neighborhood;
+    std::vector<eoSocialNeighborhood<POT> >  neighborhoods;
     unsigned neighborhoodSize; 
     bool isSetup;
 };
