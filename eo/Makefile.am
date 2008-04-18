@@ -8,7 +8,7 @@ if USE_TUTORIAL
 SUBDIRS_TUT		= tutorial
 endif
 
-SUBDIRS			= src doc contrib win $(SUBDIRS_APP) $(SUBDIRS_TUT) test
+SUBDIRS			= src doc contrib $(SUBDIRS_APP) $(SUBDIRS_TUT) test
 
 
 # Directory for documents
