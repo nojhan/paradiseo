@@ -2,11 +2,12 @@
 // t-eoOrderXover.cpp
 //-----------------------------------------------------------------------------
 
-#include <eo>
+#include <set>
 
+#include <eo>
 #include <eoInt.h>
 #include <eoOrderXover.h>
-#include <set>
+
 
 //-----------------------------------------------------------------------------
 
@@ -56,13 +57,13 @@ int main()
   eoOrderXover<Chrom> cross;
   
   for (i = 0; i < POP_SIZE; ++i)
-    std::cout << " Initial chromosome n°" << i << " : " << pop[i] << "..." <<  std::endl;
+    std::cout << " Initial chromosome nï¿½" << i << " : " << pop[i] << "..." <<  std::endl;
 
   cross(pop[0],pop[1]);
   cross(pop[1],pop[2]);
       
    for (i = 0; i < POP_SIZE; ++i) {
-	std::cout << " Initial chromosome n°" << i << " becomes : " << pop[i] << " after orderXover" << std::endl;	
+	std::cout << " Initial chromosome nï¿½" << i << " becomes : " << pop[i] << " after orderXover" << std::endl;	
 	check_permutation(pop[i]);
    }
   return 0;

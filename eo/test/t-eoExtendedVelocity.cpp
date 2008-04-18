@@ -43,20 +43,20 @@ int main_function(int argc, char **argv)
     eoExtendedVelocity <Particle> velocity (topology,1,1,1,1);
     
     // the test itself
-    for (unsigned int i = 0; i < POP_SIZE; ++i)
+    for (unsigned int i = 0; i < POP_SIZE; i++)
     {
       std::cout << " Initial particle n°" << i << " velocity: " <<  std::endl;
-      for (unsigned int j = 0; j < VEC_SIZE; ++j)
+      for (unsigned int j = 0; j < VEC_SIZE; j++)
     		std::cout << " v" << j << "=" << pop[i].velocities[j] << std::endl;    
     }
     
-    for (unsigned int i = 0; i < POP_SIZE; ++i)
+    for (unsigned int i = 0; i < POP_SIZE; i++)
    	 velocity (pop[i],i);
    	 
-   	for (unsigned int i = 0; i < POP_SIZE; ++i)
+   	for (unsigned int i = 0; i < POP_SIZE; i++)
     {
       std::cout << " Final particle n°" << i << " velocity: " <<  std::endl;
-      for (unsigned int j = 0; j < VEC_SIZE; ++j)
+      for (unsigned int j = 0; j < VEC_SIZE; j++)
     		std::cout << " v" << j << "=" << pop[i].velocities[j] << std::endl;    
     }
 	
