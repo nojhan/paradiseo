@@ -59,6 +59,7 @@ AC_OUTPUT(Makefile \
           src/ga/Makefile \
           src/other/Makefile \
           src/utils/Makefile \
+          src/moo/Makefile \
           test/Makefile \
           tutorial/Makefile \
           tutorial/html/Makefile \
