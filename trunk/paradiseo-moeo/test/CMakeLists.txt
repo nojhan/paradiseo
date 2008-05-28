@@ -34,7 +34,7 @@ SET (TEST_LIST
 		t-moeo
 		t-moeoBitVector
 		t-moeoRealVector
-		t-moeoArchive
+		t-moeoUnboundedArchive
 		t-moeoParetoObjectiveVectorComparator
 		t-moeoAggregativeComparator
 		t-moeoDiversityThenFitnessComparator
@@ -49,6 +49,13 @@ SET (TEST_LIST
 		t-moeoNSGAII
 		t-moeoMax3Obj
 		t-moeoEasyEA
+		t-moeoDominanceCountFitnessAssignment
+		t-moeoDominanceRankFitnessAssignment
+		t-moeoDominanceCountRankingFitnessAssignment
+		t-moeoNearestNeighborDiversityAssignment
+		t-moeoSPEA2Archive
+		t-moeoSPEA2
+		t-moeoDominanceMatrix
 )
 
 FOREACH (test ${TEST_LIST})

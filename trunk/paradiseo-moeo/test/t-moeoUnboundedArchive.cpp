@@ -95,8 +95,8 @@ int main()
     pop[5].objectiveVector(obj5);
 
     // archive
-    moeoArchive< Solution > arch;
-    arch.update(pop);
+    moeoUnboundedArchive< Solution > arch;
+    arch(pop);
 
     // size
     if (arch.size() != 3)
