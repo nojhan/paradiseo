@@ -64,7 +64,7 @@ class moeoArchiveUpdater : public eoUpdater
      */
     void operator()()
     {
-      arch.update(pop);
+      arch(pop);
     }
 
 
