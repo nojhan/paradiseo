@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
         // initialization of the population
         eoPop<FlowShop>& pop = do_make_pop(parser, state, init);
         // definition of the archive
-        moeoArchive<FlowShop> arch;
+        moeoUnboundedArchive<FlowShop> arch;
         // stopping criteria
         unsigned int maxGen = parser.createParam((unsigned int)(100), "maxGen", "Maximum number of gen.",'G',"Stopping criterion").value();
         eoGenContinue<FlowShop> term(maxGen);

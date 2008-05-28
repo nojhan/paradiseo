@@ -128,8 +128,8 @@ int main (int argc, char *argv[])
     nsgaII (pop);
 
     // extract first front of the final population using an moeoArchive (this is the output of nsgaII)
-    moeoArchive < Sch1 > arch;
-    arch.update (pop);
+    moeoUnboundedArchive < Sch1 > arch;
+    arch(pop);
 
     // printing of the final archive
     cout << "Final Archive" << endl;

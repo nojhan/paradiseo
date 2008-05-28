@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
       // initialization of the population
       eoPop<FlowShop>& pop = do_make_pop(parser, state, init);
       // definition of the archive
-      moeoArchive<FlowShop> arch;
+      moeoUnboundedArchive<FlowShop> arch;
       // stopping criteria
       eoContinue<FlowShop>& term = do_make_continue_moeo(parser, state, eval);
       // output
