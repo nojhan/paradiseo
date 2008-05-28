@@ -47,15 +47,11 @@
  */
 template < class MOEOT >
 class moeoArchive : public eoPop < MOEOT >
-  {
-  public:
+{
+public:
 
     using eoPop < MOEOT > :: size;
-    using eoPop < MOEOT > :: resize;
     using eoPop < MOEOT > :: operator[];
-    using eoPop < MOEOT > :: back;
-    using eoPop < MOEOT > :: pop_back;
-
 
     /**
      * The type of an objective vector for a solution
@@ -84,17 +80,17 @@ class moeoArchive : public eoPop < MOEOT >
      * @param _objectiveVector the objective vector to compare with the current archive
      */
     bool dominates (const ObjectiveVector & _objectiveVector) const
-      {
+    {
         for (unsigned int i = 0; i<size(); i++)
-          {
+        {
             // if _objectiveVector is dominated by the ith individual of the archive...
             if ( comparator(_objectiveVector, operator[](i).objectiveVector()) )
-              {
+            {
                 return true;
-              }
-          }
+            }
+        }
         return false;
-      }
+    }
 
 
     /**
@@ -102,73 +98,29 @@ class moeoArchive : public eoPop < MOEOT >
      * @param _objectiveVector the objective vector to compare with the current archive
      */
     bool contains (const ObjectiveVector & _objectiveVector) const
-      {
+    {
         for (unsigned int i = 0; i<size(); i++)
-          {
+        {
             if (operator[](i).objectiveVector() == _objectiveVector)
-              {
+            {
                 return true;
-              }
-          }
+            }
+        }
         return false;
-      }
+    }
 
 
     /**
      * Updates the archive with a given individual _moeo
      * @param _moeo the given individual
      */
-    void update (const MOEOT & _moeo)
-    {
-      // first step: removing the dominated solutions from the archive
-      for (unsigned int j=0; j<size();)
-        {
-          // if the jth solution contained in the archive is dominated by _moeo
-          if ( comparator(operator[](j).objectiveVector(), _moeo.objectiveVector()) )
-            {
-              operator[](j) = back();
-              pop_back();
-            }
-          else if (_moeo.objectiveVector() == operator[](j).objectiveVector())
-            {
-              operator[](j) = back();
-              pop_back();
-            }
-          else
-            {
-              j++;
-            }
-        }
-      // second step: is _moeo dominated?
-      bool dom = false;
-      for (unsigned int j=0; j<size(); j++)
-        {
-          // if _moeo is dominated by the jth solution contained in the archive
-          if ( comparator(_moeo.objectiveVector(), operator[](j).objectiveVector()) )
-            {
-              dom = true;
-              break;
-            }
-        }
-      if (!dom)
-        {
-          push_back(_moeo);
-        }
-    }
-
+    virtual void operator()(const MOEOT & _moeo) = 0;
 
     /**
      * Updates the archive with a given population _pop
      * @param _pop the given population
      */
-    void update (const eoPop < MOEOT > & _pop)
-    {
-      for (unsigned int i=0; i<_pop.size(); i++)
-        {
-          update(_pop[i]);
-        }
-    }
-
+    virtual void operator()(const eoPop < MOEOT > & _pop) = 0;
 
     /**
      * Returns true if the current archive contains the same objective vectors than the given archive _arch
@@ -176,31 +128,30 @@ class moeoArchive : public eoPop < MOEOT >
      */
     bool equals (const moeoArchive < MOEOT > & _arch)
     {
-      for (unsigned int i=0; i<size(); i++)
+        for (unsigned int i=0; i<size(); i++)
         {
-          if (! _arch.contains(operator[](i).objectiveVector()))
+            if (! _arch.contains(operator[](i).objectiveVector()))
             {
-              return false;
+                return false;
             }
         }
-      for (unsigned int i=0; i<_arch.size() ; i++)
+        for (unsigned int i=0; i<_arch.size() ; i++)
         {
-          if (! contains(_arch[i].objectiveVector()))
+            if (! contains(_arch[i].objectiveVector()))
             {
-              return false;
+                return false;
             }
         }
-      return true;
+        return true;
     }
 
-
-  private:
+private:
 
     /** The moeoObjectiveVectorComparator used to compare solutions */
     moeoObjectiveVectorComparator < ObjectiveVector > & comparator;
     /** A moeoObjectiveVectorComparator based on Pareto dominance (used as default) */
     moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
 
-  };
+};
 
 #endif /*MOEOARCHIVE_H_ */
