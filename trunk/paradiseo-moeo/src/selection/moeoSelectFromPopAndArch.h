@@ -59,7 +59,7 @@ class moeoSelectFromPopAndArch : public moeoSelectOne < MOEOT >
      * @param _arch the archive
      * @param _ratioFromPop the ratio of selected individuals from the population
      */
-    moeoSelectFromPopAndArch (moeoSelectOne < MOEOT > & _popSelectOne, moeoSelectOne < MOEOT > _archSelectOne, moeoArchive < MOEOT > & _arch, double _ratioFromPop=0.5)
+    moeoSelectFromPopAndArch (moeoSelectOne < MOEOT > & _popSelectOne, moeoSelectOne < MOEOT > & _archSelectOne, moeoArchive < MOEOT > & _arch, double _ratioFromPop=0.5)
         : popSelectOne(_popSelectOne), archSelectOne(_archSelectOne), arch(_arch), ratioFromPop(_ratioFromPop)
     {}
 
