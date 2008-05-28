@@ -50,8 +50,12 @@
 #include <algo/moeoLS.h>
 #include <algo/moeoNSGA.h>
 #include <algo/moeoNSGAII.h>
+#include <algo/moeoSPEA2.h>
 
 #include <archive/moeoArchive.h>
+#include <archive/moeoUnboundedArchive.h>
+#include <archive/moeoFixedSizeArchive.h>
+#include <archive/moeoSPEA2Archive.h>
 
 #include <comparator/moeoAggregativeComparator.h>
 #include <comparator/moeoComparator.h>
@@ -84,6 +88,7 @@
 #include <diversity/moeoFrontByFrontCrowdingDiversityAssignment.h>
 #include <diversity/moeoFrontByFrontSharingDiversityAssignment.h>
 #include <diversity/moeoSharingDiversityAssignment.h>
+#include <diversity/moeoNearestNeighborDiversityAssignment.h>
 
 #include <fitness/moeoAchievementFitnessAssignment.h>
 #include <fitness/moeoBinaryIndicatorBasedFitnessAssignment.h>
@@ -96,6 +101,9 @@
 #include <fitness/moeoParetoBasedFitnessAssignment.h>
 #include <fitness/moeoScalarFitnessAssignment.h>
 #include <fitness/moeoUnaryIndicatorBasedFitnessAssignment.h>
+#include <fitness/moeoDominanceCountFitnessAssignment.h>
+#include <fitness/moeoDominanceCountRankingFitnessAssignment.h>
+#include <fitness/moeoDominanceRankFitnessAssignment.h>
 
 #include <metric/moeoAdditiveEpsilonBinaryMetric.h>
 #include <metric/moeoContributionMetric.h>
@@ -121,6 +129,7 @@
 #include <utils/moeoArchiveUpdater.h>
 #include <utils/moeoBinaryMetricSavingUpdater.h>
 #include <utils/moeoConvertPopToObjectiveVectors.h>
+#include <utils/moeoDominanceMatrix.h>
 
 
 #endif /*MOEO_*/
