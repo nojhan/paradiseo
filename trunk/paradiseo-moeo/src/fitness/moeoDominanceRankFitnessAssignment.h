@@ -46,7 +46,7 @@
 #include <comparator/moeoObjectiveVectorComparator.h>
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
 #include <fitness/moeoParetoBasedFitnessAssignment.h>
-#include <utils/moeoDominancematrix.h>
+#include <utils/moeoDominanceMatrix.h>
 
 /**
  * moeoDominanceRankFitnessAssignment is a fitness assignment which count for each moeot how many others dominates it.
