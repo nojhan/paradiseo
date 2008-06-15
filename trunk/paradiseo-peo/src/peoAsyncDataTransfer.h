@@ -3,7 +3,7 @@
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
 *
-* Clive Canape
+* Alexandru-Adrian TANTAR
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -50,6 +50,7 @@
 #include "core/thread.h"
 #include "core/cooperative.h"
 #include "core/peo_debug.h"
+
 
 
 class peoAsyncDataTransfer : public Cooperative, public eoUpdater
@@ -124,18 +125,71 @@ class peoAsyncDataTransfer : public Cooperative, public eoUpdater
     }
 
 
-    void operator()();
+    void operator()()
+    {
 
-    void pack();
-    void unpack();
+      sendData();	        // sending data
+      receiveData();	// receiving data
+    }
 
-    void packSynchronizeReq();
+    void pack() 
+    {
+      lock ();
+      
+      ::pack( coop_em.front()->getKey() );
+      source->packMessage();
+      coop_em.pop();
+      
+      unlock();
+    }
+    
+    void unpack()
+    {
+      
+      lock ();
+      destination->unpackMessage();
+      unlock();
+    }
+
+    void packSynchronizeReq(){}
 
 
   private:
 
-    void sendData();
-    void receiveData();
+    void sendData() 
+    {
+
+      std :: vector< Cooperative* > in, out;
+      topology.setNeighbors( this, in, out );
+      
+      for ( unsigned i = 0; i < out.size(); i++ )
+	{
+	  
+	  source->pushMessage();
+	  
+	  coop_em.push( out[i] );
+	  send( out[i] );
+	  
+	  printDebugMessage( "peoAsyncDataTransfer: sending data." );
+	}
+    }
+
+    void receiveData()
+    {
+      
+      lock ();
+      {
+	
+	while ( !( destination->empty() ) )
+	  {
+	    
+	    printDebugMessage( "peoAsyncDataTransfer: received data." );
+	    destination->popMessage();
+	    printDebugMessage( "peoAsyncDataTransfer: done reading data." );
+	  }
+      }
+      unlock();
+    }
 
 
   private:
@@ -149,73 +203,6 @@ class peoAsyncDataTransfer : public Cooperative, public eoUpdater
 
     std :: queue< Cooperative* > coop_em;
   };
-
-
-void peoAsyncDataTransfer :: pack()
-{
-
-  lock ();
-
-  ::pack( coop_em.front()->getKey() );
-  source->packMessage();
-  coop_em.pop();
-
-  unlock();
-}
-
-void peoAsyncDataTransfer :: unpack()
-{
-
-  lock ();
-  destination->unpackMessage();
-  unlock();
-}
-
-void peoAsyncDataTransfer :: packSynchronizeReq()
-{
-}
-
-void peoAsyncDataTransfer :: sendData()
-{
-
-  std :: vector< Cooperative* > in, out;
-  topology.setNeighbors( this, in, out );
-
-  for ( unsigned i = 0; i < out.size(); i++ )
-    {
-
-      source->pushMessage();
-
-      coop_em.push( out[i] );
-      send( out[i] );
-
-      printDebugMessage( "peoAsyncDataTransfer: sending data." );
-    }
-}
-
-void peoAsyncDataTransfer :: receiveData()
-{
-
-  lock ();
-  {
-
-    while ( !( destination->empty() ) )
-      {
-
-        printDebugMessage( "peoAsyncDataTransfer: received data." );
-        destination->popMessage();
-        printDebugMessage( "peoAsyncDataTransfer: done reading data." );
-      }
-  }
-  unlock();
-}
-
-void peoAsyncDataTransfer :: operator()()
-{
-
-  sendData();	        // sending data
-  receiveData();	// receiving data
-}
 
 
 #endif
