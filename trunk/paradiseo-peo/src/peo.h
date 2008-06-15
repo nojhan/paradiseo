@@ -52,14 +52,21 @@
     @section authors AUTHORS
 
     <TABLE>
-      <TR>
-        <TD>Clive Canape</TD>
-      </TR>
-      <TR>
-        <TD>
-          <TD>Alexandru-Adrian Tantar</TD>
-        </TD>
-      </TR>
+    <TR>
+      <TD>
+        Sebastien CAHON
+      </TD>
+    </TR>
+    <TR>
+      <TD>
+        Alexandru-Adrian TANTAR
+      </TD>
+    </TR>
+    <TR>
+      <TD>
+        Clive Canape
+      </TD>
+    </TR>
     </TABLE>
 
     @section LICENSE
