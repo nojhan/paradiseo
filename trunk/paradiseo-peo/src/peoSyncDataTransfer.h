@@ -3,7 +3,7 @@
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
 *
-* Clive Canape
+* Alexandru-Adrian TANTAR
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -55,6 +55,10 @@
 #include "core/peo_debug.h"
 
 #include "rmc/mpi/synchron.h"
+
+
+extern void wakeUpCommunicator();
+extern int getNodeRank();
 
 
 class peoSyncDataTransfer : public Cooperative, public eoUpdater
@@ -131,28 +135,140 @@ class peoSyncDataTransfer : public Cooperative, public eoUpdater
     }
 
 
-    void operator()();
+    void operator()()
+    {
 
-    void pack();
+      standbyTransfer = false;
+      nbTransfersIn = nbTransfersOut = 0;
+      
+      topology.setNeighbors( this, in, out );
+      all = topology;
+      
+      synchronizeCoopEx();
+      stop();
+      
+      // sending data out
+      sendData();
+      // synchronizing
+      sem_wait( &sync );
+      // receiving data in
+      receiveData();
+      
+      synchronizeCoopEx();
+      stop();
+    }
+    
 
-    void unpack();
+    void pack()
+    {
+      
+      ::pack( coop_em.front()->getKey() );
+      source->packMessage();
+      coop_em.pop();
+    }
 
-    void packSynchronizeReq();
+    void unpack()
+    {
+      
+      destination->unpackMessage();
+    }
+    
 
-    void notifySending();
+    void packSynchronizeReq()
+    {
+      
+      packSynchronRequest( all );
+    }
+    
 
-    void notifyReceiving();
+    void notifySending()
+    {
 
-    void notifySendingSyncReq();
+      nbTransfersOut++;
+      
+      printDebugMessage( "peoSyncDataTransfer: notified of the completion of a transfer round." );
+      
+      getOwner()->setActive();
+      if ( nbTransfersOut == out.size() && nbTransfersIn < in.size() )
+	{
+	  getOwner()->setPassive();
+	}
+    }
 
-    void notifySynchronized();
+
+    void notifyReceiving()
+    {
+      
+      nbTransfersIn++;
+      printDebugMessage( "peoSyncIslandMig: notified of incoming data." );
+      
+      if ( standbyTransfer )
+	{
+	  getOwner()->setActive();
+	  if ( nbTransfersOut == out.size() && nbTransfersIn < in.size() )
+	    getOwner()->setPassive();
+	}
+      
+      if ( nbTransfersIn == in.size() )
+	{
+	  
+	  printDebugMessage( "peoSyncIslandMig: finished collecting incoming data." );
+	  sem_post( &sync );
+	}
+    }
+    
+
+    void notifySendingSyncReq()
+    {
+
+      getOwner()->setPassive();
+      printDebugMessage( "peoSyncIslandMig: synchronization request sent." );
+    }
+
+    void notifySynchronized()
+    {
+
+      printDebugMessage( "peoSyncIslandMig: cooperators synchronized." );
+      
+      standbyTransfer = true;
+      getOwner()->setActive();
+      resume();
+    }
 
 
   private:
 
-    void sendData();
-    void receiveData();
+    void sendData()
+    {
+      
+      for ( unsigned i = 0; i < out.size(); i ++ )
+	{
+	  
+	  source->pushMessage();
+	  
+	  coop_em.push( out[ i ] );
+	  send( out[ i ]);
+	  
+	  printDebugMessage( "peoSyncDataTransfer: sending data." );
+	}
+      
+      wakeUpCommunicator();
+    }
 
+    void receiveData()
+    {
+      
+      assert( !( destination->empty() ) );
+      
+      while ( !( destination->empty() ) )
+	{
+	  
+	  printDebugMessage( "peoSyncDataTransfer: received data." );
+	  destination->popMessage();
+	  printDebugMessage( "peoSyncDataTransfer: done extracting received data." );
+	}
+    }
+    
     Topology& topology; 			// neighboring topology
 
     // source and destination end-points
@@ -168,136 +284,5 @@ class peoSyncDataTransfer : public Cooperative, public eoUpdater
     std :: vector< Cooperative* > in, out, all;
     unsigned nbTransfersIn, nbTransfersOut;
   };
-
-
-void peoSyncDataTransfer :: pack()
-{
-
-  ::pack( coop_em.front()->getKey() );
-  source->packMessage();
-  coop_em.pop();
-}
-
-void peoSyncDataTransfer :: unpack()
-{
-
-  destination->unpackMessage();
-}
-
-void peoSyncDataTransfer :: packSynchronizeReq()
-{
-
-  packSynchronRequest( all );
-}
-
-extern void wakeUpCommunicator();
-extern int getNodeRank();
-
-void peoSyncDataTransfer :: sendData()
-{
-
-  for ( unsigned i = 0; i < out.size(); i ++ )
-    {
-
-      source->pushMessage();
-
-      coop_em.push( out[ i ] );
-      send( out[ i ]);
-
-      printDebugMessage( "peoSyncDataTransfer: sending data." );
-    }
-
-  wakeUpCommunicator();
-}
-
-void peoSyncDataTransfer :: receiveData()
-{
-
-  assert( !( destination->empty() ) );
-
-  while ( !( destination->empty() ) )
-    {
-
-      printDebugMessage( "peoSyncDataTransfer: received data." );
-      destination->popMessage();
-      printDebugMessage( "peoSyncDataTransfer: done extracting received data." );
-    }
-}
-
-void peoSyncDataTransfer :: operator()()
-{
-
-  standbyTransfer = false;
-  nbTransfersIn = nbTransfersOut = 0;
-
-  topology.setNeighbors( this, in, out );
-  all = topology;
-
-  synchronizeCoopEx();
-  stop();
-
-  // sending data out
-  sendData();
-  // synchronizing
-  sem_wait( &sync );
-  // receiving data in
-  receiveData();
-
-  synchronizeCoopEx();
-  stop();
-}
-
-void peoSyncDataTransfer :: notifySending()
-{
-
-  nbTransfersOut++;
-
-  printDebugMessage( "peoSyncDataTransfer: notified of the completion of a transfer round." );
-
-  getOwner()->setActive();
-  if ( nbTransfersOut == out.size() && nbTransfersIn < in.size() )
-    {
-      getOwner()->setPassive();
-    }
-}
-
-void peoSyncDataTransfer :: notifyReceiving()
-{
-
-  nbTransfersIn++;
-  printDebugMessage( "peoSyncIslandMig: notified of incoming data." );
-
-  if ( standbyTransfer )
-    {
-      getOwner()->setActive();
-      if ( nbTransfersOut == out.size() && nbTransfersIn < in.size() )
-        getOwner()->setPassive();
-    }
-
-  if ( nbTransfersIn == in.size() )
-    {
-
-      printDebugMessage( "peoSyncIslandMig: finished collecting incoming data." );
-      sem_post( &sync );
-    }
-}
-
-void peoSyncDataTransfer :: notifySendingSyncReq ()
-{
-
-  getOwner()->setPassive();
-  printDebugMessage( "peoSyncIslandMig: synchronization request sent." );
-}
-
-void peoSyncDataTransfer :: notifySynchronized ()
-{
-
-  printDebugMessage( "peoSyncIslandMig: cooperators synchronized." );
-
-  standbyTransfer = true;
-  getOwner()->setActive();
-  resume();
-}
-
 
 #endif
