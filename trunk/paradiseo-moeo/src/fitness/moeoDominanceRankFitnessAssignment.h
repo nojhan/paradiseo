@@ -104,13 +104,10 @@ public:
         unsigned int i= archive.size();
         unsigned int j= _pop.size();
         matrix(archive, _pop);
-        for (unsigned int k=0; k<i+j; k++)
-        {
-            if (k<i)
+        for (unsigned int k=0; k<i; k++)
                 archive[k].fitness(-(matrix.rank(k)+start));
-            else
-                _pop[k-i].fitness(-(matrix.rank(k)+start));
-        }
+        for (unsigned int k=i; k<i+j; k++)
+        	_pop[k-i].fitness(-(matrix.rank(k)+start));
     }
 
     void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
