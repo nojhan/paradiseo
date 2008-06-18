@@ -119,13 +119,11 @@ public:
         for (unsigned int k=0; k<i+j; k++)
             matrice[k].sort();
 
-        for (unsigned int k=0; k<i+j; k++)
-        {
-            if (k<i)
-                _pop[k].diversity(-1*1/(2+getElement(matrice[k])));
-            else
-                archive[k-i].diversity(-1*1/(2+getElement(matrice[k])));
-        }
+        for (unsigned int k=0; k<i; k++)
+            _pop[k].diversity(-1*1/(2+getElement(matrice[k])));
+ 
+        for (unsigned int k=i; k<i+j; k++)
+        	archive[k-i].diversity(-1*1/(2+getElement(matrice[k])));
     }
 
     void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
