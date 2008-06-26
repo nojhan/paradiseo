@@ -65,12 +65,12 @@ public:
 
     /**
      * Ctor with a crossover, a mutation and their corresponding rates.
-     * @param _maxGen number of generations before stopping
-    * @param _eval evaluation function
-    * @param _crossover crossover
-    * @param _pCross crossover probability
-    * @param _mutation mutation
-    * @param _pMut mutation probability
+     * @param _maxGen maximum number of generations before stopping
+     * @param _eval evaluation function
+     * @param _crossover crossover
+     * @param _pCross crossover probability
+     * @param _mutation mutation
+     * @param _pMut mutation probability
      */
     moeoNSGAII (unsigned int _maxGen, eoEvalFunc < MOEOT > & _eval, eoQuadOp < MOEOT > & _crossover, double _pCross, eoMonOp < MOEOT > & _mutation, double _pMut) :
             defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), select (2), selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform),replace (fitnessAssignment, diversityAssignment), defaultSGAGenOp(_crossover, _pCross, _mutation, _pMut), genBreed (select, defaultSGAGenOp), breed (genBreed)
@@ -78,11 +78,11 @@ public:
 
 
     /**
-        * Ctor with a continuator (instead of _maxGen) and a eoGenOp.
-        * @param _continuator stopping criteria
-        * @param _eval evaluation function
-        * @param _op variation operator
-       */
+     * Ctor with a continuator (instead of _maxGen) and a eoGenOp.
+     * @param _continuator stopping criteria
+     * @param _eval evaluation function
+     * @param _op variation operators
+     */
     moeoNSGAII (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op) :
             defaultGenContinuator(0), continuator(_continuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), select(2),
             selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), replace(fitnessAssignment, diversityAssignment), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0), genBreed(select, _op), breed(genBreed)
@@ -92,8 +92,8 @@ public:
     /**
         * Ctor with a continuator (instead of _maxGen) and a eoGenOp.
         * @param _continuator stopping criteria
-        * @param _eval evaluation function
-        * @param _op variation operator
+        * @param _popEval population evaluation function
+        * @param _op variation operators
        */
     moeoNSGAII (eoContinue < MOEOT > & _continuator, eoPopEvalFunc < MOEOT > & _popEval, eoGenOp < MOEOT > & _op) :
             defaultGenContinuator(0), continuator(_continuator), eval(defaultEval), defaultPopEval(eval), popEval(_popEval), select(2),
@@ -105,7 +105,7 @@ public:
      * Ctor with a continuator (instead of _maxGen) and a eoTransform.
      * @param _continuator stopping criteria
      * @param _eval evaluation function
-     * @param _op variation operator
+     * @param _transform variation operator
     */
     moeoNSGAII (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _transform) :
             defaultGenContinuator(0), continuator(_continuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval),
@@ -116,8 +116,8 @@ public:
     /**
      * Ctor with a continuator (instead of _maxGen) and a eoTransform.
      * @param _continuator stopping criteria
-     * @param _eval evaluation function
-     * @param _op variation operator
+     * @param _popEval population evaluation function
+     * @param _transform variation operator
     */
     moeoNSGAII (eoContinue < MOEOT > & _continuator, eoPopEvalFunc < MOEOT > & _popEval, eoTransform < MOEOT > & _transform) :
             defaultGenContinuator(0), continuator(_continuator), eval(defaultEval), defaultPopEval(eval), popEval(_popEval),
