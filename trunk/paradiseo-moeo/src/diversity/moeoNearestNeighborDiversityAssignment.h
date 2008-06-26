@@ -40,14 +40,13 @@
 #ifndef MOEONEARESTNEIGHBORDIVERSITYASSIGNMENT_H_
 #define MOEONEARESTNEIGHBORDIVERSITYASSIGNMENT_H_
 
+#include <list>
 #include <diversity/moeoDiversityAssignment.h>
 #include <archive/moeoUnboundedArchive.h>
 #include <archive/moeoArchive.h>
-#include <list>
-
 
 /**
- * moeoNearestNeighborDiversityAssignment is a moeoDiversityAssignment used distance between moeot to assign diversity
+ * moeoNearestNeighborDiversityAssignment is a moeoDiversityAssignment using distance between individuals to assign diversity.
  */
 template < class MOEOT >
 class moeoNearestNeighborDiversityAssignment : public moeoDiversityAssignment < MOEOT >
@@ -57,6 +56,7 @@ public:
     /** The type for objective vector */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 
+
     /**
      * Default ctor
      * @param _index index for find the k-ieme nearest neighbor, _index correspond to k
@@ -64,21 +64,24 @@ public:
     moeoNearestNeighborDiversityAssignment(unsigned int _index=1):distance(defaultDistance), archive(defaultArchive), index(_index)
     {}
 
+
     /**
      * Ctor where you can choose your own archive
      * @param _archive the archive used
      * @param _index index for find the k-ieme nearest neighbor, _index correspond to k
      */
-    moeoNearestNeighborDiversityAssignment(moeoArchive <MOEOT>& _archive, unsigned int _index=1):distance(defaultDistance), archive(_archive), index(_index)
+    moeoNearestNeighborDiversityAssignment(moeoArchive <MOEOT>& _archive, unsigned int _index=1) : distance(defaultDistance), archive(_archive), index(_index)
     {}
+
 
     /**
      * Ctor where you can choose your own distance
      * @param _dist the distance used
      * @param _index index for find the k-ieme nearest neighbor, _index correspond to k
      */
-    moeoNearestNeighborDiversityAssignment(moeoDistance <MOEOT, double>& _dist, unsigned int _index=1):distance(_dist), archive(defaultArchive), index(_index)
+    moeoNearestNeighborDiversityAssignment(moeoDistance <MOEOT, double>& _dist, unsigned int _index=1) : distance(_dist), archive(defaultArchive), index(_index)
     {}
+
 
     /**
      * Ctor where you can choose your own distance and archive
@@ -86,31 +89,32 @@ public:
      * @param _archive the archive used
      * @param _index index for find the k-ieme nearest neighbor, _index correspond to k
      */
-    moeoNearestNeighborDiversityAssignment(moeoDistance <MOEOT, double>& _dist, moeoArchive <MOEOT>& _archive, unsigned int _index=1):distance(_dist), archive(_archive), index(_index)
+    moeoNearestNeighborDiversityAssignment(moeoDistance <MOEOT, double>& _dist, moeoArchive <MOEOT>& _archive, unsigned int _index=1) : distance(_dist), archive(_archive), index(_index)
     {}
 
 
     /**
-     * affect the diversity to the pop, diversity corresponding to the k-ieme nearest neighbor.
+     * Affect the diversity to the pop, diversity corresponding to the k-ieme nearest neighbor.
      * @param _pop the population
      */
     void operator () (eoPop < MOEOT > & _pop)
     {
-        unsigned int i= _pop.size();
-        unsigned int j= archive.size();
+        unsigned int i = _pop.size();
+        unsigned int j = archive.size();
         double tmp=0;
-
         std::vector< std::list<double> > matrice(i+j);
-        if (i+j>0) {
-            for (unsigned k=0; k<i+j-1; k++) {
-                for (unsigned l=k+1; l<i+j; l++) {
+        if (i+j>0)
+        {
+            for (unsigned k=0; k<i+j-1; k++)
+            {
+                for (unsigned l=k+1; l<i+j; l++)
+                {
                     if ( (k<i) && (l<i) )
                         tmp=distance(_pop[k], _pop[l]);
                     else if ( (k<i) && (l>=i) )
                         tmp=distance(_pop[k], archive[l-i]);
                     else
                         tmp=distance(archive[k-i], archive[l-i]);
-
                     matrice[k].push_back(tmp);
                     matrice[l].push_back(tmp);
                 }
@@ -118,22 +122,30 @@ public:
         }
         for (unsigned int k=0; k<i+j; k++)
             matrice[k].sort();
-
         for (unsigned int k=0; k<i; k++)
-            _pop[k].diversity(-1*1/(2+getElement(matrice[k])));
- 
+            _pop[k].diversity(-1 * 1/(2+getElement(matrice[k])));
         for (unsigned int k=i; k<i+j; k++)
-        	archive[k-i].diversity(-1*1/(2+getElement(matrice[k])));
+            archive[k-i].diversity(-1 * 1/(2+getElement(matrice[k])));
     }
 
+
+    /**
+     * @warning NOT IMPLEMENTED, DOES NOTHING !
+     * Updates the diversity values of the whole population _pop by taking the deletion of the objective vector _objVec into account.
+     * @param _pop the population
+     * @param _objVec the objective vector
+     * @warning NOT IMPLEMENTED, DOES NOTHING !
+     */
     void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
     {
-        //not yet implemented
+        std::cout << "WARNING : updateByDeleting not implemented in moeoNearestNeighborDiversityAssignment" << std::endl;
     }
 
+
 private:
+
     /** Distance */
-    moeoDistance <MOEOT, double>& distance;
+    moeoDistance <MOEOT, double> & distance;
     /** Default distance */
     moeoEuclideanDistance < MOEOT > defaultDistance;
     /** Archive */
@@ -143,16 +155,17 @@ private:
     /** the index corresponding to k for search the k-ieme nearest neighbor */
     unsigned int index;
 
+
     /**
-     * Return the index-ieme element of the list _myList
+     * Return the index-th element of the list _myList
      * @param _myList the list which contains distances
      */
-    double getElement(std::list<double> _myList) {
+    double getElement(std::list<double> _myList)
+    {
         std::list<double>::iterator it= _myList.begin();
         for (unsigned int i=1; i< std::min(_myList.size(),index); i++)
             it++;
         return *it;
-
     }
 
 };
