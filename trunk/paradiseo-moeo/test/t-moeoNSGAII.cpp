@@ -88,15 +88,23 @@ int main()
     std::cout << "[moeoNSGAII]" << std::endl;
 
     TestEval eval;
+    eoPopLoopEval <Solution> popEval(eval);
     eoQuadCloneOp < Solution > xover;
     eoUniformMutation < Solution > mutation(0.05);
 
     eoRealVectorBounds bounds(1, 1.0, 2.0);
     eoRealInitBounded < Solution > init(bounds);
     eoPop < Solution > pop(20, init);
+    eoQuadGenOp <Solution> genOp(xover);
+    eoSGATransform < Solution > transform(xover, 0.1, mutation, 0.1);
+    eoGenContinue <Solution > continuator(10);
 
     // build NSGA-II
     moeoNSGAII < Solution > algo(20, eval, xover, 1.0, mutation, 1.0);
+    moeoNSGAII < Solution > algo2(continuator, eval, genOp);
+    moeoNSGAII < Solution > algo3(continuator, popEval, genOp);
+    moeoNSGAII < Solution > algo4(continuator, eval, transform);
+    moeoNSGAII < Solution > algo5(continuator, popEval, transform);
 
     // run the algo
     algo(pop);
