@@ -49,54 +49,60 @@
 #include <utils/moeoDominanceMatrix.h>
 
 /**
- * moeoDominanceRankFitnessAssignment is a fitness assignment which count for each moeot how many others dominates it.
+ * Fitness assignment sheme that computes how many solutions each solution is dominated by.
  */
 template < class MOEOT >
 class moeoDominanceRankFitnessAssignment : public moeoParetoBasedFitnessAssignment < MOEOT >
 {
 public:
 
+
     /** the objective vector type of the solutions */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
+
 
     /**
      * Default ctor
      * @param _start a start value used to determine the fitness (default _start = 1.0)
-     * @param _nocopy boolean to move away copies
+     * @param _nocopy boolean to penalize clone individuals (default = false)
      */
     moeoDominanceRankFitnessAssignment(double _start=1.0, bool _nocopy=true) : comparator(paretoComparator), archive(defaultArchive), start(_start), matrix(_nocopy)
     {}
 
+
     /**
      * Ctor where you can choose your own archive
-     * @param _archive the archive used
+     * @param _archive an archive to be included in the fitness assignment process
      * @param _start a start value used to determine the fitness (default _start = 1.0)
-     * @param _nocopy boolean to move away copies
+     * @param _nocopy boolean to penalize clone individuals (default = false)
      */
     moeoDominanceRankFitnessAssignment(moeoArchive < MOEOT > & _archive, double _start=1.0, bool _nocopy=true) : comparator(paretoComparator), archive(_archive), start(_start), matrix(_nocopy)
     {}
+
 
     /**
      * Ctor where you can choose your own way to compare objective vectors
      * @param _comparator the functor used to compare objective vectors
      * @param _start a start value used to determine the fitness (default _start = 1.0)
-     * @param _nocopy boolean to move away copies
+     * @param _nocopy boolean to penalize clone individuals (default = false)
      */
     moeoDominanceRankFitnessAssignment(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, double _start=1.0, bool _nocopy=true) : comparator(_comparator), archive(defaultArchive), start(_start), matrix(_comparator, _nocopy)
     {}
 
+
     /**
      * Ctor where you can choose your own archive and your own way to compare objective vectors
      * @param _comparator the functor used to compare objective vectors
-     * @param _archive the archive used
+     * @param _archive an archive to be included in the fitness assignment process
      * @param _start a start value used to determine the fitness (default _start = 1.0)
-     * @param _nocopy boolean to move away copies
+     * @param _nocopy boolean to penalize clone individuals (default = false)
      */
     moeoDominanceRankFitnessAssignment(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, moeoArchive < MOEOT > & _archive, double _start=1.0, bool _nocopy=true) : comparator(_comparator), archive(_archive), start(_start), matrix(_comparator, _nocopy)
     {}
 
+
     /**
-     * Sets the fitness values for every solution contained in the population _pop and in archive
+     * Sets the fitness values for every solution contained in the population _pop  (and in the archive)
      * @param _pop the population
      */
     void operator()(eoPop < MOEOT > & _pop)
@@ -105,28 +111,36 @@ public:
         unsigned int j= _pop.size();
         matrix(archive, _pop);
         for (unsigned int k=0; k<i; k++)
-                archive[k].fitness(-(matrix.rank(k)+start));
+            archive[k].fitness(-(matrix.rank(k)+start));
         for (unsigned int k=i; k<i+j; k++)
-        	_pop[k-i].fitness(-(matrix.rank(k)+start));
+            _pop[k-i].fitness(-(matrix.rank(k)+start));
     }
 
+
+    /**
+     * Updates the fitness values of the whole population _pop by taking the deletion of the objective vector _objVec into account.
+     * @param _pop the population
+     * @param _objVec the objective vector
+     */
     void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
     {
-        //not yet implemented
+        std::cout << "WARNING : updateByDeleting not implemented in moeoDominanceRankFitnessAssignment" << std::endl;
     }
 
+
 private:
+
     /** Functor to compare two objective vectors */
     moeoObjectiveVectorComparator < ObjectiveVector > & comparator;
     /** Functor to compare two objective vectors according to Pareto dominance relation */
     moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
-    /** Archive*/
+    /** Archive to be included in the fitness assignment process */
     moeoArchive < MOEOT > & archive;
-    /** Default archive*/
+    /** Default archive */
     moeoUnboundedArchive < MOEOT > defaultArchive;
-    /** start value*/
+    /** Start value */
     double start;
-    /** Dominance Matrix*/
+    /** Dominance Matrix */
     moeoDominanceMatrix < MOEOT > matrix;
 
 };

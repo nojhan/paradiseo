@@ -51,15 +51,20 @@
 #include <utils/moeoDominanceMatrix.h>
 
 /**
- * moeoDominanceCountRankingFitnessAssignment is a rank fitness assignment with value determine by a count fitness assignment.
+ * Fitness assignment sheme that sum-up the ranks of all solutions dominated by each solution.
+ * This strategy is used, for instance, in SPEA2.
+ * E. Zitzler, M. Laumanns, and L. Thiele. SPEA2: Improving the Strength Pareto Evolutionary Algorithm. Technical Report 103,
+ * Computer Engineering and Networks Laboratory (TIK), ETH Zurich, Zurich, Switzerland, 2001.
  */
 template < class MOEOT >
 class moeoDominanceCountRankingFitnessAssignment : public moeoParetoBasedFitnessAssignment < MOEOT >
 {
 public:
 
+
     /** the objective vector type of the solutions */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
+
 
     /**
      * Default ctor
@@ -67,6 +72,7 @@ public:
      */
     moeoDominanceCountRankingFitnessAssignment(bool _nocopy=true) : comparator(paretoComparator), archive(defaultArchive), matrix(_nocopy)
     {}
+
 
     /**
      * Ctor where you can choose your own archive
@@ -76,6 +82,7 @@ public:
     moeoDominanceCountRankingFitnessAssignment(moeoArchive < MOEOT > & _archive, bool _nocopy=true) : comparator(paretoComparator), archive(_archive), matrix(_nocopy)
     {}
 
+
     /**
      * Ctor where you can choose your own way to compare objective vectors
      * @param _comparator the functor used to compare objective vectors
@@ -83,6 +90,7 @@ public:
      */
     moeoDominanceCountRankingFitnessAssignment(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, bool _nocopy=true) : comparator(_comparator), archive(defaultArchive), matrix(_comparator, _nocopy)
     {}
+
 
     /**
      * Ctor where you can choose your own archive and your own way to compare objective vectors
@@ -95,57 +103,55 @@ public:
 
 
     /**
-     * Sets the fitness values for every solution contained in the population _pop and in archive
+     * Sets the fitness values for every solution contained in the population _pop (and in the archive)
      * @param _pop the population
      */
     void operator()(eoPop < MOEOT > & _pop)
     {
-        /*std::cout <<"\n\n";
-        for(unsigned k=0;k<_pop.size();k++){
-        	std::cout << "pop " << k << " :\n";
-        	for(unsigned l=0 ; l<2 ; l++)
-        		std::cout << "\tobjVec " << l << " : " << _pop[k].objectiveVector()[l] << "\n";
-        }
-        for(unsigned k=0;k<archive.size();k++){
-        	std::cout << "archive " << k << " :\n";
-        	for(unsigned l=0 ; l<2 ; l++)
-        		std::cout << "\tobjVec " << l << " : " << archive[k].objectiveVector()[l] << "\n";
-        }*/
-
-
-
-
         unsigned int i= _pop.size();
         unsigned int j= archive.size();
         matrix(archive,_pop);
-
         for (unsigned int k=0; k<j; k++)
             archive[k].fitness(countRanking(k));
         for (unsigned int k=j; k<i+j; k++)
-        	_pop[k-j].fitness(countRanking(k));
+            _pop[k-j].fitness(countRanking(k));
     }
 
+
+    /**
+     * Updates the fitness values of the whole population _pop by taking the deletion of the objective vector _objVec into account.
+     * @param _pop the population
+     * @param _objVec the objective vector
+     */
     void updateByDeleting(eoPop < MOEOT > & _pop, ObjectiveVector & _objVec)
     {
-        //not yet implemented
+        std::cout << "WARNING : updateByDeleting not implemented in moeoDominanceCountRankingFitnessAssignment" << std::endl;
     }
 
 
 private:
+
     /** Functor to compare two objective vectors */
     moeoObjectiveVectorComparator < ObjectiveVector > & comparator;
     /** Functor to compare two objective vectors according to Pareto dominance relation */
     moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
-    /** Archive */
+    /** Archive to be included in the fitness assignment process */
     moeoArchive < MOEOT > & archive;
     /** Default archive */
     moeoUnboundedArchive < MOEOT > defaultArchive;
-    /** Dominance Matrix*/
+    /** Dominance Matrix */
     moeoDominanceMatrix <MOEOT> matrix;
 
-    double countRanking(unsigned int _i) {
+
+    /**
+     *
+     * @param _i
+     */
+    double countRanking(unsigned int _i)
+    {
         double res=0;
-        for (unsigned int k=0; k<matrix.size(); k++) {
+        for (unsigned int k=0; k<matrix.size(); k++)
+        {
             if (matrix[k][_i])
                 res+=matrix.count(k);
         }
