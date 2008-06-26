@@ -43,7 +43,8 @@
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
 
 /**
- * An archive is a secondary population that stores non-dominated solutions.
+ * Abstract class for representing an archive ;
+ * an archive is a secondary population that stores non-dominated solutions.
  */
 template < class MOEOT >
 class moeoArchive : public eoPop < MOEOT >
@@ -52,6 +53,7 @@ public:
 
     using eoPop < MOEOT > :: size;
     using eoPop < MOEOT > :: operator[];
+
 
     /**
      * The type of an objective vector for a solution
@@ -116,11 +118,13 @@ public:
      */
     virtual void operator()(const MOEOT & _moeo) = 0;
 
+
     /**
      * Updates the archive with a given population _pop
      * @param _pop the given population
      */
     virtual void operator()(const eoPop < MOEOT > & _pop) = 0;
+
 
     /**
      * Returns true if the current archive contains the same objective vectors than the given archive _arch
@@ -144,6 +148,7 @@ public:
         }
         return true;
     }
+
 
 private:
 

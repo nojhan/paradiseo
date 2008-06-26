@@ -42,9 +42,12 @@
 #define MOEOFIXEDSIZEARCHIVE_H_
 
 #include <eoPop.h>
+#include <archive/moeoArchive.h>
+#include <comparator/moeoObjectiveVectorComparator.h>
 
 /**
- * An FixedSizeArchive is a secondary population that stores non-dominated solutions whith a fixed size.
+ * Abstract class for representing a fixed size archive ;
+ * a fixed size archive is an archive containing a given number of solutions.
  */
 template < class MOEOT >
 class moeoFixedSizeArchive : public moeoArchive < MOEOT >
@@ -72,15 +75,11 @@ public:
 
 
     /**
-     * Returns true if the current archive dominates _objectiveVector according to the moeoObjectiveVectorComparator given in the constructor
-     * @param _objectiveVector the objective vector to compare with the current archive
-     */
-
-    /**
      * Updates the archive with a given individual _moeo
      * @param _moeo the given individual
      */
     virtual void operator()(const MOEOT & _moeo)=0;
+
 
     /**
      * Updates the archive with a given population _pop

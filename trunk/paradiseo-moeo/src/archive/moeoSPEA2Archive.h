@@ -41,39 +41,49 @@
 #ifndef MOEOSPEA2ARCHIVE_H_
 #define MOEOSPEA2ARCHIVE_H_
 
-#include <eoPop.h>
-#include <list>
-#include <moeo>
 #include <limits>
+#include <list>
+#include <eoPop.h>
+#include <archive/moeoFixedSizeArchive.h>
+#include <comparator/moeoComparator.h>
+#include <comparator/moeoFitnessThenDiversityComparator.h>
+#include <comparator/moeoObjectiveVectorComparator.h>
+#include <distance/moeoDistance.h>
+#include <distance/moeoEuclideanDistance.h>
 
 /**
- * An archive is a secondary population that stores non-dominated solutions.
+ * This class represents a bounded archive as defined in the SPEA2 algorithm.
+ * E. Zitzler, M. Laumanns, and L. Thiele. SPEA2: Improving the Strength Pareto Evolutionary Algorithm. Technical Report 103,
+ * Computer Engineering and Networks Laboratory (TIK), ETH Zurich, Zurich, Switzerland, 2001.
  */
 template < class MOEOT >
 class moeoSPEA2Archive : public moeoFixedSizeArchive < MOEOT >
 {
 public:
 
-    using eoPop < MOEOT > :: size;
-    using eoPop < MOEOT > :: resize;
-    using eoPop < MOEOT > :: operator[];
-    using eoPop < MOEOT > :: back;
-    using eoPop < MOEOT > :: pop_back;
-    using eoPop < MOEOT > :: push_back;
-    using eoPop < MOEOT > :: begin;
-    using eoPop < MOEOT > :: end;
+    using moeoFixedSizeArchive < MOEOT > :: size;
+    using moeoFixedSizeArchive < MOEOT > :: resize;
+    using moeoFixedSizeArchive < MOEOT > :: operator[];
+    using moeoFixedSizeArchive < MOEOT > :: back;
+    using moeoFixedSizeArchive < MOEOT > :: pop_back;
+    using moeoFixedSizeArchive < MOEOT > :: push_back;
+    using moeoFixedSizeArchive < MOEOT > :: begin;
+    using moeoFixedSizeArchive < MOEOT > :: end;
+
 
     /**
      * The type of an objective vector for a solution
      */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 
+
     /**
      * Default ctor.
-     * @param _maxSize the size of archive (must be smaller or egal to the population size)
+     * @param _maxSize the size of archive (must be smaller or equal to the population size)
      */
     moeoSPEA2Archive(unsigned int _maxSize=100): moeoFixedSizeArchive < MOEOT >(), maxSize(_maxSize), borne(0), indiComparator(defaultComparator), distance(defaultDistance)
     {}
+
 
     /**
      * Ctor where you can choose your own moeoDistance
@@ -83,6 +93,7 @@ public:
     moeoSPEA2Archive(moeoDistance <MOEOT, double>& _dist, unsigned int _maxSize=100): moeoFixedSizeArchive < MOEOT >(), maxSize(_maxSize), borne(0), indiComparator(defaultComparator), distance(_dist)
     {}
 
+
     /**
      * Ctor where you can choose your own moeoObjectiveVectorComparator
      * @param _comparator the functor used to compare objective vectors
@@ -91,6 +102,7 @@ public:
     moeoSPEA2Archive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, unsigned int _maxSize=100): moeoFixedSizeArchive < MOEOT >(_comparator), maxSize(_maxSize), borne(0), indiComparator(defaultComparator), distance(defaultDistance)
     {}
 
+
     /**
      * Ctor where you can choose your own moeoComparator
      * @param _indiComparator the functor used to compare MOEOT
@@ -98,6 +110,7 @@ public:
      */
     moeoSPEA2Archive(moeoComparator <MOEOT>& _indiComparator, unsigned int _maxSize=100): moeoFixedSizeArchive < MOEOT >(), maxSize(_maxSize), borne(0), indiComparator(_indiComparator), distance(defaultDistance)
     {}
+
 
     /**
      * Ctor where you can choose your own moeoComparator, moeoDistance and moeoObjectiveVectorComparator
@@ -109,35 +122,32 @@ public:
     moeoSPEA2Archive(moeoComparator <MOEOT>& _indiComparator, moeoDistance <MOEOT, double>& _dist, moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, unsigned int _maxSize=100) : moeoFixedSizeArchive < MOEOT >(_comparator), maxSize(_maxSize), borne(0), indiComparator(_indiComparator), distance(_dist)
     {}
 
+
     /**
      * Updates the archive with a given individual _moeo
      * @param _moeo the given individual
      */
-    void operator()(const MOEOT & _moeo) {
+    void operator()(const MOEOT & _moeo)
+    {
         eoPop < MOEOT > pop_tmp;
         pop_tmp.push_back(_moeo);
         operator()(pop_tmp);
     }
 
+
     /**
      * Updates the archive with a given population _pop
      * @param _pop the given population
      */
-    void operator()(const eoPop < MOEOT > & _pop) {
+    void operator()(const eoPop < MOEOT > & _pop)
+    {
         unsigned int i=0;
         unsigned int foo=0;
 
-        /*std::cout << "\n\narchive avant: ";
-          for(unsigned k=0; k<size();k++)
-        	  std::cout << operator[](k).fitness() << "  ";
-
-          std::cout << "\npop: ";
-            for(unsigned k=0; k<_pop.size();k++)
-          	  std::cout << _pop[k].fitness() << "  ";*/
-
         //Creation of the vector that contains minimal pop's informations
         std::vector<struct refpop> copy_pop(_pop.size());
-        for (i;i<_pop.size(); i++) {
+        for (i;i<_pop.size(); i++)
+        {
             copy_pop[i].index=i;
             copy_pop[i].fitness=_pop[i].fitness();
             copy_pop[i].diversity=_pop[i].diversity();
@@ -147,23 +157,26 @@ public:
         std::sort(copy_pop.begin(), copy_pop.end(), Cmp());
 
         //If the archive is empty, put in the best elements of the pop
-        if (borne < maxSize) {
+        if (borne < maxSize)
+        {
             foo= std::min(_pop.size(), maxSize-borne);
-
-            for (i=0; i< foo ; i++) {
+            for (i=0; i< foo ; i++)
+            {
                 push_back(_pop[copy_pop[i].index]);
                 borne++;
             }
 
         }
-        else {
+        else
+        {
             unsigned int j=0;
             //Sort the archive
             std::sort(begin(), end(), indiComparator);
             i=0;
 
             //While we have a better element in pop than the worst <= -1 in the archive, replace the worst(of archive) by the best(of pop)
-            while ( (i<borne) && ( (operator[](i).fitness()+operator[](i).diversity()) < (copy_pop[j].fitness + copy_pop[j].diversity) ) && (operator[](i).fitness()<=-1) && ( j < copy_pop.size() ) ) {
+            while ( (i<borne) && ( (operator[](i).fitness()+operator[](i).diversity()) < (copy_pop[j].fitness + copy_pop[j].diversity) ) && (operator[](i).fitness()<=-1) && ( j < copy_pop.size() ) )
+            {
                 operator[](i)= back();
                 pop_back();
                 push_back(_pop[copy_pop[j].index]);
@@ -172,7 +185,8 @@ public:
             }
 
             //If their are others goods elements in pop (fitness=0) , keep only archive's size elements between the archive's elements and the good element in the pop (k ieme smallest distance is used)
-            if (copy_pop[j].fitness > -1) {
+            if (copy_pop[j].fitness > -1)
+            {
                 unsigned int inf=j;
                 unsigned int p;
                 unsigned int k=0;
@@ -186,14 +200,15 @@ public:
 
                 p=j-inf;
 
-                //std::cout << "p: " << p << ", j: " << j << ",inf: " << inf << "\n";
-
                 std::vector< std::vector< std::pair<int,double> > > matrice(borne+p);
 
                 //Build the distance matrice(vector of vector) between each keeped elements
-                if (borne+p>0) {
-                    for (k=0; k<borne+p-1; k++) {
-                        for (l=k+1; l<borne+p; l++) {
+                if (borne+p>0)
+                {
+                    for (k=0; k<borne+p-1; k++)
+                    {
+                        for (l=k+1; l<borne+p; l++)
+                        {
                             if ( (k<borne) && (l<borne) )
                                 tmp=distance(operator[](k), operator[](l));
                             else if ( (k<borne) && (l>=borne) )
@@ -207,7 +222,8 @@ public:
                     }
                 }
 
-                for (k=0; k<borne+p; k++) {
+                for (k=0; k<borne+p; k++)
+                {
                     //sort each line of the matrice
                     std::sort(matrice[k].begin(),matrice[k].end(), CmpPair());
 
@@ -225,12 +241,14 @@ public:
                 std::vector< std::pair<int,double> >::iterator it;
 
                 //search elements of the archive to delete
-                for (k=0; k<p; k++) {
+                for (k=0; k<p; k++)
+                {
                     tmp2=(unsigned int)matrice[0].back().second;
                     if (tmp2<borne)
                         notkeeped.push_back(tmp2);
                     matrice.erase(matrice_it);
-                    for (l=0; l<matrice.size(); l++) {
+                    for (l=0; l<matrice.size(); l++)
+                    {
                         it=matrice[l].begin();
                         while ((*it).first != tmp2)
                             it++;
@@ -241,55 +259,75 @@ public:
                 }
 
                 //search elements of pop to put in archive
-                for (k=0; k<borne; k++) {
+                for (k=0; k<borne; k++)
+                {
                     tmp2=(unsigned int)matrice[k].back().second;
                     if (tmp2 >= borne)
                         keeped.push_back(tmp2);
                 }
 
                 //replace some archive element by some pop element
-                for (k=0; k<keeped.size(); k++) {
+                for (k=0; k<keeped.size(); k++)
+                {
                     push_back( _pop[ copy_pop[keeped[k]-borne+inf].index ] );
                     operator[](notkeeped[k]) = back();
                     pop_back();
                 }
             }
         }
-        /*
-        std::cout << "\n\narchive aprés: ";
-          for(unsigned k=0; k<size();k++)
-        	  std::cout << operator[](k).fitness() << "  ";*/
 
     }//endoperator()
 
-private :
+
+private:
+
+    /** archive max size */
+    unsigned int maxSize;
+    /** archive size */
+    unsigned int borne;
+    /** default moeoComparator*/
+    moeoFitnessThenDiversityComparator < MOEOT > defaultComparator;
+    /** distance */
+    moeoDistance <MOEOT, double>& distance;
+    /** default distance */
+    moeoEuclideanDistance < MOEOT > defaultDistance;
+
+
     /**
      * Structure needs to copy informations of the pop in order to sort it
      */
-    struct refpop {
+    struct refpop
+    {
         unsigned index;
         double fitness;
         double diversity;
     };
 
+
     /**
      * Comparator of struct refpop : compare fitness+divesity
      */
-    struct Cmp {
-        bool operator()(const struct refpop& _a, const struct refpop& _b) {
+    struct Cmp
+    {
+        bool operator()(const struct refpop& _a, const struct refpop& _b)
+        {
             return ( (_a.diversity + _a.fitness) > (_b.diversity + _b.fitness) );
         }
     };
+
 
     /**
      * Comparator of two vector of pair
      * Compare the second pair's value of the first element vector, if equals compare the next element vector...
      */
-    struct CmpVector {
-        bool operator()( const std::vector< std::pair<int,double> >& _a, const std::vector< std::pair<int,double> >& _b) {
+    struct CmpVector
+    {
+        bool operator()( const std::vector< std::pair<int,double> >& _a, const std::vector< std::pair<int,double> >& _b)
+        {
             std::vector< std::pair<int,double> >::const_iterator it1= _a.begin();
             std::vector< std::pair<int,double> >::const_iterator it2= _b.begin();
-            while ( (it1 != _a.end()) && (it2 != _b.end())) {
+            while ( (it1 != _a.end()) && (it2 != _b.end()))
+            {
                 if ((*it1).second < (*it2).second)
                     return true;
                 else if ((*it1).second > (*it2).second)
@@ -301,14 +339,18 @@ private :
         }
     };
 
+
     /**
        * Comparator of two pair : compare the second pair's value
        */
-    struct CmpPair {
-        bool operator()(const std::pair<int,double>& _a, const std::pair<int,double>& _b) {
+    struct CmpPair
+    {
+        bool operator()(const std::pair<int,double>& _a, const std::pair<int,double>& _b)
+        {
             return _a.second < _b.second;
         }
     };
+
 
     /**
      * Wrapper which allow to used an moeoComparator in std::sort
@@ -321,8 +363,7 @@ private :
          * Ctor.
          * @param _comp the comparator
          */
-        Wrapper(moeoComparator < MOEOT > & _comp) : comp(_comp)
-        {}
+        Wrapper(moeoComparator < MOEOT > & _comp) : comp(_comp) {}
         /**
          * Returns true if _moeo1 is greater than _moeo2 according to the comparator
          * _moeo1 the first individual
@@ -338,16 +379,6 @@ private :
     }
     indiComparator;
 
-    /** archive max size */
-    unsigned int maxSize;
-    /** archive size */
-    unsigned int borne;
-    /** default moeoComparator*/
-    moeoFitnessThenDiversityComparator < MOEOT > defaultComparator;
-    /** distance */
-    moeoDistance <MOEOT, double>& distance;
-    /** default distance */
-    moeoEuclideanDistance < MOEOT > defaultDistance;
 };
 
 #endif /*MOEOSPEA2ARCHIVE_H_*/

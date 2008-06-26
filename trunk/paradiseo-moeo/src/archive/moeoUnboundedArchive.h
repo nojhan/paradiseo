@@ -41,20 +41,22 @@
 #define MOEOUNBOUNDEDARCHIVE_H_
 
 #include <eoPop.h>
+#include <archive/moeoArchive.h>
+#include <comparator/moeoObjectiveVectorComparator.h>
 
 /**
- * An archive is a secondary population that stores non-dominated solutions.
+ * An unbounded archive is an archive storing an unbounded number of non-dominated solutions.
  */
 template < class MOEOT >
 class moeoUnboundedArchive : public moeoArchive < MOEOT >
 {
 public:
 
-    using eoPop < MOEOT > :: size;
-    using eoPop < MOEOT > :: resize;
-    using eoPop < MOEOT > :: operator[];
-    using eoPop < MOEOT > :: back;
-    using eoPop < MOEOT > :: pop_back;
+    using moeoArchive < MOEOT > :: size;
+    using moeoArchive < MOEOT > :: resize;
+    using moeoArchive < MOEOT > :: operator[];
+    using moeoArchive < MOEOT > :: back;
+    using moeoArchive < MOEOT > :: pop_back;
 
 
     /**
@@ -76,11 +78,6 @@ public:
      */
     moeoUnboundedArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator) : moeoArchive < MOEOT >(_comparator) {}
 
-
-    /**
-     * Returns true if the current archive dominates _objectiveVector according to the moeoObjectiveVectorComparator given in the constructor
-     * @param _objectiveVector the objective vector to compare with the current archive
-     */
 
     /**
      * Updates the archive with a given individual _moeo
