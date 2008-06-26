@@ -41,6 +41,7 @@
 #define MOEOSPEA2_H_
 
 #include <eoBreed.h>
+#include <eoCloneOps.h>
 #include <eoContinue.h>
 #include <eoEvalFunc.h>
 #include <eoGenContinue.h>
@@ -57,8 +58,12 @@
 #include <archive/moeoFixedSizeArchive.h>
 #include <distance/moeoEuclideanDistance.h>
 #include <selection/moeoSelectFromPopAndArch.h>
-#include <eoCloneOps.h>
 
+/**
+ * SPEA2 algorithm.
+ * E. Zitzler, M. Laumanns, and L. Thiele. SPEA2: Improving the Strength Pareto Evolutionary Algorithm. Technical Report 103,
+ * Computer Engineering and Networks Laboratory (TIK), ETH Zurich, Zurich, Switzerland, 2001.
+ */
 template < class MOEOT >
 class moeoSPEA2: public moeoEA < MOEOT >
 {
@@ -81,6 +86,7 @@ public:
             genBreed(defaultSelect, defaultSGAGenOp),selectMany(defaultSelect,0.0), selectTransform(selectMany, dummyTransform), breed(genBreed), diversityAssignment(dist,_archive, _k)
     {}
 
+
     /**
         * Ctor with a crossover, a mutation and their corresponding rates.
         * @param _continuator stopping criteria
@@ -97,6 +103,7 @@ public:
             defaultSGAGenOp(_crossover, _pCross, _mutation, _pMut), fitnessAssignment(_archive, _nocopy),
             genBreed(defaultSelect, defaultSGAGenOp),selectMany(defaultSelect,0.0), selectTransform(selectMany, dummyTransform), breed(genBreed), diversityAssignment(dist,_archive, _k)
     {}
+
 
     /**
         * Ctor with a crossover, a mutation and their corresponding rates.
@@ -115,6 +122,7 @@ public:
             genBreed(defaultSelect, defaultSGAGenOp),selectMany(defaultSelect,0.0), selectTransform(selectMany, dummyTransform), breed(genBreed), diversityAssignment(dist,_archive, _k)
     {}
 
+
     /**
         * Ctor with a crossover, a mutation and their corresponding rates.
         * @param _continuator stopping criteria
@@ -128,6 +136,7 @@ public:
             defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), fitnessAssignment(_archive, _nocopy),
             genBreed(select, _op),selectMany(defaultSelect,0.0), selectTransform(selectMany, dummyTransform), breed(genBreed), diversityAssignment(dist,_archive, _k)
     {}
+
 
     /**
       * Ctor with a crossover, a mutation and their corresponding rates.
@@ -143,6 +152,7 @@ public:
             genBreed(defaultSelect, defaultSGAGenOp),selectMany(select,1.0), selectTransform(selectMany, _op), breed(selectTransform), diversityAssignment(dist,_archive, _k)
     {}
 
+
     /**
       * Ctor with a crossover, a mutation and their corresponding rates.
       * @param _continuator stopping criteria
@@ -156,6 +166,7 @@ public:
             defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), fitnessAssignment(_archive, _nocopy),
             genBreed(select, _op),selectMany(defaultSelect,0.0), selectTransform(selectMany, dummyTransform), breed(genBreed), diversityAssignment(dist,_archive, _k)
     {}
+
 
     /**
       * Ctor with a crossover, a mutation and their corresponding rates.
@@ -171,6 +182,7 @@ public:
             genBreed(defaultSelect, defaultSGAGenOp),selectMany(select,1.0), selectTransform(selectMany, _op), breed(selectTransform), diversityAssignment(dist,_archive, _k)
     {}
 
+
     /**
      * Apply a few generation of evolution to the population _pop until the stopping criteria is verified.
      * @param _pop the population
@@ -182,57 +194,46 @@ public:
         fitnessAssignment(_pop); //a first fitness assignment of _pop
         diversityAssignment(_pop);//a first diversity assignment of _pop
         archive(_pop);//a first filling of archive
-
-        while (continuator (_pop)) {
-
-
+        while (continuator (_pop))
+        {
             // generate offspring, worths are recalculated if necessary
             breed (_pop, offspring);
-
             popEval (_pop, offspring); // eval of offspring
-
             // after replace, the new pop is in _pop. Worths are recalculated if necessary
             replace (_pop, offspring);
-
             fitnessAssignment(_pop); //fitness assignment of _pop
             diversityAssignment(_pop); //diversity assignment of _pop
             archive(_pop); //control of archive
-
         }
-        std::cout << "Final Archive\n";
-        archive.sortedPrintOn (std::cout);
-        std::cout << "\n";
     }
+
 
 protected:
 
-    /** Dummy Evaluation Function class*/
-    class eoDummyEval : public eoEvalFunc< MOEOT >
+    /** dummy evaluation */
+class eoDummyEval : public eoEvalFunc< MOEOT >
     {
     public:
-        void operator()(MOEOT &)
-        {}
+        void operator()(MOEOT &) {}
     }
     dummyEval;
-
-    class eoDummyTransform : public eoTransform<MOEOT>
+    /** dummy transform */
+class eoDummyTransform : public eoTransform<MOEOT>
     {
     public :
-        void operator()(eoPop<MOEOT>&)
-        {}
+        void operator()(eoPop<MOEOT>&) {}
     }
     dummyTransform;
-
     /** a continuator based on the number of generations (used as default) */
     eoGenContinue < MOEOT > defaultGenContinuator;
     /** stopping criteria */
     eoContinue < MOEOT > & continuator;
     /** evaluation function */
-    eoEvalFunc < MOEOT >& eval;
+    eoEvalFunc < MOEOT > & eval;
     /** loop eval */
     eoPopLoopEval < MOEOT > loopEval;
     /** evaluation function used to evaluate the whole population */
-    eoPopEvalFunc < MOEOT >& popEval;
+    eoPopEvalFunc < MOEOT > & popEval;
     /** selectMany */
     eoSelectMany <MOEOT>  selectMany;
     /** select Transform*/
@@ -261,6 +262,7 @@ protected:
     moeoEuclideanDistance < MOEOT > dist;
     /**archive*/
     moeoArchive < MOEOT >& archive;
+
 };
 
 #endif /*MOEOSPEA2_H_*/
