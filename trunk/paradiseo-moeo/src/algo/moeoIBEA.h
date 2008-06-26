@@ -38,8 +38,8 @@
 #ifndef MOEOIBEA_H_
 #define MOEOIBEA_H_
 
-
 #include <eoBreed.h>
+#include <eoCloneOps.h>
 #include <eoContinue.h>
 #include <eoEvalFunc.h>
 #include <eoGenContinue.h>
@@ -55,140 +55,171 @@
 #include <selection/moeoDetTournamentSelect.h>
 
 /**
- * IBEA (Indicator-Based Evolutionary Algorithm) as described in:
+ * IBEA (Indicator-Based Evolutionary Algorithm).
  * E. Zitzler, S. Künzli, "Indicator-Based Selection in Multiobjective Search", Proc. 8th International Conference on Parallel Problem Solving from Nature (PPSN VIII), pp. 832-842, Birmingham, UK (2004).
  * This class builds the IBEA algorithm only by using the fine-grained components of the ParadisEO-MOEO framework.
  */
 template < class MOEOT >
 class moeoIBEA : public moeoEA < MOEOT >
-  {
-  public:
+{
+public:
 
     /** The type of objective vector */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 
 
     /**
-     * Simple ctor with a eoGenOp.
-     * @param _maxGen number of generations before stopping
-     * @param _eval evaluation function
-     * @param _op variation operator
-     * @param _metric metric
-     * @param _kappa scaling factor kappa
-     */
-    moeoIBEA (unsigned int _maxGen, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
-        defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select(2),
-        fitnessAssignment(_metric, _kappa), replace(fitnessAssignment, dummyDiversityAssignment), genBreed(select, _op), breed(genBreed)
-    {}
-
-
-    /**
-     * Simple ctor with a eoTransform.
-     * @param _maxGen number of generations before stopping
-     * @param _eval evaluation function
-     * @param _op variation operator
-     * @param _metric metric
-     * @param _kappa scaling factor kappa
-     */
-    moeoIBEA (unsigned int _maxGen, eoEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _op, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
-        defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select(2),
-        fitnessAssignment(_metric, _kappa), replace(fitnessAssignment, dummyDiversityAssignment), genBreed(select, _op), breed(genBreed)
-    {}
-
-
-    /**
-     * Ctor with a crossover, a mutation and their corresponding rates.
-     * @param _maxGen number of generations before stopping
-     * @param _eval evaluation function
-     * @param _crossover crossover
-     * @param _pCross crossover probability
-     * @param _mutation mutation
-     * @param _pMut mutation probability
-     * @param _metric metric
-     * @param _kappa scaling factor kappa
-     */
+      * Ctor with a crossover, a mutation and their corresponding rates.
+      * @param _maxGen maximum number of generations before stopping
+      * @param _eval evaluation function
+      * @param _crossover crossover
+      * @param _pCross crossover probability
+      * @param _mutation mutation
+      * @param _pMut mutation probability
+      * @param _metric metric
+      * @param _kappa scaling factor kappa
+      */
     moeoIBEA (unsigned int _maxGen, eoEvalFunc < MOEOT > & _eval, eoQuadOp < MOEOT > & _crossover, double _pCross, eoMonOp < MOEOT > & _mutation, double _pMut, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
-        defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), popEval(_eval), select (2),
-        fitnessAssignment(_metric, _kappa), replace (fitnessAssignment, dummyDiversityAssignment), defaultSGAGenOp(_crossover, _pCross, _mutation, _pMut),
-        genBreed (select, defaultSGAGenOp), breed (genBreed)
+            defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), select (2), selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(_crossover, _pCross, _mutation, _pMut), genBreed (select, defaultSGAGenOp), breed (genBreed), fitnessAssignment(_metric, _kappa), replace (fitnessAssignment, diversityAssignment)
     {}
 
 
     /**
-     * Ctor with a continuator (instead of _maxGen) and a eoGenOp.
+     * Ctor with a eoContinue and a eoGenOp.
      * @param _continuator stopping criteria
      * @param _eval evaluation function
-     * @param _op variation operator
+     * @param _op variation operators
      * @param _metric metric
      * @param _kappa scaling factor kappa
      */
     moeoIBEA (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
-        continuator(_continuator), popEval(_eval), select(2),
-        fitnessAssignment(_metric, _kappa), replace(fitnessAssignment, dummyDiversityAssignment), genBreed(select, _op), breed(genBreed)
+            defaultGenContinuator(0), continuator(_continuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), select(2),
+            selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0), genBreed(select, _op), breed(genBreed), fitnessAssignment(_metric, _kappa), replace (fitnessAssignment, diversityAssignment)
     {}
 
 
     /**
-     * Ctor with a continuator (instead of _maxGen) and a eoTransform.
+     * Ctor with a eoContinue, a eoPopEval and a eoGenOp.
      * @param _continuator stopping criteria
-     * @param _eval evaluation function
-     * @param _op variation operator
+     * @param _popEval population evaluation function
+     * @param _op variation operators
      * @param _metric metric
      * @param _kappa scaling factor kappa
      */
-    moeoIBEA (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _op, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
-        continuator(_continuator), popEval(_eval), select(2),
-        fitnessAssignment(_metric, _kappa), replace(fitnessAssignment, dummyDiversityAssignment), genBreed(select, _op), breed(genBreed)
+    moeoIBEA (eoContinue < MOEOT > & _continuator, eoPopEvalFunc < MOEOT > & _popEval, eoGenOp < MOEOT > & _op, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
+            defaultGenContinuator(0), continuator(_continuator), eval(defaultEval), defaultPopEval(eval), popEval(_popEval), select(2),
+            selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0), genBreed(select, _op), breed(genBreed), fitnessAssignment(_metric, _kappa), replace (fitnessAssignment, diversityAssignment)
     {}
 
 
     /**
-     * Apply a few generation of evolution to the population _pop until the stopping criteria is verified.
+     * Ctor with a eoContinue and a eoTransform.
+     * @param _continuator stopping criteria
+     * @param _eval evaluation function
+     * @param _transform variation operator
+     * @param _metric metric
+     * @param _kappa scaling factor kappa
+     */
+    moeoIBEA (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _transform, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
+            defaultGenContinuator(0), continuator(_continuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval),
+            select(2),  selectMany(select, 1.0), selectTransform(selectMany, _transform), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), genBreed(select, defaultSGAGenOp), breed(selectTransform), fitnessAssignment(_metric, _kappa), replace(fitnessAssignment, diversityAssignment)
+    {}
+
+
+    /**
+     * Ctor with a eoContinue, a eoPopEval and a eoTransform.
+     * @param _continuator stopping criteria
+     * @param _popEval population evaluation function
+     * @param _transform variation operator
+     * @param _metric metric
+     * @param _kappa scaling factor kappa
+     */
+    moeoIBEA (eoContinue < MOEOT > & _continuator, eoPopEvalFunc < MOEOT > & _popEval, eoTransform < MOEOT > & _transform, moeoNormalizedSolutionVsSolutionBinaryMetric < ObjectiveVector, double > & _metric, const double _kappa=0.05) :
+            defaultGenContinuator(0), continuator(_continuator), eval(defaultEval), defaultPopEval(eval), popEval(_popEval),
+            select(2),  selectMany(select, 1.0), selectTransform(selectMany, _transform), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), genBreed(select, defaultSGAGenOp), breed(selectTransform), fitnessAssignment(_metric, _kappa), replace(fitnessAssignment, diversityAssignment)
+    {}
+
+
+    /**
+     * Apply the algorithm to the population _pop until the stopping criteria is satified.
      * @param _pop the population
      */
     virtual void operator () (eoPop < MOEOT > &_pop)
     {
-      eoPop < MOEOT > offspring, empty_pop;
-      popEval (empty_pop, _pop);	// a first eval of _pop
-      // evaluate fitness and diversity
-      fitnessAssignment(_pop);
-      dummyDiversityAssignment(_pop);
-      do
+        eoPop < MOEOT > offspring, empty_pop;
+        popEval (empty_pop, _pop);	// a first eval of _pop
+        // evaluate fitness and diversity
+        fitnessAssignment(_pop);
+        diversityAssignment(_pop);
+        do
         {
-          // generate offspring, worths are recalculated if necessary
-          breed (_pop, offspring);
-          // eval of offspring
-          popEval (_pop, offspring);
-          // after replace, the new pop is in _pop. Worths are recalculated if necessary
-          replace (_pop, offspring);
+            // generate offspring, worths are recalculated if necessary
+            breed (_pop, offspring);
+            // eval of offspring
+            popEval (_pop, offspring);
+            // after replace, the new pop is in _pop. Worths are recalculated if necessary
+            replace (_pop, offspring);
         }
-      while (continuator (_pop));
+        while (continuator (_pop));
     }
 
 
-  protected:
+protected:
 
     /** a continuator based on the number of generations (used as default) */
     eoGenContinue < MOEOT > defaultGenContinuator;
     /** stopping criteria */
     eoContinue < MOEOT > & continuator;
+    /** default eval */
+    class DummyEval : public eoEvalFunc < MOEOT >
+    {
+    public:
+        void operator()(MOEOT &) {}
+    }
+    defaultEval;
+    /** evaluation function */
+    eoEvalFunc < MOEOT > & eval;
+    /** default popEval */
+    eoPopLoopEval < MOEOT > defaultPopEval;
     /** evaluation function used to evaluate the whole population */
-    eoPopLoopEval < MOEOT > popEval;
+    eoPopEvalFunc < MOEOT > & popEval;
+    /** default select */
+    class DummySelect : public eoSelect < MOEOT >
+    {
+    public :
+        void operator()(const eoPop<MOEOT>&, eoPop<MOEOT>&) {}
+    }
+    defaultSelect;
     /** binary tournament selection */
     moeoDetTournamentSelect < MOEOT > select;
-    /** fitness assignment used in IBEA */
-    moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT > fitnessAssignment;
-    /** dummy diversity assignment */
-    moeoDummyDiversityAssignment < MOEOT > dummyDiversityAssignment;
-    /** elitist replacement */
-    moeoEnvironmentalReplacement < MOEOT > replace;
+    /** default select many */
+    eoSelectMany < MOEOT >  selectMany;
+    /** select transform */
+    eoSelectTransform < MOEOT > selectTransform;
+    /** a default crossover */
+    eoQuadCloneOp < MOEOT > defaultQuadOp;
+    /** a default mutation */
+    eoMonCloneOp < MOEOT > defaultMonOp;
     /** an object for genetic operators (used as default) */
     eoSGAGenOp < MOEOT > defaultSGAGenOp;
+    /** default transform */
+    class DummyTransform : public eoTransform < MOEOT >
+    {
+    public :
+        void operator()(eoPop<MOEOT>&) {}
+    }
+    defaultTransform;
     /** general breeder */
     eoGeneralBreeder < MOEOT > genBreed;
     /** breeder */
     eoBreed < MOEOT > & breed;
+    /** fitness assignment used in IBEA */
+    moeoExpBinaryIndicatorBasedFitnessAssignment < MOEOT > fitnessAssignment;
+    /** dummy diversity assignment */
+    moeoDummyDiversityAssignment < MOEOT > diversityAssignment;
+    /** environmental replacement */
+    moeoEnvironmentalReplacement < MOEOT > replace;
 
-  };
+};
 
 #endif /*MOEOIBEA_H_*/
