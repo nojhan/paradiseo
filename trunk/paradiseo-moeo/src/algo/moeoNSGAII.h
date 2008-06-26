@@ -78,7 +78,7 @@ public:
 
 
     /**
-     * Ctor with a continuator (instead of _maxGen) and a eoGenOp.
+     * Ctor with a eoContinue and a eoGenOp.
      * @param _continuator stopping criteria
      * @param _eval evaluation function
      * @param _op variation operators
@@ -90,11 +90,11 @@ public:
 
 
     /**
-        * Ctor with a continuator (instead of _maxGen) and a eoGenOp.
-        * @param _continuator stopping criteria
-        * @param _popEval population evaluation function
-        * @param _op variation operators
-       */
+     * Ctor with a eoContinue, a eoPopEval and a eoGenOp.
+     * @param _continuator stopping criteria
+     * @param _popEval population evaluation function
+     * @param _op variation operators
+     */
     moeoNSGAII (eoContinue < MOEOT > & _continuator, eoPopEvalFunc < MOEOT > & _popEval, eoGenOp < MOEOT > & _op) :
             defaultGenContinuator(0), continuator(_continuator), eval(defaultEval), defaultPopEval(eval), popEval(_popEval), select(2),
             selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), replace(fitnessAssignment, diversityAssignment), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0), genBreed(select, _op), breed(genBreed)
@@ -102,7 +102,7 @@ public:
 
 
     /**
-     * Ctor with a continuator (instead of _maxGen) and a eoTransform.
+     * Ctor with a eoContinue and a eoTransform.
      * @param _continuator stopping criteria
      * @param _eval evaluation function
      * @param _transform variation operator
@@ -114,7 +114,7 @@ public:
 
 
     /**
-     * Ctor with a continuator (instead of _maxGen) and a eoTransform.
+     * Ctor with a eoContinue, a eoPopEval and a eoTransform.
      * @param _continuator stopping criteria
      * @param _popEval population evaluation function
      * @param _transform variation operator
@@ -126,7 +126,7 @@ public:
 
 
     /**
-     * Apply a few generation of evolution to the population _pop until the stopping criteria is verified.
+     * Apply a the algorithm to the population _pop until the stopping criteria is satified.
      * @param _pop the population
      */
     virtual void operator () (eoPop < MOEOT > &_pop)
