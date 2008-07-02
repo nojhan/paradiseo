@@ -79,8 +79,9 @@ public:
      * @param _pMut mutation probability
      * @param _archive archive
      * @param _k the k-ieme distance used to fixe diversity
+     * @param _nocopy boolean allow to consider copies and doublons as bad elements whose were dominated by all other MOEOT in fitness assignment.
      */
-    moeoSPEA2 (unsigned int _maxGen, eoEvalFunc < MOEOT > & _eval, eoQuadOp < MOEOT > & _crossover, double _pCross, eoMonOp < MOEOT > & _mutation, double _pMut, moeoArchive < MOEOT >& _archive, unsigned int _k=1, bool _nocopy=true) :
+    moeoSPEA2 (unsigned int _maxGen, eoEvalFunc < MOEOT > & _eval, eoQuadOp < MOEOT > & _crossover, double _pCross, eoMonOp < MOEOT > & _mutation, double _pMut, moeoArchive < MOEOT >& _archive, unsigned int _k=1, bool _nocopy=false) :
             defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), eval(_eval), loopEval(_eval), popEval(loopEval), archive(_archive),defaultSelect(2),select(defaultSelect, defaultSelect, _archive, 0.0),
             defaultSGAGenOp(_crossover, _pCross, _mutation, _pMut), fitnessAssignment(_archive, _nocopy),
             genBreed(defaultSelect, defaultSGAGenOp),selectMany(defaultSelect,0.0), selectTransform(selectMany, dummyTransform), breed(genBreed), diversityAssignment(dist,_archive, _k)
@@ -97,8 +98,9 @@ public:
         * @param _pMut mutation probability
         * @param _archive archive
         * @param _k the k-ieme distance used to fixe diversity
+        * @param _nocopy boolean allow to consider copies and doublons as bad elements whose were dominated by all other MOEOT in fitness assignment.
         */
-    moeoSPEA2 (eoContinue < MOEOT >& _continuator, eoEvalFunc < MOEOT > & _eval, eoQuadOp < MOEOT > & _crossover, double _pCross, eoMonOp < MOEOT > & _mutation, double _pMut, moeoArchive < MOEOT >& _archive, unsigned int _k=1, bool _nocopy=true) :
+    moeoSPEA2 (eoContinue < MOEOT >& _continuator, eoEvalFunc < MOEOT > & _eval, eoQuadOp < MOEOT > & _crossover, double _pCross, eoMonOp < MOEOT > & _mutation, double _pMut, moeoArchive < MOEOT >& _archive, unsigned int _k=1, bool _nocopy=false) :
             defaultGenContinuator(0), continuator(_continuator), eval(_eval), loopEval(_eval), popEval(loopEval), archive(_archive),defaultSelect(2),select(defaultSelect, defaultSelect, _archive, 0.0),
             defaultSGAGenOp(_crossover, _pCross, _mutation, _pMut), fitnessAssignment(_archive, _nocopy),
             genBreed(defaultSelect, defaultSGAGenOp),selectMany(defaultSelect,0.0), selectTransform(selectMany, dummyTransform), breed(genBreed), diversityAssignment(dist,_archive, _k)
@@ -115,8 +117,9 @@ public:
         * @param _pMut mutation probability
         * @param _archive archive
         * @param _k the k-ieme distance used to fixe diversity
+        * @param _nocopy boolean allow to consider copies and doublons as bad elements whose were dominated by all other MOEOT in fitness assignment.
         */
-    moeoSPEA2 (eoContinue < MOEOT >& _continuator, eoPopEvalFunc < MOEOT > & _eval, eoQuadOp < MOEOT > & _crossover, double _pCross, eoMonOp < MOEOT > & _mutation, double _pMut, moeoArchive < MOEOT >& _archive, unsigned int _k=1, bool _nocopy=true) :
+    moeoSPEA2 (eoContinue < MOEOT >& _continuator, eoPopEvalFunc < MOEOT > & _eval, eoQuadOp < MOEOT > & _crossover, double _pCross, eoMonOp < MOEOT > & _mutation, double _pMut, moeoArchive < MOEOT >& _archive, unsigned int _k=1, bool _nocopy=false) :
             defaultGenContinuator(0), continuator(_continuator), eval(dummyEval), loopEval(dummyEval), popEval(_eval), archive(_archive),defaultSelect(2),select(defaultSelect, defaultSelect, _archive, 0.0),
             defaultSGAGenOp(_crossover, _pCross, _mutation, _pMut), fitnessAssignment(_archive, _nocopy),
             genBreed(defaultSelect, defaultSGAGenOp),selectMany(defaultSelect,0.0), selectTransform(selectMany, dummyTransform), breed(genBreed), diversityAssignment(dist,_archive, _k)
@@ -130,8 +133,9 @@ public:
         * @param _op general operator
         * @param _archive archive
         * @param _k the k-ieme distance used to fixe diversity
+        * @param _nocopy boolean allow to consider copies and doublons as bad elements whose were dominated by all other MOEOT in fitness assignment.
         */
-    moeoSPEA2 (eoContinue < MOEOT >& _continuator, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op, moeoArchive < MOEOT >& _archive, unsigned int _k=1, bool _nocopy=true) :
+    moeoSPEA2 (eoContinue < MOEOT >& _continuator, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op, moeoArchive < MOEOT >& _archive, unsigned int _k=1, bool _nocopy=false) :
             defaultGenContinuator(0), continuator(_continuator), eval(_eval), loopEval(_eval), popEval(loopEval), archive(_archive),defaultSelect(2),select(defaultSelect, defaultSelect, _archive, 0.0),
             defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), fitnessAssignment(_archive, _nocopy),
             genBreed(select, _op),selectMany(defaultSelect,0.0), selectTransform(selectMany, dummyTransform), breed(genBreed), diversityAssignment(dist,_archive, _k)
@@ -145,8 +149,9 @@ public:
       * @param _op transformer
       * @param _archive archive
       * @param _k the k-ieme distance used to fixe diversity
+      * @param _nocopy boolean allow to consider copies and doublons as bad elements whose were dominated by all other MOEOT in fitness assignment.
       */
-    moeoSPEA2 (eoContinue < MOEOT >& _continuator, eoEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _op, moeoArchive < MOEOT >& _archive, unsigned int _k=1, bool _nocopy=true) :
+    moeoSPEA2 (eoContinue < MOEOT >& _continuator, eoEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _op, moeoArchive < MOEOT >& _archive, unsigned int _k=1, bool _nocopy=false) :
             defaultGenContinuator(0), continuator(_continuator), eval(_eval), loopEval(_eval), popEval(loopEval), archive(_archive),defaultSelect(2),select(defaultSelect, defaultSelect, _archive, 0.0),
             defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), fitnessAssignment(_archive, _nocopy),
             genBreed(defaultSelect, defaultSGAGenOp),selectMany(select,1.0), selectTransform(selectMany, _op), breed(selectTransform), diversityAssignment(dist,_archive, _k)
@@ -160,8 +165,9 @@ public:
       * @param _op general operator
       * @param _archive archive
       * @param _k the k-ieme distance used to fixe diversity
+      * @param _nocopy boolean allow to consider copies and doublons as bad elements whose were dominated by all other MOEOT in fitness assignment.
       */
-    moeoSPEA2 (eoContinue < MOEOT >& _continuator, eoPopEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op, moeoArchive < MOEOT >& _archive, unsigned int _k=1, bool _nocopy=true) :
+    moeoSPEA2 (eoContinue < MOEOT >& _continuator, eoPopEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op, moeoArchive < MOEOT >& _archive, unsigned int _k=1, bool _nocopy=false) :
             defaultGenContinuator(0), continuator(_continuator),eval(dummyEval), loopEval(dummyEval), popEval(_eval), archive(_archive),defaultSelect(2),select(defaultSelect, defaultSelect, _archive, 0.0),
             defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), fitnessAssignment(_archive, _nocopy),
             genBreed(select, _op),selectMany(defaultSelect,0.0), selectTransform(selectMany, dummyTransform), breed(genBreed), diversityAssignment(dist,_archive, _k)
@@ -175,8 +181,9 @@ public:
       * @param _op transformer
       * @param _archive archive
       * @param _k the k-ieme distance used to fixe diversity
+      * @param _nocopy boolean allow to consider copies and doublons as bad elements whose were dominated by all other MOEOT in fitness assignment.
       */
-    moeoSPEA2 (eoContinue < MOEOT >& _continuator, eoPopEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _op, moeoArchive < MOEOT >& _archive, unsigned int _k=100, bool _nocopy=true) :
+    moeoSPEA2 (eoContinue < MOEOT >& _continuator, eoPopEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _op, moeoArchive < MOEOT >& _archive, unsigned int _k=100, bool _nocopy=false) :
             defaultGenContinuator(0), continuator(_continuator),eval(dummyEval), loopEval(dummyEval), popEval(_eval), archive(_archive),defaultSelect(2),select(defaultSelect, defaultSelect, _archive, 0.0),
             defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), fitnessAssignment(_archive, _nocopy),
             genBreed(defaultSelect, defaultSGAGenOp),selectMany(select,1.0), selectTransform(selectMany, _op), breed(selectTransform), diversityAssignment(dist,_archive, _k)
