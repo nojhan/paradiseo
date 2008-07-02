@@ -42,6 +42,9 @@
 
 #include <set>
 
+/**
+ * moeoDominanceMatrix allow to know if an MOEOT dominates another one or not. Can be apply on one or two eoPop.
+ */
 template <class MOEOT>
 class moeoDominanceMatrix: public eoBF< eoPop< MOEOT >&, eoPop< MOEOT >& , void>,eoUF<eoPop <MOEOT>&,void>, std::vector < std::vector<bool> > {
 
@@ -56,11 +59,23 @@ public:
     /** The type for objective vector */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 
-    moeoDominanceMatrix(bool _nocopy=true):std::vector < std::vector<bool> >(),comparator(paretoComparator), nocopy(_nocopy) {}
+    /**
+     * Default constructor with paretoComparator
+     * @param _nocopy boolean allow to consider copy and doublons as bad element whose were dominated by all other MOEOT
+     */
+    moeoDominanceMatrix(bool _nocopy=false):std::vector < std::vector<bool> >(),comparator(paretoComparator), nocopy(_nocopy) {}
 
+    /**
+     * Constructor which allow to choose the comparator
+     * @param _nocopy boolean allow to consider copy and doublons as bad element whose were dominated by all other MOEOT
+     * @param _comparator the comparator you want to use for the comparaison of two MOEOT
+     */
     moeoDominanceMatrix(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, bool _nocopy=true):std::vector < std::vector<bool> >(),comparator(_comparator), nocopy(_nocopy) {}
 
-
+    /**
+     * Filling up the Dominance Matrix on one population
+     * @param _pop first population
+     */
     void operator()(eoPop<MOEOT>& _pop) {
         eoPop <MOEOT> dummyPop;
         (*this).operator()(_pop, dummyPop);
