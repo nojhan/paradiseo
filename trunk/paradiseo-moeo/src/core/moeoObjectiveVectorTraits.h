@@ -114,7 +114,7 @@ class moeoObjectiveVectorTraits
      */
     static double tolerance()
     {
-      return 1e-6;
+      return 1e-10;
     }
 
 
