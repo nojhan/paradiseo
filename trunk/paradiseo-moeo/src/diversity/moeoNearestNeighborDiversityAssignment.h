@@ -163,7 +163,7 @@ private:
     double getElement(std::list<double> _myList)
     {
         std::list<double>::iterator it= _myList.begin();
-        for (unsigned int i=1; i< std::min(_myList.size(),index); i++)
+        for (unsigned int i=1; i< std::min((unsigned int)_myList.size(),index); i++)
             it++;
         return *it;
     }
