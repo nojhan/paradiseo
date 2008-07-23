@@ -70,8 +70,6 @@ typedef MOEO < ObjectiveVector, double, double > Solution;
 
 int main()
 {
-    int res=EXIT_SUCCESS;
-
     std::cout << "[moeoDominanceMatrix]\n\n";
 
     // objective vectors
@@ -109,7 +107,7 @@ int main()
 
     // fitness assignment
 
-    moeoDominanceMatrix< Solution > matrix;
+    moeoDominanceMatrix< Solution > matrix(true);
 
     moeoDominanceMatrix< Solution > matrix2(paretoComparator, false);
 
