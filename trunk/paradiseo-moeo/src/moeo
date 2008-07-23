@@ -111,6 +111,9 @@
 #include <metric/moeoHypervolumeBinaryMetric.h>
 #include <metric/moeoMetric.h>
 #include <metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h>
+#include <metric/moeoVecVsVecEpsilonBinaryMetric.h>
+#include <metric/moeoVecVsVecAdditiveEpsilonBinaryMetric.h>
+#include <metric/moeoVecVsVecMultiplicativeEpsilonBinaryMetric.h>
 
 #include <replacement/moeoElitistReplacement.h>
 #include <replacement/moeoEnvironmentalReplacement.h>
