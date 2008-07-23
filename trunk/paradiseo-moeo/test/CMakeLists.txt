@@ -56,6 +56,8 @@ SET (TEST_LIST
 		t-moeoSPEA2Archive
 		t-moeoSPEA2
 		t-moeoDominanceMatrix
+		t-moeoVecVsVecAdditiveEpsilonBinaryMetric
+		t-moeoVecVsVecMultiplicativeEpsilonBinaryMetric
 )
 
 FOREACH (test ${TEST_LIST})
