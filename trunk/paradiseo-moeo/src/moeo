@@ -114,6 +114,8 @@
 #include <metric/moeoVecVsVecEpsilonBinaryMetric.h>
 #include <metric/moeoVecVsVecAdditiveEpsilonBinaryMetric.h>
 #include <metric/moeoVecVsVecMultiplicativeEpsilonBinaryMetric.h>
+#include <metric/moeoHyperVolumeUnaryMetric.h>
+
 
 #include <replacement/moeoElitistReplacement.h>
 #include <replacement/moeoEnvironmentalReplacement.h>
