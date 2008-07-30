@@ -58,6 +58,7 @@ SET (TEST_LIST
 		t-moeoDominanceMatrix
 		t-moeoVecVsVecAdditiveEpsilonBinaryMetric
 		t-moeoVecVsVecMultiplicativeEpsilonBinaryMetric
+		t-moeoHyperVolumeUnaryMetric
 )
 
 FOREACH (test ${TEST_LIST})
