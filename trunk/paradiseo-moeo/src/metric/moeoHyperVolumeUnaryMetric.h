@@ -51,10 +51,11 @@ class moeoHyperVolumeUnaryMetric : public moeoVectorUnaryMetric < ObjectiveVecto
   public:
 	  
     /**
-     * Default Construtcor
+     * Constructor with a coefficient (rho)
      * @param _normalize allow to normalize data (default true)
+     * @param _rho coefficient to determine the reference point.
      */
-    moeoHyperVolumeUnaryMetric(bool _normalize=true, double _rho=1.1): normalize(_normalize), rho(_rho){
+    moeoHyperVolumeUnaryMetric(bool _normalize=true, double _rho=1.1): normalize(_normalize), rho(_rho), ref_point(NULL){
         bounds.resize(ObjectiveVector::Traits::nObjectives());
         // initialize bounds in case someone does not want to use them
         for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
@@ -62,6 +63,20 @@ class moeoHyperVolumeUnaryMetric : public moeoVectorUnaryMetric < ObjectiveVecto
             bounds[i] = eoRealInterval(0,1);
         }
     }
+    
+    /**
+     * Constructor with a reference point
+     * @param _normalize allow to normalize data (default true)
+     * @param _ref_point the reference point
+     */
+    moeoHyperVolumeUnaryMetric(bool _normalize=true, ObjectiveVector _ref_point=NULL): normalize(_normalize), rho(0.0), ref_point(_ref_point){
+        bounds.resize(ObjectiveVector::Traits::nObjectives());
+        // initialize bounds in case someone does not want to use them
+        for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
+        {
+            bounds[i] = eoRealInterval(0,1);
+        }
+    }  
 	  
 
     /**
@@ -70,7 +85,49 @@ class moeoHyperVolumeUnaryMetric : public moeoVectorUnaryMetric < ObjectiveVecto
      */
     double operator()(const std::vector < ObjectiveVector > & _set)
     {
-    	return 0.0;
+    	std::vector < std::vector<double> > front;
+    	
+    	//determine the reference point if a coefficient is passed in paremeter
+    	if(rho >= 1.0){
+    		//determine bounds
+    		setup(_set);
+    		//determine reference point
+       		for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++){
+       			if(normalize){
+       				if (ObjectiveVector::Traits::minimizing(i))
+       					ref_point[i]= rho;
+       				else
+       					ref_point[i]= 1-rho;
+       			}
+       			else{
+       				if (ObjectiveVector::Traits::minimizing(i))
+       					ref_point[i]= bounds[i].maximum() * rho;
+       				else
+       					ref_point[i]= bounds[i].maximum() * (1-rho);
+       			}
+        	}
+        	//if no normalization, reinit bounds to O..1 for 
+        	if(!normalize)
+         		for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
+            		bounds[i] = eoRealInterval(0,1);
+
+    	}
+    	else if(normalize)
+    		setup(_set);
+    	front.resize(_set.size());
+    	for(unsigned int i=0; i < _set.size(); i++){
+    		front[i].resize(ObjectiveVector::Traits::nObjectives());
+	    	for (unsigned int j=0; j<ObjectiveVector::Traits::nObjectives(); j++){
+	    		if (ObjectiveVector::Traits::minimizing(j)){
+	    			front[i][j]=ref_point[j] - ((_set[i][j] - bounds[j].minimum()) /bounds[j].range());
+	    		}
+	    		else{
+	    			front[i][j]=((_set[i][j] - bounds[j].minimum()) /bounds[j].range()) - ref_point[j];
+	    		}
+	    	}
+    	}
+      		
+    	return calc_hypervolume(front, front.size(),ObjectiveVector::Traits::nObjectives());
     }
     
     std::vector < eoRealInterval > getBounds(){
@@ -276,6 +333,8 @@ class moeoHyperVolumeUnaryMetric : public moeoVectorUnaryMetric < ObjectiveVecto
 	    
 	    /*vectors contains bounds for normalization*/
 	    std::vector < eoRealInterval > bounds;
+	    
+	    ObjectiveVector ref_point;
 	    
 
 	    
