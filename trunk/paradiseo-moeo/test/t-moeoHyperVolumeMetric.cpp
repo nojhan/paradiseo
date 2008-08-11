@@ -1,5 +1,5 @@
 /*
-* <t-moeoHyperVolumeUnaryMetric.cpp>
+* <t-moeoHyperVolumeMetric.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Lille-Nord Europe, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
 *
@@ -35,7 +35,7 @@
 *
 */
 //-----------------------------------------------------------------------------
-// t-moeoHyperVolumeUnaryMetric.cpp
+// t-moeoHyperVolumeMetric.cpp
 //-----------------------------------------------------------------------------
 
 #include <eo>
@@ -86,7 +86,7 @@ typedef moeoRealObjectiveVector < ObjectiveVectorTraits2 > ObjectiveVector2;
 
 int main()
 {
-    std::cout << "[moeoHyperVolumeUnaryMetric] => \n";
+    std::cout << "[moeoHyperVolumeMetric] => \n";
 
     // objective vectors
     std::vector < ObjectiveVector > set1;
@@ -108,7 +108,7 @@ int main()
     set1[3][1] = 12;
 
     
-    moeoHyperVolumeUnaryMetric < ObjectiveVector > metric(true, 1.1);
+    moeoHyperVolumeMetric < ObjectiveVector > metric(true, 1.1);
     
     std::vector < eoRealInterval > bounds;
 
@@ -310,7 +310,7 @@ int main()
     ref_point[2]=4.0;
     
     std::cout << "\t\t-without normalization and ref_point =>";
-    moeoHyperVolumeUnaryMetric < ObjectiveVector2 > metric2(false, ref_point);  
+    moeoHyperVolumeMetric < ObjectiveVector2 > metric2(false, ref_point);  
     hyp=metric2(solution);
     assert(hyp==14.0);
     std::cout << " Ok\n";
@@ -319,21 +319,21 @@ int main()
     ref_point[0]=1.5;
     ref_point[1]=1.5;
     ref_point[2]=1.5;
-    moeoHyperVolumeUnaryMetric < ObjectiveVector2 > metric3(true, ref_point);  
+    moeoHyperVolumeMetric < ObjectiveVector2 > metric3(true, ref_point);  
     hyp=metric3(solution);
     assert(hyp==1.75);
     std::cout << " Ok\n";
     
     std::cout << "\t\t-without normalization and a coefficent rho =>";
     hyp=0.0;
-    moeoHyperVolumeUnaryMetric < ObjectiveVector2 > metric4(false, 2);  
+    moeoHyperVolumeMetric < ObjectiveVector2 > metric4(false, 2);  
     hyp=metric4(solution);
     assert(hyp==100.0);
     std::cout << " Ok\n";
     
     std::cout << "\t\t-with normalization and a coefficent rho =>";
     hyp=0.0;
-    moeoHyperVolumeUnaryMetric < ObjectiveVector2 > metric5(true, 1.5);  
+    moeoHyperVolumeMetric < ObjectiveVector2 > metric5(true, 1.5);  
     hyp=metric5(solution);
     assert(hyp==1.75);
     std::cout << " Ok\n";
