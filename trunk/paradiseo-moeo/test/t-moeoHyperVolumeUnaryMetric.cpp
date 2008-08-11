@@ -63,6 +63,25 @@ public:
 
 typedef moeoRealObjectiveVector < ObjectiveVectorTraits > ObjectiveVector;
 
+class ObjectiveVectorTraits2 : public moeoObjectiveVectorTraits
+{
+public:
+    static bool minimizing (int i)
+    {
+        return true;
+    }
+    static bool maximizing (int i)
+    {
+        return false;
+    }
+    static unsigned int nObjectives ()
+    {
+        return 3;
+    }
+};
+
+typedef moeoRealObjectiveVector < ObjectiveVectorTraits2 > ObjectiveVector2;
+
 //-----------------------------------------------------------------------------
 
 int main()
@@ -268,8 +287,61 @@ int main()
     hyp=metric.calc_hypervolume(front, 3, 3);
     assert(hyp==14.0);
     
-    
     std::cout << "Ok\n";
+    
+    //test de l'hyperVolume
+    std::cout << "\t>test operator()=>\n";
+    std::vector <ObjectiveVector2> solution;
+    solution.resize(3);
+    solution[0][0]=3.0;
+    solution[0][1]=1.0;
+    solution[0][2]=3.0;
+    solution[1][0]=2.0;
+    solution[1][1]=2.0;
+    solution[1][2]=2.0;
+    solution[2][0]=1.0;
+    solution[2][1]=3.0;
+    solution[2][2]=1.0;
+    
+    ObjectiveVector2 ref_point;
+    ref_point.resize(3);
+    ref_point[0]=4.0;
+    ref_point[1]=4.0;
+    ref_point[2]=4.0;
+    
+    std::cout << "\t\t-without normalization and ref_point =>";
+    moeoHyperVolumeUnaryMetric < ObjectiveVector2 > metric2(false, ref_point);  
+    hyp=metric2(solution);
+    assert(hyp==14.0);
+    std::cout << " Ok\n";
+      
+    std::cout << "\t\t-with normalization and ref_point =>";
+    ref_point[0]=1.5;
+    ref_point[1]=1.5;
+    ref_point[2]=1.5;
+    moeoHyperVolumeUnaryMetric < ObjectiveVector2 > metric3(true, ref_point);  
+    hyp=metric3(solution);
+    assert(hyp==1.75);
+    std::cout << " Ok\n";
+    
+    std::cout << "\t\t-without normalization and a coefficent rho =>";
+    hyp=0.0;
+    moeoHyperVolumeUnaryMetric < ObjectiveVector2 > metric4(false, 2);  
+    hyp=metric4(solution);
+    assert(hyp==100.0);
+    std::cout << " Ok\n";
+    
+    std::cout << "\t\t-with normalization and a coefficent rho =>";
+    hyp=0.0;
+    moeoHyperVolumeUnaryMetric < ObjectiveVector2 > metric5(true, 1.5);  
+    hyp=metric5(solution);
+    assert(hyp==1.75);
+    std::cout << " Ok\n";
+    
+
+    
+    
+    
     return EXIT_SUCCESS;
 }
 
