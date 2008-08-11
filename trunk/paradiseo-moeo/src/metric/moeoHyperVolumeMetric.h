@@ -1,5 +1,5 @@
 /*
-* <moeoHyperVolumeUnaryMetric.h>
+* <moeoHyperVolumeMetric.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
@@ -36,8 +36,8 @@
 */
 //-----------------------------------------------------------------------------
 
-#ifndef MOEOHYPERVOLUMEUNARYMETRIC_H_
-#define MOEOHYPERVOLUMEUNARYMETRIC_H_
+#ifndef MOEOHYPERVOLUMEMETRIC_H_
+#define MOEOHYPERVOLUMEMETRIC_H_
 
 #include <metric/moeoMetric.h>
 
@@ -46,7 +46,7 @@
  * (Meunier, Talbi, Reininger: 'A multiobjective genetic algorithm for radio network optimization', in Proc. of the 2000 Congress on Evolutionary Computation, IEEE Press, pp. 317-324)
  */
 template < class ObjectiveVector >
-class moeoHyperVolumeUnaryMetric : public moeoVectorUnaryMetric < ObjectiveVector , double >
+class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , double >
   {
   public:
 	  
@@ -55,7 +55,7 @@ class moeoHyperVolumeUnaryMetric : public moeoVectorUnaryMetric < ObjectiveVecto
      * @param _normalize allow to normalize data (default true)
      * @param _rho coefficient to determine the reference point.
      */
-    moeoHyperVolumeUnaryMetric(bool _normalize=true, double _rho=1.1): normalize(_normalize), rho(_rho), ref_point(NULL){
+    moeoHyperVolumeMetric(bool _normalize=true, double _rho=1.1): normalize(_normalize), rho(_rho), ref_point(NULL){
         bounds.resize(ObjectiveVector::Traits::nObjectives());
         // initialize bounds in case someone does not want to use them
         for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
@@ -69,7 +69,7 @@ class moeoHyperVolumeUnaryMetric : public moeoVectorUnaryMetric < ObjectiveVecto
      * @param _normalize allow to normalize data (default true)
      * @param _ref_point the reference point
      */
-    moeoHyperVolumeUnaryMetric(bool _normalize=true, ObjectiveVector _ref_point=NULL): normalize(_normalize), rho(0.0), ref_point(_ref_point){
+    moeoHyperVolumeMetric(bool _normalize=true, ObjectiveVector _ref_point=NULL): normalize(_normalize), rho(0.0), ref_point(_ref_point){
         bounds.resize(ObjectiveVector::Traits::nObjectives());
         // initialize bounds in case someone does not want to use them
         for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
@@ -342,4 +342,4 @@ class moeoHyperVolumeUnaryMetric : public moeoVectorUnaryMetric < ObjectiveVecto
 
   };
 
-#endif /*MOEOHYPERVOLUMEUNARYMETRIC_H_*/
+#endif /*MOEOHYPERVOLUMEMETRIC_H_*/
