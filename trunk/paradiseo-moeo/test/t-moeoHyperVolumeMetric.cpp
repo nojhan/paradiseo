@@ -337,11 +337,7 @@ int main()
     hyp=metric5(solution);
     assert(hyp==1.75);
     std::cout << " Ok\n";
-    
-
-    
-    
-    
+     
     return EXIT_SUCCESS;
 }
 
