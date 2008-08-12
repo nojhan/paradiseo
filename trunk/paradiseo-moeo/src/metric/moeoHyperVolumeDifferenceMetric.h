@@ -48,6 +48,125 @@
 template < class ObjectiveVector >
 class moeoHyperVolumeDifferenceMetric : public moeoVectorVsVectorBinaryMetric < ObjectiveVector, double >
   {
+	public:
+	
+    /**
+     * Constructor with a coefficient (rho)
+     * @param _normalize allow to normalize data (default true)
+     * @param _rho coefficient to determine the reference point.
+     */
+    moeoHyperVolumeDifferenceMetric(bool _normalize=true, double _rho=1.1): normalize(_normalize), rho(_rho), ref_point(NULL){
+        bounds.resize(ObjectiveVector::Traits::nObjectives());
+        // initialize bounds in case someone does not want to use them
+        for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
+        {
+            bounds[i] = eoRealInterval(0,1);
+        }
+    }
+    
+    /**
+     * Constructor with a reference point
+     * @param _normalize allow to normalize data (default true)
+     * @param _ref_point the reference point
+     */
+    moeoHyperVolumeDifferenceMetric(bool _normalize=true, ObjectiveVector& _ref_point=NULL): normalize(_normalize), rho(0.0), ref_point(_ref_point){
+        bounds.resize(ObjectiveVector::Traits::nObjectives());
+        // initialize bounds in case someone does not want to use them
+        for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
+        {
+            bounds[i] = eoRealInterval(0,1);
+        }
+    }  
+    
+    /**
+     * calculates and returns the HyperVolume value of a pareto front
+     * @param _set the vector contains all objective Vector of pareto front 
+     */
+    double operator()(const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2)
+    {
+    	double hypervolume_set1;
+    	double hypervolume_set2;
+    	
+    	if(rho >= 1.0){
+		//determine bounds
+		setup(_set1, _set2);
+		//determine reference point
+   		for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++){
+   			if(normalize){
+   				if (ObjectiveVector::Traits::minimizing(i))
+   					ref_point[i]= rho;
+   				else
+   					ref_point[i]= 1-rho;
+   			}
+   			else{
+   				if (ObjectiveVector::Traits::minimizing(i))
+   					ref_point[i]= bounds[i].maximum() * rho;
+   				else
+   					ref_point[i]= bounds[i].maximum() * (1-rho);
+   			}
+    	}
+    	//if no normalization, reinit bounds to O..1 for 
+    	if(!normalize)
+     		for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
+        		bounds[i] = eoRealInterval(0,1);
+
+    	}
+    	else if(normalize)
+    		setup(_set1, _set2);
+    		
+	   	moeoHyperVolumeMetric <ObjectiveVector> unaryMetric(ref_point, bounds);
+	   	hypervolume_set1 = unaryMetric(_set1);
+	   	hypervolume_set2 = unaryMetric(_set2);
+    		
+    	return hypervolume_set1 - hypervolume_set2;
+    }
+    
+    /**
+     * getter on bounds
+     * @return bounds
+     */
+    std::vector < eoRealInterval > getBounds(){
+        return bounds;
+    }
+    
+    /**
+     * method caclulate bounds for the normalization
+     * @param _set the vector of objective vectors
+     */
+    void setup(const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2){
+    	if(_set1.size() < 1 || _set2.size() < 1)
+    		throw("Error in moeoHyperVolumeUnaryMetric::setup -> argument1: vector<ObjectiveVector> size must be greater than 0");
+    	else{
+	        double min, max;
+	        unsigned int nbObj=ObjectiveVector::Traits::nObjectives();
+	        bounds.resize(nbObj);
+	        for (unsigned int i=0; i<nbObj; i++){
+	            min = _set1[0][i];
+	            max = _set1[0][i];
+	            for (unsigned int j=1; j<_set1.size(); j++){
+	                min = std::min(min, _set1[j][i]);
+	                max = std::max(max, _set1[j][i]);
+	            }
+	            for (unsigned int j=0; j<_set2.size(); j++){
+	                min = std::min(min, _set2[j][i]);
+	                max = std::max(max, _set2[j][i]);
+	            }
+	            bounds[i] = eoRealInterval(min, max);
+	        }
+    	}
+    }
+
+  	private:
+
+    /*boolean indicates if data must be normalized or not*/
+    bool normalize;
+    
+    double rho;
+    
+    /*vectors contains bounds for normalization*/
+    std::vector < eoRealInterval > bounds;
+    
+    ObjectiveVector ref_point;
 
   };
 

@@ -69,16 +69,22 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
      * @param _normalize allow to normalize data (default true)
      * @param _ref_point the reference point
      */
-    moeoHyperVolumeMetric(bool _normalize=true, ObjectiveVector _ref_point=NULL): normalize(_normalize), rho(0.0), ref_point(_ref_point){
-        bounds.resize(ObjectiveVector::Traits::nObjectives());
-        // initialize bounds in case someone does not want to use them
-        for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
-        {
-            bounds[i] = eoRealInterval(0,1);
-        }
-    }  
-	  
-
+    moeoHyperVolumeMetric(bool _normalize=true, ObjectiveVector& _ref_point=NULL): normalize(_normalize), rho(0.0), ref_point(_ref_point){
+	    bounds.resize(ObjectiveVector::Traits::nObjectives());
+	    // initialize bounds in case someone does not want to use them
+	    for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
+	    {
+	        bounds[i] = eoRealInterval(0,1);
+	    }
+    }
+    
+    /**
+     * Constructor with a reference point
+     * @param _normalize allow to normalize data (default true)
+     * @param _ref_point the reference point
+     */
+    moeoHyperVolumeMetric(ObjectiveVector& _ref_point=NULL, std::vector < eoRealInterval >& _bounds=NULL): normalize(false), rho(0.0), ref_point(_ref_point), bounds(_bounds){} 
+    
     /**
      * calculates and returns the HyperVolume value of a pareto front
      * @param _set the vector contains all objective Vector of pareto front 
@@ -130,6 +136,10 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
     	return calc_hypervolume(front, front.size(),ObjectiveVector::Traits::nObjectives());
     }
     
+    /**
+     * getter on bounds
+     * @return bounds
+     */
     std::vector < eoRealInterval > getBounds(){
         return bounds;
     }
@@ -335,10 +345,6 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
 	    std::vector < eoRealInterval > bounds;
 	    
 	    ObjectiveVector ref_point;
-	    
-
-	    
- 
 
   };
 
