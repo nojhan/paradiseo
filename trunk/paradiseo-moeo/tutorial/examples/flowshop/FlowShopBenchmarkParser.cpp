@@ -106,7 +106,8 @@ void FlowShopBenchmarkParser::init(const std::string _benchmarkFileName)
   // initial and current seeds (not used)
   getline(inputFile, buffer, '\n');
   // processing times and due-dates
-  p = std::vector< std::vector<unsigned int> > (M,N);
+  //p = std::vector< std::vector<unsigned int> > (M,N);
+  p.resize(N);
   d = std::vector<unsigned int> (N);
   // for each job...
   for (unsigned int j=0 ; j<N ; j++)
@@ -119,6 +120,7 @@ void FlowShopBenchmarkParser::init(const std::string _benchmarkFileName)
       // processing times of the job j on each machine
       getline(inputFile, buffer, '\n');
       start = buffer.find_first_not_of(" ");
+      p[j].resize(M);
       for (unsigned int i=0 ; i<M ; i++)
         {
           end = buffer.find_first_of(" ", start);

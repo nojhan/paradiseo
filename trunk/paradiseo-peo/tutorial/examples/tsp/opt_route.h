@@ -39,6 +39,8 @@
 
 #include <cassert>
 #include <utils/eoParser.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "route.h"
 

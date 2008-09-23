@@ -169,14 +169,20 @@ class moeoEasyEA: public moeoEA < MOEOT >
               unsigned int pSize = _pop.size();
               offspring.clear(); // new offspring
               // fitness and diversity assignment (if you want to or if it is the first generation)
+	      //std::cout << "eval ou first time" << std::endl;
               if (evalFitAndDivBeforeSelection || firstTime)
                 {
                   firstTime = false;
+		  //std::cout << "fitness eval" << std::endl;
                   fitnessEval(_pop);
+		  //std::cout << "diversity eval" << std::endl;
                   diversityEval(_pop);
                 }
+	      //std::cout << "breed" << std::endl;
               breed(_pop, offspring);
+	      //std::cout << "pop eval" << std::endl;
               popEval(_pop, offspring); // eval of parents + offspring if necessary
+	      //std::cout << "replace" << std::endl;
               replace(_pop, offspring); // after replace, the new pop. is in _pop
               if (pSize > _pop.size())
                 {

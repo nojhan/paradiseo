@@ -40,6 +40,7 @@
 #include <string>
 #include <vector>
 #include <cassert>
+#include <stdlib.h>
 
 #include "node.h"
 #include "../../core/runner.h"

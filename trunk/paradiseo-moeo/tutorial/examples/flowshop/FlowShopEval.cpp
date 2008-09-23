@@ -77,7 +77,14 @@ double FlowShopEval::tardiness(const FlowShop & _flowshop)
 
 std::vector< std::vector<unsigned int> > FlowShopEval::completionTime(const FlowShop & _flowshop)
 {
-  std::vector< std::vector<unsigned int> > C(M,N);
+  //std::vector< std::vector<unsigned int> > C(M,N);
+  std::vector< std::vector<unsigned int> > C;
+  C.resize(M);
+  for(unsigned int i=0;i<N;i++)
+    {
+      C[i].resize(N);
+    }
+
   C[0][_flowshop[0]] = p[0][_flowshop[0]];
   for (unsigned int j=1; j<N; j++)
     C[0][_flowshop[j]] = C[0][_flowshop[j-1]] + p[0][_flowshop[j]];

@@ -39,6 +39,7 @@
 #include <map>
 #include <string>
 #include <cassert>
+#include <stdlib.h>
 
 #include "mess.h"
 

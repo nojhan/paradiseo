@@ -38,6 +38,7 @@
 #ifndef MAKE_CHECKPOINT_MOEO_H_
 #define MAKE_CHECKPOINT_MOEO_H_
 
+#include <limits.h>
 #include <stdlib.h>
 #include <sstream>
 #include <eoContinue.h>
@@ -51,6 +52,7 @@
 #include <utils/moeoArchiveUpdater.h>
 #include <utils/moeoArchiveObjectiveVectorSavingUpdater.h>
 #include <utils/moeoBinaryMetricSavingUpdater.h>
+
 
 bool testDirRes(std::string _dirName, bool _erase);
 

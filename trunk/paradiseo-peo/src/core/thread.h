@@ -38,7 +38,7 @@
 #define THREAD_H_
 
 #include <vector>
-
+#include <pthread.h>
 
 /* A high-level thread */
 class Thread

@@ -38,6 +38,7 @@
 #define __xml_parser_h
 
 #include <string>
+#include <string.h>
 
 extern void openXMLDocument (const char * __filename);
 

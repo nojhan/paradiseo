@@ -38,6 +38,7 @@
 #ifndef FLOWSHOPBENCHMARKPARSER_H_
 #define FLOWSHOPBENCHMARKPARSER_H_
 
+#include <stdlib.h>
 #include <fstream>
 #include <string>
 #include <vector>

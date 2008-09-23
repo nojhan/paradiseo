@@ -41,7 +41,7 @@
 #include "../../core/peo_debug.h"
 #include "node.h"
 
-#define MPI_BUF_SIZE 1024*64
+#define MPI_BUF_SIZE 1024*512
 
 static char mpi_buf [MPI_BUF_SIZE];
 
@@ -89,7 +89,7 @@ void cleanBuffers ()
 void waitBuffers ()
 {
 
-  printDebugMessage ("waiting the termination of the asynchronous operations to complete");
+  // printDebugMessage ("waiting the termination of the asynchronous operations to complete");
 
   for (unsigned i = 0; i < act_req.size (); i ++)
     {

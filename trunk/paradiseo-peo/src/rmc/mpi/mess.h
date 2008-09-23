@@ -37,6 +37,8 @@
 #ifndef __mess_rmc_h
 #define __mess_rmc_h
 
+#include <string.h>
+
 #include "../../core/messaging.h"
 
 extern void initMessage ();
