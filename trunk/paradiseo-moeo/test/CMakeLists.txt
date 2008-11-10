@@ -60,6 +60,7 @@ SET (TEST_LIST
 		t-moeoVecVsVecMultiplicativeEpsilonBinaryMetric
 		t-moeoHyperVolumeMetric
 		t-moeoHyperVolumeDifferenceMetric
+		t-moeoIntVector
 )
 
 FOREACH (test ${TEST_LIST})
