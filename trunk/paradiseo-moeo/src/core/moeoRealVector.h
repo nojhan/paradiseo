@@ -43,8 +43,8 @@
 /**
  * This class is an implementation of a simple double-valued moeoVector.
  */
-template < class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity >
-class moeoRealVector : public moeoVector < MOEOObjectiveVector, MOEOFitness, MOEODiversity, double >
+template < class MOEOObjectiveVector, class MOEOFitness=double, class MOEODiversity=double >
+class moeoRealVector : public moeoVector < MOEOObjectiveVector, double, MOEOFitness, MOEODiversity >
   {
   public:
 
@@ -53,7 +53,7 @@ class moeoRealVector : public moeoVector < MOEOObjectiveVector, MOEOFitness, MOE
      * @param _size Length of vector (default is 0)
      * @param _value Initial value of all elements (default is default value of type GeneType)
      */
-    moeoRealVector(unsigned int _size = 0, double _value = 0.0) : moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, double >(_size, _value)
+    moeoRealVector(unsigned int _size = 0, double _value = 0.0) : moeoVector< MOEOObjectiveVector, double, MOEOFitness, MOEODiversity  >(_size, _value)
     {}
 
 

@@ -46,7 +46,7 @@
  * Base class for fixed length chromosomes, just derives from MOEO and std::vector and redirects the smaller than operator to MOEO (objective vector based comparison).
  * GeneType must have the following methods: void ctor (needed for the std::vector<>), copy ctor.
  */
-template < class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity, class GeneType >
+template < class MOEOObjectiveVector, class GeneType, class MOEOFitness=double, class MOEODiversity=double >
 class moeoVector : public MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity >, public std::vector < GeneType >
   {
   public:
@@ -101,7 +101,7 @@ class moeoVector : public MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity
      * To avoid conflicts between MOEO::operator< and std::vector<GeneType>::operator<
      * @param _moeo the object to compare with
      */
-    bool operator<(const moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType> & _moeo) const
+    bool operator<(const moeoVector< MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity> & _moeo) const
       {
         return MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity >::operator<(_moeo);
       }
@@ -148,7 +148,7 @@ class moeoVector : public MOEO < MOEOObjectiveVector, MOEOFitness, MOEODiversity
  * @param _moeo2 the second object to compare
  */
 template < class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity, class GeneType >
-bool operator<(const moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType> & _moeo1, const moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType> & _moeo2)
+bool operator<(const moeoVector< MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity> & _moeo1, const moeoVector< MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity > & _moeo2)
 {
   return _moeo1.operator<(_moeo2);
 }
@@ -160,7 +160,7 @@ bool operator<(const moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity
  * @param _moeo2 the second object to compare
  */
 template < class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity, class GeneType >
-bool operator>(const moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType> & _moeo1, const moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, GeneType> & _moeo2)
+bool operator>(const moeoVector< MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity> & _moeo1, const moeoVector< MOEOObjectiveVector, GeneType, MOEOFitness, MOEODiversity > & _moeo2)
 {
   return _moeo1.operator>(_moeo2);
 }

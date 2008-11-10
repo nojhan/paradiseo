@@ -43,15 +43,15 @@
 /**
  * This class is an implementationeo of a simple bit-valued moeoVector.
  */
-template < class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity >
-class moeoBitVector : public moeoVector < MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool >
+template < class MOEOObjectiveVector, class MOEOFitness=double, class MOEODiversity=double >
+class moeoBitVector : public moeoVector < MOEOObjectiveVector, bool, MOEOFitness, MOEODiversity >
   {
   public:
 
-    using moeoVector < MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool > :: begin;
-    using moeoVector < MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool > :: end;
-    using moeoVector < MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool > :: resize;
-    using moeoVector < MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool > :: size;
+    using moeoVector < MOEOObjectiveVector, bool, MOEOFitness, MOEODiversity > :: begin;
+    using moeoVector < MOEOObjectiveVector, bool, MOEOFitness, MOEODiversity > :: end;
+    using moeoVector < MOEOObjectiveVector, bool, MOEOFitness, MOEODiversity > :: resize;
+    using moeoVector < MOEOObjectiveVector, bool, MOEOFitness, MOEODiversity > :: size;
 
 
     /**
@@ -59,7 +59,7 @@ class moeoBitVector : public moeoVector < MOEOObjectiveVector, MOEOFitness, MOEO
      * @param _size Length of vector (default is 0)
      * @param _value Initial value of all elements (default is default value of type GeneType)
      */
-    moeoBitVector(unsigned int _size = 0, bool _value = false) : moeoVector< MOEOObjectiveVector, MOEOFitness, MOEODiversity, bool >(_size, _value)
+    moeoBitVector(unsigned int _size = 0, bool _value = false) : moeoVector< MOEOObjectiveVector, bool, MOEOFitness, MOEODiversity >(_size, _value)
     {}
 
 

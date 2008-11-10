@@ -88,7 +88,7 @@
  **/
 
 
-template < class MOEOObjectiveVector, class MOEOFitness, class MOEODiversity >
+template < class MOEOObjectiveVector, class MOEOFitness=double, class MOEODiversity=double >
 class MOEO : public EO < MOEOObjectiveVector >
   {
   public:
