@@ -44,7 +44,7 @@
 /**
  *  Structure of the genotype for the flow-shop scheduling problem: a vector of unsigned int int.
  */
-class FlowShop: public moeoVector < FlowShopObjectiveVector , double , double , unsigned int >
+class FlowShop: public moeoVector < FlowShopObjectiveVector , unsigned int >
   {
   public:
 

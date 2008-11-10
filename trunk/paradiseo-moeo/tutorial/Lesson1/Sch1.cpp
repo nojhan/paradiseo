@@ -67,10 +67,10 @@ typedef moeoRealObjectiveVector < Sch1ObjectiveVectorTraits > Sch1ObjectiveVecto
 
 
 // multi-objective evolving object for the Sch1 problem
-class Sch1 : public moeoRealVector < Sch1ObjectiveVector, double, double >
+class Sch1 : public moeoRealVector < Sch1ObjectiveVector >
 {
 public:
-    Sch1() : moeoRealVector < Sch1ObjectiveVector, double, double > (1)
+    Sch1() : moeoRealVector < Sch1ObjectiveVector > (1)
     {}
 };
 
