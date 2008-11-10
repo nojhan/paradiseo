@@ -75,6 +75,7 @@
 #include <core/moeoBitVector.h>
 #include <core/moeoRealObjectiveVector.h>
 #include <core/moeoRealVector.h>
+#include <core/moeoIntVector.h>
 
 #include <distance/moeoDistance.h>
 #include <distance/moeoDistanceMatrix.h>
