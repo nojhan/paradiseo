@@ -32,6 +32,7 @@
 #include <eoOp.h>
 #include <map.h>
 #include <iostream>
+#include <set>
 
 #include <gp/eoParseTree.h>
 
@@ -82,7 +83,7 @@ public:
 	  int n = 0;
 	  int type = 0;
 	  int j = 0;
-	  set<int> test;
+	  std::set<int> test;
 	  do
 	  {
 		do // select a random node in _eo1 as crossover point, and check if we didn't try it already
@@ -106,7 +107,9 @@ public:
 	 n = rng.random(nodes.size());
 	 j = nodes[n];
 	   
-	 parse_tree<Node>::subtree tmp = _eo1[i];
+
+	
+	 typename eoParseTree<FType, Node>::subtree tmp = _eo1[i];
 	 _eo1[i] = _eo2[j]; // insert subtree
 	 _eo2[j] = tmp;
 
@@ -208,15 +211,15 @@ public:
   	unsigned int i=0;
         int arity=0;
         int type=0;
-        std::vector<Node> node_std::vector;
+        std::vector<Node> node_vector;
         for(i=0; i < _node.size(); i++)
         {
         	arity = _node[i].arity();
 		type = _node[i].type();
 		
-			node_std::vector = node[type][arity];
-			node_std::vector.push_back(_node[i]);
-			node[type][arity]= node_std::vector;
+			node_vector = node[type][arity];
+			node_vector.push_back(_node[i]);
+			node[type][arity]= node_vector;
 		
         };
   };
@@ -246,7 +249,7 @@ public:
 
 private :
 	
-	map < int, map < int, std::vector<Node> > > node;
+	std::map < int, std::map < int, std::vector<Node> > > node;
 };
 
  
@@ -286,13 +289,7 @@ public:
 	  // get the type of the current tree
 	  int type = _eo1[ _eo1.size() - 1 ]->type();
 
-      	
-	  
-	  do
-	  {
-		initializer(eo2);
-		get_possible_nodes(eo2, nodes, type);
-	  }while (nodes.empty());	
+	  get_possible_nodes(_eo1, nodes, type);	
 	  
 	  // select a subtree-node to replace the current tree
 	  int n = rng.random(nodes.size());
