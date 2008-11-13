@@ -4,7 +4,7 @@
 #############################################################################
 
 SET (DROP_METHOD "xmlrpc")
-SET (DROP_SITE "http://dart.irisa.fr")
+SET (DROP_SITE "http://cdash.irisa.fr")
 SET (DROP_LOCATION "ParadisEO")
 SET (NIGHTLY_START_TIME "23:00:00 WEST")
 #############################################################################
