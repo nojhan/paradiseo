@@ -1,5 +1,3 @@
-
-
 ######################################################################################
 ### CMake basic configuration
 ######################################################################################
@@ -28,10 +26,10 @@ INCLUDE(FindGnuplot)
 
 INCLUDE(CheckLibraryExists)
 
-INCLUDE(Dart OPTIONNAL)         
+INCLUDE(Dart OPTIONAL)         
                            
 # the project can have a DartConfig.cmake file
-INCLUDE(DartConfig.cmake OPTIONNAL)
+#INCLUDE(DartConfig.cmake OPTIONAL)
         
 # Set a special flag if the environment is windows (should do the same in a config.g file)
 IF (WIN32)
