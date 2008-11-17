@@ -61,6 +61,7 @@ SET (TEST_LIST
 		t-moeoHyperVolumeMetric
 		t-moeoHyperVolumeDifferenceMetric
 		t-moeoIntVector
+		t-moeoBoundedArchive
 )
 
 FOREACH (test ${TEST_LIST})

@@ -1,5 +1,5 @@
 /*
-* <t-moeoUnboundedArchive.cpp>
+* <t-moeoBoundedArchive.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
@@ -34,11 +34,12 @@
 *
 */
 //-----------------------------------------------------------------------------
-// t-moeoUnboundedArchive.cpp
+// t-moeoBoundedArchive.cpp
 //-----------------------------------------------------------------------------
 
 #include <eo>
 #include <moeo>
+#include <cassert>
 
 //-----------------------------------------------------------------------------
 
@@ -67,10 +68,10 @@ typedef MOEO < ObjectiveVector, double, double > Solution;
 
 int main()
 {
-    std::cout << "[moeoArchive]\t=>\t";
+    std::cout << "[moeoBoundedArchive]\t=>\t";
 
     // objective vectors
-    ObjectiveVector obj0, obj1, obj2, obj3, obj4, obj5;
+    ObjectiveVector obj0, obj1, obj2, obj3, obj4, obj5, obj6;
     obj0[0] = 2;
     obj0[1] = 5;
     obj1[0] = 3;
@@ -82,7 +83,10 @@ int main()
     obj4[0] = 5;
     obj4[1] = 1;
     obj5[0] = 3;
-    obj5[1] = 3;
+    obj5[1] = 8;
+    obj6[0] = 2.5;
+    obj6[1] = 3.5;
+    
 
     // population
     eoPop < Solution > pop;
@@ -94,53 +98,37 @@ int main()
     pop[4].objectiveVector(obj4);
     pop[5].objectiveVector(obj5);
 
+    moeoDummyFitnessAssignment < Solution > fitness;
+    
+    moeoDummyDiversityAssignment < Solution > diversity;
+    
+    moeoFitnessThenDiversityComparator < Solution > indiComparator;
+    
+    moeoParetoObjectiveVectorComparator < ObjectiveVector > comparator;
+    
+        
     // archive
-    moeoUnboundedArchive< Solution > arch;
+    moeoBoundedArchive< Solution > arch(indiComparator, comparator, fitness, diversity, 50);
+    moeoBoundedArchive< Solution > arch2(indiComparator, fitness, diversity, 2);
+    
+    //test archive
     arch(pop);
-
-    // size
-    if (arch.size() != 3)
-    {
-        std::cout << "ERROR (too much solutions)" << std::endl;
-        return EXIT_FAILURE;
-    }
-    // obj0 must be in
-    if (! arch.contains(obj0))
-    {
-        std::cout << "ERROR (obj0 not in)" << std::endl;
-        return EXIT_FAILURE;
-    }
-    // obj1 must be in
-    if (! arch.contains(obj1))
-    {
-        std::cout << "ERROR (obj1 not in)" << std::endl;
-        return EXIT_FAILURE;
-    }
-    // obj2 must be in
-    if (! arch.contains(obj2))
-    {
-        std::cout << "ERROR (obj2 not in)" << std::endl;
-        return EXIT_FAILURE;
-    }
-    // obj3 must be out
-    if (arch.contains(obj3))
-    {
-        std::cout << "ERROR (obj3 in)" << std::endl;
-        return EXIT_FAILURE;
-    }
-    // obj4 must be out
-    if (arch.contains(obj4))
-    {
-        std::cout << "ERROR (obj4 in)" << std::endl;
-        return EXIT_FAILURE;
-    }
-    // obj5 must be in
-    if (! arch.contains(obj5))
-    {
-        std::cout << "ERROR (obj5 not in)" << std::endl;
-        return EXIT_FAILURE;
-    }
-
+    assert(arch.size()==3);
+    
+    arch2(pop);
+    assert(arch2.size()==2);
+    
+    pop.resize(7);
+    pop[6].objectiveVector(obj6);    
+    arch2(pop[6]);
+    assert(arch2.size()==2);
+    
+    obj6[0] = 0;
+    obj6[1] = 0;
+    pop[6].objectiveVector(obj6);
+    arch2(pop[6]);
+    assert(arch2.size()==1);
+    
     std::cout << "OK" << std::endl;
     return EXIT_SUCCESS;
 }
