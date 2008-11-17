@@ -1,5 +1,5 @@
 /*
-* <moeoSPEA2Archive.cpp>
+* <moeoSPEA2Archive.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Lille-Nord Europe, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
 *
@@ -35,7 +35,7 @@
 *
 */
 //-----------------------------------------------------------------------------
-// moeoSPEA2Archive.cpp
+// moeoSPEA2Archive.h
 //-----------------------------------------------------------------------------
 
 #ifndef MOEOSPEA2ARCHIVE_H_

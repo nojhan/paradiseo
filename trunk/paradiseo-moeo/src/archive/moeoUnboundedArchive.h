@@ -52,13 +52,6 @@ class moeoUnboundedArchive : public moeoArchive < MOEOT >
 {
 public:
 
-    using moeoArchive < MOEOT > :: size;
-    using moeoArchive < MOEOT > :: resize;
-    using moeoArchive < MOEOT > :: operator[];
-    using moeoArchive < MOEOT > :: back;
-    using moeoArchive < MOEOT > :: pop_back;
-
-
     /**
      * The type of an objective vector for a solution
      */
@@ -85,40 +78,7 @@ public:
      */
     void operator()(const MOEOT & _moeo)
     {
-        // first step: removing the dominated solutions from the archive
-        for (unsigned int j=0; j<size();)
-        {
-            // if the jth solution contained in the archive is dominated by _moeo
-            if ( comparator(operator[](j).objectiveVector(), _moeo.objectiveVector()) )
-            {
-                operator[](j) = back();
-                pop_back();
-            }
-            else if (_moeo.objectiveVector() == operator[](j).objectiveVector())
-            {
-                operator[](j) = back();
-                pop_back();
-            }
-            else
-            {
-                j++;
-            }
-        }
-        // second step: is _moeo dominated?
-        bool dom = false;
-        for (unsigned int j=0; j<size(); j++)
-        {
-            // if _moeo is dominated by the jth solution contained in the archive
-            if ( comparator(_moeo.objectiveVector(), operator[](j).objectiveVector()) )
-            {
-                dom = true;
-                break;
-            }
-        }
-        if (!dom)
-        {
-            push_back(_moeo);
-        }
+        update(_moeo);
     }
 
 
@@ -128,10 +88,7 @@ public:
      */
     void operator()(const eoPop < MOEOT > & _pop)
     {
-        for (unsigned int i=0; i<_pop.size(); i++)
-        {
-            (*this)(_pop[i]);
-        }
+    	update(_pop);
     }
 
 };

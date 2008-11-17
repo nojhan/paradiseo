@@ -53,6 +53,8 @@ public:
 
     using eoPop < MOEOT > :: size;
     using eoPop < MOEOT > :: operator[];
+    using eoPop < MOEOT > :: back;
+    using eoPop < MOEOT > :: pop_back;
 
 
     /**
@@ -110,6 +112,8 @@ public:
         }
         return false;
     }
+    
+    
 
 
     /**
@@ -148,7 +152,63 @@ public:
         }
         return true;
     }
+    
+protected:
+	/**
+     * Updates the archive with a given individual _moeo
+     * @param _moeo the given individual
+     */
+    void update(const MOEOT & _moeo)
+    {
+        // first step: removing the dominated solutions from the archive
+        for (unsigned int j=0; j<size();)
+        {
+            // if the jth solution contained in the archive is dominated by _moeo
+            if ( comparator(operator[](j).objectiveVector(), _moeo.objectiveVector()) )
+            {
+                operator[](j) = back();
+                pop_back();
+            }
+            else if (_moeo.objectiveVector() == operator[](j).objectiveVector())
+            {
+                operator[](j) = back();
+                pop_back();
+            }
+            else
+            {
+                j++;
+            }
+        }
+        // second step: is _moeo dominated?
+        bool dom = false;
+        for (unsigned int j=0; j<size(); j++)
+        {
+            // if _moeo is dominated by the jth solution contained in the archive
+            if ( comparator(_moeo.objectiveVector(), operator[](j).objectiveVector()) )
+            {
+                dom = true;
+                break;
+            }
+        }
+        if (!dom)
+        {
+            push_back(_moeo);
+        }
+    }
 
+
+    /**
+     * Updates the archive with a given population _pop
+     * @param _pop the given population
+     */
+    void update(const eoPop < MOEOT > & _pop)
+    {
+        for (unsigned int i=0; i<_pop.size(); i++)
+        {
+            (*this).update(_pop[i]);
+        }
+    }
+    
 
 private:
 
