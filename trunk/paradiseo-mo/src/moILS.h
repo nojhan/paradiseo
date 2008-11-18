@@ -157,7 +157,13 @@ class moILS:public moAlgo < typename M::EOType >
   */
   bool operator()(EOT & _solution)
   {
+	    if ( _solution.invalid() )
+	      {
+		full_evaluation(_solution);
+	      } 
+	  
     EOT _solution_saved=_solution;
+
 
     continu.init ();
 
