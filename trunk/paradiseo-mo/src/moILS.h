@@ -157,14 +157,15 @@ class moILS:public moAlgo < typename M::EOType >
   */
   bool operator()(EOT & _solution)
   {
-	    if ( _solution.invalid() )
-	      {
-		full_evaluation(_solution);
-	      } 
-	  
-    EOT _solution_saved=_solution;
-
-
+    EOT _solution_saved;
+    
+    if ( _solution.invalid() )
+      {
+	full_evaluation(_solution);
+      } 
+    
+    _solution_saved=_solution;
+    
     continu.init ();
 
     // some code has been duplicated in order to avoid one perturbation and one evaluation without adding a test in the loop.

@@ -107,6 +107,8 @@ class moTSMoveLoopExpl:public moMoveLoopExpl < M >
 
     move_selection.init( _old_solution.fitness() );
 
+    selection_update_is_ok=true;
+
     do
       {
 	fitness = incremental_evaluation(move, _old_solution);
