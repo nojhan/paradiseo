@@ -52,7 +52,7 @@ INCLUDE(ConfigureChecks.cmake)
 INCLUDE(Dart OPTIONNAL)         
                            
 # the project can have a DartConfig.cmake file
-INCLUDE(DartConfig.cmake OPTIONNAL)
+#INCLUDE(DartConfig.cmake OPTIONNAL)
         
 # now create config headers
 configure_file(config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
