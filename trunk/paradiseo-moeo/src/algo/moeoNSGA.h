@@ -1,7 +1,7 @@
 /*
 * <moeoNSGA.h>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
+* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
+* (C) OPAC Team, LIFL, 2002-2008
 *
 * Arnaud Liefooghe
 *
@@ -48,7 +48,7 @@
 #include <eoSGAGenOp.h>
 #include <algo/moeoEA.h>
 #include <diversity/moeoFrontByFrontSharingDiversityAssignment.h>
-#include <fitness/moeoFastNonDominatedSortingFitnessAssignment.h>
+#include <fitness/moeoDominanceDepthFitnessAssignment.h>
 #include <replacement/moeoElitistReplacement.h>
 #include <selection/moeoDetTournamentSelect.h>
 
@@ -204,7 +204,7 @@ protected:
     /** breeder */
     eoBreed < MOEOT > & breed;
     /** fitness assignment used in NSGA-II */
-    moeoFastNonDominatedSortingFitnessAssignment < MOEOT > fitnessAssignment;
+    moeoDominanceDepthFitnessAssignment < MOEOT > fitnessAssignment;
     /** diversity assignment used in NSGA-II */
     moeoFrontByFrontSharingDiversityAssignment  < MOEOT > diversityAssignment;
     /** elitist replacement */

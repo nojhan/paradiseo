@@ -1,7 +1,7 @@
 /*
-* <t-moeoFastNonDominatedSortingFitnessAssignment.cpp>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
+* <t-moeoDominanceDepthFitnessAssignment.cpp>
+* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
+* (C) OPAC Team, LIFL, 2002-2008
 *
 * Arnaud Liefooghe
 *
@@ -34,7 +34,7 @@
 *
 */
 //-----------------------------------------------------------------------------
-// t-moeoFastNonDominatedSortingFitnessAssignment.cpp
+// t-moeoDominanceDepthFitnessAssignment.cpp
 //-----------------------------------------------------------------------------
 
 #include <eo>
@@ -67,7 +67,7 @@ typedef MOEO < ObjectiveVector, double, double > Solution;
 
 int main()
 {
-    std::cout << "[moeoFastNonDominatedSortingFitnessAssignment]\t=>\t";
+    std::cout << "[moeoDominanceDepthFitnessAssignment]\t=>\t";
 
     // objective vectors
     ObjectiveVector obj0, obj1, obj2, obj3, obj4, obj5;
@@ -95,7 +95,7 @@ int main()
     pop[5].objectiveVector(obj5);    // class 1
 
     // fitness assignment
-    moeoFastNonDominatedSortingFitnessAssignment< Solution > fitnessAssignment;
+    moeoDominanceDepthFitnessAssignment< Solution > fitnessAssignment;
     fitnessAssignment(pop);
 
     // pop[0]

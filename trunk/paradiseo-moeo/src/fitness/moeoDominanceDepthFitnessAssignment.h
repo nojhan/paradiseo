@@ -1,7 +1,7 @@
 /*
-* <moeoFastNonDominatedSortingFitnessAssignment.h>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
+* <moeoDominanceDepthFitnessAssignment.h>
+* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
+* (C) OPAC Team, LIFL, 2002-2008
 *
 * Arnaud Liefooghe
 *
@@ -35,8 +35,8 @@
 */
 //-----------------------------------------------------------------------------
 
-#ifndef MOEOFASTNONDOMINATEDSORTINGFITNESSASSIGNMENT_H_
-#define MOEOFASTNONDOMINATEDSORTINGFITNESSASSIGNMENT_H_
+#ifndef MOEODOMINANCEDEPTHFITNESSASSIGNMENT_H_
+#define MOEODOMINANCEDEPTHFITNESSASSIGNMENT_H_
 
 #include <vector>
 #include <eoPop.h>
@@ -54,7 +54,7 @@
  * This strategy is, for instance, used in NSGA and NSGA-II.
  */
 template < class MOEOT >
-class moeoFastNonDominatedSortingFitnessAssignment : public moeoDominanceBasedFitnessAssignment < MOEOT >
+class moeoDominanceDepthFitnessAssignment : public moeoDominanceBasedFitnessAssignment < MOEOT >
   {
   public:
 
@@ -65,7 +65,7 @@ class moeoFastNonDominatedSortingFitnessAssignment : public moeoDominanceBasedFi
     /**
      * Default ctor
      */
-    moeoFastNonDominatedSortingFitnessAssignment() : comparator(paretoComparator)
+    moeoDominanceDepthFitnessAssignment() : comparator(paretoComparator)
     {}
 
 
@@ -73,7 +73,7 @@ class moeoFastNonDominatedSortingFitnessAssignment : public moeoDominanceBasedFi
      * Ctor where you can choose your own way to compare objective vectors
      * @param _comparator the functor used to compare objective vectors
      */
-    moeoFastNonDominatedSortingFitnessAssignment(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator) : comparator(_comparator)
+    moeoDominanceDepthFitnessAssignment(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator) : comparator(_comparator)
     {}
 
 
@@ -260,6 +260,6 @@ class moeoFastNonDominatedSortingFitnessAssignment : public moeoDominanceBasedFi
         }
     }
 
-  };
+  } ;
 
-#endif /*MOEOFASTNONDOMINATEDSORTINGFITNESSASSIGNMENT_H_*/
+#endif /*MOEODOMINANCEDEPTHFITNESSASSIGNMENT_H_*/

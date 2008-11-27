@@ -59,7 +59,7 @@
 #include <diversity/moeoFrontByFrontSharingDiversityAssignment.h>
 #include <fitness/moeoDummyFitnessAssignment.h>
 #include <fitness/moeoExpBinaryIndicatorBasedFitnessAssignment.h>
-#include <fitness/moeoFastNonDominatedSortingFitnessAssignment.h>
+#include <fitness/moeoDominanceDepthFitnessAssignment.h>
 #include <fitness/moeoFitnessAssignment.h>
 #include <metric/moeoAdditiveEpsilonBinaryMetric.h>
 #include <metric/moeoHypervolumeBinaryMetric.h>
@@ -93,8 +93,8 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
 
 
   /* the fitness assignment strategy */
-  std::string & fitnessParam = _parser.createParam(std::string("FastNonDominatedSorting"), "fitness",
-                               "Fitness assignment scheme: Dummy, FastNonDominatedSorting or IndicatorBased", 'F',
+  std::string & fitnessParam = _parser.createParam(std::string("DomDepth"), "fitness",
+                               "Fitness assignment scheme: Dummy, DomDepth or IndicatorBased", 'F',
                                "Evolution Engine").value();
   std::string & indicatorParam = _parser.createParam(std::string("Epsilon"), "indicator",
                                  "Binary indicator for IndicatorBased: Epsilon, Hypervolume", 'i',
@@ -108,9 +108,9 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
     {
       fitnessAssignment = new moeoDummyFitnessAssignment < MOEOT> ();
     }
-  else if (fitnessParam == std::string("FastNonDominatedSorting"))
+  else if (fitnessParam == std::string("DomDepth"))
     {
-      fitnessAssignment = new moeoFastNonDominatedSortingFitnessAssignment < MOEOT> ();
+      fitnessAssignment = new moeoDominanceDepthFitnessAssignment < MOEOT> ();
     }
   else if (fitnessParam == std::string("IndicatorBased"))
     {

@@ -100,7 +100,7 @@ int main()
     eoRealInitBounded < Solution > init(bounds);
     eoPop < Solution > pop(20, init);
     eoGenContinue < Solution > term(20);
-    moeoFastNonDominatedSortingFitnessAssignment < Solution > fitnessAssignment;
+    moeoDominanceDepthFitnessAssignment < Solution > fitnessAssignment;
     moeoFrontByFrontCrowdingDiversityAssignment < Solution > diversityAssignment;
     moeoFitnessThenDiversityComparator < Solution > comparator;
     moeoDetTournamentSelect < Solution > selectOne(comparator, 2);

@@ -44,7 +44,6 @@ SET (TEST_LIST
 		t-moeoFitnessThenDiversityComparator
 		t-moeoAchievementFitnessAssignment
 		t-moeoExpBinaryIndicatorBasedFitnessAssignment
-		t-moeoFastNonDominatedSortingFitnessAssignment
 		t-moeoCrowdingDiversityAssignment
 		t-moeoSharingDiversityAssignment
 		t-moeoIBEA
@@ -56,6 +55,7 @@ SET (TEST_LIST
 		t-moeoDominanceCountFitnessAssignment
 		t-moeoDominanceRankFitnessAssignment
 		t-moeoDominanceCountRankingFitnessAssignment
+		t-moeoDominanceDepthFitnessAssignment
 		t-moeoNearestNeighborDiversityAssignment
 		t-moeoSPEA2Archive
 		t-moeoSPEA2

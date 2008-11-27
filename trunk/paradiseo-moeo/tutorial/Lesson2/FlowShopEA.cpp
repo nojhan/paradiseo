@@ -46,14 +46,6 @@
 #include <make_op_FlowShop.h>
 // how to initialize the population
 #include <do/make_pop.h>
-// the stopping criterion
-#include <do/make_continue_moeo.h>
-// outputs (stats, population dumps, ...)
-#include <do/make_checkpoint_moeo.h>
-// evolution engine (selection and replacement)
-#include <do/make_ea_moeo.h>
-// simple call to the algo
-#include <do/make_run.h>
 // checks for help demand, and writes the status file and make_help; in libutils
 void make_help(eoParser & _parser);
 // definition of the representation
@@ -96,7 +88,7 @@ int main(int argc, char* argv[])
         moeoArchiveUpdater < FlowShop > updater(arch, pop);
         checkpoint.add(updater);
         // fitness assignment
-        moeoFastNonDominatedSortingFitnessAssignment <FlowShop> fitnessAssignment;
+        moeoDominanceDepthFitnessAssignment <FlowShop> fitnessAssignment;
         // diversity preservation
         moeoFrontByFrontCrowdingDiversityAssignment <FlowShop> diversityAssignment;
         // comparator
