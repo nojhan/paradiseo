@@ -1,5 +1,5 @@
 /*
-* <t-moeoFastNonDominatedSortingFitnessAssignment.cpp>
+* <t-moeoNearestNeighborDiversityAssignment.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Lille-Nord Europe, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
 *
