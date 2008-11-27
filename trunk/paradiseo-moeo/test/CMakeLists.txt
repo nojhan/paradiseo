@@ -36,6 +36,9 @@ SET (TEST_LIST
 		t-moeoRealVector
 		t-moeoUnboundedArchive
 		t-moeoParetoObjectiveVectorComparator
+		t-moeoStrictObjectiveVectorComparator
+		t-moeoWeakObjectiveVectorComparator
+		t-moeoEpsilonObjectiveVectorComparator
 		t-moeoAggregativeComparator
 		t-moeoDiversityThenFitnessComparator
 		t-moeoFitnessThenDiversityComparator

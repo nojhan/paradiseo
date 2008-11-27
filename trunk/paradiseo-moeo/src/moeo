@@ -58,16 +58,18 @@
 #include <archive/moeoSPEA2Archive.h>
 #include <archive/moeoBoundedArchive.h>
 
-
 #include <comparator/moeoAggregativeComparator.h>
 #include <comparator/moeoComparator.h>
 #include <comparator/moeoDiversityThenFitnessComparator.h>
+#include <comparator/moeoEpsilonObjectiveVectorComparator.h>
 #include <comparator/moeoFitnessThenDiversityComparator.h>
 #include <comparator/moeoGDominanceObjectiveVectorComparator.h>
 #include <comparator/moeoObjectiveVectorComparator.h>
 #include <comparator/moeoObjectiveObjectiveVectorComparator.h>
 #include <comparator/moeoOneObjectiveComparator.h>
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
+#include <comparator/moeoStrictObjectiveVectorComparator.h>
+#include <comparator/moeoWeakObjectiveVectorComparator.h>
 
 #include <core/MOEO.h>
 #include <core/moeoBitVector.h>
@@ -119,7 +121,6 @@
 #include <metric/moeoVecVsVecMultiplicativeEpsilonBinaryMetric.h>
 #include <metric/moeoHyperVolumeMetric.h>
 #include <metric/moeoHyperVolumeDifferenceMetric.h>
-
 
 #include <replacement/moeoElitistReplacement.h>
 #include <replacement/moeoEnvironmentalReplacement.h>
