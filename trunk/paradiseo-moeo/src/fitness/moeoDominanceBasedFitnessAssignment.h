@@ -1,7 +1,7 @@
 /*
-* <moeoParetoBasedFitnessAssignment.h>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
+* <moeoDominanceBasedFitnessAssignment.h>
+* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
+* (C) OPAC Team, LIFL, 2002-2008
 *
 * Arnaud Liefooghe
 *
@@ -35,16 +35,16 @@
 */
 //-----------------------------------------------------------------------------
 
-#ifndef MOEOPARETOBASEDFITNESSASSIGNMENT_H_
-#define MOEOPARETOBASEDFITNESSASSIGNMENT_H_
+#ifndef MOEODOMINANCEBASEDFITNESSASSIGNMENT_H_
+#define MOEODOMINANCEBASEDFITNESSASSIGNMENT_H_
 
 #include <fitness/moeoFitnessAssignment.h>
 
 /**
- * moeoParetoBasedFitnessAssignment is a moeoFitnessAssignment for Pareto-based strategies.
+ * moeoDominanceBasedFitnessAssignment is a moeoFitnessAssignment for dominance-based strategies.
  */
 template < class MOEOT >
-class moeoParetoBasedFitnessAssignment : public moeoFitnessAssignment < MOEOT >
-  {};
+class moeoDominanceBasedFitnessAssignment : public moeoFitnessAssignment < MOEOT >
+{};
 
-#endif /*MOEOPARETOBASEDFITNESSASSIGNMENT_H_*/
+#endif /*MOEODOMINANCEBASEDFITNESSASSIGNMENT_H_*/

@@ -43,7 +43,7 @@
 #include <comparator/moeoObjectiveObjectiveVectorComparator.h>
 #include <comparator/moeoObjectiveVectorComparator.h>
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
-#include <fitness/moeoParetoBasedFitnessAssignment.h>
+#include <fitness/moeoDominanceBasedFitnessAssignment.h>
 
 
 /**
@@ -54,7 +54,7 @@
  * This strategy is, for instance, used in NSGA and NSGA-II.
  */
 template < class MOEOT >
-class moeoFastNonDominatedSortingFitnessAssignment : public moeoParetoBasedFitnessAssignment < MOEOT >
+class moeoFastNonDominatedSortingFitnessAssignment : public moeoDominanceBasedFitnessAssignment < MOEOT >
   {
   public:
 

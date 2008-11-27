@@ -45,14 +45,14 @@
 #include <archive/moeoArchive.h>
 #include <comparator/moeoObjectiveVectorComparator.h>
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
-#include <fitness/moeoParetoBasedFitnessAssignment.h>
+#include <fitness/moeoDominanceBasedFitnessAssignment.h>
 #include <utils/moeoDominanceMatrix.h>
 
 /**
  * Fitness assignment sheme that computes how many solutions each solution is dominated by.
  */
 template < class MOEOT >
-class moeoDominanceRankFitnessAssignment : public moeoParetoBasedFitnessAssignment < MOEOT >
+class moeoDominanceRankFitnessAssignment : public moeoDominanceBasedFitnessAssignment < MOEOT >
 {
 public:
 

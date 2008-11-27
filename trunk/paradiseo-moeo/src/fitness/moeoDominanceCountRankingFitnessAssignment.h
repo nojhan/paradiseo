@@ -47,7 +47,7 @@
 #include <archive/moeoUnboundedArchive.h>
 #include <comparator/moeoObjectiveVectorComparator.h>
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
-#include <fitness/moeoParetoBasedFitnessAssignment.h>
+#include <fitness/moeoDominanceBasedFitnessAssignment.h>
 #include <utils/moeoDominanceMatrix.h>
 
 /**
@@ -57,7 +57,7 @@
  * Computer Engineering and Networks Laboratory (TIK), ETH Zurich, Zurich, Switzerland, 2001.
  */
 template < class MOEOT >
-class moeoDominanceCountRankingFitnessAssignment : public moeoParetoBasedFitnessAssignment < MOEOT >
+class moeoDominanceCountRankingFitnessAssignment : public moeoDominanceBasedFitnessAssignment < MOEOT >
 {
 public:
 

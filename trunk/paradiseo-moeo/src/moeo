@@ -99,17 +99,17 @@
 #include <fitness/moeoAchievementFitnessAssignment.h>
 #include <fitness/moeoBinaryIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoCriterionBasedFitnessAssignment.h>
+#include <fitness/moeoDominanceBasedFitnessAssignment.h>
+#include <fitness/moeoDominanceCountFitnessAssignment.h>
+#include <fitness/moeoDominanceCountRankingFitnessAssignment.h>
+#include <fitness/moeoDominanceRankFitnessAssignment.h>
 #include <fitness/moeoDummyFitnessAssignment.h>
 #include <fitness/moeoExpBinaryIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoFastNonDominatedSortingFitnessAssignment.h>
 #include <fitness/moeoFitnessAssignment.h>
 #include <fitness/moeoIndicatorBasedFitnessAssignment.h>
-#include <fitness/moeoParetoBasedFitnessAssignment.h>
 #include <fitness/moeoScalarFitnessAssignment.h>
 #include <fitness/moeoUnaryIndicatorBasedFitnessAssignment.h>
-#include <fitness/moeoDominanceCountFitnessAssignment.h>
-#include <fitness/moeoDominanceCountRankingFitnessAssignment.h>
-#include <fitness/moeoDominanceRankFitnessAssignment.h>
 
 #include <metric/moeoAdditiveEpsilonBinaryMetric.h>
 #include <metric/moeoContributionMetric.h>
