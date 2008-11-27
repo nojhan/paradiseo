@@ -50,6 +50,7 @@ SET (TEST_LIST
 		t-moeoIBEA
 		t-moeoNSGA
 		t-moeoNSGAII
+		t-moeoSEEA
 		t-moeoMax3Obj
 		t-moeoEasyEA
 		t-moeoDominanceCountFitnessAssignment

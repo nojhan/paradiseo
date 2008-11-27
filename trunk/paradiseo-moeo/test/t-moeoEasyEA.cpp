@@ -1,7 +1,7 @@
 /*
 * <t-moeoEasyEA.cpp>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
+* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
+* (C) OPAC Team, LIFL, 2002-2008
 *
 * Arnaud Liefooghe
 *
@@ -88,11 +88,14 @@ int main()
     std::cout << "[moeoEasyEA]" << std::endl;
 
     TestEval eval;
+    eoPopLoopEval <Solution> loopEval(eval);
+    eoPopEvalFunc <Solution> & popEval(loopEval);
     eoQuadCloneOp < Solution > xover;
     eoUniformMutation < Solution > mutation(0.05);
     eoSequentialOp < Solution > op;
     op.add(xover, 1.0);
     op.add(mutation, 1.0);
+    eoSGATransform < Solution > transform(xover, 1.0, mutation, 1.0);
     eoRealVectorBounds bounds(1, 1.0, 2.0);
     eoRealInitBounded < Solution > init(bounds);
     eoPop < Solution > pop(20, init);
@@ -100,15 +103,19 @@ int main()
     moeoFastNonDominatedSortingFitnessAssignment < Solution > fitnessAssignment;
     moeoFrontByFrontCrowdingDiversityAssignment < Solution > diversityAssignment;
     moeoFitnessThenDiversityComparator < Solution > comparator;
-    moeoDetTournamentSelect < Solution > select(comparator, 2);
+    moeoDetTournamentSelect < Solution > selectOne(comparator, 2);
     moeoElitistReplacement < Solution > replace(fitnessAssignment, diversityAssignment, comparator);
-    eoGeneralBreeder < Solution > breed(select, op);
+    eoGeneralBreeder < Solution > breed(selectOne, op);
+    eoSelectMany < Solution > select(selectOne, 1.0);
 
     // build EA
-    moeoEasyEA < Solution > algo (term, eval, breed, replace, fitnessAssignment, diversityAssignment);
+    moeoEasyEA < Solution > algo1 (term, eval, breed, replace, fitnessAssignment, diversityAssignment);
+    moeoEasyEA < Solution > algo2 (term, popEval, breed, replace, fitnessAssignment, diversityAssignment);
+    moeoEasyEA < Solution > algo3 (term, eval, select, transform, replace, fitnessAssignment, diversityAssignment);
+    moeoEasyEA < Solution > algo4 (term, popEval, select, transform, replace, fitnessAssignment, diversityAssignment);
 
     // run the algo
-    algo(pop);
+    algo4(pop);
 
     // final pop
     std::cout << "Final population" << std::endl;

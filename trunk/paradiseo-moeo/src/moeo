@@ -50,6 +50,7 @@
 #include <algo/moeoLS.h>
 #include <algo/moeoNSGA.h>
 #include <algo/moeoNSGAII.h>
+#include <algo/moeoSEEA.h>
 #include <algo/moeoSPEA2.h>
 
 #include <archive/moeoArchive.h>
