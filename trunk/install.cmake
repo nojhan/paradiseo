@@ -28,9 +28,6 @@ INCLUDE(CheckLibraryExists)
 
 INCLUDE(Dart OPTIONAL)         
                            
-# the project can have a DartConfig.cmake file
-#INCLUDE(DartConfig.cmake OPTIONAL)
-        
 # Set a special flag if the environment is windows (should do the same in a config.g file)
 IF (WIN32)
 	ADD_DEFINITIONS(-D_WINDOWS=1)
@@ -49,7 +46,8 @@ FIND_PROGRAM(MEMORYCHECK_COMMAND
     NAMES purify valgrind
     PATHS
     "/usr/local/bin /usr/bin [HKEY_LOCAL_MACHINE\\SOFTWARE\\Rational Software\\Purify\\Setup;InstallFolder]"
-    DOC "Path to the memory checking command, used for memory error detection.")    
+    DOC "Path to the memory checking command, used for memory error detection.") 
+       
 IF(NOT CMAKE_BUILD_TYPE)
      SET( CMAKE_BUILD_TYPE 
           ${CMAKE_DEFAULT_BUILD_TYPE} CACHE STRING 
@@ -96,16 +94,6 @@ IF (ENABLE_CMAKE_TESTING OR ENABLE_MINIMAL_CMAKE_TESTING)
 ENDIF (ENABLE_CMAKE_TESTING OR ENABLE_MINIMAL_CMAKE_TESTING)
 ######################################################################################
 
-
-######################################################################################
-### Subdirectories that CMake should process for MO, MOEO and PEO
-######################################################################################
-
-SUBDIRS( doc src test tutorial)
-
-######################################################################################
-
-
 #######################################################################################
 ### Paths to EO, MO and MOEO must be specified above.
 #######################################################################################
@@ -119,6 +107,14 @@ SET(MO_BIN_DIR "${CMAKE_BINARY_DIR}/../../paradiseo-mo/build" CACHE PATH "Paradi
 SET(MOEO_SRC_DIR "${CMAKE_SOURCE_DIR}/../paradiseo-moeo" CACHE PATH "ParadisMOEO-MOEO source directory" FORCE)
 SET(MOEO_BIN_DIR "${CMAKE_BINARY_DIR}/../../paradiseo-moeo/build" CACHE PATH "ParadisMOEO-MOEO binary directory" FORCE)
     
-#######################################################################################
-    
+######################################################################################
+######################################################################################
+### Subdirectories that CMake should process for MO, MOEO and PEO
+######################################################################################
+
+ADD_SUBDIRECTORY(doc)
+ADD_SUBDIRECTORY(src)
+ADD_SUBDIRECTORY(test)
+ADD_SUBDIRECTORY(tutorial)
+######################################################################################
     
