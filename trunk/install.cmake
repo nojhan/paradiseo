@@ -87,8 +87,6 @@ ENDIF(CMAKE_BUILD_TYPE MATCHES Debug)
 ### Test config
 ######################################################################################
 
-#SET(ENABLE_CMAKE_TESTING TRUE CACHE BOOL "Enable testing ?")
-
 IF (ENABLE_CMAKE_TESTING OR ENABLE_MINIMAL_CMAKE_TESTING)  
         ENABLE_TESTING()
 ENDIF (ENABLE_CMAKE_TESTING OR ENABLE_MINIMAL_CMAKE_TESTING)
