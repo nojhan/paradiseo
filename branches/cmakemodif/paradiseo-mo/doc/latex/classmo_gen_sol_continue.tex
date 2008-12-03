@@ -1,0 +1,100 @@
+\section{moGenSolContinue$<$ EOT $>$ Class Template Reference}
+\label{classmo_gen_sol_continue}\index{moGenSolContinue@{moGenSolContinue}}
+One possible stop criterion for a solution-based heuristic.  
+
+
+{\tt \#include $<$moGenSolContinue.h$>$}
+
+Inheritance diagram for moGenSolContinue$<$ EOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4cm]{classmo_gen_sol_continue}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf moGenSolContinue} (unsigned int \_\-generationMaximumNumber)
+\begin{CompactList}\small\item\em Simple constructor. \item\end{CompactList}\item 
+bool {\bf operator()} (const EOT \&\_\-solution)
+\begin{CompactList}\small\item\em {\bf Function} that activates the stop criterion. \item\end{CompactList}\item 
+void {\bf init} ()
+\begin{CompactList}\small\item\em Procedure which allows to initialise the generation counter. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+unsigned int {\bf generationMaximumNumber}\label{classmo_gen_sol_continue_c838d923436b71c584891c1cbe3f47ba}
+
+\begin{CompactList}\small\item\em Iteration maximum number. \item\end{CompactList}\item 
+unsigned int {\bf generationNumber}\label{classmo_gen_sol_continue_af0b3e5ca3ceee0d843670955c8f1e58}
+
+\begin{CompactList}\small\item\em Iteration current number. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class EOT$>$ class moGenSolContinue$<$ EOT $>$}
+
+One possible stop criterion for a solution-based heuristic. 
+
+The stop criterion corresponds to a maximum number of iteration. 
+
+Definition at line 46 of file moGenSolContinue.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{moGenSolContinue@{moGenSolContinue}!moGenSolContinue@{moGenSolContinue}}
+\index{moGenSolContinue@{moGenSolContinue}!moGenSolContinue@{moGenSolContinue}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ {\bf moGenSolContinue}$<$ EOT $>$::{\bf moGenSolContinue} (unsigned int {\em \_\-generationMaximumNumber})\hspace{0.3cm}{\tt  [inline]}}\label{classmo_gen_sol_continue_8e2456421b641d38e3f800f3bbe45159}
+
+
+Simple constructor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-generationMaximumNumber}]The maximum number of generations. \end{description}
+\end{Desc}
+
+
+Definition at line 54 of file moGenSolContinue.h.
+
+\subsection{Member Function Documentation}
+\index{moGenSolContinue@{moGenSolContinue}!operator()@{operator()}}
+\index{operator()@{operator()}!moGenSolContinue@{moGenSolContinue}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ bool {\bf moGenSolContinue}$<$ EOT $>$::operator() (const EOT \& {\em \_\-solution})\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_gen_sol_continue_2fd5f2f10b6d6208412582578fad48ea}
+
+
+{\bf Function} that activates the stop criterion. 
+
+Increments the counter and returns TRUE if the current number of iteration is lower than the given maximum number of iterations.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-solution}]The current solution. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true or false according to the current generation number. \end{Desc}
+
+
+Implements {\bf eoUF$<$ const EOT \&, bool $>$}.
+
+Definition at line 66 of file moGenSolContinue.h.
+
+References moGenSolContinue$<$ EOT $>$::generationMaximumNumber, and moGenSolContinue$<$ EOT $>$::generationNumber.\index{moGenSolContinue@{moGenSolContinue}!init@{init}}
+\index{init@{init}!moGenSolContinue@{moGenSolContinue}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void {\bf moGenSolContinue}$<$ EOT $>$::init ()\hspace{0.3cm}{\tt  [inline, virtual]}}\label{classmo_gen_sol_continue_6c5db8182157584b56507cc9075602d4}
+
+
+Procedure which allows to initialise the generation counter. 
+
+It can also be used to reset the iteration counter. 
+
+Implements {\bf moSolContinue$<$ EOT $>$} \doxyref{}{p.}{classmo_sol_continue_064dc966a210f4ffb9515be3f03ca4c7}.
+
+Definition at line 78 of file moGenSolContinue.h.
+
+References moGenSolContinue$<$ EOT $>$::generationNumber.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moGenSolContinue.h\end{CompactItemize}
