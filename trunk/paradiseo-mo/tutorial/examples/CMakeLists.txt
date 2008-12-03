@@ -4,7 +4,9 @@
 ### 1) Where must cmake go now ?
 ######################################################################################
 
-SUBDIRS(tsp function)
+#SUBDIRS(tsp function)
+ADD_SUBDIRECTORY(tsp)
+ADD_SUBDIRECTORY(function)
 
 ######################################################################################
 
