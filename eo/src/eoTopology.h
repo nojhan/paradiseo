@@ -33,7 +33,7 @@
 
 /**
  * Defines the interface of a swarm topology. Can be static (usually the case for the social topologies)
- * or dynamic. It's the same interface for both social and physical topologies. ("social" topology means 
+ * or dynamic. It's the same interface for both social and physical topologies. ("social" topology means
  * social-neighborhood-based toplogy and so on ...)
  */
 template < class POT > class eoTopology:public eoPop < POT >
@@ -59,24 +59,24 @@ public:
         for (unsigned i = 0; i < _pop.size (); i++)
             updateNeighborhood(_pop[i],i);
     }
-    
+
 
     /**
      * Builds the neighborhoods contained in the topology.
      */
-    virtual POT & best (unsigned ) = 0;    
+    virtual POT & best (unsigned ) = 0;
 
 
   	/*
 	 * Return the global best of the topology
-	 */	
-    virtual POT & globalBest(){}
+	 */
+    virtual POT & globalBest() = 0;
 
 
     /**
      * Prints the neighborhoods contained in the topology.
      */
-    virtual void printOn(){}
+    virtual void printOn() = 0;
 };
 
 
