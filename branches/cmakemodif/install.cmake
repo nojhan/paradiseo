@@ -26,7 +26,9 @@ INCLUDE(FindGnuplot)
 
 INCLUDE(CheckLibraryExists)
 
-INCLUDE(Dart OPTIONAL)         
+INCLUDE(Dart OPTIONAL)    
+
+INCLUDE(CPack)     
                            
 # Set a special flag if the environment is windows (should do the same in a config.g file)
 IF (WIN32)
@@ -82,6 +84,11 @@ ENDIF(CMAKE_BUILD_TYPE MATCHES Debug)
 
 #####################################################################################
 
+######################################################################################
+### Copy of benchs and parameter files config
+######################################################################################
+
+SET(ENABLE_CMAKE_COPY TRUE CACHE BOOL "Enable copy of benchs and parameters file?")
 
 ######################################################################################
 ### Test config
