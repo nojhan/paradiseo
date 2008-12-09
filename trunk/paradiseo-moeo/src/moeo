@@ -52,6 +52,7 @@
 #include <algo/moeoNSGAII.h>
 #include <algo/moeoSEEA.h>
 #include <algo/moeoSPEA2.h>
+#include <algo/moeoMOGA.h>
 
 #include <archive/moeoArchive.h>
 #include <archive/moeoUnboundedArchive.h>
