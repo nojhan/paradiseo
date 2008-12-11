@@ -1,20 +1,3 @@
-
-######################################################################################
-### 0) Copy the FlowShop.param file in the build path for an easy use.
-######################################################################################
-
-ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-MOEO_SOURCE_DIR}/tutorial/Lesson3/FlowShopEA2.param)
-ADD_CUSTOM_COMMAND(
-    TARGET install
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND}
-    ARGS -E copy_if_different
-      ${ParadisEO-MOEO_SOURCE_DIR}/tutorial/Lesson3/FlowShopEA2.param
-      ${ParadisEO-MOEO_BINARY_DIR}/tutorial/Lesson3)
-######################################################################################
-
-
-
 ######################################################################################
 ### 1) Include the sources
 ######################################################################################
