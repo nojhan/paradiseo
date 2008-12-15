@@ -70,7 +70,7 @@ public:
      * Default ctor
      * @param _nocopy boolean to move away copies
      */
-    moeoDominanceCountRankingFitnessAssignment(bool _nocopy=true) : comparator(paretoComparator), archive(defaultArchive), matrix(_nocopy)
+    moeoDominanceCountRankingFitnessAssignment(bool _nocopy=false) : comparator(paretoComparator), archive(defaultArchive), matrix(_nocopy)
     {}
 
 
@@ -79,7 +79,7 @@ public:
      * @param _archive the archive used
      * @param _nocopy boolean to move away copies
      */
-    moeoDominanceCountRankingFitnessAssignment(moeoArchive < MOEOT > & _archive, bool _nocopy=true) : comparator(paretoComparator), archive(_archive), matrix(_nocopy)
+    moeoDominanceCountRankingFitnessAssignment(moeoArchive < MOEOT > & _archive, bool _nocopy=false) : comparator(paretoComparator), archive(_archive), matrix(_nocopy)
     {}
 
 
@@ -88,7 +88,7 @@ public:
      * @param _comparator the functor used to compare objective vectors
      * @param _nocopy boolean to move away copies
      */
-    moeoDominanceCountRankingFitnessAssignment(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, bool _nocopy=true) : comparator(_comparator), archive(defaultArchive), matrix(_comparator, _nocopy)
+    moeoDominanceCountRankingFitnessAssignment(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, bool _nocopy=false) : comparator(_comparator), archive(defaultArchive), matrix(_comparator, _nocopy)
     {}
 
 
@@ -98,7 +98,7 @@ public:
      * @param _archive the archive used
      * @param _nocopy boolean to move away copies
      */
-    moeoDominanceCountRankingFitnessAssignment(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, moeoArchive < MOEOT > & _archive, bool _nocopy=true) : comparator(_comparator), archive(_archive), matrix(_comparator, _nocopy)
+    moeoDominanceCountRankingFitnessAssignment(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, moeoArchive < MOEOT > & _archive, bool _nocopy=false) : comparator(_comparator), archive(_archive), matrix(_comparator, _nocopy)
     {}
 
 
