@@ -51,6 +51,7 @@
 #include <metric/moeoEntropyMetric.h>
 #include <metric/moeoHyperVolumeDifferenceMetric.h>
 #include <metric/moeoVecVsVecMultiplicativeEpsilonBinaryMetric.h>
+#include <metric/moeoVecVsVecAdditiveEpsilonBinaryMetric.h>
 #include <utils/moeoArchiveUpdater.h>
 #include <utils/moeoArchiveObjectiveVectorSavingUpdater.h>
 #include <utils/moeoBinaryMetricSavingUpdater.h>
@@ -214,22 +215,39 @@ eoCheckPoint < MOEOT > & do_make_checkpoint_moeo (eoParser & _parser, eoState & 
        checkpoint.add(*hyperVolume_updater);
      }
    
-   // store the epsilon of the non-dominated solutions
-    bool eps = _parser.getORcreateParam(false, "epsilon", "Store the epsilon of the archive at each gen.", '\0', "Output").value();
-    if (eps)
+   // store the Multiplicative Epsilon of the non-dominated solutions
+    bool multeps = _parser.getORcreateParam(false, "multEpsilon", "Store the Multiplicative Epsilon of the archive at each gen.", '\0', "Output").value();
+    if (multeps)
       {
         if (! dirOK )
           dirOK = testDirRes(dirName, eraseParam.value()); // TRUE
   #ifdef _MSVC
-        std::string stmp = dirName + "\epsilon";
+        std::string stmp = dirName + "\multepsilon";
   #else
-        std::string stmp = dirName + "/epsilon";
+        std::string stmp = dirName + "/multepsilon";
   #endif
-        moeoVecVsVecMultiplicativeEpsilonBinaryMetric < ObjectiveVector > * epsilon = new moeoVecVsVecMultiplicativeEpsilonBinaryMetric < ObjectiveVector >;
-        moeoBinaryMetricSavingUpdater < MOEOT > * epsilon_updater = new moeoBinaryMetricSavingUpdater < MOEOT > (*epsilon, _archive, stmp);
-        _state.storeFunctor(epsilon_updater);
-        checkpoint.add(*epsilon_updater);
+        moeoVecVsVecMultiplicativeEpsilonBinaryMetric < ObjectiveVector > * multepsilon = new moeoVecVsVecMultiplicativeEpsilonBinaryMetric < ObjectiveVector >;
+        moeoBinaryMetricSavingUpdater < MOEOT > * multepsilon_updater = new moeoBinaryMetricSavingUpdater < MOEOT > (*multepsilon, _archive, stmp);
+        _state.storeFunctor(multepsilon_updater);
+        checkpoint.add(*multepsilon_updater);
       }
+    
+    // store the Additive Epsilon of the non-dominated solutions
+     bool addeps = _parser.getORcreateParam(false, "addEpsilon", "Store the Additive Epsilon of the archive at each gen.", '\0', "Output").value();
+     if (addeps)
+       {
+         if (! dirOK )
+           dirOK = testDirRes(dirName, eraseParam.value()); // TRUE
+   #ifdef _MSVC
+         std::string stmp = dirName + "\addepsilon";
+   #else
+         std::string stmp = dirName + "/addepsilon";
+   #endif
+         moeoVecVsVecAdditiveEpsilonBinaryMetric < ObjectiveVector > * addepsilon = new moeoVecVsVecAdditiveEpsilonBinaryMetric < ObjectiveVector >;
+         moeoBinaryMetricSavingUpdater < MOEOT > * addepsilon_updater = new moeoBinaryMetricSavingUpdater < MOEOT > (*addepsilon, _archive, stmp);
+         _state.storeFunctor(addepsilon_updater);
+         checkpoint.add(*addepsilon_updater);
+       }
 
   // and that's it for the (control and) output
   return checkpoint;
