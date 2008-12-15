@@ -49,10 +49,11 @@
 #include <utils/eoState.h>
 #include <metric/moeoContributionMetric.h>
 #include <metric/moeoEntropyMetric.h>
+#include <metric/moeoHyperVolumeDifferenceMetric.h>
+#include <metric/moeoVecVsVecMultiplicativeEpsilonBinaryMetric.h>
 #include <utils/moeoArchiveUpdater.h>
 #include <utils/moeoArchiveObjectiveVectorSavingUpdater.h>
 #include <utils/moeoBinaryMetricSavingUpdater.h>
-
 
 bool testDirRes(std::string _dirName, bool _erase);
 
@@ -195,6 +196,40 @@ eoCheckPoint < MOEOT > & do_make_checkpoint_moeo (eoParser & _parser, eoState & 
       _state.storeFunctor(entropy_updater);
       checkpoint.add(*entropy_updater);
     }
+  
+  // store the hyperVolume of the non-dominated solutions
+   bool hyp = _parser.getORcreateParam(false, "hyperVolume", "Store the hyperVolume of the archive at each gen.", '\0', "Output").value();
+   if (hyp)
+     {
+       if (! dirOK )
+         dirOK = testDirRes(dirName, eraseParam.value()); // TRUE
+ #ifdef _MSVC
+       std::string stmp = dirName + "\hyperVolume";
+ #else
+       std::string stmp = dirName + "/hyperVolume";
+ #endif
+       moeoHyperVolumeDifferenceMetric < ObjectiveVector > * hyperVolume = new moeoHyperVolumeDifferenceMetric < ObjectiveVector >(true, 1.1);
+       moeoBinaryMetricSavingUpdater < MOEOT > * hyperVolume_updater = new moeoBinaryMetricSavingUpdater < MOEOT > (*hyperVolume, _archive, stmp);
+       _state.storeFunctor(hyperVolume_updater);
+       checkpoint.add(*hyperVolume_updater);
+     }
+   
+   // store the epsilon of the non-dominated solutions
+    bool eps = _parser.getORcreateParam(false, "epsilon", "Store the epsilon of the archive at each gen.", '\0', "Output").value();
+    if (eps)
+      {
+        if (! dirOK )
+          dirOK = testDirRes(dirName, eraseParam.value()); // TRUE
+  #ifdef _MSVC
+        std::string stmp = dirName + "\epsilon";
+  #else
+        std::string stmp = dirName + "/epsilon";
+  #endif
+        moeoVecVsVecMultiplicativeEpsilonBinaryMetric < ObjectiveVector > * epsilon = new moeoVecVsVecMultiplicativeEpsilonBinaryMetric < ObjectiveVector >;
+        moeoBinaryMetricSavingUpdater < MOEOT > * epsilon_updater = new moeoBinaryMetricSavingUpdater < MOEOT > (*epsilon, _archive, stmp);
+        _state.storeFunctor(epsilon_updater);
+        checkpoint.add(*epsilon_updater);
+      }
 
   // and that's it for the (control and) output
   return checkpoint;
