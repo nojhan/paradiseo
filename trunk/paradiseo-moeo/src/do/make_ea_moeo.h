@@ -57,6 +57,7 @@
 #include <diversity/moeoDummyDiversityAssignment.h>
 #include <diversity/moeoFrontByFrontCrowdingDiversityAssignment.h>
 #include <diversity/moeoFrontByFrontSharingDiversityAssignment.h>
+#include <diversity/moeoNearestNeighborDiversityAssignment.h>
 #include <fitness/moeoDummyFitnessAssignment.h>
 #include <fitness/moeoExpBinaryIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoDominanceDepthFitnessAssignment.h>
@@ -94,7 +95,7 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
 
   /* the fitness assignment strategy */
   std::string & fitnessParam = _parser.createParam(std::string("DomDepth"), "fitness",
-                               "Fitness assignment scheme: Dummy, DomDepth or IndicatorBased", 'F',
+                               "Fitness assignment scheme: Dummy, DomDepth, DomCount, DomRank, DomCountRanking or IndicatorBased", 'F',
                                "Evolution Engine").value();
   std::string & indicatorParam = _parser.createParam(std::string("Epsilon"), "indicator",
                                  "Binary indicator for IndicatorBased: Epsilon, Hypervolume", 'i',
@@ -111,6 +112,18 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
   else if (fitnessParam == std::string("DomDepth"))
     {
       fitnessAssignment = new moeoDominanceDepthFitnessAssignment < MOEOT> ();
+    }
+  else if (fitnessParam == std::string("DomCount"))
+    {
+      fitnessAssignment = new moeoDominanceCountFitnessAssignment < MOEOT> ();
+    }
+  else if (fitnessParam == std::string("DomRank"))
+    {
+      fitnessAssignment = new moeoDominanceRankFitnessAssignment < MOEOT> ();
+    }
+  else if (fitnessParam == std::string("DomCountRanking"))
+    {
+      fitnessAssignment = new moeoDominanceCountRankingFitnessAssignment < MOEOT> ();
     }
   else if (fitnessParam == std::string("IndicatorBased"))
     {
@@ -141,7 +154,7 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
 
   /* the diversity assignment strategy */
   eoValueParam<eoParamParamType> & diversityParam = _parser.createParam(eoParamParamType("Dummy"), "diversity",
-      "Diversity assignment scheme: Dummy, Sharing(nicheSize) or Crowding", 'D', "Evolution Engine");
+      "Diversity assignment scheme: Dummy, Sharing(nicheSize), NearestNeighbor(k) or Crowding", 'D', "Evolution Engine");
   eoParamParamType & diversityParamValue = diversityParam.value();
   moeoDiversityAssignment < MOEOT > * diversityAssignment;
   if (diversityParamValue.first == std::string("Dummy"))
@@ -162,6 +175,21 @@ moeoEA < MOEOT > & do_make_ea_moeo(eoParser & _parser, eoState & _state, eoEvalF
           nicheSize = atoi(diversityParamValue.second[0].c_str());
         }
       diversityAssignment = new moeoFrontByFrontSharingDiversityAssignment < MOEOT> (nicheSize);
+    }
+  else if (diversityParamValue.first == std::string("NearestNeighbor"))
+    {
+      unsigned int k;
+      if (!diversityParamValue.second.size())   // no parameter added
+        {
+          std::cerr << "WARNING, no k-th distance for Sharing, using 1" << std::endl;
+          k = 1;
+          diversityParamValue.second.push_back(std::string("1"));
+        }
+      else
+        {
+          k = atoi(diversityParamValue.second[0].c_str());
+        }
+      diversityAssignment = new moeoNearestNeighborDiversityAssignment < MOEOT> (k);
     }
   else if (diversityParamValue.first == std::string("Crowding"))
     {
