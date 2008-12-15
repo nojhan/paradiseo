@@ -154,9 +154,9 @@ int main()
 
     // fitness assignment
 
-    moeoDominanceCountRankingFitnessAssignment <Solution> fitnessAssignment;
+    moeoDominanceCountRankingFitnessAssignment <Solution> fitnessAssignment(true);
 
-    moeoDominanceCountRankingFitnessAssignment <Solution> fitnessAssignment2(archive);
+    moeoDominanceCountRankingFitnessAssignment <Solution> fitnessAssignment2(archive, true);
 
     moeoDominanceCountRankingFitnessAssignment <Solution> fitnessAssignment3(paretoComparator,false);
 
