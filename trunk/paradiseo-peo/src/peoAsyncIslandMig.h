@@ -101,10 +101,11 @@ template< class TYPESELECT, class TYPEREPLACE > class peoAsyncIslandMig : public
     //! @param std :: queue< TYPEREPLACE > imm
     //! @param std :: queue< TYPESELECT > em
     //! @param std :: queue< Cooperative* > coop_em
-    continuator & cont;
+    
     selector <TYPESELECT> & select;
     replacement <TYPEREPLACE> & replace;
     Topology& topology;
+    continuator & cont;
     std :: queue< TYPEREPLACE > imm;
     std :: queue< TYPESELECT > em;
     std :: queue< Cooperative* > coop_em;
