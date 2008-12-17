@@ -72,9 +72,6 @@ class moImprBestFitAspirCrit:public moAspirCrit < M >
   */
   bool operator () (const M & _move, const Fitness & _fitness)
   {
-    //code only used for avoiding warning because _move is not used in this function.
-    const M move(_move);
-
     if (first_time)
       {
 	best_fitness = _fitness;

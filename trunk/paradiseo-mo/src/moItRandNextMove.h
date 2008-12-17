@@ -72,9 +72,6 @@ class moItRandNextMove:public moNextMove < M >
   */
   bool operator () (M & _move, const EOT & _solution)
   {
-    //code only used to avoid warning because _solution is not used in this function.
-    const EOT solution(_solution);
-    
     if (iteration_number > iteration_maximum_number)
       {
 	iteration_number = 0;

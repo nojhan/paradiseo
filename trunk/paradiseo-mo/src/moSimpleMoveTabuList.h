@@ -69,8 +69,6 @@ class moSimpleMoveTabuList: public moTabuList < M >
   bool operator () (const M & _move, const EOT & _solution)
   {
     moveIterator it;
-    //code only used to avoid warning because _solution is not used in this function.
-    EOT solution=(EOT)_solution;
     
     it=tabuList.begin();
     // The code is !(*it)==_move instead of (*it)!=_move because people designing their specific move representation 
@@ -85,8 +83,6 @@ class moSimpleMoveTabuList: public moTabuList < M >
 
   void add(const M & _move, const EOT & _solution)
   {
-    //code only used to avoid warning because _solution is not used in this function.
-    const EOT solution(_solution);
 
     if (memory_size!=0)
       {

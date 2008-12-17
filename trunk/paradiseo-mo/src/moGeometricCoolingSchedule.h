@@ -1,5 +1,5 @@
 /*
-  <moExponentialCoolingSchedule.h>
+  <moGeometricCoolingSchedule.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
   (C) OPAC Team, LIFL, 2002-2008
  
@@ -33,8 +33,8 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moExponentialCoolingSchedule_h
-#define _moExponentialCoolingSchedule_h
+#ifndef _moGeometricCoolingSchedule_h
+#define _moGeometricCoolingSchedule_h
 
 #include <moCoolingSchedule.h>
 
@@ -43,7 +43,7 @@
   An other very simple cooling schedule, the temperature decrease according to a ratio while
   the temperature is greater than a given threshold.
 */
-class moExponentialCoolingSchedule: public moCoolingSchedule
+class moGeometricCoolingSchedule: public moCoolingSchedule
 {
  public:
   
@@ -52,7 +52,7 @@ class moExponentialCoolingSchedule: public moCoolingSchedule
     \param _threshold the threshold.
     \param _ratio the ratio used to descrease the temperature.
   */
-  moExponentialCoolingSchedule (double _threshold, double _ratio):threshold (_threshold), ratio (_ratio)
+  moGeometricCoolingSchedule (double _threshold, double _ratio):threshold (_threshold), ratio (_ratio)
   {}
     
   //! Function which proceeds to the cooling.

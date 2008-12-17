@@ -41,11 +41,11 @@
 #include <moBestImprSelect.h>
 #include <moComparator.h>
 #include <moCoolingSchedule.h>
-#include <moExponentialCoolingSchedule.h>
 #include <moFirstImprSelect.h>
 #include <moFitComparator.h>
 #include <moFitSolContinue.h>
 #include <moGenSolContinue.h>
+#include <moGeometricCoolingSchedule.h>
 #include <moHC.h>
 #include <moHCMoveLoopExpl.h>
 #include <moILS.h>
@@ -72,9 +72,5 @@
 #include <moTabuList.h>
 #include <moTS.h>
 #include <moTSMoveLoopExpl.h>
-#include <moExpl.h>
-#include <moVNS.h>
-#include <moTA.h>
-
 
 #endif
