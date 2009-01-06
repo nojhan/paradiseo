@@ -25,16 +25,27 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${FUNCTION_BIN_DIR}/lib)
 ADD_COMMANDS()
 ADD_TARGET(lesson1)
 
-IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
-	SOURCE_GROUP(src FILES minimize_function.cpp)
-
-	ADD_EXECUTABLE(minimize_function
-		minimize_function.cpp
-		${MO_BIN_DIR}/tutorial/Lesson1/param
-	) 
-ELSE(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
-	ADD_EXECUTABLE(minimize_function  EXCLUDE_FROM_ALL minimize_function.cpp) 
-ENDIF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
+IF(ENABLE_CMAKE_EXAMPLE)
+	IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
+		SOURCE_GROUP(src FILES minimize_function.cpp)	
+		ADD_EXECUTABLE(minimize_function 
+			minimize_function.cpp
+			${MO_BIN_DIR}/tutorial/Lesson1/param
+		) 
+	ELSE(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
+		ADD_EXECUTABLE(minimize_function minimize_function.cpp) 
+	ENDIF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
+ELSE(ENABLE_CMAKE_EXAMPLE)
+	IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
+		SOURCE_GROUP(src FILES minimize_function.cpp)	
+		ADD_EXECUTABLE(minimize_function EXCLUDE_FROM_ALL
+			minimize_function.cpp
+			${MO_BIN_DIR}/tutorial/Lesson1/param
+		) 
+	ELSE(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
+		ADD_EXECUTABLE(minimize_function EXCLUDE_FROM_ALL minimize_function.cpp) 
+	ENDIF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
+ENDIF(ENABLE_CMAKE_EXAMPLE)
 
 ADD_DEPENDENCIES(minimize_function function)
 

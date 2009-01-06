@@ -16,7 +16,7 @@ SET(FUNCTION_BIN_DIR ${MO_BIN_DIR}/tutorial/examples/function CACHE PATH "FUNCTI
 ######################################################################################
 
 
-IF(ENABLE_CMAKE_COPY)
+IF(ENABLE_CMAKE_EXAMPLE)
 	SET(BENCH_LIST
 		berlin52.tsp
 		eil101.tsp
@@ -52,7 +52,7 @@ IF(ENABLE_CMAKE_COPY)
 			${MO_SRC_DIR}/tutorial/Lesson6/param
 			${MO_BIN_DIR}/tutorial/Lesson6/param
 	)
-ENDIF(ENABLE_CMAKE_COPY)
+ENDIF(ENABLE_CMAKE_EXAMPLE)
 
 ######################################################################################
 ### 3) Where must cmake go now ?
@@ -119,8 +119,6 @@ MACRO(ADD_COMMANDS)
 	    	${MO_BIN_DIR}/tutorial/Lesson6
 	)
 ENDMACRO(ADD_COMMANDS)
-
-
 
 MACRO(ADD_TARGET n)
 	IF(${n} STREQUAL "lesson1")
