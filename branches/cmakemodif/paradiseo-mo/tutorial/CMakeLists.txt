@@ -58,30 +58,17 @@ ENDIF(ENABLE_CMAKE_COPY)
 ### 3) Where must cmake go now ?
 ######################################################################################
 
-#SUBDIRS(examples Lesson1 Lesson2 Lesson3 Lesson4 Lesson5 Lesson6)
-ADD_SUBDIRECTORY(examples)
-ADD_SUBDIRECTORY(Lesson1)
-ADD_SUBDIRECTORY(Lesson2)
-ADD_SUBDIRECTORY(Lesson3)
-ADD_SUBDIRECTORY(Lesson4)
-ADD_SUBDIRECTORY(Lesson5)
-ADD_SUBDIRECTORY(Lesson6)
-
-
-######################################################################################
-### 4) Target to copy benchs and parameters file
-######################################################################################
-
-ADD_CUSTOM_COMMAND(
-    OUTPUT 
+MACRO(ADD_COMMANDS)
+	ADD_CUSTOM_COMMAND(
+	OUTPUT 
     	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
     	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
     	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
     	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/rl5915.tsp
     	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    	${MO_SRC_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
-    	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
+	COMMAND ${CMAKE_COMMAND} -E copy_if_different
+		${MO_SRC_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
+		${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     	${MO_SRC_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
     	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
@@ -94,80 +81,141 @@ ADD_CUSTOM_COMMAND(
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     	${MO_SRC_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
     	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
-)
-
-ADD_CUSTOM_COMMAND(
-    OUTPUT ${MO_BIN_DIR}/tutorial/Lesson1/param
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    	${MO_SRC_DIR}/tutorial/Lesson1/param
-    	${MO_BIN_DIR}/tutorial/Lesson1
-)
-
-ADD_CUSTOM_COMMAND(
-    OUTPUT ${MO_BIN_DIR}/tutorial/Lesson2/param
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    	${MO_SRC_DIR}/tutorial/Lesson2/param
-    	${MO_BIN_DIR}/tutorial/Lesson2
-)
-
-ADD_CUSTOM_COMMAND(
-    OUTPUT ${MO_BIN_DIR}/tutorial/Lesson3/param
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    	${MO_SRC_DIR}/tutorial/Lesson3/param
-    	${MO_BIN_DIR}/tutorial/Lesson3
-)
-
-ADD_CUSTOM_COMMAND(
+	)
+	ADD_CUSTOM_COMMAND(
+		OUTPUT ${MO_BIN_DIR}/tutorial/Lesson1/param
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different
+			${MO_SRC_DIR}/tutorial/Lesson1/param
+			${MO_BIN_DIR}/tutorial/Lesson1
+	)
+	ADD_CUSTOM_COMMAND(
+	    OUTPUT ${MO_BIN_DIR}/tutorial/Lesson2/param
+	    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+	    	${MO_SRC_DIR}/tutorial/Lesson2/param
+	    	${MO_BIN_DIR}/tutorial/Lesson2
+	)
+	ADD_CUSTOM_COMMAND(
+	    OUTPUT ${MO_BIN_DIR}/tutorial/Lesson3/param
+	    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+	    	${MO_SRC_DIR}/tutorial/Lesson3/param
+	    	${MO_BIN_DIR}/tutorial/Lesson3
+	)
+	ADD_CUSTOM_COMMAND(
     OUTPUT ${MO_BIN_DIR}/tutorial/Lesson4/param
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     	${MO_SRC_DIR}/tutorial/Lesson4/param
     	${MO_BIN_DIR}/tutorial/Lesson4
-)
+	)
+	ADD_CUSTOM_COMMAND(
+	    OUTPUT ${MO_BIN_DIR}/tutorial/Lesson5/param
+	    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+	    	${MO_SRC_DIR}/tutorial/Lesson5/param
+	    	${MO_BIN_DIR}/tutorial/Lesson5
+	)
+	ADD_CUSTOM_COMMAND(
+	    OUTPUT ${MO_BIN_DIR}/tutorial/Lesson6/param
+	    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+	    	${MO_SRC_DIR}/tutorial/Lesson6/param
+	    	${MO_BIN_DIR}/tutorial/Lesson6
+	)
+ENDMACRO(ADD_COMMANDS)
 
-ADD_CUSTOM_COMMAND(
-    OUTPUT ${MO_BIN_DIR}/tutorial/Lesson5/param
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    	${MO_SRC_DIR}/tutorial/Lesson5/param
-    	${MO_BIN_DIR}/tutorial/Lesson5
-)
 
-ADD_CUSTOM_COMMAND(
-    OUTPUT ${MO_BIN_DIR}/tutorial/Lesson6/param
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    	${MO_SRC_DIR}/tutorial/Lesson6/param
-    	${MO_BIN_DIR}/tutorial/Lesson6
-)
 
-ADD_CUSTOM_TARGET(install DEPENDS 
-	${MO_BIN_DIR}/tutorial/Lesson1/param
-	${MO_BIN_DIR}/tutorial/Lesson2/param
-	${MO_BIN_DIR}/tutorial/Lesson3/param
-	${MO_BIN_DIR}/tutorial/Lesson4/param
-	${MO_BIN_DIR}/tutorial/Lesson5/param
-	${MO_BIN_DIR}/tutorial/Lesson6/param
-	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
-	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
-	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
-	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/rl5915.tsp
-	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
-)
-			  
-ADD_CUSTOM_TARGET(benchs DEPENDS
-		${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
-    	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
-    	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
-    	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/rl5915.tsp
-    	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
-)			  
+MACRO(ADD_TARGET n)
+	IF(${n} STREQUAL "lesson1")
+		ADD_CUSTOM_TARGET(lesson1 DEPENDS
+			${MO_BIN_DIR}/tutorial/Lesson1/param
+			${MO_BIN_DIR}/tutorial/Lesson1/minimize_function
+		)
+	ELSEIF(${n} STREQUAL "lesson2")
+		ADD_CUSTOM_TARGET(lesson2 DEPENDS 
+			${MO_BIN_DIR}/tutorial/Lesson2/param
+			${MO_BIN_DIR}/tutorial/Lesson2/hill_climbing
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/rl5915.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
+		)
+	ELSEIF(${n} STREQUAL "lesson3")	
+		ADD_CUSTOM_TARGET(lesson3 DEPENDS 
+			${MO_BIN_DIR}/tutorial/Lesson3/param
+			${MO_BIN_DIR}/tutorial/Lesson3/tabu_search
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/rl5915.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
+		)
+	ELSEIF(${n} STREQUAL "lesson4")			
+		ADD_CUSTOM_TARGET(lesson4 DEPENDS
+			${MO_BIN_DIR}/tutorial/Lesson4/param
+			${MO_BIN_DIR}/tutorial/Lesson4/simulated_annealing
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/rl5915.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
+		)
+	ELSEIF(${n} STREQUAL "lesson5")				
+		ADD_CUSTOM_TARGET(lesson5 DEPENDS 
+			${MO_BIN_DIR}/tutorial/Lesson5/param
+			${MO_BIN_DIR}/tutorial/Lesson5/iterated_local_search
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/rl5915.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
+		)
+	ELSEIF(${n} STREQUAL "lesson6")		
+		ADD_CUSTOM_TARGET(lesson6 DEPENDS 
+			${MO_BIN_DIR}/tutorial/Lesson6/param
+			${MO_BIN_DIR}/tutorial/Lesson6/hybrid_ga
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/rl5915.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
+		)
+	ELSEIF(${n} STREQUAL "install")		
+		ADD_CUSTOM_TARGET(install DEPENDS 
+			${MO_BIN_DIR}/tutorial/Lesson1/param
+			${MO_BIN_DIR}/tutorial/Lesson2/param
+			${MO_BIN_DIR}/tutorial/Lesson3/param
+			${MO_BIN_DIR}/tutorial/Lesson4/param
+			${MO_BIN_DIR}/tutorial/Lesson5/param
+			${MO_BIN_DIR}/tutorial/Lesson6/param
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/rl5915.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
+		)
+	ELSEIF(${n} STREQUAL "benchs")
+		ADD_CUSTOM_TARGET(benchs DEPENDS
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
+	    	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
+	    	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
+	    	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/rl5915.tsp
+	    	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
+		)	
+	ENDIF(${n} STREQUAL "lesson1")
+ENDMACRO(ADD_TARGET)
 
-ADD_CUSTOM_TARGET(lesson1 DEPENDS ${MO_BIN_DIR}/tutorial/Lesson1/param)
+#SUBDIRS(examples Lesson1 Lesson2 Lesson3 Lesson4 Lesson5 Lesson6)
+ADD_SUBDIRECTORY(examples)
+ADD_SUBDIRECTORY(Lesson1)
+ADD_SUBDIRECTORY(Lesson2)
+ADD_SUBDIRECTORY(Lesson3)
+ADD_SUBDIRECTORY(Lesson4)
+ADD_SUBDIRECTORY(Lesson5)
+ADD_SUBDIRECTORY(Lesson6)
 
-ADD_CUSTOM_TARGET(lesson2 DEPENDS ${MO_BIN_DIR}/tutorial/Lesson2/param)
+######################################################################################
+### 4) Target to copy benchs and parameters file
+######################################################################################
 
-ADD_CUSTOM_TARGET(lesson3 DEPENDS ${MO_BIN_DIR}/tutorial/Lesson3/param)
-
-ADD_CUSTOM_TARGET(lesson4 DEPENDS ${MO_BIN_DIR}/tutorial/Lesson4/param)
-
-ADD_CUSTOM_TARGET(lesson5 DEPENDS ${MO_BIN_DIR}/tutorial/Lesson5/param)
-
-ADD_CUSTOM_TARGET(lesson6 DEPENDS ${MO_BIN_DIR}/tutorial/Lesson6/param)
+ADD_COMMANDS()
+ADD_TARGET(install)
+ADD_TARGET(benchs)

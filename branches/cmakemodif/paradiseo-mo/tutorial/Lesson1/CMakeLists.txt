@@ -18,10 +18,12 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${FUNCTION_BIN_DIR}/lib)
 ######################################################################################
 
 
-
 ######################################################################################
 ### 3) Define your target(s): just an executable here
 ######################################################################################
+
+ADD_COMMANDS()
+ADD_TARGET(lesson1)
 
 IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
 	SOURCE_GROUP(src FILES minimize_function.cpp)
@@ -31,7 +33,7 @@ IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "
 		${MO_BIN_DIR}/tutorial/Lesson1/param
 	) 
 ELSE(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
-	ADD_EXECUTABLE(minimize_function minimize_function.cpp) 
+	ADD_EXECUTABLE(minimize_function  EXCLUDE_FROM_ALL minimize_function.cpp) 
 ENDIF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
 
 ADD_DEPENDENCIES(minimize_function function)
@@ -40,9 +42,12 @@ ADD_DEPENDENCIES(minimize_function function)
 
 
 
+
+
 ######################################################################################
 ### 4) Optionnal: define your target(s)'s version: no effect for windows
 ######################################################################################
+
 
 SET(MINIMIZEFUNCTION_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(minimize_function PROPERTIES VERSION "${MINIMIZEFUNCTION_VERSION}")

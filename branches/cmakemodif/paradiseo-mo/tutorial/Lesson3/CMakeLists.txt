@@ -24,6 +24,9 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${TSP_BIN_DIR}/lib)
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
+ADD_COMMANDS()
+ADD_TARGET(lesson3)
+
 IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
 	SOURCE_GROUP(src FILES tabu_search.cpp)
 	
