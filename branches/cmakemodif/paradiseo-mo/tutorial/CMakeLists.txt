@@ -203,7 +203,6 @@ MACRO(ADD_TARGET n)
 	ENDIF(${n} STREQUAL "lesson1")
 ENDMACRO(ADD_TARGET)
 
-#SUBDIRS(examples Lesson1 Lesson2 Lesson3 Lesson4 Lesson5 Lesson6)
 ADD_SUBDIRECTORY(examples)
 ADD_SUBDIRECTORY(Lesson1)
 ADD_SUBDIRECTORY(Lesson2)
