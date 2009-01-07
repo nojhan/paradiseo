@@ -15,8 +15,7 @@ SET(FUNCTION_BIN_DIR ${MO_BIN_DIR}/tutorial/examples/function CACHE PATH "FUNCTI
 ### 2) How to manage copy of benchs ?
 ######################################################################################
 
-
-IF(ENABLE_CMAKE_EXAMPLE)
+IF(ENABLE_CMAKE_EXAMPLE OR CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
 	SET(BENCH_LIST
 		berlin52.tsp
 		eil101.tsp
@@ -52,7 +51,7 @@ IF(ENABLE_CMAKE_EXAMPLE)
 			${MO_SRC_DIR}/tutorial/Lesson6/param
 			${MO_BIN_DIR}/tutorial/Lesson6/param
 	)
-ENDIF(ENABLE_CMAKE_EXAMPLE)
+ENDIF(ENABLE_CMAKE_EXAMPLE OR CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
 
 ######################################################################################
 ### 3) Where must cmake go now ?
