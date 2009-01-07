@@ -212,6 +212,14 @@ ADD_SUBDIRECTORY(Lesson6)
 ### 4) Target to copy benchs and parameters file
 ######################################################################################
 
-ADD_COMMANDS()
-ADD_TARGET(install)
-ADD_TARGET(benchs)
+IF(NOT CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" AND  NOT CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
+	ADD_COMMANDS()
+	ADD_TARGET(install)
+	ADD_TARGET(benchs)
+	ADD_TARGET(lesson1)
+	ADD_TARGET(lesson2)
+	ADD_TARGET(lesson3)
+	ADD_TARGET(lesson4)
+	ADD_TARGET(lesson5)
+	ADD_TARGET(lesson6)
+ENDIF(NOT CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" AND NOT CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
