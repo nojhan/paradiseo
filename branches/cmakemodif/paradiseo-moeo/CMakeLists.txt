@@ -1,3 +1,4 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6 FATAL_ERROR)
 
 ##########################################################################################################################################
 ### 0) If you want to set your own variables in moeo-conf.cmake and avoid the cmd line
