@@ -57,7 +57,7 @@ ENDIF(ENABLE_CMAKE_EXAMPLE OR CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR
 ### 3) Where must cmake go now ?
 ######################################################################################
 
-MACRO(ADD_COMMANDS)
+MACRO(ADD_COMMANDS_MO)
 	ADD_CUSTOM_COMMAND(
 	OUTPUT 
     	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
@@ -117,9 +117,9 @@ MACRO(ADD_COMMANDS)
 	    	${MO_SRC_DIR}/tutorial/Lesson6/param
 	    	${MO_BIN_DIR}/tutorial/Lesson6
 	)
-ENDMACRO(ADD_COMMANDS)
+ENDMACRO(ADD_COMMANDS_MO)
 
-MACRO(ADD_TARGET n)
+MACRO(ADD_TARGET_MO n)
 	IF(${n} STREQUAL "lesson1")
 		ADD_CUSTOM_TARGET(lesson1 DEPENDS
 			${MO_BIN_DIR}/tutorial/Lesson1/param
@@ -198,7 +198,13 @@ MACRO(ADD_TARGET n)
 	    	${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
 		)	
 	ENDIF(${n} STREQUAL "lesson1")
-ENDMACRO(ADD_TARGET)
+ENDMACRO(ADD_TARGET_MO)
+
+IF(NOT CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" AND  NOT CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
+	ADD_COMMANDS_MO()
+	ADD_TARGET_MO(install)
+	ADD_TARGET_MO(benchs)
+ENDIF(NOT CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" AND NOT CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
 
 ADD_SUBDIRECTORY(examples)
 ADD_SUBDIRECTORY(Lesson1)
@@ -207,19 +213,3 @@ ADD_SUBDIRECTORY(Lesson3)
 ADD_SUBDIRECTORY(Lesson4)
 ADD_SUBDIRECTORY(Lesson5)
 ADD_SUBDIRECTORY(Lesson6)
-
-######################################################################################
-### 4) Target to copy benchs and parameters file
-######################################################################################
-
-IF(NOT CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" AND  NOT CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
-	ADD_COMMANDS()
-	ADD_TARGET(install)
-	ADD_TARGET(benchs)
-	ADD_TARGET(lesson1)
-	ADD_TARGET(lesson2)
-	ADD_TARGET(lesson3)
-	ADD_TARGET(lesson4)
-	ADD_TARGET(lesson5)
-	ADD_TARGET(lesson6)
-ENDIF(NOT CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" AND NOT CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
