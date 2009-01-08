@@ -1,4 +1,6 @@
-
+IF(COMMAND cmake_policy)
+      CMAKE_POLICY(SET CMP0003 NEW)
+ENDIF(COMMAND cmake_policy)
 ######################################################################################
 ### 1) Definitions (required for tsp target)
 ######################################################################################
