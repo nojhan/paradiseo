@@ -88,7 +88,7 @@ ENDIF(CMAKE_BUILD_TYPE MATCHES Debug)
 ### Copy of benchs and parameter files config
 ######################################################################################
 
-SET(ENABLE_CMAKE_COPY TRUE CACHE BOOL "Enable copy of benchs and parameters file?")
+SET(ENABLE_CMAKE_EXAMPLE TRUE CACHE BOOL "Enable copy of benchs and parameters file?")
 
 ######################################################################################
 ### Test config
