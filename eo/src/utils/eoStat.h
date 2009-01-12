@@ -71,7 +71,7 @@ public:
     virtual std::string className(void) const
         { return "eoStat"; }
 
-    
+
     eoStat<EOT, T>& addTo(eoCheckPoint<EOT>& cp)        { cp.add(*this);  return *this; }
     eoStat<EOT, T>& addTo(eoMonitor& mon)               { mon.add(*this); return *this; }
 };
@@ -87,7 +87,7 @@ class eoSortedStatBase : public eoUF<const std::vector<const EOT*>&, void>
 public:
   virtual void lastCall(const std::vector<const EOT*>&) {}
   virtual std::string className(void) const { return "eoSortedStatBase"; }
-    
+
 };
 
 /**
@@ -101,7 +101,7 @@ class eoSortedStat : public eoSortedStatBase<EOT>, public eoValueParam<ParamType
 public :
   eoSortedStat(ParamType _value, std::string _desc) : eoValueParam<ParamType>(_value, _desc) {}
   virtual std::string className(void) const { return "eoSortedStat"; }
-    
+
     eoSortedStat<EOT, ParamType>& addTo(eoCheckPoint<EOT>& cp)        { cp.add(*this);  return *this; }
     eoSortedStat<EOT, ParamType>& addTo(eoMonitor& mon)               { mon.add(*this); return *this; }
 };
@@ -392,7 +392,7 @@ class eoDistanceStat : public eoStat<EOT, double>
 {
 public:
 
-    using eoDistanceStat< EOT >::value;
+    using eoStat<EOT, double>::value;
 
     eoDistanceStat(std::string _name = "distance")
         : eoStat<EOT, double>(0.0, _name)

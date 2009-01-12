@@ -1,4 +1,4 @@
-
+	
 ######################################################################################
 ### 0) If you want to set your variables in eo-conf.cmake and avoid the cmd line
 ######################################################################################
@@ -24,7 +24,7 @@ SET(VERSION "1.02" CACHE STRING "Global version" FORCE)
 SET(GLOBAL_VERSION "${VERSION}")
 
 # check cmake version compatibility
-CMAKE_MINIMUM_REQUIRED(VERSION 2.4 FATAL_ERROR)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6 FATAL_ERROR)
 
 # regular expression checking
 INCLUDE_REGULAR_EXPRESSION("^.*$" "^$")
@@ -51,9 +51,6 @@ INCLUDE(ConfigureChecks.cmake)
 
 INCLUDE(Dart OPTIONNAL)         
                            
-# the project can have a DartConfig.cmake file
-#INCLUDE(DartConfig.cmake OPTIONNAL)
-        
 # now create config headers
 configure_file(config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
@@ -110,12 +107,15 @@ ENDIF(CMAKE_BUILD_TYPE MATCHES Debug)
 
 #####################################################################################
 
+######################################################################################
+### compilation of examples?
+######################################################################################
+
+SET(ENABLE_CMAKE_EXAMPLE TRUE CACHE BOOL "Enable copy of benchs and parameters file?")
 
 ######################################################################################
 ### 4) Test config
 ######################################################################################
-
-#SET(ENABLE_CMAKE_TESTING TRUE CACHE BOOL "Enable testing ?")
 
 IF (ENABLE_CMAKE_TESTING)  
         ENABLE_TESTING()          
@@ -127,6 +127,9 @@ ENDIF (ENABLE_CMAKE_TESTING)
 ### 5) Where must cmake go now ?
 ######################################################################################
 
-SUBDIRS(app doc src test tutorial)
-
+ADD_SUBDIRECTORY(app)
+ADD_SUBDIRECTORY(doc)
+ADD_SUBDIRECTORY(src)
+ADD_SUBDIRECTORY(test)
+ADD_SUBDIRECTORY(tutorial)
 ######################################################################################

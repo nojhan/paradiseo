@@ -3,6 +3,7 @@
 ### 1) Where must cmake go now ?
 ######################################################################################
 
-SUBDIRS(gprop gpsymreg mastermind)
-
+ADD_SUBDIRECTORY(gprop)
+ADD_SUBDIRECTORY(gpsymreg)
+ADD_SUBDIRECTORY(mastermind)
 ######################################################################################

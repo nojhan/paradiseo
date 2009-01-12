@@ -3,23 +3,32 @@
 ### 0) Copy the ESEA.param and RealEA.param files in the build directory for an easy use.
 ######################################################################################
 
-ADD_CUSTOM_TARGET(param DEPENDS ${EO_SOURCE_DIR}/tutorial/Lesson4/ESEA.param)
-ADD_CUSTOM_COMMAND(
-    TARGET param
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND}
-    ARGS -E copy_if_different
-     ${EO_SOURCE_DIR}/tutorial/Lesson4/ESEA.param
-     ${EO_BINARY_DIR}/tutorial/Lesson4)
+EXECUTE_PROCESS(
+   	COMMAND ${CMAKE_COMMAND} -E copy_if_different
+		${EO_SOURCE_DIR}/tutorial/Lesson4/ESEA.param
+		${EO_BINARY_DIR}/tutorial/Lesson4/ESEA.param
+	COMMAND ${CMAKE_COMMAND} -E copy_if_different
+		${EO_SOURCE_DIR}/tutorial/Lesson4/RealEA.param
+		${EO_BINARY_DIR}/tutorial/Lesson4/RealEA.param
+)
+
+#ADD_CUSTOM_TARGET(param DEPENDS ${EO_SOURCE_DIR}/tutorial/Lesson4/ESEA.param)
+#ADD_CUSTOM_COMMAND(
+#    TARGET param
+#    POST_BUILD
+#    COMMAND ${CMAKE_COMMAND}
+#    ARGS -E copy_if_different
+#     ${EO_SOURCE_DIR}/tutorial/Lesson4/ESEA.param
+#     ${EO_BINARY_DIR}/tutorial/Lesson4)
     
-ADD_CUSTOM_TARGET(param DEPENDS ${EO_SOURCE_DIR}/tutorial/Lesson4/RealEA.param)
-ADD_CUSTOM_COMMAND(
-    TARGET param
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND}
-    ARGS -E copy_if_different
-     ${EO_SOURCE_DIR}/tutorial/Lesson4/RealEA.param
-     ${EO_BINARY_DIR}/tutorial/Lesson4) 
+#ADD_CUSTOM_TARGET(param DEPENDS ${EO_SOURCE_DIR}/tutorial/Lesson4/RealEA.param)
+#ADD_CUSTOM_COMMAND(
+#    TARGET param
+#    POST_BUILD
+#    COMMAND ${CMAKE_COMMAND}
+#    ARGS -E copy_if_different
+#     ${EO_SOURCE_DIR}/tutorial/Lesson4/RealEA.param
+#     ${EO_BINARY_DIR}/tutorial/Lesson4) 
 
 
 ######################################################################################
