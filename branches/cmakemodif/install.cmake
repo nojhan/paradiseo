@@ -72,7 +72,7 @@ IF(WIN32 AND NOT CYGWIN)
   ENDIF(CMAKE_CXX_COMPILER MATCHES cl)  
 ELSE(WIN32 AND NOT CYGWIN)
     IF(CMAKE_COMPILER_IS_GNUCXX)
-       SET(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g -fprofile-arcs -ftest-coverage -Wall -Wextra")                       
+       SET(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g -fprofile-arcs -ftest-coverage -Wall -Wextra -Wno-unused-parameter")                       
        SET(CMAKE_CXX_FLAGS_RELEASE  "${CMAKE_CXX_FLAGS_RELEASE} -O2")
        SET(CMAKE_CXX_FLAGS_MINSIZEREL "${CMAKE_CXX_FLAGS_MINSIZEREL} -O6")       
     ENDIF(CMAKE_COMPILER_IS_GNUCXX)  
@@ -85,7 +85,7 @@ ENDIF(CMAKE_BUILD_TYPE MATCHES Debug)
 #####################################################################################
 
 ######################################################################################
-### Copy of benchs and parameter files config
+### compilation of examples?
 ######################################################################################
 
 SET(ENABLE_CMAKE_EXAMPLE TRUE CACHE BOOL "Enable copy of benchs and parameters file?")
@@ -93,8 +93,6 @@ SET(ENABLE_CMAKE_EXAMPLE TRUE CACHE BOOL "Enable copy of benchs and parameters f
 ######################################################################################
 ### Test config
 ######################################################################################
-
-#SET(ENABLE_CMAKE_TESTING TRUE CACHE BOOL "Enable testing ?")
 
 IF (ENABLE_CMAKE_TESTING OR ENABLE_MINIMAL_CMAKE_TESTING)  
         ENABLE_TESTING()
