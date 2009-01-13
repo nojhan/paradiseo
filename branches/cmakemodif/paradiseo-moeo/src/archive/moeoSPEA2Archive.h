@@ -141,12 +141,12 @@ public:
      */
     void operator()(const eoPop < MOEOT > & _pop)
     {
-        unsigned int i=0;
+        unsigned int i;
         unsigned int foo=0;
 
         //Creation of the vector that contains minimal pop's informations
         std::vector<struct refpop> copy_pop(_pop.size());
-        for (i;i<_pop.size(); i++)
+        for (i=0;i<_pop.size(); i++)
         {
             copy_pop[i].index=i;
             copy_pop[i].fitness=_pop[i].fitness();
@@ -250,7 +250,7 @@ public:
                     for (l=0; l<matrice.size(); l++)
                     {
                         it=matrice[l].begin();
-                        while ((*it).first != tmp2)
+                        while ((unsigned int)(*it).first != tmp2)
                             it++;
                         matrice[l].erase(it);
                     }

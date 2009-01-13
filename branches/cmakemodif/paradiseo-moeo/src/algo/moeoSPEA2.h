@@ -129,7 +129,7 @@ public:
     /**
         * Ctor with a crossover, a mutation and their corresponding rates.
         * @param _continuator stopping criteria
-        * @param _eval evaluation function
+    popEval    * @param _eval evaluation function
         * @param _op general operator
         * @param _archive archive
         * @param _k the k-ieme distance used to fixe diversity
@@ -241,14 +241,16 @@ class eoDummyTransform : public eoTransform<MOEOT>
     eoPopLoopEval < MOEOT > loopEval;
     /** evaluation function used to evaluate the whole population */
     eoPopEvalFunc < MOEOT > & popEval;
+    /**archive*/
+    moeoArchive < MOEOT >& archive;
     /** selectMany */
     eoSelectMany <MOEOT>  selectMany;
     /** select Transform*/
     eoSelectTransform <MOEOT> selectTransform;
-    /** binary tournament selection */
-    moeoSelectFromPopAndArch < MOEOT > select;
     /**SelectOne*/
     moeoDetTournamentSelect < MOEOT > defaultSelect;
+    /** binary tournament selection */
+    moeoSelectFromPopAndArch < MOEOT > select;
     /** fitness assignment used in NSGA-II */
     moeoDominanceCountRankingFitnessAssignment < MOEOT > fitnessAssignment;
     /** diversity assignment used in NSGA-II */
@@ -267,8 +269,7 @@ class eoDummyTransform : public eoTransform<MOEOT>
     eoBreed < MOEOT > & breed;
     /**distance*/
     moeoEuclideanDistance < MOEOT > dist;
-    /**archive*/
-    moeoArchive < MOEOT >& archive;
+
 
 };
 
