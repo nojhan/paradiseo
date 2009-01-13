@@ -131,7 +131,7 @@ class moTS:public moAlgo < typename M::EOType >
 	(*move_explorer) (_solution, new_solution);
 	
 	// Updating the best solution found until now ?
-	if (new_solution.fitness() > _solution.fitness())
+	if (new_solution.fitness() > best_solution.fitness())
 	  {
 	    best_solution = new_solution;
 	  }
