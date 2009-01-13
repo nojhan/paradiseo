@@ -5,22 +5,31 @@
 
 SET (CMAKE_CXX_COMPILER mpicxx)
 
-ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/param ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/schema.xml)
+#ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/param ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/schema.xml)
 
-ADD_CUSTOM_COMMAND(
-    TARGET install
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND}
-    ARGS -E copy_if_different
-      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/param
-      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson1)
-ADD_CUSTOM_COMMAND(
-    TARGET install
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND}
-    ARGS -E copy_if_different
+#ADD_CUSTOM_COMMAND(
+#    TARGET install
+#    POST_BUILD
+#    COMMAND ${CMAKE_COMMAND}
+#    ARGS -E copy_if_different
+#      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/param
+#      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson1)
+#ADD_CUSTOM_COMMAND(
+#    TARGET install
+#    POST_BUILD
+#    COMMAND ${CMAKE_COMMAND}
+#    ARGS -E copy_if_different
+#      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/schema.xml
+#      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson1)
+
+EXECUTE_PROCESS(
+	COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    	${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/param
+      	${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson1
+  	COMMAND ${CMAKE_COMMAND} -E copy_if_different
       ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson1/schema.xml
-      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson1)
+      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson1
+)
 
 ######################################################################################
 
@@ -48,7 +57,7 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DIR}/lib)
 ######################################################################################
 
 ADD_EXECUTABLE(pso mainPSO.cpp)
-ADD_DEPENDENCIES(pso peo rmc_mpi) 
+ADD_DEPENDENCIES(pso peo rmc_mpi)
 ADD_EXECUTABLE(ea mainEA.cpp)
 ADD_DEPENDENCIES(ea peo rmc_mpi)
 ######################################################################################

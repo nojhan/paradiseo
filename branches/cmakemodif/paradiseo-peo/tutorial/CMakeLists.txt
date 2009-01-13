@@ -14,6 +14,12 @@ SET(FLOWSHOP_BIN_DIR "${MOEO_BIN_DIR}/tutorial/examples/flowshop" CACHE PATH "Fl
 ### 2) Where must cmake go now ?
 ######################################################################################
 
-SUBDIRS(examples Lesson1 Lesson2 Lesson3 Lesson4 Lesson5 Lesson6 Meta-models)
-
+ADD_SUBDIRECTORY(examples)
+ADD_SUBDIRECTORY(Lesson1)
+ADD_SUBDIRECTORY(Lesson2)
+ADD_SUBDIRECTORY(Lesson3)
+ADD_SUBDIRECTORY(Lesson4)
+ADD_SUBDIRECTORY(Lesson5)
+ADD_SUBDIRECTORY(Lesson6)
+ADD_SUBDIRECTORY(Meta-models)
 ######################################################################################

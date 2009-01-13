@@ -5,22 +5,31 @@
 
 SET (CMAKE_CXX_COMPILER mpicxx)
 
-ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson4/param ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson4/schema.xml)
+#ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson4/param ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson4/schema.xml)
 
-ADD_CUSTOM_COMMAND(
-    TARGET install
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND}
-    ARGS -E copy_if_different
-      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson4/param
-      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson4)
-ADD_CUSTOM_COMMAND(
-    TARGET install
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND}
-    ARGS -E copy_if_different
-      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson4/schema.xml
-      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson4)
+#ADD_CUSTOM_COMMAND(
+#    TARGET install
+#    POST_BUILD
+#    COMMAND ${CMAKE_COMMAND}
+#    ARGS -E copy_if_different
+#      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson4/param
+#      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson4)
+#ADD_CUSTOM_COMMAND(
+#    TARGET install
+#    POST_BUILD
+#    COMMAND ${CMAKE_COMMAND}
+#    ARGS -E copy_if_different
+#      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson4/schema.xml
+#      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson4)
+
+EXECUTE_PROCESS(
+	COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      	${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson4/param
+      	${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson4
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+     	${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson4/schema.xml
+      	${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson4
+)
 
 ######################################################################################
 
