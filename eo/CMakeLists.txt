@@ -1,12 +1,8 @@
-	
 ######################################################################################
 ### 0) If you want to set your variables in eo-conf.cmake and avoid the cmd line
 ######################################################################################
 
 INCLUDE(eo-conf.cmake OPTIONAL)
-
-######################################################################################
- 
 
 ######################################################################################
 ### 1) Main project config 
@@ -33,12 +29,10 @@ INCLUDE_REGULAR_EXPRESSION("^.*$" "^$")
 ENABLE_LANGUAGE(CXX)
 ENABLE_LANGUAGE(C)
 
-####################################################################################
-
-
 #####################################################################################
 ### 2) Include required modules / configuration files
 #####################################################################################
+
 INCLUDE(CMakeBackwardCompatibilityCXX)
 
 INCLUDE(FindDoxygen)
@@ -58,9 +52,7 @@ configure_file(config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 IF (WIN32)
 	ADD_DEFINITIONS(-D_WINDOWS=1)
 ENDIF (WIN32)
-######################################################################################
-
-       
+    
 #####################################################################################
 ### 3) Manage the build type
 #####################################################################################
@@ -95,7 +87,7 @@ IF(WIN32 AND NOT CYGWIN)
   ENDIF(CMAKE_CXX_COMPILER MATCHES cl)  
 ELSE(WIN32 AND NOT CYGWIN)
     IF(CMAKE_COMPILER_IS_GNUCXX)
-       SET(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g -fprofile-arcs -ftest-coverage -Wall -Wextra")                       
+       SET(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g -fprofile-arcs -ftest-coverage -Wall -Wextra -Wno-unused-parameter -Wno-ignored-qualifiers")                       
        SET(CMAKE_CXX_FLAGS_RELEASE  "${CMAKE_CXX_FLAGS_RELEASE} -O2")
        SET(CMAKE_CXX_FLAGS_MINSIZEREL "${CMAKE_CXX_FLAGS_MINSIZEREL} -O6")       
     ENDIF(CMAKE_COMPILER_IS_GNUCXX)  
@@ -104,8 +96,6 @@ ENDIF(WIN32 AND NOT CYGWIN)
 IF(CMAKE_BUILD_TYPE MATCHES Debug)
     ADD_DEFINITIONS(-DCMAKE_VERBOSE_MAKEFILE=ON)
 ENDIF(CMAKE_BUILD_TYPE MATCHES Debug)
-
-#####################################################################################
 
 ######################################################################################
 ### compilation of examples?
@@ -120,8 +110,6 @@ SET(ENABLE_CMAKE_EXAMPLE TRUE CACHE BOOL "Enable copy of benchs and parameters f
 IF (ENABLE_CMAKE_TESTING)  
         ENABLE_TESTING()          
 ENDIF (ENABLE_CMAKE_TESTING)
-######################################################################################
-
 
 ######################################################################################
 ### 5) Where must cmake go now ?
@@ -132,4 +120,5 @@ ADD_SUBDIRECTORY(doc)
 ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(test)
 ADD_SUBDIRECTORY(tutorial)
+
 ######################################################################################

@@ -1,5 +1,3 @@
-
-
 ######################################################################################
 ### 1) Include the sources
 ######################################################################################
@@ -7,10 +5,6 @@
 INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src)
 INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src/ga)
 INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src/utils)
-
-######################################################################################
-
-
 
 ######################################################################################
 ### 2) Specify where CMake can find the libraries
@@ -26,10 +20,6 @@ IF(WIN32 AND NOT CYGWIN)
 ENDIF(WIN32 AND NOT CYGWIN) 
 
 ######################################################################################
-
-
-
-######################################################################################
 ### 3) Define your targets
 ######################################################################################
 
@@ -37,9 +27,6 @@ ENDIF(WIN32 AND NOT CYGWIN)
 ADD_EXECUTABLE(FirstBitEA FirstBitEA.cpp) 
 ADD_EXECUTABLE(FirstRealEA FirstRealEA.cpp) 
 ADD_EXECUTABLE(exercise2.3 exercise2.3.cpp) 
-######################################################################################
-
-
 
 ######################################################################################
 ### 4) Optionnal
@@ -53,9 +40,6 @@ SET_TARGET_PROPERTIES(FirstRealEA PROPERTIES VERSION "${FIRSTREALEA_VERSION}")
 
 SET(EXERCICE23_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(exercise2.3 PROPERTIES VERSION "${EXERCICE23_VERSION}")
-######################################################################################
-
-
 
 ######################################################################################
 ### 5) Link the librairies for the targets

@@ -1,14 +1,9 @@
-
-
 ######################################################################################
 ### 1) Include the sources
 ######################################################################################
 
 INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
-######################################################################################
-
-
 
 ######################################################################################
 ### 2) Specify where CMake can find the libraries
@@ -24,10 +19,6 @@ IF(WIN32 AND NOT CYGWIN)
 ENDIF(WIN32 AND NOT CYGWIN) 
 
 ######################################################################################
-
-
-
-######################################################################################
 ### 3) Define your targets
 ######################################################################################
 
@@ -37,9 +28,6 @@ ADD_EXECUTABLE(OneMaxLibEA OneMaxLibEA.cpp make_OneMax.cpp)
 
 ADD_DEPENDENCIES(OneMaxEA es ga eo eoutils)
 ADD_DEPENDENCIES(OneMaxLibEA es ga eo eoutils)
-######################################################################################
-
-
 
 ######################################################################################
 ### 4) Optionnal
@@ -50,9 +38,6 @@ SET_TARGET_PROPERTIES(OneMaxEA PROPERTIES VERSION "${ONEMAXEA_VERSION}")
 
 SET(ONEMAXLIBEA_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(OneMaxLibEA PROPERTIES VERSION "${ONEMAXLIBEA_VERSION}")
-######################################################################################
-
-
 
 ######################################################################################
 ### 5) Link the librairies for the targets

@@ -1,4 +1,3 @@
-
 ######################################################################################
 ### 0) Copy the ESEA.param and RealEA.param files in the build directory for an easy use.
 ######################################################################################
@@ -12,6 +11,9 @@ EXECUTE_PROCESS(
 		${EO_BINARY_DIR}/tutorial/Lesson4/RealEA.param
 )
 
+##############
+# OLD_TARGETS
+##############
 #ADD_CUSTOM_TARGET(param DEPENDS ${EO_SOURCE_DIR}/tutorial/Lesson4/ESEA.param)
 #ADD_CUSTOM_COMMAND(
 #    TARGET param
@@ -19,8 +21,7 @@ EXECUTE_PROCESS(
 #    COMMAND ${CMAKE_COMMAND}
 #    ARGS -E copy_if_different
 #     ${EO_SOURCE_DIR}/tutorial/Lesson4/ESEA.param
-#     ${EO_BINARY_DIR}/tutorial/Lesson4)
-    
+#     ${EO_BINARY_DIR}/tutorial/Lesson4)   
 #ADD_CUSTOM_TARGET(param DEPENDS ${EO_SOURCE_DIR}/tutorial/Lesson4/RealEA.param)
 #ADD_CUSTOM_COMMAND(
 #    TARGET param
@@ -30,7 +31,6 @@ EXECUTE_PROCESS(
 #     ${EO_SOURCE_DIR}/tutorial/Lesson4/RealEA.param
 #     ${EO_BINARY_DIR}/tutorial/Lesson4) 
 
-
 ######################################################################################
 ### 1) Include the sources
 ######################################################################################
@@ -39,9 +39,6 @@ INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src)
 INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src/es)
 INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src/utils)
 INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src/ga)
-######################################################################################
-
-
 
 ######################################################################################
 ### 2) Specify where CMake can find the libraries
@@ -57,10 +54,6 @@ IF(WIN32 AND NOT CYGWIN)
 ENDIF(WIN32 AND NOT CYGWIN) 
 
 ######################################################################################
-
-
-
-######################################################################################
 ### 3) Define your targets
 ######################################################################################
 
@@ -72,9 +65,6 @@ ADD_EXECUTABLE(ESEA ESEA.cpp)
 #ADD_DEPENDENCIES(BitEA es ga eo eoutils)
 #ADD_DEPENDENCIES(RealEA es ga eo eoutils)
 #ADD_DEPENDENCIES(ESEA es ga eo eoutils)
-######################################################################################
-
-
 
 ######################################################################################
 ### 4) Optionnal
@@ -88,9 +78,6 @@ SET_TARGET_PROPERTIES(RealEA PROPERTIES VERSION "${REALEA_VERSION}")
 
 SET(ESEA_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(ESEA PROPERTIES VERSION "${ESEA_VERSION}")
-######################################################################################
-
-
 
 ######################################################################################
 ### 5) Link the librairies for the targets

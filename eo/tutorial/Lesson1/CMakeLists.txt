@@ -1,5 +1,3 @@
-
-
 ######################################################################################
 ### 1) Include the sources
 ######################################################################################
@@ -7,10 +5,6 @@
 INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src)
 INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src/ga)
 INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src/utils)
-
-######################################################################################
-
-
 
 ######################################################################################
 ### 2) Specify where CMake can find the libraries
@@ -26,10 +20,6 @@ IF(WIN32 AND NOT CYGWIN)
 ENDIF(WIN32 AND NOT CYGWIN) 
 
 ######################################################################################
-
-
-
-######################################################################################
 ### 3) Define your targets
 ######################################################################################
 
@@ -41,9 +31,6 @@ ADD_EXECUTABLE(exercise1.3 exercise1.3.cpp)
 ADD_DEPENDENCIES(FirstBitGA ga eo eoutils)
 ADD_DEPENDENCIES(FirstRealGA ga eo eoutils)
 ADD_DEPENDENCIES(exercise1.3 ga eo eoutils)
-######################################################################################
-
-
 
 ######################################################################################
 ### 4) Optionnal
@@ -57,9 +44,6 @@ SET_TARGET_PROPERTIES(FirstRealGA PROPERTIES VERSION "${FIRSTREALGA_VERSION}")
 
 SET(EXERCICE13_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(exercise1.3 PROPERTIES VERSION "${EXERCICE13_VERSION}")
-######################################################################################
-
-
 
 ######################################################################################
 ### 5) Link the librairies for the targets

@@ -1,5 +1,3 @@
-
-
 ######################################################################################
 ### 1) Include the sources
 ######################################################################################
@@ -7,10 +5,6 @@
 INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src)
 INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src/ga)
 INCLUDE_DIRECTORIES(${EO_SOURCE_DIR}/src/utils)
-
-######################################################################################
-
-
 
 ######################################################################################
 ### 2) Specify where CMake can find the libraries
@@ -26,10 +20,6 @@ IF(WIN32 AND NOT CYGWIN)
 ENDIF(WIN32 AND NOT CYGWIN) 
 
 ######################################################################################
-
-
-
-######################################################################################
 ### 3) Define your targets
 ######################################################################################
 
@@ -41,9 +31,6 @@ ADD_EXECUTABLE(exercise3.1 exercise3.1.cpp)
 ADD_DEPENDENCIES(SecondBitEA ga eoutils eo)
 ADD_DEPENDENCIES(SecondRealEA ga eoutils eo)
 ADD_DEPENDENCIES(exercise3.1 ga eoutils eo)
-######################################################################################
-
-
 
 ######################################################################################
 ### 4) Optionnal
@@ -57,9 +44,6 @@ SET_TARGET_PROPERTIES(SecondRealEA PROPERTIES VERSION "${SECONDREALEA_VERSION}")
 
 SET(EXERCICE31_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(exercise3.1 PROPERTIES VERSION "${EXERCICE31_VERSION}")
-######################################################################################
-
-
 
 ######################################################################################
 ### 5) Link the librairies for the targets
