@@ -50,8 +50,8 @@ IF(ENABLE_CMAKE_EXAMPLE OR CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CM
 			${MO_SRC_DIR}/tutorial/Lesson5/param
 			${MO_BIN_DIR}/tutorial/Lesson5/param
     	COMMAND ${CMAKE_COMMAND} -E copy_if_different
-			${MO_SRC_DIR}/tutorial/Lesson6/param
-			${MO_BIN_DIR}/tutorial/Lesson6/param
+			${MO_SRC_DIR}/tutorial/HybridLesson/param
+			${MO_BIN_DIR}/tutorial/HybridLesson/param
 	)
 ENDIF(ENABLE_CMAKE_EXAMPLE OR CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
 
@@ -116,61 +116,56 @@ MACRO(ADD_COMMANDS_MO)
 	ADD_CUSTOM_COMMAND(
 	    OUTPUT ${MO_BIN_DIR}/tutorial/Lesson6/param
 	    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-	    	${MO_SRC_DIR}/tutorial/Lesson6/param
-	    	${MO_BIN_DIR}/tutorial/Lesson6
+	    	${MO_SRC_DIR}/tutorial/HybridLesson/param
+	    	${MO_BIN_DIR}/tutorial/HybridLesson
 	)
 ENDMACRO(ADD_COMMANDS_MO)
 
 MACRO(ADD_TARGET_MO n)
 	IF(${n} STREQUAL "lesson1")
-		ADD_CUSTOM_TARGET(lesson1 DEPENDS
+		ADD_CUSTOM_TARGET(lesson1 DEPENDS 
 			${MO_BIN_DIR}/tutorial/Lesson1/param
-			${MO_BIN_DIR}/tutorial/Lesson1/minimize_function
+			${MO_BIN_DIR}/tutorial/Lesson1/hill_climbing
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/rl5915.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
 		)
-	ELSEIF(${n} STREQUAL "lesson2")
+	ELSEIF(${n} STREQUAL "lesson2")	
 		ADD_CUSTOM_TARGET(lesson2 DEPENDS 
 			${MO_BIN_DIR}/tutorial/Lesson2/param
-			${MO_BIN_DIR}/tutorial/Lesson2/hill_climbing
+			${MO_BIN_DIR}/tutorial/Lesson2/tabu_search
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/rl5915.tsp
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
 		)
-	ELSEIF(${n} STREQUAL "lesson3")	
-		ADD_CUSTOM_TARGET(lesson3 DEPENDS 
+	ELSEIF(${n} STREQUAL "lesson3")			
+		ADD_CUSTOM_TARGET(lesson3 DEPENDS
 			${MO_BIN_DIR}/tutorial/Lesson3/param
-			${MO_BIN_DIR}/tutorial/Lesson3/tabu_search
+			${MO_BIN_DIR}/tutorial/Lesson3/simulated_annealing
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/rl5915.tsp
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
 		)
-	ELSEIF(${n} STREQUAL "lesson4")			
-		ADD_CUSTOM_TARGET(lesson4 DEPENDS
+	ELSEIF(${n} STREQUAL "lesson4")				
+		ADD_CUSTOM_TARGET(lesson4 DEPENDS 
 			${MO_BIN_DIR}/tutorial/Lesson4/param
-			${MO_BIN_DIR}/tutorial/Lesson4/simulated_annealing
+			${MO_BIN_DIR}/tutorial/Lesson4/iterated_local_search
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/rl5915.tsp
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
 		)
-	ELSEIF(${n} STREQUAL "lesson5")				
-		ADD_CUSTOM_TARGET(lesson5 DEPENDS 
-			${MO_BIN_DIR}/tutorial/Lesson5/param
-			${MO_BIN_DIR}/tutorial/Lesson5/iterated_local_search
-			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
-			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
-			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
-			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/rl5915.tsp
-			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
-		)
-	ELSEIF(${n} STREQUAL "lesson6")		
-		ADD_CUSTOM_TARGET(lesson6 DEPENDS 
-			${MO_BIN_DIR}/tutorial/Lesson6/param
-			${MO_BIN_DIR}/tutorial/Lesson6/hybrid_ga
+	ELSEIF(${n} STREQUAL "hybridlesson")		
+		ADD_CUSTOM_TARGET(hybridlesson DEPENDS 
+			${MO_BIN_DIR}/tutorial/HybridLesson/param
+			${MO_BIN_DIR}/tutorial/HybridLesson/hybrid_ga
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
@@ -184,7 +179,7 @@ MACRO(ADD_TARGET_MO n)
 			${MO_BIN_DIR}/tutorial/Lesson3/param
 			${MO_BIN_DIR}/tutorial/Lesson4/param
 			${MO_BIN_DIR}/tutorial/Lesson5/param
-			${MO_BIN_DIR}/tutorial/Lesson6/param
+			${MO_BIN_DIR}/tutorial/HybridLesson/param
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
@@ -214,4 +209,4 @@ ADD_SUBDIRECTORY(Lesson2)
 ADD_SUBDIRECTORY(Lesson3)
 ADD_SUBDIRECTORY(Lesson4)
 ADD_SUBDIRECTORY(Lesson5)
-ADD_SUBDIRECTORY(Lesson6)
+ADD_SUBDIRECTORY(HybridLesson)

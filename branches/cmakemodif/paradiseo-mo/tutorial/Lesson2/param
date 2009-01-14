@@ -4,6 +4,8 @@
 # --stopOnUnknownParam=1                   # Stop if unkown param entered
 
 ######    Configuration           ######
-# --instancePath=../examples/tsp/benchs/berlin52.tsp # Path to the instance.
-# --seed=1203517190                        # Seed for rand.
-# --selectionType=Best                     # Type of the selection: 'Best', 'First' or 'Random'.
+# --instancePath=../examples/tsp/benchs/berlin52.tsp # Path to the instance
+# --seed=1202917905                        # Seed for rand
+# --tabuListSize=10                        # Size of the tabu list
+# --maxIter=1000                           # Maximum number of iterations
+# --tabuListType=TwoOpt                    # Type of the tabu list: 'TwoOpt', 'SimpleMove' or 'SimpleSolution'
