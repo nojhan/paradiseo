@@ -7,18 +7,10 @@ INCLUDE_DIRECTORIES(${ParadisEO-MOEO_SOURCE_DIR}/src)
 INCLUDE_DIRECTORIES(${FLOWSHOP_SRC_DIR})
 
 ######################################################################################
-
-
-
-######################################################################################
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
 LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-MOEO_BINARY_DIR}/lib ${FLOWSHOP_BINARY_DIR}/lib)
-
-######################################################################################
-
-
 
 ######################################################################################
 ### 3) Define your target(s): just an executable here
@@ -67,9 +59,6 @@ ELSE(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL
 ENDIF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
 
 ADD_DEPENDENCIES(FlowShopEA2 flowshop moeo)
-######################################################################################
-
-
 
 ######################################################################################
 ### 4) Optionnal: define your target(s)'s version: no effect for windows
@@ -77,14 +66,10 @@ ADD_DEPENDENCIES(FlowShopEA2 flowshop moeo)
 
 SET(FlowShopEA2_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(FlowShopEA2 PROPERTIES VERSION "${FlowShopEA2_VERSION}")
-######################################################################################
-
-
 
 ######################################################################################
 ### 5) Link the librairies for your target(s)
 ######################################################################################
-
 
 TARGET_LINK_LIBRARIES(FlowShopEA2 moeo flowshop eo eoutils)
 

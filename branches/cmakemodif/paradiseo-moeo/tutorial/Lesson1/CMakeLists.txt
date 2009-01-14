@@ -1,4 +1,3 @@
-
 ######################################################################################
 ### 1) Include the sources
 ######################################################################################
@@ -6,19 +5,12 @@
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/utils)
 INCLUDE_DIRECTORIES(${ParadisEO-MOEO_SOURCE_DIR}/src)
-######################################################################################
-
-
 
 ######################################################################################
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
  
 LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-MOEO_BINARY_DIR}/lib)
-
-######################################################################################
-
-
 
 ######################################################################################
 ### 3) Define your target(s): just an executable here
@@ -40,9 +32,6 @@ ELSE(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL
 ENDIF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
 
 ADD_DEPENDENCIES(Sch1 moeo)
-######################################################################################
-
-
 
 ######################################################################################
 ### 4) Optionnal: define your target(s)'s version: no effect for windows
@@ -50,14 +39,10 @@ ADD_DEPENDENCIES(Sch1 moeo)
 
 SET(SCH1_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(Sch1 PROPERTIES VERSION "${SCH1_VERSION}")
-######################################################################################
-
-
 
 ######################################################################################
 ### 5) Link the librairies for your target(s)
 ######################################################################################
-
 
 TARGET_LINK_LIBRARIES(Sch1 moeo eo eoutils)
 
