@@ -1,4 +1,3 @@
-
 ######################################################################################
 ### 1) Include the sources
 ######################################################################################
@@ -7,17 +6,12 @@ INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src/utils)
 INCLUDE_DIRECTORIES(${MO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${TSP_SRC_DIR})
-######################################################################################
 
 ######################################################################################
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
  
 LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${TSP_BIN_DIR}/lib)
-
-######################################################################################
-
-
 
 ######################################################################################
 ### 3) Define your target(s): just an executable here
@@ -54,9 +48,6 @@ ELSE(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL
 ENDIF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
 
 ADD_DEPENDENCIES(simulated_annealing tsp)
-######################################################################################
-
-
 
 ######################################################################################
 ### 4) Optionnal: define your target(s)'s version: no effect for windows
@@ -64,9 +55,6 @@ ADD_DEPENDENCIES(simulated_annealing tsp)
 
 SET(SIMULATEDANNEALING_VERSION ${GLOBAL_VERSION})
 SET_TARGET_PROPERTIES(simulated_annealing PROPERTIES VERSION "${SIMULATEDANNEALING_VERSION}")
-######################################################################################
-
-
 
 ######################################################################################
 ### 5) Link the librairies for your target(s)
