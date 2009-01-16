@@ -72,5 +72,9 @@
 #include <moTabuList.h>
 #include <moTS.h>
 #include <moTSMoveLoopExpl.h>
+#include <moTA.h>
+#include <moExpl.h>
+#include <moVNS.h>
+
 
 #endif
