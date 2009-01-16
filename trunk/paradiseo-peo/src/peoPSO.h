@@ -68,7 +68,8 @@ template <class POT> class peoPSOSelect: public eoSelectOne<POT>
     //! @return POT&
     virtual const POT& operator()(const eoPop<POT>& _pop)
     {
-      return topology.globalBest(_pop);
+//return topology.globalBest(_pop);
+      return topology.globalBest();
     }
 
   private:

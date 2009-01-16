@@ -68,7 +68,7 @@ public :
 class testMoveIncrEval : public moMoveIncrEval <testMove>
 {
 public :
-  
+
   testMoveIncrEval() : counter(0)
   {}
 
@@ -94,17 +94,17 @@ public :
 
   solutionContinue() : counter(0)
   {}
-  
+
   bool operator () (const solution & _solution)
   {
     const solution sol(_solution);
-  
+
     if(counter==0)
       {
 	counter++;
 	return true;
       }
-  
+
     return false;
   }
 
@@ -145,17 +145,17 @@ main()
   int return_value;
 
   solution solution;
-  
+
   testRandMove rand;
   testMoveIncrEval incrEval;
   solutionContinue continu;
   testCooling cooling;
   solutionEval eval;
-  
+
   moTA<testMove> ta(rand, incrEval, continu, 10.0, cooling, eval);
-  
-  cout << "[ moTA                         ] ==> ";
-  
+
+  cout << "[ moTA ] ==> ";
+
   ta(solution);
 
   test_result=((solution.fitness()!=2)?"KO":"OK");

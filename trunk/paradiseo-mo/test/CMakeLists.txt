@@ -57,9 +57,9 @@ SET (TEST_LIST  t-moBestImprSelect
     		    t-moTS 
 		        t-moTS_2
     	    	t-moTSMoveLoopExpl
-    	    	t-moVNS
     	    	t-moTA
-)
+    	    	t-moVNS
+    	    	)
 				
 FOREACH (test ${TEST_LIST})
 	  SET ("T_${test}_SOURCES" "${test}.cpp")

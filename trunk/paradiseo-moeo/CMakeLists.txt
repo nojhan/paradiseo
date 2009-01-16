@@ -1,3 +1,4 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6 FATAL_ERROR)
 
 ##########################################################################################################################################
 ### 0) If you want to set your own variables in moeo-conf.cmake and avoid the cmd line
@@ -17,10 +18,10 @@ PROJECT(ParadisEO-MOEO)
 
 SET(PACKAGE_BUGREPORT "paradiseo-help@lists.gforge.inria.fr" CACHE STRING "Package bug report" FORCE)
 SET(PACKAGE_NAME "ParadisEO-MOEO - Multi Objective Evolving Objects" CACHE STRING "Package name" FORCE)
-SET(PACKAGE_STRING "ParadisEO-MOEO 1.1" CACHE STRING "MOEO Package string full name" FORCE)
-SET(PACKAGE_VERSION "1.1" CACHE STRING "Package version" FORCE)
-SET(GLOBAL_VERSION "1.1" CACHE STRING "Global version" FORCE)
-SET(VERSION "1.1" CACHE STRING "Version" FORCE)
+SET(PACKAGE_STRING "ParadisEO-MOEO 1.2" CACHE STRING "MOEO Package string full name" FORCE)
+SET(PACKAGE_VERSION "1.2" CACHE STRING "Package version" FORCE)
+SET(GLOBAL_VERSION "1.2" CACHE STRING "Global version" FORCE)
+SET(VERSION "1.2" CACHE STRING "Version" FORCE)
 ##########################################################################################################################################
 
 

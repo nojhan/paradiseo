@@ -58,6 +58,11 @@ class moNoAspirCrit:public moAspirCrit < M >
   */
   bool operator   () (const M & _move, const typename M::EOType::Fitness & _fitness)
   {
+    //Code only used to avoid warning because _move and _fitness are not used in this procedure.
+    const M move(_move);
+    typename M::EOType::Fitness fitness;
+    fitness=(typename M::EOType::Fitness)_fitness;
+
     return false;
   }
 

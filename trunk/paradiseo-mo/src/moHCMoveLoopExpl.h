@@ -116,7 +116,7 @@ class moHCMoveLoopExpl:public moMoveLoopExpl < M >
     //The best move is applied on the new solution.
     best_move(_new_solution);
     
-    //The fitness is set (avoid an additional fitness computation).
+    //The fitness is set (avoid an additional fitness compuation).
     _new_solution.fitness (best_fitness);
   }
 

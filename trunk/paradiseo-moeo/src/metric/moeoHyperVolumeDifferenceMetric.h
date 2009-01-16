@@ -135,8 +135,7 @@ class moeoHyperVolumeDifferenceMetric : public moeoVectorVsVectorBinaryMetric < 
      */
     void setup(const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2){
     	if(_set1.size() < 1 || _set2.size() < 1)
-    		std::cout << "Warning!!! In moeoHyperVolumeUnaryMetric::setup -> argument1: vector<ObjectiveVector> size must be greater than 0" << std::endl;
-    		//throw("Error in moeoHyperVolumeUnaryMetric::setup -> argument1: vector<ObjectiveVector> size must be greater than 0");
+    		throw("Error in moeoHyperVolumeUnaryMetric::setup -> argument1: vector<ObjectiveVector> size must be greater than 0");
     	else{
 	        double min, max;
 	        unsigned int nbObj=ObjectiveVector::Traits::nObjectives();

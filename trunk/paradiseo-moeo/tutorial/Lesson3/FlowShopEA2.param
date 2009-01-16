@@ -7,7 +7,7 @@
 ######    Evolution Engine        ######
 --popSize=100                              # -P : Population Size
 --updateArch=1                             # Update the archive at each gen.
---fitness=FastNonDominatedSorting          # -F : Fitness assignment scheme: Dummy, FastNonDominatedSorting or IndicatorBased
+--fitness=IndicatorBased                 # -F : Fitness assignment scheme: Dummy, DomDepth or IndicatorBased
 --indicator=Epsilon                        # -i : Binary indicator for IndicatorBased: Epsilon, Hypervolume
 --rho=1.1                                  # -r : reference point for the hypervolume indicator
 --kappa=0.05                               # -k : Scaling factor kappa for IndicatorBased

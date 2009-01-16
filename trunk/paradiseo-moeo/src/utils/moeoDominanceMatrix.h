@@ -63,14 +63,14 @@ public:
      * Default constructor with paretoComparator
      * @param _nocopy boolean allow to consider copy and doublons as bad element whose were dominated by all other MOEOT
      */
- moeoDominanceMatrix(bool _nocopy=false):std::vector < std::vector<bool> >(), nocopy(_nocopy), comparator(paretoComparator) {}
+    moeoDominanceMatrix(bool _nocopy=false):std::vector < std::vector<bool> >(),comparator(paretoComparator), nocopy(_nocopy) {}
 
     /**
      * Constructor which allow to choose the comparator
      * @param _nocopy boolean allow to consider copy and doublons as bad element whose were dominated by all other MOEOT
      * @param _comparator the comparator you want to use for the comparaison of two MOEOT
      */
- moeoDominanceMatrix(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, bool _nocopy=true):std::vector < std::vector<bool> >(), nocopy(_nocopy) , comparator(_comparator) {}
+    moeoDominanceMatrix(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, bool _nocopy=true):std::vector < std::vector<bool> >(),comparator(_comparator), nocopy(_nocopy) {}
 
     /**
      * Filling up the Dominance Matrix on one population

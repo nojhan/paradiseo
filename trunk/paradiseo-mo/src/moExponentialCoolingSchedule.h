@@ -1,5 +1,5 @@
 /*
-  <moItRandNextMove.h>
+  <moExponentialCoolingSchedule.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
   (C) OPAC Team, LIFL, 2002-2008
  
@@ -33,70 +33,47 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moItRandNextMove_h
-#define _moItRandNextMove_h
+#ifndef _moExponentialCoolingSchedule_h
+#define _moExponentialCoolingSchedule_h
 
-#include <moNextMove.h>
-#include <moRandMove.h>
+#include <moCoolingSchedule.h>
 
-//! One of the possible moNextMove.
+//! One of the possible moCoolingSchedule
 /*!
-  This class is a move (moMove) generator with a bound for the maximum number of iterations.
+  An other very simple cooling schedule, the temperature decrease according to a ratio while
+  the temperature is greater than a given threshold.
 */
-template < class M > 
-class moItRandNextMove:public moNextMove < M >
+class moExponentialCoolingSchedule: public moCoolingSchedule
 {
-  //! Alias for the type.
-  typedef typename M::EOType EOT;
-
  public:
-
-  //! The constructor.
+  
+  //! Simple constructor
   /*!
-    Parameters only for initialising the attributes.
-
-    \param _random_move_generator The random move generator.
-    \param _iteration_maximum_number The iteration maximum number.
+    \param _threshold the threshold.
+    \param _ratio the ratio used to descrease the temperature.
   */
-  moItRandNextMove (moRandMove < M > & _random_move_generator, unsigned int _iteration_maximum_number):
-  random_move_generator(_random_move_generator), iteration_maximum_number(_iteration_maximum_number), iteration_number(0)
-    {}
-
-  //! Generation of a new move
+  moExponentialCoolingSchedule (double _threshold, double _ratio):threshold (_threshold), ratio (_ratio)
+  {}
+    
+  //! Function which proceeds to the cooling.
   /*!
-    If the maximum number is not already reached, the current move is forgotten and remplaced by another one.
-
-    \param _move the current move.
-    \param _solution the current solution.
-    \return false if the maximum number of iteration is reached, else true.
+    It decreases the temperature and indicates if it is greater than the threshold.
+      
+    \param _temperature the current temperature.
+    \return if the new temperature (current temperature * ratio) is greater than the threshold.
   */
-  bool operator () (M & _move, const EOT & _solution)
+  bool operator() (double & _temperature)
   {
-    //code only used to avoid warning because _solution is not used in this function.
-    const EOT solution(_solution);
-    
-    if (iteration_number > iteration_maximum_number)
-      {
-	iteration_number = 0;
-	return false;
-      }
-    
-    random_move_generator (_move);
-    iteration_number++;
-    
-    return true;
+    return (_temperature *= ratio) > threshold;
   }
 
  private:
-
-  //! A move generator (generally randomly).
-  moRandMove < M > & random_move_generator;
-
-  //! Iteration maximum number.
-  unsigned int iteration_maximum_number;
-
-  //! Iteration current number.
-  unsigned int iteration_number;
+    
+  //! The temperature threhold.
+  double threshold;
+    
+  //! The decreasing factor of the temperature.
+  double ratio;
 };
 
 #endif

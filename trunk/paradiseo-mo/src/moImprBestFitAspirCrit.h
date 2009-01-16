@@ -68,10 +68,13 @@ class moImprBestFitAspirCrit:public moAspirCrit < M >
 
     \param _move A move.
     \param _fitness A fitness linked to the move.
-    \return true The first time and if _fitness > best_fitness, else false.
+    \return true The first time and if _fitntess > best_fitness, else false.
   */
   bool operator () (const M & _move, const Fitness & _fitness)
   {
+    //code only used for avoiding warning because _move is not used in this function.
+    const M move(_move);
+
     if (first_time)
       {
 	best_fitness = _fitness;
@@ -80,12 +83,14 @@ class moImprBestFitAspirCrit:public moAspirCrit < M >
 	return true;
       }
 
-    if (_fitness > best_fitness)
+    if (_fitness < best_fitness)
       {
-	best_fitness = _fitness;
-	return true;
+	return false;
       }
-    return false;
+    
+    best_fitness = _fitness;
+    
+    return true;
   }
 
  private:

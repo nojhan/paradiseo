@@ -173,7 +173,7 @@ class moeoDominanceDepthFitnessAssignment : public moeoDominanceBasedFitnessAssi
       // assign fitness values
       unsigned int rank = 1;
       _pop[_pop.size()-1].fitness(rank);
-      for (int i=((int)_pop.size())-2; i>=0; i--)
+      for (int i=_pop.size()-2; i>=0; i--)
         {
           if (_pop[i].objectiveVector() != _pop[i+1].objectiveVector())
             {

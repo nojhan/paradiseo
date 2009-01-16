@@ -5,22 +5,31 @@
 
 SET (CMAKE_CXX_COMPILER mpicxx)
 
-ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson5/param ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson5/schema.xml)
+#ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson5/param ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson5/schema.xml)
 
-ADD_CUSTOM_COMMAND(
-    TARGET install
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND}
-    ARGS -E copy_if_different
-      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson5/param
-      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson5)
-ADD_CUSTOM_COMMAND(
-    TARGET install
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND}
-    ARGS -E copy_if_different
-      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson5/schema.xml
-      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson5)
+#ADD_CUSTOM_COMMAND(
+#    TARGET install
+#    POST_BUILD
+#    COMMAND ${CMAKE_COMMAND}
+#    ARGS -E copy_if_different
+#      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson5/param
+#      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson5)
+#ADD_CUSTOM_COMMAND(
+#    TARGET install
+#    POST_BUILD
+#    COMMAND ${CMAKE_COMMAND}
+#    ARGS -E copy_if_different
+#      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson5/schema.xml
+#      ${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson5)
+
+EXECUTE_PROCESS(
+	COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      	${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson5/param
+      	${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson5
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+     	${ParadisEO-PEO_SOURCE_DIR}/tutorial/Lesson5/schema.xml
+      	${ParadisEO-PEO_BINARY_DIR}/tutorial/Lesson5
+)
 
 ######################################################################################
 
@@ -47,8 +56,8 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DIR}/lib)
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
-ADD_EXECUTABLE(ea main.cpp)
-ADD_DEPENDENCIES(ea peo rmc_mpi)
+ADD_EXECUTABLE(ea5 main.cpp)
+ADD_DEPENDENCIES(ea5 peo rmc_mpi)
 
 ######################################################################################
 
@@ -58,7 +67,7 @@ ADD_DEPENDENCIES(ea peo rmc_mpi)
 ######################################################################################
 
 SET(Lesson5_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(ea PROPERTIES VERSION "${Lesson5_VERSION}")
+SET_TARGET_PROPERTIES(ea5 PROPERTIES VERSION "${Lesson5_VERSION}")
 ######################################################################################
 
 
@@ -66,7 +75,7 @@ SET_TARGET_PROPERTIES(ea PROPERTIES VERSION "${Lesson5_VERSION}")
 ### 5) Link the librairies
 ######################################################################################
 
-TARGET_LINK_LIBRARIES(ea ${XML2_LIBS} peo rmc_mpi eo eoutils peo)
+TARGET_LINK_LIBRARIES(ea5 ${XML2_LIBS} peo rmc_mpi eo eoutils peo)
 
 ######################################################################################
 

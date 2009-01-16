@@ -87,7 +87,6 @@ class moeoParetoObjectiveVectorComparator : public moeoObjectiveVectorComparator
                 }
             }
         }
-
       return dom;
     }
 

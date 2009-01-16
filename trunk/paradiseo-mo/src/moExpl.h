@@ -49,27 +49,28 @@ public:
 
 	//Neighborhoods vector
 	std::vector< eoMonOp<EOT>* > explore;
-	
+
 	//! Generic constructor
   /*!
     Generic constructor using a eoMonOp
 
     \param _expl Algorithme or mutation.
-    
+
   */
 	moExpl(eoMonOp<EOT> & expl){
 	    i=0;
+	    explore.resize(0);
 	    add(expl);
 	}
-	
+
 	//! Generic constructor
   /*!
     Generic constructor using a eoMonOp
 
     \param _expl Algorithme or mutation.
-    
+
   */
-	
+
 	//!  Procedure which launches the moExpl.
   /*!
     The exploration starts from an old solution and provides a new solution.
@@ -98,7 +99,7 @@ public:
 	//return the size of the class
 	unsigned int size(){
 		return explore.size();
-	}	
+	}
 
 };
 

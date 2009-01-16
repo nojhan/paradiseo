@@ -66,7 +66,7 @@ public:
      * @param _start a start value used to determine the fitness (default _start = 1.0)
      * @param _nocopy boolean to penalize clone individuals (default = false)
      */
-    moeoDominanceRankFitnessAssignment(double _start=1.0, bool _nocopy=false) : comparator(paretoComparator), archive(defaultArchive), start(_start), matrix(_nocopy)
+    moeoDominanceRankFitnessAssignment(double _start=1.0, bool _nocopy=true) : comparator(paretoComparator), archive(defaultArchive), start(_start), matrix(_nocopy)
     {}
 
 
@@ -76,7 +76,7 @@ public:
      * @param _start a start value used to determine the fitness (default _start = 1.0)
      * @param _nocopy boolean to penalize clone individuals (default = false)
      */
-    moeoDominanceRankFitnessAssignment(moeoArchive < MOEOT > & _archive, double _start=1.0, bool _nocopy=false) : comparator(paretoComparator), archive(_archive), start(_start), matrix(_nocopy)
+    moeoDominanceRankFitnessAssignment(moeoArchive < MOEOT > & _archive, double _start=1.0, bool _nocopy=true) : comparator(paretoComparator), archive(_archive), start(_start), matrix(_nocopy)
     {}
 
 
@@ -86,7 +86,7 @@ public:
      * @param _start a start value used to determine the fitness (default _start = 1.0)
      * @param _nocopy boolean to penalize clone individuals (default = false)
      */
-    moeoDominanceRankFitnessAssignment(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, double _start=1.0, bool _nocopy=false) : comparator(_comparator), archive(defaultArchive), start(_start), matrix(_comparator, _nocopy)
+    moeoDominanceRankFitnessAssignment(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, double _start=1.0, bool _nocopy=true) : comparator(_comparator), archive(defaultArchive), start(_start), matrix(_comparator, _nocopy)
     {}
 
 
@@ -97,7 +97,7 @@ public:
      * @param _start a start value used to determine the fitness (default _start = 1.0)
      * @param _nocopy boolean to penalize clone individuals (default = false)
      */
-    moeoDominanceRankFitnessAssignment(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, moeoArchive < MOEOT > & _archive, double _start=1.0, bool _nocopy=false) : comparator(_comparator), archive(_archive), start(_start), matrix(_comparator, _nocopy)
+    moeoDominanceRankFitnessAssignment(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, moeoArchive < MOEOT > & _archive, double _start=1.0, bool _nocopy=true) : comparator(_comparator), archive(_archive), start(_start), matrix(_comparator, _nocopy)
     {}
 
 

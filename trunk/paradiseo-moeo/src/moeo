@@ -52,7 +52,6 @@
 #include <algo/moeoNSGAII.h>
 #include <algo/moeoSEEA.h>
 #include <algo/moeoSPEA2.h>
-#include <algo/moeoMOGA.h>
 
 #include <archive/moeoArchive.h>
 #include <archive/moeoUnboundedArchive.h>
@@ -111,7 +110,6 @@
 #include <fitness/moeoIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoScalarFitnessAssignment.h>
 #include <fitness/moeoUnaryIndicatorBasedFitnessAssignment.h>
-#include <fitness/moeoAggregativeFitnessAssignment.h>
 
 #include <metric/moeoAdditiveEpsilonBinaryMetric.h>
 #include <metric/moeoContributionMetric.h>

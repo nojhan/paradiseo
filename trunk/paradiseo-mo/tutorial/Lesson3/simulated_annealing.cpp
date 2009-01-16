@@ -83,9 +83,9 @@ main (int _argc, char* _argv [])
 
   moCoolingSchedule* coolingSchedule;
 
-  if(value.compare("Geometric")==0)
+  if(value.compare("Expo")==0)
     {
-      coolingSchedule=new moGeometricCoolingSchedule(threshold, exponentialRatio);
+      coolingSchedule=new moExponentialCoolingSchedule(threshold, exponentialRatio);
     }
   else if (value.compare("Linear")==0)
     {
@@ -129,7 +129,7 @@ manage_configuration_file(eoParser & _parser)
 
   _parser.getORcreateParam((double)0.5, "lineaRatio", "Ratio used if linear cooling schedule is chosen.", 0, "Configuration", false);
 
-  _parser.getORcreateParam(std::string("Geometric"), "coolSchedType", "Type the cooling schedule: 'Geometric' or 'Linear'.", 
+  _parser.getORcreateParam(std::string("Expo"), "coolSchedType", "Type the cooling schedule: 'Expo' or 'Linear'.", 
 			   0, "Configuration", false);
   
   if (_parser.userNeedsHelp())

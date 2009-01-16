@@ -3,7 +3,7 @@
 ######################################################################################
 
 # check cmake version compatibility
-CMAKE_MINIMUM_REQUIRED(VERSION 2.4 FATAL_ERROR)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6 FATAL_ERROR)
 
 # regular expression checking
 INCLUDE_REGULAR_EXPRESSION("^.*$" "^$")
@@ -26,7 +26,9 @@ INCLUDE(FindGnuplot)
 
 INCLUDE(CheckLibraryExists)
 
-INCLUDE(Dart OPTIONAL)         
+INCLUDE(Dart OPTIONAL)    
+
+INCLUDE(CPack)     
                            
 # Set a special flag if the environment is windows (should do the same in a config.g file)
 IF (WIN32)
@@ -70,7 +72,7 @@ IF(WIN32 AND NOT CYGWIN)
   ENDIF(CMAKE_CXX_COMPILER MATCHES cl)  
 ELSE(WIN32 AND NOT CYGWIN)
     IF(CMAKE_COMPILER_IS_GNUCXX)
-       SET(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g -fprofile-arcs -ftest-coverage -Wall -Wextra -Wno-unused-parameter -Wno-ignored-qualifiers")                       
+       SET(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g -fprofile-arcs -ftest-coverage -Wall -Wextra -Wno-unused-parameter")                       
        SET(CMAKE_CXX_FLAGS_RELEASE  "${CMAKE_CXX_FLAGS_RELEASE} -O2")
        SET(CMAKE_CXX_FLAGS_MINSIZEREL "${CMAKE_CXX_FLAGS_MINSIZEREL} -O6")       
     ENDIF(CMAKE_COMPILER_IS_GNUCXX)  
@@ -82,6 +84,11 @@ ENDIF(CMAKE_BUILD_TYPE MATCHES Debug)
 
 #####################################################################################
 
+######################################################################################
+### compilation of examples?
+######################################################################################
+
+SET(ENABLE_CMAKE_EXAMPLE TRUE CACHE BOOL "Enable copy of benchs and parameters file?")
 
 ######################################################################################
 ### Test config

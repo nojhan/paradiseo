@@ -57,6 +57,14 @@ class moBestImprSelect:public moMoveSelect < M >
   */
   void init (const Fitness & _fitness)
   {
+    //Code only used to avoid warning because _fitness is not used in this procedure.
+    Fitness fitness;
+    fitness=(Fitness)_fitness;
+
+    //std::cout.precision(10);
+
+    //std::cout << "old fitness = " << _fitness << std::endl;
+
     first_time = true;
   }
 
@@ -80,6 +88,8 @@ class moBestImprSelect:public moMoveSelect < M >
 	first_time = false;
       }
 
+    //std::cout << "best fitness = " << best_fitness << std::endl;
+
     return true;
   }
 
@@ -97,7 +107,9 @@ class moBestImprSelect:public moMoveSelect < M >
 
     _move = best_move;
     _fitness = best_fitness;
-   
+    
+    
+    //std::cout << "Final fitness = " << best_fitness << std::endl;
   }
 
  private:

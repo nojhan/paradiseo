@@ -52,7 +52,7 @@ class moVNS : public moAlgo < EOT>
 	typedef typename EOT::Fitness Fitness;
 
 public:
-	
+
 	//! Generic constructor
   /*!
     Generic constructor using a moExpl
@@ -62,7 +62,7 @@ public:
   */
 
 	moVNS(moExpl< EOT> & _explorer, eoEvalFunc < EOT> & _full_evaluation): explorer(_explorer), full_evaluation(_full_evaluation) {}
-	
+
 
 	//! Function which launches the VNS
   /*!
@@ -79,17 +79,16 @@ public:
 		EOT solution_initial=_solution;
 		EOT solution_prime, solution_second;
 
+
 		explorer.setIndice(i);
 
 		while(i<explorer.size()) {
+			solution_prime=solution_initial;
 			if(solution_prime.invalid())
 				full_evaluation(solution_prime);
-
 			explorer(solution_prime, solution_second);
-
 			if(solution_second.invalid())
 				full_evaluation(solution_second);
-
 			if(solution_second > solution_initial) {
 				solution_initial=solution_second;
 				change=true;
@@ -103,7 +102,6 @@ public:
 				if(i<explorer.size())
 					explorer.setIndice(i);
 			}
-
 		}
 		_solution=solution_initial;
 		return change;

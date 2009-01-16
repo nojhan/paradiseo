@@ -66,8 +66,6 @@ SET (TEST_LIST
 		t-moeoHyperVolumeDifferenceMetric
 		t-moeoIntVector
 		t-moeoBoundedArchive
-		t-moeoMOGA
-		t-moeoAggregativeFitnessAssignment
 )
 
 FOREACH (test ${TEST_LIST})

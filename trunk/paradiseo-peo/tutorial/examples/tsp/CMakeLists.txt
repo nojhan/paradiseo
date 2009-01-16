@@ -3,14 +3,30 @@
 ### 0) Copy the "benchs" directory in the build directory to easily run the lessons
 ######################################################################################
 
-ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/tutorial/examples/tsp/benchs)
-ADD_CUSTOM_COMMAND(
-    TARGET install
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND}
-    ARGS -E copy_directory 
-      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/examples/tsp/benchs
-      ${ParadisEO-PEO_BINARY_DIR}/tutorial/examples/tsp/benchs)
+#ADD_CUSTOM_TARGET(install DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/tutorial/examples/tsp/benchs)
+#ADD_CUSTOM_COMMAND(
+#    TARGET install
+#    POST_BUILD
+#    COMMAND ${CMAKE_COMMAND}
+#    ARGS -E copy_directory 
+#      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/examples/tsp/benchs
+#      ${ParadisEO-PEO_BINARY_DIR}/tutorial/examples/tsp/benchs)
+
+
+	SET(BENCH_LIST
+		eil101.opt.tour
+		eil101.tsp
+		eil101.tsp.hc
+	)
+	
+	FOREACH (bench ${BENCH_LIST})
+			EXECUTE_PROCESS(
+				COMMAND ${CMAKE_COMMAND} -E copy_if_different
+	      			${ParadisEO-PEO_SOURCE_DIR}/tutorial/examples/tsp/benchs/${bench}
+	    			${ParadisEO-PEO_BINARY_DIR}/tutorial/examples/tsp/benchs/${bench}
+	    	)
+	ENDFOREACH (bench)
+
 
 ######################################################################################
 

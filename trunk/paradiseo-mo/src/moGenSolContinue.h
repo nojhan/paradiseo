@@ -65,6 +65,9 @@ class moGenSolContinue:public moSolContinue < EOT >
   */
   bool operator () (const EOT & _solution)
   {
+    //code only used for avoiding warning because _sol is not used in this function.
+    const EOT solution(_solution);
+
     return (++generationNumber < generationMaximumNumber);
   }
 
