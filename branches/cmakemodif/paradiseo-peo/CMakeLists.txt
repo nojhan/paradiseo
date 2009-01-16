@@ -40,10 +40,10 @@ PROJECT(ParadisEO-PEO)
 
 SET(PACKAGE_BUGREPORT "paradiseo-help@lists.gforge.inria.fr" CACHE STRING "Package bug report" FORCE)
 SET(PACKAGE_NAME "ParadisEO-PEO - Parallel and distributed Evolving Objects" CACHE STRING "Package name" FORCE)
-SET(PACKAGE_STRING "ParadisEO-PEO 1.1" CACHE STRING "PEO Package string full name" FORCE)
-SET(PACKAGE_VERSION "1.1" CACHE STRING "Package version" FORCE)
-SET(GLOBAL_VERSION "1.1" CACHE STRING "Global version" FORCE)
-SET(VERSION "1.1" CACHE STRING "Version" FORCE)
+SET(PACKAGE_STRING "ParadisEO-PEO 1.2" CACHE STRING "PEO Package string full name" FORCE)
+SET(PACKAGE_VERSION "1.2" CACHE STRING "Package version" FORCE)
+SET(GLOBAL_VERSION "1.2" CACHE STRING "Global version" FORCE)
+SET(VERSION "1.2" CACHE STRING "Version" FORCE)
 ##########################################################################################################################################
 
 
