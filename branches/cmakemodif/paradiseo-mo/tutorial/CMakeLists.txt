@@ -162,6 +162,16 @@ MACRO(ADD_TARGET_MO n)
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/rl5915.tsp
 			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
 		)
+	ELSEIF(${n} STREQUAL "lesson5")				
+		ADD_CUSTOM_TARGET(lesson5 DEPENDS 
+			${MO_BIN_DIR}/tutorial/Lesson5/param
+			${MO_BIN_DIR}/tutorial/Lesson5/variable_neighborhood_search
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/berlin52.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/eil101.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/pr2392.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/rl5915.tsp
+			${MO_BIN_DIR}/tutorial/examples/tsp/benchs/usa13509.tsp
+		)
 	ELSEIF(${n} STREQUAL "hybridlesson")		
 		ADD_CUSTOM_TARGET(hybridlesson DEPENDS 
 			${MO_BIN_DIR}/tutorial/HybridLesson/param
