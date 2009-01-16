@@ -6,6 +6,7 @@
 #include <PhyloMOEO_eval.h>
 #include <PhyloMOEO_archive.h>
 #include <PhyloMOEOProbMatrixContainerUpdater.h>
+#include <moeoNSGAII2.h>
 #include <moeoObjVecStat.h>
 #include <PhyloMOEOPartitionStat.h>
 #include <eoCountedFileMonitor.h>
@@ -156,7 +157,7 @@ int main(int argc, char *argv[])
 	
 //	apply<PhyloMOEO> ( byobj, population );
 //	population.printOn(cout);
-	moeoNSGAII < PhyloMOEO > nsgaII (cp, byobj, operadores);
+	moeoNSGAII2 < PhyloMOEO > nsgaII (cp, byobj, operadores);
 	
 	nsgaII(population);
 	
