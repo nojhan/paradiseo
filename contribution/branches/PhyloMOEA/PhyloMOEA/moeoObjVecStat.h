@@ -23,6 +23,11 @@
 
 #include <utils/eoStat.h>
 
+/** 
+	This base class is a specialization of eoStat which is useful
+	to compute statistics for each objective function
+*/
+
 #if  defined(_MSC_VER) && (_MSC_VER < 1300)
 template <class MOEOT>
 class moeoObjVecStat : public eoStat<MOEOT, MOEOT::ObjectiveVector>
@@ -46,6 +51,9 @@ class moeoObjVecStat : public eoStat<MOEOT, typename MOEOT::ObjectiveVector>
 	virtual void doit(const eoPop<MOEOT> &_pop) = 0;
 };
 
+/** Calculate the best solution for each objective (extreme points
+*/
+
 template <class MOEOT>
 class moeoBestObjVecStat : public moeoObjVecStat<MOEOT>
 {
@@ -62,9 +70,19 @@ public:
 
     virtual std::string className(void) const { return "moeoBestObjVecStat"; }
 
-	const MOEOT & bestindividuals(unsigned int objective) { return *(best_individuals[objective]); }
+	/**
+		Return the best solutions for an given objective function
+		* @param which the objective function number
+	*/ 
+	const MOEOT & bestindividuals(unsigned int which) { 
+		typedef typename moeoObjVecStat<MOEOT>::Traits traits;
+		if(which > traits::nObjectives() ) throw std::logic_error("which is larger than the number of objectives");
+		return *(best_individuals[which]); 
+	}
 
 private :
+	
+	/** Vector of iterators pointing to best individuals for each objective function */
 
 	std::vector<typename eoPop<MOEOT>::const_iterator> best_individuals;
 
@@ -78,7 +96,7 @@ private :
           return a.objectiveVector()[which] < b.objectiveVector()[which];
 
         return a.objectiveVector()[which] > b.objectiveVector()[which];
-      }
+      }	
 
       unsigned which;
       bool maxim;
@@ -100,6 +118,10 @@ private :
     }
     // default
 };
+
+/** Calculates  average scores for each objective 
+*/
+
 
 template <class MOEOT> class moeoAverageObjVecStat : public moeoObjVecStat<MOEOT>
 {

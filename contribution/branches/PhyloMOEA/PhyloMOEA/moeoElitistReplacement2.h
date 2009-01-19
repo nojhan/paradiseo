@@ -112,11 +112,9 @@ template < class MOEOT > class moeoElitistReplacement2:public moeoReplacement < 
 		
       diversityAssignment(_parents);
       // sorts the whole population 
-	  // the delindex contains the ordered index of the population according to the comparator
-	  // again, we only sort the index of population instead of population
+	  // the delindex contains the ordered index of the population according to the comparator again, we only sort the index of population instead of population
 	  std::vector<unsigned int> delindex;
 	  vectorSortIndex( _parents, delindex, comparator);
-	  //std::sort( delindex.begin(), delindex.end(), comparatorindex(_parents, delindex, comparator));
 	  // now, in order to rezise of population we remove the populations whose index
 	  // are in the high of delindex	
       std::sort(delindex.begin()+sz, delindex.end(), std::greater<int>());
@@ -126,6 +124,15 @@ template < class MOEOT > class moeoElitistReplacement2:public moeoReplacement < 
 	      // and clear the offspring population
       _offspring.clear ();
     }
+
+
+    /**
+     * Resizes the whole population obtained.
+        * @param _pop the whole population
+        * @param _index points to the population members which will be deleted
+		* @param _sz size of the resulting population
+     */
+
 
 	void reduce_population ( eoPop < MOEOT > &_pop, std::vector<unsigned int> &index, unsigned int size)
 	{

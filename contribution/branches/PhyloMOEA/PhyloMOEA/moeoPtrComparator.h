@@ -29,11 +29,23 @@ template < class MOEOT >
 class moeoPtrComparator : public eoBF < const MOEOT *, const MOEOT *, const bool >
   {
 	public:
+
+    /**
+     * Ctor with a comparator
+     * @param _cmp comparator to be employed
+
+	*/
 	 moeoPtrComparator( moeoComparator<MOEOT> & _cmp) : cmp(_cmp) {}
 	 const bool operator() (const MOEOT *ptr1, const MOEOT *ptr2)
 	 {
 			return cmp(*ptr1, *ptr2);
 	 }
+
+	 const bool operator() (MOEOT *ptr1, MOEOT *ptr2)
+	 {
+			return cmp(*ptr1, *ptr2);
+	 }
+
 	private:
 		moeoComparator<MOEOT> &cmp;
   };

@@ -91,25 +91,27 @@ class moeoFrontByFrontCrowdingDiversityAssignment2 : public moeoCrowdingDiversit
         }
       // sort the whole pop according to fitness values
       moeoFitnessThenDiversityComparator < MOEOT > fitnessComparator;
-	  std::vector<const MOEOT *> sortedpop;
-	  sortedpop.resize(_pop.size());
-	  std::transform( _pop.begin(), _pop.end(), sortedpop.begin(), typename eoPop<MOEOT>::Ref());	
-	  //struct eoPop<MOEOT>::Ref ref;
-	  moeoPtrComparator<MOEOT> cmp1( fitnessComparator);
-	  std::sort(sortedpop.begin(), sortedpop.end(), cmp1);
-      //std::sort(_pop.begin(), _pop.end(), fitnessComparator);
+	  std::vector<const MOEOT *> sortedptrpop;
+	  sortedptrpop.resize(_pop.size());
+	  // due to intensive sort operations for this diversity assignment,
+	  // it is more efficient to perform sorts using only pointers to the
+      // population members in order to avoid copy of individuals
+	  std::transform( _pop.begin(), _pop.end(), sortedptrpop.begin(), typename eoPop<MOEOT>::Ref());	
+      //sort the pointers to population members 
+	  moeoPtrComparator<MOEOT> cmp2( fitnessComparator);
+	  std::sort(sortedptrpop.begin(), sortedptrpop.end(), cmp2);
       // compute the crowding distance values for every individual "front" by "front" (front : from a to b)
       a = 0;	        			// the front starts at a
       while (a < _pop.size())
         {
-		  b = lastIndex(sortedpop,a);	// the front ends at b
+		  b = lastIndex(sortedptrpop,a);	// the front ends at b
           //b = lastIndex(_pop,a);	// the front ends at b
           // if there is less than 2 individuals in the front...
           if ((b-a) < 2)
             {
               for (unsigned int i=a; i<=b; i++)
                 {
-					((MOEOT *)sortedpop[i])->diversity(inf());
+					((MOEOT *)sortedptrpop[i])->diversity(inf());
                   //_pop[i].diversity(inf());
                 }
             }
@@ -122,10 +124,10 @@ class moeoFrontByFrontCrowdingDiversityAssignment2 : public moeoCrowdingDiversit
                   // sort in the descending order using the values of the objective 'obj'
                   moeoOneObjectiveComparator < MOEOT > objComp(obj);
 				  moeoPtrComparator<MOEOT> cmp2( objComp );
-				  std::sort(sortedpop.begin(), sortedpop.end(), cmp2);
+				  std::sort(sortedptrpop.begin(), sortedptrpop.end(), cmp2);
                   // min & max
-                  min = (sortedpop[b])->objectiveVector()[obj];
-                  max = (sortedpop[a])->objectiveVector()[obj];
+                  min = (sortedptrpop[b])->objectiveVector()[obj];
+                  max = (sortedptrpop[a])->objectiveVector()[obj];
 	
                   // avoid extreme case
                   if (min == max)
@@ -134,13 +136,13 @@ class moeoFrontByFrontCrowdingDiversityAssignment2 : public moeoCrowdingDiversit
                       max += tiny();
                     }
                   // set the diversity value to infiny for min and max
-                  ((MOEOT *)sortedpop[a])->diversity(inf());
-                  ((MOEOT *)sortedpop[b])->diversity(inf());
+                  ((MOEOT *)sortedptrpop[a])->diversity(inf());
+                  ((MOEOT *)sortedptrpop[b])->diversity(inf());
                   // set the diversity values for the other individuals
                   for (unsigned int i=a+1; i<b; i++)
                     {
-                        distance = ( (sortedpop[i-1])->objectiveVector()[obj] - (sortedpop[i+1])->objectiveVector()[obj]) / (max-min);
-                        ((MOEOT *)sortedpop[i])->diversity(sortedpop[i]->diversity() + distance);
+                        distance = ( (sortedptrpop[i-1])->objectiveVector()[obj] - (sortedptrpop[i+1])->objectiveVector()[obj]) / (max-min);
+                        ((MOEOT *)sortedptrpop[i])->diversity(sortedptrpop[i]->diversity() + distance);
                     }
                 }
             }
@@ -153,7 +155,7 @@ class moeoFrontByFrontCrowdingDiversityAssignment2 : public moeoCrowdingDiversit
 
     /**
      * Returns the index of the last individual having the same fitness value than _pop[_start]
-     * @param _pop the population
+     * @param _pop the vector of pointers to population individuals
      * @param _start the index to start from
      */
 
