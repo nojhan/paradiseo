@@ -30,7 +30,7 @@ IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "
 		
 	ADD_EXECUTABLE(hybrid_ga
 		hybrid_ga.cpp
-		${MO_BIN_DIR}/tutorial/Lesson6/param
+		${MO_BIN_DIR}/tutorial/HybridLesson/param
 		${TSP_BIN_DIR}/benchs/berlin52.tsp
 		${TSP_BIN_DIR}/benchs/eil101.tsp
 		${TSP_BIN_DIR}/benchs/pr2392.tsp
