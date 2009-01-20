@@ -28,7 +28,7 @@ IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "
 		${TSP_BIN_DIR}/benchs/usa13509.tsp
 	)
 			
-	ADD_EXECUTABLE(iterated_local_search
+	ADD_EXECUTABLE(variable_neighborhood_search
 		variable_neighborhood_search.cpp
 		${MO_BIN_DIR}/tutorial/Lesson5/param
 		${TSP_BIN_DIR}/benchs/berlin52.tsp
