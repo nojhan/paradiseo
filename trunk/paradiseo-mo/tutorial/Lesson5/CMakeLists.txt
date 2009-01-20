@@ -18,7 +18,7 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${TSP_BIN_DIR}/lib)
 ######################################################################################
 
 IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
-	SOURCE_GROUP(src FILES iterated_local_search.cpp)
+	SOURCE_GROUP(src FILES variable_neighborhood_search.cpp)
 	
 	SOURCE_GROUP(benchs FILES
 		${TSP_BIN_DIR}/benchs/berlin52.tsp
