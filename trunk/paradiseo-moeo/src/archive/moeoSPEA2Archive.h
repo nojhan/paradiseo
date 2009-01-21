@@ -195,7 +195,7 @@ public:
                 unsigned int tmp2=0;
 
                 //search bounds of copy_pop where are the goods elements
-                while ((copy_pop[j].fitness > -1) && (j < copy_pop.size()))
+                while ((j < copy_pop.size()) && (copy_pop[j].fitness > -1.0))
                     j++;
 
                 p=j-inf;
@@ -298,7 +298,7 @@ private:
      */
     struct refpop
     {
-        unsigned index;
+        unsigned int index;
         double fitness;
         double diversity;
     };
