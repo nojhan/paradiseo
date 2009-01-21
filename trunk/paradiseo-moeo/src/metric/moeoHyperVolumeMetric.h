@@ -49,7 +49,7 @@ template < class ObjectiveVector >
 class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , double >
   {
   public:
-	  
+
     /**
      * Constructor with a coefficient (rho)
      * @param _normalize allow to normalize data (default true)
@@ -63,7 +63,7 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
             bounds[i] = eoRealInterval(0,1);
         }
     }
-    
+
     /**
      * Constructor with a reference point
      * @param _normalize allow to normalize data (default true)
@@ -77,22 +77,22 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
 	        bounds[i] = eoRealInterval(0,1);
 	    }
     }
-    
+
     /**
      * Constructor with a reference point
      * @param _normalize allow to normalize data (default true)
      * @param _ref_point the reference point
      */
-    moeoHyperVolumeMetric(ObjectiveVector& _ref_point=NULL, std::vector < eoRealInterval >& _bounds=NULL): normalize(false), rho(0.0), ref_point(_ref_point), bounds(_bounds){} 
-    
+    moeoHyperVolumeMetric(ObjectiveVector& _ref_point=NULL, std::vector < eoRealInterval >& _bounds=NULL): normalize(false), rho(0.0), ref_point(_ref_point), bounds(_bounds){}
+
     /**
      * calculates and returns the HyperVolume value of a pareto front
-     * @param _set the vector contains all objective Vector of pareto front 
+     * @param _set the vector contains all objective Vector of pareto front
      */
     double operator()(const std::vector < ObjectiveVector > & _set)
     {
     	std::vector < std::vector<double> > front;
-    	
+
     	//determine the reference point if a coefficient is passed in paremeter
     	if(rho >= 1.0){
     		//determine bounds
@@ -112,7 +112,7 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
        					ref_point[i]= bounds[i].maximum() * (1-rho);
        			}
         	}
-        	//if no normalization, reinit bounds to O..1 for 
+        	//if no normalization, reinit bounds to O..1 for
         	if(!normalize)
          		for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
             		bounds[i] = eoRealInterval(0,1);
@@ -132,10 +132,10 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
 	    		}
 	    	}
     	}
-      		
+
     	return calc_hypervolume(front, front.size(),ObjectiveVector::Traits::nObjectives());
     }
-    
+
     /**
      * getter on bounds
      * @return bounds
@@ -143,7 +143,7 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
     std::vector < eoRealInterval > getBounds(){
         return bounds;
     }
-    
+
     /**
      * method caclulate bounds for the normalization
      * @param _set the vector of objective vectors
@@ -166,7 +166,7 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
 	        }
     	}
     }
-    
+
     /**
      * method calculate if a point dominates another one regarding the x first objective
      * @param _point1 a vector of distances
@@ -178,18 +178,18 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
     	unsigned int i;
     	bool better_in_any_objective = false;
     	bool worse_in_any_objective = false;
-    	
+
     	for(i=0; i < _no_objectives && !worse_in_any_objective; i++){
     		if(_point1[i] > _point2[i])
     			better_in_any_objective = true;
     		else if(_point1[i] < _point2[i])
     			worse_in_any_objective = true;
-    	}	
+    	}
     	//_point1 dominates _point2 if it is better than _point2 on a objective and if it is never worse in any other objectives
     	return(!worse_in_any_objective && better_in_any_objective);
-    	
+
     }
-    
+
     /**
      * swap two elements of a vector
      * @param _front the vector
@@ -197,13 +197,18 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
      * @param _j index of the second element to swap
      */
     void swap(std::vector< std::vector<double> >& _front, unsigned int _i, unsigned int _j){
-    	_front.push_back(_front[_i]);
-    	_front[_i]= _front[_j];
-    	_front[_j]=_front.back();
-    	_front.pop_back();
+    	std::vector<double> tmp;
+    	tmp=_front[_i];
+    	_front[_i]=_front[_j];
+    	_front[_j]=tmp;
+//another way (don't work on visual studio)
+//    	_front.push_back(_front[_i]);
+//    	_front[_i]= _front[_j];
+//    	_front[_j]=_front.back();
+//    	_front.pop_back();
     }
-    
-    
+
+
     /**
      * collect all nondominated points regarding the first '_no_objectives' objectives (dominated points are stored at the end of _front)
      * @param _front the front
@@ -213,7 +218,7 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
      */
     unsigned int filter_nondominated_set( std::vector < std::vector< double > >& _front, unsigned int _no_points, unsigned int _no_objectives){
     	unsigned int i,j,n;
-    	
+
     	n=_no_points;
     	i=0;
     	while(i < n){
@@ -238,7 +243,7 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
     	}
     	return n;
     }
-    
+
     /**
      * @param _front the front
      * @param _no_points the number of points of the front to consider (index 0 to _no_points are considered)
@@ -248,20 +253,20 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
     double surface_unchanged_to(std::vector < std::vector< double > >& _front, unsigned int _no_points, unsigned int _objective){
     	unsigned int i;
     	double min, value;
-    	
+
     	if(_no_points < 1)
     		throw("Error in moeoHyperVolumeUnaryMetric::surface_unchanged_to -> argument2: _no_points must be greater than 0");
     	min = _front[0][_objective];
-    	
+
     	for(i=1; i < _no_points; i++){
     		value = _front[i][_objective];
     		if(value < min)
-    			min = value;  		
+    			min = value;
     	}
     	return min;
     }
-    
-    
+
+
     /**
      * remove all points having a value <= 'threshold' regarding the dimension 'objective', only points of index 0 to _no_points are considered.
      * points removed are swap at the end of the front.
@@ -273,7 +278,7 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
      */
     unsigned int reduce_nondominated_set(std::vector < std::vector< double > >& _front, unsigned int _no_points, unsigned int _objective, double _threshold){
     	unsigned int i,n ;
-    	
+
     	n=_no_points;
     	for(i=0; i < n ; i++)
     		if(_front[i][_objective] <= _threshold){
@@ -281,35 +286,35 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
     			swap(_front, i, n);
     			i--; //ATTENTION I had this to reconsider the point copied to index i (it can be useless verify algorythimic in calc_hypervolume)
     		}
-    	
+
     	return n;
     }
-    
-    
+
+
     /**
      * calculate hypervolume of the front (data are redrafted before)
      * @param _front the front
      * @param _no_points the number of points of the front to consider (index 0 to _no_points are considered)
      * @param _no_objectives the number of objective to consider
-     * @return the hypervolume of the front     
+     * @return the hypervolume of the front
      */
     double calc_hypervolume(std::vector < std::vector< double > >& _front, unsigned int _no_points, unsigned int _no_objectives){
     	unsigned int n;
     	double volume, distance;
-    	
+
     	volume=0;
     	distance=0;
     	n=_no_points;
     	while(n > 0){
     		unsigned int no_nondominated_points;
     		double temp_vol, temp_dist;
-    		
+
     		//get back the index of non dominated points of the front regarding the first "_nb_objectives - 1" objectives
-    		//So one dimension is not determinante for the dominance 
+    		//So one dimension is not determinante for the dominance
     		no_nondominated_points = filter_nondominated_set(_front, n, _no_objectives - 1);
-    		
+
     		temp_vol=0;
-    		
+
     		//if there are less than 3 objectifs take the fisrt objectif of the first point of front to begin computation of hypervolume
     		if(_no_objectives < 3){
     	    	if(_no_objectives < 1)
@@ -319,7 +324,7 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
     		//else if there at least 3 objectives, a recursive computation of hypervolume starts with _no_objectives -1 on the filter_nondominated_set calculating previously.
     		else
     			temp_vol= calc_hypervolume(_front, no_nondominated_points, _no_objectives - 1);
-    		
+
     		//search the next minimum distance on the dimension _no_objectives -1
     		temp_dist = surface_unchanged_to(_front, n, _no_objectives - 1);
     		//calculate the area
@@ -327,23 +332,23 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
     		//change distance to have the good lenght on next step
     		distance= temp_dist;
     		//remove all points <= distance on dimension _no_objectives
-    		n=reduce_nondominated_set(_front, n , _no_objectives - 1, distance);	
+    		n=reduce_nondominated_set(_front, n , _no_objectives - 1, distance);
     	}
     	return volume;
     }
-    
+
 
 
   private:
 
 	    /*boolean indicates if data must be normalized or not*/
 	    bool normalize;
-	    
+
 	    double rho;
-	    
+
 	    /*vectors contains bounds for normalization*/
 	    std::vector < eoRealInterval > bounds;
-	    
+
 	    ObjectiveVector ref_point;
 
   };
