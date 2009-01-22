@@ -39,68 +39,75 @@
 
 //! Description of an explorer
 /*!
-  Only a description...See moMoveLoopExpl.
+  This class allows to use any mutation object as a neighborhood.
 */
 template < class EOT >
 class moExpl : public eoBF < const EOT &, EOT &, bool >
 {
-public:
-	unsigned int i;
-
-	//Neighborhoods vector
-	std::vector< eoMonOp<EOT>* > explore;
-
-	//! Generic constructor
+ public:
+  
+  //! Generic constructor
   /*!
     Generic constructor using a eoMonOp
 
-    \param _expl Algorithme or mutation.
+    \param _explorer Algorithme or mutation.
 
   */
-	moExpl(eoMonOp<EOT> & expl){
-	    i=0;
-	    explore.resize(0);
-	    add(expl);
-	}
-
-	//! Generic constructor
-  /*!
-    Generic constructor using a eoMonOp
-
-    \param _expl Algorithme or mutation.
-
-  */
-
-	//!  Procedure which launches the moExpl.
+ moExpl(eoMonOp<EOT> & _explorer): index(0)
+    {
+      explorers.clear();
+      addExplorer(_explorer);
+    }
+  
+  //!  Procedure which launches the moExpl.
   /*!
     The exploration starts from an old solution and provides a new solution.
-
+    
     \param _old_solution The current solution.
     \param _new_solution The new solution (result of the procedure).
   */
 
-	bool operator ()(const EOT & _old, EOT & _new){
-	    _new=(EOT)_old;
-	    return (*explore[i])(_new);
-	}
-	//add an algorithm or mutation to neighborhoods vector
-	void add(eoMonOp<EOT> & expl){
-		explore.push_back(&expl);
-	}
-	//setIndice make sur that the initial indice (_i) is not bigger than the explorer size.
-	void setIndice(unsigned int _i){
-		if( _i >= explore.size() ){
-		  std::cout << "[" << _i << "]" << std::endl;
-		  throw std::runtime_error("[moExpl.h]: bad index "+_i);
-		}
-		i=_i;
-	}
+  bool operator ()(const EOT & _old, EOT & _new)
+  {
+    _new=(EOT)_old;
+    return (*explorers[index])(_new);
+  }
+  
+  //! Add an algorithm or mutation to neighborhoods vector
+  void addExplorer(eoMonOp<EOT> & _new_explorer)
+  {
+    explorers.push_back(&_new_explorer);
+  }
+  
+  //! Procedure which modified the current explorer to use.
+  /*!
+    \param _index Index of the explorer to use.
+   */
+  void setCurrentExplorer(unsigned int _index)
+  {
+    if( _index >= explorers.size() )
+      {
+	std::cout << "[" << _index << "]" << std::endl;
+	throw std::runtime_error("[moExpl.h]: bad index "+_index);
+      }
+    index=_index;
+  }
+  
+  //! Function which returns the number of explorers already saved.
+  /*!
+    \return The number of explorers contained in the moExpl.
+   */
+  unsigned int getExplorerNumber()
+  {
+    return explorers.size();
+  }
+  
+ private :
 
-	//return the size of the class
-	unsigned int size(){
-		return explore.size();
-	}
+  unsigned int index;
 
+  //!Neighborhoods vector
+  std::vector< eoMonOp<EOT>* > explorers;
 };
 
 #endif

@@ -112,7 +112,6 @@ int
 main()
 {
   std::string test_result;
-  int return_value;
 
   //solution solution;
    Route so ;
@@ -120,7 +119,7 @@ main()
   Voisinage sol1;
   Voisinage sol2;
   Explorer explorer(sol1);
-  explorer.add(sol2);
+  explorer.addExplorer(sol2);
   solutionEval eval;
 
   moVNS<Route> vns(explorer, eval);
@@ -135,7 +134,7 @@ main()
 
   cout << "OK" << endl;
 
-  return EXIT_SUCCESS; //return_value;
+  return EXIT_SUCCESS;
 }
 
 //-----------------------------------------------------------------------------

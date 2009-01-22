@@ -44,7 +44,7 @@ main (int _argc, char* _argv [])
 {
   std::string instancePath, value;
   unsigned int seed, maxIterations;
-  double threshold, exponentialRatio, linearRatio, initialTemperature;
+  double threshold, geometricRatio, linearRatio, initialTemperature;
 
   eoParser parser(_argc, _argv); 
 
@@ -55,7 +55,7 @@ main (int _argc, char* _argv [])
   maxIterations=atoi( (parser.getParamWithLongName("maxIter")->getValue()).c_str() );
   initialTemperature=atof( (parser.getParamWithLongName("initialTemp")->getValue()).c_str() );
   threshold=atof( (parser.getParamWithLongName("threshold")->getValue()).c_str() );
-  exponentialRatio=atof( (parser.getParamWithLongName("expoRatio")->getValue()).c_str() );
+  geometricRatio=atof( (parser.getParamWithLongName("geometricRatio")->getValue()).c_str() );
   linearRatio=atof( (parser.getParamWithLongName("lineaRatio")->getValue()).c_str() );
   value=parser.getParamWithLongName("coolSchedType")->getValue();
 
@@ -83,9 +83,9 @@ main (int _argc, char* _argv [])
 
   moCoolingSchedule* coolingSchedule;
 
-  if(value.compare("Expo")==0)
+  if(value.compare("Geometric")==0)
     {
-      coolingSchedule=new moExponentialCoolingSchedule(threshold, exponentialRatio);
+      coolingSchedule=new moGeometricCoolingSchedule(threshold, geometricRatio);
     }
   else if (value.compare("Linear")==0)
     {
@@ -125,11 +125,11 @@ manage_configuration_file(eoParser & _parser)
 
   _parser.getORcreateParam((double)0.1, "threshold", "Minimum temperature allowed.", 0, "Configuration", false);
 
-  _parser.getORcreateParam((double)0.98, "expoRatio", "Ratio used if exponential cooling schedule is chosen.", 0, "Configuration", false);
+  _parser.getORcreateParam((double)0.98, "geometricRatio", "Ratio used if exponential cooling schedule is chosen.", 0, "Configuration", false);
 
   _parser.getORcreateParam((double)0.5, "lineaRatio", "Ratio used if linear cooling schedule is chosen.", 0, "Configuration", false);
 
-  _parser.getORcreateParam(std::string("Expo"), "coolSchedType", "Type the cooling schedule: 'Expo' or 'Linear'.", 
+  _parser.getORcreateParam(std::string("Geometric"), "coolSchedType", "Type the cooling schedule: 'Geometric' or 'Linear'.", 
 			   0, "Configuration", false);
   
   if (_parser.userNeedsHelp())

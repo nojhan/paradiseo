@@ -36,9 +36,7 @@
 #ifndef _moVNS_h
 #define _moVNS_h
 
-#include <eoEvalFunc.h>
-#include <eo>
-#include <mo>
+#include <moAlgo.h>
 
 //! Variable Neighbors Search (VNS)
 /*!
@@ -48,70 +46,86 @@
 template < class EOT>
 class moVNS : public moAlgo < EOT>
 {
-	//! Alias for the fitness.
-	typedef typename EOT::Fitness Fitness;
+  //! Alias for the fitness.
+  typedef typename EOT::Fitness Fitness;
 
-public:
+ public:
 
-	//! Generic constructor
+  //! Generic constructor
   /*!
     Generic constructor using a moExpl
 
     \param _explorer Vector of Neighborhoods.
     \param _full_evaluation The evaluation function.
   */
+ moVNS(moExpl< EOT> & _explorer, eoEvalFunc < EOT> & _full_evaluation): explorer(_explorer), full_evaluation(_full_evaluation) {}
 
-	moVNS(moExpl< EOT> & _explorer, eoEvalFunc < EOT> & _full_evaluation): explorer(_explorer), full_evaluation(_full_evaluation) {}
 
-
-	//! Function which launches the VNS
+  //! Function which launches the VNS
   /*!
     The VNS has to improve a current solution.
 
     \param _solution a current solution to improve.
     \return true.
   */
+  bool operator()(EOT & _solution) 
+  {
+    bool change;
+    unsigned int i;
 
-	bool operator()(EOT & _solution) {
-		bool change=false;
-		int i = 0;
+    EOT solution_prime, solution_second;
+    EOT solution_initial=_solution;
 
-		EOT solution_initial=_solution;
-		EOT solution_prime, solution_second;
+    change=false;
+    i=0;
+    explorer.setCurrentExplorer(i);
 
+    while( i<explorer.getExplorerNumber() ) 
+      {
+	solution_prime=solution_initial;
+	if(solution_prime.invalid())
+	  {
+	    full_evaluation(solution_prime);
+	  }
+	
+	explorer(solution_prime, solution_second);
+	
+	if( solution_second.invalid() )
+	  {
+	    full_evaluation(solution_second);
+	  }
+	
+	if( solution_second > solution_initial ) 
+	  {
+	    solution_initial=solution_second;
+	    change=true;
+	    if(i!= 0) 
+	      {
+		i=0;
+		explorer.setCurrentExplorer(i);
+	      }
+	  }
+	else 
+	  {
+	    i++;
+	    if( i<explorer.getExplorerNumber() )
+	      {
+		explorer.setCurrentExplorer(i);
+	      }
+	  }
+      }
+    
+    _solution=solution_initial;
+    return change;
+  }
 
-		explorer.setIndice(i);
+ private:
+  
+  //!Neighborhoods vector
+  moExpl<EOT> & explorer;
 
-		while(i<explorer.size()) {
-			solution_prime=solution_initial;
-			if(solution_prime.invalid())
-				full_evaluation(solution_prime);
-			explorer(solution_prime, solution_second);
-			if(solution_second.invalid())
-				full_evaluation(solution_second);
-			if(solution_second > solution_initial) {
-				solution_initial=solution_second;
-				change=true;
-				if(i!= 0) {
-					explorer.setIndice(0);
-					i=0;
-				}
-			}
-			else {
-				i++;
-				if(i<explorer.size())
-					explorer.setIndice(i);
-			}
-		}
-		_solution=solution_initial;
-		return change;
-	}
-
-private:
-	//Neighborhoods vector
-	moExpl<EOT> & explorer;
-	//The full evaluation function
-	eoEvalFunc<EOT> & full_evaluation;
+  //!The full evaluation function
+  eoEvalFunc<EOT> & full_evaluation;
 };
 
 #endif

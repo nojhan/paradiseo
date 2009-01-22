@@ -112,8 +112,8 @@ main (int _argc, char* _argv [])
   //-----------neighbor vector--------------------------
 
   moExpl<Route> explorer(perturbation);
-  explorer.add(hill_climbing);
-  explorer.add(perturbation);
+  explorer.addExplorer(hill_climbing);
+  explorer.addExplorer(perturbation);
 
   //------------VNS application--------------------------
 

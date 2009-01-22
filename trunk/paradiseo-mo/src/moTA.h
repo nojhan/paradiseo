@@ -36,8 +36,6 @@
 #ifndef _moTA_h
 #define _moTA_h
 
-#include <math.h>
-
 #include <eoEvalFunc.h>
 #include <moAlgo.h>
 #include <moRandMove.h>
@@ -45,9 +43,9 @@
 #include <moCoolingSchedule.h>
 #include <moSolContinue.h>
 
-//! Threeshol Accepting (TA)
+//! Threshold Accepting (TA)
 /*!
-  Class that describes a Threeshol Accepting algorithm.
+  Class that describes a Threshold Accepting algorithm.
 */
 template < class M >
 class moTA:public moAlgo < typename M::EOType >
@@ -63,20 +61,20 @@ class moTA:public moAlgo < typename M::EOType >
 
   //! TA constructor
   /*!
-    All the boxes used by a SA need to be given.
+    All the boxes used by a TA need to be given. It is equivalent to a SA object.
 
     \param _random_move_generator The move generator (generally randomly).
     \param _incremental_evaluation The (generally) efficient evaluation function
     \param _continue The stopping criterion.
-    \param _initial_threeshold The initial threeshold.
+    \param _initial_threshold The initial threshold.
     \param _cooling_schedule The cooling schedule, describes how the temperature is modified.
     \param _full_evaluation The full evaluation function.
   */
   moTA (moRandMove < M > & _random_move_generator, moMoveIncrEval < M > & _incremental_evaluation,
-	moSolContinue < EOT > & _continue, double _initial_threeshold, moCoolingSchedule & _cooling_schedule,
+	moSolContinue < EOT > & _continue, double _initial_threshold, moCoolingSchedule & _cooling_schedule,
 	eoEvalFunc < EOT > & _full_evaluation):
   random_move_generator(_random_move_generator), incremental_evaluation(_incremental_evaluation),
-    continu(_continue), initial_threeshold(_initial_threeshold),
+    continu(_continue), initial_threshold(_initial_threshold),
     cooling_schedule(_cooling_schedule), full_evaluation(_full_evaluation)
   {}
 
@@ -91,7 +89,7 @@ class moTA:public moAlgo < typename M::EOType >
   {
     Fitness incremental_fitness, delta_fit;
     EOT best_solution;
-    double threeshold;
+    double threshold;
     M move;
 
     if (_solution.invalid())
@@ -99,7 +97,7 @@ class moTA:public moAlgo < typename M::EOType >
 	full_evaluation (_solution);
       }
 
-    threeshold = initial_threeshold;
+    threshold = initial_threshold;
 
     best_solution = _solution;
 
@@ -115,7 +113,7 @@ class moTA:public moAlgo < typename M::EOType >
 
 	    delta_fit = incremental_fitness - _solution.fitness ();
 
-	    if ( threeshold > delta_fit)
+	    if ( threshold > delta_fit)
 
 	      {
 		move(_solution);
@@ -131,7 +129,7 @@ class moTA:public moAlgo < typename M::EOType >
 	  }
 	while ( continu (_solution));
       }
-    while ( cooling_schedule (threeshold) );
+    while ( cooling_schedule (threshold) );
 
     _solution = best_solution;
 
@@ -146,11 +144,11 @@ class moTA:public moAlgo < typename M::EOType >
   //! A (generally) efficient evaluation function.
   moMoveIncrEval < M > & incremental_evaluation;
 
-  //! Stopping criterion before threeshold update
+  //! Stopping criterion before threshold update
   moSolContinue < EOT > & continu;
 
   //! Initial temperature
-  double  initial_threeshold;
+  double  initial_threshold;
 
   //! The cooling schedule
   moCoolingSchedule & cooling_schedule;

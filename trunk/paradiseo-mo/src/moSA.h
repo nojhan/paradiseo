@@ -36,8 +36,6 @@
 #ifndef _moSA_h
 #define _moSA_h
 
-#include <math.h>
-
 #include <eoEvalFunc.h>
 #include <moAlgo.h>
 #include <moRandMove.h>

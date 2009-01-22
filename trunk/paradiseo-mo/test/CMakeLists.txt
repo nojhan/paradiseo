@@ -31,31 +31,31 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-MO_BINARY_DIR}/lib)
 ######################################################################################
 
 SET (TEST_LIST  t-moBestImprSelect 
-               	t-moExponentialCoolingSchedule 
-        		t-moFirstImprSelect 
-           		t-moFitComparator 
-    		    t-moFitSolContinue 
-    		    t-moGenSolContinue 
-    		    t-moHC 
-		        t-moHC_2
-    		    t-moHCMoveLoopExpl 
-    		    t-moILS
-		        t-moILS_HC
-		        t-moILS_TS
-		        t-moILS_SA
-        		t-moImprBestFitAspirCrit 
-        		t-moItRandNextMove 
+               	t-moFirstImprSelect 
+           	t-moFitComparator 
+    		t-moFitSolContinue 
+    		t-moGenSolContinue 
+    		t-moGeometricCoolingSchedule 
+		t-moHC 
+		t-moHC_2
+    		t-moHCMoveLoopExpl 
+    		t-moILS
+		t-moILS_HC
+		t-moILS_TS
+		t-moILS_SA
+        	t-moImprBestFitAspirCrit 
+        	t-moItRandNextMove 
             	t-moLinearCoolingSchedule 
-        		t-moLSCheckPoint 
-        		t-moNoAspirCrit 
-        		t-moNoFitImprSolContinue
-        		t-moRandImprSelect 
-        		t-moSA  
-        		t-moSimpleMoveTabuList 
-        		t-moSimpleSolutionTabuList 
+        	t-moLSCheckPoint 
+        	t-moNoAspirCrit 
+        	t-moNoFitImprSolContinue
+        	t-moRandImprSelect 
+        	t-moSA  
+        	t-moSimpleMoveTabuList 
+        	t-moSimpleSolutionTabuList 
     	        t-moSteadyFitSolContinue 
-    		    t-moTS 
-		        t-moTS_2
+    		t-moTS 
+		t-moTS_2
     	    	t-moTSMoveLoopExpl
     	    	t-moTA
     	    	t-moVNS
