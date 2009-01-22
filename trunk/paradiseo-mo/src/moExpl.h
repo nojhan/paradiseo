@@ -67,10 +67,10 @@ class moExpl : public eoBF < const EOT &, EOT &, bool >
     \param _new_solution The new solution (result of the procedure).
   */
 
-  bool operator ()(const EOT & _old, EOT & _new)
+  bool operator ()(const EOT & _old_solution, EOT & _new_solution)
   {
-    _new=(EOT)_old;
-    return (*explorers[index])(_new);
+    _new_solution=(EOT)_old_solution;
+    return (*explorers[index])(_new_solution);
   }
   
   //! Add an algorithm or mutation to neighborhoods vector
