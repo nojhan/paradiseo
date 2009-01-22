@@ -82,7 +82,7 @@ main()
       i++;
     }
 
-  test_1=((i!=10)?"KO":"OK");
+  test_1=((i!=11)?"KO":"OK");
   value_1=((test_1.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
 
   aspirCriterion.init();
@@ -96,7 +96,7 @@ main()
 
   move(solution);
 
-  test_2=((i!=10)?"KO":"OK");
+  test_2=((i!=12)?"KO":"OK");
   value_2=((test_2.compare("KO")==0)?EXIT_FAILURE:EXIT_SUCCESS);
 
   test_result=(((test_1.compare("OK")==0)&&(test_2.compare("OK")==0))?"OK":"KO");
