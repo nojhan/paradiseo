@@ -19,10 +19,10 @@ double f (const Particle & _particle)
 int main_function(int argc, char **argv)
 {
 	const unsigned POP_SIZE = 6, VEC_SIZE = 2, NEIGHBORHOOD_SIZE=2;
-	
+
 	// the population:
     eoPop<Particle> pop;
-    
+
     // Evaluation
     eoEvalFuncPtr<Particle, double, const Particle& > eval(  f );
 
@@ -33,33 +33,33 @@ int main_function(int argc, char **argv)
     eoVelocityInitFixedLength < Particle > veloRandom (VEC_SIZE, sGen);
     eoFirstIsBestInit < Particle > localInit;
     pop.append (POP_SIZE, random);
-  
+
     // topology
     eoLinearTopology<Particle> topology(NEIGHBORHOOD_SIZE);
     eoInitializer <Particle> init(eval,veloRandom,localInit,topology,pop);
-    init();    
+    init();
 
     // velocity
     eoExtendedVelocity <Particle> velocity (topology,1,1,1,1);
-    
+
     // the test itself
     for (unsigned int i = 0; i < POP_SIZE; i++)
     {
       std::cout << " Initial particle n°" << i << " velocity: " <<  std::endl;
       for (unsigned int j = 0; j < VEC_SIZE; j++)
-    		std::cout << " v" << j << "=" << pop[i].velocities[j] << std::endl;    
+    		std::cout << " v" << j << "=" << pop[i].velocities[j] << std::endl;
     }
-    
+
     for (unsigned int i = 0; i < POP_SIZE; i++)
    	 velocity (pop[i],i);
-   	 
+
    	for (unsigned int i = 0; i < POP_SIZE; i++)
     {
       std::cout << " Final particle n°" << i << " velocity: " <<  std::endl;
       for (unsigned int j = 0; j < VEC_SIZE; j++)
-    		std::cout << " v" << j << "=" << pop[i].velocities[j] << std::endl;    
+    		std::cout << " v" << j << "=" << pop[i].velocities[j] << std::endl;
     }
-	
+   	return EXIT_SUCCESS;
 }
 
 int main(int argc, char **argv)
@@ -72,5 +72,5 @@ int main(int argc, char **argv)
     {
         std::cout << "Exception: " << e.what() <<  " in t-eoExtendedVelocity" << std::endl;
     }
-
+    return EXIT_SUCCESS;
 }
