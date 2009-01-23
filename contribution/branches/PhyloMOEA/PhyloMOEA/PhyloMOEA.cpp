@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
 	evolution_scores.add( popstats);
 
 
-	cout << "\n\nRunning NSGA-II ..." << endl;
+	//cout << "\n\nRunning NSGA-II ..." << endl;
 
 	eoGenContinue<PhyloMOEO> continuator(ngenerations);
 	eoCheckPoint<PhyloMOEO> cp(continuator);
