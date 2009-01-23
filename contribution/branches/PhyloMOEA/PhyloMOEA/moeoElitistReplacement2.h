@@ -44,7 +44,7 @@
 #include <diversity/moeoDummyDiversityAssignment.h>
 #include <fitness/moeoFitnessAssignment.h>
 #include <replacement/moeoReplacement.h>
-#include <PhyloMOEA/vectorSortIndex.h>
+#include <vectorSortIndex.h>
 
 /**
  * Elitist replacement strategy that consists in keeping the N best individuals.

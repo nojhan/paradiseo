@@ -20,7 +20,7 @@
 #ifndef PHYLOMOEOPARTITONSTAT_H_
 #define PHYLOMOEOPARTITONSTAT_H_
 
-#include <PhyloMOEA/moeoObjVecStat.h>
+#include <moeoObjVecStat.h>
 #include <PhyloMOEO.h>
 //#include <utils.h>
 

@@ -20,7 +20,7 @@
 #ifndef PHYLOMOEO_ARCHIVE_H
 #define PHYLOMOEO_ARCHIVE_H
 
-#include <PhyloMOEA/PhyloMOEO.h>
+#include <PhyloMOEO.h>
 
 typedef  moeoArchive<PhyloMOEO> PhyloMOEOArchive;
 typedef  PhyloMOEOArchive PhyloMOEOPFArchive;
@@ -28,7 +28,7 @@ typedef  PhyloMOEOArchive PhyloMOEOPFArchive;
 
 
 
-class PhyloMOEOParetoSolutionsArchive:public moeoArchive<PhyloMOEO>
+class PhyloMOEOParetoSolutionsArchive:public moeoUnboundedArchive<PhyloMOEO>
 {
 	public:
 		void save_trees( std::string filename, string title="" )
@@ -65,6 +65,7 @@ class PhyloMOEOParetoSolutionsArchive:public moeoArchive<PhyloMOEO>
 class PhyloMOEODummyArchive:public PhyloMOEOParetoSolutionsArchive
 {
 	public:
+
 	void update(const eoPop < PhyloMOEO > & _pop)
 	{
 		std::copy(_pop.begin(), _pop.end(), back_inserter(*this) );
@@ -74,8 +75,15 @@ class PhyloMOEODummyArchive:public PhyloMOEOParetoSolutionsArchive
 class PhyloMOEOFinalSolutionsArchive: public PhyloMOEOParetoSolutionsArchive
 {
   public:
+	// overwrite the default operator
+	void operator()(const eoPop < PhyloMOEO > & _pop) { update(_pop); }
+  protected:
+
+
+
 	void update(const eoPop < PhyloMOEO > & _pop)
 	{
+		
 		std::copy(_pop.begin(), _pop.end(), back_inserter(*this) );
 
 		moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;	

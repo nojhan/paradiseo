@@ -7,7 +7,8 @@
 #include <PhyloMOEO_archive.h>
 #include <PhyloMOEOProbMatrixContainerUpdater.h>
 #include <moeoNSGAII2.h>
-#include <moeoObjVecStat.h>
+#include <utils/moeoBestObjVecStat.h>
+#include <utils/moeoAverageObjVecStat.h>
 #include <PhyloMOEOPartitionStat.h>
 #include <eoCountedFileMonitor.h>
 #include <eoSingleFileCountedStateSaver.h>
@@ -165,7 +166,7 @@ int main(int argc, char *argv[])
 	cout << "  done\n";
 
 	PhyloMOEOFinalSolutionsArchive finalsolutions;
-	finalsolutions.update(population);
+	finalsolutions.operator()(population);
 
 	//remove_final_solutions( population );
 	// optimize remaining solutions
@@ -202,7 +203,7 @@ int main(int argc, char *argv[])
 	cout << "\nCalculating Pareto-optimal Solutions...";
 
     PhyloMOEOParetoSolutionsArchive paretosolutions;
-    paretosolutions.update(finalsolutions);
+    paretosolutions.operator()(finalsolutions);
 	paretosolutions.save_scores(path + datafile + "_pareto_scores_" + expid + ".txt","#Pareto Solutions Scores");
 	paretosolutions.save_trees(path + datafile + "_pareto_trees_" + expid + ".txt");
 	cout << " done\n";
