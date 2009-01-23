@@ -22,7 +22,7 @@ RandomNr *rn;
 //Sequences *seq;
 long seed;
 //vector<phylotreeIND> arbores;
-string datafile,usertree, expid, path;
+string datafile,usertree, expid, path, algotype;
 double pcrossover, pmutation, kappa, alpha;
 unsigned int ngenerations,  popsize, ncats;
 ofstream exp_data,evolution_data, best_media_scores, final_trees, final_pareto_trees, clades_pareto, clades_final,final_scores,pareto_scores;
@@ -47,6 +47,7 @@ int main(int argc, char *argv[])
 	datafile = parser.createParam(string(), "data", "Datafile", 'd',"Param").value();
 	usertree = parser.createParam(string(), "treef", "Treefile", 't',"Param").value();
 	path = parser.createParam(string(), "path", "Treefile", 'p',"Param").value();
+	algotype = parser.createParam(string("nsgaii"), "algo", "Algorith, Type", 'b',"Param").value();
  	ostringstream convert;
  	convert << seed;
 	expid = parser.createParam(convert.str(), "expid", "Experiment ID", 'e',"Param").value();
@@ -158,9 +159,20 @@ int main(int argc, char *argv[])
 	
 //	apply<PhyloMOEO> ( byobj, population );
 //	population.printOn(cout);
-	moeoNSGAII2 < PhyloMOEO > nsgaII (cp, byobj, operadores);
-	
-	nsgaII(population);
+	if(algotype == "ibea")
+	{
+		moeoAdditiveEpsilonBinaryMetric < ObjectiveVector > metric;
+		moeoIBEA < PhyloMOEO > algo (cp, byobj, operadores, metric);
+		cout << "\n\nRunning IBEA ..." << endl;	
+		algo(population);
+	}	
+	else
+	{
+		moeoNSGAII < PhyloMOEO > algo (cp, byobj, operadores);
+		cout << "\n\nRunning NSGA-II ..." << endl;	
+		algo(population);
+
+	}
 	
 	cout << "\nCalculating Final Solutions...";
 	cout << "  done\n";

@@ -31,10 +31,11 @@ void Step_LikOptimizer::optimize()
 	oldroot = invalid_node;
 
 	// calculate conditional likelihood
+	double likinit=Lik_calc->calculate_likelihood();
 	//cout << "likelihood inicial" << Lik_calc->calculate_likelihood() << endl;
 
 	graph::edge_iterator it_end = tree_ptr->TREE.edges_end();
-	
+	int niterations=0;
 	double sum,aux;
 	do{
 		it = tree_ptr->TREE.edges_begin();
@@ -70,9 +71,18 @@ void Step_LikOptimizer::optimize()
 			oldroot = a;
 			++it;
 		}
-		cout << '.';
+		if(niterations>=30) 
+		{
+			if(niterations == 30)cout << "\n probable problematic tree we will print the sum value for ten iterations more and quit this tree\n";
+			cout << sum << endl;
+		}
+		else cout << '.';
 		cout.flush();
-	}while(sum>=0.0001);
+		niterations++;
+		
+	}while(sum>=0.0001 && niterations<40);
+	double likfin = Lik_calc->calculate_likelihood();
+	cout << likinit << " -->" << likfin << endl;
 	//cout << "\nlikelihood final" << Lik_calc->calculate_likelihood() << endl;
 }
 
