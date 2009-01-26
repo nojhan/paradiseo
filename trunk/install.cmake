@@ -3,7 +3,7 @@
 ######################################################################################
 
 # check cmake version compatibility
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6 FATAL_ERROR)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
 # regular expression checking
 INCLUDE_REGULAR_EXPRESSION("^.*$" "^$")
