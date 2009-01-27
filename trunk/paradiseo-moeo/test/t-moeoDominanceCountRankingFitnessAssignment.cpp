@@ -40,7 +40,6 @@
 
 #include <eo>
 #include <moeo>
-#include <limits>
 
 //-----------------------------------------------------------------------------
 
@@ -116,7 +115,6 @@ int test(const eoPop < Solution >& _pop, const moeoUnboundedArchive < Solution >
 int main()
 {
     int res=EXIT_SUCCESS;
-    const double infinity = std::numeric_limits< double >::infinity();
     std::cout << "[moeoDominanceCountRankingFitnessAssignment]\n";
 
     // objective vectors
@@ -171,9 +169,9 @@ int main()
 
     std::cout << "Constructor with archive passed in parameter => ";
     fitnessAssignment2(pop);
-    for (int k=0; k<pop.size();k++)
+    for (unsigned int k=0; k<pop.size();k++)
         std::cout << "pop " << k << " : " << pop[k].fitness() << "\n";
-    for (int k=0; k<archive.size();k++)
+    for (unsigned int k=0; k<archive.size();k++)
         std::cout << "archive " << k << " : " << archive[k].fitness() << "\n";
 
     if (test(pop, archive, 0, -14, 0, -13, -4, 0, -7) == 0)
