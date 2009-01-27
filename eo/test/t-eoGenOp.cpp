@@ -206,8 +206,8 @@ int the_main(int argc, char **argv)
       }
 
   ////////////////////////////////// define operators
-  monop mon("mon1");
-  monop clone("clone");
+  monop mon((char*)"mon1");
+  monop clone((char*)"clone");
   binop bin;
   quadop quad;
   quadClone quadclone;

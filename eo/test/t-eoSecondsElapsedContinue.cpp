@@ -11,10 +11,9 @@
 class Dummy : public EO<double> {};
 
 int main() {
-    
+
     eoPop<Dummy> pop;
 
-    int s = 1;
     eoSecondsElapsedContinue<Dummy> cnt(1);
 
 	time_t start_time = time(0);
