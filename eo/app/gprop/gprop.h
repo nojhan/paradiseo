@@ -52,7 +52,7 @@ struct phenotype
 
   friend bool operator<(const phenotype& a, const phenotype& b)
   {
-      return (a.val_ok < b.val_ok) || (!(b.val_ok < a.val_ok)) && (b.mse_error < a.mse_error);
+      return (a.val_ok < b.val_ok) || ((!(b.val_ok < a.val_ok)) && (b.mse_error < a.mse_error));
   }
 
   friend bool operator==(const phenotype& a, const phenotype& b)
@@ -207,8 +207,8 @@ int correct(const mlp::net& net, const mlp::set& set)
       unsigned partial = 0;
 
       for (unsigned i = 0; i < s->output.size(); ++i)
-        if (s->output[i] < 0.5 && net(s->input)[i] < 0.5 ||
-            s->output[i] > 0.5 && net(s->input)[i] > 0.5)
+        if ((s->output[i] < 0.5 && net(s->input)[i] < 0.5) ||
+            (s->output[i] > 0.5 && net(s->input)[i] > 0.5))
           ++partial;
 
       if (partial == s->output.size())
