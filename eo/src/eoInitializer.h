@@ -82,7 +82,7 @@ public:
         eoParticleBestInit <POT> &_initBest,
         eoTopology <POT> &_topology,
         eoPop < POT > &_pop
-    ) : proc(dummy), procPara(_proc), initVelo(_initVelo), initBest(_initBest), topology(_topology), pop(_pop)
+    ) : proc(dummy), initVelo(_initVelo), procPara(_proc), initBest(_initBest), topology(_topology), pop(_pop)
     {}
 
 
@@ -114,8 +114,8 @@ private :
     */
     eoUF<POT&, void>& proc;
     eoVelocityInit < POT > & initVelo;
-    eoParticleBestInit <POT> & initBest;
     eoPopEvalFunc <POT>& procPara;
+    eoParticleBestInit <POT> & initBest;
     eoTopology <POT> & topology;
     eoPop < POT > & pop;
 
