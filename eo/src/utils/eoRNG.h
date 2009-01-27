@@ -276,7 +276,7 @@ public :
     @return Uniformly chosen element from the vector.
     */
     template <typename TYPE>
-    const TYPE& choice(const std::vector<TYPE>& vec) 
+    const TYPE& choice(const std::vector<TYPE>& vec)
         { return vec[random(vec.size())]; }
 
 
@@ -450,10 +450,10 @@ inline void eoRng::initialize(uint32_t seed)
     left = -1;
 
     register uint32_t x = (seed | 1U) & 0xFFFFFFFFU, *s = state;
-    register int    j;
+    register int j;
 
     for(left=0, *s++=x, j=N; --j;
-        *s++ = (x*=69069U) & 0xFFFFFFFFU);
+        *s++ = (x*=69069U) & 0xFFFFFFFFU) ;
 }
 
 

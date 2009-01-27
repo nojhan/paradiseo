@@ -57,7 +57,7 @@ public:
 
 	clock_t tick = clock();
 
-	if ( (tick-last_tick) >= seconds * CLOCKS_PER_SEC) {
+	if ( (unsigned)(tick-last_tick) >= seconds * CLOCKS_PER_SEC) {
 	    monitor = true;
 	}
 
