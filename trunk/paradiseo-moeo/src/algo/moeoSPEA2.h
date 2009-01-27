@@ -129,7 +129,7 @@ public:
     /**
         * Ctor with a crossover, a mutation and their corresponding rates.
         * @param _continuator stopping criteria
-    popEval    * @param _eval evaluation function
+        * @param _eval evaluation function
         * @param _op general operator
         * @param _archive archive
         * @param _k the k-ieme distance used to fixe diversity
@@ -218,19 +218,21 @@ public:
 protected:
 
     /** dummy evaluation */
-class eoDummyEval : public eoEvalFunc< MOEOT >
+	class eoDummyEval : public eoEvalFunc< MOEOT >
     {
     public:
         void operator()(MOEOT &) {}
     }
     dummyEval;
+
     /** dummy transform */
-class eoDummyTransform : public eoTransform<MOEOT>
+    class eoDummyTransform : public eoTransform<MOEOT>
     {
     public :
         void operator()(eoPop<MOEOT>&) {}
     }
     dummyTransform;
+
     /** a continuator based on the number of generations (used as default) */
     eoGenContinue < MOEOT > defaultGenContinuator;
     /** stopping criteria */
@@ -243,31 +245,31 @@ class eoDummyTransform : public eoTransform<MOEOT>
     eoPopEvalFunc < MOEOT > & popEval;
     /**archive*/
     moeoArchive < MOEOT >& archive;
-    /** selectMany */
-    eoSelectMany <MOEOT>  selectMany;
-    /** select Transform*/
-    eoSelectTransform <MOEOT> selectTransform;
     /**SelectOne*/
     moeoDetTournamentSelect < MOEOT > defaultSelect;
     /** binary tournament selection */
     moeoSelectFromPopAndArch < MOEOT > select;
+    /** a default mutation */
+    eoMonCloneOp < MOEOT > defaultMonOp;
+    /** a default crossover */
+    eoQuadCloneOp < MOEOT > defaultQuadOp;
+    /** an object for genetic operators (used as default) */
+    eoSGAGenOp < MOEOT > defaultSGAGenOp;
     /** fitness assignment used in NSGA-II */
     moeoDominanceCountRankingFitnessAssignment < MOEOT > fitnessAssignment;
+    /** general breeder */
+    eoGeneralBreeder < MOEOT > genBreed;
+    /** selectMany */
+    eoSelectMany <MOEOT>  selectMany;
+    /** select Transform*/
+    eoSelectTransform <MOEOT> selectTransform;
+    /** breeder */
+    eoBreed < MOEOT > & breed;
     /** diversity assignment used in NSGA-II */
     moeoNearestNeighborDiversityAssignment  < MOEOT > diversityAssignment;
     /** elitist replacement */
     moeoGenerationalReplacement < MOEOT > replace;
-    /** a default crossover */
-    eoQuadCloneOp < MOEOT > defaultQuadOp;
-    /** a default mutation */
-    eoMonCloneOp < MOEOT > defaultMonOp;
-    /** an object for genetic operators (used as default) */
-    eoSGAGenOp < MOEOT > defaultSGAGenOp;
-    /** general breeder */
-    eoGeneralBreeder < MOEOT > genBreed;
-    /** breeder */
-    eoBreed < MOEOT > & breed;
-    /**distance*/
+   /**distance*/
     moeoEuclideanDistance < MOEOT > dist;
 
 

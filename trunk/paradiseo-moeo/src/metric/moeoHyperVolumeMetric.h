@@ -346,10 +346,12 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
 
 	    double rho;
 
+	    ObjectiveVector ref_point;
+
 	    /*vectors contains bounds for normalization*/
 	    std::vector < eoRealInterval > bounds;
 
-	    ObjectiveVector ref_point;
+
 
   };
 

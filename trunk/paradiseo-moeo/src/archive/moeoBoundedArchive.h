@@ -71,7 +71,7 @@ public:
      */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 
-   
+
     /**
      * Ctor where you can choose your own moeoComparator, moeoObjectiveVectorComparator, moeoFitnessAssignment, moeoDiversityAssignment and archive size.
      * @param _indiComparator the functor used to compare MOEOT
@@ -82,7 +82,7 @@ public:
      */
     moeoBoundedArchive(moeoComparator < MOEOT > & _indiComparator, moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, moeoFitnessAssignment < MOEOT > & _fitness, moeoDiversityAssignment < MOEOT > & _diversity, unsigned int _maxSize=100) : moeoArchive < MOEOT >(_comparator), maxSize(_maxSize), indiComparator(_indiComparator), fitness(_fitness), diversity(_diversity)
     {}
-    
+
     /**
      * Ctor with moeoParetoObjectiveVectorComparator where you can choose your own moeoComparator, moeoFitnessAssignment, moeoDiversityAssignment and archive size.
      * @param _indiComparator the functor used to compare MOEOT
@@ -92,8 +92,8 @@ public:
      */
     moeoBoundedArchive(moeoComparator < MOEOT > & _indiComparator, moeoFitnessAssignment < MOEOT > & _fitness, moeoDiversityAssignment < MOEOT > & _diversity, unsigned int _maxSize=100) : moeoArchive < MOEOT >(), maxSize(_maxSize), indiComparator(_indiComparator), fitness(_fitness), diversity(_diversity)
     {}
-    
-    
+
+
 
 
     /**
@@ -103,7 +103,7 @@ public:
     void operator()(const MOEOT & _moeo)
     {
     	update(_moeo);
-    	
+
     	if(size() > maxSize){
     		fitness(*this);
     		diversity(*this);
@@ -120,7 +120,7 @@ public:
     void operator()(const eoPop < MOEOT > & _pop)
     {
     	update(_pop);
-    	
+
     	if(size() > maxSize){
     		fitness(*this);
     		diversity(*this);
@@ -133,11 +133,6 @@ private:
 
     /** archive max size */
     unsigned int maxSize;
-    /** fitness assignment */
-    moeoFitnessAssignment < MOEOT > & fitness;
-    /** diversity assignment */
-    moeoDiversityAssignment < MOEOT > & diversity;
-    
     /**
      * Wrapper which allow to used an moeoComparator in std::sort
      * @param _comp the comparator to used
@@ -164,7 +159,12 @@ private:
         moeoComparator < MOEOT > & comp;
     }
     indiComparator;
-    
+
+    /** fitness assignment */
+    moeoFitnessAssignment < MOEOT > & fitness;
+    /** diversity assignment */
+    moeoDiversityAssignment < MOEOT > & diversity;
+
 };
-    
+
 #endif /*MOEOBOUNDEDARCHIVE_H_*/

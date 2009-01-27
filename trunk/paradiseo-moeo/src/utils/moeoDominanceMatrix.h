@@ -60,17 +60,19 @@ public:
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 
     /**
+	 * Constructor which allow to choose the comparator
+	 * @param _nocopy boolean allow to consider copy and doublons as bad element whose were dominated by all other MOEOT
+	 * @param _comparator the comparator you want to use for the comparaison of two MOEOT
+	 */
+	moeoDominanceMatrix(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, bool _nocopy=true):std::vector < std::vector<bool> >(),comparator(_comparator), nocopy(_nocopy) {}
+
+    /**
      * Default constructor with paretoComparator
      * @param _nocopy boolean allow to consider copy and doublons as bad element whose were dominated by all other MOEOT
      */
     moeoDominanceMatrix(bool _nocopy=false):std::vector < std::vector<bool> >(),comparator(paretoComparator), nocopy(_nocopy) {}
 
-    /**
-     * Constructor which allow to choose the comparator
-     * @param _nocopy boolean allow to consider copy and doublons as bad element whose were dominated by all other MOEOT
-     * @param _comparator the comparator you want to use for the comparaison of two MOEOT
-     */
-    moeoDominanceMatrix(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, bool _nocopy=true):std::vector < std::vector<bool> >(),comparator(_comparator), nocopy(_nocopy) {}
+
 
     /**
      * Filling up the Dominance Matrix on one population
@@ -214,6 +216,10 @@ public:
     }
 
 private:
+    /** Functor to compare two objective vectors */
+    moeoObjectiveVectorComparator < ObjectiveVector > & comparator;
+    /** Functor to compare two objective vectors according to Pareto dominance relation */
+    moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
     /** boolean allow or not to pull away a copy*/
     bool nocopy;
     /** vector contains CountDominanceFitnessAssignment */
@@ -222,10 +228,7 @@ private:
     std::vector<double> rankVector;
     /** vector contains index of copys */
     std::set<unsigned int> copySet;
-    /** Functor to compare two objective vectors */
-    moeoObjectiveVectorComparator < ObjectiveVector > & comparator;
-    /** Functor to compare two objective vectors according to Pareto dominance relation */
-    moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
+
 
 };
 

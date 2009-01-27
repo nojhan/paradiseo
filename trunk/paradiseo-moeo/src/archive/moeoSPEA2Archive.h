@@ -85,7 +85,7 @@ public:
     {}
 
 
-    /**
+    /**l
      * Ctor where you can choose your own moeoDistance
      * @param _dist the distance used
      * @param _maxSize the size of archive (must be smaller or egal to the population size)
@@ -285,6 +285,32 @@ private:
     unsigned int maxSize;
     /** archive size */
     unsigned int borne;
+    /**
+     * Wrapper which allow to used an moeoComparator in std::sort
+     * @param _comp the comparator to used
+     */
+    class Wrapper
+    {
+    public:
+        /**
+         * Ctor.
+         * @param _comp the comparator
+         */
+        Wrapper(moeoComparator < MOEOT > & _comp) : comp(_comp) {}
+        /**
+         * Returns true if _moeo1 is greater than _moeo2 according to the comparator
+         * _moeo1 the first individual
+         * _moeo2 the first individual
+         */
+        bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
+        {
+            return comp(_moeo1,_moeo2);
+        }
+    private:
+        /** the comparator */
+        moeoComparator < MOEOT > & comp;
+    }
+    indiComparator;
     /** default moeoComparator*/
     moeoFitnessThenDiversityComparator < MOEOT > defaultComparator;
     /** distance */
@@ -351,33 +377,6 @@ private:
         }
     };
 
-
-    /**
-     * Wrapper which allow to used an moeoComparator in std::sort
-     * @param _comp the comparator to used
-     */
-    class Wrapper
-    {
-    public:
-        /**
-         * Ctor.
-         * @param _comp the comparator
-         */
-        Wrapper(moeoComparator < MOEOT > & _comp) : comp(_comp) {}
-        /**
-         * Returns true if _moeo1 is greater than _moeo2 according to the comparator
-         * _moeo1 the first individual
-         * _moeo2 the first individual
-         */
-        bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
-        {
-            return comp(_moeo1,_moeo2);
-        }
-    private:
-        /** the comparator */
-        moeoComparator < MOEOT > & comp;
-    }
-    indiComparator;
 
 };
 
