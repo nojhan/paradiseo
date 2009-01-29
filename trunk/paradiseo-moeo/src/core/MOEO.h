@@ -115,6 +115,7 @@ class MOEO : public EO < MOEOObjectiveVector >
       diversityValue = Diversity();
       // invalidate all
       invalidate();
+      flag=0;
     }
 
 
@@ -274,7 +275,7 @@ class MOEO : public EO < MOEOObjectiveVector >
 
 
     /**
-     * Returns true if the objective vector of the current solution is smaller than the objective vector of _other on the first objective, 
+     * Returns true if the objective vector of the current solution is smaller than the objective vector of _other on the first objective,
      * then on the second, and so on (can be usefull for sorting/printing).
      * You should implement another function in the sub-class of MOEO to have another sorting mecanism.
      * @param _other the other MOEO object to compare with
@@ -332,6 +333,22 @@ class MOEO : public EO < MOEOObjectiveVector >
         }
     }
 
+    /**
+     * Setter for "flag"
+     * @param _flag the flag value
+     */
+    void setFlag(int _flag){
+    	flag=_flag;
+    }
+
+    /**
+     * Getter for "flag"
+     * @return the flag value
+     */
+    int getFlag(){
+    	return flag;
+    }
+
 
   private:
 
@@ -347,6 +364,8 @@ class MOEO : public EO < MOEOObjectiveVector >
     Diversity diversityValue;
     /** true if the diversity value is invalid */
     bool invalidDiversityValue;
+    /** A flag which can be used to stock information*/
+    int flag;
 
   };
 
