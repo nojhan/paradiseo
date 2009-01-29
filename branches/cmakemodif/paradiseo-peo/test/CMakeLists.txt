@@ -74,27 +74,28 @@ ENDFOREACH (test)
 
 IF(ENABLE_MINIMAL_CMAKE_TESTING)
 
-    SET (MIN_TEST_LIST t-MultiStart)
+
+	SET (MIN_TEST_LIST t-MultiStart)
    
-    FOREACH (testrun ${TEST_RUN})
+	FOREACH (testrun ${TEST_RUN})
           ADD_EXECUTABLE(${testrun} ${T_${testrun}_SOURCES}) 
 		  ADD_TEST(${testrun} ${testrun})
 	ENDFOREACH (testrun)				
    
-    FOREACH (mintest ${MIN_TEST_LIST})
+    	FOREACH (mintest ${MIN_TEST_LIST})
     	  SET ("T_${mintest}_SOURCES" "${mintest}.cpp")
     	  ADD_EXECUTABLE(${mintest} ${T_${mintest}_SOURCES}) 
 		  ADD_TEST(${mintest} "mpiexec" "-n" "4" "${CMAKE_CURRENT_BINARY_DIR}/${mintest}" "@param") 
 		  TARGET_LINK_LIBRARIES(${mintest} peo ${XML2_LIBS} rmc_mpi ga es eoutils eo peo)
-    ENDFOREACH (mintest)
+    	ENDFOREACH (mintest)
     
-    FOREACH (teststop ${TEST_STOP})
+    	FOREACH (teststop ${TEST_STOP})
           ADD_EXECUTABLE(${teststop} ${T_${teststop}_SOURCES}) 
 		  ADD_TEST(${teststop} ${teststop})
-	ENDFOREACH (teststop)
+	ENDFOREACH (teststop)   
    
 ELSEIF(ENABLE_CMAKE_TESTING)
-
+	
 	FOREACH (test ${TEST_RUN} ${TEST_LIST} ${TEST_STOP})
 		  ADD_EXECUTABLE(${test} ${T_${test}_SOURCES})  
 	ENDFOREACH (test)
@@ -110,10 +111,10 @@ ELSEIF(ENABLE_CMAKE_TESTING)
 	FOREACH (teststop ${TEST_STOP})
 		  ADD_TEST(${teststop} ${teststop})
 	ENDFOREACH (teststop)
-	
+
 	FOREACH (test ${TEST_LIST})
 	 TARGET_LINK_LIBRARIES(${test} peo ${XML2_LIBS} rmc_mpi ga es eoutils eo peo)
-	ENDFOREACH (test)	
+	ENDFOREACH (test) 
 	
 ENDIF(ENABLE_MINIMAL_CMAKE_TESTING)
 

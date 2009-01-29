@@ -122,6 +122,13 @@ void collectiveCountOfRunners ( unsigned int* num_local_exec_runners, unsigned i
   MPI_Allreduce( num_local_exec_runners, num_exec_runners, 1, MPI_UNSIGNED, MPI_SUM, MPI_COMM_WORLD );
 }
 
+// Return the code of execution of MPI_Allreduce
+int iCollectiveCountOfRunners ( unsigned int* num_local_exec_runners, unsigned int* num_exec_runners )
+{
+  
+  return MPI_Allreduce( num_local_exec_runners, num_exec_runners, 1, MPI_UNSIGNED, MPI_SUM, MPI_COMM_WORLD );
+}
+
 int getRankFromName (const std :: string & __name)
 {
 

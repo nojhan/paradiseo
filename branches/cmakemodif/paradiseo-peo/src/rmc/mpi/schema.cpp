@@ -34,10 +34,12 @@
 *
 */
 
+#include <iostream>
 #include <set>
 #include <cassert>
 
 #include "schema.h"
+#include "mess.h"
 #include "xml_parser.h"
 #include "comm.h"
 #include "node.h"
@@ -130,7 +132,8 @@ bool isScheduleNode ()
 
 void loadSchema (const char * __filename)
 {
-
+	
+  // std :: cout << " I'm node number \t" << getNodeRank () << std :: endl;
   openXMLDocument (__filename);
 
   std :: string name;
@@ -204,4 +207,5 @@ void loadSchema (const char * __filename)
     }
 
   closeXMLDocument ();
+  //synchronizeNodes ();
 }

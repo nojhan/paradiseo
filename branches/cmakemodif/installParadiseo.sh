@@ -40,9 +40,9 @@ CTEST_CONFIG=$CTEST_DEFAULT_CONFIG
 MIN_CMAKE_FLAGS='-DENABLE_MINIMAL_CMAKE_TESTING=TRUE'
 
 # install types to select in the main menu
-P_FULL_INSTALL=1
-P_BASIC_INSTALL=2
-P_PARALLEL_INSTALL=3
+P_BASIC_INSTALL=1
+P_PARALLEL_INSTALL=2
+P_FULL_INSTALL=3
 P_RM_PREVIOUS_INSTALLL=4
 P_EXIT_INSTALL=5
 
@@ -75,34 +75,34 @@ S_CHECK_AUTOTOOLS=1018
 #### define what are the possible installs and their content
 
 # full install
-FULL_INSTALL="$S_INTRODUCTION $S_UNPACK_LIBXML $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_CHECK_AUTOTOOLS $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
+FULL_INSTALL="$S_INTRODUCTION $S_UNPACK_LIBXML $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_CHECK_AUTOTOOLS $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END"
 
-FULL_INSTALL_WITHOUT_LIBXML2="$S_INTRODUCTION $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_CHECK_AUTOTOOLS $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_MPICH_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
+FULL_INSTALL_WITHOUT_LIBXML2="$S_INTRODUCTION $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_CHECK_AUTOTOOLS $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_MPICH_ENV $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END"
 
-FULL_INSTALL_WITHOUT_MPICH2="$S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_CHECK_AUTOTOOLS $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_CONFIGURE_LIBXML2_ENV $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END"
+FULL_INSTALL_WITHOUT_MPICH2="$S_INTRODUCTION $S_UNPACK_LIBXML $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_CHECK_AUTOTOOLS $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_CONFIGURE_LIBXML2_ENV $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END"
 
-FULL_INSTALL_WITHOUT_LIBXML2_MPICH2="$S_INTRODUCTION $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_INSTALL_PEO  $S_CONFIGURE_MPD $S_END_WITHOUT_INFO"
+FULL_INSTALL_WITHOUT_LIBXML2_MPICH2="$S_INTRODUCTION $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END_WITHOUT_INFO"
 
 # basic install
 BASIC_INSTALL="$S_INTRODUCTION $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_END"
 
 # install only paradiseo-peo
-PARALLEL_INSTALL="$S_PEO_CHECK $S_INTRODUCTION $S_UNPACK_LIBXML $S_CHECK_AUTOTOOLS $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_UNPACK_MPICH $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
+PARALLEL_INSTALL="$S_PEO_CHECK $S_INTRODUCTION $S_UNPACK_LIBXML $S_CHECK_AUTOTOOLS $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_UNPACK_MPICH $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END"
 
-PARALLEL_INSTALL_WITHOUT_LIBXML2="$S_PEO_CHECK $S_INTRODUCTION  $S_UNPACK_MPICH $S_CHECK_AUTOTOOLS $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_MPICH_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
+PARALLEL_INSTALL_WITHOUT_LIBXML2="$S_PEO_CHECK $S_INTRODUCTION  $S_UNPACK_MPICH $S_CHECK_AUTOTOOLS $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_MPICH_ENV $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END"
 
-PARALLEL_INSTALL_WITHOUT_MPICH2="$S_PEO_CHECK $S_INTRODUCTION $S_CHECK_AUTOTOOLS $S_UNPACK_LIBXML $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_CONFIGURE_LIBXML2_ENV $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END"
+PARALLEL_INSTALL_WITHOUT_MPICH2="$S_PEO_CHECK $S_INTRODUCTION $S_CHECK_AUTOTOOLS $S_UNPACK_LIBXML $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_CONFIGURE_LIBXML2_ENV $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END"
 
-PARALLEL_INSTALL_WITHOUT_LIBXML2_MPICH2="$S_PEO_CHECK $S_INTRODUCTION $S_INSTALL_PEO $S_CONFIGURE_MPD $S_END_WITHOUT_INFO"
+PARALLEL_INSTALL_WITHOUT_LIBXML2_MPICH2="$S_PEO_CHECK $S_INTRODUCTION $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END_WITHOUT_INFO"
 
 # remove a previous install
 RM_PREVIOUS_INSTALL="$S_REMOVE_INSTALL"
 
 #others
 LIBS_PATH=lib
-LIBXML2_ARCHIVE=libxml2-2.6.0
-LIBXML2_ARCHIVE_SUFFIX=.tar.bz2
-MPICH2_ARCHIVE=mpich2-1.0.3
+LIBXML2_ARCHIVE=libxml2-2.7.3
+LIBXML2_ARCHIVE_SUFFIX=.tar.gz
+MPICH2_ARCHIVE=mpich2-1.0.8
 MPICH2_ARCHIVE_SUFFIX=.tar.gz
 # errors
 SUCCESSFUL_STEP=0
@@ -353,7 +353,7 @@ function run_install_step()
 		execute_cmd "rm -Rf $installKitPath/$LIBXML2_ARCHIVE_SUFFIX" "[$currentStepCounter-1] Remove potential existing dir $installKitPath/$LIBXML2_ARCHIVE"  $SPY 
 		RETURN=$?
 
-		execute_cmd "tar xvjf $resourceKitPath/$LIBS_PATH/$LIBXML2_ARCHIVE$LIBXML2_ARCHIVE_SUFFIX  --directory $installKitPath" "[$currentStepCounter-2] Unpack Libxml2" $SPY
+		execute_cmd "tar xzvf $resourceKitPath/$LIBS_PATH/$LIBXML2_ARCHIVE$LIBXML2_ARCHIVE_SUFFIX  --directory $installKitPath" "[$currentStepCounter-2] Unpack Libxml2" $SPY
 		if [ ! "$?" = "0" ]
 		then
 			echo ''
@@ -558,7 +558,7 @@ function run_install_step()
 
 		execute_cmd "mkdir $installKitPath/libxml2" "[$currentStepCounter-1] Create libxml2 dir"  $SPY 
 		RETURN=$?
-		execute_cmd "cd $installKitPath/libxml2-2.6.0/" "[$currentStepCounter-2] Go in libxml2-2.6.0 dir"  $SPY
+		execute_cmd "cd $installKitPath/$LIBXML2_ARCHIVE/" "[$currentStepCounter-2] Go in $LIBXML2_ARCHIVE dir"  $SPY
 		RETURN=`expr $RETURN + $?`
 		execute_cmd "./configure --prefix=$installKitPath/libxml2/ --exec-prefix=$installKitPath/libxml2/" "[$currentStepCounter-3] Run configure for libxml2"  $SPY
 		RETURN=`expr $RETURN + $?`
@@ -588,7 +588,7 @@ function run_install_step()
 
 		execute_cmd "mkdir $installKitPath/mpich2" "[$currentStepCounter-1] Create mpich2 dir"  $SPY 
 		RETURN=$?
-		execute_cmd "cd $installKitPath/mpich2-1.0.3/" "[$currentStepCounter-2] Go in mpich2-1.0.3 dir"  $SPY
+		execute_cmd "cd $installKitPath/$MPICH2_ARCHIVE/" "[$currentStepCounter-2] Go in $MPICH2_ARCHIVE dir"  $SPY
 		RETURN=`expr $RETURN + $?`
 		execute_cmd "./configure --prefix=$installKitPath/mpich2/" "[$currentStepCounter-3] Run configure for mpich2"  $SPY
 		RETURN=`expr $RETURN + $?`
@@ -613,11 +613,11 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Removing libxml2 temp install directory ...'
 		
-		execute_cmd "rm -fr $installKitPath/libxml2-2.6.0" "[$currentStepCounter] Remove Libxml2 temporary directory" $SPY
+		execute_cmd "rm -fr $installKitPath/$LIBXML2_ARCHIVE" "[$currentStepCounter] Remove Libxml2 temporary directory" $SPY
 		if [ ! "$?" = "0" ]
 		then
 			echo ''
-			echo "		--> Error when removing $installKitPath/libxml2-2.6.0"
+			echo "		--> Error when removing $installKitPath/$LIBXML2_ARCHIVE"
 			echo -e ' \033[40m\033[1;33m### END ### \033[0m '
 			return $REMOVE_TEMP_DIRECTORY_ERROR
 		else
@@ -632,11 +632,11 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Removing mpich2 temp install directory ...'
 		
-		execute_cmd "rm -fr $installKitPath/mpich2-1.0.3" "[$currentStepCounter] Remove Mpich2 temporary directory" $SPY
+		execute_cmd "rm -fr $installKitPath/$MPICH2_ARCHIVE" "[$currentStepCounter] Remove Mpich2 temporary directory" $SPY
 		if [ ! "$?" = "0" ]
 		then
 			echo ''
-			echo "		--> Error when removing $installKitPath/mpich2-1.0.3"
+			echo "		--> Error when removing $installKitPath/$MPICH2_ARCHIVE"
 			echo -e ' \033[40m\033[1;33m### END ### \033[0m '
 			return $REMOVE_TEMP_DIRECTORY_ERROR
 		else
@@ -776,48 +776,6 @@ function run_install_step()
 			return $SUCCESSFUL_STEP
 		fi 
 		;;
-	$S_INSTALL_PEO)
-		######## installing paradiseo-peo ##########
-		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
-		echo '		--> Installing Paradiseo-PEO. Please wait ...'
-		
-		if [ ! "$installKitPath" = "$resourceKitPath" ]
-		    then
-		    cp  -Rf $resourceKitPath/paradiseo-peo/ $installKitPath/
-		    rm -Rf $installKitPath/paradiseo-peo/build/*
-		fi
-
-		execute_cmd "cd $installKitPath/paradiseo-peo/build" "[$currentStepCounter-1] Go in Paradiseo-PEO dir"  $SPY 
-		RETURN=$?
-
-		execute_cmd " echo \"cmake ../  -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G\"$BUILD_PROCESS_TYPE\" $MIN_CMAKE_FLAGS $OPTIONNAL_CMAKE_FLAGS \"" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE"  $SPY
-		cmake ../  -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE" $MIN_CMAKE_FLAGS $OPTIONNAL_CMAKE_FLAGS -DCMAKE_BUILD_TYPE=$BUILD_TYPE >> ${SPY} 2>> ${SPY}
-		RETURN=`expr $RETURN + $?`
-		
-		if [ "$COMPILE_PARADISEO" = "1" ] 
-		then
-			execute_cmd "ctest $CTEST_CONFIG" "[$currentStepCounter-3] Compile ParadisEO-PEO using CTest"  $SPY
-			LAST_RETURN=$?
-			# don't consider a submission error as a "right error"
-			if [ ! "$LAST_RETURN" = "$DART_SUBMISSION_ERROR" ]
-			then
-				RETURN=`expr $RETURN + $LAST_RETURN`
-			fi	
-		fi		
-	
-		if [ ! $(($RETURN)) = 0 ]
-		then
-			echo ''
-			echo "		--> Error when installing Paradiseo-PEO"
-			echo -e ' \033[40m\033[1;33m### END ### \033[0m '
-			return $PARADISEO_INSTALL_ERROR
-		else
-			echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter OK \033[0m"
-			echo
-			return $SUCCESSFUL_STEP
-		fi 
-		;;
-
 	$S_CONFIGURE_MPD)
 		######## copy .mpd.conf file in your HOME directory or in /etc if you are root (required for mpich2) 
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
@@ -847,6 +805,72 @@ function run_install_step()
 			echo
 			return $SUCCESSFUL_STEP
 		fi 	
+		;;
+	$S_INSTALL_PEO)
+		######## installing paradiseo-peo ##########
+		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
+		echo '		--> Installing Paradiseo-PEO. Please wait ...'
+		
+		####################################################
+		## Fichier d'installation revu par mahmoud FATENE ##
+		####################################################
+		#if [ "$UID" = "0" ]
+		#then
+		#	execute_cmd "source /root/.bashrc" "[$currentStepCounter-5] Export variables" $SPY
+		#	RETURN=$?
+		#else
+		#	execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Export variables" $SPY
+		#	RETURN=$?
+		#fi
+		#if [ ! $(($RETURN)) = 0 ]
+		#then
+		#	echo ''
+		#	echo "		--> Error on sourcing .bashrc "
+		#	echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+		#	return $SOURCE_ERROR
+		#else
+		#	echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter OK \033[0m"
+		#	echo
+		#	return $SUCCESSFUL_STEP
+		#fi
+		#
+		#if [ ! "$installKitPath" = "$resourceKitPath" ]
+		#    then
+		#    cp  -Rf $resourceKitPath/paradiseo-peo/ $installKitPath/
+		#    rm -Rf $installKitPath/paradiseo-peo/build/*
+		#fi
+		#######################################################
+		##				Fin de la modification				 ##
+		#######################################################
+		execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Export variables" $SPY
+		execute_cmd "cd $installKitPath/paradiseo-peo/build" "[$currentStepCounter-1] Go in Paradiseo-PEO dir"  $SPY 
+		RETURN=$?
+		execute_cmd " echo \"cmake ../  -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G\"$BUILD_PROCESS_TYPE\" $MIN_CMAKE_FLAGS $OPTIONNAL_CMAKE_FLAGS \"" "[$currentStepCounter-2] Run CMake using generator $BUILD_PROCESS_TYPE -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE"  $SPY
+		cmake ../  -Dconfig=$installKitPath/$CMAKE_PRIMARY_CONFIG_FILE -G"$BUILD_PROCESS_TYPE" $MIN_CMAKE_FLAGS $OPTIONNAL_CMAKE_FLAGS -DCMAKE_BUILD_TYPE=$BUILD_TYPE >> ${SPY} 2>> ${SPY}
+		RETURN=`expr $RETURN + $?`
+		
+		if [ "$COMPILE_PARADISEO" = "1" ] 
+		then
+			execute_cmd "ctest $CTEST_CONFIG" "[$currentStepCounter-3] Compile ParadisEO-PEO using CTest"  $SPY
+			LAST_RETURN=$?
+			# don't consider a submission error as a "right error"
+			if [ ! "$LAST_RETURN" = "$DART_SUBMISSION_ERROR" ]
+			then
+				RETURN=`expr $RETURN + $LAST_RETURN`
+			fi	
+		fi		
+	
+		if [ ! $(($RETURN)) = 0 ]
+		then
+			echo ''
+			echo "		--> Error when installing Paradiseo-PEO"
+			echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+			return $PARADISEO_INSTALL_ERROR
+		else
+			echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter OK \033[0m"
+			echo
+			return $SUCCESSFUL_STEP
+		fi 
 		;;
 
 	$S_PEO_CHECK)
@@ -1232,9 +1256,9 @@ do
 		echo
 		echo -e ' \033[40m\033[1;33m### Please select your install for ParadisEO : ### \033[0m '
 		echo
-		echo "	 1 : Full install (all the components : EO,MO,MOEO and PEO)"
-		echo "	 2 : Basic install: only EO,MO and MOEO components will be installed."
-		echo "	 3 : ParadisEO-PEO install. I've already installed the basic version and I want to install ParadisEO-PEO"
+		echo "	 1 : Basic install: only EO,MO and MOEO components will be installed."
+		echo "	 2 : ParadisEO-PEO install. I've already installed the basic version and I want to install ParadisEO-PEO"
+		echo "	 3 : Full install (all the components : EO,MO,MOEO and PEO)"
 		echo "	 4 : Remove a previous install of ParadisEO located in $INSTALL_PATH"
 		echo "	 5 : Exit install"
 		read INSTALL_TYPE

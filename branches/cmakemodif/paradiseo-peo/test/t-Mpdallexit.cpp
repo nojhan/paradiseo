@@ -35,8 +35,9 @@
 */
 
 #include <iostream>
+#include <stdlib.h>
 
 int main (int __argc, char *__argv[])
 {
-  system("mpdallexit");
+  int success = system("mpdallexit");
 }

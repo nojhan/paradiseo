@@ -35,6 +35,7 @@
 */
 
 #include <vector>
+#include <iostream>
 
 #include "runner.h"
 #include "reac_thread.h"
@@ -106,17 +107,37 @@ void initializeContext ()
 {
 
   num_local_exec_runners = 0;
-
+  /*
+  std :: cout << " Hi, I'm thread number \t"       << getNodeRank () << std::endl;
+  
+  int err_code = MPI_Barrier(MPI_COMM_WORLD);
+  if ( err_code != MPI_SUCCESS )
+  {
+	std :: cout << " Synchronisation error code \t" << err_code << std::endl;
+  }
+  */
+  
+  synchronizeNodes ();
   // setting up the execution IDs & counting the number of local exec. runners
   for (unsigned i = 0; i < the_runners.size (); i ++)
     {
       the_runners [i] -> setExecutionID ( my_node -> execution_id_run[ i ] );
       if (the_runners [i] -> isAssignedLocally ()) num_local_exec_runners ++;
     }
-
+  /*  
+  std :: cout << " num_local_exec_runners \t" << num_local_exec_runners << std::endl;
+  std :: cout << " num_exec_runners \t"       << num_exec_runners << std::endl;
+  */
+  synchronizeNodes ();
   collectiveCountOfRunners( &num_local_exec_runners, &num_exec_runners );
-
-  // synchronizeNodes ();
+  /*
+  err_code = iCollectiveCountOfRunners( &num_local_exec_runners, &num_exec_runners );
+  std :: cout << " Error code \t" << err_code << "\t MPI_SUCCESS\t " << MPI_SUCCESS << std::endl;
+  if ( err_code != MPI_SUCCESS )
+  {
+	std :: cout << " Something strange in the neighbourhood \t" << err_code << std::endl;
+  }
+  */
 
   for (unsigned i = 0; i < the_runners.size (); i ++)
     if (the_runners [i] -> isAssignedLocally ()) the_runners [i] -> notifyContextInitialized ();

@@ -67,6 +67,8 @@ extern int getNumberOfNodes (); /* It gives the size of the environment (Total n
 
 extern void collectiveCountOfRunners ( unsigned int* num_local_exec_runners, unsigned int* num_exec_runners );
 
+extern int iCollectiveCountOfRunners ( unsigned int* num_local_exec_runners, unsigned int* num_exec_runners );
+
 extern int getRankFromName (const std :: string & __name); /* It gives the rank of the process
 							      expressed by its name */
 
