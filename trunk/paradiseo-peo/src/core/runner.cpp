@@ -107,6 +107,7 @@ void initializeContext ()
 
   num_local_exec_runners = 0;
 
+  synchronizeNodes ();
   // setting up the execution IDs & counting the number of local exec. runners
   for (unsigned i = 0; i < the_runners.size (); i ++)
     {
