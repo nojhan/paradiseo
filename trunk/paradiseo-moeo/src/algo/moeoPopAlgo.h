@@ -1,9 +1,10 @@
 /*
-* <moeoEA.h>
+* <moeoPopAlgo.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
 * Arnaud Liefooghe
+* Jérémie Humeau
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -35,16 +36,17 @@
 */
 //-----------------------------------------------------------------------------
 
-#ifndef MOEOEA_H_
-#define MOEOEA_H_
+#ifndef MOEOPOPALGO_H_
+#define MOEOPOPALGO_H_
 
-#include <algo/moeoPopAlgo.h>
+#include <eoAlgo.h>
+#include <algo/moeoAlgo.h>
 
 /**
- * Abstract class for multi-objective evolutionary algorithms.
+ * Abstract class for population based multi-objective evolutionary algorithms.
  */
 template < class MOEOT >
-class moeoEA : public moeoPopAlgo < MOEOT >
+class moeoPopAlgo : public moeoAlgo, public eoAlgo < MOEOT >
   {};
 
-#endif /*MOEOEA_H_*/
+#endif /*MOEOPOPALGO_H_*/

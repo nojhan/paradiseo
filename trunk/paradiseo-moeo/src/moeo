@@ -42,6 +42,7 @@
 #include <eo>
 
 #include <algo/moeoAlgo.h>
+#include <algo/moeoPopAlgo.h>
 #include <algo/moeoCombinedLS.h>
 #include <algo/moeoEA.h>
 #include <algo/moeoEasyEA.h>
