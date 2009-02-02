@@ -1,0 +1,3 @@
+######    Configuration           ######
+--instancePath=../tsp/benchs/berlin52.tsp # Path to the instance.
+--maxIter=1000                           # Maximum number of iterations.
