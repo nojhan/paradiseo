@@ -38,7 +38,7 @@ void welcome_message()
 {
 	cout << "\nPhyloMOEA, a program for multi-criteria phylogenetic inference\n";
 	cout << "using maximum parsimony and maximum likelihood\n";
-	cout << "Version 0.2 (ParadisEO backend) (c) 2009, Waldo Cancino";
+	cout << "Version 0.2 (ParadisEO-PEO backend) (c) 2009, Waldo Cancino";
 	cout << "\n";
 }
 
