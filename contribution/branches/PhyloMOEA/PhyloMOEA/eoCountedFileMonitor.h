@@ -26,9 +26,11 @@ class eoCountedFileMonitor: public eoFileMonitor
 {
 	public:
 		eoCountedFileMonitor(unsigned int _frequency=1, std::string _filename="generation_data", std::string _delim="\t", bool _firstcall=false, bool _lastcall=true):
-			eoFileMonitor(_filename, _delim, false, true), counter(0), frequency(_frequency), delim(_delim), firstcall(_firstcall), lastcall(_lastcall) {}
+			eoFileMonitor(_filename, _delim, false, true), counter(0), frequency(_frequency), delim(_delim), firstcall(_firstcall), lastcall(_lastcall) {  }
 
    	virtual std::string className(void) const { return "eoCountedFileMonitor"; }		
+
+
 	eoMonitor& operator()(std::ostream& os)
 	{
      	if( ! (++counter % frequency) || firstcall )
@@ -36,8 +38,7 @@ class eoCountedFileMonitor: public eoFileMonitor
 			firstcall = false;
 			os << counter << delim.c_str();
 			iterator it = vec.begin();
-		
-			os << (*it)->getValue();
+			if(vec.begin()!=vec.end())os << (*it)->getValue();
 		
 			for(++it; it != vec.end(); ++it)
 			{
