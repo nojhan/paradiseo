@@ -21,5 +21,4 @@ ADD_SUBDIRECTORY(Lesson3)
 ADD_SUBDIRECTORY(Lesson4)
 ADD_SUBDIRECTORY(Lesson5)
 ADD_SUBDIRECTORY(Lesson6)
-ADD_SUBDIRECTORY(Meta-models)
 ######################################################################################
