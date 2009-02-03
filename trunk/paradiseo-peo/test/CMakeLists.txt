@@ -59,8 +59,8 @@ SET (TEST_LIST	  t-ParallelEval
 				  t-ParallelTransform
 				  t-MultiStart
 				  t-PSOSelect
-				  #t-EAAsyncIsland
-				  #t-EASyncIsland
+				  t-EAAsyncIsland
+				  t-EASyncIsland
 				  t-PSOGlobalBest
 				  t-PSOWorstPosition)
 
