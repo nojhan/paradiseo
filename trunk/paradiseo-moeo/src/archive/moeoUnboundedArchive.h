@@ -75,20 +75,22 @@ public:
     /**
      * Updates the archive with a given individual _moeo
      * @param _moeo the given individual
+     * @return true if _moeo is added to the archive
      */
-    void operator()(const MOEOT & _moeo)
+    bool operator()(const MOEOT & _moeo)
     {
-        update(_moeo);
+    	return update(_moeo);
     }
 
 
     /**
      * Updates the archive with a given population _pop
      * @param _pop the given population
+     * @return true if a _pop[i] is added to the archive
      */
-    void operator()(const eoPop < MOEOT > & _pop)
+    bool operator()(const eoPop < MOEOT > & _pop)
     {
-    	update(_pop);
+    	return update(_pop);
     }
 
 };

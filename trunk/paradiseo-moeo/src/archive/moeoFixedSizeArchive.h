@@ -73,20 +73,6 @@ public:
      */
     moeoFixedSizeArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator) : moeoArchive < MOEOT >( _comparator) {}
 
-
-    /**
-     * Updates the archive with a given individual _moeo
-     * @param _moeo the given individual
-     */
-    virtual void operator()(const MOEOT & _moeo)=0;
-
-
-    /**
-     * Updates the archive with a given population _pop
-     * @param _pop the given population
-     */
-    virtual void operator()(const eoPop < MOEOT > & _pop)=0;
-
 };
 
 #endif /*MOEOFIXEDSIZEARCHIVE_H_*/

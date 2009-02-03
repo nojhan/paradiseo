@@ -126,20 +126,23 @@ public:
     /**
      * Updates the archive with a given individual _moeo
      * @param _moeo the given individual
+     * @return true (TODO)
      */
-    void operator()(const MOEOT & _moeo)
+    bool operator()(const MOEOT & _moeo)
     {
         eoPop < MOEOT > pop_tmp;
         pop_tmp.push_back(_moeo);
         operator()(pop_tmp);
+        return true;
     }
 
 
     /**
      * Updates the archive with a given population _pop
      * @param _pop the given population
+     * @return true (TODO)
      */
-    void operator()(const eoPop < MOEOT > & _pop)
+    bool operator()(const eoPop < MOEOT > & _pop)
     {
         unsigned int i;
         unsigned int foo=0;
@@ -275,7 +278,7 @@ public:
                 }
             }
         }
-
+        return true;
     }//endoperator()
 
 

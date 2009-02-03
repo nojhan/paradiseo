@@ -42,12 +42,17 @@
 #include <comparator/moeoObjectiveVectorComparator.h>
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
 
+//template < class MOEOT >
+//class ufMOEOT : public eoUF < const MOEOT &, bool> {};
+//template < class MOEOT >
+//class ufPop : eoUF < const eoPop < MOEOT > &, bool> {};
+
 /**
  * Abstract class for representing an archive ;
  * an archive is a secondary population that stores non-dominated solutions.
  */
 template < class MOEOT >
-class moeoArchive : public eoPop < MOEOT >
+class moeoArchive : public eoPop < MOEOT >, public eoUF < const MOEOT &, bool>, public eoUF < const eoPop < MOEOT > &, bool>
 {
 public:
 
@@ -112,22 +117,24 @@ public:
         }
         return false;
     }
-    
-    
+
+
 
 
     /**
      * Updates the archive with a given individual _moeo
      * @param _moeo the given individual
+     * @return if the _moeo is added to the archive
      */
-    virtual void operator()(const MOEOT & _moeo) = 0;
+    virtual bool operator()(const MOEOT & _moeo) = 0;
 
 
     /**
      * Updates the archive with a given population _pop
      * @param _pop the given population
+     * @return if at least one _pop[i] is added to the archive
      */
-    virtual void operator()(const eoPop < MOEOT > & _pop) = 0;
+    virtual bool operator()(const eoPop < MOEOT > & _pop) = 0;
 
 
     /**
@@ -152,13 +159,13 @@ public:
         }
         return true;
     }
-    
+
 protected:
 	/**
      * Updates the archive with a given individual _moeo
      * @param _moeo the given individual
      */
-    void update(const MOEOT & _moeo)
+    bool update(const MOEOT & _moeo)
     {
         // first step: removing the dominated solutions from the archive
         for (unsigned int j=0; j<size();)
@@ -194,6 +201,7 @@ protected:
         {
             push_back(_moeo);
         }
+        return !dom;
     }
 
 
@@ -201,14 +209,16 @@ protected:
      * Updates the archive with a given population _pop
      * @param _pop the given population
      */
-    void update(const eoPop < MOEOT > & _pop)
+    bool update(const eoPop < MOEOT > & _pop)
     {
+    	bool res = false;
         for (unsigned int i=0; i<_pop.size(); i++)
         {
-            (*this).update(_pop[i]);
+            res = (*this).update(_pop[i]) || res;
         }
+        return res;
     }
-    
+
 
 private:
 

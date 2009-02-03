@@ -99,10 +99,12 @@ public:
     /**
      * Updates the archive with a given individual _moeo
      * @param _moeo the given individual
+     * @return true if _moeo is non-dominated (and not if it is added to the archive)
      */
-    void operator()(const MOEOT & _moeo)
+    bool operator()(const MOEOT & _moeo)
     {
-    	update(_moeo);
+		bool res;
+    	res = update(_moeo);
 
     	if(size() > maxSize){
     		fitness(*this);
@@ -110,16 +112,19 @@ public:
     		std::sort(begin(), end(), indiComparator);
     		resize(maxSize);
     	}
+    	return res;
     }
 
 
     /**
      * Updates the archive with a given population _pop
      * @param _pop the given population
+     * @return true if a _pop[i] is non-dominated (and not if it is added to the archive)
      */
-    void operator()(const eoPop < MOEOT > & _pop)
+    bool operator()(const eoPop < MOEOT > & _pop)
     {
-    	update(_pop);
+    	bool res;
+    	res = update(_pop);
 
     	if(size() > maxSize){
     		fitness(*this);
@@ -127,6 +132,7 @@ public:
     		std::sort(begin(), end(), indiComparator);
     		resize(maxSize);
     	}
+    	return res;
     }
 
 private:
