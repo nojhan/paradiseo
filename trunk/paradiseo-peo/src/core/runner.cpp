@@ -35,7 +35,7 @@
 */
 
 #include <vector>
-
+#include <iostream>
 #include "runner.h"
 #include "reac_thread.h"
 #include "peo_debug.h"
@@ -107,11 +107,12 @@ void initializeContext ()
 
   num_local_exec_runners = 0;
 
-  synchronizeNodes ();
+  //synchronizeNodes ();
   // setting up the execution IDs & counting the number of local exec. runners
   for (unsigned i = 0; i < the_runners.size (); i ++)
     {
-      the_runners [i] -> setExecutionID ( my_node -> execution_id_run[ i ] );
+    	if (my_node->execution_id_run.size() > 0)
+      		the_runners [i] -> setExecutionID ( my_node -> execution_id_run[ i ] );
       if (the_runners [i] -> isAssignedLocally ()) num_local_exec_runners ++;
     }
 
