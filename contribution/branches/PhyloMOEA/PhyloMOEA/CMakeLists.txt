@@ -3,6 +3,7 @@
 ######################################################################################
 
 INCLUDE_DIRECTORIES(${CMAKE_INSTALL_PREFIX}/include/paradiseo/eo)
+INCLUDE_DIRECTORIES(${CMAKE_INSTALL_PREFIX}/include/paradiseo/mo)
 INCLUDE_DIRECTORIES(${CMAKE_INSTALL_PREFIX}/include/paradiseo/moeo)
 INCLUDE_DIRECTORIES(${CMAKE_INSTALL_PREFIX}/include/paradiseo/peo)
 INCLUDE_DIRECTORIES(.)
@@ -28,10 +29,11 @@ SET( PHYLOMOEA_SOURCES	eigensolver.cpp
 						SubsModel.cpp
 						phylotreeIND.cpp
 						treeIterator.cpp
-						utils.cpp )
+						utils.cpp 
+						PhyloMOEO_packunpack.cpp)
 
 ADD_EXECUTABLE( PhyloMOEA ${PHYLOMOEA_SOURCES} )
 
-TARGET_LINK_LIBRARIES(PhyloMOEA gsl gslcblas GTL eo eoutils ga moeo cma)
+TARGET_LINK_LIBRARIES(PhyloMOEA gsl gslcblas GTL eo eoutils ga moeo cma peo rmc_mpi xml2)
 
 INSTALL( TARGETS PhyloMOEA RUNTIME DESTINATION bin)
