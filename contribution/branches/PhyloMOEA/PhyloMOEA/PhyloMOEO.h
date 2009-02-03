@@ -21,6 +21,7 @@
 #ifndef PHYLOMOEO_H_
 #define PHYLOMOEO_H_
 
+#include <moeo>
 #include "phylotreeIND.h"
 #include <iostream>
 
