@@ -28,7 +28,8 @@
 
 void welcome_message();
 void save_exp_params(ostream &);
-void optimize_solutions( eoPop<PhyloMOEO> &, LikelihoodCalculator &);
+void optimize_solutions( eoPop<PhyloMOEO> &);
+void optimize_solution( PhyloMOEO &);
 void readtrees(const char *, eoPop<PhyloMOEO> &);
 #endif
 

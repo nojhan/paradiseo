@@ -23,6 +23,8 @@
 #include <PhyloMOEO.h>
 #include <parsimonycalculator.h>
 #include <likelihoodcalculator.h>
+//#include <peo>
+#include <iostream>
 
 class PhyloEval : public moeoEvalFunc < PhyloMOEO >
 {
@@ -32,8 +34,9 @@ public:
 	
     void operator () (PhyloMOEO & _sol)
     {
-		if (_sol.invalidObjectiveVector())
-        {
+		//cout << "hello im evaluating in the node " << getNodeRank() << endl;
+		//if (_sol.invalidObjectiveVector())
+        //{
 
         ObjectiveVector objVec;
 		//if(! (_sol.get_tree().splits_valid() ) ) _sol.get_tree().calculate_splits();
@@ -44,7 +47,7 @@ public:
         objVec[0] = parseval.fitch();
         objVec[1] = -likeval.calculate_likelihood();
         _sol.objectiveVector(objVec);
-		}
+		//}
     }
 
 private:

@@ -29,7 +29,8 @@ string datafile,usertree, expid, path, algotype;
 double pcrossover, pmutation, kappa, alpha;
 unsigned int ngenerations,  popsize, ncats;
 ofstream exp_data,evolution_data, best_media_scores, final_trees, final_pareto_trees, clades_pareto, clades_final,final_scores,pareto_scores;
-
+LikelihoodCalculator *lik_calc_ptr;
+phylotreeIND *templatetree_ptr;
 
 
 int main(int argc, char *argv[])
@@ -81,6 +82,7 @@ int main(int argc, char *argv[])
  	rn2 = gsl_rng_alloc(gsl_rng_default);
  	rn = new RandomNr(seed);
 	phylotreeIND templatetree( rn, seq, rn2);
+	templatetree_ptr = &templatetree;
 	ParsimonyCalculator parsi_calc(templatetree);
  	SubstModel modelHKY( seq, SubstModel::HKY85);
  	modelHKY.init();
@@ -89,14 +91,18 @@ int main(int argc, char *argv[])
 	LikelihoodCalculator lik_calc(templatetree, modelHKY, probmatrixs,ncats);
 	lik_calc.set_alpha(alpha);
  	modelHKY.init();
+
 	PhyloEval byobj( parsi_calc, lik_calc );
 	Phyloraninit initializer(templatetree);
 	eoPop<PhyloMOEO> population(popsize, initializer);
+
 	peoMoeoPopEval <PhyloMOEO> eval(byobj);
+
 
 	// Only the master node read the initial trees and writes ouput files
 	if(getNodeRank()==1)
 	{
+
 		cout << "\n\nReading Initial Trees...";
 		if( usertree.size() >0)	
 		{
@@ -183,7 +189,7 @@ int main(int argc, char *argv[])
 	if(algotype == "ibea")
 	{
 		moeoAdditiveEpsilonBinaryMetric < ObjectiveVector > metric;
-		moeoIBEA < PhyloMOEO > algo (cp, byobj, operadores, metric);
+		moeoIBEA < PhyloMOEO > algo (cp, eval, operadores, metric);
 		if(getNodeRank()==1){
 		cout << "\n\nRunning IBEA ..." << endl;	}
   		peoWrapper parallelEA( algo, population);
@@ -194,7 +200,7 @@ int main(int argc, char *argv[])
 	}	
 	else
 	{
-		moeoNSGAII < PhyloMOEO > algo (cp, byobj, operadores);
+		moeoNSGAII < PhyloMOEO > algo (cp, eval, operadores);
 		if(getNodeRank()==1){
 		cout << "\n\nRunning NSGA-II ..." << endl;	}
   		peoWrapper parallelEA( algo, population); 
@@ -218,12 +224,29 @@ int main(int argc, char *argv[])
 		cout << "\nCalculating Final Solutions...";
 		cout << "  done\n";
 	
-		PhyloMOEOFinalSolutionsArchive finalsolutions;
-		finalsolutions.operator()(population);
+	}
+
+	PhyloMOEOFinalSolutionsArchive finalsolutions;
+	if(getNodeRank()==1)finalsolutions.operator()(population);
+	//cout << "en el nodo " << getNodeRank() << " popsize " << population.size() << endl;
+	//cout << "en el nodo " << getNodeRank() << " archsize " << finalsolutions.size() << endl;
+	//finalsolutions[0].get_tree().printNewick(cout);
+	lik_calc_ptr = &lik_calc;
+	// make the optimization phase also in parallel
+	peo :: init (argc, argv);
+	peoMultiStart <PhyloMOEO> ParallelLKOptimizationInit (optimize_solution);
+	peoWrapper ParallelLKOptimization (ParallelLKOptimizationInit, finalsolutions);
+	ParallelLKOptimizationInit.setOwner(ParallelLKOptimization);
+	if (getNodeRank()==1) cout << "\nOptimizing tree branch lenghts...\n";
+	peo :: run( );
+	peo :: finalize( );
+	
+	if (getNodeRank()==1)
+	{
 	
 		//remove_final_solutions( population );
 		// optimize remaining solutions
-		cout << "\nOptimizing tree branch lenghts...\n";
+
 		
 		//optimize_solutions( finalsolutions, lik_calc );
 		cout << "\nReevaluating individuals \n";

@@ -14,13 +14,14 @@
 
 void pack( PhyloMOEO & ind)
 {
-	cout << "packing individual" << endl;
+	//cout << "packing individual" << endl;
 	phylotreeIND & tree = ind.get_tree();
-	string s = tree.newick_traverse2( false, false);
+	string s = tree.newick_traverse2( true, false);
+	
 	::pack(s);
-
-	edge edgeaux = *( tree.taxon_number(0).inout_edges_begin() );
+	/*edge edgeaux = *( tree.taxon_number(0).inout_edges_begin() );
 	node root_traverse = edgeaux.opposite( tree.taxon_number(0) );
+	//tree.convert_graph_to_tree( root_traverse, NULL);
 	postorder_Iterator it = tree.postorder_begin( root_traverse );
 	postorder_Iterator it2 = tree.postorder_end( root_traverse );
 	double *blens = new double[(2*tree.number_of_taxons() -3 )];
@@ -34,23 +35,29 @@ void pack( PhyloMOEO & ind)
 		++it;
 	}
 	for(int i=0; i< (2*tree.number_of_taxons() -3 ) ; i++) ::pack(blens[i]);
-	delete [] blens;
-	cout << "packing finished..." << endl;
+	delete [] blens; 
+
+	/*cout << "\nenviado " << endl;
+	cout << tree.newick_traverse2(false,false) << endl;*/
+
+	//cout << "packing finished..." << endl;
 	//::pack(blens);
 }
 
 void unpack( PhyloMOEO &ind )
 {
-	cout << "unpacking individual" << endl;
-	phylotreeIND tree = ind.get_tree();
-
+	//cout << "unpacking individual" << endl;
 	string newickstring;
 	::unpack(newickstring);
-
+	//cout << newickstring << endl;
+	ind.set_tree_template( *templatetree_ptr);
+	phylotreeIND &tree = ind.get_tree();
+	
 	tree.read_newick2( newickstring );
-
-	edge edgeaux = *( tree.taxon_number(0).inout_edges_begin() );
+	ind.invalidate();
+	/*edge edgeaux = *( tree.taxon_number(0).inout_edges_begin() );
 	node root_traverse = edgeaux.opposite( tree.taxon_number(0) );
+	tree.convert_graph_to_tree( root_traverse, NULL);
 	postorder_Iterator it = tree.postorder_begin( root_traverse );
 	postorder_Iterator it2 = tree.postorder_end( root_traverse );
 	//double blens[2*Tind->number_of_taxons() -3];
@@ -60,10 +67,15 @@ void unpack( PhyloMOEO &ind )
 	while(it!=it2)
 	{
 		double blen;
-		::unpack(blen);
 		if( *it != root_traverse )
+		{
+			::unpack(blen);
 			tree.set_branch_length( it.branch(), blen );
+		}
 		++it;
-	}
-	cout << "unpacking finished..." << endl;
+	} 
+	/*cout << "\n unpacking finished..." << endl;
+	cout << "recibido \n" << endl;
+	cout << newickstring << endl;
+	cout << tree.newick_traverse2(false,false) << endl; */
 }

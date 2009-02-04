@@ -33,6 +33,7 @@ extern long seed;
 extern string datafile,usertree, expid, path;
 extern double pcrossover, pmutation, kappa, alpha;
 extern unsigned int ngenerations,  popsize, ncats;
+extern LikelihoodCalculator *lik_calc_ptr;
 
 void welcome_message()
 {
@@ -62,17 +63,19 @@ void save_exp_params(ostream &of=cout)
 
 
 
-void optimize_solutions( eoPop<PhyloMOEO> &pop, LikelihoodCalculator &lik_calc)
+void optimize_solutions( eoPop<PhyloMOEO> &pop)
 {
+	cout << "entrando a optimize_solutions con " << pop.size() << " arvores " << endl;
 	int n = pop.size();
+	
 	for(int i=0; i<n; i++)	
 	{
 		phylotreeIND &sol = pop[i].get_tree();
-		lik_calc.set_tree(sol);
+		lik_calc_ptr->set_tree(sol);
 		cout << "\noptimizaing tree " << i+1 << " of " << n;
 //		cout << endl << "likelihood inicial:" << lik_calc->calculate_likelihood() << endl;
-		Newton_LikOptimizer test(lik_calc);
-		test.optimize();
+		Newton_LikOptimizer test(*lik_calc_ptr);
+		//test.optimize();
 		
 		pop[i].invalidate();
 		//lik_calc->maximizelikelihood();
@@ -82,6 +85,23 @@ void optimize_solutions( eoPop<PhyloMOEO> &pop, LikelihoodCalculator &lik_calc)
 	}
 }
 
+
+void optimize_solution( PhyloMOEO &indi)
+{
+	phylotreeIND &sol = indi.get_tree();
+	lik_calc_ptr->set_tree(sol);
+	//cout << "\noptimizaing tree " << i+1 << " of " << n;
+//		cout << endl << "likelihood inicial:" << lik_calc->calculate_likelihood() << endl;
+	Newton_LikOptimizer test(*lik_calc_ptr);
+	test.optimize();
+	indi.invalidate();
+	//pop[i].invalidate();
+		//lik_calc->maximizelikelihood();
+		//lik_calc->set_tree(*sol);
+//		lik_calc->set_tree( *sol);
+//		cout << endl << "likelihood final:" << lik_calc->calculate_likelihood() << endl;
+	//}
+}
 
 void readtrees(const char *fname, eoPop<PhyloMOEO> &poptree)
 {

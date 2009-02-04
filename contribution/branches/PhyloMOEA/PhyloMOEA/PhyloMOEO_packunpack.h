@@ -14,6 +14,7 @@
 #include <PhyloMOEO.h>
 #include <peo>
 
+extern phylotreeIND * templatetree_ptr;
 void pack( PhyloMOEO &);
 void unpack( PhyloMOEO & );
 
