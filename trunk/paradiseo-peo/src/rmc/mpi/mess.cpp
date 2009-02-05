@@ -341,6 +341,7 @@ void unpack (std::string & __str)
   buffer = new char[len+1];
   MPI_Unpack (mpi_buf, MPI_BUF_SIZE, & pos_buf, buffer, len, MPI_CHAR, MPI_COMM_WORLD);
   __str.assign( buffer );
+  delete [] buffer;
 
 }
 
