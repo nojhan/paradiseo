@@ -15,6 +15,8 @@ INCLUDE_REGULAR_EXPRESSION("^.*$" "^$")
 ENABLE_LANGUAGE(CXX)
 ENABLE_LANGUAGE(C)
 
+INCLUDE(Dart OPTIONAL)
+
 #####################################################################################
 
 

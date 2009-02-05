@@ -1,19 +1,13 @@
 #  Here, specify PARADISEO_DIR : the directory where ParadisEO has been installed
-SET(PARADISEO_DIR "/home/jeremie/workspace/ParadisEO" CACHE PATH "ParadisEO directory" FORCE)
+SET(PARADISEO_DIR "/home/humeau/workspace/ParadisEO" CACHE PATH "ParadisEO directory" FORCE)
 
 #  Here, specify SOURCES_DIR : the directory where the example sources have been deposed.
-SET(SOURCES_DIR "/home/jeremie/workspace/Tutos_META08/src" CACHE PATH "TP sources directory, where install.cmake is" FORCE)
-
-
-
+SET(SOURCES_DIR "/home/humeau/workspace/MOLS/src" CACHE PATH "TP sources directory, where install.cmake is" FORCE)
 
 
 ###########################################################################################################################################
 # PLEASE DO NOT MODIFY WHAT IS BELOW
 ###########################################################################################################################################
-
-
-
 
 ### ParadisEO Install Configuration
 ###########################################################################################################################################
