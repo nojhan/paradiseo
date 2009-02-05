@@ -691,10 +691,10 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Configuring environment variables for mpich2 ...'
 
-		execute_cmd "export PATH=$PATH:`xml2-config --prefix`/bin:$installKitPath/mpich2/bin" "[$currentStepCounter-2] Export PATH variable" $SPY 
+		execute_cmd "export PATH=`xml2-config --prefix`/bin:$installKitPath/mpich2/bin:$PATH" "[$currentStepCounter-2] Export PATH variable" $SPY 
 		idx=$?	
 
-		execute_cmd "echo export PATH=$PATH:$installKitPath/mpich2/bin" "[$currentStepCounter-4] Export PATH variable into env" $SPY $HOME/.bashrc
+		execute_cmd "echo export PATH=$$installKitPath/mpich2/bin:$PATH" "[$currentStepCounter-4] Export PATH variable into env" $SPY $HOME/.bashrc
 		idx=`expr $idx + $?`
 
 		execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Export variables for mpich2" $SPY
@@ -728,7 +728,7 @@ function run_install_step()
 		execute_cmd "echo export LD_LIBRARY_PATH=$`xml2-config --prefix`/lib" "[$currentStepCounter-3] Export LD_LIBRARY_PATH variable into env" $SPY $HOME/.bashrc
 		idx=$?	 
 
-		execute_cmd "echo export PATH=$PATH:`xml2-config --prefix`/bin" "[$currentStepCounter-4] Export PATH variable into env" $SPY $HOME/.bashrc
+		execute_cmd "echo export PATH=`xml2-config --prefix`/bin:$PATH" "[$currentStepCounter-4] Export PATH variable into env" $SPY $HOME/.bashrc
 		idx=`expr $idx + $?`
 
 		execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Export variables for libxml2" $SPY
@@ -751,14 +751,14 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Configuring environment variables for libxml2 and mpich2 ...'
 		
-		execute_cmd "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$installKitPath/libxml2/lib:" "[$currentStepCounter-1] Export LD_LIBRARY_PATH variable" $SPY
+		execute_cmd "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$installKitPath/libxml2/lib" "[$currentStepCounter-1] Export LD_LIBRARY_PATH variable" $SPY
 		idx=$?	 
-		execute_cmd "export PATH=$PATH:$installKitPath/libxml2/bin:$installKitPath/mpich2/bin" "[$currentStepCounter-2] Export PATH variable" $SPY 
+		execute_cmd "export PATH=$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:$PATH" "[$currentStepCounter-2] Export PATH variable" $SPY 
 	
 		execute_cmd "echo export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$installKitPath/libxml2/lib" "[$currentStepCounter-3] Export LD_LIBRARY_PATH variable into env" $SPY $HOME/.bashrc
 		idx=$?	 
 
-		execute_cmd "echo export PATH=$PATH:$installKitPath/libxml2/bin:$installKitPath/mpich2/bin" "[$currentStepCounter-4] Export PATH variable into env" $SPY $HOME/.bashrc
+		execute_cmd "echo export PATH=$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:$PATH" "[$currentStepCounter-4] Export PATH variable into env" $SPY $HOME/.bashrc
 		idx=`expr $idx + $?`
 
 		execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Export variables" $SPY
@@ -810,38 +810,6 @@ function run_install_step()
 		######## installing paradiseo-peo ##########
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Installing Paradiseo-PEO. Please wait ...'
-		
-		####################################################
-		## Fichier d'installation revu par mahmoud FATENE ##
-		####################################################
-		#if [ "$UID" = "0" ]
-		#then
-		#	execute_cmd "source /root/.bashrc" "[$currentStepCounter-5] Export variables" $SPY
-		#	RETURN=$?
-		#else
-		#	execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Export variables" $SPY
-		#	RETURN=$?
-		#fi
-		#if [ ! $(($RETURN)) = 0 ]
-		#then
-		#	echo ''
-		#	echo "		--> Error on sourcing .bashrc "
-		#	echo -e ' \033[40m\033[1;33m### END ### \033[0m '
-		#	return $SOURCE_ERROR
-		#else
-		#	echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter OK \033[0m"
-		#	echo
-		#	return $SUCCESSFUL_STEP
-		#fi
-		#
-		#if [ ! "$installKitPath" = "$resourceKitPath" ]
-		#    then
-		#    cp  -Rf $resourceKitPath/paradiseo-peo/ $installKitPath/
-		#    rm -Rf $installKitPath/paradiseo-peo/build/*
-		#fi
-		#######################################################
-		##				Fin de la modification				 ##
-		#######################################################
 		execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Export variables" $SPY
 		execute_cmd "cd $installKitPath/paradiseo-peo/build" "[$currentStepCounter-1] Go in Paradiseo-PEO dir"  $SPY 
 		RETURN=$?
@@ -911,8 +879,8 @@ function run_install_step()
 		;;
 	$S_END)
 		echo -e "The file \".bashrc\" file located in your directory $HOME has been MODIFIED. The following variables have been modified at the end:"
-		echo -e " LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:$installKitPath/libxml2/lib: "
-		echo -e " PATH=\$PATH:$installKitPath/libxml2/bin:$installKitPath/mpich2/bin"
+		echo -e " LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:$installKitPath/libxml2/lib"
+		echo -e " PATH=\$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:$PATH"
 		echo -e "These variables are necessary to compile any program using ParadisEO-PEO.\033[40m\033[1;33m If you want to keep them in your environment in order not to have to set them each time you compile, enter  \"source $HOME/.bashrc\" \033[0m. If you don't want to use these variables, please remove them from $HOME/.bashrc."
 		sleep 2
 		echo
