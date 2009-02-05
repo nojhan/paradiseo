@@ -48,7 +48,7 @@ ENDFOREACH (test)
 
 # Link the librairies
 FOREACH (test ${TEST_LIST})
- TARGET_LINK_LIBRARIES(${test} eoutils eo moeo)
+ TARGET_LINK_LIBRARIES(${test} moeo ga es eoutils eo)
 ENDFOREACH (test)
 
 ######################################################################################
