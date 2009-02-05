@@ -1,8 +1,8 @@
 #  Here, specify PARADISEO_DIR : the directory where ParadisEO has been installed
-SET(PARADISEO_DIR "/home/humeau/workspace/ParadisEO" CACHE PATH "ParadisEO directory" FORCE)
+SET(PARADISEO_DIR "/home/jeremie/workspace/trunk" CACHE PATH "ParadisEO directory" FORCE)
 
 #  Here, specify SOURCES_DIR : the directory where the example sources have been deposed.
-SET(SOURCES_DIR "/home/humeau/workspace/MOLS/src" CACHE PATH "TP sources directory, where install.cmake is" FORCE)
+SET(SOURCES_DIR "/home/jeremie/workspace/MOLS/src" CACHE PATH "TP sources directory, where install.cmake is" FORCE)
 
 
 ###########################################################################################################################################
@@ -22,19 +22,3 @@ SET(PARADISEO_MOEO_BIN_DIR "${PARADISEO_DIR}/paradiseo-moeo/build" CACHE PATH "P
 
 SET(INSTALL_DIR "${SOURCES_DIR}/build" CACHE PATH "Directory where the executable will be put" FORCE)
 
-
-### OPTIONNAL: Windows advanced config - especially for Microsoft Visual Studio 9
-###########################################################################################################################################
-  IF(CMAKE_CXX_COMPILER MATCHES cl)
-   IF(NOT WITH_SHARED_LIBS)
-     IF(CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
-       SET(CMAKE_CXX_FLAGS "/nologo /W3 /Gy")
-       SET(CMAKE_CXX_FLAGS_DEBUG "/MTd /Z7 /Od")
-       SET(CMAKE_CXX_FLAGS_RELEASE "/MT /O2")
-       SET(CMAKE_CXX_FLAGS_MINSIZEREL "/MT /O2")
-       SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/MTd /Z7 /Od")
-       SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:CONSOLE")
-       
-     ENDIF(CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
-   ENDIF(NOT WITH_SHARED_LIBS)
-  ENDIF(CMAKE_CXX_COMPILER MATCHES cl)
