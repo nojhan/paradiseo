@@ -29,16 +29,23 @@ int main(int argc, char* argv[])
 		ExchangeMoveInit moveInit;
 		ExchangeMove move;
 		eoEvalFuncCounter<FlowShop>& eval = do_make_eval(parser, state);
-		
+		eoInit<FlowShop>& init = do_make_genotype(parser, state);
 	    // population
-	    eoPop < FlowShop > pop;
-	    eoTimeContinue < FlowShop > continuator(5);
+	    eoPop<FlowShop>& pop = do_make_pop(parser, state, init);
+	    
+	    eoTimeContinue < FlowShop > continuator(10000000);
 	    moeoAllSolAllNeighborsExpl < ExchangeMove > explorer(moveInit,moveNext, eval);
 //	    
 	    moeoUnifiedDominanceBasedLS < ExchangeMove > algo(continuator, explorer);
+	   
+	    for (unsigned int i=0; i<pop.size(); i++)
+	    	eval(pop[i]);
+        std::cout << "Initial Population\n";
+        pop.sortedPrintOn(std::cout);
+        std::cout << std::endl;
 	    
 //
-//	    algo(pop);
+	    algo(pop);
 
 	std::cout << "OK c'est bon" << std::endl;
 	return EXIT_SUCCESS;
