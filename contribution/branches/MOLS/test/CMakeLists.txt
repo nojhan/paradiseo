@@ -13,7 +13,8 @@ INCLUDE_DIRECTORIES(${PARADISEO_EO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${PARADISEO_MO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${PARADISEO_MOEO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
-INCLUDE_DIRECTORIES(${SOURCES_DIR})
+INCLUDE_DIRECTORIES(${FLOWSHOP_SRC_DIR}/src)
+INCLUDE_DIRECTORIES(${SOURCES_DIR}/src)
 
 
 ######################################################################################
@@ -23,7 +24,7 @@ INCLUDE_DIRECTORIES(${SOURCES_DIR})
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib ${PARADISEO_MOEO_BIN_DIR}/lib)
+LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib ${PARADISEO_MOEO_BIN_DIR}/lib ${FLOWSHOP_LIB_OUTPUT_PATH})
 
 ######################################################################################
 
@@ -48,7 +49,7 @@ ENDFOREACH (test)
 
 # Link the librairies
 FOREACH (test ${TEST_LIST})
- TARGET_LINK_LIBRARIES(${test} moeo ga es eoutils eo)
+ TARGET_LINK_LIBRARIES(${test} moeo flowshop ga es eoutils eo)
 ENDFOREACH (test)
 
 ######################################################################################
