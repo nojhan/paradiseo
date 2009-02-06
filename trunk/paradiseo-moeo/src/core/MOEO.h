@@ -115,7 +115,7 @@ class MOEO : public EO < MOEOObjectiveVector >
       diversityValue = Diversity();
       // invalidate all
       invalidate();
-      flag=0;
+      flagValue=0;
     }
 
 
@@ -337,16 +337,16 @@ class MOEO : public EO < MOEOObjectiveVector >
      * Setter for "flag"
      * @param _flag the flag value
      */
-    void setFlag(int _flag){
-    	flag=_flag;
+    void flag(int _flag){
+    	flagValue=_flag;
     }
 
     /**
      * Getter for "flag"
      * @return the flag value
      */
-    int getFlag(){
-    	return flag;
+    int flag(){
+    	return flagValue;
     }
 
 
@@ -365,7 +365,7 @@ class MOEO : public EO < MOEOObjectiveVector >
     /** true if the diversity value is invalid */
     bool invalidDiversityValue;
     /** A flag which can be used to stock information*/
-    int flag;
+    int flagValue;
 
   };
 
