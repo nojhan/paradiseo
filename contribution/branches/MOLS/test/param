@@ -1,0 +1,11 @@
+
+######                 General    ######
+--help=0                                   # -h : Prints this message
+--stopOnUnknownParam=1                     # Stop if unkown param entered
+# --seed=1203083493                        # -S : Random number seed
+
+######    Evolution Engine        ######
+--popSize=1000                             # -P : Population Size
+
+######    Representation          ######
+#--BenchmarkFile=../examples/flowshop/benchs/020_10_01.txt # -B : Benchmark file name REQUIRED
