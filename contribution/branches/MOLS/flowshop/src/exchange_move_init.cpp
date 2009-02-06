@@ -7,7 +7,7 @@ void ExchangeMoveInit :: operator () (ExchangeMove & _move, const FlowShop & _fl
   //eoRNG rng;
   do
   {
-  _move.first = rng.random(flowshop.size()) ;
-  _move.second = rng.random(flowshop.size()) ;
+  _move.first = rng.random(flowshop.size());
+  _move.second = rng.random(flowshop.size());
   }while(_move.first == _move.second);
 }

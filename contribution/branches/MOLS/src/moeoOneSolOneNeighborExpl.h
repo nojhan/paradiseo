@@ -1,5 +1,5 @@
 /*
-* <moeoAllSolAllNeighborsExpl.h>
+* <moeoOneSolOneNeighborExpl.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
 *
@@ -36,8 +36,8 @@
 */
 //-----------------------------------------------------------------------------
 
-#ifndef _MOEOALLSOLALLNEIGHBORSEXPL_H
-#define _MOEOALLSOLALLNEIGHBORSEXPL_H
+#ifndef _MOEOONESOLONENEIGHBOREXPL_H
+#define _MOEOONESOLONENEIGHBOREXPL_H
 
 #include <eo>
 #include <moeo>
@@ -50,44 +50,61 @@
  * TODO
  */
 template < class Move >
-class moeoAllSolAllNeighborsExpl : public moeoPopNeighborhoodExplorer < Move >
+class moeoOneSolOneNeighborExpl : public moeoPopNeighborhoodExplorer < Move >
 {
 	typedef typename Move::EOType MOEOT;
 	typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 	
 public:
 	
-	moeoAllSolAllNeighborsExpl(
+	moeoOneSolOneNeighborExpl(
 		moMoveInit < Move > & _moveInit,
 		moNextMove < Move > & _nextMove,
 		eoEvalFunc < MOEOT > & _eval
-	): moveInit(_moveInit), nextMove(_nextMove), eval(_eval){}
+	):start(false), moveInit(_moveInit), nextMove(_nextMove), eval(_eval){}
 	
 	void operator()(eoPop < MOEOT > & _src, eoPop < MOEOT > & _dest){
-		Move move;
+		//Move move;
 		MOEOT * sol;
 		ObjectiveVector objVec;
 		
-		for(unsigned int i=0; i<_src.size(); i++){
-			if (_src[i].flag() == 0){
-				moveInit(move, _src[i]);
-				do{
-					_dest.push_back(_src[i]);
-					sol = & _dest.back();
-					//objVec = moveIncrEval(move, *sol);
-					move(*sol);
-					sol->invalidate();
-					eval(*sol);
-					//sol->objectiveVector(objVec);
-					//if (comparator(sol, _src[i]))					
-				}
-				while(nextMove(move, _src[i]));
+			
+		unsigned int i = 0;
+		while(_src[i].flag() != 0)
+			i++;
+		if(!start){
+			moveInit(move, _src[i]);
+			_dest.push_back(_src[i]);
+			sol = & _dest.back();
+			move(*sol);
+			sol->invalidate();
+			eval(*sol);
+			if(nextMove(move, _src[i]))
+				start=true;
+			else{
+				start=false;
 				_src[i].flag(1);
 			}
-		}		
+		}
+		else{
+			_dest.push_back(_src[i]);
+			sol = & _dest.back();
+			//objVec = moveIncrEval(move, *sol);
+			move(*sol);
+			sol->invalidate();
+			eval(*sol);
+			//sol->objectiveVector(objVec);
+			//if (comparator(sol, _src[i]))		
+			if(!nextMove(move, _src[i])){
+				start=false;
+				_src[i].flag(1);
+			}				
+		}	
 	}
 	
 private:
+	Move move;
+	bool start;
 	/** the move initializer */
 	moMoveInit < Move > & moveInit;
 	/** the neighborhood explorer */
@@ -97,4 +114,4 @@ private:
 	
 };
 
-#endif /*_MOEOALLSOLALLNEIGHBORSEXPL_H_*/
+#endif /*_MOEOONESOLONENEIGHBOREXPL_H_*/

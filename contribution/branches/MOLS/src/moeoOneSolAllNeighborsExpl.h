@@ -36,8 +36,8 @@
 */
 //-----------------------------------------------------------------------------
 
-#ifndef _MOEOONESOLALLNEIGHBOREXPL_H
-#define _MOEOONESOLALLNEIGHBOREXPL_H
+#ifndef _MOEOONESOLALLNEIGHBORSEXPL_H
+#define _MOEOONESOLALLNEIGHBORSEXPL_H
 
 #include <eo>
 #include <moeo>
@@ -96,4 +96,4 @@ private:
 	
 };
 
-#endif /*_MOEOONESOLALLNEIGHBOREXPL_H_*/
+#endif /*_MOEOONESOLALLNEIGHBORSEXPL_H_*/
