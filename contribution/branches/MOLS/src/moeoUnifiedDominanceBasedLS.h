@@ -66,8 +66,9 @@ public:
 	{}
 
 	moeoUnifiedDominanceBasedLS(
-			eoContinue < MOEOT > & _continuator
-	):continuator(_continuator), naturalContinuator(defaultContinuator), full_evaluation(dummyEval),loopEval(dummyEval), popEval(loopEval), archive(defaultArchive), explorer(defaultPerturb)
+			eoContinue < MOEOT > & _continuator,
+			moeoPopNeighborhoodExplorer < Move > & _explorer
+	):continuator(_continuator), naturalContinuator(defaultContinuator), full_evaluation(dummyEval),loopEval(dummyEval), popEval(loopEval), archive(defaultArchive), explorer(_explorer)
 	{}
 
     /**
@@ -76,18 +77,19 @@ public:
      */
     virtual void operator()(eoPop < MOEOT > & _pop)
     {
-    	eoPop < MOEOT > empty_pop;
-		popEval(empty_pop, _pop);// A first eval of pop.
+    	eoPop < MOEOT > tmp_pop;
+		popEval(tmp_pop, _pop);// A first eval of pop.
 
     	archive(_pop);
 
     	do{
+    		tmp_pop.resize(0);
         	//"perturber" la population
-    		explorer(archive, _pop);
+    		explorer(archive, tmp_pop);
         	//mise à jour de la pop ou archive
-    		archive(_pop);
+    		archive(tmp_pop);
     	}
-    	while(continuator(_pop) && naturalContinuator(archive));
+    	while(continuator(tmp_pop) && naturalContinuator(archive));
     }
 
 protected:
@@ -105,7 +107,7 @@ protected:
 			bool res = false;
 			unsigned int i=0;
 			while(!res && i < _pop.size()){
-				res = _pop[i].getFlag() == 0;
+				res = (_pop[i].flag() == 0);
 				i++;
 			}
 			return res;
@@ -131,17 +133,6 @@ protected:
 	moeoUnboundedArchive < MOEOT > defaultArchive;
 	moeoArchive < MOEOT > & archive;
 
-	class moeoDummyPerturb : public moeoPopNeighborhoodExplorer < Move >
-	{
-		typedef typename Move::EOType MOEOT;
-
-	public:
-		moeoDummyPerturb(){}
-
-		void operator()(eoPop < MOEOT > & _pop1, eoPop < MOEOT > & _pop2){}
-
-	}
-	defaultPerturb;
 	moeoPopNeighborhoodExplorer < Move > & explorer;
 
 };
