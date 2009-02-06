@@ -90,6 +90,10 @@ public:
     		archive(tmp_pop);
     	}
     	while(continuator(tmp_pop) && naturalContinuator(archive));
+    	
+    	 std::cout << "Final archive\n";
+        archive.sortedPrintOn(std::cout);
+        std::cout << std::endl;
     }
 
 protected:
@@ -110,6 +114,7 @@ protected:
 				res = (_pop[i].flag() == 0);
 				i++;
 			}
+			std::cout << res << std::endl;
 			return res;
 		}
 	};
