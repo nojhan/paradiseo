@@ -651,7 +651,22 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Removing your previous install of ParadisEO ...'
 	
-	
+		pattern="$installKitPath/libxml2/lib"
+		sed -e s,$pattern,,g $HOME/.bashrc > paradiseo.tmp1
+		pattern="$installKitPath/libxml2/bin:"
+		sed -e s,$pattern,,g paradiseo.tmp1 > paradiseo.tmp2
+		pattern="$installKitPath/mpich2/bin:"
+		sed -e s,$pattern,,g paradiseo.tmp2 > paradiseo.tmp3
+		sed  -e s,"export LD_LIBRARY_PATH="$,,g paradiseo.tmp3 > $HOME/.bashrc
+		execute_cmd "rm $installKitPath/paradiseo.tmp*" "[$currentStepCounter] Cleaning $HOME/.bashrc" $SPY
+		execute_cmd "rm $HOME/paradiseo.tmp*" "[$currentStepCounter] Cleaning $HOME/.bashrc" $SPY  
+		execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Updating $HOME/.bashrc" $SPY
+		if [ "$UID" = "0" ]
+		then
+			execute_cmd "rm /etc/mpd.conf*" "[$currentStepCounter] removing mpd.conf" $SPY  
+		else
+			execute_cmd "rm $HOME/.mpd.conf*" "[$currentStepCounter] removing .mpd.conf" $SPY  
+		fi
 		if [ -d "$installKitPath/mpich2" ]
 		then
 			execute_cmd "rm -r $installKitPath/mpich2" "[$currentStepCounter] Remove previous install of mpich2" $SPY 
@@ -722,7 +737,7 @@ function run_install_step()
 		idx=$?
 		echo "******** $XML2_CONFIG *********"
 
-		execute_cmd "export LD_LIBRARY_PATH=`xml2-config --prefix`/lib:" "[$currentStepCounter-2] Export LD_LIBRARY_PATH variable" $SPY
+		execute_cmd "export LD_LIBRARY_PATH=`xml2-config --prefix`/lib" "[$currentStepCounter-2] Export LD_LIBRARY_PATH variable" $SPY
 		idx=$?	 
 		
 		execute_cmd "echo export LD_LIBRARY_PATH=$`xml2-config --prefix`/lib" "[$currentStepCounter-3] Export LD_LIBRARY_PATH variable into env" $SPY $HOME/.bashrc
@@ -750,8 +765,12 @@ function run_install_step()
 		########## Configuring environment variables ##########
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Configuring environment variables for libxml2 and mpich2 ...'
-		
-		execute_cmd "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$installKitPath/libxml2/lib" "[$currentStepCounter-1] Export LD_LIBRARY_PATH variable" $SPY
+		if [$LD_LIBRARY_PATH = '']
+		then
+		    execute_cmd "export LD_LIBRARY_PATH=$installKitPath/libxml2/lib" "[$currentStepCounter-1] Export LD_LIBRARY_PATH variable" $SPY
+		else
+		    execute_cmd "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$installKitPath/libxml2/lib" "[$currentStepCounter-1] Export LD_LIBRARY_PATH variable" $SPY		
+		fi
 		idx=$?	 
 		execute_cmd "export PATH=$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:$PATH" "[$currentStepCounter-2] Export PATH variable" $SPY 
 	
