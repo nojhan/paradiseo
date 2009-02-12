@@ -1,0 +1,21 @@
+
+######                 General    ######
+--help=0                                   # -h : Prints this message
+--stopOnUnknownParam=1                     # Stop if unkown param entered
+# --seed=1203083493                        # -S : Random number seed
+
+######    Evolution Engine        ######
+--popSize=100                              # -P : Population Size
+
+######    Representation          ######
+--BenchmarkFile=../examples/flowshop/benchs/020_10_01.txt # -B : Benchmark file name REQUIRED
+
+######    Stopping criterion      ######
+--maxGen=100                               # -G : Maximum number of generations
+
+######    Variation Operators     ######
+--crossRate=1                              # Relative rate for the only crossover
+--shiftMutRate=0.5                         # Relative rate for shift mutation
+--exchangeMutRate=0.5                      # Relative rate for exchange mutation
+--pCross=0.25                              # -c : Probability of Crossover
+--pMut=0.35                                # -m : Probability of Mutation

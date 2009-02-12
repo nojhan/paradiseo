@@ -1,0 +1,132 @@
+.TH "moRandImprSelect" 3 "16 Jan 2008" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moRandImprSelect \- One of the possible \fBmoMove\fP selector (\fBmoMoveSelect\fP).  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moRandImprSelect.h>\fP
+.PP
+Inherits \fBmoMoveSelect< M >< M >\fP.
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef M::EOType::Fitness \fBFitness\fP"
+.br
+.RI "\fIAlias for the fitness. \fP"
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinit\fP (const \fBFitness\fP &_fitness)"
+.br
+.RI "\fIProcedure which all that needs a \fBmoRandImprSelect\fP. \fP"
+.ti -1c
+.RI "bool \fBupdate\fP (const M &_move, const \fBFitness\fP &_fitness)"
+.br
+.RI "\fI\fBFunction\fP that updates the fitness and move vectors. \fP"
+.ti -1c
+.RI "void \fBoperator()\fP (M &_move, \fBFitness\fP &_fitness)"
+.br
+.RI "\fIThe move selection. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBFitness\fP \fBinitial_fitness\fP"
+.br
+.RI "\fIFitness of the current solution. \fP"
+.ti -1c
+.RI "std::vector< \fBFitness\fP > \fBbetter_fitnesses\fP"
+.br
+.RI "\fICandidate fitnesse vector. \fP"
+.ti -1c
+.RI "std::vector< M > \fBbetter_moves\fP"
+.br
+.RI "\fICandidate move vector. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class M> class moRandImprSelect< M >"
+One of the possible \fBmoMove\fP selector (\fBmoMoveSelect\fP). 
+
+All the neighbors are considered. One of them that enables an improvment of the objective function is choosen. 
+.PP
+Definition at line 49 of file moRandImprSelect.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class M> void \fBmoRandImprSelect\fP< M >::init (const \fBFitness\fP & _fitness)\fC [inline, virtual]\fP"
+.PP
+Procedure which all that needs a \fBmoRandImprSelect\fP. 
+.PP
+Give a value to the initialise fitness. Clean the move and fitness vectors.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_fitness\fP the current best fitness 
+.RE
+.PP
+
+.PP
+Implements \fBmoMoveSelect< M >\fP.
+.PP
+Definition at line 63 of file moRandImprSelect.h.
+.PP
+References moRandImprSelect< M >::better_fitnesses, moRandImprSelect< M >::better_moves, and moRandImprSelect< M >::initial_fitness.
+.SS "template<class M> bool \fBmoRandImprSelect\fP< M >::update (const M & _move, const \fBFitness\fP & _fitness)\fC [inline, virtual]\fP"
+.PP
+\fBFunction\fP that updates the fitness and move vectors. 
+.PP
+if a move give a better fitness than the initial fitness, it is saved and the fitness too.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_move\fP a new move. 
+.br
+\fI_fitness\fP a new fitness associated to the new move. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true. 
+.RE
+.PP
+
+.PP
+Implements \fBmoMoveSelect< M >\fP.
+.PP
+Definition at line 79 of file moRandImprSelect.h.
+.PP
+References moRandImprSelect< M >::better_fitnesses, moRandImprSelect< M >::better_moves, and moRandImprSelect< M >::initial_fitness.
+.SS "template<class M> void \fBmoRandImprSelect\fP< M >::operator() (M & _move, \fBFitness\fP & _fitness)\fC [inline, virtual]\fP"
+.PP
+The move selection. 
+.PP
+One the saved move is randomly chosen.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_move\fP the reference of the move that can be initialised by the function. 
+.br
+\fI_fitness\fP the reference of the fitness that can be initialised by the function. 
+.RE
+.PP
+
+.PP
+Implements \fBeoBF< M &, M::EOType::Fitness &, void >\fP.
+.PP
+Definition at line 98 of file moRandImprSelect.h.
+.PP
+References moRandImprSelect< M >::better_fitnesses, moRandImprSelect< M >::better_moves, and eoRng::random().
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.

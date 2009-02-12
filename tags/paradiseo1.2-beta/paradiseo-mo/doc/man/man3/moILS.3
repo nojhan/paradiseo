@@ -1,0 +1,220 @@
+.TH "moILS" 3 "16 Jan 2008" "Version 1.0" "ParadisEO-MOMovingObjects" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+moILS \- Iterated Local Search (ILS).  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <moILS.h>\fP
+.PP
+Inherits \fBmoAlgo< M::EOType >\fP.
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmoILS\fP (\fBmoAlgo\fP< \fBEOT\fP > &_algorithm, \fBmoSolContinue\fP< \fBEOT\fP > &_continue, \fBmoComparator\fP< \fBEOT\fP > &_acceptance_criterion, \fBeoMonOp\fP< \fBEOT\fP > &_perturbation, \fBeoEvalFunc\fP< \fBEOT\fP > &_full_evaluation)"
+.br
+.RI "\fIGeneric constructor. \fP"
+.ti -1c
+.RI "\fBmoILS\fP (\fBmoMoveInit\fP< M > &_move_initializer, \fBmoNextMove\fP< M > &_next_move_generator, \fBmoMoveIncrEval\fP< M > &_incremental_evaluation, \fBmoMoveSelect\fP< M > &_move_selection, \fBmoSolContinue\fP< \fBEOT\fP > &_continue, \fBmoComparator\fP< \fBEOT\fP > &_acceptance_criterion, \fBeoMonOp\fP< \fBEOT\fP > &_perturbation, \fBeoEvalFunc\fP< \fBEOT\fP > &_full_evaluation)"
+.br
+.RI "\fIConstructor for using a \fBmoHC\fP for the \fBmoAlgo\fP. \fP"
+.ti -1c
+.RI "\fBmoILS\fP (\fBmoMoveInit\fP< M > &_move_initializer, \fBmoNextMove\fP< M > &_next_move_generator, \fBmoMoveIncrEval\fP< M > &_incremental_evaluation, \fBmoTabuList\fP< M > &_tabu_list, \fBmoAspirCrit\fP< M > &_aspiration_criterion, \fBmoSolContinue\fP< \fBEOT\fP > &_moTS_continue, \fBmoSolContinue\fP< \fBEOT\fP > &_continue, \fBmoComparator\fP< \fBEOT\fP > &_acceptance_criterion, \fBeoMonOp\fP< \fBEOT\fP > &_perturbation, \fBeoEvalFunc\fP< \fBEOT\fP > &_full_evaluation)"
+.br
+.RI "\fIConstructor for using a \fBmoTS\fP for the \fBmoAlgo\fP. \fP"
+.ti -1c
+.RI "\fBmoILS\fP (\fBmoRandMove\fP< M > &_random_move_generator, \fBmoMoveIncrEval\fP< M > &_incremental_evaluation, \fBmoSolContinue\fP< \fBEOT\fP > &_moSA_continue, double _initial_temperature, \fBmoCoolingSchedule\fP &_cooling_schedule, \fBmoSolContinue\fP< \fBEOT\fP > &_continue, \fBmoComparator\fP< \fBEOT\fP > &_acceptance_criterion, \fBeoMonOp\fP< \fBEOT\fP > &_perturbation, \fBeoEvalFunc\fP< \fBEOT\fP > &_full_evaluation)"
+.br
+.RI "\fIConstructor for using a \fBmoSA\fP for the \fBmoAlgo\fP. \fP"
+.ti -1c
+.RI "bool \fBoperator()\fP (\fBEOT\fP &_solution)"
+.br
+.RI "\fI\fBFunction\fP which launches the ILS. \fP"
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "typedef M::EOType \fBEOT\fP"
+.br
+.RI "\fIAlias for the type. \fP"
+.ti -1c
+.RI "typedef EOT::Fitness \fBFitness\fP"
+.br
+.RI "\fIAlias for the fitness. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmoAlgo\fP< \fBEOT\fP > & \fBalgorithm\fP"
+.br
+.RI "\fIThe solution based heuristic. \fP"
+.ti -1c
+.RI "\fBmoSolContinue\fP< \fBEOT\fP > & \fBcontinu\fP"
+.br
+.RI "\fIThe stopping criterion. \fP"
+.ti -1c
+.RI "\fBmoComparator\fP< \fBEOT\fP > & \fBacceptance_criterion\fP"
+.br
+.RI "\fIThe acceptance criterion. \fP"
+.ti -1c
+.RI "\fBeoMonOp\fP< \fBEOT\fP > & \fBperturbation\fP"
+.br
+.RI "\fIThe perturbation generator. \fP"
+.ti -1c
+.RI "\fBeoEvalFunc\fP< \fBEOT\fP > & \fBfull_evaluation\fP"
+.br
+.RI "\fIThe full evaluation function. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class M> class moILS< M >"
+Iterated Local Search (ILS). 
+
+Class which describes the algorithm for a iterated local search. 
+.PP
+Definition at line 50 of file moILS.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class M> \fBmoILS\fP< M >::\fBmoILS\fP (\fBmoAlgo\fP< \fBEOT\fP > & _algorithm, \fBmoSolContinue\fP< \fBEOT\fP > & _continue, \fBmoComparator\fP< \fBEOT\fP > & _acceptance_criterion, \fBeoMonOp\fP< \fBEOT\fP > & _perturbation, \fBeoEvalFunc\fP< \fBEOT\fP > & _full_evaluation)\fC [inline]\fP"
+.PP
+Generic constructor. 
+.PP
+Generic constructor using a \fBmoAlgo\fP
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_algorithm\fP The solution based heuristic to use. 
+.br
+\fI_continue\fP The stopping criterion. 
+.br
+\fI_acceptance_criterion\fP The acceptance criterion. 
+.br
+\fI_perturbation\fP The pertubation generator. 
+.br
+\fI_full_evaluation\fP The evaluation function. 
+.RE
+.PP
+
+.PP
+Definition at line 70 of file moILS.h.
+.SS "template<class M> \fBmoILS\fP< M >::\fBmoILS\fP (\fBmoMoveInit\fP< M > & _move_initializer, \fBmoNextMove\fP< M > & _next_move_generator, \fBmoMoveIncrEval\fP< M > & _incremental_evaluation, \fBmoMoveSelect\fP< M > & _move_selection, \fBmoSolContinue\fP< \fBEOT\fP > & _continue, \fBmoComparator\fP< \fBEOT\fP > & _acceptance_criterion, \fBeoMonOp\fP< \fBEOT\fP > & _perturbation, \fBeoEvalFunc\fP< \fBEOT\fP > & _full_evaluation)\fC [inline]\fP"
+.PP
+Constructor for using a \fBmoHC\fP for the \fBmoAlgo\fP. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_move_initializer\fP The move initialisation (for the \fBmoHC\fP). 
+.br
+\fI_next_move_generator\fP The move generator (for the \fBmoHC\fP). 
+.br
+\fI_incremental_evaluation\fP The partial evaluation function (for the \fBmoHC\fP). 
+.br
+\fI_move_selection\fP The move selection strategy (for the \fBmoHC\fP). 
+.br
+\fI_continue\fP The stopping criterion. 
+.br
+\fI_acceptance_criterion\fP The acceptance criterion. 
+.br
+\fI_perturbation\fP The pertubation generator. 
+.br
+\fI_full_evaluation\fP The evaluation function. 
+.RE
+.PP
+
+.PP
+Definition at line 87 of file moILS.h.
+.SS "template<class M> \fBmoILS\fP< M >::\fBmoILS\fP (\fBmoMoveInit\fP< M > & _move_initializer, \fBmoNextMove\fP< M > & _next_move_generator, \fBmoMoveIncrEval\fP< M > & _incremental_evaluation, \fBmoTabuList\fP< M > & _tabu_list, \fBmoAspirCrit\fP< M > & _aspiration_criterion, \fBmoSolContinue\fP< \fBEOT\fP > & _moTS_continue, \fBmoSolContinue\fP< \fBEOT\fP > & _continue, \fBmoComparator\fP< \fBEOT\fP > & _acceptance_criterion, \fBeoMonOp\fP< \fBEOT\fP > & _perturbation, \fBeoEvalFunc\fP< \fBEOT\fP > & _full_evaluation)\fC [inline]\fP"
+.PP
+Constructor for using a \fBmoTS\fP for the \fBmoAlgo\fP. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_move_initializer\fP The move initialisation (for the \fBmoTS\fP). 
+.br
+\fI_next_move_generator\fP The move generator (for the \fBmoTS\fP). 
+.br
+\fI_incremental_evaluation\fP The partial evaluation function (for the \fBmoTS\fP). 
+.br
+\fI_tabu_list\fP The tabu list (for the \fBmoTS\fP !!!!). 
+.br
+\fI_aspiration_criterion\fP The aspiration criterion (for the \fBmoTS\fP). 
+.br
+\fI_moTS_continue\fP The stopping criterion (for the \fBmoTS\fP). 
+.br
+\fI_continue\fP The stopping criterion. 
+.br
+\fI_acceptance_criterion\fP The acceptance criterion. 
+.br
+\fI_perturbation\fP The pertubation generator. 
+.br
+\fI_full_evaluation\fP The evaluation function. 
+.RE
+.PP
+
+.PP
+Definition at line 108 of file moILS.h.
+.SS "template<class M> \fBmoILS\fP< M >::\fBmoILS\fP (\fBmoRandMove\fP< M > & _random_move_generator, \fBmoMoveIncrEval\fP< M > & _incremental_evaluation, \fBmoSolContinue\fP< \fBEOT\fP > & _moSA_continue, double _initial_temperature, \fBmoCoolingSchedule\fP & _cooling_schedule, \fBmoSolContinue\fP< \fBEOT\fP > & _continue, \fBmoComparator\fP< \fBEOT\fP > & _acceptance_criterion, \fBeoMonOp\fP< \fBEOT\fP > & _perturbation, \fBeoEvalFunc\fP< \fBEOT\fP > & _full_evaluation)\fC [inline]\fP"
+.PP
+Constructor for using a \fBmoSA\fP for the \fBmoAlgo\fP. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_random_move_generator\fP The random move generator (for the \fBmoSA\fP). 
+.br
+\fI_incremental_evaluation\fP The partial evaluation function (for the \fBmoSA\fP). 
+.br
+\fI_moSA_continue\fP The stopping criterion (for the \fBmoSA\fP). 
+.br
+\fI_initial_temperature\fP The initial temperature (for the \fBmoSA\fP). 
+.br
+\fI_cooling_schedule\fP The cooling schedule (for the \fBmoSA\fP). 
+.br
+\fI_continue\fP The stopping criterion. 
+.br
+\fI_acceptance_criterion\fP The acceptance criterion. 
+.br
+\fI_perturbation\fP The pertubation generator. 
+.br
+\fI_full_evaluation\fP The evaluation function. 
+.RE
+.PP
+
+.PP
+Definition at line 130 of file moILS.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class M> bool \fBmoILS\fP< M >::operator() (\fBEOT\fP & _solution)\fC [inline, virtual]\fP"
+.PP
+\fBFunction\fP which launches the ILS. 
+.PP
+The ILS has to improve a current solution. As the \fBmoSA\fP, the \fBmoTS\fP and the \fBmoHC\fP, it can be used for HYBRIDATION in an evolutionnary algorithm.
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_solution\fP a current solution to improve. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true. 
+.RE
+.PP
+
+.PP
+Implements \fBeoUF< M::EOType &, bool >\fP.
+.PP
+Definition at line 146 of file moILS.h.
+.PP
+References moILS< M >::acceptance_criterion, moILS< M >::algorithm, moILS< M >::continu, moILS< M >::full_evaluation, and moILS< M >::perturbation.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ParadisEO-MOMovingObjects from the source code.

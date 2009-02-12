@@ -1,0 +1,75 @@
+\section{moMoveSelect$<$ M $>$ Class Template Reference}
+\label{classmo_move_select}\index{moMoveSelect@{moMoveSelect}}
+Class that describes a move selector (\doxyref{moMove}{p.}{classmo_move}).  
+
+
+{\tt \#include $<$moMoveSelect.h$>$}
+
+Inheritance diagram for moMoveSelect$<$ M $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.82828cm]{classmo_move_select}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+typedef M::EOType::Fitness {\bf Fitness}\label{classmo_move_select_8148ccc0e6fbd209c3fe6829559895c8}
+
+\begin{CompactList}\small\item\em Alias for the fitness. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+virtual void {\bf init} (const {\bf Fitness} \&\_\-fitness)=0
+\begin{CompactList}\small\item\em Procedure which initialises all that the move selector needs including the initial fitness. \item\end{CompactList}\item 
+virtual bool {\bf update} (const M \&\_\-move, const {\bf Fitness} \&\_\-fitness)=0
+\begin{CompactList}\small\item\em {\bf Function} which updates the best solutions. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class M$>$ class moMoveSelect$<$ M $>$}
+
+Class that describes a move selector (\doxyref{moMove}{p.}{classmo_move}). 
+
+It iteratively considers some moves (\doxyref{moMove}{p.}{classmo_move}) and their associated fitnesses. The best move is so regularly updated. At any time, it could be accessed. 
+
+Definition at line 50 of file moMoveSelect.h.
+
+\subsection{Member Function Documentation}
+\index{moMoveSelect@{moMoveSelect}!init@{init}}
+\index{init@{init}!moMoveSelect@{moMoveSelect}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ virtual void {\bf moMoveSelect}$<$ M $>$::init (const {\bf Fitness} \& {\em \_\-fitness})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classmo_move_select_58038bd859632c1bd022d23d9792bdca}
+
+
+Procedure which initialises all that the move selector needs including the initial fitness. 
+
+In order to know the fitness of the solution, for which the neighborhood will be soon explored
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-fitness}]the current fitness. \end{description}
+\end{Desc}
+
+
+Implemented in {\bf moBestImprSelect$<$ M $>$} \doxyref{}{p.}{classmo_best_impr_select_83f961549986b8ad94692e433aa79114}, {\bf moFirstImprSelect$<$ M $>$} \doxyref{}{p.}{classmo_first_impr_select_a923437ecc3db50e7052b002a9a1bbf8}, and {\bf moRandImprSelect$<$ M $>$} \doxyref{}{p.}{classmo_rand_impr_select_7af99966b31aa387ecef74fd307a42e8}.\index{moMoveSelect@{moMoveSelect}!update@{update}}
+\index{update@{update}!moMoveSelect@{moMoveSelect}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}template$<$class M$>$ virtual bool {\bf moMoveSelect}$<$ M $>$::update (const M \& {\em \_\-move}, const {\bf Fitness} \& {\em \_\-fitness})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classmo_move_select_5b4d3b2f030cca80c563c3db0c4af404}
+
+
+{\bf Function} which updates the best solutions. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-move}]a new move. \item[{\em \_\-fitness}]a fitness linked to the new move. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a boolean that expresses the need to resume the exploration. \end{Desc}
+
+
+Implemented in {\bf moBestImprSelect$<$ M $>$} \doxyref{}{p.}{classmo_best_impr_select_5c0729fd316b0ef78406bce5ca91de2a}, {\bf moFirstImprSelect$<$ M $>$} \doxyref{}{p.}{classmo_first_impr_select_f68b7ee7b35bf7347c16006f0587d313}, and {\bf moRandImprSelect$<$ M $>$} \doxyref{}{p.}{classmo_rand_impr_select_b20cfd0164266aa75960cba3c1673f69}.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+moMoveSelect.h\end{CompactItemize}
