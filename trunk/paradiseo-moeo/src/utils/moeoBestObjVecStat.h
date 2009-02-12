@@ -1,7 +1,7 @@
 /*
 * <moeoComparator.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2009
-* 
+*
 *
 * Waldo Cancino, Arnaud Liefooghe
 *
@@ -62,15 +62,15 @@ public:
 	/**
 		Return the best solutions for an given objective function
 		* @param which the objective function number
-	*/ 
-	const MOEOT & bestindividuals(unsigned int which) { 
+	*/
+	const MOEOT & bestindividuals(unsigned int which) {
 		typedef typename moeoObjVecStat<MOEOT>::Traits traits;
 		if(which > traits::nObjectives() ) throw std::logic_error("which is larger than the number of objectives");
-		return *(best_individuals[which]); 
+		return *(best_individuals[which]);
 	}
 
 private :
-	
+
 	/** Vector of iterators pointing to best individuals for each objective function */
 
 	std::vector<typename eoPop<MOEOT>::const_iterator> best_individuals;
@@ -85,7 +85,7 @@ private :
           return a.objectiveVector()[which] < b.objectiveVector()[which];
 
         return a.objectiveVector()[which] > b.objectiveVector()[which];
-      }	
+      }
 
       unsigned which;
       bool maxim;
@@ -95,9 +95,9 @@ private :
     void doit(const eoPop<MOEOT>& _pop)
     {
       typedef typename moeoObjVecStat<MOEOT>::Traits traits;
-	  
+
       value().resize(traits::nObjectives());
-	  
+
       for (unsigned o = 0; o < traits::nObjectives(); ++o)
       {
         typename eoPop<MOEOT>::const_iterator it = std::max_element(_pop.begin(), _pop.end(), CmpObjVec(o, traits::maximizing(o)));
