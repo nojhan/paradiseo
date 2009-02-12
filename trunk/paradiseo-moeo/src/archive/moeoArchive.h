@@ -42,11 +42,6 @@
 #include <comparator/moeoObjectiveVectorComparator.h>
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
 
-//template < class MOEOT >
-//class ufMOEOT : public eoUF < const MOEOT &, bool> {};
-//template < class MOEOT >
-//class ufPop : eoUF < const eoPop < MOEOT > &, bool> {};
-
 /**
  * Abstract class for representing an archive ;
  * an archive is a secondary population that stores non-dominated solutions.
