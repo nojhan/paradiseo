@@ -1,0 +1,27 @@
+######    Param                   ######
+--popSize=20                             # -P : Population size
+--maxGen=200                             # -G : Maximum number of generations
+--mutEpsilon=0.01                        # -e : epsilon for mutation
+--pCross=0.80                            # -C : Crossover probability
+--pMut=0.30                              # -M : Mutation probability
+--vecSize=2                              # -V : Vector size
+--pMin=-2.0								 # -N : Init position min
+--pMax=2.0								 # -X : Init position max
+--vMin=-1.0								 # -n : Init velocity min
+--vMax=1.0								 # -x : Init velocity max
+--neighSize=6                            # -H : Neighborhood size
+--weight=1.0							 # -w : Weight
+--c1=0.5	    						 # -1 : C1
+--c2=2.0     							 # -2 : C2
+--migFreq=10                             # -F : Migration frequency
+--migSize=5                              # -S : Migration size
+
+## miscallenous parameters
+
+--debug=false
+
+## deployment schema
+
+--schema=schema.xml
+
+
