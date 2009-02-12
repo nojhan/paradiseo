@@ -40,6 +40,7 @@
 #define MOEOHYPERVOLUMEDIFFERENCEMETRIC_H_
 
 #include <metric/moeoMetric.h>
+#include <metric/moeoHyperVolumeMetric.h>
 
 /**
  * The contribution metric evaluates the proportion of non-dominated solutions given by a Pareto set relatively to another Pareto set
@@ -49,7 +50,7 @@ template < class ObjectiveVector >
 class moeoHyperVolumeDifferenceMetric : public moeoVectorVsVectorBinaryMetric < ObjectiveVector, double >
   {
 	public:
-	
+
     /**
      * Constructor with a coefficient (rho)
      * @param _normalize allow to normalize data (default true)
@@ -63,7 +64,7 @@ class moeoHyperVolumeDifferenceMetric : public moeoVectorVsVectorBinaryMetric < 
             bounds[i] = eoRealInterval(0,1);
         }
     }
-    
+
     /**
      * Constructor with a reference point
      * @param _normalize allow to normalize data (default true)
@@ -76,17 +77,17 @@ class moeoHyperVolumeDifferenceMetric : public moeoVectorVsVectorBinaryMetric < 
         {
             bounds[i] = eoRealInterval(0,1);
         }
-    }  
-    
+    }
+
     /**
      * calculates and returns the HyperVolume value of a pareto front
-     * @param _set the vector contains all objective Vector of pareto front 
+     * @param _set the vector contains all objective Vector of pareto front
      */
     double operator()(const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2)
     {
     	double hypervolume_set1;
     	double hypervolume_set2;
-    	
+
     	if(rho >= 1.0){
 		//determine bounds
 		setup(_set1, _set2);
@@ -105,7 +106,7 @@ class moeoHyperVolumeDifferenceMetric : public moeoVectorVsVectorBinaryMetric < 
    					ref_point[i]= bounds[i].maximum() * (1-rho);
    			}
     	}
-    	//if no normalization, reinit bounds to O..1 for 
+    	//if no normalization, reinit bounds to O..1 for
     	if(!normalize)
      		for (unsigned int i=0; i<ObjectiveVector::Traits::nObjectives(); i++)
         		bounds[i] = eoRealInterval(0,1);
@@ -113,14 +114,14 @@ class moeoHyperVolumeDifferenceMetric : public moeoVectorVsVectorBinaryMetric < 
     	}
     	else if(normalize)
     		setup(_set1, _set2);
-    		
+
 	   	moeoHyperVolumeMetric <ObjectiveVector> unaryMetric(ref_point, bounds);
 	   	hypervolume_set1 = unaryMetric(_set1);
 	   	hypervolume_set2 = unaryMetric(_set2);
-    		
+
     	return hypervolume_set1 - hypervolume_set2;
     }
-    
+
     /**
      * getter on bounds
      * @return bounds
@@ -128,7 +129,7 @@ class moeoHyperVolumeDifferenceMetric : public moeoVectorVsVectorBinaryMetric < 
     std::vector < eoRealInterval > getBounds(){
         return bounds;
     }
-    
+
     /**
      * method caclulate bounds for the normalization
      * @param _set the vector of objective vectors
@@ -160,12 +161,12 @@ class moeoHyperVolumeDifferenceMetric : public moeoVectorVsVectorBinaryMetric < 
 
     /*boolean indicates if data must be normalized or not*/
     bool normalize;
-    
+
     double rho;
-    
+
     /*vectors contains bounds for normalization*/
     std::vector < eoRealInterval > bounds;
-    
+
     ObjectiveVector ref_point;
 
   };
