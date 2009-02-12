@@ -43,6 +43,7 @@
 #include <vector>
 #include <eoPop.h>
 #include <archive/moeoArchive.h>
+#include <archive/moeoUnboundedArchive.h>
 #include <comparator/moeoObjectiveVectorComparator.h>
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
 #include <fitness/moeoDominanceBasedFitnessAssignment.h>
