@@ -1,9 +1,9 @@
 /*
 * <moeoFrontByFrontCrowdingDiversityAssignment.h>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
+* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2009
+* (C) OPAC Team, LIFL, 2002-2009
 *
-* Arnaud Liefooghe
+* Arnaud Liefooghe, Waldo Cancino
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -35,11 +35,13 @@
 */
 //-----------------------------------------------------------------------------
 
-#ifndef MOEOFRONTBYFRONTCROWDINGDIVERSITYASSIGNMENT_H_
-#define MOEOFRONTBYFRONTCROWDINGDIVERSITYASSIGNMENT_H_
+#ifndef MOEOFRONTBYFRONTCROWDINGDIVERSITYASSIGNMENT2_H_
+#define MOEOFRONTBYFRONTCROWDINGDIVERSITYASSIGNMENT2_H_
 
 #include <diversity/moeoCrowdingDiversityAssignment.h>
 #include <comparator/moeoFitnessThenDiversityComparator.h>
+#include <comparator/moeoPtrComparator.h>
+
 
 /**
  * Diversity assignment sheme based on crowding proposed in:
@@ -67,7 +69,6 @@ class moeoFrontByFrontCrowdingDiversityAssignment : public moeoCrowdingDiversity
       std::cout << "WARNING : updateByDeleting not implemented in moeoFrontByFrontCrowdingDistanceDiversityAssignment" << std::endl;
     }
 
-
   private:
 
     using moeoCrowdingDiversityAssignment < MOEOT >::inf;
@@ -77,7 +78,8 @@ class moeoFrontByFrontCrowdingDiversityAssignment : public moeoCrowdingDiversity
      * Sets the distance values
      * @param _pop the population
      */
-    void setDistances (eoPop < MOEOT > & _pop)
+
+    void setDistances (eoPop <MOEOT> & _pop)
     {
       unsigned int a,b;
       double min, max, distance;
@@ -89,18 +91,28 @@ class moeoFrontByFrontCrowdingDiversityAssignment : public moeoCrowdingDiversity
         }
       // sort the whole pop according to fitness values
       moeoFitnessThenDiversityComparator < MOEOT > fitnessComparator;
-      std::sort(_pop.begin(), _pop.end(), fitnessComparator);
+	  std::vector<MOEOT *> sortedptrpop;
+	  sortedptrpop.resize(_pop.size());
+	  // due to intensive sort operations for this diversity assignment,
+	  // it is more efficient to perform sorts using only pointers to the
+      // population members in order to avoid copy of individuals
+	  for(int i=0; i< _pop.size(); i++) sortedptrpop[i] = & (_pop[i]);	
+      //sort the pointers to population members 
+	  moeoPtrComparator<MOEOT> cmp2( fitnessComparator);
+	  std::sort(sortedptrpop.begin(), sortedptrpop.end(), cmp2);
       // compute the crowding distance values for every individual "front" by "front" (front : from a to b)
       a = 0;	        			// the front starts at a
       while (a < _pop.size())
         {
-          b = lastIndex(_pop,a);	// the front ends at b
+		  b = lastIndex(sortedptrpop,a);	// the front ends at b
+          //b = lastIndex(_pop,a);	// the front ends at b
           // if there is less than 2 individuals in the front...
           if ((b-a) < 2)
             {
               for (unsigned int i=a; i<=b; i++)
                 {
-                  _pop[i].diversity(inf());
+					sortedptrpop[i]->diversity(inf());
+                  //_pop[i].diversity(inf());
                 }
             }
           // else...
@@ -111,10 +123,12 @@ class moeoFrontByFrontCrowdingDiversityAssignment : public moeoCrowdingDiversity
                 {
                   // sort in the descending order using the values of the objective 'obj'
                   moeoOneObjectiveComparator < MOEOT > objComp(obj);
-                  std::sort(_pop.begin()+a, _pop.begin()+b+1, objComp);
+				  moeoPtrComparator<MOEOT> cmp2( objComp );
+				  std::sort(sortedptrpop.begin(), sortedptrpop.end(), cmp2);
                   // min & max
-                  min = _pop[b].objectiveVector()[obj];
-                  max = _pop[a].objectiveVector()[obj];
+                  min = (sortedptrpop[b])->objectiveVector()[obj];
+                  max = (sortedptrpop[a])->objectiveVector()[obj];
+	
                   // avoid extreme case
                   if (min == max)
                     {
@@ -122,13 +136,13 @@ class moeoFrontByFrontCrowdingDiversityAssignment : public moeoCrowdingDiversity
                       max += tiny();
                     }
                   // set the diversity value to infiny for min and max
-                  _pop[a].diversity(inf());
-                  _pop[b].diversity(inf());
+                  sortedptrpop[a]->diversity(inf());
+                  sortedptrpop[b]->diversity(inf());
                   // set the diversity values for the other individuals
                   for (unsigned int i=a+1; i<b; i++)
                     {
-                      distance = (_pop[i-1].objectiveVector()[obj] - _pop[i+1].objectiveVector()[obj]) / (max-min);
-                      _pop[i].diversity(_pop[i].diversity() + distance);
+                        distance = ( sortedptrpop[i-1]->objectiveVector()[obj] - sortedptrpop[i+1]->objectiveVector()[obj] ) / (max-min);
+                        sortedptrpop[i]->diversity(sortedptrpop[i]->diversity() + distance);
                     }
                 }
             }
@@ -138,20 +152,23 @@ class moeoFrontByFrontCrowdingDiversityAssignment : public moeoCrowdingDiversity
     }
 
 
+
     /**
      * Returns the index of the last individual having the same fitness value than _pop[_start]
-     * @param _pop the population
+     * @param _pop the vector of pointers to population individuals
      * @param _start the index to start from
      */
-    unsigned int lastIndex (eoPop < MOEOT > & _pop, unsigned int _start)
+
+    unsigned int lastIndex (std::vector<MOEOT *> & _pop, unsigned int _start)
     {
       unsigned int i=_start;
-      while ( (i<_pop.size()-1) && (_pop[i].fitness()==_pop[i+1].fitness()) )
+      while ( (i<_pop.size()-1) && (_pop[i]->fitness()==_pop[i+1]->fitness()) )
         {
           i++;
         }
       return i;
     }
+
 
   };
 
