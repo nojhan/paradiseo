@@ -69,6 +69,7 @@
 #include <comparator/moeoObjectiveObjectiveVectorComparator.h>
 #include <comparator/moeoOneObjectiveComparator.h>
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
+#include <comparator/moeoPtrComparator.h>
 #include <comparator/moeoStrictObjectiveVectorComparator.h>
 #include <comparator/moeoWeakObjectiveVectorComparator.h>
 
