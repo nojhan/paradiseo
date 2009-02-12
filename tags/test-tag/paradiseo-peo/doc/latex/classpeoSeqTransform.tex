@@ -1,0 +1,111 @@
+\hypertarget{classpeoSeqTransform}{
+\section{peo\-Seq\-Transform$<$ EOT $>$ Class Template Reference}
+\label{classpeoSeqTransform}\index{peoSeqTransform@{peoSeqTransform}}
+}
+The \hyperlink{classpeoSeqTransform}{peo\-Seq\-Transform} represent a wrapper for offering the possibility of using \doxyref{EO} derived transform operators along with the Paradis\-EO evolutionary algorithms.  
+
+
+{\tt \#include $<$peo\-Seq\-Transform.h$>$}
+
+Inheritance diagram for peo\-Seq\-Transform$<$ EOT $>$::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5cm]{classpeoSeqTransform}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classpeoSeqTransform_3b8e4ed19d9458938eb669d83a53c626}{peo\-Seq\-Transform} (\bf{eo\-Transform}$<$ EOT $>$ \&\_\-\_\-trans)
+\begin{CompactList}\small\item\em Constructor function - sets an internal reference towards the specified EO-derived transform object. \item\end{CompactList}\item 
+void \hyperlink{classpeoSeqTransform_1ba63536abb6c4e1c369e0b7e066872e}{operator()} (\bf{eo\-Pop}$<$ EOT $>$ \&\_\-\_\-pop)
+\begin{CompactList}\small\item\em Operator for applying the specified transform operators on each individual of the given population. \item\end{CompactList}\item 
+\hypertarget{classpeoSeqTransform_c4bf2724e9f6055f12bd169fad893be3}{
+virtual void \hyperlink{classpeoSeqTransform_c4bf2724e9f6055f12bd169fad893be3}{pack\-Data} ()}
+\label{classpeoSeqTransform_c4bf2724e9f6055f12bd169fad893be3}
+
+\begin{CompactList}\small\item\em Interface function for providing a link with the parallel architecture of the Paradis\-EO framework. \item\end{CompactList}\item 
+\hypertarget{classpeoSeqTransform_24e6cf15ef230ed538031b522ddd4ae6}{
+virtual void \hyperlink{classpeoSeqTransform_24e6cf15ef230ed538031b522ddd4ae6}{unpack\-Data} ()}
+\label{classpeoSeqTransform_24e6cf15ef230ed538031b522ddd4ae6}
+
+\begin{CompactList}\small\item\em Interface function for providing a link with the parallel architecture of the Paradis\-EO framework. \item\end{CompactList}\item 
+\hypertarget{classpeoSeqTransform_0294a2f9d6b44ec74d22eaceccdffc2b}{
+virtual void \hyperlink{classpeoSeqTransform_0294a2f9d6b44ec74d22eaceccdffc2b}{execute} ()}
+\label{classpeoSeqTransform_0294a2f9d6b44ec74d22eaceccdffc2b}
+
+\begin{CompactList}\small\item\em Interface function for providing a link with the parallel architecture of the Paradis\-EO framework. \item\end{CompactList}\item 
+\hypertarget{classpeoSeqTransform_4861c61f9e46d83964ea8a156a9a3ee0}{
+virtual void \hyperlink{classpeoSeqTransform_4861c61f9e46d83964ea8a156a9a3ee0}{pack\-Result} ()}
+\label{classpeoSeqTransform_4861c61f9e46d83964ea8a156a9a3ee0}
+
+\begin{CompactList}\small\item\em Interface function for providing a link with the parallel architecture of the Paradis\-EO framework. \item\end{CompactList}\item 
+\hypertarget{classpeoSeqTransform_5dd029fc011eb2a810ca1140025129b1}{
+virtual void \hyperlink{classpeoSeqTransform_5dd029fc011eb2a810ca1140025129b1}{unpack\-Result} ()}
+\label{classpeoSeqTransform_5dd029fc011eb2a810ca1140025129b1}
+
+\begin{CompactList}\small\item\em Interface function for providing a link with the parallel architecture of the Paradis\-EO framework. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hypertarget{classpeoSeqTransform_ad3e16c59dd6c46dfc1baf7b88af30cf}{
+\bf{eo\-Transform}$<$ EOT $>$ \& \hyperlink{classpeoSeqTransform_ad3e16c59dd6c46dfc1baf7b88af30cf}{trans}}
+\label{classpeoSeqTransform_ad3e16c59dd6c46dfc1baf7b88af30cf}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class EOT$>$ class peo\-Seq\-Transform$<$ EOT $>$}
+
+The \hyperlink{classpeoSeqTransform}{peo\-Seq\-Transform} represent a wrapper for offering the possibility of using \doxyref{EO} derived transform operators along with the Paradis\-EO evolutionary algorithms. 
+
+A minimal set of interface functions is also provided for creating the link with the parallel architecture of the Paradis\-EO framework. 
+
+
+
+Definition at line 48 of file peo\-Seq\-Transform.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classpeoSeqTransform_3b8e4ed19d9458938eb669d83a53c626}{
+\index{peoSeqTransform@{peo\-Seq\-Transform}!peoSeqTransform@{peoSeqTransform}}
+\index{peoSeqTransform@{peoSeqTransform}!peoSeqTransform@{peo\-Seq\-Transform}}
+\subsubsection[peoSeqTransform]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ \hyperlink{classpeoSeqTransform}{peo\-Seq\-Transform}$<$ EOT $>$::\hyperlink{classpeoSeqTransform}{peo\-Seq\-Transform} (\bf{eo\-Transform}$<$ EOT $>$ \& {\em \_\-\_\-trans})}}
+\label{classpeoSeqTransform_3b8e4ed19d9458938eb669d83a53c626}
+
+
+Constructor function - sets an internal reference towards the specified EO-derived transform object. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em eo\-Transform$<$}]EOT $>$\& \_\-\_\-trans - EO-derived transform object including crossover and mutation operators. \end{description}
+\end{Desc}
+
+
+Definition at line 83 of file peo\-Seq\-Transform.h.
+
+\subsection{Member Function Documentation}
+\hypertarget{classpeoSeqTransform_1ba63536abb6c4e1c369e0b7e066872e}{
+\index{peoSeqTransform@{peo\-Seq\-Transform}!operator()@{operator()}}
+\index{operator()@{operator()}!peoSeqTransform@{peo\-Seq\-Transform}}
+\subsubsection[operator()]{\setlength{\rightskip}{0pt plus 5cm}template$<$class EOT$>$ void \hyperlink{classpeoSeqTransform}{peo\-Seq\-Transform}$<$ EOT $>$::operator() (\bf{eo\-Pop}$<$ EOT $>$ \& {\em \_\-\_\-pop})}}
+\label{classpeoSeqTransform_1ba63536abb6c4e1c369e0b7e066872e}
+
+
+Operator for applying the specified transform operators on each individual of the given population. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em eo\-Pop$<$}]EOT $>$\& \_\-\_\-pop - population to be transformed by applying the crossover and mutation operators. \end{description}
+\end{Desc}
+
+
+Definition at line 88 of file peo\-Seq\-Transform.h.
+
+References peo\-Seq\-Transform$<$ EOT $>$::trans.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+peo\-Seq\-Transform.h\end{CompactItemize}
