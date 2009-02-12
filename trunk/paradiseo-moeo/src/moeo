@@ -42,23 +42,22 @@
 #include <eo>
 
 #include <algo/moeoAlgo.h>
-#include <algo/moeoPopAlgo.h>
-#include <algo/moeoCombinedLS.h>
 #include <algo/moeoEA.h>
 #include <algo/moeoEasyEA.h>
-#include <algo/moeoHybridLS.h>
 #include <algo/moeoIBEA.h>
-#include <algo/moeoLS.h>
+#include <algo/moeoMOGA.h>
 #include <algo/moeoNSGA.h>
 #include <algo/moeoNSGAII.h>
+#include <algo/moeoPopAlgo.h>
 #include <algo/moeoSEEA.h>
 #include <algo/moeoSPEA2.h>
 
 #include <archive/moeoArchive.h>
-#include <archive/moeoUnboundedArchive.h>
+#include <archive/moeoBoundedArchive.h>
 #include <archive/moeoFixedSizeArchive.h>
 #include <archive/moeoSPEA2Archive.h>
-#include <archive/moeoBoundedArchive.h>
+#include <archive/moeoUnboundedArchive.h>
+
 
 #include <comparator/moeoAggregativeComparator.h>
 #include <comparator/moeoComparator.h>
@@ -76,12 +75,12 @@
 #include <core/MOEO.h>
 #include <core/moeoBitVector.h>
 #include <core/moeoEvalFunc.h>
+#include <core/moeoIntVector.h>
 #include <core/moeoObjectiveVector.h>
 #include <core/moeoObjectiveVectorTraits.h>
-#include <core/moeoBitVector.h>
 #include <core/moeoRealObjectiveVector.h>
 #include <core/moeoRealVector.h>
-#include <core/moeoIntVector.h>
+#include <core/moeoVector.h>
 
 #include <distance/moeoDistance.h>
 #include <distance/moeoDistanceMatrix.h>
@@ -94,10 +93,11 @@
 #include <diversity/moeoDummyDiversityAssignment.h>
 #include <diversity/moeoFrontByFrontCrowdingDiversityAssignment.h>
 #include <diversity/moeoFrontByFrontSharingDiversityAssignment.h>
-#include <diversity/moeoSharingDiversityAssignment.h>
 #include <diversity/moeoNearestNeighborDiversityAssignment.h>
+#include <diversity/moeoSharingDiversityAssignment.h>
 
 #include <fitness/moeoAchievementFitnessAssignment.h>
+#include <fitness/moeoAggregativeFitnessAssignment.h>
 #include <fitness/moeoBinaryIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoCriterionBasedFitnessAssignment.h>
 #include <fitness/moeoDominanceBasedFitnessAssignment.h>
@@ -116,13 +116,13 @@
 #include <metric/moeoContributionMetric.h>
 #include <metric/moeoEntropyMetric.h>
 #include <metric/moeoHypervolumeBinaryMetric.h>
+#include <metric/moeoHyperVolumeDifferenceMetric.h>
+#include <metric/moeoHyperVolumeMetric.h>
 #include <metric/moeoMetric.h>
 #include <metric/moeoNormalizedSolutionVsSolutionBinaryMetric.h>
 #include <metric/moeoVecVsVecEpsilonBinaryMetric.h>
 #include <metric/moeoVecVsVecAdditiveEpsilonBinaryMetric.h>
 #include <metric/moeoVecVsVecMultiplicativeEpsilonBinaryMetric.h>
-#include <metric/moeoHyperVolumeMetric.h>
-#include <metric/moeoHyperVolumeDifferenceMetric.h>
 
 #include <replacement/moeoElitistReplacement.h>
 #include <replacement/moeoEnvironmentalReplacement.h>
@@ -139,9 +139,12 @@
 
 #include <utils/moeoArchiveObjectiveVectorSavingUpdater.h>
 #include <utils/moeoArchiveUpdater.h>
+#include <utils/moeoAverageObjVecStat.h>
+#include <utils/moeoBestObjVecStat.h>
 #include <utils/moeoBinaryMetricSavingUpdater.h>
 #include <utils/moeoConvertPopToObjectiveVectors.h>
 #include <utils/moeoDominanceMatrix.h>
+#include <utils/moeoObjVecStat.h>
 
 
 #endif /*MOEO_*/
