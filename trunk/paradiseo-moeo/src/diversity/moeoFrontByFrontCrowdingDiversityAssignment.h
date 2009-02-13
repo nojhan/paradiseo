@@ -96,7 +96,7 @@ class moeoFrontByFrontCrowdingDiversityAssignment : public moeoCrowdingDiversity
 	  // due to intensive sort operations for this diversity assignment,
 	  // it is more efficient to perform sorts using only pointers to the
       // population members in order to avoid copy of individuals
-	  for(int i=0; i< _pop.size(); i++) sortedptrpop[i] = & (_pop[i]);	
+	  for(unsigned int i=0; i< _pop.size(); i++) sortedptrpop[i] = & (_pop[i]);	
       //sort the pointers to population members 
 	  moeoPtrComparator<MOEOT> cmp2( fitnessComparator);
 	  std::sort(sortedptrpop.begin(), sortedptrpop.end(), cmp2);
