@@ -16,6 +16,8 @@ DIE=0
 PROG=ParadisEO
 CMAKE_PRIMARY_CONFIG_FILE=install.cmake
 HOME_PATH=$HOME
+bash_path='$PATH'
+library_path='$LD_LIBRARY_PATH'
 
 # generator types available on Unix platforms
 P_UNIX_MAKEFILES=1
@@ -657,9 +659,15 @@ function run_install_step()
 		sed -e s,$pattern,,g paradiseo.tmp1 > paradiseo.tmp2
 		pattern="$installKitPath/mpich2/bin:"
 		sed -e s,$pattern,,g paradiseo.tmp2 > paradiseo.tmp3
-		sed  -e s,"export LD_LIBRARY_PATH="$,,g paradiseo.tmp3 > $HOME/.bashrc
-		execute_cmd "rm $installKitPath/paradiseo.tmp*" "[$currentStepCounter] Cleaning $HOME/.bashrc" $SPY
-		execute_cmd "rm $HOME/paradiseo.tmp*" "[$currentStepCounter] Cleaning $HOME/.bashrc" $SPY  
+		sed -e s,^"export PATH.*",,g paradiseo.tmp3 > paradiseo.tmp4
+		sed -e s,"export LD_LIBRARY_PATH="$,"unset LD_LIBRARY_PATH",g paradiseo.tmp4 > $HOME/.bashrc
+		execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Updating $HOME/.bashrc" $SPY
+		sed  -e s,"unset LD_LIBRARY_PATH.*"$,,g $HOME/.bashrc > paradiseo.tmp5
+		sed  -e s,"unset LD_LIBRARY_PATH.*"$,,g paradiseo.tmp5 > $HOME/.bashrc
+		#execute_cmd "cat $installKitPath/paradiseo.tmp5 > $HOME/.bashrc " "[$currentStepCounter] Removing a potential LD_LIBRARY_PATH" $SPY
+		
+		execute_cmd "rm paradiseo.tmp*" "[$currentStepCounter] Cleaning $HOME/.bashrc" $SPY
+		#execute_cmd "rm $HOME/paradiseo.tmp*" "[$currentStepCounter] Cleaning $HOME/.bashrc" $SPY  
 		execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Updating $HOME/.bashrc" $SPY
 		if [ "$UID" = "0" ]
 		then
@@ -696,6 +704,7 @@ function run_install_step()
 			return $RM_UTIL_ERROR
 		else
 			echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter OK \033[0m"
+			echo -e "Please \033[40m\033[1;33m  CLOSE YOUR TERMINAL OR OPEN A NEW ONE \033[0m before proceeding with a new installation."
 			echo
 			return $SUCCESSFUL_STEP
 		fi 
@@ -706,10 +715,10 @@ function run_install_step()
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Configuring environment variables for mpich2 ...'
 
-		execute_cmd "export PATH=`xml2-config --prefix`/bin:$installKitPath/mpich2/bin:$PATH" "[$currentStepCounter-2] Export PATH variable" $SPY 
+		execute_cmd "export PATH=`xml2-config --prefix`/bin:$installKitPath/mpich2/bin:$bash_path" "[$currentStepCounter-2] Export PATH variable" $SPY 
 		idx=$?	
 
-		execute_cmd "echo export PATH=$PATH" "[$currentStepCounter-4] Export PATH variable into env" $SPY $HOME/.bashrc
+		execute_cmd "echo export PATH=`xml2-config --prefix`/bin:$installKitPath/mpich2/bin:$bash_path" "[$currentStepCounter-4] Export PATH variable into env" $SPY $HOME/.bashrc
 		idx=`expr $idx + $?`
 
 		execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Export variables for mpich2" $SPY
@@ -901,7 +910,7 @@ function run_install_step()
 		echo -e " LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:$installKitPath/libxml2/lib"
 		echo -e " PATH=\$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:$PATH"
 		echo -e "These variables are necessary to compile any program using ParadisEO-PEO.\033[40m\033[1;33m If you want to keep them in your environment in order not to have to set them each time you compile, enter  \"source $HOME/.bashrc\" \033[0m. If you don't want to use these variables, please remove them from $HOME/.bashrc."
-		sleep 2
+		#sleep 2
 		echo
 		echo
 		echo -e "	\033[40m\033[1;34m#  SUCCESSFULL INSTALLATION. \033[0m"
