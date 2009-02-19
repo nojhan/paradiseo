@@ -45,33 +45,37 @@ public:
   virtual bool operator() ( const eoPop<EOT>& _pop ) {
         time_t diff = time(0) - start;
 
-        
         if (diff > (id * maxTime/10) ){
-            time_t begin=time(0);
-        	//traitement
-            std::ostringstream os;
-            os << fileName << "." << id;
-        	std::ofstream outfile(os.str());
-    	        
-	        for(unsigned int i=0 ; i < _pop.size(); i++){
-	        	for(unsigned int j=0 ; j<EOT::ObjectiveVector::nObjectives(); j++){
-	        		outfile << _pop[i].objectiveVector()[j];
-	        		if(j != EOT::ObjectiveVector::nObjectives() -1)
-	        			outfile << " ";
-	        	}
-	        	outfile << std::endl;
-	        }
-	              
-	        outfile.close();
-    	
-        	id++;
-        	start-=(time(0)-begin);
-        }
-        if(diff >= maxTime)
-        	return false;
-        return true;
+		   time_t begin=time(0);
+		   std::cout << id << "start :" << begin << std::endl;
+		//traitement
+		   std::string tmp=fileName;
+		   std::ostringstream os;
+		   os << id;
+		
+			tmp+=".";
+			tmp+=os.str();
+			std::ofstream outfile(tmp.c_str());
+		        
+		    for(unsigned int i=0 ; i < _pop.size(); i++){
+		    	for(unsigned int j=0 ; j<EOT::ObjectiveVector::nObjectives(); j++){
+		    		outfile << _pop[i].objectiveVector()[j];
+		    		if(j != EOT::ObjectiveVector::nObjectives() -1)
+		    			outfile << " ";
+		    	}
+		    	outfile << std::endl;
+		    }
+		          
+		    outfile.close();
+		
+		   	id++;
+		   	start-=(time(0)-begin);
+		   }
+		   if(diff >= maxTime)
+		   	return false;
+		   return true;
+		}
 
-    }
 
   
   virtual std::string className(void) const { return "eoTenTimeContinue"; }
