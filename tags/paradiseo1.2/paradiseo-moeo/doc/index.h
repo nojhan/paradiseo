@@ -14,9 +14,9 @@ Furthermore, a number of state-of-the-art search methods, including NSGA-II, SPE
 based on the fine-grained ParadisEO-MOEO components.
 
 @section Authors
-Arnaud Liefooghe
-Jérémie Humeau
-Sébastien Cahon
+Arnaud Liefooghe,
+Jérémie Humeau,
+Sébastien Cahon,
 Thomas Legrand
 
 @section tutorials Tutorials
