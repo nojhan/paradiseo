@@ -43,7 +43,7 @@
 #include <algo/moeoAlgo.h>
 
 /**
- * Abstract class for population based multi-objective evolutionary algorithms.
+ * Abstract class for population based multi-objective metaheuristics.
  */
 template < class MOEOT >
 class moeoPopAlgo : public moeoAlgo, public eoAlgo < MOEOT >
