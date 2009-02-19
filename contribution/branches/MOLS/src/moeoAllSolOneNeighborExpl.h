@@ -60,8 +60,8 @@ public:
 	moeoAllSolOneNeighborExpl(
 		moMoveInit < Move > & _moveInit,
 		moNextMove < Move > & _nextMove,
-		eoEvalFunc < MOEOT > & _eval
-	): moveInit(_moveInit), nextMove(_nextMove), eval(_eval){}
+		moMoveIncrEval < Move, ObjectiveVector > & _incrEval)
+	: moveInit(_moveInit), nextMove(_nextMove), incrEval(_incrEval){}
 	
 	void operator()(eoPop < MOEOT > & _src, eoPop < MOEOT > & _dest){
 //Move move;
@@ -160,7 +160,11 @@ private:
 	moNextMove < Move > & nextMove;
 	/** the incremental evaluation */
 	eoEvalFunc < MOEOT > & eval;
-	
+	/** the incremental evaluation */
+	moMoveIncrEval < Move, ObjectiveVector > & incrEval;
+	/** comparator */
+	moeoParetoObjectiveVectorComparator<ObjectiveVector> comparator;
+
 };
 
 #endif /*_MOEOALLSOLONENEIGHBOREXPL_H_*/

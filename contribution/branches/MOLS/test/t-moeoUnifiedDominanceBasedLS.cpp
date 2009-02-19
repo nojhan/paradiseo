@@ -4,6 +4,7 @@
 #include <moeoAllSolAllNeighborsExpl.h>
 #include <moeoOneSolAllNeighborsExpl.h>
 #include <moeoOneSolOneNeighborExpl.h>
+#include <moeoAllSolOneNeighborExpl.h>
 #include <moeoPopLS.h>
 #include <moeoUnifiedDominanceBasedLS.h>
 #include <moMove.h>
@@ -36,7 +37,7 @@ int main(int argc, char* argv[])
 	    eoPop<FlowShop>& pop = do_make_pop(parser, state, init);
 	    
 	    eoTimeContinue < FlowShop > continuator(10000000);
-	    moeoOneSolOneNeighborExpl < ExchangeMove > explorer(moveInit,moveNext, eval);
+	    moeoAllSolOneNeighborExpl < ExchangeMove > explorer(moveInit,moveNext, eval);
 //	    
 	    moeoUnifiedDominanceBasedLS < ExchangeMove > algo(continuator, explorer);
 	   

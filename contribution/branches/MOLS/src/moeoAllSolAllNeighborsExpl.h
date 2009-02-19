@@ -59,26 +59,30 @@ public:
 	moeoAllSolAllNeighborsExpl(
 		moMoveInit < Move > & _moveInit,
 		moNextMove < Move > & _nextMove,
-		eoEvalFunc < MOEOT > & _eval
-	): moveInit(_moveInit), nextMove(_nextMove), eval(_eval){}
+		moMoveIncrEval < Move, ObjectiveVector > & _incrEval)
+	: moveInit(_moveInit), nextMove(_nextMove), incrEval(_incrEval){}
 	
-	void operator()(eoPop < MOEOT > & _src, eoPop < MOEOT > & _dest){
+	void operator()(eoPop < MOEOT > & _src, eoPop < MOEOT > & _dest)
+	{
 		Move move;
-		MOEOT * sol;
 		ObjectiveVector objVec;
-		
-		for(unsigned int i=0; i<_src.size(); i++){
-			if (_src[i].flag() == 0){
+		for(unsigned int i=0; i<_src.size(); i++)
+		{
+			if (_src[i].flag() == 0)
+			{
 				moveInit(move, _src[i]);
-				do{
-					_dest.push_back(_src[i]);
-					sol = & _dest.back();
-					//objVec = moveIncrEval(move, *sol);
-					move(*sol);
-					sol->invalidate();
-					eval(*sol);
-					//sol->objectiveVector(objVec);
-					//if (comparator(sol, _src[i]))					
+				do
+				{
+					objVec = moveIncrEval(move, _src[i]);
+					if (! comparator (objVec, _src[i].objectiveVector()))
+					{
+						if (objVec != _src[i].objectiveVector())
+						{
+							_dest.push_back(_src[i]);
+							move(_dest.back());
+							_dest.back().objectiveVector(objVec);
+						}
+					}
 				}
 				while(nextMove(move, _src[i]));
 				_src[i].flag(1);
@@ -92,8 +96,10 @@ private:
 	/** the neighborhood explorer */
 	moNextMove < Move > & nextMove;
 	/** the incremental evaluation */
-	eoEvalFunc < MOEOT > & eval;
-	
+	moMoveIncrEval < Move, ObjectiveVector > & incrEval;
+	/** comparator */
+	moeoParetoObjectiveVectorComparator<ObjectiveVector> comparator;
+
 };
 
 #endif /*_MOEOALLSOLALLNEIGHBORSEXPL_H_*/

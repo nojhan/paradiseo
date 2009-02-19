@@ -59,46 +59,59 @@ public:
 	moeoOneSolOneNeighborExpl(
 		moMoveInit < Move > & _moveInit,
 		moNextMove < Move > & _nextMove,
-		eoEvalFunc < MOEOT > & _eval
-	):start(false), moveInit(_moveInit), nextMove(_nextMove), eval(_eval){}
+		moMoveIncrEval < Move, ObjectiveVector > & _incrEval)
+	: moveInit(_moveInit), nextMove(_nextMove), incrEval(_incrEval){}
 	
-	void operator()(eoPop < MOEOT > & _src, eoPop < MOEOT > & _dest){
-		//Move move;
-		MOEOT * sol;
+	void operator()(eoPop < MOEOT > & _src, eoPop < MOEOT > & _dest)
+	{
 		ObjectiveVector objVec;
-					
 		unsigned int i = 0;
-		while(_src[i].flag() != 0)
-			i++;
-		if(!start){
+		// setting _src[i]
+		if(!start)
+		{
+			while(_src[i].flag() != 0)
+				i++;
 			moveInit(move, _src[i]);
-			_dest.push_back(_src[i]);
-			sol = & _dest.back();
-			move(*sol);
-			sol->invalidate();
-			eval(*sol);
-			if(nextMove(move, _src[i]))
-				start=true;
-			else{
-				start=false;
-				_src[i].flag(1);
+			_src[i].flag()=-1;
+		}
+		else
+		{
+			while( (i < _src.size()) && (_src[i].flag() != -1) )
+				i++;
+			if(_src[i].flag() != -1)
+			{
+				i=0;
+				while(_src[i].flag() != 0)
+					i++;
+				moveInit(move, _src[i]);
+				_src[i].flag()=-1;
 			}
 		}
-		else{
-			_dest.push_back(_src[i]);
-			sol = & _dest.back();
-			//objVec = moveIncrEval(move, *sol);
-			move(*sol);
-			sol->invalidate();
-			eval(*sol);
-			//sol->objectiveVector(objVec);
-			//if (comparator(sol, _src[i]))		
-			if(!nextMove(move, _src[i])){
-				start=false;
-				_src[i].flag(1);
-			}				
-		}	
+		// ttt
+		objVec = moveIncrEval(move, _src[i]);
+		if (! comparator (objVec, _src[i].objectiveVector()))
+		{
+			if (objVec != _src[i].objectiveVector())
+			{
+				_dest.push_back(_src[i]);
+				move(_dest.back());
+				_dest.back().objectiveVector(objVec);
+			}
+		}
+		// preparing the next iteration
+		if(nextMove(move, _src[i]))
+		{
+			start=true;
+		}
+		else
+		{
+			start=false;
+			_src[i].flag(1);
+		}
 	}
+	
+	
+	
 	
 private:
 	Move move;
@@ -108,7 +121,42 @@ private:
 	/** the neighborhood explorer */
 	moNextMove < Move > & nextMove;
 	/** the incremental evaluation */
-	eoEvalFunc < MOEOT > & eval;
+	moMoveIncrEval < Move, ObjectiveVector > & incrEval;
+	/** comparator */
+	moeoParetoObjectiveVectorComparator<ObjectiveVector> comparator;
+	
+	
+	
+//		if(!start){
+//			moveInit(move, _src[i]);
+//			_dest.push_back(_src[i]);
+//			sol = & _dest.back();
+//			move(*sol);
+//			sol->invalidate();
+//			eval(*sol);
+//			if(nextMove(move, _src[i]))
+//				start=true;
+//			else{
+//				start=false;
+//				_src[i].flag(1);
+//			}
+//		}
+//		else{
+//			_dest.push_back(_src[i]);
+//			sol = & _dest.back();
+//			//objVec = moveIncrEval(move, *sol);
+//			move(*sol);
+//			sol->invalidate();
+//			eval(*sol);
+//			//sol->objectiveVector(objVec);
+//			//if (comparator(sol, _src[i]))		
+//			if(!nextMove(move, _src[i])){
+//				start=false;
+//				_src[i].flag(1);
+//			}				
+//		}	
+//	}
+
 	
 };
 

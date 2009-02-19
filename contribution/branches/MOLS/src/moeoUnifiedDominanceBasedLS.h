@@ -57,18 +57,11 @@ public:
 
 	moeoUnifiedDominanceBasedLS(
 			eoContinue < MOEOT > & _continuator,
-			//moeoContinue < MOEOT > & _naturalContinuator,
 			eoEvalFunc < MOEOT > & _full_evaluation,
-			eoPopEvalFunc < MOEOT > & _popEval,
+//			eoPopEvalFunc < MOEOT > & _popEval,
 			moeoArchive < MOEOT > & _archive,
 			moeoPopNeighborhoodExplorer < Move > & _explorer
-	):continuator(_continuator), naturalContinuator(defaultContinuator), full_evaluation(_full_evaluation), popEval(_popEval), archive(_archive), explorer(_explorer)
-	{}
-
-	moeoUnifiedDominanceBasedLS(
-			eoContinue < MOEOT > & _continuator,
-			moeoPopNeighborhoodExplorer < Move > & _explorer
-	):continuator(_continuator), naturalContinuator(defaultContinuator), full_evaluation(dummyEval),loopEval(dummyEval), popEval(loopEval), archive(defaultArchive), explorer(_explorer)
+	):continuator(_continuator), full_evaluation(_full_evaluation), popEval(full_evaluation), archive(_archive), explorer(_explorer)
 	{}
 
     /**
@@ -117,25 +110,25 @@ protected:
 			std::cout << res << std::endl;
 			return res;
 		}
-	};
+	} naturalContinuator;
 
-	moeoContinue < MOEOT > defaultContinuator;
+//	moeoContinue < MOEOT > defaultContinuator;
 
-	moeoContinue < MOEOT > & naturalContinuator;
+//	moeoContinue < MOEOT > & naturalContinuator;
 
     /** a dummy eval */
-    class eoDummyEval : public eoEvalFunc < MOEOT >
-    {
-    public:
-        void operator()(MOEOT &) {}
-    }
-    dummyEval;
+//    class eoDummyEval : public eoEvalFunc < MOEOT >
+//    {
+//    public:
+//        void operator()(MOEOT &) {}
+//    }
+//    dummyEval;
 
 	eoEvalFunc < MOEOT > & full_evaluation;
 	eoPopLoopEval < MOEOT > loopEval;
 	eoPopEvalFunc < MOEOT > & popEval;
 
-	moeoUnboundedArchive < MOEOT > defaultArchive;
+//	moeoUnboundedArchive < MOEOT > defaultArchive;
 	moeoArchive < MOEOT > & archive;
 
 	moeoPopNeighborhoodExplorer < Move > & explorer;
