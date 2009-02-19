@@ -54,7 +54,8 @@
 #include <selection/moeoDetTournamentSelect.h>
 
 /**
- * MOGA.
+ * MOGA (Multi-objective Genetic Algorithm).
+ * C. M. Fonseca and P. J. Fleming, “Genetic algorithms for multiobjective optimization: Formulation, discussion and generalization,” in Genetic Algorithms: Proceedings of the Fifth International Conference (S. Forrest, ed.), pp. 416-423, San Mateo, CA: Morgan Kaufmann, 1993.
  */
 template < class MOEOT >
 class moeoMOGA: public moeoEA < MOEOT >
