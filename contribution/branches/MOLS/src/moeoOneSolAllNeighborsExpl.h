@@ -73,7 +73,7 @@ public:
 		moveInit(move, _src[i]);
 		do
 		{
-			objVec = moveIncrEval(move, _src[i]);
+			objVec = incrEval(move, _src[i]);
 			if (! comparator (objVec, _src[i].objectiveVector()))
 			{
 				if (objVec != _src[i].objectiveVector())
