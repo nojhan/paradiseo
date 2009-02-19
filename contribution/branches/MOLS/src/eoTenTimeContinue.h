@@ -29,7 +29,7 @@
 
 #include <iostream>
 #include <sstream>
-#include <cfstream>
+#include <fstream>
 #include <eoContinue.h>
 /** 
     Timed continuator: continues until a number of seconds is used
@@ -51,15 +51,15 @@ public:
         	//traitement
             std::ostringstream os;
             os << fileName << "." << id;
-        	ofstream outfile(os.str(), ios::app);
+        	std::ofstream outfile(os.str());
     	        
 	        for(unsigned int i=0 ; i < _pop.size(); i++){
 	        	for(unsigned int j=0 ; j<EOT::ObjectiveVector::nObjectives(); j++){
-	        		outfile << finalArchive[i].objectiveVector()[j];
+	        		outfile << _pop[i].objectiveVector()[j];
 	        		if(j != EOT::ObjectiveVector::nObjectives() -1)
 	        			outfile << " ";
 	        	}
-	        	outfile << endl;
+	        	outfile << std::endl;
 	        }
 	              
 	        outfile.close();
