@@ -44,6 +44,7 @@
 #include <moMove.h>
 #include <moMoveInit.h>
 #include <moNextMove.h>
+#include <moMoveIncrEval.h>
 #include <queue>
 
 /**
