@@ -105,7 +105,7 @@ protected:
 				res = (_pop[i].flag() != 1);
 				i++;
 			}
-			std::cout << res << std::endl;
+//			std::cout << res << std::endl;
 			return res;
 		}
 	} naturalContinuator;
