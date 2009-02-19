@@ -2,29 +2,30 @@
 
 @section Introduction
 
-ParadisEO-MOEO is a white-box object-oriented generic framework dedicated to the flexible design of evolutionary multi-objective algorithms.
-This paradigm-free software embeds some features and techniques for Pareto-based resolution and
-aims to provide a set of classes allowing to ease and speed up the development of computationally efficient programs.
-It is based on a clear conceptual distinction between the solution methods and the multi-objective problems they are intended to solve.
+ParadisEO-MOEO is a white-box object-oriented software framework dedicated to the flexible design of metaheuristics for multi-objective optimization.
+This paradigm-free software proposes a unified view for all evolutionary multi-objective metaheuristics.
+It embeds some features and techniques for multi-objective resolution
+and aims to provide a set of classes allowing to ease and speed up the development of computationally efficient programs.
+It is based on a clear conceptual distinction between the solution methods and the problems they are intended to solve.
 This separation confers a maximum design and code reuse.
-ParadisEO-MOEO provides a broad range of archive-related features (such as elitism or performance metrics)
-and the most common Pareto-based fitness assignment strategies (MOGA, NSGA, SPEA, IBEA and more).
-Furthermore, parallel and distributed models as well as hybridization mechanisms can be applied to an algorithm designed within ParadisEO-MOEO
-using the whole version of ParadisEO.
+This general-purpose framework provides a broad range of fitness assignment strategies, the most common diversity preservation mechanisms,
+some elitist-related features as well as statistical tools.
+Furthermore, a number of state-of-the-art search methods, including NSGA-II, SPEA2 and IBEA, have been implemented in a user-friendly way,
+based on the fine-grained ParadisEO-MOEO components.
 
-
+@section Authors
+Arnaud Liefooghe
+Jérémie Humeau
+Sébastien Cahon
+Thomas Legrand
 
 @section tutorials Tutorials
 
-Tutorials for ParadisEO-MOEO are available <a href="http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.UsersGuides">here</a>.
+Tutorials for ParadisEO-MOEO are available <a href="http://paradiseo.gforge.inria.fr/index.php?n=Paradiseo.Tutorials">here</a>.
 
 
 
 @section Installation
-
-The installation procedure of the package is detailed in the <a
-href="../../README">README</a> file in the top-directory of the source-tree.
-
 
 
 @section Design
