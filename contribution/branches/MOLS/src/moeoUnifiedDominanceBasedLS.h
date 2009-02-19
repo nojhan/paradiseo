@@ -43,6 +43,7 @@
 #include <moeo>
 #include <moeoPopNeighborhoodExplorer.h>
 #include <moeoPopLS.h>
+#include <eoTenTimeContinue.h>
 
 /**
  * An easy class to design multi-objective evolutionary algorithms.
@@ -57,11 +58,10 @@ public:
 
 	moeoUnifiedDominanceBasedLS(
 			eoContinue < MOEOT > & _continuator,
-			eoEvalFunc < MOEOT > & _full_evaluation,
-//			eoPopEvalFunc < MOEOT > & _popEval,
+			eoEvalFunc < MOEOT > & _eval,
 			moeoArchive < MOEOT > & _archive,
 			moeoPopNeighborhoodExplorer < Move > & _explorer
-	):continuator(_continuator), full_evaluation(_full_evaluation), popEval(full_evaluation), archive(_archive), explorer(_explorer)
+	):continuator(_continuator), loopEval(_eval), popEval(loopEval), archive(_archive), explorer(_explorer)
 	{}
 
     /**
@@ -82,7 +82,7 @@ public:
         	//mise à jour de la pop ou archive
     		archive(tmp_pop);
     	}
-    	while(continuator(tmp_pop) && naturalContinuator(archive));
+    	while(continuator(archive) && naturalContinuator(archive));
     	
     	 std::cout << "Final archive\n";
         archive.sortedPrintOn(std::cout);
@@ -124,7 +124,6 @@ protected:
 //    }
 //    dummyEval;
 
-	eoEvalFunc < MOEOT > & full_evaluation;
 	eoPopLoopEval < MOEOT > loopEval;
 	eoPopEvalFunc < MOEOT > & popEval;
 
