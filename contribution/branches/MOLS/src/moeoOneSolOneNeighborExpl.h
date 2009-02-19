@@ -44,7 +44,6 @@
 #include <moMove.h>
 #include <moMoveInit.h>
 #include <moNextMove.h>
-#include <move/moeoMoveIncrEval.h>
 
 /**
  * TODO
@@ -67,8 +66,7 @@ public:
 		//Move move;
 		MOEOT * sol;
 		ObjectiveVector objVec;
-		
-			
+					
 		unsigned int i = 0;
 		while(_src[i].flag() != 0)
 			i++;
