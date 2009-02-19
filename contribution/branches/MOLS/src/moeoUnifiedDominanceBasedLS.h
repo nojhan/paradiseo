@@ -102,7 +102,7 @@ protected:
 			bool res = false;
 			unsigned int i=0;
 			while(!res && i < _pop.size()){
-				res = (_pop[i].flag() == 0);
+				res = (_pop[i].flag() != 1);
 				i++;
 			}
 			std::cout << res << std::endl;

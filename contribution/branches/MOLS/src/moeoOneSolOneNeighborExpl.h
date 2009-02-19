@@ -97,6 +97,7 @@ public:
 				_dest.push_back(_src[i]);
 				move(_dest.back());
 				_dest.back().objectiveVector(objVec);
+				_dest.back().flag(0);
 			}
 		}
 		// preparing the next iteration
