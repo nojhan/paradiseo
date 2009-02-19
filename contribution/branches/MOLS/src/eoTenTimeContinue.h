@@ -29,13 +29,13 @@
 
 #include <iostream>
 #include <sstream>
-#include <fstream>
+#include <cfstream>
 #include <eoContinue.h>
 /** 
     Timed continuator: continues until a number of seconds is used
 */
 template< class EOT>
-class eotenTimeContinue: public eoContinue<EOT>
+class eoTenTimeContinue: public eoContinue<EOT>
 {
 
 public:
@@ -51,7 +51,7 @@ public:
         	//traitement
             std::ostringstream os;
             os << fileName << "." << id;
-        	 ofstream outfile(os.str(), ios::app);
+        	ofstream outfile(os.str(), ios::app);
     	        
 	        for(unsigned int i=0 ; i < _pop.size(); i++){
 	        	for(unsigned int j=0 ; j<EOT::ObjectiveVector::nObjectives(); j++){

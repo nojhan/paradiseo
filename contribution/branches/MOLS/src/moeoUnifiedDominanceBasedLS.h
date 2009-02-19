@@ -43,7 +43,6 @@
 #include <moeo>
 #include <moeoPopNeighborhoodExplorer.h>
 #include <moeoPopLS.h>
-#include <eoTenTimeContinue.h>
 
 /**
  * An easy class to design multi-objective evolutionary algorithms.
@@ -93,7 +92,6 @@ protected:
 
 	eoContinue < MOEOT > & continuator;
 
-	template<class MOEOT>
 	class moeoContinue : public eoUF < eoPop < MOEOT > &, bool >
 	{
 	public:

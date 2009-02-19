@@ -73,7 +73,7 @@ public:
 			while(_src[i].flag() != 0)
 				i++;
 			moveInit(move, _src[i]);
-			_src[i].flag()=-1;
+			_src[i].flag(-1);
 		}
 		else
 		{
@@ -85,7 +85,7 @@ public:
 				while(_src[i].flag() != 0)
 					i++;
 				moveInit(move, _src[i]);
-				_src[i].flag()=-1;
+				_src[i].flag(-1);
 			}
 		}
 		// ttt
