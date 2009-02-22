@@ -23,8 +23,11 @@
 
 #include <comparator/moeoComparator.h>
 /**
- * Functor allowing to compare two solutions.referenced by pointers
+ * Functor allowing to compare two solutions.referenced by pointers.
+ * Several MOEO related stuff have to sort populations according some criterion
+ * Instead to do this, we used a vector whose elements are pointers to true individuals
  */
+
 template < class MOEOT >
 class moeoPtrComparator : public eoBF < const MOEOT *, const MOEOT *, const bool >
   {
@@ -36,11 +39,14 @@ class moeoPtrComparator : public eoBF < const MOEOT *, const MOEOT *, const bool
 
 	*/
 	 moeoPtrComparator( moeoComparator<MOEOT> & _cmp) : cmp(_cmp) {}
+
+	/** compare two const individuals */
 	 const bool operator() (const MOEOT *ptr1, const MOEOT *ptr2)
 	 {
 			return cmp(*ptr1, *ptr2);
 	 }
 
+	 /** compare two non const individuals */
 	 const bool operator() (MOEOT *ptr1, MOEOT *ptr2)
 	 {
 			return cmp(*ptr1, *ptr2);

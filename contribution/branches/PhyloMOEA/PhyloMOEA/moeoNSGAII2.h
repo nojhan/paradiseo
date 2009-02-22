@@ -201,7 +201,7 @@ protected:
     /** fitness assignment used in NSGA */
     moeoDominanceDepthFitnessAssignment < MOEOT > fitnessAssignment;
     /** diversity assignment used in NSGA-II */
-    moeoFrontByFrontCrowdingDiversityAssignment2  < MOEOT > diversityAssignment;
+    moeoFrontByFrontCrowdingDiversityAssignment  < MOEOT > diversityAssignment;
     /** elitist replacement */
     moeoElitistReplacement < MOEOT > replace;
 
