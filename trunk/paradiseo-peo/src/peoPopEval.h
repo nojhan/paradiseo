@@ -39,6 +39,8 @@
 
 #include <queue>
 #include <eoEvalFunc.h>
+#include <typeinfo>
+#include <string.h>
 
 #include "core/messaging.h"
 #include "core/peo_debug.h"
@@ -217,10 +219,74 @@ template< class EOT > void peoPopEval< EOT > :: packResult()
 template< class EOT > void peoPopEval< EOT > :: unpackResult()
 {
   typename EOT :: Fitness fit;
-
-  /* Unpacking the computed fitness */
-  unpack( fit );
-
+  /* Built in types : int, short, long int, long long int,
+   * 		unsigned int, unsigend short, unsigned long int, unsigned long long int,
+   * 		float, double, long double		
+   */
+  char types [11] = {'i','s','l','x','j','t','m','y', 'f', 'd','e'};
+  const char* type = typeid(fit).name();
+  int length = strlen(type);
+  int position = 18;
+  if ( length == 1)
+  {
+  	position = 0;
+  	length = 2;
+  }
+  if ( length > 1 && position < length) 
+  {
+  	if ( type[position] == types[0])
+  	{
+  		int __fit; unpack( __fit );fit = __fit;
+  	}
+  	if ( type[position] == types[1])
+  	{
+  		short int __fit; unpack( __fit );fit = __fit;
+  	}
+  	if ( type[position] == types[2])
+  	{
+  		long int __fit; unpack( __fit );fit = __fit;
+  	}
+  	/*
+  	if ( type[position] == types[3])
+  	{
+  		long long int __fit; unpack( __fit );fit = __fit;
+  	}
+  	* */
+  	if ( type[position] == types[4])
+  	{
+  		unsigned int __fit; unpack( __fit );fit = __fit;
+  	}
+  	if ( type[position] == types[5])
+    {
+  		unsigned short __fit; unpack( __fit );fit = __fit;
+  	}
+  	if ( type[position] == types[6])
+  	{
+  		unsigned long __fit; unpack( __fit );fit = __fit;
+  	}
+  	/*
+  	if ( type[position] == types[7])
+  	{
+  		unsigned long long __fit; unpack( __fit );fit = __fit;
+  	}
+  	*/ 
+  	if ( type[position] == types[8])
+  	{
+  		float __fit; unpack( __fit );fit = __fit;
+	}
+  	if ( type[position] == types[9])
+  	{
+  		double __fit; unpack( __fit );fit = __fit;
+	}
+	/*
+  	if ( type[position] == types[10])
+  	{
+  		long double __fit; unpack( __fit );fit = __fit;
+  	}
+  	*/ 
+  }
+  
+  
   /* Unpacking the @ of the associated individual */
   unpack( ad_sol );
 
