@@ -16,6 +16,9 @@ DIE=0
 PROG=ParadisEO
 CMAKE_PRIMARY_CONFIG_FILE=install.cmake
 HOME_PATH=$HOME
+libxml2=" "
+binxml2=" "
+mpich2=" "
 bash_path='$PATH'
 library_path='$LD_LIBRARY_PATH'
 
@@ -73,11 +76,13 @@ S_REMOVE_INSTALL=1015
 S_END=1016
 S_END_WITHOUT_INFO=1017
 S_CHECK_AUTOTOOLS=1018
+S_CLEANING_INSTALL=1019
 
 #### define what are the possible installs and their content
 
 # full install
-FULL_INSTALL="$S_INTRODUCTION $S_UNPACK_LIBXML $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_CHECK_AUTOTOOLS $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END"
+
+FULL_INSTALL="$S_CLEANING_INSTALL $S_INTRODUCTION $S_UNPACK_LIBXML $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_CHECK_AUTOTOOLS $S_INSTALL_LIBXML $S_REMOVE_TEMP_LIBXML $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_ENV $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END"
 
 FULL_INSTALL_WITHOUT_LIBXML2="$S_INTRODUCTION $S_UNPACK_MPICH $S_INSTALL_EO $S_INSTALL_MO $S_INSTALL_MOEO $S_CHECK_AUTOTOOLS $S_INSTALL_MPICH $S_REMOVE_TEMP_MPICH $S_CONFIGURE_MPICH_ENV $S_CONFIGURE_MPD $S_INSTALL_PEO $S_END"
 
@@ -190,6 +195,77 @@ function execute_cmd
 	fi
 }
 
+#----------------------------------------------------------------#
+#-- FUNCTIONS   :  cleaning bashrc at install and uninstall   ---#
+#----------------------------------------------------------------#
+function configuring_env
+{
+	echo "On configuring"
+	echo $PATH
+	echo $LD_LIBRARY_PATH
+	grep "export LD_LIBRARY_PATH" $HOME/.bashrc &> .clean
+	if [ $? -eq 0 ]
+	then
+		sed -e s,^"export LD_LIBRARY_PATH.*",,g $HOME/.bashrc > paradiseo.tmp1
+		sed -e s,^"export LD_LIBRARY_PATH.*",,g paradiseo.tmp1 > $HOME/.bashrc
+	fi
+	
+	grep "export PATH" $HOME/.bashrc &> .clean
+	if [ $? -eq 0 ]
+	then
+		sed -e s,^"export PATH.*",,g $HOME/.bashrc > paradiseo.tmp1
+		sed -e s,^"export PATH.*",,g paradiseo.tmp1 > $HOME/.bashrc
+	fi
+	
+}
+
+function on_install
+{
+	grep "export PATH" $HOME/.bashrc  &> .clean
+	if [ $? -eq 0 ]
+	then
+		myPATH=${PATH/$binxml2/}
+		myPATH=${myPATH/$mpich2/}
+		sed -e s,$binxml2,,g $HOME/.bashrc > paradiseo.tmp1
+		sed -e s,$mpich2,,g paradiseo.tmp1 > $HOME/.bashrc
+		execute_cmd "export PATH=$myPATH" "Modify the Path" $SPY
+	fi
+	execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Export variables" $SPY
+	grep "export LD_LIBRARY_PATH" $HOME/.bashrc &> .clean
+	if [ $? -eq 0 ]
+	then
+		sed -e s,$libxml2,,g $HOME/.bashrc > paradiseo.tmp1
+		sed -e s,"export LD_LIBRARY_PATH="$,"unset LD_LIBRARY_PATH",g paradiseo.tmp1 > paradiseo.tmp2 
+		grep "unset LD_LIBRARY_PATH" paradiseo.tmp2
+		if [ $? -eq 0 ]
+		then
+			my_LD_LIBRARY=${LD_LIBRARY_PATH/$libxml2/}
+			execute_cmd "export LD_LIBRARY_PATH=$my_LD_LIBRARY" "Modify the Path" $SPY
+			execute_cmd "unset LD_LIBRARY_PATH" "[$currentStepCounter-5] unset variable" $SPY
+		fi
+		sed -e s,"unset LD_LIBRARY_PATH.*"$,,g paradiseo.tmp2 > $HOME/.bashrc
+	fi
+	
+}
+
+function on_uninstall
+{
+	#installpath=$1
+	#libxml2="$installpath/libxml2/lib"
+	#binxml2="$installpath/libxml2/bin:"
+	#mpich2="$installpath/mpich2/bin:"
+	sed -e s,$libxml2,,g $HOME/.bashrc > paradiseo.tmp1
+	sed -e s,$binxml2,,g paradiseo.tmp1 > paradiseo.tmp2
+	sed -e s,$mpich2,,g paradiseo.tmp2 > paradiseo.tmp3
+	
+	sed -e s,"export LD_LIBRARY_PATH="$,"unset LD_LIBRARY_PATH",g paradiseo.tmp3 > $HOME/.bashrc
+	execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Updating $HOME/.bashrc" $SPY
+	sed -e s,"unset LD_LIBRARY_PATH.*"$,,g $HOME/.bashrc > paradiseo.tmp1
+	sed -e s,"unset LD_LIBRARY_PATH.*"$,,g paradiseo.tmp1 > $HOME/.bashrc
+	execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5]" $SPY
+	on_install
+	execute_cmd "rm paradiseo.tmp*" "[$currentStepCounter] Removing temporary files" $SPY
+}
 
 
 #------------------------------------------------------#
@@ -330,10 +406,26 @@ function run_install_step()
 	installKitPath=$1
 	stepToRun=$2        
 	currentStepCounter=$3
-
+	libxml2="$installKitPath/libxml2/lib"
+	binxml2="$installKitPath/libxml2/bin:"
+	mpich2="$installKitPath/mpich2/bin:"
 	RETURN=0
 	
 	case "$stepToRun" in
+	$S_CLEANING_INSTALL)
+		########## Introduction #########
+		clear
+		echo ""
+		echo -e ' \033[40m\033[1;33m### Cleaning any previous install .... ### \033[0m '
+		
+		on_uninstall 
+		
+		#on_install
+		
+	    sleep 2
+		echo
+		return $SUCCESSFUL_STEP
+		;;
 	$S_INTRODUCTION)
 		########## Introduction #########
 		clear
@@ -652,23 +744,11 @@ function run_install_step()
 		########## removing a previous install of EO ##########
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Removing your previous install of ParadisEO ...'
-	
-		pattern="$installKitPath/libxml2/lib"
-		sed -e s,$pattern,,g $HOME/.bashrc > paradiseo.tmp1
-		pattern="$installKitPath/libxml2/bin:"
-		sed -e s,$pattern,,g paradiseo.tmp1 > paradiseo.tmp2
-		pattern="$installKitPath/mpich2/bin:"
-		sed -e s,$pattern,,g paradiseo.tmp2 > paradiseo.tmp3
-		sed -e s,^"export PATH.*",,g paradiseo.tmp3 > paradiseo.tmp4
-		sed -e s,"export LD_LIBRARY_PATH="$,"unset LD_LIBRARY_PATH",g paradiseo.tmp4 > $HOME/.bashrc
-		execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Updating $HOME/.bashrc" $SPY
-		sed  -e s,"unset LD_LIBRARY_PATH.*"$,,g $HOME/.bashrc > paradiseo.tmp5
-		sed  -e s,"unset LD_LIBRARY_PATH.*"$,,g paradiseo.tmp5 > $HOME/.bashrc
-		#execute_cmd "cat $installKitPath/paradiseo.tmp5 > $HOME/.bashrc " "[$currentStepCounter] Removing a potential LD_LIBRARY_PATH" $SPY
+	    libxml2="$installKitPath/libxml2/lib"
+		binxml2="$installKitPath/libxml2/bin:"
+		mpich2="$installKitPath/mpich2/bin:"
+		on_uninstall
 		
-		execute_cmd "rm paradiseo.tmp*" "[$currentStepCounter] Cleaning $HOME/.bashrc" $SPY
-		#execute_cmd "rm $HOME/paradiseo.tmp*" "[$currentStepCounter] Cleaning $HOME/.bashrc" $SPY  
-		execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Updating $HOME/.bashrc" $SPY
 		if [ "$UID" = "0" ]
 		then
 			execute_cmd "rm /etc/mpd.conf*" "[$currentStepCounter] removing mpd.conf" $SPY  
@@ -714,11 +794,10 @@ function run_install_step()
 		########## Configuring mpich environment variables ##########
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Configuring environment variables for mpich2 ...'
-
-		execute_cmd "export PATH=`xml2-config --prefix`/bin:$installKitPath/mpich2/bin:$bash_path" "[$currentStepCounter-2] Export PATH variable" $SPY 
-		idx=$?	
-
-		execute_cmd "echo export PATH=`xml2-config --prefix`/bin:$installKitPath/mpich2/bin:$bash_path" "[$currentStepCounter-4] Export PATH variable into env" $SPY $HOME/.bashrc
+		
+		execute_cmd "export PATH=`xml2-config --prefix`/bin:$installKitPath/mpich2/bin:$PATH" "[$currentStepCounter-2] Export PATH variable" $SPY 
+		idx=$?
+		execute_cmd "echo export PATH=$PATH" "[$currentStepCounter-4] Export PATH variable into env" $SPY $HOME/.bashrc
 		idx=`expr $idx + $?`
 
 		execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Export variables for mpich2" $SPY
@@ -774,19 +853,44 @@ function run_install_step()
 		########## Configuring environment variables ##########
 		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
 		echo '		--> Configuring environment variables for libxml2 and mpich2 ...'
-		if [$LD_LIBRARY_PATH = '']
-		then
-		    execute_cmd "export LD_LIBRARY_PATH=$installKitPath/libxml2/lib" "[$currentStepCounter-1] Export LD_LIBRARY_PATH variable" $SPY
-		else
-		    execute_cmd "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$installKitPath/libxml2/lib" "[$currentStepCounter-1] Export LD_LIBRARY_PATH variable" $SPY		
-		fi
-		idx=$?	 
+		
+  		execute_cmd "export LD_LIBRARY_PATH=$installKitPath/libxml2/lib" "[$currentStepCounter-1] Export LD_LIBRARY_PATH variable" $SPY
+		idx=$?
 		execute_cmd "export PATH=$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:$PATH" "[$currentStepCounter-2] Export PATH variable" $SPY 
-	
-		execute_cmd "echo export LD_LIBRARY_PATH=$LD_LIBRARY_PATH" "[$currentStepCounter-3] Export LD_LIBRARY_PATH variable into env" $SPY $HOME/.bashrc
-		idx=$?	 
-
+		idx=`expr $idx + $?`
+		execute_cmd "echo export LD_LIBRARY_PATH=$LD_LIBRARY_PATH" "[$currentStepCounter-3] Export LD_LIBRARY_PATH variable" $SPY $HOME/.bashrc
+		idx=`expr $idx + $?`
 		execute_cmd "echo export PATH=$PATH" "[$currentStepCounter-4] Export PATH variable into env" $SPY $HOME/.bashrc
+		idx=`expr $idx + $?`
+		execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Export variables" $SPY
+		idx=`expr $idx + $?`
+
+		if [ ! $(($idx)) = 0 ]
+		then
+			echo ''
+			echo "		--> Error when configuring environment variables for libxml2 and mpich2"
+			echo -e ' \033[40m\033[1;33m### END ### \033[0m '
+			return $VAR_CONFIG_ERROR
+		else
+			echo -e "	\033[40m\033[1;34m# STEP $currentStepCounter OK \033[0m"
+			echo
+			return $SUCCESSFUL_STEP
+		fi 
+		;;
+	$S_FAKE_INSTALL)
+		########## Configuring environment variables ##########
+		echo -e  "	\033[40m\033[1;34m# STEP $currentStepCounter \033[0m "
+		echo '		--> Configuring environment variables for libxml2 and mpich2 ...'
+		
+  
+  		execute_cmd "export LD_LIBRARY_PATH=$installKitPath/libxml2/lib" "[$currentStepCounter-1] Export LD_LIBRARY_PATH variable" $SPY
+		idx=$?
+				
+		execute_cmd "export PATH=$installKitPath/libxml2/bin:$installKitPath/mpich2/bin:$PATH" "[$currentStepCounter-2] Export PATH variable" $SPY 
+		configuring_env
+		idx=$?
+	    #execute_cmd "grep 'export LD_LIBRARY_PATH' $HOME/.bashrc"  "[$currentStepCounter-3] Export PATH variable" $SPY 
+	   
 		idx=`expr $idx + $?`
 
 		execute_cmd "source $HOME/.bashrc" "[$currentStepCounter-5] Export variables" $SPY
@@ -1151,13 +1255,16 @@ do
 	;;
 	esac
 done
-
-
+libxml2="$INSTALL_PATH/libxml2/lib"
+binxml2="$INSTALL_PATH/libxml2/bin:"
+mpich2="$INSTALL_PATH/mpich2/bin:"
+on_uninstall
 while [ ! "$INSTALL_TREATENED" = "1" ]
 do	
 	case "$INSTALL_TYPE" in
-	$P_FULL_INSTALL)
 	
+	$P_FULL_INSTALL)
+			    
 		check_utils_install
 
 		if [ "$USE_EXISTING_MPICH" = "1" ] && [ "$USE_EXISTING_LIBXML2" = "1" ] 
@@ -1179,6 +1286,7 @@ do
 			THE_GOOD_INSTALL=$FULL_INSTALL
 		fi
 
+		configuring_env
 		counter=0
 		for step in $THE_GOOD_INSTALL	
 		do
@@ -1261,7 +1369,3 @@ do
 	;;
 	esac
 done
-
-
-
-
