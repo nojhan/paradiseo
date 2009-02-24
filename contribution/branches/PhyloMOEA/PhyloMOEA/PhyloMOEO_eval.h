@@ -26,6 +26,8 @@
 //#include <peo>
 #include <iostream>
 
+extern ProbMatrixContainer *probmatrixs_ptr;
+
 class PhyloEval : public moeoEvalFunc < PhyloMOEO >
 {
 public:
@@ -47,6 +49,7 @@ public:
         objVec[0] = parseval.fitch();
         objVec[1] = -likeval.calculate_likelihood();
         _sol.objectiveVector(objVec);
+	probmatrixs_ptr->clear();
 		//}
     }
 

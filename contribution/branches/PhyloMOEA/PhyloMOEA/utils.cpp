@@ -20,6 +20,7 @@
 
 #include <eo>
 #include <moeo>
+#include <peo>
 #include <iostream>
 #include <fstream>
 #include <likoptimizer.h>
@@ -88,6 +89,7 @@ void optimize_solutions( eoPop<PhyloMOEO> &pop)
 
 void optimize_solution( PhyloMOEO &indi)
 {
+	cout << "\noptimizaing tree in node " << getNodeRank() << endl;
 	phylotreeIND &sol = indi.get_tree();
 	lik_calc_ptr->set_tree(sol);
 	//cout << "\noptimizaing tree " << i+1 << " of " << n;

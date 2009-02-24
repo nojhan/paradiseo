@@ -31,7 +31,7 @@ unsigned int ngenerations,  popsize, ncats;
 ofstream exp_data,evolution_data, best_media_scores, final_trees, final_pareto_trees, clades_pareto, clades_final,final_scores,pareto_scores;
 LikelihoodCalculator *lik_calc_ptr;
 phylotreeIND *templatetree_ptr;
-
+ProbMatrixContainer *probmatrixs_ptr;
 
 int main(int argc, char *argv[])
 {
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
 	if( datafile.size()==0 )
 	{
 		
-	 	if(getNodeRank()==1) parser.printHelp( cout );
+	  	if(getNodeRank()==1) parser.printHelp( cout );
 		return(-1);
 	}
 	
@@ -88,6 +88,7 @@ int main(int argc, char *argv[])
  	modelHKY.init();
  	modelHKY.set_kappa(kappa); 
  	ProbMatrixContainer probmatrixs(modelHKY);
+	probmatrixs_ptr = &probmatrixs;
 	LikelihoodCalculator lik_calc(templatetree, modelHKY, probmatrixs,ncats);
 	lik_calc.set_alpha(alpha);
  	modelHKY.init();

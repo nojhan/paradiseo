@@ -1556,6 +1556,7 @@ void phylotreeIND::read_newick2(string newickstring)
 				if( read_taxonname_bl(newickstring, taxon_name, blen, pos) == -1)
 				{
 					cout << "sintax error in position " << pos << endl;
+					cout << newickstring << endl;
 					throw ExceptionManager(11);
 					exit(1);
 				}
@@ -1594,6 +1595,7 @@ void phylotreeIND::read_newick2(string newickstring)
 				if(read_taxonname_bl(newickstring, taxon_name, blen, pos) == -1)
 				{
 					cout << "sintax error at position " << pos << endl;
+					cout << newickstring << endl;
 					exit(1);
 			
 				}
