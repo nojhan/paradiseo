@@ -24,12 +24,13 @@
 #include <PhyloMOEO_init.h>
 #include <likelihoodcalculator.h>
 #include <ExceptionManager.h>
-
+#include <sys/time.h>
 
 void welcome_message();
 void save_exp_params(ostream &);
 void optimize_solutions( eoPop<PhyloMOEO> &);
 void optimize_solution( PhyloMOEO &);
 void readtrees(const char *, eoPop<PhyloMOEO> &);
+int  timeval_subtract (struct timeval *, struct timeval *, struct timeval *);
 #endif
 
