@@ -325,7 +325,7 @@ int main(int argc, char *argv[])
 		cout << minutes << ":";
 		cout.width(2);
 		cout.fill('0');
-		cout << seconds << "." << result.tv_usec << endl;
+		cout << seconds << "." << result.tv_usec << "(" << result.tv_sec << ")" << endl;
 	}
 	gsl_rng_free(rn2);
 	//	delete probmatrixs;
