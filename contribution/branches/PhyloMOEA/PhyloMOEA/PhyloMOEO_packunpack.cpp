@@ -12,8 +12,6 @@
 
 #include <PhyloMOEO_packunpack.h> 
 
-extern bool optimizedpassed;
-extern int num_final_solutions;
 
 void pack( PhyloMOEO & ind)
 {
@@ -26,7 +24,6 @@ void pack( PhyloMOEO & ind)
 void unpack( PhyloMOEO &ind )
 {
 	//cout << "unpacking individual" << endl;
-	if(num_final_solutions==0) cout << "unpacking after optimization" << endl;
 	string newickstring;
 	::unpack(newickstring);
 	//cout << newickstring << endl;
