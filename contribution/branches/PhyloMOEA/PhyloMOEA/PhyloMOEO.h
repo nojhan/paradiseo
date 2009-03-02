@@ -53,9 +53,15 @@ private:
 			if(tree!=NULL)delete tree;
 			tree=NULL;
 			if(other.tree!=NULL)tree = new phylotreeIND(other.get_tree());
-			if(!other.invalidObjectiveVector())this->objectiveVector( other.objectiveVector() );
+			if(!other.invalidObjectiveVector())
+				this->objectiveVector( other.objectiveVector() );
+			else this->invalidateObjectiveVector();
+
 			if(!other.invalidFitness())this->fitness( other.fitness() );
+			else this->invalidateFitness();
+
 			if(!other.invalidDiversity())this->diversity( other.diversity() );
+			else this->invalidateDiversity();
 	}
 		
 public:
