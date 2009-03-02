@@ -17,8 +17,8 @@
 #include <vectorSortIndex.h>
 
 #include <utils.h>
-#include <ctime>
 #include <apply.h>
+
 
 gsl_rng *rn2;
 RandomNr *rn;
@@ -35,7 +35,9 @@ ProbMatrixContainer *probmatrixs_ptr;
 
 int main(int argc, char *argv[])
 {
-
+	// measures execution time
+	struct timeval tempo1, tempo2, result;
+	gettimeofday(&tempo1, NULL);
 	peo :: init( argc, argv );
 
 
@@ -222,6 +224,7 @@ int main(int argc, char *argv[])
 		delete generationCounter;
 		delete increment;
 	
+
 		cout << "\nCalculating Final Solutions...";
 		cout << "  done\n";
 	
@@ -306,6 +309,23 @@ int main(int argc, char *argv[])
 		clades_pareto.close();
 		clades_final.close();
 		cout << "\nPhyloMOEA execution finishes !\n";
+		gettimeofday(&tempo2, NULL);
+		timeval_subtract(&result,&tempo2,&tempo1);	
+
+		long remainder = result.tv_sec % 3600;
+		long hours = (result.tv_sec - remainder)/3600;
+		long seconds = remainder % 60;
+		long minutes = (remainder - seconds) / 60;
+		cout << "Execution time :  ";
+		cout.width(3);
+		cout.fill(' ');
+		cout << hours << ":";
+		cout.width(2);
+		cout.fill('0');
+		cout << minutes << ":";
+		cout.width(2);
+		cout.fill('0');
+		cout << seconds << "." << result.tv_usec << endl;
 	}
 	gsl_rng_free(rn2);
 	//	delete probmatrixs;
