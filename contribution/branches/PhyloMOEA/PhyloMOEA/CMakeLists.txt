@@ -32,8 +32,26 @@ SET( PHYLOMOEA_SOURCES	eigensolver.cpp
 						utils.cpp 
 						PhyloMOEO_packunpack.cpp)
 
+SET( TESTOMP_SOURCES	eigensolver.cpp
+						likelihoodcalculator.cpp
+						matrixutils.cpp
+						probmatrixcontainer.cpp
+						ProbMatrix.cpp
+						RandomNr.cpp
+						Sequences.cpp
+						SubsModel.cpp
+						phylotreeIND.cpp
+						treeIterator.cpp
+						utils.cpp 
+						likoptimizer.cpp
+						testomp.cpp
+)
+
+
 ADD_EXECUTABLE( PhyloMOEA ${PHYLOMOEA_SOURCES} )
+ADD_EXECUTABLE( testomp   ${TESTOMP_SOURCES} )
 
 TARGET_LINK_LIBRARIES(PhyloMOEA gsl gslcblas GTL eo eoutils ga moeo cma peo rmc_mpi xml2)
+TARGET_LINK_LIBRARIES(testomp gsl gslcblas GTL eo eoutils ga moeo cma peo rmc_mpi xml2 gomp)
 
 INSTALL( TARGETS PhyloMOEA RUNTIME DESTINATION bin)

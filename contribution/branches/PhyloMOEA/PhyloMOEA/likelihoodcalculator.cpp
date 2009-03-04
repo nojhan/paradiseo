@@ -449,23 +449,25 @@ double LikelihoodCalculator::sum_partials_a_to_b_notaxon( int pos)
 void LikelihoodCalculator::calculate_node_partial( node father, node son, edge edgeaux)
 {
 	register double sum;
-	double corr_factor;
-	long index;
-	double len;
-	
+	int r,i,j;
+	//unsigned char l;
+	ProbMatrix *p;
 	register int seqlen = tree_ptr->number_of_positions();
+ 	#pragma omp parallel for private(p) schedule(dynamic) num_threads(2)
 	for(int k=0; k<seqlen;k++)
 	{
-		index = k*nrates*4;
+		long index = k*nrates*4;
 		// accumulatre
 		Factors[father][k]+=Factors[son][k];
-		corr_factor =   MDBL_MIN;
+		double corr_factor =   MDBL_MIN;
 
 		for(int r=0; r<nrates; r++)
 		{
-			len =  tree_ptr->get_branch_length(edgeaux) * rates_prob[r];
+			double len =  tree_ptr->get_branch_length(edgeaux) * rates_prob[r];
 			len = (len < BL_MIN ? BL_MIN : len);
-			ProbMatrix &p = (*probmatrixs)[ len ];
+			double sum = 0;
+			#pragma omp critical
+			p = &((*probmatrixs)[ len ]);
 
 			for(int i=0; i < 4; i++)
 			{
@@ -473,12 +475,12 @@ void LikelihoodCalculator::calculate_node_partial( node father, node son, edge e
 				if(tree_ptr->istaxon( son))
 				{
 					unsigned char l=SeqData->pattern_pos( k, tree_ptr->taxon_id( son));
-					if(SeqData->is_defined( l) ) sum = p.p_ij_t( i, l );
+					if(SeqData->is_defined( l) ) sum = p->p_ij_t( i, l );
 					else if(SeqData->is_ambiguous( l))
 					{
 						unsigned char *meaning = SeqData->ambiguos_meaning( l);
 						for(int j=0; j < 4; j++)
-							sum +=meaning[j]* p.p_ij_t( i, j );	
+							sum +=meaning[j]* p->p_ij_t( i, j );	
 							//sum +=Partials[son][k*4+j]* p.p_ij_t( i, j );
 					}
 					else sum = 1;
@@ -486,7 +488,7 @@ void LikelihoodCalculator::calculate_node_partial( node father, node son, edge e
 				else{
 					for(int j=0; j < 4; j++)
 					{
-							sum +=Partials[son][index+ r*4 +j]* p.p_ij_t( i, j );
+							sum +=Partials[son][index+ r*4 +j]* p->p_ij_t( i, j );
 							
 					}
 				}
