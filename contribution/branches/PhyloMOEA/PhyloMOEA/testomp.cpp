@@ -26,7 +26,7 @@
 #include <eoCountedFileMonitor.h>
 #include <eoSingleFileCountedStateSaver.h>
 #include <vectorSortIndex.h>
-
+#include <omp.h>
 #include <utils.h>
 #include <apply.h>
 
@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
 
 	gettimeofday(&tempo1, NULL);
 
-	//cout << " Number of processors available:" << omp_get_num_procs() << " MAX Number of threads " << omp_get_max_threads() << endl;
+	cout << " Number of processors available:" << omp_get_num_procs() << " MAX Number of threads " << omp_get_max_threads() << endl;
 
 	for(int i=0; i < population.size(); i++)
 	{
