@@ -56,8 +56,7 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DIR}/lib)
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
-ADD_EXECUTABLE(ea5 main.cpp)
-ADD_DEPENDENCIES(ea5 peo rmc_mpi)
+ADD_EXECUTABLE(island main.cpp)
 
 ######################################################################################
 
@@ -67,7 +66,7 @@ ADD_DEPENDENCIES(ea5 peo rmc_mpi)
 ######################################################################################
 
 SET(Lesson5_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(ea5 PROPERTIES VERSION "${Lesson5_VERSION}")
+SET_TARGET_PROPERTIES(island PROPERTIES VERSION "${Lesson5_VERSION}")
 ######################################################################################
 
 
@@ -75,7 +74,7 @@ SET_TARGET_PROPERTIES(ea5 PROPERTIES VERSION "${Lesson5_VERSION}")
 ### 5) Link the librairies
 ######################################################################################
 
-TARGET_LINK_LIBRARIES(ea5 ${XML2_LIBS} peo rmc_mpi eo eoutils peo)
+TARGET_LINK_LIBRARIES(island eo ga es ${XML2_LIBS} peo rmc_mpi eoutils peo)
 
 ######################################################################################
 

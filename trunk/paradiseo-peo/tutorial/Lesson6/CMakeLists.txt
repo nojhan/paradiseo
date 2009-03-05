@@ -38,7 +38,7 @@ EXECUTE_PROCESS(
 ### 1) Include the sources
 ######################################################################################
 
-INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src ${MOEO_SRC_DIR}/src ${MO_SRC_DIR}/src ${ParadisEO-PEO_SOURCE_DIR}/src ${TSP_SRC_DIR})
+INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src ${MOEO_SRC_DIR}/src ${MO_SRC_DIR}/src ${ParadisEO-PEO_SOURCE_DIR}/src)
 
 ######################################################################################
 
@@ -47,7 +47,7 @@ INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src ${MOEO_SRC_DIR}/src ${MO_SRC_DIR}/src ${Pa
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DIR}/lib ${TSP_BINARY_DIR}/lib)
+LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DIR}/lib )
 
 ######################################################################################
 
@@ -56,8 +56,7 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DIR}/lib ${TSP_BINARY_
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
-ADD_EXECUTABLE(ea6 main.cpp)
-ADD_DEPENDENCIES(ea6 peo rmc_mpi)
+ADD_EXECUTABLE(hybrid main.cpp)
 
 ######################################################################################
 
@@ -67,7 +66,7 @@ ADD_DEPENDENCIES(ea6 peo rmc_mpi)
 ######################################################################################
 
 SET(Lesson6_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(ea6 PROPERTIES VERSION "${Lesson6_VERSION}")
+SET_TARGET_PROPERTIES(hybrid PROPERTIES VERSION "${Lesson6_VERSION}")
 ######################################################################################
 
 
@@ -75,7 +74,7 @@ SET_TARGET_PROPERTIES(ea6 PROPERTIES VERSION "${Lesson6_VERSION}")
 ### 5) Link the librairies
 ######################################################################################
 
-TARGET_LINK_LIBRARIES(ea6 ${XML2_LIBS} tsp peo rmc_mpi eo eoutils peo)
+TARGET_LINK_LIBRARIES(hybrid eo ga es ${XML2_LIBS} peo rmc_mpi eoutils peo)
 
 ######################################################################################
 

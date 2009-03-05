@@ -56,8 +56,7 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DIR}/lib)
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
-ADD_EXECUTABLE(ea2 mainEA.cpp)
-ADD_DEPENDENCIES(ea2 peo rmc_mpi)
+ADD_EXECUTABLE(multistartGA main.cpp)
 ######################################################################################
 
 
@@ -66,7 +65,7 @@ ADD_DEPENDENCIES(ea2 peo rmc_mpi)
 ######################################################################################
 
 SET(LESSON2_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(ea2 PROPERTIES VERSION "${LESSON2_VERSION}")
+SET_TARGET_PROPERTIES(multistartGA PROPERTIES VERSION "${LESSON2_VERSION}")
 ######################################################################################
 
 
@@ -74,6 +73,6 @@ SET_TARGET_PROPERTIES(ea2 PROPERTIES VERSION "${LESSON2_VERSION}")
 ### 5) Link the librairies
 ######################################################################################
 
-TARGET_LINK_LIBRARIES(ea2 ${XML2_LIBS} peo rmc_mpi eo eoutils peo)
+TARGET_LINK_LIBRARIES(multistartGA ${XML2_LIBS} peo rmc_mpi eo eoutils peo)
 
 ######################################################################################

@@ -1,313 +1,255 @@
 /*
-* <main.cpp>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
-* (C) OPAC Team, INRIA, 2008
-*
-* Clive Canape
-*
-* This software is governed by the CeCILL license under French law and
-* abiding by the rules of distribution of free software.  You can  use,
-* modify and/ or redistribute the software under the terms of the CeCILL
-* license as circulated by CEA, CNRS and INRIA at the following URL
-* "http://www.cecill.info".
-*
-* As a counterpart to the access to the source code and  rights to copy,
-* modify and redistribute granted by the license, users are provided only
-* with a limited warranty  and the software's author,  the holder of the
-* economic rights,  and the successive licensors  have only  limited liability.
-*
-* In this respect, the user's attention is drawn to the risks associated
-* with loading,  using,  modifying and/or developing or reproducing the
-* software by the user in light of its specific status of free software,
-* that may mean  that it is complicated to manipulate,  and  that  also
-* therefore means  that it is reserved for developers  and  experienced
-* professionals having in-depth computer knowledge. Users are therefore
-* encouraged to load and test the software's suitability as regards their
-* requirements in conditions enabling the security of their systems and/or
-* data to be ensured and,  more generally, to use and operate it in the
-* same conditions as regards security.
-* The fact that you are presently reading this means that you have had
-* knowledge of the CeCILL license and that you accept its terms.
-*
-* ParadisEO WebSite : http://paradiseo.gforge.inria.fr
-* Contact: paradiseo-help@lists.gforge.inria.fr
-*
+  <main.cpp>
+  Copyright (C) DOLPHIN Project-Team, INRIA Lille Nord Europe, 2006-2009
+  (C) OPAC Team, LIFL, 2002-2009
+
+  The Van LUONG,  (The-Van.Luong@inria.fr)
+  Mahmoud FATENE, (mahmoud.fatene@inria.fr)
+
+  This software is governed by the CeCILL license under French law and
+  abiding by the rules of distribution of free software.  You can  use,
+  modify and/ or redistribute the software under the terms of the CeCILL
+  license as circulated by CEA, CNRS and INRIA at the following URL
+  "http://www.cecill.info".
+
+  As a counterpart to the access to the source code and  rights to copy,
+  modify and redistribute granted by the license, users are provided only
+  with a limited warranty  and the software's author,  the holder of the
+  economic rights,  and the successive licensors  have only  limited liability.
+
+  In this respect, the user's attention is drawn to the risks associated
+  with loading,  using,  modifying and/or developing or reproducing the
+  software by the user in light of its specific status of free software,
+  that may mean  that it is complicated to manipulate,  and  that  also
+  therefore means  that it is reserved for developers  and  experienced
+  professionals having in-depth computer knowledge. Users are therefore
+  encouraged to load and test the software's suitability as regards their
+  requirements in conditions enabling the security of their systems and/or
+  data to be ensured and,  more generally, to use and operate it in the
+  same conditions as regards security.
+  The fact that you are presently reading this means that you have had
+  knowledge of the CeCILL license and that you accept its terms.
+
+  ParadisEO WebSite : http://paradiseo.gforge.inria.fr
+  Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
+/**
+ * Declaration of the necessary headers: In these are defined the class Problem,
+ * redefinition of the crossover, mutation, initialisation of solution.
+ * 
+ */ 
 #include <peo>
+#include "QAP.h"
+#include "QAPGA.h"
+#include "qapPackUnpack.h"
+#include <string>
+using namespace std;
+//typedef Problem Problem;
+/** Set of parameters wrapped into a structure. We pass then the structure 
+ * to a function which parses the parameters file. Doing so helps cleaning 
+ * the code from the parts of reading the inputs.
+ */
+#include "parserStruct.h"
+#include "utils.h"
+/** The actual reading and parameters parsing is done inside this class utilities
+ */ 
 
-#define SIZE 10
-#define DEF_DOMAIN 100
-#define POP_SIZE 100
-#define SELECT_RATE 0.8
-#define NB_GEN 1
-#define XOVER_P 0.75
-#define MUT_P 0.05
-#define MIGRATIONS_AT_N_GENERATIONS 5
-#define NUMBER_OF_MIGRANTS 10
+// Global variables
+int n;                    // Problem size
+int** a;
+int** b;         // a and  matrices
 
-struct Representation : public eoVector< eoMinimizingFitness, double >
-  {
+int bkv; //best known value
 
-    Representation()
-    {
-      resize( SIZE );
-    }
-  };
-
-struct Init : public eoInit< Representation >
-  {
-
-    void operator()( Representation& rep )
-    {
-
-      for ( int i = 0; i < SIZE; i++ )
-        {
-          rep[ i ] = (rng.uniform() - 0.5) * DEF_DOMAIN;
-        }
-    }
-  };
-
-struct Eval : public eoEvalFunc< Representation >
-  {
-
-    void operator()( Representation& rep )
-    {
-
-      double fitnessValue = 0.0;
-      for ( int i = 0; i < SIZE; i++ )
-        {
-
-          fitnessValue += pow( rep[ i ], 2.0 );
-        }
-
-      rep.fitness( fitnessValue );
-    }
-  };
-
-struct MutationOp : public eoMonOp< Representation >
-  {
-
-    bool operator()( Representation& rep )
-    {
-
-      unsigned int pos = (unsigned int)( rng.uniform() * SIZE );
-      rep[ pos ] = (rng.uniform() - 0.5) * DEF_DOMAIN;
-
-      rep.invalidate();
-
-      return true;
-    }
-  };
-
-struct XoverOp : public eoQuadOp< Representation >
-  {
-
-    bool operator()( Representation& repA, Representation& repB )
-    {
-
-      static Representation offA, offB;
-      double lambda = rng.uniform();
-
-      for ( int i = 0; i < SIZE; i++ )
-        {
-
-          offA[ i ] = lambda * repA[ i ] + ( 1.0 - lambda ) * repB[ i ];
-          offB[ i ] = lambda * repB[ i ] + ( 1.0 - lambda ) * repA[ i ];
-        }
-
-      repA = offA;
-      repB = offB;
-
-      repA.invalidate();
-      repB.invalidate();
-
-      return true;
-    }
-  };
-
-
-
-void pack( const Representation& rep )
+void main_function(int argc, char **argv)
 {
+  // Declaration of useful variables to parse the parameters file and then 
+  // its elements into a structure
+  if (argc < 2){
+    cout << "Please give a param file" << endl;
+    exit(1);
+  }
+   
+  eoParser parser(argc, argv);
+  parameters param;
+  parseFile(parser, param);
+  rng.reseed(param.seed);
+  
+  
+  string s (argv[1]);
 
-  if ( rep.invalid() ) ::pack( (unsigned int)0 );
+  if ( (s.compare("-h") == 0) || (s.compare("--help") == 0 ) )
+    ;//make help
+  
+  // Reading the a and b matrices of the Problem Problem
   else
-    {
-      ::pack( (unsigned int)1 );
-      ::pack( (double)(rep.fitness()) );
-    }
+   loadInstances(param.inst.c_str(), n, bkv, a, b);
 
-  for ( unsigned int index = 0; index < SIZE; index++ )
-    {
-      ::pack( (double)rep[ index ] );
-    }
+  // Declaration of class wrapping the evaluation function of the Problem
+  ProblemEvalFunc plainEval;
+  eoEvalFuncCounter<Problem> eval(plainEval);
+ 
+  // Class involving a simple call to the function of initialisation of a solution
+  ProblemInit chromInit;
+
+
+  eoPop<Problem> pop_1(param.popSize, chromInit);  // Initialise the population
+  eoPop<Problem> pop_2(param.popSize, chromInit);  // Initialise the population
+  eoPop<Problem> pop_3(param.popSize, chromInit);  // Initialise the population
+  
+  // The robust tournament selection
+  eoDetTournamentSelect<Problem> selectOne(param.tSize);
+  
+  // is now encapsulated in a eoSelectPerc (entage)
+  eoSelectPerc<Problem> select(selectOne);// by default rate==1
+
+  ProblemXover Xover;  // CROSSOVER
+  ProblemSwapMutation  mutationSwap;  // MUTATION
+  
+  // The operators are  encapsulated into an eoTRansform object
+  eoSGATransform<Problem> transform(Xover, param.pCross, mutationSwap, param.pMut);
+
+  // REPLACE
+  eoPlusReplacement<Problem> replace;
+
+  eoGenContinue<Problem> genCont(param.maxGen); // generation continuation
+  
+  eoCheckPoint< Problem > checkpoint_1( genCont );
+  eoCheckPoint< Problem > checkpoint_2( genCont );
+  eoCheckPoint< Problem > checkpoint_3( genCont );
+  
+  eoEasyEA<Problem> gga_1(checkpoint_1, plainEval, select, transform, replace);
+  eoEasyEA<Problem> gga_2(checkpoint_2, plainEval, select, transform, replace);
+  eoEasyEA<Problem> gga_3(checkpoint_3, plainEval, select, transform, replace);
+  
+  peo :: init (argc, argv);
+  initDebugging();
+  setDebugMode(true);
+  
+  // Start the parallel EA
+  
+  if (getNodeRank()==1)
+  {
+  	  apply<Problem>(eval, pop_1);
+	  pop_1.sort();
+	  cout << "Initial Population 1\n" << pop_1 << endl;
+  } 
+   
+  if (getNodeRank()==2)
+  {
+	  apply<Problem>(eval, pop_2);
+	  pop_2.sort();
+	  cout << "Initial Population 2\n" << pop_2 << endl;
+  }
+  
+  if (getNodeRank()==3)
+  {  
+	  apply<Problem>(eval, pop_3);
+	  pop_3.sort();
+	  cout << "Initial Population 3\n" << pop_3 << endl;
+  }
+  
+  //Topolgy
+  RingTopology ring,topology;
+  
+  eoPeriodicContinue< Problem > mig_conti_1(  param.manGeneration );
+  eoContinuator<Problem> mig_cont_1(mig_conti_1,pop_1);
+  eoRandomSelect<Problem> mig_select_one_1;
+  eoSelector <Problem, eoPop<Problem> > mig_select_1 (mig_select_one_1,param.nbMigrants,pop_1);
+  eoPlusReplacement<Problem> replace_one_1;
+  eoReplace <Problem, eoPop<Problem> > mig_replace_1 (replace_one_1,pop_1);
+  peoAsyncIslandMig< eoPop< Problem >, eoPop< Problem > > mig_1 (mig_cont_1,mig_select_1,mig_replace_1,topology);
+  checkpoint_1.add( mig_1 );
+  
+  eoPeriodicContinue< Problem > mig_conti_2(  param.manGeneration );
+  eoContinuator<Problem> mig_cont_2(mig_conti_2,pop_2);
+  eoRandomSelect<Problem> mig_select_one_2;
+  eoSelector <Problem, eoPop<Problem> > mig_select_2 (mig_select_one_2,param.nbMigrants,pop_2);
+  eoPlusReplacement<Problem> replace_one_2;
+  eoReplace <Problem, eoPop<Problem> > mig_replace_2 (replace_one_2,pop_2);
+  peoAsyncIslandMig< eoPop< Problem >, eoPop< Problem > > mig_2 (mig_cont_2,mig_select_2,mig_replace_2,topology);
+  checkpoint_2.add( mig_2 );
+  
+  eoPeriodicContinue< Problem > mig_conti_3(  param.manGeneration );
+  eoContinuator<Problem> mig_cont_3(mig_conti_3,pop_3);
+  eoRandomSelect<Problem> mig_select_one_3;
+  eoSelector <Problem, eoPop<Problem> > mig_select_3 (mig_select_one_3,param.nbMigrants,pop_3);
+  eoPlusReplacement<Problem> replace_one_3;
+  eoReplace <Problem, eoPop<Problem> > mig_replace_3 (replace_one_3,pop_3);
+  peoAsyncIslandMig< eoPop< Problem >, eoPop< Problem > > mig_3 (mig_cont_3,mig_select_3,mig_replace_3,topology);
+  checkpoint_3.add( mig_3 );
+   
+  peoWrapper parallelEA_1( gga_1, pop_1 );
+  mig_1.setOwner( parallelEA_1 );
+  
+  peoWrapper parallelEA_2( gga_2, pop_2 );
+  mig_2.setOwner( parallelEA_2 );
+
+  peoWrapper parallelEA_3( gga_3, pop_3 );
+  mig_3.setOwner( parallelEA_3 );
+
+  peo :: run( );
+  peo :: finalize( );
+  endDebugging();
+  // Print (sorted) intial population
+  
+  if (getNodeRank()==1)
+  {
+	  pop_1.sort();
+	  cout << "FINAL Population 1\n" << pop_1 << endl;
+	  cout << "Best solution found\t" << pop_1[0].fitness() << endl;
+  }
+  
+  if (getNodeRank()==2)
+  {
+	  pop_2.sort();
+	  cout << "FINAL Population 2\n" << pop_2 << endl;
+	  cout << "Best solution found\t" << pop_2[0].fitness() << endl;
+  }
+  
+  if (getNodeRank()==3)
+  {
+	  pop_3.sort();
+	  cout << "FINAL Population 3\n" << pop_3 << endl;
+	  cout << "Best solution found\t" << pop_3[0].fitness() << endl;
+  }
+  
+  if (getNodeRank()==0)
+  {
+	  cout << "\nInstance size = " << n << endl;
+	  cout << "Best known value in the litterature = " << bkv <<"\n"<< endl;
+  }
+  // GENERAL
+
+
 }
 
-void unpack( Representation& rep )
+// A main that catches the exceptions
+
+int main(int argc, char **argv)
 {
 
-  eoScalarFitness<double, std::greater<double> > fitness;
-  unsigned int validFitness;
-
-  unpack( validFitness );
-  if ( validFitness )
+  try
     {
+      main_function(argc, argv);
 
-      double fitnessValue;
-      ::unpack( fitnessValue );
-      rep.fitness( fitnessValue );
     }
-  else
+  catch(exception& e)
     {
-      rep.invalidate();
+      cout << "Exception: " << e.what() << '\n';
     }
 
-  double value;
-  for ( unsigned int index = 0; index < SIZE; index++ )
-    {
-      ::unpack( value );
-      rep[ index ] = value;
-    }
-}
+	
+  // desallocate memory
+  for (int i=0; i<n; i++){
+    delete[] a[i];
+    delete[] b[i];
+  }
 
-int main( int __argc, char** __argv )
-{
-
-
-  rng.reseed( time( NULL ) );
-  srand( time( NULL ) );
-
-  peo::init( __argc,  __argv );
+  delete[] a;
+  delete[] b;
 
 
-  eoParser parser ( __argc, __argv );
-
-  eoValueParam < unsigned int > nbGenerations( NB_GEN, "maxGen");
-  parser.processParam ( nbGenerations );
-
-  eoValueParam < double > selectionRate( SELECT_RATE, "select");
-  parser.processParam ( selectionRate );
-
-
-  RingTopology ring,topo;
-  unsigned int dataA, dataB, dataC;
-
-  dataA = 1;
-  dataB = 5;
-  dataC = 10;
-
-  peoSyncDataTransfer dataTransfer( dataA, ring );
-  peoSyncDataTransfer dataTransferb( dataB, ring );
-  peoSyncDataTransfer dataTransferc( dataC, ring );
-
-
-  Init init;
-  Eval eval;
-  eoPop< Representation > pop( POP_SIZE, init );
-  MutationOp mut;
-  XoverOp xover;
-  eoSGATransform< Representation > transform( xover, XOVER_P, mut, MUT_P );
-  eoStochTournamentSelect< Representation > select;
-  eoSelectMany< Representation > selectN( select, selectionRate.value() );
-  eoSSGAStochTournamentReplacement< Representation > replace( 1.0 );
-  eoWeakElitistReplacement< Representation > elitReplace( replace );
-  eoGenContinue< Representation > cont( nbGenerations.value() );
-  eoCheckPoint< Representation > checkpoint( cont );
-  eoEasyEA< Representation > algo( checkpoint, eval, selectN, transform, elitReplace );
-
-
-
-  //-------------------------------------------------------------------------------------------------------------
-  // MIGRATION CONTEXT DEFINITION
-
-  eoPeriodicContinue< Representation > mig_conti(  MIGRATIONS_AT_N_GENERATIONS );
-  eoContinuator<Representation> mig_cont(mig_conti,pop);
-  eoRandomSelect<Representation> mig_select_one;
-  eoSelector <Representation, eoPop<Representation> > mig_select (mig_select_one,NUMBER_OF_MIGRANTS,pop);
-  eoPlusReplacement<Representation> replace_one;
-  eoReplace <Representation, eoPop<Representation> > mig_replace (replace_one,pop);
-//  peoSyncIslandMig< eoPop< Representation >, eoPop< Representation > > mig(MIGRATIONS_AT_N_GENERATIONS,mig_select,mig_replace,topo);
-  peoAsyncIslandMig< eoPop< Representation >, eoPop< Representation > > mig(mig_cont,mig_select,mig_replace,topo);
-  checkpoint.add( mig );
-  //-------------------------------------------------------------------------------------------------------------
-
-  eoPop< Representation > pop2( POP_SIZE, init );
-  eoSGATransform< Representation > transform2( xover, XOVER_P, mut, MUT_P );
-  eoStochTournamentSelect< Representation > select2;
-  eoSelectMany< Representation > selectN2( select2, selectionRate.value() );
-  eoSSGAStochTournamentReplacement< Representation > replace2( 1.0 );
-  eoWeakElitistReplacement< Representation > elitReplace2( replace2 );
-  eoGenContinue< Representation > cont2( nbGenerations.value() );
-  eoCheckPoint< Representation > checkpoint2( cont2 );
-  eoEasyEA< Representation > algo2( checkpoint2, eval, selectN2, transform2, elitReplace2 );
-
-  //-------------------------------------------------------------------------------------------------------------
-  // MIGRATION CONTEXT DEFINITION
-
-  eoPeriodicContinue< Representation > mig_conti2(  MIGRATIONS_AT_N_GENERATIONS );
-  eoContinuator<Representation> mig_cont2(mig_conti2,pop2);
-  eoRandomSelect<Representation> mig_select_one2;
-  eoSelector <Representation, eoPop<Representation> > mig_select2 (mig_select_one2,NUMBER_OF_MIGRANTS,pop2);
-  eoPlusReplacement<Representation> replace_one2;
-  eoReplace <Representation, eoPop<Representation> > mig_replace2 (replace_one2,pop2);
-//  peoSyncIslandMig< eoPop< Representation >, eoPop< Representation > > mig2(MIGRATIONS_AT_N_GENERATIONS,mig_select2,mig_replace2,topo);
-  peoAsyncIslandMig< eoPop< Representation >, eoPop< Representation > > mig2(mig_cont2,mig_select2,mig_replace2,topo);
-  checkpoint2.add( mig2 );
-  //-------------------------------------------------------------------------------------------------------------
-
-  eoPop< Representation > pop3( POP_SIZE, init );
-  eoSGATransform< Representation > transform3( xover, XOVER_P, mut, MUT_P );
-  eoStochTournamentSelect< Representation > select3;
-  eoSelectMany< Representation > selectN3( select3, selectionRate.value() );
-  eoSSGAStochTournamentReplacement< Representation > replace3( 1.0 );
-  eoWeakElitistReplacement< Representation > elitReplace3( replace3 );
-  eoGenContinue< Representation > cont3( nbGenerations.value() );
-  eoCheckPoint< Representation > checkpoint3( cont3 );
-  eoEasyEA< Representation > algo3( checkpoint3, eval, selectN3, transform3, elitReplace3 );
-
-  //-------------------------------------------------------------------------------------------------------------
-  // MIGRATION CONTEXT DEFINITION
-
-  eoPeriodicContinue< Representation > mig_conti3(  MIGRATIONS_AT_N_GENERATIONS );
-  eoContinuator<Representation> mig_cont3(mig_conti3,pop3);
-  eoRandomSelect<Representation> mig_select_one3;
-  eoSelector <Representation, eoPop<Representation> > mig_select3 (mig_select_one3,NUMBER_OF_MIGRANTS,pop3);
-  eoPlusReplacement<Representation> replace_one3;
-  eoReplace <Representation, eoPop<Representation> > mig_replace3 (replace_one3,pop3);
-//  peoSyncIslandMig< eoPop< Representation >, eoPop< Representation > > mig3(MIGRATIONS_AT_N_GENERATIONS,mig_select3,mig_replace3,topo);
-  peoAsyncIslandMig< eoPop< Representation >, eoPop< Representation > > mig3(mig_cont3,mig_select3,mig_replace3,topo);
-
-  checkpoint3.add( mig3 );
-  //-------------------------------------------------------------------------------------------------------------
-
-  peoWrapper algoPar( algo, pop );
-  mig.setOwner( algoPar );
-  checkpoint.add( dataTransfer );
-  dataTransfer.setOwner( algoPar );
-
-
-  peoWrapper algoPar2( algo2, pop2 );
-  mig2.setOwner( algoPar2 );
-  checkpoint2.add( dataTransferb );
-  dataTransferb.setOwner( algoPar2 );
-
-
-  peoWrapper algoPar3( algo3, pop3 );
-  mig3.setOwner( algoPar3 );
-  checkpoint3.add( dataTransferc );
-  dataTransferc.setOwner( algoPar3 );
-
-  peo::run();
-  peo::finalize();
-
-  if ( getNodeRank() == 1 )
-    std::cout << "A: " << dataA << std::endl;
-  if ( getNodeRank() == 2 )
-    std::cout << "B: " << dataB << std::endl;
-  if ( getNodeRank() == 3 )
-    std::cout << "C: " << dataC << std::endl;
-
-
-  return 0;
+  return 1;
 }

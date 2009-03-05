@@ -56,10 +56,7 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DIR}/lib)
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
-ADD_EXECUTABLE(pso mainPSO.cpp)
-ADD_DEPENDENCIES(pso peo rmc_mpi)
-ADD_EXECUTABLE(ea mainEA.cpp)
-ADD_DEPENDENCIES(ea peo rmc_mpi)
+ADD_EXECUTABLE(multistartMO main.cpp)
 ######################################################################################
 
 
@@ -68,8 +65,7 @@ ADD_DEPENDENCIES(ea peo rmc_mpi)
 ######################################################################################
 
 SET(LESSON1_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(pso PROPERTIES VERSION "${LESSON1_VERSION}")
-SET_TARGET_PROPERTIES(ea PROPERTIES VERSION "${LESSON1_VERSION}")
+SET_TARGET_PROPERTIES(multistartMO PROPERTIES VERSION "${LESSON1_VERSION}")
 ######################################################################################
 
 
@@ -77,7 +73,6 @@ SET_TARGET_PROPERTIES(ea PROPERTIES VERSION "${LESSON1_VERSION}")
 ### 5) Link the librairies
 ######################################################################################
 
-TARGET_LINK_LIBRARIES(pso ${XML2_LIBS} peo rmc_mpi eo eoutils peo) 
-TARGET_LINK_LIBRARIES(ea ${XML2_LIBS} peo rmc_mpi eo eoutils peo)
+TARGET_LINK_LIBRARIES(multistartMO ${XML2_LIBS} peo rmc_mpi eo eoutils peo) 
 
 ######################################################################################

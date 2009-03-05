@@ -38,7 +38,7 @@ EXECUTE_PROCESS(
 ### 1) Include the sources
 ######################################################################################
 
-INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src ${MOEO_SRC_DIR}/src  ${MO_SRC_DIR}/src ${ParadisEO-PEO_SOURCE_DIR}/src ${TSP_SRC_DIR})
+INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src ${MOEO_SRC_DIR}/src  ${MO_SRC_DIR}/src ${ParadisEO-PEO_SOURCE_DIR}/src)
 
 ######################################################################################
 
@@ -47,7 +47,7 @@ INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src ${MOEO_SRC_DIR}/src  ${MO_SRC_DIR}/src ${P
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${MOEO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DIR}/lib ${TSP_BINARY_DIR}/lib)
+LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${MOEO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DIR}/lib)
 
 ######################################################################################
 
@@ -56,8 +56,7 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${MOEO_BIN_DIR}/lib ${ParadisEO-PEO_BINARY_DI
 ### 3) Define your target(s): just an executable here
 ######################################################################################
 
-ADD_EXECUTABLE(eals mainEALS.cpp)
-ADD_DEPENDENCIES(eals tsp peo rmc_mpi)
+ADD_EXECUTABLE(transform main.cpp)
 
 ######################################################################################
 
@@ -67,7 +66,7 @@ ADD_DEPENDENCIES(eals tsp peo rmc_mpi)
 ######################################################################################
 
 SET(LESSON4_VERSION ${GLOBAL_VERSION})
-SET_TARGET_PROPERTIES(eals PROPERTIES VERSION "${LESSON4_VERSION}")
+SET_TARGET_PROPERTIES(transform PROPERTIES VERSION "${LESSON4_VERSION}")
 
 ######################################################################################
 
@@ -76,6 +75,6 @@ SET_TARGET_PROPERTIES(eals PROPERTIES VERSION "${LESSON4_VERSION}")
 ### 5) Link the librairies
 ######################################################################################
 
-TARGET_LINK_LIBRARIES(eals ${XML2_LIBS} tsp peo rmc_mpi eo eoutils peo)
+TARGET_LINK_LIBRARIES(transform eo ga es ${XML2_LIBS} peo rmc_mpi eoutils peo)
 
 ######################################################################################
