@@ -45,27 +45,30 @@
 #include <utils/eoHowMany.h>
 #include <eoSelectOne.h>
 
-
+/*
 //! @class peoPSOSelect
 //! @brief Specific class for a selection of a population of a PSO
 //! @see eoSelectOne
 //! @version 1.1
 //! @date october 2007
+*/ 
 template <class POT> class peoPSOSelect: public eoSelectOne<POT>
   {
   public:
-
+/*
     //! @brief Constructor
     //! @param eoTopology < POT > & _topology
+*/
     peoPSOSelect(eoTopology < POT > & _topology):topology(_topology)
     {}
 
-    //! @brief typedef : creation of Fitness
+//    //! @brief typedef : creation of Fitness
     typedef typename PO < POT >::Fitness Fitness;
-
+/*
     //! @brief Virtual operator
     //! @param eoPop<POT>& _pop
     //! @return POT&
+*/
     virtual const POT& operator()(const eoPop<POT>& _pop)
     {
 //return topology.globalBest(_pop);
@@ -73,32 +76,35 @@ template <class POT> class peoPSOSelect: public eoSelectOne<POT>
     }
 
   private:
-    //! @param eoTopology < POT > & topology
+//    //! @param eoTopology < POT > & topology
     eoTopology < POT > & topology;
   };
-
+/*
 //! @class peoGlobalBestVelocity
 //! @brief Specific class for a replacement thanks to the velocity migration of a population of a PSO
 //! @see eoReplacement
 //! @version 1.1
 //! @date october 2007
+*/
 template <class POT>
 class peoGlobalBestVelocity : public eoReplacement<POT>
   {
   public:
 
-    //! @brief typedef : creation of VelocityType
+//    //! @brief typedef : creation of VelocityType
     typedef typename POT::ParticleVelocityType VelocityType;
-
+/*
     //! @brief Constructor
     //! @param double & _c3
     //! @param eoVelocity < POT > &_velocity
+*/
     peoGlobalBestVelocity(	const double & _c3, eoVelocity < POT > &_velocity): c3 (_c3),velocity (_velocity)
     {}
-
+/*
     //! @brief Virtual operator
     //! @param eoPop<POT>& _dest
     //! @param eoPop<POT>& _source
+*/
     void operator()(eoPop<POT>& _dest, eoPop<POT>& _source)
     {
 
@@ -114,27 +120,31 @@ class peoGlobalBestVelocity : public eoReplacement<POT>
     }
 
   protected:
+/*  
     //! @param double & c3
     //! @param eoVelocity < POT > & velocity
+*/
     const double & c3;
     eoVelocity < POT > & velocity;
   };
-
+/*
 //! @class peoWorstPositionReplacement
 //! @brief Specific class for a replacement of a population of a PSO
 //! @see eoReplacement
 //! @version 1.1
 //! @date october 2007
+*/
 template <class POT> class peoWorstPositionReplacement : public eoReplacement<POT>
   {
   public:
-    //! @brief constructor
+//    //! @brief constructor
     peoWorstPositionReplacement()
     {}
-
+/*
     //! @brief operator
     //! @param eoPop<POT>& _dest
     //! @param eoPop<POT>& _source
+*/
     void operator()(eoPop<POT>& _dest, eoPop<POT>& _source)
     {
       unsigned ind=0;

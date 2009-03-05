@@ -36,12 +36,13 @@
 
 #ifndef PEOEVALFUNC_H
 #define PEOEVALFUNC_H
-
+/*
 //! @class peoEvalFunc
 //! @brief Specific class for evaluation
 //! @see eoEvalFunc
 //! @version 1.0
 //! @date november 2007
+*/ 
 #ifdef _MSC_VER
 template< class EOT, class FitT = EOT::Fitness, class FunctionArg = const EOT& >
 #else
@@ -49,22 +50,24 @@ template< class EOT, class FitT = typename EOT::Fitness, class FunctionArg = con
 #endif
 struct peoEvalFunc: public eoEvalFunc<EOT>
   {
-
+/*
     //! @brief Constructor
     //! @param FitT (* _eval)( FunctionArg )
+*/
     peoEvalFunc( FitT (* _eval)( FunctionArg ) )
         : eoEvalFunc<EOT>(), evalFunc( _eval )
     {};
-
+/*
     //! @brief Virtual operator
     //! @param EOT & _peo
+*/
     virtual void operator() ( EOT & _peo )
     {
       _peo.fitness((*evalFunc)( _peo ));
     };
 
 private:
-    //! @param FitT (* evalFunc )( FunctionArg )
+//    //! @param FitT (* evalFunc )( FunctionArg )
     FitT (* evalFunc )( FunctionArg );
   };
 

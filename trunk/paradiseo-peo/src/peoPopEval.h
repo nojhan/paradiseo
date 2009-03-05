@@ -246,12 +246,6 @@ template< class EOT > void peoPopEval< EOT > :: unpackResult()
   	{
   		long int __fit; unpack( __fit );fit = __fit;
   	}
-  	/*
-  	if ( type[position] == types[3])
-  	{
-  		long long int __fit; unpack( __fit );fit = __fit;
-  	}
-  	* */
   	if ( type[position] == types[4])
   	{
   		unsigned int __fit; unpack( __fit );fit = __fit;
@@ -264,12 +258,6 @@ template< class EOT > void peoPopEval< EOT > :: unpackResult()
   	{
   		unsigned long __fit; unpack( __fit );fit = __fit;
   	}
-  	/*
-  	if ( type[position] == types[7])
-  	{
-  		unsigned long long __fit; unpack( __fit );fit = __fit;
-  	}
-  	*/ 
   	if ( type[position] == types[8])
   	{
   		float __fit; unpack( __fit );fit = __fit;
@@ -278,12 +266,6 @@ template< class EOT > void peoPopEval< EOT > :: unpackResult()
   	{
   		double __fit; unpack( __fit );fit = __fit;
 	}
-	/*
-  	if ( type[position] == types[10])
-  	{
-  		long double __fit; unpack( __fit );fit = __fit;
-  	}
-  	*/ 
   }
   
   

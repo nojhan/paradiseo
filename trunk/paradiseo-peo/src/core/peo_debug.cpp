@@ -102,7 +102,7 @@ void printDebugMessage (const char * __mess)
       sprintf (buff, "[%s][%s: ", host, localTime );
 
       for (unsigned i = 0; i < files.size (); i ++)
-        fprintf (files [i], buff);
+        fprintf (files [i],"%s" ,buff);
 
       /* Message */
       sprintf (buff, "%s", __mess);
