@@ -20,7 +20,7 @@ INCLUDE(CheckLibraryExists)
 
 SET (CMAKE_CXX_COMPILER mpicxx)
 
-ADD_CUSTOM_TARGET(install ALL DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/test/param ${ParadisEO-PEO_SOURCE_DIR}/test/schema.xml)
+ADD_CUSTOM_TARGET(install ALL DEPENDS ${ParadisEO-PEO_SOURCE_DIR}/test/param ${ParadisEO-PEO_SOURCE_DIR}/test/schema.xml ${ParadisEO-PEO_SOURCE_DIR}/tutorial/benchs)
 ADD_CUSTOM_COMMAND(
     TARGET install
     PRE_BUILD
@@ -35,6 +35,14 @@ ADD_CUSTOM_COMMAND(
     ARGS -E copy_if_different
       ${ParadisEO-PEO_SOURCE_DIR}/test/schema.xml
       ${ParadisEO-PEO_BINARY_DIR}/test)
+
+ADD_CUSTOM_COMMAND(
+    TARGET install
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND}
+    ARGS -E copy_directory 
+      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/benchs
+      ${ParadisEO-PEO_BINARY_DIR}/tutorial/benchs)
 ######################################################################################
 
 
