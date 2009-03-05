@@ -43,7 +43,8 @@ public:
 		}
 		else
 		{
-			ProbMatrix *new_prob_matrix = new ProbMatrix(model, branchlength);
+			ProbMatrix *new_prob_matrix;
+			new_prob_matrix = new ProbMatrix(model, branchlength);
 			new_prob_matrix->init();
 			container[branchlength] = new_prob_matrix;
 			return *new_prob_matrix;

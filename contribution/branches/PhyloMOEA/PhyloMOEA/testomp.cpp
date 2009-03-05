@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 {
 	// measures execution time
 	struct timeval tempo1, tempo2, result;
-	gettimeofday(&tempo1, NULL);
+
 
 	cout << "\n\nReading Sequence Datafile...";
 	Sequences seq("/home/wcancino/experimentos/PhyloMOEA_0.2/500/500_ZILLA.plain");
@@ -80,26 +80,28 @@ int main(int argc, char *argv[])
 
 	for(int i=0; i < population.size(); i++)
 	{
+	
 			lik_calc.set_tree(population[i].get_tree());
+//			gettimeofday(&tempo1, NULL);
 			cout << lik_calc.calculate_likelihood() << endl;
+/*			gettimeofday(&tempo2, NULL);
+			timeval_subtract(&result,&tempo2,&tempo1);	
+			long remainder = result.tv_sec % 3600;
+			long hours = (result.tv_sec - remainder)/3600;
+			long seconds = remainder % 60;
+			long minutes = (remainder - seconds) / 60;
+			cout << "Execution time :  ";
+			cout.width(3);
+			cout.fill(' ');
+			cout << hours << ":";
+			cout.width(2);
+			cout.fill('0');
+			cout << minutes << ":";
+			cout.width(2);
+			cout.fill('0');
+			cout << seconds << "." << result.tv_usec << "(" << result.tv_sec << ")" << endl;*/
 	}
 
-	gettimeofday(&tempo2, NULL);
-	timeval_subtract(&result,&tempo2,&tempo1);	
-	long remainder = result.tv_sec % 3600;
-	long hours = (result.tv_sec - remainder)/3600;
-	long seconds = remainder % 60;
-	long minutes = (remainder - seconds) / 60;
-	cout << "Execution time :  ";
-	cout.width(3);
-	cout.fill(' ');
-	cout << hours << ":";
-	cout.width(2);
-	cout.fill('0');
-	cout << minutes << ":";
-	cout.width(2);
-	cout.fill('0');
-	cout << seconds << "." << result.tv_usec << "(" << result.tv_sec << ")" << endl;
 	gsl_rng_free(rn2);
 	//	delete probmatrixs;
 	delete rn;

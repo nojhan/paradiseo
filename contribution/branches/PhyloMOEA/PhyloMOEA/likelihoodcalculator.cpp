@@ -21,7 +21,7 @@
 #include "treeIterator.h"
 #include <gsl/gsl_randist.h>
 #include <gsl/gsl_cdf.h>
-
+#include "utils.h"
 
 
 
@@ -185,6 +185,21 @@ void LikelihoodCalculator::set_tree( phylotreeIND &ind )
 			i++;
 		}
 	}
+
+	graph::edge_iterator ite = tree_ptr->TREE.edges_begin();
+	graph::edge_iterator ite2 = tree_ptr->TREE.edges_end();
+
+	for(int i=0; ite!=ite2; i++)
+	{
+		for(int j=0; j < nrates; j++)
+		{
+			double len =  tree_ptr->get_branch_length(*ite) * rates_prob[j];
+			len = (len < BL_MIN ? BL_MIN : len);
+			(part_memory_probmatrix_ptr+i*nrates)[j] = &( (*probmatrixs)[len] );
+			edgeprobmatrix[*ite] = part_memory_probmatrix_ptr+i*nrates;
+		}
+		++ite;
+	}
 }
 
 double LikelihoodCalculator::calculate_likelihood_exp(edge focus)
@@ -345,11 +360,29 @@ double LikelihoodCalculator::calculate_likelihood()
 	for(int i=0; i<2; i++)
 		pthread_join(threads[i],NULL);*/
 	//cout << "calculando partials..." << endl;
+	struct timeval tempo1, tempo2, result;
+	gettimeofday(&tempo1, NULL);
 	calculate_partials( a, &b);
 	calculate_partials( b, &a);
 	//cout << "somando..." << endl;
 	// sum all partials
 	lik = sum_site_liks();
+	gettimeofday(&tempo2, NULL);
+	timeval_subtract(&result,&tempo2,&tempo1);	
+	long remainder = result.tv_sec % 3600;
+	long hours = (result.tv_sec - remainder)/3600;
+	long seconds = remainder % 60;
+	long minutes = (remainder - seconds) / 60;
+	cout << "Execution time :  ";
+	cout.width(3);
+	cout.fill(' ');
+	cout << hours << ":";
+	cout.width(2);
+	cout.fill('0');
+	cout << minutes << ":";
+	cout.width(2);
+	cout.fill('0');
+	cout << seconds << "." << result.tv_usec << "(" << result.tv_sec << ")" << endl;
 	return lik;
 }
 
@@ -363,16 +396,18 @@ double LikelihoodCalculator::sum_site_liks(  )
 	
 	for(int i=0; i< nrates; i++)
 	{
-		len = tree_ptr->get_branch_length(bfocus)*rates_prob[i];
-		len = len < BL_MIN ? BL_MIN : len;
-		ProbMatrix &p = (*probmatrixs)[ len];
-		prob[i] = p.p;
+		//len = tree_ptr->get_branch_length(bfocus)*rates_prob[i];
+		//len = len < BL_MIN ? BL_MIN : len;
+		ProbMatrix *p = edgeprobmatrix[bfocus][i]; //(*probmatrixs)[ len];
+		prob[i] = p->p;
 	}
 
+	//#pragma omp parallel for private(factor_correct) schedule(dynamic) num_threads(2) reduction(+:lik)
 	for(int i=0; i < seqlen; i++)
 	{
 		factor_correct = Factors[a][i] + Factors[b][i] ;
 		site_liks[i] = sum_partials(i);
+		//#pragma omp critical
 		lik += ( log(site_liks[i]) + factor_correct)* SeqData->pattern_count(i);
 	}
 	return lik;
@@ -394,7 +429,7 @@ double LikelihoodCalculator::sum_partials_a_to_taxon( int pos)
 {
 	double sum = 0;
 	unsigned char *meaning;
-	char char_state_b = SeqData->pattern_pos( pos, tree_ptr->taxon_id( b) );
+	char char_state_b = SeqData->pattern_pos( pos, tree_ptr->taxon_id (b) );
 	for(int i=0; i<nrates; i++)
 	{
 		int index = pos*nrates*4 + i*4;
@@ -451,9 +486,8 @@ void LikelihoodCalculator::calculate_node_partial( node father, node son, edge e
 	register double sum;
 	int r,i,j;
 	//unsigned char l;
-	ProbMatrix *p;
 	register int seqlen = tree_ptr->number_of_positions();
- 	#pragma omp parallel for private(p) schedule(dynamic) num_threads(2)
+ 	#pragma omp parallel for 
 	for(int k=0; k<seqlen;k++)
 	{
 		long index = k*nrates*4;
@@ -463,11 +497,9 @@ void LikelihoodCalculator::calculate_node_partial( node father, node son, edge e
 
 		for(int r=0; r<nrates; r++)
 		{
-			double len =  tree_ptr->get_branch_length(edgeaux) * rates_prob[r];
-			len = (len < BL_MIN ? BL_MIN : len);
 			double sum = 0;
-			#pragma omp critical
-			p = &((*probmatrixs)[ len ]);
+			//#pragma omp critical
+			ProbMatrix *p = edgeprobmatrix[edgeaux][r];
 
 			for(int i=0; i < 4; i++)
 			{
@@ -528,7 +560,6 @@ void LikelihoodCalculator::init_partials()
 	// init internal nodes
 	for(long i=0; i< size_part_memory_internal; i++)
 				part_memory_internal[i] = 1.0;
-
 }
 
 // calculate the values de C_j for all nodes
@@ -544,3 +575,145 @@ void LikelihoodCalculator::calculate_partials(node n, node *antecessor)
 }
 
 
+
+// omp code
+
+double LikelihoodCalculator::calculate_likelihood_omp()
+{
+
+	double lik=0;
+
+
+	// select an internal node as root
+	bfocus =  *(tree_ptr->TREE.edges_begin());
+	
+
+	a = tree_ptr->istaxon(bfocus.target()) ? bfocus.source() : bfocus.target();
+	b = bfocus.opposite(a);
+
+	
+	init_partials();
+
+	struct timeval tempo1, tempo2, result;
+	
+
+	int seqlen = tree_ptr->number_of_positions();
+
+	for(int i=0; i< nrates; i++)
+	{
+		//len = tree_ptr->get_branch_length(bfocus)*rates_prob[i];
+		//len = len < BL_MIN ? BL_MIN : len;
+		ProbMatrix *p = edgeprobmatrix[bfocus][i]; //(*probmatrixs)[ len];
+		prob[i] = p->p;
+	}
+
+
+	gettimeofday(&tempo1, NULL);
+	
+	#pragma omp parallel for reduction(+:lik)
+	for(int i=0; i< seqlen; i++)
+	{
+		calculate_partials_omp( a, &b,i);
+		calculate_partials_omp( b, &a,i);
+		//cout << "somando..." << endl;
+		// sum all partials
+		lik += sum_site_liks_omp(i);
+	}
+	gettimeofday(&tempo2, NULL);
+	timeval_subtract(&result,&tempo2,&tempo1);	
+	long remainder = result.tv_sec % 3600;
+	long hours = (result.tv_sec - remainder)/3600;
+	long seconds = remainder % 60;
+	long minutes = (remainder - seconds) / 60;
+	cout << "Execution time :  ";
+	cout.width(3);
+	cout.fill(' ');
+	cout << hours << ":";
+	cout.width(2);
+	cout.fill('0');
+	cout << minutes << ":";
+	cout.width(2);
+	cout.fill('0');
+	cout << seconds << "." << result.tv_usec << "(" << result.tv_sec << ")" << endl;
+	return lik;
+	
+}
+
+
+double LikelihoodCalculator::sum_site_liks_omp( int pos  )
+{
+	register double lik = 0;
+	register double factor_correct;
+	
+	//#pragma omp parallel for private(factor_correct) schedule(dynamic) num_threads(2) reduction(+:lik)
+	factor_correct = Factors[a][pos] + Factors[b][pos] ;
+	site_liks[pos] = sum_partials(pos);
+	lik = ( log(site_liks[pos]) + factor_correct)* SeqData->pattern_count(pos);
+	return lik;
+}
+
+
+void LikelihoodCalculator::calculate_partials_omp(node n, node *antecessor, int pos)
+{
+	postorder_Iterator it = tree_ptr->postorder_begin( n, *antecessor);
+
+	while(*it!=n)
+	{
+		calculate_node_partial_omp( it.ancestor(), *it, it.branch(),pos);
+		++it;
+	}
+}
+
+void LikelihoodCalculator::calculate_node_partial_omp( node father, node son, edge edgeaux, int pos)
+{
+	register double sum;
+	//unsigned char l;
+ 	//#pragma omp parallel for 
+	long index = pos*nrates*4;
+		// accumulatre
+	Factors[father][pos]+=Factors[son][pos];
+	double corr_factor =   MDBL_MIN;
+
+	for(int r=0; r<nrates; r++)
+	{
+		double sum = 0;
+		//#pragma omp critical
+		ProbMatrix *p = edgeprobmatrix[edgeaux][r];
+
+		for(int i=0; i < 4; i++)
+		{
+			sum = 0;
+			if(tree_ptr->istaxon( son))
+			{
+				unsigned char l=SeqData->pattern_pos( pos, tree_ptr->taxon_id( son));
+				if(SeqData->is_defined( l) ) sum = p->p_ij_t( i, l );
+				else if(SeqData->is_ambiguous( l))
+				{
+					unsigned char *meaning = SeqData->ambiguos_meaning( l);
+					for(int j=0; j < 4; j++)
+						sum +=meaning[j]* p->p_ij_t( i, j );	
+						//sum +=Partials[son][k*4+j]* p.p_ij_t( i, j );
+				}
+				else sum = 1;
+			}
+			else{
+				for(int j=0; j < 4; j++)
+				{
+						sum +=Partials[son][index+ r*4 +j]* p->p_ij_t( i, j );
+						
+				}
+			}
+			Partials[father][index + r*4 +i] *= sum;
+			corr_factor = ( sum > corr_factor ? sum : corr_factor); 
+		}
+	}
+
+	if( corr_factor < UMBRAL || corr_factor > (1./LIM_SCALE_VAL))
+	{
+			//cout << "escalado ..." << endl;
+		for(int r=0; r< nrates; r++)
+			for(int i=0; i<4; i++)
+				Partials[father][index + r*4+ i] /= corr_factor;
+		Factors[father][pos] += log(corr_factor);
+	} 
+}

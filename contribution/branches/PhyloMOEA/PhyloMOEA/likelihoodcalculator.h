@@ -46,12 +46,14 @@ private:
 	double *part_memory_internal, // conditional likelihood of internal nodes 
 		*part_memory_taxons,  // conditional likelihood of internal nodes, no longer used
 		*part_memory_factors; // correction factors for nodes
+	ProbMatrix **part_memory_probmatrix_ptr;
 	
 	double *site_liks; // site likelihoods
 
 	// maps nodes to the continous memory	
 	node_map< double *> Partials; // maps nodes to the corresponding conditional likelihood 
 	node_map<double *> Factors;   // maps node to the corresponding correct factors
+	edge_map<ProbMatrix **> edgeprobmatrix; // maps the edge to the corresponding probability matrixs
 
 	// external data	
 	phylotreeIND *tree_ptr; // point to the tree
@@ -67,9 +69,11 @@ private:
 	
 	// prepare the post-order tree iterator
 	void calculate_partials(node n, node *);
+	void calculate_partials_omp(node n, node *, int pos);
 	// calculate conditional likelihood for the node father, from the son conditionals
 	void calculate_node_partial( node father, node son, edge edgeaux);
 
+	void calculate_node_partial_omp( node father, node son, edge edgeaux, int pos);
 	// likelihood sum of partial for the focus branch
 	double sum_partials( int pos);
 	double sum_partials_a_to_taxon( int pos );
@@ -77,20 +81,25 @@ private:
 
 	// sum the site likelihoods 
 	double sum_site_liks();
+	double sum_site_liks_omp(int pos);
 
 	// allocate partial memory
 	void allocate_partials()
 	{
 		long total_pos = SeqData->pattern_count();
 		int ntaxons = SeqData->num_seqs();
+		//int nedges = tree_ptr->TREE.number_of_edges();
 		part_memory_internal = new double[ (ntaxons-2) * nrates * total_pos * 4 ];
 		part_memory_factors = new double [ (2*ntaxons-2)  * total_pos];
+		part_memory_probmatrix_ptr = new ProbMatrix* [ (2*ntaxons-3) * nrates ] ;
 		site_liks = new double[total_pos];
+		cout << "allocating done..." << endl;
 	}
 
 	// destroy partial memory
 	void deallocate_partials()
 	{
+		delete [] part_memory_probmatrix_ptr;
 		delete [] part_memory_internal;
 		delete [] part_memory_factors;
 		delete [] site_liks;
@@ -109,6 +118,7 @@ public:
 
 	// main functions, prepare the object to calculate likelihood
 	double calculate_likelihood();
+	double calculate_likelihood_omp();
 	double get_site_lik(int i) { return site_liks[i]; }
 	double calculate_likelihood_exp(edge focus);
 	double calculate_all_likelihoods();
