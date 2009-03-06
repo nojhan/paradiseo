@@ -1,0 +1,19 @@
+######    Param                   ######
+--popSize=20                             # -P : Population size
+--maxGen=300                             # -G : Maximum number of generations
+--mutEpsilon=0.01                        # -e : epsilon for mutation
+--pCross=0.80                            # -C : Crossover probability
+--pMut=0.30                              # -M : Mutation probability
+--vecSize=2                              # -V : Vector size
+--pMin=-2.0								 # -N : Init position min
+--pMax=2.0								 # -X : Init position max
+
+## miscallenous parameters
+
+--debug=false
+
+## deployment schema
+
+--schema=schema.xml
+
+
