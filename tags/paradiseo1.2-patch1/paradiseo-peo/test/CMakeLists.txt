@@ -35,6 +35,13 @@ ADD_CUSTOM_COMMAND(
     ARGS -E copy_if_different
       ${ParadisEO-PEO_SOURCE_DIR}/test/schema.xml
       ${ParadisEO-PEO_BINARY_DIR}/test)
+ADD_CUSTOM_COMMAND(
+    TARGET install
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND}
+    ARGS -E copy_directory 
+      ${ParadisEO-PEO_SOURCE_DIR}/tutorial/benchs
+      ${ParadisEO-PEO_BINARY_DIR}/tutorial/benchs)
 ######################################################################################
 
 
