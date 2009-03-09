@@ -25,6 +25,7 @@
 #include <likelihoodcalculator.h>
 //#include <peo>
 #include <iostream>
+#include <utils.h>
 
 extern ProbMatrixContainer *probmatrixs_ptr;
 
@@ -57,5 +58,33 @@ private:
 	LikelihoodCalculator &likeval;
 	ParsimonyCalculator &parseval;
 };
+
+
+class PhyloLikelihoodTimeEval : public moeoEvalFunc < PhyloMOEO >
+{
+public:
+
+	PhyloLikelihoodTimeEval( LikelihoodCalculator &y): likeval(y) { }
+	
+    void operator () (PhyloMOEO & _sol)
+    {
+        ObjectiveVector objVec;
+		likeval.set_tree(_sol.get_tree());
+		struct timeval start;
+		gettimeofday(&start,NULL);
+
+        objVec[0] = -likeval.calculate_likelihood();
+		struct timeval end;
+		gettimeofday(&end,NULL);
+
+		print_elapsed_time_short(&start,&end);
+		_sol.objectiveVector(objVec);
+		cout << endl;
+    }
+
+private:
+	LikelihoodCalculator &likeval;
+};
+
 
 #endif

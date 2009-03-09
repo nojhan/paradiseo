@@ -89,8 +89,12 @@ private:
 		long total_pos = SeqData->pattern_count();
 		int ntaxons = SeqData->num_seqs();
 		//int nedges = tree_ptr->TREE.number_of_edges();
-		part_memory_internal = new double[ (ntaxons-2) * nrates * total_pos * 4 ];
-		part_memory_factors = new double [ (2*ntaxons-2)  * total_pos];
+		unsigned long tamanho = (ntaxons-2) * nrates * total_pos * 4;
+		cout << "tamanho de alocacao:" << tamanho << endl;
+		part_memory_internal = new double[ tamanho  ];
+		tamanho = (2*ntaxons-2)  * total_pos;
+		cout << "tamanho de alocacao:" << tamanho << endl;
+		part_memory_factors = new double [ tamanho ];
 		part_memory_probmatrix_ptr = new ProbMatrix* [ (2*ntaxons-3) * nrates ] ;
 		site_liks = new double[total_pos];
 		cout << "allocating done..." << endl;

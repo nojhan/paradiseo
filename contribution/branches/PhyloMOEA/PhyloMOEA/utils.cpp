@@ -61,6 +61,41 @@ int   timeval_subtract (struct timeval *result, struct timeval *x, struct timeva
 	return x->tv_sec < y->tv_sec;
 }
 
+
+void print_elapsed_time(struct timeval *x, struct timeval *y)
+{
+	struct timeval result;
+	timeval_subtract(&result,y,x);	
+	long remainder = result.tv_sec % 3600;
+	long hours = (result.tv_sec - remainder)/3600;
+	long seconds = remainder % 60;
+	long minutes = (remainder - seconds) / 60;
+	cout << "Execution time :  ";
+	cout.width(3);
+	cout.fill(' ');
+	cout << hours << ":";
+	cout.width(2);
+	cout.fill('0');
+	cout << minutes << ":";
+	cout.width(2);
+	cout.fill('0');
+	cout << seconds << "." << result.tv_usec << "(" << result.tv_sec << ")" << endl;
+}
+
+void print_elapsed_time_short(struct timeval *x, struct timeval *y, ostream &os)
+{
+	struct timeval result;
+	timeval_subtract(&result,y,x);	
+	os << "  " << result.tv_sec << "." << result.tv_usec;
+}
+
+
+void print_cpu_time(clock_t start, clock_t end)
+{
+	double cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+	cout << "   " << cpu_time_used << "   ";
+}
+
 void welcome_message()
 {
 	cout << "\nPhyloMOEA, a program for multi-criteria phylogenetic inference\n";
