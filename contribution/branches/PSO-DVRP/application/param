@@ -1,0 +1,22 @@
+######    Param                   ######
+--popSize=1                      # -P : Population size
+--maxGen=5                       # -G : Maximum number of generations
+--fileOut=./Benchmarks/c50.vrp   # -O : BenchmarkFile
+--weight=1.0			   # -w : Weight
+--c1=1.0	    		   # -1 : C1
+--c2=1.0     			   # -2 : C2
+--migFreq=1                      # -F : Migration frequency
+--migSize=1                      # -M : Migration size
+--slices=25			   # -N : Nbr Slices
+--cutOff=1.0			   # -T : Time of Cut Off
+--seed=4			   # -S : Seed of Rng
+
+## miscallenous parameters
+
+--debug=false
+
+## deployment schema
+
+--schema=schema.xml
+
+
