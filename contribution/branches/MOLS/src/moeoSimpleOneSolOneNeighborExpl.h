@@ -71,7 +71,7 @@ public:
 		_dest.push_back(_src[i]);
 		move(_dest.back());
 		_dest.back().objectiveVector(objVec);
-		_dest.back().flag(0);
+		//_dest.back().flag(0);
         // si tous les voisins sont dominés (ie "! nextMove(move,_src[i])"), mettre le flag à ZERO !!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
 
@@ -84,11 +84,6 @@ private:
     moNextMove < Move > & nextMove;
     /** the incremental evaluation */
     moMoveIncrEval < Move, ObjectiveVector > & incrEval;
-    /** comparator */
-    moeoParetoObjectiveVectorComparator<ObjectiveVector> comparator;
-
-
-
 
 
     /* la même solution est utilisée iteration après iteration (qd c'est possible) */
