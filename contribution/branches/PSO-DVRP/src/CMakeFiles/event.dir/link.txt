@@ -1,0 +1,2 @@
+/usr/bin/ar cr libevent.a  CMakeFiles/event.dir/eoEventScheduler.o CMakeFiles/event.dir/parser.o CMakeFiles/event.dir/eoPsoDVRPutils.o CMakeFiles/event.dir/eoPsoDVRP.o CMakeFiles/event.dir/eoGlobal.o 
+/usr/bin/ranlib libevent.a 
