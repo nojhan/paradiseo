@@ -75,13 +75,10 @@ class PhyloMOEODummyArchive:public PhyloMOEOParetoSolutionsArchive
 class PhyloMOEOFinalSolutionsArchive: public PhyloMOEOParetoSolutionsArchive
 {
   public:
-	// overwrite the default operator
-	void operator()(const eoPop < PhyloMOEO > & _pop) { update(_pop); }
+	bool operator()(const eoPop < PhyloMOEO > & _pop) { return update(_pop); }
   protected:
 
-
-
-	void update(const eoPop < PhyloMOEO > & _pop)
+	bool update(const eoPop < PhyloMOEO > & _pop)
 	{
 		
 		std::copy(_pop.begin(), _pop.end(), back_inserter(*this) );
@@ -111,6 +108,7 @@ class PhyloMOEOFinalSolutionsArchive: public PhyloMOEOParetoSolutionsArchive
 				}
 			}
 		}
+		return true;
    }
 };
 #endif
