@@ -206,10 +206,12 @@ protected:
      */
     bool update(const eoPop < MOEOT > & _pop)
     {
+		bool tmp = false;
     	bool res = false;
         for (unsigned int i=0; i<_pop.size(); i++)
         {
-            res = (*this).update(_pop[i]) || res;
+        	tmp = (*this).update(_pop[i]);
+            res = tmp || res;
         }
         return res;
     }
