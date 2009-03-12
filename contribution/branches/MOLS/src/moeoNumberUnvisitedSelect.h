@@ -1,5 +1,5 @@
 /*
-* <moeoPopNeighborhoodExplorer.h>
+* <moeoNumberUnvisitedSelect.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
 *
@@ -36,8 +36,8 @@
 */
 //-----------------------------------------------------------------------------
 
-#ifndef _MOEOPOPNEIGHBORHOODEXPLORER_H
-#define _MOEOPOPNEIGHBORHOODEXPLORER_H
+#ifndef _MOEONUMBERUNVISITEDSELECT_H
+#define _MOEONUMBERUNVISITEDSELECT_H
 
 #include <eo>
 #include <moeo>
@@ -46,6 +46,31 @@
  * TODO
  */
 template < class Move >
-class moeoPopNeighborhoodExplorer{};
+class moeoNumberUnvisitedSelect : public moeoUnvisitedSelect < Move >
+{
+    typedef typename Move::EOType MOEOT;
 
-#endif /*MOEONEIGHBORHOODEXPLORER_H_*/
+public:
+
+    moeoNumberUnvisitedSelect(){}
+
+    std::vector <unsigned int> operator()(eoPop < MOEOT > & _src, unsigned int _number)
+    {
+    	std::vector <unsigned int> res;
+    	res.resize(0);
+        for (unsigned int i=0; i<_src.size(); i++)
+        {
+            if (_src[i].flag() == 0)
+            	res.push_back(i);
+        }
+        if(_number < res.size()){
+        	UF_random_generator<unsigned int> rndGen;
+        	std::random_shuffle(res.begin(), res.end(), rndGen);
+        	res.resize(_number);
+        }
+        return res;
+    }
+
+};
+
+#endif /*_MOEONUMBERUNVISITEDSELECT_H_*/

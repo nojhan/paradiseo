@@ -1,5 +1,5 @@
 /*
-* <moeoPopNeighborhoodExplorer.h>
+* <moeoUnvisitedSelect.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
 *
@@ -36,8 +36,8 @@
 */
 //-----------------------------------------------------------------------------
 
-#ifndef _MOEOPOPNEIGHBORHOODEXPLORER_H
-#define _MOEOPOPNEIGHBORHOODEXPLORER_H
+#ifndef _MOEOUNVISITEDSELECT_H
+#define _MOEOUNVISITEDSELECT_H
 
 #include <eo>
 #include <moeo>
@@ -46,6 +46,6 @@
  * TODO
  */
 template < class Move >
-class moeoPopNeighborhoodExplorer{};
+class moeoUnvisitedSelect{};
 
-#endif /*MOEONEIGHBORHOODEXPLORER_H_*/
+#endif /*MOEOUNVISITEDSELECT_H_*/
