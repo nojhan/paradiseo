@@ -60,12 +60,13 @@ public:
     moeoSubNeighborhoodExplorer(
         moMoveInit < Move > & _moveInit,
         moNextMove < Move > & _nextMove,
-        moMoveIncrEval < Move, ObjectiveVector > & _incrEval)
-            : moveInit(_moveInit), nextMove(_nextMove), incrEval(_incrEval){}
+        moMoveIncrEval < Move, ObjectiveVector > & _incrEval,
+        unsigned int _number)
+            : moveInit(_moveInit), nextMove(_nextMove), incrEval(_incrEval), number(_number){}
 
-    void operator()(eoPop < MOEOT > & _src, std::vector<unsigned int> & _select, eoPop < MOEOT > & _dest, unsigned int _number)
+    void operator()(eoPop < MOEOT > & _src, std::vector<unsigned int> & _select, eoPop < MOEOT > & _dest)
     {
-    	if(_number > 0){
+    	if(number > 0){
     		for(unsigned int i=0; i<_select.size(); i++)
     			explore(_src, _select[i], _dest);
     	}
@@ -75,7 +76,7 @@ private:
 
 	void explore(eoPop < MOEOT > & _src, unsigned int _i, eoPop < MOEOT > & _dest, unsigned int _number)
 	{
-		unsigned int tmp= _number;
+		unsigned int tmp = number;
 		moveInit(move, _src[_i]);
 		do
 		{
@@ -99,7 +100,8 @@ private:
     moNextMove < Move > & nextMove;
     /** the incremental evaluation */
     moMoveIncrEval < Move, ObjectiveVector > & incrEval;
-
+    /** number of neighbor to explore for each solution*/
+    unsigned int number;
 };
 
 #endif /*_MOEOEXHAUSTIVENEIGHBORHOODEXPLORER_H_*/

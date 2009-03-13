@@ -52,9 +52,9 @@ class moeoNumberUnvisitedSelect : public moeoUnvisitedSelect < Move >
 
 public:
 
-    moeoNumberUnvisitedSelect(){}
+    moeoNumberUnvisitedSelect(unsigned int _number): number(_number){}
 
-    std::vector <unsigned int> operator()(eoPop < MOEOT > & _src, unsigned int _number)
+    std::vector <unsigned int> operator()(eoPop < MOEOT > & _src)
     {
     	std::vector <unsigned int> res;
     	res.resize(0);
@@ -66,10 +66,13 @@ public:
         if(_number < res.size()){
         	UF_random_generator<unsigned int> rndGen;
         	std::random_shuffle(res.begin(), res.end(), rndGen);
-        	res.resize(_number);
+        	res.resize(number);
         }
         return res;
     }
+
+private:
+	unsigned int number;
 
 };
 
