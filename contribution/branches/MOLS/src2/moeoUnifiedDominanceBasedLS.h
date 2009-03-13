@@ -43,6 +43,7 @@
 #include <moeo>
 #include <moeoPopLS.h>
 #include <moeoPopNeighborhoodExplorer.h>
+#include <moeoUnvisitedSelect.h>
 
 template < class Move >
 class moeoUnifiedDominanceBasedLS : public moeoPopLS < Move >
@@ -56,7 +57,7 @@ public:
         eoContinue < MOEOT > & _continuator,
         eoEvalFunc < MOEOT > & _eval,
         moeoArchive < MOEOT > & _archive,
-        moeoPopNeighborhoodExplorer < Move > & _explorer
+        moeoPopNeighborhoodExplorer < Move > & _explorer,
         moeoUnvisitedSelect < Move > & _select) :
             continuator(_continuator), loopEval(_eval), popEval(loopEval), archive(_archive), explorer(_explorer), select(_select) {}
 
@@ -76,6 +77,7 @@ public:
             //selection des individus non visités à explorer
             selectionVector = select(archive);
             //exploration
+            //explorer(archive, selectionVector, tmp_pop);
             explorer(archive, selectionVector, tmp_pop);
             //mise à jour de la pop ou archive
             archive(tmp_pop);

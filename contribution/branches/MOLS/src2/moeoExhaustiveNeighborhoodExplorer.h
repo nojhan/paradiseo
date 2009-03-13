@@ -63,7 +63,7 @@ public:
         moMoveIncrEval < Move, ObjectiveVector > & _incrEval)
             : moveInit(_moveInit), nextMove(_nextMove), incrEval(_incrEval){}
 
-    void operator()(eoPop < MOEOT > & _src, std::vector<unsigned int> & _select, eoPop < MOEOT > & _dest)
+    void operator()(eoPop < MOEOT > & _src, std::vector < unsigned int> _select, eoPop < MOEOT > & _dest)
     {
         for(unsigned int i=0; i<_select.size(); i++)
         	explore(_src, _select[i], _dest);

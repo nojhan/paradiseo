@@ -46,6 +46,6 @@
  * TODO
  */
 template < class Move >
-class moeoUnvisitedSelect{};
+class moeoUnvisitedSelect: public eoUF < eoPop < typename Move::EOType> &, std::vector< unsigned int > >{};
 
 #endif /*MOEOUNVISITEDSELECT_H_*/

@@ -45,6 +45,7 @@
 #include <moeoUnifiedDominanceBasedLS.h>
 #include <moeoNewArchive.h>
 #include <moeoPopNeighborhoodExplorer.h>
+#include <moeoUnvisitedSelect.h>
 
 template < class Move >
 class moeoRestartLS : public moeoPopLS < Move >
@@ -58,7 +59,7 @@ public:
         eoEvalFunc < MOEOT > & _eval,
         eoContinue < MOEOT > & _continuator,
         moeoPopNeighborhoodExplorer < Move > & _explorer,
-        moeoUnivisitedSelection < Move > & _select,
+        moeoUnvisitedSelect < Move > & _select,
         moeoArchive < MOEOT > & _globalArchive,
         std::string _fileName) :
             init(_init), eval(_eval), continuator(_continuator), ls(continuator, _eval, internalArchive, _explorer, _select), globalArchive(_globalArchive), fileName(_fileName), count(0) {}

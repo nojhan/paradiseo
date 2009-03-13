@@ -64,7 +64,7 @@ public:
         unsigned int _number)
             : moveInit(_moveInit), nextMove(_nextMove), incrEval(_incrEval), number(_number){}
 
-    void operator()(eoPop < MOEOT > & _src, std::vector<unsigned int> & _select, eoPop < MOEOT > & _dest)
+    void operator()(eoPop < MOEOT > & _src, std::vector <unsigned int> _select, eoPop < MOEOT > & _dest)
     {
     	if(number > 0){
     		for(unsigned int i=0; i<_select.size(); i++)
@@ -74,7 +74,7 @@ public:
 
 private:
 
-	void explore(eoPop < MOEOT > & _src, unsigned int _i, eoPop < MOEOT > & _dest, unsigned int _number)
+	void explore(eoPop < MOEOT > & _src, unsigned int _i, eoPop < MOEOT > & _dest)
 	{
 		unsigned int tmp = number;
 		moveInit(move, _src[_i]);

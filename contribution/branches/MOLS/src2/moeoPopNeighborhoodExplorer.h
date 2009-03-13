@@ -46,6 +46,11 @@
  * TODO
  */
 template < class Move >
-class moeoPopNeighborhoodExplorer{};
+class moeoPopNeighborhoodExplorer{
+
+public:
+	virtual void operator()(eoPop < typename Move::EOType > &, std::vector <unsigned int>, eoPop < typename Move::EOType > &) = 0;
+
+};
 
 #endif /*MOEONEIGHBORHOODEXPLORER_H_*/

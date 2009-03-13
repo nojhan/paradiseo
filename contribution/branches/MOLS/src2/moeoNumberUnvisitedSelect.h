@@ -63,7 +63,7 @@ public:
             if (_src[i].flag() == 0)
             	res.push_back(i);
         }
-        if(_number < res.size()){
+        if(number < res.size()){
         	UF_random_generator<unsigned int> rndGen;
         	std::random_shuffle(res.begin(), res.end(), rndGen);
         	res.resize(number);
