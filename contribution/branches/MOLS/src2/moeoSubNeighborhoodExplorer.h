@@ -1,5 +1,5 @@
 /*
-* <moeoExhaustiveNeighborhoodExplorer.h>
+* <moeoSubNeighborhoodExplorer.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
 *
@@ -36,8 +36,8 @@
 */
 //-----------------------------------------------------------------------------
 
-#ifndef _MOEOEXHAUSTIVENEIGHBORHOODEXPLORER_H
-#define _MOEOEXHAUSTIVENEIGHBORHOODEXPLORER_H
+#ifndef _MOEOSUBNEIGHBORHOODEXPLORER_H
+#define _MOEOSUBNEIGHBORHOODEXPLORER_H
 
 #include <eo>
 #include <moeo>
@@ -50,29 +50,32 @@
  * TODO
  */
 template < class Move >
-class moeoExhaustiveNeighborhoodExplorer : public moeoPopNeighborhoodExplorer < Move >
+class moeoSubNeighborhoodExplorer : public moeoPopNeighborhoodExplorer < Move >
 {
     typedef typename Move::EOType MOEOT;
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 
 public:
 
-    moeoExhaustiveNeighborhoodExplorer(
+    moeoSubNeighborhoodExplorer(
         moMoveInit < Move > & _moveInit,
         moNextMove < Move > & _nextMove,
         moMoveIncrEval < Move, ObjectiveVector > & _incrEval)
             : moveInit(_moveInit), nextMove(_nextMove), incrEval(_incrEval){}
 
-    void operator()(eoPop < MOEOT > & _src, std::vector<unsigned int> & _select, eoPop < MOEOT > & _dest)
+    void operator()(eoPop < MOEOT > & _src, std::vector<unsigned int> & _select, eoPop < MOEOT > & _dest, unsigned int _number)
     {
-        for(unsigned int i=0; i<_select.size(); i++)
-        	explore(_src, _select[i], _dest);
+    	if(_number > 0){
+    		for(unsigned int i=0; i<_select.size(); i++)
+    			explore(_src, _select[i], _dest);
+    	}
     }
 
 private:
 
-	void explore(eoPop < MOEOT > & _src, unsigned int _i, eoPop < MOEOT > & _dest)
+	void explore(eoPop < MOEOT > & _src, unsigned int _i, eoPop < MOEOT > & _dest, unsigned int _number)
 	{
+		unsigned int tmp= _number;
 		moveInit(move, _src[_i]);
 		do
 		{
@@ -81,8 +84,9 @@ private:
 			move(_dest.back());
 			_dest.back().objectiveVector(objVec);
 			_dest.back().flag(0);
+			tmp--;
 		}
-		while (nextMove(move, _src[_i]));
+		while (nextMove(move, _src[_i]) && (tmp > 0));
 		_src[_i].flag(1);
 	}
 	/** Move */
