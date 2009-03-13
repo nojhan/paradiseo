@@ -58,7 +58,7 @@ public:
         eoEvalFunc < MOEOT > & _eval,
         moeoArchive < MOEOT > & _archive,
         moeoPopNeighborhoodExplorer < Move > & _explorer,
-        moeoUnvisitedSelect < Move > & _select) :
+        moeoUnvisitedSelect < MOEOT > & _select) :
             continuator(_continuator), loopEval(_eval), popEval(loopEval), archive(_archive), explorer(_explorer), select(_select) {}
 
 
@@ -96,7 +96,7 @@ protected:
     eoPopEvalFunc < MOEOT > & popEval;
     moeoArchive < MOEOT > & archive;
     moeoPopNeighborhoodExplorer < Move > & explorer;
-    moeoUnvisitedSelect < Move > & select;
+    moeoUnvisitedSelect < MOEOT > & select;
 
 class moeoContinue : public eoUF < eoPop < MOEOT > &, bool >
     {

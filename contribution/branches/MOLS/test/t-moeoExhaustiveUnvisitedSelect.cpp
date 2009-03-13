@@ -1,10 +1,10 @@
 /*
-* <moeoExhaustiveUnvisitedSelect.h>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
+* <t-moeoExhaustiveUnvisitedSelect.cpp>
+* Copyright (C) DOLPHIN Project-Team, INRIA Lille-Nord Europe, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
 *
 * Arnaud Liefooghe
-* Jérémie Humeau
+* Jeremie Humeau
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -35,37 +35,65 @@
 *
 */
 //-----------------------------------------------------------------------------
-
-#ifndef _MOEOEXHAUSTIVEUNVISITEDSELECT_H
-#define _MOEOEXHAUSTIVEUNVISITEDSELECT_H
+// t-moeoExhaustiveUnvisitedSelect.cpp
+//-----------------------------------------------------------------------------
 
 #include <eo>
 #include <moeo>
-#include <moeoUnvisitedSelect.h>
+#include <assert.h>
+#include <set>
+#include <iostream>
+#include <moeoExhaustiveUnvisitedSelect.h>
+//-----------------------------------------------------------------------------
 
-/**
- * TODO
- */
-template < class MOEOT >
-class moeoExhaustiveUnvisitedSelect : public moeoUnvisitedSelect < MOEOT >
+class ObjectiveVectorTraits : public moeoObjectiveVectorTraits
 {
-
 public:
-
-    moeoExhaustiveUnvisitedSelect(){}
-
-    std::vector <unsigned int> operator()(eoPop < MOEOT > & _src)
+    static bool minimizing (int i)
     {
-    	std::vector <unsigned int> res;
-    	res.resize(0);
-        for (unsigned int i=0; i<_src.size(); i++)
-        {
-            if (_src[i].flag() == 0)
-            	res.push_back(i);
-        }
-        return res;
+        return true;
     }
-
+    static bool maximizing (int i)
+    {
+        return false;
+    }
+    static unsigned int nObjectives ()
+    {
+        return 2;
+    }
 };
 
-#endif /*_MOEOEXHAUSTIVEUNVISITEDSELECT_H_*/
+typedef moeoRealObjectiveVector < ObjectiveVectorTraits > ObjectiveVector;
+
+typedef MOEO < ObjectiveVector, double, double > Solution;
+
+//-----------------------------------------------------------------------------
+
+int main()
+{
+    std::cout << "[moeoExhaustiveUnvisitedSelect]\n\n";
+
+    // objective vectors
+    eoPop < Solution > pop;
+    pop.resize(5);
+    pop[0].flag(1);
+    pop[1].flag(0);
+    pop[2].flag(0);
+    pop[3].flag(1);
+    pop[4].flag(0);
+
+    moeoExhaustiveUnvisitedSelect < Solution > select;
+
+    std::vector <unsigned int> res;
+
+    res=select(pop);
+    assert(res.size()==3);
+	assert(res[0]==1);
+	assert(res[1]==2);
+	assert(res[2]==4);
+
+    std::cout << "OK" << std::endl;
+    return EXIT_SUCCESS;
+}
+
+//-----------------------------------------------------------------------------

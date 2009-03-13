@@ -59,7 +59,7 @@ public:
         eoEvalFunc < MOEOT > & _eval,
         eoContinue < MOEOT > & _continuator,
         moeoPopNeighborhoodExplorer < Move > & _explorer,
-        moeoUnvisitedSelect < Move > & _select,
+        moeoUnvisitedSelect < MOEOT > & _select,
         moeoArchive < MOEOT > & _globalArchive,
         std::string _fileName) :
             init(_init), eval(_eval), continuator(_continuator), ls(continuator, _eval, internalArchive, _explorer, _select), globalArchive(_globalArchive), fileName(_fileName), count(0) {}

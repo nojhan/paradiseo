@@ -45,10 +45,9 @@
 /**
  * TODO
  */
-template < class Move >
-class moeoNumberUnvisitedSelect : public moeoUnvisitedSelect < Move >
+template < class MOEOT >
+class moeoNumberUnvisitedSelect : public moeoUnvisitedSelect < MOEOT >
 {
-    typedef typename Move::EOType MOEOT;
 
 public:
 
