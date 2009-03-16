@@ -117,6 +117,7 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${MOEO_BIN_DIR}/lib)
 
 SET (TEST_LIST
 		t-moeoExhaustiveUnvisitedSelect
+		t-moeoNumberUnvisitedSelect
 	)
 
 FOREACH (test ${TEST_LIST})
