@@ -45,6 +45,7 @@
 #include <moMoveInit.h>
 #include <moNextMove.h>
 #include <moMoveIncrEval.h>
+#include <moeoPopNeighborhoodExplorer.h>
 
 /**
  * TODO

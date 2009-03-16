@@ -41,6 +41,7 @@
 
 #include <eo>
 #include <moeo>
+#include <moeoUnvisitedSelect.h>
 
 /**
  * TODO

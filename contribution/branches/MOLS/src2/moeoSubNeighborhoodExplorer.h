@@ -45,6 +45,7 @@
 #include <moMoveInit.h>
 #include <moNextMove.h>
 #include <moMoveIncrEval.h>
+#include <moeoPopNeighborhoodExplorer.h>
 
 /**
  * TODO
@@ -88,7 +89,8 @@ private:
 			tmp--;
 		}
 		while (nextMove(move, _src[_i]) && (tmp > 0));
-		_src[_i].flag(1);
+		if(!nextMove(move, _src[_i]))
+			_src[_i].flag(1);
 	}
 	/** Move */
 	Move move;
