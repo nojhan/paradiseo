@@ -24,6 +24,7 @@
 #include <PhyloMOEO_init.h>
 #include <likelihoodcalculator.h>
 #include <ExceptionManager.h>
+#include <sys/time.h>
 
 
 void welcome_message();
