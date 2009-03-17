@@ -104,6 +104,7 @@ INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${MOEO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${MO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(/home/humeau/workspace/MOLS/src2)
+INCLUDE_DIRECTORIES(/home/humeau/workspace/MOLS/test)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################

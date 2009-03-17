@@ -44,28 +44,8 @@
 #include <set>
 #include <iostream>
 #include <moeoNumberUnvisitedSelect.h>
+#include <moeoTestClass.h>
 //-----------------------------------------------------------------------------
-
-class ObjectiveVectorTraits : public moeoObjectiveVectorTraits
-{
-public:
-    static bool minimizing (int i)
-    {
-        return true;
-    }
-    static bool maximizing (int i)
-    {
-        return false;
-    }
-    static unsigned int nObjectives ()
-    {
-        return 2;
-    }
-};
-
-typedef moeoRealObjectiveVector < ObjectiveVectorTraits > ObjectiveVector;
-
-typedef MOEO < ObjectiveVector, double, double > Solution;
 
 //-----------------------------------------------------------------------------
 
