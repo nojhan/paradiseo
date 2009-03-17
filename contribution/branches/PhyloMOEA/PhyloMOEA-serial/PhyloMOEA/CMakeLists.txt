@@ -30,7 +30,7 @@ SET( PHYLOMOEA_SOURCES	eigensolver.cpp
 						treeIterator.cpp
 						utils.cpp )
 
-ADD_EXECUTABLE( PhyloMOEA ${PHYLOMOEA_SOURCES} )
+ADD_EXECUTABLE( PhyloMOEA-serial ${PHYLOMOEA_SOURCES} )
 
 TARGET_LINK_LIBRARIES(PhyloMOEA gsl gslcblas GTL eo eoutils ga moeo cma)
 
