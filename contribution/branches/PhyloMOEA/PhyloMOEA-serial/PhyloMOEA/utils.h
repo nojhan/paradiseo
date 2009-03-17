@@ -30,5 +30,9 @@ void welcome_message();
 void save_exp_params(ostream &);
 void optimize_solutions( eoPop<PhyloMOEO> &, LikelihoodCalculator &);
 void readtrees(const char *, eoPop<PhyloMOEO> &);
+int  timeval_subtract (struct timeval *, struct timeval *, struct timeval *);
+void print_cpu_time(clock_t ,clock_t);
+void print_elapsed_time(struct timeval *, struct timeval *);
+void print_elapsed_time_short(struct timeval *, struct timeval *, ostream &os=cout);
 #endif
 

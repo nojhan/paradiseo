@@ -34,6 +34,66 @@ extern string datafile,usertree, expid, path;
 extern double pcrossover, pmutation, kappa, alpha;
 extern unsigned int ngenerations,  popsize, ncats;
 
+int   timeval_subtract (struct timeval *result, struct timeval *x, struct timeval *y)
+{
+/* Perform the carry for the later subtraction by updating y. */
+	if (x->tv_usec < y->tv_usec) {
+		int nsec = (y->tv_usec - x->tv_usec) / 1000000 + 1;
+		y->tv_usec -= 1000000 * nsec;
+		y->tv_sec += nsec;
+	}
+
+	if (x->tv_usec - y->tv_usec > 1000000) {
+		int nsec = (x->tv_usec - y->tv_usec) / 1000000;
+		y->tv_usec += 1000000 * nsec;
+		y->tv_sec -= nsec;
+	}
+
+	/* Compute the time remaining to wait.
+	tv_usec is certainly positive. */
+	result->tv_sec = x->tv_sec - y->tv_sec;
+	result->tv_usec = x->tv_usec - y->tv_usec;
+	
+	/* Return 1 if result is negative. */
+	return x->tv_sec < y->tv_sec;
+}
+
+
+void print_elapsed_time(struct timeval *x, struct timeval *y)
+{
+	struct timeval result;
+	timeval_subtract(&result,y,x);	
+	long remainder = result.tv_sec % 3600;
+	long hours = (result.tv_sec - remainder)/3600;
+	long seconds = remainder % 60;
+	long minutes = (remainder - seconds) / 60;
+	cout << "Execution time :  ";
+	cout.width(3);
+	cout.fill(' ');
+	cout << hours << ":";
+	cout.width(2);
+	cout.fill('0');
+	cout << minutes << ":";
+	cout.width(2);
+	cout.fill('0');
+	cout << seconds << "." << result.tv_usec << "(" << result.tv_sec << ")" << endl;
+}
+
+void print_elapsed_time_short(struct timeval *x, struct timeval *y, ostream &os)
+{
+	struct timeval result;
+	timeval_subtract(&result,y,x);	
+	os << "  " << result.tv_sec << "." << result.tv_usec;
+}
+
+
+void print_cpu_time(clock_t start, clock_t end)
+{
+	double cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+	cout << "   " << cpu_time_used << "   ";
+}
+
+
 void welcome_message()
 {
 	cout << "\nPhyloMOEA, a program for multi-criteria phylogenetic inference\n";

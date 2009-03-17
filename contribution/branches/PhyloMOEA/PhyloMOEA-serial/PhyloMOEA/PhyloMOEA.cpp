@@ -22,7 +22,7 @@ RandomNr *rn;
 //Sequences *seq;
 long seed;
 //vector<phylotreeIND> arbores;
-string datafile,usertree, expid, path, algotype;
+string datafile,usertree, expid, path, algotype, optimize_branch;
 double pcrossover, pmutation, kappa, alpha;
 unsigned int ngenerations,  popsize, ncats;
 ofstream exp_data,evolution_data, best_media_scores, final_trees, final_pareto_trees, clades_pareto, clades_final,final_scores,pareto_scores;
@@ -30,6 +30,9 @@ ofstream exp_data,evolution_data, best_media_scores, final_trees, final_pareto_t
 
 int main(int argc, char *argv[])
 {
+	struct timeval tempo1, tempo2, result;
+	gettimeofday(&tempo1, NULL);
+
 	welcome_message();
 
 	eoParser parser(argc, argv);
@@ -48,6 +51,7 @@ int main(int argc, char *argv[])
 	usertree = parser.createParam(string(), "treef", "Treefile", 't',"Param").value();
 	path = parser.createParam(string(), "path", "Treefile", 'p',"Param").value();
 	algotype = parser.createParam(string("nsgaii"), "algo", "Algorith, Type", 'b',"Param").value();
+	optimize_branch = parser.createParam(string("yes"), "opt", "Optimize Branch Lenght", 'o',"Param").value();
  	ostringstream convert;
  	convert << seed;
 	expid = parser.createParam(convert.str(), "expid", "Experiment ID", 'e',"Param").value();
@@ -184,7 +188,7 @@ int main(int argc, char *argv[])
 	// optimize remaining solutions
 	cout << "\nOptimizing tree branch lenghts...\n";
 	
-	optimize_solutions( finalsolutions, lik_calc );
+	if(optimize_branch=="yes")optimize_solutions( finalsolutions, lik_calc );
 	cout << "\nReevaluating individuals \n";
 	apply<PhyloMOEO> ( byobj, finalsolutions );
 
@@ -214,8 +218,8 @@ int main(int argc, char *argv[])
 	// remove dominate solutions
 	cout << "\nCalculating Pareto-optimal Solutions...";
 
-    PhyloMOEOParetoSolutionsArchive paretosolutions;
-    paretosolutions.operator()(finalsolutions);
+      PhyloMOEOParetoSolutionsArchive paretosolutions;
+      paretosolutions.operator()(finalsolutions);
 	paretosolutions.save_scores(path + datafile + "_pareto_scores_" + expid + ".txt","#Pareto Solutions Scores");
 	paretosolutions.save_trees(path + datafile + "_pareto_trees_" + expid + ".txt");
 	cout << " done\n";
@@ -244,6 +248,8 @@ int main(int argc, char *argv[])
 //	delete probmatrixs;
 	delete rn;
 	cout << "\nPhyloMOEA execution finishes !\n";
+	gettimeofday(&tempo2, NULL);
+	print_elapsed_time(&tempo1,&tempo2);
 	return 0;
 } 
 

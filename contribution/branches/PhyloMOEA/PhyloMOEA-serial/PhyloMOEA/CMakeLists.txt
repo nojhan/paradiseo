@@ -32,6 +32,6 @@ SET( PHYLOMOEA_SOURCES	eigensolver.cpp
 
 ADD_EXECUTABLE( PhyloMOEA-serial ${PHYLOMOEA_SOURCES} )
 
-TARGET_LINK_LIBRARIES(PhyloMOEA gsl gslcblas GTL eo eoutils ga moeo cma)
+TARGET_LINK_LIBRARIES(PhyloMOEA-serial gsl gslcblas GTL eo eoutils ga moeo cma)
 
-INSTALL( TARGETS PhyloMOEA RUNTIME DESTINATION bin)
+INSTALL( TARGETS PhyloMOEA-serial RUNTIME DESTINATION bin)
