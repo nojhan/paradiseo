@@ -3,6 +3,7 @@ SET (TEST_LIST
 		t-moeoNumberUnvisitedSelect
 		t-moeoExhaustiveNeighborhoodExplorer
 		t-moeoSubNeighborhoodExplorer
+		t-moeoUnifiedDominanceBasedLS
 	)
 
 FOREACH (test ${TEST_LIST})

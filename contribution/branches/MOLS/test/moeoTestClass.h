@@ -24,6 +24,17 @@ typedef moeoRealObjectiveVector < ObjectiveVectorTraits > ObjectiveVector;
 
 typedef MOEO < ObjectiveVector, double, double > Solution;
 
+class testEval : public eoEvalFunc<Solution>
+{
+public:
+    void operator()(Solution & _solution){
+    	ObjectiveVector objVec;
+    	objVec[0]=500;
+    	objVec[1]=0;
+    	_solution.objectiveVector(objVec);
+    }
+};
+
 class testMove : public moMove < Solution >
 {
 public :
@@ -82,6 +93,42 @@ public :
     ObjectiveVector objVec= _solution.objectiveVector();
     objVec[0]+=2;
     objVec[1]+=2;
+    return objVec;
+  }
+} ;
+
+class testMoveIncrEval2 : public moMoveIncrEval <testMove, ObjectiveVector>
+{
+public :
+
+	testMoveIncrEval2(unsigned int _counter=1):counter(_counter){};
+
+  ObjectiveVector operator () (const testMove & _move, const Solution & _solution)
+  {
+    ObjectiveVector objVec= _solution.objectiveVector();
+    objVec[0]+=counter;
+    objVec[1]+=counter;
+    counter++;
+    return objVec;
+  }
+private:
+	unsigned int counter;
+} ;
+
+class testMoveIncrEval3 : public moMoveIncrEval <testMove, ObjectiveVector>
+{
+public :
+  ObjectiveVector operator () (const testMove & _move, const Solution & _solution)
+  {
+    ObjectiveVector objVec= _solution.objectiveVector();
+    if(objVec[0]>0)
+    	objVec[0]--;
+    else
+    	objVec[0]=500;
+    if(objVec[1]<500)
+    	objVec[1]++;
+    else
+    	objVec[1]=500;
     return objVec;
   }
 } ;
