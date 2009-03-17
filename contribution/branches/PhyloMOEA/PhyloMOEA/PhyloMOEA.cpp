@@ -25,7 +25,7 @@ RandomNr *rn;
 //Sequences *seq;
 long seed;
 //vector<phylotreeIND> arbores;
-string datafile,usertree, expid, path, algotype;
+string datafile,usertree, expid, path, algotype, optimize_branch;
 double pcrossover, pmutation, kappa, alpha;
 unsigned int ngenerations,  popsize, ncats;
 ofstream exp_data,evolution_data, best_media_scores, final_trees, final_pareto_trees, clades_pareto, clades_final,final_scores,pareto_scores;
@@ -58,6 +58,7 @@ int main(int argc, char *argv[])
 	usertree = parser.createParam(string(), "treef", "Treefile", 't',"Param").value();
 	path = parser.createParam(string(), "path", "Treefile", 'p',"Param").value();
 	algotype = parser.createParam(string("nsgaii"), "algo", "Algorith, Type", 'b',"Param").value();
+	optimize_branch = parser.createParam(string("yes"), "opt", "Optimize Branch Lenght", 'o',"Param").value();
  	ostringstream convert;
  	convert << seed;
 	expid = parser.createParam(convert.str(), "expid", "Experiment ID", 'e',"Param").value();
@@ -237,14 +238,16 @@ int main(int argc, char *argv[])
 	//finalsolutions[0].get_tree().printNewick(cout);
 	lik_calc_ptr = &lik_calc;
 	// make the optimization phase also in parallel
-	peo :: init (argc, argv);
-	peoMultiStart <PhyloMOEO> ParallelLKOptimizationInit (optimize_solution);
-	peoWrapper ParallelLKOptimization (ParallelLKOptimizationInit, finalsolutions);
-	ParallelLKOptimizationInit.setOwner(ParallelLKOptimization);
-	if (getNodeRank()==1) cout << "\nOptimizing tree branch lenghts...\n";
-	peo :: run( );
-	peo :: finalize( );
-	
+	if(optimize_branch=="yes")
+	{
+		peo :: init (argc, argv);
+		peoMultiStart <PhyloMOEO> ParallelLKOptimizationInit (optimize_solution);
+		peoWrapper ParallelLKOptimization (ParallelLKOptimizationInit, finalsolutions);
+		ParallelLKOptimizationInit.setOwner(ParallelLKOptimization);
+		if (getNodeRank()==1) cout << "\nOptimizing tree branch lenghts...\n";
+		peo :: run( );
+		peo :: finalize( );
+	}
 	if (getNodeRank()==1)
 	{
 	
