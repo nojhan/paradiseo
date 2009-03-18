@@ -39,11 +39,10 @@
 #ifndef _MOEOUNVISITEDSELECT_H
 #define _MOEOUNVISITEDSELECT_H
 
-#include <eo>
-#include <moeo>
+#include <eoPop.h>
 
 /**
- * TODO
+ * Abstract Selector
  */
 template < class MOEOT >
 class moeoUnvisitedSelect: public eoUF < eoPop < MOEOT > &, std::vector< unsigned int > >{};

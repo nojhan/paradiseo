@@ -39,16 +39,18 @@
 #ifndef _MOEOPOPNEIGHBORHOODEXPLORER_H
 #define _MOEOPOPNEIGHBORHOODEXPLORER_H
 
-#include <eo>
-#include <moeo>
+#include <eoPop.h>
 
 /**
- * TODO
+ * Abstract class for multi-objective local search neighborhood exploration
  */
 template < class Move >
 class moeoPopNeighborhoodExplorer{
 
 public:
+	/**
+	 * abstract functor which realise exploration
+	 */
 	virtual void operator()(eoPop < typename Move::EOType > &, std::vector <unsigned int>, eoPop < typename Move::EOType > &) = 0;
 
 };

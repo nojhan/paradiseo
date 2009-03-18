@@ -39,12 +39,11 @@
 #ifndef _MOEOEXHAUSTIVEUNVISITEDSELECT_H
 #define _MOEOEXHAUSTIVEUNVISITEDSELECT_H
 
-#include <eo>
-#include <moeo>
+#include <eoPop.h>
 #include <moeoUnvisitedSelect.h>
 
 /**
- * TODO
+ * Selector which select all unvisited individuals of a population
  */
 template < class MOEOT >
 class moeoExhaustiveUnvisitedSelect : public moeoUnvisitedSelect < MOEOT >
@@ -52,8 +51,16 @@ class moeoExhaustiveUnvisitedSelect : public moeoUnvisitedSelect < MOEOT >
 
 public:
 
+	/**
+	 * Default ctor
+	 */
     moeoExhaustiveUnvisitedSelect(){}
 
+    /**
+     * functor which return index of selected individuals of a population
+     * @param _src the population
+     * @return the vector contains index of all unvisited individuals of the population
+     */
     std::vector <unsigned int> operator()(eoPop < MOEOT > & _src)
     {
     	std::vector <unsigned int> res;

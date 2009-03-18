@@ -39,8 +39,7 @@
 #ifndef _MOEOEXHAUSTIVENEIGHBORHOODEXPLORER_H
 #define _MOEOEXHAUSTIVENEIGHBORHOODEXPLORER_H
 
-#include <eo>
-#include <moeo>
+#include <eoPop.h>
 #include <moMove.h>
 #include <moMoveInit.h>
 #include <moNextMove.h>
@@ -48,51 +47,71 @@
 #include <moeoPopNeighborhoodExplorer.h>
 
 /**
- * TODO
+ * Explorer which explore all the neighborhood
  */
 template < class Move >
 class moeoExhaustiveNeighborhoodExplorer : public moeoPopNeighborhoodExplorer < Move >
 {
+	/** Alias for the type */
     typedef typename Move::EOType MOEOT;
+    /** Alias for the objeciveVector */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 
 public:
 
+	/**
+	 * Ctor
+	 * @param _moveInit the move initializer
+	 * @param _nextMove allow to do or not a move
+	 * @param _incrEval a (generally) efficient evaluation fonction
+	 */
     moeoExhaustiveNeighborhoodExplorer(
         moMoveInit < Move > & _moveInit,
         moNextMove < Move > & _nextMove,
         moMoveIncrEval < Move, ObjectiveVector > & _incrEval)
             : moveInit(_moveInit), nextMove(_nextMove), incrEval(_incrEval){}
 
+    /**
+     * functor to explore the neighborhood
+     * @param _src the population to explore
+     * @param _select contains index of individuals from the population to explore
+     * @param _dest contains new generated individuals
+     */
     void operator()(eoPop < MOEOT > & _src, std::vector < unsigned int> _select, eoPop < MOEOT > & _dest)
     {
         for(unsigned int i=0; i<_select.size(); i++)
-        	explore(_src, _select[i], _dest);
+        	explore(_src[_select[i]], _dest);
     }
 
 private:
 
-	void explore(eoPop < MOEOT > & _src, unsigned int _i, eoPop < MOEOT > & _dest)
+	/**
+	 * explorer of one individual
+	 * @param _src the individual to explore
+	 * @param _dest contains new generated individuals
+	 */
+	void explore(MOEOT & _src , eoPop < MOEOT > & _dest)
 	{
-		moveInit(move, _src[_i]);
+		moveInit(move, _src);
 		do
 		{
-			objVec = incrEval(move, _src[_i]);
-			_dest.push_back(_src[_i]);
+			objVec = incrEval(move, _src);
+			_dest.push_back(_src);
 			move(_dest.back());
 			_dest.back().objectiveVector(objVec);
 			_dest.back().flag(0);
 		}
-		while (nextMove(move, _src[_i]));
-		_src[_i].flag(1);
+		while (nextMove(move, _src));
+		_src.flag(1);
 	}
+
 	/** Move */
 	Move move;
 	/** ObjectiveVector */
     ObjectiveVector objVec;
     /** the move initializer */
     moMoveInit < Move > & moveInit;
-    /** the neighborhood explorer */
+    /** the entity which allow to do a move */
     moNextMove < Move > & nextMove;
     /** the incremental evaluation */
     moMoveIncrEval < Move, ObjectiveVector > & incrEval;

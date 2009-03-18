@@ -39,12 +39,11 @@
 #ifndef _MOEONUMBERUNVISITEDSELECT_H
 #define _MOEONUMBERUNVISITEDSELECT_H
 
-#include <eo>
-#include <moeo>
+#include <eoPop.h>
 #include <moeoUnvisitedSelect.h>
 
 /**
- * TODO
+ * Selector which select a part of unvisited individuals of a population
  */
 template < class MOEOT >
 class moeoNumberUnvisitedSelect : public moeoUnvisitedSelect < MOEOT >
@@ -52,8 +51,17 @@ class moeoNumberUnvisitedSelect : public moeoUnvisitedSelect < MOEOT >
 
 public:
 
+	/**
+	 * Ctor
+	 * @param _number the number of individuals to select
+	 */
     moeoNumberUnvisitedSelect(unsigned int _number): number(_number){}
 
+    /**
+     * functor which return index of selected individuals of a population
+     * @param _src the population
+     * @return the vector contains index of the part of unvisited individuals of the population
+     */
     std::vector <unsigned int> operator()(eoPop < MOEOT > & _src)
     {
     	std::vector <unsigned int> res;
@@ -72,6 +80,7 @@ public:
     }
 
 private:
+	/** number of individuals to select */
 	unsigned int number;
 
 };

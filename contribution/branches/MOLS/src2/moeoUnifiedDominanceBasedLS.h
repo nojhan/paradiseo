@@ -39,20 +39,34 @@
 #ifndef _MOEOUNIFIEDDOMINANCEBASEDLS_H
 #define _MOEOUNIFIEDDOMINANCEBASEDLS_H
 
-#include <eo>
-#include <moeo>
+#include <eoPop.h>
+#include <eoContinue.h>
+#include <eoEvalFunc.h>
+#include <eoPopEvalFunc.h>
+#include <archive/moeoArchive.h>
 #include <moeoPopLS.h>
 #include <moeoPopNeighborhoodExplorer.h>
 #include <moeoUnvisitedSelect.h>
 
+/**
+ * A class to design dominance based local searches
+ */
 template < class Move >
 class moeoUnifiedDominanceBasedLS : public moeoPopLS < Move >
 {
 public:
 
+	/** Alias for the type */
     typedef typename Move::EOType MOEOT;
 
-
+	/**
+	 * Ctor
+	 * @param _continuator a stop creterion
+	 * @param _eval a evaluation function
+	 * @param _archive a archive to store no-dominated individuals
+	 * @param _explorer a neighborhood explorer
+	 * @param _select a selector of unvisited individuals of a population
+	 */
     moeoUnifiedDominanceBasedLS(
         eoContinue < MOEOT > & _continuator,
         eoEvalFunc < MOEOT > & _eval,
@@ -60,7 +74,6 @@ public:
         moeoPopNeighborhoodExplorer < Move > & _explorer,
         moeoUnvisitedSelect < MOEOT > & _select) :
             continuator(_continuator), loopEval(_eval), popEval(loopEval), archive(_archive), explorer(_explorer), select(_select) {}
-
 
     /**
      * Applies a few generation of evolution to the population _pop.
@@ -74,36 +87,48 @@ public:
         archive(_pop);
         do{
             tmp_pop.resize(0);
-            //selection des individus non visités à explorer
+            //selection
             selectionVector = select(archive);
             //exploration
-            //explorer(archive, selectionVector, tmp_pop);
             explorer(archive, selectionVector, tmp_pop);
-            //mise à jour de la pop ou archive
+            //archivage
             archive(tmp_pop);
         }
         while (continuator(archive) && naturalContinuator(archive));
-//         std::cout << "Final archive\n";
-//         archive.sortedPrintOn(std::cout);
-//         std::cout << std::endl;
     }
-
 
 protected:
 
+	/** continuator */
     eoContinue < MOEOT > & continuator;
+    /** loopEval */
     eoPopLoopEval < MOEOT > loopEval;
+    /** popEval */
     eoPopEvalFunc < MOEOT > & popEval;
+    /** archive */
     moeoArchive < MOEOT > & archive;
+    /** explorer */
     moeoPopNeighborhoodExplorer < Move > & explorer;
+    /** selector */
     moeoUnvisitedSelect < MOEOT > & select;
 
-class moeoContinue : public eoUF < eoPop < MOEOT > &, bool >
+    /**
+     * Natural Continuator (Stop when all individuals of the population are visited)
+     */
+    class moeoContinue : public eoUF < eoPop < MOEOT > &, bool >
     {
     public:
 
+    	/**
+    	 * Ctor
+    	 */
         moeoContinue(){}
 
+        /**
+         * functor which evaluate if the algorithm continue or not
+         * @param _pop the population
+         * @return true if the algorithm continue, else return false
+         */
         virtual bool operator()(eoPop < MOEOT > & _pop)
         {
             bool res = false;

@@ -45,7 +45,6 @@
  * Abstract class for Population based multi-objective local search.
  */
 template < class Move >
-class moeoPopLS : public moeoPopAlgo < typename Move::EOType >
-    {};
+class moeoPopLS : public moeoPopAlgo < typename Move::EOType > {};
 
 #endif /*MOEOPOPLS_H_*/
