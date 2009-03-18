@@ -17,6 +17,8 @@ ENABLE_LANGUAGE(C)
 #####################################################################################
 INCLUDE(CMakeBackwardCompatibilityCXX)
 
+INCLUDE(FindDoxygen)
+
 INCLUDE(CheckLibraryExists)
                
 INCLUDE(Dart OPTIONAL) 
@@ -119,3 +121,4 @@ LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${MOEO_BIN_DIR}/lib)
 
 ADD_SUBDIRECTORY(src2)
 ADD_SUBDIRECTORY(test)
+ADD_SUBDIRECTORY(doc)
