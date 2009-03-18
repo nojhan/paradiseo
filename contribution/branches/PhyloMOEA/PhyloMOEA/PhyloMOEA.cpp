@@ -18,7 +18,7 @@
 
 #include <utils.h>
 #include <apply.h>
-
+#include <omp.h>
 
 gsl_rng *rn2;
 RandomNr *rn;
@@ -27,7 +27,7 @@ long seed;
 //vector<phylotreeIND> arbores;
 string datafile,usertree, expid, path, algotype, optimize_branch;
 double pcrossover, pmutation, kappa, alpha;
-unsigned int ngenerations,  popsize, ncats;
+unsigned int ngenerations,  popsize, ncats, nthreads;
 ofstream exp_data,evolution_data, best_media_scores, final_trees, final_pareto_trees, clades_pareto, clades_final,final_scores,pareto_scores;
 LikelihoodCalculator *lik_calc_ptr;
 phylotreeIND *templatetree_ptr;
@@ -62,7 +62,9 @@ int main(int argc, char *argv[])
  	ostringstream convert;
  	convert << seed;
 	expid = parser.createParam(convert.str(), "expid", "Experiment ID", 'e',"Param").value();
+    nthreads = parser.createParam(omp_get_max_threads(), "nthreads", "Numthreads", 'i',"Param").value();
 
+	omp_set_num_threads(nthreads);
 	if(getNodeRank()==1) welcome_message();
 	if( datafile.size()==0 )
 	{
