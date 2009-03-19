@@ -1,5 +1,5 @@
 /*
-* <t-moeoSubNeighborhoodExplorer.cpp>
+* <t-moeoFirstImprovingNeighborhoodExplorer.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Lille-Nord Europe, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
 *
@@ -35,16 +35,15 @@
 *
 */
 //-----------------------------------------------------------------------------
-// t-moeoSubNeighborhoodExplorer.cpp
+// t-moeoFirstImprovingNeighborhoodExplorer.cpp
 //-----------------------------------------------------------------------------
 
 #include <eo>
 #include <mo>
 #include <moeo>
 #include <assert.h>
-#include <set>
 #include <iostream>
-#include <moeoSubNeighborhoodExplorer.h>
+#include <moeoFirstImprovingNeighborhoodExplorer.h>
 #include <moeoTestClass.h>
 //-----------------------------------------------------------------------------
 
@@ -82,7 +81,7 @@ int main()
     testMoveNext next;
     testMoveIncrEval incr;
 
-    moeoSubNeighborhoodExplorer < testMove > explorer(init, next, incr, 6);
+    moeoFirstImprovingNeighborhoodExplorer < testMove > explorer(init, next, incr);
 
     explorer(src, select, dest);
     assert(dest.size()==10);
@@ -109,7 +108,7 @@ int main()
     src[4].flag(0);
     dest.resize(0);
 
-    moeoSubNeighborhoodExplorer < testMove > explorer2(init, next, incr, 3);
+    moeoFirstImprovingNeighborhoodExplorer < testMove > explorer2(init, next, incr);
 
     explorer2(src, select, dest);
     assert(dest.size()==6);

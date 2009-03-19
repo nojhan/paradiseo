@@ -1,5 +1,5 @@
 /*
-* <moeoSubNeighborhoodExplorer.h>
+* <moeoFirstImprovingNeighborhoodExplorer.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
 *
@@ -36,26 +36,25 @@
 */
 //-----------------------------------------------------------------------------
 
-#ifndef _MOEOSUBNEIGHBORHOODEXPLORER_H
-#define _MOEOSUBNEIGHBORHOODEXPLORER_H
+#ifndef _MOEOFIRSTIMPROVINGNEIGHBORHOODEXPLORER_H
+#define _MOEOFIRSTIMPROVINGNEIGHBORHOODEXPLORER_H
 
-#include <eoPop.h>
-#include <moMove.h>
-#include <moMoveInit.h>
-#include <moNextMove.h>
-#include <moMoveIncrEval.h>
-#include <moeoPopNeighborhoodExplorer.h>
+#include <moeoSubNeighborhoodExplorer.h>
 
 /**
  * Explorer which explore a part of the neighborhood
  */
 template < class Move >
-class moeoSubNeighborhoodExplorer : public moeoPopNeighborhoodExplorer < Move >
+class moeoFirstImprovingNeighborhoodExplorer : public moeoSubNeighborhoodExplorer < Move >
 {
 	/** Alias for the type */
     typedef typename Move::EOType MOEOT;
     /** Alias for the objeciveVector */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
+
+    using moeoSubNeighborhoodExplorer<Move>::move;
+    using moeoSubNeighborhoodExplorer<Move>::objVec;
+    using moeoSubNeighborhoodExplorer<Move>::number;
 
 public:
 
@@ -66,47 +65,39 @@ public:
 	 * @param _incrEval a (generally) efficient evaluation fonction
 	 * @param _number the number of neighbor to explore
 	 */
-    moeoSubNeighborhoodExplorer(
+    moeoFirstImprovingNeighborhoodExplorer(
         moMoveInit < Move > & _moveInit,
         moNextMove < Move > & _nextMove,
-        moMoveIncrEval < Move, ObjectiveVector > & _incrEval,
-        unsigned int _number)
-            : moveInit(_moveInit), nextMove(_nextMove), incrEval(_incrEval), number(_number){}
+        moMoveIncrEval < Move, ObjectiveVector > & _incrEval)
+            : moeoSubNeighborhoodExplorer< Move >(_moveInit, _nextMove, _incrEval, 0){}
 
-	/**
-	 * functor to explore the neighborhood
-	 * @param _src the population to explore
-	 * @param _select contains index of individuals from the population to explore
-	 * @param _dest contains new generated individuals
-	 */
-    void operator()(eoPop < MOEOT > & _src, std::vector <unsigned int> _select, eoPop < MOEOT > & _dest)
-    {
-		for(unsigned int i=0; i<_select.size(); i++)
-			explore(_src[_select[i]], _dest);
-    }
-
-protected:
+private:
 
 	/**
 	 * explorer of one individual
 	 * @param _src the individual to explore
 	 * @param _dest contains new generated individuals
 	 */
-	virtual void explore(MOEOT & _src, eoPop < MOEOT > & _dest) = 0;
+	void explore(MOEOT & _src, eoPop < MOEOT > & _dest)
+	{
+		moveInit(move, _src);
+		do
+		{
+			objVec = incrEval(move, _src);
+			if(!comparator(objVec, _src.objectiveVector())){
+				_dest.push_back(_src);
+				move(_dest.back());
+				_dest.back().objectiveVector(objVec);
+				_dest.back().flag(0);
+			}
+		}
+		while (nextMove(move, _src) && (comparator( _src.objectiveVector(),objVec)));
+		if(!nextMove(move, _src))
+			_src.flag(1);
+	}
 
-	/** Move */
-	Move move;
-	/** ObjectiveVector */
-    ObjectiveVector objVec;
-    /** the move initializer */
-    moMoveInit < Move > & moveInit;
-    /** the entity which allow to do a move */
-    moNextMove < Move > & nextMove;
-    /** the incremental evaluation */
-    moMoveIncrEval < Move, ObjectiveVector > & incrEval;
-    /** number of neighbor to explore for each selected individual*/
-    unsigned int number;
-
+	/** Objective Vector Pareto Comparator */
+	moeoParetoObjectiveVectorComparator<ObjectiveVector> comparator;
 };
 
-#endif /*_MOEOSUBNEIGHBORHOODEXPLORER_H_*/
+#endif /*_MOEOFIRSTIMPROVINGNEIGHBORHOODEXPLORER_H_*/

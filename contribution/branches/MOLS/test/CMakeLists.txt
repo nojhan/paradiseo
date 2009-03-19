@@ -2,7 +2,8 @@ SET (TEST_LIST
 		t-moeoExhaustiveUnvisitedSelect
 		t-moeoNumberUnvisitedSelect
 		t-moeoExhaustiveNeighborhoodExplorer
-		t-moeoSubNeighborhoodExplorer
+		t-moeoSimpleSubNeighborhoodExplorer
+		t-moeoFirstImprovingNeighborhoodExplorer
 		t-moeoUnifiedDominanceBasedLS
 	)
 
