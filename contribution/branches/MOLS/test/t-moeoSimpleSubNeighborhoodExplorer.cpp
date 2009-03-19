@@ -54,7 +54,7 @@
 
 int main()
 {
-    std::cout << "[moeoSubNeighborhoodExplorer]\n\n";
+    std::cout << "[moeoSimpleSubNeighborhoodExplorer]\n\n";
 
     // objective vectors
     ObjectiveVector obj0, obj1;

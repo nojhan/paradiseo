@@ -53,80 +53,52 @@
 
 int main()
 {
-    std::cout << "[moeoSubNeighborhoodExplorer]\n\n";
+    std::cout << "[moeoFirstImprovingNeighborhoodExplorer] => ";
 
     // objective vectors
-    ObjectiveVector obj0, obj1;
-    obj0[0]=0;
-    obj0[1]=1;
-    obj1[0]=10;
-    obj1[1]=11;
+    ObjectiveVector obj0;
+    obj0[0]=10;
+    obj0[1]=10;
     eoPop < Solution > src;
     eoPop < Solution > dest;
     std::vector < unsigned int > select;
-    src.resize(5);
-    src[2].objectiveVector(obj0);
-    src[4].objectiveVector(obj1);
+    src.resize(1);
+    src[0].objectiveVector(obj0);
     src[0].flag(0);
-    src[1].flag(0);
-    src[2].flag(0);
-    src[3].flag(0);
-    src[4].flag(0);
     dest.resize(0);
-    select.resize(2);
-    select[0]=2;
-    select[1]=4;
+    select.resize(1);
+    select[0]=0;
 
     testMoveInit init;
     testMoveNext next;
-    testMoveIncrEval incr;
+    testMoveIncrEval4 incr;
+    testMoveIncrEval3 incr2;
 
     moeoFirstImprovingNeighborhoodExplorer < testMove > explorer(init, next, incr);
 
     explorer(src, select, dest);
-    assert(dest.size()==10);
+
+    assert(dest.size()==3);
     assert(src[0].flag()==0);
-    assert(src[1].flag()==0);
-    assert(src[2].flag()==1);
-    assert(src[3].flag()==0);
-    assert(src[4].flag()==1);
-    for(int i=0 ; i< 10 ; i++)
+    for(int i=0 ; i< 3 ; i++)
     	assert(dest[i].flag()==0);
-    assert(dest[0].objectiveVector()[0]==2);
-    assert(dest[1].objectiveVector()[1]==3);
-    assert(dest[2].objectiveVector()[0]==2);
-    assert(dest[3].objectiveVector()[1]==3);
-    assert(dest[4].objectiveVector()[0]==2);
+    assert(dest[0].objectiveVector()[0]==11);
+    assert(dest[0].objectiveVector()[1]==9);
+    assert(dest[1].objectiveVector()[0]==9);
+    assert(dest[1].objectiveVector()[1]==11);
+    assert(dest[2].objectiveVector()[0]==9);
+    assert(dest[2].objectiveVector()[1]==9);
 
-    assert(dest[5].objectiveVector()[0]==12);
-    assert(dest[6].objectiveVector()[1]==13);
-    assert(dest[7].objectiveVector()[0]==12);
-    assert(dest[8].objectiveVector()[1]==13);
-    assert(dest[9].objectiveVector()[0]==12);
-
-    src[2].flag(0);
-    src[4].flag(0);
+    moeoFirstImprovingNeighborhoodExplorer < testMove > explorer2(init, next, incr2);
     dest.resize(0);
-
-    moeoFirstImprovingNeighborhoodExplorer < testMove > explorer2(init, next, incr);
-
     explorer2(src, select, dest);
-    assert(dest.size()==6);
-    assert(src[0].flag()==0);
-    assert(src[1].flag()==0);
-    assert(src[2].flag()==0);
-    assert(src[3].flag()==0);
-    assert(src[4].flag()==0);
-    for(int i=0 ; i< 6 ; i++)
+    assert(dest.size()==5);
+    assert(src[0].flag()==1);
+    for(int i=0 ; i< 5 ; i++){
     	assert(dest[i].flag()==0);
-    assert(dest[0].objectiveVector()[0]==2);
-    assert(dest[1].objectiveVector()[1]==3);
-    assert(dest[2].objectiveVector()[0]==2);
-
-    assert(dest[3].objectiveVector()[0]==12);
-    assert(dest[4].objectiveVector()[1]==13);
-    assert(dest[5].objectiveVector()[0]==12);
-
+		assert(dest[i].objectiveVector()[0]==9);
+		assert(dest[i].objectiveVector()[1]==11);
+    }
 
     std::cout << "OK" << std::endl;
     return EXIT_SUCCESS;

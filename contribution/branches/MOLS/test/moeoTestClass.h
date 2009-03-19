@@ -132,3 +132,37 @@ public :
     return objVec;
   }
 } ;
+
+class testMoveIncrEval4 : public moMoveIncrEval <testMove, ObjectiveVector>
+{
+public :
+
+	testMoveIncrEval4(unsigned int _counter=0):counter(_counter){};
+
+  ObjectiveVector operator () (const testMove & _move, const Solution & _solution)
+  {
+    ObjectiveVector objVec= _solution.objectiveVector();
+    switch (counter){
+		case 0:
+			objVec[0]++;
+			objVec[1]++;
+			break;
+		case 1:
+			objVec[0]++;
+			objVec[1]--;
+			break;
+		case 2:
+			objVec[0]--;
+			objVec[1]++;
+			break;
+		default:
+			objVec[0]--;
+			objVec[1]--;
+			break;
+    }
+    counter++;
+    return objVec;
+  }
+private:
+	unsigned int counter;
+} ;

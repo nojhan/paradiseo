@@ -91,7 +91,7 @@ private:
 				_dest.back().flag(0);
 			}
 		}
-		while (nextMove(move, _src) && (comparator( _src.objectiveVector(),objVec)));
+		while (nextMove(move, _src) && (!comparator( _src.objectiveVector(),objVec)));
 		if(!nextMove(move, _src))
 			_src.flag(1);
 	}
