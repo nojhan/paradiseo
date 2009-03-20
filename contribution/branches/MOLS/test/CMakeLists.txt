@@ -4,6 +4,7 @@ SET (TEST_LIST
 		t-moeoExhaustiveNeighborhoodExplorer
 		t-moeoSimpleSubNeighborhoodExplorer
 		t-moeoFirstImprovingNeighborhoodExplorer
+		t-moeoRecursiveFirstImprovingNeighborhoodExplorer
 		t-moeoUnifiedDominanceBasedLS
 	)
 

@@ -156,8 +156,10 @@ public :
 			objVec[1]++;
 			break;
 		default:
-			objVec[0]--;
-			objVec[1]--;
+			if(objVec[0]>0){
+				objVec[0]--;
+				objVec[1]--;
+			}
 			break;
     }
     counter++;
