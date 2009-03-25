@@ -63,7 +63,7 @@ public:
      * Default ctor.
      * The moeoObjectiveVectorComparator used to compare solutions is based on Pareto dominance
      */
- moeoNewBoundedArchive(unsigned int _maxSize=100) : moeoArchive < MOEOT >(), comparator(paretoComparator), maxSize(_maxSize)
+ moeoNewBoundedArchive(unsigned int _maxSize=100) : moeoArchive < MOEOT >(), comparator(paretoComparator), maxSize(_maxSize), isModified(false)
     {}
 
 
@@ -71,7 +71,7 @@ public:
      * Ctor
      * @param _comparator the moeoObjectiveVectorComparator used to compare solutions
      */
- moeoNewBoundedArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, unsigned int _maxSize=100) : eoPop < MOEOT >(), comparator(_comparator), maxSize(_maxSize)
+ moeoNewBoundedArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, unsigned int _maxSize=100) : eoPop < MOEOT >(), comparator(_comparator), maxSize(_maxSize), isModified(false)
     {}
 
 
@@ -160,6 +160,12 @@ public:
         return true;
     }
 
+    bool modified(){
+    	bool tmp = isModified;
+    	isModified = false;
+    	return tmp;
+    }
+
 
 private:
 
@@ -169,6 +175,8 @@ private:
     moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
     /** Max size of archive*/
     unsigned int maxSize;
+    /** bool */
+    bool isModified;
 
     /**
      * Updates the archive with a given individual _moeo *** NEW ***
@@ -217,10 +225,12 @@ private:
         }
         if (!dom)
         {
-	  //if(size()<maxSize)
-            push_back(_moeo);
-	    //else
-	    //dom=!dom;
+        	if(size()<maxSize){
+        		push_back(_moeo);
+        		isModified=true;
+        	}
+        	else
+        		dom=!dom;
         }
         return !dom;
     }

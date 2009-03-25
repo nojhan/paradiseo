@@ -63,7 +63,7 @@ public:
      * Default ctor.
      * The moeoObjectiveVectorComparator used to compare solutions is based on Pareto dominance
      */
-    moeoNewArchive() : moeoArchive < MOEOT >(), comparator(paretoComparator)
+    moeoNewArchive() : moeoArchive < MOEOT >(), comparator(paretoComparator), isModified(false)
     {}
 
 
@@ -71,7 +71,7 @@ public:
      * Ctor
      * @param _comparator the moeoObjectiveVectorComparator used to compare solutions
      */
-    moeoNewArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator) : eoPop < MOEOT >(), comparator(_comparator)
+    moeoNewArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator) : eoPop < MOEOT >(), comparator(_comparator), isModified(false)
     {}
 
 
@@ -160,6 +160,12 @@ public:
         return true;
     }
 
+    bool modified(){
+    	bool tmp = isModified;
+    	isModified = false;
+    	return tmp;
+    }
+
 
 private:
 
@@ -167,7 +173,8 @@ private:
     moeoObjectiveVectorComparator < ObjectiveVector > & comparator;
     /** A moeoObjectiveVectorComparator based on Pareto dominance (used as default) */
     moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
-
+    /** bool*/
+    bool isModified;
 
     /**
      * Updates the archive with a given individual _moeo *** NEW ***
@@ -217,6 +224,7 @@ private:
         if (!dom)
         {
             push_back(_moeo);
+            isModified=true;
         }
         return !dom;
     }
