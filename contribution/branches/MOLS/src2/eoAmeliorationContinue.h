@@ -18,7 +18,6 @@ public:
     // _pop must be an archive
     virtual bool operator() (const eoPop<EOT> & _pop)
     {
-    	std::cout << counter << std::endl;
     	if(arch.modified())
     		counter=0;
     	else

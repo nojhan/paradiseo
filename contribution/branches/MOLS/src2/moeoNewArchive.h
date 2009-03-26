@@ -104,7 +104,6 @@ private:
         {
             push_back(_moeo);
             isModified=true;
-            std::cout << "modified";
         }
         return !dom;
     }
