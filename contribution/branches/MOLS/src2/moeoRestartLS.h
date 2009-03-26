@@ -57,12 +57,13 @@ public:
     moeoRestartLS(
         eoInit < MOEOT > & _init,
         eoEvalFunc < MOEOT > & _eval,
-        eoContinue < MOEOT > & _continuator,
+        eoContinue < MOEOT > & _continuator1,
+        eoContinue < MOEOT > & _continuator2,
         moeoPopNeighborhoodExplorer < Move > & _explorer,
         moeoUnvisitedSelect < MOEOT > & _select,
         moeoArchive < MOEOT > & _globalArchive,
         std::string _fileName) :
-            init(_init), eval(_eval), continuator(_continuator), ls(continuator, _eval, internalArchive, _explorer, _select), globalArchive(_globalArchive), fileName(_fileName), count(0) {}
+            init(_init), eval(_eval), continuator(_continuator1), ls(_continuator2, _eval, internalArchive, _explorer, _select), globalArchive(_globalArchive), fileName(_fileName), count(0) {}
 
 
     virtual void operator()(eoPop<MOEOT> & _pop)

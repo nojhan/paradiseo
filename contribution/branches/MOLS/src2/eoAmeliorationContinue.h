@@ -13,16 +13,21 @@ class eoAmeliorationContinue: public eoContinue<EOT>
 {
 public:
 
-    eoAmeliorationContinue(moeoDMLSArchive<EOT> & _arch, unsigned int _maxGen) : arch(_arch), maxGen(_maxGen), counter(0){}
+    eoAmeliorationContinue(moeoDMLSArchive<EOT> & _arch, unsigned int _neighborhoodSize) : arch(_arch),maxGen(_neighborhoodSize), neighborhoodSize(_neighborhoodSize), counter(0){}
 
     // _pop must be an archive
     virtual bool operator() (const eoPop<EOT> & _pop)
     {
+    	bool res;
+    	maxGen=arch.size() * neighborhoodSize;
     	if(arch.modified())
     		counter=0;
     	else
     		counter++;
-    	return (counter < maxGen);
+    	res = (counter < maxGen);
+    	if(!res)
+    		counter=0;
+    	return res;
     }
    
     virtual std::string className(void) const
@@ -34,6 +39,7 @@ private:
 
 	moeoDMLSArchive <EOT> & arch;
     unsigned int maxGen;
+    unsigned int neighborhoodSize;
     unsigned int counter;
 
 };
