@@ -45,7 +45,7 @@
  * Abstract class for multi-objective local search neighborhood exploration
  */
 template < class Move >
-class moeoPopNeighborhoodExplorer{
+class moeoPopNeighborhoodExplorer: public eoFunctorBase{
 
 public:
 	/**

@@ -1,5 +1,5 @@
 /*
-* <moeoArchive.h>
+* <moeoNewBoundedArchive.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
@@ -41,9 +41,10 @@
 #include <comparator/moeoObjectiveVectorComparator.h>
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
 #include <archive/moeoArchive.h>
+#include <moeoDMLSArchive.h>
 
 template < class MOEOT >
-class moeoNewBoundedArchive : public moeoArchive < MOEOT >
+class moeoNewBoundedArchive : public moeoDMLSArchive < MOEOT >
 {
 public:
 
@@ -51,6 +52,7 @@ public:
     using moeoArchive < MOEOT > :: operator[];
     using moeoArchive < MOEOT > :: back;
     using moeoArchive < MOEOT > :: pop_back;
+    using moeoDMLSArchive < MOEOT > :: isModified;
 
 
     /**
@@ -63,7 +65,7 @@ public:
      * Default ctor.
      * The moeoObjectiveVectorComparator used to compare solutions is based on Pareto dominance
      */
- moeoNewBoundedArchive(unsigned int _maxSize=100) : moeoArchive < MOEOT >(), comparator(paretoComparator), maxSize(_maxSize), isModified(false)
+ moeoNewBoundedArchive(unsigned int _maxSize=100) : moeoDMLSArchive < MOEOT >(), maxSize(_maxSize)
     {}
 
 
@@ -71,112 +73,15 @@ public:
      * Ctor
      * @param _comparator the moeoObjectiveVectorComparator used to compare solutions
      */
- moeoNewBoundedArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, unsigned int _maxSize=100) : eoPop < MOEOT >(), comparator(_comparator), maxSize(_maxSize), isModified(false)
+ moeoNewBoundedArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, unsigned int _maxSize=100) : moeoDMLSArchive < MOEOT >(_comparator), maxSize(_maxSize)
     {}
 
-
-    /**
-     * Returns true if the current archive dominates _objectiveVector according to the moeoObjectiveVectorComparator given in the constructor
-     * @param _objectiveVector the objective vector to compare with the current archive
-     */
-    bool dominates (const ObjectiveVector & _objectiveVector) const
-    {
-        for (unsigned int i = 0; i<size(); i++)
-        {
-            // if _objectiveVector is dominated by the ith individual of the archive...
-            if ( comparator(_objectiveVector, operator[](i).objectiveVector()) )
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    /**
-     * Returns true if the current archive already contains a solution with the same objective values than _objectiveVector
-     * @param _objectiveVector the objective vector to compare with the current archive
-     */
-    bool contains (const ObjectiveVector & _objectiveVector) const
-    {
-        for (unsigned int i = 0; i<size(); i++)
-        {
-            if (operator[](i).objectiveVector() == _objectiveVector)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    /**
-     * Updates the archive with a given individual _moeo
-     * @param _moeo the given individual
-     * @return true if _moeo is added to the archive
-     */
-    bool operator()(const MOEOT & _moeo)
-    {
-        return update(_moeo);
-    }
-
-
-    /**
-     * Updates the archive with a given population _pop
-     * @param _pop the given population
-     * @return true if a _pop[i] is added to the archive
-     */
-    bool operator()(const eoPop < MOEOT > & _pop)
-    {
-        bool res = false;
-        for (unsigned int i=0; i<_pop.size(); i++)
-        {
-            res = (*this).update(_pop[i]) || res;
-        }
-        return res;
-    }
-
-
-    /**
-     * Returns true if the current archive contains the same objective vectors than the given archive _arch
-     * @param _arch the given archive
-     */
-    bool equals (const moeoArchive < MOEOT > & _arch)
-    {
-        for (unsigned int i=0; i<size(); i++)
-        {
-            if (! _arch.contains(operator[](i).objectiveVector()))
-            {
-                return false;
-            }
-        }
-        for (unsigned int i=0; i<_arch.size() ; i++)
-        {
-            if (! contains(_arch[i].objectiveVector()))
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    bool modified(){
-    	bool tmp = isModified;
-    	isModified = false;
-    	return tmp;
-    }
 
 
 private:
 
-    /** The moeoObjectiveVectorComparator used to compare solutions */
-    moeoObjectiveVectorComparator < ObjectiveVector > & comparator;
-    /** A moeoObjectiveVectorComparator based on Pareto dominance (used as default) */
-    moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
     /** Max size of archive*/
     unsigned int maxSize;
-    /** bool */
-    bool isModified;
 
     /**
      * Updates the archive with a given individual _moeo *** NEW ***
