@@ -12,21 +12,21 @@ class eoTenTimeContinue: public eoContinue<EOT>
 {
 public:
 
-    eoTenTimeContinue(unsigned int _maxTime, std::string _fileName, moeoArchive<EOT> & _arch) :
-            start(time(0)), maxTime(_maxTime), id(1), fileName(_fileName), arch(_arch) {}
+    eoTenTimeContinue(unsigned int _maxTime, unsigned int _cut,  std::string _fileName, moeoArchive<EOT> & _arch) :
+            start(time(0)), maxTime(_maxTime), cut(_cut), id(1), fileName(_fileName), arch(_arch) {}
 
 
     // _pop must be an archive
     virtual bool operator() (const eoPop<EOT> & _pop)
     {
         unsigned int diff = (unsigned int) difftime(time(0), start);
-        if (diff >= (id * maxTime/10) )
+        if (diff >= (id * maxTime/cut) )
         {
             time_t begin=time(0);
             save(_pop);
             id++;
             start= start - (time(0)-begin);
-	    //operator()(_pop);
+	    operator()(_pop);
         }
         if (diff >= maxTime)
         {
@@ -61,6 +61,7 @@ private:
     time_t start;
     unsigned int maxTime;
     unsigned int id;
+    unsigned int cut;
     std::string fileName;
     moeoArchive<EOT> & arch;
 
