@@ -13,13 +13,18 @@ class eoAmeliorationContinue: public eoContinue<EOT>
 {
 public:
 
-    eoAmeliorationContinue(moeoDMLSArchive<EOT> & _arch, unsigned int _neighborhoodSize) : arch(_arch),maxGen(_neighborhoodSize), neighborhoodSize(_neighborhoodSize), counter(0){}
+    eoAmeliorationContinue(moeoDMLSArchive<EOT> & _arch, unsigned int _neighborhoodSize, bool _multiply) : arch(_arch),maxGen(_neighborhoodSize), neighborhoodSize(_neighborhoodSize), counter(0), multiply(_multiply){}
 
     // _pop must be an archive
     virtual bool operator() (const eoPop<EOT> & _pop)
     {
     	bool res;
-    	maxGen=arch.size() * neighborhoodSize;
+    	if(multiply){
+    		maxGen=arch.size() * neighborhoodSize;
+    	}
+    	else{
+    		maxGen = neighborhoodSize;
+    	}
     	if(arch.modified())
     		counter=0;
     	else
@@ -41,6 +46,7 @@ private:
     unsigned int maxGen;
     unsigned int neighborhoodSize;
     unsigned int counter;
+    bool multiply;
 
 };
 
