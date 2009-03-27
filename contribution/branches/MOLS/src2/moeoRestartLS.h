@@ -61,9 +61,10 @@ public:
         eoContinue < MOEOT > & _continuator2,
         moeoPopNeighborhoodExplorer < Move > & _explorer,
         moeoUnvisitedSelect < MOEOT > & _select,
+        moeoArchive < MOEOT > & _internalArchive,
         moeoArchive < MOEOT > & _globalArchive,
         std::string _fileName) :
-            init(_init), eval(_eval), continuator(_continuator1), ls(_continuator2, _eval, internalArchive, _explorer, _select), globalArchive(_globalArchive), fileName(_fileName), count(0) {}
+            init(_init), eval(_eval), continuator(_continuator1), internalArchive(_internalArchive), ls(_continuator2, _eval, _internalArchive, _explorer, _select), globalArchive(_globalArchive), fileName(_fileName), count(0) {}
 
 
     virtual void operator()(eoPop<MOEOT> & _pop)
@@ -93,7 +94,7 @@ protected:
     eoInit < MOEOT > & init;
     eoEvalFunc < MOEOT > & eval;
     eoContinue < MOEOT > & continuator;
-    moeoNewArchive < MOEOT > internalArchive;
+    moeoArchive < MOEOT > & internalArchive;
     moeoUnifiedDominanceBasedLS < Move > ls;
     moeoArchive < MOEOT > & globalArchive;
     std::string & fileName;
