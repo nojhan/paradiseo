@@ -38,10 +38,13 @@
 #define __eoVector_mesg_h
 
 #include <eoVector.h>
+
 #include <core/moeoVector.h>
+#include <core/moeoObjectiveVector.h>
 
 #include "messaging.h"
 
+ 
 
 template <class F, class T> void pack (const eoVector <F, T> & __v)
 {
@@ -110,6 +113,8 @@ template <class F, class T, class V> void pack (const eoVectorParticle <F, T, V>
     pack (__v.velocities[i]);
 }
 
+
+
 template <class F, class T, class V> void unpack (eoVectorParticle <F, T, V> & __v)
 {
 
@@ -140,6 +145,107 @@ template <class F, class T, class V> void unpack (eoVectorParticle <F, T, V> & _
     unpack (__v.velocities[i]);
 }
 
+
+template <class Traits, class Type> void unpack (moeoObjectiveVector<Traits,Type>  _objVec)
+{
+  unsigned int len; 
+
+  unpack (len);
+  _objVec.resize(len);
+  for (unsigned i = 0 ; i < len; i ++)
+        unpack (_objVec[i]);
+}
+
+template <class ObjectiveVector, class Fitness, class Diversity, class Type> void unpack(moeoVector <ObjectiveVector, Fitness, Diversity, Type> & _v)
+{
+  unsigned int valid;
+  unsigned len;
+//   unpack(valid);
+//   if (! valid)
+//     _v.invalidateFitness();
+//   else
+//     {
+//       Fitness fit;
+//       unpack (fit);
+//  std::cerr << "fit = " << fit << std::endl;
+//       _v.fitness (fit);
+//     }
+
+  //Unpack fitness and diversity
+
+//   unpack(valid);
+//   if (! valid)
+//     _v.invalidateDiversity();
+//   else
+//     {
+//       V diver;
+//       unpack(diver);
+//       _v.diversity(diver);
+//     }
+  //Unpack Objective Vector
+ unpack(valid);
+  if (! valid)
+     _v.invalidateObjectiveVector();
+   else
+     {
+       unpack(_v.objectiveVector());
+    }
+  unpack (len);
+  _v.resize (len);
+  for (unsigned i = 0 ; i < len; i ++)
+    unpack (_v [i]);
+}
+
+
+
+template <class Traits, class Type> void pack (const moeoObjectiveVector<Traits,Type> & _objVec)
+{
+//       unsigned int len;
+     //typedef typename moeoVector<F,T,V,W>::ObjectiveVector ObjectiveVector;
+//       moeoObjectiveVector<F,W> object;
+//       object=_Ov;
+      unsigned int len = _objVec.nObjectives();
+      pack(len);
+      for (unsigned i=0; i<len; i++)
+        pack(_objVec[i]);
+
+}
+
+template <class ObjectiveVector, class Fitness, class Diversity, class Type> void pack(const moeoVector <ObjectiveVector, Fitness, Diversity, Type> & _v)
+{
+  unsigned int len;
+//Pack fitness : in comment but maybe useful in the future
+//    if (_v.invalidFitness())
+//      pack((unsigned int) 0);
+//    else
+//      {
+//        pack((unsigned int) 1);
+// 	std::cerr << "FITENNESSS" << _v.fitness() << std::endl;
+//        pack (_v.fitness());
+//      }
+// //Pack diversity 
+//   if (_v.invalidDiversity())
+//     pack((unsigned)0);
+//   else
+//     {
+//       pack((unsigned)1);
+//       pack(_v.diversity());
+//     }
+  if (_v.invalidObjectiveVector())
+    pack((unsigned int) 0);
+  else
+  {
+     pack((unsigned int) 1);
+      pack(_v.objectiveVector());
+  }
+  len = _v.size ();
+  pack (len);
+  for (unsigned i = 0 ; i < len; i ++)
+    pack (_v[i]);
+}
+
+
+/*
 template <class F, class T, class V, class W> void unpack (moeoVector <F,T,V,W> &_v)
 {
   unsigned valid;
@@ -214,5 +320,6 @@ template <class F, class T, class V, class W> void pack (moeoVector <F,T,V,W> &_
         pack (object[i]);
     }
 }
+*/
 
 #endif
