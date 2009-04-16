@@ -6,6 +6,8 @@ SET (TEST_LIST
 		t-moeoFirstImprovingNeighborhoodExplorer
 		t-moeoRecursiveFirstImprovingNeighborhoodExplorer
 		t-moeoUnifiedDominanceBasedLS
+		t-moeoDMLSGenUpdater
+		t-moeoDMLSMonOp
 	)
 
 FOREACH (test ${TEST_LIST})
