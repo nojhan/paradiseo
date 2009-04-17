@@ -46,11 +46,11 @@
 #include <moMove.h>
 #include <moMoveInit.h>
 #include <moNextMove.h>
-#include <algo/moeoIBMOLS.h>
-#include <algo/moeoLS.h>
+#include <moeoIBMOLS.h>
+#include <moeoPopLS.h>
 #include <archive/moeoArchive.h>
 #include <fitness/moeoBinaryIndicatorBasedFitnessAssignment.h>
-#include <move/moeoMoveIncrEval.h>
+#include <moMoveIncrEval.h>
 
 
 
@@ -63,7 +63,7 @@
  * Basseur M., Burke K. : "Indicator-Based Multi-Objective Local Search" (2007).
  */
 template < class MOEOT, class Move >
-class moeoIteratedIBMOLS : public moeoLS < MOEOT, eoPop < MOEOT > & >
+class moeoIteratedIBMOLS : public moeoPopLS < Move>
   {
   public:
 
@@ -87,16 +87,18 @@ class moeoIteratedIBMOLS : public moeoLS < MOEOT, eoPop < MOEOT > & >
       moMoveInit < Move > & _moveInit,
       moNextMove < Move > & _nextMove,
       eoEvalFunc < MOEOT > & _eval,
-      moeoMoveIncrEval < Move > & _moveIncrEval,
+      moMoveIncrEval < Move, ObjectiveVector > & _moveIncrEval,
       moeoBinaryIndicatorBasedFitnessAssignment < MOEOT > & _fitnessAssignment,
       eoContinue < MOEOT > & _continuator,
+      moeoArchive < MOEOT > & _arch,
       eoMonOp < MOEOT > & _monOp,
       eoMonOp < MOEOT > & _randomMonOp,
       unsigned int _nNoiseIterations=1
     ) :
-        ibmols(_moveInit, _nextMove, _eval, _moveIncrEval, _fitnessAssignment, _continuator),
+        ibmols(_moveInit, _nextMove, _eval, _moveIncrEval, _fitnessAssignment, _continuator, _arch),
         eval(_eval),
         continuator(_continuator),
+        arch(_arch),
         monOp(_monOp),
         randomMonOp(_randomMonOp),
         nNoiseIterations(_nNoiseIterations)
@@ -108,16 +110,21 @@ class moeoIteratedIBMOLS : public moeoLS < MOEOT, eoPop < MOEOT > & >
      * @param _pop the initial population
      * @param _arch the (updated) archive
      */
-    void operator() (eoPop < MOEOT > & _pop, moeoArchive < MOEOT > & _arch)
+    void operator() (eoPop < MOEOT > & _pop)
     {
-      _arch.update(_pop);
-      ibmols(_pop, _arch);
-      while (continuator(_arch))
+        for (unsigned int i=0; i<_pop.size(); i++)
+        {
+            eval(_pop[i]);
+        }
+
+      arch(_pop);
+      ibmols(_pop);
+      while (continuator(arch))
         {
           // generate new solutions from the archive
-          generateNewSolutions(_pop, _arch);
+          generateNewSolutions(_pop);
           // apply the local search (the global archive is updated in the sub-function)
-          ibmols(_pop, _arch);
+          ibmols(_pop);
         }
     }
 
@@ -130,6 +137,8 @@ class moeoIteratedIBMOLS : public moeoLS < MOEOT, eoPop < MOEOT > & >
     eoEvalFunc < MOEOT > & eval;
     /** the stopping criteria */
     eoContinue < MOEOT > & continuator;
+    /** archive */
+    moeoArchive < MOEOT > & arch;
     /** the monary operator */
     eoMonOp < MOEOT > & monOp;
     /** the random monary operator (or random initializer) */
@@ -143,11 +152,11 @@ class moeoIteratedIBMOLS : public moeoLS < MOEOT, eoPop < MOEOT > & >
      * @param _pop the output population
      * @param _arch the archive
      */
-    void generateNewSolutions(eoPop < MOEOT > & _pop, const moeoArchive < MOEOT > & _arch)
+    void generateNewSolutions(eoPop < MOEOT > & _pop)
     {
       // shuffle vector for the random selection of individuals
-      vector<unsigned int> shuffle;
-      shuffle.resize(std::max(_pop.size(), _arch.size()));
+      std::vector<unsigned int> shuffle;
+      shuffle.resize(std::max(_pop.size(), arch.size()));
       // init shuffle
       for (unsigned int i=0; i<shuffle.size(); i++)
         {
@@ -159,10 +168,10 @@ class moeoIteratedIBMOLS : public moeoLS < MOEOT, eoPop < MOEOT > & >
       // start the creation of new solutions
       for (unsigned int i=0; i<_pop.size(); i++)
         {
-          if (shuffle[i] < _arch.size()) // the given archive contains the individual i
+          if (shuffle[i] < arch.size()) // the given archive contains the individual i
             {
               // add it to the resulting pop
-              _pop[i] = _arch[shuffle[i]];
+              _pop[i] = arch[shuffle[i]];
               // apply noise
               for (unsigned int j=0; j<nNoiseIterations; j++)
                 {

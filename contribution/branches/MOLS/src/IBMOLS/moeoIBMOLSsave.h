@@ -45,18 +45,17 @@
 #include <moMove.h>
 #include <moMoveInit.h>
 #include <moNextMove.h>
-#include <moeoPopLS.h>
+#include <algo/moeoLS.h>
 #include <archive/moeoArchive.h>
-#include <archive/moeoUnboundedArchive.h>
 #include <fitness/moeoBinaryIndicatorBasedFitnessAssignment.h>
-#include <moMoveIncrEval.h>
+#include <move/moeoMoveIncrEval.h>
 
 /**
  * Indicator-Based Multi-Objective Local Search (IBMOLS) as described in
  * Basseur M., Burke K. : "Indicator-Based Multi-Objective Local Search" (2007).
  */
 template < class MOEOT, class Move >
-class moeoIBMOLS : public moeoPopLS < Move>
+class moeoIBMOLS : public moeoLS < MOEOT, eoPop < MOEOT > & >
   {
   public:
 
@@ -77,18 +76,16 @@ class moeoIBMOLS : public moeoPopLS < Move>
       moMoveInit < Move > & _moveInit,
       moNextMove < Move > & _nextMove,
       eoEvalFunc < MOEOT > & _eval,
-      moMoveIncrEval < Move , ObjectiveVector > & _moveIncrEval,
+      moeoMoveIncrEval < Move > & _moveIncrEval,
       moeoBinaryIndicatorBasedFitnessAssignment < MOEOT > & _fitnessAssignment,
-      eoContinue < MOEOT > & _continuator,
-      moeoArchive < MOEOT > & _arch
+      eoContinue < MOEOT > & _continuator
     ) :
         moveInit(_moveInit),
         nextMove(_nextMove),
         eval(_eval),
         moveIncrEval(_moveIncrEval),
         fitnessAssignment (_fitnessAssignment),
-        continuator (_continuator),
-        arch(_arch)
+        continuator (_continuator)
     {}
 
 
@@ -98,31 +95,31 @@ class moeoIBMOLS : public moeoPopLS < Move>
      * @param _pop the initial population
      * @param _arch the (updated) archive
      */
-    void operator() (eoPop < MOEOT > & _pop)
+    void operator() (eoPop < MOEOT > & _pop, moeoArchive < MOEOT > & _arch)
     {
       // evaluation of the objective values
-
+      /*
               for (unsigned int i=0; i<_pop.size(); i++)
               {
                   eval(_pop[i]);
               }
-
+      */
       // fitness assignment for the whole population
       fitnessAssignment(_pop);
       // creation of a local archive
-      moeoUnboundedArchive < MOEOT > archive;
+      moeoArchive < MOEOT > archive;
       // creation of another local archive (for the stopping criteria)
-      moeoUnboundedArchive < MOEOT > previousArchive;
+      moeoArchive < MOEOT > previousArchive;
       // update the archive with the initial population
-      archive(_pop);
+      archive.update(_pop);
       do
         {
-          previousArchive(archive);
+          previousArchive.update(archive);
           oneStep(_pop);
-          archive(_pop);
+          archive.update(_pop);
         }
-      while ( (! archive.equals(previousArchive)) && (continuator(arch)) );
-      arch(archive);
+      while ( (! archive.equals(previousArchive)) && (continuator(_arch)) );
+      _arch.update(archive);
     }
 
 
@@ -135,13 +132,12 @@ class moeoIBMOLS : public moeoPopLS < Move>
     /** the full evaluation */
     eoEvalFunc < MOEOT > & eval;
     /** the incremental evaluation */
-    moMoveIncrEval < Move, ObjectiveVector > & moveIncrEval;
+    moeoMoveIncrEval < Move > & moveIncrEval;
     /** the fitness assignment strategy */
     moeoBinaryIndicatorBasedFitnessAssignment < MOEOT > & fitnessAssignment;
     /** the stopping criteria */
     eoContinue < MOEOT > & continuator;
-    /** archive */
-    moeoArchive < MOEOT > & arch;
+
 
     /**
      * Apply one step of the local search to the population _pop
@@ -180,64 +176,64 @@ class moeoIBMOLS : public moeoPopLS < Move>
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
           // extreme solutions (min only!)
-//          ext_0_idx = -1;
-//          ext_0_objVec = x_objVec;
-//          ext_1_idx = -1;
-//          ext_1_objVec = x_objVec;
-//          for (unsigned int k=0; k<_pop.size(); k++)
-//            {
-//              // ext_0
-//              if (_pop[k].objectiveVector()[0] < ext_0_objVec[0])
-//                {
-//                  ext_0_idx = k;
-//                  ext_0_objVec = _pop[k].objectiveVector();
-//                }
-//              else if ( (_pop[k].objectiveVector()[0] == ext_0_objVec[0]) && (_pop[k].objectiveVector()[1] < ext_0_objVec[1]) )
-//                {
-//                  ext_0_idx = k;
-//                  ext_0_objVec = _pop[k].objectiveVector();
-//                }
-//              // ext_1
-//              else if (_pop[k].objectiveVector()[1] < ext_1_objVec[1])
-//                {
-//                  ext_1_idx = k;
-//                  ext_1_objVec = _pop[k].objectiveVector();
-//                }
-//              else if ( (_pop[k].objectiveVector()[1] == ext_1_objVec[1]) && (_pop[k].objectiveVector()[0] < ext_1_objVec[0]) )
-//                {
-//                  ext_1_idx = k;
-//                  ext_1_objVec = _pop[k].objectiveVector();
-//                }
-//            }
-//          // worst init
-//          if (ext_0_idx == -1)
-//            {
-//              ind = 0;
-//              while (ind == ext_1_idx)
-//                {
-//                  ind++;
-//                }
-//              worst_idx = ind;
-//              worst_objVec = _pop[ind].objectiveVector();
-//              worst_fitness = _pop[ind].fitness();
-//            }
-//          else if (ext_1_idx == -1)
-//            {
-//              ind = 0;
-//              while (ind == ext_0_idx)
-//                {
-//                  ind++;
-//                }
-//              worst_idx = ind;
-//              worst_objVec = _pop[ind].objectiveVector();
-//              worst_fitness = _pop[ind].fitness();
-//            }
-//          else
-//            {
-//              worst_idx = -1;
-//              worst_objVec = x_objVec;
-//              worst_fitness = x_fitness;
-//            }
+          ext_0_idx = -1;
+          ext_0_objVec = x_objVec;
+          ext_1_idx = -1;
+          ext_1_objVec = x_objVec;
+          for (unsigned int k=0; k<_pop.size(); k++)
+            {
+              // ext_0
+              if (_pop[k].objectiveVector()[0] < ext_0_objVec[0])
+                {
+                  ext_0_idx = k;
+                  ext_0_objVec = _pop[k].objectiveVector();
+                }
+              else if ( (_pop[k].objectiveVector()[0] == ext_0_objVec[0]) && (_pop[k].objectiveVector()[1] < ext_0_objVec[1]) )
+                {
+                  ext_0_idx = k;
+                  ext_0_objVec = _pop[k].objectiveVector();
+                }
+              // ext_1
+              else if (_pop[k].objectiveVector()[1] < ext_1_objVec[1])
+                {
+                  ext_1_idx = k;
+                  ext_1_objVec = _pop[k].objectiveVector();
+                }
+              else if ( (_pop[k].objectiveVector()[1] == ext_1_objVec[1]) && (_pop[k].objectiveVector()[0] < ext_1_objVec[0]) )
+                {
+                  ext_1_idx = k;
+                  ext_1_objVec = _pop[k].objectiveVector();
+                }
+            }
+          // worst init
+          if (ext_0_idx == -1)
+            {
+              ind = 0;
+              while (ind == ext_1_idx)
+                {
+                  ind++;
+                }
+              worst_idx = ind;
+              worst_objVec = _pop[ind].objectiveVector();
+              worst_fitness = _pop[ind].fitness();
+            }
+          else if (ext_1_idx == -1)
+            {
+              ind = 0;
+              while (ind == ext_0_idx)
+                {
+                  ind++;
+                }
+              worst_idx = ind;
+              worst_objVec = _pop[ind].objectiveVector();
+              worst_fitness = _pop[ind].fitness();
+            }
+          else
+            {
+              worst_idx = -1;
+              worst_objVec = x_objVec;
+              worst_fitness = x_fitness;
+            }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
