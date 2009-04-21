@@ -72,6 +72,7 @@ class moeoIBMOLS : public moeoPopLS < Move>
      * @param _moveIncrEval the incremental evaluation
      * @param _fitnessAssignment the fitness assignment strategy
      * @param _continuator the stopping criteria
+     * @param _arch the archive
      */
     moeoIBMOLS(
       moMoveInit < Move > & _moveInit,
@@ -96,7 +97,6 @@ class moeoIBMOLS : public moeoPopLS < Move>
      * Apply the local search until a local archive does not change or
      * another stopping criteria is met and update the archive _arch with new non-dominated solutions.
      * @param _pop the initial population
-     * @param _arch the (updated) archive
      */
     void operator() (eoPop < MOEOT > & _pop)
     {
