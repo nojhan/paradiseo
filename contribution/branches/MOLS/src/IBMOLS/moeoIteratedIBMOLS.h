@@ -79,6 +79,7 @@ class moeoIteratedIBMOLS : public moeoPopLS < Move>
      * @param _moveIncrEval the incremental evaluation
      * @param _fitnessAssignment the fitness assignment strategy
      * @param _continuator the stopping criteria
+     * @param _arch the archive
      * @param _monOp the monary operator
      * @param _randomMonOp the random monary operator (or random initializer)
      * @param _nNoiseIterations the number of iterations to apply the random noise
@@ -108,7 +109,6 @@ class moeoIteratedIBMOLS : public moeoPopLS < Move>
     /**
      * Apply the local search iteratively until the stopping criteria is met.
      * @param _pop the initial population
-     * @param _arch the (updated) archive
      */
     void operator() (eoPop < MOEOT > & _pop)
     {
@@ -150,7 +150,6 @@ class moeoIteratedIBMOLS : public moeoPopLS < Move>
     /**
      * Creates new population randomly initialized and/or initialized from the archive _arch.
      * @param _pop the output population
-     * @param _arch the archive
      */
     void generateNewSolutions(eoPop < MOEOT > & _pop)
     {
