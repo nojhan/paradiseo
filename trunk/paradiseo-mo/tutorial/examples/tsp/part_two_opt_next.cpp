@@ -37,7 +37,7 @@
 #include "part_two_opt_next.h"
 #include "graph.h"
 
-bool TwoOptNext :: operator () (TwoOpt & __move, const Route & __route)
+bool PartTwoOptNext :: operator () (TwoOpt & __move, const Route & __route)
 {
   if (__move.first == Graph :: size () - 4 && __move.second == __move.first + 2)
     {
