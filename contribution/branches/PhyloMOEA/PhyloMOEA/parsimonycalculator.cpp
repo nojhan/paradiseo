@@ -243,6 +243,7 @@ int ParsimonyCalculator::node_parsimony( node a, node b, unsigned char *result)
 	// calculate parsimony for taxon child, just union
 	int sum_parsy = 0;
 	int num_inf_sites = SeqData->infsite_count();
+	#pragma parallel for
 	for(int j=0; j< num_inf_sites; j++)
 		sum_parsy += set_parsimony( &set_internal[a][j*5], &set_internal[b][j*5], &result[j*5]) *  SeqData->infsite_count(j);	
 	return sum_parsy;

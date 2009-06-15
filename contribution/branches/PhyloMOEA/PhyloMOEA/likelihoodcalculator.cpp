@@ -310,16 +310,16 @@ double LikelihoodCalculator::calculate_likelihood()
 	for(int i=0; i<2; i++)
 		pthread_join(threads[i],NULL);*/
 	//cout << "calculando partials..." << endl;
-	struct timeval start;
-	gettimeofday(&start,NULL);
+	//struct timeval start;
+	//gettimeofday(&start,NULL);
 	calculate_partials( a, &b);
 	calculate_partials( b, &a);
 	//cout << "somando..." << endl;
 	// sum all partials
 	lik = sum_site_liks();
-	struct timeval end;
-	gettimeofday(&end,NULL);
-	print_elapsed_time_short(&start, &end);
+	//struct timeval end;
+	//gettimeofday(&end,NULL);
+	//print_elapsed_time_short(&start, &end);
 	return lik;
 }
 

@@ -45,6 +45,7 @@ class PhyloMOEOParetoSolutionsArchive:public moeoUnboundedArchive<PhyloMOEO>
 		{
 			create_file( filename );
 			if(title.size()>0) os << title << endl;
+			os.precision(10);
 			for(int i=0; i<size(); i++)	
 				os << operator[](i) << std::endl;
 			os.close();

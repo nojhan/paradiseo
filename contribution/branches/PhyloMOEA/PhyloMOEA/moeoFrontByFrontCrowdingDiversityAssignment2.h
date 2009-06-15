@@ -1,9 +1,9 @@
 /*
 * <moeoFrontByFrontCrowdingDiversityAssignment.h>
-* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-* (C) OPAC Team, LIFL, 2002-2007
+* Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2009
+* (C) OPAC Team, LIFL, 2002-2009
 *
-* Arnaud Liefooghe
+* Arnaud Liefooghe, Waldo Cancino
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -40,7 +40,7 @@
 
 #include <diversity/moeoCrowdingDiversityAssignment.h>
 #include <comparator/moeoFitnessThenDiversityComparator.h>
-#include <moeoPtrComparator.h>
+#include <comparator/moeoPtrComparator.h>
 
 
 /**
@@ -49,7 +49,7 @@
  * Tis strategy assigns diversity values FRONT BY FRONT. It is, for instance, used in NSGA-II.
  */
 template < class MOEOT >
-class moeoFrontByFrontCrowdingDiversityAssignment2 : public moeoCrowdingDiversityAssignment < MOEOT >
+class moeoFrontByFrontCrowdingDiversityAssignment : public moeoCrowdingDiversityAssignment < MOEOT >
   {
   public:
 

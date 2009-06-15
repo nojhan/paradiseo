@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
 	eoPop<PhyloMOEO> population(popsize, initializer);
 
 	peoMoeoPopEval <PhyloMOEO> eval(byobj);
-
+	
 
 	// Only the master node read the initial trees and writes ouput files
 	if(getNodeRank()==1)
@@ -214,6 +214,7 @@ int main(int argc, char *argv[])
 		peo :: run();
 		peo :: finalize();
 		//algo(population);
+		
 	}
 
 	if (getNodeRank()==1) 
