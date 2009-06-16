@@ -61,8 +61,19 @@ class SubstModel
 		~SubstModel() { delete eigensystem; for(int i=0; i<4; i++) delete[] ievec[i]; delete [] ievec; }
 		SubstModel(Sequences &p, int m = 0);
 		void init();
-		void  set_kappa(double t) { kappa = t; init(); }
-		double get_kappa() { return kappa; }
+		inline void  set_kappa(double t) { kappa = t; init(); }
+		inline void  set_param(double *p) { a = p[0]; b = p[1]; c = p[2]; d = p[3];  e = p[4]; init(); }
+		inline void  set_a(double p) { a = p; }
+		inline void  set_b(double p) { b = p; }
+		inline void  set_c(double p) { c = p; }
+		inline void  set_d(double p) { d = p; }
+		inline void  set_e(double p) { e = p; }	      
+		inline double get_a() { return a; }
+		inline double get_b() { return b; }
+		inline double get_c() { return c; }
+		inline double get_d() { return d; }
+		inline double get_e() { return e; }
+		inline double get_kappa() { return kappa; }
 		void print_rate_matrix();
 };
 #endif
