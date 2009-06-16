@@ -422,7 +422,7 @@ void LikelihoodCalculator::calculate_node_partial( node father, node son, edge e
 	int r,i,j;
 	//unsigned char l;
 	register int seqlen = tree_ptr->number_of_positions();
- 	#pragma omp parallel for  
+ 	//#pragma omp parallel for  
 	for(int k=0; k<seqlen;k++)
 	{
 		long index = k*nrates*4;
