@@ -86,7 +86,7 @@ LikelihoodCalculator::LikelihoodCalculator( phylotreeIND &ind, Sequences &Seqs, 
 	probmatrixs = &p;
 	invalid_partials_taxons = true;
 	set_data( Seqs);
-	set_tree(ind);
+	set_tree( ind );
 	build_rates_sites();
 }
 

@@ -15,6 +15,8 @@
 #include <eoCountedFileMonitor.h>
 #include <eoSingleFileCountedStateSaver.h>
 #include <vectorSortIndex.h>
+#include <functors.h>
+#include <SplitCalculator.h>
 
 #include <utils.h>
 #include <apply.h>
