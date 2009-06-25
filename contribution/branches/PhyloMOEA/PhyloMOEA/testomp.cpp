@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
 	seq6.calculate_frequences();
 
 	ostringstream os;
-	os << datafile << "_results_" << nthreads << ".txt";
+	os << datafile << "_results_serial_" << nthreads << ".txt";
  	ofstream of(os.str().c_str());
 
  	gsl_rng *rn2 = gsl_rng_alloc(gsl_rng_default);

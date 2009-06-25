@@ -39,6 +39,7 @@ struct temp_info
 };
 
 
+
 // return the element at position pos of the list
 template <typename T> const T& select_edge_at_pos( const list <T> &l, int pos) 
 {
@@ -1804,7 +1805,7 @@ double phylotreeIND::compare_topology_2(phylotreeIND &other)
 	node invalid_node;
 	node root1 = taxon_number( n-1);
 
-	// step 2 and 3
+	// step 2 and 3+
 	postorder_Iterator it = postorder_begin( root1);
 /*
 	while( *it != root1 )
@@ -2160,4 +2161,199 @@ double phylotreeIND::compare_topology_3(phylotreeIND &other)
 	delete [] hash_table;
 	return	TREE.number_of_edges() - number_of_taxons() - good_edges +
 		other.TREE.number_of_edges() - number_of_taxons() - good_edges;
+}
+
+
+void phylotreeIND::calculate_splits4()
+{
+	// hash table
+	int n = number_of_taxons();
+	//struct split_info	**hash_table;  // hash that points struct info
+	//struct split_info 	*interior_node_info = new struct split_info[n-1];
+	splitstable.resize(n);
+
+	int idx_interior = 0;
+	interior_node.init(TREE, NULL);
+	interior_edge.init(TREE, NULL);
+	// node mapes
+	//int *map_nodes;
+	int node_count = 0;
+
+	int temp2 = 2;
+ 
+	
+	// step 1
+	// select last taxon as root
+	node root1 = taxon_number( n-1);
+
+	// step 2 and 3
+	postorder_Iterator it = postorder_begin( root1);
+
+	int l, r;
+	while( *it != root1 )
+	{
+		struct split_info *father_info = interior_node [ it.ancestor() ] ;
+		struct split_info *current_info = interior_node [ *it ] ;
+	    
+			
+		//cout << " node " << *it << " ancestral" << it.ancestor() << endl;
+		if( istaxon(*it) )
+		{
+			// update the map
+			splitstable[ taxon_id( *it) ].map_to_node = r = node_count;
+			splitstable[ node_count ].node_to_map = taxon_id( *it);
+			// check if is the leftmost
+			if( father_info == NULL )
+			{
+				interior_node [ it.ancestor() ] = father_info = &(splitstable[idx_interior]);
+				idx_interior++;
+				//father_info.left_most = *it;
+				father_info->left = node_count;
+			}
+			//else father_info.right = node_count;	
+			node_count++;
+			++it;
+		}
+		else
+		{
+			int idx;
+			l = current_info->left;
+			interior_edge[ it.branch() ] = current_info;
+			
+			if( father_info == NULL )
+			{
+				interior_node [ it.ancestor() ] = father_info = &(splitstable[idx_interior]);
+				idx_interior++;
+				father_info->left = current_info->left;
+			}
+
+			++it;
+			if (istaxon(*it) || *it==root1) idx = r;
+			else idx = l;
+			
+			current_info->right = r;
+			// fill hash table
+			splitstable[ idx ].hash = current_info;
+		}
+	}
+}
+
+
+
+double phylotreeIND::compare_topology_4(phylotreeIND &other)
+{
+	// hash table
+	int n = number_of_taxons();
+
+	node_map<struct split_info*> interior_node_2(other.TREE, NULL);
+	vector<struct split_info> split_table2;
+	split_table2.resize(n);
+
+	int node_count = 0;
+	int good_edges = 0;
+
+	
+	// allocate memory
+	// step 4
+	node root2 = other.taxon_number( n-1);
+	// father of root2
+	node no_root2 = root2.in_edges_begin()->source();
+
+	postorder_Iterator it = postorder_begin( no_root2, root2);
+
+
+	int idx_interior = 0;
+
+	while( *it != no_root2)
+	{
+		struct split_info *father_info = interior_node_2 [ it.ancestor() ] ;
+		struct split_info *current_info = interior_node_2 [ *it ] ;
+
+		if( istaxon(*it) )
+		{
+			
+			if( father_info == NULL)
+			{
+				interior_node_2 [ it.ancestor() ] = father_info = &(split_table2[idx_interior]);
+				father_info->left = n;
+				father_info->right= -1;
+				father_info->num_nodes = 0;
+				idx_interior++;
+				//.left_most == invalid_node ) father_info.left_most = *it;
+			}
+			if( splitstable[ other.taxon_id( *it)  ].map_to_node < father_info->left) father_info->left = splitstable[ other.taxon_id( *it)  ].map_to_node;
+			if( splitstable[ other.taxon_id( *it)  ].map_to_node > father_info->right) father_info->right = splitstable[ other.taxon_id( *it)  ].map_to_node;
+			father_info->num_nodes++;
+		}
+		else
+		{
+
+
+			// check hash tables
+			if ( current_info->right - current_info->left + 1 ==
+				current_info->num_nodes)
+			{		
+				//cout << "inicio checkeando hash" << current_info->left << "  " << current_info->right << endl;
+				//cout << "hash table adress" << hash_table[current_info->left] << "  " << hash_table[current_info->right] << endl;
+				if( splitstable[current_info->left].hash !=NULL)
+					if(	(splitstable[current_info->left].hash)->left == current_info->left &&
+					(splitstable[current_info->left].hash)->right == current_info->right) good_edges++;
+				if( splitstable[current_info->right].hash!=NULL)
+					if((splitstable[ current_info->right].hash)->left == current_info->left &&
+					(splitstable[ current_info->right].hash)->right == current_info->right) good_edges++;
+				//cout << "fin checkeando hash " << good_edges << endl;
+			}
+
+			if( father_info == NULL)
+			{
+				interior_node_2 [ it.ancestor() ] = father_info = &(split_table2[idx_interior]);
+				father_info->left = n;
+				father_info->right= -1;
+				father_info->num_nodes = 0;
+				idx_interior++;
+				//.left_most == invalid_node ) father_info.left_most = *it;
+			}
+			if( current_info->left < father_info->left) father_info->left = current_info->left;
+			if( current_info->right > father_info->right) father_info->right = current_info->right;
+			father_info->num_nodes += current_info->num_nodes;
+		}	
+		++it;
+	}
+	interior_node_2.clear();
+	return	TREE.number_of_edges() - number_of_taxons() - good_edges +
+		other.TREE.number_of_edges() - number_of_taxons() - good_edges;
+}
+
+
+
+void phylotreeIND::print_splits_2() const
+{
+	graph::edge_iterator it = TREE.edges_begin();
+	graph::edge_iterator it_e = TREE.edges_end();
+	while( it!= it_e)
+	{
+		cout << get_split_key_2( *it) << endl;
+		//print_split(*it);
+		++it;
+	}
+}
+
+string phylotreeIND::get_split_key_2( edge edgeaux) const
+{
+	int n= number_of_taxons();
+	int idx_begin = edgeaux.id()*n;
+	string s(n, '.');
+	if(is_internal(edgeaux))
+	{
+	    struct split_info *ref = interior_edge[edgeaux];
+	    //cout << ref->left << "   "  << ref->right << "   ";
+	    for(int i= ref->left; i <= ref->right; i++)
+	    {
+		s[ splitstable[i].node_to_map ] = '*';
+		//cout << splitstable[i].node_to_map << "  " ;
+	    }
+	}
+	else 	    
+	  s[ MAPNODETAXON[edgeaux.target()] ] =  '*';
+	return s;
 }

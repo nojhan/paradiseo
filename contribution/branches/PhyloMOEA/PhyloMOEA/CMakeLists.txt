@@ -63,13 +63,23 @@ SET( UTILITARY_SOURCES	eigensolver.cpp
 						utility.cpp
 )
 
+SET( SPLIT_TEST_SOURCES	 			RandomNr.cpp
+						Sequences.cpp
+						phylotreeIND.cpp
+						treeIterator.cpp
+						split_test.cpp
+)
+
+
 
 ADD_EXECUTABLE( PhyloMOEA ${PHYLOMOEA_SOURCES} )
 ADD_EXECUTABLE( testomp   ${TESTOMP_SOURCES} )
 ADD_EXECUTABLE( utility   ${UTILITARY_SOURCES} )
+ADD_EXECUTABLE( split_test   ${SPLIT_TEST_SOURCES} )
 
 TARGET_LINK_LIBRARIES(PhyloMOEA gsl gslcblas GTL eo eoutils ga moeo cma peo rmc_mpi xml2)
 TARGET_LINK_LIBRARIES(testomp gsl gslcblas GTL eo eoutils ga moeo cma peo rmc_mpi xml2 gomp)
 TARGET_LINK_LIBRARIES(utility gsl gslcblas GTL eo eoutils ga moeo cma peo rmc_mpi xml2 gomp)
+TARGET_LINK_LIBRARIES(split_test gsl gslcblas GTL eo eoutils)
 
 INSTALL( TARGETS PhyloMOEA RUNTIME DESTINATION bin)

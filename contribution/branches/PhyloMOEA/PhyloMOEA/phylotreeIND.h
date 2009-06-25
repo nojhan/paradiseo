@@ -36,6 +36,19 @@
 #include <treeIterator.h>
 #include <stack>
 #include <tree_limits.h>
+#include <functors.h>
+
+struct split_info
+{
+	int left, right, num_nodes, map_to_node, node_to_map;
+	split_info *hash;
+   
+	split_info() {};
+	split_info(int n) : left(n), right(-1), num_nodes(0), hash(NULL), map_to_node(-1), node_to_map(-1) {};
+        bool invalid() { return right == -1; };
+};
+
+
 
 
 class phylotreeIND 
@@ -47,6 +60,11 @@ class phylotreeIND
 		vector<node>  MAPTAXONNODE; // each taxon number points to a node
 		vector<edge>  MAPIDEDGE;
 		valarray<double> NJDISTANCES;  // distances stored in the edges
+
+		vector<struct split_info>  splitstable;
+		node_map<struct split_info*> interior_node;
+		edge_map<struct split_info*> interior_edge;
+
 		//edge_map< node_map<int> > SPLITS;  // the splits that each edge separate the graph
 		bool *split_bits;
 		Sequences *seqpatterns;
@@ -59,9 +77,6 @@ class phylotreeIND
 
 
 		void init();
-		void SPR(); //SPR operator
-		void NNI(); // NNI operator
-		void TBR(); // TBR operator
 		void taxa_swap(); // taxa swap operator
 		void collapse_node ( node );
 
@@ -75,6 +90,7 @@ class phylotreeIND
 		void calculate_splits_from_edge2 ( edge, node );
 		int split_set_edge ( edge , edge );
 		void print_split ( edge ) const;
+
 		void obtain_subtree ( node , node *, list <edge> *, list<node> * );
 		void construct_graph ( const phylotreeIND &, list <node>& , list <edge>& );
 		void change_subtrees();
@@ -113,6 +129,9 @@ class phylotreeIND
 		virtual phylotreeIND* clone() const;
 		virtual phylotreeIND* randomClone() const;
 
+		void SPR(); //SPR operator
+		void NNI(); // NNI operator
+		void TBR(); // TBR operator
 
 		GTL::graph TREE; // final tree calculated by NJ
 		// constructors
@@ -135,6 +154,7 @@ class phylotreeIND
 		void convert_graph_to_tree ( node, node * );
 
 		void calculate_splits();
+		void calculate_splits4();
 		void calculate_splits_exp();
 		inline void invalidate_splits() { valid_splits = false; }
 		inline void remove_split_memory()
@@ -150,6 +170,7 @@ class phylotreeIND
 		}
 
 		string get_split_key ( edge edgeaux ) const;
+		string get_split_key_2 ( edge edgeaux ) const;
 		string get_invert_split_key ( edge edgeaux ) const;
 
 		bool is_internal ( edge ) const;
@@ -192,9 +213,10 @@ class phylotreeIND
 		double compare_topology ( phylotreeIND &other );
 		double compare_topology_2 ( phylotreeIND &other );
 		double compare_topology_3 ( phylotreeIND &other );
+		double compare_topology_4(phylotreeIND &other);
 		double robinson_foulds_distance ( phylotreeIND &other, int debug=0 );
 		
-
+		void print_splits_2 (  ) const;
 		// iterator
 		postorder_Iterator postorder_begin ( node root, node father ) const
 		{
@@ -286,5 +308,21 @@ class phylotreeIND
 };
 
 template<typename T> const T& select_edge_at_pos ( const list <T> &, int );
+
+
+template <class R>
+class TreeCalculator : public  FunctorUnary<phylotreeIND &, R> 
+{
+public :
+
+    /// virtual dtor here so there is no need to define it in derived classes
+    virtual ~TreeCalculator() {}
+
+    /// The pure virtual function that needs to be implemented by the subclass
+    virtual R operator()(phylotreeIND &) = 0;
+
+};
+
+
 #endif
 
