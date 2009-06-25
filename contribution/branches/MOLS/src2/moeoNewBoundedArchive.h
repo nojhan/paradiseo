@@ -83,6 +83,10 @@ private:
     /** Max size of archive*/
     unsigned int maxSize;
 
+    bool update(const eoPop < MOEOT > & _pop){
+    	return true;
+    }
+    
     /**
      * Updates the archive with a given individual _moeo *** NEW ***
      * @param _moeo the given individual

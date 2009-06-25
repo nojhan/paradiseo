@@ -71,7 +71,7 @@ public:
      * Ctor
      * @param _comparator the moeoObjectiveVectorComparator used to compare solutions
      */
-    moeoDMLSArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator) : eoPop < MOEOT >(), comparator(_comparator), isModified(false)
+    moeoDMLSArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator) : moeoArchive < MOEOT >(), comparator(_comparator), isModified(false)
     {}
 
 
