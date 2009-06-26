@@ -42,9 +42,10 @@ struct split_info
 {
 	int left, right, num_nodes, map_to_node, node_to_map;
 	split_info *hash;
+	int side;
    
 	split_info() {};
-	split_info(int n) : left(n), right(-1), num_nodes(0), hash(NULL), map_to_node(-1), node_to_map(-1) {};
+	split_info(int n) : left(n), right(-1), num_nodes(0), hash(NULL), map_to_node(-1), node_to_map(-1), side(0) {};
         bool invalid() { return right == -1; };
 };
 
@@ -110,6 +111,7 @@ class phylotreeIND
 		void mutate_branch_lenght ( float );
 		edge select_edge_outsidetree ( edge source_edge ) const;
 		edge choose_edge_fromside ( int id, bool side ) const;
+		edge choose_edge_fromside_2( struct split_info &info, bool inside ) const;
 		edge choose_neighboor ( edge, node ) const;
 
 

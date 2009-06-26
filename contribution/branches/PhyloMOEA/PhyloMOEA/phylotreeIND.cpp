@@ -250,6 +250,40 @@ edge phylotreeIND::choose_edge_fromside( int idx, bool side ) const
 }
 
 
+// select and edge from a side of a split
+// true = inside
+// false = outside
+edge phylotreeIND::choose_edge_fromside_2( struct split_info &info, bool inside ) const
+{
+	edge edgeaux;
+	bool chosen = false;
+	do
+	{
+		edgeaux = select_edge();
+		struct split_info *info2 = interior_edge[edgeaux];
+		if( is_internal(edgeaux) )
+		{
+		      int taxon_map = splitstable[ taxon_id(edgeaux.target()) ].map_to_node;
+		      if( inside)
+			  chosen = ( taxon_map  >= info.left  && taxon_map <= info.right );
+		      else
+			  chosen = ( taxon_map  < info.left  || taxon_map > info.right );
+		}
+	        else 
+		{
+		      if ( inside )
+			  chosen = ( info.left <= info2->left && info.right >= info2->right );
+		      else
+			  chosen = ( info.left > info2->right || info.right < info2->left );
+		}
+
+	}
+	while( !chosen );
+	return edgeaux;
+}
+
+
+
 // genetic operators
 // change subtrees to form childs
 void phylotreeIND::crossover(float pcross, const phylotreeIND& dad, phylotreeIND*& sis, phylotreeIND*& bro) const
@@ -2219,6 +2253,8 @@ void phylotreeIND::calculate_splits4()
 			int idx;
 			l = current_info->left;
 			interior_edge[ it.branch() ] = current_info;
+			if( *it == it.branch().source() ) current_info->side = 0;
+			else current_info->side = 1;
 			
 			if( father_info == NULL )
 			{
