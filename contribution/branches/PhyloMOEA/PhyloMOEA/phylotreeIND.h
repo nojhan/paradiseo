@@ -111,7 +111,7 @@ class phylotreeIND
 		void mutate_branch_lenght ( float );
 		edge select_edge_outsidetree ( edge source_edge ) const;
 		edge choose_edge_fromside ( int id, bool side ) const;
-		edge choose_edge_fromside_2( struct split_info &info, bool inside ) const;
+		edge choose_edge_fromside_2( struct split_info *info, bool inside ) const;
 		edge choose_neighboor ( edge, node ) const;
 
 
@@ -204,6 +204,7 @@ class phylotreeIND
 		inline bool splits_valid() const { return valid_splits; }
 		inline bool split ( edge edgeaux, node nodeaux ) const
 		{ return split_bits[ edgeaux.id() * TREE.number_of_nodes() + nodeaux.id() ]; }
+		bool split2(edge edgeaux);
 
 		void read_newick ( string newickstring );
 		void read_newick2 ( string newickstring );

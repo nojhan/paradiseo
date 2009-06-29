@@ -253,7 +253,7 @@ edge phylotreeIND::choose_edge_fromside( int idx, bool side ) const
 // select and edge from a side of a split
 // true = inside
 // false = outside
-edge phylotreeIND::choose_edge_fromside_2( struct split_info &info, bool inside ) const
+edge phylotreeIND::choose_edge_fromside_2( struct split_info *info, bool inside ) const
 {
 	edge edgeaux;
 	bool chosen = false;
@@ -261,20 +261,21 @@ edge phylotreeIND::choose_edge_fromside_2( struct split_info &info, bool inside 
 	{
 		edgeaux = select_edge();
 		struct split_info *info2 = interior_edge[edgeaux];
+		if ( info == NULL ) return edgeaux;
 		if( is_internal(edgeaux) )
 		{
 		      int taxon_map = splitstable[ taxon_id(edgeaux.target()) ].map_to_node;
 		      if( inside)
-			  chosen = ( taxon_map  >= info.left  && taxon_map <= info.right );
+			  chosen = ( taxon_map  >= info->left  && taxon_map <= info->right );
 		      else
-			  chosen = ( taxon_map  < info.left  || taxon_map > info.right );
+			  chosen = ( taxon_map  < info->left  || taxon_map > info->right );
 		}
 	        else 
 		{
 		      if ( inside )
-			  chosen = ( info.left <= info2->left && info.right >= info2->right );
+			  chosen = ( info->left <= info2->left && info->right >= info2->right );
 		      else
-			  chosen = ( info.left > info2->right || info.right < info2->left );
+			  chosen = ( info->left > info2->right || info->right < info2->left );
 		}
 
 	}
@@ -370,6 +371,13 @@ void phylotreeIND::init()
    
 }
 
+
+bool phylotreeIND::split2(edge edgeaux)
+{
+      if (is_internal(edgeaux)) return 0;
+      struct split_info *part_info = interior_edge[edgeaux];
+      return (part_info->side == 0);
+}
 
 
 
