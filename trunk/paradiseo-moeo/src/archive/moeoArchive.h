@@ -42,6 +42,7 @@
 #include <comparator/moeoObjectiveVectorComparator.h>
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
 
+
 /**
  * Abstract class for representing an archive ;
  * an archive is a secondary population that stores non-dominated solutions.
@@ -67,7 +68,7 @@ public:
      * Default ctor.
      * The moeoObjectiveVectorComparator used to compare solutions is based on Pareto dominance
      */
-    moeoArchive() : eoPop < MOEOT >(), comparator(paretoComparator)
+    moeoArchive(bool _replace=true) : eoPop < MOEOT >(), comparator(paretoComparator), replace(_replace)
     {}
 
 
@@ -75,7 +76,7 @@ public:
      * Ctor
      * @param _comparator the moeoObjectiveVectorComparator used to compare solutions
      */
-    moeoArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator) : eoPop < MOEOT >(), comparator(_comparator)
+    moeoArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, bool _replace=true) : eoPop < MOEOT >(), comparator(_comparator), replace(_replace)
     {}
 
 
@@ -171,7 +172,7 @@ protected:
                 operator[](j) = back();
                 pop_back();
             }
-            else if (_moeo.objectiveVector() == operator[](j).objectiveVector())
+            else if (replace && (_moeo.objectiveVector() == operator[](j).objectiveVector()))
             {
                 operator[](j) = back();
                 pop_back();
@@ -191,6 +192,11 @@ protected:
                 dom = true;
                 break;
             }
+            else if (!replace && (_moeo.objectiveVector() == operator[](j).objectiveVector()) )
+            {
+            	dom = true;
+            	break;
+            }
         }
         if (!dom)
         {
@@ -206,24 +212,25 @@ protected:
      */
     bool update(const eoPop < MOEOT > & _pop)
     {
-		bool tmp = false;
     	bool res = false;
+    	bool tmp = false;
         for (unsigned int i=0; i<_pop.size(); i++)
         {
-        	tmp = (*this).update(_pop[i]);
+            tmp = (*this).update(_pop[i]);
             res = tmp || res;
         }
         return res;
     }
-
-
+ 
 private:
-
     /** The moeoObjectiveVectorComparator used to compare solutions */
     moeoObjectiveVectorComparator < ObjectiveVector > & comparator;
     /** A moeoObjectiveVectorComparator based on Pareto dominance (used as default) */
     moeoParetoObjectiveVectorComparator < ObjectiveVector > paretoComparator;
 
+protected:
+	/** boolean */
+	bool replace;
 };
 
 #endif /*MOEOARCHIVE_H_ */

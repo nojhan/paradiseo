@@ -41,12 +41,7 @@
 #ifndef MOEOBOUNDEDARCHIVE_H_
 #define MOEOBOUNDEDARCHIVE_H_
 
-#include <list>
-#include <eoPop.h>
-#include <comparator/moeoComparator.h>
-#include <comparator/moeoObjectiveVectorComparator.h>
-#include <diversity/moeoDiversityAssignment.h>
-#include <fitness/moeoFitnessAssignment.h>
+#include <archive/moeoArchive.h>
 
 /**
  * This class represents a bounded archive which different parameters to specify.
@@ -55,17 +50,6 @@ template < class MOEOT >
 class moeoBoundedArchive : public moeoArchive < MOEOT >
 {
 public:
-
-    using moeoArchive < MOEOT > :: size;
-    using moeoArchive < MOEOT > :: resize;
-    using moeoArchive < MOEOT > :: operator[];
-    using moeoArchive < MOEOT > :: back;
-    using moeoArchive < MOEOT > :: pop_back;
-    using moeoArchive < MOEOT > :: push_back;
-    using moeoArchive < MOEOT > :: begin;
-    using moeoArchive < MOEOT > :: end;
-
-
     /**
      * The type of an objective vector for a solution
      */
@@ -73,47 +57,25 @@ public:
 
 
     /**
-     * Ctor where you can choose your own moeoComparator, moeoObjectiveVectorComparator, moeoFitnessAssignment, moeoDiversityAssignment and archive size.
-     * @param _indiComparator the functor used to compare MOEOT
+     * Ctor where you can choose your own moeoObjectiveVectorComparator and archive size.
      * @param _comparator the functor used to compare objective vectors
-     * @param _fitness the assignment fitness method
-     * @param _diversity the diversity assignment method
      * @param _maxSize the size of archive (must be smaller or egal to the population size)
      */
-    moeoBoundedArchive(moeoComparator < MOEOT > & _indiComparator, moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, moeoFitnessAssignment < MOEOT > & _fitness, moeoDiversityAssignment < MOEOT > & _diversity, unsigned int _maxSize=100) : moeoArchive < MOEOT >(_comparator), maxSize(_maxSize), indiComparator(_indiComparator), fitness(_fitness), diversity(_diversity)
-    {}
+    moeoBoundedArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, unsigned int _maxSize=100, bool _replace=true) : moeoArchive < MOEOT >(_comparator, _replace), maxSize(_maxSize){}
 
     /**
-     * Ctor with moeoParetoObjectiveVectorComparator where you can choose your own moeoComparator, moeoFitnessAssignment, moeoDiversityAssignment and archive size.
-     * @param _indiComparator the functor used to compare MOEOT
-     * @param _fitness the assignment fitness method
-     * @param _diversity the diversity assignment method
+     * Ctor with moeoParetoObjectiveVectorComparator where you can choose your own archive size.
      * @param _maxSize the size of archive (must be smaller or egal to the population size)
      */
-    moeoBoundedArchive(moeoComparator < MOEOT > & _indiComparator, moeoFitnessAssignment < MOEOT > & _fitness, moeoDiversityAssignment < MOEOT > & _diversity, unsigned int _maxSize=100) : moeoArchive < MOEOT >(), maxSize(_maxSize), indiComparator(_indiComparator), fitness(_fitness), diversity(_diversity)
-    {}
+    moeoBoundedArchive(unsigned int _maxSize=100, bool _replace=true) : moeoArchive < MOEOT >(_replace), maxSize(_maxSize){}
 
-
-
-
+    
     /**
      * Updates the archive with a given individual _moeo
      * @param _moeo the given individual
      * @return true if _moeo is non-dominated (and not if it is added to the archive)
      */
-    bool operator()(const MOEOT & _moeo)
-    {
-		bool res;
-    	res = update(_moeo);
-
-    	if(size() > maxSize){
-    		fitness(*this);
-    		diversity(*this);
-    		std::sort(begin(), end(), indiComparator);
-    		resize(maxSize);
-    	}
-    	return res;
-    }
+    //virtual bool operator()(const MOEOT & _moeo) = 0;
 
 
     /**
@@ -121,55 +83,12 @@ public:
      * @param _pop the given population
      * @return true if a _pop[i] is non-dominated (and not if it is added to the archive)
      */
-    bool operator()(const eoPop < MOEOT > & _pop)
-    {
-    	bool res;
-    	res = update(_pop);
+    //virtual bool operator()(const eoPop < MOEOT > & _pop) = 0;
 
-    	if(size() > maxSize){
-    		fitness(*this);
-    		diversity(*this);
-    		std::sort(begin(), end(), indiComparator);
-    		resize(maxSize);
-    	}
-    	return res;
-    }
-
-private:
+protected:
 
     /** archive max size */
     unsigned int maxSize;
-    /**
-     * Wrapper which allow to used an moeoComparator in std::sort
-     * @param _comp the comparator to used
-     */
-    class Wrapper
-    {
-    public:
-        /**
-         * Ctor.
-         * @param _comp the comparator
-         */
-        Wrapper(moeoComparator < MOEOT > & _comp) : comp(_comp) {}
-        /**
-         * Returns true if _moeo1 is greater than _moeo2 according to the comparator
-         * _moeo1 the first individual
-         * _moeo2 the first individual
-         */
-        bool operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
-        {
-            return comp(_moeo1,_moeo2);
-        }
-    private:
-        /** the comparator */
-        moeoComparator < MOEOT > & comp;
-    }
-    indiComparator;
-
-    /** fitness assignment */
-    moeoFitnessAssignment < MOEOT > & fitness;
-    /** diversity assignment */
-    moeoDiversityAssignment < MOEOT > & diversity;
 
 };
 

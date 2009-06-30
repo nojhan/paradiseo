@@ -64,14 +64,14 @@ public:
      * Default ctor.
      * The moeoObjectiveVectorComparator used to compare solutions is based on Pareto dominance
      */
-    moeoFixedSizeArchive() : moeoArchive < MOEOT >() {}
+    moeoFixedSizeArchive(bool _replace=true) : moeoArchive < MOEOT >(_replace) {}
 
 
     /**
      * Ctor
      * @param _comparator the moeoObjectiveVectorComparator used to compare solutions
      */
-    moeoFixedSizeArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator) : moeoArchive < MOEOT >( _comparator) {}
+    moeoFixedSizeArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, bool _replace=true) : moeoArchive < MOEOT >( _comparator, _replace) {}
 
 };
 
