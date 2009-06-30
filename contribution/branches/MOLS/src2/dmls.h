@@ -14,3 +14,6 @@
 #include "moeoSimpleSubNeighborhoodExplorer.h"
 #include "moeoUnifiedDominanceBasedLS.h"
 #include "moeoUnvisitedSelect.h"
+#include "moeoPLS1.h"
+#include "moeoPLS2.h"
+

@@ -1,5 +1,5 @@
 /*
-* <moeoRecursiveFirstImprovingNeighborhoodExplorer.h>
+* <moeoPLS1.h>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
 *
@@ -36,70 +36,48 @@
 */
 //-----------------------------------------------------------------------------
 
-#ifndef _MOEORECURSIVEFIRSTIMPROVINGNEIGHBORHOODEXPLORER_H
-#define _MOEORECURSIVEFIRSTIMPROVINGNEIGHBORHOODEXPLORER_H
+#ifndef _MOEOPLS1_H
+#define _MOEOPLS1_H
 
-#include <moeoSubNeighborhoodExplorer.h>
+#include <moeoUnifiedDominanceBasedLS.h>
+#include <moeoNumberUnvisitedSelect.h>
+#include <moeoExhaustiveNeighborhoodExplorer.h>
 
 /**
- * Explorer which explore a part of the neighborhood
+ * A class to design dominance based local searches
  */
 template < class Move >
-class moeoRecursiveFirstImprovingNeighborhoodExplorer : public moeoSubNeighborhoodExplorer < Move >
+class moeoPLS1 : public moeoUnifiedDominanceBasedLS < Move >
 {
-	/** Alias for the type */
-    typedef typename Move::EOType MOEOT;
-    /** Alias for the objeciveVector */
-    typedef typename MOEOT::ObjectiveVector ObjectiveVector;
-
-    using moeoSubNeighborhoodExplorer<Move>::move;
-    using moeoSubNeighborhoodExplorer<Move>::objVec;
-    using moeoSubNeighborhoodExplorer<Move>::number;
-
 public:
 
+	/** Alias for the type */
+    typedef typename Move::EOType MOEOT;
+    typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 	/**
 	 * Ctor
+	 * @param _continuator a stop creterion
+	 * @param _eval a evaluation function
+	 * @param _archive a archive to store no-dominated individuals
 	 * @param _moveInit the move initializer
 	 * @param _nextMove allow to do or not a move
 	 * @param _incrEval a (generally) efficient evaluation fonction
-	 * @param _number the number of neighbor to explore
 	 */
-    moeoRecursiveFirstImprovingNeighborhoodExplorer(
-        moMoveInit < Move > & _moveInit,
-        moNextMove < Move > & _nextMove,
-        moMoveIncrEval < Move, ObjectiveVector > & _incrEval)
-            : moeoSubNeighborhoodExplorer< Move >(_moveInit, _nextMove, _incrEval, 0){}
-
-private:
-
-	/**
-	 * explorer of one individual
-	 * @param _src the individual to explore
-	 * @param _dest contains new generated individuals
-	 */
-	void explore(MOEOT & _src, eoPop < MOEOT > & _dest)
-	{
-		moveInit(move, _src);
-		do
-		{
-			objVec = incrEval(move, _src);
-			if(!comparator(objVec, _src.objectiveVector())){
-				_dest.push_back(_src);
-				move(_dest.back());
-				_dest.back().objectiveVector(objVec);
-				_dest.back().flag(0);
-			}
-		}
-		while (nextMove(move, _src) && (!comparator( _src.objectiveVector(),objVec)));
-		if(comparator( _src.objectiveVector(),objVec))
-			explore(_dest.back(), _dest);
-		else
-			_src.flag(1);
-	}
-
-	/** Objective Vector Pareto Comparator */
-	moeoParetoObjectiveVectorComparator<ObjectiveVector> comparator;
+    moeoPLS1(
+    		eoContinue < MOEOT > & _continuator,
+            eoEvalFunc < MOEOT > & _eval,
+            moeoArchive < MOEOT > & _archive,
+            moMoveInit < Move > & _moveInit,
+            moNextMove < Move > & _nextMove,
+            moMoveIncrEval < Move, ObjectiveVector > & _incrEval):
+            	moeoUnifiedDominanceBasedLS<Move>(
+            			_continuator,
+            			_eval,
+            			_archive,
+            			*(new moeoExhaustiveNeighborhoodExplorer<Move>(_moveInit, _nextMove, _incrEval)),
+            			*(new moeoNumberUnvisitedSelect<MOEOT>(1))
+            	){}
+    
 };
 
-#endif /*_MOEORECURSIVEFIRSTIMPROVINGNEIGHBORHOODEXPLORER_H_*/
+#endif /*MOEOPLS1_H_*/
