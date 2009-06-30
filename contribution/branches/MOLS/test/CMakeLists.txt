@@ -8,6 +8,8 @@ SET (TEST_LIST
 		t-moeoUnifiedDominanceBasedLS
 		t-moeoDMLSGenUpdater
 		t-moeoDMLSMonOp
+		t-moeoPLS1
+		t-moeoPLS2
 	)
 
 FOREACH (test ${TEST_LIST})

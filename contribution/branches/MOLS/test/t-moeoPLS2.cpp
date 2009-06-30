@@ -1,5 +1,5 @@
 /*
-* <t-moeoRecursiveFirstImprovingNeighborhoodExplorer.cpp>
+* <t-moeoPLS2.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Lille-Nord Europe, 2006-2008
 * (C) OPAC Team, LIFL, 2002-2008
 *
@@ -35,74 +35,49 @@
 *
 */
 //-----------------------------------------------------------------------------
-// t-moeoFirstImprovingNeighborhoodExplorer.cpp
+// t-moeoPLS2.cpp
 //-----------------------------------------------------------------------------
 
 #include <eo>
-#include <mo>
 #include <moeo>
 #include <assert.h>
+#include <set>
 #include <iostream>
-#include <moeoRecursiveFirstImprovingNeighborhoodExplorer.h>
+#include <moeoExhaustiveUnvisitedSelect.h>
 #include <moeoTestClass.h>
+#include <moeoPLS2.h>
+#include <eoTenTimeContinue.h>
+#include <moeoExhaustiveNeighborhoodExplorer.h>
 //-----------------------------------------------------------------------------
-
-
 
 //-----------------------------------------------------------------------------
 
 int main()
 {
-    std::cout << "[moeoRecursiveFirstImprovingNeighborhoodExplorer] => ";
+    std::cout << "[moeoPLS2] => ";
+
+    testEval eval;
+    testMoveInit init;
+	testMoveNext next;
+	testMoveIncrEval2 incr;
+
+	moeoUnboundedArchive <Solution>  arch;
+	eoCtrlCContinue <Solution> cont;
+	moeoPLS2 <testMove> algo(cont, eval, arch, init, next, incr);
 
     // objective vectors
-    ObjectiveVector obj0;
-    obj0[0]=10;
-    obj0[1]=10;
-    eoPop < Solution > src;
-    eoPop < Solution > dest;
-    std::vector < unsigned int > select;
-    src.resize(1);
-    src[0].objectiveVector(obj0);
-    src[0].flag(0);
-    dest.resize(0);
-    select.resize(1);
-    select[0]=0;
+    eoPop < Solution > pop;
+    pop.resize(2);
+    pop[0].flag(0);
+    pop[1].flag(0);
 
-    testMoveInit init;
-    testMoveNext next;
-    testMoveIncrEval4 incr;
-    testMoveIncrEval3 incr2;
+	algo(pop);
 
-    moeoRecursiveFirstImprovingNeighborhoodExplorer < testMove > explorer(init, next, incr);
-
-    explorer(src, select, dest);
-
-    /*assert(dest.size()==3);
-    assert(src[0].flag()==0);
-    for(int i=0 ; i< 3 ; i++)
-    	assert(dest[i].flag()==0);
-    assert(dest[0].objectiveVector()[0]==11);
-    assert(dest[0].objectiveVector()[1]==9);
-    assert(dest[1].objectiveVector()[0]==9);
-    assert(dest[1].objectiveVector()[1]==11);
-    assert(dest[2].objectiveVector()[0]==9);
-    assert(dest[2].objectiveVector()[1]==9);*/
-
-    moeoRecursiveFirstImprovingNeighborhoodExplorer < testMove > explorer2(init, next, incr2);
-    dest.resize(0);
-    explorer2(src, select, dest);
-    /*assert(dest.size()==5);
-    assert(src[0].flag()==1);
-    for(int i=0 ; i< 5 ; i++){
-    	assert(dest[i].flag()==0);
-		assert(dest[i].objectiveVector()[0]==9);
-		assert(dest[i].objectiveVector()[1]==11);
-    }*/
+	assert(arch.size()==1);
+	assert(arch[0].flag()==1);
 
     std::cout << "OK" << std::endl;
     return EXIT_SUCCESS;
-
 }
 
 //-----------------------------------------------------------------------------
