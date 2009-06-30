@@ -63,7 +63,6 @@ public:
 	 * @param _moveInit the move initializer
 	 * @param _nextMove allow to do or not a move
 	 * @param _incrEval a (generally) efficient evaluation fonction
-	 * @param _number the number of neighbor to explore
 	 */
     moeoNoDesimprovingNeighborhoodExplorer(
         moMoveInit < Move > & _moveInit,

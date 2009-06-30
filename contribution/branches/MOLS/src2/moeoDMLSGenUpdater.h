@@ -30,7 +30,7 @@ class moeoDMLSGenUpdater : public eoUpdater
 
 	/** Ctor with a dmls.
 	 * @param _eval a evaluation function (used to instantiate the dmls)
-	 * @param _eplorer a neighborhood explorer (used to instantiate the dmls)
+	 * @param _explorer a neighborhood explorer (used to instantiate the dmls)
 	 * @param _select a selector of unvisited individuals of a population (used to instantiate the dmls)
 	 * @param _globalArchive the same archive used in the other algorithm
 	 * @param _continuator is a Generational Continuator which allow to run dmls on the global archive each X generation(s)
@@ -49,7 +49,7 @@ class moeoDMLSGenUpdater : public eoUpdater
     /** Ctor with a dmls.
 	 * @param _eval a evaluation function (used to instantiate the dmls)
 	 * @param _dmlsArchive an archive (used to instantiate the dmls)
-	 * @param _eplorer a neighborhood explorer (used to instantiate the dmls)
+	 * @param _explorer a neighborhood explorer (used to instantiate the dmls)
 	 * @param _select a selector of unvisited individuals of a population (used to instantiate the dmls)
 	 * @param _globalArchive the same archive used in the other algorithm
 	 * @param _continuator is a Generational Continuator which allow to run dmls on the global archive each X generation(s)

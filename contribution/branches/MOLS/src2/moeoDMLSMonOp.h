@@ -27,7 +27,7 @@ class moeoDMLSMonOp : public eoMonOp < typename Move::EOType >
 
 	/** Ctor with a dmls.
 	 * @param _eval a evaluation function (used to instantiate the dmls)
-	 * @param _eplorer a neighborhood explorer (used to instantiate the dmls)
+	 * @param _explorer a neighborhood explorer (used to instantiate the dmls)
 	 * @param _select a selector of unvisited individuals of a population (used to instantiate the dmls)
 	 * @param _step (default=1) is the number of Generation of dmls (used to instantiate the defaultContinuator for the dmls)
 	 * @param _verbose verbose mode
@@ -42,7 +42,7 @@ class moeoDMLSMonOp : public eoMonOp < typename Move::EOType >
     /** Ctor with a dmls.
 	 * @param _eval a evaluation function (used to instantiate the dmls)
 	 * @param _dmlsArchive an archive (used to instantiate the dmls)
-	 * @param _eplorer a neighborhood explorer (used to instantiate the dmls)
+	 * @param _explorer a neighborhood explorer (used to instantiate the dmls)
 	 * @param _select a selector of unvisited individuals of a population (used to instantiate the dmls)
 	 * @param _step (default=1) is the number of Generation of dmls (used to instantiate the defaultContinuator for the dmls)
 	 * @param _verbose verbose mode
