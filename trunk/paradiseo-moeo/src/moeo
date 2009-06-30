@@ -57,6 +57,8 @@
 #include <archive/moeoFixedSizeArchive.h>
 #include <archive/moeoSPEA2Archive.h>
 #include <archive/moeoUnboundedArchive.h>
+#include <archive/moeoImprOnlyBoundedArchive.h>
+#include <archive/moeoFitDivBoundedArchive.h>
 
 
 #include <comparator/moeoAggregativeComparator.h>
