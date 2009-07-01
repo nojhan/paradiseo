@@ -35,13 +35,19 @@ int main(int argc, char *argv[])
 	phylotreeIND templatetree6( rn, seq6, rn2);
 	phylotreeIND *test = templatetree6.randomClone();
 	phylotreeIND test2(*test);
-	test2.TBR();
-	
 	test->calculate_splits4();
-	test->print_splits_2();
-	test->printNewick(cout);
 	test2.calculate_splits4();
+	test->export_subtree(test2);
+	//test2.TBR();
+
+	//test2.printNewick(cout);
+	cout << "calculando splits..." << endl;
+	test2.calculate_splits4();
+	//test->print_splits_2();
+	
+	cout << "calculando distance..." << endl;
 	cout << "distance " << test->compare_topology_4(test2) << endl;
+	cout << "calculando distance..." << endl;
 	cout << "distance " << test->compare_topology_2(test2) << endl;
 
 	

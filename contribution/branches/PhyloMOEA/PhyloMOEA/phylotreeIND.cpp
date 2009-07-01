@@ -257,29 +257,32 @@ edge phylotreeIND::choose_edge_fromside_2( struct split_info *info, bool inside 
 {
 	edge edgeaux;
 	bool chosen = false;
+	int taxon_map;
+//	cout << "edge recibido es internal " << info ;
+	int n = number_of_taxons();
+	int i=0;
+//	if(info) cout << "  " << info->left << "  "  << info->right << endl;
 	do
 	{
 		edgeaux = select_edge();
+		//cout << "edge selected is " ;
 		struct split_info *info2 = interior_edge[edgeaux];
-		if ( info == NULL ) return edgeaux;
+		if ( info == NULL )
+		    return edgeaux;
+		
 		if( is_internal(edgeaux) )
-		{
-		      int taxon_map = splitstable[ taxon_id(edgeaux.target()) ].map_to_node;
-		      if( inside)
-			  chosen = ( taxon_map  >= info->left  && taxon_map <= info->right );
-		      else
-			  chosen = ( taxon_map  < info->left  || taxon_map > info->right );
-		}
+		    // chosen = true edge is inside, false edge is outside
+		    chosen = ( info->left <= info2->left && info->right >= info2->right );
 	        else 
 		{
-		      if ( inside )
-			  chosen = ( info->left <= info2->left && info->right >= info2->right );
-		      else
-			  chosen = ( info->left > info2->right || info->right < info2->left );
-		}
+		      
+		      taxon_map = splitstable[ taxon_id(edgeaux.target()) ].map_to_node;
+		      chosen = ( taxon_map  >= info->left  && taxon_map <= info->right );
 
+		}
+		i=i+1;
 	}
-	while( !chosen );
+	while( chosen != inside );
 	return edgeaux;
 }
 
@@ -374,7 +377,7 @@ void phylotreeIND::init()
 
 bool phylotreeIND::split2(edge edgeaux)
 {
-      if (is_internal(edgeaux)) return 0;
+      if (!is_internal(edgeaux)) return 0;
       struct split_info *part_info = interior_edge[edgeaux];
       return (part_info->side == 0);
 }
@@ -393,7 +396,8 @@ void phylotreeIND::crossover_gaml(phylotreeIND &TREE2)
 	list<node> subtree_nodes;
 	// select the root of the tree to be pruned (the root is market with 1 in the split
 	// corresponding to edgeaux
-	root1 = split(*edgeaux, edgeaux->source()) ? edgeaux->source() : edgeaux->target();
+	//root1 = split(*edgeaux, edgeaux->source()) ? edgeaux->source() : edgeaux->target();
+	root1 = split2(*edgeaux) ? edgeaux->source() : edgeaux->target();
 	// select the root of the subtree pruned
 	parent1 = root1 == edgeaux->source() ? edgeaux->target() : edgeaux->source();
 	// save the distance of edgeaux
@@ -446,7 +450,8 @@ void phylotreeIND::export_subtree( phylotreeIND &dest)
 	// save the distance of the edge comming to the root_subtree
 	double dist = get_branch_length(source_edge);
 	
-	root_subtree = split(source_edge,source_edge.source()) ? source_edge.source() : source_edge.target();
+	//root_subtree = split(source_edge,source_edge.source()) ? source_edge.source() : source_edge.target();
+	root_subtree = split2(source_edge) ? source_edge.source() : source_edge.target();
 	// points to the parent of the subtree in order to do the percurse
 	
 	// DEBUG INFO
@@ -510,8 +515,13 @@ void phylotreeIND::crossover_parsigal( phylotreeIND & TREE2,phylotreeIND & SON1,
 	
 	
 	// works from both rooted and unrooted trees
-	root1 = split(*edgeaux1,edgeaux1->source()) ? edgeaux1->source() : edgeaux1->target();
-	root2 = TREE2.split(*edgeaux2,edgeaux2->source()) ? edgeaux2->source() : edgeaux2->target();
+// 	root1 = split(*edgeaux1,edgeaux1->source()) ? edgeaux1->source() : edgeaux1->target();
+// 	root2 = TREE2.split(*edgeaux2,edgeaux2->source()) ? edgeaux2->source() : edgeaux2->target();
+
+ 	root1 = split2(*edgeaux1) ? edgeaux1->source() : edgeaux1->target();
+ 	root2 = TREE2.split2(*edgeaux2) ? edgeaux2->source() : edgeaux2->target();
+
+
 	
 	// its imposible to swap the entire tree
 	if(root!=NULL && (root1 == *root || root2 == *TREE2.root)) return;
@@ -893,15 +903,20 @@ void phylotreeIND::SPR()
 	edge edgeaux1 = select_edge(); 
 				//select_edge_at_pos( TREE.all_edges(),  j);
 	
+
 	node nodeaux, delnode, nodeaux2;
 
 	// because the edgeaux will be deleted we save it split
+
 	int idx_begin = edgeaux1.id() * TREE.number_of_nodes();
+
+	struct split_info *info = is_internal(edgeaux1) ? interior_edge[edgeaux1] : NULL;
 		
 	// save the distance of edgeaux1
 	double d_edgeaux1 = get_branch_length(edgeaux1);
-	
-	nodeaux = split(edgeaux1,edgeaux1.source()) ? edgeaux1.source() : edgeaux1.target();
+
+	//nodeaux = split(edgeaux1,edgeaux1.source()) ? edgeaux1.source() : edgeaux1.target();
+	nodeaux = split2(edgeaux1) ? edgeaux1.source() : edgeaux1.target();
 	// select the source preventing remove a taxon
 	delnode = edgeaux1.opposite(nodeaux); 
 	// prune edge1 and graft in edge 2
@@ -911,8 +926,8 @@ void phylotreeIND::SPR()
 	//TREE.del_edge(edgeaux1);
 	collapse_node(delnode);
 
-	edge edgeaux2 = choose_edge_fromside(idx_begin, false);
-
+	//edge edgeaux2 = choose_edge_fromside(idx_begin, false);
+	edge edgeaux2 = choose_edge_fromside_2(info, false);
 	// finally, regraft in edgeaux2
 	// insert the subtree rooted at nodeaux in edgeaux2;
 	insert_node_in_edge(nodeaux, edgeaux2, d_edgeaux1);
@@ -932,7 +947,7 @@ void phylotreeIND::TBR()
 	// the graph was divide by removing edgeaux1
 
 	int idx_begin = prune_edge.id() * TREE.number_of_nodes();
-
+	struct split_info *info = interior_edge[prune_edge];
 
 	source = prune_edge.source();
 	dest =  prune_edge.target();
@@ -942,8 +957,12 @@ void phylotreeIND::TBR()
 	collapse_node(source);
 	collapse_node(dest);
 
-	edgeaux1 = choose_edge_fromside( idx_begin, true);
-	edgeaux2 = choose_edge_fromside( idx_begin, false);
+//	edgeaux1 = choose_edge_fromside( idx_begin, true);
+//	edgeaux2 = choose_edge_fromside( idx_begin, false);
+
+	edgeaux1 = choose_edge_fromside_2( info, true);
+	edgeaux2 = choose_edge_fromside_2( info, false);
+
 	// create the new nodes to be reconected in the respective subtrees
 	nodeaux1 = divide_edge(edgeaux1);
 	nodeaux2 = divide_edge(edgeaux2);
@@ -967,6 +986,7 @@ void phylotreeIND::change_subtrees()
 	parent_subtree1 = source_edge.opposite(root_subtree1); 
 
 	dest_edge = select_edge_outsidetree(source_edge);
+	
 
 	bool lado = !split(dest_edge,root_subtree1);
 	root_subtree2 = split(dest_edge,dest_edge.source()) == lado 
@@ -1044,10 +1064,17 @@ void phylotreeIND::collapse_node(node delnode)
 		adj2 = it2->opposite(delnode); 
 		// if adj1 is a taxon, connect adj2->adj1
 		if( istaxon(adj1) )
-			new_branch( adj2, adj1, get_branch_length(*it1) + get_branch_length(*it2)); 
+		{
+			edgeaux = new_branch( adj2, adj1, get_branch_length(*it1) + get_branch_length(*it2)); 
 			//edgeaux = TREE.new_edge( adj2, adj1);
+
+		}
 		else
-			new_branch( adj1, adj2, get_branch_length(*it1) + get_branch_length(*it2)); 
+		{
+			edgeaux = new_branch( adj1, adj2, get_branch_length(*it1) + get_branch_length(*it2)); 
+		}
+
+		if( !istaxon(adj1) && !istaxon(adj2) ) interior_edge[edgeaux] = interior_node[adj1];
 			//edgeaux = TREE.new_edge( adj1, adj2);
 		// set the new distance as the sum of edge lenghts
 		//set_branch_length( edgeaux, get_branch_length(*it1) + get_branch_length(*it2) );
@@ -2212,6 +2239,7 @@ void phylotreeIND::calculate_splits4()
 	int n = number_of_taxons();
 	//struct split_info	**hash_table;  // hash that points struct info
 	//struct split_info 	*interior_node_info = new struct split_info[n-1];
+	splitstable.clear();
 	splitstable.resize(n);
 
 	int idx_interior = 0;
