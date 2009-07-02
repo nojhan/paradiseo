@@ -142,7 +142,8 @@ private :
     /**
      * abstract method allow to use differents epsilon indicators
      * @param _o1 the first objective vector
-     * @parama _o2 the second objective vector
+     * @param _o2 the second objective vector
+     * @param _obj the objective in consideration
      * @return an epsilon indicator between two objective vectors
      */
     virtual double epsilon(const ObjectiveVector & _o1, const ObjectiveVector & _o2, const unsigned int _obj)=0;

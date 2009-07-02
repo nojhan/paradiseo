@@ -108,7 +108,7 @@ public:
     /**
      * Ctor taking a select, a transform.and a popEval
      * @param _continuator the stopping criteria
-     * @param _eval the evaluation functions
+     * @param _popEval the evaluation functions
      * @param _select the selection scheme
      * @param _transform the tranformation scheme
      * @param _replace the replacement strategy

@@ -64,6 +64,7 @@ private:
      * a vector z1 is said to eps+-dominate another vector z2, if we can add each objective value in z2 by eps and the resulting objective vector is still weakly dominates by z1.
      * @param _o1 the first objective vector (correspond to A, must not have dominated elements)
      * @param _o2 the second objective vector (correspond to B, must not have dominated elements)
+     * @param _obj the objective in consideration
      * @return the additive epsilon indicator between the two objective vector _o1 and _o2
      */
     double epsilon(const ObjectiveVector & _o1, const ObjectiveVector & _o2, const unsigned int _obj){

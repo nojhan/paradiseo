@@ -73,12 +73,14 @@ public:
      * Ctor where you can choose your own moeoComparator and archive size.
      * @param _comparator the functor used to compare objective vectors
      * @param _maxSize the size of archive (must be smaller or egal to the population size)
+     * @param _replace boolean which determine if a solution with the same objectiveVector than another one, can replace it or not
      */
     moeoImprOnlyBoundedArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, unsigned int _maxSize=100, bool _replace=true) : moeoBoundedArchive < MOEOT >(_comparator, _maxSize, _replace){}
 
     /**
      * Ctor with moeoParetoObjectiveVectorComparator where you can choose your own archive size.
      * @param _maxSize the size of archive (must be smaller or egal to the population size)
+     * @param _replace boolean which determine if a solution with the same objectiveVector than another one, can replace it or not
      */
     moeoImprOnlyBoundedArchive(unsigned int _maxSize=100, bool _replace=true) : moeoBoundedArchive < MOEOT >(_maxSize, _replace){}
 

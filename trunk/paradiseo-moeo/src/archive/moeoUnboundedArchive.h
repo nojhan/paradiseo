@@ -61,6 +61,7 @@ public:
     /**
      * Default ctor.
      * The moeoObjectiveVectorComparator used to compare solutions is based on Pareto dominance
+     * @param _replace boolean which determine if a solution with the same objectiveVector than another one, can replace it or not
      */
     moeoUnboundedArchive(bool _replace=true) : moeoArchive < MOEOT >(_replace) {}
 
@@ -68,6 +69,7 @@ public:
     /**
      * Ctor
      * @param _comparator the moeoObjectiveVectorComparator used to compare solutions
+     * @param _replace boolean which determine if a solution with the same objectiveVector than another one, can replace it or not
      */
     moeoUnboundedArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, bool _replace=true) : moeoArchive < MOEOT >(_comparator, _replace) {}
 

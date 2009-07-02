@@ -50,7 +50,7 @@ public:
 
     /**
      * Ctor.
-     * @param _ref the reference point
+     * @param _epsilon the epsilon value
      */
     moeoEpsilonObjectiveVectorComparator(double _epsilon) : epsilon(_epsilon)
     {}

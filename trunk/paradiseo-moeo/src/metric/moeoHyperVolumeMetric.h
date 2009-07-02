@@ -80,8 +80,8 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
 
     /**
      * Constructor with a reference point
-     * @param _normalize allow to normalize data (default true)
      * @param _ref_point the reference point
+     * @param _bounds bounds value
      */
     moeoHyperVolumeMetric(ObjectiveVector& _ref_point=NULL, std::vector < eoRealInterval >& _bounds=NULL): normalize(false), rho(0.0), ref_point(_ref_point), bounds(_bounds){}
 
@@ -245,6 +245,7 @@ class moeoHyperVolumeMetric : public moeoVectorUnaryMetric < ObjectiveVector , d
     }
 
     /**
+     * find a minimum value
      * @param _front the front
      * @param _no_points the number of points of the front to consider (index 0 to _no_points are considered)
      * @param _objective the objective to consider

@@ -62,9 +62,9 @@ private:
      * Precondition : for a given _obj, _o1 and _o2 must both have a strictly positive or a strictly negative value else an exception is thrown
        * compute the epsilon indicator. Ieps(A,B) equals the minimum factor eps such that any objective vector in B is eps-dominated by at least one objective vector in A.
        * a vector z1 is said to eps-dominate another vector z2, if we can multiply each objective value in z2 by a factor of z2 and the resulting objective vector is still weakly dominates by z1.
-       *
        * @param _o1 the first objective vector (correspond to A, must not have dominated elements)
        * @param _o2 the second objective vector (correspond to B, must not have dominated elements)
+       * @param _obj the objective in consideration
        * @return the epsilon indicator between the two objective vector _o1 and _o2
        */
     double epsilon(const ObjectiveVector & _o1, const ObjectiveVector & _o2, const unsigned int _obj){

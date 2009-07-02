@@ -43,7 +43,7 @@
 
 /**
  * Selection strategy that selects ONE individual by using roulette wheel process.
- * @WARNING This selection only uses fitness values (and not diversity values).
+ * WARNING This selection only uses fitness values (and not diversity values).
  */
 template < class MOEOT >
 class moeoRouletteSelect:public moeoSelectOne < MOEOT >

@@ -81,6 +81,7 @@ public:
      * @param _fitness the assignment fitness method
      * @param _diversity the diversity assignment method
      * @param _maxSize the size of archive (must be smaller or egal to the population size)
+     * @param _replace boolean which determine if a solution with the same objectiveVector than another one, can replace it or not
      */
     moeoFitDivBoundedArchive(moeoComparator < MOEOT > & _indiComparator, moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, moeoFitnessAssignment < MOEOT > & _fitness, moeoDiversityAssignment < MOEOT > & _diversity, unsigned int _maxSize=100, bool _replace=true) : moeoBoundedArchive < MOEOT >(_comparator, _maxSize, _replace), indiComparator(_indiComparator), fitness(_fitness), diversity(_diversity)
     {}
@@ -91,12 +92,10 @@ public:
      * @param _fitness the assignment fitness method
      * @param _diversity the diversity assignment method
      * @param _maxSize the size of archive (must be smaller or egal to the population size)
+     * @param _replace boolean which determine if a solution with the same objectiveVector than another one, can replace it or not
      */
     moeoFitDivBoundedArchive(moeoComparator < MOEOT > & _indiComparator, moeoFitnessAssignment < MOEOT > & _fitness, moeoDiversityAssignment < MOEOT > & _diversity, unsigned int _maxSize=100, bool _replace=true) : moeoBoundedArchive < MOEOT >(_maxSize, _replace), indiComparator(_indiComparator), fitness(_fitness), diversity(_diversity)
     {}
-
-
-
 
     /**
      * Updates the archive with a given individual _moeo

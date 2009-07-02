@@ -60,30 +60,16 @@ public:
      * Ctor where you can choose your own moeoObjectiveVectorComparator and archive size.
      * @param _comparator the functor used to compare objective vectors
      * @param _maxSize the size of archive (must be smaller or egal to the population size)
+     * @param _replace boolean which determine if a solution with the same objectiveVector than another one, can replace it or not
      */
     moeoBoundedArchive(moeoObjectiveVectorComparator < ObjectiveVector > & _comparator, unsigned int _maxSize=100, bool _replace=true) : moeoArchive < MOEOT >(_comparator, _replace), maxSize(_maxSize){}
 
     /**
      * Ctor with moeoParetoObjectiveVectorComparator where you can choose your own archive size.
      * @param _maxSize the size of archive (must be smaller or egal to the population size)
+     * @param _replace boolean which determine if a solution with the same objectiveVector than another one, can replace it or not
      */
     moeoBoundedArchive(unsigned int _maxSize=100, bool _replace=true) : moeoArchive < MOEOT >(_replace), maxSize(_maxSize){}
-
-    
-    /**
-     * Updates the archive with a given individual _moeo
-     * @param _moeo the given individual
-     * @return true if _moeo is non-dominated (and not if it is added to the archive)
-     */
-    //virtual bool operator()(const MOEOT & _moeo) = 0;
-
-
-    /**
-     * Updates the archive with a given population _pop
-     * @param _pop the given population
-     * @return true if a _pop[i] is non-dominated (and not if it is added to the archive)
-     */
-    //virtual bool operator()(const eoPop < MOEOT > & _pop) = 0;
 
 protected:
 

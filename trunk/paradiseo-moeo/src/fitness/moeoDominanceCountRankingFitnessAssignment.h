@@ -144,8 +144,7 @@ private:
 
 
     /**
-     *
-     * @param _i
+     * @param _i index of the column
      */
     double countRanking(unsigned int _i)
     {

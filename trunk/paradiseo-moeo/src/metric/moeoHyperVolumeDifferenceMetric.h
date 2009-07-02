@@ -81,7 +81,8 @@ class moeoHyperVolumeDifferenceMetric : public moeoVectorVsVectorBinaryMetric < 
 
     /**
      * calculates and returns the HyperVolume value of a pareto front
-     * @param _set the vector contains all objective Vector of pareto front
+     * @param _set1 the vector contains all objective Vector of the first pareto front
+     * @param _set2 the vector contains all objective Vector of the second pareto front
      */
     double operator()(const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2)
     {
@@ -132,7 +133,8 @@ class moeoHyperVolumeDifferenceMetric : public moeoVectorVsVectorBinaryMetric < 
 
     /**
      * method caclulate bounds for the normalization
-     * @param _set the vector of objective vectors
+     * @param _set1 the vector contains all objective Vector of the first pareto front
+     * @param _set2 the vector contains all objective Vector of the second pareto front
      */
     void setup(const std::vector < ObjectiveVector > & _set1, const std::vector < ObjectiveVector > & _set2){
     	if(_set1.size() < 1 || _set2.size() < 1)
