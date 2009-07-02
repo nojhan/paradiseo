@@ -44,7 +44,12 @@
 #include <moeoExhaustiveNeighborhoodExplorer.h>
 
 /**
- * A class to design dominance based local searches
+ * PLS1 algorithm
+ *
+ * Paquete L, Chiarandini M, St ̈ tzle T (2004) Pareto local optimum sets in the biobjective
+ * traveling salesman problem: An experimental study. In: Metaheuristics for Multiobjective
+ * Optimisation, Lecture Notes in Economics and Mathematical Systems, vol 535, Springer-
+ * Verlag, Berlin, Germany, chap 7, pp 177–199
  */
 template < class Move >
 class moeoPLS1 : public moeoUnifiedDominanceBasedLS < Move >

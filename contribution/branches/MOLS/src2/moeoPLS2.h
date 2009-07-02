@@ -44,7 +44,21 @@
 #include <moeoExhaustiveNeighborhoodExplorer.h>
 
 /**
- * A class to design dominance based local searches
+ * PLS2 algorithm
+ *
+ * Talbi EG, Rahoual M, Mabed MH, Dhaenens C (2001) A hybrid evolutionary approach for
+ * multicriteria optimization problems : Application to the fow shop. In: First International
+ * Conference on Evolutionary Multi-criterion Optimization (EMO 2001), Springer-Verlag,
+ * Zurich, Switzerland, Lecture Notes in Computer Science, vol 1993, pp 416–428
+ *
+ * Basseur M, Seynhaeve F, Talbi E (2003) Adaptive mechanisms for multiobjective evolution-
+ * ary algorithms. In: Congress on Engineering in System Application (CESA 2003), Lille,
+ * France, pp 72–86
+ *
+ * Angel E, Bampis E, Gourv ́ s L (2004) A dynasearch neighbohood for the bicriteria travel-
+ * ing salesman problem. In: Metaheuristics for Multiobjective Optimisation, Lecture Notes
+ * in Economics and Mathematical Systems, vol 535, Springer-Verlag, Berlin, Germany,
+ * chap 6, pp 153–176
  */
 template < class Move >
 class moeoPLS2 : public moeoUnifiedDominanceBasedLS < Move >
