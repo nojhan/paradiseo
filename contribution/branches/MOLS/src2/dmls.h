@@ -16,6 +16,6 @@
 #include "moeoUnvisitedSelect.h"
 #include "moeoPLS1.h"
 #include "moeoPLS2.h"
-#include "moeoDMLSGenupdater.h"
+#include "moeoDMLSGenUpdater.h"
 #include "moeoDMLSMonOp.h"
 
