@@ -119,7 +119,7 @@ class moeoCrowdingDiversityAssignment : public moeoDiversityAssignment < MOEOT >
       // set diversity to 0
       for (unsigned int i=0; i<_pop.size(); i++)
         {
-          _pop[i].diversity(0);
+          _pop[i].diversity(0.0);
         }
       // for each objective
       for (unsigned int obj=0; obj<nObjectives; obj++)
