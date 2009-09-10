@@ -43,6 +43,7 @@
 #include "node.h"
 #include "../../core/peo_debug.h"
 
+#include <stdio.h>
 
 std :: vector <Node> the_schema;
 
