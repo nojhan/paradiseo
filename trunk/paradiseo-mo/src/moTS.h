@@ -126,7 +126,7 @@ class moTS:public moAlgo < typename M::EOType >
     
     continu.init ();
 
-    do
+    while ( continu (_solution) )
       {
 	(*move_explorer) (_solution, new_solution);
 	
@@ -138,7 +138,7 @@ class moTS:public moAlgo < typename M::EOType >
 	
 	_solution = new_solution;
       }
-    while ( continu (_solution) );
+
 
     _solution = best_solution;
 
