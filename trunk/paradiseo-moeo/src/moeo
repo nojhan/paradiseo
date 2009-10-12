@@ -139,6 +139,7 @@
 #include <selection/moeoSelectOne.h>
 #include <selection/moeoSelectors.h>
 #include <selection/moeoStochTournamentSelect.h>
+#include <selection/moeoDetArchiveSelect.h>
 
 #include <utils/moeoArchiveObjectiveVectorSavingUpdater.h>
 #include <utils/moeoArchiveUpdater.h>
