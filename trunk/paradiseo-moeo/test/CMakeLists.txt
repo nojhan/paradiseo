@@ -68,6 +68,7 @@ SET (TEST_LIST
 		t-moeoImprOnlyBoundedArchive
 		t-moeoFitDivBoundedArchive
 		t-moeoDetArchiveSelect
+		t-moeoASEEA
 )
 
 FOREACH (test ${TEST_LIST})
