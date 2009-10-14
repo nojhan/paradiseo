@@ -76,7 +76,7 @@ public:
     {
         ObjectiveVector objVec;
         objVec[0] = _sol[0];
-        objVec[1] = _sol[0] * _sol[0];
+        objVec[1] = 1 / (_sol[0]+1);
         _sol.objectiveVector(objVec);
     }
 };
@@ -87,11 +87,15 @@ int main()
 
     TestEval eval;
     eoQuadCloneOp < Solution > xover;
-    eoUniformMutation < Solution > mutation(0.05);
+    eoUniformMutation < Solution > mutation(1.0);
 
     eoRealVectorBounds bounds(1, 1.0, 2.0);
     eoRealInitBounded < Solution > init(bounds);
     eoPop < Solution > pop(20, init);
+
+    for(int i=0; i<pop.size(); i++)
+    	eval(pop[i]);
+
     eoSGATransform < Solution > transform(xover, 0.1, mutation, 0.1);
     eoGenContinue <Solution > continuator(10);
 	moeoUnboundedArchive < Solution > archive;
@@ -100,12 +104,17 @@ int main()
 
     // build ASSEA
 	moeoASEEA <Solution> algo1(10, eval, xover, 0.1, mutation, 0.5, archive, 10);
-	moeoASEEA <Solution> algo2(continuator, popEval, archive, 10);
-	moeoASEEA <Solution> algo3(continuator, eval, archive, 10);
+	moeoASEEA <Solution> algo2(continuator, popEval, xover, 0.1, mutation, 1.0, archive, 10);
+	moeoASEEA <Solution> algo3(continuator, eval, xover, 0.1, mutation, 1.0, archive, 10);
 	moeoASEEA <Solution> algo4(continuator, popEval, transform, archive, 10);
 	moeoASEEA <Solution> algo5(continuator, eval, transform, archive, 10);
 
     // run the algo
+
+    algo1(pop);
+    algo2(pop);
+    algo3(pop);
+    algo4(pop);
     algo5(pop);
 
 	std::cout << " OK\n";

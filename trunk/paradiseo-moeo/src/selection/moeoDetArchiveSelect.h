@@ -57,15 +57,16 @@ class moeoDetArchiveSelect : public eoSelect<MOEOT>
 		 * @param _source compatibility parameter, not used
 		 * @param _dest destination population, selected from archive
 		 */
-		virtual void operator()(const eoPop < MOEOT > & _source, eoPop < MOEOT > & _dest)
+		void operator()(const eoPop < MOEOT > & _source, eoPop < MOEOT > & _dest)
 		{
 			if(max < min){
 				std::cout << "Warning! moeoDetArchiveSelect: min value > max value!!! Nothing is done." << std::endl;
 			}
 			else{
+
 				unsigned int archive_size = archive.size();
 				_dest.resize(0);
-				if (archive_size >= min && archive_size<= max){
+				if ((archive_size >= min) && (archive_size <= max)){
 					for (int i=0; i<archive_size; i++)
 						_dest.push_back(archive[i]);
 				}
@@ -79,8 +80,9 @@ class moeoDetArchiveSelect : public eoSelect<MOEOT>
 						_dest.push_back(archive[permutation[i]]);
 				}
 				else {
-					for (int i=0; i<min; i++)
+					for (int i=0; i<min; i++){
 						_dest.push_back(archive[i%archive_size]);
+					}
 				}
 			}
 		}

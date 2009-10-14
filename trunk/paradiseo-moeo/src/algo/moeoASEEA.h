@@ -76,7 +76,7 @@ public:
      * @param _max the max size for the pop
      */
     moeoASEEA (unsigned int _maxGen, eoEvalFunc < MOEOT > & _eval, eoQuadOp < MOEOT > & _crossover, double _pCross, eoMonOp < MOEOT > & _mutation, double _pMut, moeoArchive < MOEOT > & _archive, unsigned int _max) :
-            defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), selectMany(_archive, _max), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(_crossover, _pCross, _mutation, _pMut), breed (selectTransform), archive(_archive)
+            defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), selectMany(_archive, _max), transform(_crossover, _pCross, _mutation, _pMut), selectTransform(selectMany, transform), breed (selectTransform), archive(_archive)
     {}
 
 
@@ -84,11 +84,15 @@ public:
      * Ctor with a eoContinue.
      * @param _continuator stopping criteria
      * @param _eval evaluation function
+     * @param _crossover crossover
+     * @param _pCross crossover probability
+     * @param _mutation mutation
+     * @param _pMut mutation probability
      * @param _archive archive
      * @param _max the max size for the pop
      */
-    moeoASEEA (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, moeoArchive < MOEOT > & _archive, unsigned int _max) :
-            defaultGenContinuator(0), continuator(_continuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), selectMany(_archive, _max), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0), breed(selectTransform), archive(_archive)
+    moeoASEEA (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoQuadOp < MOEOT > & _crossover, double _pCross, eoMonOp < MOEOT > & _mutation, double _pMut, moeoArchive < MOEOT > & _archive, unsigned int _max) :
+            defaultGenContinuator(0), continuator(_continuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), selectMany(_archive, _max), transform(_crossover, _pCross, _mutation, _pMut), selectTransform(selectMany, transform), breed(selectTransform), archive(_archive)
     {}
 
 
@@ -96,11 +100,15 @@ public:
      * Ctor with a eoContinue, a eoPopEval.
      * @param _continuator stopping criteria
      * @param _popEval population evaluation function
+     * @param _crossover crossover
+     * @param _pCross crossover probability
+     * @param _mutation mutation
+     * @param _pMut mutation probability
      * @param _archive archive
      * @param _max the max size for the pop
      */
-    moeoASEEA (eoContinue < MOEOT > & _continuator, eoPopEvalFunc < MOEOT > & _popEval, moeoArchive < MOEOT > & _archive, unsigned int _max) :
-            defaultGenContinuator(0), continuator(_continuator), eval(defaultEval), defaultPopEval(eval), popEval(_popEval),  selectMany(_archive, _max), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0),  breed(selectTransform), archive(_archive)
+    moeoASEEA (eoContinue < MOEOT > & _continuator, eoPopEvalFunc < MOEOT > & _popEval, eoQuadOp < MOEOT > & _crossover, double _pCross, eoMonOp < MOEOT > & _mutation, double _pMut, moeoArchive < MOEOT > & _archive, unsigned int _max) :
+            defaultGenContinuator(0), continuator(_continuator), eval(defaultEval), defaultPopEval(eval), popEval(_popEval),  selectMany(_archive, _max), transform(_crossover, _pCross, _mutation, _pMut), selectTransform(selectMany, transform), breed(selectTransform), archive(_archive)
     {}
 
 
@@ -113,7 +121,7 @@ public:
      * @param _max the max size for the pop
      */
     moeoASEEA (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _transform, moeoArchive < MOEOT > & _archive, unsigned int _max) :
-            defaultGenContinuator(0), continuator(_continuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), selectMany(_archive, _max), selectTransform(selectMany, _transform), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), breed(selectTransform), archive(_archive)
+            defaultGenContinuator(0), continuator(_continuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), selectMany(_archive, _max), transform(defaultQuadOp, 0.0, defaultMonOp, 0.0), selectTransform(selectMany, _transform), breed(selectTransform), archive(_archive)
     {}
 
 
@@ -126,7 +134,7 @@ public:
      * @param _max the max size for the pop
      */
     moeoASEEA (eoContinue < MOEOT > & _continuator, eoPopEvalFunc < MOEOT > & _popEval, eoTransform < MOEOT > & _transform, moeoArchive < MOEOT > & _archive, unsigned int _max) :
-            defaultGenContinuator(0), continuator(_continuator), eval(defaultEval), defaultPopEval(eval), popEval(_popEval), selectMany(_archive, _max), selectTransform(selectMany, _transform), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), breed(selectTransform), archive(_archive)
+            defaultGenContinuator(0), continuator(_continuator), eval(defaultEval), defaultPopEval(eval), popEval(_popEval), selectMany(_archive, _max), transform(defaultQuadOp, 0.0, defaultMonOp, 0.0), selectTransform(selectMany, _transform), breed(selectTransform), archive(_archive)
     {}
 
 
@@ -159,12 +167,6 @@ protected:
             void operator()(MOEOT &) {}
     }defaultEval;
 
-    /** default select */
-    class DummySelect : public eoSelect < MOEOT >{
-		public :
-			void operator()(const eoPop<MOEOT>&, eoPop<MOEOT>&) {}
-    }defaultSelect;
-
     /** default transform */
     class DummyTransform : public eoTransform < MOEOT >{
 		public :
@@ -183,6 +185,8 @@ protected:
     eoPopEvalFunc < MOEOT > & popEval;
     /** default select many */
     moeoDetArchiveSelect < MOEOT > selectMany;		// A REMPLACER !!!!!!!!!!! => add/moeoDetArchiveSelect.h
+    /** eoTransform */
+    eoSGATransform < MOEOT > transform;
     /** select transform */
     eoSelectTransform < MOEOT > selectTransform;
     /** a default crossover */
@@ -190,7 +194,9 @@ protected:
     /** a default mutation */
     eoMonCloneOp < MOEOT > defaultMonOp;
     /** an object for genetic operators (used as default) */
-    eoSGAGenOp < MOEOT > defaultSGAGenOp;
+    //eoSGAGenOp < MOEOT > defaultSGAGenOp;
+    /** an object for genetic operators (used as default) */
+    //eoSGAGenOp < MOEOT >& genOp;
     /** breeder */
     eoBreed < MOEOT > & breed;
     /**archive */
