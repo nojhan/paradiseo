@@ -131,6 +131,7 @@ public :
   void operator () (solution & _solution)
   {
     solution solution(_solution);
+    _solution.fitness(2);
   }
 } ;
 
