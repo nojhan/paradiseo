@@ -186,7 +186,7 @@ class moILS:public moAlgo < typename M::EOType >
     while ( continu (_solution) )
       {
 	perturbation(_solution);
-	_solution.invalidate();
+	//_solution.invalidate();
 	full_evaluation(_solution);
 
 	(*algorithm)(_solution);
