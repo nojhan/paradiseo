@@ -1,5 +1,5 @@
 /*
-* <t-moeoUnboundedArchive.cpp>
+* <t-moeoEpsilonHyperboxArchive.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
@@ -34,7 +34,7 @@
 *
 */
 //-----------------------------------------------------------------------------
-// t-moeoUnboundedArchive.cpp
+// t-moeoEpsilonHyperboxArchive.cpp
 //-----------------------------------------------------------------------------
 
 #include <eo>
@@ -67,79 +67,89 @@ typedef MOEO < ObjectiveVector, double, double > Solution;
 
 int main()
 {
-    std::cout << "[moeoUnboundedArchive]\t=>\t";
+    std::cout << "[moeoEpsilonHyperboxArchive]\t=>\t";
+
+    std::cout << std::endl;
 
     // objective vectors
-    ObjectiveVector obj0, obj1, obj2, obj3, obj4, obj5;
-    obj0[0] = 2;
-    obj0[1] = 5;
-    obj1[0] = 3;
-    obj1[1] = 3;
-    obj2[0] = 4;
-    obj2[1] = 1;
-    obj3[0] = 5;
-    obj3[1] = 5;
-    obj4[0] = 5;
-    obj4[1] = 1;
-    obj5[0] = 3;
-    obj5[1] = 3;
+    ObjectiveVector obj;
 
     // population
     eoPop < Solution > pop;
-    pop.resize(6);
-    pop[0].objectiveVector(obj0);
-    pop[1].objectiveVector(obj1);
-    pop[2].objectiveVector(obj2);
-    pop[3].objectiveVector(obj3);
-    pop[4].objectiveVector(obj4);
-    pop[5].objectiveVector(obj5);
+    pop.resize(100);
+
+    unsigned int o1=50;
+    unsigned int o2=50;
+    unsigned int o3=50;
+    unsigned int o4=50;
+
+    double tmp;
+
+    for(int i=0; i< pop.size()/2; i++){
+//    	tmp=rng.uniform()*100;
+    	obj[0]=o1;
+    	obj[1]=o2;
+//    	obj[0]=tmp;
+//    	obj[1]=100-tmp;
+    	pop[2*i].objectiveVector(obj);
+    	obj[0]=o3;
+    	obj[1]=o4;
+//    	tmp=rng.uniform()*100;
+//    	obj[0]=tmp;
+//    	obj[1]=100-tmp;
+    	pop[2*i + 1].objectiveVector(obj);
+    	o1++;
+    	o2--;
+    	o3--;
+    	o4++;
+    }
+//    pop.resize(4);
+//    obj[0]=0;
+//    obj[1]=100;
+//    pop[0].objectiveVector(obj);
+//    obj[0]=100;
+//    obj[1]=0;
+//    pop[1].objectiveVector(obj);
+//    obj[0]=50;
+//    obj[1]=50;
+//    pop[2].objectiveVector(obj);
+//    obj[0]=49;
+//    obj[1]=50.5;
+//    pop[3].objectiveVector(obj);
+
+    std::vector < double > epsilon;
+    epsilon.push_back(0.05);
+    epsilon.push_back(0.05);
 
     // archive
-    moeoUnboundedArchive< Solution > arch;
-    arch(pop);
+    moeoEpsilonHyperboxArchive< Solution > arch(epsilon);
 
-    // size
-    if (arch.size() != 3)
-    {
-        std::cout << "ERROR (too much solutions)" << std::endl;
-        return EXIT_FAILURE;
+    ObjectiveVector nadir = arch.getNadir();
+    ObjectiveVector ideal = arch.getIdeal();
+    std::cout << "nadir: " << nadir << std::endl;
+    std::cout << "ideal: " << ideal << std::endl;
+
+    for(int i=0; i<pop.size() ; i++)
+    	std::cout << pop[i].objectiveVector() << std::endl;
+
+    for(int i=0; i<pop.size() ; i++){
+    	arch(pop[i]);
+//    nadir = arch.getNadir();
+//    ideal = arch.getIdeal();
+//    std::cout << "nadir: " << nadir << std::endl;
+//    std::cout << "ideal: " << ideal << std::endl;
+//    std::cout << "archive size: " << arch.size() << std::endl;
     }
-    // obj0 must be in
-    if (! arch.contains(obj0))
-    {
-        std::cout << "ERROR (obj0 not in)" << std::endl;
-        return EXIT_FAILURE;
-    }
-    // obj1 must be in
-    if (! arch.contains(obj1))
-    {
-        std::cout << "ERROR (obj1 not in)" << std::endl;
-        return EXIT_FAILURE;
-    }
-    // obj2 must be in
-    if (! arch.contains(obj2))
-    {
-        std::cout << "ERROR (obj2 not in)" << std::endl;
-        return EXIT_FAILURE;
-    }
-    // obj3 must be out
-    if (arch.contains(obj3))
-    {
-        std::cout << "ERROR (obj3 in)" << std::endl;
-        return EXIT_FAILURE;
-    }
-    // obj4 must be out
-    if (arch.contains(obj4))
-    {
-        std::cout << "ERROR (obj4 in)" << std::endl;
-        return EXIT_FAILURE;
-    }
-    // obj5 must be in
-    if (! arch.contains(obj5))
-    {
-        std::cout << "ERROR (obj5 not in)" << std::endl;
-        return EXIT_FAILURE;
-    }
+
+    arch.filtre();
+
+    std::cout << "archive size: " << arch.size() << std::endl;
+    for (unsigned int i=0; i< arch.size(); i++)
+		std::cout << arch[i].objectiveVector() << std::endl;
+
+    std::cout << "nadir: " << nadir << std::endl;
+    std::cout << "ideal: " << ideal << std::endl;
+    //arch(pop);
 
     std::cout << "OK" << std::endl;
     return EXIT_SUCCESS;

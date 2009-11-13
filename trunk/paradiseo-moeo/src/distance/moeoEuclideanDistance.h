@@ -72,6 +72,24 @@ class moeoEuclideanDistance : public moeoNormalizedDistance < MOEOT >
       return sqrt(result);
     }
 
+    /**
+     * Returns the euclidian distance between _obj1 and _obj2
+     * @param _obj1 the first objective vector
+     * @param _obj2 the second objective vector
+     */
+    const double operator()(const ObjectiveVector & _obj1, const ObjectiveVector & _obj2)
+    {
+      double result = 0.0;
+      double tmp1, tmp2;
+      for (unsigned int i=0; i<ObjectiveVector::nObjectives(); i++)
+        {
+          tmp1 = (_obj1[i] - bounds[i].minimum()) / bounds[i].range();
+          tmp2 = (_obj2[i] - bounds[i].minimum()) / bounds[i].range();
+          result += (tmp1-tmp2) * (tmp1-tmp2);
+        }
+      return sqrt(result);
+    }
+
 
   private:
 

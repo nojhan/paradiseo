@@ -1,5 +1,5 @@
-/*
-* <t-moeoUnboundedArchive.cpp>
+	/*
+* <t-moeoquadTreeArchive.cpp>
 * Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
 * (C) OPAC Team, LIFL, 2002-2007
 *
@@ -34,11 +34,12 @@
 *
 */
 //-----------------------------------------------------------------------------
-// t-moeoUnboundedArchive.cpp
+// t-moeoEpsilonHyperboxArchive.cpp
 //-----------------------------------------------------------------------------
 
 #include <eo>
 #include <moeo>
+#include <cmath>
 
 //-----------------------------------------------------------------------------
 
@@ -55,7 +56,7 @@ public:
     }
     static unsigned int nObjectives ()
     {
-        return 2;
+        return 3;
     }
 };
 
@@ -63,83 +64,50 @@ typedef moeoRealObjectiveVector < ObjectiveVectorTraits > ObjectiveVector;
 
 typedef MOEO < ObjectiveVector, double, double > Solution;
 
+
+
+
+
 //-----------------------------------------------------------------------------
 
 int main()
 {
-    std::cout << "[moeoUnboundedArchive]\t=>\t";
+    std::cout << "[moeoQuadTreeArchive]\t=>\t";
+    moeoQuadTree<ObjectiveVector> tree;
 
-    // objective vectors
-    ObjectiveVector obj0, obj1, obj2, obj3, obj4, obj5;
-    obj0[0] = 2;
-    obj0[1] = 5;
-    obj1[0] = 3;
-    obj1[1] = 3;
-    obj2[0] = 4;
-    obj2[1] = 1;
-    obj3[0] = 5;
-    obj3[1] = 5;
-    obj4[0] = 5;
-    obj4[1] = 1;
-    obj5[0] = 3;
-    obj5[1] = 3;
+    bool empty= tree.isEmpty();
+    std::cout <<"empty? " << empty << std::endl;
+    ObjectiveVector obj1;
+    obj1[0]=2.0;
+    obj1[1]=2.0;
+    obj1[2]=2.0;
+    ObjectiveVector obj2;
+    obj2[0]=2.0;
+    obj2[1]=1.0;
+    obj2[2]=1.0;
+    ObjectiveVector obj3;
+    obj3[0]=1.0;
+    obj3[1]=1.0;
+    obj3[2]=1.0;
+    QuadTreeNode<ObjectiveVector> hop(obj1);
+    QuadTreeNode<ObjectiveVector> hop2(obj2);
+    QuadTreeNode<ObjectiveVector> hop3(obj3);
+//    empty = hop.getSubTree().empty();
+//    std::cout <<"empty? " << empty << std::endl;
+//    std::vector< QuadTreeNode<ObjectiveVector> > nodes;
+//    nodes.push_back(hop);
+//    nodes.push_back(hop2);
+//    nodes.push_back(hop3);
+//    std::cout << nodes[1].getVec() << std::endl;
 
-    // population
-    eoPop < Solution > pop;
-    pop.resize(6);
-    pop[0].objectiveVector(obj0);
-    pop[1].objectiveVector(obj1);
-    pop[2].objectiveVector(obj2);
-    pop[3].objectiveVector(obj3);
-    pop[4].objectiveVector(obj4);
-    pop[5].objectiveVector(obj5);
+//    std::cout << "size: " << nodes.size() << std::endl;
+    tree.insert(obj1);
+    tree.insert(obj2);
+    tree.insert(obj2);
+    tree.printTree();
 
-    // archive
-    moeoUnboundedArchive< Solution > arch;
-    arch(pop);
 
-    // size
-    if (arch.size() != 3)
-    {
-        std::cout << "ERROR (too much solutions)" << std::endl;
-        return EXIT_FAILURE;
-    }
-    // obj0 must be in
-    if (! arch.contains(obj0))
-    {
-        std::cout << "ERROR (obj0 not in)" << std::endl;
-        return EXIT_FAILURE;
-    }
-    // obj1 must be in
-    if (! arch.contains(obj1))
-    {
-        std::cout << "ERROR (obj1 not in)" << std::endl;
-        return EXIT_FAILURE;
-    }
-    // obj2 must be in
-    if (! arch.contains(obj2))
-    {
-        std::cout << "ERROR (obj2 not in)" << std::endl;
-        return EXIT_FAILURE;
-    }
-    // obj3 must be out
-    if (arch.contains(obj3))
-    {
-        std::cout << "ERROR (obj3 in)" << std::endl;
-        return EXIT_FAILURE;
-    }
-    // obj4 must be out
-    if (arch.contains(obj4))
-    {
-        std::cout << "ERROR (obj4 in)" << std::endl;
-        return EXIT_FAILURE;
-    }
-    // obj5 must be in
-    if (! arch.contains(obj5))
-    {
-        std::cout << "ERROR (obj5 not in)" << std::endl;
-        return EXIT_FAILURE;
-    }
+
 
     std::cout << "OK" << std::endl;
     return EXIT_SUCCESS;

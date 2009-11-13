@@ -61,6 +61,8 @@
 #include <archive/moeoUnboundedArchive.h>
 #include <archive/moeoImprOnlyBoundedArchive.h>
 #include <archive/moeoFitDivBoundedArchive.h>
+#include <archive/moeoEpsilonHyperboxArchive.h>
+#include <archive/moeoQuadTreeArchive.h>
 
 
 #include <comparator/moeoAggregativeComparator.h>
@@ -151,6 +153,8 @@
 #include <utils/moeoConvertPopToObjectiveVectors.h>
 #include <utils/moeoDominanceMatrix.h>
 #include <utils/moeoObjVecStat.h>
+#include <utils/moeoQuadTree.h>
+
 
 
 #endif /*MOEO_*/
