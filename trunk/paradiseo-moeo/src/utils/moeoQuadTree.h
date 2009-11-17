@@ -57,13 +57,15 @@ public:
 	}
 
 	bool setChild(unsigned int _kSuccesor, QuadTreeNode<ObjectiveVector>* _child){
+		std::cout << "enter setChild" << std::endl;
 		bool res = false;
 		if((*this).subTree[_kSuccesor] != NULL)
 			res=true;
 		else{
 			(*this).subTree[_kSuccesor]= _child;
-			std::cout <<"setChild: " <<  getVec() << std::endl;
+//			std::cout <<"setChild: " <<  getVec() << std::endl;
 		}
+		std::cout << "quit setChild" << std::endl;
 		return res;
 	}
 
@@ -80,6 +82,8 @@ private:
 
 template < class ObjectiveVector >
 class moeoQuadTree{
+
+	typedef typename std::map<unsigned int, QuadTreeNode<ObjectiveVector>*>::iterator QuadTreeIterator;
 public:
 	moeoQuadTree():root(NULL){
 		bound=pow(2,ObjectiveVector::nObjectives())-1;
@@ -95,6 +99,7 @@ public:
 			root=tmp;
 			res=true;
 			std::cout << "insert case empty: " << root->getVec() << std::endl;
+			std::cout << root << std::endl;
 		}
 		else{
 			while(!stop){
@@ -102,21 +107,30 @@ public:
 				unsigned int succ=k_succ(_obj, root->getVec());
 				if(succ != bound){
 					if(succ == 0){
+						std::cout << "insert -> replace" << std::endl;
+						std::cout << root << std::endl;
 						replace(_obj);
+						realroot=root;
 						res=true;
+						stop=true;
 					}
 					else{
 						//dominance test1
-						typename std::map<unsigned int, QuadTreeNode<ObjectiveVector>*>::iterator it=root->getSubTree().begin();
-						while(!stop && (it != root->getSubTree().end())){
-							if( ((*it).first < succ) && (((succ ^ bound) & ((*it).first ^ bound))== succ) ){
-								stop = test1(tmp, (*it).second);
+						if(!(root->getSubTree().empty())){
+							QuadTreeIterator it=root->getSubTree().begin();
+							while(!stop && (it != root->getSubTree().end())){
+								std::cout << "hop" << std::endl;
+								if( ((*it).first < succ) && (((succ ^ bound) & ((*it).first ^ bound))== succ) ){
+
+									stop = test1(tmp, (*it).second);
+								}
+								it++;
 							}
-							it++;
+
 						}
 						if(!stop){
 							//dominance test2
-							typename std::map<unsigned int, QuadTreeNode<ObjectiveVector>*>::iterator it=root->getSubTree().begin();
+							QuadTreeIterator it=root->getSubTree().begin();
 							while(it != root->getSubTree().end()){
 								if( (succ < (*it).first) && ((succ & (*it).first) == succ)){
 									test2(tmp, (*it).second, root, (*it).first);
@@ -125,7 +139,7 @@ public:
 							}
 							//insertion
 							QuadTreeNode<ObjectiveVector>* tmp = new QuadTreeNode<ObjectiveVector>(_obj);
-							std::cout << "insert case new son: " << root->getVec() << std::endl;
+//							std::cout << "insert case new son: " << root->getVec() << std::endl;
 							if(root->setChild(succ, tmp)){
 								root=root->getSubTree()[succ];
 							}
@@ -136,9 +150,12 @@ public:
 						}
 					}
 				}
+				else{
+					stop=true;
+				}
 			}
+			root=realroot;
 		}
-		root=realroot;
 		return res;
 	}
 
@@ -162,12 +179,13 @@ public:
 	 * replace the old root by the new one
 	 * @param _newroot
 	 */
-	void replace(ObjectiveVector _newroot){
+	void replace(ObjectiveVector& _newroot){
+		std::cout << "enter replace: " << std::endl;
 		//create the new root
 		QuadTreeNode<ObjectiveVector>* newroot = new QuadTreeNode<ObjectiveVector>(_newroot);
 		//reconsider each son of the old root
-		if(!(root->getSubTree().empty())){
-			typename std::map<unsigned int, QuadTreeNode<ObjectiveVector>*>::iterator it;
+			if(!(root->getSubTree().empty())){
+			QuadTreeIterator it;
 			for(it=(root->getSubTree()).begin(); it != (root->getSubTree()).end(); it++){
 				std::cout << "replace: " << (*it).second->getVec() << std::endl;
 				reconsider(newroot, (*it).second);
@@ -176,56 +194,68 @@ public:
 		//replace the old root by the new one
 		delete(root);
 		root = newroot;
+		std::cout << root << " -> "<< root->getVec() << std::endl;
+
 	}
 
 	void reconsider(QuadTreeNode<ObjectiveVector>* _newroot, QuadTreeNode<ObjectiveVector>* _child){
+		std::cout << "enter reconsider: " << std::endl;
 		unsigned int succ;
-		std::cout << "reconsider: " << _child->getVec() << std::endl;
 		if(!(_child->getSubTree().empty())){
 			std::cout << "enter reconsider" << std::endl;
-			typename std::map<unsigned int, QuadTreeNode<ObjectiveVector>*>::iterator it;
+			QuadTreeIterator it;
 			for(it=(_child->getSubTree()).begin(); it != (_child->getSubTree()).end(); it++){
 				std::cout << "reconsider: " << (*it).second->getVec() << std::endl;
 				QuadTreeNode<ObjectiveVector>* tmp=(*it).second;
-				_child->getSubTree().erase(it);
+				_child->getSubTree()[(*it).first]=NULL;
+
 				reconsider(_newroot, tmp);
 			}
 		}
 		else{
 			std::cout << "reconsider: no more child" << std::endl;
 		}
+		std::cout << "reconsider try to reinsert " << _child->getVec() << " in " << _newroot->getVec() << std::endl;
 		succ=k_succ(_child->getVec(),_newroot->getVec());
+		std::cout << "succ: " << succ << std::endl;
 		if(succ==bound)
 			delete(_child);
 		else if(_newroot->getSubTree()[succ] != NULL){
+			std::cout << "hohoho" << std::endl;
 			reinsert(_newroot->getSubTree()[succ],_child);
 		}
 		else{
+			std::cout << "houhouhou" << std::endl;
 			_newroot->setChild(succ, _child);
 		}
 	}
 
 	void reinsert(QuadTreeNode<ObjectiveVector>* _node1, QuadTreeNode<ObjectiveVector>* _node2){
-		unsigned int succ;
-		if(!(_node1->getSubTree().empty())){
-			typename std::map<unsigned int, QuadTreeNode<ObjectiveVector>*>::iterator it;
-			for(it=(_node1->getSubTree()).begin(); it != (_node1->getSubTree()).end(); it++){
-				std::cout << "reinsert: " << (*it).second->getVec() << std::endl;
-				QuadTreeNode<ObjectiveVector>* tmp=(*it).second;
-				_node1->getSubTree().erase(it);
-				reinsert(_node1, tmp);
+		if(_node1 != _node2){
+			std::cout << "enter reinsert" << std::endl;
+			std::cout << "node1: " << _node1->getVec() << ", node2: " << _node2->getVec() << std::endl;
+			unsigned int succ;
+			if(!(_node1->getSubTree().empty())){
+				QuadTreeIterator it;
+				for(it=(_node1->getSubTree()).begin(); it != (_node1->getSubTree()).end(); it++){
+					std::cout << "reinsert: " << (*it).second->getVec() << std::endl;
+					QuadTreeNode<ObjectiveVector>* tmp=(*it).second;
+					_node1->getSubTree().erase(it);
+					reinsert(_node1, tmp);
+				}
 			}
-		}
-		succ=k_succ(_node2->getVec(),_node1->getVec());
-		if(_node1->getSubTree()[succ] != NULL){
-			reinsert(_node1->getSubTree()[succ],_node2);
-		}
-		else{
-			_node1->setChild(succ, _node2);
+			succ=k_succ(_node2->getVec(),_node1->getVec());
+			if(_node1->getSubTree()[succ] != NULL){
+				reinsert(_node1->getSubTree()[succ],_node2);
+			}
+			else{
+				_node1->setChild(succ, _node2);
+			}
 		}
 	}
 
 	void remove(QuadTreeNode<ObjectiveVector>* _node, QuadTreeNode<ObjectiveVector>* _parent, unsigned int _succ){
+		std::cout << "enter remove" << std::endl;
 		unsigned int k=1;
 		QuadTreeNode<ObjectiveVector>* tmp=NULL;
 		_parent->getSubTree()[_succ]=NULL;
@@ -247,6 +277,7 @@ public:
 	}
 
 	bool test1(QuadTreeNode<ObjectiveVector>* _node1, QuadTreeNode<ObjectiveVector>* _node2){
+		std::cout << "enter test1" << std::endl;
 		bool res = false;
 		unsigned int succ;
 		succ=k_succ(_node1->getVec(), _node2->getVec());
@@ -254,7 +285,7 @@ public:
 			res=true;
 		}
 		else{
-			typename std::map<unsigned int, QuadTreeNode<ObjectiveVector>*>::iterator it=_node2->getSubTree().begin();
+			QuadTreeIterator it=_node2->getSubTree().begin();
 			while(!res && (it != _node2->getSubTree().end())){
 				if( ((succ ^ bound) & ((*it).first ^ bound)) == succ){
 					res = res || test1(_node1, (*it).second);
@@ -266,31 +297,73 @@ public:
 	}
 
 	void test2(QuadTreeNode<ObjectiveVector>* _node1, QuadTreeNode<ObjectiveVector>* _node2, QuadTreeNode<ObjectiveVector>* _parent, unsigned int _succ){
+		std::cout << "enter test2" << std::endl;
+//		printTree();
 		unsigned int succ;
 		succ=k_succ(_node1->getVec(), _node2->getVec());
-		if(succ==0)
+		if(succ==0){
 			remove(_node2, _parent, _succ);
-		typename std::map<unsigned int, QuadTreeNode<ObjectiveVector>*>::iterator it=_node2->getSubTree().begin();
-		while(it != _node2->getSubTree().end()){
-			if( (succ & (*it).first) == succ){
-				test2(_node1, (*it).second, _node2, (*it).first);
+			if(_parent->getSubTree()[_succ]!=NULL)
+				test2(_node1, _parent->getSubTree()[_succ], _parent, _succ);
+		}
+		else{
+			QuadTreeIterator it=_node2->getSubTree().begin();
+			while(it != _node2->getSubTree().end()){
+				if( (succ & (*it).first) == succ){
+					test2(_node1, (*it).second, _node2, (*it).first);
+				}
+				it++;
 			}
-			it++;
 		}
 	}
 
 
-
 	void printTree(){
-//		typename std::map<unsigned int, QuadTreeNode<ObjectiveVector>*>::iterator it;
-//		std::cout << "root: " << root->getVec() << "&" << std::endl << "childs:" << std::endl;
-//		for(it=(root->getSubTree()).begin(); it != (root->getSubTree()).end(); ++it)
-//			std::cout << (*it).second->getVec() << std::endl;
+		QuadTreeIterator it;
+		if(!isEmpty()){
+			std::cout << "root: " << root->getVec()  << " -> ";
+			if(!(root->getSubTree().empty())){
+				for(it=(root->getSubTree()).begin(); it != (root->getSubTree()).end(); it++){
+					if((*it).second!=NULL)
+						std::cout << (*it).second->getVec() << " ; ";
+				}
+				std::cout << std::endl;
+				for(it=(root->getSubTree()).begin(); it != (root->getSubTree()).end(); it++){
+					if((*it).second!=NULL){
+						printChild((*it).second, (*it).first);
+						std::cout << std::endl;
+					}
+				}
+			}
+		}
+	}
+
+	void printChild(QuadTreeNode<ObjectiveVector>* _child, unsigned int _key){
+		QuadTreeIterator it;
+		std::cout << "[" << _key << " : " << _child->getVec() << "] -> ";
+		if(!(_child->getSubTree().empty())){
+			for(it=(_child->getSubTree()).begin(); it != (_child->getSubTree()).end(); it++){
+				if((*it).second!=NULL)
+					std::cout << (*it).second->getVec() << " ; ";
+			}
+			std::cout << std::endl;
+			for(it=(_child->getSubTree()).begin(); it != (_child->getSubTree()).end(); it++){
+				if((*it).second!=NULL){
+					printChild((*it).second, (*it).first);
+					std::cout << std::endl;
+				}
+			}
+		}
 	}
 
 	bool isEmpty(){
 		return root==NULL;
 	}
+
+	QuadTreeNode<ObjectiveVector>* getRoot(){
+		return root;
+	}
+
 
 private:
 
