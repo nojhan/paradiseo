@@ -95,7 +95,7 @@ class moVNS : public moAlgo < EOT>
 	    full_evaluation(solution_second);
 	  }
 	
-	if( solution_second > solution_initial ) 
+	if( solution_second.fitness() > solution_initial.fitness() )
 	  {
 	    solution_initial=solution_second;
 	    change=true;
