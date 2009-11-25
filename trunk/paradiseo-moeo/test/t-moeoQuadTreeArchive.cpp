@@ -78,20 +78,49 @@ int main()
     bool empty= tree.isEmpty();
     std::cout <<"empty? " << empty << std::endl;
     ObjectiveVector obj1;
-    obj1[0]=2.0;
-    obj1[1]=2.0;
-    obj1[2]=2.0;
+    obj1[0]=54.0;
+    obj1[1]=65.0;
+    obj1[2]=67.0;
     ObjectiveVector obj2;
-    obj2[0]=2.0;
-    obj2[1]=1.0;
-    obj2[2]=1.0;
+    obj2[0]=23.0;
+    obj2[1]=25.0;
+    obj2[2]=52.0;
     ObjectiveVector obj3;
-    obj3[0]=1.0;
-    obj3[1]=1.0;
-    obj3[2]=1.0;
-    QuadTreeNode<ObjectiveVector> hop(obj1);
-    QuadTreeNode<ObjectiveVector> hop2(obj2);
-    QuadTreeNode<ObjectiveVector> hop3(obj3);
+    obj3[0]=87.0;
+    obj3[1]=5.0;
+    obj3[2]=33.0;
+    ObjectiveVector obj4;
+    obj4[0]=52.0;
+    obj4[1]=50.0;
+    obj4[2]=72.0;
+    ObjectiveVector obj5;
+    obj5[0]=80.0;
+    obj5[1]=41.0;
+    obj5[2]=8.0;
+    ObjectiveVector obj6;
+    obj6[0]=26.0;
+    obj6[1]=0.0;
+    obj6[2]=5.0;
+    ObjectiveVector obj7;
+    obj7[0]=56.0;
+    obj7[1]=22.0;
+    obj7[2]=0.0;
+    ObjectiveVector obj8;
+    obj8[0]=87.0;
+    obj8[1]=42.0;
+    obj8[2]=62.0;
+    ObjectiveVector obj9;
+    obj9[0]=90.0;
+    obj9[1]=69.0;
+    obj9[2]=83.0;
+    ObjectiveVector obj10;
+    obj10[0]=68.0;
+    obj10[1]=89.0;
+    obj10[2]=22.0;
+//    QuadTreeNode<ObjectiveVector> hop(obj1);
+//    QuadTreeNode<ObjectiveVector> hop2(obj2);
+//    QuadTreeNode<ObjectiveVector> hop3(obj3);
+//    QuadTreeNode<ObjectiveVector> hop4(obj4);
 //    empty = hop.getSubTree().empty();
 //    std::cout <<"empty? " << empty << std::endl;
 //    std::vector< QuadTreeNode<ObjectiveVector> > nodes;
@@ -103,7 +132,48 @@ int main()
 //    std::cout << "size: " << nodes.size() << std::endl;
     tree.insert(obj1);
     tree.insert(obj2);
-    tree.insert(obj2);
+    tree.insert(obj3);
+    tree.insert(obj4);
+    tree.insert(obj5);
+    std::cout << "\n\n\n";
+
+    tree.insert(obj6);
+//    tree.insert(obj7);
+//    tree.insert(obj8);
+//    tree.insert(obj9);
+//    tree.insert(obj10);
+
+//    moeoUnboundedArchive<Solution> archive(false);
+//    eoPop<Solution> pop;
+//    pop.resize(1000);
+//    int tmp;
+//
+//    for(int i= 0; i<1000 ; i++){
+//        ObjectiveVector obj;
+//    	obj[0]=floor(rng.uniform()*100);
+//    	obj[1]=floor(rng.uniform()*100);
+//    	obj[2]=floor(rng.uniform()*100);
+//    	std::cout << obj << std::endl;
+//    	pop[i].objectiveVector(obj);
+//    	tree.insert(obj);
+//    	archive(pop[i]);
+//    	tree.printTree();
+//        std::cout << std::endl;
+//        std::cout << std::endl;
+//
+//        std::cout << "achive: " << archive << std::endl;
+//        std::cin >> tmp;
+//    }
+
+
+
+//    QuadTreeNode<ObjectiveVector> * a = tree.getRoot();
+//    QuadTreeNode<ObjectiveVector> * b = a->getSubTree()[1];
+//    QuadTreeNode<ObjectiveVector> * c = b->getSubTree()[2];
+//
+//    tree.reinsert(a,c);
+
+//    std::cout << "achive: " << archive << std::endl;
     tree.printTree();
 
 

@@ -69,8 +69,15 @@ SET (TEST_LIST
 		t-moeoFitDivBoundedArchive
 		t-moeoDetArchiveSelect
 		t-moeoASEEA
-		t-moeoEpsilonHyperboxArchive
+		#t-moeoEpsilonHyperboxArchive
 		t-moeoQuadTreeArchive
+		t-moeoAggregationFitnessAssignment
+		t-moeoConstraintFitnessAssignment
+		t-moeoChebyshevMetric
+		t-moeoChebyshevOrientedMetric
+		t-moeoASFAMetric
+		t-moeoASFAOrMetric
+		
 )
 
 FOREACH (test ${TEST_LIST})
