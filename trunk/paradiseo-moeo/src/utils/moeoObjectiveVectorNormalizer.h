@@ -55,9 +55,10 @@ class moeoObjectiveVectorNormalizer
 
 		/**
 		  constructor with a supplied scale, usefull if you tweak your scale
-		  @param scale the scale for noramlzation
+		  @param _scale the scale for noramlzation
+		  @param max_param the returned values will be between 0 and max
 		  */
-		moeoObjectiveVectorNormalizer(Scale &_scale,Type max_param=100):scale(_scale),max(max_param)
+		moeoObjectiveVectorNormalizer(Scale _scale=make_dummy_scale(),Type max_param=100):scale(_scale),max(max_param)
 	{}
 		/**
 		  constructor to create a normalizer from a given population
@@ -68,15 +69,17 @@ class moeoObjectiveVectorNormalizer
 	{}
 		/**
 		  constructor to create a normalizer with given boundaries
-		  @param boundaries the supplied vectors should have their values between thos boundaries
+		  @param _boundaries the supplied vectors should have their values between thos boundaries
+		  @param max_param the returned values will be between 0 and max
 		 **/
 		moeoObjectiveVectorNormalizer(std::vector<Bounds> &_boundaries, Type max_param=100):scale(make_scale_from_bounds(_boundaries,max_param)), max(max_param)
 	{}
 		/**
 		  constructor to create a normalizer from bounds 
-		  @param bounds the supplied vectors should have their value in those bounds
+		  @param _bounds the supplied vectors should have their value in those bounds
+		  @param max_param the returned values will be between 0 and max
 		 **/
-		moeoObjectiveVectorNormalizer(Bounds &_bounds, Type max_param=100 ):scale(make_scale_from_bounds(_bounds,ObjectiveVector::nObjectives(),max_param)), max(max_param)
+		moeoObjectiveVectorNormalizer(Bounds &_bounds, Type max_param=100 ):scale(make_scale_from_bounds(_bounds,max_param)), max(max_param)
 	{}
 		/**
 		  constructor to create a normalizer from a worst vector and a best vector
@@ -141,11 +144,11 @@ class moeoObjectiveVectorNormalizer
 
 		/**
 		  create a scale from bounds
-		  @param boundaries the boundaries
+		  @param _boundaries the boundaries
 		  @param max the maximum for returned values
 		  @return a scale
 		  */
-		static Scale make_scale_from_bounds(std::vector<Bounds> &_boundaries,Type max=100){
+		static Scale make_scale_from_bounds(const std::vector<Bounds> &_boundaries,Type max=100){
 			Scale res;
 			for (unsigned i=0;i<_boundaries.size();i++){
 				std::vector<Type> coeff;
@@ -162,8 +165,9 @@ class moeoObjectiveVectorNormalizer
 		  @param max the maximum for returned values
 		  @return a scale
 		  */
-		static Scale make_scale_from_bounds(Bounds &bounds,int dim,Type max=100){
+		static Scale make_scale_from_bounds(const Bounds &bounds,Type max=100){
 			Scale res;
+			unsigned int dim=MOEOT::ObjectiveVector::nObjectives();
 			for (unsigned i=0;i<dim;i++){
 				std::vector<Type> coeff;
 				coeff.push_back(max/(bounds.maximum()-bounds.minimum()));
@@ -186,6 +190,22 @@ class moeoObjectiveVectorNormalizer
 				std::vector<Type> coeff;
 				coeff.push_back(max/(worst[i]-best[i]));
 				coeff.push_back(best[i]);
+				res.push_back(coeff);
+			}
+			return res;
+		}
+
+		/**
+		  create a default scale that does nothing when applied
+		  @return a dummy scale
+		  */
+		static Scale make_dummy_scale(){
+			unsigned int dim=MOEOT::ObjectiveVector::nObjectives();
+			Scale res;
+			for (unsigned int i=0;i<dim;i++){
+				std::vector<Type> coeff;
+				coeff.push_back(1);
+				coeff.push_back(0);
 				res.push_back(coeff);
 			}
 			return res;
@@ -221,6 +241,7 @@ class moeoObjectiveVectorNormalizer
 		/**
 		  fast(to use, not in complexity) function to normalize a population
 		  @param pop the population to normalize
+		  @param max the returned values will be between 0 and max
 		  @return a vector of normalized Objective vectors < max
 		 */
 		static std::vector<ObjectiveVector> normalize(const eoPop<MOEOT> &pop, Type &max){
@@ -231,19 +252,32 @@ class moeoObjectiveVectorNormalizer
 		/**
 		  Change the scale according to a new pop. Should be called everytime pop is updated
 		  @param pop population to analyse
-		  @param max_param the worst vector is is set to max_param
 		 */
 		void update_by_pop(eoPop<MOEOT> pop){
 			scale=make_scale_from_pop(pop,max);
 		}
 
 		/** change the scale with the worst point and the best point
-		  @param max the worst point
-		  @param min the best point
+		  @param _max the worst point
+		  @param _min the best point
 		  */
 		void update_by_min_max(const ObjectiveVector &_min,const ObjectiveVector &_max){
 			scale=make_scale_from_minmax(_min,_max,max);
 		}
+
+		/** change the scale according to given boundaries 
+		  @param boundaries a vector of bounds corresponding to the bounds in each dimension
+		  */
+		void update_by_bounds(const std::vector<Bounds> &boundaries){
+			scale=make_scale_from_bounds(boundaries);
+		}
+		/** change the scale according to bounds,them same is used in each dimension 
+		  @param bounds bounds corresponding to the bounds in each dimension
+		  */
+		void update_by_bounds(const Bounds &bounds){
+			scale=make_scale_from_bounds(bounds);
+		}
+
 
 		/** 
 		  updates the scale
@@ -265,10 +299,7 @@ class moeoObjectiveVectorNormalizer
 			}
 			max=_max;
 		}
-	protected:
-		moeoObjectiveVectorNormalizer()
-		{
-		}
+
 	private:
 		Scale scale;
 		Type max;

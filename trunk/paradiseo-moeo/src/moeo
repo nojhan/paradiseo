@@ -61,7 +61,7 @@
 #include <archive/moeoUnboundedArchive.h>
 #include <archive/moeoImprOnlyBoundedArchive.h>
 #include <archive/moeoFitDivBoundedArchive.h>
-#include <archive/moeoEpsilonHyperboxArchive.h>
+//#include <archive/moeoEpsilonHyperboxArchive.h>
 #include <archive/moeoQuadTreeArchive.h>
 
 
@@ -91,9 +91,14 @@
 
 #include <distance/moeoDistance.h>
 #include <distance/moeoDistanceMatrix.h>
+#include <distance/moeoObjSpaceDistance.h>
 #include <distance/moeoEuclideanDistance.h>
 #include <distance/moeoManhattanDistance.h>
 #include <distance/moeoNormalizedDistance.h>
+#include <distance/moeoAchievementScalarizingFunctionDistance.h>
+#include <distance/moeoAugmentedAchievementScalarizingFunctionDistance.h>
+#include <distance/moeoAugmentedWeightedChebychevDistance.h>
+#include <distance/moeoWeightedChebychevDistance.h>
 
 #include <diversity/moeoCrowdingDiversityAssignment.h>
 #include <diversity/moeoDiversityAssignment.h>
@@ -104,8 +109,10 @@
 #include <diversity/moeoSharingDiversityAssignment.h>
 
 #include <fitness/moeoAchievementFitnessAssignment.h>
+#include <fitness/moeoAggregationFitnessAssignment.h>
 #include <fitness/moeoAggregativeFitnessAssignment.h>
 #include <fitness/moeoBinaryIndicatorBasedFitnessAssignment.h>
+#include <fitness/moeoConstraintFitnessAssignment.h>
 #include <fitness/moeoCriterionBasedFitnessAssignment.h>
 #include <fitness/moeoDominanceBasedFitnessAssignment.h>
 #include <fitness/moeoDominanceCountFitnessAssignment.h>
@@ -117,7 +124,13 @@
 #include <fitness/moeoFitnessAssignment.h>
 #include <fitness/moeoIndicatorBasedFitnessAssignment.h>
 #include <fitness/moeoScalarFitnessAssignment.h>
+#include <fitness/moeoSingleObjectivization.h>
 #include <fitness/moeoUnaryIndicatorBasedFitnessAssignment.h>
+#include <fitness/moeoAchievementScalarizingFunctionMetricFitnessAssignment.h>
+#include <fitness/moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment.h>
+#include <fitness/moeoWeightedChebychevMetricFitnessAssignment.h>
+#include <fitness/moeoAugmentedWeightedChebychevMetricFitnessAssignment.h>
+
 
 #include <metric/moeoAdditiveEpsilonBinaryMetric.h>
 #include <metric/moeoContributionMetric.h>
@@ -130,6 +143,7 @@
 #include <metric/moeoVecVsVecEpsilonBinaryMetric.h>
 #include <metric/moeoVecVsVecAdditiveEpsilonBinaryMetric.h>
 #include <metric/moeoVecVsVecMultiplicativeEpsilonBinaryMetric.h>
+#include <metric/moeoDistanceMetric.h>
 
 #include <replacement/moeoElitistReplacement.h>
 #include <replacement/moeoEnvironmentalReplacement.h>

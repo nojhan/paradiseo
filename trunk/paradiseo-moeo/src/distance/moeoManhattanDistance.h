@@ -4,6 +4,7 @@
 * (C) OPAC Team, LIFL, 2002-2007
 *
 * Arnaud Liefooghe
+* Francçois Legillon
 *
 * This software is governed by the CeCILL license under French law and
 * abiding by the rules of distribution of free software.  You can  use,
@@ -39,34 +40,48 @@
 #define MOEOMANHATTANDISTANCE_H_
 
 #include <math.h>
-#include <distance/moeoNormalizedDistance.h>
+#include <distance/moeoObjSpaceDistance.h>
+#include <utils/moeoObjectiveVectorNormalizer.h>
 
 /**
  * A class allowing to compute the Manhattan distance between two solutions in the objective space normalized objective values (i.e. between 0 and 1).
  * A distance value then lies between 0 and nObjectives.
  */
 template < class MOEOT >
-class moeoManhattanDistance : public moeoNormalizedDistance < MOEOT >
+class moeoManhattanDistance : public moeoObjSpaceDistance < MOEOT >
   {
   public:
 
     /** the objective vector type of the solutions */
     typedef typename MOEOT::ObjectiveVector ObjectiveVector;
-
+    /** the fitness type of the solutions */
+    typedef typename MOEOT::Fitness Fitness;
 
     /**
-     * Returns the Manhattan distance between _moeo1 and _moeo2 in the objective space
-     * @param _moeo1 the first solution
-     * @param _moeo2 the second solution
+      ctr with a normalizer
+      @param _normalizer the normalizer used for every ObjectiveVector
+      */
+    moeoManhattanDistance (moeoObjectiveVectorNormalizer<MOEOT> &_normalizer):normalizer(_normalizer)
+	  {}
+    /**
+      default ctr
+      */
+    moeoManhattanDistance ():normalizer(defaultNormalizer)
+	  {}
+
+    /**
+     * Returns the Manhattan distance between _obj1 and _obj2 in the objective space
+     * @param _obj1 the first objective vector
+     * @param _obj2 the second objective vector
      */
-    const double operator()(const MOEOT & _moeo1, const MOEOT & _moeo2)
+    const double operator()(const ObjectiveVector & _obj1, const ObjectiveVector & _obj2)
     {
       double result = 0.0;
       double tmp1, tmp2;
       for (unsigned int i=0; i<ObjectiveVector::nObjectives(); i++)
         {
-          tmp1 = (_moeo1.objectiveVector()[i] - bounds[i].minimum()) / bounds[i].range();
-          tmp2 = (_moeo2.objectiveVector()[i] - bounds[i].minimum()) / bounds[i].range();
+          tmp1 = normalizer(_obj1)[i];
+          tmp2 = normalizer(_obj2)[i];
           result += fabs(tmp1-tmp2);
         }
       return result;
@@ -75,8 +90,8 @@ class moeoManhattanDistance : public moeoNormalizedDistance < MOEOT >
 
   private:
 
-    /** the bounds for every objective */
-    using moeoNormalizedDistance < MOEOT > :: bounds;
+    moeoObjectiveVectorNormalizer<MOEOT> defaultNormalizer;
+    moeoObjectiveVectorNormalizer<MOEOT> &normalizer;
 
   };
 
