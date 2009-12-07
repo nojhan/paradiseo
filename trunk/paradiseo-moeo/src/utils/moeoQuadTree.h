@@ -58,16 +58,17 @@ public:
 		return objVec;
 	}
 
-	//return true if the child is inserted
+	/**
+	 * @param _kSuccesor the k_successor of _child regarding this Node
+	 * @param _child the child to link at the index _kSuccessor
+	 * @return true if _child is inserted, false if there is already a child for this index
+	 */
 	bool setChild(unsigned int _kSuccesor, QuadTreeNode<ObjectiveVector>* _child){
-		std::cout << "enter setChild" << std::endl;
 		bool res = false;
 		if((*this).subTree[_kSuccesor] == NULL){
 			res=true;
 			(*this).subTree[_kSuccesor]= _child;
-//			std::cout <<"setChild: " <<  getVec() << std::endl;
 		}
-		std::cout << "quit setChild" << std::endl;
 		return res;
 	}
 
@@ -78,6 +79,8 @@ public:
 private:
 	ObjectiveVector objVec;
 	std::map<unsigned int, QuadTreeNode<ObjectiveVector>*> subTree;
+
+	//TODO Ajouter l'index du vecteur
 };
 
 
@@ -96,22 +99,33 @@ public:
 		delete(comparator);
 	}
 
+	/**
+	 * @paramm _obj the Objective Vector to insert into the tree.
+	 * @return true if it is inserted
+	 */
 	bool insert(ObjectiveVector& _obj){
 		bool res=false;
+		//create a new node
 		QuadTreeNode<ObjectiveVector>* tmp = new QuadTreeNode<ObjectiveVector>(_obj);
+		//if the tree is empty, we have a new root!
 		if(isEmpty()){
 			root=tmp;
 			res=true;
-			std::cout << "insert case empty: " << root->getVec() << std::endl;
-			std::cout << root << std::endl;
 		}
+		//else try to insert the new node in the tree
 		else{
 			res = insert_aux(tmp, root, NULL, 0);
 		}
-
 		return res;
 	}
 
+	/**
+	 * @param _newnode the node to insert
+	 * @param _tmproot the temporary root
+	 * @param _parent the parent of _tmproot
+	 * @param _succ the index of _parent where the _tmproot is linked
+	 * @return true if the _newnode is inserted
+	 */
 	bool insert_aux(QuadTreeNode<ObjectiveVector>* _newnode, QuadTreeNode<ObjectiveVector>* _tmproot, QuadTreeNode<ObjectiveVector>* _parent, unsigned int _succ){
 		bool res=false;
 		bool dominated=false;
@@ -127,13 +141,11 @@ public:
 			res=true;
 		}
 		else{
-			//dominance test1
+			//dominance test1 (test if _newnode is dominated by the childs of _tmproot)
 			if(!(_tmproot->getSubTree().empty())){
 				QuadTreeIterator it=_tmproot->getSubTree().begin();
 				while(!dominated && (it != _tmproot->getSubTree().end())){
 					if((*it).second != NULL){
-//						std::cout << "hop"<<std::endl;
-//						std::cout << "first: " << (*it).first << ", bound: " << bound << ", xor: " << ((*it).first ^ bound) << std::endl;
 						if( ((*it).first < succ) && (((succ ^ bound) & ((*it).first ^ bound)) == (succ ^ bound)) ){
 							dominated = test1(_newnode, (*it).second);
 						}
@@ -146,7 +158,7 @@ public:
 				delete(_newnode);
 			}
 			else{
-				//dominance test2
+				//dominance test2 (test if _newnode dominates the childs of _tmproot)
 				QuadTreeIterator it=_tmproot->getSubTree().begin();
 				while(it != _tmproot->getSubTree().end()){
 					if((*it).second != NULL){
@@ -159,7 +171,7 @@ public:
 
 				//insertion
 				if(_tmproot->setChild(succ, _newnode)){
-					//the child is inserted,
+					//the child is inserted
 					res=true;
 				}
 				else{
@@ -169,87 +181,14 @@ public:
 			}
 		}
 		return res;
-
-		//*******************************************************************
-		//the tree is empty -> create a node and fix it at the root
-//		if(isEmpty()){
-//			root=tmp;
-//			res=true;
-//			std::cout << "insert case empty: " << root->getVec() << std::endl;
-//			std::cout << root << std::endl;
-//		}
-//		else{
-//			while(!stop){
-//				//calulate the k-Successor de _obj wtih respect to the root
-//				unsigned int succ=k_succ(_obj, root->getVec());
-//				if(succ != bound){
-//					if(succ == 0){
-//						std::cout << "insert -> replace" << std::endl;
-//						std::cout << root << std::endl;
-//						replace(_obj);
-//						realroot=root;
-//						res=true;
-//						stop=true;
-//					}
-//					else{
-//						//dominance test1
-//						if(!(root->getSubTree().empty())){
-//							QuadTreeIterator it=root->getSubTree().begin();
-//							while(!stop && (it != root->getSubTree().end())){
-//								if((*it).second != NULL){
-//									std::cout << "hop"<<std::endl;
-//									std::cout << "first: " << (*it).first << ", bound: " << bound << ", xor: " << ((*it).first ^ bound) << std::endl;
-//									if( ((*it).first < succ) && (((succ ^ bound) & ((*it).first ^ bound)) == (succ ^ bound)) ){
-//
-//										stop = test1(tmp, (*it).second);
-//									}
-//								}
-//								it++;
-//							}
-//
-//						}
-//						if(!stop){
-//							//dominance test2
-//							QuadTreeIterator it=root->getSubTree().begin();
-//							while(it != root->getSubTree().end()){
-//								if((*it).second != NULL){
-//									if( (succ < (*it).first) && ((succ & (*it).first) == succ)){
-//										test2(tmp, (*it).second, root, (*it).first);
-//									}
-//								}
-//								it++;
-//							}
-//							//insertion
-//							QuadTreeNode<ObjectiveVector>* tmp = new QuadTreeNode<ObjectiveVector>(_obj);
-//							std::cout << "insert case new son: " << root->getVec() << std::endl;
-//							if(root->setChild(succ, tmp)){
-//								std::cout << "\n\nthe root changed\n\n";
-//								root=root->getSubTree()[succ];
-//							}
-//							else{
-//								res=true;
-//								stop=true;
-//							}
-//						}
-//					}
-//				}
-//				else{
-//					stop=true;
-//				}
-//			}
-//			std::cout << "realroot: " << realroot->getVec() << std::endl;
-//			root=realroot;
-//		}
-		//*******************************************************************
 	}
 
 	/*
-	 * return the k-successor of _objVec1 with respect to _objVec2
 	 * @param _objVec1
 	 * @param _objVec2
+	 * @return the k-successor of _objVec1 with respect to _objVec2
 	 */
 	unsigned int k_succ(const ObjectiveVector& _objVec1, const ObjectiveVector& _objVec2){
-		std::cout << "enter k_succ" << std::endl;
 		unsigned int res=0;
 		if(!(*comparator)(_objVec2, _objVec1)){
 			for(int i=0; i < ObjectiveVector::nObjectives(); i++){
@@ -257,32 +196,25 @@ public:
 					(ObjectiveVector::maximizing(i) && ((_objVec1[i] - _objVec2[i]) <= 1e-6 ))){
 					res+=pow(2,ObjectiveVector::nObjectives()-i-1);
 				}
-	//			if( (ObjectiveVector::minimizing(i) && (_objVec1[i] >= _objVec2[i])) ||
-	//				(ObjectiveVector::maximizing(i) && (_objVec1[i] <= _objVec2[i]))){
-	//				res+=pow(2,ObjectiveVector::nObjectives()-i-1);
-	//			}
 			}
 		}
-		std::cout << "quit k_succ" << std::endl;
 		return res;
 	}
 
 	/*
-	 * replace the old root by the new one
-	 * @param _newroot
+	 * replace the root by a new one
+	 * @param _newnode thee new root
+	 * @param _tmproot the old root
+	 * @param _parent the parent of _tmproot
+	 * @param _succ the index of _parent where the _tmproot is linked
 	 */
 	void replace(QuadTreeNode<ObjectiveVector>* _newnode, QuadTreeNode<ObjectiveVector>* _tmproot, QuadTreeNode<ObjectiveVector>* _parent, unsigned int _succ){
-		std::cout << "enter replace: " << std::endl;
-
 		if(!(_tmproot->getSubTree().empty())){
 			//reconsider each son of the old root
 			QuadTreeIterator it;
 			for(it=(_tmproot->getSubTree()).begin(); it != (_tmproot->getSubTree()).end(); it++){
-//				std::cout << "on passe ici" << std::endl;
 				if((*it).second!=NULL){
-//					std::cout << "replace: " << (*it).second->getVec() << std::endl;
 					reconsider(_newnode, (*it).second);
-//					std::cout << "end replacement" << std::endl;
 				}
 			}
 		}
@@ -295,79 +227,58 @@ public:
 		}
 		//kill the old root
 		delete(_tmproot);
-//
-//		QuadTreeNode<ObjectiveVector>* newroot = new QuadTreeNode<ObjectiveVector>(_newroot);
-//
-//		if(!(root->getSubTree().empty())){
-//			QuadTreeIterator it;
-//			for(it=(root->getSubTree()).begin(); it != (root->getSubTree()).end(); it++){
-//				std::cout << "on passe ici" << std::endl;
-//				if((*it).second!=NULL){
-//					std::cout << "replace: " << (*it).second->getVec() << std::endl;
-//					reconsider(newroot, (*it).second);
-//					std::cout << "end replacement" << std::endl;
-//				}
-//			}
-//		}
-//		std::cout << "replace after reconsider" << std::endl;
-//
-//		delete(root);
-//		root = newroot;
-//		std::cout << root << " -> "<< root->getVec() << std::endl;
-//		std::cout << "replace after change the root" << std::endl;
-//		std::cout << "quit replace: " << std::endl;
 	}
 
+	/**
+	 * @param _newroot the new root
+	 * @param _child a node to reconsider regarding tthe _newroot
+	 */
 	void reconsider(QuadTreeNode<ObjectiveVector>* _newroot, QuadTreeNode<ObjectiveVector>* _child){
-		std::cout << "enter reconsider: " << std::endl;
 		unsigned int succ;
+		//reconsider all child of _child
 		if(!(_child->getSubTree().empty())){
 			QuadTreeIterator it;
 			for(it=(_child->getSubTree()).begin(); it != (_child->getSubTree()).end(); it++){
 				if((*it).second != NULL){
-					std::cout << "reconsider: " << (*it).second->getVec() << std::endl;
 					QuadTreeNode<ObjectiveVector>* tmp=(*it).second;
 					_child->getSubTree()[(*it).first]=NULL;
-
 					reconsider(_newroot, tmp);
 				}
 			}
 		}
-		else{
-			std::cout << "reconsider: no more child" << std::endl;
-		}
-		std::cout << "reconsider try to reinsert " << _child->getVec() << " in " << _newroot->getVec() << std::endl;
 		succ=k_succ(_child->getVec(),_newroot->getVec());
-		std::cout << "succ: " << succ << std::endl;
+		//if _child is dominated by the newroot, delete it
 		if(succ==bound)
 			delete(_child);
+		//else reinsert it in the tree rooted at _newroot
 		else if(_newroot->getSubTree()[succ] != NULL){
-//			std::cout << "hohoho" << std::endl;
 			reinsert(_newroot->getSubTree()[succ],_child);
 		}
 		else{
-//			std::cout << "houhouhou" << std::endl;
 			_newroot->setChild(succ, _child);
 		}
-		std::cout << "quit reconsider: " << std::endl;
 	}
 
+	/**
+	 * reinsert _node2 into _node1
+	 * @param _node1 first node
+	 * @param _node2 second node
+	 */
 	void reinsert(QuadTreeNode<ObjectiveVector>* _node1, QuadTreeNode<ObjectiveVector>* _node2){
-		std::cout << "enter reinsert: " << std::endl;
+		//first resinsert all child of the second node into node1
 		if(_node1 != _node2){
-			std::cout << "node1: " << _node1->getVec() << ", node2: " << _node2->getVec() << std::endl;
 			unsigned int succ;
 			if(!(_node2->getSubTree().empty())){
 				QuadTreeIterator it;
 				for(it=(_node2->getSubTree()).begin(); it != (_node2->getSubTree()).end(); it++){
 					if((*it).second != NULL){
-						std::cout << "reinsert: " << (*it).second->getVec() << std::endl;
 						QuadTreeNode<ObjectiveVector>* tmp=(*it).second;
 						_node2->getSubTree()[(*it).first]=NULL;
 						reinsert(_node1, tmp);
 					}
 				}
 			}
+			//insert node2 into node1
 			succ=k_succ(_node2->getVec(),_node1->getVec());
 			if(_node1->getSubTree()[succ] != NULL){
 				reinsert(_node1->getSubTree()[succ],_node2);
@@ -376,12 +287,15 @@ public:
 				_node1->setChild(succ, _node2);
 			}
 		}
-		std::cout << "quit reinsert: " << std::endl;
 	}
 
+	/**
+	 * remove a node
+	 * @param _node the node to remove
+	 * @param _parent its parent
+	 * @param _succ the index of _parent where the _node is linked
+	 */
 	void remove(QuadTreeNode<ObjectiveVector>* _node, QuadTreeNode<ObjectiveVector>* _parent, unsigned int _succ){
-		std::cout << "enter remove -> " << _node->getVec() << std::endl;
-		printTree();
 		unsigned int k=1;
 		QuadTreeNode<ObjectiveVector>* tmp=NULL;
 		_parent->getSubTree()[_succ]=NULL;
@@ -400,12 +314,14 @@ public:
 			k++;
 		}
 		delete(_node);
-		std::cout << "quit remove: " << std::endl;
-		printTree();
 	}
 
+	/**
+	 * test if _node1 is dominated by _node2 (and recursivly by its childs)
+	 * @param _node1 first node
+	 * @param _node2 second node
+	 */
 	bool test1(QuadTreeNode<ObjectiveVector>* _node1, QuadTreeNode<ObjectiveVector>* _node2){
-		std::cout << "enter test1" << std::endl;
 		bool res = false;
 		unsigned int succ;
 		succ=k_succ(_node1->getVec(), _node2->getVec());
@@ -423,17 +339,19 @@ public:
 				it++;
 			}
 		}
-		std::cout << "quit test1" << std::endl;
 		return res;
 	}
 
+	/**
+	 * test if _node1 dominates _node2 (and recursivly its childs)
+	 * @param _node1 first node
+	 * @param _node2 second node
+	 */
 	void test2(QuadTreeNode<ObjectiveVector>* _node1, QuadTreeNode<ObjectiveVector>* _node2, QuadTreeNode<ObjectiveVector>* _parent, unsigned int _succ){
-		std::cout << "enter test2" << std::endl;
-//		printTree();
+
 		unsigned int succ;
 		succ=k_succ(_node1->getVec(), _node2->getVec());
 		if(succ==0){
-//			std::cout << "\n\n\nPEUT ETRE ICI\n\n\n";
 			remove(_node2, _parent, _succ);
 			if(_parent->getSubTree()[_succ]!=NULL)
 				test2(_node1, _parent->getSubTree()[_succ], _parent, _succ);
@@ -449,10 +367,9 @@ public:
 				it++;
 			}
 		}
-		std::cout << "quit test2" << std::endl;
 	}
 
-
+	//************* A REVOIR ************
 	void printTree(){
 		QuadTreeIterator it;
 		if(!isEmpty()){
@@ -490,11 +407,18 @@ public:
 			}
 		}
 	}
+	//***********************************
 
+	/**
+	 * @return if the tree is empty or not
+	 */
 	bool isEmpty(){
 		return root==NULL;
 	}
 
+	/**
+	 * @return a pointer on the root of the tree
+	 */
 	QuadTreeNode<ObjectiveVector>* getRoot(){
 		return root;
 	}
@@ -502,9 +426,13 @@ public:
 
 private:
 
-
+	//pointer on the root of the tree
 	QuadTreeNode<ObjectiveVector>* root;
+
+	//size max of an index
 	unsigned int bound;
+
+	//Pareto comparator
 	moeoParetoObjectiveVectorComparator<ObjectiveVector>* comparator;
 
 };
