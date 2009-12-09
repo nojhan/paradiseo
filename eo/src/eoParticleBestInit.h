@@ -63,8 +63,9 @@ public:
 
     void operator  () (POT & _po1)
     {
-        for (unsigned i = 0; i < _po1.size (); i++)
-            _po1.bestPositions[i] = _po1[i];
+       	//Set the bestPositions
+          	_po1.bestPositions = _po1 ;
+
 
         // set the fitness
         _po1.best(_po1.fitness());
@@ -73,5 +74,4 @@ public:
 };
 
 #endif /*_EOPARTICLEBESTINIT_H */
-
 
