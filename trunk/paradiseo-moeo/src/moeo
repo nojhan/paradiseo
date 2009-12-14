@@ -52,6 +52,11 @@
 #include <algo/moeoSEEA.h>
 #include <algo/moeoASEEA.h>
 #include <algo/moeoSPEA2.h>
+#include <algo/moeoHC.h>
+#include <algo/moeoTS.h>
+#include <algo/moeoVNS.h>
+#include <algo/moeoSA.h>
+#include <algo/moeoILS.h>
 
 
 #include <archive/moeoArchive.h>
@@ -130,6 +135,7 @@
 #include <fitness/moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment.h>
 #include <fitness/moeoWeightedChebychevMetricFitnessAssignment.h>
 #include <fitness/moeoAugmentedWeightedChebychevMetricFitnessAssignment.h>
+#include <fitness/moeoIncrEvalSingleObjectivizer.h>
 
 
 #include <metric/moeoAdditiveEpsilonBinaryMetric.h>
@@ -168,6 +174,9 @@
 #include <utils/moeoDominanceMatrix.h>
 #include <utils/moeoObjVecStat.h>
 #include <utils/moeoQuadTree.h>
+
+#include <explorer/moeoHCMoveLoopExpl.h>
+#include <explorer/moeoTSMoveLoopExpl.h>
 
 
 
