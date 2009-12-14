@@ -105,7 +105,7 @@ int main()
 
     set1[2][0] = 1;
     set1[2][1] = 5;
-    
+
     set2[0][0] = 4;
     set2[0][1] = 2;
 
@@ -114,15 +114,15 @@ int main()
 
     set2[2][0] = 1;
     set2[2][1] = 6;
-  
+
     moeoHyperVolumeDifferenceMetric < ObjectiveVector> metric(true, 2);
-    
+
 	std::vector < eoRealInterval > bounds;
-	
+
 	metric.setup(set1, set2);
 	bounds = metric.getBounds();
-	
-    std::cout << "\t>test normalization =>"; 
+
+    std::cout << "\t>test normalization =>";
     assert(bounds[0].minimum()==1.0);
     assert(bounds[0].maximum()==5.0);
     assert(bounds[0].range()==4.0);
@@ -130,43 +130,43 @@ int main()
     assert(bounds[1].minimum()==1.0);
     assert(bounds[1].maximum()==6.0);
     assert(bounds[1].range()==5.0);
-	
+
 	std::cout << " OK\n";
-	
+
 	//test calculation of difference hypervolume
-	moeoHyperVolumeDifferenceMetric < ObjectiveVector> metric2(false, 2);	
-	std::cout << "\t>test difference without normalization and a coefficient rho=>"; 
-	double difference=metric2(set1,set2);	
+	moeoHyperVolumeDifferenceMetric < ObjectiveVector> metric2(false, 2);
+	std::cout << "\t>test difference without normalization and a coefficient rho=>";
+	double difference=metric2(set1,set2);
 	assert(difference==5.0);
 	std::cout << " OK\n";
-	
+
 	moeoHyperVolumeDifferenceMetric < ObjectiveVector> metric3(true, 1.1);
-	double tolerance = 1e-10;	
-	std::cout << "\t>test difference with normalization and coefficient rho=>"; 
-	difference=metric3(set1,set2);	
+	double tolerance = 1e-10;
+	std::cout << "\t>test difference with normalization and coefficient rho=>";
+	difference=metric3(set1,set2);
 	assert( (difference < (0.02 + tolerance)) && (difference > (0.02 - tolerance)));
 	std::cout << " OK\n";
-	
+
 	ObjectiveVector ref_point;
 	ref_point[0]= 10;
 	ref_point[1]= 12;
-	moeoHyperVolumeDifferenceMetric < ObjectiveVector> metric4(false, ref_point);	
-	std::cout << "\t>test difference without normalization and a ref_point=>"; 
-	difference=metric4(set1,set2);	
+	moeoHyperVolumeDifferenceMetric < ObjectiveVector> metric4(false, ref_point);
+	std::cout << "\t>test difference without normalization and a ref_point=>";
+	difference=metric4(set1,set2);
 	assert(difference==5.0);
 	std::cout << " OK\n";
-	
+
 	ref_point[0]= 1.1;
 	ref_point[1]= 1.1;
 	moeoHyperVolumeDifferenceMetric < ObjectiveVector> metric5(true, ref_point);
-	std::cout << "\t>test difference with normalization and a ref_point=>"; 
-	difference=metric5(set1,set2);	
+	std::cout << "\t>test difference with normalization and a ref_point=>";
+	difference=metric5(set1,set2);
 	assert( (difference < (0.02 + tolerance)) && (difference > (0.02 - tolerance)));
 	std::cout << " OK\n";
-	
-	
-	
-	
+
+
+
+
     return EXIT_SUCCESS;
 }
 

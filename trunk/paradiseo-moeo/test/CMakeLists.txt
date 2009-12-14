@@ -10,6 +10,7 @@
 ######################################################################################
 
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
+INCLUDE_DIRECTORIES(${MO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${ParadisEO-MOEO_SOURCE_DIR}/src)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -77,7 +78,12 @@ SET (TEST_LIST
 		t-moeoChebyshevOrientedMetric
 		t-moeoASFAMetric
 		t-moeoASFAOrMetric
-		
+		t-moeoHC
+		t-moeoILS_HC
+		t-moeoILS_SA
+		t-moeoILS_TS
+		t-moeoTS
+		t-moeoVNS
 )
 
 FOREACH (test ${TEST_LIST})
