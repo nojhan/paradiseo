@@ -57,6 +57,7 @@
 #include <algo/moeoVNS.h>
 #include <algo/moeoSA.h>
 #include <algo/moeoILS.h>
+#include <algo/moeoVFAS.h>
 
 
 #include <archive/moeoArchive.h>
@@ -174,6 +175,18 @@
 #include <utils/moeoDominanceMatrix.h>
 #include <utils/moeoObjVecStat.h>
 #include <utils/moeoQuadTree.h>
+#include <utils/moeoAnytimeWeightStrategy.h>
+#include <utils/moeoDummyRefPointStrategy.h>
+#include <utils/moeoDummyWeightStrategy.h>
+#include <utils/moeoRandWeightStrategy.h>
+#include <utils/moeoVariableWeightStrategy.h>
+#include <utils/moeoVariableRefPointStrategy.h>
+#include <utils/moeoQexploreWeightStrategy.h>
+#include <utils/moeoAugmentedQexploreWeightStrategy.h>
+#include <utils/moeoFixedTimeOneDirectionWeightStrategy.h>
+#include <utils/moeoFixedTimeBothDirectionWeightStrategy.h>
+#include <utils/moeoDichoWeightStrategy.h>
+
 
 #include <explorer/moeoHCMoveLoopExpl.h>
 #include <explorer/moeoTSMoveLoopExpl.h>
