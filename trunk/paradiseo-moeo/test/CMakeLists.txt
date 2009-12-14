@@ -84,6 +84,13 @@ SET (TEST_LIST
 		t-moeoILS_TS
 		t-moeoTS
 		t-moeoVNS
+		t-moeoVFAS
+		t-moeoAnytimeWeightStrategy
+		t-moeoQexploreWeightStrategy
+		t-moeoAugmentedQexploreWeightStrategy
+		t-moeoFixedTimeOneDirectionWeightStrategy
+		t-moeoFixedTimeBothDirectionWeightStrategy
+		t-moeoDichoWeightStrategy
 )
 
 FOREACH (test ${TEST_LIST})
