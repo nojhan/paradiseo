@@ -61,14 +61,17 @@
 
 
 #include <archive/moeoArchive.h>
+#include <archive/moeoArchiveIndex.h>
 #include <archive/moeoBoundedArchive.h>
 #include <archive/moeoFixedSizeArchive.h>
+#include <archive/moeoIndexedArchive.h>
 #include <archive/moeoSPEA2Archive.h>
 #include <archive/moeoUnboundedArchive.h>
 #include <archive/moeoImprOnlyBoundedArchive.h>
 #include <archive/moeoFitDivBoundedArchive.h>
 //#include <archive/moeoEpsilonHyperboxArchive.h>
-#include <archive/moeoQuadTreeArchive.h>
+#include <archive/moeoQuadTree.h>
+#include <archive/moeoQuickUnboundedArchiveIndex.h>
 
 
 #include <comparator/moeoAggregativeComparator.h>
@@ -84,6 +87,7 @@
 #include <comparator/moeoPtrComparator.h>
 #include <comparator/moeoStrictObjectiveVectorComparator.h>
 #include <comparator/moeoWeakObjectiveVectorComparator.h>
+#include <comparator/moeoFitnessComparator.h>
 
 #include <core/MOEO.h>
 #include <core/moeoBitVector.h>
@@ -174,7 +178,6 @@
 #include <utils/moeoConvertPopToObjectiveVectors.h>
 #include <utils/moeoDominanceMatrix.h>
 #include <utils/moeoObjVecStat.h>
-#include <utils/moeoQuadTree.h>
 #include <utils/moeoAnytimeWeightStrategy.h>
 #include <utils/moeoDummyRefPointStrategy.h>
 #include <utils/moeoDummyWeightStrategy.h>

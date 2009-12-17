@@ -40,10 +40,12 @@
 #define MOEOQUADTREE_H_
 
 #include <comparator/moeoParetoObjectiveVectorComparator.h>
-
+#include <archive/moeoArchiveIndex.h>
 template < class ObjectiveVector >
 class QuadTreeNode{
 public:
+
+
 	QuadTreeNode(ObjectiveVector& _objVec):objVec(_objVec),subTree(){}
 
 	QuadTreeNode(const QuadTreeNode& _source):objVec(_source.objVec),subTree(_source.subTree){}
@@ -51,6 +53,8 @@ public:
 	QuadTreeNode& operator=(const QuadTreeNode& _src){
 		(*this).objVec=_src.objVec;
 		(*this).subTree=subTree;
+		(*this).inserted=_src.is_inserted();
+		if(inserted) (*this).index=_src.get_index();
 		return *this;
 	}
 
@@ -72,25 +76,42 @@ public:
 		return res;
 	}
 
+
+
+
 	std::map<unsigned int, QuadTreeNode<ObjectiveVector>*>& getSubTree(){
 		return (*this).subTree;
+	}
+
+	void set_index(int idx){
+		inserted=true;
+		index=idx;
+	}
+	unsigned int get_index(){
+		if (!inserted) std::cerr<<"moeoQuadTree getting index of a non-inserted node"<<std::endl;
+		return index;
+	}
+	bool is_inserted(){
+		return inserted;
 	}
 
 private:
 	ObjectiveVector objVec;
 	std::map<unsigned int, QuadTreeNode<ObjectiveVector>*> subTree;
-
-	//TODO Ajouter l'index du vecteur
+	unsigned int index;
+	bool inserted;
 };
 
 
 
-template < class ObjectiveVector >
-class moeoQuadTree{
+template < class MOEOT >
+class moeoQuadTree : public moeoArchiveIndex<MOEOT>  {
 
+	typedef typename MOEOT::ObjectiveVector ObjectiveVector;
 	typedef typename std::map<unsigned int, QuadTreeNode<ObjectiveVector>*>::iterator QuadTreeIterator;
+	typedef typename moeoArchiveIndex<MOEOT>::modif modif;
 public:
-	moeoQuadTree():root(NULL){
+	moeoQuadTree():root(NULL),current_size(0){
 		bound=pow(2,ObjectiveVector::nObjectives())-1;
 		comparator=new moeoParetoObjectiveVectorComparator<ObjectiveVector>();
 	}
@@ -100,23 +121,49 @@ public:
 	}
 
 	/**
+	 * insert a _moeot in the index if it can be inserted
+	 * @param @_moeot the individual ton insert
+	 * @param _insert not used, should be changed...
+	 */
+	std::pair<bool,std::vector<modif> > operator()(const MOEOT& _moeot, bool _insert=true){
+		std::pair<bool,std::vector<modif> > res;
+		insert(_moeot.objectiveVector(),res);
+		if (res.first){
+			current_size=current_size+1-res.second.size();
+		}
+		return res;
+	};
+
+	/**
+	 * apply the modif
+	 * @param _update the modif to apply (move only)
+	 * @return false if no problem occured
+	 **/
+	bool update( modif& _update){
+		QuadTreeNode<ObjectiveVector>* node=find_node(_update.itemObjective,getRoot());
+		if (node==NULL) return true;
+		node->set_index(_update.newIdx);
+		return false;
+	}
+
+	/**
 	 * @paramm _obj the Objective Vector to insert into the tree.
 	 * @return true if it is inserted
 	 */
-	bool insert(ObjectiveVector& _obj){
-		bool res=false;
+	void insert(ObjectiveVector _obj, std::pair<bool, std::vector<modif> > &res){
 		//create a new node
 		QuadTreeNode<ObjectiveVector>* tmp = new QuadTreeNode<ObjectiveVector>(_obj);
 		//if the tree is empty, we have a new root!
 		if(isEmpty()){
 			root=tmp;
-			res=true;
+			tmp->set_index(0);
+			res.first=true;
 		}
 		//else try to insert the new node in the tree
 		else{
-			res = insert_aux(tmp, root, NULL, 0);
+			res.first = insert_aux(tmp, root, NULL, 0, res.second);
+			if(res.first) tmp->set_index(size()-1);
 		}
-		return res;
 	}
 
 	/**
@@ -126,7 +173,7 @@ public:
 	 * @param _succ the index of _parent where the _tmproot is linked
 	 * @return true if the _newnode is inserted
 	 */
-	bool insert_aux(QuadTreeNode<ObjectiveVector>* _newnode, QuadTreeNode<ObjectiveVector>* _tmproot, QuadTreeNode<ObjectiveVector>* _parent, unsigned int _succ){
+	bool insert_aux(QuadTreeNode<ObjectiveVector>* _newnode, QuadTreeNode<ObjectiveVector>* _tmproot, QuadTreeNode<ObjectiveVector>* _parent, unsigned int _succ, std::vector<modif> &modifs){
 		bool res=false;
 		bool dominated=false;
 
@@ -137,7 +184,7 @@ public:
 		}
 		else if(succ==0){
 			//_newnode dominates _tmproot
-			replace(_newnode, _tmproot, _parent, _succ);
+			replace(_newnode, _tmproot, _parent, _succ, modifs);
 			res=true;
 		}
 		else{
@@ -163,7 +210,7 @@ public:
 				while(it != _tmproot->getSubTree().end()){
 					if((*it).second != NULL){
 						if( (succ < (*it).first) && ((succ & (*it).first) == succ)){
-							test2(_newnode, (*it).second, _tmproot, (*it).first);
+							test2(_newnode, (*it).second, _tmproot, (*it).first, modifs);
 						}
 					}
 					it++;
@@ -176,7 +223,7 @@ public:
 				}
 				else{
 					//else if the child is not inserted, insert it in the subtree
-					res=insert_aux(_newnode, _tmproot->getSubTree()[succ], _tmproot, succ);
+					res=insert_aux(_newnode, _tmproot->getSubTree()[succ], _tmproot, succ , modifs);
 				}
 			}
 		}
@@ -208,13 +255,13 @@ public:
 	 * @param _parent the parent of _tmproot
 	 * @param _succ the index of _parent where the _tmproot is linked
 	 */
-	void replace(QuadTreeNode<ObjectiveVector>* _newnode, QuadTreeNode<ObjectiveVector>* _tmproot, QuadTreeNode<ObjectiveVector>* _parent, unsigned int _succ){
+	void replace(QuadTreeNode<ObjectiveVector>* _newnode, QuadTreeNode<ObjectiveVector>* _tmproot, QuadTreeNode<ObjectiveVector>* _parent, unsigned int _succ, std::vector<modif> & res){
 		if(!(_tmproot->getSubTree().empty())){
 			//reconsider each son of the old root
 			QuadTreeIterator it;
 			for(it=(_tmproot->getSubTree()).begin(); it != (_tmproot->getSubTree()).end(); it++){
 				if((*it).second!=NULL){
-					reconsider(_newnode, (*it).second);
+					reconsider(_newnode, (*it).second, res);
 				}
 			}
 		}
@@ -226,6 +273,8 @@ public:
 			_parent->getSubTree()[_succ]=_newnode;
 		}
 		//kill the old root
+		modif new_modif(_tmproot->getVec(),_tmproot->get_index());
+		res.push_back(new_modif);
 		delete(_tmproot);
 	}
 
@@ -233,7 +282,7 @@ public:
 	 * @param _newroot the new root
 	 * @param _child a node to reconsider regarding tthe _newroot
 	 */
-	void reconsider(QuadTreeNode<ObjectiveVector>* _newroot, QuadTreeNode<ObjectiveVector>* _child){
+	void reconsider(QuadTreeNode<ObjectiveVector>* _newroot, QuadTreeNode<ObjectiveVector>* _child, std::vector<modif> & res){
 		unsigned int succ;
 		//reconsider all child of _child
 		if(!(_child->getSubTree().empty())){
@@ -242,14 +291,17 @@ public:
 				if((*it).second != NULL){
 					QuadTreeNode<ObjectiveVector>* tmp=(*it).second;
 					_child->getSubTree()[(*it).first]=NULL;
-					reconsider(_newroot, tmp);
+					reconsider(_newroot, tmp, res );
 				}
 			}
 		}
 		succ=k_succ(_child->getVec(),_newroot->getVec());
 		//if _child is dominated by the newroot, delete it
-		if(succ==bound)
+		if(succ==bound){
+			modif new_modif(_child->getVec(),_child->get_index());
+			res.push_back(new_modif);
 			delete(_child);
+		}
 		//else reinsert it in the tree rooted at _newroot
 		else if(_newroot->getSubTree()[succ] != NULL){
 			reinsert(_newroot->getSubTree()[succ],_child);
@@ -295,7 +347,7 @@ public:
 	 * @param _parent its parent
 	 * @param _succ the index of _parent where the _node is linked
 	 */
-	void remove(QuadTreeNode<ObjectiveVector>* _node, QuadTreeNode<ObjectiveVector>* _parent, unsigned int _succ){
+	void remove(QuadTreeNode<ObjectiveVector>* _node, QuadTreeNode<ObjectiveVector>* _parent, unsigned int _succ, std::vector<modif> & res){
 		unsigned int k=1;
 		QuadTreeNode<ObjectiveVector>* tmp=NULL;
 		_parent->getSubTree()[_succ]=NULL;
@@ -313,6 +365,8 @@ public:
 			}
 			k++;
 		}
+		modif new_modif(_node->getVec(),_node->get_index());
+		res.push_back(new_modif);
 		delete(_node);
 	}
 
@@ -347,21 +401,21 @@ public:
 	 * @param _node1 first node
 	 * @param _node2 second node
 	 */
-	void test2(QuadTreeNode<ObjectiveVector>* _node1, QuadTreeNode<ObjectiveVector>* _node2, QuadTreeNode<ObjectiveVector>* _parent, unsigned int _succ){
+	void test2(QuadTreeNode<ObjectiveVector>* _node1, QuadTreeNode<ObjectiveVector>* _node2, QuadTreeNode<ObjectiveVector>* _parent, unsigned int _succ, std::vector<modif> & res){
 
 		unsigned int succ;
 		succ=k_succ(_node1->getVec(), _node2->getVec());
 		if(succ==0){
-			remove(_node2, _parent, _succ);
+			remove(_node2, _parent, _succ, res);
 			if(_parent->getSubTree()[_succ]!=NULL)
-				test2(_node1, _parent->getSubTree()[_succ], _parent, _succ);
+				test2(_node1, _parent->getSubTree()[_succ], _parent, _succ, res);
 		}
 		else{
 			QuadTreeIterator it=_node2->getSubTree().begin();
 			while(it != _node2->getSubTree().end()){
 				if((*it).second!=NULL){
 					if( (succ & (*it).first) == succ){
-						test2(_node1, (*it).second, _node2, (*it).first);
+						test2(_node1, (*it).second, _node2, (*it).first, res);
 					}
 				}
 				it++;
@@ -423,8 +477,36 @@ public:
 		return root;
 	}
 
+	/**
+	 * the number of individual currently indexed
+	 * @return the tree size
+	 */
+	unsigned int size(){
+		return current_size;
+	}
+
 
 private:
+
+	/**
+	 * to find a node from  his objectiveVector
+	 * @param _obj the objective to find
+	 * @param current the node in which we are looking (to be able to recurse)
+	 * @return the node with obj as objectiveVector, or null if it's not found
+	 */
+	QuadTreeNode<ObjectiveVector>* find_node(ObjectiveVector &_obj, QuadTreeNode<ObjectiveVector>* current){
+		if (current->getVec()==_obj) return current;
+		else{
+			int succ=k_succ(current->getVec(),_obj);
+			if(current->getSubTree()[succ]!=NULL)
+				return find_node(_obj,current->getSubTree()[succ]);
+			else{
+				return NULL;
+			}
+
+		}
+
+	}
 
 	//pointer on the root of the tree
 	QuadTreeNode<ObjectiveVector>* root;
@@ -434,6 +516,9 @@ private:
 
 	//Pareto comparator
 	moeoParetoObjectiveVectorComparator<ObjectiveVector>* comparator;
+
+	//current tree size
+	int current_size;
 
 };
 
