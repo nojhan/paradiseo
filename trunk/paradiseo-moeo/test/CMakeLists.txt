@@ -71,7 +71,8 @@ SET (TEST_LIST
 		t-moeoDetArchiveSelect
 		t-moeoASEEA
 		#t-moeoEpsilonHyperboxArchive
-		t-moeoQuadTreeArchive
+		t-moeoQuadTreeIndex
+		t-moeoQuickUnboundedArchiveIndex
 		t-moeoAggregationFitnessAssignment
 		t-moeoConstraintFitnessAssignment
 		t-moeoChebyshevMetric
