@@ -73,7 +73,7 @@ public:
      * @param _archive archive
      */
     moeoSEEA (unsigned int _maxGen, eoEvalFunc < MOEOT > & _eval, eoQuadOp < MOEOT > & _crossover, double _pCross, eoMonOp < MOEOT > & _mutation, double _pMut, moeoArchive < MOEOT > & _archive) :
-            defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), select(randomSelect, _archive, 1.0), selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(_crossover, _pCross, _mutation, _pMut), genBreed (select, defaultSGAGenOp), breed (genBreed), archive(_archive)
+            defaultGenContinuator(_maxGen), continuator(defaultGenContinuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), select(randomSelect, _archive, 0.0), selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(_crossover, _pCross, _mutation, _pMut), genBreed (select, defaultSGAGenOp), breed (genBreed), archive(_archive)
     {}
 
 
@@ -85,7 +85,7 @@ public:
      * @param _archive archive
      */
     moeoSEEA (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoGenOp < MOEOT > & _op, moeoArchive < MOEOT > & _archive) :
-            defaultGenContinuator(0), continuator(_continuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), select(randomSelect, _archive, 1.0), selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0), genBreed(select, _op), breed(genBreed), archive(_archive)
+            defaultGenContinuator(0), continuator(_continuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), select(randomSelect, _archive, 0.0), selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0), genBreed(select, _op), breed(genBreed), archive(_archive)
     {}
 
 
@@ -97,7 +97,7 @@ public:
      * @param _archive archive
      */
     moeoSEEA (eoContinue < MOEOT > & _continuator, eoPopEvalFunc < MOEOT > & _popEval, eoGenOp < MOEOT > & _op, moeoArchive < MOEOT > & _archive) :
-            defaultGenContinuator(0), continuator(_continuator), eval(defaultEval), defaultPopEval(eval), popEval(_popEval), select(randomSelect, _archive, 1.0), selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0), genBreed(select, _op), breed(genBreed), archive(_archive)
+            defaultGenContinuator(0), continuator(_continuator), eval(defaultEval), defaultPopEval(eval), popEval(_popEval), select(randomSelect, _archive, 0.0), selectMany(select,0.0), selectTransform(defaultSelect, defaultTransform), defaultSGAGenOp(defaultQuadOp, 1.0, defaultMonOp, 1.0), genBreed(select, _op), breed(genBreed), archive(_archive)
     {}
 
 
@@ -109,7 +109,7 @@ public:
      * @param _archive archive
      */
     moeoSEEA (eoContinue < MOEOT > & _continuator, eoEvalFunc < MOEOT > & _eval, eoTransform < MOEOT > & _transform, moeoArchive < MOEOT > & _archive) :
-            defaultGenContinuator(0), continuator(_continuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), select(randomSelect, _archive, 1.0), selectMany(select, 1.0), selectTransform(selectMany, _transform), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), genBreed(select, defaultSGAGenOp), breed(selectTransform), archive(_archive)
+            defaultGenContinuator(0), continuator(_continuator), eval(_eval), defaultPopEval(_eval), popEval(defaultPopEval), select(randomSelect, _archive, 0.0), selectMany(select, 1.0), selectTransform(selectMany, _transform), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), genBreed(select, defaultSGAGenOp), breed(selectTransform), archive(_archive)
     {}
 
 
@@ -121,7 +121,7 @@ public:
      * @param _archive archive
      */
     moeoSEEA (eoContinue < MOEOT > & _continuator, eoPopEvalFunc < MOEOT > & _popEval, eoTransform < MOEOT > & _transform, moeoArchive < MOEOT > & _archive) :
-            defaultGenContinuator(0), continuator(_continuator), eval(defaultEval), defaultPopEval(eval), popEval(_popEval), select(randomSelect, _archive, 1.0),  selectMany(select, 1.0), selectTransform(selectMany, _transform), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), genBreed(select, defaultSGAGenOp), breed(selectTransform), archive(_archive)
+            defaultGenContinuator(0), continuator(_continuator), eval(defaultEval), defaultPopEval(eval), popEval(_popEval), select(randomSelect, _archive, 0.0),  selectMany(select, 1.0), selectTransform(selectMany, _transform), defaultSGAGenOp(defaultQuadOp, 0.0, defaultMonOp, 0.0), genBreed(select, defaultSGAGenOp), breed(selectTransform), archive(_archive)
     {}
 
 
@@ -137,11 +137,15 @@ public:
         while (continuator (_pop))
         {
             // generate offspring, worths are recalculated if necessary
-            breed (_pop, offspring);
+            genBreed (_pop, offspring);
+
             popEval (_pop, offspring); // eval of offspring
             // after replace, the new pop is in _pop
-            replace (_pop, offspring);
-            archive (_pop); // archive update
+//            replace (_pop, offspring);
+//            archive (_pop); // archive update
+            archive(offspring);
+//            _pop.resize(0);
+//            offspring.resize(0);
         }
     }
 

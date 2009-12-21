@@ -152,7 +152,8 @@ public:
             // generate offspring
             breed (_pop, offspring);
             popEval (_pop, offspring); // eval of offspring
-            archive (_pop); // archive update
+//            archive (_pop); // archive update
+            archive (offspring); // archive update
             _pop.resize(0);
             offspring.resize(0);
         }
