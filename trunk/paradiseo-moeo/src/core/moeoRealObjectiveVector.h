@@ -165,10 +165,9 @@ class moeoRealObjectiveVector : public moeoObjectiveVector < ObjectiveVectorTrai
 template < class ObjectiveVectorTraits >
 std::ostream & operator<<(std::ostream & _os, const moeoRealObjectiveVector < ObjectiveVectorTraits > & _objectiveVector)
 {
-  for (unsigned int i=0; i<_objectiveVector.size(); i++)
-    {
-      _os << _objectiveVector[i] << '\t';
-    }
+  for (unsigned int i=0; i<_objectiveVector.size()-1; i++)
+      _os << _objectiveVector[i] << " ";
+  _os << _objectiveVector[_objectiveVector.size()-1];
   return _os;
 }
 
