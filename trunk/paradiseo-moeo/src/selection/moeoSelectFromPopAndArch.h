@@ -81,12 +81,15 @@ class moeoSelectFromPopAndArch : public moeoSelectOne < MOEOT >
     virtual const MOEOT & operator () (const eoPop < MOEOT > & pop)
     {
       if (arch.size() > 0)
-        if (rng.flip(ratioFromPop))
+        if (rng.flip(ratioFromPop)){
           return popSelectOne(pop);
-        else
+        }
+        else{
           return archSelectOne(arch);
-      else
+        }
+      else{
         return popSelectOne(pop);
+      }
     }
 
 
