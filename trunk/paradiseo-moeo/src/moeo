@@ -69,7 +69,7 @@
 #include <archive/moeoUnboundedArchive.h>
 #include <archive/moeoImprOnlyBoundedArchive.h>
 #include <archive/moeoFitDivBoundedArchive.h>
-//#include <archive/moeoEpsilonHyperboxArchive.h>
+#include <archive/moeoEpsilonHyperboxArchive.h>
 #include <archive/moeoQuadTree.h>
 #include <archive/moeoQuickUnboundedArchiveIndex.h>
 
