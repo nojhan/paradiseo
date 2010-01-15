@@ -1,9 +1,6 @@
 /*
   <mo.h>
-  Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
-  (C) OPAC Team, LIFL, 2002-2007
-
-  Sébastien Cahon, Jean-Charles Boisson (Jean-Charles.Boisson@lifl.fr)
+  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   This software is governed by the CeCILL license under French law and
   abiding by the rules of distribution of free software.  You can  use,
@@ -33,9 +30,32 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _mo_h
-#define _mo_h
+#ifndef _newmo_h
+#define _newmo_h
 
-#include <algo/moAlgo.h>
+#include <algo/moLocalSearch.h>
+
+#include <comparator/moNeighborComparator.h>
+
+#include <continuator/moContinuator.h>
+#include <continuator/moTrueContinuator.h>
+
+#include <explorer/moNeighborhoodExplorer.h>
+#include <explorer/moSimpleHCexplorer.h>
+
+#include <neighborhood/moBitNeighbor.h>
+#include <neighborhood/moBitNeighborhood.h>
+#include <neighborhood/moEmptyNeighbor.h>
+#include <neighborhood/moFullEvalBitNeighbor.h>
+#include <neighborhood/moFullEvalNeighbor.h>
+#include <neighborhood/moMoveNeighbor.h>
+#include <neighborhood/moMoveNeighborhood.h>
+#include <neighborhood/moNeighbor.h>
+#include <neighborhood/moNeighborhood.h>
+
+#include <move/moMove.h>
+#include <move/moMoveIncrEval.h>
+#include <move/moMoveInit.h>
+#include <move/moNextMove.h>
 
 #endif
