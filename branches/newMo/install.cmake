@@ -16,4 +16,7 @@ SET(PARADISEO_DIR "/home/humeau/paradiseo-1.2.1" CACHE PATH "ParadisEO directory
 SET(PARADISEO_EO_SRC_DIR "${PARADISEO_DIR}/paradiseo-eo" CACHE PATH "ParadisEO-EO source directory" FORCE)
 SET(PARADISEO_EO_BIN_DIR "${PARADISEO_DIR}/paradiseo-eo/build" CACHE PATH "ParadisEO-EO binary directory" FORCE)
 
+SET(NEWMO_SRC_DIR "${CMAKE_SOURCE_DIR}" CACHE PATH "ParadisEO-EO source directory" FORCE)
+SET(NEWMO_BIN_DIR "${CMAKE_SOURCE_DIR}" CACHE PATH "ParadisEO-EO binary directory" FORCE)
+
 

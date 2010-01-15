@@ -26,6 +26,7 @@ using namespace std;
 #include <funcOneMax.h>
 
 #include <eoInt.h>
+
 #include <neighborhood/moEmptyNeighbor.h>
 
 #include <continuator/moTrueContinuator.h>
