@@ -2,8 +2,13 @@
 # 1) ParadisEO install: SIMPLE Configuration
 #########################################################################################################
 
+IF(NOT DEFINED paradis OR NOT paradis)
+  MESSAGE(FATAL_ERROR  "The \"paradis\" variable must be set on the command line to 
+  						give the path of the install configuration file. ")
+ENDIF(NOT DEFINED config OR NOT config)
+
 #  Here, just specify PARADISEO_DIR : the directory where ParadisEO has been installed
-SET(PARADISEO_DIR "/home/humeau/paradiseo-1.2.1" CACHE PATH "ParadisEO directory" FORCE)
+SET(PARADISEO_DIR "${paradis}" CACHE PATH "ParadisEO directory" FORCE)
 
 #########################################################################################################
  
