@@ -25,6 +25,12 @@ ENABLE_LANGUAGE(C)
 ### 1) Include the install configuration file where are defined the main variables
 ######################################################################################
 
+IF(NOT DEFINED paradis OR NOT paradis)
+  MESSAGE(FATAL_ERROR  "The \"paradis\" variable must be set on the command line to 
+  						give the path of the install configuration file. ")
+ENDIF(NOT DEFINED paradis OR NOT paradis)
+
+
 INCLUDE(${CMAKE_SOURCE_DIR}/install.cmake)
 
 ######################################################################################
