@@ -19,14 +19,13 @@ public:
 
     // copy constructeur
     moNeighbor(const moNeighbor<EOType, Fitness> & _n) {
-	repFitness = _n.fitness();
+    	repFitness = _n.fitness();
     }
  
     // assignment operator
     virtual moNeighbor<EOType, Fitness> & operator=(const moNeighbor<EOType, Fitness> & _n) {
-	repFitness = _n.fitness();
-	
-	return *this ;
+    	repFitness = _n.fitness();
+    	return *this ;
     }
  
     /*
