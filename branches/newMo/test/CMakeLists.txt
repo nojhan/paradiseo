@@ -9,8 +9,8 @@
 ### 1) Include the sources
 ######################################################################################
 
-INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
-INCLUDE_DIRECTORIES(${ParadisEO-MO_SOURCE_DIR}/src)
+INCLUDE_DIRECTORIES(${PARADISEO_EO_SRC_DIR}/src)
+INCLUDE_DIRECTORIES(${NEWMO_SOURCE_DIR}/src)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################
@@ -20,33 +20,22 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-MO_BINARY_DIR}/lib)
+LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib)
 
 ######################################################################################
-
-
 
 ######################################################################################
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
-SET (TEST_LIST 
-    	    	)
+SET (TEST_LIST t-moNeighbor)
 				
 FOREACH (test ${TEST_LIST})
 	  SET ("T_${test}_SOURCES" "${test}.cpp")
 ENDFOREACH (test)
 
 
-IF(ENABLE_MINIMAL_CMAKE_TESTING)
-    SET (MIN_TEST_LIST t-moHC)				
-    FOREACH (mintest ${MIN_TEST_LIST})
-    	  SET ("T_${mintest}_SOURCES" "${mintest}.cpp")
-    	  ADD_EXECUTABLE(${mintest} ${T_${mintest}_SOURCES}) 
-		  ADD_TEST(${mintest} ${mintest}) 
-    ENDFOREACH (mintest)
-   
-ELSEIF(ENABLE_CMAKE_TESTING)
+IF(ENABLE_CMAKE_TESTING)
 	
 	# Add the tests
 	FOREACH (test ${TEST_LIST})
@@ -56,10 +45,10 @@ ELSEIF(ENABLE_CMAKE_TESTING)
 	
 	# Link the librairies
 	FOREACH (test ${TEST_LIST})
-	 TARGET_LINK_LIBRARIES(${test} ga es eoutils eo)
+	 	TARGET_LINK_LIBRARIES(${test} ga es eoutils eo)
 	ENDFOREACH (test)
 	
-ENDIF(ENABLE_MINIMAL_CMAKE_TESTING)
+ENDIF(ENABLE_CMAKE_TESTING)
 
 ######################################################################################
 

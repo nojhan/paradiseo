@@ -12,7 +12,7 @@ public:
     * true if the neighbor1 is better than neighbor2
     */
     virtual bool operator()(const Neigh & neighbor1, const Neigh & neighbor2) {
-	return (neighbor1.fitness() > neighbor2.fitness()); 
+    	return (neighbor1.fitness() > neighbor2.fitness());
     }
 
     /** Return the class id.

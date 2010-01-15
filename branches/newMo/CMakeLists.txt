@@ -8,7 +8,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 PROJECT(NEWMO)
 
 # Here define the name and the version of your package
-SET(PACKAGE_NAME "VRP" CACHE STRING "Package name" FORCE)
+SET(PACKAGE_NAME "NEWMO" CACHE STRING "Package name" FORCE)
 SET(PACKAGE_VERSION "0" CACHE STRING "Package version" FORCE)
 
 
