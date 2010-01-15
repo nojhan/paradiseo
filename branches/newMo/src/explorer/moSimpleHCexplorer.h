@@ -20,6 +20,8 @@ public:
 
     virtual void updateParam (EOT & solution) { } ;
 
+    virtual void terminate (EOT & solution) { } ;
+
     virtual void operator() (EOT & solution) {
 
 //est qu'on peut initializer

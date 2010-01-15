@@ -42,6 +42,8 @@ public:
 	    num++;
 	} while (continuator(solution) && searchExplorer.isContinue(solution));
 
+	searchExplorer.terminate(solution);
+
     };
 
 private:

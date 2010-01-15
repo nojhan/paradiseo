@@ -25,6 +25,8 @@ public:
 
     virtual bool accept(EOT & solution) = 0 ;
 
+    virtual void terminate(EOT & solution) = 0 ;
+
     /** Return the class id.
     *  @return the class name as a std::string
     */
