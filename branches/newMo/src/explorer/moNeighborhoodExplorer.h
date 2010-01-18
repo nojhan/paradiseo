@@ -11,9 +11,13 @@ class moNeighborhoodExplorer : public eoUF<typename NH::EOT & , void>
 public:
     typedef NH Neighborhood ;
     typedef typename Neighborhood::EOT EOT ;
+    typedef typename Neighborhood::Neighbor Neighbor ;
 
     // empty constructor
     moNeighborhoodExplorer() { } ;
+
+    // empty constructor
+    moNeighborhoodExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval):neighborhood(_neighborhood), eval(_eval) { } ;
 
     virtual void initParam (EOT & solution) = 0 ;
 
@@ -31,7 +35,13 @@ public:
     *  @return the class name as a std::string
     */
     virtual std::string className() const { return "moNeighborhoodExplorer"; }
+
+protected:
+    Neighborhood & neighborhood;
+    moEval<Neighbor>& eval;
+
 };
+
 
 #endif
 

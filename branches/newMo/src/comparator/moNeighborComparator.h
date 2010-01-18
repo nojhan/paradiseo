@@ -3,22 +3,35 @@
 
 #include <neighborhood/moNeighbor.h>
 
-template< class Neigh >
-class moNeighborComparator : public eoBF<const Neigh & , const Neigh & , bool>
+
+
+// moComparator => comparer deux solutions
+// idée :
+// - eoComparator
+// - moComparator qui hérite de eoComparator ?
+// - moeoComparator qui hérite de eoComparator
+// idée J :
+// - eoComparator<TYPE> : eoBF <const TYPE & , const TYPE & , bool>
+// - eoSolComparator : eoComparator<EOT> ?
+// - moNeighborCompartor : : eoComparator<Neighbor>
+//
+// une instantiation possible !!
+template< class EOT >
+class moComparator : public eoBF<const EOT & , const EOT & , bool>
 {
 public:
 
     /*
-    * true if the neighbor1 is better than neighbor2
+    * true if the _sol1 is better than _sol2
     */
-    virtual bool operator()(const Neigh & neighbor1, const Neigh & neighbor2) {
-    	return (neighbor1.fitness() > neighbor2.fitness());
+    virtual bool operator()(const EOT & _sol1, const EOT & _sol2) {
+    	return (_sol1.fitness() > _sol2.fitness());
     }
 
     /** Return the class id.
     *  @return the class name as a std::string
     */
-    virtual std::string className() const { return "moNeighborComparator"; }
+    virtual std::string className() const { return "moComparator"; }
 };
 
 

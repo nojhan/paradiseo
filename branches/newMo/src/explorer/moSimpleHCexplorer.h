@@ -12,7 +12,7 @@ public:
     typedef typename Neighborhood::Neighbor Neighbor ;
 
     // empty constructor
-    moSimpleHCexplorer(Neighborhood & __neighborhood) : neighborhood(__neighborhood) {  
+    moSimpleHCexplorer(Neighborhood & __neighborhood) : neighborhood(__neighborhood){
 	isAccept = false; 
     }
 
@@ -27,20 +27,20 @@ public:
 //est qu'on peut initializer
 	
 	if(neighborhood.hasNeighbor(solution)){
-	    neighborhood.init(solution, current);
+	    neighborhood.init(solution, *current);
 	    
-	    current.eval(solution);
+	    (*current).eval(solution);
 	    
-	    best = current;
+	    best = &current;
 
 	    while (neighborhood.cont(solution)) {
-		neighborhood.next(solution, current);
+		neighborhood.next(solution, *current);
 
-		current.eval(solution);
+		(*current).eval(solution);
 		
 		if (current.betterThan(best)) {
 		    
-		    best = current;
+		    best = &current;
 		    
 		}
 	    }
@@ -72,9 +72,9 @@ private:
     Neighborhood & neighborhood;
 
 // attention il faut que le constructeur vide existe
-    Neighbor best ;
+    Neighbor* best;
 
-    Neighbor current ;
+    Neighbor* current;
 
     // true if the move is accepted
     bool isAccept ;

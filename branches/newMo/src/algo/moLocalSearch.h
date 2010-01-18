@@ -44,6 +44,9 @@ public:
 
 	searchExplorer.terminate(solution);
 
+	//A CHANGER
+	return true;
+
     };
 
 private:

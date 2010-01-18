@@ -16,41 +16,35 @@ template< class M , class Fitness >
 {
 public:
   
-  typedef typename M::EOType EOT;
+	typedef typename M::EOType EOT;
 
     // empty constructor
-  moMoveNeighbor() {_move=new M();};
+	moMoveNeighbor() {
+	  move=new M();
+	};
 
-  ~moMoveNeighbor() {delete _move;};
+	~moMoveNeighbor() {
+	  delete move;
+	};
 
-    // copy constructeur
-    moMoveNeighbor(const moMoveNeighbor<M, Fitness> & _n) {
-      moNeighbor<EOT, Fitness>::operator=(_n);
-	(*_move) = *(_n._move);
-    }
+	// copy constructeur
+	moMoveNeighbor(const moMoveNeighbor<M, Fitness> & _n) {
+	  moNeighbor<EOT, Fitness>::operator=(_n);
+	  (*move) = *(_n.getMove());
+	}
  
     // assignment operator
     virtual moMoveNeighbor<M, Fitness> & operator=(const moMoveNeighbor<M, Fitness> & _n) {
       moNeighbor <EOT, Fitness>::operator=(_n);
-	(*_move) = *(_n._move);
-
-      std::cout << moNeighbor<EOT, Fitness>::fitness() << " , " << _n.fitness() << std::endl;
+      (*move) = *(_n.getMove());
       return *this ;
     }
  
     /*
-    * make the evaluation of the current neighbor and update the information on this neighbor
-    * the evaluation could be increamental
-    */
-    virtual void eval(EOT & solution){
-	fitness((*_incrEval)(*_move, solution));
-    }
-
-    /*
     * move the solution
     */
-    virtual void move(EOT & solution){
-      (*_move)(solution);
+    virtual void move(EOT & _solution){
+      (*move)(_solution);
     }
 
     /** Return the class id.
@@ -58,51 +52,18 @@ public:
     */
     virtual std::string className() const { return "moMoveNeighbor"; }
     
-    static void setIncrEval(moMoveIncrEval<M, Fitness>& increm) {
-	_incrEval = & increm ;
+    void setMove(M* _move){
+    	move=_move;
     }
 
-    /**
-    * Read object.\							\
-    * Calls base class, just in case that one had something to do.
-    * The read and print methods should be compatible and have the same format.
-    * In principle, format is "plain": they just print a number
-    * @param _is a std::istream.
-    * @throw runtime_std::exception If a valid object can't be read.
-    */
-    /*    virtual void readFrom(std::istream& _is) {
-        std::string fitness_str;
-        int pos = _is.tellg();
-	_is >> fitness_str;
+    M* getMove(){
+    	return move;
+    }
 
-	if (fitness_str == "INVALID")
-	{
-	    throw std::runtime_error("invalid fitness");
-	}
-	else
-	{
-	    _is.seekg(pos); // rewind
-	    _is >> repFitness;
-	}
-	}
-*/
-
-    /**
-    * Write object. Called printOn since it prints the object _on_ a stream.
-    * @param _os A std::ostream.
-    */
-    /*virtual void printOn(std::ostream& _os) const {
-	_os << repFitness << ' ' ;
-	}*/
-
-    M* _move;
     
 private:
-
-    static moMoveIncrEval<M, Fitness>* _incrEval;
+    M* move;
     
 };
 
-template< class M , class Fitness >
-  moMoveIncrEval<M, Fitness> * moMoveNeighbor<M, Fitness>::_incrEval = NULL;
 #endif
