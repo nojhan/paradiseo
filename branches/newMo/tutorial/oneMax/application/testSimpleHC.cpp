@@ -40,7 +40,7 @@ using namespace std;
 // explore the neighborhood of a bit string in order
 #include <neighborhood/moBitNeighborhood.h>
 
-#include <neighborhood/moFullEvalBitNeighbor.h>
+#include <eval/moFullEvalBitNeighbor.h>
 
 #include <oneMaxBitNeighbor.h>
 

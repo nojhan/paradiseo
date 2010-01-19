@@ -1,47 +1,34 @@
 #ifndef _moNeighborComparator_h
 #define _moNeighborComparator_h
 
+#include <EO.h>
+#include <eoFunctor.h>
+
 #include <neighborhood/moNeighbor.h>
 
-
-
-// moComparator => comparer deux solutions
-// idée :
-// - eoComparator
-// - moComparator qui hérite de eoComparator ?
-// - moeoComparator qui hérite de eoComparator
-// idée J :
-// - eoComparator<TYPE> : eoBF <const TYPE & , const TYPE & , bool>
-// - eoSolComparator : eoComparator<EOT> ?
-// - moNeighborCompartor : : eoComparator<Neighbor>
-//
-// une instantiation possible !!
-template< class EOT >
-class moComparator : public eoBF<const EOT & , const EOT & , bool>
+template< class Neighbor >
+class moNeighborComparator : public eoBF<const Neighbor & , const Neighbor & , bool>
 {
 public:
 
     /*
-    * true if the _sol1 is better than _sol2
-    */
-    virtual bool operator()(const EOT & _sol1, const EOT & _sol2) {
-    	return (_sol1.fitness() > _sol2.fitness());
+     * Compare two neighbors
+     * @param _neighbor1 the first neighbor
+     * @param _neighbor2 the second neighbor
+     * @return true if the neighbor1 is better than neighbor2
+     */
+    virtual bool operator()(const Neighbor& _neighbor1, const Neighbor& _neighbor2) {
+    	return (neighbor1.fitness() > neighbor2.fitness());
     }
 
-    /** Return the class id.
-    *  @return the class name as a std::string
-    */
-    virtual std::string className() const { return "moComparator"; }
+    /*
+     * Return the class id.
+     * @return the class name as a std::string
+     */
+    virtual std::string className() const {
+    	return "moNeighborComparator";
+    }
 };
 
 
 #endif
-
-
-// Local Variables:
-// coding: iso-8859-1
-// mode: C++
-// c-file-offsets: ((c . 0))
-// c-file-style: "Stroustrup"
-// fill-column: 80
-// End:
