@@ -19,7 +19,7 @@ public:
 
      /*
      * make the evaluation of the current neighbor and update the information on this neighbor
-     * the evaluation could be increamental
+     * the evaluation could be incremental
      */
      virtual void eval(MoveNeighbor& _neighbor,EOT & _solution){
      	_neighbor.fitness(incrEval(*(_neighbor.getMove()), _solution));

@@ -35,27 +35,32 @@
 
 #include <algo/moLocalSearch.h>
 
+#include <comparator/moComparator.h>
 #include <comparator/moNeighborComparator.h>
 
 #include <continuator/moContinuator.h>
 #include <continuator/moTrueContinuator.h>
 
+#include <eval/moEval.h>
+#include <eval/moFullEvalBitNeighbor.h>
+#include <eval/moFullEvalByCopy.h>
+#include <eval/moFullEvalByModif.h>
+
 #include <explorer/moNeighborhoodExplorer.h>
 #include <explorer/moSimpleHCexplorer.h>
 
+#include <neighborhood/moBackableNeighbor.h>
 #include <neighborhood/moBitNeighbor.h>
 #include <neighborhood/moBitNeighborhood.h>
 #include <neighborhood/moEmptyNeighbor.h>
-#include <neighborhood/moFullEvalBitNeighbor.h>
-#include <neighborhood/moFullEvalNeighbor.h>
-#include <neighborhood/moMoveNeighbor.h>
-#include <neighborhood/moMoveNeighborhood.h>
 #include <neighborhood/moNeighbor.h>
 #include <neighborhood/moNeighborhood.h>
 
-#include <move/moMove.h>
-#include <move/moMoveIncrEval.h>
-#include <move/moMoveInit.h>
-#include <move/moNextMove.h>
+#include <old/moMove.h>
+#include <old/moMoveIncrEval.h>
+#include <old/moMoveInit.h>
+#include <old/moNextMove.h>
+#include <old/moMoveNeighbor.h>
+#include <old/moMoveNeighborhood.h>
 
 #endif
