@@ -4,7 +4,7 @@
 #include <eoEvalFunc.h>
 #include <moEval.h>
 
-/*
+/**
  * Full evaluation to use with a moBackableNeighbor
  */
 template<class BackableNeighbor>

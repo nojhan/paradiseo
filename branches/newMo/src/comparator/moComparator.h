@@ -15,12 +15,17 @@
 // - moNeighborCompartor : : eoComparator<Neighbor>
 //
 // une instantiation possible !!
+
+
+/**
+ * Comparator of two solutions
+ */
 template< class EOT >
 class moComparator : public eoBF<const EOT & , const EOT & , bool>
 {
 public:
 
-    /*
+    /**
      * Compare two solutions
      * @param _sol1 the first solution
      * @param _sol2 the second solution
@@ -30,7 +35,7 @@ public:
     	return (_sol1.fitness() > _sol2.fitness());
     }
 
-    /*
+    /**
      * Return the class id.
      * @return the class name as a std::string
      */

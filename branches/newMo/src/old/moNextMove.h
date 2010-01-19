@@ -38,11 +38,11 @@
 
 #include <eoFunctor.h>
 
-//! Class which allows to generate a new move (moMove).
-/*!
-  Useful for the explorer (for moTS or moHC).
-  Does nothing... An object that herits from this class needs to be designed for being used.
-*/
+// Class which allows to generate a new move (moMove).
+/*
+ * Useful for the explorer (for moTS or moHC).
+ * Does nothing... An object that herits from this class needs to be designed for being used.
+ */
 template < class M > 
 class moNextMove:public eoBF < M &, const typename M::EOType &, bool >
 {};

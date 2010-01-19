@@ -3,7 +3,7 @@
 
 #include <eoFunctor.h>
 
-/*
+/**
  * To make specific continuator from a solution
  */
 template< class NH >
@@ -13,7 +13,7 @@ public:
     typedef NH Neighborhood ;
     typedef typename Neighborhood::EOT EOT ;
 
-    /*
+    /**
      * Init Continuator parameters
      * @param _solution the related solution
      */

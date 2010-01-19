@@ -38,11 +38,11 @@
 
 #include <eoFunctor.h>
 
-//! Move (moMove) initializer
-/*!
-  Class which allows to initiase a move.
-  Only a description... An object that herits from this class needs to be designed to be used.
-*/
+// Move (moMove) initializer
+/*
+ * Class which allows to initiase a move.
+ * Only a description... An object that herits from this class needs to be designed to be used.
+ */
 template < class M >
 class moMoveInit:public eoBF < M &, const typename M::EOType &, void >
 {};

@@ -4,9 +4,9 @@
 #include <explorer/moNeighborhoodExplorer.h>
 #include <continuator/moContinuator.h>
 
-/*
-  the main algorithm of the local search
-*/
+/**
+ * the main algorithm of the local search
+ */
 template< class NHE , class C >
 class moLocalSearch: public eoMonOp<typename NHE::EOT>
 {
@@ -15,34 +15,42 @@ public:
     typedef C Continuator ;
     typedef typename NeighborhoodExplorer::EOT EOT ;
     
-    moLocalSearch(NeighborhoodExplorer & __searchExpl, Continuator & __continuator) : searchExplorer(__searchExpl), continuator(__continuator) { } ;
 
-    virtual bool operator() (EOT & solution) {
+    /**
+     * Constructor of a moLocalSearch needs a NeighborhooExplorer and a Continuator
+     */
+    moLocalSearch(NeighborhoodExplorer& _searchExpl, Continuator & _continuator) : searchExplorer(_searchExpl), continuator(_continuator) { } ;
+
+    /**
+     * Run the local search on a solution
+     * @param _solution the related solution
+     */
+    virtual bool operator() (EOT & _solution) {
 	
 	// initialization of the external continuator (for example the time, or the number of generations)
-	continuator.init(solution);
+	continuator.init(_solution);
 
 	// initialization of the parameter of the search (for example fill empty the tabu list)
-	searchExplorer.initParam(solution);
+	searchExplorer.initParam(_solution);
 
 	unsigned num = 0;
 
 	do {
 	    // explore the neighborhood of the solution
-	    searchExplorer(solution);
+	    searchExplorer(_solution);
 
 	    // if a solution in the neighborhood can be accepted
-	    if (searchExplorer.accept(solution)) 
-		searchExplorer.move(solution);
+	    if (searchExplorer.accept(_solution))
+		searchExplorer.move(_solution);
 
 	    // update the parameter of the search (for ex. Temperature of the SA)
-	    searchExplorer.updateParam(solution);
+	    searchExplorer.updateParam(_solution);
 
-	    std::cout << num << " : "  << solution << std::endl ;
+	    std::cout << num << " : "  << _solution << std::endl ;
 	    num++;
-	} while (continuator(solution) && searchExplorer.isContinue(solution));
+	} while (continuator(_solution) && searchExplorer.isContinue(_solution));
 
-	searchExplorer.terminate(solution);
+	searchExplorer.terminate(_solution);
 
 	//A CHANGER
 	return true;
@@ -51,10 +59,10 @@ public:
 
 private:
     // make the exploration of the neighborhood according to a local search heuristic
-    NeighborhoodExplorer & searchExplorer ;
+    NeighborhoodExplorer& searchExplorer ;
 
     // external continuator
-    Continuator & continuator ;
+    Continuator& continuator ;
 };
 
 #endif

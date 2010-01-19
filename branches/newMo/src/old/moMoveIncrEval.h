@@ -38,13 +38,13 @@
 
 #include <eoFunctor.h>
 
-//! (generally) Efficient evaluation function based a move and a solution.
+// (generally) Efficient evaluation function based a move and a solution.
 
-/*!
-  From a move and a solution, it computes
-  a new fitness that could be associated to
-  the solution if this one is updated.
-*/
+/*
+ * From a move and a solution, it computes
+ * a new fitness that could be associated to
+ * the solution if this one is updated.
+ */
 template < class M, class Objective = typename M::EOType::Fitness>
 class moMoveIncrEval:public eoBF < const M &, const typename M::EOType &, Objective >
 {};

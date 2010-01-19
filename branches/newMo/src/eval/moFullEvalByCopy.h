@@ -4,6 +4,10 @@
 #include <eoEvalFunc.h>
 #include <moEval.h>
 
+
+/**
+ * Evaluation by copy
+ */
 template<class Neighbor>
 class moFullEvalByCopy : public moEval<Neighbor>
 {

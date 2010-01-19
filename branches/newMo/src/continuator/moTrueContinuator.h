@@ -3,7 +3,7 @@
 
 #include <continuator/moContinuator.h>
 
-/*
+/**
   to make specific continuator from a solution
 */
 template< class NH >
@@ -16,7 +16,7 @@ public:
     // empty constructor
     moTrueContinuator() { i=0;} ;
 
-    /*
+    /**
     always true
     */
     virtual bool operator()(EOT & solution) {

@@ -39,18 +39,18 @@
 
 #include <eoFunctor.h>
 
-//! Definition of a move.
+// Definition of a move.
 
-/*!
-  A move transforms a solution to another close solution.
-  It describes how a solution can be modified to another one.
-*/
+/*
+ * A move transforms a solution to another close solution.
+ * It describes how a solution can be modified to another one.
+ */
 template < class EOT >
 class moMove:public eoUF < EOT &, void >
 {
  public:
   
-  //! Alias for the type
+  // Alias for the type
   typedef EOT EOType;
 };
 

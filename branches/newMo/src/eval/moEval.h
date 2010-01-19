@@ -3,6 +3,9 @@
 
 #include <eoFunctor.h>
 
+/**
+ * Abstract class for the evaluation
+ */
 template<class Neighbor>
 class moEval : public eoBF<typename Neighbor::EOType &, Neighbor&, void>
 {
