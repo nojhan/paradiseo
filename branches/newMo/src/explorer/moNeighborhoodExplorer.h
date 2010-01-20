@@ -5,6 +5,7 @@
 #include <eoFunctor.h>
 
 #include <neighborhood/moNeighborhood.h>
+#include <eval/moEval.h>
 
 /**
  * Explore the neighborhood
@@ -22,7 +23,7 @@ public:
      * @param _neighborhood the neighborhood
      * @param _eval the evaluation function
      */
-    moNeighborhoodExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval):neighborhood(_neighborhood), eval(_eval) {}
+    moNeighborhoodExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _comparator):neighborhood(_neighborhood), eval(_eval), comparator(_comparator) {}
 
     /**
      * Init Search parameters
@@ -73,7 +74,7 @@ public:
 protected:
     Neighborhood & neighborhood;
     moEval<Neighbor>& eval;
-
+    moNeighborComparator<Neighbor>& comparator;
 };
 
 #endif

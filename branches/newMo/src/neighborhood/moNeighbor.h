@@ -61,7 +61,7 @@ public:
      * Copy Constructor
      * @param _neighbor to copy
      */
-    moNeighbor(const moNeighbor<EOType, Fitness>& _neighbor) {
+    moNeighbor(const moNeighbor<EOT, Fitness>& _neighbor) {
     	repFitness = _neighbor.fitness();
     }
  
@@ -131,7 +131,7 @@ public:
 		_os << repFitness << ' ' ;
     }
     
-private:
+protected:
     // minimal information on the neighbor : fitness
     Fitness repFitness ;
 

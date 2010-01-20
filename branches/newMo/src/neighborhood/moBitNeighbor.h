@@ -2,24 +2,25 @@
 #define _bitNeighbor_h
 
 #include <ga/eoBit.h>
-#include <neighborhood/moNeighbor.h>
+#include <neighborhood/moBackableNeighbor.h>
+
 
 /*
   contener of the neighbor information
 */
 template< class Fitness >
-class moBitNeighbor : public moNeighbor< eoBit<Fitness> , Fitness>
+class moBitNeighbor : public moBackableNeighbor<eoBit<Fitness>, Fitness>
 {
 public:
     typedef eoBit<Fitness> EOType ;
 
-    using moNeighbor< eoBit<Fitness> , Fitness>::fitness;
+    using moNeighbor<eoBit<Fitness>, Fitness>::fitness;
 
     // describe the neighbor
     unsigned bit ;
 
     // empty constructor needed
-    moBitNeighbor() : moNeighbor<eoBit<Fitness> , Fitness>() { } ;
+    moBitNeighbor() : moBackableNeighbor<eoBit<Fitness> , Fitness>() { } ;
 
     // copy constructor
     moBitNeighbor(const moBitNeighbor & n) : moNeighbor<eoBit<Fitness> , Fitness>(n) { 
@@ -43,7 +44,11 @@ public:
       move the solution
     */
     virtual void move(EOType & solution) {
-	solution[bit] = solution[bit]?false:true ;
+    	solution[bit] = !solution[bit];
+    }
+
+    virtual void moveBack(EOType & solution) {
+    	solution[bit] = !solution[bit];
     }
 
     // by default: if the fitness of the current solution is stricly higher than the other neighbor

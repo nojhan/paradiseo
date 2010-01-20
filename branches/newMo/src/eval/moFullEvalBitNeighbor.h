@@ -4,11 +4,8 @@
 #include <neighborhood/moBitNeighbor.h>
 #include <ga.h>
 
-/**
- * contener of the neighbor information
- */
 template< class Fitness >
-class moFullEvalBitNeighbor : public moBitNeighbor<Fitness>
+class moFullEvalBitNeighbor : public moFullEvalByModif<moBitNeighbor<Fitness> >
 {
 public:
     typedef eoBit<Fitness> EOType ;

@@ -2,7 +2,7 @@
 #define moFullEvalByModif_H
 
 #include <eoEvalFunc.h>
-#include <moEval.h>
+#include <eval/moEval.h>
 
 /**
  * Full evaluation to use with a moBackableNeighbor
@@ -11,14 +11,14 @@ template<class BackableNeighbor>
 class moFullEvalByModif : public moEval<BackableNeighbor>
 {
 public:
-     using moEval<BackableNeighbor>::EOT EOT;
-     using moEval<BackableNeighbor>::Fitness Fitness;
+     typedef typename moEval<BackableNeighbor>::EOT EOT;
+     typedef typename moEval<BackableNeighbor>::Fitness Fitness;
 
  	/**
  	 * Ctor
  	 * @param _eval the full evaluation object
  	 */
-     moFullEvalByCopy(eoEvalFunc<EOT> & _eval) : eval(_eval) {}
+     moFullEvalByModif(eoEvalFunc<EOT>& _eval) : eval(_eval) {}
 
      /**
       * Full evaluation of the neighbor by copy
@@ -44,6 +44,7 @@ public:
     	_neighbor.moveBack(_sol);
     	// set the fitness back
     	_sol.fitness(tmpFit);
+
      }
 
 

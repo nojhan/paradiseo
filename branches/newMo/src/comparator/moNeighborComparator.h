@@ -22,7 +22,7 @@ public:
      * @return true if the neighbor1 is better than neighbor2
      */
     virtual bool operator()(const Neighbor& _neighbor1, const Neighbor& _neighbor2) {
-    	return (neighbor1.fitness() > neighbor2.fitness());
+    	return (_neighbor1.fitness() > _neighbor2.fitness());
     }
 
     /**

@@ -3,17 +3,22 @@
 
 #include <explorer/moNeighborhoodExplorer.h>
 
-template< class NH >
-class moSimpleHCexplorer : public moNeighborhoodExplorer<NH>
+template< class Neighborhood >
+class moSimpleHCexplorer : public moNeighborhoodExplorer<Neighborhood>
 {
 public:
-    typedef NH Neighborhood ;
     typedef typename Neighborhood::EOT EOT ;
     typedef typename Neighborhood::Neighbor Neighbor ;
 
+    using moNeighborhoodExplorer<Neighborhood>::neighborhood;
+    using moNeighborhoodExplorer<Neighborhood>::eval;
+    using moNeighborhoodExplorer<Neighborhood>::comparator;
+
     // empty constructor
-    moSimpleHCexplorer(Neighborhood & __neighborhood) : neighborhood(__neighborhood){
-	isAccept = false; 
+    moSimpleHCexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _comparator) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval, _comparator){
+    	isAccept = false;
+    	current=new Neighbor();
+    	best=new Neighbor();
     }
 
     virtual void initParam (EOT & solution) { } ;
@@ -24,52 +29,51 @@ public:
 
     virtual void operator() (EOT & solution) {
 
-//est qu'on peut initializer
-	
-	if(neighborhood.hasNeighbor(solution)){
-	    neighborhood.init(solution, *current);
-	    
-	    (*current).eval(solution);
-	    
-	    best = &current;
+	//est qu'on peut initializer
 
-	    while (neighborhood.cont(solution)) {
-		neighborhood.next(solution, *current);
+		if(neighborhood.hasNeighbor(solution)){
+			neighborhood.init(solution, (*current));
 
-		(*current).eval(solution);
-		
-		if (current.betterThan(best)) {
-		    
-		    best = &current;
-		    
+			eval(solution, (*current));
+
+			std::cout <<"sol et neighbor:"<< solution << ", "<< (*current) << std::endl;
+
+			(*best) = (*current);
+
+			while (neighborhood.cont(solution)) {
+				neighborhood.next(solution, (*current));
+
+				eval(solution, (*current));
+				std::cout <<"sol et neighbor:"<< solution << ", "<< (*current) << std::endl;
+				if (comparator((*current), (*best))) {
+					(*best) = (*current);
+				}
+			}
 		}
-	    }
-	}
-	else{
-	    isAccept=false;
-	}
+		else{
+			isAccept=false;
+		}
     };
 
     virtual bool isContinue(EOT & solution) {
-	return isAccept ;
+    	return isAccept ;
     };
 
     virtual void move(EOT & solution) {
 		
-	best.move(solution);
+    	(*best).move(solution);
 
-	solution.fitness(best.fitness());
+    	solution.fitness((*best).fitness());
     };
 
     virtual bool accept(EOT & solution) {	
-	if(neighborhood.hasNeighbor(solution)){
-	    isAccept = (solution.fitness() < best.fitness()) ;	    
-	}
-	return isAccept;
+		if(neighborhood.hasNeighbor(solution)){
+			isAccept = (solution.fitness() < (*best).fitness()) ;
+		}
+		return isAccept;
     };
 
 private:
-    Neighborhood & neighborhood;
 
 // attention il faut que le constructeur vide existe
     Neighbor* best;
@@ -82,12 +86,3 @@ private:
 
 
 #endif
-
-
-// Local Variables:
-// coding: iso-8859-1
-// mode: C++
-// c-file-offsets: ((c . 0))
-// c-file-style: "Stroustrup"
-// fill-column: 80
-// End:

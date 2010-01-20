@@ -40,17 +40,20 @@ using namespace std;
 // explore the neighborhood of a bit string in order
 #include <neighborhood/moBitNeighborhood.h>
 
-#include <eval/moFullEvalBitNeighbor.h>
+#include <eval/moFullEvalByModif.h>
+
 
 #include <oneMaxBitNeighbor.h>
+
+#include <comparator/moNeighborComparator.h>
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
 // define your individuals
 typedef eoBit<unsigned> Indi;	
 //typedef OneMaxBitNeighbor<unsigned> Neighbor ; // incremental evaluation
-typedef moFullEvalBitNeighbor<unsigned> Neighbor ; // full evaluation
-typedef moBitNeighborhood<Neighbor> Neighborhood ;
+//typedef moFullEvalBitNeighbor<unsigned> Neighbor ; // full evaluation
+//typedef moBitNeighborhood<Neighbor> Neighborhood ;
 
 // GENERAL
 //-----------------------------------------------------------------------------
@@ -121,6 +124,8 @@ void main_function(int argc, char **argv)
 
   FuncOneMax<Indi> eval(vecSize);
 
+  moFullEvalByModif<moBitNeighbor<unsigned int> > fulleval(eval);
+
   /* =========================================================
    *
    * Initilisation of the solution
@@ -138,7 +143,7 @@ void main_function(int argc, char **argv)
    * ========================================================= */
   
   // no need if incremental evaluation with OneMaxBitNeighbor
-  Neighbor::setFullEvalFunc(eval);
+//  Neighbor::setFullEvalFunc(eval);
 
   /* =========================================================
    *
@@ -146,7 +151,9 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
   
-  Neighborhood neighborhood;
+  moNeighborComparator<moBitNeighbor<unsigned int> > comparator;
+
+  moBitNeighborhood<moBitNeighbor<unsigned int> > neighborhood ;
 
   /* =========================================================
    *
@@ -154,7 +161,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
   
-  moSimpleHCexplorer<Neighborhood> explorer(neighborhood);
+  moSimpleHCexplorer<moBitNeighborhood<moBitNeighbor<unsigned int> > > explorer(neighborhood, fulleval, comparator);
 
   /* =========================================================
    *
@@ -162,9 +169,9 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  moTrueContinuator<Neighborhood> continuator;
+  moTrueContinuator<moBitNeighborhood<moBitNeighbor<unsigned int> > > continuator;
 
-  moLocalSearch< moSimpleHCexplorer<Neighborhood>, moTrueContinuator<Neighborhood> > localSearch(explorer, continuator);
+  moLocalSearch< moSimpleHCexplorer<moBitNeighborhood<moBitNeighbor<unsigned int> > >, moTrueContinuator<moBitNeighborhood<moBitNeighbor<unsigned int> > > > localSearch(explorer, continuator);
 
   /* =========================================================
    *
@@ -180,7 +187,7 @@ void main_function(int argc, char **argv)
 
   std::cout << "initial: " << solution << std::endl ;
 
-  localSearch(solution);
+ localSearch(solution);
   
   std::cout << "final:   " << solution << std::endl ;
 
