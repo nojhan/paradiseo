@@ -6,6 +6,7 @@
 
 #include <neighborhood/moNeighborhood.h>
 #include <eval/moEval.h>
+#include <comparator/moNeighborComparator.h>
 
 /**
  * Explore the neighborhood

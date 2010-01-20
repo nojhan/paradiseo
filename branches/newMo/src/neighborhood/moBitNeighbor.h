@@ -4,7 +4,6 @@
 #include <ga/eoBit.h>
 #include <neighborhood/moBackableNeighbor.h>
 
-
 /*
   contener of the neighbor information
 */

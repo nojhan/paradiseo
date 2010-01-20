@@ -42,8 +42,6 @@
 #include <eoObject.h>
 #include <eoPersistent.h>
 
-#include <comparator/moNeighborComparator.h>
-
 /**
  * Container of the neighbor informations
  */

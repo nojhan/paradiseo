@@ -4,7 +4,6 @@
 #include <eoEvalFunc.h>
 #include <eval/moEval.h>
 
-
 /**
  * Evaluation by copy
  */
