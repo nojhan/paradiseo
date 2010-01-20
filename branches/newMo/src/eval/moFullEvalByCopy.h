@@ -2,7 +2,7 @@
 #define moFullEvalByCopy_H
 
 #include <eoEvalFunc.h>
-#include <moEval.h>
+#include <eval/moEval.h>
 
 
 /**
@@ -12,8 +12,8 @@ template<class Neighbor>
 class moFullEvalByCopy : public moEval<Neighbor>
 {
 public:
-     using moEval<Neighbor>::EOT EOT;
-     using moEval<Neighbor>::Fitness Fitness;
+	typedef typename moEval<Neighbor>::EOT EOT;
+	typedef typename moEval<Neighbor>::Fitness Fitness;
 
 	/**
 	 * Ctor
@@ -31,7 +31,7 @@ public:
     	 // tmp solution
     	 EOT tmp(_sol);
     	 // move tmp solution wrt _neighbor
-    	 _neighbor.(tmp);
+    	 _neighbor.move(tmp);
     	 // eval copy
     	 tmp.invalidate();
     	 eval(tmp);

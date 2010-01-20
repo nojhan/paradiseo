@@ -27,24 +27,27 @@ public:
       */
      void operator()(EOT & _sol, BackableNeighbor & _neighbor)
      {
-    	 // tmp fitness value of the current solution
-    	 Fitness tmpFit;
+		// tmp fitness value of the current solution
+		Fitness tmpFit;
 
-    	 // save current fitness value
-    	 tmpFit = _sol.fitness();
+		// save current fitness value
+		tmpFit = _sol.fitness();
 
-    	 // move the current solution wrt _neighbor
-    	 _neighbor.move(_sol);
-    	 // eval the modified solution
-    	 _sol.invalidate();
-    	 eval(_sol);
-    	 // set the fitness value to the neighbor
-    	 _neighbor.fitness(_sol.fitness());
-    	 // move the current solution back
-    	_neighbor.moveBack(_sol);
-    	// set the fitness back
-    	_sol.fitness(tmpFit);
+		// move the current solution wrt _neighbor
+		_neighbor.move(_sol);
 
+		// eval the modified solution
+		_sol.invalidate();
+		eval(_sol);
+
+		// set the fitness value to the neighbor
+		_neighbor.fitness(_sol.fitness());
+
+		// move the current solution back
+		_neighbor.moveBack(_sol);
+
+		// set the fitness back
+		_sol.fitness(tmpFit);
      }
 
 
