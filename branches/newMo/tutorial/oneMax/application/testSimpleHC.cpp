@@ -37,146 +37,147 @@ using namespace std;
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
-// define your individuals
 typedef eoBit<unsigned> Indi;	
 typedef moBitNeighbor<unsigned int> Neighbor ; // incremental evaluation
 typedef moBitNeighborhood<Neighbor> Neighborhood ;
 
-// GENERAL
-//-----------------------------------------------------------------------------
-
 void main_function(int argc, char **argv)
 {
-  /* =========================================================
-   *
-   * Parameters 
-   *
-   * ========================================================= */
+	/* =========================================================
+	*
+	* Parameters
+	*
+	* ========================================================= */
 
-  // First define a parser from the command-line arguments
-  eoParser parser(argc, argv);
+	// First define a parser from the command-line arguments
+	eoParser parser(argc, argv);
 
-  // For each parameter, define Parameter, read it through the parser,
-  // and assign the value to the variable
+	// For each parameter, define Parameter, read it through the parser,
+	// and assign the value to the variable
 
-  eoValueParam<uint32_t> seedParam(time(0), "seed", "Random number seed", 'S');
-  parser.processParam( seedParam );
-  unsigned seed = seedParam.value();
+	eoValueParam<uint32_t> seedParam(time(0), "seed", "Random number seed", 'S');
+	parser.processParam( seedParam );
+	unsigned seed = seedParam.value();
 
-  // description of genotype
-  eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size", 'V');
-  parser.processParam( vecSizeParam, "Representation" );
-  unsigned vecSize = vecSizeParam.value();
+	// description of genotype
+	eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size", 'V');
+	parser.processParam( vecSizeParam, "Representation" );
+	unsigned vecSize = vecSizeParam.value();
 
-  string fileOut("out.dat");
-  eoValueParam<string> fileStatParam(fileOut.c_str(), "out", "A file to export results", 'o');
-  parser.processParam( fileStatParam, "Persistence" );
-  fileOut = fileStatParam.value();
+	// the name of the "status" file where all actual parameter values will be saved
+	string str_status = parser.ProgramName() + ".status"; // default value
+	eoValueParam<string> statusParam(str_status.c_str(), "status", "Status file");
+	parser.processParam( statusParam, "Persistence" );
 
-  // the name of the "status" file where all actual parameter values will be saved
-  string str_status = parser.ProgramName() + ".status"; // default value
-  eoValueParam<string> statusParam(str_status.c_str(), "status", "Status file");
-  parser.processParam( statusParam, "Persistence" );
+	// do the following AFTER ALL PARAMETERS HAVE BEEN PROCESSED
+	// i.e. in case you need parameters somewhere else, postpone these
+	if (parser.userNeedsHelp()){
+		parser.printHelp(cout);
+		exit(1);
+	}
+	if (statusParam.value() != ""){
+		ofstream os(statusParam.value().c_str());
+		os << parser;// and you can use that file as parameter file
+	}
 
-  // do the following AFTER ALL PARAMETERS HAVE BEEN PROCESSED
-  // i.e. in case you need parameters somewhere else, postpone these
-  if (parser.userNeedsHelp())
-    {
-      parser.printHelp(cout);
-      exit(1);
-    }
-  if (statusParam.value() != "")
-    {
-      ofstream os(statusParam.value().c_str());
-      os << parser;		// and you can use that file as parameter file
-    }
+	/* =========================================================
+	 *
+	 * Random seed
+	 *
+	 * ========================================================= */
 
-
-  /* =========================================================
-   *
-   * Random seed
-   *
-   * ========================================================= */
-
-  //reproducible random seed: if you don't change SEED above, 
-  // you'll aways get the same result, NOT a random run
-  rng.reseed(seed);
+	//reproducible random seed: if you don't change SEED above,
+	// you'll aways get the same result, NOT a random run
+	rng.reseed(seed);
 
 
-  /* =========================================================
-   *
-   * Eval fitness function
-   *
-   * ========================================================= */
+	/* =========================================================
+	 *
+	 * Eval fitness function
+	 *
+	 * ========================================================= */
 
-  FuncOneMax<Indi> eval(vecSize);
+	FuncOneMax<Indi> eval(vecSize);
 
-  moFullEvalByCopy<Neighbor > fulleval(eval);
 
-  /* =========================================================
-   *
-   * Initilisation of the solution
-   *
-   * ========================================================= */
+	/* =========================================================
+	 *
+	 * Initilisation of the solution
+	 *
+	 * ========================================================= */
 
-  // a Indi random initializer
-  eoUniformGenerator<bool> uGen;
-  eoInitFixedLength<Indi> random(vecSize, uGen);
-      
-  /* =========================================================
-   *
-   * evaluation of a neighbor solution
-   *
-   * ========================================================= */
+	// a Indi random initializer
+	eoUniformGenerator<bool> uGen;
+	eoInitFixedLength<Indi> random(vecSize, uGen);
+
+
+	/* =========================================================
+	 *
+	 * evaluation of a neighbor solution
+	 *
+	 * ========================================================= */
+
+	moFullEvalByModif<Neighbor> fulleval(eval);
+
+	//An eval by copy can be used instead of the eval by modif
+	//moFullEvalByCopy<Neighbor> fulleval(eval);
+
+
+	/* =========================================================
+	 *
+	 * Comparator of neighbors
+	 *
+	 * ========================================================= */
+
+	moNeighborComparator<Neighbor> comparator;
+
+
+	/* =========================================================
+	 *
+	 * the neighborhood of a solution
+	 *
+	 * ========================================================= */
+
+	Neighborhood neighborhood ;
+
+
+	/* =========================================================
+	 *
+	 * a neighborhood explorer solution
+	 *
+	 * ========================================================= */
   
-  // no need if incremental evaluation with OneMaxBitNeighbor
-//  Neighbor::setFullEvalFunc(eval);
+	moSimpleHCexplorer<Neighborhood> explorer(neighborhood, fulleval, comparator);
 
-  /* =========================================================
-   *
-   * the neighborhood of a solution
-   *
-   * ========================================================= */
+
+	/* =========================================================
+	 *
+	 * the local search algorithm
+	 *
+	 * ========================================================= */
+
+	moTrueContinuator<Neighborhood> continuator;//always continue
+
+	moLocalSearch< moSimpleHCexplorer<Neighborhood>, moTrueContinuator<Neighborhood> > localSearch(explorer, continuator, eval);
+
+	/* =========================================================
+	 *
+	 * execute the local search from random sollution
+	 *
+	 * ========================================================= */
+
+	Indi solution;
+
+	random(solution);
+
+	//Can be eval here, else it will be done at the beginning of the localSearch
+	//eval(solution);
+
+	std::cout << "initial: " << solution << std::endl ;
+
+	localSearch(solution);
   
-  moNeighborComparator<Neighbor > comparator;
-
-  Neighborhood neighborhood ;
-
-  /* =========================================================
-   *
-   * a neighborhood explorator solution
-   *
-   * ========================================================= */
-  
-  moSimpleHCexplorer<Neighborhood> explorer(neighborhood, fulleval, comparator);
-
-  /* =========================================================
-   *
-   * the local search algorithm
-   *
-   * ========================================================= */
-
-  moTrueContinuator<Neighborhood> continuator;
-
-  moLocalSearch< moSimpleHCexplorer<Neighborhood>, moTrueContinuator<Neighborhood> > localSearch(explorer, continuator);
-
-  /* =========================================================
-   *
-   * execute the local search from random sollution
-   *
-   * ========================================================= */
-
-  Indi solution;
-
-  random(solution);
-
-  eval(solution);
-
-  std::cout << "initial: " << solution << std::endl ;
-
- localSearch(solution);
-  
-  std::cout << "final:   " << solution << std::endl ;
+	std::cout << "final:   " << solution << std::endl ;
 
 }
 
@@ -184,15 +185,11 @@ void main_function(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
-
-    try
-    {
-        main_function(argc, argv);
-    }
-    catch(exception& e)
-    {
-        cout << "Exception: " << e.what() << '\n';
-    }
-
-    return 1;
+	try{
+		main_function(argc, argv);
+	}
+	catch(exception& e){
+		cout << "Exception: " << e.what() << '\n';
+	}
+	return 1;
 }
