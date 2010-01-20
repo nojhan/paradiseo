@@ -3,6 +3,9 @@
 
 #include <explorer/moNeighborhoodExplorer.h>
 
+/**
+ * Explorer for a simple Hill-climbing
+ */
 template< class Neighborhood >
 class moSimpleHCexplorer : public moNeighborhoodExplorer<Neighborhood>
 {
@@ -14,70 +17,106 @@ public:
     using moNeighborhoodExplorer<Neighborhood>::eval;
     using moNeighborhoodExplorer<Neighborhood>::comparator;
 
-    // empty constructor
+	/**
+	 * Constructor
+	 * @param _neighborhood the neighborhood
+	 * @param _eval the evaluation function
+	 * @param _comparator a neighbor comparator
+	 */
     moSimpleHCexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _comparator) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval, _comparator){
     	isAccept = false;
     	current=new Neighbor();
     	best=new Neighbor();
     }
 
-    virtual void initParam (EOT & solution) { } ;
+	/**
+	 * initParam: NOTHING TO DO
+	 */
+    virtual void initParam(EOT & solution){};
 
-    virtual void updateParam (EOT & solution) { } ;
+	/**
+	 * updateParam: NOTHING TO DO
+	 */
+    virtual void updateParam(EOT & solution){};
 
-    virtual void terminate (EOT & solution) { } ;
+	/**
+	 * terminate: NOTHING TO DO
+	 */
+    virtual void terminate(EOT & solution){};
 
-    virtual void operator() (EOT & solution) {
+    /**
+     * Explore the neighborhood of a solution
+     * @param _solution
+     */
+    virtual void operator()(EOT & _solution){
 
 	//est qu'on peut initializer
+    	//Test if _solution has a Neighbor
+		if(neighborhood.hasNeighbor(_solution)){
+			//init the first neighbor
+			neighborhood.init(_solution, (*current));
 
-		if(neighborhood.hasNeighbor(solution)){
-			neighborhood.init(solution, (*current));
+			//eval the _solution moved with the neighbor and stock the result in the neighbor
+			eval(_solution, (*current));
 
-			eval(solution, (*current));
-
-			std::cout <<"sol et neighbor:"<< solution << ", "<< (*current) << std::endl;
-
+			//initialize the best neighbor
 			(*best) = (*current);
 
-			while (neighborhood.cont(solution)) {
-				neighborhood.next(solution, (*current));
-
-				eval(solution, (*current));
-				std::cout <<"sol et neighbor:"<< solution << ", "<< (*current) << std::endl;
+			//test all others neighbors
+			while (neighborhood.cont(_solution)) {
+				//next neighbor
+				neighborhood.next(_solution, (*current));
+				//eval
+				eval(_solution, (*current));
+				//if we found a better neighbor, update the best
 				if (comparator((*current), (*best))) {
 					(*best) = (*current);
 				}
 			}
 		}
 		else{
+			//if _solution hasn't neighbor,
 			isAccept=false;
 		}
     };
 
-    virtual bool isContinue(EOT & solution) {
+    /**
+     * continue if a move is accepted
+     * @param _solution the solution
+     * @return true if an ameliorated neighbor was be found
+     */
+    virtual bool isContinue(EOT & _solution) {
     	return isAccept ;
     };
 
-    virtual void move(EOT & solution) {
-		
-    	(*best).move(solution);
-
-    	solution.fitness((*best).fitness());
+    /**
+     * move the solution with the best neighbor
+     * @param _solution the solution to move
+     */
+    virtual void move(EOT & _solution) {
+		//move the solution
+    	(*best).move(_solution);
+    	//update its fitness
+    	_solution.fitness((*best).fitness());
     };
 
-    virtual bool accept(EOT & solution) {	
-		if(neighborhood.hasNeighbor(solution)){
-			isAccept = (solution.fitness() < (*best).fitness()) ;
+    /**
+     * accept test if an amelirated neighbor was be found
+     * @param _solution the solution
+     * @return true if the best neighbor ameliorate the fitness
+     */
+    virtual bool accept(EOT & _solution) {
+		if(neighborhood.hasNeighbor(_solution)){
+			isAccept = (_solution.fitness() < (*best).fitness()) ;
 		}
 		return isAccept;
     };
 
 private:
 
-// attention il faut que le constructeur vide existe
+    // attention il faut que le constructeur vide existe
+    //(Pointeurs) on the best and the current neighbor
     Neighbor* best;
-
     Neighbor* current;
 
     // true if the move is accepted

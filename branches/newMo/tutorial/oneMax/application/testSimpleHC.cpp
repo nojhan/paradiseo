@@ -41,6 +41,7 @@ using namespace std;
 #include <neighborhood/moBitNeighborhood.h>
 
 #include <eval/moFullEvalByModif.h>
+#include <eval/moFullEvalByCopy.h>
 
 
 #include <oneMaxBitNeighbor.h>
@@ -124,7 +125,7 @@ void main_function(int argc, char **argv)
 
   FuncOneMax<Indi> eval(vecSize);
 
-  moFullEvalByModif<moBitNeighbor<unsigned int> > fulleval(eval);
+  moFullEvalByCopy<moBitNeighbor<unsigned int> > fulleval(eval);
 
   /* =========================================================
    *
