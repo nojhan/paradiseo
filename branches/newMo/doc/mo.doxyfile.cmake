@@ -761,7 +761,7 @@ COLS_IN_ALPHA_INDEX    = 3
 # The IGNORE_PREFIX tag can be used to specify one or more prefixes that 
 # should be ignored while generating the index headers.
 
-IGNORE_PREFIX          = moeo
+IGNORE_PREFIX          = mo
 
 #---------------------------------------------------------------------------
 # configuration options related to the HTML output
