@@ -114,8 +114,7 @@ public:
 
 private:
 
-    // attention il faut que le constructeur vide existe
-    //(Pointeurs) on the best and the current neighbor
+    //Pointer on the best and the current neighbor
     Neighbor* best;
     Neighbor* current;
 

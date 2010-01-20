@@ -42,7 +42,6 @@
 #include <continuator/moTrueContinuator.h>
 
 #include <eval/moEval.h>
-#include <eval/moFullEvalBitNeighbor.h>
 #include <eval/moFullEvalByCopy.h>
 #include <eval/moFullEvalByModif.h>
 
@@ -52,7 +51,6 @@
 #include <neighborhood/moBackableNeighbor.h>
 #include <neighborhood/moBitNeighbor.h>
 #include <neighborhood/moBitNeighborhood.h>
-#include <neighborhood/moEmptyNeighbor.h>
 #include <neighborhood/moNeighbor.h>
 #include <neighborhood/moNeighborhood.h>
 
