@@ -13,7 +13,7 @@ public:
 	/**
 	 * Define type of a solution corresponding to Neighbor
 	 */
-    typedef typename Neighbor::EOType EOT;
+    typedef typename Neighbor::EOT EOT;
 
     /**
      * Default Constructor

@@ -7,10 +7,10 @@
  * Abstract class for the evaluation
  */
 template<class Neighbor>
-class moEval : public eoBF<typename Neighbor::EOType &, Neighbor&, void>
+class moEval : public eoBF<typename Neighbor::EOT &, Neighbor&, void>
 {
 public:
-     typedef typename Neighbor::EOType EOT;
+     typedef typename Neighbor::EOT EOT;
      typedef typename EOT::Fitness Fitness;
 };
 

@@ -4,30 +4,31 @@
 #include <continuator/moContinuator.h>
 
 /**
-  to make specific continuator from a solution
-*/
+ * Continuator always return True
+ */
 template< class NH >
 class moTrueContinuator : public moContinuator<NH>
 {
 public:
-    typedef NH Neighborhood ;
-    typedef typename Neighborhood::EOT EOT ;
+    typedef typename NH::EOT EOT ;
 
     // empty constructor
-    moTrueContinuator() { i=0;} ;
+    moTrueContinuator() {} ;
 
     /**
-    always true
-    */
-    virtual bool operator()(EOT & solution) {
-      i++;
-	return i<10;
-    };
-
-    virtual void init(EOT & solution) {
+     *@param _solution a solution
+     *@return always true
+     */
+    virtual bool operator()(EOT & _solution) {
+    	return true;
     }
 
-    int i;
+    /**
+     * NOTHING TO DO
+     * @param _solution a solution
+     */
+    virtual void init(EOT & _solution) {}
+
 };
 
 #endif

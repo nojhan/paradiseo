@@ -3,48 +3,62 @@
 
 #include <neighborhood/moNeighborhood.h>
 
+/**
+ * Neighborhood related to a vector of Bit
+ */
 template< class N >
 class moBitNeighborhood : public moNeighborhood<N>
 {
 public:
     typedef N Neighbor ;
-    typedef typename Neighbor::EOType EOT ;
+    typedef typename Neighbor::EOT EOT ;
 
+    /**
+     * Default Constructor
+     */
     moBitNeighborhood() : moNeighborhood<Neighbor>() { }
 
-    virtual bool hasNeighbor(EOT & solution) {
-
-      return true;
-
+    /**
+     * Test if it exist a neighbor
+     * @param _solution the solution to explore
+     * @return always True
+     */
+    virtual bool hasNeighbor(EOT& _solution) {
+    	return true;
     }
 
-    /*
-      initialisation of the neighborhood
-    */
-    virtual void init(EOT & solution, Neighbor & _neighbor) {
+    /**
+     * Initialization of the neighborhood
+     * @param _solution the solution to explore
+     * @param _neighbor the first neighbor
+     */
+    virtual void init(EOT & _solution, Neighbor & _neighbor) {
 		currentBit = 0 ;
-
 		_neighbor.bit = currentBit ;
     } 
 
-    /*
-    Give the next neighbor
-    */
-    virtual void next(EOT & solution, Neighbor & neighbor) { 
+    /**
+     * Give the next neighbor
+     * @param _solution the solution to explore
+     * @param _neighbor the next neighbor
+     */
+    virtual void next(EOT & _solution, Neighbor & _neighbor) {
 		currentBit++ ;
-
-		neighbor.bit = currentBit ;
+		_neighbor.bit = currentBit ;
     } 
 
-    /*
-    if false, there is no neighbor left to explore
-    */
-    virtual bool cont(EOT & solution) { 
-	return (currentBit < solution.size()) ;
+    /**
+     * test if all neighbors are explore or not,if false, there is no neighbor left to explore
+     * @param _solution the solution to explore
+     * @return true if there is again a neighbor to explore
+     */
+    virtual bool cont(EOT & _solution) {
+    	return (currentBit < _solution.size()) ;
     } 
     
 private:
-    unsigned currentBit;
+    //Position in the neighborhood
+    unsigned int currentBit;
 };
 
 
