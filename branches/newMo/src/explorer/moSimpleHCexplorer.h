@@ -64,6 +64,14 @@ public:
     }
 
 	/**
+	 * Destructor
+	 */
+    ~moSimpleHCexplorer(){
+    	delete current;
+    	delete best;
+    }
+
+	/**
 	 * initParam: NOTHING TO DO
 	 */
     virtual void initParam(EOT & solution){};

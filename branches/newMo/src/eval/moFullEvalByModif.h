@@ -64,6 +64,7 @@ public:
 		// tmp fitness value of the current solution
 		Fitness tmpFit;
 
+
 		// save current fitness value
 		tmpFit = _sol.fitness();
 

@@ -31,7 +31,9 @@ LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib)
 SET (TEST_LIST
 		t-moNeighbor
 		t-moBitNeighbor
-		t-moBitNeighborhood)
+		t-moBitNeighborhood
+		t-moFullEvalByCopy
+		t-moFullEvalByModif)
 				
 FOREACH (test ${TEST_LIST})
 	  SET ("T_${test}_SOURCES" "${test}.cpp")

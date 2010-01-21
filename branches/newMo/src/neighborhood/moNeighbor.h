@@ -43,11 +43,11 @@
 /**
  * Container of the neighbor informations
  */
-template< class EOT , class Fitness >
+template< class EOType , class Fitness >
 class moNeighbor : public eoObject, public eoPersistent
 {
 public:
-
+	typedef EOType EOT;
     /**
      * Default Constructor
      */
