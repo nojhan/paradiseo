@@ -36,6 +36,7 @@
 #define _bitNeighborhood_h
 
 #include <neighborhood/moNeighborhood.h>
+#include <neighborhood/moBitNeighbor.h>
 
 /**
  * Neighborhood related to a vector of Bit
@@ -50,7 +51,7 @@ public:
     /**
      * Default Constructor
      */
-    moBitNeighborhood() : moNeighborhood<Neighbor>() { }
+    moBitNeighborhood() : moNeighborhood<Neighbor>(), currentBit(0) { }
 
     /**
      * Test if it exist a neighbor
@@ -68,7 +69,7 @@ public:
      */
     virtual void init(EOT & _solution, Neighbor & _neighbor) {
 		currentBit = 0 ;
-		_neighbor.bit = currentBit ;
+		_neighbor.index(currentBit) ;
     } 
 
     /**
@@ -78,7 +79,7 @@ public:
      */
     virtual void next(EOT & _solution, Neighbor & _neighbor) {
 		currentBit++ ;
-		_neighbor.bit = currentBit ;
+		_neighbor.index(currentBit);
     } 
 
     /**
@@ -88,8 +89,22 @@ public:
      */
     virtual bool cont(EOT & _solution) {
     	return (currentBit < _solution.size()) ;
-    } 
+    }
+
+    /**
+     * Getter
+     * @return the position in the Neighborhood
+     */
+    unsigned int position(){
+    	return currentBit;
+    }
     
+    /**
+     * Return the class id.
+     * @return the class name as a std::string
+     */
+    virtual std::string className() const { return "moBitNeighborhood"; }
+
 private:
     //Position in the neighborhood
     unsigned int currentBit;

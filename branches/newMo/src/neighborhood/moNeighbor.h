@@ -81,7 +81,7 @@ public:
      * Get the fitness of the neighbor
      * @return fitness of the neighbor
      */
-    const Fitness& fitness() const {
+    const Fitness fitness() const {
     	return repFitness;
     }
     
@@ -124,7 +124,7 @@ public:
      * @param _os A std::ostream.
      */
     virtual void printOn(std::ostream& _os) const {
-		_os << repFitness << ' ' ;
+		_os << repFitness << std::endl;
     }
     
 protected:

@@ -7,7 +7,8 @@
 typedef EO<int> Solution;
 
 class moDummyNeighbor : public moNeighbor<Solution,int>{
-
+public:
+    virtual void move(Solution & _solution){}
 };
 
 #endif

@@ -49,18 +49,15 @@ public:
 
     using moNeighbor<eoBit<Fitness>, Fitness>::fitness;
 
-    // describe the neighbor
-    unsigned bit ;
-
     /**
      * Default Constructor
      */
-    moBitNeighbor() : moBackableNeighbor<eoBit<Fitness> , Fitness>() { } ;
+    moBitNeighbor() : moBackableNeighbor<eoBit<Fitness> , Fitness>(), bit(0) { } ;
 
     /**
      * Copy Constructor
      */
-    moBitNeighbor(const moBitNeighbor& _n) : moNeighbor<eoBit<Fitness> , Fitness>(_n) {
+    moBitNeighbor(const moBitNeighbor& _n) : moBackableNeighbor<eoBit<Fitness> , Fitness>(_n) {
     	this->bit = _n.bit ;
     } ;
 
@@ -68,7 +65,7 @@ public:
      * Constructor
      * @param _b index
      */
-    moBitNeighbor(unsigned int _b) : moNeighbor<eoBit<Fitness> , Fitness>() , bit(_b) { } ;
+    moBitNeighbor(unsigned int _b) : moBackableNeighbor<eoBit<Fitness> , Fitness>() , bit(_b) { } ;
 
     /**
      * Assignment operator
@@ -135,6 +132,25 @@ public:
     	_os << fitness() << ' ' << bit << std::endl;
     }
     
+    /**
+     * Getter
+     * @return index of the bitNeighbor
+     */
+    unsigned int index(){
+    	return bit;
+    }
+
+    /**
+     * Setter
+     * @param index of the bitNeighbor
+     */
+    void index(unsigned int _bit){
+    	bit=_bit;
+    }
+
+private:
+    // describe the neighbor
+    unsigned int bit ;
 
 };
 

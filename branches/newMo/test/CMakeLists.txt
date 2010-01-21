@@ -28,7 +28,10 @@ LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib)
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
-SET (TEST_LIST t-moNeighbor)
+SET (TEST_LIST
+		t-moNeighbor
+		t-moBitNeighbor
+		t-moBitNeighborhood)
 				
 FOREACH (test ${TEST_LIST})
 	  SET ("T_${test}_SOURCES" "${test}.cpp")
