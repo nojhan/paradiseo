@@ -1,5 +1,5 @@
 /*
-  <t-moFullEvalByModif.cpp>
+  <t-moSimpleHCexplorer.cpp>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -33,7 +33,9 @@
 */
 
 #include "moTestClass.h"
-#include <eval/moFullEvalByModif.h>
+#include <eval/moFullEvalByCopy.h>
+#include <explorer/moSimpleHCexplorer.h>
+#include <comparator/moNeighborComparator.h>
 
 #include <cstdlib>
 #include <cassert>
@@ -42,22 +44,45 @@ int main(){
 
 	//Pas grand chose à faire: le gros du travail est fait par le voisin et l'eval
 
-	std::cout << "[t-moFullEvalByModif] => START" << std::endl;
+	std::cout << "[t-moSimpleHCexplorer] => START" << std::endl;
 
 	Solution sol;
-	moDummyBackableNeighbor neighbor;
+	moDummyNeighbor neighbor;
 	moDummyEval eval;
+	moDummyNeighborhood nh;
+	moFullEvalByCopy<moDummyNeighbor> fulleval(eval);
+	moNeighborComparator<moDummyNeighbor> comp;
 
 	//verif constructor
-	moFullEvalByModif<moDummyBackableNeighbor> test(eval);
+	moSimpleHCexplorer<moDummyNeighborhood> test(nh, fulleval, comp);
 
+	//verif operator() et accept: le neigorhood est construit pour qu'on tombe dans les 3 cas suivants:
+	//hasNeighbor() retourne faux a l'entrée de l'operator() donc on doit pas continuer
 	sol.fitness(3);
+	test(sol);
+	test.accept(sol);
+	assert(!test.isContinue(sol));
 
-	//verif operator()
-	test(sol,neighbor);
-	assert(sol.fitness()==3);
+	//hasNeighbor() retourne faux a l'entrée de accept() donc on doit pas continuer
+	test(sol);
+	test.accept(sol);
+	assert(!test.isContinue(sol));
 
-	std::cout << "[t-moFullEvalByModif] => OK" << std::endl;
+	//hasNeighbor() retourne vrai et on ameliore la fitness donc on doit continuer
+	test(sol);
+	test.accept(sol);
+	assert(test.isContinue(sol));
+
+	//verif de move -> on affecte la fitness du best d'avant
+	test.move(sol);
+
+	//hasNeighbor() retourne vrai et on ameliore la pas fitness donc on doit pas continuer
+	test(sol);
+	test(sol);
+	test.accept(sol);
+	assert(!test.isContinue(sol));
+
+	std::cout << "[t-moSimpleHCexplorer] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

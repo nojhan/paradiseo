@@ -33,7 +33,8 @@ SET (TEST_LIST
 		t-moBitNeighbor
 		t-moBitNeighborhood
 		t-moFullEvalByCopy
-		t-moFullEvalByModif)
+		t-moFullEvalByModif
+		t-moSimpleHCexplorer)
 				
 FOREACH (test ${TEST_LIST})
 	  SET ("T_${test}_SOURCES" "${test}.cpp")
