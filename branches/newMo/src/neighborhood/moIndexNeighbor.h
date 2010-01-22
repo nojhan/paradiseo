@@ -1,5 +1,5 @@
 /*
-  <moBitNeighbor.h>
+  <moIndexNeighbor.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,39 +32,40 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _bitNeighbor_h
-#define _bitNeighbor_h
+#ifndef _IndexNeighbor_h
+#define _IndexNeighbor_h
 
-#include <ga/eoBit.h>
-#include <neighborhood/moBackableNeighbor.h>
-#include <neighborhood/moIndexNeighbor.h>
+#include <neighborhood/moNeighbor.h>
 
 /**
  * Neighbor related to a vector of Bit
  */
-template< class Fitness >
-class moBitNeighbor : public moBackableNeighbor<eoBit<Fitness>, Fitness>, public moIndexNeighbor<eoBit<Fitness>, Fitness>
+template< class EOT , class Fitness >
+class moIndexNeighbor : virtual public moNeighbor<EOT, Fitness>
 {
 public:
-    typedef eoBit<Fitness> EOT ;
 
-    using moBackableNeighbor<eoBit<Fitness>, Fitness>::fitness;
-    using moIndexNeighbor<eoBit<Fitness>, Fitness>::key;
+    using moNeighbor<EOT, Fitness>::fitness;
 
     /**
-     * move the solution
-     * @param _solution the solution to move
+     * Default Constructor
      */
-    virtual void move(EOT & _solution) {
-    	_solution[key] = !_solution[key];
+    moIndexNeighbor() : moNeighbor<EOT, Fitness>(), key(0){}
+
+    /**
+     * Copy Constructor
+     */
+    moIndexNeighbor(const moIndexNeighbor& _n) : moNeighbor<EOT, Fitness>(_n) {
+    	this->key = _n.key ;
     }
 
     /**
-     * move back the solution (useful for the evaluation by modif)
-     * @param _solution the solution to move back
+     * Assignment operator
      */
-    virtual void moveBack(EOT & _solution) {
-    	_solution[key] = !_solution[key];
+    virtual moIndexNeighbor<EOT, Fitness> & operator=(const moIndexNeighbor<EOT, Fitness> & _source) {
+    	moNeighbor<EOT, Fitness>::operator=(_source);
+    	this->key = _source.key ;
+    	return *this ;
     }
 
     /**
@@ -72,40 +73,29 @@ public:
      * @return the class name as a std::string
      */
     virtual std::string className() const {
-    	return "moBitNeighbor";
+    	return "moIndexNeighbor";
     }
-    
-	/**
-	 * Read object.\							\
-	 * Calls base class, just in case that one had something to do.
-	 * The read and print methods should be compatible and have the same format.
-	 * In principle, format is "plain": they just print a number
-	 * @param _is a std::istream.
-	 * @throw runtime_std::exception If a valid object can't be read.
-	 */
-	virtual void readFrom(std::istream& _is) {
-		std::string fitness_str;
-		int pos = _is.tellg();
-		_is >> fitness_str;
-		if (fitness_str == "INVALID"){
-			throw std::runtime_error("invalid fitness");
-		}
-		else{
-			Fitness repFit ;
-			_is.seekg(pos); // rewind
-			_is >> repFit;
-			_is >> key;
-			fitness(repFit);
-		}
-	}
 
     /**
-     * Write object. Called printOn since it prints the object _on_ a stream.
-     * @param _os A std::ostream.
+     * Getter
+     * @return index of the IndexNeighbor
      */
-    virtual void printOn(std::ostream& _os) const {
-    	_os << fitness() << ' ' << key << std::endl;
+    unsigned int index(){
+    	return key;
     }
+
+    /**
+     * Setter
+     * @param index of the IndexNeighbor
+     */
+    void index(unsigned int _key){
+    	key=_key;
+    }
+
+protected:
+    // key allowing to describe the neighbor
+    unsigned int key;
+
 };
 
 #endif

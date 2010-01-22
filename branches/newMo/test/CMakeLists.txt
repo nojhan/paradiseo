@@ -31,7 +31,7 @@ LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib)
 SET (TEST_LIST
 		t-moNeighbor
 		t-moBitNeighbor
-		t-moBitNeighborhood
+		t-moOrderNeighborhood
 		t-moFullEvalByCopy
 		t-moFullEvalByModif
 		t-moSimpleHCexplorer)

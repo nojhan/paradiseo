@@ -1,5 +1,5 @@
 /*
-  <t-moBitNeighborhood.cpp>
+  <moIndexNeighborhood.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,46 +32,31 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <neighborhood/moBitNeighborhood.h>
+#ifndef _moIndexNeighborhood_h
+#define _moIndexNeighborhood_h
 
-#include <cstdlib>
-#include <cassert>
+#include <neighborhood/moNeighborhood.h>
 
-int main(){
+/**
+ * A Indexed Neighborhood
+ */
+template< class Neighbor >
+class moIndexNeighborhood : public moNeighborhood<Neighbor>
+{
+public:
+	/**
+	 * Define type of a solution corresponding to Neighbor
+	 */
+    typedef typename Neighbor::EOT EOT;
 
-	std::cout << "[t-moBitNeighborhood] => START" << std::endl;
+    /**
+     * Constructor
+     * @param _neighborhood the size of the neighborhood
+     */
+    moIndexNeighborhood(unsigned int _neighborhoodSize):neighborhoodSize(_neighborhoodSize){}
 
-	//init sol
-	eoBit<int> sol;
-	sol.push_back(true);
-	sol.push_back(false);
-	sol.push_back(true);
+protected:
+    unsigned int neighborhoodSize;
+};
 
-	moBitNeighbor<int> neighbor;
-
-	//verif du constructeur vide
-	moBitNeighborhood<moBitNeighbor<int> > test;
-	assert(test.position()==0);
-
-	//verif du hasneighbor
-	assert(test.hasNeighbor(sol));
-
-	//verif de init
-	test.init(sol, neighbor);
-	assert(neighbor.index()==0);
-	assert(test.position()==0);
-
-	//verif du next
-	test.next(sol, neighbor);
-	assert(neighbor.index()==1);
-	assert(test.position()==1);
-
-	//verif du cont
-	test.next(sol, neighbor);
-	assert(test.cont(sol));
-	test.next(sol, neighbor);
-	assert(!test.cont(sol));
-
-	std::cout << "[t-moBitNeighborhood] => OK" << std::endl;
-	return EXIT_SUCCESS;
-}
+#endif

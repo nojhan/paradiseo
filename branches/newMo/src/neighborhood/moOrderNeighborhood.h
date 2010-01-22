@@ -1,5 +1,5 @@
 /*
-  <moBitNeighborhood.h>
+  <moOrderNeighborhood.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,34 +32,42 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _bitNeighborhood_h
-#define _bitNeighborhood_h
+#ifndef _moOrderNeighborhood_h
+#define _moOrderNeighborhood_h
 
-#include <neighborhood/moNeighborhood.h>
-#include <neighborhood/moBitNeighbor.h>
+#include <neighborhood/moIndexNeighborhood.h>
 
 /**
- * Neighborhood related to a vector of Bit
+ * A Ordered Neighborhood
  */
 template< class N >
-class moBitNeighborhood : public moNeighborhood<N>
+class moOrderNeighborhood : public moIndexNeighborhood<N>
 {
 public:
-    typedef N Neighbor ;
-    typedef typename Neighbor::EOT EOT ;
+
+	/**
+	 * Define type of a solution corresponding to Neighbor
+	 */
+    typedef N Neighbor;
+    typedef typename Neighbor::EOT EOT;
+
+
+	using moIndexNeighborhood<Neighbor>::neighborhoodSize;
+
 
     /**
-     * Default Constructor
+     * Constructor
+     * @param _neighborhood the size of the neighborhood
      */
-    moBitNeighborhood() : moNeighborhood<Neighbor>(), currentBit(0) { }
+    moOrderNeighborhood(unsigned int _neighborhoodSize): moIndexNeighborhood<Neighbor>(_neighborhoodSize), currentIndex(0){}
 
     /**
      * Test if it exist a neighbor
      * @param _solution the solution to explore
-     * @return always True
+     * @return true if the neighborhood was not empty
      */
     virtual bool hasNeighbor(EOT& _solution) {
-    	return true;
+    	return neighborhoodSize > 0;
     }
 
     /**
@@ -68,9 +76,9 @@ public:
      * @param _neighbor the first neighbor
      */
     virtual void init(EOT & _solution, Neighbor & _neighbor) {
-		currentBit = 0 ;
-		_neighbor.index(currentBit) ;
-    } 
+		currentIndex = 0 ;
+		_neighbor.index(currentIndex) ;
+    }
 
     /**
      * Give the next neighbor
@@ -78,9 +86,9 @@ public:
      * @param _neighbor the next neighbor
      */
     virtual void next(EOT & _solution, Neighbor & _neighbor) {
-		currentBit++ ;
-		_neighbor.index(currentBit);
-    } 
+		currentIndex++ ;
+		_neighbor.index(currentIndex);
+    }
 
     /**
      * test if all neighbors are explore or not,if false, there is no neighbor left to explore
@@ -88,7 +96,7 @@ public:
      * @return true if there is again a neighbor to explore
      */
     virtual bool cont(EOT & _solution) {
-    	return (currentBit < _solution.size()) ;
+    	return (currentIndex < neighborhoodSize) ;
     }
 
     /**
@@ -96,20 +104,12 @@ public:
      * @return the position in the Neighborhood
      */
     unsigned int position(){
-    	return currentBit;
+    	return currentIndex;
     }
-    
-    /**
-     * Return the class id.
-     * @return the class name as a std::string
-     */
-    virtual std::string className() const { return "moBitNeighborhood"; }
 
 private:
-    //Position in the neighborhood
-    unsigned int currentBit;
+    unsigned int currentIndex;
+
 };
 
-
 #endif
-

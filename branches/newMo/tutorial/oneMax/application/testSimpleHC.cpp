@@ -25,7 +25,7 @@ using namespace std;
 // fitness function
 #include <funcOneMax.h>
 #include <eoInt.h>
-#include <neighborhood/moBitNeighborhood.h>
+#include <neighborhood/moOrderNeighborhood.h>
 #include <oneMaxBitNeighbor.h>
 
 #include <eval/moFullEvalByModif.h>
@@ -39,7 +39,7 @@ using namespace std;
 //-----------------------------------------------------------------------------
 typedef eoBit<unsigned> Indi;	
 typedef moBitNeighbor<unsigned int> Neighbor ; // incremental evaluation
-typedef moBitNeighborhood<Neighbor> Neighborhood ;
+typedef moOrderNeighborhood<Neighbor> Neighborhood ;
 
 void main_function(int argc, char **argv)
 {
@@ -138,7 +138,7 @@ void main_function(int argc, char **argv)
 	 *
 	 * ========================================================= */
 
-	Neighborhood neighborhood ;
+	Neighborhood neighborhood(vecSize);
 
 
 	/* =========================================================

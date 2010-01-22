@@ -1,5 +1,5 @@
 /*
-  <newmo.h>
+  <moRndWithReplNeighborhood.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,39 +32,71 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _newmo_h
-#define _newmo_h
+#ifndef _moRndWithReplNeighborhood_h
+#define _moRndWithReplNeighborhood_h
 
-#include <algo/moLocalSearch.h>
-
-#include <comparator/moComparator.h>
-#include <comparator/moNeighborComparator.h>
-
-#include <continuator/moContinuator.h>
-#include <continuator/moTrueContinuator.h>
-
-#include <eval/moEval.h>
-#include <eval/moFullEvalByCopy.h>
-#include <eval/moFullEvalByModif.h>
-
-#include <explorer/moNeighborhoodExplorer.h>
-#include <explorer/moSimpleHCexplorer.h>
-
-#include <neighborhood/moBackableNeighbor.h>
-#include <neighborhood/moBitNeighbor.h>
 #include <neighborhood/moIndexNeighborhood.h>
-#include <neighborhood/moIndexNeighbor.h>
-#include <neighborhood/moOrderNeighborhood.h>
-#include <neighborhood/moRndWithReplNeighborhood.h>
-#include <neighborhood/moRndWithoutReplNeighborhood.h>
-#include <neighborhood/moNeighbor.h>
-#include <neighborhood/moNeighborhood.h>
+#include <utils/eoRng.h>
 
-#include <old/moMove.h>
-#include <old/moMoveIncrEval.h>
-#include <old/moMoveInit.h>
-#include <old/moNextMove.h>
-#include <old/moMoveNeighbor.h>
-#include <old/moMoveNeighborhood.h>
+/**
+ * A Random With replacement Neighborhood
+ */
+template< class N >
+class moRndWithReplNeighborhood : public moIndexNeighborhood<N>
+{
+public:
+
+	/**
+	 * Define type of a solution corresponding to Neighbor
+	 */
+    typedef N Neighbor;
+    typedef typename Neighbor::EOT EOT;
+
+
+	using moIndexNeighborhood<Neighbor>::neighborhoodSize;
+
+    /**
+     * Constructor
+     * @param _neighborhood the size of the neighborhood
+     */
+    moRndWithReplNeighborhood(unsigned int _neighborhoodSize): moIndexNeighborhood<Neighbor>(_neighborhoodSize){}
+
+    /**
+     * Test if it exist a neighbor
+     * @param _solution the solution to explore
+     * @return true if the neighborhood was not empty
+     */
+    virtual bool hasNeighbor(EOT& _solution) {
+    	return neighborhoodSize > 0;
+    }
+
+    /**
+     * Initialization of the neighborhood
+     * @param _solution the solution to explore
+     * @param _neighbor the first neighbor
+     */
+    virtual void init(EOT & _solution, Neighbor & _neighbor) {
+		_neighbor.index(rng.random(neighborhoodSize));
+    }
+
+    /**
+     * Give the next neighbor
+     * @param _solution the solution to explore
+     * @param _neighbor the next neighbor
+     */
+    virtual void next(EOT & _solution, Neighbor & _neighbor) {
+		_neighbor.index(rng.random(neighborhoodSize));
+    }
+
+    /**
+     * test if all neighbors are explore or not,if false, there is no neighbor left to explore
+     * @param _solution the solution to explore
+     * @return true if there is again a neighbor to explore
+     */
+    virtual bool cont(EOT & _solution) {
+    	return neighborhoodSize > 0;
+    }
+
+};
 
 #endif

@@ -41,7 +41,7 @@
  * Neighbor with a move back function to use in a moFullEvalByModif
  */
 template< class EOT , class Fitness >
-class moBackableNeighbor : public moNeighbor<EOT, Fitness>
+class moBackableNeighbor : virtual public moNeighbor<EOT, Fitness>
 {
 public:
 
@@ -49,7 +49,7 @@ public:
 	 * the move back function
 	 * @param _solution the solution to moveBack
 	 */
-    virtual void moveBack(EOT & _solution){}
+    virtual void moveBack(EOT & _solution)=0;
 
 };
 

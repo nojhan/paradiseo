@@ -1,5 +1,5 @@
 /*
-  <t-moBitNeighborh.cpp>
+  <t-moOrderNeighborhood.cpp>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,14 +32,16 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
+#include <neighborhood/moOrderNeighborhood.h>
 #include <neighborhood/moBitNeighbor.h>
+#include <ga/eoBit.h>
 
 #include <cstdlib>
 #include <cassert>
 
 int main(){
 
-	std::cout << "[t-moBitNeighbor] => START" << std::endl;
+	std::cout << "[t-moOrderNeighborhood] => START" << std::endl;
 
 	//init sol
 	eoBit<int> sol;
@@ -47,38 +49,31 @@ int main(){
 	sol.push_back(false);
 	sol.push_back(true);
 
+	moBitNeighbor<int> neighbor;
+
 	//verif du constructeur vide
-	moBitNeighbor<int> test1;
-	assert(test1.index()==0);
+	moOrderNeighborhood<moBitNeighbor<int> > test(3);
+	assert(test.position()==0);
 
-	//verif du setter d'index et du constructeur de copy
-	test1.index(6);
-	test1.fitness(2);
-	moBitNeighbor<int> test2(test1);
-	assert(test2.index()==6);
-	assert(test2.fitness()==2);
+	//verif du hasneighbor
+	assert(test.hasNeighbor(sol));
 
-	//verif du getter
-	assert(test1.index()==6);
+	//verif de init
+	test.init(sol, neighbor);
+	assert(neighbor.index()==0);
+	assert(test.position()==0);
 
-	//verif de l'operateur=
-	test1.fitness(8);
-	test1.index(2);
-	test2=test1;
-	assert(test2.fitness()==8);
-	assert(test2.index()==2);
+	//verif du next
+	test.next(sol, neighbor);
+	assert(neighbor.index()==1);
+	assert(test.position()==1);
 
-	//verif de move
-	test2.move(sol);
-	assert(!sol[2]);
+	//verif du cont
+	test.next(sol, neighbor);
+	assert(test.cont(sol));
+	test.next(sol, neighbor);
+	assert(!test.cont(sol));
 
-	//verif de moveBack
-	test2.moveBack(sol);
-	assert(sol[2]);
-
-	test1.printOn(std::cout);
-	test2.printOn(std::cout);
-
-	std::cout << "[t-moBitNeighbor] => OK" << std::endl;
+	std::cout << "[t-moOrderNeighborhood] => OK" << std::endl;
 	return EXIT_SUCCESS;
 }
