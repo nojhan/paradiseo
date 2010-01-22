@@ -39,6 +39,7 @@
 
 #include <comparator/moComparator.h>
 #include <comparator/moNeighborComparator.h>
+#include <comparator/moSolNeighborComparator.h>
 
 #include <continuator/moContinuator.h>
 #include <continuator/moTrueContinuator.h>

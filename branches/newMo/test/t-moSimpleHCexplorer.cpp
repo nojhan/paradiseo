@@ -36,6 +36,7 @@
 #include <eval/moFullEvalByCopy.h>
 #include <explorer/moSimpleHCexplorer.h>
 #include <comparator/moNeighborComparator.h>
+#include <comparator/moSolNeighborComparator.h>
 
 #include <cstdlib>
 #include <cassert>
@@ -52,9 +53,10 @@ int main(){
 	moDummyNeighborhood nh;
 	moFullEvalByCopy<moDummyNeighbor> fulleval(eval);
 	moNeighborComparator<moDummyNeighbor> comp;
+	moSolNeighborComparator<moDummyNeighbor> solNeighborComp;
 
 	//verif constructor
-	moSimpleHCexplorer<moDummyNeighborhood> test(nh, fulleval, comp);
+	moSimpleHCexplorer<moDummyNeighborhood> test(nh, fulleval, comp, solNeighborComp);
 
 	//verif operator() et accept: le neigorhood est construit pour qu'on tombe dans les 3 cas suivants:
 	//hasNeighbor() retourne faux a l'entrée de l'operator() donc on doit pas continuer

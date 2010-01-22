@@ -25,7 +25,7 @@ using namespace std;
 // fitness function
 #include <funcOneMax.h>
 #include <eoInt.h>
-#include <neighborhood/moOrderNeighborhood.h>
+#include <neighborhood/moRndWithoutReplNeighborhood.h>
 #include <oneMaxBitNeighbor.h>
 
 #include <eval/moFullEvalByModif.h>
@@ -34,13 +34,13 @@ using namespace std;
 #include <comparator/moSolNeighborComparator.h>
 #include <continuator/moTrueContinuator.h>
 #include <algo/moLocalSearch.h>
-#include <explorer/moSimpleHCexplorer.h>
+#include <explorer/moFirstImprExplorer.h>
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
 typedef eoBit<unsigned> Indi;	
 typedef moBitNeighbor<unsigned int> Neighbor ; // incremental evaluation
-typedef moOrderNeighborhood<Neighbor> Neighborhood ;
+typedef moRndWithoutReplNeighborhood<Neighbor> Neighborhood ;
 
 void main_function(int argc, char **argv)
 {
@@ -149,7 +149,7 @@ void main_function(int argc, char **argv)
 	 *
 	 * ========================================================= */
   
-	moSimpleHCexplorer<Neighborhood> explorer(neighborhood, fulleval, comparator, solComparator);
+	moFirstImprExplorer<Neighborhood> explorer(neighborhood, fulleval, comparator, solComparator);
 
 
 	/* =========================================================
@@ -160,7 +160,7 @@ void main_function(int argc, char **argv)
 
 	moTrueContinuator<Neighborhood> continuator;//always continue
 
-	moLocalSearch< moSimpleHCexplorer<Neighborhood>, moTrueContinuator<Neighborhood> > localSearch(explorer, continuator, eval);
+	moLocalSearch< moFirstImprExplorer<Neighborhood>, moTrueContinuator<Neighborhood> > localSearch(explorer, continuator, eval);
 
 	/* =========================================================
 	 *

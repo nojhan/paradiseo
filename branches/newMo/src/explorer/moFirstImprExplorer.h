@@ -1,5 +1,5 @@
 /*
-  <moSimpleHCExplorer.h>
+  <moFirstImprExplorer.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,18 +32,18 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moSimpleHCexplorer_h
-#define _moSimpleHCexplorer_h
+#ifndef _moFirstImprexplorer_h
+#define _moFirstImprexplorer_h
 
 #include <explorer/moNeighborhoodExplorer.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
 
 /**
- * Explorer for a simple Hill-climbing
+ * Explorer for a first imporvement heuristic
  */
 template< class Neighborhood >
-class moSimpleHCexplorer : public moNeighborhoodExplorer<Neighborhood>
+class moFirstImprExplorer : public moNeighborhoodExplorer<Neighborhood>
 {
 public:
     typedef typename Neighborhood::EOT EOT ;
@@ -58,18 +58,16 @@ public:
 	 * @param _eval the evaluation function
 	 * @param _comparator a neighbor comparator
 	 */
- moSimpleHCexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator) {
+ moFirstImprExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator) {
     	isAccept = false;
     	current=new Neighbor();
-    	best=new Neighbor();
     }
 
 	/**
 	 * Destructor
 	 */
-    ~moSimpleHCexplorer(){
+    ~moFirstImprExplorer(){
     	delete current;
-    	delete best;
     }
 
 	/**
@@ -102,19 +100,12 @@ public:
 			//eval the _solution moved with the neighbor and stock the result in the neighbor
 			eval(_solution, (*current));
 
-			//initialize the best neighbor
-			(*best) = (*current);
-
 			//test all others neighbors
-			while (neighborhood.cont(_solution)) {
+			while (! solNeighborComparator(_solution, *current) && neighborhood.cont(_solution)) {
 				//next neighbor
 				neighborhood.next(_solution, (*current));
 				//eval
 				eval(_solution, (*current));
-				//if we found a better neighbor, update the best
-				if (neighborComparator((*best), (*current))) {
-					(*best) = (*current);
-				}
 			}
 		}
 		else{
@@ -138,9 +129,9 @@ public:
      */
     virtual void move(EOT & _solution) {
 		//move the solution
-    	(*best).move(_solution);
+    	(*current).move(_solution);
     	//update its fitness
-    	_solution.fitness((*best).fitness());
+    	_solution.fitness((*current).fitness());
     };
 
     /**
@@ -150,7 +141,7 @@ public:
      */
     virtual bool accept(EOT & _solution) {
 		if(neighborhood.hasNeighbor(_solution)){
-		  isAccept = solNeighborComparator(_solution, (*best)) ;
+		  isAccept = solNeighborComparator(_solution, (*current)) ;
 		}
 		return isAccept;
     };
@@ -161,7 +152,6 @@ private:
     moSolNeighborComparator<Neighbor>& solNeighborComparator;
 
     //Pointer on the best and the current neighbor
-    Neighbor* best;
     Neighbor* current;
 
     // true if the move is accepted

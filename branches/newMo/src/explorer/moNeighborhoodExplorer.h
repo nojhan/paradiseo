@@ -40,7 +40,6 @@
 
 #include <neighborhood/moNeighborhood.h>
 #include <eval/moEval.h>
-#include <comparator/moNeighborComparator.h>
 
 /**
  * Explore the neighborhood
@@ -59,7 +58,7 @@ public:
      * @param _eval the evaluation function
      * @param _comparator a neighbor comparator
      */
-    moNeighborhoodExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _comparator):neighborhood(_neighborhood), eval(_eval), comparator(_comparator) {}
+    moNeighborhoodExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval):neighborhood(_neighborhood), eval(_eval) {}
 
     /**
      * Init Search parameters
@@ -110,7 +109,6 @@ public:
 protected:
     Neighborhood & neighborhood;
     moEval<Neighbor>& eval;
-    moNeighborComparator<Neighbor>& comparator;
 };
 
 #endif
