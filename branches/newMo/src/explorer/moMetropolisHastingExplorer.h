@@ -1,5 +1,5 @@
 /*
-  <moFirstImprExplorer.h>
+  <moMetropolisHastingExplorer.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,18 +32,19 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moFirstImprexplorer_h
-#define _moFirstImprexplorer_h
+#ifndef _moMetropolisHastingExplorer_h
+#define _moMetropolisHastingExplorer_h
 
 #include <explorer/moNeighborhoodExplorer.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
 
 /**
- * Explorer for a first imporvement heuristic
+ * Explorer for the Metropolis-Hasting Sampling
+ * Only the symetric case is considered when Q(x,y) = Q(y,x)
  */
 template< class Neighborhood >
-class moFirstImprExplorer : public moNeighborhoodExplorer<Neighborhood>
+class moMetropolisHastingExplorer : public moNeighborhoodExplorer<Neighborhood>
 {
 public:
     typedef typename Neighborhood::EOT EOT ;
@@ -58,7 +59,7 @@ public:
 	 * @param _eval the evaluation function
 	 * @param _comparator a neighbor comparator
 	 */
- moFirstImprExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator) {
+ moMetropolisHastingExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator, unsigned int _nbStep) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator), nbStep(_nbStep) {
     	isAccept = false;
     	current=new Neighbor();
     }
@@ -66,19 +67,24 @@ public:
 	/**
 	 * Destructor
 	 */
-    ~moFirstImprExplorer(){
+    ~moMetropolisHastingExplorer(){
     	delete current;
     }
 
 	/**
-	 * initParam: NOTHING TO DO
+	 * initialization of the number of step to be done
 	 */
-    virtual void initParam(EOT & solution){};
+    virtual void initParam(EOT & solution){
+      step     = 0;
+      isAccept = true;
+    };
 
 	/**
-	 * updateParam: NOTHING TO DO
+	 * increase the number of step
 	 */
-    virtual void updateParam(EOT & solution){};
+    virtual void updateParam(EOT & solution){
+      step++;
+    };
 
 	/**
 	 * terminate: NOTHING TO DO
@@ -99,14 +105,6 @@ public:
 
 			//eval the _solution moved with the neighbor and stock the result in the neighbor
 			eval(_solution, (*current));
-
-			//test all others neighbors
-			while (! solNeighborComparator(_solution, *current) && neighborhood.cont(_solution)) {
-				//next neighbor
-				neighborhood.next(_solution, (*current));
-				//eval
-				eval(_solution, (*current));
-			}
 		}
 		else{
 		  //if _solution hasn't neighbor,
@@ -115,12 +113,12 @@ public:
     };
 
     /**
-     * continue if a move is accepted
+     * continue if there is a neighbor and it is remainds some steps to do
      * @param _solution the solution
-     * @return true if an ameliorated neighbor was be found
+     * @return true there is some steps to do
      */
     virtual bool isContinue(EOT & _solution) {
-    	return isAccept ;
+      return (step < nbStep) ;
     };
 
     /**
@@ -141,7 +139,13 @@ public:
      */
     virtual bool accept(EOT & _solution) {
 		if(neighborhood.hasNeighbor(_solution)){
-		  isAccept = solNeighborComparator(_solution, (*current)) ;
+		  if (solNeighborComparator(_solution, *current))
+		    isAccept = true;
+		  else {
+		    double alpha = (double) current->fitness() / (double) _solution.fitness();
+		    
+		    isAccept = (rng.uniform() < alpha) ;
+		  }
 		}
 		return isAccept;
     };
@@ -150,6 +154,12 @@ private:
     // comparator betwenn solution and neighbor or between neighbors
     moNeighborComparator<Neighbor>& neighborComparator;
     moSolNeighborComparator<Neighbor>& solNeighborComparator;
+
+    // current number of step
+    unsigned int step;
+
+    // maximum number of steps to do
+    unsigned int nbStep;
 
     //Pointer on the best and the current neighbor
     Neighbor* current;
