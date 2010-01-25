@@ -61,6 +61,16 @@ public:
     }
 
     /**
+     * Compare two neighbors
+     * @param _sol the solution
+     * @param _neighbor the neighbor
+     * @return true if the neighbor is equal to the solution
+     */
+    virtual bool equals(const EOT& _sol, const Neighbor& _neighbor) {
+    	return (_sol.fitness() == _neighbor.fitness());
+    }
+
+    /**
      * Return the class id.
      * @return the class name as a std::string
      */

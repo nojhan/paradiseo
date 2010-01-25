@@ -60,6 +60,16 @@ public:
     }
 
     /**
+     * Compare two neighbors
+     * @param _neighbor1 the first neighbor
+     * @param _neighbor2 the second neighbor
+     * @return true if the neighbor2 is equal to neighbor1
+     */
+    virtual bool equals(const Neighbor& _neighbor1, const Neighbor& _neighbor2) {
+    	return (_neighbor1.fitness() == _neighbor2.fitness());
+    }
+
+    /**
      * Return the class id.
      * @return the class name as a std::string
      */
