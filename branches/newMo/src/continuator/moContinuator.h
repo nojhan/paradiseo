@@ -52,6 +52,12 @@ public:
      * @param _solution the related solution
      */
     virtual void init(EOT& _solution) = 0 ;
+
+	/**
+	 * Last Call to terminate the checkpoint
+	 * @param _solution the related solution
+	 */
+    virtual void lastCall(EOT& _solution){}
 };
 
 #endif

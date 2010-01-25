@@ -1,5 +1,5 @@
 /*
-  <newmo.h>
+  <moFitnessStat.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,52 +32,41 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _newmo_h
-#define _newmo_h
+#ifndef moCounterStat_h
+#define moCoutnerStat_h
 
-#include <algo/moLocalSearch.h>
-
-#include <comparator/moComparator.h>
-#include <comparator/moNeighborComparator.h>
-#include <comparator/moSolNeighborComparator.h>
-
-#include <continuator/moContinuator.h>
-#include <continuator/moTrueContinuator.h>
-#include <continuator/moCheckpoint.h>
-#include <continuator/moCounterMonitorSaver.h>
-#include <continuator/moConnterStat.h>
-#include <continuator/moFitnessStat.h>
 #include <continuator/moStat.h>
-#include <continuator/moStatBase.h>
 
-#include <eval/moEval.h>
-#include <eval/moFullEvalByCopy.h>
-#include <eval/moFullEvalByModif.h>
+/**
+ * The actual class that will be used as base for all statistics
+ * that need to be calculated over the solution
+ * It is a moStatBase AND an eoValueParam so it can be used in Monitors.
+ */
+template <class EOT, class T>
+class moCounterStat : public moStat< EOT, T >
+{
+public :
+  moCounterStat(unsigned int _interval, moStat<EOT, T> & _solStat): moStat<EOT, T >(0, "every"), interval(_interval){
+    solStats.push_back(&_solStat);
+  }
 
-#include <explorer/moNeighborhoodExplorer.h>
-#include <explorer/moSimpleHCexplorer.h>
-#include <explorer/moFirstImprExplorer.h>
-#include <explorer/moHCneutralExplorer.h>
-#include <explorer/moSimpleHCneutralExplorer.h>
-#include <explorer/moMetropolisHastingExplorer.h>
-#include <explorer/moRandomWalkExplorer.h>
+  void add(moStat<EOT, T>& _stat) {
+    solStats.push_back(&_stat);
+  }
 
 
-#include <neighborhood/moBackableNeighbor.h>
-#include <neighborhood/moBitNeighbor.h>
-#include <neighborhood/moIndexNeighborhood.h>
-#include <neighborhood/moIndexNeighbor.h>
-#include <neighborhood/moOrderNeighborhood.h>
-#include <neighborhood/moRndWithReplNeighborhood.h>
-#include <neighborhood/moRndWithoutReplNeighborhood.h>
-#include <neighborhood/moNeighbor.h>
-#include <neighborhood/moNeighborhood.h>
+  virtual void operator()(EOT & _sol) {
+    if (++counter % interval == 0)
+      for (unsigned i = 0; i < solStats.size(); ++i)
+	(*solStats[i])(_sol);
+  }
 
-#include <old/moMove.h>
-#include <old/moMoveIncrEval.h>
-#include <old/moMoveInit.h>
-#include <old/moNextMove.h>
-#include <old/moMoveNeighbor.h>
-#include <old/moMoveNeighborhood.h>
+  virtual std::string className(void) const { return "moCounterStat"; }
+
+private:
+  unsigned int counter, interval;
+
+  std::vector<moStat<EOT, T>* > solStats;
+};
 
 #endif

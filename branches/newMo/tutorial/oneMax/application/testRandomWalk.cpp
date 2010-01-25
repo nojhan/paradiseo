@@ -33,6 +33,12 @@ using namespace std;
 #include <continuator/moTrueContinuator.h>
 #include <algo/moLocalSearch.h>
 #include <explorer/moRandomWalkExplorer.h>
+#include <continuator/moCheckpoint.h>
+#include <continuator/moFitnessStat.h>
+
+
+#include <utils/eoFileMonitor.h>
+#include <utils/eoUpdater.h>
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
@@ -151,8 +157,18 @@ void main_function(int argc, char **argv)
 	 * ========================================================= */
 
 	moTrueContinuator<Neighborhood> continuator;//always continue
+	moFitnessStat<Indi, unsigned> fStat;
+	moCheckpoint<Neighborhood> checkpoint(continuator);
+	eoFileMonitor outputfile("out.dat", " ");
+	checkpoint.add(outputfile);
+	checkpoint.add(fStat);
+	eoValueParam<unsigned int> genCounter(-1,"Gen");
+	eoIncrementor<unsigned int> increm(genCounter.value());
+	checkpoint.add(increm);
+	outputfile.add(genCounter);
+	outputfile.add(fStat);
 
-	moLocalSearch< moRandomWalkExplorer<Neighborhood>, moTrueContinuator<Neighborhood> > localSearch(explorer, continuator, eval);
+	moLocalSearch< moRandomWalkExplorer<Neighborhood> > localSearch(explorer, checkpoint, eval);
 
 	/* =========================================================
 	 *

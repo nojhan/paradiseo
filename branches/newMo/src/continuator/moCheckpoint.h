@@ -1,5 +1,5 @@
 /*
-  <newmo.h>
+  <moCheckpoint.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,52 +32,75 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _newmo_h
-#define _newmo_h
-
-#include <algo/moLocalSearch.h>
-
-#include <comparator/moComparator.h>
-#include <comparator/moNeighborComparator.h>
-#include <comparator/moSolNeighborComparator.h>
+#ifndef moCheckpoint_h
+#define moCheckpoint_h
 
 #include <continuator/moContinuator.h>
-#include <continuator/moTrueContinuator.h>
-#include <continuator/moCheckpoint.h>
-#include <continuator/moCounterMonitorSaver.h>
-#include <continuator/moConnterStat.h>
-#include <continuator/moFitnessStat.h>
-#include <continuator/moStat.h>
+#include <utils/eoMonitor.h>
 #include <continuator/moStatBase.h>
 
-#include <eval/moEval.h>
-#include <eval/moFullEvalByCopy.h>
-#include <eval/moFullEvalByModif.h>
+template <class NH>
+class moCheckpoint : public moContinuator<NH> {
+public :
 
-#include <explorer/moNeighborhoodExplorer.h>
-#include <explorer/moSimpleHCexplorer.h>
-#include <explorer/moFirstImprExplorer.h>
-#include <explorer/moHCneutralExplorer.h>
-#include <explorer/moSimpleHCneutralExplorer.h>
-#include <explorer/moMetropolisHastingExplorer.h>
-#include <explorer/moRandomWalkExplorer.h>
+    typedef NH Neighborhood ;
+    typedef typename Neighborhood::EOT EOT ;
 
+    moCheckpoint(moContinuator<Neighborhood>& _cont) {
+    	continuators.push_back(&_cont);
+    }
 
-#include <neighborhood/moBackableNeighbor.h>
-#include <neighborhood/moBitNeighbor.h>
-#include <neighborhood/moIndexNeighborhood.h>
-#include <neighborhood/moIndexNeighbor.h>
-#include <neighborhood/moOrderNeighborhood.h>
-#include <neighborhood/moRndWithReplNeighborhood.h>
-#include <neighborhood/moRndWithoutReplNeighborhood.h>
-#include <neighborhood/moNeighbor.h>
-#include <neighborhood/moNeighborhood.h>
+    void add(moContinuator<Neighborhood>& _cont) { continuators.push_back(&_cont); }
+    void add(moStatBase<EOT>& _stat) { stats.push_back(&_stat); }
+    void add(eoMonitor& _mon) { monitors.push_back(&_mon); }
+    void add(eoUpdater& _upd) { updaters.push_back(&_upd); }
 
-#include <old/moMove.h>
-#include <old/moMoveIncrEval.h>
-#include <old/moMoveInit.h>
-#include <old/moNextMove.h>
-#include <old/moMoveNeighbor.h>
-#include <old/moMoveNeighborhood.h>
+    virtual void init(EOT& _sol) {
+    	for(unsigned i = 0; i < continuators.size(); ++i)
+    		continuators[i]->init(_sol);
+    }
+
+    virtual std::string className(void) const { return "moCheckPoint"; }
+
+    bool operator()(EOT & _sol) {
+    	unsigned i;
+    	bool bContinue = true;
+
+    	  for (i = 0; i < stats.size(); ++i)
+    	    (*stats[i])(_sol);
+
+    	  for (i = 0; i < updaters.size(); ++i)
+    	    (*updaters[i])();
+
+    	  for (i = 0; i < monitors.size(); ++i)
+    	    (*monitors[i])();
+
+    	  for (i = 0; i < continuators.size(); ++i)
+    	    if ( !(*continuators[i])(_sol) )
+    	      bContinue = false;
+
+    	  return bContinue;
+    	}
+
+    void lastCall(EOT& _sol){
+			unsigned int i;
+	      for (i = 0; i < stats.size(); ++i)
+	    	  stats[i]->lastCall(_sol);
+
+	      for (i = 0; i < updaters.size(); ++i)
+		updaters[i]->lastCall();
+
+	      for (i = 0; i < monitors.size(); ++i)
+		monitors[i]->lastCall();
+	    }
+
+private :
+
+  std::vector<moContinuator<Neighborhood>*> continuators;
+  std::vector<moStatBase<EOT>*> stats;
+  std::vector<eoMonitor*> monitors;
+  std::vector<eoUpdater*> updaters;
+};
+
 
 #endif

@@ -174,7 +174,7 @@ void main_function(int argc, char **argv)
 
   moTrueContinuator<Neighborhood> continuator;
 
-  moLocalSearch< moSimpleHCexplorer<Neighborhood>, moTrueContinuator<Neighborhood> > localSearch(explorer, continuator);
+  moLocalSearch< moSimpleHCexplorer<Neighborhood> > localSearch(explorer, continuator);
 
   /* =========================================================
    *

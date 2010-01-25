@@ -36,7 +36,7 @@
 #define _moRndWithReplNeighborhood_h
 
 #include <neighborhood/moIndexNeighborhood.h>
-#include <utils/eoRng.h>
+#include <utils/eoRNG.h>
 
 /**
  * A Random With replacement Neighborhood
