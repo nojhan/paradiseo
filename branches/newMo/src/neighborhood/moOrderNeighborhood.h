@@ -92,11 +92,13 @@ public:
 
     /**
      * test if all neighbors are explore or not,if false, there is no neighbor left to explore
+     * currentIndex is the index which have been used before, it is not the next neighbor which can be possibly evaluated
+     *
      * @param _solution the solution to explore
      * @return true if there is again a neighbor to explore
      */
     virtual bool cont(EOT & _solution) {
-    	return (currentIndex < neighborhoodSize) ;
+    	return (currentIndex < neighborhoodSize - 1) ;
     }
 
     /**

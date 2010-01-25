@@ -172,7 +172,7 @@ public:
       return isAccept;
     };
 
-private:
+protected:
     // comparator betwenn solution and neighbor or between neighbors
     moNeighborComparator<Neighbor>& neighborComparator;
     moSolNeighborComparator<Neighbor>& solNeighborComparator;

@@ -106,11 +106,12 @@ public:
 
     /**
      * test if all neighbors are explore or not,if false, there is no neighbor left to explore
+     * maxIndex is number of neighbors 
      * @param _solution the solution to explore
      * @return true if there is again a neighbor to explore
      */
     virtual bool cont(EOT & _solution) {
-    	return (maxIndex > 0) ;
+    	return (maxIndex > 1) ;
     }
 
     /**
