@@ -58,7 +58,7 @@ public:
      * @param _eval the evaluation function
      * @param _comparator a neighbor comparator
      */
-    moNeighborhoodExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval):neighborhood(_neighborhood), eval(_eval) {}
+    moNeighborhoodExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval):neighborhood(_neighborhood), eval(_eval), isMoved(false) {}
 
     /**
      * Init Search parameters
@@ -98,6 +98,23 @@ public:
      */
     virtual void terminate(EOT& _solution) = 0 ;
 
+
+    /**
+     * Getter for variable "isMoved"
+     * @return true if move is applied
+     */
+    bool moveApplied(){
+    	return isMoved;
+    }
+
+    /**
+     * Setter for variable "isMoved"
+     * @param _isMoved
+     */
+    void moveApplied(bool _isMoved){
+    	isMoved=_isMoved;
+    }
+
     /**
      * Return the class id.
      * @return the class name as a std::string
@@ -109,6 +126,7 @@ public:
 protected:
     Neighborhood & neighborhood;
     moEval<Neighbor>& eval;
+    bool isMoved;
 };
 
 #endif
