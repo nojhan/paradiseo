@@ -116,6 +116,7 @@ public:
 					(*best) = (*current);
 				}
 			}
+
 		}
 		else{
 			//if _solution hasn't neighbor,
