@@ -121,7 +121,7 @@ public:
 
 
 	/**
-	 *
+	 * terminate : NOTHING TO DO
 	 */
     virtual void terminate(EOT & solution)
     {
