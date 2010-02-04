@@ -96,7 +96,6 @@ public:
 
 		//A CHANGER
 		return true;
-
     };
 
 private:
