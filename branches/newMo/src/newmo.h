@@ -45,7 +45,7 @@
 #include <continuator/moTrueContinuator.h>
 #include <continuator/moCheckpoint.h>
 #include <continuator/moCounterMonitorSaver.h>
-#include <continuator/moConnterStat.h>
+#include <continuator/moCounterStat.h>
 #include <continuator/moFitnessStat.h>
 #include <continuator/moStat.h>
 #include <continuator/moStatBase.h>
@@ -61,6 +61,17 @@
 #include <explorer/moSimpleHCneutralExplorer.h>
 #include <explorer/moMetropolisHastingExplorer.h>
 #include <explorer/moRandomWalkExplorer.h>
+#include <explorer/moTSExplorer.h>
+
+#include <memory/moAspiration.h>
+#include <memory/moBestImprAspiration.h>
+#include <memory/moTabuList.h>
+#include <memory/moIntensification.h>
+#include <memory/moDummyIntensification.h>
+#include <memory/moDiversification.h>
+#include <memory/moDummyDiversification.h>
+#include <memory/moMemory.h>
+#include <memory/moSolVectorTabuList.h>
 
 
 #include <neighborhood/moBackableNeighbor.h>
@@ -73,11 +84,11 @@
 #include <neighborhood/moNeighbor.h>
 #include <neighborhood/moNeighborhood.h>
 
-#include <old/moMove.h>
-#include <old/moMoveIncrEval.h>
-#include <old/moMoveInit.h>
-#include <old/moNextMove.h>
-#include <old/moMoveNeighbor.h>
-#include <old/moMoveNeighborhood.h>
+//#include <old/moMove.h>
+//#include <old/moMoveIncrEval.h>
+//#include <old/moMoveInit.h>
+//#include <old/moNextMove.h>
+//#include <old/moMoveNeighbor.h>
+//#include <old/moMoveNeighborhood.h>
 
 #endif
