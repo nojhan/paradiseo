@@ -38,7 +38,17 @@ using namespace std;
 #include <continuator/moSolutionStat.h>
 #include <utils/eoDistance.h>
 #include <continuator/moDistanceStat.h>
-
+#include <comparator/moNeighborComparator.h>
+#include <comparator/moSolNeighborComparator.h>
+#include <neighborhood/moOrderNeighborhood.h>
+#include <continuator/moNeighborhoodStat.h>
+#include <continuator/moMinNeighborStat.h>
+#include <continuator/moMaxNeighborStat.h>
+#include <continuator/moSecondMomentNeighborStat.h>
+#include <continuator/moNbInfNeighborStat.h>
+#include <continuator/moNbSupNeighborStat.h>
+#include <continuator/moNeutralDegreeNeighborStat.h>
+#include <continuator/moSizeNeighborStat.h>
 
 #include <utils/eoFileMonitor.h>
 #include <utils/eoUpdater.h>
@@ -129,10 +139,10 @@ void main_function(int argc, char **argv)
 	 *
 	 * ========================================================= */
 
-	moFullEvalByModif<Neighbor> fulleval(eval);
+	moFullEvalByModif<Neighbor> nhEval(eval);
 
 	//An eval by copy can be used instead of the eval by modif
-	//moFullEvalByCopy<Neighbor> fulleval(eval);
+	//moFullEvalByCopy<Neighbor> nhEval(eval);
 
 
 	/* =========================================================
@@ -150,7 +160,7 @@ void main_function(int argc, char **argv)
 	 *
 	 * ========================================================= */
   
-	moRandomWalkExplorer<Neighborhood> explorer(neighborhood, fulleval, nbStep);
+	moRandomWalkExplorer<Neighborhood> explorer(neighborhood, nhEval, nbStep);
 
 
 	/* =========================================================
@@ -161,21 +171,42 @@ void main_function(int argc, char **argv)
 
 	moTrueContinuator<Neighborhood> continuator;//always continue
 
+	moCheckpoint<Neighborhood> checkpoint(continuator);
+
 	moFitnessStat<Indi, unsigned> fStat;
 	eoHammingDistance<Indi> distance;
 	Indi bestSolution(vecSize, true);
 	moDistanceStat<Indi, unsigned> distStat(distance, bestSolution);
 	//	moSolutionStat<Indi> solStat;
+	
+	moNeighborComparator<Neighbor> comparator;
+	moSolNeighborComparator<Neighbor> solComparator;
+	moOrderNeighborhood<Neighbor> nh(vecSize);
+	moNeigborhoodStat< moOrderNeighborhood<Neighbor> > neighborhoodStat(nh, nhEval, comparator, solComparator);
+	moMinNeighborStat< moOrderNeighborhood<Neighbor> > minStat(neighborhoodStat);
+	moMaxNeighborStat< moOrderNeighborhood<Neighbor> > maxStat(neighborhoodStat);
+	moSecondMomentNeighborStat< moOrderNeighborhood<Neighbor> > secondMomentStat(neighborhoodStat);
+	moNbSupNeighborStat< moOrderNeighborhood<Neighbor> > nbSupStat(neighborhoodStat);
+	moNbInfNeighborStat< moOrderNeighborhood<Neighbor> > nbInfStat(neighborhoodStat);
+	moNeutralDegreeNeighborStat< moOrderNeighborhood<Neighbor> > ndStat(neighborhoodStat);
+	moSizeNeighborStat< moOrderNeighborhood<Neighbor> > sizeStat(neighborhoodStat);
 
 	checkpoint.add(fStat);
 	checkpoint.add(distStat);
 	//	checkpoint.add(solStat);
+	checkpoint.add(neighborhoodStat);
+	checkpoint.add(minStat);
+	checkpoint.add(maxStat);
+	checkpoint.add(secondMomentStat);
+	checkpoint.add(nbInfStat);
+	checkpoint.add(nbSupStat);
+	checkpoint.add(ndStat);
+	checkpoint.add(sizeStat);
 
 	eoValueParam<unsigned int> genCounter(-1,"Gen");
 	eoIncrementor<unsigned int> increm(genCounter.value());
 	checkpoint.add(increm);
 
-	moCheckpoint<Neighborhood> checkpoint(continuator);
 	eoFileMonitor outputfile("out.dat", " ");
 	checkpoint.add(outputfile);
 
@@ -183,6 +214,13 @@ void main_function(int argc, char **argv)
 	outputfile.add(fStat);
 	outputfile.add(distStat);
 	//	outputfile.add(solStat);
+	outputfile.add(minStat);
+	outputfile.add(maxStat);
+	outputfile.add(secondMomentStat);
+	outputfile.add(nbInfStat);
+	outputfile.add(nbSupStat);
+	outputfile.add(ndStat);
+	outputfile.add(sizeStat);
 
 	// to save the solution at each iteration
 	eoState outState;

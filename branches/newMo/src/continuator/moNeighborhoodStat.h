@@ -1,0 +1,175 @@
+/*
+  <moNeigborhoodStat.h>
+  Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
+
+  Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
+
+  This software is governed by the CeCILL license under French law and
+  abiding by the rules of distribution of free software.  You can  use,
+  modify and/ or redistribute the software under the terms of the CeCILL
+  license as circulated by CEA, CNRS and INRIA at the following URL
+  "http://www.cecill.info".
+
+  As a counterpart to the access to the source code and  rights to copy,
+  modify and redistribute granted by the license, users are provided only
+  with a limited warranty  and the software's author,  the holder of the
+  economic rights,  and the successive licensors  have only  limited liability.
+
+  In this respect, the user's attention is drawn to the risks associated
+  with loading,  using,  modifying and/or developing or reproducing the
+  software by the user in light of its specific status of free software,
+  that may mean  that it is complicated to manipulate,  and  that  also
+  therefore means  that it is reserved for developers  and  experienced
+  professionals having in-depth computer knowledge. Users are therefore
+  encouraged to load and test the software's suitability as regards their
+  requirements in conditions enabling the security of their systems and/or
+  data to be ensured and,  more generally, to use and operate it in the
+  same conditions as regards security.
+  The fact that you are presently reading this means that you have had
+  knowledge of the CeCILL license and that you accept its terms.
+
+  ParadisEO WebSite : http://paradiseo.gforge.inria.fr
+  Contact: paradiseo-help@lists.gforge.inria.fr
+*/
+
+#ifndef moNeigborhoodStat_h
+#define moNeigborhoodStat_h
+
+#include <continuator/moStat.h>
+
+#include <explorer/moNeighborhoodExplorer.h>
+#include <comparator/moNeighborComparator.h>
+#include <comparator/moSolNeighborComparator.h>
+
+/**
+ * All possible statitic on the neighborhood fitness
+ * to combine with other specific statistic to print them
+*/
+template< class Neighborhood >
+class moNeigborhoodStat : public moStat<typename Neighborhood::EOT, bool>
+{
+public :
+  typedef typename Neighborhood::EOT EOT ;
+  typedef typename Neighborhood::Neighbor Neighbor ;
+  typedef typename EOT::Fitness Fitness ;
+
+  using moStat< EOT, bool >::value;
+
+  moNeigborhoodStat(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, 
+		    moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator) 
+    : moStat<EOT, bool>(true, "neighborhood"), 
+      neighborhood(_neighborhood), eval(_eval), 
+      neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator)
+  {}
+
+  virtual void operator()(EOT & _solution)
+  {
+    Neighbor current ;
+    Neighbor best ;
+    Neighbor lowest ;
+
+    if(neighborhood.hasNeighbor(_solution)){
+      //init the first neighbor
+      neighborhood.init(_solution, current);
+
+      //eval the _solution moved with the neighbor and stock the result in the neighbor
+      eval(_solution, current);
+      
+      // init the statistics
+      value() = true;
+
+      mean = current.fitness();
+      sd   = mean * mean;
+
+      nb      = 1;
+      nbInf   = 0;
+      nbEqual = 0;
+      nbSup   = 0;
+
+      if (solNeighborComparator.equals(_solution, current))
+	nbEqual++;
+      else
+	if (solNeighborComparator(_solution, current))
+	  nbSup++;
+	else
+	  nbInf++;
+
+      //initialize the best neighbor
+      best   = current;
+      lowest = current;
+
+      //test all others neighbors
+      while (neighborhood.cont(_solution)) {
+	//next neighbor
+	neighborhood.next(_solution, current);
+	//eval
+	eval(_solution, current);
+
+	mean += current.fitness();
+	sd   += current.fitness() * current.fitness();
+	nb++;
+	
+	if (solNeighborComparator.equals(_solution, current))
+	  nbEqual++;
+	else
+	  if (solNeighborComparator(_solution, current))
+	    nbSup++;
+	  else
+	    nbInf++;
+
+	//if we found a better neighbor, update the best
+	if (neighborComparator(best, current)) 
+	  best = current;
+	
+	if (neighborComparator(current, lowest)) 
+	  lowest = current;
+      }
+
+      max = best.fitness();
+      min = lowest.fitness();
+
+      mean /= nb;
+      if (nb > 1)
+	sd = sqrt( (sd - nb * mean * mean) / (nb - 1.0) );
+      else
+	sd = 0.0;
+    }
+    else{
+      //if _solution hasn't neighbor,
+      value() = false;
+    }
+  }
+
+  Fitness getMin() { return min ; }
+  Fitness getMax() { return max ; }
+  double getMean() { return mean ; }
+  double getSD() { return sd ; }
+  
+  unsigned getSize() { return nb ; }
+  unsigned getNbSup() { return nbSup ; }
+  unsigned getNbEqual() { return nbEqual ; }
+  unsigned getNbInf() { return nbInf ; }
+
+  virtual std::string className(void) const { return "moNeigborhoodStat"; }
+
+private:
+  // to explore the neighborhood
+  Neighborhood& neighborhood ;
+  moEval<Neighbor>& eval;
+
+  // comparator betwenn solution and neighbor or between neighbors
+  moNeighborComparator<Neighbor>& neighborComparator;
+  moSolNeighborComparator<Neighbor>& solNeighborComparator;
+
+  // the stastics of the fitness
+  Fitness max, min;
+  double mean, sd ;
+
+  // number of neighbors in the neighborhood;
+  unsigned nb;
+
+  // number of neighbors with lower, equal and higher fitness
+  unsigned nbInf, nbEqual, nbSup ;
+};
+
+#endif
