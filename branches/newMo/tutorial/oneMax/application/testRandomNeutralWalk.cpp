@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
-/** testRandomWalk.cpp
+/** testRandomNeutralWalk.cpp
  *
- * SV - 22/01/10 
+ * SV - 22/02/10 
  *
  */
 //-----------------------------------------------------------------------------
@@ -23,30 +23,38 @@ using namespace std;
 
 //-----------------------------------------------------------------------------
 // fitness function
-#include <funcOneMax.h>
+#include <funcRoyalRoad.h>
 #include <eoInt.h>
-#include <neighborhood/moRndWithReplNeighborhood.h>
-#include <oneMaxBitNeighbor.h>
+#include <neighborhood/moRndWithoutReplNeighborhood.h>
+#include <neighborhood/moBitNeighbor.h>
 
 #include <eval/moFullEvalByModif.h>
 #include <eval/moFullEvalByCopy.h>
+#include <comparator/moNeighborComparator.h>
+#include <comparator/moSolNeighborComparator.h>
 #include <continuator/moTrueContinuator.h>
 #include <algo/moLocalSearch.h>
-#include <explorer/moRandomWalkExplorer.h>
+#include <explorer/moRandomNeutralWalkExplorer.h>
+
 #include <continuator/moCheckpoint.h>
 #include <continuator/moFitnessStat.h>
-#include <continuator/moSolutionStat.h>
 #include <utils/eoDistance.h>
 #include <continuator/moDistanceStat.h>
-
-#include <utils/eoFileMonitor.h>
-#include <utils/eoUpdater.h>
+#include <neighborhood/moOrderNeighborhood.h>
+#include <continuator/moNeighborhoodStat.h>
+#include <continuator/moMinNeighborStat.h>
+#include <continuator/moMaxNeighborStat.h>
+#include <continuator/moSecondMomentNeighborStat.h>
+#include <continuator/moNbInfNeighborStat.h>
+#include <continuator/moNbSupNeighborStat.h>
+#include <continuator/moNeutralDegreeNeighborStat.h>
+#include <continuator/moSizeNeighborStat.h>
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
 typedef eoBit<unsigned> Indi;	
 typedef moBitNeighbor<unsigned int> Neighbor ; // incremental evaluation
-typedef moRndWithReplNeighborhood<Neighbor> Neighborhood ;
+typedef moRndWithoutReplNeighborhood<Neighbor> Neighborhood ;
 
 void main_function(int argc, char **argv)
 {
@@ -70,6 +78,10 @@ void main_function(int argc, char **argv)
 	eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size", 'V');
 	parser.processParam( vecSizeParam, "Representation" );
 	unsigned vecSize = vecSizeParam.value();
+
+	eoValueParam<unsigned int> blockSizeParam(2, "blockSize", "Size of block in the royal road", 'k');
+	parser.processParam( blockSizeParam, "Representation" );
+	unsigned blockSize = blockSizeParam.value();
 
 	eoValueParam<unsigned int> stepParam(10, "nbStep", "Number of steps of the random walk", 'n');
 	parser.processParam( stepParam, "Representation" );
@@ -108,12 +120,12 @@ void main_function(int argc, char **argv)
 	 *
 	 * ========================================================= */
 
-	FuncOneMax<Indi> eval(vecSize);
+	FuncRoyalRoad<Indi> eval(vecSize / blockSize, blockSize);
 
 
 	/* =========================================================
 	 *
-	 * Initilisation of the solution
+	 * Initilisazor of the solution
 	 *
 	 * ========================================================= */
 
@@ -124,7 +136,7 @@ void main_function(int argc, char **argv)
 
 	/* =========================================================
 	 *
-	 * evaluation of a neighbor solution
+	 * Evaluation of a neighbor solution
 	 *
 	 * ========================================================= */
 
@@ -132,6 +144,16 @@ void main_function(int argc, char **argv)
 
 	//An eval by copy can be used instead of the eval by modif
 	//moFullEvalByCopy<Neighbor> nhEval(eval);
+
+
+	/* =========================================================
+	 *
+	 * Comparator of neighbors
+	 *
+	 * ========================================================= */
+
+	moNeighborComparator<Neighbor> comparator;
+	moSolNeighborComparator<Neighbor> solComparator;
 
 
 	/* =========================================================
@@ -149,8 +171,21 @@ void main_function(int argc, char **argv)
 	 *
 	 * ========================================================= */
   
-	moRandomWalkExplorer<Neighborhood> explorer(neighborhood, nhEval, nbStep);
+	moRandomNeutralWalkExplorer<Neighborhood> explorer(neighborhood, nhEval, solComparator, nbStep);
 
+
+	/* =========================================================
+	 *
+	 * initial random solution
+	 *
+	 * ========================================================= */
+
+	Indi solution;
+
+	random(solution);
+
+	//Can be eval here, else it will be done at the beginning of the localSearch
+	eval(solution);
 
 	/* =========================================================
 	 *
@@ -163,17 +198,34 @@ void main_function(int argc, char **argv)
 	moCheckpoint<Neighborhood> checkpoint(continuator);
 
 	moFitnessStat<Indi, unsigned> fStat;
+
 	eoHammingDistance<Indi> distance;
-	Indi bestSolution(vecSize, true);
-	moDistanceStat<Indi, unsigned> distStat(distance, bestSolution);
-	//	moSolutionStat<Indi> solStat;
+	moDistanceStat<Indi, unsigned> distStat(distance, solution);  // distance from the intial solution
 	
-	checkpoint.add(fStat);
-	checkpoint.add(distStat);
-	//	checkpoint.add(solStat);
+	moOrderNeighborhood<Neighbor> nh(vecSize);
+	moNeigborhoodStat< moOrderNeighborhood<Neighbor> > neighborhoodStat(nh, nhEval, comparator, solComparator);
+	moMinNeighborStat< moOrderNeighborhood<Neighbor> > minStat(neighborhoodStat);
+	moSecondMomentNeighborStat< moOrderNeighborhood<Neighbor> > secondMomentStat(neighborhoodStat);
+	moMaxNeighborStat< moOrderNeighborhood<Neighbor> > maxStat(neighborhoodStat);
+
+	moNbSupNeighborStat< moOrderNeighborhood<Neighbor> > nbSupStat(neighborhoodStat);
+	moNbInfNeighborStat< moOrderNeighborhood<Neighbor> > nbInfStat(neighborhoodStat);
+	moNeutralDegreeNeighborStat< moOrderNeighborhood<Neighbor> > ndStat(neighborhoodStat);
+	moSizeNeighborStat< moOrderNeighborhood<Neighbor> > sizeStat(neighborhoodStat);
 
 	eoValueParam<unsigned int> genCounter(-1,"Gen");
 	eoIncrementor<unsigned int> increm(genCounter.value());
+
+	checkpoint.add(fStat);
+	checkpoint.add(distStat);
+	checkpoint.add(neighborhoodStat);
+	checkpoint.add(minStat);
+	checkpoint.add(secondMomentStat);
+	checkpoint.add(maxStat);
+	checkpoint.add(nbInfStat);
+	checkpoint.add(ndStat);
+	checkpoint.add(nbSupStat);
+	checkpoint.add(sizeStat);
 	checkpoint.add(increm);
 
 	eoFileMonitor outputfile("out.dat", " ");
@@ -182,25 +234,13 @@ void main_function(int argc, char **argv)
 	outputfile.add(genCounter);
 	outputfile.add(fStat);
 	outputfile.add(distStat);
-	//	outputfile.add(solStat);
-
-	Indi solution; // current solution of the search process
-
-	/*
-	// to save the solution at each iteration
-	eoState outState;
-
-	// Register the algorithm into the state (so it has something to save!!
-
-	outState.registerObject(solution);
-
-	// and feed the state to state savers
-	// save state every 10th iteration
-	eoCountedStateSaver stateSaver(10, outState, "iteration"); 
-	
-	  // Don't forget to add the two savers to the checkpoint
-	checkpoint.add(stateSaver);
-	*/
+	outputfile.add(minStat);
+	outputfile.add(secondMomentStat);
+	outputfile.add(maxStat);
+	outputfile.add(nbInfStat);
+	outputfile.add(ndStat);
+	outputfile.add(nbSupStat);
+	outputfile.add(sizeStat);
 
 	/* =========================================================
 	 *
@@ -208,18 +248,13 @@ void main_function(int argc, char **argv)
 	 *
 	 * ========================================================= */
 
-	moLocalSearch< moRandomWalkExplorer<Neighborhood> > localSearch(explorer, checkpoint, eval);
+	moLocalSearch< moRandomNeutralWalkExplorer<Neighborhood> > localSearch(explorer, checkpoint, eval);
 
 	/* =========================================================
 	 *
 	 * execute the local search from random sollution
 	 *
 	 * ========================================================= */
-
-	random(solution);
-
-	//Can be eval here, else it will be done at the beginning of the localSearch
-	//eval(solution);
 
 	std::cout << "initial: " << solution << std::endl ;
 
