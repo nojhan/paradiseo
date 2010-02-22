@@ -155,7 +155,7 @@ void main_function(int argc, char **argv)
 
 	/* =========================================================
 	 *
-	 * the local search algorithm
+	 * the continuator and the checkpoint
 	 *
 	 * ========================================================= */
 
@@ -167,19 +167,44 @@ void main_function(int argc, char **argv)
 	moDistanceStat<Indi, unsigned> distStat(distance, bestSolution);
 	//	moSolutionStat<Indi> solStat;
 
-	moCheckpoint<Neighborhood> checkpoint(continuator);
-	eoFileMonitor outputfile("out.dat", " ");
-	checkpoint.add(outputfile);
 	checkpoint.add(fStat);
 	checkpoint.add(distStat);
 	//	checkpoint.add(solStat);
+
 	eoValueParam<unsigned int> genCounter(-1,"Gen");
 	eoIncrementor<unsigned int> increm(genCounter.value());
 	checkpoint.add(increm);
+
+	moCheckpoint<Neighborhood> checkpoint(continuator);
+	eoFileMonitor outputfile("out.dat", " ");
+	checkpoint.add(outputfile);
+
 	outputfile.add(genCounter);
 	outputfile.add(fStat);
 	outputfile.add(distStat);
 	//	outputfile.add(solStat);
+
+	// to save the solution at each iteration
+	eoState outState;
+
+	// Register the algorithm into the state (so it has something to save!!
+
+	Indi solution; // current solution of the search process
+
+	outState.registerObject(solution);
+
+	// and feed the state to state savers
+	// save state every 10th iteration
+	eoCountedStateSaver stateSaver(10, outState, "iteration"); 
+	
+	  // Don't forget to add the two savers to the checkpoint
+	checkpoint.add(stateSaver);
+
+	/* =========================================================
+	 *
+	 * the local search algorithm
+	 *
+	 * ========================================================= */
 
 	moLocalSearch< moRandomWalkExplorer<Neighborhood> > localSearch(explorer, checkpoint, eval);
 
@@ -188,8 +213,6 @@ void main_function(int argc, char **argv)
 	 * execute the local search from random sollution
 	 *
 	 * ========================================================= */
-
-	Indi solution;
 
 	random(solution);
 
