@@ -345,7 +345,7 @@ class MOEO : public EO < MOEOObjectiveVector >
      * Getter for "flag"
      * @return the flag value
      */
-    int flag(){
+    int flag() const{
     	return flagValue;
     }
 
