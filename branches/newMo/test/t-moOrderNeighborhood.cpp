@@ -69,7 +69,6 @@ int main(){
 	assert(test.position()==1);
 
 	//verif du cont
-	test.next(sol, neighbor);
 	assert(test.cont(sol));
 	test.next(sol, neighbor);
 	assert(!test.cont(sol));

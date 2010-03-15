@@ -61,41 +61,41 @@ public:
      * @param _solution the related solution
      */
     virtual bool operator() (EOT & _solution) {
-
-    	if(_solution.invalid())
-    		fullEval(_solution);
-
-    	// initialization of the parameter of the search (for example fill empty the tabu list)
-    	searchExplorer.initParam(_solution);
-
-    	// initialization of the external continuator (for example the time, or the number of generations)
-    	continuator.init(_solution);
+      
+      if(_solution.invalid())
+	fullEval(_solution);
+      
+      // initialization of the parameter of the search (for example fill empty the tabu list)
+      searchExplorer.initParam(_solution);
+      
+      // initialization of the external continuator (for example the time, or the number of generations)
+      continuator.init(_solution);
+      
+      bool b=continuator(_solution);
+      
+      do {
+    	  // explore the neighborhood of the solution
+    	  searchExplorer(_solution);
+    	  // if a solution in the neighborhood can be accepted
+    	  if (searchExplorer.accept(_solution)){
+    		  searchExplorer.move(_solution);
+    		  searchExplorer.moveApplied(true);
+    	  }
+    	  else
+    		  searchExplorer.moveApplied(false);
 	
-    	bool b=continuator(_solution);
-
-    	do {
-    		// explore the neighborhood of the solution
-    		searchExplorer(_solution);
-    		// if a solution in the neighborhood can be accepted
-    		if (searchExplorer.accept(_solution)){
-			  searchExplorer.move(_solution);
-			  searchExplorer.moveApplied(true);
-		  }
-		  else
-			  searchExplorer.moveApplied(false);
-
-		  // update the parameter of the search (for ex. Temperature of the SA)
-		  searchExplorer.updateParam(_solution);
-
-		  b=continuator(_solution);
-		} while (b && searchExplorer.isContinue(_solution));
-
-		searchExplorer.terminate(_solution);
-
-		continuator.lastCall(_solution);
-
-		//A CHANGER
-		return true;
+    	  // update the parameter of the search (for ex. Temperature of the SA)
+    	  searchExplorer.updateParam(_solution);
+	
+    	  b=continuator(_solution);
+      } while (b && searchExplorer.isContinue(_solution));
+      
+      searchExplorer.terminate(_solution);
+      
+      continuator.lastCall(_solution);
+      
+      //A CHANGER
+      return true;
     };
 
 private:

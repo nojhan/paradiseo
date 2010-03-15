@@ -41,48 +41,58 @@
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
 
-#include <continuator/moContinuator.h>
-#include <continuator/moTrueContinuator.h>
 #include <continuator/moCheckpoint.h>
+#include <continuator/moContinuator.h>
 #include <continuator/moCounterMonitorSaver.h>
 #include <continuator/moCounterStat.h>
+#include <continuator/moDistanceStat.h>
 #include <continuator/moFitnessStat.h>
+#include <continuator/moMaxNeighborStat.h>
+#include <continuator/moMinNeighborStat.h>
+#include <continuator/moNbInfNeighborStat.h>
+#include <continuator/moNbSupNeighborStat.h>
+#include <continuator/moNeighborhoodStat.h>
+#include <continuator/moNeutralDegreeNeighborStat.h>
+#include <continuator/moSecondMomentNeighborStat.h>
+#include <continuator/moSizeNeighborStat.h>
+#include <continuator/moSolutionStat.h>
 #include <continuator/moStat.h>
 #include <continuator/moStatBase.h>
+#include <continuator/moTrueContinuator.h>
 
 #include <eval/moEval.h>
 #include <eval/moFullEvalByCopy.h>
 #include <eval/moFullEvalByModif.h>
 
-#include <explorer/moNeighborhoodExplorer.h>
-#include <explorer/moSimpleHCexplorer.h>
 #include <explorer/moFirstImprExplorer.h>
 #include <explorer/moHCneutralExplorer.h>
-#include <explorer/moSimpleHCneutralExplorer.h>
 #include <explorer/moMetropolisHastingExplorer.h>
+#include <explorer/moNeighborhoodExplorer.h>
+#include <explorer/moRandomNeutralWalkExplorer.h>
 #include <explorer/moRandomWalkExplorer.h>
+#include <explorer/moSimpleHCexplorer.h>
+#include <explorer/moSimpleHCneutralExplorer.h>
 #include <explorer/moTSExplorer.h>
 
 #include <memory/moAspiration.h>
 #include <memory/moBestImprAspiration.h>
-#include <memory/moTabuList.h>
-#include <memory/moIntensification.h>
-#include <memory/moDummyIntensification.h>
 #include <memory/moDiversification.h>
 #include <memory/moDummyDiversification.h>
+#include <memory/moDummyIntensification.h>
+#include <memory/moIntensification.h>
 #include <memory/moMemory.h>
 #include <memory/moSolVectorTabuList.h>
-
+#include <memory/moTabuList.h>
 
 #include <neighborhood/moBackableNeighbor.h>
 #include <neighborhood/moBitNeighbor.h>
-#include <neighborhood/moIndexNeighborhood.h>
 #include <neighborhood/moIndexNeighbor.h>
-#include <neighborhood/moOrderNeighborhood.h>
-#include <neighborhood/moRndWithReplNeighborhood.h>
-#include <neighborhood/moRndWithoutReplNeighborhood.h>
+#include <neighborhood/moIndexNeighborhood.h>
 #include <neighborhood/moNeighbor.h>
 #include <neighborhood/moNeighborhood.h>
+#include <neighborhood/moOrderNeighborhood.h>
+#include <neighborhood/moRndWithoutReplNeighborhood.h>
+#include <neighborhood/moRndWithReplNeighborhood.h>
 
 //#include <old/moMove.h>
 //#include <old/moMoveIncrEval.h>
