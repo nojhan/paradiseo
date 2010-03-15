@@ -52,22 +52,13 @@
 
 
 /**
- * Comparator of two solutions
+ * Comparator of two types
  */
-template< class EOT >
-class moComparator : public eoBF<const EOT & , const EOT & , bool>
+template< class T1, class T2 >
+class moComparator : public eoBF<const T1 & , const T2 & , bool>
 {
 public:
-
-    /**
-     * Compare two solutions
-     * @param _sol1 the first solution
-     * @param _sol2 the second solution
-     * @return true if the _sol1 is better than _sol2
-     */
-    virtual bool operator()(const EOT& _sol1, const EOT& _sol2) {
-    	return (_sol1.fitness() > _sol2.fitness());
-    }
+    virtual bool equals(const T1&, const T2&) = 0;
 
     /**
      * Return the class id.

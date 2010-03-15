@@ -1,5 +1,5 @@
 /*
-  <moSolNeighborComparator.h>
+  <t-moSolNeighborComparator.cpp>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,53 +32,40 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moSolNeighborComparator_h
-#define _moSolNeighborComparator_h
+#include <neighborhood/moBitNeighbor.h>
+#include <eoScalarFitness.h>
+#include <comparator/moSolNeighborComparator.h>
+#include <ga/eoBit.h>
 
-#include <EO.h>
-#include <eoFunctor.h>
+#include <cstdlib>
+#include <cassert>
 
-#include <neighborhood/moNeighbor.h>
-#include <comparator/moComparator.h>
+int main(){
 
+	std::cout << "[t-moSolNeighborComparator] => START" << std::endl;
 
-/**
- * Comparator of two neighbors
- */
-template< class Neighbor >
-class moSolNeighborComparator : public moComparator<typename Neighbor::EOT, Neighbor>
-{
-public:
-  typedef typename Neighbor::EOT EOT ;
+	moBitNeighbor<eoMinimizingFitness> neighbor;
+	eoBit<eoMinimizingFitness> sol;
 
-    /**
-     * Compare two neighbors
-     * @param _sol the solution
-     * @param _neighbor the neighbor
-     * @return true if the neighbor is better than sol
-     */
-    virtual bool operator()(const EOT& _sol, const Neighbor& _neighbor) {
-    	return (_sol.fitness() < _neighbor.fitness());
-    }
+	moSolNeighborComparator< moBitNeighbor<eoMinimizingFitness> > test;
 
-    /**
-     * Compare two neighbors
-     * @param _sol the solution
-     * @param _neighbor the neighbor
-     * @return true if the neighbor is equal to the solution
-     */
-    virtual bool equals(const EOT& _sol, const Neighbor& _neighbor) {
-    	return (_sol.fitness() == _neighbor.fitness());
-    }
+	neighbor.fitness(3);
+	sol.fitness(2);
+	//test with a minimizing fitness, neighbor must not be better than sol
+	assert(!test(sol, neighbor));
 
-    /**
-     * Return the class id.
-     * @return the class name as a std::string
-     */
-    virtual std::string className() const {
-    	return "moSolNeighborComparator";
-    }
-};
+	//reversly
+	neighbor.fitness(2);
+	sol.fitness(3);
+	assert(test(sol, neighbor));
+
+	//test equals
+	assert(!test.equals(sol, neighbor));
+
+	neighbor.fitness(3);
+	assert(test.equals(sol, neighbor));
 
 
-#endif
+	std::cout << "[t-moSolNeighborComparator] => OK" << std::endl;
+	return EXIT_SUCCESS;
+}

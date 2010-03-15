@@ -1,5 +1,5 @@
 /*
-  <moSolNeighborComparator.h>
+  <t-moNeighborComparator.cpp>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,53 +32,36 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moSolNeighborComparator_h
-#define _moSolNeighborComparator_h
+#include <neighborhood/moBitNeighbor.h>
+#include <comparator/moNeighborComparator.h>
+#include <ga/eoBit.h>
+#include <eoScalarFitness.h>
 
-#include <EO.h>
-#include <eoFunctor.h>
+#include <cstdlib>
+#include <cassert>
 
-#include <neighborhood/moNeighbor.h>
-#include <comparator/moComparator.h>
+int main(){
 
-
-/**
- * Comparator of two neighbors
- */
-template< class Neighbor >
-class moSolNeighborComparator : public moComparator<typename Neighbor::EOT, Neighbor>
-{
-public:
-  typedef typename Neighbor::EOT EOT ;
-
-    /**
-     * Compare two neighbors
-     * @param _sol the solution
-     * @param _neighbor the neighbor
-     * @return true if the neighbor is better than sol
-     */
-    virtual bool operator()(const EOT& _sol, const Neighbor& _neighbor) {
-    	return (_sol.fitness() < _neighbor.fitness());
-    }
-
-    /**
-     * Compare two neighbors
-     * @param _sol the solution
-     * @param _neighbor the neighbor
-     * @return true if the neighbor is equal to the solution
-     */
-    virtual bool equals(const EOT& _sol, const Neighbor& _neighbor) {
-    	return (_sol.fitness() == _neighbor.fitness());
-    }
-
-    /**
-     * Return the class id.
-     * @return the class name as a std::string
-     */
-    virtual std::string className() const {
-    	return "moSolNeighborComparator";
-    }
-};
+	std::cout << "[t-moNeighborComparator] => START" << std::endl;
 
 
-#endif
+	moBitNeighbor<eoMinimizingFitness> neighbor1;
+	moBitNeighbor<eoMinimizingFitness> neighbor2;
+
+	moNeighborComparator< moBitNeighbor<eoMinimizingFitness> > test;
+
+	neighbor1.fitness(3);
+	neighbor2.fitness(2);
+	//test with a minimizing fitness neighbor2 must be better than neighbor1 and reversly
+	assert(test(neighbor1, neighbor2));
+	assert(!test(neighbor2, neighbor1));
+
+	//test equals
+	assert(!test.equals(neighbor1,neighbor2));
+
+	neighbor2.fitness(3);
+	assert(test.equals(neighbor1,neighbor2));
+
+	std::cout << "[t-moNeighborComparator] => OK" << std::endl;
+	return EXIT_SUCCESS;
+}

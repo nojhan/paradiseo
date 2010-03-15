@@ -39,13 +39,14 @@
 #include <eoFunctor.h>
 
 #include <neighborhood/moNeighbor.h>
+#include <comparator/moComparator.h>
 
 
 /**
  * Comparator of two neighbors
  */
 template< class Neighbor >
-class moNeighborComparator : public eoBF<const Neighbor & , const Neighbor & , bool>
+class moNeighborComparator : public moComparator<Neighbor, Neighbor>
 {
 public:
 

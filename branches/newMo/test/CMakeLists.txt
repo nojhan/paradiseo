@@ -34,7 +34,10 @@ SET (TEST_LIST
 		t-moOrderNeighborhood
 		t-moFullEvalByCopy
 		t-moFullEvalByModif
-		t-moSimpleHCexplorer)
+		t-moSimpleHCexplorer
+		t-moNeighborComparator
+		t-moSolNeighborComparator
+		)
 				
 FOREACH (test ${TEST_LIST})
 	  SET ("T_${test}_SOURCES" "${test}.cpp")
