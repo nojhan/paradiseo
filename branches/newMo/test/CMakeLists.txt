@@ -37,6 +37,7 @@ SET (TEST_LIST
 		t-moSimpleHCexplorer
 		t-moNeighborComparator
 		t-moSolNeighborComparator
+		t-moTrueContinuator
 		)
 				
 FOREACH (test ${TEST_LIST})
