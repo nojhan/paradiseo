@@ -86,7 +86,7 @@ public:
 
     /**
      * Setter
-     * @param index of the IndexNeighbor
+     * @param _key index of the IndexNeighbor
      */
     void index(unsigned int _key){
     	key=_key;

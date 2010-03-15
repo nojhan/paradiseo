@@ -39,6 +39,9 @@
 #include <utils/eoMonitor.h>
 #include <continuator/moStatBase.h>
 
+/**
+ * Continuator allowing to add others (continuators, stats, monitors or updaters)
+ */
 template <class NH>
 class moCheckpoint : public moContinuator<NH> {
 public :
@@ -46,22 +49,65 @@ public :
     typedef NH Neighborhood ;
     typedef typename Neighborhood::EOT EOT ;
 
+    /**
+     * Default constructor (moCheckpoint must have at least one continuator)
+     * @param _cont a continuator
+     */
     moCheckpoint(moContinuator<Neighborhood>& _cont) {
     	continuators.push_back(&_cont);
     }
 
-    void add(moContinuator<Neighborhood>& _cont) { continuators.push_back(&_cont); }
-    void add(moStatBase<EOT>& _stat) { stats.push_back(&_stat); }
-    void add(eoMonitor& _mon) { monitors.push_back(&_mon); }
-    void add(eoUpdater& _upd) { updaters.push_back(&_upd); }
+    /**
+     * add a continuator to the checkpoint
+     * @param _cont a continuator
+     */
+    void add(moContinuator<Neighborhood>& _cont) {
+    	continuators.push_back(&_cont);
+    }
 
+    /**
+     * add a statistic operator to the checkpoint
+     * @param _stat a statistic operator
+     */
+    void add(moStatBase<EOT>& _stat) {
+    	stats.push_back(&_stat);
+    }
+
+    /**
+     * add a monitor to the checkpoint
+     * @param _mon a monitor
+     */
+    void add(eoMonitor& _mon) {
+    	monitors.push_back(&_mon);
+    }
+
+    /**
+     * add a updater to the checkpoint
+     * @param _upd an updater
+     */
+    void add(eoUpdater& _upd) {
+    	updaters.push_back(&_upd);
+    }
+
+    /**
+     * init all continuators containing in the checkpoint regarding a solution
+     * @param _sol the corresponding solution
+     */
     virtual void init(EOT& _sol) {
     	for(unsigned i = 0; i < continuators.size(); ++i)
     		continuators[i]->init(_sol);
     }
 
+    /**
+     * @return the name of the class
+     */
     virtual std::string className(void) const { return "moCheckPoint"; }
 
+	/**
+	 * apply operator of checkpoint's containers
+	 * @param _sol reference of the solution
+	 * @return true if all continuator return true
+	 */
     bool operator()(EOT & _sol) {
     	unsigned i;
     	bool bContinue = true;
@@ -82,6 +128,10 @@ public :
     	  return bContinue;
     	}
 
+    /**
+     * last call of statistic operators, monitors and updaters
+     * @param _sol reference of the solution
+     */
     void lastCall(EOT& _sol){
 			unsigned int i;
 	      for (i = 0; i < stats.size(); ++i)
@@ -95,11 +145,15 @@ public :
 	    }
 
 private :
+    /** continuators vector */
+    std::vector<moContinuator<Neighborhood>*> continuators;
+    /** statistic operators vector */
+    std::vector<moStatBase<EOT>*> stats;
+    /** monitors vector */
+    std::vector<eoMonitor*> monitors;
+    /** updaters vector */
+    std::vector<eoUpdater*> updaters;
 
-  std::vector<moContinuator<Neighborhood>*> continuators;
-  std::vector<moStatBase<EOT>*> stats;
-  std::vector<eoMonitor*> monitors;
-  std::vector<eoUpdater*> updaters;
 };
 
 

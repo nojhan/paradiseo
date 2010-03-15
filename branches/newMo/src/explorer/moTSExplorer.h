@@ -40,6 +40,9 @@
 #include <comparator/moSolNeighborComparator.h>
 #include <memory/moAspiration.h>
 #include <memory/moTabuList.h>
+#include <memory/moIntensification.h>
+#include <memory/moDiversification.h>
+
 
 /**
  * Explorer for a Tabu Search
@@ -135,6 +138,7 @@ public:
      */
     virtual void operator()(EOT & _solution)
     {
+		bool found=false;
     	intensification(_solution);
     	diversification(_solution);
     	if(neighborhood.hasNeighbor(_solution))

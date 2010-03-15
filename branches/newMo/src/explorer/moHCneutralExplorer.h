@@ -60,7 +60,9 @@ public:
 	 * Constructor
 	 * @param _neighborhood the neighborhood
 	 * @param _eval the evaluation function
-	 * @param _comparator a neighbor comparator
+	 * @param _neighborComparator a neighbor comparator
+	 * @param _solNeighborComparator a solution vs neighbor comparator
+	 * @param _nbStep maximum step to do
 	 */
  moHCneutralExplorer(Neighborhood& _neighborhood, 
 			   moEval<Neighbor>& _eval, 

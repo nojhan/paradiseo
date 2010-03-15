@@ -56,7 +56,8 @@ public:
 	 * Constructor
 	 * @param _neighborhood the neighborhood
 	 * @param _eval the evaluation function
-	 * @param _comparator a neighbor comparator
+	 * @param _neighborComparator a neighbor comparator
+	 * @param _solNeighborComparator solution vs neighbor comparator
 	 */
  moSimpleHCneutralExplorer(Neighborhood& _neighborhood, 
 			   moEval<Neighbor>& _eval, 

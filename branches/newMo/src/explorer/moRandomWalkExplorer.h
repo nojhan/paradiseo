@@ -56,7 +56,7 @@ public:
 	 * Constructor
 	 * @param _neighborhood the neighborhood
 	 * @param _eval the evaluation function
-	 * @param _comparator a neighbor comparator
+	 * @param _nbStep maximum number of step to do
 	 */
  moRandomWalkExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, unsigned _nbStep) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), nbStep(_nbStep) {
     	isAccept = false;

@@ -57,7 +57,8 @@ public:
 	 * Constructor
 	 * @param _neighborhood the neighborhood
 	 * @param _eval the evaluation function
-	 * @param _comparator a neighbor comparator
+	 * @param _solNeighborComparator a solution vs neighbor comparator
+	 * @param _nbStep maximum number of step to do
 	 */
  moRandomNeutralWalkExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, 
 			     moSolNeighborComparator<Neighbor>& _solNeighborComparator,

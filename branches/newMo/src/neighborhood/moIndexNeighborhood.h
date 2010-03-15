@@ -51,7 +51,7 @@ public:
 
     /**
      * Constructor
-     * @param _neighborhood the size of the neighborhood
+     * @param _neighborhoodSize the size of the neighborhood
      */
     moIndexNeighborhood(unsigned int _neighborhoodSize):neighborhoodSize(_neighborhoodSize){}
 

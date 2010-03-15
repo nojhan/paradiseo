@@ -57,7 +57,9 @@ public:
 	 * Constructor
 	 * @param _neighborhood the neighborhood
 	 * @param _eval the evaluation function
-	 * @param _comparator a neighbor comparator
+	 * @param _neighborComparator a neighbor comparator
+	 * @param _solNeighborComparator a solution vs neighbor comparator
+	 * @param _nbStep maximum number of step to do
 	 */
  moMetropolisHastingExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator, unsigned int _nbStep) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator), nbStep(_nbStep) {
     	isAccept = false;
@@ -73,23 +75,26 @@ public:
 
 	/**
 	 * initialization of the number of step to be done
+	 * @param _solution the solution (unused here)
 	 */
-    virtual void initParam(EOT & solution){
+    virtual void initParam(EOT & _solution){
       step     = 0;
       isAccept = true;
     };
 
 	/**
 	 * increase the number of step
+	 * @param _solution the solution (unused here)
 	 */
-    virtual void updateParam(EOT & solution){
+    virtual void updateParam(EOT & _solution){
       step++;
     };
 
 	/**
 	 * terminate: NOTHING TO DO
+	 * @param _solution the solution (unused here)
 	 */
-    virtual void terminate(EOT & solution){};
+    virtual void terminate(EOT & _solution){};
 
     /**
      * Explore the neighborhood of a solution

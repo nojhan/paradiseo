@@ -56,7 +56,6 @@ public:
      * Constructor with a Neighborhood and evaluation function
      * @param _neighborhood the neighborhood
      * @param _eval the evaluation function
-     * @param _comparator a neighbor comparator
      */
     moNeighborhoodExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval):neighborhood(_neighborhood), eval(_eval), isMoved(false) {}
 

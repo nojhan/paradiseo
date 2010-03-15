@@ -57,7 +57,7 @@ public:
 
     /**
      * Constructor
-     * @param _neighborhood the size of the neighborhood
+     * @param _neighborhoodSize the size of the neighborhood
      */
     moRndWithoutReplNeighborhood(unsigned int _neighborhoodSize): moIndexNeighborhood<Neighbor>(_neighborhoodSize), maxIndex(0){
     	for(unsigned int i=0; i < neighborhoodSize; i++)
