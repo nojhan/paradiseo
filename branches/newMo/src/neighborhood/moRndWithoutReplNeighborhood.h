@@ -111,7 +111,7 @@ public:
      * @return true if there is again a neighbor to explore
      */
     virtual bool cont(EOT & _solution) {
-    	return (maxIndex > 1) ;
+    	return (maxIndex > 0) ;
     }
 
     /**

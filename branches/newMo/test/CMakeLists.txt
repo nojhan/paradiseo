@@ -28,6 +28,8 @@ LINK_DIRECTORIES(${PARADISEO_EO_BIN_DIR}/lib)
 ### 3) Define your targets and link the librairies
 ######################################################################################
 
+
+
 SET (TEST_LIST
 		t-moNeighbor
 		t-moBitNeighbor
@@ -38,6 +40,8 @@ SET (TEST_LIST
 		t-moNeighborComparator
 		t-moSolNeighborComparator
 		t-moTrueContinuator
+		t-moRndWithoutReplNeighborhood
+		t-moRndWithReplNeighborhood
 		)
 				
 FOREACH (test ${TEST_LIST})
