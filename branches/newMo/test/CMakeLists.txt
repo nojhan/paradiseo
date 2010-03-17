@@ -42,6 +42,9 @@ SET (TEST_LIST
 		t-moTrueContinuator
 		t-moRndWithoutReplNeighborhood
 		t-moRndWithReplNeighborhood
+		t-moFitnessStat
+		t-moDistanceStat
+		t-moNeighborhoodStat
 		)
 				
 FOREACH (test ${TEST_LIST})

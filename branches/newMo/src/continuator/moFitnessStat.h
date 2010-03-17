@@ -49,15 +49,25 @@ public :
     typedef T Fitness;
     using moStat< EOT, Fitness >::value;
 
-    moFitnessStat(std::string _description = "fitness")
-      : moStat<EOT, Fitness>(Fitness(), _description)
-        {}
+    /**
+     * Default Constructor
+     * @param _description a description of the stat
+     */
+    moFitnessStat(std::string _description = "fitness"):
+    	moStat<EOT, Fitness>(Fitness(), _description){}
 
+    /**
+     * store fitness value
+     * @param _sol the corresponding solution
+     */
     virtual void operator()(EOT & _sol)
     {
       value() = _sol.fitness();
     }
 
+    /**
+     * @return the name of the class
+     */
     virtual std::string className(void) const { return "moFitnessStat"; }
 };
 

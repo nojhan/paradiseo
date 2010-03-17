@@ -44,7 +44,6 @@
 #include <continuator/moCheckpoint.h>
 #include <continuator/moContinuator.h>
 #include <continuator/moCounterMonitorSaver.h>
-#include <continuator/moCounterStat.h>
 #include <continuator/moDistanceStat.h>
 #include <continuator/moFitnessStat.h>
 #include <continuator/moMaxNeighborStat.h>

@@ -42,29 +42,41 @@
  * The statistic gives the distance to a reference solution
  * The reference solution could be the global optimum, or the best knowed solution
  * It allows to compute the Fitness-Distance correlation (FDC)
-*/
+ */
 template <class EOT, class T = double>
 class moDistanceStat : public moStat<EOT, T>
 {
 public :
     using moStat< EOT, T >::value;
 
-  moDistanceStat(eoDistance<EOT> & _dist, EOT & _ref)
-    : moStat<EOT, T>(0, "distance"), dist(_dist), refSolution(_ref)
-  {}
+    /**
+     * Default Constructor
+     * @param _dist a distance
+     * @param _ref the reference solution
+     */
+    moDistanceStat(eoDistance<EOT> & _dist, EOT & _ref): moStat<EOT, T>(0, "distance"), dist(_dist), refSolution(_ref){}
 
-  virtual void operator()(EOT & _sol)
-  {
-    value() = dist(_sol, refSolution);
-  }
+    /**
+     * Compute distance between a solution and the reference solution
+     * @param _sol a solution
+     */
+    virtual void operator()(EOT & _sol){
+    	value() = dist(_sol, refSolution);
+    }
 
-  virtual std::string className(void) const { return "moDistanceStat"; }
+    /**
+     * @return name of the class
+     */
+    virtual std::string className(void) const { return "moDistanceStat"; }
 
 private:
-  eoDistance<EOT> & dist;
-  // the reference solution does not change during the run
-  // it could be the best solution knowed of the problem
-  EOT refSolution;
+    /** the distance */
+    eoDistance<EOT> & dist;
+    /**
+     * the reference solution does not change during the run
+     * it could be the best solution knowed of the problem
+     */
+	EOT refSolution;
 
 };
 

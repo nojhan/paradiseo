@@ -53,19 +53,29 @@ public :
 
   using moStat< EOT, unsigned >::value;
 
-  moNbInfNeighborStat(moNeigborhoodStat<Neighborhood> & _nhStat)
-    : moStat<EOT, unsigned>(0, "nb inf"), nhStat(_nhStat)
-  {}
+  /**
+   * Default Constructor
+   * @param _nhStat a neighborhoodStat
+   */
+  moNbInfNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
+	  moStat<EOT, unsigned>(0, "nb inf"), nhStat(_nhStat){}
   
-  virtual void operator()(EOT & _sol)
-  {
+  /**
+   * Set the number of solutions in the neighborhood with (strictly) lower fitness than the current solution
+   * @param _sol the corresponding solution
+   */
+  virtual void operator()(EOT & _sol){
     value() = nhStat.getNbInf();
   }
-  
+
+  /**
+   * @return the class name
+   */
   virtual std::string className(void) const { return "moNbInfNeighborStat"; }
 
 private:
-  moNeigborhoodStat<Neighborhood> & nhStat;
+  /** moNeighborhoodStat */
+  moNeighborhoodStat<Neighborhood> & nhStat;
 };
 
 #endif

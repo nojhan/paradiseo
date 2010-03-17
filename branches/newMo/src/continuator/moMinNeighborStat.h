@@ -39,10 +39,8 @@
 #include <continuator/moNeighborhoodStat.h>
 
 /**
- *
  * From moNeighborhoodStat, to compute the min fitness in the neighborhood
- * 
-*/
+ */
 template< class Neighborhood >
 class moMinNeighborStat : public moStat<typename Neighborhood::EOT, typename Neighborhood::EOT::Fitness>
 {
@@ -52,19 +50,29 @@ public :
 
   using moStat< EOT, Fitness >::value;
 
-  moMinNeighborStat(moNeigborhoodStat<Neighborhood> & _nhStat)
-    : moStat<EOT, Fitness>(Fitness(), "min"), nhStat(_nhStat)
-  {}
+  /**
+   * Default Constructor
+   * @param _nhStat a neighborhoodStat
+   */
+  moMinNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
+	  moStat<EOT, Fitness>(Fitness(), "min"), nhStat(_nhStat){}
   
-  virtual void operator()(EOT & _sol)
-  {
+  /**
+   * Set the worst fitness in the neighborhood
+   * @param _sol the corresponding solution
+   */
+  virtual void operator()(EOT & _sol){
     value() = nhStat.getMin();
   }
-  
+
+  /**
+   * @return the class name
+   */
   virtual std::string className(void) const { return "moMinNeighborStat"; }
 
 private:
-  moNeigborhoodStat<Neighborhood> & nhStat;
+  /** moNeighborhoodStat */
+  moNeighborhoodStat<Neighborhood> & nhStat;
 };
 
 #endif

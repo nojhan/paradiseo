@@ -52,8 +52,9 @@ public :
     /**
      * Default constructor (moCheckpoint must have at least one continuator)
      * @param _cont a continuator
+     * @param _interval frequency to compute statistical operators
      */
-    moCheckpoint(moContinuator<Neighborhood>& _cont) {
+    moCheckpoint(moContinuator<Neighborhood>& _cont, unsigned int _interval=1):interval(_interval), counter(0){
     	continuators.push_back(&_cont);
     }
 
@@ -112,8 +113,11 @@ public :
     	unsigned i;
     	bool bContinue = true;
 
-    	  for (i = 0; i < stats.size(); ++i)
-    	    (*stats[i])(_sol);
+    	  for (i = 0; i < stats.size(); ++i){
+    		if(counter % interval == 0)
+    			(*stats[i])(_sol);
+    		counter++;
+    	  }
 
     	  for (i = 0; i < updaters.size(); ++i)
     	    (*updaters[i])();
@@ -153,6 +157,9 @@ private :
     std::vector<eoMonitor*> monitors;
     /** updaters vector */
     std::vector<eoUpdater*> updaters;
+
+    unsigned int interval;
+    unsigned int counter;
 
 };
 

@@ -39,10 +39,9 @@
 #include <continuator/moNeighborhoodStat.h>
 
 /**
- *
  * From moNeighborhoodStat, to compute the number of solutions in the neighborhood
  * 
-*/
+ */
 template< class Neighborhood >
 class moSizeNeighborStat : public moStat<typename Neighborhood::EOT, unsigned>
 {
@@ -52,19 +51,29 @@ public :
 
   using moStat< EOT, unsigned >::value;
 
-  moSizeNeighborStat(moNeigborhoodStat<Neighborhood> & _nhStat)
-    : moStat<EOT, unsigned>(0, "size"), nhStat(_nhStat)
-  {}
+  /**
+   * Default Constructor
+   * @param _nhStat a neighborhoodStat
+   */
+  moSizeNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
+	  moStat<EOT, unsigned>(0, "size"), nhStat(_nhStat){}
   
-  virtual void operator()(EOT & _sol)
-  {
+  /**
+   * Set the number of solutions in the neighborhood
+   * @param _sol the corresponding solution
+   */
+  virtual void operator()(EOT & _sol){
     value() = nhStat.getSize();
   }
   
+  /**
+   * @return the class name
+   */
   virtual std::string className(void) const { return "moSizeNeighborStat"; }
 
 private:
-  moNeigborhoodStat<Neighborhood> & nhStat;
+  /** moNeighborhoodStat */
+  moNeighborhoodStat<Neighborhood> & nhStat;
 };
 
 #endif

@@ -40,6 +40,16 @@
 #include <neighborhood/moNeighbor.h>
 #include <neighborhood/moBackableNeighbor.h>
 #include <neighborhood/moNeighborhood.h>
+#include <eval/moEval.h>
+
+#include <ga/eoBit.h>
+#include <eoScalarFitness.h>
+#include <neighborhood/moOrderNeighborhood.h>
+#include <neighborhood/moBitNeighbor.h>
+
+typedef eoBit<eoMinimizingFitness> bitVector;
+typedef moBitNeighbor<eoMinimizingFitness> bitNeighbor ;
+typedef moOrderNeighborhood<bitNeighbor> bitNeighborhood ;
 
 typedef EO<int> Solution;
 
@@ -88,6 +98,26 @@ public:
 		else
 			_sol.fitness(_sol.fitness()+50);
 	}
+};
+
+class evalOneMax : public moEval< bitNeighbor >
+{
+private:
+  unsigned size;
+
+public:
+  evalOneMax(unsigned _size) : size(_size) {};
+
+  ~evalOneMax(void) {} ;
+
+  void operator() (bitVector& _sol, bitNeighbor& _n) {
+    unsigned int fit = _sol.fitness();
+    	if(_sol[_n.index()])
+    		fit--;
+    	else
+    		fit++;
+	_n.fitness(fit);
+  }
 };
 
 #endif

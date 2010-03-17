@@ -203,7 +203,7 @@ void main_function(int argc, char **argv)
 	moDistanceStat<Indi, unsigned> distStat(distance, solution);  // distance from the intial solution
 	
 	moOrderNeighborhood<Neighbor> nh(vecSize);
-	moNeigborhoodStat< moOrderNeighborhood<Neighbor> > neighborhoodStat(nh, nhEval, comparator, solComparator);
+	moNeighborhoodStat< moOrderNeighborhood<Neighbor> > neighborhoodStat(nh, nhEval, comparator, solComparator);
 	moMinNeighborStat< moOrderNeighborhood<Neighbor> > minStat(neighborhoodStat);
 	moSecondMomentNeighborStat< moOrderNeighborhood<Neighbor> > secondMomentStat(neighborhoodStat);
 	moMaxNeighborStat< moOrderNeighborhood<Neighbor> > maxStat(neighborhoodStat);

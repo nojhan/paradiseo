@@ -1,5 +1,5 @@
 /*
-  <moNeigborhoodStat.h>
+  <moNeighborhoodStat.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,8 +32,8 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef moNeigborhoodStat_h
-#define moNeigborhoodStat_h
+#ifndef moNeighborhoodStat_h
+#define moNeighborhoodStat_h
 
 #include <continuator/moStat.h>
 
@@ -44,9 +44,9 @@
 /**
  * All possible statitic on the neighborhood fitness
  * to combine with other specific statistic to print them
-*/
+ */
 template< class Neighborhood >
-class moNeigborhoodStat : public moStat<typename Neighborhood::EOT, bool>
+class moNeighborhoodStat : public moStat<typename Neighborhood::EOT, bool>
 {
 public :
   typedef typename Neighborhood::EOT EOT ;
@@ -55,104 +55,161 @@ public :
 
   using moStat< EOT, bool >::value;
 
-  moNeigborhoodStat(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, 
-		    moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator) 
-    : moStat<EOT, bool>(true, "neighborhood"), 
+  /**
+   * Default Constructor
+   * @param _neighborhood a neighborhood
+   * @param _eval an evaluation function
+   * @param _neighborComparator a neighbor Comparator
+   * @param _solNeighborComparator a comparator between a solution and a neighbor
+   */
+  moNeighborhoodStat(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator):
+	  moStat<EOT, bool>(true, "neighborhood"),
       neighborhood(_neighborhood), eval(_eval), 
-      neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator)
-  {}
+      neighborComparator(_neighborComparator),
+      solNeighborComparator(_solNeighborComparator)
+      {}
 
-  virtual void operator()(EOT & _solution)
-  {
-    Neighbor current ;
-    Neighbor best ;
-    Neighbor lowest ;
+  /**
+   * Compute classical statistics of a solution's neighborhood
+   * @param _solution the corresponding solution
+   */
+  virtual void operator()(EOT & _solution){
+	  Neighbor current ;
+	  Neighbor best ;
+	  Neighbor lowest ;
 
-    if(neighborhood.hasNeighbor(_solution)){
-      //init the first neighbor
-      neighborhood.init(_solution, current);
+	  if(neighborhood.hasNeighbor(_solution)){
+		  //init the first neighbor
+		  neighborhood.init(_solution, current);
 
-      //eval the _solution moved with the neighbor and stock the result in the neighbor
-      eval(_solution, current);
+		  //eval the _solution moved with the neighbor and stock the result in the neighbor
+		  eval(_solution, current);
       
-      // init the statistics
-      value() = true;
+		  // init the statistics
+		  value() = true;
 
-      mean = current.fitness();
-      sd   = mean * mean;
+		  mean = current.fitness();
+		  sd   = mean * mean;
+		  nb      = 1;
+		  nbInf   = 0;
+		  nbEqual = 0;
+		  nbSup   = 0;
 
-      nb      = 1;
-      nbInf   = 0;
-      nbEqual = 0;
-      nbSup   = 0;
+		  if (solNeighborComparator.equals(_solution, current))
+			  nbEqual++;
+		  else if (solNeighborComparator(_solution, current))
+			  nbSup++;
+		  else
+			  nbInf++;
 
-      if (solNeighborComparator.equals(_solution, current))
-	nbEqual++;
-      else
-	if (solNeighborComparator(_solution, current))
-	  nbSup++;
-	else
-	  nbInf++;
+		  //initialize the best neighbor
+		  best   = current;
+		  lowest = current;
 
-      //initialize the best neighbor
-      best   = current;
-      lowest = current;
+		  //test all others neighbors
+		  while (neighborhood.cont(_solution)) {
+			  //next neighbor
+			  neighborhood.next(_solution, current);
+			  //eval
+			  eval(_solution, current);
 
-      //test all others neighbors
-      while (neighborhood.cont(_solution)) {
-	//next neighbor
-	neighborhood.next(_solution, current);
-	//eval
-	eval(_solution, current);
-
-	mean += current.fitness();
-	sd   += current.fitness() * current.fitness();
-	nb++;
+			  mean += current.fitness();
+			  sd += current.fitness() * current.fitness();
+			  nb++;
 	
-	if (solNeighborComparator.equals(_solution, current))
-	  nbEqual++;
-	else
-	  if (solNeighborComparator(_solution, current))
-	    nbSup++;
-	  else
-	    nbInf++;
+			  if (solNeighborComparator.equals(_solution, current))
+				  nbEqual++;
+			  else if (solNeighborComparator(_solution, current))
+				  nbSup++;
+			  else
+				  nbInf++;
 
-	//if we found a better neighbor, update the best
-	if (neighborComparator(best, current)) 
-	  best = current;
+			  //if we found a better neighbor, update the best
+			  if (neighborComparator(best, current))
+				  best = current;
 	
-	if (neighborComparator(current, lowest)) 
-	  lowest = current;
-      }
+			  if (neighborComparator(current, lowest))
+				  lowest = current;
+		  }
 
-      max = best.fitness();
-      min = lowest.fitness();
+		  max = best.fitness();
+		  min = lowest.fitness();
 
-      mean /= nb;
-      if (nb > 1)
-	sd = sqrt( (sd - nb * mean * mean) / (nb - 1.0) );
-      else
-	sd = 0.0;
-    }
-    else{
-      //if _solution hasn't neighbor,
-      value() = false;
-    }
+		  mean /= nb;
+		  if (nb > 1)
+			  sd = sqrt( (sd - nb * mean * mean) / (nb - 1.0) );
+		  else
+			  sd = 0.0;
+	  }
+	  else{
+		  //if _solution hasn't neighbor,
+		  value() = false;
+	  }
   }
 
-  Fitness getMin() { return min ; }
-  Fitness getMax() { return max ; }
-  double getMean() { return mean ; }
-  double getSD() { return sd ; }
-  
-  unsigned getSize() { return nb ; }
-  unsigned getNbSup() { return nbSup ; }
-  unsigned getNbEqual() { return nbEqual ; }
-  unsigned getNbInf() { return nbInf ; }
+  /**
+   * @return the worst fitness value found in the neighborhood
+   */
+  Fitness getMin(){
+	  return min;
+  }
 
+  /**
+   * @return the best fitness value found in the neighborhood
+   */
+  Fitness getMax(){
+	  return max;
+  }
+
+  /**
+   * @return the mean fitness value of the neighborhood
+   */
+  double getMean(){
+	  return mean;
+  }
+
+  /**
+   * @return the standard deviation value of the neighborhood
+   */
+  double getSD(){
+	  return sd;
+  }
+
+  /**
+   * @return the size of the neighborhood
+   */
+  unsigned getSize(){
+	  return nb;
+  }
+
+  /**
+   * @return the number of neighbors having a better fitness than the current solution
+   */
+  unsigned getNbSup(){
+	  return nbSup;
+  }
+
+  /**
+   * @return the number of neighbors having the same fitness than the current solution
+   */
+  unsigned getNbEqual(){
+	  return nbEqual;
+  }
+  
+  /**
+   * @return the number of neighbors having a worst fitness than the current solution
+   */
+  unsigned getNbInf() {
+	  return nbInf;
+  }
+
+  /**
+   * @return the class name
+   */
   virtual std::string className(void) const { return "moNeigborhoodStat"; }
 
 private:
+
   // to explore the neighborhood
   Neighborhood& neighborhood ;
   moEval<Neighbor>& eval;
@@ -163,13 +220,14 @@ private:
 
   // the stastics of the fitness
   Fitness max, min;
+  //mean and standard deviation
   double mean, sd ;
 
   // number of neighbors in the neighborhood;
-  unsigned nb;
+  unsigned int nb;
 
   // number of neighbors with lower, equal and higher fitness
-  unsigned nbInf, nbEqual, nbSup ;
+  unsigned int nbInf, nbEqual, nbSup ;
 };
 
 #endif

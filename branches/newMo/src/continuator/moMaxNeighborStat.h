@@ -39,10 +39,8 @@
 #include <continuator/moNeighborhoodStat.h>
 
 /**
- *
  * From moNeighborhoodStat, to compute the max fitness in the neighborhood
- * 
-*/
+ */
 template< class Neighborhood >
 class moMaxNeighborStat : public moStat<typename Neighborhood::EOT, typename Neighborhood::EOT::Fitness>
 {
@@ -52,19 +50,29 @@ public :
 
   using moStat< EOT, Fitness >::value;
 
-  moMaxNeighborStat(moNeigborhoodStat<Neighborhood> & _nhStat)
-    : moStat<EOT, Fitness>(Fitness(), "min"), nhStat(_nhStat)
-  {}
+  /**
+   * Default Constructor
+   * @param _nhStat a neighborhoodStat
+   */
+  moMaxNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
+	  moStat<EOT, Fitness>(Fitness(), "min"), nhStat(_nhStat){}
   
-  virtual void operator()(EOT & _sol)
-  {
+  /**
+   * Set the max fitness in the neighborhood
+   * @param _sol the corresponding solution
+   */
+  virtual void operator()(EOT & _sol){
     value() = nhStat.getMax();
   }
   
+  /**
+   * @return the class name
+   */
   virtual std::string className(void) const { return "moMaxNeighborStat"; }
 
 private:
-  moNeigborhoodStat<Neighborhood> & nhStat;
+  /** moNeighborhoodStat */
+  moNeighborhoodStat<Neighborhood> & nhStat;
 };
 
 #endif
