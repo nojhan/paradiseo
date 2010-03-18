@@ -1,5 +1,5 @@
 /*
-<t-moRndWithoutReplNeighborhood.cpp>
+<t-moSolutionStat.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -27,45 +27,36 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <neighborhood/moRndWithoutReplNeighborhood.h>
-#include <neighborhood/moBitNeighbor.h>
-
+#include <continuator/moSolutionStat.h>
 #include "moTestClass.h"
+
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
 
 int main(){
 
-	std::cout << "[t-moRndWithoutReplNeighborhood] => START" << std::endl;
+	std::cout << "[t-moSolutionStat] => START" << std::endl;
 
-	unsigned int a, b, c;
-	eoBit<int> sol;
-	moBitNeighbor<int> n;
+	eoBit<unsigned int> s(3);
+	s[0]=true;
+	s[1]=true;
+	s[2]=false;
 
-	moRndWithoutReplNeighborhood< moBitNeighbor<int> > test(3);
-	moRndWithoutReplNeighborhood< moBitNeighbor<int> > test2(0);
+	s.fitness(17);
 
-	assert(test.hasNeighbor(sol));
-	assert(!test2.hasNeighbor(sol));
+	moSolutionStat< eoBit<unsigned int > > test;
 
-	test.init(sol, n);
-	assert(test.cont(sol));
-	a=test.position();
-	test.next(sol, n);
-	assert(test.cont(sol));
-	b=test.position();
-	test.next(sol,n);
-	assert(!test.cont(sol));
-	c=test.position();
+	test(s);
 
-	assert(a==0 || b==0 || c==0);
-	assert(a==1 || b==1 || c==1);
-	assert(a==2 || b==2 || c==2);
+	assert(test.value()[0]);
+	assert(test.value()[1]);
+	assert(!test.value()[2]);
+	assert(test.value().fitness()==17);
 
-	assert(test.className()=="moRndWithoutReplNeighborhood");
+	assert(test.className()=="moSolutionStat");
 
-	std::cout << "[t-moRndWithoutReplNeighborhood] => OK" << std::endl;
+	std::cout << "[t-moSolutionStat] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

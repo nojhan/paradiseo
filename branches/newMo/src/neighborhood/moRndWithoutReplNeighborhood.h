@@ -122,6 +122,14 @@ public:
     	return indexVector[maxIndex];
     }
 
+    /**
+     * Return the class id.
+     * @return the class name as a std::string
+     */
+    virtual std::string className() const {
+    	return "moRndWithoutReplNeighborhood";
+    }
+
 private:
     unsigned int maxIndex;
     std::vector<unsigned int> indexVector;

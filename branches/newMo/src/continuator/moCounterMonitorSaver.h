@@ -46,33 +46,51 @@
 class moCounterMonitorSaver : public eoUpdater {
 public :
 
-  moCounterMonitorSaver(unsigned _interval, eoMonitor& _mon) : interval(_interval), counter(0) {
-    monitors.push_back(&_mon);
-  }
-
-  void operator()(void) {
-
-	  if (++counter % interval == 0)
-	    for (unsigned i = 0; i < monitors.size(); ++i)
-	      (*monitors[i])();
-
+	/**
+	 * Default Constructor
+	 * @param _interval frequency to call monitors
+	 * @param _mon a monitor
+	 */
+	moCounterMonitorSaver(unsigned _interval, eoMonitor& _mon) : interval(_interval), counter(0) {
+		monitors.push_back(&_mon);
 	}
 
-  void lastCall(void) {
-	  for (unsigned i = 0; i < monitors.size(); ++i)
-	    monitors[i]->lastCall();
+	/**
+	 * call monitors if interval is reach by a counter
+	 */
+	void operator()(void) {
+		if (counter++ % interval == 0)
+			for (unsigned i = 0; i < monitors.size(); i++)
+				(*monitors[i])();
 	}
 
-  void add(eoMonitor& _mon) {
-    monitors.push_back(&_mon);
-  }
+	/**
+	 * last call of monitors
+	 */
+	void lastCall(void) {
+		for (unsigned i = 0; i < monitors.size(); i++)
+			monitors[i]->lastCall();
+	}
 
-  virtual std::string className(void) const { return "moCounterMonitorSaver"; }
+	/**
+	 * attach another monitor to this class
+	 * @param _mon the monitor to attach
+	 */
+	void add(eoMonitor& _mon) {
+		monitors.push_back(&_mon);
+	}
+
+	/**
+	 * @return name of the class
+	 */
+	virtual std::string className(void) const { return "moCounterMonitorSaver"; }
 
 private :
-  unsigned interval, counter;
+	/** interval and counter value */
+	unsigned int interval, counter;
 
-  std::vector<eoMonitor*> monitors;
+	/** monitor's vector */
+	std::vector<eoMonitor*> monitors;
 };
 
 

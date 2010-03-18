@@ -49,8 +49,17 @@ template <class EOT>
 class moStatBase : public eoUF<EOT &, void>
 {
 public:
-  virtual void lastCall(EOT &) {}
-  virtual std::string className(void) const { return "moStatBase"; }
+	/**
+	 * last call of a statistical operator
+	 */
+	virtual void lastCall(EOT &) {}
+
+	/**
+	 * @return name of the class
+	 */
+	virtual std::string className(void) const{
+		return "moStatBase";
+	}
 };
 
 #endif

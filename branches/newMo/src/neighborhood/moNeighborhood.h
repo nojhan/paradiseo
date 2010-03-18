@@ -86,7 +86,9 @@ public:
      * Return the class id.
      * @return the class name as a std::string
      */
-    virtual std::string className() const { return "moNeighborhood"; }
+    virtual std::string className() const {
+    	return "moNeighborhood";
+    }
 };
 
 #endif

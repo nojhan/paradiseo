@@ -87,6 +87,7 @@ int main(){
 	assert(test.getNbInf()==3);
 	assert(test.getNbEqual()==0);
 
+	assert(test.className()=="moNeighborhoodStat");
 	std::cout << "[t-moNeighborhoodStat] => OK" << std::endl;
 
 	//test of moMaxNeighborStat.h
@@ -94,6 +95,7 @@ int main(){
 	moMaxNeighborStat<bitNeighborhood> test2(test);
 	test2(sol);
 	assert(test2.value()==6);
+	assert(test2.className()=="moMaxNeighborStat");
 	std::cout << "[t-moMaxNeighborStat] => OK" << std::endl;
 
 	//test of moMinNeighborStat.h
@@ -101,6 +103,7 @@ int main(){
 	moMinNeighborStat<bitNeighborhood> test3(test);
 	test3(sol);
 	assert(test3.value()==8);
+	assert(test3.className()=="moMinNeighborStat");
 	std::cout << "[t-moMinNeighborStat] => OK" << std::endl;
 
 	//test of moNbInfNeighborStat.h
@@ -108,6 +111,7 @@ int main(){
 	moNbInfNeighborStat<bitNeighborhood> test4(test);
 	test4(sol);
 	assert(test4.value()==3);
+	assert(test4.className()=="moNbInfNeighborStat");
 	std::cout << "[t-moNbInfNeighborStat] => OK" << std::endl;
 
 	//test of moNbSupNeighborStat.h
@@ -115,6 +119,7 @@ int main(){
 	moNbSupNeighborStat<bitNeighborhood> test5(test);
 	test5(sol);
 	assert(test5.value()==7);
+	assert(test5.className()=="moNbSupNeighborStat");
 	std::cout << "[t-moNbSupNeighborStat] => OK" << std::endl;
 
 	//test of moNeutralDegreeNeighborStat.h
@@ -122,6 +127,7 @@ int main(){
 	moNeutralDegreeNeighborStat<bitNeighborhood> test6(test);
 	test6(sol);
 	assert(test6.value()==0);
+	assert(test6.className()=="moNeutralDegreeNeighborStat");
 	std::cout << "[t-moNeutralDegreeNeighborStat] => OK" << std::endl;
 
 	//test of moSecondMomentNeighborStat.h
@@ -130,6 +136,7 @@ int main(){
 	test7(sol);
 	assert(test7.value().first==6.6);
 	assert(test7.value().second > 0.966 && test7.value().second < 0.967);
+	assert(test7.className()=="moSecondMomentNeighborStat");
 	std::cout << "[t-moSecondMomentNeighborStat] => OK" << std::endl;
 
 	//test of moSizeNeighborStat.h
@@ -137,6 +144,7 @@ int main(){
 	moSizeNeighborStat<bitNeighborhood> test8(test);
 	test8(sol);
 	assert(test8.value()==10);
+	assert(test8.className()=="moSizeNeighborStat");
 	std::cout << "[t-moSizeNeighborStat] => OK" << std::endl;
 
 	return EXIT_SUCCESS;

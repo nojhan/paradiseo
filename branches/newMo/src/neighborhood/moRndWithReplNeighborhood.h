@@ -97,6 +97,14 @@ public:
     	return neighborhoodSize > 0;
     }
 
+    /**
+     * Return the class id.
+     * @return the class name as a std::string
+     */
+    virtual std::string className() const {
+    	return "moRndWithReplNeighborhood";
+    }
+
 };
 
 #endif

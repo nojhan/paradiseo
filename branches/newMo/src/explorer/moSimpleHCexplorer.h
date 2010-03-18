@@ -157,6 +157,14 @@ public:
 		return isAccept;
     };
 
+    /**
+     * Return the class id.
+     * @return the class name as a std::string
+     */
+    virtual std::string className() const {
+    	return "moSimpleHCexplorer";
+    }
+
 private:
     // comparator betwenn solution and neighbor or between neighbors
     moNeighborComparator<Neighbor>& neighborComparator;

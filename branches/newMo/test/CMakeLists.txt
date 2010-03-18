@@ -45,6 +45,8 @@ SET (TEST_LIST
 		t-moFitnessStat
 		t-moDistanceStat
 		t-moNeighborhoodStat
+		t-moCounterMonitorSaver
+		t-moSolutionStat
 		)
 				
 FOREACH (test ${TEST_LIST})

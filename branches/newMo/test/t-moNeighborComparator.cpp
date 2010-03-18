@@ -62,6 +62,7 @@ int main(){
 	neighbor2.fitness(3);
 	assert(test.equals(neighbor1,neighbor2));
 
+	assert(test.className()=="moNeighborComparator");
 	std::cout << "[t-moNeighborComparator] => OK" << std::endl;
 	return EXIT_SUCCESS;
 }

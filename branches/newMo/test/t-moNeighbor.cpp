@@ -56,6 +56,7 @@ int main(){
 	test2.printOn(std::cout);
 	test3.printOn(std::cout);
 
+	assert(test1.className()=="moNeighbor");
 	std::cout << "[t-moNeighbor] => OK" << std::endl;
 
 	return EXIT_SUCCESS;

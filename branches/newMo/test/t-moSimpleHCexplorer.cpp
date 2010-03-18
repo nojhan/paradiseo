@@ -84,6 +84,8 @@ int main(){
 	test.accept(sol);
 	assert(!test.isContinue(sol));
 
+	assert(test.className()=="moSimpleHCexplorer");
+
 	std::cout << "[t-moSimpleHCexplorer] => OK" << std::endl;
 
 	return EXIT_SUCCESS;

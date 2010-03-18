@@ -65,6 +65,7 @@ int main(){
 
 	}
 
+	assert(test.className()=="moRndWithReplNeighborhood");
 
 	std::cout << "[t-moRndWithReplNeighborhood] => OK" << std::endl;
 

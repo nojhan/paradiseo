@@ -206,7 +206,9 @@ public :
   /**
    * @return the class name
    */
-  virtual std::string className(void) const { return "moNeigborhoodStat"; }
+  virtual std::string className(void) const {
+	  return "moNeighborhoodStat";
+  }
 
 private:
 

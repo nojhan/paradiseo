@@ -109,6 +109,14 @@ public:
     	return currentIndex;
     }
 
+    /**
+     * Return the class id.
+     * @return the class name as a std::string
+     */
+    virtual std::string className() const {
+    	return "moOrderNeighborhood";
+    }
+
 private:
     unsigned int currentIndex;
 

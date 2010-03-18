@@ -49,7 +49,7 @@ int main(){
 	test(sol);
 	assert(test.value()==12);
 
-
+	assert(test.className()=="moFitnessStat");
 	std::cout << "[t-moFitnessStat] => OK" << std::endl;
 
 	return EXIT_SUCCESS;

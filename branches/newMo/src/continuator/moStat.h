@@ -41,18 +41,26 @@
  * The actual class that will be used as base for all statistics
  * that need to be calculated over the solution
  * It is a moStatBase AND an eoValueParam so it can be used in Monitors.
-*/
+ */
 template <class EOT, class T>
 class moStat : public eoValueParam<T>, public moStatBase<EOT>
 {
 public:
 
-    moStat(T _value, std::string _description)
-        : eoValueParam<T>(_value, _description)
-        {}
+	/**
+	 * Default Constructor
+	 * @param _value a default parameter's value
+	 * @param _description a description of the parameter
+	 */
+    moStat(T _value, std::string _description):
+    	eoValueParam<T>(_value, _description){}
 
-    virtual std::string className(void) const
-        { return "moStat"; }
+    /**
+     * @return name of the class
+     */
+    virtual std::string className(void) const{
+    	return "moStat";
+    }
 };
 
 

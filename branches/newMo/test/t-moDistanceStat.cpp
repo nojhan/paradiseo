@@ -63,6 +63,7 @@ int main(){
 	test(sol3);
 	assert(test.value()==1);
 
+	assert(test.className()=="moDistanceStat");
 	std::cout << "[t-moDistanceStat] => OK" << std::endl;
 
 	return EXIT_SUCCESS;

@@ -1,5 +1,5 @@
 /*
-<t-moRndWithoutReplNeighborhood.cpp>
+<t-moCounterMonitorSaver.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -27,45 +27,78 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <neighborhood/moRndWithoutReplNeighborhood.h>
-#include <neighborhood/moBitNeighbor.h>
+#include <continuator/moCounterMonitorSaver.h>
+#include <utils/eoMonitor.h>
 
-#include "moTestClass.h"
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
 
+
+class monitor1 : public eoMonitor
+{
+public:
+
+	monitor1(unsigned int& _a): a(_a){}
+
+	eoMonitor& operator()(){
+		a++;
+		return *this;
+	}
+
+	void lastCall(){
+		a++;
+	}
+
+private:
+	unsigned int& a;
+};
+
+class monitor2 : public eoMonitor
+{
+public:
+
+	monitor2(unsigned int& _a): a(_a){}
+
+	eoMonitor& operator()(){
+		a++;
+		return *this;
+	}
+
+	void lastCall(){
+		a++;
+	}
+
+private:
+	unsigned int& a;
+};
+
 int main(){
 
-	std::cout << "[t-moRndWithoutReplNeighborhood] => START" << std::endl;
+	std::cout << "[t-moCounterMonitorSaver] => START" << std::endl;
 
-	unsigned int a, b, c;
-	eoBit<int> sol;
-	moBitNeighbor<int> n;
+	unsigned int a=1;
+	unsigned int b=10;
 
-	moRndWithoutReplNeighborhood< moBitNeighbor<int> > test(3);
-	moRndWithoutReplNeighborhood< moBitNeighbor<int> > test2(0);
+	monitor1 mon1(a);
+	monitor2 mon2(b);
 
-	assert(test.hasNeighbor(sol));
-	assert(!test2.hasNeighbor(sol));
+	moCounterMonitorSaver test(3, mon1);
+	test.add(mon2);
 
-	test.init(sol, n);
-	assert(test.cont(sol));
-	a=test.position();
-	test.next(sol, n);
-	assert(test.cont(sol));
-	b=test.position();
-	test.next(sol,n);
-	assert(!test.cont(sol));
-	c=test.position();
+	test();
+	assert(a==2 && b==11);
+	test();
+	assert(a==2 && b==11);
+	test();
+	assert(a==2 && b==11);
+	test();
+	assert(a==3 && b==12);
+	test.lastCall();
+	assert(a==4 && b==13);
 
-	assert(a==0 || b==0 || c==0);
-	assert(a==1 || b==1 || c==1);
-	assert(a==2 || b==2 || c==2);
-
-	assert(test.className()=="moRndWithoutReplNeighborhood");
-
-	std::cout << "[t-moRndWithoutReplNeighborhood] => OK" << std::endl;
+	assert(test.className()=="moCounterMonitorSaver");
+	std::cout << "[t-moCounterMonitorSaver] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

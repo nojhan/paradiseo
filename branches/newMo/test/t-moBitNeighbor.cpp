@@ -79,6 +79,7 @@ int main(){
 	test1.printOn(std::cout);
 	test2.printOn(std::cout);
 
+	assert(test1.className()=="moBitNeighbor");
 	std::cout << "[t-moBitNeighbor] => OK" << std::endl;
 	return EXIT_SUCCESS;
 }

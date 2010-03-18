@@ -73,6 +73,8 @@ int main(){
 	test.next(sol, neighbor);
 	assert(!test.cont(sol));
 
+	assert(test.className()=="moOrderNeighborhood");
+
 	std::cout << "[t-moOrderNeighborhood] => OK" << std::endl;
 	return EXIT_SUCCESS;
 }

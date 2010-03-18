@@ -65,6 +65,7 @@ int main(){
 	neighbor.fitness(3);
 	assert(test.equals(sol, neighbor));
 
+	assert(test.className()=="moSolNeighborComparator");
 
 	std::cout << "[t-moSolNeighborComparator] => OK" << std::endl;
 	return EXIT_SUCCESS;
