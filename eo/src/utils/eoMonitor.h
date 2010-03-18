@@ -21,7 +21,7 @@
     Contact: todos@geneura.ugr.es, http://geneura.ugr.es
              Marc.Schoenauer@polytechnique.fr
              mak@dhi.dk
-CVS Info: $Date: 2007-09-05 11:36:44 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoMonitor.h,v 1.12 2007-09-05 11:36:44 maartenkeijzer Exp $ $Author: maartenkeijzer $ 
+CVS Info: $Date: 2010-03-18 12:44:45 $ $Header: /home/nojhan/dev/eodev/eodev_cvs/eo/src/utils/eoMonitor.h,v 1.13 2010-03-18 12:44:45 paradiseo Exp $ $Author: paradiseo $ 
 
  */
 //-----------------------------------------------------------------------------
@@ -31,7 +31,7 @@ CVS Info: $Date: 2007-09-05 11:36:44 $ $Header: /home/nojhan/dev/eodev/eodev_cvs
 
 
 #include <vector>
-
+#include <iostream>
 #include <eoFunctor.h>
 
 class eoParam;
