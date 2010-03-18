@@ -36,7 +36,6 @@ SET (TEST_LIST
 		t-moOrderNeighborhood
 		t-moFullEvalByCopy
 		t-moFullEvalByModif
-		t-moSimpleHCexplorer
 		t-moNeighborComparator
 		t-moSolNeighborComparator
 		t-moTrueContinuator
@@ -48,6 +47,11 @@ SET (TEST_LIST
 		t-moCounterMonitorSaver
 		t-moSolutionStat
 		t-moCheckpoint
+		t-moSimpleHCexplorer
+		t-moSimpleHCneutralExplorer
+		t-moHCneutralExplorer
+		t-moFirstImprExplorer
+		
 		)
 				
 FOREACH (test ${TEST_LIST})

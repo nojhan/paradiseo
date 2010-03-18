@@ -40,7 +40,7 @@
 #include <comparator/moSolNeighborComparator.h>
 
 /**
- * Explorer for a simple Hill-climbing
+ * Explorer for a neutral Hill-climbing
  */
 template< class Neighborhood >
 class moHCneutralExplorer : public moSimpleHCneutralExplorer<Neighborhood>
@@ -64,13 +64,13 @@ public:
 	 * @param _solNeighborComparator a solution vs neighbor comparator
 	 * @param _nbStep maximum step to do
 	 */
- moHCneutralExplorer(Neighborhood& _neighborhood, 
+    moHCneutralExplorer(Neighborhood& _neighborhood,
 			   moEval<Neighbor>& _eval, 
 			   moNeighborComparator<Neighbor>& _neighborComparator, 
-		     moSolNeighborComparator<Neighbor>& _solNeighborComparator,
-		     unsigned _nbStep) : 
-    moSimpleHCneutralExplorer<Neighborhood>(_neighborhood, _eval, _neighborComparator, _solNeighborComparator), nbStep(_nbStep) {
-    }
+			   moSolNeighborComparator<Neighbor>& _solNeighborComparator,
+			   unsigned _nbStep) :
+				   moSimpleHCneutralExplorer<Neighborhood>(_neighborhood, _eval, _neighborComparator, _solNeighborComparator),
+				   nbStep(_nbStep){}
 
 	/**
 	 * Destructor
@@ -102,7 +102,7 @@ public:
      * @return true there is some steps to do
      */
     virtual bool isContinue(EOT & _solution) {
-      return (step < nbStep)  && isAccept ;
+    	return (step < nbStep)  && isAccept ;
     };
 
     /**
@@ -111,14 +111,8 @@ public:
      * @return true if the best neighbor ameliorate the fitness or is equals
      */
     virtual bool accept(EOT & _solution) {
-      if(neighborhood.hasNeighbor(_solution)){
-	isAccept = solNeighborComparator(_solution, bestVector[0]) || solNeighborComparator.equals(_solution, bestVector[0]) ;
-	std::cout << bestVector.size() << " " << bestVector[0] << " " ;
-	if (isAccept)
-	  std::cout << "true" << std::endl;
-	else
-	  std::cout << "false" << std::endl;
-      }
+      if(neighborhood.hasNeighbor(_solution))
+    	  isAccept = solNeighborComparator(_solution, bestVector[0]) || solNeighborComparator.equals(_solution, bestVector[0]) ;
       return isAccept;
     };
 

@@ -78,7 +78,7 @@ int main(){
 	//verif de move -> on affecte la fitness du best d'avant
 	test.move(sol);
 
-	//hasNeighbor() retourne vrai et on ameliore la pas fitness donc on doit pas continuer
+	//hasNeighbor() retourne vrai et on ameliore pas la fitness donc on doit pas continuer
 	test(sol);
 	test(sol);
 	test.accept(sol);

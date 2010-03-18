@@ -38,9 +38,11 @@
 #include <explorer/moNeighborhoodExplorer.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
+#include <vector>
+#include <utils/eoRNG.h>
 
 /**
- * Explorer for a simple Hill-climbing
+ * Explorer for a simple neutral Hill-climbing
  */
 template< class Neighborhood >
 class moSimpleHCneutralExplorer : public moNeighborhoodExplorer<Neighborhood>
@@ -59,12 +61,13 @@ public:
 	 * @param _neighborComparator a neighbor comparator
 	 * @param _solNeighborComparator solution vs neighbor comparator
 	 */
- moSimpleHCneutralExplorer(Neighborhood& _neighborhood, 
+    moSimpleHCneutralExplorer(Neighborhood& _neighborhood,
 			   moEval<Neighbor>& _eval, 
 			   moNeighborComparator<Neighbor>& _neighborComparator, 
 			   moSolNeighborComparator<Neighbor>& _solNeighborComparator) : 
-    moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), 
-      neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator) {
+				   moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval),
+				   neighborComparator(_neighborComparator),
+				   solNeighborComparator(_solNeighborComparator) {
     	isAccept = false;
     	current=new Neighbor();
     }
@@ -103,39 +106,39 @@ public:
      */
     virtual void operator()(EOT & _solution){
 
-      //est qu'on peut initializer
-      //Test if _solution has a Neighbor
-      if(neighborhood.hasNeighbor(_solution)){
-	//init the first neighbor
-	neighborhood.init(_solution, (*current));
+    	//Test if _solution has a Neighbor
+    	if(neighborhood.hasNeighbor(_solution)){
+    		//init the first neighbor
+    		neighborhood.init(_solution, (*current));
 
-	//eval the _solution moved with the neighbor and stock the result in the neighbor
-	eval(_solution, (*current));
+    		//eval the _solution moved with the neighbor and stock the result in the neighbor
+    		eval(_solution, (*current));
 
-	//initialize the best neighbor
-	bestVector.push_back(*current);
+    		//initialize the best neighbor
+    		bestVector.push_back(*current);
 
-	//test all others neighbors
-	while (neighborhood.cont(_solution)) {
-	  //next neighbor
-	  neighborhood.next(_solution, (*current));
+    		//test all others neighbors
+    		while (neighborhood.cont(_solution)) {
+    			//next neighbor
+    			neighborhood.next(_solution, (*current));
 	  
-	  //eval
-	  eval(_solution, (*current));
+    			//eval
+    			eval(_solution, (*current));
 		
-	  //if we found a better neighbor, update the best
-	  if (neighborComparator(bestVector[0], (*current))) {
-	    bestVector.clear();
-	    bestVector.push_back(*current);
-	  } else 	 //if the current is equals to previous best solutions then update vector of the best solution
-	    if (neighborComparator.equals((*current), bestVector[0])) 
-	      bestVector.push_back(*current);
-	}
-      } else {
-	//if _solution hasn't neighbor,
-	isAccept=false;
-      }
-    };
+    			//if we found a better neighbor, update the best
+    			if (neighborComparator(bestVector[0], (*current))) {
+    				bestVector.clear();
+    				bestVector.push_back(*current);
+    			}
+    			else if (neighborComparator.equals((*current), bestVector[0])) //if the current is equals to previous best solutions then update vector of the best solution
+    				bestVector.push_back(*current);
+    		}
+    	}
+    	else {
+    		//if _solution hasn't neighbor,
+    		isAccept=false;
+    	}
+	};
 
     /**
      * continue if a move is accepted
@@ -167,10 +170,9 @@ public:
      * @return true if the best neighbor ameliorate the fitness
      */
     virtual bool accept(EOT & _solution) {
-      if(neighborhood.hasNeighbor(_solution)){
-	isAccept = solNeighborComparator(_solution, bestVector[0]) ;
-      }
-      return isAccept;
+    	if(neighborhood.hasNeighbor(_solution))
+    		isAccept = solNeighborComparator(_solution, bestVector[0]) ;
+    	return isAccept;
     };
 
 protected:

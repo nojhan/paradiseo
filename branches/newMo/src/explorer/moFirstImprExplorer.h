@@ -59,7 +59,7 @@ public:
 	 * @param _neighborComparator a neighbor comparator
 	 * @param _solNeighborComparator a solution vs neighbor comparator
 	 */
- moFirstImprExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator) {
+    moFirstImprExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator) {
     	isAccept = false;
     	current=new Neighbor();
     }
@@ -92,7 +92,6 @@ public:
      */
     virtual void operator()(EOT & _solution){
 
-	//est qu'on peut initializer
     	//Test if _solution has a Neighbor
 		if(neighborhood.hasNeighbor(_solution)){
 			//init the first neighbor
