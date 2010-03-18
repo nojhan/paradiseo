@@ -2,6 +2,7 @@
 #define _moDiversification_h
 
 #include <memory/moMemory.h>
+#include <eoFunctor.h>
 
 /**
  * Abstract class for diversification strategy

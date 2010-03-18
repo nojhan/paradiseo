@@ -39,6 +39,8 @@
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
 
+#include <utils/eoRNG.h>
+
 /**
  * Explorer for the Metropolis-Hasting Sampling
  * Only the symetric case is considered when Q(x,y) = Q(y,x)
@@ -61,7 +63,7 @@ public:
 	 * @param _solNeighborComparator a solution vs neighbor comparator
 	 * @param _nbStep maximum number of step to do
 	 */
- moMetropolisHastingExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator, unsigned int _nbStep) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator), nbStep(_nbStep) {
+    moMetropolisHastingExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator, unsigned int _nbStep) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator), nbStep(_nbStep) {
     	isAccept = false;
     	current=new Neighbor();
     }
@@ -78,8 +80,8 @@ public:
 	 * @param _solution the solution (unused here)
 	 */
     virtual void initParam(EOT & _solution){
-      step     = 0;
-      isAccept = true;
+    	step     = 0;
+    	isAccept = true;
     };
 
 	/**
@@ -87,7 +89,7 @@ public:
 	 * @param _solution the solution (unused here)
 	 */
     virtual void updateParam(EOT & _solution){
-      step++;
+    	step++;
     };
 
 	/**
@@ -138,19 +140,23 @@ public:
     };
 
     /**
-     * accept test if an amelirated neighbor was be found
+     * accept test if an ameliorated neighbor was be found
      * @param _solution the solution
      * @return true if the best neighbor ameliorate the fitness
      */
     virtual bool accept(EOT & _solution) {
+    	double alpha=0.0;
 		if(neighborhood.hasNeighbor(_solution)){
-		  if (solNeighborComparator(_solution, *current))
-		    isAccept = true;
-		  else {
-		    double alpha = (double) current->fitness() / (double) _solution.fitness();
-		    
-		    isAccept = (rng.uniform() < alpha) ;
-		  }
+			if (solNeighborComparator(_solution, *current))
+				isAccept = true;
+			else{
+				if(_solution.fitness() != 0){
+					alpha = (double) current->fitness() / (double) _solution.fitness();
+					isAccept = (rng.uniform() < alpha) ;
+				}
+				else
+					isAccept = false;
+			}
 		}
 		return isAccept;
     };

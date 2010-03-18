@@ -2,6 +2,7 @@
 #define _moIntensification_h
 
 #include <memory/moMemory.h>
+#include <eoFunctor.h>
 
 /**
  * Abstract class for intensification strategy

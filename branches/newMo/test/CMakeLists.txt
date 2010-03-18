@@ -47,10 +47,12 @@ SET (TEST_LIST
 		t-moCounterMonitorSaver
 		t-moSolutionStat
 		t-moCheckpoint
+		t-moDummyMemory
 		t-moSimpleHCexplorer
 		t-moSimpleHCneutralExplorer
 		t-moHCneutralExplorer
 		t-moFirstImprExplorer
+		t-moRandomWalkExplorer
 		
 		)
 				

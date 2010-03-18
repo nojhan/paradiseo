@@ -60,13 +60,13 @@ public:
 	 * @param _solNeighborComparator a solution vs neighbor comparator
 	 * @param _nbStep maximum number of step to do
 	 */
- moRandomNeutralWalkExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, 
+    moRandomNeutralWalkExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval,
 			     moSolNeighborComparator<Neighbor>& _solNeighborComparator,
-			     unsigned _nbStep) 
-  : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), 
-    solNeighborComparator(_solNeighborComparator), 
-    nbStep(_nbStep) {
-    	isAccept = false;
+			     unsigned _nbStep):
+			    	 moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval),
+			    	 solNeighborComparator(_solNeighborComparator),
+			    	 nbStep(_nbStep) {
+		isAccept = false;
     	current=new Neighbor();
     }
 
@@ -81,15 +81,15 @@ public:
 	 * initialization of the number of step to be done
 	 */
     virtual void initParam(EOT & solution){
-      step     = 0;
-      isAccept = true;
+    	step     = 0;
+    	isAccept = true;
     };
 
 	/**
 	 * increase the number of step
 	 */
     virtual void updateParam(EOT & solution){
-      step++;
+    	step++;
     };
 
 	/**
@@ -102,27 +102,27 @@ public:
      * @param _solution
      */
     virtual void operator()(EOT & _solution){
-      //Test if _solution has a Neighbor
-      if(neighborhood.hasNeighbor(_solution)){
-	//init the first neighbor
-	neighborhood.init(_solution, (*current));
+    	//Test if _solution has a Neighbor
+    	if(neighborhood.hasNeighbor(_solution)){
+    		//init the first neighbor
+    		neighborhood.init(_solution, (*current));
 
-	//eval the _solution moved with the neighbor and stock the result in the neighbor
-	eval(_solution, (*current));
+    		//eval the _solution moved with the neighbor and stock the result in the neighbor
+    		eval(_solution, (*current));
 
-	//test all others neighbors
-	while (! solNeighborComparator.equals(_solution, *current) && neighborhood.cont(_solution)) {
-	  //next neighbor
-	  neighborhood.next(_solution, (*current));
-	  //eval
-	  eval(_solution, (*current));
-	}
-      }
-      else{
-	//if _solution hasn't neighbor,
-	isAccept=false;
-      }
-    };
+    		//test all others neighbors
+    		while (! solNeighborComparator.equals(_solution, *current) && neighborhood.cont(_solution)) {
+    			//next neighbor
+    			neighborhood.next(_solution, (*current));
+    			//eval
+    			eval(_solution, (*current));
+    		}
+    	}
+    	else{
+    		//if _solution hasn't neighbor,
+    		isAccept=false;
+    	}
+	};
 
     /**
      * continue if there is a neighbor and it is remainds some steps to do
@@ -130,7 +130,7 @@ public:
      * @return true there is some steps to do
      */
     virtual bool isContinue(EOT & _solution) {
-      return (step < nbStep)  && isAccept ;
+    	return (step < nbStep)  && isAccept ;
     };
 
     /**
@@ -145,15 +145,14 @@ public:
     };
 
     /**
-     * accept test if an amelirated neighbor was be found
+     * accept test if an ameliorated neighbor was be found
      * @param _solution the solution
      * @return true if the best neighbor ameliorate the fitness
      */
     virtual bool accept(EOT & _solution) {
-      if(neighborhood.hasNeighbor(_solution)){
-	isAccept = solNeighborComparator.equals(_solution, (*current)) ;
-      }
-      return isAccept;
+    	if(neighborhood.hasNeighbor(_solution))
+    		isAccept = solNeighborComparator.equals(_solution, (*current)) ;
+    	return isAccept;
     };
 
 private:

@@ -40,7 +40,7 @@
 #include <comparator/moSolNeighborComparator.h>
 
 /**
- * Explorer for a first imporvement heuristic
+ * Explorer for a random walk explorer
  */
 template< class Neighborhood >
 class moRandomWalkExplorer : public moNeighborhoodExplorer<Neighborhood>
@@ -58,11 +58,11 @@ public:
 	 * @param _eval the evaluation function
 	 * @param _nbStep maximum number of step to do
 	 */
- moRandomWalkExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, unsigned _nbStep) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), nbStep(_nbStep) {
+    moRandomWalkExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, unsigned _nbStep) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), nbStep(_nbStep) {
     	isAccept = false;
     	current=new Neighbor();
-	// number of step done
-	step = 0;
+    	// number of step done
+    	step = 0;
     }
 
 	/**
@@ -98,7 +98,6 @@ public:
      */
     virtual void operator()(EOT & _solution){
 
-	//est qu'on peut initializer
     	//Test if _solution has a Neighbor
 		if(neighborhood.hasNeighbor(_solution)){
 			//init the first neighbor
@@ -141,9 +140,8 @@ public:
      * @return true if the best neighbor ameliorate the fitness
      */
     virtual bool accept(EOT & _solution) {
-		if(neighborhood.hasNeighbor(_solution)){
+		if(neighborhood.hasNeighbor(_solution))
 		  isAccept = true ;
-		}
 		return isAccept;
     };
 
