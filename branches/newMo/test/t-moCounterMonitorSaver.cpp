@@ -28,50 +28,12 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
 #include <continuator/moCounterMonitorSaver.h>
-#include <utils/eoMonitor.h>
+#include "moTestClass.h"
 
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
 
-
-class monitor1 : public eoMonitor
-{
-public:
-
-	monitor1(unsigned int& _a): a(_a){}
-
-	eoMonitor& operator()(){
-		a++;
-		return *this;
-	}
-
-	void lastCall(){
-		a++;
-	}
-
-private:
-	unsigned int& a;
-};
-
-class monitor2 : public eoMonitor
-{
-public:
-
-	monitor2(unsigned int& _a): a(_a){}
-
-	eoMonitor& operator()(){
-		a++;
-		return *this;
-	}
-
-	void lastCall(){
-		a++;
-	}
-
-private:
-	unsigned int& a;
-};
 
 int main(){
 

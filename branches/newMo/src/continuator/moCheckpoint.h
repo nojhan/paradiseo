@@ -38,6 +38,7 @@
 #include <continuator/moContinuator.h>
 #include <utils/eoMonitor.h>
 #include <continuator/moStatBase.h>
+#include <utils/eoUpdater.h>
 
 /**
  * Continuator allowing to add others (continuators, stats, monitors or updaters)
@@ -100,9 +101,11 @@ public :
     }
 
     /**
-     * @return the name of the class
+     * @return class name
      */
-    virtual std::string className(void) const { return "moCheckPoint"; }
+    virtual std::string className(void) const {
+    	return "moCheckpoint";
+    }
 
 	/**
 	 * apply operator of checkpoint's containers

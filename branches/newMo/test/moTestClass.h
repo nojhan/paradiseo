@@ -47,6 +47,9 @@
 #include <neighborhood/moOrderNeighborhood.h>
 #include <neighborhood/moBitNeighbor.h>
 
+#include <utils/eoMonitor.h>
+#include <utils/eoUpdater.h>
+
 typedef eoBit<eoMinimizingFitness> bitVector;
 typedef moBitNeighbor<eoMinimizingFitness> bitNeighbor ;
 typedef moOrderNeighborhood<bitNeighbor> bitNeighborhood ;
@@ -118,6 +121,61 @@ public:
     		fit++;
 	_n.fitness(fit);
   }
+};
+
+class monitor1 : public eoMonitor
+{
+public:
+
+	monitor1(unsigned int& _a): a(_a){}
+
+	eoMonitor& operator()(){
+		a++;
+		return *this;
+	}
+
+	void lastCall(){
+		a++;
+	}
+
+private:
+	unsigned int& a;
+};
+
+class monitor2 : public eoMonitor
+{
+public:
+
+	monitor2(unsigned int& _a): a(_a){}
+
+	eoMonitor& operator()(){
+		a++;
+		return *this;
+	}
+
+	void lastCall(){
+		a++;
+	}
+
+private:
+	unsigned int& a;
+};
+
+class updater1: public eoUpdater
+{
+public:
+	updater1(unsigned int& _a): a(_a){}
+
+	void operator()(){
+		a++;
+	}
+
+	void lastCall(){
+		a++;
+	}
+
+private:
+	unsigned int& a;
 };
 
 #endif

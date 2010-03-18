@@ -47,6 +47,7 @@ SET (TEST_LIST
 		t-moNeighborhoodStat
 		t-moCounterMonitorSaver
 		t-moSolutionStat
+		t-moCheckpoint
 		)
 				
 FOREACH (test ${TEST_LIST})
