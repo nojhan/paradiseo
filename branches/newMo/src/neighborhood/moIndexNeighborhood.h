@@ -41,7 +41,7 @@
  * A Indexed Neighborhood
  */
 template< class Neighbor >
-class moIndexNeighborhood : public moNeighborhood<Neighbor>
+class moIndexNeighborhood : virtual public moNeighborhood<Neighbor>
 {
 public:
 	/**

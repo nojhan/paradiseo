@@ -90,6 +90,7 @@
 #include <neighborhood/moNeighbor.h>
 #include <neighborhood/moNeighborhood.h>
 #include <neighborhood/moOrderNeighborhood.h>
+#include <neighborhood/moRndNeighborhood.h>
 #include <neighborhood/moRndWithoutReplNeighborhood.h>
 #include <neighborhood/moRndWithReplNeighborhood.h>
 

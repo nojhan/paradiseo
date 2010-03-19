@@ -40,6 +40,7 @@
 #include <neighborhood/moNeighbor.h>
 #include <neighborhood/moBackableNeighbor.h>
 #include <neighborhood/moNeighborhood.h>
+#include <neighborhood/moRndNeighborhood.h>
 #include <eval/moEval.h>
 
 #include <ga/eoBit.h>
@@ -50,9 +51,17 @@
 #include <utils/eoMonitor.h>
 #include <utils/eoUpdater.h>
 
+
+
 typedef eoBit<eoMinimizingFitness> bitVector;
 typedef moBitNeighbor<eoMinimizingFitness> bitNeighbor ;
-typedef moOrderNeighborhood<bitNeighbor> bitNeighborhood ;
+
+class moDummyRndNeighborhood: public moOrderNeighborhood<bitNeighbor>, public moRndNeighborhood<bitNeighbor> {
+public:
+	moDummyRndNeighborhood(unsigned int a): moOrderNeighborhood<bitNeighbor>(a){}
+};
+
+typedef moDummyRndNeighborhood bitNeighborhood ;
 
 typedef EO<int> Solution;
 
@@ -119,6 +128,22 @@ public:
     		fit--;
     	else
     		fit++;
+	_n.fitness(fit);
+  }
+};
+
+class dummyEvalOneMax : public moEval< bitNeighbor >
+{
+private:
+  unsigned size;
+
+public:
+  dummyEvalOneMax(unsigned _size) : size(_size) {};
+
+  ~dummyEvalOneMax(void) {} ;
+
+  void operator() (bitVector& _sol, bitNeighbor& _n) {
+    unsigned int fit = _sol.fitness();
 	_n.fitness(fit);
   }
 };

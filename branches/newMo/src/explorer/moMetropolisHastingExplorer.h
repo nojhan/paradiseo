@@ -44,6 +44,7 @@
 /**
  * Explorer for the Metropolis-Hasting Sampling
  * Only the symetric case is considered when Q(x,y) = Q(y,x)
+ * Fitness must be > 0
  */
 template< class Neighborhood >
 class moMetropolisHastingExplorer : public moNeighborhoodExplorer<Neighborhood>
@@ -103,8 +104,6 @@ public:
      * @param _solution
      */
     virtual void operator()(EOT & _solution){
-
-	//est qu'on peut initializer
     	//Test if _solution has a Neighbor
 		if(neighborhood.hasNeighbor(_solution)){
 			//init the first neighbor
@@ -151,11 +150,18 @@ public:
 				isAccept = true;
 			else{
 				if(_solution.fitness() != 0){
-					alpha = (double) current->fitness() / (double) _solution.fitness();
+					if( (double)current->fitness() < (double)_solution.fitness()) // maximizing
+						alpha = (double) current->fitness() / (double) _solution.fitness();
+					else //minimizing
+						alpha = (double) _solution.fitness() / (double) current->fitness();
 					isAccept = (rng.uniform() < alpha) ;
 				}
-				else
-					isAccept = false;
+				else{
+					if( (double)current->fitness() < (double)_solution.fitness()) // maximizing
+						isAccept = true;
+					else
+						isAccept = false;
+				}
 			}
 		}
 		return isAccept;

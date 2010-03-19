@@ -41,6 +41,7 @@
 /**
  * Explorer for a random neutral walk
  * accept the movement when the neighbor has the same fitnes
+ * To sample the neutral networks by random walk, there is no memory
  * neighborhood must be explored in random order
  */
 template< class Neighborhood >

@@ -36,13 +36,14 @@
 #define _moRndWithoutReplNeighborhood_h
 
 #include <neighborhood/moIndexNeighborhood.h>
+#include <neighborhood/moRndNeighborhood.h>
 #include <utils/eoRNG.h>
 
 /**
  * A Random without replacement Neighborhood
  */
 template< class N >
-class moRndWithoutReplNeighborhood : public moIndexNeighborhood<N>
+class moRndWithoutReplNeighborhood : public moIndexNeighborhood<N>, public moRndNeighborhood<N>
 {
 public:
 

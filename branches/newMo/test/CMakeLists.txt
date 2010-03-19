@@ -53,6 +53,8 @@ SET (TEST_LIST
 		t-moHCneutralExplorer
 		t-moFirstImprExplorer
 		t-moRandomWalkExplorer
+		t-moMetropolisHastingExplorer
+		t-moRandomNeutralWalkExplorer
 		
 		)
 				
