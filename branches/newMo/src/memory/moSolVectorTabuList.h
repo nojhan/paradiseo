@@ -2,6 +2,7 @@
 #define _moSolVectorTabuList_h
 
 #include <memory/moTabuList.h>
+#include <vector>
 
 /**
  * Tabu List of solution stocked in a vector
@@ -25,7 +26,7 @@ public:
 	 * init the tabuList by clearing the memory
 	 * @param _sol the current solution
 	 */
-	void init(EOT & _sol){
+	virtual void init(EOT & _sol){
 		clearMemory();
 	}
 
@@ -35,7 +36,7 @@ public:
 	 * @param _sol the current solution
 	 * @param _neighbor the current neighbor (unused)
 	 */
-	void add(EOT & _sol, Neighbor & _neighbor)
+	 virtual void add(EOT & _sol, Neighbor & _neighbor)
 	{
 		if(tabuList.size() < maxSize)
 			tabuList.push_back(_sol);
@@ -46,13 +47,11 @@ public:
 	}
 
 	/**
-	 * update the tabulist
+	 * update the tabulist: NOTHING TO DO
 	 * @param _sol the current solution
 	 * @param _neighbor the current neighbor (unused)
 	 */
-	void update(EOT & _sol, Neighbor & _neighbor){
-		// ???
-	}
+	virtual void update(EOT & _sol, Neighbor & _neighbor){}
 
 	/**
 	 * check if the solution is tabu
@@ -60,7 +59,7 @@ public:
 	 * @param _neighbor the current neighbor (unused)
 	 * @return true if tabuList contains _sol
 	 */
-	bool check(EOT & _sol, Neighbor & _neighbor){
+	virtual bool check(EOT & _sol, Neighbor & _neighbor){
 		for(unsigned int i=0; i<tabuList.size(); i++){
 			if (tabuList[i] == _sol)
 				return true;

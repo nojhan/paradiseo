@@ -55,6 +55,7 @@ SET (TEST_LIST
 		t-moRandomWalkExplorer
 		t-moMetropolisHastingExplorer
 		t-moRandomNeutralWalkExplorer
+		t-moSolVectorTabuList
 		
 		)
 				
