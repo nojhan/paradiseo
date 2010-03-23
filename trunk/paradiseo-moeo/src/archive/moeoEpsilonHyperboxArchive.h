@@ -378,10 +378,12 @@ private:
 							nadir[i] = tmp[i];
 					}
 					else{
-						if(tmp[i] > ideal[i])
+						if(tmp[i] > ideal[i]){
 							ideal[i] = tmp[i];
-						else if(tmp[i] < nadir[i])
+						}
+						else if(tmp[i] < nadir[i]){
 							nadir[i] = tmp[i];
+						}
 					}
 				}
 			}
