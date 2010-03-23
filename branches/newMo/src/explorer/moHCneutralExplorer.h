@@ -70,7 +70,12 @@ public:
 			   moSolNeighborComparator<Neighbor>& _solNeighborComparator,
 			   unsigned _nbStep) :
 				   moSimpleHCneutralExplorer<Neighborhood>(_neighborhood, _eval, _neighborComparator, _solNeighborComparator),
-				   nbStep(_nbStep){}
+				   nbStep(_nbStep){
+    	//Some cycle is possible with equals fitness solutions if the neighborhood is not random
+    	if(!neighborhood.isRandom()){
+    		std::cout << "moHCneutralExplorer::Warning -> the neighborhood used is not random" << std::endl;
+    	}
+    }
 
 	/**
 	 * Destructor
@@ -106,7 +111,7 @@ public:
     };
 
     /**
-     * accept test if an amelirated neighbor was be found
+     * accept test if an ameliorated neighbor was be found
      * @param _solution the solution
      * @return true if the best neighbor ameliorate the fitness or is equals
      */
