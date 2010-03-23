@@ -38,6 +38,7 @@ int main(){
 
 	std::cout << "[t-moMetropolisHastingExplorer] => START" << std::endl;
 
+	//Instanciation
 	eoBit<eoMinimizingFitness> sol(4, true);
 	sol.fitness(4);
 	bitNeighborhood nh(4);
@@ -47,6 +48,7 @@ int main(){
 
 	moMetropolisHastingExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp, 3);
 
+	//test de l'acceptation d'un voisin améliorant
 	test.initParam(sol);
 	test(sol);
 	assert(test.accept(sol));
@@ -57,6 +59,7 @@ int main(){
 
 	unsigned int oui=0, non=0;
 
+	//test de l'acceptation d'un voisin non améliorant
 	for(unsigned int i=0; i<1000; i++){
 		test(sol);
 		if(test.accept(sol))
@@ -70,11 +73,13 @@ int main(){
 
 	assert(oui > 700 && oui < 800); //verification grossiere
 
+	//test du critere d'arret
 	test.updateParam(sol);
 	assert(test.isContinue(sol));
 	test.updateParam(sol);
 	assert(!test.isContinue(sol));
 
+	//test de l'acceptation d'un voisin
 	sol[0]=false;
 	sol[1]=false;
 	sol[2]=false;

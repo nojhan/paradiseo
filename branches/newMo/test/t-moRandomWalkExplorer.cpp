@@ -43,6 +43,8 @@ int main(){
 	bitNeighborhood nh(4);
 	evalOneMax eval(4);
 
+	//test avec un neighbordhood ordonné
+	//Du coup on verifie juste qu'on a bien une evolution de la solution et qu'on fait 3 pas avant d'arreter l'exploration
 	moRandomWalkExplorer<bitNeighborhood> test(nh, eval, 3);
 
 	test.initParam(sol);

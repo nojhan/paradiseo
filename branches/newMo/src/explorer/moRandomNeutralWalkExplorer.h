@@ -69,6 +69,9 @@ public:
 			    	 nbStep(_nbStep) {
 		isAccept = false;
     	current=new Neighbor();
+    	if(!neighborhood.isRandom()){
+    		std::cout << "moRandomNeutralWalkExplorer::Warning -> the neighborhood used is not random" << std::endl;
+    	}
     }
 
 	/**

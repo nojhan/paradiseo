@@ -40,6 +40,7 @@ int main(){
 
 	std::cout << "[t-moFirstImprExplorer] => START" << std::endl;
 
+	//Instanciation
 	eoBit<eoMinimizingFitness> sol(4, true);
 	sol.fitness(4);
 	bitNeighborhood nh(4);
@@ -48,6 +49,8 @@ int main(){
 	moSolNeighborComparator<bitNeighbor> sncomp;
 
 	moFirstImprExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp);
+
+	//on verifie qu'on améliore peut continuer à explorer tant qu'on améliore la solution
 
 	test(sol);
 	assert(test.accept(sol));

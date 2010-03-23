@@ -52,6 +52,8 @@ int main(){
 
 	s.fitness(17);
 
+
+	//verification que toutes les operateurs sont bien apellés
 	moSolutionStat< eoBit< eoMinimizingFitness > > stat;
 	updater1 up1(a);
 	updater1 up2(b);

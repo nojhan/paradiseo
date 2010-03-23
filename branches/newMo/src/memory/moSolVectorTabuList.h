@@ -17,8 +17,9 @@ public:
 	/**
 	 * Constructor
 	 * @param _maxSize maximum size of the tabu list
+	 * @param _howlong how many iteration a move is tabu
 	 */
-	moSolVectorTabuList(unsigned int _maxSize) : maxSize(_maxSize){
+	moSolVectorTabuList(unsigned int _maxSize, unsigned int _howlong) : maxSize(_maxSize), howlong(_howlong){
 		tabuList.reserve(_maxSize);
 		tabuList.resize(0);
 	}
@@ -38,12 +39,18 @@ public:
 	 * @param _neighbor the current neighbor (unused)
 	 */
 	 virtual void add(EOT & _sol, Neighbor & _neighbor){
-		if(tabuList.size() < maxSize)
-			tabuList.push_back(_sol);
-		else{
-			tabuList[index%maxSize] = _sol;
-			index++;
-		}
+
+		 if(tabuList.size() < maxSize){
+			 std::pair<EOT, unsigned int> tmp;
+			 tmp.first=_sol;
+			 tmp.second=howlong;
+			 tabuList.push_back(tmp);
+		 }
+		 else{
+			 tabuList[index%maxSize].first = _sol;
+			 tabuList[index%maxSize].second = howlong;
+			 index++;
+		 }
 	 }
 
 	/**
@@ -51,7 +58,10 @@ public:
 	 * @param _sol the current solution
 	 * @param _neighbor the current neighbor (unused)
 	 */
-	virtual void update(EOT & _sol, Neighbor & _neighbor){}
+	virtual void update(EOT & _sol, Neighbor & _neighbor){
+		for(unsigned int i=0; i<tabuList.size(); i++)
+			tabuList[i].second--;
+	}
 
 	/**
 	 * check if the solution is tabu
@@ -63,7 +73,7 @@ public:
 		EOT tmp=_sol;
 		_neighbor.move(tmp);
 		for(unsigned int i=0; i<tabuList.size(); i++){
-			if (tabuList[i] == tmp)
+			if ((howlong > 0 && tabuList[i].second > 0 && tabuList[i].first == tmp) || (howlong==0 && tabuList[i].first==tmp))
 				return true;
 		}
 		return false;
@@ -79,9 +89,13 @@ public:
 
 
 private:
-
-	std::vector<EOT> tabuList;
+	//tabu list
+	std::vector< std::pair<EOT, unsigned int> > tabuList;
+	//maximum size of the tabu list
 	unsigned int maxSize;
+	//how many iteration a move is tabu
+	unsigned int howlong;
+	//index on the tabulist
 	unsigned long index;
 
 };

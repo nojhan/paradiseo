@@ -48,6 +48,8 @@ int main(){
 	moCounterMonitorSaver test(3, mon1);
 	test.add(mon2);
 
+	//on verifie qu'on apelle les moniteurs seulement tout les 3 itération
+
 	test();
 	assert(a==2 && b==11);
 	test();
@@ -56,6 +58,8 @@ int main(){
 	assert(a==2 && b==11);
 	test();
 	assert(a==3 && b==12);
+
+	//test du lastCall
 	test.lastCall();
 	assert(a==4 && b==13);
 

@@ -48,6 +48,7 @@ int main(){
 	moSolutionStat< eoBit<unsigned int > > test;
 
 	test(s);
+	//on verifie que la solution est bien enregistré
 
 	assert(test.value()[0]);
 	assert(test.value()[1]);

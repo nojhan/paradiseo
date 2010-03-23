@@ -151,7 +151,7 @@ void main_function(int argc, char **argv)
 	 *
 	 * ========================================================= */
   
-	moSolVectorTabuList<Neighbor> tl(10);
+	moSolVectorTabuList<Neighbor> tl(10,10);
 	moDummyIntensification<Neighbor> inten;
 	moDummyDiversification<Neighbor> div;
 	moBestImprAspiration<Neighbor> asp;

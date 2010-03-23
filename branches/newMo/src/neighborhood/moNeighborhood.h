@@ -55,6 +55,13 @@ public:
     moNeighborhood(){}
 
     /**
+     * @return if the neighborhood is random
+     */
+    virtual bool isRandom(){
+    	return false;
+    }
+
+    /**
      * Test if a solution has (again) a Neighbor
      * @param _solution the related solution
      * @return if _solution has a Neighbor

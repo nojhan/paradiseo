@@ -51,12 +51,10 @@
 #include <utils/eoMonitor.h>
 #include <utils/eoUpdater.h>
 
-
-
 typedef eoBit<eoMinimizingFitness> bitVector;
 typedef moBitNeighbor<eoMinimizingFitness> bitNeighbor ;
 
-class moDummyRndNeighborhood: public moOrderNeighborhood<bitNeighbor>, public moRndNeighborhood<bitNeighbor> {
+class moDummyRndNeighborhood: public moOrderNeighborhood<bitNeighbor>/*, public moRndNeighborhood<bitNeighbor>*/{
 public:
 	moDummyRndNeighborhood(unsigned int a): moOrderNeighborhood<bitNeighbor>(a){}
 };

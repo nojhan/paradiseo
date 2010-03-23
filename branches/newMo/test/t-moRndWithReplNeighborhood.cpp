@@ -51,6 +51,7 @@ int main(){
 
 	test.init(sol,n);
 
+	//on s'assure qu'on a bien toujours bien l'index 0, 1 ou 2 qui est renvoyé
 	for(unsigned int i=0; i<100; i++){
 
 		a=n.index();

@@ -110,8 +110,7 @@ public:
  	 */
     virtual void updateParam(EOT& _solution)
     {
-      if ((*this).moveApplied())
-      {
+      if ((*this).moveApplied()){
     	  tabuList.add(_solution, *best);
     	  intensification.add(_solution, *best);
     	  diversification.add(_solution, *best);
@@ -126,10 +125,9 @@ public:
 
 
 	/**
-	 * terminate : NOTHING TO DO
+	 * terminate : _solution becomes the best so far
 	 */
-    virtual void terminate(EOT & _solution)
-    {
+    virtual void terminate(EOT & _solution){
     	_solution= bestSoFar;
     };
 

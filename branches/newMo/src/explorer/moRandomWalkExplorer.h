@@ -63,6 +63,9 @@ public:
     	current=new Neighbor();
     	// number of step done
     	step = 0;
+    	if(!neighborhood.isRandom()){
+    		std::cout << "moRandomWalkExplorer::Warning -> the neighborhood used is not random" << std::endl;
+    	}
     }
 
 	/**

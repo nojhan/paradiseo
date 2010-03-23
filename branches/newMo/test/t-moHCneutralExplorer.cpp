@@ -40,6 +40,7 @@ int main(){
 
 	std::cout << "[t-moHCneutralExplorer] => START" << std::endl;
 
+	//Instanciation
 	eoBit<eoMinimizingFitness> sol(4, true);
 	sol.fitness(4);
 	bitNeighborhood nh(4);
@@ -49,6 +50,8 @@ int main(){
 
 	moHCneutralExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp,3);
 
+	//on verifie qu'on ameliore bien la solution et que l'exploration dure 3 itérations
+
 	test.initParam(sol);
 	test(sol);
 	assert(test.accept(sol));
@@ -57,7 +60,7 @@ int main(){
 	test.updateParam(sol);
 	assert(test.isContinue(sol));
 
-
+	//les affichages permettent de voir qu'on prend pas toujours les mm voisins(lancer plusieurs fois l'exe)
 	std::cout << sol << std::endl;
 
 	test(sol);

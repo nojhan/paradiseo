@@ -59,6 +59,8 @@ int main(){
 	n3.fitness(3);
 	n4.fitness(3);
 
+
+	//verification qu'on update bien le best so far quand il faut
 	test.init(sol1);
 	assert(test.getBest()==sol1);
 	assert(!test(sol2,n2));

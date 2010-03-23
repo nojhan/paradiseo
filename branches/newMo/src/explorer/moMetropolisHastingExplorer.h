@@ -35,6 +35,8 @@
 #ifndef _moMetropolisHastingExplorer_h
 #define _moMetropolisHastingExplorer_h
 
+#include <cstdlib>
+
 #include <explorer/moNeighborhoodExplorer.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
@@ -67,6 +69,9 @@ public:
     moMetropolisHastingExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator, unsigned int _nbStep) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator), nbStep(_nbStep) {
     	isAccept = false;
     	current=new Neighbor();
+    	if(!neighborhood.isRandom()){
+    		std::cout << "moMetropolisHastingExplorer::Warning -> the neighborhood used is not random" << std::endl;
+    	}
     }
 
 	/**

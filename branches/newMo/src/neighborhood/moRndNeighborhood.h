@@ -33,6 +33,13 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <neighborhood/moNeighborhood.h>
 
 template< class Neighbor >
-class moRndNeighborhood : virtual public moNeighborhood<Neighbor>{};
+class moRndNeighborhood : virtual public moNeighborhood<Neighbor>{
+
+public:
+
+	bool isRandom(){
+		return true;
+	}
+};
 
 #endif

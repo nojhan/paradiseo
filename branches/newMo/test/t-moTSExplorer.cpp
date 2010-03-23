@@ -42,6 +42,7 @@ int main(){
 
 	std::cout << "[t-moTSExplorer] => START" << std::endl;
 
+	//instansiation
 	eoBit<eoMinimizingFitness> sol(4, true);
 	sol.fitness(4);
 	bitNeighborhood nh(4);
@@ -51,7 +52,7 @@ int main(){
 	moSolNeighborComparator<bitNeighbor> sncomp;
 	moDummyIntensification<bitNeighbor> intens;
 	moDummyDiversification<bitNeighbor> diver;
-	moSolVectorTabuList<bitNeighbor> tabuList(4);
+	moSolVectorTabuList<bitNeighbor> tabuList(4,0);
 	moBestImprAspiration<bitNeighbor> aspir;
 
 	moTSExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp, tabuList, intens, diver, aspir);
@@ -152,6 +153,7 @@ int main(){
 	test3.moveApplied(true);
 	test3.updateParam(sol2);
 
+	//on a rempli la liste tabu pour que tout les voisins soit tabu
 	test3(sol2);
 	assert(!test3.accept(sol2));
 

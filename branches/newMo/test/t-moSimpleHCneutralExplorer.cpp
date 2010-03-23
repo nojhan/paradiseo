@@ -40,6 +40,7 @@ int main(){
 
 	std::cout << "[t-moSimpleHCneutralExplorer] => START" << std::endl;
 
+	//instanciation
 	eoBit<eoMinimizingFitness> sol(4, true);
 	sol.fitness(4);
 	bitNeighborhood nh(4);
@@ -49,6 +50,7 @@ int main(){
 
 	moSimpleHCneutralExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp);
 
+	//test qu'on ameliore bien a chaque itération
 	test.initParam(sol);
 	test(sol);
 	assert(test.accept(sol));
@@ -57,6 +59,7 @@ int main(){
 	assert(test.isContinue(sol));
 	test.updateParam(sol);
 
+	//les affichages permettent de voir qu'on choisit pas toujours les mm voisins améliorant (lancer plusieurs fois l'exe)
 	std::cout << sol << std::endl;
 
 	test(sol);

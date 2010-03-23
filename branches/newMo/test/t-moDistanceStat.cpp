@@ -54,6 +54,8 @@ int main(){
 	sol3.push_back(true);
 	sol3.push_back(true);
 
+	//verification de la stat avec une distance de Hamming
+
 	eoHammingDistance< eoBit<int> > dist;
 
 	moDistanceStat< eoBit<int> > test(dist, sol1);

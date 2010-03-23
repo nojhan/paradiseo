@@ -38,7 +38,8 @@ int main(){
 
 	std::cout << "[t-moSolVectorTabuList] => START" << std::endl;
 
-	moSolVectorTabuList<bitNeighbor> test(2);
+	//test without countdown
+	moSolVectorTabuList<bitNeighbor> test(2,0);
 	bitNeighbor n1;
 	bitNeighbor n2;
 	bitNeighbor n3;
@@ -58,8 +59,13 @@ int main(){
 	sol4[0]=false;
 	sol4[1]=false;
 
+	//init
 	test.init(sol1);
+
+	//ajout d'une sol tabu
 	test.add(sol1,n1);
+
+	//verification des voisins de chaques sol
 	assert(test.check(sol2,n1));
 	assert(!test.check(sol2,n2));
 	assert(!test.check(sol2,n3));
@@ -87,6 +93,59 @@ int main(){
 	test.add(sol4,n1);
 	assert(!test.check(sol2,n1));
 	assert(test.check(sol2,n2));
+
+	//test with a countdown at 3
+	moSolVectorTabuList<bitNeighbor> test2(2,2);
+	test2.init(sol1);
+	test2.add(sol1,n1);
+	assert(test2.check(sol2,n1));
+	assert(!test2.check(sol2,n2));
+	assert(!test2.check(sol2,n3));
+	assert(!test2.check(sol2,n4));
+
+	assert(!test2.check(sol3,n1));
+	assert(test2.check(sol3,n2));
+	assert(!test2.check(sol3,n3));
+	assert(!test2.check(sol3,n4));
+
+	assert(!test2.check(sol4,n1));
+	assert(!test2.check(sol4,n2));
+	assert(!test2.check(sol4,n3));
+	assert(!test2.check(sol4,n4));
+
+	//coutdown sol1 -> 1
+	test2.update(sol1,n1);
+	assert(test2.check(sol2,n1));
+	assert(!test2.check(sol2,n2));
+	assert(!test2.check(sol2,n3));
+	assert(!test2.check(sol2,n4));
+
+	assert(!test2.check(sol3,n1));
+	assert(test2.check(sol3,n2));
+	assert(!test2.check(sol3,n3));
+	assert(!test2.check(sol3,n4));
+
+	assert(!test2.check(sol4,n1));
+	assert(!test2.check(sol4,n2));
+	assert(!test2.check(sol4,n3));
+	assert(!test2.check(sol4,n4));
+
+	//coutdown sol1 -> 0 : sol1 is no longer tabu
+	test2.update(sol1,n1);
+	assert(!test2.check(sol2,n1));
+	assert(!test2.check(sol2,n2));
+	assert(!test2.check(sol2,n3));
+	assert(!test2.check(sol2,n4));
+
+	assert(!test2.check(sol3,n1));
+	assert(!test2.check(sol3,n2));
+	assert(!test2.check(sol3,n3));
+	assert(!test2.check(sol3,n4));
+
+	assert(!test2.check(sol4,n1));
+	assert(!test2.check(sol4,n2));
+	assert(!test2.check(sol4,n3));
+	assert(!test2.check(sol4,n4));
 
 	std::cout << "[t-moSolVectorTabuList] => OK" << std::endl;
 
