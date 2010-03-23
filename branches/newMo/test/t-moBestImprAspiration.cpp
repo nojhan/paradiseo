@@ -1,5 +1,5 @@
 /*
-<t-moSolVectorTabuList.cpp>
+<t-moBestImprAspiration.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -26,8 +26,7 @@ knowledge of the CeCILL license and that you accept its terms.
 ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
-
-#include <memory/moSolVectorTabuList.h>
+#include <memory/moBestImprAspiration.h>
 #include "moTestClass.h"
 
 #include <iostream>
@@ -36,59 +35,41 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 int main(){
 
-	std::cout << "[t-moSolVectorTabuList] => START" << std::endl;
+	std::cout << "[t-moBestImprAspiration] => START" << std::endl;
 
-	moSolVectorTabuList<bitNeighbor> test(2);
+	moBestImprAspiration<bitNeighbor> test;
+	eoBit<eoMinimizingFitness> sol1(4);
+	eoBit<eoMinimizingFitness> sol2(4);
+	eoBit<eoMinimizingFitness> sol3(4);
+	eoBit<eoMinimizingFitness> sol4(4);
 	bitNeighbor n1;
 	bitNeighbor n2;
 	bitNeighbor n3;
 	bitNeighbor n4;
-	n1.index(0);
-	n2.index(1);
-	n3.index(2);
-	n4.index(3);
 
-	eoBit<eoMinimizingFitness> sol1(4, true);
-	eoBit<eoMinimizingFitness> sol2(4, true);
-	eoBit<eoMinimizingFitness> sol3(4, true);
-	eoBit<eoMinimizingFitness> sol4(4, true);
+	sol3[0]=true;
+	sol4[3]=true;
 
-	sol2[0]=false;
-	sol3[1]=false;
-	sol4[0]=false;
-	sol4[1]=false;
+	sol1.fitness(4);
+	sol2.fitness(5);
+	sol3.fitness(3);
+	sol4.fitness(3);
+	n1.fitness(4);
+	n2.fitness(5);
+	n3.fitness(3);
+	n4.fitness(3);
 
 	test.init(sol1);
-	test.add(sol1,n1);
-	assert(test.check(sol2,n1));
-	assert(!test.check(sol2,n2));
-	assert(!test.check(sol2,n3));
-	assert(!test.check(sol2,n4));
+	assert(test.getBest()==sol1);
+	assert(!test(sol2,n2));
+	assert(test(sol3,n3));
+	test.update(sol3,n3);
+	assert(test.getBest()==sol3);
+	assert(!test(sol4,n4));
+	test.update(sol4,n4);
+	assert(test.getBest()==sol3);
 
-	assert(!test.check(sol3,n1));
-	assert(test.check(sol3,n2));
-	assert(!test.check(sol3,n3));
-	assert(!test.check(sol3,n4));
-
-	assert(!test.check(sol4,n1));
-	assert(!test.check(sol4,n2));
-	assert(!test.check(sol4,n3));
-	assert(!test.check(sol4,n4));
-
-	test.init(sol1);
-	assert(!test.check(sol2,n1));
-	assert(!test.check(sol3,n2));
-
-	test.update(sol1,n1);
-
-	test.add(sol1,n1);
-	test.add(sol2,n1);
-	assert(test.check(sol2,n1));
-	test.add(sol4,n1);
-	assert(!test.check(sol2,n1));
-	assert(test.check(sol2,n2));
-
-	std::cout << "[t-moSolVectorTabuList] => OK" << std::endl;
+	std::cout << "[t-moBestImprAspiration] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

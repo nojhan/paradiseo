@@ -63,7 +63,7 @@ public:
     virtual bool operator() (EOT & _solution) {
       
       if(_solution.invalid())
-	fullEval(_solution);
+    	  fullEval(_solution);
       
       // initialization of the parameter of the search (for example fill empty the tabu list)
       searchExplorer.initParam(_solution);
@@ -94,7 +94,6 @@ public:
       
       continuator.lastCall(_solution);
       
-      //A CHANGER
       return true;
     };
 

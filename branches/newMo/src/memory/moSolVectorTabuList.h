@@ -3,6 +3,7 @@
 
 #include <memory/moTabuList.h>
 #include <vector>
+#include <iostream>
 
 /**
  * Tabu List of solution stocked in a vector
@@ -36,15 +37,14 @@ public:
 	 * @param _sol the current solution
 	 * @param _neighbor the current neighbor (unused)
 	 */
-	 virtual void add(EOT & _sol, Neighbor & _neighbor)
-	{
+	 virtual void add(EOT & _sol, Neighbor & _neighbor){
 		if(tabuList.size() < maxSize)
 			tabuList.push_back(_sol);
 		else{
 			tabuList[index%maxSize] = _sol;
 			index++;
 		}
-	}
+	 }
 
 	/**
 	 * update the tabulist: NOTHING TO DO
@@ -60,8 +60,10 @@ public:
 	 * @return true if tabuList contains _sol
 	 */
 	virtual bool check(EOT & _sol, Neighbor & _neighbor){
+		EOT tmp=_sol;
+		_neighbor.move(tmp);
 		for(unsigned int i=0; i<tabuList.size(); i++){
-			if (tabuList[i] == _sol)
+			if (tabuList[i] == tmp)
 				return true;
 		}
 		return false;

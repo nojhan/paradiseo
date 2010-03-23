@@ -48,6 +48,8 @@ SET (TEST_LIST
 		t-moSolutionStat
 		t-moCheckpoint
 		t-moDummyMemory
+		t-moSolVectorTabuList
+		t-moBestImprAspiration
 		t-moSimpleHCexplorer
 		t-moSimpleHCneutralExplorer
 		t-moHCneutralExplorer
@@ -55,8 +57,7 @@ SET (TEST_LIST
 		t-moRandomWalkExplorer
 		t-moMetropolisHastingExplorer
 		t-moRandomNeutralWalkExplorer
-		t-moSolVectorTabuList
-		
+		t-moTSExplorer
 		)
 				
 FOREACH (test ${TEST_LIST})

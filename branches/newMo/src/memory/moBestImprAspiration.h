@@ -32,13 +32,22 @@ public:
 	}
 
 	/**
-	 * test if a solution is better than the "bestFoundSoFar"
+	 * Test the tabu feature of the neighbor:
+	 * test if the neighbor's fitness is better than the "bestFoundSoFar" fitness
 	 * @param _sol a solution
 	 * @param _neighbor a neighbor
-	 * @return true if _sol is better than the "bestFoundSoFar"
+	 * @return true if _neighbor fitness is better than the "bestFoundSoFar"
 	 */
 	bool operator()(EOT & _sol, Neighbor & _neighbor){
-		return (bestFoundSoFar.fitness() < _sol.fitness());
+		return (bestFoundSoFar.fitness() < _neighbor.fitness());
+	}
+
+	/**
+	 * Getter
+	 * @return a reference on the best found so far solution
+	 */
+	EOT& getBest(){
+		return bestFoundSoFar;
 	}
 
 private:

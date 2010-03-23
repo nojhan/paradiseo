@@ -100,6 +100,7 @@ public:
       intensification.init(_solution);
       diversification.init(_solution);
       aspiration.init(_solution);
+      bestSoFar=_solution;
     };
 
 
@@ -114,7 +115,8 @@ public:
     	  tabuList.add(_solution, *best);
     	  intensification.add(_solution, *best);
     	  diversification.add(_solution, *best);
-    	  //bestSoFar = ???;
+    	  if(_solution.fitness() > bestSoFar.fitness())
+    		  bestSoFar = _solution;
       }
       tabuList.update(_solution, *best);
 	  intensification.update(_solution, *best);
@@ -126,9 +128,9 @@ public:
 	/**
 	 * terminate : NOTHING TO DO
 	 */
-    virtual void terminate(EOT & solution)
+    virtual void terminate(EOT & _solution)
     {
-    	//solution = bestSoFar;
+    	_solution= bestSoFar;
     };
 
 
@@ -175,7 +177,7 @@ public:
     				//eval
     				eval(_solution, (*current));
     				//check if the current is better than the best and is not tabu or if it is aspirat (by the aspiration criteria of course)
-    				if ( (!tabuList.check(_solution, *current) && neighborComparator((*best),(*current))) || aspiration(_solution, *current) ){
+    				if ( (!tabuList.check(_solution, *current) || aspiration(_solution, (*current))) && neighborComparator((*best),(*current))){
     					// set best
     				    (*best)=(*current);
     				}
@@ -239,8 +241,12 @@ protected:
 	moDiversification<Neighbor> & diversification;
 	moAspiration<Neighbor> & aspiration;
 
+	//Current and best neighbor
 	Neighbor* best;
     Neighbor* current;
+
+    //Best so far Solution
+    EOT bestSoFar;
 
     // true if the move is accepted
     bool isAccept ;

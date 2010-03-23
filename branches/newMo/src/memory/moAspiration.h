@@ -1,6 +1,8 @@
 #ifndef _moAspiration_h
 #define _moAspiration_h
 
+#include <eoFunctor.h>
+
 /**
  * Abstract class for Aspiration Criteria
  */
