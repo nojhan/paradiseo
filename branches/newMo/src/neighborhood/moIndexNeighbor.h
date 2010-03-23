@@ -38,7 +38,7 @@
 #include <neighborhood/moNeighbor.h>
 
 /**
- * Neighbor related to a vector of Bit
+ * Index Neighbor
  */
 template< class EOT , class Fitness >
 class moIndexNeighbor : virtual public moNeighbor<EOT, Fitness>
