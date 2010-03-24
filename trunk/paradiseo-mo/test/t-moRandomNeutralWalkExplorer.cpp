@@ -34,55 +34,55 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moRandomNeutralWalkExplorer] => START" << std::endl;
+    std::cout << "[t-moRandomNeutralWalkExplorer] => START" << std::endl;
 
-	eoBit<eoMinimizingFitness> sol(4, true);
-	sol.fitness(4);
-	bitNeighborhood nh(4);
-	evalOneMax eval(4);
-	dummyEvalOneMax eval2(4);
-	moSolNeighborComparator<bitNeighbor> sncomp;
+    eoBit<eoMinimizingFitness> sol(4, true);
+    sol.fitness(4);
+    bitNeighborhood nh(4);
+    evalOneMax eval(4);
+    dummyEvalOneMax eval2(4);
+    moSolNeighborComparator<bitNeighbor> sncomp;
 
-	//test avec la fonction d'eval classique
-	//on verifie qu'on ne trouve pas de voisin de mm fitness
-	moRandomNeutralWalkExplorer<bitNeighborhood> test(nh, eval, sncomp, 3);
+    //test avec la fonction d'eval classique
+    //on verifie qu'on ne trouve pas de voisin de mm fitness
+    moRandomNeutralWalkExplorer<bitNeighborhood> test(nh, eval, sncomp, 3);
 
-	test.initParam(sol);
-	test(sol);
-	assert(!test.accept(sol));
-	assert(!test.isContinue(sol));
+    test.initParam(sol);
+    test(sol);
+    assert(!test.accept(sol));
+    assert(!test.isContinue(sol));
 
-	//test avec une fonction d'eval bidon qui renvoie toujours la mm fitness
-	//on peut donc verifier qu'on s'arette au bout des 3 itérations.
-	moRandomNeutralWalkExplorer<bitNeighborhood> test2(nh, eval2, sncomp, 3);
+    //test avec une fonction d'eval bidon qui renvoie toujours la mm fitness
+    //on peut donc verifier qu'on s'arette au bout des 3 itérations.
+    moRandomNeutralWalkExplorer<bitNeighborhood> test2(nh, eval2, sncomp, 3);
 
-	sol.fitness(2);
-	test2.initParam(sol);
-	test2(sol);
-	assert(test2.accept(sol));
-	test2.move(sol);
-	assert(sol.fitness()==2);
-	test2.updateParam(sol);
-	assert(test2.isContinue(sol));
+    sol.fitness(2);
+    test2.initParam(sol);
+    test2(sol);
+    assert(test2.accept(sol));
+    test2.move(sol);
+    assert(sol.fitness()==2);
+    test2.updateParam(sol);
+    assert(test2.isContinue(sol));
 
-	test2(sol);
-	assert(test2.accept(sol));
-	test2.move(sol);
-	assert(sol.fitness()==2);
-	test2.updateParam(sol);
-	assert(test2.isContinue(sol));
+    test2(sol);
+    assert(test2.accept(sol));
+    test2.move(sol);
+    assert(sol.fitness()==2);
+    test2.updateParam(sol);
+    assert(test2.isContinue(sol));
 
-	test2(sol);
-	assert(test2.accept(sol));
-	test2.move(sol);
-	assert(sol.fitness()==2);
-	test2.updateParam(sol);
-	assert(!test2.isContinue(sol));
+    test2(sol);
+    assert(test2.accept(sol));
+    test2.move(sol);
+    assert(sol.fitness()==2);
+    test2.updateParam(sol);
+    assert(!test2.isContinue(sol));
 
-	std::cout << "[t-moRandomNeutralWalkExplorer] => OK" << std::endl;
+    std::cout << "[t-moRandomNeutralWalkExplorer] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

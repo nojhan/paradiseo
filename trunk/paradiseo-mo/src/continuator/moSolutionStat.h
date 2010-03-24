@@ -40,7 +40,7 @@
 /**
  * The statistic which only give the current solution
  * be careful, the solution is given by copy
- * 
+ *
  */
 template <class EOT>
 class moSolutionStat : public moStat<EOT, EOT>
@@ -53,21 +53,21 @@ public :
      * @param _description a description of the parameter
      */
     moSolutionStat(std::string _description = "solution"):
-    	moStat<EOT, EOT>(EOT(), _description){}
+            moStat<EOT, EOT>(EOT(), _description) {}
 
     /**
      * Set the solution by copy
      * @param _sol the corresponding solution
      */
-    virtual void operator()(EOT & _sol){
-      value() = _sol;
+    virtual void operator()(EOT & _sol) {
+        value() = _sol;
     }
 
     /**
      * @return name of the class
      */
-    virtual std::string className(void) const{
-    	return "moSolutionStat";
+    virtual std::string className(void) const {
+        return "moSolutionStat";
     }
 };
 

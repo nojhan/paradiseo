@@ -9,6 +9,6 @@
  */
 template< class Neighbor >
 class moIntensification : public moMemory<Neighbor>, public eoUF<typename Neighbor::EOT &,bool>
-{};
+    {};
 
 #endif

@@ -40,33 +40,33 @@
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moSolNeighborComparator] => START" << std::endl;
+    std::cout << "[t-moSolNeighborComparator] => START" << std::endl;
 
-	moBitNeighbor<eoMinimizingFitness> neighbor;
-	eoBit<eoMinimizingFitness> sol;
+    moBitNeighbor<eoMinimizingFitness> neighbor;
+    eoBit<eoMinimizingFitness> sol;
 
-	moSolNeighborComparator< moBitNeighbor<eoMinimizingFitness> > test;
+    moSolNeighborComparator< moBitNeighbor<eoMinimizingFitness> > test;
 
-	neighbor.fitness(3);
-	sol.fitness(2);
-	//test with a minimizing fitness, neighbor must not be better than sol
-	assert(!test(sol, neighbor));
+    neighbor.fitness(3);
+    sol.fitness(2);
+    //test with a minimizing fitness, neighbor must not be better than sol
+    assert(!test(sol, neighbor));
 
-	//reversly
-	neighbor.fitness(2);
-	sol.fitness(3);
-	assert(test(sol, neighbor));
+    //reversly
+    neighbor.fitness(2);
+    sol.fitness(3);
+    assert(test(sol, neighbor));
 
-	//test equals
-	assert(!test.equals(sol, neighbor));
+    //test equals
+    assert(!test.equals(sol, neighbor));
 
-	neighbor.fitness(3);
-	assert(test.equals(sol, neighbor));
+    neighbor.fitness(3);
+    assert(test.equals(sol, neighbor));
 
-	assert(test.className()=="moSolNeighborComparator");
+    assert(test.className()=="moSolNeighborComparator");
 
-	std::cout << "[t-moSolNeighborComparator] => OK" << std::endl;
-	return EXIT_SUCCESS;
+    std::cout << "[t-moSolNeighborComparator] => OK" << std::endl;
+    return EXIT_SUCCESS;
 }

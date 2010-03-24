@@ -10,34 +10,34 @@ template< class Neighbor >
 class moDummyDiversification : public moDiversification<Neighbor>
 {
 public:
-	typedef typename Neighbor::EOT EOT;
+    typedef typename Neighbor::EOT EOT;
 
-	/**
-	 * Init : NOTHIING TO DO
-	 */
-	void init(EOT & _sol) {}
+    /**
+     * Init : NOTHIING TO DO
+     */
+    void init(EOT & _sol) {}
 
-	/**
-	 * Add : NOTHIING TO DO
-	 */
-	void add(EOT & _sol, Neighbor & _neighbor) {}
+    /**
+     * Add : NOTHIING TO DO
+     */
+    void add(EOT & _sol, Neighbor & _neighbor) {}
 
-	/**
-	 * Update : NOTHIING TO DO
-	 */
-	void update(EOT & _sol, Neighbor & _neighbor) {}
+    /**
+     * Update : NOTHIING TO DO
+     */
+    void update(EOT & _sol, Neighbor & _neighbor) {}
 
-	/**
-	 * ClearMemory : NOTHIING TO DO
-	 */
-	void clearMemory() {}
+    /**
+     * ClearMemory : NOTHIING TO DO
+     */
+    void clearMemory() {}
 
-	/**
-	 * @return always false
-	 */
-	bool operator()(EOT &){
-		return false;
-	}
+    /**
+     * @return always false
+     */
+    bool operator()(EOT &) {
+        return false;
+    }
 };
 
 #endif

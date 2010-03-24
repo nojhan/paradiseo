@@ -55,8 +55,8 @@ public :
      * @param _cont a continuator
      * @param _interval frequency to compute statistical operators
      */
-    moCheckpoint(moContinuator<Neighborhood>& _cont, unsigned int _interval=1):interval(_interval), counter(0){
-    	continuators.push_back(&_cont);
+    moCheckpoint(moContinuator<Neighborhood>& _cont, unsigned int _interval=1):interval(_interval), counter(0) {
+        continuators.push_back(&_cont);
     }
 
     /**
@@ -64,7 +64,7 @@ public :
      * @param _cont a continuator
      */
     void add(moContinuator<Neighborhood>& _cont) {
-    	continuators.push_back(&_cont);
+        continuators.push_back(&_cont);
     }
 
     /**
@@ -72,7 +72,7 @@ public :
      * @param _stat a statistic operator
      */
     void add(moStatBase<EOT>& _stat) {
-    	stats.push_back(&_stat);
+        stats.push_back(&_stat);
     }
 
     /**
@@ -80,7 +80,7 @@ public :
      * @param _mon a monitor
      */
     void add(eoMonitor& _mon) {
-    	monitors.push_back(&_mon);
+        monitors.push_back(&_mon);
     }
 
     /**
@@ -88,7 +88,7 @@ public :
      * @param _upd an updater
      */
     void add(eoUpdater& _upd) {
-    	updaters.push_back(&_upd);
+        updaters.push_back(&_upd);
     }
 
     /**
@@ -96,60 +96,60 @@ public :
      * @param _sol the corresponding solution
      */
     virtual void init(EOT& _sol) {
-    	for(unsigned i = 0; i < continuators.size(); ++i)
-    		continuators[i]->init(_sol);
+        for (unsigned i = 0; i < continuators.size(); ++i)
+            continuators[i]->init(_sol);
     }
 
     /**
      * @return class name
      */
     virtual std::string className(void) const {
-    	return "moCheckpoint";
+        return "moCheckpoint";
     }
 
-	/**
-	 * apply operator of checkpoint's containers
-	 * @param _sol reference of the solution
-	 * @return true if all continuator return true
-	 */
+    /**
+     * apply operator of checkpoint's containers
+     * @param _sol reference of the solution
+     * @return true if all continuator return true
+     */
     bool operator()(EOT & _sol) {
-    	unsigned i;
-    	bool bContinue = true;
+        unsigned i;
+        bool bContinue = true;
 
-    	  for (i = 0; i < stats.size(); ++i){
-    		if(counter % interval == 0)
-    			(*stats[i])(_sol);
-    		counter++;
-    	  }
+        for (i = 0; i < stats.size(); ++i) {
+            if (counter % interval == 0)
+                (*stats[i])(_sol);
+            counter++;
+        }
 
-    	  for (i = 0; i < updaters.size(); ++i)
-    	    (*updaters[i])();
+        for (i = 0; i < updaters.size(); ++i)
+            (*updaters[i])();
 
-    	  for (i = 0; i < monitors.size(); ++i)
-    	    (*monitors[i])();
+        for (i = 0; i < monitors.size(); ++i)
+            (*monitors[i])();
 
-    	  for (i = 0; i < continuators.size(); ++i)
-    	    if ( !(*continuators[i])(_sol) )
-    	      bContinue = false;
+        for (i = 0; i < continuators.size(); ++i)
+            if ( !(*continuators[i])(_sol) )
+                bContinue = false;
 
-    	  return bContinue;
-    	}
+        return bContinue;
+    }
 
     /**
      * last call of statistic operators, monitors and updaters
      * @param _sol reference of the solution
      */
-    void lastCall(EOT& _sol){
-			unsigned int i;
-	      for (i = 0; i < stats.size(); ++i)
-	    	  stats[i]->lastCall(_sol);
+    void lastCall(EOT& _sol) {
+        unsigned int i;
+        for (i = 0; i < stats.size(); ++i)
+            stats[i]->lastCall(_sol);
 
-	      for (i = 0; i < updaters.size(); ++i)
-		updaters[i]->lastCall();
+        for (i = 0; i < updaters.size(); ++i)
+            updaters[i]->lastCall();
 
-	      for (i = 0; i < monitors.size(); ++i)
-		monitors[i]->lastCall();
-	    }
+        for (i = 0; i < monitors.size(); ++i)
+            monitors[i]->lastCall();
+    }
 
 private :
     /** continuators vector */

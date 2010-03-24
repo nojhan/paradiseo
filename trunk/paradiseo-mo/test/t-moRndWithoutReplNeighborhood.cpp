@@ -35,42 +35,42 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moRndWithoutReplNeighborhood] => START" << std::endl;
+    std::cout << "[t-moRndWithoutReplNeighborhood] => START" << std::endl;
 
-	unsigned int a, b, c;
-	eoBit<int> sol;
-	moBitNeighbor<int> n;
+    unsigned int a, b, c;
+    eoBit<int> sol;
+    moBitNeighbor<int> n;
 
-	//instanciation
-	moRndWithoutReplNeighborhood< moBitNeighbor<int> > test(3);
-	moRndWithoutReplNeighborhood< moBitNeighbor<int> > test2(0);
+    //instanciation
+    moRndWithoutReplNeighborhood< moBitNeighbor<int> > test(3);
+    moRndWithoutReplNeighborhood< moBitNeighbor<int> > test2(0);
 
-	//on verifie que test a bien des voisins et que test2 n'en a pas
-	assert(test.hasNeighbor(sol));
-	assert(!test2.hasNeighbor(sol));
+    //on verifie que test a bien des voisins et que test2 n'en a pas
+    assert(test.hasNeighbor(sol));
+    assert(!test2.hasNeighbor(sol));
 
-	//on recupere successivement les index
-	test.init(sol, n);
-	assert(test.cont(sol));
-	a=test.position();
-	test.next(sol, n);
-	assert(test.cont(sol));
-	b=test.position();
-	test.next(sol,n);
-	assert(!test.cont(sol));
-	c=test.position();
+    //on recupere successivement les index
+    test.init(sol, n);
+    assert(test.cont(sol));
+    a=test.position();
+    test.next(sol, n);
+    assert(test.cont(sol));
+    b=test.position();
+    test.next(sol,n);
+    assert(!test.cont(sol));
+    c=test.position();
 
-	//on s'assure qu'on a bien 0, 1 et 2 (dans un ordre aléatoire)
-	assert(a==0 || b==0 || c==0);
-	assert(a==1 || b==1 || c==1);
-	assert(a==2 || b==2 || c==2);
+    //on s'assure qu'on a bien 0, 1 et 2 (dans un ordre aléatoire)
+    assert(a==0 || b==0 || c==0);
+    assert(a==1 || b==1 || c==1);
+    assert(a==2 || b==2 || c==2);
 
-	assert(test.className()=="moRndWithoutReplNeighborhood");
+    assert(test.className()=="moRndWithoutReplNeighborhood");
 
-	std::cout << "[t-moRndWithoutReplNeighborhood] => OK" << std::endl;
+    std::cout << "[t-moRndWithoutReplNeighborhood] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

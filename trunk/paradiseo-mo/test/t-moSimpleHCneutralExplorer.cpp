@@ -36,66 +36,66 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moSimpleHCneutralExplorer] => START" << std::endl;
+    std::cout << "[t-moSimpleHCneutralExplorer] => START" << std::endl;
 
-	//instanciation
-	eoBit<eoMinimizingFitness> sol(4, true);
-	sol.fitness(4);
-	bitNeighborhood nh(4);
-	evalOneMax eval(4);
-	moNeighborComparator<bitNeighbor> ncomp;
-	moSolNeighborComparator<bitNeighbor> sncomp;
+    //instanciation
+    eoBit<eoMinimizingFitness> sol(4, true);
+    sol.fitness(4);
+    bitNeighborhood nh(4);
+    evalOneMax eval(4);
+    moNeighborComparator<bitNeighbor> ncomp;
+    moSolNeighborComparator<bitNeighbor> sncomp;
 
-	moSimpleHCneutralExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp);
+    moSimpleHCneutralExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp);
 
-	//test qu'on ameliore bien a chaque itération
-	test.initParam(sol);
-	test(sol);
-	assert(test.accept(sol));
-	test.move(sol);
-	assert(sol.fitness()==3);
-	assert(test.isContinue(sol));
-	test.updateParam(sol);
+    //test qu'on ameliore bien a chaque itération
+    test.initParam(sol);
+    test(sol);
+    assert(test.accept(sol));
+    test.move(sol);
+    assert(sol.fitness()==3);
+    assert(test.isContinue(sol));
+    test.updateParam(sol);
 
-	//les affichages permettent de voir qu'on choisit pas toujours les mm voisins améliorant (lancer plusieurs fois l'exe)
-	std::cout << sol << std::endl;
+    //les affichages permettent de voir qu'on choisit pas toujours les mm voisins améliorant (lancer plusieurs fois l'exe)
+    std::cout << sol << std::endl;
 
-	test(sol);
-	assert(test.accept(sol));
-	test.move(sol);
-	assert(sol.fitness()==2);
-	assert(test.isContinue(sol));
-	test.updateParam(sol);
+    test(sol);
+    assert(test.accept(sol));
+    test.move(sol);
+    assert(sol.fitness()==2);
+    assert(test.isContinue(sol));
+    test.updateParam(sol);
 
-	std::cout << sol << std::endl;
+    std::cout << sol << std::endl;
 
-	test(sol);
-	assert(test.accept(sol));
-	test.move(sol);
-	assert(sol.fitness()==1);
-	assert(test.isContinue(sol));
-	test.updateParam(sol);
+    test(sol);
+    assert(test.accept(sol));
+    test.move(sol);
+    assert(sol.fitness()==1);
+    assert(test.isContinue(sol));
+    test.updateParam(sol);
 
-	std::cout << sol << std::endl;
+    std::cout << sol << std::endl;
 
-	test(sol);
-	assert(test.accept(sol));
-	test.move(sol);
-	assert(sol.fitness()==0);
-	assert(test.isContinue(sol));
-	test.updateParam(sol);
+    test(sol);
+    assert(test.accept(sol));
+    test.move(sol);
+    assert(sol.fitness()==0);
+    assert(test.isContinue(sol));
+    test.updateParam(sol);
 
-	test(sol);
-	assert(!test.accept(sol));
-	assert(sol.fitness()==0);
-	assert(!test.isContinue(sol));
-	test.updateParam(sol);
+    test(sol);
+    assert(!test.accept(sol));
+    assert(sol.fitness()==0);
+    assert(!test.isContinue(sol));
+    test.updateParam(sol);
 
 
-	std::cout << "[t-moSimpleHCneutralExplorer] => OK" << std::endl;
+    std::cout << "[t-moSimpleHCneutralExplorer] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

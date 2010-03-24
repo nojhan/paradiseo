@@ -65,7 +65,7 @@ public:
      * @return the class name as a std::string
      */
     virtual std::string className() const {
-    	return "moComparator";
+        return "moComparator";
     }
 };
 

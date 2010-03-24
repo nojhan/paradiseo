@@ -35,29 +35,29 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moDummyMemory] => START" << std::endl;
+    std::cout << "[t-moDummyMemory] => START" << std::endl;
 
-	eoBit<eoMinimizingFitness> sol(4);
-	bitNeighbor n;
-	moDummyDiversification<bitNeighbor> test1;
-	test1.init(sol);
-	test1.add(sol, n);
-	test1.update(sol, n);
-	test1.clearMemory();
-	assert(!test1(sol));
+    eoBit<eoMinimizingFitness> sol(4);
+    bitNeighbor n;
+    moDummyDiversification<bitNeighbor> test1;
+    test1.init(sol);
+    test1.add(sol, n);
+    test1.update(sol, n);
+    test1.clearMemory();
+    assert(!test1(sol));
 
-	moDummyIntensification<bitNeighbor> test2;
-	test2.init(sol);
-	test2.add(sol, n);
-	test2.update(sol, n);
-	test2.clearMemory();
-	assert(!test2(sol));
+    moDummyIntensification<bitNeighbor> test2;
+    test2.init(sol);
+    test2.add(sol, n);
+    test2.update(sol, n);
+    test2.clearMemory();
+    assert(!test2(sol));
 
 
-	std::cout << "[t-moDummyMemory] => OK" << std::endl;
+    std::cout << "[t-moDummyMemory] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

@@ -56,49 +56,49 @@ public:
     using moSimpleHCneutralExplorer<Neighborhood>::initParam;
     using moSimpleHCneutralExplorer<Neighborhood>::updateParam;
 
-	/**
-	 * Constructor
-	 * @param _neighborhood the neighborhood
-	 * @param _eval the evaluation function
-	 * @param _neighborComparator a neighbor comparator
-	 * @param _solNeighborComparator a solution vs neighbor comparator
-	 * @param _nbStep maximum step to do
-	 */
+    /**
+     * Constructor
+     * @param _neighborhood the neighborhood
+     * @param _eval the evaluation function
+     * @param _neighborComparator a neighbor comparator
+     * @param _solNeighborComparator a solution vs neighbor comparator
+     * @param _nbStep maximum step to do
+     */
     moHCneutralExplorer(Neighborhood& _neighborhood,
-			   moEval<Neighbor>& _eval, 
-			   moNeighborComparator<Neighbor>& _neighborComparator, 
-			   moSolNeighborComparator<Neighbor>& _solNeighborComparator,
-			   unsigned _nbStep) :
-				   moSimpleHCneutralExplorer<Neighborhood>(_neighborhood, _eval, _neighborComparator, _solNeighborComparator),
-				   nbStep(_nbStep){
-    	//Some cycle is possible with equals fitness solutions if the neighborhood is not random
-    	if(!neighborhood.isRandom()){
-    		std::cout << "moHCneutralExplorer::Warning -> the neighborhood used is not random" << std::endl;
-    	}
+                        moEval<Neighbor>& _eval,
+                        moNeighborComparator<Neighbor>& _neighborComparator,
+                        moSolNeighborComparator<Neighbor>& _solNeighborComparator,
+                        unsigned _nbStep) :
+            moSimpleHCneutralExplorer<Neighborhood>(_neighborhood, _eval, _neighborComparator, _solNeighborComparator),
+            nbStep(_nbStep) {
+        //Some cycle is possible with equals fitness solutions if the neighborhood is not random
+        if (!neighborhood.isRandom()) {
+            std::cout << "moHCneutralExplorer::Warning -> the neighborhood used is not random" << std::endl;
+        }
     }
 
-	/**
-	 * Destructor
-	 */
-    ~moHCneutralExplorer(){
+    /**
+     * Destructor
+     */
+    ~moHCneutralExplorer() {
     }
 
-	/**
-	 *  initial number of step
-	 */
-    virtual void initParam(EOT & solution){
-      moSimpleHCneutralExplorer<Neighborhood>::initParam(solution);
+    /**
+     *  initial number of step
+     */
+    virtual void initParam(EOT & solution) {
+        moSimpleHCneutralExplorer<Neighborhood>::initParam(solution);
 
-      step = 0;
+        step = 0;
     };
 
-	/**
-	 * one more step
-	 */
-    virtual void updateParam(EOT & solution){
-      moSimpleHCneutralExplorer<Neighborhood>::updateParam(solution);
-      
-      step++;
+    /**
+     * one more step
+     */
+    virtual void updateParam(EOT & solution) {
+        moSimpleHCneutralExplorer<Neighborhood>::updateParam(solution);
+
+        step++;
     };
 
     /**
@@ -107,7 +107,7 @@ public:
      * @return true there is some steps to do
      */
     virtual bool isContinue(EOT & _solution) {
-    	return (step < nbStep)  && isAccept ;
+        return (step < nbStep)  && isAccept ;
     };
 
     /**
@@ -116,9 +116,9 @@ public:
      * @return true if the best neighbor ameliorate the fitness or is equals
      */
     virtual bool accept(EOT & _solution) {
-      if(neighborhood.hasNeighbor(_solution))
-    	  isAccept = solNeighborComparator(_solution, bestVector[0]) || solNeighborComparator.equals(_solution, bestVector[0]) ;
-      return isAccept;
+        if (neighborhood.hasNeighbor(_solution))
+            isAccept = solNeighborComparator(_solution, bestVector[0]) || solNeighborComparator.equals(_solution, bestVector[0]) ;
+        return isAccept;
     };
 
 private:

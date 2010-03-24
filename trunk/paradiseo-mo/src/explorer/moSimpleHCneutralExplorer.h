@@ -54,91 +54,91 @@ public:
     using moNeighborhoodExplorer<Neighborhood>::neighborhood;
     using moNeighborhoodExplorer<Neighborhood>::eval;
 
-	/**
-	 * Constructor
-	 * @param _neighborhood the neighborhood
-	 * @param _eval the evaluation function
-	 * @param _neighborComparator a neighbor comparator
-	 * @param _solNeighborComparator solution vs neighbor comparator
-	 */
+    /**
+     * Constructor
+     * @param _neighborhood the neighborhood
+     * @param _eval the evaluation function
+     * @param _neighborComparator a neighbor comparator
+     * @param _solNeighborComparator solution vs neighbor comparator
+     */
     moSimpleHCneutralExplorer(Neighborhood& _neighborhood,
-			   moEval<Neighbor>& _eval, 
-			   moNeighborComparator<Neighbor>& _neighborComparator, 
-			   moSolNeighborComparator<Neighbor>& _solNeighborComparator) : 
-				   moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval),
-				   neighborComparator(_neighborComparator),
-				   solNeighborComparator(_solNeighborComparator) {
-    	isAccept = false;
-    	current=new Neighbor();
+                              moEval<Neighbor>& _eval,
+                              moNeighborComparator<Neighbor>& _neighborComparator,
+                              moSolNeighborComparator<Neighbor>& _solNeighborComparator) :
+            moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval),
+            neighborComparator(_neighborComparator),
+            solNeighborComparator(_solNeighborComparator) {
+        isAccept = false;
+        current=new Neighbor();
     }
 
-	/**
-	 * Destructor
-	 */
-    ~moSimpleHCneutralExplorer(){
-    	delete current;
+    /**
+     * Destructor
+     */
+    ~moSimpleHCneutralExplorer() {
+        delete current;
     }
 
-	/**
-	 * empty the vector of best solutions
-	 */
-    virtual void initParam(EOT & solution){
-      // delete all the best solutions
-      bestVector.clear();
+    /**
+     * empty the vector of best solutions
+     */
+    virtual void initParam(EOT & solution) {
+        // delete all the best solutions
+        bestVector.clear();
     };
 
-	/**
-	 * empty the vector of best solutions
-	 */
-    virtual void updateParam(EOT & solution){
-      // delete all the best solutions
-      bestVector.clear();
+    /**
+     * empty the vector of best solutions
+     */
+    virtual void updateParam(EOT & solution) {
+        // delete all the best solutions
+        bestVector.clear();
     };
 
-	/**
-	 * terminate: NOTHING TO DO
-	 */
-    virtual void terminate(EOT & solution){};
+    /**
+     * terminate: NOTHING TO DO
+     */
+    virtual void terminate(EOT & solution) {};
 
     /**
      * Explore the neighborhood of a solution
      * @param _solution
      */
-    virtual void operator()(EOT & _solution){
+    virtual void operator()(EOT & _solution) {
 
-    	//Test if _solution has a Neighbor
-    	if(neighborhood.hasNeighbor(_solution)){
-    		//init the first neighbor
-    		neighborhood.init(_solution, (*current));
+        //Test if _solution has a Neighbor
+        if (neighborhood.hasNeighbor(_solution)) {
+            //init the first neighbor
+            neighborhood.init(_solution, (*current));
 
-    		//eval the _solution moved with the neighbor and stock the result in the neighbor
-    		eval(_solution, (*current));
+            //eval the _solution moved with the neighbor and stock the result in the neighbor
+            eval(_solution, (*current));
 
-    		//initialize the best neighbor
-    		bestVector.push_back(*current);
+            //initialize the best neighbor
+            bestVector.push_back(*current);
 
-    		//test all others neighbors
-    		while (neighborhood.cont(_solution)) {
-    			//next neighbor
-    			neighborhood.next(_solution, (*current));
-	  
-    			//eval
-    			eval(_solution, (*current));
-		
-    			//if we found a better neighbor, update the best
-    			if (neighborComparator(bestVector[0], (*current))) {
-    				bestVector.clear();
-    				bestVector.push_back(*current);
-    			}
-    			else if (neighborComparator.equals((*current), bestVector[0])) //if the current is equals to previous best solutions then update vector of the best solution
-    				bestVector.push_back(*current);
-    		}
-    	}
-    	else {
-    		//if _solution hasn't neighbor,
-    		isAccept=false;
-    	}
-	};
+            //test all others neighbors
+            while (neighborhood.cont(_solution)) {
+                //next neighbor
+                neighborhood.next(_solution, (*current));
+
+                //eval
+                eval(_solution, (*current));
+
+                //if we found a better neighbor, update the best
+                if (neighborComparator(bestVector[0], (*current))) {
+                    bestVector.clear();
+                    bestVector.push_back(*current);
+                }
+                else if (neighborComparator.equals((*current), bestVector[0])) //if the current is equals to previous best solutions then update vector of the best solution
+                    bestVector.push_back(*current);
+            }
+        }
+        else {
+            //if _solution hasn't neighbor,
+            isAccept=false;
+        }
+    };
 
     /**
      * continue if a move is accepted
@@ -146,7 +146,7 @@ public:
      * @return true if an ameliorated neighbor was be found
      */
     virtual bool isContinue(EOT & _solution) {
-    	return isAccept ;
+        return isAccept ;
     };
 
     /**
@@ -154,14 +154,14 @@ public:
      * @param _solution the solution to move
      */
     virtual void move(EOT & _solution) {
-      // choose randomly one of the best solutions
-      unsigned int i = rng.random(bestVector.size());
+        // choose randomly one of the best solutions
+        unsigned int i = rng.random(bestVector.size());
 
-      //move the solution
-      bestVector[i].move(_solution);
+        //move the solution
+        bestVector[i].move(_solution);
 
-      //update its fitness
-      _solution.fitness(bestVector[i].fitness());
+        //update its fitness
+        _solution.fitness(bestVector[i].fitness());
     };
 
     /**
@@ -170,9 +170,9 @@ public:
      * @return true if the best neighbor ameliorate the fitness
      */
     virtual bool accept(EOT & _solution) {
-    	if(neighborhood.hasNeighbor(_solution))
-    		isAccept = solNeighborComparator(_solution, bestVector[0]) ;
-    	return isAccept;
+        if (neighborhood.hasNeighbor(_solution))
+            isAccept = solNeighborComparator(_solution, bestVector[0]) ;
+        return isAccept;
     };
 
 protected:

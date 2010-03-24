@@ -47,22 +47,22 @@ class moRndWithoutReplNeighborhood : public moIndexNeighborhood<N>, public moRnd
 {
 public:
 
-	/**
-	 * Define type of a solution corresponding to Neighbor
-	 */
+    /**
+     * Define type of a solution corresponding to Neighbor
+     */
     typedef N Neighbor;
     typedef typename Neighbor::EOT EOT;
 
 
-	using moIndexNeighborhood<Neighbor>::neighborhoodSize;
+    using moIndexNeighborhood<Neighbor>::neighborhoodSize;
 
     /**
      * Constructor
      * @param _neighborhoodSize the size of the neighborhood
      */
-    moRndWithoutReplNeighborhood(unsigned int _neighborhoodSize): moIndexNeighborhood<Neighbor>(_neighborhoodSize), maxIndex(0){
-    	for(unsigned int i=0; i < neighborhoodSize; i++)
-    		indexVector.push_back(i);
+    moRndWithoutReplNeighborhood(unsigned int _neighborhoodSize): moIndexNeighborhood<Neighbor>(_neighborhoodSize), maxIndex(0) {
+        for (unsigned int i=0; i < neighborhoodSize; i++)
+            indexVector.push_back(i);
     }
 
     /**
@@ -71,7 +71,7 @@ public:
      * @return true if the neighborhood was not empty
      */
     virtual bool hasNeighbor(EOT& _solution) {
-    	return neighborhoodSize > 0;
+        return neighborhoodSize > 0;
     }
 
     /**
@@ -80,14 +80,14 @@ public:
      * @param _neighbor the first neighbor
      */
     virtual void init(EOT & _solution, Neighbor & _neighbor) {
-    	unsigned int i, tmp;
-		maxIndex = neighborhoodSize ;
-		i = rng.random(maxIndex);
-		_neighbor.index(indexVector[i]);
-		tmp=indexVector[i];
-		indexVector[i]=indexVector[maxIndex-1];
-		indexVector[maxIndex-1]=tmp;
-		maxIndex--;
+        unsigned int i, tmp;
+        maxIndex = neighborhoodSize ;
+        i = rng.random(maxIndex);
+        _neighbor.index(indexVector[i]);
+        tmp=indexVector[i];
+        indexVector[i]=indexVector[maxIndex-1];
+        indexVector[maxIndex-1]=tmp;
+        maxIndex--;
     }
 
     /**
@@ -96,31 +96,31 @@ public:
      * @param _neighbor the next neighbor
      */
     virtual void next(EOT & _solution, Neighbor & _neighbor) {
-    	unsigned int i, tmp;
-		i = rng.random(maxIndex);
-		_neighbor.index(indexVector[i]);
-		tmp=indexVector[i];
-		indexVector[i]=indexVector[maxIndex-1];
-		indexVector[maxIndex-1]=tmp;
-		maxIndex--;
+        unsigned int i, tmp;
+        i = rng.random(maxIndex);
+        _neighbor.index(indexVector[i]);
+        tmp=indexVector[i];
+        indexVector[i]=indexVector[maxIndex-1];
+        indexVector[maxIndex-1]=tmp;
+        maxIndex--;
     }
 
     /**
      * test if all neighbors are explore or not,if false, there is no neighbor left to explore
-     * maxIndex is number of neighbors 
+     * maxIndex is number of neighbors
      * @param _solution the solution to explore
      * @return true if there is again a neighbor to explore
      */
     virtual bool cont(EOT & _solution) {
-    	return (maxIndex > 0) ;
+        return (maxIndex > 0) ;
     }
 
     /**
      * Getter
      * @return the position in the Neighborhood
      */
-    unsigned int position(){
-    	return indexVector[maxIndex];
+    unsigned int position() {
+        return indexVector[maxIndex];
     }
 
     /**
@@ -128,7 +128,7 @@ public:
      * @return the class name as a std::string
      */
     virtual std::string className() const {
-    	return "moRndWithoutReplNeighborhood";
+        return "moRndWithoutReplNeighborhood";
     }
 
 private:

@@ -35,41 +35,41 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moRndWithReplNeighborhood] => START" << std::endl;
+    std::cout << "[t-moRndWithReplNeighborhood] => START" << std::endl;
 
-	unsigned int a, b;
-	eoBit<int> sol;
-	moBitNeighbor<int> n;
+    unsigned int a, b;
+    eoBit<int> sol;
+    moBitNeighbor<int> n;
 
-	moRndWithReplNeighborhood< moBitNeighbor<int> > test(3);
-	moRndWithReplNeighborhood< moBitNeighbor<int> > test2(0);
+    moRndWithReplNeighborhood< moBitNeighbor<int> > test(3);
+    moRndWithReplNeighborhood< moBitNeighbor<int> > test2(0);
 
-	assert(test.hasNeighbor(sol));
-	assert(!test2.hasNeighbor(sol));
+    assert(test.hasNeighbor(sol));
+    assert(!test2.hasNeighbor(sol));
 
-	test.init(sol,n);
+    test.init(sol,n);
 
-	//on s'assure qu'on a bien toujours bien l'index 0, 1 ou 2 qui est renvoyé
-	for(unsigned int i=0; i<100; i++){
+    //on s'assure qu'on a bien toujours bien l'index 0, 1 ou 2 qui est renvoyé
+    for (unsigned int i=0; i<100; i++) {
 
-		a=n.index();
-		test.next(sol,n);
-		b=n.index();
+        a=n.index();
+        test.next(sol,n);
+        b=n.index();
 
-		assert(a==0 || a==1 || a==2);
-		assert(b==0 || b==1 || b==2);
-		assert(test.cont(sol));
-		assert(!test2.cont(sol));
-		assert(test.cont(sol));
+        assert(a==0 || a==1 || a==2);
+        assert(b==0 || b==1 || b==2);
+        assert(test.cont(sol));
+        assert(!test2.cont(sol));
+        assert(test.cont(sol));
 
-	}
+    }
 
-	assert(test.className()=="moRndWithReplNeighborhood");
+    assert(test.className()=="moRndWithReplNeighborhood");
 
-	std::cout << "[t-moRndWithReplNeighborhood] => OK" << std::endl;
+    std::cout << "[t-moRndWithReplNeighborhood] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

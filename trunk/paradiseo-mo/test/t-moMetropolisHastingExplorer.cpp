@@ -34,64 +34,64 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moMetropolisHastingExplorer] => START" << std::endl;
+    std::cout << "[t-moMetropolisHastingExplorer] => START" << std::endl;
 
-	//Instanciation
-	eoBit<eoMinimizingFitness> sol(4, true);
-	sol.fitness(4);
-	bitNeighborhood nh(4);
-	evalOneMax eval(4);
-	moNeighborComparator<bitNeighbor> ncomp;
-	moSolNeighborComparator<bitNeighbor> sncomp;
+    //Instanciation
+    eoBit<eoMinimizingFitness> sol(4, true);
+    sol.fitness(4);
+    bitNeighborhood nh(4);
+    evalOneMax eval(4);
+    moNeighborComparator<bitNeighbor> ncomp;
+    moSolNeighborComparator<bitNeighbor> sncomp;
 
-	moMetropolisHastingExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp, 3);
+    moMetropolisHastingExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp, 3);
 
-	//test de l'acceptation d'un voisin améliorant
-	test.initParam(sol);
-	test(sol);
-	assert(test.accept(sol));
-	test.move(sol);
-	assert(sol.fitness()==3);
-	test.updateParam(sol);
-	assert(test.isContinue(sol));
+    //test de l'acceptation d'un voisin améliorant
+    test.initParam(sol);
+    test(sol);
+    assert(test.accept(sol));
+    test.move(sol);
+    assert(sol.fitness()==3);
+    test.updateParam(sol);
+    assert(test.isContinue(sol));
 
-	unsigned int oui=0, non=0;
+    unsigned int oui=0, non=0;
 
-	//test de l'acceptation d'un voisin non améliorant
-	for(unsigned int i=0; i<1000; i++){
-		test(sol);
-		if(test.accept(sol))
-			oui++;
-		else
-			non++;
-	}
-	std::cout << "Attention test en fonction d'une proba \"p\" uniforme dans [0,1] , oui si p < 3/4, non sinon -> resultat sur 1000 essai" << std::endl;
-	std::cout << "oui: " << oui << std::endl;
-	std::cout << "non: " << non << std::endl;
+    //test de l'acceptation d'un voisin non améliorant
+    for (unsigned int i=0; i<1000; i++) {
+        test(sol);
+        if (test.accept(sol))
+            oui++;
+        else
+            non++;
+    }
+    std::cout << "Attention test en fonction d'une proba \"p\" uniforme dans [0,1] , oui si p < 3/4, non sinon -> resultat sur 1000 essai" << std::endl;
+    std::cout << "oui: " << oui << std::endl;
+    std::cout << "non: " << non << std::endl;
 
-	assert(oui > 700 && oui < 800); //verification grossiere
+    assert(oui > 700 && oui < 800); //verification grossiere
 
-	//test du critere d'arret
-	test.updateParam(sol);
-	assert(test.isContinue(sol));
-	test.updateParam(sol);
-	assert(!test.isContinue(sol));
+    //test du critere d'arret
+    test.updateParam(sol);
+    assert(test.isContinue(sol));
+    test.updateParam(sol);
+    assert(!test.isContinue(sol));
 
-	//test de l'acceptation d'un voisin
-	sol[0]=false;
-	sol[1]=false;
-	sol[2]=false;
-	sol[3]=false;
-	sol.fitness(0);
+    //test de l'acceptation d'un voisin
+    sol[0]=false;
+    sol[1]=false;
+    sol[2]=false;
+    sol[3]=false;
+    sol.fitness(0);
 
-	test.initParam(sol);
-	test(sol);
-	assert(!test.accept(sol));
+    test.initParam(sol);
+    test(sol);
+    assert(!test.accept(sol));
 
-	std::cout << "[t-moMetropolisHastingExplorer] => OK" << std::endl;
+    std::cout << "[t-moMetropolisHastingExplorer] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

@@ -47,30 +47,30 @@ template< class EOType , class Fitness >
 class moNeighbor : public eoObject, public eoPersistent
 {
 public:
-	typedef EOType EOT;
+    typedef EOType EOT;
     /**
      * Default Constructor
      */
-    moNeighbor(){}
+    moNeighbor() {}
 
     /**
      * Copy Constructor
      * @param _neighbor to copy
      */
     moNeighbor(const moNeighbor<EOT, Fitness>& _neighbor) {
-    	repFitness = _neighbor.fitness();
+        repFitness = _neighbor.fitness();
     }
- 
+
     /**
      * Assignment operator
      * @param _neighbor the neighbor to assign
      * @return a neighbor equal to the other
      */
     virtual moNeighbor<EOT, Fitness>& operator=(const moNeighbor<EOT, Fitness>& _neighbor) {
-    	repFitness = _neighbor.fitness();
-    	return (*this);
+        repFitness = _neighbor.fitness();
+        return (*this);
     }
- 
+
     /**
      * Move a solution
      * @param _solution the related solution
@@ -82,32 +82,34 @@ public:
      * @return fitness of the neighbor
      */
     const Fitness fitness() const {
-    	return repFitness;
+        return repFitness;
     }
-    
+
 
     /**
      * Get fitness as reference, useful when fitness is set in a multi-stage way, e.g., MOFitness gets performance information, is subsequently ranked
      * @return fitness as reference of the neighbor
      */
     Fitness& fitnessReference() {
-    	return repFitness;
+        return repFitness;
     }
 
     /**
      * Set fitness. At the same time, validates it.
      * @param _fitness new fitness value.
      */
-    void fitness(const Fitness& _fitness){
-	    repFitness = _fitness;
-	}
-    
+    void fitness(const Fitness& _fitness) {
+        repFitness = _fitness;
+    }
+
     /**
      * Return the class id.
      * @return the class name as a std::string
      */
-    virtual std::string className() const { return "moNeighbor"; }
-    
+    virtual std::string className() const {
+        return "moNeighbor";
+    }
+
     /**
      * Read object.
      * Calls base class, just in case that one had something to do.
@@ -116,7 +118,7 @@ public:
      * @param _is a std::istream.
      */
     virtual void readFrom(std::istream& _is) {
-		_is >> repFitness;
+        _is >> repFitness;
     }
 
     /**
@@ -124,9 +126,9 @@ public:
      * @param _os A std::ostream.
      */
     virtual void printOn(std::ostream& _os) const {
-		_os << repFitness << std::endl;
+        _os << repFitness << std::endl;
     }
-    
+
 protected:
     // minimal information on the neighbor : fitness
     Fitness repFitness ;

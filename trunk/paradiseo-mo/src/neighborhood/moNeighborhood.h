@@ -44,21 +44,21 @@ template< class Neighbor >
 class moNeighborhood : public eoObject
 {
 public:
-	/**
-	 * Define type of a solution corresponding to Neighbor
-	 */
+    /**
+     * Define type of a solution corresponding to Neighbor
+     */
     typedef typename Neighbor::EOT EOT;
 
     /**
      * Default Constructor
      */
-    moNeighborhood(){}
+    moNeighborhood() {}
 
     /**
      * @return if the neighborhood is random
      */
-    virtual bool isRandom(){
-    	return false;
+    virtual bool isRandom() {
+        return false;
     }
 
     /**
@@ -94,7 +94,7 @@ public:
      * @return the class name as a std::string
      */
     virtual std::string className() const {
-    	return "moNeighborhood";
+        return "moNeighborhood";
     }
 };
 

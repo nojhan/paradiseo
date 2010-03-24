@@ -13,21 +13,21 @@ class BitMove : public moMove <EOT> {
 
 public :
 
-typedef EOT EOType;
-  
-  unsigned bit;
+    typedef EOT EOType;
 
-  BitMove() {
-    bit = 0;
-  }
+    unsigned bit;
 
-  BitMove(unsigned _bit) : bit(_bit) { }
+    BitMove() {
+        bit = 0;
+    }
+
+    BitMove(unsigned _bit) : bit(_bit) { }
 
 
-  void operator () (EOT & chrom) 
-  {
-    chrom[bit] = !chrom[bit];
-  };
+    void operator () (EOT & chrom)
+    {
+        chrom[bit] = !chrom[bit];
+    };
 
 } ;
 

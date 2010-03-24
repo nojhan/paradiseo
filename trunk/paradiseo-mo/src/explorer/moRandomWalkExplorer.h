@@ -52,69 +52,69 @@ public:
     using moNeighborhoodExplorer<Neighborhood>::neighborhood;
     using moNeighborhoodExplorer<Neighborhood>::eval;
 
-	/**
-	 * Constructor
-	 * @param _neighborhood the neighborhood
-	 * @param _eval the evaluation function
-	 * @param _nbStep maximum number of step to do
-	 */
+    /**
+     * Constructor
+     * @param _neighborhood the neighborhood
+     * @param _eval the evaluation function
+     * @param _nbStep maximum number of step to do
+     */
     moRandomWalkExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, unsigned _nbStep) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), nbStep(_nbStep) {
-    	isAccept = false;
-    	current=new Neighbor();
-    	// number of step done
-    	step = 0;
-    	if(!neighborhood.isRandom()){
-    		std::cout << "moRandomWalkExplorer::Warning -> the neighborhood used is not random" << std::endl;
-    	}
+        isAccept = false;
+        current=new Neighbor();
+        // number of step done
+        step = 0;
+        if (!neighborhood.isRandom()) {
+            std::cout << "moRandomWalkExplorer::Warning -> the neighborhood used is not random" << std::endl;
+        }
     }
 
-	/**
-	 * Destructor
-	 */
-    ~moRandomWalkExplorer(){
-    	delete current;
+    /**
+     * Destructor
+     */
+    ~moRandomWalkExplorer() {
+        delete current;
     }
 
-	/**
-	 * initialization of the number of step to be done
-	 */
-    virtual void initParam(EOT & solution){
-      step     = 0;
-      isAccept = true;
+    /**
+     * initialization of the number of step to be done
+     */
+    virtual void initParam(EOT & solution) {
+        step     = 0;
+        isAccept = true;
     };
 
-	/**
-	 * increase the number of step
-	 */
-    virtual void updateParam(EOT & solution){
-      step++;
+    /**
+     * increase the number of step
+     */
+    virtual void updateParam(EOT & solution) {
+        step++;
     };
 
-	/**
-	 * terminate: NOTHING TO DO
-	 */
-    virtual void terminate(EOT & solution){};
+    /**
+     * terminate: NOTHING TO DO
+     */
+    virtual void terminate(EOT & solution) {};
 
     /**
      * Explore the neighborhood with only one random solution
      * @param _solution
      */
-    virtual void operator()(EOT & _solution){
+    virtual void operator()(EOT & _solution) {
 
-    	//Test if _solution has a Neighbor
-		if(neighborhood.hasNeighbor(_solution)){
-			//init the first neighbor
-			neighborhood.init(_solution, (*current));
+        //Test if _solution has a Neighbor
+        if (neighborhood.hasNeighbor(_solution)) {
+            //init the first neighbor
+            neighborhood.init(_solution, (*current));
 
-			//eval the _solution moved with the neighbor and stock the result in the neighbor
-			eval(_solution, (*current));
+            //eval the _solution moved with the neighbor and stock the result in the neighbor
+            eval(_solution, (*current));
 
-			isAccept = true;
-		}
-		else{
-			//if _solution hasn't neighbor,
-			isAccept=false;
-		}
+            isAccept = true;
+        }
+        else {
+            //if _solution hasn't neighbor,
+            isAccept=false;
+        }
     };
 
     /**
@@ -123,7 +123,7 @@ public:
      * @return true there is some steps to do
      */
     virtual bool isContinue(EOT & _solution) {
-      return (step < nbStep)  && isAccept ;
+        return (step < nbStep)  && isAccept ;
     };
 
     /**
@@ -131,10 +131,10 @@ public:
      * @param _solution the solution to move
      */
     virtual void move(EOT & _solution) {
-		//move the solution
-    	(*current).move(_solution);
-    	//update its fitness
-    	_solution.fitness((*current).fitness());
+        //move the solution
+        (*current).move(_solution);
+        //update its fitness
+        _solution.fitness((*current).fitness());
     };
 
     /**
@@ -143,9 +143,9 @@ public:
      * @return true if the best neighbor ameliorate the fitness
      */
     virtual bool accept(EOT & _solution) {
-		if(neighborhood.hasNeighbor(_solution))
-		  isAccept = true ;
-		return isAccept;
+        if (neighborhood.hasNeighbor(_solution))
+            isAccept = true ;
+        return isAccept;
     };
 
 private:

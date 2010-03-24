@@ -36,58 +36,58 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moFirstImprExplorer] => START" << std::endl;
+    std::cout << "[t-moFirstImprExplorer] => START" << std::endl;
 
-	//Instanciation
-	eoBit<eoMinimizingFitness> sol(4, true);
-	sol.fitness(4);
-	bitNeighborhood nh(4);
-	evalOneMax eval(4);
-	moNeighborComparator<bitNeighbor> ncomp;
-	moSolNeighborComparator<bitNeighbor> sncomp;
+    //Instanciation
+    eoBit<eoMinimizingFitness> sol(4, true);
+    sol.fitness(4);
+    bitNeighborhood nh(4);
+    evalOneMax eval(4);
+    moNeighborComparator<bitNeighbor> ncomp;
+    moSolNeighborComparator<bitNeighbor> sncomp;
 
-	moFirstImprExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp);
+    moFirstImprExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp);
 
-	//on verifie qu'on améliore peut continuer à explorer tant qu'on améliore la solution
+    //on verifie qu'on améliore peut continuer à explorer tant qu'on améliore la solution
 
-	test(sol);
-	assert(test.accept(sol));
-	test.move(sol);
-	assert(sol.fitness()==3);
-	assert(!sol[0]);
-	assert(test.isContinue(sol));
+    test(sol);
+    assert(test.accept(sol));
+    test.move(sol);
+    assert(sol.fitness()==3);
+    assert(!sol[0]);
+    assert(test.isContinue(sol));
 
 
-	test(sol);
-	assert(test.accept(sol));
-	test.move(sol);
-	assert(sol.fitness()==2);
-	assert(!sol[1]);
-	assert(test.isContinue(sol));
+    test(sol);
+    assert(test.accept(sol));
+    test.move(sol);
+    assert(sol.fitness()==2);
+    assert(!sol[1]);
+    assert(test.isContinue(sol));
 
-	test(sol);
-	assert(test.accept(sol));
-	test.move(sol);
-	assert(sol.fitness()==1);
-	assert(!sol[2]);
-	assert(test.isContinue(sol));
+    test(sol);
+    assert(test.accept(sol));
+    test.move(sol);
+    assert(sol.fitness()==1);
+    assert(!sol[2]);
+    assert(test.isContinue(sol));
 
-	test(sol);
-	assert(test.accept(sol));
-	test.move(sol);
-	assert(sol.fitness()==0);
-	assert(!sol[3]);
-	assert(test.isContinue(sol));
+    test(sol);
+    assert(test.accept(sol));
+    test.move(sol);
+    assert(sol.fitness()==0);
+    assert(!sol[3]);
+    assert(test.isContinue(sol));
 
-	test(sol);
-	assert(!test.accept(sol));
-	assert(sol.fitness()==0);
-	assert(!test.isContinue(sol));
+    test(sol);
+    assert(!test.accept(sol));
+    assert(sol.fitness()==0);
+    assert(!test.isContinue(sol));
 
-	std::cout << "[t-moFirstImprExplorer] => OK" << std::endl;
+    std::cout << "[t-moFirstImprExplorer] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

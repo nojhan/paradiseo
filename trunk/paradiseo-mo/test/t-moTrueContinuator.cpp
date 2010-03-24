@@ -39,15 +39,15 @@
 #include <cassert>
 
 
-int main(){
+int main() {
 
-	std::cout << "[t-moTrueContinuator] => START" << std::endl;
+    std::cout << "[t-moTrueContinuator] => START" << std::endl;
 
-	moTrueContinuator<moDummyNeighborhood> test;
-	Solution s;
+    moTrueContinuator<moDummyNeighborhood> test;
+    Solution s;
 
-	assert(test(s));
+    assert(test(s));
 
-	std::cout << "[t-moTrueContinuator] => OK" << std::endl;
-	return EXIT_SUCCESS;
+    std::cout << "[t-moTrueContinuator] => OK" << std::endl;
+    return EXIT_SUCCESS;
 }

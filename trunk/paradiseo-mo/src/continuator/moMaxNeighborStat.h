@@ -45,34 +45,36 @@ template< class Neighborhood >
 class moMaxNeighborStat : public moStat<typename Neighborhood::EOT, typename Neighborhood::EOT::Fitness>
 {
 public :
-  typedef typename Neighborhood::EOT EOT ;
-  typedef typename EOT::Fitness Fitness ;
+    typedef typename Neighborhood::EOT EOT ;
+    typedef typename EOT::Fitness Fitness ;
 
-  using moStat< EOT, Fitness >::value;
+    using moStat< EOT, Fitness >::value;
 
-  /**
-   * Default Constructor
-   * @param _nhStat a neighborhoodStat
-   */
-  moMaxNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
-	  moStat<EOT, Fitness>(Fitness(), "min"), nhStat(_nhStat){}
-  
-  /**
-   * Set the max fitness in the neighborhood
-   * @param _sol the corresponding solution
-   */
-  virtual void operator()(EOT & _sol){
-    value() = nhStat.getMax();
-  }
-  
-  /**
-   * @return the class name
-   */
-  virtual std::string className(void) const { return "moMaxNeighborStat"; }
+    /**
+     * Default Constructor
+     * @param _nhStat a neighborhoodStat
+     */
+    moMaxNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
+            moStat<EOT, Fitness>(Fitness(), "min"), nhStat(_nhStat) {}
+
+    /**
+     * Set the max fitness in the neighborhood
+     * @param _sol the corresponding solution
+     */
+    virtual void operator()(EOT & _sol) {
+        value() = nhStat.getMax();
+    }
+
+    /**
+     * @return the class name
+     */
+    virtual std::string className(void) const {
+        return "moMaxNeighborStat";
+    }
 
 private:
-  /** moNeighborhoodStat */
-  moNeighborhoodStat<Neighborhood> & nhStat;
+    /** moNeighborhoodStat */
+    moNeighborhoodStat<Neighborhood> & nhStat;
 };
 
 #endif

@@ -39,42 +39,42 @@
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moOrderNeighborhood] => START" << std::endl;
+    std::cout << "[t-moOrderNeighborhood] => START" << std::endl;
 
-	//init sol
-	eoBit<int> sol;
-	sol.push_back(true);
-	sol.push_back(false);
-	sol.push_back(true);
+    //init sol
+    eoBit<int> sol;
+    sol.push_back(true);
+    sol.push_back(false);
+    sol.push_back(true);
 
-	moBitNeighbor<int> neighbor;
+    moBitNeighbor<int> neighbor;
 
-	//verif du constructeur vide
-	moOrderNeighborhood<moBitNeighbor<int> > test(3);
-	assert(test.position()==0);
+    //verif du constructeur vide
+    moOrderNeighborhood<moBitNeighbor<int> > test(3);
+    assert(test.position()==0);
 
-	//verif du hasneighbor
-	assert(test.hasNeighbor(sol));
+    //verif du hasneighbor
+    assert(test.hasNeighbor(sol));
 
-	//verif de init
-	test.init(sol, neighbor);
-	assert(neighbor.index()==0);
-	assert(test.position()==0);
+    //verif de init
+    test.init(sol, neighbor);
+    assert(neighbor.index()==0);
+    assert(test.position()==0);
 
-	//verif du next
-	test.next(sol, neighbor);
-	assert(neighbor.index()==1);
-	assert(test.position()==1);
+    //verif du next
+    test.next(sol, neighbor);
+    assert(neighbor.index()==1);
+    assert(test.position()==1);
 
-	//verif du cont
-	assert(test.cont(sol));
-	test.next(sol, neighbor);
-	assert(!test.cont(sol));
+    //verif du cont
+    assert(test.cont(sol));
+    test.next(sol, neighbor);
+    assert(!test.cont(sol));
 
-	assert(test.className()=="moOrderNeighborhood");
+    assert(test.className()=="moOrderNeighborhood");
 
-	std::cout << "[t-moOrderNeighborhood] => OK" << std::endl;
-	return EXIT_SUCCESS;
+    std::cout << "[t-moOrderNeighborhood] => OK" << std::endl;
+    return EXIT_SUCCESS;
 }

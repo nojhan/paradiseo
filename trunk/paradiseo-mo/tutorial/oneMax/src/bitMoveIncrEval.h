@@ -11,17 +11,17 @@
 template <class EOT>
 class OneMaxIncrEval : public moMoveIncrEval < BitMove<EOT> > {
 
-public :  
-  OneMaxIncrEval(){ };
+public :
+    OneMaxIncrEval() { };
 
-  typename EOT::Fitness operator () (const BitMove<EOT> & move, const EOT & chrom) {
-	if(chrom[move.bit]==0){
-	return chrom.fitness()+1;
-}
-	else{
-	return chrom.fitness()-1;
-}  
-};
+    typename EOT::Fitness operator () (const BitMove<EOT> & move, const EOT & chrom) {
+        if (chrom[move.bit]==0) {
+            return chrom.fitness()+1;
+        }
+        else {
+            return chrom.fitness()-1;
+        }
+    };
 };
 
 #endif

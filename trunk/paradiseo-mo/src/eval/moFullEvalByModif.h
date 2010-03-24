@@ -45,50 +45,50 @@ template<class BackableNeighbor>
 class moFullEvalByModif : public moEval<BackableNeighbor>
 {
 public:
-     typedef typename moEval<BackableNeighbor>::EOT EOT;
-     typedef typename moEval<BackableNeighbor>::Fitness Fitness;
+    typedef typename moEval<BackableNeighbor>::EOT EOT;
+    typedef typename moEval<BackableNeighbor>::Fitness Fitness;
 
- 	/**
- 	 * Ctor
- 	 * @param _eval the full evaluation object
- 	 */
-     moFullEvalByModif(eoEvalFunc<EOT>& _eval) : eval(_eval) {}
+    /**
+     * Ctor
+     * @param _eval the full evaluation object
+     */
+    moFullEvalByModif(eoEvalFunc<EOT>& _eval) : eval(_eval) {}
 
-     /**
-      * Full evaluation of the neighbor by copy
-      * @param _sol current solution
-      * @param _neighbor the neighbor to be evaluated
-      */
-     void operator()(EOT & _sol, BackableNeighbor & _neighbor)
-     {
-		// tmp fitness value of the current solution
-		Fitness tmpFit;
+    /**
+     * Full evaluation of the neighbor by copy
+     * @param _sol current solution
+     * @param _neighbor the neighbor to be evaluated
+     */
+    void operator()(EOT & _sol, BackableNeighbor & _neighbor)
+    {
+        // tmp fitness value of the current solution
+        Fitness tmpFit;
 
 
-		// save current fitness value
-		tmpFit = _sol.fitness();
+        // save current fitness value
+        tmpFit = _sol.fitness();
 
-		// move the current solution wrt _neighbor
-		_neighbor.move(_sol);
+        // move the current solution wrt _neighbor
+        _neighbor.move(_sol);
 
-		// eval the modified solution
-		_sol.invalidate();
-		eval(_sol);
+        // eval the modified solution
+        _sol.invalidate();
+        eval(_sol);
 
-		// set the fitness value to the neighbor
-		_neighbor.fitness(_sol.fitness());
+        // set the fitness value to the neighbor
+        _neighbor.fitness(_sol.fitness());
 
-		// move the current solution back
-		_neighbor.moveBack(_sol);
+        // move the current solution back
+        _neighbor.moveBack(_sol);
 
-		// set the fitness back
-		_sol.fitness(tmpFit);
-     }
+        // set the fitness back
+        _sol.fitness(tmpFit);
+    }
 
 
 private:
-     /** the full evaluation object */
-     eoEvalFunc<EOT> & eval;
+    /** the full evaluation object */
+    eoEvalFunc<EOT> & eval;
 
 };
 

@@ -41,52 +41,52 @@
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	//Pas grand chose à faire: le gros du travail est fait par le voisin et l'eval
+    //Pas grand chose à faire: le gros du travail est fait par le voisin et l'eval
 
-	std::cout << "[t-moSimpleHCexplorer] => START" << std::endl;
+    std::cout << "[t-moSimpleHCexplorer] => START" << std::endl;
 
-	Solution sol;
-	moDummyNeighbor neighbor;
-	moDummyEval eval;
-	moDummyNeighborhood nh;
-	moFullEvalByCopy<moDummyNeighbor> fulleval(eval);
-	moNeighborComparator<moDummyNeighbor> comp;
-	moSolNeighborComparator<moDummyNeighbor> solNeighborComp;
+    Solution sol;
+    moDummyNeighbor neighbor;
+    moDummyEval eval;
+    moDummyNeighborhood nh;
+    moFullEvalByCopy<moDummyNeighbor> fulleval(eval);
+    moNeighborComparator<moDummyNeighbor> comp;
+    moSolNeighborComparator<moDummyNeighbor> solNeighborComp;
 
-	//verif constructor
-	moSimpleHCexplorer<moDummyNeighborhood> test(nh, fulleval, comp, solNeighborComp);
+    //verif constructor
+    moSimpleHCexplorer<moDummyNeighborhood> test(nh, fulleval, comp, solNeighborComp);
 
-	//verif operator() et accept: le neigorhood est construit pour qu'on tombe dans les 3 cas suivants:
-	//hasNeighbor() retourne faux a l'entrée de l'operator() donc on doit pas continuer
-	sol.fitness(3);
-	test(sol);
-	test.accept(sol);
-	assert(!test.isContinue(sol));
+    //verif operator() et accept: le neigorhood est construit pour qu'on tombe dans les 3 cas suivants:
+    //hasNeighbor() retourne faux a l'entrée de l'operator() donc on doit pas continuer
+    sol.fitness(3);
+    test(sol);
+    test.accept(sol);
+    assert(!test.isContinue(sol));
 
-	//hasNeighbor() retourne faux a l'entrée de accept() donc on doit pas continuer
-	test(sol);
-	test.accept(sol);
-	assert(!test.isContinue(sol));
+    //hasNeighbor() retourne faux a l'entrée de accept() donc on doit pas continuer
+    test(sol);
+    test.accept(sol);
+    assert(!test.isContinue(sol));
 
-	//hasNeighbor() retourne vrai et on ameliore la fitness donc on doit continuer
-	test(sol);
-	test.accept(sol);
-	assert(test.isContinue(sol));
+    //hasNeighbor() retourne vrai et on ameliore la fitness donc on doit continuer
+    test(sol);
+    test.accept(sol);
+    assert(test.isContinue(sol));
 
-	//verif de move -> on affecte la fitness du best d'avant
-	test.move(sol);
+    //verif de move -> on affecte la fitness du best d'avant
+    test.move(sol);
 
-	//hasNeighbor() retourne vrai et on ameliore pas la fitness donc on doit pas continuer
-	test(sol);
-	test(sol);
-	test.accept(sol);
-	assert(!test.isContinue(sol));
+    //hasNeighbor() retourne vrai et on ameliore pas la fitness donc on doit pas continuer
+    test(sol);
+    test(sol);
+    test.accept(sol);
+    assert(!test.isContinue(sol));
 
-	assert(test.className()=="moSimpleHCexplorer");
+    assert(test.className()=="moSimpleHCexplorer");
 
-	std::cout << "[t-moSimpleHCexplorer] => OK" << std::endl;
+    std::cout << "[t-moSimpleHCexplorer] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }

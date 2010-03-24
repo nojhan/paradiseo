@@ -19,10 +19,10 @@ public:
     * incremental evaluation of the solution for the oneMax problem
     */
     virtual void eval(EOType & solution) {
-	if (solution[bit] == 0)
-	    fitness(solution.fitness() + 1);
-	else 
-	    fitness(solution.fitness() - 1);
+        if (solution[bit] == 0)
+            fitness(solution.fitness() + 1);
+        else
+            fitness(solution.fitness() - 1);
     };
 };
 

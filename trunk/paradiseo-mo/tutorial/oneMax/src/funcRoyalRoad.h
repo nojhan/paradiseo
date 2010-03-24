@@ -8,33 +8,33 @@
 template< class EOT >
 class FuncRoyalRoad : public eoEvalFunc<EOT>
 {
-  // number of blocks
-  unsigned n;
+    // number of blocks
+    unsigned n;
 
-  // size of a block
-  unsigned k;    
-    
+    // size of a block
+    unsigned k;
+
 public:
-  FuncRoyalRoad(unsigned _n, unsigned _k) : n(_n), k(_k) {};
+    FuncRoyalRoad(unsigned _n, unsigned _k) : n(_n), k(_k) {};
 
-  ~FuncRoyalRoad(void) {} ;
-    
-  virtual void operator() (EOT & _solution)
-  {
-    unsigned sum = 0;
-    unsigned i, j;
+    ~FuncRoyalRoad(void) {} ;
 
-    for (i = 0; i < n; i++) {
-      j = 0;
-      while (_solution[i * n + j] && j < k) j++;
+    virtual void operator() (EOT & _solution)
+    {
+        unsigned sum = 0;
+        unsigned i, j;
 
-      if (j == k)
-	sum++;
-    }
+        for (i = 0; i < n; i++) {
+            j = 0;
+            while (_solution[i * n + j] && j < k) j++;
 
-    _solution.fitness(sum);
-  };
-    
+            if (j == k)
+                sum++;
+        }
+
+        _solution.fitness(sum);
+    };
+
 };
 
 #endif

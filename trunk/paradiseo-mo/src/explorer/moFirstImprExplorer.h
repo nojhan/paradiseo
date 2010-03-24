@@ -52,66 +52,66 @@ public:
     using moNeighborhoodExplorer<Neighborhood>::neighborhood;
     using moNeighborhoodExplorer<Neighborhood>::eval;
 
-	/**
-	 * Constructor
-	 * @param _neighborhood the neighborhood
-	 * @param _eval the evaluation function
-	 * @param _neighborComparator a neighbor comparator
-	 * @param _solNeighborComparator a solution vs neighbor comparator
-	 */
+    /**
+     * Constructor
+     * @param _neighborhood the neighborhood
+     * @param _eval the evaluation function
+     * @param _neighborComparator a neighbor comparator
+     * @param _solNeighborComparator a solution vs neighbor comparator
+     */
     moFirstImprExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator) {
-    	isAccept = false;
-    	current=new Neighbor();
+        isAccept = false;
+        current=new Neighbor();
     }
 
-	/**
-	 * Destructor
-	 */
-    ~moFirstImprExplorer(){
-    	delete current;
+    /**
+     * Destructor
+     */
+    ~moFirstImprExplorer() {
+        delete current;
     }
 
-	/**
-	 * initParam: NOTHING TO DO
-	 */
-    virtual void initParam(EOT & solution){};
+    /**
+     * initParam: NOTHING TO DO
+     */
+    virtual void initParam(EOT & solution) {};
 
-	/**
-	 * updateParam: NOTHING TO DO
-	 */
-    virtual void updateParam(EOT & solution){};
+    /**
+     * updateParam: NOTHING TO DO
+     */
+    virtual void updateParam(EOT & solution) {};
 
-	/**
-	 * terminate: NOTHING TO DO
-	 */
-    virtual void terminate(EOT & solution){};
+    /**
+     * terminate: NOTHING TO DO
+     */
+    virtual void terminate(EOT & solution) {};
 
     /**
      * Explore the neighborhood of a solution
      * @param _solution
      */
-    virtual void operator()(EOT & _solution){
+    virtual void operator()(EOT & _solution) {
 
-    	//Test if _solution has a Neighbor
-		if(neighborhood.hasNeighbor(_solution)){
-			//init the first neighbor
-			neighborhood.init(_solution, (*current));
+        //Test if _solution has a Neighbor
+        if (neighborhood.hasNeighbor(_solution)) {
+            //init the first neighbor
+            neighborhood.init(_solution, (*current));
 
-			//eval the _solution moved with the neighbor and stock the result in the neighbor
-			eval(_solution, (*current));
+            //eval the _solution moved with the neighbor and stock the result in the neighbor
+            eval(_solution, (*current));
 
-			//test all others neighbors
-			while (! solNeighborComparator(_solution, *current) && neighborhood.cont(_solution)) {
-				//next neighbor
-				neighborhood.next(_solution, (*current));
-				//eval
-				eval(_solution, (*current));
-			}
-		}
-		else{
-		  //if _solution hasn't neighbor,
-		  isAccept=false;
-		}
+            //test all others neighbors
+            while (! solNeighborComparator(_solution, *current) && neighborhood.cont(_solution)) {
+                //next neighbor
+                neighborhood.next(_solution, (*current));
+                //eval
+                eval(_solution, (*current));
+            }
+        }
+        else {
+            //if _solution hasn't neighbor,
+            isAccept=false;
+        }
     };
 
     /**
@@ -120,7 +120,7 @@ public:
      * @return true if an ameliorated neighbor was be found
      */
     virtual bool isContinue(EOT & _solution) {
-    	return isAccept ;
+        return isAccept ;
     };
 
     /**
@@ -128,10 +128,10 @@ public:
      * @param _solution the solution to move
      */
     virtual void move(EOT & _solution) {
-		//move the solution
-    	(*current).move(_solution);
-    	//update its fitness
-    	_solution.fitness((*current).fitness());
+        //move the solution
+        (*current).move(_solution);
+        //update its fitness
+        _solution.fitness((*current).fitness());
     };
 
     /**
@@ -140,10 +140,10 @@ public:
      * @return true if the best neighbor ameliorate the fitness
      */
     virtual bool accept(EOT & _solution) {
-		if(neighborhood.hasNeighbor(_solution)){
-		  isAccept = solNeighborComparator(_solution, (*current)) ;
-		}
-		return isAccept;
+        if (neighborhood.hasNeighbor(_solution)) {
+            isAccept = solNeighborComparator(_solution, (*current)) ;
+        }
+        return isAccept;
     };
 
 private:

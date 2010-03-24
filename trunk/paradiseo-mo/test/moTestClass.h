@@ -54,151 +54,151 @@
 typedef eoBit<eoMinimizingFitness> bitVector;
 typedef moBitNeighbor<eoMinimizingFitness> bitNeighbor ;
 
-class moDummyRndNeighborhood: public moOrderNeighborhood<bitNeighbor>/*, public moRndNeighborhood<bitNeighbor>*/{
+class moDummyRndNeighborhood: public moOrderNeighborhood<bitNeighbor>/*, public moRndNeighborhood<bitNeighbor>*/ {
 public:
-	moDummyRndNeighborhood(unsigned int a): moOrderNeighborhood<bitNeighbor>(a){}
+    moDummyRndNeighborhood(unsigned int a): moOrderNeighborhood<bitNeighbor>(a) {}
 };
 
 typedef moDummyRndNeighborhood bitNeighborhood ;
 
 typedef EO<int> Solution;
 
-class moDummyNeighbor : public moNeighbor<Solution,int>{
+class moDummyNeighbor : public moNeighbor<Solution,int> {
 public:
-    virtual void move(Solution & _solution){}
+    virtual void move(Solution & _solution) {}
 };
 
-class moDummyBackableNeighbor : public moBackableNeighbor<Solution,int>{
+class moDummyBackableNeighbor : public moBackableNeighbor<Solution,int> {
 public:
-    virtual void move(Solution & _solution){}
-    virtual void moveBack(Solution & _solution){}
+    virtual void move(Solution & _solution) {}
+    virtual void moveBack(Solution & _solution) {}
 };
 
-class moDummyNeighborhood : public moNeighborhood<moDummyNeighbor>{
+class moDummyNeighborhood : public moNeighborhood<moDummyNeighbor> {
 public:
-	typedef moDummyNeighbor Neighbor;
+    typedef moDummyNeighbor Neighbor;
 
-	moDummyNeighborhood():i(0),j(0){}
+    moDummyNeighborhood():i(0),j(0) {}
 
-    virtual bool hasNeighbor(EOT & _solution){
-    	bool res;
-    	if(i%3==0)
-    		res=false;
-    	else
-    		res=true;
-    	i++;
-    	return res;
+    virtual bool hasNeighbor(EOT & _solution) {
+        bool res;
+        if (i%3==0)
+            res=false;
+        else
+            res=true;
+        i++;
+        return res;
     }
-    virtual void init(EOT & _solution, Neighbor & _current){}
-    virtual void next(EOT & _solution, Neighbor & _current){}
-    virtual bool cont(EOT & _solution){
-    	j++;
-    	return (j%10!=0);
+    virtual void init(EOT & _solution, Neighbor & _current) {}
+    virtual void next(EOT & _solution, Neighbor & _current) {}
+    virtual bool cont(EOT & _solution) {
+        j++;
+        return (j%10!=0);
     }
 
 private:
     int i,j;
 };
 
-class moDummyEval: public eoEvalFunc<Solution>{
+class moDummyEval: public eoEvalFunc<Solution> {
 public:
-	void operator()(Solution& _sol){
-		if(_sol.invalid())
-			_sol.fitness(100);
-		else
-			_sol.fitness(_sol.fitness()+50);
-	}
+    void operator()(Solution& _sol) {
+        if (_sol.invalid())
+            _sol.fitness(100);
+        else
+            _sol.fitness(_sol.fitness()+50);
+    }
 };
 
 class evalOneMax : public moEval< bitNeighbor >
 {
 private:
-  unsigned size;
+    unsigned size;
 
 public:
-  evalOneMax(unsigned _size) : size(_size) {};
+    evalOneMax(unsigned _size) : size(_size) {};
 
-  ~evalOneMax(void) {} ;
+    ~evalOneMax(void) {} ;
 
-  void operator() (bitVector& _sol, bitNeighbor& _n) {
-    unsigned int fit = _sol.fitness();
-    	if(_sol[_n.index()])
-    		fit--;
-    	else
-    		fit++;
-	_n.fitness(fit);
-  }
+    void operator() (bitVector& _sol, bitNeighbor& _n) {
+        unsigned int fit = _sol.fitness();
+        if (_sol[_n.index()])
+            fit--;
+        else
+            fit++;
+        _n.fitness(fit);
+    }
 };
 
 class dummyEvalOneMax : public moEval< bitNeighbor >
 {
 private:
-  unsigned size;
+    unsigned size;
 
 public:
-  dummyEvalOneMax(unsigned _size) : size(_size) {};
+    dummyEvalOneMax(unsigned _size) : size(_size) {};
 
-  ~dummyEvalOneMax(void) {} ;
+    ~dummyEvalOneMax(void) {} ;
 
-  void operator() (bitVector& _sol, bitNeighbor& _n) {
-    unsigned int fit = _sol.fitness();
-	_n.fitness(fit);
-  }
+    void operator() (bitVector& _sol, bitNeighbor& _n) {
+        unsigned int fit = _sol.fitness();
+        _n.fitness(fit);
+    }
 };
 
 class monitor1 : public eoMonitor
 {
 public:
 
-	monitor1(unsigned int& _a): a(_a){}
+    monitor1(unsigned int& _a): a(_a) {}
 
-	eoMonitor& operator()(){
-		a++;
-		return *this;
-	}
+    eoMonitor& operator()() {
+        a++;
+        return *this;
+    }
 
-	void lastCall(){
-		a++;
-	}
+    void lastCall() {
+        a++;
+    }
 
 private:
-	unsigned int& a;
+    unsigned int& a;
 };
 
 class monitor2 : public eoMonitor
 {
 public:
 
-	monitor2(unsigned int& _a): a(_a){}
+    monitor2(unsigned int& _a): a(_a) {}
 
-	eoMonitor& operator()(){
-		a++;
-		return *this;
-	}
+    eoMonitor& operator()() {
+        a++;
+        return *this;
+    }
 
-	void lastCall(){
-		a++;
-	}
+    void lastCall() {
+        a++;
+    }
 
 private:
-	unsigned int& a;
+    unsigned int& a;
 };
 
 class updater1: public eoUpdater
 {
 public:
-	updater1(unsigned int& _a): a(_a){}
+    updater1(unsigned int& _a): a(_a) {}
 
-	void operator()(){
-		a++;
-	}
+    void operator()() {
+        a++;
+    }
 
-	void lastCall(){
-		a++;
-	}
+    void lastCall() {
+        a++;
+    }
 
 private:
-	unsigned int& a;
+    unsigned int& a;
 };
 
 #endif

@@ -47,6 +47,6 @@
  */
 template < class M, class Objective = typename M::EOType::Fitness>
 class moMoveIncrEval:public eoBF < const M &, const typename M::EOType &, Objective >
-{};
+    {};
 
 #endif

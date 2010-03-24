@@ -10,15 +10,15 @@ template< class Neighbor >
 class moTabuList : public moMemory<Neighbor>
 {
 public:
-	typedef typename Neighbor::EOT EOT;
+    typedef typename Neighbor::EOT EOT;
 
-	/**
-	 * Check if a neighbor is tabu or not
-	 * @param _sol the current solution
-	 * @param _neighbor the neighbor
-	 * @return true if the neighbor is tabu
-	 */
-	virtual bool check(EOT & _sol, Neighbor & _neighbor) = 0;
+    /**
+     * Check if a neighbor is tabu or not
+     * @param _sol the current solution
+     * @param _neighbor the neighbor
+     * @return true if the neighbor is tabu
+     */
+    virtual bool check(EOT & _sol, Neighbor & _neighbor) = 0;
 };
 
 #endif

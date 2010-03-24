@@ -37,28 +37,28 @@
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moNeighbor] => START" << std::endl;
+    std::cout << "[t-moNeighbor] => START" << std::endl;
 
-	//test constructor
-	moDummyNeighbor test1, test2;
+    //test constructor
+    moDummyNeighbor test1, test2;
 
-	test1.fitness(3);
-	//test operateur d'affectation
-	test2=test1;
-	assert(test1.fitness()==test2.fitness());
+    test1.fitness(3);
+    //test operateur d'affectation
+    test2=test1;
+    assert(test1.fitness()==test2.fitness());
 
-	//test operateur de copy
-	moDummyNeighbor test3(test1);
-	assert(test1.fitness()==test3.fitness());
+    //test operateur de copy
+    moDummyNeighbor test3(test1);
+    assert(test1.fitness()==test3.fitness());
 
-	test1.printOn(std::cout);
-	test2.printOn(std::cout);
-	test3.printOn(std::cout);
+    test1.printOn(std::cout);
+    test2.printOn(std::cout);
+    test3.printOn(std::cout);
 
-	assert(test1.className()=="moNeighbor");
-	std::cout << "[t-moNeighbor] => OK" << std::endl;
+    assert(test1.className()=="moNeighbor");
+    std::cout << "[t-moNeighbor] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }

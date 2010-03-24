@@ -45,21 +45,21 @@ class moOrderNeighborhood : public moIndexNeighborhood<N>
 {
 public:
 
-	/**
-	 * Define type of a solution corresponding to Neighbor
-	 */
+    /**
+     * Define type of a solution corresponding to Neighbor
+     */
     typedef N Neighbor;
     typedef typename Neighbor::EOT EOT;
 
 
-	using moIndexNeighborhood<Neighbor>::neighborhoodSize;
+    using moIndexNeighborhood<Neighbor>::neighborhoodSize;
 
 
     /**
      * Constructor
      * @param _neighborhoodSize the size of the neighborhood
      */
-    moOrderNeighborhood(unsigned int _neighborhoodSize): moIndexNeighborhood<Neighbor>(_neighborhoodSize), currentIndex(0){}
+    moOrderNeighborhood(unsigned int _neighborhoodSize): moIndexNeighborhood<Neighbor>(_neighborhoodSize), currentIndex(0) {}
 
     /**
      * Test if it exist a neighbor
@@ -67,7 +67,7 @@ public:
      * @return true if the neighborhood was not empty
      */
     virtual bool hasNeighbor(EOT& _solution) {
-    	return neighborhoodSize > 0;
+        return neighborhoodSize > 0;
     }
 
     /**
@@ -76,8 +76,8 @@ public:
      * @param _neighbor the first neighbor
      */
     virtual void init(EOT & _solution, Neighbor & _neighbor) {
-		currentIndex = 0 ;
-		_neighbor.index(currentIndex) ;
+        currentIndex = 0 ;
+        _neighbor.index(currentIndex) ;
     }
 
     /**
@@ -86,8 +86,8 @@ public:
      * @param _neighbor the next neighbor
      */
     virtual void next(EOT & _solution, Neighbor & _neighbor) {
-		currentIndex++ ;
-		_neighbor.index(currentIndex);
+        currentIndex++ ;
+        _neighbor.index(currentIndex);
     }
 
     /**
@@ -98,15 +98,15 @@ public:
      * @return true if there is again a neighbor to explore
      */
     virtual bool cont(EOT & _solution) {
-    	return (currentIndex < neighborhoodSize - 1) ;
+        return (currentIndex < neighborhoodSize - 1) ;
     }
 
     /**
      * Getter
      * @return the position in the Neighborhood
      */
-    unsigned int position(){
-    	return currentIndex;
+    unsigned int position() {
+        return currentIndex;
     }
 
     /**
@@ -114,7 +114,7 @@ public:
      * @return the class name as a std::string
      */
     virtual std::string className() const {
-    	return "moOrderNeighborhood";
+        return "moOrderNeighborhood";
     }
 
 private:

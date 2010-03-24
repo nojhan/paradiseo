@@ -40,40 +40,42 @@
 
 /**
  * From moNeighborhoodStat, to compute the number of solutions in the neighborhood
- * 
+ *
  */
 template< class Neighborhood >
 class moSizeNeighborStat : public moStat<typename Neighborhood::EOT, unsigned>
 {
 public :
-  typedef typename Neighborhood::EOT EOT ;
-  typedef typename EOT::Fitness Fitness ;
+    typedef typename Neighborhood::EOT EOT ;
+    typedef typename EOT::Fitness Fitness ;
 
-  using moStat< EOT, unsigned >::value;
+    using moStat< EOT, unsigned >::value;
 
-  /**
-   * Default Constructor
-   * @param _nhStat a neighborhoodStat
-   */
-  moSizeNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
-	  moStat<EOT, unsigned>(0, "size"), nhStat(_nhStat){}
-  
-  /**
-   * Set the number of solutions in the neighborhood
-   * @param _sol the corresponding solution
-   */
-  virtual void operator()(EOT & _sol){
-    value() = nhStat.getSize();
-  }
-  
-  /**
-   * @return the class name
-   */
-  virtual std::string className(void) const { return "moSizeNeighborStat"; }
+    /**
+     * Default Constructor
+     * @param _nhStat a neighborhoodStat
+     */
+    moSizeNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
+            moStat<EOT, unsigned>(0, "size"), nhStat(_nhStat) {}
+
+    /**
+     * Set the number of solutions in the neighborhood
+     * @param _sol the corresponding solution
+     */
+    virtual void operator()(EOT & _sol) {
+        value() = nhStat.getSize();
+    }
+
+    /**
+     * @return the class name
+     */
+    virtual std::string className(void) const {
+        return "moSizeNeighborStat";
+    }
 
 private:
-  /** moNeighborhoodStat */
-  moNeighborhoodStat<Neighborhood> & nhStat;
+    /** moNeighborhoodStat */
+    moNeighborhoodStat<Neighborhood> & nhStat;
 };
 
 #endif

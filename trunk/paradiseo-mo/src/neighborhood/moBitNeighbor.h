@@ -56,7 +56,7 @@ public:
      * @param _solution the solution to move
      */
     virtual void move(EOT & _solution) {
-    	_solution[key] = !_solution[key];
+        _solution[key] = !_solution[key];
     }
 
     /**
@@ -64,7 +64,7 @@ public:
      * @param _solution the solution to move back
      */
     virtual void moveBack(EOT & _solution) {
-    	_solution[key] = !_solution[key];
+        _solution[key] = !_solution[key];
     }
 
     /**
@@ -72,39 +72,39 @@ public:
      * @return the class name as a std::string
      */
     virtual std::string className() const {
-    	return "moBitNeighbor";
+        return "moBitNeighbor";
     }
-    
-	/**
-	 * Read object.\							\
-	 * Calls base class, just in case that one had something to do.
-	 * The read and print methods should be compatible and have the same format.
-	 * In principle, format is "plain": they just print a number
-	 * @param _is a std::istream.
-	 * @throw runtime_std::exception If a valid object can't be read.
-	 */
-	virtual void readFrom(std::istream& _is) {
-		std::string fitness_str;
-		int pos = _is.tellg();
-		_is >> fitness_str;
-		if (fitness_str == "INVALID"){
-			throw std::runtime_error("invalid fitness");
-		}
-		else{
-			Fitness repFit ;
-			_is.seekg(pos); // rewind
-			_is >> repFit;
-			_is >> key;
-			fitness(repFit);
-		}
-	}
+
+    /**
+     * Read object.\							\
+     * Calls base class, just in case that one had something to do.
+     * The read and print methods should be compatible and have the same format.
+     * In principle, format is "plain": they just print a number
+     * @param _is a std::istream.
+     * @throw runtime_std::exception If a valid object can't be read.
+     */
+    virtual void readFrom(std::istream& _is) {
+        std::string fitness_str;
+        int pos = _is.tellg();
+        _is >> fitness_str;
+        if (fitness_str == "INVALID") {
+            throw std::runtime_error("invalid fitness");
+        }
+        else {
+            Fitness repFit ;
+            _is.seekg(pos); // rewind
+            _is >> repFit;
+            _is >> key;
+            fitness(repFit);
+        }
+    }
 
     /**
      * Write object. Called printOn since it prints the object _on_ a stream.
      * @param _os A std::ostream.
      */
     virtual void printOn(std::ostream& _os) const {
-    	_os << fitness() << ' ' << key << std::endl;
+        _os << fitness() << ' ' << key << std::endl;
     }
 };
 

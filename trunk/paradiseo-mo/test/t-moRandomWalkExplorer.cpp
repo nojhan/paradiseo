@@ -34,46 +34,46 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moRandomWalkExplorer] => START" << std::endl;
+    std::cout << "[t-moRandomWalkExplorer] => START" << std::endl;
 
-	eoBit<eoMinimizingFitness> sol(4, true);
-	sol.fitness(4);
-	bitNeighborhood nh(4);
-	evalOneMax eval(4);
+    eoBit<eoMinimizingFitness> sol(4, true);
+    sol.fitness(4);
+    bitNeighborhood nh(4);
+    evalOneMax eval(4);
 
-	//test avec un neighbordhood ordonné
-	//Du coup on verifie juste qu'on a bien une evolution de la solution et qu'on fait 3 pas avant d'arreter l'exploration
-	moRandomWalkExplorer<bitNeighborhood> test(nh, eval, 3);
+    //test avec un neighbordhood ordonné
+    //Du coup on verifie juste qu'on a bien une evolution de la solution et qu'on fait 3 pas avant d'arreter l'exploration
+    moRandomWalkExplorer<bitNeighborhood> test(nh, eval, 3);
 
-	test.initParam(sol);
+    test.initParam(sol);
 
-	test(sol);
-	assert(test.accept(sol));
-	test.move(sol);
-	assert(sol.fitness()==3);
-	test.updateParam(sol);
-	assert(test.isContinue(sol));
+    test(sol);
+    assert(test.accept(sol));
+    test.move(sol);
+    assert(sol.fitness()==3);
+    test.updateParam(sol);
+    assert(test.isContinue(sol));
 
 
-	test(sol);
-	assert(test.accept(sol));
-	test.move(sol);
-	assert(sol.fitness()==4);
-	test.updateParam(sol);
-	assert(test.isContinue(sol));
+    test(sol);
+    assert(test.accept(sol));
+    test.move(sol);
+    assert(sol.fitness()==4);
+    test.updateParam(sol);
+    assert(test.isContinue(sol));
 
-	test(sol);
-	assert(test.accept(sol));
-	test.move(sol);
-	assert(sol.fitness()==3);
-	assert(!sol[0]);
-	test.updateParam(sol);
-	assert(!test.isContinue(sol));
+    test(sol);
+    assert(test.accept(sol));
+    test.move(sol);
+    assert(sol.fitness()==3);
+    assert(!sol[0]);
+    test.updateParam(sol);
+    assert(!test.isContinue(sol));
 
-	std::cout << "[t-moRandomWalkExplorer] => OK" << std::endl;
+    std::cout << "[t-moRandomWalkExplorer] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

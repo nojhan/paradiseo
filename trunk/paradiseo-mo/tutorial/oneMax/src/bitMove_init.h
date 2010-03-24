@@ -9,13 +9,13 @@
 
 template <class EOT>
 class BitMove_init : public moMoveInit < BitMove<EOT> > {
-  
+
 public :
-  
-  void operator () (BitMove<EOT> & __move, const EOT & genome) {
-    __move.bit = 0 ;
-  };
-  
+
+    void operator () (BitMove<EOT> & __move, const EOT & genome) {
+        __move.bit = 0 ;
+    };
+
 } ;
 
 #endif

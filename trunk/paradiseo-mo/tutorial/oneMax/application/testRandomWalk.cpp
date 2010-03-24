@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 /** testRandomWalk.cpp
  *
- * SV - 22/01/10 
+ * SV - 22/01/10
  *
  */
 //-----------------------------------------------------------------------------
@@ -44,188 +44,188 @@ using namespace std;
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
-typedef eoBit<unsigned> Indi;	
+typedef eoBit<unsigned> Indi;
 typedef moBitNeighbor<unsigned int> Neighbor ; // incremental evaluation
 typedef moRndWithReplNeighborhood<Neighbor> Neighborhood ;
 
 void main_function(int argc, char **argv)
 {
-	/* =========================================================
-	*
-	* Parameters
-	*
-	* ========================================================= */
+    /* =========================================================
+    *
+    * Parameters
+    *
+    * ========================================================= */
 
-	// First define a parser from the command-line arguments
-	eoParser parser(argc, argv);
+    // First define a parser from the command-line arguments
+    eoParser parser(argc, argv);
 
-	// For each parameter, define Parameter, read it through the parser,
-	// and assign the value to the variable
+    // For each parameter, define Parameter, read it through the parser,
+    // and assign the value to the variable
 
-	eoValueParam<uint32_t> seedParam(time(0), "seed", "Random number seed", 'S');
-	parser.processParam( seedParam );
-	unsigned seed = seedParam.value();
+    eoValueParam<uint32_t> seedParam(time(0), "seed", "Random number seed", 'S');
+    parser.processParam( seedParam );
+    unsigned seed = seedParam.value();
 
-	// description of genotype
-	eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size", 'V');
-	parser.processParam( vecSizeParam, "Representation" );
-	unsigned vecSize = vecSizeParam.value();
+    // description of genotype
+    eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size", 'V');
+    parser.processParam( vecSizeParam, "Representation" );
+    unsigned vecSize = vecSizeParam.value();
 
-	eoValueParam<unsigned int> stepParam(10, "nbStep", "Number of steps of the random walk", 'n');
-	parser.processParam( stepParam, "Representation" );
-	unsigned nbStep = stepParam.value();
+    eoValueParam<unsigned int> stepParam(10, "nbStep", "Number of steps of the random walk", 'n');
+    parser.processParam( stepParam, "Representation" );
+    unsigned nbStep = stepParam.value();
 
-	// the name of the "status" file where all actual parameter values will be saved
-	string str_status = parser.ProgramName() + ".status"; // default value
-	eoValueParam<string> statusParam(str_status.c_str(), "status", "Status file");
-	parser.processParam( statusParam, "Persistence" );
+    // the name of the "status" file where all actual parameter values will be saved
+    string str_status = parser.ProgramName() + ".status"; // default value
+    eoValueParam<string> statusParam(str_status.c_str(), "status", "Status file");
+    parser.processParam( statusParam, "Persistence" );
 
-	// do the following AFTER ALL PARAMETERS HAVE BEEN PROCESSED
-	// i.e. in case you need parameters somewhere else, postpone these
-	if (parser.userNeedsHelp()){
-		parser.printHelp(cout);
-		exit(1);
-	}
-	if (statusParam.value() != ""){
-		ofstream os(statusParam.value().c_str());
-		os << parser;// and you can use that file as parameter file
-	}
+    // do the following AFTER ALL PARAMETERS HAVE BEEN PROCESSED
+    // i.e. in case you need parameters somewhere else, postpone these
+    if (parser.userNeedsHelp()) {
+        parser.printHelp(cout);
+        exit(1);
+    }
+    if (statusParam.value() != "") {
+        ofstream os(statusParam.value().c_str());
+        os << parser;// and you can use that file as parameter file
+    }
 
-	/* =========================================================
-	 *
-	 * Random seed
-	 *
-	 * ========================================================= */
+    /* =========================================================
+     *
+     * Random seed
+     *
+     * ========================================================= */
 
-	//reproducible random seed: if you don't change SEED above,
-	// you'll aways get the same result, NOT a random run
-	rng.reseed(seed);
-
-
-	/* =========================================================
-	 *
-	 * Eval fitness function
-	 *
-	 * ========================================================= */
-
-	FuncOneMax<Indi> eval(vecSize);
+    //reproducible random seed: if you don't change SEED above,
+    // you'll aways get the same result, NOT a random run
+    rng.reseed(seed);
 
 
-	/* =========================================================
-	 *
-	 * Initilisation of the solution
-	 *
-	 * ========================================================= */
+    /* =========================================================
+     *
+     * Eval fitness function
+     *
+     * ========================================================= */
 
-	// a Indi random initializer
-	eoUniformGenerator<bool> uGen;
-	eoInitFixedLength<Indi> random(vecSize, uGen);
+    FuncOneMax<Indi> eval(vecSize);
 
 
-	/* =========================================================
-	 *
-	 * evaluation of a neighbor solution
-	 *
-	 * ========================================================= */
+    /* =========================================================
+     *
+     * Initilisation of the solution
+     *
+     * ========================================================= */
 
-	moFullEvalByModif<Neighbor> nhEval(eval);
-
-	//An eval by copy can be used instead of the eval by modif
-	//moFullEvalByCopy<Neighbor> nhEval(eval);
-
-
-	/* =========================================================
-	 *
-	 * the neighborhood of a solution
-	 *
-	 * ========================================================= */
-
-	Neighborhood neighborhood(vecSize);
+    // a Indi random initializer
+    eoUniformGenerator<bool> uGen;
+    eoInitFixedLength<Indi> random(vecSize, uGen);
 
 
-	/* =========================================================
-	 *
-	 * a neighborhood explorer solution
-	 *
-	 * ========================================================= */
-  
-	moRandomWalkExplorer<Neighborhood> explorer(neighborhood, nhEval, nbStep);
+    /* =========================================================
+     *
+     * evaluation of a neighbor solution
+     *
+     * ========================================================= */
+
+    moFullEvalByModif<Neighbor> nhEval(eval);
+
+    //An eval by copy can be used instead of the eval by modif
+    //moFullEvalByCopy<Neighbor> nhEval(eval);
 
 
-	/* =========================================================
-	 *
-	 * the continuator and the checkpoint
-	 *
-	 * ========================================================= */
+    /* =========================================================
+     *
+     * the neighborhood of a solution
+     *
+     * ========================================================= */
 
-	moTrueContinuator<Neighborhood> continuator;//always continue
+    Neighborhood neighborhood(vecSize);
 
-	moCheckpoint<Neighborhood> checkpoint(continuator);
 
-	moFitnessStat<Indi, unsigned> fStat;
-	eoHammingDistance<Indi> distance;
-	Indi bestSolution(vecSize, true);
-	moDistanceStat<Indi, unsigned> distStat(distance, bestSolution);
-	//	moSolutionStat<Indi> solStat;
-	
-	checkpoint.add(fStat);
-	checkpoint.add(distStat);
-	//	checkpoint.add(solStat);
+    /* =========================================================
+     *
+     * a neighborhood explorer solution
+     *
+     * ========================================================= */
 
-	eoValueParam<unsigned int> genCounter(-1,"Gen");
-	eoIncrementor<unsigned int> increm(genCounter.value());
-	checkpoint.add(increm);
+    moRandomWalkExplorer<Neighborhood> explorer(neighborhood, nhEval, nbStep);
 
-	eoFileMonitor outputfile("out.dat", " ");
-	checkpoint.add(outputfile);
 
-	outputfile.add(genCounter);
-	outputfile.add(fStat);
-	outputfile.add(distStat);
-	//	outputfile.add(solStat);
+    /* =========================================================
+     *
+     * the continuator and the checkpoint
+     *
+     * ========================================================= */
 
-	Indi solution; // current solution of the search process
+    moTrueContinuator<Neighborhood> continuator;//always continue
 
-	/*
-	// to save the solution at each iteration
-	eoState outState;
+    moCheckpoint<Neighborhood> checkpoint(continuator);
 
-	// Register the algorithm into the state (so it has something to save!!
+    moFitnessStat<Indi, unsigned> fStat;
+    eoHammingDistance<Indi> distance;
+    Indi bestSolution(vecSize, true);
+    moDistanceStat<Indi, unsigned> distStat(distance, bestSolution);
+    //	moSolutionStat<Indi> solStat;
 
-	outState.registerObject(solution);
+    checkpoint.add(fStat);
+    checkpoint.add(distStat);
+    //	checkpoint.add(solStat);
 
-	// and feed the state to state savers
-	// save state every 10th iteration
-	eoCountedStateSaver stateSaver(10, outState, "iteration"); 
-	
-	  // Don't forget to add the two savers to the checkpoint
-	checkpoint.add(stateSaver);
-	*/
+    eoValueParam<unsigned int> genCounter(-1,"Gen");
+    eoIncrementor<unsigned int> increm(genCounter.value());
+    checkpoint.add(increm);
 
-	/* =========================================================
-	 *
-	 * the local search algorithm
-	 *
-	 * ========================================================= */
+    eoFileMonitor outputfile("out.dat", " ");
+    checkpoint.add(outputfile);
 
-	moLocalSearch< moRandomWalkExplorer<Neighborhood> > localSearch(explorer, checkpoint, eval);
+    outputfile.add(genCounter);
+    outputfile.add(fStat);
+    outputfile.add(distStat);
+    //	outputfile.add(solStat);
 
-	/* =========================================================
-	 *
-	 * execute the local search from random sollution
-	 *
-	 * ========================================================= */
+    Indi solution; // current solution of the search process
 
-	random(solution);
+    /*
+    // to save the solution at each iteration
+    eoState outState;
 
-	//Can be eval here, else it will be done at the beginning of the localSearch
-	//eval(solution);
+    // Register the algorithm into the state (so it has something to save!!
 
-	std::cout << "initial: " << solution << std::endl ;
+    outState.registerObject(solution);
 
-	localSearch(solution);
-  
-	std::cout << "final:   " << solution << std::endl ;
+    // and feed the state to state savers
+    // save state every 10th iteration
+    eoCountedStateSaver stateSaver(10, outState, "iteration");
+
+      // Don't forget to add the two savers to the checkpoint
+    checkpoint.add(stateSaver);
+    */
+
+    /* =========================================================
+     *
+     * the local search algorithm
+     *
+     * ========================================================= */
+
+    moLocalSearch< moRandomWalkExplorer<Neighborhood> > localSearch(explorer, checkpoint, eval);
+
+    /* =========================================================
+     *
+     * execute the local search from random sollution
+     *
+     * ========================================================= */
+
+    random(solution);
+
+    //Can be eval here, else it will be done at the beginning of the localSearch
+    //eval(solution);
+
+    std::cout << "initial: " << solution << std::endl ;
+
+    localSearch(solution);
+
+    std::cout << "final:   " << solution << std::endl ;
 
 }
 
@@ -233,11 +233,11 @@ void main_function(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
-	try{
-		main_function(argc, argv);
-	}
-	catch(exception& e){
-		cout << "Exception: " << e.what() << '\n';
-	}
-	return 1;
+    try {
+        main_function(argc, argv);
+    }
+    catch (exception& e) {
+        cout << "Exception: " << e.what() << '\n';
+    }
+    return 1;
 }

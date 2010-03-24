@@ -54,7 +54,7 @@ public:
      *@return always true
      */
     virtual bool operator()(EOT & _solution) {
-    	return true;
+        return true;
     }
 
     /**

@@ -54,7 +54,7 @@ public :
      * @param _description a description of the stat
      */
     moFitnessStat(std::string _description = "fitness"):
-    	moStat<EOT, Fitness>(Fitness(), _description){}
+            moStat<EOT, Fitness>(Fitness(), _description) {}
 
     /**
      * store fitness value
@@ -62,13 +62,15 @@ public :
      */
     virtual void operator()(EOT & _sol)
     {
-      value() = _sol.fitness();
+        value() = _sol.fitness();
     }
 
     /**
      * @return the name of the class
      */
-    virtual std::string className(void) const { return "moFitnessStat"; }
+    virtual std::string className(void) const {
+        return "moFitnessStat";
+    }
 };
 
 #endif

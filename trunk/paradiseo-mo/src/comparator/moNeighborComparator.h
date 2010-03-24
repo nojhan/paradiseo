@@ -57,7 +57,7 @@ public:
      * @return true if the neighbor2 is better than neighbor1
      */
     virtual bool operator()(const Neighbor& _neighbor1, const Neighbor& _neighbor2) {
-    	return (_neighbor1.fitness() < _neighbor2.fitness());
+        return (_neighbor1.fitness() < _neighbor2.fitness());
     }
 
     /**
@@ -67,7 +67,7 @@ public:
      * @return true if the neighbor2 is equal to neighbor1
      */
     virtual bool equals(const Neighbor& _neighbor1, const Neighbor& _neighbor2) {
-    	return (_neighbor1.fitness() == _neighbor2.fitness());
+        return (_neighbor1.fitness() == _neighbor2.fitness());
     }
 
     /**
@@ -75,7 +75,7 @@ public:
      * @return the class name as a std::string
      */
     virtual std::string className() const {
-    	return "moNeighborComparator";
+        return "moNeighborComparator";
     }
 };
 

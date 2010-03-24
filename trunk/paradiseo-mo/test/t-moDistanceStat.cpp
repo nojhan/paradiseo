@@ -35,39 +35,39 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moDistanceStat] => START" << std::endl;
+    std::cout << "[t-moDistanceStat] => START" << std::endl;
 
-	eoBit<int> sol1;
-	eoBit<int> sol2;
-	eoBit<int> sol3;
-	sol1.push_back(true);
-	sol1.push_back(false);
-	sol1.push_back(true);
+    eoBit<int> sol1;
+    eoBit<int> sol2;
+    eoBit<int> sol3;
+    sol1.push_back(true);
+    sol1.push_back(false);
+    sol1.push_back(true);
 
-	sol2.push_back(true);
-	sol2.push_back(true);
-	sol2.push_back(false);
+    sol2.push_back(true);
+    sol2.push_back(true);
+    sol2.push_back(false);
 
-	sol3.push_back(true);
-	sol3.push_back(true);
-	sol3.push_back(true);
+    sol3.push_back(true);
+    sol3.push_back(true);
+    sol3.push_back(true);
 
-	//verification de la stat avec une distance de Hamming
+    //verification de la stat avec une distance de Hamming
 
-	eoHammingDistance< eoBit<int> > dist;
+    eoHammingDistance< eoBit<int> > dist;
 
-	moDistanceStat< eoBit<int> > test(dist, sol1);
+    moDistanceStat< eoBit<int> > test(dist, sol1);
 
-	test(sol2);
-	assert(test.value()==2);
-	test(sol3);
-	assert(test.value()==1);
+    test(sol2);
+    assert(test.value()==2);
+    test(sol3);
+    assert(test.value()==1);
 
-	assert(test.className()=="moDistanceStat");
-	std::cout << "[t-moDistanceStat] => OK" << std::endl;
+    assert(test.className()=="moDistanceStat");
+    std::cout << "[t-moDistanceStat] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

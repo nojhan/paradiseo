@@ -58,69 +58,69 @@ public:
     using moNeighborhoodExplorer<Neighborhood>::neighborhood;
     using moNeighborhoodExplorer<Neighborhood>::eval;
 
-	/**
-	 * Constructor
-	 * @param _neighborhood the neighborhood
-	 * @param _eval the evaluation function
-	 * @param _neighborComparator a neighbor comparator
-	 * @param _solNeighborComparator a solution vs neighbor comparator
-	 * @param _nbStep maximum number of step to do
-	 */
+    /**
+     * Constructor
+     * @param _neighborhood the neighborhood
+     * @param _eval the evaluation function
+     * @param _neighborComparator a neighbor comparator
+     * @param _solNeighborComparator a solution vs neighbor comparator
+     * @param _nbStep maximum number of step to do
+     */
     moMetropolisHastingExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator, unsigned int _nbStep) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator), nbStep(_nbStep) {
-    	isAccept = false;
-    	current=new Neighbor();
-    	if(!neighborhood.isRandom()){
-    		std::cout << "moMetropolisHastingExplorer::Warning -> the neighborhood used is not random" << std::endl;
-    	}
+        isAccept = false;
+        current=new Neighbor();
+        if (!neighborhood.isRandom()) {
+            std::cout << "moMetropolisHastingExplorer::Warning -> the neighborhood used is not random" << std::endl;
+        }
     }
 
-	/**
-	 * Destructor
-	 */
-    ~moMetropolisHastingExplorer(){
-    	delete current;
+    /**
+     * Destructor
+     */
+    ~moMetropolisHastingExplorer() {
+        delete current;
     }
 
-	/**
-	 * initialization of the number of step to be done
-	 * @param _solution the solution (unused here)
-	 */
-    virtual void initParam(EOT & _solution){
-    	step     = 0;
-    	isAccept = true;
+    /**
+     * initialization of the number of step to be done
+     * @param _solution the solution (unused here)
+     */
+    virtual void initParam(EOT & _solution) {
+        step     = 0;
+        isAccept = true;
     };
 
-	/**
-	 * increase the number of step
-	 * @param _solution the solution (unused here)
-	 */
-    virtual void updateParam(EOT & _solution){
-    	step++;
+    /**
+     * increase the number of step
+     * @param _solution the solution (unused here)
+     */
+    virtual void updateParam(EOT & _solution) {
+        step++;
     };
 
-	/**
-	 * terminate: NOTHING TO DO
-	 * @param _solution the solution (unused here)
-	 */
-    virtual void terminate(EOT & _solution){};
+    /**
+     * terminate: NOTHING TO DO
+     * @param _solution the solution (unused here)
+     */
+    virtual void terminate(EOT & _solution) {};
 
     /**
      * Explore the neighborhood of a solution
      * @param _solution
      */
-    virtual void operator()(EOT & _solution){
-    	//Test if _solution has a Neighbor
-		if(neighborhood.hasNeighbor(_solution)){
-			//init the first neighbor
-			neighborhood.init(_solution, (*current));
+    virtual void operator()(EOT & _solution) {
+        //Test if _solution has a Neighbor
+        if (neighborhood.hasNeighbor(_solution)) {
+            //init the first neighbor
+            neighborhood.init(_solution, (*current));
 
-			//eval the _solution moved with the neighbor and stock the result in the neighbor
-			eval(_solution, (*current));
-		}
-		else{
-		  //if _solution hasn't neighbor,
-		  isAccept=false;
-		}
+            //eval the _solution moved with the neighbor and stock the result in the neighbor
+            eval(_solution, (*current));
+        }
+        else {
+            //if _solution hasn't neighbor,
+            isAccept=false;
+        }
     };
 
     /**
@@ -129,7 +129,7 @@ public:
      * @return true there is some steps to do
      */
     virtual bool isContinue(EOT & _solution) {
-      return (step < nbStep) ;
+        return (step < nbStep) ;
     };
 
     /**
@@ -137,10 +137,10 @@ public:
      * @param _solution the solution to move
      */
     virtual void move(EOT & _solution) {
-		//move the solution
-    	(*current).move(_solution);
-    	//update its fitness
-    	_solution.fitness((*current).fitness());
+        //move the solution
+        (*current).move(_solution);
+        //update its fitness
+        _solution.fitness((*current).fitness());
     };
 
     /**
@@ -149,27 +149,27 @@ public:
      * @return true if the best neighbor ameliorate the fitness
      */
     virtual bool accept(EOT & _solution) {
-    	double alpha=0.0;
-		if(neighborhood.hasNeighbor(_solution)){
-			if (solNeighborComparator(_solution, *current))
-				isAccept = true;
-			else{
-				if(_solution.fitness() != 0){
-					if( (double)current->fitness() < (double)_solution.fitness()) // maximizing
-						alpha = (double) current->fitness() / (double) _solution.fitness();
-					else //minimizing
-						alpha = (double) _solution.fitness() / (double) current->fitness();
-					isAccept = (rng.uniform() < alpha) ;
-				}
-				else{
-					if( (double)current->fitness() < (double)_solution.fitness()) // maximizing
-						isAccept = true;
-					else
-						isAccept = false;
-				}
-			}
-		}
-		return isAccept;
+        double alpha=0.0;
+        if (neighborhood.hasNeighbor(_solution)) {
+            if (solNeighborComparator(_solution, *current))
+                isAccept = true;
+            else {
+                if (_solution.fitness() != 0) {
+                    if ( (double)current->fitness() < (double)_solution.fitness()) // maximizing
+                        alpha = (double) current->fitness() / (double) _solution.fitness();
+                    else //minimizing
+                        alpha = (double) _solution.fitness() / (double) current->fitness();
+                    isAccept = (rng.uniform() < alpha) ;
+                }
+                else {
+                    if ( (double)current->fitness() < (double)_solution.fitness()) // maximizing
+                        isAccept = true;
+                    else
+                        isAccept = false;
+                }
+            }
+        }
+        return isAccept;
     };
 
 private:

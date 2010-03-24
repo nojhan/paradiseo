@@ -33,46 +33,46 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moBestImprAspiration] => START" << std::endl;
+    std::cout << "[t-moBestImprAspiration] => START" << std::endl;
 
-	moBestImprAspiration<bitNeighbor> test;
-	eoBit<eoMinimizingFitness> sol1(4);
-	eoBit<eoMinimizingFitness> sol2(4);
-	eoBit<eoMinimizingFitness> sol3(4);
-	eoBit<eoMinimizingFitness> sol4(4);
-	bitNeighbor n1;
-	bitNeighbor n2;
-	bitNeighbor n3;
-	bitNeighbor n4;
+    moBestImprAspiration<bitNeighbor> test;
+    eoBit<eoMinimizingFitness> sol1(4);
+    eoBit<eoMinimizingFitness> sol2(4);
+    eoBit<eoMinimizingFitness> sol3(4);
+    eoBit<eoMinimizingFitness> sol4(4);
+    bitNeighbor n1;
+    bitNeighbor n2;
+    bitNeighbor n3;
+    bitNeighbor n4;
 
-	sol3[0]=true;
-	sol4[3]=true;
+    sol3[0]=true;
+    sol4[3]=true;
 
-	sol1.fitness(4);
-	sol2.fitness(5);
-	sol3.fitness(3);
-	sol4.fitness(3);
-	n1.fitness(4);
-	n2.fitness(5);
-	n3.fitness(3);
-	n4.fitness(3);
+    sol1.fitness(4);
+    sol2.fitness(5);
+    sol3.fitness(3);
+    sol4.fitness(3);
+    n1.fitness(4);
+    n2.fitness(5);
+    n3.fitness(3);
+    n4.fitness(3);
 
 
-	//verification qu'on update bien le best so far quand il faut
-	test.init(sol1);
-	assert(test.getBest()==sol1);
-	assert(!test(sol2,n2));
-	assert(test(sol3,n3));
-	test.update(sol3,n3);
-	assert(test.getBest()==sol3);
-	assert(!test(sol4,n4));
-	test.update(sol4,n4);
-	assert(test.getBest()==sol3);
+    //verification qu'on update bien le best so far quand il faut
+    test.init(sol1);
+    assert(test.getBest()==sol1);
+    assert(!test(sol2,n2));
+    assert(test(sol3,n3));
+    test.update(sol3,n3);
+    assert(test.getBest()==sol3);
+    assert(!test(sol4,n4));
+    test.update(sol4,n4);
+    assert(test.getBest()==sol3);
 
-	std::cout << "[t-moBestImprAspiration] => OK" << std::endl;
+    std::cout << "[t-moBestImprAspiration] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

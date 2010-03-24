@@ -46,107 +46,107 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /*
  * Tests all classes depending of moNeighborhoodStat.h
  */
-int main(){
+int main() {
 
-	//test de moNeighborhoodStat.h
-	std::cout << "[t-moNeighborhoodStat] => START" << std::endl;
+    //test de moNeighborhoodStat.h
+    std::cout << "[t-moNeighborhoodStat] => START" << std::endl;
 
-	moNeighborComparator<bitNeighbor> neighborComp;
-	moSolNeighborComparator<bitNeighbor> solNeighborComp;
-	evalOneMax eval(10);
+    moNeighborComparator<bitNeighbor> neighborComp;
+    moSolNeighborComparator<bitNeighbor> solNeighborComp;
+    evalOneMax eval(10);
 
-	bitNeighborhood n(10);
+    bitNeighborhood n(10);
 
-	bitVector sol;
+    bitVector sol;
 
-	sol.push_back(true);
-	sol.push_back(false);
-	sol.push_back(true);
-	sol.push_back(true);
-	sol.push_back(false);
-	sol.push_back(true);
-	sol.push_back(false);
-	sol.push_back(true);
-	sol.push_back(true);
-	sol.push_back(true);
+    sol.push_back(true);
+    sol.push_back(false);
+    sol.push_back(true);
+    sol.push_back(true);
+    sol.push_back(false);
+    sol.push_back(true);
+    sol.push_back(false);
+    sol.push_back(true);
+    sol.push_back(true);
+    sol.push_back(true);
 
-	sol.fitness(7);
+    sol.fitness(7);
 
 
-	moNeighborhoodStat<bitNeighborhood> test(n, eval, neighborComp, solNeighborComp);
+    moNeighborhoodStat<bitNeighborhood> test(n, eval, neighborComp, solNeighborComp);
 
-	test(sol);
+    test(sol);
 
-	assert(test.getMin()==8);
-	assert(test.getMax()==6);
-	assert(test.getMean()==6.6);
-	double sd=test.getSD();
-	assert(test.getSD()>0.966 && test.getSD()<0.967);
-	assert(test.getSize()==10);
-	assert(test.getNbSup()==7);
-	assert(test.getNbInf()==3);
-	assert(test.getNbEqual()==0);
+    assert(test.getMin()==8);
+    assert(test.getMax()==6);
+    assert(test.getMean()==6.6);
+    double sd=test.getSD();
+    assert(sd>0.966 && sd<0.967);
+    assert(test.getSize()==10);
+    assert(test.getNbSup()==7);
+    assert(test.getNbInf()==3);
+    assert(test.getNbEqual()==0);
 
-	assert(test.className()=="moNeighborhoodStat");
-	std::cout << "[t-moNeighborhoodStat] => OK" << std::endl;
+    assert(test.className()=="moNeighborhoodStat");
+    std::cout << "[t-moNeighborhoodStat] => OK" << std::endl;
 
-	//test of moMaxNeighborStat.h
-	std::cout << "[t-moMaxNeighborStat] => START" << std::endl;
-	moMaxNeighborStat<bitNeighborhood> test2(test);
-	test2(sol);
-	assert(test2.value()==6);
-	assert(test2.className()=="moMaxNeighborStat");
-	std::cout << "[t-moMaxNeighborStat] => OK" << std::endl;
+    //test of moMaxNeighborStat.h
+    std::cout << "[t-moMaxNeighborStat] => START" << std::endl;
+    moMaxNeighborStat<bitNeighborhood> test2(test);
+    test2(sol);
+    assert(test2.value()==6);
+    assert(test2.className()=="moMaxNeighborStat");
+    std::cout << "[t-moMaxNeighborStat] => OK" << std::endl;
 
-	//test of moMinNeighborStat.h
-	std::cout << "[t-moMinNeighborStat] => START" << std::endl;
-	moMinNeighborStat<bitNeighborhood> test3(test);
-	test3(sol);
-	assert(test3.value()==8);
-	assert(test3.className()=="moMinNeighborStat");
-	std::cout << "[t-moMinNeighborStat] => OK" << std::endl;
+    //test of moMinNeighborStat.h
+    std::cout << "[t-moMinNeighborStat] => START" << std::endl;
+    moMinNeighborStat<bitNeighborhood> test3(test);
+    test3(sol);
+    assert(test3.value()==8);
+    assert(test3.className()=="moMinNeighborStat");
+    std::cout << "[t-moMinNeighborStat] => OK" << std::endl;
 
-	//test of moNbInfNeighborStat.h
-	std::cout << "[t-moNbInfNeighborStat] => START" << std::endl;
-	moNbInfNeighborStat<bitNeighborhood> test4(test);
-	test4(sol);
-	assert(test4.value()==3);
-	assert(test4.className()=="moNbInfNeighborStat");
-	std::cout << "[t-moNbInfNeighborStat] => OK" << std::endl;
+    //test of moNbInfNeighborStat.h
+    std::cout << "[t-moNbInfNeighborStat] => START" << std::endl;
+    moNbInfNeighborStat<bitNeighborhood> test4(test);
+    test4(sol);
+    assert(test4.value()==3);
+    assert(test4.className()=="moNbInfNeighborStat");
+    std::cout << "[t-moNbInfNeighborStat] => OK" << std::endl;
 
-	//test of moNbSupNeighborStat.h
-	std::cout << "[t-moNbSupNeighborStat] => START" << std::endl;
-	moNbSupNeighborStat<bitNeighborhood> test5(test);
-	test5(sol);
-	assert(test5.value()==7);
-	assert(test5.className()=="moNbSupNeighborStat");
-	std::cout << "[t-moNbSupNeighborStat] => OK" << std::endl;
+    //test of moNbSupNeighborStat.h
+    std::cout << "[t-moNbSupNeighborStat] => START" << std::endl;
+    moNbSupNeighborStat<bitNeighborhood> test5(test);
+    test5(sol);
+    assert(test5.value()==7);
+    assert(test5.className()=="moNbSupNeighborStat");
+    std::cout << "[t-moNbSupNeighborStat] => OK" << std::endl;
 
-	//test of moNeutralDegreeNeighborStat.h
-	std::cout << "[t-moNeutralDegreeNeighborStat] => START" << std::endl;
-	moNeutralDegreeNeighborStat<bitNeighborhood> test6(test);
-	test6(sol);
-	assert(test6.value()==0);
-	assert(test6.className()=="moNeutralDegreeNeighborStat");
-	std::cout << "[t-moNeutralDegreeNeighborStat] => OK" << std::endl;
+    //test of moNeutralDegreeNeighborStat.h
+    std::cout << "[t-moNeutralDegreeNeighborStat] => START" << std::endl;
+    moNeutralDegreeNeighborStat<bitNeighborhood> test6(test);
+    test6(sol);
+    assert(test6.value()==0);
+    assert(test6.className()=="moNeutralDegreeNeighborStat");
+    std::cout << "[t-moNeutralDegreeNeighborStat] => OK" << std::endl;
 
-	//test of moSecondMomentNeighborStat.h
-	std::cout << "[t-moSecondMomentNeighborStat] => START" << std::endl;
-	moSecondMomentNeighborStat<bitNeighborhood> test7(test);
-	test7(sol);
-	assert(test7.value().first==6.6);
-	assert(test7.value().second > 0.966 && test7.value().second < 0.967);
-	assert(test7.className()=="moSecondMomentNeighborStat");
-	std::cout << "[t-moSecondMomentNeighborStat] => OK" << std::endl;
+    //test of moSecondMomentNeighborStat.h
+    std::cout << "[t-moSecondMomentNeighborStat] => START" << std::endl;
+    moSecondMomentNeighborStat<bitNeighborhood> test7(test);
+    test7(sol);
+    assert(test7.value().first==6.6);
+    assert(test7.value().second > 0.966 && test7.value().second < 0.967);
+    assert(test7.className()=="moSecondMomentNeighborStat");
+    std::cout << "[t-moSecondMomentNeighborStat] => OK" << std::endl;
 
-	//test of moSizeNeighborStat.h
-	std::cout << "[t-moSizeNeighborStat] => START" << std::endl;
-	moSizeNeighborStat<bitNeighborhood> test8(test);
-	test8(sol);
-	assert(test8.value()==10);
-	assert(test8.className()=="moSizeNeighborStat");
-	std::cout << "[t-moSizeNeighborStat] => OK" << std::endl;
+    //test of moSizeNeighborStat.h
+    std::cout << "[t-moSizeNeighborStat] => START" << std::endl;
+    moSizeNeighborStat<bitNeighborhood> test8(test);
+    test8(sol);
+    assert(test8.value()==10);
+    assert(test8.className()=="moSizeNeighborStat");
+    std::cout << "[t-moSizeNeighborStat] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

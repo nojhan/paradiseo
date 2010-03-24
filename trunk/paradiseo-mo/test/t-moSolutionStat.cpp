@@ -34,31 +34,31 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moSolutionStat] => START" << std::endl;
+    std::cout << "[t-moSolutionStat] => START" << std::endl;
 
-	eoBit<unsigned int> s(3);
-	s[0]=true;
-	s[1]=true;
-	s[2]=false;
+    eoBit<unsigned int> s(3);
+    s[0]=true;
+    s[1]=true;
+    s[2]=false;
 
-	s.fitness(17);
+    s.fitness(17);
 
-	moSolutionStat< eoBit<unsigned int > > test;
+    moSolutionStat< eoBit<unsigned int > > test;
 
-	test(s);
-	//on verifie que la solution est bien enregistré
+    test(s);
+    //on verifie que la solution est bien enregistré
 
-	assert(test.value()[0]);
-	assert(test.value()[1]);
-	assert(!test.value()[2]);
-	assert(test.value().fitness()==17);
+    assert(test.value()[0]);
+    assert(test.value()[1]);
+    assert(!test.value()[2]);
+    assert(test.value().fitness()==17);
 
-	assert(test.className()=="moSolutionStat");
+    assert(test.className()=="moSolutionStat");
 
-	std::cout << "[t-moSolutionStat] => OK" << std::endl;
+    std::cout << "[t-moSolutionStat] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

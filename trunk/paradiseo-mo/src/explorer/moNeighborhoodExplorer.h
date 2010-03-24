@@ -102,16 +102,16 @@ public:
      * Getter for variable "isMoved"
      * @return true if move is applied
      */
-    bool moveApplied(){
-    	return isMoved;
+    bool moveApplied() {
+        return isMoved;
     }
 
     /**
      * Setter for variable "isMoved"
      * @param _isMoved
      */
-    void moveApplied(bool _isMoved){
-    	isMoved=_isMoved;
+    void moveApplied(bool _isMoved) {
+        isMoved=_isMoved;
     }
 
     /**
@@ -119,7 +119,7 @@ public:
      * @return the class name as a std::string
      */
     virtual std::string className() const {
-    	return "moNeighborhoodExplorer";
+        return "moNeighborhoodExplorer";
     }
 
 protected:

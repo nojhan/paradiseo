@@ -36,87 +36,87 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moCheckpoint] => START" << std::endl;
+    std::cout << "[t-moCheckpoint] => START" << std::endl;
 
-	unsigned int a=2;
-	unsigned int b=15;
-	unsigned int c= 10;
-	unsigned int d= 47;
+    unsigned int a=2;
+    unsigned int b=15;
+    unsigned int c= 10;
+    unsigned int d= 47;
 
-	eoBit<eoMinimizingFitness> s(3);
-	s[0]=true;
-	s[1]=true;
-	s[2]=false;
+    eoBit<eoMinimizingFitness> s(3);
+    s[0]=true;
+    s[1]=true;
+    s[2]=false;
 
-	s.fitness(17);
+    s.fitness(17);
 
 
-	//verification que toutes les operateurs sont bien apellés
-	moSolutionStat< eoBit< eoMinimizingFitness > > stat;
-	updater1 up1(a);
-	updater1 up2(b);
-	monitor1 mon1(c);
-	monitor2 mon2(d);
-	moTrueContinuator< bitNeighborhood > cont;
+    //verification que toutes les operateurs sont bien apellés
+    moSolutionStat< eoBit< eoMinimizingFitness > > stat;
+    updater1 up1(a);
+    updater1 up2(b);
+    monitor1 mon1(c);
+    monitor2 mon2(d);
+    moTrueContinuator< bitNeighborhood > cont;
 
-	moCheckpoint< bitNeighborhood> test1(cont);
-	moCheckpoint< bitNeighborhood> test2(cont, 3);
+    moCheckpoint< bitNeighborhood> test1(cont);
+    moCheckpoint< bitNeighborhood> test2(cont, 3);
 
-	test1.add(up1);
-	test1.add(up2);
-	test1.add(mon1);
-	test1.add(mon2);
-	test1.add(stat);
+    test1.add(up1);
+    test1.add(up2);
+    test1.add(mon1);
+    test1.add(mon2);
+    test1.add(stat);
 
-	test2.add(up1);
-	test2.add(up2);
-	test2.add(mon1);
-	test2.add(mon2);
-	test2.add(stat);
+    test2.add(up1);
+    test2.add(up2);
+    test2.add(mon1);
+    test2.add(mon2);
+    test2.add(stat);
 
-	test1.init(s);
-	test1(s);
-	assert(a==3 && b==16 && c==11 && d==48);
-	assert(stat.value()[0]);
-	assert(stat.value()[1]);
-	assert(!stat.value()[2]);
-	assert(stat.value().fitness()==17);
+    test1.init(s);
+    test1(s);
+    assert(a==3 && b==16 && c==11 && d==48);
+    assert(stat.value()[0]);
+    assert(stat.value()[1]);
+    assert(!stat.value()[2]);
+    assert(stat.value().fitness()==17);
 
-	test1(s);
-	assert(a==4 && b==17 && c==12 && d==49);
-	assert(stat.value()[0]);
-	assert(stat.value()[1]);
-	assert(!stat.value()[2]);
-	assert(stat.value().fitness()==17);
+    test1(s);
+    assert(a==4 && b==17 && c==12 && d==49);
+    assert(stat.value()[0]);
+    assert(stat.value()[1]);
+    assert(!stat.value()[2]);
+    assert(stat.value().fitness()==17);
 
-	s.fitness(4);
+    s.fitness(4);
 
-	test2.init(s);
-	test2(s);
-	assert(a==5 && b==18 && c==13 && d==50);
-	assert(stat.value()[0]);
-	assert(stat.value()[1]);
-	assert(!stat.value()[2]);
-	assert(stat.value().fitness()==4);
+    test2.init(s);
+    test2(s);
+    assert(a==5 && b==18 && c==13 && d==50);
+    assert(stat.value()[0]);
+    assert(stat.value()[1]);
+    assert(!stat.value()[2]);
+    assert(stat.value().fitness()==4);
 
-	s.fitness(6);
-	test2(s);
-	assert(stat.value().fitness()==4);
-	test2(s);
-	assert(stat.value().fitness()==4);
-	test2(s);
-	assert(stat.value().fitness()==6);
+    s.fitness(6);
+    test2(s);
+    assert(stat.value().fitness()==4);
+    test2(s);
+    assert(stat.value().fitness()==4);
+    test2(s);
+    assert(stat.value().fitness()==6);
 
-	test1.lastCall(s);
-	assert(a==9 && b==22 && c==17 && d==54);
-	test2.lastCall(s);
-	assert(a==10 && b==23 && c==18 && d==55);
+    test1.lastCall(s);
+    assert(a==9 && b==22 && c==17 && d==54);
+    test2.lastCall(s);
+    assert(a==10 && b==23 && c==18 && d==55);
 
-	assert(test1.className()=="moCheckpoint");
-	std::cout << "[t-moCheckpoint] => OK" << std::endl;
+    assert(test1.className()=="moCheckpoint");
+    std::cout << "[t-moCheckpoint] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

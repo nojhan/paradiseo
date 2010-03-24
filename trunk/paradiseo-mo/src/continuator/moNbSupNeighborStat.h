@@ -40,42 +40,44 @@
 
 /**
  *
- * From moNeighborhoodStat, to compute the number of solutions in the neighborhood 
+ * From moNeighborhoodStat, to compute the number of solutions in the neighborhood
  * with higher fitness than the current solution
- * 
+ *
 */
 template< class Neighborhood >
 class moNbSupNeighborStat : public moStat<typename Neighborhood::EOT, unsigned>
 {
 public :
-  typedef typename Neighborhood::EOT EOT ;
-  typedef typename EOT::Fitness Fitness ;
+    typedef typename Neighborhood::EOT EOT ;
+    typedef typename EOT::Fitness Fitness ;
 
-  using moStat< EOT, unsigned >::value;
+    using moStat< EOT, unsigned >::value;
 
-  /**
-   * Default Constructor
-   * @param _nhStat a neighborhoodStat
-   */
-  moNbSupNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
-	  moStat<EOT, unsigned>(0, "nb sup"), nhStat(_nhStat){}
-  
-  /**
-   * Set the number of solutions in the neighborhood with better fitness than the current solution
-   * @param _sol the corresponding solution
-   */
-  virtual void operator()(EOT & _sol){
-    value() = nhStat.getNbSup();
-  }
-  
-  /**
-   * @return the class name
-   */
-  virtual std::string className(void) const { return "moNbSupNeighborStat"; }
+    /**
+     * Default Constructor
+     * @param _nhStat a neighborhoodStat
+     */
+    moNbSupNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
+            moStat<EOT, unsigned>(0, "nb sup"), nhStat(_nhStat) {}
+
+    /**
+     * Set the number of solutions in the neighborhood with better fitness than the current solution
+     * @param _sol the corresponding solution
+     */
+    virtual void operator()(EOT & _sol) {
+        value() = nhStat.getNbSup();
+    }
+
+    /**
+     * @return the class name
+     */
+    virtual std::string className(void) const {
+        return "moNbSupNeighborStat";
+    }
 
 private:
-  /** moNeighborhoodStat */
-  moNeighborhoodStat<Neighborhood> & nhStat;
+    /** moNeighborhoodStat */
+    moNeighborhoodStat<Neighborhood> & nhStat;
 };
 
 #endif

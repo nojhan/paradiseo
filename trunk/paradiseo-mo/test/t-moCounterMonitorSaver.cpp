@@ -35,37 +35,37 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cassert>
 
 
-int main(){
+int main() {
 
-	std::cout << "[t-moCounterMonitorSaver] => START" << std::endl;
+    std::cout << "[t-moCounterMonitorSaver] => START" << std::endl;
 
-	unsigned int a=1;
-	unsigned int b=10;
+    unsigned int a=1;
+    unsigned int b=10;
 
-	monitor1 mon1(a);
-	monitor2 mon2(b);
+    monitor1 mon1(a);
+    monitor2 mon2(b);
 
-	moCounterMonitorSaver test(3, mon1);
-	test.add(mon2);
+    moCounterMonitorSaver test(3, mon1);
+    test.add(mon2);
 
-	//on verifie qu'on apelle les moniteurs seulement tout les 3 itération
+    //on verifie qu'on apelle les moniteurs seulement tout les 3 itération
 
-	test();
-	assert(a==2 && b==11);
-	test();
-	assert(a==2 && b==11);
-	test();
-	assert(a==2 && b==11);
-	test();
-	assert(a==3 && b==12);
+    test();
+    assert(a==2 && b==11);
+    test();
+    assert(a==2 && b==11);
+    test();
+    assert(a==2 && b==11);
+    test();
+    assert(a==3 && b==12);
 
-	//test du lastCall
-	test.lastCall();
-	assert(a==4 && b==13);
+    //test du lastCall
+    test.lastCall();
+    assert(a==4 && b==13);
 
-	assert(test.className()=="moCounterMonitorSaver");
-	std::cout << "[t-moCounterMonitorSaver] => OK" << std::endl;
+    assert(test.className()=="moCounterMonitorSaver");
+    std::cout << "[t-moCounterMonitorSaver] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

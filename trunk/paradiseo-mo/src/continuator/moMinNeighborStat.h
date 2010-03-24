@@ -45,34 +45,36 @@ template< class Neighborhood >
 class moMinNeighborStat : public moStat<typename Neighborhood::EOT, typename Neighborhood::EOT::Fitness>
 {
 public :
-  typedef typename Neighborhood::EOT EOT ;
-  typedef typename EOT::Fitness Fitness ;
+    typedef typename Neighborhood::EOT EOT ;
+    typedef typename EOT::Fitness Fitness ;
 
-  using moStat< EOT, Fitness >::value;
+    using moStat< EOT, Fitness >::value;
 
-  /**
-   * Default Constructor
-   * @param _nhStat a neighborhoodStat
-   */
-  moMinNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
-	  moStat<EOT, Fitness>(Fitness(), "min"), nhStat(_nhStat){}
-  
-  /**
-   * Set the worst fitness in the neighborhood
-   * @param _sol the corresponding solution
-   */
-  virtual void operator()(EOT & _sol){
-    value() = nhStat.getMin();
-  }
+    /**
+     * Default Constructor
+     * @param _nhStat a neighborhoodStat
+     */
+    moMinNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
+            moStat<EOT, Fitness>(Fitness(), "min"), nhStat(_nhStat) {}
 
-  /**
-   * @return the class name
-   */
-  virtual std::string className(void) const { return "moMinNeighborStat"; }
+    /**
+     * Set the worst fitness in the neighborhood
+     * @param _sol the corresponding solution
+     */
+    virtual void operator()(EOT & _sol) {
+        value() = nhStat.getMin();
+    }
+
+    /**
+     * @return the class name
+     */
+    virtual std::string className(void) const {
+        return "moMinNeighborStat";
+    }
 
 private:
-  /** moNeighborhoodStat */
-  moNeighborhoodStat<Neighborhood> & nhStat;
+    /** moNeighborhoodStat */
+    moNeighborhoodStat<Neighborhood> & nhStat;
 };
 
 #endif

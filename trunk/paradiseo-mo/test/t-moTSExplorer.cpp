@@ -38,128 +38,128 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moTSExplorer] => START" << std::endl;
+    std::cout << "[t-moTSExplorer] => START" << std::endl;
 
-	//instansiation
-	eoBit<eoMinimizingFitness> sol(4, true);
-	sol.fitness(4);
-	bitNeighborhood nh(4);
-	bitNeighborhood emptyNH(0);
-	evalOneMax eval(4);
-	moNeighborComparator<bitNeighbor> ncomp;
-	moSolNeighborComparator<bitNeighbor> sncomp;
-	moDummyIntensification<bitNeighbor> intens;
-	moDummyDiversification<bitNeighbor> diver;
-	moSolVectorTabuList<bitNeighbor> tabuList(4,0);
-	moBestImprAspiration<bitNeighbor> aspir;
+    //instansiation
+    eoBit<eoMinimizingFitness> sol(4, true);
+    sol.fitness(4);
+    bitNeighborhood nh(4);
+    bitNeighborhood emptyNH(0);
+    evalOneMax eval(4);
+    moNeighborComparator<bitNeighbor> ncomp;
+    moSolNeighborComparator<bitNeighbor> sncomp;
+    moDummyIntensification<bitNeighbor> intens;
+    moDummyDiversification<bitNeighbor> diver;
+    moSolVectorTabuList<bitNeighbor> tabuList(4,0);
+    moBestImprAspiration<bitNeighbor> aspir;
 
-	moTSExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp, tabuList, intens, diver, aspir);
-	moTSExplorer<bitNeighborhood> test2(emptyNH, eval, ncomp, sncomp, tabuList, intens, diver, aspir);
+    moTSExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp, tabuList, intens, diver, aspir);
+    moTSExplorer<bitNeighborhood> test2(emptyNH, eval, ncomp, sncomp, tabuList, intens, diver, aspir);
 
-	//test d'un voisinage vide
-	test2.initParam(sol);
-	test2(sol);
-	assert(!test2.accept(sol));
+    //test d'un voisinage vide
+    test2.initParam(sol);
+    test2(sol);
+    assert(!test2.accept(sol));
 
-	//test le comportement classique de la taboo
-	test.initParam(sol);
-	assert(aspir.getBest()==sol);
+    //test le comportement classique de la taboo
+    test.initParam(sol);
+    assert(aspir.getBest()==sol);
 
-	test(sol);
-	test.updateParam(sol);
-	assert(aspir.getBest()==sol);
+    test(sol);
+    test.updateParam(sol);
+    assert(aspir.getBest()==sol);
 
-	//on ameliore et on stock une sol tabou 0111
-	test(sol);
-	test.move(sol);
-	test.moveApplied(true);
-	test.updateParam(sol);
-	assert(aspir.getBest()==sol);
+    //on ameliore et on stock une sol tabou 0111
+    test(sol);
+    test.move(sol);
+    test.moveApplied(true);
+    test.updateParam(sol);
+    assert(aspir.getBest()==sol);
 
-	//on ameliore et on stock une autre sol tabou 0011
-	test(sol);
-	test.move(sol);
-	test.moveApplied(true);
-	test.updateParam(sol);
-	assert(aspir.getBest()==sol);
+    //on ameliore et on stock une autre sol tabou 0011
+    test(sol);
+    test.move(sol);
+    test.moveApplied(true);
+    test.updateParam(sol);
+    assert(aspir.getBest()==sol);
 
-	//pareil on stock 0001 met pdt la recherche on se rend compte que 0111 est tabou
-	test(sol);
-	test.move(sol);
-	test.moveApplied(true);
-	test.updateParam(sol);
-	assert(aspir.getBest()==sol);
+    //pareil on stock 0001 met pdt la recherche on se rend compte que 0111 est tabou
+    test(sol);
+    test.move(sol);
+    test.moveApplied(true);
+    test.updateParam(sol);
+    assert(aspir.getBest()==sol);
 
-	//on modifie la sol en 1001(fitness 2) pour que la 1er sol exploré(0001) soit tabou
-	//De plus on change la solution mais elle est pas meilleure que la best so Far
-	sol[0]=true;
-	std::cout << sol << std::endl;
-	sol.fitness(2);
-	test(sol);
-	test.move(sol);
-	test.moveApplied(true);
-	test.updateParam(sol);
-	assert(	sol[0] && !sol[1] && !sol[2] && !sol[3]);
-	sol[0]=false;
-	sol[3]=true;
-	assert(aspir.getBest()==sol);
+    //on modifie la sol en 1001(fitness 2) pour que la 1er sol exploré(0001) soit tabou
+    //De plus on change la solution mais elle est pas meilleure que la best so Far
+    sol[0]=true;
+    std::cout << sol << std::endl;
+    sol.fitness(2);
+    test(sol);
+    test.move(sol);
+    test.moveApplied(true);
+    test.updateParam(sol);
+    assert(	sol[0] && !sol[1] && !sol[2] && !sol[3]);
+    sol[0]=false;
+    sol[3]=true;
+    assert(aspir.getBest()==sol);
 
-	//test du isContinue
-	assert(test.isContinue(sol));
+    //test du isContinue
+    assert(test.isContinue(sol));
 
-	//test du terminate
-	test.initParam(sol);
-	sol[0]=true;
-	sol[1]=true;
-	sol[2]=true;
-	sol[3]=true;
-	sol.fitness(4);
-	test(sol);
-	test.move(sol);
-	test.moveApplied(true);
-	test.updateParam(sol);
-	assert(	!sol[0] && sol[1] && sol[2] && sol[3]);
-	test.terminate(sol);
-	assert(	!sol[0] && !sol[1] && !sol[2] && sol[3]);
+    //test du terminate
+    test.initParam(sol);
+    sol[0]=true;
+    sol[1]=true;
+    sol[2]=true;
+    sol[3]=true;
+    sol.fitness(4);
+    test(sol);
+    test.move(sol);
+    test.moveApplied(true);
+    test.updateParam(sol);
+    assert(	!sol[0] && sol[1] && sol[2] && sol[3]);
+    test.terminate(sol);
+    assert(	!sol[0] && !sol[1] && !sol[2] && sol[3]);
 
-	//test pour avoir que des mouvement taboo
-	eoBit<eoMinimizingFitness> sol2(2, true);
-	sol2.fitness(2);
-	bitNeighborhood nh2(2);
-	evalOneMax eval2(2);
+    //test pour avoir que des mouvement taboo
+    eoBit<eoMinimizingFitness> sol2(2, true);
+    sol2.fitness(2);
+    bitNeighborhood nh2(2);
+    evalOneMax eval2(2);
 
-	moTSExplorer<bitNeighborhood> test3(nh2, eval2, ncomp, sncomp, tabuList, intens, diver, aspir);
+    moTSExplorer<bitNeighborhood> test3(nh2, eval2, ncomp, sncomp, tabuList, intens, diver, aspir);
 
-	test3.initParam(sol2);
-	test3(sol2);
-	test3.move(sol2);
-	test3.moveApplied(true);
-	test3.updateParam(sol2);
+    test3.initParam(sol2);
+    test3(sol2);
+    test3.move(sol2);
+    test3.moveApplied(true);
+    test3.updateParam(sol2);
 
-	test3(sol2);
-	test3.move(sol2);
-	test3.moveApplied(true);
-	test3.updateParam(sol2);
+    test3(sol2);
+    test3.move(sol2);
+    test3.moveApplied(true);
+    test3.updateParam(sol2);
 
-	test3(sol2);
-	test3.move(sol2);
-	test3.moveApplied(true);
-	test3.updateParam(sol2);
+    test3(sol2);
+    test3.move(sol2);
+    test3.moveApplied(true);
+    test3.updateParam(sol2);
 
-	test3(sol2);
-	test3.move(sol2);
-	test3.moveApplied(true);
-	test3.updateParam(sol2);
+    test3(sol2);
+    test3.move(sol2);
+    test3.moveApplied(true);
+    test3.updateParam(sol2);
 
-	//on a rempli la liste tabu pour que tout les voisins soit tabu
-	test3(sol2);
-	assert(!test3.accept(sol2));
+    //on a rempli la liste tabu pour que tout les voisins soit tabu
+    test3(sol2);
+    assert(!test3.accept(sol2));
 
 
-	std::cout << "[t-moTSExplorer] => OK" << std::endl;
+    std::cout << "[t-moTSExplorer] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

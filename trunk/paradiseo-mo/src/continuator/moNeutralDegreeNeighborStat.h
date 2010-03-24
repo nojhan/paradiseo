@@ -40,41 +40,43 @@
 
 /**
  * From moNeighborhoodStat, to compute the neutral degree of the solution
- * which is the number of solutions in the neighborhood 
- * with equals fitness 
+ * which is the number of solutions in the neighborhood
+ * with equals fitness
  */
 template< class Neighborhood >
 class moNeutralDegreeNeighborStat : public moStat<typename Neighborhood::EOT, unsigned>
 {
 public :
-  typedef typename Neighborhood::EOT EOT ;
-  typedef typename EOT::Fitness Fitness ;
+    typedef typename Neighborhood::EOT EOT ;
+    typedef typename EOT::Fitness Fitness ;
 
-  using moStat< EOT, unsigned >::value;
+    using moStat< EOT, unsigned >::value;
 
-  /**
-   * Default Constructor
-   * @param _nhStat a neighborhoodStat
-   */
-  moNeutralDegreeNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
-	  moStat<EOT, unsigned>(0, "neutral degree"), nhStat(_nhStat){}
-  
-  /**
-   * Set the neutral degree of the solution which is the number of solutions in the neighborhood with equals fitness
-   * @param _sol the corresponding solution
-   */
-  virtual void operator()(EOT & _sol){
-    value() = nhStat.getNbEqual();
-  }
-  
-  /**
-   * @return the class name
-   */
-  virtual std::string className(void) const { return "moNeutralDegreeNeighborStat"; }
+    /**
+     * Default Constructor
+     * @param _nhStat a neighborhoodStat
+     */
+    moNeutralDegreeNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
+            moStat<EOT, unsigned>(0, "neutral degree"), nhStat(_nhStat) {}
+
+    /**
+     * Set the neutral degree of the solution which is the number of solutions in the neighborhood with equals fitness
+     * @param _sol the corresponding solution
+     */
+    virtual void operator()(EOT & _sol) {
+        value() = nhStat.getNbEqual();
+    }
+
+    /**
+     * @return the class name
+     */
+    virtual std::string className(void) const {
+        return "moNeutralDegreeNeighborStat";
+    }
 
 private:
-  /** moNeighborhoodStat */
-  moNeighborhoodStat<Neighborhood> & nhStat;
+    /** moNeighborhoodStat */
+    moNeighborhoodStat<Neighborhood> & nhStat;
 };
 
 #endif

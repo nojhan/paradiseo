@@ -45,35 +45,37 @@ template< class Neighborhood >
 class moSecondMomentNeighborStat : public moStat<typename Neighborhood::EOT, std::pair<double, double> >
 {
 public :
-  typedef typename Neighborhood::EOT EOT ;
-  typedef typename EOT::Fitness Fitness ;
+    typedef typename Neighborhood::EOT EOT ;
+    typedef typename EOT::Fitness Fitness ;
 
-  using moStat< EOT, std::pair<double, double> >::value;
+    using moStat< EOT, std::pair<double, double> >::value;
 
-  /**
-   * Default Constructor
-   * @param _nhStat a neighborhoodStat
-   */
-  moSecondMomentNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
-	  moStat<EOT, std::pair<double, double> >(std::make_pair(0.0,0.0), "average and stdev"), nhStat(_nhStat){}
-  
-  /**
-   * Set the average and the standard deviation of fitness in the neighborhood
-   * @param _sol the corresponding solution
-   */
-  virtual void operator()(EOT & _sol){
-    value().first  = nhStat.getMean();
-    value().second = nhStat.getSD();
-  }
-  
-  /**
-   * @return the class name
-   */
-  virtual std::string className(void) const { return "moSecondMomentNeighborStat"; }
+    /**
+     * Default Constructor
+     * @param _nhStat a neighborhoodStat
+     */
+    moSecondMomentNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
+            moStat<EOT, std::pair<double, double> >(std::make_pair(0.0,0.0), "average and stdev"), nhStat(_nhStat) {}
+
+    /**
+     * Set the average and the standard deviation of fitness in the neighborhood
+     * @param _sol the corresponding solution
+     */
+    virtual void operator()(EOT & _sol) {
+        value().first  = nhStat.getMean();
+        value().second = nhStat.getSD();
+    }
+
+    /**
+     * @return the class name
+     */
+    virtual std::string className(void) const {
+        return "moSecondMomentNeighborStat";
+    }
 
 private:
-  /** moNeighborhoodStat */
-  moNeighborhoodStat<Neighborhood> & nhStat;
+    /** moNeighborhoodStat */
+    moNeighborhoodStat<Neighborhood> & nhStat;
 };
 
 #endif

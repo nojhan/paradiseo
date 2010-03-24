@@ -44,23 +44,23 @@ template< class Neighbor >
 class moIndexNeighborhood : virtual public moNeighborhood<Neighbor>
 {
 public:
-	/**
-	 * Define type of a solution corresponding to Neighbor
-	 */
+    /**
+     * Define type of a solution corresponding to Neighbor
+     */
     typedef typename Neighbor::EOT EOT;
 
     /**
      * Constructor
      * @param _neighborhoodSize the size of the neighborhood
      */
-    moIndexNeighborhood(unsigned int _neighborhoodSize):neighborhoodSize(_neighborhoodSize){}
+    moIndexNeighborhood(unsigned int _neighborhoodSize):neighborhoodSize(_neighborhoodSize) {}
 
     /**
      * Return the class id.
      * @return the class name as a std::string
      */
     virtual std::string className() const {
-    	return "moIndexNeighborhood";
+        return "moIndexNeighborhood";
     }
 
 protected:

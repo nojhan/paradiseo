@@ -34,121 +34,121 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moSolVectorTabuList] => START" << std::endl;
+    std::cout << "[t-moSolVectorTabuList] => START" << std::endl;
 
-	//test without countdown
-	moSolVectorTabuList<bitNeighbor> test(2,0);
-	bitNeighbor n1;
-	bitNeighbor n2;
-	bitNeighbor n3;
-	bitNeighbor n4;
-	n1.index(0);
-	n2.index(1);
-	n3.index(2);
-	n4.index(3);
+    //test without countdown
+    moSolVectorTabuList<bitNeighbor> test(2,0);
+    bitNeighbor n1;
+    bitNeighbor n2;
+    bitNeighbor n3;
+    bitNeighbor n4;
+    n1.index(0);
+    n2.index(1);
+    n3.index(2);
+    n4.index(3);
 
-	eoBit<eoMinimizingFitness> sol1(4, true);
-	eoBit<eoMinimizingFitness> sol2(4, true);
-	eoBit<eoMinimizingFitness> sol3(4, true);
-	eoBit<eoMinimizingFitness> sol4(4, true);
+    eoBit<eoMinimizingFitness> sol1(4, true);
+    eoBit<eoMinimizingFitness> sol2(4, true);
+    eoBit<eoMinimizingFitness> sol3(4, true);
+    eoBit<eoMinimizingFitness> sol4(4, true);
 
-	sol2[0]=false;
-	sol3[1]=false;
-	sol4[0]=false;
-	sol4[1]=false;
+    sol2[0]=false;
+    sol3[1]=false;
+    sol4[0]=false;
+    sol4[1]=false;
 
-	//init
-	test.init(sol1);
+    //init
+    test.init(sol1);
 
-	//ajout d'une sol tabu
-	test.add(sol1,n1);
+    //ajout d'une sol tabu
+    test.add(sol1,n1);
 
-	//verification des voisins de chaques sol
-	assert(test.check(sol2,n1));
-	assert(!test.check(sol2,n2));
-	assert(!test.check(sol2,n3));
-	assert(!test.check(sol2,n4));
+    //verification des voisins de chaques sol
+    assert(test.check(sol2,n1));
+    assert(!test.check(sol2,n2));
+    assert(!test.check(sol2,n3));
+    assert(!test.check(sol2,n4));
 
-	assert(!test.check(sol3,n1));
-	assert(test.check(sol3,n2));
-	assert(!test.check(sol3,n3));
-	assert(!test.check(sol3,n4));
+    assert(!test.check(sol3,n1));
+    assert(test.check(sol3,n2));
+    assert(!test.check(sol3,n3));
+    assert(!test.check(sol3,n4));
 
-	assert(!test.check(sol4,n1));
-	assert(!test.check(sol4,n2));
-	assert(!test.check(sol4,n3));
-	assert(!test.check(sol4,n4));
+    assert(!test.check(sol4,n1));
+    assert(!test.check(sol4,n2));
+    assert(!test.check(sol4,n3));
+    assert(!test.check(sol4,n4));
 
-	test.init(sol1);
-	assert(!test.check(sol2,n1));
-	assert(!test.check(sol3,n2));
+    test.init(sol1);
+    assert(!test.check(sol2,n1));
+    assert(!test.check(sol3,n2));
 
-	test.update(sol1,n1);
+    test.update(sol1,n1);
 
-	test.add(sol1,n1);
-	test.add(sol2,n1);
-	assert(test.check(sol2,n1));
-	test.add(sol4,n1);
-	assert(!test.check(sol2,n1));
-	assert(test.check(sol2,n2));
+    test.add(sol1,n1);
+    test.add(sol2,n1);
+    assert(test.check(sol2,n1));
+    test.add(sol4,n1);
+    assert(!test.check(sol2,n1));
+    assert(test.check(sol2,n2));
 
-	//test with a countdown at 3
-	moSolVectorTabuList<bitNeighbor> test2(2,2);
-	test2.init(sol1);
-	test2.add(sol1,n1);
-	assert(test2.check(sol2,n1));
-	assert(!test2.check(sol2,n2));
-	assert(!test2.check(sol2,n3));
-	assert(!test2.check(sol2,n4));
+    //test with a countdown at 3
+    moSolVectorTabuList<bitNeighbor> test2(2,2);
+    test2.init(sol1);
+    test2.add(sol1,n1);
+    assert(test2.check(sol2,n1));
+    assert(!test2.check(sol2,n2));
+    assert(!test2.check(sol2,n3));
+    assert(!test2.check(sol2,n4));
 
-	assert(!test2.check(sol3,n1));
-	assert(test2.check(sol3,n2));
-	assert(!test2.check(sol3,n3));
-	assert(!test2.check(sol3,n4));
+    assert(!test2.check(sol3,n1));
+    assert(test2.check(sol3,n2));
+    assert(!test2.check(sol3,n3));
+    assert(!test2.check(sol3,n4));
 
-	assert(!test2.check(sol4,n1));
-	assert(!test2.check(sol4,n2));
-	assert(!test2.check(sol4,n3));
-	assert(!test2.check(sol4,n4));
+    assert(!test2.check(sol4,n1));
+    assert(!test2.check(sol4,n2));
+    assert(!test2.check(sol4,n3));
+    assert(!test2.check(sol4,n4));
 
-	//coutdown sol1 -> 1
-	test2.update(sol1,n1);
-	assert(test2.check(sol2,n1));
-	assert(!test2.check(sol2,n2));
-	assert(!test2.check(sol2,n3));
-	assert(!test2.check(sol2,n4));
+    //coutdown sol1 -> 1
+    test2.update(sol1,n1);
+    assert(test2.check(sol2,n1));
+    assert(!test2.check(sol2,n2));
+    assert(!test2.check(sol2,n3));
+    assert(!test2.check(sol2,n4));
 
-	assert(!test2.check(sol3,n1));
-	assert(test2.check(sol3,n2));
-	assert(!test2.check(sol3,n3));
-	assert(!test2.check(sol3,n4));
+    assert(!test2.check(sol3,n1));
+    assert(test2.check(sol3,n2));
+    assert(!test2.check(sol3,n3));
+    assert(!test2.check(sol3,n4));
 
-	assert(!test2.check(sol4,n1));
-	assert(!test2.check(sol4,n2));
-	assert(!test2.check(sol4,n3));
-	assert(!test2.check(sol4,n4));
+    assert(!test2.check(sol4,n1));
+    assert(!test2.check(sol4,n2));
+    assert(!test2.check(sol4,n3));
+    assert(!test2.check(sol4,n4));
 
-	//coutdown sol1 -> 0 : sol1 is no longer tabu
-	test2.update(sol1,n1);
-	assert(!test2.check(sol2,n1));
-	assert(!test2.check(sol2,n2));
-	assert(!test2.check(sol2,n3));
-	assert(!test2.check(sol2,n4));
+    //coutdown sol1 -> 0 : sol1 is no longer tabu
+    test2.update(sol1,n1);
+    assert(!test2.check(sol2,n1));
+    assert(!test2.check(sol2,n2));
+    assert(!test2.check(sol2,n3));
+    assert(!test2.check(sol2,n4));
 
-	assert(!test2.check(sol3,n1));
-	assert(!test2.check(sol3,n2));
-	assert(!test2.check(sol3,n3));
-	assert(!test2.check(sol3,n4));
+    assert(!test2.check(sol3,n1));
+    assert(!test2.check(sol3,n2));
+    assert(!test2.check(sol3,n3));
+    assert(!test2.check(sol3,n4));
 
-	assert(!test2.check(sol4,n1));
-	assert(!test2.check(sol4,n2));
-	assert(!test2.check(sol4,n3));
-	assert(!test2.check(sol4,n4));
+    assert(!test2.check(sol4,n1));
+    assert(!test2.check(sol4,n2));
+    assert(!test2.check(sol4,n3));
+    assert(!test2.check(sol4,n4));
 
-	std::cout << "[t-moSolVectorTabuList] => OK" << std::endl;
+    std::cout << "[t-moSolVectorTabuList] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

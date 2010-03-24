@@ -36,57 +36,57 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moHCneutralExplorer] => START" << std::endl;
+    std::cout << "[t-moHCneutralExplorer] => START" << std::endl;
 
-	//Instanciation
-	eoBit<eoMinimizingFitness> sol(4, true);
-	sol.fitness(4);
-	bitNeighborhood nh(4);
-	evalOneMax eval(4);
-	moNeighborComparator<bitNeighbor> ncomp;
-	moSolNeighborComparator<bitNeighbor> sncomp;
+    //Instanciation
+    eoBit<eoMinimizingFitness> sol(4, true);
+    sol.fitness(4);
+    bitNeighborhood nh(4);
+    evalOneMax eval(4);
+    moNeighborComparator<bitNeighbor> ncomp;
+    moSolNeighborComparator<bitNeighbor> sncomp;
 
-	moHCneutralExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp,3);
+    moHCneutralExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp,3);
 
-	//on verifie qu'on ameliore bien la solution et que l'exploration dure 3 itérations
+    //on verifie qu'on ameliore bien la solution et que l'exploration dure 3 itérations
 
-	test.initParam(sol);
-	test(sol);
-	assert(test.accept(sol));
-	test.move(sol);
-	assert(sol.fitness()==3);
-	test.updateParam(sol);
-	assert(test.isContinue(sol));
+    test.initParam(sol);
+    test(sol);
+    assert(test.accept(sol));
+    test.move(sol);
+    assert(sol.fitness()==3);
+    test.updateParam(sol);
+    assert(test.isContinue(sol));
 
-	//les affichages permettent de voir qu'on prend pas toujours les mm voisins(lancer plusieurs fois l'exe)
-	std::cout << sol << std::endl;
+    //les affichages permettent de voir qu'on prend pas toujours les mm voisins(lancer plusieurs fois l'exe)
+    std::cout << sol << std::endl;
 
-	test(sol);
-	assert(test.accept(sol));
-	test.move(sol);
-	assert(sol.fitness()==2);
-	test.updateParam(sol);
-	assert(test.isContinue(sol));
-
-
-	std::cout << sol << std::endl;
-
-	test(sol);
-	assert(test.accept(sol));
-	test.move(sol);
-	assert(sol.fitness()==1);
-	test.updateParam(sol);
-	assert(!test.isContinue(sol));
+    test(sol);
+    assert(test.accept(sol));
+    test.move(sol);
+    assert(sol.fitness()==2);
+    test.updateParam(sol);
+    assert(test.isContinue(sol));
 
 
-	std::cout << sol << std::endl;
+    std::cout << sol << std::endl;
+
+    test(sol);
+    assert(test.accept(sol));
+    test.move(sol);
+    assert(sol.fitness()==1);
+    test.updateParam(sol);
+    assert(!test.isContinue(sol));
+
+
+    std::cout << sol << std::endl;
 
 
 
-	std::cout << "[t-moHCneutralExplorer] => OK" << std::endl;
+    std::cout << "[t-moHCneutralExplorer] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

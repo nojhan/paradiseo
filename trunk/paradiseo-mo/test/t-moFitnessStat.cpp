@@ -34,24 +34,24 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moFitnessStat] => START" << std::endl;
+    std::cout << "[t-moFitnessStat] => START" << std::endl;
 
-	eoBit<int> sol;
+    eoBit<int> sol;
 
-	moFitnessStat< eoBit<int> > test;
-	sol.fitness(3);
-	test(sol);
-	assert(test.value()==3);
+    moFitnessStat< eoBit<int> > test;
+    sol.fitness(3);
+    test(sol);
+    assert(test.value()==3);
 
-	sol.fitness(12);
-	test(sol);
-	assert(test.value()==12);
+    sol.fitness(12);
+    test(sol);
+    assert(test.value()==12);
 
-	assert(test.className()=="moFitnessStat");
-	std::cout << "[t-moFitnessStat] => OK" << std::endl;
+    assert(test.className()=="moFitnessStat");
+    std::cout << "[t-moFitnessStat] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

@@ -9,6 +9,6 @@
  */
 template< class Neighbor >
 class moDiversification : public moMemory<Neighbor>, public eoUF<typename Neighbor::EOT &,bool>
-{};
+    {};
 
 #endif

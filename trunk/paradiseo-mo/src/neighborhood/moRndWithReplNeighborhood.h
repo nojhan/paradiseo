@@ -47,20 +47,20 @@ class moRndWithReplNeighborhood : public moIndexNeighborhood<N>, public moRndNei
 {
 public:
 
-	/**
-	 * Define type of a solution corresponding to Neighbor
-	 */
+    /**
+     * Define type of a solution corresponding to Neighbor
+     */
     typedef N Neighbor;
     typedef typename Neighbor::EOT EOT;
 
 
-	using moIndexNeighborhood<Neighbor>::neighborhoodSize;
+    using moIndexNeighborhood<Neighbor>::neighborhoodSize;
 
     /**
      * Constructor
      * @param _neighborhoodSize the size of the neighborhood
      */
-    moRndWithReplNeighborhood(unsigned int _neighborhoodSize): moIndexNeighborhood<Neighbor>(_neighborhoodSize){}
+    moRndWithReplNeighborhood(unsigned int _neighborhoodSize): moIndexNeighborhood<Neighbor>(_neighborhoodSize) {}
 
     /**
      * Test if it exist a neighbor
@@ -68,7 +68,7 @@ public:
      * @return true if the neighborhood was not empty
      */
     virtual bool hasNeighbor(EOT& _solution) {
-    	return neighborhoodSize > 0;
+        return neighborhoodSize > 0;
     }
 
     /**
@@ -77,7 +77,7 @@ public:
      * @param _neighbor the first neighbor
      */
     virtual void init(EOT & _solution, Neighbor & _neighbor) {
-		_neighbor.index(rng.random(neighborhoodSize));
+        _neighbor.index(rng.random(neighborhoodSize));
     }
 
     /**
@@ -86,7 +86,7 @@ public:
      * @param _neighbor the next neighbor
      */
     virtual void next(EOT & _solution, Neighbor & _neighbor) {
-		_neighbor.index(rng.random(neighborhoodSize));
+        _neighbor.index(rng.random(neighborhoodSize));
     }
 
     /**
@@ -95,7 +95,7 @@ public:
      * @return true if there is again a neighbor to explore
      */
     virtual bool cont(EOT & _solution) {
-    	return neighborhoodSize > 0;
+        return neighborhoodSize > 0;
     }
 
     /**
@@ -103,7 +103,7 @@ public:
      * @return the class name as a std::string
      */
     virtual std::string className() const {
-    	return "moRndWithReplNeighborhood";
+        return "moRndWithReplNeighborhood";
     }
 
 };

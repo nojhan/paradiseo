@@ -45,10 +45,10 @@ class moBackableNeighbor : virtual public moNeighbor<EOT, Fitness>
 {
 public:
 
-	/**
-	 * the move back function
-	 * @param _solution the solution to moveBack
-	 */
+    /**
+     * the move back function
+     * @param _solution the solution to moveBack
+     */
     virtual void moveBack(EOT & _solution)=0;
 
 };

@@ -47,19 +47,19 @@ class moStat : public eoValueParam<T>, public moStatBase<EOT>
 {
 public:
 
-	/**
-	 * Default Constructor
-	 * @param _value a default parameter's value
-	 * @param _description a description of the parameter
-	 */
+    /**
+     * Default Constructor
+     * @param _value a default parameter's value
+     * @param _description a description of the parameter
+     */
     moStat(T _value, std::string _description):
-    	eoValueParam<T>(_value, _description){}
+            eoValueParam<T>(_value, _description) {}
 
     /**
      * @return name of the class
      */
-    virtual std::string className(void) const{
-    	return "moStat";
+    virtual std::string className(void) const {
+        return "moStat";
     }
 };
 

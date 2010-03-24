@@ -46,51 +46,53 @@
 class moCounterMonitorSaver : public eoUpdater {
 public :
 
-	/**
-	 * Default Constructor
-	 * @param _interval frequency to call monitors
-	 * @param _mon a monitor
-	 */
-	moCounterMonitorSaver(unsigned _interval, eoMonitor& _mon) : interval(_interval), counter(0) {
-		monitors.push_back(&_mon);
-	}
+    /**
+     * Default Constructor
+     * @param _interval frequency to call monitors
+     * @param _mon a monitor
+     */
+    moCounterMonitorSaver(unsigned _interval, eoMonitor& _mon) : interval(_interval), counter(0) {
+        monitors.push_back(&_mon);
+    }
 
-	/**
-	 * call monitors if interval is reach by a counter
-	 */
-	void operator()(void) {
-		if (counter++ % interval == 0)
-			for (unsigned i = 0; i < monitors.size(); i++)
-				(*monitors[i])();
-	}
+    /**
+     * call monitors if interval is reach by a counter
+     */
+    void operator()(void) {
+        if (counter++ % interval == 0)
+            for (unsigned i = 0; i < monitors.size(); i++)
+                (*monitors[i])();
+    }
 
-	/**
-	 * last call of monitors
-	 */
-	void lastCall(void) {
-		for (unsigned i = 0; i < monitors.size(); i++)
-			monitors[i]->lastCall();
-	}
+    /**
+     * last call of monitors
+     */
+    void lastCall(void) {
+        for (unsigned i = 0; i < monitors.size(); i++)
+            monitors[i]->lastCall();
+    }
 
-	/**
-	 * attach another monitor to this class
-	 * @param _mon the monitor to attach
-	 */
-	void add(eoMonitor& _mon) {
-		monitors.push_back(&_mon);
-	}
+    /**
+     * attach another monitor to this class
+     * @param _mon the monitor to attach
+     */
+    void add(eoMonitor& _mon) {
+        monitors.push_back(&_mon);
+    }
 
-	/**
-	 * @return name of the class
-	 */
-	virtual std::string className(void) const { return "moCounterMonitorSaver"; }
+    /**
+     * @return name of the class
+     */
+    virtual std::string className(void) const {
+        return "moCounterMonitorSaver";
+    }
 
 private :
-	/** interval and counter value */
-	unsigned int interval, counter;
+    /** interval and counter value */
+    unsigned int interval, counter;
 
-	/** monitor's vector */
-	std::vector<eoMonitor*> monitors;
+    /** monitor's vector */
+    std::vector<eoMonitor*> monitors;
 };
 
 

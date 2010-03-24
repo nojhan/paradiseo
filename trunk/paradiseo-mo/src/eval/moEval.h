@@ -44,8 +44,8 @@ template<class Neighbor>
 class moEval : public eoBF<typename Neighbor::EOT &, Neighbor&, void>
 {
 public:
-     typedef typename Neighbor::EOT EOT;
-     typedef typename EOT::Fitness Fitness;
+    typedef typename Neighbor::EOT EOT;
+    typedef typename EOT::Fitness Fitness;
 };
 
 #endif

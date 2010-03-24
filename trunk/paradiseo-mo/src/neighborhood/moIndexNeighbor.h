@@ -50,22 +50,22 @@ public:
     /**
      * Default Constructor
      */
-    moIndexNeighbor() : moNeighbor<EOT, Fitness>(), key(0){}
+    moIndexNeighbor() : moNeighbor<EOT, Fitness>(), key(0) {}
 
     /**
      * Copy Constructor
      */
     moIndexNeighbor(const moIndexNeighbor& _n) : moNeighbor<EOT, Fitness>(_n) {
-    	this->key = _n.key ;
+        this->key = _n.key ;
     }
 
     /**
      * Assignment operator
      */
     virtual moIndexNeighbor<EOT, Fitness> & operator=(const moIndexNeighbor<EOT, Fitness> & _source) {
-    	moNeighbor<EOT, Fitness>::operator=(_source);
-    	this->key = _source.key ;
-    	return *this ;
+        moNeighbor<EOT, Fitness>::operator=(_source);
+        this->key = _source.key ;
+        return *this ;
     }
 
     /**
@@ -73,23 +73,23 @@ public:
      * @return the class name as a std::string
      */
     virtual std::string className() const {
-    	return "moIndexNeighbor";
+        return "moIndexNeighbor";
     }
 
     /**
      * Getter
      * @return index of the IndexNeighbor
      */
-    unsigned int index(){
-    	return key;
+    unsigned int index() {
+        return key;
     }
 
     /**
      * Setter
      * @param _key index of the IndexNeighbor
      */
-    void index(unsigned int _key){
-    	key=_key;
+    void index(unsigned int _key) {
+        key=_key;
     }
 
 protected:
