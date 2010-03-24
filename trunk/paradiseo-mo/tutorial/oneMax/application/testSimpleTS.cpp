@@ -28,7 +28,7 @@ using namespace std;
 #include <neighborhood/moOrderNeighborhood.h>
 #include <oneMaxBitNeighbor.h>
 
-#include <newmo>
+#include <mo>
 
 #include <eval/moFullEvalByModif.h>
 #include <eval/moFullEvalByCopy.h>

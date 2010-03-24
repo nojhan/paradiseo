@@ -35,6 +35,6 @@
 #ifndef __newmo
 #define __newmo
 
-#include "newmo.h"
+#include "mo.h"
 
 #endif
