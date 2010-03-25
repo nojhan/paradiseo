@@ -78,7 +78,7 @@ class moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment : publi
 		 * @param _reference the reference point
 		 * @param _weight the weights applied to the objectives
 		 */
-		moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment(unsigned int _rho, const ObjectiveVector &_reference,const ObjectiveVector &_weight,eoEvalFunc<MOEOT> &_eval) : eval(_eval),normalizer(defaultNormalizer), distance(_rho,_weight), metric(distance,_reference,normalizer)
+		moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment(unsigned int _rho, const ObjectiveVector &_reference,const ObjectiveVector &_weight,eoEvalFunc<MOEOT> &_eval) : normalizer(defaultNormalizer), eval(_eval), distance(_rho,_weight), metric(distance,_reference,normalizer)
 	{}
 		/**
 		 * ctor with an evaluing fonction, applied if give moeot is invalid, and a noramlizer, applied to ObjectiveVectors
@@ -96,7 +96,7 @@ class moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment : publi
 		 * @param _reference the reference point
 		 * @param _weight the weights applied to the objectives
 		  */
-		moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment(unsigned int _rho, const ObjectiveVector &_reference,const ObjectiveVector &_weight) : eval(defaultEval),normalizer(defaultNormalizer), distance(_rho,_weight), metric(distance,_reference,normalizer)
+		moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment(unsigned int _rho, const ObjectiveVector &_reference,const ObjectiveVector &_weight) : normalizer(defaultNormalizer), eval(defaultEval), distance(_rho,_weight), metric(distance,_reference,normalizer)
 	{}
 
 		 /** 
@@ -145,15 +145,16 @@ class moeoAugmentedAchievementScalarizingFunctionMetricFitnessAssignment : publi
 
 	private:
 
-		moeoObjectiveVectorNormalizer<MOEOT> defaultNormalizer;
-		moeoAugmentedAchievementScalarizingFunctionDistance<MOEOT> distance;
-		moeoObjectiveVectorNormalizer<MOEOT> &normalizer;
-		moeoDistanceMetric<MOEOT> metric;
-		eoEvalFunc<MOEOT> &eval;
 		class DummyEval: public eoEvalFunc<MOEOT>{
 			void operator()(MOEOT &moeo){
 			}
 		} defaultEval;
+
+		moeoObjectiveVectorNormalizer<MOEOT> defaultNormalizer;
+		moeoObjectiveVectorNormalizer<MOEOT> &normalizer;
+		eoEvalFunc<MOEOT> &eval;
+		moeoAugmentedAchievementScalarizingFunctionDistance<MOEOT> distance;
+		moeoDistanceMetric<MOEOT> metric;
 
 };
 

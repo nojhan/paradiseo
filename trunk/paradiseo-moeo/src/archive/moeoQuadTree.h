@@ -238,7 +238,7 @@ public:
 	unsigned int k_succ(const ObjectiveVector& _objVec1, const ObjectiveVector& _objVec2){
 		unsigned int res=0;
 		if(!(*comparator)(_objVec2, _objVec1)){
-			for(int i=0; i < ObjectiveVector::nObjectives(); i++){
+			for(unsigned int i=0; i < ObjectiveVector::nObjectives(); i++){
 				if( (ObjectiveVector::minimizing(i) && ((_objVec1[i] - _objVec2[i]) >= (-1.0 * 1e-6 ))) ||
 					(ObjectiveVector::maximizing(i) && ((_objVec1[i] - _objVec2[i]) <= 1e-6 ))){
 					res+=pow(2,ObjectiveVector::nObjectives()-i-1);

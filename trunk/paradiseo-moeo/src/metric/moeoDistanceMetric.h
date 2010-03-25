@@ -77,10 +77,10 @@ class moeoDistanceMetric : public moeoUnaryMetric < typename MOEOT::ObjectiveVec
 		}
 
 	private:
-		moeoObjectiveVectorNormalizer<MOEOT> defaultNormalizer;
-		moeoObjectiveVectorNormalizer<MOEOT>& normalizer;
 		moeoObjSpaceDistance<MOEOT>& distance;
 		const ObjectiveVector& reference;
+		moeoObjectiveVectorNormalizer<MOEOT> defaultNormalizer;
+		moeoObjectiveVectorNormalizer<MOEOT>& normalizer;
 
 };
 #endif

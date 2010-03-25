@@ -99,7 +99,7 @@ class moeoConstraintFitnessAssignment : public moeoSingleObjectivization < MOEOT
 			}
 			else{
 				for(unsigned int l=0; l<dim; l++){
-					if (l==to_optimize)
+					if ((int)l==to_optimize)
 						if (_mo.minimizing(l))
 							res-=(normalizer(_mo)[l]) * weight[l];
 						else

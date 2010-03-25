@@ -72,7 +72,7 @@ class moeoAugmentedWeightedChebychevMetricFitnessAssignment : public moeoSingleO
 		 * @param _weight the weights applied to the objectives
 		 * @param _eval a evalFunc to regenerate the objectiveVector if needed
 		 */
-		moeoAugmentedWeightedChebychevMetricFitnessAssignment(unsigned int _rho, const ObjectiveVector& _reference, const ObjectiveVector& _weight, eoEvalFunc<MOEOT>& _eval) : eval(_eval), normalizer(defaultNormalizer), distance(_rho, _weight), metric(distance, _reference, normalizer){}
+		moeoAugmentedWeightedChebychevMetricFitnessAssignment(unsigned int _rho, const ObjectiveVector& _reference, const ObjectiveVector& _weight, eoEvalFunc<MOEOT>& _eval) : normalizer(defaultNormalizer), eval(_eval), distance(_rho, _weight), metric(distance, _reference, normalizer){}
 
 		/**
 		 * ctor with an evaluation fonction, applied if give moeot is invalid, and a noramlizer, applied to ObjectiveVectors
@@ -90,7 +90,7 @@ class moeoAugmentedWeightedChebychevMetricFitnessAssignment : public moeoSingleO
 		 * @param _reference the reference point
 		 * @param _weight the weights applied to the objectives
 		  */
-		moeoAugmentedWeightedChebychevMetricFitnessAssignment(unsigned int _rho, const ObjectiveVector& _reference, const ObjectiveVector& _weight) : eval(defaultEval), normalizer(defaultNormalizer), distance(_rho, _weight), metric(distance, _reference, normalizer){}
+		moeoAugmentedWeightedChebychevMetricFitnessAssignment(unsigned int _rho, const ObjectiveVector& _reference, const ObjectiveVector& _weight) : normalizer(defaultNormalizer), eval(defaultEval), distance(_rho, _weight), metric(distance, _reference, normalizer){}
 
 		 /** 
 		  * Sets the fitness values for a moeot
@@ -133,11 +133,12 @@ class moeoAugmentedWeightedChebychevMetricFitnessAssignment : public moeoSingleO
 			}
 		} defaultEval;
 
-		moeoAugmentedWeightedChebychevDistance<MOEOT> distance;
 		moeoObjectiveVectorNormalizer<MOEOT> defaultNormalizer;
 		moeoObjectiveVectorNormalizer<MOEOT> &normalizer;
-		moeoDistanceMetric<MOEOT> metric;
 		eoEvalFunc<MOEOT> &eval;
+		moeoAugmentedWeightedChebychevDistance<MOEOT> distance;
+		moeoDistanceMetric<MOEOT> metric;
+
 
 };
 

@@ -52,7 +52,6 @@ class moeoDummyWeightStrategy: public moeoVariableWeightStrategy<MOEOT>
 		   * @param _moeot not used
 		   */
 		  void operator()(std::vector<double> &_weights,const MOEOT &_moeot){
-			  double sum=0;
 			  for (unsigned int i=0;i<_weights.size();i++){
 				  _weights[i]=(1.0/_weights.size());
 			  }

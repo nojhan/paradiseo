@@ -95,7 +95,6 @@ class moeoAugmentedQexploreWeightStrategy: public moeoVariableWeightStrategy<MOE
 		bool translate(int dim, std::vector<double> &_weights){
 			_weights.clear();
 			_weights.resize(dim,0);
-			int max=dim-1;
 			for (unsigned int i=0;i<nums.size();i++){
 				_weights[nums[i]]++;
 				if (depth>1 && _weights[nums[i]]==depth) {

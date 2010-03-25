@@ -74,8 +74,6 @@ class DummyEval: public eoEvalFunc<Solution>{
 
 int main()
 {
-    int res=EXIT_SUCCESS;
-
     std::cout << "[moeoAggregationFitnessAssignment] => ";
 
     // objective vectors

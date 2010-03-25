@@ -266,7 +266,6 @@ class selectMove: public moMoveSelect<testMove>
 int main()
 {
 	std::string test_result;
-	int return_value;
 
 	Solution solution;
 

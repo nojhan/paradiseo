@@ -102,7 +102,7 @@ int main()
 	// test with max > archive size
 	moeoDetArchiveSelect <Solution> select1(archive, 10);
 	select1(source, dest);
-	for(int i=0; i< archive.size(); i++){
+	for(unsigned int i=0; i< archive.size(); i++){
 		assert(dest[i].objectiveVector()[0]==archive[i].objectiveVector()[0]);
 		assert(dest[i].objectiveVector()[1]==archive[i].objectiveVector()[1]);
 	}

@@ -66,8 +66,6 @@ class moeoVFAS:public moeoPopAlgo < typename M::EOType >
 		  take a base vector of weight, and modify it to relaunch the algo with a diferent fitness
 		  use a selectOne to determine which moeot should be the base for the algo launch
 		  use a eoPop to keep result from each iteration
-
-
 		  @param _algorithm The solution based heuristic to use. It should at least use the fitness value at some point.
 		  @param _continue The stopping criterion.
 		  @param _select a selector to choose on which moeot we use the algorithm
@@ -77,7 +75,7 @@ class moeoVFAS:public moeoPopAlgo < typename M::EOType >
 		 */
 		moeoVFAS (moeoSolAlgo<MOEOT> & _algorithm, eoContinue <MOEOT> & _continue,moeoSelectOne<MOEOT> &_select,
 				std::vector<double> &_weights, eoEvalFunc< MOEOT > &_eval , moeoVariableWeightStrategy<MOEOT> &_wstrat ):
-			algo(_algorithm),cont(_continue), select(_select), weights(_weights),eval(_eval),wstrat(_wstrat), refPoint(defaultRefPoint),rstrat(defaultRstrat)
+			algo(_algorithm),cont(_continue), select(_select), weights(_weights),eval(_eval),refPoint(defaultRefPoint), wstrat(_wstrat), rstrat(defaultRstrat)
 	{}
 
 		/*!
@@ -98,7 +96,7 @@ class moeoVFAS:public moeoPopAlgo < typename M::EOType >
 		 */
 		moeoVFAS (moeoSolAlgo<MOEOT> & _algorithm, eoContinue <MOEOT> & _continue,moeoSelectOne<MOEOT> &_select,
 				std::vector<double> &_weights, ObjectiveVector &_refPoint, eoEvalFunc< MOEOT > &_eval , moeoVariableWeightStrategy<MOEOT> &_wstrat , moeoVariableRefPointStrategy<MOEOT>& _rstrat):
-			algo(_algorithm),cont(_continue), select(_select), weights(_weights),eval(_eval),wstrat(_wstrat), rstrat(_rstrat),refPoint(_refPoint)
+			algo(_algorithm),cont(_continue), select(_select), weights(_weights),eval(_eval),refPoint(_refPoint),wstrat(_wstrat), rstrat(_rstrat)
 	{}
 
 		/**
@@ -110,7 +108,7 @@ class moeoVFAS:public moeoPopAlgo < typename M::EOType >
 		  **/
 		moeoVFAS (moeoSolAlgo<MOEOT> & _algorithm, eoContinue <MOEOT> & _continue,moeoSelectOne<MOEOT> &_select,
 				eoEvalFunc< MOEOT > &_eval, moeoVariableWeightStrategy<MOEOT> &_wstrat):
-			algo(_algorithm),cont(_continue), select(_select), weights(defaultWeights), eval(_eval), wstrat(defaultWstrat), refPoint(defaultRefPoint), rstrat(defaultRstrat)
+			algo(_algorithm),cont(_continue), select(_select), weights(defaultWeights), eval(_eval), refPoint(defaultRefPoint), wstrat(defaultWstrat), rstrat(defaultRstrat)
 	{
 		weights.resize(MOEOT::ObjectiveVector::nObjectives(),1.0/MOEOT::ObjectiveVector::nObjectives());
 	}
@@ -127,7 +125,6 @@ class moeoVFAS:public moeoPopAlgo < typename M::EOType >
 			moeoObjectiveVectorNormalizer<MOEOT> norm(_pop);
 			moeoAggregationFitnessAssignment<MOEOT> fitness(weights,eval);
 			bool res=false;
-			int iteration=0;
 			fitness(_pop);
 			MOEOT moeot(select(_pop));
 			wstrat(weights,moeot);
@@ -151,9 +148,9 @@ class moeoVFAS:public moeoPopAlgo < typename M::EOType >
 		moeoSelectOne<MOEOT> &select;
 		std::vector<double> &weights;
 		std::vector<double> defaultWeights;
+		eoEvalFunc<MOEOT> &eval;
 		ObjectiveVector &refPoint;
 		ObjectiveVector defaultRefPoint;
-		eoEvalFunc<MOEOT> &eval;
 		moeoVariableWeightStrategy<MOEOT> &wstrat;
 		moeoVariableRefPointStrategy<MOEOT> &rstrat;
 		moeoDummyRefPointStrategy<MOEOT> defaultRstrat;

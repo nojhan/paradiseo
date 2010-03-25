@@ -70,8 +70,6 @@ typedef MOEO < ObjectiveVector, double, double > Solution;
 
 int main()
 {
-    int res=EXIT_SUCCESS;
-
     std::cout << "[moeoAggregationFitnessAssignment] => ";
 
     // objective vectors

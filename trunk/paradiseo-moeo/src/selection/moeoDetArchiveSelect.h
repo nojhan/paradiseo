@@ -67,20 +67,20 @@ class moeoDetArchiveSelect : public eoSelect<MOEOT>
 				unsigned int archive_size = archive.size();
 				_dest.resize(0);
 				if ((archive_size >= min) && (archive_size <= max)){
-					for (int i=0; i<archive_size; i++)
+					for (unsigned int i=0; i<archive_size; i++)
 						_dest.push_back(archive[i]);
 				}
 				else if (archive_size > max){
 					UF_random_generator<unsigned int> rndGen;
 					std::vector <int> permutation;
-					for(int i=0; i < archive_size; i++)
+					for(unsigned int i=0; i < archive_size; i++)
 						permutation.push_back(i);
 					random_shuffle(permutation.begin(), permutation.end(), rndGen);
-					for (int i=0; i<max; i++)
+					for (unsigned int i=0; i<max; i++)
 						_dest.push_back(archive[permutation[i]]);
 				}
 				else {
-					for (int i=0; i<min; i++){
+					for (unsigned int i=0; i<min; i++){
 						_dest.push_back(archive[i%archive_size]);
 					}
 				}

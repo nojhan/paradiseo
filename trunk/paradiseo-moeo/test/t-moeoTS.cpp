@@ -246,7 +246,6 @@ class solutionSingler : public moeoSingleObjectivization<Solution>
 int main()
 {
 	std::string test_result;
-	int return_value;
 
 	Solution solution;
 

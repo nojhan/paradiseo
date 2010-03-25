@@ -37,7 +37,6 @@ class moeoIndexedArchive : public moeoArchive < MOEOT >
 		 * @param _moeo the given individual
 		 */
 		bool operator()(const MOEOT & _moeo){
-			bool added=false;
 			std::pair<bool,std::vector<typename moeoArchiveIndex<MOEOT>::modif> > res=index(_moeo);
 			if (!(res.first)){
 				return false;

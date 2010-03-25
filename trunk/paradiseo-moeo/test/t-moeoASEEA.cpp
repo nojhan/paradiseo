@@ -93,7 +93,7 @@ int main()
     eoRealInitBounded < Solution > init(bounds);
     eoPop < Solution > pop(20, init);
 
-    for(int i=0; i<pop.size(); i++)
+    for(unsigned int i=0; i<pop.size(); i++)
     	eval(pop[i]);
 
     eoSGATransform < Solution > transform(xover, 0.1, mutation, 0.1);
