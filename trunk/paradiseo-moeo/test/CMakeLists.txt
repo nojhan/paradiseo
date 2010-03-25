@@ -10,7 +10,7 @@
 ######################################################################################
 
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
-INCLUDE_DIRECTORIES(${MO_SRC_DIR}/src)
+INCLUDE_DIRECTORIES(${OLDMO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${ParadisEO-MOEO_SOURCE_DIR}/src)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 

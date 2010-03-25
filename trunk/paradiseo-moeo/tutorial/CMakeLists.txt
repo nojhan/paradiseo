@@ -3,6 +3,7 @@
 ### 1) Definitions
 ######################################################################################
 INCLUDE_DIRECTORIES(${MO_SRC_DIR}/src)
+INCLUDE_DIRECTORIES(${OLDMO_SRC_DIR}/src)
 SET(FLOWSHOP_SRC_DIR ${ParadisEO-MOEO_SOURCE_DIR}/tutorial/examples/flowshop)
 SET(FLOWSHOP_BINARY_DIR ${ParadisEO-MOEO_BINARY_DIR}/tutorial/examples/flowshop)
 

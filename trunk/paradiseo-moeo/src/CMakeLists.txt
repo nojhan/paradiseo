@@ -4,6 +4,7 @@
 ######################################################################################
 
 INCLUDE_DIRECTORIES(${EO_SRC_DIR})
+INCLUDE_DIRECTORIES(${OLDMO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################

@@ -35,7 +35,7 @@
 
 #ifndef _moeoTSMoveLoopExpl_h
 #define _moeoTSMoveLoopExpl_h
-#include <mo>
+#include <oldmo>
 #include <moMoveLoopExpl.h>
 #include <moMoveInit.h>
 #include <moNextMove.h>

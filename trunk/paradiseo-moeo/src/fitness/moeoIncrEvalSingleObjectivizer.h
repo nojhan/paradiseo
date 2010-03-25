@@ -40,8 +40,7 @@
 
 #include <moeo>
 #include <eo>
-#include <../../paradiseo-mo/src/moMoveIncrEval.h>
-//#include <mo>
+#include <moMoveIncrEval.h>
 #include <fitness/moeoFitnessAssignment.h>
 #include <fitness/moeoSingleObjectivization.h>
 #include <eoEvalFunc.h>

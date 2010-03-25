@@ -45,7 +45,7 @@ template <class MOEOT>
 class moeoDummyRefPointStrategy : public moeoVariableRefPointStrategy<MOEOT>
   {
 	  public:
-		  virtual void operator()(typename MOEOT::ObjectiveVector &_obj,const MOEOT &_moeo ){}
+		  virtual void operator()(typename MOEOT::ObjectiveVector &_obj, const MOEOT &_moeo ){}
   };
 
 #endif 
