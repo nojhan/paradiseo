@@ -109,6 +109,9 @@ SET(EO_BIN_DIR "${CMAKE_BINARY_DIR}/../../paradiseo-eo/build" CACHE PATH "Paradi
 SET(MO_SRC_DIR "${CMAKE_SOURCE_DIR}/../paradiseo-mo" CACHE PATH "ParadisMO-MO source directory" FORCE)
 SET(MO_BIN_DIR "${CMAKE_BINARY_DIR}/../../paradiseo-mo/build" CACHE PATH "ParadisMO-MO binary directory" FORCE)
 
+SET(OLDMO_SRC_DIR "${CMAKE_SOURCE_DIR}/../paradiseo-old-mo" CACHE PATH "ParadisMO-MO source directory" FORCE)
+SET(OLDMO_BIN_DIR "${CMAKE_BINARY_DIR}/../../paradiseo-old-mo/build" CACHE PATH "ParadisMO-MO binary directory" FORCE)
+
 SET(MOEO_SRC_DIR "${CMAKE_SOURCE_DIR}/../paradiseo-moeo" CACHE PATH "ParadisMOEO-MOEO source directory" FORCE)
 SET(MOEO_BIN_DIR "${CMAKE_BINARY_DIR}/../../paradiseo-moeo/build" CACHE PATH "ParadisMOEO-MOEO binary directory" FORCE)
     
