@@ -14,11 +14,11 @@ INCLUDE(mo-conf.cmake OPTIONAL)
 ##########################################################################################################################################
 
 # set the project name
-PROJECT(ParadisEO-MO)
+PROJECT(ParadisEO-OLD-MO)
 
 SET(PACKAGE_BUGREPORT "paradiseo-help@lists.gforge.inria.fr" CACHE STRING "Package bug report" FORCE)
-SET(PACKAGE_NAME "ParadisEO-MO - Moving Objects" CACHE STRING "Package name" FORCE)
-SET(PACKAGE_STRING "ParadisEO-MO 1.2" CACHE STRING "MO Package string full name" FORCE)
+SET(PACKAGE_NAME "ParadisEO-OLD-MO - Moving Objects" CACHE STRING "Package name" FORCE)
+SET(PACKAGE_STRING "ParadisEO-OLD-MO 1.2" CACHE STRING "MO Package string full name" FORCE)
 SET(PACKAGE_VERSION "1.2" CACHE STRING "Package version" FORCE)
 SET(GLOBAL_VERSION "1.2" CACHE STRING "Global version" FORCE)
 SET(VERSION "1.2" CACHE STRING "Version" FORCE)

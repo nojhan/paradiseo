@@ -4,7 +4,7 @@
 
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src/utils)
-INCLUDE_DIRECTORIES(${MO_SRC_DIR}/src)
+INCLUDE_DIRECTORIES(${OLDMO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${FUNCTION_SRC_DIR})
 
 ######################################################################################

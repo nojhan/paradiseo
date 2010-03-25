@@ -10,7 +10,7 @@
 ######################################################################################
 
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
-INCLUDE_DIRECTORIES(${ParadisEO-MO_SOURCE_DIR}/src)
+INCLUDE_DIRECTORIES(${OLDMO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################
@@ -20,7 +20,7 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 ### 2) Specify where CMake can find the libraries
 ######################################################################################
 
-LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${ParadisEO-MO_BINARY_DIR}/lib)
+LINK_DIRECTORIES(${EO_BIN_DIR}/lib ${OLDMO_BIN_DIR}/lib)
 
 ######################################################################################
 

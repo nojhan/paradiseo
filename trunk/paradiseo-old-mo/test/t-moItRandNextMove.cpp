@@ -38,7 +38,7 @@
 //-----------------------------------------------------------------------------
 
 #include <eo>  // EO
-#include <mo>  // MO
+#include <oldmo>  // MO
 
 using std::cout;
 using std::endl;

@@ -34,7 +34,7 @@
 */
 
 #include <eo>
-#include <mo>
+#include <oldmo>
 #include <tsp>
 
 void manage_configuration_file(eoParser & _parser);

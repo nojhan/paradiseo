@@ -39,7 +39,7 @@
 //-----------------------------------------------------------------------------
 
 #include <eo>  // EO
-#include <mo>  // MO
+#include <oldmo>  // MO
 #include <cassert>
 
 using std::cout;

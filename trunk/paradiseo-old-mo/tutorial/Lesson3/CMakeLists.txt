@@ -4,7 +4,7 @@
 
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src/utils)
-INCLUDE_DIRECTORIES(${MO_SRC_DIR}/src)
+INCLUDE_DIRECTORIES(${OLDMO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${TSP_SRC_DIR})
 
 ######################################################################################
@@ -30,7 +30,7 @@ IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "
 		
 	ADD_EXECUTABLE(simulated_annealing
 		simulated_annealing.cpp
-		${MO_BIN_DIR}/tutorial/Lesson3/param
+		${OLDMO_BIN_DIR}/tutorial/Lesson3/param
 		${TSP_BIN_DIR}/benchs/berlin52.tsp
 		${TSP_BIN_DIR}/benchs/eil101.tsp
 		${TSP_BIN_DIR}/benchs/pr2392.tsp
@@ -38,8 +38,8 @@ IF(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "
 		${TSP_BIN_DIR}/benchs/usa13509.tsp
 	)
 ELSE(CMAKE_GENERATOR STREQUAL "Visual Studio 8 2005" OR CMAKE_GENERATOR STREQUAL "Visual Studio 9 2008")
-	ADD_COMMANDS_MO()
-	ADD_TARGET_MO(lesson3)
+	ADD_COMMANDS_OLDMO()
+	ADD_TARGET_OLDMO(lesson3)
 	IF(ENABLE_CMAKE_EXAMPLE)
 		ADD_EXECUTABLE(simulated_annealing simulated_annealing.cpp)
 	ELSE(ENABLE_CMAKE_EXAMPLE)	
