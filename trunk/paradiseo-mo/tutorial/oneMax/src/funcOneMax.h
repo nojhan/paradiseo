@@ -12,17 +12,17 @@ template< class EOT >
 class FuncOneMax : public eoEvalFunc<EOT>
 {
 private:
-    unsigned N;
+    unsigned int N;
 
 public:
-    FuncOneMax(unsigned n) : N(n) {};
+    FuncOneMax(unsigned int n) : N(n) {};
 
     ~FuncOneMax(void) {} ;
 
     void operator() (EOT & genome) {
-        unsigned sum = 0;
+        unsigned int sum = 0;
 
-        for (int i = 0; i < N; i++)
+        for (unsigned int i = 0; i < N; i++)
             sum += genome[i];
 
         genome.fitness(sum);
