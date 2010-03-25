@@ -1,7 +1,7 @@
-/* 
-  <mo>
-  Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2008
-  (C) OPAC Team, LIFL, 2002-2008
+/*
+  <oldmo.h>
+  Copyright (C) DOLPHIN Project-Team, INRIA Futurs, 2006-2007
+  (C) OPAC Team, LIFL, 2002-2007
 
   Sébastien Cahon, Jean-Charles Boisson (Jean-Charles.Boisson@lifl.fr)
 
@@ -33,9 +33,47 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef __mo
-#define __mo
+#ifndef _oldmo_h
+#define _oldmo_h
 
-#include "mo.h"
+#include <moAlgo.h>
+#include <moAspirCrit.h>
+#include <moBestImprSelect.h>
+#include <moComparator.h>
+#include <moCoolingSchedule.h>
+#include <moFirstImprSelect.h>
+#include <moFitComparator.h>
+#include <moFitSolContinue.h>
+#include <moGenSolContinue.h>
+#include <moGeometricCoolingSchedule.h>
+#include <moHC.h>
+#include <moHCMoveLoopExpl.h>
+#include <moILS.h>
+#include <moImprBestFitAspirCrit.h>
+#include <moItRandNextMove.h>
+#include <moLinearCoolingSchedule.h>
+#include <moLSCheckPoint.h>
+#include <moMoveExpl.h>
+#include <moMove.h>
+#include <moMoveIncrEval.h>
+#include <moMoveInit.h>
+#include <moMoveLoopExpl.h>
+#include <moMoveSelect.h>
+#include <moNextMove.h>
+#include <moNoAspirCrit.h>
+#include <moNoFitImprSolContinue.h>
+#include <moRandImprSelect.h>
+#include <moRandMove.h>
+#include <moSA.h>
+#include <moSimpleMoveTabuList.h>
+#include <moSimpleSolutionTabuList.h>
+#include <moSolContinue.h>
+#include <moSteadyFitSolContinue.h>
+#include <moTabuList.h>
+#include <moTS.h>
+#include <moTSMoveLoopExpl.h>
+#include <moExpl.h>
+#include <moVNS.h>
+#include <moTA.h>
 
 #endif
