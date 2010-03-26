@@ -35,6 +35,11 @@ IF(NOT DEFINED config OR NOT config)
   						give the path of the install configuration file. ")
 ENDIF(NOT DEFINED config OR NOT config)
 
+EXECUTE_PROCESS(
+	COMMAND ${CMAKE_COMMAND} -E copy_if_different
+			${ParadisEO-MOEO_SOURCE_DIR}/CTestCustom.cmake
+			${ParadisEO-MOEO_BINARY_DIR}/CTestCustom.cmake)
+
 # Need the config file whose full path is given thanks to the "config" variable
 INCLUDE(${config})
 ##########################################################################################################################################

@@ -58,7 +58,8 @@
 #include <algo/moeoSA.h>
 #include <algo/moeoILS.h>
 #include <algo/moeoVFAS.h>
-
+#include <algo/moeoPopLS.h>
+#include <algo/moeoUnifiedDominanceBasedLS.h>
 
 #include <archive/moeoArchive.h>
 #include <archive/moeoArchiveIndex.h>
@@ -118,6 +119,14 @@
 #include <diversity/moeoNearestNeighborDiversityAssignment.h>
 #include <diversity/moeoSharingDiversityAssignment.h>
 
+#include <dmls/moeoDMLSArchive.h>
+#include <dmls/moeoNewArchive.h>
+
+#include <explorer/moeoHCMoveLoopExpl.h>
+#include <explorer/moeoTSMoveLoopExpl.h>
+#include <explorer/moeoPopNeighborhoodExplorer.h>
+#include <explorer/moeoExhaustiveNeighborhoodExplorer.h>
+
 #include <fitness/moeoAchievementFitnessAssignment.h>
 #include <fitness/moeoAggregationFitnessAssignment.h>
 #include <fitness/moeoAggregativeFitnessAssignment.h>
@@ -169,6 +178,9 @@
 #include <selection/moeoSelectors.h>
 #include <selection/moeoStochTournamentSelect.h>
 #include <selection/moeoDetArchiveSelect.h>
+#include <selection/moeoUnvisitedSelect.h>
+#include <selection/moeoExhaustiveUnvisitedSelect.h>
+#include <selection/moeoNumberUnvisitedSelect.h>
 
 #include <utils/moeoArchiveObjectiveVectorSavingUpdater.h>
 #include <utils/moeoArchiveUpdater.h>
@@ -189,10 +201,6 @@
 #include <utils/moeoFixedTimeOneDirectionWeightStrategy.h>
 #include <utils/moeoFixedTimeBothDirectionWeightStrategy.h>
 #include <utils/moeoDichoWeightStrategy.h>
-
-
-#include <explorer/moeoHCMoveLoopExpl.h>
-#include <explorer/moeoTSMoveLoopExpl.h>
 
 
 
