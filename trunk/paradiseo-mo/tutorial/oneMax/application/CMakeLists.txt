@@ -23,3 +23,5 @@ TARGET_LINK_LIBRARIES(testMetropolisHasting eoutils ga eo)
 #TARGET_LINK_LIBRARIES(testWithMove eoutils ga eo) 
 TARGET_LINK_LIBRARIES(testSimpleTS eoutils ga eo)
 TARGET_LINK_LIBRARIES(testRandomNeutralWalk eoutils ga eo) 
+
+ 
