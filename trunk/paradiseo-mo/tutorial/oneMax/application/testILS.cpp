@@ -18,6 +18,7 @@
 // the general include for eo
 #include <eo>
 #include <ga.h>
+#include <ga/eoBitOp.h>
 
 using namespace std;
 
@@ -37,11 +38,16 @@ using namespace std;
 #include <explorer/moSimpleHCexplorer.h>
 #include <explorer/moILSexplorer.h>
 
+#include <perturb/moMonOpPerturb.h>
+#include <acceptCrit/moAlwaysAcceptCrit.h>
+#include <continuator/moIterContinuator.h>
+
 // REPRESENTATION
 //-----------------------------------------------------------------------------
 typedef eoBit<unsigned> Indi;
 typedef moBitNeighbor<unsigned int> Neighbor ; // incremental evaluation
 typedef moOrderNeighborhood<Neighbor> Neighborhood ;
+typedef moSimpleHCexplorer<Neighborhood> NHE;
 
 void main_function(int argc, char **argv)
 {
@@ -161,7 +167,20 @@ void main_function(int argc, char **argv)
 
     moTrueContinuator<Neighborhood> continuator;//always continue
 
-    moLocalSearch< moSimpleHCexplorer<Neighborhood> > localSearch(explorer, continuator, eval);
+    moLocalSearch< NHE > hc(explorer, continuator, eval);
+
+    eoBitMutation<Indi> monOp(1.0/vecSize);
+
+    moMonOpPerturb<Neighbor> perturb(monOp, eval);
+
+    moAlwaysAcceptCrit<Neighbor> accept;
+
+    moILSexplorer< NHE > explorerILS(hc, perturb, accept);
+
+    moIterContinuator<Neighborhood> continuatorILS(10);
+
+    moLocalSearch< moILSexplorer< moSimpleHCexplorer<Neighborhood> > >localSearch(explorerILS, continuatorILS, eval);
+
 
     /* =========================================================
      *

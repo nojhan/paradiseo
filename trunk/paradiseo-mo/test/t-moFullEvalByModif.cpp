@@ -46,7 +46,7 @@ int main() {
 
     Solution sol;
     moDummyBackableNeighbor neighbor;
-    moDummyEval eval;
+    moDummyEvalTest eval;
 
     //verif constructor
     moFullEvalByModif<moDummyBackableNeighbor> test(eval);

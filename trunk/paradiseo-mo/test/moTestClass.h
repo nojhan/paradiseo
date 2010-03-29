@@ -63,7 +63,7 @@ typedef moDummyRndNeighborhood bitNeighborhood ;
 
 typedef EO<int> Solution;
 
-class moDummyNeighbor : public moNeighbor<Solution,int> {
+class moDummyNeighborTest : public moNeighbor<Solution,int> {
 public:
     virtual void move(Solution & _solution) {}
 };
@@ -74,11 +74,11 @@ public:
     virtual void moveBack(Solution & _solution) {}
 };
 
-class moDummyNeighborhood : public moNeighborhood<moDummyNeighbor> {
+class moDummyNeighborhoodTest : public moNeighborhood<moDummyNeighborTest> {
 public:
-    typedef moDummyNeighbor Neighbor;
+    typedef moDummyNeighborTest Neighbor;
 
-    moDummyNeighborhood():i(0),j(0) {}
+    moDummyNeighborhoodTest():i(0),j(0) {}
 
     virtual bool hasNeighbor(EOT & _solution) {
         bool res;
@@ -100,7 +100,7 @@ private:
     int i,j;
 };
 
-class moDummyEval: public eoEvalFunc<Solution> {
+class moDummyEvalTest: public eoEvalFunc<Solution> {
 public:
     void operator()(Solution& _sol) {
         if (_sol.invalid())

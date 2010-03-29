@@ -48,15 +48,15 @@ int main() {
     std::cout << "[t-moSimpleHCexplorer] => START" << std::endl;
 
     Solution sol;
-    moDummyNeighbor neighbor;
-    moDummyEval eval;
-    moDummyNeighborhood nh;
-    moFullEvalByCopy<moDummyNeighbor> fulleval(eval);
-    moNeighborComparator<moDummyNeighbor> comp;
-    moSolNeighborComparator<moDummyNeighbor> solNeighborComp;
+    moDummyNeighborTest neighbor;
+    moDummyEvalTest eval;
+    moDummyNeighborhoodTest nh;
+    moFullEvalByCopy<moDummyNeighborTest> fulleval(eval);
+    moNeighborComparator<moDummyNeighborTest> comp;
+    moSolNeighborComparator<moDummyNeighborTest> solNeighborComp;
 
     //verif constructor
-    moSimpleHCexplorer<moDummyNeighborhood> test(nh, fulleval, comp, solNeighborComp);
+    moSimpleHCexplorer<moDummyNeighborhoodTest> test(nh, fulleval, comp, solNeighborComp);
 
     //verif operator() et accept: le neigorhood est construit pour qu'on tombe dans les 3 cas suivants:
     //hasNeighbor() retourne faux a l'entrée de l'operator() donc on doit pas continuer

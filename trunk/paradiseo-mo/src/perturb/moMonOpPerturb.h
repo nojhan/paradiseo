@@ -30,8 +30,10 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moMonOpPerturb_h
 #define _moMonOpPerturb_h
 
+#include <eoEvalFunc.h>
 #include <eoOp.h>
 #include <perturb/moPerturbation.h>
+#include <memory/moDummyMemory.h>
 
 /**
  * Perturbation operator using only a eoMonOp
@@ -46,7 +48,7 @@ public:
 	 * Default Constructor
 	 * @param _monOp an eoMonOp (pertubation operator)
 	 */
-	moMonOpPerturb(eoMonOp<EOT>& _monOp):monOp(_monOp){}
+	moMonOpPerturb(eoMonOp<EOT>& _monOp, eoEvalFunc<EOT>& _fullEval):monOp(_monOp), fullEval(_fullEval){}
 
 	/**
 	 * Apply monOp on the solution
@@ -54,12 +56,15 @@ public:
 	 * @return value of monOp
 	 */
 	bool operator()(EOT& _solution){
-		return monOp(_solution);
+		bool res = monOp(_solution);
+		fullEval(_solution);
+		return res;
 	}
 
 private:
 	/** monOp */
 	eoMonOp<EOT>& monOp;
+	eoEvalFunc<EOT>& fullEval;
 };
 
 #endif

@@ -41,20 +41,21 @@
 #include <algo/moLocalSearch.h>
 #include <perturb/moPerturbation.h>
 #include <acceptCrit/moAcceptanceCriterion.h>
+#include <neighborhood/moDummyNeighborhood.h>
+#include <neighborhood/moDummyNeighbor.h>
 
 /**
  * Explorer for an Iterated Local Search
  */
 template< class NHE >
-class moILSexplorer : public moNeighborhoodExplorer<typename NHE::Neighborhood>
+class moILSexplorer : public moNeighborhoodExplorer<moDummyNeighborhood<moDummyNeighbor<typename NHE::Neighborhood::EOT, typename NHE::Neighborhood::EOT::Fitness> > >
 {
 public:
     typedef typename NHE::Neighborhood Neighborhood ;
     typedef typename Neighborhood::EOT EOT ;
     typedef typename Neighborhood::Neighbor Neighbor ;
-
-    using moNeighborhoodExplorer<Neighborhood>::neighborhood;
-    using moNeighborhoodExplorer<Neighborhood>::eval;
+	typedef moDummyNeighbor<EOT,typename EOT::Fitness> dummyNeighbor;
+	typedef moDummyNeighborhood<dummyNeighbor> dummyNeighborhood;
 
 	/**
 	 * Constructor
@@ -62,7 +63,7 @@ public:
 	 * @param _perturb a perturbation operator
 	 * @param _acceptCrit a acceptance criteria
 	 */
-    moILSexplorer(moLocalSearch<NHE>& _ls, moPerturbation<Neighbor>& _perturb, moAcceptanceCriterion<Neighbor>& _acceptCrit) : ls(_ls), perturb(_perturb), acceptCrit(_acceptCrit){
+    moILSexplorer(moLocalSearch<NHE>& _ls, moPerturbation<Neighbor>& _perturb, moAcceptanceCriterion<Neighbor>& _acceptCrit) : moNeighborhoodExplorer<dummyNeighborhood>(), ls(_ls), perturb(_perturb), acceptCrit(_acceptCrit){
     	firstIteration=true;
     }
 
@@ -88,7 +89,7 @@ public:
 	 * @param _solution the current solution
 	 */
     virtual void updateParam(EOT & _solution){
-    	if((*this).isMoved()){
+    	if((*this).moveApplied()){
     		perturb.add(_solution,emptyNeighbor);
     		acceptCrit.add(_solution,emptyNeighbor);
     	}
@@ -110,8 +111,10 @@ public:
     	current=_solution;
 
     	//perturb solution exept at the first iteration
-    	if(!firstIteration)
+    	if(!firstIteration){
     		perturb(current);
+
+    	}
     	else
     		firstIteration=false;
 

@@ -1,5 +1,5 @@
 /*
-<moAlwaysAcceptCrit.h>
+<moIterContinuator.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -27,31 +27,44 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moAlwaysAcceptCrit_h
-#define _moAlwaysAcceptCrit_h
+#ifndef _moIterContinuator_h
+#define _moIterContinuator_h
 
-#include <acceptCrit/moAcceptanceCriterion.h>
-#include <memory/moDummyMemory.h>
+#include <continuator/moContinuator.h>
 
 /**
- * Acceptance Criterion for extreme diversification : always accept new solution
+ * Continue until a maximum fixed number of iterations is reached
  */
-template< class Neighbor >
-class moAlwaysAcceptCrit : public moAcceptanceCriterion<Neighbor>, public moDummyMemory<Neighbor>{
-
+template< class NH >
+class moIterContinuator : public moContinuator<NH>
+{
 public:
-	typedef typename Neighbor::EOT EOT;
+    typedef typename NH::EOT EOT ;
 
 	/**
-	 * Always accept the new solution
-	 * @param _sol1 the previous solution
-	 * @param _sol2 the new solution after local search
-	 * @return always true
+	 * @param _maxIter number maximum of iterations
 	 */
-	bool operator()(EOT& _sol1, EOT& _sol2){
-		return true;
-	}
+    moIterContinuator(unsigned int _maxIter): maxIter(_maxIter){}
+
+    /**
+     *@param _solution a solution
+     *@return true if counter < maxIter
+     */
+    virtual bool operator()(EOT & _solution) {
+        return (cpt++ < maxIter);
+    }
+
+    /**
+     * reset the counter of iteration
+     * @param _solution a solution
+     */
+    virtual void init(EOT & _solution) {
+    	cpt=0;
+    }
+
+private:
+    unsigned int maxIter;
+    unsigned int cpt;
 
 };
-
 #endif

@@ -35,6 +35,8 @@
 #ifndef _moCoolingSchedule_h
 #define _moCoolingSchedule_h
 
+#include <eoFunctor.h>
+
 /**
  * Cooling Schedule of the temperature in the simulated algorithm
  * 
@@ -47,20 +49,14 @@ public:
    * Initial temperature
    * @param _solution initial solution 
    */
-  double init(EOT & _solution) = 0;
+  virtual double init(EOT & _solution) = 0;
 
   /**
    * update the temperature
    * @param _temp current temperature to update
    */
-  void update(double& _temp) = 0;
+  virtual void update(double& _temp) = 0;
 
-  /**
-   * test the ending of the process
-   * @param _temp current temperature 
-   * @return true if the process could be continue 
-   */
-  // bool operator()(double _temp) = 0;
 };
 
 

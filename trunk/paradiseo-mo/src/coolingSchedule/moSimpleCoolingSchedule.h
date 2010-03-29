@@ -43,7 +43,7 @@
  * 
  */
 template< class EOT >
-class moSimpleCoolingSchedule : public eoUF<double, bool>
+class moSimpleCoolingSchedule : public moCoolingSchedule<EOT>
 {
 public:
   /**
@@ -91,18 +91,14 @@ public:
 private:
   // initial temperature
   double initT;
-
-  // threshold temperature
-  double finalT;
-
   // coefficient of decrease
   double alpha;
-
   // maximum number of iterations at the same temperature
-  unisgned span;
-
+  unsigned int span;
+  // threshold temperature
+  double finalT;
   // number of steps with the same temperature
-  unsigned step;
+  unsigned int step;
 };
 
 

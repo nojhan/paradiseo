@@ -42,7 +42,7 @@ int main() {
     std::cout << "[t-moNeighbor] => START" << std::endl;
 
     //test constructor
-    moDummyNeighbor test1, test2;
+    moDummyNeighborTest test1, test2;
 
     test1.fitness(3);
     //test operateur d'affectation
@@ -50,7 +50,7 @@ int main() {
     assert(test1.fitness()==test2.fitness());
 
     //test operateur de copy
-    moDummyNeighbor test3(test1);
+    moDummyNeighborTest test3(test1);
     assert(test1.fitness()==test3.fitness());
 
     test1.printOn(std::cout);

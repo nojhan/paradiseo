@@ -66,10 +66,6 @@ void main_function(int argc, char **argv)
     parser.processParam( vecSizeParam, "Representation" );
     unsigned vecSize = vecSizeParam.value();
 
-    eoValueParam<unsigned int> stepParam(10, "nbStep", "Number of steps of the random walk", 'n');
-    parser.processParam( stepParam, "Representation" );
-    unsigned nbStep = stepParam.value();
-
     // the name of the "status" file where all actual parameter values will be saved
     string str_status = parser.ProgramName() + ".status"; // default value
     eoValueParam<string> statusParam(str_status.c_str(), "status", "Status file");
@@ -154,7 +150,7 @@ void main_function(int argc, char **argv)
      * ========================================================= */
 
     // initial temp, factor of decrease, number of steps without decrease, final temp.
-    moSimpleCoolingSchdedule<Indi> coolingSchedule(10, 0.9, 1, 0.01);
+    moSimpleCoolingSchedule<Indi> coolingSchedule(10, 0.9, 1, 0.01);
 
     /* =========================================================
      *
@@ -172,7 +168,7 @@ void main_function(int argc, char **argv)
 
     moTrueContinuator<Neighborhood> continuator;//always continue
 
-    moLocalSearch< moMetropolisHastingExplorer<Neighborhood> > localSearch(explorer, continuator, eval);
+    moLocalSearch< moSAexplorer<Neighborhood> > localSearch(explorer, continuator, eval);
 
     /* =========================================================
      *

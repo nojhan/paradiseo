@@ -58,6 +58,7 @@
 #include <continuator/moStat.h>
 #include <continuator/moStatBase.h>
 #include <continuator/moTrueContinuator.h>
+#include <continuator/moIterContinuator.h>
 
 #include <eval/moEval.h>
 #include <eval/moFullEvalByCopy.h>
@@ -103,8 +104,8 @@
 #include <acceptCrit/moAcceptanceCriterion.h>
 #include <acceptCrit/moAlwaysAcceptCrit.h>
 
-#include <coolingschedule/moCoolingSchedule.h>
-#include <coolingschedule/moSimpleCoolingSchedule.h>
+#include <coolingSchedule/moCoolingSchedule.h>
+#include <coolingSchedule/moSimpleCoolingSchedule.h>
 
 //#include <old/moMove.h>
 //#include <old/moMoveIncrEval.h>

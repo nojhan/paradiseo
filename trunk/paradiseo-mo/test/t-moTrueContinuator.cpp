@@ -43,7 +43,7 @@ int main() {
 
     std::cout << "[t-moTrueContinuator] => START" << std::endl;
 
-    moTrueContinuator<moDummyNeighborhood> test;
+    moTrueContinuator<moDummyNeighborhoodTest> test;
     Solution s;
 
     assert(test(s));

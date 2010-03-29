@@ -1,5 +1,5 @@
 /*
-<moAlwaysAcceptCrit.h>
+<moDummyNeighborhood.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -27,30 +27,51 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moAlwaysAcceptCrit_h
-#define _moAlwaysAcceptCrit_h
+#ifndef _moDummyNeighborhood_h
+#define _moDummyNeighborhood_h
 
-#include <acceptCrit/moAcceptanceCriterion.h>
-#include <memory/moDummyMemory.h>
+#include <neighborhood/moDummyNeighbor.h>
 
 /**
- * Acceptance Criterion for extreme diversification : always accept new solution
+ * Dummy Neighborhood
  */
-template< class Neighbor >
-class moAlwaysAcceptCrit : public moAcceptanceCriterion<Neighbor>, public moDummyMemory<Neighbor>{
-
+template< class N >
+class moDummyNeighborhood : public moNeighborhood<N>{
 public:
-	typedef typename Neighbor::EOT EOT;
+	typedef N Neighbor;
+    typedef typename Neighbor::EOT EOT;
 
-	/**
-	 * Always accept the new solution
-	 * @param _sol1 the previous solution
-	 * @param _sol2 the new solution after local search
-	 * @return always true
-	 */
-	bool operator()(EOT& _sol1, EOT& _sol2){
-		return true;
-	}
+    /**
+     * NOTHING TO DO
+     * @param _solution the related solution
+     * @return always false
+     */
+    virtual bool hasNeighbor(EOT & _solution){
+    	return false;
+    }
+
+    /**
+     * NOTHING TO DO
+     * @param _solution the solution to explore
+     * @param _current the first neighbor
+     */
+    virtual void init(EOT & _solution, Neighbor & _current){}
+
+    /**
+     * NOTHING TO DO
+     * @param _solution the solution to explore
+     * @param _current the next neighbor
+     */
+    virtual void next(EOT & _solution, Neighbor & _current){}
+
+    /**
+     * NOTHING TO DO
+     * @param _solution the solution to explore
+     * @return always false
+     */
+    virtual bool cont(EOT & _solution){
+    	return false;
+    }
 
 };
 

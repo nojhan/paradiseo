@@ -1,5 +1,5 @@
 /*
-<moAlwaysAcceptCrit.h>
+<moDummyNeighbor.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -27,31 +27,22 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moAlwaysAcceptCrit_h
-#define _moAlwaysAcceptCrit_h
+#ifndef _moDummyNeighbor_h
+#define _moDummyNeighbor_h
 
-#include <acceptCrit/moAcceptanceCriterion.h>
-#include <memory/moDummyMemory.h>
+#include <neighborhood/moNeighbor.h>
 
 /**
- * Acceptance Criterion for extreme diversification : always accept new solution
+ * Dummy Neighborhood
  */
-template< class Neighbor >
-class moAlwaysAcceptCrit : public moAcceptanceCriterion<Neighbor>, public moDummyMemory<Neighbor>{
-
+template< class EOT , class Fitness >
+class moDummyNeighbor : public moNeighbor< EOT,Fitness>{
 public:
-	typedef typename Neighbor::EOT EOT;
 
-	/**
-	 * Always accept the new solution
-	 * @param _sol1 the previous solution
-	 * @param _sol2 the new solution after local search
-	 * @return always true
-	 */
-	bool operator()(EOT& _sol1, EOT& _sol2){
-		return true;
-	}
-
+    /**
+     * NOTHING TO DO
+     * @param _solution the related solution
+     */
+    virtual void move(EOT& _solution){}
 };
-
 #endif

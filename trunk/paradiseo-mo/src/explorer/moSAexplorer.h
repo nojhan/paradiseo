@@ -67,7 +67,7 @@ public:
      * @param _solNeighborComparator a solution vs neighbor comparator
      * @param _nbStep maximum number of step to do
      */
-  moSAexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moSolNeighborComparator<Neighbor>& _solNeighborComparator, moCoolingSchedule<EOT> _coolingSchedule) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), solNeighborComparator(_solNeighborComparator), coolingSchedule(_coolingSchedule) {
+  moSAexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moSolNeighborComparator<Neighbor>& _solNeighborComparator, moCoolingSchedule<EOT>& _coolingSchedule) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), solNeighborComparator(_solNeighborComparator), coolingSchedule(_coolingSchedule) {
         isAccept = false;
 
         if (!neighborhood.isRandom()) {
@@ -168,11 +168,9 @@ private:
     // comparator betwenn solution and neighbor
     moSolNeighborComparator<Neighbor>& solNeighborComparator;
 
-    // current number of step
-    unsigned int step;
+    moCoolingSchedule<EOT>& coolingSchedule;
 
-    // maximum number of steps to do
-    unsigned int nbStep;
+    double temperature;
 
     //Pointer on the best and the current neighbor
     Neighbor current;

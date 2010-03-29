@@ -40,6 +40,9 @@
 
 #include <neighborhood/moNeighborhood.h>
 #include <eval/moEval.h>
+//#include <neighborhood/moDummyNeighbor.h>
+#include <neighborhood/moDummyNeighborhood.h>
+#include <eval/moDummyEval.h>
 
 /**
  * Explore the neighborhood
@@ -50,7 +53,10 @@ class moNeighborhoodExplorer : public eoUF<typename NH::EOT&, void>
 public:
     typedef NH Neighborhood ;
     typedef typename Neighborhood::EOT EOT ;
+    typedef typename EOT::Fitness Fitness ;
     typedef typename Neighborhood::Neighbor Neighbor ;
+
+    moNeighborhoodExplorer():neighborhood(dummyNeighborhood), eval(dummyEval), isMoved(false) {}
 
     /**
      * Constructor with a Neighborhood and evaluation function
@@ -123,6 +129,8 @@ public:
     }
 
 protected:
+    moDummyNeighborhood<Neighbor> dummyNeighborhood;
+    moDummyEval<Neighbor> dummyEval;
     Neighborhood & neighborhood;
     moEval<Neighbor>& eval;
     bool isMoved;

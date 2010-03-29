@@ -45,11 +45,11 @@ int main() {
     std::cout << "[t-moFullEvalByCopy] => START" << std::endl;
 
     Solution sol;
-    moDummyNeighbor neighbor;
-    moDummyEval eval;
+    moDummyNeighborTest neighbor;
+    moDummyEvalTest eval;
 
     //verif constructor
-    moFullEvalByCopy<moDummyNeighbor> test(eval);
+    moFullEvalByCopy<moDummyNeighborTest> test(eval);
 
     sol.fitness(3);
 
