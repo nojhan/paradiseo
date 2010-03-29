@@ -2,35 +2,16 @@
 #define _moDummyIntensification_h
 
 #include <memory/moIntensification.h>
+#include <memory/moDummyMemory.h>
 
 /**
  * Dummy intensification strategy
  */
 template< class Neighbor >
-class moDummyIntensification : public moIntensification<Neighbor>
+class moDummyIntensification : public moIntensification<Neighbor>, public moDummyMemory<Neighbor>
 {
 public:
     typedef typename Neighbor::EOT EOT;
-
-    /**
-     * Init : NOTHIING TO DO
-     */
-    void init(EOT & _sol) {}
-
-    /**
-     * Add : NOTHIING TO DO
-     */
-    void add(EOT & _sol, Neighbor & _neighbor) {}
-
-    /**
-     * Update : NOTHIING TO DO
-     */
-    void update(EOT & _sol, Neighbor & _neighbor) {}
-
-    /**
-     * ClearMemory : NOTHIING TO DO
-     */
-    void clearMemory() {}
 
     /**
      * @return always false

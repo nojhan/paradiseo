@@ -72,10 +72,12 @@
 #include <explorer/moSimpleHCexplorer.h>
 #include <explorer/moSimpleHCneutralExplorer.h>
 #include <explorer/moTSExplorer.h>
+#include <explorer/moILSexplorer.h>
 
 #include <memory/moAspiration.h>
 #include <memory/moBestImprAspiration.h>
 #include <memory/moDiversification.h>
+#include <memory/moDummyMemory.h>
 #include <memory/moDummyDiversification.h>
 #include <memory/moDummyIntensification.h>
 #include <memory/moIntensification.h>
@@ -93,6 +95,13 @@
 #include <neighborhood/moRndNeighborhood.h>
 #include <neighborhood/moRndWithoutReplNeighborhood.h>
 #include <neighborhood/moRndWithReplNeighborhood.h>
+
+#include <perturb/moPerturbation.h>
+#include <perturb/moMonOpPerturb.h>
+
+#include <acceptCrit/moAcceptanceCriterion.h>
+#include <acceptCrit/moAlwaysAcceptCrit.h>
+
 
 //#include <old/moMove.h>
 //#include <old/moMoveIncrEval.h>
