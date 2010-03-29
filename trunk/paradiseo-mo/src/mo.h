@@ -73,6 +73,7 @@
 #include <explorer/moSimpleHCneutralExplorer.h>
 #include <explorer/moTSExplorer.h>
 #include <explorer/moILSexplorer.h>
+#include <explorer/moSAexplorer.h>
 
 #include <memory/moAspiration.h>
 #include <memory/moBestImprAspiration.h>
@@ -102,6 +103,8 @@
 #include <acceptCrit/moAcceptanceCriterion.h>
 #include <acceptCrit/moAlwaysAcceptCrit.h>
 
+#include <coolingschedule/moCoolingSchedule.h>
+#include <coolingschedule/moSimpleCoolingSchedule.h>
 
 //#include <old/moMove.h>
 //#include <old/moMoveIncrEval.h>

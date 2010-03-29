@@ -14,6 +14,7 @@ ADD_EXECUTABLE(testMetropolisHasting testMetropolisHasting.cpp)
 ADD_EXECUTABLE(testSimpleTS testSimpleTS.cpp) 
 ADD_EXECUTABLE(testRandomNeutralWalk testRandomNeutralWalk.cpp) 
 ADD_EXECUTABLE(testILS testILS.cpp) 
+ADD_EXECUTABLE(testSimulatedAnnealing testSimulatedAnnealing.cpp) 
 
 TARGET_LINK_LIBRARIES(testSimpleHC eoutils ga eo) 
 TARGET_LINK_LIBRARIES(testFirstImpr eoutils ga eo) 
@@ -25,5 +26,6 @@ TARGET_LINK_LIBRARIES(testMetropolisHasting eoutils ga eo)
 TARGET_LINK_LIBRARIES(testSimpleTS eoutils ga eo)
 TARGET_LINK_LIBRARIES(testRandomNeutralWalk eoutils ga eo)
 TARGET_LINK_LIBRARIES(testILS eoutils ga eo) 
+TARGET_LINK_LIBRARIES(testSimulatedAnnealing eoutils ga eo) 
 
  
