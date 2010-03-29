@@ -8,7 +8,7 @@
  * Abstract class for diversification strategy
  */
 template< class Neighbor >
-class moDiversification : public moMemory<Neighbor>, public eoUF<typename Neighbor::EOT &,bool>
+class moDiversification : virtual public moMemory<Neighbor>, public eoUF<typename Neighbor::EOT &,bool>
     {};
 
 #endif
