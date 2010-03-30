@@ -25,8 +25,10 @@ using namespace std;
 //-----------------------------------------------------------------------------
 // fitness function
 #include <funcOneMax.h>
+#include <funcNK.h>
 #include <eoInt.h>
 #include <neighborhood/moOrderNeighborhood.h>
+#include <neighborhood/moRndWithoutReplNeighborhood.h>
 #include <oneMaxBitNeighbor.h>
 
 #include <eval/moFullEvalByModif.h>
@@ -39,14 +41,18 @@ using namespace std;
 #include <explorer/moILSexplorer.h>
 
 #include <perturb/moMonOpPerturb.h>
+#include <perturb/moRestartPerturb.h>
+#include <perturb/moNeighborhoodPerturb.h>
 #include <acceptCrit/moAlwaysAcceptCrit.h>
+#include <acceptCrit/moBetterAcceptCrit.h>
 #include <continuator/moIterContinuator.h>
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
-typedef eoBit<unsigned> Indi;
+typedef eoBit<unsigned int> Indi;
 typedef moBitNeighbor<unsigned int> Neighbor ; // incremental evaluation
 typedef moOrderNeighborhood<Neighbor> Neighborhood ;
+typedef moRndWithoutReplNeighborhood<Neighbor> Neighborhood2 ;
 typedef moSimpleHCexplorer<Neighborhood> NHE;
 
 void main_function(int argc, char **argv)
@@ -107,6 +113,7 @@ void main_function(int argc, char **argv)
 
     FuncOneMax<Indi> eval(vecSize);
 
+    //FuncNK<Indi> eval(vecSize, 2);
 
     /* =========================================================
      *
@@ -148,6 +155,7 @@ void main_function(int argc, char **argv)
      * ========================================================= */
 
     Neighborhood neighborhood(vecSize);
+    Neighborhood2 neighborhood2(vecSize);
 
 
     /* =========================================================
@@ -171,13 +179,20 @@ void main_function(int argc, char **argv)
 
     eoBitMutation<Indi> monOp(1.0/vecSize);
 
-    moMonOpPerturb<Neighbor> perturb(monOp, eval);
+    //moMonOpPerturb<Neighbor> perturb(monOp, eval);
 
-    moAlwaysAcceptCrit<Neighbor> accept;
+    //moRestartPerturb<Neighbor> perturb(random, eval, 5);
+
+	moNeighborhoodPerturb<Neighbor, Neighborhood2> perturb(neighborhood2, fulleval);
+
+    moSolComparator<Indi> comp;
+
+    //moAlwaysAcceptCrit<Neighbor> accept;
+    moBetterAcceptCrit<Neighbor> accept(comp);
 
     moILSexplorer< NHE > explorerILS(hc, perturb, accept);
 
-    moIterContinuator<Neighborhood> continuatorILS(10);
+    moIterContinuator<Neighborhood> continuatorILS(100);
 
     moLocalSearch< moILSexplorer< moSimpleHCexplorer<Neighborhood> > >localSearch(explorerILS, continuatorILS, eval);
 

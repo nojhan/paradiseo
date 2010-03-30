@@ -31,4 +31,47 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #define _moRestartPerturb_h
 
 
+#include <eoEvalFunc.h>
+#include <eoInit.h>
+#include <perturb/moPerturbation.h>
+#include <memory/moCountMoveMemory.h>
+
+/**
+ * Restart Perturbation : restart when maximum number of iteration with no improvement is reached
+ */
+template< class Neighbor >
+class moRestartPerturb : public moPerturbation<Neighbor>, public moCountMoveMemory<Neighbor> {
+
+public:
+	typedef typename Neighbor::EOT EOT;
+
+	/**
+	 * Default Constructor
+	 * @param _init an initializer of solution
+	 * @param _fullEval a full evaluation function
+	 * @param _threshold maximum number of iteration with no improvement
+	 */
+	moRestartPerturb(eoInit<EOT>& _init, eoEvalFunc<EOT>& _fullEval, unsigned int _threshold):init(_init), fullEval(_fullEval), threshold(_threshold) {}
+
+	/**
+	 * Apply restart when necessary
+	 * @param _solution to restart
+	 * @return true
+	 */
+	bool operator()(EOT& _solution){
+		if((*this).getCounter()>= threshold){
+			init(_solution);
+			fullEval(_solution);
+			(*this).initCounter();
+		}
+		return true;
+	}
+
+private:
+	eoInit<EOT>& init;
+	eoEvalFunc<EOT>& fullEval;
+	unsigned int threshold;
+};
+
+
 #endif

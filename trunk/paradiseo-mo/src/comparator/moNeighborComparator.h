@@ -35,12 +35,8 @@
 #ifndef _moNeighborComparator_h
 #define _moNeighborComparator_h
 
-#include <EO.h>
-#include <eoFunctor.h>
-
 #include <neighborhood/moNeighbor.h>
 #include <comparator/moComparator.h>
-
 
 /**
  * Comparator of two neighbors

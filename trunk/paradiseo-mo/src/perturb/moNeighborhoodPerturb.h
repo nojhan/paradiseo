@@ -30,5 +30,79 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #ifndef _moNeighborhoodPerturb_h
 #define _moNeighborhoodPerturb_h
 
+#include <eval/moEval.h>
+#include <perturb/moPerturbation.h>
+
+/**
+ * Neighborhood Perturbation: explore the neighborhood to perturb the solution (the neighborhood could be different as the one used in the Local Search)
+ */
+template< class Neighbor, class OtherNH >
+class moNeighborhoodPerturb : public moPerturbation<Neighbor>{
+
+public:
+	typedef typename Neighbor::EOT EOT;
+	typedef typename OtherNH::Neighbor OtherN;
+
+	/**
+	 * Default Constructor
+	 * @param _otherNeighborhood a neighborhood
+	 * @param _eval an Evaluation Function
+	 */
+	moNeighborhoodPerturb(OtherNH& _otherNeighborhood, moEval<OtherN>& _eval): otherNeighborhood(_otherNeighborhood), eval(_eval){}
+
+	/**
+	 * Apply move on the solution
+	 * @param _solution the current solution
+	 * @return true
+	 */
+	virtual bool operator()(EOT& _solution){
+    	if(otherNeighborhood.hasNeighbor(_solution)){
+			eval(_solution, current);
+			current.move(_solution);
+			_solution.fitness(current.fitness());
+    	}
+    	return true;
+	}
+
+    /**
+     * Init the neighborhood
+     * @param _sol the current solution
+     */
+    virtual void init(EOT & _sol){
+    	if(otherNeighborhood.hasNeighbor(_sol))
+    		otherNeighborhood.init(_sol, current);
+    }
+
+    /**
+     * ReInit the neighborhood because a move was done
+     * @param _sol the current solution
+     * @param _neighbor unused neighbor (always empty)
+     */
+    virtual void add(EOT & _sol, Neighbor & _neighbor){
+    	(*this).init(_sol);
+    }
+
+    /**
+     * Explore another neighbor because no move was done
+     * @param _sol the current solution
+     * @param _neighbor unused neighbor (always empty)
+     */
+    virtual void update(EOT & _sol, Neighbor & _neighbor){
+    	if(otherNeighborhood.cont(_sol))
+    		otherNeighborhood.next(_sol, current);
+    	else
+        	(*this).init(_sol);
+    }
+
+    /**
+     * NOTHING TO DO
+     */
+    virtual void clearMemory(){}
+
+private:
+	OtherNH& otherNeighborhood;
+	moEval<OtherN>& eval;
+	OtherN current;
+};
 
 #endif

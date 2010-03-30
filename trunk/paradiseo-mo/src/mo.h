@@ -40,6 +40,7 @@
 #include <comparator/moComparator.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
+#include <comparator/moSolComparator.h>
 
 #include <continuator/moCheckpoint.h>
 #include <continuator/moContinuator.h>
@@ -86,6 +87,7 @@
 #include <memory/moMemory.h>
 #include <memory/moSolVectorTabuList.h>
 #include <memory/moTabuList.h>
+#include <memory/moCountMoveMemory.h>
 
 #include <neighborhood/moBackableNeighbor.h>
 #include <neighborhood/moBitNeighbor.h>
@@ -100,9 +102,12 @@
 
 #include <perturb/moPerturbation.h>
 #include <perturb/moMonOpPerturb.h>
+#include <perturb/moRestartPerturb.h>
+#include <perturb/moNeighborhoodPerturb.h>
 
 #include <acceptCrit/moAcceptanceCriterion.h>
 #include <acceptCrit/moAlwaysAcceptCrit.h>
+#include <acceptCrit/moBetterAcceptCrit.h>
 
 #include <coolingSchedule/moCoolingSchedule.h>
 #include <coolingSchedule/moSimpleCoolingSchedule.h>

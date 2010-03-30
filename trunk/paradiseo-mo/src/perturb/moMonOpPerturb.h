@@ -47,6 +47,7 @@ public:
 	/**
 	 * Default Constructor
 	 * @param _monOp an eoMonOp (pertubation operator)
+	 * @param _fullEval a full evaluation function
 	 */
 	moMonOpPerturb(eoMonOp<EOT>& _monOp, eoEvalFunc<EOT>& _fullEval):monOp(_monOp), fullEval(_fullEval){}
 

@@ -1,5 +1,5 @@
 /*
-<moBetterAcceptCrit.h>
+<moSolComparator.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -27,37 +27,46 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moBetterAcceptCrit_h
-#define _moBetterAcceptCrit_h
+#ifndef _moSolComparator_h
+#define _moSolComparator_h
 
-#include <acceptCrit/moAcceptanceCriterion.h>
-#include <memory/moDummyMemory.h>
-#include <comparator/moSolComparator.h>
+#include <comparator/moComparator.h>
 
 /**
- * Acceptance Criterion for extreme intensification : accept if the new solution is better than previous one
+ * Comparator of two solutions
  */
-template< class Neighbor >
-class moBetterAcceptCrit : public moAcceptanceCriterion<Neighbor>, public moDummyMemory<Neighbor>{
-
+template< class EOT >
+class moSolComparator : public moComparator<EOT, EOT>
+{
 public:
-	typedef typename Neighbor::EOT EOT;
 
-	moBetterAcceptCrit(moSolComparator<EOT>& _comparator):comparator(_comparator){}
+    /**
+     * Compare two solutions
+     * @param _sol1 the first solution
+     * @param _sol2 the second solution
+     * @return true if the solution2 is better than solution1
+     */
+    virtual bool operator()(const EOT& _sol1, const EOT& _sol2) {
+        return (_sol1.fitness() < _sol2.fitness());
+    }
 
-	/**
-	 * Accept if the new solution is better than previous one
-	 * @param _sol1 the previous solution
-	 * @param _sol2 the new solution after local search
-	 * @return true if the new solution is better than previous one
-	 */
-	bool operator()(EOT& _sol1, EOT& _sol2){
-		return comparator(_sol1, _sol2);
-	}
+    /**
+     * Compare two solutions
+     * @param _sol1 the first solution
+     * @param _sol2 the second solution
+     * @return true if the solution2 is equal to solution1
+     */
+    virtual bool equals(const EOT& _sol1, const EOT& _sol2) {
+        return (_sol1.fitness() == _sol2.fitness());
+    }
 
-private:
-	moSolComparator<EOT>& comparator;
-
+    /**
+     * Return the class id.
+     * @return the class name as a std::string
+     */
+    virtual std::string className() const {
+        return "moSolComparator";
+    }
 };
 
 #endif
