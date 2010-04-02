@@ -36,23 +36,20 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * A variable Neighborhood Search (VNS) in the random manner
  */
-template< class Neighbor >
-class moRndVariableNeighborhood : public moVariableNeighborhood<Neighbor>
+template< class EOT, class Fitness >
+class moRndVariableNeighborhood : public moVariableNeighborhood<EOT, Fitness>
 {
 public:
-    /**
-     * Define type of a solution corresponding to Neighbor
-     */
-    typedef typename Neighbor::EOT EOT;
+	typedef moNeighbor<EOT, Fitness> Neighbor;
 
-    using moVariableNeighborhood::currentNH;
-    using moVariableNeighborhood::neighborhoodVector;
+    using moVariableNeighborhood<EOT, Fitness>::currentNH;
+    using moVariableNeighborhood<EOT, Fitness>::neighborhoodVector;
 
     /**
      * Construction of at least one neighborhood
      * @param _firstNH first neighborhood in the vector
      */
-    moRndVariableNeighborhood(moNeighborhood<Neighbor>& _firstNH) : moVariableNeighborhood<Neighbor>(_firstNH) {
+    moRndVariableNeighborhood(moNeighborhood<Neighbor>& _firstNH) : moVariableNeighborhood<EOT, Fitness>(_firstNH) {
 		indexVector.push_back(0);
     }
 
