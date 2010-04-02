@@ -58,6 +58,7 @@ SET (TEST_LIST
 		t-moMetropolisHastingExplorer
 		t-moRandomNeutralWalkExplorer
 		t-moTSExplorer
+		t-moForwardVariableNeighborhood
 		)
 				
 FOREACH (test ${TEST_LIST})

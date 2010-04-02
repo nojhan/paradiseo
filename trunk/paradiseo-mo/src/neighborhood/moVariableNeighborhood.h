@@ -31,25 +31,25 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #define _moVariableNeighborhood_h
 
 #include <neighborhood/moNeighborhood.h>
+#include <neighborhood/moNeighbor.h>
+#include <neighborhood/moIndexNeighbor.h>
+#include <vector>
 
 /**
  * A vector of neighborhood for the Variable Neighborhood Search (VNS)
  */
-template< class Neighbor >
-class moVariableNeighborhood : public moNeighborhood<Neighbor>
+template< class EOT, class Fitness >
+class moVariableNeighborhood : public moNeighborhood<moNeighbor<EOT, Fitness> >
 {
 public:
-    /**
-     * Define type of a solution corresponding to Neighbor
-     */
-    typedef typename Neighbor::EOT EOT;
 
+	typedef moNeighbor<EOT, Fitness> Neighbor;
     /**
      * Construction of at least one neighborhood
      * @param _firstNH first neighborhood in the vector
      */
     moVariableNeighborhood(moNeighborhood<Neighbor>& _firstNH) {
-			neighborhoodVector.push_back(_firstNH);
+			neighborhoodVector.push_back(&_firstNH);
 			// the current neighborhood
 			currentNH = 0;
     }
@@ -58,7 +58,7 @@ public:
      * @return if the current neighborhood is random
      */
     virtual bool isRandom() {
-        return neighborhoodVector[currentNH].isRandom();
+        return neighborhoodVector[currentNH]->isRandom();
     }
 
     /**
@@ -67,7 +67,7 @@ public:
      * @return if _solution has a Neighbor in the current neighborhood
      */
     virtual bool hasNeighbor(EOT & _solution) {
-    	return neighborhoodVector[currentNH].hasNeighbor(_solution);
+    	return neighborhoodVector[currentNH]->hasNeighbor(_solution);
     }
 
     /**
@@ -76,7 +76,7 @@ public:
      * @param _current the first neighbor in the current neighborhood
      */
     virtual void init(EOT & _solution, Neighbor & _current) {
-    	neighborhoodVector[currentNH].init(_solution, _current);
+    	neighborhoodVector[currentNH]->init(_solution, _current);
     }
 
     /**
@@ -85,7 +85,7 @@ public:
      * @param _current the next neighbor in the current neighborhood
      */
     virtual void next(EOT & _solution, Neighbor & _current) {
-    	neighborhoodVector[currentNH].next(_solution, _current);
+    	neighborhoodVector[currentNH]->next(_solution, _current);
     }
 
     /**
@@ -94,7 +94,7 @@ public:
      * @return if there is still a neighbor not explored in the current neighborhood
      */
     virtual bool cont(EOT & _solution) {
-    	neighborhoodVector[currentNH].cont(_solution);
+    	return neighborhoodVector[currentNH]->cont(_solution);
     }
 
     /**
@@ -110,7 +110,7 @@ public:
      * @param _nh the neighborhood to add at the end of the vector of neighborhood
      */
     virtual void add(moNeighborhood<Neighbor>& _nh) {
-		neighborhoodVector.push_back(_nh);
+		neighborhoodVector.push_back(&_nh);
     }
 
     /**
@@ -129,9 +129,9 @@ public:
      */
     virtual void nextNeighborhood() = 0;
 
-private:
+protected:
     // the vector of neighborhoods
-    std::vector<moNeighborhood<Neighbor>& > neighborhoodVector;
+    std::vector<moNeighborhood<Neighbor>* > neighborhoodVector;
     // the index of the current neighborhood
     unsigned int currentNH;
 

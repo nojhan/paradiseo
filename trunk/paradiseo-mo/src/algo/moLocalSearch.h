@@ -50,11 +50,10 @@ public:
     typedef typename NeighborhoodExplorer::EOT EOT ;
     typedef typename NeighborhoodExplorer::Neighborhood Neighborhood ;
 
-
     /**
      * Constructor of a moLocalSearch needs a NeighborhooExplorer and a Continuator
      */
-    moLocalSearch(NeighborhoodExplorer& _searchExpl, moContinuator<Neighborhood> & _continuator, eoEvalFunc<EOT>& _fullEval) : searchExplorer(_searchExpl), continuator(_continuator), fullEval(_fullEval) { } ;
+    moLocalSearch(moNeighborhoodExplorer<Neighborhood>& _searchExpl, moContinuator<Neighborhood> & _continuator, eoEvalFunc<EOT>& _fullEval) : searchExplorer(_searchExpl), continuator(_continuator), fullEval(_fullEval) { } ;
 
     /**
      * Run the local search on a solution
@@ -99,7 +98,7 @@ public:
 
 private:
     // make the exploration of the neighborhood according to a local search heuristic
-    NeighborhoodExplorer& searchExplorer ;
+    moNeighborhoodExplorer<Neighborhood>& searchExplorer ;
 
     // external continuator
     moContinuator<Neighborhood>& continuator ;
