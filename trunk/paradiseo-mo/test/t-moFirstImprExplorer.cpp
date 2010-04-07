@@ -48,7 +48,7 @@ int main() {
     moNeighborComparator<bitNeighbor> ncomp;
     moSolNeighborComparator<bitNeighbor> sncomp;
 
-    moFirstImprExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp);
+    moFirstImprExplorer<bitNeighbor> test(nh, eval, ncomp, sncomp);
 
     //on verifie qu'on améliore peut continuer à explorer tant qu'on améliore la solution
 

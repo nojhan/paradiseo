@@ -47,7 +47,7 @@ int main() {
 
     //test avec la fonction d'eval classique
     //on verifie qu'on ne trouve pas de voisin de mm fitness
-    moRandomNeutralWalkExplorer<bitNeighborhood> test(nh, eval, sncomp, 3);
+    moRandomNeutralWalkExplorer<bitNeighbor> test(nh, eval, sncomp, 3);
 
     test.initParam(sol);
     test(sol);
@@ -56,7 +56,7 @@ int main() {
 
     //test avec une fonction d'eval bidon qui renvoie toujours la mm fitness
     //on peut donc verifier qu'on s'arette au bout des 3 itérations.
-    moRandomNeutralWalkExplorer<bitNeighborhood> test2(nh, eval2, sncomp, 3);
+    moRandomNeutralWalkExplorer<bitNeighbor> test2(nh, eval2, sncomp, 3);
 
     sol.fitness(2);
     test2.initParam(sol);

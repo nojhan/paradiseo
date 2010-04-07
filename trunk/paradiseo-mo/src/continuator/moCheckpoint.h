@@ -39,23 +39,23 @@
 #include <utils/eoMonitor.h>
 #include <continuator/moStatBase.h>
 #include <utils/eoUpdater.h>
+#include <neighborhood/moNeighborhood.h>
 
 /**
  * Continuator allowing to add others (continuators, stats, monitors or updaters)
  */
-template <class NH>
-class moCheckpoint : public moContinuator<NH> {
+template <class Neighbor>
+class moCheckpoint : public moContinuator<Neighbor> {
 public :
 
-    typedef NH Neighborhood ;
-    typedef typename Neighborhood::EOT EOT ;
+    typedef typename Neighbor::EOT EOT ;
 
     /**
      * Default constructor (moCheckpoint must have at least one continuator)
      * @param _cont a continuator
      * @param _interval frequency to compute statistical operators
      */
-    moCheckpoint(moContinuator<Neighborhood>& _cont, unsigned int _interval=1):interval(_interval), counter(0) {
+    moCheckpoint(moContinuator<Neighbor>& _cont, unsigned int _interval=1):interval(_interval), counter(0) {
         continuators.push_back(&_cont);
     }
 
@@ -63,7 +63,7 @@ public :
      * add a continuator to the checkpoint
      * @param _cont a continuator
      */
-    void add(moContinuator<Neighborhood>& _cont) {
+    void add(moContinuator<Neighbor>& _cont) {
         continuators.push_back(&_cont);
     }
 
@@ -153,7 +153,7 @@ public :
 
 private :
     /** continuators vector */
-    std::vector<moContinuator<Neighborhood>*> continuators;
+    std::vector<moContinuator<Neighbor>*> continuators;
     /** statistic operators vector */
     std::vector<moStatBase<EOT>*> stats;
     /** monitors vector */

@@ -48,7 +48,7 @@ int main() {
     moNeighborComparator<bitNeighbor> ncomp;
     moSolNeighborComparator<bitNeighbor> sncomp;
 
-    moSimpleHCneutralExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp);
+    moSimpleHCneutralExplorer<bitNeighbor> test(nh, eval, ncomp, sncomp);
 
     //test qu'on ameliore bien a chaque itération
     test.initParam(sol);

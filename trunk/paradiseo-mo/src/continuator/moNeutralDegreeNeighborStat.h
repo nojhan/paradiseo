@@ -43,11 +43,11 @@
  * which is the number of solutions in the neighborhood
  * with equals fitness
  */
-template< class Neighborhood >
-class moNeutralDegreeNeighborStat : public moStat<typename Neighborhood::EOT, unsigned>
+template< class Neighbor >
+class moNeutralDegreeNeighborStat : public moStat<typename Neighbor::EOT, unsigned>
 {
 public :
-    typedef typename Neighborhood::EOT EOT ;
+    typedef typename Neighbor::EOT EOT ;
     typedef typename EOT::Fitness Fitness ;
 
     using moStat< EOT, unsigned >::value;
@@ -56,7 +56,7 @@ public :
      * Default Constructor
      * @param _nhStat a neighborhoodStat
      */
-    moNeutralDegreeNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
+    moNeutralDegreeNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):
             moStat<EOT, unsigned>(0, "neutral degree"), nhStat(_nhStat) {}
 
     /**
@@ -76,7 +76,7 @@ public :
 
 private:
     /** moNeighborhoodStat */
-    moNeighborhoodStat<Neighborhood> & nhStat;
+    moNeighborhoodStat<Neighbor> & nhStat;
 };
 
 #endif

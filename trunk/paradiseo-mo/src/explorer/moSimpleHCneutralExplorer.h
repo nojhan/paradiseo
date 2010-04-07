@@ -38,21 +38,22 @@
 #include <explorer/moNeighborhoodExplorer.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
+#include <neighborhood/moNeighborhood.h>
 #include <vector>
 #include <utils/eoRNG.h>
 
 /**
  * Explorer for a simple neutral Hill-climbing
  */
-template< class Neighborhood >
-class moSimpleHCneutralExplorer : public moNeighborhoodExplorer<Neighborhood>
+template< class Neighbor >
+class moSimpleHCneutralExplorer : public moNeighborhoodExplorer<Neighbor>
 {
 public:
-    typedef typename Neighborhood::EOT EOT ;
-    typedef typename Neighborhood::Neighbor Neighbor ;
+    typedef typename Neighbor::EOT EOT ;
+    typedef moNeighborhood<Neighbor> Neighborhood ;
 
-    using moNeighborhoodExplorer<Neighborhood>::neighborhood;
-    using moNeighborhoodExplorer<Neighborhood>::eval;
+    using moNeighborhoodExplorer<Neighbor>::neighborhood;
+    using moNeighborhoodExplorer<Neighbor>::eval;
 
     /**
      * Constructor
@@ -65,7 +66,7 @@ public:
                               moEval<Neighbor>& _eval,
                               moNeighborComparator<Neighbor>& _neighborComparator,
                               moSolNeighborComparator<Neighbor>& _solNeighborComparator) :
-            moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval),
+            moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval),
             neighborComparator(_neighborComparator),
             solNeighborComparator(_solNeighborComparator) {
         isAccept = false;

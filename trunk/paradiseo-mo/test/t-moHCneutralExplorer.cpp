@@ -48,7 +48,7 @@ int main() {
     moNeighborComparator<bitNeighbor> ncomp;
     moSolNeighborComparator<bitNeighbor> sncomp;
 
-    moHCneutralExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp,3);
+    moHCneutralExplorer<bitNeighbor> test(nh, eval, ncomp, sncomp,3);
 
     //on verifie qu'on ameliore bien la solution et que l'exploration dure 3 itérations
 

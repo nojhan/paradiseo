@@ -37,6 +37,7 @@
 
 #include <explorer/moNeighborhoodExplorer.h>
 #include <comparator/moSolNeighborComparator.h>
+#include <neighborhood/moNeighborhood.h>
 
 /**
  * Explorer for a random neutral walk
@@ -44,15 +45,15 @@
  * To sample the neutral networks by random walk, there is no memory
  * neighborhood must be explored in random order
  */
-template< class Neighborhood >
-class moRandomNeutralWalkExplorer : public moNeighborhoodExplorer<Neighborhood>
+template< class Neighbor >
+class moRandomNeutralWalkExplorer : public moNeighborhoodExplorer<Neighbor>
 {
 public:
-    typedef typename Neighborhood::EOT EOT ;
-    typedef typename Neighborhood::Neighbor Neighbor ;
+    typedef typename Neighbor::EOT EOT;
+    typedef moNeighborhood<Neighbor> Neighborhood;
 
-    using moNeighborhoodExplorer<Neighborhood>::neighborhood;
-    using moNeighborhoodExplorer<Neighborhood>::eval;
+    using moNeighborhoodExplorer<Neighbor>::neighborhood;
+    using moNeighborhoodExplorer<Neighbor>::eval;
 
     /**
      * Constructor
@@ -64,7 +65,7 @@ public:
     moRandomNeutralWalkExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval,
                                 moSolNeighborComparator<Neighbor>& _solNeighborComparator,
                                 unsigned _nbStep):
-            moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval),
+            moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval),
             solNeighborComparator(_solNeighborComparator),
             nbStep(_nbStep) {
         isAccept = false;

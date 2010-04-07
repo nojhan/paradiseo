@@ -46,7 +46,7 @@ int main() {
     moNeighborComparator<bitNeighbor> ncomp;
     moSolNeighborComparator<bitNeighbor> sncomp;
 
-    moMetropolisHastingExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp, 3);
+    moMetropolisHastingExplorer<bitNeighbor> test(nh, eval, ncomp, sncomp, 3);
 
     //test de l'acceptation d'un voisin améliorant
     test.initParam(sol);

@@ -55,8 +55,8 @@ int main() {
     moSolVectorTabuList<bitNeighbor> tabuList(4,0);
     moBestImprAspiration<bitNeighbor> aspir;
 
-    moTSExplorer<bitNeighborhood> test(nh, eval, ncomp, sncomp, tabuList, intens, diver, aspir);
-    moTSExplorer<bitNeighborhood> test2(emptyNH, eval, ncomp, sncomp, tabuList, intens, diver, aspir);
+    moTSExplorer<bitNeighbor> test(nh, eval, ncomp, sncomp, tabuList, intens, diver, aspir);
+    moTSExplorer<bitNeighbor> test2(emptyNH, eval, ncomp, sncomp, tabuList, intens, diver, aspir);
 
     //test d'un voisinage vide
     test2.initParam(sol);
@@ -130,7 +130,7 @@ int main() {
     bitNeighborhood nh2(2);
     evalOneMax eval2(2);
 
-    moTSExplorer<bitNeighborhood> test3(nh2, eval2, ncomp, sncomp, tabuList, intens, diver, aspir);
+    moTSExplorer<bitNeighbor> test3(nh2, eval2, ncomp, sncomp, tabuList, intens, diver, aspir);
 
     test3.initParam(sol2);
     test3(sol2);

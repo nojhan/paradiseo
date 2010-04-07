@@ -164,7 +164,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moSimpleHCexplorer<Neighborhood> explorer(neighborhood, fulleval, comparator, solComparator);
+    moSimpleHCexplorer<Neighbor> explorer(neighborhood, fulleval, comparator, solComparator);
 
 
     /* =========================================================
@@ -173,28 +173,28 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moTrueContinuator<Neighborhood> continuator;//always continue
+    moTrueContinuator<Neighbor> continuator;//always continue
 
-    moLocalSearch< NHE > hc(explorer, continuator, eval);
+    moLocalSearch< Neighbor > hc(explorer, continuator, eval);
 
     eoBitMutation<Indi> monOp(1.0/vecSize);
 
-    //moMonOpPerturb<Neighbor> perturb(monOp, eval);
+    moMonOpPerturb<Neighbor> perturb(monOp, eval);
 
     //moRestartPerturb<Neighbor> perturb(random, eval, 5);
 
-	moNeighborhoodPerturb<Neighbor, Neighborhood2> perturb(neighborhood2, fulleval);
+	//moNeighborhoodPerturb<Neighbor, Neighborhood2> perturb(neighborhood2, fulleval);
 
     moSolComparator<Indi> comp;
 
     //moAlwaysAcceptCrit<Neighbor> accept;
     moBetterAcceptCrit<Neighbor> accept(comp);
 
-    moILSexplorer< NHE > explorerILS(hc, perturb, accept);
+    moILSexplorer< Neighbor > explorerILS(hc, perturb, accept);
 
-    moIterContinuator<Neighborhood> continuatorILS(100);
+    moIterContinuator<Neighbor> continuatorILS(100);
 
-    moLocalSearch< moILSexplorer< moSimpleHCexplorer<Neighborhood> > >localSearch(explorerILS, continuatorILS, eval);
+    moLocalSearch<Neighbor>localSearch(explorerILS, continuatorILS, eval);
 
 
     /* =========================================================

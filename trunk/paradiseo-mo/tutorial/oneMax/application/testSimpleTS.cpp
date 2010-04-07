@@ -155,7 +155,7 @@ void main_function(int argc, char **argv)
     moDummyIntensification<Neighbor> inten;
     moDummyDiversification<Neighbor> div;
     moBestImprAspiration<Neighbor> asp;
-    moTSExplorer<Neighborhood> explorer(neighborhood, eval, comparator, solComparator, tl, inten, div, asp);
+    moTSExplorer<Neighbor> explorer(neighborhood, eval, comparator, solComparator, tl, inten, div, asp);
 
 
     /* =========================================================
@@ -164,9 +164,9 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moTrueContinuator<Neighborhood> continuator;//always continue
+    moTrueContinuator<Neighbor> continuator;//always continue
 
-    moLocalSearch< moTSExplorer<Neighborhood> > localSearch(explorer, continuator, fulleval);
+    moLocalSearch<Neighbor> localSearch(explorer, continuator, fulleval);
 
     /* =========================================================
      *

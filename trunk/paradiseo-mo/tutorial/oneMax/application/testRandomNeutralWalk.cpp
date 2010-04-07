@@ -171,7 +171,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moRandomNeutralWalkExplorer<Neighborhood> explorer(neighborhood, nhEval, solComparator, nbStep);
+    moRandomNeutralWalkExplorer<Neighbor> explorer(neighborhood, nhEval, solComparator, nbStep);
 
 
     /* =========================================================
@@ -193,9 +193,9 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moTrueContinuator<Neighborhood> continuator;//always continue
+    moTrueContinuator<Neighbor> continuator;//always continue
 
-    moCheckpoint<Neighborhood> checkpoint(continuator);
+    moCheckpoint<Neighbor> checkpoint(continuator);
 
     moFitnessStat<Indi, unsigned> fStat;
 
@@ -203,15 +203,15 @@ void main_function(int argc, char **argv)
     moDistanceStat<Indi, unsigned> distStat(distance, solution);  // distance from the intial solution
 
     moOrderNeighborhood<Neighbor> nh(vecSize);
-    moNeighborhoodStat< moOrderNeighborhood<Neighbor> > neighborhoodStat(nh, nhEval, comparator, solComparator);
-    moMinNeighborStat< moOrderNeighborhood<Neighbor> > minStat(neighborhoodStat);
-    moSecondMomentNeighborStat< moOrderNeighborhood<Neighbor> > secondMomentStat(neighborhoodStat);
-    moMaxNeighborStat< moOrderNeighborhood<Neighbor> > maxStat(neighborhoodStat);
+    moNeighborhoodStat< Neighbor > neighborhoodStat(nh, nhEval, comparator, solComparator);
+    moMinNeighborStat< Neighbor > minStat(neighborhoodStat);
+    moSecondMomentNeighborStat< Neighbor > secondMomentStat(neighborhoodStat);
+    moMaxNeighborStat< Neighbor > maxStat(neighborhoodStat);
 
-    moNbSupNeighborStat< moOrderNeighborhood<Neighbor> > nbSupStat(neighborhoodStat);
-    moNbInfNeighborStat< moOrderNeighborhood<Neighbor> > nbInfStat(neighborhoodStat);
-    moNeutralDegreeNeighborStat< moOrderNeighborhood<Neighbor> > ndStat(neighborhoodStat);
-    moSizeNeighborStat< moOrderNeighborhood<Neighbor> > sizeStat(neighborhoodStat);
+    moNbSupNeighborStat< Neighbor > nbSupStat(neighborhoodStat);
+    moNbInfNeighborStat< Neighbor > nbInfStat(neighborhoodStat);
+    moNeutralDegreeNeighborStat< Neighbor > ndStat(neighborhoodStat);
+    moSizeNeighborStat< Neighbor > sizeStat(neighborhoodStat);
 
     eoValueParam<unsigned int> genCounter(-1,"Gen");
     eoIncrementor<unsigned int> increm(genCounter.value());
@@ -248,7 +248,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moLocalSearch< moRandomNeutralWalkExplorer<Neighborhood> > localSearch(explorer, checkpoint, eval);
+    moLocalSearch<Neighbor> localSearch(explorer, checkpoint, eval);
 
     /* =========================================================
      *

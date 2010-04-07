@@ -40,6 +40,7 @@
 #include <explorer/moNeighborhoodExplorer.h>
 #include <comparator/moSolNeighborComparator.h>
 #include <coolingSchedule/moCoolingSchedule.h>
+#include <neighborhood/moNeighborhood.h>
 
 #include <utils/eoRNG.h>
 
@@ -49,15 +50,15 @@
  * Fitness must be > 0
  * 
  */
-template< class Neighborhood >
-class moSAexplorer : public moNeighborhoodExplorer<Neighborhood>
+template< class Neighbor >
+class moSAexplorer : public moNeighborhoodExplorer<Neighbor>
 {
 public:
-    typedef typename Neighborhood::EOT EOT ;
-    typedef typename Neighborhood::Neighbor Neighbor ;
+    typedef typename Neighbor::EOT EOT ;
+    typedef moNeighborhood<Neighbor> Neighborhood ;
 
-    using moNeighborhoodExplorer<Neighborhood>::neighborhood;
-    using moNeighborhoodExplorer<Neighborhood>::eval;
+    using moNeighborhoodExplorer<Neighbor>::neighborhood;
+    using moNeighborhoodExplorer<Neighbor>::eval;
 
     /**
      * Constructor
@@ -67,7 +68,7 @@ public:
      * @param _solNeighborComparator a solution vs neighbor comparator
      * @param _nbStep maximum number of step to do
      */
-  moSAexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moSolNeighborComparator<Neighbor>& _solNeighborComparator, moCoolingSchedule<EOT>& _coolingSchedule) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), solNeighborComparator(_solNeighborComparator), coolingSchedule(_coolingSchedule) {
+  moSAexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moSolNeighborComparator<Neighbor>& _solNeighborComparator, moCoolingSchedule<EOT>& _coolingSchedule) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), solNeighborComparator(_solNeighborComparator), coolingSchedule(_coolingSchedule) {
         isAccept = false;
 
         if (!neighborhood.isRandom()) {

@@ -158,7 +158,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moSAexplorer<Neighborhood> explorer(neighborhood, fulleval, solComparator, coolingSchedule);
+    moSAexplorer<Neighbor> explorer(neighborhood, fulleval, solComparator, coolingSchedule);
 
     /* =========================================================
      *
@@ -166,9 +166,9 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moTrueContinuator<Neighborhood> continuator;//always continue
+    moTrueContinuator<Neighbor> continuator;//always continue
 
-    moLocalSearch< moSAexplorer<Neighborhood> > localSearch(explorer, continuator, eval);
+    moLocalSearch<Neighbor> localSearch(explorer, continuator, eval);
 
     /* =========================================================
      *

@@ -41,11 +41,11 @@
 /**
  * From moNeighborhoodStat, to compute the average and the standard deviation of fitness in the neighborhood
  */
-template< class Neighborhood >
-class moSecondMomentNeighborStat : public moStat<typename Neighborhood::EOT, std::pair<double, double> >
+template< class Neighbor >
+class moSecondMomentNeighborStat : public moStat<typename Neighbor::EOT, std::pair<double, double> >
 {
 public :
-    typedef typename Neighborhood::EOT EOT ;
+    typedef typename Neighbor::EOT EOT ;
     typedef typename EOT::Fitness Fitness ;
 
     using moStat< EOT, std::pair<double, double> >::value;
@@ -54,7 +54,7 @@ public :
      * Default Constructor
      * @param _nhStat a neighborhoodStat
      */
-    moSecondMomentNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
+    moSecondMomentNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):
             moStat<EOT, std::pair<double, double> >(std::make_pair(0.0,0.0), "average and stdev"), nhStat(_nhStat) {}
 
     /**
@@ -75,7 +75,7 @@ public :
 
 private:
     /** moNeighborhoodStat */
-    moNeighborhoodStat<Neighborhood> & nhStat;
+    moNeighborhoodStat<Neighbor> & nhStat;
 };
 
 #endif

@@ -47,14 +47,13 @@
 /**
  * Explore the neighborhood
  */
-template< class NH >
-class moNeighborhoodExplorer : public eoUF<typename NH::EOT&, void>
+template< class Neighbor >
+class moNeighborhoodExplorer : public eoUF<typename Neighbor::EOT&, void>
 {
 public:
-    typedef NH Neighborhood ;
-    typedef typename Neighborhood::EOT EOT ;
+    typedef moNeighborhood<Neighbor> Neighborhood;
+    typedef typename Neighbor::EOT EOT;
     typedef typename EOT::Fitness Fitness ;
-    typedef typename Neighborhood::Neighbor Neighbor ;
 
     moNeighborhoodExplorer():neighborhood(dummyNeighborhood), eval(dummyEval), isMoved(false) {}
 

@@ -56,7 +56,7 @@ int main() {
     moSolNeighborComparator<moDummyNeighborTest> solNeighborComp;
 
     //verif constructor
-    moSimpleHCexplorer<moDummyNeighborhoodTest> test(nh, fulleval, comp, solNeighborComp);
+    moSimpleHCexplorer<moDummyNeighborTest> test(nh, fulleval, comp, solNeighborComp);
 
     //verif operator() et accept: le neigorhood est construit pour qu'on tombe dans les 3 cas suivants:
     //hasNeighbor() retourne faux a l'entrée de l'operator() donc on doit pas continuer

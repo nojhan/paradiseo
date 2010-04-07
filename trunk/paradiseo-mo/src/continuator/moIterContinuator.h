@@ -31,15 +31,15 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #define _moIterContinuator_h
 
 #include <continuator/moContinuator.h>
-
+#include <neighborhood/moNeighborhood.h>
 /**
  * Continue until a maximum fixed number of iterations is reached
  */
-template< class NH >
-class moIterContinuator : public moContinuator<NH>
+template< class Neighbor >
+class moIterContinuator : public moContinuator<Neighbor>
 {
 public:
-    typedef typename NH::EOT EOT ;
+    typedef typename Neighbor::EOT EOT ;
 
 	/**
 	 * @param _maxIter number maximum of iterations

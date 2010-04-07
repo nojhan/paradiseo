@@ -153,7 +153,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moHCneutralExplorer<Neighborhood> explorer(neighborhood, fulleval, comparator, solComparator, nbStep);
+    moHCneutralExplorer<Neighbor> explorer(neighborhood, fulleval, comparator, solComparator, nbStep);
 
 
     /* =========================================================
@@ -162,9 +162,9 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moTrueContinuator<Neighborhood> continuator;//always continue
+    moTrueContinuator<Neighbor> continuator;//always continue
 
-    moLocalSearch< moHCneutralExplorer<Neighborhood> > localSearch(explorer, continuator, eval);
+    moLocalSearch<Neighbor> localSearch(explorer, continuator, eval);
 
     /* =========================================================
      *

@@ -42,17 +42,17 @@
 #include <memory/moTabuList.h>
 #include <memory/moIntensification.h>
 #include <memory/moDiversification.h>
-
+#include <neighborhood/moNeighborhood.h>
 
 /**
  * Explorer for a Tabu Search
  */
-template< class Neighborhood >
-class moTSExplorer : public moNeighborhoodExplorer<Neighborhood>
+template< class Neighbor >
+class moTSExplorer : public moNeighborhoodExplorer<Neighbor>
 {
 public:
-    typedef typename Neighborhood::EOT EOT ;
-    typedef typename Neighborhood::Neighbor Neighbor ;
+    typedef typename Neighbor::EOT EOT ;
+    typedef moNeighborhood<Neighbor> Neighborhood ;
 
     /**
      * Constructor
@@ -74,7 +74,7 @@ public:
                  moDiversification<Neighbor> & _diversification,
                  moAspiration<Neighbor> & _aspiration
                 ) :
-            moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator),
+            moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator),
             tabuList(_tabuList), intensification(_intensification), diversification(_diversification), aspiration(_aspiration)
     {
         isAccept = false;
@@ -226,8 +226,8 @@ public:
 
 protected:
 
-    using moNeighborhoodExplorer<Neighborhood>::neighborhood;
-    using moNeighborhoodExplorer<Neighborhood>::eval;
+    using moNeighborhoodExplorer<Neighbor>::neighborhood;
+    using moNeighborhoodExplorer<Neighbor>::eval;
 
     // comparator between solution and neighbor or between neighbors
     moNeighborComparator<Neighbor>& neighborComparator;

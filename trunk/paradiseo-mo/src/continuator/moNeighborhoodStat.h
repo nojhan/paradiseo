@@ -40,17 +40,18 @@
 #include <explorer/moNeighborhoodExplorer.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
+#include <neighborhood/moNeighborhood.h>
 
 /**
  * All possible statitic on the neighborhood fitness
  * to combine with other specific statistic to print them
  */
-template< class Neighborhood >
-class moNeighborhoodStat : public moStat<typename Neighborhood::EOT, bool>
+template< class Neighbor >
+class moNeighborhoodStat : public moStat<typename Neighbor::EOT, bool>
 {
 public :
-    typedef typename Neighborhood::EOT EOT ;
-    typedef typename Neighborhood::Neighbor Neighbor ;
+    typedef typename Neighbor::EOT EOT ;
+    typedef moNeighborhood<Neighbor> Neighborhood ;
     typedef typename EOT::Fitness Fitness ;
 
     using moStat< EOT, bool >::value;

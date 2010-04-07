@@ -149,7 +149,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moRandomWalkExplorer<Neighborhood> explorer(neighborhood, nhEval, nbStep);
+    moRandomWalkExplorer<Neighbor> explorer(neighborhood, nhEval, nbStep);
 
 
     /* =========================================================
@@ -158,9 +158,9 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moTrueContinuator<Neighborhood> continuator;//always continue
+    moTrueContinuator<Neighbor> continuator;//always continue
 
-    moCheckpoint<Neighborhood> checkpoint(continuator);
+    moCheckpoint<Neighbor> checkpoint(continuator);
 
     moFitnessStat<Indi, unsigned> fStat;
     eoHammingDistance<Indi> distance;
@@ -208,7 +208,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moLocalSearch< moRandomWalkExplorer<Neighborhood> > localSearch(explorer, checkpoint, eval);
+    moLocalSearch<Neighbor> localSearch(explorer, checkpoint, eval);
 
     /* =========================================================
      *

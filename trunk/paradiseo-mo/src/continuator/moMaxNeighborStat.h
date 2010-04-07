@@ -37,15 +37,15 @@
 
 #include <continuator/moStat.h>
 #include <continuator/moNeighborhoodStat.h>
-
+#include <neighborhood/moNeighborhood.h>
 /**
  * From moNeighborhoodStat, to compute the max fitness in the neighborhood
  */
-template< class Neighborhood >
-class moMaxNeighborStat : public moStat<typename Neighborhood::EOT, typename Neighborhood::EOT::Fitness>
+template< class Neighbor >
+class moMaxNeighborStat : public moStat<typename Neighbor::EOT, typename Neighbor::EOT::Fitness>
 {
 public :
-    typedef typename Neighborhood::EOT EOT ;
+    typedef typename Neighbor::EOT EOT ;
     typedef typename EOT::Fitness Fitness ;
 
     using moStat< EOT, Fitness >::value;
@@ -54,7 +54,7 @@ public :
      * Default Constructor
      * @param _nhStat a neighborhoodStat
      */
-    moMaxNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
+    moMaxNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):
             moStat<EOT, Fitness>(Fitness(), "min"), nhStat(_nhStat) {}
 
     /**
@@ -74,7 +74,7 @@ public :
 
 private:
     /** moNeighborhoodStat */
-    moNeighborhoodStat<Neighborhood> & nhStat;
+    moNeighborhoodStat<Neighbor> & nhStat;
 };
 
 #endif

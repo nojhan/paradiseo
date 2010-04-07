@@ -36,16 +36,17 @@
 #define _moContinuator_h
 
 #include <eoFunctor.h>
+#include <neighborhood/moNeighborhood.h>
 
 /**
  * To make specific continuator from a solution
  */
-template< class NH >
-class moContinuator : public eoUF<typename NH::EOT &, bool>
+template< class Neighbor >
+class moContinuator : public eoUF<typename Neighbor::EOT &, bool>
 {
 public:
-    typedef NH Neighborhood ;
-    typedef typename Neighborhood::EOT EOT ;
+
+    typedef typename Neighbor::EOT EOT ;
 
     /**
      * Init Continuator parameters

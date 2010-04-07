@@ -52,7 +52,7 @@
 #include <utils/eoUpdater.h>
 
 typedef eoBit<eoMinimizingFitness> bitVector;
-typedef moBitNeighbor<eoMinimizingFitness> bitNeighbor ;
+typedef moBitNeighbor<eoMinimizingFitness> bitNeighbor;
 
 class moDummyRndNeighborhood: public moOrderNeighborhood<bitNeighbor>/*, public moRndNeighborhood<bitNeighbor>*/ {
 public:

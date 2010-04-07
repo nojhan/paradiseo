@@ -38,19 +38,20 @@
 #include <explorer/moNeighborhoodExplorer.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
+#include <neighborhood/moNeighborhood.h>
 
 /**
  * Explorer for a random walk explorer
  */
-template< class Neighborhood >
-class moRandomWalkExplorer : public moNeighborhoodExplorer<Neighborhood>
+template< class Neighbor >
+class moRandomWalkExplorer : public moNeighborhoodExplorer<Neighbor>
 {
 public:
-    typedef typename Neighborhood::EOT EOT ;
-    typedef typename Neighborhood::Neighbor Neighbor ;
+    typedef typename Neighbor::EOT EOT ;
+    typedef moNeighborhood<Neighbor> Neighborhood ;
 
-    using moNeighborhoodExplorer<Neighborhood>::neighborhood;
-    using moNeighborhoodExplorer<Neighborhood>::eval;
+    using moNeighborhoodExplorer<Neighbor>::neighborhood;
+    using moNeighborhoodExplorer<Neighbor>::eval;
 
     /**
      * Constructor
@@ -58,7 +59,7 @@ public:
      * @param _eval the evaluation function
      * @param _nbStep maximum number of step to do
      */
-    moRandomWalkExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, unsigned _nbStep) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), nbStep(_nbStep) {
+    moRandomWalkExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, unsigned _nbStep) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), nbStep(_nbStep) {
         isAccept = false;
         current=new Neighbor();
         // number of step done

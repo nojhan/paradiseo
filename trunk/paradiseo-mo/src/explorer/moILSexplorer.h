@@ -47,13 +47,12 @@
 /**
  * Explorer for an Iterated Local Search
  */
-template< class NHE >
-class moILSexplorer : public moNeighborhoodExplorer<moDummyNeighborhood<moDummyNeighbor<typename NHE::Neighborhood::EOT, typename NHE::Neighborhood::EOT::Fitness> > >
+template< class Neighbor >
+class moILSexplorer : public moNeighborhoodExplorer< moDummyNeighbor<typename Neighbor::EOT, typename Neighbor::EOT::Fitness> >
 {
 public:
-    typedef typename NHE::Neighborhood Neighborhood ;
-    typedef typename Neighborhood::EOT EOT ;
-    typedef typename Neighborhood::Neighbor Neighbor ;
+    typedef moNeighborhood<Neighbor> Neighborhood ;
+    typedef typename Neighbor::EOT EOT ;
 	typedef moDummyNeighbor<EOT,typename EOT::Fitness> dummyNeighbor;
 	typedef moDummyNeighborhood<dummyNeighbor> dummyNeighborhood;
 
@@ -63,7 +62,7 @@ public:
 	 * @param _perturb a perturbation operator
 	 * @param _acceptCrit a acceptance criteria
 	 */
-    moILSexplorer(moLocalSearch<NHE>& _ls, moPerturbation<Neighbor>& _perturb, moAcceptanceCriterion<Neighbor>& _acceptCrit) : moNeighborhoodExplorer<dummyNeighborhood>(), ls(_ls), perturb(_perturb), acceptCrit(_acceptCrit){
+    moILSexplorer(moLocalSearch<Neighbor>& _ls, moPerturbation<Neighbor>& _perturb, moAcceptanceCriterion<Neighbor>& _acceptCrit) : moNeighborhoodExplorer<dummyNeighbor>(), ls(_ls), perturb(_perturb), acceptCrit(_acceptCrit){
     	firstIteration=true;
     }
 
@@ -161,7 +160,7 @@ private:
     //Usefull to use the momory of tabuSearch
 	Neighbor emptyNeighbor;
     EOT current;
-    moLocalSearch<NHE>& ls;
+    moLocalSearch<Neighbor>& ls;
     moPerturbation<Neighbor> & perturb;
     moAcceptanceCriterion<Neighbor>& acceptCrit;
 

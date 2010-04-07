@@ -37,18 +37,18 @@
 
 #include <continuator/moStat.h>
 #include <continuator/moNeighborhoodStat.h>
-
+#include <neighborhood/moNeighborhood.h>
 /**
  *
  * From moNeighborhoodStat, to compute the number of solutions in the neighborhood
  * with higher fitness than the current solution
  *
 */
-template< class Neighborhood >
-class moNbSupNeighborStat : public moStat<typename Neighborhood::EOT, unsigned>
+template< class Neighbor >
+class moNbSupNeighborStat : public moStat<typename Neighbor::EOT, unsigned>
 {
 public :
-    typedef typename Neighborhood::EOT EOT ;
+    typedef typename Neighbor::EOT EOT ;
     typedef typename EOT::Fitness Fitness ;
 
     using moStat< EOT, unsigned >::value;
@@ -57,7 +57,7 @@ public :
      * Default Constructor
      * @param _nhStat a neighborhoodStat
      */
-    moNbSupNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
+    moNbSupNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):
             moStat<EOT, unsigned>(0, "nb sup"), nhStat(_nhStat) {}
 
     /**
@@ -77,7 +77,7 @@ public :
 
 private:
     /** moNeighborhoodStat */
-    moNeighborhoodStat<Neighborhood> & nhStat;
+    moNeighborhoodStat<Neighbor> & nhStat;
 };
 
 #endif

@@ -149,7 +149,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moSimpleHCexplorer<Neighborhood> explorer(neighborhood, fulleval, comparator, solComparator);
+    moSimpleHCexplorer<Neighbor> explorer(neighborhood, fulleval, comparator, solComparator);
 
 
     /* =========================================================
@@ -158,9 +158,9 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moTrueContinuator<Neighborhood> continuator;//always continue
+    moTrueContinuator<Neighbor> continuator;//always continue
 
-    moLocalSearch< moSimpleHCexplorer<Neighborhood> > localSearch(explorer, continuator, eval);
+    moLocalSearch< Neighbor > localSearch(explorer, continuator, eval);
 
     /* =========================================================
      *

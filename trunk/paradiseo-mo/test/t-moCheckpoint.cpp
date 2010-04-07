@@ -59,10 +59,10 @@ int main() {
     updater1 up2(b);
     monitor1 mon1(c);
     monitor2 mon2(d);
-    moTrueContinuator< bitNeighborhood > cont;
+    moTrueContinuator< bitNeighbor > cont;
 
-    moCheckpoint< bitNeighborhood> test1(cont);
-    moCheckpoint< bitNeighborhood> test2(cont, 3);
+    moCheckpoint< bitNeighbor > test1(cont);
+    moCheckpoint< bitNeighbor > test2(cont, 3);
 
     test1.add(up1);
     test1.add(up2);

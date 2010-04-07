@@ -42,11 +42,11 @@
  * From moNeighborhoodStat, to compute the number of solutions in the neighborhood
  *
  */
-template< class Neighborhood >
-class moSizeNeighborStat : public moStat<typename Neighborhood::EOT, unsigned>
+template< class Neighbor >
+class moSizeNeighborStat : public moStat<typename Neighbor::EOT, unsigned>
 {
 public :
-    typedef typename Neighborhood::EOT EOT ;
+    typedef typename Neighbor::EOT EOT ;
     typedef typename EOT::Fitness Fitness ;
 
     using moStat< EOT, unsigned >::value;
@@ -55,7 +55,7 @@ public :
      * Default Constructor
      * @param _nhStat a neighborhoodStat
      */
-    moSizeNeighborStat(moNeighborhoodStat<Neighborhood> & _nhStat):
+    moSizeNeighborStat(moNeighborhoodStat<Neighbor> & _nhStat):
             moStat<EOT, unsigned>(0, "size"), nhStat(_nhStat) {}
 
     /**
@@ -75,7 +75,7 @@ public :
 
 private:
     /** moNeighborhoodStat */
-    moNeighborhoodStat<Neighborhood> & nhStat;
+    moNeighborhoodStat<Neighbor> & nhStat;
 };
 
 #endif

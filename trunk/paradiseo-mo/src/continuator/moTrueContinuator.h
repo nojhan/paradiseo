@@ -40,11 +40,11 @@
 /**
  * Continuator always return True
  */
-template< class NH >
-class moTrueContinuator : public moContinuator<NH>
+template< class Neighbor >
+class moTrueContinuator : public moContinuator<Neighbor>
 {
 public:
-    typedef typename NH::EOT EOT ;
+    typedef typename Neighbor::EOT EOT ;
 
     // empty constructor
     moTrueContinuator() {} ;

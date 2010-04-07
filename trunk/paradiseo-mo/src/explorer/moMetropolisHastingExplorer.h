@@ -40,6 +40,7 @@
 #include <explorer/moNeighborhoodExplorer.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
+#include <neighborhood/moNeighborhood.h>
 
 #include <utils/eoRNG.h>
 
@@ -48,15 +49,15 @@
  * Only the symetric case is considered when Q(x,y) = Q(y,x)
  * Fitness must be > 0
  */
-template< class Neighborhood >
-class moMetropolisHastingExplorer : public moNeighborhoodExplorer<Neighborhood>
+template< class Neighbor >
+class moMetropolisHastingExplorer : public moNeighborhoodExplorer<Neighbor>
 {
 public:
-    typedef typename Neighborhood::EOT EOT ;
-    typedef typename Neighborhood::Neighbor Neighbor ;
+    typedef typename Neighbor::EOT EOT ;
+    typedef moNeighborhood<Neighbor> Neighborhood ;
 
-    using moNeighborhoodExplorer<Neighborhood>::neighborhood;
-    using moNeighborhoodExplorer<Neighborhood>::eval;
+    using moNeighborhoodExplorer<Neighbor>::neighborhood;
+    using moNeighborhoodExplorer<Neighbor>::eval;
 
     /**
      * Constructor
@@ -66,7 +67,7 @@ public:
      * @param _solNeighborComparator a solution vs neighbor comparator
      * @param _nbStep maximum number of step to do
      */
-    moMetropolisHastingExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator, unsigned int _nbStep) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator), nbStep(_nbStep) {
+    moMetropolisHastingExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator, unsigned int _nbStep) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator), nbStep(_nbStep) {
         isAccept = false;
         current=new Neighbor();
         if (!neighborhood.isRandom()) {

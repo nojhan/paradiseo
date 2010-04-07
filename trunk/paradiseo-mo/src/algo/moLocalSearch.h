@@ -37,23 +37,24 @@
 
 #include <explorer/moNeighborhoodExplorer.h>
 #include <continuator/moContinuator.h>
+#include <neighborhood/moNeighborhood.h>
 #include <eoEvalFunc.h>
 
 /**
  * the main algorithm of the local search
  */
-template<class NHE>
-class moLocalSearch: public eoMonOp<typename NHE::EOT>
+template<class Neighbor>
+class moLocalSearch: public eoMonOp<typename Neighbor::EOT>
 {
 public:
-    typedef NHE NeighborhoodExplorer ;
-    typedef typename NeighborhoodExplorer::EOT EOT ;
-    typedef typename NeighborhoodExplorer::Neighborhood Neighborhood ;
+	typedef moNeighborhood<Neighbor> Neighborhood;
+	typedef moNeighborhoodExplorer<Neighbor> NeighborhoodExplorer;
+    typedef typename Neighbor::EOT EOT ;
 
     /**
      * Constructor of a moLocalSearch needs a NeighborhooExplorer and a Continuator
      */
-    moLocalSearch(moNeighborhoodExplorer<Neighborhood>& _searchExpl, moContinuator<Neighborhood> & _continuator, eoEvalFunc<EOT>& _fullEval) : searchExplorer(_searchExpl), continuator(_continuator), fullEval(_fullEval) { } ;
+    moLocalSearch(NeighborhoodExplorer& _searchExpl, moContinuator<Neighbor> & _continuator, eoEvalFunc<EOT>& _fullEval) : searchExplorer(_searchExpl), continuator(_continuator), fullEval(_fullEval) { } ;
 
     /**
      * Run the local search on a solution
@@ -98,10 +99,10 @@ public:
 
 private:
     // make the exploration of the neighborhood according to a local search heuristic
-    moNeighborhoodExplorer<Neighborhood>& searchExplorer ;
+    moNeighborhoodExplorer<Neighbor>& searchExplorer ;
 
     // external continuator
-    moContinuator<Neighborhood>& continuator ;
+    moContinuator<Neighbor>& continuator ;
 
     //full evaluation function
     eoEvalFunc<EOT>& fullEval;

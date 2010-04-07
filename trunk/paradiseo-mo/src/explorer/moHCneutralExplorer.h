@@ -38,23 +38,24 @@
 #include <explorer/moSimpleHCneutralExplorer.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
+#include <neighborhood/moNeighborhood.h>
 
 /**
  * Explorer for a neutral Hill-climbing
  */
-template< class Neighborhood >
-class moHCneutralExplorer : public moSimpleHCneutralExplorer<Neighborhood>
+template< class Neighbor >
+class moHCneutralExplorer : public moSimpleHCneutralExplorer<Neighbor>
 {
 public:
-    typedef typename Neighborhood::EOT EOT ;
-    typedef typename Neighborhood::Neighbor Neighbor ;
+    typedef typename Neighbor::EOT EOT ;
+    typedef moNeighborhood<Neighbor> Neighborhood ;
 
-    using moNeighborhoodExplorer<Neighborhood>::neighborhood;
-    using moSimpleHCneutralExplorer<Neighborhood>::solNeighborComparator;
-    using moSimpleHCneutralExplorer<Neighborhood>::isAccept;
-    using moSimpleHCneutralExplorer<Neighborhood>::bestVector;
-    using moSimpleHCneutralExplorer<Neighborhood>::initParam;
-    using moSimpleHCneutralExplorer<Neighborhood>::updateParam;
+    using moNeighborhoodExplorer<Neighbor>::neighborhood;
+    using moSimpleHCneutralExplorer<Neighbor>::solNeighborComparator;
+    using moSimpleHCneutralExplorer<Neighbor>::isAccept;
+    using moSimpleHCneutralExplorer<Neighbor>::bestVector;
+    using moSimpleHCneutralExplorer<Neighbor>::initParam;
+    using moSimpleHCneutralExplorer<Neighbor>::updateParam;
 
     /**
      * Constructor
@@ -69,7 +70,7 @@ public:
                         moNeighborComparator<Neighbor>& _neighborComparator,
                         moSolNeighborComparator<Neighbor>& _solNeighborComparator,
                         unsigned _nbStep) :
-            moSimpleHCneutralExplorer<Neighborhood>(_neighborhood, _eval, _neighborComparator, _solNeighborComparator),
+            moSimpleHCneutralExplorer<Neighbor>(_neighborhood, _eval, _neighborComparator, _solNeighborComparator),
             nbStep(_nbStep) {
         //Some cycle is possible with equals fitness solutions if the neighborhood is not random
         if (!neighborhood.isRandom()) {
@@ -87,7 +88,7 @@ public:
      *  initial number of step
      */
     virtual void initParam(EOT & solution) {
-        moSimpleHCneutralExplorer<Neighborhood>::initParam(solution);
+        moSimpleHCneutralExplorer<Neighbor>::initParam(solution);
 
         step = 0;
     };
@@ -96,7 +97,7 @@ public:
      * one more step
      */
     virtual void updateParam(EOT & solution) {
-        moSimpleHCneutralExplorer<Neighborhood>::updateParam(solution);
+        moSimpleHCneutralExplorer<Neighbor>::updateParam(solution);
 
         step++;
     };
