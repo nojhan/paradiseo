@@ -31,6 +31,8 @@ using namespace std;
 #include <neighborhood/moRndWithoutReplNeighborhood.h>
 #include <oneMaxBitNeighbor.h>
 
+#include <neighborhood/moDummyNeighbor.h>
+
 #include <eval/moFullEvalByModif.h>
 #include <eval/moFullEvalByCopy.h>
 #include <comparator/moNeighborComparator.h>
@@ -192,9 +194,9 @@ void main_function(int argc, char **argv)
 
     moILSexplorer< Neighbor > explorerILS(hc, perturb, accept);
 
-    moIterContinuator<Neighbor> continuatorILS(100);
+    moIterContinuator<moDummyNeighbor<Indi, Indi::Fitness> > continuatorILS(100);
 
-    moLocalSearch<Neighbor>localSearch(explorerILS, continuatorILS, eval);
+    moLocalSearch<moDummyNeighbor<Indi, Indi::Fitness> >localSearch(explorerILS, continuatorILS, eval);
 
 
     /* =========================================================
