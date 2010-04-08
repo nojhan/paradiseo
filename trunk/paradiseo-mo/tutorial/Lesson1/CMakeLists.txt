@@ -13,6 +13,3 @@ TARGET_LINK_LIBRARIES(testSimpleHC eoutils ga eo)
 TARGET_LINK_LIBRARIES(testFirstImpr eoutils ga eo) 
 TARGET_LINK_LIBRARIES(testRandomBestHC eoutils ga eo) 
 TARGET_LINK_LIBRARIES(testHCneutral eoutils ga eo) 
-
-
- 

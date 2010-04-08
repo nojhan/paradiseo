@@ -23,7 +23,7 @@ using namespace std;
 
 //-----------------------------------------------------------------------------
 // fitness function
-#include <funcRoyalRoad.h>
+#include "../oneMax/src/funcRoyalRoad.h"
 #include <eoInt.h>
 #include <neighborhood/moRndWithoutReplNeighborhood.h>
 #include <problems/bitString/moBitNeighbor.h>

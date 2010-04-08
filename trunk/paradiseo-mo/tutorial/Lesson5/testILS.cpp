@@ -24,12 +24,11 @@ using namespace std;
 
 //-----------------------------------------------------------------------------
 // fitness function
-#include <funcOneMax.h>
-#include <funcNK.h>
+#include <problems/eval/oneMaxFullEval.h>
+#include <problems/bitString/moBitNeighbor.h>
 #include <eoInt.h>
 #include <neighborhood/moOrderNeighborhood.h>
 #include <neighborhood/moRndWithoutReplNeighborhood.h>
-#include <oneMaxBitNeighbor.h>
 
 #include <neighborhood/moDummyNeighbor.h>
 
@@ -113,7 +112,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    FuncOneMax<Indi> eval(vecSize);
+    oneMaxFullEval<Indi> eval;
 
     //FuncNK<Indi> eval(vecSize, 2);
 
