@@ -33,7 +33,7 @@
 */
 
 #include <neighborhood/moOrderNeighborhood.h>
-#include <neighborhood/moBitNeighbor.h>
+#include <problems/bitString/moBitNeighbor.h>
 #include <ga/eoBit.h>
 
 #include <cstdlib>

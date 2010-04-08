@@ -1,7 +1,7 @@
 #ifndef _oneMaxBitNeighbor_h
 #define _oneMaxBitNeighbor_h
 
-#include <neighborhood/moBitNeighbor.h>
+#include <problems/bitString/moBitNeighbor.h>
 #include <ga.h>
 
 /*

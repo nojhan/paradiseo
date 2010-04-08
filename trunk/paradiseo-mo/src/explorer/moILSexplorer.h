@@ -48,12 +48,12 @@
  * Explorer for an Iterated Local Search
  */
 template< class Neighbor >
-class moILSexplorer : public moNeighborhoodExplorer< moDummyNeighbor<typename Neighbor::EOT, typename Neighbor::EOT::Fitness> >
+class moILSexplorer : public moNeighborhoodExplorer< moDummyNeighbor<typename Neighbor::EOT> >
 {
 public:
     typedef moNeighborhood<Neighbor> Neighborhood ;
     typedef typename Neighbor::EOT EOT;
-	typedef moDummyNeighbor<EOT,typename EOT::Fitness> dummyNeighbor;
+	typedef moDummyNeighbor<EOT> dummyNeighbor;
 	typedef moDummyNeighborhood<dummyNeighbor> dummyNeighborhood;
 
 	/**

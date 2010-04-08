@@ -26,7 +26,7 @@ using namespace std;
 #include <funcRoyalRoad.h>
 #include <eoInt.h>
 #include <neighborhood/moRndWithoutReplNeighborhood.h>
-#include <neighborhood/moBitNeighbor.h>
+#include <problems/bitString/moBitNeighbor.h>
 
 #include <eval/moFullEvalByModif.h>
 #include <eval/moFullEvalByCopy.h>

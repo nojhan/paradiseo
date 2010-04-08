@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-/** testSimpleHCneutral.cpp
+/** testRandomBestHC.cpp
  *
  * SV - 24/01/10
  *
@@ -34,7 +34,7 @@ using namespace std;
 #include <comparator/moSolNeighborComparator.h>
 #include <continuator/moTrueContinuator.h>
 #include <algo/moLocalSearch.h>
-#include <explorer/moSimpleHCneutralExplorer.h>
+#include <explorer/moRandomBestHCExplorer.h>
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
@@ -149,7 +149,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moSimpleHCneutralExplorer<Neighbor> explorer(neighborhood, fulleval, comparator, solComparator);
+    moRandomBestHCExplorer<Neighbor> explorer(neighborhood, fulleval, comparator, solComparator);
 
 
     /* =========================================================

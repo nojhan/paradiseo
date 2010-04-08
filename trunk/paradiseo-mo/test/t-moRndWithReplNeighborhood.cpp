@@ -28,7 +28,6 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
 #include <neighborhood/moRndWithReplNeighborhood.h>
-#include <neighborhood/moBitNeighbor.h>
 
 #include "moTestClass.h"
 #include <iostream>

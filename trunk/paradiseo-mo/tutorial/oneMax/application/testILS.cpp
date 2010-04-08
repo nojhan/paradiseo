@@ -194,9 +194,9 @@ void main_function(int argc, char **argv)
 
     moILSexplorer< Neighbor > explorerILS(hc, perturb, accept);
 
-    moIterContinuator<moDummyNeighbor<Indi, Indi::Fitness> > continuatorILS(100);
+    moIterContinuator<moDummyNeighbor<Indi> > continuatorILS(100);
 
-    moLocalSearch<moDummyNeighbor<Indi, Indi::Fitness> >localSearch(explorerILS, continuatorILS, eval);
+    moLocalSearch<moDummyNeighbor<Indi> >localSearch(explorerILS, continuatorILS, eval);
 
 
     /* =========================================================

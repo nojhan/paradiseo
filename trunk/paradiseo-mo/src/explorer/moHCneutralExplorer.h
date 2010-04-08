@@ -35,7 +35,7 @@
 #ifndef _moHCneutralExplorer_h
 #define _moHCneutralExplorer_h
 
-#include <explorer/moSimpleHCneutralExplorer.h>
+#include <explorer/moRandomBestHCExplorer.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
 #include <neighborhood/moNeighborhood.h>
@@ -44,18 +44,18 @@
  * Explorer for a neutral Hill-climbing
  */
 template< class Neighbor >
-class moHCneutralExplorer : public moSimpleHCneutralExplorer<Neighbor>
+class moHCneutralExplorer : public moRandomBestHCExplorer<Neighbor>
 {
 public:
     typedef typename Neighbor::EOT EOT ;
     typedef moNeighborhood<Neighbor> Neighborhood ;
 
     using moNeighborhoodExplorer<Neighbor>::neighborhood;
-    using moSimpleHCneutralExplorer<Neighbor>::solNeighborComparator;
-    using moSimpleHCneutralExplorer<Neighbor>::isAccept;
-    using moSimpleHCneutralExplorer<Neighbor>::bestVector;
-    using moSimpleHCneutralExplorer<Neighbor>::initParam;
-    using moSimpleHCneutralExplorer<Neighbor>::updateParam;
+    using moRandomBestHCExplorer<Neighbor>::solNeighborComparator;
+    using moRandomBestHCExplorer<Neighbor>::isAccept;
+    using moRandomBestHCExplorer<Neighbor>::bestVector;
+    using moRandomBestHCExplorer<Neighbor>::initParam;
+    using moRandomBestHCExplorer<Neighbor>::updateParam;
 
     /**
      * Constructor
@@ -70,7 +70,7 @@ public:
                         moNeighborComparator<Neighbor>& _neighborComparator,
                         moSolNeighborComparator<Neighbor>& _solNeighborComparator,
                         unsigned _nbStep) :
-            moSimpleHCneutralExplorer<Neighbor>(_neighborhood, _eval, _neighborComparator, _solNeighborComparator),
+                        	moRandomBestHCExplorer<Neighbor>(_neighborhood, _eval, _neighborComparator, _solNeighborComparator),
             nbStep(_nbStep) {
         //Some cycle is possible with equals fitness solutions if the neighborhood is not random
         if (!neighborhood.isRandom()) {
@@ -88,7 +88,7 @@ public:
      *  initial number of step
      */
     virtual void initParam(EOT & solution) {
-        moSimpleHCneutralExplorer<Neighbor>::initParam(solution);
+    	moRandomBestHCExplorer<Neighbor>::initParam(solution);
 
         step = 0;
     };
@@ -97,7 +97,7 @@ public:
      * one more step
      */
     virtual void updateParam(EOT & solution) {
-        moSimpleHCneutralExplorer<Neighbor>::updateParam(solution);
+    	moRandomBestHCExplorer<Neighbor>::updateParam(solution);
 
         step++;
     };

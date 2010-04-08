@@ -28,7 +28,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
 #include <continuator/moFitnessStat.h>
-#include <neighborhood/moBitNeighbor.h>
+#include <problems/bitString/moBitNeighbor.h>
 
 #include <iostream>
 #include <cstdlib>

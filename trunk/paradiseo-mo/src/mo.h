@@ -72,7 +72,7 @@
 #include <explorer/moRandomNeutralWalkExplorer.h>
 #include <explorer/moRandomWalkExplorer.h>
 #include <explorer/moSimpleHCexplorer.h>
-#include <explorer/moSimpleHCneutralExplorer.h>
+#include <explorer/moRandomBestHCExplorer.h>
 #include <explorer/moTSExplorer.h>
 #include <explorer/moILSexplorer.h>
 #include <explorer/moSAexplorer.h>
@@ -90,7 +90,6 @@
 #include <memory/moCountMoveMemory.h>
 
 #include <neighborhood/moBackableNeighbor.h>
-#include <neighborhood/moBitNeighbor.h>
 #include <neighborhood/moIndexNeighbor.h>
 #include <neighborhood/moIndexNeighborhood.h>
 #include <neighborhood/moNeighbor.h>
@@ -111,6 +110,8 @@
 
 #include <coolingSchedule/moCoolingSchedule.h>
 #include <coolingSchedule/moSimpleCoolingSchedule.h>
+
+#include <problems/bitString/moBitNeighbor.h>
 
 //#include <old/moMove.h>
 //#include <old/moMoveIncrEval.h>

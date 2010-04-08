@@ -27,7 +27,7 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <neighborhood/moBitNeighbor.h>
+#include <problems/bitString/moBitNeighbor.h>
 #include <continuator/moDistanceStat.h>
 #include <utils/eoDistance.h>
 

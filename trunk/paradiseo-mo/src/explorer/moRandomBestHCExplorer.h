@@ -1,5 +1,5 @@
 /*
-  <moSimpleHCneutralExplorer.h>
+  <moRandomBestHCExplorer.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,8 +32,8 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moSimpleHCneutralExplorer_h
-#define _moSimpleHCneutralExplorer_h
+#ifndef _moRandomBestHCExplorer_h
+#define _moRandomBestHCExplorer_h
 
 #include <explorer/moNeighborhoodExplorer.h>
 #include <comparator/moNeighborComparator.h>
@@ -46,7 +46,7 @@
  * Explorer for a simple neutral Hill-climbing
  */
 template< class Neighbor >
-class moSimpleHCneutralExplorer : public moNeighborhoodExplorer<Neighbor>
+class moRandomBestHCExplorer : public moNeighborhoodExplorer<Neighbor>
 {
 public:
     typedef typename Neighbor::EOT EOT ;
@@ -62,7 +62,7 @@ public:
      * @param _neighborComparator a neighbor comparator
      * @param _solNeighborComparator solution vs neighbor comparator
      */
-    moSimpleHCneutralExplorer(Neighborhood& _neighborhood,
+    moRandomBestHCExplorer(Neighborhood& _neighborhood,
                               moEval<Neighbor>& _eval,
                               moNeighborComparator<Neighbor>& _neighborComparator,
                               moSolNeighborComparator<Neighbor>& _solNeighborComparator) :
@@ -76,7 +76,7 @@ public:
     /**
      * Destructor
      */
-    ~moSimpleHCneutralExplorer() {
+    ~moRandomBestHCExplorer() {
         delete current;
     }
 

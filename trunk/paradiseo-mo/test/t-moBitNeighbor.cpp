@@ -32,7 +32,7 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#include <neighborhood/moBitNeighbor.h>
+#include <problems/bitString/moBitNeighbor.h>
 
 #include <cstdlib>
 #include <cassert>

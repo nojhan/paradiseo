@@ -1,5 +1,5 @@
 /*
-<t-moSimpleHCneutralExplorer.cpp>
+<t-moRandomBestHCExplorer.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -29,7 +29,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
-#include <explorer/moSimpleHCneutralExplorer.h>
+#include <explorer/moRandomBestHCExplorer.h>
 #include "moTestClass.h"
 
 #include <iostream>
@@ -38,7 +38,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 int main() {
 
-    std::cout << "[t-moSimpleHCneutralExplorer] => START" << std::endl;
+    std::cout << "[t-moRandomBestHCExplorer] => START" << std::endl;
 
     //instanciation
     eoBit<eoMinimizingFitness> sol(4, true);
@@ -48,7 +48,7 @@ int main() {
     moNeighborComparator<bitNeighbor> ncomp;
     moSolNeighborComparator<bitNeighbor> sncomp;
 
-    moSimpleHCneutralExplorer<bitNeighbor> test(nh, eval, ncomp, sncomp);
+    moRandomBestHCExplorer<bitNeighbor> test(nh, eval, ncomp, sncomp);
 
     //test qu'on ameliore bien a chaque itération
     test.initParam(sol);
@@ -94,7 +94,7 @@ int main() {
     test.updateParam(sol);
 
 
-    std::cout << "[t-moSimpleHCneutralExplorer] => OK" << std::endl;
+    std::cout << "[t-moRandomBestHCExplorer] => OK" << std::endl;
 
     return EXIT_SUCCESS;
 }
