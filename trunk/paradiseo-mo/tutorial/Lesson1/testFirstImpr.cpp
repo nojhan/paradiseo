@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
-/** testHCneutral.cpp
+/** testFirstImpr.cpp
  *
- * SV - 24/01/10
+ * SV - 12/01/10
  *
  */
 //-----------------------------------------------------------------------------
@@ -23,10 +23,10 @@ using namespace std;
 
 //-----------------------------------------------------------------------------
 // fitness function
-#include <funcOneMax.h>
+#include <problems/eval/oneMaxFullEval.h>
+#include <problems/bitString/moBitNeighbor.h>
 #include <eoInt.h>
-#include <neighborhood/moOrderNeighborhood.h>
-#include <oneMaxBitNeighbor.h>
+#include <neighborhood/moRndWithoutReplNeighborhood.h>
 
 #include <eval/moFullEvalByModif.h>
 #include <eval/moFullEvalByCopy.h>
@@ -34,13 +34,13 @@ using namespace std;
 #include <comparator/moSolNeighborComparator.h>
 #include <continuator/moTrueContinuator.h>
 #include <algo/moLocalSearch.h>
-#include <explorer/moHCneutralExplorer.h>
+#include <explorer/moFirstImprExplorer.h>
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
 typedef eoBit<unsigned> Indi;
 typedef moBitNeighbor<unsigned int> Neighbor ; // incremental evaluation
-typedef moOrderNeighborhood<Neighbor> Neighborhood ;
+typedef moRndWithoutReplNeighborhood<Neighbor> Neighborhood ;
 
 void main_function(int argc, char **argv)
 {
@@ -64,10 +64,6 @@ void main_function(int argc, char **argv)
     eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size", 'V');
     parser.processParam( vecSizeParam, "Representation" );
     unsigned vecSize = vecSizeParam.value();
-
-    eoValueParam<unsigned int> stepParam(10, "nbStep", "Number of steps of the random walk", 'n');
-    parser.processParam( stepParam, "Representation" );
-    unsigned nbStep = stepParam.value();
 
     // the name of the "status" file where all actual parameter values will be saved
     string str_status = parser.ProgramName() + ".status"; // default value
@@ -102,7 +98,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    FuncOneMax<Indi> eval(vecSize);
+    oneMaxFullEval<Indi> eval;
 
 
     /* =========================================================
@@ -153,7 +149,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moHCneutralExplorer<Neighbor> explorer(neighborhood, fulleval, comparator, solComparator, nbStep);
+    moFirstImprExplorer<Neighbor> explorer(neighborhood, fulleval, comparator, solComparator);
 
 
     /* =========================================================
@@ -164,7 +160,7 @@ void main_function(int argc, char **argv)
 
     moTrueContinuator<Neighbor> continuator;//always continue
 
-    moLocalSearch<Neighbor> localSearch(explorer, continuator, eval);
+    moLocalSearch< Neighbor > localSearch(explorer, continuator, eval);
 
     /* =========================================================
      *

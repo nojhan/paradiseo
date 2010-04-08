@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
-/** testSimpleHC.cpp
+/** testRandomBestHC.cpp
  *
- * SV - 12/01/10
+ * SV - 24/01/10
  *
  */
 //-----------------------------------------------------------------------------
@@ -23,10 +23,10 @@ using namespace std;
 
 //-----------------------------------------------------------------------------
 // fitness function
-#include <funcOneMax.h>
+#include <problems/eval/oneMaxFullEval.h>
+#include <problems/bitString/moBitNeighbor.h>
 #include <eoInt.h>
 #include <neighborhood/moOrderNeighborhood.h>
-#include <oneMaxBitNeighbor.h>
 
 #include <eval/moFullEvalByModif.h>
 #include <eval/moFullEvalByCopy.h>
@@ -34,7 +34,7 @@ using namespace std;
 #include <comparator/moSolNeighborComparator.h>
 #include <continuator/moTrueContinuator.h>
 #include <algo/moLocalSearch.h>
-#include <explorer/moSimpleHCexplorer.h>
+#include <explorer/moRandomBestHCExplorer.h>
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
@@ -98,7 +98,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    FuncOneMax<Indi> eval(vecSize);
+    oneMaxFullEval<Indi> eval;
 
 
     /* =========================================================
@@ -149,7 +149,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moSimpleHCexplorer<Neighbor> explorer(neighborhood, fulleval, comparator, solComparator);
+    moRandomBestHCExplorer<Neighbor> explorer(neighborhood, fulleval, comparator, solComparator);
 
 
     /* =========================================================
@@ -160,7 +160,7 @@ void main_function(int argc, char **argv)
 
     moTrueContinuator<Neighbor> continuator;//always continue
 
-    moLocalSearch< Neighbor > localSearch(explorer, continuator, eval);
+    moLocalSearch<Neighbor> localSearch(explorer, continuator, eval);
 
     /* =========================================================
      *

@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-/** testRandomBestHC.cpp
+/** testHCneutral.cpp
  *
  * SV - 24/01/10
  *
@@ -23,10 +23,10 @@ using namespace std;
 
 //-----------------------------------------------------------------------------
 // fitness function
-#include <funcOneMax.h>
+#include <problems/eval/oneMaxFullEval.h>
+#include <problems/bitString/moBitNeighbor.h>
 #include <eoInt.h>
 #include <neighborhood/moOrderNeighborhood.h>
-#include <oneMaxBitNeighbor.h>
 
 #include <eval/moFullEvalByModif.h>
 #include <eval/moFullEvalByCopy.h>
@@ -34,7 +34,7 @@ using namespace std;
 #include <comparator/moSolNeighborComparator.h>
 #include <continuator/moTrueContinuator.h>
 #include <algo/moLocalSearch.h>
-#include <explorer/moRandomBestHCExplorer.h>
+#include <explorer/moHCneutralExplorer.h>
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
@@ -64,6 +64,10 @@ void main_function(int argc, char **argv)
     eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size", 'V');
     parser.processParam( vecSizeParam, "Representation" );
     unsigned vecSize = vecSizeParam.value();
+
+    eoValueParam<unsigned int> stepParam(10, "nbStep", "Number of steps of the random walk", 'n');
+    parser.processParam( stepParam, "Representation" );
+    unsigned nbStep = stepParam.value();
 
     // the name of the "status" file where all actual parameter values will be saved
     string str_status = parser.ProgramName() + ".status"; // default value
@@ -98,7 +102,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    FuncOneMax<Indi> eval(vecSize);
+    oneMaxFullEval<Indi> eval;
 
 
     /* =========================================================
@@ -149,7 +153,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moRandomBestHCExplorer<Neighbor> explorer(neighborhood, fulleval, comparator, solComparator);
+    moHCneutralExplorer<Neighbor> explorer(neighborhood, fulleval, comparator, solComparator, nbStep);
 
 
     /* =========================================================
