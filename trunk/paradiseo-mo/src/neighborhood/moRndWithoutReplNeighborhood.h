@@ -42,15 +42,14 @@
 /**
  * A Random without replacement Neighborhood
  */
-template< class N >
-class moRndWithoutReplNeighborhood : public moIndexNeighborhood<N>, public moRndNeighborhood<N>
+template< class Neighbor >
+class moRndWithoutReplNeighborhood : public moIndexNeighborhood<Neighbor>, public moRndNeighborhood<Neighbor>
 {
 public:
 
     /**
      * Define type of a solution corresponding to Neighbor
      */
-    typedef N Neighbor;
     typedef typename Neighbor::EOT EOT;
 
 

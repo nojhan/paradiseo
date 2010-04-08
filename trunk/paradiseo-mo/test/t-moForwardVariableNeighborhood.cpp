@@ -42,7 +42,7 @@ int main(){
 	std::cout << "[t-moForwardVariableNeighborhood] => START" << std::endl;
 
 	moRndWithoutReplNeighborhood<bitNeighbor> rndNH(8);
-	moOrderNeighborhood<moIndexNeighbor<eoBit<eoMinimizingFitness>, eoMinimizingFitness> > orderNH(8);
+	moOrderNeighborhood<moIndexNeighbor<eoBit<eoMinimizingFitness> > >orderNH(8);
 
 
 	//moForwardVariableNeighborhood<eoBit<eoMinimizingFitness>, eoMinimizingFitness> test(orderNH);

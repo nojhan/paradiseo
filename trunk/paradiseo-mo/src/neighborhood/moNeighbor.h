@@ -43,11 +43,12 @@
 /**
  * Container of the neighbor informations
  */
-template< class EOType , class Fitness >
+template< class EOType >
 class moNeighbor : public eoObject, public eoPersistent
 {
 public:
     typedef EOType EOT;
+    typedef typename EOT::Fitness Fitness;
     /**
      * Default Constructor
      */
@@ -57,7 +58,7 @@ public:
      * Copy Constructor
      * @param _neighbor to copy
      */
-    moNeighbor(const moNeighbor<EOT, Fitness>& _neighbor) {
+    moNeighbor(const moNeighbor<EOT>& _neighbor) {
         repFitness = _neighbor.fitness();
     }
 
@@ -66,7 +67,7 @@ public:
      * @param _neighbor the neighbor to assign
      * @return a neighbor equal to the other
      */
-    virtual moNeighbor<EOT, Fitness>& operator=(const moNeighbor<EOT, Fitness>& _neighbor) {
+    virtual moNeighbor<EOT>& operator=(const moNeighbor<EOT>& _neighbor) {
         repFitness = _neighbor.fitness();
         return (*this);
     }

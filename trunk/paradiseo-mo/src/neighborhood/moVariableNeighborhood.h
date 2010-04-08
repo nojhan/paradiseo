@@ -38,12 +38,12 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * A vector of neighborhood for the Variable Neighborhood Search (VNS)
  */
-template< class EOT, class Fitness >
-class moVariableNeighborhood : public moNeighborhood<moNeighbor<EOT, Fitness> >
+template< class EOT >
+class moVariableNeighborhood : public moNeighborhood<moNeighbor<EOT> >
 {
 public:
 
-	typedef moNeighbor<EOT, Fitness> Neighbor;
+	typedef moNeighbor<EOT> Neighbor;
     /**
      * Construction of at least one neighborhood
      * @param _firstNH first neighborhood in the vector

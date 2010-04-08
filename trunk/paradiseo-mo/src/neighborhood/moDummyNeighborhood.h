@@ -35,10 +35,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * Dummy Neighborhood
  */
-template< class N >
-class moDummyNeighborhood : public moNeighborhood<N>{
+template< class Neighbor >
+class moDummyNeighborhood : public moNeighborhood<Neighbor>{
 public:
-	typedef N Neighbor;
     typedef typename Neighbor::EOT EOT;
 
     /**

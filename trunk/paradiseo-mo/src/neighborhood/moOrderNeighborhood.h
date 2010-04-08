@@ -40,20 +40,17 @@
 /**
  * A Ordered Neighborhood
  */
-template< class N >
-class moOrderNeighborhood : public moIndexNeighborhood<N>
+template< class Neighbor >
+class moOrderNeighborhood : public moIndexNeighborhood<Neighbor>
 {
 public:
 
     /**
      * Define type of a solution corresponding to Neighbor
      */
-    typedef N Neighbor;
     typedef typename Neighbor::EOT EOT;
 
-
     using moIndexNeighborhood<Neighbor>::neighborhoodSize;
-
 
     /**
      * Constructor

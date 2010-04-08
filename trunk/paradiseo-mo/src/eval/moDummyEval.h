@@ -35,17 +35,17 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * Dummy Evaluation function
  */
-template<class N>
-class moDummyEval : public moEval<N>{
+template<class Neighbor>
+class moDummyEval : public moEval<Neighbor>{
 public:
-    typedef typename N::EOT EOT;
+    typedef typename Neighbor::EOT EOT;
     typedef typename EOT::Fitness Fitness;
 
     /**
 	 * NOTHING TO DO
 	 * @param _sol a solution
 	 */
-	void operator()(EOT& _sol, N& _n){}
+	void operator()(EOT& _sol, Neighbor& _n){}
 
 };
 

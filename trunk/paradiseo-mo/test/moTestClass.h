@@ -47,6 +47,7 @@
 #include <eoScalarFitness.h>
 #include <neighborhood/moOrderNeighborhood.h>
 #include <neighborhood/moBitNeighbor.h>
+#include <neighborhood/moIndexNeighbor.h>
 
 #include <utils/eoMonitor.h>
 #include <utils/eoUpdater.h>
@@ -63,12 +64,12 @@ typedef moDummyRndNeighborhood bitNeighborhood ;
 
 typedef EO<int> Solution;
 
-class moDummyNeighborTest : public moNeighbor<Solution,int> {
+class moDummyNeighborTest : public moNeighbor<Solution> {
 public:
     virtual void move(Solution & _solution) {}
 };
 
-class moDummyBackableNeighbor : public moBackableNeighbor<Solution,int> {
+class moDummyBackableNeighbor : public moBackableNeighbor<Solution> {
 public:
     virtual void move(Solution & _solution) {}
     virtual void moveBack(Solution & _solution) {}

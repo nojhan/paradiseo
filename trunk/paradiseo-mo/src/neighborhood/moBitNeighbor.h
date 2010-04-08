@@ -43,13 +43,13 @@
  * Neighbor related to a vector of Bit
  */
 template< class Fitness >
-class moBitNeighbor : public moBackableNeighbor<eoBit<Fitness>, Fitness>, public moIndexNeighbor<eoBit<Fitness>, Fitness>
+class moBitNeighbor : public moBackableNeighbor<eoBit<Fitness> >, public moIndexNeighbor<eoBit<Fitness> >
 {
 public:
     typedef eoBit<Fitness> EOT ;
 
-    using moBackableNeighbor<eoBit<Fitness>, Fitness>::fitness;
-    using moIndexNeighbor<eoBit<Fitness>, Fitness>::key;
+    using moBackableNeighbor<EOT>::fitness;
+    using moIndexNeighbor<EOT>::key;
 
     /**
      * move the solution

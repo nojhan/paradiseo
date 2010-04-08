@@ -35,20 +35,20 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * A variable Neighborhood Search (VNS) in the Backward manner
  */
-template< class EOT, class Fitness >
-class moBackwardVariableNeighborhood : public moVariableNeighborhood<EOT, Fitness>
+template< class EOT >
+class moBackwardVariableNeighborhood : public moVariableNeighborhood<EOT>
 {
 public:
-	typedef moNeighbor<EOT, Fitness> Neighbor;
+	typedef moNeighbor<EOT> Neighbor;
 
-    using moVariableNeighborhood<EOT, Fitness>::currentNH;
-    using moVariableNeighborhood<EOT, Fitness>::neighborhoodVector;
+    using moVariableNeighborhood<EOT>::currentNH;
+    using moVariableNeighborhood<EOT>::neighborhoodVector;
 
     /**
      * Construction of at least one neighborhood
      * @param _firstNH first neighborhood in the vector
      */
-    moBackwardVariableNeighborhood(moNeighborhood<Neighbor>& _firstNH) : moVariableNeighborhood<EOT, Fitness>(_firstNH) { }
+    moBackwardVariableNeighborhood(moNeighborhood<Neighbor>& _firstNH) : moVariableNeighborhood<EOT>(_firstNH) { }
 
     /**
      * Return the class id.

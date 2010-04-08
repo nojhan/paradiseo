@@ -52,7 +52,7 @@ class moILSexplorer : public moNeighborhoodExplorer< moDummyNeighbor<typename Ne
 {
 public:
     typedef moNeighborhood<Neighbor> Neighborhood ;
-    typedef typename Neighbor::EOT EOT ;
+    typedef typename Neighbor::EOT EOT;
 	typedef moDummyNeighbor<EOT,typename EOT::Fitness> dummyNeighbor;
 	typedef moDummyNeighborhood<dummyNeighbor> dummyNeighborhood;
 
