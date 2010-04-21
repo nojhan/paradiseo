@@ -44,9 +44,11 @@ using namespace std;
 // Define types of the representation solution, different neighbors and neighborhoods
 //-----------------------------------------------------------------------------
 typedef eoInt<unsigned int> Queen; //Permutation (Queen's problem representation)
+
 typedef moSwapNeighbor<Queen> swapNeighbor ; //swap Neighbor
-typedef moShiftNeighbor<Queen> shiftNeighbor; //shift Neighbor
 typedef moSwapNeighborhood<Queen> swapNeighborhood; //classical swap Neighborhood
+
+typedef moShiftNeighbor<Queen> shiftNeighbor; //shift Neighbor
 typedef moOrderNeighborhood<shiftNeighbor> orderShiftNeighborhood; //order shift Neighborhood (Indexed)
 typedef moRndWithoutReplNeighborhood<shiftNeighbor> rndWithoutReplShiftNeighborhood; //random without replacement shift Neighborhood (Indexed)
 typedef moRndWithReplNeighborhood<shiftNeighbor> rndWithReplShiftNeighborhood; //random with replacement shift Neighborhood (Indexed)

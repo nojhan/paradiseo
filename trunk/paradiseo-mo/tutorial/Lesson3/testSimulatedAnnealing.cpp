@@ -2,7 +2,7 @@
 /** testSimulatedAnnealing.cpp
  *
  * SV - 29/03/10
- *
+ * JH - 20/04/10
  */
 //-----------------------------------------------------------------------------
 
@@ -22,26 +22,42 @@
 using namespace std;
 
 //-----------------------------------------------------------------------------
-// fitness function
-#include <problems/eval/oneMaxFullEval.h>
-#include <problems/bitString/moBitNeighbor.h>
+//Representation and initializer
 #include <eoInt.h>
-#include <neighborhood/moRndWithReplNeighborhood.h>
+#include <eoInit.h>
+#include <eoScalarFitness.h>
 
+// fitness function
+#include <problems/eval/queenFullEval.h>
 #include <eval/moFullEvalByModif.h>
 #include <eval/moFullEvalByCopy.h>
-#include <comparator/moNeighborComparator.h>
-#include <comparator/moSolNeighborComparator.h>
-#include <continuator/moTrueContinuator.h>
-#include <algo/moLocalSearch.h>
-#include <explorer/moSAexplorer.h>
-#include <coolingSchedule/moSimpleCoolingSchedule.h>
 
-// REPRESENTATION
+//Neighbors and Neighborhoods
+#include <problems/permutation/moShiftNeighbor.h>
+#include <neighborhood/moRndWithReplNeighborhood.h>
+
+//Algorithm and its components
+#include <coolingSchedule/moCoolingSchedule.h>
+#include <algo/moSA.h>
+
+//comparator
+#include <comparator/moSolNeighborComparator.h>
+
+//continuators
+#include <continuator/moTrueContinuator.h>
+#include <continuator/moCheckpoint.h>
+#include <continuator/moFitnessStat.h>
+#include <utils/eoFileMonitor.h>
+#include <continuator/moCounterMonitorSaver.h>
+
+
 //-----------------------------------------------------------------------------
-typedef eoBit<unsigned> Indi;
-typedef moBitNeighbor<unsigned int> Neighbor ; // incremental evaluation
-typedef moRndWithReplNeighborhood<Neighbor> Neighborhood ;
+// Define types of the representation solution, different neighbors and neighborhoods
+//-----------------------------------------------------------------------------
+typedef eoInt<eoMinimizingFitness> Queen; //Permutation (Queen's problem representation)
+
+typedef moShiftNeighbor<Queen> shiftNeighbor; //shift Neighbor
+typedef moRndWithReplNeighborhood<shiftNeighbor> rndShiftNeighborhood; //rnd shift Neighborhood (Indexed)
 
 void main_function(int argc, char **argv)
 {
@@ -89,7 +105,7 @@ void main_function(int argc, char **argv)
      * ========================================================= */
 
     //reproducible random seed: if you don't change SEED above,
-    // you'll aways get the same result, NOT a random run
+    // you'll always get the same result, NOT a random run
     rng.reseed(seed);
 
 
@@ -99,7 +115,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    oneMaxFullEval<Indi> eval;
+    queenFullEval<Queen> fullEval;
 
 
     /* =========================================================
@@ -108,10 +124,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    // a Indi random initializer
-    eoUniformGenerator<bool> uGen;
-    eoInitFixedLength<Indi> random(vecSize, uGen);
-
+    eoInitPermutation<Queen> init(vecSize);
 
     /* =========================================================
      *
@@ -119,20 +132,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moFullEvalByModif<Neighbor> fulleval(eval);
-
-    //An eval by copy can be used instead of the eval by modif
-    //moFullEvalByCopy<Neighbor> fulleval(eval);
-
-
-    /* =========================================================
-     *
-     * Comparator of neighbors
-     *
-     * ========================================================= */
-
-    moSolNeighborComparator<Neighbor> solComparator;
-
+    moFullEvalByCopy<shiftNeighbor> shiftEval(fullEval);
 
     /* =========================================================
      *
@@ -140,7 +140,35 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    Neighborhood neighborhood(vecSize);
+    rndShiftNeighborhood rndShiftNH(pow(vecSize-1, 2));
+
+    /* =========================================================
+     *
+     * the local search algorithm
+     *
+     * ========================================================= */
+
+    moSA<shiftNeighbor> localSearch1(rndShiftNH, fullEval, shiftEval);
+
+    /* =========================================================
+     *
+     * execute the local search from random solution
+     *
+     * ========================================================= */
+
+    Queen solution1, solution2;
+
+    init(solution1);
+
+    fullEval(solution1);
+
+    std::cout << "#########################################" << std::endl;
+    std::cout << "initial solution1: " << solution1 << std::endl ;
+
+    localSearch1(solution1);
+
+    std::cout << "final solution1: " << solution1 << std::endl ;
+    std::cout << "#########################################" << std::endl;
 
 
     /* =========================================================
@@ -150,45 +178,44 @@ void main_function(int argc, char **argv)
      * ========================================================= */
 
     // initial temp, factor of decrease, number of steps without decrease, final temp.
-    moSimpleCoolingSchedule<Indi> coolingSchedule(10, 0.9, 1, 0.01);
+    moSimpleCoolingSchedule<Queen> coolingSchedule(1, 0.9, 100, 0.01);
 
     /* =========================================================
      *
-     * a neighborhood explorer solution
+     * Comparator of neighbors
      *
      * ========================================================= */
 
-    moSAexplorer<Neighbor> explorer(neighborhood, fulleval, solComparator, coolingSchedule);
+    moSolNeighborComparator<shiftNeighbor> solComparator;
 
     /* =========================================================
      *
-     * the local search algorithm
+     * Example of Checkpointing
      *
      * ========================================================= */
 
-    moTrueContinuator<Neighbor> continuator;//always continue
+    moTrueContinuator<shiftNeighbor> continuator;//always continue
+    moCheckpoint<shiftNeighbor> checkpoint(continuator);
+    moFitnessStat<Queen> fitStat;
+    checkpoint.add(fitStat);
+    eoFileMonitor monitor("fitness.out", "");
+    moCounterMonitorSaver countMon(100, monitor);
+    checkpoint.add(countMon);
+    monitor.add(fitStat);
 
-    moLocalSearch<Neighbor> localSearch(explorer, continuator, eval);
+    moSA<shiftNeighbor> localSearch2(rndShiftNH, fullEval, shiftEval, coolingSchedule, solComparator, checkpoint);
 
-    /* =========================================================
-     *
-     * execute the local search from random sollution
-     *
-     * ========================================================= */
+    init(solution2);
 
-    Indi solution;
+    fullEval(solution2);
 
-    random(solution);
+    std::cout << "#########################################" << std::endl;
+    std::cout << "initial solution2: " << solution2 << std::endl ;
 
-    //Can be eval here, else it will be done at the beginning of the localSearch
-    //eval(solution);
+    localSearch2(solution2);
 
-    std::cout << "initial: " << solution << std::endl ;
-
-    localSearch(solution);
-
-    std::cout << "final:   " << solution << std::endl ;
-
+    std::cout << "final solution2: " << solution2 << std::endl ;
+    std::cout << "#########################################" << std::endl;
 }
 
 // A main that catches the exceptions
