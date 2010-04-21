@@ -36,6 +36,7 @@
 #define _newmo_h
 
 #include <algo/moLocalSearch.h>
+#include <algo/moSA.h>
 
 #include <comparator/moComparator.h>
 #include <comparator/moNeighborComparator.h>
