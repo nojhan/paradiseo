@@ -97,7 +97,7 @@ public:
         return true;
     };
 
-private:
+protected:
     // make the exploration of the neighborhood according to a local search heuristic
     moNeighborhoodExplorer<Neighbor>& searchExplorer ;
 
