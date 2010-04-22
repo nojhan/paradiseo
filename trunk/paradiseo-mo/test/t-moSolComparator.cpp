@@ -1,5 +1,5 @@
 /*
-<moDummyNeighborhood.h>
+<t-moSolComparator.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -27,52 +27,35 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moDummyNeighborhood_h
-#define _moDummyNeighborhood_h
+#include <iostream>
+#include <cstdlib>
+#include <cassert>
 
-#include <neighborhood/moDummyNeighbor.h>
-#include <neighborhood/moNeighborhood.h>
+#include <eoScalarFitness.h>
+#include <comparator/moSolComparator.h>
+#include <ga/eoBit.h>
 
-/**
- * Dummy Neighborhood
- */
-template< class Neighbor >
-class moDummyNeighborhood : public moNeighborhood<Neighbor>{
-public:
-    typedef typename Neighbor::EOT EOT;
+int main(){
 
-    /**
-     * NOTHING TO DO
-     * @param _solution the related solution
-     * @return always false
-     */
-    virtual bool hasNeighbor(EOT & _solution){
-    	return false;
-    }
+	std::cout << "[t-moSolComparator] => START" << std::endl;
 
-    /**
-     * NOTHING TO DO
-     * @param _solution the solution to explore
-     * @param _current the first neighbor
-     */
-    virtual void init(EOT & _solution, Neighbor & _current){}
+    eoBit<eoMinimizingFitness> sol1, sol2, sol3;
 
-    /**
-     * NOTHING TO DO
-     * @param _solution the solution to explore
-     * @param _current the next neighbor
-     */
-    virtual void next(EOT & _solution, Neighbor & _current){}
+    moSolComparator< eoBit<eoMinimizingFitness> > test;
 
-    /**
-     * NOTHING TO DO
-     * @param _solution the solution to explore
-     * @return always false
-     */
-    virtual bool cont(EOT & _solution){
-    	return false;
-    }
+    sol1.fitness(3);
+    sol2.fitness(4);
+    sol3.fitness(4);
 
-};
+    assert(!test(sol1,sol2));
+    assert(test(sol2,sol1));
+    assert(!test.equals(sol1,sol2));
+    assert(test.equals(sol2,sol3));
 
-#endif
+    assert(test.className()=="moSolComparator");
+
+	std::cout << "[t-moSolComparator] => OK" << std::endl;
+
+	return EXIT_SUCCESS;
+}
+

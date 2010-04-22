@@ -59,6 +59,13 @@ SET (TEST_LIST
 		t-moRandomNeutralWalkExplorer
 		t-moTSExplorer
 		t-moForwardVariableNeighborhood
+		t-moSolComparator
+		t-moDummyEval
+		t-moDummyNeighbor
+		t-moDummyNeighborhood
+		t-moSimpleCoolingSchedule
+		t-moAlwaysAcceptCrit
+		t-moBetterAcceptCrit
 		)
 				
 FOREACH (test ${TEST_LIST})

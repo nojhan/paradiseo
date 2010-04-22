@@ -65,6 +65,7 @@
 #include <eval/moEval.h>
 #include <eval/moFullEvalByCopy.h>
 #include <eval/moFullEvalByModif.h>
+#include <eval/moDummyEval.h>
 
 #include <explorer/moFirstImprExplorer.h>
 #include <explorer/moHCneutralExplorer.h>
@@ -91,6 +92,8 @@
 #include <memory/moCountMoveMemory.h>
 
 #include <neighborhood/moBackableNeighbor.h>
+#include <neighborhood/moDummyNeighbor.h>
+#include <neighborhood/moDummyNeighborhood.h>
 #include <neighborhood/moIndexNeighbor.h>
 #include <neighborhood/moIndexNeighborhood.h>
 #include <neighborhood/moNeighbor.h>
@@ -113,6 +116,11 @@
 #include <coolingSchedule/moSimpleCoolingSchedule.h>
 
 #include <problems/bitString/moBitNeighbor.h>
+#include <problems/eval/oneMaxFullEval.h>
+#include <problems/eval/queenFullEval.h>
+#include <problems/permutation/moShiftNeighbor.h>
+#include <problems/permutation/moSwapNeighbor.h>
+#include <problems/permutation/moSwapNeighborhood.h>
 
 //#include <old/moMove.h>
 //#include <old/moMoveIncrEval.h>

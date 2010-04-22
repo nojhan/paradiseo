@@ -1,5 +1,5 @@
 /*
-<moDummyNeighborhood.h>
+<t-moDummyNeighborhood.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -27,52 +27,21 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moDummyNeighborhood_h
-#define _moDummyNeighborhood_h
-
+#include <iostream>
+#include <cstdlib>
+#include <cassert>
 #include <neighborhood/moDummyNeighbor.h>
-#include <neighborhood/moNeighborhood.h>
+#include <neighborhood/moDummyNeighborhood.h>
+#include "moTestClass.h"
 
-/**
- * Dummy Neighborhood
- */
-template< class Neighbor >
-class moDummyNeighborhood : public moNeighborhood<Neighbor>{
-public:
-    typedef typename Neighbor::EOT EOT;
+int main(){
 
-    /**
-     * NOTHING TO DO
-     * @param _solution the related solution
-     * @return always false
-     */
-    virtual bool hasNeighbor(EOT & _solution){
-    	return false;
-    }
+	std::cout << "[t-moDummyNeighborhood] => START" << std::endl;
 
-    /**
-     * NOTHING TO DO
-     * @param _solution the solution to explore
-     * @param _current the first neighbor
-     */
-    virtual void init(EOT & _solution, Neighbor & _current){}
+	moDummyNeighborhood<moDummyNeighbor<bitVector> > test;
 
-    /**
-     * NOTHING TO DO
-     * @param _solution the solution to explore
-     * @param _current the next neighbor
-     */
-    virtual void next(EOT & _solution, Neighbor & _current){}
+	std::cout << "[t-moDummyNeighborhood] => OK" << std::endl;
 
-    /**
-     * NOTHING TO DO
-     * @param _solution the solution to explore
-     * @return always false
-     */
-    virtual bool cont(EOT & _solution){
-    	return false;
-    }
+	return EXIT_SUCCESS;
+}
 
-};
-
-#endif

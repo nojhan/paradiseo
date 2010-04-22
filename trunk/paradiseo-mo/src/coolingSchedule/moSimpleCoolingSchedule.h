@@ -58,7 +58,8 @@ public:
 
   /**
    * Initial temperature
-   * @param _solution initial solution 
+   * @param _solution initial solution
+   * @return the initial temperature
    */
   double init(EOT & _solution) {
     // number of iteration with the same temperature

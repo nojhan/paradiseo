@@ -1,5 +1,5 @@
 /*
-<moDummyNeighborhood.h>
+<t-moSimpleCoolingSchedule.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -27,52 +27,62 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moDummyNeighborhood_h
-#define _moDummyNeighborhood_h
+#include <iostream>
+#include <cstdlib>
+#include <cassert>
 
-#include <neighborhood/moDummyNeighbor.h>
-#include <neighborhood/moNeighborhood.h>
+#include <coolingSchedule/moSimpleCoolingSchedule.h>
+#include "moTestClass.h"
 
-/**
- * Dummy Neighborhood
- */
-template< class Neighbor >
-class moDummyNeighborhood : public moNeighborhood<Neighbor>{
-public:
-    typedef typename Neighbor::EOT EOT;
+int main(){
 
-    /**
-     * NOTHING TO DO
-     * @param _solution the related solution
-     * @return always false
-     */
-    virtual bool hasNeighbor(EOT & _solution){
-    	return false;
-    }
+	std::cout << "[t-moSimpleCoolingSchedule] => START" << std::endl;
 
-    /**
-     * NOTHING TO DO
-     * @param _solution the solution to explore
-     * @param _current the first neighbor
-     */
-    virtual void init(EOT & _solution, Neighbor & _current){}
+	double temperature;
 
-    /**
-     * NOTHING TO DO
-     * @param _solution the solution to explore
-     * @param _current the next neighbor
-     */
-    virtual void next(EOT & _solution, Neighbor & _current){}
+	bitVector sol;
 
-    /**
-     * NOTHING TO DO
-     * @param _solution the solution to explore
-     * @return always false
-     */
-    virtual bool cont(EOT & _solution){
-    	return false;
-    }
+	moSimpleCoolingSchedule<bitVector> test(100, 0.1, 2, 0.1);
 
-};
+	temperature=test.init(sol);
+	assert(temperature==100);
 
-#endif
+	//temperature must not changed 2*
+	test.update(temperature);
+	assert(temperature==100);
+	assert(test(temperature));
+	test.update(temperature);
+	assert(temperature==100);
+	assert(test(temperature));
+
+	//then temperature must be /10
+	test.update(temperature);
+	assert(temperature==10);
+	assert(test(temperature));
+	test.update(temperature);
+	assert(temperature==10);
+	assert(test(temperature));
+	test.update(temperature);
+	assert(temperature==10);
+	assert(test(temperature));
+
+	test.update(temperature);
+	assert(temperature==1);
+	assert(test(temperature));
+	test.update(temperature);
+	assert(temperature==1);
+	assert(test(temperature));
+	test.update(temperature);
+	assert(temperature==1);
+	assert(test(temperature));
+
+	test.update(temperature);
+	assert(temperature==0.1);
+	assert(!test(temperature));
+
+
+	std::cout << "[t-moSimpleCoolingSchedule] => OK" << std::endl;
+
+	return EXIT_SUCCESS;
+}
+
