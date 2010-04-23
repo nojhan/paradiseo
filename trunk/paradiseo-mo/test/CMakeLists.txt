@@ -66,6 +66,9 @@ SET (TEST_LIST
 		t-moSimpleCoolingSchedule
 		t-moAlwaysAcceptCrit
 		t-moBetterAcceptCrit
+		t-moCountMoveMemory
+		t-moMonOpPerturb
+		t-moRestartPerturb
 		)
 				
 FOREACH (test ${TEST_LIST})
