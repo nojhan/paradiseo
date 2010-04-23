@@ -32,23 +32,24 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <eval/moEval.h>
 #include <perturb/moPerturbation.h>
+#include <neighborhood/moNeighborhood.h>
 
 /**
  * Neighborhood Perturbation: explore the neighborhood to perturb the solution (the neighborhood could be different as the one used in the Local Search)
  */
-template< class Neighbor, class OtherNH >
+template< class Neighbor, class OtherNeighbor >
 class moNeighborhoodPerturb : public moPerturbation<Neighbor>{
 
 public:
 	typedef typename Neighbor::EOT EOT;
-	typedef typename OtherNH::Neighbor OtherN;
+	typedef moNeighborhood<OtherNeighbor> OtherNH;
 
 	/**
 	 * Default Constructor
 	 * @param _otherNeighborhood a neighborhood
 	 * @param _eval an Evaluation Function
 	 */
-	moNeighborhoodPerturb(OtherNH& _otherNeighborhood, moEval<OtherN>& _eval): otherNeighborhood(_otherNeighborhood), eval(_eval){}
+	moNeighborhoodPerturb(OtherNH& _otherNeighborhood, moEval<OtherNeighbor>& _eval): otherNeighborhood(_otherNeighborhood), eval(_eval){}
 
 	/**
 	 * Apply move on the solution
@@ -101,8 +102,8 @@ public:
 
 private:
 	OtherNH& otherNeighborhood;
-	moEval<OtherN>& eval;
-	OtherN current;
+	moEval<OtherNeighbor>& eval;
+	OtherNeighbor current;
 };
 
 #endif

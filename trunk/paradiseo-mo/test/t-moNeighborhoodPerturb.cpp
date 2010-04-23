@@ -1,5 +1,5 @@
 /*
-<moRestartPerturb.h>
+<t-moNeighborhoodPerturb.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -27,51 +27,65 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moRestartPerturb_h
-#define _moRestartPerturb_h
+#include <iostream>
+#include <cstdlib>
+#include <cassert>
+
+#include "moTestClass.h"
+
+#include <perturb/moNeighborhoodPerturb.h>
+#include <problems/eval/oneMaxFullEval.h>
+#include <eval/moFullEvalByCopy.h>
+
+typedef moOrderNeighborhood<bitNeighbor> Neighborhood;
+
+int main(){
+
+	std::cout << "[t-moNeighborhoodPerturb] => START" << std::endl;
+
+	oneMaxFullEval<bitVector> eval;
+
+	moFullEvalByCopy<bitNeighbor> moeval(eval);
+
+	bitVector sol;
+	sol.resize(3);
+	sol[0]=0;
+	sol[1]=0;
+	sol[2]=0;
+
+	sol.fitness(0);
+
+	Neighborhood nh(3);
+
+	bitNeighbor n;
+
+	moNeighborhoodPerturb<bitNeighbor, bitNeighbor> test(nh, moeval);
+
+	//test update
+	test.init(sol);
+	test(sol);
+	assert(sol[0]==1 && sol[1]==0 && sol[2]==0);
+	test.update(sol, n);
+	test(sol);
+	assert(sol[0]==1 && sol[1]==1 && sol[2]==0);
+	test.update(sol, n);
+	test(sol);
+	assert(sol[0]==1 && sol[1]==1 && sol[2]==1);
+	test.update(sol, n);
+	test(sol);
+	assert(sol[0]==0 && sol[1]==1 && sol[2]==1);
+
+	//test add
+
+	test.add(sol, n);
+	test(sol);
+	assert(sol[0]==1 && sol[1]==1 && sol[2]==1);
+
+	test.clearMemory();
 
 
-#include <eoEvalFunc.h>
-#include <eoInit.h>
-#include <perturb/moPerturbation.h>
-#include <memory/moCountMoveMemory.h>
+	std::cout << "[t-moNeighborhoodPerturb] => OK" << std::endl;
 
-/**
- * Restart Perturbation : restart when maximum number of iteration with no improvement is reached
- */
-template< class Neighbor >
-class moRestartPerturb : public moPerturbation<Neighbor>, public moCountMoveMemory<Neighbor> {
+	return EXIT_SUCCESS;
+}
 
-public:
-	typedef typename Neighbor::EOT EOT;
-
-	/**
-	 * Default Constructor
-	 * @param _init an initializer of solution
-	 * @param _fullEval a full evaluation function
-	 * @param _threshold maximum number of iteration with no improvement
-	 */
-	moRestartPerturb(eoInit<EOT>& _initializer, eoEvalFunc<EOT>& _fullEval, unsigned int _threshold):initializer(_initializer), fullEval(_fullEval), threshold(_threshold) {}
-
-	/**
-	 * Apply restart when necessary
-	 * @param _solution to restart
-	 * @return true
-	 */
-	bool operator()(EOT& _solution){
-		if((*this).getCounter()>= threshold){
-			initializer(_solution);
-			fullEval(_solution);
-			(*this).initCounter();
-		}
-		return true;
-	}
-
-private:
-	eoInit<EOT>& initializer;
-	eoEvalFunc<EOT>& fullEval;
-	unsigned int threshold;
-};
-
-
-#endif

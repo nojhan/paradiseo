@@ -69,6 +69,7 @@ SET (TEST_LIST
 		t-moCountMoveMemory
 		t-moMonOpPerturb
 		t-moRestartPerturb
+		t-moNeighborhoodPerturb
 		)
 				
 FOREACH (test ${TEST_LIST})
