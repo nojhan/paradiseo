@@ -19,19 +19,23 @@
 #include <eo>
 #include <ga.h>
 
+// declaration of the namespace
 using namespace std;
 
 //-----------------------------------------------------------------------------
-// representation of solutions, neighbor, and neighborhood
-#include <ga/eoBit.h>                         // bit string : see EO tutorial lesson 1: FirstBitGA.cpp
+// representation of solutions, and neighbors
+#include <ga/eoBit.h>                         // bit string : see also EO tutorial lesson 1: FirstBitGA.cpp
 #include <problems/bitString/moBitNeighbor.h> // neighbor of bit string
-#include <neighborhood/moOrderNeighborhood.h> // neighborhood: all neighors in increasing order of bit index
 
 //-----------------------------------------------------------------------------
 // fitness function, and evaluation of neighbors
 #include <problems/eval/oneMaxFullEval.h>
-#include <eval/moFullEvalByModif.h>
 #include <problems/eval/moOneMaxIncrEval.h>
+#include <eval/moFullEvalByModif.h>
+
+//-----------------------------------------------------------------------------
+// neighborhood description
+#include <neighborhood/moOrderNeighborhood.h> // visit all neighbors in increasing order of bit index
 
 //-----------------------------------------------------------------------------
 // the simple Hill-Climbing local search
@@ -108,7 +112,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  // a Indi random initializer
+  // a Indi random initializer: each bit is random
   // more information: see EO tutorial lesson 1 (FirstBitGA.cpp)
   eoUniformGenerator<bool> uGen;
   eoInitFixedLength<Indi> random(vecSize, uGen);
@@ -128,7 +132,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  // Use it if a neighbor is evaluated by the full evaluation of a solution
+  // Use it if there is no incremental evaluation: a neighbor is evaluated by the full evaluation of a solution
   // moFullEvalByModif<Neighbor> neighborEval(fullEval);
 
   // Incremental evaluation of the neighbor: fitness is modified by +/- 1
@@ -154,7 +158,7 @@ void main_function(int argc, char **argv)
 
   /* =========================================================
    *
-   * execute the local search from a random solution
+   * executes the local search from a random solution
    *
    * ========================================================= */
 
