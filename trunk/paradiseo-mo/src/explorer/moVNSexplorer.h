@@ -37,105 +37,96 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 /**
  * Explorer for Variiable Neighborhood Search
  */
-template< class Neighborhood >
-class moVNSexplorer : public moNeighborhoodExplorer<Neighborhood>
+template< class EOT >
+class moVNSexplorer : public moNeighborhoodExplorer< moNeighborhood< moNeighbor<EOT, typename EOT::Fitness> > >
 {
 public:
-    typedef typename Neighborhood::EOT EOT ;
-    typedef typename Neighborhood::Neighbor Neighbor ;
+  typedef typename EOT::Fitness Fitness ;
+  typedef moNeighbor<EOT, Fitness> Neighbor ;
+  typedef moNeighborhood<Neighbor> Neighborhood ;
 
-    using moNeighborhoodExplorer<Neighborhood>::neighborhood;
-    using moNeighborhoodExplorer<Neighborhood>::eval;
+  using moNeighborhoodExplorer<Neighborhood>::neighborhood;
+  using moNeighborhoodExplorer<Neighborhood>::eval;
 
-    /**
-     * Constructor
-     * @param _neighborhood the neighborhood
-     * @param _eval the evaluation function
-     * @param _neighborComparator a neighbor comparator
-     * @param _solNeighborComparator solution vs neighbor comparator
-     */
-    moVNSexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator) {
-    }
+  /**
+   * Constructor
+   * @param _neighborhood the neighborhood
+   * @param _eval the evaluation function
+   * @param _neighborComparator a neighbor comparator
+   * @param _solNeighborComparator solution vs neighbor comparator
+   */
+  moVNSexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator) : moNeighborhoodExplorer<Neighborhood>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator) {
+  }
 
-    /**
-     * Destructor
-     */
-    ~moVNSexplorer() {
-    }
-
-    /**
-     * initParam: NOTHING TO DO
-     */
-    virtual void initParam(EOT & solution) {};
-
-    /**
-     * updateParam: NOTHING TO DO
-     */
-    virtual void updateParam(EOT & solution) {};
-
-    /**
-     * terminate: NOTHING TO DO
-     */
-    virtual void terminate(EOT & solution) {};
-
-    /**
-     * Explore the neighborhood of a solution
-     * @param _solution
-     */
-    virtual void operator()(EOT & _solution) {
-   };
-
-    /**
-     * continue if a move is accepted
-     * @param _solution the solution
-     * @return true if an ameliorated neighbor was be found
-     */
-    virtual bool isContinue(EOT & _solution) {
-        return isAccept ;
-    };
-
-    /**
-     * move the solution with the best neighbor
-     * @param _solution the solution to move
-     */
-    virtual void move(EOT & _solution) {
-        //move the solution
-        (*best).move(_solution);
-        //update its fitness
-        _solution.fitness((*best).fitness());
-    };
-
-    /**
-     * accept test if an amelirated neighbor was be found
-     * @param _solution the solution
-     * @return true if the best neighbor ameliorate the fitness
-     */
-    virtual bool accept(EOT & _solution) {
-        if (neighborhood.hasNeighbor(_solution)) {
-            isAccept = solNeighborComparator(_solution, (*best)) ;
-        }
-        return isAccept;
-    };
-
-    /**
-     * Return the class id.
-     * @return the class name as a std::string
-     */
-    virtual std::string className() const {
-        return "moVNSexplorer";
-    }
-
+  /**
+   * Destructor
+   */
+  ~moVNSexplorer() {
+  }
+  
+  /**
+   * initParam: NOTHING TO DO
+   */
+  virtual void initParam(EOT & solution) {};
+  
+  /**
+   * updateParam: NOTHING TO DO
+   */
+  virtual void updateParam(EOT & solution) {};
+  
+  /**
+   * terminate: NOTHING TO DO
+   */
+  virtual void terminate(EOT & solution) {};
+  
+  /**
+   * Explore the neighborhood of a solution
+   * @param _solution
+   */
+  virtual void operator()(EOT & _solution) {
+  };
+  
+  /**
+   * continue if a move is accepted
+   * @param _solution the solution
+   * @return true if an ameliorated neighbor was be found
+   */
+  virtual bool isContinue(EOT & _solution) {
+    return isAccept ;
+  };
+  
+  /**
+   * move the solution with the best neighbor
+   * @param _solution the solution to move
+   */
+  virtual void move(EOT & _solution) {
+    //move the solution
+    (*best).move(_solution);
+    //update its fitness
+    _solution.fitness((*best).fitness());
+  };
+  
+  /**
+   * accept test if an amelirated neighbor was be found
+   * @param _solution the solution
+   * @return true if the best neighbor ameliorate the fitness
+   */
+  virtual bool accept(EOT & _solution) {
+  };
+  
+  /**
+   * Return the class id.
+   * @return the class name as a std::string
+   */
+  virtual std::string className() const {
+    return "moVNSexplorer";
+  }
+  
 private:
-    // comparator betwenn solution and neighbor or between neighbors
-    moNeighborComparator<Neighbor>& neighborComparator;
-    moSolNeighborComparator<Neighbor>& solNeighborComparator;
-
-    //Pointer on the best and the current neighbor
-    Neighbor* best;
-    Neighbor* current;
-
-    // true if the move is accepted
-    bool isAccept ;
+  // comparator betwenn solution and neighbor or between neighbors
+  moNeighborComparator<Neighbor>& neighborComparator;
+  moSolNeighborComparator<Neighbor>& solNeighborComparator;
+  
 };
 
 

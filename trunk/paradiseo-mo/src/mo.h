@@ -37,6 +37,7 @@
 
 #include <algo/moLocalSearch.h>
 #include <algo/moSA.h>
+#include <algo/moSimpleHC.h>
 
 #include <comparator/moComparator.h>
 #include <comparator/moNeighborComparator.h>
@@ -117,6 +118,7 @@
 
 #include <problems/bitString/moBitNeighbor.h>
 #include <problems/eval/oneMaxFullEval.h>
+#include <problems/eval/moOneMaxIncrEval.h>
 #include <problems/eval/queenFullEval.h>
 #include <problems/permutation/moShiftNeighbor.h>
 #include <problems/permutation/moSwapNeighbor.h>

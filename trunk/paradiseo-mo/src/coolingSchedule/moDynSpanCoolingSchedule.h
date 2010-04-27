@@ -1,5 +1,5 @@
 /*
-  <moSimpleCoolingSchedule.h>
+  <moDynSpanCoolingSchedule.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,37 +32,43 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moSimpleCoolingSchedule_h
-#define _moSimpleCoolingSchedule_h
+#ifndef _moDynSpanCoolingSchedule_h
+#define _moDynSpanCoolingSchedule_h
 
 #include <coolingSchedule/moCoolingSchedule.h>
 
 /**
- * Classical cooling Schedule of the temperature in the simulated algorithm with initial and final temperature and a factor of decrease
+ * Cooling Schedule of the temperature in the simulated algorithm
  * 
  */
 template< class EOT >
-class moSimpleCoolingSchedule : public moCoolingSchedule<EOT>
+class moDynSpanCoolingSchedule : public moCoolingSchedule<EOT>
 {
 public:
   /**
    * default constructor
    * @param _initT initial temperature
    * @param _alpha factor of decreasing
-   * @param _span number of iteration with equal temperature
-   * @param _finalT final temperature, threshold of the stopping criteria
+   * @param _spanMove maximum number of move with equal temperature
+   * @param _spanNoMove maximum number of no improvement with equal temperature
+   * @param _nbSpan maximum number of span with no improvmement before stopping the search
    */
-  moSimpleCoolingSchedule(double _initT, double _alpha, unsigned _span, double _finalT) : initT(_initT), alpha(_alpha), span(_span), finalT(_finalT) {
+  moDynSpanCoolingSchedule(double _initT, double _alpha, unsigned _spanMove, unsigned _spanNoMove, unsigned _nbSpan) : initT(_initT), alpha(_alpha), spanMove(_spanMove), spanNoMove(_spanNoMove), nbSpan(_nbSpan) {
   }
 
   /**
    * Initial temperature
-   * @param _solution initial solution
-   * @return the initial temperature
+   * @param _solution initial solution 
    */
   virtual double init(EOT & _solution) {
-    // number of iteration with the same temperature
-    step = 0;
+    // number of successive moves since the last temperature change
+    nbMove = 0;
+
+    // number of no improvement since the last temperature change
+    nbNoMove = 0;
+
+    // number of span with no improvement
+    nbSpan = 0;
 
     return initT;
   }
@@ -72,11 +78,15 @@ public:
    * @param _temp current temperature to update
    */
   virtual void update(double& _temp) {
-    if (step >= span) {
+    if (nbMove >= spanMove || nbNoMove >= spanNoMove) {
       _temp *= alpha;
-      step = 0;
-    } else
-      step++;
+
+      nbMove   = 0;
+      nbNoMove = 0;
+    } else {
+      nbMove++;
+      nbNoMove++;
+    }
   }
 
   /**

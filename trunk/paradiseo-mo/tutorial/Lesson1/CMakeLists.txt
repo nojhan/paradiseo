@@ -4,12 +4,12 @@ INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src
 					
 LINK_DIRECTORIES(${EO_BIN_DIR}/lib)	
 
-ADD_EXECUTABLE(testSimpleHC testSimpleHC.cpp) 
-ADD_EXECUTABLE(testFirstImpr testFirstImpr.cpp) 
-ADD_EXECUTABLE(testRandomBestHC testRandomBestHC.cpp) 
-ADD_EXECUTABLE(testHCneutral testHCneutral.cpp) 
+ADD_EXECUTABLE(lesson1_simpleHC lesson1_simpleHC.cpp) 
+ADD_EXECUTABLE(lesson1_firstImpr lesson1_firstImpr.cpp) 
+ADD_EXECUTABLE(lesson1_randomBestHC lesson1_randomBestHC.cpp) 
+ADD_EXECUTABLE(lesson1_HCneutral lesson1_HCneutral.cpp) 
 
-TARGET_LINK_LIBRARIES(testSimpleHC eoutils ga eo) 
-TARGET_LINK_LIBRARIES(testFirstImpr eoutils ga eo) 
-TARGET_LINK_LIBRARIES(testRandomBestHC eoutils ga eo) 
-TARGET_LINK_LIBRARIES(testHCneutral eoutils ga eo) 
+TARGET_LINK_LIBRARIES(lesson1_simpleHC eoutils ga eo) 
+TARGET_LINK_LIBRARIES(lesson1_firstImpr eoutils ga eo) 
+TARGET_LINK_LIBRARIES(lesson1_randomBestHC eoutils ga eo) 
+TARGET_LINK_LIBRARIES(lesson1_HCneutral eoutils ga eo) 
