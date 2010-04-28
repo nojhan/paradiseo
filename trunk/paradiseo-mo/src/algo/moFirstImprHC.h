@@ -1,5 +1,5 @@
 /*
-<moSimpleHC.h>
+<moFirstImprHC.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -27,17 +27,17 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moSimpleHC_h
-#define _moSimpleHC_h
+#ifndef _moFirstImprHC_h
+#define _moFirstImprHC_h
 
 #include <algo/moLocalSearch.h>
-#include <explorer/moSimpleHCexplorer.h>
+#include <explorer/moFirstImprExplorer.h>
 #include <continuator/moTrueContinuator.h>
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
 
 template<class Neighbor>
-class moSimpleHC: public moLocalSearch<Neighbor>
+class moFirstImprHC: public moLocalSearch<Neighbor>
 {
 public:
   typedef typename Neighbor::EOT EOT;
@@ -49,7 +49,7 @@ public:
    * @param _fullEval the full evaluation function
    * @param _eval neighbor's evaluation function
    */
-  moSimpleHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval):
+  moFirstImprHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval):
     moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
     explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp)
   {}
@@ -61,7 +61,7 @@ public:
    * @param _eval neighbor's evaluation function
    * @param _cont an external continuator
    */
-  moSimpleHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, moContinuator<Neighbor>& _cont):
+  moFirstImprHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, moContinuator<Neighbor>& _cont):
     moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
     explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp)
   {}
@@ -75,7 +75,7 @@ public:
    * @param _compN  a neighbor vs neighbor comparator
    * @param _compSN a solution vs neighbor comparator
    */
-  moSimpleHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, moContinuator<Neighbor>& _cont, moNeighborComparator<Neighbor>& _compN, moSolNeighborComparator<Neighbor>& _compSN):
+  moFirstImprHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, moContinuator<Neighbor>& _cont, moNeighborComparator<Neighbor>& _compN, moSolNeighborComparator<Neighbor>& _compSN):
     moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
     explorer(_neighborhood, _eval, _compN, _compSN)
   {}
@@ -87,8 +87,8 @@ private:
   moNeighborComparator<Neighbor> defaultNeighborComp;
   // compare the fitness values of the solution and the neighbor: true if strictly greater 
   moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
-  // the explorer of the simple HC
-  moSimpleHCexplorer<Neighbor> explorer;
+  // the explorer of the first improvement HC
+  moFirstImprExplorer<Neighbor> explorer;
 };
 
 #endif
