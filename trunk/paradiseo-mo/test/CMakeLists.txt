@@ -75,6 +75,8 @@ SET (TEST_LIST
 		t-moLocalSearch
 		t-moILSexplorer
 		t-moSimpleHC
+		t-moFirstImprHC
+		t-moRandomBestHC
 		)
 				
 FOREACH (test ${TEST_LIST})
