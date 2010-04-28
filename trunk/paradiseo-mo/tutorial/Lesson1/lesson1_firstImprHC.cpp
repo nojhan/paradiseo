@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-/** first_randomBestHC.cpp
+/** lesson1_firstImprHC.cpp
  *
  * SV - 27/04/10 - version 1
  *
@@ -34,11 +34,11 @@ using namespace std;
 
 //-----------------------------------------------------------------------------
 // neighborhood description
-#include <neighborhood/moOrderNeighborhood.h> // visit all neighbors in increasing order of bit index
+#include <neighborhood/moRndWithoutReplNeighborhood.h> // visit all neighbors in random order without repeating any neighbor
 
 //-----------------------------------------------------------------------------
-// the Hill-Climbing local search which randomly one of the best solution
-#include <algo/moRandomBestHC.h>
+// the first improvement Hill-Climbing local search
+#include <algo/moFirstImprHC.h>
 
 // Declaration of types
 //-----------------------------------------------------------------------------
@@ -143,9 +143,9 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  // Exploration of the neighborhood in increasing order of the neigbor's index:
-  // bit-flip from bit 0 to bit (vecSize - 1)
-  moOrderNeighborhood<Neighbor> neighborhood(vecSize);
+  // Exploration of the neighborhood in random order of the neigbor's index:
+  // each neighbor is visited only once
+  moRndWithoutReplNeighborhood<Neighbor> neighborhood(vecSize);
 
   /* =========================================================
    *
@@ -153,7 +153,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  moRandomBestHC<Neighbor> hc(neighborhood, fullEval, neighborEval);
+  moFirstImprHC<Neighbor> hc(neighborhood, fullEval, neighborEval);
 
   /* =========================================================
    *

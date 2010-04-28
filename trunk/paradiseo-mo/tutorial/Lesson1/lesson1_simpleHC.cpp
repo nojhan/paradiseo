@@ -11,13 +11,12 @@
 
 #include <stdexcept>  // runtime_error 
 #include <iostream>   // cout
-#include <sstream>  // ostrstream, istrstream
+#include <sstream>    // ostrstream, istrstream
 #include <fstream>
 #include <string.h>
 
 // the general include for eo
 #include <eo>
-#include <ga.h>
 
 // declaration of the namespace
 using namespace std;
@@ -47,7 +46,7 @@ using namespace std;
 typedef eoBit<unsigned int> Indi;                      // bit string with unsigned fitness type
 // Neighbor is the typedef of the neighbor type,
 // Neighbor = How to compute the neighbor from the solution + information on it (i.e. fitness)  
-// all classes from paradisEO-mo use this template
+// all classes from paradisEO-mo use this template type
 typedef moBitNeighbor<unsigned int> Neighbor ;         // bit string neighbor with unsigned fitness type
 
 
@@ -75,7 +74,7 @@ void main_function(int argc, char **argv)
   unsigned seed = seedParam.value();
 
   // length of the bit string
-  eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size", 'V');
+  eoValueParam<unsigned int> vecSizeParam(20, "vecSize", "Genotype size", 'V');
   parser.processParam( vecSizeParam, "Representation" );
   unsigned vecSize = vecSizeParam.value();
 
@@ -108,7 +107,7 @@ void main_function(int argc, char **argv)
 
   /* =========================================================
    *
-   * Initilisation of the solution
+   * Initialization of the solution
    *
    * ========================================================= */
 
@@ -165,19 +164,20 @@ void main_function(int argc, char **argv)
   // The current solution
   Indi solution;
 
-  // random intiialization
+  // Apply random initialization
   random(solution);
 
-  // Can be evaluated here, else it will be done at the beginning of the localSearch
+  // Evaluation of the initial solution:
+  // can be evaluated here, or else it will be done at the beginning of the local search
   fullEval(solution);
 
-  // output: the intial solution 
+  // Output: the intial solution 
   std::cout << "initial: " << solution << std::endl ;
 
-  // apply the local search on the solution !
+  // Apply the local search on the solution !
   hc(solution);
 
-  // output: the final solution 
+  // Output: the final solution 
   std::cout << "final:   " << solution << std::endl ;
 
 }

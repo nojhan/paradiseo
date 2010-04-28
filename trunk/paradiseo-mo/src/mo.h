@@ -38,6 +38,8 @@
 #include <algo/moLocalSearch.h>
 #include <algo/moSA.h>
 #include <algo/moSimpleHC.h>
+#include <algo/moFirstImprHC.h>
+#include <algo/moRandomBestHC.h>
 
 #include <comparator/moComparator.h>
 #include <comparator/moNeighborComparator.h>

@@ -2,7 +2,7 @@
   <moRandomBestHCExplorer.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
-  Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
+  Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
 
   This software is governed by the CeCILL license under French law and
   abiding by the rules of distribution of free software.  You can  use,
@@ -43,7 +43,8 @@
 #include <utils/eoRNG.h>
 
 /**
- * Explorer for a simple neutral Hill-climbing
+ * Explorer for Hill-Climbing 
+ * which choose randomly one of the best solution in the neighborhood at each iteration
  */
 template< class Neighbor >
 class moRandomBestHCExplorer : public moNeighborhoodExplorer<Neighbor>
