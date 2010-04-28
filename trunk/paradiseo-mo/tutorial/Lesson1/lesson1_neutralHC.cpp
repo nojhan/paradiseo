@@ -78,9 +78,9 @@ void main_function(int argc, char **argv)
   parser.processParam( vecSizeParam, "Representation" );
   unsigned vecSize = vecSizeParam.value();
 
-  eoValueParam<unsigned int> stepParam(10, "nbStep", "Number of steps of the random walk", 'n');
+  eoValueParam<unsigned int> stepParam(10, "nbStepMax", "Number of steps of the random walk", 'n');
   parser.processParam( stepParam, "Representation" );
-  unsigned nbStep = stepParam.value();
+  unsigned nbStepMax = stepParam.value();
   
   // the name of the "status" file where all actual parameter values will be saved
   string str_status = parser.ProgramName() + ".status"; // default value
@@ -157,7 +157,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  moNeutralHC<Neighbor> hc(neighborhood, fullEval, neighborEval, nbStep);
+  moNeutralHC<Neighbor> hc(neighborhood, fullEval, neighborEval, nbStepMax);
 
   /* =========================================================
    *
