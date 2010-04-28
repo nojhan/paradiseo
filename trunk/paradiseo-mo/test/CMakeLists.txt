@@ -70,6 +70,8 @@ SET (TEST_LIST
 		t-moMonOpPerturb
 		t-moRestartPerturb
 		t-moNeighborhoodPerturb
+		t-moSAexplorer
+		t-moSA
 		)
 				
 FOREACH (test ${TEST_LIST})

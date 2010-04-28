@@ -1,5 +1,5 @@
 /*
-<t-moDummyNeighborhood.cpp>
+<t-moSA.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -30,26 +30,35 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
-#include <neighborhood/moDummyNeighbor.h>
-#include <neighborhood/moDummyNeighborhood.h>
+
+#include <algo/moSA.h>
 #include "moTestClass.h"
+#include <problems/eval/oneMaxFullEval.h>
+#include <coolingSchedule/moSimpleCoolingSchedule.h>
+#include <continuator/moTrueContinuator.h>
+#include <comparator/moSolNeighborComparator.h>
 
 int main(){
 
-	std::cout << "[t-moDummyNeighborhood] => START" << std::endl;
+	std::cout << "[t-moSA] => START" << std::endl;
 
-	bitVector sol;
-	moDummyNeighbor<bitVector> n;
+	bitNeighborhood nh(4);
+	oneMaxFullEval<bitVector> fullEval;
+	evalOneMax eval(4);
 
-	moDummyNeighborhood<moDummyNeighbor<bitVector> > test;
+	//test first constructor
+	moSA<bitNeighbor> test1(nh, fullEval, eval);
 
-	assert(!test.hasNeighbor(sol));
-	assert(!test.cont(sol));
-	test.init(sol,n);
-	test.next(sol,n);
+	//test second constructor
+	moSimpleCoolingSchedule<bitVector> cool(10, 0.9, 100, 0.01);
+	moSA<bitNeighbor> test2(nh, fullEval, eval, cool);
 
+	//test third constructor
+	moTrueContinuator<bitNeighbor> cont;
+	moSolNeighborComparator<bitNeighbor> comp;
+	moSA<bitNeighbor> test3(nh, fullEval, eval, cool, comp, cont);
 
-	std::cout << "[t-moDummyNeighborhood] => OK" << std::endl;
+	std::cout << "[t-moSA] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

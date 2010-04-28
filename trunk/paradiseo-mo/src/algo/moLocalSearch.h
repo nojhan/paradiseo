@@ -39,6 +39,7 @@
 #include <continuator/moContinuator.h>
 #include <neighborhood/moNeighborhood.h>
 #include <eoEvalFunc.h>
+#include <eoOp.h>
 
 /**
  * the main algorithm of the local search

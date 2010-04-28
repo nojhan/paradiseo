@@ -1,5 +1,5 @@
 /*
-<t-moDummyNeighborhood.cpp>
+<t-moSAexplorer.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -30,26 +30,57 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
-#include <neighborhood/moDummyNeighbor.h>
-#include <neighborhood/moDummyNeighborhood.h>
+
 #include "moTestClass.h"
+#include <explorer/moSAexplorer.h>
+#include <coolingSchedule/moSimpleCoolingSchedule.h>
 
 int main(){
 
-	std::cout << "[t-moDummyNeighborhood] => START" << std::endl;
+	std::cout << "[t-moSAexplorer] => START" << std::endl;
 
-	bitVector sol;
-	moDummyNeighbor<bitVector> n;
+    eoBit<eoMinimizingFitness> sol(4, true);
+    sol.fitness(4);
+    bitNeighborhood nh(4);
+    bitNeighborhood emptyNH(0);
+    evalOneMax eval(4);
+    moSolNeighborComparator<bitNeighbor> sncomp;
+    moSimpleCoolingSchedule<bitVector> cool(10,0.1,2,0.1);
 
-	moDummyNeighborhood<moDummyNeighbor<bitVector> > test;
+    moSAexplorer<bitNeighbor> test1(emptyNH, eval, sncomp, cool);
+    moSAexplorer<bitNeighbor> test2(nh, eval, sncomp, cool);
 
-	assert(!test.hasNeighbor(sol));
-	assert(!test.cont(sol));
-	test.init(sol,n);
-	test.next(sol,n);
+    //test d'un voisinage vide
+    test1.initParam(sol);
+    test1(sol);
+    assert(!test1.accept(sol));
+    assert(test1.getTemperature()==10.0);
+
+    //test d'un voisinage "normal"
+    test2.initParam(sol);
+    test2(sol);
+    assert(test2.accept(sol));
+    test2.updateParam(sol);
+    assert(test2.isContinue(sol));
+    test2.move(sol);
+    assert(sol.fitness()==3);
+    unsigned int ok=0;
+    unsigned int ko=0;
+    for(unsigned int i=0; i<1000; i++){
+    	test2(sol);
+    	if(test2.isContinue(sol))
+    		test2.updateParam(sol);
+    	if(test2.accept(sol))
+			ok++;
+    	else
+    		ko++;
+        test2.move(sol);
+    }
+    assert((ok>0) && (ko>0));
 
 
-	std::cout << "[t-moDummyNeighborhood] => OK" << std::endl;
+
+	std::cout << "[t-moSAexplorer] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

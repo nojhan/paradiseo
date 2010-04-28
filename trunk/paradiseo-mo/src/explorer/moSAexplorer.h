@@ -151,19 +151,26 @@ public:
      */
     virtual bool accept(EOT & _solution) {
         double alpha=0.0;
+        double fit1, fit2;
         if (neighborhood.hasNeighbor(_solution)) {
-	  if (solNeighborComparator(_solution, current)) // accept if the current neighbor is better than the solution
+        	if (solNeighborComparator(_solution, current)) // accept if the current neighbor is better than the solution
                 isAccept = true;
             else {
-	      if ( (double)current.fitness() < (double)_solution.fitness()) // this is a maximization
-		alpha = exp( ((double) current.fitness() - (double) _solution.fitness()) / temperature );
-	      else // this is a minimization
-		alpha = exp( ((double) _solution.fitness() - (double) current.fitness()) / temperature );
-	      isAccept = (rng.uniform() < alpha) ;
+            	fit1=(double)current.fitness();
+            	fit2=(double)_solution.fitness();
+            	if (fit1 < fit2) // this is a maximization
+            		alpha = exp((fit1 - fit2) / temperature );
+            	else // this is a minimization
+            		alpha = exp((fit2 - fit1) / temperature );
+            	isAccept = (rng.uniform() < alpha) ;
             }
         }
         return isAccept;
     };
+
+    double getTemperature(){
+    	return temperature;
+    }
 
 private:
     // comparator betwenn solution and neighbor
