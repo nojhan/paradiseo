@@ -1,5 +1,5 @@
 /*
-<t-moILSexplorer.cpp>
+<t-moLocalSearch.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -30,70 +30,40 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
-
-#include <algo/moSimpleHC.h>
-#include "moTestClass.h"
-#include <problems/eval/oneMaxFullEval.h>
-#include <coolingSchedule/moSimpleCoolingSchedule.h>
+#include <algo/moLocalSearch.h>
+#include <explorer/moSimpleHCexplorer.h>
 #include <continuator/moTrueContinuator.h>
+#include <problems/eval/oneMaxFullEval.h>
 #include <comparator/moSolNeighborComparator.h>
-#include <explorer/moILSexplorer.h>
-#include <perturb/moMonOpPerturb.h>
-#include <acceptCrit/moAlwaysAcceptCrit.h>
+#include <comparator/moNeighborComparator.h>
 
-
-class dummyMonOp: public eoMonOp<bitVector>{
-
-	bool operator()(bitVector& _sol){
-		_sol[0]=!_sol[0];
-		return true;
-	}
-
-};
+#include "moTestClass.h"
 
 int main(){
 
-	std::cout << "[t-moILSexplorer] => START" << std::endl;
-	bitNeighborhood nh(4);
+	std::cout << "[t-moLocalSearch] => START" << std::endl;
+
+
+
+	bitNeighborhood nh(8);
 	oneMaxFullEval<bitVector> fullEval;
-	evalOneMax eval(4);
+	evalOneMax eval(8);
+	moTrueContinuator<bitNeighbor> cont;
+	moSolNeighborComparator<bitNeighbor> sncomp;
+	moNeighborComparator<bitNeighbor> ncomp;
+	moSimpleHCexplorer<bitNeighbor> explorer(nh, eval, ncomp, sncomp);
+	moLocalSearch<bitNeighbor> test(explorer, cont, fullEval);
 
-	bitVector sol(4, true);
-	fullEval(sol);
+	bitVector sol(8, true);
 
-	//test first constructor
-	moSimpleHC<bitNeighbor> ls(nh, fullEval, eval);
-
-	dummyMonOp op;
-	moMonOpPerturb<bitNeighbor> perturb(op, fullEval);
-
-	moAlwaysAcceptCrit<bitNeighbor> accept;
-
-	moILSexplorer<bitNeighbor> test(ls, perturb, accept);
-
-	assert(test.className()=="moILSexplorer");
-	assert(test.isContinue(sol));
-	assert(test.accept(sol));
-
-	test.initParam(sol);
-	test.moveApplied(true);
-	test.updateParam(sol);
-	test.moveApplied(false);
-	test.updateParam(sol);
-	test.terminate(sol);
-
-	test.initParam(sol);
 	test(sol);
-	test.move(sol);
 
+	assert(sol.fitness()==0);
 	for(unsigned int i=0; i<sol.size(); i++)
 		assert(!sol[i]);
-	assert(sol.fitness()==0);
-
-	test(sol);
 
 
-	std::cout << "[t-moILSexplorer] => OK" << std::endl;
+	std::cout << "[t-moLocalSearch] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

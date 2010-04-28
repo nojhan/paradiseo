@@ -72,6 +72,8 @@ SET (TEST_LIST
 		t-moNeighborhoodPerturb
 		t-moSAexplorer
 		t-moSA
+		t-moLocalSearch
+		t-moILSexplorer
 		)
 				
 FOREACH (test ${TEST_LIST})
