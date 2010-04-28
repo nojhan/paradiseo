@@ -1,5 +1,5 @@
 /*
-<moRandomBestHC.h>
+<moNeutralHC.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -27,27 +27,26 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moRandomBestHC_h
-#define _moRandomBestHC_h
+#ifndef _moNeutralHC_h
+#define _moNeutralHC_h
 
 #include <algo/moLocalSearch.h>
-#include <explorer/moRandomBestHCexplorer.h>
+#include <explorer/moNeutralHCexplorer.h>
 #include <continuator/moTrueContinuator.h>
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
 
 /********************************************************
- * Random Best HC:
  * Hill-Climber local search
- * 
+ *
  * At each iteration,
  *   one of the random best solution in the neighborhood is selected
- *   if the selected neighbor have higher fitness than the current solution
+ *   if the selected neighbor have higher or equal fitness than the current solution
  *       then the solution is replaced by the selected neighbor
- *   the algorithm stops when there is no higher neighbor
+ *   the algorithm stops when there is no higher or equal neighbor, or if the number of iterations is too large
  ********************************************************/
 template<class Neighbor>
-class moRandomBestHC: public moLocalSearch<Neighbor>
+class moNeutralHC: public moLocalSearch<Neighbor>
 {
 public:
   typedef typename Neighbor::EOT EOT;
@@ -59,9 +58,9 @@ public:
    * @param _fullEval the full evaluation function
    * @param _eval neighbor's evaluation function
    */
-  moRandomBestHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval):
+  moNeutralHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned int _nbStep):
     moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
-    explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp)
+    explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp, _nbStep)
   {}
   
   /**
@@ -71,9 +70,9 @@ public:
    * @param _eval neighbor's evaluation function
    * @param _cont an external continuator
    */
-  moRandomBestHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, moContinuator<Neighbor>& _cont):
+  moNeutralHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned int _nbStep, moContinuator<Neighbor>& _cont):
     moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
-    explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp)
+    explorer(_neighborhood, _eval, defaultNeighborComp, defaultSolNeighborComp, _nbStep)
   {}
   
   /**
@@ -85,9 +84,9 @@ public:
    * @param _compN  a neighbor vs neighbor comparator
    * @param _compSN a solution vs neighbor comparator
    */
-  moRandomBestHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, moContinuator<Neighbor>& _cont, moNeighborComparator<Neighbor>& _compN, moSolNeighborComparator<Neighbor>& _compSN):
+  moNeutralHC(Neighborhood& _neighborhood, eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, unsigned int _nbStep, moContinuator<Neighbor>& _cont, moNeighborComparator<Neighbor>& _compN, moSolNeighborComparator<Neighbor>& _compSN):
     moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
-    explorer(_neighborhood, _eval, _compN, _compSN)
+    explorer(_neighborhood, _eval, _compN, _compSN, _nbStep)
   {}
   
 private:
@@ -97,8 +96,8 @@ private:
   moNeighborComparator<Neighbor> defaultNeighborComp;
   // compare the fitness values of the solution and the neighbor: true if strictly greater 
   moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
-  // the explorer of the HC with random choice of the best solution
-  moRandomBestHCexplorer<Neighbor> explorer;
+  // the explorer of the HC with neutral move (equals fitness move)
+  moNeutralHCexplorer<Neighbor> explorer;
 };
 
 #endif

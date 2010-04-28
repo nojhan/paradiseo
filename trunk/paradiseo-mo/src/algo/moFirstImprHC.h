@@ -36,6 +36,16 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
 
+/********************************************************
+ * First improvement HC:
+ * Hill-Climber local search
+ * 
+ * At each iteration,
+ *   one of the random solution in the neighborhood is selected
+ *   if the selected neighbor have higher fitness than the current solution
+ *       then the solution is replaced by the selected neighbor
+ *   the algorithm stops when there is no higher neighbor
+ ********************************************************/
 template<class Neighbor>
 class moFirstImprHC: public moLocalSearch<Neighbor>
 {

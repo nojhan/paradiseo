@@ -73,9 +73,6 @@ public:
                         	moRandomBestHCexplorer<Neighbor>(_neighborhood, _eval, _neighborComparator, _solNeighborComparator),
             nbStep(_nbStep) {
         //Some cycle is possible with equals fitness solutions if the neighborhood is not random
-        if (!neighborhood.isRandom()) {
-            std::cout << "moNeutralHCexplorer::Warning -> the neighborhood used is not random" << std::endl;
-        }
     }
 
     /**
