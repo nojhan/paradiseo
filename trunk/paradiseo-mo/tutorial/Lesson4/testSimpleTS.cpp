@@ -155,7 +155,7 @@ void main_function(int argc, char **argv)
     moDummyIntensification<Neighbor> inten;
     moDummyDiversification<Neighbor> div;
     moBestImprAspiration<Neighbor> asp;
-    moTSExplorer<Neighbor> explorer(neighborhood, eval, comparator, solComparator, tl, inten, div, asp);
+    moTSexplorer<Neighbor> explorer(neighborhood, eval, comparator, solComparator, tl, inten, div, asp);
 
 
     /* =========================================================
