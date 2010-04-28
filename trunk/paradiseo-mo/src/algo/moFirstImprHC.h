@@ -31,7 +31,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #define _moFirstImprHC_h
 
 #include <algo/moLocalSearch.h>
-#include <explorer/moFirstImprExplorer.h>
+#include <explorer/moFirstImprHCexplorer.h>
 #include <continuator/moTrueContinuator.h>
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
@@ -88,7 +88,7 @@ private:
   // compare the fitness values of the solution and the neighbor: true if strictly greater 
   moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
   // the explorer of the first improvement HC
-  moFirstImprExplorer<Neighbor> explorer;
+  moFirstImprHCexplorer<Neighbor> explorer;
 };
 
 #endif

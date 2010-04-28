@@ -1,5 +1,5 @@
 /*
-  <moHCneutralExplorer.h>
+  <moNeutralHCexplorer.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,10 +32,10 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moHCneutralExplorer_h
-#define _moHCneutralExplorer_h
+#ifndef _moNeutralHCexplorer_h
+#define _moNeutralHCexplorer_h
 
-#include <explorer/moRandomBestHCExplorer.h>
+#include <explorer/moRandomBestHCexplorer.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
 #include <neighborhood/moNeighborhood.h>
@@ -44,18 +44,18 @@
  * Explorer for a neutral Hill-climbing
  */
 template< class Neighbor >
-class moHCneutralExplorer : public moRandomBestHCExplorer<Neighbor>
+class moNeutralHCexplorer : public moRandomBestHCexplorer<Neighbor>
 {
 public:
     typedef typename Neighbor::EOT EOT ;
     typedef moNeighborhood<Neighbor> Neighborhood ;
 
     using moNeighborhoodExplorer<Neighbor>::neighborhood;
-    using moRandomBestHCExplorer<Neighbor>::solNeighborComparator;
-    using moRandomBestHCExplorer<Neighbor>::isAccept;
-    using moRandomBestHCExplorer<Neighbor>::bestVector;
-    using moRandomBestHCExplorer<Neighbor>::initParam;
-    using moRandomBestHCExplorer<Neighbor>::updateParam;
+    using moRandomBestHCexplorer<Neighbor>::solNeighborComparator;
+    using moRandomBestHCexplorer<Neighbor>::isAccept;
+    using moRandomBestHCexplorer<Neighbor>::bestVector;
+    using moRandomBestHCexplorer<Neighbor>::initParam;
+    using moRandomBestHCexplorer<Neighbor>::updateParam;
 
     /**
      * Constructor
@@ -65,30 +65,30 @@ public:
      * @param _solNeighborComparator a solution vs neighbor comparator
      * @param _nbStep maximum step to do
      */
-    moHCneutralExplorer(Neighborhood& _neighborhood,
+    moNeutralHCexplorer(Neighborhood& _neighborhood,
                         moEval<Neighbor>& _eval,
                         moNeighborComparator<Neighbor>& _neighborComparator,
                         moSolNeighborComparator<Neighbor>& _solNeighborComparator,
                         unsigned _nbStep) :
-                        	moRandomBestHCExplorer<Neighbor>(_neighborhood, _eval, _neighborComparator, _solNeighborComparator),
+                        	moRandomBestHCexplorer<Neighbor>(_neighborhood, _eval, _neighborComparator, _solNeighborComparator),
             nbStep(_nbStep) {
         //Some cycle is possible with equals fitness solutions if the neighborhood is not random
         if (!neighborhood.isRandom()) {
-            std::cout << "moHCneutralExplorer::Warning -> the neighborhood used is not random" << std::endl;
+            std::cout << "moNeutralHCexplorer::Warning -> the neighborhood used is not random" << std::endl;
         }
     }
 
     /**
      * Destructor
      */
-    ~moHCneutralExplorer() {
+    ~moNeutralHCexplorer() {
     }
 
     /**
      *  initial number of step
      */
     virtual void initParam(EOT & solution) {
-    	moRandomBestHCExplorer<Neighbor>::initParam(solution);
+    	moRandomBestHCexplorer<Neighbor>::initParam(solution);
 
         step = 0;
     };
@@ -97,7 +97,7 @@ public:
      * one more step
      */
     virtual void updateParam(EOT & solution) {
-    	moRandomBestHCExplorer<Neighbor>::updateParam(solution);
+    	moRandomBestHCexplorer<Neighbor>::updateParam(solution);
 
         step++;
     };

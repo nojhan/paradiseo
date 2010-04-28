@@ -29,7 +29,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
-#include <explorer/moRandomBestHCExplorer.h>
+#include <explorer/moRandomBestHCexplorer.h>
 #include "moTestClass.h"
 
 #include <iostream>
@@ -38,7 +38,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 int main() {
 
-    std::cout << "[t-moRandomBestHCExplorer] => START" << std::endl;
+    std::cout << "[t-moRandomBestHCexplorer] => START" << std::endl;
 
     //instanciation
     eoBit<eoMinimizingFitness> sol(4, true);
@@ -48,7 +48,7 @@ int main() {
     moNeighborComparator<bitNeighbor> ncomp;
     moSolNeighborComparator<bitNeighbor> sncomp;
 
-    moRandomBestHCExplorer<bitNeighbor> test(nh, eval, ncomp, sncomp);
+    moRandomBestHCexplorer<bitNeighbor> test(nh, eval, ncomp, sncomp);
 
     //test qu'on ameliore bien a chaque itération
     test.initParam(sol);
@@ -94,7 +94,7 @@ int main() {
     test.updateParam(sol);
 
 
-    std::cout << "[t-moRandomBestHCExplorer] => OK" << std::endl;
+    std::cout << "[t-moRandomBestHCexplorer] => OK" << std::endl;
 
     return EXIT_SUCCESS;
 }

@@ -1,5 +1,5 @@
 /*
-<t-moTSExplorer.cpp>
+<t-moTSexplorer.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -31,7 +31,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <memory/moDummyIntensification.h>
 #include <memory/moDummyDiversification.h>
 #include <memory/moBestImprAspiration.h>
-#include <explorer/moTSExplorer.h>
+#include <explorer/moTSexplorer.h>
 #include "moTestClass.h"
 
 #include <iostream>
@@ -40,7 +40,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 int main() {
 
-    std::cout << "[t-moTSExplorer] => START" << std::endl;
+    std::cout << "[t-moTSexplorer] => START" << std::endl;
 
     //instansiation
     eoBit<eoMinimizingFitness> sol(4, true);
@@ -55,8 +55,8 @@ int main() {
     moSolVectorTabuList<bitNeighbor> tabuList(4,0);
     moBestImprAspiration<bitNeighbor> aspir;
 
-    moTSExplorer<bitNeighbor> test(nh, eval, ncomp, sncomp, tabuList, intens, diver, aspir);
-    moTSExplorer<bitNeighbor> test2(emptyNH, eval, ncomp, sncomp, tabuList, intens, diver, aspir);
+    moTSexplorer<bitNeighbor> test(nh, eval, ncomp, sncomp, tabuList, intens, diver, aspir);
+    moTSexplorer<bitNeighbor> test2(emptyNH, eval, ncomp, sncomp, tabuList, intens, diver, aspir);
 
     //test d'un voisinage vide
     test2.initParam(sol);
@@ -130,7 +130,7 @@ int main() {
     bitNeighborhood nh2(2);
     evalOneMax eval2(2);
 
-    moTSExplorer<bitNeighbor> test3(nh2, eval2, ncomp, sncomp, tabuList, intens, diver, aspir);
+    moTSexplorer<bitNeighbor> test3(nh2, eval2, ncomp, sncomp, tabuList, intens, diver, aspir);
 
     test3.initParam(sol2);
     test3(sol2);
@@ -158,7 +158,7 @@ int main() {
     assert(!test3.accept(sol2));
 
 
-    std::cout << "[t-moTSExplorer] => OK" << std::endl;
+    std::cout << "[t-moTSexplorer] => OK" << std::endl;
 
     return EXIT_SUCCESS;
 }

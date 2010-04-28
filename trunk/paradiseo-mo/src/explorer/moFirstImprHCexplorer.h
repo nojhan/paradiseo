@@ -1,8 +1,8 @@
 /*
-  <moRandomBestHCExplorer.h>
+  <moFirstImprHCexplorer.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
-  Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
+  Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
 
   This software is governed by the CeCILL license under French law and
   abiding by the rules of distribution of free software.  You can  use,
@@ -32,22 +32,19 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moRandomBestHCExplorer_h
-#define _moRandomBestHCExplorer_h
+#ifndef _moFirstImprHCexplorer_h
+#define _moFirstImprHCexplorer_h
 
 #include <explorer/moNeighborhoodExplorer.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
 #include <neighborhood/moNeighborhood.h>
-#include <vector>
-#include <utils/eoRNG.h>
 
 /**
- * Explorer for Hill-Climbing 
- * which choose randomly one of the best solution in the neighborhood at each iteration
+ * Explorer for a first imporvement heuristic
  */
-template< class Neighbor >
-class moRandomBestHCExplorer : public moNeighborhoodExplorer<Neighbor>
+template< class Neighbor>
+class moFirstImprHCexplorer : public moNeighborhoodExplorer<Neighbor>
 {
 public:
     typedef typename Neighbor::EOT EOT ;
@@ -61,15 +58,9 @@ public:
      * @param _neighborhood the neighborhood
      * @param _eval the evaluation function
      * @param _neighborComparator a neighbor comparator
-     * @param _solNeighborComparator solution vs neighbor comparator
+     * @param _solNeighborComparator a solution vs neighbor comparator
      */
-    moRandomBestHCExplorer(Neighborhood& _neighborhood,
-                              moEval<Neighbor>& _eval,
-                              moNeighborComparator<Neighbor>& _neighborComparator,
-                              moSolNeighborComparator<Neighbor>& _solNeighborComparator) :
-            moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval),
-            neighborComparator(_neighborComparator),
-            solNeighborComparator(_solNeighborComparator) {
+    moFirstImprHCexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), neighborComparator(_neighborComparator), solNeighborComparator(_solNeighborComparator) {
         isAccept = false;
         current=new Neighbor();
     }
@@ -77,25 +68,19 @@ public:
     /**
      * Destructor
      */
-    ~moRandomBestHCExplorer() {
+    ~moFirstImprHCexplorer() {
         delete current;
     }
 
     /**
-     * empty the vector of best solutions
+     * initParam: NOTHING TO DO
      */
-    virtual void initParam(EOT & solution) {
-        // delete all the best solutions
-        bestVector.clear();
-    };
+    virtual void initParam(EOT & solution) {};
 
     /**
-     * empty the vector of best solutions
+     * updateParam: NOTHING TO DO
      */
-    virtual void updateParam(EOT & solution) {
-        // delete all the best solutions
-        bestVector.clear();
-    };
+    virtual void updateParam(EOT & solution) {};
 
     /**
      * terminate: NOTHING TO DO
@@ -116,24 +101,12 @@ public:
             //eval the _solution moved with the neighbor and stock the result in the neighbor
             eval(_solution, (*current));
 
-            //initialize the best neighbor
-            bestVector.push_back(*current);
-
             //test all others neighbors
-            while (neighborhood.cont(_solution)) {
+            while (! solNeighborComparator(_solution, *current) && neighborhood.cont(_solution)) {
                 //next neighbor
                 neighborhood.next(_solution, (*current));
-
                 //eval
                 eval(_solution, (*current));
-
-                //if we found a better neighbor, update the best
-                if (neighborComparator(bestVector[0], (*current))) {
-                    bestVector.clear();
-                    bestVector.push_back(*current);
-                }
-                else if (neighborComparator.equals((*current), bestVector[0])) //if the current is equals to previous best solutions then update vector of the best solution
-                    bestVector.push_back(*current);
             }
         }
         else {
@@ -156,14 +129,10 @@ public:
      * @param _solution the solution to move
      */
     virtual void move(EOT & _solution) {
-        // choose randomly one of the best solutions
-        unsigned int i = rng.random(bestVector.size());
-
         //move the solution
-        bestVector[i].move(_solution);
-
+        (*current).move(_solution);
         //update its fitness
-        _solution.fitness(bestVector[i].fitness());
+        _solution.fitness((*current).fitness());
     };
 
     /**
@@ -172,19 +141,18 @@ public:
      * @return true if the best neighbor ameliorate the fitness
      */
     virtual bool accept(EOT & _solution) {
-        if (neighborhood.hasNeighbor(_solution))
-            isAccept = solNeighborComparator(_solution, bestVector[0]) ;
+        if (neighborhood.hasNeighbor(_solution)) {
+            isAccept = solNeighborComparator(_solution, (*current)) ;
+        }
         return isAccept;
     };
 
-protected:
+private:
     // comparator betwenn solution and neighbor or between neighbors
     moNeighborComparator<Neighbor>& neighborComparator;
     moSolNeighborComparator<Neighbor>& solNeighborComparator;
 
-    // the best solutions in the neighborhood
-    std::vector<Neighbor> bestVector;
-    //Pointer on the current neighbor
+    //Pointer on the best and the current neighbor
     Neighbor* current;
 
     // true if the move is accepted

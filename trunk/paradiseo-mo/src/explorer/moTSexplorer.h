@@ -1,5 +1,5 @@
 /*
-  <moTSExplorer.h>
+  <moTSexplorer.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,8 +32,8 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moTSExplorer_h
-#define _moTSExplorer_h
+#ifndef _moTSexplorer_h
+#define _moTSexplorer_h
 
 #include <explorer/moNeighborhoodExplorer.h>
 #include <comparator/moNeighborComparator.h>
@@ -48,7 +48,7 @@
  * Explorer for a Tabu Search
  */
 template< class Neighbor >
-class moTSExplorer : public moNeighborhoodExplorer<Neighbor>
+class moTSexplorer : public moNeighborhoodExplorer<Neighbor>
 {
 public:
     typedef typename Neighbor::EOT EOT ;
@@ -65,7 +65,7 @@ public:
      * @param _diversification the diversification box
      * @param _aspiration the aspiration criteria
      */
-    moTSExplorer(Neighborhood& _neighborhood,
+    moTSexplorer(Neighborhood& _neighborhood,
                  moEval<Neighbor>& _eval,
                  moNeighborComparator<Neighbor>& _neighborComparator,
                  moSolNeighborComparator<Neighbor>& _solNeighborComparator,
@@ -85,7 +85,7 @@ public:
     /**
      * Destructor
      */
-    ~moTSExplorer() {
+    ~moTSexplorer() {
         delete current;
         delete best;
     }

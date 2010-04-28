@@ -53,7 +53,7 @@ public:
    * @param _spanNoMove maximum number of no improvement with equal temperature
    * @param _nbSpan maximum number of span with no improvmement before stopping the search
    */
-  moDynSpanCoolingSchedule(double _initT, double _alpha, unsigned _spanMove, unsigned _spanNoMove, unsigned _nbSpan) : initT(_initT), alpha(_alpha), spanMove(_spanMove), spanNoMove(_spanNoMove), nbSpan(_nbSpan) {
+  moDynSpanCoolingSchedule(double _initT, double _alpha, unsigned int _spanMove, unsigned int _spanNoMove, unsigned int _nbSpan) : initT(_initT), alpha(_alpha), spanMove(_spanMove), spanNoMove(_spanNoMove), nbSpan(_nbSpan) {
   }
 
   /**
@@ -101,12 +101,22 @@ public:
 private:
   // initial temperature
   double initT;
+
   // coefficient of decrease
   double alpha;
+
+  //
+  unsigned int spanMove;
+
+  //
+  unsigned int spanNoMove;
+
   // maximum number of iterations at the same temperature
-  unsigned int span;
+  unsigned int nbSpan;
+
   // threshold temperature
   double finalT;
+
   // number of steps with the same temperature
   unsigned int step;
 };

@@ -70,15 +70,15 @@
 #include <eval/moFullEvalByModif.h>
 #include <eval/moDummyEval.h>
 
-#include <explorer/moFirstImprExplorer.h>
-#include <explorer/moHCneutralExplorer.h>
+#include <explorer/moFirstImprHCexplorer.h>
+#include <explorer/moNeutralHCexplorer.h>
 #include <explorer/moMetropolisHastingExplorer.h>
 #include <explorer/moNeighborhoodExplorer.h>
 #include <explorer/moRandomNeutralWalkExplorer.h>
 #include <explorer/moRandomWalkExplorer.h>
 #include <explorer/moSimpleHCexplorer.h>
-#include <explorer/moRandomBestHCExplorer.h>
-#include <explorer/moTSExplorer.h>
+#include <explorer/moRandomBestHCexplorer.h>
+#include <explorer/moTSexplorer.h>
 #include <explorer/moILSexplorer.h>
 #include <explorer/moSAexplorer.h>
 

@@ -31,7 +31,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #define _moRandomBestHC_h
 
 #include <algo/moLocalSearch.h>
-#include <explorer/moRandomBestHCExplorer.h>
+#include <explorer/moRandomBestHCexplorer.h>
 #include <continuator/moTrueContinuator.h>
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
@@ -88,7 +88,7 @@ private:
   // compare the fitness values of the solution and the neighbor: true if strictly greater 
   moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
   // the explorer of the HC with random choice of the best solution
-  moRandomBestHCExplorer<Neighbor> explorer;
+  moRandomBestHCexplorer<Neighbor> explorer;
 };
 
 #endif

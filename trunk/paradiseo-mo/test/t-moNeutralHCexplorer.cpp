@@ -1,5 +1,5 @@
 /*
-<t-moFirstImprExplorer.cpp>
+<t-moNeutralHCexplorer.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -29,7 +29,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
-#include <explorer/moFirstImprExplorer.h>
+#include <explorer/moNeutralHCexplorer.h>
 #include "moTestClass.h"
 
 #include <iostream>
@@ -38,7 +38,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 int main() {
 
-    std::cout << "[t-moFirstImprExplorer] => START" << std::endl;
+    std::cout << "[t-moNeutralHCexplorer] => START" << std::endl;
 
     //Instanciation
     eoBit<eoMinimizingFitness> sol(4, true);
@@ -48,45 +48,44 @@ int main() {
     moNeighborComparator<bitNeighbor> ncomp;
     moSolNeighborComparator<bitNeighbor> sncomp;
 
-    moFirstImprExplorer<bitNeighbor> test(nh, eval, ncomp, sncomp);
+    moNeutralHCexplorer<bitNeighbor> test(nh, eval, ncomp, sncomp,3);
 
-    //on verifie qu'on améliore peut continuer à explorer tant qu'on améliore la solution
+    //on verifie qu'on ameliore bien la solution et que l'exploration dure 3 itérations
 
+    test.initParam(sol);
     test(sol);
     assert(test.accept(sol));
     test.move(sol);
     assert(sol.fitness()==3);
-    assert(!sol[0]);
+    test.updateParam(sol);
     assert(test.isContinue(sol));
 
+    //les affichages permettent de voir qu'on prend pas toujours les mm voisins(lancer plusieurs fois l'exe)
+    std::cout << sol << std::endl;
 
     test(sol);
     assert(test.accept(sol));
     test.move(sol);
     assert(sol.fitness()==2);
-    assert(!sol[1]);
+    test.updateParam(sol);
     assert(test.isContinue(sol));
+
+
+    std::cout << sol << std::endl;
 
     test(sol);
     assert(test.accept(sol));
     test.move(sol);
     assert(sol.fitness()==1);
-    assert(!sol[2]);
-    assert(test.isContinue(sol));
-
-    test(sol);
-    assert(test.accept(sol));
-    test.move(sol);
-    assert(sol.fitness()==0);
-    assert(!sol[3]);
-    assert(test.isContinue(sol));
-
-    test(sol);
-    assert(!test.accept(sol));
-    assert(sol.fitness()==0);
+    test.updateParam(sol);
     assert(!test.isContinue(sol));
 
-    std::cout << "[t-moFirstImprExplorer] => OK" << std::endl;
+
+    std::cout << sol << std::endl;
+
+
+
+    std::cout << "[t-moNeutralHCexplorer] => OK" << std::endl;
 
     return EXIT_SUCCESS;
 }

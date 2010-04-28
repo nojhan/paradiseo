@@ -51,13 +51,13 @@ SET (TEST_LIST
 		t-moSolVectorTabuList
 		t-moBestImprAspiration
 		t-moSimpleHCexplorer
-		t-moSimpleHCneutralExplorer
-		t-moHCneutralExplorer
-		t-moFirstImprExplorer
+		t-moRandomBestHCexplorer
+		t-moNeutralHCexplorer
+		t-moFirstImprHCexplorer
 		t-moRandomWalkExplorer
 		t-moMetropolisHastingExplorer
 		t-moRandomNeutralWalkExplorer
-		t-moTSExplorer
+		t-moTSexplorer
 		t-moForwardVariableNeighborhood
 		t-moSolComparator
 		t-moDummyEval
@@ -74,6 +74,7 @@ SET (TEST_LIST
 		t-moSA
 		t-moLocalSearch
 		t-moILSexplorer
+		t-moSimpleHC
 		)
 				
 FOREACH (test ${TEST_LIST})
