@@ -33,7 +33,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <perturb/moRestartPerturb.h>
 #include <problems/permutation/moShiftNeighbor.h>
-#include <problems/eval/queenFullEval.h>
+#include <eval/queenEval.h>
 
 #include <eoInt.h>
 #include <eoInit.h>
@@ -67,7 +67,7 @@ int main(){
 
 	dummyInit initializer(4);
 
-	queenFullEval<QUEEN> eval;
+	queenEval<QUEEN> eval;
 
 	moRestartPerturb<moShiftNeighbor<QUEEN> > test(initializer, eval, 3);
 

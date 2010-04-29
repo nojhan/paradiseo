@@ -11,6 +11,7 @@
 
 INCLUDE_DIRECTORIES(${EO_SRC_DIR}/src)
 INCLUDE_DIRECTORIES(${MO_SRC_DIR}/src)
+INCLUDE_DIRECTORIES(${PROBLEMS_SRC_DIR})
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
 ######################################################################################

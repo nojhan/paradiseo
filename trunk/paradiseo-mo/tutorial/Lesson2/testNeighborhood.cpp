@@ -28,7 +28,7 @@ using namespace std;
 #include <eoInit.h>
 
 // fitness function
-#include <problems/eval/queenFullEval.h>
+#include <eval/queenEval.h>
 #include <eval/moFullEvalByModif.h>
 #include <eval/moFullEvalByCopy.h>
 
@@ -109,7 +109,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    queenFullEval<Queen> fullEval;
+    queenEval<Queen> fullEval;
 
 
     /* =========================================================

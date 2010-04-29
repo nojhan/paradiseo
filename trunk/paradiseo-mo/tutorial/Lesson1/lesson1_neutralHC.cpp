@@ -28,7 +28,7 @@ using namespace std;
 
 //-----------------------------------------------------------------------------
 // fitness function, and evaluation of neighbors
-#include <problems/eval/oneMaxFullEval.h>
+#include <eval/oneMaxEval.h>
 #include <problems/eval/moOneMaxIncrEval.h>
 #include <eval/moFullEvalByModif.h>
 
@@ -127,7 +127,7 @@ void main_function(int argc, char **argv)
    * ========================================================= */
 
   // the fitness function is just the number of 1 in the bit string
-  oneMaxFullEval<Indi> fullEval;
+  oneMaxEval<Indi> fullEval;
 
   /* =========================================================
    *

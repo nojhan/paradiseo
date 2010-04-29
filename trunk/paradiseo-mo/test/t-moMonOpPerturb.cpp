@@ -34,7 +34,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <perturb/moMonOpPerturb.h>
 #include "moTestClass.h"
-#include <problems/eval/oneMaxFullEval.h>
+#include <eval/oneMaxEval.h>
 
 
 class dummyMonOp: public eoMonOp<bitVector>{
@@ -51,7 +51,7 @@ int main(){
 	std::cout << "[t-moMonOpPerturb] => START" << std::endl;
 
 	dummyMonOp op;
-	oneMaxFullEval<bitVector> eval;
+	oneMaxEval<bitVector> eval;
 
 	bitVector sol;
 	sol.push_back(1);

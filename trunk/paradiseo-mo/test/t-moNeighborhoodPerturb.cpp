@@ -34,7 +34,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include "moTestClass.h"
 
 #include <perturb/moNeighborhoodPerturb.h>
-#include <problems/eval/oneMaxFullEval.h>
+#include <eval/oneMaxEval.h>
 #include <eval/moFullEvalByCopy.h>
 
 typedef moOrderNeighborhood<bitNeighbor> Neighborhood;
@@ -43,7 +43,7 @@ int main(){
 
 	std::cout << "[t-moNeighborhoodPerturb] => START" << std::endl;
 
-	oneMaxFullEval<bitVector> eval;
+	oneMaxEval<bitVector> eval;
 
 	moFullEvalByCopy<bitNeighbor> moeval(eval);
 

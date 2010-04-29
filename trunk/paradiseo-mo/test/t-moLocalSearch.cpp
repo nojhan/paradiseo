@@ -33,7 +33,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <algo/moLocalSearch.h>
 #include <explorer/moSimpleHCexplorer.h>
 #include <continuator/moTrueContinuator.h>
-#include <problems/eval/oneMaxFullEval.h>
+#include <eval/oneMaxEval.h>
 #include <comparator/moSolNeighborComparator.h>
 #include <comparator/moNeighborComparator.h>
 
@@ -46,7 +46,7 @@ int main(){
 
 
 	bitNeighborhood nh(8);
-	oneMaxFullEval<bitVector> fullEval;
+	oneMaxEval<bitVector> fullEval;
 	evalOneMax eval(8);
 	moTrueContinuator<bitNeighbor> cont;
 	moSolNeighborComparator<bitNeighbor> sncomp;

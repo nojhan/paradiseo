@@ -33,7 +33,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <algo/moSimpleHC.h>
 #include "moTestClass.h"
-#include <problems/eval/oneMaxFullEval.h>
+#include <eval/oneMaxEval.h>
 #include <continuator/moTrueContinuator.h>
 #include <comparator/moSolNeighborComparator.h>
 
@@ -43,7 +43,7 @@ int main(){
 	std::cout << "[t-moSimpleHC] => START" << std::endl;
 
 	bitNeighborhood nh(4);
-	oneMaxFullEval<bitVector> fullEval;
+	oneMaxEval<bitVector> fullEval;
 	evalOneMax eval(4);
 
 	//test first constructor
