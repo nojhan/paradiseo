@@ -97,6 +97,7 @@
 #include <memory/moIntensification.h>
 #include <memory/moMemory.h>
 #include <memory/moSolVectorTabuList.h>
+#include <memory/moNeighborVectorTabuList.h>
 #include <memory/moTabuList.h>
 #include <memory/moCountMoveMemory.h>
 

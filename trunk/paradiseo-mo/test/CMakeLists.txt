@@ -78,6 +78,7 @@ SET (TEST_LIST
 		t-moSimpleHC
 		t-moFirstImprHC
 		t-moRandomBestHC
+		t-moNeighborVectorTabuList
 		)
 				
 FOREACH (test ${TEST_LIST})

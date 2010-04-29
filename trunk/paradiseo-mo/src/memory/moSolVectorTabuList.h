@@ -17,7 +17,7 @@ public:
     /**
      * Constructor
      * @param _maxSize maximum size of the tabu list
-     * @param _howlong how many iteration a move is tabu
+     * @param _howlong how many iteration a solution is tabu
      */
     moSolVectorTabuList(unsigned int _maxSize, unsigned int _howlong) : maxSize(_maxSize), howlong(_howlong) {
         tabuList.reserve(_maxSize);
@@ -59,8 +59,10 @@ public:
      * @param _neighbor the current neighbor (unused)
      */
     virtual void update(EOT & _sol, Neighbor & _neighbor) {
-        for (unsigned int i=0; i<tabuList.size(); i++)
-            tabuList[i].second--;
+    	if(howlong > 0)
+    		for (unsigned int i=0; i<tabuList.size(); i++)
+    			if(tabuList[i].second > 0)
+    				tabuList[i].second--;
     }
 
     /**

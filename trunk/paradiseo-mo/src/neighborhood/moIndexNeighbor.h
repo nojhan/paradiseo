@@ -92,6 +92,14 @@ public:
         key=_key;
     }
 
+    /**
+     * @param _neighbor a neighbor
+     * @return if _neighbor and this one are equals
+     */
+    virtual bool equals(moIndexNeighbor<EOT>& _neighbor){
+    	return (key==_neighbor.index());
+    }
+
 protected:
     // key allowing to describe the neighbor
     unsigned int key;

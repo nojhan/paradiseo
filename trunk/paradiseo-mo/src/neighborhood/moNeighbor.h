@@ -104,6 +104,14 @@ public:
     }
 
     /**
+     * @param _neighbor a neighbor
+     * @return if _neighbor and this one are equals
+     */
+    virtual bool equals(moNeighbor<EOT>& _neighbor){
+    	return false;
+    }
+
+    /**
      * Return the class id.
      * @return the class name as a std::string
      */
