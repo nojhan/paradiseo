@@ -51,7 +51,8 @@ public:
      *@return true if counter < maxIter
      */
     virtual bool operator()(EOT & _solution) {
-        return (cpt++ < maxIter);
+      cpt++;
+      return (cpt < maxIter);
     }
 
     /**
@@ -59,7 +60,15 @@ public:
      * @param _solution a solution
      */
     virtual void init(EOT & _solution) {
-    	cpt=0;
+    	cpt = 0;
+    }
+
+    /**
+     * the current number of iteration
+     * @return the number of iteration
+     */
+    unsigned int value() {
+      return cpt ;
     }
 
 private:

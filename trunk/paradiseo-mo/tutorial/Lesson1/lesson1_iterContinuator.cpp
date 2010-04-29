@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-/** lesson1_continuator.cpp
+/** lesson1_iterContinuator.cpp
  *
  * SV - 27/04/10 - version 1
  *
@@ -37,12 +37,8 @@ using namespace std;
 #include <neighborhood/moOrderNeighborhood.h> // visit all neighbors in increasing order of bit index
 
 //-----------------------------------------------------------------------------
-// the possible continuators
+// the iteration continuators
 #include <continuator/moIterContinuator.h>
-#include <continuator/moFitContinuator.h>
-#include <continuator/moFullEvalContinuator.h>
-#include <continuator/moNeighborEvalContinuator.h>
-#include <continuator/moCombinedContinuator.h>
 
 //-----------------------------------------------------------------------------
 // the simple Hill-Climbing local search
@@ -85,6 +81,11 @@ void main_function(int argc, char **argv)
   eoValueParam<unsigned int> vecSizeParam(20, "vecSize", "Genotype size", 'V');
   parser.processParam( vecSizeParam, "Representation" );
   unsigned vecSize = vecSizeParam.value();
+
+  // maximum number of iterations
+  eoValueParam<unsigned int> iterParam(10, "iter", "Maximum number of iterations", 'i');
+  parser.processParam( iterParam, "Representation" );
+  unsigned iterMax = iterParam.value();
 
   // the name of the "status" file where all actual parameter values will be saved
   string str_status = parser.ProgramName() + ".status"; // default value
@@ -161,10 +162,7 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  moIterContinuator<Neighbor> continuator(10);         // maximum number of iterations : 10
-  //  moFitContinuator<Neighbor> continuator(17);          // fitness to reach : 17
-  //  moFullEvalContinuator<Neighbor> continuator(2);      // maximum number of full evaluation : 2
-  //  moNeighborEvalContinuator<Neighbor> continuator(20); // maximum number of neighbor evaluation : 20
+  moIterContinuator<Neighbor> continuator(iterMax);
 
   /* =========================================================
    *
@@ -198,6 +196,8 @@ void main_function(int argc, char **argv)
 
   // Output: the final solution 
   std::cout << "final:   " << solution << std::endl ;
+
+  std::cout << "number of iteration: " << continuator.value() << std::endl ;
 
 }
 
