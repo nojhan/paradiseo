@@ -1,5 +1,5 @@
 /*
-<royalRoadEval.h>
+<moRoyalRoadIncrEval.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -27,53 +27,54 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _RoyalRoadEval_h
-#define _RoyalRoadEval_h
+#ifndef _moRoyalRoadIncrEval_H
+#define _moRoyalRoadIncrEval_H
 
-#include <eoEvalFunc.h>
+#include <eval/moEval.h>
 
 /**
- * Full evaluation Function for Royal Road problem
+ * Incremental evaluation Function for the Royal Road problem
  */
-template< class EOT >
-class RoyalRoadEval : public eoEvalFunc<EOT>
+template< class Neighbor >
+class moRoyalRoadIncrEval : public moEval<Neighbor>
 {
 public:
+  typedef typename Neighbor::EOT EOT;
+
   /**
    * Default constructor
    * @param _k size of a block
    */
-  RoyalRoad(unsigned int _k) : k(_k) {}
+  moRoyalRoadIncrEval(unsigned int _k) : k(_k) {}
 
-  /**
-   * Count the number of complete blocks in the bit string
-   * @param _sol the solution to evaluate
+  /*
+   * incremental evaluation of the neighbor for the Royal Road problem
+   * @param _solution the solution to move (bit string)
+   * @param _neighbor the neighbor to consider (of type moBitNeigbor)
    */
-  void operator() (EOT& _solution) {
-    unsigned int sum = 0;
-    unsigned int i, j;
-    unsigned int offset;
-
-    // number of blocks
-    unsigned int n = _solution.size() / k;
-
-    for (i = 0; i < n; i++) {
-      offset = i * k;
-
-      j = 0;
-      while (_solution[offset + j] && j < k) j++;
-      
-      if (j == k)
-	sum++;
-    }
-
-    _solution.fitness(sum);
-  }
-
-private:
-  // size of a block
-  unsigned int k;    
+  virtual void operator()(EOT & _solution, Neighbor & _neighbor) {
+    // which block can change?
+    unsigned int n = _neighbor.index() / k;
     
+    // complete block?
+    offset = n * k;
+    
+    j = 0;
+    while (_solution[offset + j] && j < k) j++;
+    
+    if (j == k) // the block is complete, so the fitness decreases from one
+      _neighbor.fitness(_solution.fitness() - 1);
+    else {
+      if ((_solution[_neighbor.index()] == 0) && (offset + j == _neighbor.index())) { // can the block be filled?
+	j++;
+	while (_solution[offset + j] && j < k) j++;
+
+	if (j == k) // the block can be filled, so the fitness increases from one
+	  _neighbor.fitness(_solution.fitness() + 1);
+      }
+    }
+  }
 };
 
 #endif
+
