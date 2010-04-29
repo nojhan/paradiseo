@@ -66,7 +66,7 @@ public:
       _neighbor.fitness(_solution.fitness() - 1);
     else {
       if ((_solution[_neighbor.index()] == 0) && (offset + j == _neighbor.index())) { // can the block be filled?
-	j++;
+	j++; // next bit
 	while (_solution[offset + j] && j < k) j++;
 
 	if (j == k) // the block can be filled, so the fitness increases from one
