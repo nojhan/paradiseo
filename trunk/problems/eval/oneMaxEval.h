@@ -1,5 +1,5 @@
 /*
-<queenFullEval.h>
+<oneMaxEval.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -27,30 +27,28 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _queenFullEval_h
-#define _queenFullEval_h
+#ifndef _oneMaxEval_h
+#define _oneMaxEval_h
 
 #include <eoEvalFunc.h>
 
 /**
- * Full evaluation function for QUEEN problem
+ * Full evaluation Function for OneMax problem
  */
 template< class EOT >
-class queenFullEval : public eoEvalFunc<EOT>
+class oneMaxEval : public eoEvalFunc<EOT>
 {
 public:
 
 	/**
-	 * Count number of threat
-	 * @param _queen a solution
+	 * Count the number of 1 in a bitString
+	 * @param _sol the solution to evaluate
 	 */
-    void operator()(EOT& _queen){
-    	  unsigned int fit=0;
-    	  for(unsigned int i=0; i<_queen.size()-1; i++)
-    		  for(unsigned int j=i+1; j< _queen.size(); j++)
-    			  if((_queen[i]+j-i == _queen[j]) || (_queen[i]+i-j == _queen[j]))
-    				  fit++;
-    	  _queen.fitness(fit);
+    void operator() (EOT& _sol) {
+        unsigned int sum = 0;
+        for (unsigned int i = 0; i < _sol.size(); i++)
+            sum += _sol[i];
+        _sol.fitness(sum);
     }
 };
 
