@@ -53,7 +53,7 @@ public:
    * @param _solution a solution
    * @param _neighbor a neighbor
    */
-  void operator()(EOT& _solution, Neighbor& _neigbor) {
+  void operator()(EOT& _solution, Neighbor& _neighbor) {
     value()++;
     eval(_solution, _neighbor);
   }

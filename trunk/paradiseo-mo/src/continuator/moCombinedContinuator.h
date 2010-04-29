@@ -43,15 +43,10 @@ public:
   typedef typename Neighbor::EOT EOT ;
 
   /**
-   * @param _maxFit maximum fitness to reach
-   */
-  moCombinedContinuator(Fitness _maxFit): maxFit(_maxFit){}
-  
-  /**
    * Default constructor (moCheckpoint must have at least one continuator)
    * @param _cont a continuator
    */
-  moCombinedContinuator(moContinuator<Neighbor>& _cont) : {
+  moCombinedContinuator(moContinuator<Neighbor>& _cont) {
     continuators.push_back(&_cont);
   }
 
@@ -73,7 +68,7 @@ public:
     // some data may be update in each continuator. 
     // So, all continuators are tested
     for(unsigned int i = 0; i < continuators.size(); ++i)
-      if ( !(*continuators[i])(_sol) )
+      if ( !(*continuators[i])(_solution) )
 	bContinue = false;
     
     return bContinue;

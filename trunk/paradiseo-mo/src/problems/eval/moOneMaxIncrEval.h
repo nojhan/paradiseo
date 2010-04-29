@@ -51,7 +51,7 @@ public:
 	    _neighbor.fitness(_solution.fitness() + 1);
 	else 
 	    _neighbor.fitness(_solution.fitness() - 1);
-    }g
+    }
 };
 
 #endif
