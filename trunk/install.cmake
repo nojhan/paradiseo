@@ -114,6 +114,8 @@ SET(OLDMO_BIN_DIR "${CMAKE_BINARY_DIR}/../../paradiseo-old-mo/build" CACHE PATH 
 
 SET(MOEO_SRC_DIR "${CMAKE_SOURCE_DIR}/../paradiseo-moeo" CACHE PATH "ParadisMOEO-MOEO source directory" FORCE)
 SET(MOEO_BIN_DIR "${CMAKE_BINARY_DIR}/../../paradiseo-moeo/build" CACHE PATH "ParadisMOEO-MOEO binary directory" FORCE)
+
+SET(PROBLEMS_SRC_DIR "${CMAKE_SOURCE_DIR}/../problems" CACHE PATH "Problems dependant source directory" FORCE)
     
 ######################################################################################
 ######################################################################################
