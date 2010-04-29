@@ -1,5 +1,5 @@
 /*
-<moOneMaxIncrEval.h>
+<moNeighborEvalContinuator.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -27,32 +27,49 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moOneMaxIncrEval_H
-#define _moOneMaxIncrEval_H
+#ifndef _moNeighborEvalContinuator_h
+#define _moNeighborEvalContinuator_h
 
-#include <eval/moEval.h>
+#include <continuator/moContinuator.h>
+#include <neighborhood/moNeighborhood.h>
+#include <eval/moEvalCounter.h>
 
 /**
- * Incremental evaluation Function for the OneMax problem
+ * Continue until a maximum fixed number of neighbor evaluation is reached
  */
 template< class Neighbor >
-class moOneMaxIncrEval : public moEval<Neighbor>
+class moNeighborEvalContinuator : public moContinuator<Neighbor>
 {
 public:
-    typedef typename Neighbor::EOT EOT;
+    typedef typename Neighbor::EOT EOT ;
 
-    /*
-    * incremental evaluation of the neighbor for the oneMax problem
-    * @param _solution the solution to move (bit string)
-    * @param _neighbor the neighbor to consider (of type moBitNeigbor)
-    */
-    virtual void operator()(EOT & _solution, Neighbor & _neighbor) {
-	if (_solution[_neighbor.index()] == 0)
-	    _neighbor.fitness(_solution.fitness() + 1);
-	else 
-	    _neighbor.fitness(_solution.fitness() - 1);
-    }g
+  /**
+   * Default constructor
+   * @param _eval neighbor evaluation function to count
+   * @param _maxNeighborEval number maximum of iterations
+   */
+  moNeighborEvalContinuator(moEvalCounter<Neighbor> & _eval, unsigned int _maxNeighborEval): maxNeighborEval(_maxNeighborEval){}
+
+  /**
+   * Test if continue
+   *@param _solution a solution
+   *@return true if number of evaluations < maxNeighborEval
+   */
+  virtual bool operator()(EOT & _solution) {
+    return (eval.value()  < maxNeighborEval);
+  }
+  
+  /**
+   * Reset the number of evaluations
+   * @param _solution a solution
+   */
+  virtual void init(EOT & _solution) {
+    eval.value() = 0;
+  }
+  
+private:
+  moEvalCounter<Neighbor> & eval;
+  unsigned int maxNeighborEval;
+  
 };
-
 #endif
-

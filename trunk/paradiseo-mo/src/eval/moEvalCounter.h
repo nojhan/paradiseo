@@ -1,5 +1,5 @@
 /*
-<moOneMaxIncrEval.h>
+<moEvalCounter.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -27,32 +27,40 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moOneMaxIncrEval_H
-#define _moOneMaxIncrEval_H
+#ifndef _moEvalCounter_h
+#define _moEvalCounter_h
 
 #include <eval/moEval.h>
+#include <utils/eoParam.h>
 
-/**
- * Incremental evaluation Function for the OneMax problem
- */
-template< class Neighbor >
-class moOneMaxIncrEval : public moEval<Neighbor>
+/** 
+    Counts the number of neighbor evaluations actually performed, thus checks first
+    if it has to evaluate.. etc.
+*/
+template<class Neighbor>
+class moEvalCounter : public moEval<Neighbor>, public eoValueParam<unsigned long>
 {
 public:
-    typedef typename Neighbor::EOT EOT;
+  typedef typename Neighbor::EOT EOT;
+  typedef typename EOT::Fitness Fitness;
+  
+  moEvalCounter(moEval<Neighbor>& _eval, std::string _name = "Neighbor Eval. ") 
+    : eoValueParam<unsigned long>(0, _name), eval(_eval) {}
+  
+  /**
+   * Increase the number of neighbor evaluations and perform the evaluation
+   *
+   * @param _solution a solution
+   * @param _neighbor a neighbor
+   */
+  void operator()(EOT& _solution, Neighbor& _neigbor) {
+    value()++;
+    eval(_solution, _neighbor);
+  }
 
-    /*
-    * incremental evaluation of the neighbor for the oneMax problem
-    * @param _solution the solution to move (bit string)
-    * @param _neighbor the neighbor to consider (of type moBitNeigbor)
-    */
-    virtual void operator()(EOT & _solution, Neighbor & _neighbor) {
-	if (_solution[_neighbor.index()] == 0)
-	    _neighbor.fitness(_solution.fitness() + 1);
-	else 
-	    _neighbor.fitness(_solution.fitness() - 1);
-    }g
+private:
+  moEval<Neighbor> & eval;
+
 };
 
 #endif
-

@@ -1,5 +1,5 @@
 /*
-<moOneMaxIncrEval.h>
+<moFullEvalContinuator.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -27,32 +27,49 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moOneMaxIncrEval_H
-#define _moOneMaxIncrEval_H
+#ifndef _moFullEvalContinuator_h
+#define _moFullEvalContinuator_h
 
-#include <eval/moEval.h>
+#include <continuator/moContinuator.h>
+#include <neighborhood/moNeighborhood.h>
+#include <eoEvalFuncCounter.h>
 
 /**
- * Incremental evaluation Function for the OneMax problem
+ * Continue until a maximum fixed number of full evaluation is reached
  */
 template< class Neighbor >
-class moOneMaxIncrEval : public moEval<Neighbor>
+class moFullEvalContinuator : public moContinuator<Neighbor>
 {
 public:
-    typedef typename Neighbor::EOT EOT;
+    typedef typename Neighbor::EOT EOT ;
 
-    /*
-    * incremental evaluation of the neighbor for the oneMax problem
-    * @param _solution the solution to move (bit string)
-    * @param _neighbor the neighbor to consider (of type moBitNeigbor)
-    */
-    virtual void operator()(EOT & _solution, Neighbor & _neighbor) {
-	if (_solution[_neighbor.index()] == 0)
-	    _neighbor.fitness(_solution.fitness() + 1);
-	else 
-	    _neighbor.fitness(_solution.fitness() - 1);
-    }g
+  /**
+   * Default constructor
+   * @param _eval evaluation function to count
+   * @param _maxFullEval number maximum of iterations
+   */
+  moFullEvalContinuator(eoEvalFuncCounter<EOT> & _eval, unsigned int _maxFullEval): maxFullEval(_maxFullEval){}
+
+  /**
+   * Test if continue
+   *@param _solution a solution
+   *@return true if number of evaluations < maxFullEval
+   */
+  virtual bool operator()(EOT & _solution) {
+    return (eval.value()  < maxFullEval);
+  }
+  
+  /**
+   * Reset the number of evaluations
+   * @param _solution a solution
+   */
+  virtual void init(EOT & _solution) {
+    eval.value() = 0;
+  }
+  
+private:
+  eoEvalFuncCounter<EOT> & eval;
+  unsigned int maxFullEval;
+  
 };
-
 #endif
-

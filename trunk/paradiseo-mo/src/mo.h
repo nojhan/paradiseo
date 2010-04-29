@@ -65,11 +65,16 @@
 #include <continuator/moStatBase.h>
 #include <continuator/moTrueContinuator.h>
 #include <continuator/moIterContinuator.h>
+#include <continuator/moFitContinuator.h>
+#include <continuator/moCombinedContinuator.h>
+#include <continuator/moFullEvalContinuator.h>
+#include <continuator/moNeighborEvalContinuator.h>
 
 #include <eval/moEval.h>
 #include <eval/moFullEvalByCopy.h>
 #include <eval/moFullEvalByModif.h>
 #include <eval/moDummyEval.h>
+#include <eval/moEvalCounter.h>
 
 #include <explorer/moFirstImprHCexplorer.h>
 #include <explorer/moNeutralHCexplorer.h>

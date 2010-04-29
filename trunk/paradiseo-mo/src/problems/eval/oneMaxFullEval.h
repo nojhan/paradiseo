@@ -1,8 +1,8 @@
 /*
-<moOneMaxIncrEval.h>
+<oneMaxFullEval.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
-Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
+Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
 
 This software is governed by the CeCILL license under French law and
 abiding by the rules of distribution of free software.  You can  ue,
@@ -27,32 +27,29 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moOneMaxIncrEval_H
-#define _moOneMaxIncrEval_H
+#ifndef _oneMaxFullEval_h
+#define _oneMaxFullEval_h
 
-#include <eval/moEval.h>
+#include <eoEvalFunc.h>
 
 /**
- * Incremental evaluation Function for the OneMax problem
+ * Fitness function (full evaluation) for the OneMax problem
  */
-template< class Neighbor >
-class moOneMaxIncrEval : public moEval<Neighbor>
+template< class EOT >
+class oneMaxFullEval : public eoEvalFunc<EOT>
 {
 public:
-    typedef typename Neighbor::EOT EOT;
 
-    /*
-    * incremental evaluation of the neighbor for the oneMax problem
-    * @param _solution the solution to move (bit string)
-    * @param _neighbor the neighbor to consider (of type moBitNeigbor)
-    */
-    virtual void operator()(EOT & _solution, Neighbor & _neighbor) {
-	if (_solution[_neighbor.index()] == 0)
-	    _neighbor.fitness(_solution.fitness() + 1);
-	else 
-	    _neighbor.fitness(_solution.fitness() - 1);
-    }g
+	/**
+	 * Count the number of 1 in a bitString
+	 * @param _sol the solution to evaluate
+	 */
+    void operator() (EOT& _sol) {
+        unsigned int sum = 0;
+        for (unsigned int i = 0; i < _sol.size(); i++)
+            sum += _sol[i];
+        _sol.fitness(sum);
+    }
 };
 
 #endif
-

@@ -1,5 +1,5 @@
 /*
-<moOneMaxIncrEval.h>
+<moFitContinuator.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -27,32 +27,36 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moOneMaxIncrEval_H
-#define _moOneMaxIncrEval_H
+#ifndef _moFitContinuator_h
+#define _moFitContinuator_h
 
-#include <eval/moEval.h>
-
+#include <continuator/moContinuator.h>
+#include <neighborhood/moNeighborhood.h>
 /**
- * Incremental evaluation Function for the OneMax problem
+ * Continue until a maximum fitness is reached
  */
 template< class Neighbor >
-class moOneMaxIncrEval : public moEval<Neighbor>
+class moFitContinuator : public moContinuator<Neighbor>
 {
 public:
-    typedef typename Neighbor::EOT EOT;
+  typedef typename Neighbor::EOT EOT ;
+  typedef typename EOT::Fitness Fitness ;
 
-    /*
-    * incremental evaluation of the neighbor for the oneMax problem
-    * @param _solution the solution to move (bit string)
-    * @param _neighbor the neighbor to consider (of type moBitNeigbor)
-    */
-    virtual void operator()(EOT & _solution, Neighbor & _neighbor) {
-	if (_solution[_neighbor.index()] == 0)
-	    _neighbor.fitness(_solution.fitness() + 1);
-	else 
-	    _neighbor.fitness(_solution.fitness() - 1);
-    }g
+  /**
+   * @param _maxFit maximum fitness to reach
+   */
+  moFitContinuator(Fitness _maxFit): maxFit(_maxFit){}
+  
+  /**
+   *@param _solution a solution
+   *@return true if counter < maxFit
+   */
+  virtual bool operator()(EOT & _solution) {
+    return (_solution.fitness() < maxFit);
+  }
+  
+private:
+  Fitness maxFit;
+  
 };
-
 #endif
-

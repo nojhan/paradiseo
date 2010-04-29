@@ -1,5 +1,5 @@
 /*
-<moOneMaxIncrEval.h>
+<moCombinedContinuator.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -27,32 +27,61 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moOneMaxIncrEval_H
-#define _moOneMaxIncrEval_H
+#ifndef _moCombinedContinuator_h
+#define _moCombinedContinuator_h
 
-#include <eval/moEval.h>
-
+#include <continuator/moContinuator.h>
+#include <neighborhood/moNeighborhood.h>
 /**
- * Incremental evaluation Function for the OneMax problem
+ * Combined several continuators
+ * Continue until one of the continuators is false
  */
 template< class Neighbor >
-class moOneMaxIncrEval : public moEval<Neighbor>
+class moCombinedContinuator : public moContinuator<Neighbor>
 {
 public:
-    typedef typename Neighbor::EOT EOT;
+  typedef typename Neighbor::EOT EOT ;
 
-    /*
-    * incremental evaluation of the neighbor for the oneMax problem
-    * @param _solution the solution to move (bit string)
-    * @param _neighbor the neighbor to consider (of type moBitNeigbor)
-    */
-    virtual void operator()(EOT & _solution, Neighbor & _neighbor) {
-	if (_solution[_neighbor.index()] == 0)
-	    _neighbor.fitness(_solution.fitness() + 1);
-	else 
-	    _neighbor.fitness(_solution.fitness() - 1);
-    }g
+  /**
+   * @param _maxFit maximum fitness to reach
+   */
+  moCombinedContinuator(Fitness _maxFit): maxFit(_maxFit){}
+  
+  /**
+   * Default constructor (moCheckpoint must have at least one continuator)
+   * @param _cont a continuator
+   */
+  moCombinedContinuator(moContinuator<Neighbor>& _cont) : {
+    continuators.push_back(&_cont);
+  }
+
+  /**
+   * add a continuator to the combined continuator
+   * @param _cont a continuator
+   */
+  void add(moContinuator<Neighbor>& _cont) {
+    continuators.push_back(&_cont);
+  }
+  
+  /**
+   *@param _solution a solution
+   *@return true all the continuators are true
+   */
+  virtual bool operator()(EOT & _solution) {
+    bool bContinue = true;
+
+    // some data may be update in each continuator. 
+    // So, all continuators are tested
+    for(unsigned int i = 0; i < continuators.size(); ++i)
+      if ( !(*continuators[i])(_sol) )
+	bContinue = false;
+    
+    return bContinue;
+  }
+  
+private:
+  /** continuators vector */
+  std::vector<moContinuator<Neighbor>*> continuators;
+  
 };
-
 #endif
-
