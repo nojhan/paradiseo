@@ -102,7 +102,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    oneMaxFullEval<Indi> eval;
+    oneMaxEval<Indi> eval;
 
 
     /* =========================================================

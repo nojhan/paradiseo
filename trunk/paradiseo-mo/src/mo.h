@@ -120,9 +120,7 @@
 #include <coolingSchedule/moSimpleCoolingSchedule.h>
 
 #include <problems/bitString/moBitNeighbor.h>
-#include <problems/eval/oneMaxFullEval.h>
 #include <problems/eval/moOneMaxIncrEval.h>
-#include <problems/eval/queenFullEval.h>
 #include <problems/permutation/moShiftNeighbor.h>
 #include <problems/permutation/moSwapNeighbor.h>
 #include <problems/permutation/moSwapNeighborhood.h>
