@@ -79,6 +79,7 @@ SET (TEST_LIST
 		t-moFirstImprHC
 		t-moRandomBestHC
 		t-moNeighborVectorTabuList
+		t-moMonOpDiversification
 		)
 				
 FOREACH (test ${TEST_LIST})

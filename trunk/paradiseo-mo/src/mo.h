@@ -100,6 +100,7 @@
 #include <memory/moNeighborVectorTabuList.h>
 #include <memory/moTabuList.h>
 #include <memory/moCountMoveMemory.h>
+#include <memory/moMonOpDiversification.h>
 
 #include <neighborhood/moBackableNeighbor.h>
 #include <neighborhood/moDummyNeighbor.h>
