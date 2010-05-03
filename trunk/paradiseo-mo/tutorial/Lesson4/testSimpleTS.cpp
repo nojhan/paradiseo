@@ -22,27 +22,48 @@
 using namespace std;
 
 //-----------------------------------------------------------------------------
-// fitness function
-#include <eval/oneMaxEval.h>
-#include <problems/bitString/moBitNeighbor.h>
+//Representation and initializer
 #include <eoInt.h>
+#include <eoInit.h>
+#include <eoScalarFitness.h>
+
+// fitness function
+#include <eval/queenEval.h>
+#include <eval/moFullEvalByModif.h>
+#include <eval/moFullEvalByCopy.h>
+
+//Neighbors and Neighborhoods
+#include <problems/permutation/moShiftNeighbor.h>
+#include <neighborhood/moRndWithReplNeighborhood.h>
 #include <neighborhood/moOrderNeighborhood.h>
+
+//Algorithm and its components
+#include <coolingSchedule/moCoolingSchedule.h>
+//#include <algo/moTS.h>
+
+//comparator
+#include <comparator/moSolNeighborComparator.h>
+#include <comparator/moNeighborComparator.h>
+
+//continuators
+#include <continuator/moTrueContinuator.h>
+#include <continuator/moCheckpoint.h>
+#include <continuator/moFitnessStat.h>
+#include <utils/eoFileMonitor.h>
+#include <continuator/moCounterMonitorSaver.h>
+
+//mo eval
+#include <eval/moFullEvalByModif.h>
+#include <eval/moFullEvalByCopy.h>
 
 #include <mo>
 
-#include <eval/moFullEvalByModif.h>
-#include <eval/moFullEvalByCopy.h>
-#include <comparator/moNeighborComparator.h>
-#include <comparator/moSolNeighborComparator.h>
-#include <continuator/moTrueContinuator.h>
-#include <algo/moLocalSearch.h>
-#include <explorer/moSimpleHCexplorer.h>
-
 // REPRESENTATION
 //-----------------------------------------------------------------------------
-typedef eoBit<unsigned> Indi;
-typedef moBitNeighbor<unsigned int> Neighbor ; // incremental evaluation
-typedef moOrderNeighborhood<Neighbor> Neighborhood ;
+typedef eoInt<eoMinimizingFitness> Queen; //Permutation (Queen's problem representation)
+
+typedef moShiftNeighbor<Queen> shiftNeighbor; //shift Neighbor
+typedef moOrderNeighborhood<shiftNeighbor> orderShiftNeighborhood; //rnd shift Neighborhood (Indexed)
 
 void main_function(int argc, char **argv)
 {
@@ -100,7 +121,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    oneMaxEval<Indi> fulleval;
+    queenEval<Queen> fullEval;
 
 
     /* =========================================================
@@ -109,9 +130,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    // a Indi random initializer
-    eoUniformGenerator<bool> uGen;
-    eoInitFixedLength<Indi> random(vecSize, uGen);
+    eoInitPermutation<Queen> init(vecSize);
 
 
     /* =========================================================
@@ -120,20 +139,10 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moFullEvalByModif<Neighbor> eval(fulleval);
+    moFullEvalByCopy<shiftNeighbor> shiftEval(fullEval);
 
     //An eval by copy can be used instead of the eval by modif
     //moFullEvalByCopy<Neighbor> fulleval(eval);
-
-
-    /* =========================================================
-     *
-     * Comparator of neighbors
-     *
-     * ========================================================= */
-
-    moNeighborComparator<Neighbor> comparator;
-    moSolNeighborComparator<Neighbor> solComparator;
 
 
     /* =========================================================
@@ -142,8 +151,16 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    Neighborhood neighborhood(vecSize);
+    orderShiftNeighborhood rndShiftNH(pow(vecSize-1, 2));
 
+    /* =========================================================
+     *
+     * Comparator of neighbors
+     *
+     * ========================================================= */
+
+    moSolNeighborComparator<shiftNeighbor> solComparator;
+    moNeighborComparator<shiftNeighbor> comparator;
 
     /* =========================================================
      *
@@ -151,11 +168,11 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moSolVectorTabuList<Neighbor> tl(10,10);
-    moDummyIntensification<Neighbor> inten;
-    moDummyDiversification<Neighbor> div;
-    moBestImprAspiration<Neighbor> asp;
-    moTSexplorer<Neighbor> explorer(neighborhood, eval, comparator, solComparator, tl, inten, div, asp);
+    moNeighborVectorTabuList<shiftNeighbor> tl(10,10);
+    moDummyIntensification<shiftNeighbor> inten;
+    moDummyDiversification<shiftNeighbor> div;
+    moBestImprAspiration<shiftNeighbor> asp;
+    moTSexplorer<shiftNeighbor> explorer(rndShiftNH, shiftEval, comparator, solComparator, tl, inten, div, asp);
 
 
     /* =========================================================
@@ -164,9 +181,9 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moTrueContinuator<Neighbor> continuator;//always continue
+    moTrueContinuator<shiftNeighbor> continuator;//always continue
 
-    moLocalSearch<Neighbor> localSearch(explorer, continuator, fulleval);
+    moLocalSearch<shiftNeighbor> localSearch(explorer, continuator, fullEval);
 
     /* =========================================================
      *
@@ -174,9 +191,9 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    Indi solution;
+    Queen solution;
 
-    random(solution);
+    init(solution);
 
     //Can be eval here, else it will be done at the beginning of the localSearch
     //eval(solution);

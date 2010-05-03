@@ -69,6 +69,7 @@
 #include <continuator/moCombinedContinuator.h>
 #include <continuator/moFullEvalContinuator.h>
 #include <continuator/moNeighborEvalContinuator.h>
+#include <continuator/moTimeContinuator.h>
 
 #include <eval/moEval.h>
 #include <eval/moFullEvalByCopy.h>
