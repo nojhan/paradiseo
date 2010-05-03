@@ -46,8 +46,9 @@ public:
 	typedef typename Neighbor::EOT EOT;
     typedef moNeighborhood<Neighbor> Neighborhood ;
 
+
     /**
-     * Simple constructor for a simulated annealing
+     * Basic constructor for a simulated annealing
      * @param _neighborhood the neighborhood
      * @param _fullEval the full evaluation function
      * @param _eval neighbor's evaluation function
@@ -76,7 +77,7 @@ public:
 	{}
 
     /**
-     * Simple constructor for a simulated annealing
+     * General constructor for a simulated annealing
      * @param _neighborhood the neighborhood
      * @param _fullEval the full evaluation function
      * @param _eval neighbor's evaluation function
@@ -89,6 +90,8 @@ public:
 		defaultCool(0, 0, 0, 0),
 		explorer(_neighborhood, _eval, _comp, _cool)
 	{}
+
+
 
 private:
 	moTrueContinuator<Neighbor> trueCont;

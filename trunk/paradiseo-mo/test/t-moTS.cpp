@@ -1,5 +1,5 @@
 /*
-<moTimeContinuator.h>
+<t-moTS.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -27,62 +27,46 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moTimeContinuator_h
-#define _moTimeContinuator_h
+#include <iostream>
+#include <cstdlib>
+#include <cassert>
 
-#include <continuator/moContinuator.h>
+#include <algo/moTS.h>
+#include "moTestClass.h"
+#include <eval/oneMaxEval.h>
+#include <continuator/moTrueContinuator.h>
+#include <comparator/moSolNeighborComparator.h>
+#include <comparator/moNeighborComparator.h>
+#include <memory/moSolVectorTabuList.h>
 
-/**
- * Termination condition until a running time is reached.
- */
-template < class Neighbor >
-class moTimeContinuator: public moContinuator<Neighbor>
-{
-public:
+int main(){
 
-	typedef typename Neighbor::EOT EOT;
+	std::cout << "[t-moTS] => START" << std::endl;
 
-    /**
-     * Ctor.
-     * @param _max maximum running time
-     */
-    moTimeContinuator(time_t _max): max(_max){
-        start = time(NULL);
-    }
+	bitNeighborhood nh(4);
+	oneMaxEval<bitVector> fullEval;
+	evalOneMax eval(4);
 
+	//test first constructor
+	moTS<bitNeighbor> test1(nh, fullEval, eval, 1, 7);
 
-    /**
-     * Returns false when the running time is reached.
-     * @param _sol the current solution
-     */
-    virtual bool operator() (EOT& _sol)
-    {
-        time_t elapsed = (time_t) difftime(time(NULL), start);
-        if (elapsed >= max)
-        {
-            std::cout << "STOP in moTimeContinuator: Reached maximum time [" << elapsed << "/" << max << "]" << std::endl;
-            return false;
-        }
-        return true;
-    }
+	//test second constructor
+	moSolVectorTabuList<bitNeighbor> tl(7,0);
+	moTS<bitNeighbor> test2(nh, fullEval, eval, 1, tl);
+
+	//test third constructor
+	moTrueContinuator<bitNeighbor> cont;
+	moSolNeighborComparator<bitNeighbor> sncomp;
+	moNeighborComparator<bitNeighbor> ncomp;
+	moDummyIntensification<bitNeighbor> intens;
+	moDummyDiversification<bitNeighbor> div;
+	moBestImprAspiration<bitNeighbor> aspir;
+
+	moTS<bitNeighbor> test3(nh, fullEval, eval, ncomp, sncomp, cont, tl, intens, div, aspir);
 
 
-    /**
-     * Class name
-     */
-    virtual std::string className(void) const
-    {
-        return "moTimeContinuator";
-    }
+	std::cout << "[t-moTS] => OK" << std::endl;
 
+	return EXIT_SUCCESS;
+}
 
-private:
-
-    /** maximum running time */
-    time_t max;
-    /** starting time */
-    time_t start;
-
-};
-
-#endif

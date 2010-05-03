@@ -88,6 +88,16 @@ void main_function(int argc, char **argv)
     parser.processParam( vecSizeParam, "Representation" );
     unsigned vecSize = vecSizeParam.value();
 
+    // size tabu list
+    eoValueParam<unsigned int> sizeTabuListParam(7, "sizeTabuList", "size of the tabu list", 'T');
+    parser.processParam( sizeTabuListParam, "Search Parameters" );
+    unsigned sizeTabuList = sizeTabuListParam.value();
+
+    // Time Limit
+    eoValueParam<unsigned int> timeLimitParam(1, "timeLimit", "time limits", 'T');
+    parser.processParam( timeLimitParam, "Search Parameters" );
+    unsigned timeLimit = timeLimitParam.value();
+
     // the name of the "status" file where all actual parameter values will be saved
     string str_status = parser.ProgramName() + ".status"; // default value
     eoValueParam<string> statusParam(str_status.c_str(), "status", "Status file");
@@ -168,11 +178,11 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moNeighborVectorTabuList<shiftNeighbor> tl(10,10);
+    moNeighborVectorTabuList<shiftNeighbor> tl(sizeTabuList,0);
     moDummyIntensification<shiftNeighbor> inten;
     moDummyDiversification<shiftNeighbor> div;
     moBestImprAspiration<shiftNeighbor> asp;
-    moTSexplorer<shiftNeighbor> explorer(rndShiftNH, shiftEval, comparator, solComparator, tl, inten, div, asp);
+    //moTSexplorer<shiftNeighbor> explorer(rndShiftNH, shiftEval, comparator, solComparator, tl, inten, div, asp);
 
 
     /* =========================================================
@@ -181,9 +191,9 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moTrueContinuator<shiftNeighbor> continuator;//always continue
+    moTimeContinuator<shiftNeighbor> continuator(timeLimit);
 
-    moLocalSearch<shiftNeighbor> localSearch(explorer, continuator, fullEval);
+    moTS<shiftNeighbor> localSearch(rndShiftNH, fullEval, shiftEval, comparator, solComparator, continuator, tl, inten, div, asp);
 
     /* =========================================================
      *
