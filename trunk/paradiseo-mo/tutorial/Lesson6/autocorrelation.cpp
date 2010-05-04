@@ -37,18 +37,8 @@ using namespace std;
 #include <neighborhood/moRndWithReplNeighborhood.h> // visit one random neighbor possibly the same one several times
 
 //-----------------------------------------------------------------------------
-// the random walk local search: heuristic to sample the search space
-#include <algo/moRandomWalk.h>
-
-//-----------------------------------------------------------------------------
-// the statistics to compute during the sampling
-#include <continuator/moFitnessStat.h>
-#include <utils/eoDistance.h>
-#include <continuator/moDistanceStat.h>
-
-//-----------------------------------------------------------------------------
 // the sampling class
-#include <sampling/moSampling.h>
+#include <sampling/moAutocorrelationSampling.h>
 
 // Declaration of types
 //-----------------------------------------------------------------------------
@@ -167,29 +157,6 @@ void main_function(int argc, char **argv)
 
   /* =========================================================
    *
-   * the local search algorithm to sample the search space
-   *
-   * ========================================================= */
-
-  moRandomWalk<Neighbor> walk(neighborhood, fullEval, neighborEval, nbStep);
-
-  /* =========================================================
-   *
-   * the statistics to compute
-   *
-   * ========================================================= */
-  
-  // fitness of the solution at each step
-  moFitnessStat<Indi> fStat;
-
-  // Hamming distance to the global optimum
-  eoHammingDistance<Indi> distance; // Hamming distance
-  Indi bestSolution(vecSize, true); // global optimum
-
-  moDistanceStat<Indi, unsigned> distStat(distance, bestSolution); // statistic
-
-  /* =========================================================
-   *
    * The sampling of the search space
    *
    * ========================================================= */
@@ -198,11 +165,8 @@ void main_function(int argc, char **argv)
   //    - random initialization
   //    - local search to sample the search space
   //    - one statistic to compute
-  moSampling<Neighbor> sampling(random, walk, fStat);
+  moAutocorrelationSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbStep);
   
-  // to add another statistics
-  sampling.add(distStat);
-
   /* =========================================================
    *
    * execute the sampling
@@ -223,15 +187,12 @@ void main_function(int argc, char **argv)
   // to get the values of statistics 
   // so, you can compute some statistics in c++ from the data
   const std::vector<double> & fitnessValues = sampling.getVector(0); 
-  const std::vector<double> & distValues = sampling.getVector(1); 
 
   std::cout << "First values:" << std::endl;
   std::cout << "Fitness  " << fitnessValues[0] << std::endl;
-  std::cout << "Distance " << distValues[0] << std::endl << std::endl;
 
   std::cout << "Last values:" << std::endl;
   std::cout << "Fitness  " << fitnessValues[fitnessValues.size() - 1] << std::endl;
-  std::cout << "Distance " << distValues[distValues.size() - 1] << std::endl;
 }
 
 // A main that catches the exceptions

@@ -162,7 +162,7 @@ void main_function(int argc, char **argv)
 
     moCheckpoint<Neighbor> checkpoint(continuator);
 
-    moFitnessStat<Indi, unsigned> fStat;
+    moFitnessStat<Indi> fStat;
     eoHammingDistance<Indi> distance;
     Indi bestSolution(vecSize, true);
     moDistanceStat<Indi, unsigned> distStat(distance, bestSolution);

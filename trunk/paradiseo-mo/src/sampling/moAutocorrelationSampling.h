@@ -1,8 +1,8 @@
 /*
-  <moFitnessStat.h>
+  <moAutocorrelationSampling.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
-  Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
+  Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
 
   This software is governed by the CeCILL license under French law and
   abiding by the rules of distribution of free software.  You can  use,
@@ -32,45 +32,57 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef moFitnessStat_h
-#define moFitnessStat_h
+#ifndef moAutocorrelationSampling_h
+#define moAutocorrelationSampling_h
 
-#include <continuator/moStat.h>
+#include <eoInit.h>
+#include <eval/moEval.h>
+#include <eoEvalFunc.h>
+#include <algo/moRandomWalk.h>
+#include <continuator/moFitnessStat.h>
+#include <sampling/moSampling.h>
 
 /**
- * The actual class that will be used as base for all statistics
- * that need to be calculated over the solution
- * It is a moStatBase AND an eoValueParam so it can be used in Monitors.
-*/
-template <class EOT>
-class moFitnessStat : public moStat<EOT, typename EOT::Fitness>
+ * To compute the autocorrelation function:
+ *   Perform a random walk based on the neighborhood,
+ *   The fitness values of solutions are collected during the random walk
+ *   The autocorrelation can be computed from the serie of fitness values  
+ * 
+ */
+template <class Neighbor>
+class moAutocorrelationSampling : public moSampling<Neighbor>
 {
-public :
-  typedef typename EOT::Fitness Fitness;
-  using moStat< EOT, Fitness >::value;
+public:
+  typedef typename Neighbor::EOT EOT ;
+  
+  using moSampling<Neighbor>::localSearch;
 
   /**
    * Default Constructor
-   * @param _description a description of the stat
+   * @param _init initialisation method of the solution
+   * @param _neighborhood neighborhood giving neighbor in random order
+   * @param _nbStep Number of steps of the random walk 
    */
-  moFitnessStat(std::string _description = "fitness"):
-    moStat<EOT, Fitness>(Fitness(), _description) {}
-  
-  /**
-   * store fitness value
-   * @param _sol the corresponding solution
-   */
-  virtual void operator()(EOT & _sol)
+  moAutocorrelationSampling(eoInit<EOT> & _init, 
+			    moNeighborhood<Neighbor> & _neighborhood, 
+			    eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, 
+			    unsigned int _nbStep) : 
+    moSampling<Neighbor>(_init, * new moRandomWalk<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep), fitnessStat)
   {
-    value() = _sol.fitness();
   }
-  
-  /**
-   * @return the name of the class
+
+  /** 
+   * default destructor
    */
-  virtual std::string className(void) const {
-    return "moFitnessStat";
+  ~moAutocorrelationSampling() {
+    // delete the pointer on the local search which has been constructed in the constructor
+    delete &localSearch;
   }
+
+protected:
+  moFitnessStat<EOT> fitnessStat;
+
 };
+
 
 #endif

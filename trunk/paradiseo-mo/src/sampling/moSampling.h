@@ -41,6 +41,7 @@
 #include <continuator/moStat.h>
 #include <continuator/moCheckpoint.h>
 #include <continuator/moVectorMonitor.h>
+#include <algo/moLocalSearch.h>
 #include <eoInit.h>
 
 /**
@@ -69,10 +70,15 @@ public:
     add(_stat);
   }
 
+  /**
+   * default destructor
+   */
   ~moSampling() {
+    // delete all monitors
     for(unsigned i = 0; i < monitorVec.size(); i++)
       delete monitorVec[i];
 
+    // delete the checkpoint
     delete checkpoint ;
   }
 
