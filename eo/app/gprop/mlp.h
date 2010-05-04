@@ -17,6 +17,8 @@
 #include <utils/rnd_generators.h> // normal_generator
 #include <vecop.h>                // *
 
+#include <assert.h>
+#include <limits>
 
 
 namespace mlp
