@@ -43,6 +43,7 @@
 #include <algo/moNeutralHC.h>
 #include <algo/moRandomWalk.h>
 #include <algo/moTS.h>
+#include <algo/moILS.h>
 
 #include <comparator/moComparator.h>
 #include <comparator/moNeighborComparator.h>
