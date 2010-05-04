@@ -36,6 +36,7 @@
 #define _newmo_h
 
 #include <algo/moLocalSearch.h>
+#include <algo/moRandomSearch.h>
 #include <algo/moSA.h>
 #include <algo/moSimpleHC.h>
 #include <algo/moFirstImprHC.h>
@@ -85,6 +86,7 @@
 #include <explorer/moNeutralHCexplorer.h>
 #include <explorer/moMetropolisHastingExplorer.h>
 #include <explorer/moNeighborhoodExplorer.h>
+#include <explorer/moRandomSearchExplorer.h>
 #include <explorer/moRandomNeutralWalkExplorer.h>
 #include <explorer/moRandomWalkExplorer.h>
 #include <explorer/moSimpleHCexplorer.h>
@@ -132,6 +134,7 @@
 #include <coolingSchedule/moSimpleCoolingSchedule.h>
 
 #include <sampling/moSampling.h>
+#include <sampling/moDensityOfStatesSampling.h>
 #include <sampling/moAutocorrelationSampling.h>
 
 #include <problems/bitString/moBitNeighbor.h>
