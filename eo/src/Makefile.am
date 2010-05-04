@@ -33,7 +33,6 @@ pkginclude_HEADERS 	= eo \
 			eoDistribUpdater.h \
 			eoDistribution.h \
 			eoDominanceMap.h \
-			eoDummyFlight.h \
 			eoEDA.h \
 			eoEasyEA.h \
 			eoEasyPSO.h \
@@ -61,7 +60,6 @@ pkginclude_HEADERS 	= eo \
 			eoLinearDecreasingWeightUp.h  \
 			eoLinearFitScaling.h \
 			eoLinearTopology.h \
-			eoLSPSO.h \
 			eoMGGReplacement.h \
 			eoMerge.h \
 			eoMergeReduce.h \
@@ -119,7 +117,6 @@ pkginclude_HEADERS 	= eo \
 			eoSigBinaryFlight.h \
 			eoSimpleEDA.h \
 			eoSocialNeighborhood.h \
-			eoSSPSO.h \
 			eoStandardFlight.h \
 			eoStandardVelocity.h \
 			eoStarTopology.h \
