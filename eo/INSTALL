@@ -9,6 +9,9 @@ Basic Installation
 
    These are generic installation instructions.
 
+   First, you need to generate a configure script using autoconf.
+   To do this, run the shell script sh ./autogen.sh.
+
    The `configure' shell script attempts to guess correct values for
 various system-dependent variables used during compilation.  It uses
 those values to create a `Makefile' in each directory of the package.
