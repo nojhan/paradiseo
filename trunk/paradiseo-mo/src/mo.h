@@ -71,6 +71,7 @@
 #include <continuator/moFullEvalContinuator.h>
 #include <continuator/moNeighborEvalContinuator.h>
 #include <continuator/moTimeContinuator.h>
+#include <continuator/moVectorMonitor.h>
 
 #include <eval/moEval.h>
 #include <eval/moFullEvalByCopy.h>
@@ -127,6 +128,8 @@
 
 #include <coolingSchedule/moCoolingSchedule.h>
 #include <coolingSchedule/moSimpleCoolingSchedule.h>
+
+#include <sampling/moSampling.h>
 
 #include <problems/bitString/moBitNeighbor.h>
 #include <problems/eval/moOneMaxIncrEval.h>

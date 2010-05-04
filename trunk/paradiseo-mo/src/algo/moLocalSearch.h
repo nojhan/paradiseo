@@ -48,14 +48,14 @@ template<class Neighbor>
 class moLocalSearch: public eoMonOp<typename Neighbor::EOT>
 {
 public:
-	typedef moNeighborhood<Neighbor> Neighborhood;
-	typedef moNeighborhoodExplorer<Neighbor> NeighborhoodExplorer;
-    typedef typename Neighbor::EOT EOT ;
+  typedef moNeighborhood<Neighbor> Neighborhood;
+  typedef moNeighborhoodExplorer<Neighbor> NeighborhoodExplorer;
+  typedef typename Neighbor::EOT EOT ;
 
     /**
      * Constructor of a moLocalSearch needs a NeighborhooExplorer and a Continuator
      */
-    moLocalSearch(NeighborhoodExplorer& _searchExpl, moContinuator<Neighbor> & _continuator, eoEvalFunc<EOT>& _fullEval) : searchExplorer(_searchExpl), continuator(_continuator), fullEval(_fullEval) { } ;
+    moLocalSearch(NeighborhoodExplorer& _searchExpl, moContinuator<Neighbor> & _cont, eoEvalFunc<EOT>& _fullEval) : searchExplorer(_searchExpl), cont(&_cont), fullEval(_fullEval) { } ;
 
     /**
      * Run the local search on a solution
@@ -70,9 +70,9 @@ public:
         searchExplorer.initParam(_solution);
 
         // initialization of the external continuator (for example the time, or the number of generations)
-        continuator.init(_solution);
+        cont->init(_solution);
 
-        bool b=continuator(_solution);
+        bool b= (*cont)(_solution);
 
         do {
             // explore the neighborhood of the solution
@@ -88,22 +88,40 @@ public:
             // update the parameter of the search (for ex. Temperature of the SA)
             searchExplorer.updateParam(_solution);
 
-            b=continuator(_solution);
+            b=(*cont)(_solution);
         } while (b && searchExplorer.isContinue(_solution));
 
         searchExplorer.terminate(_solution);
 
-        continuator.lastCall(_solution);
+        cont->lastCall(_solution);
 
         return true;
     };
+
+    /** 
+     * external continuator object
+     * @return the external continuator 
+    */
+  void setContinuator(moContinuator<Neighbor> & _cont) {
+    cont = &_cont ;
+  }
+
+    /** 
+     * external continuator object
+     * 
+     * @overload
+     * @return the external continuator 
+    */
+  moContinuator<Neighbor>* getContinuator() const {
+    return cont ;
+  }
 
 protected:
     // make the exploration of the neighborhood according to a local search heuristic
     moNeighborhoodExplorer<Neighbor>& searchExplorer ;
 
     // external continuator
-    moContinuator<Neighbor>& continuator ;
+    moContinuator<Neighbor> * cont ;
 
     //full evaluation function
     eoEvalFunc<EOT>& fullEval;
