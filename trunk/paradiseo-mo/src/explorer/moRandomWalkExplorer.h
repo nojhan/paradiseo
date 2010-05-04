@@ -98,6 +98,7 @@ public:
 
     /**
      * Explore the neighborhood with only one random solution
+     * we supposed that the first neighbor is uniformly selected in the neighborhood
      * @param _solution
      */
     virtual void operator()(EOT & _solution) {

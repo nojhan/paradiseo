@@ -11,193 +11,228 @@
 
 #include <stdexcept>  // runtime_error 
 #include <iostream>   // cout
-#include <sstream>  // ostrstream, istrstream
+#include <sstream>    // ostrstream, istrstream
 #include <fstream>
 #include <string.h>
 
 // the general include for eo
 #include <eo>
-#include <ga.h>
 
+// declaration of the namespace
 using namespace std;
 
 //-----------------------------------------------------------------------------
-// fitness function
-#include <eval/oneMaxEval.h>
-#include <problems/bitString/moBitNeighbor.h>
-#include <eoInt.h>
-#include <neighborhood/moRndWithReplNeighborhood.h>
+// representation of solutions, and neighbors
+#include <ga/eoBit.h>                         // bit string : see also EO tutorial lesson 1: FirstBitGA.cpp
+#include <problems/bitString/moBitNeighbor.h> // neighbor of bit string
 
+//-----------------------------------------------------------------------------
+// fitness function, and evaluation of neighbors
+#include <eval/oneMaxEval.h>
+#include <problems/eval/moOneMaxIncrEval.h>
 #include <eval/moFullEvalByModif.h>
-#include <eval/moFullEvalByCopy.h>
-#include <continuator/moTrueContinuator.h>
-#include <algo/moLocalSearch.h>
-#include <explorer/moRandomWalkExplorer.h>
-#include <continuator/moCheckpoint.h>
+
+//-----------------------------------------------------------------------------
+// neighborhood description
+#include <neighborhood/moRndWithReplNeighborhood.h> // visit one random neighbor possibly the same one several times
+
+//-----------------------------------------------------------------------------
+// the random walk local search: heuristic to sample the search space
+#include <algo/moRandomWalk.h>
+
+//-----------------------------------------------------------------------------
+// the statistics to compute during the sampling
 #include <continuator/moFitnessStat.h>
-#include <continuator/moSolutionStat.h>
 #include <utils/eoDistance.h>
 #include <continuator/moDistanceStat.h>
 
-#include <utils/eoFileMonitor.h>
-#include <utils/eoUpdater.h>
-
+//-----------------------------------------------------------------------------
+// the sampling class
 #include <sampling/moSampling.h>
 
-// REPRESENTATION
+
+// Declaration of types
 //-----------------------------------------------------------------------------
-typedef eoBit<unsigned> Indi;
-typedef moBitNeighbor<unsigned int> Neighbor ; // incremental evaluation
-typedef moRndWithReplNeighborhood<Neighbor> Neighborhood ;
+// Indi is the typedef of the solution type like in paradisEO-eo
+typedef eoBit<unsigned int> Indi;                      // bit string with unsigned fitness type
+// Neighbor is the typedef of the neighbor type,
+// Neighbor = How to compute the neighbor from the solution + information on it (i.e. fitness)  
+// all classes from paradisEO-mo use this template type
+typedef moBitNeighbor<unsigned int> Neighbor ;         // bit string neighbor with unsigned fitness type
+
 
 void main_function(int argc, char **argv)
 {
-    /* =========================================================
-    *
-    * Parameters
-    *
-    * ========================================================= */
+  /* =========================================================
+   *
+   * Parameters
+   *
+   * ========================================================= */
+  // more information on the input parameters: see EO tutorial lesson 3
+  // but don't care at first it just read the parameters of the bit string size and the random seed.
 
-    // First define a parser from the command-line arguments
-    eoParser parser(argc, argv);
+  // First define a parser from the command-line arguments
+  eoParser parser(argc, argv);
+  
+  // For each parameter, define Parameter, read it through the parser,
+  // and assign the value to the variable
 
-    // For each parameter, define Parameter, read it through the parser,
-    // and assign the value to the variable
+  // random seed parameter
+  eoValueParam<uint32_t> seedParam(time(0), "seed", "Random number seed", 'S');
+  parser.processParam( seedParam );
+  unsigned seed = seedParam.value();
+  
+  // length of the bit string
+  eoValueParam<unsigned int> vecSizeParam(20, "vecSize", "Genotype size", 'V');
+  parser.processParam( vecSizeParam, "Representation" );
+  unsigned vecSize = vecSizeParam.value();
+  
+  // the number of steps of the random walk
+  eoValueParam<unsigned int> stepParam(100, "nbStep", "Number of steps of the random walk", 'n');
+  parser.processParam( stepParam, "Representation" );
+  unsigned nbStep = stepParam.value();
+  
+  // the name of the output file
+  string str_out = "out.dat"; // default value
+  eoValueParam<string> outParam(str_out.c_str(), "out", "Output file of the sampling", 'o');
+  parser.processParam(outParam, "Persistence" );
+  
+  // the name of the "status" file where all actual parameter values will be saved
+  string str_status = parser.ProgramName() + ".status"; // default value
+  eoValueParam<string> statusParam(str_status.c_str(), "status", "Status file");
+  parser.processParam( statusParam, "Persistence" );
+  
+  // do the following AFTER ALL PARAMETERS HAVE BEEN PROCESSED
+  // i.e. in case you need parameters somewhere else, postpone these
+  if (parser.userNeedsHelp()) {
+    parser.printHelp(cout);
+    exit(1);
+  }
+  if (statusParam.value() != "") {
+    ofstream os(statusParam.value().c_str());
+    os << parser;// and you can use that file as parameter file
+  }
 
-    eoValueParam<uint32_t> seedParam(time(0), "seed", "Random number seed", 'S');
-    parser.processParam( seedParam );
-    unsigned seed = seedParam.value();
+  /* =========================================================
+   *
+   * Random seed
+   *
+   * ========================================================= */
 
-    // description of genotype
-    eoValueParam<unsigned int> vecSizeParam(8, "vecSize", "Genotype size", 'V');
-    parser.processParam( vecSizeParam, "Representation" );
-    unsigned vecSize = vecSizeParam.value();
+  // reproducible random seed: if you don't change SEED above,
+  // you'll aways get the same result, NOT a random run
+  // more information: see EO tutorial lesson 1 (FirstBitGA.cpp)
+  rng.reseed(seed);
 
-    eoValueParam<unsigned int> stepParam(10, "nbStep", "Number of steps of the random walk", 'n');
-    parser.processParam( stepParam, "Representation" );
-    unsigned nbStep = stepParam.value();
+  /* =========================================================
+   *
+   * Initialization of the solution
+   *
+   * ========================================================= */
 
-    // the name of the output file
-    string str_out = "out.dat"; // default value
-    eoValueParam<string> outParam(str_out.c_str(), "out", "Output file of the sampling", 'o');
-    parser.processParam(outParam, "Persistence" );
+  // a Indi random initializer: each bit is random
+  // more information: see EO tutorial lesson 1 (FirstBitGA.cpp)
+  eoUniformGenerator<bool> uGen;
+  eoInitFixedLength<Indi> random(vecSize, uGen);
 
-    // the name of the "status" file where all actual parameter values will be saved
-    string str_status = parser.ProgramName() + ".status"; // default value
-    eoValueParam<string> statusParam(str_status.c_str(), "status", "Status file");
-    parser.processParam( statusParam, "Persistence" );
+  /* =========================================================
+   *
+   * Eval fitness function (full evaluation)
+   *
+   * ========================================================= */
 
-    // do the following AFTER ALL PARAMETERS HAVE BEEN PROCESSED
-    // i.e. in case you need parameters somewhere else, postpone these
-    if (parser.userNeedsHelp()) {
-        parser.printHelp(cout);
-        exit(1);
-    }
-    if (statusParam.value() != "") {
-        ofstream os(statusParam.value().c_str());
-        os << parser;// and you can use that file as parameter file
-    }
+  // the fitness function is just the number of 1 in the bit string
+  oneMaxEval<Indi> fullEval;
 
-    /* =========================================================
-     *
-     * Random seed
-     *
-     * ========================================================= */
+  /* =========================================================
+   *
+   * evaluation of a neighbor solution
+   *
+   * ========================================================= */
 
-    //reproducible random seed: if you don't change SEED above,
-    // you'll aways get the same result, NOT a random run
-    rng.reseed(seed);
+  // Use it if there is no incremental evaluation: a neighbor is evaluated by the full evaluation of a solution
+  // moFullEvalByModif<Neighbor> neighborEval(fullEval);
 
+  // Incremental evaluation of the neighbor: fitness is modified by +/- 1
+  moOneMaxIncrEval<Neighbor> neighborEval;
 
-    /* =========================================================
-     *
-     * Eval fitness function
-     *
-     * ========================================================= */
+  /* =========================================================
+   *
+   * the neighborhood of a solution
+   *
+   * ========================================================= */
 
-    oneMaxEval<Indi> eval;
+  // Exploration of the neighborhood in random order
+  // at each step one bit is randomly generated
+  moRndWithReplNeighborhood<Neighbor> neighborhood(vecSize);
 
+  /* =========================================================
+   *
+   * the local search algorithm to sample the search space
+   *
+   * ========================================================= */
 
-    /* =========================================================
-     *
-     * Initilisation of the solution
-     *
-     * ========================================================= */
+  moRandomWalk<Neighbor> walk(neighborhood, fullEval, neighborEval, nbStep);
 
-    // a Indi random initializer
-    eoUniformGenerator<bool> uGen;
-    eoInitFixedLength<Indi> random(vecSize, uGen);
+  /* =========================================================
+   *
+   * the statistics to compute
+   *
+   * ========================================================= */
+  
+  // fitness of the solution at each step
+  moFitnessStat<Indi, unsigned> fStat;
 
+  // Hamming distance to the global optimum
+  eoHammingDistance<Indi> distance; // Hamming distance
+  Indi bestSolution(vecSize, true); // global optimum
 
-    /* =========================================================
-     *
-     * evaluation of a neighbor solution
-     *
-     * ========================================================= */
+  moDistanceStat<Indi, unsigned> distStat(distance, bestSolution); // statistic
 
-    moFullEvalByModif<Neighbor> nhEval(eval);
+  /* =========================================================
+   *
+   * The sampling of the search space
+   *
+   * ========================================================= */
+  
+  // sampling object : 
+  //    - random initialization
+  //    - local search to sample the search space
+  //    - one statistic to compute
+  moSampling<Neighbor> sampling(random, walk, fStat);
+  
+  // to add another statistics
+  sampling.add(distStat);
 
-    //An eval by copy can be used instead of the eval by modif
-    //moFullEvalByCopy<Neighbor> nhEval(eval);
+  /* =========================================================
+   *
+   * execute the sampling
+   *
+   * ========================================================= */
+  
+  sampling();
+  
+  /* =========================================================
+   *
+   * export the sampling
+   *
+   * ========================================================= */
+  
+  // to export the statistics into file
+  sampling.fileExport(str_out);
 
+  // to get the values of statistics 
+  // so, you can compute some statistics in c++ from the data
+  const std::vector<double> & fitnessValues = sampling.getVector(0); 
+  const std::vector<double> & distValues = sampling.getVector(1); 
 
-    /* =========================================================
-     *
-     * the neighborhood of a solution
-     *
-     * ========================================================= */
+  std::cout << "First values:" << std::endl;
+  std::cout << "Fitness  " << fitnessValues[0] << std::endl;
+  std::cout << "Distance " << distValues[0] << std::endl << std::endl;
 
-    Neighborhood neighborhood(vecSize);
-
-
-    /* =========================================================
-     *
-     * a neighborhood explorer solution
-     *
-     * ========================================================= */
-
-    moRandomWalkExplorer<Neighbor> explorer(neighborhood, nhEval, nbStep);
-
-
-    /* =========================================================
-     *
-     * the continuator and the checkpoint
-     *
-     * ========================================================= */
-
-    moTrueContinuator<Neighbor> continuator;//always continue
-
-    moFitnessStat<Indi, unsigned> fStat;
-    eoHammingDistance<Indi> distance;
-    Indi bestSolution(vecSize, true);
-    moDistanceStat<Indi, unsigned> distStat(distance, bestSolution);
-
-    /* =========================================================
-     *
-     * the local search algorithm
-     *
-     * ========================================================= */
-
-    moLocalSearch<Neighbor> localSearch(explorer, continuator, eval);
-
-    /* =========================================================
-     *
-     * The sampling of the search space
-     *
-     * ========================================================= */
-    
-    moSampling<Neighbor> sampling(random, localSearch, fStat);
-
-    /* =========================================================
-     *
-     * execute the sampling
-     *
-     * ========================================================= */
-
-    sampling();
-
-    sampling.exportFile(str_out);
-
+  std::cout << "Last values:" << std::endl;
+  std::cout << "Fitness  " << fitnessValues[fitnessValues.size() - 1] << std::endl;
+  std::cout << "Distance " << distValues[distValues.size() - 1] << std::endl;
 }
 
 // A main that catches the exceptions

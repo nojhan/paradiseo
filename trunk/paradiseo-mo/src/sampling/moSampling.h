@@ -93,6 +93,7 @@ public:
 
   /**
    * To sample the search and get the statistics
+   * the statistics are stored in the moVectorMonitor vector
    */
   void operator()(void) {
     // clear all statisic vectors
@@ -111,14 +112,16 @@ public:
     // compute the sampling
     localSearch(solution);
 
-    // set to initial continuator
+    // set back to initial continuator
     localSearch.setContinuator(*continuator);
   }
 
   /**
    * to export the vector of values into one file
+   * @param _filename file name 
+   * @param _delim delimiter between statistics
    */
-  void exportFile(std::string _filename, std::string _delim = " ") {
+  void fileExport(std::string _filename, std::string _delim = " ") {
     // create file
     ofstream os(_filename.c_str()); 
 
@@ -143,6 +146,15 @@ public:
       os << std::endl ;
     }
     
+  }
+
+  /**
+   * to get one vector of values
+   * @param _numStat number of stattistics to get (in order of creation)
+   * @return the vector of value (all values are converted in double)
+   */
+  const std::vector<double> & getVector(unsigned int _numStat) {
+    return monitorVec[_numStat]->getVector();
   }
 
   /**

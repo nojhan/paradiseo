@@ -41,6 +41,7 @@
 #include <algo/moFirstImprHC.h>
 #include <algo/moRandomBestHC.h>
 #include <algo/moNeutralHC.h>
+#include <algo/moRandomWalk.h>
 #include <algo/moTS.h>
 
 #include <comparator/moComparator.h>
