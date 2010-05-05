@@ -125,6 +125,7 @@
 #include <perturb/moMonOpPerturb.h>
 #include <perturb/moRestartPerturb.h>
 #include <perturb/moNeighborhoodPerturb.h>
+#include <perturb/moLocalSearchInit.h>
 
 #include <acceptCrit/moAcceptanceCriterion.h>
 #include <acceptCrit/moAlwaysAcceptCrit.h>
