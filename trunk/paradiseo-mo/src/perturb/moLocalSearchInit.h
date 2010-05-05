@@ -54,8 +54,8 @@ public:
    * @param _solution to perturb
    */
   void operator()(EOT& _solution){
-    init(solution);
-    ls(solution);
+    init(_solution);
+    ls(_solution);
   }
 
 private:

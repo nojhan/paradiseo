@@ -102,7 +102,7 @@ public:
    * the statistics are stored in the moVectorMonitor vector
    */
   void operator()(void) {
-    // clear all statisic vectors
+    // clear all statistic vectors
     for(unsigned i = 0; i < monitorVec.size(); i++)
       monitorVec[i]->clear();
 

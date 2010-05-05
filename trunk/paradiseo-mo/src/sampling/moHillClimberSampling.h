@@ -1,5 +1,5 @@
 /*
-  <moDensityOfStatesSampling.h>
+  <moHillClimberSampling.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -32,24 +32,30 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef moDensityOfStatesSampling_h
-#define moDensityOfStatesSampling_h
+#ifndef moHillClimberSampling_h
+#define moHillClimberSampling_h
 
 #include <eoInit.h>
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
+#include <continuator/moCheckpoint.h>
+#include <perturb/moLocalSearchInit.h>
 #include <algo/moRandomSearch.h>
-#include <continuator/moFitnessStat.h>
+#include <algo/moSimpleHC.h>
+#include <continuator/moSolutionStat.h>
+#include <continuator/moCounterStat.h>
+#include <continuator/moStatFromStat.h>
 #include <sampling/moSampling.h>
 
 /**
- * To compute the density of states: 
- *   Sample the fitness of random solution in the search space
- *   The fitness values of solutions are collected during the random search
+ * To compute the length and final solution of an adaptive walk:
+ *   Perform a simple Hill-climber based on the neighborhood (adaptive walk),
+ *   The lengths of HC are collected and the final solution which are local optima
+ *   The adaptive walk is repeated several times
  * 
  */
 template <class Neighbor>
-class moDensityOfStatesSampling : public moSampling<Neighbor>
+class moHillClimberSampling : public moSampling<Neighbor>
 {
 public:
   typedef typename Neighbor::EOT EOT ;
@@ -60,26 +66,41 @@ public:
    * Default Constructor
    * @param _init initialisation method of the solution
    * @param _neighborhood neighborhood giving neighbor in random order
-   * @param _nbStep Number of steps of the random walk 
+   * @param _nbAdaptWalk Number of adaptive walks 
    */
-  moDensityOfStatesSampling(eoInit<EOT> & _init, 
-			    eoEvalFunc<EOT>& _fullEval, 
-			    unsigned int _nbSol) : 
-    moSampling<Neighbor>(_init, * new moRandomSearch<Neighbor>(_init, _fullEval, _nbSol), fitnessStat)
+  moHillClimberSampling(eoInit<EOT> & _init, 
+			moNeighborhood<Neighbor> & _neighborhood, 
+			eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, 
+			unsigned int _nbAdaptWalk) : 
+    moSampling<Neighbor>(initHC, * new moRandomSearch<Neighbor>(initHC, _fullEval, _nbAdaptWalk), copyStat), 
+    copyStat(lengthStat),
+    checkpoint(trueCont),
+    hc(_neighborhood, _fullEval, _eval, checkpoint),
+    initHC(_init, hc)
   {
+    // to count the number of step in the HC
+    checkpoint.add(lengthStat);
+
+    // add the solution into statistics
+    add(solStat);
   }
 
   /** 
    * default destructor
    */
-  ~moDensityOfStatesSampling() {
+  ~moHillClimberSampling() {
     // delete the pointer on the local search which has been constructed in the constructor
     delete &localSearch;
   }
 
 protected:
-  moFitnessStat<EOT> fitnessStat;
-
+  moSolutionStat<EOT> solStat;
+  moCounterStat<EOT> lengthStat;
+  moTrueContinuator<Neighbor> trueCont;
+  moStatFromStat<EOT, unsigned int> copyStat;
+  moCheckpoint<Neighbor> checkpoint;
+  moSimpleHC<Neighbor> hc;
+  moLocalSearchInit<Neighbor> initHC;
 };
 
 

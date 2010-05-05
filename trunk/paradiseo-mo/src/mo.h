@@ -137,6 +137,7 @@
 #include <sampling/moSampling.h>
 #include <sampling/moDensityOfStatesSampling.h>
 #include <sampling/moAutocorrelationSampling.h>
+#include <sampling/moHillClimberSampling.h>
 
 #include <problems/bitString/moBitNeighbor.h>
 #include <problems/eval/moOneMaxIncrEval.h>

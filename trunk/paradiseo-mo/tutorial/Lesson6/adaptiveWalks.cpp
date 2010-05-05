@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
-/** densityOfStates.cpp
+/** adaptiveWalks.cpp
  *
- * SV - 03/05/10
+ * SV - 05/05/10
  *
  */
 //-----------------------------------------------------------------------------
@@ -29,10 +29,16 @@ using namespace std;
 //-----------------------------------------------------------------------------
 // fitness function, and evaluation of neighbors
 #include <eval/oneMaxEval.h>
+#include <problems/eval/moOneMaxIncrEval.h>
+#include <eval/moFullEvalByModif.h>
+
+//-----------------------------------------------------------------------------
+// neighborhood description
+#include <neighborhood/moOrderNeighborhood.h> // visit all the neighbors
 
 //-----------------------------------------------------------------------------
 // the sampling class
-#include <sampling/moDensityOfStatesSampling.h>
+#include <sampling/moHillClimberSampling.h>
 
 // Declaration of types
 //-----------------------------------------------------------------------------
@@ -70,8 +76,8 @@ void main_function(int argc, char **argv)
   parser.processParam( vecSizeParam, "Representation" );
   unsigned vecSize = vecSizeParam.value();
   
-  // the number of solution sampled
-  eoValueParam<unsigned int> solParam(100, "nbSol", "Number of random solution", 'n');
+  // the number of adaptive walks
+  eoValueParam<unsigned int> solParam(100, "nbSol", "Number of adaptive walks", 'n');
   parser.processParam( solParam, "Representation" );
   unsigned nbSol = solParam.value();
   
@@ -129,15 +135,37 @@ void main_function(int argc, char **argv)
 
   /* =========================================================
    *
+   * evaluation of a neighbor solution
+   *
+   * ========================================================= */
+
+  // Use it if there is no incremental evaluation: a neighbor is evaluated by the full evaluation of a solution
+  // moFullEvalByModif<Neighbor> neighborEval(fullEval);
+
+  // Incremental evaluation of the neighbor: fitness is modified by +/- 1
+  moOneMaxIncrEval<Neighbor> neighborEval;
+
+  /* =========================================================
+   *
+   * the neighborhood of a solution
+   *
+   * ========================================================= */
+
+  // Exploration of the neighborhood in order
+  // from bit 0 to bit vecSize-1
+  moOrderNeighborhood<Neighbor> neighborhood(vecSize);
+
+  /* =========================================================
+   *
    * The sampling of the search space
    *
    * ========================================================= */
   
   // sampling object : 
   //    - random initialization
-  //    - fitness function
-  //    - number of solutions to sample
-  moDensityOfStatesSampling<Neighbor> sampling(random, fullEval, nbSol);
+  //    - local search to sample the search space
+  //    - one statistic to compute
+  moHillClimberSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbSol);
   
   /* =========================================================
    *
@@ -158,13 +186,13 @@ void main_function(int argc, char **argv)
 
   // to get the values of statistics 
   // so, you can compute some statistics in c++ from the data
-  const std::vector<double> & fitnessValues = sampling.getValues(0); 
+  const std::vector<double> & lengthValues = sampling.getValues(0); 
 
   std::cout << "First values:" << std::endl;
-  std::cout << "Fitness  " << fitnessValues[0] << std::endl;
+  std::cout << "Length  " << lengthValues[0] << std::endl;
 
   std::cout << "Last values:" << std::endl;
-  std::cout << "Fitness  " << fitnessValues[fitnessValues.size() - 1] << std::endl;
+  std::cout << "Length  " << lengthValues[lengthValues.size() - 1] << std::endl;
 }
 
 // A main that catches the exceptions
