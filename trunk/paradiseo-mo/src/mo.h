@@ -64,6 +64,8 @@
 #include <continuator/moNeutralDegreeNeighborStat.h>
 #include <continuator/moSecondMomentNeighborStat.h>
 #include <continuator/moSizeNeighborStat.h>
+#include <continuator/moCounterStat.h>
+#include <continuator/moCounterMinusOneStat.h>
 #include <continuator/moSolutionStat.h>
 #include <continuator/moStat.h>
 #include <continuator/moStatBase.h>

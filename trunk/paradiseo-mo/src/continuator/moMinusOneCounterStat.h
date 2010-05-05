@@ -1,5 +1,5 @@
 /*
-  <moStatFromStat.h>
+  <moMinusOneCounterStat.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,51 +32,59 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef moStatFromStat_h
-#define moStatFromStat_h
+#ifndef moMinusOneCounterStat_h
+#define moMinusOneCounterStat_h
 
 #include <continuator/moStat.h>
 
 /**
- * The statistic which copy another statistic
+ * The statistic gives the number of iteration minus 1
+ * then the last iteration is not counted (for example for length of adaptive walk)
  */
-template <class EOT, class T>
-class moStatFromStat : public moStat<EOT, T>
+template <class EOT>
+class moMinusOneCounterStat : public moStat<EOT, unsigned int>
 {
 public :
-  using moStat< EOT , T >::value;
+  using moStat< EOT, unsigned int>::value;
   
   /**
    * Default Constructor
    */
-  moStatFromStat(moStat<EOT,T> & _stat): moStat<EOT, T>(0, _stat.description()), stat(_stat) {
+  moMinusOneCounterStat(): moStat<EOT, unsigned int>(0, "counter")  {
+    counter = 0;
   }
   
   /**
-   * The value of this stat is a copy of the value of the initial stat
+   * Give the number of iteration
    * @param _sol a solution
    */
   virtual void init(EOT & _sol) {
-    value() = stat.value();
+    counter = 0;
+    value() = 0;
   }
   
   /**
-   * The value of this stat is a copy of the value of the initial stat
+   * Give the number of iteration
    * @param _sol a solution
    */
   virtual void operator()(EOT & _sol) {
-    value() = stat.value();
+    counter++;
+    if (counter > 0)
+      value() = counter - 1;
+    else
+      value() = 0;
   }
   
   /**
    * @return name of the class
    */
   virtual std::string className(void) const {
-    return "moStatFromStat";
+    return "moMinusOneCounterStat";
   }
-  
+
 private:
-  moStat<EOT, T> & stat;
+  unsigned int counter;
+  
 };
 
 #endif

@@ -84,8 +84,6 @@ public:
    * @return this monitor (sorry I don't why, but it is like this in EO)
    */
   eoMonitor& operator()(void) {
-    std::cout << "je passe vector MOnitor" << std::endl;
-
     if (doubleParam != NULL)
       valueVec.push_back(doubleParam->value());
     else 

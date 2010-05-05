@@ -43,7 +43,7 @@
 #include <algo/moRandomSearch.h>
 #include <algo/moSimpleHC.h>
 #include <continuator/moSolutionStat.h>
-#include <continuator/moCounterStat.h>
+#include <continuator/moMinusOneCounterStat.h>
 #include <continuator/moStatFromStat.h>
 #include <sampling/moSampling.h>
 
@@ -95,7 +95,7 @@ public:
 
 protected:
   moSolutionStat<EOT> solStat;
-  moCounterStat<EOT> lengthStat;
+  moMinusOneCounterStat<EOT> lengthStat;
   moTrueContinuator<Neighbor> trueCont;
   moStatFromStat<EOT, unsigned int> copyStat;
   moCheckpoint<Neighbor> checkpoint;
