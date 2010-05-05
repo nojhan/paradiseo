@@ -34,7 +34,6 @@ using namespace std;
 
 //Neighbors and Neighborhoods
 #include <problems/permutation/moShiftNeighbor.h>
-#include <neighborhood/moRndWithReplNeighborhood.h>
 #include <neighborhood/moOrderNeighborhood.h>
 
 //Algorithm and its components

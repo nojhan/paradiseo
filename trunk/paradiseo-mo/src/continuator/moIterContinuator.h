@@ -51,8 +51,13 @@ public:
      *@return true if counter < maxIter
      */
     virtual bool operator()(EOT & _solution) {
+      bool res;
       cpt++;
-      return (cpt < maxIter);
+      res = (cpt < maxIter);
+      if(!res){
+          std::cout << "STOP in moIterContinuator: Reached maximum number of iterations [" << cpt << "/" << maxIter << "]" << std::endl;
+      }
+      return res;
     }
 
     /**

@@ -55,6 +55,11 @@ public:
     virtual void lastCall(EOT &) {}
 
     /**
+     * first call of a statistical operator
+     */
+    virtual void init(EOT &){}
+
+    /**
      * @return name of the class
      */
     virtual std::string className(void) const {

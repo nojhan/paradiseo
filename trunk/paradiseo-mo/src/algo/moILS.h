@@ -40,6 +40,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
 
+
 /**
  * Iterated Local Search
  */
@@ -52,7 +53,7 @@ public:
     typedef moNeighborhood<Neighbor> Neighborhood ;
 
     /**
-     * Simple constructor for Iterated Local Search
+     * Basic constructor for Iterated Local Search
      * @param _ls the local search to iterates
      * @param _fullEval the full evaluation function
      * @param _op the operator used to perturb solution
@@ -70,7 +71,7 @@ public:
      * @param _ls the local search to iterates
      * @param _fullEval the full evaluation function
      * @param _op the operator used to perturb solution
-     * @param _nbIteration the time limit for search
+     * @param _cont a continuator
      */
 	moILS(moLocalSearch<Neighbor>& _ls, eoEvalFunc<EOT>& _fullEval, eoMonOp<EOT>& _op, moContinuator<moDummyNeighbor<EOT> >& _cont):
 		moLocalSearch<moDummyNeighbor<EOT> >(explorer, _cont, _fullEval),
@@ -79,7 +80,28 @@ public:
 		explorer(_ls, defaultPerturb, defaultAccept)
 	{}
 
+    /**
+     * General constructor for Iterated Local Search
+     * @param _ls the local search to iterates
+     * @param _fullEval the full evaluation function
+     * @param _op the operator used to perturb solution
+     * @param _cont a continuator
+     * @param _perturb a perturbation operator
+     * @param _accept a acceptance criteria
+     */
+	moILS(moLocalSearch<Neighbor>& _ls, eoEvalFunc<EOT>& _fullEval, eoMonOp<EOT>& _op, moContinuator<moDummyNeighbor<EOT> >& _cont, moMonOpPerturb<Neighbor>& _perturb, moAcceptanceCriterion<Neighbor>& _accept):
+		moLocalSearch<moDummyNeighbor<EOT> >(explorer, _cont, _fullEval),
+		iterCont(0),
+		defaultPerturb(dummyOp, _fullEval),
+		explorer(_ls, _perturb, _accept)
+	{}
+
 private:
+
+	class dummmyMonOp: public eoMonOp<EOT>{
+		public:
+			bool operator()(EOT&){return false;}
+	}dummyOp;
 	moIterContinuator<moDummyNeighbor<EOT> > iterCont;
 	moMonOpPerturb<Neighbor> defaultPerturb;
 	moAlwaysAcceptCrit<Neighbor> defaultAccept;

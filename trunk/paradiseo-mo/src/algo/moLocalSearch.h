@@ -72,7 +72,7 @@ public:
         // initialization of the external continuator (for example the time, or the number of generations)
         cont->init(_solution);
 
-        bool b= (*cont)(_solution);
+        bool b;
 
         do {
             // explore the neighborhood of the solution

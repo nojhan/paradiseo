@@ -66,6 +66,14 @@ public:
         return true;
     }
 
+    /**
+     * reset the start time
+     * @param _solution a solution
+     */
+    virtual void init(EOT & _solution) {
+        start = time(NULL);
+    }
+
 
     /**
      * Class name

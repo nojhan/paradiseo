@@ -2,6 +2,7 @@
 /** testILS.cpp
  *
  * SV - 12/01/10
+ * JH - 04/05/10
  *
  */
 //-----------------------------------------------------------------------------
@@ -23,38 +24,44 @@
 using namespace std;
 
 //-----------------------------------------------------------------------------
-// fitness function
-#include <eval/oneMaxEval.h>
-#include <problems/bitString/moBitNeighbor.h>
+//Representation and initializer
 #include <eoInt.h>
-#include <neighborhood/moOrderNeighborhood.h>
-#include <neighborhood/moRndWithoutReplNeighborhood.h>
+#include <eoInit.h>
+#include <eoScalarFitness.h>
 
-#include <neighborhood/moDummyNeighbor.h>
-
+// fitness function
+#include <eval/queenEval.h>
 #include <eval/moFullEvalByModif.h>
 #include <eval/moFullEvalByCopy.h>
-#include <comparator/moNeighborComparator.h>
-#include <comparator/moSolNeighborComparator.h>
-#include <continuator/moTrueContinuator.h>
-#include <algo/moLocalSearch.h>
-#include <explorer/moSimpleHCexplorer.h>
-#include <explorer/moILSexplorer.h>
+
+//Neighbors and Neighborhoods
+#include <problems/permutation/moShiftNeighbor.h>
+#include <neighborhood/moOrderNeighborhood.h>
+
+//Mutation
+#include <eoSwapMutation.h>
+
+//Algorithm and its components
+#include <algo/moTS.h>
+#include <algo/moILS.h>
+
+//mo eval
+#include <eval/moFullEvalByCopy.h>
 
 #include <perturb/moMonOpPerturb.h>
 #include <perturb/moRestartPerturb.h>
 #include <perturb/moNeighborhoodPerturb.h>
 #include <acceptCrit/moAlwaysAcceptCrit.h>
 #include <acceptCrit/moBetterAcceptCrit.h>
+
 #include <continuator/moIterContinuator.h>
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
-typedef eoBit<unsigned int> Indi;
-typedef moBitNeighbor<unsigned int> Neighbor ; // incremental evaluation
-typedef moOrderNeighborhood<Neighbor> Neighborhood ;
-typedef moRndWithoutReplNeighborhood<Neighbor> Neighborhood2 ;
-typedef moSimpleHCexplorer<Neighborhood> NHE;
+typedef eoInt<eoMinimizingFitness> Queen; //Permutation (Queen's problem representation)
+
+typedef moShiftNeighbor<Queen> shiftNeighbor; //shift Neighbor
+typedef moOrderNeighborhood<shiftNeighbor> orderShiftNeighborhood; //order shift Neighborhood (Indexed)
 
 void main_function(int argc, char **argv)
 {
@@ -108,24 +115,41 @@ void main_function(int argc, char **argv)
 
     /* =========================================================
      *
-     * Eval fitness function
+     * Full evaluation fitness function
      *
      * ========================================================= */
 
-    oneMaxEval<Indi> eval;
+    queenEval<Queen> fullEval;
 
-    //FuncNK<Indi> eval(vecSize, 2);
 
     /* =========================================================
      *
-     * Initilisation of the solution
+     * Initializer of a solution
      *
      * ========================================================= */
 
-    // a Indi random initializer
-    eoUniformGenerator<bool> uGen;
-    eoInitFixedLength<Indi> random(vecSize, uGen);
+    eoInitPermutation<Queen> init(vecSize);
 
+
+    /* =========================================================
+     *
+     * Declare and init solutions
+     *
+     * ========================================================= */
+
+    Queen sol1;
+    Queen sol2;
+    Queen sol3;
+
+    //random initialization
+    init(sol1);
+    init(sol2);
+    init(sol3);
+
+    //evaluation
+    fullEval(sol1);
+    fullEval(sol2);
+    fullEval(sol3);
 
     /* =========================================================
      *
@@ -133,21 +157,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    moFullEvalByModif<Neighbor> fulleval(eval);
-
-    //An eval by copy can be used instead of the eval by modif
-    //moFullEvalByCopy<Neighbor> fulleval(eval);
-
-
-    /* =========================================================
-     *
-     * Comparator of neighbors
-     *
-     * ========================================================= */
-
-    moNeighborComparator<Neighbor> comparator;
-    moSolNeighborComparator<Neighbor> solComparator;
-
+    moFullEvalByCopy<shiftNeighbor> shiftEval(fullEval);
 
     /* =========================================================
      *
@@ -155,67 +165,40 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    Neighborhood neighborhood(vecSize);
-    Neighborhood2 neighborhood2(vecSize);
+    orderShiftNeighborhood orderShiftNH(pow(vecSize-1, 2));
 
 
     /* =========================================================
      *
-     * a neighborhood explorer solution
+     * the local search algorithms
      *
      * ========================================================= */
 
-    moSimpleHCexplorer<Neighbor> explorer(neighborhood, fulleval, comparator, solComparator);
+    //Basic Constructor of the Tabu Search
+    moTS<shiftNeighbor> ts(orderShiftNH, fullEval, shiftEval, 5, 7);
+
+    eoSwapMutation<Queen> mut;
+
+    //Basic Constructor of the Iterated Local Search
+    moILS<shiftNeighbor> localSearch1(ts, fullEval, mut, 3);
 
 
-    /* =========================================================
-     *
-     * the local search algorithm
-     *
-     * ========================================================= */
+    //Simple Constructor of the Iterated Local Search
+    //Be carefull, template of the continuator must be a dummyNeighbor!!!
+    moIterContinuator<moDummyNeighbor<Queen> > cont(4);
+    moILS<shiftNeighbor> localSearch2(ts, fullEval, mut, cont);
 
-    moTrueContinuator<Neighbor> continuator;//always continue
+    std::cout << "Iterated Local Search 1:" << std::endl;
+    std::cout << "--------------" << std::endl;
+    std::cout << "initial: " << sol1 << std::endl ;
+    localSearch1(sol1);
+    std::cout << "final:   " << sol1 << std::endl << std::endl;
 
-    moLocalSearch< Neighbor > hc(explorer, continuator, eval);
-
-    eoBitMutation<Indi> monOp(1.0/vecSize);
-
-    moMonOpPerturb<Neighbor> perturb(monOp, eval);
-
-    //moRestartPerturb<Neighbor> perturb(random, eval, 5);
-
-	//moNeighborhoodPerturb<Neighbor, Neighborhood2> perturb(neighborhood2, fulleval);
-
-    moSolComparator<Indi> comp;
-
-    //moAlwaysAcceptCrit<Neighbor> accept;
-    moBetterAcceptCrit<Neighbor> accept(comp);
-
-    moILSexplorer< Neighbor > explorerILS(hc, perturb, accept);
-
-    moIterContinuator<moDummyNeighbor<Indi> > continuatorILS(100);
-
-    moLocalSearch<moDummyNeighbor<Indi> >localSearch(explorerILS, continuatorILS, eval);
-
-
-    /* =========================================================
-     *
-     * execute the local search from random sollution
-     *
-     * ========================================================= */
-
-    Indi solution;
-
-    random(solution);
-
-    //Can be eval here, else it will be done at the beginning of the localSearch
-    //eval(solution);
-
-    std::cout << "initial: " << solution << std::endl ;
-
-    localSearch(solution);
-
-    std::cout << "final:   " << solution << std::endl ;
+    std::cout << "Iterated Local Search 2:" << std::endl;
+    std::cout << "--------------" << std::endl;
+    std::cout << "initial: " << sol2 << std::endl ;
+    localSearch2(sol2);
+    std::cout << "final:   " << sol2 << std::endl << std::endl;
 
 }
 

@@ -96,6 +96,13 @@ public :
      * @param _sol the corresponding solution
      */
     virtual void init(EOT& _sol) {
+        for (unsigned i = 0; i < stats.size(); ++i)
+            stats[i]->init(_sol);
+        counter=1;
+
+        for (unsigned int i = 0; i < monitors.size(); ++i)
+            (*monitors[i])();
+
         for (unsigned i = 0; i < continuators.size(); ++i)
             continuators[i]->init(_sol);
     }
