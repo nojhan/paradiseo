@@ -39,10 +39,11 @@
 #include <utils/eoParam.h>
 
 /**
- * To save the values of the same type in a vector
+ * To save the values of the same type (double, unsigned int, or EOT) in a vector
  * It is similar to eoFileMonitor
  * 
  */
+template <class EOT>
 class moVectorMonitor : public eoMonitor
 {
 public:
@@ -51,23 +52,31 @@ public:
    * Default Constructor
    * @param _param the parameter of type double to save in the vector
    */
-  moVectorMonitor(eoValueParam<double> & _param) : doubleParam(&_param), intParam(NULL)
+  moVectorMonitor(eoValueParam<double> & _param) : doubleParam(&_param), intParam(NULL), eotParam(NULL)
   { }
 
   /**
    * Default Constructor
    * @param _param the parameter of type unsigned int to save in the vector
    */
-  moVectorMonitor(eoValueParam<unsigned int> & _param) : doubleParam(NULL), intParam(&_param)
+  moVectorMonitor(eoValueParam<unsigned int> & _param) : doubleParam(NULL), intParam(&_param), eotParam(NULL)
   { }
 
   /**
-   * Pure virtual function to have all the values
-   *
-   * @return the vector of values
+   * Default Constructor
+   * @param _param the parameter of type EOT to save in the vector
    */
-  //  template <class ValueType>
-  //  const std::vector<ValueType>& getVector() const  ;
+  moVectorMonitor(eoValueParam<EOT> & _param) : doubleParam(NULL), intParam(NULL), eotParam(&_param)
+  { }
+
+  /**
+   * To test if the value are basic type (double or unsigned int), or EOT type
+   *
+   * @return true if the type is a EOT type
+   */
+  bool solutionType() {
+    return eotParam != NULL;
+  }
 
   /**
    * To "print" the value of the parameter in the vector
@@ -77,9 +86,12 @@ public:
   eoMonitor& operator()(void) {
     if (doubleParam != NULL)
       valueVec.push_back(doubleParam->value());
-    else
-      valueVec.push_back((double) intParam->value());
-    
+    else 
+      if (intParam != NULL)
+	valueVec.push_back((double) intParam->value());
+      else
+	eotVec.push_back(eotParam->value());
+
     return *this ;
   }
 
@@ -88,8 +100,17 @@ public:
    *
    * @return the vector of values
    */
-  const std::vector<double>& getVector() const {
-    return valueVec ;
+  const std::vector<double>& getValues() const {
+    return valueVec;
+  } 
+
+  /**
+   * To have all the solutions
+   *
+   * @return the vector of solutions
+   */
+  const std::vector<EOT>& getSolutions() const {
+    return eotVec;
   } 
 
   /**
@@ -98,7 +119,12 @@ public:
    */
   std::string getValue(unsigned int i) const {
     std::ostringstream os;
-    os << (valueVec[i]) ;
+
+    if (eotParam == NULL)
+      os << (valueVec[i]) ;
+    else 
+      os << (eotVec[i]) ;
+
     return os.str();
   }
 
@@ -107,6 +133,7 @@ public:
    */
   void clear() {
     valueVec.clear();
+    eotVec.clear();
   }
 
   /**
@@ -114,7 +141,10 @@ public:
    * @return size of the vector
    */
   unsigned int size() {
-    return valueVec.size();
+    if (eotParam == NULL)
+      return valueVec.size();
+    else
+      return eotVec.size();
   }
 
   /**
@@ -127,8 +157,10 @@ public:
 protected:
   eoValueParam<double> * doubleParam ;
   eoValueParam<unsigned int> * intParam ;
+  eoValueParam<EOT> * eotParam ;
 
   std::vector<double> valueVec;
+  std::vector<EOT> eotVec;
 };
 
 

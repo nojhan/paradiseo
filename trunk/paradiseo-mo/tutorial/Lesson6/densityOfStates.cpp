@@ -158,7 +158,7 @@ void main_function(int argc, char **argv)
 
   // to get the values of statistics 
   // so, you can compute some statistics in c++ from the data
-  const std::vector<double> & fitnessValues = sampling.getVector(0); 
+  const std::vector<double> & fitnessValues = sampling.getValues(0); 
 
   std::cout << "First values:" << std::endl;
   std::cout << "Fitness  " << fitnessValues[0] << std::endl;

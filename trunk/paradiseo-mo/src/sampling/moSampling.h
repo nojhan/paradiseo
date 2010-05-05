@@ -90,7 +90,7 @@ public:
   void add(moStat<EOT, ValueType> & _stat) {
     //    statVec.push_back(&_stat);
 
-    moVectorMonitor * monitor = new moVectorMonitor(_stat);
+    moVectorMonitor<EOT> * monitor = new moVectorMonitor<EOT>(_stat);
     monitorVec.push_back(monitor);
 
     checkpoint->add(_stat);
@@ -140,14 +140,11 @@ public:
     unsigned vecSize = monitorVec[0]->size();
 
     for(unsigned int i = 0; i < vecSize; i++) {
-      std::vector<moVectorMonitor*>::iterator it = monitorVec.begin();
-
-      os << (*it)->getValue(i);
+      os << monitorVec[0]->getValue(i);
       
-      for(++it; it != monitorVec.end(); ++it)
-	{
-	  os << _delim.c_str() << (*it)->getValue(i);
-	}
+      for(unsigned int j = 1; j < monitorVec.size(); j++) {
+	os << _delim.c_str() << monitorVec[j]->getValue(i);
+      }
       
       os << std::endl ;
     }
@@ -159,8 +156,17 @@ public:
    * @param _numStat number of stattistics to get (in order of creation)
    * @return the vector of value (all values are converted in double)
    */
-  const std::vector<double> & getVector(unsigned int _numStat) {
-    return monitorVec[_numStat]->getVector();
+  const std::vector<double> & getValues(unsigned int _numStat) {
+    return monitorVec[_numStat]->getValues();
+  }
+
+  /**
+   * to get one vector of solutions values
+   * @param _numStat number of stattistics to get (in order of creation)
+   * @return the vector of value (all values are converted in double)
+   */
+  const std::vector<EOT> & getSolutions(unsigned int _numStat) {
+    return monitorVec[_numStat]->getSolutions();
   }
 
   /**
@@ -178,7 +184,7 @@ protected:
   moCheckpoint<Neighbor> * checkpoint;
 
   //  std::vector<moStatBase<EOT>*> statVec;
-  std::vector<moVectorMonitor*> monitorVec;
+  std::vector< moVectorMonitor<EOT> *> monitorVec;
 
 };
 

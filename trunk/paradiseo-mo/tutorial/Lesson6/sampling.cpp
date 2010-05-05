@@ -45,6 +45,7 @@ using namespace std;
 #include <continuator/moFitnessStat.h>
 #include <utils/eoDistance.h>
 #include <continuator/moDistanceStat.h>
+#include <continuator/moSolutionStat.h>
 
 //-----------------------------------------------------------------------------
 // the sampling class
@@ -188,6 +189,9 @@ void main_function(int argc, char **argv)
 
   moDistanceStat<Indi, unsigned> distStat(distance, bestSolution); // statistic
 
+  // "statistic" of the solution
+  moSolutionStat<Indi> solStat;
+
   /* =========================================================
    *
    * The sampling of the search space
@@ -201,7 +205,8 @@ void main_function(int argc, char **argv)
   moSampling<Neighbor> sampling(random, walk, fStat);
   
   // to add another statistics
-  sampling.add(distStat);
+  sampling.add(distStat); // distance
+  sampling.add(solStat); // solutions
 
   /* =========================================================
    *
@@ -222,16 +227,19 @@ void main_function(int argc, char **argv)
 
   // to get the values of statistics 
   // so, you can compute some statistics in c++ from the data
-  const std::vector<double> & fitnessValues = sampling.getVector(0); 
-  const std::vector<double> & distValues = sampling.getVector(1); 
+  const std::vector<double> & fitnessValues = sampling.getValues(0); 
+  const std::vector<double> & distValues    = sampling.getValues(1); 
+  const std::vector<Indi>   & solutions     = sampling.getSolutions(2); 
 
   std::cout << "First values:" << std::endl;
   std::cout << "Fitness  " << fitnessValues[0] << std::endl;
-  std::cout << "Distance " << distValues[0] << std::endl << std::endl;
+  std::cout << "Distance " << distValues[0] << std::endl;
+  std::cout << "Solution " << solutions[0] << std::endl << std::endl;
 
   std::cout << "Last values:" << std::endl;
   std::cout << "Fitness  " << fitnessValues[fitnessValues.size() - 1] << std::endl;
   std::cout << "Distance " << distValues[distValues.size() - 1] << std::endl;
+  std::cout << "Solution " << solutions[solutions.size() - 1] << std::endl;
 }
 
 // A main that catches the exceptions
