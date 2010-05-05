@@ -71,6 +71,14 @@ public :
     {}
 
     /**
+     * Compute classical statistics of the first solution's neighborhood
+     * @param _solution the first solution
+     */
+    virtual void init(EOT & _solution) {
+      operator()(_solution);
+    }
+
+    /**
      * Compute classical statistics of a solution's neighborhood
      * @param _solution the corresponding solution
      */

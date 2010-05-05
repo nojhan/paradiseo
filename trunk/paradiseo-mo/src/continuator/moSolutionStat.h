@@ -56,6 +56,14 @@ public :
             moStat<EOT, EOT>(EOT(), _description) {}
 
     /**
+     * Initialization the solution by copy
+     * @param _sol the intial solution
+     */
+    virtual void init(EOT & _sol) {
+        value() = _sol;
+    }
+
+    /**
      * Set the solution by copy
      * @param _sol the corresponding solution
      */

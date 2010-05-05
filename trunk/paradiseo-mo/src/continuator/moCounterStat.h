@@ -50,7 +50,6 @@ public :
    * Default Constructor
    */
   moCounterStat(): moStat<EOT, unsigned int>(0, "counter") {
-    counter = 0;
   }
   
   /**
@@ -58,7 +57,6 @@ public :
    * @param _sol a solution
    */
   virtual void init(EOT & _sol) {
-    counter = 0;
     value() = 0;
   }
   
@@ -67,8 +65,7 @@ public :
    * @param _sol a solution
    */
   virtual void operator()(EOT & _sol) {
-    value() = counter;
-    counter++;
+    value() = value() + 1;
   }
   
   /**
@@ -78,8 +75,6 @@ public :
     return "moCounterStat";
   }
   
-private:
-  unsigned int counter;
 };
 
 #endif

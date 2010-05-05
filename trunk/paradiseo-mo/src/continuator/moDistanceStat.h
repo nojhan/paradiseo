@@ -57,6 +57,14 @@ public :
     moDistanceStat(eoDistance<EOT> & _dist, EOT & _ref): moStat<EOT, T>(0, "distance"), dist(_dist), refSolution(_ref) {}
 
     /**
+     * Compute distance between the first solution and the reference solution
+     * @param _sol the first solution
+     */
+  virtual void init(EOT & _sol) {
+    value() = dist(_sol, refSolution);
+  }
+
+    /**
      * Compute distance between a solution and the reference solution
      * @param _sol a solution
      */

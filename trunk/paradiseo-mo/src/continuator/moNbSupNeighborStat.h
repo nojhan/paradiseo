@@ -62,6 +62,14 @@ public :
 
     /**
      * Set the number of solutions in the neighborhood with better fitness than the current solution
+     * @param _sol the first solution
+     */
+    virtual void init(EOT & _sol) {
+        value() = nhStat.getNbSup();
+    }
+
+    /**
+     * Set the number of solutions in the neighborhood with better fitness than the current solution
      * @param _sol the corresponding solution
      */
     virtual void operator()(EOT & _sol) {

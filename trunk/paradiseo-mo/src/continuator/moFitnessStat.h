@@ -57,6 +57,15 @@ public :
     moStat<EOT, Fitness>(Fitness(), _description) {}
   
   /**
+   * store the initial fitness value
+   * @param _sol the initial solution
+   */
+  virtual void init(EOT & _sol)
+  {
+    value() = _sol.fitness();
+  }
+  
+  /**
    * store fitness value
    * @param _sol the corresponding solution
    */

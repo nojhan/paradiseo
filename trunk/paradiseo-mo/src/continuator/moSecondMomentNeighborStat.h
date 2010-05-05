@@ -59,6 +59,15 @@ public :
 
     /**
      * Set the average and the standard deviation of fitness in the neighborhood
+     * @param _sol the first solution
+     */
+    virtual void init(EOT & _sol) {
+        value().first  = nhStat.getMean();
+        value().second = nhStat.getSD();
+    }
+
+    /**
+     * Set the average and the standard deviation of fitness in the neighborhood
      * @param _sol the corresponding solution
      */
     virtual void operator()(EOT & _sol) {

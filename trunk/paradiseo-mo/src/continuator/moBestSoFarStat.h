@@ -76,8 +76,6 @@ public :
     return "moBestSoFarStat";
   }
   
-private:
-  moStat<EOT, T> & stat;
 };
 
 #endif

@@ -56,7 +56,17 @@ public :
    * The value of this stat is a copy of the value of the initial stat
    * @param _sol a solution
    */
+  virtual void init(EOT & _sol) {
+    std::cout << "copy init" << stat.value() << std::endl;
+    value() = stat.value();
+  }
+  
+  /**
+   * The value of this stat is a copy of the value of the initial stat
+   * @param _sol a solution
+   */
   virtual void operator()(EOT & _sol) {
+    std::cout << "copy " << stat.value() << std::endl;
     value() = stat.value();
   }
   
