@@ -59,6 +59,7 @@ public :
    */
   virtual void init(EOT & _sol) {
     counter = 0;
+    value() = 0;
   }
   
   /**
