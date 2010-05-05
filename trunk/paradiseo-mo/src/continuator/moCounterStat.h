@@ -1,5 +1,5 @@
 /*
-  <moStatBase.h>
+  <moCounterStat.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -32,36 +32,53 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef moStatBase_h
-#define moStatBase_h
+#ifndef moCounterStat_h
+#define moCounterStat_h
 
-#include <eoFunctor.h>
-#include <utils/eoParam.h>
+#include <continuator/moStat.h>
 
 /**
- * Base class for all statistics that need to be calculated
- * over the solution
-*/
+ * The statistic gives the number of iteration
+ */
 template <class EOT>
-class moStatBase : public eoUF<EOT &, void>
+class moCounterStat : public moStat<EOT, unsigned int>
 {
-public:
-    /**
-     * last call of a statistical operator
-     */
-    virtual void lastCall(EOT &) {}
-
-    /**
-     * first call of a statistical operator
-     */
-    virtual void init(EOT &){}
-
-    /**
-     * @return name of the class
-     */
-    virtual std::string className(void) const {
-        return "moStatBase";
-    }
+public :
+  using moStat< EOT, unsigned int>::value;
+  
+  /**
+   * Default Constructor
+   */
+  moCounterStat(): moStat<EOT, unsigned int>(0, "counter") {
+    counter = 0;
+  }
+  
+  /**
+   * Give the number of iteration
+   * @param _sol a solution
+   */
+  virtual void init(EOT & _sol) {
+    counter = 0;
+  }
+  
+  /**
+   * Give the number of iteration
+   * @param _sol a solution
+   */
+  virtual void operator()(EOT & _sol) {
+    value() = counter;
+    counter++;
+  }
+  
+  /**
+   * @return name of the class
+   */
+  virtual std::string className(void) const {
+    return "moCounterStat";
+  }
+  
+private:
+  unsigned int counter;
 };
 
 #endif
