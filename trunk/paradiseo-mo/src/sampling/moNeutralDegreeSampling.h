@@ -46,9 +46,10 @@
 #include <sampling/moSampling.h>
 
 /**
- * To compute the density of states: 
- *   Sample the fitness of random solution in the search space
- *   The fitness values of solutions are collected during the random search
+ * To compute the neutral degree: 
+ *   Sample the fitness of random solution in the search space (1er information)
+ *   and sample the neutral degree (2nd information), i.e. the number of neighbor solutions with the same fitness value
+ *   The values are collected during the random search
  * 
  */
 template <class Neighbor>

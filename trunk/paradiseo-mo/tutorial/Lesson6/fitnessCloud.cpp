@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
-/** autocorrelation.cpp
+/** fitnessCloud.cpp
  *
- * SV - 03/05/10
+ * SV - 06/05/10
  *
  */
 //-----------------------------------------------------------------------------
@@ -30,7 +30,6 @@ using namespace std;
 // fitness function, and evaluation of neighbors
 #include <eval/oneMaxEval.h>
 #include <problems/eval/moOneMaxIncrEval.h>
-#include <eval/moFullEvalByModif.h>
 
 //-----------------------------------------------------------------------------
 // neighborhood description
@@ -38,7 +37,7 @@ using namespace std;
 
 //-----------------------------------------------------------------------------
 // the sampling class
-#include <sampling/moAutocorrelationSampling.h>
+#include <sampling/moFitnessCloudSampling.h>
 
 // Declaration of types
 //-----------------------------------------------------------------------------
@@ -76,11 +75,11 @@ void main_function(int argc, char **argv)
   parser.processParam( vecSizeParam, "Representation" );
   unsigned vecSize = vecSizeParam.value();
   
-  // the number of steps of the random walk
-  eoValueParam<unsigned int> stepParam(100, "nbStep", "Number of steps of the random walk", 'n');
-  parser.processParam( stepParam, "Representation" );
-  unsigned nbStep = stepParam.value();
-  
+  // the number of solution sampled
+  eoValueParam<unsigned int> solParam(100, "nbSol", "Number of random solution", 'n');
+  parser.processParam( solParam, "Representation" );
+  unsigned nbSol = solParam.value();
+    
   // the name of the output file
   string str_out = "out.dat"; // default value
   eoValueParam<string> outParam(str_out.c_str(), "out", "Output file of the sampling", 'o');
@@ -139,9 +138,6 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  // Use it if there is no incremental evaluation: a neighbor is evaluated by the full evaluation of a solution
-  // moFullEvalByModif<Neighbor> neighborEval(fullEval);
-
   // Incremental evaluation of the neighbor: fitness is modified by +/- 1
   moOneMaxIncrEval<Neighbor> neighborEval;
 
@@ -163,11 +159,11 @@ void main_function(int argc, char **argv)
   
   // sampling object : 
   //    - random initialization
-  //    - neighborhood to compute the next step
+  //    - neighborhood to compute one random neighbor
   //    - fitness function
   //    - neighbor evaluation
-  //    - number of steps of the walk
-  moAutocorrelationSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbStep);
+  //    - number of solutions to sample
+  moFitnessCloudSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbSol);
   
   /* =========================================================
    *
@@ -189,12 +185,15 @@ void main_function(int argc, char **argv)
   // to get the values of statistics 
   // so, you can compute some statistics in c++ from the data
   const std::vector<double> & fitnessValues = sampling.getValues(0); 
+  const std::vector<double> & neighborFitnessValues = sampling.getValues(1); 
 
   std::cout << "First values:" << std::endl;
   std::cout << "Fitness  " << fitnessValues[0] << std::endl;
+  std::cout << "Neighbor Fitness " << neighborFitnessValues[0] << std::endl;
 
   std::cout << "Last values:" << std::endl;
   std::cout << "Fitness  " << fitnessValues[fitnessValues.size() - 1] << std::endl;
+  std::cout << "Neighbor Fitness " << neighborFitnessValues[neighborFitnessValues.size() - 1] << std::endl;
 }
 
 // A main that catches the exceptions
