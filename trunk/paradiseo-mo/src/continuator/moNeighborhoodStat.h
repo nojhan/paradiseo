@@ -71,6 +71,20 @@ public :
     {}
 
     /**
+     * Default Constructor
+     * where the comparators are basic, there only compare the fitness values
+     *
+     * @param _neighborhood a neighborhood
+     * @param _eval an evaluation function
+     */
+    moNeighborhoodStat(Neighborhood& _neighborhood, moEval<Neighbor>& _eval):
+            moStat<EOT, bool>(true, "neighborhood"),
+            neighborhood(_neighborhood), eval(_eval),
+            neighborComparator(defaultNeighborComp),
+            solNeighborComparator(defaultSolNeighborComp)
+    {}
+
+    /**
      * Compute classical statistics of the first solution's neighborhood
      * @param _solution the first solution
      */
@@ -228,6 +242,12 @@ private:
     // comparator betwenn solution and neighbor or between neighbors
     moNeighborComparator<Neighbor>& neighborComparator;
     moSolNeighborComparator<Neighbor>& solNeighborComparator;
+
+    // default comparators
+    // compare the fitness values of neighbors: true is strictly greater
+    moNeighborComparator<Neighbor> defaultNeighborComp;
+    // compare the fitness values of the solution and the neighbor: true if strictly greater 
+    moSolNeighborComparator<Neighbor> defaultSolNeighborComp;
 
     // the stastics of the fitness
     Fitness max, min;

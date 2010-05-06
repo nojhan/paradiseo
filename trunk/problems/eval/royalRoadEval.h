@@ -43,7 +43,7 @@ public:
    * Default constructor
    * @param _k size of a block
    */
-  RoyalRoad(unsigned int _k) : k(_k) {}
+  RoyalRoadEval(unsigned int _k) : k(_k) {}
 
   /**
    * Count the number of complete blocks in the bit string
@@ -68,6 +68,14 @@ public:
     }
 
     _solution.fitness(sum);
+  }
+
+  /**
+   * get the size of a block
+   * @return block size
+   */
+  unsigned int blockSize() {
+    return k;
   }
 
 private:

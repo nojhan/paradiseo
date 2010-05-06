@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-/** autocorrelation.cpp
+/** neutralDegree.cpp
  *
  * SV - 03/05/10
  *
@@ -28,17 +28,16 @@ using namespace std;
 
 //-----------------------------------------------------------------------------
 // fitness function, and evaluation of neighbors
-#include <eval/oneMaxEval.h>
-#include <problems/eval/moOneMaxIncrEval.h>
-#include <eval/moFullEvalByModif.h>
+#include <eval/royalRoadEval.h>
+#include <problems/eval/moRoyalRoadIncrEval.h>
 
 //-----------------------------------------------------------------------------
 // neighborhood description
-#include <neighborhood/moRndWithReplNeighborhood.h> // visit one random neighbor possibly the same one several times
+#include <neighborhood/moOrderNeighborhood.h> // visit all neighbor in order of their bit-flip
 
 //-----------------------------------------------------------------------------
 // the sampling class
-#include <sampling/moAutocorrelationSampling.h>
+#include <sampling/moNeutralDegreeSampling.h>
 
 // Declaration of types
 //-----------------------------------------------------------------------------
@@ -76,10 +75,15 @@ void main_function(int argc, char **argv)
   parser.processParam( vecSizeParam, "Representation" );
   unsigned vecSize = vecSizeParam.value();
   
-  // the number of steps of the random walk
-  eoValueParam<unsigned int> stepParam(100, "nbStep", "Number of steps of the random walk", 'n');
-  parser.processParam( stepParam, "Representation" );
-  unsigned nbStep = stepParam.value();
+  // size of the block
+  eoValueParam<unsigned int> blockSizeParam(4, "blockSize", "Block size of the Royal Road", 'k');
+  parser.processParam( blockSizeParam, "Representation" );
+  unsigned blockSize = blockSizeParam.value();
+  
+  // the number of solution sampled
+  eoValueParam<unsigned int> solParam(100, "nbSol", "Number of random solution", 'n');
+  parser.processParam( solParam, "Representation" );
+  unsigned nbSol = solParam.value();
   
   // the name of the output file
   string str_out = "out.dat"; // default value
@@ -130,8 +134,8 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  // the fitness function is just the number of 1 in the bit string
-  oneMaxEval<Indi> fullEval;
+  // the fitness function is the royal function (oneMax is a Royal Road with block of 1)
+  RoyalRoadEval<Indi> fullEval(blockSize);
 
   /* =========================================================
    *
@@ -139,11 +143,8 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  // Use it if there is no incremental evaluation: a neighbor is evaluated by the full evaluation of a solution
-  // moFullEvalByModif<Neighbor> neighborEval(fullEval);
-
-  // Incremental evaluation of the neighbor: fitness is modified by +/- 1
-  moOneMaxIncrEval<Neighbor> neighborEval;
+  // Incremental evaluation of the neighbor: fitness is modified by +1 , 0 or -1
+  moRoyalRoadIncrEval<Neighbor> neighborEval(fullEval);
 
   /* =========================================================
    *
@@ -151,9 +152,9 @@ void main_function(int argc, char **argv)
    *
    * ========================================================= */
 
-  // Exploration of the neighborhood in random order
-  // at each step one bit is randomly generated
-  moRndWithReplNeighborhood<Neighbor> neighborhood(vecSize);
+  // Exploration of the neighborhood in increasing order of the neigbor's index:
+  // bit-flip from bit 0 to bit (vecSize - 1)
+  moOrderNeighborhood<Neighbor> neighborhood(vecSize);
 
   /* =========================================================
    *
@@ -163,9 +164,11 @@ void main_function(int argc, char **argv)
   
   // sampling object : 
   //    - random initialization
-  //    - local search to sample the search space
-  //    - one statistic to compute
-  moAutocorrelationSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbStep);
+  //    - neighborhood to compute the neutral degree
+  //    - fitness function
+  //    - neighbor evaluation
+  //    - number of solutions to sample
+  moNeutralDegreeSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbSol);
   
   /* =========================================================
    *
@@ -187,12 +190,15 @@ void main_function(int argc, char **argv)
   // to get the values of statistics 
   // so, you can compute some statistics in c++ from the data
   const std::vector<double> & fitnessValues = sampling.getValues(0); 
+  const std::vector<double> & ndValues = sampling.getValues(1); 
 
   std::cout << "First values:" << std::endl;
-  std::cout << "Fitness  " << fitnessValues[0] << std::endl;
+  std::cout << "Fitness   " << fitnessValues[0] << std::endl;
+  std::cout << "N. Degree " << ndValues[0] << std::endl;
 
   std::cout << "Last values:" << std::endl;
   std::cout << "Fitness  " << fitnessValues[fitnessValues.size() - 1] << std::endl;
+  std::cout << "N. Degree " << ndValues[fitnessValues.size() - 1] << std::endl;
 }
 
 // A main that catches the exceptions

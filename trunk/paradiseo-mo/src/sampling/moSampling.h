@@ -64,10 +64,10 @@ public:
    * @param _stat statistic to compute during the search
    */
   template <class ValueType>
-  moSampling(eoInit<EOT> & _init, moLocalSearch<Neighbor> & _localSearch, moStat<EOT,ValueType> & _stat) : init(_init), localSearch(_localSearch), continuator(_localSearch.getContinuator())
+  moSampling(eoInit<EOT> & _init, moLocalSearch<Neighbor> & _localSearch, moStat<EOT,ValueType> & _stat, bool _monitoring = true) : init(_init), localSearch(_localSearch), continuator(_localSearch.getContinuator())
   {
     checkpoint = new moCheckpoint<Neighbor>(*continuator);
-    add(_stat);
+    add(_stat, _monitoring);
   }
 
   /**
@@ -87,14 +87,14 @@ public:
    * @param _stat another statistic to compute during the search
    */
   template< class ValueType >
-  void add(moStat<EOT, ValueType> & _stat) {
-    //    statVec.push_back(&_stat);
-
-    moVectorMonitor<EOT> * monitor = new moVectorMonitor<EOT>(_stat);
-    monitorVec.push_back(monitor);
-
+  void add(moStat<EOT, ValueType> & _stat, bool _monitoring = true) {
     checkpoint->add(_stat);
-    checkpoint->add(*monitor);
+
+    if (_monitoring) {
+      moVectorMonitor<EOT> * monitor = new moVectorMonitor<EOT>(_stat);
+      monitorVec.push_back(monitor);
+      checkpoint->add(*monitor);
+    }
   }    
 
   /**

@@ -58,7 +58,7 @@ public:
    */
   moRandomSearch(eoInit<EOT> & _init, eoEvalFunc<EOT>& _fullEval, unsigned _nbSolMax):
     moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
-    explorer(_init, _fullEval, _nbSolMax - 1)
+      explorer(_init, _fullEval, _nbSolMax>0?_nbSolMax - 1:0)
   {}
   
   /**
@@ -69,7 +69,7 @@ public:
    */
   moRandomSearch(eoInit<EOT> & _init, eoEvalFunc<EOT>& _fullEval, unsigned _nbSolMax, moContinuator<Neighbor>& _cont):
     moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
-    explorer(_init, _fullEval, _nbSolMax - 1)
+    explorer(_init, _fullEval, _nbSolMax>0?_nbSolMax - 1:0)
   {}
   
 private:

@@ -31,6 +31,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #define _moRoyalRoadIncrEval_H
 
 #include <eval/moEval.h>
+#include <eval/royalRoadEval.h>
 
 /**
  * Incremental evaluation Function for the Royal Road problem
@@ -45,7 +46,7 @@ public:
    * Default constructor
    * @param _k size of a block
    */
-  moRoyalRoadIncrEval(unsigned int _k) : k(_k) {}
+  moRoyalRoadIncrEval(RoyalRoadEval<EOT> & _rr) : k(_rr.blockSize()) {}
 
   /*
    * incremental evaluation of the neighbor for the Royal Road problem
@@ -53,13 +54,13 @@ public:
    * @param _neighbor the neighbor to consider (of type moBitNeigbor)
    */
   virtual void operator()(EOT & _solution, Neighbor & _neighbor) {
-    // which block can change?
+    // which block can be changed?
     unsigned int n = _neighbor.index() / k;
     
     // complete block?
-    offset = n * k;
+    unsigned int offset = n * k;
     
-    j = 0;
+    unsigned int j = 0;
     while (_solution[offset + j] && j < k) j++;
     
     if (j == k) // the block is complete, so the fitness decreases from one
@@ -71,9 +72,16 @@ public:
 
 	if (j == k) // the block can be filled, so the fitness increases from one
 	  _neighbor.fitness(_solution.fitness() + 1);
-      }
+	else
+	  _neighbor.fitness(_solution.fitness());
+      } else 
+	_neighbor.fitness(_solution.fitness());
     }
   }
+
+protected:
+  // size of the blocks
+  unsigned int k;
 };
 
 #endif

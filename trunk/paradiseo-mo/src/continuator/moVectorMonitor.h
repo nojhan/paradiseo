@@ -70,6 +70,16 @@ public:
   { }
 
   /**
+   * Default Constructor
+   * @param _param the parameter of type EOT to save in the vector
+   */
+  template <class T>
+  moVectorMonitor(eoValueParam<T> & _param) : doubleParam(NULL), intParam(NULL), eotParam(NULL)
+  {
+    std::cerr << "Sorry the type can not be in a vector of moVectorMonitor" << std::endl;
+  }
+
+  /**
    * To test if the value are basic type (double or unsigned int), or EOT type
    *
    * @return true if the type is a EOT type

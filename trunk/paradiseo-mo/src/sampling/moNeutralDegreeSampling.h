@@ -1,5 +1,5 @@
 /*
-  <moAutocorrelationSampling.h>
+  <moNeutralDegreeSampling.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -32,25 +32,27 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef moAutocorrelationSampling_h
-#define moAutocorrelationSampling_h
+#ifndef moNeutralDegreeSampling_h
+#define moNeutralDegreeSampling_h
 
 #include <eoInit.h>
+#include <neighborhood/moNeighborhood.h>
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
-#include <algo/moRandomWalk.h>
+#include <algo/moRandomSearch.h>
 #include <continuator/moFitnessStat.h>
+#include <continuator/moNeighborhoodStat.h>
+#include <continuator/moNeutralDegreeNeighborStat.h>
 #include <sampling/moSampling.h>
 
 /**
- * To compute the autocorrelation function:
- *   Perform a random walk based on the neighborhood,
- *   The fitness values of solutions are collected during the random walk
- *   The autocorrelation can be computed from the serie of fitness values  
+ * To compute the density of states: 
+ *   Sample the fitness of random solution in the search space
+ *   The fitness values of solutions are collected during the random search
  * 
  */
 template <class Neighbor>
-class moAutocorrelationSampling : public moSampling<Neighbor>
+class moNeutralDegreeSampling : public moSampling<Neighbor>
 {
 public:
   typedef typename Neighbor::EOT EOT ;
@@ -60,29 +62,61 @@ public:
   /**
    * Default Constructor
    * @param _init initialisation method of the solution
-   * @param _neighborhood neighborhood giving neighbor in random order
+   * @param _neighborhood neighborhood to compute the neutral degree
    * @param _fullEval Fitness function, full evaluation function
    * @param _eval neighbor evaluation, incremental evaluation function
-   * @param _nbStep Number of steps of the random walk 
+   * @param _nbSol Number of solutions in the sample
    */
-  moAutocorrelationSampling(eoInit<EOT> & _init, 
-			    moNeighborhood<Neighbor> & _neighborhood, 
-			    eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, 
-			    unsigned int _nbStep) : 
-    moSampling<Neighbor>(_init, * new moRandomWalk<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep), fitnessStat)
+  moNeutralDegreeSampling(eoInit<EOT> & _init, 
+			  moNeighborhood<Neighbor> & _neighborhood, 
+			  eoEvalFunc<EOT>& _fullEval, 
+			  moEval<Neighbor>& _eval, 
+			  unsigned int _nbSol) : 
+    moSampling<Neighbor>(_init, * new moRandomSearch<Neighbor>(_init, _fullEval, _nbSol), fitnessStat),
+    neighborhoodStat(_neighborhood, _eval),
+    ndStat(neighborhoodStat)
   {
+    add(neighborhoodStat, false);
+    add(ndStat);
+  }
+
+  /**
+   * Constructor with comparators
+   * @param _init initialisation method of the solution
+   * @param _neighborhood neighborhood to compute the neutral degree
+   * @param _fullEval Fitness function, full evaluation function
+   * @param _eval neighbor evaluation, incremental evaluation function
+   * @param _neighborComparator a neighbor Comparator
+   * @param _solNeighborComparator a comparator between a solution and a neighbor
+   * @param _nbSol Number of solutions in the sample
+   */
+  moNeutralDegreeSampling(eoInit<EOT> & _init, 
+			  moNeighborhood<Neighbor> & _neighborhood, 
+			  eoEvalFunc<EOT>& _fullEval, 
+			  moEval<Neighbor>& _eval, 
+			  moNeighborComparator<Neighbor>& _neighborComparator, 
+			  moSolNeighborComparator<Neighbor>& _solNeighborComparator,
+			  unsigned int _nbSol) : 
+    moSampling<Neighbor>(_init, * new moRandomSearch<Neighbor>(_init, _fullEval, _nbSol), fitnessStat),
+    neighborhoodStat(_neighborhood, _eval, _neighborComparator, _solNeighborComparator),
+    ndStat(neighborhoodStat)
+  {
+    add(neighborhoodStat, false);
+    add(ndStat);
   }
 
   /** 
    * default destructor
    */
-  ~moAutocorrelationSampling() {
+  ~moNeutralDegreeSampling() {
     // delete the pointer on the local search which has been constructed in the constructor
     delete &localSearch;
   }
 
 protected:
   moFitnessStat<EOT> fitnessStat;
+  moNeighborhoodStat< Neighbor > neighborhoodStat;
+  moNeutralDegreeNeighborStat< Neighbor > ndStat;
 
 };
 
