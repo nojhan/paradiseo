@@ -38,6 +38,7 @@ using namespace std;
 //-----------------------------------------------------------------------------
 // the sampling class
 #include <sampling/moFitnessCloudSampling.h>
+#include <sampling/moMHFitnessCloudSampling.h>
 
 // Declaration of types
 //-----------------------------------------------------------------------------
@@ -163,7 +164,9 @@ void main_function(int argc, char **argv)
   //    - fitness function
   //    - neighbor evaluation
   //    - number of solutions to sample
-  moFitnessCloudSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbSol);
+
+  //moFitnessCloudSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbSol);
+  moMHFitnessCloudSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbSol);
   
   /* =========================================================
    *

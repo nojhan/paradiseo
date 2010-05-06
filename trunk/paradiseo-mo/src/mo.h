@@ -37,6 +37,7 @@
 
 #include <algo/moLocalSearch.h>
 #include <algo/moRandomSearch.h>
+#include <algo/moMetropolisHasting.h>
 #include <algo/moSA.h>
 #include <algo/moSimpleHC.h>
 #include <algo/moFirstImprHC.h>
@@ -143,7 +144,8 @@
 #include <sampling/moHillClimberSampling.h>
 #include <sampling/moFDCsampling.h>
 #include <sampling/moNeutralDegreeSampling.h>
-#include <sampling/moFitnessCouldSampling.h>
+#include <sampling/moFitnessCloudSampling.h>
+#include <sampling/moMHFitnessCloudSampling.h>
 
 #include <problems/bitString/moBitNeighbor.h>
 #include <problems/eval/moOneMaxIncrEval.h>

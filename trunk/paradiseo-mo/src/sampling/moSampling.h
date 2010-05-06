@@ -62,6 +62,7 @@ public:
    * @param _init initialisation method of the solution
    * @param _localSearch  local search to sample the search space
    * @param _stat statistic to compute during the search
+   * @param _monitoring the statistic is saved into the monitor if true
    */
   template <class ValueType>
   moSampling(eoInit<EOT> & _init, moLocalSearch<Neighbor> & _localSearch, moStat<EOT,ValueType> & _stat, bool _monitoring = true) : init(_init), localSearch(_localSearch), continuator(_localSearch.getContinuator())
@@ -85,6 +86,7 @@ public:
   /**
    * Add a statistic
    * @param _stat another statistic to compute during the search
+   * @param _monitoring the statistic is saved into the monitor if true
    */
   template< class ValueType >
   void add(moStat<EOT, ValueType> & _stat, bool _monitoring = true) {
