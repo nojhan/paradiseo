@@ -40,6 +40,7 @@ using namespace std;
 #include <sampling/moRndRndFitnessCloudSampling.h>
 #include <sampling/moMHRndFitnessCloudSampling.h>
 #include <sampling/moRndBestFitnessCloudSampling.h>
+#include <sampling/moMHBestFitnessCloudSampling.h>
 
 // Declaration of types
 //-----------------------------------------------------------------------------
@@ -168,7 +169,8 @@ void main_function(int argc, char **argv)
 
   //  moRndRndFitnessCloudSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbSol);
   //  moMHRndFitnessCloudSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbSol);
-  moRndBestFitnessCloudSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbSol);
+  //  moRndBestFitnessCloudSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbSol);
+  moMHBestFitnessCloudSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbSol);
   
   /* =========================================================
    *

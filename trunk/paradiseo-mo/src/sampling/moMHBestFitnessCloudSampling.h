@@ -1,5 +1,5 @@
 /*
-  <moMHRndFitnessCloudSampling.h>
+  <moMHBestFitnessCloudSampling.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -32,15 +32,15 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef moMHRndFitnessCloudSampling_h
-#define moMHRndFitnessCloudSampling_h
+#ifndef moMHBestFitnessCloudSampling_h
+#define moMHBestFitnessCloudSampling_h
 
 #include <eoInit.h>
 #include <neighborhood/moNeighborhood.h>
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
 #include <algo/moMetropolisHasting.h>
-#include <continuator/moNeighborFitnessStat.h>
+#include <continuator/moNeighborBestStat.h>
 #include <sampling/moFitnessCloudSampling.h>
 
 /**
@@ -50,13 +50,13 @@
  *   Here solution are sampled with Metropolis-Hasting method
  *
  *   Sample the fitness of solutions from Metropolis-Hasting sampling
- *   and the fitness of one random neighbor
+ *   and the best fitness of k random neighbor
  *
- *   The values are collected during the random search
+ *   The values are collected during the Metropolis-Hasting walk
  * 
  */
 template <class Neighbor>
-class moMHRndFitnessCloudSampling : public moFitnessCloudSampling<Neighbor>
+class moMHBestFitnessCloudSampling : public moFitnessCloudSampling<Neighbor>
 {
 public:
   typedef typename Neighbor::EOT EOT ;
@@ -75,13 +75,13 @@ public:
    * @param _eval neighbor evaluation, incremental evaluation function
    * @param _nbStep Number of step of the MH sampling
    */
-  moMHRndFitnessCloudSampling(eoInit<EOT> & _init, 
+  moMHBestFitnessCloudSampling(eoInit<EOT> & _init, 
 			  moNeighborhood<Neighbor> & _neighborhood, 
 			  eoEvalFunc<EOT>& _fullEval, 
 			  moEval<Neighbor>& _eval, 
 			  unsigned int _nbStep) : 
     moFitnessCloudSampling<Neighbor>(_init, _neighborhood, _fullEval, _eval, _nbStep),
-    neighborFitnessStat(_neighborhood, _eval)
+    neighborBestStat(_neighborhood, _eval)
   {
     // delete the dummy local search
     delete localSearch;
@@ -101,11 +101,11 @@ public:
     checkpoint->add(*monitorVec[0]);
 
     // one random neighbor
-    add(neighborFitnessStat);
+    add(neighborBestStat);
   }
 
 protected:
-  moNeighborFitnessStat< Neighbor > neighborFitnessStat;
+  moNeighborBestStat< Neighbor > neighborBestStat;
 
 };
 
