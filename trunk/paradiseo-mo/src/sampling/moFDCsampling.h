@@ -1,5 +1,5 @@
 /*
-  <moDensityOfStatesSampling.h>
+  <moFDCsampling.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -32,23 +32,27 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef moDensityOfStatesSampling_h
-#define moDensityOfStatesSampling_h
+#ifndef moFDCsampling_h
+#define moFDCsampling_h
 
 #include <eoInit.h>
+#include <eval/moEval.h>
 #include <eoEvalFunc.h>
 #include <algo/moRandomSearch.h>
 #include <continuator/moFitnessStat.h>
+#include <utils/eoDistance.h>
+#include <continuator/moDistanceStat.h>
 #include <sampling/moSampling.h>
 
 /**
- * To compute the density of states: 
- *   Sample the fitness of random solution in the search space
- *   The fitness values of solutions are collected during the random search
- * 
+ * To compute the fitness distance correlation: 
+ *   Sample the fitness and the distance from a particular solution of random solution in the search space
+ *   The fitness values and distances of solutions are collected during the random search
+ *   Then the correlation between the fitness and the distance can be computed
+ *
  */
 template <class Neighbor>
-class moDensityOfStatesSampling : public moSampling<Neighbor>
+class moFDCsampling : public moSampling<Neighbor>
 {
 public:
   typedef typename Neighbor::EOT EOT ;
@@ -58,27 +62,33 @@ public:
   /**
    * Default Constructor
    * @param _init initialisation method of the solution
-   * @param _fullEval Fitness function, full evaluation function
-   * @param _nbSol Number of solutions in the sample
+   * @param _neighborhood neighborhood giving neighbor in random order
+   * @param _dist the distance function between solution
+   * @param _refSol the reference solution to compute the distance (think of global optimum when possible)
+   * @param _nbSol Number of solutions of the sample
    */
-  moDensityOfStatesSampling(eoInit<EOT> & _init, 
-			    eoEvalFunc<EOT>& _fullEval, 
-			    unsigned int _nbSol) : 
-    moSampling<Neighbor>(_init, * new moRandomSearch<Neighbor>(_init, _fullEval, _nbSol), fitnessStat)
+  moFDCsampling(eoInit<EOT> & _init, 
+		eoEvalFunc<EOT>& _fullEval,
+		eoDistance<EOT>& _dist,
+		EOT& _refSol,
+		unsigned int _nbSol) : 
+    moSampling<Neighbor>(_init, * new moRandomSearch<Neighbor>(_init, _fullEval, _nbSol), fitnessStat),
+    distStat(_dist, _refSol)
   {
+    add(distStat);
   }
 
   /** 
    * default destructor
    */
-  ~moDensityOfStatesSampling() {
+  ~moFDCsampling() {
     // delete the pointer on the local search which has been constructed in the constructor
     delete &localSearch;
   }
 
 protected:
   moFitnessStat<EOT> fitnessStat;
-
+  moDistanceStat<EOT> distStat;
 };
 
 
