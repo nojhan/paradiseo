@@ -59,6 +59,7 @@
 #include <continuator/moDistanceStat.h>
 #include <continuator/moFitnessStat.h>
 #include <continuator/moNeighborFitnessStat.h>
+#include <continuator/moNeighborBestStat.h>
 #include <continuator/moMaxNeighborStat.h>
 #include <continuator/moMinNeighborStat.h>
 #include <continuator/moNbInfNeighborStat.h>
@@ -148,7 +149,9 @@
 #include <sampling/moNeutralDegreeSampling.h>
 #include <sampling/moFitnessCloudSampling.h>
 #include <sampling/moRndRndFitnessCloudSampling.h>
+#include <sampling/moRndBestFitnessCloudSampling.h>
 #include <sampling/moMHRndFitnessCloudSampling.h>
+#include <sampling/moMHBestFitnessCloudSampling.h>
 
 #include <problems/bitString/moBitNeighbor.h>
 #include <problems/eval/moOneMaxIncrEval.h>

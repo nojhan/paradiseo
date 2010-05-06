@@ -33,12 +33,13 @@ using namespace std;
 
 //-----------------------------------------------------------------------------
 // neighborhood description
-#include <neighborhood/moRndWithReplNeighborhood.h> // visit one random neighbor possibly the same one several times
+#include <neighborhood/moRndWithoutReplNeighborhood.h> // visit one random neighbor possibly the same one several times
 
 //-----------------------------------------------------------------------------
 // the sampling class
 #include <sampling/moRndRndFitnessCloudSampling.h>
 #include <sampling/moMHRndFitnessCloudSampling.h>
+#include <sampling/moRndBestFitnessCloudSampling.h>
 
 // Declaration of types
 //-----------------------------------------------------------------------------
@@ -150,7 +151,7 @@ void main_function(int argc, char **argv)
 
   // Exploration of the neighborhood in random order
   // at each step one bit is randomly generated
-  moRndWithReplNeighborhood<Neighbor> neighborhood(vecSize);
+  moRndWithoutReplNeighborhood<Neighbor> neighborhood(vecSize);
 
   /* =========================================================
    *
@@ -166,7 +167,8 @@ void main_function(int argc, char **argv)
   //    - number of solutions to sample
 
   //  moRndRndFitnessCloudSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbSol);
-  moMHRndFitnessCloudSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbSol);
+  //  moMHRndFitnessCloudSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbSol);
+  moRndBestFitnessCloudSampling<Neighbor> sampling(random, neighborhood, fullEval, neighborEval, nbSol);
   
   /* =========================================================
    *
