@@ -1,5 +1,5 @@
 /*
-<moRandomSearch.h>
+<moDummyLS.h>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -27,63 +27,45 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moRandomSearch_h
-#define _moRandomSearch_h
+#ifndef _moDummyLS_h
+#define _moDummyLS_h
 
 #include <algo/moLocalSearch.h>
-#include <explorer/moRandomSearchExplorer.h>
+#include <explorer/moDummyExplorer.h>
 #include <continuator/moTrueContinuator.h>
-#include <eoInit.h>
-#include <eoEvalFunc.h>
 
 /********************************************************
- * Random Search:
- * Pure random search local search
+ * Dummy Local Search:
  * 
- * At each iteration,
- *   one random solution is selected and replace the current solution
- *   the algorithm stops when the number of solution is reached
+ * To do nothing, only the full evaluation of the solution if necessary ;-)
  ********************************************************/
 template<class Neighbor>
-class moRandomSearch: public moLocalSearch<Neighbor>
+class moDummyLS: public moLocalSearch<Neighbor>
 {
 public:
   typedef typename Neighbor::EOT EOT;
+  typedef moNeighborhood<Neighbor> Neighborhood ;
 
   /**
-   * Simple constructor for a random search
-   * @param _init the solution initializer, to explore at random the search space
+   * Simple constructor 
    * @param _fullEval the full evaluation function
-   * @param _nbSolMax number of solutions
    */
-  moRandomSearch(eoInit<EOT> & _init, eoEvalFunc<EOT>& _fullEval, unsigned _nbSolMax):
-    moLocalSearch<Neighbor>(explorer, trueCont, _fullEval),
-      explorer(_init, _fullEval, _nbSolMax>0?_nbSolMax - 1:0)
-  {}
-  
-  /**
-   * Simple constructor for a random search
-   * @param _init the solution initializer, to explore at random the search space
-   * @param _fullEval the full evaluation function
-   * @param _nbSolMax number of solutions
-   */
-  moRandomSearch(eoInit<EOT> & _init, eoEvalFunc<EOT>& _fullEval, unsigned _nbSolMax, moContinuator<Neighbor>& _cont):
-    moLocalSearch<Neighbor>(explorer, _cont, _fullEval),
-    explorer(_init, _fullEval, _nbSolMax>0?_nbSolMax - 1:0)
+  moDummyLS(eoEvalFunc<EOT>& _fullEval):
+    moLocalSearch<Neighbor>(explorer, trueCont, _fullEval)
   {}
   
   /**
    * @return name of the class
    */
   virtual std::string className(void) const {
-    return "moRandomSearch";
+    return "moDummyLS";
   }
   
 private:
   // always true continuator
   moTrueContinuator<Neighbor> trueCont;
-  // the explorer of the random walk
-  moRandomSearchExplorer<Neighbor> explorer;
+  // the explorer of the simple HC
+  moDummyExplorer<Neighbor> explorer;
 };
 
 #endif

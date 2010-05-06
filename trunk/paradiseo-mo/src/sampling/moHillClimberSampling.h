@@ -90,7 +90,7 @@ public:
    */
   ~moHillClimberSampling() {
     // delete the pointer on the local search which has been constructed in the constructor
-    delete &localSearch;
+    delete localSearch;
   }
 
 protected:

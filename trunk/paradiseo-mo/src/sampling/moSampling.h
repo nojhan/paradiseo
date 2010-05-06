@@ -65,7 +65,7 @@ public:
    * @param _monitoring the statistic is saved into the monitor if true
    */
   template <class ValueType>
-  moSampling(eoInit<EOT> & _init, moLocalSearch<Neighbor> & _localSearch, moStat<EOT,ValueType> & _stat, bool _monitoring = true) : init(_init), localSearch(_localSearch), continuator(_localSearch.getContinuator())
+  moSampling(eoInit<EOT> & _init, moLocalSearch<Neighbor> & _localSearch, moStat<EOT,ValueType> & _stat, bool _monitoring = true) : init(_init), localSearch(&_localSearch), continuator(_localSearch.getContinuator())
   {
     checkpoint = new moCheckpoint<Neighbor>(*continuator);
     add(_stat, _monitoring);
@@ -93,7 +93,7 @@ public:
     checkpoint->add(_stat);
 
     if (_monitoring) {
-      moVectorMonitor<EOT> * monitor = new moVectorMonitor<EOT>(_stat);
+      moVectorMonitor<EOT> * monitor = new moVectorMonitor<EOT>(_stat); // attention fuite memoire a la descruction !
       monitorVec.push_back(monitor);
       checkpoint->add(*monitor);
     }
@@ -109,7 +109,7 @@ public:
       monitorVec[i]->clear();
 
     // change the checkpoint to compute the statistics
-    localSearch.setContinuator(*checkpoint);
+    localSearch->setContinuator(*checkpoint);
 
     // the initial solution
     EOT solution;
@@ -117,11 +117,13 @@ public:
     // initialisation of the solution
     init(solution);
 
+    std::cout << localSearch->className() << std::endl;
+
     // compute the sampling
-    localSearch(solution);
+    (*localSearch)(solution);
 
     // set back to initial continuator
-    localSearch.setContinuator(*continuator);
+    localSearch->setContinuator(*continuator);
   }
 
   /**
@@ -180,7 +182,7 @@ public:
   
 protected:
   eoInit<EOT> & init;
-  moLocalSearch<Neighbor> & localSearch;
+  moLocalSearch<Neighbor> * localSearch;
 
   moContinuator<Neighbor> * continuator;
   moCheckpoint<Neighbor> * checkpoint;

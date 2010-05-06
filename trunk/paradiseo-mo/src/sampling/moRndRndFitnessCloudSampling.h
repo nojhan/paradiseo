@@ -1,5 +1,5 @@
 /*
-  <moDensityOfStatesSampling.h>
+  <moRndRndFitnessCloudSampling.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -32,23 +32,29 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef moDensityOfStatesSampling_h
-#define moDensityOfStatesSampling_h
+#ifndef moRndRndFitnessCloudSampling_h
+#define moRndRndFitnessCloudSampling_h
 
 #include <eoInit.h>
+#include <neighborhood/moNeighborhood.h>
+#include <eval/moEval.h>
 #include <eoEvalFunc.h>
 #include <algo/moRandomSearch.h>
-#include <continuator/moFitnessStat.h>
-#include <sampling/moSampling.h>
+#include <continuator/moNeighborFitnessStat.h>
+#include <sampling/moFitnessCloudSampling.h>
 
 /**
- * To compute the density of states: 
+ * To compute an estimation of the fitness cloud, 
+ *   i.e. the scatter plot of solution fitness versus neighbor fitness: 
+ *
  *   Sample the fitness of random solution in the search space
- *   The fitness values of solutions are collected during the random search
+ *   and the fitness of one random neighbor
+ *
+ *   The values are collected during the random search
  * 
  */
 template <class Neighbor>
-class moDensityOfStatesSampling : public moSampling<Neighbor>
+class moRndRndFitnessCloudSampling : public moFitnessCloudSampling<Neighbor>
 {
 public:
   typedef typename Neighbor::EOT EOT ;
@@ -58,26 +64,31 @@ public:
   /**
    * Default Constructor
    * @param _init initialisation method of the solution
+   * @param _neighborhood neighborhood to get one random neighbor (supposed to be random neighborhood)
    * @param _fullEval Fitness function, full evaluation function
+   * @param _eval neighbor evaluation, incremental evaluation function
    * @param _nbSol Number of solutions in the sample
    */
-  moDensityOfStatesSampling(eoInit<EOT> & _init, 
-			    eoEvalFunc<EOT>& _fullEval, 
-			    unsigned int _nbSol) : 
-    moSampling<Neighbor>(_init, * new moRandomSearch<Neighbor>(_init, _fullEval, _nbSol), fitnessStat)
+  moRndRndFitnessCloudSampling(eoInit<EOT> & _init, 
+			  moNeighborhood<Neighbor> & _neighborhood, 
+			  eoEvalFunc<EOT>& _fullEval, 
+			  moEval<Neighbor>& _eval, 
+			  unsigned int _nbSol) : 
+    moFitnessCloudSampling<Neighbor>(_init, _neighborhood, _fullEval, _eval, _nbSol),
+    neighborFitnessStat(_neighborhood, _eval)
   {
-  }
-
-  /** 
-   * default destructor
-   */
-  ~moDensityOfStatesSampling() {
-    // delete the pointer on the local search which has been constructed in the constructor
+    // delete the dummy local search
     delete localSearch;
+    
+    // random sampling
+    localSearch = new moRandomSearch<Neighbor>(_init, _fullEval, _nbSol);
+
+    // one random neighbor
+    add(neighborFitnessStat);
   }
 
 protected:
-  moFitnessStat<EOT> fitnessStat;
+  moNeighborFitnessStat< Neighbor > neighborFitnessStat;
 
 };
 

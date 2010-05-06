@@ -36,6 +36,7 @@
 #define _newmo_h
 
 #include <algo/moLocalSearch.h>
+#include <algo/moDummyLS.h>
 #include <algo/moRandomSearch.h>
 #include <algo/moMetropolisHasting.h>
 #include <algo/moSA.h>
@@ -90,6 +91,7 @@
 #include <explorer/moNeutralHCexplorer.h>
 #include <explorer/moMetropolisHastingExplorer.h>
 #include <explorer/moNeighborhoodExplorer.h>
+#include <explorer/moDummyExplorer.h>
 #include <explorer/moRandomSearchExplorer.h>
 #include <explorer/moRandomNeutralWalkExplorer.h>
 #include <explorer/moRandomWalkExplorer.h>
