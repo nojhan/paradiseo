@@ -147,7 +147,8 @@
 #include <sampling/moFDCsampling.h>
 #include <sampling/moNeutralDegreeSampling.h>
 #include <sampling/moFitnessCloudSampling.h>
-#include <sampling/moMHFitnessCloudSampling.h>
+#include <sampling/moRndRndFitnessCloudSampling.h>
+#include <sampling/moMHRndFitnessCloudSampling.h>
 
 #include <problems/bitString/moBitNeighbor.h>
 #include <problems/eval/moOneMaxIncrEval.h>

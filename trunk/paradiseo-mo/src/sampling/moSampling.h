@@ -93,7 +93,7 @@ public:
     checkpoint->add(_stat);
 
     if (_monitoring) {
-      moVectorMonitor<EOT> * monitor = new moVectorMonitor<EOT>(_stat); // attention fuite memoire a la descruction !
+      moVectorMonitor<EOT> * monitor = new moVectorMonitor<EOT>(_stat); 
       monitorVec.push_back(monitor);
       checkpoint->add(*monitor);
     }
@@ -116,8 +116,6 @@ public:
 
     // initialisation of the solution
     init(solution);
-
-    std::cout << localSearch->className() << std::endl;
 
     // compute the sampling
     (*localSearch)(solution);

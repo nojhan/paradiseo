@@ -60,6 +60,10 @@ public:
   typedef typename Neighbor::EOT EOT ;
   
   using moSampling<Neighbor>::localSearch;
+  using moSampling<Neighbor>::checkpoint;
+  using moSampling<Neighbor>::monitorVec;
+  using moSampling<Neighbor>::continuator;
+  using moFitnessCloudSampling<Neighbor>::fitnessStat;
 
   /**
    * Default Constructor
@@ -82,6 +86,17 @@ public:
     
     // random sampling
     localSearch = new moRandomSearch<Neighbor>(_init, _fullEval, _nbSol);
+
+    // delete the checkpoint with the wrong continuator
+    delete checkpoint;
+
+    // set the continuator
+    continuator = localSearch->getContinuator();
+
+    // re-construction of the checkpoint
+    checkpoint = new moCheckpoint<Neighbor>(*continuator);
+    checkpoint->add(fitnessStat);
+    checkpoint->add(*monitorVec[0]);
 
     // one random neighbor
     add(neighborFitnessStat);

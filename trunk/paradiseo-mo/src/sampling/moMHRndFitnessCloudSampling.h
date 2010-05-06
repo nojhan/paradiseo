@@ -1,5 +1,5 @@
 /*
-  <moMHFitnessCloudSampling.h>
+  <moMHRndFitnessCloudSampling.h>
   Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
   Sebastien Verel, Arnaud Liefooghe, Jeremie Humeau
@@ -32,21 +32,21 @@
   Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef moMHFitnessCloudSampling_h
-#define moMHFitnessCloudSampling_h
+#ifndef moMHRndFitnessCloudSampling_h
+#define moMHRndFitnessCloudSampling_h
 
 #include <eoInit.h>
 #include <neighborhood/moNeighborhood.h>
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
 #include <algo/moMetropolisHasting.h>
-#include <continuator/moFitnessStat.h>
 #include <continuator/moNeighborFitnessStat.h>
-#include <sampling/moSampling.h>
+#include <sampling/moFitnessCloudSampling.h>
 
 /**
  * To compute an estimation of the fitness cloud, 
  *   i.e. the scatter plot of solution fitness versus neighbor fitness: 
+ *
  *   Here solution are sampled with Metropolis-Hasting method
  *
  *   Sample the fitness of solutions from Metropolis-Hasting sampling
@@ -56,12 +56,16 @@
  * 
  */
 template <class Neighbor>
-class moMHFitnessCloudSampling : public moSampling<Neighbor>
+class moMHRndFitnessCloudSampling : public moFitnessCloudSampling<Neighbor>
 {
 public:
   typedef typename Neighbor::EOT EOT ;
   
   using moSampling<Neighbor>::localSearch;
+  using moSampling<Neighbor>::checkpoint;
+  using moSampling<Neighbor>::monitorVec;
+  using moSampling<Neighbor>::continuator;
+  using moFitnessCloudSampling<Neighbor>::fitnessStat;
 
   /**
    * Default Constructor
@@ -71,27 +75,36 @@ public:
    * @param _eval neighbor evaluation, incremental evaluation function
    * @param _nbStep Number of step of the MH sampling
    */
-  moMHFitnessCloudSampling(eoInit<EOT> & _init, 
+  moMHRndFitnessCloudSampling(eoInit<EOT> & _init, 
 			  moNeighborhood<Neighbor> & _neighborhood, 
 			  eoEvalFunc<EOT>& _fullEval, 
 			  moEval<Neighbor>& _eval, 
 			  unsigned int _nbStep) : 
-    moSampling<Neighbor>(_init, * new moMetropolisHasting<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep), fitnessStat),
+    moFitnessCloudSampling<Neighbor>(_init, _neighborhood, _fullEval, _eval, _nbStep),
     neighborFitnessStat(_neighborhood, _eval)
   {
+    // delete the dummy local search
+    delete localSearch;
+    
+    // random sampling
+    localSearch = new moMetropolisHasting<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep);
+
+    // delete the checkpoint with the wrong continuator
+    delete checkpoint;
+
+    // set the continuator
+    continuator = localSearch->getContinuator();
+
+    // re-construction of the checkpoint
+    checkpoint = new moCheckpoint<Neighbor>(*continuator);
+    checkpoint->add(fitnessStat);
+    checkpoint->add(*monitorVec[0]);
+
+    // one random neighbor
     add(neighborFitnessStat);
   }
 
-  /** 
-   * default destructor
-   */
-  ~moMHFitnessCloudSampling() {
-    // delete the pointer on the local search which has been constructed in the constructor
-    delete &localSearch;
-  }
-
 protected:
-  moFitnessStat<EOT> fitnessStat;
   moNeighborFitnessStat< Neighbor > neighborFitnessStat;
 
 };
