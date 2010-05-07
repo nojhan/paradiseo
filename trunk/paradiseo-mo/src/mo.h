@@ -90,6 +90,7 @@
 #include <eval/moFullEvalByModif.h>
 #include <eval/moDummyEval.h>
 #include <eval/moEvalCounter.h>
+#include <eval/moMaxSATincrEval.h>
 
 #include <explorer/moFirstImprHCexplorer.h>
 #include <explorer/moNeutralHCexplorer.h>

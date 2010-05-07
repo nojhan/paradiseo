@@ -44,7 +44,7 @@ public:
 
   /**
    * Default constructor
-   * @param _k size of a block
+   * @param _rr full evaluation of the Royal Road (to have the same block size)
    */
   moRoyalRoadIncrEval(RoyalRoadEval<EOT> & _rr) : k(_rr.blockSize()) {}
 
