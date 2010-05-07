@@ -193,6 +193,7 @@ void main_function(int argc, char **argv)
 
   std::cout << "Last values:" << std::endl;
   std::cout << "Length  " << lengthValues[lengthValues.size() - 1] << std::endl;
+
 }
 
 // A main that catches the exceptions

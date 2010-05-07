@@ -40,6 +40,10 @@ using namespace std;
 // the sampling class
 #include <sampling/moAutocorrelationSampling.h>
 
+//-----------------------------------------------------------------------------
+// the statistics class
+#include <sampling/moStatistics.h>
+
 // Declaration of types
 //-----------------------------------------------------------------------------
 // Indi is the typedef of the solution type like in paradisEO-eo
@@ -195,6 +199,16 @@ void main_function(int argc, char **argv)
 
   std::cout << "Last values:" << std::endl;
   std::cout << "Fitness  " << fitnessValues[fitnessValues.size() - 1] << std::endl;
+
+  // more basic statistics on the distribution:
+  moStatistics statistics;
+
+  vector<double> rho, phi;
+
+  statistics.autocorrelation(fitnessValues, 10, rho, phi);
+
+  for(unsigned s = 0; s < rho.size(); s++)
+    std::cout << s << " " << "rho=" << rho[s] << ", phi=" << phi[s] << std::endl; 
 }
 
 // A main that catches the exceptions

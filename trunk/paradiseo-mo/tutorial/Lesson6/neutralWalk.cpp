@@ -40,6 +40,10 @@ using namespace std;
 #include <utils/eoDistance.h>
 #include <sampling/moNeutralWalkSampling.h>
 
+//-----------------------------------------------------------------------------
+// the statistics class
+#include <sampling/moStatistics.h>
+
 // Declaration of types
 //-----------------------------------------------------------------------------
 // Indi is the typedef of the solution type like in paradisEO-eo
@@ -209,6 +213,27 @@ void main_function(int argc, char **argv)
 
   // export only the solution into file
   sampling.fileExport(0, str_out + "_sol");
+
+  // more basic statistics on the distribution:
+  moStatistics statistics;
+
+  vector< vector<double> > dist;
+  vector<double> v;
+
+  statistics.distances(solutions, distance, dist);
+
+  for(unsigned i = 0; i < dist.size(); i++) {
+    for(unsigned j = 0; j < dist.size(); j++) {
+      std::cout << dist[i][j] << " " ; 
+      if (j < i)
+	v.push_back(dist[i][j]);
+    }
+    std::cout << std::endl; 
+  }
+
+  double min, max, avg, std;
+  statistics.basic(v, min, max, avg, std);
+  std::cout << "min=" << min << ", max=" << max << ", average=" << avg << ", std dev=" << std << std::endl; 
 }
 
 // A main that catches the exceptions

@@ -158,6 +158,7 @@
 #include <sampling/moMHRndFitnessCloudSampling.h>
 #include <sampling/moMHBestFitnessCloudSampling.h>
 #include <sampling/moNeutralWalkSampling.h>
+#include <sampling/moStatistics.h>
 
 #include <problems/bitString/moBitNeighbor.h>
 #include <problems/eval/moOneMaxIncrEval.h>
