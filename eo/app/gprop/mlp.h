@@ -21,7 +21,7 @@
 #include <limits>
 
 #ifdef HAVE_LIBYAML_CPP
-#include <yaml-cpp/yaml.h>
+#include <yaml-cpp/serializable.h>
 #endif // HAVE_LIBYAML_CPP
 
 
@@ -131,33 +131,18 @@ namespace mlp
     }
 
     #ifdef HAVE_LIBYAML_CPP
-    friend YAML::Emitter& operator<<(YAML::Emitter& out, const mlp::neuron& n) {
-        n.emit_yaml(out);
-        return out;
-    }
-
+    YAML_SERIALIZABLE_AUTO(neuron)
     void emit_yaml(YAML::Emitter&out) const {
             out << YAML::BeginMap;
             out << YAML::Key << "Class" << YAML::Value << "mlp::neuron";
-            #define MY_EMIT_MEMBER(emitter,member) emitter << YAML::Key << #member << YAML::Value << this->member
-            MY_EMIT_MEMBER(out,bias);
-            MY_EMIT_MEMBER(out,weight);
+            YAML_EMIT_MEMBER(out,bias);
+            YAML_EMIT_MEMBER(out,weight);
             out << YAML::EndMap;
-            #undef MY_EMIT_MEMBER
     }
-
-    friend void operator >>(const YAML::Node& node, mlp::neuron& n) {
-        n.load_yaml(node);
-    }
-
     void load_yaml(const YAML::Node& node) {
-        #define MY_LOAD_MEMBER(doc,member) doc[#member] >> member
-        MY_LOAD_MEMBER(node, bias);
-        MY_LOAD_MEMBER(node, weight);
-        #undef MY_LOAD_MEMBER
+        YAML_LOAD_MEMBER(node, bias);
+        YAML_LOAD_MEMBER(node, weight);
     }
-
-
     #endif
  };
 }
@@ -235,7 +220,7 @@ namespace mlp {
         // These temporary variable shenanegins are necessary because 
         // the compiler gets very confused about which template operator>> 
         // function to use.
-        // This does not work:  n >> l;
+        // The following does not work:  n >> l;
         // So we use a temporary variable thusly:
         std::vector<mlp::neuron> *obviously_a_vector = &l;
         n >> *obviously_a_vector;
@@ -273,6 +258,9 @@ namespace mlp {
   //---------------------------------------------------------------------------
 
   class net: public std::vector<layer>
+  #ifdef HAVE_LIBYAML_CPP
+  , public YAML::Serializable
+  #endif
   {
   public:
     net(const unsigned& num_inputs = 0,
@@ -287,10 +275,17 @@ namespace mlp {
 	load(is);
     }
     #ifdef HAVE_LIBYAML_CPP
-    net (YAML::Node &node) {
-        node >> *((std::vector<layer>*)this);
+    YAML_SERIALIZABLE_AUTO(net)
+    void emit_members(YAML::Emitter&out) const {
+        const std::vector<layer>* me_as_layer_vector = this;
+        out << YAML::Key << "layers" << YAML::Value << *me_as_layer_vector;
     }
-    #endif
+
+    void load_members(const YAML::Node& node) {
+        std::vector<layer>* me_as_layer_vector = this;
+        node["layers"] >> *me_as_layer_vector;
+    }
+    #endif // HAVE_LIBYAML_CPP  
 
       /** Virtual destructor */
       virtual ~net() {};
