@@ -158,6 +158,27 @@ public:
   }
 
   /**
+   * to export the vector of values into one file
+   * @param _filename file name 
+   */
+  void fileExport(std::string _filename) {
+    // create file
+    ofstream os(_filename.c_str()); 
+
+    if (!os) {
+      string str = "moVectorMonitor: Could not open " + _filename;
+      throw runtime_error(str);
+    }
+    
+    for(unsigned int i = 0; i < size(); i++) {
+      os << getValue(i);
+      
+      os << std::endl ;
+    }
+    
+  }
+
+  /**
    * @return name of the class
    */
   virtual std::string className(void) const {

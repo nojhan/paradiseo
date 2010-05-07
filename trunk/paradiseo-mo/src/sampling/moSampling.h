@@ -125,7 +125,7 @@ public:
   }
 
   /**
-   * to export the vector of values into one file
+   * to export the vectors of values into one file
    * @param _filename file name 
    * @param _delim delimiter between statistics
    */
@@ -151,6 +151,20 @@ public:
       os << std::endl ;
     }
     
+  }
+
+  /**
+   * to export one vector of values into a file
+   * @param _col number of vector to print into file
+   * @param _filename file name 
+   */
+  void fileExport(unsigned int _col, std::string _filename) {
+    if (_col >= monitorVec.size()) {
+      string str = "moSampling: Could not export into file the vector. The index does not exists (too large)";
+      throw runtime_error(str);
+    }
+    
+    monitorVec[_col]->fileExport(_filename);
   }
 
   /**

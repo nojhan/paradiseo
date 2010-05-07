@@ -206,6 +206,9 @@ void main_function(int argc, char **argv)
 
   std::cout << "Last values:" << std::endl;
   std::cout << "Solution  " << solutions[solutions.size() - 1] << std::endl;
+
+  // export only the solution into file
+  sampling.fileExport(0, str_out + "_sol");
 }
 
 // A main that catches the exceptions
