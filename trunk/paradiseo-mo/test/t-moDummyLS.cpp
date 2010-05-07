@@ -1,5 +1,5 @@
 /*
-<t-moDummyNeighbor.cpp>
+<t-moDummyLS.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -30,16 +30,21 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
-#include <neighborhood/moDummyNeighbor.h>
+
+#include <algo/moDummyLS.h>
 #include "moTestClass.h"
+#include <eval/oneMaxEval.h>
 
 int main(){
 
-	std::cout << "[t-moDummyNeighbor] => START" << std::endl;
+	std::cout << "[t-moDummyLS] => START" << std::endl;
 
-	moDummyNeighbor<bitVector> test;
+	oneMaxEval<bitVector> fullEval;
+	moDummyLS<bitNeighbor> test(fullEval);
 
-	std::cout << "[t-moDummyNeighbor] => OK" << std::endl;
+	assert(test.className()=="moDummyLS");
+
+	std::cout << "[t-moDummyLS] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

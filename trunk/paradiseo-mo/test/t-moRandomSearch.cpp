@@ -1,5 +1,5 @@
 /*
-<t-moDummyNeighbor.cpp>
+<t-moRandomSearch.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -30,16 +30,26 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
-#include <neighborhood/moDummyNeighbor.h>
+
+#include <algo/moRandomSearch.h>
 #include "moTestClass.h"
+#include <eval/oneMaxEval.h>
+#include <continuator/moTrueContinuator.h>
 
 int main(){
 
-	std::cout << "[t-moDummyNeighbor] => START" << std::endl;
+	std::cout << "[t-moRandomSearch] => START" << std::endl;
+	oneMaxEval<bitVector> fullEval;
+	dummyInit init;
+	moTrueContinuator<bitNeighbor> cont;
+	//test du 1er constructor
+	moRandomSearch<bitNeighbor> test1(init, fullEval, 3);
+	//test du 2e constructor
+	moRandomSearch<bitNeighbor> test2(init, fullEval, 3, cont);
 
-	moDummyNeighbor<bitVector> test;
+	assert(test1.className()=="moRandomSearch");
 
-	std::cout << "[t-moDummyNeighbor] => OK" << std::endl;
+	std::cout << "[t-moRandomSearch] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

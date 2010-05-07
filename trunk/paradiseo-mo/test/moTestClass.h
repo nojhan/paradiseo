@@ -52,6 +52,8 @@
 #include <utils/eoMonitor.h>
 #include <utils/eoUpdater.h>
 
+#include <eoInit.h>
+
 typedef eoBit<eoMinimizingFitness> bitVector;
 typedef moBitNeighbor<eoMinimizingFitness> bitNeighbor;
 
@@ -200,6 +202,11 @@ public:
 
 private:
     unsigned int& a;
+};
+
+class dummyInit: public eoInit<bitVector>{
+	void operator()(bitVector& sol){
+	}
 };
 
 #endif

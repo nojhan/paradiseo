@@ -1,5 +1,5 @@
 /*
-<t-moDummyNeighbor.cpp>
+<t-moIterContinuator.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -30,16 +30,31 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
-#include <neighborhood/moDummyNeighbor.h>
+
+#include <continuator/moIterContinuator.h>
 #include "moTestClass.h"
 
 int main(){
 
-	std::cout << "[t-moDummyNeighbor] => START" << std::endl;
+	std::cout << "[t-moIterContinuator] => START" << std::endl;
 
-	moDummyNeighbor<bitVector> test;
+    moIterContinuator<moDummyNeighborTest> test(3, false);
+    moIterContinuator<moDummyNeighborTest> test2(3);
+    Solution s;
 
-	std::cout << "[t-moDummyNeighbor] => OK" << std::endl;
+    test.init(s);
+    assert(test.value()==0);
+    assert(test(s));
+    assert(test.value()==1);
+    assert(test(s));
+    assert(test.value()==2);
+    assert(!test(s));
+    assert(test.value()==3);
+    test.init(s);
+    assert(test.value()==0);
+
+
+	std::cout << "[t-moIterContinuator] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

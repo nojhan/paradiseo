@@ -1,5 +1,5 @@
 /*
-<t-moDummyNeighbor.cpp>
+<t-moDummyExplorer.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -30,16 +30,19 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
-#include <neighborhood/moDummyNeighbor.h>
+
+#include <explorer/moDummyExplorer.h>
 #include "moTestClass.h"
 
 int main(){
 
-	std::cout << "[t-moDummyNeighbor] => START" << std::endl;
+	std::cout << "[t-moDummyExplorer] => START" << std::endl;
 
-	moDummyNeighbor<bitVector> test;
+	moDummyExplorer<bitNeighbor> test;
 
-	std::cout << "[t-moDummyNeighbor] => OK" << std::endl;
+	assert(test.className()=="moDummyExplorer");
+
+	std::cout << "[t-moDummyExplorer] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }

@@ -32,6 +32,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <continuator/moContinuator.h>
 #include <neighborhood/moNeighborhood.h>
+#include <vector>
 /**
  * Combined several continuators
  * Continue until one of the continuators is false
@@ -59,6 +60,15 @@ public:
   }
   
   /**
+   * init all continuators
+   * @param _solution a solution
+   */
+  virtual void init(EOT & _solution) {
+	    for(unsigned int i = 0; i < continuators.size(); ++i)
+	    	continuators[i]->init(_solution);
+  }
+
+  /**
    *@param _solution a solution
    *@return true all the continuators are true
    */
@@ -69,14 +79,14 @@ public:
     // So, all continuators are tested
     for(unsigned int i = 0; i < continuators.size(); ++i)
       if ( !(*continuators[i])(_solution) )
-	bContinue = false;
+    	  bContinue = false;
     
     return bContinue;
   }
   
 private:
   /** continuators vector */
-  std::vector<moContinuator<Neighbor>*> continuators;
+  std::vector< moContinuator<Neighbor>* > continuators;
   
 };
 #endif

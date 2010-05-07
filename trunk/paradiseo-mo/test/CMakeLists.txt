@@ -82,6 +82,21 @@ SET (TEST_LIST
 		t-moMonOpDiversification
 		t-moTS
 		t-moILS
+		t-moDummyLS
+		t-moRandomSearch
+		t-moMetropolisHasting
+		t-moNeutralHC
+		t-moRandomWalk
+		t-moRandomNeutralWalk
+		t-moIterContinuator
+		t-moFitContinuator
+		t-moCombinedContinuator
+		t-moFullEvalContinuator
+		t-moNeighborEvalContinuator
+		t-moTimeContinuator
+		t-moDummyExplorer
+		t-moLocalSearchInit
+		t-moSolInit
 		)
 				
 FOREACH (test ${TEST_LIST})

@@ -1,5 +1,5 @@
 /*
-<t-moDummyNeighbor.cpp>
+<t-moTimeContinuator.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -30,16 +30,41 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
-#include <neighborhood/moDummyNeighbor.h>
+
+#include <continuator/moTimeContinuator.h>
 #include "moTestClass.h"
+#include <time.h>
+
+void wait ( int seconds )
+{
+  clock_t endwait;
+  endwait = clock () + seconds * CLOCKS_PER_SEC ;
+  while (clock() < endwait) {}
+}
+
 
 int main(){
 
-	std::cout << "[t-moDummyNeighbor] => START" << std::endl;
+	std::cout << "[t-moTimeContinuator] => START" << std::endl;
 
-	moDummyNeighbor<bitVector> test;
+    moTimeContinuator<moDummyNeighborTest> test(2, false);
+    moTimeContinuator<moDummyNeighborTest> test2(3);
+    Solution s;
 
-	std::cout << "[t-moDummyNeighbor] => OK" << std::endl;
+    test.init(s);
+    assert(test(s));
+    wait(1);
+    assert(test(s));
+    wait(1);
+    assert(!test(s));
+    test.init(s);
+    assert(test(s));
+    wait(2);
+    assert(!test(s));
+
+    assert(test.className()=="moTimeContinuator");
+
+	std::cout << "[t-moTimeContinuator] => OK" << std::endl;
 
 	return EXIT_SUCCESS;
 }
