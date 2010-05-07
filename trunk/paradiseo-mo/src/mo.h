@@ -45,6 +45,7 @@
 #include <algo/moRandomBestHC.h>
 #include <algo/moNeutralHC.h>
 #include <algo/moRandomWalk.h>
+#include <algo/moRandomNeutralWalk.h>
 #include <algo/moTS.h>
 #include <algo/moILS.h>
 
@@ -67,6 +68,8 @@
 #include <continuator/moNeighborhoodStat.h>
 #include <continuator/moNeutralDegreeNeighborStat.h>
 #include <continuator/moSecondMomentNeighborStat.h>
+#include <continuator/moAverageFitnessNeighborStat.h>
+#include <continuator/moStdFitnessNeighborStat.h>
 #include <continuator/moSizeNeighborStat.h>
 #include <continuator/moCounterStat.h>
 #include <continuator/moCounterMinusOneStat.h>
@@ -133,6 +136,7 @@
 #include <perturb/moRestartPerturb.h>
 #include <perturb/moNeighborhoodPerturb.h>
 #include <perturb/moLocalSearchInit.h>
+#include <perturb/moSolInit.h>
 
 #include <acceptCrit/moAcceptanceCriterion.h>
 #include <acceptCrit/moAlwaysAcceptCrit.h>
@@ -152,6 +156,7 @@
 #include <sampling/moRndBestFitnessCloudSampling.h>
 #include <sampling/moMHRndFitnessCloudSampling.h>
 #include <sampling/moMHBestFitnessCloudSampling.h>
+#include <sampling/moNeutralWalkSampling.h>
 
 #include <problems/bitString/moBitNeighbor.h>
 #include <problems/eval/moOneMaxIncrEval.h>

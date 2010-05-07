@@ -52,7 +52,7 @@
  *   Sample the fitness of solutions from Metropolis-Hasting sampling
  *   and the fitness of one random neighbor
  *
- *   The values are collected during the random search
+ *   The values are collected during the Metropolis-Hasting walk
  * 
  */
 template <class Neighbor>
