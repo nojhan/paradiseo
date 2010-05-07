@@ -32,11 +32,32 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cassert>
 
 #include <eval/moEvalCounter.h>
+#include "moTestClass.h"
 
 int main(){
 
 	std::cout << "[t-moEvalCounter] => START" << std::endl;
 
+	evalOneMax eval(4);
+	bitVector sol;
+	sol.resize(4);
+	sol[0]=true;
+	sol[1]=false;
+	sol[2]=true;
+	sol[3]=true;
+	sol.fitness(3);
+	bitNeighbor n;
+	n.index(2);
+
+	moEvalCounter<bitNeighbor> test(eval);
+
+	test(sol,n);
+	assert(test.value()==1);
+	assert(n.fitness()==2);
+	n.index(1);
+	test(sol,n);
+	assert(test.value()==2);
+	assert(n.fitness()==4);
 
 	std::cout << "[t-moEvalCounter] => OK" << std::endl;
 

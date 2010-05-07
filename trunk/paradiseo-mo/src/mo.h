@@ -72,7 +72,7 @@
 #include <continuator/moStdFitnessNeighborStat.h>
 #include <continuator/moSizeNeighborStat.h>
 #include <continuator/moCounterStat.h>
-#include <continuator/moCounterMinusOneStat.h>
+#include <continuator/moMinusOneCounterStat.h>
 #include <continuator/moSolutionStat.h>
 #include <continuator/moStat.h>
 #include <continuator/moStatBase.h>

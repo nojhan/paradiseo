@@ -97,6 +97,7 @@ SET (TEST_LIST
 		t-moDummyExplorer
 		t-moLocalSearchInit
 		t-moSolInit
+		t-moEvalCounter
 		)
 				
 FOREACH (test ${TEST_LIST})

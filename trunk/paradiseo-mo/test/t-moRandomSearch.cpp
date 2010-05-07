@@ -39,6 +39,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 int main(){
 
 	std::cout << "[t-moRandomSearch] => START" << std::endl;
+
 	oneMaxEval<bitVector> fullEval;
 	dummyInit init;
 	moTrueContinuator<bitNeighbor> cont;
