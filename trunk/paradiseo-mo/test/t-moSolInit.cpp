@@ -37,6 +37,17 @@ int main(){
 
 	std::cout << "[t-moSolInit] => START" << std::endl;
 
+	int a=3;
+
+	int b=5;
+
+	moSolInit<int> test(a);
+
+	test(b);
+	assert(b==3);
+	a=4;
+	test(b);
+	assert(b==4);
 
 	std::cout << "[t-moSolInit] => OK" << std::endl;
 

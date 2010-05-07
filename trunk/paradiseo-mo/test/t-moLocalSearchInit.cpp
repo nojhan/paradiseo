@@ -32,11 +32,24 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cassert>
 
 #include <perturb/moLocalSearchInit.h>
+#include <algo/moDummyLS.h>
+#include "moTestClass.h"
+#include <eval/oneMaxEval.h>
+
 
 int main(){
 
 	std::cout << "[t-moLocalSearchInit] => START" << std::endl;
 
+	oneMaxEval<bitVector> fullEval;
+	moDummyLS<bitNeighbor> ls(fullEval);
+	dummyInit init;
+	bitVector sol;
+	sol.fitness(0);
+
+	moLocalSearchInit<bitNeighbor> test(init, ls);
+
+	test(sol);
 
 	std::cout << "[t-moLocalSearchInit] => OK" << std::endl;
 
