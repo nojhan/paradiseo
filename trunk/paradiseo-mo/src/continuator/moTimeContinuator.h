@@ -46,7 +46,7 @@ public:
      * Ctor.
      * @param _max maximum running time
      */
-    moTimeContinuator(time_t _max): max(_max){
+    moTimeContinuator(time_t _max, bool _verbose=true): max(_max), verbose(_verbose){
         start = time(NULL);
     }
 
@@ -57,13 +57,12 @@ public:
      */
     virtual bool operator() (EOT& _sol)
     {
+    	bool res;
         time_t elapsed = (time_t) difftime(time(NULL), start);
-        if (elapsed >= max)
-        {
-            std::cout << "STOP in moTimeContinuator: Reached maximum time [" << elapsed << "/" << max << "]" << std::endl;
-            return false;
-        }
-        return true;
+        res = (elapsed < max);
+        if(!res && verbose)
+    		std::cout << "STOP in moTimeContinuator: Reached maximum time [" << elapsed << "/" << max << "]" << std::endl;
+        return res;
     }
 
     /**
@@ -90,6 +89,8 @@ private:
     time_t max;
     /** starting time */
     time_t start;
+    /** verbose mode */
+    bool verbose;
 
 };
 

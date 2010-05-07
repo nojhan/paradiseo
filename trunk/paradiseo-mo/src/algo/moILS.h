@@ -84,12 +84,11 @@ public:
      * General constructor for Iterated Local Search
      * @param _ls the local search to iterates
      * @param _fullEval the full evaluation function
-     * @param _op the operator used to perturb solution
      * @param _cont a continuator
      * @param _perturb a perturbation operator
      * @param _accept a acceptance criteria
      */
-	moILS(moLocalSearch<Neighbor>& _ls, eoEvalFunc<EOT>& _fullEval, eoMonOp<EOT>& _op, moContinuator<moDummyNeighbor<EOT> >& _cont, moMonOpPerturb<Neighbor>& _perturb, moAcceptanceCriterion<Neighbor>& _accept):
+	moILS(moLocalSearch<Neighbor>& _ls, eoEvalFunc<EOT>& _fullEval, moContinuator<moDummyNeighbor<EOT> >& _cont, moMonOpPerturb<Neighbor>& _perturb, moAcceptanceCriterion<Neighbor>& _accept):
 		moLocalSearch<moDummyNeighbor<EOT> >(explorer, _cont, _fullEval),
 		iterCont(0),
 		defaultPerturb(dummyOp, _fullEval),

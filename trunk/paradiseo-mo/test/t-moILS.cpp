@@ -1,5 +1,5 @@
 /*
-<moIterContinuator.h>
+<t-moILS.cpp>
 Copyright (C) DOLPHIN Project-Team, INRIA Lille - Nord Europe, 2006-2010
 
 Sébastien Verel, Arnaud Liefooghe, Jérémie Humeau
@@ -27,58 +27,51 @@ ParadisEO WebSite : http://paradiseo.gforge.inria.fr
 Contact: paradiseo-help@lists.gforge.inria.fr
 */
 
-#ifndef _moIterContinuator_h
-#define _moIterContinuator_h
+#include <iostream>
+#include <cstdlib>
+#include <cassert>
 
-#include <continuator/moContinuator.h>
-#include <neighborhood/moNeighborhood.h>
-/**
- * Continue until a maximum fixed number of iterations is reached
- */
-template< class Neighbor >
-class moIterContinuator : public moContinuator<Neighbor>
-{
-public:
-    typedef typename Neighbor::EOT EOT ;
+#include <algo/moTS.h>
+#include <algo/moILS.h>
+#include "moTestClass.h"
+#include <eval/oneMaxEval.h>
+#include <continuator/moTrueContinuator.h>
+#include <comparator/moSolNeighborComparator.h>
+#include <comparator/moNeighborComparator.h>
+#include <memory/moSolVectorTabuList.h>
+#include <neighborhood/moDummyNeighbor.h>
 
-	/**
-	 * @param _maxIter number maximum of iterations
-	 */
-    moIterContinuator(unsigned int _maxIter, bool _verbose=true): maxIter(_maxIter), verbose(_verbose){}
-
-    /**
-     *@param _solution a solution
-     *@return true if counter < maxIter
-     */
-    virtual bool operator()(EOT & _solution) {
-      bool res;
-      cpt++;
-      res = (cpt < maxIter);
-      if(!res && verbose)
-          std::cout << "STOP in moIterContinuator: Reached maximum number of iterations [" << cpt << "/" << maxIter << "]" << std::endl;
-      return res;
-    }
-
-    /**
-     * reset the counter of iteration
-     * @param _solution a solution
-     */
-    virtual void init(EOT & _solution) {
-    	cpt = 0;
-    }
-
-    /**
-     * the current number of iteration
-     * @return the number of iteration
-     */
-    unsigned int value() {
-      return cpt ;
-    }
-
-private:
-    unsigned int maxIter;
-    unsigned int cpt;
-    bool verbose;
-
+class dummyMonOp: public eoMonOp<bitVector>{
+	public:
+		bool operator()(bitVector&){return false;}
 };
-#endif
+
+int main(){
+
+	std::cout << "[t-moILS] => START" << std::endl;
+
+	bitNeighborhood nh(4);
+	oneMaxEval<bitVector> fullEval;
+	evalOneMax eval(4);
+
+	moTS<bitNeighbor> ts(nh, fullEval, eval, 1, 7);
+
+	dummyMonOp op;
+
+	//basic constructor
+	moILS<bitNeighbor> test1(ts, fullEval, op, 3);
+
+	//simple constructor
+	moTrueContinuator<moDummyNeighbor<bitVector> > cont;
+	moILS<bitNeighbor> test2(ts, fullEval, op, cont);
+
+	//general constructor
+	moMonOpPerturb<bitNeighbor> perturb(op, fullEval);
+	moAlwaysAcceptCrit<bitNeighbor> accept;
+	moILS<bitNeighbor> test3(ts, fullEval, cont, perturb, accept);
+
+	std::cout << "[t-moILS] => OK" << std::endl;
+
+	return EXIT_SUCCESS;
+}
+

@@ -2,7 +2,7 @@
 /** testILS.cpp
  *
  * SV - 12/01/10
- * JH - 04/05/10
+ * JH - 06/05/10
  *
  */
 //-----------------------------------------------------------------------------
@@ -40,21 +40,15 @@ using namespace std;
 
 //Mutation
 #include <eoSwapMutation.h>
+#include <eoOrderXover.h>
 
 //Algorithm and its components
-#include <algo/moTS.h>
-#include <algo/moILS.h>
+#include <algo/moFirstImprHC.h>
 
 //mo eval
 #include <eval/moFullEvalByCopy.h>
 
-#include <perturb/moMonOpPerturb.h>
-#include <perturb/moRestartPerturb.h>
-#include <perturb/moNeighborhoodPerturb.h>
-#include <acceptCrit/moAlwaysAcceptCrit.h>
-#include <acceptCrit/moBetterAcceptCrit.h>
-
-#include <continuator/moIterContinuator.h>
+#include <continuator/moTrueContinuator.h>
 
 // REPRESENTATION
 //-----------------------------------------------------------------------------
@@ -112,7 +106,6 @@ void main_function(int argc, char **argv)
     // you'll aways get the same result, NOT a random run
     rng.reseed(seed);
 
-
     /* =========================================================
      *
      * Full evaluation fitness function
@@ -130,26 +123,21 @@ void main_function(int argc, char **argv)
 
     eoInitPermutation<Queen> init(vecSize);
 
-
     /* =========================================================
      *
-     * Declare and init solutions
+     * Declare and init a population
      *
      * ========================================================= */
 
-    Queen sol1;
-    Queen sol2;
-    Queen sol3;
+    eoPop<Queen> pop;
 
-    //random initialization
-    init(sol1);
-    init(sol2);
-    init(sol3);
+    Queen tmp;
 
-    //evaluation
-    fullEval(sol1);
-    fullEval(sol2);
-    fullEval(sol3);
+    for(unsigned int i=0; i<20; i++){
+    	init(tmp);
+    	fullEval(tmp);
+    	pop.push_back(tmp);
+    }
 
     /* =========================================================
      *
@@ -167,54 +155,58 @@ void main_function(int argc, char **argv)
 
     orderShiftNeighborhood orderShiftNH(pow(vecSize-1, 2));
 
-
     /* =========================================================
      *
-     * the local search algorithms
+     * the local search algorithm
      *
      * ========================================================= */
 
-    //Basic Constructor of the Tabu Search
-    moTS<shiftNeighbor> ts(orderShiftNH, fullEval, shiftEval, 1, 7);
+    //Basic Constructor a first improvement hill climber
+    moFirstImprHC<shiftNeighbor> hc(orderShiftNH, fullEval, shiftEval);
 
-    eoSwapMutation<Queen> mut;
+    /* =========================================================
+     *
+     * the evolutionary algorithm
+     *
+     * ========================================================= */
 
-    //Basic Constructor of the Iterated Local Search
-    moILS<shiftNeighbor> localSearch1(ts, fullEval, mut, 3);
+    //continuator
+    eoGenContinue<Queen> EAcont(50);
+
+    //selection
+    eoDetTournamentSelect<Queen> selectOne(2);
+    eoSelectMany<Queen> select(selectOne, 1);
+
+    //crossover
+    eoOrderXover<Queen> cross;
+
+    //transform operator (the hill climber replace the mutation operator)
+    eoSGATransform<Queen> transform(cross, 0.3, hc, 0.7);
+
+    //replacement
+    eoGenerationalReplacement<Queen> repl;
+
+    //easyEA
+    eoEasyEA<Queen> hybridAlgo(EAcont, fullEval, select, transform, repl);
 
 
-    //Simple Constructor of the Iterated Local Search
-    //Be carefull, template of the continuator must be a dummyNeighbor!!!
-    moIterContinuator<moDummyNeighbor<Queen> > cont(4, false);
-    moILS<shiftNeighbor> localSearch2(ts, fullEval, mut, cont);
+    std::cout << "INITIAL POPULATION:" << std::endl;
+    std::cout << "-------------------" << std::endl;
 
-    //General Constructor of the Iterated Local Search
-    moMonOpPerturb<shiftNeighbor> perturb(mut, fullEval);
+	for(unsigned int i=0; i<pop.size(); i++)
+		std::cout << pop[i] << std::endl;
 
-    moSolComparator<Queen> solComp;
-    moBetterAcceptCrit<shiftNeighbor> accept(solComp);
+    hybridAlgo(pop);
 
-    moILS<shiftNeighbor> localSearch3(ts, fullEval, cont, perturb, accept);
+    std::cout << std::endl;
+    std::cout << "FINAL POPULATION:" << std::endl;
+    std::cout << "-------------------" << std::endl;
+	for(unsigned int i=0; i<pop.size(); i++)
+		std::cout << pop[i] << std::endl;
 
-    std::cout << "Iterated Local Search 1:" << std::endl;
-    std::cout << "--------------" << std::endl;
-    std::cout << "initial: " << sol1 << std::endl ;
-    localSearch1(sol1);
-    std::cout << "final:   " << sol1 << std::endl << std::endl;
-
-    std::cout << "Iterated Local Search 2:" << std::endl;
-    std::cout << "--------------" << std::endl;
-    std::cout << "initial: " << sol2 << std::endl ;
-    localSearch2(sol2);
-    std::cout << "final:   " << sol2 << std::endl << std::endl;
-
-    std::cout << "Iterated Local Search 3:" << std::endl;
-    std::cout << "--------------" << std::endl;
-    std::cout << "initial: " << sol3 << std::endl ;
-    localSearch3(sol3);
-    std::cout << "final:   " << sol3 << std::endl << std::endl;
 
 }
+
 
 // A main that catches the exceptions
 

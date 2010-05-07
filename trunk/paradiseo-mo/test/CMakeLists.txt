@@ -81,6 +81,7 @@ SET (TEST_LIST
 		t-moNeighborVectorTabuList
 		t-moMonOpDiversification
 		t-moTS
+		t-moILS
 		)
 				
 FOREACH (test ${TEST_LIST})
