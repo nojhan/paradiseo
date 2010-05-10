@@ -98,6 +98,7 @@ SET (TEST_LIST
 		t-moLocalSearchInit
 		t-moSolInit
 		t-moEvalCounter
+		t-moNeighborFitnessStat
 		)
 				
 FOREACH (test ${TEST_LIST})
