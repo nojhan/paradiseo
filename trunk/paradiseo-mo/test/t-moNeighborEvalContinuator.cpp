@@ -32,11 +32,35 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cassert>
 
 #include <continuator/moNeighborEvalContinuator.h>
+#include "moTestClass.h"
 
 int main(){
 
 	std::cout << "[t-moNeighborEvalContinuator] => START" << std::endl;
 
+	evalOneMax moEval(2);
+	moEvalCounter<bitNeighbor> evalCount(moEval);
+	moNeighborEvalContinuator<bitNeighbor> test(evalCount, 3);
+
+	bitVector sol;
+	sol.push_back(true);
+	sol.push_back(false);
+
+	bitNeighbor n;
+	sol.fitness(1);
+
+	test.init(sol);
+	evalCount(sol,n);
+	assert(test.value()==1);
+	evalCount(sol,n);
+	assert(test.value()==2);
+	assert(test(sol));
+	evalCount(sol,n);
+	assert(test.value()==3);
+	assert(!test(sol));
+	test.init(sol);
+	assert(test.value()==0);
+	assert(test(sol));
 
 	std::cout << "[t-moNeighborEvalContinuator] => OK" << std::endl;
 

@@ -35,8 +35,11 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <continuator/moNeutralDegreeNeighborStat.h>
 #include <continuator/moSecondMomentNeighborStat.h>
 #include <continuator/moSizeNeighborStat.h>
+#include <continuator/moAverageFitnessNeighborStat.h>
+#include <continuator/moStdFitnessNeighborStat.h>
 #include <comparator/moNeighborComparator.h>
 #include <comparator/moSolNeighborComparator.h>
+
 #include "moTestClass.h"
 
 #include <iostream>
@@ -146,6 +149,22 @@ int main() {
     assert(test8.value()==10);
     assert(test8.className()=="moSizeNeighborStat");
     std::cout << "[t-moSizeNeighborStat] => OK" << std::endl;
+
+    //test of moAverageFitnessNeighborStat.h
+    std::cout << "[t-moAverageFitnessNeighborStat] => START" << std::endl;
+    moAverageFitnessNeighborStat<bitNeighbor> test9(test);
+    test9(sol);
+    assert(test9.value()==6.6);
+    assert(test9.className()=="moAverageFitnessNeighborStat");
+    std::cout << "[t-moAverageFitnessNeighborStat] => OK" << std::endl;
+
+    //test of moStdFitnessNeighborStat.h
+    std::cout << "[t-moStdFitnessNeighborStat] => START" << std::endl;
+    moStdFitnessNeighborStat<bitNeighbor> test10(test);
+    test10(sol);
+    assert(test10.value()> 0.966 && test10.value() < 0.967);
+    assert(test10.className()=="moStdFitnessNeighborStat");
+    std::cout << "[t-moStdFitnessNeighborStat] => OK" << std::endl;
 
     return EXIT_SUCCESS;
 }

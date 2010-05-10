@@ -32,11 +32,36 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cassert>
 
 #include <continuator/moFullEvalContinuator.h>
+#include <eval/oneMaxEval.h>
+#include "moTestClass.h"
 
 int main(){
 
 	std::cout << "[t-moFullEvalContinuator] => START" << std::endl;
 
+	oneMaxEval<bitVector> fullEval;
+	eoEvalFuncCounter<bitVector> evalCount(fullEval);
+	moFullEvalContinuator<bitNeighbor> test(evalCount, 3);
+
+	bitVector sol;
+	sol.push_back(1);
+
+
+	test.init(sol);
+	evalCount(sol);
+	sol.invalidate();
+	assert(test.value()==1);
+	evalCount(sol);
+	sol.invalidate();
+	assert(test.value()==2);
+	assert(test(sol));
+	evalCount(sol);
+	sol.invalidate();
+	assert(test.value()==3);
+	assert(!test(sol));
+	test.init(sol);
+	assert(test.value()==0);
+	assert(test(sol));
 
 	std::cout << "[t-moFullEvalContinuator] => OK" << std::endl;
 

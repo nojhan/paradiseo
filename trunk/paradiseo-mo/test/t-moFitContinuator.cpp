@@ -32,11 +32,27 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cassert>
 
 #include <continuator/moFitContinuator.h>
+#include "moTestClass.h"
 
 int main(){
 
 	std::cout << "[t-moFitContinuator] => START" << std::endl;
 
+	moFitContinuator<bitNeighbor> test1(3);
+	moFitContinuator<moDummyNeighborTest> test2(5);
+
+	bitVector sol1;
+	Solution sol2;
+
+	sol1.fitness(4);
+	assert(test1(sol1));
+	sol1.fitness(3);
+	assert(!test1(sol1));
+
+	sol2.fitness(3);
+	assert(test2(sol2));
+	sol2.fitness(5);
+	assert(!test2(sol2));
 
 	std::cout << "[t-moFitContinuator] => OK" << std::endl;
 
