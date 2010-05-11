@@ -99,6 +99,11 @@ SET (TEST_LIST
 		t-moSolInit
 		t-moEvalCounter
 		t-moNeighborFitnessStat
+		t-moNeighborBestStat
+		t-moCounterStat
+		t-moMinusOneCounterStat
+		t-moVectorMonitor
+		t-moRandomSearchExplorer
 		)
 				
 FOREACH (test ${TEST_LIST})
