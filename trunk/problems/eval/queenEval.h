@@ -48,7 +48,7 @@ public:
     	  unsigned int fit=0;
     	  for(unsigned int i=0; i<_queen.size()-1; i++)
     		  for(unsigned int j=i+1; j< _queen.size(); j++)
-    			  if((_queen[i]+j-i == _queen[j]) || (_queen[i]+i-j == _queen[j]))
+    			  if(((unsigned int)_queen[i]+j-i == (unsigned int)_queen[j]) || ((unsigned int)_queen[i]+i-j == (unsigned int)_queen[j]))
     				  fit++;
     	  _queen.fitness(fit);
     }
