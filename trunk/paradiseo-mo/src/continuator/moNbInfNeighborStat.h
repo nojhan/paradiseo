@@ -38,11 +38,10 @@
 #include <continuator/moStat.h>
 #include <continuator/moNeighborhoodStat.h>
 #include <neighborhood/moNeighborhood.h>
+
 /**
- *
  * From moNeighborhoodStat, to compute the number of solutions in the neighborhood
  * with (strictly) lower fitness than the current solution
- *
 */
 template< class Neighbor >
 class moNbInfNeighborStat : public moStat<typename Neighbor::EOT, unsigned>

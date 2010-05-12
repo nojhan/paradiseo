@@ -36,14 +36,14 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
 
-/********************************************************
+/**
  * Random Neutral Walk:
  * Random Neutral walk local search
  * 
  * At each iteration,
  *   one random neighbor with the same fitness is selected and replace the current solution
  *   the algorithm stops when the number of steps is reached
- ********************************************************/
+ */
 template<class Neighbor>
 class moRandomNeutralWalk: public moLocalSearch<Neighbor>
 {
@@ -52,7 +52,7 @@ public:
   typedef moNeighborhood<Neighbor> Neighborhood ;
 
   /**
-   * Simple constructor for a random walk
+   * Basic constructor for a random walk
    * @param _neighborhood the neighborhood
    * @param _fullEval the full evaluation function
    * @param _eval neighbor's evaluation function
@@ -77,7 +77,7 @@ public:
   {}
   
   /**
-   * Simple constructor for a random walk
+   * General constructor for a random walk
    * @param _neighborhood the neighborhood
    * @param _fullEval the full evaluation function
    * @param _eval neighbor's evaluation function

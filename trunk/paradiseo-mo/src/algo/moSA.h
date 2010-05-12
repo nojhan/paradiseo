@@ -38,6 +38,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
 
+/**
+ * Simulated Annealing
+ */
 template<class Neighbor>
 class moSA: public moLocalSearch<Neighbor>
 {

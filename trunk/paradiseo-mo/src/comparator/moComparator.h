@@ -38,18 +38,6 @@
 #include <EO.h>
 #include <eoFunctor.h>
 
-// moComparator => comparer deux solutions
-// idée :
-// - eoComparator
-// - moComparator qui hérite de eoComparator ?
-// - moeoComparator qui hérite de eoComparator
-// idée J :
-// - eoComparator<TYPE> : eoBF <const TYPE & , const TYPE & , bool>
-// - eoSolComparator : eoComparator<EOT> ?
-// - moNeighborCompartor : : eoComparator<Neighbor>
-//
-// une instantiation possible !!
-
 
 /**
  * Comparator of two types
@@ -58,7 +46,13 @@ template< class T1, class T2 >
 class moComparator : public eoBF<const T1 & , const T2 & , bool>
 {
 public:
-    virtual bool equals(const T1&, const T2&) = 0;
+
+	/**
+	 * @param _ref1 a reference on a variable of type T1
+	 * @param _ref2 a reference on a variable of type T2
+	 * @return true if _ref1 and _ref2 are equals
+	 */
+    virtual bool equals(const T1& _ref1, const T2& _ref2) = 0;
 
 };
 

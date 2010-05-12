@@ -34,11 +34,11 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <explorer/moDummyExplorer.h>
 #include <continuator/moTrueContinuator.h>
 
-/********************************************************
+/**
  * Dummy Local Search:
  * 
  * To do nothing, only the full evaluation of the solution if necessary ;-)
- ********************************************************/
+*/
 template<class Neighbor>
 class moDummyLS: public moLocalSearch<Neighbor>
 {

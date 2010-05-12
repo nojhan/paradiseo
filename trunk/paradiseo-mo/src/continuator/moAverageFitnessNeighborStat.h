@@ -39,7 +39,7 @@
 #include <continuator/moNeighborhoodStat.h>
 
 /**
- * From moNeighborhoodStat, to compute the average and the standard deviation of fitness in the neighborhood
+ * From moNeighborhoodStat, to compute the average of fitness in the neighborhood
  */
 template< class Neighbor >
 class moAverageFitnessNeighborStat : public moStat<typename Neighbor::EOT, double >

@@ -39,9 +39,7 @@
 #include <utils/eoMonitor.h>
 
 /**
- * The actual class that will be used as base for all statistics
- * that need to be calculated over the solution
- * It is a moStatBase AND an eoValueParam so it can be used in Monitors.
+ * Class calling monitors with a given frequency
  */
 class moCounterMonitorSaver : public eoUpdater {
 public :

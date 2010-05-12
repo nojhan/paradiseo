@@ -57,8 +57,8 @@ public:
   
   /**
    * Test if continue
-   *@param _solution a solution
-   *@return true if number of evaluations < maxFullEval
+   * @param _solution a solution
+   * @return true if number of evaluations < maxFullEval
    */
   virtual bool operator()(EOT & _solution) {
     return (eval.value() - nbEval_start < maxFullEval);

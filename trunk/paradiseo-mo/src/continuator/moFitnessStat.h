@@ -38,10 +38,8 @@
 #include <continuator/moStat.h>
 
 /**
- * The actual class that will be used as base for all statistics
- * that need to be calculated over the solution
- * It is a moStatBase AND an eoValueParam so it can be used in Monitors.
-*/
+ * Stat given the fitness of the current solution
+ */
 template <class EOT>
 class moFitnessStat : public moStat<EOT, typename EOT::Fitness>
 {

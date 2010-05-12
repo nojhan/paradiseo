@@ -53,7 +53,10 @@ public:
   typedef typename Neighbor::EOT EOT ;
 
     /**
-     * Constructor of a moLocalSearch needs a NeighborhooExplorer and a Continuator
+     * Constructor of a moLocalSearch
+     * @param _searchExpl a neighborhood explorer
+     * @param _cont an external continuator (can be a checkpoint!)
+     * @param _fullEval a full evaluation function
      */
     moLocalSearch(NeighborhoodExplorer& _searchExpl, moContinuator<Neighbor> & _cont, eoEvalFunc<EOT>& _fullEval) : searchExplorer(_searchExpl), cont(&_cont), fullEval(_fullEval) { } ;
 
@@ -99,8 +102,8 @@ public:
     };
 
     /** 
-     * external continuator object
-     * @return the external continuator 
+     * Set an external continuator
+     * @param _cont the external continuator
     */
   void setContinuator(moContinuator<Neighbor> & _cont) {
     cont = &_cont ;

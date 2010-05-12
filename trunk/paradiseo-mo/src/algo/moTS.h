@@ -43,6 +43,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
 
+/**
+ * Tabu Search
+ */
 template<class Neighbor>
 class moTS: public moLocalSearch<Neighbor>
 {

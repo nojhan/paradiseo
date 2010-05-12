@@ -36,7 +36,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
 
-/********************************************************
+/**
  * Metropolis-Hasting local search
  * Only the symetric case is considered when Q(x,y) = Q(y,x)
  * Fitness must be > 0
@@ -48,7 +48,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
  *   if a random number from [0,1] is lower than fitness(neighbor) / fitness(solution)
  *       then the solution is replaced by the selected neighbor
  *   the algorithm stops when the number of iterations is too large
- ********************************************************/
+ */
 template<class Neighbor>
 class moMetropolisHasting: public moLocalSearch<Neighbor>
 {
@@ -57,7 +57,7 @@ public:
   typedef moNeighborhood<Neighbor> Neighborhood ;
 
   /**
-   * Simple constructor of the Metropolis-Hasting 
+   * Basic constructor of the Metropolis-Hasting
    * @param _neighborhood the neighborhood
    * @param _fullEval the full evaluation function
    * @param _eval neighbor's evaluation function
@@ -82,7 +82,7 @@ public:
   {}
   
   /**
-   * Simple constructor of the Metropolis-Hasting 
+   * General constructor of the Metropolis-Hasting
    * @param _neighborhood the neighborhood
    * @param _fullEval the full evaluation function
    * @param _eval neighbor's evaluation function

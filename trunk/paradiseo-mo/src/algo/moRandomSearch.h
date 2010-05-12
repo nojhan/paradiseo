@@ -36,14 +36,14 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eoInit.h>
 #include <eoEvalFunc.h>
 
-/********************************************************
+/**
  * Random Search:
  * Pure random search local search
  * 
  * At each iteration,
  *   one random solution is selected and replace the current solution
  *   the algorithm stops when the number of solution is reached
- ********************************************************/
+ */
 template<class Neighbor>
 class moRandomSearch: public moLocalSearch<Neighbor>
 {
@@ -62,10 +62,11 @@ public:
   {}
   
   /**
-   * Simple constructor for a random search
+   * General constructor for a random search
    * @param _init the solution initializer, to explore at random the search space
    * @param _fullEval the full evaluation function
    * @param _nbSolMax number of solutions
+   * @param _cont external continuator
    */
   moRandomSearch(eoInit<EOT> & _init, eoEvalFunc<EOT>& _fullEval, unsigned _nbSolMax, moContinuator<Neighbor>& _cont):
     moLocalSearch<Neighbor>(explorer, _cont, _fullEval),

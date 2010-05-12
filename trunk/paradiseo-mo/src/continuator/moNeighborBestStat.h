@@ -77,6 +77,7 @@ public :
      *
      * @param _neighborhood a neighborhood
      * @param _eval an evaluation function
+     * @param _k number of neighbors visited (default all)
      */
   moNeighborBestStat(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, unsigned _k = 0):
       moStat<EOT, Fitness>(Fitness(), "best"),

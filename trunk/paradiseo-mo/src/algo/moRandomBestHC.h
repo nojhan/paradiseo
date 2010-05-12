@@ -36,7 +36,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eval/moEval.h>
 #include <eoEvalFunc.h>
 
-/********************************************************
+/**
  * Random Best HC:
  * Hill-Climber local search
  * 
@@ -45,7 +45,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
  *   if the selected neighbor have higher fitness than the current solution
  *       then the solution is replaced by the selected neighbor
  *   the algorithm stops when there is no higher neighbor
- ********************************************************/
+ */
 template<class Neighbor>
 class moRandomBestHC: public moLocalSearch<Neighbor>
 {
@@ -54,7 +54,7 @@ public:
   typedef moNeighborhood<Neighbor> Neighborhood ;
 
   /**
-   * Simple constructor for a hill-climber
+   * Basic constructor for a hill-climber
    * @param _neighborhood the neighborhood
    * @param _fullEval the full evaluation function
    * @param _eval neighbor's evaluation function
@@ -77,7 +77,7 @@ public:
   {}
   
   /**
-   * Simple constructor for a hill-climber
+   * General constructor for a hill-climber
    * @param _neighborhood the neighborhood
    * @param _fullEval the full evaluation function
    * @param _eval neighbor's evaluation function

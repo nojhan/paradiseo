@@ -32,6 +32,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <continuator/moContinuator.h>
 #include <neighborhood/moNeighborhood.h>
+
 /**
  * Continue until a maximum fixed number of iterations is reached
  */
@@ -43,6 +44,7 @@ public:
 
 	/**
 	 * @param _maxIter number maximum of iterations
+	 * @param _verbose true/false : verbose mode on/off
 	 */
     moIterContinuator(unsigned int _maxIter, bool _verbose=true): maxIter(_maxIter), verbose(_verbose){}
 

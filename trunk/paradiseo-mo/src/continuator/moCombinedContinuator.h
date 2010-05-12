@@ -33,6 +33,7 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <continuator/moContinuator.h>
 #include <neighborhood/moNeighborhood.h>
 #include <vector>
+
 /**
  * Combined several continuators
  * Continue until one of the continuators is false

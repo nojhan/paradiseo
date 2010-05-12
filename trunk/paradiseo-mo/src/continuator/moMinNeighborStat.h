@@ -38,6 +38,7 @@
 #include <continuator/moStat.h>
 #include <continuator/moNeighborhoodStat.h>
 #include <neighborhood/moNeighborhood.h>
+
 /**
  * From moNeighborhoodStat, to compute the min fitness in the neighborhood
  */
