@@ -77,9 +77,7 @@ public:
     fullEval(_fullEval), 
     eval(_eval),
     nbSol(_nbSol)
-  {
-    //    std::cout << "moFitnessCloudSampling: Warming to nothing will be sample." << std::endl;
-  }
+  {}
 
   /** 
    * default destructor

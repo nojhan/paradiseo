@@ -60,13 +60,6 @@ class moComparator : public eoBF<const T1 & , const T2 & , bool>
 public:
     virtual bool equals(const T1&, const T2&) = 0;
 
-    /**
-     * Return the class id.
-     * @return the class name as a std::string
-     */
-    virtual std::string className() const {
-        return "moComparator";
-    }
 };
 
 #endif

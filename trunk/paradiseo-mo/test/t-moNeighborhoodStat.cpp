@@ -136,6 +136,7 @@ int main() {
     //test of moSecondMomentNeighborStat.h
     std::cout << "[t-moSecondMomentNeighborStat] => START" << std::endl;
     moSecondMomentNeighborStat<bitNeighbor> test7(test);
+    test7.init(sol);
     test7(sol);
     assert(test7.value().first==6.6);
     assert(test7.value().second > 0.966 && test7.value().second < 0.967);

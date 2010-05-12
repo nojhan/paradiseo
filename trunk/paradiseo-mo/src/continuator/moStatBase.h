@@ -56,12 +56,6 @@ public:
      */
     virtual void init(EOT &){}
 
-    /**
-     * @return name of the class
-     */
-    virtual std::string className(void) const {
-        return "moStatBase";
-    }
 };
 
 #endif

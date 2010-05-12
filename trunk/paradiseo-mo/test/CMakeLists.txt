@@ -104,6 +104,15 @@ SET (TEST_LIST
 		t-moMinusOneCounterStat
 		t-moVectorMonitor
 		t-moRandomSearchExplorer
+		t-moSampling
+		t-moDensityOfStatesSampling
+		t-moAutocorrelationSampling
+		t-moHillClimberSampling
+		t-moFDCsampling
+		t-moNeutralDegreeSampling
+		t-moFitnessCloudSampling
+		t-moNeutralWalkSampling
+		t-moStatistics
 		)
 				
 FOREACH (test ${TEST_LIST})

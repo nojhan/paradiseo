@@ -35,6 +35,7 @@
 #ifndef moVectorMonitor_h
 #define moVectorMonitor_h
 
+#include <fstream>
 #include <utils/eoMonitor.h>
 #include <utils/eoParam.h>
 
@@ -68,6 +69,14 @@ public:
    */
   moVectorMonitor(eoValueParam<EOT> & _param) : doubleParam(NULL), intParam(NULL), eotParam(&_param)
   { }
+
+  /**
+    * Default Constructor
+    * @param _param the parameter of type EOT to save in the vector
+    */
+  template <class ScalarType, class Compare>
+   moVectorMonitor(eoValueParam<eoScalarFitness<ScalarType, Compare> > & _param) : doubleParam( & (eoValueParam<double>&)_param), intParam(NULL), eotParam(NULL)
+   { }
 
   /**
    * Default Constructor
@@ -163,11 +172,11 @@ public:
    */
   void fileExport(std::string _filename) {
     // create file
-    ofstream os(_filename.c_str()); 
+    std::ofstream os(_filename.c_str());
 
     if (!os) {
-      string str = "moVectorMonitor: Could not open " + _filename;
-      throw runtime_error(str);
+      std::string str = "moVectorMonitor: Could not open " + _filename;
+      throw std::runtime_error(str);
     }
     
     for(unsigned int i = 0; i < size(); i++) {

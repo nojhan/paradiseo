@@ -55,6 +55,7 @@ int main() {
     moNeighborComparator<moDummyNeighborTest> comp;
     moSolNeighborComparator<moDummyNeighborTest> solNeighborComp;
 
+
     //verif constructor
     moSimpleHCexplorer<moDummyNeighborTest> test(nh, fulleval, comp, solNeighborComp);
 

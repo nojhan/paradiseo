@@ -57,7 +57,7 @@
 typedef eoBit<eoMinimizingFitness> bitVector;
 typedef moBitNeighbor<eoMinimizingFitness> bitNeighbor;
 
-class moDummyRndNeighborhood: public moOrderNeighborhood<bitNeighbor>/*, public moRndNeighborhood<bitNeighbor>*/ {
+class moDummyRndNeighborhood: public moOrderNeighborhood<bitNeighbor>, public moRndNeighborhood<bitNeighbor> {
 public:
     moDummyRndNeighborhood(unsigned int a): moOrderNeighborhood<bitNeighbor>(a) {}
 };
@@ -205,8 +205,24 @@ private:
 };
 
 class dummyInit: public eoInit<bitVector>{
+public:
 	void operator()(bitVector& sol){
 	}
+};
+
+class dummyInit2: public eoInit<bitVector>{
+
+public:
+	dummyInit2(unsigned int _size):size(_size){}
+
+	void operator()(bitVector& sol){
+		sol.resize(0);
+		for(unsigned int i=0; i< size; i++)
+			sol.push_back(true);
+	}
+
+private:
+	unsigned int size;
 };
 
 #endif

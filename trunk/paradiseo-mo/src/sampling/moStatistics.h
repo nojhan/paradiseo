@@ -36,6 +36,7 @@
 #define moStatistics_h
 
 #include <vector>
+#include <cmath>
 #include <utils/eoDistance.h>
 
 /**
@@ -61,7 +62,7 @@ public:
    * @param avg average to compute
    * @param std standard deviation to compute
    */
-  void basic(const vector<double> & data, 
+  void basic(const std::vector<double> & data,
 	double & min, double & max, double & avg, double & std) {
     
     if (data.size() == 0) {
@@ -104,8 +105,8 @@ public:
    * @param matrix matrix of distances between solutions
    */
   template <class EOT>
-  void distances(const vector<EOT> & data, eoDistance<EOT> & distance,
-		 vector< vector<double> > & matrix) {
+  void distances(const std::vector<EOT> & data, eoDistance<EOT> & distance,
+		 std::vector< std::vector<double> > & matrix) {
     if (data.size() == 0) {
       matrix.resize(0);
     } else {
@@ -134,8 +135,8 @@ public:
    * @param rho autocorrelation coefficients
    * @param phi partial autocorrelation coefficients
    */
-  void autocorrelation(const vector<double> & data, unsigned int nbS,
-		       vector<double> & rho, vector<double> & phi) {
+  void autocorrelation(const std::vector<double> & data, unsigned int nbS,
+		       std::vector<double> & rho, std::vector<double> & phi) {
     if (data.size() == 0) {
       rho.resize(0);
       phi.resize(0);

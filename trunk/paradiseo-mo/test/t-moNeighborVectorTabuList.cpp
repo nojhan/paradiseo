@@ -42,7 +42,8 @@ int main(){
     moNeighborVectorTabuList<bitNeighbor> test(2,0);
 
 
-    bitVector sol;
+    bitVector sol(4,true);
+    sol.fitness(0);
     bitNeighbor n1;
     bitNeighbor n2;
     bitNeighbor n3;

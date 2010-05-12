@@ -64,9 +64,7 @@ public:
   moDensityOfStatesSampling(eoInit<EOT> & _init, 
 			    eoEvalFunc<EOT>& _fullEval, 
 			    unsigned int _nbSol) : 
-    moSampling<Neighbor>(_init, * new moRandomSearch<Neighbor>(_init, _fullEval, _nbSol), fitnessStat)
-  {
-  }
+    moSampling<Neighbor>(_init, * new moRandomSearch<Neighbor>(_init, _fullEval, _nbSol), fitnessStat){}
 
   /** 
    * default destructor

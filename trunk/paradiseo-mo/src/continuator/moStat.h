@@ -55,12 +55,12 @@ public:
     moStat(T _value, std::string _description):
             eoValueParam<T>(_value, _description) {}
 
-    /**
-     * @return name of the class
-     */
-    virtual std::string className(void) const {
-        return "moStat";
-    }
+//    /**
+//     * @return name of the class
+//     */
+//    virtual std::string className(void) const {
+//        return "moStat";
+//    }
 };
 
 

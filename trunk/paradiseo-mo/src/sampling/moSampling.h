@@ -36,6 +36,8 @@
 #define moSampling_h
 
 #include <vector>
+#include <fstream>
+#include <iostream>
 #include <eoFunctor.h>
 #include <utils/eoMonitor.h>
 #include <continuator/moStat.h>
@@ -43,6 +45,7 @@
 #include <continuator/moVectorMonitor.h>
 #include <algo/moLocalSearch.h>
 #include <eoInit.h>
+
 
 /**
  * To sample the search space:
@@ -97,7 +100,7 @@ public:
       monitorVec.push_back(monitor);
       checkpoint->add(*monitor);
     }
-  }    
+  }
 
   /**
    * To sample the search and get the statistics
@@ -131,11 +134,11 @@ public:
    */
   void fileExport(std::string _filename, std::string _delim = " ") {
     // create file
-    ofstream os(_filename.c_str()); 
+    std::ofstream os(_filename.c_str());
 
     if (!os) {
-      string str = "moSampling: Could not open " + _filename;
-      throw runtime_error(str);
+      std::string str = "moSampling: Could not open " + _filename;
+      throw std::runtime_error(str);
     }
     
     // all vector have the same size
@@ -160,8 +163,8 @@ public:
    */
   void fileExport(unsigned int _col, std::string _filename) {
     if (_col >= monitorVec.size()) {
-      string str = "moSampling: Could not export into file the vector. The index does not exists (too large)";
-      throw runtime_error(str);
+      std::string str = "moSampling: Could not export into file the vector. The index does not exists (too large)";
+      throw std::runtime_error(str);
     }
     
     monitorVec[_col]->fileExport(_filename);

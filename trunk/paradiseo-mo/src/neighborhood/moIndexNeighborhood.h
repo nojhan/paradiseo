@@ -59,9 +59,9 @@ public:
      * Return the class id.
      * @return the class name as a std::string
      */
-    virtual std::string className() const {
-        return "moIndexNeighborhood";
-    }
+//    virtual std::string className() const {
+//        return "moIndexNeighborhood";
+//    }
 
 protected:
     unsigned int neighborhoodSize;

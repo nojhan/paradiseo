@@ -67,11 +67,10 @@ public:
    */
   moAutocorrelationSampling(eoInit<EOT> & _init, 
 			    moNeighborhood<Neighbor> & _neighborhood, 
-			    eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, 
+			    eoEvalFunc<EOT>& _fullEval,
+			    moEval<Neighbor>& _eval,
 			    unsigned int _nbStep) : 
-    moSampling<Neighbor>(_init, * new moRandomWalk<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep), fitnessStat)
-  {
-  }
+    moSampling<Neighbor>(_init, * new moRandomWalk<Neighbor>(_neighborhood, _fullEval, _eval, _nbStep), fitnessStat){}
 
   /** 
    * default destructor

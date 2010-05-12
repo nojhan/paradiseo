@@ -61,6 +61,7 @@ public :
      * @param _eval an evaluation function
      * @param _neighborComparator a neighbor Comparator
      * @param _solNeighborComparator a comparator between a solution and a neighbor
+     * @param _k number of neighbors visited
      */
   moNeighborBestStat(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moNeighborComparator<Neighbor>& _neighborComparator, moSolNeighborComparator<Neighbor>& _solNeighborComparator, unsigned int _k = 0):
       moStat<EOT, Fitness>(true, "neighborhood"),

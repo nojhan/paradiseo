@@ -70,7 +70,8 @@ public:
    */
   moHillClimberSampling(eoInit<EOT> & _init, 
 			moNeighborhood<Neighbor> & _neighborhood, 
-			eoEvalFunc<EOT>& _fullEval, moEval<Neighbor>& _eval, 
+			eoEvalFunc<EOT>& _fullEval,
+			moEval<Neighbor>& _eval,
 			unsigned int _nbAdaptWalk) : 
     moSampling<Neighbor>(initHC, * new moRandomSearch<Neighbor>(initHC, _fullEval, _nbAdaptWalk), copyStat), 
     copyStat(lengthStat),
