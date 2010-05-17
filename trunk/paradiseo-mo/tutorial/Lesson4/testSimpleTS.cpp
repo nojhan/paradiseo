@@ -65,7 +65,7 @@ void main_function(int argc, char **argv)
     // For each parameter, define Parameter, read it through the parser,
     // and assign the value to the variable
 
-	// seed
+    // seed
     eoValueParam<uint32_t> seedParam(time(0), "seed", "Random number seed", 'S');
     parser.processParam( seedParam );
     unsigned seed = seedParam.value();

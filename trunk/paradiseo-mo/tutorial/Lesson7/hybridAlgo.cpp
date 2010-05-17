@@ -133,10 +133,10 @@ void main_function(int argc, char **argv)
 
     Queen tmp;
 
-    for(unsigned int i=0; i<20; i++){
-    	init(tmp);
-    	fullEval(tmp);
-    	pop.push_back(tmp);
+    for (unsigned int i=0; i<20; i++) {
+        init(tmp);
+        fullEval(tmp);
+        pop.push_back(tmp);
     }
 
     /* =========================================================
@@ -193,16 +193,16 @@ void main_function(int argc, char **argv)
     std::cout << "INITIAL POPULATION:" << std::endl;
     std::cout << "-------------------" << std::endl;
 
-	for(unsigned int i=0; i<pop.size(); i++)
-		std::cout << pop[i] << std::endl;
+    for (unsigned int i=0; i<pop.size(); i++)
+        std::cout << pop[i] << std::endl;
 
     hybridAlgo(pop);
 
     std::cout << std::endl;
     std::cout << "FINAL POPULATION:" << std::endl;
     std::cout << "-------------------" << std::endl;
-	for(unsigned int i=0; i<pop.size(); i++)
-		std::cout << pop[i] << std::endl;
+    for (unsigned int i=0; i<pop.size(); i++)
+        std::cout << pop[i] << std::endl;
 
 
 }

@@ -155,7 +155,7 @@ void main_function(int argc, char **argv)
 
     fullEval(solution);
 
-	std::cout << "Initial Solution:" << std::endl;
+    std::cout << "Initial Solution:" << std::endl;
     std::cout << solution << std::endl << std::endl;
 
     /* =========================================================
@@ -168,14 +168,14 @@ void main_function(int argc, char **argv)
     std::cout << "-----------------" << std::endl;
     std::cout << "Neighbors List: (Neighbor -> fitness)" << std::endl;
 
-	swapNeighbor n1;
+    swapNeighbor n1;
     swapNH.init(solution, n1);
     swapEval(solution,n1);
     n1.print();
-    while(swapNH.cont(solution)){
-    	swapNH.next(solution, n1);
+    while (swapNH.cont(solution)) {
+        swapNH.next(solution, n1);
         swapEval(solution,n1);
-    	n1.print();
+        n1.print();
     }
 
     /* =========================================================
@@ -188,28 +188,28 @@ void main_function(int argc, char **argv)
     std::cout << "------------------------" << std::endl;
     std::cout << "Neighbors List: (key: Neighbor -> fitness)" << std::endl;
 
-	shiftNeighbor n2;
+    shiftNeighbor n2;
 
-	orderShiftNH.init(solution, n2);
+    orderShiftNH.init(solution, n2);
     shiftEval(solution,n2);
     n2.print();
-    while(orderShiftNH.cont(solution)){
-    	orderShiftNH.next(solution, n2);
+    while (orderShiftNH.cont(solution)) {
+        orderShiftNH.next(solution, n2);
         shiftEval(solution,n2);
-    	n2.print();
+        n2.print();
     }
 
     std::cout << "\nSHIFT RANDOM WITHOUT REPLACEMENT NEIGHBORHOOD" << std::endl;
     std::cout << "---------------------------------------------" << std::endl;
     std::cout << "Neighbors List: (key: Neighbor -> fitness)" << std::endl;
 
-	rndNoReplShiftNH.init(solution, n2);
+    rndNoReplShiftNH.init(solution, n2);
     shiftEval(solution,n2);
     n2.print();
-    while(rndNoReplShiftNH.cont(solution)){
-    	rndNoReplShiftNH.next(solution, n2);
+    while (rndNoReplShiftNH.cont(solution)) {
+        rndNoReplShiftNH.next(solution, n2);
         shiftEval(solution,n2);
-    	n2.print();
+        n2.print();
     }
 
     std::cout << "\nSHIFT RANDOM WITH REPLACEMENT NEIGHBORHOOD" << std::endl;
@@ -219,10 +219,10 @@ void main_function(int argc, char **argv)
     rndReplShiftNH.init(solution, n2);
     shiftEval(solution,n2);
     n2.print();
-    for(unsigned int i=0; i<100; i++){
-    	rndReplShiftNH.next(solution, n2);
+    for (unsigned int i=0; i<100; i++) {
+        rndReplShiftNH.next(solution, n2);
         shiftEval(solution,n2);
-    	n2.print();
+        n2.print();
     }
 
 }
