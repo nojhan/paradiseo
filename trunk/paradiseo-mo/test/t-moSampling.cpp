@@ -39,43 +39,43 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <continuator/moCounterStat.h>
 #include <continuator/moIterContinuator.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moSampling] => START" << std::endl;
+    std::cout << "[t-moSampling] => START" << std::endl;
 
-	bitNeighborhood nh(4);
-	oneMaxEval<bitVector> fullEval;
-	evalOneMax eval(4);
-	dummyInit2 init(4);
-	moIterContinuator<bitNeighbor> cont(3);
+    bitNeighborhood nh(4);
+    oneMaxEval<bitVector> fullEval;
+    evalOneMax eval(4);
+    dummyInit2 init(4);
+    moIterContinuator<bitNeighbor> cont(3);
 
-	moFirstImprHC<bitNeighbor> hc(nh, fullEval, eval, cont);
-	moSolutionStat<bitVector> stat1;
-	moCounterStat<bitVector> stat2;
-	moSampling<bitNeighbor> test(init, hc, stat1);
+    moFirstImprHC<bitNeighbor> hc(nh, fullEval, eval, cont);
+    moSolutionStat<bitVector> stat1;
+    moCounterStat<bitVector> stat2;
+    moSampling<bitNeighbor> test(init, hc, stat1);
 
-	test.add(stat2);
+    test.add(stat2);
 
-	test();
+    test();
 
-	std::vector<double> res;
-	std::vector<bitVector> res2;
-	res = test.getValues(1);
-	res2= test.getSolutions(0);
+    std::vector<double> res;
+    std::vector<bitVector> res2;
+    res = test.getValues(1);
+    res2= test.getSolutions(0);
 
-	for(unsigned int i=0; i<res2.size(); i++)
-		assert(res2[i].fitness()==4-i);
+    for (unsigned int i=0; i<res2.size(); i++)
+        assert(res2[i].fitness()==4-i);
 
-	for(unsigned int i=0; i<res.size(); i++)
-		assert(res[i]==i);
+    for (unsigned int i=0; i<res.size(); i++)
+        assert(res[i]==i);
 
-	test.fileExport("outputTestSampling1");
-	test.fileExport(1, "outputTestSampling2");
+    test.fileExport("outputTestSampling1");
+    test.fileExport(1, "outputTestSampling2");
 
-	assert(test.className()=="moSampling");
+    assert(test.className()=="moSampling");
 
-	std::cout << "[t-moSampling] => OK" << std::endl;
+    std::cout << "[t-moSampling] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

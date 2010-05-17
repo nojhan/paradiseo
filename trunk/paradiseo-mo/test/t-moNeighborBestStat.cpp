@@ -34,41 +34,41 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <continuator/moNeighborBestStat.h>
 #include "moTestClass.h"
 
-int main(){
+int main() {
 
-	std::cout << "[t-moNeighborBestStat] => START" << std::endl;
+    std::cout << "[t-moNeighborBestStat] => START" << std::endl;
 
-	bitNeighborhood nh(4);
-	bitNeighborhood emptyNH(0);
-	evalOneMax eval(4);
-	moSolNeighborComparator<bitNeighbor> sncomp;
-	moNeighborComparator<bitNeighbor> ncomp;
+    bitNeighborhood nh(4);
+    bitNeighborhood emptyNH(0);
+    evalOneMax eval(4);
+    moSolNeighborComparator<bitNeighbor> sncomp;
+    moNeighborComparator<bitNeighbor> ncomp;
 
-	moNeighborBestStat<bitNeighbor> test1(nh, eval, ncomp, sncomp, 1);
-	moNeighborBestStat<bitNeighbor> test2(nh, eval);
-	moNeighborBestStat<bitNeighbor> test3(emptyNH, eval);
+    moNeighborBestStat<bitNeighbor> test1(nh, eval, ncomp, sncomp, 1);
+    moNeighborBestStat<bitNeighbor> test2(nh, eval);
+    moNeighborBestStat<bitNeighbor> test3(emptyNH, eval);
 
-	bitVector sol(4, true);
-	sol.fitness(4);
+    bitVector sol(4, true);
+    sol.fitness(4);
 
-	test1.init(sol);
-	assert(test1.value()==3);
+    test1.init(sol);
+    assert(test1.value()==3);
 
-	sol[0]=false;
-	sol.fitness(3);
-	test1(sol);
-	assert(test1.value()==4);
+    sol[0]=false;
+    sol.fitness(3);
+    test1(sol);
+    assert(test1.value()==4);
 
-	test2(sol);
-	assert(test2.value()==2);
+    test2(sol);
+    assert(test2.value()==2);
 
-	test3(sol);
-	assert(test3.value()==int());
+    test3(sol);
+    assert(test3.value()==int());
 
-	assert(test1.className()=="moNeighborBestStat");
+    assert(test1.className()=="moNeighborBestStat");
 
-	std::cout << "[t-moNeighborBestStat] => OK" << std::endl;
+    std::cout << "[t-moNeighborBestStat] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

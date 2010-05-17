@@ -34,11 +34,11 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <cstdlib>
 #include <cassert>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moNeighborVectorTabuList] => START" << std::endl;
+    std::cout << "[t-moNeighborVectorTabuList] => START" << std::endl;
 
-	//tabu list of size 2 (neighbor are always tabu)
+    //tabu list of size 2 (neighbor are always tabu)
     moNeighborVectorTabuList<bitNeighbor> test(2,0);
 
 
@@ -81,7 +81,7 @@ int main(){
     assert(!test.check(sol, n3));
     assert(!test.check(sol, n4));
 
-	//tabu list of size 2 (neighbor are tabu during 2 iterations)
+    //tabu list of size 2 (neighbor are tabu during 2 iterations)
     moNeighborVectorTabuList<bitNeighbor> test2(2,2);
 
     test2.add(sol, n1);
@@ -97,8 +97,8 @@ int main(){
     assert(!test2.check(sol, n1));
     assert(!test2.check(sol, n2));
 
-	std::cout << "[t-moNeighborVectorTabuList] => OK" << std::endl;
+    std::cout << "[t-moNeighborVectorTabuList] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

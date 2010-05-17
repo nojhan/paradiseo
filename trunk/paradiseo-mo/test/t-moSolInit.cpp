@@ -33,24 +33,24 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <perturb/moSolInit.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moSolInit] => START" << std::endl;
+    std::cout << "[t-moSolInit] => START" << std::endl;
 
-	int a=3;
+    int a=3;
 
-	int b=5;
+    int b=5;
 
-	moSolInit<int> test(a);
+    moSolInit<int> test(a);
 
-	test(b);
-	assert(b==3);
-	a=4;
-	test(b);
-	assert(b==4);
+    test(b);
+    assert(b==3);
+    a=4;
+    test(b);
+    assert(b==4);
 
-	std::cout << "[t-moSolInit] => OK" << std::endl;
+    std::cout << "[t-moSolInit] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

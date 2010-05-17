@@ -37,26 +37,26 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <utils/eoDistance.h>
 #include <eval/oneMaxEval.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moNeutralWalkSampling] => START" << std::endl;
+    std::cout << "[t-moNeutralWalkSampling] => START" << std::endl;
 
-	bitNeighborhood nh(4);
-	oneMaxEval<bitVector> fullEval;
-	evalOneMax eval(4);
-	dummyInit2 init(4);
-	bitVector sol(4, true);
-	sol.fitness(4);
-	eoHammingDistance<bitVector> dist;
+    bitNeighborhood nh(4);
+    oneMaxEval<bitVector> fullEval;
+    evalOneMax eval(4);
+    dummyInit2 init(4);
+    bitVector sol(4, true);
+    sol.fitness(4);
+    eoHammingDistance<bitVector> dist;
 
-	moNeutralWalkSampling<bitNeighbor> test(sol, nh, fullEval, eval, dist, 3);
+    moNeutralWalkSampling<bitNeighbor> test(sol, nh, fullEval, eval, dist, 3);
 
-	test();
+    test();
 
-	test.fileExport("outputTestNeutralWalkSampling");
+    test.fileExport("outputTestNeutralWalkSampling");
 
-	std::cout << "[t-moNeutralWalkSampling] => OK" << std::endl;
+    std::cout << "[t-moNeutralWalkSampling] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

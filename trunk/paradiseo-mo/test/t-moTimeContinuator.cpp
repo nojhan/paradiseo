@@ -37,15 +37,15 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 void wait ( int seconds )
 {
-  clock_t endwait;
-  endwait = clock () + seconds * CLOCKS_PER_SEC ;
-  while (clock() < endwait) {}
+    clock_t endwait;
+    endwait = clock () + seconds * CLOCKS_PER_SEC ;
+    while (clock() < endwait) {}
 }
 
 
-int main(){
+int main() {
 
-	std::cout << "[t-moTimeContinuator] => START" << std::endl;
+    std::cout << "[t-moTimeContinuator] => START" << std::endl;
 
     moTimeContinuator<moDummyNeighborTest> test(2, false);
     moTimeContinuator<moDummyNeighborTest> test2(3);
@@ -64,8 +64,8 @@ int main(){
 
     assert(test.className()=="moTimeContinuator");
 
-	std::cout << "[t-moTimeContinuator] => OK" << std::endl;
+    std::cout << "[t-moTimeContinuator] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

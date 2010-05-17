@@ -33,14 +33,14 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <neighborhood/moDummyNeighbor.h>
 #include "moTestClass.h"
 
-int main(){
+int main() {
 
-	std::cout << "[t-moDummyNeighbor] => START" << std::endl;
+    std::cout << "[t-moDummyNeighbor] => START" << std::endl;
 
-	moDummyNeighbor<bitVector> test;
+    moDummyNeighbor<bitVector> test;
 
-	std::cout << "[t-moDummyNeighbor] => OK" << std::endl;
+    std::cout << "[t-moDummyNeighbor] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

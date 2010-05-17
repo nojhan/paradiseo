@@ -34,33 +34,33 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <continuator/moNeighborFitnessStat.h>
 #include "moTestClass.h"
 
-int main(){
+int main() {
 
-	std::cout << "[t-moNeighborFitnessStat] => START" << std::endl;
+    std::cout << "[t-moNeighborFitnessStat] => START" << std::endl;
 
-	bitNeighborhood nh(4);
-	bitNeighborhood nh2(0);
-	evalOneMax eval(4);
+    bitNeighborhood nh(4);
+    bitNeighborhood nh2(0);
+    evalOneMax eval(4);
 
-	moNeighborFitnessStat<bitNeighbor> test(nh, eval);
-	moNeighborFitnessStat<bitNeighbor> test2(nh2, eval);
+    moNeighborFitnessStat<bitNeighbor> test(nh, eval);
+    moNeighborFitnessStat<bitNeighbor> test2(nh2, eval);
 
-	bitVector sol(4, true);
-	sol.fitness(4);
-	test.init(sol);
-	assert(test.value()==3);
-	test(sol);
-	assert(test.value()==3);
+    bitVector sol(4, true);
+    sol.fitness(4);
+    test.init(sol);
+    assert(test.value()==3);
+    test(sol);
+    assert(test.value()==3);
 
-	test2.init(sol);
-	sol.fitness(3);
-	test2(sol);
-	assert(test2.value()==int());
+    test2.init(sol);
+    sol.fitness(3);
+    test2(sol);
+    assert(test2.value()==int());
 
-	assert(test.className()=="moNeighborFitnessStat");
+    assert(test.className()=="moNeighborFitnessStat");
 
-	std::cout << "[t-moNeighborFitnessStat] => OK" << std::endl;
+    std::cout << "[t-moNeighborFitnessStat] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

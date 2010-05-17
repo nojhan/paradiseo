@@ -33,32 +33,32 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <continuator/moMinusOneCounterStat.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moMinusOneCounterStat] => START" << std::endl;
+    std::cout << "[t-moMinusOneCounterStat] => START" << std::endl;
 
-	moMinusOneCounterStat<int> test;
+    moMinusOneCounterStat<int> test;
 
-	int a=3;
+    int a=3;
 
-	test.init(a);
-	assert(test.value()==0);
-	a=5;
-	test(a);
-	assert(test.value()==0);
-	a=-3;
-	test(a);
-	assert(test.value()==1);
-	a=-12;
-	test(a);
-	assert(test.value()==2);
-	test.init(a);
-	assert(test.value()==0);
+    test.init(a);
+    assert(test.value()==0);
+    a=5;
+    test(a);
+    assert(test.value()==0);
+    a=-3;
+    test(a);
+    assert(test.value()==1);
+    a=-12;
+    test(a);
+    assert(test.value()==2);
+    test.init(a);
+    assert(test.value()==0);
 
-	assert(test.className()=="moMinusOneCounterStat");
+    assert(test.className()=="moMinusOneCounterStat");
 
-	std::cout << "[t-moMinusOneCounterStat] => OK" << std::endl;
+    std::cout << "[t-moMinusOneCounterStat] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

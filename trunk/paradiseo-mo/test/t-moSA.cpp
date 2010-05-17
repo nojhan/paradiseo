@@ -38,28 +38,28 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <continuator/moTrueContinuator.h>
 #include <comparator/moSolNeighborComparator.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moSA] => START" << std::endl;
+    std::cout << "[t-moSA] => START" << std::endl;
 
-	bitNeighborhood nh(4);
-	oneMaxEval<bitVector> fullEval;
-	evalOneMax eval(4);
+    bitNeighborhood nh(4);
+    oneMaxEval<bitVector> fullEval;
+    evalOneMax eval(4);
 
-	//test first constructor
-	moSA<bitNeighbor> test1(nh, fullEval, eval);
+    //test first constructor
+    moSA<bitNeighbor> test1(nh, fullEval, eval);
 
-	//test second constructor
-	moSimpleCoolingSchedule<bitVector> cool(10, 0.9, 100, 0.01);
-	moSA<bitNeighbor> test2(nh, fullEval, eval, cool);
+    //test second constructor
+    moSimpleCoolingSchedule<bitVector> cool(10, 0.9, 100, 0.01);
+    moSA<bitNeighbor> test2(nh, fullEval, eval, cool);
 
-	//test third constructor
-	moTrueContinuator<bitNeighbor> cont;
-	moSolNeighborComparator<bitNeighbor> comp;
-	moSA<bitNeighbor> test3(nh, fullEval, eval, cool, comp, cont);
+    //test third constructor
+    moTrueContinuator<bitNeighbor> cont;
+    moSolNeighborComparator<bitNeighbor> comp;
+    moSA<bitNeighbor> test3(nh, fullEval, eval, cool, comp, cont);
 
-	std::cout << "[t-moSA] => OK" << std::endl;
+    std::cout << "[t-moSA] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

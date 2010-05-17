@@ -34,16 +34,16 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <explorer/moDummyExplorer.h>
 #include "moTestClass.h"
 
-int main(){
+int main() {
 
-	std::cout << "[t-moDummyExplorer] => START" << std::endl;
+    std::cout << "[t-moDummyExplorer] => START" << std::endl;
 
-	moDummyExplorer<bitNeighbor> test;
+    moDummyExplorer<bitNeighbor> test;
 
-	assert(test.className()=="moDummyExplorer");
+    assert(test.className()=="moDummyExplorer");
 
-	std::cout << "[t-moDummyExplorer] => OK" << std::endl;
+    std::cout << "[t-moDummyExplorer] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

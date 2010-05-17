@@ -39,32 +39,32 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include "moTestClass.h"
 
-int main(){
+int main() {
 
-	std::cout << "[t-moLocalSearch] => START" << std::endl;
-
-
-
-	bitNeighborhood nh(8);
-	oneMaxEval<bitVector> fullEval;
-	evalOneMax eval(8);
-	moTrueContinuator<bitNeighbor> cont;
-	moSolNeighborComparator<bitNeighbor> sncomp;
-	moNeighborComparator<bitNeighbor> ncomp;
-	moSimpleHCexplorer<bitNeighbor> explorer(nh, eval, ncomp, sncomp);
-	moLocalSearch<bitNeighbor> test(explorer, cont, fullEval);
-
-	bitVector sol(8, true);
-
-	test(sol);
-
-	assert(sol.fitness()==0);
-	for(unsigned int i=0; i<sol.size(); i++)
-		assert(!sol[i]);
+    std::cout << "[t-moLocalSearch] => START" << std::endl;
 
 
-	std::cout << "[t-moLocalSearch] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    bitNeighborhood nh(8);
+    oneMaxEval<bitVector> fullEval;
+    evalOneMax eval(8);
+    moTrueContinuator<bitNeighbor> cont;
+    moSolNeighborComparator<bitNeighbor> sncomp;
+    moNeighborComparator<bitNeighbor> ncomp;
+    moSimpleHCexplorer<bitNeighbor> explorer(nh, eval, ncomp, sncomp);
+    moLocalSearch<bitNeighbor> test(explorer, cont, fullEval);
+
+    bitVector sol(8, true);
+
+    test(sol);
+
+    assert(sol.fitness()==0);
+    for (unsigned int i=0; i<sol.size(); i++)
+        assert(!sol[i]);
+
+
+    std::cout << "[t-moLocalSearch] => OK" << std::endl;
+
+    return EXIT_SUCCESS;
 }
 

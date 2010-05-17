@@ -23,7 +23,7 @@ using namespace std;
 
 //-----------------------------------------------------------------------------
 // fitness function
-#include "../oneMax/src/funcRoyalRoad.h"
+#include <eval/royalRoadEval.h>
 #include <eoInt.h>
 #include <neighborhood/moRndWithoutReplNeighborhood.h>
 #include <problems/bitString/moBitNeighbor.h>
@@ -120,7 +120,7 @@ void main_function(int argc, char **argv)
      *
      * ========================================================= */
 
-    FuncRoyalRoad<Indi> eval(vecSize / blockSize, blockSize);
+    RoyalRoadEval<Indi> eval(blockSize);
 
 
     /* =========================================================

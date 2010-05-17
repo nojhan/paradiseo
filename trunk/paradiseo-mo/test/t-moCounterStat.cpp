@@ -33,30 +33,30 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <continuator/moCounterStat.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moCounterStat] => START" << std::endl;
+    std::cout << "[t-moCounterStat] => START" << std::endl;
 
-	moCounterStat<int> test;
+    moCounterStat<int> test;
 
-	int a=3;
+    int a=3;
 
-	test.init(a);
-	assert(test.value()==0);
-	a=5;
-	test(a);
-	assert(test.value()==1);
-	a=-3;
-	test(a);
-	assert(test.value()==2);
-	a=-12;
-	test.init(a);
-	assert(test.value()==0);
+    test.init(a);
+    assert(test.value()==0);
+    a=5;
+    test(a);
+    assert(test.value()==1);
+    a=-3;
+    test(a);
+    assert(test.value()==2);
+    a=-12;
+    test.init(a);
+    assert(test.value()==0);
 
-	assert(test.className()=="moCounterStat");
+    assert(test.className()=="moCounterStat");
 
-	std::cout << "[t-moCounterStat] => OK" << std::endl;
+    std::cout << "[t-moCounterStat] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

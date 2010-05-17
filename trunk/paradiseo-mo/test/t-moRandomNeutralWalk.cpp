@@ -37,27 +37,27 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <continuator/moTrueContinuator.h>
 #include <comparator/moSolNeighborComparator.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moRandomNeutralWalk] => START" << std::endl;
+    std::cout << "[t-moRandomNeutralWalk] => START" << std::endl;
 
-	bitNeighborhood nh(4);
-	oneMaxEval<bitVector> fullEval;
-	evalOneMax eval(4);
-	moTrueContinuator<bitNeighbor> cont;
-	moSolNeighborComparator<bitNeighbor> sncomp;
+    bitNeighborhood nh(4);
+    oneMaxEval<bitVector> fullEval;
+    evalOneMax eval(4);
+    moTrueContinuator<bitNeighbor> cont;
+    moSolNeighborComparator<bitNeighbor> sncomp;
 
-	//test du 1er constructeur
-	moRandomNeutralWalk<bitNeighbor> test1(nh, fullEval, eval, 3);
+    //test du 1er constructeur
+    moRandomNeutralWalk<bitNeighbor> test1(nh, fullEval, eval, 3);
 
-	//test du 2eme constructeur
-	moRandomNeutralWalk<bitNeighbor> test2(nh, fullEval, eval, 3, cont);
+    //test du 2eme constructeur
+    moRandomNeutralWalk<bitNeighbor> test2(nh, fullEval, eval, 3, cont);
 
-	//test du 3eme constructeur
-	moRandomNeutralWalk<bitNeighbor> test3(nh, fullEval, eval, 3, cont, sncomp);
+    //test du 3eme constructeur
+    moRandomNeutralWalk<bitNeighbor> test3(nh, fullEval, eval, 3, cont, sncomp);
 
-	std::cout << "[t-moRandomNeutralWalk] => OK" << std::endl;
+    std::cout << "[t-moRandomNeutralWalk] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

@@ -33,14 +33,14 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eval/moDummyEval.h>
 #include "moTestClass.h"
 
-int main(){
+int main() {
 
-	std::cout << "[t-moDummyEval] => START" << std::endl;
+    std::cout << "[t-moDummyEval] => START" << std::endl;
 
-	moDummyEval<bitNeighbor> test;
+    moDummyEval<bitNeighbor> test;
 
-	std::cout << "[t-moDummyEval] => OK" << std::endl;
+    std::cout << "[t-moDummyEval] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

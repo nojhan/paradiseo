@@ -41,37 +41,39 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <memory/moSolVectorTabuList.h>
 #include <neighborhood/moDummyNeighbor.h>
 
-class dummyMonOp: public eoMonOp<bitVector>{
-	public:
-		bool operator()(bitVector&){return false;}
+class dummyMonOp: public eoMonOp<bitVector> {
+public:
+    bool operator()(bitVector&) {
+        return false;
+    }
 };
 
-int main(){
+int main() {
 
-	std::cout << "[t-moILS] => START" << std::endl;
+    std::cout << "[t-moILS] => START" << std::endl;
 
-	bitNeighborhood nh(4);
-	oneMaxEval<bitVector> fullEval;
-	evalOneMax eval(4);
+    bitNeighborhood nh(4);
+    oneMaxEval<bitVector> fullEval;
+    evalOneMax eval(4);
 
-	moTS<bitNeighbor> ts(nh, fullEval, eval, 1, 7);
+    moTS<bitNeighbor> ts(nh, fullEval, eval, 1, 7);
 
-	dummyMonOp op;
+    dummyMonOp op;
 
-	//basic constructor
-	moILS<bitNeighbor> test1(ts, fullEval, op, 3);
+    //basic constructor
+    moILS<bitNeighbor> test1(ts, fullEval, op, 3);
 
-	//simple constructor
-	moTrueContinuator<moDummyNeighbor<bitVector> > cont;
-	moILS<bitNeighbor> test2(ts, fullEval, op, cont);
+    //simple constructor
+    moTrueContinuator<moDummyNeighbor<bitVector> > cont;
+    moILS<bitNeighbor> test2(ts, fullEval, op, cont);
 
-	//general constructor
-	moMonOpPerturb<bitNeighbor> perturb(op, fullEval);
-	moAlwaysAcceptCrit<bitNeighbor> accept;
-	moILS<bitNeighbor> test3(ts, fullEval, cont, perturb, accept);
+    //general constructor
+    moMonOpPerturb<bitNeighbor> perturb(op, fullEval);
+    moAlwaysAcceptCrit<bitNeighbor> accept;
+    moILS<bitNeighbor> test3(ts, fullEval, cont, perturb, accept);
 
-	std::cout << "[t-moILS] => OK" << std::endl;
+    std::cout << "[t-moILS] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

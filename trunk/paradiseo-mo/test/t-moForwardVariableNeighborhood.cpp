@@ -37,19 +37,19 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 
 
-int main(){
+int main() {
 
-	std::cout << "[t-moForwardVariableNeighborhood] => START" << std::endl;
+    std::cout << "[t-moForwardVariableNeighborhood] => START" << std::endl;
 
-	moRndWithoutReplNeighborhood<bitNeighbor> rndNH(8);
-	moOrderNeighborhood<moIndexNeighbor<eoBit<eoMinimizingFitness> > >orderNH(8);
-
-
-	//moForwardVariableNeighborhood<eoBit<eoMinimizingFitness>, eoMinimizingFitness> test(orderNH);
+    moRndWithoutReplNeighborhood<bitNeighbor> rndNH(8);
+    moOrderNeighborhood<moIndexNeighbor<eoBit<eoMinimizingFitness> > >orderNH(8);
 
 
-	std::cout << "[t-moForwardVariableNeighborhood] => OK" << std::endl;
+    //moForwardVariableNeighborhood<eoBit<eoMinimizingFitness>, eoMinimizingFitness> test(orderNH);
 
-	return EXIT_SUCCESS;
+
+    std::cout << "[t-moForwardVariableNeighborhood] => OK" << std::endl;
+
+    return EXIT_SUCCESS;
 }
 

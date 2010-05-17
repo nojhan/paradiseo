@@ -38,28 +38,28 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <comparator/moSolNeighborComparator.h>
 
 
-int main(){
+int main() {
 
-	std::cout << "[t-moSimpleHC] => START" << std::endl;
+    std::cout << "[t-moSimpleHC] => START" << std::endl;
 
-	bitNeighborhood nh(4);
-	oneMaxEval<bitVector> fullEval;
-	evalOneMax eval(4);
+    bitNeighborhood nh(4);
+    oneMaxEval<bitVector> fullEval;
+    evalOneMax eval(4);
 
-	//test first constructor
-	moSimpleHC<bitNeighbor> test1(nh, fullEval, eval);
+    //test first constructor
+    moSimpleHC<bitNeighbor> test1(nh, fullEval, eval);
 
-	//test second constructor
-	moTrueContinuator<bitNeighbor> cont;
-	moSimpleHC<bitNeighbor> test2(nh, fullEval, eval, cont);
+    //test second constructor
+    moTrueContinuator<bitNeighbor> cont;
+    moSimpleHC<bitNeighbor> test2(nh, fullEval, eval, cont);
 
-	//test third constructor
-	moSolNeighborComparator<bitNeighbor> sncomp;
-	moNeighborComparator<bitNeighbor> ncomp;
-	moSimpleHC<bitNeighbor> test3(nh, fullEval, eval, cont, ncomp, sncomp);
+    //test third constructor
+    moSolNeighborComparator<bitNeighbor> sncomp;
+    moNeighborComparator<bitNeighbor> ncomp;
+    moSimpleHC<bitNeighbor> test3(nh, fullEval, eval, cont, ncomp, sncomp);
 
-	std::cout << "[t-moSimpleHC] => OK" << std::endl;
+    std::cout << "[t-moSimpleHC] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

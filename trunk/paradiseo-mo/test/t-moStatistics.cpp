@@ -35,77 +35,77 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include "moTestClass.h"
 #include <utils/eoDistance.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moStatistics] => START" << std::endl;
+    std::cout << "[t-moStatistics] => START" << std::endl;
 
-	moStatistics test;
+    moStatistics test;
 
-	double min;
-	double max;
-	double avg;
-	double std;
+    double min;
+    double max;
+    double avg;
+    double std;
 
-	//test des stats basic
-	std::vector<double> sampling;
-	sampling.push_back(3);
-	sampling.push_back(5);
-	sampling.push_back(2);
-	sampling.push_back(4);
+    //test des stats basic
+    std::vector<double> sampling;
+    sampling.push_back(3);
+    sampling.push_back(5);
+    sampling.push_back(2);
+    sampling.push_back(4);
 
 
-	test.basic(sampling, min, max, avg, std);
-	assert(min==2);
-	assert(max==5);
-	assert(avg==3.5);
-	assert(std==sqrt(1.25));
+    test.basic(sampling, min, max, avg, std);
+    assert(min==2);
+    assert(max==5);
+    assert(avg==3.5);
+    assert(std==sqrt(1.25));
 
-	sampling.resize(0);
-	test.basic(sampling, min, max, avg, std);
-	assert(min==0);
-	assert(max==0);
-	assert(avg==0);
-	assert(std==0);
+    sampling.resize(0);
+    test.basic(sampling, min, max, avg, std);
+    assert(min==0);
+    assert(max==0);
+    assert(avg==0);
+    assert(std==0);
 
-	//test de la distance
-	std::vector<bitVector> data;
-	eoHammingDistance<bitVector> dist;
-	bitVector tmp(4,true);
-	data.push_back(tmp);
-	tmp[0]=false;
-	data.push_back(tmp);
-	tmp[2]=false;
-	data.push_back(tmp);
+    //test de la distance
+    std::vector<bitVector> data;
+    eoHammingDistance<bitVector> dist;
+    bitVector tmp(4,true);
+    data.push_back(tmp);
+    tmp[0]=false;
+    data.push_back(tmp);
+    tmp[2]=false;
+    data.push_back(tmp);
 
-	std::vector< std::vector<double> > matrix;
+    std::vector< std::vector<double> > matrix;
 
-	test.distances(data, dist, matrix);
+    test.distances(data, dist, matrix);
 
-	assert(matrix[0][0]==0.0);
-	assert(matrix[0][1]==1.0);
-	assert(matrix[0][2]==2.0);
+    assert(matrix[0][0]==0.0);
+    assert(matrix[0][1]==1.0);
+    assert(matrix[0][2]==2.0);
 
-	assert(matrix[1][0]==1.0);
-	assert(matrix[1][1]==0.0);
-	assert(matrix[1][2]==1.0);
+    assert(matrix[1][0]==1.0);
+    assert(matrix[1][1]==0.0);
+    assert(matrix[1][2]==1.0);
 
-	assert(matrix[2][0]==2.0);
-	assert(matrix[2][1]==1.0);
-	assert(matrix[2][2]==0.0);
+    assert(matrix[2][0]==2.0);
+    assert(matrix[2][1]==1.0);
+    assert(matrix[2][2]==0.0);
 
-	//test de l'autocorrelation
-	std::vector<double> rho, phi;
-	test.autocorrelation(sampling, 2, rho, phi);
+    //test de l'autocorrelation
+    std::vector<double> rho, phi;
+    test.autocorrelation(sampling, 2, rho, phi);
 
-	sampling.push_back(3);
-	sampling.push_back(5);
-	sampling.push_back(2);
-	sampling.push_back(4);
+    sampling.push_back(3);
+    sampling.push_back(5);
+    sampling.push_back(2);
+    sampling.push_back(4);
 
-	test.autocorrelation(sampling, 2, rho, phi);
+    test.autocorrelation(sampling, 2, rho, phi);
 
-	std::cout << "[t-moStatistics] => OK" << std::endl;
+    std::cout << "[t-moStatistics] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

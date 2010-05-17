@@ -34,9 +34,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <continuator/moIterContinuator.h>
 #include "moTestClass.h"
 
-int main(){
+int main() {
 
-	std::cout << "[t-moIterContinuator] => START" << std::endl;
+    std::cout << "[t-moIterContinuator] => START" << std::endl;
 
     moIterContinuator<moDummyNeighborTest> test(3, false);
     moIterContinuator<moDummyNeighborTest> test2(3);
@@ -54,8 +54,8 @@ int main(){
     assert(test.value()==0);
 
 
-	std::cout << "[t-moIterContinuator] => OK" << std::endl;
+    std::cout << "[t-moIterContinuator] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

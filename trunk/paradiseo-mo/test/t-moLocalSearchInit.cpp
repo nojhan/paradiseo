@@ -37,22 +37,22 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eval/oneMaxEval.h>
 
 
-int main(){
+int main() {
 
-	std::cout << "[t-moLocalSearchInit] => START" << std::endl;
+    std::cout << "[t-moLocalSearchInit] => START" << std::endl;
 
-	oneMaxEval<bitVector> fullEval;
-	moDummyLS<bitNeighbor> ls(fullEval);
-	dummyInit init;
-	bitVector sol;
-	sol.fitness(0);
+    oneMaxEval<bitVector> fullEval;
+    moDummyLS<bitNeighbor> ls(fullEval);
+    dummyInit init;
+    bitVector sol;
+    sol.fitness(0);
 
-	moLocalSearchInit<bitNeighbor> test(init, ls);
+    moLocalSearchInit<bitNeighbor> test(init, ls);
 
-	test(sol);
+    test(sol);
 
-	std::cout << "[t-moLocalSearchInit] => OK" << std::endl;
+    std::cout << "[t-moLocalSearchInit] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

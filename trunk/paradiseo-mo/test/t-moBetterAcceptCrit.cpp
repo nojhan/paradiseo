@@ -35,27 +35,27 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <acceptCrit/moBetterAcceptCrit.h>
 #include "moTestClass.h"
 
-int main(){
+int main() {
 
-	std::cout << "[t-moBetterAcceptCrit] => START" << std::endl;
+    std::cout << "[t-moBetterAcceptCrit] => START" << std::endl;
 
-	bitVector sol1, sol2, sol3;
+    bitVector sol1, sol2, sol3;
 
-	sol1.fitness(2);
-	sol2.fitness(3);
-	sol3.fitness(3);
+    sol1.fitness(2);
+    sol2.fitness(3);
+    sol3.fitness(3);
 
-	moSolComparator<bitVector> comparator;
+    moSolComparator<bitVector> comparator;
 
-	moBetterAcceptCrit<bitNeighbor> test(comparator);
+    moBetterAcceptCrit<bitNeighbor> test(comparator);
 
-	assert(test(sol2, sol1));
-	assert(!test(sol1, sol2));
-	assert(!test(sol2, sol3));
+    assert(test(sol2, sol1));
+    assert(!test(sol1, sol2));
+    assert(!test(sol2, sol3));
 
 
-	std::cout << "[t-moBetterAcceptCrit] => OK" << std::endl;
+    std::cout << "[t-moBetterAcceptCrit] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

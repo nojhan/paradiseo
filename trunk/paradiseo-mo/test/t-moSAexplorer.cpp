@@ -35,9 +35,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <explorer/moSAexplorer.h>
 #include <coolingSchedule/moSimpleCoolingSchedule.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moSAexplorer] => START" << std::endl;
+    std::cout << "[t-moSAexplorer] => START" << std::endl;
 
     eoBit<eoMinimizingFitness> sol(4, true);
     sol.fitness(4);
@@ -66,22 +66,22 @@ int main(){
     assert(sol.fitness()==3);
     unsigned int ok=0;
     unsigned int ko=0;
-    for(unsigned int i=0; i<1000; i++){
-    	test2(sol);
-    	if(test2.isContinue(sol))
-    		test2.updateParam(sol);
-    	if(test2.accept(sol))
-			ok++;
-    	else
-    		ko++;
+    for (unsigned int i=0; i<1000; i++) {
+        test2(sol);
+        if (test2.isContinue(sol))
+            test2.updateParam(sol);
+        if (test2.accept(sol))
+            ok++;
+        else
+            ko++;
         test2.move(sol);
     }
     assert((ok>0) && (ko>0));
 
 
 
-	std::cout << "[t-moSAexplorer] => OK" << std::endl;
+    std::cout << "[t-moSAexplorer] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

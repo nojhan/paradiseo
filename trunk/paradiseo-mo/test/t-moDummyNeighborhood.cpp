@@ -34,23 +34,23 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <neighborhood/moDummyNeighborhood.h>
 #include "moTestClass.h"
 
-int main(){
+int main() {
 
-	std::cout << "[t-moDummyNeighborhood] => START" << std::endl;
+    std::cout << "[t-moDummyNeighborhood] => START" << std::endl;
 
-	bitVector sol;
-	moDummyNeighbor<bitVector> n;
+    bitVector sol;
+    moDummyNeighbor<bitVector> n;
 
-	moDummyNeighborhood<moDummyNeighbor<bitVector> > test;
+    moDummyNeighborhood<moDummyNeighbor<bitVector> > test;
 
-	assert(!test.hasNeighbor(sol));
-	assert(!test.cont(sol));
-	test.init(sol,n);
-	test.next(sol,n);
+    assert(!test.hasNeighbor(sol));
+    assert(!test.cont(sol));
+    test.init(sol,n);
+    test.next(sol,n);
 
 
-	std::cout << "[t-moDummyNeighborhood] => OK" << std::endl;
+    std::cout << "[t-moDummyNeighborhood] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

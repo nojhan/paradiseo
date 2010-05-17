@@ -39,34 +39,34 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <comparator/moNeighborComparator.h>
 #include <memory/moSolVectorTabuList.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moTS] => START" << std::endl;
+    std::cout << "[t-moTS] => START" << std::endl;
 
-	bitNeighborhood nh(4);
-	oneMaxEval<bitVector> fullEval;
-	evalOneMax eval(4);
+    bitNeighborhood nh(4);
+    oneMaxEval<bitVector> fullEval;
+    evalOneMax eval(4);
 
-	//test first constructor
-	moTS<bitNeighbor> test1(nh, fullEval, eval, 1, 7);
+    //test first constructor
+    moTS<bitNeighbor> test1(nh, fullEval, eval, 1, 7);
 
-	//test second constructor
-	moSolVectorTabuList<bitNeighbor> tl(7,0);
-	moTS<bitNeighbor> test2(nh, fullEval, eval, 1, tl);
+    //test second constructor
+    moSolVectorTabuList<bitNeighbor> tl(7,0);
+    moTS<bitNeighbor> test2(nh, fullEval, eval, 1, tl);
 
-	//test third constructor
-	moTrueContinuator<bitNeighbor> cont;
-	moSolNeighborComparator<bitNeighbor> sncomp;
-	moNeighborComparator<bitNeighbor> ncomp;
-	moDummyIntensification<bitNeighbor> intens;
-	moDummyDiversification<bitNeighbor> div;
-	moBestImprAspiration<bitNeighbor> aspir;
+    //test third constructor
+    moTrueContinuator<bitNeighbor> cont;
+    moSolNeighborComparator<bitNeighbor> sncomp;
+    moNeighborComparator<bitNeighbor> ncomp;
+    moDummyIntensification<bitNeighbor> intens;
+    moDummyDiversification<bitNeighbor> div;
+    moBestImprAspiration<bitNeighbor> aspir;
 
-	moTS<bitNeighbor> test3(nh, fullEval, eval, ncomp, sncomp, cont, tl, intens, div, aspir);
+    moTS<bitNeighbor> test3(nh, fullEval, eval, ncomp, sncomp, cont, tl, intens, div, aspir);
 
 
-	std::cout << "[t-moTS] => OK" << std::endl;
+    std::cout << "[t-moTS] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

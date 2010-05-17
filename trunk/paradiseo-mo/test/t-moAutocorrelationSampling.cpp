@@ -35,24 +35,24 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include "moTestClass.h"
 #include <eval/oneMaxEval.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moAutocorrelationSampling] => START" << std::endl;
+    std::cout << "[t-moAutocorrelationSampling] => START" << std::endl;
 
-	bitNeighborhood nh(4);
-	oneMaxEval<bitVector> fullEval;
-	evalOneMax eval(4);
-	dummyInit2 init(4);
+    bitNeighborhood nh(4);
+    oneMaxEval<bitVector> fullEval;
+    evalOneMax eval(4);
+    dummyInit2 init(4);
 
-	moAutocorrelationSampling<bitNeighbor> test(init, nh, fullEval, eval, 3);
+    moAutocorrelationSampling<bitNeighbor> test(init, nh, fullEval, eval, 3);
 
-	test();
+    test();
 
-	test.fileExport("outputTestAutocorrelationSampling");
+    test.fileExport("outputTestAutocorrelationSampling");
 
 
-	std::cout << "[t-moAutocorrelationSampling] => OK" << std::endl;
+    std::cout << "[t-moAutocorrelationSampling] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

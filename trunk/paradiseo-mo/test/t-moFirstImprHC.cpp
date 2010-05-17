@@ -37,28 +37,28 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <continuator/moTrueContinuator.h>
 #include <comparator/moSolNeighborComparator.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moFirstImprHC] => START" << std::endl;
+    std::cout << "[t-moFirstImprHC] => START" << std::endl;
 
-	bitNeighborhood nh(4);
-	oneMaxEval<bitVector> fullEval;
-	evalOneMax eval(4);
+    bitNeighborhood nh(4);
+    oneMaxEval<bitVector> fullEval;
+    evalOneMax eval(4);
 
-	//test first constructor
-	moFirstImprHC<bitNeighbor> test1(nh, fullEval, eval);
+    //test first constructor
+    moFirstImprHC<bitNeighbor> test1(nh, fullEval, eval);
 
-	//test second constructor
-	moTrueContinuator<bitNeighbor> cont;
-	moFirstImprHC<bitNeighbor> test2(nh, fullEval, eval, cont);
+    //test second constructor
+    moTrueContinuator<bitNeighbor> cont;
+    moFirstImprHC<bitNeighbor> test2(nh, fullEval, eval, cont);
 
-	//test third constructor
-	moSolNeighborComparator<bitNeighbor> sncomp;
-	moNeighborComparator<bitNeighbor> ncomp;
-	moFirstImprHC<bitNeighbor> test3(nh, fullEval, eval, cont, ncomp, sncomp);
+    //test third constructor
+    moSolNeighborComparator<bitNeighbor> sncomp;
+    moNeighborComparator<bitNeighbor> ncomp;
+    moFirstImprHC<bitNeighbor> test3(nh, fullEval, eval, cont, ncomp, sncomp);
 
-	std::cout << "[t-moFirstImprHC] => OK" << std::endl;
+    std::cout << "[t-moFirstImprHC] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

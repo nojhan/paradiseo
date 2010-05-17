@@ -37,25 +37,25 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <utils/eoDistance.h>
 #include <eval/oneMaxEval.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moFDCsampling] => START" << std::endl;
+    std::cout << "[t-moFDCsampling] => START" << std::endl;
 
-	oneMaxEval<bitVector> fullEval;
-	dummyInit2 init(4);
-	eoHammingDistance<bitVector> dist;
-	bitVector sol(4, false);
-	sol.fitness(0);
+    oneMaxEval<bitVector> fullEval;
+    dummyInit2 init(4);
+    eoHammingDistance<bitVector> dist;
+    bitVector sol(4, false);
+    sol.fitness(0);
 
 
-	moFDCsampling<bitNeighbor> test(init, fullEval, dist, sol, 3);
+    moFDCsampling<bitNeighbor> test(init, fullEval, dist, sol, 3);
 
-	test();
+    test();
 
-	test.fileExport("outputTestFDCsampling");
+    test.fileExport("outputTestFDCsampling");
 
-	std::cout << "[t-moFDCsampling] => OK" << std::endl;
+    std::cout << "[t-moFDCsampling] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

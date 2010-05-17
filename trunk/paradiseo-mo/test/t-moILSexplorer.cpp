@@ -42,59 +42,59 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <acceptCrit/moAlwaysAcceptCrit.h>
 
 
-class dummyMonOp: public eoMonOp<bitVector>{
+class dummyMonOp: public eoMonOp<bitVector> {
 
-	bool operator()(bitVector& _sol){
-		_sol[0]=!_sol[0];
-		return true;
-	}
+    bool operator()(bitVector& _sol) {
+        _sol[0]=!_sol[0];
+        return true;
+    }
 
 };
 
-int main(){
+int main() {
 
-	std::cout << "[t-moILSexplorer] => START" << std::endl;
-	bitNeighborhood nh(4);
-	oneMaxEval<bitVector> fullEval;
-	evalOneMax eval(4);
+    std::cout << "[t-moILSexplorer] => START" << std::endl;
+    bitNeighborhood nh(4);
+    oneMaxEval<bitVector> fullEval;
+    evalOneMax eval(4);
 
-	bitVector sol(4, true);
-	fullEval(sol);
+    bitVector sol(4, true);
+    fullEval(sol);
 
-	//test first constructor
-	moSimpleHC<bitNeighbor> ls(nh, fullEval, eval);
+    //test first constructor
+    moSimpleHC<bitNeighbor> ls(nh, fullEval, eval);
 
-	dummyMonOp op;
-	moMonOpPerturb<bitNeighbor> perturb(op, fullEval);
+    dummyMonOp op;
+    moMonOpPerturb<bitNeighbor> perturb(op, fullEval);
 
-	moAlwaysAcceptCrit<bitNeighbor> accept;
+    moAlwaysAcceptCrit<bitNeighbor> accept;
 
-	moILSexplorer<bitNeighbor> test(ls, perturb, accept);
+    moILSexplorer<bitNeighbor> test(ls, perturb, accept);
 
-	assert(test.className()=="moILSexplorer");
-	assert(test.isContinue(sol));
-	assert(test.accept(sol));
+    assert(test.className()=="moILSexplorer");
+    assert(test.isContinue(sol));
+    assert(test.accept(sol));
 
-	test.initParam(sol);
-	test.moveApplied(true);
-	test.updateParam(sol);
-	test.moveApplied(false);
-	test.updateParam(sol);
-	test.terminate(sol);
+    test.initParam(sol);
+    test.moveApplied(true);
+    test.updateParam(sol);
+    test.moveApplied(false);
+    test.updateParam(sol);
+    test.terminate(sol);
 
-	test.initParam(sol);
-	test(sol);
-	test.move(sol);
+    test.initParam(sol);
+    test(sol);
+    test.move(sol);
 
-	for(unsigned int i=0; i<sol.size(); i++)
-		assert(!sol[i]);
-	assert(sol.fitness()==0);
+    for (unsigned int i=0; i<sol.size(); i++)
+        assert(!sol[i]);
+    assert(sol.fitness()==0);
 
-	test(sol);
+    test(sol);
 
 
-	std::cout << "[t-moILSexplorer] => OK" << std::endl;
+    std::cout << "[t-moILSexplorer] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

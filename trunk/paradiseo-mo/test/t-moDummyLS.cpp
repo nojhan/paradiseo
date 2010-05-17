@@ -35,17 +35,17 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include "moTestClass.h"
 #include <eval/oneMaxEval.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moDummyLS] => START" << std::endl;
+    std::cout << "[t-moDummyLS] => START" << std::endl;
 
-	oneMaxEval<bitVector> fullEval;
-	moDummyLS<bitNeighbor> test(fullEval);
+    oneMaxEval<bitVector> fullEval;
+    moDummyLS<bitNeighbor> test(fullEval);
 
-	assert(test.className()=="moDummyLS");
+    assert(test.className()=="moDummyLS");
 
-	std::cout << "[t-moDummyLS] => OK" << std::endl;
+    std::cout << "[t-moDummyLS] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

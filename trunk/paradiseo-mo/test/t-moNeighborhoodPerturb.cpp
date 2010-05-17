@@ -39,53 +39,53 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 typedef moOrderNeighborhood<bitNeighbor> Neighborhood;
 
-int main(){
+int main() {
 
-	std::cout << "[t-moNeighborhoodPerturb] => START" << std::endl;
+    std::cout << "[t-moNeighborhoodPerturb] => START" << std::endl;
 
-	oneMaxEval<bitVector> eval;
+    oneMaxEval<bitVector> eval;
 
-	moFullEvalByCopy<bitNeighbor> moeval(eval);
+    moFullEvalByCopy<bitNeighbor> moeval(eval);
 
-	bitVector sol;
-	sol.resize(3);
-	sol[0]=0;
-	sol[1]=0;
-	sol[2]=0;
+    bitVector sol;
+    sol.resize(3);
+    sol[0]=0;
+    sol[1]=0;
+    sol[2]=0;
 
-	sol.fitness(0);
+    sol.fitness(0);
 
-	Neighborhood nh(3);
+    Neighborhood nh(3);
 
-	bitNeighbor n;
+    bitNeighbor n;
 
-	moNeighborhoodPerturb<bitNeighbor, bitNeighbor> test(nh, moeval);
+    moNeighborhoodPerturb<bitNeighbor, bitNeighbor> test(nh, moeval);
 
-	//test update
-	test.init(sol);
-	test(sol);
-	assert(sol[0]==1 && sol[1]==0 && sol[2]==0);
-	test.update(sol, n);
-	test(sol);
-	assert(sol[0]==1 && sol[1]==1 && sol[2]==0);
-	test.update(sol, n);
-	test(sol);
-	assert(sol[0]==1 && sol[1]==1 && sol[2]==1);
-	test.update(sol, n);
-	test(sol);
-	assert(sol[0]==0 && sol[1]==1 && sol[2]==1);
+    //test update
+    test.init(sol);
+    test(sol);
+    assert(sol[0]==1 && sol[1]==0 && sol[2]==0);
+    test.update(sol, n);
+    test(sol);
+    assert(sol[0]==1 && sol[1]==1 && sol[2]==0);
+    test.update(sol, n);
+    test(sol);
+    assert(sol[0]==1 && sol[1]==1 && sol[2]==1);
+    test.update(sol, n);
+    test(sol);
+    assert(sol[0]==0 && sol[1]==1 && sol[2]==1);
 
-	//test add
+    //test add
 
-	test.add(sol, n);
-	test(sol);
-	assert(sol[0]==1 && sol[1]==1 && sol[2]==1);
+    test.add(sol, n);
+    test(sol);
+    assert(sol[0]==1 && sol[1]==1 && sol[2]==1);
 
-	test.clearMemory();
+    test.clearMemory();
 
 
-	std::cout << "[t-moNeighborhoodPerturb] => OK" << std::endl;
+    std::cout << "[t-moNeighborhoodPerturb] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

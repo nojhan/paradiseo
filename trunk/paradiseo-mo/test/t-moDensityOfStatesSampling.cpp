@@ -35,20 +35,20 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include "moTestClass.h"
 #include <eval/oneMaxEval.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moDensityOfStatesSampling] => START" << std::endl;
+    std::cout << "[t-moDensityOfStatesSampling] => START" << std::endl;
 
-	oneMaxEval<bitVector> fullEval;
-	dummyInit2 init(4);
+    oneMaxEval<bitVector> fullEval;
+    dummyInit2 init(4);
 
-	moDensityOfStatesSampling<bitNeighbor> test(init, fullEval, 3);
-	test();
+    moDensityOfStatesSampling<bitNeighbor> test(init, fullEval, 3);
+    test();
 
-	test.fileExport("outputTestDensityOfState");
+    test.fileExport("outputTestDensityOfState");
 
-	std::cout << "[t-moDensityOfStatesSampling] => OK" << std::endl;
+    std::cout << "[t-moDensityOfStatesSampling] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

@@ -34,18 +34,18 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <acceptCrit/moAlwaysAcceptCrit.h>
 #include "moTestClass.h"
 
-int main(){
+int main() {
 
-	std::cout << "[t-moAlwaysAcceptCrit] => START" << std::endl;
+    std::cout << "[t-moAlwaysAcceptCrit] => START" << std::endl;
 
-	bitVector sol1, sol2;
+    bitVector sol1, sol2;
 
-	moAlwaysAcceptCrit<bitNeighbor> test;
+    moAlwaysAcceptCrit<bitNeighbor> test;
 
-	assert(test(sol1,sol2));
+    assert(test(sol1,sol2));
 
-	std::cout << "[t-moAlwaysAcceptCrit] => OK" << std::endl;
+    std::cout << "[t-moAlwaysAcceptCrit] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

@@ -34,55 +34,55 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <coolingSchedule/moSimpleCoolingSchedule.h>
 #include "moTestClass.h"
 
-int main(){
+int main() {
 
-	std::cout << "[t-moSimpleCoolingSchedule] => START" << std::endl;
+    std::cout << "[t-moSimpleCoolingSchedule] => START" << std::endl;
 
-	double temperature;
+    double temperature;
 
-	bitVector sol;
+    bitVector sol;
 
-	moSimpleCoolingSchedule<bitVector> test(100, 0.1, 2, 0.1);
+    moSimpleCoolingSchedule<bitVector> test(100, 0.1, 2, 0.1);
 
-	temperature=test.init(sol);
-	assert(temperature==100);
+    temperature=test.init(sol);
+    assert(temperature==100);
 
-	//temperature must not changed 2*
-	test.update(temperature);
-	assert(temperature==100);
-	assert(test(temperature));
-	test.update(temperature);
-	assert(temperature==100);
-	assert(test(temperature));
+    //temperature must not changed 2*
+    test.update(temperature);
+    assert(temperature==100);
+    assert(test(temperature));
+    test.update(temperature);
+    assert(temperature==100);
+    assert(test(temperature));
 
-	//then temperature must be /10
-	test.update(temperature);
-	assert(temperature==10);
-	assert(test(temperature));
-	test.update(temperature);
-	assert(temperature==10);
-	assert(test(temperature));
-	test.update(temperature);
-	assert(temperature==10);
-	assert(test(temperature));
+    //then temperature must be /10
+    test.update(temperature);
+    assert(temperature==10);
+    assert(test(temperature));
+    test.update(temperature);
+    assert(temperature==10);
+    assert(test(temperature));
+    test.update(temperature);
+    assert(temperature==10);
+    assert(test(temperature));
 
-	test.update(temperature);
-	assert(temperature==1);
-	assert(test(temperature));
-	test.update(temperature);
-	assert(temperature==1);
-	assert(test(temperature));
-	test.update(temperature);
-	assert(temperature==1);
-	assert(test(temperature));
+    test.update(temperature);
+    assert(temperature==1);
+    assert(test(temperature));
+    test.update(temperature);
+    assert(temperature==1);
+    assert(test(temperature));
+    test.update(temperature);
+    assert(temperature==1);
+    assert(test(temperature));
 
-	test.update(temperature);
-	assert(temperature==0.1);
-	assert(!test(temperature));
+    test.update(temperature);
+    assert(temperature==0.1);
+    assert(!test(temperature));
 
 
-	std::cout << "[t-moSimpleCoolingSchedule] => OK" << std::endl;
+    std::cout << "[t-moSimpleCoolingSchedule] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

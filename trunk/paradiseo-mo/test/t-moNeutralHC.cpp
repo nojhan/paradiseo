@@ -38,28 +38,28 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <comparator/moSolNeighborComparator.h>
 #include <comparator/moNeighborComparator.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moNeutralHC] => START" << std::endl;
+    std::cout << "[t-moNeutralHC] => START" << std::endl;
 
-	bitNeighborhood nh(4);
-	oneMaxEval<bitVector> fullEval;
-	evalOneMax eval(4);
-	moTrueContinuator<bitNeighbor> cont;
-	moSolNeighborComparator<bitNeighbor> sncomp;
-	moNeighborComparator<bitNeighbor> ncomp;
+    bitNeighborhood nh(4);
+    oneMaxEval<bitVector> fullEval;
+    evalOneMax eval(4);
+    moTrueContinuator<bitNeighbor> cont;
+    moSolNeighborComparator<bitNeighbor> sncomp;
+    moNeighborComparator<bitNeighbor> ncomp;
 
-	//test du 1er constructeur
-	moNeutralHC<bitNeighbor> test1(nh, fullEval, eval, 3);
+    //test du 1er constructeur
+    moNeutralHC<bitNeighbor> test1(nh, fullEval, eval, 3);
 
-	//test du 2eme constructeur
-	moNeutralHC<bitNeighbor> test2(nh, fullEval, eval, 3, cont);
+    //test du 2eme constructeur
+    moNeutralHC<bitNeighbor> test2(nh, fullEval, eval, 3, cont);
 
-	//test du 3eme constructeur
-	moNeutralHC<bitNeighbor> test3(nh, fullEval, eval, 3, cont, ncomp, sncomp);
+    //test du 3eme constructeur
+    moNeutralHC<bitNeighbor> test3(nh, fullEval, eval, 3, cont, ncomp, sncomp);
 
-	std::cout << "[t-moNeutralHC] => OK" << std::endl;
+    std::cout << "[t-moNeutralHC] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

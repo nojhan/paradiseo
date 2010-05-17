@@ -43,75 +43,75 @@ typedef eoInt<unsigned int> QUEEN;
 class dummyInit : public eoInit<QUEEN>
 {
 public:
-	dummyInit(unsigned int _size):size(_size){}
+    dummyInit(unsigned int _size):size(_size) {}
 
-	void operator()(QUEEN& _sol){
-		_sol.resize(0);
-		for(unsigned int i=0; i<size; i++)
-			_sol.push_back(i);
-		_sol.invalidate();
-	}
+    void operator()(QUEEN& _sol) {
+        _sol.resize(0);
+        for (unsigned int i=0; i<size; i++)
+            _sol.push_back(i);
+        _sol.invalidate();
+    }
 
 
 private:
-	unsigned int size;
+    unsigned int size;
 
 };
 
-int main(){
+int main() {
 
-	std::cout << "[t-moRestartPerturb] => START" << std::endl;
+    std::cout << "[t-moRestartPerturb] => START" << std::endl;
 
-	QUEEN queen;
-	moShiftNeighbor<QUEEN> n;
+    QUEEN queen;
+    moShiftNeighbor<QUEEN> n;
 
-	dummyInit initializer(4);
+    dummyInit initializer(4);
 
-	queenEval<QUEEN> eval;
+    queenEval<QUEEN> eval;
 
-	moRestartPerturb<moShiftNeighbor<QUEEN> > test(initializer, eval, 3);
+    moRestartPerturb<moShiftNeighbor<QUEEN> > test(initializer, eval, 3);
 
-	queen.resize(4);
-	queen[0]=1;
-	queen[1]=2;
-	queen[2]=0;
-	queen[3]=3;
+    queen.resize(4);
+    queen[0]=1;
+    queen[1]=2;
+    queen[2]=0;
+    queen[3]=3;
 
-	test.init(queen);
+    test.init(queen);
 
-	test(queen);
-	assert(queen[0]==1 && queen[1]==2 && queen[2]==0 && queen[3]==3);
-	test.update(queen,n); //first noMove
-	test(queen);
-	assert(queen[0]==1 && queen[1]==2 && queen[2]==0 && queen[3]==3);
-	test.update(queen,n); //second noMove
-	test(queen);
-	assert(queen[0]==1 && queen[1]==2 && queen[2]==0 && queen[3]==3);
-	test.update(queen,n); //third noMove
-	test(queen);//here the perturb should be called
-	assert(queen[0]==0 && queen[1]==1 && queen[2]==2 && queen[3]==3);
+    test(queen);
+    assert(queen[0]==1 && queen[1]==2 && queen[2]==0 && queen[3]==3);
+    test.update(queen,n); //first noMove
+    test(queen);
+    assert(queen[0]==1 && queen[1]==2 && queen[2]==0 && queen[3]==3);
+    test.update(queen,n); //second noMove
+    test(queen);
+    assert(queen[0]==1 && queen[1]==2 && queen[2]==0 && queen[3]==3);
+    test.update(queen,n); //third noMove
+    test(queen);//here the perturb should be called
+    assert(queen[0]==0 && queen[1]==1 && queen[2]==2 && queen[3]==3);
 
-	queen[0]=1;
-	queen[1]=2;
-	queen[2]=0;
-	queen[3]=3;
+    queen[0]=1;
+    queen[1]=2;
+    queen[2]=0;
+    queen[3]=3;
 
-	//Retry the same test to verify counter is been reinit to 0
+    //Retry the same test to verify counter is been reinit to 0
 
-	test(queen);
-	assert(queen[0]==1 && queen[1]==2 && queen[2]==0 && queen[3]==3);
-	test.update(queen,n); //first noMove
-	test(queen);
-	assert(queen[0]==1 && queen[1]==2 && queen[2]==0 && queen[3]==3);
-	test.update(queen,n); //second noMove
-	test(queen);
-	assert(queen[0]==1 && queen[1]==2 && queen[2]==0 && queen[3]==3);
-	test.update(queen,n); //third noMove
-	test(queen); //here the perturb should be called
-	assert(queen[0]==0 && queen[1]==1 && queen[2]==2 && queen[3]==3);
+    test(queen);
+    assert(queen[0]==1 && queen[1]==2 && queen[2]==0 && queen[3]==3);
+    test.update(queen,n); //first noMove
+    test(queen);
+    assert(queen[0]==1 && queen[1]==2 && queen[2]==0 && queen[3]==3);
+    test.update(queen,n); //second noMove
+    test(queen);
+    assert(queen[0]==1 && queen[1]==2 && queen[2]==0 && queen[3]==3);
+    test.update(queen,n); //third noMove
+    test(queen); //here the perturb should be called
+    assert(queen[0]==0 && queen[1]==1 && queen[2]==2 && queen[3]==3);
 
-	std::cout << "[t-moRestartPerturb] => OK" << std::endl;
+    std::cout << "[t-moRestartPerturb] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

@@ -35,9 +35,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <comparator/moSolComparator.h>
 #include <ga/eoBit.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moSolComparator] => START" << std::endl;
+    std::cout << "[t-moSolComparator] => START" << std::endl;
 
     eoBit<eoMinimizingFitness> sol1, sol2, sol3;
 
@@ -54,8 +54,8 @@ int main(){
 
     assert(test.className()=="moSolComparator");
 
-	std::cout << "[t-moSolComparator] => OK" << std::endl;
+    std::cout << "[t-moSolComparator] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

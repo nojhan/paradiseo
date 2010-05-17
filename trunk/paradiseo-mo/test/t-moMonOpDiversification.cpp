@@ -38,37 +38,37 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eval/oneMaxEval.h>
 
 
-class dummyMonOp: public eoMonOp<bitVector>{
+class dummyMonOp: public eoMonOp<bitVector> {
 
-	bool operator()(bitVector& _sol){
-		_sol[0]=!_sol[0];
-		return true;
-	}
+    bool operator()(bitVector& _sol) {
+        _sol[0]=!_sol[0];
+        return true;
+    }
 
 };
 
-int main(){
+int main() {
 
-	std::cout << "[t-moMonOpDiversification] => START" << std::endl;
+    std::cout << "[t-moMonOpDiversification] => START" << std::endl;
 
-	dummyMonOp op;
-	oneMaxEval<bitVector> eval;
+    dummyMonOp op;
+    oneMaxEval<bitVector> eval;
 
-	bitVector sol;
-	sol.push_back(1);
-	sol.push_back(0);
-	sol.push_back(1);
+    bitVector sol;
+    sol.push_back(1);
+    sol.push_back(0);
+    sol.push_back(1);
 
-	sol.fitness(5);
+    sol.fitness(5);
 
-	moMonOpDiversification<bitNeighbor> test(op, eval);
+    moMonOpDiversification<bitNeighbor> test(op, eval);
 
-	test(sol);
+    test(sol);
 
-	assert(sol.fitness()==1);
+    assert(sol.fitness()==1);
 
-	std::cout << "[t-moMonOpDiversification] => OK" << std::endl;
+    std::cout << "[t-moMonOpDiversification] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

@@ -38,26 +38,26 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <comparator/moSolNeighborComparator.h>
 #include <comparator/moNeighborComparator.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moRandomWalk] => START" << std::endl;
+    std::cout << "[t-moRandomWalk] => START" << std::endl;
 
-	bitNeighborhood nh(4);
-	oneMaxEval<bitVector> fullEval;
-	evalOneMax eval(4);
-	moTrueContinuator<bitNeighbor> cont;
-	moSolNeighborComparator<bitNeighbor> sncomp;
-	moNeighborComparator<bitNeighbor> ncomp;
+    bitNeighborhood nh(4);
+    oneMaxEval<bitVector> fullEval;
+    evalOneMax eval(4);
+    moTrueContinuator<bitNeighbor> cont;
+    moSolNeighborComparator<bitNeighbor> sncomp;
+    moNeighborComparator<bitNeighbor> ncomp;
 
-	//test du 1er constructeur
-	moRandomWalk<bitNeighbor> test1(nh, fullEval, eval, 3);
+    //test du 1er constructeur
+    moRandomWalk<bitNeighbor> test1(nh, fullEval, eval, 3);
 
-	//test du 2eme constructeur
-	moRandomWalk<bitNeighbor> test2(nh, fullEval, eval, 3, cont);
+    //test du 2eme constructeur
+    moRandomWalk<bitNeighbor> test2(nh, fullEval, eval, 3, cont);
 
 
-	std::cout << "[t-moRandomWalk] => OK" << std::endl;
+    std::cout << "[t-moRandomWalk] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

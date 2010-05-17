@@ -34,58 +34,58 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <memory/moCountMoveMemory.h>
 #include "moTestClass.h"
 
-int main(){
+int main() {
 
-	std::cout << "[t-moCountMoveMemory] => START" << std::endl;
+    std::cout << "[t-moCountMoveMemory] => START" << std::endl;
 
-	bitVector sol;
-	bitNeighbor n;
+    bitVector sol;
+    bitNeighbor n;
 
 
-	moCountMoveMemory<bitNeighbor> test;
+    moCountMoveMemory<bitNeighbor> test;
 
-	test.init(sol);
-	assert(test.getNbMove()==0);
-	assert(test.getNbNoMove()==0);
-	assert(test.getCounter()==0);
+    test.init(sol);
+    assert(test.getNbMove()==0);
+    assert(test.getNbNoMove()==0);
+    assert(test.getCounter()==0);
 
-	test.add(sol,n);
-	assert(test.getNbMove()==1);
-	assert(test.getNbNoMove()==0);
-	assert(test.getCounter()==0);
+    test.add(sol,n);
+    assert(test.getNbMove()==1);
+    assert(test.getNbNoMove()==0);
+    assert(test.getCounter()==0);
 
-	test.add(sol,n);
-	assert(test.getNbMove()==2);
-	assert(test.getNbNoMove()==0);
-	assert(test.getCounter()==0);
+    test.add(sol,n);
+    assert(test.getNbMove()==2);
+    assert(test.getNbNoMove()==0);
+    assert(test.getCounter()==0);
 
-	test.update(sol,n);
-	assert(test.getNbMove()==2);
-	assert(test.getNbNoMove()==1);
-	assert(test.getCounter()==1);
+    test.update(sol,n);
+    assert(test.getNbMove()==2);
+    assert(test.getNbNoMove()==1);
+    assert(test.getCounter()==1);
 
-	test.add(sol,n);
-	assert(test.getNbMove()==3);
-	assert(test.getNbNoMove()==1);
-	assert(test.getCounter()==0);
+    test.add(sol,n);
+    assert(test.getNbMove()==3);
+    assert(test.getNbNoMove()==1);
+    assert(test.getCounter()==0);
 
-	test.update(sol,n);
-	assert(test.getNbMove()==3);
-	assert(test.getNbNoMove()==2);
-	assert(test.getCounter()==1);
+    test.update(sol,n);
+    assert(test.getNbMove()==3);
+    assert(test.getNbNoMove()==2);
+    assert(test.getCounter()==1);
 
-	test.update(sol,n);
-	assert(test.getNbMove()==3);
-	assert(test.getNbNoMove()==3);
-	assert(test.getCounter()==2);
+    test.update(sol,n);
+    assert(test.getNbMove()==3);
+    assert(test.getNbNoMove()==3);
+    assert(test.getCounter()==2);
 
-	test.clearMemory();
-	assert(test.getNbMove()==0);
-	assert(test.getNbNoMove()==0);
-	assert(test.getCounter()==0);
+    test.clearMemory();
+    assert(test.getNbMove()==0);
+    assert(test.getNbNoMove()==0);
+    assert(test.getCounter()==0);
 
-	std::cout << "[t-moCountMoveMemory] => OK" << std::endl;
+    std::cout << "[t-moCountMoveMemory] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

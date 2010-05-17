@@ -35,31 +35,31 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include "moTestClass.h"
 #include <eval/oneMaxEval.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moRandomSearchExplorer] => START" << std::endl;
+    std::cout << "[t-moRandomSearchExplorer] => START" << std::endl;
 
-	dummyInit init;
-	oneMaxEval<bitVector> eval;
-	bitVector sol(4, true);
+    dummyInit init;
+    oneMaxEval<bitVector> eval;
+    bitVector sol(4, true);
 
-	moRandomSearchExplorer<bitNeighbor> test(init, eval, 2);
+    moRandomSearchExplorer<bitNeighbor> test(init, eval, 2);
 
-	test.initParam(sol);
-	test(sol);
-	assert(sol.fitness()==4);
-	test.updateParam(sol);
-	assert(test.isContinue(sol));
-	test.updateParam(sol);
-	assert(!test.isContinue(sol));
-	test.initParam(sol);
-	assert(test.isContinue(sol));
-	test.terminate(sol);
-	assert(test.accept(sol));
-	test.move(sol);
+    test.initParam(sol);
+    test(sol);
+    assert(sol.fitness()==4);
+    test.updateParam(sol);
+    assert(test.isContinue(sol));
+    test.updateParam(sol);
+    assert(!test.isContinue(sol));
+    test.initParam(sol);
+    assert(test.isContinue(sol));
+    test.terminate(sol);
+    assert(test.accept(sol));
+    test.move(sol);
 
-	std::cout << "[t-moRandomSearchExplorer] => OK" << std::endl;
+    std::cout << "[t-moRandomSearchExplorer] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

@@ -38,27 +38,27 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <comparator/moNeighborComparator.h>
 
 
-int main(){
+int main() {
 
-	std::cout << "[t-moNeutralDegreeSampling] => START" << std::endl;
+    std::cout << "[t-moNeutralDegreeSampling] => START" << std::endl;
 
-	bitNeighborhood nh(4);
-	oneMaxEval<bitVector> fullEval;
-	evalOneMax eval(4);
-	dummyInit2 init(4);
+    bitNeighborhood nh(4);
+    oneMaxEval<bitVector> fullEval;
+    evalOneMax eval(4);
+    dummyInit2 init(4);
 
-	moSolNeighborComparator<bitNeighbor> sncomp;
-	moNeighborComparator<bitNeighbor> ncomp;
+    moSolNeighborComparator<bitNeighbor> sncomp;
+    moNeighborComparator<bitNeighbor> ncomp;
 
-	moNeutralDegreeSampling<bitNeighbor> test1(init, nh, fullEval, eval, 3);
-	moNeutralDegreeSampling<bitNeighbor> test2(init, nh, fullEval, eval, ncomp, sncomp, 3);
+    moNeutralDegreeSampling<bitNeighbor> test1(init, nh, fullEval, eval, 3);
+    moNeutralDegreeSampling<bitNeighbor> test2(init, nh, fullEval, eval, ncomp, sncomp, 3);
 
-	test1();
+    test1();
 
-	test1.fileExport("outputNeutralDegreeSampling");
+    test1.fileExport("outputNeutralDegreeSampling");
 
-	std::cout << "[t-moNeutralDegreeSampling] => OK" << std::endl;
+    std::cout << "[t-moNeutralDegreeSampling] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

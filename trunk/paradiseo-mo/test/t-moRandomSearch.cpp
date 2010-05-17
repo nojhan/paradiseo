@@ -36,22 +36,22 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eval/oneMaxEval.h>
 #include <continuator/moTrueContinuator.h>
 
-int main(){
+int main() {
 
-	std::cout << "[t-moRandomSearch] => START" << std::endl;
+    std::cout << "[t-moRandomSearch] => START" << std::endl;
 
-	oneMaxEval<bitVector> fullEval;
-	dummyInit init;
-	moTrueContinuator<bitNeighbor> cont;
-	//test du 1er constructor
-	moRandomSearch<bitNeighbor> test1(init, fullEval, 3);
-	//test du 2e constructor
-	moRandomSearch<bitNeighbor> test2(init, fullEval, 3, cont);
+    oneMaxEval<bitVector> fullEval;
+    dummyInit init;
+    moTrueContinuator<bitNeighbor> cont;
+    //test du 1er constructor
+    moRandomSearch<bitNeighbor> test1(init, fullEval, 3);
+    //test du 2e constructor
+    moRandomSearch<bitNeighbor> test2(init, fullEval, 3, cont);
 
-	assert(test1.className()=="moRandomSearch");
+    assert(test1.className()=="moRandomSearch");
 
-	std::cout << "[t-moRandomSearch] => OK" << std::endl;
+    std::cout << "[t-moRandomSearch] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

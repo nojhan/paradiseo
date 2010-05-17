@@ -40,36 +40,36 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include <eval/oneMaxEval.h>
 
 
-int main(){
+int main() {
 
-	std::cout << "[t-moFitnessCloudSampling] => START" << std::endl;
+    std::cout << "[t-moFitnessCloudSampling] => START" << std::endl;
 
-	bitNeighborhood nh(4);
-	oneMaxEval<bitVector> fullEval;
-	evalOneMax eval(4);
-	dummyInit2 init(4);
+    bitNeighborhood nh(4);
+    oneMaxEval<bitVector> fullEval;
+    evalOneMax eval(4);
+    dummyInit2 init(4);
 
-	moFitnessCloudSampling<bitNeighbor> test1(init, nh, fullEval, eval, 3);
+    moFitnessCloudSampling<bitNeighbor> test1(init, nh, fullEval, eval, 3);
 
-	moRndRndFitnessCloudSampling<bitNeighbor> test2(init, nh, fullEval, eval, 3);
+    moRndRndFitnessCloudSampling<bitNeighbor> test2(init, nh, fullEval, eval, 3);
 
-	moRndBestFitnessCloudSampling<bitNeighbor> test3(init, nh, fullEval, eval, 3);
+    moRndBestFitnessCloudSampling<bitNeighbor> test3(init, nh, fullEval, eval, 3);
 
-	moMHRndFitnessCloudSampling<bitNeighbor> test4(init, nh, fullEval, eval, 3);
+    moMHRndFitnessCloudSampling<bitNeighbor> test4(init, nh, fullEval, eval, 3);
 
-	moMHBestFitnessCloudSampling<bitNeighbor> test5(init, nh, fullEval, eval, 3);
+    moMHBestFitnessCloudSampling<bitNeighbor> test5(init, nh, fullEval, eval, 3);
 
-	test1();
-	test2();
-	test3();
-	test4();
-	test5();
+    test1();
+    test2();
+    test3();
+    test4();
+    test5();
 
-	test1.fileExport("outputTestFitnessCloudSampling");
+    test1.fileExport("outputTestFitnessCloudSampling");
 
 
-	std::cout << "[t-moFitnessCloudSampling] => OK" << std::endl;
+    std::cout << "[t-moFitnessCloudSampling] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 

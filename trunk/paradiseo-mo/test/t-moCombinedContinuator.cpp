@@ -37,9 +37,9 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 #include "moTestClass.h"
 
 
-int main(){
+int main() {
 
-	std::cout << "[t-moCombinedContinuator] => START" << std::endl;
+    std::cout << "[t-moCombinedContinuator] => START" << std::endl;
 
     moIterContinuator<moDummyNeighborTest> cont1(3, false);
     moTrueContinuator<moDummyNeighborTest> cont2;
@@ -58,8 +58,8 @@ int main(){
     assert(test(s));
     assert(!test(s));
 
-	std::cout << "[t-moCombinedContinuator] => OK" << std::endl;
+    std::cout << "[t-moCombinedContinuator] => OK" << std::endl;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 
