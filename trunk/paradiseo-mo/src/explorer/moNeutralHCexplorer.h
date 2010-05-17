@@ -70,8 +70,7 @@ public:
                         moNeighborComparator<Neighbor>& _neighborComparator,
                         moSolNeighborComparator<Neighbor>& _solNeighborComparator,
                         unsigned _nbStep) :
-                        	moRandomBestHCexplorer<Neighbor>(_neighborhood, _eval, _neighborComparator, _solNeighborComparator),
-            nbStep(_nbStep) {
+                        	moRandomBestHCexplorer<Neighbor>(_neighborhood, _eval, _neighborComparator, _solNeighborComparator),nbStep(_nbStep) {
         //Some cycle is possible with equals fitness solutions if the neighborhood is not random
     }
 
@@ -83,18 +82,20 @@ public:
 
     /**
      *  initial number of step
+     * @param _solution the current solution
      */
-    virtual void initParam(EOT & solution) {
-    	moRandomBestHCexplorer<Neighbor>::initParam(solution);
+    virtual void initParam(EOT & _solution) {
+    	moRandomBestHCexplorer<Neighbor>::initParam(_solution);
 
         step = 0;
     };
 
     /**
      * one more step
+     * @param _solution the current solution
      */
-    virtual void updateParam(EOT & solution) {
-    	moRandomBestHCexplorer<Neighbor>::updateParam(solution);
+    virtual void updateParam(EOT & _solution) {
+    	moRandomBestHCexplorer<Neighbor>::updateParam(_solution);
 
         step++;
     };
@@ -109,7 +110,7 @@ public:
     };
 
     /**
-     * accept test if an ameliorated neighbor was be found
+     * accept test if an ameliorated or an equal neighbor was be found
      * @param _solution the solution
      * @return true if the best neighbor ameliorate the fitness or is equals
      */

@@ -119,14 +119,6 @@ public:
         isMoved=_isMoved;
     }
 
-    /**
-     * Return the class id.
-     * @return the class name as a std::string
-     */
-//    virtual std::string className() const {
-//        return "moNeighborhoodExplorer";
-//    }
-
 protected:
     moDummyNeighborhood<Neighbor> dummyNeighborhood;
     moDummyEval<Neighbor> dummyEval;

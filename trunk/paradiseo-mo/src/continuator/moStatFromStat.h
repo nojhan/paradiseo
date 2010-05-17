@@ -48,6 +48,7 @@ public :
   
   /**
    * Default Constructor
+   * @param _stat a stat
    */
   moStatFromStat(moStat<EOT,T> & _stat): moStat<EOT, T>(0, _stat.description()), stat(_stat) {
   }

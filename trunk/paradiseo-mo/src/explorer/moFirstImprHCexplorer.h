@@ -41,7 +41,7 @@
 #include <neighborhood/moNeighborhood.h>
 
 /**
- * Explorer for a first imporvement heuristic
+ * Explorer for a first improvement heuristic
  */
 template< class Neighbor>
 class moFirstImprHCexplorer : public moNeighborhoodExplorer<Neighbor>
@@ -74,21 +74,24 @@ public:
 
     /**
      * initParam: NOTHING TO DO
+     * @param _solution a solution (unused)
      */
-    virtual void initParam(EOT & solution) {};
+    virtual void initParam(EOT & _solution) {};
 
     /**
      * updateParam: NOTHING TO DO
+     * @param _solution a solution (unused)
      */
-    virtual void updateParam(EOT & solution) {};
+    virtual void updateParam(EOT & _solution) {};
 
     /**
      * terminate: NOTHING TO DO
+     * @param _solution a solution (unused)
      */
-    virtual void terminate(EOT & solution) {};
+    virtual void terminate(EOT & _solution) {};
 
     /**
-     * Explore the neighborhood of a solution
+     * Explore the neighborhood of a solution until an ameliorated neighbor is found
      * @param _solution
      */
     virtual void operator()(EOT & _solution) {
@@ -136,7 +139,7 @@ public:
     };
 
     /**
-     * accept test if an amelirated neighbor was be found
+     * accept test if an ameliorated neighbor was be found
      * @param _solution the solution
      * @return true if the best neighbor ameliorate the fitness
      */

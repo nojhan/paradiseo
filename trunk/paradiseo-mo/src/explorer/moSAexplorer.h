@@ -64,9 +64,8 @@ public:
      * Constructor
      * @param _neighborhood the neighborhood
      * @param _eval the evaluation function
-     * @param _neighborComparator a neighbor comparator
      * @param _solNeighborComparator a solution vs neighbor comparator
-     * @param _nbStep maximum number of step to do
+     * @param _coolingSchedule the cooling schedule
      */
   moSAexplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval, moSolNeighborComparator<Neighbor>& _solNeighborComparator, moCoolingSchedule<EOT>& _coolingSchedule) : moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval), solNeighborComparator(_solNeighborComparator), coolingSchedule(_coolingSchedule) {
         isAccept = false;
@@ -168,6 +167,10 @@ public:
         return isAccept;
     };
 
+    /**
+     * Getter
+     * @return the temperature
+     */
     double getTemperature(){
     	return temperature;
     }

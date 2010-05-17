@@ -38,12 +38,12 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 template< class EOT >
 class moSolInit : public eoInit<EOT> {
 public:
+
   /**
    * Default Constructor
    * @param _extSol external solution of the intiialization
    */
-  moSolInit(EOT & _extSol) : extSol(_extSol) {
-  }
+  moSolInit(EOT & _extSol) : extSol(_extSol) {}
   
   /**
    * Initialization on the externatl solution

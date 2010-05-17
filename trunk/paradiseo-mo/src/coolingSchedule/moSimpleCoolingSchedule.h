@@ -52,8 +52,7 @@ public:
    * @param _span number of iteration with equal temperature
    * @param _finalT final temperature, threshold of the stopping criteria
    */
-  moSimpleCoolingSchedule(double _initT, double _alpha, unsigned _span, double _finalT) : initT(_initT), alpha(_alpha), span(_span), finalT(_finalT) {
-  }
+  moSimpleCoolingSchedule(double _initT, double _alpha, unsigned _span, double _finalT) : initT(_initT), alpha(_alpha), span(_span), finalT(_finalT) {}
 
   /**
    * Initial temperature

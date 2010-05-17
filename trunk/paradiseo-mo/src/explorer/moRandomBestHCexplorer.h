@@ -83,28 +83,31 @@ public:
 
     /**
      * empty the vector of best solutions
+     * @param _solution a solution (unused)
      */
-    virtual void initParam(EOT & solution) {
+    virtual void initParam(EOT & _solution) {
         // delete all the best solutions
         bestVector.clear();
     };
 
     /**
      * empty the vector of best solutions
+     * @param _solution a solution (unused)
      */
-    virtual void updateParam(EOT & solution) {
+    virtual void updateParam(EOT & _solution) {
         // delete all the best solutions
         bestVector.clear();
     };
 
     /**
      * terminate: NOTHING TO DO
+     * @param _solution a solution (unused)
      */
-    virtual void terminate(EOT & solution) {};
+    virtual void terminate(EOT & _solution) {};
 
     /**
      * Explore the neighborhood of a solution
-     * @param _solution
+     * @param _solution the current solution
      */
     virtual void operator()(EOT & _solution) {
 

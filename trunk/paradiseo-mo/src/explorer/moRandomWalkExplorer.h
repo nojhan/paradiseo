@@ -78,28 +78,31 @@ public:
 
     /**
      * initialization of the number of step to be done
+     * @param _solution a solution (unused)
      */
-    virtual void initParam(EOT & solution) {
+    virtual void initParam(EOT & _solution) {
         step     = 0;
         isAccept = true;
     };
 
     /**
      * increase the number of step
+     * @param _solution a solution (unused)
      */
-    virtual void updateParam(EOT & solution) {
+    virtual void updateParam(EOT & _solution) {
         step++;
     };
 
     /**
      * terminate: NOTHING TO DO
+     * @param _solution a solution (unused)
      */
-    virtual void terminate(EOT & solution) {};
+    virtual void terminate(EOT & _solution) {};
 
     /**
      * Explore the neighborhood with only one random solution
      * we supposed that the first neighbor is uniformly selected in the neighborhood
-     * @param _solution
+     * @param _solution a solution
      */
     virtual void operator()(EOT & _solution) {
 

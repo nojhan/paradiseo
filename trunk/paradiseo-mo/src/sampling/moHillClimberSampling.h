@@ -66,6 +66,8 @@ public:
    * Default Constructor
    * @param _init initialisation method of the solution
    * @param _neighborhood neighborhood giving neighbor in random order
+   * @param _fullEval a full evaluation function
+   * @param _eval an incremental evaluation of neighbors
    * @param _nbAdaptWalk Number of adaptive walks 
    */
   moHillClimberSampling(eoInit<EOT> & _init, 

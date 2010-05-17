@@ -50,8 +50,8 @@ public:
     moTrueContinuator() {} ;
 
     /**
-     *@param _solution a solution
-     *@return always true
+     * @param _solution a solution
+     * @return always true
      */
     virtual bool operator()(EOT & _solution) {
         return true;

@@ -72,7 +72,7 @@ public:
 
   /**
     * Default Constructor
-    * @param _param the parameter of type EOT to save in the vector
+    * @param _param the parameter of type eoScalarFitness to save in the vector
     */
   template <class ScalarType, class Compare>
    moVectorMonitor(eoValueParam<eoScalarFitness<ScalarType, Compare> > & _param) : doubleParam( & (eoValueParam<double>&)_param), intParam(NULL), eotParam(NULL)
@@ -80,7 +80,7 @@ public:
 
   /**
    * Default Constructor
-   * @param _param the parameter of type EOT to save in the vector
+   * @param _param unvalid Parameter
    */
   template <class T>
   moVectorMonitor(eoValueParam<T> & _param) : doubleParam(NULL), intParam(NULL), eotParam(NULL)

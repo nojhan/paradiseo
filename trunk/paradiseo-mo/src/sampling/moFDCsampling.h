@@ -62,7 +62,7 @@ public:
   /**
    * Default Constructor
    * @param _init initialisation method of the solution
-   * @param _neighborhood neighborhood giving neighbor in random order
+   * @param _fullEval a full evaluation function
    * @param _dist the distance function between solution
    * @param _refSol the reference solution to compute the distance (think of global optimum when possible)
    * @param _nbSol Number of solutions of the sample

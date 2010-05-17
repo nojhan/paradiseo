@@ -35,90 +35,98 @@
 #ifndef _newmo_h
 #define _newmo_h
 
-#include <algo/moLocalSearch.h>
+#include <acceptCrit/moAcceptanceCriterion.h>
+#include <acceptCrit/moAlwaysAcceptCrit.h>
+#include <acceptCrit/moBetterAcceptCrit.h>
+
 #include <algo/moDummyLS.h>
-#include <algo/moRandomSearch.h>
+#include <algo/moFirstImprHC.h>
+#include <algo/moILS.h>
+#include <algo/moLocalSearch.h>
 #include <algo/moMetropolisHasting.h>
+#include <algo/moNeutralHC.h>
+#include <algo/moRandomBestHC.h>
+#include <algo/moRandomNeutralWalk.h>
+#include <algo/moRandomSearch.h>
+#include <algo/moRandomWalk.h>
 #include <algo/moSA.h>
 #include <algo/moSimpleHC.h>
-#include <algo/moFirstImprHC.h>
-#include <algo/moRandomBestHC.h>
-#include <algo/moNeutralHC.h>
-#include <algo/moRandomWalk.h>
-#include <algo/moRandomNeutralWalk.h>
 #include <algo/moTS.h>
-#include <algo/moILS.h>
 
 #include <comparator/moComparator.h>
 #include <comparator/moNeighborComparator.h>
-#include <comparator/moSolNeighborComparator.h>
 #include <comparator/moSolComparator.h>
+#include <comparator/moSolNeighborComparator.h>
 
+#include <continuator/moAverageFitnessNeighborStat.h>
+#include <continuator/moBestSoFarStat.h>
 #include <continuator/moCheckpoint.h>
+#include <continuator/moCombinedContinuator.h>
 #include <continuator/moContinuator.h>
 #include <continuator/moCounterMonitorSaver.h>
+#include <continuator/moCounterStat.h>
 #include <continuator/moDistanceStat.h>
+#include <continuator/moFitContinuator.h>
 #include <continuator/moFitnessStat.h>
-#include <continuator/moNeighborFitnessStat.h>
-#include <continuator/moNeighborBestStat.h>
+#include <continuator/moFullEvalContinuator.h>
+#include <continuator/moIterContinuator.h>
 #include <continuator/moMaxNeighborStat.h>
 #include <continuator/moMinNeighborStat.h>
+#include <continuator/moMinusOneCounterStat.h>
 #include <continuator/moNbInfNeighborStat.h>
 #include <continuator/moNbSupNeighborStat.h>
+#include <continuator/moNeighborBestStat.h>
+#include <continuator/moNeighborEvalContinuator.h>
+#include <continuator/moNeighborFitnessStat.h>
 #include <continuator/moNeighborhoodStat.h>
 #include <continuator/moNeutralDegreeNeighborStat.h>
 #include <continuator/moSecondMomentNeighborStat.h>
-#include <continuator/moAverageFitnessNeighborStat.h>
-#include <continuator/moStdFitnessNeighborStat.h>
 #include <continuator/moSizeNeighborStat.h>
-#include <continuator/moCounterStat.h>
-#include <continuator/moMinusOneCounterStat.h>
 #include <continuator/moSolutionStat.h>
 #include <continuator/moStat.h>
 #include <continuator/moStatBase.h>
-#include <continuator/moTrueContinuator.h>
-#include <continuator/moIterContinuator.h>
-#include <continuator/moFitContinuator.h>
-#include <continuator/moCombinedContinuator.h>
-#include <continuator/moFullEvalContinuator.h>
-#include <continuator/moNeighborEvalContinuator.h>
+#include <continuator/moStatFromStat.h>
+#include <continuator/moStdFitnessNeighborStat.h>
 #include <continuator/moTimeContinuator.h>
+#include <continuator/moTrueContinuator.h>
 #include <continuator/moVectorMonitor.h>
 
+#include <coolingSchedule/moCoolingSchedule.h>
+#include <coolingSchedule/moSimpleCoolingSchedule.h>
+
+#include <eval/moDummyEval.h>
 #include <eval/moEval.h>
+#include <eval/moEvalCounter.h>
 #include <eval/moFullEvalByCopy.h>
 #include <eval/moFullEvalByModif.h>
-#include <eval/moDummyEval.h>
-#include <eval/moEvalCounter.h>
-#include <eval/moMaxSATincrEval.h>
 
+#include <explorer/moDummyExplorer.h>
 #include <explorer/moFirstImprHCexplorer.h>
-#include <explorer/moNeutralHCexplorer.h>
+#include <explorer/moILSexplorer.h>
 #include <explorer/moMetropolisHastingExplorer.h>
 #include <explorer/moNeighborhoodExplorer.h>
-#include <explorer/moDummyExplorer.h>
-#include <explorer/moRandomSearchExplorer.h>
-#include <explorer/moRandomNeutralWalkExplorer.h>
-#include <explorer/moRandomWalkExplorer.h>
-#include <explorer/moSimpleHCexplorer.h>
+#include <explorer/moNeutralHCexplorer.h>
 #include <explorer/moRandomBestHCexplorer.h>
-#include <explorer/moTSexplorer.h>
-#include <explorer/moILSexplorer.h>
+#include <explorer/moRandomNeutralWalkExplorer.h>
+#include <explorer/moRandomSearchExplorer.h>
+#include <explorer/moRandomWalkExplorer.h>
 #include <explorer/moSAexplorer.h>
+#include <explorer/moSimpleHCexplorer.h>
+#include <explorer/moTSexplorer.h>
 
 #include <memory/moAspiration.h>
 #include <memory/moBestImprAspiration.h>
+#include <memory/moCountMoveMemory.h>
 #include <memory/moDiversification.h>
-#include <memory/moDummyMemory.h>
 #include <memory/moDummyDiversification.h>
 #include <memory/moDummyIntensification.h>
+#include <memory/moDummyMemory.h>
 #include <memory/moIntensification.h>
 #include <memory/moMemory.h>
-#include <memory/moSolVectorTabuList.h>
-#include <memory/moNeighborVectorTabuList.h>
-#include <memory/moTabuList.h>
-#include <memory/moCountMoveMemory.h>
 #include <memory/moMonOpDiversification.h>
+#include <memory/moNeighborVectorTabuList.h>
+#include <memory/moSolVectorTabuList.h>
+#include <memory/moTabuList.h>
 
 #include <neighborhood/moBackableNeighbor.h>
 #include <neighborhood/moDummyNeighbor.h>
@@ -132,33 +140,12 @@
 #include <neighborhood/moRndWithoutReplNeighborhood.h>
 #include <neighborhood/moRndWithReplNeighborhood.h>
 
-#include <perturb/moPerturbation.h>
-#include <perturb/moMonOpPerturb.h>
-#include <perturb/moRestartPerturb.h>
-#include <perturb/moNeighborhoodPerturb.h>
 #include <perturb/moLocalSearchInit.h>
+#include <perturb/moMonOpPerturb.h>
+#include <perturb/moNeighborhoodPerturb.h>
+#include <perturb/moPerturbation.h>
+#include <perturb/moRestartPerturb.h>
 #include <perturb/moSolInit.h>
-
-#include <acceptCrit/moAcceptanceCriterion.h>
-#include <acceptCrit/moAlwaysAcceptCrit.h>
-#include <acceptCrit/moBetterAcceptCrit.h>
-
-#include <coolingSchedule/moCoolingSchedule.h>
-#include <coolingSchedule/moSimpleCoolingSchedule.h>
-
-#include <sampling/moSampling.h>
-#include <sampling/moDensityOfStatesSampling.h>
-#include <sampling/moAutocorrelationSampling.h>
-#include <sampling/moHillClimberSampling.h>
-#include <sampling/moFDCsampling.h>
-#include <sampling/moNeutralDegreeSampling.h>
-#include <sampling/moFitnessCloudSampling.h>
-#include <sampling/moRndRndFitnessCloudSampling.h>
-#include <sampling/moRndBestFitnessCloudSampling.h>
-#include <sampling/moMHRndFitnessCloudSampling.h>
-#include <sampling/moMHBestFitnessCloudSampling.h>
-#include <sampling/moNeutralWalkSampling.h>
-#include <sampling/moStatistics.h>
 
 #include <problems/bitString/moBitNeighbor.h>
 #include <problems/eval/moOneMaxIncrEval.h>
@@ -166,11 +153,18 @@
 #include <problems/permutation/moSwapNeighbor.h>
 #include <problems/permutation/moSwapNeighborhood.h>
 
-//#include <old/moMove.h>
-//#include <old/moMoveIncrEval.h>
-//#include <old/moMoveInit.h>
-//#include <old/moNextMove.h>
-//#include <old/moMoveNeighbor.h>
-//#include <old/moMoveNeighborhood.h>
+#include <sampling/moAutocorrelationSampling.h>
+#include <sampling/moDensityOfStatesSampling.h>
+#include <sampling/moFDCsampling.h>
+#include <sampling/moFitnessCloudSampling.h>
+#include <sampling/moHillClimberSampling.h>
+#include <sampling/moMHBestFitnessCloudSampling.h>
+#include <sampling/moMHRndFitnessCloudSampling.h>
+#include <sampling/moNeutralDegreeSampling.h>
+#include <sampling/moNeutralWalkSampling.h>
+#include <sampling/moRndBestFitnessCloudSampling.h>
+#include <sampling/moRndRndFitnessCloudSampling.h>
+#include <sampling/moSampling.h>
+#include <sampling/moStatistics.h>
 
 #endif

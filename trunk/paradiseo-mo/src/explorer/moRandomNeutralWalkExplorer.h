@@ -62,7 +62,8 @@ public:
      * @param _solNeighborComparator a solution vs neighbor comparator
      * @param _nbStep maximum number of step to do
      */
-    moRandomNeutralWalkExplorer(Neighborhood& _neighborhood, moEval<Neighbor>& _eval,
+    moRandomNeutralWalkExplorer(Neighborhood& _neighborhood,
+								moEval<Neighbor>& _eval,
                                 moSolNeighborComparator<Neighbor>& _solNeighborComparator,
                                 unsigned _nbStep):
             moNeighborhoodExplorer<Neighbor>(_neighborhood, _eval),
@@ -84,23 +85,26 @@ public:
 
     /**
      * initialization of the number of step to be done
+     * @param _solution a solution (unused)
      */
-    virtual void initParam(EOT & solution) {
+    virtual void initParam(EOT & _solution) {
         step     = 0;
         isAccept = true;
     };
 
     /**
      * increase the number of step
+     * @param _solution a solution (unused)
      */
-    virtual void updateParam(EOT & solution) {
+    virtual void updateParam(EOT & _solution) {
         step++;
     };
 
     /**
      * terminate: NOTHING TO DO
+     * @param _solution a solution (unused)
      */
-    virtual void terminate(EOT & solution) {};
+    virtual void terminate(EOT & _solution) {};
 
     /**
      * Explore the neighborhood of a solution
@@ -135,7 +139,7 @@ public:
      * @return true there is some steps to do
      */
     virtual bool isContinue(EOT & _solution) {
-        return (step < nbStep)  && isAccept ;
+        return (step < nbStep) && isAccept ;
     };
 
     /**
@@ -150,7 +154,7 @@ public:
     };
 
     /**
-     * accept test if an ameliorated neighbor was be found
+     * accept test if an equals neighbor was be found
      * @param _solution the solution
      * @return true if the best neighbor ameliorate the fitness
      */

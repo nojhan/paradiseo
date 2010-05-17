@@ -51,46 +51,46 @@ public:
   moDummyExplorer(): moNeighborhoodExplorer<Neighbor>() { }
 
     /**
-     * Init Search parameters
-     * @param _solution the solution to explore
+     * NOTHING TO DO
+     * @param _solution a solution (unused)
      */
   void initParam (EOT& _solution) { } ;
 
     /**
-     * Update Search parameters
-     * @param _solution the solution to explore
+     * NOTHING TO DO
+     * @param _solution a solution (unused)
      */
   void updateParam (EOT& _solution) { } ;
 
     /**
-     * Test if the exploration continue or not
-     * @param _solution the solution to explore
-     * @return true if the exploration continue, else return false
+     * NOTHING TO DO
+     * @param _solution a solution (unused)
+     * @return always false
      */
   bool isContinue(EOT& _solution) { return false; } ;
 
     /**
-     * Move a solution
-     * @param _solution the solution to explore
+     * NOTHING TO DO
+     * @param _solution a solution (unused)
      */
   void move(EOT& _solution) { } ;
 
     /**
-     * Test if a solution is accepted
-     * @param _solution the solution to explore
-     * @return true if the solution is accepted, else return false
+     * NOTHING TO DO
+     * @param _solution a solution (unused)
+     * @return always false
      */
   virtual bool accept(EOT& _solution) { return false; } ;
 
     /**
-     * Terminate the search
-     * @param _solution the solution to explore
+     * NOTHING TO DO
+     * @param _solution a solution (unused)
      */
   virtual void terminate(EOT& _solution) { } ;
 
     /**
-     * Explore the neighborhood of a solution
-     * @param _solution
+     * NOTHING TO DO
+     * @param _solution a solution (unused)
      */
    void operator()(EOT & _solution) { }
 

@@ -37,7 +37,6 @@ Contact: paradiseo-help@lists.gforge.inria.fr
  * Abstract class for Perturbation operator
  */
 template< class Neighbor >
-class moPerturbation : public eoMonOp<typename Neighbor::EOT>, virtual public moMemory<Neighbor> {
-};
+class moPerturbation : public eoMonOp<typename Neighbor::EOT>, virtual public moMemory<Neighbor> {};
 
 #endif

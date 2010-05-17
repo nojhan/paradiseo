@@ -98,12 +98,13 @@ public:
 
 	/**
 	 * terminate: NOTHING TO DO
+     * @param _solution a solution (unused)
 	 */
     virtual void terminate(EOT & _solution){};
 
     /**
-     * Explore the neighborhood of a solution
-     * @param _solution
+     * Perturb and apply local search on a solution
+     * @param _solution the solution
      */
     virtual void operator()(EOT & _solution){
     	//copy the solution to perform new local search
@@ -132,8 +133,8 @@ public:
     };
 
     /**
-     * move the solution with the best neighbor
-     * @param _solution the solution to move
+     * copy the solution found by the local search
+     * @param _solution the solution
      */
     virtual void move(EOT & _solution) {
     	_solution=current;

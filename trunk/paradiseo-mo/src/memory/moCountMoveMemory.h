@@ -52,7 +52,7 @@ public:
     }
 
     /**
-     * @param _sol unused solution
+     * @param _sol a solution (unused)
      * @param _neighbor unused neighbor
      */
     void add(EOT & _sol, Neighbor & _neighbor) {

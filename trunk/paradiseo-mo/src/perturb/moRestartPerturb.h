@@ -47,7 +47,7 @@ public:
 
 	/**
 	 * Default Constructor
-	 * @param _init an initializer of solution
+	 * @param _initializer an initializer of solution
 	 * @param _fullEval a full evaluation function
 	 * @param _threshold maximum number of iteration with no improvement
 	 */

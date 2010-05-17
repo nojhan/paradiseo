@@ -32,11 +32,17 @@ Contact: paradiseo-help@lists.gforge.inria.fr
 
 #include <neighborhood/moNeighborhood.h>
 
+/**
+ * Class used to specify a neighborhood is random
+ */
 template< class Neighbor >
 class moRndNeighborhood : virtual public moNeighborhood<Neighbor> {
 
 public:
 
+	/**
+	 * @return true
+	 */
     bool isRandom() {
         return true;
     }

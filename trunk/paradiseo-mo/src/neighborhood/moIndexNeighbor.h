@@ -54,6 +54,7 @@ public:
 
     /**
      * Copy Constructor
+     * @param _n the neighbor to copy
      */
     moIndexNeighbor(const moIndexNeighbor& _n) : moNeighbor<EOT>(_n) {
         this->key = _n.key ;
@@ -61,6 +62,7 @@ public:
 
     /**
      * Assignment operator
+     * @param _source the source neighbor
      */
     virtual moIndexNeighbor<EOT> & operator=(const moIndexNeighbor<EOT> & _source) {
         moNeighbor<EOT>::operator=(_source);

@@ -57,7 +57,7 @@ public:
   /**
    * Constructor
    * @param _init the solution initializer, to explore at random the search space
-   * @param _eval the evaluation function
+   * @param _fulleval the evaluation function
    * @param _nbStep maximum number of step to do
    */
   moRandomSearchExplorer(eoInit<EOT>& _init, eoEvalFunc<EOT>& _fulleval, unsigned _nbStep) : moNeighborhoodExplorer<Neighbor>(), init(_init), fulleval(_fulleval), nbStep(_nbStep) {
@@ -68,27 +68,29 @@ public:
   /**
    * Destructor
    */
-  ~moRandomSearchExplorer() {
-  }
+  ~moRandomSearchExplorer() {}
   
   /**
    * initialization of the number of step to be done
+   * @param _solution a solution (unused)
    */
-  virtual void initParam(EOT & solution) {
+  virtual void initParam(EOT & _solution) {
     step     = 0;
   };
   
   /**
    * increase the number of step
+   * @param _solution a solution (unused)
    */
-  virtual void updateParam(EOT & solution) {
+  virtual void updateParam(EOT & _solution) {
     step++;
   };
   
   /**
    * terminate: NOTHING TO DO
+   * @param _solution a solution (unused)
    */
-  virtual void terminate(EOT & solution) {};
+  virtual void terminate(EOT & _solution) {};
   
   /**
    * Explore the neighborhood with only one random solution

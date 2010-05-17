@@ -55,7 +55,7 @@ public:
     moNeighborhood() {}
 
     /**
-     * @return if the neighborhood is random
+     * @return if the neighborhood is random (default false)
      */
     virtual bool isRandom() {
         return false;
